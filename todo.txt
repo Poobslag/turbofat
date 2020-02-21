@@ -1,0 +1,146 @@
+*basic block movement
+ *draw ugly T-block graphic on-screen
+ *can move
+  *left/right
+  *soft drop
+  *hard drop
+ *can rotate (TGM rotation)
+  *cw/ccw
+ *constrained by well boundaries
+ *other blocks
+  *v
+  *Pentomino Arika-Inspired Rotation System
+  *l (TGM)
+  *j (TGM)
+  *o (TGM)
+  *p (inverted TGM)
+  *q (inverted TGM)
+  *u (inverted TGM)
+*basic mechanics
+ *random block
+ *gravity
+ *block "locks in place", new block comes out
+ *block can collide with other blocks
+ *rows clear when full
+  *extra lock delay for clear
+*design
+ *extract 'block types'
+ *move classes into /scenes folder
+-advanced block movement
+ *consistent frame-based gravity (14 frames?)
+ *instant gravity
+ *blocks are paired by color
+ *advanced random generator
+  *pulls from bag
+  *never gives same piece twice
+  *extra mystery piece
+ *rudimentary "next pieces"
+  *first piece
+  *5 more pieces
+ *wall kicks
+  *SRS? ARS?
+  *T-spin triples? (change P and Q to follow Z and S?)
+ *floor kicks
+  *only a few floor kicks
+ *lock delay
+  *only a few resets
+  *half second lock down?
+  *hard drop should lock instantly
+  *can't move against a wall to reset
+ *DAS
+ *ARE
+  *regular ARE, line ARE
+ *initial DAS
+ *initial rotation
+  *hold button to queue rotation
+  *hold both rotate buttons for double rotation
+ *game over when you reach the top; kicks left, kicks right, then you die
+ *sound
+  *move sound
+  *rotate sound
+  *lock sound
+  *drop sound
+  *new piece sound
+ *glitch: pieces flicker?
+-advanced mechanics
+ *first blocks feel "fair"? 3x4 or 3x5 + 3x3
+ *pieces appear connected
+ *pieces disconnect on line clear
+ *broken pieces turn grey
+ *rudimentary score display: score
+ *block system
+  *blocks merge into 3x3 blocks
+  *blocks merge into 3x4 blocks
+  *blocks merge into 3x5 blocks
+  *blocks score bonus points
+  *delay as blocks form (similar to line clear delay)
+ *buffer "nook moves" even without DAS
+ *combo system
+  *combo increases as you clear rows
+  *combo sfx
+  *multiple consecutive combo sfx
+  *combos score bonus points
+  *combo resets if you drop 2 blocks without clearing a row
+-minimal ui polish
+ *replace 'combo end pwoof' with fanfares
+ *ready, go
+  *pieces are hidden
+  *hit button to start
+  *countdown, pieces are visible
+  *start
+  *hit button to retry
+ *marathon mode
+  *instance scene
+  *gets more difficult over time
+  *displays speed level
+ *making block and clearing line simultaneously should work better
+ *slow game down?
+ *display level-up meter
+ *end combo after death
+ *display hints on loss:
+  *display stats, rankings
+  *instant hard drop
+  *instant das left, right
+  *instant das rotate
+  *instant das for flip
+  *make 3x3 blocks
+  *make 3x4 blocks
+  *make 3x5 blocks
+  *combo system
+ -put on github
+ -testers?
+-squish blocks through other blocks?
+ -immediate soft-drop
+ -squish down
+ -squish down + left
+ -squish V into a line-piece?
+ -squish L, J into a line-piece?
+-other platforms
+ -windows
+ -linux
+ -html5
+ -android?
+-UI
+ -background
+ -6 next pieces (vaguely the same scale as nullpomino)
+ -board
+  -pieces look like burnt/gross food
+  -blocks look like cooked/delicious food
+  -cleared rows have food crumbs which swipe into a variable size food glob
+ -"you"
+  -cooks on top of burners
+  -trots around
+  -heaves food off-camera when clearing a line
+ -customers
+  -blink
+  -animate vaguely
+  -eat food when clearing a line
+ -food
+  -cake (3 blocks)
+   -rotates through the air
+  -vegetable (0 blocks)
+  -brownie (2 blocks)
+  -chocolate wafer (1 block)
+-scenarios
+-variable customers (at least 2)
+-growing customers (at least a little)
