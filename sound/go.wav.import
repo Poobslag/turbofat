@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/go.wav-3c1ad34da8007b0c5c575b8796cf1c7b.sample"
+
+[deps]
+
+source_file="res://sound/go.wav"
+dest_files=[ "res://.import/go.wav-3c1ad34da8007b0c5c575b8796cf1c7b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

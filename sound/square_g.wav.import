@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/square_g.wav-ea2e604501b8c469382dda1f4e7b79b0.sample"
+
+[deps]
+
+source_file="res://sound/square_g.wav"
+dest_files=[ "res://.import/square_g.wav-ea2e604501b8c469382dda1f4e7b79b0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0

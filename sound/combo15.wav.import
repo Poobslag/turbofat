@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/combo15.wav-7b3418918305f93179877a6bf040ec37.sample"
+
+[deps]
+
+source_file="res://sound/combo15.wav"
+dest_files=[ "res://.import/combo15.wav-7b3418918305f93179877a6bf040ec37.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=true
+edit/normalize=true
+edit/loop=false
+compress/mode=0
