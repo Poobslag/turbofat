@@ -20,11 +20,11 @@ const HINTS = [
 	"Silver boxes score 5 points per line, gold boxes score 10. Make lots of boxes!",
 	"Combos add up to 20 points for completing a line. Make lots of combos!",
 	"Build a big combo by making boxes and clearing lines!",
-	"When a block locks, hold left or right to quickly move the next block!",
-	"When a block locks, hold a rotate key to quickly rotate the next block!",
-	"When a block locks, hold both rotate keys to quickly rotate the next block!",
-	"When a block locks, hold up to quickly hard-drop the next block!",
-	"Press 'C' to hold the current block. ...Just kidding!",
+	"When a piece locks, hold left or right to quickly move the next piece!",
+	"When a piece locks, hold a rotate key to quickly rotate the next piece!",
+	"When a piece locks, hold both rotate keys to quickly rotate the next piece!",
+	"When a piece locks, hold up to quickly hard-drop the next piece!",
+	"Press 'C' to hold the current piece. ...Just kidding!",
 ]
 
 # Colors used to render the level number. Easy levels are green, and hard levels are red.
@@ -44,11 +44,11 @@ func _on_game_over():
 	# calculate stats which are displayed to the player
 	var score = $Game/Score.score
 	# how many lines the player cleared
-	var survival_score = $Game/Grid.stats_lines
+	var survival_score = $Game/Playfield.stats_lines
 	# how many bonus points per line the player obtained from boxes
-	var boxes_score = $Game/Grid.stats_block_score / float(max($Game/Grid.stats_lines, 12))
+	var boxes_score = $Game/Playfield.stats_piece_score / float(max($Game/Playfield.stats_lines, 12))
 	# how many bonus points per line the player obtained from combos
-	var combos_score = $Game/Grid.stats_combo_score / float(max($Game/Grid.stats_lines - 4, 12))
+	var combos_score = $Game/Playfield.stats_combo_score / float(max($Game/Playfield.stats_lines - 4, 12))
 	
 	# the player's grade
 	var survival_grade = "-"
@@ -134,7 +134,7 @@ func _on_game_over():
 Method invoked when a line is cleared. Updates the level.
 """
 func _on_line_clear():
-	var lines = $Game/Grid.stats_lines
+	var lines = $Game/Playfield.stats_lines
 	var new_level = level
 	var lines_to_next_level = -1
 	
@@ -152,7 +152,7 @@ func _on_line_clear():
 
 func _on_start_game():
 	set_level(1)
-	$Game/Block.set_block_speed(0)
+	$Game/Piece.set_piece_speed(0)
 
 func _on_before_start_game():
 	set_level(0)
@@ -161,7 +161,7 @@ func _on_before_start_game():
 Sets the speed level and updates the UI elements accordingly.
 """
 func set_level(new_level):
-	$Game/Block.set_block_speed(new_level - 1)
+	$Game/Piece.set_piece_speed(new_level - 1)
 	level = new_level
 	if new_level == 0:
 		# 'level 0' is used when the game is not running

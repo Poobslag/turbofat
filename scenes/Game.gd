@@ -1,10 +1,10 @@
 """
-Represents a minimal 'game' with a block, grid of blocks, and next blocks. Other classes can extend this class to add
+Represents a minimal 'game' with a piece, playfield of pieces, and next pieces. Other classes can extend this class to add
 goals, win conditions, challenges or time limits.
 """
 extends Node2D
 
-# signal emitted when the 'new game' countdown begins for block randomization, clearing the grid
+# signal emitted when the 'new game' countdown begins for piece randomization, clearing the playfield
 signal before_start_game
 
 # signal emitted when the 'new game' countdown finishes, giving the player control
@@ -13,15 +13,15 @@ signal start_game
 # signal emitted when a line is cleared
 signal line_clear
 
-# signal emitted when the player's blocks reach the top of the grid
+# signal emitted when the player's pieces reach the top of the playfield
 signal game_over
 
 # signal emitted a few seconds after the game ends, for displaying messages
 signal after_game_over
 
 func _ready():
-	$NextBlocks.hide_blocks()
-	$Block.clear_block()
+	$NextPieces.hide_pieces()
+	$Piece.clear_piece()
 	$HUD/MessageLabel.hide()
 
 func _on_start_game():
@@ -29,8 +29,8 @@ func _on_start_game():
 	$HUD/StartGameButton.hide()
 	$HUD/DetailMessageLabel.hide()
 	
-	$NextBlocks.start_game()
-	$Grid.start_game()
+	$NextPieces.start_game()
+	$Playfield.start_game()
 	$Score.start_game()
 	
 	show_message("3")
@@ -45,7 +45,7 @@ func _on_start_game():
 	$HUD/MessageLabel.hide()
 	$HUD/GoSound.play()
 	
-	$Block.start_game()
+	$Piece.start_game()
 	emit_signal("start_game")
 
 """
