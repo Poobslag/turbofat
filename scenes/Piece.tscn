@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://scenes/Block.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Piece.gd" type="Script" id=1]
 [ext_resource path="res://art/b27.png" type="Texture" id=2]
 [ext_resource path="res://sound/rotate.wav" type="AudioStream" id=3]
 [ext_resource path="res://sound/move.wav" type="AudioStream" id=4]
@@ -26,7 +26,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[node name="Block" type="Control"]
+[node name="Piece" type="Control"]
 margin_right = 288.0
 margin_bottom = 480.0
 script = ExtResource( 1 )

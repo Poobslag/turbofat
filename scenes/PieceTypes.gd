@@ -35,7 +35,7 @@ const KICKS_NONE = [
 		[]
 	]
 
-var block_j = BlockType.new("j",
+var piece_j = PieceType.new("j",
 		# shape data
 		[[Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
 		[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(1, 2)],
@@ -49,7 +49,7 @@ var block_j = BlockType.new("j",
 		KICKS_J
 	)
 
-var block_l = BlockType.new("l",
+var piece_l = PieceType.new("l",
 		# shape data
 		[[Vector2(2, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
 		[Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(2, 2)],
@@ -63,7 +63,7 @@ var block_l = BlockType.new("l",
 		KICKS_J
 	)
 
-var block_o = BlockType.new("o",
+var piece_o = PieceType.new("o",
 		# shape data
 		[[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)]],
 		# color data
@@ -71,7 +71,7 @@ var block_o = BlockType.new("o",
 		KICKS_NONE
 	)
 
-var block_p = BlockType.new("p",
+var piece_p = PieceType.new("p",
 		# shape data
 		[[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)],
 		[Vector2(2, 0), Vector2(1, 1), Vector2(2, 1), Vector2(1, 2), Vector2(2, 2)],
@@ -85,7 +85,7 @@ var block_p = BlockType.new("p",
 		KICKS_P
 	)
 
-var block_q = BlockType.new("q",
+var piece_q = PieceType.new("q",
 		# shape data
 		[[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1)],
 		[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1), Vector2(2, 2)],
@@ -99,7 +99,7 @@ var block_q = BlockType.new("q",
 		KICKS_P
 	)
 
-var block_t = BlockType.new("t",
+var piece_t = PieceType.new("t",
 		# shape data
 		[[Vector2(1, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
 		[Vector2(1, 0), Vector2(1, 1), Vector2(2, 1), Vector2(1, 2)],
@@ -113,7 +113,7 @@ var block_t = BlockType.new("t",
 		KICKS_J
 	)
 
-var block_u = BlockType.new("u",
+var piece_u = PieceType.new("u",
 		# shape data
 		[[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(2, 1)],
 		[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(0, 2)],
@@ -125,10 +125,10 @@ var block_u = BlockType.new("u",
 		[Vector2(2, 8), Vector2(2, 8), Vector2(9, 8), Vector2(12, 8), Vector2(5, 8)],
 		[Vector2(10, 8), Vector2(4, 8), Vector2(3, 8), Vector2(9, 8), Vector2(4, 8)]],
 		KICKS_U,
-		2 # u-block allows more floor kicks, because it kicks the floor twice if you rotate it four times
+		2 # u-piece allows more floor kicks, because it kicks the floor twice if you rotate it four times
 	)
 
-var block_v = BlockType.new("v",
+var piece_v = PieceType.new("v",
 		# shape data
 		[[Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(1, 2), Vector2(2, 2)],
 		[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(0, 2)],
@@ -142,13 +142,13 @@ var block_v = BlockType.new("v",
 		KICKS_V
 	)
 
-var block_null = BlockType.new("_", [[]], [[]], KICKS_NONE)
-var all_types = [block_j, block_l, block_o, block_p, block_q, block_t, block_u, block_v];
+var piece_null = PieceType.new("_", [[]], [[]], KICKS_NONE)
+var all_types = [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
 
-func is_null(block_type):
-	return block_type.pos_arr[0].size() == 0
+func is_null(piece_type):
+	return piece_type.pos_arr[0].size() == 0
 
-class BlockType:
+class PieceType:
 	#string representation when debugging; 'j', 'l', etc...
 	var string
 	

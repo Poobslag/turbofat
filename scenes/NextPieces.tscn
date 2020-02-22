@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scenes/NextPieces.gd" type="Script" id=1]
+[ext_resource path="res://scenes/NextPieceDisplay.tscn" type="PackedScene" id=2]
+
+[node name="NextPieces" type="Node2D"]
+script = ExtResource( 1 )
+NextPieceDisplay = ExtResource( 2 )
