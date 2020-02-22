@@ -5,16 +5,16 @@ Block-dropping puzzle game
 
 Here's a glossary of terms used within the code. When editing code, try to use consistent terms like "each cubit" instead of "each piece", or "whenever the player sees" instead of "whenever you see"
 
-**block:** a block with several joined cubits, which the player controls
+**box:** a 3x3, 3x4 or 3x5 rectangle built from intact pieces.
 
-**box:** a 3x3, 3x4 or 3x5 box built out of blocks
-
-**cubit:** a solid element occupying one cell of the playfield.
+**block:** a solid element occupying one cell of the playfield.
 
 **cell:** a unit square within the playfield.
 
-**grid:** the 9x15 playfield containing the previously dropped blocks
+**line:** a horizontal row of blocks.
 
-**line:** a horizontal row of 9 cells in the grid
+**piece:** a set of blocks that moves as a unit. 
 
-**player:** the person playing the game
+**player:** the person playing the game.
+
+**playfield:** the grid of cells into which pieces are placed. 
