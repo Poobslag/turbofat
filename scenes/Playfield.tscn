@@ -1,6 +1,6 @@
 [gd_scene load_steps=35 format=2]
 
-[ext_resource path="res://scenes/Grid.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Playfield.gd" type="Script" id=1]
 [ext_resource path="res://art/b27.png" type="Texture" id=2]
 [ext_resource path="res://sound/erase1.wav" type="AudioStream" id=3]
 [ext_resource path="res://sound/erase2.wav" type="AudioStream" id=4]
@@ -52,7 +52,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[node name="Grid" type="Control"]
+[node name="Playfield" type="Control"]
 margin_right = 288.0
 margin_bottom = 480.0
 script = ExtResource( 1 )
@@ -92,11 +92,11 @@ volume_db = -5.0
 stream = ExtResource( 8 )
 volume_db = -5.0
 
-[node name="ClearSilverBlockSound" type="AudioStreamPlayer" parent="."]
+[node name="ClearSilverPieceSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 volume_db = -2.0
 
-[node name="ClearGoldBlockSound" type="AudioStreamPlayer" parent="."]
+[node name="ClearGoldPieceSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 
 [node name="Combo1Sound" type="AudioStreamPlayer" parent="."]
