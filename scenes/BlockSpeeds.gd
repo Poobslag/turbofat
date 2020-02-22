@@ -1,3 +1,10 @@
+"""
+Stores data about the different 'speed levels' such as how fast blocks should drop, how long it takes them to lock
+into the grid, and how long to pause when clearing lines.
+
+Much of this speed data was derived from wikis for other block-dropping games which have the concept of a 'hold piece'
+so it's likely it will change over time to become more lenient.
+"""
 extends Node
 
 const G = 256
@@ -31,7 +38,7 @@ var all_speeds = [
 	BlockSpeed.new(20*G, 27, 18, 10, 30, 16),
 	BlockSpeed.new(20*G, 18, 14, 10, 30, 10),
 	BlockSpeed.new(20*G, 14,  8, 10, 30,  8),
-	# Speed 25: Shirase-ish
+	# Speed 25: Likely impossible
 	BlockSpeed.new(20*G, 12,  8,  8, 24,  6),
 	BlockSpeed.new(20*G, 12,  8,  8, 20,  6),
 	BlockSpeed.new(20*G, 12,  7,  8, 18,  5),
@@ -42,13 +49,27 @@ var all_speeds = [
 	BlockSpeed.new(20*G,  6,  5,  6,  8,  3),
 ]
 
-# blockSpeed settings
+"""
+Stores data about a specific 'speed levels' such as how fast blocks should drop, how long it takes them to lock into
+the grid, and how long to pause when clearing lines.
+"""
 class BlockSpeed:
+	# how fast blocks should drop, as a fraction of 256. 32 = once every 8 frames, 512 = twice a frame
 	var gravity
+	
+	# number of frames to pause before a new block appears
 	var appearance_delay
+	
+	# number of frames to pause before a new block appears, after clearing a line/making a box
 	var line_appearance_delay
+	
+	# number of frames the player has to hold left/right before the block whooshes over
 	var delayed_auto_shift_delay
+	
+	# number of frames to pause before locking a block into the grid
 	var lock_delay
+	
+	# number of frames to pause when clearing a line
 	var line_clear_delay
 	
 	func _init(init_gravity, init_appearance_delay, init_line_appearance_delay, init_delayed_auto_shift_delay, \

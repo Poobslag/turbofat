@@ -5,10 +5,10 @@
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://sound/levelup.wav" type="AudioStream" id=4]
 
-[sub_resource type="StyleBoxFlat" id=3]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -16,11 +16,11 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=3]
 size = 24
 font_data = ExtResource( 3 )
 
-[sub_resource type="DynamicFont" id=2]
+[sub_resource type="DynamicFont" id=4]
 size = 48
 font_data = ExtResource( 3 )
 
@@ -39,8 +39,8 @@ margin_left = 103.0
 margin_top = 330.0
 margin_right = 203.0
 margin_bottom = 375.0
-custom_styles/fg = SubResource( 3 )
-custom_styles/bg = SubResource( 4 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
 percent_visible = false
 
 [node name="LevelLabel" type="Label" parent="HUD"]
@@ -48,7 +48,7 @@ margin_left = 100.0
 margin_top = 300.0
 margin_right = 200.0
 margin_bottom = 330.0
-custom_fonts/font = SubResource( 1 )
+custom_fonts/font = SubResource( 3 )
 text = "Level"
 align = 1
 
@@ -57,8 +57,8 @@ margin_left = 103.0
 margin_top = 324.0
 margin_right = 203.0
 margin_bottom = 382.0
-custom_fonts/font = SubResource( 2 )
-text = "2"
+custom_fonts/font = SubResource( 4 )
+text = "-"
 align = 1
 
 [node name="LevelUpSound" type="AudioStreamPlayer" parent="."]
