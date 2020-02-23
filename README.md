@@ -18,3 +18,7 @@ Here's a glossary of terms used within the code. When editing code, try to use c
 **player:** the person playing the game.
 
 **playfield:** the grid of cells into which pieces are placed. 
+
+**rainbow cake:** a 4x3 or 5x3 rectangle built from either three pentominos or three quadrominos.
+
+**snack box:** a 3x3 square built from a pentomino and a quadromino.
