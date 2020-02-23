@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Piece.gd" type="Script" id=1]
-[ext_resource path="res://art/b27.png" type="Texture" id=2]
+[ext_resource path="res://art/blocks.png" type="Texture" id=2]
 [ext_resource path="res://scenes/CornerMap.tscn" type="PackedScene" id=3]
 [ext_resource path="res://sound/rotate.wav" type="AudioStream" id=4]
 [ext_resource path="res://sound/move.wav" type="AudioStream" id=5]
@@ -11,14 +11,14 @@
 [ext_resource path="res://sound/smash.wav" type="AudioStream" id=9]
 
 [sub_resource type="TileSet" id=1]
-0/name = "b27.png 0"
+0/name = "blocks.png 0"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 800, 608 )
+0/region = Rect2( 0, 0, 900, 608 )
 0/tile_mode = 2
 0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 32, 32 )
+0/autotile/tile_size = Vector2( 36, 32 )
 0/autotile/spacing = 0
 0/autotile/occluder_map = [  ]
 0/autotile/navpoly_map = [  ]
@@ -36,7 +36,7 @@ script = ExtResource( 1 )
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 0, -96 )
 tile_set = SubResource( 1 )
-cell_size = Vector2( 32, 32 )
+cell_size = Vector2( 36, 32 )
 format = 1
 tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 196608, 262149, 0, 196608 )
 

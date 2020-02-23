@@ -30,14 +30,14 @@ script = ExtResource( 1 )
 [node name="Game" parent="." instance=ExtResource( 2 )]
 
 [node name="HUD" type="Control" parent="."]
-margin_left = 580.0
-margin_right = 620.0
+margin_left = 616.0
+margin_right = 656.0
 margin_bottom = 40.0
 
 [node name="ProgressBar" type="ProgressBar" parent="HUD"]
-margin_left = 103.0
+margin_left = 100.0
 margin_top = 330.0
-margin_right = 203.0
+margin_right = 200.0
 margin_bottom = 375.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
@@ -53,9 +53,9 @@ text = "Level"
 align = 1
 
 [node name="LevelValue" type="Label" parent="HUD"]
-margin_left = 103.0
+margin_left = 100.0
 margin_top = 324.0
-margin_right = 203.0
+margin_right = 200.0
 margin_bottom = 382.0
 custom_fonts/font = SubResource( 4 )
 text = "-"

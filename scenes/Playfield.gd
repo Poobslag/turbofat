@@ -106,7 +106,7 @@ func write_piece(pos, rotation, type, new_line_clear_frames, death_piece = false
 	for i in range(0, type.pos_arr[rotation].size()):
 		var block_pos = type.pos_arr[rotation][i]
 		var block_color = type.color_arr[rotation][i]
-		set_block(pos.x + block_pos.x, pos.y + block_pos.y, block_color)
+		set_piece_block(pos.x + block_pos.x, pos.y + block_pos.y, block_color)
 	
 	if death_piece:
 		Score.add_score(Score.combo_score)
@@ -180,13 +180,20 @@ func discussion_bicycles():
 		for x in range(0, COL_COUNT):
 			var piece_color = $TileMap.get_cell(x, y)
 			var autotile_coord = $TileMap.get_cell_autotile_coord(x, y)
-			if piece_color != -1 and autotile_coord.y != 0 and autotile_coord.y != 18:
+			if piece_color == -1:
+				# empty space
+				db[y][x] = 0
+			elif piece_color == 1:
+				# box
+				db[y][x] = 0
+			elif piece_color == 2:
+				# vegetable
+				db[y][x] = 0
+			else:
 				if y == 0:
 					db[y][x] = 1
 				else:
 					db[y][x] = db[y - 1][x] + 1
-			else:
-				db[y][x] = 0
 	return db
 
 """
@@ -203,35 +210,35 @@ func check_for_boxes():
 		for x in range(0, COL_COUNT):
 			# check for 5x3s (vertical)
 			if dt5[y][x] >= 3 and check_for_box(dt3, x - 2, y - 4, 3, 5, true):
-				$GoldBoxSound.play()
+				$CakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				remaining_box_build_frames = line_clear_delay
 				return true
 			
 			# check for 4x3s (vertical)
 			if dt4[y][x] >= 3 and check_for_box(dt3, x - 2, y - 3, 3, 4, true):
-				$GoldBoxSound.play()
+				$CakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				remaining_box_build_frames = line_clear_delay
 				return true
 			
 			# check for 5x3s (horizontal)
 			if dt3[y][x] >= 5 and check_for_box(dt3, x - 4, y - 2, 5, 3, true):
-				$GoldBoxSound.play()
+				$CakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				remaining_box_build_frames = line_clear_delay
 				return true
 			
 			# check for 4x3s (horizontal)
 			if dt3[y][x] >= 4 and check_for_box(dt3, x - 3, y - 2, 4, 3, true):
-				$GoldBoxSound.play()
+				$CakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				remaining_box_build_frames = line_clear_delay
 				return true
 			
 			# check for 3x3s
 			if dt3[y][x] >= 3 and check_for_box(dt3, x - 2, y - 2, 3, 3):
-				$SilverBoxSound.play()
+				$SnackBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				remaining_box_build_frames = line_clear_delay
 				return true
@@ -242,9 +249,9 @@ Checks whether the specified rectangle represents an enclosed box. An enclosed b
 outside the box.
 
 It's assumed the rectangle's coordinates contain only dropped pieces which haven't been split apart by lines, and
-no empty cells.
+no empty/vegetable/box cells.
 """
-func check_for_box(dt3, x, y, width, height, gold = false):
+func check_for_box(dt3, x, y, width, height, cake = false):
 	for curr_x in range(x, x + width):
 		if int($TileMap.get_cell_autotile_coord(curr_x, y).x) & CONNECTED_UP > 0:
 			return
@@ -259,32 +266,32 @@ func check_for_box(dt3, x, y, width, height, gold = false):
 	# making a piece continues the combo
 	combo_break = 0
 	
-	var offset
-	if gold:
-		offset = 7
+	var box_color
+	if cake:
+		box_color = 4
 	else:
-		offset = 16
+		box_color = $TileMap.get_cell_autotile_coord(x, y).y
 	
 	# corners
-	set_block(x + 0, y + 0, Vector2(offset + 0, 18))
-	set_block(x + width - 1, y + 0, Vector2(offset + 2, 18))
-	set_block(x + 0, y + height - 1, Vector2(offset + 6, 18))
-	set_block(x + width - 1, y + height - 1, Vector2(offset + 8, 18))
+	set_box_block(x + 0, y + 0, Vector2(10, box_color))
+	set_box_block(x + width - 1, y + 0, Vector2(6, box_color))
+	set_box_block(x + 0, y + height - 1, Vector2(9, box_color))
+	set_box_block(x + width - 1, y + height - 1, Vector2(5, box_color))
 	
 	# top/bottom edge
 	for curr_x in range(x + 1, x + width - 1):
-		set_block(curr_x, y + 0, Vector2(offset + 1, 18))
-		set_block(curr_x, y + height - 1, Vector2(offset + 7, 18))
+		set_box_block(curr_x, y + 0, Vector2(14, box_color))
+		set_box_block(curr_x, y + height - 1, Vector2(13, box_color))
 	
 	# center
 	for curr_x in range(x + 1, x + width - 1):
 		for curr_y in range(y + 1, y + height - 1):
-			set_block(curr_x, curr_y, Vector2(offset + 4, 18))
+			set_box_block(curr_x, curr_y, Vector2(15, box_color))
 	
 	# left/right edge
 	for curr_y in range(y + 1, y + height - 1):
-		set_block(x + 0, curr_y, Vector2(offset + 3, 18))
-		set_block(x + width - 1, curr_y, Vector2(offset + 5, 18))
+		set_box_block(x + 0, curr_y, Vector2(11, box_color))
+		set_box_block(x + width - 1, curr_y, Vector2(7, box_color))
 	
 	return true
 
@@ -303,15 +310,14 @@ func check_for_line_clear():
 			stats_combo_score += combo_score_arr[clamp(combo, 0, combo_score_arr.size() - 1)]
 			cleared_lines.append(y)
 			for x in range(0, COL_COUNT):
-				var autotile_coord = $TileMap.get_cell_autotile_coord(x, y)
-				if autotile_coord.y == 18:
-					if autotile_coord.x == 7 || autotile_coord.x == 10 || autotile_coord.x == 13:
-						# gold piece
+				if $TileMap.get_cell(x, y) == 1 and int($TileMap.get_cell_autotile_coord(x, y).x) & CONNECTED_LEFT == 0:
+					if $TileMap.get_cell_autotile_coord(x, y).y == 4:
+						# cake piece
 						line_score += 10
 						stats_piece_score += 10
 						piece_points = max(piece_points, 2)
-					elif autotile_coord.x == 16 || autotile_coord.x == 19 || autotile_coord.x == 22:
-						# silver piece
+					else:
+						# snack piece
 						line_score += 5
 						stats_piece_score += 5
 						piece_points = max(piece_points, 1)
@@ -364,9 +370,9 @@ func play_line_clear_sfx(cleared_lines, combo, piece_points):
 		if combo_sfx > 0:
 			scheduled_sfx.append(combo_sound_arr[min(combo_sfx, combo_sound_arr.size() - 1)])
 	if piece_points == 1:
-		scheduled_sfx.append($ClearSilverPieceSound)
+		scheduled_sfx.append($ClearSnackPieceSound)
 	elif piece_points >= 2:
-		scheduled_sfx.append($ClearGoldPieceSound)
+		scheduled_sfx.append($ClearCakePieceSound)
 	
 	# play the calculated sound effects
 	if scheduled_sfx.size() > 0:
@@ -388,7 +394,11 @@ Clear all cells in the specified row. This leaves any pieces above them floating
 """
 func clear_row(y):
 	for x in range(0, COL_COUNT):
-		disconnect_block(x, y)
+		if $TileMap.get_cell(x, y) == 0:
+			disconnect_block(x, y)
+		elif $TileMap.get_cell(x, y) == 1:
+			disconnect_box(x, y)
+		
 		clear_block(x, y)
 
 """
@@ -401,8 +411,8 @@ func delete_row(y):
 			var autotile_coord = $TileMap.get_cell_autotile_coord(x, curr_y - 1)
 			$TileMap.set_cell(x, curr_y, piece_color, false, false, false, autotile_coord)
 			$TileMap/CornerMap.dirty = true
-			if piece_color == 0:
-				# only play the line falling sound if at least one piece falls
+			if piece_color != -1:
+				# only play the line falling sound if at least one block falls
 				should_play_line_fall_sound = true
 	
 	# remove row
@@ -411,18 +421,22 @@ func delete_row(y):
 
 """
 Disconnects the specified block from all blocks it's connected to, directly or indirectly. All disconnected blocks are
-flagged to ensure they can't be included in 'boxes' in the future.
+turned into vegetables to ensure they can't be included in boxes in the future.
 """
 func disconnect_block(x, y):
+	if $TileMap.get_cell(x, y) != 0:
+		# not a block; do nothing and don't recurse
+		return
+	
 	# store connections
 	var old_autotile_coord = $TileMap.get_cell_autotile_coord(x, y)
 	
-	if old_autotile_coord.y == 18:
-		# don't disconnect pieces... we don't have the graphics for it
-		return
-	
 	# disconnect
-	set_block(x, y, Vector2(0, 0))
+	var vegetable_type = old_autotile_coord.y
+	if vegetable_type > 3:
+		# unusual blocks (maybe in future development) become leafy greens
+		vegetable_type = 0
+	set_veg_block(x, y, Vector2(randi() % 18, vegetable_type))
 	
 	if y > 0 && int(old_autotile_coord.x) & CONNECTED_UP > 0:
 		disconnect_block(x, y - 1)
@@ -436,13 +450,59 @@ func disconnect_block(x, y):
 	if x < COL_COUNT - 1 && int(old_autotile_coord.x) & CONNECTED_RIGHT > 0:
 		disconnect_block(x + 1, y)
 
-func set_block(x, y, block_color):
+"""
+Disconnects the specified block, which is a part of a box, from the boxes above and below it.
+
+When clearing a line which contains a box, parts of the box can stay behind. We want to redraw those boxes so that
+they don't look chopped-off, and so that the player can still tell they're worth bonus points, so we turn them into
+smaller 2x3 and 1x3 boxes.
+
+If we didn't perform this step, the chopped-off bottom of a bread box would still just look like bread. This way, the
+bottom of a bread box looks like a delicious frosted snack and the player can tell it's special.
+"""
+func disconnect_box(x, y):
+	var old_autotile_coord = $TileMap.get_cell_autotile_coord(x, y)
+	if y > 0 && int(old_autotile_coord.x) & CONNECTED_UP > 0:
+		var above_autotile_coord = $TileMap.get_cell_autotile_coord(x, y - 1)
+		set_box_block(x, y - 1, Vector2(int(above_autotile_coord.x) ^ CONNECTED_DOWN, above_autotile_coord.y))
+		set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ CONNECTED_UP, old_autotile_coord.y))
+	if y < ROW_COUNT - 1 && int(old_autotile_coord.x) & CONNECTED_DOWN > 0:
+		var below_autotile_coord = $TileMap.get_cell_autotile_coord(x, y + 1)
+		set_box_block(x, y + 1, Vector2(int(below_autotile_coord.x) ^ CONNECTED_UP, below_autotile_coord.y))
+		set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ CONNECTED_DOWN, old_autotile_coord.y))
+
+"""
+Writes a block which is a part of an intact piece into the tile map. These intact pieces might later become boxes or
+vegetables.
+"""
+func set_piece_block(x, y, block_color):
 	$TileMap.set_cell(x, y, 0, false, false, false, block_color)
 	$TileMap/CornerMap.dirty = true
 
+"""
+Writes a block which is a part of a snack box or cake box into the tile map. These are typically written when the
+player arranges pieces into a box.
+"""
+func set_box_block(x, y, box_color):
+	$TileMap.set_cell(x, y, 1, false, false, false, box_color)
+	$TileMap/CornerMap.dirty = true
+
+"""
+Writes a vegetable block into the tile map. These are typically written when the player breaks up an intact piece.
+"""
+func set_veg_block(x, y, block_color):
+	$TileMap.set_cell(x, y, 2, false, false, false, block_color)
+	$TileMap/CornerMap.dirty = true
+
+"""
+Erases a block from the tile map.
+"""
 func clear_block(x, y):
 	$TileMap.set_cell(x, y, -1)
 	$TileMap/CornerMap.dirty = true
 
+"""
+Returns 'true' if the specified cell does not contain a block.
+"""
 func is_cell_empty(x, y):
 	return $TileMap.get_cell(x, y) == -1

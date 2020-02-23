@@ -21,12 +21,13 @@ func _ready():
 	# The main "next piece display" is full size
 	add_display(0)
 	
-	# There are many other smaller displays to the size
-	add_display(1,  96,  0, 0.5)
-	add_display(2, 164,  0, 0.5)
-	add_display(3, 180, 64, 0.5)
-	add_display(4, 180, 128, 0.5)
-	add_display(5, 180, 192, 0.5)
+	# There are many other smaller displays to the side
+	add_display(1, 92,   0, 0.33333)
+	add_display(2, 142,   0, 0.33333)
+	add_display(3, 192,   0, 0.33333)
+	add_display(4, 192,  44, 0.33333)
+	add_display(5, 192,  88, 0.33333)
+	add_display(6, 192, 132, 0.33333)
 
 """
 Hides all next piece displays. We can't let the player see the upcoming pieces before the game starts.
