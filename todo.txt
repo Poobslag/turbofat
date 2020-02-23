@@ -4,6 +4,10 @@
  -html5
  -android?
 -joystick support
+-better scaling of blocks, should look good at large resolutions
+ -disable pixel scaling
+ -enable filtering on imported tilemaps
+ -surround blocks with buffer
 -discussion trucks -> filled rectangles
 -customize controls
 -slow the game down a lot?
@@ -11,17 +15,22 @@
  -more low-level speeds?
  -longer than 0.5s to move?
 -UI
+ -piece appearance
+  -move screen to center
+  -locked pieces droop
+ -piece animations
+  -frosting splashes in, piece flashes into existence
  -print input on screen
  -background
  -6 next pieces (vaguely the same scale as nullpomino)
-  -have a place for them
-  -background
-  -outline
+  -draw a background area for them
+  -centering
+   -immediate next piece should be centered vertically
+   -future next pieces should be centered horizontally and vertically
+  -pieces fade out
  -board
-  -broken pieces look like burnt/gross food
-  -pieces look like rigid blobs of food
-  -blocks look like cooked/delicious food
   -cleared rows have food crumbs which swipe into a variable size food glob
+  -improved sfx
   -pieces ooze/squish a little
    -during rotation
    -during movement
