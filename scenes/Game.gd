@@ -46,6 +46,7 @@ func _on_start_game():
 	$HUD/GoSound.play()
 	
 	$Piece.start_game()
+	
 	emit_signal("start_game")
 
 """
