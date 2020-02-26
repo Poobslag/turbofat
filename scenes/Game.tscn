@@ -85,7 +85,7 @@ custom_fonts/normal_font = SubResource( 5 )
 text = "Controls
 
 Arrows: Move
-Up: Hard drop
+Up/Shift: Hard drop
 Down: Soft drop
 Z, X: Rotate"
 scroll_active = false
