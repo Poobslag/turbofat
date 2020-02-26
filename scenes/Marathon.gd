@@ -25,6 +25,8 @@ const HINTS = [
 	"When a piece locks, hold both rotate keys to quickly rotate the next piece!",
 	"When a piece locks, hold up to quickly hard-drop the next piece!",
 	"Press 'C' to hold the current piece. ...Just kidding!",
+	"After a hard drop, tap 'down' to prevent the piece from locking!",
+	"Sometimes, pressing 'down' can clip pieces past other blocks!"
 ]
 
 # Colors used to render the level number. Easy levels are green, and hard levels are red.
