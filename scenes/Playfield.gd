@@ -59,6 +59,7 @@ onready var Score = get_node("../Score")
 func _ready():
 	set_clip_contents(true)
 	$TileMap.clear()
+	$TileMap/CornerMap.clear()
 
 """
 Returns true if the Playfield is ready for a new piece to drop; false if it's paused for some kind of animation or delay.
@@ -94,6 +95,7 @@ func start_game():
 	stats_combo_score = 0
 	stats_seconds = 0
 	$TileMap.clear()
+	$TileMap/CornerMap.clear()
 
 """
 Writes a piece to the playfield, checking whether it makes any boxes or clears any lines.
@@ -398,6 +400,7 @@ func delete_row(y):
 			var piece_color = $TileMap.get_cell(x, curr_y - 1)
 			var autotile_coord = $TileMap.get_cell_autotile_coord(x, curr_y - 1)
 			$TileMap.set_cell(x, curr_y, piece_color, false, false, false, autotile_coord)
+			$TileMap/CornerMap.dirty = true
 			if piece_color == 0:
 				# only play the line falling sound if at least one piece falls
 				should_play_line_fall_sound = true
@@ -435,9 +438,11 @@ func disconnect_block(x, y):
 
 func set_block(x, y, block_color):
 	$TileMap.set_cell(x, y, 0, false, false, false, block_color)
+	$TileMap/CornerMap.dirty = true
 
 func clear_block(x, y):
 	$TileMap.set_cell(x, y, -1)
+	$TileMap/CornerMap.dirty = true
 
 func is_cell_empty(x, y):
 	return $TileMap.get_cell(x, y) == -1
