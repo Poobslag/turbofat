@@ -1,38 +1,39 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://scenes/Playfield.gd" type="Script" id=1]
 [ext_resource path="res://art/b27.png" type="Texture" id=2]
-[ext_resource path="res://sound/erase1.wav" type="AudioStream" id=3]
-[ext_resource path="res://sound/erase2.wav" type="AudioStream" id=4]
-[ext_resource path="res://sound/erase3.wav" type="AudioStream" id=5]
-[ext_resource path="res://sound/linefall.wav" type="AudioStream" id=6]
-[ext_resource path="res://sound/square_g.wav" type="AudioStream" id=7]
-[ext_resource path="res://sound/square_s.wav" type="AudioStream" id=8]
-[ext_resource path="res://sound/clear_silver_box.wav" type="AudioStream" id=9]
-[ext_resource path="res://sound/clear_gold_box.wav" type="AudioStream" id=10]
-[ext_resource path="res://sound/combo1.wav" type="AudioStream" id=11]
-[ext_resource path="res://sound/fanfare1.wav" type="AudioStream" id=12]
-[ext_resource path="res://sound/fanfare2.wav" type="AudioStream" id=13]
-[ext_resource path="res://sound/fanfare3.wav" type="AudioStream" id=14]
-[ext_resource path="res://sound/combo2.wav" type="AudioStream" id=15]
-[ext_resource path="res://sound/combo3.wav" type="AudioStream" id=16]
-[ext_resource path="res://sound/combo4.wav" type="AudioStream" id=17]
-[ext_resource path="res://sound/combo5.wav" type="AudioStream" id=18]
-[ext_resource path="res://sound/combo6.wav" type="AudioStream" id=19]
-[ext_resource path="res://sound/combo7.wav" type="AudioStream" id=20]
-[ext_resource path="res://sound/combo8.wav" type="AudioStream" id=21]
-[ext_resource path="res://sound/combo9.wav" type="AudioStream" id=22]
-[ext_resource path="res://sound/combo10.wav" type="AudioStream" id=23]
-[ext_resource path="res://sound/combo11.wav" type="AudioStream" id=24]
-[ext_resource path="res://sound/combo12.wav" type="AudioStream" id=25]
-[ext_resource path="res://sound/combo13.wav" type="AudioStream" id=26]
-[ext_resource path="res://sound/combo14.wav" type="AudioStream" id=27]
-[ext_resource path="res://sound/combo15.wav" type="AudioStream" id=28]
-[ext_resource path="res://sound/combo16.wav" type="AudioStream" id=29]
-[ext_resource path="res://sound/combo17.wav" type="AudioStream" id=30]
-[ext_resource path="res://sound/combo18.wav" type="AudioStream" id=31]
-[ext_resource path="res://sound/combo19.wav" type="AudioStream" id=32]
-[ext_resource path="res://sound/combo20.wav" type="AudioStream" id=33]
+[ext_resource path="res://scenes/CornerMap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://sound/erase1.wav" type="AudioStream" id=4]
+[ext_resource path="res://sound/erase2.wav" type="AudioStream" id=5]
+[ext_resource path="res://sound/erase3.wav" type="AudioStream" id=6]
+[ext_resource path="res://sound/linefall.wav" type="AudioStream" id=7]
+[ext_resource path="res://sound/square_g.wav" type="AudioStream" id=8]
+[ext_resource path="res://sound/square_s.wav" type="AudioStream" id=9]
+[ext_resource path="res://sound/clear_silver_box.wav" type="AudioStream" id=10]
+[ext_resource path="res://sound/clear_gold_box.wav" type="AudioStream" id=11]
+[ext_resource path="res://sound/combo1.wav" type="AudioStream" id=12]
+[ext_resource path="res://sound/fanfare1.wav" type="AudioStream" id=13]
+[ext_resource path="res://sound/fanfare2.wav" type="AudioStream" id=14]
+[ext_resource path="res://sound/fanfare3.wav" type="AudioStream" id=15]
+[ext_resource path="res://sound/combo2.wav" type="AudioStream" id=16]
+[ext_resource path="res://sound/combo3.wav" type="AudioStream" id=17]
+[ext_resource path="res://sound/combo4.wav" type="AudioStream" id=18]
+[ext_resource path="res://sound/combo5.wav" type="AudioStream" id=19]
+[ext_resource path="res://sound/combo6.wav" type="AudioStream" id=20]
+[ext_resource path="res://sound/combo7.wav" type="AudioStream" id=21]
+[ext_resource path="res://sound/combo8.wav" type="AudioStream" id=22]
+[ext_resource path="res://sound/combo9.wav" type="AudioStream" id=23]
+[ext_resource path="res://sound/combo10.wav" type="AudioStream" id=24]
+[ext_resource path="res://sound/combo11.wav" type="AudioStream" id=25]
+[ext_resource path="res://sound/combo12.wav" type="AudioStream" id=26]
+[ext_resource path="res://sound/combo13.wav" type="AudioStream" id=27]
+[ext_resource path="res://sound/combo14.wav" type="AudioStream" id=28]
+[ext_resource path="res://sound/combo15.wav" type="AudioStream" id=29]
+[ext_resource path="res://sound/combo16.wav" type="AudioStream" id=30]
+[ext_resource path="res://sound/combo17.wav" type="AudioStream" id=31]
+[ext_resource path="res://sound/combo18.wav" type="AudioStream" id=32]
+[ext_resource path="res://sound/combo19.wav" type="AudioStream" id=33]
+[ext_resource path="res://sound/combo20.wav" type="AudioStream" id=34]
 
 [sub_resource type="TileSet" id=1]
 0/name = "b27.png 0"
@@ -67,123 +68,125 @@ position = Vector2( 0, -96 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 32, 32 )
 format = 1
-tile_data = PoolIntArray( 786434, 0, 393216, 851970, 0, 393216, 917504, 0, 393216, 917505, 0, 393216, 917506, 0, 393216, 983040, 0, 196608, 983041, 0, 196608, 983042, 0, 196608, 1048576, 0, 196608, 1048577, 0, 196608, 1048578, 0, 196608, 1048582, 0, 524288, 1048584, 0, 524288, 1114112, 0, 196608, 1114113, 0, 196608, 1114114, 0, 196608, 1114118, 0, 524288, 1114119, 0, 524288, 1114120, 0, 524288 )
+tile_data = PoolIntArray( 786434, 0, 393218, 851970, 0, 393219, 917504, 0, 393224, 917505, 0, 393228, 917506, 0, 393221, 983040, 0, 196608, 983041, 0, 196608, 983042, 0, 196608, 1048576, 0, 196608, 1048577, 0, 196608, 1048578, 0, 196608, 1048582, 0, 524288, 1048584, 0, 524288, 1114112, 0, 196608, 1114113, 0, 196608, 1114114, 0, 196608, 1114118, 0, 524288, 1114119, 0, 524288, 1114120, 0, 524288 )
+
+[node name="CornerMap" parent="TileMap" instance=ExtResource( 3 )]
 
 [node name="Erase1Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 4 )
 volume_db = -6.0
 
 [node name="Erase2Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 5 )
 volume_db = -4.0
 
 [node name="Erase3Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 6 )
 volume_db = -2.0
 
 [node name="LineFallSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 7 )
 
 [node name="GoldBoxSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-volume_db = -5.0
-
-[node name="SilverBoxSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -5.0
 
-[node name="ClearSilverPieceSound" type="AudioStreamPlayer" parent="."]
+[node name="SilverBoxSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+volume_db = -5.0
+
+[node name="ClearSilverPieceSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
 volume_db = -2.0
 
 [node name="ClearGoldPieceSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
+stream = ExtResource( 11 )
 
 [node name="Combo1Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource( 12 )
 volume_db = -4.0
 
 [node name="Fanfare1" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
-
-[node name="Fanfare2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 
-[node name="Fanfare3" type="AudioStreamPlayer" parent="."]
+[node name="Fanfare2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 
-[node name="Combo2Sound" type="AudioStreamPlayer" parent="."]
+[node name="Fanfare3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
-volume_db = -4.0
 
-[node name="Combo3Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo2Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
 volume_db = -4.0
 
-[node name="Combo4Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo3Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
 volume_db = -4.0
 
-[node name="Combo5Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo4Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
 volume_db = -4.0
 
-[node name="Combo6Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo5Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
 volume_db = -4.0
 
-[node name="Combo7Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo6Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
 volume_db = -4.0
 
-[node name="Combo8Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo7Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
 volume_db = -4.0
 
-[node name="Combo9Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo8Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 22 )
 volume_db = -4.0
 
-[node name="Combo10Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo9Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 23 )
 volume_db = -4.0
 
-[node name="Combo11Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo10Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 24 )
 volume_db = -4.0
 
-[node name="Combo12Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo11Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 25 )
 volume_db = -4.0
 
-[node name="Combo13Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo12Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 26 )
 volume_db = -4.0
 
-[node name="Combo14Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo13Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 27 )
 volume_db = -4.0
 
-[node name="Combo15Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo14Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 28 )
 volume_db = -4.0
 
-[node name="Combo16Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo15Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 29 )
 volume_db = -4.0
 
-[node name="Combo17Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo16Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 30 )
 volume_db = -4.0
 
-[node name="Combo18Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo17Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 31 )
 volume_db = -4.0
 
-[node name="Combo19Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo18Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 32 )
 volume_db = -4.0
 
-[node name="Combo20Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo19Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 33 )
+volume_db = -4.0
+
+[node name="Combo20Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 34 )
 volume_db = -4.0
