@@ -23,4 +23,5 @@ func _process(delta):
 				var block_color = next_piece.color_arr[0][i]
 				$TileMap.set_cell(block_pos.x, block_pos.y, \
 						0, false, false, false, block_color)
+			$TileMap/CornerMap.dirty = true
 			displayed_piece = next_piece

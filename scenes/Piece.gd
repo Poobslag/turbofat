@@ -459,6 +459,7 @@ func update_tile_map():
 		var block_color = piece.type.color_arr[piece.rotation][i]
 		$TileMap.set_cell(piece.pos.x + block_pos.x, piece.pos.y + block_pos.y, \
 				0, false, false, false, block_color)
+	$TileMap/CornerMap.dirty = true
 
 """
 State #1: Block is about to spawn.
