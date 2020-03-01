@@ -3,7 +3,7 @@ Block-dropping puzzle game
 
 # Glossary
 
-Here's a glossary of terms used within the code. When editing code, try to use consistent terms like "each cubit" instead of "each piece", or "whenever the player sees" instead of "whenever you see"
+Here's a glossary of terms used within the code. When editing code, try to use consistent terms like "arrange two pieces into a box" instead of "arrange two blocks into a food item", or "whenever the player sees" instead of "whenever you see"
 
 **box:** a 3x3, 3x4 or 3x5 rectangle built from intact pieces.
 
