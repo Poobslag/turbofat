@@ -47,9 +47,9 @@ func _on_game_over():
 	# how many lines the player cleared
 	var survival_score = $Game/Playfield.stats_lines
 	# how many bonus points per line the player obtained from boxes
-	var boxes_score = $Game/Playfield.stats_piece_score / float(max($Game/Playfield.stats_lines, 12))
+	var boxes_score = $Game/Playfield.stats_piece_score / float(max($Game/Playfield.stats_lines, 24))
 	# how many bonus points per line the player obtained from combos
-	var combos_score = $Game/Playfield.stats_combo_score / float(max($Game/Playfield.stats_lines - 4, 12))
+	var combos_score = $Game/Playfield.stats_combo_score / float(max($Game/Playfield.stats_lines - 4, 24))
 	
 	# the player's grade
 	var survival_grade = "-"
