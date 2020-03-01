@@ -18,8 +18,8 @@ func _process(delta):
 		clear()
 		for cell in ParentMap.get_used_cells():
 			var autotile_coord = ParentMap.get_cell_autotile_coord(cell.x, cell.y)
-			if autotile_coord.y == 18:
-				# box cell
+			if ParentMap.get_cell(cell.x, cell.y) == 2:
+				# vegetable cell?
 				continue
 			# check for corner connected up and left
 			if int(autotile_coord.x) & CONNECTED_UP > 0 \

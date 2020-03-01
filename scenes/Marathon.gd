@@ -14,19 +14,18 @@ const lines_to_level = [
 
 # Hints displayed after the player loses
 const HINTS = [
-	"Make silver boxes with a pentomino and a quadromino!",
-	"Make gold boxes with 3 pentominos!",
-	"Make gold boxes with 3 quadrominos!",
-	"Silver boxes score 5 points per line, gold boxes score 10. Make lots of boxes!",
+	"Make a snack box by arranging a pentomino and a quadromino into a square!",
+	"Make a rainbow cake by arranging 3 pentominos into a rectangle!",
+	"Make a rainbow cake by arranging 3 quadrominos into a rectangle!",
+	"A snack box scores 5 points per line, a rainbow cake scores 10. Make lots of cakes!",
 	"Combos add up to 20 points for completing a line. Make lots of combos!",
 	"Build a big combo by making boxes and clearing lines!",
 	"When a piece locks, hold left or right to quickly move the next piece!",
 	"When a piece locks, hold a rotate key to quickly rotate the next piece!",
 	"When a piece locks, hold both rotate keys to quickly rotate the next piece!",
 	"When a piece locks, hold up to quickly hard-drop the next piece!",
-	"Press 'C' to hold the current piece. ...Just kidding!",
-	"After a hard drop, tap 'down' to prevent the piece from locking!",
-	"Sometimes, pressing 'down' can clip pieces past other blocks!"
+	"After a hard drop, tap 'down' to delay the piece from locking!",
+	"Sometimes, pressing 'down' can cheat pieces through other pieces!"
 ]
 
 # Colors used to render the level number. Easy levels are green, and hard levels are red.
