@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blocks.png-e4b1e1ded9b8a3db2c54edc170be396d.stex"
+path="res://.import/blocks-corners.png-21d349403660096144a6a56c1c43bd5a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/blocks.png"
-dest_files=[ "res://.import/blocks.png-e4b1e1ded9b8a3db2c54edc170be396d.stex" ]
+source_file="res://art/blocks-corners.png"
+dest_files=[ "res://.import/blocks-corners.png-21d349403660096144a6a56c1c43bd5a.stex" ]
 
 [params]
 
