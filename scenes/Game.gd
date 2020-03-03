@@ -5,27 +5,27 @@ goals, win conditions, challenges or time limits.
 extends Node2D
 
 # signal emitted when the 'new game' countdown begins for piece randomization, clearing the playfield
-signal before_start_game
+signal before_game_started
 
 # signal emitted when the 'new game' countdown finishes, giving the player control
-signal start_game
+signal game_started
 
 # signal emitted when a line is cleared
-signal line_clear
+signal line_cleared
 
 # signal emitted when the player's pieces reach the top of the playfield
-signal game_over
+signal game_ended
 
 # signal emitted a few seconds after the game ends, for displaying messages
-signal after_game_over
+signal after_game_ended
 
-func _ready():
+func _ready() -> void:
 	$NextPieces.hide_pieces()
 	$Piece.clear_piece()
 	$HUD/MessageLabel.hide()
 
-func _on_start_game():
-	emit_signal("before_start_game")
+func _on_StartGameButton_pressed() -> void:
+	emit_signal("before_game_started")
 	$HUD/StartGameButton.hide()
 	$HUD/DetailMessageLabel.hide()
 	
@@ -47,29 +47,29 @@ func _on_start_game():
 	
 	$Piece.start_game()
 	
-	emit_signal("start_game")
+	emit_signal("game_started")
 
 """
 Shows a detailed multi-line message, like how the game is controlled
 """
-func show_detail_message(text):
+func show_detail_message(text: String) -> void:
 	$HUD/DetailMessageLabel.show()
 	$HUD/DetailMessageLabel.text = text
 
 """
 Shows a succinct single-line message, like 'Game Over'
 """
-func show_message(text):
+func show_message(text: String) -> void:
 	$HUD/MessageLabel.show()
 	$HUD/MessageLabel.text = text
 
-func _on_game_over():
-	emit_signal("game_over")
+func _on_game_ended() -> void:
+	emit_signal("game_ended")
 	show_message("Game Over")
 	yield(get_tree().create_timer(2.4), "timeout")
 	$HUD/MessageLabel.hide()
 	$HUD/StartGameButton.show()
-	emit_signal("after_game_over")
+	emit_signal("after_game_ended")
 
-func _on_line_clear():
-	emit_signal("line_clear")
+func _on_line_cleared() -> void:
+	emit_signal("line_cleared")
