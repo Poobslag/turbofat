@@ -7,21 +7,21 @@ extends Node2D
 onready var NextPieces = get_node("..")
 
 # currently displayed piece type
-var displayed_piece
+var _displayed_piece
 
 # how far into the future this display should look; 0 = show the next piece, 10 = show the 11th piece
-var piece_index = 0
+var piece_index := 0
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if NextPieces != null && NextPieces.next_pieces.size() > piece_index:
 		var next_piece = NextPieces.next_pieces[piece_index]
-		if next_piece != displayed_piece:
+		if next_piece != _displayed_piece:
 			# update the tilemap with the new piece type
 			$TileMap.clear()
 			for i in range(0, next_piece.pos_arr[0].size()):
-				var block_pos = next_piece.pos_arr[0][i]
-				var block_color = next_piece.color_arr[0][i]
+				var block_pos: Vector2 = next_piece.pos_arr[0][i]
+				var block_color: Vector2 = next_piece.color_arr[0][i]
 				$TileMap.set_cell(block_pos.x, block_pos.y, \
 						0, false, false, false, block_color)
 			$TileMap/CornerMap.dirty = true
-			displayed_piece = next_piece
+			_displayed_piece = next_piece

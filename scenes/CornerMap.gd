@@ -11,13 +11,13 @@ const CONNECTED_RIGHT = 8
 
 onready var ParentMap = get_node("..")
 
-var dirty = false
+var dirty := false
 
-func _process(delta):
+func _process(delta: float) -> void:
 	if dirty:
 		clear()
 		for cell in ParentMap.get_used_cells():
-			var autotile_coord = ParentMap.get_cell_autotile_coord(cell.x, cell.y)
+			var autotile_coord: Vector2 = ParentMap.get_cell_autotile_coord(cell.x, cell.y)
 			if ParentMap.get_cell(cell.x, cell.y) == 2:
 				# vegetable cell?
 				continue

@@ -35,7 +35,7 @@ const KICKS_NONE = [
 		[]
 	]
 
-var piece_j = PieceType.new("j",
+var piece_j := PieceType.new("j",
 		# shape data
 		[[Vector2(0, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
 		[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(1, 2)],
@@ -49,7 +49,7 @@ var piece_j = PieceType.new("j",
 		KICKS_J
 	)
 
-var piece_l = PieceType.new("l",
+var piece_l := PieceType.new("l",
 		# shape data
 		[[Vector2(2, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
 		[Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(2, 2)],
@@ -63,7 +63,7 @@ var piece_l = PieceType.new("l",
 		KICKS_J
 	)
 
-var piece_o = PieceType.new("o",
+var piece_o := PieceType.new("o",
 		# shape data
 		[[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)]],
 		# color data
@@ -71,7 +71,7 @@ var piece_o = PieceType.new("o",
 		KICKS_NONE
 	)
 
-var piece_p = PieceType.new("p",
+var piece_p := PieceType.new("p",
 		# shape data
 		[[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)],
 		[Vector2(2, 0), Vector2(1, 1), Vector2(2, 1), Vector2(1, 2), Vector2(2, 2)],
@@ -85,7 +85,7 @@ var piece_p = PieceType.new("p",
 		KICKS_P
 	)
 
-var piece_q = PieceType.new("q",
+var piece_q := PieceType.new("q",
 		# shape data
 		[[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1)],
 		[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1), Vector2(2, 2)],
@@ -99,7 +99,7 @@ var piece_q = PieceType.new("q",
 		KICKS_P
 	)
 
-var piece_t = PieceType.new("t",
+var piece_t := PieceType.new("t",
 		# shape data
 		[[Vector2(1, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
 		[Vector2(1, 0), Vector2(1, 1), Vector2(2, 1), Vector2(1, 2)],
@@ -113,7 +113,7 @@ var piece_t = PieceType.new("t",
 		KICKS_J
 	)
 
-var piece_u = PieceType.new("u",
+var piece_u := PieceType.new("u",
 		# shape data
 		[[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(2, 1)],
 		[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(0, 2)],
@@ -128,7 +128,7 @@ var piece_u = PieceType.new("u",
 		2 # u-piece allows more floor kicks, because it kicks the floor twice if you rotate it four times
 	)
 
-var piece_v = PieceType.new("v",
+var piece_v := PieceType.new("v",
 		# shape data
 		[[Vector2(0, 0), Vector2(0, 1), Vector2(0, 2), Vector2(1, 2), Vector2(2, 2)],
 		[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(0, 2)],
@@ -142,24 +142,22 @@ var piece_v = PieceType.new("v",
 		KICKS_V
 	)
 
-var piece_null = PieceType.new("_", [[]], [[]], KICKS_NONE)
-var all_types = [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
-
-func is_null(piece_type):
-	return piece_type.pos_arr[0].size() == 0
+var piece_null := PieceType.new("_", [[]], [[]], KICKS_NONE)
+var all_types := [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
 
 class PieceType:
 	#string representation when debugging; 'j', 'l', etc...
-	var string
+	var string: String
 	
-	var pos_arr
-	var color_arr
+	var pos_arr: Array
+	var color_arr: Array
 	
-	var cw_kicks
-	var ccw_kicks
-	var max_floor_kicks
+	var cw_kicks: Array
+	var ccw_kicks: Array
+	var max_floor_kicks: int
 	
-	func _init(init_string, init_pos_arr, init_color_arr, init_cw_kicks, init_max_floor_kicks = 1):
+	func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array, init_cw_kicks: Array, \
+			init_max_floor_kicks := 1):
 		string = init_string
 		pos_arr = init_pos_arr
 		color_arr = init_color_arr
