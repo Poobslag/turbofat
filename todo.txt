@@ -1,12 +1,18 @@
 *better scaling of blocks, should look good at large resolutions
+*code style
 -other platforms
  *windows
  -linux
  -html5
  -android?
 -joystick support
--discussion trucks -> filled rectangles
 -customize controls
+-revisit kicks for u-piece
+-additional game modes
+ -marathon: normal (1-50 ??G), hard (1-100 0.25G), expert (1-200 1G), impossible (1-300 20G)
+ -ultra: normal (200 points), hard (500 points), expert (1,000 points), impossible (3,000 points 20G)
+ -sprint: normal (1:30), hard (2:00), expert (2:30), impossible (3:00)
+ -save high score
 -slow the game down a lot?
  -extra floor kicks?
  -more low-level speeds?
