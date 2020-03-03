@@ -5,7 +5,7 @@ the player is good enough.
 extends Node2D
 
 # Lines required for each level. Because the player starts at level 1, the first two levels have no requirement.
-const lines_to_level = [
+const LINES_TO_LEVEL = [
 	# 0 - 15 (beginner -> 1 G)
 	0, 0, 10, 20, 30, 40, 50, 60, 70, 80, 100, 110, 120, 130, 140, 150,
 	# 16 - 20 (0.5 G -> 20 G)
@@ -29,44 +29,44 @@ const HINTS = [
 ]
 
 # Colors used to render the level number. Easy levels are green, and hard levels are red.
-const LEVEL_COLOR_0 = Color(0.111, 0.888, 0.111, 1)
-const LEVEL_COLOR_1 = Color(0.444, 0.888, 0.111, 1)
-const LEVEL_COLOR_2 = Color(0.888, 0.888, 0.111, 1)
-const LEVEL_COLOR_3 = Color(0.888, 0.444, 0.111, 1)
-const LEVEL_COLOR_4 = Color(0.888, 0.222, 0.111, 1)
-const LEVEL_COLOR_5 = Color(0.888, 0.111, 0.444, 1)
+const LEVEL_COLOR_0 := Color(0.111, 0.888, 0.111, 1)
+const LEVEL_COLOR_1 := Color(0.444, 0.888, 0.111, 1)
+const LEVEL_COLOR_2 := Color(0.888, 0.888, 0.111, 1)
+const LEVEL_COLOR_3 := Color(0.888, 0.444, 0.111, 1)
+const LEVEL_COLOR_4 := Color(0.888, 0.222, 0.111, 1)
+const LEVEL_COLOR_5 := Color(0.888, 0.111, 0.444, 1)
 
-var level = 0 setget set_level
+var _level := 0 setget _set_level
 
 """
 Method invoked when the game ends. Prepares a game over message to show to the player.
 """
-func _on_game_over():
+func _on_game_ended() -> void:
 	# calculate stats which are displayed to the player
-	var score = $Game/Score.score
+	var score: int = $Game/Score.score
 	# how many lines the player cleared
-	var survival_score = $Game/Playfield.stats_lines
+	var survival_score: int = $Game/Playfield.stats_lines
 	# how many bonus points per line the player obtained from boxes
-	var boxes_score = $Game/Playfield.stats_piece_score / float(max($Game/Playfield.stats_lines, 24))
+	var boxes_score: float = $Game/Playfield.stats_piece_score / float(max($Game/Playfield.stats_lines, 24))
 	# how many bonus points per line the player obtained from combos
-	var combos_score = $Game/Playfield.stats_combo_score / float(max($Game/Playfield.stats_lines - 4, 24))
+	var combos_score: float = $Game/Playfield.stats_combo_score / float(max($Game/Playfield.stats_lines - 4, 24))
 	
 	# the player's grade
-	var survival_grade = "-"
-	var boxes_grade = "-"
-	var combos_grade = "-"
-	var grade = "-"
+	var survival_grade := "-"
+	var boxes_grade := "-"
+	var combos_grade := "-"
+	var grade := "-"
 	
 	# requirements for a master grade
-	var target_grade = "M"
-	var target_survival_score = 300
-	var target_boxes_score = 12.6
-	var target_combos_score = 14.8
-	var target_overall_score = (target_boxes_score + target_combos_score + 1) * target_survival_score
+	var target_grade := "M"
+	var target_survival_score: float = 300
+	var target_boxes_score := 12.6
+	var target_combos_score := 14.8
+	var target_overall_score := (target_boxes_score + target_combos_score + 1) * target_survival_score
 	
 	# we repeatedly check whether the player meets the requirements for the current requirements. if not, we decrease
 	# the requirements slightly, possibly decrease the grade slightly, and check again
-	for i in range(0, 100):
+	for _i in range(0, 100):
 		# check whether the player meets the current requirements, and assign their grade
 		if survival_grade == "-" && survival_score >= target_survival_score:
 			survival_grade = target_grade
@@ -122,7 +122,7 @@ func _on_game_over():
 			break
 	
 	# message shown to the player, including stats, grades, and a gameplay hint
-	var message = ""
+	var message := ""
 	message += str("Lines: ",stepify(survival_score, 1)," (",survival_grade,")\n")
 	message += str("Boxes: ",stepify(boxes_score, 0.1)," (",boxes_grade,")\n")
 	message += str("Combos: ",stepify(combos_score, 0.1)," (",combos_grade,")\n")
@@ -134,36 +134,37 @@ func _on_game_over():
 """
 Method invoked when a line is cleared. Updates the level.
 """
-func _on_line_clear():
-	var lines = $Game/Playfield.stats_lines
-	var new_level = level
-	var lines_to_next_level = -1
+func _on_line_cleared() -> void:
+	var lines: int = $Game/Playfield.stats_lines
+	var new_level := _level
+	var lines_to_next_level := -1
 	
-	for i in range(0, lines_to_level.size()):
-		if lines_to_level[i] <= lines:
+	for i in range(0, LINES_TO_LEVEL.size()):
+		if LINES_TO_LEVEL[i] <= lines:
 			new_level = max(new_level, i)
-		elif i < lines_to_level.size() - 1:
-			lines_to_next_level = lines_to_level[i + 1]
+		elif i < LINES_TO_LEVEL.size() - 1:
+			lines_to_next_level = LINES_TO_LEVEL[i + 1]
 	
-	if level != new_level:
+	if _level != new_level:
 		$LevelUpSound.play()
-		set_level(new_level)
+		_set_level(new_level)
 	
 	$HUD/ProgressBar.value = lines
 
-func _on_start_game():
-	set_level(1)
+func _on_game_started() -> void:
+	_set_level(1)
 	$Game/Piece.set_piece_speed(0)
 
-func _on_before_start_game():
-	set_level(0)
+func _on_before_game_started() -> void:
+	_set_level(0)
+	$HUD/ProgressBar.value = 0
 
 """
 Sets the speed level and updates the UI elements accordingly.
 """
-func set_level(new_level):
+func _set_level(new_level: int) -> void:
 	$Game/Piece.set_piece_speed(new_level - 1)
-	level = new_level
+	_level = new_level
 	if new_level == 0:
 		# 'level 0' is used when the game is not running
 		$HUD/LevelValue.text = "-"
@@ -174,7 +175,7 @@ func set_level(new_level):
 	else:
 		# update UI elements for the current level
 		$HUD/LevelValue.text = str(new_level)
-		var level_color = LEVEL_COLOR_0
+		var level_color := LEVEL_COLOR_0
 		if new_level >= 25:
 			level_color = LEVEL_COLOR_5
 		elif new_level >= 20:
@@ -188,9 +189,9 @@ func set_level(new_level):
 		$HUD/LevelValue.add_color_override("font_color", level_color)
 		
 		$HUD/ProgressBar.get("custom_styles/fg").set_bg_color(Color(level_color.r, level_color.g, level_color.g, 0.33))
-		if new_level < lines_to_level.size() - 1:
-			$HUD/ProgressBar.min_value = lines_to_level[new_level]
-			$HUD/ProgressBar.max_value = lines_to_level[new_level + 1]
+		if new_level < LINES_TO_LEVEL.size() - 1:
+			$HUD/ProgressBar.min_value = LINES_TO_LEVEL[new_level]
+			$HUD/ProgressBar.max_value = LINES_TO_LEVEL[new_level + 1]
 		else:
 			$HUD/ProgressBar.min_value = 0
 			$HUD/ProgressBar.max_value = 100
