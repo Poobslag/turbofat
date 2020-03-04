@@ -23,6 +23,10 @@ config/icon="res://icon.png"
 
 window/stretch/mode="2d"
 
+[global]
+
+nvidia=false
+
 [input]
 
 rotate_cw={
@@ -49,5 +53,6 @@ soft_drop={
 
 [rendering]
 
+quality/driver/driver_name="GLES2"
 quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 quality/depth/hdr=false
