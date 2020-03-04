@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Playfield.tscn" type="PackedScene" id=2]
@@ -9,17 +9,33 @@
 [ext_resource path="res://sound/ready.wav" type="AudioStream" id=7]
 [ext_resource path="res://sound/go.wav" type="AudioStream" id=8]
 
-[sub_resource type="DynamicFont" id=1]
-size = 40
-font_data = ExtResource( 6 )
+[sub_resource type="DynamicFontData" id=1]
+font_path = "res://fonts/Xolonium-Regular.ttf"
 
-[sub_resource type="InputEventAction" id=2]
+[sub_resource type="DynamicFont" id=2]
+size = 40
+font_data = SubResource( 1 )
+
+[sub_resource type="InputEventAction" id=3]
 action = "ui_select"
 
-[sub_resource type="ShortCut" id=3]
-shortcut = SubResource( 2 )
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="DynamicFontData" id=5]
+font_path = "res://fonts/Xolonium-Regular.ttf"
+
+[sub_resource type="DynamicFont" id=6]
+size = 32
+font_data = SubResource( 5 )
+
+[sub_resource type="InputEventAction" id=7]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
+
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.19873, 0.177771, 0.177771, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -27,10 +43,10 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=10]
 font_data = ExtResource( 6 )
 
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=11]
 size = 48
 font_data = ExtResource( 6 )
 
@@ -71,9 +87,24 @@ margin_left = -70.0
 margin_top = -27.5
 margin_right = 70.0
 margin_bottom = 27.5
-custom_fonts/font = SubResource( 1 )
-shortcut = SubResource( 3 )
+custom_fonts/font = SubResource( 2 )
+shortcut = SubResource( 4 )
 text = "Start"
+
+[node name="BackButton" type="Button" parent="HUD"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = 42.0
+margin_right = 60.0
+margin_bottom = 99.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = SubResource( 6 )
+shortcut = SubResource( 8 )
+text = "Back"
 
 [node name="DetailMessageLabel" type="RichTextLabel" parent="HUD"]
 anchor_left = 0.5
@@ -84,8 +115,8 @@ margin_left = -120.0
 margin_top = -221.819
 margin_right = 118.0
 margin_bottom = -43.819
-custom_styles/normal = SubResource( 4 )
-custom_fonts/normal_font = SubResource( 5 )
+custom_styles/normal = SubResource( 9 )
+custom_fonts/normal_font = SubResource( 10 )
 text = "Controls
 
 Arrows: Move
@@ -103,7 +134,7 @@ margin_left = -144.0
 margin_top = -40.0
 margin_right = 144.0
 margin_bottom = 40.0
-custom_fonts/font = SubResource( 6 )
+custom_fonts/font = SubResource( 11 )
 text = "3"
 align = 1
 valign = 1
@@ -115,4 +146,6 @@ stream = ExtResource( 7 )
 stream = ExtResource( 8 )
 [connection signal="line_cleared" from="Playfield" to="." method="_on_line_cleared"]
 [connection signal="game_ended" from="Piece" to="." method="_on_game_ended"]
+[connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
 [connection signal="pressed" from="HUD/StartGameButton" to="." method="_on_StartGameButton_pressed"]
+[connection signal="pressed" from="HUD/BackButton" to="." method="_on_BackButton_pressed"]

@@ -106,7 +106,7 @@ onready var NextPieces = get_node("../NextPieces")
 func _ready() -> void:
 	# ensure the piece isn't visible outside the playfield
 	set_clip_contents(true)
-	set_piece_speed(0)
+	set_piece_speed(PieceSpeeds.beginner_level_0)
 	if Playfield != null:
 		_col_count = Playfield.COL_COUNT
 		_row_count = Playfield.ROW_COUNT
@@ -134,8 +134,15 @@ func start_game() -> void:
 	_tile_map_dirty = true
 	Playfield.clock_running = true
 
+func end_game() -> void:
+	if _piece_state == "_state_game_ended":
+		return
+	Playfield.clock_running = false
+	_set_piece_state("_state_game_ended")
+	_piece = Piece.new(PieceTypes.piece_null)
+
 func set_piece_speed(new_piece_speed) -> void:
-	_piece_speed = PieceSpeeds.all_speeds[clamp(new_piece_speed, 0, PieceSpeeds.all_speeds.size() - 1)]
+	_piece_speed = new_piece_speed
 
 """
 Spawns a new piece at the top of the playfield. Returns 'true' if the piece spawned successfully, or 'false' if the
@@ -274,7 +281,6 @@ func _apply_player_input() -> void:
 			_reset_piece_target()
 			_calc_smush_target()
 			if _target_piece_pos != _piece.pos:
-				_perform_lock_reset()
 				_move_piece_to_target()
 				$SmashSound.play()
 				_set_piece_state("_state_move_piece")
@@ -286,12 +292,11 @@ func _apply_player_input() -> void:
 				_perform_lock_reset()
 				$MoveSound.play()
 				_set_piece_state("_state_move_piece")
-	elif Input.is_action_pressed("soft_drop") and _piece.lock == _piece_speed.lock_delay:
+	elif Input.is_action_pressed("soft_drop") and _piece.lock >= _piece_speed.lock_delay:
 		if !_can_move_piece_to(Vector2(_piece.pos.x, _piece.pos.y + 1), _piece.rotation):
 			_reset_piece_target()
 			_calc_smush_target()
 			if _target_piece_pos != _piece.pos:
-				_perform_lock_reset()
 				_move_piece_to_target()
 				$SmashSound.play()
 				_set_piece_state("_state_move_piece")
@@ -306,7 +311,7 @@ func _apply_player_input() -> void:
 Resets the piece's 'lock' value, preventing it from locking for a moment.
 """
 func _perform_lock_reset() -> void:
-	if _piece.lock_resets >= MAX_LOCK_RESETS:
+	if _piece.lock_resets >= MAX_LOCK_RESETS || _piece.lock == 0:
 		return
 	_piece.lock = 0
 	_piece.lock_resets += 1
@@ -321,7 +326,7 @@ If the 'smush' is successful, the '_target_piece_pos' field will be updated acco
 """
 func _calc_smush_target() -> void:
 	var unblocked_blocks := []
-	for i in range(0, _piece.type.pos_arr[_target_piece_rotation].size()):
+	for _i in range(0, _piece.type.pos_arr[_target_piece_rotation].size()):
 		unblocked_blocks.append(true)
 	
 	var valid_target_pos := false
@@ -387,7 +392,7 @@ func _apply_gravity() -> void:
 	
 	if Input.is_action_pressed("soft_drop"):
 		# soft drop
-		_piece.gravity += max(DROP_G, _piece_speed.gravity)
+		_piece.gravity += int(max(DROP_G, _piece_speed.gravity))
 	else:
 		_piece.gravity += _piece_speed.gravity;
 	while _piece.gravity >= GRAVITY_DENOMINATOR:
@@ -479,10 +484,8 @@ State #1: Block is about to spawn.
 func _state_prespawn() -> void:
 	if _state_frames >= _piece.spawn_delay:
 		if !_spawn_piece():
-			Playfield.clock_running = false
 			$GameOverSound.play()
-			_set_piece_state("")
-			_piece = Piece.new(PieceTypes.piece_null)
+			end_game()
 			emit_signal("game_ended")
 			return
 		_set_piece_state("_state_move_piece")
@@ -525,7 +528,11 @@ func _state_postlock() -> void:
 			_piece.spawn_delay = _piece_speed.appearance_delay
 	_piece.setType(PieceTypes.piece_null)
 	_tile_map_dirty = true
-	_set_piece_state("_state_wait_for_playfield")
+	
+	# make sure we're still in the postlock state before switching. writing a piece to the playfield can end the game,
+	# and we don't want to come back to life
+	if _piece_state == "_state_postlock":
+		_set_piece_state("_state_wait_for_playfield")
 
 """
 State #5: The playfield is clearing lines or making blocks. We're waiting for these animations to complete before
@@ -534,3 +541,6 @@ spawning a new piece.
 func _state_wait_for_playfield() -> void:
 	if Playfield == null || Playfield.ready_for_new_piece():
 		_set_piece_state("_state_prespawn")
+
+func _state_game_ended() -> void:
+	pass
