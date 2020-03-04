@@ -109,9 +109,6 @@ func write_piece(pos: Vector2, rotation: int, type, new_line_clear_frames: int, 
 		_set_piece_block(pos.x + block_pos.x, pos.y + block_pos.y, block_color)
 	
 	if death_piece:
-		if Score.combo_score > 0:
-			Score.end_combo()
-			_combo = 0
 		return false
 	
 	if _check_for_boxes():
@@ -501,3 +498,8 @@ Returns 'true' if the specified cell does not contain a block.
 """
 func is_cell_empty(x: int, y: int) -> bool:
 	return $TileMap.get_cell(x, y) == -1
+
+func end_game() -> void:
+	if Score.combo_score > 0:
+		Score.end_combo()
+		_combo = 0
