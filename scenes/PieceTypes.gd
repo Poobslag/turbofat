@@ -125,7 +125,7 @@ var piece_u := PieceType.new("u",
 		[Vector2(2, 2), Vector2(2, 2), Vector2(9, 2), Vector2(12, 2), Vector2(5, 2)],
 		[Vector2(10, 2), Vector2(4, 2), Vector2(3, 2), Vector2(9, 2), Vector2(4, 2)]],
 		KICKS_U,
-		2 # u-piece allows more floor kicks, because it kicks the floor twice if you rotate it four times
+		3 # u-piece allows additional floor kicks because it kicks the floor twice if you rotate it four times
 	)
 
 var piece_v := PieceType.new("v",
@@ -157,7 +157,7 @@ class PieceType:
 	var max_floor_kicks: int
 	
 	func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array, init_cw_kicks: Array, \
-			init_max_floor_kicks := 1):
+			init_max_floor_kicks := 2):
 		string = init_string
 		pos_arr = init_pos_arr
 		color_arr = init_color_arr
