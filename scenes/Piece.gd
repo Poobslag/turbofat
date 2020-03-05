@@ -102,8 +102,6 @@ var _col_count: int
 
 onready var Playfield = get_node("../Playfield")
 onready var NextPieces = get_node("../NextPieces")
-onready var PieceTypes = preload("res://scenes/PieceTypes.gd").new()
-onready var PieceSpeeds = preload("res://scenes/PieceSpeeds.gd").new()
 
 func _ready() -> void:
 	# ensure the piece isn't visible outside the playfield

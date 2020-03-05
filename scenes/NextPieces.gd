@@ -5,7 +5,6 @@ displays'.
 extends Node2D
 
 export (PackedScene) var NextPieceDisplay
-onready var PieceTypes = preload("res://scenes/PieceTypes.gd").new()
 
 # Queue of upcoming randomized pieces. The first few pieces are displayed to the player
 var next_pieces := []
