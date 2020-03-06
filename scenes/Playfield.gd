@@ -45,14 +45,6 @@ var _combo := 0
 # The number of pieces the player has dropped without clearing a line or making a box, plus one.
 var _combo_break := 0
 
-# total number of seconds for the current game
-var stats_seconds := 0
-# raw number of cleared lines for the current game, not counting any bonus points
-var stats_lines := 0
-# total number of bonus points awarded in the current game by clearing pieces
-var stats_piece_score := 0
-# total number of bonus points awarded in the current game for combos
-var stats_combo_score := 0
 # 'true' if the player is currently playing, and the time spent should count towards their stats
 var clock_running := false
 
@@ -69,7 +61,7 @@ func ready_for_new_piece() -> bool:
 
 func _physics_process(delta: float) -> void:
 	if clock_running:
-		stats_seconds += delta
+		Global.scenario_performance.seconds += delta
 	
 	if _line_clear_delay > 0:
 		if _remaining_box_build_frames > 0:
@@ -90,10 +82,7 @@ func _physics_process(delta: float) -> void:
 Clears the playfield and resets everything for a new game.
 """
 func start_game() -> void:
-	stats_lines = 0
-	stats_piece_score = 0
-	stats_combo_score = 0
-	stats_seconds = 0
+	Global.scenario_performance.clear()
 	$TileMap.clear()
 	$TileMap/CornerMap.clear()
 
@@ -299,20 +288,20 @@ func _check_for_line_clear() -> bool:
 		if _row_is_full(y):
 			var line_score := 1
 			line_score += COMBO_SCORE_ARR[clamp(_combo, 0, COMBO_SCORE_ARR.size() - 1)]
-			stats_lines += 1
-			stats_combo_score += COMBO_SCORE_ARR[clamp(_combo, 0, COMBO_SCORE_ARR.size() - 1)]
+			Global.scenario_performance.lines += 1
+			Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(_combo, 0, COMBO_SCORE_ARR.size() - 1)]
 			_cleared_lines.append(y)
 			for x in range(0, COL_COUNT):
 				if $TileMap.get_cell(x, y) == 1 and int($TileMap.get_cell_autotile_coord(x, y).x) & CONNECTED_LEFT == 0:
 					if $TileMap.get_cell_autotile_coord(x, y).y == 4:
 						# cake piece
 						line_score += 10
-						stats_piece_score += 10
+						Global.scenario_performance.box_score += 10
 						piece_points = int(max(piece_points, 2))
 					else:
 						# snack piece
 						line_score += 5
-						stats_piece_score += 5
+						Global.scenario_performance.box_score += 5
 						piece_points = int(max(piece_points, 1))
 			Score.add_combo_score(line_score - 1)
 			Score.add_score(1)
