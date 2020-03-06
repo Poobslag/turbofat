@@ -25,40 +25,104 @@ margin_right = -50.0
 margin_bottom = -20.0
 custom_constants/separation = 10
 
-[node name="Cash Goal" type="Label" parent="VBoxContainer"]
+[node name="Sprint Label" type="Label" parent="VBoxContainer"]
 margin_right = 924.0
 margin_bottom = 71.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
-text = "Cash Goal"
+text = "Sprint"
 align = 1
 valign = 2
 
-[node name="Cash Goal Buttons" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Sprint Buttons" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 81.0
 margin_right = 924.0
 margin_bottom = 152.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 50
 
-[node name="Time Trial Label" type="Label" parent="VBoxContainer"]
+[node name="SprintSpacer" type="Control" parent="VBoxContainer/Sprint Buttons"]
+margin_right = 193.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+
+[node name="SprintNormal" type="Button" parent="VBoxContainer/Sprint Buttons"]
+margin_left = 243.0
+margin_right = 436.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Normal"
+
+[node name="SprintExpert" type="Button" parent="VBoxContainer/Sprint Buttons"]
+margin_left = 486.0
+margin_right = 679.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Expert"
+
+[node name="SprintSpacer2" type="Control" parent="VBoxContainer/Sprint Buttons"]
+margin_left = 729.0
+margin_right = 924.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+
+[node name="Ultra Label" type="Label" parent="VBoxContainer"]
 margin_top = 162.0
 margin_right = 924.0
 margin_bottom = 233.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = SubResource( 1 )
-text = "Time Trial"
+text = "Ultra"
 align = 1
 valign = 2
 
-[node name="Time Trial Buttons" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Ultra Buttons" type="HBoxContainer" parent="VBoxContainer"]
 margin_top = 243.0
 margin_right = 924.0
 margin_bottom = 314.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+custom_constants/separation = 50
+
+[node name="UltraSpacer" type="Control" parent="VBoxContainer/Ultra Buttons"]
+margin_right = 80.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 80, 0 )
+
+[node name="UltraNormal" type="Button" parent="VBoxContainer/Ultra Buttons"]
+margin_left = 130.0
+margin_right = 318.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Normal"
+
+[node name="UltraHard" type="Button" parent="VBoxContainer/Ultra Buttons"]
+margin_left = 368.0
+margin_right = 556.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Hard"
+
+[node name="UltraExpert" type="Button" parent="VBoxContainer/Ultra Buttons"]
+margin_left = 606.0
+margin_right = 794.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Expert"
+
+[node name="UltraSpacer2" type="Control" parent="VBoxContainer/Ultra Buttons"]
+margin_left = 844.0
+margin_right = 924.0
+margin_bottom = 71.0
+rect_min_size = Vector2( 80, 0 )
 
 [node name="Marathon Label" type="Label" parent="VBoxContainer"]
 margin_top = 324.0
@@ -110,12 +174,17 @@ size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
 text = "Master"
 
-[node name="Control" type="Control" parent="VBoxContainer"]
+[node name="Spacer" type="Control" parent="VBoxContainer"]
 margin_top = 486.0
 margin_right = 924.0
 margin_bottom = 560.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+[connection signal="pressed" from="VBoxContainer/Sprint Buttons/SprintNormal" to="." method="_on_SprintNormal_pressed"]
+[connection signal="pressed" from="VBoxContainer/Sprint Buttons/SprintExpert" to="." method="_on_SprintExpert_pressed"]
+[connection signal="pressed" from="VBoxContainer/Ultra Buttons/UltraNormal" to="." method="_on_UltraNormal_pressed"]
+[connection signal="pressed" from="VBoxContainer/Ultra Buttons/UltraHard" to="." method="_on_UltraHard_pressed"]
+[connection signal="pressed" from="VBoxContainer/Ultra Buttons/UltraExpert" to="." method="_on_UltraExpert_pressed"]
 [connection signal="pressed" from="VBoxContainer/Marathon Buttons/MarathonNormalButton" to="." method="_on_MarathonNormalButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Marathon Buttons/MarathonHardButton" to="." method="_on_MarathonHardButton_pressed"]
 [connection signal="pressed" from="VBoxContainer/Marathon Buttons/MarathonExpertButton" to="." method="_on_MarathonExpertButton_pressed"]

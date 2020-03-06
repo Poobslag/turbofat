@@ -36,6 +36,7 @@ func _on_StartGameButton_pressed() -> void:
 	$NextPieces.start_game()
 	$Playfield.start_game()
 	$Score.start_game()
+	$Piece.clear_piece()
 	
 	show_message("3")
 	$HUD/ReadySound.play()

@@ -139,7 +139,6 @@ func end_game() -> void:
 		return
 	Playfield.clock_running = false
 	_set_piece_state("_state_game_ended")
-	_piece = Piece.new(PieceTypes.piece_null)
 
 func set_piece_speed(new_piece_speed) -> void:
 	_piece_speed = new_piece_speed
@@ -198,7 +197,6 @@ func _spawn_piece() -> bool:
 	
 	# lose?
 	if !_can_move_piece_to(_piece.pos, _piece.rotation):
-		Playfield.write_piece(_piece.pos, _piece.rotation, _piece.type, _piece_speed.line_clear_delay, true)
 		return false
 	
 	return true
@@ -485,6 +483,7 @@ func _state_prespawn() -> void:
 	if _state_frames >= _piece.spawn_delay:
 		if !_spawn_piece():
 			$GameOverSound.play()
+			Global.scenario_performance.died = true
 			end_game()
 			emit_signal("game_ended")
 			return
