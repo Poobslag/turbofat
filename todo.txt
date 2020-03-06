@@ -1,14 +1,15 @@
 *better scaling of blocks, should look good at large resolutions
 *code style
+*revisit kicks
 -additional game modes
  *new flow...
  *create marathon difficulties
- -marathon mode ends at a certain line count
- -buttons take you to different difficulties
-  -marathon: normal (1-50 ??G)
-  -marathon: hard: (1-100 0.25G)
-  -marathon: expert (1-200 1G)
-  -marathon: impossible (1-300 20G)
+ *marathon mode ends at a certain line count
+ *buttons take you to different difficulties
+  *marathon: normal (1-50 ??G)
+  *marathon: hard: (1-100 0.25G)
+  *marathon: expert (1-200 1G)
+  *marathon: impossible (1-300 20G)
  -save high score
  -ultra: normal (200 points), hard (500 points), expert (1,000 points), impossible (3,000 points 20G)
   -finishing ultra has a less spectacular ending... 'time up' noise, less delay
@@ -21,9 +22,6 @@
  -android?
 -joystick support
 -customize controls
--revisit kicks
- -revisit kicks for u-piece; piece bounces up and down but kicks do not?
- -revisit kicks for v-piece; should mirror P/Q kicks?
 -slow the game down a lot?
  -extra floor kicks?
  -more low-level speeds?
