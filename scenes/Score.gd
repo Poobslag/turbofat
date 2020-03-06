@@ -9,6 +9,7 @@ var combo_score := 0 setget _set_combo_score
 
 func _set_score(new_score: int) -> void:
 	score = new_score
+	Global.scenario_performance.score = new_score
 	$ScoreValue.text = str(new_score)
 	
 func _set_combo_score(new_combo_score: int) -> void:

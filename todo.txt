@@ -1,6 +1,7 @@
 *better scaling of blocks, should look good at large resolutions
 *code style
 *revisit kicks
+*slow the game down a lot?
 -additional game modes
  *new flow...
  *create marathon difficulties
@@ -22,10 +23,6 @@
  -android?
 -joystick support
 -customize controls
--slow the game down a lot?
- -extra floor kicks?
- -more low-level speeds?
- -longer than 0.5s to move?
 -when dying, pieces shouldn't look strange and chopped off
 -UI
  -piece animations
