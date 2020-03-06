@@ -8,54 +8,58 @@ so it's likely it will change over time to become more lenient.
 extends Node
 
 # All gravity constants are integers like '16', which actually correspond to fractions like '16/256' which means the
-# piece takes 16 frames to drop one row. GRAVITY_DENOMINATOR is the denominator of that fraction.
+# piece takes 16 frames to drop one row. G is the denominator of that fraction.
 const G = 256
 
-var all_speeds := [
-	# Level 1: Beginner
-	PieceSpeed.new(   4, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new(   6, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new(  10, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new(  16, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new(  24, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new(  32, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new(  48, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new(  64, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new(  96, 20, 20,  7, 16, 30, 40),
-	# Level 10: 0.5 G
-	PieceSpeed.new( 128, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new( 152, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new( 176, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new( 200, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new( 224, 20, 20,  7, 16, 30, 40),
-	# Level 15: 1 G
-	PieceSpeed.new( 1*G, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new( 2*G, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new( 3*G, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new( 4*G, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new( 5*G, 20, 20,  7, 16, 30, 40),
-	# Speed 20: 20G
-	PieceSpeed.new(20*G, 20, 20,  7, 16, 30, 40),
-	PieceSpeed.new(20*G, 20, 20,  7, 10, 30, 25),
-	PieceSpeed.new(20*G, 20, 12,  7, 10, 30, 16),
-	PieceSpeed.new(20*G, 12,  8,  7, 10, 30, 10),
-	PieceSpeed.new(20*G,  8,  4,  7, 10, 30,  8),
-	# Speed 25: Likely impossible
-	PieceSpeed.new(20*G,  8,  4,  5,  8, 24,  6),
-	PieceSpeed.new(20*G,  8,  4,  5,  8, 20,  6),
-	PieceSpeed.new(20*G,  8,  3,  5,  8, 18,  5),
-	PieceSpeed.new(20*G,  8,  3,  5,  8, 16,  5),
-	PieceSpeed.new(20*G,  2,  2,  5,  8, 14,  4),
-	PieceSpeed.new(20*G,  2,  2,  5,  6, 12,  4),
-	PieceSpeed.new(20*G,  1,  1,  5,  6, 10,  3),
-	PieceSpeed.new(20*G,  1,  1,  5,  6,  8,  3),
-]
+# used when the game isn't running
+var null_level = PieceSpeed.new("-",   4, 20, 40, 10, 16, 50, 40)
+
+var beginner_level_0 = PieceSpeed.new("0",   4, 20, 36, 7, 16, 43, 40)
+var beginner_level_1 = PieceSpeed.new("1",   5, 20, 36, 7, 16, 43, 40)
+var beginner_level_2 = PieceSpeed.new("2",   6, 20, 36, 7, 16, 43, 40)
+var beginner_level_3 = PieceSpeed.new("3",   8, 20, 36, 7, 16, 43, 40)
+var beginner_level_4 = PieceSpeed.new("4",  10, 20, 36, 7, 16, 43, 40)
+var beginner_level_5 = PieceSpeed.new("5",  12, 20, 36, 7, 16, 43, 40)
+var beginner_level_6 = PieceSpeed.new("6",  16, 20, 36, 7, 16, 43, 40)
+var beginner_level_7 = PieceSpeed.new("7",  24, 20, 36, 7, 16, 43, 40)
+var beginner_level_8 = PieceSpeed.new("8",  32, 20, 36, 7, 16, 43, 40)
+var beginner_level_9 = PieceSpeed.new("9",  48, 20, 36, 7, 16, 43, 40)
+
+var hard_level_0  = PieceSpeed.new("A0",    4, 20, 20, 7, 16, 30, 40)
+var hard_level_1  = PieceSpeed.new("A1",   32, 20, 20, 7, 16, 30, 40)
+var hard_level_2  = PieceSpeed.new("A2",   48, 20, 20, 7, 16, 30, 40)
+var hard_level_3  = PieceSpeed.new("A3",   64, 20, 20, 7, 16, 30, 40)
+var hard_level_4  = PieceSpeed.new("A4",   96, 20, 20, 7, 16, 30, 40)
+var hard_level_5  = PieceSpeed.new("A5",  128, 20, 20, 7, 16, 30, 40)
+var hard_level_6  = PieceSpeed.new("A6",  152, 20, 20, 7, 16, 30, 40)
+var hard_level_7  = PieceSpeed.new("A7",  176, 20, 20, 7, 16, 30, 40)
+var hard_level_8  = PieceSpeed.new("A8",  200, 20, 20, 7, 16, 30, 40)
+var hard_level_9  = PieceSpeed.new("A9",  224, 20, 20, 7, 16, 30, 40)
+var hard_level_10 = PieceSpeed.new("AA",  1*G, 20, 20, 7, 16, 30, 40)
+var hard_level_11 = PieceSpeed.new("AB",  2*G, 20, 20, 7, 16, 30, 40)
+var hard_level_12 = PieceSpeed.new("AC",  3*G, 20, 20, 7, 16, 30, 40)
+var hard_level_13 = PieceSpeed.new("AD",  5*G, 20, 20, 7, 16, 30, 40)
+var hard_level_14 = PieceSpeed.new("AE", 20*G, 20, 20, 7, 10, 30, 25)
+var hard_level_15 = PieceSpeed.new("AF", 20*G, 20, 12, 7, 10, 30, 12)
+
+var crazy_level_0 = PieceSpeed.new( "F0",    4, 12, 8, 7, 10, 20, 6)
+var crazy_level_1 = PieceSpeed.new( "F1",  1*G, 12, 8, 7, 10, 20, 6)
+var crazy_level_2 = PieceSpeed.new( "FA", 20*G, 12, 8, 7, 10, 20, 6)
+var crazy_level_3 = PieceSpeed.new( "FB", 20*G,  8, 4, 5,  8, 18, 5)
+var crazy_level_4 = PieceSpeed.new( "FC", 20*G,  8, 4, 5,  8, 16, 5)
+var crazy_level_5 = PieceSpeed.new( "FD", 20*G,  2, 2, 5,  8, 14, 4)
+var crazy_level_6 = PieceSpeed.new( "FE", 20*G,  2, 2, 5,  8, 12, 4)
+var crazy_level_7 = PieceSpeed.new( "FF", 20*G,  1, 1, 5,  8, 10, 3)
+var crazy_level_8 = PieceSpeed.new("FFF", 20*G,  1, 1, 5,  8,  8, 3)
 
 """
 Stores data about a specific 'speed levels' such as how fast pieces should drop, how long it takes them to lock into
 the playfield, and how long to pause when clearing lines.
 """
 class PieceSpeed:
+	# level string, which appears in the 'level' panel
+	var string: String
+	
 	# how fast pieces should drop, as a fraction of 256. 32 = once every 8 frames, 512 = twice a frame
 	var gravity: int
 	
@@ -77,9 +81,10 @@ class PieceSpeed:
 	# number of frames to pause when clearing a line
 	var line_clear_delay: int
 	
-	func _init(init_gravity: int, init_appearance_delay: int, init_line_appearance_delay: int, \
+	func _init(init_string: String, init_gravity: int, init_appearance_delay: int, init_line_appearance_delay: int, \
 			init_post_lock_delay: int, init_delayed_auto_shift_delay: int, init_lock_delay: int, \
 			init_line_clear_delay: int):
+		string = init_string
 		gravity = init_gravity
 		appearance_delay = init_appearance_delay
 		line_appearance_delay = init_line_appearance_delay

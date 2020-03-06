@@ -24,9 +24,13 @@ func _ready() -> void:
 	$Piece.clear_piece()
 	$HUD/MessageLabel.hide()
 
+func _on_BackButton_pressed():
+	get_tree().change_scene("res://scenes/PracticeMenu.tscn")
+
 func _on_StartGameButton_pressed() -> void:
 	emit_signal("before_game_started")
 	$HUD/StartGameButton.hide()
+	$HUD/BackButton.hide()
 	$HUD/DetailMessageLabel.hide()
 	
 	$NextPieces.start_game()
@@ -63,12 +67,24 @@ func show_message(text: String) -> void:
 	$HUD/MessageLabel.show()
 	$HUD/MessageLabel.text = text
 
-func _on_game_ended() -> void:
+"""
+When the current piece can't be placed, we end the game and emit the appropriate signals.
+"""
+func _on_Piece_game_ended():
+	end_game(2.4, "Game over")
+
+"""
+End the game and emit the appropriate signals. This can occur when the player loses, wins, or runs out of time.
+"""
+func end_game(delay: float, message: String) -> void:
 	emit_signal("game_ended")
-	show_message("Game Over")
-	yield(get_tree().create_timer(2.4), "timeout")
-	$HUD/MessageLabel.hide()
+	$Playfield.end_game()
+	$Piece.end_game()
+	show_message(message)
+	yield(get_tree().create_timer(delay), "timeout")
 	$HUD/StartGameButton.show()
+	$HUD/BackButton.show()
+	$HUD/MessageLabel.hide()
 	emit_signal("after_game_ended")
 
 func _on_line_cleared() -> void:

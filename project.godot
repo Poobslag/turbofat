@@ -16,13 +16,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Turbo Fat"
-run/main_scene="res://scenes/Marathon.tscn"
+run/main_scene="res://scenes/PracticeMenu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
 
 PieceSpeeds="*res://scenes/PieceSpeeds.gd"
 PieceTypes="*res://scenes/PieceTypes.gd"
+Global="*res://scenes/Global.gd"
 
 [display]
 

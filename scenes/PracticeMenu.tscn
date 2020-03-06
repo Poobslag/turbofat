@@ -1,0 +1,122 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/PracticeMenu.gd" type="Script" id=1]
+[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="PracticeMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 50.0
+margin_top = 20.0
+margin_right = -50.0
+margin_bottom = -20.0
+custom_constants/separation = 10
+
+[node name="Cash Goal" type="Label" parent="VBoxContainer"]
+margin_right = 924.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Cash Goal"
+align = 1
+valign = 2
+
+[node name="Cash Goal Buttons" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 81.0
+margin_right = 924.0
+margin_bottom = 152.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Time Trial Label" type="Label" parent="VBoxContainer"]
+margin_top = 162.0
+margin_right = 924.0
+margin_bottom = 233.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Time Trial"
+align = 1
+valign = 2
+
+[node name="Time Trial Buttons" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 243.0
+margin_right = 924.0
+margin_bottom = 314.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Marathon Label" type="Label" parent="VBoxContainer"]
+margin_top = 324.0
+margin_right = 924.0
+margin_bottom = 395.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "Marathon"
+align = 1
+valign = 2
+
+[node name="Marathon Buttons" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 405.0
+margin_right = 924.0
+margin_bottom = 476.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 50
+
+[node name="MarathonNormalButton" type="Button" parent="VBoxContainer/Marathon Buttons"]
+margin_right = 193.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Normal"
+
+[node name="MarathonHardButton" type="Button" parent="VBoxContainer/Marathon Buttons"]
+margin_left = 243.0
+margin_right = 436.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Hard"
+
+[node name="MarathonExpertButton" type="Button" parent="VBoxContainer/Marathon Buttons"]
+margin_left = 486.0
+margin_right = 679.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Expert"
+
+[node name="MarathonMasterButton" type="Button" parent="VBoxContainer/Marathon Buttons"]
+margin_left = 729.0
+margin_right = 924.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "Master"
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+margin_top = 486.0
+margin_right = 924.0
+margin_bottom = 560.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+[connection signal="pressed" from="VBoxContainer/Marathon Buttons/MarathonNormalButton" to="." method="_on_MarathonNormalButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Marathon Buttons/MarathonHardButton" to="." method="_on_MarathonHardButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Marathon Buttons/MarathonExpertButton" to="." method="_on_MarathonExpertButton_pressed"]
+[connection signal="pressed" from="VBoxContainer/Marathon Buttons/MarathonMasterButton" to="." method="_on_MarathonMasterButton_pressed"]
