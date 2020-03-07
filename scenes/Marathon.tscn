@@ -1,10 +1,12 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://scenes/Marathon.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Game.tscn" type="PackedScene" id=2]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://sound/levelup.wav" type="AudioStream" id=4]
 [ext_resource path="res://sound/excellent.wav" type="AudioStream" id=5]
+[ext_resource path="res://sound/applause.wav" type="AudioStream" id=6]
+[ext_resource path="res://sound/matchend.wav" type="AudioStream" id=7]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -71,7 +73,6 @@ text = "-"
 align = 1
 
 [node name="TimeHUD" type="Control" parent="."]
-visible = false
 margin_left = 616.0
 margin_right = 656.0
 margin_bottom = 40.0
@@ -104,7 +105,6 @@ text = "0:00"
 align = 1
 
 [node name="ScoreHUD" type="Control" parent="."]
-visible = false
 margin_left = 616.0
 margin_right = 656.0
 margin_bottom = 40.0
@@ -160,6 +160,13 @@ stream = ExtResource( 4 )
 
 [node name="ExcellentSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
+
+[node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -8.0
 [connection signal="after_game_ended" from="Game" to="." method="_on_after_game_ended"]
 [connection signal="before_game_started" from="Game" to="." method="_on_before_game_started"]
 [connection signal="game_ended" from="Game" to="." method="_on_game_ended"]
