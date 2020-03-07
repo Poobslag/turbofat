@@ -8,14 +8,6 @@ extends Node2D
 # piece takes 16 frames to drop one row. G is the denominator of that fraction.
 const G = 256
 
-# Lines required for each level. Because the player starts at level 1, the first two levels have no requirement.
-const LINES_TO_LEVEL = [
-	# 0 - 15 (beginner -> 1 G)
-	0, 0, 10, 20, 30, 40, 50, 60, 70, 80, 100, 110, 120, 130, 140, 150,
-	# 16 - 20 (0.5 G -> 20 G)
-	200, 220, 240, 260, 280, 300
-]
-
 # Hints displayed after the player loses
 const HINTS = [
 	"Make a snack box by arranging a pentomino and a quadromino into a square!",
@@ -47,16 +39,39 @@ var _level := 0
 # message shown to the player including stats, grades, and a gameplay hint
 var _grade_message := ""
 
+func _ready() -> void:
+	if Global.scenario.win_condition.type != "time":
+		$TimeHUD.hide()
+	if Global.scenario.win_condition.type != "lines":
+		$LinesHUD.hide()
+	if Global.scenario.win_condition.type != "score":
+		$ScoreHUD.hide()
+	
+	if Global.scenario.win_condition.type == "score":
+		$ScoreHUD/ScoreValue.text = str(Global.scenario.win_condition.value)
+		$ScoreHUD/TimeLabel.hide()
+		$ScoreHUD/TimeValue.hide()
+
 """
 Method invoked when the game ends. Prepares a game over message to show to the player.
 """
 func _on_game_ended() -> void:
+	# ensure score is up to date before calculating rank
+	$Game/Score.end_combo()
 	var rank_results = RankCalculator.calculate_rank()
 	
-	_grade_message = "Lines: %.1f (%s)\n" % [rank_results.lines, grade(rank_results.lines_rank)]
+	_grade_message = ""
+	if Global.scenario.win_condition.type == "score":
+		_grade_message += "Speed: %.1f (%s)\n" % [rank_results.speed, grade(rank_results.speed_rank)]
+	else:
+		_grade_message += "Lines: %.1f (%s)\n" % [rank_results.lines, grade(rank_results.lines_rank)]
 	_grade_message += "Boxes: %.1f (%s)\n" % [rank_results.box_score, grade(rank_results.box_score_rank)]
 	_grade_message += "Combos: %.1f (%s)\n" % [rank_results.combo_score, grade(rank_results.combo_score_rank)]
-	_grade_message += "Overall: (%s)\n" % grade(rank_results.score_rank)
+	if Global.scenario.win_condition.type == "score":
+		var seconds = ceil(Global.scenario_performance.seconds)
+		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, grade(rank_results.seconds_rank)]
+	else:
+		_grade_message += "Overall: (%s)\n" % grade(rank_results.score_rank)
 	_grade_message += "Hint: %s" % HINTS[randi() % HINTS.size()]
 
 """
@@ -100,27 +115,56 @@ func _on_line_cleared() -> void:
 		$LevelUpSound.play()
 		_set_level(new_level)
 	
-	if new_level + 1 < Global.scenario.level_up_conditions.size():
-		if Global.scenario.level_up_conditions[new_level + 1].type == "lines":
-			$HUD/ProgressBar.value = lines
-	elif Global.scenario.win_condition.type == "lines":
-		$HUD/ProgressBar.value = lines
+	if Global.scenario.win_condition.type == "lines":
+		if new_level + 1 < Global.scenario.level_up_conditions.size():
+			if Global.scenario.level_up_conditions[new_level + 1].type == "lines":
+				$LinesHUD/ProgressBar.value = lines
+		elif Global.scenario.win_condition.type == "lines":
+			$LinesHUD/ProgressBar.value = lines
+		if lines >= Global.scenario.win_condition.value:
+			$ExcellentSound.play()
+			$Game.end_game(4.2, "You win!")
 	
-	if Global.scenario.win_condition.type == "lines" && lines >= Global.scenario.win_condition.value:
-		$ExcellentSound.play()
-		$Game.end_game(4.2, "You win!")
+	if Global.scenario.win_condition.type == "score":
+		var total_score: int = $Game/Score.score + $Game/Score.combo_score
+		$ScoreHUD/ProgressBar.value = total_score
+		if total_score >= Global.scenario.win_condition.value:
+			$ExcellentSound.play()
+			$Game.end_game(4.2, "You win!")
+
+func _physics_process(delta: float) -> void:
+	if Global.scenario.win_condition.type == "time" && $Game/Playfield.clock_running:
+		if Global.scenario_performance.seconds >= Global.scenario.win_condition.value:
+			$ExcellentSound.play()
+			$Game.end_game(4.2, "You win!")
+
+func _process(delta: float) -> void:
+	if Global.scenario.win_condition.type == "time":
+		var seconds = ceil(Global.scenario.win_condition.value - Global.scenario_performance.seconds)
+		$TimeHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
+	elif Global.scenario.win_condition.type == "score":
+		var seconds = ceil(Global.scenario_performance.seconds)
+		$ScoreHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 
 func _on_game_started() -> void:
 	_set_level(0)
 
 func _on_before_game_started() -> void:
-	$HUD/LevelValue.text = "-"
-	$HUD/LevelValue.add_color_override("font_color", Color(1, 1, 1, 1))
-	
-	$HUD/ProgressBar.get("custom_styles/fg").set_bg_color(Color(1, 1, 1, 0.33))
-	$HUD/ProgressBar.min_value = 0
-	$HUD/ProgressBar.max_value = 100
-	$HUD/ProgressBar.value = 0
+	$LinesHUD/LevelValue.text = "-"
+	$LinesHUD/LevelValue.add_color_override("font_color", Color(1, 1, 1, 1))
+
+	if Global.scenario.win_condition.type == "score":
+		$ScoreHUD/TimeLabel.show()
+		$ScoreHUD/TimeValue.show()
+		$ScoreHUD/ScoreLabel.hide()
+		$ScoreHUD/ScoreValue.hide()
+		$ScoreHUD/ProgressBar.max_value = Global.scenario.win_condition.value
+		$ScoreHUD/ProgressBar.value = 0
+	else:	
+		$LinesHUD/ProgressBar.get("custom_styles/fg").set_bg_color(Color(1, 1, 1, 0.33))
+		$LinesHUD/ProgressBar.min_value = 0
+		$LinesHUD/ProgressBar.max_value = 100
+		$LinesHUD/ProgressBar.value = 0
 
 """
 Sets the speed level and updates the UI elements accordingly.
@@ -130,7 +174,7 @@ func _set_level(new_level:int) -> void:
 	$Game/Piece.set_piece_speed(Global.scenario.level_up_conditions[new_level].piece_speed)
 	
 	# update UI elements for the current level
-	$HUD/LevelValue.text = str(Global.scenario.level_up_conditions[new_level].piece_speed.string)
+	$LinesHUD/LevelValue.text = str(Global.scenario.level_up_conditions[new_level].piece_speed.string)
 	var gravity = Global.scenario.level_up_conditions[new_level].piece_speed.gravity
 	var lock_delay = Global.scenario.level_up_conditions[new_level].piece_speed.lock_delay
 	var level_color := LEVEL_COLOR_0
@@ -144,18 +188,18 @@ func _set_level(new_level:int) -> void:
 		level_color = LEVEL_COLOR_2
 	elif gravity >= 32:
 		level_color = LEVEL_COLOR_1
-	$HUD/LevelValue.add_color_override("font_color", level_color)
+	$LinesHUD/LevelValue.add_color_override("font_color", level_color)
 	
-	$HUD/ProgressBar.get("custom_styles/fg").set_bg_color(Color(level_color.r, level_color.g, level_color.g, 0.33))
+	$LinesHUD/ProgressBar.get("custom_styles/fg").set_bg_color(Color(level_color.r, level_color.g, level_color.g, 0.33))
 	if new_level + 1 < Global.scenario.level_up_conditions.size():
-		$HUD/ProgressBar.min_value = Global.scenario.level_up_conditions[new_level].value
-		$HUD/ProgressBar.max_value = Global.scenario.level_up_conditions[new_level + 1].value
+		$LinesHUD/ProgressBar.min_value = Global.scenario.level_up_conditions[new_level].value
+		$LinesHUD/ProgressBar.max_value = Global.scenario.level_up_conditions[new_level + 1].value
 	elif Global.scenario.win_condition.type == "lines":
-		$HUD/ProgressBar.min_value = Global.scenario.level_up_conditions[new_level].value
-		$HUD/ProgressBar.max_value = Global.scenario.win_condition.value
+		$LinesHUD/ProgressBar.min_value = Global.scenario.level_up_conditions[new_level].value
+		$LinesHUD/ProgressBar.max_value = Global.scenario.win_condition.value
 	else:
-		$HUD/ProgressBar.min_value = 0
-		$HUD/ProgressBar.max_value = 100
+		$LinesHUD/ProgressBar.min_value = 0
+		$LinesHUD/ProgressBar.max_value = 100
 
 func _on_after_game_ended():
 	$Game.show_detail_message(_grade_message)
