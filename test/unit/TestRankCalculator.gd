@@ -5,7 +5,7 @@ var RankCalculator = preload("res://scenes/RankCalculator.gd").new()
 func before_each():
 	Global.scenario.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario.set_win_condition("lines", 100)
-	Global.scenario_performance.clear()
+	Global.scenario_performance = Global.ScenarioPerformance.new()
 
 func test_max_lpm_slow_marathon():
 	Global.scenario.set_start_level(PieceSpeeds.beginner_level_0)

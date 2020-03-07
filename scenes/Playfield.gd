@@ -82,7 +82,7 @@ func _physics_process(delta: float) -> void:
 Clears the playfield and resets everything for a new game.
 """
 func start_game() -> void:
-	Global.scenario_performance.clear()
+	Global.scenario_performance = Global.ScenarioPerformance.new()
 	$TileMap.clear()
 	$TileMap/CornerMap.clear()
 
