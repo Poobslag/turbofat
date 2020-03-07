@@ -14,11 +14,11 @@ const HINTS = [
 	"Make a rainbow cake by arranging 3 pentominos into a rectangle!",
 	"Make a rainbow cake by arranging 3 quadrominos into a rectangle!",
 	"A snack box scores 5 points per line, a rainbow cake scores 10. Make lots of cakes!",
-	"Combos add up to 20 points for completing a line. Make lots of combos!",
+	"Combos can give you 20 bonus points for completing a line. Make lots of combos!",
 	"Build a big combo by making boxes and clearing lines!",
 	"When a piece locks, hold left or right to quickly move the next piece!",
 	"When a piece locks, hold a rotate key to quickly rotate the next piece!",
-	"When a piece locks, hold both rotate keys to quickly rotate the next piece!",
+	"When a piece locks, hold both rotate keys to quickly flip the next piece!",
 	"When a piece locks, hold up to quickly hard-drop the next piece!",
 	"After a hard drop, tap 'down' to delay the piece from locking!",
 	"Sometimes, pressing 'down' can cheat pieces through other pieces!"
@@ -62,44 +62,21 @@ func _on_game_ended() -> void:
 	
 	_grade_message = ""
 	if Global.scenario.win_condition.type == "score":
-		_grade_message += "Speed: %.1f (%s)\n" % [rank_results.speed, grade(rank_results.speed_rank)]
+		_grade_message += "Speed: %.1f (%s)\n" % [rank_results.speed, Global.grade(rank_results.speed_rank)]
 	else:
-		_grade_message += "Lines: %.1f (%s)\n" % [rank_results.lines, grade(rank_results.lines_rank)]
-	_grade_message += "Boxes: %.1f (%s)\n" % [rank_results.box_score, grade(rank_results.box_score_rank)]
-	_grade_message += "Combos: %.1f (%s)\n" % [rank_results.combo_score, grade(rank_results.combo_score_rank)]
+		_grade_message += "Lines: %.1f (%s)\n" % [rank_results.lines, Global.grade(rank_results.lines_rank)]
+	_grade_message += "Boxes: %.1f (%s)\n" % [rank_results.box_score, Global.grade(rank_results.box_score_rank)]
+	_grade_message += "Combos: %.1f (%s)\n" % [rank_results.combo_score, Global.grade(rank_results.combo_score_rank)]
 	if Global.scenario.win_condition.type == "score":
 		var seconds = ceil(Global.scenario_performance.seconds)
-		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, grade(rank_results.seconds_rank)]
+		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, Global.grade(rank_results.seconds_rank)]
+		if !Global.scenario_performance.died && rank_results.seconds_rank < 24:
+			$ApplauseSound.play()
 	else:
-		_grade_message += "Overall: (%s)\n" % grade(rank_results.score_rank)
+		_grade_message += "Overall: (%s)\n" % Global.grade(rank_results.score_rank)
+		if !Global.scenario_performance.died && rank_results.score_rank < 24:
+			$ApplauseSound.play()
 	_grade_message += "Hint: %s" % HINTS[randi() % HINTS.size()]
-
-"""
-Converts a numeric grade such as '12' into a grade string such as 'A+'.
-
-This functionality arguably belongs in RankCalculator, although the concept of representing grades as strings is
-specific to this class in its current state. Eventually, these may instead be stored as raw numbers, or displayed as
-images.
-"""
-func grade(rank: float) -> String:
-	if   rank < 1:  return "M"
-	elif rank < 2:  return "S++"
-	elif rank < 3:  return "S+"
-	elif rank < 10: return "S"
-	elif rank < 11: return "S-"
-	elif rank < 14: return "A+"
-	elif rank < 23: return "A"
-	elif rank < 24: return "A-"
-	elif rank < 27: return "B+"
-	elif rank < 34: return "B"
-	elif rank < 35: return "B-"
-	elif rank < 37: return "C+"
-	elif rank < 45: return "C"
-	elif rank < 46: return "C-"
-	elif rank < 47: return "D+"
-	elif rank < 59: return "D"
-	elif rank < 65: return "D-"
-	else: return "-"
 
 """
 Method invoked when a line is cleared. Updates the level.
@@ -129,14 +106,14 @@ func _on_line_cleared() -> void:
 		var total_score: int = $Game/Score.score + $Game/Score.combo_score
 		$ScoreHUD/ProgressBar.value = total_score
 		if total_score >= Global.scenario.win_condition.value:
-			$ExcellentSound.play()
-			$Game.end_game(4.2, "You win!")
+			$MatchEndSound.play()
+			$Game.end_game(2.2, "Finish!")
 
 func _physics_process(delta: float) -> void:
 	if Global.scenario.win_condition.type == "time" && $Game/Playfield.clock_running:
 		if Global.scenario_performance.seconds >= Global.scenario.win_condition.value:
-			$ExcellentSound.play()
-			$Game.end_game(4.2, "You win!")
+			$MatchEndSound.play()
+			$Game.end_game(2.2, "Finish!")
 
 func _process(delta: float) -> void:
 	if Global.scenario.win_condition.type == "time":
