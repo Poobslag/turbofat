@@ -489,6 +489,5 @@ func is_cell_empty(x: int, y: int) -> bool:
 	return $TileMap.get_cell(x, y) == -1
 
 func end_game() -> void:
-	if Score.combo_score > 0:
-		Score.end_combo()
-		_combo = 0
+	Score.end_combo()
+	_combo = 0
