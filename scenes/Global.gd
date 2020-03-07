@@ -73,3 +73,27 @@ class ScenarioPerformance:
 
 var scenario := Scenario.new()
 var scenario_performance := ScenarioPerformance.new()
+
+"""
+Converts a numeric grade such as '12.6' into a grade string such as 'A+'.
+"""
+func grade(rank: float) -> String:
+	if   rank < 1:  return "M"
+	elif rank < 2:  return "S++"
+	elif rank < 3:  return "S+"
+	elif rank < 10: return "S"
+	elif rank < 11: return "S-"
+	elif rank < 14: return "A+"
+	elif rank < 23: return "A"
+	elif rank < 24: return "A-"
+	elif rank < 27: return "B+"
+	elif rank < 34: return "B"
+	elif rank < 35: return "B-"
+	elif rank < 37: return "C+"
+	elif rank < 45: return "C"
+	elif rank < 46: return "C-"
+	elif rank < 47: return "D+"
+	elif rank < 59: return "D"
+	elif rank < 65: return "D-"
+	else: return "-"
+
