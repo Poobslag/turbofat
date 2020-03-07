@@ -336,7 +336,7 @@ func _calc_smush_target() -> void:
 		for i in range(0, _piece.type.pos_arr[_target_piece_rotation].size()):
 			var block_pos: Vector2 = _piece.type.pos_arr[_target_piece_rotation][i]
 			var target_block_pos := Vector2(_target_piece_pos.x + block_pos.x, _target_piece_pos.y + block_pos.y)
-			var valid_block_pos := true;
+			var valid_block_pos := true
 			valid_block_pos = valid_block_pos && target_block_pos.x >= 0 and target_block_pos.x < _col_count
 			valid_block_pos = valid_block_pos && target_block_pos.y >= 0 and target_block_pos.y < _row_count
 			if Playfield != null:
@@ -394,7 +394,7 @@ func _apply_gravity() -> void:
 		# soft drop
 		_piece.gravity += int(max(DROP_G, _piece_speed.gravity))
 	else:
-		_piece.gravity += _piece_speed.gravity;
+		_piece.gravity += _piece_speed.gravity
 	while _piece.gravity >= GRAVITY_DENOMINATOR:
 		_piece.gravity -= GRAVITY_DENOMINATOR
 		_reset_piece_target()
@@ -514,28 +514,22 @@ func _state_prelock() -> void:
 	_apply_player_input()
 	
 	if _state_frames >= _piece_speed.post_lock_delay:
-		_set_piece_state("_state_postlock")
+		if Playfield != null:
+			if Playfield.write_piece(_piece.pos, _piece.rotation, _piece.type, _piece_speed.line_clear_delay):
+				# line was cleared; different appearance delay
+				_piece.spawn_delay = _piece_speed.line_appearance_delay
+			else:
+				_piece.spawn_delay = _piece_speed.appearance_delay
+		_piece.setType(PieceTypes.piece_null)
+		_tile_map_dirty = true
+		
+		# make sure we're still in the postlock state before switching. writing a piece to the playfield can end the game,
+		# and we don't want to come back to life
+		if _piece_state == "_state_prelock":
+			_set_piece_state("_state_wait_for_playfield")
 
 """
-State #4: The block is fully locked at the bottom of the playfield, and cannot be controlled.
-"""
-func _state_postlock() -> void:
-	if Playfield != null:
-		if Playfield.write_piece(_piece.pos, _piece.rotation, _piece.type, _piece_speed.line_clear_delay):
-			# line was cleared; reduced appearance delay
-			_piece.spawn_delay = _piece_speed.line_appearance_delay
-		else:
-			_piece.spawn_delay = _piece_speed.appearance_delay
-	_piece.setType(PieceTypes.piece_null)
-	_tile_map_dirty = true
-	
-	# make sure we're still in the postlock state before switching. writing a piece to the playfield can end the game,
-	# and we don't want to come back to life
-	if _piece_state == "_state_postlock":
-		_set_piece_state("_state_wait_for_playfield")
-
-"""
-State #5: The playfield is clearing lines or making blocks. We're waiting for these animations to complete before
+State #4: The playfield is clearing lines or making blocks. We're waiting for these animations to complete before
 spawning a new piece.
 """
 func _state_wait_for_playfield() -> void:
