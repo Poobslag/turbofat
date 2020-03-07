@@ -12,7 +12,7 @@ extends Node
 const G = 256
 
 # used when the game isn't running
-var null_level = PieceSpeed.new("-",   4, 20, 40, 10, 16, 50, 40)
+var null_level = PieceSpeed.new("-",   4, 20, 36, 7, 16, 43, 40)
 
 var beginner_level_0 = PieceSpeed.new("0",   4, 20, 36, 7, 16, 43, 40)
 var beginner_level_1 = PieceSpeed.new("1",   5, 20, 36, 7, 16, 43, 40)
