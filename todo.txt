@@ -12,22 +12,35 @@
  *ultra: normal (200 points), hard (500 points), expert (1,000 points), impossible (3,000 points 20G)
 *finishing sprint/ultra should have a less spectacular ending... 'time up' noise, less delay
 *when holding rotate, pieces should consistently spawn at the top of the well (or one higher)
--save high score
+*when dying, pieces shouldn't look strange and chopped off
+*save high score
+-visual tear in U-block (bread block)
+-customers
+ -blink
+ -animate vaguely
+ -eat food when clearing a line
+-variable customers (at least 2)
+-growing customers (at least a little)
+-background when playing game
+ -walls around playfield
+ -background where 'grey stuff' is; wallpaper
+ -background behind playfield
+ -background area for 'next pieces'
 -other platforms
  *windows
  -linux
  -html5
  -android?
+-testers
+
 -joystick support
+-upgrade to godot 3.2
 -customize controls
--when dying, pieces shouldn't look strange and chopped off
 -UI
  -piece animations
   -frosting splashes in, piece flashes into existence
  -print input on screen
- -background
- -6 next pieces (vaguely the same scale as nullpomino)
-  -draw a background area for them
+ -improve next piece appearance
   -centering
    -immediate next piece should be centered vertically
    -future next pieces should be centered horizontally and vertically
@@ -70,10 +83,6 @@
   -failed movement sfx
   -failed rotate sfx
   -failed soft drop
- -customers
-  -blink
-  -animate vaguely
-  -eat food when clearing a line
  -food
   -cake (3 blocks)
    -rotates through the air
@@ -81,8 +90,3 @@
   -brownie (2 blocks)
   -chocolate wafer (1 block)
 -scenarios
--variable customers (at least 2)
--growing customers (at least a little)
--other weirder block squishes?
- -squish V into a line-piece?
- -squish L, J into a line-piece?
