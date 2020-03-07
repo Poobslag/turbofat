@@ -48,31 +48,33 @@ func _max_lpm(extra_movement_frames:float = 0) -> float:
 		var movement_frames := 1 + extra_movement_frames
 		var frames_per_line := 0.0
 		
-		# nine pieces form two blocks (cake blocks) and clear four lines in three groups
+		# eight pieces form three boxes and clear four lines
 
-		# time spent spawning nine pieces
-		frames_per_line += piece_speed.line_appearance_delay * 3 # three 'line clear' pieces spawned
-		frames_per_line += piece_speed.appearance_delay * 6 # five 'regular pieces' spawned
+		# time spent spawning eight pieces
+		frames_per_line += piece_speed.line_appearance_delay * 4 # four 'line clear' pieces spawned
+		frames_per_line += piece_speed.appearance_delay * 4 # four 'regular pieces' spawned
 		
 		# time spent moving nine pieces
-		frames_per_line += movement_frames * 9
+		frames_per_line += movement_frames * 8
 		
 		# time spent while pieces lock into the playfield
-		frames_per_line += piece_speed.post_lock_delay * 9 # nine pieces locked
-		frames_per_line += piece_speed.line_clear_delay * 3 # three lines cleared
+		frames_per_line += piece_speed.post_lock_delay * 8 # eight pieces locked
+		frames_per_line += piece_speed.line_clear_delay * 4 # four lines cleared
 		frames_per_line += piece_speed.line_clear_delay * 3 # three boxes formed
 		frames_per_line /= 4
 		
-		var level_lines: int
+		var level_lines := 100
 		if i + 1 < Global.scenario.level_up_conditions.size():
 			if Global.scenario.level_up_conditions[i + 1].type == "lines":
 				level_lines = Global.scenario.level_up_conditions[i + 1].value
 			elif Global.scenario.level_up_conditions[i + 1].type == "time":
 				level_lines = Global.scenario.level_up_conditions[i + 1].value * 60 / frames_per_line
+			elif Global.scenario.level_up_conditions[i + 1].type == "score":
+				level_lines = Global.scenario.level_up_conditions[i + 1].value / (MASTER_BOX_SCORE + MASTER_COMBO_SCORE + 1)
 		elif Global.scenario.win_condition.type == "lines":
 			level_lines = Global.scenario.win_condition.value
-		else:
-			level_lines = 100
+		elif Global.scenario.win_condition.type == "score":
+			level_lines = Global.scenario.win_condition.value / (MASTER_BOX_SCORE + MASTER_COMBO_SCORE + 1)
 
 		total_frames += frames_per_line * level_lines
 		total_lines += level_lines
@@ -86,6 +88,13 @@ const RDF_SPEED := 0.96
 const RDF_LINES := 0.96
 const RDF_BOX_SCORE := 0.96
 const RDF_COMBO_SCORE := 0.98
+
+# Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
+# boxes, and easier to make boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
+# theoretical player to meet all three statistics simultaneously.
+const MASTER_BOX_SCORE := 13.6
+const MASTER_COMBO_SCORE := 16.8
+const MASTER_MVMT_FRAMES := 6
 
 """
 Calculates the player's rank.
@@ -120,11 +129,11 @@ Parameters: The 'lenient' parameter decides whether or not we compare the player
 func _inner_calculate_rank(lenient: bool) -> RankResults:
 	var rank_results := RankResults.new()
 	
-	var max_lpm := _max_lpm(6)
+	var max_lpm := _max_lpm(MASTER_MVMT_FRAMES)
 	
 	var target_speed: float = max_lpm
-	var target_box_score := 13.6
-	var target_combo_score := 16.8
+	var target_box_score := MASTER_BOX_SCORE
+	var target_combo_score := MASTER_COMBO_SCORE
 	var target_lines: float
 	var target_seconds: float
 	if Global.scenario.win_condition.type == "lines":

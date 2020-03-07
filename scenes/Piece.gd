@@ -156,16 +156,25 @@ func _spawn_piece() -> bool:
 	_piece = Piece.new(piece_type)
 	_tile_map_dirty = true
 	
-	# apply initial rotation
-	if _input_cw_frames > 1 && _input_ccw_frames > 1:
-		_piece.rotation = _piece.flip_rotation(_piece.rotation)
-		$RotateSound.play()
-	elif _input_cw_frames > 1:
-		_piece.rotation = _piece.cw_rotation(_piece.rotation)
-		$RotateSound.play()
-	elif _input_ccw_frames > 1:
-		_piece.rotation = _piece.ccw_rotation(_piece.rotation)
-		$RotateSound.play()
+	# apply initial rotation if the button is held
+	if _input_cw_frames > 1 || _input_ccw_frames > 1:
+		if _input_cw_frames > 1 && _input_ccw_frames > 1:
+			_piece.rotation = _piece.flip_rotation(_piece.rotation)
+			$RotateSound.play()
+		elif _input_cw_frames > 1:
+			_piece.rotation = _piece.cw_rotation(_piece.rotation)
+			$RotateSound.play()
+		elif _input_ccw_frames > 1:
+			_piece.rotation = _piece.ccw_rotation(_piece.rotation)
+			$RotateSound.play()
+		
+		# relocate rotated piece to the top of the playfield
+		var pos_arr = _piece.type.pos_arr[_piece.rotation]
+		var highest_pos = 3
+		for pos in pos_arr:
+			if pos.y < highest_pos:
+				highest_pos = pos.y
+		_piece.pos.y -= highest_pos
 	
 	# apply initial infinite DAS
 	var initial_das_dir := 0
