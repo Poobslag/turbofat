@@ -60,12 +60,16 @@ class ScenarioPerformance:
 	# overall score
 	var score := 0
 	
+	# did the player die?
+	var died := false
+	
 	func clear() -> void:
 		seconds = 0
 		lines = 0
 		box_score = 0
 		combo_score = 0
 		score = 0
+		died = false
 
 var scenario := Scenario.new()
 var scenario_performance := ScenarioPerformance.new()

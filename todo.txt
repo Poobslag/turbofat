@@ -2,20 +2,17 @@
 *code style
 *revisit kicks
 *slow the game down a lot?
+*when dying, pieces shouldn't look strange and chopped off
 -additional game modes
  *new flow...
  *create marathon difficulties
  *marathon mode ends at a certain line count
  *buttons take you to different difficulties
-  *marathon: normal (1-50 ??G)
-  *marathon: hard: (1-100 0.25G)
-  *marathon: expert (1-200 1G)
-  *marathon: impossible (1-300 20G)
- -save high score
- -ultra: normal (200 points), hard (500 points), expert (1,000 points), impossible (3,000 points 20G)
-  -finishing ultra has a less spectacular ending... 'time up' noise, less delay
- -sprint: normal (1:30), hard (2:00), expert (2:30), impossible (3:00)
-  -finishing sprint has a less spectacular ending... 'time up' noise, less delay
+ *sprint: normal (2:00), hard (2:30, 1G) which has faster piece lock times
+ *ultra: normal (200 points), hard (500 points), expert (1,000 points), impossible (3,000 points 20G)
+-finishing sprint/ultra should have a less spectacular ending... 'time up' noise, less delay
+-save high score
+-when holding rotate, pieces should consistently spawn at the top of the well (or one higher)
 -other platforms
  *windows
  -linux
