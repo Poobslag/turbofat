@@ -33,6 +33,8 @@ class RankResult:
 	var score := 0
 	var score_rank := 0.0
 	
+	var died := false
+	
 	"""
 	Returns this object's data as a dictionary. This is useful when saving/loading data.
 	"""
@@ -49,7 +51,8 @@ class RankResult:
 			"seconds": seconds,
 			"seconds_rank": seconds_rank,
 			"score": score,
-			"score_rank": score_rank }
+			"score_rank": score_rank,
+			"died": died }
 	
 	"""
 	Populates this object from a dictionary. This is useful when saving/loading data.
@@ -67,6 +70,7 @@ class RankResult:
 		seconds_rank = dict["seconds_rank"]
 		score = int(dict["score"])
 		score_rank = dict["score_rank"]
+		died = dict["died"]
 
 """
 Calculates the maximum theoretical lines per minute.
@@ -192,6 +196,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	rank_result.combo_score = float(Global.scenario_performance.combo_score) / max(Global.scenario_performance.lines - 4, 1)
 	rank_result.score = Global.scenario_performance.score
 	rank_result.seconds = Global.scenario_performance.seconds
+	rank_result.died = Global.scenario_performance.died
 	
 	if Global.scenario_performance.died:
 		# don't let the player commit suicide to randomly get an 'M' rank
