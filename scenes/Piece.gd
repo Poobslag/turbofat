@@ -266,13 +266,14 @@ func _apply_player_input() -> void:
 		_move_piece_to_target(true)
 		
 		_calc_target_position()
-		if !_move_piece_to_target(true):
-			# automatically trigger DAS if you push against a piece. otherwise, pieces might slip past a nook if you're
-			# holding a direction before DAS triggers
-			if Input.is_action_just_pressed("ui_left"):
-				_input_left_frames = 3600
-			if Input.is_action_just_pressed("ui_right"):
-				_input_right_frames = 3600
+		_move_piece_to_target(true)
+		
+		# automatically trigger DAS if you're pushing a piece towards an obstruction. otherwise, pieces might slip
+		# past a nook if you're holding a direction before DAS triggers
+		if Input.is_action_pressed("ui_left") && !_can_move_piece_to(Vector2(_piece.pos.x - 1, _piece.pos.y), _piece.rotation):
+			_input_left_frames = 3600
+		if Input.is_action_pressed("ui_right") && !_can_move_piece_to(Vector2(_piece.pos.x + 1, _piece.pos.y), _piece.rotation):
+			_input_right_frames = 3600
 		
 		if Input.is_action_just_pressed("hard_drop") or _input_hard_drop_frames > _piece_speed.delayed_auto_shift_delay:
 			_reset_piece_target()
