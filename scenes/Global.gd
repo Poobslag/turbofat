@@ -15,9 +15,18 @@ class Scenario:
 	# The requirements to 'win'. This can be a line, score, or time requirement.
 	var win_condition: Dictionary
 	
+	# The scenario name, used internally for saving/loading data.
+	var name := ""
+	
 	func _init():
 		set_start_level(PieceSpeeds.beginner_level_0)
 		set_win_condition("none", 0)
+	
+	"""
+	Sets the scenario name, used internally for saving/loading data.
+	"""
+	func set_name(new_name: String):
+		name = new_name
 	
 	"""
 	Sets how fast the pieces move when the player begins the scenario.
@@ -62,14 +71,6 @@ class ScenarioPerformance:
 	
 	# did the player die?
 	var died := false
-	
-	func clear() -> void:
-		seconds = 0
-		lines = 0
-		box_score = 0
-		combo_score = 0
-		score = 0
-		died = false
 
 var scenario := Scenario.new()
 var scenario_performance := ScenarioPerformance.new()
@@ -96,4 +97,3 @@ func grade(rank: float) -> String:
 	elif rank < 59: return "D"
 	elif rank < 65: return "D-"
 	else: return "-"
-
