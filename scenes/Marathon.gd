@@ -58,23 +58,25 @@ Method invoked when the game ends. Prepares a game over message to show to the p
 func _on_game_ended() -> void:
 	# ensure score is up to date before calculating rank
 	$Game/Score.end_combo()
-	var rank_results = RankCalculator.calculate_rank()
+	var rank_result = RankCalculator.calculate_rank()
+	ScenarioHistory.add_scenario_history(Global.scenario.name, rank_result)
+	ScenarioHistory.save_scenario_history()
 	
 	_grade_message = ""
 	if Global.scenario.win_condition.type == "score":
-		_grade_message += "Speed: %.1f (%s)\n" % [rank_results.speed, Global.grade(rank_results.speed_rank)]
+		_grade_message += "Speed: %.1f (%s)\n" % [rank_result.speed, Global.grade(rank_result.speed_rank)]
 	else:
-		_grade_message += "Lines: %.1f (%s)\n" % [rank_results.lines, Global.grade(rank_results.lines_rank)]
-	_grade_message += "Boxes: %.1f (%s)\n" % [rank_results.box_score, Global.grade(rank_results.box_score_rank)]
-	_grade_message += "Combos: %.1f (%s)\n" % [rank_results.combo_score, Global.grade(rank_results.combo_score_rank)]
+		_grade_message += "Lines: %.1f (%s)\n" % [rank_result.lines, Global.grade(rank_result.lines_rank)]
+	_grade_message += "Boxes: %.1f (%s)\n" % [rank_result.box_score, Global.grade(rank_result.box_score_rank)]
+	_grade_message += "Combos: %.1f (%s)\n" % [rank_result.combo_score, Global.grade(rank_result.combo_score_rank)]
 	if Global.scenario.win_condition.type == "score":
 		var seconds = ceil(Global.scenario_performance.seconds)
-		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, Global.grade(rank_results.seconds_rank)]
-		if !Global.scenario_performance.died && rank_results.seconds_rank < 24:
+		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, Global.grade(rank_result.seconds_rank)]
+		if !Global.scenario_performance.died && rank_result.seconds_rank < 24:
 			$ApplauseSound.play()
 	else:
-		_grade_message += "Overall: (%s)\n" % Global.grade(rank_results.score_rank)
-		if !Global.scenario_performance.died && rank_results.score_rank < 24:
+		_grade_message += "Overall: (%s)\n" % Global.grade(rank_result.score_rank)
+		if !Global.scenario_performance.died && rank_result.score_rank < 24:
 			$ApplauseSound.play()
 	_grade_message += "Hint: %s" % HINTS[randi() % HINTS.size()]
 
