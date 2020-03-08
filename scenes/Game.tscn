@@ -48,6 +48,8 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="DynamicFont" id=11]
 size = 48
+outline_size = 4
+outline_color = Color( 0.113725, 0.101961, 0.101961, 0.752941 )
 font_data = ExtResource( 6 )
 
 [node name="Game" type="Node2D"]
@@ -145,7 +147,7 @@ stream = ExtResource( 7 )
 [node name="GoSound" type="AudioStreamPlayer" parent="HUD"]
 stream = ExtResource( 8 )
 [connection signal="line_cleared" from="Playfield" to="." method="_on_line_cleared"]
-[connection signal="game_ended" from="Piece" to="." method="_on_game_ended"]
 [connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
+[connection signal="game_ended" from="Piece" to="." method="_on_game_ended"]
 [connection signal="pressed" from="HUD/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 [connection signal="pressed" from="HUD/BackButton" to="." method="_on_BackButton_pressed"]
