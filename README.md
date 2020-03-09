@@ -67,10 +67,12 @@ Forming a box prevents your combo from being interrupted. A skilled player can t
 
 After you finish the game, you're graded in a few categories:
 
-  * **Lines:** How many lines you cleared, ignoring bonus points. Surviving longer gets you a better grade, clearing 70 lines is enough for an 'A' grade, which means beating level 7.
-  * **Boxes:** How many bonus points you obtained per line from clearing snack boxes and cake boxes. Making and clearing boxes gets you a better grade. 9.6 is enough for an 'A' grade, which means consistently having at least one box per row.
-  * **Combos:** How many bonus points you obtained per line from combos. Keeping your combo up by clearing lines and making boxes gets you a better grade. 10 is enough for an 'A' grade, which means consistently getting your combos to level 8 for the maximum +20 bonus points.
-  * **Overall:** How many points you scored. Scoring points means surviving while clearing boxes and maintaining combos. 1,000 points is enough for an A grade.
+  * **Lines:** How many lines you cleared, ignoring bonus points. Surviving longer gets you a better grade.
+  * **Speed:** How many lines you cleared per second, ignoring bonus points. Playing faster gets you a better grade.
+  * **Boxes:** How many bonus points you obtained per line from clearing boxes you made. Making lots of boxes gets you a better grade, especially having multiple boxes side-by-side or going for high-scoring cake boxes.
+  * **Combos:** How many bonus points you obtained per line from combos. Keeping your combo up by clearing lines and making boxes gets you a better grade.
+  * **Time:** Ultra mode grades you on your overall time, faster is better. Your other grades do not affect this overall grade.
+  * **Score:** Sprint and Marathon modes grade you on your overall score, higher is better. Your other grades do not affect this overall grade.
 
 # Glossary
 
@@ -80,7 +82,7 @@ Here's a glossary of terms used within the code. When editing code, try to use c
 
 **block:** a solid element occupying one cell of the playfield.
 
-**cake box:** a 4x3 or 5x3 rectangle built from either three pentominos or three quadrominos. Also 'rainbow cake'.
+**cake box:** a 4x3 or 5x3 rectangle built from either three pentominos or three quadrominos. Also 'rainbow cake' or 'rainbow box'.
 
 **cell:** a unit square within the playfield.
 
