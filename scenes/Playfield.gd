@@ -191,35 +191,35 @@ func _check_for_boxes() -> bool:
 	for y in range(0, ROW_COUNT):
 		for x in range(0, COL_COUNT):
 			# check for 5x3s (vertical)
-			if dt5[y][x] >= 3 and _check_for_box(x - 2, y - 4, 3, 5, true):
+			if dt5[y][x] >= 3 && _check_for_box(x - 2, y - 4, 3, 5, true):
 				$CakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 4x3s (vertical)
-			if dt4[y][x] >= 3 and _check_for_box(x - 2, y - 3, 3, 4, true):
+			if dt4[y][x] >= 3 && _check_for_box(x - 2, y - 3, 3, 4, true):
 				$CakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 5x3s (horizontal)
-			if dt3[y][x] >= 5 and _check_for_box(x - 4, y - 2, 5, 3, true):
+			if dt3[y][x] >= 5 && _check_for_box(x - 4, y - 2, 5, 3, true):
 				$CakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 4x3s (horizontal)
-			if dt3[y][x] >= 4 and _check_for_box(x - 3, y - 2, 4, 3, true):
+			if dt3[y][x] >= 4 && _check_for_box(x - 3, y - 2, 4, 3, true):
 				$CakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 3x3s
-			if dt3[y][x] >= 3 and _check_for_box(x - 2, y - 2, 3, 3):
+			if dt3[y][x] >= 3 && _check_for_box(x - 2, y - 2, 3, 3):
 				$SnackBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay

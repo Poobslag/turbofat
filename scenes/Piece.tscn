@@ -1,14 +1,15 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/Piece.gd" type="Script" id=1]
 [ext_resource path="res://art/blocks.png" type="Texture" id=2]
 [ext_resource path="res://scenes/CornerMap.tscn" type="PackedScene" id=3]
-[ext_resource path="res://sound/rotate.wav" type="AudioStream" id=4]
-[ext_resource path="res://sound/move.wav" type="AudioStream" id=5]
-[ext_resource path="res://sound/harddrop.wav" type="AudioStream" id=6]
-[ext_resource path="res://sound/lock.wav" type="AudioStream" id=7]
-[ext_resource path="res://sound/gameover.wav" type="AudioStream" id=8]
-[ext_resource path="res://sound/smash.wav" type="AudioStream" id=9]
+[ext_resource path="res://scenes/StretchMap.gd" type="Script" id=4]
+[ext_resource path="res://sound/rotate.wav" type="AudioStream" id=5]
+[ext_resource path="res://sound/move.wav" type="AudioStream" id=6]
+[ext_resource path="res://sound/harddrop.wav" type="AudioStream" id=7]
+[ext_resource path="res://sound/lock.wav" type="AudioStream" id=8]
+[ext_resource path="res://sound/gameover.wav" type="AudioStream" id=9]
+[ext_resource path="res://sound/smash.wav" type="AudioStream" id=10]
 
 [sub_resource type="TileSet" id=1]
 0/name = "blocks.png 0"
@@ -43,20 +44,32 @@ tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 19660
 
 [node name="CornerMap" parent="TileMap" instance=ExtResource( 3 )]
 
-[node name="RotateSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+[node name="StretchMap" type="TileMap" parent="."]
+visible = false
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 72, 64 )
+format = 1
+tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 196608, 262149, 0, 196608 )
+script = ExtResource( 4 )
 
-[node name="MoveSound" type="AudioStreamPlayer" parent="."]
+[node name="CornerMap" parent="StretchMap" instance=ExtResource( 3 )]
+
+[node name="RotateSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 
-[node name="DropSound" type="AudioStreamPlayer" parent="."]
+[node name="MoveSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
 
-[node name="LockSound" type="AudioStreamPlayer" parent="."]
+[node name="DropSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
-[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+[node name="LockSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 
-[node name="SmashSound" type="AudioStreamPlayer" parent="."]
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
+
+[node name="SmushSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
