@@ -4,12 +4,6 @@ a box was made, pausing and playing sound effects
 """
 extends Control
 
-# constants used when drawing blocks which are connected to other blocks
-const CONNECTED_UP = 1
-const CONNECTED_DOWN = 2
-const CONNECTED_LEFT = 4
-const CONNECTED_RIGHT = 8
-
 # playfield dimensions. the playfield extends a few rows higher than what the player can see
 const ROW_COUNT = 18
 const COL_COUNT = 9
@@ -235,14 +229,14 @@ no empty/vegetable/box cells.
 """
 func _check_for_box(x: int, y: int, width: int, height: int, cake = false) -> bool:
 	for curr_x in range(x, x + width):
-		if int($TileMap.get_cell_autotile_coord(curr_x, y).x) & CONNECTED_UP > 0:
+		if int($TileMap.get_cell_autotile_coord(curr_x, y).x) & PieceTypes.CONNECTED_UP > 0:
 			return false
-		if int($TileMap.get_cell_autotile_coord(curr_x, y + height - 1).x) & CONNECTED_DOWN > 0:
+		if int($TileMap.get_cell_autotile_coord(curr_x, y + height - 1).x) & PieceTypes.CONNECTED_DOWN > 0:
 			return false
 	for curr_y in range(y, y + height):
-		if int($TileMap.get_cell_autotile_coord(x, curr_y).x) & CONNECTED_LEFT > 0:
+		if int($TileMap.get_cell_autotile_coord(x, curr_y).x) & PieceTypes.CONNECTED_LEFT > 0:
 			return false
-		if int($TileMap.get_cell_autotile_coord(x + width - 1, curr_y).x) & CONNECTED_RIGHT > 0:
+		if int($TileMap.get_cell_autotile_coord(x + width - 1, curr_y).x) & PieceTypes.CONNECTED_RIGHT > 0:
 			return false
 	
 	# making a piece continues the combo
@@ -292,7 +286,7 @@ func _check_for_line_clear() -> bool:
 			Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(_combo, 0, COMBO_SCORE_ARR.size() - 1)]
 			_cleared_lines.append(y)
 			for x in range(0, COL_COUNT):
-				if $TileMap.get_cell(x, y) == 1 and int($TileMap.get_cell_autotile_coord(x, y).x) & CONNECTED_LEFT == 0:
+				if $TileMap.get_cell(x, y) == 1 and int($TileMap.get_cell_autotile_coord(x, y).x) & PieceTypes.CONNECTED_LEFT == 0:
 					if $TileMap.get_cell_autotile_coord(x, y).y == 4:
 						# cake piece
 						line_score += 10
@@ -419,16 +413,16 @@ func _disconnect_block(x: int, y: int) -> void:
 		vegetable_type = 0
 	_set_veg_block(x, y, Vector2(randi() % 18, vegetable_type))
 	
-	if y > 0 && int(old_autotile_coord.x) & CONNECTED_UP > 0:
+	if y > 0 && int(old_autotile_coord.x) & PieceTypes.CONNECTED_UP > 0:
 		_disconnect_block(x, y - 1)
 	
-	if y < ROW_COUNT - 1 && int(old_autotile_coord.x) & CONNECTED_DOWN > 0:
+	if y < ROW_COUNT - 1 && int(old_autotile_coord.x) & PieceTypes.CONNECTED_DOWN > 0:
 		_disconnect_block(x, y + 1)
 	
-	if x > 0 && int(old_autotile_coord.x) & CONNECTED_LEFT > 0:
+	if x > 0 && int(old_autotile_coord.x) & PieceTypes.CONNECTED_LEFT > 0:
 		_disconnect_block(x - 1, y)
 	
-	if x < COL_COUNT - 1 && int(old_autotile_coord.x) & CONNECTED_RIGHT > 0:
+	if x < COL_COUNT - 1 && int(old_autotile_coord.x) & PieceTypes.CONNECTED_RIGHT > 0:
 		_disconnect_block(x + 1, y)
 
 """
@@ -443,14 +437,14 @@ bottom of a bread box looks like a delicious frosted snack and the player can te
 """
 func _disconnect_box(x: int, y: int) -> void:
 	var old_autotile_coord: Vector2 = $TileMap.get_cell_autotile_coord(x, y)
-	if y > 0 && int(old_autotile_coord.x) & CONNECTED_UP > 0:
+	if y > 0 && int(old_autotile_coord.x) & PieceTypes.CONNECTED_UP > 0:
 		var above_autotile_coord: Vector2 = $TileMap.get_cell_autotile_coord(x, y - 1)
-		_set_box_block(x, y - 1, Vector2(int(above_autotile_coord.x) ^ CONNECTED_DOWN, above_autotile_coord.y))
-		_set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ CONNECTED_UP, old_autotile_coord.y))
-	if y < ROW_COUNT - 1 && int(old_autotile_coord.x) & CONNECTED_DOWN > 0:
+		_set_box_block(x, y - 1, Vector2(int(above_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, above_autotile_coord.y))
+		_set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, old_autotile_coord.y))
+	if y < ROW_COUNT - 1 && int(old_autotile_coord.x) & PieceTypes.CONNECTED_DOWN > 0:
 		var below_autotile_coord:Vector2 = $TileMap.get_cell_autotile_coord(x, y + 1)
-		_set_box_block(x, y + 1, Vector2(int(below_autotile_coord.x) ^ CONNECTED_UP, below_autotile_coord.y))
-		_set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ CONNECTED_DOWN, old_autotile_coord.y))
+		_set_box_block(x, y + 1, Vector2(int(below_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, below_autotile_coord.y))
+		_set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, old_autotile_coord.y))
 
 """
 Writes a block which is a part of an intact piece into the tile map. These intact pieces might later become boxes or

@@ -47,13 +47,13 @@ func _process(delta: float) -> void:
 					continue
 				var color_x = 0
 				if row > 0 && get_cell(col, row - 1) == 0:
-					color_x |= CONNECTED_UP
+					color_x |= PieceTypes.CONNECTED_UP
 				if row < _row_count - 1 && get_cell(col, row + 1) == 0:
-					color_x |= CONNECTED_DOWN
+					color_x |= PieceTypes.CONNECTED_DOWN
 				if col > 0 && get_cell(col - 1, row) == 0:
-					color_x |= CONNECTED_LEFT
+					color_x |= PieceTypes.CONNECTED_LEFT
 				if col < _col_count - 1 && get_cell(col + 1, row) == 0:
-					color_x |= CONNECTED_RIGHT
+					color_x |= PieceTypes.CONNECTED_RIGHT
 				set_cell(col, row, 0, false, false, false, Vector2(color_x, _color_y))
 		
 		_stretch_seconds_remaining -= delta
