@@ -198,7 +198,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	rank_result.seconds = Global.scenario_performance.seconds
 	rank_result.died = Global.scenario_performance.died
 	
-	if Global.scenario_performance.died:
+	if rank_result.died:
 		# don't let the player commit suicide to randomly get an 'M' rank
 		rank_result.speed = 60 * float(Global.scenario_performance.lines) / max(Global.scenario_performance.seconds, 24)
 		rank_result.box_score = float(Global.scenario_performance.box_score) / max(Global.scenario_performance.lines, 24)
@@ -246,5 +246,9 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 		rank_result.combo_score_rank = max(1, rank_result.combo_score_rank)
 		rank_result.score_rank = max(1, rank_result.score_rank)
 		rank_result.seconds_rank = max(1, rank_result.seconds_rank)
+	
+	if rank_result.died:
+		# can't go above S++ if the player dies
+		rank_result.lines_rank = max(1, rank_result.lines_rank)
 	
 	return rank_result
