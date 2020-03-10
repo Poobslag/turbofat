@@ -15,6 +15,8 @@ const MAX_LOCK_RESETS = 12
 # can slide pieces into nooks left in vertical stacks.
 const DROP_G = 128
 
+const SMUSH_FRAMES = 4
+
 """
 Contains the settings and state for the currently active piece.
 """
@@ -106,7 +108,7 @@ onready var NextPieces = get_node("../NextPieces")
 func _ready() -> void:
 	# ensure the piece isn't visible outside the playfield
 	set_clip_contents(true)
-	set_piece_speed(PieceSpeeds.beginner_level_0)
+	set_piece_speed(PieceSpeeds.hard_level_14)
 	if Playfield != null:
 		_col_count = Playfield.COL_COUNT
 		_row_count = Playfield.ROW_COUNT
@@ -289,11 +291,7 @@ func _apply_player_input() -> void:
 			_reset_piece_target()
 			_calc_smush_target()
 			if _target_piece_pos != _piece.pos:
-				_move_piece_to_target()
-				$SmashSound.play()
-				_set_piece_state("_state_move_piece")
-				_piece.gravity = 0
-				_gravity_delay_frames = 4
+				_smush_to_target()
 			else:
 				# Player can tap soft drop to reset lock, if their timing is good. This lets them hard-drop into
 				# a soft-drop for a fast sliding move
@@ -305,15 +303,40 @@ func _apply_player_input() -> void:
 			_reset_piece_target()
 			_calc_smush_target()
 			if _target_piece_pos != _piece.pos:
-				_move_piece_to_target()
-				$SmashSound.play()
-				_set_piece_state("_state_move_piece")
-				_piece.gravity = 0
-				_gravity_delay_frames = 4
+				_smush_to_target()
 	
 	if old_piece_pos != _piece.pos || old_piece_rotation != _piece.rotation:
 		if _piece.lock > 0 && !did_hard_drop:
 			_perform_lock_reset()
+
+"""
+Smushes a piece through other blocks towards the target.
+"""
+func _smush_to_target() -> void:
+	# initialize the stretch animation for long stretches
+	if _target_piece_pos.y - _piece.pos.y >= 3:
+		var unblocked_blocks: Array = _piece.type.pos_arr[_target_piece_rotation].duplicate()
+		$StretchMap.start_stretch(SMUSH_FRAMES, _piece.type.color_arr[_piece.rotation][0].y)
+		for dy in range(0, _target_piece_pos.y - _piece.pos.y):
+			var i := 0
+			while i < unblocked_blocks.size():
+				var target_block_pos: Vector2 = unblocked_blocks[i] + _piece.pos + Vector2(0, dy)
+				var valid_block_pos := true
+				valid_block_pos = valid_block_pos && target_block_pos.x >= 0 and target_block_pos.x < _col_count
+				valid_block_pos = valid_block_pos && target_block_pos.y >= 0 and target_block_pos.y < _row_count
+				if Playfield != null:
+					valid_block_pos = valid_block_pos && Playfield.is_cell_empty(target_block_pos.x, target_block_pos.y)
+				if !valid_block_pos:
+					unblocked_blocks.remove(i)
+				else:
+					i += 1
+			$StretchMap.stretch_to(unblocked_blocks, _piece.pos + Vector2(0, dy))
+	
+	_move_piece_to_target()
+	$SmushSound.play()
+	_set_piece_state("_state_move_piece")
+	_piece.gravity = 0
+	_gravity_delay_frames = SMUSH_FRAMES
 
 """
 Resets the piece's 'lock' value, preventing it from locking for a moment.
@@ -342,11 +365,10 @@ func _calc_smush_target() -> void:
 		_target_piece_pos.y += 1
 		valid_target_pos = true
 		for i in range(0, _piece.type.pos_arr[_target_piece_rotation].size()):
-			var block_pos: Vector2 = _piece.type.pos_arr[_target_piece_rotation][i]
-			var target_block_pos := Vector2(_target_piece_pos.x + block_pos.x, _target_piece_pos.y + block_pos.y)
+			var target_block_pos: Vector2 = _piece.type.pos_arr[_target_piece_rotation][i] + Vector2(_target_piece_pos.x, _target_piece_pos.y)
 			var valid_block_pos := true
-			valid_block_pos = valid_block_pos && target_block_pos.x >= 0 and target_block_pos.x < _col_count
-			valid_block_pos = valid_block_pos && target_block_pos.y >= 0 and target_block_pos.y < _row_count
+			valid_block_pos = valid_block_pos && target_block_pos.x >= 0 && target_block_pos.x < _col_count
+			valid_block_pos = valid_block_pos && target_block_pos.y >= 0 && target_block_pos.y < _row_count
 			if Playfield != null:
 				valid_block_pos = valid_block_pos && Playfield.is_cell_empty(target_block_pos.x, target_block_pos.y)
 			valid_target_pos = valid_target_pos && valid_block_pos
@@ -403,6 +425,7 @@ func _apply_gravity() -> void:
 		_piece.gravity += int(max(DROP_G, _piece_speed.gravity))
 	else:
 		_piece.gravity += _piece_speed.gravity
+	
 	while _piece.gravity >= GRAVITY_DENOMINATOR:
 		_piece.gravity -= GRAVITY_DENOMINATOR
 		_reset_piece_target()
@@ -474,6 +497,17 @@ func _calc_target_rotation() -> void:
 	if Input.is_action_just_pressed("rotate_ccw"):
 		_target_piece_rotation = _piece.ccw_rotation(_target_piece_rotation)
 
+func _process(delta: float) -> void:
+	if $StretchMap._stretch_seconds_remaining > 0:
+		$StretchMap.show()
+		$TileMap.hide()
+		
+		# if the player continues to move the piece, we keep stretching to its new location
+		$StretchMap.stretch_to(_piece.type.pos_arr[_piece.rotation], _piece.pos)
+	else:
+		$StretchMap.hide()
+		$TileMap.show()
+
 """
 Refresh the tilemap which displays the piece, based on the current piece's position and rotation.
 """
@@ -511,7 +545,7 @@ func _state_move_piece() -> void:
 	_apply_gravity()
 	_apply_lock()
 	
-	if _piece.lock > _piece_speed.lock_delay and _piece_state == "_state_move_piece":
+	if _piece.lock > _piece_speed.lock_delay && _piece_state == "_state_move_piece":
 		$LockSound.play()
 		_set_piece_state("_state_prelock")
 

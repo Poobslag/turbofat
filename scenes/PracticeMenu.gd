@@ -46,7 +46,7 @@ func get_fastest_time_text(scenario_name: String) -> String:
 	var best_grade
 	var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
 	for rank_result in rank_results:
-		if rank_result.seconds < best_seconds and !rank_result.died:
+		if rank_result.seconds < best_seconds && !rank_result.died:
 			best_seconds = rank_result.seconds
 			best_grade = Global.grade(rank_result.seconds_rank)
 	if best_seconds == 9999.0:
