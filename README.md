@@ -23,7 +23,7 @@ Press the directional keys to control the piece, and the rotate keys (Z, X) to r
 
 Holding a direction lets you move the piece quickly to one side of the playfield.
 
-Rotated pieces will try to reposition themselves to avoid obstructions. For quadrominos (5-size pieces), traditional rotation rules apply which allows for shenanigans such as T-spin triples.
+Rotated pieces will try to reposition themselves to avoid obstructions. For quadrominos (4-size pieces), traditional rotation rules apply which allows for shenanigans such as T-spin triples.
 
 ### Soft dropping
 
