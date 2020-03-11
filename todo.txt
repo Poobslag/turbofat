@@ -1,4 +1,3 @@
-*refactor 'connected_up" constants into one place
 -joystick support
 -upgrade to godot 3.2
 -customize controls
