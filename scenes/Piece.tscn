@@ -33,7 +33,11 @@
 [node name="Piece" type="Control"]
 margin_right = 288.0
 margin_bottom = 576.0
+rect_clip_content = true
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 0, -96 )
