@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/PracticeMenu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://art/wood-backdrop.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 36
+outline_size = 2
+outline_color = Color( 0, 0, 0, 0.501961 )
 font_data = ExtResource( 2 )
 
 [sub_resource type="DynamicFont" id=2]
@@ -18,6 +21,14 @@ font_data = ExtResource( 2 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 0.492308, 0.469484 )
+texture = ExtResource( 3 )
+centered = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0
@@ -27,6 +38,9 @@ margin_top = 20.0
 margin_right = -50.0
 margin_bottom = -20.0
 custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Sprint Label" type="Label" parent="VBoxContainer"]
 margin_right = 924.0

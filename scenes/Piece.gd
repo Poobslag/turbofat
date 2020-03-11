@@ -107,7 +107,6 @@ onready var NextPieces = get_node("../NextPieces")
 
 func _ready() -> void:
 	# ensure the piece isn't visible outside the playfield
-	set_clip_contents(true)
 	set_piece_speed(PieceSpeeds.hard_level_12)
 	if Playfield != null:
 		_col_count = Playfield.COL_COUNT
