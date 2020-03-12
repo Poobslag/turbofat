@@ -54,16 +54,16 @@ Stores statistics for how well the player performed in their current game. This 
 many lines they cleared, and their score.
 """
 class ScenarioPerformance:
-	# total number of seconds for the current game
+	# number of seconds until the player won or lost
 	var seconds := 0.0
 	
-	# raw number of cleared lines for the current game, not counting any bonus points
+	# raw number of cleared lines, not including bonus points
 	var lines := 0
 	
-	# total number of bonus points awarded in the current game by clearing boxes
+	# bonus points awarded for clearing boxes
 	var box_score := 0
 	
-	# total number of bonus points awarded in the current game for combos
+	# bonus points awarded for combos
 	var combo_score := 0
 	
 	# overall score
@@ -79,21 +79,21 @@ var scenario_performance := ScenarioPerformance.new()
 Converts a numeric grade such as '12.6' into a grade string such as 'A+'.
 """
 func grade(rank: float) -> String:
-	if   rank < 1:  return "M"
-	elif rank < 2:  return "S++"
-	elif rank < 3:  return "S+"
-	elif rank < 10: return "S"
-	elif rank < 11: return "S-"
-	elif rank < 14: return "A+"
-	elif rank < 23: return "A"
-	elif rank < 24: return "A-"
-	elif rank < 27: return "B+"
-	elif rank < 34: return "B"
-	elif rank < 35: return "B-"
-	elif rank < 37: return "C+"
-	elif rank < 45: return "C"
-	elif rank < 46: return "C-"
-	elif rank < 47: return "D+"
-	elif rank < 59: return "D"
-	elif rank < 65: return "D-"
+	if   rank <= 0:  return "M"
+	elif rank <= 1:  return "S++"
+	elif rank <= 2:  return "S+"
+	elif rank <= 9:  return "S"
+	elif rank <= 10: return "S-"
+	elif rank <= 13: return "A+"
+	elif rank <= 22: return "A"
+	elif rank <= 23: return "A-"
+	elif rank <= 26: return "B+"
+	elif rank <= 33: return "B"
+	elif rank <= 34: return "B-"
+	elif rank <= 36: return "C+"
+	elif rank <= 44: return "C"
+	elif rank <= 45: return "C-"
+	elif rank <= 46: return "D+"
+	elif rank <= 58: return "D"
+	elif rank <= 64: return "D-"
 	else: return "-"

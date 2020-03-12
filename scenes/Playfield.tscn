@@ -49,6 +49,7 @@
 0/autotile/spacing = 4
 0/autotile/occluder_map = [  ]
 0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
 0/autotile/z_index_map = [  ]
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
@@ -65,6 +66,7 @@
 1/autotile/spacing = 4
 1/autotile/occluder_map = [  ]
 1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
 1/autotile/z_index_map = [  ]
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
@@ -81,6 +83,7 @@
 2/autotile/spacing = 4
 2/autotile/occluder_map = [  ]
 2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
 2/autotile/z_index_map = [  ]
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
@@ -89,13 +92,19 @@
 
 [node name="Playfield" type="Control"]
 margin_right = 324.0
-margin_bottom = 480.0
+margin_bottom = 544.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ColorRect" type="ColorRect" parent="."]
 margin_right = 324.0
-margin_bottom = 480.0
+margin_bottom = 544.0
 color = Color( 0.113725, 0.101961, 0.101961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( 0, -96 )
@@ -103,7 +112,7 @@ scale = Vector2( 0.5, 0.5 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 72, 64 )
 format = 1
-tile_data = PoolIntArray( 983042, 1, 10, 983043, 1, 14, 983044, 1, 6, 983046, 4, 10, 983048, 1, 0, 1048578, 1, 11, 1048579, 1, 15, 1048580, 1, 7, 1048582, 4, 11, 1114112, 0, 0, 1114114, 1, 9, 1114115, 1, 13, 1114116, 1, 5, 1114117, 0, 65536, 1114118, 4, 9 )
+tile_data = PoolIntArray( 983046, 4, 0, 1048582, 4, 0, 1114118, 4, 0, 1179648, 2, 65537, 1179656, 2, 15, 1245184, 2, 16, 1245185, 2, 14, 1245186, 2, 15, 1245190, 2, 16, 1245191, 2, 14, 1245192, 2, 15 )
 
 [node name="CornerMap" parent="TileMap" instance=ExtResource( 5 )]
 
