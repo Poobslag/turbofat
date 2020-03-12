@@ -40,14 +40,20 @@ var _level := 0
 var _grade_message := ""
 
 func _ready() -> void:
-	if Global.scenario.win_condition.type != "time":
-		$TimeHUD.hide()
-	if Global.scenario.win_condition.type != "lines":
-		$LinesHUD.hide()
-	if Global.scenario.win_condition.type != "score":
-		$ScoreHUD.hide()
+	$TimeHUD.hide()
+	$LinesHUD.hide()
+	$ScoreHUD.hide()
+	if Global.scenario.win_condition.type == "time":
+		$TimeHUD.show()
+		var seconds = ceil(Global.scenario.win_condition.value)
+		$TimeHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
+	
+	if Global.scenario.win_condition.type == "lines":
+		$LinesHUD.show()
+		_set_level(0)
 	
 	if Global.scenario.win_condition.type == "score":
+		$ScoreHUD.show()
 		$ScoreHUD/ScoreValue.text = str(Global.scenario.win_condition.value)
 		$ScoreHUD/TimeLabel.hide()
 		$ScoreHUD/TimeValue.hide()
@@ -67,8 +73,8 @@ func _on_game_ended() -> void:
 		_grade_message += "Speed: %.1f (%s)\n" % [rank_result.speed, Global.grade(rank_result.speed_rank)]
 	else:
 		_grade_message += "Lines: %.1f (%s)\n" % [rank_result.lines, Global.grade(rank_result.lines_rank)]
-	_grade_message += "Boxes: %.1f (%s)\n" % [rank_result.box_score, Global.grade(rank_result.box_score_rank)]
-	_grade_message += "Combos: %.1f (%s)\n" % [rank_result.combo_score, Global.grade(rank_result.combo_score_rank)]
+	_grade_message += "Boxes: %.1f (%s)\n" % [rank_result.box_score_per_line, Global.grade(rank_result.box_score_per_line_rank)]
+	_grade_message += "Combos: %.1f (%s)\n" % [rank_result.combo_score_per_line, Global.grade(rank_result.combo_score_per_line_rank)]
 	if Global.scenario.win_condition.type == "score":
 		var seconds = ceil(Global.scenario_performance.seconds)
 		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, Global.grade(rank_result.seconds_rank)]
@@ -125,12 +131,8 @@ func _process(delta: float) -> void:
 		var seconds = ceil(Global.scenario_performance.seconds)
 		$ScoreHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 
-func _on_game_started() -> void:
-	_set_level(0)
-
 func _on_before_game_started() -> void:
-	$LinesHUD/LevelValue.text = "-"
-	$LinesHUD/LevelValue.add_color_override("font_color", Color(1, 1, 1, 1))
+	_set_level(0)
 
 	if Global.scenario.win_condition.type == "score":
 		$ScoreHUD/TimeLabel.show()
@@ -139,10 +141,8 @@ func _on_before_game_started() -> void:
 		$ScoreHUD/ScoreValue.hide()
 		$ScoreHUD/ProgressBar.max_value = Global.scenario.win_condition.value
 		$ScoreHUD/ProgressBar.value = 0
-	else:	
-		$LinesHUD/ProgressBar.get("custom_styles/fg").set_bg_color(Color(1, 1, 1, 0.33))
-		$LinesHUD/ProgressBar.min_value = 0
-		$LinesHUD/ProgressBar.max_value = 100
+	
+	if Global.scenario.win_condition.type == "lines":
 		$LinesHUD/ProgressBar.value = 0
 
 """

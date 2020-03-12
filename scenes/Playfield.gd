@@ -5,11 +5,11 @@ a box was made, pausing and playing sound effects
 extends Control
 
 # playfield dimensions. the playfield extends a few rows higher than what the player can see
-const ROW_COUNT = 18
+const ROW_COUNT = 20
 const COL_COUNT = 9
 
 # bonus points which are awarded as the player continues a combo
-const COMBO_SCORE_ARR = [0, 5, 5, 10, 10, 15, 15, 20]
+const COMBO_SCORE_ARR = [0, 0, 5, 5, 10, 10, 15, 15, 20]
 
 onready var Score = get_node("../Score")
 
@@ -310,7 +310,7 @@ func _check_for_line_clear() -> bool:
 		
 	_combo_break += 1
 	if _combo_break >= 3 && Score.combo_score > 0:
-		if _combo >= 15:
+		if _combo >= 20:
 			$Fanfare3.play()
 		elif _combo >= 10:
 			$Fanfare2.play()

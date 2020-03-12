@@ -26,7 +26,7 @@ func _ready():
 		_row_count = Playfield.ROW_COUNT
 	else:
 		_col_count = 9
-		_row_count = 18
+		_row_count = 20
 	for row in range(0, _row_count):
 		_stretch_pos.append([])
 		for col in range (0, _col_count):
