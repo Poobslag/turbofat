@@ -16,6 +16,7 @@ func _process(delta: float) -> void:
 	if NextPieces != null && NextPieces.next_pieces.size() > piece_index:
 		var next_piece = NextPieces.next_pieces[piece_index]
 		if next_piece != _displayed_piece:
+			var bounding_box := Rect2(next_piece.pos_arr[0][0].x, next_piece.pos_arr[0][0].y, 1, 1)
 			# update the tilemap with the new piece type
 			$TileMap.clear()
 			for i in range(0, next_piece.pos_arr[0].size()):
@@ -23,5 +24,9 @@ func _process(delta: float) -> void:
 				var block_color: Vector2 = next_piece.color_arr[0][i]
 				$TileMap.set_cell(block_pos.x, block_pos.y, \
 						0, false, false, false, block_color)
+				bounding_box = bounding_box.expand(next_piece.pos_arr[0][i])
+				bounding_box = bounding_box.expand(next_piece.pos_arr[0][i] + Vector2(1, 1))
 			$TileMap/CornerMap.dirty = true
 			_displayed_piece = next_piece
+			$TileMap.position.x = $TileMap.cell_size.x * (1.5 - (bounding_box.position.x + bounding_box.size.x / 2.0)) / 2.0
+			$TileMap.position.y = $TileMap.cell_size.y * (1.5 - (bounding_box.position.y + bounding_box.size.y / 2.0)) / 2.0

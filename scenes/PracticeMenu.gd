@@ -7,22 +7,45 @@ func _ready() -> void:
 	if !ScenarioHistory.loaded_scenario_history:
 		ScenarioHistory.load_scenario_history()
 	
-	$"VBoxContainer/Sprint/Normal/Best".text = get_highest_score_text("sprint-normal")
-	$"VBoxContainer/Sprint/Expert/Best".text = get_highest_score_text("sprint-expert")
+	$"VBoxContainer/Sprint/Normal/Best".text = get_best_sprint_text("sprint-normal")
+	$"VBoxContainer/Sprint/Expert/Best".text = get_best_sprint_text("sprint-expert")
 
 	$"VBoxContainer/Ultra/Normal/Best".text = get_fastest_time_text("ultra-normal")
 	$"VBoxContainer/Ultra/Hard/Best".text = get_fastest_time_text("ultra-hard")
 	$"VBoxContainer/Ultra/Expert/Best".text = get_fastest_time_text("ultra-expert")
 
-	$"VBoxContainer/Marathon/Normal/Best".text = get_highest_score_text("marathon-normal")
-	$"VBoxContainer/Marathon/Hard/Best".text = get_highest_score_text("marathon-hard")
-	$"VBoxContainer/Marathon/Expert/Best".text = get_highest_score_text("marathon-expert")
-	$"VBoxContainer/Marathon/Master/Best".text = get_highest_score_text("marathon-master")
+	$"VBoxContainer/Marathon/Normal/Best".text = get_best_marathon_text("marathon-normal")
+	$"VBoxContainer/Marathon/Hard/Best".text = get_best_marathon_text("marathon-hard")
+	$"VBoxContainer/Marathon/Expert/Best".text = get_best_marathon_text("marathon-expert")
+	$"VBoxContainer/Marathon/Master/Best".text = get_best_marathon_text("marathon-master")
 
 """
-Calculates the label text for displaying a player's high score for a scenario.
+Calculates the label text for displaying a player's high score for marathon mode.
 """
-func get_highest_score_text(scenario_name: String) -> String:
+func get_best_marathon_text(scenario_name: String) -> String:
+	if !ScenarioHistory.scenario_history.has(scenario_name):
+		return ""
+	var has_lived := false
+	var best_score := 0
+	var best_grade
+	var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
+	for rank_result in rank_results:
+		if !rank_result.died:
+			has_lived = true
+		if rank_result.score > best_score:
+			best_score = rank_result.score
+			best_grade = Global.grade(rank_result.score_rank)
+	if best_score == 0:
+		return ""
+	if has_lived:
+		return "Top: %s (%s)*" % [best_score, best_grade]
+	else:
+		return "Top: %s (%s)" % [best_score, best_grade]
+
+"""
+Calculates the label text for displaying a player's high score for sprint mode.
+"""
+func get_best_sprint_text(scenario_name: String) -> String:
 	if !ScenarioHistory.scenario_history.has(scenario_name):
 		return ""
 	var best_score := 0
@@ -37,7 +60,7 @@ func get_highest_score_text(scenario_name: String) -> String:
 	return "Top: %s (%s)" % [best_score, best_grade]
 
 """
-Calculates the label text for displaying a player's fastest time for a scenario.
+Calculates the label text for displaying a player's fastest time for ultra mode.
 """
 func get_fastest_time_text(scenario_name: String) -> String:
 	if !ScenarioHistory.scenario_history.has(scenario_name):

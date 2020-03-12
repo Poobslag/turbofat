@@ -17,16 +17,20 @@ func _ready() -> void:
 	randomize()
 	_fill_queue()
 	
-	# The main "next piece display" is full size
-	_add_display(0)
-	
 	# There are many other smaller displays to the side
-	_add_display(1, 92,    0, 0.33333)
-	_add_display(2, 142,   0, 0.33333)
-	_add_display(3, 192,   0, 0.33333)
-	_add_display(4, 192,  44, 0.33333)
-	_add_display(5, 192,  88, 0.33333)
-	_add_display(6, 192, 132, 0.33333)
+	_add_display(0, 192,   0, 0.33333)
+	_add_display(1, 192,  44, 0.33333)
+	_add_display(2, 192,  88, 0.33333)
+	_add_display(3, 192, 132, 0.33333)
+	_add_display(4, 192, 176, 0.33333)
+	_add_display(5, 192, 220, 0.33333)
+	_add_display(6, 192, 264, 0.33333)
+	_add_display(7, 192, 308, 0.33333)
+	_add_display(8, 192, 352, 0.33333)
+	_add_display(9, 192, 396, 0.33333)
+	_add_display(10, 192, 440, 0.33333)
+	_add_display(11, 192, 484, 0.33333, 0.66)
+	_add_display(12, 192, 528, 0.33333, 0.33)
 
 """
 Hides all next piece displays. We can't let the player see the upcoming pieces before the game starts.
@@ -48,11 +52,12 @@ func start_game() -> void:
 """
 Adds a new 'next piece display'.
 """
-func _add_display(piece_index: int, x := 0, y := 0, scale := 1.0) -> void:
+func _add_display(piece_index: int, x: int, y: int, scale: float, alpha: float = 1.0) -> void:
 	var new_display = NextPieceDisplay.instance()
 	new_display.piece_index = piece_index
 	new_display.scale = Vector2(scale, scale)
-	new_display.position = Vector2(x + (48 - 48 * scale), y + (48 - 48 * scale))
+	new_display.position = Vector2(x, y)
+	new_display.modulate.a = alpha
 	add_child(new_display)
 	_next_piece_displays.append(new_display)
 

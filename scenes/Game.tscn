@@ -57,28 +57,29 @@ script = ExtResource( 1 )
 
 [node name="Playfield" parent="." instance=ExtResource( 2 )]
 margin_left = 364.0
-margin_top = 112.0
+margin_top = 28.0
 margin_right = 688.0
-margin_bottom = 592.0
+margin_bottom = 572.0
 
 [node name="Piece" parent="." instance=ExtResource( 3 )]
 margin_left = 364.0
-margin_top = 112.0
+margin_top = 28.0
 margin_right = 688.0
-margin_bottom = 592.0
+margin_bottom = 572.0
 
 [node name="NextPieces" parent="." instance=ExtResource( 4 )]
-position = Vector2( 472, 8 )
+position = Vector2( 500, 16 )
 
 [node name="Score" parent="." instance=ExtResource( 5 )]
-margin_left = 616.0
-margin_right = 616.0
 
 [node name="HUD" type="Control" parent="."]
 margin_left = 364.0
-margin_top = 112.0
+margin_top = 28.0
 margin_right = 688.0
-margin_bottom = 592.0
+margin_bottom = 572.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="StartGameButton" type="Button" parent="HUD"]
 anchor_left = 0.5
@@ -86,7 +87,7 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -70.0
-margin_top = -27.5
+margin_top = -27.0
 margin_right = 70.0
 margin_bottom = 27.5
 custom_fonts/font = SubResource( 2 )
@@ -114,9 +115,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -120.0
-margin_top = -221.819
+margin_top = -248.0
 margin_right = 118.0
-margin_bottom = -43.819
+margin_bottom = -70.0
 custom_styles/normal = SubResource( 9 )
 custom_fonts/normal_font = SubResource( 10 )
 text = "Controls
@@ -140,11 +141,14 @@ custom_fonts/font = SubResource( 11 )
 text = "3"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="ReadySound" type="AudioStreamPlayer" parent="HUD"]
+[node name="ReadySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 
-[node name="GoSound" type="AudioStreamPlayer" parent="HUD"]
+[node name="GoSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 [connection signal="line_cleared" from="Playfield" to="." method="_on_line_cleared"]
 [connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
