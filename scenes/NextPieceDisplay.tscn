@@ -16,6 +16,7 @@
 0/autotile/spacing = 4
 0/autotile/occluder_map = [  ]
 0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
 0/autotile/z_index_map = [  ]
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
@@ -30,6 +31,6 @@ scale = Vector2( 0.5, 0.5 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 72, 64 )
 format = 1
-tile_data = PoolIntArray( 1, 0, 524288, 65536, 0, 524288, 65537, 0, 524288, 65538, 0, 524288 )
+tile_data = PoolIntArray( 1, 0, 524288, 65536, 0, 131074, 65538, 0, 131074, 131072, 0, 131081, 131073, 0, 131084, 131074, 0, 131077 )
 
 [node name="CornerMap" parent="TileMap" instance=ExtResource( 3 )]

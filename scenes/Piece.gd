@@ -108,7 +108,7 @@ onready var NextPieces = get_node("../NextPieces")
 func _ready() -> void:
 	# ensure the piece isn't visible outside the playfield
 	set_clip_contents(true)
-	set_piece_speed(PieceSpeeds.hard_level_14)
+	set_piece_speed(PieceSpeeds.hard_level_12)
 	if Playfield != null:
 		_col_count = Playfield.COL_COUNT
 		_row_count = Playfield.ROW_COUNT
@@ -116,7 +116,7 @@ func _ready() -> void:
 		_piece = Piece.new(PieceTypes.piece_null)
 	else:
 		_col_count = 9
-		_row_count = 18
+		_row_count = 20
 		_set_piece_state("_state_move_piece")
 		_spawn_piece()
 	_update_tile_map()

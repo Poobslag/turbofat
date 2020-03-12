@@ -10,8 +10,8 @@ func before_each():
 	rank_result = RankCalculator.RankResult.new()
 	rank_result.seconds = 600.0
 	rank_result.lines = 300
-	rank_result.box_score = 9.3
-	rank_result.combo_score = 17.0
+	rank_result.box_score_per_line = 9.3
+	rank_result.combo_score_per_line = 17.0
 	rank_result.score = 7890
 
 func after_each():

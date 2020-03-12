@@ -39,16 +39,16 @@ func _on_StartGameButton_pressed() -> void:
 	$Piece.clear_piece()
 	
 	show_message("3")
-	$HUD/ReadySound.play()
+	$ReadySound.play()
 	yield(get_tree().create_timer(0.8), "timeout")
 	show_message("2")
-	$HUD/ReadySound.play()
+	$ReadySound.play()
 	yield(get_tree().create_timer(0.8), "timeout")
 	show_message("1")
-	$HUD/ReadySound.play()
+	$ReadySound.play()
 	yield(get_tree().create_timer(0.8), "timeout")
 	$HUD/MessageLabel.hide()
-	$HUD/GoSound.play()
+	$GoSound.play()
 	
 	$Piece.start_game()
 	

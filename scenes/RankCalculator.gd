@@ -13,19 +13,21 @@ class RankResult:
 	var speed := 0.0
 	var speed_rank := 0.0
 
-	# raw number of cleared lines for the current game, not counting any bonus points
+	# raw number of cleared lines, not including bonus points
 	var lines := 0
 	var lines_rank := 0.0
 	
-	# total number of bonus points per line awarded in the current game by clearing boxes
+	# bonus points awarded for clearing boxes
 	var box_score := 0.0
-	var box_score_rank := 0.0
+	var box_score_per_line := 0.0
+	var box_score_per_line_rank := 0.0
 	
-	# total number of bonus points per line awarded in the current game for combos
+	# bonus points awarded for combos
 	var combo_score := 0.0
-	var combo_score_rank := 0.0
+	var combo_score_per_line := 0.0
+	var combo_score_per_line_rank := 0.0
 	
-	# overall seconds
+	# number of seconds until the player won or lost
 	var seconds := 0.0
 	var seconds_rank := 0.0
 	
@@ -33,6 +35,7 @@ class RankResult:
 	var score := 0
 	var score_rank := 0.0
 	
+	# did the player die?
 	var died := false
 	
 	"""
@@ -45,9 +48,11 @@ class RankResult:
 			"lines": lines,
 			"lines_rank": lines_rank,
 			"box_score": box_score,
-			"box_score_rank": box_score_rank,
+			"box_score_per_line": box_score_per_line,
+			"box_score_per_line_rank": box_score_per_line_rank,
 			"combo_score": combo_score,
-			"combo_score_rank": combo_score_rank,
+			"combo_score_per_line": combo_score_per_line,
+			"combo_score_per_line_rank": combo_score_per_line_rank,
 			"seconds": seconds,
 			"seconds_rank": seconds_rank,
 			"score": score,
@@ -63,9 +68,11 @@ class RankResult:
 		lines = int(dict["lines"])
 		lines_rank = dict["lines_rank"]
 		box_score = dict["box_score"]
-		box_score_rank = dict["box_score_rank"]
+		box_score_per_line = dict["box_score_per_line"]
+		box_score_per_line_rank = dict["box_score_per_line_rank"]
 		combo_score = dict["combo_score"]
-		combo_score_rank = dict["combo_score_rank"]
+		combo_score_per_line = dict["combo_score_per_line"]
+		combo_score_per_line_rank = dict["combo_score_per_line_rank"]
 		seconds = dict["seconds"]
 		seconds_rank = dict["seconds_rank"]
 		score = int(dict["score"])
@@ -125,15 +132,18 @@ func _max_lpm(extra_movement_frames:float = 0) -> float:
 # more forgiving.
 const RDF_SPEED := 0.96
 const RDF_LINES := 0.96
-const RDF_BOX_SCORE := 0.96
-const RDF_COMBO_SCORE := 0.98
+const RDF_BOX_SCORE_PER_LINE := 0.96
+const RDF_COMBO_SCORE_PER_LINE := 0.98
 
 # Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
 # boxes, and easier to make boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
 # theoretical player to meet all three statistics simultaneously.
-const MASTER_BOX_SCORE := 13.6
-const MASTER_COMBO_SCORE := 16.8
+const MASTER_BOX_SCORE := 14.5
+const MASTER_COMBO_SCORE := 17.5
 const MASTER_MVMT_FRAMES := 6
+
+# We add 100 lines to the target to make up for the 100 points we miss out on as our combo starts
+const COMBO_STARTUP_POINTS := 100
 
 """
 Calculates the player's rank.
@@ -149,8 +159,8 @@ func calculate_rank() -> RankResult:
 		var rank_results_lenient = _inner_calculate_rank(true)
 		rank_result.speed_rank = min(rank_result.speed_rank, rank_results_lenient.speed_rank)
 		rank_result.lines_rank = min(rank_result.lines_rank, rank_results_lenient.lines_rank)
-		rank_result.box_score_rank = min(rank_result.box_score_rank, rank_results_lenient.box_score_rank)
-		rank_result.combo_score_rank = min(rank_result.combo_score_rank, rank_results_lenient.combo_score_rank)
+		rank_result.box_score_per_line_rank = min(rank_result.box_score_per_line_rank, rank_results_lenient.box_score_per_line_rank)
+		rank_result.combo_score_per_line_rank = min(rank_result.combo_score_per_line_rank, rank_results_lenient.combo_score_per_line_rank)
 		rank_result.score_rank = min(rank_result.score_rank, rank_results_lenient.score_rank)
 	
 	return rank_result
@@ -171,8 +181,8 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var max_lpm := _max_lpm(MASTER_MVMT_FRAMES)
 	
 	var target_speed: float = max_lpm
-	var target_box_score := MASTER_BOX_SCORE
-	var target_combo_score := MASTER_COMBO_SCORE
+	var target_box_score_per_line := MASTER_BOX_SCORE
+	var target_combo_score_per_line := MASTER_COMBO_SCORE
 	var target_lines: float
 	var target_seconds: float
 	if Global.scenario.win_condition.type == "lines":
@@ -185,30 +195,31 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 		target_lines = max_lpm * Global.scenario.win_condition.value / 60.0
 		target_seconds = Global.scenario.win_condition.value
 	elif Global.scenario.win_condition.type == "score":
-		# We add 80 lines to the target to make up for the 80 points we miss out on as our combo starts
-		target_lines = ceil((Global.scenario.win_condition.value + 80) / (target_box_score + target_combo_score + 1))
+		target_lines = ceil((Global.scenario.win_condition.value + COMBO_STARTUP_POINTS) / (target_box_score_per_line + target_combo_score_per_line + 1))
 		target_seconds = 60 * target_lines / max_lpm
 	
 	# calculate raw player performance statistics
-	rank_result.speed = 60 * float(Global.scenario_performance.lines) / max(Global.scenario_performance.seconds, 1)
 	rank_result.lines = Global.scenario_performance.lines
-	rank_result.box_score = float(Global.scenario_performance.box_score) / max(Global.scenario_performance.lines, 1)
-	rank_result.combo_score = float(Global.scenario_performance.combo_score) / max(Global.scenario_performance.lines - 4, 1)
+	rank_result.box_score = Global.scenario_performance.box_score
+	rank_result.combo_score = Global.scenario_performance.combo_score
 	rank_result.score = Global.scenario_performance.score
 	rank_result.seconds = Global.scenario_performance.seconds
 	rank_result.died = Global.scenario_performance.died
+	rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 1)
+	rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 1)
+	rank_result.combo_score_per_line = float(rank_result.combo_score) / max(rank_result.lines - 5, 1)
 	
 	if rank_result.died:
 		# don't let the player commit suicide to randomly get an 'M' rank
-		rank_result.speed = 60 * float(Global.scenario_performance.lines) / max(Global.scenario_performance.seconds, 24)
-		rank_result.box_score = float(Global.scenario_performance.box_score) / max(Global.scenario_performance.lines, 24)
-		rank_result.combo_score = float(Global.scenario_performance.combo_score) / max(Global.scenario_performance.lines - 4, 24)
+		rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 24)
+		rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 24)
+		rank_result.combo_score_per_line = float(rank_result.combo_score) / max(rank_result.lines - 5, 24)
 	
 	# calculate rank
 	rank_result.speed_rank = clamp(log(rank_result.speed / target_speed) / log(RDF_SPEED), 0, 999)
 	rank_result.lines_rank = clamp(log(rank_result.lines / target_lines) / log(RDF_LINES), 0, 999)
-	rank_result.box_score_rank = clamp(log(rank_result.box_score / target_box_score) / log(RDF_BOX_SCORE), 0, 999)
-	rank_result.combo_score_rank = clamp(log(rank_result.combo_score / target_combo_score) / log(RDF_COMBO_SCORE), 0, 999)
+	rank_result.box_score_per_line_rank = clamp(log(rank_result.box_score_per_line / target_box_score_per_line) / log(RDF_BOX_SCORE_PER_LINE), 0, 999)
+	rank_result.combo_score_per_line_rank = clamp(log(rank_result.combo_score_per_line / target_combo_score_per_line) / log(RDF_COMBO_SCORE_PER_LINE), 0, 999)
 	rank_result.seconds_rank = 999.0
 	rank_result.score_rank = 999.0
 	
@@ -218,18 +229,18 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var overall_rank_min = 0
 	for _i in range(0, 20):
 		var tmp_overall_rank = (overall_rank_max + overall_rank_min) / 2.0
-		var tmp_box_score := target_box_score * pow(RDF_BOX_SCORE, tmp_overall_rank)
-		var tmp_combo_score := target_combo_score * pow(RDF_COMBO_SCORE, tmp_overall_rank)
+		var tmp_box_score_per_line := target_box_score_per_line * pow(RDF_BOX_SCORE_PER_LINE, tmp_overall_rank)
+		var tmp_combo_score_per_line := target_combo_score_per_line * pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
 		if Global.scenario.win_condition.type == "score":
 			var tmp_speed := target_speed * pow(RDF_SPEED, tmp_overall_rank)
-			var points_per_second := (tmp_speed * (1 + tmp_box_score + tmp_combo_score)) / 60
-			if (Global.scenario.win_condition.value + 80) / points_per_second < rank_result.seconds || Global.scenario_performance.died:
+			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
+			if (Global.scenario.win_condition.value + COMBO_STARTUP_POINTS) / points_per_second < rank_result.seconds || Global.scenario_performance.died:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank
 		else:
 			var tmp_lines := target_lines * pow(RDF_LINES, tmp_overall_rank)
-			if tmp_lines * (1 + tmp_box_score + tmp_combo_score) > rank_result.score:
+			if tmp_lines * (1 + tmp_box_score_per_line + tmp_combo_score_per_line) > rank_result.score:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank
@@ -242,8 +253,8 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 		# can't go above S++ with 'lenient' scoring
 		rank_result.speed_rank = max(1, rank_result.speed_rank)
 		rank_result.lines_rank = max(1, rank_result.lines_rank)
-		rank_result.box_score_rank = max(1, rank_result.box_score_rank)
-		rank_result.combo_score_rank = max(1, rank_result.combo_score_rank)
+		rank_result.box_score_per_line_rank = max(1, rank_result.box_score_per_line_rank)
+		rank_result.combo_score_per_line_rank = max(1, rank_result.combo_score_per_line_rank)
 		rank_result.score_rank = max(1, rank_result.score_rank)
 		rank_result.seconds_rank = max(1, rank_result.seconds_rank)
 	
