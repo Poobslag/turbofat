@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://scenes/Playfield.gd" type="Script" id=1]
 [ext_resource path="res://art/blocks.png" type="Texture" id=2]
@@ -36,6 +36,7 @@
 [ext_resource path="res://sound/combo18.wav" type="AudioStream" id=34]
 [ext_resource path="res://sound/combo19.wav" type="AudioStream" id=35]
 [ext_resource path="res://sound/combo20.wav" type="AudioStream" id=36]
+[ext_resource path="res://art/playfield-bg.png" type="Texture" id=37]
 
 [sub_resource type="TileSet" id=1]
 0/name = "blocks.png"
@@ -106,7 +107,21 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.25098 )
+scale = Vector2( 0.468208, 0.468158 )
+texture = ExtResource( 37 )
+centered = false
+
+[node name="TileMapClip" type="Control" parent="."]
+margin_right = 324.0
+margin_bottom = 544.0
+rect_clip_content = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="TileMapClip"]
 position = Vector2( 0, -96 )
 scale = Vector2( 0.5, 0.5 )
 tile_set = SubResource( 1 )
@@ -114,7 +129,7 @@ cell_size = Vector2( 72, 64 )
 format = 1
 tile_data = PoolIntArray( 983046, 4, 0, 1048582, 4, 0, 1114118, 4, 0, 1179648, 2, 65537, 1179656, 2, 15, 1245184, 2, 16, 1245185, 2, 14, 1245186, 2, 15, 1245190, 2, 16, 1245191, 2, 14, 1245192, 2, 15 )
 
-[node name="CornerMap" parent="TileMap" instance=ExtResource( 5 )]
+[node name="CornerMap" parent="TileMapClip/TileMap" instance=ExtResource( 5 )]
 
 [node name="Erase1Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )

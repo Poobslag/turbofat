@@ -34,3 +34,4 @@ format = 1
 tile_data = PoolIntArray( 1, 0, 524288, 65536, 0, 131074, 65538, 0, 131074, 131072, 0, 131081, 131073, 0, 131084, 131074, 0, 131077 )
 
 [node name="CornerMap" parent="TileMap" instance=ExtResource( 3 )]
+tile_data = PoolIntArray( 262145, 0, 262145, 262148, 0, 262144 )
