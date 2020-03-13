@@ -43,9 +43,8 @@ var _combo_break := 0
 var clock_running := false
 
 func _ready() -> void:
-	set_clip_contents(true)
-	$TileMap.clear()
-	$TileMap/CornerMap.clear()
+	$TileMapClip/TileMap.clear()
+	$TileMapClip/TileMap/CornerMap.clear()
 
 """
 Returns true if the Playfield is ready for a new piece to drop; false if it's paused for some kind of animation or delay.
@@ -77,8 +76,8 @@ Clears the playfield and resets everything for a new game.
 """
 func start_game() -> void:
 	Global.scenario_performance = Global.ScenarioPerformance.new()
-	$TileMap.clear()
-	$TileMap/CornerMap.clear()
+	$TileMapClip/TileMap.clear()
+	$TileMapClip/TileMap/CornerMap.clear()
 
 """
 Writes a piece to the playfield, checking whether it makes any boxes or clears any lines.
@@ -155,7 +154,7 @@ func _filled_columns() -> Array:
 	var db := _int_matrix()
 	for y in range(0, ROW_COUNT):
 		for x in range(0, COL_COUNT):
-			var piece_color: int = $TileMap.get_cell(x, y)
+			var piece_color: int = $TileMapClip/TileMap.get_cell(x, y)
 			if piece_color == -1:
 				# empty space
 				db[y][x] = 0
@@ -229,14 +228,14 @@ no empty/vegetable/box cells.
 """
 func _check_for_box(x: int, y: int, width: int, height: int, cake = false) -> bool:
 	for curr_x in range(x, x + width):
-		if int($TileMap.get_cell_autotile_coord(curr_x, y).x) & PieceTypes.CONNECTED_UP > 0:
+		if int($TileMapClip/TileMap.get_cell_autotile_coord(curr_x, y).x) & PieceTypes.CONNECTED_UP > 0:
 			return false
-		if int($TileMap.get_cell_autotile_coord(curr_x, y + height - 1).x) & PieceTypes.CONNECTED_DOWN > 0:
+		if int($TileMapClip/TileMap.get_cell_autotile_coord(curr_x, y + height - 1).x) & PieceTypes.CONNECTED_DOWN > 0:
 			return false
 	for curr_y in range(y, y + height):
-		if int($TileMap.get_cell_autotile_coord(x, curr_y).x) & PieceTypes.CONNECTED_LEFT > 0:
+		if int($TileMapClip/TileMap.get_cell_autotile_coord(x, curr_y).x) & PieceTypes.CONNECTED_LEFT > 0:
 			return false
-		if int($TileMap.get_cell_autotile_coord(x + width - 1, curr_y).x) & PieceTypes.CONNECTED_RIGHT > 0:
+		if int($TileMapClip/TileMap.get_cell_autotile_coord(x + width - 1, curr_y).x) & PieceTypes.CONNECTED_RIGHT > 0:
 			return false
 	
 	# making a piece continues the combo
@@ -246,7 +245,7 @@ func _check_for_box(x: int, y: int, width: int, height: int, cake = false) -> bo
 	if cake:
 		box_color = 4
 	else:
-		box_color = $TileMap.get_cell_autotile_coord(x, y).y
+		box_color = $TileMapClip/TileMap.get_cell_autotile_coord(x, y).y
 	
 	# corners
 	_set_box_block(x + 0, y + 0, Vector2(10, box_color))
@@ -286,8 +285,8 @@ func _check_for_line_clear() -> bool:
 			Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(_combo, 0, COMBO_SCORE_ARR.size() - 1)]
 			_cleared_lines.append(y)
 			for x in range(0, COL_COUNT):
-				if $TileMap.get_cell(x, y) == 1 and int($TileMap.get_cell_autotile_coord(x, y).x) & PieceTypes.CONNECTED_LEFT == 0:
-					if $TileMap.get_cell_autotile_coord(x, y).y == 4:
+				if $TileMapClip/TileMap.get_cell(x, y) == 1 and int($TileMapClip/TileMap.get_cell_autotile_coord(x, y).x) & PieceTypes.CONNECTED_LEFT == 0:
+					if $TileMapClip/TileMap.get_cell_autotile_coord(x, y).y == 4:
 						# cake piece
 						line_score += 10
 						Global.scenario_performance.box_score += 10
@@ -369,9 +368,9 @@ Clear all cells in the specified row. This leaves any pieces above them floating
 """
 func _clear_row(y: int) -> void:
 	for x in range(0, COL_COUNT):
-		if $TileMap.get_cell(x, y) == 0:
+		if $TileMapClip/TileMap.get_cell(x, y) == 0:
 			_disconnect_block(x, y)
-		elif $TileMap.get_cell(x, y) == 1:
+		elif $TileMapClip/TileMap.get_cell(x, y) == 1:
 			_disconnect_box(x, y)
 		
 		_clear_block(x, y)
@@ -382,10 +381,10 @@ Deletes the specified row in the playfield, dropping all higher rows down to fil
 func _delete_row(y: int) -> void:
 	for curr_y in range(y, 0, -1):
 		for x in range(0, COL_COUNT):
-			var piece_color: int = $TileMap.get_cell(x, curr_y - 1)
-			var autotile_coord: Vector2 = $TileMap.get_cell_autotile_coord(x, curr_y - 1)
-			$TileMap.set_cell(x, curr_y, piece_color, false, false, false, autotile_coord)
-			$TileMap/CornerMap.dirty = true
+			var piece_color: int = $TileMapClip/TileMap.get_cell(x, curr_y - 1)
+			var autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, curr_y - 1)
+			$TileMapClip/TileMap.set_cell(x, curr_y, piece_color, false, false, false, autotile_coord)
+			$TileMapClip/TileMap/CornerMap.dirty = true
 			if piece_color != -1:
 				# only play the line falling sound if at least one block falls
 				_should_play_line_fall_sound = true
@@ -399,12 +398,12 @@ Disconnects the specified block from all blocks it's connected to, directly or i
 turned into vegetables to ensure they can't be included in boxes in the future.
 """
 func _disconnect_block(x: int, y: int) -> void:
-	if $TileMap.get_cell(x, y) != 0:
+	if $TileMapClip/TileMap.get_cell(x, y) != 0:
 		# not a block; do nothing and don't recurse
 		return
 	
 	# store connections
-	var old_autotile_coord: Vector2 = $TileMap.get_cell_autotile_coord(x, y)
+	var old_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
 	
 	# disconnect
 	var vegetable_type := old_autotile_coord.y
@@ -436,13 +435,13 @@ If we didn't perform this step, the chopped-off bottom of a bread box would stil
 bottom of a bread box looks like a delicious frosted snack and the player can tell it's special.
 """
 func _disconnect_box(x: int, y: int) -> void:
-	var old_autotile_coord: Vector2 = $TileMap.get_cell_autotile_coord(x, y)
+	var old_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
 	if y > 0 && int(old_autotile_coord.x) & PieceTypes.CONNECTED_UP > 0:
-		var above_autotile_coord: Vector2 = $TileMap.get_cell_autotile_coord(x, y - 1)
+		var above_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y - 1)
 		_set_box_block(x, y - 1, Vector2(int(above_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, above_autotile_coord.y))
 		_set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, old_autotile_coord.y))
 	if y < ROW_COUNT - 1 && int(old_autotile_coord.x) & PieceTypes.CONNECTED_DOWN > 0:
-		var below_autotile_coord:Vector2 = $TileMap.get_cell_autotile_coord(x, y + 1)
+		var below_autotile_coord:Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y + 1)
 		_set_box_block(x, y + 1, Vector2(int(below_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, below_autotile_coord.y))
 		_set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, old_autotile_coord.y))
 
@@ -451,36 +450,36 @@ Writes a block which is a part of an intact piece into the tile map. These intac
 vegetables.
 """
 func _set_piece_block(x: int, y: int, block_color: Vector2) -> void:
-	$TileMap.set_cell(x, y, 0, false, false, false, block_color)
-	$TileMap/CornerMap.dirty = true
+	$TileMapClip/TileMap.set_cell(x, y, 0, false, false, false, block_color)
+	$TileMapClip/TileMap/CornerMap.dirty = true
 
 """
 Writes a block which is a part of a snack box or cake box into the tile map. These are typically written when the
 player arranges pieces into a box.
 """
 func _set_box_block(x: int, y: int, box_color: Vector2) -> void:
-	$TileMap.set_cell(x, y, 1, false, false, false, box_color)
-	$TileMap/CornerMap.dirty = true
+	$TileMapClip/TileMap.set_cell(x, y, 1, false, false, false, box_color)
+	$TileMapClip/TileMap/CornerMap.dirty = true
 
 """
 Writes a vegetable block into the tile map. These are typically written when the player breaks up an intact piece.
 """
 func _set_veg_block(x: int, y: int, block_color: Vector2) -> void:
-	$TileMap.set_cell(x, y, 2, false, false, false, block_color)
-	$TileMap/CornerMap.dirty = true
+	$TileMapClip/TileMap.set_cell(x, y, 2, false, false, false, block_color)
+	$TileMapClip/TileMap/CornerMap.dirty = true
 
 """
 Erases a block from the tile map.
 """
 func _clear_block(x: int, y: int) -> void:
-	$TileMap.set_cell(x, y, -1)
-	$TileMap/CornerMap.dirty = true
+	$TileMapClip/TileMap.set_cell(x, y, -1)
+	$TileMapClip/TileMap/CornerMap.dirty = true
 
 """
 Returns 'true' if the specified cell does not contain a block.
 """
 func is_cell_empty(x: int, y: int) -> bool:
-	return $TileMap.get_cell(x, y) == -1
+	return $TileMapClip/TileMap.get_cell(x, y) == -1
 
 func end_game() -> void:
 	Score.end_combo()
