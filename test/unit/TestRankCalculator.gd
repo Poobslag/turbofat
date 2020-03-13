@@ -101,8 +101,8 @@ func test_calculate_rank_sprint_120():
 	Global.scenario_performance.combo_score = 570
 	Global.scenario_performance.score = 1012
 	var rank = RankCalculator.calculate_rank()
-	assert_eq(Global.grade(rank.speed_rank), "S")
-	assert_eq(Global.grade(rank.lines_rank), "S")
+	assert_eq(Global.grade(rank.speed_rank), "S+")
+	assert_eq(Global.grade(rank.lines_rank), "S+")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "A")
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "A+")
 	assert_eq(Global.grade(rank.score_rank), "S")
@@ -134,7 +134,7 @@ func test_calculate_rank_ultra_200_died():
 	var rank = RankCalculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "A")
 	assert_eq(rank.seconds_rank, 999.0)
-	assert_eq(Global.grade(rank.box_score_per_line_rank), "C")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "C+")
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "-")
 
 """
@@ -153,3 +153,20 @@ func test_calculate_rank_ultra_200_overshot():
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "M")
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "M")
 	assert_eq(Global.grade(rank.seconds_rank), "S++")
+
+"""
+These two times are pretty far apart; they shouldn't yield the same rank
+"""
+func test_two_rank_s():
+	Global.scenario.set_start_level(PieceSpeeds.hard_level_0)
+	Global.scenario.set_win_condition("score", 1000)
+	Global.scenario_performance.seconds = 88.55
+	var rank = RankCalculator.calculate_rank()
+	assert_eq(Global.grade(rank.seconds_rank), "S+")
+	print(rank.seconds_rank)
+
+	Global.scenario.set_win_condition("score", 1000)
+	Global.scenario_performance.seconds = 128.616
+	var rank2 = RankCalculator.calculate_rank()
+	assert_eq(Global.grade(rank2.seconds_rank), "S")
+	print(rank2.seconds_rank)
