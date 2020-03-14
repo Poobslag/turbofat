@@ -23,6 +23,7 @@ func _ready() -> void:
 	$NextPieces.hide_pieces()
 	$Piece.clear_piece()
 	$HUD/MessageLabel.hide()
+	$Playfield/TileMapClip/ShadowMap.piece_tile_map = ($Piece/TileMap)
 
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://scenes/PracticeMenu.tscn")

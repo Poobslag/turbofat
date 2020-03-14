@@ -67,16 +67,30 @@ scale = Vector2( 0.492308, 0.469484 )
 texture = ExtResource( 9 )
 centered = false
 
+[node name="Chalkboard Shadow" type="Polygon2D" parent="."]
+position = Vector2( -0.552702, -116.371 )
+scale = Vector2( 0.444724, 0.444458 )
+color = Color( 0.345098, 0.14902, 0.0705882, 1 )
+antialiased = true
+polygon = PoolVector2Array( -128.8, 323.156, -115.362, 309.037, 655.31, 309.003, 655.298, 901.433, 638.788, 917.376, -128.376, 917.455 )
+
+[node name="Chalkboard" type="Sprite" parent="."]
+position = Vector2( 112.901, 159.292 )
+scale = Vector2( 0.443789, 0.443789 )
+texture = ExtResource( 11 )
+
+[node name="Playfield Shadow" type="Polygon2D" parent="."]
+position = Vector2( 500, -116.371 )
+scale = Vector2( 0.444724, 0.444458 )
+color = Color( 0.345098, 0.14902, 0.0705882, 1 )
+antialiased = true
+polygon = PoolVector2Array( -322.193, 310.259, -304.869, 292.887, 598.816, 293.05, 601.366, 295.601, 601.462, 1544.46, 580.968, 1564.81, -318.894, 1564.81, -322.537, 1561.16 )
+
 [node name="Playfield" parent="." instance=ExtResource( 2 )]
 margin_left = 364.0
 margin_top = 28.0
 margin_right = 688.0
 margin_bottom = 572.0
-
-[node name="Sprite2" type="Sprite" parent="Playfield"]
-position = Vector2( -251.099, 131.292 )
-scale = Vector2( 0.443789, 0.443789 )
-texture = ExtResource( 11 )
 
 [node name="Piece" parent="." instance=ExtResource( 3 )]
 margin_left = 364.0
@@ -175,7 +189,7 @@ stream = ExtResource( 7 )
 [node name="GoSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 [connection signal="line_cleared" from="Playfield" to="." method="_on_line_cleared"]
-[connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
 [connection signal="game_ended" from="Piece" to="." method="_on_game_ended"]
+[connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
 [connection signal="pressed" from="HUD/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 [connection signal="pressed" from="HUD/BackButton" to="." method="_on_BackButton_pressed"]
