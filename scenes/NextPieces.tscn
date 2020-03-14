@@ -8,7 +8,7 @@
 script = ExtResource( 1 )
 NextPieceDisplay = ExtResource( 2 )
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="Background Color" type="ColorRect" parent="."]
 margin_right = 64.0
 margin_bottom = 544.0
 color = Color( 0, 0, 0, 1 )
@@ -16,8 +16,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Background Sprite" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.627451 )
 scale = Vector2( 0.397516, 0.468158 )
 texture = ExtResource( 3 )
 centered = false
+
+[node name="Shadow" type="ColorRect" parent="."]
+margin_right = 6.0
+margin_bottom = 544.0
+color = Color( 0, 0, 0, 0.196078 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
