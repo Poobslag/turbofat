@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://scenes/Playfield.gd" type="Script" id=1]
 [ext_resource path="res://art/blocks.png" type="Texture" id=2]
@@ -37,8 +37,65 @@
 [ext_resource path="res://sound/combo19.wav" type="AudioStream" id=35]
 [ext_resource path="res://sound/combo20.wav" type="AudioStream" id=36]
 [ext_resource path="res://art/playfield-bg.png" type="Texture" id=37]
+[ext_resource path="res://art/blocks-vegetable-shadows.png" type="Texture" id=38]
+[ext_resource path="res://art/blocks-boxes-shadows.png" type="Texture" id=39]
+[ext_resource path="res://art/blocks-shadows.png" type="Texture" id=40]
+[ext_resource path="res://scenes/ShadowMap.gd" type="Script" id=41]
 
 [sub_resource type="TileSet" id=1]
+0/name = "blocks-shadows.png 0"
+0/texture = ExtResource( 40 )
+0/tex_offset = Vector2( 0, -64 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 2, 2, 2364, 656 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 144, 128 )
+0/autotile/spacing = 4
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+1/name = "blocks-boxes-shadows.png 1"
+1/texture = ExtResource( 39 )
+1/tex_offset = Vector2( 0, -64 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 2, 2, 2364, 656 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 144, 128 )
+1/autotile/spacing = 4
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shapes = [  ]
+1/z_index = 0
+2/name = "blocks-vegetable-shadows.png 2"
+2/texture = ExtResource( 38 )
+2/tex_offset = Vector2( 0, -64 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 2, 2, 2660, 524 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 144, 128 )
+2/autotile/spacing = 4
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shapes = [  ]
+2/z_index = 0
+
+[sub_resource type="TileSet" id=2]
 0/name = "blocks.png"
 0/texture = ExtResource( 2 )
 0/tex_offset = Vector2( 0, 0 )
@@ -121,15 +178,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TileMap" type="TileMap" parent="TileMapClip"]
+[node name="ShadowMap" type="TileMap" parent="TileMapClip"]
+modulate = Color( 0.1, 0.095, 0.095, 1 )
 position = Vector2( 0, -96 )
 scale = Vector2( 0.5, 0.5 )
 tile_set = SubResource( 1 )
 cell_size = Vector2( 72, 64 )
 format = 1
-tile_data = PoolIntArray( 983046, 4, 0, 1048582, 4, 0, 1114118, 4, 0, 1179648, 2, 65537, 1179656, 2, 15, 1245184, 2, 16, 1245185, 2, 14, 1245186, 2, 15, 1245190, 2, 16, 1245191, 2, 14, 1245192, 2, 15 )
+tile_data = PoolIntArray( 1114113, 0, 2, 1179649, 0, 9, 1179650, 0, 3, 1179651, 0, 4 )
+script = ExtResource( 41 )
+
+[node name="TileMap" type="TileMap" parent="TileMapClip"]
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = SubResource( 2 )
+cell_size = Vector2( 72, 64 )
+format = 1
+tile_data = PoolIntArray( 983046, 4, 0, 1048582, 4, 0, 1114113, 0, 2, 1114118, 4, 0, 1179648, 2, 0, 1179649, 0, 9, 1179650, 0, 12, 1179651, 0, 4, 1179656, 2, 4, 1245184, 2, 1, 1245185, 2, 2, 1245186, 2, 3, 1245190, 2, 5, 1245191, 2, 6, 1245192, 2, 7 )
 
 [node name="CornerMap" parent="TileMapClip/TileMap" instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 2359299, 0, 1 )
 
 [node name="Erase1Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
