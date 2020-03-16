@@ -92,7 +92,7 @@ func _on_game_ended() -> void:
 """
 Method invoked when a line is cleared. Updates the level.
 """
-func _on_line_cleared() -> void:
+func _on_line_cleared(lines_cleared: int) -> void:
 	var lines: int = Global.scenario_performance.lines
 	var new_level := _level
 	

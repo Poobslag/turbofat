@@ -1,51 +1,93 @@
+-customers
+ *scene is projected in viewport during game
+ *scrutinize resolution
+ *customer blinks
+ *create static scene in godot
+  *multiple tables, chairs. empty
+  *customer on one chair
+  *shadows
+ *remove restaurant.png?
+ *more decor
+  *add pillar
+  *add posters
+  *add lights
+ *bug: vertical stripe to the left of the customer window
+ -create animation where customer eats
+  *draw animation
+  *export animation frames
+  *tie animation into game
+  *random color of food; brown, pink, yellow or white
+  *head recoils slightly
+  *screen shake effect
+  *sfx
+  *head 'breathes' up and down slightly
+ *tie customer-eat animation into game, so it happens when you clear a line
+  *multiple line clears should trigger multiple eats
+ -code cleanup
+  -method types
+  -variable types
+  -colon equals instead of equals
+ -customer grows as he eats more and more
+  -2x
+  -3x
+  -5x
+  -10x
+  -more?
+  -shadows update
+  -table pushes out
+  -camera tracks customer
+ -multiple customers at once
+ -multiple types of customers
+  -two different colors
+  -two different kinds of antennae
+  -two different mouths
+  -two different sets of eyes
+ -customers can be replaced; blinks out of existence and a new customer appears in their place
 -joystick support
 -customize controls
--UI
- -piece animations
-  -frosting splashes in, piece flashes into existence
- -print input on screen
- -board
-  -cleared rows have food crumbs which swipe into a variable size food glob
-  -improved sfx
-  -pieces ooze/squish a little
-   -during rotation
-   -during movement
-   -during soft drops
-   -during hard drops
-   -during squishes
-   -during 20g
- -"you"
-  -cooks on top of burners
-  -trots around
-  -heaves food off-camera when clearing a line
-  -animates based on player actions
-   -movement
-   -rotate
-   -soft drop
-   -smash
-   -hard drop
-   -making a block
-  -animates based on failed player actions
-   -failed movement
-   -failed rotate
-   -failed soft drop
-   -failed smash
-  -animates based on fancy player actions
-   -initial DAS movement
-   -DAS movement
-   -initial rotation
-   -'t-spin' type moves
-   -initial hard drop
-   -smash-and-move
+-automatically apply 'fat outline' to sprite?
+-customer polish
+ -antlers 'breathe'
+ -blink animation is more randomized
+-piece animations
+ -frosting splashes in, piece flashes into existence
+-print input on screen
+-board
+ -cleared rows have food crumbs which swipe into a variable size food glob
  -improved sfx
-  -failed smash sfx
-  -failed movement sfx
-  -failed rotate sfx
+-"you"
+ -cooks on top of burners
+ -trots around
+ -heaves food off-camera when clearing a line
+ -animates based on player actions
+  -movement
+  -rotate
+  -soft drop
+  -smash
+  -hard drop
+  -making a block
+ -animates based on failed player actions
+  -failed movement
+  -failed rotate
   -failed soft drop
- -food
-  -cake (3 blocks)
-   -rotates through the air
-  -vegetable (0 blocks)
-  -brownie (2 blocks)
-  -chocolate wafer (1 block)
+  -failed smash
+ -animates based on fancy player actions
+  -initial DAS movement
+  -DAS movement
+  -initial rotation
+  -'t-spin' type moves
+  -initial hard drop
+  -smash-and-move
+-improved sfx
+ -failed smash sfx
+ -failed movement sfx
+ -failed rotate sfx
+ -failed soft drop
+-food
+ -cake (3 blocks)
+  -rotates through the air
+ -vegetable (0 blocks)
+ -brownie (2 blocks)
+ -chocolate wafer (1 block)
 -scenarios
+

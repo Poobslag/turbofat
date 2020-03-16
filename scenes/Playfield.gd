@@ -277,6 +277,7 @@ sounds appropriately. Returns 'true' if any lines were cleared.
 func _check_for_line_clear() -> bool:
 	var total_points := 0
 	var piece_points := 0
+	var lines_cleared := 0
 	for y in range(0, ROW_COUNT):
 		if _row_is_full(y):
 			var line_score := 1
@@ -302,6 +303,7 @@ func _check_for_line_clear() -> bool:
 			_remaining_line_clear_frames = _line_clear_delay
 			line_score = max(1, line_score)
 			total_points += line_score
+			lines_cleared += 1
 			
 			# clearing lines adds to the combo
 			_combo += 1
@@ -320,7 +322,7 @@ func _check_for_line_clear() -> bool:
 	
 	if total_points > 0:
 		_play_line_clear_sfx(piece_points)
-		emit_signal("line_cleared")
+		emit_signal("line_cleared", lines_cleared)
 	
 	return total_points > 0
 

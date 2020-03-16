@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://art/customer-view-outline.png" type="Texture" id=1]
+[ext_resource path="res://art/customer-view-mask.png" type="Texture" id=2]
+[ext_resource path="res://scenes/Restaurant/RestaurantScene.tscn" type="PackedScene" id=3]
+
+[node name="CustomerView" type="Node2D"]
+
+[node name="SceneClip" type="Control" parent="."]
+margin_right = 562.0
+margin_bottom = 526.0
+rect_clip_content = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OvalMask" type="Light2D" parent="SceneClip"]
+texture = ExtResource( 2 )
+offset = Vector2( 290, 270 )
+mode = 3
+range_item_cull_mask = 2
+
+[node name="Scene" parent="SceneClip" instance=ExtResource( 3 )]
+position = Vector2( -97.0002, -92.845 )
+
+[node name="OvalOutline" type="Sprite" parent="."]
+self_modulate = Color( 0.360784, 0.192157, 0.12549, 1 )
+texture = ExtResource( 1 )
+centered = false
