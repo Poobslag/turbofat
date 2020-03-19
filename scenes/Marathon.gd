@@ -40,6 +40,9 @@ var _level := 0
 var _grade_message := ""
 
 func _ready() -> void:
+	# reset statistics like time taken, lines cleared
+	Global.scenario_performance = Global.ScenarioPerformance.new()
+	
 	$TimeHUD.hide()
 	$LinesHUD.hide()
 	$ScoreHUD.hide()
