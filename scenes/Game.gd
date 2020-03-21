@@ -89,5 +89,13 @@ func end_game(delay: float, message: String) -> void:
 	$HUD/MessageLabel.hide()
 	emit_signal("after_game_ended")
 
-func _on_line_cleared() -> void:
-	emit_signal("line_cleared")
+"""
+Relays the 'line_cleared' signal to any listeners, and triggers the 'customer feeding' animation
+"""
+func _on_line_cleared(lines_cleared: int) -> void:
+	emit_signal("line_cleared", lines_cleared)
+	yield(get_tree().create_timer(rand_range(0.3, 0.5)), "timeout")
+	$CustomerView/SceneClip/Scene.feed()
+	for i in range(1, lines_cleared):
+		yield(get_tree().create_timer(rand_range(0.066, 0.4)), "timeout")
+		$CustomerView/SceneClip/Scene.feed()
