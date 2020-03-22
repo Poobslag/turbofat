@@ -39,9 +39,7 @@ func _process(delta: float) -> void:
 	if !$AnimationPlayer.is_playing():
 		$AnimationPlayer.play("Blink")
 	
-	$Head.position.y = -100 + _head_bob_pixels * sin((_total_seconds * 2 * PI) / _head_bob_seconds)
-	$HeadOutline.position = $Head.position
-
+	$Neck/Head.position.y = -100 + _head_bob_pixels * sin((_total_seconds * 2 * PI) / _head_bob_seconds)
 
 """
 Launches the 'feed' animation, hurling a piece of food at the customer and having them catch it.
@@ -68,12 +66,12 @@ func show_food_effects(delay := 0.0) -> void:
 	# avoid using the same color twice consecutively
 	_food_color_index = (_food_color_index + 1 + randi() % (FOOD_COLORS.size() - 1)) % FOOD_COLORS.size()
 	var food_color: Color = FOOD_COLORS[_food_color_index]
-	$Head/Food.modulate = food_color
-	$Head/FoodLaser.modulate = food_color
+	$Neck/Head/Food.modulate = food_color
+	$Neck/Head/FoodLaser.modulate = food_color
 
 	yield(get_tree().create_timer(delay), "timeout")
 	munch_sound.play()
-	$Tween.interpolate_property($Head, "position:x", clamp($Head.position.x - 6, -20, 0), 0, 0.5,
+	$Tween.interpolate_property($Neck/Head, "position:x", clamp($Neck/Head.position.x - 6, -20, 0), 0, 0.5,
 			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 	$Tween.start()
 	emit_signal("food_eaten")

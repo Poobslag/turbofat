@@ -97,3 +97,9 @@ func grade(rank: float) -> String:
 	elif rank <= 58: return "D"
 	elif rank <= 64: return "D-"
 	else: return "-"
+
+# How long it takes a customer to grow to a new size
+const CUSTOMER_GROWTH_SECONDS := 0.12
+
+# How large customers can grow; 5.0 = 5x normal size
+const MAX_FATNESS := 10.0

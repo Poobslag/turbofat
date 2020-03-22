@@ -26,6 +26,9 @@ onready var _combo_sound_endless_arr := [$ComboEndless00Sound, $ComboEndless01So
 # signal emitted when a line is cleared
 signal line_cleared
 
+# signal emitted when the customer should leave
+signal customer_left
+
 # lines which are currently being cleared
 var _cleared_lines := []
 # total frames to wait when clearing a line/making a box
@@ -314,15 +317,19 @@ func _check_for_line_clear() -> bool:
 			_combo_break = 0
 		
 	_combo_break += 1
-	if _combo_break >= 3 && Score.combo_score > 0:
-		if _combo >= 20:
-			$Fanfare3.play()
-		elif _combo >= 10:
-			$Fanfare2.play()
-		elif _combo >= 5:
-			$Fanfare1.play()
-		Score.end_combo()
-		_combo = 0
+	
+	if _combo_break >= 3:
+		if Score.combo_score > 0:
+			if _combo >= 20:
+				$Fanfare3.play()
+			elif _combo >= 10:
+				$Fanfare2.play()
+			elif _combo >= 5:
+				$Fanfare1.play()
+		if Score.customer_score > 0:
+			emit_signal("customer_left")
+			Score.end_combo()
+			_combo = 0
 	
 	if total_points > 0:
 		_play_line_clear_sfx(piece_points)
