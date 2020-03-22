@@ -17,7 +17,11 @@ onready var Score = get_node("../Score")
 onready var _combo_sound_arr := [$Combo1Sound, $Combo1Sound, $Combo2Sound, $Combo3Sound, $Combo4Sound, $Combo5Sound,
 		$Combo6Sound, $Combo7Sound, $Combo8Sound, $Combo9Sound, $Combo10Sound, $Combo11Sound, $Combo12Sound,
 		$Combo13Sound, $Combo14Sound, $Combo15Sound, $Combo16Sound, $Combo17Sound, $Combo18Sound, $Combo19Sound,
-		$Combo20Sound]
+		$Combo20Sound, $Combo21Sound, $Combo22Sound, $Combo23Sound, $Combo24Sound]
+
+onready var _combo_sound_endless_arr := [$ComboEndless00Sound, $ComboEndless01Sound, $ComboEndless02Sound, 
+		$ComboEndless03Sound, $ComboEndless04Sound, $ComboEndless05Sound, $ComboEndless06Sound, $ComboEndless07Sound,
+		$ComboEndless08Sound, $ComboEndless09Sound, $ComboEndless10Sound, $ComboEndless11Sound]
 
 # signal emitted when a line is cleared
 signal line_cleared
@@ -344,7 +348,7 @@ func _play_line_clear_sfx(piece_points: int) -> void:
 	# determine any combo sound effects, which play for continuing a combo
 	for combo_sfx in range(_combo - _cleared_lines.size(), _combo):
 		if combo_sfx > 0:
-			scheduled_sfx.append(_combo_sound_arr[min(combo_sfx, _combo_sound_arr.size() - 1)])
+			scheduled_sfx.append(_get_combo_sound(combo_sfx))
 	if piece_points == 1:
 		scheduled_sfx.append($ClearSnackPieceSound)
 	elif piece_points >= 2:
@@ -358,6 +362,11 @@ func _play_line_clear_sfx(piece_points: int) -> void:
 		for sfx_index in range(1, scheduled_sfx.size()):
 			yield(get_tree().create_timer(0.025 * sfx_index), "timeout")
 			scheduled_sfx[sfx_index].play()
+
+func _get_combo_sound(combo: int) -> AudioStreamPlayer:
+	if combo < _combo_sound_arr.size():
+		return _combo_sound_arr[combo]
+	return _combo_sound_endless_arr[(combo - _combo_sound_arr.size()) % _combo_sound_endless_arr.size()]
 
 func _row_is_full(y: int) -> bool:
 	for x in range(0, COL_COUNT):
