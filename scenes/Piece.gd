@@ -161,13 +161,13 @@ func _spawn_piece() -> bool:
 	if _input_cw_frames > 1 || _input_ccw_frames > 1:
 		if _input_cw_frames > 1 && _input_ccw_frames > 1:
 			_piece.rotation = _piece.flip_rotation(_piece.rotation)
-			$RotateSound.play()
+			$Rotate0Sound.play()
 		elif _input_cw_frames > 1:
 			_piece.rotation = _piece.cw_rotation(_piece.rotation)
-			$RotateSound.play()
+			$Rotate0Sound.play()
 		elif _input_ccw_frames > 1:
 			_piece.rotation = _piece.ccw_rotation(_piece.rotation)
-			$RotateSound.play()
+			$Rotate1Sound.play()
 		
 		# relocate rotated piece to the top of the playfield
 		var pos_arr = _piece.type.pos_arr[_piece.rotation]
@@ -462,7 +462,10 @@ func _move_piece_to_target(play_sfx := false) -> bool:
 	if valid_target_pos:
 		if play_sfx:
 			if _piece.rotation != _target_piece_rotation:
-				$RotateSound.play()
+				if _target_piece_rotation == _piece.cw_rotation():
+					$Rotate0Sound.play()
+				else:
+					$Rotate1Sound.play()
 			if _piece.pos != _target_piece_pos:
 				$MoveSound.play()
 		_piece.pos = _target_piece_pos

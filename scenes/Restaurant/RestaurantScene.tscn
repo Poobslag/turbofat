@@ -469,16 +469,21 @@ anims/EatAgain = SubResource( 3 )
 
 [node name="Munch0" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 26 )
+volume_db = -8.0
 
 [node name="Munch1" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 27 )
+volume_db = -8.0
 
 [node name="Munch2" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 28 )
+volume_db = -8.0
 
 [node name="Munch3" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 30 )
+volume_db = -8.0
 
 [node name="Munch4" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 29 )
+volume_db = -8.0
 [connection signal="food_eaten" from="Customer" to="." method="_on_Customer_food_eaten"]

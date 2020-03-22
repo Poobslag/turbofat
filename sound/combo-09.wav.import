@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/combo-09.wav-ab8b79c0c5b78d6df4d280f9d96ddb41.sample"
+
+[deps]
+
+source_file="res://sound/combo-09.wav"
+dest_files=[ "res://.import/combo-09.wav-ab8b79c0c5b78d6df4d280f9d96ddb41.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

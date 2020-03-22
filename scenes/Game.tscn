@@ -190,9 +190,11 @@ __meta__ = {
 
 [node name="ReadySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
+volume_db = -10.0
 
 [node name="GoSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+volume_db = -10.0
 [connection signal="line_cleared" from="Playfield" to="." method="_on_line_cleared"]
 [connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
 [connection signal="game_ended" from="Piece" to="." method="_on_game_ended"]
