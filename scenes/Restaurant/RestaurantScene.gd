@@ -17,6 +17,14 @@ Launches the 'feed' animation, hurling a piece of food at the customer and havin
 func feed() -> void:
 	$Customer.feed()
 
+"""
+Increases/decreases the customer's fatness, playing an animation which gradually applies the change.
+
+Parameters: The 'fatness' parameter controls how fat the customer should be; 5.0 = 5x normal size
+"""
+func set_fatness(fatness_percent: float) -> void:
+	$Customer/FatPlayer.set_fatness(fatness_percent)
+
 func _on_Customer_food_eaten() -> void:
 	_shake_original_position = position
 	_shake_total_seconds = 0.16
