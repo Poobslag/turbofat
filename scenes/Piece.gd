@@ -148,7 +148,7 @@ func set_piece_speed(new_piece_speed) -> void:
 Spawns a new piece at the top of the playfield. Returns 'true' if the piece spawned successfully, or 'false' if the
 piece was blocked and the player loses.
 """
-func _spawn_piece() -> bool:
+func _spawn_piece() -> void:
 	var piece_type
 	if NextPieces == null:
 		piece_type = PieceTypes.all_types[randi() % PieceTypes.all_types.size()]
@@ -207,11 +207,12 @@ func _spawn_piece() -> bool:
 	
 	# lose?
 	if !_can_move_piece_to(_piece.pos, _piece.rotation):
-		return false
-	
-	return true
+		$GameOverSound.play()
+		Global.scenario_performance.died = true
+		end_game()
+		emit_signal("game_ended")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	_input_left_frames = _increment_input_frames(_input_left_frames, "ui_left")
 	_input_right_frames = _increment_input_frames(_input_right_frames, "ui_right")
 	_input_down_frames = _increment_input_frames(_input_down_frames, "soft_drop")
@@ -316,7 +317,7 @@ func _smush_to_target() -> void:
 	if _target_piece_pos.y - _piece.pos.y >= 3:
 		var unblocked_blocks: Array = _piece.type.pos_arr[_target_piece_rotation].duplicate()
 		$StretchMap.start_stretch(SMUSH_FRAMES, _piece.type.color_arr[_piece.rotation][0].y)
-		for dy in range(0, _target_piece_pos.y - _piece.pos.y):
+		for dy in range(_target_piece_pos.y - _piece.pos.y):
 			var i := 0
 			while i < unblocked_blocks.size():
 				var target_block_pos: Vector2 = unblocked_blocks[i] + _piece.pos + Vector2(0, dy)
@@ -356,14 +357,14 @@ If the 'smush' is successful, the '_target_piece_pos' field will be updated acco
 """
 func _calc_smush_target() -> void:
 	var unblocked_blocks := []
-	for _i in range(0, _piece.type.pos_arr[_target_piece_rotation].size()):
+	for _i in range(_piece.type.pos_arr[_target_piece_rotation].size()):
 		unblocked_blocks.append(true)
 	
 	var valid_target_pos := false
 	while !valid_target_pos && _target_piece_pos.y < _row_count:
 		_target_piece_pos.y += 1
 		valid_target_pos = true
-		for i in range(0, _piece.type.pos_arr[_target_piece_rotation].size()):
+		for i in range(_piece.type.pos_arr[_target_piece_rotation].size()):
 			var target_block_pos: Vector2 = _piece.type.pos_arr[_target_piece_rotation][i] + Vector2(_target_piece_pos.x, _target_piece_pos.y)
 			var valid_block_pos := true
 			valid_block_pos = valid_block_pos && target_block_pos.x >= 0 && target_block_pos.x < _col_count
@@ -499,7 +500,7 @@ func _calc_target_rotation() -> void:
 	if Input.is_action_just_pressed("rotate_ccw"):
 		_target_piece_rotation = _piece.ccw_rotation(_target_piece_rotation)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if $StretchMap._stretch_seconds_remaining > 0:
 		$StretchMap.show()
 		$TileMap.hide()
@@ -515,7 +516,7 @@ Refresh the tilemap which displays the piece, based on the current piece's posit
 """
 func _update_tile_map() -> void:
 	$TileMap.clear()
-	for i in range(0, _piece.type.pos_arr[_piece.rotation].size()):
+	for i in range(_piece.type.pos_arr[_piece.rotation].size()):
 		var block_pos: Vector2 = _piece.type.pos_arr[_piece.rotation][i]
 		var block_color: Vector2 = _piece.type.color_arr[_piece.rotation][i]
 		$TileMap.set_cell(_piece.pos.x + block_pos.x, _piece.pos.y + block_pos.y, \
@@ -527,12 +528,11 @@ State #1: Block is about to spawn.
 """
 func _state_prespawn() -> void:
 	if _state_frames >= _piece.spawn_delay:
-		if !_spawn_piece():
-			$GameOverSound.play()
-			Global.scenario_performance.died = true
-			end_game()
-			emit_signal("game_ended")
+		_spawn_piece()
+		if _piece_state != "_state_prespawn":
+			# player may have just died; return if we're not still in prespawn state
 			return
+		
 		_set_piece_state("_state_move_piece")
 		
 		# apply an immediate frame of player movement and gravity to prevent piece from flickering at the top of the

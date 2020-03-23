@@ -92,7 +92,7 @@ Writes a piece to the playfield, checking whether it makes any boxes or clears a
 Returns true if the newly written piece results in a pause of some sort.
 """
 func write_piece(pos: Vector2, rotation: int, type, new_line_clear_frames: int, death_piece := false) -> bool:
-	for i in range(0, type.pos_arr[rotation].size()):
+	for i in range(type.pos_arr[rotation].size()):
 		var block_pos: Vector2 = type.pos_arr[rotation][i]
 		var block_color: Vector2 = type.color_arr[rotation][i]
 		_set_piece_block(pos.x + block_pos.x, pos.y + block_pos.y, block_color)
@@ -128,9 +128,9 @@ Creates a new integer matrix of the same dimensions as the playfield.
 """
 func _int_matrix() -> Array:
 	var matrix := []
-	for y in range(0, ROW_COUNT):
+	for y in range(ROW_COUNT):
 		matrix.append([])
-		for _x in range(0, COL_COUNT):
+		for _x in range(COL_COUNT):
 			matrix[y].resize(COL_COUNT)
 	return matrix
 
@@ -141,8 +141,8 @@ haven't been split apart by lines. They can't consist of any empty cells or any 
 """
 func _filled_rectangles(db: Array, box_height: int) -> Array:
 	var dt := _int_matrix()
-	for y in range(0, ROW_COUNT):
-		for x in range(0, COL_COUNT):
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
 			if db[y][x] >= box_height:
 				if x == 0:
 					dt[y][x] = 1
@@ -159,8 +159,8 @@ of any empty cells or any previously built boxes.
 """
 func _filled_columns() -> Array:
 	var db := _int_matrix()
-	for y in range(0, ROW_COUNT):
-		for x in range(0, COL_COUNT):
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
 			var piece_color: int = $TileMapClip/TileMap.get_cell(x, y)
 			if piece_color == -1:
 				# empty space
@@ -188,8 +188,8 @@ func _check_for_boxes() -> bool:
 	var dt4 := _filled_rectangles(db, 4)
 	var dt5 := _filled_rectangles(db, 5)
 	
-	for y in range(0, ROW_COUNT):
-		for x in range(0, COL_COUNT):
+	for y in range(ROW_COUNT):
+		for x in range(COL_COUNT):
 			# check for 5x3s (vertical)
 			if dt5[y][x] >= 3 && _check_for_box(x - 2, y - 4, 3, 5, true):
 				$CakeBoxSound.play()
@@ -285,14 +285,14 @@ func _check_for_line_clear() -> bool:
 	var total_points := 0
 	var piece_points := 0
 	var lines_cleared := 0
-	for y in range(0, ROW_COUNT):
+	for y in range(ROW_COUNT):
 		if _row_is_full(y):
 			var line_score := 1
 			line_score += COMBO_SCORE_ARR[clamp(_combo, 0, COMBO_SCORE_ARR.size() - 1)]
 			Global.scenario_performance.lines += 1
 			Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(_combo, 0, COMBO_SCORE_ARR.size() - 1)]
 			_cleared_lines.append(y)
-			for x in range(0, COL_COUNT):
+			for x in range(COL_COUNT):
 				if $TileMapClip/TileMap.get_cell(x, y) == 1 and int($TileMapClip/TileMap.get_cell_autotile_coord(x, y).x) & PieceTypes.CONNECTED_LEFT == 0:
 					if $TileMapClip/TileMap.get_cell_autotile_coord(x, y).y == 4:
 						# cake piece
@@ -376,7 +376,7 @@ func _get_combo_sound(combo: int) -> AudioStreamPlayer:
 	return _combo_sound_endless_arr[(combo - _combo_sound_arr.size()) % _combo_sound_endless_arr.size()]
 
 func _row_is_full(y: int) -> bool:
-	for x in range(0, COL_COUNT):
+	for x in range(COL_COUNT):
 		if is_cell_empty(x, y):
 			return false
 	return true
@@ -385,7 +385,7 @@ func _row_is_full(y: int) -> bool:
 Clear all cells in the specified row. This leaves any pieces above them floating in mid-air.
 """
 func _clear_row(y: int) -> void:
-	for x in range(0, COL_COUNT):
+	for x in range(COL_COUNT):
 		if $TileMapClip/TileMap.get_cell(x, y) == 0:
 			_disconnect_block(x, y)
 		elif $TileMapClip/TileMap.get_cell(x, y) == 1:
@@ -398,7 +398,7 @@ Deletes the specified row in the playfield, dropping all higher rows down to fil
 """
 func _delete_row(y: int) -> void:
 	for curr_y in range(y, 0, -1):
-		for x in range(0, COL_COUNT):
+		for x in range(COL_COUNT):
 			var piece_color: int = $TileMapClip/TileMap.get_cell(x, curr_y - 1)
 			var autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, curr_y - 1)
 			$TileMapClip/TileMap.set_cell(x, curr_y, piece_color, false, false, false, autotile_coord)
@@ -408,7 +408,7 @@ func _delete_row(y: int) -> void:
 				_should_play_line_fall_sound = true
 	
 	# remove row
-	for x in range(0, COL_COUNT):
+	for x in range(COL_COUNT):
 		_clear_block(x, 0)
 
 """

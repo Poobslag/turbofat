@@ -178,7 +178,7 @@ class PieceType:
 			# store cw kicks and ccw kicks from input array
 			cw_kicks = []
 			ccw_kicks = []
-			for _i in range(0, pos_arr.size()):
+			for _i in range(pos_arr.size()):
 				cw_kicks.append(init_kicks[_i * 2])
 				ccw_kicks.append(init_kicks[_i * 2 + 1])
 		else:
@@ -188,7 +188,7 @@ class PieceType:
 			for cw_kick in cw_kicks:
 				var ccw_kick = cw_kick.duplicate()
 				# invert all kicks but the first one (the first one is the floor kick)
-				for i in range(0, cw_kick.size()):
+				for i in range(cw_kick.size()):
 					ccw_kick[i] = Vector2(-cw_kick[i].x, -cw_kick[i].y)
 				ccw_kicks += [ccw_kick]
 		max_floor_kicks = init_max_floor_kicks

@@ -88,7 +88,7 @@ func _max_lpm(extra_movement_frames:float = 0) -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
 	
-	for i in range(0, Global.scenario.level_up_conditions.size()):
+	for i in range(Global.scenario.level_up_conditions.size()):
 		var piece_speed = Global.scenario.level_up_conditions[i].piece_speed
 		
 		var movement_frames := 1 + extra_movement_frames
@@ -184,19 +184,15 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var target_box_score_per_line := MASTER_BOX_SCORE
 	var target_combo_score_per_line := MASTER_COMBO_SCORE
 	var target_lines: float
-	var target_seconds: float
 	if Global.scenario.win_condition.type == "lines":
 		if lenient:
 			target_lines = Global.scenario.win_condition.lenient_value
 		else:
 			target_lines = Global.scenario.win_condition.value
-		target_seconds = 60 * target_lines / max_lpm
 	elif Global.scenario.win_condition.type == "time":
 		target_lines = max_lpm * Global.scenario.win_condition.value / 60.0
-		target_seconds = Global.scenario.win_condition.value
 	elif Global.scenario.win_condition.type == "score":
 		target_lines = ceil((Global.scenario.win_condition.value + COMBO_STARTUP_POINTS) / (target_box_score_per_line + target_combo_score_per_line + 1))
-		target_seconds = 60 * target_lines / max_lpm
 	
 	# calculate raw player performance statistics
 	rank_result.lines = Global.scenario_performance.lines
@@ -227,7 +223,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	# in a predictable way like the other ranks
 	var overall_rank_max = 999
 	var overall_rank_min = 0
-	for _i in range(0, 20):
+	for _i in range(20):
 		var tmp_overall_rank = (overall_rank_max + overall_rank_min) / 2.0
 		var tmp_box_score_per_line := target_box_score_per_line * pow(RDF_BOX_SCORE_PER_LINE, tmp_overall_rank)
 		var tmp_combo_score_per_line := target_combo_score_per_line * pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)

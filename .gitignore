@@ -2,3 +2,5 @@
 data_turbo Fat
 Turbo Fat.exe
 Turbo Fat.pck
+*.zip
+**/*.TMP

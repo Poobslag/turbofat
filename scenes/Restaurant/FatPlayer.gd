@@ -7,7 +7,7 @@ extends AnimationPlayer
 # how large the creature has grown; 5.0 = 5x normal size
 var _fatness := 1.0 setget set_fatness, get_fatness
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_playing():
 		# stop animating once we've passed the desired fatness
 		if get_playing_speed() > 0 && current_animation_position >= _fatness:

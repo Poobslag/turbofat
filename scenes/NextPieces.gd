@@ -19,7 +19,7 @@ func _ready() -> void:
 	randomize()
 	_fill_queue()
 	
-	for i in range(0, display_count):
+	for i in range(display_count):
 		_add_display(i, 5, 5 + i * (486 / (display_count - 1)), 0.5)
 
 """
@@ -98,10 +98,10 @@ func _fill_queue() -> void:
 			next_pieces += all_pentos[randi() % all_pentos.size()]
 		
 		# shuffle the five pieces until the same piece doesn't appear twice-in-a-row
-		for mercy in range (0, 1000):
+		for _mercy in range(1000):
 			next_pieces.shuffle()
 			var no_touching_pieces := true
-			for from_index in range(0, next_pieces.size() - 1):
+			for from_index in range(next_pieces.size() - 1):
 				if next_pieces[from_index] == next_pieces[from_index + 1]:
 					no_touching_pieces = false
 			if no_touching_pieces:

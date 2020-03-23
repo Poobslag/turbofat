@@ -92,7 +92,7 @@ func _on_game_ended() -> void:
 """
 Method invoked when a line is cleared. Updates the level.
 """
-func _on_line_cleared(lines_cleared: int) -> void:
+func _on_line_cleared(_lines_cleared: int) -> void:
 	var lines: int = Global.scenario_performance.lines
 	var new_level := _level
 	
@@ -120,13 +120,13 @@ func _on_line_cleared(lines_cleared: int) -> void:
 			$MatchEndSound.play()
 			$Game.end_game(2.2, "Finish!")
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if Global.scenario.win_condition.type == "time" && $Game/Playfield.clock_running:
 		if Global.scenario_performance.seconds >= Global.scenario.win_condition.value:
 			$MatchEndSound.play()
 			$Game.end_game(2.2, "Finish!")
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Global.scenario.win_condition.type == "time":
 		var seconds = ceil(Global.scenario.win_condition.value - Global.scenario_performance.seconds)
 		$TimeHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]

@@ -29,6 +29,6 @@ func _update_parent_field() -> void:
 func _ready() -> void:
 	_update_parent_field()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	position = _parent.position
 	scale = _parent.scale

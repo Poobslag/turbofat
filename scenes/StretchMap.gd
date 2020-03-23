@@ -27,22 +27,22 @@ func _ready():
 	else:
 		_col_count = 9
 		_row_count = 20
-	for row in range(0, _row_count):
+	for row in range(_row_count):
 		_stretch_pos.append([])
-		for col in range (0, _col_count):
+		for _col in range(_col_count):
 			_stretch_pos[row].append(0)
 
 func _process(delta: float) -> void:
 	if _stretch_seconds_remaining > 0:
-		for row in range(0, _row_count):
-			for col in range (0, _col_count):
+		for row in range(_row_count):
+			for col in range(_col_count):
 				if _stretch_pos[row][col] > _max_distance * (_stretch_seconds_total -_stretch_seconds_remaining) / _stretch_seconds_total:
 					set_cell(col, row, 0, false, false, false, Vector2(0, _color_y))
 				else:
 					set_cell(col, row, -1)
 		
-		for row in range(0, _row_count):
-			for col in range (0, _col_count):
+		for row in range(_row_count):
+			for col in range(_col_count):
 				if get_cell(col, row) != 0:
 					continue
 				var color_x = 0
@@ -95,6 +95,6 @@ func start_stretch(stretch_frames: int, new_color_y: int) -> void:
 	
 	clear()
 	$CornerMap.dirty = true
-	for row in range(0, _row_count):
-		for col in range (0, _col_count):
+	for row in range(_row_count):
+		for col in range(_col_count):
 			_stretch_pos[row][col] = 0
