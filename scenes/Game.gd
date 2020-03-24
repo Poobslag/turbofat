@@ -19,6 +19,8 @@ signal game_ended
 # signal emitted a few seconds after the game ends, for displaying messages
 signal after_game_ended
 
+onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
+
 func _ready() -> void:
 	$NextPieces.hide_pieces()
 	$Piece.clear_piece()
@@ -51,6 +53,7 @@ func _on_StartGameButton_pressed() -> void:
 	yield(get_tree().create_timer(0.8), "timeout")
 	$HUD/MessageLabel.hide()
 	$GoSound.play()
+	_go_voices[randi() % _go_voices.size()].play()
 	
 	$Piece.start_game()
 	

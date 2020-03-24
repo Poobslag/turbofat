@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scenes/Piece.gd" type="Script" id=1]
 [ext_resource path="res://art/blocks.png" type="Texture" id=2]
@@ -6,11 +6,15 @@
 [ext_resource path="res://scenes/StretchMap.gd" type="Script" id=4]
 [ext_resource path="res://sound/rotate0.wav" type="AudioStream" id=5]
 [ext_resource path="res://sound/move.wav" type="AudioStream" id=6]
-[ext_resource path="res://sound/harddrop.wav" type="AudioStream" id=7]
+[ext_resource path="res://sound/gameover-voice1.wav" type="AudioStream" id=7]
 [ext_resource path="res://sound/lock.wav" type="AudioStream" id=8]
 [ext_resource path="res://sound/gameover.wav" type="AudioStream" id=9]
-[ext_resource path="res://sound/smash.wav" type="AudioStream" id=10]
+[ext_resource path="res://sound/squish.wav" type="AudioStream" id=10]
 [ext_resource path="res://sound/rotate1.wav" type="AudioStream" id=11]
+[ext_resource path="res://sound/gameover-voice3.wav" type="AudioStream" id=12]
+[ext_resource path="res://sound/gameover-voice0.wav" type="AudioStream" id=13]
+[ext_resource path="res://sound/gameover-voice2.wav" type="AudioStream" id=14]
+[ext_resource path="res://sound/gameover-voice4.wav" type="AudioStream" id=15]
 
 [sub_resource type="TileSet" id=1]
 0/name = "blocks.png 0"
@@ -64,27 +68,44 @@ script = ExtResource( 4 )
 
 [node name="Rotate0Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -8.0
+bus = "Reverb Bus"
 
 [node name="Rotate1Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-volume_db = -8.0
+bus = "Reverb Bus"
 
 [node name="MoveSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -2.0
-
-[node name="DropSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+bus = "Reverb Bus"
 
 [node name="LockSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -10.0
+bus = "Reverb Bus"
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-volume_db = -5.0
+bus = "Reverb Bus"
+
+[node name="GameOverVoice0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+bus = "Voice Bus"
+
+[node name="GameOverVoice1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+bus = "Voice Bus"
+
+[node name="GameOverVoice2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+bus = "Voice Bus"
+
+[node name="GameOverVoice3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+bus = "Voice Bus"
+
+[node name="GameOverVoice4" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+bus = "Voice Bus"
 
 [node name="SmushSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = -4.0
+bus = "Reverb Bus"

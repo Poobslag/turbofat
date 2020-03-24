@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/go-voice2.wav-f53aa8795b2ec8b53f69adfd64e202cf.sample"
+
+[deps]
+
+source_file="res://sound/go-voice2.wav"
+dest_files=[ "res://.import/go-voice2.wav-f53aa8795b2ec8b53f69adfd64e202cf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

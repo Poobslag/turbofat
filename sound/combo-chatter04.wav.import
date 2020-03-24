@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/smash.wav-547b383019388fb4f1f2888291c9b0ce.sample"
+path="res://.import/combo-chatter04.wav-2b65a1fc888ea4bba7ceb4fff6c0aba2.sample"
 
 [deps]
 
-source_file="res://sound/smash.wav"
-dest_files=[ "res://.import/smash.wav-547b383019388fb4f1f2888291c9b0ce.sample" ]
+source_file="res://sound/combo-chatter04.wav"
+dest_files=[ "res://.import/combo-chatter04.wav-2b65a1fc888ea4bba7ceb4fff6c0aba2.sample" ]
 
 [params]
 

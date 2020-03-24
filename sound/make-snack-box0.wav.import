@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/square_s.wav-7f2f964d72f72e2d946a8d2df555fc95.sample"
+path="res://.import/make-snack-box0.wav-26efbbf7d037813a9cd3649514c19066.sample"
 
 [deps]
 
-source_file="res://sound/square_s.wav"
-dest_files=[ "res://.import/square_s.wav-7f2f964d72f72e2d946a8d2df555fc95.sample" ]
+source_file="res://sound/make-snack-box0.wav"
+dest_files=[ "res://.import/make-snack-box0.wav-26efbbf7d037813a9cd3649514c19066.sample" ]
 
 [params]
 

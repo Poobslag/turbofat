@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scenes/Game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Playfield.tscn" type="PackedScene" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://art/playfield-walls.png" type="Texture" id=10]
 [ext_resource path="res://art/chalkboard.png" type="Texture" id=11]
 [ext_resource path="res://scenes/Restaurant/CustomerView.tscn" type="PackedScene" id=12]
+[ext_resource path="res://sound/go-voice0.wav" type="AudioStream" id=13]
+[ext_resource path="res://sound/go-voice1.wav" type="AudioStream" id=14]
+[ext_resource path="res://sound/go-voice2.wav" type="AudioStream" id=15]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Xolonium-Regular.ttf"
@@ -190,14 +193,31 @@ __meta__ = {
 
 [node name="ReadySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -10.0
+volume_db = -4.0
+bus = "Reverb Bus"
 
 [node name="GoSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -10.0
+volume_db = -4.0
+bus = "Reverb Bus"
+
+[node name="GoVoice0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -4.0
+bus = "Voice Bus"
+
+[node name="GoVoice1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -4.0
+bus = "Voice Bus"
+
+[node name="GoVoice2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -4.0
+bus = "Voice Bus"
 [connection signal="customer_left" from="Playfield" to="." method="_on_customer_left"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_line_cleared"]
-[connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
 [connection signal="game_ended" from="Piece" to="." method="_on_game_ended"]
+[connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
 [connection signal="pressed" from="HUD/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 [connection signal="pressed" from="HUD/BackButton" to="." method="_on_BackButton_pressed"]

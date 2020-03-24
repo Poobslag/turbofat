@@ -22,6 +22,12 @@ onready var _combo_sound_arr := [$Combo1Sound, $Combo1Sound, $Combo2Sound, $Comb
 onready var _combo_sound_endless_arr := [$ComboEndless00Sound, $ComboEndless01Sound, $ComboEndless02Sound, 
 		$ComboEndless03Sound, $ComboEndless04Sound, $ComboEndless05Sound, $ComboEndless06Sound, $ComboEndless07Sound,
 		$ComboEndless08Sound, $ComboEndless09Sound, $ComboEndless10Sound, $ComboEndless11Sound]
+		
+onready var _combo_chatter_arr := [$ComboChatterVoice00, $ComboChatterVoice01, $ComboChatterVoice02, 
+		$ComboChatterVoice03, $ComboChatterVoice04, $ComboChatterVoice05, $ComboChatterVoice06, $ComboChatterVoice07,
+		$ComboChatterVoice08, $ComboChatterVoice09, $ComboChatterVoice10, $ComboChatterVoice11, $ComboChatterVoice12,
+		$ComboChatterVoice13, $ComboChatterVoice14, $ComboChatterVoice15, $ComboChatterVoice16, $ComboChatterVoice17,
+		$ComboChatterVoice18, $ComboChatterVoice19, $ComboChatterVoice20]
 
 # signal emitted when a line is cleared
 signal line_cleared
@@ -48,6 +54,8 @@ var _combo_break := 0
 
 # 'true' if the player is currently playing, and the time spent should count towards their stats
 var clock_running := false
+
+var _combo_chatter_index := 0
 
 func _ready() -> void:
 	$TileMapClip/TileMap.clear()
@@ -192,35 +200,44 @@ func _check_for_boxes() -> bool:
 		for x in range(COL_COUNT):
 			# check for 5x3s (vertical)
 			if dt5[y][x] >= 3 && _check_for_box(x - 2, y - 4, 3, 5, true):
-				$CakeBoxSound.play()
+				$MakeCakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 4x3s (vertical)
 			if dt4[y][x] >= 3 && _check_for_box(x - 2, y - 3, 3, 4, true):
-				$CakeBoxSound.play()
+				$MakeCakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 5x3s (horizontal)
 			if dt3[y][x] >= 5 && _check_for_box(x - 4, y - 2, 5, 3, true):
-				$CakeBoxSound.play()
+				$MakeCakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 4x3s (horizontal)
 			if dt3[y][x] >= 4 && _check_for_box(x - 3, y - 2, 4, 3, true):
-				$CakeBoxSound.play()
+				$MakeCakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 3x3s
 			if dt3[y][x] >= 3 && _check_for_box(x - 2, y - 2, 3, 3):
-				$SnackBoxSound.play()
+				var box_type := int($TileMapClip/TileMap.get_cell_autotile_coord(x - 2, y - 2).y)
+				print("box type: %s" % box_type)
+				if box_type == 0:
+					$MakeSnackBoxSound0.play()
+				elif box_type == 1:
+					$MakeSnackBoxSound1.play()
+				elif box_type == 2:
+					$MakeSnackBoxSound2.play()
+				elif box_type == 3:
+					$MakeSnackBoxSound3.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
 				_remaining_box_build_frames = _line_clear_delay
 				return true
@@ -322,10 +339,13 @@ func _check_for_line_clear() -> bool:
 		if Score.combo_score > 0:
 			if _combo >= 20:
 				$Fanfare3.play()
+				_play_combo_chatter()
 			elif _combo >= 10:
 				$Fanfare2.play()
+				_play_combo_chatter()
 			elif _combo >= 5:
 				$Fanfare1.play()
+				_play_combo_chatter()
 		if Score.customer_score > 0:
 			emit_signal("customer_left")
 			Score.end_combo()
@@ -352,6 +372,10 @@ func _play_line_clear_sfx(piece_points: int) -> void:
 	else:
 		scheduled_sfx.append($Erase3Sound)
 	
+	# determine the combo chatter sound effect which plays if you clear more than 5 lines in a combo
+	if _combo >= 5 && _cleared_lines.size() > (_combo + 1) % 3:
+		_play_combo_chatter()
+	
 	# determine any combo sound effects, which play for continuing a combo
 	for combo_sfx in range(_combo - _cleared_lines.size(), _combo):
 		if combo_sfx > 0:
@@ -369,6 +393,13 @@ func _play_line_clear_sfx(piece_points: int) -> void:
 		for sfx_index in range(1, scheduled_sfx.size()):
 			yield(get_tree().create_timer(0.025 * sfx_index), "timeout")
 			scheduled_sfx[sfx_index].play()
+
+"""
+Plays voice sounds which occur when continuing or finishing a long combo.
+"""
+func _play_combo_chatter() -> void:
+	_combo_chatter_index = (_combo_chatter_index + 1 + randi() % (_combo_chatter_arr.size() - 1)) % _combo_chatter_arr.size()
+	_combo_chatter_arr[_combo_chatter_index].play()
 
 func _get_combo_sound(combo: int) -> AudioStreamPlayer:
 	if combo < _combo_sound_arr.size():
