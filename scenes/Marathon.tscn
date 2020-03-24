@@ -201,18 +201,19 @@ __meta__ = {
 
 [node name="LevelUpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
-volume_db = -2.0
+bus = "Reverb Bus"
 
 [node name="ExcellentSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -6.0
+bus = "Reverb Bus"
 
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
+bus = "Reverb Bus"
 
 [node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -16.0
+bus = "Reverb Bus"
 [connection signal="after_game_ended" from="Game" to="." method="_on_after_game_ended"]
 [connection signal="before_game_started" from="Game" to="." method="_on_before_game_started"]
 [connection signal="game_ended" from="Game" to="." method="_on_game_ended"]

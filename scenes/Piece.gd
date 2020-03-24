@@ -104,6 +104,7 @@ var _col_count: int
 
 onready var Playfield = get_node("../Playfield")
 onready var NextPieces = get_node("../NextPieces")
+onready var _game_over_voices := [$GameOverVoice0, $GameOverVoice1, $GameOverVoice2, $GameOverVoice3, $GameOverVoice4]
 
 func _ready() -> void:
 	# ensure the piece isn't visible outside the playfield
@@ -208,6 +209,7 @@ func _spawn_piece() -> void:
 	# lose?
 	if !_can_move_piece_to(_piece.pos, _piece.rotation):
 		$GameOverSound.play()
+		_game_over_voices[randi() % _game_over_voices.size()].play()
 		Global.scenario_performance.died = true
 		end_game()
 		emit_signal("game_ended")
@@ -283,7 +285,6 @@ func _apply_player_input() -> void:
 				_target_piece_pos.y += 1
 			# lock piece
 			_piece.lock = _piece_speed.lock_delay
-			$DropSound.play()
 			did_hard_drop = true
 
 	if Input.is_action_just_pressed("soft_drop"):

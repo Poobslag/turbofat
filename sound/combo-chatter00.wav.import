@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/combo-chatter00.wav-a51fc0e00ccb651eb6dd631cf1335ab8.sample"
+
+[deps]
+
+source_file="res://sound/combo-chatter00.wav"
+dest_files=[ "res://.import/combo-chatter00.wav-a51fc0e00ccb651eb6dd631cf1335ab8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

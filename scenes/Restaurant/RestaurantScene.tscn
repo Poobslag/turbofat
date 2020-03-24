@@ -521,7 +521,13 @@ self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
 curve = SubResource( 1 )
 script = ExtResource( 39 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
 line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+fill_color = Color( 1, 1, 1, 0 )
+line_width = 8.0
 _parent_path_path = NodePath("../Body")
 
 [node name="NearLegOutline" type="Sprite" parent="Customer"]
@@ -580,9 +586,14 @@ self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
 curve = SubResource( 1 )
 script = ExtResource( 40 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
 line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
 fill_color = Color( 0.235294, 0.517647, 0.172549, 1 )
 line_width = 2.5
+_fatness = 1.0
 editing = false
 
 [node name="NearLeg" type="Sprite" parent="Customer"]
@@ -646,23 +657,23 @@ script = ExtResource( 20 )
 
 [node name="Munch0" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 26 )
-volume_db = -8.0
+bus = "Reverb Bus"
 
 [node name="Munch1" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 27 )
-volume_db = -8.0
+bus = "Reverb Bus"
 
 [node name="Munch2" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 28 )
-volume_db = -8.0
+bus = "Reverb Bus"
 
 [node name="Munch3" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 30 )
-volume_db = -8.0
+bus = "Reverb Bus"
 
 [node name="Munch4" type="AudioStreamPlayer" parent="Customer"]
 stream = ExtResource( 29 )
-volume_db = -8.0
+bus = "Reverb Bus"
 
 [node name="WoodTable0" type="Sprite" parent="."]
 light_mask = 2

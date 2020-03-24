@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=84 format=2]
 
 [ext_resource path="res://scenes/Playfield.gd" type="Script" id=1]
 [ext_resource path="res://art/blocks.png" type="Texture" id=2]
@@ -9,8 +9,8 @@
 [ext_resource path="res://sound/erase2.wav" type="AudioStream" id=7]
 [ext_resource path="res://sound/erase3.wav" type="AudioStream" id=8]
 [ext_resource path="res://sound/linefall.wav" type="AudioStream" id=9]
-[ext_resource path="res://sound/square_g.wav" type="AudioStream" id=10]
-[ext_resource path="res://sound/square_s.wav" type="AudioStream" id=11]
+[ext_resource path="res://sound/make-cake-box.wav" type="AudioStream" id=10]
+[ext_resource path="res://sound/make-snack-box1.wav" type="AudioStream" id=11]
 [ext_resource path="res://sound/clear-snack-box.wav" type="AudioStream" id=12]
 [ext_resource path="res://sound/clear-cake-box.wav" type="AudioStream" id=13]
 [ext_resource path="res://sound/combo-00.wav" type="AudioStream" id=14]
@@ -57,6 +57,30 @@
 [ext_resource path="res://sound/combo-e11.wav" type="AudioStream" id=55]
 [ext_resource path="res://sound/combo-e09.wav" type="AudioStream" id=56]
 [ext_resource path="res://sound/combo-e10.wav" type="AudioStream" id=57]
+[ext_resource path="res://sound/make-snack-box3.wav" type="AudioStream" id=58]
+[ext_resource path="res://sound/make-snack-box0.wav" type="AudioStream" id=59]
+[ext_resource path="res://sound/make-snack-box2.wav" type="AudioStream" id=60]
+[ext_resource path="res://sound/combo-chatter07.wav" type="AudioStream" id=61]
+[ext_resource path="res://sound/combo-chatter01.wav" type="AudioStream" id=62]
+[ext_resource path="res://sound/combo-chatter03.wav" type="AudioStream" id=63]
+[ext_resource path="res://sound/combo-chatter04.wav" type="AudioStream" id=64]
+[ext_resource path="res://sound/combo-chatter02.wav" type="AudioStream" id=65]
+[ext_resource path="res://sound/combo-chatter05.wav" type="AudioStream" id=66]
+[ext_resource path="res://sound/combo-chatter00.wav" type="AudioStream" id=67]
+[ext_resource path="res://sound/combo-chatter06.wav" type="AudioStream" id=68]
+[ext_resource path="res://sound/combo-chatter08.wav" type="AudioStream" id=69]
+[ext_resource path="res://sound/combo-chatter10.wav" type="AudioStream" id=70]
+[ext_resource path="res://sound/combo-chatter09.wav" type="AudioStream" id=71]
+[ext_resource path="res://sound/combo-chatter11.wav" type="AudioStream" id=72]
+[ext_resource path="res://sound/combo-chatter12.wav" type="AudioStream" id=73]
+[ext_resource path="res://sound/combo-chatter13.wav" type="AudioStream" id=74]
+[ext_resource path="res://sound/combo-chatter14.wav" type="AudioStream" id=75]
+[ext_resource path="res://sound/combo-chatter18.wav" type="AudioStream" id=76]
+[ext_resource path="res://sound/combo-chatter17.wav" type="AudioStream" id=77]
+[ext_resource path="res://sound/combo-chatter19.wav" type="AudioStream" id=78]
+[ext_resource path="res://sound/combo-chatter16.wav" type="AudioStream" id=79]
+[ext_resource path="res://sound/combo-chatter20.wav" type="AudioStream" id=80]
+[ext_resource path="res://sound/combo-chatter15.wav" type="AudioStream" id=81]
 
 [sub_resource type="TileSet" id=1]
 0/name = "blocks-shadows.png 0"
@@ -217,152 +241,287 @@ tile_data = PoolIntArray( 2359299, 0, 1 )
 
 [node name="Erase1Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 6 )
-volume_db = -12.0
+bus = "Reverb Bus"
 
 [node name="Erase2Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -12.0
+bus = "Reverb Bus"
 
 [node name="Erase3Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -12.0
+bus = "Reverb Bus"
 
 [node name="LineFallSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-volume_db = -10.0
+bus = "Reverb Bus"
 
-[node name="CakeBoxSound" type="AudioStreamPlayer" parent="."]
+[node name="MakeCakeBoxSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
-volume_db = 4.0
+bus = "Reverb Bus"
 
-[node name="SnackBoxSound" type="AudioStreamPlayer" parent="."]
+[node name="MakeSnackBoxSound0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 59 )
+bus = "Reverb Bus"
+
+[node name="MakeSnackBoxSound1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-volume_db = 4.0
+bus = "Reverb Bus"
+
+[node name="MakeSnackBoxSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 60 )
+bus = "Reverb Bus"
+
+[node name="MakeSnackBoxSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 58 )
+bus = "Reverb Bus"
 
 [node name="ClearSnackPieceSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-volume_db = -4.0
+bus = "Reverb Bus"
 
 [node name="ClearCakePieceSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
-volume_db = -4.0
+bus = "Reverb Bus"
 
 [node name="Combo1Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
+bus = "Reverb Bus"
 
 [node name="Fanfare1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
-volume_db = -6.0
+volume_db = -4.0
+bus = "Reverb Bus"
 
 [node name="Fanfare2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 16 )
-volume_db = -6.0
+volume_db = -4.0
+bus = "Reverb Bus"
 
 [node name="Fanfare3" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 17 )
-volume_db = -6.0
+volume_db = -4.0
+bus = "Reverb Bus"
 
 [node name="Combo2Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
+bus = "Reverb Bus"
 
 [node name="Combo3Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
+bus = "Reverb Bus"
 
 [node name="Combo4Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
+bus = "Reverb Bus"
 
 [node name="Combo5Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
+bus = "Reverb Bus"
 
 [node name="Combo6Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 22 )
+bus = "Reverb Bus"
 
 [node name="Combo7Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 23 )
+bus = "Reverb Bus"
 
 [node name="Combo8Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 24 )
+bus = "Reverb Bus"
 
 [node name="Combo9Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 25 )
+bus = "Reverb Bus"
 
 [node name="Combo10Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 26 )
+bus = "Reverb Bus"
 
 [node name="Combo11Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 27 )
+bus = "Reverb Bus"
 
 [node name="Combo12Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 28 )
+bus = "Reverb Bus"
 
 [node name="Combo13Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 29 )
+bus = "Reverb Bus"
 
 [node name="Combo14Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 30 )
+bus = "Reverb Bus"
 
 [node name="Combo15Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 31 )
+bus = "Reverb Bus"
 
 [node name="Combo16Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 32 )
+bus = "Reverb Bus"
 
 [node name="Combo17Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 33 )
+bus = "Reverb Bus"
 
 [node name="Combo18Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 34 )
+bus = "Reverb Bus"
 
 [node name="Combo19Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 35 )
+bus = "Reverb Bus"
 
 [node name="Combo20Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 36 )
+bus = "Reverb Bus"
 
 [node name="Combo21Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 42 )
+bus = "Reverb Bus"
 
 [node name="Combo22Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 44 )
+bus = "Reverb Bus"
 
 [node name="Combo23Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 45 )
+bus = "Reverb Bus"
 
 [node name="Combo24Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 43 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless00Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 48 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless01Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 49 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless02Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 47 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless03Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 52 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless04Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 46 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless05Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 50 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless06Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 51 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless07Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 53 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless08Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 54 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless09Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 56 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless10Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 57 )
+bus = "Reverb Bus"
 
 [node name="ComboEndless11Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 55 )
+bus = "Reverb Bus"
+
+[node name="ComboChatterVoice00" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 67 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice01" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 62 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice02" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 65 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice03" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 63 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice04" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 64 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice05" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 66 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice06" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 68 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice07" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 61 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice08" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 69 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice09" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 71 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice10" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 70 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice11" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 72 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice12" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 73 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice13" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 74 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice14" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 75 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice15" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 81 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice16" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 79 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice17" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 77 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice18" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 76 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice19" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 78 )
+bus = "Voice Bus"
+
+[node name="ComboChatterVoice20" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 80 )
+bus = "Voice Bus"
