@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/customer-near-arm-outline.png-635b26ff55adcc84d2bef80a8f0648a7.stex"
+path="res://.import/near-leg.png-71caef451a186638a5258cd0740615ac.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/customer/customer-near-arm-outline.png"
-dest_files=[ "res://.import/customer-near-arm-outline.png-635b26ff55adcc84d2bef80a8f0648a7.stex" ]
+source_file="res://art/customer/near-leg.png"
+dest_files=[ "res://.import/near-leg.png-71caef451a186638a5258cd0740615ac.stex" ]
 
 [params]
 
