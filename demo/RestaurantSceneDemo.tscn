@@ -3,7 +3,8 @@
 [ext_resource path="res://scenes/Restaurant/RestaurantScene.tscn" type="PackedScene" id=1]
 [ext_resource path="res://demo/RestaurantSceneDemo.gd" type="Script" id=2]
 
-[node name="Node2D" type="Node2D"]
+[node name="Demo" type="Node2D"]
 script = ExtResource( 2 )
 
 [node name="RestaurantScene" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 0.3, 0.3 )

@@ -10,7 +10,7 @@ extends Sprite
 export (NodePath) var _parent_path: NodePath setget set_parent
 
 # the sprite which we're drawing an outline around
-var _parent: Sprite
+var _parent: Node2D
 
 func set_parent(parent_path: NodePath) -> void:
 	_parent_path = parent_path
@@ -30,5 +30,6 @@ func _ready() -> void:
 	_update_parent_field()
 
 func _process(_delta: float) -> void:
-	position = _parent.position
-	scale = _parent.scale
+	if _parent != null:
+		position = _parent.position
+		scale = _parent.scale

@@ -10,7 +10,7 @@
 resource_name = "Fat"
 length = 10.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("SceneClip/Scene:position")
+tracks/0/path = NodePath("SceneClip/CustomerSwitcher/Scene:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -22,7 +22,7 @@ tracks/0/keys = {
 "values": [ Vector2( -89.8812, -104.904 ), Vector2( -89.8812, -104.904 ), Vector2( -89.881, -59.478 ), Vector2( 68.4975, 194.665 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("SceneClip/Scene:scale")
+tracks/1/path = NodePath("SceneClip/CustomerSwitcher/Scene:scale")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -51,8 +51,12 @@ offset = Vector2( 290, 270 )
 mode = 3
 range_item_cull_mask = 2
 
-[node name="Scene" parent="SceneClip" instance=ExtResource( 3 )]
+[node name="CustomerSwitcher" type="Node2D" parent="SceneClip"]
+
+[node name="Scene" parent="SceneClip/CustomerSwitcher" instance=ExtResource( 3 )]
 position = Vector2( -89.8812, -104.904 )
+
+[node name="CustomerSwitchTween" type="Tween" parent="SceneClip/CustomerSwitcher"]
 
 [node name="OvalOutline" type="Sprite" parent="."]
 self_modulate = Color( 0.360784, 0.192157, 0.12549, 1 )
