@@ -3,9 +3,9 @@ A demo which shows off the restaurant scene.
 
 Keys:
 
-F: Feed the customer
-P: Print the current animation details
-[1-9, 0]: Change the customer's size from 10% to 100%
+[F]: Feed the customer
+[P]: Print the current animation details
+[1-9,0]: Change the customer's size from 10% to 100%
 """
 extends Node2D
 

@@ -23,6 +23,10 @@ onready var _munch_sounds:Array = [
 	$Munch4
 ]
 
+# the food object which should be animated and recolored when we eat
+onready var Food = get_node("../KludgeCustomer/KludgeNeck/KludgeHead/Food")
+onready var FoodLaser = get_node("../KludgeCustomer/KludgeNeck/KludgeHead/FoodLaser")
+
 # the total number of seconds which have elapsed since the object was created
 var _total_seconds := 0.0
 
@@ -66,8 +70,8 @@ func show_food_effects(delay := 0.0) -> void:
 	# avoid using the same color twice consecutively
 	_food_color_index = (_food_color_index + 1 + randi() % (FOOD_COLORS.size() - 1)) % FOOD_COLORS.size()
 	var food_color: Color = FOOD_COLORS[_food_color_index]
-	$Neck/Head/Food.modulate = food_color
-	$Neck/Head/FoodLaser.modulate = food_color
+	Food.modulate = food_color
+	FoodLaser.modulate = food_color
 
 	yield(get_tree().create_timer(delay), "timeout")
 	munch_sound.play()

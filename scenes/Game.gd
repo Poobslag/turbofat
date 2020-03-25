@@ -116,7 +116,7 @@ Parameters: The 'fatness_pct' parameter defines a percent from [0.0-1.0] of how 
 	from this bite of food.
 """
 func _feed_customer(fatness_pct: float) -> void:
-	$CustomerView/SceneClip/Scene.feed()
+	$CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
 	
 	if $Playfield.clock_running:
 		var old_fatness: float = $CustomerView.get_fatness()
@@ -127,4 +127,8 @@ func _feed_customer(fatness_pct: float) -> void:
 
 func _on_customer_left() -> void:
 	if $Playfield.clock_running:
-		$CustomerView.set_fatness(1)
+		var customer_index: int = $CustomerView.get_current_customer_index()
+		var new_customer_index: int = (customer_index + randi() % 2 + 1) % 3
+		$CustomerView.set_current_customer_index(new_customer_index)
+		yield(get_tree().create_timer(0.5), "timeout")
+		$CustomerView.set_fatness(1, customer_index)
