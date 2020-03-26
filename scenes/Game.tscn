@@ -217,7 +217,6 @@ volume_db = -4.0
 bus = "Voice Bus"
 [connection signal="customer_left" from="Playfield" to="." method="_on_customer_left"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_line_cleared"]
-[connection signal="game_ended" from="Piece" to="." method="_on_game_ended"]
 [connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
 [connection signal="pressed" from="HUD/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 [connection signal="pressed" from="HUD/BackButton" to="." method="_on_BackButton_pressed"]
