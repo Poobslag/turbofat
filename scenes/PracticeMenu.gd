@@ -3,6 +3,9 @@ Menu for practice mode, a mode where the player can play over and over and try t
 """
 extends Control
 
+# Rank required to unlock harder levels. Rank 23 is an A-
+const RANK_TO_UNLOCK := 23.0
+
 func _ready() -> void:
 	if !ScenarioHistory.loaded_scenario_history:
 		ScenarioHistory.load_scenario_history()
@@ -18,23 +21,53 @@ func _ready() -> void:
 	$"VBoxContainer/Marathon/Hard/Best".text = get_best_marathon_text("marathon-hard")
 	$"VBoxContainer/Marathon/Expert/Best".text = get_best_marathon_text("marathon-expert")
 	$"VBoxContainer/Marathon/Master/Best".text = get_best_marathon_text("marathon-master")
+	
+	var unlock_message: String = "(%s to unlock)" % Global.grade(RANK_TO_UNLOCK)
+	if get_best_sprint_rank("sprint-normal") > RANK_TO_UNLOCK:
+		$VBoxContainer/Sprint/Expert/Button.disabled = true
+		$VBoxContainer/Sprint/Expert/Best.text = unlock_message
+	if get_best_ultra_rank("ultra-normal") > RANK_TO_UNLOCK:
+		$VBoxContainer/Ultra/Hard/Button.disabled = true
+		$VBoxContainer/Ultra/Hard/Best.text = unlock_message
+	if get_best_ultra_rank("ultra-hard") > RANK_TO_UNLOCK:
+		$VBoxContainer/Ultra/Expert/Button.disabled = true
+		$VBoxContainer/Ultra/Expert/Best.text = unlock_message
+	if get_best_marathon_rank("marathon-normal") > RANK_TO_UNLOCK:
+		$VBoxContainer/Marathon/Hard/Button.disabled = true
+		$VBoxContainer/Marathon/Hard/Best.text = unlock_message
+	if get_best_marathon_rank("marathon-hard") > RANK_TO_UNLOCK:
+		$VBoxContainer/Marathon/Expert/Button.disabled = true
+		$VBoxContainer/Marathon/Expert/Best.text = unlock_message
+	if get_best_marathon_rank("marathon-expert") > RANK_TO_UNLOCK:
+		$VBoxContainer/Marathon/Master/Button.disabled = true
+		$VBoxContainer/Marathon/Master/Best.text = unlock_message
+
+"""
+Calculates the best rank a player's received for a specific marathon scenario.
+"""
+func get_best_marathon_rank(scenario_name: String) -> float:
+	var best_rank := 999.0
+	if ScenarioHistory.scenario_history.has(scenario_name):
+		var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
+		for rank_result in rank_results:
+			best_rank = min(best_rank, rank_result.score_rank)
+	return best_rank
 
 """
 Calculates the label text for displaying a player's high score for marathon mode.
 """
 func get_best_marathon_text(scenario_name: String) -> String:
-	if !ScenarioHistory.scenario_history.has(scenario_name):
-		return ""
 	var has_lived := false
 	var best_score := 0
-	var best_grade
-	var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
-	for rank_result in rank_results:
-		if !rank_result.died:
-			has_lived = true
-		if rank_result.score > best_score:
-			best_score = rank_result.score
-			best_grade = Global.grade(rank_result.score_rank)
+	var best_grade := Global.NO_GRADE
+	if ScenarioHistory.scenario_history.has(scenario_name):
+		var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
+		for rank_result in rank_results:
+			if !rank_result.died:
+				has_lived = true
+			if rank_result.score > best_score:
+				best_score = rank_result.score
+				best_grade = Global.grade(rank_result.score_rank)
 	if best_score == 0:
 		return ""
 	if has_lived:
@@ -43,35 +76,55 @@ func get_best_marathon_text(scenario_name: String) -> String:
 		return "Top: %s (%s)" % [best_score, best_grade]
 
 """
+Calculates the best rank a player's received for a specific sprint scenario.
+"""
+func get_best_sprint_rank(scenario_name: String) -> float:
+	var best_rank := 999.0
+	if ScenarioHistory.scenario_history.get(scenario_name):
+		var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
+		for rank_result in rank_results:
+			best_rank = min(best_rank, rank_result.score_rank)
+	return best_rank
+
+"""
 Calculates the label text for displaying a player's high score for sprint mode.
 """
 func get_best_sprint_text(scenario_name: String) -> String:
-	if !ScenarioHistory.scenario_history.has(scenario_name):
-		return ""
 	var best_score := 0
-	var best_grade
-	var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
-	for rank_result in rank_results:
-		if rank_result.score > best_score:
-			best_score = rank_result.score
-			best_grade = Global.grade(rank_result.score_rank)
+	var best_grade := Global.NO_GRADE
+	if ScenarioHistory.scenario_history.has(scenario_name):
+		var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
+		for rank_result in rank_results:
+			if rank_result.score > best_score:
+				best_score = rank_result.score
+				best_grade = Global.grade(rank_result.score_rank)
 	if best_score == 0:
 		return ""
 	return "Top: %s (%s)" % [best_score, best_grade]
 
 """
+Calculates the best rank a player's received for a specific ultra scenario.
+"""
+func get_best_ultra_rank(scenario_name: String) -> float:
+	var best_rank := 999.0
+	if ScenarioHistory.scenario_history.get(scenario_name):
+		var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
+		for rank_result in rank_results:
+			best_rank = min(best_rank, rank_result.seconds_rank)
+	return best_rank
+
+"""
 Calculates the label text for displaying a player's fastest time for ultra mode.
 """
 func get_fastest_time_text(scenario_name: String) -> String:
-	if !ScenarioHistory.scenario_history.has(scenario_name):
-		return ""
 	var best_seconds := 9999.0
-	var best_grade
-	var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
-	for rank_result in rank_results:
-		if rank_result.seconds < best_seconds && !rank_result.died:
-			best_seconds = rank_result.seconds
-			best_grade = Global.grade(rank_result.seconds_rank)
+	var best_grade := Global.NO_GRADE
+	if ScenarioHistory.scenario_history.has(scenario_name):
+		var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
+		for rank_result in rank_results:
+			if rank_result.seconds < best_seconds && !rank_result.died:
+				best_seconds = rank_result.seconds
+				best_grade = Global.grade(rank_result.seconds_rank)
 	if best_seconds == 9999.0:
 		return ""
 	return "Top: %01d:%02d (%s)" % [int(ceil(best_seconds)) / 60, int(ceil(best_seconds)) % 60, best_grade]
