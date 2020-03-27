@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/head-outline.png-ef0f01b750c87ef0ae5a53da46971823.stex"
+path="res://.import/far-arm-outline.png-a87524bac29d30d2b83dc88c738ba18b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/eat-anim/head-outline.png"
-dest_files=[ "res://.import/head-outline.png-ef0f01b750c87ef0ae5a53da46971823.stex" ]
+source_file="res://art/customer/far-arm-outline.png"
+dest_files=[ "res://.import/far-arm-outline.png-a87524bac29d30d2b83dc88c738ba18b.stex" ]
 
 [params]
 

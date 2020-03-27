@@ -7,4 +7,3 @@
 script = ExtResource( 2 )
 
 [node name="RestaurantScene" parent="." instance=ExtResource( 1 )]
-scale = Vector2( 0.3, 0.3 )

@@ -33,3 +33,5 @@ func _process(_delta: float) -> void:
 	if _parent != null:
 		position = _parent.position
 		scale = _parent.scale
+		if _parent.get("offset"):
+			offset = _parent.offset

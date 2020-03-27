@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/body.png-6c831e9dd9dcf4ff16de0c38b60b76c2.stex"
+path="res://.import/near-leg-outline.png-ce4d508a77eef87f6461272d264d2e7f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/eat-anim/body.png"
-dest_files=[ "res://.import/body.png-6c831e9dd9dcf4ff16de0c38b60b76c2.stex" ]
+source_file="res://art/customer/near-leg-outline.png"
+dest_files=[ "res://.import/near-leg-outline.png-ce4d508a77eef87f6461272d264d2e7f.stex" ]
 
 [params]
 
