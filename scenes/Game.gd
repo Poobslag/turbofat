@@ -26,6 +26,9 @@ func _ready() -> void:
 	$Piece.clear_piece()
 	$HUD/MessageLabel.hide()
 	$Playfield/TileMapClip/ShadowMap.piece_tile_map = ($Piece/TileMap)
+	$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[randi() % Global.CUSTOMER_COLOR_DEFS.size()], 0)
+	$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[randi() % Global.CUSTOMER_COLOR_DEFS.size()], 1)
+	$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[randi() % Global.CUSTOMER_COLOR_DEFS.size()], 2)
 
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://scenes/PracticeMenu.tscn")
@@ -40,7 +43,9 @@ func _on_StartGameButton_pressed() -> void:
 	$Playfield.start_game()
 	$Score.start_game()
 	$Piece.clear_piece()
-	$CustomerView.set_fatness(1)
+	if $CustomerView.get_fatness() > 1:
+		# if they ended a game on a fattened customer, scroll to a new one
+		_scroll_to_new_customer()
 	
 	show_message("3")
 	$ReadySound.play()
@@ -127,8 +132,15 @@ func _feed_customer(fatness_pct: float) -> void:
 
 func _on_customer_left() -> void:
 	if $Playfield.clock_running:
-		var customer_index: int = $CustomerView.get_current_customer_index()
-		var new_customer_index: int = (customer_index + randi() % 2 + 1) % 3
-		$CustomerView.set_current_customer_index(new_customer_index)
-		yield(get_tree().create_timer(0.5), "timeout")
-		$CustomerView.set_fatness(1, customer_index)
+		_scroll_to_new_customer()
+
+"""
+Scroll to a new customer and replace the old customer.
+"""
+func _scroll_to_new_customer():
+	var customer_index: int = $CustomerView.get_current_customer_index()
+	var new_customer_index: int = (customer_index + randi() % 2 + 1) % 3
+	$CustomerView.set_current_customer_index(new_customer_index)
+	yield(get_tree().create_timer(0.5), "timeout")
+	$CustomerView.set_fatness(1, customer_index)
+	$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[randi() % Global.CUSTOMER_COLOR_DEFS.size()], customer_index)

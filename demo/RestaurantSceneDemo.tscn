@@ -4,6 +4,7 @@
 [ext_resource path="res://demo/RestaurantSceneDemo.gd" type="Script" id=2]
 
 [node name="Demo" type="Node2D"]
+scale = Vector2( 0.3, 0.3 )
 script = ExtResource( 2 )
 
 [node name="RestaurantScene" parent="." instance=ExtResource( 1 )]

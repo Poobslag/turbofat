@@ -14,11 +14,16 @@ export(bool) var _straighten: bool setget straighten
 export(bool) var closed := true
 
 export(Color) var line_color := Color.black
-export(Color) var fill_color := Color.transparent
+export(Color) var fill_color := Color.transparent setget set_fill_color
 export(float) var line_width := 8.0
 
 # internal array used for drawing polygons
 var _poly_colors := PoolColorArray()
+
+func set_fill_color(new_fill_color: Color) -> void:
+	fill_color = new_fill_color
+	for i in range(_poly_colors.size()):
+		_poly_colors.set(i, new_fill_color)
 
 """
 Straightens the Path2D into a series of straight lines, instead of smooth curves.
