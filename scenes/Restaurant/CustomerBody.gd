@@ -86,25 +86,25 @@ Parameters: 'fatness' defines how fat the customer's body is; 5.0 = 5x normal si
 """
 func set_fatness(fatness: float) -> void:
 	_fatness = fatness
-	
+
 	if editing:
 		# Don't overwrite the curve based on the fatness attribute. The developer is currently making manual changes
 		# to it, and we don't want to undo their changes.
 		return
-	
+
 	var fatness_index := 0
 	while fatness_index < curve_defs.size() - 2 && curve_defs[fatness_index + 1].fatness < fatness:
 		fatness_index += 1
-	
+
 	# curve_def_low is the lower fatness curve. curve_def_high is the higher fatness curve
 	var curve_def_low = curve_defs[fatness_index]
 	var curve_def_high = curve_defs[fatness_index + 1]
 	curve.clear_points()
-	
+
 	# Calculate how much of each curve we should use. A value greater than 0.5 means we'll mostly use curve_def_high,
 	# a value less than 0.5 means we'll mostly use curve_def_low.
 	var f_pct := clamp((fatness - curve_def_low.fatness) / (curve_def_high.fatness - curve_def_low.fatness), 0, 1.0)
-	
+
 	for i in range(curve_def_low.curve_def.size()):
 		var point_pos: Vector2 = (1 - f_pct) * curve_def_low.curve_def[i][0] + f_pct * curve_def_high.curve_def[i][0]
 		var point_in: Vector2 = (1 - f_pct) * curve_def_low.curve_def[i][1] + f_pct * curve_def_high.curve_def[i][1]

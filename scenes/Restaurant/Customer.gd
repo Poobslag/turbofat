@@ -58,6 +58,63 @@ func feed() -> void:
 		show_food_effects(0.066)
 
 """
+Recolors the customer according to the specified color definition. This involves updating shaders and sprite
+properties.
+
+Parameter: 'color_def' describes the sprites to recolor and how to recolor them.
+"""
+func recolor(color_def: Dictionary) -> void:
+	var line_color := Color("6c4331")
+	
+	if color_def.has("line"):
+		line_color = Color(color_def.line)
+		color_def["shader:FarArmOutline:black"] = line_color
+		color_def["shader:FarLegOutline:black"] = line_color
+		color_def["property:BodyOutline:line_color"] = line_color
+		color_def["shader:NearLegOutline:black"] = line_color
+		color_def["shader:NearArmOutline:black"] = line_color
+		color_def["shader:NeckOutline/HeadOutline:black"] = line_color
+		color_def["shader:NeckOutline/HeadOutline/MouthOutline:black"] = line_color
+		color_def["shader:NeckOutline/HeadOutline/EyesOutline:black"] = line_color
+		color_def["shader:FarArm:black"] = line_color
+		color_def["shader:FarLeg:black"] = line_color
+		color_def["property:Body:line_color"] = line_color
+		color_def["shader:NearArm:black"] = line_color
+		color_def["shader:NearLeg:black"] = line_color
+		color_def["shader:Neck/Head:black"] = line_color
+		color_def["shader:Neck/Head/Mouth:black"] = line_color
+		color_def["shader:Neck/Head/Eyes:black"] = line_color
+	
+	if color_def.has("body"):
+		var body_color := Color(color_def.body)
+		color_def["shader:FarArm:red"] = body_color
+		color_def["shader:FarLeg:red"] = body_color
+		color_def["shader:NearLeg:red"] = body_color
+		color_def["shader:NearArm:red"] = body_color
+		color_def["shader:Neck/Head:red"] = body_color
+		color_def["shader:Neck/Head/Mouth:red"] = body_color
+		color_def["shader:Neck/Head/Eyes:red"] = body_color
+		color_def["property:Body:fill_color"] = body_color.blend(Color(line_color.r, line_color.g, line_color.b, 0.25))
+	
+	if color_def.has("eyes"):
+		color_def["shader:Neck/Head/Eyes:green"] = Color(color_def.eyes.split(" ")[0])
+		color_def["shader:Neck/Head/Eyes:blue"] = Color(color_def.eyes.split(" ")[1])
+	
+	# set the sprite's color/texture properties
+	for key in color_def.keys():
+		if key.find("property:") == 0:
+			var node_path: String = key.split(":")[1]
+			var property_name: String = key.split(":")[2]
+			get_node(node_path).set(property_name, color_def[key])
+			
+		if key.find("shader:") == 0:
+			var node_path: String = key.split(":")[1]
+			var shader_param: String = key.split(":")[2]
+			get_node(node_path).material.set_shader_param(shader_param, color_def[key])
+	
+	$Body.update()
+
+"""
 The 'feed' animation causes a few side-effects. The customer's head recoils and some sounds play. This method controls
 all of those secondary visual effects of the customer being fed.
 

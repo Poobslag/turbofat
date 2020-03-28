@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://scenes/Restaurant/Customer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Restaurant/FatPlayer.gd" type="Script" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://art/eat-anim/eyes-outline-sheet.png" type="Texture" id=11]
 [ext_resource path="res://art/customer/head-outline.png" type="Texture" id=12]
 [ext_resource path="res://art/eat-anim/mouth-sheet.png" type="Texture" id=13]
-[ext_resource path="res://art/customer/head.png" type="Texture" id=14]
 [ext_resource path="res://art/eat-anim/food-sheet.png" type="Texture" id=15]
 [ext_resource path="res://art/eat-anim/food-laser-sheet.png" type="Texture" id=16]
 [ext_resource path="res://sound/munch1.wav" type="AudioStream" id=17]
@@ -30,16 +29,128 @@
 [ext_resource path="res://art/customer/near-leg-outline.png" type="Texture" id=28]
 [ext_resource path="res://art/customer/near-leg.png" type="Texture" id=29]
 [ext_resource path="res://scenes/Restaurant/Seat.gd" type="Script" id=30]
+[ext_resource path="res://art/customer/head.png" type="Texture" id=31]
+[ext_resource path="res://scenes/RgbPalette.shader" type="Shader" id=32]
 
-[sub_resource type="Curve2D" id=1]
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="Curve2D" id=3]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
 }
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=7]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=13]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
+shader_param/blue = null
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0.156863, 0.156863, 0.156863, 1 )
+shader_param/blue = Color( 0.870588, 0.870588, 0.870588, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="Animation" id=16]
 length = 7.0
 loop = true
 step = 0.0333333
@@ -68,7 +179,7 @@ tracks/1/keys = {
 "values": [ 0, 0, 2, 1, 0 ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=17]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -144,7 +255,7 @@ tracks/5/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=18]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -220,7 +331,7 @@ tracks/5/keys = {
 "values": [ 1, 1, 2, 0 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=19]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:position")
@@ -330,6 +441,7 @@ script = ExtResource( 1 )
 
 [node name="FarArmOutline" type="Sprite" parent="Customer"]
 light_mask = 2
+material = SubResource( 1 )
 scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 22 )
 offset = Vector2( 0, -239 )
@@ -338,6 +450,7 @@ _parent_path = NodePath("../FarArm")
 
 [node name="FarLegOutline" type="Sprite" parent="Customer"]
 light_mask = 2
+material = SubResource( 2 )
 scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 24 )
 offset = Vector2( 0, -239 )
@@ -347,19 +460,15 @@ _parent_path = NodePath("../FarLeg")
 [node name="BodyOutline" type="Path2D" parent="Customer"]
 self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
-curve = SubResource( 1 )
+curve = SubResource( 3 )
 script = ExtResource( 4 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
 line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-fill_color = Color( 1, 1, 1, 0 )
 line_width = 6.0
 _parent_path_path = NodePath("../Body")
 
 [node name="NearLegOutline" type="Sprite" parent="Customer"]
 light_mask = 2
+material = SubResource( 4 )
 scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 28 )
 offset = Vector2( 0, -239 )
@@ -368,6 +477,7 @@ _parent_path = NodePath("../NearLeg")
 
 [node name="NearArmOutline" type="Sprite" parent="Customer"]
 light_mask = 2
+material = SubResource( 5 )
 scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 26 )
 offset = Vector2( 0, -239 )
@@ -380,6 +490,7 @@ _parent_path = NodePath("../Neck")
 
 [node name="HeadOutline" type="Sprite" parent="Customer/NeckOutline"]
 light_mask = 2
+material = SubResource( 6 )
 position = Vector2( 0, -100 )
 scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 12 )
@@ -388,6 +499,7 @@ _parent_path = NodePath("../../Neck/Head")
 
 [node name="MouthOutline" type="Sprite" parent="Customer/NeckOutline/HeadOutline"]
 light_mask = 2
+material = SubResource( 7 )
 texture = ExtResource( 6 )
 hframes = 8
 script = ExtResource( 3 )
@@ -395,6 +507,7 @@ _parent_path = NodePath("../../../Neck/Head/Mouth")
 
 [node name="EyesOutline" type="Sprite" parent="Customer/NeckOutline/HeadOutline"]
 light_mask = 2
+material = SubResource( 8 )
 texture = ExtResource( 11 )
 hframes = 3
 script = ExtResource( 3 )
@@ -402,12 +515,14 @@ _parent_path = NodePath("../../../Neck/Head/Eyes")
 
 [node name="FarArm" type="Sprite" parent="Customer"]
 light_mask = 2
+material = SubResource( 9 )
 scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 7 )
 offset = Vector2( 0, -239 )
 
 [node name="FarLeg" type="Sprite" parent="Customer"]
 light_mask = 2
+material = SubResource( 10 )
 scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 19 )
 offset = Vector2( 0, -239 )
@@ -415,26 +530,24 @@ offset = Vector2( 0, -239 )
 [node name="Body" type="Path2D" parent="Customer"]
 self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
-curve = SubResource( 1 )
+position = Vector2( 0, 0.001 )
+curve = SubResource( 3 )
 script = ExtResource( 5 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
 line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-fill_color = Color( 0.235294, 0.517647, 0.172549, 1 )
+fill_color = Color( 0.631373, 0.231373, 0.14902, 1 )
 line_width = 2.0
-_fatness = 1.0
 editing = false
 
 [node name="NearLeg" type="Sprite" parent="Customer"]
 light_mask = 2
+material = SubResource( 11 )
 scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 29 )
 offset = Vector2( 0, -239 )
 
 [node name="NearArm" type="Sprite" parent="Customer"]
 light_mask = 2
+material = SubResource( 12 )
 scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 25 )
 offset = Vector2( 0, -239 )
@@ -447,28 +560,30 @@ __meta__ = {
 
 [node name="Head" type="Sprite" parent="Customer/Neck"]
 light_mask = 2
-material = SubResource( 2 )
+material = SubResource( 13 )
 position = Vector2( 0, -100 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 14 )
+texture = ExtResource( 31 )
 
 [node name="Mouth" type="Sprite" parent="Customer/Neck/Head"]
 light_mask = 2
+material = SubResource( 14 )
 texture = ExtResource( 13 )
 hframes = 8
 
 [node name="Eyes" type="Sprite" parent="Customer/Neck/Head"]
 light_mask = 2
+material = SubResource( 15 )
 texture = ExtResource( 20 )
 hframes = 3
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Customer"]
-anims/Blink = SubResource( 3 )
-anims/Eat = SubResource( 4 )
-anims/EatAgain = SubResource( 5 )
+anims/Blink = SubResource( 16 )
+anims/Eat = SubResource( 17 )
+anims/EatAgain = SubResource( 18 )
 
 [node name="FatPlayer" type="AnimationPlayer" parent="Customer"]
-anims/Fat = SubResource( 6 )
+anims/Fat = SubResource( 19 )
 script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="Customer"]

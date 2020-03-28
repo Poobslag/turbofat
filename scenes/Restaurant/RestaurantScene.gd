@@ -24,6 +24,15 @@ func feed() -> void:
 	_seats[current_customer_index].get_node("Customer").feed()
 
 """
+Recolors the customer according to the specified color definition. This involves updating shaders and sprite
+properties.
+
+Parameter: 'color_def' describes the sprites to recolor and how to recolor them.
+"""
+func recolor(color_def: Dictionary, customer_index: int = -1) -> void:
+	get_seat(customer_index).get_node("Customer").recolor(color_def)
+
+"""
 Increases/decreases the customer's fatness, playing an animation which gradually applies the change.
 
 Parameters: The 'fatness_percent' parameter controls how fat the customer should be; 5.0 = 5x normal size
@@ -31,26 +40,28 @@ The 'customer_index' parameter optionally specifies which customer should be alt
 	customer.
 """
 func set_fatness(fatness_percent: float, customer_index: int = -1) -> void:
-	var seat
-	if (customer_index == -1):
-		seat = _seats[current_customer_index]
-	else:
-		seat = _seats[customer_index]
-	seat.get_node("Customer/FatPlayer").set_fatness(fatness_percent)
+	get_seat(customer_index).get_node("Customer/FatPlayer").set_fatness(fatness_percent)
 
 """
 Returns the customer's fatness, a float which determines how fat the customer should be; 5.0 = 5x normal size
 
 Parameters: 'customer_index' is an optional parameter which specifies the customer to ask about. If omitted, it will
-	default to the customer currently being served food.
+	default to the customer currently being fed.
 """
 func get_fatness(customer_index: int = -1) -> float:
-	var seat
+	return get_seat(customer_index).get_node("Customer/FatPlayer").get_fatness()
+
+"""
+Returns the seat corresponding to the specified optional index. If the index is omitted, returns the current seat of
+the customer currently being fed.
+
+Parameters: 'customer_index' is an optional parameter which specifies the customer to ask about. If omitted, it will
+	default to the customer currently being fed.
+"""
+func get_seat(customer_index: int = -1):
 	if (customer_index == -1):
-		seat = _seats[current_customer_index]
-	else:
-		seat = _seats[customer_index]
-	return seat.get_node("Customer/FatPlayer").get_fatness()
+		return _seats[current_customer_index]
+	return _seats[customer_index]
 
 func _on_Customer_food_eaten() -> void:
 	_shake_original_position = position
