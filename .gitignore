@@ -1,6 +1,9 @@
 .*
 data_turbo Fat
-Turbo Fat.exe
-Turbo Fat.pck
 *.zip
 **/*.TMP
+
+# exported artifacts
+Turbo Fat.exe
+Turbo Fat.pck
+Turbo Fat.x86_64
