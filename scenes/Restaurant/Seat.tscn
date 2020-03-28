@@ -1,36 +1,42 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=66 format=2]
 
 [ext_resource path="res://scenes/Restaurant/Customer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Restaurant/FatPlayer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Restaurant/OutlineSprite.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Restaurant/SmoothPathOutline.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Restaurant/CustomerBody.gd" type="Script" id=5]
-[ext_resource path="res://art/eat-anim/mouth-outline-sheet.png" type="Texture" id=6]
-[ext_resource path="res://art/customer/far-arm.png" type="Texture" id=7]
+[ext_resource path="res://art/eat-anim/mouth-sheet-1.png" type="Texture" id=6]
+[ext_resource path="res://art/customer/arm-z0.png" type="Texture" id=7]
 [ext_resource path="res://art/restaurant/wood-table.png" type="Texture" id=8]
 [ext_resource path="res://art/restaurant/stool-occupied.png" type="Texture" id=9]
 [ext_resource path="res://art/restaurant/stool.png" type="Texture" id=10]
 [ext_resource path="res://art/eat-anim/eyes-outline-sheet.png" type="Texture" id=11]
 [ext_resource path="res://art/customer/head-outline.png" type="Texture" id=12]
-[ext_resource path="res://art/eat-anim/mouth-sheet.png" type="Texture" id=13]
-[ext_resource path="res://art/eat-anim/food-sheet.png" type="Texture" id=15]
-[ext_resource path="res://art/eat-anim/food-laser-sheet.png" type="Texture" id=16]
+[ext_resource path="res://art/eat-anim/mouth-outline-sheet-1.png" type="Texture" id=13]
+[ext_resource path="res://art/customer/horn-2.png" type="Texture" id=14]
+[ext_resource path="res://art/eat-anim/food-sheet-1.png" type="Texture" id=15]
+[ext_resource path="res://art/eat-anim/food-laser-sheet-1.png" type="Texture" id=16]
 [ext_resource path="res://sound/munch1.wav" type="AudioStream" id=17]
 [ext_resource path="res://sound/munch0.wav" type="AudioStream" id=18]
-[ext_resource path="res://art/customer/far-leg.png" type="Texture" id=19]
+[ext_resource path="res://art/customer/leg-z0.png" type="Texture" id=19]
 [ext_resource path="res://art/eat-anim/eyes-sheet.png" type="Texture" id=20]
 [ext_resource path="res://sound/munch2.wav" type="AudioStream" id=21]
-[ext_resource path="res://art/customer/far-arm-outline.png" type="Texture" id=22]
+[ext_resource path="res://art/customer/arm-z0-outline.png" type="Texture" id=22]
 [ext_resource path="res://sound/munch4.wav" type="AudioStream" id=23]
-[ext_resource path="res://art/customer/far-leg-outline.png" type="Texture" id=24]
-[ext_resource path="res://art/customer/near-arm.png" type="Texture" id=25]
-[ext_resource path="res://art/customer/near-arm-outline.png" type="Texture" id=26]
+[ext_resource path="res://art/customer/leg-z0-outline.png" type="Texture" id=24]
+[ext_resource path="res://art/customer/arm-z1.png" type="Texture" id=25]
+[ext_resource path="res://art/customer/arm-z1-outline.png" type="Texture" id=26]
 [ext_resource path="res://sound/munch3.wav" type="AudioStream" id=27]
-[ext_resource path="res://art/customer/near-leg-outline.png" type="Texture" id=28]
-[ext_resource path="res://art/customer/near-leg.png" type="Texture" id=29]
+[ext_resource path="res://art/customer/leg-z1.png" type="Texture" id=28]
+[ext_resource path="res://art/customer/leg-z1-outline.png" type="Texture" id=29]
 [ext_resource path="res://scenes/Restaurant/Seat.gd" type="Script" id=30]
 [ext_resource path="res://art/customer/head.png" type="Texture" id=31]
 [ext_resource path="res://scenes/RgbPalette.shader" type="Shader" id=32]
+[ext_resource path="res://art/customer/ear-z2-2.png" type="Texture" id=33]
+[ext_resource path="res://art/customer/ear-z0-2.png" type="Texture" id=34]
+[ext_resource path="res://art/customer/ear-z1-2.png" type="Texture" id=35]
+[ext_resource path="res://art/customer/horn-outline-2.png" type="Texture" id=36]
+[ext_resource path="res://art/customer/ear-z2-outline-2.png" type="Texture" id=37]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -138,11 +144,35 @@ shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 resource_local_to_scene = true
 shader = ExtResource( 32 )
 shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0.870588, 0.870588, 0.870588, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="ShaderMaterial" id=17]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
 shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
 shader_param/blue = null
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 
-[sub_resource type="ShaderMaterial" id=15]
+[sub_resource type="ShaderMaterial" id=18]
 resource_local_to_scene = true
 shader = ExtResource( 32 )
 shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
@@ -150,40 +180,41 @@ shader_param/green = Color( 0.156863, 0.156863, 0.156863, 1 )
 shader_param/blue = Color( 0.870588, 0.870588, 0.870588, 1 )
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 
-[sub_resource type="Animation" id=16]
-length = 7.0
+[sub_resource type="Animation" id=19]
+resource_name = "Ambient"
+length = 4.0
 loop = true
-step = 0.0333333
+step = 0.166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("NeckOutline/HeadOutline/EyesOutline:frame")
+tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6.86667, 6.9, 6.93333, 6.96667 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.833333, 1.16667, 1.5, 1.83333, 3.16667, 3.5, 3.83333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 0, 2, 1, 0 ]
+"values": [ 0, 0, 8, 9, 10, 9, 8, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Neck/Head/Eyes:frame")
+tracks/1/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 6.86667, 6.9, 6.93333, 6.96667 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.833333, 1.16667, 1.5, 1.83333, 3.16667, 3.5, 3.83333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 0, 2, 1, 0 ]
+"values": [ 0, 0, 9, 10, 11, 10, 9, 0 ]
 }
 
-[sub_resource type="Animation" id=17]
+[sub_resource type="Animation" id=20]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("NeckOutline/HeadOutline/MouthOutline:frame")
+tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -195,143 +226,362 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 0, 6, 7, 7, 6, 6, 0, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("NeckOutline/HeadOutline/EyesOutline:frame")
+tracks/1/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.533333, 0.561, 0.594 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 2, 1, 0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Neck/Head/Mouth:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.599999 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 3, 4, 5, 6, 0, 6, 7, 7, 6, 6, 0, 0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Neck/Head/Eyes:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.533333, 0.561, 0.594 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 1, 2, 2, 1, 0 ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("../KludgeCustomer/KludgeNeck/KludgeHead/Food:frame")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.1, 0.133333, 0.599999 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
-tracks/5/type = "value"
-tracks/5/path = NodePath("../KludgeCustomer/KludgeNeck/KludgeHead/FoodLaser:frame")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.599999 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 0, 1, 2, 0, 0 ]
-}
-
-[sub_resource type="Animation" id=18]
-length = 0.8
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/path = NodePath("NeckOutline/HeadOutline/MouthOutline:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.3, 0.366667 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 2, 3, 4, 5, 6, 0, 6, 7, 6, 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("NeckOutline/HeadOutline/EyesOutline:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.733333, 0.766667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
-"values": [ 2, 1, 0 ]
-}
 tracks/2/type = "value"
-tracks/2/path = NodePath("Neck/Head/Mouth:frame")
+tracks/2/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.3, 0.366667 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.599999 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 2, 3, 4, 5, 6, 0, 6, 7, 6, 0 ]
+"values": [ 0, 0, 1, 2, 0, 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Neck/Head/Eyes:frame")
+tracks/3/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.733333, 0.766667 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.333333, 0.366666, 0.4, 0.433333, 0.599999 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 2, 1, 0 ]
+"values": [ 0, 1, 2, 3, 4, 5, 6, 0, 6, 7, 7, 6, 6, 0, 0 ]
+}
+
+[sub_resource type="Animation" id=21]
+length = 0.8
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.333333, 0.366667, 0.766667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 0, 6, 7, 7, 6, 6, 0, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.766666 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.766666 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.333333, 0.366666, 0.766666 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 0, 6, 7, 7, 6, 6, 0, 0 ]
+}
+
+[sub_resource type="Animation" id=22]
+resource_name = "Ambient"
+loop = true
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667, 0.5, 0.583333, 0.666667, 0.75, 0.833333, 0.916667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
+}
+
+[sub_resource type="Animation" id=23]
+length = 0.333333
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0676667, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 13, 14, 0, 15, 16, 17, 18, 19, 20, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 0, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 0, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 12, 13, 14, 15, 16, 17, 18, 19, 20 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("../KludgeCustomer/KludgeNeck/KludgeHead/Food:frame")
+tracks/4/path = NodePath("Neck0/Neck1/Mouth:z_index")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0333333, 0.266666, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 0 ]
+"values": [ 0, 1, 1, 0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../KludgeCustomer/KludgeNeck/KludgeHead/FoodLaser:frame")
+tracks/5/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:z_index")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( -0.033, 0, 0.0333333, 0.0666666 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0666666, 0.0999999, 0.133333, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 1, 2, 0 ]
+"values": [ 0, 1, 1, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=19]
+[sub_resource type="Animation" id=24]
+resource_name = "EatAgain"
+length = 0.266666
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 14, 15, 16, 17, 18, 19, 20, 12 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.233333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.233333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0, 0 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 13, 14, 15, 16, 17, 18, 19, 20 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Neck0/Neck1/Mouth:z_index")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.2, 0.233333 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 1, 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:z_index")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.233333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 1, 0, 0 ]
+}
+
+[sub_resource type="Animation" id=25]
+length = 7.0
+loop = true
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0Outline/Neck1Outline/EyesOutline:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 6.86667, 6.9, 6.93333, 6.96667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 2, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/Neck1/Eyes:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 6.86667, 6.9, 6.93333, 6.96667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 2, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=26]
+length = 0.6
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0Outline/Neck1Outline/EyesOutline:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.533333, 0.566667, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 2, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/Neck1/Eyes:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.533333, 0.566667, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 2, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=27]
+length = 0.8
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0Outline/Neck1Outline/EyesOutline:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.699999, 0.733333, 0.766667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 2, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/Neck1/Eyes:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.699999, 0.733333, 0.766667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 2, 1, 0 ]
+}
+
+[sub_resource type="Animation" id=28]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:position")
@@ -394,7 +644,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30.091, 0 ), Vector2( 50.086, 0 ), Vector2( 88.6123, -15.1179 ), Vector2( 186.882, -22.8557 ), Vector2( 451.803, -42.8278 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Neck:position")
+tracks/5/path = NodePath("Neck0:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -462,7 +712,12 @@ self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
 curve = SubResource( 3 )
 script = ExtResource( 4 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
 line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+fill_color = Color( 1, 1, 1, 0 )
 line_width = 6.0
 _parent_path_path = NodePath("../Body")
 
@@ -470,7 +725,7 @@ _parent_path_path = NodePath("../Body")
 light_mask = 2
 material = SubResource( 4 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 28 )
+texture = ExtResource( 29 )
 offset = Vector2( 0, -239 )
 script = ExtResource( 3 )
 _parent_path = NodePath("../NearLeg")
@@ -484,34 +739,67 @@ offset = Vector2( 0, -239 )
 script = ExtResource( 3 )
 _parent_path = NodePath("../NearArm")
 
-[node name="NeckOutline" type="Sprite" parent="Customer"]
+[node name="Neck0Outline" type="Sprite" parent="Customer"]
 script = ExtResource( 3 )
-_parent_path = NodePath("../Neck")
+_parent_path = NodePath("../Neck0")
 
-[node name="HeadOutline" type="Sprite" parent="Customer/NeckOutline"]
+[node name="Neck1Outline" type="Sprite" parent="Customer/Neck0Outline"]
 light_mask = 2
 material = SubResource( 6 )
 position = Vector2( 0, -100 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 12 )
 script = ExtResource( 3 )
-_parent_path = NodePath("../../Neck/Head")
+_parent_path = NodePath("../../Neck0/Neck1")
 
-[node name="MouthOutline" type="Sprite" parent="Customer/NeckOutline/HeadOutline"]
+[node name="EarZ0Outline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
 light_mask = 2
 material = SubResource( 7 )
-texture = ExtResource( 6 )
+script = ExtResource( 3 )
+_parent_path = NodePath("../../../Neck0/Neck1/EarZ0")
+
+[node name="HeadOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
+light_mask = 2
+material = SubResource( 7 )
+texture = ExtResource( 12 )
+script = ExtResource( 3 )
+_parent_path = NodePath("../../../Neck0/Neck1/Head")
+
+[node name="EarZ1Outline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
+light_mask = 2
+material = SubResource( 7 )
+script = ExtResource( 3 )
+_parent_path = NodePath("../../../Neck0/Neck1/EarZ1")
+
+[node name="HornOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
+light_mask = 2
+material = SubResource( 7 )
+texture = ExtResource( 36 )
+script = ExtResource( 3 )
+_parent_path = NodePath("../../../Neck0/Neck1/Horn")
+
+[node name="EarZ2Outline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
+light_mask = 2
+material = SubResource( 7 )
+texture = ExtResource( 37 )
+script = ExtResource( 3 )
+_parent_path = NodePath(".")
+
+[node name="MouthOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
+light_mask = 2
+material = SubResource( 7 )
+texture = ExtResource( 13 )
+vframes = 3
 hframes = 8
 script = ExtResource( 3 )
-_parent_path = NodePath("../../../Neck/Head/Mouth")
+_parent_path = NodePath("../../../Neck0/Neck1/Mouth")
 
-[node name="EyesOutline" type="Sprite" parent="Customer/NeckOutline/HeadOutline"]
+[node name="EyesOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
 light_mask = 2
 material = SubResource( 8 )
 texture = ExtResource( 11 )
 hframes = 3
 script = ExtResource( 3 )
-_parent_path = NodePath("../../../Neck/Head/Eyes")
+_parent_path = NodePath("../../../Neck0/Neck1/Eyes")
 
 [node name="FarArm" type="Sprite" parent="Customer"]
 light_mask = 2
@@ -542,7 +830,7 @@ editing = false
 light_mask = 2
 material = SubResource( 11 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 29 )
+texture = ExtResource( 28 )
 offset = Vector2( 0, -239 )
 
 [node name="NearArm" type="Sprite" parent="Customer"]
@@ -552,38 +840,75 @@ scale = Vector2( 0.418, 0.418 )
 texture = ExtResource( 25 )
 offset = Vector2( 0, -239 )
 
-[node name="Neck" type="Sprite" parent="Customer"]
+[node name="Neck0" type="Sprite" parent="Customer"]
 __meta__ = {
-"_edit_group_": true,
-"_editor_description_": "\"Neck\" is used for animation purposes, so that the head's position can change as the customer grows, but can also continue to animate independently of that."
+"_editor_description_": "Neck0 offsets the head's position as the customer grows in size."
 }
 
-[node name="Head" type="Sprite" parent="Customer/Neck"]
+[node name="Neck1" type="Sprite" parent="Customer/Neck0"]
 light_mask = 2
 material = SubResource( 13 )
 position = Vector2( 0, -100 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 31 )
+__meta__ = {
+"_editor_description_": "Neck1 offsets the head's position as the customer bobs their head up and down"
+}
 
-[node name="Mouth" type="Sprite" parent="Customer/Neck/Head"]
+[node name="EarZ0" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 14 )
-texture = ExtResource( 13 )
-hframes = 8
+texture = ExtResource( 34 )
 
-[node name="Eyes" type="Sprite" parent="Customer/Neck/Head"]
+[node name="Head" type="Sprite" parent="Customer/Neck0/Neck1"]
+light_mask = 2
+material = SubResource( 13 )
+texture = ExtResource( 31 )
+
+[node name="EarZ1" type="Sprite" parent="Customer/Neck0/Neck1"]
+light_mask = 2
+material = SubResource( 14 )
+texture = ExtResource( 35 )
+
+[node name="Horn" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 15 )
+texture = ExtResource( 14 )
+
+[node name="EarZ2" type="Sprite" parent="Customer/Neck0/Neck1"]
+light_mask = 2
+material = SubResource( 16 )
+texture = ExtResource( 33 )
+
+[node name="Mouth" type="Sprite" parent="Customer/Neck0/Neck1"]
+light_mask = 2
+material = SubResource( 17 )
+texture = ExtResource( 6 )
+vframes = 3
+hframes = 8
+
+[node name="Eyes" type="Sprite" parent="Customer/Neck0/Neck1"]
+light_mask = 2
+material = SubResource( 18 )
 texture = ExtResource( 20 )
 hframes = 3
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Customer"]
-anims/Blink = SubResource( 16 )
-anims/Eat = SubResource( 17 )
-anims/EatAgain = SubResource( 18 )
+[node name="Mouth0Anims" type="AnimationPlayer" parent="Customer"]
+anims/Ambient = SubResource( 19 )
+anims/Eat = SubResource( 20 )
+anims/EatAgain = SubResource( 21 )
+
+[node name="Mouth1Anims" type="AnimationPlayer" parent="Customer"]
+anims/Ambient = SubResource( 22 )
+anims/Eat = SubResource( 23 )
+anims/EatAgain = SubResource( 24 )
+
+[node name="Eye0Anims" type="AnimationPlayer" parent="Customer"]
+anims/Ambient = SubResource( 25 )
+anims/Eat = SubResource( 26 )
+anims/EatAgain = SubResource( 27 )
 
 [node name="FatPlayer" type="AnimationPlayer" parent="Customer"]
-anims/Fat = SubResource( 19 )
+anims/Fat = SubResource( 28 )
 script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="Customer"]
@@ -628,30 +953,29 @@ __meta__ = {
 }
 _parent_path = NodePath("../Customer")
 
-[node name="KludgeNeck" type="Sprite" parent="KludgeCustomer"]
+[node name="KludgeNeck0" type="Sprite" parent="KludgeCustomer"]
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
-_parent_path = NodePath("../../Customer/Neck")
+_parent_path = NodePath("../../Customer/Neck0")
 
-[node name="KludgeHead" type="Sprite" parent="KludgeCustomer/KludgeNeck"]
+[node name="KludgeNeck1" type="Sprite" parent="KludgeCustomer/KludgeNeck0"]
 position = Vector2( 0, -100 )
 scale = Vector2( 0.418, 0.418 )
 script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
-_parent_path = NodePath("../../../Customer/Neck/Head")
+_parent_path = NodePath("../../../Customer/Neck0/Neck1")
 
-[node name="Food" type="Sprite" parent="KludgeCustomer/KludgeNeck/KludgeHead"]
+[node name="Food" type="Sprite" parent="KludgeCustomer/KludgeNeck0/KludgeNeck1"]
 light_mask = 2
 texture = ExtResource( 15 )
 hframes = 3
 
-[node name="FoodLaser" type="Sprite" parent="KludgeCustomer/KludgeNeck/KludgeHead"]
+[node name="FoodLaser" type="Sprite" parent="KludgeCustomer/KludgeNeck0/KludgeNeck1"]
 light_mask = 2
-position = Vector2( 2000, 0 )
-scale = Vector2( 3, 1 )
+position = Vector2( 1024, 0 )
 texture = ExtResource( 16 )
 hframes = 3

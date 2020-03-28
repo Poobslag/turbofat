@@ -7,11 +7,15 @@ Keys:
 [P]: Print the current animation details
 [1-9,0]: Change the customer's size from 10% to 100%
 [Q,W,E]: Switch to the 1st, 2nd or 3rd customer.
-brace keys: Change the customer's color
+brace keys: Change the customer's appearance
 """
 extends Node2D
 
 var current_color_index := -1
+
+func _ready():
+	# Ensure customers are random
+	randomize()
 
 func _input(event: InputEvent) -> void:
 	var just_pressed := event.is_pressed() && !event.is_echo()
@@ -47,15 +51,15 @@ func _input(event: InputEvent) -> void:
 		if current_color_index == -1:
 			current_color_index = 0
 		else:
-			current_color_index += Global.CUSTOMER_COLOR_DEFS.size()
-			current_color_index = (current_color_index - 1) % Global.CUSTOMER_COLOR_DEFS.size()
-		$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[current_color_index])
+			current_color_index += Global.CUSTOMER_DEFS.size()
+			current_color_index = (current_color_index - 1) % Global.CUSTOMER_DEFS.size()
+		$CustomerView.recolor(Global.CUSTOMER_DEFS[current_color_index])
 	if Input.is_key_pressed(KEY_BRACERIGHT) && just_pressed:
 		if current_color_index == -1:
 			current_color_index = 0
 		else:
-			current_color_index = (current_color_index + 1) % Global.CUSTOMER_COLOR_DEFS.size()
-		$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[current_color_index])
+			current_color_index = (current_color_index + 1) % Global.CUSTOMER_DEFS.size()
+		$CustomerView.recolor(Global.CUSTOMER_DEFS[current_color_index])
 	if Input.is_key_pressed(KEY_P) && just_pressed:
 		print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.current_animation)
 		print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.is_playing())

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/far-leg.png-c5b026ab7207febec95a5ab5c1c1289f.stex"
+path="res://.import/ear-z2-0.png-3216901690574d785619d3b0b2964a2e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/customer/far-leg.png"
-dest_files=[ "res://.import/far-leg.png-c5b026ab7207febec95a5ab5c1c1289f.stex" ]
+source_file="res://art/customer/ear-z2-0.png"
+dest_files=[ "res://.import/ear-z2-0.png-3216901690574d785619d3b0b2964a2e.stex" ]
 
 [params]
 

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/far-arm.png-d039932d4186f0f38581b97a45374bc1.stex"
+path="res://.import/arm-z1-outline.png-09ae2e403039b8ff24791aeb06627a4d.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/customer/far-arm.png"
-dest_files=[ "res://.import/far-arm.png-d039932d4186f0f38581b97a45374bc1.stex" ]
+source_file="res://art/customer/arm-z1-outline.png"
+dest_files=[ "res://.import/arm-z1-outline.png-09ae2e403039b8ff24791aeb06627a4d.stex" ]
 
 [params]
 

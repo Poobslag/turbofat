@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/far-leg-outline.png-4d012e9d2942864f5840be6b0d9f1bdb.stex"
+path="res://.import/mouth-sheet-0.png-c2f1ff08eee0a04ecf5738767645b8f2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/customer/far-leg-outline.png"
-dest_files=[ "res://.import/far-leg-outline.png-4d012e9d2942864f5840be6b0d9f1bdb.stex" ]
+source_file="res://art/eat-anim/mouth-sheet-0.png"
+dest_files=[ "res://.import/mouth-sheet-0.png-c2f1ff08eee0a04ecf5738767645b8f2.stex" ]
 
 [params]
 

@@ -27,10 +27,10 @@ func feed() -> void:
 Recolors the customer according to the specified color definition. This involves updating shaders and sprite
 properties.
 
-Parameter: 'color_def' describes the sprites to recolor and how to recolor them.
+Parameter: 'customer_def' describes the sprites to recolor and how to recolor them.
 """
-func recolor(color_def: Dictionary, customer_index: int = -1) -> void:
-	get_seat(customer_index).get_node("Customer").recolor(color_def)
+func recolor(customer_def: Dictionary, customer_index: int = -1) -> void:
+	get_seat(customer_index).get_node("Customer").recolor(customer_def)
 
 """
 Increases/decreases the customer's fatness, playing an animation which gradually applies the change.
