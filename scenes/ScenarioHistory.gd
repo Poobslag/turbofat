@@ -1,6 +1,6 @@
 extends Node
 
-var RankCalculator = preload("res://scenes/RankCalculator.gd").new()
+var _rank_calculator = preload("res://scenes/RankCalculator.gd").new()
 
 # filename to use when saving/loading scenario history. can be changed for tests
 var scenario_history_filename := "user://scenario_history.save"
@@ -65,7 +65,7 @@ func load_scenario_history() -> void:
 		if current_line == null:
 			continue
 		for rank_result_json in current_line["scenario_history"]:
-			var rank_result = RankCalculator.RankResult.new()
+			var rank_result = _rank_calculator.RankResult.new()
 			rank_result.from_dict(rank_result_json)
 			add_scenario_history(current_line["scenario_name"], rank_result)
 	save_game.close()

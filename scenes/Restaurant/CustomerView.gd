@@ -18,13 +18,13 @@ func set_fatness(fatness: float, customer_index: int = -1) -> void:
 		$FatPlayer.set_fatness(fatness)
 
 """
-Recolors the customer according to the specified color definition. This involves updating shaders and sprite
+Recolors the customer according to the specified customer definition. This involves updating shaders and sprite
 properties.
 
-Parameter: 'customer_def' describes the sprites to recolor and how to recolor them.
+Parameter: 'customer_def' describes the colors and textures used to draw the customer.
 """
-func recolor(customer_def: Dictionary, customer_index: int = -1) -> void:
-	$SceneClip/CustomerSwitcher/Scene.recolor(customer_def, customer_index)
+func summon_customer(customer_def: Dictionary, customer_index: int = -1) -> void:
+	$SceneClip/CustomerSwitcher/Scene.summon_customer(customer_def, customer_index)
 
 """
 Returns the camera's 'fatness' -- when fatness is 1.0 the camera is zoomed in, and when the fatness is at 10.0 it's

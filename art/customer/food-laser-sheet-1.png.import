@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/food-sheet-1.png-c80b2b846638f13cdcc1a1e79d7fd83d.stex"
+path="res://.import/food-laser-sheet-1.png-acf34c3412f0f574bac5a5cc8da4c105.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/eat-anim/food-sheet-1.png"
-dest_files=[ "res://.import/food-sheet-1.png-c80b2b846638f13cdcc1a1e79d7fd83d.stex" ]
+source_file="res://art/customer/food-laser-sheet-1.png"
+dest_files=[ "res://.import/food-laser-sheet-1.png-acf34c3412f0f574bac5a5cc8da4c105.stex" ]
 
 [params]
 

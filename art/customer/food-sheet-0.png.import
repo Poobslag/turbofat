@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/eyes-sheet-1.png-ccc059cbceb5e9554690215743060404.stex"
+path="res://.import/food-sheet-0.png-8e87e17eb140f517227880171d45f715.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/eat-anim/eyes-sheet-1.png"
-dest_files=[ "res://.import/eyes-sheet-1.png-ccc059cbceb5e9554690215743060404.stex" ]
+source_file="res://art/customer/food-sheet-0.png"
+dest_files=[ "res://.import/food-sheet-0.png-8e87e17eb140f517227880171d45f715.stex" ]
 
 [params]
 

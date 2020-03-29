@@ -3,37 +3,15 @@ Handles animations and audio/visual effects for a customer.
 """
 extends Node2D
 
-var tex_ear_z0_1: Texture = preload("res://art/customer/ear-z0-1.png")
-var tex_ear_z0_2: Texture = preload("res://art/customer/ear-z0-2.png")
-var tex_ear_z1_0: Texture = preload("res://art/customer/ear-z1-0.png")
-var tex_ear_z1_1: Texture = preload("res://art/customer/ear-z1-1.png")
-var tex_ear_z1_2: Texture = preload("res://art/customer/ear-z1-2.png")
-var tex_ear_z2_0: Texture = preload("res://art/customer/ear-z2-0.png")
-var tex_ear_z2_1: Texture = preload("res://art/customer/ear-z2-1.png")
-var tex_ear_z2_2: Texture = preload("res://art/customer/ear-z2-2.png")
-var tex_ear_z2_outline_0: Texture = preload("res://art/customer/ear-z2-outline-0.png")
-var tex_ear_z2_outline_1: Texture = preload("res://art/customer/ear-z2-outline-1.png")
-var tex_ear_z2_outline_2: Texture = preload("res://art/customer/ear-z2-outline-2.png")
+"""
+If you make Customer a tool and play with the 'customer_preset' editor setting, you can view a customer in the editor.
 
-var tex_horn_outline_2: Texture = preload("res://art/customer/horn-outline-2.png")
-var tex_horn_1: Texture = preload("res://art/customer/horn-1.png")
-var tex_horn_2: Texture = preload("res://art/customer/horn-2.png")
+Make sure to remove this customer eventually by setting the value back to '-1'. Otherwise the game will load a little
+slower since the customer's assets will need to be loaded for the scene.
+"""
+#tool
 
-var tex_mouth_0: Texture = preload("res://art/eat-anim/mouth-sheet-0.png")
-var tex_mouth_outline_0: Texture = preload("res://art/eat-anim/mouth-outline-sheet-0.png")
-var tex_food_0: Texture = preload("res://art/eat-anim/food-sheet-0.png")
-var tex_food_laser_0: Texture = preload("res://art/eat-anim/food-laser-sheet-0.png")
-var tex_mouth_1: Texture = preload("res://art/eat-anim/mouth-sheet-1.png")
-var tex_mouth_outline_1: Texture = preload("res://art/eat-anim/mouth-outline-sheet-1.png")
-var tex_food_1: Texture = preload("res://art/eat-anim/food-sheet-1.png")
-var tex_food_laser_1: Texture = preload("res://art/eat-anim/food-laser-sheet-1.png")
-
-var tex_eye_0: Texture = preload("res://art/eat-anim/eyes-sheet-0.png")
-var tex_eye_1: Texture = preload("res://art/eat-anim/eyes-sheet-1.png")
-var tex_eye_2: Texture = preload("res://art/eat-anim/eyes-sheet-2.png")
-var tex_eye_outline_0: Texture = preload("res://art/eat-anim/eyes-outline-sheet-0.png")
-var tex_eye_outline_1: Texture = preload("res://art/eat-anim/eyes-outline-sheet-1.png")
-var tex_eye_outline_2: Texture = preload("res://art/eat-anim/eyes-outline-sheet-2.png")
+export (int) var _customer_preset := -1 setget set_customer_preset
 
 # food colors for the food which gets hurled into the customer's mouth
 const FOOD_COLORS: Array = [
@@ -72,20 +50,90 @@ var _food_color_index := 0
 onready var _mouth_animation_player := $Mouth1Anims
 onready var _eye_animation_player := $Eye0Anims
 
+var _summoning := false
+var _customer_def: Dictionary
+
 func _process(delta: float) -> void:
-	_total_seconds += delta
+	if _summoning && CustomerLoader.is_customer_ready(_customer_def):
+		_update_customer_properties()
+		_summoning = false
+	
+	if Engine.is_editor_hint():
+		# avoid playing animations, bouncing head in editor
+		return
 	
 	if !_mouth_animation_player.is_playing():
 		_mouth_animation_player.play("Ambient")
+	
 	if !_eye_animation_player.is_playing():
 		_eye_animation_player.play("Ambient")
 	
+	_total_seconds += delta
 	$Neck0/Neck1.position.y = -100 + _head_bob_pixels * sin((_total_seconds * 2 * PI) / _head_bob_seconds)
+
+"""
+If you make Customer a tool and play with the 'customer_preset' editor setting, you can view a customer in the editor.
+
+Make sure to remove this customer eventually by setting the value back to '-1'. Otherwise the game will load a little
+slower since the customer's assets will need to be loaded for the scene.
+"""
+func set_customer_preset(customer_preset: int) -> void:
+	_customer_preset = customer_preset
+	
+	if _customer_preset == -1:
+		summon({}, false)
+	else:
+		summon(CustomerLoader.DEFINITIONS[clamp(customer_preset, 0, CustomerLoader.DEFINITIONS.size() - 1)])
+
+"""
+Updates the properties of the various customer sprites and Node2D objects based on the contents of the customer
+definition. This assumes the CustomerLoader has finished loading all of the appropriate textures and values.
+"""
+func _update_customer_properties() -> void:
+	if !Engine.is_editor_hint():
+		# stop any AnimationPlayers, otherwise two AnimationPlayers might fight over control of the sprite
+		_mouth_animation_player.stop()
+		_eye_animation_player.stop()
+	
+	# reset the mouth/eye frames, otherwise we could have one strange transition frame
+	$Neck0Outline/Neck1Outline/MouthOutline.frame = 0
+	$Neck0/Neck1/Mouth.frame = 0
+	$Neck0Outline/Neck1Outline/EyesOutline.frame = 0
+	$Neck0/Neck1/Eyes.frame = 0
+	
+	if _customer_def.has("mouth"):
+		# set the sprite's color/texture properties
+		if _customer_def.mouth == "0":
+			_mouth_animation_player = $Mouth0Anims
+		elif _customer_def.mouth == "1":
+			_mouth_animation_player = $Mouth1Anims
+		else:
+			print("Invalid mouth: %s", _customer_def.mouth)
+	
+	for key in _customer_def.keys():
+		if key.find("property:") == 0:
+			var node_path: String = key.split(":")[1]
+			var property_name: String = key.split(":")[2]
+			get_node(node_path).set(property_name, _customer_def[key])
+			if property_name == "texture" && _customer_def[key]:
+				get_node(node_path).vframes = max(1, int(round(_customer_def[key].get_height() / 1025)))
+				get_node(node_path).hframes = max(1, int(round(_customer_def[key].get_width() / 1025)))
+		if key.find("shader:") == 0:
+			var node_path: String = key.split(":")[1]
+			var shader_param: String = key.split(":")[2]
+			get_node(node_path).material.set_shader_param(shader_param, _customer_def[key])
+	$Body.update()
+	visible = true
 
 """
 Launches the 'feed' animation, hurling a piece of food at the customer and having them catch it.
 """
 func feed() -> void:
+	if !visible:
+		# If no customer is visible, it could mean their resources haven't loaded yet. Don't play any animations or
+		# sounds. ...Maybe as an easter egg some day, we can make the chef flinging food into empty air. Ha ha.
+		return
+	
 	if _mouth_animation_player.current_animation == "Eat" || _mouth_animation_player.current_animation == "EatAgain":
 		_mouth_animation_player.stop()
 		_mouth_animation_player.play("EatAgain")
@@ -105,162 +153,32 @@ func put_if_absent(customer_def: Dictionary, key: String, value) -> void:
 		customer_def[key] = value
 
 """
-Recolors the customer according to the specified color definition. This involves updating shaders and sprite
+Recolors the customer according to the specified customer definition. This involves updating shaders and sprite
 properties.
 
-Parameter: 'customer_def' describes the sprites to recolor and how to recolor them.
+Parameter: 'customer_def' describes the colors and textures used to draw the customer.
+Parameter: 'use_defaults' can be set to true to fill in the customer's missing traits with random values. Otherwise,
+	missing values will be left empty, leading to invisible body parts or strange colors.
 """
-func recolor(customer_def: Dictionary) -> void:
-	# duplicate the customer_def; we append to it and don't want to alter the original
-	customer_def = customer_def.duplicate()
-
-	# stop any AnimationPlayers, otherwise two AnimationPlayers might fight over control of the sprite
-	_mouth_animation_player.stop()
-	_eye_animation_player.stop()
+func summon(customer_def: Dictionary, use_defaults: bool = true) -> void:
+	# duplicate the customer_def so that we don't modify the original
+	_customer_def = customer_def.duplicate()
 	
-	# reset the mouth/eye frames, otherwise we could have one strange transition frame
-	$Neck0Outline/Neck1Outline/MouthOutline.frame = 0
-	$Neck0/Neck1/Mouth.frame = 0
-	$Neck0Outline/Neck1Outline/EyesOutline.frame = 0
-	$Neck0/Neck1/Eyes.frame = 0
+	if use_defaults:
+		put_if_absent(_customer_def, "line_rgb", "6c4331")
+		put_if_absent(_customer_def, "body_rgb", "b23823")
+		put_if_absent(_customer_def, "eye_rgb", "282828 dedede")
+		put_if_absent(_customer_def, "horn_rgb", "f1e398")
+		
+		put_if_absent(_customer_def, "eye", ["0", "0", "0", "1", "2"][randi() % 5])
+		put_if_absent(_customer_def, "ear", ["0", "0", "0", "1", "2"][randi() % 5])
+		put_if_absent(_customer_def, "horn", ["0", "0", "0", "1", "2"][randi() % 5])
+		put_if_absent(_customer_def, "mouth", ["0", "0", "1"][randi() % 3])
+		put_if_absent(_customer_def, "body", "0")
 	
-	put_if_absent(customer_def, "line_rgb", "6c4331")
-	put_if_absent(customer_def, "body_rgb", "b23823")
-	put_if_absent(customer_def, "eye_rgb", "282828 dedede")
-	put_if_absent(customer_def, "horn_rgb", "f1e398")
-	
-	put_if_absent(customer_def, "eye", ["0", "0", "0", "1", "2"][randi() % 5])
-	put_if_absent(customer_def, "ear", ["0", "0", "0", "1", "2"][randi() % 5])
-	put_if_absent(customer_def, "horn", ["0", "0", "0", "1", "2"][randi() % 5])
-	put_if_absent(customer_def, "mouth", ["0", "0", "1"][randi() % 3])
-	
-	print("recolor: %s" % customer_def)
-	
-	if customer_def.ear == "0":
-		customer_def["property:Neck0/Neck1/EarZ0:texture"] = null
-		customer_def["property:Neck0/Neck1/EarZ1:texture"] = tex_ear_z1_0
-		customer_def["property:Neck0/Neck1/EarZ2:texture"] = tex_ear_z2_0
-		customer_def["property:Neck0Outline/Neck1Outline/EarZ0Outline:texture"] = null
-		customer_def["property:Neck0Outline/Neck1Outline/EarZ1Outline:texture"] = null
-		customer_def["property:Neck0Outline/Neck1Outline/EarZ2Outline:texture"] = tex_ear_z2_outline_0
-	elif customer_def.ear == "1":
-		customer_def["property:Neck0/Neck1/EarZ0:texture"] = tex_ear_z0_1
-		customer_def["property:Neck0/Neck1/EarZ1:texture"] = tex_ear_z1_1
-		customer_def["property:Neck0/Neck1/EarZ2:texture"] = tex_ear_z2_1
-		customer_def["property:Neck0Outline/Neck1Outline/EarZ0Outline:texture"] = null
-		customer_def["property:Neck0Outline/Neck1Outline/EarZ1Outline:texture"] = null
-		customer_def["property:Neck0Outline/Neck1Outline/EarZ2Outline:texture"] = tex_ear_z2_outline_1
-	elif customer_def.ear == "2":
-		customer_def["property:Neck0/Neck1/EarZ0:texture"] = tex_ear_z0_2
-		customer_def["property:Neck0/Neck1/EarZ1:texture"] = tex_ear_z1_2
-		customer_def["property:Neck0/Neck1/EarZ2:texture"] = tex_ear_z2_2
-		customer_def["property:Neck0Outline/Neck1Outline/EarZ0Outline:texture"] = null
-		customer_def["property:Neck0Outline/Neck1Outline/EarZ1Outline:texture"] = null
-		customer_def["property:Neck0Outline/Neck1Outline/EarZ2Outline:texture"] = tex_ear_z2_outline_2
-	else:
-		print("Invalid ear: %s" % customer_def.ear)
-	
-	if customer_def.horn == "0":
-		customer_def["property:Neck0/Neck1/Horn:texture"] = null
-		customer_def["property:Neck0Outline/Neck1Outline/HornOutline:texture"] = null
-	elif customer_def.horn == "1":
-		customer_def["property:Neck0/Neck1/Horn:texture"] = tex_horn_1
-		customer_def["property:Neck0Outline/Neck1Outline/HornOutline:texture"] = null
-	elif customer_def.horn == "2":
-		customer_def["property:Neck0/Neck1/Horn:texture"] = tex_horn_2
-		customer_def["property:Neck0Outline/Neck1Outline/HornOutline:texture"] = tex_horn_outline_2
-	else:
-		print("Invalid horn: %s" % customer_def.horn)
-	
-	if customer_def.mouth == "0":
-		_mouth_animation_player = $Mouth0Anims
-		customer_def["property:Neck0/Neck1/Mouth:texture"] = tex_mouth_0
-		customer_def["property:Neck0Outline/Neck1Outline/MouthOutline:texture"] = tex_mouth_outline_0
-		customer_def["property:../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:texture"] = tex_food_0
-		customer_def["property:../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:texture"] = tex_food_laser_0
-	elif customer_def.mouth == "1":
-		_mouth_animation_player = $Mouth1Anims
-		customer_def["property:Neck0/Neck1/Mouth:texture"] = tex_mouth_1
-		customer_def["property:Neck0Outline/Neck1Outline/MouthOutline:texture"] = tex_mouth_outline_1
-		customer_def["property:../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:texture"] = tex_food_1
-		customer_def["property:../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:texture"] = tex_food_laser_1
-	else:
-		print("Invalid mouth: %s" % customer_def.mouth)
-	
-	if customer_def.eye == "0":
-		customer_def["property:Neck0/Neck1/Eyes:texture"] = tex_eye_0
-		customer_def["property:Neck0Outline/Neck1Outline/EyesOutline:texture"] = tex_eye_outline_0
-	elif customer_def.eye == "1":
-		customer_def["property:Neck0/Neck1/Eyes:texture"] = tex_eye_1
-		customer_def["property:Neck0Outline/Neck1Outline/EyesOutline:texture"] = tex_eye_outline_1
-	elif customer_def.eye == "2":
-		customer_def["property:Neck0/Neck1/Eyes:texture"] = tex_eye_2
-		customer_def["property:Neck0Outline/Neck1Outline/EyesOutline:texture"] = tex_eye_outline_2
-	else:
-		print("Invalid eye: %s" % customer_def.eye)
-	
-	var line_color = Color(customer_def.line_rgb)
-	customer_def["shader:FarArmOutline:black"] = line_color
-	customer_def["shader:FarLegOutline:black"] = line_color
-	customer_def["property:BodyOutline:line_color"] = line_color
-	customer_def["shader:NearLegOutline:black"] = line_color
-	customer_def["shader:NearArmOutline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/EarZ0Outline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/HeadOutline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/EarZ1Outline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/HornOutline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/EarZ2Outline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/MouthOutline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/EyesOutline:black"] = line_color
-	customer_def["shader:FarArm:black"] = line_color
-	customer_def["shader:FarLeg:black"] = line_color
-	customer_def["property:Body:line_color"] = line_color
-	customer_def["shader:NearArm:black"] = line_color
-	customer_def["shader:NearLeg:black"] = line_color
-	customer_def["shader:Neck0/Neck1/EarZ0:black"] = line_color
-	customer_def["shader:Neck0/Neck1/Head:black"] = line_color
-	customer_def["shader:Neck0/Neck1/EarZ1:black"] = line_color
-	customer_def["shader:Neck0/Neck1/Horn:black"] = line_color
-	customer_def["shader:Neck0/Neck1/EarZ2:black"] = line_color
-	customer_def["shader:Neck0/Neck1/Mouth:black"] = line_color
-	customer_def["shader:Neck0/Neck1/Eyes:black"] = line_color
-	
-	var body_color := Color(customer_def.body_rgb)
-	customer_def["shader:FarArm:red"] = body_color
-	customer_def["shader:FarLeg:red"] = body_color
-	customer_def["shader:NearLeg:red"] = body_color
-	customer_def["shader:NearArm:red"] = body_color
-	customer_def["shader:Neck0/Neck1/EarZ0:red"] = body_color
-	customer_def["shader:Neck0/Neck1/Head:red"] = body_color
-	customer_def["shader:Neck0/Neck1/EarZ1:red"] = body_color
-	customer_def["shader:Neck0/Neck1/Horn:red"] = body_color
-	customer_def["shader:Neck0/Neck1/EarZ2:red"] = body_color
-	customer_def["shader:Neck0/Neck1/Mouth:red"] = body_color
-	customer_def["shader:Neck0/Neck1/Eyes:red"] = body_color
-	customer_def["property:Body:fill_color"] = body_color.blend(Color(line_color.r, line_color.g, line_color.b, 0.25))
-	
-	customer_def["shader:Neck0/Neck1/Eyes:green"] = Color(customer_def.eye_rgb.split(" ")[0])
-	customer_def["shader:Neck0/Neck1/Eyes:blue"] = Color(customer_def.eye_rgb.split(" ")[1])
-	
-	var horn_rgb := Color(customer_def.horn_rgb)
-	customer_def["shader:Neck0/Neck1/Horn:green"] = horn_rgb
-	
-	# set the sprite's color/texture properties
-	for key in customer_def.keys():
-		if key.find("property:") == 0:
-			var node_path: String = key.split(":")[1]
-			var property_name: String = key.split(":")[2]
-			get_node(node_path).set(property_name, customer_def[key])
-			if property_name == "texture" && customer_def[key]:
-				get_node(node_path).vframes = int(round(customer_def[key].get_height() / 1025))
-				get_node(node_path).hframes = int(round(customer_def[key].get_width() / 1025))
-			
-		if key.find("shader:") == 0:
-			var node_path: String = key.split(":")[1]
-			var shader_param: String = key.split(":")[2]
-			get_node(node_path).material.set_shader_param(shader_param, customer_def[key])
-	
-	$Body.update()
+	_summoning = true
+	CustomerLoader.summon_customer(_customer_def)
+	visible = false
 
 """
 The 'feed' animation causes a few side-effects. The customer's head recoils and some sounds play. This method controls

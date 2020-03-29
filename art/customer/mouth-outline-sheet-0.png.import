@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/eyes-outline-sheet-2.png-65d745df4d3d6cfe7b28b36654ec6a68.stex"
+path="res://.import/mouth-outline-sheet-0.png-14d360b2a9332c9e4b57800e16a2eeda.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/eat-anim/eyes-outline-sheet-2.png"
-dest_files=[ "res://.import/eyes-outline-sheet-2.png-65d745df4d3d6cfe7b28b36654ec6a68.stex" ]
+source_file="res://art/customer/mouth-outline-sheet-0.png"
+dest_files=[ "res://.import/mouth-outline-sheet-0.png-14d360b2a9332c9e4b57800e16a2eeda.stex" ]
 
 [params]
 
