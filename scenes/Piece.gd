@@ -42,11 +42,11 @@ class Piece:
 	# Piece shape, color, kick information
 	var type
 	
-	func setType(new_type) -> void:
+	func setType(new_type: PieceTypes.PieceType) -> void:
 		type = new_type
 		rotation %= type.pos_arr.size()
 	
-	func _init(piece_type):
+	func _init(piece_type: PieceTypes.PieceType) -> void:
 		setType(piece_type)
 	
 	"""
@@ -101,6 +101,8 @@ var _state_frames: int
 
 var _row_count: int
 var _col_count: int
+
+var _debug := false
 
 onready var Playfield = get_node("../Playfield")
 onready var NextPieces = get_node("../NextPieces")
@@ -389,7 +391,7 @@ Kicks a rotated piece into a nearby empty space. This should only be called when
 """
 func _kick_piece(kicks: Array = []) -> void:
 	if kicks == []:
-		print(_piece.type.string," to ",_piece.rotation," -> ",_target_piece_rotation)
+		if _debug: print(_piece.type.string," to ",_piece.rotation," -> ",_target_piece_rotation)
 		if _target_piece_rotation == _piece.cw_rotation():
 			kicks = _piece.type.cw_kicks[_piece.rotation]
 		elif _target_piece_rotation == _piece.ccw_rotation():
@@ -397,21 +399,21 @@ func _kick_piece(kicks: Array = []) -> void:
 		else:
 			kicks = []
 	else:
-		print(_piece.type.string," to: ",kicks)
+		if _debug: print(_piece.type.string," to: ",kicks)
 
 	for kick in kicks:
 		if kick.y < 0 && _piece.floor_kicks >= _piece.type.max_floor_kicks:
-			print("no: ", kick, " (too many floor kicks)")
+			if _debug: print("no: ", kick, " (too many floor kicks)")
 			continue
 		if _can_move_piece_to(_target_piece_pos + kick, _target_piece_rotation):
 			_target_piece_pos += kick
 			if kick.y < 0:
 				_piece.floor_kicks += 1
-			print("yes: ", kick)
+			if _debug: print("yes: ", kick)
 			break
 		else:
-			print("no: ", kick)
-	print("-")
+			if _debug: print("no: ", kick)
+	if _debug: print("-")
 
 """
 Increments the piece's 'gravity'. A piece will fall once its accumulated 'gravity' exceeds a certain threshold.

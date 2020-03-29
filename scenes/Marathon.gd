@@ -183,5 +183,5 @@ func _set_level(new_level:int) -> void:
 		$LinesHUD/ProgressBar.min_value = 0
 		$LinesHUD/ProgressBar.max_value = 100
 
-func _on_after_game_ended():
+func _on_after_game_ended() -> void:
 	$Game.show_detail_message(_grade_message)

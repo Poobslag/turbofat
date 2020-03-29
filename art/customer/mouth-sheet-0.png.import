@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mouth-sheet-1.png-416a457c9e191adf090f59a74b0ef13d.stex"
+path="res://.import/mouth-sheet-0.png-51633769a51372c8b4a43f565b2b36a2.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/eat-anim/mouth-sheet-1.png"
-dest_files=[ "res://.import/mouth-sheet-1.png-416a457c9e191adf090f59a74b0ef13d.stex" ]
+source_file="res://art/customer/mouth-sheet-0.png"
+dest_files=[ "res://.import/mouth-sheet-0.png-51633769a51372c8b4a43f565b2b36a2.stex" ]
 
 [params]
 

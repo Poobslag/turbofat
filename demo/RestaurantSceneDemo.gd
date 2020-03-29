@@ -44,15 +44,15 @@ func _input(event: InputEvent) -> void:
 		if current_color_index == -1:
 			current_color_index = 0
 		else:
-			current_color_index += Global.CUSTOMER_DEFS.size()
-			current_color_index = (current_color_index - 1) % Global.CUSTOMER_DEFS.size()
-		$RestaurantScene.recolor(Global.CUSTOMER_DEFS[current_color_index], 1)
+			current_color_index += CustomerLoader.DEFINITIONS.size()
+			current_color_index = (current_color_index - 1) % CustomerLoader.DEFINITIONS.size()
+		$RestaurantScene.summon_customer(CustomerLoader.DEFINITIONS[current_color_index], 1)
 	if Input.is_key_pressed(KEY_BRACERIGHT) && just_pressed:
 		if current_color_index == -1:
 			current_color_index = 0
 		else:
-			current_color_index = (current_color_index + 1) % Global.CUSTOMER_DEFS.size()
-		$RestaurantScene.recolor(Global.CUSTOMER_DEFS[current_color_index], 1)
+			current_color_index = (current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
+		$RestaurantScene.summon_customer(CustomerLoader.DEFINITIONS[current_color_index], 1)
 	if Input.is_key_pressed(KEY_P) && just_pressed:
 		print($RestaurantScene/Customer/AnimationPlayer.current_animation)
 		print($RestaurantScene/Customer/AnimationPlayer.is_playing())

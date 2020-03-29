@@ -23,21 +23,21 @@ Parameters: The 'fatness' parameter controls how fat the customer should be; 5.0
 func set_fatness(fatness: float) -> void:
 	var old_fatness: float
 	if is_playing():
-		old_fatness = clamp(current_animation_position, 1, Global.MAX_FATNESS)
+		old_fatness = clamp(current_animation_position, 1, CustomerLoader.MAX_FATNESS)
 	else:
-		old_fatness = clamp(_fatness, 1, Global.MAX_FATNESS)
+		old_fatness = clamp(_fatness, 1, CustomerLoader.MAX_FATNESS)
 	_fatness = fatness
 	if fatness == old_fatness:
 		# no change; animation is unnecessary
 		return
-	var d_fatness := (fatness - old_fatness) / Global.CUSTOMER_GROWTH_SECONDS
+	var d_fatness := (fatness - old_fatness) / CustomerLoader.GROWTH_SECONDS
 	stop()
 	play("Fat", -1.0, d_fatness, old_fatness > fatness)
 	if d_fatness < 0:
 		# getting thinner, play the animation backwards. avoid calling advance(float) with zero, as this prevents the
 		# animation from playing
-		if old_fatness != Global.MAX_FATNESS:
-			advance((old_fatness - Global.MAX_FATNESS) / d_fatness)
+		if old_fatness != CustomerLoader.MAX_FATNESS:
+			advance((old_fatness - CustomerLoader.MAX_FATNESS) / d_fatness)
 	else:
 		# getting fatter, play the animation forwards
 		advance(old_fatness / d_fatness)

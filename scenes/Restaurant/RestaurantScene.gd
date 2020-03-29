@@ -24,13 +24,13 @@ func feed() -> void:
 	_seats[current_customer_index].get_node("Customer").feed()
 
 """
-Recolors the customer according to the specified color definition. This involves updating shaders and sprite
+Recolors the customer according to the specified customer definition. This involves updating shaders and sprite
 properties.
 
-Parameter: 'customer_def' describes the sprites to recolor and how to recolor them.
+Parameter: 'customer_def' describes the colors and textures used to draw the customer.
 """
-func recolor(customer_def: Dictionary, customer_index: int = -1) -> void:
-	get_seat(customer_index).get_node("Customer").recolor(customer_def)
+func summon_customer(customer_def: Dictionary, customer_index: int = -1) -> void:
+	get_seat(customer_index).get_node("Customer").summon(customer_def)
 
 """
 Increases/decreases the customer's fatness, playing an animation which gradually applies the change.
@@ -58,7 +58,7 @@ the customer currently being fed.
 Parameters: 'customer_index' is an optional parameter which specifies the customer to ask about. If omitted, it will
 	default to the customer currently being fed.
 """
-func get_seat(customer_index: int = -1):
+func get_seat(customer_index: int = -1) -> Control:
 	if (customer_index == -1):
 		return _seats[current_customer_index]
 	return _seats[customer_index]

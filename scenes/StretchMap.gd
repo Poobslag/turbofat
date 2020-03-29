@@ -20,7 +20,7 @@ var _stretch_seconds_remaining := 0.0
 var _max_distance := 0
 var _color_y: int
 
-func _ready():
+func _ready() -> void:
 	if Playfield != null:
 		_col_count = Playfield.COL_COUNT
 		_row_count = Playfield.ROW_COUNT

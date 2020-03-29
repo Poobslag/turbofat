@@ -142,6 +142,9 @@ func _on_MarathonNormalButton_pressed() -> void:
 	Global.scenario.add_level_up("lines", 80, PieceSpeeds.beginner_level_8)
 	Global.scenario.add_level_up("lines", 90, PieceSpeeds.beginner_level_9)
 	Global.scenario.set_win_condition("lines", 100)
+	load_marathon_scene()
+
+func load_marathon_scene() -> void:
 	get_tree().change_scene("res://scenes/Marathon.tscn")
 
 func _on_MarathonHardButton_pressed() -> void:
@@ -157,7 +160,7 @@ func _on_MarathonHardButton_pressed() -> void:
 	Global.scenario.add_level_up("lines", 130, PieceSpeeds.hard_level_9)
 	Global.scenario.add_level_up("lines", 150, PieceSpeeds.hard_level_10)
 	Global.scenario.set_win_condition("lines", 200, 150)
-	get_tree().change_scene("res://scenes/Marathon.tscn")
+	load_marathon_scene()
 
 func _on_MarathonExpertButton_pressed() -> void:
 	Global.scenario.set_name("marathon-expert")
@@ -169,7 +172,7 @@ func _on_MarathonExpertButton_pressed() -> void:
 	Global.scenario.add_level_up("lines", 175, PieceSpeeds.hard_level_14)
 	Global.scenario.add_level_up("lines", 200, PieceSpeeds.hard_level_15)
 	Global.scenario.set_win_condition("lines", 300, 200)
-	get_tree().change_scene("res://scenes/Marathon.tscn")
+	load_marathon_scene()
 
 func _on_MarathonMasterButton_pressed() -> void:
 	Global.scenario.set_name("marathon-master")
@@ -180,34 +183,34 @@ func _on_MarathonMasterButton_pressed() -> void:
 	Global.scenario.add_level_up("lines", 400, PieceSpeeds.crazy_level_6)
 	Global.scenario.add_level_up("lines", 500, PieceSpeeds.crazy_level_7)
 	Global.scenario.set_win_condition("lines", 1000, 500)
-	get_tree().change_scene("res://scenes/Marathon.tscn")
+	load_marathon_scene()
 
-func _on_SprintNormal_pressed():
+func _on_SprintNormal_pressed() -> void:
 	Global.scenario.set_name("sprint-normal")
 	Global.scenario.set_start_level(PieceSpeeds.hard_level_0)
 	Global.scenario.set_win_condition("time", 150)
-	get_tree().change_scene("res://scenes/Marathon.tscn")
+	load_marathon_scene()
 
-func _on_SprintExpert_pressed():
+func _on_SprintExpert_pressed() -> void:
 	Global.scenario.set_name("sprint-expert")
 	Global.scenario.set_start_level(PieceSpeeds.crazy_level_0)
 	Global.scenario.set_win_condition("time", 180)
-	get_tree().change_scene("res://scenes/Marathon.tscn")
+	load_marathon_scene()
 
-func _on_UltraNormal_pressed():
+func _on_UltraNormal_pressed() -> void:
 	Global.scenario.set_name("ultra-normal")
 	Global.scenario.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario.set_win_condition("score", 200)
-	get_tree().change_scene("res://scenes/Marathon.tscn")
+	load_marathon_scene()
 
-func _on_UltraHard_pressed():
+func _on_UltraHard_pressed() -> void:
 	Global.scenario.set_name("ultra-hard")
 	Global.scenario.set_start_level(PieceSpeeds.hard_level_0)
 	Global.scenario.set_win_condition("score", 1000)
-	get_tree().change_scene("res://scenes/Marathon.tscn")
+	load_marathon_scene()
 
-func _on_UltraExpert_pressed():
+func _on_UltraExpert_pressed() -> void:
 	Global.scenario.set_name("ultra-expert")
 	Global.scenario.set_start_level(PieceSpeeds.crazy_level_0)
 	Global.scenario.set_win_condition("score", 3000)
-	get_tree().change_scene("res://scenes/Marathon.tscn")
+	load_marathon_scene()

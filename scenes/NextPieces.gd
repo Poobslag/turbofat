@@ -54,7 +54,7 @@ func _add_display(piece_index: int, x: float, y: float, scale: float) -> void:
 """
 Pops the next piece off the queue.
 """
-func pop_piece_type():
+func pop_piece_type() -> PieceTypes.PieceType:
 	var next_piece_type = next_pieces.pop_front()
 	_fill_queue()
 	return next_piece_type

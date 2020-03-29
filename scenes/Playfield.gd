@@ -229,7 +229,6 @@ func _check_for_boxes() -> bool:
 			# check for 3x3s
 			if dt3[y][x] >= 3 && _check_for_box(x - 2, y - 2, 3, 3):
 				var box_type := int($TileMapClip/TileMap.get_cell_autotile_coord(x - 2, y - 2).y)
-				print("box type: %s" % box_type)
 				if box_type == 0:
 					$MakeSnackBoxSound0.play()
 				elif box_type == 1:

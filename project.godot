@@ -36,6 +36,7 @@ PieceSpeeds="*res://scenes/PieceSpeeds.gd"
 PieceTypes="*res://scenes/PieceTypes.gd"
 Global="*res://scenes/Global.gd"
 ScenarioHistory="*res://scenes/ScenarioHistory.gd"
+CustomerLoader="*res://scenes/Restaurant/CustomerLoader.gd"
 
 [display]
 

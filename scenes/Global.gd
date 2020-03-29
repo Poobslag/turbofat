@@ -3,6 +3,18 @@ Contains global variables for preserving state when loading different scenes.
 """
 extends Node
 
+# String to display if the player scored worse than the lowest grade
+const NO_GRADE := "-"
+
+# The scenario currently being launched or played
+var scenario := Scenario.new()
+
+# The player's performance on the current scenario
+var scenario_performance := ScenarioPerformance.new()
+
+# Stores all of the benchmarks which have been started
+var _benchmark_start_times := Dictionary()
+
 """
 Contains settings for a 'scenario', such as trying to survive until level 100, or getting the highest score you can
 get in 90 seconds.
@@ -18,33 +30,33 @@ class Scenario:
 	# The scenario name, used internally for saving/loading data.
 	var name := ""
 	
-	func _init():
+	func _init() -> void:
 		set_start_level(PieceSpeeds.beginner_level_0)
 		set_win_condition("none", 0)
 	
 	"""
 	Sets the scenario name, used internally for saving/loading data.
 	"""
-	func set_name(new_name: String):
+	func set_name(new_name: String) -> void:
 		name = new_name
 	
 	"""
 	Sets how fast the pieces move when the player begins the scenario.
 	"""
-	func set_start_level(pieceSpeed):
+	func set_start_level(pieceSpeed) -> void:
 		level_up_conditions.clear()
 		level_up_conditions.append({"type": "lines", "value": 0, "piece_speed": pieceSpeed})
 	
 	"""
 	Adds criteria for when the player 'levels up' and makes the pieces move faster.
 	"""
-	func add_level_up(type: String, value: int, pieceSpeed):
+	func add_level_up(type: String, value: int, pieceSpeed) -> void:
 		level_up_conditions.append({"type": type, "value": value, "piece_speed": pieceSpeed})
 	
 	"""
 	Sets the criteria for 'winning' which might be a time, score, or line limit.
 	"""
-	func set_win_condition(type: String, value: int, lenient_value: int = -1):
+	func set_win_condition(type: String, value: int, lenient_value: int = -1) -> void:
 		if lenient_value == -1:
 			lenient_value = value
 		win_condition = {"type": type, "value": value, "lenient_value": lenient_value}
@@ -72,9 +84,6 @@ class ScenarioPerformance:
 	# did the player die?
 	var died := false
 
-var scenario := Scenario.new()
-var scenario_performance := ScenarioPerformance.new()
-
 """
 Converts a numeric grade such as '12.6' into a grade string such as 'A+'.
 """
@@ -98,30 +107,19 @@ func grade(rank: float) -> String:
 	elif rank <= 64: return "D-"
 	else: return NO_GRADE
 
-# How long it takes a customer to grow to a new size
-const CUSTOMER_GROWTH_SECONDS := 0.12
+"""
+Sets the start time for a benchmark. Calling 'benchmark_start(foo)' and 'benchmark_finish(foo)' will display a message
+like 'foo took 123 milliseconds'.
+"""
+func benchmark_start(key: String = "") -> void:
+	_benchmark_start_times[key] = OS.get_ticks_usec()
 
-# How large customers can grow; 5.0 = 5x normal size
-const MAX_FATNESS := 10.0
-
-# String to display if the player scored worse than the lowest grade
-const NO_GRADE := "-"
-
-# Palettes used for recoloring customers
-const CUSTOMER_DEFS := [
-	{"line_rgb": "6c4331", "body_rgb": "b23823", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398"}, # dark red
-	{"line_rgb": "6c4331", "body_rgb": "eeda4d", "eye_rgb": "c0992f f1e398", "horn_rgb": "f1e398"}, # yellow
-	{"line_rgb": "6c4331", "body_rgb": "41a740", "eye_rgb": "c09a2f f1e398", "horn_rgb": "f1e398"}, # dark green
-	{"line_rgb": "6c4331", "body_rgb": "b47922", "eye_rgb": "7d4c21 e5cd7d", "horn_rgb": "f1e398"}, # brown
-	{"line_rgb": "6c4331", "body_rgb": "6f83db", "eye_rgb": "374265 eaf2f4", "horn_rgb": "f1e398"}, # light blue
-	{"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398"}, # purple
-	{"line_rgb": "6c4331", "body_rgb": "f57e7d", "eye_rgb": "7ac252 e9f4dc", "horn_rgb": "f1e398"}, # light red
-	{"line_rgb": "6c4331", "body_rgb": "f9bb4a", "eye_rgb": "f9a74c fff6df", "horn_rgb": "b47922"}, # orange
-	{"line_rgb": "6c4331", "body_rgb": "8fea40", "eye_rgb": "f5d561 fcf3cd", "horn_rgb": "b47922"}, # light green
-	{"line_rgb": "6c4331", "body_rgb": "feceef", "eye_rgb": "ffddf4 ffffff", "horn_rgb": "ffffff"}, # pink
-	{"line_rgb": "6c4331", "body_rgb": "b1edee", "eye_rgb": "c1f1f2 ffffff", "horn_rgb": "ffffff"}, # cyan
-	{"line_rgb": "6c4331", "body_rgb": "f9f7d9", "eye_rgb": "91e6ff ffffff", "horn_rgb": "ffffff"}, # white
-	{"line_rgb": "3c3c3d", "body_rgb": "1a1a1e", "eye_rgb": "b8260b f45e40", "horn_rgb": "282828"}, # black
-	{"line_rgb": "6c4331", "body_rgb": "7a8289", "eye_rgb": "f5f0d1 ffffff", "horn_rgb": "282828"}, # grey
-	{"line_rgb": "41281e", "body_rgb": "0b45a6", "eye_rgb": "fad541 ffffff", "horn_rgb": "282828"}  # dark blue
-]
+"""
+Prints the amount of time which has passed since a benchmark was started. Calling 'benchmark_start(foo)' and
+'benchmark_finish(foo)' will display a message like 'foo took 123 milliseconds'.
+"""
+func benchmark_end(key: String = "") -> void:
+	if !_benchmark_start_times.has(key):
+		print("Invalid benchmark: %s" % key)
+		return
+	print("benchmark %s: %.3f msec" % [key, (OS.get_ticks_usec() - _benchmark_start_times[key]) / 1000.0])

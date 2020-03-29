@@ -26,11 +26,11 @@ func _ready() -> void:
 	$Piece.clear_piece()
 	$HUD/MessageLabel.hide()
 	$Playfield/TileMapClip/ShadowMap.piece_tile_map = $Piece/TileMap
-	$CustomerView.recolor(Global.CUSTOMER_DEFS[randi() % Global.CUSTOMER_DEFS.size()], 0)
-	$CustomerView.recolor(Global.CUSTOMER_DEFS[randi() % Global.CUSTOMER_DEFS.size()], 1)
-	$CustomerView.recolor(Global.CUSTOMER_DEFS[randi() % Global.CUSTOMER_DEFS.size()], 2)
+	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 0)
+	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 1)
+	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 2)
 
-func _on_BackButton_pressed():
+func _on_BackButton_pressed() -> void:
 	get_tree().change_scene("res://scenes/PracticeMenu.tscn")
 
 func _on_StartGameButton_pressed() -> void:
@@ -81,7 +81,7 @@ func show_message(text: String) -> void:
 """
 When the current piece can't be placed, we end the game and emit the appropriate signals.
 """
-func _on_Piece_game_ended():
+func _on_Piece_game_ended() -> void:
 	end_game(2.4, "Game over")
 
 """
@@ -127,7 +127,6 @@ func _feed_customer(fatness_pct: float) -> void:
 		var old_fatness: float = $CustomerView.get_fatness()
 		var target_fatness := sqrt(1 + $Score.customer_score / 50.0)
 		var new_fatness := target_fatness * fatness_pct + old_fatness * (1 - fatness_pct)
-		print("set_fatness %s" % new_fatness)
 		$CustomerView.set_fatness(new_fatness)
 
 func _on_customer_left() -> void:
@@ -137,10 +136,10 @@ func _on_customer_left() -> void:
 """
 Scroll to a new customer and replace the old customer.
 """
-func _scroll_to_new_customer():
+func _scroll_to_new_customer() -> void:
 	var customer_index: int = $CustomerView.get_current_customer_index()
 	var new_customer_index: int = (customer_index + randi() % 2 + 1) % 3
 	$CustomerView.set_current_customer_index(new_customer_index)
 	yield(get_tree().create_timer(0.5), "timeout")
 	$CustomerView.set_fatness(1, customer_index)
-	$CustomerView.recolor(Global.CUSTOMER_DEFS[randi() % Global.CUSTOMER_DEFS.size()], customer_index)
+	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], customer_index)

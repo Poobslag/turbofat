@@ -1,42 +1,20 @@
-[gd_scene load_steps=66 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://scenes/Restaurant/Customer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Restaurant/FatPlayer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Restaurant/OutlineSprite.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Restaurant/SmoothPathOutline.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Restaurant/CustomerBody.gd" type="Script" id=5]
-[ext_resource path="res://art/eat-anim/mouth-sheet-1.png" type="Texture" id=6]
-[ext_resource path="res://art/customer/arm-z0.png" type="Texture" id=7]
 [ext_resource path="res://art/restaurant/wood-table.png" type="Texture" id=8]
 [ext_resource path="res://art/restaurant/stool-occupied.png" type="Texture" id=9]
 [ext_resource path="res://art/restaurant/stool.png" type="Texture" id=10]
-[ext_resource path="res://art/eat-anim/eyes-outline-sheet.png" type="Texture" id=11]
-[ext_resource path="res://art/customer/head-outline.png" type="Texture" id=12]
-[ext_resource path="res://art/eat-anim/mouth-outline-sheet-1.png" type="Texture" id=13]
-[ext_resource path="res://art/customer/horn-2.png" type="Texture" id=14]
-[ext_resource path="res://art/eat-anim/food-sheet-1.png" type="Texture" id=15]
-[ext_resource path="res://art/eat-anim/food-laser-sheet-1.png" type="Texture" id=16]
 [ext_resource path="res://sound/munch1.wav" type="AudioStream" id=17]
 [ext_resource path="res://sound/munch0.wav" type="AudioStream" id=18]
-[ext_resource path="res://art/customer/leg-z0.png" type="Texture" id=19]
-[ext_resource path="res://art/eat-anim/eyes-sheet.png" type="Texture" id=20]
 [ext_resource path="res://sound/munch2.wav" type="AudioStream" id=21]
-[ext_resource path="res://art/customer/arm-z0-outline.png" type="Texture" id=22]
 [ext_resource path="res://sound/munch4.wav" type="AudioStream" id=23]
-[ext_resource path="res://art/customer/leg-z0-outline.png" type="Texture" id=24]
-[ext_resource path="res://art/customer/arm-z1.png" type="Texture" id=25]
-[ext_resource path="res://art/customer/arm-z1-outline.png" type="Texture" id=26]
 [ext_resource path="res://sound/munch3.wav" type="AudioStream" id=27]
-[ext_resource path="res://art/customer/leg-z1.png" type="Texture" id=28]
-[ext_resource path="res://art/customer/leg-z1-outline.png" type="Texture" id=29]
 [ext_resource path="res://scenes/Restaurant/Seat.gd" type="Script" id=30]
-[ext_resource path="res://art/customer/head.png" type="Texture" id=31]
 [ext_resource path="res://scenes/RgbPalette.shader" type="Shader" id=32]
-[ext_resource path="res://art/customer/ear-z2-2.png" type="Texture" id=33]
-[ext_resource path="res://art/customer/ear-z0-2.png" type="Texture" id=34]
-[ext_resource path="res://art/customer/ear-z1-2.png" type="Texture" id=35]
-[ext_resource path="res://art/customer/horn-outline-2.png" type="Texture" id=36]
-[ext_resource path="res://art/customer/ear-z2-outline-2.png" type="Texture" id=37]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -152,7 +130,7 @@ shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 resource_local_to_scene = true
 shader = ExtResource( 32 )
 shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0.870588, 0.870588, 0.870588, 1 )
+shader_param/green = Color( 0.945098, 0.890196, 0.596078, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 
@@ -685,15 +663,18 @@ texture = ExtResource( 9 )
 offset = Vector2( 0, -70 )
 
 [node name="Customer" type="Node2D" parent="."]
+visible = false
 light_mask = 2
 position = Vector2( 1.228, -149.237 )
 script = ExtResource( 1 )
+__meta__ = {
+"_editor_description_": ""
+}
 
 [node name="FarArmOutline" type="Sprite" parent="Customer"]
 light_mask = 2
 material = SubResource( 1 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 22 )
 offset = Vector2( 0, -239 )
 script = ExtResource( 3 )
 _parent_path = NodePath("../FarArm")
@@ -702,7 +683,6 @@ _parent_path = NodePath("../FarArm")
 light_mask = 2
 material = SubResource( 2 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 24 )
 offset = Vector2( 0, -239 )
 script = ExtResource( 3 )
 _parent_path = NodePath("../FarLeg")
@@ -712,12 +692,7 @@ self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
 curve = SubResource( 3 )
 script = ExtResource( 4 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
 line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-fill_color = Color( 1, 1, 1, 0 )
 line_width = 6.0
 _parent_path_path = NodePath("../Body")
 
@@ -725,7 +700,6 @@ _parent_path_path = NodePath("../Body")
 light_mask = 2
 material = SubResource( 4 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 29 )
 offset = Vector2( 0, -239 )
 script = ExtResource( 3 )
 _parent_path = NodePath("../NearLeg")
@@ -734,7 +708,6 @@ _parent_path = NodePath("../NearLeg")
 light_mask = 2
 material = SubResource( 5 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 26 )
 offset = Vector2( 0, -239 )
 script = ExtResource( 3 )
 _parent_path = NodePath("../NearArm")
@@ -760,7 +733,6 @@ _parent_path = NodePath("../../../Neck0/Neck1/EarZ0")
 [node name="HeadOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
 light_mask = 2
 material = SubResource( 7 )
-texture = ExtResource( 12 )
 script = ExtResource( 3 )
 _parent_path = NodePath("../../../Neck0/Neck1/Head")
 
@@ -773,22 +745,19 @@ _parent_path = NodePath("../../../Neck0/Neck1/EarZ1")
 [node name="HornOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
 light_mask = 2
 material = SubResource( 7 )
-texture = ExtResource( 36 )
 script = ExtResource( 3 )
 _parent_path = NodePath("../../../Neck0/Neck1/Horn")
 
 [node name="EarZ2Outline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
 light_mask = 2
 material = SubResource( 7 )
-texture = ExtResource( 37 )
 script = ExtResource( 3 )
 _parent_path = NodePath(".")
 
 [node name="MouthOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
 light_mask = 2
 material = SubResource( 7 )
-texture = ExtResource( 13 )
-vframes = 3
+vframes = 2
 hframes = 8
 script = ExtResource( 3 )
 _parent_path = NodePath("../../../Neck0/Neck1/Mouth")
@@ -796,7 +765,6 @@ _parent_path = NodePath("../../../Neck0/Neck1/Mouth")
 [node name="EyesOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
 light_mask = 2
 material = SubResource( 8 )
-texture = ExtResource( 11 )
 hframes = 3
 script = ExtResource( 3 )
 _parent_path = NodePath("../../../Neck0/Neck1/Eyes")
@@ -805,14 +773,12 @@ _parent_path = NodePath("../../../Neck0/Neck1/Eyes")
 light_mask = 2
 material = SubResource( 9 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 7 )
 offset = Vector2( 0, -239 )
 
 [node name="FarLeg" type="Sprite" parent="Customer"]
 light_mask = 2
 material = SubResource( 10 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 19 )
 offset = Vector2( 0, -239 )
 
 [node name="Body" type="Path2D" parent="Customer"]
@@ -822,7 +788,7 @@ position = Vector2( 0, 0.001 )
 curve = SubResource( 3 )
 script = ExtResource( 5 )
 line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-fill_color = Color( 0.631373, 0.231373, 0.14902, 1 )
+fill_color = Color( 0.629412, 0.230392, 0.15098, 1 )
 line_width = 2.0
 editing = false
 
@@ -830,14 +796,12 @@ editing = false
 light_mask = 2
 material = SubResource( 11 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 28 )
 offset = Vector2( 0, -239 )
 
 [node name="NearArm" type="Sprite" parent="Customer"]
 light_mask = 2
 material = SubResource( 12 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 25 )
 offset = Vector2( 0, -239 )
 
 [node name="Neck0" type="Sprite" parent="Customer"]
@@ -857,39 +821,32 @@ __meta__ = {
 [node name="EarZ0" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 14 )
-texture = ExtResource( 34 )
 
 [node name="Head" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 13 )
-texture = ExtResource( 31 )
 
 [node name="EarZ1" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 14 )
-texture = ExtResource( 35 )
 
 [node name="Horn" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 15 )
-texture = ExtResource( 14 )
 
 [node name="EarZ2" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 16 )
-texture = ExtResource( 33 )
 
 [node name="Mouth" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 17 )
-texture = ExtResource( 6 )
-vframes = 3
+vframes = 2
 hframes = 8
 
 [node name="Eyes" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 18 )
-texture = ExtResource( 20 )
 hframes = 3
 
 [node name="Mouth0Anims" type="AnimationPlayer" parent="Customer"]
@@ -971,11 +928,9 @@ _parent_path = NodePath("../../../Customer/Neck0/Neck1")
 
 [node name="Food" type="Sprite" parent="KludgeCustomer/KludgeNeck0/KludgeNeck1"]
 light_mask = 2
-texture = ExtResource( 15 )
 hframes = 3
 
 [node name="FoodLaser" type="Sprite" parent="KludgeCustomer/KludgeNeck0/KludgeNeck1"]
 light_mask = 2
 position = Vector2( 1024, 0 )
-texture = ExtResource( 16 )
 hframes = 3
