@@ -108,20 +108,20 @@ const MAX_FATNESS := 10.0
 const NO_GRADE := "-"
 
 # Palettes used for recoloring customers
-const CUSTOMER_COLOR_DEFS := [
-	{"line": "6c4331", "body": "b23823", "eyes": "282828 dedede"}, # dark red
-	{"line": "6c4331", "body": "eeda4d", "eyes": "c0992f f1e398"}, # yellow
-	{"line": "6c4331", "body": "41a740", "eyes": "c09a2f f1e398"}, # dark green
-	{"line": "6c4331", "body": "b47922", "eyes": "7d4c21 e5cd7d"}, # brown
-	{"line": "6c4331", "body": "6f83db", "eyes": "374265 eaf2f4"}, # light blue
-	{"line": "6c4331", "body": "a854cb", "eyes": "4fa94e dbe28e"}, # purple
-	{"line": "6c4331", "body": "f57e7d", "eyes": "7ac252 e9f4dc"}, # light red
-	{"line": "6c4331", "body": "f9bb4a", "eyes": "f9a74c fff6df"}, # orange
-	{"line": "6c4331", "body": "8fea40", "eyes": "f5d561 fcf3cd"}, # light green
-	{"line": "6c4331", "body": "feceef", "eyes": "ffddf4 ffffff"}, # pink
-	{"line": "6c4331", "body": "b1edee", "eyes": "c1f1f2 ffffff"}, # cyan
-	{"line": "6c4331", "body": "f9f7d9", "eyes": "91e6ff ffffff"}, # white
-	{"line": "3c3c3d", "body": "1a1a1e", "eyes": "b8260b f45e40"}, # black
-	{"line": "6c4331", "body": "7a8289", "eyes": "f5f0d1 ffffff"}, # grey
-	{"line": "41281e", "body": "0b45a6", "eyes": "fad541 ffffff"} # dark blue
+const CUSTOMER_DEFS := [
+	{"line_rgb": "6c4331", "body_rgb": "b23823", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398"}, # dark red
+	{"line_rgb": "6c4331", "body_rgb": "eeda4d", "eye_rgb": "c0992f f1e398", "horn_rgb": "f1e398"}, # yellow
+	{"line_rgb": "6c4331", "body_rgb": "41a740", "eye_rgb": "c09a2f f1e398", "horn_rgb": "f1e398"}, # dark green
+	{"line_rgb": "6c4331", "body_rgb": "b47922", "eye_rgb": "7d4c21 e5cd7d", "horn_rgb": "f1e398"}, # brown
+	{"line_rgb": "6c4331", "body_rgb": "6f83db", "eye_rgb": "374265 eaf2f4", "horn_rgb": "f1e398"}, # light blue
+	{"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398"}, # purple
+	{"line_rgb": "6c4331", "body_rgb": "f57e7d", "eye_rgb": "7ac252 e9f4dc", "horn_rgb": "f1e398"}, # light red
+	{"line_rgb": "6c4331", "body_rgb": "f9bb4a", "eye_rgb": "f9a74c fff6df", "horn_rgb": "b47922"}, # orange
+	{"line_rgb": "6c4331", "body_rgb": "8fea40", "eye_rgb": "f5d561 fcf3cd", "horn_rgb": "b47922"}, # light green
+	{"line_rgb": "6c4331", "body_rgb": "feceef", "eye_rgb": "ffddf4 ffffff", "horn_rgb": "ffffff"}, # pink
+	{"line_rgb": "6c4331", "body_rgb": "b1edee", "eye_rgb": "c1f1f2 ffffff", "horn_rgb": "ffffff"}, # cyan
+	{"line_rgb": "6c4331", "body_rgb": "f9f7d9", "eye_rgb": "91e6ff ffffff", "horn_rgb": "ffffff"}, # white
+	{"line_rgb": "3c3c3d", "body_rgb": "1a1a1e", "eye_rgb": "b8260b f45e40", "horn_rgb": "282828"}, # black
+	{"line_rgb": "6c4331", "body_rgb": "7a8289", "eye_rgb": "f5f0d1 ffffff", "horn_rgb": "282828"}, # grey
+	{"line_rgb": "41281e", "body_rgb": "0b45a6", "eye_rgb": "fad541 ffffff", "horn_rgb": "282828"}  # dark blue
 ]

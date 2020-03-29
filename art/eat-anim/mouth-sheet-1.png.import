@@ -1,0 +1,34 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/mouth-sheet-1.png-416a457c9e191adf090f59a74b0ef13d.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://art/eat-anim/mouth-sheet-1.png"
+dest_files=[ "res://.import/mouth-sheet-1.png-416a457c9e191adf090f59a74b0ef13d.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=true
+flags/anisotropic=true
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

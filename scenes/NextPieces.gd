@@ -17,6 +17,7 @@ var _next_piece_displays := []
 func _ready() -> void:
 	# Ensure pieces are random
 	randomize()
+	
 	_fill_queue()
 	
 	for i in range(display_count):

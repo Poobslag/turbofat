@@ -25,10 +25,10 @@ func _ready() -> void:
 	$NextPieces.hide_pieces()
 	$Piece.clear_piece()
 	$HUD/MessageLabel.hide()
-	$Playfield/TileMapClip/ShadowMap.piece_tile_map = ($Piece/TileMap)
-	$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[randi() % Global.CUSTOMER_COLOR_DEFS.size()], 0)
-	$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[randi() % Global.CUSTOMER_COLOR_DEFS.size()], 1)
-	$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[randi() % Global.CUSTOMER_COLOR_DEFS.size()], 2)
+	$Playfield/TileMapClip/ShadowMap.piece_tile_map = $Piece/TileMap
+	$CustomerView.recolor(Global.CUSTOMER_DEFS[randi() % Global.CUSTOMER_DEFS.size()], 0)
+	$CustomerView.recolor(Global.CUSTOMER_DEFS[randi() % Global.CUSTOMER_DEFS.size()], 1)
+	$CustomerView.recolor(Global.CUSTOMER_DEFS[randi() % Global.CUSTOMER_DEFS.size()], 2)
 
 func _on_BackButton_pressed():
 	get_tree().change_scene("res://scenes/PracticeMenu.tscn")
@@ -143,4 +143,4 @@ func _scroll_to_new_customer():
 	$CustomerView.set_current_customer_index(new_customer_index)
 	yield(get_tree().create_timer(0.5), "timeout")
 	$CustomerView.set_fatness(1, customer_index)
-	$CustomerView.recolor(Global.CUSTOMER_COLOR_DEFS[randi() % Global.CUSTOMER_COLOR_DEFS.size()], customer_index)
+	$CustomerView.recolor(Global.CUSTOMER_DEFS[randi() % Global.CUSTOMER_DEFS.size()], customer_index)
