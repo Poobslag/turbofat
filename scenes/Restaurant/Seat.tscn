@@ -1,20 +1,53 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://scenes/Restaurant/Customer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Restaurant/FatPlayer.gd" type="Script" id=2]
 [ext_resource path="res://scenes/Restaurant/OutlineSprite.gd" type="Script" id=3]
 [ext_resource path="res://scenes/Restaurant/SmoothPathOutline.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Restaurant/CustomerBody.gd" type="Script" id=5]
+[ext_resource path="res://sound/door-chime0.wav" type="AudioStream" id=6]
+[ext_resource path="res://sound/door-chime3.wav" type="AudioStream" id=7]
 [ext_resource path="res://art/restaurant/wood-table.png" type="Texture" id=8]
 [ext_resource path="res://art/restaurant/stool-occupied.png" type="Texture" id=9]
 [ext_resource path="res://art/restaurant/stool.png" type="Texture" id=10]
+[ext_resource path="res://sound/door-chime4.wav" type="AudioStream" id=11]
+[ext_resource path="res://sound/door-chime2.wav" type="AudioStream" id=12]
+[ext_resource path="res://sound/door-chime1.wav" type="AudioStream" id=13]
+[ext_resource path="res://sound/voice-customer/combo-voice-00.wav" type="AudioStream" id=14]
+[ext_resource path="res://sound/voice-customer/combo-voice-19.wav" type="AudioStream" id=15]
+[ext_resource path="res://sound/voice-customer/combo-voice-13.wav" type="AudioStream" id=16]
 [ext_resource path="res://sound/munch1.wav" type="AudioStream" id=17]
 [ext_resource path="res://sound/munch0.wav" type="AudioStream" id=18]
+[ext_resource path="res://sound/voice-customer/combo-voice-17.wav" type="AudioStream" id=19]
+[ext_resource path="res://sound/voice-customer/combo-voice-16.wav" type="AudioStream" id=20]
 [ext_resource path="res://sound/munch2.wav" type="AudioStream" id=21]
+[ext_resource path="res://sound/voice-customer/combo-voice-14.wav" type="AudioStream" id=22]
 [ext_resource path="res://sound/munch4.wav" type="AudioStream" id=23]
+[ext_resource path="res://sound/voice-customer/combo-voice-15.wav" type="AudioStream" id=24]
+[ext_resource path="res://sound/voice-customer/combo-voice-18.wav" type="AudioStream" id=25]
+[ext_resource path="res://sound/voice-customer/combo-voice-12.wav" type="AudioStream" id=26]
 [ext_resource path="res://sound/munch3.wav" type="AudioStream" id=27]
+[ext_resource path="res://sound/voice-customer/combo-voice-11.wav" type="AudioStream" id=28]
+[ext_resource path="res://sound/voice-customer/combo-voice-09.wav" type="AudioStream" id=29]
 [ext_resource path="res://scenes/Restaurant/Seat.gd" type="Script" id=30]
+[ext_resource path="res://sound/voice-customer/combo-voice-08.wav" type="AudioStream" id=31]
 [ext_resource path="res://scenes/RgbPalette.shader" type="Shader" id=32]
+[ext_resource path="res://sound/voice-customer/combo-voice-10.wav" type="AudioStream" id=33]
+[ext_resource path="res://sound/voice-customer/combo-voice-01.wav" type="AudioStream" id=34]
+[ext_resource path="res://sound/voice-customer/combo-voice-02.wav" type="AudioStream" id=35]
+[ext_resource path="res://sound/voice-customer/combo-voice-05.wav" type="AudioStream" id=36]
+[ext_resource path="res://sound/voice-customer/combo-voice-06.wav" type="AudioStream" id=37]
+[ext_resource path="res://sound/voice-customer/combo-voice-03.wav" type="AudioStream" id=38]
+[ext_resource path="res://sound/voice-customer/combo-voice-07.wav" type="AudioStream" id=39]
+[ext_resource path="res://sound/voice-customer/combo-voice-04.wav" type="AudioStream" id=40]
+[ext_resource path="res://sound/voice-customer/hello-voice-1.wav" type="AudioStream" id=41]
+[ext_resource path="res://sound/voice-customer/hello-voice-3.wav" type="AudioStream" id=42]
+[ext_resource path="res://sound/voice-customer/goodbye-voice-0.wav" type="AudioStream" id=43]
+[ext_resource path="res://sound/voice-customer/hello-voice-0.wav" type="AudioStream" id=44]
+[ext_resource path="res://sound/voice-customer/goodbye-voice-1.wav" type="AudioStream" id=45]
+[ext_resource path="res://sound/voice-customer/goodbye-voice-2.wav" type="AudioStream" id=46]
+[ext_resource path="res://sound/voice-customer/hello-voice-2.wav" type="AudioStream" id=47]
+[ext_resource path="res://sound/voice-customer/goodbye-voice-3.wav" type="AudioStream" id=48]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -653,7 +686,9 @@ margin_right = 420.0
 margin_bottom = 625.0
 script = ExtResource( 30 )
 __meta__ = {
-"_edit_use_anchors_": false
+"_edit_horizontal_guides_": [  ],
+"_edit_use_anchors_": false,
+"_edit_vertical_guides_": [  ]
 }
 _customer_shadow_scale = Vector2( 0.17, 0.17 )
 
@@ -692,7 +727,12 @@ self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
 curve = SubResource( 3 )
 script = ExtResource( 4 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
 line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+fill_color = Color( 1, 1, 1, 0 )
 line_width = 6.0
 _parent_path_path = NodePath("../Body")
 
@@ -787,9 +827,14 @@ light_mask = 2
 position = Vector2( 0, 0.001 )
 curve = SubResource( 3 )
 script = ExtResource( 5 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
 line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
 fill_color = Color( 0.629412, 0.230392, 0.15098, 1 )
 line_width = 2.0
+_fatness = 1.0
 editing = false
 
 [node name="NearLeg" type="Sprite" parent="Customer"]
@@ -870,25 +915,257 @@ script = ExtResource( 2 )
 
 [node name="Tween" type="Tween" parent="Customer"]
 
-[node name="Munch0" type="AudioStreamPlayer" parent="Customer"]
+[node name="Munch0" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
 stream = ExtResource( 18 )
-bus = "Reverb Bus"
+bus = "Voice Bus"
 
-[node name="Munch1" type="AudioStreamPlayer" parent="Customer"]
+[node name="Munch1" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
 stream = ExtResource( 17 )
-bus = "Reverb Bus"
+bus = "Voice Bus"
 
-[node name="Munch2" type="AudioStreamPlayer" parent="Customer"]
+[node name="Munch2" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
 stream = ExtResource( 21 )
-bus = "Reverb Bus"
+bus = "Voice Bus"
 
-[node name="Munch3" type="AudioStreamPlayer" parent="Customer"]
+[node name="Munch3" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
 stream = ExtResource( 27 )
+bus = "Voice Bus"
+
+[node name="Munch4" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 23 )
+bus = "Voice Bus"
+
+[node name="DoorChime0" type="AudioStreamPlayer2D" parent="Customer"]
+stream = ExtResource( 6 )
+volume_db = -4.0
+max_distance = 4000.0
 bus = "Reverb Bus"
 
-[node name="Munch4" type="AudioStreamPlayer" parent="Customer"]
-stream = ExtResource( 23 )
+[node name="DoorChime1" type="AudioStreamPlayer2D" parent="Customer"]
+stream = ExtResource( 13 )
+volume_db = -4.0
+max_distance = 4000.0
 bus = "Reverb Bus"
+
+[node name="DoorChime2" type="AudioStreamPlayer2D" parent="Customer"]
+stream = ExtResource( 12 )
+volume_db = -4.0
+max_distance = 4000.0
+bus = "Reverb Bus"
+
+[node name="DoorChime3" type="AudioStreamPlayer2D" parent="Customer"]
+stream = ExtResource( 7 )
+volume_db = -4.0
+max_distance = 4000.0
+bus = "Reverb Bus"
+
+[node name="DoorChime4" type="AudioStreamPlayer2D" parent="Customer"]
+stream = ExtResource( 11 )
+volume_db = -4.0
+max_distance = 4000.0
+bus = "Reverb Bus"
+
+[node name="ComboVoice00" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 14 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice01" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 34 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice02" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 35 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice03" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 38 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice04" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 40 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice05" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 36 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice06" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 37 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice07" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 39 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice08" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 31 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice09" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 29 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice10" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 33 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice11" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 28 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice12" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 26 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice13" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 16 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice14" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 22 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice15" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 24 )
+volume_db = 6.0
+max_distance = 4000.0
+attenuation = 0.466517
+bus = "Voice Bus"
+
+[node name="ComboVoice16" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 20 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice17" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 19 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice18" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 25 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="ComboVoice19" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 15 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="HelloVoice0" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 44 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="HelloVoice1" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 41 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="HelloVoice2" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 47 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="HelloVoice3" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 42 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="GoodbyeVoice0" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 43 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="GoodbyeVoice1" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 45 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="GoodbyeVoice2" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 46 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
+
+[node name="GoodbyeVoice3" type="AudioStreamPlayer2D" parent="Customer"]
+position = Vector2( 160, 0 )
+stream = ExtResource( 48 )
+volume_db = 6.0
+max_distance = 4000.0
+bus = "Voice Bus"
 
 [node name="WoodTable0" type="Sprite" parent="."]
 light_mask = 2

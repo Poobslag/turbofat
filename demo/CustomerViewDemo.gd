@@ -4,6 +4,8 @@ A demo which shows off the customer view.
 Keys:
 
 [F]: Feed the customer
+[D]: Ring the doorbell
+[V]: Say something
 [P]: Print the current animation details
 [1-9,0]: Change the customer's size from 10% to 100%
 [Q,W,E]: Switch to the 1st, 2nd or 3rd customer.
@@ -21,6 +23,10 @@ func _input(event: InputEvent) -> void:
 	var just_pressed := event.is_pressed() && !event.is_echo()
 	if Input.is_key_pressed(KEY_F) && just_pressed:
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
+	if Input.is_key_pressed(KEY_D) && just_pressed:
+		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_door_chime(0)
+	if Input.is_key_pressed(KEY_V) && just_pressed:
+		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_goodbye_voice()
 	if Input.is_key_pressed(KEY_1) && just_pressed:
 		$CustomerView.set_fatness(1.0)
 	if Input.is_key_pressed(KEY_2) && just_pressed:

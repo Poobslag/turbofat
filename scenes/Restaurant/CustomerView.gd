@@ -50,3 +50,9 @@ Returns the index of the customer which the camera is currently focused on.
 """
 func get_current_customer_index() -> int:
 	return $SceneClip/CustomerSwitcher/Scene.current_customer_index
+
+"""
+Plays a 'check please!' voice sample, for when a customer is ready to leave
+"""
+func play_goodbye_voice() -> void:
+	$SceneClip/CustomerSwitcher/Scene.play_goodbye_voice()

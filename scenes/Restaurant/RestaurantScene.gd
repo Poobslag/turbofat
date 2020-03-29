@@ -17,6 +17,12 @@ var current_customer_index := 0
 # all of the seats in the scene. each 'seat' includes a table, chairs, a customer, etc...
 onready var _seats := [$Seat1, $Seat2, $Seat3]
 
+func _ready():
+	$Seat1.set_door_sound_position(Vector2(-500, 0))
+	$Seat2.set_door_sound_position(Vector2(-1500, 0))
+	$Seat3.set_door_sound_position(Vector2(-2500, 0))
+	play_door_chime(0.0)
+
 """
 Launches the 'feed' animation, hurling a piece of food at the customer and having them catch it.
 """
@@ -77,3 +83,30 @@ func _process(delta: float) -> void:
 			var max_shake := _shake_magnitude * _shake_remaining_seconds / _shake_total_seconds
 			var shake_vector := Vector2(rand_range(-max_shake, max_shake), rand_range(-max_shake, max_shake))
 			position = _shake_original_position + shake_vector
+
+"""
+Plays a door chime sound effect, for when a customer enters the restaurant.
+
+Parameter: 'delay' is the delay in seconds before the chime sound plays. The default value of '-1' results in a random
+	delay.
+"""
+func play_door_chime(delay: float = -1) -> void:
+	get_seat().play_door_chime(delay)
+
+"""
+Plays a 'mmm!' customer voice sample, for when a player builds a big combo.
+"""
+func play_combo_voice() -> void:
+	get_seat().play_combo_voice()
+
+"""
+Plays a 'hello!' voice sample, for when a customer enters the restaurant
+"""
+func play_hello_voice() -> void:
+	get_seat().play_hello_voice()
+
+"""
+Plays a 'check please!' voice sample, for when a customer is ready to leave
+"""
+func play_goodbye_voice() -> void:
+	get_seat().play_goodbye_voice()

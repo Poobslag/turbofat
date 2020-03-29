@@ -12,9 +12,9 @@
 [ext_resource path="res://art/playfield-walls.png" type="Texture" id=10]
 [ext_resource path="res://art/chalkboard.png" type="Texture" id=11]
 [ext_resource path="res://scenes/Restaurant/CustomerView.tscn" type="PackedScene" id=12]
-[ext_resource path="res://sound/go-voice0.wav" type="AudioStream" id=13]
-[ext_resource path="res://sound/go-voice1.wav" type="AudioStream" id=14]
-[ext_resource path="res://sound/go-voice2.wav" type="AudioStream" id=15]
+[ext_resource path="res://sound/voice-chef/go-voice0.wav" type="AudioStream" id=13]
+[ext_resource path="res://sound/voice-chef/go-voice1.wav" type="AudioStream" id=14]
+[ext_resource path="res://sound/voice-chef/go-voice2.wav" type="AudioStream" id=15]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Xolonium-Regular.ttf"

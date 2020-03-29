@@ -21,8 +21,20 @@ const FOOD_COLORS: Array = [
 	Color("fff6eb") # white
 ]
 
+# delays between when customer arrives and when door chime is played (in seconds)
+const CHIME_DELAYS: Array = [0.1, 0.2, 0.3, 0.5, 1.0, 1.5, 2.0]
+
 # signal emitted on the frame when the food is launched into the customer's mouth
 signal food_eaten
+
+# sounds which get played when a customer shows up
+onready var chime_sounds:Array = [
+	$DoorChime0,
+	$DoorChime1,
+	$DoorChime2,
+	$DoorChime3,
+	$DoorChime4
+]
 
 # sounds which get played when the customer eats
 onready var _munch_sounds:Array = [
@@ -31,6 +43,25 @@ onready var _munch_sounds:Array = [
 	$Munch2,
 	$Munch3,
 	$Munch4
+]
+
+# satisfied sounds the customers make when a player builds a big combo
+onready var _combo_voices:Array = [
+	$ComboVoice00, $ComboVoice01, $ComboVoice02, $ComboVoice03,
+	$ComboVoice04, $ComboVoice05, $ComboVoice06, $ComboVoice07,
+	$ComboVoice08, $ComboVoice09, $ComboVoice10, $ComboVoice11,
+	$ComboVoice12, $ComboVoice13, $ComboVoice14, $ComboVoice15,
+	$ComboVoice16, $ComboVoice17, $ComboVoice18, $ComboVoice19
+]
+
+# sounds the customers make when they enter the restaurant
+onready var hello_voices:Array = [
+	$HelloVoice0, $HelloVoice1, $HelloVoice2, $HelloVoice3
+]
+
+# sounds the customers make when they ask for their check
+onready var _goodbye_voices:Array = [
+	$GoodbyeVoice0, $GoodbyeVoice1, $GoodbyeVoice2, $GoodbyeVoice3
 ]
 
 # the food object which should be animated and recolored when we eat
@@ -52,6 +83,16 @@ onready var _eye_animation_player := $Eye0Anims
 
 var _summoning := false
 var _customer_def: Dictionary
+
+# we suppress the first door chime. we usually cheat and play the chime after the customer appears, but that doesn't
+# work when we can see them appear
+var _suppress_one_chime: bool = true
+
+# index of the most recent combo sound that was played
+var _combo_voice_index := 0
+
+# current voice stream player. we track this to prevent a customer from saying two things at once
+var _current_voice_stream: AudioStreamPlayer2D
 
 func _process(delta: float) -> void:
 	if _summoning && CustomerLoader.is_customer_ready(_customer_def):
@@ -124,6 +165,24 @@ func _update_customer_properties() -> void:
 			get_node(node_path).material.set_shader_param(shader_param, _customer_def[key])
 	$Body.update()
 	visible = true
+	if _suppress_one_chime:
+		_suppress_one_chime = false
+	else:
+		play_door_chime()
+
+"""
+Plays a door chime sound effect, for when a customer enters the restaurant.
+
+Parameter: 'delay' is the delay in seconds before the chime sound plays. The default value of '-1' results in a random
+	delay.
+"""
+(delay: float = -1):
+	if delay < 0:
+		delay = CHIME_DELAYS[randi() % CHIME_DELAYS.size()]
+	yield(get_tree().create_timer(delay), "timeout")
+	chime_sounds[randi() % chime_sounds.size()].play()
+	yield(get_tree().create_timer(0.5), "timeout")
+	play_hello_voice()
 
 """
 Launches the 'feed' animation, hurling a piece of food at the customer and having them catch it.
@@ -187,7 +246,7 @@ all of those secondary visual effects of the customer being fed.
 Parameters: The 'delay' parameter causes the food effects to appear after the specified delay, in seconds.
 """
 func show_food_effects(delay := 0.0) -> void:
-	var munch_sound: AudioStreamPlayer = _munch_sounds[randi() % _munch_sounds.size()]
+	var munch_sound: AudioStreamPlayer2D = _munch_sounds[randi() % _munch_sounds.size()]
 	munch_sound.pitch_scale = rand_range(0.96, 1.04)
 
 	# avoid using the same color twice consecutively
@@ -197,8 +256,38 @@ func show_food_effects(delay := 0.0) -> void:
 	_food_laser.modulate = food_color
 
 	yield(get_tree().create_timer(delay), "timeout")
-	munch_sound.play()
+	play_voice(munch_sound)
 	$Tween.interpolate_property($Neck0/Neck1, "position:x", clamp($Neck0/Neck1.position.x - 6, -20, 0), 0, 0.5,
 			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 	$Tween.start()
 	emit_signal("food_eaten")
+
+"""
+Plays a 'mmm!' voice sample, for when a player builds a big combo.
+"""
+func play_combo_voice() -> void:
+	_combo_voice_index = (_combo_voice_index + 1 + randi() % (_combo_voices.size() - 1)) % _combo_voices.size()
+	play_voice(_combo_voices[_combo_voice_index])
+
+"""
+Plays a 'hello!' voice sample, for when a customer enters the restaurant
+"""
+func play_hello_voice() -> void:
+	if Global.should_chat():
+		play_voice(hello_voices[randi() % hello_voices.size()])
+
+"""
+Plays a 'check please!' voice sample, for when a customer is ready to leave
+"""
+func play_goodbye_voice() -> void:
+	if Global.should_chat():
+		play_voice(_goodbye_voices[randi() % _goodbye_voices.size()])
+
+"""
+Plays a voice sample, interrupting any other voice samples which are currently playing for this specific customer.
+"""
+func play_voice(audio_stream: AudioStreamPlayer2D) -> void:
+	if _current_voice_stream && _current_voice_stream.playing:
+		_current_voice_stream.stop()
+	audio_stream.play()
+	_current_voice_stream = _combo_voices[_combo_voice_index]
