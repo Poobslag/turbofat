@@ -176,7 +176,7 @@ Plays a door chime sound effect, for when a customer enters the restaurant.
 Parameter: 'delay' is the delay in seconds before the chime sound plays. The default value of '-1' results in a random
 	delay.
 """
-(delay: float = -1):
+func play_door_chime(delay: float = -1):
 	if delay < 0:
 		delay = CHIME_DELAYS[randi() % CHIME_DELAYS.size()]
 	yield(get_tree().create_timer(delay), "timeout")
