@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/door-chime0.wav-1a662b6ed9fc7ea322bdc177878ab113.sample"
+
+[deps]
+
+source_file="res://sound/door-chime0.wav"
+dest_files=[ "res://.import/door-chime0.wav-1a662b6ed9fc7ea322bdc177878ab113.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

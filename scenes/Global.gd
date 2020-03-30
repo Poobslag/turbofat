@@ -6,6 +6,9 @@ extends Node
 # String to display if the player scored worse than the lowest grade
 const NO_GRADE := "-"
 
+# Target number of customer greetings (hello, goodbye) per minute
+const GREETINGS_PER_MINUTE := 3.0
+
 # The scenario currently being launched or played
 var scenario := Scenario.new()
 
@@ -14,6 +17,10 @@ var scenario_performance := ScenarioPerformance.new()
 
 # Stores all of the benchmarks which have been started
 var _benchmark_start_times := Dictionary()
+
+# A number in the range [-1, 1] which corresponds to how many greetings we've given recently. If it's close to 1,
+# we're very unlikely to receive a greeting. If it's close to -1, we're very likely to receive a greeting.
+var _greetiness: float = 0.0
 
 """
 Contains settings for a 'scenario', such as trying to survive until level 100, or getting the highest score you can
@@ -123,3 +130,19 @@ func benchmark_end(key: String = "") -> void:
 		print("Invalid benchmark: %s" % key)
 		return
 	print("benchmark %s: %.3f msec" % [key, (OS.get_ticks_usec() - _benchmark_start_times[key]) / 1000.0])
+
+"""
+Returns 'true' if the customer should greet us. We calculate this based on how many times we've been greeted recently.
+
+Novice players or fast players won't mind receiving a lot of sounds related to combos because those sounds are
+associated with positive reinforcement (big combos), but they could get annoyed if customers say hello/goodbye too
+frequently because those sounds are associated with negative reinforcement (broken combos).
+"""
+func should_chat() -> bool:
+	if _greetiness + randf() > 1.0:
+		_greetiness -= 1.0 / GREETINGS_PER_MINUTE
+		return true
+	return false
+
+func _process(delta: float) -> void:
+	_greetiness = clamp(_greetiness + delta * GREETINGS_PER_MINUTE / 60, -1.0, 1.0)

@@ -102,12 +102,19 @@ func end_game(delay: float, message: String) -> void:
 Relays the 'line_cleared' signal to any listeners, and triggers the 'customer feeding' animation
 """
 func _on_line_cleared(lines_cleared: int) -> void:
+	# Calculate whether or not the customer should say something positive about the combo. The customer talks after
+	# the 5th, 8th, 11th, 14th, 17th, 20th, 23rd, etc... line in a combo
+	var customer_talks: bool = $Playfield.combo >= 5 && lines_cleared > ($Playfield.combo + 1) % 3
+	
 	emit_signal("line_cleared", lines_cleared)
 	yield(get_tree().create_timer(rand_range(0.3, 0.5)), "timeout")
 	_feed_customer(1.0 / lines_cleared)
 	for i in range(lines_cleared - 1):
 		yield(get_tree().create_timer(rand_range(0.066, 0.4)), "timeout")
 		_feed_customer(1.0 / (lines_cleared - i - 1))
+	if customer_talks:
+		yield(get_tree().create_timer(0.5), "timeout")
+		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_combo_voice()
 
 """
 Triggers the eating animation and makes the customer fatter. Accepts a 'fatness_pct' parameter which defines how
@@ -131,6 +138,7 @@ func _feed_customer(fatness_pct: float) -> void:
 
 func _on_customer_left() -> void:
 	if $Playfield.clock_running:
+		$CustomerView.play_goodbye_voice()
 		_scroll_to_new_customer()
 
 """

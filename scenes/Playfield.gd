@@ -23,12 +23,6 @@ onready var _combo_sound_endless_arr := [$ComboEndless00Sound, $ComboEndless01So
 		$ComboEndless03Sound, $ComboEndless04Sound, $ComboEndless05Sound, $ComboEndless06Sound, $ComboEndless07Sound,
 		$ComboEndless08Sound, $ComboEndless09Sound, $ComboEndless10Sound, $ComboEndless11Sound]
 		
-onready var _combo_chatter_arr := [$ComboChatterVoice00, $ComboChatterVoice01, $ComboChatterVoice02, 
-		$ComboChatterVoice03, $ComboChatterVoice04, $ComboChatterVoice05, $ComboChatterVoice06, $ComboChatterVoice07,
-		$ComboChatterVoice08, $ComboChatterVoice09, $ComboChatterVoice10, $ComboChatterVoice11, $ComboChatterVoice12,
-		$ComboChatterVoice13, $ComboChatterVoice14, $ComboChatterVoice15, $ComboChatterVoice16, $ComboChatterVoice17,
-		$ComboChatterVoice18, $ComboChatterVoice19, $ComboChatterVoice20]
-
 # signal emitted when a line is cleared
 signal line_cleared
 
@@ -48,14 +42,12 @@ var _remaining_box_build_frames := 0
 var _should_play_line_fall_sound := false
 
 # player's current combo
-var _combo := 0
+var combo := 0
 # The number of pieces the player has dropped without clearing a line or making a box, plus one.
 var _combo_break := 0
 
 # 'true' if the player is currently playing, and the time spent should count towards their stats
 var clock_running := false
-
-var _combo_chatter_index := 0
 
 func _ready() -> void:
 	$TileMapClip/TileMap.clear()
@@ -304,9 +296,9 @@ func _check_for_line_clear() -> bool:
 	for y in range(ROW_COUNT):
 		if _row_is_full(y):
 			var line_score := 1
-			line_score += COMBO_SCORE_ARR[clamp(_combo, 0, COMBO_SCORE_ARR.size() - 1)]
+			line_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
 			Global.scenario_performance.lines += 1
-			Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(_combo, 0, COMBO_SCORE_ARR.size() - 1)]
+			Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
 			_cleared_lines.append(y)
 			for x in range(COL_COUNT):
 				if $TileMapClip/TileMap.get_cell(x, y) == 1 and int($TileMapClip/TileMap.get_cell_autotile_coord(x, y).x) & PieceTypes.CONNECTED_LEFT == 0:
@@ -329,26 +321,23 @@ func _check_for_line_clear() -> bool:
 			lines_cleared += 1
 			
 			# clearing lines adds to the combo
-			_combo += 1
+			combo += 1
 			_combo_break = 0
 		
 	_combo_break += 1
 	
 	if _combo_break >= 3:
 		if Score.combo_score > 0:
-			if _combo >= 20:
+			if combo >= 20:
 				$Fanfare3.play()
-				_play_combo_chatter()
-			elif _combo >= 10:
+			elif combo >= 10:
 				$Fanfare2.play()
-				_play_combo_chatter()
-			elif _combo >= 5:
+			elif combo >= 5:
 				$Fanfare1.play()
-				_play_combo_chatter()
 		if Score.customer_score > 0:
 			emit_signal("customer_left")
 			Score.end_combo()
-			_combo = 0
+			combo = 0
 	
 	if total_points > 0:
 		_play_line_clear_sfx(piece_points)
@@ -371,12 +360,8 @@ func _play_line_clear_sfx(piece_points: int) -> void:
 	else:
 		scheduled_sfx.append($Erase3Sound)
 	
-	# determine the combo chatter sound effect which plays if you clear more than 5 lines in a combo
-	if _combo >= 5 && _cleared_lines.size() > (_combo + 1) % 3:
-		_play_combo_chatter()
-	
 	# determine any combo sound effects, which play for continuing a combo
-	for combo_sfx in range(_combo - _cleared_lines.size(), _combo):
+	for combo_sfx in range(combo - _cleared_lines.size(), combo):
 		if combo_sfx > 0:
 			scheduled_sfx.append(_get_combo_sound(combo_sfx))
 	if piece_points == 1:
@@ -392,13 +377,6 @@ func _play_line_clear_sfx(piece_points: int) -> void:
 		for sfx_index in range(1, scheduled_sfx.size()):
 			yield(get_tree().create_timer(0.025 * sfx_index), "timeout")
 			scheduled_sfx[sfx_index].play()
-
-"""
-Plays voice sounds which occur when continuing or finishing a long combo.
-"""
-func _play_combo_chatter() -> void:
-	_combo_chatter_index = (_combo_chatter_index + 1 + randi() % (_combo_chatter_arr.size() - 1)) % _combo_chatter_arr.size()
-	_combo_chatter_arr[_combo_chatter_index].play()
 
 func _get_combo_sound(combo: int) -> AudioStreamPlayer:
 	if combo < _combo_sound_arr.size():
@@ -531,4 +509,4 @@ func is_cell_empty(x: int, y: int) -> bool:
 
 func end_game() -> void:
 	Score.end_combo()
-	_combo = 0
+	combo = 0
