@@ -77,10 +77,12 @@ var piece_l := PieceType.new("l",
 	)
 
 var piece_o := PieceType.new("o",
-		# shape data
-		[[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)]],
+		# shape data, two states so that the rotation button has an effect
+		[[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)],
+		[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(2, 1)]],
 		# color data
-		[[Vector2(10, 3), Vector2(6, 3), Vector2(9, 3), Vector2(5, 3)]],
+		[[Vector2(10, 3), Vector2(6, 3), Vector2(9, 3), Vector2(5, 3)],
+		[Vector2(10, 3), Vector2(6, 3), Vector2(9, 3), Vector2(5, 3)]],
 		KICKS_NONE
 	)
 
