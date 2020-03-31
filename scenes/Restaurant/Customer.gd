@@ -64,10 +64,6 @@ onready var _goodbye_voices:Array = [
 	$GoodbyeVoice0, $GoodbyeVoice1, $GoodbyeVoice2, $GoodbyeVoice3
 ]
 
-# the food object which should be animated and recolored when we eat
-onready var _food = get_node("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food")
-onready var _food_laser = get_node("../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser")
-
 # the total number of seconds which have elapsed since the object was created
 var _total_seconds := 0.0
 
@@ -137,9 +133,9 @@ func _update_customer_properties() -> void:
 		_eye_animation_player.stop()
 	
 	# reset the mouth/eye frames, otherwise we could have one strange transition frame
-	$Neck0Outline/Neck1Outline/MouthOutline.frame = 0
+	$Neck0/Neck1/Mouth/Outline.frame = 0
 	$Neck0/Neck1/Mouth.frame = 0
-	$Neck0Outline/Neck1Outline/EyesOutline.frame = 0
+	$Neck0/Neck1/Eyes/Outline.frame = 0
 	$Neck0/Neck1/Eyes.frame = 0
 	
 	if _customer_def.has("mouth"):
@@ -165,6 +161,11 @@ func _update_customer_properties() -> void:
 			get_node(node_path).material.set_shader_param(shader_param, _customer_def[key])
 	$Body.update()
 	visible = true
+	
+	if Engine.is_editor_hint():
+		# Skip the sound effects if we're using this as an editor tool
+		return
+	
 	if _suppress_one_chime:
 		_suppress_one_chime = false
 	else:
@@ -252,8 +253,8 @@ func show_food_effects(delay := 0.0) -> void:
 	# avoid using the same color twice consecutively
 	_food_color_index = (_food_color_index + 1 + randi() % (FOOD_COLORS.size() - 1)) % FOOD_COLORS.size()
 	var food_color: Color = FOOD_COLORS[_food_color_index]
-	_food.modulate = food_color
-	_food_laser.modulate = food_color
+	$Neck0/Neck1/Food.modulate = food_color
+	$Neck0/Neck1/FoodLaser.modulate = food_color
 
 	yield(get_tree().create_timer(delay), "timeout")
 	play_voice(munch_sound)

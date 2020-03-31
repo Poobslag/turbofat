@@ -1,8 +1,8 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://scenes/Restaurant/Customer.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Restaurant/FatPlayer.gd" type="Script" id=2]
-[ext_resource path="res://scenes/Restaurant/OutlineSprite.gd" type="Script" id=3]
+[ext_resource path="res://art/shadow-oval-0.png" type="Texture" id=3]
 [ext_resource path="res://scenes/Restaurant/SmoothPathOutline.gd" type="Script" id=4]
 [ext_resource path="res://scenes/Restaurant/CustomerBody.gd" type="Script" id=5]
 [ext_resource path="res://sound/door-chime0.wav" type="AudioStream" id=6]
@@ -49,13 +49,29 @@
 [ext_resource path="res://sound/voice-customer/hello-voice-2.wav" type="AudioStream" id=47]
 [ext_resource path="res://sound/voice-customer/goodbye-voice-3.wav" type="AudioStream" id=48]
 
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 32 )
 shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=10]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
@@ -63,7 +79,7 @@ shader = ExtResource( 32 )
 shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Curve2D" id=3]
 resource_local_to_scene = true
@@ -71,13 +87,29 @@ _data = {
 "points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
 }
 
+[sub_resource type="ShaderMaterial" id=11]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
 shader = ExtResource( 32 )
 shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
@@ -85,15 +117,23 @@ shader = ExtResource( 32 )
 shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=13]
 resource_local_to_scene = true
 shader = ExtResource( 32 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=7]
 resource_local_to_scene = true
@@ -101,7 +141,39 @@ shader = ExtResource( 32 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=17]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
+shader_param/blue = null
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=18]
+resource_local_to_scene = true
+shader = ExtResource( 32 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
@@ -109,87 +181,7 @@ shader = ExtResource( 32 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=9]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=10]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=11]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=12]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=13]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=14]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=15]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0.945098, 0.890196, 0.596078, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=16]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=17]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
-shader_param/blue = null
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=18]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0.698039, 0.219608, 0.137255, 1 )
-shader_param/green = Color( 0.156863, 0.156863, 0.156863, 1 )
-shader_param/blue = Color( 0.870588, 0.870588, 0.870588, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Animation" id=19]
 resource_name = "Ambient"
@@ -209,7 +201,7 @@ tracks/0/keys = {
 "values": [ 0, 0, 8, 9, 10, 9, 8, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/1/path = NodePath("Neck0/Neck1/Mouth/Outline:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -237,7 +229,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 0, 6, 7, 7, 6, 6, 0, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:frame")
+tracks/1/path = NodePath("Neck0/Neck1/Food:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -249,7 +241,7 @@ tracks/1/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:frame")
+tracks/2/path = NodePath("Neck0/Neck1/FoodLaser:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -261,7 +253,7 @@ tracks/2/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/3/path = NodePath("Neck0/Neck1/Mouth/Outline:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -289,7 +281,7 @@ tracks/0/keys = {
 "values": [ 2, 3, 4, 5, 6, 0, 6, 7, 7, 6, 6, 0, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:frame")
+tracks/1/path = NodePath("Neck0/Neck1/Food:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -301,7 +293,7 @@ tracks/1/keys = {
 "values": [ 1, 2, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:frame")
+tracks/2/path = NodePath("Neck0/Neck1/FoodLaser:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -313,7 +305,7 @@ tracks/2/keys = {
 "values": [ 1, 2, 0, 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/3/path = NodePath("Neck0/Neck1/Mouth/Outline:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -342,7 +334,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/1/path = NodePath("Neck0/Neck1/Mouth/Outline:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -370,7 +362,7 @@ tracks/0/keys = {
 "values": [ 0, 13, 14, 0, 15, 16, 17, 18, 19, 20, 12 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:frame")
+tracks/1/path = NodePath("Neck0/Neck1/Food:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -382,7 +374,7 @@ tracks/1/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:frame")
+tracks/2/path = NodePath("Neck0/Neck1/FoodLaser:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -394,7 +386,7 @@ tracks/2/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/3/path = NodePath("Neck0/Neck1/Mouth/Outline:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -418,7 +410,7 @@ tracks/4/keys = {
 "values": [ 0, 1, 1, 0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:z_index")
+tracks/5/path = NodePath("Neck0/Neck1/Food:z_index")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -447,7 +439,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17, 18, 19, 20, 12 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:frame")
+tracks/1/path = NodePath("Neck0/Neck1/Food:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -459,7 +451,7 @@ tracks/1/keys = {
 "values": [ 1, 2, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:frame")
+tracks/2/path = NodePath("Neck0/Neck1/FoodLaser:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -471,7 +463,7 @@ tracks/2/keys = {
 "values": [ 1, 2, 0, 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Neck0Outline/Neck1Outline/MouthOutline:frame")
+tracks/3/path = NodePath("Neck0/Neck1/Mouth/Outline:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -495,7 +487,7 @@ tracks/4/keys = {
 "values": [ 1, 1, 0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:z_index")
+tracks/5/path = NodePath("Neck0/Neck1/Food:z_index")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -512,7 +504,7 @@ length = 7.0
 loop = true
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0Outline/Neck1Outline/EyesOutline:frame")
+tracks/0/path = NodePath("Neck0/Neck1/Eyes/Outline:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -540,7 +532,7 @@ tracks/1/keys = {
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0Outline/Neck1Outline/EyesOutline:frame")
+tracks/0/path = NodePath("Neck0/Neck1/Eyes/Outline:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -568,7 +560,7 @@ tracks/1/keys = {
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0Outline/Neck1Outline/EyesOutline:frame")
+tracks/0/path = NodePath("Neck0/Neck1/Eyes/Outline:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -667,7 +659,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 0, -24.525 ), Vector2( 4, -54 ), Vector2( 17, -121 ), Vector2( 17, -255 ), Vector2( 81.7715, -561.446 ) ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("..:_customer_shadow_scale")
+tracks/6/path = NodePath("Shadow:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
@@ -679,140 +671,51 @@ tracks/6/keys = {
 "values": [ Vector2( 0.17, 0.17 ), Vector2( 0.17, 0.17 ), Vector2( 0.2, 0.2 ), Vector2( 0.55, 0.55 ), Vector2( 1.05, 1.05 ) ]
 }
 
-[node name="Seat" type="Control"]
-margin_left = 380.0
-margin_top = 585.0
-margin_right = 420.0
-margin_bottom = 625.0
+[node name="Seat" type="Node2D"]
+position = Vector2( 380, 585 )
 script = ExtResource( 30 )
-__meta__ = {
-"_edit_horizontal_guides_": [  ],
-"_edit_use_anchors_": false,
-"_edit_vertical_guides_": [  ]
-}
-_customer_shadow_scale = Vector2( 0.17, 0.17 )
 
 [node name="Stool0L" type="Sprite" parent="."]
 light_mask = 2
+z_index = 10
 texture = ExtResource( 9 )
 offset = Vector2( 0, -70 )
+
+[node name="Shadow" type="Sprite" parent="Stool0L"]
+self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
+light_mask = 2
+scale = Vector2( 0.15, 0.15 )
+z_index = -20
+texture = ExtResource( 3 )
 
 [node name="Customer" type="Node2D" parent="."]
 visible = false
 light_mask = 2
 position = Vector2( 1.228, -149.237 )
+z_index = 10
 script = ExtResource( 1 )
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="FarArmOutline" type="Sprite" parent="Customer"]
+[node name="Shadow" type="Sprite" parent="Customer"]
+self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
 light_mask = 2
-material = SubResource( 1 )
-scale = Vector2( 0.418, 0.418 )
-offset = Vector2( 0, -239 )
-script = ExtResource( 3 )
-_parent_path = NodePath("../FarArm")
-
-[node name="FarLegOutline" type="Sprite" parent="Customer"]
-light_mask = 2
-material = SubResource( 2 )
-scale = Vector2( 0.418, 0.418 )
-offset = Vector2( 0, -239 )
-script = ExtResource( 3 )
-_parent_path = NodePath("../FarLeg")
-
-[node name="BodyOutline" type="Path2D" parent="Customer"]
-self_modulate = Color( 1, 1, 1, 1 )
-light_mask = 2
-curve = SubResource( 3 )
-script = ExtResource( 4 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
-line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-fill_color = Color( 1, 1, 1, 0 )
-line_width = 6.0
-_parent_path_path = NodePath("../Body")
-
-[node name="NearLegOutline" type="Sprite" parent="Customer"]
-light_mask = 2
-material = SubResource( 4 )
-scale = Vector2( 0.418, 0.418 )
-offset = Vector2( 0, -239 )
-script = ExtResource( 3 )
-_parent_path = NodePath("../NearLeg")
-
-[node name="NearArmOutline" type="Sprite" parent="Customer"]
-light_mask = 2
-material = SubResource( 5 )
-scale = Vector2( 0.418, 0.418 )
-offset = Vector2( 0, -239 )
-script = ExtResource( 3 )
-_parent_path = NodePath("../NearArm")
-
-[node name="Neck0Outline" type="Sprite" parent="Customer"]
-script = ExtResource( 3 )
-_parent_path = NodePath("../Neck0")
-
-[node name="Neck1Outline" type="Sprite" parent="Customer/Neck0Outline"]
-light_mask = 2
-material = SubResource( 6 )
-position = Vector2( 0, -100 )
-scale = Vector2( 0.418, 0.418 )
-script = ExtResource( 3 )
-_parent_path = NodePath("../../Neck0/Neck1")
-
-[node name="EarZ0Outline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
-light_mask = 2
-material = SubResource( 7 )
-script = ExtResource( 3 )
-_parent_path = NodePath("../../../Neck0/Neck1/EarZ0")
-
-[node name="HeadOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
-light_mask = 2
-material = SubResource( 7 )
-script = ExtResource( 3 )
-_parent_path = NodePath("../../../Neck0/Neck1/Head")
-
-[node name="EarZ1Outline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
-light_mask = 2
-material = SubResource( 7 )
-script = ExtResource( 3 )
-_parent_path = NodePath("../../../Neck0/Neck1/EarZ1")
-
-[node name="HornOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
-light_mask = 2
-material = SubResource( 7 )
-script = ExtResource( 3 )
-_parent_path = NodePath("../../../Neck0/Neck1/Horn")
-
-[node name="EarZ2Outline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
-light_mask = 2
-material = SubResource( 7 )
-script = ExtResource( 3 )
-_parent_path = NodePath(".")
-
-[node name="MouthOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
-light_mask = 2
-material = SubResource( 7 )
-vframes = 2
-hframes = 8
-script = ExtResource( 3 )
-_parent_path = NodePath("../../../Neck0/Neck1/Mouth")
-
-[node name="EyesOutline" type="Sprite" parent="Customer/Neck0Outline/Neck1Outline"]
-light_mask = 2
-material = SubResource( 8 )
-hframes = 3
-script = ExtResource( 3 )
-_parent_path = NodePath("../../../Neck0/Neck1/Eyes")
+position = Vector2( 0, 150 )
+scale = Vector2( 0.17, 0.17 )
+z_index = -20
+texture = ExtResource( 3 )
 
 [node name="FarArm" type="Sprite" parent="Customer"]
 light_mask = 2
 material = SubResource( 9 )
 scale = Vector2( 0.418, 0.418 )
+offset = Vector2( 0, -239 )
+
+[node name="Outline" type="Sprite" parent="Customer/FarArm"]
+light_mask = 2
+material = SubResource( 1 )
+z_index = -10
 offset = Vector2( 0, -239 )
 
 [node name="FarLeg" type="Sprite" parent="Customer"]
@@ -821,21 +724,28 @@ material = SubResource( 10 )
 scale = Vector2( 0.418, 0.418 )
 offset = Vector2( 0, -239 )
 
+[node name="Outline" type="Sprite" parent="Customer/FarLeg"]
+light_mask = 2
+material = SubResource( 2 )
+z_index = -10
+offset = Vector2( 0, -239 )
+
 [node name="Body" type="Path2D" parent="Customer"]
 self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
-position = Vector2( 0, 0.001 )
 curve = SubResource( 3 )
 script = ExtResource( 5 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
-line_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-fill_color = Color( 0.629412, 0.230392, 0.15098, 1 )
+fill_color = Color( 0, 0, 0, 1 )
 line_width = 2.0
-_fatness = 1.0
 editing = false
+
+[node name="Outline" type="Path2D" parent="Customer/Body"]
+self_modulate = Color( 1, 1, 1, 1 )
+light_mask = 2
+z_index = -10
+curve = SubResource( 3 )
+script = ExtResource( 4 )
+line_width = 6.0
 
 [node name="NearLeg" type="Sprite" parent="Customer"]
 light_mask = 2
@@ -843,10 +753,22 @@ material = SubResource( 11 )
 scale = Vector2( 0.418, 0.418 )
 offset = Vector2( 0, -239 )
 
+[node name="Outline" type="Sprite" parent="Customer/NearLeg"]
+light_mask = 2
+material = SubResource( 4 )
+z_index = -10
+offset = Vector2( 0, -239 )
+
 [node name="NearArm" type="Sprite" parent="Customer"]
 light_mask = 2
 material = SubResource( 12 )
 scale = Vector2( 0.418, 0.418 )
+offset = Vector2( 0, -239 )
+
+[node name="Outline" type="Sprite" parent="Customer/NearArm"]
+light_mask = 2
+material = SubResource( 5 )
+z_index = -10
 offset = Vector2( 0, -239 )
 
 [node name="Neck0" type="Sprite" parent="Customer"]
@@ -867,21 +789,46 @@ __meta__ = {
 light_mask = 2
 material = SubResource( 14 )
 
+[node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/EarZ0"]
+light_mask = 2
+material = SubResource( 7 )
+z_index = -10
+
 [node name="Head" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 13 )
+
+[node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/Head"]
+light_mask = 2
+material = SubResource( 7 )
+z_index = -10
 
 [node name="EarZ1" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 14 )
 
+[node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/EarZ1"]
+light_mask = 2
+material = SubResource( 7 )
+z_index = -10
+
 [node name="Horn" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 15 )
 
+[node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/Horn"]
+light_mask = 2
+material = SubResource( 7 )
+z_index = -10
+
 [node name="EarZ2" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 16 )
+
+[node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/EarZ2"]
+light_mask = 2
+material = SubResource( 7 )
+z_index = -10
 
 [node name="Mouth" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
@@ -889,9 +836,33 @@ material = SubResource( 17 )
 vframes = 2
 hframes = 8
 
+[node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/Mouth"]
+light_mask = 2
+material = SubResource( 7 )
+z_index = -10
+vframes = 2
+hframes = 8
+
 [node name="Eyes" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 18 )
+hframes = 3
+
+[node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/Eyes"]
+light_mask = 2
+material = SubResource( 8 )
+z_index = -10
+hframes = 3
+
+[node name="Food" type="Sprite" parent="Customer/Neck0/Neck1"]
+light_mask = 2
+z_index = 1
+hframes = 3
+
+[node name="FoodLaser" type="Sprite" parent="Customer/Neck0/Neck1"]
+light_mask = 2
+position = Vector2( 1024, 0 )
+z_index = 1
 hframes = 3
 
 [node name="Mouth0Anims" type="AnimationPlayer" parent="Customer"]
@@ -1170,44 +1141,28 @@ bus = "Voice Bus"
 [node name="WoodTable0" type="Sprite" parent="."]
 light_mask = 2
 position = Vector2( 220, -20 )
+z_index = 10
 texture = ExtResource( 8 )
 offset = Vector2( 0, -50 )
+
+[node name="Shadow" type="Sprite" parent="WoodTable0"]
+self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
+light_mask = 2
+position = Vector2( 0, 30 )
+scale = Vector2( 0.28, 0.28 )
+z_index = -20
+texture = ExtResource( 3 )
 
 [node name="Stool0R" type="Sprite" parent="."]
 light_mask = 2
 position = Vector2( 440, 0 )
+z_index = 10
 texture = ExtResource( 10 )
 offset = Vector2( 0, -70 )
 
-[node name="KludgeCustomer" type="Sprite" parent="."]
-position = Vector2( 1.228, -149.237 )
-script = ExtResource( 3 )
-__meta__ = {
-"_editor_description_": "Tossed food needs to appear in front of the furniture, but also needs to track the customer's head. This object is used to keep the positions in sync."
-}
-_parent_path = NodePath("../Customer")
-
-[node name="KludgeNeck0" type="Sprite" parent="KludgeCustomer"]
-script = ExtResource( 3 )
-__meta__ = {
-"_editor_description_": ""
-}
-_parent_path = NodePath("../../Customer/Neck0")
-
-[node name="KludgeNeck1" type="Sprite" parent="KludgeCustomer/KludgeNeck0"]
-position = Vector2( 0, -100 )
-scale = Vector2( 0.418, 0.418 )
-script = ExtResource( 3 )
-__meta__ = {
-"_editor_description_": ""
-}
-_parent_path = NodePath("../../../Customer/Neck0/Neck1")
-
-[node name="Food" type="Sprite" parent="KludgeCustomer/KludgeNeck0/KludgeNeck1"]
+[node name="Shadow" type="Sprite" parent="Stool0R"]
+self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
 light_mask = 2
-hframes = 3
-
-[node name="FoodLaser" type="Sprite" parent="KludgeCustomer/KludgeNeck0/KludgeNeck1"]
-light_mask = 2
-position = Vector2( 1024, 0 )
-hframes = 3
+scale = Vector2( 0.15, 0.15 )
+z_index = -20
+texture = ExtResource( 3 )
