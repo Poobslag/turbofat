@@ -5,25 +5,9 @@ outline's curves accordingly.
 tool
 extends SmoothPath
 
-# the path of the SmoothPath which we're drawing an outline around
-export (NodePath) var _parent_path_path: NodePath setget set_parent_path
-
-# the SmoothPath which we're drawing an outline around
-var _parent_path: SmoothPath
-
-func set_parent_path(parent_path_path: NodePath) -> void:
-	_parent_path_path = parent_path_path
-	if is_inside_tree():
-		_update_parent_field()
-
-func _update_parent_field() -> void:
-	if _parent_path_path != null:
-		_parent_path = get_node(_parent_path_path)
-
-func _ready() -> void:
-	_update_parent_field()
+onready var _parent = get_node("..")
 
 func _process(_delta: float) -> void:
-	if _parent_path != null:
-		curve = _parent_path.curve
+	if _parent != null:
+		curve = _parent.curve
 		update()

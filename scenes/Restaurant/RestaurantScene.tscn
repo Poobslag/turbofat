@@ -1,10 +1,8 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/Restaurant/Seat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://art/restaurant/wall-metal.png" type="Texture" id=5]
 [ext_resource path="res://art/restaurant/wall-metal-shadow.png" type="Texture" id=7]
-[ext_resource path="res://art/shadow-oval-0.png" type="Texture" id=9]
-[ext_resource path="res://art/shadow-oval-1.png" type="Texture" id=10]
 [ext_resource path="res://art/shadow-oval-2.png" type="Texture" id=11]
 [ext_resource path="res://art/restaurant/wood-pillar.png" type="Texture" id=12]
 [ext_resource path="res://art/restaurant/poster2.png" type="Texture" id=13]
@@ -17,25 +15,21 @@
 light_mask = 2
 script = ExtResource( 24 )
 
-[node name="Background" type="Control" parent="."]
-light_mask = 2
-margin_top = -400.0
-margin_right = 40.0
-margin_bottom = -360.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Floor" type="ColorRect" parent="Background"]
+[node name="Floor" type="ColorRect" parent="."]
 light_mask = 2
 margin_left = -800.0
-margin_top = 397.0
+margin_top = -3.0
 margin_right = 3600.0
-margin_bottom = 1406.0
+margin_bottom = 1006.0
 color = Color( 0.596078, 0.45098, 0.333333, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Background" type="Node2D" parent="."]
+light_mask = 2
+position = Vector2( 0, -400 )
+z_index = 10
 
 [node name="Wall" type="ColorRect" parent="Background"]
 light_mask = 2
@@ -98,45 +92,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SeatShadow" type="Control" parent="Shadows"]
-margin_left = 380.0
-margin_top = 585.0
-margin_right = 420.0
-margin_bottom = 625.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Customer" type="Sprite" parent="Shadows/SeatShadow"]
-self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
-light_mask = 2
-scale = Vector2( 0.17, 0.17 )
-texture = ExtResource( 9 )
-offset = Vector2( 0, 50 )
-
-[node name="Stool0L" type="Sprite" parent="Shadows/SeatShadow"]
-self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
-light_mask = 2
-scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 9 )
-offset = Vector2( 0, 50 )
-
-[node name="WoodTable0" type="Sprite" parent="Shadows/SeatShadow"]
-self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
-light_mask = 2
-position = Vector2( 215, 0 )
-scale = Vector2( 0.28, 0.28 )
-texture = ExtResource( 11 )
-offset = Vector2( 0, 50 )
-
-[node name="Stool0R" type="Sprite" parent="Shadows/SeatShadow"]
-self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
-light_mask = 2
-position = Vector2( 440, 0 )
-scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 10 )
-offset = Vector2( 0, 50 )
-
 [node name="Pillar1" type="Sprite" parent="Shadows"]
 self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
 light_mask = 2
@@ -166,6 +121,7 @@ region_rect = Rect2( 0, 0, 4400, 80 )
 [node name="WallMetal" type="Sprite" parent="."]
 light_mask = 2
 position = Vector2( -800, 380 )
+z_index = 10
 texture = ExtResource( 5 )
 centered = false
 offset = Vector2( 0, -110 )
@@ -175,22 +131,25 @@ region_rect = Rect2( 0, 0, 4400, 240 )
 [node name="Pillar1" type="Sprite" parent="."]
 light_mask = 2
 position = Vector2( 1100, 520 )
+z_index = 10
 texture = ExtResource( 12 )
 offset = Vector2( 0, -550 )
 
 [node name="Pillar2" type="Sprite" parent="."]
 light_mask = 2
 position = Vector2( 3100, 520 )
+z_index = 10
 texture = ExtResource( 12 )
 offset = Vector2( 0, -550 )
 
 [node name="Seat1" parent="." instance=ExtResource( 2 )]
-_customer_shadow_path = NodePath("../Shadows/SeatShadow/Customer")
+position = Vector2( 380, 585 )
+z_index = 10
 
 [node name="Seat2" parent="." instance=ExtResource( 2 )]
-margin_left = 1380.0
-margin_right = 1420.0
+position = Vector2( 1380, 585 )
+z_index = 10
 
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
-margin_left = 2380.0
-margin_right = 2420.0
+position = Vector2( 2380, 585 )
+z_index = 10

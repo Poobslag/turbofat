@@ -48,6 +48,7 @@ position = Vector2( -89.8812, -104.904 )
 
 [node name="OvalOutline" type="Sprite" parent="."]
 self_modulate = Color( 0.360784, 0.192157, 0.12549, 1 )
+z_index = 20
 texture = ExtResource( 1 )
 centered = false
 

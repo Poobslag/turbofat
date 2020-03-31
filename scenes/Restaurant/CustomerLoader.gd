@@ -11,6 +11,7 @@ threads and other concurrency issues.
 
 CustomerLoader is loaded as a singleton in this project to ensure the same resource isn't loaded multiple times.
 """
+tool
 extends Node
 
 # How large customers can grow; 5.0 = 5x normal size
@@ -142,9 +143,9 @@ func _load_ear(customer_def: Dictionary) -> void:
 	customer_def["property:Neck0/Neck1/EarZ0:texture"] = z0
 	customer_def["property:Neck0/Neck1/EarZ1:texture"] = z1
 	customer_def["property:Neck0/Neck1/EarZ2:texture"] = z2
-	customer_def["property:Neck0Outline/Neck1Outline/EarZ0Outline:texture"] = z0_outline
-	customer_def["property:Neck0Outline/Neck1Outline/EarZ1Outline:texture"] = z1_outline
-	customer_def["property:Neck0Outline/Neck1Outline/EarZ2Outline:texture"] = z2_outline
+	customer_def["property:Neck0/Neck1/EarZ0/Outline:texture"] = z0_outline
+	customer_def["property:Neck0/Neck1/EarZ1/Outline:texture"] = z1_outline
+	customer_def["property:Neck0/Neck1/EarZ2/Outline:texture"] = z2_outline
 
 """
 Loads the resources for a customer's horn based on a customer definition.
@@ -163,7 +164,7 @@ func _load_horn(customer_def: Dictionary) -> void:
 		else:
 			print("Invalid horn: %s" % customer_def.horn)
 	customer_def["property:Neck0/Neck1/Horn:texture"] = horn
-	customer_def["property:Neck0Outline/Neck1Outline/HornOutline:texture"] = horn_outline
+	customer_def["property:Neck0/Neck1/Horn/Outline:texture"] = horn_outline
 
 """
 Loads the resources for a customer's mouth based on a customer definition.
@@ -187,9 +188,9 @@ func _load_mouth(customer_def: Dictionary) -> void:
 		else:
 			print("Invalid mouth: %s" % customer_def.mouth)
 	customer_def["property:Neck0/Neck1/Mouth:texture"] = mouth
-	customer_def["property:Neck0Outline/Neck1Outline/MouthOutline:texture"] = mouth_outline
-	customer_def["property:../KludgeCustomer/KludgeNeck0/KludgeNeck1/Food:texture"] = food
-	customer_def["property:../KludgeCustomer/KludgeNeck0/KludgeNeck1/FoodLaser:texture"] = food_laser
+	customer_def["property:Neck0/Neck1/Mouth/Outline:texture"] = mouth_outline
+	customer_def["property:Neck0/Neck1/Food:texture"] = food
+	customer_def["property:Neck0/Neck1/FoodLaser:texture"] = food_laser
 
 """
 Loads the resources for a customer's eyes based on a customer definition.
@@ -210,7 +211,7 @@ func _load_eye(customer_def: Dictionary) -> void:
 		else:
 			print("Invalid eye: %s" % customer_def.eye)
 	customer_def["property:Neck0/Neck1/Eyes:texture"] = eyes
-	customer_def["property:Neck0Outline/Neck1Outline/EyesOutline:texture"] = eyes_outline
+	customer_def["property:Neck0/Neck1/Eyes/Outline:texture"] = eyes_outline
 
 """
 Loads the resources for a customer's arms, legs and torso based on a customer definition.
@@ -241,11 +242,11 @@ func _load_body(customer_def: Dictionary) -> void:
 		near_leg = _resource("leg-z1.png")
 		near_arm = _resource("arm-z1.png")
 		head = _resource("head.png")
-	customer_def["property:FarArmOutline:texture"] = far_arm_outline
-	customer_def["property:FarLegOutline:texture"] = far_leg_outline
-	customer_def["property:NearLegOutline:texture"] = near_leg_outline
-	customer_def["property:NearArmOutline:texture"] = near_arm_outline
-	customer_def["property:Neck0Outline/Neck1Outline/HeadOutline:texture"] = head_outline
+	customer_def["property:FarArm/Outline:texture"] = far_arm_outline
+	customer_def["property:FarLeg/Outline:texture"] = far_leg_outline
+	customer_def["property:NearLeg/Outline:texture"] = near_leg_outline
+	customer_def["property:NearArm/Outline:texture"] = near_arm_outline
+	customer_def["property:Neck0/Neck1/Head/Outline:texture"] = head_outline
 	customer_def["property:FarArm:texture"] = far_arm
 	customer_def["property:FarLeg:texture"] = far_leg
 	customer_def["property:NearLeg:texture"] = near_leg
@@ -259,18 +260,18 @@ func _load_colors(customer_def: Dictionary) -> void:
 	var line_color: Color
 	if customer_def.has("line_rgb"):
 		line_color = Color(customer_def.line_rgb)
-	customer_def["shader:FarArmOutline:black"] = line_color
-	customer_def["shader:FarLegOutline:black"] = line_color
-	customer_def["property:BodyOutline:line_color"] = line_color
-	customer_def["shader:NearLegOutline:black"] = line_color
-	customer_def["shader:NearArmOutline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/EarZ0Outline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/HeadOutline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/EarZ1Outline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/HornOutline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/EarZ2Outline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/MouthOutline:black"] = line_color
-	customer_def["shader:Neck0Outline/Neck1Outline/EyesOutline:black"] = line_color
+	customer_def["shader:FarArm/Outline:black"] = line_color
+	customer_def["shader:FarLeg/Outline:black"] = line_color
+	customer_def["property:Body/Outline:line_color"] = line_color
+	customer_def["shader:NearLeg/Outline:black"] = line_color
+	customer_def["shader:NearArm/Outline:black"] = line_color
+	customer_def["shader:Neck0/Neck1/EarZ0/Outline:black"] = line_color
+	customer_def["shader:Neck0/Neck1/Head/Outline:black"] = line_color
+	customer_def["shader:Neck0/Neck1/EarZ1/Outline:black"] = line_color
+	customer_def["shader:Neck0/Neck1/Horn/Outline:black"] = line_color
+	customer_def["shader:Neck0/Neck1/EarZ2/Outline:black"] = line_color
+	customer_def["shader:Neck0/Neck1/Mouth/Outline:black"] = line_color
+	customer_def["shader:Neck0/Neck1/Eyes/Outline:black"] = line_color
 	customer_def["shader:FarArm:black"] = line_color
 	customer_def["shader:FarLeg:black"] = line_color
 	customer_def["property:Body:line_color"] = line_color
