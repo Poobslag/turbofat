@@ -44,3 +44,15 @@ Plays a 'check please!' voice sample, for when a customer is ready to leave
 """
 func play_goodbye_voice() -> void:
 	$Customer.play_goodbye_voice()
+
+"""
+When the customer arrives, we draw a shadowy version of the stool they sat upon.
+"""
+func _on_Customer_customer_arrived():
+	$Stool0L.texture = preload("res://art/restaurant/stool-occupied.png")
+
+"""
+When the customer leaves, we draw an unshadowed version of the stool they stood up from.
+"""
+func _on_Customer_customer_left():
+	$Stool0L.texture = preload("res://art/restaurant/stool.png")

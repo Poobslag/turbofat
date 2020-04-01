@@ -9,12 +9,18 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Sprite",
+"class": "MultiOutlineSprite",
+"language": "GDScript",
+"path": "res://scenes/MultiOutlineSprite.gd"
+}, {
 "base": "Path2D",
 "class": "SmoothPath",
 "language": "GDScript",
 "path": "res://scenes/Restaurant/SmoothPath.gd"
 } ]
 _global_script_class_icons={
+"MultiOutlineSprite": "",
 "SmoothPath": ""
 }
 

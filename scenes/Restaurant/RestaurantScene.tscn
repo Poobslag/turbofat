@@ -143,7 +143,6 @@ texture = ExtResource( 12 )
 offset = Vector2( 0, -550 )
 
 [node name="Seat1" parent="." instance=ExtResource( 2 )]
-position = Vector2( 380, 585 )
 z_index = 10
 
 [node name="Seat2" parent="." instance=ExtResource( 2 )]

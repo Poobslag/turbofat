@@ -27,6 +27,12 @@ const CHIME_DELAYS: Array = [0.1, 0.2, 0.3, 0.5, 1.0, 1.5, 2.0]
 # signal emitted on the frame when the food is launched into the customer's mouth
 signal food_eaten
 
+# signal emitted when a customer arrives and sits down
+signal customer_arrived
+
+# signal emitted when a stands up and customer leaves
+signal customer_left
+
 # sounds which get played when a customer shows up
 onready var chime_sounds:Array = [
 	$DoorChime0,
@@ -161,6 +167,7 @@ func _update_customer_properties() -> void:
 			get_node(node_path).material.set_shader_param(shader_param, _customer_def[key])
 	$Body.update()
 	visible = true
+	emit_signal("customer_arrived")
 	
 	if Engine.is_editor_hint():
 		# Skip the sound effects if we're using this as an editor tool
@@ -239,6 +246,7 @@ func summon(customer_def: Dictionary, use_defaults: bool = true) -> void:
 	_summoning = true
 	CustomerLoader.summon_customer(_customer_def)
 	visible = false
+	emit_signal("customer_left")
 
 """
 The 'feed' animation causes a few side-effects. The customer's head recoils and some sounds play. This method controls

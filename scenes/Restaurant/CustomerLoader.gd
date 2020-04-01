@@ -120,39 +120,29 @@ func _load_ear(customer_def: Dictionary) -> void:
 	var z0: Texture
 	var z1: Texture
 	var z2: Texture
-	var z0_outline: Texture
-	var z1_outline: Texture
-	var z2_outline: Texture
 	if customer_def.has("ear"):
 		if customer_def.ear == "0":
 			z1 = _resource("ear-z1-0.png")
 			z2 = _resource("ear-z2-0.png")
-			z2_outline = _resource("ear-z2-outline-0.png")
 		elif customer_def.ear == "1":
 			z0 = _resource("ear-z0-1.png")
 			z1 = _resource("ear-z1-1.png")
 			z2 = _resource("ear-z2-1.png")
-			z2_outline = _resource("ear-z2-outline-1.png")
 		elif customer_def.ear == "2":
 			z0 = _resource("ear-z0-2.png")
 			z1 = _resource("ear-z1-2.png")
 			z2 = _resource("ear-z2-2.png")
-			z2_outline = _resource("ear-z2-outline-2.png")
 		else:
 			print("Invalid ear: %s" % customer_def.ear)
 	customer_def["property:Neck0/Neck1/EarZ0:texture"] = z0
 	customer_def["property:Neck0/Neck1/EarZ1:texture"] = z1
 	customer_def["property:Neck0/Neck1/EarZ2:texture"] = z2
-	customer_def["property:Neck0/Neck1/EarZ0/Outline:texture"] = z0_outline
-	customer_def["property:Neck0/Neck1/EarZ1/Outline:texture"] = z1_outline
-	customer_def["property:Neck0/Neck1/EarZ2/Outline:texture"] = z2_outline
 
 """
 Loads the resources for a customer's horn based on a customer definition.
 """
 func _load_horn(customer_def: Dictionary) -> void:
 	var horn: Texture
-	var horn_outline: Texture
 	if customer_def.has("horn"):
 		if customer_def.horn == "0":
 			pass
@@ -160,35 +150,29 @@ func _load_horn(customer_def: Dictionary) -> void:
 			horn = _resource("horn-1.png")
 		elif customer_def.horn == "2":
 			horn = _resource("horn-2.png")
-			horn_outline = _resource("horn-outline-2.png")
 		else:
 			print("Invalid horn: %s" % customer_def.horn)
 	customer_def["property:Neck0/Neck1/Horn:texture"] = horn
-	customer_def["property:Neck0/Neck1/Horn/Outline:texture"] = horn_outline
 
 """
 Loads the resources for a customer's mouth based on a customer definition.
 """
 func _load_mouth(customer_def: Dictionary) -> void:
 	var mouth: Texture
-	var mouth_outline: Texture
 	var food: Texture
 	var food_laser: Texture
 	if customer_def.has("mouth"):
 		if customer_def.mouth == "0":
 			mouth = _resource("mouth-sheet-0.png")
-			mouth_outline = _resource("mouth-outline-sheet-0.png")
 			food = _resource("food-sheet-0.png")
 			food_laser = _resource("food-laser-sheet-0.png")
 		elif customer_def.mouth == "1":
 			mouth = _resource("mouth-sheet-1.png")
-			mouth_outline = _resource("mouth-outline-sheet-1.png")
 			food = _resource("food-sheet-1.png")
 			food_laser = _resource("food-laser-sheet-1.png")
 		else:
 			print("Invalid mouth: %s" % customer_def.mouth)
 	customer_def["property:Neck0/Neck1/Mouth:texture"] = mouth
-	customer_def["property:Neck0/Neck1/Mouth/Outline:texture"] = mouth_outline
 	customer_def["property:Neck0/Neck1/Food:texture"] = food
 	customer_def["property:Neck0/Neck1/FoodLaser:texture"] = food_laser
 
@@ -197,31 +181,21 @@ Loads the resources for a customer's eyes based on a customer definition.
 """
 func _load_eye(customer_def: Dictionary) -> void:
 	var eyes:Texture
-	var eyes_outline:Texture
 	if customer_def.has("eye"):
 		if customer_def.eye == "0":
 			eyes = _resource("eyes-sheet-0.png")
-			eyes_outline = _resource("eyes-outline-sheet-0.png")
 		elif customer_def.eye == "1":
 			eyes = _resource("eyes-sheet-1.png")
-			eyes_outline = _resource("eyes-outline-sheet-1.png")
 		elif customer_def.eye == "2":
 			eyes = _resource("eyes-sheet-2.png")
-			eyes_outline = _resource("eyes-outline-sheet-2.png")
 		else:
 			print("Invalid eye: %s" % customer_def.eye)
 	customer_def["property:Neck0/Neck1/Eyes:texture"] = eyes
-	customer_def["property:Neck0/Neck1/Eyes/Outline:texture"] = eyes_outline
 
 """
 Loads the resources for a customer's arms, legs and torso based on a customer definition.
 """
 func _load_body(customer_def: Dictionary) -> void:
-	var far_arm_outline: Texture
-	var far_leg_outline: Texture
-	var near_leg_outline: Texture
-	var near_arm_outline: Texture
-	var head_outline: Texture
 	var far_arm: Texture
 	var near_arm: Texture
 	var near_leg: Texture
@@ -232,21 +206,11 @@ func _load_body(customer_def: Dictionary) -> void:
 	# textures from customer sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# customer's body.
 	if customer_def.has("body"):
-		far_arm_outline = _resource("arm-z0-outline.png")
-		far_leg_outline = _resource("leg-z0-outline.png")
-		near_leg_outline = _resource("leg-z1-outline.png")
-		near_arm_outline = _resource("arm-z1-outline.png")
-		head_outline = _resource("head-outline.png")
 		far_arm = _resource("arm-z0.png")
 		far_leg = _resource("leg-z0.png")
 		near_leg = _resource("leg-z1.png")
 		near_arm = _resource("arm-z1.png")
 		head = _resource("head.png")
-	customer_def["property:FarArm/Outline:texture"] = far_arm_outline
-	customer_def["property:FarLeg/Outline:texture"] = far_leg_outline
-	customer_def["property:NearLeg/Outline:texture"] = near_leg_outline
-	customer_def["property:NearArm/Outline:texture"] = near_arm_outline
-	customer_def["property:Neck0/Neck1/Head/Outline:texture"] = head_outline
 	customer_def["property:FarArm:texture"] = far_arm
 	customer_def["property:FarLeg:texture"] = far_leg
 	customer_def["property:NearLeg:texture"] = near_leg
