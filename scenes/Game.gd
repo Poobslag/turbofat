@@ -1,8 +1,8 @@
+extends Node2D
 """
 Represents a minimal 'game' with a piece, playfield of pieces, and next pieces. Other classes can extend this class to add
 goals, win conditions, challenges or time limits.
 """
-extends Node2D
 
 # signal emitted when the 'new game' countdown begins for piece randomization, clearing the playfield
 signal before_game_started
@@ -30,8 +30,41 @@ func _ready() -> void:
 	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 1)
 	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 2)
 
+
+"""
+Shows a detailed multi-line message, like how the game is controlled
+"""
+func show_detail_message(text: String) -> void:
+	$HUD/DetailMessageLabel.show()
+	$HUD/DetailMessageLabel.text = text
+
+
+"""
+Shows a succinct single-line message, like 'Game Over'
+"""
+func show_message(text: String) -> void:
+	$HUD/MessageLabel.show()
+	$HUD/MessageLabel.text = text
+
+
+"""
+End the game and emit the appropriate signals. This can occur when the player loses, wins, or runs out of time.
+"""
+func end_game(delay: float, message: String) -> void:
+	emit_signal("game_ended")
+	$Playfield.end_game()
+	$Piece.end_game()
+	show_message(message)
+	yield(get_tree().create_timer(delay), "timeout")
+	$HUD/StartGameButton.show()
+	$HUD/BackButton.show()
+	$HUD/MessageLabel.hide()
+	emit_signal("after_game_ended")
+
+
 func _on_BackButton_pressed() -> void:
 	get_tree().change_scene("res://scenes/PracticeMenu.tscn")
+
 
 func _on_StartGameButton_pressed() -> void:
 	emit_signal("before_game_started")
@@ -64,19 +97,6 @@ func _on_StartGameButton_pressed() -> void:
 	
 	emit_signal("game_started")
 
-"""
-Shows a detailed multi-line message, like how the game is controlled
-"""
-func show_detail_message(text: String) -> void:
-	$HUD/DetailMessageLabel.show()
-	$HUD/DetailMessageLabel.text = text
-
-"""
-Shows a succinct single-line message, like 'Game Over'
-"""
-func show_message(text: String) -> void:
-	$HUD/MessageLabel.show()
-	$HUD/MessageLabel.text = text
 
 """
 When the current piece can't be placed, we end the game and emit the appropriate signals.
@@ -84,19 +104,6 @@ When the current piece can't be placed, we end the game and emit the appropriate
 func _on_Piece_game_ended() -> void:
 	end_game(2.4, "Game over")
 
-"""
-End the game and emit the appropriate signals. This can occur when the player loses, wins, or runs out of time.
-"""
-func end_game(delay: float, message: String) -> void:
-	emit_signal("game_ended")
-	$Playfield.end_game()
-	$Piece.end_game()
-	show_message(message)
-	yield(get_tree().create_timer(delay), "timeout")
-	$HUD/StartGameButton.show()
-	$HUD/BackButton.show()
-	$HUD/MessageLabel.hide()
-	emit_signal("after_game_ended")
 
 """
 Relays the 'line_cleared' signal to any listeners, and triggers the 'customer feeding' animation
@@ -104,7 +111,7 @@ Relays the 'line_cleared' signal to any listeners, and triggers the 'customer fe
 func _on_line_cleared(lines_cleared: int) -> void:
 	# Calculate whether or not the customer should say something positive about the combo. The customer talks after
 	# the 5th, 8th, 11th, 14th, 17th, 20th, 23rd, etc... line in a combo
-	var customer_talks: bool = $Playfield.combo >= 5 && lines_cleared > ($Playfield.combo + 1) % 3
+	var customer_talks: bool = $Playfield.combo >= 5 and lines_cleared > ($Playfield.combo + 1) % 3
 	
 	emit_signal("line_cleared", lines_cleared)
 	yield(get_tree().create_timer(rand_range(0.3, 0.5)), "timeout")
@@ -115,6 +122,7 @@ func _on_line_cleared(lines_cleared: int) -> void:
 	if customer_talks:
 		yield(get_tree().create_timer(0.5), "timeout")
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_combo_voice()
+
 
 """
 Triggers the eating animation and makes the customer fatter. Accepts a 'fatness_pct' parameter which defines how
@@ -136,10 +144,12 @@ func _feed_customer(fatness_pct: float) -> void:
 		var new_fatness := target_fatness * fatness_pct + old_fatness * (1 - fatness_pct)
 		$CustomerView.set_fatness(new_fatness)
 
+
 func _on_customer_left() -> void:
 	if $Playfield.clock_running:
 		$CustomerView.play_goodbye_voice()
 		_scroll_to_new_customer()
+
 
 """
 Scroll to a new customer and replace the old customer.

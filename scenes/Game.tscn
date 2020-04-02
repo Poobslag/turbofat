@@ -1,8 +1,8 @@
 [gd_scene load_steps=27 format=2]
 
-[ext_resource path="res://scenes/Game.gd" type="Script" id=1]
+[ext_resource path="res://scenes/game.gd" type="Script" id=1]
 [ext_resource path="res://scenes/Playfield.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/Piece.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/PieceManager.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/NextPieces.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/Score.tscn" type="PackedScene" id=5]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=6]
@@ -15,6 +15,7 @@
 [ext_resource path="res://sound/voice-chef/go-voice0.wav" type="AudioStream" id=13]
 [ext_resource path="res://sound/voice-chef/go-voice1.wav" type="AudioStream" id=14]
 [ext_resource path="res://sound/voice-chef/go-voice2.wav" type="AudioStream" id=15]
+
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Xolonium-Regular.ttf"

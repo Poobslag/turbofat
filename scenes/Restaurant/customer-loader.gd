@@ -1,3 +1,5 @@
+tool
+extends Node
 """
 Loads customer resources based on customer definitions. For example, a customer definition might describe high-level
 information about the customer's appearance, such as 'she has red eyes' or 'she has a star on her forehead'. This
@@ -11,8 +13,6 @@ threads and other concurrency issues.
 
 CustomerLoader is loaded as a singleton in this project to ensure the same resource isn't loaded multiple times.
 """
-tool
-extends Node
 
 # How large customers can grow; 5.0 = 5x normal size
 const MAX_FATNESS := 10.0
@@ -48,6 +48,11 @@ var _ready_customer_definitions := {}
 # mutex which ensures we don't load multiple resources concurrently
 var _load_mutex := Mutex.new()
 
+func _exit_tree() -> void:
+	# wait until all threads are done to dispose of them
+	wait_to_finish()
+
+
 """
 Loads all the appropriate resources and property definitions for a customer in a background thread. This involves
 loading 20-30 textures and animations, many of which are quite large. The resulting textures are stored back in the
@@ -67,6 +72,7 @@ func summon_customer(customer_def: Dictionary) -> void:
 	_threads.append(thread)
 	thread.start(self, "_load_all", customer_def)
 
+
 """
 Returns 'true' if the specified customer_def has been fully populated with the necessary textures and metadata to
 draw the customer.
@@ -78,6 +84,7 @@ Parameter: 'customer_def' is a customer definition which has been previously pas
 func is_customer_ready(customer_def: Dictionary) -> bool:
 	return _ready_customer_definitions.erase(customer_def)
 
+
 """
 Waits for all threads to become inactive. Threads must be disposed (or 'joined') for portability.
 """
@@ -85,9 +92,6 @@ func wait_to_finish() -> void:
 	for thread in _threads:
 		thread.wait_to_finish()
 
-func _exit_tree() -> void:
-	# wait until all threads are done to dispose of them
-	wait_to_finish()
 
 """
 Prunes inactive threads from our thread pool.
@@ -96,10 +100,11 @@ func _prune_inactive_threads() -> void:
 	var i := 0
 	while i < _threads.size():
 		var thread: Thread = _threads[i]
-		if !thread.is_active():
+		if not thread.is_active():
 			_threads.remove(i)
 		else:
 			i += 1
+
 
 """
 Loads a customer resource, such as an image or texture.
@@ -112,6 +117,7 @@ func _resource(path:String) -> Resource:
 	var result = load("res://art/customer/" + path)
 	_load_mutex.unlock()
 	return result
+
 
 """
 Loads the resources for a customer's ears based on a customer definition.
@@ -138,6 +144,7 @@ func _load_ear(customer_def: Dictionary) -> void:
 	customer_def["property:Neck0/Neck1/EarZ1:texture"] = z1
 	customer_def["property:Neck0/Neck1/EarZ2:texture"] = z2
 
+
 """
 Loads the resources for a customer's horn based on a customer definition.
 """
@@ -153,6 +160,7 @@ func _load_horn(customer_def: Dictionary) -> void:
 		else:
 			print("Invalid horn: %s" % customer_def.horn)
 	customer_def["property:Neck0/Neck1/Horn:texture"] = horn
+
 
 """
 Loads the resources for a customer's mouth based on a customer definition.
@@ -176,6 +184,7 @@ func _load_mouth(customer_def: Dictionary) -> void:
 	customer_def["property:Neck0/Neck1/Food:texture"] = food
 	customer_def["property:Neck0/Neck1/FoodLaser:texture"] = food_laser
 
+
 """
 Loads the resources for a customer's eyes based on a customer definition.
 """
@@ -191,6 +200,7 @@ func _load_eye(customer_def: Dictionary) -> void:
 		else:
 			print("Invalid eye: %s" % customer_def.eye)
 	customer_def["property:Neck0/Neck1/Eyes:texture"] = eyes
+
 
 """
 Loads the resources for a customer's arms, legs and torso based on a customer definition.
@@ -216,6 +226,7 @@ func _load_body(customer_def: Dictionary) -> void:
 	customer_def["property:NearLeg:texture"] = near_leg
 	customer_def["property:NearArm:texture"] = near_arm
 	customer_def["property:Neck0/Neck1/Head:texture"] = head
+
 
 """
 Assigns the customer's colors based on a customer definition.
@@ -265,7 +276,7 @@ func _load_colors(customer_def: Dictionary) -> void:
 	customer_def["shader:Neck0/Neck1/Eyes:red"] = body_color
 	
 	var body_fill_color: Color
-	if line_color && body_color:
+	if line_color and body_color:
 		body_fill_color = body_color.blend(Color(line_color.r, line_color.g, line_color.b, 0.25))
 	customer_def["property:Body:fill_color"] = body_fill_color
 	
@@ -281,6 +292,7 @@ func _load_colors(customer_def: Dictionary) -> void:
 	if customer_def.has("horn_rgb"):
 		horn_color = Color(customer_def.horn_rgb)
 	customer_def["shader:Neck0/Neck1/Horn:green"] = horn_color
+
 
 """
 Loads all the appropriate resources and property definitions based on a customer definition.

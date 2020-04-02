@@ -1,6 +1,6 @@
 [gd_scene load_steps=63 format=2]
 
-[ext_resource path="res://scenes/Playfield.gd" type="Script" id=1]
+[ext_resource path="res://scenes/playfield.gd" type="Script" id=1]
 [ext_resource path="res://art/blocks.png" type="Texture" id=2]
 [ext_resource path="res://art/blocks-boxes.png" type="Texture" id=3]
 [ext_resource path="res://art/blocks-vegetable.png" type="Texture" id=4]
@@ -40,7 +40,7 @@
 [ext_resource path="res://art/blocks-vegetable-shadows.png" type="Texture" id=38]
 [ext_resource path="res://art/blocks-boxes-shadows.png" type="Texture" id=39]
 [ext_resource path="res://art/blocks-shadows.png" type="Texture" id=40]
-[ext_resource path="res://scenes/ShadowMap.gd" type="Script" id=41]
+[ext_resource path="res://scenes/shadow-map.gd" type="Script" id=41]
 [ext_resource path="res://sound/combo-20.wav" type="AudioStream" id=42]
 [ext_resource path="res://sound/combo-23.wav" type="AudioStream" id=43]
 [ext_resource path="res://sound/combo-21.wav" type="AudioStream" id=44]
@@ -60,6 +60,8 @@
 [ext_resource path="res://sound/make-snack-box3.wav" type="AudioStream" id=58]
 [ext_resource path="res://sound/make-snack-box0.wav" type="AudioStream" id=59]
 [ext_resource path="res://sound/make-snack-box2.wav" type="AudioStream" id=60]
+
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "blocks-shadows.png 0"

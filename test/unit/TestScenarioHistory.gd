@@ -1,13 +1,13 @@
 extends "res://addons/gut/test.gd"
 
-var RankCalculator = preload("res://scenes/RankCalculator.gd").new()
-
 var rank_result
+
+var _rank_calculator = RankCalculator.new()
 
 func before_each():
 	ScenarioHistory.scenario_history_filename = "user://scenario_history_365.save"
 	ScenarioHistory.scenario_history.clear()
-	rank_result = RankCalculator.RankResult.new()
+	rank_result = RankResult.new()
 	rank_result.seconds = 600.0
 	rank_result.lines = 300
 	rank_result.box_score_per_line = 9.3
@@ -23,7 +23,7 @@ func test_one_history_entry():
 
 func test_two_history_entries():
 	ScenarioHistory.add_scenario_history("scenario-895", rank_result)
-	rank_result = RankCalculator.RankResult.new()
+	rank_result = RankResult.new()
 	rank_result.score = 6780
 	ScenarioHistory.add_scenario_history("scenario-895", rank_result)
 	assert_eq(ScenarioHistory.scenario_history["scenario-895"][0].score, 6780)
@@ -35,7 +35,7 @@ func test_too_many_history_entries():
 	ScenarioHistory.add_scenario_history("scenario-895", rank_result)
 	ScenarioHistory.add_scenario_history("scenario-895", rank_result)
 	ScenarioHistory.add_scenario_history("scenario-895", rank_result)
-	rank_result = RankCalculator.RankResult.new()
+	rank_result = RankResult.new()
 	rank_result.score = 6780
 	ScenarioHistory.add_scenario_history("scenario-895", rank_result)
 	assert_eq(ScenarioHistory.scenario_history["scenario-895"].size(), 3)

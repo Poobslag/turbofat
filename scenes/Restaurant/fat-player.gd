@@ -10,10 +10,11 @@ var _fatness := 1.0 setget set_fatness, get_fatness
 func _process(_delta: float) -> void:
 	if is_playing():
 		# stop animating once we've passed the desired fatness
-		if get_playing_speed() > 0 && current_animation_position >= _fatness:
+		if get_playing_speed() > 0 and current_animation_position >= _fatness:
 			stop()
-		if get_playing_speed() < 0 && current_animation_position <= _fatness:
+		if get_playing_speed() < 0 and current_animation_position <= _fatness:
 			stop()
+
 
 """
 Increases/decreases the customer's fatness, playing an animation which gradually applies the change.
@@ -41,6 +42,7 @@ func set_fatness(fatness: float) -> void:
 	else:
 		# getting fatter, play the animation forwards
 		advance(old_fatness / d_fatness)
+
 
 func get_fatness() -> float:
 	return _fatness

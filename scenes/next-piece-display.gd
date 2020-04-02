@@ -1,20 +1,20 @@
+extends Node2D
 """
 Contains logic for a single 'next piece display'. A single display might only display the piece which is coming up 3
 pieces from now. Several displays are shown at once.
 """
-extends Node2D
-
-onready var NextPieces = get_node("..")
-
-# currently displayed piece type
-var _displayed_piece
 
 # how far into the future this display should look; 0 = show the next piece, 10 = show the 11th piece
 var piece_index := 0
 
+# currently displayed piece type
+var _displayed_piece
+
+onready var _next_pieces = get_parent()
+
 func _process(_delta: float) -> void:
-	if NextPieces != null && NextPieces.next_pieces.size() > piece_index:
-		var next_piece = NextPieces.next_pieces[piece_index]
+	if _next_pieces and _next_pieces.next_pieces.size() > piece_index:
+		var next_piece = _next_pieces.next_pieces[piece_index]
 		if next_piece != _displayed_piece:
 			var bounding_box := Rect2(next_piece.pos_arr[0][0].x, next_piece.pos_arr[0][0].y, 1, 1)
 			# update the tilemap with the new piece type

@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://scenes/NextPieceDisplay.gd" type="Script" id=1]
+[ext_resource path="res://scenes/next-piece-display.gd" type="Script" id=1]
 [ext_resource path="res://art/blocks.png" type="Texture" id=2]
 [ext_resource path="res://scenes/CornerMap.tscn" type="PackedScene" id=3]
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "blocks.png 0"
