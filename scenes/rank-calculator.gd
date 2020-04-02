@@ -1,83 +1,48 @@
+class_name RankCalculator
 """
 Contains logic for calculating the player's performance. This performance is stored as a series of 'ranks', where 0 is
 the best possible rank and 999 is the worst.
 """
-extends Node
+
+# These constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99 means the ranks are really
+# narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like 0.96 means the ranks are
+# more forgiving.
+const RDF_SPEED := 0.96
+const RDF_LINES := 0.96
+const RDF_BOX_SCORE_PER_LINE := 0.96
+const RDF_COMBO_SCORE_PER_LINE := 0.98
+
+# Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
+# boxes, and easier to make boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
+# theoretical player to meet all three statistics simultaneously.
+const MASTER_BOX_SCORE := 14.5
+const MASTER_COMBO_SCORE := 17.5
+const MASTER_MVMT_FRAMES := 6
+
+# We add 100 lines to the target to make up for the 100 points we miss out on as our combo starts
+const COMBO_STARTUP_POINTS := 100
+
 
 """
-Contains rank information for a playthrough. This includes raw statistics such as how many lines-per-minute the player
-cleared, as well as derived statistics such as the computed lines-per-minute rank.
-"""
-class RankResult:
-	# player's speed in lines per minute.
-	var speed := 0.0
-	var speed_rank := 0.0
+Calculates the player's rank.
 
-	# raw number of cleared lines, not including bonus points
-	var lines := 0
-	var lines_rank := 0.0
+This is calculated in two steps: First, we calculate the rank for a theoretical M-rank player who plays as fast as
+possible and never dies. However, some modes such as 'marathon mode' are designed with the understanding that a
+player is not expected to actually finish them. So we also simulate a second S++ rank player who dies in the middle of
+the match, and return the better of the two ranks.
+"""
+func calculate_rank() -> RankResult:
+	var rank_result = _inner_calculate_rank(false)
+	if Global.scenario.win_condition.lenient_value != Global.scenario.win_condition.value:
+		var rank_results_lenient = _inner_calculate_rank(true)
+		rank_result.speed_rank = min(rank_result.speed_rank, rank_results_lenient.speed_rank)
+		rank_result.lines_rank = min(rank_result.lines_rank, rank_results_lenient.lines_rank)
+		rank_result.box_score_per_line_rank = min(rank_result.box_score_per_line_rank, rank_results_lenient.box_score_per_line_rank)
+		rank_result.combo_score_per_line_rank = min(rank_result.combo_score_per_line_rank, rank_results_lenient.combo_score_per_line_rank)
+		rank_result.score_rank = min(rank_result.score_rank, rank_results_lenient.score_rank)
 	
-	# bonus points awarded for clearing boxes
-	var box_score := 0.0
-	var box_score_per_line := 0.0
-	var box_score_per_line_rank := 0.0
-	
-	# bonus points awarded for combos
-	var combo_score := 0.0
-	var combo_score_per_line := 0.0
-	var combo_score_per_line_rank := 0.0
-	
-	# number of seconds until the player won or lost
-	var seconds := 0.0
-	var seconds_rank := 0.0
-	
-	# overall score
-	var score := 0
-	var score_rank := 0.0
-	
-	# did the player die?
-	var died := false
-	
-	"""
-	Returns this object's data as a dictionary. This is useful when saving/loading data.
-	"""
-	func to_dict() -> Dictionary:
-		return {
-			"speed": speed,
-			"speed_rank": speed_rank,
-			"lines": lines,
-			"lines_rank": lines_rank,
-			"box_score": box_score,
-			"box_score_per_line": box_score_per_line,
-			"box_score_per_line_rank": box_score_per_line_rank,
-			"combo_score": combo_score,
-			"combo_score_per_line": combo_score_per_line,
-			"combo_score_per_line_rank": combo_score_per_line_rank,
-			"seconds": seconds,
-			"seconds_rank": seconds_rank,
-			"score": score,
-			"score_rank": score_rank,
-			"died": died }
-	
-	"""
-	Populates this object from a dictionary. This is useful when saving/loading data.
-	"""
-	func from_dict(dict: Dictionary) -> void:
-		speed = dict["speed"]
-		speed_rank = dict["speed_rank"]
-		lines = int(dict["lines"])
-		lines_rank = dict["lines_rank"]
-		box_score = dict["box_score"]
-		box_score_per_line = dict["box_score_per_line"]
-		box_score_per_line_rank = dict["box_score_per_line_rank"]
-		combo_score = dict["combo_score"]
-		combo_score_per_line = dict["combo_score_per_line"]
-		combo_score_per_line_rank = dict["combo_score_per_line_rank"]
-		seconds = dict["seconds"]
-		seconds_rank = dict["seconds_rank"]
-		score = int(dict["score"])
-		score_rank = dict["score_rank"]
-		died = dict["died"]
+	return rank_result
+
 
 """
 Calculates the maximum theoretical lines per minute.
@@ -127,43 +92,6 @@ func _max_lpm(extra_movement_frames:float = 0) -> float:
 	
 	return 60 * 60 * float(total_lines) / total_frames
 
-# These constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99 means the ranks are really
-# narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like 0.96 means the ranks are
-# more forgiving.
-const RDF_SPEED := 0.96
-const RDF_LINES := 0.96
-const RDF_BOX_SCORE_PER_LINE := 0.96
-const RDF_COMBO_SCORE_PER_LINE := 0.98
-
-# Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
-# boxes, and easier to make boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
-# theoretical player to meet all three statistics simultaneously.
-const MASTER_BOX_SCORE := 14.5
-const MASTER_COMBO_SCORE := 17.5
-const MASTER_MVMT_FRAMES := 6
-
-# We add 100 lines to the target to make up for the 100 points we miss out on as our combo starts
-const COMBO_STARTUP_POINTS := 100
-
-"""
-Calculates the player's rank.
-
-This is calculated in two steps: First, we calculate the rank for a theoretical M-rank player who plays as fast as
-possible and never dies. However, some modes such as 'marathon mode' are designed with the understanding that a
-player is not expected to actually finish them. So we also simulate a second S++ rank player who dies in the middle of
-the match, and return the better of the two ranks.
-"""
-func calculate_rank() -> RankResult:
-	var rank_result = _inner_calculate_rank(false)
-	if Global.scenario.win_condition.lenient_value != Global.scenario.win_condition.value:
-		var rank_results_lenient = _inner_calculate_rank(true)
-		rank_result.speed_rank = min(rank_result.speed_rank, rank_results_lenient.speed_rank)
-		rank_result.lines_rank = min(rank_result.lines_rank, rank_results_lenient.lines_rank)
-		rank_result.box_score_per_line_rank = min(rank_result.box_score_per_line_rank, rank_results_lenient.box_score_per_line_rank)
-		rank_result.combo_score_per_line_rank = min(rank_result.combo_score_per_line_rank, rank_results_lenient.combo_score_per_line_rank)
-		rank_result.score_rank = min(rank_result.score_rank, rank_results_lenient.score_rank)
-	
-	return rank_result
 
 """
 Calculates the player's rank.
@@ -185,10 +113,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var target_combo_score_per_line := MASTER_COMBO_SCORE
 	var target_lines: float
 	if Global.scenario.win_condition.type == "lines":
-		if lenient:
-			target_lines = Global.scenario.win_condition.lenient_value
-		else:
-			target_lines = Global.scenario.win_condition.value
+		target_lines = Global.scenario.win_condition.lenient_value if lenient else Global.scenario.win_condition.value
 	elif Global.scenario.win_condition.type == "time":
 		target_lines = max_lpm * Global.scenario.win_condition.value / 60.0
 	elif Global.scenario.win_condition.type == "score":
@@ -230,7 +155,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 		if Global.scenario.win_condition.type == "score":
 			var tmp_speed := target_speed * pow(RDF_SPEED, tmp_overall_rank)
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
-			if (Global.scenario.win_condition.value + COMBO_STARTUP_POINTS) / points_per_second < rank_result.seconds || Global.scenario_performance.died:
+			if (Global.scenario.win_condition.value + COMBO_STARTUP_POINTS) / points_per_second < rank_result.seconds or Global.scenario_performance.died:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank

@@ -1,3 +1,5 @@
+tool
+extends SmoothPath
 """
 Draws and fills a big blobby curve defining the customer's torso, and provides logic for making it bigger and smaller.
 
@@ -5,15 +7,13 @@ Godot has no out-of-the-box method for tweening curves, so this class exposes a 
 0.0 to 10.0 to tween between a few different torso curves. It also provides some utility methods for developers to
 maintain these curve definitions, as they can't be edited with the usual animation editor.
 """
-tool
-extends SmoothPath
 
 # How fat the customer's body is; 5.0 = 5x normal size
 export (float) var _fatness := 1.0 setget set_fatness, get_fatness
 
 """
 Setting this to 'true' will prevent the body's current curve from being overwritten by the fatness property, and will
-print the curve's definition to the debugger output so that it can be pasted into the curve_defs field.
+print the curve's definition to the debugger output so that it can be pasted into the _curve_defs field.
 
 The expected workflow is that the developer can adjust the AnimationPlayer to the desired frame, set 'editing' to
 true, tweak the SmoothPath coordinates, launch the application, and then copy the printed curve definitions into this
@@ -22,7 +22,7 @@ class.
 export (bool) var editing := true
 
 # Defines the torso curve coordinates for each of the customer's levels of fatness.
-var curve_defs := [
+var _curve_defs := [
 	{"fatness": 1.0,
 		"curve_def": [
 			[Vector2(-11.158, -72.063904), Vector2(24.9977, 0.341151), Vector2(-32.903702, -0.449047)],
@@ -79,6 +79,7 @@ func _ready() -> void:
 		for i in curve.get_point_count():
 			print("[Vector2%s, Vector2%s, Vector2%s]," % [curve.get_point_position(i), curve.get_point_in(i), curve.get_point_out(i)])
 
+
 """
 Sets how fat the customer's body is, and recalculates the curve coordinates.
 
@@ -86,19 +87,18 @@ Parameters: 'fatness' defines how fat the customer's body is; 5.0 = 5x normal si
 """
 func set_fatness(fatness: float) -> void:
 	_fatness = fatness
-
 	if editing:
 		# Don't overwrite the curve based on the fatness attribute. The developer is currently making manual changes
 		# to it, and we don't want to undo their changes.
 		return
 
 	var fatness_index := 0
-	while fatness_index < curve_defs.size() - 2 && curve_defs[fatness_index + 1].fatness < fatness:
+	while fatness_index < _curve_defs.size() - 2 and _curve_defs[fatness_index + 1].fatness < fatness:
 		fatness_index += 1
 
 	# curve_def_low is the lower fatness curve. curve_def_high is the higher fatness curve
-	var curve_def_low = curve_defs[fatness_index]
-	var curve_def_high = curve_defs[fatness_index + 1]
+	var curve_def_low = _curve_defs[fatness_index]
+	var curve_def_high = _curve_defs[fatness_index + 1]
 	curve.clear_points()
 
 	# Calculate how much of each curve we should use. A value greater than 0.5 means we'll mostly use curve_def_high,
@@ -111,6 +111,7 @@ func set_fatness(fatness: float) -> void:
 		var point_out: Vector2 = (1 - f_pct) * curve_def_low.curve_def[i][2] + f_pct * curve_def_high.curve_def[i][2]
 		curve.add_point(point_pos, point_in, point_out)
 	update()
+
 
 func get_fatness() -> float:
 	return _fatness

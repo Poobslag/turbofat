@@ -1,9 +1,9 @@
 [gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://scenes/Piece.gd" type="Script" id=1]
+[ext_resource path="res://scenes/piece-manager.gd" type="Script" id=1]
 [ext_resource path="res://art/blocks.png" type="Texture" id=2]
 [ext_resource path="res://scenes/CornerMap.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/StretchMap.gd" type="Script" id=4]
+[ext_resource path="res://scenes/stretch-map.gd" type="Script" id=4]
 [ext_resource path="res://sound/rotate0.wav" type="AudioStream" id=5]
 [ext_resource path="res://sound/move.wav" type="AudioStream" id=6]
 [ext_resource path="res://sound/voice-chef/gameover-voice1.wav" type="AudioStream" id=7]
@@ -15,6 +15,8 @@
 [ext_resource path="res://sound/voice-chef/gameover-voice0.wav" type="AudioStream" id=13]
 [ext_resource path="res://sound/voice-chef/gameover-voice2.wav" type="AudioStream" id=14]
 [ext_resource path="res://sound/voice-chef/gameover-voice4.wav" type="AudioStream" id=15]
+
+
 
 [sub_resource type="TileSet" id=1]
 0/name = "blocks.png 0"
@@ -35,7 +37,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[node name="Piece" type="Control"]
+[node name="PieceManager" type="Control"]
 margin_right = 288.0
 margin_bottom = 576.0
 rect_clip_content = true

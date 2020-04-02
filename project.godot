@@ -9,18 +9,60 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "ActivePiece",
+"language": "GDScript",
+"path": "res://scenes/active-piece.gd"
+}, {
 "base": "Sprite",
 "class": "MultiOutlineSprite",
 "language": "GDScript",
-"path": "res://scenes/MultiOutlineSprite.gd"
+"path": "res://scenes/multi-outline-sprite.gd"
+}, {
+"base": "Reference",
+"class": "PieceSpeed",
+"language": "GDScript",
+"path": "res://scenes/piece-speed.gd"
+}, {
+"base": "Reference",
+"class": "PieceType",
+"language": "GDScript",
+"path": "res://scenes/piece-type.gd"
+}, {
+"base": "Reference",
+"class": "RankCalculator",
+"language": "GDScript",
+"path": "res://scenes/rank-calculator.gd"
+}, {
+"base": "Reference",
+"class": "RankResult",
+"language": "GDScript",
+"path": "res://scenes/rank-result.gd"
+}, {
+"base": "Reference",
+"class": "Scenario",
+"language": "GDScript",
+"path": "res://scenes/scenario.gd"
+}, {
+"base": "Reference",
+"class": "ScenarioPerformance",
+"language": "GDScript",
+"path": "res://scenes/scenario-performance.gd"
 }, {
 "base": "Path2D",
 "class": "SmoothPath",
 "language": "GDScript",
-"path": "res://scenes/Restaurant/SmoothPath.gd"
+"path": "res://scenes/Restaurant/smooth-path.gd"
 } ]
 _global_script_class_icons={
+"ActivePiece": "",
 "MultiOutlineSprite": "",
+"PieceSpeed": "",
+"PieceType": "",
+"RankCalculator": "",
+"RankResult": "",
+"Scenario": "",
+"ScenarioPerformance": "",
 "SmoothPath": ""
 }
 
@@ -32,11 +74,11 @@ config/icon="res://icon.png"
 
 [autoload]
 
-PieceSpeeds="*res://scenes/PieceSpeeds.gd"
-PieceTypes="*res://scenes/PieceTypes.gd"
-Global="*res://scenes/Global.gd"
-ScenarioHistory="*res://scenes/ScenarioHistory.gd"
-CustomerLoader="*res://scenes/Restaurant/CustomerLoader.gd"
+PieceSpeeds="*res://scenes/piece-speeds.gd"
+PieceTypes="*res://scenes/piece-types.gd"
+Global="*res://scenes/global.gd"
+ScenarioHistory="*res://scenes/scenario-history.gd"
+CustomerLoader="*res://scenes/Restaurant/customer-loader.gd"
 
 [display]
 

@@ -1,12 +1,12 @@
+extends Node2D
 """
 Contains logic for displaying upcoming pieces to the player, organizing and maintaining all of the 'next piece
 displays'.
 """
-extends Node2D
+
+const DISPLAY_COUNT := 9
 
 export (PackedScene) var NextPieceDisplay
-
-const display_count := 9
 
 # Queue of upcoming randomized pieces. The first few pieces are displayed to the player
 var next_pieces := []
@@ -17,11 +17,10 @@ var _next_piece_displays := []
 func _ready() -> void:
 	# Ensure pieces are random
 	randomize()
-	
 	_fill_queue()
-	
-	for i in range(display_count):
-		_add_display(i, 5, 5 + i * (486 / (display_count - 1)), 0.5)
+	for i in range(DISPLAY_COUNT):
+		_add_display(i, 5, 5 + i * (486 / (DISPLAY_COUNT - 1)), 0.5)
+
 
 """
 Hides all next piece displays. We can't let the player see the upcoming pieces before the game starts.
@@ -29,6 +28,7 @@ Hides all next piece displays. We can't let the player see the upcoming pieces b
 func hide_pieces() -> void:
 	for next_piece_display in _next_piece_displays:
 		next_piece_display.hide()
+
 
 """
 Starts a new game, randomizing the pieces and filling the piece queues.
@@ -39,6 +39,16 @@ func start_game() -> void:
 	
 	for next_piece_display in _next_piece_displays:
 		next_piece_display.show()
+
+
+"""
+Pops the next piece off the queue.
+"""
+func pop_piece_type() -> PieceType:
+	var next_piece_type = next_pieces.pop_front()
+	_fill_queue()
+	return next_piece_type
+
 
 """
 Adds a new 'next piece display'.
@@ -51,13 +61,6 @@ func _add_display(piece_index: int, x: float, y: float, scale: float) -> void:
 	add_child(new_display)
 	_next_piece_displays.append(new_display)
 
-"""
-Pops the next piece off the queue.
-"""
-func pop_piece_type() -> PieceTypes.PieceType:
-	var next_piece_type = next_pieces.pop_front()
-	_fill_queue()
-	return next_piece_type
 
 """
 This method fills the queue of upcoming pieces with newly randomized pieces, following a specific algorithm.

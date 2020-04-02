@@ -1,3 +1,5 @@
+class_name MultiOutlineSprite
+extends Sprite
 """
 Draws an outline behind the parent's sprite.
 
@@ -6,16 +8,15 @@ of multiple sprites, an outline shader needs to be appied to the entire sprite g
 Unfortunately I can't find a way to accomplish this, so for now I am instead creating several small sprites which
 follow the individual sprites around. It is a clumsy solution and I hope to fix this.
 """
-class_name MultiOutlineSprite
-extends Sprite
 
-onready var _parent = get_node("..")
+onready var _parent = get_parent()
 
-func _ready():
+func _ready() -> void:
 	z_as_relative = true
 	z_index = -1
 
-func _process(delta):
+
+func _process(delta) -> void:
 	if texture != _parent.texture:
 		offset = _parent.offset
 		texture = _parent.texture

@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://scenes/PracticeMenu.gd" type="Script" id=1]
+[ext_resource path="res://scenes/practice-menu.gd" type="Script" id=1]
 [ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://art/wood-backdrop.png" type="Texture" id=3]
 

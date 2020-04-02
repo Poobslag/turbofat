@@ -1,13 +1,13 @@
+extends Control
 """
 Menu for practice mode, a mode where the player can play over and over and try to beat their high scores.
 """
-extends Control
 
 # Rank required to unlock harder levels. Rank 23 is an A-
 const RANK_TO_UNLOCK := 23.0
 
 func _ready() -> void:
-	if !ScenarioHistory.loaded_scenario_history:
+	if not ScenarioHistory.loaded_scenario_history:
 		ScenarioHistory.load_scenario_history()
 	
 	$"VBoxContainer/Sprint/Normal/Best".text = get_best_sprint_text("sprint-normal")
@@ -42,6 +42,7 @@ func _ready() -> void:
 		$VBoxContainer/Marathon/Master/Button.disabled = true
 		$VBoxContainer/Marathon/Master/Best.text = unlock_message
 
+
 """
 Calculates the best rank a player's received for a specific marathon scenario.
 """
@@ -53,27 +54,31 @@ func get_best_marathon_rank(scenario_name: String) -> float:
 			best_rank = min(best_rank, rank_result.score_rank)
 	return best_rank
 
+
 """
 Calculates the label text for displaying a player's high score for marathon mode.
 """
 func get_best_marathon_text(scenario_name: String) -> String:
 	var has_lived := false
 	var best_score := 0
-	var best_grade := Global.NO_GRADE
+	var best_grade: String = Global.NO_GRADE
 	if ScenarioHistory.scenario_history.has(scenario_name):
 		var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
 		for rank_result in rank_results:
-			if !rank_result.died:
+			if not rank_result.died:
 				has_lived = true
 			if rank_result.score > best_score:
 				best_score = rank_result.score
 				best_grade = Global.grade(rank_result.score_rank)
+	var result: String
 	if best_score == 0:
-		return ""
-	if has_lived:
-		return "Top: %s (%s)*" % [best_score, best_grade]
+		result = ""
+	elif has_lived:
+		result = "Top: %s (%s)*" % [best_score, best_grade]
 	else:
-		return "Top: %s (%s)" % [best_score, best_grade]
+		result = "Top: %s (%s)" % [best_score, best_grade]
+	return result
+
 
 """
 Calculates the best rank a player's received for a specific sprint scenario.
@@ -86,21 +91,21 @@ func get_best_sprint_rank(scenario_name: String) -> float:
 			best_rank = min(best_rank, rank_result.score_rank)
 	return best_rank
 
+
 """
 Calculates the label text for displaying a player's high score for sprint mode.
 """
 func get_best_sprint_text(scenario_name: String) -> String:
 	var best_score := 0
-	var best_grade := Global.NO_GRADE
+	var best_grade: String = Global.NO_GRADE
 	if ScenarioHistory.scenario_history.has(scenario_name):
 		var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
 		for rank_result in rank_results:
 			if rank_result.score > best_score:
 				best_score = rank_result.score
 				best_grade = Global.grade(rank_result.score_rank)
-	if best_score == 0:
-		return ""
-	return "Top: %s (%s)" % [best_score, best_grade]
+	return "" if best_score == 0 else "Top: %s (%s)" % [best_score, best_grade]
+
 
 """
 Calculates the best rank a player's received for a specific ultra scenario.
@@ -113,21 +118,26 @@ func get_best_ultra_rank(scenario_name: String) -> float:
 			best_rank = min(best_rank, rank_result.seconds_rank)
 	return best_rank
 
+
 """
 Calculates the label text for displaying a player's fastest time for ultra mode.
 """
 func get_fastest_time_text(scenario_name: String) -> String:
 	var best_seconds := 9999.0
-	var best_grade := Global.NO_GRADE
+	var best_grade: String = Global.NO_GRADE
 	if ScenarioHistory.scenario_history.has(scenario_name):
 		var rank_results: Array = ScenarioHistory.scenario_history[scenario_name]
 		for rank_result in rank_results:
-			if rank_result.seconds < best_seconds && !rank_result.died:
+			if rank_result.seconds < best_seconds and not rank_result.died:
 				best_seconds = rank_result.seconds
 				best_grade = Global.grade(rank_result.seconds_rank)
-	if best_seconds == 9999.0:
-		return ""
-	return "Top: %01d:%02d (%s)" % [int(ceil(best_seconds)) / 60, int(ceil(best_seconds)) % 60, best_grade]
+	return "" if best_seconds == 9999.0 else \
+			"Top: %01d:%02d (%s)" % [int(ceil(best_seconds)) / 60, int(ceil(best_seconds)) % 60, best_grade]
+
+
+func _load_marathon_scene() -> void:
+	get_tree().change_scene("res://scenes/Marathon.tscn")
+
 
 func _on_MarathonNormalButton_pressed() -> void:
 	Global.scenario.set_name("marathon-normal")
@@ -142,10 +152,8 @@ func _on_MarathonNormalButton_pressed() -> void:
 	Global.scenario.add_level_up("lines", 80, PieceSpeeds.beginner_level_8)
 	Global.scenario.add_level_up("lines", 90, PieceSpeeds.beginner_level_9)
 	Global.scenario.set_win_condition("lines", 100)
-	load_marathon_scene()
+	_load_marathon_scene()
 
-func load_marathon_scene() -> void:
-	get_tree().change_scene("res://scenes/Marathon.tscn")
 
 func _on_MarathonHardButton_pressed() -> void:
 	Global.scenario.set_name("marathon-hard")
@@ -160,7 +168,8 @@ func _on_MarathonHardButton_pressed() -> void:
 	Global.scenario.add_level_up("lines", 130, PieceSpeeds.hard_level_9)
 	Global.scenario.add_level_up("lines", 150, PieceSpeeds.hard_level_10)
 	Global.scenario.set_win_condition("lines", 200, 150)
-	load_marathon_scene()
+	_load_marathon_scene()
+
 
 func _on_MarathonExpertButton_pressed() -> void:
 	Global.scenario.set_name("marathon-expert")
@@ -172,7 +181,8 @@ func _on_MarathonExpertButton_pressed() -> void:
 	Global.scenario.add_level_up("lines", 175, PieceSpeeds.hard_level_14)
 	Global.scenario.add_level_up("lines", 200, PieceSpeeds.hard_level_15)
 	Global.scenario.set_win_condition("lines", 300, 200)
-	load_marathon_scene()
+	_load_marathon_scene()
+
 
 func _on_MarathonMasterButton_pressed() -> void:
 	Global.scenario.set_name("marathon-master")
@@ -183,34 +193,39 @@ func _on_MarathonMasterButton_pressed() -> void:
 	Global.scenario.add_level_up("lines", 400, PieceSpeeds.crazy_level_6)
 	Global.scenario.add_level_up("lines", 500, PieceSpeeds.crazy_level_7)
 	Global.scenario.set_win_condition("lines", 1000, 500)
-	load_marathon_scene()
+	_load_marathon_scene()
+
 
 func _on_SprintNormal_pressed() -> void:
 	Global.scenario.set_name("sprint-normal")
 	Global.scenario.set_start_level(PieceSpeeds.hard_level_0)
 	Global.scenario.set_win_condition("time", 150)
-	load_marathon_scene()
+	_load_marathon_scene()
+
 
 func _on_SprintExpert_pressed() -> void:
 	Global.scenario.set_name("sprint-expert")
 	Global.scenario.set_start_level(PieceSpeeds.crazy_level_0)
 	Global.scenario.set_win_condition("time", 180)
-	load_marathon_scene()
+	_load_marathon_scene()
+
 
 func _on_UltraNormal_pressed() -> void:
 	Global.scenario.set_name("ultra-normal")
 	Global.scenario.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario.set_win_condition("score", 200)
-	load_marathon_scene()
+	_load_marathon_scene()
+
 
 func _on_UltraHard_pressed() -> void:
 	Global.scenario.set_name("ultra-hard")
 	Global.scenario.set_start_level(PieceSpeeds.hard_level_0)
 	Global.scenario.set_win_condition("score", 1000)
-	load_marathon_scene()
+	_load_marathon_scene()
+
 
 func _on_UltraExpert_pressed() -> void:
 	Global.scenario.set_name("ultra-expert")
 	Global.scenario.set_start_level(PieceSpeeds.crazy_level_0)
 	Global.scenario.set_win_condition("score", 3000)
-	load_marathon_scene()
+	_load_marathon_scene()

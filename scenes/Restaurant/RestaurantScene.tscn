@@ -9,7 +9,8 @@
 [ext_resource path="res://art/restaurant/light.png" type="Texture" id=14]
 [ext_resource path="res://art/restaurant/poster1.png" type="Texture" id=15]
 [ext_resource path="res://art/restaurant/poster0.png" type="Texture" id=16]
-[ext_resource path="res://scenes/Restaurant/RestaurantScene.gd" type="Script" id=24]
+[ext_resource path="res://scenes/Restaurant/restaurant-scene.gd" type="Script" id=24]
+
 
 [node name="RestaurantScene" type="Node2D"]
 light_mask = 2

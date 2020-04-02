@@ -1,14 +1,14 @@
 [gd_scene load_steps=86 format=2]
 
-[ext_resource path="res://scenes/Restaurant/Customer.gd" type="Script" id=1]
-[ext_resource path="res://scenes/Restaurant/FatPlayer.gd" type="Script" id=2]
+[ext_resource path="res://scenes/Restaurant/customer.gd" type="Script" id=1]
+[ext_resource path="res://scenes/Restaurant/fat-player.gd" type="Script" id=2]
 [ext_resource path="res://art/shadow-oval-0.png" type="Texture" id=3]
-[ext_resource path="res://scenes/Restaurant/SmoothPathOutline.gd" type="Script" id=4]
-[ext_resource path="res://scenes/Restaurant/CustomerBody.gd" type="Script" id=5]
+[ext_resource path="res://scenes/Restaurant/smooth-path-outline.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Restaurant/customer-body.gd" type="Script" id=5]
 [ext_resource path="res://sound/door-chime0.wav" type="AudioStream" id=6]
 [ext_resource path="res://sound/door-chime3.wav" type="AudioStream" id=7]
 [ext_resource path="res://art/restaurant/wood-table.png" type="Texture" id=8]
-[ext_resource path="res://scenes/Outline.shader" type="Shader" id=9]
+[ext_resource path="res://scenes/outline.shader" type="Shader" id=9]
 [ext_resource path="res://art/restaurant/stool.png" type="Texture" id=10]
 [ext_resource path="res://sound/door-chime4.wav" type="AudioStream" id=11]
 [ext_resource path="res://sound/door-chime2.wav" type="AudioStream" id=12]
@@ -29,9 +29,9 @@
 [ext_resource path="res://sound/munch3.wav" type="AudioStream" id=27]
 [ext_resource path="res://sound/voice-customer/combo-voice-11.wav" type="AudioStream" id=28]
 [ext_resource path="res://sound/voice-customer/combo-voice-09.wav" type="AudioStream" id=29]
-[ext_resource path="res://scenes/Restaurant/Seat.gd" type="Script" id=30]
+[ext_resource path="res://scenes/Restaurant/seat.gd" type="Script" id=30]
 [ext_resource path="res://sound/voice-customer/combo-voice-08.wav" type="AudioStream" id=31]
-[ext_resource path="res://scenes/RgbPalette.shader" type="Shader" id=32]
+[ext_resource path="res://scenes/rgb-palette.shader" type="Shader" id=32]
 [ext_resource path="res://sound/voice-customer/combo-voice-10.wav" type="AudioStream" id=33]
 [ext_resource path="res://sound/voice-customer/combo-voice-01.wav" type="AudioStream" id=34]
 [ext_resource path="res://sound/voice-customer/combo-voice-02.wav" type="AudioStream" id=35]
@@ -48,9 +48,19 @@
 [ext_resource path="res://sound/voice-customer/goodbye-voice-2.wav" type="AudioStream" id=46]
 [ext_resource path="res://sound/voice-customer/hello-voice-2.wav" type="AudioStream" id=47]
 [ext_resource path="res://sound/voice-customer/goodbye-voice-3.wav" type="AudioStream" id=48]
-[ext_resource path="res://scenes/MultiOutlineSprite.gd" type="Script" id=49]
-[ext_resource path="res://scenes/MultiOutline.shader" type="Shader" id=50]
-[ext_resource path="res://scenes/OutlineMaterial.tres" type="Material" id=51]
+[ext_resource path="res://scenes/multi-outline-sprite.gd" type="Script" id=49]
+[ext_resource path="res://scenes/multi-outline.shader" type="Shader" id=50]
+[ext_resource path="res://scenes/outline-material.tres" type="Material" id=51]
+
+
+
+
+
+
+
+
+
+
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
