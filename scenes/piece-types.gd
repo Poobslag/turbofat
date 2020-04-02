@@ -20,29 +20,33 @@ const KICKS_J = [
 const KICKS_U = [
 		[Vector2( 1, -1), Vector2( 1, -2), Vector2( 0,  1), Vector2( 1,  1)],
 		[Vector2(-1,  1), Vector2(-1,  2), Vector2( 0, -1), Vector2(-1, -1)],
-		[Vector2(-1, -1), Vector2(-1, -2), Vector2( 0, -1), Vector2(-1,  1)],
+		[Vector2(-1, -1), Vector2(-1, -2), Vector2( 0,  1), Vector2(-1,  1)],
 		[Vector2( 1,  1), Vector2( 1,  2), Vector2( 0, -1), Vector2( 1, -1)]
 	]
 
 const KICKS_P = [
-		[Vector2(-1, -1), Vector2(-1,  0), Vector2( 0, -1), Vector2( 0,  2), Vector2(-1,  2)],
-		[Vector2( 1,  1), Vector2( 1,  0), Vector2( 0, -1), Vector2( 0, -2), Vector2( 1, -2)],
-		[Vector2( 1, -1), Vector2( 1,  0), Vector2( 0,  1), Vector2( 0,  2), Vector2( 1,  2)],
-		[Vector2(-1,  1), Vector2(-1,  0), Vector2( 0,  1), Vector2( 0, -2), Vector2(-1, -2)]
+		[Vector2( 0,  1), Vector2( 0, -1), Vector2( 0, -2), Vector2(-1, -1)],
+		[Vector2( 1,  0), Vector2( 0,  1), Vector2( 0,  2), Vector2( 1, -1)],
+		[Vector2( 1,  0), Vector2( 0,  1), Vector2( 0, -2), Vector2( 1,  1)],
+		[Vector2( 0,  1), Vector2( 0, -1), Vector2( 0,  2), Vector2(-1,  1)]
 	]
 
 const KICKS_V = [
-		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0, -1), Vector2( 0, -2)], # 0 -> R
-		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1), Vector2( 0, -2)], # R -> 0
+		# these kicks should be symmetrical over the y-axis
+		[Vector2(-1,  0), Vector2( 1,  1), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0,  2)], # 0 -> R
+		[Vector2(-1,  0), Vector2( 1, -1), Vector2(-1, -1), Vector2( 0, -1), Vector2( 0, -2)], # R -> 0
 		
-		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0,  1), Vector2( 0, -2)], # R -> 2
-		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1), Vector2( 0, -2)], # 2 -> R
+		# these kicks should be symmetrical over the x-axis
+		[Vector2( 1,  0), Vector2(-1,  0), Vector2( 0, -1), Vector2(-1, -1), Vector2(-1,  1), Vector2(-1, -2), Vector2(-2,  0)], # R -> 2
+		[Vector2(-1,  0), Vector2( 1,  0), Vector2( 0, -1), Vector2( 1, -1), Vector2( 1,  1), Vector2( 1, -2), Vector2( 2,  0)], # 2 -> R
+
+		# these kicks should be symmetrical over the y-axis
+		[Vector2( 1,  0), Vector2(-1, -1), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0, -2)], # 2 -> L
+		[Vector2( 1,  0), Vector2(-1,  1), Vector2( 1,  1), Vector2( 0,  1), Vector2( 0,  2)], # L -> 2
 		
-		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  1), Vector2( 0, -2)], # 2 -> L
-		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2( 0, -2)], # L -> 2
-		
-		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2( 0, -2)], # L -> 0
-		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  1), Vector2( 0, -1), Vector2( 0, -2)], # 0 -> L
+		# these kicks should be symmetrical over the x-axis
+		[Vector2(-1,  0), Vector2( 1,  0), Vector2( 0,  1), Vector2( 1,  1), Vector2( 1, -1), Vector2( 1,  2), Vector2( 2,  0)], # L -> 0
+		[Vector2( 1,  0), Vector2(-1,  0), Vector2( 0,  1), Vector2(-1,  1), Vector2(-1, -1), Vector2(-1,  2), Vector2(-2,  0)], # 0 -> L
 	]
 
 const KICKS_NONE = [
@@ -135,12 +139,12 @@ var piece_t := PieceType.new("t",
 var piece_u := PieceType.new("u",
 		# shape data
 		[[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(2, 1)],
-		[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(1, 2), Vector2(0, 2)],
+		[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 2), Vector2(1, 2)],
 		[Vector2(0, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
 		[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(1, 2), Vector2(2, 2)]],
 		# color data
 		[[Vector2(10, 2), Vector2(12, 2), Vector2(6, 2), Vector2(1, 2), Vector2(1, 2)],
-		[Vector2(8, 2), Vector2(6, 2), Vector2(3, 2), Vector2(5, 2), Vector2(8, 2)],
+		[Vector2(8, 2), Vector2(6, 2), Vector2(3, 2), Vector2(8, 2), Vector2(5, 2)],
 		[Vector2(2, 2), Vector2(2, 2), Vector2(9, 2), Vector2(12, 2), Vector2(5, 2)],
 		[Vector2(10, 2), Vector2(4, 2), Vector2(3, 2), Vector2(9, 2), Vector2(4, 2)]],
 		KICKS_U,
