@@ -42,7 +42,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Scenario",
 "language": "GDScript",
-"path": "res://scenes/scenario.gd"
+"path": "res://scenes/Scenario.gd"
 }, {
 "base": "Reference",
 "class": "ScenarioPerformance",

@@ -1,4 +1,13 @@
 extends "res://addons/gut/test.gd"
+"""
+Unit test demonstrating the rank calculator. If a player scores a lot of points, the game should give them a higher
+rank. Short levels with slower pieces require lower scores, because even a perfect player couldn't score very many
+points.
+
+There are a lot of variables and edge cases involved in the rank calculations, and it's easy to introduce obscure bugs
+where it's impossible to get a master rank, or the rank system is too forgiving, which is why unit tests are
+particularly important for this code.
+"""
 
 var _rank_calculator = RankCalculator.new()
 
@@ -163,10 +172,8 @@ func test_two_rank_s():
 	Global.scenario_performance.seconds = 88.55
 	var rank = _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.seconds_rank), "S+")
-	print(rank.seconds_rank)
 
 	Global.scenario.set_win_condition("score", 1000)
 	Global.scenario_performance.seconds = 128.616
 	var rank2 = _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank2.seconds_rank), "S")
-	print(rank2.seconds_rank)

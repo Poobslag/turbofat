@@ -10,10 +10,11 @@ anchor_bottom = 1.0
 rect_min_size = Vector2( 740, 250 )
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_use_anchors_": false,
 "_editor_icon": ExtResource( 2 )
 }
 _run_on_load = true
 _yield_between_tests = false
-_file_prefix = "Test"
+_file_prefix = "test-"
 _directory1 = "res://test/unit"
 _double_strategy = 1
