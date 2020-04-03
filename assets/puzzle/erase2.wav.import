@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/erase2.wav-a8435fd513ae78d46515475eaa03b20b.sample"
+
+[deps]
+
+source_file="res://assets/puzzle/erase2.wav"
+dest_files=[ "res://.import/erase2.wav-a8435fd513ae78d46515475eaa03b20b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

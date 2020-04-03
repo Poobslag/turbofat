@@ -1,0 +1,436 @@
+[gd_scene load_steps=63 format=2]
+
+[ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
+[ext_resource path="res://assets/puzzle/blocks/blocks.png" type="Texture" id=2]
+[ext_resource path="res://assets/puzzle/blocks/blocks-boxes.png" type="Texture" id=3]
+[ext_resource path="res://assets/puzzle/blocks/blocks-vegetable.png" type="Texture" id=4]
+[ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/puzzle/erase1.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/puzzle/erase2.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/puzzle/erase3.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/puzzle/linefall.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/puzzle/make-cake-box.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/puzzle/make-snack-box1.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/puzzle/clear-snack-box.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/puzzle/clear-cake-box.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/puzzle/combo-00.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/puzzle/fanfare1.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/puzzle/fanfare2.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/puzzle/fanfare3.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/puzzle/combo-01.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/puzzle/combo-02.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/puzzle/combo-03.wav" type="AudioStream" id=20]
+[ext_resource path="res://assets/puzzle/combo-04.wav" type="AudioStream" id=21]
+[ext_resource path="res://assets/puzzle/combo-05.wav" type="AudioStream" id=22]
+[ext_resource path="res://assets/puzzle/combo-06.wav" type="AudioStream" id=23]
+[ext_resource path="res://assets/puzzle/combo-07.wav" type="AudioStream" id=24]
+[ext_resource path="res://assets/puzzle/combo-08.wav" type="AudioStream" id=25]
+[ext_resource path="res://assets/puzzle/combo-09.wav" type="AudioStream" id=26]
+[ext_resource path="res://assets/puzzle/combo-10.wav" type="AudioStream" id=27]
+[ext_resource path="res://assets/puzzle/combo-11.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/puzzle/combo-12.wav" type="AudioStream" id=29]
+[ext_resource path="res://assets/puzzle/combo-13.wav" type="AudioStream" id=30]
+[ext_resource path="res://assets/puzzle/combo-14.wav" type="AudioStream" id=31]
+[ext_resource path="res://assets/puzzle/combo-15.wav" type="AudioStream" id=32]
+[ext_resource path="res://assets/puzzle/combo-16.wav" type="AudioStream" id=33]
+[ext_resource path="res://assets/puzzle/combo-17.wav" type="AudioStream" id=34]
+[ext_resource path="res://assets/puzzle/combo-18.wav" type="AudioStream" id=35]
+[ext_resource path="res://assets/puzzle/combo-19.wav" type="AudioStream" id=36]
+[ext_resource path="res://assets/puzzle/playfield-bg.png" type="Texture" id=37]
+[ext_resource path="res://assets/puzzle/blocks/blocks-vegetable-shadows.png" type="Texture" id=38]
+[ext_resource path="res://assets/puzzle/blocks/blocks-boxes-shadows.png" type="Texture" id=39]
+[ext_resource path="res://assets/puzzle/blocks/blocks-shadows.png" type="Texture" id=40]
+[ext_resource path="res://src/main/puzzle/piece/shadow-map.gd" type="Script" id=41]
+[ext_resource path="res://assets/puzzle/combo-20.wav" type="AudioStream" id=42]
+[ext_resource path="res://assets/puzzle/combo-23.wav" type="AudioStream" id=43]
+[ext_resource path="res://assets/puzzle/combo-21.wav" type="AudioStream" id=44]
+[ext_resource path="res://assets/puzzle/combo-22.wav" type="AudioStream" id=45]
+[ext_resource path="res://assets/puzzle/combo-e04.wav" type="AudioStream" id=46]
+[ext_resource path="res://assets/puzzle/combo-e02.wav" type="AudioStream" id=47]
+[ext_resource path="res://assets/puzzle/combo-e00.wav" type="AudioStream" id=48]
+[ext_resource path="res://assets/puzzle/combo-e01.wav" type="AudioStream" id=49]
+[ext_resource path="res://assets/puzzle/combo-e05.wav" type="AudioStream" id=50]
+[ext_resource path="res://assets/puzzle/combo-e06.wav" type="AudioStream" id=51]
+[ext_resource path="res://assets/puzzle/combo-e03.wav" type="AudioStream" id=52]
+[ext_resource path="res://assets/puzzle/combo-e07.wav" type="AudioStream" id=53]
+[ext_resource path="res://assets/puzzle/combo-e08.wav" type="AudioStream" id=54]
+[ext_resource path="res://assets/puzzle/combo-e11.wav" type="AudioStream" id=55]
+[ext_resource path="res://assets/puzzle/combo-e09.wav" type="AudioStream" id=56]
+[ext_resource path="res://assets/puzzle/combo-e10.wav" type="AudioStream" id=57]
+[ext_resource path="res://assets/puzzle/make-snack-box3.wav" type="AudioStream" id=58]
+[ext_resource path="res://assets/puzzle/make-snack-box0.wav" type="AudioStream" id=59]
+[ext_resource path="res://assets/puzzle/make-snack-box2.wav" type="AudioStream" id=60]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[sub_resource type="TileSet" id=1]
+0/name = "blocks-shadows.png 0"
+0/texture = ExtResource( 40 )
+0/tex_offset = Vector2( 0, -64 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 2, 2, 2364, 656 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 144, 128 )
+0/autotile/spacing = 4
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+1/name = "blocks-boxes-shadows.png 1"
+1/texture = ExtResource( 39 )
+1/tex_offset = Vector2( 0, -64 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 2, 2, 2364, 656 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 144, 128 )
+1/autotile/spacing = 4
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shapes = [  ]
+1/z_index = 0
+2/name = "blocks-vegetable-shadows.png 2"
+2/texture = ExtResource( 38 )
+2/tex_offset = Vector2( 0, -64 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 2, 2, 2660, 524 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 144, 128 )
+2/autotile/spacing = 4
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shapes = [  ]
+2/z_index = 0
+
+[sub_resource type="TileSet" id=2]
+0/name = "blocks.png"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 2, 2, 1212, 268 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 72, 64 )
+0/autotile/spacing = 4
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+1/name = "blocks-boxes.png"
+1/texture = ExtResource( 3 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 2, 2, 1212, 268 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 72, 64 )
+1/autotile/spacing = 4
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shapes = [  ]
+1/z_index = 0
+2/name = "blocks-vegetable.png"
+2/texture = ExtResource( 4 )
+2/tex_offset = Vector2( 0, 0 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 2, 2, 1368, 268 )
+2/tile_mode = 2
+2/autotile/icon_coordinate = Vector2( 0, 0 )
+2/autotile/tile_size = Vector2( 72, 64 )
+2/autotile/spacing = 4
+2/autotile/occluder_map = [  ]
+2/autotile/navpoly_map = [  ]
+2/autotile/priority_map = [  ]
+2/autotile/z_index_map = [  ]
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shapes = [  ]
+2/z_index = 0
+
+[node name="Playfield" type="Control"]
+margin_right = 324.0
+margin_bottom = 544.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 324.0
+margin_bottom = 544.0
+color = Color( 0.113725, 0.101961, 0.101961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.25098 )
+scale = Vector2( 0.468208, 0.468158 )
+texture = ExtResource( 37 )
+centered = false
+
+[node name="TileMapClip" type="Control" parent="."]
+margin_right = 324.0
+margin_bottom = 544.0
+rect_clip_content = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShadowMap" type="TileMap" parent="TileMapClip"]
+modulate = Color( 0.1, 0.095, 0.095, 1 )
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 72, 64 )
+format = 1
+tile_data = PoolIntArray( 1114113, 0, 2, 1179649, 0, 9, 1179650, 0, 3, 1179651, 0, 4 )
+script = ExtResource( 41 )
+
+[node name="TileMap" type="TileMap" parent="TileMapClip"]
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = SubResource( 2 )
+cell_size = Vector2( 72, 64 )
+format = 1
+tile_data = PoolIntArray( 983046, 4, 0, 1048582, 4, 0, 1114113, 0, 2, 1114118, 4, 0, 1179648, 2, 0, 1179649, 0, 9, 1179650, 0, 12, 1179651, 0, 4, 1179656, 2, 4, 1245184, 2, 1, 1245185, 2, 2, 1245186, 2, 3, 1245190, 2, 5, 1245191, 2, 6, 1245192, 2, 7 )
+
+[node name="CornerMap" parent="TileMapClip/TileMap" instance=ExtResource( 5 )]
+tile_data = PoolIntArray( 2359299, 0, 1 )
+
+[node name="Erase1Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Reverb Bus"
+
+[node name="Erase2Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+bus = "Reverb Bus"
+
+[node name="Erase3Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+bus = "Reverb Bus"
+
+[node name="LineFallSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+bus = "Reverb Bus"
+
+[node name="MakeCakeBoxSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+bus = "Reverb Bus"
+
+[node name="MakeSnackBoxSound0" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 59 )
+bus = "Reverb Bus"
+
+[node name="MakeSnackBoxSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+bus = "Reverb Bus"
+
+[node name="MakeSnackBoxSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 60 )
+bus = "Reverb Bus"
+
+[node name="MakeSnackBoxSound3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 58 )
+bus = "Reverb Bus"
+
+[node name="ClearSnackPieceSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+bus = "Reverb Bus"
+
+[node name="ClearCakePieceSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+bus = "Reverb Bus"
+
+[node name="Combo1Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+bus = "Reverb Bus"
+
+[node name="Fanfare1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 15 )
+volume_db = -4.0
+bus = "Reverb Bus"
+
+[node name="Fanfare2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 16 )
+volume_db = -4.0
+bus = "Reverb Bus"
+
+[node name="Fanfare3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
+volume_db = -4.0
+bus = "Reverb Bus"
+
+[node name="Combo2Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+bus = "Reverb Bus"
+
+[node name="Combo3Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 19 )
+bus = "Reverb Bus"
+
+[node name="Combo4Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+bus = "Reverb Bus"
+
+[node name="Combo5Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+bus = "Reverb Bus"
+
+[node name="Combo6Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+bus = "Reverb Bus"
+
+[node name="Combo7Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 23 )
+bus = "Reverb Bus"
+
+[node name="Combo8Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 24 )
+bus = "Reverb Bus"
+
+[node name="Combo9Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 25 )
+bus = "Reverb Bus"
+
+[node name="Combo10Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 26 )
+bus = "Reverb Bus"
+
+[node name="Combo11Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 27 )
+bus = "Reverb Bus"
+
+[node name="Combo12Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 28 )
+bus = "Reverb Bus"
+
+[node name="Combo13Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 29 )
+bus = "Reverb Bus"
+
+[node name="Combo14Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 30 )
+bus = "Reverb Bus"
+
+[node name="Combo15Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 31 )
+bus = "Reverb Bus"
+
+[node name="Combo16Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 32 )
+bus = "Reverb Bus"
+
+[node name="Combo17Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 33 )
+bus = "Reverb Bus"
+
+[node name="Combo18Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 34 )
+bus = "Reverb Bus"
+
+[node name="Combo19Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 35 )
+bus = "Reverb Bus"
+
+[node name="Combo20Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 36 )
+bus = "Reverb Bus"
+
+[node name="Combo21Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 42 )
+bus = "Reverb Bus"
+
+[node name="Combo22Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 44 )
+bus = "Reverb Bus"
+
+[node name="Combo23Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 45 )
+bus = "Reverb Bus"
+
+[node name="Combo24Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 43 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless00Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 48 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless01Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 49 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless02Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 47 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless03Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 52 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless04Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 46 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless05Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 50 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless06Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 51 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless07Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 53 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless08Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 54 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless09Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 56 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless10Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 57 )
+bus = "Reverb Bus"
+
+[node name="ComboEndless11Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 55 )
+bus = "Reverb Bus"

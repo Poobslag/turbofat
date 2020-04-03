@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/make-snack-box0.wav-dddfdc1a17807706550822af1af29710.sample"
+
+[deps]
+
+source_file="res://assets/puzzle/make-snack-box0.wav"
+dest_files=[ "res://.import/make-snack-box0.wav-dddfdc1a17807706550822af1af29710.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/excellent.wav-3ff8500c5f5cde8a7882b58ccc710244.sample"
+
+[deps]
+
+source_file="res://assets/ui/excellent.wav"
+dest_files=[ "res://.import/excellent.wav-3ff8500c5f5cde8a7882b58ccc710244.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
