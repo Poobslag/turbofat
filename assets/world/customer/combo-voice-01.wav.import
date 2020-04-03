@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/combo-voice-01.wav-9cc928ec9b7efb90c2d3dd6a86491a86.sample"
+
+[deps]
+
+source_file="res://assets/world/customer/combo-voice-01.wav"
+dest_files=[ "res://.import/combo-voice-01.wav-9cc928ec9b7efb90c2d3dd6a86491a86.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

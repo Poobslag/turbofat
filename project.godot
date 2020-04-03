@@ -12,47 +12,47 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "ActivePiece",
 "language": "GDScript",
-"path": "res://scenes/active-piece.gd"
+"path": "res://src/main/puzzle/piece/active-piece.gd"
 }, {
-"base": "Sprite",
+"base": "Reference",
 "class": "MultiOutlineSprite",
 "language": "GDScript",
-"path": "res://scenes/multi-outline-sprite.gd"
+"path": "res://src/main/world/multi-outline-sprite.gd"
 }, {
 "base": "Reference",
 "class": "PieceSpeed",
 "language": "GDScript",
-"path": "res://scenes/piece-speed.gd"
+"path": "res://src/main/puzzle/piece/piece-speed.gd"
 }, {
 "base": "Reference",
 "class": "PieceType",
 "language": "GDScript",
-"path": "res://scenes/piece-type.gd"
+"path": "res://src/main/puzzle/piece/piece-type.gd"
 }, {
 "base": "Reference",
 "class": "RankCalculator",
 "language": "GDScript",
-"path": "res://scenes/rank-calculator.gd"
+"path": "res://src/main/puzzle/rank-calculator.gd"
 }, {
 "base": "Reference",
 "class": "RankResult",
 "language": "GDScript",
-"path": "res://scenes/rank-result.gd"
-}, {
-"base": "Reference",
-"class": "Scenario",
-"language": "GDScript",
-"path": "res://scenes/Scenario.gd"
+"path": "res://src/main/puzzle/rank-result.gd"
 }, {
 "base": "Reference",
 "class": "ScenarioPerformance",
 "language": "GDScript",
-"path": "res://scenes/scenario-performance.gd"
+"path": "res://src/main/puzzle/scenario-performance.gd"
+}, {
+"base": "Reference",
+"class": "ScenarioSettings",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario-settings.gd"
 }, {
 "base": "Path2D",
 "class": "SmoothPath",
 "language": "GDScript",
-"path": "res://scenes/Restaurant/smooth-path.gd"
+"path": "res://src/main/world/restaurant/smooth-path.gd"
 } ]
 _global_script_class_icons={
 "ActivePiece": "",
@@ -61,24 +61,28 @@ _global_script_class_icons={
 "PieceType": "",
 "RankCalculator": "",
 "RankResult": "",
-"Scenario": "",
 "ScenarioPerformance": "",
+"ScenarioSettings": "",
 "SmoothPath": ""
 }
 
 [application]
 
 config/name="Turbo Fat"
-run/main_scene="res://scenes/PracticeMenu.tscn"
-config/icon="res://icon.png"
+run/main_scene="res://src/main/ui/PracticeMenu.tscn"
+config/icon="res://assets/ui/icon.png"
+
+[audio]
+
+default_bus_layout="res://assets/ui/default_bus_layout.tres"
 
 [autoload]
 
-PieceSpeeds="*res://scenes/piece-speeds.gd"
-PieceTypes="*res://scenes/piece-types.gd"
-Global="*res://scenes/global.gd"
-ScenarioHistory="*res://scenes/scenario-history.gd"
-CustomerLoader="*res://scenes/Restaurant/customer-loader.gd"
+PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
+PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
+Global="*res://src/main/global.gd"
+ScenarioHistory="*res://src/main/puzzle/scenario-history.gd"
+CustomerLoader="*res://src/main/world/restaurant/customer-loader.gd"
 
 [display]
 

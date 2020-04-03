@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/combo-e01.wav-0cf2e5ce331891a8de310da2afd1509d.sample"
+
+[deps]
+
+source_file="res://assets/puzzle/combo-e01.wav"
+dest_files=[ "res://.import/combo-e01.wav-0cf2e5ce331891a8de310da2afd1509d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

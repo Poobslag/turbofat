@@ -1,0 +1,220 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://src/main/puzzle/scenario.gd" type="Script" id=1]
+[ext_resource path="res://assets/ui/Xolonium-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://src/main/puzzle/Puzzle.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/ui/excellent.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/ui/matchend.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/ui/applause.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/puzzle/levelup.wav" type="AudioStream" id=7]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 1, 1, 1, 0.333333 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 24
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 48
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 36
+font_data = ExtResource( 2 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 24
+font_data = ExtResource( 2 )
+
+[node name="PuzzleScenario" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Puzzle" parent="." instance=ExtResource( 3 )]
+
+[node name="LinesHUD" type="Control" parent="."]
+margin_top = 170.0
+margin_right = 250.0
+margin_bottom = 210.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="LinesHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_top = 30.0
+margin_bottom = 75.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelLabel" type="Label" parent="LinesHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -99.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 3 )
+text = "Level"
+align = 2
+
+[node name="LevelValue" type="Label" parent="LinesHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -99.0
+margin_top = 24.0
+margin_bottom = 82.0
+custom_fonts/font = SubResource( 4 )
+text = "-"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeHUD" type="Control" parent="."]
+margin_top = 170.0
+margin_right = 250.0
+margin_bottom = 210.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="TimeHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_top = 30.0
+margin_right = -1.52588e-05
+margin_bottom = 75.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+percent_visible = false
+
+[node name="TimeLabel" type="Label" parent="TimeHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 3 )
+text = "Time"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeValue" type="Label" parent="TimeHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_top = 30.0
+margin_bottom = 74.0
+custom_fonts/font = SubResource( 5 )
+text = "3:00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreHUD" type="Control" parent="."]
+margin_top = 170.0
+margin_right = 250.0
+margin_bottom = 210.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="ScoreHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_top = 30.0
+margin_bottom = 75.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreLabel" type="Label" parent="ScoreHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 3 )
+text = "Goal"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScoreValue" type="Label" parent="ScoreHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_top = 30.0
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 6 )
+text = "2000"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeLabel" type="Label" parent="ScoreHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_bottom = 30.0
+custom_fonts/font = SubResource( 3 )
+text = "Time"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TimeValue" type="Label" parent="ScoreHUD"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -100.0
+margin_top = 30.0
+margin_bottom = 75.0
+custom_fonts/font = SubResource( 5 )
+text = "0:00"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelUpSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+bus = "Reverb Bus"
+
+[node name="ExcellentSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+bus = "Reverb Bus"
+
+[node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Reverb Bus"
+
+[node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+bus = "Reverb Bus"
+[connection signal="after_game_ended" from="Puzzle" to="." method="_on_after_game_ended"]
+[connection signal="before_game_started" from="Puzzle" to="." method="_on_before_game_started"]
+[connection signal="game_ended" from="Puzzle" to="." method="_on_game_ended"]
+[connection signal="line_cleared" from="Puzzle" to="." method="_on_line_cleared"]

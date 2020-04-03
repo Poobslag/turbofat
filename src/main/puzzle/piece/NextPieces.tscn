@@ -1,0 +1,40 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/puzzle/piece/next-pieces.gd" type="Script" id=1]
+[ext_resource path="res://src/main/puzzle/piece/NextPieceDisplay.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/puzzle/next-piece-bg.png" type="Texture" id=3]
+
+
+
+
+
+
+
+
+
+
+[node name="NextPieces" type="Node2D"]
+script = ExtResource( 1 )
+NextPieceDisplay = ExtResource( 2 )
+
+[node name="Background Color" type="ColorRect" parent="."]
+margin_right = 64.0
+margin_bottom = 544.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Background Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.627451 )
+scale = Vector2( 0.397516, 0.468158 )
+texture = ExtResource( 3 )
+centered = false
+
+[node name="Shadow" type="ColorRect" parent="."]
+margin_right = 6.0
+margin_bottom = 544.0
+color = Color( 0, 0, 0, 0.196078 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
