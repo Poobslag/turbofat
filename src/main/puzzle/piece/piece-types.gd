@@ -5,33 +5,33 @@ how they 'kick' when they're blocked from rotating.
 """
 
 # constants used when drawing blocks which are connected to other blocks
-const CONNECTED_UP = 1
-const CONNECTED_DOWN = 2
-const CONNECTED_LEFT = 4
-const CONNECTED_RIGHT = 8
+const CONNECTED_UP := 1
+const CONNECTED_DOWN := 2
+const CONNECTED_LEFT := 4
+const CONNECTED_RIGHT := 8
 
-const KICKS_J = [
+const KICKS_J := [
 		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  2), Vector2(-1,  2)],
 		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -2), Vector2( 1, -2)],
 		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  2), Vector2( 1,  2)],
 		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -2), Vector2(-1, -2)]
 	]
 
-const KICKS_U = [
+const KICKS_U := [
 		[Vector2( 1, -1), Vector2( 1, -2), Vector2( 0,  1), Vector2( 1,  1)],
 		[Vector2(-1,  1), Vector2(-1,  2), Vector2( 0, -1), Vector2(-1, -1)],
 		[Vector2(-1, -1), Vector2(-1, -2), Vector2( 0,  1), Vector2(-1,  1)],
 		[Vector2( 1,  1), Vector2( 1,  2), Vector2( 0, -1), Vector2( 1, -1)]
 	]
 
-const KICKS_P = [
+const KICKS_P := [
 		[Vector2( 0,  1), Vector2( 0, -1), Vector2( 0, -2), Vector2(-1, -1)],
 		[Vector2( 1,  0), Vector2( 0,  1), Vector2( 0,  2), Vector2( 1, -1)],
 		[Vector2( 1,  0), Vector2( 0,  1), Vector2( 0, -2), Vector2( 1,  1)],
 		[Vector2( 0,  1), Vector2( 0, -1), Vector2( 0,  2), Vector2(-1,  1)]
 	]
 
-const KICKS_V = [
+const KICKS_V := [
 		# these kicks should be symmetrical over the y-axis
 		[Vector2(-1,  0), Vector2( 1,  1), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0,  2)], # 0 -> R
 		[Vector2(-1,  0), Vector2( 1, -1), Vector2(-1, -1), Vector2( 0, -1), Vector2( 0, -2)], # R -> 0
@@ -49,7 +49,7 @@ const KICKS_V = [
 		[Vector2( 1,  0), Vector2(-1,  0), Vector2( 0,  1), Vector2(-1,  1), Vector2(-1, -1), Vector2(-1,  2), Vector2(-2,  0)], # 0 -> L
 	]
 
-const KICKS_NONE = [
+const KICKS_NONE := [
 		[],
 		[],
 		[],

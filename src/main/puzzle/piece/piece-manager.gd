@@ -7,20 +7,6 @@ playfield.
 # signal emitted when the current piece can't be placed in the playfield
 signal game_ended
 
-# All gravity constants are integers like '16', which actually correspond to fractions like '16/256' which means the
-# piece takes 16 frames to drop one row. GRAVITY_DENOMINATOR is the denominator of that fraction.
-const GRAVITY_DENOMINATOR = 256
-
-# The maximum number of 'lock resets' the player is allotted for a single piece. A lock reset occurs when a piece is at
-# the bottom of the screen but the player moves or rotates it to prevent from locking.
-const MAX_LOCK_RESETS = 12
-
-# The gravity constant used when the player soft-drops a piece. This drop speed should be slow enough that the player
-# can slide pieces into nooks left in vertical stacks.
-const DROP_G = 128
-
-const SMUSH_FRAMES = 4
-
 # information about the current 'speed level', such as how fast pieces drop, how long it takes them to lock into the
 # playfield, and how long to pause when clearing lines.
 var _piece_speed
@@ -290,7 +276,7 @@ func _smush_to_target() -> void:
 	# initialize the stretch animation for long stretches
 	if _target_piece_pos.y - _active_piece.pos.y >= 3:
 		var unblocked_blocks: Array = _active_piece.type.pos_arr[_target_piece_rotation].duplicate()
-		$StretchMap.start_stretch(SMUSH_FRAMES, _active_piece.type.color_arr[_active_piece.orientation][0].y)
+		$StretchMap.start_stretch(PieceSpeeds.SMUSH_FRAMES, _active_piece.type.color_arr[_active_piece.orientation][0].y)
 		for dy in range(_target_piece_pos.y - _active_piece.pos.y):
 			var i := 0
 			while i < unblocked_blocks.size():
@@ -310,14 +296,14 @@ func _smush_to_target() -> void:
 	$SmushSound.play()
 	_set_piece_state("_state_move_piece")
 	_active_piece.gravity = 0
-	_gravity_delay_frames = SMUSH_FRAMES
+	_gravity_delay_frames = PieceSpeeds.SMUSH_FRAMES
 
 
 """
 Resets the piece's 'lock' value, preventing it from locking for a moment.
 """
 func _perform_lock_reset() -> void:
-	if _active_piece.lock_resets >= MAX_LOCK_RESETS or _active_piece.lock == 0:
+	if _active_piece.lock_resets >= PieceSpeeds.MAX_LOCK_RESETS or _active_piece.lock == 0:
 		return
 	_active_piece.lock = 0
 	_active_piece.lock_resets += 1
@@ -384,12 +370,12 @@ func _apply_gravity() -> void:
 	else:
 		if Input.is_action_pressed("soft_drop"):
 			# soft drop
-			_active_piece.gravity += int(max(DROP_G, _piece_speed.gravity))
+			_active_piece.gravity += int(max(PieceSpeeds.DROP_G, _piece_speed.gravity))
 		else:
 			_active_piece.gravity += _piece_speed.gravity
 		
-		while _active_piece.gravity >= GRAVITY_DENOMINATOR:
-			_active_piece.gravity -= GRAVITY_DENOMINATOR
+		while _active_piece.gravity >= PieceSpeeds.G:
+			_active_piece.gravity -= PieceSpeeds.G
 			_reset_piece_target()
 			_target_piece_pos.y = _active_piece.pos.y + 1
 			_move_piece_to_target()

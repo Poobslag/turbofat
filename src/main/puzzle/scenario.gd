@@ -5,10 +5,6 @@ such as 'Marathon mode', a game style which gets harder and harder but theoretic
 good enough.
 """
 
-# All gravity constants are integers like '16', which actually correspond to fractions like '16/256' which means the
-# piece takes 16 frames to drop one row. G is the denominator of that fraction.
-const G = 256
-
 # Hints displayed after the player loses
 const HINTS = [
 	"Make a snack box by arranging a pentomino and a quadromino into a square!",
@@ -167,11 +163,11 @@ func _set_level(new_level:int) -> void:
 	var gravity = Global.scenario_settings.level_up_conditions[new_level].piece_speed.gravity
 	var lock_delay = Global.scenario_settings.level_up_conditions[new_level].piece_speed.lock_delay
 	var level_color := LEVEL_COLOR_0
-	if gravity >= 20 * G and lock_delay < 30:
+	if gravity >= 20 * PieceSpeeds.G and lock_delay < 30:
 		level_color = LEVEL_COLOR_5
-	elif gravity >= 20 * G:
+	elif gravity >= 20 * PieceSpeeds.G:
 		level_color = LEVEL_COLOR_4
-	elif gravity >=  1 * G:
+	elif gravity >=  1 * PieceSpeeds.G:
 		level_color = LEVEL_COLOR_3
 	elif gravity >= 128:
 		level_color = LEVEL_COLOR_2
