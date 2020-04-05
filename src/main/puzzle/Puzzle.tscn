@@ -1,8 +1,8 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/puzzle/piece/PieceManager.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/puzzle/piece/piece-manager.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/piece/NextPieces.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/puzzle/Score.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/ui/xolonium-48-outline.tres" type="DynamicFont" id=6]
@@ -18,14 +18,54 @@
 [ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=16]
 [ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=17]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=18]
+[ext_resource path="res://src/main/puzzle/stretch-map.gd" type="Script" id=19]
+[ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=20]
+[ext_resource path="res://src/main/puzzle/piece/states/move-piece.gd" type="Script" id=21]
+[ext_resource path="res://src/main/puzzle/piece/states/wait-for-playfield.gd" type="Script" id=22]
+[ext_resource path="res://src/main/state-machine.gd" type="Script" id=23]
+[ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=24]
+[ext_resource path="res://assets/puzzle/blocks/blocks.png" type="Texture" id=25]
+[ext_resource path="res://assets/puzzle/squish.wav" type="AudioStream" id=26]
+[ext_resource path="res://assets/world/chef/gameover-voice1.wav" type="AudioStream" id=27]
+[ext_resource path="res://assets/puzzle/lock.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/puzzle/rotate0.wav" type="AudioStream" id=29]
+[ext_resource path="res://assets/puzzle/rotate1.wav" type="AudioStream" id=30]
+[ext_resource path="res://assets/puzzle/move.wav" type="AudioStream" id=31]
+[ext_resource path="res://assets/ui/gameover.wav" type="AudioStream" id=32]
+[ext_resource path="res://assets/world/chef/gameover-voice2.wav" type="AudioStream" id=33]
+[ext_resource path="res://assets/world/chef/gameover-voice3.wav" type="AudioStream" id=34]
+[ext_resource path="res://assets/world/chef/gameover-voice4.wav" type="AudioStream" id=35]
+[ext_resource path="res://assets/world/chef/gameover-voice0.wav" type="AudioStream" id=36]
+[ext_resource path="res://src/main/puzzle/piece/states/none.gd" type="Script" id=37]
+[ext_resource path="res://src/main/puzzle/piece/states/game-ended.gd" type="Script" id=38]
+[ext_resource path="res://src/main/puzzle/piece/states/prespawn.gd" type="Script" id=39]
 
-[sub_resource type="InputEventAction" id=3]
+[sub_resource type="TileSet" id=1]
+0/name = "blocks.png 0"
+0/texture = ExtResource( 25 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 2, 2, 1212, 268 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 72, 64 )
+0/autotile/spacing = 4
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="InputEventAction" id=2]
 action = "ui_cancel"
 
-[sub_resource type="ShortCut" id=4]
-shortcut = SubResource( 3 )
+[sub_resource type="ShortCut" id=3]
+shortcut = SubResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=5]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.19873, 0.177771, 0.177771, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -80,11 +120,102 @@ margin_top = 28.0
 margin_right = 688.0
 margin_bottom = 572.0
 
-[node name="Piece" parent="." instance=ExtResource( 3 )]
+[node name="PieceManager" type="Control" parent="."]
 margin_left = 364.0
 margin_top = 28.0
 margin_right = 688.0
 margin_bottom = 572.0
+rect_clip_content = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" type="TileMap" parent="PieceManager"]
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 72, 64 )
+format = 1
+tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 196608, 262149, 0, 196608 )
+
+[node name="CornerMap" parent="PieceManager/TileMap" instance=ExtResource( 24 )]
+
+[node name="StretchMap" type="TileMap" parent="PieceManager"]
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 72, 64 )
+format = 1
+tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 196608, 262149, 0, 196608 )
+script = ExtResource( 19 )
+
+[node name="CornerMap" parent="PieceManager/StretchMap" instance=ExtResource( 24 )]
+
+[node name="States" type="Node" parent="PieceManager"]
+script = ExtResource( 23 )
+
+[node name="None" type="Node" parent="PieceManager/States"]
+script = ExtResource( 37 )
+
+[node name="Prespawn" type="Node" parent="PieceManager/States"]
+script = ExtResource( 39 )
+
+[node name="MovePiece" type="Node" parent="PieceManager/States"]
+script = ExtResource( 21 )
+
+[node name="Prelock" type="Node" parent="PieceManager/States"]
+script = ExtResource( 20 )
+
+[node name="WaitForPlayfield" type="Node" parent="PieceManager/States"]
+script = ExtResource( 22 )
+
+[node name="GameEnded" type="Node" parent="PieceManager/States"]
+script = ExtResource( 38 )
+
+[node name="Rotate0Sound" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 29 )
+bus = "Reverb Bus"
+
+[node name="Rotate1Sound" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 30 )
+bus = "Reverb Bus"
+
+[node name="MoveSound" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 31 )
+bus = "Reverb Bus"
+
+[node name="LockSound" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 28 )
+bus = "Reverb Bus"
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 32 )
+bus = "Reverb Bus"
+
+[node name="GameOverVoice0" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 36 )
+bus = "Voice Bus"
+
+[node name="GameOverVoice1" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 27 )
+bus = "Voice Bus"
+
+[node name="GameOverVoice2" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 33 )
+bus = "Voice Bus"
+
+[node name="GameOverVoice3" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 34 )
+bus = "Voice Bus"
+
+[node name="GameOverVoice4" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 35 )
+bus = "Voice Bus"
+
+[node name="SmushSound" type="AudioStreamPlayer" parent="PieceManager"]
+stream = ExtResource( 26 )
+bus = "Reverb Bus"
 
 [node name="NextPieces" parent="." instance=ExtResource( 4 )]
 margin_left = 688.0
@@ -144,7 +275,7 @@ margin_bottom = 79.0
 size_flags_horizontal = 0
 size_flags_vertical = 0
 custom_fonts/font = ExtResource( 18 )
-shortcut = SubResource( 4 )
+shortcut = SubResource( 3 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -159,7 +290,7 @@ margin_left = -120.0
 margin_top = -248.0
 margin_right = 118.0
 margin_bottom = -70.0
-custom_styles/normal = SubResource( 5 )
+custom_styles/normal = SubResource( 4 )
 custom_fonts/normal_font = ExtResource( 16 )
 text = "Controls
 
@@ -212,6 +343,7 @@ volume_db = -4.0
 bus = "Voice Bus"
 [connection signal="customer_left" from="Playfield" to="." method="_on_Playfield_customer_left"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
-[connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
+[connection signal="game_ended" from="PieceManager" to="." method="_on_Piece_game_ended"]
+[connection signal="entered_state" from="PieceManager/States" to="PieceManager" method="_on_States_entered_state"]
 [connection signal="pressed" from="HUD/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 [connection signal="pressed" from="HUD/BackButton" to="." method="_on_BackButton_pressed"]

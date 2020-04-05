@@ -13,7 +13,7 @@ var _displayed_piece
 onready var _next_pieces = get_parent()
 
 func _process(_delta: float) -> void:
-	if _next_pieces and _next_pieces.next_pieces.size() > piece_index:
+	if "next_pieces" in _next_pieces and _next_pieces.next_pieces.size() > piece_index:
 		var next_piece = _next_pieces.next_pieces[piece_index]
 		if next_piece != _displayed_piece:
 			var bounding_box := Rect2(next_piece.pos_arr[0][0].x, next_piece.pos_arr[0][0].y, 1, 1)
@@ -22,8 +22,7 @@ func _process(_delta: float) -> void:
 			for i in range(next_piece.pos_arr[0].size()):
 				var block_pos: Vector2 = next_piece.pos_arr[0][i]
 				var block_color: Vector2 = next_piece.color_arr[0][i]
-				$TileMap.set_cell(block_pos.x, block_pos.y, \
-						0, false, false, false, block_color)
+				$TileMap.set_cell(block_pos.x, block_pos.y, 0, false, false, false, block_color)
 				bounding_box = bounding_box.expand(next_piece.pos_arr[0][i])
 				bounding_box = bounding_box.expand(next_piece.pos_arr[0][i] + Vector2(1, 1))
 			$TileMap/CornerMap.dirty = true

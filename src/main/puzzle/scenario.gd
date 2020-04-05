@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 """
 Contains the logic for running a puzzle scenario. A puzzle scenario might include specific rules or win conditions
 such as 'Marathon mode', a game style which gets harder and harder but theoretically goes on forever if the player is
@@ -80,7 +80,7 @@ Sets the speed level and updates the UI elements accordingly.
 """
 func _set_level(new_level:int) -> void:
 	_level = new_level
-	$Puzzle/Piece.set_piece_speed(Global.scenario_settings.level_up_conditions[new_level].piece_speed)
+	$Puzzle/PieceManager.piece_speed = Global.scenario_settings.level_up_conditions[new_level].piece_speed
 	
 	# update UI elements for the current level
 	$LinesHUD/LevelValue.text = str(Global.scenario_settings.level_up_conditions[new_level].piece_speed.string)

@@ -1,3 +1,4 @@
+class_name Playfield
 extends Control
 """
 Stores information about the game playfield: writing pieces to the playfield, calculating whether a line was cleared or whether
