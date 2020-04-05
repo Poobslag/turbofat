@@ -1,4 +1,4 @@
-#tool
+tool
 extends Node2D
 """
 Handles animations and audio/visual effects for a customer.

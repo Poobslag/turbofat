@@ -15,6 +15,8 @@ brace keys: Change the customer's appearance
 
 var _current_color_index := -1
 
+onready var _restaurant_scene := $CustomerView/ViewportContainer/Viewport/CustomerSwitcher/Scene
+
 func _ready():
 	# Ensure customers are random
 	randomize()
@@ -23,11 +25,11 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	var just_pressed := event.is_pressed() and not event.is_echo()
 	if Input.is_key_pressed(KEY_F) and just_pressed:
-		$CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
+		_restaurant_scene.feed()
 	if Input.is_key_pressed(KEY_D) and just_pressed:
-		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_door_chime(0)
+		_restaurant_scene.play_door_chime(0)
 	if Input.is_key_pressed(KEY_V) and just_pressed:
-		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_goodbye_voice()
+		_restaurant_scene.play_goodbye_voice()
 	if Input.is_key_pressed(KEY_1) and just_pressed:
 		$CustomerView.set_fatness(1.0)
 	if Input.is_key_pressed(KEY_2) and just_pressed:
@@ -68,5 +70,5 @@ func _input(event: InputEvent) -> void:
 			_current_color_index = (_current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
 		$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index])
 	if Input.is_key_pressed(KEY_P) and just_pressed:
-		print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.current_animation)
-		print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.is_playing())
+		print(_restaurant_scene.get_node("Customer/AnimationPlayer").current_animation)
+		print(_restaurant_scene.get_node("Customer/AnimationPlayer").is_playing())
