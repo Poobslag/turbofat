@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
@@ -18,12 +18,6 @@
 [ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=16]
 [ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=17]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=18]
-
-[sub_resource type="InputEventAction" id=1]
-action = "ui_select"
-
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
 
 [sub_resource type="InputEventAction" id=3]
 action = "ui_cancel"
@@ -136,7 +130,6 @@ margin_top = -27.0
 margin_right = 70.0
 margin_bottom = 27.5
 custom_fonts/font = ExtResource( 17 )
-shortcut = SubResource( 2 )
 text = "Start"
 
 [node name="BackButton" type="Button" parent="HUD"]
@@ -217,8 +210,8 @@ bus = "Voice Bus"
 stream = ExtResource( 15 )
 volume_db = -4.0
 bus = "Voice Bus"
-[connection signal="customer_left" from="Playfield" to="." method="_on_customer_left"]
-[connection signal="line_cleared" from="Playfield" to="." method="_on_line_cleared"]
+[connection signal="customer_left" from="Playfield" to="." method="_on_Playfield_customer_left"]
+[connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="game_ended" from="Piece" to="." method="_on_Piece_game_ended"]
 [connection signal="pressed" from="HUD/StartGameButton" to="." method="_on_StartGameButton_pressed"]
 [connection signal="pressed" from="HUD/BackButton" to="." method="_on_BackButton_pressed"]

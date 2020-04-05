@@ -21,6 +21,9 @@ func _ready() -> void:
 	if ScenarioHistory.get_best_rank("marathon-expert") > RANK_TO_UNLOCK:
 		$VBoxContainer/Marathon/Master.disable(unlock_message)
 	
+	# grab focus so the player can navigate with the keyboard
+	$VBoxContainer/Marathon/Normal/Button.grab_focus()
+	
 	var preset = ConfigFile.new()
 	preset.load("res://export_presets.cfg")
 	$Version.text = preset.get_value("preset.0.options", "application/file_version")
