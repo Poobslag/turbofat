@@ -56,3 +56,10 @@ Plays a 'check please!' voice sample, for when a customer is ready to leave
 """
 func play_goodbye_voice() -> void:
 	_customer_switcher.play_goodbye_voice()
+
+
+func feed() -> void:
+	_customer_switcher.feed()
+
+func play_combo_voice() -> void:
+	_customer_switcher.play_combo_voice()

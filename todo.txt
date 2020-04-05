@@ -1,0 +1,5 @@
+-Basic zoom functionality
+-body appears heavily aliased
+-is the initial change jittery, in CustomerViewDemo?
+-enable clipping
+-fix sounds (no munch sounds?)

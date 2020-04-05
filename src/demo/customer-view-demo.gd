@@ -25,7 +25,7 @@ func _ready():
 func _input(event: InputEvent) -> void:
 	var just_pressed := event.is_pressed() and not event.is_echo()
 	if Input.is_key_pressed(KEY_F) and just_pressed:
-		_restaurant_scene.feed()
+		$CustomerView.feed()
 	if Input.is_key_pressed(KEY_D) and just_pressed:
 		_restaurant_scene.play_door_chime(0)
 	if Input.is_key_pressed(KEY_V) and just_pressed:

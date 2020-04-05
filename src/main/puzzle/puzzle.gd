@@ -81,7 +81,7 @@ Parameters:
 	'fatness_pct' A percent from [0.0-1.0] of how much fatter the customer should get from this bite of food.
 """
 func _feed_customer(fatness_pct: float) -> void:
-	$CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
+	$CustomerView.feed()
 	
 	if $Playfield.clock_running:
 		var old_fatness: float = $CustomerView.get_fatness()
@@ -160,7 +160,7 @@ func _on_Playfield_line_cleared(lines_cleared: int) -> void:
 		_feed_customer(1.0 / (lines_cleared - i - 1))
 	if customer_talks:
 		yield(get_tree().create_timer(0.5), "timeout")
-		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_combo_voice()
+		$CustomerView.play_combo_voice()
 
 
 func _on_Playfield_customer_left() -> void:

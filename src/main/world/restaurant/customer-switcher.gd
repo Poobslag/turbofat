@@ -40,4 +40,10 @@ func get_fatness() -> float:
 	return $FatPlayer.get_fatness()
 
 func play_goodbye_voice() -> void:
-	$SceneClip/CustomerSwitcher/Scene.play_goodbye_voice()
+	$Scene.play_goodbye_voice()
+
+func feed() -> void:
+	$Scene.feed()
+
+func play_combo_voice() -> void:
+	$Scene.play_combo_voice()
