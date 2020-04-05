@@ -23,9 +23,9 @@ onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 
 func _ready() -> void:
 	$NextPieces.hide_pieces()
-	$Piece.clear_piece()
+	$PieceManager.clear_piece()
 	$HUD/MessageLabel.hide()
-	$Playfield/TileMapClip/ShadowMap.piece_tile_map = $Piece/TileMap
+	$Playfield/TileMapClip/TileMap/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 0)
 	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 1)
 	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 2)
@@ -56,7 +56,7 @@ End the game and emit the appropriate signals. This can occur when the player lo
 func end_game(delay: float, message: String) -> void:
 	emit_signal("game_ended")
 	$Playfield.end_game()
-	$Piece.end_game()
+	$PieceManager.end_game()
 	show_message(message)
 	yield(get_tree().create_timer(delay), "timeout")
 	$HUD/StartGameButton.show()
@@ -114,7 +114,7 @@ func _on_StartGameButton_pressed() -> void:
 	$NextPieces.start_game()
 	$Playfield.start_game()
 	$Score.start_game()
-	$Piece.clear_piece()
+	$PieceManager.clear_piece()
 	if $CustomerView.get_fatness() > 1:
 		# if they ended a game on a fattened customer, scroll to a new one
 		_scroll_to_new_customer()
@@ -132,7 +132,7 @@ func _on_StartGameButton_pressed() -> void:
 	$GoSound.play()
 	_go_voices[randi() % _go_voices.size()].play()
 	
-	$Piece.start_game()
+	$PieceManager.start_game()
 	
 	emit_signal("game_started")
 

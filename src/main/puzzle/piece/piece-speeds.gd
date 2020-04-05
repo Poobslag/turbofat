@@ -15,8 +15,7 @@ const G := 256
 # the bottom of the screen but the player moves or rotates it to prevent from locking.
 const MAX_LOCK_RESETS := 12
 
-# The gravity constant used when the player soft-drops a piece. This drop speed should be slow enough that the player
-# can slide pieces into nooks left in vertical stacks.
+# The gravity constant used when the player soft-drops a piece.
 const DROP_G := 128
 
 # When the player does a 'smush move' the piece is unaffected by gravity for this many frames.

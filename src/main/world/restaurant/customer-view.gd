@@ -42,9 +42,9 @@ Pans the camera to a new customer. This also changes which customer will be fed.
 """
 func set_current_customer_index(current_customer_index: int) -> void:
 	$SceneClip/CustomerSwitcher/Scene.current_customer_index = current_customer_index
-	$SceneClip/CustomerSwitcher/CustomerSwitchTween.interpolate_property( \
-			$SceneClip/CustomerSwitcher, "position:x", \
-			$SceneClip/CustomerSwitcher.position.x, -1000 * current_customer_index, PAN_DURATION_SECONDS, \
+	$SceneClip/CustomerSwitcher/CustomerSwitchTween.interpolate_property(
+			$SceneClip/CustomerSwitcher, "position:x",
+			$SceneClip/CustomerSwitcher.position.x, -1000 * current_customer_index, PAN_DURATION_SECONDS,
 			Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$FatPlayer.set_fatness($SceneClip/CustomerSwitcher/Scene.get_fatness(current_customer_index))
 	$SceneClip/CustomerSwitcher/CustomerSwitchTween.start()

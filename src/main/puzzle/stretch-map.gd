@@ -18,15 +18,9 @@ var _stretch_seconds_remaining := 0.0
 var _max_distance := 0
 var _color_y: int
 
-onready var _playfield = $"../../Playfield"
-
 func _ready() -> void:
-	if _playfield:
-		_col_count = _playfield.COL_COUNT
-		_row_count = _playfield.ROW_COUNT
-	else:
-		_col_count = 9
-		_row_count = 20
+	_col_count = Playfield.COL_COUNT
+	_row_count = Playfield.ROW_COUNT
 	for row in range(_row_count):
 		_stretch_pos.append([])
 		for _col in range(_col_count):

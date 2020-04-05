@@ -28,8 +28,8 @@ var post_lock_delay: int
 # number of frames to pause when clearing a line
 var line_clear_delay: int
 
-func _init(init_string: String, init_gravity: int, init_appearance_delay: int, init_line_appearance_delay: int, \
-		init_post_lock_delay: int, init_delayed_auto_shift_delay: int, init_lock_delay: int, \
+func _init(init_string: String, init_gravity: int, init_appearance_delay: int, init_line_appearance_delay: int,
+		init_post_lock_delay: int, init_delayed_auto_shift_delay: int, init_lock_delay: int,
 		init_line_clear_delay: int):
 	string = init_string
 	gravity = init_gravity

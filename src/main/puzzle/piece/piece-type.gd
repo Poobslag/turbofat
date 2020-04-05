@@ -14,7 +14,7 @@ var cw_kicks: Array
 var ccw_kicks: Array
 var max_floor_kicks: int
 
-func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array, init_kicks: Array, \
+func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array, init_kicks: Array,
 		init_max_floor_kicks := 2):
 	string = init_string
 	pos_arr = init_pos_arr

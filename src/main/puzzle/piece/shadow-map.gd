@@ -7,20 +7,19 @@ piece.
 # Tilemap for the active piece
 var piece_tile_map: TileMap
 
-onready var _playfield = $"../.."
-onready var _parent_tile_map = $"../TileMap"
+onready var _parent_tile_map = get_parent()
 
 func _process(_delta: float) -> void:
 	clear()
 	
 	# draw shadows cast by the left wall
-	for row in range(_playfield.ROW_COUNT):
+	for row in range(Playfield.ROW_COUNT):
 		set_cell(-1, row, 0, false, false, false, Vector2(15, 0))
 	
 	# draw shadows cast by the bottom wall
-	set_cell(-1, _playfield.ROW_COUNT, 0, false, false, false, Vector2(15, 0))
-	for col in range(_playfield.COL_COUNT):
-		set_cell(col, _playfield.ROW_COUNT, 0, false, false, false, Vector2(15, 0))
+	set_cell(-1, Playfield.ROW_COUNT, 0, false, false, false, Vector2(15, 0))
+	for col in range(Playfield.COL_COUNT):
+		set_cell(col, Playfield.ROW_COUNT, 0, false, false, false, Vector2(15, 0))
 	
 	# draw shadows cast by blocks in the playfield
 	for cell in _parent_tile_map.get_used_cells():
