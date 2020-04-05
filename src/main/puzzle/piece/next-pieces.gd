@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 """
 Contains logic for displaying upcoming pieces to the player, organizing and maintaining all of the 'next piece
 displays'.

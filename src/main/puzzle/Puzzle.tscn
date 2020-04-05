@@ -19,13 +19,6 @@
 [ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=17]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=18]
 
-
-
-
-
-
-
-
 [sub_resource type="InputEventAction" id=1]
 action = "ui_select"
 
@@ -46,36 +39,46 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
-[node name="Puzzle" type="Node2D"]
+[node name="Puzzle" type="Control"]
+margin_right = 1024.0
+margin_bottom = 600.0
 script = ExtResource( 1 )
 __meta__ = {
-"_edit_horizontal_guides_": [ 600.014 ],
-"_edit_vertical_guides_": [ 1020.0 ]
+"_edit_use_anchors_": false
 }
 
-[node name="Wood" type="Sprite" parent="."]
-scale = Vector2( 0.492308, 0.469484 )
+[node name="Wood" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 9 )
-centered = false
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Chalkboard Shadow" type="Polygon2D" parent="."]
 position = Vector2( -0.552702, -116.371 )
 scale = Vector2( 0.444724, 0.444458 )
 color = Color( 0.345098, 0.14902, 0.0705882, 1 )
 antialiased = true
-polygon = PoolVector2Array( -128.8, 323.156, -115.362, 309.037, 655.31, 309.003, 655.298, 901.433, 638.788, 917.376, -128.376, 917.455 )
+polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
 
-[node name="Chalkboard" type="Sprite" parent="."]
-position = Vector2( 112.901, 159.292 )
-scale = Vector2( 0.443789, 0.443789 )
+[node name="Chalkboard" type="TextureRect" parent="."]
+margin_left = -58.0
+margin_top = 27.0
+margin_right = 284.0
+margin_bottom = 292.0
 texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Playfield Shadow" type="Polygon2D" parent="."]
-position = Vector2( 500, -116.371 )
-scale = Vector2( 0.444724, 0.444458 )
+position = Vector2( 678.385, -289.115 )
 color = Color( 0.345098, 0.14902, 0.0705882, 1 )
 antialiased = true
-polygon = PoolVector2Array( -322.193, 310.259, -304.869, 292.887, 598.816, 293.05, 601.366, 295.601, 601.462, 1544.46, 580.968, 1564.81, -318.894, 1564.81, -322.537, 1561.16 )
+polygon = PoolVector2Array( -320.131, 310.11, -314.356, 304.092, 85.5861, 304.079, 86.6343, 305.127, 86.6118, 861.112, 80.5082, 867.028, -320.243, 866.99 )
 
 [node name="Playfield" parent="." instance=ExtResource( 2 )]
 margin_left = 364.0
@@ -90,12 +93,21 @@ margin_right = 688.0
 margin_bottom = 572.0
 
 [node name="NextPieces" parent="." instance=ExtResource( 4 )]
-position = Vector2( 688, 28 )
+margin_left = 688.0
+margin_top = 28.0
+margin_right = 752.0
+margin_bottom = 572.0
 
-[node name="Walls" type="Sprite" parent="."]
-position = Vector2( 557.928, 299.74 )
-scale = Vector2( 0.454891, 0.468443 )
+[node name="Walls" type="TextureRect" parent="."]
+margin_left = 356.5
+margin_top = 20.5
+margin_right = 758.5
+margin_bottom = 578.5
 texture = ExtResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="CustomerView" parent="." instance=ExtResource( 12 )]
 position = Vector2( 27.9925, 314.726 )

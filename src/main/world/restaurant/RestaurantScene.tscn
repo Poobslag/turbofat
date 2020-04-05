@@ -11,15 +11,6 @@
 [ext_resource path="res://assets/world/restaurant/poster0.png" type="Texture" id=16]
 [ext_resource path="res://src/main/world/restaurant/restaurant-scene.gd" type="Script" id=24]
 
-
-
-
-
-
-
-
-
-
 [node name="RestaurantScene" type="Node2D"]
 light_mask = 2
 script = ExtResource( 24 )
@@ -94,14 +85,27 @@ light_mask = 2
 position = Vector2( 2600, 560 )
 texture = ExtResource( 15 )
 
-[node name="Shadows" type="Control" parent="."]
+[node name="WallMetal" type="TextureRect" parent="Background"]
+light_mask = 2
+margin_left = -800.0
+margin_top = 670.0
+margin_right = 3600.0
+margin_bottom = 920.0
+texture = ExtResource( 5 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FloorShadows" type="Control" parent="."]
 margin_right = 40.0
 margin_bottom = 40.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Pillar1" type="Sprite" parent="Shadows"]
+[node name="Pillar1" type="Sprite" parent="FloorShadows"]
 self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
 light_mask = 2
 position = Vector2( 1100, 520 )
@@ -109,7 +113,7 @@ scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 11 )
 offset = Vector2( 0, 50 )
 
-[node name="Pillar2" type="Sprite" parent="Shadows"]
+[node name="Pillar2" type="Sprite" parent="FloorShadows"]
 self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
 light_mask = 2
 position = Vector2( 3100, 520 )
@@ -117,7 +121,7 @@ scale = Vector2( 0.15, 0.15 )
 texture = ExtResource( 11 )
 offset = Vector2( 0, 50 )
 
-[node name="WallMetal" type="Sprite" parent="Shadows"]
+[node name="WallMetal" type="Sprite" parent="FloorShadows"]
 self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
 light_mask = 2
 position = Vector2( -800, 500 )
@@ -126,16 +130,6 @@ centered = false
 offset = Vector2( 0, -35 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 4400, 80 )
-
-[node name="WallMetal" type="Sprite" parent="."]
-light_mask = 2
-position = Vector2( -800, 380 )
-z_index = 10
-texture = ExtResource( 5 )
-centered = false
-offset = Vector2( 0, -110 )
-region_enabled = true
-region_rect = Rect2( 0, 0, 4400, 240 )
 
 [node name="Pillar1" type="Sprite" parent="."]
 light_mask = 2

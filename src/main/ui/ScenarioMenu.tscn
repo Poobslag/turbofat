@@ -17,10 +17,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="Sprite" parent="."]
-scale = Vector2( 0.492308, 0.469484 )
+[node name="Background" type="TextureRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 3 )
-centered = false
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Version" type="Label" parent="."]
 anchor_left = 1.0
