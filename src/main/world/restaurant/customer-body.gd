@@ -107,9 +107,9 @@ func set_fatness(fatness: float) -> void:
 	var f_pct := clamp((fatness - curve_def_low.fatness) / (curve_def_high.fatness - curve_def_low.fatness), 0, 1.0)
 
 	for i in range(curve_def_low.curve_def.size()):
-		var point_pos: Vector2 = (1 - f_pct) * curve_def_low.curve_def[i][0] + f_pct * curve_def_high.curve_def[i][0]
-		var point_in: Vector2 = (1 - f_pct) * curve_def_low.curve_def[i][1] + f_pct * curve_def_high.curve_def[i][1]
-		var point_out: Vector2 = (1 - f_pct) * curve_def_low.curve_def[i][2] + f_pct * curve_def_high.curve_def[i][2]
+		var point_pos: Vector2 = lerp(curve_def_low.curve_def[i][0], curve_def_high.curve_def[i][0], f_pct)
+		var point_in: Vector2 = lerp(curve_def_low.curve_def[i][1], curve_def_high.curve_def[i][1], f_pct)
+		var point_out: Vector2 = lerp(curve_def_low.curve_def[i][2], curve_def_high.curve_def[i][2], f_pct)
 		curve.add_point(point_pos, point_in, point_out)
 	update()
 

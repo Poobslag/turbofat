@@ -76,82 +76,6 @@ func _process(_delta: float) -> void:
 
 
 """
-Method invoked when the game ends. Prepares a game over message to show to the player.
-"""
-func _on_game_ended() -> void:
-	# ensure score is up to date before calculating rank
-	$Puzzle/Score.end_combo()
-	var rank_result = _rank_calculator.calculate_rank()
-	ScenarioHistory.add_scenario_history(Global.scenario_settings.name, rank_result)
-	ScenarioHistory.save_scenario_history()
-	
-	_grade_message = ""
-	if Global.scenario_settings.win_condition.type == "score":
-		_grade_message += "Speed: %.1f (%s)\n" % [rank_result.speed, Global.grade(rank_result.speed_rank)]
-	else:
-		_grade_message += "Lines: %.1f (%s)\n" % [rank_result.lines, Global.grade(rank_result.lines_rank)]
-	_grade_message += "Boxes: %.1f (%s)\n" % [rank_result.box_score_per_line, Global.grade(rank_result.box_score_per_line_rank)]
-	_grade_message += "Combos: %.1f (%s)\n" % [rank_result.combo_score_per_line, Global.grade(rank_result.combo_score_per_line_rank)]
-	if Global.scenario_settings.win_condition.type == "score":
-		var seconds = ceil(Global.scenario_performance.seconds)
-		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, Global.grade(rank_result.seconds_rank)]
-		if not Global.scenario_performance.died and rank_result.seconds_rank < 24:
-			$ApplauseSound.play()
-	else:
-		_grade_message += "Overall: (%s)\n" % Global.grade(rank_result.score_rank)
-		if not Global.scenario_performance.died and rank_result.score_rank < 24:
-			$ApplauseSound.play()
-	_grade_message += "Hint: %s" % HINTS[randi() % HINTS.size()]
-
-
-"""
-Method invoked when a line is cleared. Updates the level.
-"""
-func _on_line_cleared(_lines_cleared: int) -> void:
-	var lines: int = Global.scenario_performance.lines
-	var new_level := _level
-	
-	while new_level + 1 < Global.scenario_settings.level_up_conditions.size() and Global.scenario_settings.level_up_conditions[new_level + 1].value <= lines:
-		new_level += 1
-	
-	if _level != new_level:
-		$LevelUpSound.play()
-		_set_level(new_level)
-	
-	if Global.scenario_settings.win_condition.type == "lines":
-		if new_level + 1 < Global.scenario_settings.level_up_conditions.size():
-			if Global.scenario_settings.level_up_conditions[new_level + 1].type == "lines":
-				$LinesHUD/ProgressBar.value = lines
-		elif Global.scenario_settings.win_condition.type == "lines":
-			$LinesHUD/ProgressBar.value = lines
-		if lines >= Global.scenario_settings.win_condition.value:
-			$ExcellentSound.play()
-			$Puzzle.end_game(4.2, "You win!")
-	
-	if Global.scenario_settings.win_condition.type == "score":
-		var total_score: int = $Puzzle/Score.score + $Puzzle/Score.combo_score
-		$ScoreHUD/ProgressBar.value = total_score
-		if total_score >= Global.scenario_settings.win_condition.value:
-			$MatchEndSound.play()
-			$Puzzle.end_game(2.2, "Finish!")
-
-
-func _on_before_game_started() -> void:
-	_set_level(0)
-
-	if Global.scenario_settings.win_condition.type == "score":
-		$ScoreHUD/TimeLabel.show()
-		$ScoreHUD/TimeValue.show()
-		$ScoreHUD/ScoreLabel.hide()
-		$ScoreHUD/ScoreValue.hide()
-		$ScoreHUD/ProgressBar.max_value = Global.scenario_settings.win_condition.value
-		$ScoreHUD/ProgressBar.value = 0
-	
-	if Global.scenario_settings.win_condition.type == "lines":
-		$LinesHUD/ProgressBar.value = 0
-
-
-"""
 Sets the speed level and updates the UI elements accordingly.
 """
 func _set_level(new_level:int) -> void:
@@ -187,5 +111,81 @@ func _set_level(new_level:int) -> void:
 		$LinesHUD/ProgressBar.max_value = 100
 
 
-func _on_after_game_ended() -> void:
+"""
+Method invoked when the game ends. Prepares a game over message to show to the player.
+"""
+func _on_Puzzle_game_ended() -> void:
+	# ensure score is up to date before calculating rank
+	$Puzzle/Score.end_combo()
+	var rank_result = _rank_calculator.calculate_rank()
+	ScenarioHistory.add_scenario_history(Global.scenario_settings.name, rank_result)
+	ScenarioHistory.save_scenario_history()
+	
+	_grade_message = ""
+	if Global.scenario_settings.win_condition.type == "score":
+		_grade_message += "Speed: %.1f (%s)\n" % [rank_result.speed, Global.grade(rank_result.speed_rank)]
+	else:
+		_grade_message += "Lines: %.1f (%s)\n" % [rank_result.lines, Global.grade(rank_result.lines_rank)]
+	_grade_message += "Boxes: %.1f (%s)\n" % [rank_result.box_score_per_line, Global.grade(rank_result.box_score_per_line_rank)]
+	_grade_message += "Combos: %.1f (%s)\n" % [rank_result.combo_score_per_line, Global.grade(rank_result.combo_score_per_line_rank)]
+	if Global.scenario_settings.win_condition.type == "score":
+		var seconds = ceil(Global.scenario_performance.seconds)
+		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, Global.grade(rank_result.seconds_rank)]
+		if not Global.scenario_performance.died and rank_result.seconds_rank < 24:
+			$ApplauseSound.play()
+	else:
+		_grade_message += "Overall: (%s)\n" % Global.grade(rank_result.score_rank)
+		if not Global.scenario_performance.died and rank_result.score_rank < 24:
+			$ApplauseSound.play()
+	_grade_message += "Hint: %s" % HINTS[randi() % HINTS.size()]
+
+
+"""
+Method invoked when a line is cleared. Updates the level.
+"""
+func _on_Puzzle_line_cleared(_lines_cleared: int) -> void:
+	var lines: int = Global.scenario_performance.lines
+	var new_level := _level
+	
+	while new_level + 1 < Global.scenario_settings.level_up_conditions.size() and Global.scenario_settings.level_up_conditions[new_level + 1].value <= lines:
+		new_level += 1
+	
+	if _level != new_level:
+		$LevelUpSound.play()
+		_set_level(new_level)
+	
+	if Global.scenario_settings.win_condition.type == "lines":
+		if new_level + 1 < Global.scenario_settings.level_up_conditions.size():
+			if Global.scenario_settings.level_up_conditions[new_level + 1].type == "lines":
+				$LinesHUD/ProgressBar.value = lines
+		elif Global.scenario_settings.win_condition.type == "lines":
+			$LinesHUD/ProgressBar.value = lines
+		if lines >= Global.scenario_settings.win_condition.value:
+			$ExcellentSound.play()
+			$Puzzle.end_game(4.2, "You win!")
+	
+	if Global.scenario_settings.win_condition.type == "score":
+		var total_score: int = $Puzzle/Score.score + $Puzzle/Score.combo_score
+		$ScoreHUD/ProgressBar.value = total_score
+		if total_score >= Global.scenario_settings.win_condition.value:
+			$MatchEndSound.play()
+			$Puzzle.end_game(2.2, "Finish!")
+
+
+func _on_Puzzle_before_game_started() -> void:
+	_set_level(0)
+
+	if Global.scenario_settings.win_condition.type == "score":
+		$ScoreHUD/TimeLabel.show()
+		$ScoreHUD/TimeValue.show()
+		$ScoreHUD/ScoreLabel.hide()
+		$ScoreHUD/ScoreValue.hide()
+		$ScoreHUD/ProgressBar.max_value = Global.scenario_settings.win_condition.value
+		$ScoreHUD/ProgressBar.value = 0
+	
+	if Global.scenario_settings.win_condition.type == "lines":
+		$LinesHUD/ProgressBar.value = 0
+
+
+func _on_Puzzle_after_game_ended() -> void:
 	$Puzzle.show_detail_message(_grade_message)
