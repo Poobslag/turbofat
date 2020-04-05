@@ -61,20 +61,6 @@
 [ext_resource path="res://assets/puzzle/make-snack-box0.wav" type="AudioStream" id=59]
 [ext_resource path="res://assets/puzzle/make-snack-box2.wav" type="AudioStream" id=60]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [sub_resource type="TileSet" id=1]
 0/name = "blocks-shadows.png 0"
 0/texture = ExtResource( 40 )
@@ -189,7 +175,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="BgColor" type="ColorRect" parent="."]
 margin_right = 324.0
 margin_bottom = 544.0
 color = Color( 0.113725, 0.101961, 0.101961, 1 )
@@ -197,11 +183,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="BgSprite" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.25098 )
-scale = Vector2( 0.468208, 0.468158 )
+anchor_right = 1.0
+anchor_bottom = 1.0
 texture = ExtResource( 37 )
-centered = false
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="TileMapClip" type="Control" parent="."]
 margin_right = 324.0

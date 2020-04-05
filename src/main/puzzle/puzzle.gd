@@ -1,4 +1,4 @@
-extends Node2D
+extends Control
 """
 Represents a minimal puzzle game with a piece, playfield of pieces, and next pieces. Other classes can extend this
 class to add goals, win conditions, challenges or time limits.
