@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/ui/scenario-button.gd" type="Script" id=3]
+
+[node name="ScenarioButton" type="VBoxContainer"]
+margin_right = 193.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="Button" parent="."]
+margin_right = 193.0
+margin_bottom = 47.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = ExtResource( 1 )
+text = "???"
+
+[node name="Best" type="Label" parent="."]
+margin_top = 51.0
+margin_right = 193.0
+margin_bottom = 71.0
+size_flags_horizontal = 3
+custom_fonts/font = ExtResource( 2 )
+text = "???"
+align = 1
+valign = 1
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

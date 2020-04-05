@@ -17,17 +17,66 @@ scores, but could eventually be used for displaying statistics or calculating re
 key: (String) Scenario name 
 value: (Array) All RankResults for the specified scenario
 """
-var scenario_history := {}
+var scenario_history := {} setget , get_scenario_history
 
 # how many records we can store before we start deleting old ones
 var history_size := 1000
 
 var _rank_calculator = RankCalculator.new()
 
+func get_scenario_history() -> Dictionary:
+	if not loaded_scenario_history:
+		load_scenario_history()
+	return scenario_history
+
+
+"""
+Calculates the best rank a player's received for a specific scenario.
+
+Parameters:
+	'scenario_name': The name of the scenario to evaluate
+	
+	'property': (Optional) The property evaluated to determine which of the player's RankResults was the best, such
+		as 'score' or 'seconds'. Defaults to 'score'.
+"""
+func get_best_rank(scenario_name: String, property: String = "score") -> float:
+	var best_rank_result: RankResult = get_best_result(scenario_name, property)
+	return best_rank_result.get(property + "_rank") if best_rank_result else 999.0
+
+
+"""
+Calculates the best rank a player's received for a specific scenario.
+
+Parameters:
+	'scenario_name': The name of the scenario to evaluate
+	
+	'property': (Optional) The property evaluated to determine which of the player's RankResults was the best, such
+		as 'score' or 'seconds'. Defaults to 'score'.
+"""
+func get_best_result(scenario_name: String, property: String = "score") -> RankResult:
+	if not loaded_scenario_history:
+		load_scenario_history()
+	var best_rank := 999.0
+	var best_performance: RankResult
+	if scenario_history.has(scenario_name):
+		for rank_result in scenario_history[scenario_name]:
+			if property == "seconds":
+				if rank_result.died:
+					# when comparing seconds, deaths disqualify your score
+					pass
+				elif best_performance == null or rank_result.get(property) < best_performance.get(property):
+					# when comparing seconds, lower numbers are better
+					best_performance = rank_result
+			else:
+				if best_performance == null or rank_result.get(property) > best_performance.get(property):
+					best_performance = rank_result
+	return best_performance
+
+
 """
 Records the current scenario performance to the player's history.
 """
-func add_scenario_history(scenario_name, rank_result) -> void:
+func add_scenario_history(scenario_name: String, rank_result: RankResult) -> void:
 	if scenario_name == "":
 		# can't store history without a scenario name
 		return
@@ -40,7 +89,7 @@ func add_scenario_history(scenario_name, rank_result) -> void:
 
 
 """
-Writes the scenario_history to a save file, where it can be loaded next the the player starts the game.
+Writes the scenario history to a save file, where it can be loaded next the the player starts the game.
 """
 func save_scenario_history() -> void:
 	var save_game := File.new()
@@ -57,7 +106,7 @@ func save_scenario_history() -> void:
 
 
 """
-Loads the scenario_history from a save file.
+Loads the scenario history from a save file.
 """
 func load_scenario_history() -> void:
 	loaded_scenario_history = true

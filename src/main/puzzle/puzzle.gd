@@ -63,7 +63,7 @@ func end_game(delay: float, message: String) -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	get_tree().change_scene("res://src/main/ui/PracticeMenu.tscn")
+	get_tree().change_scene("res://src/main/ui/ScenarioMenu.tscn")
 
 
 func _on_StartGameButton_pressed() -> void:

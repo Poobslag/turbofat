@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/active-piece.gd"
 }, {
-"base": "Reference",
+"base": "Sprite",
 "class": "MultiOutlineSprite",
 "language": "GDScript",
 "path": "res://src/main/world/multi-outline-sprite.gd"
@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/rank-result.gd"
 }, {
+"base": "VBoxContainer",
+"class": "ScenarioButton",
+"language": "GDScript",
+"path": "res://src/main/ui/scenario-button.gd"
+}, {
 "base": "Reference",
 "class": "ScenarioPerformance",
 "language": "GDScript",
@@ -61,6 +66,7 @@ _global_script_class_icons={
 "PieceType": "",
 "RankCalculator": "",
 "RankResult": "",
+"ScenarioButton": "",
 "ScenarioPerformance": "",
 "ScenarioSettings": "",
 "SmoothPath": ""
@@ -69,7 +75,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Turbo Fat"
-run/main_scene="res://src/main/ui/PracticeMenu.tscn"
+run/main_scene="res://src/main/ui/ScenarioMenu.tscn"
 config/icon="res://assets/ui/icon.png"
 
 [audio]
