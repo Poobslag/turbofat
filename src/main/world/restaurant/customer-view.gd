@@ -7,7 +7,7 @@ and scores points, the customer eats and grows larger.
 # the amount of time spent panning the camera to a new customer
 const PAN_DURATION_SECONDS := 0.4
 
-onready var _customer_switcher := $ViewportContainer/Viewport/CustomerSwitcher
+onready var _customer_switcher := $SceneClip/ViewportContainer/Viewport/CustomerSwitcher
 
 """
 Increases/decreases the camera and customer's fatness, playing an animation which gradually applies the change.
