@@ -6,6 +6,6 @@ a new piece.
 
 func update(piece_manager: PieceManager) -> String:
 	var new_state := ""
-	if piece_manager.playfield == null or piece_manager.playfield.ready_for_new_piece():
+	if piece_manager.playfield.ready_for_new_piece():
 		new_state = "Prespawn"
 	return new_state
