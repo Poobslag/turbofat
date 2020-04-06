@@ -38,7 +38,7 @@ func _ready() -> void:
 	piece_speed = PieceSpeeds.beginner_level_0
 	$States.set_state($States/Prespawn)
 	# Set the state frames so that the piece spawns immediately
-	$States._state.frames = 3600
+	$States/Prespawn.frames = 3600
 
 
 func get_state() -> State:
@@ -80,7 +80,8 @@ func _physics_process(_delta: float) -> void:
 
 
 func clear_piece() -> void:
-	$States.set_state($States/None)
+	if $States.get_state() != $States/None:
+		$States.set_state($States/None)
 	active_piece = ActivePiece.new(PieceTypes.piece_null)
 	tile_map_dirty = true
 
@@ -273,7 +274,8 @@ func _smush_to_target() -> void:
 	
 	_move_piece_to_target()
 	$SmushSound.play()
-	$States.set_state($States/MovePiece)
+	if $States.get_state() != $States/MovePiece:
+		$States.set_state($States/MovePiece)
 	active_piece.gravity = 0
 	_gravity_delay_frames = PieceSpeeds.SMUSH_FRAMES
 

@@ -11,7 +11,7 @@ invoking their methods, and emitting signals.
 signal entered_state
 
 # the currently active state
-var _state: State setget set_state, get_state
+var _state: State
 
 # the host object which is passed into each state
 onready var _host := get_parent()
