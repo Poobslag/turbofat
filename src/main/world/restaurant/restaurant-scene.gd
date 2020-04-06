@@ -18,9 +18,9 @@ var _shake_original_position: Vector2
 onready var _seats := [$Seat1, $Seat2, $Seat3]
 
 func _ready() -> void:
-	$Seat1.set_door_sound_position(Vector2(-500, 0))
-	$Seat2.set_door_sound_position(Vector2(-1500, 0))
-	$Seat3.set_door_sound_position(Vector2(-2500, 0))
+	$Seat1.set_door_sound_position(Vector2(-820, 0))
+	$Seat2.set_door_sound_position(Vector2(-1820, 0))
+	$Seat3.set_door_sound_position(Vector2(-2820, 0))
 	play_door_chime(0.0)
 
 

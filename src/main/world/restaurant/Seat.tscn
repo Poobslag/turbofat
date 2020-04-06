@@ -51,7 +51,7 @@
 [ext_resource path="res://src/main/world/multi-outline-sprite.gd" type="Script" id=49]
 [ext_resource path="res://src/main/world/multi-outline.shader" type="Shader" id=50]
 [ext_resource path="res://src/main/world/outline-material.tres" type="Material" id=51]
-[ext_resource path="res://assets/world/customer/0/ear-z2.png" type="Texture" id=52]
+[ext_resource path="res://assets/world/customer/1/ear-z2.png" type="Texture" id=52]
 [ext_resource path="res://assets/world/customer/0/food-laser-sheet.png" type="Texture" id=53]
 [ext_resource path="res://assets/world/customer/0/mouth-sheet.png" type="Texture" id=54]
 [ext_resource path="res://assets/world/customer/0/food-sheet.png" type="Texture" id=55]
@@ -60,9 +60,9 @@
 [ext_resource path="res://assets/world/customer/0/leg-z1.png" type="Texture" id=58]
 [ext_resource path="res://assets/world/customer/0/arm-z1.png" type="Texture" id=59]
 [ext_resource path="res://assets/world/customer/0/head.png" type="Texture" id=60]
-[ext_resource path="res://assets/world/customer/1/eyes-sheet.png" type="Texture" id=61]
-[ext_resource path="res://assets/world/customer/2/horn.png" type="Texture" id=62]
-[ext_resource path="res://assets/world/customer/0/ear-z1.png" type="Texture" id=63]
+[ext_resource path="res://assets/world/customer/1/ear-z0.png" type="Texture" id=61]
+[ext_resource path="res://assets/world/customer/1/ear-z1.png" type="Texture" id=62]
+[ext_resource path="res://assets/world/customer/2/eyes-sheet.png" type="Texture" id=63]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -737,6 +737,7 @@ __meta__ = {
 [node name="EarZ0" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 11 )
+texture = ExtResource( 61 )
 
 [node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/EarZ0"]
 light_mask = 2
@@ -756,7 +757,7 @@ script = ExtResource( 49 )
 [node name="EarZ1" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 11 )
-texture = ExtResource( 63 )
+texture = ExtResource( 62 )
 
 [node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/EarZ1"]
 light_mask = 2
@@ -766,7 +767,6 @@ script = ExtResource( 49 )
 [node name="Horn" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 15 )
-texture = ExtResource( 62 )
 
 [node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/Horn"]
 light_mask = 2
@@ -800,7 +800,7 @@ script = ExtResource( 49 )
 [node name="Eyes" type="Sprite" parent="Customer/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 21 )
-texture = ExtResource( 61 )
+texture = ExtResource( 63 )
 hframes = 3
 
 [node name="Outline" type="Sprite" parent="Customer/Neck0/Neck1/Eyes"]
@@ -844,27 +844,27 @@ script = ExtResource( 2 )
 [node name="Tween" type="Tween" parent="Customer"]
 
 [node name="Munch0" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 18 )
 bus = "Voice Bus"
 
 [node name="Munch1" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 17 )
 bus = "Voice Bus"
 
 [node name="Munch2" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 21 )
 bus = "Voice Bus"
 
 [node name="Munch3" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 27 )
 bus = "Voice Bus"
 
 [node name="Munch4" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 23 )
 bus = "Voice Bus"
 
@@ -899,112 +899,112 @@ max_distance = 4000.0
 bus = "Reverb Bus"
 
 [node name="ComboVoice00" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 14 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice01" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 34 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice02" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 35 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice03" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 38 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice04" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 40 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice05" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 36 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice06" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 37 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice07" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 39 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice08" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 31 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice09" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 29 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice10" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 33 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice11" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 28 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice12" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 26 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice13" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 16 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice14" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 22 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice15" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 24 )
 volume_db = 6.0
 max_distance = 4000.0
@@ -1012,84 +1012,80 @@ attenuation = 0.466517
 bus = "Voice Bus"
 
 [node name="ComboVoice16" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 20 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice17" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 19 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice18" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 25 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice19" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 15 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="HelloVoice0" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
 stream = ExtResource( 44 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="HelloVoice1" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
 stream = ExtResource( 41 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="HelloVoice2" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
 stream = ExtResource( 47 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="HelloVoice3" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
 stream = ExtResource( 42 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="GoodbyeVoice0" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 43 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="GoodbyeVoice1" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 45 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="GoodbyeVoice2" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 46 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="GoodbyeVoice3" type="AudioStreamPlayer2D" parent="Customer"]
-position = Vector2( 160, 0 )
+position = Vector2( -160, 0 )
 stream = ExtResource( 48 )
 volume_db = 6.0
 max_distance = 4000.0
