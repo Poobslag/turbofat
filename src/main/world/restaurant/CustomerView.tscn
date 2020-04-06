@@ -27,7 +27,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 3, 10 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 280, 280 ), Vector2( 280, 280 ), Vector2( 300, 215 ), Vector2( 339, -136 ) ]
+"values": [ Vector2( 280, 280 ), Vector2( 280, 280 ), Vector2( 300, 215 ), Vector2( 319, -6 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("../Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 3, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ), Vector2( 1.8, 1.8 ) ]
 }
 
 [node name="CustomerView" type="Node2D"]
@@ -47,6 +59,7 @@ __meta__ = {
 size = Vector2( 580, 540 )
 world = SubResource( 3 )
 handle_input_locally = false
+usage = 0
 render_target_update_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="ViewportContainer/Viewport"]
