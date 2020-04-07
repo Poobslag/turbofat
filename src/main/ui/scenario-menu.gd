@@ -23,10 +23,6 @@ func _ready() -> void:
 	
 	# grab focus so the player can navigate with the keyboard
 	$VBoxContainer/Marathon/Normal/Button.grab_focus()
-	
-	var preset = ConfigFile.new()
-	preset.load("res://export_presets.cfg")
-	$Version.text = preset.get_value("preset.0.options", "application/file_version")
 
 
 func _load_scenario() -> void:
@@ -123,3 +119,7 @@ func _on_UltraExpert_pressed() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.crazy_level_0)
 	Global.scenario_settings.set_win_condition("score", 3000)
 	_load_scenario()
+
+
+func _on_OverworldButton_pressed():
+	get_tree().change_scene("res://src/main/world/Overworld.tscn")
