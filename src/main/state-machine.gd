@@ -38,9 +38,10 @@ Transitions to a new state.
 Resets the state's internal variables and notifies any listeners.
 """
 func set_state(state: State) -> void:
+	var prev_state_name := "" if _state == null else _state.name
 	_state = state
 	_state.frames = 0
-	_state.enter(_host)
+	_state.enter(_host, prev_state_name)
 	emit_signal("entered_state", state)
 
 
