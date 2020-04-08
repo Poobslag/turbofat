@@ -12,8 +12,10 @@ Called once when the state is first entered.
 
 Parameters:
 	'_host': The state machine's parent object.
+	
+	'_prev_state': The previous state the state machine was in.
 """
-func enter(_host) -> void:
+func enter(_host, _prev_state_name: String) -> void:
 	pass
 
 """

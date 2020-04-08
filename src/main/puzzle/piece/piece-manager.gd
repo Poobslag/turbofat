@@ -20,8 +20,8 @@ var _input_ccw_frames := 0
 
 var _gravity_delay_frames := 0
 
-onready var playfield = $"../Playfield"
-onready var _next_pieces = $"../NextPieces"
+onready var playfield: Playfield = $"../Playfield"
+onready var _next_pieces: NextPieces = $"../NextPieces"
 onready var _game_over_voices := [$GameOverVoice0, $GameOverVoice1, $GameOverVoice2, $GameOverVoice3, $GameOverVoice4]
 
 # information about the current 'speed level', such as how fast pieces drop, how long it takes them to lock into the
@@ -36,9 +36,7 @@ var tile_map_dirty := false
 
 func _ready() -> void:
 	piece_speed = PieceSpeeds.beginner_level_0
-	$States.set_state($States/Prespawn)
-	# Set the state frames so that the piece spawns immediately
-	$States/Prespawn.frames = 3600
+	$States.set_state($States/None)
 
 
 func get_state() -> State:
@@ -80,15 +78,26 @@ func _physics_process(_delta: float) -> void:
 
 
 func clear_piece() -> void:
-	if $States.get_state() != $States/None:
-		$States.set_state($States/None)
 	active_piece = ActivePiece.new(PieceTypes.piece_null)
 	tile_map_dirty = true
 
 
+"""
+Writes the current piece to the playfield, checking whether it makes any boxes or clears any lines.
+
+Returns true if the newly written piece results in a pause of some sort.
+"""
+func write_piece_to_playfield() -> bool:
+	var result := playfield.write_piece(active_piece.pos, active_piece.orientation, active_piece.type,
+			piece_speed.line_clear_delay)
+	clear_piece()
+	return result
+
+
 func start_game() -> void:
-	$States.set_state($States/WaitForPlayfield)
-	active_piece = ActivePiece.new(PieceTypes.piece_null)
+	$States.set_state($States/Prespawn)
+	# Set the state frames so that the piece spawns immediately
+	$States/Prespawn.frames = 3600
 	tile_map_dirty = true
 	playfield.clock_running = true
 
@@ -183,20 +192,24 @@ func _increment_input_frames(frames: int, action: String) -> int:
 
 """
 If any move/rotate keys were pressed, this method will move the block accordingly.
+
+Returns 'true' if the piece was interacted with successfully resulting in a movement change, orientation change, or
+	lock reset
 """
-func apply_player_input() -> void:
+func apply_player_input() -> bool:
 	if not Input.is_action_pressed("hard_drop") \
 			and not Input.is_action_pressed("soft_drop") \
 			and not Input.is_action_pressed("ui_left") \
 			and not Input.is_action_pressed("ui_right") \
 			and not Input.is_action_pressed("rotate_cw") \
 			and not Input.is_action_pressed("rotate_ccw"):
-		return
+		return false
 	
 	var did_hard_drop := false
 	var old_piece_pos := active_piece.pos
 	var old_piece_rotation := active_piece.orientation
-	
+	var applied_player_input := false
+
 	if $States.get_state() == $States/MovePiece:
 		_reset_piece_target()
 		_calc_target_rotation()
@@ -232,9 +245,8 @@ func apply_player_input() -> void:
 				# Player can tap soft drop to reset lock, if their timing is good. This lets them hard-drop into
 				# a soft-drop for a fast sliding move
 				_perform_lock_reset()
+				applied_player_input = true
 				$MoveSound.play()
-				if $States.get_state() != $States/MovePiece:
-					$States.set_state($States/MovePiece)
 	elif Input.is_action_pressed("soft_drop") and active_piece.lock >= piece_speed.lock_delay:
 		if not _can_move_active_piece_to(Vector2(active_piece.pos.x, active_piece.pos.y + 1), active_piece.orientation):
 			_reset_piece_target()
@@ -245,6 +257,8 @@ func apply_player_input() -> void:
 	if old_piece_pos != active_piece.pos or old_piece_rotation != active_piece.orientation:
 		if active_piece.lock > 0 and not did_hard_drop:
 			_perform_lock_reset()
+			applied_player_input = true
+	return applied_player_input
 
 
 """
@@ -274,8 +288,6 @@ func _smush_to_target() -> void:
 	
 	_move_piece_to_target()
 	$SmushSound.play()
-	if $States.get_state() != $States/MovePiece:
-		$States.set_state($States/MovePiece)
 	active_piece.gravity = 0
 	_gravity_delay_frames = PieceSpeeds.SMUSH_FRAMES
 
