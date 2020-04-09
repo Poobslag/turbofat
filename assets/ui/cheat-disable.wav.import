@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/cheat-disable.wav-78fb6ebae9e64db8d5114a72794338a3.sample"
+
+[deps]
+
+source_file="res://assets/ui/cheat-disable.wav"
+dest_files=[ "res://.import/cheat-disable.wav-78fb6ebae9e64db8d5114a72794338a3.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

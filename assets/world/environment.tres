@@ -1,0 +1,10 @@
+[gd_resource type="Environment" format=2]
+
+[resource]
+background_mode = 1
+background_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+ambient_light_color = Color( 1, 1, 1, 1 )
+ambient_light_energy = 0.66
+auto_exposure_scale = 1.49
+dof_blur_far_quality = 2
+adjustment_contrast = 0.47
