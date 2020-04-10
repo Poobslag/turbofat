@@ -578,10 +578,11 @@ tracks/6/keys = {
 
 [node name="Customer" type="Node2D"]
 light_mask = 2
-position = Vector2( 1.228, 0 )
+position = Vector2( 108.587, 210.527 )
 z_index = 10
 script = ExtResource( 5 )
 __meta__ = {
+"_edit_group_": true,
 "_editor_description_": ""
 }
 
