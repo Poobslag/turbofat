@@ -15,3 +15,10 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String):
 		else:
 			$Turbo/Label.visible = false
 			$CheatDisabledSound.play()
+	if cheat == "bigfps":
+		if not $FpsLabel.visible:
+			$FpsLabel.visible = true
+			$CheatEnabledSound.play()
+		else:
+			$FpsLabel.visible = false
+			$CheatDisabledSound.play()
