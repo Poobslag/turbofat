@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/world/overworld.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://src/main/ui/cheat-code-detector.gd" type="Script" id=14]
 [ext_resource path="res://assets/ui/cheat-enable.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/ui/cheat-disable.wav" type="AudioStream" id=16]
+[ext_resource path="res://FpsLabel.tscn" type="PackedScene" id=18]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 36, 2, 36 )
@@ -30,7 +31,7 @@ roughness = 0.15
 uv1_scale = Vector3( 27, 18, 1 )
 
 [sub_resource type="BoxShape" id=3]
-extents = Vector3( 16, 1, 16 )
+extents = Vector3( 18, 1, 18 )
 
 [sub_resource type="PlaneMesh" id=4]
 size = Vector2( 4, 4 )
@@ -89,6 +90,9 @@ text = "P"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FpsLabel" parent="." instance=ExtResource( 18 )]
+visible = false
 
 [node name="VersionLabel" parent="." instance=ExtResource( 3 )]
 
@@ -201,7 +205,7 @@ material/0 = SubResource( 13 )
 
 [node name="CheatCodeDetector" type="Node" parent="."]
 script = ExtResource( 14 )
-codes = [ "coyote" ]
+codes = [ "coyote", "bigfps" ]
 
 [node name="CheatEnabledSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )

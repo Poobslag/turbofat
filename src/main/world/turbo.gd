@@ -67,7 +67,7 @@ func _physics_process(delta):
 
 func _apply_gravity(delta: float) -> void:
 	if is_on_floor():
-		_velocity.y = max(_velocity.y, 0)
+		_velocity.y = 0
 	_velocity += Vector3.DOWN * GRAVITY * delta
 
 
