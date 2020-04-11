@@ -50,7 +50,7 @@ Holding the hard-drop button when a piece spawns will immediately hard-drop the 
 Clearing two or more lines sequentially forms a combo which scores you bonus points:
 
 | Combo | Bonus per line | Total bonus |
-| - | - | - |
+| -: | - | - |
 | - | +0 | 0 |
 | 2 | +0 | 0 |
 | 3 | +5 | 5 |
@@ -71,12 +71,12 @@ There are no special bonus points for clearing multiple lines at once, but each 
 Arranging pieces into rectangles turns them into a box. Each line cleared with a box awards bonus points:
 
 | Box size (w x h) | Bonus per line | Total bonus |
-| - | - | - |
-| 3x3 | +5 | +15 |
-| 4x3 | +10 | +30 |
-| 5x3 | +10 | +30 |
-| 3x4 | +10 | +40 |
-| 3x5 | +10 | +50 |
+| -: | - | - |
+| 3 x 3 | +5 | +15 |
+| 4 x 3 | +10 | +30 |
+| 5 x 3 | +10 | +30 |
+| 3 x 4 | +10 | +40 |
+| 3 x 5 | +10 | +50 |
 
 Other sizes of rectangles, such as a 4x4 or 3x6, will not turn into a box or award bonus points.
 
