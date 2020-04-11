@@ -47,21 +47,42 @@ Holding the hard-drop button when a piece spawns will immediately hard-drop the 
 
 ### Combos
 
-Clearing two or more lines sequentially forms a combo which scores you bonus points. The second and third line clear award 5 bonus points, the fourth and fifth award 10 points, the sixth and seventh award 15 points, and each subsequent line clear award 20 points. Combos are retained if you drop a piece without clearing a line, but the second piece will reset the combo.
+Clearing two or more lines sequentially forms a combo which scores you bonus points:
 
-There are no special bonus points for clearing multiple lines at once, but each line counts towards your combo and awards bonus points in that way. For example, clearing 3 lines at once earns you 10 bonus points, which is the same which you earn from clearing 3 lines sequentially (0, +5, +5).
+| Combo | Bonus |
+| - | - |
+| - | +0 |
+| 2 | +0 |
+| 3 | +5 |
+| 4 | +5 |
+| 5 | +10 |
+| 6 | +10 |
+| 7 | +15 |
+| 8 | +15 |
+| 9 | +20 |
+| >9 | +20 |
+
+Making a box prevents your combo from being interrupted. Dropping two blocks consecutively without clearing a line or making a box will reset your combo.
+
+There are no special bonus points for clearing multiple lines at once, but each line counts towards your combo and awards bonus points in that way. For example, clearing 2 lines simultaneously and then 3 lines simultaneously earns you 20 bonus points, which is the same which you earn from clearing 5 lines sequentially (+0, +0, +5, +5, +10).
 
 ### Boxes
 
-Arranging a quadromino and pentomino into a 3x3 square will turn them into a snack box. Snack boxes award 5 points every time you clear a line with them, for a total of +15 points if you clear all three lines.
+Arranging pieces into rectangles turns them into a box. Each line cleared with a box awards bonus points:
 
-Arranging three quadrominos into a 3x4 rectangle will turn them into a cake box. Cake boxes award 10 bonus points every time you clear a line with them, for a total of +40 points if you clear all four lines. These can be oriented horizontally, but you'll only score +30 points as the box have fewer lines.
+| Box size (w x h) | Points per line | Total points |
+| - | - | - |
+| 3x3 | +5 | +15 |
+| 4x3 | +10 | +30 |
+| 5x3 | +10 | +30 |
+| 3x4 | +10 | +40 |
+| 3x5 | +10 | +50 |
 
-You can also form a cake box by arranging three pentominos into a 3x5 rectangle, which still awards 10 bonus points per line. Any other sizes of rectangles, such as a 3x6 rectangle or 4x4 square will not form a box.
+Other sizes of rectangles, such as a 4x4 or 3x6, will not turn into a box or award bonus points.
 
-You can have several snack boxes and cake boxes per line, and these bonuses can combine with your combo bonus. For example if you arrange 6 pieces into 3 snack boxes, and the sixth piece clears all three rows, you would earn +10 points for combo, and +45 bonus points for the boxes. You could earn up to +50 bonus points with a single line clear, although this is very difficult.
+Rectangles must include fully intact pieces, if a piece is involved in a line clear it can no longer be included in a box.
 
-Forming a box prevents your combo from being interrupted. A skilled player can theoretically continue their combo indefinitely if they continue clearing lines and forming boxes.
+Making a box prevents your combo from being interrupted. It is possible for a skilled player to continue a combo indefinitely by stacking up pieces while making boxes.
 
 # How am I being graded?
 
