@@ -34,6 +34,8 @@ const CHIME_DELAYS: Array = [0.1, 0.2, 0.3, 0.5, 1.0, 1.5, 2.0]
 
 export (int) var _customer_preset := -1 setget set_customer_preset
 
+export (bool) var _movement_mode := false setget set_movement_mode
+
 # the total number of seconds which have elapsed since the object was created
 var _total_seconds := 0.0
 
@@ -100,6 +102,11 @@ onready var _goodbye_voices:Array = [
 onready var _mouth_animation_player := $Mouth1Anims
 onready var _eye_animation_player := $Eye0Anims
 
+func _ready() -> void:
+	# Update visibility/position of nodes based on whether this customer is sitting or walking
+	update_movement_mode()
+
+
 func _process(delta: float) -> void:
 	if _summoning and CustomerLoader.is_customer_ready(_customer_def):
 		_update_customer_properties()
@@ -114,9 +121,10 @@ func _process(delta: float) -> void:
 	
 	if not _eye_animation_player.is_playing():
 		_eye_animation_player.play("Ambient")
+		_eye_animation_player.advance(randf() * _eye_animation_player.current_animation_length)
 	
 	_total_seconds += delta
-	$Neck0/Neck1.position.y = -100 + _head_bob_pixels * sin((_total_seconds * 2 * PI) / _head_bob_seconds)
+	$Sprites/Neck0/Neck1.position.y = -100 + _head_bob_pixels * sin((_total_seconds * 2 * PI) / _head_bob_seconds)
 
 
 """
@@ -223,13 +231,13 @@ func show_food_effects(delay := 0.0) -> void:
 	# avoid using the same color twice consecutively
 	_food_color_index = (_food_color_index + 1 + randi() % (FOOD_COLORS.size() - 1)) % FOOD_COLORS.size()
 	var food_color: Color = FOOD_COLORS[_food_color_index]
-	$Neck0/Neck1/Food.modulate = food_color
-	$Neck0/Neck1/FoodLaser.modulate = food_color
+	$Sprites/Neck0/Neck1/Food.modulate = food_color
+	$Sprites/Neck0/Neck1/FoodLaser.modulate = food_color
 
 	if delay >= 0.0:
 		yield(get_tree().create_timer(delay), "timeout")
 	play_voice(munch_sound)
-	$Tween.interpolate_property($Neck0/Neck1, "position:x", clamp($Neck0/Neck1.position.x - 6, -20, 0), 0, 0.5,
+	$Tween.interpolate_property($Sprites/Neck0/Neck1, "position:x", clamp($Sprites/Neck0/Neck1.position.x - 6, -20, 0), 0, 0.5,
 			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 	$Tween.start()
 	emit_signal("food_eaten")
@@ -270,6 +278,60 @@ func play_voice(audio_stream: AudioStreamPlayer2D) -> void:
 
 
 """
+Plays a movement animation with the specified prefix and direction, such as a 'run' animation going left.
+
+Parameters:
+	'animation_prefix': A partial name of an animation on $Customer/MovementAnims, omitting the directional suffix
+	
+	'movement_direction': A unit vector in the (X, Y) direction the customer is moving.
+"""
+func play_movement_animation(animation_prefix: String, movement_direction: Vector2) -> void:
+	var animation_name: String
+	if movement_direction.length() == 0:
+		animation_name = "idle-se"
+		if $MovementAnims.current_animation.ends_with("-sw"):
+			animation_name = "idle-sw"
+		set_movement_mode(false)
+	else:
+		var suffix := "se"
+		if movement_direction.dot(Vector2(1.0, -1.0).normalized()) < 0:
+			suffix = "sw"
+		animation_name = "%s-%s" % [animation_prefix, suffix]
+		set_movement_mode(true)
+	if $MovementAnims.current_animation != animation_name:
+		$MovementAnims.play(animation_name)
+
+
+func set_movement_mode(movement_mode: bool) -> void:
+	if _movement_mode == movement_mode:
+		return
+	
+	_movement_mode = movement_mode
+	if is_inside_tree():
+		update_movement_mode()
+
+
+"""
+Updates the visibility/position of nodes based on whether this customer is sitting or walking.
+"""
+func update_movement_mode() -> void:
+	if _movement_mode == false:
+		# reset position/size attributes that get altered during movement
+		$Sprites/Neck0.position = Vector2(0, 0)
+	
+	# movement sprites are visible if movement_mode is true
+	$Sprites/FarMovement.visible = _movement_mode
+	$Sprites/NearMovement.visible = _movement_mode
+
+	# most other sprites are not visible if movement_mode is true
+	$Sprites/FarArm.visible = not _movement_mode
+	$Sprites/FarLeg.visible = not _movement_mode
+	$Sprites/Body.visible = not _movement_mode
+	$Sprites/NearLeg.visible = not _movement_mode
+	$Sprites/NearArm.visible = not _movement_mode
+
+
+"""
 Updates the properties of the various customer sprites and Node2D objects based on the contents of the customer
 definition. This assumes the CustomerLoader has finished loading all of the appropriate textures and values.
 """
@@ -280,10 +342,10 @@ func _update_customer_properties() -> void:
 		_eye_animation_player.stop()
 	
 	# reset the mouth/eye frames, otherwise we could have one strange transition frame
-	$Neck0/Neck1/Mouth/Outline.frame = 0
-	$Neck0/Neck1/Mouth.frame = 0
-	$Neck0/Neck1/Eyes/Outline.frame = 0
-	$Neck0/Neck1/Eyes.frame = 0
+	$Sprites/Neck0/Neck1/Mouth/Outline.frame = 0
+	$Sprites/Neck0/Neck1/Mouth.frame = 0
+	$Sprites/Neck0/Neck1/Eyes/Outline.frame = 0
+	$Sprites/Neck0/Neck1/Eyes.frame = 0
 	
 	if _customer_def.has("mouth"):
 		# set the sprite's color/texture properties
@@ -296,17 +358,17 @@ func _update_customer_properties() -> void:
 	
 	for key in _customer_def.keys():
 		if key.find("property:") == 0:
-			var node_path: String = key.split(":")[1]
+			var node_path: String = "Sprites/" + key.split(":")[1]
 			var property_name: String = key.split(":")[2]
 			get_node(node_path).set(property_name, _customer_def[key])
 			if property_name == "texture" and _customer_def[key]:
 				get_node(node_path).vframes = max(1, int(round(_customer_def[key].get_height() / 1025)))
 				get_node(node_path).hframes = max(1, int(round(_customer_def[key].get_width() / 1025)))
 		if key.find("shader:") == 0:
-			var node_path: String = key.split(":")[1]
+			var node_path: String = "Sprites/" + key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
 			get_node(node_path).material.set_shader_param(shader_param, _customer_def[key])
-	$Body.update()
+	$Sprites/Body.update()
 	visible = true
 	emit_signal("customer_arrived")
 	

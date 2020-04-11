@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bug-variation-0.png-e5827b4fa0a21a2018acb972adb5b1e2.stex"
+path="res://.import/movement-z0.png-aaf282362e450ce8cc3a7a42797f004b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/world/customer/bug-variation-0.png"
-dest_files=[ "res://.import/bug-variation-0.png-e5827b4fa0a21a2018acb972adb5b1e2.stex" ]
+source_file="res://assets/world/customer/0/movement-z0.png"
+dest_files=[ "res://.import/movement-z0.png-aaf282362e450ce8cc3a7a42797f004b.stex" ]
 
 [params]
 
@@ -23,12 +23,12 @@ flags/repeat=0
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=true
-flags/srgb=1
+flags/srgb=2
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
 size_limit=0
-detect_3d=false
+detect_3d=true
 svg/scale=1.0

@@ -155,3 +155,10 @@ z_index = 10
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2380, 585 )
 z_index = 10
+[connection signal="food_eaten" from="Seat1/Customer" to="." method="_on_Customer_food_eaten"]
+
+[editable path="Seat1"]
+
+[editable path="Seat2"]
+
+[editable path="Seat3"]
