@@ -7,25 +7,25 @@ The 3D object representing 'Turbo', the player-controlled character who moves ar
 const FRICTION := 0.15
 
 # How fast can Turbo move
-const MAX_RUN_SPEED := 6
+const MAX_RUN_SPEED := 60
 
 # How fast can Turbo slip
-const MAX_SLIP_SPEED := 9
+const MAX_SLIP_SPEED := 90
 
 # How fast Turbo slips off of slippery platforms
-const MAX_SLIP_ACCELERATION := 220
+const MAX_SLIP_ACCELERATION := 2200
 
 # How fast can Turbo accelerate
-const MAX_RUN_ACCELERATION := 150
+const MAX_RUN_ACCELERATION := 1500
 
 # How slow can Turbo move before she stops
-const MIN_RUN_SPEED := 4
+const MIN_RUN_SPEED := 40
 
 # How fast does gravity accelerate Turbo
-const GRAVITY := 40.0
+const GRAVITY := 400.0
 
 # Vertical force applied to Turbo when she jumps
-const JUMP_SPEED := 16
+const JUMP_SPEED := 160
 
 # Turbo's (X, Y, Z) velocity
 var _velocity := Vector3(0, 0, 0)
@@ -57,10 +57,6 @@ func _physics_process(delta):
 		else:
 			_jumping = false
 	
-	if is_on_floor() and not _jumping:
-		# the character visibly jitters between y values of [1.06, 1.10] if we do not smooth the value
-		translation.y = stepify(translation.y, 0.2)
-		
 	if not is_on_floor() and was_on_floor and not _jumping and not _slipping:
 		$CoyoteTimer.start()
 
