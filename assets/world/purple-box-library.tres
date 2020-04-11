@@ -6,7 +6,7 @@
 
 [sub_resource type="CubeMesh" id=1]
 material = ExtResource( 1 )
-size = Vector3( 2, 1.2, 2 )
+size = Vector3( 20, 12, 20 )
 
 [sub_resource type="Image" id=2]
 data = {
@@ -22,10 +22,11 @@ image = SubResource( 2 )
 size = Vector2( 64, 64 )
 
 [sub_resource type="BoxShape" id=4]
+extents = Vector3( 10, 6, 10 )
 
 [sub_resource type="CubeMesh" id=5]
 material = ExtResource( 2 )
-size = Vector3( 2, 1.2, 2 )
+size = Vector3( 20, 12, 20 )
 
 [sub_resource type="Image" id=6]
 data = {
@@ -42,7 +43,7 @@ size = Vector2( 64, 64 )
 
 [sub_resource type="CubeMesh" id=8]
 material = ExtResource( 3 )
-size = Vector3( 2, 1.2, 2 )
+size = Vector3( 20, 12, 20 )
 
 [sub_resource type="Image" id=9]
 data = {
