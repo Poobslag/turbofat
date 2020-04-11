@@ -49,18 +49,18 @@ Holding the hard-drop button when a piece spawns will immediately hard-drop the 
 
 Clearing two or more lines sequentially forms a combo which scores you bonus points:
 
-| Combo | Bonus |
-| - | - |
-| - | +0 |
-| 2 | +0 |
-| 3 | +5 |
-| 4 | +5 |
-| 5 | +10 |
-| 6 | +10 |
-| 7 | +15 |
-| 8 | +15 |
-| 9 | +20 |
-| >9 | +20 |
+| Combo | Bonus per line | Total bonus |
+| - | - | - |
+| - | +0 | 0 |
+| 2 | +0 | 0 |
+| 3 | +5 | 5 |
+| 4 | +5 | 10 |
+| 5 | +10 | 20 |
+| 6 | +10 | 30 |
+| 7 | +15 | 45 |
+| 8 | +15 | 60 |
+| 9 | +20 | 80 |
+| 10+ | +20 | 100+ |
 
 Making a box prevents your combo from being interrupted. Dropping two blocks consecutively without clearing a line or making a box will reset your combo.
 
@@ -70,7 +70,7 @@ There are no special bonus points for clearing multiple lines at once, but each 
 
 Arranging pieces into rectangles turns them into a box. Each line cleared with a box awards bonus points:
 
-| Box size (w x h) | Points per line | Total points |
+| Box size (w x h) | Bonus per line | Total bonus |
 | - | - | - |
 | 3x3 | +5 | +15 |
 | 4x3 | +10 | +30 |
