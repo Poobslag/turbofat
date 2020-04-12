@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://src/main/world/restaurant/fat-player.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/restaurant/smooth-path-outline.gd" type="Script" id=2]
@@ -46,6 +46,8 @@
 [ext_resource path="res://assets/world/customer/munch3.wav" type="AudioStream" id=44]
 [ext_resource path="res://src/main/world/multi-outline.shader" type="Shader" id=45]
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=46]
+[ext_resource path="res://src/main/world/restaurant/eye-anims.gd" type="Script" id=58]
+[ext_resource path="res://assets/world/customer/0/movement-z0.png" type="Texture" id=60]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -75,13 +77,7 @@ shader = ExtResource( 45 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Curve2D" id=5]
-resource_local_to_scene = true
-_data = {
-"points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
-}
-
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
 shader = ExtResource( 46 )
 shader_param/red = Color( 0, 0, 0, 1 )
@@ -89,11 +85,17 @@ shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=7]
+[sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
 shader = ExtResource( 45 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Curve2D" id=7]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
+}
 
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
@@ -204,7 +206,7 @@ length = 4.0
 loop = true
 step = 0.166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/Neck1/Mouth:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -220,7 +222,7 @@ tracks/0/keys = {
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/Neck1/Mouth:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -232,7 +234,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 0, 6, 7, 7, 6, 6, 0, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0/Neck1/Food:frame")
+tracks/1/path = NodePath("Sprites/Neck0/Neck1/Food:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -244,7 +246,7 @@ tracks/1/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Neck0/Neck1/FoodLaser:frame")
+tracks/2/path = NodePath("Sprites/Neck0/Neck1/FoodLaser:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -260,7 +262,7 @@ tracks/2/keys = {
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/Neck1/Mouth:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -272,7 +274,7 @@ tracks/0/keys = {
 "values": [ 2, 3, 4, 5, 6, 0, 6, 7, 7, 6, 6, 0, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0/Neck1/Food:frame")
+tracks/1/path = NodePath("Sprites/Neck0/Neck1/Food:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -284,7 +286,7 @@ tracks/1/keys = {
 "values": [ 1, 2, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Neck0/Neck1/FoodLaser:frame")
+tracks/2/path = NodePath("Sprites/Neck0/Neck1/FoodLaser:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -300,7 +302,7 @@ tracks/2/keys = {
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/Neck1/Mouth:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -316,7 +318,7 @@ tracks/0/keys = {
 length = 0.333333
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/Neck1/Mouth:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -328,7 +330,7 @@ tracks/0/keys = {
 "values": [ 0, 13, 14, 0, 15, 16, 17, 18, 19, 20, 12 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0/Neck1/Food:frame")
+tracks/1/path = NodePath("Sprites/Neck0/Neck1/Food:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -340,7 +342,7 @@ tracks/1/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Neck0/Neck1/FoodLaser:frame")
+tracks/2/path = NodePath("Sprites/Neck0/Neck1/FoodLaser:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -352,7 +354,7 @@ tracks/2/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Neck0/Neck1/Mouth:z_index")
+tracks/3/path = NodePath("Sprites/Neck0/Neck1/Mouth:z_index")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -364,7 +366,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 1, 0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Neck0/Neck1/Food:z_index")
+tracks/4/path = NodePath("Sprites/Neck0/Neck1/Food:z_index")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -380,7 +382,7 @@ tracks/4/keys = {
 length = 0.266666
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/Neck1/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/Neck1/Mouth:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -392,7 +394,7 @@ tracks/0/keys = {
 "values": [ 14, 15, 16, 17, 18, 19, 20, 12 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0/Neck1/Food:frame")
+tracks/1/path = NodePath("Sprites/Neck0/Neck1/Food:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -404,7 +406,7 @@ tracks/1/keys = {
 "values": [ 1, 2, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Neck0/Neck1/FoodLaser:frame")
+tracks/2/path = NodePath("Sprites/Neck0/Neck1/FoodLaser:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -416,7 +418,7 @@ tracks/2/keys = {
 "values": [ 1, 2, 0, 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Neck0/Neck1/Mouth:z_index")
+tracks/3/path = NodePath("Sprites/Neck0/Neck1/Mouth:z_index")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -428,7 +430,7 @@ tracks/3/keys = {
 "values": [ 1, 1, 0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Neck0/Neck1/Food:z_index")
+tracks/4/path = NodePath("Sprites/Neck0/Neck1/Food:z_index")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -441,27 +443,41 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=29]
-length = 7.0
+length = 7.99999
 loop = true
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/Neck1/Eyes:frame")
+tracks/0/path = NodePath("Sprites/Neck0/Neck1/Eyes:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 6.86667, 6.9, 6.93333, 6.96667 ),
+"times": PoolRealArray( 0, 7.86667, 7.9, 7.93333, 7.96667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 0, 2, 1, 0 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("Eye0Anims")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "advance_animation_randomly"
+} ]
 }
 
 [sub_resource type="Animation" id=30]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/Neck1/Eyes:frame")
+tracks/0/path = NodePath("Sprites/Neck0/Neck1/Eyes:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -477,7 +493,7 @@ tracks/0/keys = {
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/Neck1/Eyes:frame")
+tracks/0/path = NodePath("Sprites/Neck0/Neck1/Eyes:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -492,7 +508,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=32]
 length = 10.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("NearArm:position")
+tracks/0/path = NodePath("Sprites/NearArm:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -504,7 +520,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 7.00775, -19.2712 ), Vector2( 0.667999, -32.9261 ), Vector2( -15.4252, -85.1072 ), Vector2( -43.4252, -157.107 ), Vector2( -89.4498, -342.343 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("FarArm:position")
+tracks/1/path = NodePath("Sprites/FarArm:position")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -516,7 +532,7 @@ tracks/1/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 33.8707, -11.0956 ), Vector2( 54.353, -31.0902 ), Vector2( 82.1504, -88.6357 ), Vector2( 166.083, -175.299 ), Vector2( 374.881, -397.689 ) ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Body:_fatness")
+tracks/2/path = NodePath("Sprites/Body:_fatness")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
@@ -528,7 +544,7 @@ tracks/2/keys = {
 "values": [ 1.0, 1.0, 10.0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("NearLeg:position")
+tracks/3/path = NodePath("Sprites/NearLeg:position")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
@@ -540,7 +556,7 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 7.253, 0 ), Vector2( 10.179, 0 ), Vector2( 5.30226, -8.29047 ), Vector2( -20.6977, 2.7095 ), Vector2( -59.4692, 6.5144 ) ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("FarLeg:position")
+tracks/4/path = NodePath("Sprites/FarLeg:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
@@ -552,7 +568,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ), Vector2( 30.091, 0 ), Vector2( 50.086, 0 ), Vector2( 88.6123, -15.1179 ), Vector2( 186.882, -22.8557 ), Vector2( 451.803, -42.8278 ) ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Neck0:position")
+tracks/5/path = NodePath("Sprites/Neck0:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
@@ -576,52 +592,331 @@ tracks/6/keys = {
 "values": [ Vector2( 0.17, 0.17 ), Vector2( 0.17, 0.17 ), Vector2( 0.2, 0.2 ), Vector2( 0.55, 0.55 ), Vector2( 1.05, 1.05 ) ]
 }
 
+[sub_resource type="Animation" id=33]
+resource_name = "idle-se"
+length = 0.333333
+step = 0.0555556
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Neck0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.333333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.333333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=34]
+resource_name = "idle-sw"
+length = 0.333333
+step = 0.0555556
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Neck0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.333333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.333333 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ), Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=35]
+resource_name = "jump-se"
+length = 30.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Neck0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 30 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 54.4218, 42.1444 ), Vector2( 57.0177, 29.1349 ), Vector2( 64.8628, 19.8927 ), Vector2( 64.8628, 19.8927 ), Vector2( 80.7512, 29.1243 ), Vector2( 80.7512, 29.1243 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/FarMovement:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 30 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 2, 3, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/FarMovement:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 30 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 30 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=36]
+resource_name = "jump-sw"
+length = 30.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Neck0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 30 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 54.4218, 42.1444 ), Vector2( 57.0177, 29.1349 ), Vector2( 64.8628, 19.8927 ), Vector2( 64.8628, 19.8927 ), Vector2( 80.7512, 29.1243 ), Vector2( 80.7512, 29.1243 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/FarMovement:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 30 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 2, 3, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/FarMovement:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 30 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 30 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ), Vector2( -1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=37]
+length = 0.4
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Neck0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 54.4218, 42.1444 ), Vector2( 57.0177, 29.1349 ), Vector2( 64.8628, 19.8927 ), Vector2( 80.7512, 29.1243 ), Vector2( 76.5481, 42.8297 ), Vector2( 59.9194, 47.575 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/FarMovement:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites/FarMovement:flip_h")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+length = 0.4
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprites/Neck0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ Vector2( 54.4218, 42.1444 ), Vector2( 57.0177, 29.1349 ), Vector2( 64.8628, 19.8927 ), Vector2( 80.7512, 29.1243 ), Vector2( 76.5481, 42.8297 ), Vector2( 59.9194, 47.575 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprites/FarMovement:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.2, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3, 4, 5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprites:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1, 1 ), Vector2( -1, 1 ) ]
+}
+
 [node name="Customer" type="Node2D"]
 light_mask = 2
 position = Vector2( 108.587, 210.527 )
 z_index = 10
 script = ExtResource( 5 )
 __meta__ = {
-"_edit_group_": true,
 "_editor_description_": ""
 }
 
 [node name="Shadow" type="Sprite" parent="."]
-visible = false
 self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
 light_mask = 2
 scale = Vector2( 0.17, 0.17 )
 z_index = -20
 texture = ExtResource( 14 )
 
-[node name="FarArm" type="Sprite" parent="."]
+[node name="Sprites" type="Node2D" parent="."]
+__meta__ = {
+"_edit_group_": true,
+"_editor_description_": "Container for all of the customer's parts, to enable flipping by MovementAnims"
+}
+
+[node name="FarMovement" type="Sprite" parent="Sprites"]
+visible = false
 light_mask = 2
 material = SubResource( 1 )
 scale = Vector2( 0.418, 0.418 )
+texture = ExtResource( 60 )
 offset = Vector2( 0, -239 )
+hframes = 6
+frame = 2
 
-[node name="Outline" type="Sprite" parent="FarArm"]
+[node name="Outline" type="Sprite" parent="Sprites/FarMovement"]
 light_mask = 2
 material = SubResource( 2 )
 offset = Vector2( 0, -239 )
 script = ExtResource( 4 )
 
-[node name="FarLeg" type="Sprite" parent="."]
+[node name="FarArm" type="Sprite" parent="Sprites"]
 light_mask = 2
 material = SubResource( 3 )
 scale = Vector2( 0.418, 0.418 )
 offset = Vector2( 0, -239 )
 
-[node name="Outline" type="Sprite" parent="FarLeg"]
+[node name="Outline" type="Sprite" parent="Sprites/FarArm"]
 light_mask = 2
 material = SubResource( 4 )
 offset = Vector2( 0, -239 )
 script = ExtResource( 4 )
 
-[node name="Body" type="Path2D" parent="."]
+[node name="FarLeg" type="Sprite" parent="Sprites"]
+light_mask = 2
+material = SubResource( 5 )
+scale = Vector2( 0.418, 0.418 )
+offset = Vector2( 0, -239 )
+
+[node name="Outline" type="Sprite" parent="Sprites/FarLeg"]
+light_mask = 2
+material = SubResource( 6 )
+offset = Vector2( 0, -239 )
+script = ExtResource( 4 )
+
+[node name="Body" type="Path2D" parent="Sprites"]
 self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
-curve = SubResource( 5 )
+rotation = 0.00355033
+curve = SubResource( 7 )
 script = ExtResource( 3 )
 spline_length = 25.0
 _smooth = false
@@ -633,11 +928,11 @@ line_width = 2.0
 _fatness = 1.0
 editing = false
 
-[node name="Outline" type="Path2D" parent="Body"]
+[node name="Outline" type="Path2D" parent="Sprites/Body"]
 self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
 z_index = -2
-curve = SubResource( 5 )
+curve = SubResource( 7 )
 script = ExtResource( 2 )
 spline_length = 25.0
 _smooth = false
@@ -647,36 +942,37 @@ line_color = Color( 0, 0, 0, 1 )
 fill_color = Color( 1, 1, 1, 0 )
 line_width = 6.0
 
-[node name="NearLeg" type="Sprite" parent="."]
-light_mask = 2
-material = SubResource( 6 )
-scale = Vector2( 0.418, 0.418 )
-offset = Vector2( 0, -239 )
-
-[node name="Outline" type="Sprite" parent="NearLeg"]
-light_mask = 2
-material = SubResource( 7 )
-offset = Vector2( 0, -239 )
-script = ExtResource( 4 )
-
-[node name="NearArm" type="Sprite" parent="."]
+[node name="NearLeg" type="Sprite" parent="Sprites"]
 light_mask = 2
 material = SubResource( 8 )
 scale = Vector2( 0.418, 0.418 )
 offset = Vector2( 0, -239 )
 
-[node name="Outline" type="Sprite" parent="NearArm"]
+[node name="Outline" type="Sprite" parent="Sprites/NearLeg"]
 light_mask = 2
 material = SubResource( 9 )
 offset = Vector2( 0, -239 )
 script = ExtResource( 4 )
 
-[node name="Neck0" type="Sprite" parent="."]
+[node name="NearArm" type="Sprite" parent="Sprites"]
+light_mask = 2
+material = SubResource( 1 )
+scale = Vector2( 0.418, 0.418 )
+offset = Vector2( 0, -239 )
+
+[node name="Outline" type="Sprite" parent="Sprites/NearArm"]
+light_mask = 2
+material = SubResource( 2 )
+offset = Vector2( 0, -239 )
+script = ExtResource( 4 )
+
+[node name="Neck0" type="Sprite" parent="Sprites"]
 __meta__ = {
+"_edit_group_": true,
 "_editor_description_": "Neck0 offsets the head's position as the customer grows in size."
 }
 
-[node name="Neck1" type="Sprite" parent="Neck0"]
+[node name="Neck1" type="Sprite" parent="Sprites/Neck0"]
 light_mask = 2
 material = SubResource( 10 )
 position = Vector2( 0, -100 )
@@ -685,85 +981,98 @@ __meta__ = {
 "_editor_description_": "Neck1 offsets the head's position as the customer bobs their head up and down"
 }
 
-[node name="EarZ0" type="Sprite" parent="Neck0/Neck1"]
+[node name="EarZ0" type="Sprite" parent="Sprites/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 11 )
 
-[node name="Outline" type="Sprite" parent="Neck0/Neck1/EarZ0"]
+[node name="Outline" type="Sprite" parent="Sprites/Neck0/Neck1/EarZ0"]
 light_mask = 2
 material = SubResource( 12 )
 script = ExtResource( 4 )
 
-[node name="Head" type="Sprite" parent="Neck0/Neck1"]
+[node name="Head" type="Sprite" parent="Sprites/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 10 )
 
-[node name="Outline" type="Sprite" parent="Neck0/Neck1/Head"]
+[node name="Outline" type="Sprite" parent="Sprites/Neck0/Neck1/Head"]
 light_mask = 2
 material = SubResource( 13 )
 script = ExtResource( 4 )
 
-[node name="EarZ1" type="Sprite" parent="Neck0/Neck1"]
+[node name="EarZ1" type="Sprite" parent="Sprites/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 11 )
 
-[node name="Outline" type="Sprite" parent="Neck0/Neck1/EarZ1"]
+[node name="Outline" type="Sprite" parent="Sprites/Neck0/Neck1/EarZ1"]
 light_mask = 2
 material = SubResource( 14 )
 script = ExtResource( 4 )
 
-[node name="Horn" type="Sprite" parent="Neck0/Neck1"]
+[node name="Horn" type="Sprite" parent="Sprites/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 15 )
 
-[node name="Outline" type="Sprite" parent="Neck0/Neck1/Horn"]
+[node name="Outline" type="Sprite" parent="Sprites/Neck0/Neck1/Horn"]
 light_mask = 2
 material = SubResource( 16 )
 script = ExtResource( 4 )
 
-[node name="EarZ2" type="Sprite" parent="Neck0/Neck1"]
+[node name="EarZ2" type="Sprite" parent="Sprites/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 17 )
 
-[node name="Outline" type="Sprite" parent="Neck0/Neck1/EarZ2"]
+[node name="Outline" type="Sprite" parent="Sprites/Neck0/Neck1/EarZ2"]
 light_mask = 2
 material = SubResource( 18 )
 script = ExtResource( 4 )
 
-[node name="Mouth" type="Sprite" parent="Neck0/Neck1"]
+[node name="Mouth" type="Sprite" parent="Sprites/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 19 )
-vframes = 3
+vframes = 2
 hframes = 8
 
-[node name="Outline" type="Sprite" parent="Neck0/Neck1/Mouth"]
+[node name="Outline" type="Sprite" parent="Sprites/Neck0/Neck1/Mouth"]
 light_mask = 2
 material = SubResource( 20 )
 vframes = 2
 hframes = 8
 script = ExtResource( 4 )
 
-[node name="Eyes" type="Sprite" parent="Neck0/Neck1"]
+[node name="Eyes" type="Sprite" parent="Sprites/Neck0/Neck1"]
 light_mask = 2
 material = SubResource( 21 )
 hframes = 3
 
-[node name="Outline" type="Sprite" parent="Neck0/Neck1/Eyes"]
+[node name="Outline" type="Sprite" parent="Sprites/Neck0/Neck1/Eyes"]
 light_mask = 2
 material = SubResource( 22 )
 hframes = 3
 script = ExtResource( 4 )
 
-[node name="Food" type="Sprite" parent="Neck0/Neck1"]
+[node name="Food" type="Sprite" parent="Sprites/Neck0/Neck1"]
 light_mask = 2
 z_index = 1
 hframes = 3
 
-[node name="FoodLaser" type="Sprite" parent="Neck0/Neck1"]
+[node name="FoodLaser" type="Sprite" parent="Sprites/Neck0/Neck1"]
 light_mask = 2
 position = Vector2( 1024, 0 )
 z_index = 1
 hframes = 3
+
+[node name="NearMovement" type="Sprite" parent="Sprites"]
+visible = false
+light_mask = 2
+material = SubResource( 1 )
+scale = Vector2( 0.418, 0.418 )
+offset = Vector2( 0, -239 )
+
+[node name="Outline" type="Sprite" parent="Sprites/NearMovement"]
+light_mask = 2
+material = SubResource( 2 )
+offset = Vector2( 0, -239 )
+script = ExtResource( 4 )
 
 [node name="Mouth0Anims" type="AnimationPlayer" parent="."]
 anims/Ambient = SubResource( 23 )
@@ -779,10 +1088,19 @@ anims/EatAgain = SubResource( 28 )
 anims/Ambient = SubResource( 29 )
 anims/Eat = SubResource( 30 )
 anims/EatAgain = SubResource( 31 )
+script = ExtResource( 58 )
 
 [node name="FatPlayer" type="AnimationPlayer" parent="."]
 anims/Fat = SubResource( 32 )
 script = ExtResource( 1 )
+
+[node name="MovementAnims" type="AnimationPlayer" parent="."]
+anims/idle-se = SubResource( 33 )
+anims/idle-sw = SubResource( 34 )
+anims/jump-se = SubResource( 35 )
+anims/jump-sw = SubResource( 36 )
+anims/run-se = SubResource( 37 )
+anims/run-sw = SubResource( 38 )
 
 [node name="Tween" type="Tween" parent="."]
 

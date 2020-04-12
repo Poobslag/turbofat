@@ -1,6 +1,6 @@
-extends KinematicBody
+extends Customer3D
 """
-The 3D object representing 'Turbo', the player-controlled character who moves around the overworld.
+Script for manipulating the player-controlled character 'Turbo' in the 3D overworld.
 """
 
 # Number from [0.0, 1.0] which determines how quickly Turbo slows down
@@ -52,6 +52,10 @@ var _slipping := false
 # The direction Turbo is walking in (X, Y) coordinates, where 'Y' is forward.
 var _walk_direction := Vector2(0, 0)
 
+func _ready() -> void:
+	._ready()
+	$CollisionShape.disabled = false
+
 func _physics_process(delta):
 	var was_on_floor = is_on_floor()
 	
@@ -75,22 +79,23 @@ func _physics_process(delta):
 		$CoyoteTimer.start()
 
 
+"""
+Turbo is dark red with black eyes.
+"""
+func get_customer_definition() -> Dictionary:
+	return {
+		"line_rgb": "6c4331", "body_rgb": "b23823", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",
+		"ear": "0", "horn": "1", "mouth": "1", "eye": "0"
+	}
+
+
 func _update_animation():
 	if _slipping:
-		if $AnimationPlayer.current_animation != "":
-			$AnimationPlayer.stop()
-			$Sprite3D.frame = 0
+		play_movement_animation("jump", _walk_direction)
 	elif _jumping:
-		if $AnimationPlayer.current_animation != "":
-			$AnimationPlayer.stop()
-			$Sprite3D.frame = 0
-	elif _walk_direction.length() > 0:
-		if $AnimationPlayer.current_animation != "walk-sw":
-			$AnimationPlayer.play("walk-sw")
+		play_movement_animation("jump", _walk_direction)
 	else:
-		if $AnimationPlayer.current_animation != "":
-			$AnimationPlayer.stop()
-			$Sprite3D.frame = 0
+		play_movement_animation("run", _walk_direction)
 
 
 func _update_camera_target():

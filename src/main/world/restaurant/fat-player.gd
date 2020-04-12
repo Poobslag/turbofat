@@ -1,8 +1,8 @@
+extends AnimationPlayer
 """
 Controls an animation for making a customer fatter or thinner. Stores a field for how fat the customer should be, and
 plays an animation forward and backwards to adjust the customer's appearance.
 """
-extends AnimationPlayer
 
 # how large the creature has grown; 5.0 = 5x normal size
 var _fatness := 1.0 setget set_fatness, get_fatness
