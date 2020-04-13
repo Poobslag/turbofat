@@ -91,11 +91,13 @@ func get_customer_definition() -> Dictionary:
 
 func _update_animation():
 	if _slipping:
-		play_movement_animation("jump", _walk_direction)
+		play_movement_animation("jump", _get_xy_velocity())
 	elif _jumping:
 		play_movement_animation("jump", _walk_direction)
-	else:
+	elif _walk_direction.length() > 0:
 		play_movement_animation("run", _walk_direction)
+	else:
+		play_movement_animation("idle", _walk_direction)
 
 
 func _update_camera_target():
@@ -209,6 +211,8 @@ func jump() -> void:
 	$JumpBuffer.stop()
 	_velocity.y = JUMP_SPEED
 	_jumping = true
+	# change the movement animation to ensure the jump animation restarts even if we were already jumping
+	play_movement_animation("idle")
 
 
 """

@@ -126,20 +126,21 @@ Parameters:
 		res://assets/world/customer/0/{something}.png, so this parameter only specifies the {something}.
 """
 func _resource(customer_def: Dictionary, key: String, filename: String) -> Resource:
-	var resource_path := "res://assets/world/customer/%s/%s.png" % [customer_def[key], filename]
 	var resource: Resource;
 	if not customer_def.has(key):
 		# The key was not specified in the customer definition. This is not an error condition, a customer might not
 		# have an 'ear' key if she doesn't have ears.
 		pass
-	elif !ResourceLoader.exists(resource_path):
-		# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
-		# but also throws an error.
-		pass
 	else:
-		_load_mutex.lock()
-		resource = load(resource_path)
-		_load_mutex.unlock()
+		var resource_path := "res://assets/world/customer/%s/%s.png" % [customer_def[key], filename]
+		if !ResourceLoader.exists(resource_path):
+			# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
+			# but also throws an error.
+			pass
+		else:
+			_load_mutex.lock()
+			resource = load(resource_path)
+			_load_mutex.unlock()
 	return resource
 
 
@@ -147,16 +148,17 @@ func _resource(customer_def: Dictionary, key: String, filename: String) -> Resou
 Loads the resources for a customer's ears based on a customer definition.
 """
 func _load_ear(customer_def: Dictionary) -> void:
-	customer_def["property:Neck0/Neck1/EarZ0:texture"] = _resource(customer_def, "ear", "ear-z0")
-	customer_def["property:Neck0/Neck1/EarZ1:texture"] = _resource(customer_def, "ear", "ear-z1")
-	customer_def["property:Neck0/Neck1/EarZ2:texture"] = _resource(customer_def, "ear", "ear-z2")
+	customer_def["property:Neck0/Neck1/EarZ0:texture"] = _resource(customer_def, "ear", "ear-z0-sheet")
+	customer_def["property:Neck0/Neck1/EarZ1:texture"] = _resource(customer_def, "ear", "ear-z1-sheet")
+	customer_def["property:Neck0/Neck1/EarZ2:texture"] = _resource(customer_def, "ear", "ear-z2-sheet")
 
 
 """
 Loads the resources for a customer's horn based on a customer definition.
 """
 func _load_horn(customer_def: Dictionary) -> void:
-	customer_def["property:Neck0/Neck1/Horn:texture"] = _resource(customer_def, "horn", "horn")
+	customer_def["property:Neck0/Neck1/HornZ0:texture"] = _resource(customer_def, "horn", "horn-z0-sheet")
+	customer_def["property:Neck0/Neck1/HornZ1:texture"] = _resource(customer_def, "horn", "horn-z1-sheet")
 
 
 """
@@ -182,11 +184,12 @@ func _load_body(customer_def: Dictionary) -> void:
 	# All customers have a body, but this class supports passing in an empty customer definition to unload the
 	# textures from customer sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# customer's body.
-	customer_def["property:FarArm:texture"] = _resource(customer_def, "body", "arm-z0")
-	customer_def["property:FarLeg:texture"] = _resource(customer_def, "body", "leg-z0")
-	customer_def["property:NearLeg:texture"] = _resource(customer_def, "body", "leg-z1")
-	customer_def["property:NearArm:texture"] = _resource(customer_def, "body", "arm-z1")
-	customer_def["property:Neck0/Neck1/Head:texture"] = _resource(customer_def, "body", "head")
+	customer_def["property:FarArm:texture"] = _resource(customer_def, "body", "arm-z0-sheet")
+	customer_def["property:FarLeg:texture"] = _resource(customer_def, "body", "leg-z0-sheet")
+	customer_def["property:Body/NeckBlend:texture"] = _resource(customer_def, "body", "neck-sheet")
+	customer_def["property:NearLeg:texture"] = _resource(customer_def, "body", "leg-z1-sheet")
+	customer_def["property:NearArm:texture"] = _resource(customer_def, "body", "arm-z1-sheet")
+	customer_def["property:Neck0/Neck1/Head:texture"] = _resource(customer_def, "body", "head-sheet")
 
 
 """
@@ -202,21 +205,24 @@ func _load_colors(customer_def: Dictionary) -> void:
 	customer_def["shader:NearLeg/Outline:black"] = line_color
 	customer_def["shader:NearArm/Outline:black"] = line_color
 	customer_def["shader:Neck0/Neck1/EarZ0/Outline:black"] = line_color
+	customer_def["shader:Neck0/Neck1/HornZ0/Outline:black"] = line_color
 	customer_def["shader:Neck0/Neck1/Head/Outline:black"] = line_color
 	customer_def["shader:Neck0/Neck1/EarZ1/Outline:black"] = line_color
-	customer_def["shader:Neck0/Neck1/Horn/Outline:black"] = line_color
+	customer_def["shader:Neck0/Neck1/HornZ1/Outline:black"] = line_color
 	customer_def["shader:Neck0/Neck1/EarZ2/Outline:black"] = line_color
 	customer_def["shader:Neck0/Neck1/Mouth/Outline:black"] = line_color
 	customer_def["shader:Neck0/Neck1/Eyes/Outline:black"] = line_color
 	customer_def["shader:FarArm:black"] = line_color
 	customer_def["shader:FarLeg:black"] = line_color
 	customer_def["property:Body:line_color"] = line_color
+	customer_def["shader:Body/NeckBlend:black"] = line_color
 	customer_def["shader:NearArm:black"] = line_color
 	customer_def["shader:NearLeg:black"] = line_color
 	customer_def["shader:Neck0/Neck1/EarZ0:black"] = line_color
+	customer_def["shader:Neck0/Neck1/HornZ0:black"] = line_color
 	customer_def["shader:Neck0/Neck1/Head:black"] = line_color
 	customer_def["shader:Neck0/Neck1/EarZ1:black"] = line_color
-	customer_def["shader:Neck0/Neck1/Horn:black"] = line_color
+	customer_def["shader:Neck0/Neck1/HornZ1:black"] = line_color
 	customer_def["shader:Neck0/Neck1/EarZ2:black"] = line_color
 	customer_def["shader:Neck0/Neck1/Mouth:black"] = line_color
 	customer_def["shader:Neck0/Neck1/Eyes:black"] = line_color
@@ -226,12 +232,14 @@ func _load_colors(customer_def: Dictionary) -> void:
 		body_color = Color(customer_def.body_rgb)
 	customer_def["shader:FarArm:red"] = body_color
 	customer_def["shader:FarLeg:red"] = body_color
+	customer_def["shader:Body/NeckBlend:red"] = body_color
 	customer_def["shader:NearLeg:red"] = body_color
 	customer_def["shader:NearArm:red"] = body_color
 	customer_def["shader:Neck0/Neck1/EarZ0:red"] = body_color
+	customer_def["shader:Neck0/Neck1/HornZ0:red"] = body_color
 	customer_def["shader:Neck0/Neck1/Head:red"] = body_color
 	customer_def["shader:Neck0/Neck1/EarZ1:red"] = body_color
-	customer_def["shader:Neck0/Neck1/Horn:red"] = body_color
+	customer_def["shader:Neck0/Neck1/HornZ1:red"] = body_color
 	customer_def["shader:Neck0/Neck1/EarZ2:red"] = body_color
 	customer_def["shader:Neck0/Neck1/Mouth:red"] = body_color
 	customer_def["shader:Neck0/Neck1/Eyes:red"] = body_color
@@ -252,7 +260,8 @@ func _load_colors(customer_def: Dictionary) -> void:
 	var horn_color: Color
 	if customer_def.has("horn_rgb"):
 		horn_color = Color(customer_def.horn_rgb)
-	customer_def["shader:Neck0/Neck1/Horn:green"] = horn_color
+	customer_def["shader:Neck0/Neck1/HornZ0:green"] = horn_color
+	customer_def["shader:Neck0/Neck1/HornZ1:green"] = horn_color
 
 
 """

@@ -1,12 +1,11 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://src/main/world/customer-3d.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/multi-outline.shader" type="Shader" id=2]
 [ext_resource path="res://src/main/world/restaurant/Customer.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=4]
-[ext_resource path="res://assets/world/customer/1/eyes-sheet.png" type="Texture" id=8]
-[ext_resource path="res://assets/world/customer/0/ear-z2.png" type="Texture" id=10]
-[ext_resource path="res://assets/world/customer/0/ear-z1.png" type="Texture" id=11]
+[ext_resource path="res://src/main/world/customer3d-viewport.gd" type="Script" id=6]
+[ext_resource path="res://src/main/world/shadow-mesh.gd" type="Script" id=7]
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")
@@ -27,160 +26,204 @@ size = Vector2( 40, 40 )
 radius = 10.0
 height = 20.0
 
-[sub_resource type="BoxShape" id=5]
-extents = Vector3( 6.5, 7.5, 5 )
+[sub_resource type="Animation" id=5]
+resource_name = "jump"
+length = 30.0
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:_shadow_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 30 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1.0, 1.0, 0.9, 0.9 ]
+}
 
-[sub_resource type="ShaderMaterial" id=6]
-resource_local_to_scene = true
-shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+[sub_resource type="Animation" id=6]
+resource_name = "run"
+length = 0.4
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:_shadow_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.25, 0.3, 0.35 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1.0, 1.0, 0.9, 0.9, 0.95, 1.0 ]
+}
 
-[sub_resource type="ShaderMaterial" id=7]
-resource_local_to_scene = true
-shader = ExtResource( 2 )
-shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 8.5, 7.5, 7 )
 
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
 shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=9]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=10]
 resource_local_to_scene = true
 shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Curve2D" id=12]
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=13]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/width = 6.0
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Curve2D" id=14]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
 }
 
-[sub_resource type="ShaderMaterial" id=13]
-resource_local_to_scene = true
-shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
-[sub_resource type="ShaderMaterial" id=14]
-resource_local_to_scene = true
-shader = ExtResource( 2 )
-shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-
 [sub_resource type="ShaderMaterial" id=15]
 resource_local_to_scene = true
 shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = null
+shader_param/blue = null
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=16]
 resource_local_to_scene = true
 shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=17]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=18]
 resource_local_to_scene = true
-shader = ExtResource( 2 )
-shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader = ExtResource( 4 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=19]
 resource_local_to_scene = true
-shader = ExtResource( 2 )
-shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader = ExtResource( 4 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=20]
 resource_local_to_scene = true
-shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
-shader_param/green = Color( 0.945098, 0.890196, 0.596078, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader = ExtResource( 2 )
+shader_param/width = 6.0
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=21]
 resource_local_to_scene = true
-shader = ExtResource( 2 )
-shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader = ExtResource( 4 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=22]
 resource_local_to_scene = true
-shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader = ExtResource( 2 )
+shader_param/width = 6.0
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=23]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=24]
 resource_local_to_scene = true
-shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
-shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
-shader_param/blue = null
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader = ExtResource( 2 )
+shader_param/width = 6.0
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=25]
 resource_local_to_scene = true
-shader = ExtResource( 2 )
-shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader = ExtResource( 4 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=26]
 resource_local_to_scene = true
-shader = ExtResource( 4 )
-shader_param/red = Color( 0.658824, 0.329412, 0.796078, 1 )
-shader_param/green = Color( 0.309804, 0.662745, 0.305882, 1 )
-shader_param/blue = Color( 0.858824, 0.886275, 0.556863, 1 )
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader = ExtResource( 2 )
+shader_param/width = 6.0
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=27]
 resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
+shader_param/blue = null
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=28]
+resource_local_to_scene = true
 shader = ExtResource( 2 )
 shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=29]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=30]
+resource_local_to_scene = true
+shader = ExtResource( 2 )
+shader_param/width = 6.0
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [node name="Customer" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 10, -40 )
@@ -196,110 +239,120 @@ transform = Transform( 0.459619, 0, 0.353553, 0, 0.850001, 0, -0.459619, 0, 0.35
 cast_shadow = 3
 mesh = SubResource( 4 )
 material/0 = null
+script = ExtResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShadowMesh"]
+anims/jump = SubResource( 5 )
+anims/run = SubResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="."]
-transform = Transform( 0.707107, 0, 0.707108, 0, 1, 0, -0.707107, 0, 0.707108, 3.5, -2.5, 3.5 )
-shape = SubResource( 5 )
+transform = Transform( 0.707107, 0, 0.707108, 0, 1, 0, -0.707107, 0, 0.707108, 2.5, -2.5, 2.5 )
+shape = SubResource( 7 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 1024, 1024 )
 transparent_bg = true
 render_target_v_flip = true
+script = ExtResource( 6 )
 
 [node name="Customer" parent="Viewport" instance=ExtResource( 3 )]
-visible = false
 position = Vector2( 512, 932 )
 scale = Vector2( 2.5, 2.5 )
 
+[node name="Shadow" parent="Viewport/Customer" index="0"]
+visible = false
+
 [node name="FarMovement" parent="Viewport/Customer/Sprites" index="0"]
-material = SubResource( 6 )
-
-[node name="Outline" parent="Viewport/Customer/Sprites/FarMovement" index="0"]
-material = SubResource( 7 )
-
-[node name="FarArm" parent="Viewport/Customer/Sprites" index="1"]
 material = SubResource( 8 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/FarArm" index="0"]
+[node name="Outline" parent="Viewport/Customer/Sprites/FarMovement" index="0"]
 material = SubResource( 9 )
 
-[node name="FarLeg" parent="Viewport/Customer/Sprites" index="2"]
+[node name="FarArm" parent="Viewport/Customer/Sprites" index="1"]
 material = SubResource( 10 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/FarLeg" index="0"]
+[node name="Outline" parent="Viewport/Customer/Sprites/FarArm" index="0"]
 material = SubResource( 11 )
 
-[node name="Body" parent="Viewport/Customer/Sprites" index="3"]
-curve = SubResource( 12 )
+[node name="FarLeg" parent="Viewport/Customer/Sprites" index="2"]
+material = SubResource( 12 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/Body" index="0"]
-curve = SubResource( 12 )
-
-[node name="NearLeg" parent="Viewport/Customer/Sprites" index="4"]
+[node name="Outline" parent="Viewport/Customer/Sprites/FarLeg" index="0"]
 material = SubResource( 13 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/NearLeg" index="0"]
-material = SubResource( 14 )
+[node name="Body" parent="Viewport/Customer/Sprites" index="3"]
+curve = SubResource( 14 )
 
-[node name="NearArm" parent="Viewport/Customer/Sprites" index="5"]
-material = SubResource( 6 )
+[node name="Outline" parent="Viewport/Customer/Sprites/Body" index="0"]
+curve = SubResource( 14 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/NearArm" index="0"]
-material = SubResource( 7 )
-
-[node name="Neck1" parent="Viewport/Customer/Sprites/Neck0" index="0"]
+[node name="NeckBlend" parent="Viewport/Customer/Sprites/Body" index="1"]
 material = SubResource( 15 )
 
-[node name="EarZ0" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="0"]
+[node name="NearLeg" parent="Viewport/Customer/Sprites" index="4"]
 material = SubResource( 16 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/EarZ0" index="0"]
+[node name="Outline" parent="Viewport/Customer/Sprites/NearLeg" index="0"]
 material = SubResource( 17 )
 
-[node name="Head" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="1"]
-material = SubResource( 15 )
+[node name="NearArm" parent="Viewport/Customer/Sprites" index="5"]
+material = SubResource( 8 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/Head" index="0"]
+[node name="Outline" parent="Viewport/Customer/Sprites/NearArm" index="0"]
+material = SubResource( 9 )
+
+[node name="Neck1" parent="Viewport/Customer/Sprites/Neck0" index="0"]
 material = SubResource( 18 )
 
-[node name="EarZ1" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="2"]
-material = SubResource( 16 )
-texture = ExtResource( 11 )
-
-[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/EarZ1" index="0"]
+[node name="EarZ0" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="0"]
 material = SubResource( 19 )
 
-[node name="Horn" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="3"]
+[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/EarZ0" index="0"]
 material = SubResource( 20 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/Horn" index="0"]
+[node name="HornZ0" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="1"]
 material = SubResource( 21 )
 
-[node name="EarZ2" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="4"]
+[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/HornZ0" index="0"]
 material = SubResource( 22 )
-texture = ExtResource( 10 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/EarZ2" index="0"]
+[node name="Head" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="2"]
+material = SubResource( 18 )
+
+[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/Head" index="0"]
 material = SubResource( 23 )
 
-[node name="Mouth" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="5"]
+[node name="EarZ1" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="3"]
+material = SubResource( 19 )
+
+[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/EarZ1" index="0"]
 material = SubResource( 24 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/Mouth" index="0"]
+[node name="HornZ1" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="4"]
+material = SubResource( 21 )
+
+[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/HornZ1" index="0"]
+material = SubResource( 22 )
+
+[node name="EarZ2" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="5"]
 material = SubResource( 25 )
 
-[node name="Eyes" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="6"]
+[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/EarZ2" index="0"]
 material = SubResource( 26 )
-texture = ExtResource( 8 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/Eyes" index="0"]
+[node name="Mouth" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="6"]
 material = SubResource( 27 )
 
-[node name="NearMovement" parent="Viewport/Customer/Sprites" index="7"]
-material = SubResource( 6 )
+[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/Mouth" index="0"]
+material = SubResource( 28 )
 
-[node name="Outline" parent="Viewport/Customer/Sprites/NearMovement" index="0"]
-material = SubResource( 7 )
+[node name="Eyes" parent="Viewport/Customer/Sprites/Neck0/Neck1" index="7"]
+material = SubResource( 29 )
+
+[node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/Eyes" index="0"]
+material = SubResource( 30 )
 [connection signal="customer_arrived" from="Viewport/Customer" to="." method="_on_Customer_customer_arrived"]
+[connection signal="animation_started" from="Viewport/Customer/MovementAnims" to="." method="_on_MovementAnims_animation_started"]
+[connection signal="animation_started" from="Viewport/Customer/MovementAnims" to="Viewport" method="_on_MovementAnims_animation_started"]
 
 [editable path="Viewport/Customer"]

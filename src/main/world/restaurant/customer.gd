@@ -21,6 +21,14 @@ signal customer_arrived
 # signal emitted when a stands up and customer leaves
 signal customer_left
 
+# directions the customer can face
+enum Orientation {
+	SOUTHEAST,
+	SOUTHWEST,
+	NORTHWEST,
+	NORTHEAST
+}
+
 # food colors for the food which gets hurled into the customer's mouth
 const FOOD_COLORS: Array = [
 	Color("a4470b"), # brown
@@ -32,9 +40,22 @@ const FOOD_COLORS: Array = [
 # delays between when customer arrives and when door chime is played (in seconds)
 const CHIME_DELAYS: Array = [0.1, 0.2, 0.3, 0.5, 1.0, 1.5, 2.0]
 
+# maps customer orientations to appropriate (x, y) direction vectors
+const ORIENTATION_VECTORS := {
+	Orientation.SOUTHEAST: Vector2(1.0, 0.0),
+	Orientation.SOUTHWEST: Vector2(0.0, 1.0),
+	Orientation.NORTHWEST: Vector2(-1.0, 0.0),
+	Orientation.NORTHEAST: Vector2(0.0, -1.0),
+}
+
+# in the editor, this rotates between a set of different customer appearances
 export (int) var _customer_preset := -1 setget set_customer_preset
 
+# 'true' if the customer is walking or jumping. toggling this makes certain sprites visible/invisible.
 export (bool) var _movement_mode := false setget set_movement_mode
+
+# the direction the customer is facing
+export (int) var _orientation: int = Orientation.SOUTHEAST setget set_orientation
 
 # the total number of seconds which have elapsed since the object was created
 var _total_seconds := 0.0
@@ -99,32 +120,117 @@ onready var _goodbye_voices:Array = [
 	$GoodbyeVoice0, $GoodbyeVoice1, $GoodbyeVoice2, $GoodbyeVoice3
 ]
 
-onready var _mouth_animation_player := $Mouth1Anims
-onready var _eye_animation_player := $Eye0Anims
+# sprites which toggle between a single 'toward the camera' and 'away from the camera' frame
+onready var _rotatable_sprites := [
+	$Sprites/FarArm,
+	$Sprites/FarLeg,
+	$Sprites/Body/NeckBlend,
+	$Sprites/NearLeg,
+	$Sprites/NearArm,
+	$Sprites/Neck0/Neck1/EarZ0,
+	$Sprites/Neck0/Neck1/HornZ0,
+	$Sprites/Neck0/Neck1/Head,
+	$Sprites/Neck0/Neck1/EarZ1,
+	$Sprites/Neck0/Neck1/HornZ1,
+	$Sprites/Neck0/Neck1/EarZ2
+]
+
+onready var _mouth_animation_player := $Mouth0Anims
 
 func _ready() -> void:
-	# Update visibility/position of nodes based on whether this customer is sitting or walking
-	update_movement_mode()
+	# Update customer's appearance based on their behavior and orientation
+	_update_movement_mode()
+	set_orientation(_orientation)
 
 
 func _process(delta: float) -> void:
 	if _summoning and CustomerLoader.is_customer_ready(_customer_def):
 		_update_customer_properties()
 		_summoning = false
-	
+
 	if Engine.is_editor_hint():
-		# avoid playing animations, bouncing head in editor
+		# avoid playing animations, bouncing head in editor. manually set frames instead
+		_apply_default_mouth_and_eye_frames()
+	else:
+		if not _mouth_animation_player.is_playing():
+			_play_mouth_ambient_animation()
+		
+		if _orientation in [Orientation.SOUTHWEST, Orientation.SOUTHEAST]:
+			if not $Eye0Anims.is_playing():
+				$Eye0Anims.play("ambient")
+				$Eye0Anims.advance(randf() * $Eye0Anims.current_animation_length)
+		else:
+			if $Eye0Anims.is_playing():
+				$Eye0Anims.stop()
+			$Sprites/Neck0/Neck1/Eyes.frame = 0
+		
+		_total_seconds += delta
+		if has_node("Sprites/Neck0/Neck1"):
+			var bob_amount = _head_bob_pixels * sin((_total_seconds * 2 * PI) / _head_bob_seconds)
+			$Sprites/Neck0/Neck1.position.y = -100 + bob_amount
+
+
+"""
+This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
+workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
+
+Tool scripts do not call _ready on reload, which means all onready fields will be null. This breaks this script's
+functionality and throws errors when it is used as a tool. This function manually assigns those fields to avoid those
+problems.
+"""
+func _apply_tool_script_workaround() -> void:
+	if not _rotatable_sprites:
+		_rotatable_sprites = [
+			$Sprites/FarArm,
+			$Sprites/FarLeg,
+			$Sprites/NearLeg,
+			$Sprites/NearArm,
+			$Sprites/Body/NeckBlend,
+			$Sprites/Neck0/Neck1/EarZ0,
+			$Sprites/Neck0/Neck1/HornZ0,
+			$Sprites/Neck0/Neck1/Head,
+			$Sprites/Neck0/Neck1/EarZ1,
+			$Sprites/Neck0/Neck1/HornZ1,
+			$Sprites/Neck0/Neck1/EarZ2,
+		]
+	if not _mouth_animation_player:
+		_mouth_animation_player = $Mouth0Anims
+
+
+"""
+Sets the customer's orientation, and alters their appearance appropriately.
+
+If the customer swaps between facing left or right, certain sprites are flipped horizontally. If the customer swaps
+between facing forward or backward, certain sprites play different animations or toggle between different frames.
+"""
+func set_orientation(orientation: int) -> void:
+	_orientation = clamp(orientation, 0, Orientation.values().size() - 1)
+	if not get_tree():
+		# avoid 'node not found' errors when tree is null
 		return
 	
-	if not _mouth_animation_player.is_playing():
-		_mouth_animation_player.play("Ambient")
+	if Engine.is_editor_hint():
+		_apply_tool_script_workaround()
 	
-	if not _eye_animation_player.is_playing():
-		_eye_animation_player.play("Ambient")
-		_eye_animation_player.advance(randf() * _eye_animation_player.current_animation_length)
+	if _orientation in [Orientation.SOUTHWEST, Orientation.SOUTHEAST]:
+		# facing south; initialize textures to forward-facing frames
+		$Sprites/Neck0.z_index = 0
+		for sprite in _rotatable_sprites:
+			sprite.frame = 1
+	else:
+		# facing north; initialize textures to backward-facing frames
+		$Sprites/Neck0.z_index = -1
+		for sprite in _rotatable_sprites:
+			sprite.frame = 2
 	
-	_total_seconds += delta
-	$Sprites/Neck0/Neck1.position.y = -100 + _head_bob_pixels * sin((_total_seconds * 2 * PI) / _head_bob_seconds)
+	_play_mouth_ambient_animation()
+	
+	# sprites are drawn facing southeast/northwest, and are horizontally flipped for other directions
+	$Sprites.scale = Vector2(1, 1) if _orientation in [Orientation.SOUTHEAST, Orientation.NORTHWEST] else Vector2(-1, 1)
+	
+	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
+	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
+	$Sprites/Body.scale = Vector2(1, 1) if _orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else Vector2(-1, 1)
 
 
 """
@@ -166,15 +272,15 @@ func feed() -> void:
 		# sounds. ...Maybe as an easter egg some day, we can make the chef flinging food into empty air. Ha ha.
 		return
 	
-	if _mouth_animation_player.current_animation in ["Eat", "EatAgain"]:
+	if _mouth_animation_player.current_animation in ["eat", "eat-again"]:
 		_mouth_animation_player.stop()
-		_mouth_animation_player.play("EatAgain")
-		_eye_animation_player.stop()
-		_eye_animation_player.play("EatAgain")
+		_mouth_animation_player.play("eat-again")
+		$Eye0Anims.stop()
+		$Eye0Anims.play("eat-again")
 		show_food_effects()
 	else:
-		_mouth_animation_player.play("Eat")
-		_eye_animation_player.play("Eat")
+		_mouth_animation_player.play("eat")
+		$Eye0Anims.play("eat")
 		show_food_effects(0.066)
 
 
@@ -283,45 +389,80 @@ Plays a movement animation with the specified prefix and direction, such as a 'r
 Parameters:
 	'animation_prefix': A partial name of an animation on $Customer/MovementAnims, omitting the directional suffix
 	
-	'movement_direction': A unit vector in the (X, Y) direction the customer is moving.
+	'movement_direction': A vector in the (X, Y) direction the customer is moving.
 """
-func play_movement_animation(animation_prefix: String, movement_direction: Vector2) -> void:
+func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2(0, 0)) -> void:
 	var animation_name: String
-	if movement_direction.length() == 0:
-		animation_name = "idle-se"
-		if $MovementAnims.current_animation.ends_with("-sw"):
-			animation_name = "idle-sw"
-		set_movement_mode(false)
+	if animation_prefix == "idle":
+		animation_name = "idle"
+		if _movement_mode != false:
+			set_movement_mode(false)
 	else:
-		var suffix := "se"
-		if movement_direction.dot(Vector2(1.0, -1.0).normalized()) < 0:
-			suffix = "sw"
+		if movement_direction.length() > 0:
+			var new_orientation = _compute_orientation(movement_direction)
+			if new_orientation != _orientation:
+				set_orientation(new_orientation)
+		var suffix = "se" if _orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else "nw"
 		animation_name = "%s-%s" % [animation_prefix, suffix]
-		set_movement_mode(true)
+		if _movement_mode != true:
+			set_movement_mode(true)
 	if $MovementAnims.current_animation != animation_name:
 		$MovementAnims.play(animation_name)
 
 
-func set_movement_mode(movement_mode: bool) -> void:
-	if _movement_mode == movement_mode:
-		return
+"""
+Computes the nearest orientation for the specified direction.
+
+For example, a direction of (0.99, -0.13) is mostly pointing towards the x-axis, so it would result in an orientation
+of 'southeast'.
+"""
+func _compute_orientation(direction: Vector2) -> int:
+	if direction.length() == 0:
+		# we default to the current orientation if given a zero-length vector
+		return _orientation
 	
+	var highest_dot = direction.normalized().dot(ORIENTATION_VECTORS[_orientation])
+	var new_orientation = _orientation
+	for orientation in Orientation.values():
+		# iterate over the possible orientations and calculate which one has the highest dot product. in the case of a
+		# tie, we prefer the customer's current orientation.
+		if orientation == _orientation:
+			continue
+		else:
+			var dot = direction.normalized().dot(ORIENTATION_VECTORS[orientation])
+			if dot > highest_dot:
+				new_orientation = orientation
+				highest_dot = dot
+
+	return new_orientation
+
+
+func set_movement_mode(movement_mode: bool) -> void:
 	_movement_mode = movement_mode
 	if is_inside_tree():
-		update_movement_mode()
+		_update_movement_mode()
+
+
+"""
+Plays an appropriate mouth ambient animation for the customer's orientation.
+"""
+func _play_mouth_ambient_animation() -> void:
+	if _orientation in [Orientation.SOUTHWEST, Orientation.SOUTHEAST]:
+		_mouth_animation_player.play("ambient-se")
+	else:
+		_mouth_animation_player.play("ambient-nw")
 
 
 """
 Updates the visibility/position of nodes based on whether this customer is sitting or walking.
 """
-func update_movement_mode() -> void:
+func _update_movement_mode() -> void:
 	if _movement_mode == false:
 		# reset position/size attributes that get altered during movement
 		$Sprites/Neck0.position = Vector2(0, 0)
 	
 	# movement sprites are visible if movement_mode is true
 	$Sprites/FarMovement.visible = _movement_mode
-	$Sprites/NearMovement.visible = _movement_mode
 
 	# most other sprites are not visible if movement_mode is true
 	$Sprites/FarArm.visible = not _movement_mode
@@ -332,20 +473,37 @@ func update_movement_mode() -> void:
 
 
 """
+Updates the mouth and eye frames to an appropriate frame for the customer's orientation.
+
+Usually the mouth and eyes are controlled by an animation. But when they're not, this method ensures they still look
+reasonable.
+"""
+func _apply_default_mouth_and_eye_frames() -> void:
+	if _mouth_animation_player == $Mouth0Anims:
+		$Sprites/Neck0/Neck1/Mouth.frame = 1 if _orientation in [Orientation.SOUTHWEST, Orientation.SOUTHEAST] else 12
+	elif _mouth_animation_player == $Mouth1Anims:
+		$Sprites/Neck0/Neck1/Mouth.frame = 1 if _orientation in [Orientation.SOUTHWEST, Orientation.SOUTHEAST] else 17
+	
+	if _orientation in [Orientation.SOUTHWEST, Orientation.SOUTHEAST]:
+		$Sprites/Neck0/Neck1/Eyes.frame = 1
+	else:
+		$Sprites/Neck0/Neck1/Eyes.frame = 0
+
+
+"""
 Updates the properties of the various customer sprites and Node2D objects based on the contents of the customer
 definition. This assumes the CustomerLoader has finished loading all of the appropriate textures and values.
 """
 func _update_customer_properties() -> void:
-	if not Engine.is_editor_hint():
-		# stop any AnimationPlayers, otherwise two AnimationPlayers might fight over control of the sprite
-		_mouth_animation_player.stop()
-		_eye_animation_player.stop()
+	if Engine.is_editor_hint():
+		_apply_tool_script_workaround()
 	
-	# reset the mouth/eye frames, otherwise we could have one strange transition frame
-	$Sprites/Neck0/Neck1/Mouth/Outline.frame = 0
-	$Sprites/Neck0/Neck1/Mouth.frame = 0
-	$Sprites/Neck0/Neck1/Eyes/Outline.frame = 0
-	$Sprites/Neck0/Neck1/Eyes.frame = 0
+	# stop any AnimationPlayers, otherwise two AnimationPlayers might fight over control of the sprite
+	_mouth_animation_player.stop()
+	$Eye0Anims.stop()
+	
+	# reset the mouth frame, otherwise we could have one strange transition frame
+	_apply_default_mouth_and_eye_frames()
 	
 	if _customer_def.has("mouth"):
 		# set the sprite's color/texture properties
@@ -374,9 +532,9 @@ func _update_customer_properties() -> void:
 	
 	if Engine.is_editor_hint():
 		# Skip the sound effects if we're using this as an editor tool
-		return
-	
-	if _suppress_one_chime:
-		_suppress_one_chime = false
+		pass
 	else:
-		play_door_chime()
+		if _suppress_one_chime:
+			_suppress_one_chime = false
+		else:
+			play_door_chime()
