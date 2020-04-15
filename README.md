@@ -17,12 +17,14 @@ While this game is still in development, my goal is for it to include three diff
 
 Press the directional keys to control the piece, and the rotate keys (Z, X) to rotate the piece. Arrange your pieces into complete rows to clear lines and score points. Arrange your pieces into 3x3, 3x4 or 3x5 squares to form boxes, which award you additional points for line clears.
 
-For more details about the scoring system or game mechanics, see [https://github.com/Poobslag/turbofat/wiki/How-to-play](How to play) in the Turbo Fat wiki.
+For more details about the scoring system or game mechanics, see [How to play](https://github.com/Poobslag/turbofat/wiki/How-to-play) in the Turbo Fat wiki.
 
 # License
 
-Turbo Fat's code and framework are licensed under the MIT licence. Please see the LICENSE.md file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
+Turbo Fat's code and framework are licensed under the MIT licence. Please see the [LICENSE.md](LICENSE.md) file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
 
-Turbo Fat's game resources are licensed under the CC-BY-NC license. Please see the LICENSE2.md file for more information. tl;dr you can share it and change it, but you can't use it to make money.
+Turbo Fat's game resources are licensed under the CC-BY-NC license. Please see the [LICENSE2.md](LICENSE.md) file for more information. tl;dr you can share it and change it, but you can't use it to make money.
+
+Turbo Fat includes other resources which have their own licenses. This includes creative commons resources and purchased resources. The licenses for these resources are accessible in the [/license](/license) folder.
 
 Please note that this does not cover the usage of the "Turbo Fat" branding in any software, resources, advertising or promotion, as this is protected by trademark law.
