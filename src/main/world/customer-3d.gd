@@ -31,7 +31,7 @@ Parameters:
 	
 	'movement_direction': A unit vector in the (X, Y) direction the customer is moving.
 """
-func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2(0, 0)) -> void:
+func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
 	$Viewport/Customer.play_movement_animation(animation_prefix, movement_direction)
 
 

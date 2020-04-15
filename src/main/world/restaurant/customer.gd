@@ -391,7 +391,7 @@ Parameters:
 	
 	'movement_direction': A vector in the (X, Y) direction the customer is moving.
 """
-func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2(0, 0)) -> void:
+func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
 	var animation_name: String
 	if animation_prefix == "idle":
 		animation_name = "idle"
@@ -459,7 +459,7 @@ Updates the visibility/position of nodes based on whether this customer is sitti
 func _update_movement_mode() -> void:
 	if _movement_mode == false:
 		# reset position/size attributes that get altered during movement
-		$Sprites/Neck0.position = Vector2(0, 0)
+		$Sprites/Neck0.position = Vector2.ZERO
 	
 	# movement sprites are visible if movement_mode is true
 	$Sprites/FarMovement.visible = _movement_mode
