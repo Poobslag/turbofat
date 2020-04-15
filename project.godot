@@ -136,6 +136,7 @@ CustomerLoader="*res://src/main/world/restaurant/customer-loader.gd"
 [display]
 
 window/stretch/mode="2d"
+window/stretch/aspect="keep"
 
 [editor_plugins]
 
@@ -199,9 +200,14 @@ jump={
  ]
 }
 
+[oversampling]
+
+stretch/mode=false
+
 [rendering]
 
 quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 quality/filters/msaa=2
 quality/depth/hdr=false
 environment/default_environment="res://src/main/default_env.tres"
+quality/dynamic_fonts/use_oversampling=false

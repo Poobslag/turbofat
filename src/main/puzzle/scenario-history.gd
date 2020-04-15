@@ -40,7 +40,7 @@ Parameters:
 		as 'score' or 'seconds'. Defaults to 'score'.
 """
 func get_best_rank(scenario_name: String, property: String = "score") -> float:
-	var best_rank_result: RankResult = get_best_result(scenario_name, property)
+	var best_rank_result := get_best_result(scenario_name, property)
 	return best_rank_result.get(property + "_rank") if best_rank_result else 999.0
 
 
@@ -77,7 +77,7 @@ func get_best_result(scenario_name: String, property: String = "score") -> RankR
 Records the current scenario performance to the player's history.
 """
 func add_scenario_history(scenario_name: String, rank_result: RankResult) -> void:
-	if scenario_name == "":
+	if not scenario_name:
 		# can't store history without a scenario name
 		return
 	
@@ -95,7 +95,7 @@ func save_scenario_history() -> void:
 	var save_game := File.new()
 	save_game.open(scenario_history_filename, File.WRITE)
 	for key in scenario_history.keys():
-		var rank_results_json = []
+		var rank_results_json := []
 		for rank_result in scenario_history[key]:
 			rank_results_json.append(rank_result.to_dict())
 		save_game.store_line(to_json({
@@ -114,11 +114,12 @@ func load_scenario_history() -> void:
 	if save_game.file_exists(scenario_history_filename):
 		save_game.open(scenario_history_filename, File.READ)
 		while not save_game.eof_reached():
-			var current_line = parse_json(save_game.get_line())
-			if current_line == null:
+			var line_string := save_game.get_line()
+			if not line_string:
 				continue
-			for rank_result_json in current_line["scenario_history"]:
+			var line_json: Dictionary = parse_json(line_string)
+			for rank_result_json in line_json["scenario_history"]:
 				var rank_result = RankResult.new()
 				rank_result.from_dict(rank_result_json)
-				add_scenario_history(current_line["scenario_name"], rank_result)
+				add_scenario_history(line_json["scenario_name"], rank_result)
 		save_game.close()

@@ -5,9 +5,9 @@ configuration into JSON, since something trivial like renaming a variable or cha
 saved or loaded. That's why unit tests are particularly important for this code.
 """
 
-var _rank_result
+var _rank_result: RankResult
 
-var _rank_calculator = RankCalculator.new()
+var _rank_calculator := RankCalculator.new()
 
 func before_each():
 	ScenarioHistory.scenario_history_filename = "user://scenario_history_365.save"
