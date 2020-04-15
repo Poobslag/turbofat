@@ -34,7 +34,7 @@ func set_fatness(fatness: float) -> void:
 		return
 	var d_fatness := (fatness - old_fatness) / CustomerLoader.GROWTH_SECONDS
 	stop()
-	play("Fat", -1.0, d_fatness, old_fatness > fatness)
+	play("fat", -1.0, d_fatness, old_fatness > fatness)
 	if d_fatness < 0:
 		# getting thinner, play the animation backwards. avoid calling advance(float) with zero, as this prevents the
 		# animation from playing

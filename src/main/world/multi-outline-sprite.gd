@@ -23,4 +23,6 @@ func _process(delta) -> void:
 		vframes = _parent.vframes
 		hframes = _parent.hframes
 	if frame != _parent.frame:
-		frame = _parent.frame
+		if vframes * hframes > 1:
+			# setting frame when vframes * hframes <= 1 throws an error
+			frame = _parent.frame

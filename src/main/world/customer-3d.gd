@@ -31,11 +31,22 @@ Parameters:
 	
 	'movement_direction': A unit vector in the (X, Y) direction the customer is moving.
 """
-func play_movement_animation(animation_prefix: String, movement_direction: Vector2) -> void:
+func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2(0, 0)) -> void:
 	$Viewport/Customer.play_movement_animation(animation_prefix, movement_direction)
 
 
-func _on_Customer_customer_arrived():
-	# We initialize our physics and shadows when the customer textures load
+func _on_Customer_customer_arrived() -> void:
+	# initialize physics and shadows when the customer textures load
 	$CollisionShape.disabled = false
 	$ShadowMesh.visible = true
+
+
+func _on_MovementAnims_animation_started(anim_name: String) -> void:
+	# animate our shadows when the customer moves
+	if anim_name in ["run-se", "run-nw"]:
+		$ShadowMesh/AnimationPlayer.play("run")
+	elif anim_name in ["jump-se", "jump-nw"]:
+		$ShadowMesh/AnimationPlayer.play("jump")
+	else:
+		$ShadowMesh/AnimationPlayer.stop()
+		$ShadowMesh.set_shadow_scale(1.0)
