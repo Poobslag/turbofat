@@ -1,3 +1,4 @@
+class_name Turbo
 extends Customer3D
 """
 Script for manipulating the player-controlled character 'Turbo' in the 3D overworld.
@@ -64,6 +65,8 @@ var _walk_direction := Vector2.ZERO
 func _ready() -> void:
 	._ready()
 	$CollisionShape.disabled = false
+	InteractableManager.set_turbo(self)
+
 
 func _physics_process(delta):
 	var was_on_floor = is_on_floor()

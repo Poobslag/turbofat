@@ -93,6 +93,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/main/state-machine.gd"
+}, {
+"base": "Customer3D",
+"class": "Turbo",
+"language": "GDScript",
+"path": "res://src/main/world/turbo.gd"
 } ]
 _global_script_class_icons={
 "ActivePiece": "",
@@ -111,7 +116,8 @@ _global_script_class_icons={
 "ScenarioSettings": "",
 "SmoothPath": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"Turbo": ""
 }
 
 [application]
@@ -132,6 +138,7 @@ PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 Global="*res://src/main/global.gd"
 ScenarioHistory="*res://src/main/puzzle/scenario-history.gd"
 CustomerLoader="*res://src/main/world/restaurant/customer-loader.gd"
+InteractableManager="*res://src/main/world/interactable-manager.gd"
 
 [display]
 
