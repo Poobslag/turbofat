@@ -10,7 +10,10 @@ const FRICTION := 0.15
 const MAX_RUN_SPEED := 60
 
 # How fast can Turbo slip
-const MAX_SLIP_SPEED := 90
+const MAX_NARROW_SLIP_SPEED := 90
+
+# How fast can Turbo slip
+const MAX_LEDGE_SLIP_SPEED := 40
 
 # How fast Turbo slips off of slippery platforms
 const MAX_SLIP_ACCELERATION := 2200
@@ -36,8 +39,14 @@ const CAMERA_LEAD_DISTANCE := 60
 # Number from [0.0, 1.0] for how tight the camera should snap to Turbo's movement
 const CAMERA_JERKINESS := 0.04
 
+# How many rays we should cast when determining how Turbo falls from a ledge
+const LEDGE_RAY_COUNT := 16
+
+# How far apart the rays should be when determining how Turbo falls from a ledge
+const LEDGE_RAY_RADIUS := 12.0
+
 # Turbo's (X, Y, Z) velocity
-var _velocity := Vector3(0, 0, 0)
+var _velocity := Vector3.ZERO
 
 # 'true' if the controls should be rotated 45 degrees, giving the player orthographic controls.
 # 'false' if the controls should not be rotated, giving the player isometric controls.
@@ -50,7 +59,7 @@ var _jumping := false
 var _slipping := false
 
 # The direction Turbo is walking in (X, Y) coordinates, where 'Y' is forward.
-var _walk_direction := Vector2(0, 0)
+var _walk_direction := Vector2.ZERO
 
 func _ready() -> void:
 	._ready()
@@ -64,11 +73,15 @@ func _physics_process(delta):
 	_apply_player_input(delta)
 	_update_animation()
 	_update_camera_target()
-
+	
 	move_and_slide(_velocity, Vector3.UP)
 	
-	_slide_from_narrow_surfaces(delta)
-
+	if is_on_floor():
+		var did_slip := _slip_from_narrow_surfaces(delta)
+		if not did_slip:
+			did_slip = _slip_from_ledges(delta)
+		_slipping = did_slip
+	
 	if is_on_floor():
 		if (Input.is_action_pressed("jump") or not $JumpBuffer.is_stopped()) and not _slipping:
 			jump()
@@ -127,7 +140,7 @@ func _apply_friction() -> void:
 		pass
 	else:
 		# apply friction
-		var xy_velocity: Vector2 = lerp(_get_xy_velocity(), Vector2(0, 0), FRICTION)
+		var xy_velocity: Vector2 = lerp(_get_xy_velocity(), Vector2.ZERO, FRICTION)
 		if xy_velocity.length() < MIN_RUN_SPEED:
 			xy_velocity = Vector2()
 		_set_xy_velocity(xy_velocity)
@@ -154,15 +167,14 @@ function.
 """
 func _apply_player_input(delta: float) -> void:
 	if _slipping:
-		# Turbo is slipping; all input is ignored
-		_walk_direction = Vector2(0, 0)
+		_walk_direction = Vector2.ZERO
 		return
 
 	if $CoyoteTimer.is_stopped() and not is_on_floor():
 		# Turbo is in mid-air; no movement allowed in mid-air
 		pass
 	else:
-		_walk_direction = Vector2(0, 0)
+		_walk_direction = Vector2.ZERO
 		# calculate the direction the player wants to move
 		if Input.is_action_pressed("ui_left"):
 			_walk_direction += Vector2.LEFT
@@ -216,26 +228,48 @@ func jump() -> void:
 
 
 """
-When Turbo attempts to jump onto a narrow surface, she slides off unless she lands very squarely in the middle of it.
+When Turbo attempts to jump onto a narrow surface (such as someone's head) she slips off unless she lands very
+squarely in the middle of it.
+
+This function triggers the slipping physics, and returns 'true' if Turbo is slipping from a narrow surface.
 """
-func _slide_from_narrow_surfaces(delta: float) -> void:
-	if is_on_floor():
-		var just_slipped = false
-		if get_slide_count() > 0:
-			for i in get_slide_count():
-				var collision = get_slide_collision(i)
-				if collision.collider.get("foothold_radius") and translation.y > collision.collider.translation.y + 0.2:
-					# Turbo is standing on something she might slip from
-					var slip_velocity: Vector3 = translation - collision.collider.translation
-					slip_velocity.y = 0
-					if slip_velocity.length() > collision.collider.foothold_radius:
-						# Turbo is too far from the center, and should slip
-						_slipping = true
-						just_slipped = true
-						accelerate_player_xy(delta, Vector2(slip_velocity.x, slip_velocity.z), MAX_SLIP_ACCELERATION, MAX_SLIP_SPEED)
-						$CoyoteTimer.stop()
-						$JumpBuffer.stop()
-		
-		if _slipping and not just_slipped:
-			# Turbo was slipping, but they've landed on something non-slippery.
-			_slipping = false
+func _slip_from_narrow_surfaces(delta: float) -> bool:
+	var just_slipped = false
+	if get_slide_count() > 0:
+		for i in get_slide_count():
+			var collision = get_slide_collision(i)
+			if collision.collider.get("foothold_radius") and translation.y > collision.collider.translation.y + 0.2:
+				# Turbo is standing on something she might slip from
+				var slip_velocity: Vector3 = translation - collision.collider.translation
+				slip_velocity.y = 0
+				if slip_velocity.length() > collision.collider.foothold_radius:
+					# Turbo is too far from the center, and should slip
+					just_slipped = true
+					accelerate_player_xy(delta, Vector2(slip_velocity.x, slip_velocity.z), MAX_SLIP_ACCELERATION, MAX_NARROW_SLIP_SPEED)
+	return just_slipped
+
+
+"""
+When Turbo steps too close to a ledge, she slips off of the ledge.
+
+This function triggers the slipping physics, and returns 'true' if Turbo is slipping from a ledge. This occurs when
+her center point is no longer above solid ground.
+
+This function is important because Turbo's collision shape is a box, but her sprite rarely fills the full box. Without
+this logic she ends up hovering in space frequently.
+"""
+func _slip_from_ledges(delta: float) -> bool:
+	if $RayCast.is_colliding():
+		# don't slip; character is sitting squarely on the ground
+		return false
+	
+	var slip_direction = Vector3.ZERO
+	for i in range(LEDGE_RAY_COUNT):
+		var ledge_direction: Vector3 = (Vector3.RIGHT * LEDGE_RAY_RADIUS).rotated(Vector3.UP, 2 * PI * i / LEDGE_RAY_COUNT)
+		var ray_offset: Vector3 = $RayCast.global_transform.origin + ledge_direction
+		if get_world().direct_space_state.intersect_ray( \
+				$RayCast.translation + ray_offset, $RayCast.cast_to + ray_offset, [self]):
+			slip_direction -= ledge_direction
+	if slip_direction:
+		accelerate_player_xy(delta, Vector2(slip_direction.x, slip_direction.z), MAX_SLIP_ACCELERATION, MAX_LEDGE_SLIP_SPEED)
+	return slip_direction.length() > 0
