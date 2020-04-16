@@ -27,6 +27,7 @@ func start_conversation() -> void:
 	conversation_active = true
 	InteractableManager.set_focus_enabled(false)
 	_update_visible()
+	$ConversationControl.play_text("What!?\n./././I don't know what you're talking about.\nGo bother someone else!")
 
 
 func end_conversation() -> void:

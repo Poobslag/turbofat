@@ -55,7 +55,7 @@ export (int) var _customer_preset := -1 setget set_customer_preset
 export (bool) var _movement_mode := false setget set_movement_mode
 
 # the direction the customer is facing
-export (int) var _orientation: int = Orientation.SOUTHEAST setget set_orientation
+export (Orientation) var _orientation: int = Orientation.SOUTHEAST setget set_orientation
 
 # the total number of seconds which have elapsed since the object was created
 var _total_seconds := 0.0
@@ -204,7 +204,7 @@ If the customer swaps between facing left or right, certain sprites are flipped 
 between facing forward or backward, certain sprites play different animations or toggle between different frames.
 """
 func set_orientation(orientation: int) -> void:
-	_orientation = clamp(orientation, 0, Orientation.values().size() - 1)
+	_orientation = orientation
 	if not get_tree():
 		# avoid 'node not found' errors when tree is null
 		return

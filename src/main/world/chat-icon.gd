@@ -8,7 +8,7 @@ enum BubbleType {
 	THOUGHT
 }
 
-export (int) var bubble_type: int
+export (BubbleType) var bubble_type: int
 
 # 'true' if this bubble should appear on the right side, 'false' if it's on the left side
 export (bool) var right_side: bool = true
