@@ -28,8 +28,10 @@ func _ready():
 	InteractableManager.connect("focus_changed", self, "_on_InteractableManager_focus_changed")
 
 
-func _on_InteractableManager_focus_changed(new_focus: Spatial):
-	if new_focus == self:
+func _on_InteractableManager_focus_changed():
+	if not InteractableManager.is_focus_enabled():
+		$ChatIconMesh.vanish()
+	elif InteractableManager.is_focused(self):
 		$ChatIconMesh.focus()
 	else:
 		$ChatIconMesh.unfocus()

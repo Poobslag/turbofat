@@ -17,7 +17,10 @@ var _turbo: Turbo setget set_turbo
 var _interactables := []
 
 # The currently focused object
-var _focused: Spatial
+var _focused: Spatial setget ,get_focused
+
+# 'false' if the player is temporarily disallowed from interacting with nearby objects, such as during conversations
+var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
 
 """
 Purges all node instances from the manager.
@@ -39,11 +42,39 @@ func add_interactable(interactable: Spatial) -> void:
 	_interactables.append(interactable)
 
 
+func get_focused() -> Spatial:
+	return _focused
+
+
+func is_focused(interactable: Spatial) -> bool:
+	return interactable == _focused
+
+
+"""
+Globally enables/disables focus for nearby objects.
+
+Regardless of whether or not the focused object changed, this notifies all listeners with a 'focus_changed' event.
+This is because some UI elements render themselves differently during conversations when the player can't interact
+with anything.
+"""
+func set_focus_enabled(focus_enabled: bool) -> void:
+	_focus_enabled = focus_enabled
+	
+	if not _focus_enabled:
+		_focused = null
+		# when focus is globally disabled, chat icons vanish. emit a signal to notify listeners
+		emit_signal("focus_changed")
+
+
+func is_focus_enabled() -> bool:
+	return _focus_enabled
+
+
 func _physics_process(delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focus: Spatial
 
-	if _turbo and _interactables:
+	if _focus_enabled and _turbo and _interactables:
 		# iterate over all interactables and find the nearest one
 		for interactable_object in _interactables:
 			if not interactable_object:
@@ -56,4 +87,4 @@ func _physics_process(delta: float) -> void:
 	
 	if new_focus != _focused:
 		_focused = new_focus
-		emit_signal("focus_changed", new_focus)
+		emit_signal("focus_changed")
