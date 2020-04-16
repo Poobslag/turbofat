@@ -13,7 +13,9 @@ onready var _parent = get_parent()
 
 func _ready() -> void:
 	z_as_relative = true
-	z_index = -1
+	
+	# a z_index >= 0 would make this sprite not display the way it's supposed to
+	z_index = min(-1, z_index)
 
 
 func _process(delta) -> void:

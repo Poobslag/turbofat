@@ -7,7 +7,7 @@
 [ext_resource path="res://src/main/world/restaurant/fat-player.gd" type="Script" id=5]
 
 [sub_resource type="Animation" id=1]
-resource_name = "Fat"
+resource_name = "fat"
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("SceneClip/CustomerSwitcher/Scene:position")
@@ -42,7 +42,7 @@ range_item_cull_mask = 2
 [node name="CustomerSwitcher" type="Node2D" parent="SceneClip"]
 
 [node name="Scene" parent="SceneClip/CustomerSwitcher" instance=ExtResource( 3 )]
-position = Vector2( -89.8812, -104.904 )
+position = Vector2( -89.8811, -77.6484 )
 
 [node name="CustomerSwitchTween" type="Tween" parent="SceneClip/CustomerSwitcher"]
 
@@ -53,5 +53,5 @@ texture = ExtResource( 1 )
 centered = false
 
 [node name="FatPlayer" type="AnimationPlayer" parent="."]
-anims/Fat = SubResource( 1 )
+anims/fat = SubResource( 1 )
 script = ExtResource( 5 )

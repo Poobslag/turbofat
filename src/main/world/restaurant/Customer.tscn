@@ -1025,6 +1025,7 @@ frame = 1
 [node name="Outline" type="Sprite" parent="Sprites/Neck0/Neck1/Mouth"]
 light_mask = 2
 material = SubResource( 21 )
+z_index = -2
 vframes = 2
 hframes = 8
 frame = 1

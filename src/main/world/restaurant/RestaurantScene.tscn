@@ -18,9 +18,9 @@ script = ExtResource( 24 )
 [node name="Floor" type="ColorRect" parent="."]
 light_mask = 2
 margin_left = -800.0
-margin_top = -3.0
+margin_top = -3.28479
 margin_right = 3600.0
-margin_bottom = 1006.0
+margin_bottom = 1005.72
 color = Color( 0.596078, 0.45098, 0.333333, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -156,6 +156,8 @@ z_index = 10
 position = Vector2( 2380, 585 )
 z_index = 10
 [connection signal="food_eaten" from="Seat1/Customer" to="." method="_on_Customer_food_eaten"]
+[connection signal="food_eaten" from="Seat2/Customer" to="." method="_on_Customer_food_eaten"]
+[connection signal="food_eaten" from="Seat3/Customer" to="." method="_on_Customer_food_eaten"]
 
 [editable path="Seat1"]
 
