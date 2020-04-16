@@ -17,9 +17,9 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String):
 			$Turbo/Label.visible = false
 			$CheatDisabledSound.play()
 	if cheat == "bigfps":
-		if not $FpsLabel.visible:
-			$FpsLabel.visible = true
+		if not $OverworldUi.is_show_fps():
+			$OverworldUi.set_show_fps(true)
 			$CheatEnabledSound.play()
 		else:
-			$FpsLabel.visible = false
+			$OverworldUi.set_show_fps(false)
 			$CheatDisabledSound.play()

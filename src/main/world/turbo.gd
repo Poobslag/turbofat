@@ -68,7 +68,7 @@ func _ready() -> void:
 	InteractableManager.set_turbo(self)
 
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	var was_on_floor = is_on_floor()
 	
 	_apply_friction()

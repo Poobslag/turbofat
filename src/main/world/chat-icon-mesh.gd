@@ -34,19 +34,33 @@ Make the chat icon focused, so the player knows they can interact with it.
 This brightens the icon and makes it bounce faster.
 """
 func focus() -> void:
-	$FocusTween.stop_all()
-	$FocusTween.interpolate_property(self, "modulate", modulate, FOCUSED_COLOR, 0.4, Tween.TRANS_CIRC)
-	$FocusTween.start()
+	_tween_modulate(FOCUSED_COLOR, 0.8)
 	focused = true
 
 
 """
-Make the chat icon unfocused, so the player knows they can't interact with it anymore.
+Make the chat icon unfocused, so the player knows they need to get closer to interact with it.
 
 This dims the icon and makes it bounce slower.
 """
 func unfocus() -> void:
-	$FocusTween.stop_all()
-	$FocusTween.interpolate_property(self, "modulate", modulate, UNFOCUSED_COLOR, 0.8, Tween.TRANS_CIRC)
-	$FocusTween.start()
+	_tween_modulate(UNFOCUSED_COLOR, 1.6)
 	focused = false
+
+
+"""
+Makes the chat icon invisible, so the player knows they can't interact with it.
+"""
+func vanish() -> void:
+	_tween_modulate(Color.transparent, 0.4)
+	focused = false
+
+
+"""
+Tweens this objects 'modulate' property to a new value.
+"""
+func _tween_modulate(new_modulate: Color, duration: float) -> void:
+	$FocusTween.stop_all()
+	$FocusTween.interpolate_property(self, "modulate", modulate, new_modulate,
+			duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	$FocusTween.start()
