@@ -296,9 +296,11 @@ func put_if_absent(customer_def: Dictionary, key: String, value) -> void:
 Recolors the customer according to the specified customer definition. This involves updating shaders and sprite
 properties.
 
-Parameter: 'customer_def' describes the colors and textures used to draw the customer.
-Parameter: 'use_defaults' can be set to true to fill in the customer's missing traits with random values. Otherwise,
-	missing values will be left empty, leading to invisible body parts or strange colors.
+Parameters:
+	'customer_def': Describes the colors and textures used to draw the customer.
+	
+	'use_defaults': Can be set to true to fill in the customer's missing traits with random values. Otherwise,
+		missing values will be left empty, leading to invisible body parts or strange colors.
 """
 func summon(customer_def: Dictionary, use_defaults: bool = true) -> void:
 	# duplicate the customer_def so that we don't modify the original

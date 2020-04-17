@@ -3,14 +3,13 @@ extends Node2D
 A demo which shows off the customer view.
 
 Keys:
-
-[F]: Feed the customer
-[D]: Ring the doorbell
-[V]: Say something
-[P]: Print the current animation details
-[1-9,0]: Change the customer's size from 10% to 100%
-[Q,W,E]: Switch to the 1st, 2nd or 3rd customer.
-brace keys: Change the customer's appearance
+	[F]: Feed the customer
+	[D]: Ring the doorbell
+	[V]: Say something
+	[P]: Print the current animation details
+	[1-9,0]: Change the customer's size from 10% to 100%
+	[Q,W,E]: Switch to the 1st, 2nd or 3rd customer.
+	brace keys: Change the customer's appearance
 """
 
 var _current_color_index := -1

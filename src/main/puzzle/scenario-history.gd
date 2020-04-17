@@ -56,7 +56,6 @@ Parameters:
 func get_best_result(scenario_name: String, property: String = "score") -> RankResult:
 	if not loaded_scenario_history:
 		load_scenario_history()
-	var best_rank := 999.0
 	var best_performance: RankResult
 	if scenario_history.has(scenario_name):
 		for rank_result in scenario_history[scenario_name]:

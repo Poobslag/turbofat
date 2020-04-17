@@ -1,14 +1,13 @@
+extends Node2D
 """
 A demo which shows off the restaurant scene.
 
 Keys:
-
-[F]: Feed the customer
-[P]: Print the current animation details
-[1-9,0]: Change the customer's size from 10% to 100%
-brace keys: Change the customer's appearance
+	[F]: Feed the customer
+	[P]: Print the current animation details
+	[1-9,0]: Change the customer's size from 10% to 100%
+	brace keys: Change the customer's appearance
 """
-extends Node2D
 
 var _current_color_index := -1
 
