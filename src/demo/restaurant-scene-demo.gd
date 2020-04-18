@@ -9,36 +9,21 @@ Keys:
 	brace keys: Change the customer's appearance
 """
 
+const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
+
 var _current_color_index := -1
 
 func _ready():
 	# Ensure customers are random
 	randomize()
 
+
 func _input(event: InputEvent) -> void:
 	var just_pressed := event.is_pressed() and not event.is_echo()
 	if Input.is_key_pressed(KEY_F) and just_pressed:
 		$RestaurantScene.feed()
-	if Input.is_key_pressed(KEY_1) and just_pressed:
-		$RestaurantScene.set_fatness(1.0)
-	if Input.is_key_pressed(KEY_2) and just_pressed:
-		$RestaurantScene.set_fatness(1.5)
-	if Input.is_key_pressed(KEY_3) and just_pressed:
-		$RestaurantScene.set_fatness(2.0)
-	if Input.is_key_pressed(KEY_4) and just_pressed:
-		$RestaurantScene.set_fatness(3.0)
-	if Input.is_key_pressed(KEY_5) and just_pressed:
-		$RestaurantScene.set_fatness(5.0)
-	if Input.is_key_pressed(KEY_6) and just_pressed:
-		$RestaurantScene.set_fatness(6.0)
-	if Input.is_key_pressed(KEY_7) and just_pressed:
-		$RestaurantScene.set_fatness(7.0)
-	if Input.is_key_pressed(KEY_8) and just_pressed:
-		$RestaurantScene.set_fatness(8.0)
-	if Input.is_key_pressed(KEY_9) and just_pressed:
-		$RestaurantScene.set_fatness(9.0)
-	if Input.is_key_pressed(KEY_0) and just_pressed:
-		$RestaurantScene.set_fatness(10.0)
+	if Global.is_num_just_pressed():
+		$RestaurantScene.set_fatness(FATNESS_KEYS[Global.get_num_just_pressed()])
 	if Input.is_key_pressed(KEY_BRACELEFT) and just_pressed:
 		if _current_color_index == -1:
 			_current_color_index = 0

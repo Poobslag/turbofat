@@ -19,7 +19,7 @@ var _interactables := []
 # The currently focused object
 var _focused: Spatial setget ,get_focused
 
-# 'false' if the player is temporarily disallowed from interacting with nearby objects, such as during conversations
+# 'false' if the player is temporarily disallowed from interacting with nearby objects, such as while chatting
 var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
 
 """
@@ -54,8 +54,8 @@ func is_focused(interactable: Spatial) -> bool:
 Globally enables/disables focus for nearby objects.
 
 Regardless of whether or not the focused object changed, this notifies all listeners with a 'focus_changed' event.
-This is because some UI elements render themselves differently during conversations when the player can't interact
-with anything.
+This is because some UI elements render themselves differently during chats when the player can't interact with
+anything.
 """
 func set_focus_enabled(focus_enabled: bool) -> void:
 	_focus_enabled = focus_enabled

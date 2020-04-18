@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bg11.png-3fe87b4e658bb5eba9521255c49f51ba.stex"
+path="res://.import/nametag-large-sheet.png-4545ad25f86f4552a9da543523c073ff.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/chat/texture/bg11.png"
-dest_files=[ "res://.import/bg11.png-3fe87b4e658bb5eba9521255c49f51ba.stex" ]
+source_file="res://assets/ui/chat/nametag-large-sheet.png"
+dest_files=[ "res://.import/nametag-large-sheet.png-4545ad25f86f4552a9da543523c073ff.stex" ]
 
 [params]
 
@@ -19,12 +19,12 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=true
 flags/srgb=2
-process/fix_alpha_border=false
+process/fix_alpha_border=true
 process/premult_alpha=false
 process/HDR_as_SRGB=false
 process/invert_color=false

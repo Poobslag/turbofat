@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/piece/active-piece.gd"
 }, {
 "base": "Node",
+"class": "ChatAppearance",
+"language": "GDScript",
+"path": "res://src/main/ui/chat-appearance.gd"
+}, {
+"base": "Node",
 "class": "CheatCodeDetector",
 "language": "GDScript",
 "path": "res://src/main/ui/cheat-code-detector.gd"
@@ -79,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario-settings.gd"
 }, {
+"base": "Label",
+"class": "SentenceLabel",
+"language": "GDScript",
+"path": "res://src/main/ui/sentence-label.gd"
+}, {
 "base": "Path2D",
 "class": "SmoothPath",
 "language": "GDScript",
@@ -101,6 +111,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ActivePiece": "",
+"ChatAppearance": "",
 "CheatCodeDetector": "",
 "Customer3D": "",
 "MultiOutlineSprite": "",
@@ -114,6 +125,7 @@ _global_script_class_icons={
 "ScenarioButton": "",
 "ScenarioPerformance": "",
 "ScenarioSettings": "",
+"SentenceLabel": "",
 "SmoothPath": "",
 "State": "",
 "StateMachine": "",

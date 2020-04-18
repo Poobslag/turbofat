@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/bg11.png-3fe87b4e658bb5eba9521255c49f51ba.stex"
+path="res://.import/chat-window.png-8b1c03d182f730efdffa8d0b5f9486bf.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/chat/texture/bg11.png"
-dest_files=[ "res://.import/bg11.png-3fe87b4e658bb5eba9521255c49f51ba.stex" ]
+source_file="res://assets/ui/chat/chat-window.png"
+dest_files=[ "res://.import/chat-window.png-8b1c03d182f730efdffa8d0b5f9486bf.stex" ]
 
 [params]
 
@@ -19,13 +19,13 @@ compress/lossy_quality=0.7
 compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
-flags/repeat=1
+flags/repeat=0
 flags/filter=true
 flags/mipmaps=true
 flags/anisotropic=true
 flags/srgb=2
 process/fix_alpha_border=false
-process/premult_alpha=false
+process/premult_alpha=true
 process/HDR_as_SRGB=false
 process/invert_color=false
 stream=false
