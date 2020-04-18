@@ -63,8 +63,9 @@ Loading these textures can take several seconds. Progress can be monitored by ca
 This can also be invoked with an empty customer definition, in which case the customer definition will be populated
 with the property definitions needed to unload all of their textures and colors.
 
-Parameter: 'customer_def' describes some high-level information about the customer's appearance, such as 'she has red
-	eyes'. The response includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
+Parameters:
+	'customer_def': Describes some high-level information about the customer's appearance, such as 'she has red
+		eyes'. The response includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
 """
 func summon_customer(customer_def: Dictionary) -> void:
 	_prune_inactive_threads()

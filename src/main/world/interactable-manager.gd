@@ -70,7 +70,7 @@ func is_focus_enabled() -> bool:
 	return _focus_enabled
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focus: Spatial
 

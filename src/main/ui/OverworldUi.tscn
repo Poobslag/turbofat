@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://FpsLabel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/ConversationControl.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=4]
+[ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=5]
 
 [node name="OverworldUi" type="Control"]
 anchor_right = 1.0
@@ -20,3 +21,15 @@ visible = false
 visible = false
 
 [node name="VersionLabel" parent="." instance=ExtResource( 3 )]
+
+[node name="PuzzleButton" type="Button" parent="."]
+margin_left = 10.0
+margin_top = 530.0
+margin_right = 70.0
+margin_bottom = 590.0
+custom_fonts/font = ExtResource( 5 )
+text = "P"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="PuzzleButton" to="." method="_on_PuzzleButton_pressed"]

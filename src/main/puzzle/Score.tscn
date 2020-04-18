@@ -3,8 +3,6 @@
 [ext_resource path="res://src/main/puzzle/score.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=2]
 
-
-
 [node name="Score" type="Control"]
 margin_right = 250.0
 margin_bottom = 100.0

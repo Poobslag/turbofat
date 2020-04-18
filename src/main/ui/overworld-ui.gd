@@ -27,7 +27,9 @@ func start_conversation() -> void:
 	conversation_active = true
 	InteractableManager.set_focus_enabled(false)
 	_update_visible()
-	$ConversationControl.play_text("What!?\n./././I don't know what you're talking about.\nGo bother someone else!")
+	$ConversationControl.play_text(
+		"What!?\n./././I don't know what you're talking about.\nGo bother someone else!",
+		{"accent_swapped":false,"accent_scale":1.3,"accent_texture":0,"color":"6f83db"})
 
 
 func end_conversation() -> void:
@@ -61,3 +63,8 @@ func _update_visible() -> void:
 	$ConversationControl.visible = conversation_active
 	$FpsLabel.visible = _show_fps and not conversation_active
 	$VersionLabel.visible = _show_version and not conversation_active
+
+
+func _on_PuzzleButton_pressed() -> void:
+	InteractableManager.clear()
+	get_tree().change_scene("res://src/main/ui/ScenarioMenu.tscn")
