@@ -27,8 +27,6 @@ func set_text(text: String) -> void:
 		if _sentence_labels[new_sentence_size].cram_text(text):
 			sentence_size = new_sentence_size
 			break
-	
-	_sentence_labels[sentence_size].play()
 
 
 """
@@ -42,6 +40,7 @@ func hide_labels() -> void:
 """
 Recolors and resizes the sentence window based on the specified chat appearance.
 """
-func show_label(chat_appearance: ChatAppearance):
+func show_label(chat_appearance: ChatAppearance, pause: float = 0):
 	_sentence_labels[sentence_size].visible = true
 	_sentence_labels[sentence_size].set("custom_colors/font_color", chat_appearance.border_color)
+	_sentence_labels[sentence_size].play(pause)

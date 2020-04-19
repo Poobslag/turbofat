@@ -3,7 +3,7 @@ extends Sprite
 Repositions and shows nametag labels.
 """
 
-const ChatAppearance := preload("res://src/main/ui/chat-appearance.gd")
+const ChatAppearance := preload("res://src/main/ui/chat/chat-appearance.gd")
 
 # The name is copied into multiple labels. We display the smallest label which fits.
 onready var _labels := {

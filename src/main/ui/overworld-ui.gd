@@ -27,6 +27,7 @@ func start_chat() -> void:
 	_chatting = true
 	InteractableManager.set_focus_enabled(false)
 	_update_visible()
+	$ChatUi.pop_in()
 	$ChatUi.play_text(
 		"Bort",
 		"I think you're doing a great job.\n./././I'm looking forward to our first real conversation!",
@@ -35,8 +36,8 @@ func start_chat() -> void:
 
 func end_chat() -> void:
 	_chatting = false
-	InteractableManager.set_focus_enabled(true)
-	_update_visible()
+	# The 'pop out' takes a moment. OverworldUi updates its state in _on_ChatUi_pop_out_completed()
+	$ChatUi.pop_out()
 
 
 func set_show_fps(show_fps: bool) -> void:
@@ -69,3 +70,8 @@ func _update_visible() -> void:
 func _on_PuzzleButton_pressed() -> void:
 	InteractableManager.clear()
 	get_tree().change_scene("res://src/main/ui/ScenarioMenu.tscn")
+
+
+func _on_ChatUi_pop_out_completed():
+	InteractableManager.set_focus_enabled(true)
+	_update_visible()
