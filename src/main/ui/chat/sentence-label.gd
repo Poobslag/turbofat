@@ -62,9 +62,10 @@ Newlines cause a long pause. Slashes cause a medium pause and are hidden from th
 
 The text must first be assigned with the cram_text function to ensure it fits and to remove any lull characters.
 """
-func play() -> void:
+func play(initial_pause: float = 0) -> void:
 	_visible_character_pauses.clear()
 	visible_characters = 0
+	_pause = initial_pause
 
 	var visible_chars_to_left = 0
 	for c in _text_with_lulls:
@@ -77,4 +78,4 @@ func play() -> void:
 		else:
 			_visible_character_pauses[visible_chars_to_left] += DEFAULT_PAUSE
 			visible_chars_to_left += 1
-	_pause = _visible_character_pauses[0] if _visible_character_pauses.has(0) else DEFAULT_PAUSE
+	_pause += _visible_character_pauses[0] if _visible_character_pauses.has(0) else DEFAULT_PAUSE

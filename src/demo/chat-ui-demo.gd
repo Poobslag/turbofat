@@ -7,10 +7,11 @@ Keys:
 	SHIFT+[0-9]: Changes the name; 1 = short, 9 = long, 0 = longest
 	'[', ']': Change the accent texture
 	Arrows: Change the color and scale
-	[L]: Toggle 'left' and 'right' for the nametag position
+	[A]: Make the chat window appear/disappear
 	[D]: Toggle 'dark mode' for the accent
-	[S]: Swap the accent's colors
+	[L]: Toggle 'left' and 'right' for the nametag position
 	[P]: Print the json accent definition
+	[S]: Swap the accent's colors
 """
 
 const SENTENCES := [
@@ -59,8 +60,10 @@ var _sentence_index := 4
 var _accent_swapped := false
 var _dark := false
 var _nametag_right := false
+var _ui_visible := true
 
 func _ready():
+	$ChatUi.pop_in()
 	_play_text()
 
 
@@ -73,17 +76,24 @@ func _input(event: InputEvent) -> void:
 		else:
 			_sentence_index = Global.get_num_just_pressed()
 			_play_text()
+	if Input.is_key_pressed(KEY_A) and just_pressed:
+		if _ui_visible:
+			$ChatUi.pop_out()
+		else:
+			$ChatUi.pop_in()
+			_play_text()
+		_ui_visible = !_ui_visible
 	if Input.is_key_pressed(KEY_D) and just_pressed:
 		_dark = not _dark
 		_play_text()
 	if Input.is_key_pressed(KEY_L) and just_pressed:
 		_nametag_right = not _nametag_right
 		_play_text()
+	if Input.is_key_pressed(KEY_P) and just_pressed:
+		print(to_json(_get_accent_def()))
 	if Input.is_key_pressed(KEY_S) and just_pressed:
 		_accent_swapped = not _accent_swapped
 		_play_text()
-	if Input.is_key_pressed(KEY_SPACE) and just_pressed:
-		$ChatUi.reshape()
 	if Input.is_key_pressed(KEY_BRACERIGHT) and just_pressed:
 		_texture_index += 1
 		_play_text()
@@ -102,14 +112,11 @@ func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_DOWN) and just_pressed:
 		_scale_index -= 1
 		_play_text()
-	if Input.is_key_pressed(KEY_P) and just_pressed:
-		print(to_json(_get_accent_def()))
-
 
 """
 Configures the chat window's appearance based on the user's input.
 """
-func _play_text():
+func _play_text() -> void:
 	$ChatUi.play_text(NAMES[_name_index], SENTENCES[_sentence_index], _get_accent_def())
 
 
