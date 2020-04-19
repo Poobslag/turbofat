@@ -8,35 +8,30 @@ This includes chats, buttons and debug messages.
 var _show_fps := false setget set_show_fps, is_show_fps
 var _show_version := true setget set_show_version, is_show_version
 var _chatting := false
+var _chat_library := ChatLibrary.new()
+
+var _interact_pressed := false
 
 func _ready() -> void:
 	_update_visible()
 
 
-func _process(delta) -> void:
-	if _chatting:
-		if Input.is_action_just_pressed("interact"):
-			end_chat()
-	else:
-		if Input.is_action_just_pressed("interact"):
-			if InteractableManager.get_focused():
-				start_chat()
+func _input(event: InputEvent) -> void:
+	if not _chatting and event.is_action_pressed("interact") and InteractableManager.get_focused():
+		get_tree().set_input_as_handled()
+		start_chat()
 
 
 func start_chat() -> void:
+	var chat_events := _chat_library.load_chat_events()
+	if not chat_events:
+		push_warning("Failed to load chat events for %s." % InteractableManager.get_focused())
+		return
+	
 	_chatting = true
-	InteractableManager.set_focus_enabled(false)
 	_update_visible()
-	$ChatUi.play_text(
-		"Bort",
-		"I think you're doing a great job.\n./././I'm looking forward to our first real conversation!",
-		{"accent_scale":1.3,"accent_texture":0,"color":"6f83db"})
-
-
-func end_chat() -> void:
-	_chatting = false
-	# The 'pop out' takes a moment. OverworldUi updates its state in _on_ChatUi_pop_out_completed()
-	$ChatUi.pop_out()
+	InteractableManager.set_focus_enabled(false)
+	$ChatUi.play_dialog_sequence(chat_events)
 
 
 func set_show_fps(show_fps: bool) -> void:
@@ -72,5 +67,7 @@ func _on_PuzzleButton_pressed() -> void:
 
 
 func _on_ChatUi_pop_out_completed():
+	_chatting = false
 	InteractableManager.set_focus_enabled(true)
 	_update_visible()
+
