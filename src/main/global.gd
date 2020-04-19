@@ -1,7 +1,12 @@
 extends Node
 """
-Contains global variables for preserving state when loading different scenes.
+Contains global utilities, as well as variables for preserving state when loading different scenes.
 """
+
+const NUM_SCANCODES: Dictionary = {
+	KEY_0: 0, KEY_1: 1, KEY_2: 2, KEY_3: 3, KEY_4: 4,
+	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9
+}
 
 # String to display if the player scored worse than the lowest grade
 const NO_GRADE := "-"
@@ -84,3 +89,22 @@ func should_chat() -> bool:
 	else:
 		should_chat = false
 	return should_chat
+
+
+"""
+Returns 'true' if a number key [0-9] was just pressed
+"""
+func is_num_just_pressed() -> bool:
+	return get_num_just_pressed() != -1
+
+
+"""
+Returns a number in the range [0-9] if a number key was just pressed, otherwise -1
+"""
+func get_num_just_pressed() -> int:
+	var result := -1
+	for scancode in NUM_SCANCODES.keys():
+		if Input.is_key_pressed(scancode):
+			result = NUM_SCANCODES[scancode]
+			break
+	return result

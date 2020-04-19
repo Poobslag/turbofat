@@ -1,0 +1,278 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://assets/ui/blogger-sans-medium-36.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/sentence-label.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/blogger-sans-bold-36.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/ui/chat/window-extra-large-sheet.png" type="Texture" id=4]
+[ext_resource path="res://src/main/ui/chat-ui.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/chat/nametag-large-sheet.png" type="Texture" id=6]
+[ext_resource path="res://src/main/ui/chat.shader" type="Shader" id=7]
+[ext_resource path="res://assets/ui/chat/texture/bg01.png" type="Texture" id=8]
+[ext_resource path="res://src/main/ui/sentence-manager.gd" type="Script" id=9]
+[ext_resource path="res://src/main/ui/nametag-manager.gd" type="Script" id=10]
+[ext_resource path="res://src/main/ui/sentence-sprite.gd" type="Script" id=11]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 7 )
+shader_param/border_color = Color( 0.188235, 0.188235, 0.376471, 1 )
+shader_param/center_color = Color( 1, 1, 1, 1 )
+shader_param/accent_color = Color( 0.435294, 0.513726, 0.858824, 1 )
+shader_param/accent_scale = 2.0
+shader_param/accent_flip = Vector2( 1, 1 )
+shader_param/accent_amount = 0.24
+shader_param/accent_swapped = false
+shader_param/center_transparency = 0.16
+shader_param/scroll_period = Vector2( 7.377, 4.111 )
+shader_param/scroll_distance = Vector2( 120, 60 )
+shader_param/accent_texture = ExtResource( 8 )
+
+[node name="ChatUi" type="Control"]
+anchor_top = -0.00333338
+anchor_right = 1.0
+anchor_bottom = 0.996667
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Holder" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -362.078
+margin_top = -191.284
+margin_right = 361.922
+margin_bottom = -33.2836
+rect_pivot_offset = Vector2( 362, 79 )
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": "Defines the extents of the chat area."
+}
+
+[node name="SentenceSprite" type="Sprite" parent="Holder"]
+material = SubResource( 1 )
+position = Vector2( 362, 79.334 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
+flip_v = true
+vframes = 4
+script = ExtResource( 11 )
+__meta__ = {
+"_editor_description_": "	"
+}
+
+[node name="NametagManager" type="Sprite" parent="Holder/SentenceSprite"]
+self_modulate = Color( 0.188235, 0.188235, 0.376471, 1 )
+show_behind_parent = true
+position = Vector2( 956.611, -553.485 )
+rotation = 0.0174533
+texture = ExtResource( 6 )
+vframes = 4
+script = ExtResource( 10 )
+
+[node name="Small" type="Label" parent="Holder/SentenceSprite/NametagManager"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -921.903
+margin_top = -330.684
+margin_right = -741.903
+margin_bottom = -293.684
+rect_scale = Vector2( 4.546, 4.546 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsu"
+align = 1
+autowrap = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medium" type="Label" parent="Holder/SentenceSprite/NametagManager"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1819.44
+margin_top = -336.723
+margin_right = -1469.44
+margin_bottom = -299.723
+rect_scale = Vector2( 4.546, 4.546 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsum dolor s"
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Large" type="Label" parent="Holder/SentenceSprite/NametagManager"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1819.44
+margin_top = -336.723
+margin_right = -1294.44
+margin_bottom = -299.723
+rect_scale = Vector2( 3.031, 4.546 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsum dolor sit amet"
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExtraLarge" type="Label" parent="Holder/SentenceSprite/NametagManager"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1509.42
+margin_top = -384.991
+margin_right = -1009.42
+margin_bottom = -304.991
+rect_scale = Vector2( 2.021, 3.031 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExtraExtraLarge" type="Label" parent="Holder/SentenceSprite/NametagManager"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -1762.15
+margin_top = -381.256
+margin_right = -1012.15
+margin_bottom = -301.256
+rect_scale = Vector2( 2.021, 3.031 )
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SentenceManager" type="Control" parent="Holder"]
+margin_left = 182.0
+margin_top = 39.0002
+margin_right = 222.0
+margin_bottom = 79.0002
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Small" type="Label" parent="Holder/SentenceManager"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 340.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
+text = "I'll meet you by the third pyramid."
+align = 1
+valign = 1
+autowrap = true
+max_lines_visible = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medium" type="Label" parent="Holder/SentenceManager"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -20.0
+margin_right = 430.0
+margin_bottom = 60.0
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
+text = "Well, it had been 987 years in outer space time when I got back..."
+align = 1
+valign = 1
+autowrap = true
+max_lines_visible = 2
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Large" type="Label" parent="Holder/SentenceManager"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -38.5
+margin_right = 430.0
+margin_bottom = 78.5
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
+text = "I'm Fred the Cancerian from New Jersey. I like collecting records and exploring the cave of the unknown."
+align = 1
+valign = 1
+autowrap = true
+max_lines_visible = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExtraLarge" type="Label" parent="Holder/SentenceManager"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -40.0002
+margin_right = 520.0
+margin_bottom = 80.0002
+custom_fonts/font = ExtResource( 1 )
+custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
+text = "It seems that Doctor Aron Butterfly wants to dip us in plaster and use us for bookends.
+...We say to the doctor, \"No! Please, no!\""
+align = 1
+valign = 1
+autowrap = true
+max_lines_visible = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

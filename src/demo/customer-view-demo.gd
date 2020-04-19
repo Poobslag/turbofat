@@ -12,6 +12,8 @@ Keys:
 	brace keys: Change the customer's appearance
 """
 
+const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
+
 var _current_color_index := -1
 
 func _ready():
@@ -27,26 +29,8 @@ func _input(event: InputEvent) -> void:
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_door_chime(0)
 	if Input.is_key_pressed(KEY_V) and just_pressed:
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_goodbye_voice()
-	if Input.is_key_pressed(KEY_1) and just_pressed:
-		$CustomerView.set_fatness(1.0)
-	if Input.is_key_pressed(KEY_2) and just_pressed:
-		$CustomerView.set_fatness(1.5)
-	if Input.is_key_pressed(KEY_3) and just_pressed:
-		$CustomerView.set_fatness(2.0)
-	if Input.is_key_pressed(KEY_4) and just_pressed:
-		$CustomerView.set_fatness(3.0)
-	if Input.is_key_pressed(KEY_5) and just_pressed:
-		$CustomerView.set_fatness(5.0)
-	if Input.is_key_pressed(KEY_6) and just_pressed:
-		$CustomerView.set_fatness(6.0)
-	if Input.is_key_pressed(KEY_7) and just_pressed:
-		$CustomerView.set_fatness(7.0)
-	if Input.is_key_pressed(KEY_8) and just_pressed:
-		$CustomerView.set_fatness(8.0)
-	if Input.is_key_pressed(KEY_9) and just_pressed:
-		$CustomerView.set_fatness(9.0)
-	if Input.is_key_pressed(KEY_0) and just_pressed:
-		$CustomerView.set_fatness(10.0)
+	if Global.is_num_just_pressed():
+		$CustomerView.set_fatness(FATNESS_KEYS[Global.get_num_just_pressed()])
 	if Input.is_key_pressed(KEY_Q) and just_pressed:
 		$CustomerView.set_current_customer_index(0)
 	if Input.is_key_pressed(KEY_W) and just_pressed:

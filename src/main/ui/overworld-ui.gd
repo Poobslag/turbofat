@@ -2,38 +2,39 @@ extends Control
 """
 Overlays 2D UI elements over the 3D world.
 
-This includes conversations, buttons and debug messages.
+This includes chats, buttons and debug messages.
 """
 
 var _show_fps := false setget set_show_fps, is_show_fps
 var _show_version := true setget set_show_version, is_show_version
-var conversation_active := false
+var _chatting := false
 
 func _ready() -> void:
 	_update_visible()
 
 
 func _process(delta) -> void:
-	if conversation_active:
+	if _chatting:
 		if Input.is_action_just_pressed("interact"):
-			end_conversation()
+			end_chat()
 	else:
 		if Input.is_action_just_pressed("interact"):
 			if InteractableManager.get_focused():
-				start_conversation()
+				start_chat()
 
 
-func start_conversation() -> void:
-	conversation_active = true
+func start_chat() -> void:
+	_chatting = true
 	InteractableManager.set_focus_enabled(false)
 	_update_visible()
-	$ConversationControl.play_text(
-		"What!?\n./././I don't know what you're talking about.\nGo bother someone else!",
-		{"accent_swapped":false,"accent_scale":1.3,"accent_texture":0,"color":"6f83db"})
+	$ChatUi.play_text(
+		"Bort",
+		"I think you're doing a great job.\n./././I'm looking forward to our first real conversation!",
+		{"accent_scale":1.3,"accent_texture":0,"color":"6f83db"})
 
 
-func end_conversation() -> void:
-	conversation_active = false
+func end_chat() -> void:
+	_chatting = false
 	InteractableManager.set_focus_enabled(true)
 	_update_visible()
 
@@ -60,9 +61,9 @@ func is_show_version() -> bool:
 Updates the different UI components to be visible/invisible based on the UI's current state.
 """
 func _update_visible() -> void:
-	$ConversationControl.visible = conversation_active
-	$FpsLabel.visible = _show_fps and not conversation_active
-	$VersionLabel.visible = _show_version and not conversation_active
+	$ChatUi.visible = _chatting
+	$FpsLabel.visible = _show_fps and not _chatting
+	$VersionLabel.visible = _show_version and not _chatting
 
 
 func _on_PuzzleButton_pressed() -> void:
