@@ -27,7 +27,6 @@ func start_chat() -> void:
 	_chatting = true
 	InteractableManager.set_focus_enabled(false)
 	_update_visible()
-	$ChatUi.pop_in()
 	$ChatUi.play_text(
 		"Bort",
 		"I think you're doing a great job.\n./././I'm looking forward to our first real conversation!",

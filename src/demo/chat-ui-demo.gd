@@ -60,7 +60,6 @@ var _sentence_index := 4
 var _accent_swapped := false
 var _dark := false
 var _nametag_right := false
-var _ui_visible := true
 
 func _ready():
 	$ChatUi.pop_in()
@@ -77,12 +76,10 @@ func _input(event: InputEvent) -> void:
 			_sentence_index = Global.get_num_just_pressed()
 			_play_text()
 	if Input.is_key_pressed(KEY_A) and just_pressed:
-		if _ui_visible:
+		if $ChatUi.chat_window_showing():
 			$ChatUi.pop_out()
 		else:
-			$ChatUi.pop_in()
 			_play_text()
-		_ui_visible = !_ui_visible
 	if Input.is_key_pressed(KEY_D) and just_pressed:
 		_dark = not _dark
 		_play_text()
@@ -112,6 +109,7 @@ func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_DOWN) and just_pressed:
 		_scale_index -= 1
 		_play_text()
+
 
 """
 Configures the chat window's appearance based on the user's input.

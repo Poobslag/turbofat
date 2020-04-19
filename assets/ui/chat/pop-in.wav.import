@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/pop-in.wav-9a8bfb6a40845aa2b08695e3e1027b2c.sample"
+
+[deps]
+
+source_file="res://assets/ui/chat/pop-in.wav"
+dest_files=[ "res://.import/pop-in.wav-9a8bfb6a40845aa2b08695e3e1027b2c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

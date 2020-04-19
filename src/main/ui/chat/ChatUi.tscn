@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/main/ui/chat/chat-ui.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/chat/chat-frame-tween.gd" type="Script" id=2]
@@ -12,6 +12,9 @@
 [ext_resource path="res://assets/ui/blogger-sans-medium-36.tres" type="DynamicFont" id=10]
 [ext_resource path="res://assets/ui/blogger-sans-bold-36.tres" type="DynamicFont" id=11]
 [ext_resource path="res://src/main/ui/chat/chat.shader" type="Shader" id=12]
+[ext_resource path="res://assets/ui/chat/pop-out.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/ui/chat/pop-in.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/ui/chat/bebebe.wav" type="AudioStream" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 12 )
@@ -59,7 +62,6 @@ material = SubResource( 1 )
 position = Vector2( 362, 79.334 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 8 )
-flip_v = true
 vframes = 4
 script = ExtResource( 6 )
 __meta__ = {
@@ -280,5 +282,20 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="BebebeSound" type="AudioStreamPlayer" parent="ChatFrame/SentenceManager"]
+stream = ExtResource( 15 )
+volume_db = -18.0
+bus = "Voice Bus"
+
+[node name="PopInSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+volume_db = -20.0
+bus = "Reverb Bus"
+
+[node name="PopOutSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -20.0
+bus = "Reverb Bus"
 [connection signal="pop_out_completed" from="ChatFrame/Tween" to="." method="_on_Tween_pop_out_completed"]
 [connection signal="tween_completed" from="ChatFrame/Tween" to="ChatFrame/Tween" method="_on_tween_completed"]
