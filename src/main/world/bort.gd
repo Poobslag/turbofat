@@ -3,6 +3,10 @@ extends Customer3D
 Script for showing a customer 'Bort' in the 3D overworld.
 """
 
+func _ready() -> void:
+	set_meta("chat_id", "bort")
+
+
 """
 Bort is light blue with a tentacle mouth.
 """

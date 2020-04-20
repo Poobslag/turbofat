@@ -7,6 +7,7 @@ This includes the position, color and texture of the main chat window and nameta
 """
 
 enum NametagSize {
+	OFF, # 0 characters
 	SMALL, # 1-10 characters, approximately
 	MEDIUM,  # 11-20 characters, approximately
 	LARGE,  # 21-30 characters, approximately
@@ -30,16 +31,9 @@ var dark: bool
 var nametag_right: bool
 
 """
-The chat window changes its appearance based on who's talking. For example, one character's speech might be blue with
-a black background, and giant blue soccer balls in the background. The 'accent_def' parameter defines the chat
-window's appearance, such as 'blue', 'soccer balls' and 'giant'.
+Parses an accent_def into properties used by the chat UI.
 
-'accent_def/accent_scale': The scale of the accent's background texture
-'accent_def/accent_swapped': If 'true', the accent's foreground/background colors will be swapped
-'accent_def/accent_texture': A number in the range [0, 15] referring to a background texture
-'accent_def/color': The color of the chat window
-'accent_def/dark': True/false for whether the sentence window's background should be black/white
-'accent_def/nametag_right': True/false for whether the nametag should be shown on the right/left side
+See ChatEvent.accent_def for a full description of the accent_def properties.
 """
 func _init(accent_def: Dictionary):
 	accent_color = accent_def["color"] if accent_def.has("color") else Color.gray

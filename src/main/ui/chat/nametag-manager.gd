@@ -30,21 +30,24 @@ var _nametag_size: int
 Assigns the name label's text and updates our _nametag_size field to the smallest name label which fit.
 """
 func set_nametag_text(name: String) -> void:
-	_nametag_size = ChatAppearance.NametagSize.EXTRA_EXTRA_LARGE
-	for new_nametag_size in ChatAppearance.NametagSize.values():
-		var label = _labels[new_nametag_size]
-		label.text = name
-		if label.get_line_count() <= label.max_lines_visible:
-			_nametag_size = new_nametag_size
-			break
+	if name.empty():
+		_nametag_size = ChatAppearance.NametagSize.OFF
+	else:
+		_nametag_size = ChatAppearance.NametagSize.EXTRA_EXTRA_LARGE
+		for new_nametag_size in _labels.keys():
+			var label = _labels[new_nametag_size]
+			label.text = name
+			if label.get_line_count() <= label.max_lines_visible:
+				_nametag_size = new_nametag_size
+				break
 
 
 """
 Hides all labels. Labels are eventually shown when show_label() is invoked.
 """
 func hide_labels() -> void:
-	for nametag_size in ChatAppearance.NametagSize.values():
-		_labels[nametag_size].visible = false
+	for label in _labels.values():
+		label.visible = false
 
 
 """
@@ -54,6 +57,12 @@ Parameters:
 	'sentence_size': The size of the sentence window. This is needed for the nametag to reposition itself around it.
 """
 func show_label(chat_appearance: ChatAppearance, sentence_size: int):
+	if _nametag_size == ChatAppearance.NametagSize.OFF:
+		visible = false
+		# No nametag label to show.
+		return
+	
+	visible = true
 	frame = randi() % 4
 	flip_h = randf() > 0.5
 	flip_v = randf() > 0.5
