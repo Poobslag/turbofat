@@ -15,7 +15,9 @@ While this game is still in development, my goal is for it to include three diff
 
 ## How to play
 
-Press the directional keys to control the piece, and the rotate keys (Z, X) to rotate the piece. Arrange your pieces into complete rows to clear lines and score points. Arrange your pieces into 3x3, 3x4 or 3x5 squares to form boxes, which award you additional points for line clears.
+On the overworld, press the directional keys to move, X to jump, and Z to talk.
+
+In the puzzle mode, press the directional keys to control the piece, and Z/X to rotate the piece. Arrange your pieces into complete rows to clear lines and score points. Arrange your pieces into 3x3, 3x4 or 3x5 squares to form boxes, which award you additional points for line clears.
 
 For more details about the scoring system or game mechanics, see [How to play](https://github.com/Poobslag/turbofat/wiki/How-to-play) in the Turbo Fat wiki.
 
