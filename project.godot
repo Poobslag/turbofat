@@ -14,7 +14,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/active-piece.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "ChatAppearance",
 "language": "GDScript",
 "path": "res://src/main/ui/chat/chat-appearance.gd"
@@ -137,7 +137,7 @@ _global_script_class_icons={
 config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/ScenarioMenu.tscn"
 config/icon="res://assets/ui/icon.png"
-config/version="0.0412"
+config/version="0.0419"
 
 [audio]
 
