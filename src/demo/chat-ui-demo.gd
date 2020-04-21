@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _play_text() -> void:
 	var chat_events = []
-	for i in range(3):
+	for i in range(30):
 		var chat_event: ChatEvent = ChatEvent.new()
 		chat_event.name = "Lorum"
 		chat_event.text = "%s ipsum dolor sit amet" % FRUITS[i % FRUITS.size()]
