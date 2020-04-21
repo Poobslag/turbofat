@@ -5,6 +5,7 @@ Script for showing a customer 'Bort' in the 3D overworld.
 
 func _ready() -> void:
 	set_meta("chat_id", "bort")
+	set_meta("chat_name", "Bort")
 
 
 """

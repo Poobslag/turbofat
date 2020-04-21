@@ -1,3 +1,4 @@
+class_name OverworldUi
 extends Control
 """
 Overlays 2D UI elements over the 3D world.
@@ -5,19 +6,25 @@ Overlays 2D UI elements over the 3D world.
 This includes chats, buttons and debug messages.
 """
 
+signal chat_started
+
+signal chat_ended
+
+var turbo: Turbo
+
+# Characters we're currently chatting with. We try to keep them all in frame and facing Turbo.
+var chatters := []
+
 var _show_fps := false setget set_show_fps, is_show_fps
 var _show_version := true setget set_show_version, is_show_version
-var _chatting := false
 var _chat_library := ChatLibrary.new()
-
-var _interact_pressed := false
 
 func _ready() -> void:
 	_update_visible()
 
 
 func _input(event: InputEvent) -> void:
-	if not _chatting and event.is_action_pressed("interact") and InteractableManager.get_focused():
+	if not chatters and event.is_action_pressed("interact") and InteractableManager.get_focused():
 		get_tree().set_input_as_handled()
 		start_chat()
 
@@ -28,10 +35,12 @@ func start_chat() -> void:
 		push_warning("Failed to load chat events for %s." % InteractableManager.get_focused())
 		return
 	
-	_chatting = true
+	chatters = [InteractableManager.get_focused()]
 	_update_visible()
 	InteractableManager.set_focus_enabled(false)
+	make_chatters_face_eachother()
 	$ChatUi.play_dialog_sequence(chat_events)
+	emit_signal("chat_started")
 
 
 func set_show_fps(show_fps: bool) -> void:
@@ -53,12 +62,26 @@ func is_show_version() -> bool:
 
 
 """
+Turn the the active chat participants towards each other, and make them face the camera.
+"""
+func make_chatters_face_eachother() -> void:
+	# make turbo face the other characters
+	if chatters.size() >= 1:
+		turbo.orient_toward(chatters[0])
+	
+	# make the other characters face turbo
+	for chatter in chatters:
+		if chatter.has_method("orient_toward"):
+			chatter.orient_toward(turbo)
+
+
+"""
 Updates the different UI components to be visible/invisible based on the UI's current state.
 """
 func _update_visible() -> void:
-	$ChatUi.visible = _chatting
-	$FpsLabel.visible = _show_fps and not _chatting
-	$VersionLabel.visible = _show_version and not _chatting
+	$ChatUi.visible = true if chatters else false
+	$FpsLabel.visible = _show_fps and not chatters
+	$VersionLabel.visible = _show_version and not chatters
 
 
 func _on_PuzzleButton_pressed() -> void:
@@ -67,7 +90,11 @@ func _on_PuzzleButton_pressed() -> void:
 
 
 func _on_ChatUi_pop_out_completed():
-	_chatting = false
+	chatters = []
 	InteractableManager.set_focus_enabled(true)
 	_update_visible()
+	emit_signal("chat_ended")
 
+
+func _on_ChatUi_chat_event_played(chat_event: ChatEvent):
+	make_chatters_face_eachother()

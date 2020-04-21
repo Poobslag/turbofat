@@ -70,6 +70,24 @@ func is_focus_enabled() -> bool:
 	return _focus_enabled
 
 
+"""
+Returns the overworld object which has the specified 'chat name'.
+
+During dialog sequences, we sometimes need to know which overworld object corresponds to the person saying the current
+dialog line. This function facilitates that.
+"""
+func get_chatter(chat_name: String) -> Spatial:
+	var chatter: Spatial
+	if chat_name == "Turbo":
+		chatter = _turbo
+	else:
+		for interactable in _interactables:
+			if interactable.get_meta("chat_name") == chat_name:
+				chatter = interactable
+				break
+	return chatter
+
+
 func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focus: Spatial

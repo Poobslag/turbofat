@@ -55,8 +55,10 @@ Recolors and repositions the nametag based on the current accent definition.
 
 Parameters:
 	'sentence_size': The size of the sentence window. This is needed for the nametag to reposition itself around it.
+	
+	'nametag_right': true/false if the nametag should be drawn on the right/left side of the frame.
 """
-func show_label(chat_appearance: ChatAppearance, sentence_size: int):
+func show_label(chat_appearance: ChatAppearance, nametag_right: bool, sentence_size: int):
 	if _nametag_size == ChatAppearance.NametagSize.OFF:
 		visible = false
 		# No nametag label to show.
@@ -72,7 +74,7 @@ func show_label(chat_appearance: ChatAppearance, sentence_size: int):
 	_labels[_nametag_size].visible = true
 	_labels[_nametag_size].set("custom_colors/font_color", Color.black if chat_appearance.dark else Color.white)
 	
-	if chat_appearance.nametag_right:
+	if nametag_right:
 		if _nametag_size == ChatAppearance.NametagSize.SMALL:
 			rotation_degrees = 3
 			match(sentence_size):

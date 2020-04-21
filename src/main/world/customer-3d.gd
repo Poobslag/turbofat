@@ -35,6 +35,35 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 	$Viewport/Customer.play_movement_animation(animation_prefix, movement_direction)
 
 
+"""
+Orients this customer so they're facing the specified spatial.
+"""
+func orient_toward(spatial: Spatial) -> void:
+	if not $Viewport/Customer.is_idle():
+		# don't change this customer's orientation if they're performing an activity
+		return
+	
+	# calculate the relative direction of the object this customer should face
+	var direction_xz := Vector2(spatial.translation.x - translation.x, spatial.translation.z - translation.z)
+	var direction_dot := 0.0
+	if direction_xz.length() > 0:
+		direction_dot = direction_xz.normalized().dot(Vector2(1.0, -1.0).normalized())
+		if direction_dot == 0.0:
+			# if two characters are directly above/below each other, make them face opposite directions
+			direction_dot = direction_xz.normalized().dot(Vector2(1.0, 0))
+	
+	if direction_dot > 0:
+		# the object is to the right; face right
+		$Viewport/Customer.set_orientation(Customer.Orientation.SOUTHEAST)
+	elif direction_dot < 0:
+		# the object is to the left; face left
+		$Viewport/Customer.set_orientation(Customer.Orientation.SOUTHWEST)
+
+
+func get_orientation() -> int:
+	return $Viewport/Customer.get_orientation()
+
+
 func _on_Customer_customer_arrived() -> void:
 	# initialize physics and shadows when the customer textures load
 	$CollisionShape.disabled = false

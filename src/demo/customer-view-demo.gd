@@ -22,34 +22,33 @@ func _ready():
 
 
 func _input(event: InputEvent) -> void:
-	var just_pressed := event.is_pressed() and not event.is_echo()
-	if Input.is_key_pressed(KEY_F) and just_pressed:
+	if Input.is_key_pressed(KEY_F) and not event.is_echo():
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
-	if Input.is_key_pressed(KEY_D) and just_pressed:
+	if Input.is_key_pressed(KEY_D) and not event.is_echo():
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_door_chime(0)
-	if Input.is_key_pressed(KEY_V) and just_pressed:
+	if Input.is_key_pressed(KEY_V) and not event.is_echo():
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_goodbye_voice()
 	if Global.is_num_just_pressed():
 		$CustomerView.set_fatness(FATNESS_KEYS[Global.get_num_just_pressed()])
-	if Input.is_key_pressed(KEY_Q) and just_pressed:
+	if Input.is_key_pressed(KEY_Q) and not event.is_echo():
 		$CustomerView.set_current_customer_index(0)
-	if Input.is_key_pressed(KEY_W) and just_pressed:
+	if Input.is_key_pressed(KEY_W) and not event.is_echo():
 		$CustomerView.set_current_customer_index(1)
-	if Input.is_key_pressed(KEY_E) and just_pressed:
+	if Input.is_key_pressed(KEY_E) and not event.is_echo():
 		$CustomerView.set_current_customer_index(2)
-	if Input.is_key_pressed(KEY_BRACELEFT) and just_pressed:
+	if Input.is_key_pressed(KEY_BRACELEFT) and not event.is_echo():
 		if _current_color_index == -1:
 			_current_color_index = 0
 		else:
 			_current_color_index += CustomerLoader.DEFINITIONS.size()
 			_current_color_index = (_current_color_index - 1) % CustomerLoader.DEFINITIONS.size()
 		$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index])
-	if Input.is_key_pressed(KEY_BRACERIGHT) and just_pressed:
+	if Input.is_key_pressed(KEY_BRACERIGHT) and not event.is_echo():
 		if _current_color_index == -1:
 			_current_color_index = 0
 		else:
 			_current_color_index = (_current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
 		$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index])
-	if Input.is_key_pressed(KEY_P) and just_pressed:
+	if Input.is_key_pressed(KEY_P) and not event.is_echo():
 		print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.current_animation)
 		print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.is_playing())

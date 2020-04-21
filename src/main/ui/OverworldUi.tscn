@@ -32,5 +32,6 @@ text = "P"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="ChatUi" to="." method="_on_ChatUi_pop_out_completed"]
 [connection signal="pressed" from="PuzzleButton" to="." method="_on_PuzzleButton_pressed"]

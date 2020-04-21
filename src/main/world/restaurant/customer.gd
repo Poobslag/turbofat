@@ -1,4 +1,5 @@
 #tool
+class_name Customer
 extends Node2D
 """
 Handles animations and audio/visual effects for a customer.
@@ -55,7 +56,7 @@ export (int) var _customer_preset := -1 setget set_customer_preset
 export (bool) var _movement_mode := false setget set_movement_mode
 
 # the direction the customer is facing
-export (Orientation) var _orientation: int = Orientation.SOUTHEAST setget set_orientation
+export (Orientation) var _orientation: int = Orientation.SOUTHEAST setget set_orientation, get_orientation
 
 # the total number of seconds which have elapsed since the object was created
 var _total_seconds := 0.0
@@ -231,6 +232,10 @@ func set_orientation(orientation: int) -> void:
 	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
 	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
 	$Sprites/Body.scale = Vector2(1, 1) if _orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else Vector2(-1, 1)
+
+
+func get_orientation() -> int:
+	return _orientation
 
 
 """
@@ -443,6 +448,13 @@ func set_movement_mode(movement_mode: bool) -> void:
 	_movement_mode = movement_mode
 	if is_inside_tree():
 		_update_movement_mode()
+
+
+"""
+Returns 'true' if the customer isn't doing anything important, and we can rotate their head or turn them around.
+"""
+func is_idle() -> bool:
+	return not $MovementAnims.is_playing() or $MovementAnims.current_animation == "idle"
 
 
 """

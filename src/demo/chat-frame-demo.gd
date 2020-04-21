@@ -66,7 +66,6 @@ func _ready():
 
 
 func _input(event: InputEvent) -> void:
-	var just_pressed := event.is_pressed() and not event.is_echo()
 	if Global.is_num_just_pressed():
 		if Input.is_key_pressed(KEY_SHIFT):
 			_name_index = Global.get_num_just_pressed()
@@ -74,38 +73,38 @@ func _input(event: InputEvent) -> void:
 		else:
 			_sentence_index = Global.get_num_just_pressed()
 			_play_text()
-	if Input.is_key_pressed(KEY_A) and just_pressed:
+	if Input.is_key_pressed(KEY_A) and not event.is_echo():
 		if $ChatFrame.chat_window_showing():
 			$ChatFrame.pop_out()
 		else:
 			_play_text()
-	if Input.is_key_pressed(KEY_D) and just_pressed:
+	if Input.is_key_pressed(KEY_D) and not event.is_echo():
 		_dark = not _dark
 		_play_text()
-	if Input.is_key_pressed(KEY_L) and just_pressed:
+	if Input.is_key_pressed(KEY_L) and not event.is_echo():
 		_nametag_right = not _nametag_right
 		_play_text()
-	if Input.is_key_pressed(KEY_P) and just_pressed:
+	if Input.is_key_pressed(KEY_P) and not event.is_echo():
 		print(to_json(_get_accent_def()))
-	if Input.is_key_pressed(KEY_S) and just_pressed:
+	if Input.is_key_pressed(KEY_S) and not event.is_echo():
 		_accent_swapped = not _accent_swapped
 		_play_text()
-	if Input.is_key_pressed(KEY_BRACERIGHT) and just_pressed:
+	if Input.is_key_pressed(KEY_BRACERIGHT) and not event.is_echo():
 		_texture_index += 1
 		_play_text()
-	if Input.is_key_pressed(KEY_BRACELEFT) and just_pressed:
+	if Input.is_key_pressed(KEY_BRACELEFT) and not event.is_echo():
 		_texture_index -= 1
 		_play_text()
-	if Input.is_key_pressed(KEY_RIGHT) and just_pressed:
+	if Input.is_key_pressed(KEY_RIGHT) and not event.is_echo():
 		_color_index += 1
 		_play_text()
-	if Input.is_key_pressed(KEY_LEFT) and just_pressed:
+	if Input.is_key_pressed(KEY_LEFT) and not event.is_echo():
 		_color_index -= 1
 		_play_text()
-	if Input.is_key_pressed(KEY_UP) and just_pressed:
+	if Input.is_key_pressed(KEY_UP) and not event.is_echo():
 		_scale_index += 1
 		_play_text()
-	if Input.is_key_pressed(KEY_DOWN) and just_pressed:
+	if Input.is_key_pressed(KEY_DOWN) and not event.is_echo():
 		_scale_index -= 1
 		_play_text()
 
@@ -114,7 +113,7 @@ func _input(event: InputEvent) -> void:
 Configures the chat window's appearance based on the user's input.
 """
 func _play_text() -> void:
-	$ChatFrame.play_text(NAMES[_name_index], SENTENCES[_sentence_index], _get_accent_def())
+	$ChatFrame.play_text(NAMES[_name_index], SENTENCES[_sentence_index], _get_accent_def(), _nametag_right)
 
 
 """
@@ -126,6 +125,5 @@ func _get_accent_def() -> Dictionary:
 		"accent_scale": SCALES[clamp(_scale_index, 0, SCALES.size() - 1)],
 		"accent_swapped": _accent_swapped,
 		"color": COLORS[clamp(_color_index, 0, COLORS.size() - 1)],
-		"dark": _dark,
-		"nametag_right": _nametag_right
+		"dark": _dark
 	}

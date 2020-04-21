@@ -352,7 +352,7 @@ material = SubResource( 29 )
 [node name="Outline" parent="Viewport/Customer/Sprites/Neck0/Neck1/Eyes" index="0"]
 material = SubResource( 30 )
 [connection signal="customer_arrived" from="Viewport/Customer" to="." method="_on_Customer_customer_arrived"]
-[connection signal="animation_started" from="Viewport/Customer/MovementAnims" to="Viewport" method="_on_MovementAnims_animation_started"]
 [connection signal="animation_started" from="Viewport/Customer/MovementAnims" to="." method="_on_MovementAnims_animation_started"]
+[connection signal="animation_started" from="Viewport/Customer/MovementAnims" to="Viewport" method="_on_MovementAnims_animation_started"]
 
 [editable path="Viewport/Customer"]

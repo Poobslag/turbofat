@@ -19,6 +19,5 @@ appearance, such as 'blue', 'soccer balls' and 'giant'.
 'accent_def/accent_texture': A number in the range [0, 15] referring to a background texture
 'accent_def/color': The color of the chat window
 'accent_def/dark': True/false for whether the sentence window's background should be black/white
-'accent_def/nametag_right': True/false for whether the nametag should be shown on the right/left side
 """
 var accent_def: Dictionary

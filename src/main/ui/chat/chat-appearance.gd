@@ -28,7 +28,6 @@ var accent_swapped: bool
 var accent_texture_index: int
 var border_color: Color
 var dark: bool
-var nametag_right: bool
 
 """
 Parses an accent_def into properties used by the chat UI.
@@ -36,13 +35,12 @@ Parses an accent_def into properties used by the chat UI.
 See ChatEvent.accent_def for a full description of the accent_def properties.
 """
 func _init(accent_def: Dictionary):
-	accent_color = accent_def["color"] if accent_def.has("color") else Color.gray
-	accent_scale = accent_def["accent_scale"] if accent_def.has("accent_scale") else 2.0
-	accent_swapped = accent_def["accent_swapped"] if accent_def.has("accent_swapped") else false
-	border_color = accent_def["color"] if accent_def.has("color") else Color.gray
-	dark = accent_def["dark"] if accent_def.has("dark") else false
-	nametag_right = accent_def["nametag_right"] if accent_def.has("nametag_right") else false
-	accent_texture_index = accent_def["accent_texture"] if accent_def.has("accent_texture") else 0
+	accent_color = accent_def.get("color", Color.gray)
+	accent_scale = accent_def.get("accent_scale", 2.0)
+	accent_swapped = accent_def.get("accent_swapped", false)
+	border_color = accent_def.get("color", Color.gray)
+	dark = accent_def.get("dark", false)
+	accent_texture_index = accent_def.get("accent_texture", 0)
 	
 	if dark:
 		# accent color is a darker version of the input color
