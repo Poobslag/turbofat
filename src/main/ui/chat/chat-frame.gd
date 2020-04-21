@@ -9,6 +9,9 @@ set_accent_def function to configure the chat window's appearance.
 
 signal pop_out_completed
 
+# 'true' after pop_in is called, and 'false' after pop_out is called
+var _popped_in := false
+
 func _ready() -> void:
 	$SentenceManager.hide_labels()
 	$SentenceSprite/NametagManager.hide_labels()
@@ -18,10 +21,10 @@ func _ready() -> void:
 Makes the chat window appear.
 """
 func pop_in() -> void:
-	if $SentenceManager.label_showing():
-		# chat window is already visible
+	if _popped_in:
+		# chat window is already popped in
 		return
-	
+	_popped_in = true
 	$SentenceManager.hide_labels()
 	$SentenceSprite/NametagManager.hide_labels()
 	$Tween.pop_in()
@@ -32,10 +35,10 @@ func pop_in() -> void:
 Makes the chat window disappear.
 """
 func pop_out() -> void:
-	if not $SentenceManager.label_showing():
-		# chat window is already invisible
+	if not _popped_in:
+		# chat window is already popped out
 		return
-	
+	_popped_in = false
 	$Tween.pop_out()
 	$PopOutSound.play()
 
@@ -46,7 +49,7 @@ Animates the chat UI to gradually reveal the specified text, mimicking speech.
 Also updates the chat UI's appearance based on the amount of text being displayed and the specified color and
 background texture.
 """
-func play_text(name: String, text: String, accent_def: Dictionary) -> void:
+func play_text(name: String, text: String, accent_def: Dictionary, nametag_right: bool) -> void:
 	if not $SentenceManager.label_showing():
 		# Ensure the chat window is showing before we start changing its text and playing sounds
 		pop_in()
@@ -60,7 +63,7 @@ func play_text(name: String, text: String, accent_def: Dictionary) -> void:
 	$SentenceManager.hide_labels()
 	$SentenceSprite/NametagManager.hide_labels()
 	$SentenceManager.show_label(chat_appearance, 0.5)
-	$SentenceSprite/NametagManager.show_label(chat_appearance, $SentenceManager.sentence_size)
+	$SentenceSprite/NametagManager.show_label(chat_appearance, nametag_right, $SentenceManager.sentence_size)
 	$SentenceSprite.update_appearance(chat_appearance, $SentenceManager.sentence_size)
 
 

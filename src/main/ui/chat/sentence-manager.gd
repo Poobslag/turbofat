@@ -27,7 +27,7 @@ func _process(_delta: float) -> void:
 	if visible_characters > _prev_visible_characters:
 		if label_showing():
 			# the number of visible letters increased. play a sound effect
-			$BebebeSound.volume_db = rand_range(-28.0, -18.0)
+			$BebebeSound.volume_db = rand_range(-22.0, -12.0)
 			$BebebeSound.pitch_scale = rand_range(0.95, 1.05)
 			$BebebeSound.play()
 		_prev_visible_characters = visible_characters

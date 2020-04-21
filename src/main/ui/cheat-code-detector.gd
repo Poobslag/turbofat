@@ -35,10 +35,6 @@ const CODE_KEYS := {
 # cheat code will take precedence.
 export (Array, String) var codes := []
 
-# Set of key scan codes which are currently pressed, used to determine if an InputEventKey represents a key being
-# pressed, or a key being held down.
-var _pressed_keys: Dictionary = {}
-
 # Buffer of key strings which were previously pressed.
 var _previous_keypresses: String = ""
 
@@ -49,26 +45,8 @@ Processes an input event, delegating to the appropriate 'key_pressed', 'key_just
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey and event.scancode in CODE_KEYS:
 		var key_string: String = CODE_KEYS[event.scancode]
-		if event.pressed:
-			if not _pressed_keys.has(event.scancode):
-				_pressed_keys[event.scancode] = ""
-				_key_just_pressed(key_string)
-			_key_pressed(key_string)
-		else:
-			if _pressed_keys.has(event.scancode):
-				_pressed_keys.erase(event.scancode)
-				_key_just_released(key_string)
-			_key_released(key_string)
-
-
-"""
-Called continuously while a key is held down.
-
-Parameters:
-	'key_string': An single-character alphanumeric representation of the pressed key
-"""
-func _key_pressed(key_string: String) -> void:
-	pass
+		if event.pressed and not event.is_echo():
+			_key_just_pressed(key_string)
 
 
 """
@@ -86,23 +64,3 @@ func _key_just_pressed(key_string: String) -> void:
 			# Clear the keypress buffer, otherwise a keypress could count towards two different cheats
 			_previous_keypresses = ""
 			emit_signal("cheat_detected", code)
-
-
-"""
-Called continuously while a key is released.
-
-Parameters:
-	'key_string': An single-character alphanumeric representation of the released key
-"""
-func _key_released(key_string: String) -> void:
-	pass
-
-
-"""
-Called for the first frame when a key is released.
-
-Parameters:
-	'key_string': An single-character alphanumeric representation of the released key
-"""
-func _key_just_released(key_string: String) -> void:
-	pass
