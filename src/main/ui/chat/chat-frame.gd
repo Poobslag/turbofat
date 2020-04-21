@@ -71,6 +71,14 @@ func chat_window_showing() -> bool:
 	return $SentenceManager.label_showing()
 
 
+func is_all_text_visible() -> bool:
+	return $SentenceManager.is_all_text_visible()
+
+
+func make_all_text_visible() -> void:
+	$SentenceManager.make_all_text_visible()
+
+
 func _on_Tween_pop_out_completed() -> void:
 	# Call sentenceManager.hide_labels() to prevent sounds from playing
 	$SentenceManager.hide_labels()

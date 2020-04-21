@@ -75,6 +75,14 @@ func label_showing() -> bool:
 	return _sentence_label().visible
 
 
+func is_all_text_visible() -> bool:
+	return _sentence_label().is_all_text_visible()
+
+
+func make_all_text_visible() -> void:
+	_sentence_label().make_all_text_visible()
+
+
 """
 Returns the currently active SentenceLabel.
 """

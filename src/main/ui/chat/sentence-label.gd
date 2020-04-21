@@ -36,7 +36,7 @@ func _process(delta: float) -> void:
 	# clamped to prevent underflow (leaving the game open) or large values (a malicious string with tons of pauses)
 	_pause = clamp(_pause - delta * _text_speed, -5, 5)
 	
-	while visible_characters < get_total_character_count() and _pause <= 0.0:
+	while not is_all_text_visible() and _pause <= 0.0:
 		# display the next character and increase the delay
 		visible_characters += 1
 		if _visible_character_pauses.has(visible_characters):
@@ -79,3 +79,11 @@ func play(initial_pause: float = 0) -> void:
 			_visible_character_pauses[visible_chars_to_left] += DEFAULT_PAUSE
 			visible_chars_to_left += 1
 	_pause += _visible_character_pauses[0] if _visible_character_pauses.has(0) else DEFAULT_PAUSE
+
+
+func is_all_text_visible() -> bool:
+	return visible_characters >= get_total_character_count()
+
+
+func make_all_text_visible() -> void:
+	visible_characters = get_total_character_count()

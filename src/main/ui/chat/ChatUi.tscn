@@ -13,4 +13,5 @@ __meta__ = {
 }
 
 [node name="ChatFrame" parent="." instance=ExtResource( 1 )]
+[connection signal="chat_event_played" from="." to="." method="_on_chat_event_played"]
 [connection signal="pop_out_completed" from="ChatFrame" to="." method="_on_ChatFrame_pop_out_completed"]

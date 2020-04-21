@@ -88,10 +88,10 @@ Writes the current piece to the playfield, checking whether it makes any boxes o
 Returns true if the newly written piece results in a pause of some sort.
 """
 func write_piece_to_playfield() -> bool:
-	var result := playfield.write_piece(active_piece.pos, active_piece.orientation, active_piece.type,
+	var caused_pause := playfield.write_piece(active_piece.pos, active_piece.orientation, active_piece.type,
 			piece_speed.line_clear_delay)
 	clear_piece()
-	return result
+	return caused_pause
 
 
 func start_game() -> void:
