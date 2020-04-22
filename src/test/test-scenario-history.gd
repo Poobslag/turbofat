@@ -9,7 +9,7 @@ var _rank_result: RankResult
 
 var _rank_calculator := RankCalculator.new()
 
-func before_each():
+func before_each() -> void:
 	ScenarioHistory.scenario_history_filename = "user://scenario_history_365.save"
 	ScenarioHistory.scenario_history.clear()
 	_rank_result = RankResult.new()
@@ -19,14 +19,14 @@ func before_each():
 	_rank_result.combo_score_per_line = 17.0
 	_rank_result.score = 7890
 
-func after_each():
+func after_each() -> void:
 	ScenarioHistory.history_size = 1000
 
-func test_one_history_entry():
+func test_one_history_entry() -> void:
 	ScenarioHistory.add_scenario_history("scenario-895", _rank_result)
 	assert_eq(ScenarioHistory.scenario_history["scenario-895"][0].score, 7890)
 
-func test_two_history_entries():
+func test_two_history_entries() -> void:
 	ScenarioHistory.add_scenario_history("scenario-895", _rank_result)
 	_rank_result = RankResult.new()
 	_rank_result.score = 6780
@@ -34,7 +34,7 @@ func test_two_history_entries():
 	assert_eq(ScenarioHistory.scenario_history["scenario-895"][0].score, 6780)
 	assert_eq(ScenarioHistory.scenario_history["scenario-895"][1].score, 7890)
 
-func test_too_many_history_entries():
+func test_too_many_history_entries() -> void:
 	ScenarioHistory.history_size = 3
 	ScenarioHistory.add_scenario_history("scenario-895", _rank_result)
 	ScenarioHistory.add_scenario_history("scenario-895", _rank_result)
@@ -46,11 +46,11 @@ func test_too_many_history_entries():
 	assert_eq(ScenarioHistory.scenario_history["scenario-895"].size(), 3)
 	assert_eq(ScenarioHistory.scenario_history["scenario-895"][0].score, 6780)
 
-func test_no_scenario_name():
+func test_no_scenario_name() -> void:
 	ScenarioHistory.add_scenario_history("", _rank_result)
 	assert_false(ScenarioHistory.scenario_history.has(""))
 
-func test_save_and_load():
+func test_save_and_load() -> void:
 	ScenarioHistory.add_scenario_history("scenario-895", _rank_result)
 	ScenarioHistory.save_scenario_history()
 	ScenarioHistory.scenario_history.clear()

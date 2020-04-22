@@ -8,8 +8,9 @@ fed into the UI.
 
 # Chat appearance for different characters
 var _accent_defs: Dictionary = {
-	"Bort": {"accent_scale":1.3,"accent_texture":0,"color":"6f83db"},
-	"Turbo": {"accent_scale":0.66,"accent_swapped":true,"accent_texture":12,"color":"b23823"}
+	"Bort": {"accent_scale":1.3,"accent_swapped":false,"accent_texture":0,"color":"6f83db"},
+	"Ebe": {"accent_scale":0.87,"accent_swapped":true,"accent_texture":15,"color":"b47922"},
+	"Turbo": {"accent_scale":0.66,"accent_swapped":true,"accent_texture":13,"color":"b23823"}
 }
 
 """
@@ -50,4 +51,20 @@ func _parse_chat_event(json_item: Dictionary) -> ChatEvent:
 		chat_event.name = ""
 		chat_event.text = "(%s)" % json_item["text"]
 		chat_event.accent_def = _accent_defs.get("Turbo")
+	
+	match json_item.get("mood"):
+		"default": chat_event.mood = ChatEvent.Mood.DEFAULT
+		"smile0": chat_event.mood = ChatEvent.Mood.SMILE0
+		"smile1": chat_event.mood = ChatEvent.Mood.SMILE1
+		"laugh0": chat_event.mood = ChatEvent.Mood.LAUGH0
+		"laugh1": chat_event.mood = ChatEvent.Mood.LAUGH1
+		"think0": chat_event.mood = ChatEvent.Mood.THINK0
+		"think1": chat_event.mood = ChatEvent.Mood.THINK1
+		"cry0": chat_event.mood = ChatEvent.Mood.CRY0
+		"cry1": chat_event.mood = ChatEvent.Mood.CRY1
+		"sweat0": chat_event.mood = ChatEvent.Mood.SWEAT0
+		"sweat1": chat_event.mood = ChatEvent.Mood.SWEAT1
+		"rage0": chat_event.mood = ChatEvent.Mood.RAGE0
+		"rage1": chat_event.mood = ChatEvent.Mood.RAGE1
+	
 	return chat_event

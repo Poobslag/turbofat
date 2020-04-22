@@ -1,6 +1,7 @@
 [
   {
     "who": "Bort",
+    "mood": "think0",
     "text": "Wow!/ ./././You finally did it?/ Does this count as our first conversation!?"
   },
   {
@@ -9,6 +10,7 @@
   },
   {
     "who": "Bort",
+    "mood": "smile0",
     "text": "Congratulations!/ Wow!"
   },
   {

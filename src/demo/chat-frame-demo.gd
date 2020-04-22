@@ -61,7 +61,7 @@ var _accent_swapped := false
 var _dark := false
 var _nametag_right := false
 
-func _ready():
+func _ready() -> void:
 	_play_text()
 
 

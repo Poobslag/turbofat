@@ -105,7 +105,7 @@ func get_customer_definition() -> Dictionary:
 	}
 
 
-func _update_animation():
+func _update_animation() -> void:
 	if _slipping:
 		play_movement_animation("jump", _get_xy_velocity())
 	elif _jumping:
@@ -116,7 +116,7 @@ func _update_animation():
 		play_movement_animation("idle", _walk_direction)
 
 
-func _update_camera_target():
+func _update_camera_target() -> void:
 	var new_translation := DEFAULT_CAMERA_TRANSLATION \
 			+ Vector3(_walk_direction.x, 0, _walk_direction.y) * CAMERA_LEAD_DISTANCE
 	$CameraTarget.translation = lerp($CameraTarget.translation, new_translation, CAMERA_JERKINESS)
@@ -159,7 +159,7 @@ func _get_xy_velocity() -> Vector2:
 """
 Sets Turbo's (X, Y, Z) velocity where 'Y' is up from an (X, Y) movement vector where 'Y' is forward.
 """
-func _set_xy_velocity(xy_velocity: Vector2):
+func _set_xy_velocity(xy_velocity: Vector2) -> void:
 	_velocity.x = xy_velocity.x
 	_velocity.z = xy_velocity.y
 
@@ -204,7 +204,7 @@ Accelerates Turbo horizontally.
 
 If Turbo would be accelerated beyond the specified maximum speed, Turbo's acceleration is reduced.
 """
-func accelerate_player_xy(delta: float, push_direction: Vector2, acceleration: float, max_speed: float):
+func accelerate_player_xy(delta: float, push_direction: Vector2, acceleration: float, max_speed: float) -> void:
 	var accel_vector = push_direction * acceleration
 	if accel_vector.length() > acceleration:
 		accel_vector = accel_vector.normalized() * acceleration

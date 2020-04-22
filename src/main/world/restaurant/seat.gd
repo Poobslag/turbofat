@@ -53,12 +53,12 @@ func play_goodbye_voice() -> void:
 """
 When the customer arrives, we draw a shadowy version of the stool they sat upon.
 """
-func _on_Customer_customer_arrived():
+func _on_Customer_customer_arrived() -> void:
 	$Stool0L.texture = preload("res://assets/world/restaurant/stool-occupied.png")
 
 
 """
 When the customer leaves, we draw an unshadowed version of the stool they stood up from.
 """
-func _on_Customer_customer_left():
+func _on_Customer_customer_left() -> void:
 	$Stool0L.texture = preload("res://assets/world/restaurant/stool.png")

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/emote-laugh1.wav-f5f20c7df616e86fe7e86f88fc47c582.sample"
+
+[deps]
+
+source_file="res://assets/ui/chat/emote-laugh1.wav"
+dest_files=[ "res://.import/emote-laugh1.wav-f5f20c7df616e86fe7e86f88fc47c582.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -58,7 +58,7 @@ Parameters:
 	
 	'nametag_right': true/false if the nametag should be drawn on the right/left side of the frame.
 """
-func show_label(chat_appearance: ChatAppearance, nametag_right: bool, sentence_size: int):
+func show_label(chat_appearance: ChatAppearance, nametag_right: bool, sentence_size: int) -> void:
 	if _nametag_size == ChatAppearance.NametagSize.OFF:
 		visible = false
 		# No nametag label to show.

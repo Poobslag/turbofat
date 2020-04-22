@@ -121,5 +121,5 @@ func _on_UltraExpert_pressed() -> void:
 	_load_scenario()
 
 
-func _on_OverworldButton_pressed():
+func _on_OverworldButton_pressed() -> void:
 	get_tree().change_scene("res://src/main/world/Overworld.tscn")

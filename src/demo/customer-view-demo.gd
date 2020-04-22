@@ -16,7 +16,7 @@ const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 
 var _current_color_index := -1
 
-func _ready():
+func _ready() -> void:
 	# Ensure customers are random
 	randomize()
 

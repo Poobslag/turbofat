@@ -22,12 +22,23 @@ signal customer_arrived
 # signal emitted when a stands up and customer leaves
 signal customer_left
 
+# signal emitted when a movement animation starts (e.g Turbo starts running in a direction)
+signal movement_animation_started(anim_name)
+
 # directions the customer can face
 enum Orientation {
 	SOUTHEAST,
 	SOUTHWEST,
 	NORTHWEST,
 	NORTHEAST
+}
+
+# ways the customer's head can move ambiently
+enum HeadBobMode {
+	OFF, # no movement
+	BOB, # nodding vertically
+	BOUNCE, # bouncing vertically like a ball hitting the floor
+	SHUDDER # shaking left and right
 }
 
 # food colors for the food which gets hurled into the customer's mouth
@@ -58,12 +69,17 @@ export (bool) var _movement_mode := false setget set_movement_mode
 # the direction the customer is facing
 export (Orientation) var _orientation: int = Orientation.SOUTHEAST setget set_orientation, get_orientation
 
+# these three fields control the customer's head motion: how it's moving, as well as how much/how fast
+export (HeadBobMode) var head_bob_mode: int = HeadBobMode.BOB
+export (float) var head_motion_pixels := 2.0
+export (float) var head_motion_seconds := 6.5
+
+# the creature's head bobs up and down slowly, these constants control how much it bobs
+const HEAD_BOB_SECONDS := 6.5
+const HEAD_BOB_PIXELS := 2.0
+
 # the total number of seconds which have elapsed since the object was created
 var _total_seconds := 0.0
-
-# the creature's head bobs up and down slowly, these fields control how much it bobs
-var _head_bob_seconds := 6.5
-var _head_bob_pixels := 2.0
 
 # the index of the previously launched food color. stored to avoid showing the same color twice consecutively
 var _food_color_index := 0
@@ -157,18 +173,28 @@ func _process(delta: float) -> void:
 			_play_mouth_ambient_animation()
 		
 		if _orientation in [Orientation.SOUTHWEST, Orientation.SOUTHEAST]:
-			if not $Eye0Anims.is_playing():
-				$Eye0Anims.play("ambient")
-				$Eye0Anims.advance(randf() * $Eye0Anims.current_animation_length)
+			if not $EmoteAnims.is_playing():
+				$EmoteAnims.play("ambient")
+				$EmoteAnims.advance(randf() * $EmoteAnims.current_animation_length)
 		else:
-			if $Eye0Anims.is_playing():
-				$Eye0Anims.stop()
+			if $EmoteAnims.is_playing():
+				$EmoteAnims.stop()
 			$Sprites/Neck0/Neck1/Eyes.frame = 0
 		
 		_total_seconds += delta
 		if has_node("Sprites/Neck0/Neck1"):
-			var bob_amount = _head_bob_pixels * sin((_total_seconds * 2 * PI) / _head_bob_seconds)
-			$Sprites/Neck0/Neck1.position.y = -100 + bob_amount
+			if head_bob_mode == HeadBobMode.BOB:
+				var bob_amount = head_motion_pixels * sin((_total_seconds * 2 * PI) / head_motion_seconds)
+				$Sprites/Neck0/Neck1.position.x = 0
+				$Sprites/Neck0/Neck1.position.y = -100 + bob_amount
+			elif head_bob_mode == HeadBobMode.BOUNCE:
+				var bounce_amount = head_motion_pixels * (1 - 2 * abs(sin((_total_seconds * PI) / head_motion_seconds)))
+				$Sprites/Neck0/Neck1.position.x = 0
+				$Sprites/Neck0/Neck1.position.y = -100 + bounce_amount
+			elif head_bob_mode == HeadBobMode.SHUDDER:
+				var shudder_amount = head_motion_pixels * clamp(2 * sin((_total_seconds * 2 * PI) / head_motion_seconds), -1.0, 1.0)
+				$Sprites/Neck0/Neck1.position.x = shudder_amount
+				$Sprites/Neck0/Neck1.position.y = -100
 
 
 """
@@ -259,7 +285,7 @@ Plays a door chime sound effect, for when a customer enters the restaurant.
 Parameter: 'delay' is the delay in seconds before the chime sound plays. The default value of '-1' results in a random
 	delay.
 """
-func play_door_chime(delay: float = -1):
+func play_door_chime(delay: float = -1) -> void:
 	if delay < 0:
 		delay = CHIME_DELAYS[randi() % CHIME_DELAYS.size()]
 	yield(get_tree().create_timer(delay), "timeout")
@@ -280,12 +306,12 @@ func feed() -> void:
 	if _mouth_animation_player.current_animation in ["eat", "eat-again"]:
 		_mouth_animation_player.stop()
 		_mouth_animation_player.play("eat-again")
-		$Eye0Anims.stop()
-		$Eye0Anims.play("eat-again")
+		$EmoteAnims.stop()
+		$EmoteAnims.play("eat-again")
 		show_food_effects()
 	else:
 		_mouth_animation_player.play("eat")
-		$Eye0Anims.play("eat")
+		$EmoteAnims.play("eat")
 		show_food_effects(0.066)
 
 
@@ -458,6 +484,21 @@ func is_idle() -> bool:
 
 
 """
+Animates the customer's appearance according to the specified mood: happy, angry, etc...
+
+Parameters:
+	'mood': The customer's new mood from ChatEvent.Mood
+"""
+func play_mood(mood: int) -> void:
+	if mood == ChatEvent.Mood.NONE:
+		pass
+	elif mood == ChatEvent.Mood.DEFAULT:
+		$EmoteAnims.unemote()
+	else:
+		$EmoteAnims.emote(mood)
+
+
+"""
 Plays an appropriate mouth ambient animation for the customer's orientation.
 """
 func _play_mouth_ambient_animation() -> void:
@@ -514,7 +555,7 @@ func _update_customer_properties() -> void:
 	
 	# stop any AnimationPlayers, otherwise two AnimationPlayers might fight over control of the sprite
 	_mouth_animation_player.stop()
-	$Eye0Anims.stop()
+	$EmoteAnims.stop()
 	
 	# reset the mouth frame, otherwise we could have one strange transition frame
 	_apply_default_mouth_and_eye_frames()
@@ -552,3 +593,12 @@ func _update_customer_properties() -> void:
 			_suppress_one_chime = false
 		else:
 			play_door_chime()
+
+
+func _on_EmoteAnims_before_mood_switched() -> void:
+	# some moods modify the sprites for our eyes and arms, so we reset them
+	set_orientation(_orientation)
+
+
+func _on_MovementAnims_animation_started(anim_name: String) -> void:
+	emit_signal("movement_animation_started", anim_name)

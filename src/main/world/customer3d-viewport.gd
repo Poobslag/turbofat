@@ -3,7 +3,7 @@ extends Viewport
 Viewport which renders a 2D customer in the 3D overworld.
 """
 
-func _on_MovementAnims_animation_started(anim_name):
+func _on_Customer_movement_animation_started(anim_name: String) -> void:
 	if anim_name in ["run-nw", "jump-nw"]:
 		# reposition sprite to avoid clipping the floor
 		$Customer.position.y = 842

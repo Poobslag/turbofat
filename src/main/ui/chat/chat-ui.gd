@@ -3,7 +3,7 @@ extends Control
 Displays UI elements for a dialog sequence.
 """
 
-signal chat_event_played
+signal chat_event_played(chat_event)
 
 signal pop_out_completed
 
@@ -181,11 +181,11 @@ func _play_text() -> void:
 		emit_signal("chat_event_played", chat_event)
 
 
-func _on_ChatFrame_pop_out_completed():
+func _on_ChatFrame_pop_out_completed() -> void:
 	emit_signal("pop_out_completed")
 
 
-func _on_chat_event_played(chat_event: ChatEvent):
+func _on_chat_event_played(chat_event: ChatEvent) -> void:
 	# record the last 100 chat events so the player can review them later
 	_prev_chat_events.append(chat_event)
 	while _prev_chat_events.size() > 100:

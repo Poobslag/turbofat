@@ -3,16 +3,16 @@ extends Spatial
 Script which controls the 3D overworld.
 """
 
-func _ready():
+func _ready() -> void:
 	$OverworldUi.turbo = $Turbo
 
 
-func _unset_chat_zoom():
+func _unset_chat_zoom() -> void:
 	$OverworldCamera.target = NodePath("../Turbo/CameraTarget")
 	$OverworldCamera.zoom_out()
 
 
-func _on_CheatCodeDetector_cheat_detected(cheat: String):
+func _on_CheatCodeDetector_cheat_detected(cheat: String) -> void:
 	if cheat == "coyote":
 		if not $Turbo/Label.visible:
 			$Turbo/Label.visible = true
@@ -29,15 +29,15 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String):
 			$CheatDisabledSound.play()
 
 
-func _on_OverworldUi_chat_started():
+func _on_OverworldUi_chat_started() -> void:
 	$OverworldCamera.target = NodePath("../ChatCameraTarget")
 	$OverworldCamera.zoom_in()
 	$ChatCameraTarget.zoomed_in = true
 
 
-func _on_OverworldUi_chat_ended():
+func _on_OverworldUi_chat_ended() -> void:
 	_unset_chat_zoom()
 
 
-func _on_ChatCameraTarget_left_zoom_radius():
+func _on_ChatCameraTarget_left_zoom_radius() -> void:
 	_unset_chat_zoom()

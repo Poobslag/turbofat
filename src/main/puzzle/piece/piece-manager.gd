@@ -453,6 +453,6 @@ func _update_tile_map() -> void:
 	$TileMap/CornerMap.dirty = true
 
 
-func _on_States_entered_state(state: State):
+func _on_States_entered_state(state: State) -> void:
 	if state == $States/Prelock:
 		$LockSound.play()

@@ -7,7 +7,7 @@ Script for representing a customer in the 3D overworld.
 # Turbo cannot land on customers easily, but it is possible
 var foothold_radius := 4.0
 
-func _ready():
+func _ready() -> void:
 	$CollisionShape.disabled = true
 	$ShadowMesh.visible = false
 	$Viewport/Customer/Shadow.visible = false
@@ -33,6 +33,16 @@ Parameters:
 """
 func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
 	$Viewport/Customer.play_movement_animation(animation_prefix, movement_direction)
+
+
+"""
+Animates the customer's appearance according to the specified mood: happy, angry, etc...
+
+Parameters:
+	'mood': The customer's new mood from ChatEvent.Mood
+"""
+func play_mood(mood: int) -> void:
+	$Viewport/Customer.play_mood(mood)
 
 
 """
@@ -70,7 +80,7 @@ func _on_Customer_customer_arrived() -> void:
 	$ShadowMesh.visible = true
 
 
-func _on_MovementAnims_animation_started(anim_name: String) -> void:
+func _on_Customer_movement_animation_started(anim_name: String) -> void:
 	# animate our shadows when the customer moves
 	if anim_name in ["run-se", "run-nw"]:
 		$ShadowMesh/AnimationPlayer.play("run")

@@ -11,38 +11,38 @@ particularly important for this code.
 
 var _rank_calculator = RankCalculator.new()
 
-func before_each():
+func before_each() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.set_win_condition("lines", 100)
 	Global.scenario_performance = ScenarioPerformance.new()
 
-func test_max_lpm_slow_marathon():
+func test_max_lpm_slow_marathon() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	assert_almost_eq(_rank_calculator._max_lpm(), 25.31, 0.1)
 
-func test_max_lpm_medium_marathon():
+func test_max_lpm_medium_marathon() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.hard_level_0)
 	assert_almost_eq(_rank_calculator._max_lpm(), 28.51, 0.1)
 
-func test_max_lpm_fast_marathon():
+func test_max_lpm_fast_marathon() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.crazy_level_0)
 	assert_almost_eq(_rank_calculator._max_lpm(), 77.42, 0.1)
 
-func test_max_lpm_mixed_marathon():
+func test_max_lpm_mixed_marathon() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.add_level_up("lines", 30, PieceSpeeds.crazy_level_0)
 	Global.scenario_settings.add_level_up("lines", 60, PieceSpeeds.hard_level_0)
 	Global.scenario_settings.set_win_condition("lines", 100)
 	assert_almost_eq(_rank_calculator._max_lpm(), 34.73, 0.1)
 
-func test_max_lpm_mixed_sprint():
+func test_max_lpm_mixed_sprint() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.add_level_up("time", 30, PieceSpeeds.crazy_level_0)
 	Global.scenario_settings.add_level_up("time", 60, PieceSpeeds.hard_level_0)
 	Global.scenario_settings.set_win_condition("time", 90)
 	assert_almost_eq(_rank_calculator._max_lpm(), 38.04, 0.1)
 
-func test_calculate_rank_marathon_300_master():
+func test_calculate_rank_marathon_300_master() -> void:
 	Global.scenario_settings.set_win_condition("lines", 300)
 	Global.scenario_performance.seconds = 600
 	Global.scenario_performance.lines = 300
@@ -56,7 +56,7 @@ func test_calculate_rank_marathon_300_master():
 	assert_eq(rank.combo_score_per_line_rank, 0.0)
 	assert_eq(rank.score_rank, 0.0)
 
-func test_calculate_rank_marathon_300_mixed():
+func test_calculate_rank_marathon_300_mixed() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.set_win_condition("lines", 300)
 	Global.scenario_performance.seconds = 240
@@ -71,7 +71,7 @@ func test_calculate_rank_marathon_300_mixed():
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "B")
 	assert_eq(Global.grade(rank.score_rank), "B")
 
-func test_calculate_rank_marathon_lenient():
+func test_calculate_rank_marathon_lenient() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.set_win_condition("lines", 300, 200)
 	Global.scenario_performance.seconds = 240
@@ -86,7 +86,7 @@ func test_calculate_rank_marathon_lenient():
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "B")
 	assert_eq(Global.grade(rank.score_rank), "B+")
 
-func test_calculate_rank_marathon_300_fail():
+func test_calculate_rank_marathon_300_fail() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.set_win_condition("lines", 300)
 	Global.scenario_performance.seconds = 0
@@ -101,7 +101,7 @@ func test_calculate_rank_marathon_300_fail():
 	assert_eq(rank.combo_score_per_line_rank, 999.0)
 	assert_eq(rank.score_rank, 999.0)
 
-func test_calculate_rank_sprint_120():
+func test_calculate_rank_sprint_120() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.hard_level_0)
 	Global.scenario_settings.set_win_condition("time", 120)
 	Global.scenario_performance.seconds = 120
@@ -116,7 +116,7 @@ func test_calculate_rank_sprint_120():
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "A+")
 	assert_eq(Global.grade(rank.score_rank), "S")
 
-func test_calculate_rank_ultra_200():
+func test_calculate_rank_ultra_200() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.set_win_condition("score", 200)
 	Global.scenario_performance.seconds = 21.233
@@ -131,7 +131,7 @@ func test_calculate_rank_ultra_200():
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "M")
 	assert_eq(Global.grade(rank.seconds_rank), "M")
 
-func test_calculate_rank_ultra_200_died():
+func test_calculate_rank_ultra_200_died() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.set_win_condition("score", 200)
 	Global.scenario_performance.seconds = 60
@@ -149,7 +149,7 @@ func test_calculate_rank_ultra_200_died():
 """
 This is an edge case where, if the player gets too many points for ultra, they can sort of be robbed of a master rank.
 """
-func test_calculate_rank_ultra_200_overshot():
+func test_calculate_rank_ultra_200_overshot() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.set_win_condition("score", 200)
 	Global.scenario_performance.seconds = 25
@@ -166,7 +166,7 @@ func test_calculate_rank_ultra_200_overshot():
 """
 These two times are pretty far apart; they shouldn't yield the same rank
 """
-func test_two_rank_s():
+func test_two_rank_s() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.hard_level_0)
 	Global.scenario_settings.set_win_condition("score", 1000)
 	Global.scenario_performance.seconds = 88.55

@@ -11,7 +11,7 @@ signal before_game_started
 signal game_started
 
 # signal emitted when a line is cleared
-signal line_cleared
+signal line_cleared(lines_cleared)
 
 # signal emitted when the player's pieces reach the top of the playfield
 signal game_ended

@@ -25,6 +25,7 @@ onready var _accent_textures := [
 	preload("res://assets/ui/chat/texture/bg02.png"),
 	preload("res://assets/ui/chat/texture/bg03.png"),
 	preload("res://assets/ui/chat/texture/bg04.png"),
+	preload("res://assets/ui/chat/texture/bg05.png"),
 	preload("res://assets/ui/chat/texture/bg06.png"),
 	preload("res://assets/ui/chat/texture/bg07.png"),
 	preload("res://assets/ui/chat/texture/bg08.png"),
@@ -51,7 +52,7 @@ Parameters:
 	'sentence_size': The size of the sentence window. This is needed for the sprite to update its texture to show a
 		smaller/larger window.
 """
-func update_appearance(chat_appearance: ChatAppearance, sentence_size: int):
+func update_appearance(chat_appearance: ChatAppearance, sentence_size: int) -> void:
 	frame = randi() % 4
 	flip_h = randf() > 0.5
 	flip_v = randf() > 0.5

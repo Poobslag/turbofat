@@ -12,7 +12,7 @@ res://assets/ui/cheat-enable.wav sound files exist for this purpose.
 """
 
 # Signal emitted when a cheat is entered.
-signal cheat_detected
+signal cheat_detected(code)
 
 # The maximum length of cheat codes. Entered keys are stored in a buffer, and we don't want the buffer to grow to a
 # ridiculous size.
