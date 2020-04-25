@@ -2535,7 +2535,7 @@ frame = 1
 [node name="Outline" type="Sprite" parent="Sprites/Neck0/Neck1/Eyes"]
 light_mask = 2
 material = SubResource( 23 )
-hframes = 3
+hframes = 4
 frame = 1
 script = ExtResource( 4 )
 

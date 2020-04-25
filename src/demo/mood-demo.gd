@@ -10,10 +10,7 @@ Keys:
 """
 
 func _input(event: InputEvent) -> void:
-	var scancode: int
-	if event is InputEventKey and event.is_pressed() and not event.is_echo():
-		scancode = event.scancode
-	match(scancode):
+	match(Global.key_scancode(event)):
 		KEY_1: $Customer.play_mood(ChatEvent.Mood.DEFAULT)
 		KEY_Q: $Customer.play_mood(ChatEvent.Mood.SMILE0)
 		KEY_W: $Customer.play_mood(ChatEvent.Mood.SMILE1)

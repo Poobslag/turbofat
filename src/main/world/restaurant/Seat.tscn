@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/main/world/restaurant/Customer.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/world/shadow-oval-0.png" type="Texture" id=3]
@@ -6,176 +6,14 @@
 [ext_resource path="res://src/main/world/outline.shader" type="Shader" id=9]
 [ext_resource path="res://assets/world/restaurant/stool.png" type="Texture" id=10]
 [ext_resource path="res://src/main/world/restaurant/seat.gd" type="Script" id=30]
-[ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=32]
-[ext_resource path="res://src/main/world/multi-outline.shader" type="Shader" id=50]
 [ext_resource path="res://src/main/world/outline-material.tres" type="Material" id=51]
 
 [sub_resource type="ShaderMaterial" id=1]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=2]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=3]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=4]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=5]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=6]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="Curve2D" id=7]
-resource_local_to_scene = true
-_data = {
-"points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
-}
-
-[sub_resource type="ShaderMaterial" id=8]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = null
-shader_param/blue = null
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=9]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=10]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=11]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=12]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=13]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=14]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=15]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=16]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=17]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=18]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=19]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=20]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
-shader_param/blue = null
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=21]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=22]
-resource_local_to_scene = true
-shader = ExtResource( 32 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=23]
-resource_local_to_scene = true
-shader = ExtResource( 50 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=24]
 shader = ExtResource( 9 )
 shader_param/width = 2.5
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 
-[sub_resource type="ShaderMaterial" id=25]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 9 )
 shader_param/width = 2.5
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
@@ -202,104 +40,11 @@ texture = ExtResource( 3 )
 visible = false
 position = Vector2( 1.228, -149.237 )
 
-[node name="Shadow" parent="Customer" index="0"]
-position = Vector2( 0, 150 )
-
-[node name="FarMovement" parent="Customer/Sprites" index="0"]
-material = SubResource( 1 )
-
-[node name="Outline" parent="Customer/Sprites/FarMovement" index="0"]
-material = SubResource( 2 )
-
-[node name="FarArm" parent="Customer/Sprites" index="1"]
-material = SubResource( 3 )
-
-[node name="Outline" parent="Customer/Sprites/FarArm" index="0"]
-material = SubResource( 4 )
-
-[node name="FarLeg" parent="Customer/Sprites" index="2"]
-material = SubResource( 5 )
-
-[node name="Outline" parent="Customer/Sprites/FarLeg" index="0"]
-material = SubResource( 6 )
-
-[node name="Body" parent="Customer/Sprites" index="3"]
-curve = SubResource( 7 )
-
-[node name="Outline" parent="Customer/Sprites/Body" index="0"]
-curve = SubResource( 7 )
-
-[node name="NeckBlend" parent="Customer/Sprites/Body" index="1"]
-material = SubResource( 8 )
-
-[node name="NearLeg" parent="Customer/Sprites" index="4"]
-material = SubResource( 9 )
-
-[node name="Outline" parent="Customer/Sprites/NearLeg" index="0"]
-material = SubResource( 10 )
-
-[node name="NearArm" parent="Customer/Sprites" index="5"]
-material = SubResource( 1 )
-
-[node name="Outline" parent="Customer/Sprites/NearArm" index="0"]
-material = SubResource( 2 )
-
-[node name="Neck1" parent="Customer/Sprites/Neck0" index="0"]
-material = SubResource( 11 )
-
-[node name="EarZ0" parent="Customer/Sprites/Neck0/Neck1" index="0"]
-material = SubResource( 12 )
-
-[node name="Outline" parent="Customer/Sprites/Neck0/Neck1/EarZ0" index="0"]
-material = SubResource( 13 )
-
-[node name="HornZ0" parent="Customer/Sprites/Neck0/Neck1" index="1"]
-material = SubResource( 14 )
-
-[node name="Outline" parent="Customer/Sprites/Neck0/Neck1/HornZ0" index="0"]
-material = SubResource( 15 )
-
-[node name="Head" parent="Customer/Sprites/Neck0/Neck1" index="2"]
-material = SubResource( 11 )
-
-[node name="Outline" parent="Customer/Sprites/Neck0/Neck1/Head" index="0"]
-material = SubResource( 16 )
-
-[node name="EarZ1" parent="Customer/Sprites/Neck0/Neck1" index="3"]
-material = SubResource( 12 )
-
-[node name="Outline" parent="Customer/Sprites/Neck0/Neck1/EarZ1" index="0"]
-material = SubResource( 17 )
-
-[node name="HornZ1" parent="Customer/Sprites/Neck0/Neck1" index="4"]
-material = SubResource( 14 )
-
-[node name="Outline" parent="Customer/Sprites/Neck0/Neck1/HornZ1" index="0"]
-material = SubResource( 15 )
-
-[node name="EarZ2" parent="Customer/Sprites/Neck0/Neck1" index="5"]
-material = SubResource( 18 )
-
-[node name="Outline" parent="Customer/Sprites/Neck0/Neck1/EarZ2" index="0"]
-material = SubResource( 19 )
-
-[node name="Mouth" parent="Customer/Sprites/Neck0/Neck1" index="6"]
-material = SubResource( 20 )
-
-[node name="Outline" parent="Customer/Sprites/Neck0/Neck1/Mouth" index="0"]
-material = SubResource( 21 )
-
-[node name="Eyes" parent="Customer/Sprites/Neck0/Neck1" index="7"]
-material = SubResource( 22 )
-
-[node name="Outline" parent="Customer/Sprites/Neck0/Neck1/Eyes" index="0"]
-material = SubResource( 23 )
-
 [node name="WoodTable0" type="Sprite" parent="."]
 light_mask = 2
-material = SubResource( 24 )
+material = SubResource( 1 )
 position = Vector2( 220, -20 )
-z_index = 15
+z_index = 10
 texture = ExtResource( 8 )
 offset = Vector2( 0, -50 )
 
@@ -308,14 +53,14 @@ self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
 light_mask = 2
 position = Vector2( 0, 30 )
 scale = Vector2( 0.28, 0.28 )
-z_index = -20
+z_index = -15
 texture = ExtResource( 3 )
 
 [node name="Stool0R" type="Sprite" parent="."]
 light_mask = 2
-material = SubResource( 25 )
+material = SubResource( 2 )
 position = Vector2( 440, 0 )
-z_index = 15
+z_index = 10
 texture = ExtResource( 10 )
 offset = Vector2( 0, -70 )
 
@@ -323,9 +68,7 @@ offset = Vector2( 0, -70 )
 self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
 light_mask = 2
 scale = Vector2( 0.15, 0.15 )
-z_index = -20
+z_index = -15
 texture = ExtResource( 3 )
 [connection signal="customer_arrived" from="Customer" to="." method="_on_Customer_customer_arrived"]
 [connection signal="customer_left" from="Customer" to="." method="_on_Customer_customer_left"]
-
-[editable path="Customer"]

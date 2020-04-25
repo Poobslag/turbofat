@@ -20,8 +20,8 @@ func _ready() -> void:
 
 func _process(delta) -> void:
 	if texture != _parent.texture:
-		offset = _parent.offset
 		texture = _parent.texture
+		offset = _parent.offset
 		vframes = _parent.vframes
 		hframes = _parent.hframes
 	if frame != _parent.frame:

@@ -92,19 +92,17 @@ func should_chat() -> bool:
 
 
 """
-Returns 'true' if a number key [0-9] was just pressed
+Returns the scancode for a keypress event, or -1 if the event is not a keypress event.
 """
-func is_num_just_pressed() -> bool:
-	return get_num_just_pressed() != -1
+func key_scancode(event: InputEvent) -> int:
+	var scancode := -1
+	if event is InputEventKey and event.is_pressed() and not event.is_echo():
+		scancode = event.scancode
+	return scancode
 
 
 """
-Returns a number in the range [0-9] if a number key was just pressed, otherwise -1
+Returns [0-9] for a number key event, or -1 if the event is not a number key event.
 """
-func get_num_just_pressed() -> int:
-	var result := -1
-	for scancode in NUM_SCANCODES.keys():
-		if Input.is_key_pressed(scancode):
-			result = NUM_SCANCODES[scancode]
-			break
-	return result
+func key_num(event: InputEvent) -> int:
+	return NUM_SCANCODES.get(key_scancode(event), -1)
