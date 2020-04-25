@@ -7,7 +7,7 @@ fed into the UI.
 """
 
 # Chat appearance for different characters
-var _accent_defs: Dictionary = {
+var _accent_defs := {
 	"Bort": {"accent_scale":1.3,"accent_swapped":false,"accent_texture":0,"color":"6f83db"},
 	"Ebe": {"accent_scale":0.87,"accent_swapped":true,"accent_texture":15,"color":"b47922"},
 	"Turbo": {"accent_scale":0.66,"accent_swapped":true,"accent_texture":13,"color":"b23823"}

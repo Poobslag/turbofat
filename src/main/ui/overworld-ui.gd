@@ -105,6 +105,6 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	make_chatters_face_eachother()
 	
 	# update the chatter's mood
-	var chatter: Spatial = InteractableManager.get_chatter(chat_event.name)
+	var chatter := InteractableManager.get_chatter(chat_event.name)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)

@@ -11,7 +11,7 @@ func _ready() -> void:
 	$CollisionShape.disabled = true
 	$ShadowMesh.visible = false
 	$Viewport/Customer/Shadow.visible = false
-	var customer_definition = get_customer_definition()
+	var customer_definition := get_customer_definition()
 	if customer_definition:
 		$Viewport/Customer.summon(customer_definition)
 

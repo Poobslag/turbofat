@@ -1,3 +1,4 @@
+class_name Score
 extends Control
 """
 Contains logic for displaying the player's score. This includes their cumulative score as well as the score for the

@@ -9,7 +9,7 @@ playfield.
 signal game_ended
 
 var _target_piece_pos: Vector2
-var _target_piece_rotation: int
+var _target_piece_orientation: int
 
 var _input_left_frames := 0
 var _input_right_frames := 0
@@ -21,7 +21,7 @@ var _input_ccw_frames := 0
 var _gravity_delay_frames := 0
 
 onready var playfield: Playfield = $"../Playfield"
-onready var _next_pieces: NextPieces = $"../NextPieces"
+onready var _next_piece_displays: NextPieceDisplays = $"../NextPieceDisplays"
 onready var _game_over_voices := [$GameOverVoice0, $GameOverVoice1, $GameOverVoice2, $GameOverVoice3, $GameOverVoice4]
 
 # information about the current 'speed level', such as how fast pieces drop, how long it takes them to lock into the
@@ -113,7 +113,7 @@ func end_game() -> void:
 Spawns a new piece at the top of the playfield.
 """
 func _spawn_piece() -> void:
-	var piece_type = _next_pieces.pop_piece_type()
+	var piece_type := _next_piece_displays.pop_next_piece()
 	active_piece = ActivePiece.new(piece_type)
 	tile_map_dirty = true
 	
@@ -130,8 +130,8 @@ func _spawn_piece() -> void:
 			$Rotate1Sound.play()
 		
 		# relocate rotated piece to the top of the playfield
-		var pos_arr = active_piece.type.pos_arr[active_piece.orientation]
-		var highest_pos = 3
+		var pos_arr: Array = active_piece.type.pos_arr[active_piece.orientation]
+		var highest_pos := 3
 		for pos in pos_arr:
 			if pos.y < highest_pos:
 				highest_pos = pos.y
@@ -207,13 +207,13 @@ func apply_player_input() -> bool:
 	
 	var did_hard_drop := false
 	var old_piece_pos := active_piece.pos
-	var old_piece_rotation := active_piece.orientation
+	var old_piece_orientation := active_piece.orientation
 	var applied_player_input := false
 
 	if $States.get_state() == $States/MovePiece:
 		_reset_piece_target()
-		_calc_target_rotation()
-		if _target_piece_rotation != active_piece.orientation and not _can_move_active_piece_to(_target_piece_pos, _target_piece_rotation):
+		_calc_target_orientation()
+		if _target_piece_orientation != active_piece.orientation and not _can_move_active_piece_to(_target_piece_pos, _target_piece_orientation):
 			_kick_piece()
 		_move_piece_to_target(true)
 		
@@ -236,7 +236,8 @@ func apply_player_input() -> bool:
 			did_hard_drop = true
 
 	if Input.is_action_just_pressed("soft_drop"):
-		if not _can_move_active_piece_to(Vector2(active_piece.pos.x, active_piece.pos.y + 1), active_piece.orientation):
+		if not _can_move_active_piece_to(
+				Vector2(active_piece.pos.x, active_piece.pos.y + 1), active_piece.orientation):
 			_reset_piece_target()
 			_calc_smush_target()
 			if _target_piece_pos != active_piece.pos:
@@ -248,13 +249,14 @@ func apply_player_input() -> bool:
 				applied_player_input = true
 				$MoveSound.play()
 	elif Input.is_action_pressed("soft_drop") and active_piece.lock >= piece_speed.lock_delay:
-		if not _can_move_active_piece_to(Vector2(active_piece.pos.x, active_piece.pos.y + 1), active_piece.orientation):
+		if not _can_move_active_piece_to(
+				Vector2(active_piece.pos.x, active_piece.pos.y + 1), active_piece.orientation):
 			_reset_piece_target()
 			_calc_smush_target()
 			if _target_piece_pos != active_piece.pos:
 				_smush_to_target()
 	
-	if old_piece_pos != active_piece.pos or old_piece_rotation != active_piece.orientation:
+	if old_piece_pos != active_piece.pos or old_piece_orientation != active_piece.orientation:
 		if active_piece.lock > 0 and not did_hard_drop:
 			_perform_lock_reset()
 			applied_player_input = true
@@ -267,7 +269,7 @@ Smushes a piece through other blocks towards the target.
 func _smush_to_target() -> void:
 	# initialize the stretch animation for long stretches
 	if _target_piece_pos.y - active_piece.pos.y >= 3:
-		var unblocked_blocks: Array = active_piece.type.pos_arr[_target_piece_rotation].duplicate()
+		var unblocked_blocks: Array = active_piece.type.pos_arr[_target_piece_orientation].duplicate()
 		$StretchMap.start_stretch(PieceSpeeds.SMUSH_FRAMES, active_piece.type.color_arr[active_piece.orientation][0].y)
 		for dy in range(_target_piece_pos.y - active_piece.pos.y):
 			var i := 0
@@ -312,15 +314,15 @@ If the 'smush' is successful, the '_target_piece_pos' field will be updated acco
 """
 func _calc_smush_target() -> void:
 	var unblocked_blocks := []
-	for _i in range(active_piece.type.pos_arr[_target_piece_rotation].size()):
+	for _i in range(active_piece.type.pos_arr[_target_piece_orientation].size()):
 		unblocked_blocks.append(true)
 	
 	var valid_target_pos := false
 	while not valid_target_pos and _target_piece_pos.y < Playfield.ROW_COUNT:
 		_target_piece_pos.y += 1
 		valid_target_pos = true
-		for i in range(active_piece.type.pos_arr[_target_piece_rotation].size()):
-			var target_block_pos: Vector2 = active_piece.type.pos_arr[_target_piece_rotation][i] + Vector2(_target_piece_pos.x, _target_piece_pos.y)
+		for i in range(active_piece.type.pos_arr[_target_piece_orientation].size()):
+			var target_block_pos := active_piece.type.get_cell_position(_target_piece_orientation, i) + Vector2(_target_piece_pos.x, _target_piece_pos.y)
 			var valid_block_pos := true
 			valid_block_pos = valid_block_pos and target_block_pos.x >= 0 and target_block_pos.x < Playfield.COL_COUNT
 			valid_block_pos = valid_block_pos and target_block_pos.y >= 0 and target_block_pos.y < Playfield.ROW_COUNT
@@ -342,11 +344,11 @@ func _calc_smush_target() -> void:
 """
 Kicks a rotated piece into a nearby empty space.
 
-This does not attempt to preserve the original position/rotation unless explicitly given a kick of (0, 0).
+This does not attempt to preserve the original position/orientation unless explicitly given a kick of (0, 0).
 """
 func _kick_piece(kicks: Array = []) -> void:
 	var successful_kick := active_piece.kick_piece(funcref(self, "_is_cell_blocked"), _target_piece_pos,
-			_target_piece_rotation, kicks)
+			_target_piece_orientation, kicks)
 	
 	if successful_kick:
 		_target_piece_pos += successful_kick
@@ -395,19 +397,19 @@ func _is_cell_blocked(pos: Vector2) -> bool:
 
 
 func _move_piece_to_target(play_sfx := false) -> bool:
-	var valid_target_pos := _can_move_active_piece_to(_target_piece_pos, _target_piece_rotation)
+	var valid_target_pos := _can_move_active_piece_to(_target_piece_pos, _target_piece_orientation)
 	
 	if valid_target_pos:
 		if play_sfx:
-			if active_piece.orientation != _target_piece_rotation:
-				if _target_piece_rotation == active_piece.get_cw_orientation():
+			if active_piece.orientation != _target_piece_orientation:
+				if _target_piece_orientation == active_piece.get_cw_orientation():
 					$Rotate0Sound.play()
 				else:
 					$Rotate1Sound.play()
 			if active_piece.pos != _target_piece_pos:
 				$MoveSound.play()
 		active_piece.pos = _target_piece_pos
-		active_piece.orientation = _target_piece_rotation
+		active_piece.orientation = _target_piece_orientation
 		tile_map_dirty = true
 	
 	_reset_piece_target()
@@ -415,7 +417,7 @@ func _move_piece_to_target(play_sfx := false) -> bool:
 
 func _reset_piece_target() -> void:
 	_target_piece_pos = active_piece.pos
-	_target_piece_rotation = active_piece.orientation
+	_target_piece_orientation = active_piece.orientation
 
 
 """
@@ -432,12 +434,12 @@ func _calc_target_position() -> void:
 """
 Calculates the orientation the player is trying to rotate the piece to.
 """
-func _calc_target_rotation() -> void:
+func _calc_target_orientation() -> void:
 	if Input.is_action_just_pressed("rotate_cw"):
-		_target_piece_rotation = active_piece.get_cw_orientation(_target_piece_rotation)
+		_target_piece_orientation = active_piece.get_cw_orientation(_target_piece_orientation)
 		
 	if Input.is_action_just_pressed("rotate_ccw"):
-		_target_piece_rotation = active_piece.get_ccw_orientation(_target_piece_rotation)
+		_target_piece_orientation = active_piece.get_ccw_orientation(_target_piece_orientation)
 
 
 """
@@ -446,8 +448,8 @@ Refresh the tilemap which displays the piece, based on the current piece's posit
 func _update_tile_map() -> void:
 	$TileMap.clear()
 	for i in range(active_piece.type.pos_arr[active_piece.orientation].size()):
-		var block_pos: Vector2 = active_piece.type.pos_arr[active_piece.orientation][i]
-		var block_color: Vector2 = active_piece.type.color_arr[active_piece.orientation][i]
+		var block_pos := active_piece.type.get_cell_position(active_piece.orientation, i)
+		var block_color := active_piece.type.get_cell_color(active_piece.orientation, i)
 		$TileMap.set_cell(active_piece.pos.x + block_pos.x, active_piece.pos.y + block_pos.y,
 				0, false, false, false, block_color)
 	$TileMap/CornerMap.dirty = true

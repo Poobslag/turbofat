@@ -3,7 +3,7 @@ extends Label
 Shows diagnostics for the player's movement physics. Enabled with the cheat code 'coyote'.
 """
 
-onready var turbo = get_parent()
+onready var turbo: Turbo = get_parent()
 
 func _process(delta: float) -> void:
 	if visible:

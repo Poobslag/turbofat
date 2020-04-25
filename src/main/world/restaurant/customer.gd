@@ -67,10 +67,10 @@ export (int) var _customer_preset := -1 setget set_customer_preset
 export (bool) var _movement_mode := false setget set_movement_mode
 
 # the direction the customer is facing
-export (Orientation) var _orientation: int = Orientation.SOUTHEAST setget set_orientation, get_orientation
+export (Orientation) var _orientation := Orientation.SOUTHEAST setget set_orientation, get_orientation
 
 # these three fields control the customer's head motion: how it's moving, as well as how much/how fast
-export (HeadBobMode) var head_bob_mode: int = HeadBobMode.BOB
+export (HeadBobMode) var head_bob_mode := HeadBobMode.BOB
 export (float) var head_motion_pixels := 2.0
 export (float) var head_motion_seconds := 6.5
 
@@ -101,30 +101,16 @@ var _combo_voice_index := 0
 var _current_voice_stream: AudioStreamPlayer2D
 
 # sounds the customers make when they enter the restaurant
-onready var hello_voices:Array = [
-	$HelloVoice0, $HelloVoice1, $HelloVoice2, $HelloVoice3
-]
+onready var hello_voices := [$HelloVoice0, $HelloVoice1, $HelloVoice2, $HelloVoice3]
 
 # sounds which get played when a customer shows up
-onready var chime_sounds:Array = [
-	$DoorChime0,
-	$DoorChime1,
-	$DoorChime2,
-	$DoorChime3,
-	$DoorChime4
-]
+onready var chime_sounds := [$DoorChime0, $DoorChime1, $DoorChime2, $DoorChime3, $DoorChime4]
 
 # sounds which get played when the customer eats
-onready var _munch_sounds:Array = [
-	$Munch0,
-	$Munch1,
-	$Munch2,
-	$Munch3,
-	$Munch4
-]
+onready var _munch_sounds := [$Munch0, $Munch1, $Munch2, $Munch3, $Munch4]
 
 # satisfied sounds the customers make when a player builds a big combo
-onready var _combo_voices:Array = [
+onready var _combo_voices := [
 	$ComboVoice00, $ComboVoice01, $ComboVoice02, $ComboVoice03,
 	$ComboVoice04, $ComboVoice05, $ComboVoice06, $ComboVoice07,
 	$ComboVoice08, $ComboVoice09, $ComboVoice10, $ComboVoice11,
@@ -133,9 +119,7 @@ onready var _combo_voices:Array = [
 ]
 
 # sounds the customers make when they ask for their check
-onready var _goodbye_voices:Array = [
-	$GoodbyeVoice0, $GoodbyeVoice1, $GoodbyeVoice2, $GoodbyeVoice3
-]
+onready var _goodbye_voices := [$GoodbyeVoice0, $GoodbyeVoice1, $GoodbyeVoice2, $GoodbyeVoice3]
 
 # sprites which toggle between a single 'toward the camera' and 'away from the camera' frame
 onready var _rotatable_sprites := [
@@ -183,16 +167,17 @@ func _process(delta: float) -> void:
 		
 		_total_seconds += delta
 		if has_node("Sprites/Neck0/Neck1"):
+			var head_phase := _total_seconds * PI / head_motion_seconds
 			if head_bob_mode == HeadBobMode.BOB:
-				var bob_amount = head_motion_pixels * sin((_total_seconds * 2 * PI) / head_motion_seconds)
+				var bob_amount := head_motion_pixels * sin(2 * head_phase)
 				$Sprites/Neck0/Neck1.position.x = 0
 				$Sprites/Neck0/Neck1.position.y = -100 + bob_amount
 			elif head_bob_mode == HeadBobMode.BOUNCE:
-				var bounce_amount = head_motion_pixels * (1 - 2 * abs(sin((_total_seconds * PI) / head_motion_seconds)))
+				var bounce_amount := head_motion_pixels * (1 - 2 * abs(sin(head_phase)))
 				$Sprites/Neck0/Neck1.position.x = 0
 				$Sprites/Neck0/Neck1.position.y = -100 + bounce_amount
 			elif head_bob_mode == HeadBobMode.SHUDDER:
-				var shudder_amount = head_motion_pixels * clamp(2 * sin((_total_seconds * 2 * PI) / head_motion_seconds), -1.0, 1.0)
+				var shudder_amount := head_motion_pixels * clamp(2 * sin(2 * head_phase), -1.0, 1.0)
 				$Sprites/Neck0/Neck1.position.x = shudder_amount
 				$Sprites/Neck0/Neck1.position.y = -100
 
@@ -253,11 +238,13 @@ func set_orientation(orientation: int) -> void:
 	_play_mouth_ambient_animation()
 	
 	# sprites are drawn facing southeast/northwest, and are horizontally flipped for other directions
-	$Sprites.scale = Vector2(1, 1) if _orientation in [Orientation.SOUTHEAST, Orientation.NORTHWEST] else Vector2(-1, 1)
+	$Sprites.scale = \
+			Vector2(1, 1) if _orientation in [Orientation.SOUTHEAST, Orientation.NORTHWEST] else Vector2(-1, 1)
 	
 	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
 	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
-	$Sprites/Body.scale = Vector2(1, 1) if _orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else Vector2(-1, 1)
+	$Sprites/Body.scale = \
+			Vector2(1, 1) if _orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else Vector2(-1, 1)
 
 
 func get_orientation() -> int:
@@ -432,10 +419,10 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 			set_movement_mode(false)
 	else:
 		if movement_direction.length() > 0:
-			var new_orientation = _compute_orientation(movement_direction)
+			var new_orientation := _compute_orientation(movement_direction)
 			if new_orientation != _orientation:
 				set_orientation(new_orientation)
-		var suffix = "se" if _orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else "nw"
+		var suffix := "se" if _orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else "nw"
 		animation_name = "%s-%s" % [animation_prefix, suffix]
 		if _movement_mode != true:
 			set_movement_mode(true)
@@ -454,15 +441,15 @@ func _compute_orientation(direction: Vector2) -> int:
 		# we default to the current orientation if given a zero-length vector
 		return _orientation
 	
-	var highest_dot = direction.normalized().dot(ORIENTATION_VECTORS[_orientation])
-	var new_orientation = _orientation
+	var highest_dot := direction.normalized().dot(ORIENTATION_VECTORS[_orientation])
+	var new_orientation := _orientation
 	for orientation in Orientation.values():
 		# iterate over the possible orientations and calculate which one has the highest dot product. in the case of a
 		# tie, we prefer the customer's current orientation.
 		if orientation == _orientation:
 			continue
 		else:
-			var dot = direction.normalized().dot(ORIENTATION_VECTORS[orientation])
+			var dot := direction.normalized().dot(ORIENTATION_VECTORS[orientation])
 			if dot > highest_dot:
 				new_orientation = orientation
 				highest_dot = dot

@@ -9,7 +9,7 @@ where it's impossible to get a master rank, or the rank system is too forgiving,
 particularly important for this code.
 """
 
-var _rank_calculator = RankCalculator.new()
+var _rank_calculator := RankCalculator.new()
 
 func before_each() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
@@ -49,7 +49,7 @@ func test_calculate_rank_marathon_300_master() -> void:
 	Global.scenario_performance.box_score = 4400
 	Global.scenario_performance.combo_score = 5300
 	Global.scenario_performance.score = 10000
-	var rank = _rank_calculator.calculate_rank()
+	var rank :=  _rank_calculator.calculate_rank()
 	assert_eq(rank.speed_rank, 0.0)
 	assert_eq(rank.lines_rank, 0.0)
 	assert_eq(rank.box_score_per_line_rank, 0.0)
@@ -64,7 +64,7 @@ func test_calculate_rank_marathon_300_mixed() -> void:
 	Global.scenario_performance.box_score = 600
 	Global.scenario_performance.combo_score = 500
 	Global.scenario_performance.score = 1160
-	var rank = _rank_calculator.calculate_rank()
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "A+")
 	assert_eq(Global.grade(rank.lines_rank), "C")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "S-")
@@ -79,7 +79,7 @@ func test_calculate_rank_marathon_lenient() -> void:
 	Global.scenario_performance.box_score = 600
 	Global.scenario_performance.combo_score = 500
 	Global.scenario_performance.score = 1160
-	var rank = _rank_calculator.calculate_rank()
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "A+")
 	assert_eq(Global.grade(rank.lines_rank), "B")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "S-")
@@ -94,7 +94,7 @@ func test_calculate_rank_marathon_300_fail() -> void:
 	Global.scenario_performance.box_score = 0
 	Global.scenario_performance.combo_score = 0
 	Global.scenario_performance.score = 0
-	var rank = _rank_calculator.calculate_rank()
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(rank.speed_rank, 999.0)
 	assert_eq(rank.lines_rank, 999.0)
 	assert_eq(rank.box_score_per_line_rank, 999.0)
@@ -109,7 +109,7 @@ func test_calculate_rank_sprint_120() -> void:
 	Global.scenario_performance.box_score = 395
 	Global.scenario_performance.combo_score = 570
 	Global.scenario_performance.score = 1012
-	var rank = _rank_calculator.calculate_rank()
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "S+")
 	assert_eq(Global.grade(rank.lines_rank), "S+")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "A")
@@ -124,7 +124,7 @@ func test_calculate_rank_ultra_200() -> void:
 	Global.scenario_performance.box_score = 135
 	Global.scenario_performance.combo_score = 60
 	Global.scenario_performance.score = 8
-	var rank = _rank_calculator.calculate_rank()
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "S++")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "M")
 	assert_eq(rank.combo_score_per_line, 20.0)
@@ -140,7 +140,7 @@ func test_calculate_rank_ultra_200_died() -> void:
 	Global.scenario_performance.combo_score = 60
 	Global.scenario_performance.score = 150
 	Global.scenario_performance.died = true
-	var rank = _rank_calculator.calculate_rank()
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "A")
 	assert_eq(rank.seconds_rank, 999.0)
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "C+")
@@ -157,7 +157,7 @@ func test_calculate_rank_ultra_200_overshot() -> void:
 	Global.scenario_performance.box_score = 150
 	Global.scenario_performance.combo_score = 100
 	Global.scenario_performance.score = 260
-	var rank = _rank_calculator.calculate_rank()
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "M")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "M")
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "M")
@@ -170,10 +170,10 @@ func test_two_rank_s() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.hard_level_0)
 	Global.scenario_settings.set_win_condition("score", 1000)
 	Global.scenario_performance.seconds = 88.55
-	var rank = _rank_calculator.calculate_rank()
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.seconds_rank), "S+")
 
 	Global.scenario_settings.set_win_condition("score", 1000)
 	Global.scenario_performance.seconds = 128.616
-	var rank2 = _rank_calculator.calculate_rank()
+	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank2.seconds_rank), "S")

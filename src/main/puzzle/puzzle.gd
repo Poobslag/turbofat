@@ -22,7 +22,7 @@ signal after_game_ended
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 
 func _ready() -> void:
-	$NextPieces.hide_pieces()
+	$NextPieceDisplays.hide_pieces()
 	$PieceManager.clear_piece()
 	$HUD/MessageLabel.hide()
 	$Playfield/TileMapClip/TileMap/ShadowMap.piece_tile_map = $PieceManager/TileMap
@@ -111,7 +111,7 @@ func _on_StartGameButton_pressed() -> void:
 	$HUD/BackButton.hide()
 	$HUD/DetailMessageLabel.hide()
 	
-	$NextPieces.start_game()
+	$NextPieceDisplays.start_game()
 	$Playfield.start_game()
 	$Score.start_game()
 	$PieceManager.clear_piece()

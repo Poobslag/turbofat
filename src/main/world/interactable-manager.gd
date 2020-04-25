@@ -98,7 +98,7 @@ func _physics_process(_delta: float) -> void:
 			if not interactable_object:
 				continue
 			var interactable: Spatial = interactable_object
-			var distance = interactable.global_transform.origin.distance_to(_turbo.global_transform.origin)
+			var distance := interactable.global_transform.origin.distance_to(_turbo.global_transform.origin)
 			if distance <= min_distance:
 				min_distance = distance
 				new_focus = interactable

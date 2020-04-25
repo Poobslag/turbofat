@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://src/main/puzzle/piece/next-pieces.gd" type="Script" id=1]
+[ext_resource path="res://src/main/puzzle/piece/next-piece-displays.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/piece/NextPieceDisplay.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/puzzle/next-piece-bg.png" type="Texture" id=3]
 
-[node name="NextPieces" type="Control"]
+[node name="NextPieceDisplays" type="Control"]
 margin_right = 64.0
 margin_bottom = 544.0
 script = ExtResource( 1 )

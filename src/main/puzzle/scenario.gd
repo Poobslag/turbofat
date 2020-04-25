@@ -29,7 +29,7 @@ const LEVEL_COLOR_3 := Color(0.888, 0.444, 0.111, 1)
 const LEVEL_COLOR_4 := Color(0.888, 0.222, 0.111, 1)
 const LEVEL_COLOR_5 := Color(0.888, 0.111, 0.444, 1)
 
-var _rank_calculator = RankCalculator.new()
+var _rank_calculator := RankCalculator.new()
 
 var _level := 0
 
@@ -45,7 +45,7 @@ func _ready() -> void:
 	$ScoreHUD.hide()
 	if Global.scenario_settings.win_condition.type == "time":
 		$TimeHUD.show()
-		var seconds = ceil(Global.scenario_settings.win_condition.value)
+		var seconds := ceil(Global.scenario_settings.win_condition.value)
 		$TimeHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 	
 	if Global.scenario_settings.win_condition.type == "lines":
@@ -68,10 +68,10 @@ func _physics_process(_delta: float) -> void:
 
 func _process(_delta: float) -> void:
 	if Global.scenario_settings.win_condition.type == "time":
-		var seconds = ceil(Global.scenario_settings.win_condition.value - Global.scenario_performance.seconds)
+		var seconds := ceil(Global.scenario_settings.win_condition.value - Global.scenario_performance.seconds)
 		$TimeHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 	elif Global.scenario_settings.win_condition.type == "score":
-		var seconds = ceil(Global.scenario_performance.seconds)
+		var seconds := ceil(Global.scenario_performance.seconds)
 		$ScoreHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 
 
@@ -80,26 +80,26 @@ Sets the speed level and updates the UI elements accordingly.
 """
 func _set_level(new_level:int) -> void:
 	_level = new_level
-	$Puzzle/PieceManager.piece_speed = Global.scenario_settings.level_up_conditions[new_level].piece_speed
+	var piece_speed: PieceSpeed = Global.scenario_settings.level_up_conditions[new_level].piece_speed
+	$Puzzle/PieceManager.piece_speed = piece_speed
 	
 	# update UI elements for the current level
-	$LinesHUD/LevelValue.text = str(Global.scenario_settings.level_up_conditions[new_level].piece_speed.string)
-	var gravity = Global.scenario_settings.level_up_conditions[new_level].piece_speed.gravity
-	var lock_delay = Global.scenario_settings.level_up_conditions[new_level].piece_speed.lock_delay
+	$LinesHUD/LevelValue.text = str(piece_speed.string)
 	var level_color := LEVEL_COLOR_0
-	if gravity >= 20 * PieceSpeeds.G and lock_delay < 30:
+	if piece_speed.gravity >= 20 * PieceSpeeds.G and piece_speed.lock_delay < 20:
 		level_color = LEVEL_COLOR_5
-	elif gravity >= 20 * PieceSpeeds.G:
+	elif piece_speed.gravity >= 20 * PieceSpeeds.G:
 		level_color = LEVEL_COLOR_4
-	elif gravity >=  1 * PieceSpeeds.G:
+	elif piece_speed.gravity >=  1 * PieceSpeeds.G:
 		level_color = LEVEL_COLOR_3
-	elif gravity >= 128:
+	elif piece_speed.gravity >= 128:
 		level_color = LEVEL_COLOR_2
-	elif gravity >= 32:
+	elif piece_speed.gravity >= 32:
 		level_color = LEVEL_COLOR_1
 	$LinesHUD/LevelValue.add_color_override("font_color", level_color)
 	
-	$LinesHUD/ProgressBar.get("custom_styles/fg").set_bg_color(Color(level_color.r, level_color.g, level_color.g, 0.33))
+	$LinesHUD/ProgressBar.get("custom_styles/fg").set_bg_color(
+			Color(level_color.r, level_color.g, level_color.g, 0.33))
 	if new_level + 1 < Global.scenario_settings.level_up_conditions.size():
 		$LinesHUD/ProgressBar.min_value = Global.scenario_settings.level_up_conditions[new_level].value
 		$LinesHUD/ProgressBar.max_value = Global.scenario_settings.level_up_conditions[new_level + 1].value
@@ -117,7 +117,7 @@ Method invoked when the game ends. Prepares a game over message to show to the p
 func _on_Puzzle_game_ended() -> void:
 	# ensure score is up to date before calculating rank
 	$Puzzle/Score.end_combo()
-	var rank_result = _rank_calculator.calculate_rank()
+	var rank_result := _rank_calculator.calculate_rank()
 	ScenarioHistory.add_scenario_history(Global.scenario_settings.name, rank_result)
 	ScenarioHistory.save_scenario_history()
 	
@@ -129,7 +129,7 @@ func _on_Puzzle_game_ended() -> void:
 	_grade_message += "Boxes: %.1f (%s)\n" % [rank_result.box_score_per_line, Global.grade(rank_result.box_score_per_line_rank)]
 	_grade_message += "Combos: %.1f (%s)\n" % [rank_result.combo_score_per_line, Global.grade(rank_result.combo_score_per_line_rank)]
 	if Global.scenario_settings.win_condition.type == "score":
-		var seconds = ceil(Global.scenario_performance.seconds)
+		var seconds := ceil(Global.scenario_performance.seconds)
 		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, Global.grade(rank_result.seconds_rank)]
 		if not Global.scenario_performance.died and rank_result.seconds_rank < 24:
 			$ApplauseSound.play()
