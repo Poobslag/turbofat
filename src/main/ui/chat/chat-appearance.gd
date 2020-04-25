@@ -1,5 +1,4 @@
 class_name ChatAppearance
-extends Node
 """
 Stores metadata about the chat window's appearance.
 

@@ -66,47 +66,47 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Global.is_num_just_pressed():
-		if Input.is_key_pressed(KEY_SHIFT):
-			_name_index = Global.get_num_just_pressed()
+	match Global.key_scancode(event):
+		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
+			if Input.is_key_pressed(KEY_SHIFT):
+				_name_index = Global.key_num(event)
+			else:
+				_sentence_index = Global.key_num(event)
 			_play_text()
-		else:
-			_sentence_index = Global.get_num_just_pressed()
+		KEY_A:
+			if $ChatFrame.chat_window_showing():
+				$ChatFrame.pop_out()
+			else:
+				_play_text()
+		KEY_D:
+			_dark = not _dark
 			_play_text()
-	if Input.is_key_pressed(KEY_A) and not event.is_echo():
-		if $ChatFrame.chat_window_showing():
-			$ChatFrame.pop_out()
-		else:
+		KEY_L:
+			_nametag_right = not _nametag_right
 			_play_text()
-	if Input.is_key_pressed(KEY_D) and not event.is_echo():
-		_dark = not _dark
-		_play_text()
-	if Input.is_key_pressed(KEY_L) and not event.is_echo():
-		_nametag_right = not _nametag_right
-		_play_text()
-	if Input.is_key_pressed(KEY_P) and not event.is_echo():
-		print(to_json(_get_accent_def()))
-	if Input.is_key_pressed(KEY_S) and not event.is_echo():
-		_accent_swapped = not _accent_swapped
-		_play_text()
-	if Input.is_key_pressed(KEY_BRACERIGHT) and not event.is_echo():
-		_texture_index += 1
-		_play_text()
-	if Input.is_key_pressed(KEY_BRACELEFT) and not event.is_echo():
-		_texture_index -= 1
-		_play_text()
-	if Input.is_key_pressed(KEY_RIGHT) and not event.is_echo():
-		_color_index += 1
-		_play_text()
-	if Input.is_key_pressed(KEY_LEFT) and not event.is_echo():
-		_color_index -= 1
-		_play_text()
-	if Input.is_key_pressed(KEY_UP) and not event.is_echo():
-		_scale_index += 1
-		_play_text()
-	if Input.is_key_pressed(KEY_DOWN) and not event.is_echo():
-		_scale_index -= 1
-		_play_text()
+		KEY_P:
+			print(to_json(_get_accent_def()))
+		KEY_S:
+			_accent_swapped = not _accent_swapped
+			_play_text()
+		KEY_BRACERIGHT:
+			_texture_index += 1
+			_play_text()
+		KEY_BRACELEFT:
+			_texture_index -= 1
+			_play_text()
+		KEY_RIGHT:
+			_color_index += 1
+			_play_text()
+		KEY_LEFT:
+			_color_index -= 1
+			_play_text()
+		KEY_UP:
+			_scale_index += 1
+			_play_text()
+		KEY_DOWN:
+			_scale_index -= 1
+			_play_text()
 
 
 """

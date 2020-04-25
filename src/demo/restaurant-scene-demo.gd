@@ -19,23 +19,23 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_F) and not event.is_echo():
-		$RestaurantScene.feed()
-	if Global.is_num_just_pressed():
-		$RestaurantScene.set_fatness(FATNESS_KEYS[Global.get_num_just_pressed()])
-	if Input.is_key_pressed(KEY_BRACELEFT) and not event.is_echo():
-		if _current_color_index == -1:
-			_current_color_index = 0
-		else:
-			_current_color_index += CustomerLoader.DEFINITIONS.size()
-			_current_color_index = (_current_color_index - 1) % CustomerLoader.DEFINITIONS.size()
-		$RestaurantScene.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index], 1)
-	if Input.is_key_pressed(KEY_BRACERIGHT) and not event.is_echo():
-		if _current_color_index == -1:
-			_current_color_index = 0
-		else:
-			_current_color_index = (_current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
-		$RestaurantScene.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index], 1)
-	if Input.is_key_pressed(KEY_P) and not event.is_echo():
-		print($RestaurantScene/Customer/AnimationPlayer.current_animation)
-		print($RestaurantScene/Customer/AnimationPlayer.is_playing())
+	match Global.key_scancode(event):
+		KEY_F: $RestaurantScene.feed()
+		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
+			$RestaurantScene.set_fatness(FATNESS_KEYS[Global.key_num(event)])
+		KEY_BRACELEFT:
+			if _current_color_index == -1:
+				_current_color_index = 0
+			else:
+				_current_color_index += CustomerLoader.DEFINITIONS.size()
+				_current_color_index = (_current_color_index - 1) % CustomerLoader.DEFINITIONS.size()
+			$RestaurantScene.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index], 1)
+		KEY_BRACERIGHT:
+			if _current_color_index == -1:
+				_current_color_index = 0
+			else:
+				_current_color_index = (_current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
+			$RestaurantScene.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index], 1)
+		KEY_P:
+			print($RestaurantScene/Customer/AnimationPlayer.current_animation)
+			print($RestaurantScene/Customer/AnimationPlayer.is_playing())

@@ -155,7 +155,7 @@ func _process(delta: float) -> void:
 	else:
 		if not _mouth_animation_player.is_playing():
 			_play_mouth_ambient_animation()
-		
+
 		if _orientation in [Orientation.SOUTHWEST, Orientation.SOUTHEAST]:
 			if not $EmoteAnims.is_playing():
 				$EmoteAnims.play("ambient")
@@ -164,7 +164,7 @@ func _process(delta: float) -> void:
 			if $EmoteAnims.is_playing():
 				$EmoteAnims.stop()
 			$Sprites/Neck0/Neck1/Eyes.frame = 0
-		
+
 		_total_seconds += delta
 		if has_node("Sprites/Neck0/Neck1"):
 			var head_phase := _total_seconds * PI / head_motion_seconds

@@ -22,33 +22,28 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if Input.is_key_pressed(KEY_F) and not event.is_echo():
-		$CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
-	if Input.is_key_pressed(KEY_D) and not event.is_echo():
-		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_door_chime(0)
-	if Input.is_key_pressed(KEY_V) and not event.is_echo():
-		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_goodbye_voice()
-	if Global.is_num_just_pressed():
-		$CustomerView.set_fatness(FATNESS_KEYS[Global.get_num_just_pressed()])
-	if Input.is_key_pressed(KEY_Q) and not event.is_echo():
-		$CustomerView.set_current_customer_index(0)
-	if Input.is_key_pressed(KEY_W) and not event.is_echo():
-		$CustomerView.set_current_customer_index(1)
-	if Input.is_key_pressed(KEY_E) and not event.is_echo():
-		$CustomerView.set_current_customer_index(2)
-	if Input.is_key_pressed(KEY_BRACELEFT) and not event.is_echo():
-		if _current_color_index == -1:
-			_current_color_index = 0
-		else:
-			_current_color_index += CustomerLoader.DEFINITIONS.size()
-			_current_color_index = (_current_color_index - 1) % CustomerLoader.DEFINITIONS.size()
-		$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index])
-	if Input.is_key_pressed(KEY_BRACERIGHT) and not event.is_echo():
-		if _current_color_index == -1:
-			_current_color_index = 0
-		else:
-			_current_color_index = (_current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
-		$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index])
-	if Input.is_key_pressed(KEY_P) and not event.is_echo():
-		print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.current_animation)
-		print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.is_playing())
+	match Global.key_scancode(event):
+		KEY_F: $CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
+		KEY_D: $CustomerView/SceneClip/CustomerSwitcher/Scene.play_door_chime(0)
+		KEY_V: $CustomerView/SceneClip/CustomerSwitcher/Scene.play_goodbye_voice()
+		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
+			$CustomerView.set_fatness(FATNESS_KEYS[Global.key_num(event)])
+		KEY_Q: $CustomerView.set_current_customer_index(0)
+		KEY_W: $CustomerView.set_current_customer_index(1)
+		KEY_E: $CustomerView.set_current_customer_index(2)
+		KEY_BRACELEFT:
+			if _current_color_index == -1:
+				_current_color_index = 0
+			else:
+				_current_color_index += CustomerLoader.DEFINITIONS.size()
+				_current_color_index = (_current_color_index - 1) % CustomerLoader.DEFINITIONS.size()
+			$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index])
+		KEY_BRACERIGHT:
+			if _current_color_index == -1:
+				_current_color_index = 0
+			else:
+				_current_color_index = (_current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
+			$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index])
+		KEY_P:
+			print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.current_animation)
+			print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.is_playing())
