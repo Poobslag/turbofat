@@ -10,9 +10,8 @@ signal pop_out_completed
 # how long the player needs to hold the button to skip all dialog
 const HOLD_TO_SKIP_DURATION := 0.6
 
-# array of ChatEvents the player can page through
-var _chat_events := []
-var _chat_event_index := 0
+# tree of chat events the player can page through
+var _chat_tree: ChatTree
 
 # historical array of ChatEvents the player can rewind through
 var _prev_chat_events := []
@@ -20,11 +19,9 @@ var _prev_chat_event_index := 0
 
 # how long the player has been holding the 'interact' button
 var _interact_action_duration := 0.0
-var _did_advance_action := false
 
 # how long the player has been holding the 'rewind' button
 var _rewind_action_duration := 0.0
-var _did_rewind_action := false
 
 # 'true' if the player is currently rewinding through the chat history
 var _rewinding_text := false
@@ -43,11 +40,8 @@ func _input(event: InputEvent) -> void:
 		_handle_advance_action(event)
 
 
-func play_dialog_sequence(chat_events: Array) -> void:
-	_did_advance_action = false
-	_did_rewind_action = false
-	_chat_events = chat_events
-	_chat_event_index = 0
+func play_dialog_sequence(chat_tree: ChatTree) -> void:
+	_chat_tree = chat_tree
 	_play_text()
 
 
@@ -60,7 +54,6 @@ func _handle_rewind_action(event: InputEvent) -> void:
 	var rewind_action := false
 	if event.is_action_pressed("rewind_text"):
 		# if the player presses the 'rewind' button, rewind the text
-		_did_rewind_action = true
 		rewind_action = true
 	elif event.is_action_pressed("rewind_text", true) and _rewind_action_duration >= HOLD_TO_SKIP_DURATION:
 		# if the player holds the 'rewind' button, continuously rewind the text
@@ -82,7 +75,6 @@ func _handle_advance_action(event: InputEvent) -> void:
 	var advance_action := false
 	if event.is_action_pressed("interact"):
 		# if the player presses the 'interact' button, advance the text
-		_did_advance_action = true
 		advance_action = true
 	elif event.is_action_pressed("interact", true) and _interact_action_duration >= HOLD_TO_SKIP_DURATION:
 		# if the player holds the 'interact' button, continuously advance the text
@@ -143,10 +135,20 @@ func _increment_line() -> bool:
 			_rewinding_text = false
 	
 	if not _rewinding_text:
-		if _chat_event_index + 1 < _chat_events.size():
-			# continue forward through chat events
-			_chat_event_index += 1
-			did_increment = true
+		var link_index: int
+		var links: Array = _chat_tree.get_event().links
+		if not links:
+			# No links are available, advance the dialog
+			pass
+		elif links.size() == 1:
+			# A single link is available which acts as a redirect. Switch to the new branch
+			link_index = 0
+		elif links.size() >= 2:
+			# Multiple links are available. Follow the player's chosen branch
+			print("Choose one: %s" % [_chat_tree.get_event().link_texts])
+			link_index = clamp(1, 0, links.size() - 1)
+			print("  (%s)" % _chat_tree.get_event().link_texts[link_index])
+		did_increment = _chat_tree.advance(link_index)
 	return did_increment
 
 
@@ -159,10 +161,10 @@ func _play_text() -> void:
 	if _rewinding_text:
 		chat_event = _prev_chat_events[_prev_chat_event_index]
 	else:
-		chat_event = _chat_events[_chat_event_index]
+		chat_event = _chat_tree.get_event()
 	
 	# reposition the nametags for whether the characters are on the left or right side
-	var interactable := InteractableManager.get_chatter(chat_event["name"])
+	var interactable := InteractableManager.get_chatter(chat_event["who"])
 	var nametag_right := false
 	if interactable and interactable.has_method("get_orientation"):
 		var orientation: int = interactable.get_orientation()
@@ -172,7 +174,7 @@ func _play_text() -> void:
 		elif orientation in [Customer.Orientation.NORTHWEST, Customer.Orientation.SOUTHWEST]:
 			# If we're facing left, we're on the right side. Put the nametag on the right.
 			nametag_right = true
-	$ChatFrame.play_text(chat_event.name, chat_event.text, chat_event.accent_def, nametag_right)
+	$ChatFrame.play_text(chat_event.who, chat_event.text, chat_event.accent_def, nametag_right)
 	
 	if _rewinding_text:
 		# immediately make all text visible when rewinding, so the player can rewind faster

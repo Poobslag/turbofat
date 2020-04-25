@@ -1,20 +1,57 @@
-[
-  {
-    "who": "Bort",
-    "mood": "think0",
-    "text": "Wow!/ ./././You finally did it?/ Does this count as our first conversation!?"
-  },
-  {
-    "who": "Turbo",
-    "text": "Maybe?/ I guess so!"
-  },
-  {
-    "who": "Bort",
-    "mood": "smile0",
-    "text": "Congratulations!/ Wow!"
-  },
-  {
-    "who": "Bort",
-    "text": "./././I can't wait to see what you do next!"
-  }
-]
+{
+  "" : [
+    {
+      "who": "Bort",
+      "text": "Wow!/ ./././You finally did it?/ Does this count as our first conversation!?",
+      "mood": "think0",
+      "links": [
+        {
+          "yes": "Yeah, definitely!"
+        },
+        {
+          "maybe": "Maybe? I'm not sure!"
+        },
+        {
+          "no": "I don't think so..."
+        }
+      ]
+    }
+  ],
+  "yes" : [
+    {
+      "who": "Turbo",
+      "text": "Yeah!\nThis is definitely a real conversation.\\ It has branches and everything!",
+      "links": ["nice"]
+    }
+  ],
+  "maybe" : [
+    {
+      "who": "Turbo",
+      "text": "Maybe?/ I'm not sure!"
+    },
+    {
+      "who": "Bort",
+      "text": "Congratulations!/ Wow!",
+      "mood": "smile0",
+      "links": ["nice"]
+    }
+  ],
+  "no" : [
+    {
+      "who": "Turbo",
+      "text": "I don't think so. I still have a lot of work to do..."
+    },
+    {
+      "who": "Bort",
+      "text": "Aww, don't be like that! This is looking great.",
+      "mood": "smile0",
+      "links": ["nice"]
+    }
+  ],
+  "nice" : [
+    {
+      "who": "Bort",
+      "text": "./././I can't wait to see what you do next!"
+    }
+  ]
+}
