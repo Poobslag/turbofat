@@ -10,6 +10,11 @@ signal focus_changed
 # Maximum range for Turbo to successfully interact with an object
 const MAX_INTERACT_DISTANCE := 50.0
 
+# Chat appearance for different characters
+var _accent_defs := {
+	"Turbo": {"accent_scale":0.66,"accent_swapped":true,"accent_texture":13,"color":"b23823"}
+}
+
 # The player's sprite
 var _turbo: Turbo setget set_turbo
 
@@ -21,6 +26,26 @@ var _focused: Spatial setget ,get_focused
 
 # 'false' if the player is temporarily disallowed from interacting with nearby objects, such as while chatting
 var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
+
+func _physics_process(_delta: float) -> void:
+	var min_distance := MAX_INTERACT_DISTANCE
+	var new_focus: Spatial
+
+	if _focus_enabled and _turbo and _interactables:
+		# iterate over all interactables and find the nearest one
+		for interactable_object in _interactables:
+			if not interactable_object:
+				continue
+			var interactable: Spatial = interactable_object
+			var distance := interactable.global_transform.origin.distance_to(_turbo.global_transform.origin)
+			if distance <= min_distance:
+				min_distance = distance
+				new_focus = interactable
+	
+	if new_focus != _focused:
+		_focused = new_focus
+		emit_signal("focus_changed")
+
 
 """
 Purges all node instances from the manager.
@@ -38,14 +63,23 @@ func set_turbo(turbo: Turbo) -> void:
 	_turbo = turbo
 
 
+"""
+Adds an overworld object which Turbo can interact with.
+"""
 func add_interactable(interactable: Spatial) -> void:
 	_interactables.append(interactable)
 
 
+"""
+Returns the overworld object which the player will currently interact with if they hit the button.
+"""
 func get_focused() -> Spatial:
 	return _focused
 
 
+"""
+Returns 'true' if the player will currently interact with the specified object if they hit the button.
+"""
 func is_focused(interactable: Spatial) -> bool:
 	return interactable == _focused
 
@@ -66,6 +100,9 @@ func set_focus_enabled(focus_enabled: bool) -> void:
 		emit_signal("focus_changed")
 
 
+"""
+Returns 'true' if focus is globally enabled/disabled for all objects.
+"""
 func is_focus_enabled() -> bool:
 	return _focus_enabled
 
@@ -82,27 +119,26 @@ func get_chatter(chat_name: String) -> Spatial:
 		chatter = _turbo
 	else:
 		for interactable in _interactables:
-			if interactable.get_meta("chat_name") == chat_name:
+			var spatial: Spatial = interactable
+			if interactable.has_meta("chat_name") and interactable.get_meta("chat_name") == chat_name:
 				chatter = interactable
 				break
 	return chatter
 
 
-func _physics_process(_delta: float) -> void:
-	var min_distance := MAX_INTERACT_DISTANCE
-	var new_focus: Spatial
-
-	if _focus_enabled and _turbo and _interactables:
-		# iterate over all interactables and find the nearest one
-		for interactable_object in _interactables:
-			if not interactable_object:
-				continue
-			var interactable: Spatial = interactable_object
-			var distance := interactable.global_transform.origin.distance_to(_turbo.global_transform.origin)
-			if distance <= min_distance:
-				min_distance = distance
-				new_focus = interactable
+"""
+Returns the accent definition for the overworld object which has the specified 'chat name'.
+"""
+func get_accent_def(chat_name: String) -> Dictionary:
+	if chat_name and not _accent_defs.has(chat_name):
+		# refresh our cache of accent definitions
+		for interactable in _interactables:
+			if interactable.has_meta("chat_name") and interactable.has_meta("accent_def"):
+				_accent_defs[interactable.get_meta("chat_name")] = interactable.get_meta("accent_def")
 	
-	if new_focus != _focused:
-		_focused = new_focus
-		emit_signal("focus_changed")
+		if not _accent_defs.has(chat_name):
+			# report a warning and store a stub definition to prevent repeated errors
+			_accent_defs[chat_name] = {}
+			push_error("Missing accent_def for interactable '%s'" % chat_name)
+	
+	return _accent_defs.get(chat_name, {})

@@ -1,67 +1,67 @@
 [
   {
     "who": "Ebe",
-    "mood": "laugh1",
-    "text": "You tell me you're in love with me,"
+    "text": "You tell me you're in love with me,",
+    "mood": "laugh1"
   },
   {
     "who": "Ebe",
-    "mood": "laugh0",
-    "text": "...Like you can't take your pretty eyes away from me."
+    "text": "...Like you can't take your pretty eyes away from me.",
+    "mood": "laugh0"
   },
   {
     "who": "Ebe",
-    "mood": "rage0",
-    "text": "It's not that I don't wanna stay,"
+    "text": "It's not that I don't wanna stay,",
+    "mood": "rage0"
   },
   {
     "who": "Ebe",
-    "mood": "rage1",
-    "text": "...But every time you come too close I move away."
+    "text": "...But every time you come too close I move away.",
+    "mood": "rage1"
   },
   {
     "who": "Ebe",
-    "mood": "think1",
-    "text": "I wanna believe in everything that you say, 'cause it sounds so good..."
+    "text": "I wanna believe in everything that you say, 'cause it sounds so good...",
+    "mood": "think1"
   },
   {
     "who": "Ebe",
-    "mood": "think0",
-    "text": "But if you really want me, move slow,"
+    "text": "But if you really want me, move slow,",
+    "mood": "think0"
   },
   {
     "who": "Ebe",
-    "mood": "cry0",
-    "text": "There's things about me you just have to know."
+    "text": "There's things about me you just have to know.",
+    "mood": "cry0"
   },
   {
     "who": "Ebe",
-    "mood": "cry1",
-    "text": "Sometimes I run."
+    "text": "Sometimes I run.",
+    "mood": "cry1"
   },
   {
     "who": "Ebe",
-    "mood": "sweat0",
-    "text": "Sometimes I hide."
+    "text": "Sometimes I hide.",
+    "mood": "sweat0"
   },
   {
     "who": "Ebe",
-    "mood": "sweat1",
-    "text": "Sometimes I'm scared of you,"
+    "text": "Sometimes I'm scared of you,",
+    "mood": "sweat1"
   },
   {
     "who": "Ebe",
-    "mood": "default",
-    "text": "But all I really want is to hold you tight, treat you right,"
+    "text": "But all I really want is to hold you tight, treat you right,",
+    "mood": "default"
   },
   {
     "who": "Ebe",
-    "mood": "smile0",
-    "text": "Be with you day and night."
+    "text": "Be with you day and night.",
+    "mood": "smile0"
   },
   {
     "who": "Ebe",
-    "mood": "smile1",
-    "text": "Baby, all I need is time."
+    "text": "Baby, all I need is time.",
+    "mood": "smile1"
   }
 ]

@@ -6,7 +6,7 @@ Script for showing a customer 'Ebe' in the 3D overworld.
 func _ready() -> void:
 	set_meta("chat_id", "ebe")
 	set_meta("chat_name", "Ebe")
-
+	set_meta("accent_def", {"accent_scale":0.87,"accent_swapped":true,"accent_texture":15,"color":"b47922"})
 
 """
 Ebe is brown with a beak mouth.

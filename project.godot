@@ -34,6 +34,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/chat/chat-library.gd"
 }, {
+"base": "Reference",
+"class": "ChatTree",
+"language": "GDScript",
+"path": "res://src/main/ui/chat/chat-tree.gd"
+}, {
 "base": "Node",
 "class": "CheatCodeDetector",
 "language": "GDScript",
@@ -155,6 +160,7 @@ _global_script_class_icons={
 "ChatEvent": "",
 "ChatFrame": "",
 "ChatLibrary": "",
+"ChatTree": "",
 "CheatCodeDetector": "",
 "Customer": "",
 "Customer3D": "",

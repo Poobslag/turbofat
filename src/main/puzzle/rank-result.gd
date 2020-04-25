@@ -56,21 +56,21 @@ func to_dict() -> Dictionary:
 
 
 """
-Populates this object from a dictionary. This is useful when saving/loading data.
+Populates this object from a dictionary. This is useful when saving/loading json data.
 """
-func from_dict(dict: Dictionary) -> void:
-	speed = dict["speed"]
-	speed_rank = dict["speed_rank"]
-	lines = int(dict["lines"])
-	lines_rank = dict["lines_rank"]
-	box_score = dict["box_score"]
-	box_score_per_line = dict["box_score_per_line"]
-	box_score_per_line_rank = dict["box_score_per_line_rank"]
-	combo_score = dict["combo_score"]
-	combo_score_per_line = dict["combo_score_per_line"]
-	combo_score_per_line_rank = dict["combo_score_per_line_rank"]
-	seconds = dict["seconds"]
-	seconds_rank = dict["seconds_rank"]
-	score = int(dict["score"])
-	score_rank = dict["score_rank"]
-	died = dict["died"]
+func from_dict(json: Dictionary) -> void:
+	speed = json["speed"]
+	speed_rank = json["speed_rank"]
+	lines = int(json["lines"])
+	lines_rank = json["lines_rank"]
+	box_score = json["box_score"]
+	box_score_per_line = json["box_score_per_line"]
+	box_score_per_line_rank = json["box_score_per_line_rank"]
+	combo_score = json["combo_score"]
+	combo_score_per_line = json["combo_score_per_line"]
+	combo_score_per_line_rank = json["combo_score_per_line_rank"]
+	seconds = json["seconds"]
+	seconds_rank = json["seconds_rank"]
+	score = int(json["score"])
+	score_rank = json["score_rank"]
+	died = json["died"]

@@ -30,16 +30,13 @@ func _input(event: InputEvent) -> void:
 
 
 func start_chat() -> void:
-	var chat_events := _chat_library.load_chat_events()
-	if not chat_events:
-		push_warning("Failed to load chat events for %s." % InteractableManager.get_focused())
-		return
+	var chat_tree := _chat_library.load_chat_events()
 	
 	chatters = [InteractableManager.get_focused()]
 	_update_visible()
 	InteractableManager.set_focus_enabled(false)
 	make_chatters_face_eachother()
-	$ChatUi.play_dialog_sequence(chat_events)
+	$ChatUi.play_dialog_sequence(chat_tree)
 	emit_signal("chat_started")
 
 
@@ -105,6 +102,6 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	make_chatters_face_eachother()
 	
 	# update the chatter's mood
-	var chatter := InteractableManager.get_chatter(chat_event.name)
+	var chatter := InteractableManager.get_chatter(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
