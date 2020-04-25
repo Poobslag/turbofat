@@ -32,9 +32,9 @@ player is not expected to actually finish them. So we also simulate a second S++
 the match, and return the better of the two ranks.
 """
 func calculate_rank() -> RankResult:
-	var rank_result = _inner_calculate_rank(false)
+	var rank_result := _inner_calculate_rank(false)
 	if Global.scenario_settings.win_condition.lenient_value != Global.scenario_settings.win_condition.value:
-		var rank_results_lenient = _inner_calculate_rank(true)
+		var rank_results_lenient := _inner_calculate_rank(true)
 		rank_result.speed_rank = min(rank_result.speed_rank, rank_results_lenient.speed_rank)
 		rank_result.lines_rank = min(rank_result.lines_rank, rank_results_lenient.lines_rank)
 		rank_result.box_score_per_line_rank = min(rank_result.box_score_per_line_rank, rank_results_lenient.box_score_per_line_rank)
@@ -55,7 +55,7 @@ func _max_lpm(extra_movement_frames:float = 0) -> float:
 	var total_lines := 0.0
 	
 	for i in range(Global.scenario_settings.level_up_conditions.size()):
-		var piece_speed = Global.scenario_settings.level_up_conditions[i].piece_speed
+		var piece_speed: PieceSpeed = Global.scenario_settings.level_up_conditions[i].piece_speed
 		
 		var movement_frames := 1 + extra_movement_frames
 		var frames_per_line := 0.0
@@ -148,10 +148,10 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	
 	# Binary search for the player's score rank. Score is a function of several criteria, the rank doesn't deteriorate
 	# in a predictable way like the other ranks
-	var overall_rank_max = 999
-	var overall_rank_min = 0
+	var overall_rank_max := 999
+	var overall_rank_min := 0
 	for _i in range(20):
-		var tmp_overall_rank = (overall_rank_max + overall_rank_min) / 2.0
+		var tmp_overall_rank := (overall_rank_max + overall_rank_min) / 2.0
 		var tmp_box_score_per_line := target_box_score_per_line * pow(RDF_BOX_SCORE_PER_LINE, tmp_overall_rank)
 		var tmp_combo_score_per_line := target_combo_score_per_line * pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
 		if Global.scenario_settings.win_condition.type == "score":

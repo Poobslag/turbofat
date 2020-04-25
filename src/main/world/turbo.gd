@@ -69,7 +69,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta) -> void:
-	var was_on_floor = is_on_floor()
+	var was_on_floor := is_on_floor()
 	
 	_apply_friction()
 	_apply_gravity(delta)
@@ -205,13 +205,13 @@ Accelerates Turbo horizontally.
 If Turbo would be accelerated beyond the specified maximum speed, Turbo's acceleration is reduced.
 """
 func accelerate_player_xy(delta: float, push_direction: Vector2, acceleration: float, max_speed: float) -> void:
-	var accel_vector = push_direction * acceleration
+	var accel_vector := push_direction * acceleration
 	if accel_vector.length() > acceleration:
 		accel_vector = accel_vector.normalized() * acceleration
 	
 	var old_xy_velocity := _get_xy_velocity()
 	var old_xy_speed := old_xy_velocity.length()
-	var xy_velocity = old_xy_velocity + accel_vector
+	var xy_velocity := old_xy_velocity + accel_vector
 	if xy_velocity.length() > old_xy_speed and xy_velocity.length() > max_speed:
 		xy_velocity = xy_velocity.normalized() * max_speed
 	_set_xy_velocity(xy_velocity)
@@ -237,10 +237,10 @@ squarely in the middle of it.
 This function triggers the slipping physics, and returns 'true' if Turbo is slipping from a narrow surface.
 """
 func _slip_from_narrow_surfaces(delta: float) -> bool:
-	var just_slipped = false
+	var just_slipped := false
 	if get_slide_count() > 0:
 		for i in get_slide_count():
-			var collision = get_slide_collision(i)
+			var collision := get_slide_collision(i)
 			if collision.collider.get("foothold_radius") and translation.y > collision.collider.translation.y + 0.2:
 				# Turbo is standing on something she might slip from
 				var slip_velocity: Vector3 = translation - collision.collider.translation
@@ -266,9 +266,9 @@ func _slip_from_ledges(delta: float) -> bool:
 		# don't slip; character is sitting squarely on the ground
 		return false
 	
-	var slip_direction = Vector3.ZERO
+	var slip_direction := Vector3.ZERO
 	for i in range(LEDGE_RAY_COUNT):
-		var ledge_direction: Vector3 = (Vector3.RIGHT * LEDGE_RAY_RADIUS).rotated(Vector3.UP, 2 * PI * i / LEDGE_RAY_COUNT)
+		var ledge_direction := LEDGE_RAY_RADIUS * Vector3.RIGHT.rotated(Vector3.UP, 2 * PI * i / LEDGE_RAY_COUNT)
 		var ray_offset: Vector3 = $RayCast.global_transform.origin + ledge_direction
 		if get_world().direct_space_state.intersect_ray( \
 				$RayCast.translation + ray_offset, $RayCast.cast_to + ray_offset, [self]):

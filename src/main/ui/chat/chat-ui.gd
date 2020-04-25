@@ -162,8 +162,8 @@ func _play_text() -> void:
 		chat_event = _chat_events[_chat_event_index]
 	
 	# reposition the nametags for whether the characters are on the left or right side
-	var interactable: Spatial = InteractableManager.get_chatter(chat_event["name"])
-	var nametag_right: bool = false
+	var interactable := InteractableManager.get_chatter(chat_event["name"])
+	var nametag_right := false
 	if interactable and interactable.has_method("get_orientation"):
 		var orientation: int = interactable.get_orientation()
 		if orientation in [Customer.Orientation.NORTHEAST, Customer.Orientation.SOUTHEAST]:

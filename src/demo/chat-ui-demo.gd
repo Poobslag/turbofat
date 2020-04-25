@@ -13,9 +13,9 @@ func _ready() -> void:
 
 
 func _play_text() -> void:
-	var chat_events = []
+	var chat_events := []
 	for i in range(30):
-		var chat_event: ChatEvent = ChatEvent.new()
+		var chat_event := ChatEvent.new()
 		chat_event.name = "Lorum"
 		chat_event.text = "%s ipsum dolor sit amet" % FRUITS[i % FRUITS.size()]
 		chat_event.accent_def = {"accent_scale":0.66,"accent_swapped":true,"accent_texture":12,"color":"b23823"}

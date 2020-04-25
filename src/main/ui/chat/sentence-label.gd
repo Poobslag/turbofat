@@ -67,7 +67,7 @@ func play(initial_pause: float = 0) -> void:
 	visible_characters = 0
 	_pause = initial_pause
 
-	var visible_chars_to_left = 0
+	var visible_chars_to_left := 0
 	for c in _text_with_lulls:
 		# calculate the amount to pause after displaying this character
 		if not _visible_character_pauses.has(visible_chars_to_left):

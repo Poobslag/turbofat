@@ -36,7 +36,7 @@ const CODE_KEYS := {
 export (Array, String) var codes := []
 
 # Buffer of key strings which were previously pressed.
-var _previous_keypresses: String = ""
+var _previous_keypresses := ""
 
 """
 Processes an input event, delegating to the appropriate 'key_pressed', 'key_just_pressed', 'key_released',

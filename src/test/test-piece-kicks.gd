@@ -85,7 +85,7 @@ func _create_active_piece(ascii_grid: Array) -> ActivePiece:
 	for pos_arr_index in range(piece_type.pos_arr.size()):
 		var shape_data:Array = piece_type.pos_arr[pos_arr_index]
 		var position:Vector2 = from_shape_data[0] - shape_data[0]
-		var shape_match:bool = true
+		var shape_match := true
 		for shape_data_index in range(shape_data.size()):
 			if shape_data[shape_data_index] + position != from_shape_data[shape_data_index]:
 				shape_match = false

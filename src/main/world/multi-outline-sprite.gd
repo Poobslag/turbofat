@@ -9,7 +9,7 @@ Unfortunately I can't find a way to accomplish this, so for now I am instead cre
 follow the individual sprites around. It is a clumsy solution and I hope to fix this.
 """
 
-onready var _parent = get_parent()
+onready var _parent := get_parent()
 
 func _ready() -> void:
 	z_as_relative = true

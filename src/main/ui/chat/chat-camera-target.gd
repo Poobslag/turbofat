@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	
 	# calculate a bounding box containing Turbo and all chat participants
 	var bounding_box: AABB
-	var turbo_point = _overworld_ui.turbo.translation
+	var turbo_point := _overworld_ui.turbo.translation
 	bounding_box = AABB(turbo_point, Vector3(0, 0, 0))
 	for chatter in _overworld_ui.chatters:
 		if not bounding_box:

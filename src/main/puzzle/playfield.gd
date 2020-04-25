@@ -37,7 +37,7 @@ var _should_play_line_fall_sound := false
 # The number of pieces the player has dropped without clearing a line or making a box, plus one.
 var _combo_break := 0
 
-onready var _score = $"../Score"
+onready var _score: Score = $"../Score"
 
 # sounds which play as the player continues a combo
 onready var _combo_sound_arr := [$Combo1Sound, $Combo1Sound, $Combo2Sound, $Combo3Sound, $Combo4Sound, $Combo5Sound,
@@ -95,10 +95,10 @@ Writes a piece to the playfield, checking whether it makes any boxes or clears a
 
 Returns true if the newly written piece results in a pause of some sort.
 """
-func write_piece(pos: Vector2, orientation: int, type, new_line_clear_frames: int, death_piece := false) -> bool:
+func write_piece(pos: Vector2, orientation: int, type: PieceType, new_line_clear_frames: int, death_piece := false) -> bool:
 	for i in range(type.pos_arr[orientation].size()):
-		var block_pos: Vector2 = type.pos_arr[orientation][i]
-		var block_color: Vector2 = type.color_arr[orientation][i]
+		var block_pos := type.get_cell_position(orientation, i)
+		var block_color := type.get_cell_color(orientation, i)
 		_set_piece_block(pos.x + block_pos.x, pos.y + block_pos.y, block_color)
 	
 	var should_pause := false
@@ -498,12 +498,16 @@ func _disconnect_box(x: int, y: int) -> void:
 	var old_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
 	if y > 0 and int(old_autotile_coord.x) & PieceTypes.CONNECTED_UP > 0:
 		var above_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y - 1)
-		_set_box_block(x, y - 1, Vector2(int(above_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, above_autotile_coord.y))
-		_set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, old_autotile_coord.y))
+		_set_box_block(x, y - 1,
+				Vector2(int(above_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, above_autotile_coord.y))
+		_set_box_block(x, y,
+				Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, old_autotile_coord.y))
 	if y < ROW_COUNT - 1 and int(old_autotile_coord.x) & PieceTypes.CONNECTED_DOWN > 0:
 		var below_autotile_coord:Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y + 1)
-		_set_box_block(x, y + 1, Vector2(int(below_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, below_autotile_coord.y))
-		_set_box_block(x, y, Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, old_autotile_coord.y))
+		_set_box_block(x, y + 1,
+				Vector2(int(below_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, below_autotile_coord.y))
+		_set_box_block(x, y,
+				Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, old_autotile_coord.y))
 
 
 """

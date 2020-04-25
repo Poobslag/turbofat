@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 			for col in range(_col_count):
 				if get_cell(col, row) != 0:
 					continue
-				var color_x = 0
+				var color_x := 0
 				if row > 0 and get_cell(col, row - 1) == 0:
 					color_x |= PieceTypes.CONNECTED_UP
 				if row < _row_count - 1 and get_cell(col, row + 1) == 0:

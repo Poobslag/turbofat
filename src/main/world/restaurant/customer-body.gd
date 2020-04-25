@@ -98,8 +98,8 @@ func set_fatness(fatness: float) -> void:
 		fatness_index += 1
 
 	# curve_def_low is the lower fatness curve. curve_def_high is the higher fatness curve
-	var curve_def_low = _curve_defs[fatness_index]
-	var curve_def_high = _curve_defs[fatness_index + 1]
+	var curve_def_low: Dictionary = _curve_defs[fatness_index]
+	var curve_def_high: Dictionary = _curve_defs[fatness_index + 1]
 	curve.clear_points()
 
 	# Calculate how much of each curve we should use. A value greater than 0.5 means we'll mostly use curve_def_high,

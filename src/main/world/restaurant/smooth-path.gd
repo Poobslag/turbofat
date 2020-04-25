@@ -21,7 +21,7 @@ export(float) var line_width := 8.0
 var _poly_colors := PoolColorArray()
 
 func _draw() -> void:
-	var points = curve.get_baked_points()
+	var points := curve.get_baked_points()
 	if points:
 		if fill_color.a > 0:
 			# don't waste cycles drawing invisible polygons
@@ -66,17 +66,17 @@ func smooth(value: bool) -> void:
 	if not value:
 		return
 	for i in curve.get_point_count():
-		var spline = _get_spline(i)
+		var spline := _get_spline(i)
 		curve.set_point_in(i, -spline)
 		curve.set_point_out(i, spline)
 
 
 func _get_spline(i: int) -> Vector2:
-	var last_point = _get_point(i - 1)
-	var next_point = _get_point(i + 1)
+	var last_point := _get_point(i - 1)
+	var next_point := _get_point(i + 1)
 	return last_point.direction_to(next_point) * spline_length
 
 
 func _get_point(i: int) -> Vector2:
-	var point_count = curve.get_point_count()
+	var point_count := curve.get_point_count()
 	return curve.get_point_position(wrapi(i, 0, point_count - 1))

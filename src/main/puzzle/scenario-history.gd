@@ -22,7 +22,7 @@ var scenario_history := {} setget , get_scenario_history
 # how many records we can store before we start deleting old ones
 var history_size := 1000
 
-var _rank_calculator = RankCalculator.new()
+var _rank_calculator := RankCalculator.new()
 
 func get_scenario_history() -> Dictionary:
 	if not loaded_scenario_history:
@@ -118,7 +118,7 @@ func load_scenario_history() -> void:
 				continue
 			var line_json: Dictionary = parse_json(line_string)
 			for rank_result_json in line_json["scenario_history"]:
-				var rank_result = RankResult.new()
+				var rank_result := RankResult.new()
 				rank_result.from_dict(rank_result_json)
 				add_scenario_history(line_json["scenario_name"], rank_result)
 		save_game.close()

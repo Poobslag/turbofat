@@ -35,7 +35,7 @@ func set_nametag_text(name: String) -> void:
 	else:
 		_nametag_size = ChatAppearance.NametagSize.EXTRA_EXTRA_LARGE
 		for new_nametag_size in _labels.keys():
-			var label = _labels[new_nametag_size]
+			var label: Label = _labels[new_nametag_size]
 			label.text = name
 			if label.get_line_count() <= label.max_lines_visible:
 				_nametag_size = new_nametag_size

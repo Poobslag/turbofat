@@ -20,7 +20,7 @@ onready var _host := get_parent()
 Calls 'update' on the currently active state, and changes the current state if necessary.
 """
 func update() -> void:
-	var old_state = _state
+	var old_state := _state
 	var new_state_name: String = _state.update(_host)
 	if new_state_name:
 		# The update() method returned a non-empty string. This signals us to transition to a new state.
