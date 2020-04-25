@@ -13,7 +13,7 @@ var _previous_tween_action: String
 
 onready var _chat_frame := get_parent()
 
-func _ready():
+func _ready() -> void:
 	_reset_chat_frame()
 
 """
@@ -22,7 +22,7 @@ Makes the chat window appear.
 Enlarges the chat frame in a bouncy way and makes it opaque.
 """
 func pop_in() -> void:
-	stop_all()
+	remove_all()
 	_previous_tween_action = "pop_in"
 	interpolate_property(_chat_frame, "modulate", _chat_frame.modulate,
 			Color.white, 0.2, Tween.TRANS_LINEAR)
@@ -39,7 +39,7 @@ Makes the chat window disappear.
 Shrinks the chat frame in a bouncy way and makes it transparent.
 """
 func pop_out() -> void:
-	stop_all()
+	remove_all()
 	_previous_tween_action = "pop_out"
 	interpolate_property(_chat_frame, "modulate", _chat_frame.modulate,
 			Color.transparent, 0.2, Tween.TRANS_LINEAR)
@@ -56,7 +56,7 @@ Presets the chat window to a known invisible state.
 This doesn't use a tween. It's meant for setup/teardown steps the player should never see.
 """
 func _reset_chat_frame() -> void:
-	stop_all()
+	remove_all()
 	_chat_frame.modulate = Color.transparent
 	_chat_frame.rect_scale = POP_OUT_SCALE
 

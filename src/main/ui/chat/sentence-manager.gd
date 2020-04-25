@@ -61,7 +61,7 @@ Recolors and resizes the sentence window based on the specified chat appearance.
 This also causes the label to start showing the words being spoken, and causes 'bebebe' sounds to play as the label is
 typed out on screen.
 """
-func show_label(chat_appearance: ChatAppearance, pause: float = 0):
+func show_label(chat_appearance: ChatAppearance, pause: float = 0) -> void:
 	_prev_visible_characters = 0
 	_sentence_label().visible = true
 	_sentence_label().set("custom_colors/font_color", chat_appearance.border_color)

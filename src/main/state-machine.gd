@@ -8,7 +8,7 @@ invoking their methods, and emitting signals.
 """
 
 # signal emitted once when a state is entered
-signal entered_state
+signal entered_state(state)
 
 # the currently active state
 var _state: State

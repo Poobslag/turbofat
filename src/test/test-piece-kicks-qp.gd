@@ -3,7 +3,7 @@ extends "res://src/test/test-piece-kicks.gd"
 Tests the p/q piece's kick behavior.
 """
 
-func test_p_floor_kick_cw():
+func test_p_floor_kick_cw() -> void:
 	from_grid = [
 		"     ",
 		" ppp ",
@@ -17,7 +17,7 @@ func test_p_floor_kick_cw():
 	_assert_kick()
 
 
-func test_p_floor_kick_ccw():
+func test_p_floor_kick_ccw() -> void:
 	from_grid = [
 		"     ",
 		" ppp ",
@@ -31,7 +31,7 @@ func test_p_floor_kick_ccw():
 	_assert_kick()
 
 
-func test_q_floor_kick_cw():
+func test_q_floor_kick_cw() -> void:
 	from_grid = [
 		"     ",
 		" qqq ",
@@ -45,7 +45,7 @@ func test_q_floor_kick_cw():
 	_assert_kick()
 
 
-func test_q_floor_kick_ccw():
+func test_q_floor_kick_ccw() -> void:
 	from_grid = [
 		"     ",
 		" qqq ",
@@ -59,7 +59,7 @@ func test_q_floor_kick_ccw():
 	_assert_kick()
 
 
-func test_p_wall_kick_cw():
+func test_p_wall_kick_cw() -> void:
 	from_grid = [
 		"    ",
 		"  pp",
@@ -77,7 +77,7 @@ func test_p_wall_kick_cw():
 	_assert_kick()
 
 
-func test_p_wall_kick_ccw():
+func test_p_wall_kick_ccw() -> void:
 	from_grid = [
 		"    ",
 		" p  ",
@@ -95,7 +95,7 @@ func test_p_wall_kick_ccw():
 	_assert_kick()
 
 
-func test_q_wall_kick_cw():
+func test_q_wall_kick_cw() -> void:
 	from_grid = [
 		"    ",
 		"  q ",
@@ -113,7 +113,7 @@ func test_q_wall_kick_cw():
 	_assert_kick()
 
 
-func test_q_wall_kick_ccw():
+func test_q_wall_kick_ccw() -> void:
 	from_grid = [
 		"    ",
 		"qq  ",
@@ -134,7 +134,7 @@ func test_q_wall_kick_ccw():
 """
 A 'pump kick' is when the nub of a p/q piece swings into a gap, while the other 4 blocks remain in place
 """
-func test_p_pump_kick_0():
+func test_p_pump_kick_0() -> void:
 	from_grid = [
 		" : :",
 		" pp ",
@@ -148,7 +148,7 @@ func test_p_pump_kick_0():
 	_assert_kick()
 
 
-func test_p_pump_kick_1():
+func test_p_pump_kick_1() -> void:
 	from_grid = [
 		"    ",
 		"  p ",
@@ -162,7 +162,7 @@ func test_p_pump_kick_1():
 	_assert_kick()
 
 
-func test_q_pump_kick_0():
+func test_q_pump_kick_0() -> void:
 	from_grid = [
 		"    ",
 		" q  ",
@@ -176,7 +176,7 @@ func test_q_pump_kick_0():
 	_assert_kick()
 
 
-func test_q_pump_kick_1():
+func test_q_pump_kick_1() -> void:
 	from_grid = [
 		": : ",
 		" qq ",
@@ -193,7 +193,7 @@ func test_q_pump_kick_1():
 """
 A 'murky kick' is when the nub of a p/q piece swings into a faraway gap, pulling the piece with it
 """
-func test_p_murky_kick_0():
+func test_p_murky_kick_0() -> void:
 	from_grid = [
 		" :::",
 		" pp ",
@@ -207,7 +207,7 @@ func test_p_murky_kick_0():
 	_assert_kick()
 
 
-func test_p_murky_kick_1():
+func test_p_murky_kick_1() -> void:
 	from_grid = [
 		": : ",
 		"ppp ",
@@ -221,7 +221,7 @@ func test_p_murky_kick_1():
 	_assert_kick()
 
 
-func test_p_murky_kick_2():
+func test_p_murky_kick_2() -> void:
 	from_grid = [
 		" : :",
 		" ppp",
@@ -235,7 +235,7 @@ func test_p_murky_kick_2():
 	_assert_kick()
 
 
-func test_q_murky_kick_0():
+func test_q_murky_kick_0() -> void:
 	from_grid = [
 		"::: ",
 		" qq ",
@@ -249,7 +249,7 @@ func test_q_murky_kick_0():
 	_assert_kick()
 
 
-func test_q_murky_kick_1():
+func test_q_murky_kick_1() -> void:
 	from_grid = [
 		" : :",
 		" qqq",
@@ -263,7 +263,7 @@ func test_q_murky_kick_1():
 	_assert_kick()
 
 
-func test_q_murky_kick_2():
+func test_q_murky_kick_2() -> void:
 	from_grid = [
 		": : ",
 		"qqq ",
@@ -277,7 +277,7 @@ func test_q_murky_kick_2():
 	_assert_kick()
 
 
-func test_p_climb_kick_0():
+func test_p_climb_kick_0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -295,7 +295,7 @@ func test_p_climb_kick_0():
 	_assert_kick()
 
 
-func test_p_climb_kick_1():
+func test_p_climb_kick_1() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -313,7 +313,7 @@ func test_p_climb_kick_1():
 	_assert_kick()
 
 
-func test_q_climb_kick_0():
+func test_q_climb_kick_0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -331,7 +331,7 @@ func test_q_climb_kick_0():
 	_assert_kick()
 
 
-func test_q_climb_kick_1():
+func test_q_climb_kick_1() -> void:
 	from_grid = [
 		"     ",
 		"     ",

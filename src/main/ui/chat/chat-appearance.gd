@@ -34,7 +34,7 @@ Parses an accent_def into properties used by the chat UI.
 
 See ChatEvent.accent_def for a full description of the accent_def properties.
 """
-func _init(accent_def: Dictionary):
+func _init(accent_def: Dictionary) -> void:
 	accent_color = accent_def.get("color", Color.gray)
 	accent_scale = accent_def.get("accent_scale", 2.0)
 	accent_swapped = accent_def.get("accent_swapped", false)

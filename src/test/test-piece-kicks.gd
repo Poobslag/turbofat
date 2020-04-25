@@ -21,7 +21,7 @@ var _to_piece: ActivePiece
 """
 A test which demonstrates the test framework itself is functioning properly.
 """
-func test_framework():
+func test_framework() -> void:
 	from_grid = [
 		"  :::",
 		"  : :",

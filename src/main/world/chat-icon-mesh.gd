@@ -14,12 +14,12 @@ const UNFOCUSED_COLOR := Color(1.0, 1.0, 1.0, 0.25)
 var bounce_phase := 0.0
 var focused := false
 
-func _ready():
+func _ready() -> void:
 	$PulsePlayer.play("pulse", -1, 2.0)
 	modulate = UNFOCUSED_COLOR
 
 
-func _physics_process(delta):
+func _physics_process(delta) -> void:
 	bounce_phase += delta * (2.5 if focused else 1)
 	if bounce_phase * BOUNCES_PER_SECOND * PI > 10.0:
 		# keep bounce_phase bounded, otherwise a sprite will jitter slightly 3 billion millenia from now
@@ -60,7 +60,7 @@ func vanish() -> void:
 Tweens this objects 'modulate' property to a new value.
 """
 func _tween_modulate(new_modulate: Color, duration: float) -> void:
-	$FocusTween.stop_all()
+	$FocusTween.remove_all()
 	$FocusTween.interpolate_property(self, "modulate", modulate, new_modulate,
 			duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	$FocusTween.start()

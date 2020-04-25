@@ -89,12 +89,22 @@ func _on_PuzzleButton_pressed() -> void:
 	get_tree().change_scene("res://src/main/ui/ScenarioMenu.tscn")
 
 
-func _on_ChatUi_pop_out_completed():
+func _on_ChatUi_pop_out_completed() -> void:
+	# unset mood
+	for chatter in chatters:
+		if chatter and chatter.has_method("play_mood"):
+			chatter.call("play_mood", ChatEvent.Mood.DEFAULT)
+	
 	chatters = []
 	InteractableManager.set_focus_enabled(true)
 	_update_visible()
 	emit_signal("chat_ended")
 
 
-func _on_ChatUi_chat_event_played(chat_event: ChatEvent):
+func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	make_chatters_face_eachother()
+	
+	# update the chatter's mood
+	var chatter: Spatial = InteractableManager.get_chatter(chat_event.name)
+	if chatter and chatter.has_method("play_mood"):
+		chatter.call("play_mood", chat_event.mood)

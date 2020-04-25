@@ -227,6 +227,10 @@ func _load_colors(customer_def: Dictionary) -> void:
 	customer_def["shader:Neck0/Neck1/EarZ2:black"] = line_color
 	customer_def["shader:Neck0/Neck1/Mouth:black"] = line_color
 	customer_def["shader:Neck0/Neck1/Eyes:black"] = line_color
+	customer_def["shader:Neck0/Neck1/EmoteArms:black"] = line_color
+	customer_def["shader:Neck0/Neck1/EmoteEyes:black"] = line_color
+	customer_def["shader:Neck0/Neck1/EmoteBrain:black"] = line_color
+	customer_def["shader:EmoteBody:black"] = line_color
 	
 	var body_color: Color
 	if customer_def.has("body_rgb"):
@@ -244,6 +248,7 @@ func _load_colors(customer_def: Dictionary) -> void:
 	customer_def["shader:Neck0/Neck1/EarZ2:red"] = body_color
 	customer_def["shader:Neck0/Neck1/Mouth:red"] = body_color
 	customer_def["shader:Neck0/Neck1/Eyes:red"] = body_color
+	customer_def["shader:Neck0/Neck1/EmoteArms:red"] = body_color
 	
 	var body_fill_color: Color
 	if line_color and body_color:
