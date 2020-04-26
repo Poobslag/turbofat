@@ -37,19 +37,24 @@ Converts a numeric grade such as '12.6' into a grade string such as 'A+'.
 func grade(rank: float) -> String:
 	var grade := NO_GRADE
 	if   rank <= 0:  grade = "M"
+	
 	elif rank <= 2:  grade = "S++"
 	elif rank <= 3:  grade = "S+"
 	elif rank <= 9:  grade = "S"
 	elif rank <= 10: grade = "S-"
+	
 	elif rank <= 13: grade = "A+"
 	elif rank <= 22: grade = "A"
 	elif rank <= 23: grade = "A-"
+	
 	elif rank <= 26: grade = "B+"
 	elif rank <= 33: grade = "B"
 	elif rank <= 34: grade = "B-"
+	
 	elif rank <= 37: grade = "C+"
 	elif rank <= 44: grade = "C"
 	elif rank <= 45: grade = "C-"
+	
 	elif rank <= 48: grade = "D+"
 	elif rank <= 58: grade = "D"
 	elif rank <= 64: grade = "D-"

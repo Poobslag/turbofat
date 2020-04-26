@@ -189,3 +189,13 @@ func _on_Puzzle_before_game_started() -> void:
 
 func _on_Puzzle_after_game_ended() -> void:
 	$Puzzle.show_detail_message(_grade_message)
+
+
+func _on_CheatCodeDetector_cheat_detected(code: String) -> void:
+	if code == "delays":
+		if $Puzzle/PuzzleTrace.visible:
+			$Puzzle/PuzzleTrace.visible = false
+			$CheatDisabledSound.play()
+		else:
+			$Puzzle/PuzzleTrace.visible = true
+			$CheatEnabledSound.play()

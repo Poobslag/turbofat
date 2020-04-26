@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/puzzle/scenario.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=2]
@@ -9,6 +9,10 @@
 [ext_resource path="res://assets/puzzle/levelup.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/ui/xolonium-48.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=10]
+[ext_resource path="res://src/main/ui/cheat-code-detector.gd" type="Script" id=11]
+[ext_resource path="res://assets/ui/cheat-enable.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/ui/cheat-disable.wav" type="AudioStream" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -28,6 +32,19 @@ __meta__ = {
 }
 
 [node name="Puzzle" parent="." instance=ExtResource( 3 )]
+
+[node name="PuzzleTrace" type="Label" parent="Puzzle"]
+visible = false
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 110.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 2 )
+text = "abcd"
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="LinesHUD" type="Control" parent="."]
 margin_top = 170.0
@@ -206,7 +223,22 @@ bus = "Reverb Bus"
 [node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 bus = "Reverb Bus"
+
+[node name="CheatEnabledSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 12 )
+volume_db = -4.0
+bus = "Reverb Bus"
+
+[node name="CheatDisabledSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+volume_db = -4.0
+bus = "Reverb Bus"
+
+[node name="CheatCodeDetector" type="Node" parent="."]
+script = ExtResource( 11 )
+codes = [ "delays" ]
 [connection signal="after_game_ended" from="Puzzle" to="." method="_on_Puzzle_after_game_ended"]
 [connection signal="before_game_started" from="Puzzle" to="." method="_on_Puzzle_before_game_started"]
 [connection signal="game_ended" from="Puzzle" to="." method="_on_Puzzle_game_ended"]
 [connection signal="line_cleared" from="Puzzle" to="." method="_on_Puzzle_line_cleared"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]

@@ -18,29 +18,29 @@ func before_each() -> void:
 
 func test_max_lpm_slow_marathon() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
-	assert_almost_eq(_rank_calculator._max_lpm(), 25.31, 0.1)
+	assert_almost_eq(_rank_calculator._max_lpm(), 25.35, 0.1)
 
 func test_max_lpm_medium_marathon() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.hard_level_0)
-	assert_almost_eq(_rank_calculator._max_lpm(), 28.51, 0.1)
+	assert_almost_eq(_rank_calculator._max_lpm(), 32.43, 0.1)
 
 func test_max_lpm_fast_marathon() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.crazy_level_0)
-	assert_almost_eq(_rank_calculator._max_lpm(), 77.42, 0.1)
+	assert_almost_eq(_rank_calculator._max_lpm(), 81.36, 0.1)
 
 func test_max_lpm_mixed_marathon() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.add_level_up("lines", 30, PieceSpeeds.crazy_level_0)
 	Global.scenario_settings.add_level_up("lines", 60, PieceSpeeds.hard_level_0)
 	Global.scenario_settings.set_win_condition("lines", 100)
-	assert_almost_eq(_rank_calculator._max_lpm(), 34.73, 0.1)
+	assert_almost_eq(_rank_calculator._max_lpm(), 37.97, 0.1)
 
 func test_max_lpm_mixed_sprint() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.add_level_up("time", 30, PieceSpeeds.crazy_level_0)
 	Global.scenario_settings.add_level_up("time", 60, PieceSpeeds.hard_level_0)
 	Global.scenario_settings.set_win_condition("time", 90)
-	assert_almost_eq(_rank_calculator._max_lpm(), 38.04, 0.1)
+	assert_almost_eq(_rank_calculator._max_lpm(), 42.40, 0.1)
 
 func test_calculate_rank_marathon_300_master() -> void:
 	Global.scenario_settings.set_win_condition("lines", 300)
@@ -110,22 +110,22 @@ func test_calculate_rank_sprint_120() -> void:
 	Global.scenario_performance.combo_score = 570
 	Global.scenario_performance.score = 1012
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.speed_rank), "S+")
-	assert_eq(Global.grade(rank.lines_rank), "S+")
+	assert_eq(Global.grade(rank.speed_rank), "S")
+	assert_eq(Global.grade(rank.lines_rank), "S")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "A")
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "A+")
-	assert_eq(Global.grade(rank.score_rank), "S")
+	assert_eq(Global.grade(rank.score_rank), "S-")
 
 func test_calculate_rank_ultra_200() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.set_win_condition("score", 200)
-	Global.scenario_performance.seconds = 21.233
+	Global.scenario_performance.seconds = 20.233
 	Global.scenario_performance.lines = 8
 	Global.scenario_performance.box_score = 135
 	Global.scenario_performance.combo_score = 60
 	Global.scenario_performance.score = 8
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.speed_rank), "S++")
+	assert_eq(Global.grade(rank.speed_rank), "M")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "M")
 	assert_eq(rank.combo_score_per_line, 20.0)
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "M")
@@ -152,7 +152,7 @@ This is an edge case where, if the player gets too many points for ultra, they c
 func test_calculate_rank_ultra_200_overshot() -> void:
 	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
 	Global.scenario_settings.set_win_condition("score", 200)
-	Global.scenario_performance.seconds = 25
+	Global.scenario_performance.seconds = 24
 	Global.scenario_performance.lines = 10
 	Global.scenario_performance.box_score = 150
 	Global.scenario_performance.combo_score = 100
@@ -171,9 +171,19 @@ func test_two_rank_s() -> void:
 	Global.scenario_settings.set_win_condition("score", 1000)
 	Global.scenario_performance.seconds = 88.55
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.seconds_rank), "S+")
+	assert_eq(Global.grade(rank.seconds_rank), "S")
 
 	Global.scenario_settings.set_win_condition("score", 1000)
 	Global.scenario_performance.seconds = 128.616
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank2.seconds_rank), "S")
+	assert_eq(Global.grade(rank2.seconds_rank), "S-")
+
+"""
+This edge case used to result in a combo_score_per_line of 22.5
+"""
+func test_combo_score_per_rank_edge_case() -> void:
+	Global.scenario_settings.set_win_condition("score", 200)
+	Global.scenario_performance.combo_score = 45
+	Global.scenario_performance.lines = 7
+	var rank := _rank_calculator.calculate_rank()
+	assert_eq(rank.combo_score_per_line, 20.0)
