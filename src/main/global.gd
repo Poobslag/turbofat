@@ -111,3 +111,32 @@ Returns [0-9] for a number key event, or -1 if the event is not a number key eve
 """
 func key_num(event: InputEvent) -> int:
 	return NUM_SCANCODES.get(key_scancode(event), -1)
+
+
+"""
+Returns a vector corresponding to the direction the user is pressing.
+
+Parameters:
+	'event': (Optional) The input event to be evaluated. If null, this method will evaluate all current inputs.
+"""
+func ui_pressed_dir(event: InputEvent = null) -> Vector2:
+	var ui_dir := Vector2.ZERO
+	if event:
+		if event.is_action_pressed("ui_up"):
+			ui_dir += Vector2.UP
+		if event.is_action_pressed("ui_down"):
+			ui_dir += Vector2.DOWN
+		if event.is_action_pressed("ui_left"):
+			ui_dir += Vector2.LEFT
+		if event.is_action_pressed("ui_right"):
+			ui_dir += Vector2.RIGHT	
+	else:
+		if Input.is_action_pressed("ui_up"):
+			ui_dir += Vector2.UP
+		if Input.is_action_pressed("ui_down"):
+			ui_dir += Vector2.DOWN
+		if Input.is_action_pressed("ui_left"):
+			ui_dir += Vector2.LEFT
+		if Input.is_action_pressed("ui_right"):
+			ui_dir += Vector2.RIGHT
+	return ui_dir

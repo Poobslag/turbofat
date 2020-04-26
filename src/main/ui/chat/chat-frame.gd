@@ -9,8 +9,11 @@ set_accent_def function to configure the chat window's appearance.
 
 signal pop_out_completed
 
+signal all_text_shown
+
 # 'true' after pop_in is called, and 'false' after pop_out is called
 var _popped_in := false
+var _squished := false
 
 func _ready() -> void:
 	$SentenceManager.hide_labels()
@@ -49,17 +52,26 @@ Animates the chat UI to gradually reveal the specified text, mimicking speech.
 Also updates the chat UI's appearance based on the amount of text being displayed and the specified color and
 background texture.
 """
-func play_text(name: String, text: String, accent_def: Dictionary, nametag_right: bool) -> void:
+func play_text(name: String, text: String, accent_def: Dictionary, nametag_right: bool, squished: bool) -> void:
 	if not $SentenceManager.label_showing():
 		# Ensure the chat window is showing before we start changing its text and playing sounds
 		pop_in()
+	
+	if squished != _squished:
+		if squished:
+			# Squish the chat window to the side
+			$Tween.squish()
+		else:
+			# Unsquish the chat window
+			$Tween.unsquish()
+		_squished = squished
 	
 	# set the text and update the stored size fields
 	$SentenceManager.set_text(text)
 	$SentenceSprite/NametagManager.set_nametag_text(name)
 	
 	# update the UI's appearance
-	var chat_appearance: ChatAppearance = ChatAppearance.new(accent_def)
+	var chat_appearance := ChatAppearance.new(accent_def)
 	$SentenceManager.hide_labels()
 	$SentenceSprite/NametagManager.hide_labels()
 	$SentenceManager.show_label(chat_appearance, 0.5)
@@ -79,8 +91,19 @@ func make_all_text_visible() -> void:
 	$SentenceManager.make_all_text_visible()
 
 
+"""
+Returns the size of the sentence window needed to display the sentence text.
+"""
+func get_sentence_size() -> int:
+	return $SentenceManager.sentence_size
+
+
 func _on_Tween_pop_out_completed() -> void:
 	# Call sentenceManager.hide_labels() to prevent sounds from playing
 	$SentenceManager.hide_labels()
 	$SentenceSprite/NametagManager.hide_labels()
 	emit_signal("pop_out_completed")
+
+
+func _on_SentenceManager_all_text_shown() -> void:
+	emit_signal("all_text_shown")

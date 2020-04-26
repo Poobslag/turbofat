@@ -427,6 +427,8 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 		if _movement_mode != true:
 			set_movement_mode(true)
 	if $MovementAnims.current_animation != animation_name:
+		if not $EmoteAnims.current_animation in ["ambient", "ambient-nw"] and animation_name != "idle":
+			$EmoteAnims.unemote_immediate()
 		$MovementAnims.play(animation_name)
 
 

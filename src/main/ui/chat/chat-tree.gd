@@ -21,7 +21,7 @@ class Position:
 		return ("(%s:%s)" % [key, index]) if key else ("(%s)" % index)
 
 # tree of chat events
-var _events: Dictionary = {}
+var events: Dictionary = {}
 
 # current position in this dialog tree
 var _position := Position.new()
@@ -35,16 +35,16 @@ Parameters:
 	'event': The chat event to append.
 """
 func append(key: String, event: ChatEvent) -> void:
-	if not _events.has(key):
-		_events[key] = []
-	_events[key].append(event)
+	if not events.has(key):
+		events[key] = []
+	events[key].append(event)
 
 
 """
 Returns the chat event at the current position.
 """
 func get_event() -> ChatEvent:
-	return _events[_position.key][_position.index]
+	return events[_position.key][_position.index]
 
 
 """
@@ -67,7 +67,7 @@ func advance(link_index := -1) -> bool:
 		_position.key = get_event().links[link_index]
 		_position.index = 0
 		did_increment = true
-	elif _position.index + 1 < _events[_position.key].size():
+	elif _position.index + 1 < events[_position.key].size():
 		# advance through the current chat branch
 		_position.index += 1
 		did_increment = true

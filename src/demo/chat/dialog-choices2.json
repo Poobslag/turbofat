@@ -1,0 +1,38 @@
+{
+  "": [
+    {
+      "who": "Lorum",
+      "text": "Lorem ipsum dolor sit amet? What do you think?",
+      "links": [
+        {
+          "yes": "Yes, that's right."
+        },
+        {
+          "no": "No, that's wrong."
+        }
+      ]
+    }
+  ],
+  "yes": [
+    {
+      "who": "Turbo",
+      "text": "Yes! Yes adipiscing elit.",
+      "mood": "smile0"
+    },
+    {
+      "who": "Lorum",
+      "text": "I agree! Sed do eiusmod."
+    }
+  ],
+  "no": [
+    {
+      "who": "Turbo",
+      "text": "No... No adipiscing elit.",
+      "mood": "rage0"
+    },
+    {
+      "who": "Lorum",
+      "text": "But... but sed do eiusmod!"
+    }
+  ]
+}

@@ -12,6 +12,7 @@ Keys:
 	[L]: Toggle 'left' and 'right' for the nametag position
 	[P]: Print the json accent definition
 	[S]: Swap the accent's colors
+	[Shift]: Squish the window to the side
 """
 
 const SENTENCES := [
@@ -60,6 +61,7 @@ var _sentence_index := 4
 var _accent_swapped := false
 var _dark := false
 var _nametag_right := false
+var _squished := false
 
 func _ready() -> void:
 	_play_text()
@@ -107,13 +109,16 @@ func _input(event: InputEvent) -> void:
 		KEY_DOWN:
 			_scale_index -= 1
 			_play_text()
+		KEY_SHIFT:
+			_squished = !_squished
+			_play_text()
 
 
 """
 Configures the chat window's appearance based on the user's input.
 """
 func _play_text() -> void:
-	$ChatFrame.play_text(NAMES[_name_index], SENTENCES[_sentence_index], _get_accent_def(), _nametag_right)
+	$ChatFrame.play_text(NAMES[_name_index], SENTENCES[_sentence_index], _get_accent_def(), _nametag_right, _squished)
 
 
 """

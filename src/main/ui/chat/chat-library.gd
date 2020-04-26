@@ -12,19 +12,29 @@ Loads the chat events for the currently focused interactable.
 Returns an array of ChatEvent objects for the dialog sequence which the player should see.
 """
 func load_chat_events() -> ChatTree:
-	var chat_tree := ChatTree.new()
+	var chat_tree
 	var focused := InteractableManager.get_focused()
 	if not focused.has_meta("chat_id"):
 		# can't look up chat events without a chat_id; return an empty array
 		push_warning("Interactable %s does not define a 'chat_id' property." % focused)
 	else:
-		var chat_id: String = focused.get_meta("chat_id")
 		# open the json file for the currently focused interactable
-		var file := File.new()
-		file.open("res://assets/dialog/%s.json" % chat_id, File.READ)
-		var json_tree := _parse_json_tree(file.get_as_text())
-		chat_tree.from_dict(json_tree)
+		var chat_id: String = focused.get_meta("chat_id")
+		chat_tree = load_chat_events_from_file("res://assets/dialog/%s.json" % chat_id)
 	return chat_tree
+
+
+"""
+Loads the chat events from the specified json file.
+"""
+func load_chat_events_from_file(path: String) -> ChatTree:
+	var chat_tree := ChatTree.new()
+	var file := File.new()
+	file.open(path, File.READ)
+	var json_tree := _parse_json_tree(file.get_as_text())
+	chat_tree.from_dict(json_tree)
+	return chat_tree
+
 
 """
 Parses a json dialog tree from the specified json string.

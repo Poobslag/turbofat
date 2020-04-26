@@ -97,7 +97,6 @@ func unemote() -> void:
 	$"../Sprites/Neck0/Neck1/EmoteArms".frame = 0
 	$"../Sprites/Neck0/Neck1/EmoteEyes".frame = 0
 	
-	var something: Tween = $ResetTween
 	$ResetTween.remove_all()
 	$ResetTween.interpolate_property($"../Sprites/Neck0/Neck1", "rotation_degrees",
 			$"../Sprites/Neck0/Neck1".rotation_degrees, 0, UNEMOTE_DURATION)
@@ -111,6 +110,27 @@ func unemote() -> void:
 	$"..".head_motion_seconds = Customer.HEAD_BOB_SECONDS
 	$ResetTween.start()
 	_prev_mood = ChatEvent.Mood.DEFAULT
+
+
+"""
+Immediately resets the customer to a default neutral mood.
+
+This takes place immediately, callers do not need to wait for $ResetTween.
+"""
+func unemote_immediate() -> void:
+	stop()
+	emit_signal("before_mood_switched")
+	$"../Sprites/Neck0/Neck1/EmoteArms".frame = 0
+	$"../Sprites/Neck0/Neck1/EmoteEyes".frame = 0
+	$"../Sprites/Neck0/Neck1".rotation_degrees = 0
+	for emote_sprite in _emote_sprites:
+		emote_sprite.rotation_degrees = 0
+		emote_sprite.modulate = Color.transparent
+	$"..".head_bob_mode = Customer.HeadBobMode.BOB
+	$"..".head_motion_pixels = Customer.HEAD_BOB_PIXELS
+	$"..".head_motion_seconds = Customer.HEAD_BOB_SECONDS
+	_prev_mood = ChatEvent.Mood.DEFAULT
+	_post_unemote()
 
 
 """
