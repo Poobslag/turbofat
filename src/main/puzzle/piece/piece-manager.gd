@@ -85,13 +85,13 @@ func clear_piece() -> void:
 """
 Writes the current piece to the playfield, checking whether it makes any boxes or clears any lines.
 
-Returns true if the newly written piece results in a pause of some sort.
+Returns true if the newly written piece results in a line clear.
 """
 func write_piece_to_playfield() -> bool:
-	var caused_pause := playfield.write_piece(active_piece.pos, active_piece.orientation, active_piece.type,
-			piece_speed.line_clear_delay)
+	var caused_line_clear := playfield.write_piece(
+			active_piece.pos, active_piece.orientation, active_piece.type, piece_speed)
 	clear_piece()
-	return caused_pause
+	return caused_line_clear
 
 
 func start_game() -> void:

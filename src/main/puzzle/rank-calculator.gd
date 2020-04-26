@@ -19,9 +19,8 @@ const MASTER_BOX_SCORE := 14.5
 const MASTER_COMBO_SCORE := 17.5
 const MASTER_MVMT_FRAMES := 6
 
-# We add 100 lines to the target to make up for the 100 points we miss out on as our combo starts
-const COMBO_STARTUP_POINTS := 100
-
+# amount of points lost while starting a combo
+const COMBO_DEFICIT := [0, 20, 40, 55, 70, 80, 90, 95, 100]
 
 """
 Calculates the player's rank.
@@ -42,6 +41,20 @@ func calculate_rank() -> RankResult:
 		rank_result.score_rank = min(rank_result.score_rank, rank_results_lenient.score_rank)
 	
 	return rank_result
+
+
+"""
+Calculates the maximum combo score for the specified number of lines.
+
+If it only takes 3 lines to clear a stage, the most combo points you can get is 5 (0 + 0 + 5). On the surface, 5 combo
+points for 3 lines seems like a bad score, but it's actually the maximum. We calculate the maximum when figuring out
+the player's performance.
+"""
+func _max_combo_score(lines: int) -> int:
+	var result := lines * 20
+	result -= COMBO_DEFICIT[min(lines, COMBO_DEFICIT.size() - 1)]
+	result = max(result, 20)
+	return result
 
 
 """
@@ -72,7 +85,7 @@ func _max_lpm(extra_movement_frames:float = 0) -> float:
 		# time spent while pieces lock into the playfield
 		frames_per_line += piece_speed.post_lock_delay * 8 # eight pieces locked
 		frames_per_line += piece_speed.line_clear_delay * 4 # four lines cleared
-		frames_per_line += piece_speed.line_clear_delay * 3 # three boxes formed
+		frames_per_line += piece_speed.box_delay * 3 # three boxes formed
 		frames_per_line /= 4
 		
 		var level_lines := 100
@@ -119,7 +132,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	elif Global.scenario_settings.win_condition.type == "time":
 		target_lines = max_lpm * Global.scenario_settings.win_condition.value / 60.0
 	elif Global.scenario_settings.win_condition.type == "score":
-		target_lines = ceil((Global.scenario_settings.win_condition.value + COMBO_STARTUP_POINTS) / (target_box_score_per_line + target_combo_score_per_line + 1))
+		target_lines = ceil((Global.scenario_settings.win_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) / (target_box_score_per_line + target_combo_score_per_line + 1))
 	
 	# calculate raw player performance statistics
 	rank_result.lines = Global.scenario_performance.lines
@@ -130,13 +143,15 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	rank_result.died = Global.scenario_performance.died
 	rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 1)
 	rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 1)
-	rank_result.combo_score_per_line = float(rank_result.combo_score) / max(rank_result.lines - 5, 1)
+	rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \
+			/ _max_combo_score(max(rank_result.lines, 1))
 	
 	if rank_result.died:
 		# don't let the player commit suicide to randomly get an 'M' rank
 		rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 24)
 		rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 24)
-		rank_result.combo_score_per_line = float(rank_result.combo_score) / max(rank_result.lines - 5, 24)
+		rank_result.combo_score_per_line = float(rank_result.combo_score) \
+				/ _max_combo_score(max(rank_result.lines, 24))
 	
 	# calculate rank
 	rank_result.speed_rank = clamp(log(rank_result.speed / target_speed) / log(RDF_SPEED), 0, 999)
@@ -148,8 +163,8 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	
 	# Binary search for the player's score rank. Score is a function of several criteria, the rank doesn't deteriorate
 	# in a predictable way like the other ranks
-	var overall_rank_max := 999
-	var overall_rank_min := 0
+	var overall_rank_max := 999.0
+	var overall_rank_min := 0.0
 	for _i in range(20):
 		var tmp_overall_rank := (overall_rank_max + overall_rank_min) / 2.0
 		var tmp_box_score_per_line := target_box_score_per_line * pow(RDF_BOX_SCORE_PER_LINE, tmp_overall_rank)
@@ -157,7 +172,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 		if Global.scenario_settings.win_condition.type == "score":
 			var tmp_speed := target_speed * pow(RDF_SPEED, tmp_overall_rank)
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
-			if (Global.scenario_settings.win_condition.value + COMBO_STARTUP_POINTS) / points_per_second < rank_result.seconds or Global.scenario_performance.died:
+			if (Global.scenario_settings.win_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) / points_per_second < rank_result.seconds or Global.scenario_performance.died:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank

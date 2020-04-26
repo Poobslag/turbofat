@@ -28,9 +28,12 @@ var post_lock_delay: int
 # number of frames to pause when clearing a line
 var line_clear_delay: int
 
+# number of frames to pause when making a box
+var box_delay: int
+
 func _init(init_string: String, init_gravity: int, init_appearance_delay: int, init_line_appearance_delay: int,
 		init_post_lock_delay: int, init_delayed_auto_shift_delay: int, init_lock_delay: int,
-		init_line_clear_delay: int):
+		init_line_clear_delay: int, init_box_delay: int):
 	string = init_string
 	gravity = init_gravity
 	appearance_delay = init_appearance_delay
@@ -39,3 +42,4 @@ func _init(init_string: String, init_gravity: int, init_appearance_delay: int, i
 	delayed_auto_shift_delay = init_delayed_auto_shift_delay
 	lock_delay = init_lock_delay
 	line_clear_delay = init_line_clear_delay
+	box_delay = init_box_delay

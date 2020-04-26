@@ -1,3 +1,4 @@
+class_name Puzzle
 extends Control
 """
 Represents a minimal puzzle game with a piece, playfield of pieces, and next pieces. Other classes can extend this

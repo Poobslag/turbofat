@@ -25,8 +25,6 @@ var clock_running := false
 
 # lines which are currently being cleared
 var _cleared_lines := []
-# total frames to wait when clearing a line/making a box
-var _line_clear_delay := 0
 # remaining frames to wait for clearing the current lines
 var _remaining_line_clear_frames := 0
 # remaining frames to wait for making the current box
@@ -58,20 +56,17 @@ func _physics_process(delta: float) -> void:
 	if clock_running:
 		Global.scenario_performance.seconds += delta
 	
-	if _line_clear_delay > 0:
-		if _remaining_box_build_frames > 0:
-			_remaining_box_build_frames -= 1
-			if _remaining_box_build_frames <= 0:
-				if _check_for_line_clear():
-					_remaining_line_clear_frames = _line_clear_delay
-				else:
-					_line_clear_delay = 0
-		elif _remaining_line_clear_frames > 0:
-			_remaining_line_clear_frames -= 1
-			if _remaining_line_clear_frames <= 0:
-				_line_clear_delay = 0
-				if not _cleared_lines.empty():
-					_delete_rows()
+	if _remaining_box_build_frames > 0:
+		_remaining_box_build_frames -= 1
+		if _remaining_box_build_frames <= 0:
+			if _remaining_line_clear_frames > 0:
+				_process_line_clear()
+				# processing line clear sets combo_break to 0, but it should be 1
+				_combo_break += 1
+	elif _remaining_line_clear_frames > 0:
+		_remaining_line_clear_frames -= 1
+		if _remaining_line_clear_frames <= 0:
+			_delete_rows()
 
 
 """
@@ -93,28 +88,31 @@ func start_game() -> void:
 """
 Writes a piece to the playfield, checking whether it makes any boxes or clears any lines.
 
-Returns true if the newly written piece results in a pause of some sort.
+Returns true if the written piece results in a line clear.
 """
-func write_piece(pos: Vector2, orientation: int, type: PieceType, new_line_clear_frames: int, death_piece := false) -> bool:
+func write_piece(pos: Vector2, orientation: int, type: PieceType, piece_speed: PieceSpeed, death_piece := false) -> bool:
 	for i in range(type.pos_arr[orientation].size()):
 		var block_pos := type.get_cell_position(orientation, i)
 		var block_color := type.get_cell_color(orientation, i)
 		_set_piece_block(pos.x + block_pos.x, pos.y + block_pos.y, block_color)
 	
-	var should_pause := false
-	if death_piece:
-		pass
-	elif _check_for_boxes():
-		_line_clear_delay = new_line_clear_frames
-		_remaining_box_build_frames = _line_clear_delay
-		should_pause = true
-	elif _check_for_line_clear():
-		_line_clear_delay = new_line_clear_frames
-		_remaining_line_clear_frames = _line_clear_delay
-		should_pause = true
-	else:
-		_line_clear_delay = 0
-	return should_pause
+	_remaining_box_build_frames = 0
+	if not death_piece and _process_boxes():
+		# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
+		_remaining_box_build_frames = max(1, piece_speed.box_delay)
+	
+	_remaining_line_clear_frames = 0
+	if not death_piece and _any_row_is_full():
+		_remaining_line_clear_frames = max(1, piece_speed.line_clear_delay)
+		if _remaining_box_build_frames <= 0:
+			# process the line clear if we're not already making a box
+			_process_line_clear()
+	
+		# set at least 1 line clear frame; processing occurs when the frame goes from 1 -> 0
+	
+	_process_combo()
+	
+	return _remaining_line_clear_frames > 0
 
 
 """
@@ -196,7 +194,7 @@ func _filled_columns() -> Array:
 """
 Builds any possible 3x3, 3x4 or 3x5 'boxes' in the playfield, returning 'true' if a box was built.
 """
-func _check_for_boxes() -> bool:
+func _process_boxes() -> bool:
 	# Calculate the possible locations for a (w x h) rectangle in the playfield
 	var db := _filled_columns()
 	var dt3 := _filled_rectangles(db, 3)
@@ -206,35 +204,31 @@ func _check_for_boxes() -> bool:
 	for y in range(ROW_COUNT):
 		for x in range(COL_COUNT):
 			# check for 5x3s (vertical)
-			if dt5[y][x] >= 3 and _check_for_box(x - 2, y - 4, 3, 5, true):
+			if dt5[y][x] >= 3 and _process_box(x - 2, y - 4, 3, 5, true):
 				$MakeCakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 4x3s (vertical)
-			if dt4[y][x] >= 3 and _check_for_box(x - 2, y - 3, 3, 4, true):
+			if dt4[y][x] >= 3 and _process_box(x - 2, y - 3, 3, 4, true):
 				$MakeCakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 5x3s (horizontal)
-			if dt3[y][x] >= 5 and _check_for_box(x - 4, y - 2, 5, 3, true):
+			if dt3[y][x] >= 5 and _process_box(x - 4, y - 2, 5, 3, true):
 				$MakeCakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 4x3s (horizontal)
-			if dt3[y][x] >= 4 and _check_for_box(x - 3, y - 2, 4, 3, true):
+			if dt3[y][x] >= 4 and _process_box(x - 3, y - 2, 4, 3, true):
 				$MakeCakeBoxSound.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				_remaining_box_build_frames = _line_clear_delay
 				return true
 			
 			# check for 3x3s
-			if dt3[y][x] >= 3 and _check_for_box(x - 2, y - 2, 3, 3):
+			if dt3[y][x] >= 3 and _process_box(x - 2, y - 2, 3, 3):
 				var box_type := int($TileMapClip/TileMap.get_cell_autotile_coord(x - 2, y - 2).y)
 				if box_type == 0:
 					$MakeSnackBoxSound0.play()
@@ -245,7 +239,6 @@ func _check_for_boxes() -> bool:
 				elif box_type == 3:
 					$MakeSnackBoxSound3.play()
 				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				_remaining_box_build_frames = _line_clear_delay
 				return true
 	return false
 
@@ -257,7 +250,7 @@ outside the box.
 It's assumed the rectangle's coordinates contain only dropped pieces which haven't been split apart by lines, and
 no empty/vegetable/box cells.
 """
-func _check_for_box(x: int, y: int, width: int, height: int, cake = false) -> bool:
+func _process_box(x: int, y: int, width: int, height: int, cake = false) -> bool:
 	for curr_x in range(x, x + width):
 		if int($TileMapClip/TileMap.get_cell_autotile_coord(curr_x, y).x) & PieceTypes.CONNECTED_UP > 0:
 			return false
@@ -269,7 +262,7 @@ func _check_for_box(x: int, y: int, width: int, height: int, cake = false) -> bo
 		if int($TileMapClip/TileMap.get_cell_autotile_coord(x + width - 1, curr_y).x) & PieceTypes.CONNECTED_RIGHT > 0:
 			return false
 	
-	# making a piece continues the combo
+	# making a box continues the combo
 	_combo_break = 0
 	
 	var box_color := 4 if cake else $TileMapClip/TileMap.get_cell_autotile_coord(x, y).y
@@ -299,10 +292,21 @@ func _check_for_box(x: int, y: int, width: int, height: int, cake = false) -> bo
 
 
 """
-Checks whether any lines in the playfield are full and should be cleared. Updates the combo, awards points, and plays
-sounds appropriately. Returns 'true' if any lines were cleared.
+Returns 'true' if any rows are full and will result in a line clear when processed.
 """
-func _check_for_line_clear() -> bool:
+func _any_row_is_full() -> bool:
+	var result := false
+	for y in range(ROW_COUNT):
+		if _row_is_full(y):
+			result = true
+			break
+	return result
+
+
+"""
+Clears any full lines in the playfield. Updates the combo, awards points, and plays sounds appropriately.
+"""
+func _process_line_clear() -> void:
 	var total_points := 0
 	var piece_points := 0
 	var lines_cleared := 0
@@ -328,17 +332,20 @@ func _check_for_line_clear() -> bool:
 			_score.add_combo_score(line_score - 1)
 			_score.add_score(1)
 			_clear_row(y)
-			_remaining_line_clear_frames = _line_clear_delay
-			line_score = max(1, line_score)
 			total_points += line_score
 			lines_cleared += 1
-			
-			# clearing lines adds to the combo
+			# each line cleared adds to the combo, increasing the score for the following lines
 			combo += 1
 			_combo_break = 0
-		
+	_play_line_clear_sfx(piece_points)
+	emit_signal("line_cleared", lines_cleared)
+
+
+"""
+Ends the player's combo if they drop 2 blocks without making a box or scoring points.
+"""
+func _process_combo() -> void:
 	_combo_break += 1
-	
 	if _combo_break >= 3:
 		if _score.combo_score > 0:
 			if combo >= 20:
@@ -351,12 +358,6 @@ func _check_for_line_clear() -> bool:
 			emit_signal("customer_left")
 			_score.end_combo()
 			combo = 0
-	
-	if total_points > 0:
-		_play_line_clear_sfx(piece_points)
-		emit_signal("line_cleared", lines_cleared)
-	
-	return total_points > 0
 
 
 """
