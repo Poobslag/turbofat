@@ -150,7 +150,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 		# don't let the player commit suicide to randomly get an 'M' rank
 		rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 24)
 		rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 24)
-		rank_result.combo_score_per_line = float(rank_result.combo_score) \
+		rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \
 				/ _max_combo_score(max(rank_result.lines, 24))
 	
 	# calculate rank

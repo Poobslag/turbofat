@@ -181,9 +181,20 @@ func test_two_rank_s() -> void:
 """
 This edge case used to result in a combo_score_per_line of 22.5
 """
-func test_combo_score_per_rank_edge_case() -> void:
+func test_combo_score_per_line_ultra_overshot() -> void:
 	Global.scenario_settings.set_win_condition("score", 200)
 	Global.scenario_performance.combo_score = 45
 	Global.scenario_performance.lines = 7
 	var rank := _rank_calculator.calculate_rank()
 	assert_eq(rank.combo_score_per_line, 20.0)
+
+"""
+This edge case used to result in a combo_score_per_line of 0.305
+"""
+func test_combo_score_per_line_death() -> void:
+	Global.scenario_settings.set_win_condition("lines", 200, 150)
+	Global.scenario_performance.combo_score = 195
+	Global.scenario_performance.lines = 37
+	Global.scenario_performance.died = true
+	var rank := _rank_calculator.calculate_rank()
+	assert_almost_eq(rank.combo_score_per_line, 6.09, 0.1)
