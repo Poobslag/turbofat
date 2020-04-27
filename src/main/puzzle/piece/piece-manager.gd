@@ -26,7 +26,7 @@ onready var _game_over_voices := [$GameOverVoice0, $GameOverVoice1, $GameOverVoi
 
 # information about the current 'speed level', such as how fast pieces drop, how long it takes them to lock into the
 # playfield, and how long to pause when clearing lines.
-var piece_speed
+var piece_speed: PieceSpeed
 
 # settings and state for the currently active piece.
 var active_piece := ActivePiece.new(PieceTypes.piece_null)
