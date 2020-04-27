@@ -148,7 +148,7 @@ var piece_u := PieceType.new("u",
 		[Vector2(2, 2), Vector2(2, 2), Vector2(9, 2), Vector2(12, 2), Vector2(5, 2)],
 		[Vector2(10, 2), Vector2(4, 2), Vector2(3, 2), Vector2(9, 2), Vector2(4, 2)]],
 		KICKS_U,
-		3 # u-piece allows additional floor kicks because it kicks the floor twice if you rotate it four times
+		5 # u-piece allows additional floor kicks because it kicks the floor twice if you rotate it four times
 	)
 
 var piece_v := PieceType.new("v",
