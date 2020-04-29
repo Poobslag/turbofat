@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/chat-choice-mood-cry1.png-febf1561885a91343606e7b04c8276a2.stex"
+path="res://.import/choice-mood-think1.png-39681c4476ade9ac8470464799cab02b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/ui/chat/chat-choice-mood-cry1.png"
-dest_files=[ "res://.import/chat-choice-mood-cry1.png-febf1561885a91343606e7b04c8276a2.stex" ]
+source_file="res://assets/ui/chat/choice-mood-think1.png"
+dest_files=[ "res://.import/choice-mood-think1.png-39681c4476ade9ac8470464799cab02b.stex" ]
 
 [params]
 

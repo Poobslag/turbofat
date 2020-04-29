@@ -9,6 +9,7 @@ set_accent_def function to configure the chat window's appearance.
 
 signal pop_out_completed
 
+# signal emitted after the full dialog sentence is typed out onscreen
 signal all_text_shown
 
 # 'true' after pop_in is called, and 'false' after pop_out is called
@@ -52,7 +53,7 @@ Animates the chat UI to gradually reveal the specified text, mimicking speech.
 Also updates the chat UI's appearance based on the amount of text being displayed and the specified color and
 background texture.
 """
-func play_text(name: String, text: String, accent_def: Dictionary, nametag_right: bool, squished: bool) -> void:
+func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool) -> void:
 	if not $SentenceManager.label_showing():
 		# Ensure the chat window is showing before we start changing its text and playing sounds
 		pop_in()
@@ -67,11 +68,11 @@ func play_text(name: String, text: String, accent_def: Dictionary, nametag_right
 		_squished = squished
 	
 	# set the text and update the stored size fields
-	$SentenceManager.set_text(text)
-	$SentenceSprite/NametagManager.set_nametag_text(name)
+	$SentenceManager.set_text(chat_event.text)
+	$SentenceSprite/NametagManager.set_nametag_text(chat_event.who)
 	
 	# update the UI's appearance
-	var chat_appearance := ChatAppearance.new(accent_def)
+	var chat_appearance := ChatAppearance.new(chat_event.accent_def)
 	$SentenceManager.hide_labels()
 	$SentenceSprite/NametagManager.hide_labels()
 	$SentenceManager.show_label(chat_appearance, 0.5)

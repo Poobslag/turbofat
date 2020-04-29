@@ -81,9 +81,15 @@ func play(initial_pause: float = 0) -> void:
 	_pause += _visible_character_pauses[0] if _visible_character_pauses.has(0) else DEFAULT_PAUSE
 
 
+"""
+Returns 'true' if the label's visible_characters value is large enough to show all characters.
+"""
 func is_all_text_visible() -> bool:
 	return visible_characters >= get_total_character_count()
 
 
+"""
+Increases the label's visible_characters value to to show all characters.
+"""
 func make_all_text_visible() -> void:
 	visible_characters = get_total_character_count()

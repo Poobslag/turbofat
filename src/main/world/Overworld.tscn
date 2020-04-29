@@ -221,5 +221,6 @@ volume_db = -4.0
 bus = "Reverb Bus"
 [connection signal="chat_ended" from="OverworldUi" to="." method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_started" from="OverworldUi" to="." method="_on_OverworldUi_chat_started"]
+[connection signal="showed_chat_choices" from="OverworldUi" to="." method="_on_OverworldUi_showed_chat_choices"]
 [connection signal="left_zoom_radius" from="ChatCameraTarget" to="." method="_on_ChatCameraTarget_left_zoom_radius"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]

@@ -1,0 +1,234 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://assets/ui/chat/choice-theme.tres" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/chat/mood-sprite.gd" type="Script" id=2]
+[ext_resource path="res://assets/ui/blogger-sans-medium-14.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/main/ui/chat/chat-choice-button.gd" type="Script" id=4]
+[ext_resource path="res://src/main/ui/chat/chat-choice-label.gd" type="Script" id=5]
+[ext_resource path="res://src/main/ui/chat/chat-choice-tween.gd" type="Script" id=6]
+[ext_resource path="res://assets/ui/chat/choice-mood-cry0.png" type="Texture" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "choose"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 120.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1.5, 1.5 ), Vector2( 3, 3 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 8.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1.8, 2.1, 3.8, 4.1, 5.8, 6.1, 7.7, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 6.0, 6.0, -6.0, -6.0, 6.0, 6.0, -6.0, -6.0, 6.0, 6.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ), Vector2( 1.05, 1.05 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 8 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 5.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 1, 1.3, 2.2, 2.5, 3.5, 3.8, 4.7, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 6.0, 6.0, -6.0, -6.0, 6.0, 6.0, -6.0, -6.0, 6.0, 6.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect_scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ), Color( 1, 1, 1, 0.894118 ), Color( 1, 1, 1, 0.501961 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+length = 0.3
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.12 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 1.1, 1.1 ), Vector2( 1.05, 1.05 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="ChatChoice" type="Button"]
+margin_right = 100.0
+margin_bottom = 66.0
+rect_pivot_offset = Vector2( 50, 33 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource( 1 )
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+_choice_text = "Are you kidding me? That's not even close to what I said!"
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 6.0
+margin_right = -8.0
+margin_bottom = -6.0
+size_flags_horizontal = 4
+custom_fonts/font = ExtResource( 3 )
+custom_colors/font_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+text = "Oh bother"
+align = 1
+valign = 1
+autowrap = true
+max_lines_visible = 1
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoodSprite" type="Control" parent="."]
+modulate = Color( 1, 1, 1, 0.894118 )
+margin_left = -11.0
+margin_top = 13.0
+margin_right = 17.0
+margin_bottom = 41.0
+rect_scale = Vector2( 1.5, 1.5 )
+rect_pivot_offset = Vector2( 15, 15 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Texture" type="TextureRect" parent="MoodSprite"]
+margin_left = -49.0
+margin_top = -49.0
+margin_right = 79.0
+margin_bottom = 79.0
+rect_rotation = -8.0
+rect_scale = Vector2( 0.33, 0.33 )
+rect_pivot_offset = Vector2( 64, 64 )
+texture = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MoodSprite"]
+autoplay = "default"
+anims/choose = SubResource( 1 )
+anims/default = SubResource( 2 )
+anims/focus = SubResource( 3 )
+
+[node name="PopTween" type="Tween" parent="."]
+script = ExtResource( 6 )
+
+[node name="PopAnimation" type="AnimationPlayer" parent="."]
+anims/choose = SubResource( 4 )
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="resized" from="Label" to="Label" method="_on_resized"]
+[connection signal="animation_finished" from="PopAnimation" to="." method="_on_PopAnimation_animation_finished"]

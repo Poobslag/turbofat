@@ -85,7 +85,7 @@ func _interpolate_squish(squished: bool) -> void:
 
 
 """
-Pops the chat window in/out to display dialog.
+Pops the chat window in/out.
 """
 func _interpolate_pop(popping_in: bool) -> void:
 	remove(_chat_frame, "modulate")

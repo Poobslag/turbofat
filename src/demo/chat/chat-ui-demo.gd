@@ -47,7 +47,7 @@ var _choice_override := ""
 
 func _ready() -> void:
 	InteractableManager.add_accent_def("Lorum", {})
-	_play_text("dialog-unbranched")
+	_play_chat_tree("dialog-unbranched")
 
 
 func _input(event: InputEvent) -> void:
@@ -57,22 +57,22 @@ func _input(event: InputEvent) -> void:
 				_choice_override = CHOICES[Global.key_num(event)]
 			else:
 				_text_override = SENTENCES[Global.key_num(event)]
-			_play_text()
+			_play_chat_tree()
 		KEY_Q:
 			_text_override = ""
-			_play_text("dialog-choices2")
+			_play_chat_tree("dialog-choices2")
 		KEY_W:
 			_text_override = ""
-			_play_text("dialog-choices3")
+			_play_chat_tree("dialog-choices3")
 		KEY_E:
 			_text_override = ""
-			_play_text("dialog-choices7")
+			_play_chat_tree("dialog-choices7")
 		KEY_A:
 			_text_override = ""
-			_play_text("dialog-unbranched")
+			_play_chat_tree("dialog-unbranched")
 
 
-func _play_text(filename: String = "") -> void:
+func _play_chat_tree(filename: String = "") -> void:
 	if filename:
 		_filename = filename
 	var chat_tree := _chat_library.load_chat_events_from_file("res://src/demo/chat/%s.json" % _filename)
@@ -81,4 +81,4 @@ func _play_text(filename: String = "") -> void:
 	if _choice_override:
 		for i in range(chat_tree.get_event().link_texts.size()):
 			chat_tree.get_event().link_texts[i] = _choice_override
-	$ChatUi.play_dialog_sequence(chat_tree)
+	$ChatUi.play_chat_tree(chat_tree)

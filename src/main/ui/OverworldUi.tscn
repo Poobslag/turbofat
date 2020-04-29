@@ -27,6 +27,7 @@ margin_left = 10.0
 margin_top = 530.0
 margin_right = 70.0
 margin_bottom = 590.0
+focus_mode = 1
 custom_fonts/font = ExtResource( 5 )
 text = "P"
 __meta__ = {
@@ -34,4 +35,5 @@ __meta__ = {
 }
 [connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="ChatUi" to="." method="_on_ChatUi_pop_out_completed"]
+[connection signal="showed_choices" from="ChatUi" to="." method="_on_ChatUi_showed_choices"]
 [connection signal="pressed" from="PuzzleButton" to="." method="_on_PuzzleButton_pressed"]
