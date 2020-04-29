@@ -41,6 +41,7 @@ func _input(event: InputEvent) -> void:
 
 
 func play_dialog_sequence(chat_tree: ChatTree) -> void:
+	_rewinding_text = false
 	_chat_tree = chat_tree
 	_play_text()
 
@@ -145,8 +146,8 @@ func _increment_line() -> bool:
 			link_index = 0
 		elif links.size() >= 2:
 			# Multiple links are available. Follow the player's chosen branch
-			print("Choose one: %s" % [_chat_tree.get_event().link_texts])
-			link_index = clamp(1, 0, links.size() - 1)
+			link_index = $ChatChoices.get_choice()
+			$ChatChoices.hide_choices()
 			print("  (%s)" % _chat_tree.get_event().link_texts[link_index])
 		did_increment = _chat_tree.advance(link_index)
 	return did_increment
@@ -156,6 +157,8 @@ func _increment_line() -> bool:
 Displays the current chat event in the ChatUi.
 """
 func _play_text() -> void:
+	$ChatChoices.hide_choices()
+	
 	# determine the chat event being shown
 	var chat_event: ChatEvent
 	if _rewinding_text:
@@ -166,6 +169,7 @@ func _play_text() -> void:
 	# reposition the nametags for whether the characters are on the left or right side
 	var interactable := InteractableManager.get_chatter(chat_event["who"])
 	var nametag_right := false
+	var squished := false
 	if interactable and interactable.has_method("get_orientation"):
 		var orientation: int = interactable.get_orientation()
 		if orientation in [Customer.Orientation.NORTHEAST, Customer.Orientation.SOUTHEAST]:
@@ -174,7 +178,12 @@ func _play_text() -> void:
 		elif orientation in [Customer.Orientation.NORTHWEST, Customer.Orientation.SOUTHWEST]:
 			# If we're facing left, we're on the right side. Put the nametag on the right.
 			nametag_right = true
-	$ChatFrame.play_text(chat_event.who, chat_event.text, chat_event.accent_def, nametag_right)
+	
+	if not _rewinding_text and chat_event.links.size() >= 2:
+		# we're going to prompt the player for a response; squish the chat frame to the side
+		squished = true
+	
+	$ChatFrame.play_text(chat_event.who, chat_event.text, chat_event.accent_def, nametag_right, squished)
 	
 	if _rewinding_text:
 		# immediately make all text visible when rewinding, so the player can rewind faster
@@ -192,3 +201,18 @@ func _on_chat_event_played(chat_event: ChatEvent) -> void:
 	_prev_chat_events.append(chat_event)
 	while _prev_chat_events.size() > 100:
 		_prev_chat_events.remove(0)
+
+
+func _on_ChatFrame_all_text_shown() -> void:
+	if _chat_tree and _chat_tree.get_event().links.size() >= 2:
+		var moods: Array = []
+		for link in _chat_tree.get_event().links:
+			if _chat_tree.events[link]:
+				var first_event: ChatEvent = _chat_tree.events[link][0]
+				if first_event and first_event.mood:
+					moods.append(first_event.mood)
+				else: moods.append(-1)
+			else:
+				moods.append(-1)
+		$ChatChoices.reposition($ChatFrame.get_sentence_size())
+		$ChatChoices.show_choices(_chat_tree.get_event().link_texts, moods)

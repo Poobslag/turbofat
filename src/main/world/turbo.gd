@@ -129,10 +129,7 @@ func _apply_gravity(delta: float) -> void:
 
 
 func _apply_friction() -> void:
-	if Input.is_action_pressed("ui_left") \
-		or Input.is_action_pressed("ui_right") \
-		or Input.is_action_pressed("ui_up") \
-		or Input.is_action_pressed("ui_down"):
+	if Global.ui_pressed_dir():
 		# Turbo is currently running; no friction when they're running
 		pass
 	elif $CoyoteTimer.is_stopped() and not is_on_floor():
@@ -177,16 +174,8 @@ func _apply_player_input(delta: float) -> void:
 		# Turbo is in mid-air; no movement allowed in mid-air
 		pass
 	else:
-		_walk_direction = Vector2.ZERO
 		# calculate the direction the player wants to move
-		if Input.is_action_pressed("ui_left"):
-			_walk_direction += Vector2.LEFT
-		if Input.is_action_pressed("ui_right"):
-			_walk_direction += Vector2.RIGHT
-		if Input.is_action_pressed("ui_up"):
-			_walk_direction += Vector2.UP
-		if Input.is_action_pressed("ui_down"):
-			_walk_direction += Vector2.DOWN
+		_walk_direction = Global.ui_pressed_dir()
 		if _rotate_controls:
 			_walk_direction = _walk_direction.rotated(-PI / 4)
 		# move Turbo towards the direction the player wants to move

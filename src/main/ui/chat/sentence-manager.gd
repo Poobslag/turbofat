@@ -8,6 +8,8 @@ Note: SentenceSprite does not contain its own labels to prevent the labels from 
 	and shrinks. Stationary text is easier to read.
 """
 
+signal all_text_shown
+
 # size of the sentence window needed to display the sentence text
 var sentence_size: int = ChatAppearance.SentenceSize.EXTRA_LARGE
 
@@ -31,6 +33,8 @@ func _process(_delta: float) -> void:
 			$BebebeSound.pitch_scale = rand_range(0.95, 1.05)
 			$BebebeSound.play()
 		_prev_visible_characters = visible_characters
+		if _sentence_label().is_all_text_visible():
+			emit_signal("all_text_shown")
 
 
 """

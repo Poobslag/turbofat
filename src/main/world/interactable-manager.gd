@@ -134,7 +134,7 @@ func get_accent_def(chat_name: String) -> Dictionary:
 		# refresh our cache of accent definitions
 		for interactable in _interactables:
 			if interactable.has_meta("chat_name") and interactable.has_meta("accent_def"):
-				_accent_defs[interactable.get_meta("chat_name")] = interactable.get_meta("accent_def")
+				add_accent_def(chat_name, interactable.get_meta("accent_def"))
 	
 		if not _accent_defs.has(chat_name):
 			# report a warning and store a stub definition to prevent repeated errors
@@ -142,3 +142,7 @@ func get_accent_def(chat_name: String) -> Dictionary:
 			push_error("Missing accent_def for interactable '%s'" % chat_name)
 	
 	return _accent_defs.get(chat_name, {})
+
+
+func add_accent_def(chat_name: String, accent_def: Dictionary) -> void:
+	_accent_defs[chat_name] = accent_def

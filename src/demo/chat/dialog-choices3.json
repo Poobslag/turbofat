@@ -1,0 +1,52 @@
+{
+  "": [
+    {
+      "who": "Lorum",
+      "text": "Lorem ipsum dolor sit amet? How many?",
+      "links": [
+        {
+          "one": "Just one, please."
+        },
+        {
+          "two": "Two should be enough."
+        },
+        {
+          "three": "As many as you can give me!"
+        }
+      ]
+    }
+  ],
+  "one": [
+    {
+      "who": "Turbo",
+      "text": "Just one adipiscing elit, please.",
+      "mood": "sweat0"
+    },
+    {
+      "who": "Lorum",
+      "text": "Here is your sed do eiusmod."
+    }
+  ],
+  "two": [
+    {
+      "who": "Turbo",
+      "text": "Two adipiscing elit should be enough.",
+      "mood": "think0"
+    },
+    {
+      "who": "Lorum",
+      "text": "Here, two sed do eiusmods."
+    }
+  ],
+  "three": [
+    {
+      "who": "Turbo",
+      "text": "As many adipiscing elit as you can give me!",
+      "mood": "smile1"
+    },
+    {
+      "who": "Lorum",
+      "text": "I only have three sed do eiusmods, but I'll get you more later."
+    }
+  ]
+}

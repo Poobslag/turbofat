@@ -8,7 +8,7 @@
 [ext_resource path="res://src/main/ui/chat/sentence-sprite.gd" type="Script" id=6]
 [ext_resource path="res://assets/ui/blogger-sans-medium-36.tres" type="DynamicFont" id=7]
 [ext_resource path="res://assets/ui/blogger-sans-bold-36.tres" type="DynamicFont" id=8]
-[ext_resource path="res://assets/ui/chat/window-extra-large-sheet.png" type="Texture" id=9]
+[ext_resource path="res://assets/ui/chat/window-small-sheet.png" type="Texture" id=9]
 [ext_resource path="res://assets/ui/chat/texture/bg01.png" type="Texture" id=10]
 [ext_resource path="res://assets/ui/chat/nametag-large-sheet.png" type="Texture" id=11]
 [ext_resource path="res://assets/ui/chat/pop-in.wav" type="AudioStream" id=12]
@@ -31,14 +31,8 @@ shader_param/scroll_distance = Vector2( 120, 60 )
 shader_param/accent_texture = ExtResource( 10 )
 
 [node name="ChatFrame" type="Control"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -362.078
-margin_top = -191.284
-margin_right = 361.922
-margin_bottom = -33.2836
 rect_pivot_offset = Vector2( 362, 79 )
 script = ExtResource( 4 )
 __meta__ = {
@@ -51,7 +45,7 @@ script = ExtResource( 5 )
 
 [node name="SentenceSprite" type="Sprite" parent="."]
 material = SubResource( 1 )
-position = Vector2( 362, 79.334 )
+position = Vector2( 512, 100 )
 scale = Vector2( 0.2, 0.2 )
 texture = ExtResource( 9 )
 vframes = 4
@@ -178,28 +172,28 @@ __meta__ = {
 }
 
 [node name="SentenceManager" type="Control" parent="."]
-margin_left = 182.0
-margin_top = 39.0002
-margin_right = 222.0
-margin_bottom = 79.0002
+margin_right = 1024.0
+margin_bottom = 200.0
+rect_pivot_offset = Vector2( 512, 100 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Small" type="Label" parent="SentenceManager"]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 340.0
-margin_bottom = 60.0
+margin_left = -180.0
+margin_top = -40.0
+margin_right = 180.0
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
-text = "I'll meet you by the third pyramid."
+text = "Hello"
 align = 1
 valign = 1
 autowrap = true
@@ -215,13 +209,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -110.0
-margin_top = -20.0
-margin_right = 430.0
-margin_bottom = 60.0
+margin_left = -270.0
+margin_top = -40.0
+margin_right = 270.0
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
-text = "Well, it had been 987 years in outer space time when I got back..."
 align = 1
 valign = 1
 autowrap = true
@@ -237,13 +230,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -110.0
-margin_top = -38.5
-margin_right = 430.0
-margin_bottom = 78.5
+margin_left = -270.0
+margin_top = -58.5
+margin_right = 270.0
+margin_bottom = 58.5
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
-text = "I'm Fred the Cancerian from New Jersey. I like collecting records and exploring the cave of the unknown."
 align = 1
 valign = 1
 autowrap = true
@@ -254,18 +246,17 @@ __meta__ = {
 }
 
 [node name="ExtraLarge" type="Label" parent="SentenceManager"]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -200.0
-margin_top = -40.0002
-margin_right = 520.0
-margin_bottom = 80.0002
+margin_left = -360.0
+margin_top = -60.0002
+margin_right = 360.0
+margin_bottom = 60.0002
 custom_fonts/font = ExtResource( 7 )
 custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
-text = "It seems that Doctor Aron Butterfly wants to dip us in plaster and use us for bookends.
-...We say to the doctor, \"No! Please, no!\""
 align = 1
 valign = 1
 autowrap = true
@@ -291,3 +282,4 @@ volume_db = -14.0
 bus = "Reverb Bus"
 [connection signal="pop_out_completed" from="Tween" to="." method="_on_Tween_pop_out_completed"]
 [connection signal="tween_completed" from="Tween" to="Tween" method="_on_tween_completed"]
+[connection signal="all_text_shown" from="SentenceManager" to="." method="_on_SentenceManager_all_text_shown"]

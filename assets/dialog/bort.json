@@ -20,14 +20,22 @@
   "yes" : [
     {
       "who": "Turbo",
-      "text": "Yeah!\nThis is definitely a real conversation.\\ It has branches and everything!",
+      "text": "Yeah!\nThis is definitely a real conversation./ It has branches and everything!",
+      "mood": "smile0",
+      "links": ["nice"]
+    },
+    {
+      "who": "Bort",
+      "text": "Congratulations!/ Wow!",
+      "mood": "smile0",
       "links": ["nice"]
     }
   ],
   "maybe" : [
     {
       "who": "Turbo",
-      "text": "Maybe?/ I'm not sure!"
+      "text": "Maybe?/ I'm not sure!",
+      "mood": "think0"
     },
     {
       "who": "Bort",
@@ -39,7 +47,8 @@
   "no" : [
     {
       "who": "Turbo",
-      "text": "I don't think so. I still have a lot of work to do..."
+      "text": "I don't think so. I still have a lot of work to do...",
+      "mood": "cry0"
     },
     {
       "who": "Bort",
