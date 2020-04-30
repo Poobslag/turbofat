@@ -8,6 +8,7 @@ Note: SentenceSprite does not contain its own labels to prevent the labels from 
 	and shrinks. Stationary text is easier to read.
 """
 
+# signal emitted after the full dialog sentence is typed out onscreen
 signal all_text_shown
 
 # size of the sentence window needed to display the sentence text
@@ -79,6 +80,9 @@ func label_showing() -> bool:
 	return _sentence_label().visible
 
 
+"""
+Returns 'true' if the label's visible_characters value is large enough to show all characters.
+"""
 func is_all_text_visible() -> bool:
 	return _sentence_label().is_all_text_visible()
 

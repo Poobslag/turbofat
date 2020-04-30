@@ -41,3 +41,15 @@ func _on_OverworldUi_chat_ended() -> void:
 
 func _on_ChatCameraTarget_left_zoom_radius() -> void:
 	_unset_chat_zoom()
+
+
+"""
+When giving the player a dialog prompt, we halt Turbo's movement and make her face the camera.
+
+This is partially for cosmetic reasons, but also to prevent her from continuing to run in a straight line while
+answering a dialog prompt. Player input is ignored during dialog prompts because the input is applied to the dialog
+buttons instead.
+"""
+func _on_OverworldUi_showed_chat_choices() -> void:
+	if $Turbo.stop_movement():
+		$OverworldUi.make_chatters_face_eachother()

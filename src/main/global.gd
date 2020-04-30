@@ -140,3 +140,32 @@ func ui_pressed_dir(event: InputEvent = null) -> Vector2:
 		if Input.is_action_pressed("ui_right"):
 			ui_dir += Vector2.RIGHT
 	return ui_dir
+
+
+"""
+Returns 'true' if the player just released a direction key.
+
+Parameters:
+	'event': (Optional) The input event to be evaluated. If null, this method will evaluate all current inputs.
+"""
+func ui_released_dir(event: InputEvent = null) -> bool:
+	var ui_dir := Vector2.ZERO
+	if event:
+		if event.is_action_released("ui_up"):
+			ui_dir += Vector2.UP
+		if event.is_action_released("ui_down"):
+			ui_dir += Vector2.DOWN
+		if event.is_action_released("ui_left"):
+			ui_dir += Vector2.LEFT
+		if event.is_action_released("ui_right"):
+			ui_dir += Vector2.RIGHT
+	else:
+		if Input.is_action_just_released("ui_up"):
+			ui_dir += Vector2.UP
+		if Input.is_action_just_released("ui_down"):
+			ui_dir += Vector2.DOWN
+		if Input.is_action_just_released("ui_left"):
+			ui_dir += Vector2.LEFT
+		if Input.is_action_just_released("ui_right"):
+			ui_dir += Vector2.RIGHT
+	return ui_dir.length() > 0

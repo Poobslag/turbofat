@@ -11,9 +11,9 @@
 [ext_resource path="res://assets/ui/chat/window-small-sheet.png" type="Texture" id=9]
 [ext_resource path="res://assets/ui/chat/texture/bg01.png" type="Texture" id=10]
 [ext_resource path="res://assets/ui/chat/nametag-large-sheet.png" type="Texture" id=11]
-[ext_resource path="res://assets/ui/chat/pop-in.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/ui/chat/frame-pop-in.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/ui/chat/bebebe.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/ui/chat/pop-out.wav" type="AudioStream" id=14]
+[ext_resource path="res://assets/ui/chat/frame-pop-out.wav" type="AudioStream" id=14]
 [ext_resource path="res://src/main/ui/chat/chat.shader" type="Shader" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]

@@ -10,6 +10,9 @@ signal chat_started
 
 signal chat_ended
 
+# signal emitted when we present the player with a dialog choice
+signal showed_chat_choices
+
 var turbo: Turbo
 
 # Characters we're currently chatting with. We try to keep them all in frame and facing Turbo.
@@ -36,7 +39,7 @@ func start_chat() -> void:
 	_update_visible()
 	InteractableManager.set_focus_enabled(false)
 	make_chatters_face_eachother()
-	$ChatUi.play_dialog_sequence(chat_tree)
+	$ChatUi.play_chat_tree(chat_tree)
 	emit_signal("chat_started")
 
 
@@ -105,3 +108,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	var chatter := InteractableManager.get_chatter(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
+
+
+func _on_ChatUi_showed_choices() -> void:
+	emit_signal("showed_chat_choices")

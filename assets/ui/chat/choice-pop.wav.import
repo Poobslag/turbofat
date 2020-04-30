@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/pop-in.wav-9a8bfb6a40845aa2b08695e3e1027b2c.sample"
+path="res://.import/choice-pop.wav-49d2e7162c40b11a3f44e2027d155279.sample"
 
 [deps]
 
-source_file="res://assets/ui/chat/pop-in.wav"
-dest_files=[ "res://.import/pop-in.wav-9a8bfb6a40845aa2b08695e3e1027b2c.sample" ]
+source_file="res://assets/ui/chat/choice-pop.wav"
+dest_files=[ "res://.import/choice-pop.wav-49d2e7162c40b11a3f44e2027d155279.sample" ]
 
 [params]
 

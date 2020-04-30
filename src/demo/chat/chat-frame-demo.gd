@@ -64,7 +64,7 @@ var _nametag_right := false
 var _squished := false
 
 func _ready() -> void:
-	_play_text()
+	_play_chat_event()
 
 
 func _input(event: InputEvent) -> void:
@@ -74,51 +74,51 @@ func _input(event: InputEvent) -> void:
 				_name_index = Global.key_num(event)
 			else:
 				_sentence_index = Global.key_num(event)
-			_play_text()
+			_play_chat_event()
 		KEY_A:
 			if $ChatFrame.chat_window_showing():
 				$ChatFrame.pop_out()
 			else:
-				_play_text()
+				_play_chat_event()
 		KEY_D:
 			_dark = not _dark
-			_play_text()
+			_play_chat_event()
 		KEY_L:
 			_nametag_right = not _nametag_right
-			_play_text()
+			_play_chat_event()
 		KEY_P:
 			print(to_json(_get_accent_def()))
 		KEY_S:
 			_accent_swapped = not _accent_swapped
-			_play_text()
+			_play_chat_event()
 		KEY_BRACERIGHT:
 			_texture_index += 1
-			_play_text()
+			_play_chat_event()
 		KEY_BRACELEFT:
 			_texture_index -= 1
-			_play_text()
+			_play_chat_event()
 		KEY_RIGHT:
 			_color_index += 1
-			_play_text()
+			_play_chat_event()
 		KEY_LEFT:
 			_color_index -= 1
-			_play_text()
+			_play_chat_event()
 		KEY_UP:
 			_scale_index += 1
-			_play_text()
+			_play_chat_event()
 		KEY_DOWN:
 			_scale_index -= 1
-			_play_text()
+			_play_chat_event()
 		KEY_SHIFT:
 			_squished = !_squished
-			_play_text()
+			_play_chat_event()
 
 
 """
 Configures the chat window's appearance based on the user's input.
 """
-func _play_text() -> void:
-	$ChatFrame.play_text(NAMES[_name_index], SENTENCES[_sentence_index], _get_accent_def(), _nametag_right, _squished)
+func _play_chat_event() -> void:
+	$ChatFrame.play_chat_event(NAMES[_name_index], SENTENCES[_sentence_index], _get_accent_def(), _nametag_right, _squished)
 
 
 """

@@ -7,19 +7,19 @@ Shows a little 'happy face' icon next to each chat choice.
 export (bool) var _mood_right: bool setget set_mood_right
 
 var textures := {
-	ChatEvent.Mood.DEFAULT: preload("res://assets/ui/chat/chat-choice-mood-default.png"),
-	ChatEvent.Mood.SMILE0: preload("res://assets/ui/chat/chat-choice-mood-smile0.png"),
-	ChatEvent.Mood.SMILE1: preload("res://assets/ui/chat/chat-choice-mood-smile1.png"),
-	ChatEvent.Mood.LAUGH0: preload("res://assets/ui/chat/chat-choice-mood-laugh0.png"),
-	ChatEvent.Mood.LAUGH1: preload("res://assets/ui/chat/chat-choice-mood-laugh1.png"),
-	ChatEvent.Mood.THINK0: preload("res://assets/ui/chat/chat-choice-mood-think0.png"),
-	ChatEvent.Mood.THINK1: preload("res://assets/ui/chat/chat-choice-mood-think1.png"),
-	ChatEvent.Mood.CRY0: preload("res://assets/ui/chat/chat-choice-mood-cry0.png"),
-	ChatEvent.Mood.CRY1: preload("res://assets/ui/chat/chat-choice-mood-cry1.png"),
-	ChatEvent.Mood.SWEAT0: preload("res://assets/ui/chat/chat-choice-mood-sweat0.png"),
-	ChatEvent.Mood.SWEAT1: preload("res://assets/ui/chat/chat-choice-mood-sweat1.png"),
-	ChatEvent.Mood.RAGE0: preload("res://assets/ui/chat/chat-choice-mood-rage0.png"),
-	ChatEvent.Mood.RAGE1: preload("res://assets/ui/chat/chat-choice-mood-rage1.png")
+	ChatEvent.Mood.DEFAULT: preload("res://assets/ui/chat/choice-mood-default.png"),
+	ChatEvent.Mood.SMILE0: preload("res://assets/ui/chat/choice-mood-smile0.png"),
+	ChatEvent.Mood.SMILE1: preload("res://assets/ui/chat/choice-mood-smile1.png"),
+	ChatEvent.Mood.LAUGH0: preload("res://assets/ui/chat/choice-mood-laugh0.png"),
+	ChatEvent.Mood.LAUGH1: preload("res://assets/ui/chat/choice-mood-laugh1.png"),
+	ChatEvent.Mood.THINK0: preload("res://assets/ui/chat/choice-mood-think0.png"),
+	ChatEvent.Mood.THINK1: preload("res://assets/ui/chat/choice-mood-think1.png"),
+	ChatEvent.Mood.CRY0: preload("res://assets/ui/chat/choice-mood-cry0.png"),
+	ChatEvent.Mood.CRY1: preload("res://assets/ui/chat/choice-mood-cry1.png"),
+	ChatEvent.Mood.SWEAT0: preload("res://assets/ui/chat/choice-mood-sweat0.png"),
+	ChatEvent.Mood.SWEAT1: preload("res://assets/ui/chat/choice-mood-sweat1.png"),
+	ChatEvent.Mood.RAGE0: preload("res://assets/ui/chat/choice-mood-rage0.png"),
+	ChatEvent.Mood.RAGE1: preload("res://assets/ui/chat/choice-mood-rage1.png")
 }
 
 

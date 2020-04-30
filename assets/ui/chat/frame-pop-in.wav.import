@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/pop-out.wav-18069872b84d9f13b78f038e10ce6ce6.sample"
+path="res://.import/frame-pop-in.wav-c4f9cb1bbe53b0b71ee5b2e20463219a.sample"
 
 [deps]
 
-source_file="res://assets/ui/chat/pop-out.wav"
-dest_files=[ "res://.import/pop-out.wav-18069872b84d9f13b78f038e10ce6ce6.sample" ]
+source_file="res://assets/ui/chat/frame-pop-in.wav"
+dest_files=[ "res://.import/frame-pop-in.wav-c4f9cb1bbe53b0b71ee5b2e20463219a.sample" ]
 
 [params]
 

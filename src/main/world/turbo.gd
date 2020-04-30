@@ -73,7 +73,7 @@ func _physics_process(delta) -> void:
 	
 	_apply_friction()
 	_apply_gravity(delta)
-	_apply_player_input(delta)
+	_apply_player_walk(delta)
 	_update_animation()
 	_update_camera_target()
 	
@@ -86,13 +86,39 @@ func _physics_process(delta) -> void:
 		_slipping = did_slip
 	
 	if is_on_floor():
-		if (Input.is_action_pressed("jump") or not $JumpBuffer.is_stopped()) and not _slipping:
-			jump()
+		if not $JumpBuffer.is_stopped():
+			_jump()
 		else:
 			_jumping = false
 	
 	if not is_on_floor() and was_on_floor and not _jumping and not _slipping:
 		$CoyoteTimer.start()
+
+
+"""
+Applies Turbo's jump/movement input for most cases. Some edge cases such as buffered jumps are handled outside this
+function.
+"""
+func _unhandled_input(_event: InputEvent) -> void:
+	# apply movement
+	if Global.ui_pressed_dir() or Global.ui_released_dir():
+		# calculate the direction the player wants to move
+		_walk_direction = Global.ui_pressed_dir()
+		if _rotate_controls:
+			_walk_direction = _walk_direction.rotated(-PI / 4)
+		if Global.ui_pressed_dir() or Global.ui_released_dir():
+			get_tree().set_input_as_handled()
+	
+	# apply jump
+	if Input.is_action_pressed("jump") and not _slipping:
+		# pressing/holding jump button
+		if is_on_floor() or not $CoyoteTimer.is_stopped():
+			_jump()
+			get_tree().set_input_as_handled()
+		elif Input.is_action_just_pressed("jump"):
+			# only start the jump buffer when pressing the button, not when holding it
+			$JumpBuffer.start()
+		get_tree().set_input_as_handled()
 
 
 """
@@ -105,15 +131,34 @@ func get_customer_definition() -> Dictionary:
 	}
 
 
+"""
+Tries to halt Turbo's movement and make her idle.
+
+Returns 'true' if Turbo has entered the idle state, or 'false' if she was mid-air or out of the player's control.
+"""
+func stop_movement() -> bool:
+	_walk_direction = Vector2.ZERO
+	var became_idle := false
+	if _is_midair():
+		pass
+	elif _slipping:
+		pass
+	else:
+		play_movement_animation("idle")
+		became_idle = true
+	return became_idle
+
+
 func _update_animation() -> void:
+	var old_orientation: int = $Viewport/Customer.get_orientation()
 	if _slipping:
 		play_movement_animation("jump", _get_xy_velocity())
 	elif _jumping:
-		play_movement_animation("jump", _walk_direction)
+		play_movement_animation("jump", _get_xy_velocity())
 	elif _walk_direction.length() > 0:
-		play_movement_animation("run", _walk_direction)
+		play_movement_animation("run", _get_xy_velocity())
 	else:
-		play_movement_animation("idle", _walk_direction)
+		play_movement_animation("idle", _get_xy_velocity())
 
 
 func _update_camera_target() -> void:
@@ -129,21 +174,21 @@ func _apply_gravity(delta: float) -> void:
 
 
 func _apply_friction() -> void:
-	if Global.ui_pressed_dir():
-		# Turbo is currently running; no friction when they're running
+	if _walk_direction:
 		pass
-	elif $CoyoteTimer.is_stopped() and not is_on_floor():
-		# Turbo is in mid-air; no friction in mid-air
+	elif _is_midair():
 		pass
 	elif _slipping:
-		# Turbo is slipping; no friction when slipping
 		pass
 	else:
-		# apply friction
 		var xy_velocity: Vector2 = lerp(_get_xy_velocity(), Vector2.ZERO, FRICTION)
 		if xy_velocity.length() < MIN_RUN_SPEED:
 			xy_velocity = Vector2()
 		_set_xy_velocity(xy_velocity)
+
+
+func _is_midair() -> bool:
+	return $CoyoteTimer.is_stopped() and not is_on_floor()
 
 
 """
@@ -161,31 +206,14 @@ func _set_xy_velocity(xy_velocity: Vector2) -> void:
 	_velocity.z = xy_velocity.y
 
 
-"""
-Applies Turbo's jump/movement input for most cases. Some edge cases such as buffered jumps are handled outside this
-function.
-"""
-func _apply_player_input(delta: float) -> void:
-	if _slipping:
-		_walk_direction = Vector2.ZERO
-		return
-
-	if $CoyoteTimer.is_stopped() and not is_on_floor():
-		# Turbo is in mid-air; no movement allowed in mid-air
-		pass
-	else:
-		# calculate the direction the player wants to move
-		_walk_direction = Global.ui_pressed_dir()
-		if _rotate_controls:
-			_walk_direction = _walk_direction.rotated(-PI / 4)
-		# move Turbo towards the direction the player wants to move
-		accelerate_player_xy(delta, _walk_direction, MAX_RUN_ACCELERATION, MAX_RUN_SPEED)
-	
-	if Input.is_action_just_pressed("jump"):
-		if is_on_floor() or not $CoyoteTimer.is_stopped():
-			jump()
+func _apply_player_walk(delta: float) -> void:
+	if _walk_direction:
+		if _is_midair():
+			pass
+		elif _slipping:
+			pass
 		else:
-			$JumpBuffer.start()
+			_accelerate_player_xy(delta, _walk_direction, MAX_RUN_ACCELERATION, MAX_RUN_SPEED)
 
 
 """
@@ -193,7 +221,7 @@ Accelerates Turbo horizontally.
 
 If Turbo would be accelerated beyond the specified maximum speed, Turbo's acceleration is reduced.
 """
-func accelerate_player_xy(delta: float, push_direction: Vector2, acceleration: float, max_speed: float) -> void:
+func _accelerate_player_xy(delta: float, push_direction: Vector2, acceleration: float, max_speed: float) -> void:
 	var accel_vector := push_direction * acceleration
 	if accel_vector.length() > acceleration:
 		accel_vector = accel_vector.normalized() * acceleration
@@ -209,7 +237,7 @@ func accelerate_player_xy(delta: float, push_direction: Vector2, acceleration: f
 	_velocity.z += accel_vector.y * delta
 
 
-func jump() -> void:
+func _jump() -> void:
 	# 'CoyoteTimer' and 'JumpBuffer' make jumping easier when active. They're disabled after a successful jump.
 	$CoyoteTimer.stop()
 	$JumpBuffer.stop()
@@ -237,7 +265,7 @@ func _slip_from_narrow_surfaces(delta: float) -> bool:
 				if slip_velocity.length() > collision.collider.foothold_radius:
 					# Turbo is too far from the center, and should slip
 					just_slipped = true
-					accelerate_player_xy(delta, Vector2(slip_velocity.x, slip_velocity.z), MAX_SLIP_ACCELERATION, MAX_NARROW_SLIP_SPEED)
+					_accelerate_player_xy(delta, Vector2(slip_velocity.x, slip_velocity.z), MAX_SLIP_ACCELERATION, MAX_NARROW_SLIP_SPEED)
 	return just_slipped
 
 
@@ -263,5 +291,6 @@ func _slip_from_ledges(delta: float) -> bool:
 				$RayCast.translation + ray_offset, $RayCast.cast_to + ray_offset, [self]):
 			slip_direction -= ledge_direction
 	if slip_direction:
-		accelerate_player_xy(delta, Vector2(slip_direction.x, slip_direction.z), MAX_SLIP_ACCELERATION, MAX_LEDGE_SLIP_SPEED)
+		_accelerate_player_xy(delta, Vector2(slip_direction.x, slip_direction.z),
+				MAX_SLIP_ACCELERATION, MAX_LEDGE_SLIP_SPEED)
 	return slip_direction.length() > 0
