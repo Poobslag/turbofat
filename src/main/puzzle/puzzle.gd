@@ -25,30 +25,24 @@ onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 func _ready() -> void:
 	$NextPieceDisplays.hide_pieces()
 	$PieceManager.clear_piece()
-	$HUD/MessageLabel.hide()
 	$Playfield/TileMapClip/TileMap/ShadowMap.piece_tile_map = $PieceManager/TileMap
-	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 0)
-	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 1)
-	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], 2)
 	
-	# grab focus so the player can start a new game or navigate with the keyboard
-	$HUD/StartGameButton.grab_focus()
+	for i in range(3):
+		_summon_customer(i)
 
 
 """
 Shows a detailed multi-line message, like how the game is controlled
 """
 func show_detail_message(text: String) -> void:
-	$HUD/DetailMessageLabel.show()
-	$HUD/DetailMessageLabel.text = text
+	$Hud.show_detail_message(text)
 
 
 """
 Shows a succinct single-line message, like 'Game Over'
 """
 func show_message(text: String) -> void:
-	$HUD/MessageLabel.show()
-	$HUD/MessageLabel.text = text
+	$Hud.show_message(text)
 
 
 """
@@ -60,13 +54,7 @@ func end_game(delay: float, message: String) -> void:
 	$PieceManager.end_game()
 	show_message(message)
 	yield(get_tree().create_timer(delay), "timeout")
-	$HUD/StartGameButton.show()
-	$HUD/BackButton.show()
-	$HUD/MessageLabel.hide()
-
-	# grab focus so the player can start a new game or navigate with the keyboard
-	$HUD/StartGameButton.grab_focus()
-	
+	$Hud.after_game_ended()
 	emit_signal("after_game_ended")
 
 
@@ -99,18 +87,29 @@ func _scroll_to_new_customer() -> void:
 	$CustomerView.set_current_customer_index(new_customer_index)
 	yield(get_tree().create_timer(0.5), "timeout")
 	$CustomerView.set_fatness(1, customer_index)
-	$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()], customer_index)
+	
+	_summon_customer(customer_index)
 
 
-func _on_BackButton_pressed() -> void:
-	get_tree().change_scene("res://src/main/ui/ScenarioMenu.tscn")
+func _summon_customer(customer_index: int) -> void:
+	var customer_def: Dictionary
+	if Global.customer_queue.empty():
+		customer_def = CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()]
+	else:
+		customer_def = Global.customer_queue.pop_front()
+	$CustomerView.summon_customer(customer_def, customer_index)
 
 
-func _on_StartGameButton_pressed() -> void:
+func _on_Hud_back_button_pressed() -> void:
+	if Global.overworld_puzzle:
+		get_tree().change_scene("res://src/main/world/Overworld.tscn")
+	else:
+		get_tree().change_scene("res://src/main/ui/ScenarioMenu.tscn")
+
+
+func _on_Hud_start_button_pressed() -> void:
 	emit_signal("before_game_started")
-	$HUD/StartGameButton.hide()
-	$HUD/BackButton.hide()
-	$HUD/DetailMessageLabel.hide()
+	$Hud.hide_buttons_and_messages()
 	
 	$NextPieceDisplays.start_game()
 	$Playfield.start_game()
@@ -129,7 +128,7 @@ func _on_StartGameButton_pressed() -> void:
 	show_message("1")
 	$ReadySound.play()
 	yield(get_tree().create_timer(0.8), "timeout")
-	$HUD/MessageLabel.hide()
+	$Hud.hide_buttons_and_messages()
 	$GoSound.play()
 	_go_voices[randi() % _go_voices.size()].play()
 	
@@ -168,3 +167,5 @@ func _on_Playfield_customer_left() -> void:
 	if $Playfield.clock_running:
 		$CustomerView.play_goodbye_voice()
 		_scroll_to_new_customer()
+
+

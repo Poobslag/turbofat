@@ -46,7 +46,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LinesHUD" type="Control" parent="."]
+[node name="LinesHud" type="Control" parent="."]
 margin_top = 170.0
 margin_right = 250.0
 margin_bottom = 210.0
@@ -54,7 +54,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="LinesHUD"]
+[node name="ProgressBar" type="ProgressBar" parent="LinesHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -100.0
@@ -67,7 +67,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelLabel" type="Label" parent="LinesHUD"]
+[node name="LevelLabel" type="Label" parent="LinesHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -99.0
@@ -79,7 +79,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelValue" type="Label" parent="LinesHUD"]
+[node name="LevelValue" type="Label" parent="LinesHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -99.0
@@ -92,7 +92,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimeHUD" type="Control" parent="."]
+[node name="TimeHud" type="Control" parent="."]
 margin_top = 170.0
 margin_right = 250.0
 margin_bottom = 210.0
@@ -100,7 +100,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="TimeHUD"]
+[node name="ProgressBar" type="ProgressBar" parent="TimeHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -100.0
@@ -111,7 +111,7 @@ custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 percent_visible = false
 
-[node name="TimeLabel" type="Label" parent="TimeHUD"]
+[node name="TimeLabel" type="Label" parent="TimeHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -100.0
@@ -123,7 +123,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimeValue" type="Label" parent="TimeHUD"]
+[node name="TimeValue" type="Label" parent="TimeHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -100.0
@@ -136,7 +136,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreHUD" type="Control" parent="."]
+[node name="ScoreHud" type="Control" parent="."]
 margin_top = 170.0
 margin_right = 250.0
 margin_bottom = 210.0
@@ -144,7 +144,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="ScoreHUD"]
+[node name="ProgressBar" type="ProgressBar" parent="ScoreHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -100.0
@@ -157,7 +157,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreLabel" type="Label" parent="ScoreHUD"]
+[node name="ScoreLabel" type="Label" parent="ScoreHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -100.0
@@ -169,7 +169,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreValue" type="Label" parent="ScoreHUD"]
+[node name="ScoreValue" type="Label" parent="ScoreHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -100.0
@@ -183,7 +183,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimeLabel" type="Label" parent="ScoreHUD"]
+[node name="TimeLabel" type="Label" parent="ScoreHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -100.0
@@ -195,7 +195,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TimeValue" type="Label" parent="ScoreHUD"]
+[node name="TimeValue" type="Label" parent="ScoreHud"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -100.0

@@ -25,100 +25,44 @@ func _ready() -> void:
 	$VBoxContainer/Marathon/Normal/Button.grab_focus()
 
 
-func _load_scenario() -> void:
-	get_tree().change_scene("res://src/main/puzzle/Scenario.tscn")
+func _change_scenario_scene(scenario_settings: ScenarioSettings) -> void:
+	ScenarioLibrary.change_scenario_scene(scenario_settings, false)
 
 
 func _on_MarathonNormal_pressed() -> void:
-	Global.scenario_settings.set_name("marathon-normal")
-	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
-	Global.scenario_settings.add_level_up("lines", 10, PieceSpeeds.beginner_level_1)
-	Global.scenario_settings.add_level_up("lines", 20, PieceSpeeds.beginner_level_2)
-	Global.scenario_settings.add_level_up("lines", 30, PieceSpeeds.beginner_level_3)
-	Global.scenario_settings.add_level_up("lines", 40, PieceSpeeds.beginner_level_4)
-	Global.scenario_settings.add_level_up("lines", 50, PieceSpeeds.beginner_level_5)
-	Global.scenario_settings.add_level_up("lines", 60, PieceSpeeds.beginner_level_6)
-	Global.scenario_settings.add_level_up("lines", 70, PieceSpeeds.beginner_level_7)
-	Global.scenario_settings.add_level_up("lines", 80, PieceSpeeds.beginner_level_8)
-	Global.scenario_settings.add_level_up("lines", 90, PieceSpeeds.beginner_level_9)
-	Global.scenario_settings.set_win_condition("lines", 100)
-	_load_scenario()
+	_change_scenario_scene(ScenarioLibrary.marathon_normal)
 
 
 func _on_MarathonHard_pressed() -> void:
-	Global.scenario_settings.set_name("marathon-hard")
-	Global.scenario_settings.set_start_level(PieceSpeeds.hard_level_1)
-	Global.scenario_settings.add_level_up("lines", 50, PieceSpeeds.hard_level_2)
-	Global.scenario_settings.add_level_up("lines", 60, PieceSpeeds.hard_level_3)
-	Global.scenario_settings.add_level_up("lines", 70, PieceSpeeds.hard_level_4)
-	Global.scenario_settings.add_level_up("lines", 80, PieceSpeeds.hard_level_5)
-	Global.scenario_settings.add_level_up("lines", 90, PieceSpeeds.hard_level_6)
-	Global.scenario_settings.add_level_up("lines", 100, PieceSpeeds.hard_level_7)
-	Global.scenario_settings.add_level_up("lines", 115, PieceSpeeds.hard_level_8)
-	Global.scenario_settings.add_level_up("lines", 130, PieceSpeeds.hard_level_9)
-	Global.scenario_settings.add_level_up("lines", 150, PieceSpeeds.hard_level_10)
-	Global.scenario_settings.set_win_condition("lines", 200, 150)
-	_load_scenario()
+	_change_scenario_scene(ScenarioLibrary.marathon_hard)
 
 
 func _on_MarathonExpert_pressed() -> void:
-	Global.scenario_settings.set_name("marathon-expert")
-	Global.scenario_settings.set_start_level(PieceSpeeds.hard_level_5)
-	Global.scenario_settings.add_level_up("lines", 75, PieceSpeeds.hard_level_10)
-	Global.scenario_settings.add_level_up("lines", 100, PieceSpeeds.hard_level_11)
-	Global.scenario_settings.add_level_up("lines", 125, PieceSpeeds.hard_level_12)
-	Global.scenario_settings.add_level_up("lines", 150, PieceSpeeds.hard_level_13)
-	Global.scenario_settings.add_level_up("lines", 175, PieceSpeeds.hard_level_14)
-	Global.scenario_settings.add_level_up("lines", 200, PieceSpeeds.hard_level_15)
-	Global.scenario_settings.set_win_condition("lines", 300, 200)
-	_load_scenario()
+	_change_scenario_scene(ScenarioLibrary.marathon_expert)
 
 
 func _on_MarathonMaster_pressed() -> void:
-	Global.scenario_settings.set_name("marathon-master")
-	Global.scenario_settings.set_start_level(PieceSpeeds.crazy_level_2)
-	Global.scenario_settings.add_level_up("lines", 100, PieceSpeeds.crazy_level_3)
-	Global.scenario_settings.add_level_up("lines", 200, PieceSpeeds.crazy_level_4)
-	Global.scenario_settings.add_level_up("lines", 300, PieceSpeeds.crazy_level_5)
-	Global.scenario_settings.add_level_up("lines", 400, PieceSpeeds.crazy_level_6)
-	Global.scenario_settings.add_level_up("lines", 500, PieceSpeeds.crazy_level_7)
-	Global.scenario_settings.set_win_condition("lines", 1000, 500)
-	_load_scenario()
+	_change_scenario_scene(ScenarioLibrary.marathon_master)
 
 
 func _on_SprintNormal_pressed() -> void:
-	Global.scenario_settings.set_name("sprint-normal")
-	Global.scenario_settings.set_start_level(PieceSpeeds.hard_level_0)
-	Global.scenario_settings.set_win_condition("time", 150)
-	_load_scenario()
+	_change_scenario_scene(ScenarioLibrary.sprint_normal)
 
 
 func _on_SprintExpert_pressed() -> void:
-	Global.scenario_settings.set_name("sprint-expert")
-	Global.scenario_settings.set_start_level(PieceSpeeds.crazy_level_0)
-	Global.scenario_settings.set_win_condition("time", 180)
-	_load_scenario()
+	_change_scenario_scene(ScenarioLibrary.sprint_expert)
 
 
 func _on_UltraNormal_pressed() -> void:
-	Global.scenario_settings.set_name("ultra-normal")
-	Global.scenario_settings.set_start_level(PieceSpeeds.beginner_level_0)
-	Global.scenario_settings.set_win_condition("score", 200)
-	_load_scenario()
+	_change_scenario_scene(ScenarioLibrary.ultra_normal)
 
 
 func _on_UltraHard_pressed() -> void:
-	Global.scenario_settings.set_name("ultra-hard")
-	Global.scenario_settings.set_start_level(PieceSpeeds.hard_level_0)
-	Global.scenario_settings.set_win_condition("score", 1000)
-	_load_scenario()
+	_change_scenario_scene(ScenarioLibrary.ultra_hard)
 
 
 func _on_UltraExpert_pressed() -> void:
-	Global.scenario_settings.set_name("ultra-expert")
-	Global.scenario_settings.set_start_level(PieceSpeeds.crazy_level_0)
-	Global.scenario_settings.set_win_condition("score", 3000)
-	_load_scenario()
+	_change_scenario_scene(ScenarioLibrary.ultra_expert)
 
 
 func _on_OverworldButton_pressed() -> void:

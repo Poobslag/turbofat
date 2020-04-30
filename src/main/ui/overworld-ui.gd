@@ -22,6 +22,11 @@ var _show_fps := false setget set_show_fps, is_show_fps
 var _show_version := true setget set_show_version, is_show_version
 var _chat_library := ChatLibrary.new()
 
+# These two fields store details for the upcoming scenario. We store the scenario details during the dialog sequence
+# and launch the scenario when the dialog window closes.
+var _launched_scenario: ScenarioSettings
+var _scenario_customer_def: Dictionary
+
 func _ready() -> void:
 	_update_visible()
 
@@ -99,6 +104,10 @@ func _on_ChatUi_pop_out_completed() -> void:
 	InteractableManager.set_focus_enabled(true)
 	_update_visible()
 	emit_signal("chat_ended")
+	
+	if _launched_scenario:
+		InteractableManager.clear()
+		ScenarioLibrary.change_scenario_scene(_launched_scenario, true, _scenario_customer_def)
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
@@ -108,6 +117,15 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	var chatter := InteractableManager.get_chatter(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
+	if chat_event.meta:
+		var meta: Array = chat_event.meta
+		if meta.has("scenario"):
+			_launched_scenario = ScenarioSettings.new()
+			_launched_scenario.set_name("ultra-normal")
+			_launched_scenario.set_start_level(PieceSpeeds.beginner_level_0)
+			_launched_scenario.set_win_condition("score", 100)
+			if chatters[0].has_method("get_customer_def"):
+				_scenario_customer_def = chatters[0].get_customer_def()
 
 
 func _on_ChatUi_showed_choices() -> void:

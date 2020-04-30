@@ -21,8 +21,7 @@
     {
       "who": "Turbo",
       "text": "Yeah!\nThis is definitely a real conversation./ It has branches and everything!",
-      "mood": "smile0",
-      "links": ["nice"]
+      "mood": "smile0"
     },
     {
       "who": "Bort",
