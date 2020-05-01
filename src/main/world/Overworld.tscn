@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/main/world/orange.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/overworld.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=18]
 [ext_resource path="res://src/main/ui/chat/chat-camera-target.gd" type="Script" id=19]
 [ext_resource path="res://src/main/world/ebe.gd" type="Script" id=20]
+[ext_resource path="res://src/main/world/boatricia.gd" type="Script" id=21]
 
 [sub_resource type="CubeMesh" id=1]
 size = Vector3( 360, 20, 360 )
@@ -174,6 +175,12 @@ right_side = false
 script = ExtResource( 17 )
 
 [node name="ChatIcon" parent="Bort" instance=ExtResource( 7 )]
+
+[node name="Boatricia" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, -70, 10, 20 )
+script = ExtResource( 21 )
+
+[node name="ChatIcon" parent="Boatricia" instance=ExtResource( 7 )]
 
 [node name="Ebe" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 20, 10, -70 )

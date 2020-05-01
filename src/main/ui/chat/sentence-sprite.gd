@@ -1,3 +1,4 @@
+class_name SentenceSprite
 extends Sprite
 """
 Note: SentenceSprite does not contain its own sentence labels to avoid the labels being distorted as the sprite
@@ -7,6 +8,9 @@ Note: SentenceSprite does not contain its own sentence labels to avoid the label
 # The sprite squishes over time. These two constants define the speed and squish amount
 const PULSE_PERIOD := 5.385
 const PULSE_AMOUNT := Vector2(0.003, 0.006)
+
+# The number of available background textures
+const CHAT_TEXTURE_COUNT := 16
 
 # The sprite squishes over time. This field is used to calculate the squish amount
 var _total_time := 0.0
@@ -19,24 +23,13 @@ onready var _sentence_textures := {
 	ChatAppearance.SentenceSize.EXTRA_LARGE: preload("res://assets/ui/chat/window-extra-large-sheet.png")
 }
 
-onready var _accent_textures := [
-	preload("res://assets/ui/chat/texture/bg00.png"),
-	preload("res://assets/ui/chat/texture/bg01.png"),
-	preload("res://assets/ui/chat/texture/bg02.png"),
-	preload("res://assets/ui/chat/texture/bg03.png"),
-	preload("res://assets/ui/chat/texture/bg04.png"),
-	preload("res://assets/ui/chat/texture/bg05.png"),
-	preload("res://assets/ui/chat/texture/bg06.png"),
-	preload("res://assets/ui/chat/texture/bg07.png"),
-	preload("res://assets/ui/chat/texture/bg08.png"),
-	preload("res://assets/ui/chat/texture/bg09.png"),
-	preload("res://assets/ui/chat/texture/bg10.png"),
-	preload("res://assets/ui/chat/texture/bg11.png"),
-	preload("res://assets/ui/chat/texture/bg12.png"),
-	preload("res://assets/ui/chat/texture/bg13.png"),
-	preload("res://assets/ui/chat/texture/bg14.png"),
-	preload("res://assets/ui/chat/texture/bg15.png")
-]
+# Background textures which scroll behind the chat window
+var _accent_textures := []
+
+func _ready() -> void:
+	for i in range(CHAT_TEXTURE_COUNT):
+		var path := "res://assets/ui/chat/texture/bg%02d.png" % i
+		_accent_textures.append(load(path))
 
 func _process(delta: float) -> void:
 	_total_time += delta

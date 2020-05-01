@@ -29,7 +29,7 @@ func set_name(new_name: String) -> void:
 """
 Sets how fast the pieces move when the player begins the scenario.
 """
-func set_start_level(pieceSpeed) -> void:
+func set_start_level(pieceSpeed: PieceSpeed) -> void:
 	level_up_conditions.clear()
 	level_up_conditions.append({"type": "lines", "value": 0, "piece_speed": pieceSpeed})
 
@@ -37,7 +37,7 @@ func set_start_level(pieceSpeed) -> void:
 """
 Adds criteria for when the player 'levels up' and makes the pieces move faster.
 """
-func add_level_up(type: String, value: int, pieceSpeed) -> void:
+func add_level_up(type: String, value: int, pieceSpeed: PieceSpeed) -> void:
 	level_up_conditions.append({"type": type, "value": value, "piece_speed": pieceSpeed})
 
 

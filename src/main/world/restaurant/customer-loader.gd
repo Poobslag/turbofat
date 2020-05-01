@@ -43,7 +43,7 @@ const DEFINITIONS := [
 var _threads := [];
 
 # list of customer definitions which are loaded, but haven't been asked about
-var _ready_customer_definitions := {}
+var _ready_customer_defs := {}
 
 # mutex which ensures we don't load multiple resources concurrently
 var _load_mutex := Mutex.new()
@@ -83,7 +83,7 @@ After returning true, this method also purges the customer_def from its cache.
 Parameter: 'customer_def' is a customer definition which has been previously passed to the 'summon_customer' method.
 """
 func is_customer_ready(customer_def: Dictionary) -> bool:
-	return _ready_customer_definitions.erase(customer_def)
+	return _ready_customer_defs.erase(customer_def)
 
 
 """
@@ -280,4 +280,4 @@ func _load_all(customer_def: Dictionary) -> void:
 	_load_eye(customer_def)
 	_load_body(customer_def)
 	_load_colors(customer_def)
-	_ready_customer_definitions[customer_def] = true
+	_ready_customer_defs[customer_def] = true

@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://assets/ui/xolonium-48-outline.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=4]
+[ext_resource path="res://src/main/puzzle/puzzle-hud.gd" type="Script" id=5]
+
+[sub_resource type="InputEventAction" id=1]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.19873, 0.177771, 0.177771, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+
+[node name="Hud" type="Control"]
+margin_left = 364.0
+margin_top = 28.0
+margin_right = 688.0
+margin_bottom = 572.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGameButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = -27.0
+margin_right = 70.0
+margin_bottom = 27.5
+custom_fonts/font = ExtResource( 4 )
+text = "Start"
+
+[node name="BackButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = 42.0
+margin_right = 50.0
+margin_bottom = 79.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 3 )
+shortcut = SubResource( 2 )
+text = "Back"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DetailMessageLabel" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -248.0
+margin_right = 118.0
+margin_bottom = -70.0
+custom_styles/normal = SubResource( 3 )
+custom_fonts/normal_font = ExtResource( 2 )
+text = "Controls
+
+Arrows: Move
+Up/Shift: Hard drop
+Down: Soft drop
+Z, X: Rotate"
+scroll_active = false
+
+[node name="MessageLabel" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -144.0
+margin_top = -40.0
+margin_right = 144.0
+margin_bottom = 40.0
+custom_fonts/font = ExtResource( 1 )
+text = "3"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="pressed" from="StartGameButton" to="." method="_on_StartGameButton_pressed"]
+[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]

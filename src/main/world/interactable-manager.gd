@@ -34,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 	if _focus_enabled and _turbo and _interactables:
 		# iterate over all interactables and find the nearest one
 		for interactable_object in _interactables:
-			if not interactable_object:
+			if not is_instance_valid(interactable_object):
 				continue
 			var interactable: Spatial = interactable_object
 			var distance := interactable.global_transform.origin.distance_to(_turbo.global_transform.origin)

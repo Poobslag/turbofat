@@ -1,0 +1,55 @@
+{
+  "start-level": "A1",
+  "level-up": [
+    {
+      "type": "lines",
+      "value": "50",
+      "level": "A2"
+    },
+    {
+      "type": "lines",
+      "value": "60",
+      "level": "A3"
+    },
+    {
+      "type": "lines",
+      "value": "70",
+      "level": "A4"
+    },
+    {
+      "type": "lines",
+      "value": "80",
+      "level": "A5"
+    },
+    {
+      "type": "lines",
+      "value": "90",
+      "level": "A6"
+    },
+    {
+      "type": "lines",
+      "value": "100",
+      "level": "A7"
+    },
+    {
+      "type": "lines",
+      "value": "115",
+      "level": "A8"
+    },
+    {
+      "type": "lines",
+      "value": "130",
+      "level": "A9"
+    },
+    {
+      "type": "lines",
+      "value": "150",
+      "level": "AA"
+    }
+  ],
+  "win-condition": {
+    "type": "lines",
+    "value": "200",
+    "lenient-value": "150"
+  }
+}

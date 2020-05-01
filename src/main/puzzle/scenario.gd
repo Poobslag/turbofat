@@ -40,23 +40,23 @@ func _ready() -> void:
 	# reset statistics like time taken, lines cleared
 	Global.scenario_performance = ScenarioPerformance.new()
 	
-	$TimeHUD.hide()
-	$LinesHUD.hide()
-	$ScoreHUD.hide()
+	$TimeHud.hide()
+	$LinesHud.hide()
+	$ScoreHud.hide()
 	if Global.scenario_settings.win_condition.type == "time":
-		$TimeHUD.show()
+		$TimeHud.show()
 		var seconds := ceil(Global.scenario_settings.win_condition.value)
-		$TimeHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
+		$TimeHud/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 	
 	if Global.scenario_settings.win_condition.type == "lines":
-		$LinesHUD.show()
+		$LinesHud.show()
 		_set_level(0)
 	
 	if Global.scenario_settings.win_condition.type == "score":
-		$ScoreHUD.show()
-		$ScoreHUD/ScoreValue.text = str(Global.scenario_settings.win_condition.value)
-		$ScoreHUD/TimeLabel.hide()
-		$ScoreHUD/TimeValue.hide()
+		$ScoreHud.show()
+		$ScoreHud/ScoreValue.text = str(Global.scenario_settings.win_condition.value)
+		$ScoreHud/TimeLabel.hide()
+		$ScoreHud/TimeValue.hide()
 
 
 func _physics_process(_delta: float) -> void:
@@ -69,10 +69,10 @@ func _physics_process(_delta: float) -> void:
 func _process(_delta: float) -> void:
 	if Global.scenario_settings.win_condition.type == "time":
 		var seconds := ceil(Global.scenario_settings.win_condition.value - Global.scenario_performance.seconds)
-		$TimeHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
+		$TimeHud/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 	elif Global.scenario_settings.win_condition.type == "score":
 		var seconds := ceil(Global.scenario_performance.seconds)
-		$ScoreHUD/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
+		$ScoreHud/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 
 
 """
@@ -84,7 +84,7 @@ func _set_level(new_level:int) -> void:
 	$Puzzle/PieceManager.piece_speed = piece_speed
 	
 	# update UI elements for the current level
-	$LinesHUD/LevelValue.text = str(piece_speed.string)
+	$LinesHud/LevelValue.text = str(piece_speed.string)
 	var level_color := LEVEL_COLOR_0
 	if piece_speed.gravity >= 20 * PieceSpeeds.G and piece_speed.lock_delay < 20:
 		level_color = LEVEL_COLOR_5
@@ -96,19 +96,19 @@ func _set_level(new_level:int) -> void:
 		level_color = LEVEL_COLOR_2
 	elif piece_speed.gravity >= 32:
 		level_color = LEVEL_COLOR_1
-	$LinesHUD/LevelValue.add_color_override("font_color", level_color)
+	$LinesHud/LevelValue.add_color_override("font_color", level_color)
 	
-	$LinesHUD/ProgressBar.get("custom_styles/fg").set_bg_color(
+	$LinesHud/ProgressBar.get("custom_styles/fg").set_bg_color(
 			Color(level_color.r, level_color.g, level_color.g, 0.33))
 	if new_level + 1 < Global.scenario_settings.level_up_conditions.size():
-		$LinesHUD/ProgressBar.min_value = Global.scenario_settings.level_up_conditions[new_level].value
-		$LinesHUD/ProgressBar.max_value = Global.scenario_settings.level_up_conditions[new_level + 1].value
+		$LinesHud/ProgressBar.min_value = Global.scenario_settings.level_up_conditions[new_level].value
+		$LinesHud/ProgressBar.max_value = Global.scenario_settings.level_up_conditions[new_level + 1].value
 	elif Global.scenario_settings.win_condition.type == "lines":
-		$LinesHUD/ProgressBar.min_value = Global.scenario_settings.level_up_conditions[new_level].value
-		$LinesHUD/ProgressBar.max_value = Global.scenario_settings.win_condition.value
+		$LinesHud/ProgressBar.min_value = Global.scenario_settings.level_up_conditions[new_level].value
+		$LinesHud/ProgressBar.max_value = Global.scenario_settings.win_condition.value
 	else:
-		$LinesHUD/ProgressBar.min_value = 0
-		$LinesHUD/ProgressBar.max_value = 100
+		$LinesHud/ProgressBar.min_value = 0
+		$LinesHud/ProgressBar.max_value = 100
 
 
 """
@@ -157,16 +157,16 @@ func _on_Puzzle_line_cleared(_lines_cleared: int) -> void:
 	if Global.scenario_settings.win_condition.type == "lines":
 		if new_level + 1 < Global.scenario_settings.level_up_conditions.size():
 			if Global.scenario_settings.level_up_conditions[new_level + 1].type == "lines":
-				$LinesHUD/ProgressBar.value = lines
+				$LinesHud/ProgressBar.value = lines
 		elif Global.scenario_settings.win_condition.type == "lines":
-			$LinesHUD/ProgressBar.value = lines
+			$LinesHud/ProgressBar.value = lines
 		if lines >= Global.scenario_settings.win_condition.value:
 			$ExcellentSound.play()
 			$Puzzle.end_game(4.2, "You win!")
 	
 	if Global.scenario_settings.win_condition.type == "score":
 		var total_score: int = $Puzzle/Score.score + $Puzzle/Score.combo_score
-		$ScoreHUD/ProgressBar.value = total_score
+		$ScoreHud/ProgressBar.value = total_score
 		if total_score >= Global.scenario_settings.win_condition.value:
 			$MatchEndSound.play()
 			$Puzzle.end_game(2.2, "Finish!")
@@ -176,15 +176,15 @@ func _on_Puzzle_before_game_started() -> void:
 	_set_level(0)
 
 	if Global.scenario_settings.win_condition.type == "score":
-		$ScoreHUD/TimeLabel.show()
-		$ScoreHUD/TimeValue.show()
-		$ScoreHUD/ScoreLabel.hide()
-		$ScoreHUD/ScoreValue.hide()
-		$ScoreHUD/ProgressBar.max_value = Global.scenario_settings.win_condition.value
-		$ScoreHUD/ProgressBar.value = 0
+		$ScoreHud/TimeLabel.show()
+		$ScoreHud/TimeValue.show()
+		$ScoreHud/ScoreLabel.hide()
+		$ScoreHud/ScoreValue.hide()
+		$ScoreHud/ProgressBar.max_value = Global.scenario_settings.win_condition.value
+		$ScoreHud/ProgressBar.value = 0
 	
 	if Global.scenario_settings.win_condition.type == "lines":
-		$LinesHUD/ProgressBar.value = 0
+		$LinesHud/ProgressBar.value = 0
 
 
 func _on_Puzzle_after_game_ended() -> void:

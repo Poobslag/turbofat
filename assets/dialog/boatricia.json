@@ -1,0 +1,63 @@
+{
+  "" : [
+    {
+      "who": "Boatricia",
+      "text": "Oh hey Turbo!/ I have so much on my plate right now./ I could use some cheering up...",
+      "mood": "sad0",
+      "links": [
+        {
+          "cook": "Anything I can cook for you?"
+        },
+        {
+          "hi": "I was just saying hello!"
+        }
+      ]
+    }
+  ],
+  "cook" : [
+    {
+      "who": "Turbo",
+      "text": "Anything I can cook for you?",
+      "mood": "think0"
+    },
+    {
+      "who": "Boatricia",
+      "text": "Maybe just something small! I'm not very hungry today.",
+      "links": [
+        {
+          "cook-yes": "Okay!"
+        },
+        {
+          "cook-no": "Not right now, sorry..."
+        }
+      ]
+    }
+  ],
+  "cook-yes" : [
+    {
+      "who": "Turbo",
+      "text": "Okay!",
+      "mood": "smile0",
+      "meta": "scenario"
+    }
+  ],
+  "cook-no" : [
+    {
+      "who": "Turbo",
+      "text": "Not right now, sorry...",
+      "mood": "sweat0"
+    }
+  ],
+  "hi" : [
+    {
+      "who": "Turbo",
+      "text": "I was just saying hello!/ Don't stress yourself out too much,/ okay?",
+      "mood": "smile0"
+    },
+    {
+      "who": "Boatricia",
+      "text": "Oh! Well aren't you sweet~",
+      "mood": "smile0"
+    }
+  ]
+}

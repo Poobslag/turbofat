@@ -11,15 +11,15 @@ func _ready() -> void:
 	$CollisionShape.disabled = true
 	$ShadowMesh.visible = false
 	$Viewport/Customer/Shadow.visible = false
-	var customer_definition := get_customer_definition()
-	if customer_definition:
-		$Viewport/Customer.summon(customer_definition)
+	var customer_def := get_customer_def()
+	if customer_def:
+		$Viewport/Customer.summon(customer_def)
 
 
 """
 Subclasses can override this method to define the customer's appearance.
 """
-func get_customer_definition() -> Dictionary:
+func get_customer_def() -> Dictionary:
 	return {}
 
 

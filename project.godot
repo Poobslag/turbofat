@@ -144,6 +144,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/chat/sentence-label.gd"
 }, {
+"base": "Sprite",
+"class": "SentenceSprite",
+"language": "GDScript",
+"path": "res://src/main/ui/chat/sentence-sprite.gd"
+}, {
 "base": "Path2D",
 "class": "SmoothPath",
 "language": "GDScript",
@@ -192,6 +197,7 @@ _global_script_class_icons={
 "ScenarioSettings": "",
 "Score": "",
 "SentenceLabel": "",
+"SentenceSprite": "",
 "SmoothPath": "",
 "State": "",
 "StateMachine": "",
@@ -211,12 +217,13 @@ default_bus_layout="res://assets/ui/default_bus_layout.tres"
 
 [autoload]
 
+CustomerLoader="*res://src/main/world/restaurant/customer-loader.gd"
+InteractableManager="*res://src/main/world/interactable-manager.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 Global="*res://src/main/global.gd"
 ScenarioHistory="*res://src/main/puzzle/scenario-history.gd"
-CustomerLoader="*res://src/main/world/restaurant/customer-loader.gd"
-InteractableManager="*res://src/main/world/interactable-manager.gd"
+ScenarioLibrary="*res://src/main/puzzle/scenario-library.gd"
 
 [display]
 

@@ -124,7 +124,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 """
 Turbo is dark red with black eyes.
 """
-func get_customer_definition() -> Dictionary:
+func get_customer_def() -> Dictionary:
 	return {
 		"line_rgb": "6c4331", "body_rgb": "b23823", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",
 		"ear": "0", "horn": "1", "mouth": "1", "eye": "0"

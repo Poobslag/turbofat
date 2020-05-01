@@ -17,6 +17,12 @@ const GREETINGS_PER_MINUTE := 3.0
 # The scenario currently being launched or played
 var scenario_settings := ScenarioSettings.new()
 
+# The customers who will show up during the next puzzle. The first customer in the queue will show up first.
+var customer_queue := []
+
+# 'true' if launching a puzzle from the overworld. This changes the menus and disallows restarting.
+var overworld_puzzle := false
+
 # The player's performance on the current scenario
 var scenario_performance := ScenarioPerformance.new()
 

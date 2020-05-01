@@ -29,6 +29,9 @@ var text: String
 # The behavior the chatter should perform while saying the text (laughing, sweating, etc)
 var mood: int = Mood.NONE
 
+# Metadata about the chat event, such as whether it should launch a scenario
+var meta: Array
+
 # List of string keys corresponding to branches off of this chat event.
 var links: Array
 
@@ -52,14 +55,40 @@ var accent_def: Dictionary
 Populates this object from a dictionary. This is useful when loading event data from json.
 """
 func from_dict(json: Dictionary) -> void:
-	text = json["text"]
 	who = json.get("who", "")
-	mood = _mood(json.get("mood", ""))
-	var json_links: Array = json.get("links", [])
-	accent_def = InteractableManager.get_accent_def(who)
+	text = json["text"]
+	_parse_mood(json)
+	_parse_links(json)
+	_parse_meta(json)
 	
+	if json.has("who"):
+		accent_def = InteractableManager.get_accent_def(who)
+	else:
+		# Dialog with no speaker; decorate it as a thought bubble
+		text = "(%s)" % text
+		accent_def = InteractableManager.get_accent_def("Turbo")
+
+
+"""
+Stores the contents of the json 'meta' field into our meta property as a string array.
+"""
+func _parse_meta(json: Dictionary) -> void:
+	var parsed_meta = json.get("meta", [])
+	if typeof(parsed_meta) == TYPE_STRING:
+		meta = [parsed_meta]
+	elif typeof(parsed_meta) == TYPE_ARRAY:
+		meta = parsed_meta
+	else:
+		push_error("Invalid json type: " % typeof(parsed_meta))
+
+
+"""
+Stores the json links into our link/link_texts properties as string arrays.
+"""
+func _parse_links(json: Dictionary) -> void:
 	links.clear()
 	link_texts.clear()
+	var json_links: Array = json.get("links", [])
 	if json_links:
 		for json_link in json_links:
 			if typeof(json_link) == TYPE_DICTIONARY:
@@ -70,34 +99,27 @@ func from_dict(json: Dictionary) -> void:
 				link_texts.append(json_link)
 			else:
 				push_error("Invalid json link: " % json_link)
-	
-	if not json.has("who"):
-		# Dialog with no speaker; decorate it as a thought bubble
-		text = "(%s)" % text
-		accent_def = InteractableManager.get_accent_def("Turbo")
 
 
 """
-Parses a json mood string into an enum.
+Stores the json mood string into our mood property as an enum.
 """
-func _mood(s: String) -> int:
-	var m: int
-	match s:
-		"default": m = Mood.DEFAULT
-		"smile0": m = Mood.SMILE0
-		"smile1": m = Mood.SMILE1
-		"laugh0": m = Mood.LAUGH0
-		"laugh1": m = Mood.LAUGH1
-		"think0": m = Mood.THINK0
-		"think1": m = Mood.THINK1
-		"cry0": m = Mood.CRY0
-		"cry1": m = Mood.CRY1
-		"sweat0": m = Mood.SWEAT0
-		"sweat1": m = Mood.SWEAT1
-		"rage0": m = Mood.RAGE0
-		"rage1": m = Mood.RAGE1
-		_: m = Mood.NONE
-	return m
+func _parse_mood(json: Dictionary) -> void:
+	match json.get("mood", ""):
+		"default": mood = Mood.DEFAULT
+		"smile0": mood = Mood.SMILE0
+		"smile1": mood = Mood.SMILE1
+		"laugh0": mood = Mood.LAUGH0
+		"laugh1": mood = Mood.LAUGH1
+		"think0": mood = Mood.THINK0
+		"think1": mood = Mood.THINK1
+		"cry0": mood = Mood.CRY0
+		"cry1": mood = Mood.CRY1
+		"sweat0": mood = Mood.SWEAT0
+		"sweat1": mood = Mood.SWEAT1
+		"rage0": mood = Mood.RAGE0
+		"rage1": mood = Mood.RAGE1
+		_: mood = Mood.NONE
 
 
 func _to_string() -> String:
