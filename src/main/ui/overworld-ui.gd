@@ -120,10 +120,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	if chat_event.meta:
 		var meta: Array = chat_event.meta
 		if meta.has("scenario"):
-			_launched_scenario = ScenarioSettings.new()
-			_launched_scenario.set_name("ultra-normal")
-			_launched_scenario.set_start_level(PieceSpeeds.beginner_level_0)
-			_launched_scenario.set_win_condition("score", 100)
+			_launched_scenario = ScenarioLibrary.load_scenario_from_file("boatricia")
 			if chatters[0].has_method("get_customer_def"):
 				_scenario_customer_def = chatters[0].get_customer_def()
 

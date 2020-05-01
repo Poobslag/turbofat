@@ -190,13 +190,13 @@ text = "O"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="VBoxContainer/Sprint/Normal" to="." method="_on_SprintNormal_pressed"]
-[connection signal="pressed" from="VBoxContainer/Sprint/Expert" to="." method="_on_SprintExpert_pressed"]
-[connection signal="pressed" from="VBoxContainer/Ultra/Normal" to="." method="_on_UltraNormal_pressed"]
-[connection signal="pressed" from="VBoxContainer/Ultra/Hard" to="." method="_on_UltraHard_pressed"]
-[connection signal="pressed" from="VBoxContainer/Ultra/Expert" to="." method="_on_UltraExpert_pressed"]
-[connection signal="pressed" from="VBoxContainer/Marathon/Normal" to="." method="_on_MarathonNormal_pressed"]
-[connection signal="pressed" from="VBoxContainer/Marathon/Hard" to="." method="_on_MarathonHard_pressed"]
-[connection signal="pressed" from="VBoxContainer/Marathon/Expert" to="." method="_on_MarathonExpert_pressed"]
-[connection signal="pressed" from="VBoxContainer/Marathon/Master" to="." method="_on_MarathonMaster_pressed"]
+[connection signal="chose_scenario" from="VBoxContainer/Sprint/Normal" to="." method="_on_ScenarioButton_chose_scenario"]
+[connection signal="chose_scenario" from="VBoxContainer/Sprint/Expert" to="." method="_on_ScenarioButton_chose_scenario"]
+[connection signal="chose_scenario" from="VBoxContainer/Ultra/Normal" to="." method="_on_ScenarioButton_chose_scenario"]
+[connection signal="chose_scenario" from="VBoxContainer/Ultra/Hard" to="." method="_on_ScenarioButton_chose_scenario"]
+[connection signal="chose_scenario" from="VBoxContainer/Ultra/Expert" to="." method="_on_ScenarioButton_chose_scenario"]
+[connection signal="chose_scenario" from="VBoxContainer/Marathon/Normal" to="." method="_on_ScenarioButton_chose_scenario"]
+[connection signal="chose_scenario" from="VBoxContainer/Marathon/Hard" to="." method="_on_ScenarioButton_chose_scenario"]
+[connection signal="chose_scenario" from="VBoxContainer/Marathon/Expert" to="." method="_on_ScenarioButton_chose_scenario"]
+[connection signal="chose_scenario" from="VBoxContainer/Marathon/Master" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="pressed" from="OverworldButton" to="." method="_on_OverworldButton_pressed"]

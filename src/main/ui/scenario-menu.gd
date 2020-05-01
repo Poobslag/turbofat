@@ -25,45 +25,10 @@ func _ready() -> void:
 	$VBoxContainer/Marathon/Normal/Button.grab_focus()
 
 
-func _change_scenario_scene(scenario_settings: ScenarioSettings) -> void:
-	ScenarioLibrary.change_scenario_scene(scenario_settings, false)
-
-
-func _on_MarathonNormal_pressed() -> void:
-	_change_scenario_scene(ScenarioLibrary.marathon_normal)
-
-
-func _on_MarathonHard_pressed() -> void:
-	_change_scenario_scene(ScenarioLibrary.marathon_hard)
-
-
-func _on_MarathonExpert_pressed() -> void:
-	_change_scenario_scene(ScenarioLibrary.marathon_expert)
-
-
-func _on_MarathonMaster_pressed() -> void:
-	_change_scenario_scene(ScenarioLibrary.marathon_master)
-
-
-func _on_SprintNormal_pressed() -> void:
-	_change_scenario_scene(ScenarioLibrary.sprint_normal)
-
-
-func _on_SprintExpert_pressed() -> void:
-	_change_scenario_scene(ScenarioLibrary.sprint_expert)
-
-
-func _on_UltraNormal_pressed() -> void:
-	_change_scenario_scene(ScenarioLibrary.ultra_normal)
-
-
-func _on_UltraHard_pressed() -> void:
-	_change_scenario_scene(ScenarioLibrary.ultra_hard)
-
-
-func _on_UltraExpert_pressed() -> void:
-	_change_scenario_scene(ScenarioLibrary.ultra_expert)
-
-
 func _on_OverworldButton_pressed() -> void:
 	get_tree().change_scene("res://src/main/world/Overworld.tscn")
+
+
+func _on_ScenarioButton_chose_scenario(scenario_name: String) -> void:
+	var scenario_settings := ScenarioLibrary.load_scenario_from_file(scenario_name)
+	ScenarioLibrary.change_scenario_scene(scenario_settings, false)

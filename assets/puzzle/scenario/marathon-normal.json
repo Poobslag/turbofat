@@ -1,0 +1,54 @@
+{
+  "start-level": "0",
+  "level-ups": [
+    {
+      "type": "lines",
+      "value": "10",
+      "level": "1"
+    },
+    {
+      "type": "lines",
+      "value": "20",
+      "level": "2"
+    },
+    {
+      "type": "lines",
+      "value": "30",
+      "level": "3"
+    },
+    {
+      "type": "lines",
+      "value": "40",
+      "level": "4"
+    },
+    {
+      "type": "lines",
+      "value": "50",
+      "level": "5"
+    },
+    {
+      "type": "lines",
+      "value": "60",
+      "level": "6"
+    },
+    {
+      "type": "lines",
+      "value": "70",
+      "level": "7"
+    },
+    {
+      "type": "lines",
+      "value": "80",
+      "level": "8"
+    },
+    {
+      "type": "lines",
+      "value": "90",
+      "level": "9"
+    }
+  ],
+  "win-condition": {
+    "type": "lines",
+    "value": "100"
+  }
+}

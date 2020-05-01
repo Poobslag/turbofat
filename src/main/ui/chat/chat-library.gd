@@ -2,8 +2,8 @@ class_name ChatLibrary
 """
 Loads dialog from files.
 
-Dialog is stored as a set of json resources. This class parses those json resources and into ChatEvents so they can be
-fed into the UI.
+Dialog is stored as a set of json resources. This class parses those json resources into ChatEvents so they can be fed
+into the UI.
 """
 
 """

@@ -1,6 +1,6 @@
 {
   "start-level": "A1",
-  "level-up": [
+  "level-ups": [
     {
       "type": "lines",
       "value": "50",

@@ -1,0 +1,7 @@
+{
+  "start-level": "A0",
+  "win-condition": {
+    "type": "time",
+    "value": "150"
+  }
+}

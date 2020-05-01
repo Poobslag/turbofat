@@ -6,7 +6,7 @@ the player's high score on a separate label.
 """
 
 # signal emitted when the player presses the scenario button
-signal pressed
+signal chose_scenario(scenario_name)
 
 export (String) var scenario_name: String
 
@@ -31,4 +31,4 @@ func get_best_text(scenario_name: String) -> String:
 
 
 func _on_Button_pressed() -> void:
-	emit_signal("pressed")
+	emit_signal("chose_scenario", scenario_name)

@@ -35,7 +35,7 @@ var active_piece := ActivePiece.new(PieceTypes.piece_null)
 var tile_map_dirty := false
 
 func _ready() -> void:
-	piece_speed = PieceSpeeds.beginner_level_0
+	piece_speed = PieceSpeeds.speed("0")
 	$States.set_state($States/None)
 
 

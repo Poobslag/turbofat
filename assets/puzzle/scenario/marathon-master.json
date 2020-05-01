@@ -1,0 +1,35 @@
+{
+  "start-level": "FA",
+  "level-ups": [
+    {
+      "type": "lines",
+      "value": "100",
+      "level": "FB"
+    },
+    {
+      "type": "lines",
+      "value": "200",
+      "level": "FC"
+    },
+    {
+      "type": "lines",
+      "value": "300",
+      "level": "FD"
+    },
+    {
+      "type": "lines",
+      "value": "400",
+      "level": "FE"
+    },
+    {
+      "type": "lines",
+      "value": "500",
+      "level": "FF"
+    }
+  ],
+  "win-condition": {
+    "type": "lines",
+    "value": "1000",
+    "lenient-value": "500"
+  }
+}

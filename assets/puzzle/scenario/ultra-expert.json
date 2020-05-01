@@ -1,0 +1,7 @@
+{
+  "start-level": "F0",
+  "win-condition": {
+    "type": "score",
+    "value": "3000"
+  }
+}
