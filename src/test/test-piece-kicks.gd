@@ -51,7 +51,9 @@ func test_framework() -> void:
 
 func _assert_kick() -> void:
 	var result := _kick_piece()
-	var text := "Rotating '%s' block from %s -> %s should kick %s" % [_from_piece.type.string, _from_piece.orientation, _to_piece.orientation, _to_piece.pos - _from_piece.pos]
+	var text := "Rotating '%s' block from %s -> %s should kick %s" \
+			% [_from_piece.type.string, _from_piece.orientation,
+			_to_piece.orientation, _to_piece.pos - _from_piece.pos]
 	assert_eq(result, _to_piece.pos - _from_piece.pos, text)
 
 
@@ -96,7 +98,8 @@ func _create_active_piece(ascii_grid: Array) -> ActivePiece:
 			_active_piece.orientation = pos_arr_index
 			break
 	if !_active_piece:
-		push_error("Could not find piece position/orientation in '%s' grid" % ("from" if ascii_grid == from_grid else "to"))
+		push_error("Could not find piece position/orientation in '%s' grid"\
+				% ("from" if ascii_grid == from_grid else "to"))
 	return _active_piece
 
 

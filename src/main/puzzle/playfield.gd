@@ -1,8 +1,8 @@
 class_name Playfield
 extends Control
 """
-Stores information about the game playfield: writing pieces to the playfield, calculating whether a line was cleared or whether
-a box was made, pausing and playing sound effects
+Stores information about the game playfield: writing pieces to the playfield, calculating whether a line was cleared
+or whether a box was made, pausing and playing sound effects
 """
 
 # signal emitted when a line is cleared
@@ -70,7 +70,7 @@ func _physics_process(delta: float) -> void:
 
 
 """
-Returns true if the Playfield is ready for a new piece to drop; false if it's paused for some kind of animation or delay.
+Returns false the playfield is paused for an of animation or delay which should prevent a new piece from appearing.
 """
 func ready_for_new_piece() -> bool:
 	return _remaining_line_clear_frames <= 0 and _remaining_box_build_frames <= 0
@@ -90,7 +90,8 @@ Writes a piece to the playfield, checking whether it makes any boxes or clears a
 
 Returns true if the written piece results in a line clear.
 """
-func write_piece(pos: Vector2, orientation: int, type: PieceType, piece_speed: PieceSpeed, death_piece := false) -> bool:
+func write_piece(pos: Vector2, orientation: int, type: PieceType, piece_speed: PieceSpeed,
+		death_piece := false) -> bool:
 	for i in range(type.pos_arr[orientation].size()):
 		var block_pos := type.get_cell_position(orientation, i)
 		var block_color := type.get_cell_color(orientation, i)
@@ -168,9 +169,9 @@ func _filled_rectangles(db: Array, box_height: int) -> Array:
 
 
 """
-Calculates the possible locations for a (1 x height) rectangle in the playfield, capable of being a part of a 3x3, 3x4, or
-3x5 'box'. These rectangles must consist of dropped pieces which haven't been split apart by lines. They can't consist
-of any empty cells or any previously built boxes.
+Calculates the possible locations for a (1 x height) rectangle in the playfield, capable of being a part of a 3x3,
+3x4, or 3x5 'box'. These rectangles must consist of dropped pieces which haven't been split apart by lines. They can't
+consist of any empty cells or any previously built boxes.
 """
 func _filled_columns() -> Array:
 	var db := _int_matrix()
@@ -318,8 +319,10 @@ func _process_line_clear() -> void:
 			Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
 			_cleared_lines.append(y)
 			for x in range(COL_COUNT):
-				if $TileMapClip/TileMap.get_cell(x, y) == 1 and int($TileMapClip/TileMap.get_cell_autotile_coord(x, y).x) & PieceTypes.CONNECTED_LEFT == 0:
-					if $TileMapClip/TileMap.get_cell_autotile_coord(x, y).y == 4:
+				var autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
+				if $TileMapClip/TileMap.get_cell(x, y) == 1 \
+						and int(autotile_coord.x) & PieceTypes.CONNECTED_LEFT == 0:
+					if autotile_coord.y == 4:
 						# cake piece
 						line_score += 10
 						Global.scenario_performance.box_score += 10

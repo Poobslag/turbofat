@@ -148,19 +148,22 @@ func _spawn_piece() -> void:
 		# player is holding left; start piece on the left side
 		var old_pos := active_piece.pos
 		_reset_piece_target()
-		_kick_piece([Vector2(-4, 0), Vector2(-4, -1), Vector2(-3, 0), Vector2(-3, -1), Vector2(-2, 0), Vector2(-2, -1), Vector2(-1, 0), Vector2(-1, -1)])
+		_kick_piece([Vector2(-4, 0), Vector2(-4, -1), Vector2(-3, 0), Vector2(-3, -1),
+				Vector2(-2, 0), Vector2(-2, -1), Vector2(-1, 0), Vector2(-1, -1)])
 		_move_piece_to_target()
 		if old_pos != active_piece.pos:
 			$MoveSound.play()
 	elif initial_das_dir == 0:
 		_reset_piece_target()
-		_kick_piece([Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1), Vector2(1, 0), Vector2(1, -1)])
+		_kick_piece([Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1),
+				Vector2(1, 0), Vector2(1, -1)])
 		_move_piece_to_target()
 	elif initial_das_dir == 1:
 		# player is holding right; start piece on the right side
 		var old_pos := active_piece.pos
 		_reset_piece_target()
-		_kick_piece([Vector2(4, 0), Vector2(4, -1), Vector2(3, 0), Vector2(3, -1), Vector2(2, 0), Vector2(2, -1), Vector2(1, 0), Vector2(1, -1)])
+		_kick_piece([Vector2(4, 0), Vector2(4, -1), Vector2(3, 0), Vector2(3, -1),
+				Vector2(2, 0), Vector2(2, -1), Vector2(1, 0), Vector2(1, -1)])
 		_move_piece_to_target()
 		if old_pos != active_piece.pos:
 			$MoveSound.play()
@@ -213,7 +216,8 @@ func apply_player_input() -> bool:
 	if $States.get_state() == $States/MovePiece:
 		_reset_piece_target()
 		_calc_target_orientation()
-		if _target_piece_orientation != active_piece.orientation and not _can_move_active_piece_to(_target_piece_pos, _target_piece_orientation):
+		if _target_piece_orientation != active_piece.orientation and not _can_move_active_piece_to(
+				_target_piece_pos, _target_piece_orientation):
 			_kick_piece()
 		_move_piece_to_target(true)
 		
@@ -222,9 +226,11 @@ func apply_player_input() -> bool:
 		
 		# automatically trigger DAS if you're pushing a piece towards an obstruction. otherwise, pieces might slip
 		# past a nook if you're holding a direction before DAS triggers
-		if Input.is_action_pressed("ui_left") and not _can_move_active_piece_to(Vector2(active_piece.pos.x - 1, active_piece.pos.y), active_piece.orientation):
+		if Input.is_action_pressed("ui_left") and not _can_move_active_piece_to(
+				Vector2(active_piece.pos.x - 1, active_piece.pos.y), active_piece.orientation):
 			_input_left_frames = 3600
-		if Input.is_action_pressed("ui_right") and not _can_move_active_piece_to(Vector2(active_piece.pos.x + 1, active_piece.pos.y), active_piece.orientation):
+		if Input.is_action_pressed("ui_right") and not _can_move_active_piece_to(
+				Vector2(active_piece.pos.x + 1, active_piece.pos.y), active_piece.orientation):
 			_input_right_frames = 3600
 		
 		if Input.is_action_just_pressed("hard_drop") or _input_hard_drop_frames > piece_speed.delayed_auto_shift_delay:
@@ -322,7 +328,8 @@ func _calc_smush_target() -> void:
 		_target_piece_pos.y += 1
 		valid_target_pos = true
 		for i in range(active_piece.type.pos_arr[_target_piece_orientation].size()):
-			var target_block_pos := active_piece.type.get_cell_position(_target_piece_orientation, i) + Vector2(_target_piece_pos.x, _target_piece_pos.y)
+			var target_block_pos := active_piece.type.get_cell_position(_target_piece_orientation, i) \
+					+ _target_piece_pos
 			var valid_block_pos := true
 			valid_block_pos = valid_block_pos and target_block_pos.x >= 0 and target_block_pos.x < Playfield.COL_COUNT
 			valid_block_pos = valid_block_pos and target_block_pos.y >= 0 and target_block_pos.y < Playfield.ROW_COUNT

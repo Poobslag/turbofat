@@ -31,7 +31,8 @@ func _process(delta: float) -> void:
 	if _stretch_seconds_remaining > 0:
 		for row in range(_row_count):
 			for col in range(_col_count):
-				if _stretch_pos[row][col] > _max_distance * (_stretch_seconds_total -_stretch_seconds_remaining) / _stretch_seconds_total:
+				if _stretch_pos[row][col] > _max_distance \
+						* (_stretch_seconds_total -_stretch_seconds_remaining) / _stretch_seconds_total:
 					set_cell(col, row, 0, false, false, false, Vector2(0, _color_y))
 				else:
 					set_cell(col, row, -1)

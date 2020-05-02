@@ -71,8 +71,8 @@ Returns 'true' if the specified position and location is unobstructed, and the p
 if parts of this piece would be out of the playfield or obstructed by blocks.
 
 Parameters:
-	'is_cell_blocked': A callback function which returns 'true' if a specified cell is blocked, either because it lies outside the
-		playfield or is obstructed by a block
+	'is_cell_blocked': A callback function which returns 'true' if a specified cell is blocked, either because it lies
+		outside the playfield or is obstructed by a block
 	
 	'pos': The desired position to move the piece to
 	
@@ -93,8 +93,8 @@ func can_move_piece_to(is_cell_blocked: FuncRef, pos: Vector2, orientation: int)
 Kicks a rotated piece into a nearby empty space. This should only be called when orientation has already failed.
 
 Parameters:
-	'is_cell_blocked': A callback function which returns 'true' if a specified cell is blocked, either because it lies outside the
-		playfield or is obstructed by a block
+	'is_cell_blocked': A callback function which returns 'true' if a specified cell is blocked, either because it lies
+		outside the playfield or is obstructed by a block
 	
 	'target_pos': The player's desired position for the piece.
 	

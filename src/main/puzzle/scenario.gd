@@ -125,11 +125,14 @@ func _on_Puzzle_game_ended() -> void:
 		_grade_message += "Speed: %.1f (%s)\n" % [rank_result.speed, Global.grade(rank_result.speed_rank)]
 	else:
 		_grade_message += "Lines: %.1f (%s)\n" % [rank_result.lines, Global.grade(rank_result.lines_rank)]
-	_grade_message += "Boxes: %.1f (%s)\n" % [rank_result.box_score_per_line, Global.grade(rank_result.box_score_per_line_rank)]
-	_grade_message += "Combos: %.1f (%s)\n" % [rank_result.combo_score_per_line, Global.grade(rank_result.combo_score_per_line_rank)]
+	_grade_message += "Boxes: %.1f (%s)\n" % [rank_result.box_score_per_line,
+			Global.grade(rank_result.box_score_per_line_rank)]
+	_grade_message += "Combos: %.1f (%s)\n" % [rank_result.combo_score_per_line,
+			Global.grade(rank_result.combo_score_per_line_rank)]
 	if Global.scenario_settings.win_condition.type == ScenarioSettings.SCORE:
 		var seconds := ceil(Global.scenario_performance.seconds)
-		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60, Global.grade(rank_result.seconds_rank)]
+		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60,
+				Global.grade(rank_result.seconds_rank)]
 		if not Global.scenario_performance.died and rank_result.seconds_rank < 24:
 			$ApplauseSound.play()
 	else:
@@ -146,7 +149,8 @@ func _on_Puzzle_line_cleared(_lines_cleared: int) -> void:
 	var lines: int = Global.scenario_performance.lines
 	var new_level := _level
 	
-	while new_level + 1 < Global.scenario_settings.level_ups.size() and Global.scenario_settings.level_ups[new_level + 1].value <= lines:
+	while new_level + 1 < Global.scenario_settings.level_ups.size() \
+			and Global.scenario_settings.level_ups[new_level + 1].value <= lines:
 		new_level += 1
 	
 	if _level != new_level:
