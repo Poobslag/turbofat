@@ -50,7 +50,7 @@ const FOOD_COLORS: Array = [
 ]
 
 # delays between when customer arrives and when door chime is played (in seconds)
-const CHIME_DELAYS: Array = [0.1, 0.2, 0.3, 0.5, 1.0, 1.5, 2.0]
+const CHIME_DELAYS: Array = [0.5, 1.0, 1.5, 2.0, 3.0]
 
 # maps customer orientations to appropriate (x, y) direction vectors
 const ORIENTATION_VECTORS := {
@@ -84,9 +84,6 @@ var _total_seconds := 0.0
 # the index of the previously launched food color. stored to avoid showing the same color twice consecutively
 var _food_color_index := 0
 
-# true if we're in the process of 'summoning a customer' -- loading all of their assets and waiting for them to render
-var _summoning := false
-
 # the definition of the customer who was most recently summoned
 var _customer_def: Dictionary
 
@@ -99,6 +96,8 @@ var _combo_voice_index := 0
 
 # current voice stream player. we track this to prevent a customer from saying two things at once
 var _current_voice_stream: AudioStreamPlayer2D
+
+var _customer_loader := CustomerLoader.new()
 
 # sounds the customers make when they enter the restaurant
 onready var hello_voices := [$HelloVoice0, $HelloVoice1, $HelloVoice2, $HelloVoice3]
@@ -145,10 +144,6 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if _summoning and CustomerLoader.is_customer_ready(_customer_def):
-		_update_customer_properties()
-		_summoning = false
-
 	if Engine.is_editor_hint():
 		# avoid playing animations, bouncing head in editor. manually set frames instead
 		_apply_default_mouth_and_eye_frames()
@@ -336,10 +331,9 @@ func summon(customer_def: Dictionary, use_defaults: bool = true) -> void:
 		put_if_absent(_customer_def, "mouth", ["0", "0", "1"][randi() % 3])
 		put_if_absent(_customer_def, "body", "0")
 	
-	_summoning = true
-	CustomerLoader.summon_customer(_customer_def)
-	visible = false
+	_customer_loader.load_details(_customer_def)
 	emit_signal("customer_left")
+	_update_customer_properties()
 
 
 """

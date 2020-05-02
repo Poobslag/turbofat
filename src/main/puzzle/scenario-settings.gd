@@ -95,7 +95,6 @@ func add_level_up(type: int, value: int, level: String) -> void:
 	level_up.type = type
 	level_up.value = value
 	level_up.level = level
-	print("116: %s %s" % [level_up.level, typeof(level_up.level)])
 	level_ups.append(level_up)
 
 
