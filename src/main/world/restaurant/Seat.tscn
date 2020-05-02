@@ -37,7 +37,6 @@ z_index = -10
 texture = ExtResource( 3 )
 
 [node name="Customer" parent="." instance=ExtResource( 1 )]
-visible = false
 position = Vector2( 1.228, -149.237 )
 
 [node name="WoodTable0" type="Sprite" parent="."]

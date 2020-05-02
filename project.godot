@@ -59,6 +59,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/customer-3d.gd"
 }, {
+"base": "Reference",
+"class": "CustomerLoader",
+"language": "GDScript",
+"path": "res://src/main/world/restaurant/customer-loader.gd"
+}, {
 "base": "Sprite",
 "class": "MultiOutlineSprite",
 "language": "GDScript",
@@ -180,6 +185,7 @@ _global_script_class_icons={
 "CheatCodeDetector": "",
 "Customer": "",
 "Customer3D": "",
+"CustomerLoader": "",
 "MultiOutlineSprite": "",
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",
@@ -207,7 +213,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Turbo Fat"
-run/main_scene="res://src/main/ui/ScenarioMenu.tscn"
+run/main_scene="res://src/main/ui/LoadingScreen.tscn"
 config/icon="res://assets/ui/icon.png"
 config/version="0.0419"
 
@@ -217,11 +223,11 @@ default_bus_layout="res://assets/ui/default_bus_layout.tres"
 
 [autoload]
 
-CustomerLoader="*res://src/main/world/restaurant/customer-loader.gd"
+Global="*res://src/main/global.gd"
 InteractableManager="*res://src/main/world/interactable-manager.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
-Global="*res://src/main/global.gd"
+ResourceCache="*res://src/main/ResourceCache.tscn"
 ScenarioHistory="*res://src/main/puzzle/scenario-history.gd"
 ScenarioLibrary="*res://src/main/puzzle/scenario-library.gd"
 
@@ -233,11 +239,6 @@ window/stretch/aspect="keep"
 [editor_plugins]
 
 enabled=PoolStringArray( "gut" )
-
-[global]
-
-nvidia=false
-env=false
 
 [gui]
 
@@ -320,13 +321,10 @@ rewind_text={
  ]
 }
 
-[oversampling]
-
-stretch/mode=false
-
 [rendering]
 
 quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
+threads/thread_model=2
 quality/filters/msaa=2
 quality/depth/hdr=false
 environment/default_environment="res://src/main/default_env.tres"

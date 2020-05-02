@@ -1,17 +1,9 @@
-tool
-extends Node
+class_name CustomerLoader
 """
 Loads customer resources based on customer definitions. For example, a customer definition might describe high-level
 information about the customer's appearance, such as 'she has red eyes' or 'she has a star on her forehead'. This
 class converts that information into granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030', and also
 loads resource files specific to each customer.
-
-Customers can have many large resources associated with them, so these resources are loaded in threads. They're loaded
-in threads because preloading them would cause a significant delay in launching the game, and loading them during
-scene transitions or during gameplay would cause long pauses. CustomerLoader handles launching and cleaning up these
-threads and other concurrency issues.
-
-CustomerLoader is loaded as a singleton in this project to ensure the same resource isn't loaded multiple times.
 """
 
 # How large customers can grow; 5.0 = 5x normal size
@@ -39,26 +31,9 @@ const DEFINITIONS := [
 	{"line_rgb": "41281e", "body_rgb": "0b45a6", "eye_rgb": "fad541 ffffff", "horn_rgb": "282828"}  # dark blue
 ]
 
-# pool of threads which are currently loading resources
-var _threads := [];
-
-# list of customer definitions which are loaded, but haven't been asked about
-var _ready_customer_defs := {}
-
-# mutex which ensures we don't load multiple resources concurrently
-var _load_mutex := Mutex.new()
-
-func _exit_tree() -> void:
-	# wait until all threads are done to dispose of them
-	wait_to_finish()
-
-
 """
-Loads all the appropriate resources and property definitions for a customer in a background thread. This involves
-loading 20-30 textures and animations, many of which are quite large. The resulting textures are stored back in the
-'customer_def' parameter which is passed in.
-
-Loading these textures can take several seconds. Progress can be monitored by calling 'is_customer_ready'.
+Loads all the appropriate resources and property definitions for a customer. The resulting textures are stored back in
+the 'customer_def' parameter which is passed in.
 
 This can also be invoked with an empty customer definition, in which case the customer definition will be populated
 with the property definitions needed to unload all of their textures and colors.
@@ -67,44 +42,13 @@ Parameters:
 	'customer_def': Describes some high-level information about the customer's appearance, such as 'she has red
 		eyes'. The response includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
 """
-func summon_customer(customer_def: Dictionary) -> void:
-	_prune_inactive_threads()
-	var thread := Thread.new()
-	_threads.append(thread)
-	thread.start(self, "_load_all", customer_def)
-
-
-"""
-Returns 'true' if the specified customer_def has been fully populated with the necessary textures and metadata to
-draw the customer.
-
-After returning true, this method also purges the customer_def from its cache.
-
-Parameter: 'customer_def' is a customer definition which has been previously passed to the 'summon_customer' method.
-"""
-func is_customer_ready(customer_def: Dictionary) -> bool:
-	return _ready_customer_defs.erase(customer_def)
-
-
-"""
-Waits for all threads to become inactive. Threads must be disposed (or 'joined') for portability.
-"""
-func wait_to_finish() -> void:
-	for thread in _threads:
-		thread.wait_to_finish()
-
-
-"""
-Prunes inactive threads from our thread pool.
-"""
-func _prune_inactive_threads() -> void:
-	var i := 0
-	while i < _threads.size():
-		var thread: Thread = _threads[i]
-		if not thread.is_active():
-			_threads.remove(i)
-		else:
-			i += 1
+func load_details(customer_def: Dictionary) -> void:
+	_load_ear(customer_def)
+	_load_horn(customer_def)
+	_load_mouth(customer_def)
+	_load_eye(customer_def)
+	_load_body(customer_def)
+	_load_colors(customer_def)
 
 
 """
@@ -114,9 +58,6 @@ The input customer_def contains key/value pairs which we need to map to a textur
 this key/value pair to a resource such as res://assets/world/customer/0/ear-z1.png. The input parameters include the
 dictionary of key/value pairs, which specific key/value pair we should look up, and the filename to associate with the
 key/value pair.
-
-This operation is locked with a mutex to avoid 'possible cyclic resource inclusion' errors from loading the same
-resource in multiple threads concurrently.
 
 Parameters:
 	'customer_def': The dictionary of key/value pairs defining a set of textures to load. 
@@ -139,9 +80,7 @@ func _resource(customer_def: Dictionary, key: String, filename: String) -> Resou
 			# but also throws an error.
 			pass
 		else:
-			_load_mutex.lock()
 			resource = load(resource_path)
-			_load_mutex.unlock()
 	return resource
 
 
@@ -268,16 +207,3 @@ func _load_colors(customer_def: Dictionary) -> void:
 		horn_color = Color(customer_def.horn_rgb)
 	customer_def["shader:Neck0/Neck1/HornZ0:green"] = horn_color
 	customer_def["shader:Neck0/Neck1/HornZ1:green"] = horn_color
-
-
-"""
-Loads all the appropriate resources and property definitions based on a customer definition.
-"""
-func _load_all(customer_def: Dictionary) -> void:
-	_load_ear(customer_def)
-	_load_horn(customer_def)
-	_load_mouth(customer_def)
-	_load_eye(customer_def)
-	_load_body(customer_def)
-	_load_colors(customer_def)
-	_ready_customer_defs[customer_def] = true
