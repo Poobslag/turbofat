@@ -34,7 +34,7 @@ var score_rank := 0.0
 var died := false
 
 """
-Returns this object's data as a dictionary. This is useful when saving/loading data.
+Returns this object's data as a dictionary. Used for saving json data.
 """
 func to_dict() -> Dictionary:
 	return {
@@ -56,7 +56,7 @@ func to_dict() -> Dictionary:
 
 
 """
-Populates this object from a dictionary. This is useful when saving/loading json data.
+Populates this object from a dictionary. Used for loading json data.
 """
 func from_dict(json: Dictionary) -> void:
 	speed = json["speed"]

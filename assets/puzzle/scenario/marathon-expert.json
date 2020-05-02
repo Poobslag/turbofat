@@ -1,0 +1,40 @@
+{
+  "start-level": "A5",
+  "level-ups": [
+    {
+      "type": "lines",
+      "value": "75",
+      "level": "AA"
+    },
+    {
+      "type": "lines",
+      "value": "100",
+      "level": "AB"
+    },
+    {
+      "type": "lines",
+      "value": "125",
+      "level": "AC"
+    },
+    {
+      "type": "lines",
+      "value": "150",
+      "level": "AD"
+    },
+    {
+      "type": "lines",
+      "value": "175",
+      "level": "AE"
+    },
+    {
+      "type": "lines",
+      "value": "200",
+      "level": "AF"
+    }
+  ],
+  "win-condition": {
+    "type": "lines",
+    "value": "300",
+    "lenient-value": "200"
+  }
+}

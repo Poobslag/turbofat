@@ -52,7 +52,7 @@ appearance, such as 'blue', 'soccer balls' and 'giant'.
 var accent_def: Dictionary
 
 """
-Populates this object from a dictionary. This is useful when loading event data from json.
+Populates this object from a dictionary. Used for loading json data.
 """
 func from_dict(json: Dictionary) -> void:
 	who = json.get("who", "")

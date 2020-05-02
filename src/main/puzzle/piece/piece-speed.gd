@@ -4,8 +4,8 @@ Stores data about a specific 'speed level' such as how fast pieces should drop, 
 the playfield, and how long to pause when clearing lines.
 """
 
-# level string, which appears in the 'level' panel
-var string: String
+# level string which appears in the 'level' panel
+var level: String
 
 # how fast pieces should drop, as a fraction of 256. 32 = once every 8 frames, 512 = twice a frame
 var gravity: int
@@ -31,10 +31,10 @@ var line_clear_delay: int
 # number of frames to pause when making a box
 var box_delay: int
 
-func _init(init_string: String, init_gravity: int, init_appearance_delay: int, init_line_appearance_delay: int,
+func _init(init_level: String, init_gravity: int, init_appearance_delay: int, init_line_appearance_delay: int,
 		init_post_lock_delay: int, init_delayed_auto_shift_delay: int, init_lock_delay: int,
 		init_line_clear_delay: int, init_box_delay: int):
-	string = init_string
+	level = init_level
 	gravity = init_gravity
 	appearance_delay = init_appearance_delay
 	line_appearance_delay = init_line_appearance_delay
