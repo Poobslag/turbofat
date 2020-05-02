@@ -265,7 +265,8 @@ func _slip_from_narrow_surfaces(delta: float) -> bool:
 				if slip_velocity.length() > collision.collider.foothold_radius:
 					# Turbo is too far from the center, and should slip
 					just_slipped = true
-					_accelerate_player_xy(delta, Vector2(slip_velocity.x, slip_velocity.z), MAX_SLIP_ACCELERATION, MAX_NARROW_SLIP_SPEED)
+					_accelerate_player_xy(delta, Vector2(slip_velocity.x, slip_velocity.z),
+							MAX_SLIP_ACCELERATION, MAX_NARROW_SLIP_SPEED)
 	return just_slipped
 
 

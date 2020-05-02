@@ -77,7 +77,8 @@ func _ready() -> void:
 	if editing:
 		# Print the curve's details. This is used for developers to add or modify the curve definitions in this class.
 		for i in curve.get_point_count():
-			print("[Vector2%s, Vector2%s, Vector2%s]," % [curve.get_point_position(i), curve.get_point_in(i), curve.get_point_out(i)])
+			print("[Vector2%s, Vector2%s, Vector2%s]," % \
+					[curve.get_point_position(i), curve.get_point_in(i), curve.get_point_out(i)])
 
 
 """

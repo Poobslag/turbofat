@@ -357,7 +357,8 @@ func show_food_effects(delay := 0.0) -> void:
 	if delay >= 0.0:
 		yield(get_tree().create_timer(delay), "timeout")
 	play_voice(munch_sound)
-	$Tween.interpolate_property($Sprites/Neck0/Neck1, "position:x", clamp($Sprites/Neck0/Neck1.position.x - 6, -20, 0), 0, 0.5,
+	$Tween.interpolate_property($Sprites/Neck0/Neck1, "position:x",
+			clamp($Sprites/Neck0/Neck1.position.x - 6, -20, 0), 0, 0.5,
 			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 	$Tween.start()
 	emit_signal("food_eaten")

@@ -29,7 +29,8 @@ Parameters:
 	
 	'customer_def': Customers who should appear in the restaurant.
 """
-func change_scenario_scene(scenario_settings: ScenarioSettings, overworld_puzzle: bool, customer_def: Dictionary = {}) -> void:
+func change_scenario_scene(scenario_settings: ScenarioSettings, overworld_puzzle: bool,
+		customer_def: Dictionary = {}) -> void:
 	Global.scenario_settings = scenario_settings
 	Global.customer_queue.push_back(customer_def)
 	Global.overworld_puzzle = overworld_puzzle
