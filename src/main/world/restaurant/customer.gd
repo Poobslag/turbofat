@@ -558,9 +558,6 @@ func _update_customer_properties() -> void:
 			var node_path: String = "Sprites/" + key.split(":")[1]
 			var property_name: String = key.split(":")[2]
 			get_node(node_path).set(property_name, _customer_def[key])
-			if property_name == "texture" and _customer_def[key]:
-				get_node(node_path).vframes = max(1, int(round(_customer_def[key].get_height() / 1025)))
-				get_node(node_path).hframes = max(1, int(round(_customer_def[key].get_width() / 1025)))
 		if key.find("shader:") == 0:
 			var node_path: String = "Sprites/" + key.split(":")[1]
 			var shader_param: String = key.split(":")[2]

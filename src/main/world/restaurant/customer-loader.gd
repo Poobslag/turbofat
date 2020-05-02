@@ -52,7 +52,7 @@ func load_details(customer_def: Dictionary) -> void:
 
 
 """
-Loads a customer resource, such as an image or texture based on a customer_def key/value pair.
+Loads a customer texture based on a customer_def key/value pair.
 
 The input customer_def contains key/value pairs which we need to map to a texture to load, such as {'ear': '0'}. We map
 this key/value pair to a resource such as res://assets/world/customer/0/ear-z1.png. The input parameters include the
@@ -67,7 +67,8 @@ Parameters:
 	'filename': The stripped-down filename of the resource to look up. All customer texture files have a path of
 		res://assets/world/customer/0/{something}.png, so this parameter only specifies the {something}.
 """
-func _resource(customer_def: Dictionary, key: String, filename: String) -> Resource:
+func _load_texture(customer_def: Dictionary, node_path: String, key: String, filename: String) -> void:
+	# load the texture resource
 	var resource: Resource;
 	if not customer_def.has(key):
 		# The key was not specified in the customer definition. This is not an error condition, a customer might not
@@ -81,40 +82,45 @@ func _resource(customer_def: Dictionary, key: String, filename: String) -> Resou
 			pass
 		else:
 			resource = load(resource_path)
-	return resource
+	
+	# assign the texture properties
+	customer_def["property:%s:texture" % node_path] = resource
+	if resource:
+		customer_def["property:%s:vframes" % node_path] = max(1, int(round(resource.get_height() / 1025)))
+		customer_def["property:%s:hframes" % node_path] = max(1, int(round(resource.get_width() / 1025)))
 
 
 """
 Loads the resources for a customer's ears based on a customer definition.
 """
 func _load_ear(customer_def: Dictionary) -> void:
-	customer_def["property:Neck0/Neck1/EarZ0:texture"] = _resource(customer_def, "ear", "ear-z0-sheet")
-	customer_def["property:Neck0/Neck1/EarZ1:texture"] = _resource(customer_def, "ear", "ear-z1-sheet")
-	customer_def["property:Neck0/Neck1/EarZ2:texture"] = _resource(customer_def, "ear", "ear-z2-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/EarZ0", "ear", "ear-z0-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/EarZ1", "ear", "ear-z1-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/EarZ2", "ear", "ear-z2-sheet")
 
 
 """
 Loads the resources for a customer's horn based on a customer definition.
 """
 func _load_horn(customer_def: Dictionary) -> void:
-	customer_def["property:Neck0/Neck1/HornZ0:texture"] = _resource(customer_def, "horn", "horn-z0-sheet")
-	customer_def["property:Neck0/Neck1/HornZ1:texture"] = _resource(customer_def, "horn", "horn-z1-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/HornZ0", "horn", "horn-z0-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/HornZ1", "horn", "horn-z1-sheet")
 
 
 """
 Loads the resources for a customer's mouth based on a customer definition.
 """
 func _load_mouth(customer_def: Dictionary) -> void:
-	customer_def["property:Neck0/Neck1/Mouth:texture"] = _resource(customer_def, "mouth", "mouth-sheet")
-	customer_def["property:Neck0/Neck1/Food:texture"] = _resource(customer_def, "mouth", "food-sheet")
-	customer_def["property:Neck0/Neck1/FoodLaser:texture"] = _resource(customer_def, "mouth", "food-laser-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/Mouth", "mouth", "mouth-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/Food", "mouth", "food-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/FoodLaser", "mouth", "food-laser-sheet")
 
 
 """
 Loads the resources for a customer's eyes based on a customer definition.
 """
 func _load_eye(customer_def: Dictionary) -> void:
-	customer_def["property:Neck0/Neck1/Eyes:texture"] = _resource(customer_def, "eye", "eyes-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/Eyes", "eye", "eyes-sheet")
 
 
 """
@@ -124,12 +130,12 @@ func _load_body(customer_def: Dictionary) -> void:
 	# All customers have a body, but this class supports passing in an empty customer definition to unload the
 	# textures from customer sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# customer's body.
-	customer_def["property:FarArm:texture"] = _resource(customer_def, "body", "arm-z0-sheet")
-	customer_def["property:FarLeg:texture"] = _resource(customer_def, "body", "leg-z0-sheet")
-	customer_def["property:Body/NeckBlend:texture"] = _resource(customer_def, "body", "neck-sheet")
-	customer_def["property:NearLeg:texture"] = _resource(customer_def, "body", "leg-z1-sheet")
-	customer_def["property:NearArm:texture"] = _resource(customer_def, "body", "arm-z1-sheet")
-	customer_def["property:Neck0/Neck1/Head:texture"] = _resource(customer_def, "body", "head-sheet")
+	_load_texture(customer_def, "FarArm", "body", "arm-z0-sheet")
+	_load_texture(customer_def, "FarLeg", "body", "leg-z0-sheet")
+	_load_texture(customer_def, "Body/NeckBlend", "body", "neck-sheet")
+	_load_texture(customer_def, "NearLeg", "body", "leg-z1-sheet")
+	_load_texture(customer_def, "NearArm", "body", "arm-z1-sheet")
+	_load_texture(customer_def, "Neck0/Neck1/Head", "body", "head-sheet")
 
 
 """

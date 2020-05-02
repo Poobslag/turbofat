@@ -224,6 +224,7 @@ shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=24]
+resource_local_to_scene = true
 shader = ExtResource( 46 )
 shader_param/red = Color( 1, 1, 1, 1 )
 shader_param/green = null
@@ -231,9 +232,11 @@ shader_param/blue = null
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="CanvasItemMaterial" id=25]
+resource_local_to_scene = true
 blend_mode = 1
 
 [sub_resource type="ShaderMaterial" id=26]
+resource_local_to_scene = true
 shader = ExtResource( 46 )
 shader_param/red = Color( 1, 1, 1, 1 )
 shader_param/green = Color( 1, 0.552941, 0.67451, 1 )
@@ -2361,14 +2364,8 @@ light_mask = 2
 rotation = 0.00355033
 curve = SubResource( 7 )
 script = ExtResource( 3 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
-line_color = Color( 0, 0, 0, 1 )
 fill_color = Color( 0, 0, 0, 1 )
 line_width = 2.0
-_fatness = 1.0
 editing = false
 
 [node name="Outline" type="Path2D" parent="Sprites/Body"]
