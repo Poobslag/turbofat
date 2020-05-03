@@ -291,10 +291,6 @@ stream = ExtResource( 13 )
 volume_db = -4.0
 bus = "Reverb Bus"
 
-[node name="Combo1Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 14 )
-bus = "Reverb Bus"
-
 [node name="Fanfare1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
 volume_db = -4.0
@@ -310,35 +306,39 @@ stream = ExtResource( 17 )
 volume_db = -4.0
 bus = "Reverb Bus"
 
-[node name="Combo2Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo01Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 14 )
+bus = "Reverb Bus"
+
+[node name="Combo02Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 18 )
 bus = "Reverb Bus"
 
-[node name="Combo3Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo03Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 19 )
 bus = "Reverb Bus"
 
-[node name="Combo4Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo04Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 20 )
 bus = "Reverb Bus"
 
-[node name="Combo5Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo05Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
 bus = "Reverb Bus"
 
-[node name="Combo6Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo06Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 22 )
 bus = "Reverb Bus"
 
-[node name="Combo7Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo07Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 23 )
 bus = "Reverb Bus"
 
-[node name="Combo8Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo08Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 24 )
 bus = "Reverb Bus"
 
-[node name="Combo9Sound" type="AudioStreamPlayer" parent="."]
+[node name="Combo09Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 25 )
 bus = "Reverb Bus"
 

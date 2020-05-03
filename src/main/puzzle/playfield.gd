@@ -37,13 +37,14 @@ var _combo_break := 0
 
 onready var _score: Score = $"../Score"
 
-# sounds which play as the player continues a combo
-onready var _combo_sound_arr := [$Combo1Sound, $Combo1Sound, $Combo2Sound, $Combo3Sound, $Combo4Sound, $Combo5Sound,
-		$Combo6Sound, $Combo7Sound, $Combo8Sound, $Combo9Sound, $Combo10Sound, $Combo11Sound, $Combo12Sound,
-		$Combo13Sound, $Combo14Sound, $Combo15Sound, $Combo16Sound, $Combo17Sound, $Combo18Sound, $Combo19Sound,
-		$Combo20Sound, $Combo21Sound, $Combo22Sound, $Combo23Sound, $Combo24Sound]
+# sounds which play as the player continues a combo.
+onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
+		$Combo01Sound, $Combo02Sound, $Combo03Sound, $Combo04Sound, $Combo05Sound, $Combo06Sound,
+		$Combo07Sound, $Combo08Sound, $Combo09Sound, $Combo10Sound, $Combo11Sound, $Combo12Sound,
+		$Combo13Sound, $Combo14Sound, $Combo15Sound, $Combo16Sound, $Combo17Sound, $Combo18Sound,
+		$Combo19Sound, $Combo20Sound, $Combo21Sound, $Combo22Sound, $Combo23Sound, $Combo24Sound]
 
-onready var _combo_sound_endless_arr := [$ComboEndless00Sound, $ComboEndless01Sound, $ComboEndless02Sound, 
+onready var _combo_endless_sounds := [$ComboEndless00Sound, $ComboEndless01Sound, $ComboEndless02Sound, 
 		$ComboEndless03Sound, $ComboEndless04Sound, $ComboEndless05Sound, $ComboEndless06Sound, $ComboEndless07Sound,
 		$ComboEndless08Sound, $ComboEndless09Sound, $ComboEndless10Sound, $ComboEndless11Sound]
 
@@ -380,8 +381,9 @@ func _play_line_clear_sfx(piece_points: int) -> void:
 	
 	# determine any combo sound effects, which play for continuing a combo
 	for combo_sfx in range(combo - _cleared_lines.size(), combo):
-		if combo_sfx > 0:
-			scheduled_sfx.append(_get_combo_sound(combo_sfx))
+		var combo_sound := _get_combo_sound(combo_sfx)
+		if combo_sound:
+			scheduled_sfx.append(combo_sound)
 	if piece_points == 1:
 		scheduled_sfx.append($ClearSnackPieceSound)
 	elif piece_points >= 2:
@@ -405,10 +407,10 @@ cyclic list of sound effects, where the cycling is masked using something resemb
 """
 func _get_combo_sound(combo: int) -> AudioStreamPlayer:
 	var combo_sound: AudioStreamPlayer
-	if combo < _combo_sound_arr.size():
-		combo_sound = _combo_sound_arr[combo]
+	if combo < _combo_sounds.size():
+		combo_sound = _combo_sounds[combo]
 	else:
-		combo_sound = _combo_sound_endless_arr[(combo - _combo_sound_arr.size()) % _combo_sound_endless_arr.size()]
+		combo_sound = _combo_endless_sounds[(combo - _combo_sounds.size()) % _combo_endless_sounds.size()]
 	return combo_sound
 
 
