@@ -14,6 +14,9 @@ signal finished_loading
 # enables logging paths and durations for loaded resources
 export (bool) var _verbose := false
 
+# disables resource cache when running demos or testing individual scenes
+export (bool) var _disable := false
+
 # maintains references to all resources to prevent them from being cleaned up
 var _cache := {}
 
@@ -55,14 +58,15 @@ func _preload_pngs(userdata: Object) -> void:
 	_work_done += 3.0
 	
 	# We shuffle the pngs to prevent clumps of similar files. We use a known seed to keep the timing predictable.
-	seed(253686)
-	png_paths.shuffle()
-	
-	for png_path in png_paths:
-		_load_resource(png_path)
-		_work_done += 1.0
-		if _exiting:
-			break
+	if png_paths:
+		seed(253686)
+		png_paths.shuffle()
+		
+		for png_path in png_paths:
+			_load_resource(png_path)
+			_work_done += 1.0
+			if _exiting:
+				break
 	
 	emit_signal("finished_loading")
 
@@ -77,6 +81,8 @@ Note: We search for '.png.import' files instead of searching for png files direc
 	disappear when the project is exported.
 """
 func _find_png_paths() -> Array:
+	if _disable:
+		return []
 	var png_paths := []
 	
 	# directories remaining to be traversed
