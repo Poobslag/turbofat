@@ -82,6 +82,7 @@ func _physics_process(delta) -> void:
 	var old_velocity := _velocity
 	_velocity = move_and_slide(_velocity, Vector3.UP)
 	
+	_maybe_play_bonk_sound(old_velocity)
 	_maybe_slip(delta)
 	_process_jump_buffers(was_on_floor)
 
@@ -138,6 +139,20 @@ func stop_movement() -> bool:
 		play_movement_animation("idle")
 		became_idle = true
 	return became_idle
+
+
+"""
+Plays a bonk sound if Turbo bumps into a wall.
+"""
+func _maybe_play_bonk_sound(old_velocity: Vector3) -> void:
+	var velocity_diff := _velocity - old_velocity
+	velocity_diff.y = 0
+	if velocity_diff.length() > MAX_RUN_SPEED * 0.9:
+		if not is_on_floor():
+			$BonkSound.unit_db = -9.0
+		else:
+			$BonkSound.unit_db = -12.0
+		$BonkSound.play()
 
 
 func _maybe_slip(delta: float) -> void:
@@ -307,3 +322,10 @@ func _slip_from_ledges(delta: float) -> bool:
 		_accelerate_player_xy(delta, Vector2(slip_direction.x, slip_direction.z),
 				MAX_SLIP_ACCELERATION, MAX_LEDGE_SLIP_SPEED)
 	return slip_direction.length() > 0
+
+
+func _on_Customer_jumped() -> void:
+	if _slipping:
+		$HopSound.play()
+	else:
+		$JumpSound.play()

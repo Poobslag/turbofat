@@ -5,7 +5,7 @@ Script for representing a customer in the 3D overworld.
 """
 
 # Turbo cannot land on customers easily, but it is possible
-var foothold_radius := 4.0
+var foothold_radius := 2.0
 
 func _ready() -> void:
 	$CollisionShape.disabled = true
@@ -89,3 +89,11 @@ func _on_Customer_movement_animation_started(anim_name: String) -> void:
 	else:
 		$ShadowMesh/AnimationPlayer.stop()
 		$ShadowMesh.set_shadow_scale(1.0)
+
+
+func _on_Customer_jumped() -> void:
+	$JumpSound.play()
+
+
+func _on_Customer_landed() -> void:
+	$HopSound.play()
