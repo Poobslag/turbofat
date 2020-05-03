@@ -8,6 +8,8 @@ Handles animations and audio/visual effects for a customer.
 Notes:
 
 If you make Customer a tool and play with the 'customer_preset' editor setting, you can view a customer in the editor.
+After a customer is in the editor, make this 'not a tool' again or it has some negative consequences, such as forcing
+certain animation frames.
 
 Make sure to remove this customer eventually by setting the value back to '-1'. Otherwise the game will load a little
 slower since the customer's assets will need to be loaded for the scene.
@@ -257,7 +259,8 @@ func set_customer_preset(customer_preset: int) -> void:
 	
 	if _customer_preset == -1:
 		summon({}, false)
-	else:
+	elif _apply_tool_script_workaround():
+		# only summon in the editor; otherwise we get NPEs because our children are uninitialized
 		summon(CustomerLoader.DEFINITIONS[clamp(customer_preset, 0, CustomerLoader.DEFINITIONS.size() - 1)])
 
 
@@ -438,11 +441,12 @@ func _compute_orientation(direction: Vector2) -> int:
 		# we default to the current orientation if given a zero-length vector
 		return _orientation
 	
-	var highest_dot := direction.normalized().dot(ORIENTATION_VECTORS[_orientation])
+	# in case of a near-tie, we preserve their current orientation. this prevents them from rapidly flipping back and
+	# forth when moving horizontally or vertically
+	var highest_dot := direction.normalized().dot(ORIENTATION_VECTORS[_orientation]) + 0.1
 	var new_orientation := _orientation
 	for orientation in Orientation.values():
-		# iterate over the possible orientations and calculate which one has the highest dot product. in the case of a
-		# tie, we prefer the customer's current orientation.
+		# calculate which potential orientation has the highest dot product
 		if orientation == _orientation:
 			continue
 		else:
