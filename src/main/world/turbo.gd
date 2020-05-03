@@ -8,19 +8,19 @@ Script for manipulating the player-controlled character 'Turbo' in the 3D overwo
 const FRICTION := 0.15
 
 # How fast can Turbo move
-const MAX_RUN_SPEED := 60
+const MAX_RUN_SPEED := 90
 
 # How fast can Turbo slip
-const MAX_NARROW_SLIP_SPEED := 90
+const MAX_NARROW_SLIP_SPEED := 120
 
 # How fast can Turbo slip
-const MAX_LEDGE_SLIP_SPEED := 40
+const MAX_LEDGE_SLIP_SPEED := 60
 
 # How fast Turbo slips off of slippery platforms
-const MAX_SLIP_ACCELERATION := 2200
+const MAX_SLIP_ACCELERATION := 900
 
 # How fast can Turbo accelerate
-const MAX_RUN_ACCELERATION := 1500
+const MAX_RUN_ACCELERATION := 600
 
 # How slow can Turbo move before she stops
 const MIN_RUN_SPEED := 40
@@ -59,6 +59,9 @@ var _jumping := false
 # 'true' if Turbo is either slipping, or mid-air after having slipped
 var _slipping := false
 
+# 'true' if Turbo is being slowed by friction while stopping or turning
+var _friction := false
+
 # The direction Turbo is walking in (X, Y) coordinates, where 'Y' is forward.
 var _walk_direction := Vector2.ZERO
 
@@ -69,30 +72,18 @@ func _ready() -> void:
 
 
 func _physics_process(delta) -> void:
-	var was_on_floor := is_on_floor()
-	
 	_apply_friction()
 	_apply_gravity(delta)
 	_apply_player_walk(delta)
 	_update_animation()
 	_update_camera_target()
 	
-	move_and_slide(_velocity, Vector3.UP)
+	var was_on_floor := is_on_floor()
+	var old_velocity := _velocity
+	_velocity = move_and_slide(_velocity, Vector3.UP)
 	
-	if is_on_floor():
-		var did_slip := _slip_from_narrow_surfaces(delta)
-		if not did_slip:
-			did_slip = _slip_from_ledges(delta)
-		_slipping = did_slip
-	
-	if is_on_floor():
-		if not $JumpBuffer.is_stopped():
-			_jump()
-		else:
-			_jumping = false
-	
-	if not is_on_floor() and was_on_floor and not _jumping and not _slipping:
-		$CoyoteTimer.start()
+	_maybe_slip(delta)
+	_process_jump_buffers(was_on_floor)
 
 
 """
@@ -149,6 +140,28 @@ func stop_movement() -> bool:
 	return became_idle
 
 
+func _maybe_slip(delta: float) -> void:
+	if is_on_floor():
+		var did_slip := _slip_from_narrow_surfaces(delta)
+		if not did_slip:
+			did_slip = _slip_from_ledges(delta)
+		if _jumping and did_slip:
+			# temporarily change the movement animation to 'run' to force the jump animation to restart
+			play_movement_animation("run", _get_xy_velocity())
+		_slipping = did_slip
+
+
+func _process_jump_buffers(was_on_floor: bool) -> void:
+	if is_on_floor():
+		if not $JumpBuffer.is_stopped():
+			_jump()
+		else:
+			_jumping = false
+	
+	if not is_on_floor() and was_on_floor and not _jumping and not _slipping:
+		$CoyoteTimer.start()
+
+
 func _update_animation() -> void:
 	var old_orientation: int = $Viewport/Customer.get_orientation()
 	if _slipping:
@@ -168,20 +181,22 @@ func _update_camera_target() -> void:
 
 
 func _apply_gravity(delta: float) -> void:
-	if is_on_floor() and not _jumping:
-		_velocity.y = 0
 	_velocity += Vector3.DOWN * GRAVITY * delta
 
 
 func _apply_friction() -> void:
-	if _walk_direction:
-		pass
-	elif _is_midair():
-		pass
+	var xy_velocity: Vector2 = _get_xy_velocity()
+	if _is_midair():
+		_friction = false
 	elif _slipping:
-		pass
+		_friction = false
+	elif xy_velocity and _walk_direction:
+		_friction = xy_velocity.normalized().dot(_walk_direction.normalized()) < 0.25
 	else:
-		var xy_velocity: Vector2 = lerp(_get_xy_velocity(), Vector2.ZERO, FRICTION)
+		_friction = true
+	
+	if _friction:
+		xy_velocity = lerp(xy_velocity, Vector2.ZERO, FRICTION)
 		if xy_velocity.length() < MIN_RUN_SPEED:
 			xy_velocity = Vector2()
 		_set_xy_velocity(xy_velocity)
@@ -222,19 +237,16 @@ Accelerates Turbo horizontally.
 If Turbo would be accelerated beyond the specified maximum speed, Turbo's acceleration is reduced.
 """
 func _accelerate_player_xy(delta: float, push_direction: Vector2, acceleration: float, max_speed: float) -> void:
-	var accel_vector := push_direction * acceleration
-	if accel_vector.length() > acceleration:
-		accel_vector = accel_vector.normalized() * acceleration
+	if push_direction.length() == 0:
+		return
+
+	var accel_vector := push_direction.normalized() * acceleration * delta
 	
 	var old_xy_velocity := _get_xy_velocity()
-	var old_xy_speed := old_xy_velocity.length()
-	var xy_velocity := old_xy_velocity + accel_vector
-	if xy_velocity.length() > old_xy_speed and xy_velocity.length() > max_speed:
-		xy_velocity = xy_velocity.normalized() * max_speed
-	_set_xy_velocity(xy_velocity)
-	
-	_velocity.x += accel_vector.x * delta
-	_velocity.z += accel_vector.y * delta
+	var new_xy_velocity := old_xy_velocity + accel_vector
+	if new_xy_velocity.length() > old_xy_velocity.length() and new_xy_velocity.length() > max_speed:
+		new_xy_velocity = new_xy_velocity.normalized() * max_speed
+	_set_xy_velocity(new_xy_velocity)
 
 
 func _jump() -> void:

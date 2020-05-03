@@ -12,3 +12,4 @@ func _process(delta: float) -> void:
 		text += "-" if turbo.get_node("JumpBuffer").is_stopped() else "b"
 		text += "j" if turbo._jumping else "-"
 		text += "s" if turbo._slipping else "-"
+		text += "f" if turbo._friction else "-"
