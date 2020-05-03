@@ -1,7 +1,10 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/main/world/customer-3d.gd" type="Script" id=1]
+[ext_resource path="res://assets/world/customer/move-hop.wav" type="AudioStream" id=2]
 [ext_resource path="res://src/main/world/restaurant/Customer.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/world/customer/move-jump.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/world/customer/move-bonk.wav" type="AudioStream" id=5]
 [ext_resource path="res://src/main/world/customer3d-viewport.gd" type="Script" id=6]
 [ext_resource path="res://src/main/world/shadow-mesh.gd" type="Script" id=7]
 
@@ -63,7 +66,7 @@ tracks/0/keys = {
 [sub_resource type="BoxShape" id=7]
 extents = Vector3( 8.5, 7.5, 7 )
 
-[node name="Customer" type="KinematicBody"]
+[node name="Customer3D" type="KinematicBody"]
 transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 10, -40 )
 script = ExtResource( 1 )
 
@@ -96,6 +99,27 @@ anims/run = SubResource( 6 )
 [node name="CollisionShape" type="CollisionShape" parent="."]
 transform = Transform( 0.707107, 0, 0.707108, 0, 1, 0, -0.707107, 0, 0.707108, 2.5, -2.5, 2.5 )
 shape = SubResource( 7 )
+
+[node name="HopSound" type="AudioStreamPlayer3D" parent="."]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0 )
+stream = ExtResource( 2 )
+attenuation_model = 3
+unit_db = -12.0
+bus = "Reverb Bus"
+
+[node name="JumpSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 4 )
+attenuation_model = 3
+unit_db = -6.0
+bus = "Reverb Bus"
+
+[node name="BonkSound" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource( 5 )
+attenuation_model = 3
+unit_db = -6.0
+bus = "Reverb Bus"
 [connection signal="customer_arrived" from="Viewport/Customer" to="." method="_on_Customer_customer_arrived"]
+[connection signal="jumped" from="Viewport/Customer" to="." method="_on_Customer_jumped"]
+[connection signal="landed" from="Viewport/Customer" to="." method="_on_Customer_landed"]
 [connection signal="movement_animation_started" from="Viewport/Customer" to="Viewport" method="_on_Customer_movement_animation_started"]
 [connection signal="movement_animation_started" from="Viewport/Customer" to="." method="_on_Customer_movement_animation_started"]

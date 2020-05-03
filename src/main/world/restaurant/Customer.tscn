@@ -2205,6 +2205,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 7, 8, 9, 10, 10 ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "jumped" ],
+"method": "emit_sfx_signal"
+} ]
+}
 
 [sub_resource type="Animation" id=55]
 length = 30.0
@@ -2232,6 +2246,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 2, 3, 4, 4 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "jumped" ],
+"method": "emit_sfx_signal"
+} ]
 }
 
 [sub_resource type="Animation" id=56]
@@ -2262,6 +2290,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 7, 8, 9, 9, 10, 10, 11, 12 ]
 }
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "landed" ],
+"method": "emit_sfx_signal"
+} ]
+}
 
 [sub_resource type="Animation" id=57]
 length = 0.4
@@ -2290,6 +2332,20 @@ tracks/1/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 2, 3, 3, 4, 4, 5, 6 ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "landed" ],
+"method": "emit_sfx_signal"
+} ]
 }
 
 [node name="Customer" type="Node2D"]
@@ -2322,7 +2378,7 @@ texture = ExtResource( 60 )
 offset = Vector2( 0, -239 )
 vframes = 2
 hframes = 8
-frame = 7
+frame = 1
 
 [node name="Outline" type="Sprite" parent="Sprites/FarMovement"]
 light_mask = 2

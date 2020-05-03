@@ -27,6 +27,12 @@ signal customer_left
 # signal emitted when a movement animation starts (e.g Turbo starts running in a direction)
 signal movement_animation_started(anim_name)
 
+# signal emitted during the 'run' animation when the customer touches the ground
+signal landed
+
+# signal emitted during the 'jump' animation when the customer leaves the ground
+signal jumped
+
 # directions the customer can face
 enum Orientation {
 	SOUTHEAST,
@@ -101,6 +107,9 @@ var _current_voice_stream: AudioStreamPlayer2D
 
 var _customer_loader := CustomerLoader.new()
 
+# used to temporarily suppress sfx signals. used when skipping to the middle of animations which play sfx
+var _suppress_sfx_signal_timer := 0.0
+
 # sounds the customers make when they enter the restaurant
 onready var hello_voices := [$HelloVoice0, $HelloVoice1, $HelloVoice2, $HelloVoice3]
 
@@ -146,6 +155,9 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	if _suppress_sfx_signal_timer > 0.0:
+		_suppress_sfx_signal_timer -= delta
+	
 	if Engine.is_editor_hint():
 		# avoid playing animations, bouncing head in editor. manually set frames instead
 		_apply_default_mouth_and_eye_frames()
@@ -427,7 +439,13 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 	if $MovementAnims.current_animation != animation_name:
 		if not $EmoteAnims.current_animation in ["ambient", "ambient-nw"] and animation_name != "idle":
 			$EmoteAnims.unemote_immediate()
-		$MovementAnims.play(animation_name)
+		if $MovementAnims.current_animation.begins_with(animation_prefix + "-"):
+			var old_position: float = $MovementAnims.current_animation_position
+			_suppress_sfx_signal_timer = 0.000000001
+			$MovementAnims.play(animation_name)
+			$MovementAnims.advance(old_position)
+		else:
+			$MovementAnims.play(animation_name)
 
 
 """
@@ -578,6 +596,18 @@ func _update_customer_properties() -> void:
 			_suppress_one_chime = false
 		else:
 			play_door_chime()
+
+
+"""
+Emits a signal to play a sound effect.
+
+We temporarily suppress sound effect signals when skipping forward in an animation which plays sound effects.
+"""
+func emit_sfx_signal(signal_name: String) -> void:
+	if _suppress_sfx_signal_timer > 0.0:
+		pass
+	else:
+		emit_signal(signal_name)
 
 
 func _on_EmoteAnims_before_mood_switched() -> void:
