@@ -271,7 +271,8 @@ func set_customer_preset(customer_preset: int) -> void:
 	
 	if _customer_preset == -1:
 		summon({}, false)
-	elif _apply_tool_script_workaround():
+	elif Engine.is_editor_hint():
+		_apply_tool_script_workaround()
 		# only summon in the editor; otherwise we get NPEs because our children are uninitialized
 		summon(CustomerLoader.DEFINITIONS[clamp(customer_preset, 0, CustomerLoader.DEFINITIONS.size() - 1)])
 
