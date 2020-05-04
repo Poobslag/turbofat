@@ -215,7 +215,7 @@ _global_script_class_icons={
 config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/LoadingScreen.tscn"
 config/icon="res://assets/ui/icon.png"
-config/version="0.0419"
+config/version="0.0503"
 
 [audio]
 
