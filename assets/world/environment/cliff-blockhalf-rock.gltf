@@ -1,0 +1,204 @@
+{
+    "asset" : {
+        "generator" : "Khronos glTF Blender I/O v1.1.46",
+        "version" : "2.0"
+    },
+    "scene" : 0,
+    "scenes" : [
+        {
+            "name" : "Scene",
+            "nodes" : [
+                0
+            ]
+        }
+    ],
+    "nodes" : [
+        {
+            "mesh" : 0,
+            "name" : "cliff_blockhalf_rock"
+        }
+    ],
+    "materials" : [
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "grass",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.17254899442195892,
+                    0.8470590114593506,
+                    0.7215690016746521,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.5
+            }
+        },
+        {
+            "doubleSided" : true,
+            "emissiveFactor" : [
+                0,
+                0,
+                0
+            ],
+            "name" : "dirt",
+            "pbrMetallicRoughness" : {
+                "baseColorFactor" : [
+                    0.8862749934196472,
+                    0.513725996017456,
+                    0.34117600321769714,
+                    1
+                ],
+                "metallicFactor" : 0,
+                "roughnessFactor" : 0.5
+            }
+        }
+    ],
+    "meshes" : [
+        {
+            "name" : "ID7.001",
+            "primitives" : [
+                {
+                    "attributes" : {
+                        "POSITION" : 0,
+                        "NORMAL" : 1,
+                        "TEXCOORD_0" : 2
+                    },
+                    "indices" : 3,
+                    "material" : 0
+                },
+                {
+                    "attributes" : {
+                        "POSITION" : 4,
+                        "NORMAL" : 5,
+                        "TEXCOORD_0" : 6
+                    },
+                    "indices" : 7,
+                    "material" : 1
+                }
+            ]
+        }
+    ],
+    "accessors" : [
+        {
+            "bufferView" : 0,
+            "componentType" : 5126,
+            "count" : 4,
+            "max" : [
+                1,
+                0.6000000834465027,
+                1.000000238418579
+            ],
+            "min" : [
+                -1,
+                0.5999999642372131,
+                -0.9999998211860657
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 1,
+            "componentType" : 5126,
+            "count" : 4,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 2,
+            "componentType" : 5126,
+            "count" : 4,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 3,
+            "componentType" : 5123,
+            "count" : 6,
+            "type" : "SCALAR"
+        },
+        {
+            "bufferView" : 4,
+            "componentType" : 5126,
+            "count" : 24,
+            "max" : [
+                1,
+                0.6000000834465027,
+                1.000000238418579
+            ],
+            "min" : [
+                -1,
+                -8.146034247147327e-08,
+                -1
+            ],
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 5,
+            "componentType" : 5126,
+            "count" : 24,
+            "type" : "VEC3"
+        },
+        {
+            "bufferView" : 6,
+            "componentType" : 5126,
+            "count" : 24,
+            "type" : "VEC2"
+        },
+        {
+            "bufferView" : 7,
+            "componentType" : 5123,
+            "count" : 30,
+            "type" : "SCALAR"
+        }
+    ],
+    "bufferViews" : [
+        {
+            "buffer" : 0,
+            "byteLength" : 48,
+            "byteOffset" : 0
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 48,
+            "byteOffset" : 48
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 32,
+            "byteOffset" : 96
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 12,
+            "byteOffset" : 128
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 288,
+            "byteOffset" : 140
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 288,
+            "byteOffset" : 428
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 192,
+            "byteOffset" : 716
+        },
+        {
+            "buffer" : 0,
+            "byteLength" : 60,
+            "byteOffset" : 908
+        }
+    ],
+    "buffers" : [
+        {
+            "byteLength" : 968,
+            "uri" : "data:application/octet-stream;base64,AACAv5uZGT/9/3+/AACAv5mZGT8CAIA/AACAP5uZGT/9/3+/AACAP5mZGT8CAIA/AAAAAAAAgD8AAIAzAAAAAAAAgD8AAIAzAAAAAAAAgD8AAIAzAAAAAAAAgD8AAIAz9nqdwfZ6pUH2ep3B9nqVwfZ6nUH2eqVB9nqdQfZ6lcEAAAEAAgADAAIAAQAAAIC/m5kZP/3/f78AAIC/TO+uMwAAgL8AAIC/mZkZPwIAgD8AAIC/TO+uswAAgD8AAIC/mZkZPwIAgD8AAIC/TO+uMwAAgL8AAIC/TO+uswAAgD8AAIA/TO+uswAAgD8AAIC/mZkZPwIAgD8AAIA/mZkZPwIAgD8AAIA/TO+uMwAAgL8AAIC/TO+uMwAAgL8AAIA/m5kZP/3/f78AAIC/m5kZP/3/f78AAIA/TO+uMwAAgL8AAIA/m5kZP/3/f78AAIA/TO+uswAAgD8AAIA/mZkZPwIAgD8AAIA/TO+uswAAgD8AAIA/m5kZP/3/f78AAIC/TO+uswAAgD8AAIC/TO+uMwAAgL8AAIA/TO+uswAAgD8AAIA/TO+uMwAAgL8AAIC/AAAAAAAAAIAAAIC/AAAAAAAAAIAAAIC/AAAAAAAAAIAAAIC/AAAAgAAAAAAAAIC/AAAAgAAAAAAAAIC/AAAAgAAAAAAAAACAVVXVtAAAgD8AAACAVVXVtAAAgD8AAACAVVXVtAAAgD8AAAAAVVXVtAAAgD8AAACAAACgNAAAgL8AAACAAACgNAAAgL8AAACAAACgNAAAgL8AAAAAAACgNAAAgL8AAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAAAAAIA/AAAAAAAAAIAAAIA/AAAAAAAAAIAAAIA/AAAAAAAAAIAAAAAAAACAv0zvrrMAAAAAAACAv0zvrrMAAAAAAACAv0zvrrMAAAAAAACAv0zvrrP2ep1B9noZwvZ6nUEAAIA/9nqdwfZ6GcL2ep3BAACAP/Z6ncH2ehnC9nqdQQAAgD/2ep1BAACAP/Z6ncEAAIA/9nqdQfZ6GcL2ep3B9noZwvZ6nUEAAIA/9nqdwQAAgD/2ep1B9noZwvZ6ncH2ehnC9nqdwQAAgD/2ep3B9noZwvZ6nUEAAIA/9nqdQfZ6GcL2ep1BAACAP/Z6ncH2ehnC9nqdQfZ6lcH2ep1B9nqlQfZ6ncH2epXB9nqdwfZ6pUEAAAEAAgADAAQABQAGAAcACAAJAAgABwAKAAsADAANAAwACwAOAA8AEAARABIAEwAUABUAFgAXABYAFQA="
+        }
+    ]
+}

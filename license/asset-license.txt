@@ -3,10 +3,17 @@ Sounds:
 "Cartoon Voices" by Dawid Moroz, Soundholder Studio
 "Cooking Game" by Epic Stock Media
 "Doorbell Pull Store bell" by Maisonsonique at FreeSound.org (Creative Commons, https://creativecommons.org/licenses/by/3.0/)
-
-Other:
 TS-808 emulator by Jonathan Murphy http://tactilesounds.blogspot.com/
 
+Fonts:
+Xolonium by Severin Meyer <sev.ch@web.de>
+Blogger Sans by Sergiy Tkachenko (https://firstsiteguide.com)
+
+Models:
+Nature Kit 2.1 by Kenney (www.kenney.nl)
+
+Sounds
+--------------------------------------------------------------------------------
 assets/puzzle/applause.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
 assets/puzzle/clear-cake-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav" 
 assets/puzzle/clear-snack-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav"
@@ -41,3 +48,19 @@ assets/world/customer/move-jump.wav Cooking_Game_16bit
 assets/world/customer/munch*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 2.wav" "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 1.wav"
 assets/world/door-chime*.wav Doorbell Pull Store bell Doorbell Pull with pull Store Bell 06.wav from freesound.org; licensed under creative commons attribution license https://creativecommons.org/licenses/by/3.0/
 
+Fonts
+--------------------------------------------------------------------------------
+assets\ui\Xolonium-Regular.ttf Xolonium by Severin Meyer
+assets\ui\blogger-sans-bold.otf Blogger Sans by Sergiy Tkachenko
+assets\ui\blogger-sans-medium.otf Blogger Sans by Sergiy Tkachenko
+assets\ui\blogger-sans.otf Blogger Sans by Sergiy Tkachenko
+
+Models
+--------------------------------------------------------------------------------
+assets/world/environment/cliff-block-rock.gltf Kenney's Nature Kit 2.1
+assets/world/environment/cliff-block-rockrock.gltf Kenney's Nature Kit 2.1
+assets/world/environment/cliff-blockhalf-rock.gltf Kenney's Nature Kit 2.1
+assets/world/environment/path-stone.gltf Kenney's Nature Kit 2.1
+assets/world/environment/path-stonecircle.gltf Kenney's Nature Kit 2.1
+assets/world/environment/path-stonecorner.gltf Kenney's Nature Kit 2.1
+assets/world/environment/path-stoneend.gltf Kenney's Nature Kit 2.1

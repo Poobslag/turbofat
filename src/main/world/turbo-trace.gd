@@ -13,3 +13,5 @@ func _process(delta: float) -> void:
 		text += "j" if turbo._jumping else "-"
 		text += "s" if turbo._slipping else "-"
 		text += "f" if turbo._friction else "-"
+		text += "F" if turbo.is_on_floor() else "-"
+		text += "o" if turbo.over_something() else "-"

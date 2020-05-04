@@ -203,7 +203,7 @@ func _update_camera_target() -> void:
 
 func _apply_gravity(delta: float) -> void:
 	_velocity += Vector3.DOWN * GRAVITY * delta
-	
+
 	# If acceleration via gravity makes our momentum something small like -6, there's a risk we won't actually collide
 	# with the surface we're sitting on which causes causing an unpleasant jitter effect.
 	if _velocity.y < 0.0 and _velocity.y > -MIN_GRAVITY_SPEED:
@@ -286,16 +286,26 @@ func _jump() -> void:
 
 
 """
+Returns 'true' if Turbo is directly over something.
+
+Most notably, this returns 'false' if Turbo is standing on a surface, but the surface is not directly beneath her.
+This enables the slipping logic.
+"""
+func over_something() -> bool:
+	return $RayCast.is_colliding()
+
+
+"""
 When Turbo attempts to jump onto a narrow surface (such as someone's head) she slips off unless she lands very
 squarely in the middle of it.
 
 This function triggers the slipping physics, and returns 'true' if Turbo is slipping from a narrow surface.
 """
 func _slip_from_narrow_surfaces(delta: float) -> bool:
-	if not $RayCast.is_colliding():
+	if not over_something():
 		# character is not directly over anything; slipping should be handled by ledge slip logic
 		return false
-	
+
 	var slip_direction := Vector3.ZERO
 	var collider: Object = $RayCast.get_collider()
 	if collider.get("foothold_radius"):
@@ -321,8 +331,8 @@ This function is important because Turbo's collision shape is a box, but her spr
 this logic she ends up hovering in space frequently.
 """
 func _slip_from_ledges(delta: float) -> bool:
-	if $RayCast.is_colliding():
-		# don't slip; character is sitting squarely on the ground
+	if over_something():
+		# don't slip; character is in mid-air, or squarely on the ground
 		return false
 	
 	var slip_direction := Vector3.ZERO

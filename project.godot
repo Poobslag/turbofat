@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/next-piece-displays.gd"
 }, {
+"base": "GridMap",
+"class": "OverworldGridMap",
+"language": "GDScript",
+"path": "res://src/main/environment/overworld-grid-map.gd"
+}, {
 "base": "Control",
 "class": "OverworldUi",
 "language": "GDScript",
@@ -195,6 +200,7 @@ _global_script_class_icons={
 "MultiOutlineSprite": "",
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",
+"OverworldGridMap": "",
 "OverworldUi": "",
 "PieceManager": "",
 "PieceQueue": "",
