@@ -22,9 +22,9 @@ assets/puzzle/move.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup
 assets/puzzle/rotate0.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 assets/puzzle/rotate1.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 assets/puzzle/smash.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
+assets/ui/chat/emote-*.wav "Developed using Jonathan Murphy's TS-808 emulator, licensed under the Creative Commons Attribution-Noncommercial-NoDerivative Works 3.0 Australia License. Consider donating at http://tactilesounds.blogspot.com/"
 assets/ui/cheat-disable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
 assets/ui/cheat-enable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
-assets/ui/chat/emote-*.wav "Developed using Jonathan Murphy's TS-808 emulator, licensed under the Creative Commons Attribution-Noncommercial-NoDerivative Works 3.0 Australia License. Consider donating at http://tactilesounds.blogspot.com/"
 assets/ui/excellent.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Cute Vocal Chime 05.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
 assets/ui/gameover.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed\cartoon voices female anger 2.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\NEGATIVE - FAILURE - TENSION - (73)\NEGATIVE Failure Descending Bell Run 01.wav"
 assets/ui/go.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
@@ -35,5 +35,9 @@ assets/world/chef/go-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
 assets/world/customer/combo-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
 assets/world/customer/goodbye-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
 assets/world/customer/hello-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
+assets/world/customer/move-bonk.wav Cooking_Game_16bit
+assets/world/customer/move-hop.wav Cooking_Game_16bit
+assets/world/customer/move-jump.wav Cooking_Game_16bit
 assets/world/customer/munch*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 2.wav" "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 1.wav"
 assets/world/door-chime*.wav Doorbell Pull Store bell Doorbell Pull with pull Store Bell 06.wav from freesound.org; licensed under creative commons attribution license https://creativecommons.org/licenses/by/3.0/
+
