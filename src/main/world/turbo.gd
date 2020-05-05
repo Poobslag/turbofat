@@ -4,6 +4,12 @@ extends Customer3D
 Script for manipulating the player-controlled character 'Turbo' in the 3D overworld.
 """
 
+# If acceleration via gravity makes our vertical momentum something small like -6, there's a risk we won't actually
+# collide with the surface we're sitting on which causes causing an unpleasant jitter effect.
+#
+# This is our minimum vertical velocity. Any non-zero values smaller than this will be scaled up.
+const MIN_GRAVITY_SPEED = 10.0
+
 # Number from [0.0, 1.0] which determines how quickly Turbo slows down
 const FRICTION := 0.15
 
@@ -197,6 +203,11 @@ func _update_camera_target() -> void:
 
 func _apply_gravity(delta: float) -> void:
 	_velocity += Vector3.DOWN * GRAVITY * delta
+	
+	# If acceleration via gravity makes our momentum something small like -6, there's a risk we won't actually collide
+	# with the surface we're sitting on which causes causing an unpleasant jitter effect.
+	if _velocity.y < 0.0 and _velocity.y > -MIN_GRAVITY_SPEED:
+		_velocity.y = -MIN_GRAVITY_SPEED
 
 
 func _apply_friction() -> void:
