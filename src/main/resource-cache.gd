@@ -14,9 +14,6 @@ signal finished_loading
 # enables logging paths and durations for loaded resources
 export (bool) var _verbose := false
 
-# disables resource cache when running demos or testing individual scenes
-export (bool) var _disable := false
-
 # maintains references to all resources to prevent them from being cleaned up
 var _cache := {}
 
@@ -30,14 +27,15 @@ var _load_thread: Thread
 var _work_done := 0.0
 var _work_remaining := 3.0
 
-func _ready() -> void:
+func start_load() -> void:
 	_load_thread = Thread.new()
 	_load_thread.start(self, "_preload_pngs")
 
 
 func _exit_tree() -> void:
-	_exiting = true
-	_load_thread.wait_to_finish()
+	if _load_thread:
+		_exiting = true
+		_load_thread.wait_to_finish()
 
 
 func get_progress() -> float:
@@ -81,8 +79,6 @@ Note: We search for '.png.import' files instead of searching for png files direc
 	disappear when the project is exported.
 """
 func _find_png_paths() -> Array:
-	if _disable:
-		return []
 	var png_paths := []
 	
 	# directories remaining to be traversed

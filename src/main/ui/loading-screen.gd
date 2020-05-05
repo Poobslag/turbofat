@@ -4,6 +4,7 @@ Shows a progress bar while resources are loading.
 """
 
 func _ready() -> void:
+	ResourceCache.start_load()
 	ResourceCache.connect("finished_loading", self, "change_scene")
 
 
