@@ -58,9 +58,12 @@ func _assert_kick() -> void:
 
 
 func _kick_piece() -> Vector2:
+	var result := Vector2.ZERO
 	_from_piece = _create_active_piece(from_grid)
 	_to_piece = _create_active_piece(to_grid)
-	return _from_piece.kick_piece(funcref(self, "_is_cell_blocked"), _from_piece.pos, _to_piece.orientation)
+	if not _from_piece.can_move_piece_to(funcref(self, "_is_cell_blocked"), _from_piece.pos, _to_piece.orientation):
+		result = _from_piece.kick_piece(funcref(self, "_is_cell_blocked"), _from_piece.pos, _to_piece.orientation)
+	return result
 
 
 func _is_cell_blocked(pos: Vector2) -> bool:

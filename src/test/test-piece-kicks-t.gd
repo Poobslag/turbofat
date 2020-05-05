@@ -247,7 +247,7 @@ func test_duck_kick_up1() -> void:
 	_assert_kick()
 
 
-func test_floor_kick0() -> void:
+func test_floorkick_cw() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -263,7 +263,7 @@ func test_floor_kick0() -> void:
 	_assert_kick()
 
 
-func test_floor_kick1() -> void:
+func test_floorkick_ccw() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -279,7 +279,7 @@ func test_floor_kick1() -> void:
 	_assert_kick()
 
 
-func test_wall_kick_right0() -> void:
+func test_lwallkick0() -> void:
 	from_grid = [
 		"     ",
 		"t    ",
@@ -297,7 +297,7 @@ func test_wall_kick_right0() -> void:
 	_assert_kick()
 
 
-func test_wall_kick_right1() -> void:
+func test_lwallkick1() -> void:
 	from_grid = [
 		"     ",
 		"t    ",
@@ -315,7 +315,7 @@ func test_wall_kick_right1() -> void:
 	_assert_kick()
 
 
-func test_wall_kick_left0() -> void:
+func test_rwallkick0() -> void:
 	from_grid = [
 		"     ",
 		"    t",
@@ -333,7 +333,7 @@ func test_wall_kick_left0() -> void:
 	_assert_kick()
 
 
-func test_wall_kick_left1() -> void:
+func test_rwallkick1() -> void:
 	from_grid = [
 		"     ",
 		"    t",
