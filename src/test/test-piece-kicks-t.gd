@@ -112,3 +112,304 @@ func test_triple_ccw() -> void:
 		":::t",
 	]
 	_assert_kick()
+
+
+"""
+A duck kick is when the T-piece tries to rotate an extrusion towards its flat side, and gets shoved away.
+
+This does not replace the usual floor kick, but acts as a replacement if the floor kick fails.
+"""
+func test_duck_kick_down0() -> void:
+	from_grid = [
+		"::  ",
+		"ttt ",
+		":t :",
+		": ::"
+	]
+	to_grid = [
+		"::  ",
+		" t  ",
+		":tt:",
+		":t::"
+	]
+	_assert_kick()
+
+
+func test_duck_kick_down1() -> void:
+	from_grid = [
+		"  ::",
+		" ttt",
+		": t:",
+		":: :"
+	]
+	to_grid = [
+		"  ::",
+		"  t ",
+		":tt:",
+		"::t:"
+	]
+	_assert_kick()
+
+
+func test_duck_kick_left0() -> void:
+	from_grid = [
+		"    ",
+		"  t ",
+		" tt:",
+		" :t:"
+	]
+	to_grid = [
+		"    ",
+		" t  ",
+		"ttt:",
+		" : :"
+	]
+	_assert_kick()
+
+
+func test_duck_kick_left1() -> void:
+	from_grid = [
+		"    ",
+		"  t ",
+		" tt:",
+		"  t:"
+	]
+	to_grid = [
+		"    ",
+		"    ",
+		"ttt:",
+		" t :"
+	]
+	_assert_kick()
+
+
+func test_duck_kick_right0() -> void:
+	from_grid = [
+		"    ",
+		" t  ",
+		":tt ",
+		":t: "
+	]
+	to_grid = [
+		"    ",
+		"  t ",
+		":ttt",
+		": : "
+	]
+	_assert_kick()
+
+
+func test_duck_kick_right1() -> void:
+	from_grid = [
+		"    ",
+		" t  ",
+		":tt ",
+		":t  "
+	]
+	to_grid = [
+		"    ",
+		"    ",
+		":ttt",
+		": t "
+	]
+	_assert_kick()
+
+
+func test_duck_kick_up0() -> void:
+	from_grid = [
+		"     ",
+		"::   ",
+		"  t  ",
+		" ttt ",
+	]
+	to_grid = [
+		"     ",
+		"::t  ",
+		"  tt ",
+		"  t  "
+	]
+	_assert_kick()
+
+
+func test_duck_kick_up1() -> void:
+	from_grid = [
+		"     ",
+		"   ::",
+		"  t  ",
+		" ttt ",
+	]
+	to_grid = [
+		"     ",
+		"  t::",
+		" tt  ",
+		"  t  "
+	]
+	_assert_kick()
+
+
+func test_floor_kick0() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		"  t  ",
+		" ttt "
+	]
+	to_grid = [
+		"     ",
+		" t   ",
+		" tt  ",
+		" t   "
+	]
+	_assert_kick()
+
+
+func test_floor_kick1() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		"  t  ",
+		" ttt "
+	]
+	to_grid = [
+		"     ",
+		"   t ",
+		"  tt ",
+		"   t "
+	]
+	_assert_kick()
+
+
+func test_wall_kick_right0() -> void:
+	from_grid = [
+		"     ",
+		"t    ",
+		"tt   ",
+		"t    ",
+		"     "
+	]
+	to_grid = [
+		"     ",
+		" t   ",
+		"ttt  ",
+		"     ",
+		"     "
+	]
+	_assert_kick()
+
+
+func test_wall_kick_right1() -> void:
+	from_grid = [
+		"     ",
+		"t    ",
+		"tt   ",
+		"t    ",
+		"     "
+	]
+	to_grid = [
+		"     ",
+		"     ",
+		"ttt  ",
+		" t   ",
+		"     "
+	]
+	_assert_kick()
+
+
+func test_wall_kick_left0() -> void:
+	from_grid = [
+		"     ",
+		"    t",
+		"   tt",
+		"    t",
+		"     "
+	]
+	to_grid = [
+		"     ",
+		"   t ",
+		"  ttt",
+		"     ",
+		"     "
+	]
+	_assert_kick()
+
+
+func test_wall_kick_left1() -> void:
+	from_grid = [
+		"     ",
+		"    t",
+		"   tt",
+		"    t",
+		"     "
+	]
+	to_grid = [
+		"     ",
+		"     ",
+		"  ttt",
+		"   t ",
+		"     "
+	]
+	_assert_kick()
+
+
+func test_climb_kick_cw() -> void:
+	from_grid = [
+		"     ",
+		"  t  ",
+		":tt::",
+		"::t::",
+	]
+	to_grid = [
+		"  t  ",
+		" ttt ",
+		":  ::",
+		":: ::"
+	]
+	_assert_kick()
+
+
+func test_climb_kick_ccw() -> void:
+	from_grid = [
+		"     ",
+		"  t  ",
+		"::tt:",
+		"::t::",
+	]
+	to_grid = [
+		"  t  ",
+		" ttt ",
+		"::  :",
+		":: ::"
+	]
+	_assert_kick()
+
+
+func test_failed_climb_kick_cw() -> void:
+	from_grid = [
+		"    ",
+		"  t ",
+		" tt:",
+		"::t:",
+	]
+	to_grid = [
+		"    ",
+		" t  ",
+		"ttt:",
+		":: :"
+	]
+	_assert_kick()
+
+
+func test_failed_climb_kick_ccw() -> void:
+	from_grid = [
+		"    ",
+		" t  ",
+		":tt ",
+		":t::",
+	]
+	to_grid = [
+		"    ",
+		"  t ",
+		":ttt",
+		": ::"
+	]
+	_assert_kick()

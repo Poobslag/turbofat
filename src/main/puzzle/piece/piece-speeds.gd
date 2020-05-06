@@ -61,12 +61,12 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new( "F0",    4, 12, 8, 7, 10, 24, 6, 3))
 	_add_speed(PieceSpeed.new( "F1",  1*G, 12, 8, 7, 10, 24, 6, 3))
 	_add_speed(PieceSpeed.new( "FA", 20*G, 12, 8, 7, 10, 24, 6, 3))
-	_add_speed(PieceSpeed.new( "FB", 20*G,  8, 6, 5,  6, 22, 5, 3))
-	_add_speed(PieceSpeed.new( "FC", 20*G,  6, 4, 5,  6, 20, 4, 3))
-	_add_speed(PieceSpeed.new( "FD", 20*G,  4, 2, 5,  6, 18, 3, 3))
-	_add_speed(PieceSpeed.new( "FE", 20*G,  4, 2, 5,  6, 16, 3, 3))
-	_add_speed(PieceSpeed.new( "FF", 20*G,  4, 2, 5,  6, 14, 3, 3))
-	_add_speed(PieceSpeed.new("FFF", 20*G,  4, 2, 5,  6, 12, 3, 3))
+	_add_speed(PieceSpeed.new( "FB", 20*G,  8, 6, 5,  7, 22, 5, 3))
+	_add_speed(PieceSpeed.new( "FC", 20*G,  6, 4, 5,  7, 20, 4, 3))
+	_add_speed(PieceSpeed.new( "FD", 20*G,  4, 2, 5,  7, 18, 3, 3))
+	_add_speed(PieceSpeed.new( "FE", 20*G,  4, 2, 5,  7, 16, 3, 3))
+	_add_speed(PieceSpeed.new( "FF", 20*G,  4, 2, 5,  7, 14, 3, 3))
+	_add_speed(PieceSpeed.new("FFF", 20*G,  4, 2, 5,  7, 12, 3, 3))
 
 func _add_speed(speed: PieceSpeed) -> void:
 	speeds[speed.level] = speed

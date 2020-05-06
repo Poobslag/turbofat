@@ -34,6 +34,9 @@ var active_piece := ActivePiece.new(PieceTypes.piece_null)
 # 'true' if the tile map's contents needs to be updated based on the currently active piece
 var tile_map_dirty := false
 
+# how many times the piece has moved horizontally this frame
+var _horizontal_movement_count := 0
+
 func _ready() -> void:
 	piece_speed = PieceSpeeds.speed("0")
 	$States.set_state($States/None)
@@ -62,6 +65,7 @@ func _physics_process(_delta: float) -> void:
 	_input_hard_drop_frames = _increment_input_frames(_input_hard_drop_frames, "hard_drop")
 	_input_cw_frames = _increment_input_frames(_input_cw_frames, "rotate_cw")
 	_input_ccw_frames = _increment_input_frames(_input_ccw_frames, "rotate_ccw")
+	_horizontal_movement_count = 0
 	
 	# Pressing a new key overrides das. Otherwise pieces can feel like they get stuck to a wall if you press left
 	# after holding right
@@ -221,8 +225,7 @@ func apply_player_input() -> bool:
 			_kick_piece()
 		_move_piece_to_target(true)
 		
-		_calc_target_position()
-		_move_piece_to_target(true)
+		_attempt_horizontal_movement()
 		
 		# automatically trigger DAS if you're pushing a piece towards an obstruction. otherwise, pieces might slip
 		# past a nook if you're holding a direction before DAS triggers
@@ -380,7 +383,12 @@ func apply_gravity() -> void:
 			active_piece.gravity -= PieceSpeeds.G
 			_reset_piece_target()
 			_target_piece_pos.y = active_piece.pos.y + 1
-			_move_piece_to_target()
+			if not _move_piece_to_target():
+				break
+			
+			if _horizontal_movement_count == 0:
+				# move piece once per frame to allow pieces to slide into nooks during 20G
+				_attempt_horizontal_movement()
 
 
 """
@@ -427,15 +435,15 @@ func _reset_piece_target() -> void:
 	_target_piece_orientation = active_piece.orientation
 
 
-"""
-Calculates the position the player is trying to move the piece to.
-"""
-func _calc_target_position() -> void:
+func _attempt_horizontal_movement() -> void:
 	if Input.is_action_just_pressed("ui_left") or _input_left_frames >= piece_speed.delayed_auto_shift_delay:
 		_target_piece_pos.x -= 1
 	
 	if Input.is_action_just_pressed("ui_right") or _input_right_frames >= piece_speed.delayed_auto_shift_delay:
 		_target_piece_pos.x += 1
+
+	if _target_piece_pos.x != active_piece.pos.x and _move_piece_to_target(true):
+		_horizontal_movement_count += 1
 
 
 """
