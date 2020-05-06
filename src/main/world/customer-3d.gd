@@ -29,7 +29,7 @@ Plays a movement animation with the specified prefix and direction, such as a 'r
 Parameters:
 	'animation_prefix': A partial name of an animation on $Customer/MovementAnims, omitting the directional suffix
 	
-	'movement_direction': A unit vector in the (X, Y) direction the customer is moving.
+	'movement_direction': A vector in the (X, Y) direction the customer is moving.
 """
 func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
 	$Viewport/Customer.play_movement_animation(animation_prefix, movement_direction)

@@ -429,7 +429,9 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 		if _movement_mode != false:
 			set_movement_mode(false)
 	else:
-		if movement_direction.length() > 0:
+		if movement_direction.length() > 1:
+			# tiny movement vectors are often the result of a collision. we ignore these to avoid constantly flipping
+			# their orientation if they're mashing themselves into a wall
 			var new_orientation := _compute_orientation(movement_direction)
 			if new_orientation != _orientation:
 				set_orientation(new_orientation)

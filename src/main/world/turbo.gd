@@ -81,13 +81,13 @@ func _physics_process(delta) -> void:
 	_apply_friction()
 	_apply_gravity(delta)
 	_apply_player_walk(delta)
-	_update_animation()
-	_update_camera_target()
 	
 	var was_on_floor := is_on_floor()
 	var old_velocity := _velocity
 	_velocity = move_and_slide(_velocity, Vector3.UP)
 	
+	_update_animation()
+	_update_camera_target()
 	_maybe_play_bonk_sound(old_velocity)
 	_maybe_slip(delta)
 	_process_jump_buffers(was_on_floor)
@@ -292,20 +292,23 @@ squarely in the middle of it.
 This function triggers the slipping physics, and returns 'true' if Turbo is slipping from a narrow surface.
 """
 func _slip_from_narrow_surfaces(delta: float) -> bool:
-	var just_slipped := false
-	if get_slide_count() > 0:
-		for i in get_slide_count():
-			var collision := get_slide_collision(i)
-			if collision.collider.get("foothold_radius") and translation.y > collision.collider.translation.y + 0.2:
-				# Turbo is standing on something she might slip from
-				var slip_velocity: Vector3 = translation - collision.collider.translation
-				slip_velocity.y = 0
-				if slip_velocity.length() > collision.collider.foothold_radius:
-					# Turbo is too far from the center, and should slip
-					just_slipped = true
-					_accelerate_player_xy(delta, Vector2(slip_velocity.x, slip_velocity.z),
-							MAX_SLIP_ACCELERATION, MAX_NARROW_SLIP_SPEED)
-	return just_slipped
+	if not $RayCast.is_colliding():
+		# character is not directly over anything; slipping should be handled by ledge slip logic
+		return false
+	
+	var slip_direction := Vector3.ZERO
+	var collider: Object = $RayCast.get_collider()
+	if collider.get("foothold_radius"):
+		# Turbo is standing on something she might slip from
+		slip_direction = translation - collider.translation
+		slip_direction.y = 0
+		if slip_direction.length() <= collider.foothold_radius:
+			# Turbo is close enough to the center and shouldn't slip
+			slip_direction = Vector3.ZERO
+	if slip_direction:
+		_accelerate_player_xy(delta, Vector2(slip_direction.x, slip_direction.z),
+				MAX_SLIP_ACCELERATION, MAX_NARROW_SLIP_SPEED)
+	return slip_direction.length() > 0
 
 
 """
