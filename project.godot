@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/cheat-code-detector.gd"
 }, {
+"base": "Reference",
+"class": "Connect",
+"language": "GDScript",
+"path": "res://src/main/connect.gd"
+}, {
 "base": "Node2D",
 "class": "Customer",
 "language": "GDScript",
@@ -183,6 +188,7 @@ _global_script_class_icons={
 "ChatLibrary": "",
 "ChatTree": "",
 "CheatCodeDetector": "",
+"Connect": "",
 "Customer": "",
 "Customer3D": "",
 "CustomerLoader": "",

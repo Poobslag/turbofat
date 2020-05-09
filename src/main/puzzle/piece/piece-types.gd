@@ -4,11 +4,6 @@ Stores information on the various piece shapes. This includes information on the
 how they 'kick' when they're blocked from rotating.
 """
 
-# constants used when drawing blocks which are connected to other blocks
-const CONNECTED_UP := 1
-const CONNECTED_DOWN := 2
-const CONNECTED_LEFT := 4
-const CONNECTED_RIGHT := 8
 
 const KICKS_JLT := [
 		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0,  2), Vector2(-1,  1), Vector2(-1,  2), Vector2(0, -1)],
