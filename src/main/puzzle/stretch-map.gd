@@ -3,12 +3,6 @@ extends TileMap
 This TileMap handles drawing the active piece when it's stretched around other pieces.
 """
 
-# constants used when drawing blocks which are connected to other blocks
-const CONNECTED_UP = 1
-const CONNECTED_DOWN = 2
-const CONNECTED_LEFT = 4
-const CONNECTED_RIGHT = 8
-
 var _row_count: int
 var _col_count: int
 
@@ -43,13 +37,13 @@ func _process(delta: float) -> void:
 					continue
 				var color_x := 0
 				if row > 0 and get_cell(col, row - 1) == 0:
-					color_x |= PieceTypes.CONNECTED_UP
+					color_x = Connect.set_u(color_x)
 				if row < _row_count - 1 and get_cell(col, row + 1) == 0:
-					color_x |= PieceTypes.CONNECTED_DOWN
+					color_x = Connect.set_d(color_x)
 				if col > 0 and get_cell(col - 1, row) == 0:
-					color_x |= PieceTypes.CONNECTED_LEFT
+					color_x = Connect.set_l(color_x)
 				if col < _col_count - 1 and get_cell(col + 1, row) == 0:
-					color_x |= PieceTypes.CONNECTED_RIGHT
+					color_x = Connect.set_r(color_x)
 				set_cell(col, row, 0, false, false, false, Vector2(color_x, _color_y))
 		
 		_stretch_seconds_remaining -= delta

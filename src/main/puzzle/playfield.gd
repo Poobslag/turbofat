@@ -254,14 +254,14 @@ no empty/vegetable/box cells.
 """
 func _process_box(x: int, y: int, width: int, height: int, cake = false) -> bool:
 	for curr_x in range(x, x + width):
-		if int($TileMapClip/TileMap.get_cell_autotile_coord(curr_x, y).x) & PieceTypes.CONNECTED_UP > 0:
+		if Connect.is_u($TileMapClip/TileMap.get_cell_autotile_coord(curr_x, y).x):
 			return false
-		if int($TileMapClip/TileMap.get_cell_autotile_coord(curr_x, y + height - 1).x) & PieceTypes.CONNECTED_DOWN > 0:
+		if Connect.is_d($TileMapClip/TileMap.get_cell_autotile_coord(curr_x, y + height - 1).x):
 			return false
 	for curr_y in range(y, y + height):
-		if int($TileMapClip/TileMap.get_cell_autotile_coord(x, curr_y).x) & PieceTypes.CONNECTED_LEFT > 0:
+		if Connect.is_l($TileMapClip/TileMap.get_cell_autotile_coord(x, curr_y).x):
 			return false
-		if int($TileMapClip/TileMap.get_cell_autotile_coord(x + width - 1, curr_y).x) & PieceTypes.CONNECTED_RIGHT > 0:
+		if Connect.is_r($TileMapClip/TileMap.get_cell_autotile_coord(x + width - 1, curr_y).x):
 			return false
 	
 	# making a box continues the combo
@@ -322,7 +322,7 @@ func _process_line_clear() -> void:
 			for x in range(COL_COUNT):
 				var autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
 				if $TileMapClip/TileMap.get_cell(x, y) == 1 \
-						and int(autotile_coord.x) & PieceTypes.CONNECTED_LEFT == 0:
+						and not Connect.is_l(autotile_coord.x):
 					if autotile_coord.y == 4:
 						# cake piece
 						line_score += 10
@@ -477,16 +477,16 @@ func _disconnect_block(x: int, y: int) -> void:
 		vegetable_type = 0
 	_set_veg_block(x, y, Vector2(randi() % 18, vegetable_type))
 	
-	if y > 0 and int(old_autotile_coord.x) & PieceTypes.CONNECTED_UP > 0:
+	if y > 0 and Connect.is_u(old_autotile_coord.x):
 		_disconnect_block(x, y - 1)
 	
-	if y < ROW_COUNT - 1 and int(old_autotile_coord.x) & PieceTypes.CONNECTED_DOWN > 0:
+	if y < ROW_COUNT - 1 and Connect.is_d(old_autotile_coord.x):
 		_disconnect_block(x, y + 1)
 	
-	if x > 0 and int(old_autotile_coord.x) & PieceTypes.CONNECTED_LEFT > 0:
+	if x > 0 and Connect.is_l(old_autotile_coord.x):
 		_disconnect_block(x - 1, y)
 	
-	if x < COL_COUNT - 1 and int(old_autotile_coord.x) & PieceTypes.CONNECTED_RIGHT > 0:
+	if x < COL_COUNT - 1 and Connect.is_r(old_autotile_coord.x):
 		_disconnect_block(x + 1, y)
 
 
@@ -502,18 +502,16 @@ bottom of a bread box looks like a delicious frosted snack and the player can te
 """
 func _disconnect_box(x: int, y: int) -> void:
 	var old_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
-	if y > 0 and int(old_autotile_coord.x) & PieceTypes.CONNECTED_UP > 0:
+	if y > 0 and Connect.is_u(old_autotile_coord.x):
 		var above_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y - 1)
-		_set_box_block(x, y - 1,
-				Vector2(int(above_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, above_autotile_coord.y))
-		_set_box_block(x, y,
-				Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, old_autotile_coord.y))
-	if y < ROW_COUNT - 1 and int(old_autotile_coord.x) & PieceTypes.CONNECTED_DOWN > 0:
+		_set_box_block(x, y - 1, Vector2(Connect.unset_d(above_autotile_coord.x), above_autotile_coord.y))
+		_set_box_block(x, y, Vector2(Connect.unset_u(old_autotile_coord.x), old_autotile_coord.y))
+	if y < ROW_COUNT - 1 and Connect.is_d(old_autotile_coord.x):
 		var below_autotile_coord:Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y + 1)
 		_set_box_block(x, y + 1,
-				Vector2(int(below_autotile_coord.x) ^ PieceTypes.CONNECTED_UP, below_autotile_coord.y))
+				Vector2(Connect.unset_u(below_autotile_coord.x), below_autotile_coord.y))
 		_set_box_block(x, y,
-				Vector2(int(old_autotile_coord.x) ^ PieceTypes.CONNECTED_DOWN, old_autotile_coord.y))
+				Vector2(Connect.unset_d(old_autotile_coord.x), old_autotile_coord.y))
 
 
 """
