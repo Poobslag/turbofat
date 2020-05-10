@@ -16,7 +16,7 @@ export(bool) var _regenerate_path_world: bool setget regenerate_path_world
 export(bool) var _regenerate_random_world: bool setget regenerate_random_world
 
 func _ready() -> void:
-	$GridMap.regenerate_path_world()
+	regenerate_path_world()
 
 
 func _input(event: InputEvent) -> void:
@@ -71,6 +71,7 @@ func regenerate_path_world(regenerate: bool = true) -> void:
 	
 	for x in range(5, 7):
 		for z in range(-7, -5):
-			$GridMap.set_cell_item(x, 1, z, OverworldGridMap.TILE_GRASS_TUFT)
+			$GridMap.set_cell_item(x, 1, z, \
+					OverworldGridMap.TILE_GRASS_TUFTS[randi() % OverworldGridMap.TILE_GRASS_TUFTS.size()])
 	
 	$GridMap.autotile_paths()

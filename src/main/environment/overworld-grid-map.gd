@@ -19,7 +19,9 @@ const TILE_PATH_STRAIGHT := 5
 const TILE_PATH_CORNER := 6
 const TILE_PATH_CIRCLE := 7
 
-const TILE_GRASS_TUFT := 8
+# tilemap indexes corresponding to tufts of grass
+const TILE_GRASS_TUFTS := [8, 9, 10, 11]
+
 
 # Orientation values used to rotate cell items
 const ORIENT_UP := 0
@@ -155,7 +157,7 @@ func plant_grass() -> void:
 				and get_cell_item(cell.x, cell.y + 1, cell.z) == INVALID_CELL_ITEM:
 			# the tile has a grassy surface; maybe add a grass tuft on the top
 			if randf() < 0.10:
-				set_cell_item(cell.x, cell.y + 1, cell.z, TILE_GRASS_TUFT)
+				set_cell_item(cell.x, cell.y + 1, cell.z, TILE_GRASS_TUFTS[randi() % TILE_GRASS_TUFTS.size()])
 
 
 """
