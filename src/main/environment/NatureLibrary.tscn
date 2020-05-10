@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/world/environment/cliff-block-rock.tres" type="ArrayMesh" id=1]
 [ext_resource path="res://assets/world/environment/path-stoneend.gltf" type="PackedScene" id=2]
@@ -6,11 +6,14 @@
 [ext_resource path="res://assets/world/environment/cliff-blockhalf-rock.tres" type="ArrayMesh" id=4]
 [ext_resource path="res://assets/world/environment/impassable.tres" type="CubeMesh" id=5]
 [ext_resource path="res://assets/world/environment/path-stonecorner.gltf" type="PackedScene" id=6]
-[ext_resource path="res://assets/world/environment/grass-tuft.png" type="Texture" id=7]
+[ext_resource path="res://assets/world/environment/grass-tuft0.gltf" type="PackedScene" id=7]
+[ext_resource path="res://assets/world/environment/grass-tuft1.gltf" type="PackedScene" id=8]
 [ext_resource path="res://assets/world/environment/path-stone.gltf" type="PackedScene" id=9]
 [ext_resource path="res://assets/world/environment/path-stonecircle.gltf" type="PackedScene" id=10]
+[ext_resource path="res://assets/world/environment/grass-tuft3.gltf" type="PackedScene" id=11]
+[ext_resource path="res://assets/world/environment/grass-tuft2.gltf" type="PackedScene" id=12]
 
-[sub_resource type="BoxShape" id=1]
+[sub_resource type="BoxShape" id=7]
 extents = Vector3( 1, 12, 1 )
 
 [sub_resource type="BoxShape" id=2]
@@ -18,17 +21,6 @@ extents = Vector3( 1, 0.6, 1 )
 
 [sub_resource type="BoxShape" id=3]
 extents = Vector3( 1, 0.3, 1 )
-
-[sub_resource type="QuadMesh" id=4]
-size = Vector2( 2, 2.4 )
-
-[sub_resource type="SpatialMaterial" id=5]
-resource_name = "grass"
-flags_transparent = true
-params_cull_mode = 2
-albedo_texture = ExtResource( 7 )
-metallic = 0.5
-roughness = 0.0960784
 
 [node name="NatureLibrary" type="Spatial"]
 
@@ -41,7 +33,7 @@ material/0 = null
 
 [node name="CollisionShape" type="CollisionShape" parent="impassable/StaticBody"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12, 0 )
-shape = SubResource( 1 )
+shape = SubResource( 7 )
 
 [node name="cliff_block_rockrock" type="MeshInstance" parent="."]
 mesh = ExtResource( 3 )
@@ -90,10 +82,14 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 4 )
 [node name="path-stonecircle" parent="." instance=ExtResource( 10 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 4 )
 
-[node name="Spatial" type="Spatial" parent="."]
-transform = Transform( 0.707107, 0, 0.707107, 0, 1, 0, -0.707107, 0, 0.707107, 0, 0, 8 )
+[node name="grass-tuft0" parent="." instance=ExtResource( 7 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 8 )
 
-[node name="grass-tuft" type="MeshInstance" parent="Spatial"]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, 0 )
-mesh = SubResource( 4 )
-material/0 = SubResource( 5 )
+[node name="grass-tuft1" parent="." instance=ExtResource( 8 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 8 )
+
+[node name="grass-tuft2" parent="." instance=ExtResource( 12 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8 )
+
+[node name="grass-tuft3" parent="." instance=ExtResource( 11 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 8 )
