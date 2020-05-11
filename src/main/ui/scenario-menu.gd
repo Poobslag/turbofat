@@ -20,6 +20,8 @@ func _ready() -> void:
 		$VBoxContainer/Marathon/Expert.disable(unlock_message)
 	if ScenarioHistory.get_best_rank("marathon-expert") > RANK_TO_UNLOCK:
 		$VBoxContainer/Marathon/Master.disable(unlock_message)
+	if OS.has_feature("web"):
+		$OverworldButton.visible = false
 	
 	# grab focus so the player can navigate with the keyboard
 	$VBoxContainer/Marathon/Normal/Button.grab_focus()

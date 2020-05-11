@@ -26,10 +26,29 @@ var _load_thread: Thread
 # these two properties are used for the get_progress calculation
 var _work_done := 0.0
 var _work_remaining := 3.0
+var _remaining_png_paths = []
 
+"""
+Initializes the resource load.
+
+For desktop/mobile targets, this involves launching a background thread.
+
+Web targets do not support background threads (Godot issue #12699) so we initialize the list of PNG paths, and load
+them one at a time in the _process function.
+"""
 func start_load() -> void:
-	_load_thread = Thread.new()
-	_load_thread.start(self, "_preload_pngs")
+	if OS.has_feature("web"):
+		# Godot issue #12699; threads not supported for HTML5
+		_find_png_paths()
+	else:
+		_load_thread = Thread.new()
+		_load_thread.start(self, "_preload_all_pngs")
+
+
+func _process(delta: float) -> void:
+	if OS.has_feature("web") and _remaining_png_paths:
+		# Web targets do not support background threads, so we load resources one at a time
+		_preload_next_png()
 
 
 func _exit_tree() -> void:
@@ -48,25 +67,21 @@ Loads all pngs in the /assets directory and stores the resulting resources in ou
 Parameters:
 	'userdata': Unused; needed for threads
 """
-func _preload_pngs(userdata: Object) -> void:
-	var png_paths := _find_png_paths()
+func _preload_all_pngs(userdata: Object) -> void:
+	_find_png_paths()
 	
-	# all pngs have been located. increment the progress bar and calculate its new maximum
-	_work_remaining += png_paths.size()
-	_work_done += 3.0
-	
-	# We shuffle the pngs to prevent clumps of similar files. We use a known seed to keep the timing predictable.
-	if png_paths:
-		seed(253686)
-		png_paths.shuffle()
-		
-		for png_path in png_paths:
-			_load_resource(png_path)
-			_work_done += 1.0
-			if _exiting:
-				break
-	
-	emit_signal("finished_loading")
+	while _remaining_png_paths and not _exiting:
+		_preload_next_png()
+
+
+"""
+Loads a single png in the /assets directory and stores the resulting resource in our cache
+"""
+func _preload_next_png() -> void:
+	_load_resource(_remaining_png_paths.pop_front())
+	_work_done += 1.0
+	if not _remaining_png_paths:
+		emit_signal("finished_loading")
 
 
 """
@@ -79,7 +94,7 @@ Note: We search for '.png.import' files instead of searching for png files direc
 	disappear when the project is exported.
 """
 func _find_png_paths() -> Array:
-	var png_paths := []
+	_remaining_png_paths.clear()
 	
 	# directories remaining to be traversed
 	var dir_queue := ["res://assets"]
@@ -91,7 +106,7 @@ func _find_png_paths() -> Array:
 			if dir.current_is_dir():
 				dir_queue.append("%s/%s" % [dir.get_current_dir(), file])
 			elif file.ends_with(".png.import"):
-				png_paths.append("%s/%s" % [dir.get_current_dir(), file.get_basename()])
+				_remaining_png_paths.append("%s/%s" % [dir.get_current_dir(), file.get_basename()])
 		else:
 			if dir:
 				dir.list_dir_end()
@@ -103,7 +118,15 @@ func _find_png_paths() -> Array:
 			dir.list_dir_begin(true, true)
 		file = dir.get_next()
 	
-	return png_paths
+	seed(253686)
+	# We shuffle the pngs to prevent clumps of similar files. We use a known seed to keep the timing predictable.
+	_remaining_png_paths.shuffle()
+	
+	# all pngs have been located. increment the progress bar and calculate its new maximum
+	_work_remaining += _remaining_png_paths.size()
+	_work_done += 3.0
+	
+	return _remaining_png_paths
 
 
 """
