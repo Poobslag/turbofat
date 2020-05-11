@@ -19,3 +19,9 @@ func _process(delta: float) -> void:
 		new_text += "%1d%1d" % [min(9, _pieceManager._input_left_frames), min(9, _pieceManager._input_right_frames)]
 		new_text += " %s(%02d)" % [_pieceManager.get_state().name.left(4), min(99, _pieceManager.get_state().frames)]
 		text = new_text
+
+
+func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
+	if cheat == "delays":
+		visible = !visible
+		detector.play_cheat_sound(visible)

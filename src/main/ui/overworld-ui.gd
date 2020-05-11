@@ -13,12 +13,13 @@ signal chat_ended
 # signal emitted when we present the player with a dialog choice
 signal showed_chat_choices
 
-var turbo: Turbo
+signal turbo_changed(turbo)
+
+var turbo: Turbo setget set_turbo
 
 # Characters we're currently chatting with. We try to keep them all in frame and facing Turbo.
 var chatters := []
 
-var _show_fps := false setget set_show_fps, is_show_fps
 var _show_version := true setget set_show_version, is_show_version
 var _chat_library := ChatLibrary.new()
 
@@ -48,15 +49,6 @@ func start_chat() -> void:
 	emit_signal("chat_started")
 
 
-func set_show_fps(show_fps: bool) -> void:
-	_show_fps = show_fps
-	_update_visible()
-
-
-func is_show_fps() -> bool:
-	return _show_fps
-
-
 func set_show_version(show_version: bool) -> void:
 	_show_version = show_version
 	_update_visible()
@@ -80,13 +72,17 @@ func make_chatters_face_eachother() -> void:
 			chatter.orient_toward(turbo)
 
 
+func set_turbo(new_turbo: Turbo) -> void:
+	turbo = new_turbo
+	emit_signal("turbo_changed", turbo)
+
+
 """
 Updates the different UI components to be visible/invisible based on the UI's current state.
 """
 func _update_visible() -> void:
 	$ChatUi.visible = true if chatters else false
-	$FpsLabel.visible = _show_fps and not chatters
-	$VersionLabel.visible = _show_version and not chatters
+	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
 
 
 func _on_PuzzleButton_pressed() -> void:

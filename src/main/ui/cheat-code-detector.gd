@@ -12,7 +12,7 @@ res://assets/ui/cheat-enable.wav sound files exist for this purpose.
 """
 
 # Signal emitted when a cheat is entered.
-signal cheat_detected(code)
+signal cheat_detected(cheat, detector)
 
 # The maximum length of cheat codes. Entered keys are stored in a buffer, and we don't want the buffer to grow to a
 # ridiculous size.
@@ -37,6 +37,15 @@ export (Array, String) var codes := []
 
 # Buffer of key strings which were previously pressed.
 var _previous_keypresses := ""
+
+
+"""
+Plays the sound effect for enabling/disabling a cheat.
+"""
+func play_cheat_sound(enabled: bool) -> void:
+	var cheat_sound := $CheatEnableSound if enabled else $CheatDisableSound
+	cheat_sound.play()
+
 
 """
 Processes an input event, delegating to the appropriate 'key_pressed', 'key_just_pressed', 'key_released',
@@ -63,4 +72,4 @@ func _key_just_pressed(key_string: String) -> void:
 		if code == _previous_keypresses.right(_previous_keypresses.length() - code.length()):
 			# Clear the keypress buffer, otherwise a keypress could count towards two different cheats
 			_previous_keypresses = ""
-			emit_signal("cheat_detected", code)
+			emit_signal("cheat_detected", code, self)
