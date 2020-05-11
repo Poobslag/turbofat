@@ -117,8 +117,9 @@ func _on_Puzzle_game_ended() -> void:
 	# ensure score is up to date before calculating rank
 	$Puzzle/Score.end_combo()
 	var rank_result := _rank_calculator.calculate_rank()
-	ScenarioHistory.add_scenario_history(Global.scenario_settings.name, rank_result)
-	ScenarioHistory.save_scenario_history()
+	PlayerData.add_scenario_history(Global.scenario_settings.name, rank_result)
+	PlayerData.money += rank_result.score
+	PlayerSave.save_player_data()
 	
 	_grade_message = ""
 	if Global.scenario_settings.win_condition.type == ScenarioSettings.SCORE:

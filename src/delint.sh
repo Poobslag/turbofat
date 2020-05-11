@@ -16,4 +16,4 @@ grep -R -n "^					.\{100,\}$" --include="*.gd" .
 grep -R -n "var [^:]* = " --include="*.gd" . \
   | grep -v "chat-library.gd:48" \
   | grep -v "chat-event.gd:76" \
-  | grep -v "scenario-history.gd:119" \
+  | grep -v "player-save.gd:51" \

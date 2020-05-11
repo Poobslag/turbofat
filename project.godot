@@ -69,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/restaurant/customer-loader.gd"
 }, {
+"base": "Label",
+"class": "MoneyLabel",
+"language": "GDScript",
+"path": "res://src/main/ui/money-label.gd"
+}, {
 "base": "Sprite",
 "class": "MultiOutlineSprite",
 "language": "GDScript",
@@ -197,6 +202,7 @@ _global_script_class_icons={
 "Customer": "",
 "Customer3D": "",
 "CustomerLoader": "",
+"MoneyLabel": "",
 "MultiOutlineSprite": "",
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",
@@ -239,8 +245,9 @@ Global="*res://src/main/global.gd"
 InteractableManager="*res://src/main/world/interactable-manager.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
+PlayerData="*res://src/main/player-data.gd"
+PlayerSave="*res://src/main/player-save.gd"
 ResourceCache="*res://src/main/ResourceCache.tscn"
-ScenarioHistory="*res://src/main/puzzle/scenario-history.gd"
 ScenarioLibrary="*res://src/main/puzzle/scenario-library.gd"
 
 [display]
