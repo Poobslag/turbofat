@@ -3,7 +3,7 @@ extends "res://src/test/test-piece-kicks.gd"
 Tests the u piece's kick behavior.
 """
 
-func test_u_floor_kick_cw() -> void:
+func test_u_floorkick_cw() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -19,7 +19,7 @@ func test_u_floor_kick_cw() -> void:
 	_assert_kick()
 
 
-func test_u_floor_kick_ccw() -> void:
+func test_u_floorkick_ccw() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -35,7 +35,7 @@ func test_u_floor_kick_ccw() -> void:
 	_assert_kick()
 
 
-func test_u_wall_kick_cw() -> void:
+func test_u_rwallkick_cw() -> void:
 	from_grid = [
 		"    ",
 		"  uu",
@@ -53,7 +53,7 @@ func test_u_wall_kick_cw() -> void:
 	_assert_kick()
 
 
-func test_u_wall_kick_ccw() -> void:
+func test_u_lwallkick_ccw() -> void:
 	from_grid = [
 		"    ",
 		"uu  ",
@@ -74,7 +74,7 @@ func test_u_wall_kick_ccw() -> void:
 """
 A spire kick is when a u piece rotates while a block is in its gap.
 """
-func test_u_spire_kick_cw_0() -> void:
+func test_u_spire_kick_cw0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -90,7 +90,7 @@ func test_u_spire_kick_cw_0() -> void:
 	_assert_kick()
 
 
-func test_u_spire_kick_cw_1() -> void:
+func test_u_spire_kick_cw1() -> void:
 	from_grid = [
 		"     ",
 		"uu   ",
@@ -108,7 +108,7 @@ func test_u_spire_kick_cw_1() -> void:
 	_assert_kick()
 
 
-func test_u_spire_kick_cw_2() -> void:
+func test_u_spire_kick_cw2() -> void:
 	from_grid = [
 		"     ",
 		"   uu",
@@ -126,7 +126,7 @@ func test_u_spire_kick_cw_2() -> void:
 	_assert_kick()
 
 
-func test_u_spire_kick_ccw_0() -> void:
+func test_u_spire_kick_ccw0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -142,7 +142,7 @@ func test_u_spire_kick_ccw_0() -> void:
 	_assert_kick()
 
 
-func test_u_spire_kick_ccw_1() -> void:
+func test_u_spire_kick_ccw1() -> void:
 	from_grid = [
 		"     ",
 		"   uu",
@@ -160,7 +160,7 @@ func test_u_spire_kick_ccw_1() -> void:
 	_assert_kick()
 
 
-func test_u_spire_kick_ccw_2() -> void:
+func test_u_spire_kick_ccw2() -> void:
 	from_grid = [
 		"     ",
 		"uu   ",
@@ -176,3 +176,4 @@ func test_u_spire_kick_ccw_2() -> void:
 		"     ",
 	]
 	_assert_kick()
+

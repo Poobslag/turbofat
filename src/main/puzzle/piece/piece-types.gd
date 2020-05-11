@@ -6,10 +6,14 @@ how they 'kick' when they're blocked from rotating.
 
 
 const KICKS_JLT := [
-		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0,  2), Vector2(-1,  1), Vector2(-1,  2), Vector2(0, -1)],
-		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1), Vector2( 0, -2), Vector2( 1, -1), Vector2( 1, -2), Vector2(0,  1)],
-		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  1), Vector2( 0,  2), Vector2( 1,  1), Vector2( 1,  2), Vector2(0, -1)],
-		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2( 0, -2), Vector2(-1, -1), Vector2(-1, -2), Vector2(0,  1)]
+		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0,  2),
+				Vector2(-1,  1), Vector2(-1,  2), Vector2(0, -1)],
+		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1), Vector2( 0, -2),
+				Vector2( 1, -1), Vector2( 1, -2), Vector2(0,  1)],
+		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  1), Vector2( 0,  2),
+				Vector2( 1,  1), Vector2( 1,  2), Vector2(0, -1)],
+		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2( 0, -2),
+				Vector2(-1, -1), Vector2(-1, -2), Vector2(0,  1)]
 	]
 
 const KICKS_U := [
@@ -19,11 +23,18 @@ const KICKS_U := [
 		[Vector2( 1,  1), Vector2( 1,  2), Vector2( 0, -1), Vector2( 1, -1)]
 	]
 
-const KICKS_PQ := [
-		[Vector2( 0,  1), Vector2( 0, -1), Vector2( 0, -2), Vector2(-1, -1)],
-		[Vector2( 1,  0), Vector2( 0,  1), Vector2( 0,  2), Vector2( 1, -1)],
-		[Vector2( 1,  0), Vector2( 0,  1), Vector2( 0, -2), Vector2( 1,  1)],
-		[Vector2( 0,  1), Vector2( 0, -1), Vector2( 0,  2), Vector2(-1,  1)]
+const KICKS_P := [
+		[Vector2( 0, -1), Vector2(-1, -1), Vector2( 0,  1), Vector2(-1,  0)],
+		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1)],
+		[Vector2( 0,  1), Vector2( 1,  1), Vector2( 0, -1), Vector2(-1,  0)],
+		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1)]
+	]
+
+const KICKS_Q := [
+		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0, -1), Vector2( 0,  1)],
+		[Vector2( 0, -1), Vector2( 1, -1), Vector2( 0,  1), Vector2( 1,  0)],
+		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0,  1), Vector2( 0, -1)],
+		[Vector2( 0,  1), Vector2(-1,  1), Vector2( 0, -1), Vector2( 1,  0)]
 	]
 
 const KICKS_V := [
@@ -104,7 +115,7 @@ var piece_p := PieceType.new("p",
 		[Vector2(2, 0), Vector2(10, 0), Vector2(7, 0), Vector2(9, 0), Vector2(5, 0)],
 		[Vector2(10, 0), Vector2(6, 0), Vector2(9, 0), Vector2(13, 0), Vector2(4, 0)],
 		[Vector2(10, 0), Vector2(6, 0), Vector2(11, 0), Vector2(5, 0), Vector2(1, 0)]],
-		KICKS_PQ
+		KICKS_P
 	)
 
 var piece_q := PieceType.new("q",
@@ -118,7 +129,7 @@ var piece_q := PieceType.new("q",
 		[Vector2(10, 1), Vector2(6, 1), Vector2(9, 1), Vector2(7, 1), Vector2(1, 1)],
 		[Vector2(10, 1), Vector2(6, 1), Vector2(8, 1), Vector2(13, 1), Vector2(5, 1)],
 		[Vector2(2, 1), Vector2(11, 1), Vector2(6, 1), Vector2(9, 1), Vector2(5, 1)]],
-		KICKS_PQ
+		KICKS_Q
 	)
 
 var piece_t := PieceType.new("t",

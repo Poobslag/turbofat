@@ -153,7 +153,8 @@ func _spawn_piece() -> void:
 		var old_pos := active_piece.pos
 		_reset_piece_target()
 		_kick_piece([Vector2(-4, 0), Vector2(-4, -1), Vector2(-3, 0), Vector2(-3, -1),
-				Vector2(-2, 0), Vector2(-2, -1), Vector2(-1, 0), Vector2(-1, -1)])
+				Vector2(-2, 0), Vector2(-2, -1), Vector2(-1, 0), Vector2(-1, -1),
+				Vector2(0, 0), Vector2(0, -1), Vector2(1, 0), Vector2(1, -1)])
 		_move_piece_to_target()
 		if old_pos != active_piece.pos:
 			$MoveSound.play()
@@ -167,7 +168,8 @@ func _spawn_piece() -> void:
 		var old_pos := active_piece.pos
 		_reset_piece_target()
 		_kick_piece([Vector2(4, 0), Vector2(4, -1), Vector2(3, 0), Vector2(3, -1),
-				Vector2(2, 0), Vector2(2, -1), Vector2(1, 0), Vector2(1, -1)])
+				Vector2(2, 0), Vector2(2, -1), Vector2(1, 0), Vector2(1, -1),
+				Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1)])
 		_move_piece_to_target()
 		if old_pos != active_piece.pos:
 			$MoveSound.play()
