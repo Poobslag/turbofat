@@ -116,7 +116,10 @@ func load_scenario_history() -> void:
 			var line_string := save_game.get_line()
 			if not line_string:
 				continue
-			var line_json: Dictionary = parse_json(line_string)
+			var line_json = parse_json(line_string)
+			if not line_json:
+				continue
+			var line_dict: Dictionary = line_json
 			for rank_result_json in line_json["scenario_history"]:
 				var rank_result := RankResult.new()
 				rank_result.from_dict(rank_result_json)

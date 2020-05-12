@@ -10,9 +10,9 @@ script = ExtResource( 3 )
 [node name="CheatDisableSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 1 )
 volume_db = -4.0
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="CheatEnableSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 2 )
 volume_db = -4.0
-bus = "Reverb Bus"
+bus = "Main Bus"

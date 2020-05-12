@@ -2709,7 +2709,7 @@ script = ExtResource( 58 )
 
 [node name="EmoteSfx" type="AudioStreamPlayer" parent="EmoteAnims"]
 stream = ExtResource( 72 )
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="FatPlayer" type="AnimationPlayer" parent="."]
 anims/fat = SubResource( 52 )
@@ -2753,31 +2753,31 @@ bus = "Voice Bus"
 stream = ExtResource( 15 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="DoorChime1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="DoorChime2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 24 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="DoorChime3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 16 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="DoorChime4" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 18 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="ComboVoice00" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )

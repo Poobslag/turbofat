@@ -162,23 +162,23 @@ script = ExtResource( 38 )
 
 [node name="Rotate0Sound" type="AudioStreamPlayer" parent="PieceManager"]
 stream = ExtResource( 29 )
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="Rotate1Sound" type="AudioStreamPlayer" parent="PieceManager"]
 stream = ExtResource( 30 )
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="MoveSound" type="AudioStreamPlayer" parent="PieceManager"]
 stream = ExtResource( 31 )
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="LockSound" type="AudioStreamPlayer" parent="PieceManager"]
 stream = ExtResource( 28 )
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="PieceManager"]
 stream = ExtResource( 32 )
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="GameOverVoice0" type="AudioStreamPlayer" parent="PieceManager"]
 stream = ExtResource( 36 )
@@ -202,7 +202,7 @@ bus = "Voice Bus"
 
 [node name="SmushSound" type="AudioStreamPlayer" parent="PieceManager"]
 stream = ExtResource( 26 )
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="NextPieceDisplays" parent="." instance=ExtResource( 4 )]
 margin_left = 688.0
@@ -234,12 +234,12 @@ margin_bottom = 150.0
 [node name="ReadySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -4.0
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="GoSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -4.0
-bus = "Reverb Bus"
+bus = "Main Bus"
 
 [node name="GoVoice0" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )

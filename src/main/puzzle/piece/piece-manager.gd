@@ -423,7 +423,14 @@ func _move_piece_to_target(play_sfx := false) -> bool:
 					$Rotate0Sound.play()
 				else:
 					$Rotate1Sound.play()
-			if active_piece.pos != _target_piece_pos:
+			elif active_piece.pos != _target_piece_pos:
+				if $MoveSound.playing:
+					# Adjust the pitch/volume of DAS moves so they don't sound as grating and samey
+					$MoveSound.pitch_scale = clamp($MoveSound.pitch_scale + 0.08, 0.94, 2.00)
+					$MoveSound.volume_db = clamp($MoveSound.volume_db * 0.92, 0.50, 1.00)
+				else:
+					$MoveSound.pitch_scale = 0.94
+					$MoveSound.volume_db = 1.00
 				$MoveSound.play()
 		active_piece.pos = _target_piece_pos
 		active_piece.orientation = _target_piece_orientation
