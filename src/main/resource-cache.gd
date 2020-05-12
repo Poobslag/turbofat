@@ -26,7 +26,7 @@ var _load_thread: Thread
 # these two properties are used for the get_progress calculation
 var _work_done := 0.0
 var _work_remaining := 3.0
-var _remaining_png_paths = []
+var _remaining_png_paths := []
 
 """
 Initializes the resource load.
