@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://FpsLabel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/main/world/turbo-trace.gd" type="Script" id=6]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=10]
 
 [node name="OverworldUi" type="Control"]
@@ -31,8 +32,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -512.0
 margin_top = -300.0
-margin_right = -5.0
-margin_bottom = -5.0
+margin_right = -10.0
+margin_bottom = -10.0
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -55,18 +56,24 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 275.0
-margin_right = 507.0
-margin_bottom = 295.0
+margin_top = 270.0
+margin_right = 502.0
+margin_bottom = 290.0
 
 [node name="NorthwestLabels" type="VBoxContainer" parent="Labels"]
-margin_left = 5.0
-margin_top = 5.0
+margin_left = 10.0
+margin_top = 10.0
 margin_right = 512.0
 margin_bottom = 300.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MoneyLabel" parent="Labels/NorthwestLabels" instance=ExtResource( 8 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 502.0
+margin_bottom = 0.0
 
 [node name="TurboTrace" type="Label" parent="Labels/NorthwestLabels"]
 visible = false
@@ -80,10 +87,10 @@ script = ExtResource( 6 )
 visible = false
 
 [node name="PuzzleButton" type="Button" parent="."]
-margin_left = 5.0
-margin_top = 535.0
-margin_right = 65.0
-margin_bottom = 595.0
+margin_left = 10.0
+margin_top = 530.0
+margin_right = 70.0
+margin_bottom = 590.0
 focus_mode = 1
 custom_fonts/font = ExtResource( 5 )
 text = "P"

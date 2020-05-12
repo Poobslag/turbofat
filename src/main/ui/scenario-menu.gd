@@ -8,17 +8,17 @@ const RANK_TO_UNLOCK := 23.0
 
 func _ready() -> void:
 	var unlock_message: String = "(%s to unlock)" % Global.grade(RANK_TO_UNLOCK)
-	if ScenarioHistory.get_best_rank("sprint-normal") > RANK_TO_UNLOCK:
+	if PlayerData.get_best_scenario_rank("sprint-normal") > RANK_TO_UNLOCK:
 		$VBoxContainer/Sprint/Expert.disable(unlock_message)
-	if ScenarioHistory.get_best_rank("ultra-normal", "seconds") > RANK_TO_UNLOCK:
+	if PlayerData.get_best_scenario_rank("ultra-normal", "seconds") > RANK_TO_UNLOCK:
 		$VBoxContainer/Ultra/Hard.disable(unlock_message)
-	if ScenarioHistory.get_best_rank("ultra-hard", "seconds") > RANK_TO_UNLOCK:
+	if PlayerData.get_best_scenario_rank("ultra-hard", "seconds") > RANK_TO_UNLOCK:
 		$VBoxContainer/Ultra/Expert.disable(unlock_message)
-	if ScenarioHistory.get_best_rank("marathon-normal") > RANK_TO_UNLOCK:
+	if PlayerData.get_best_scenario_rank("marathon-normal") > RANK_TO_UNLOCK:
 		$VBoxContainer/Marathon/Hard.disable(unlock_message)
-	if ScenarioHistory.get_best_rank("marathon-hard") > RANK_TO_UNLOCK:
+	if PlayerData.get_best_scenario_rank("marathon-hard") > RANK_TO_UNLOCK:
 		$VBoxContainer/Marathon/Expert.disable(unlock_message)
-	if ScenarioHistory.get_best_rank("marathon-expert") > RANK_TO_UNLOCK:
+	if PlayerData.get_best_scenario_rank("marathon-expert") > RANK_TO_UNLOCK:
 		$VBoxContainer/Marathon/Master.disable(unlock_message)
 	if OS.has_feature("web"):
 		$OverworldButton.visible = false
