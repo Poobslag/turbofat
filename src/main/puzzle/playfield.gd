@@ -5,8 +5,24 @@ Stores information about the game playfield: writing pieces to the playfield, ca
 or whether a box was made, pausing and playing sound effects
 """
 
-# signal emitted when a line is cleared
-signal line_cleared
+const CAKE_COLOR_INDEX := 4
+
+# food colors for the food which gets hurled into the customer's mouth
+const FOOD_COLORS: Array = [
+	Color("a4470b"), # brown
+	Color("ff5d68"), # pink
+	Color("ffa357"), # bread
+	Color("fff6eb") # white
+]
+
+# signal emitted before a line is cleared
+signal before_lines_cleared(cleared_lines)
+
+# signal emitted when lines are cleared
+signal lines_cleared(cleared_lines)
+
+# signal emitted when a box (3x3, 3x4, 3x5) is made
+signal box_made(x, y, width, height, color)
 
 # signal emitted when the customer should leave
 signal customer_left
@@ -121,7 +137,7 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, piece_speed: P
 Returns 'true' if the specified cell does not contain a block.
 """
 func is_cell_empty(x: int, y: int) -> bool:
-	return $TileMapClip/TileMap.get_cell(x, y) == -1
+	return get_cell(x, y) == -1
 
 
 func end_game() -> void:
@@ -139,6 +155,73 @@ func _delete_rows() -> void:
 	_cleared_lines = []
 	if _should_play_line_fall_sound:
 		$LineFallSound.play()
+
+
+"""
+Erases the specified lines from the TileMap and awards points.
+"""
+func clear_lines(rows: Array) -> void:
+	emit_signal("before_lines_cleared", _cleared_lines)
+	var total_points := 0
+	var piece_points := 0
+	for y in _cleared_lines:
+		var line_score := 1
+		line_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
+		Global.scenario_performance.lines += 1
+		Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
+		for x in range(COL_COUNT):
+			var autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
+			if get_cell(x, y) == 1 \
+					and not Connect.is_l(autotile_coord.x):
+				if autotile_coord.y == CAKE_COLOR_INDEX:
+					# cake piece
+					line_score += 10
+					Global.scenario_performance.box_score += 10
+					piece_points = int(max(piece_points, 2))
+				else:
+					# snack piece
+					line_score += 5
+					Global.scenario_performance.box_score += 5
+					piece_points = int(max(piece_points, 1))
+		_score.add_combo_score(line_score - 1)
+		_score.add_score(1)
+		_clear_row(y)
+		total_points += line_score
+		# each line cleared adds to the combo, increasing the score for the following lines
+		combo += 1
+		_combo_break = 0
+	_play_line_clear_sfx(piece_points)
+	emit_signal("lines_cleared", _cleared_lines)
+
+
+"""
+Makes a box at the specified location.
+
+Boxes are made when the player forms a 3x3, 3x4, 3x5 rectangle from intact pieces.
+"""
+func make_box(x: int, y: int, width: int, height: int, box_color: int) -> void:
+	# corners
+	_set_box_block(x + 0, y + 0, Vector2(10, box_color))
+	_set_box_block(x + width - 1, y + 0, Vector2(6, box_color))
+	_set_box_block(x + 0, y + height - 1, Vector2(9, box_color))
+	_set_box_block(x + width - 1, y + height - 1, Vector2(5, box_color))
+	
+	# top/bottom edge
+	for curr_x in range(x + 1, x + width - 1):
+		_set_box_block(curr_x, y + 0, Vector2(14, box_color))
+		_set_box_block(curr_x, y + height - 1, Vector2(13, box_color))
+	
+	# center
+	for curr_x in range(x + 1, x + width - 1):
+		for curr_y in range(y + 1, y + height - 1):
+			_set_box_block(curr_x, curr_y, Vector2(15, box_color))
+	
+	# left/right edge
+	for curr_y in range(y + 1, y + height - 1):
+		_set_box_block(x + 0, curr_y, Vector2(11, box_color))
+		_set_box_block(x + width - 1, curr_y, Vector2(7, box_color))
+		
+	emit_signal("box_made", x, y, width, height, box_color)
 
 
 """
@@ -178,7 +261,7 @@ func _filled_columns() -> Array:
 	var db := _int_matrix()
 	for y in range(ROW_COUNT):
 		for x in range(COL_COUNT):
-			var piece_color: int = $TileMapClip/TileMap.get_cell(x, y)
+			var piece_color: int = get_cell(x, y)
 			if piece_color == -1:
 				# empty space
 				db[y][x] = 0
@@ -231,7 +314,7 @@ func _process_boxes() -> bool:
 			
 			# check for 3x3s
 			if dt3[y][x] >= 3 and _process_box(x - 2, y - 2, 3, 3):
-				var box_type := int($TileMapClip/TileMap.get_cell_autotile_coord(x - 2, y - 2).y)
+				var box_type := int(get_cell_autotile_coord(x - 2, y - 2).y)
 				if box_type == 0:
 					$MakeSnackBoxSound0.play()
 				elif box_type == 1:
@@ -254,41 +337,22 @@ no empty/vegetable/box cells.
 """
 func _process_box(x: int, y: int, width: int, height: int, cake = false) -> bool:
 	for curr_x in range(x, x + width):
-		if Connect.is_u($TileMapClip/TileMap.get_cell_autotile_coord(curr_x, y).x):
+		if Connect.is_u(get_cell_autotile_coord(curr_x, y).x):
 			return false
-		if Connect.is_d($TileMapClip/TileMap.get_cell_autotile_coord(curr_x, y + height - 1).x):
+		if Connect.is_d(get_cell_autotile_coord(curr_x, y + height - 1).x):
 			return false
 	for curr_y in range(y, y + height):
-		if Connect.is_l($TileMapClip/TileMap.get_cell_autotile_coord(x, curr_y).x):
+		if Connect.is_l(get_cell_autotile_coord(x, curr_y).x):
 			return false
-		if Connect.is_r($TileMapClip/TileMap.get_cell_autotile_coord(x + width - 1, curr_y).x):
+		if Connect.is_r(get_cell_autotile_coord(x + width - 1, curr_y).x):
 			return false
 	
 	# making a box continues the combo
 	_combo_break = 0
 	
-	var box_color := 4 if cake else $TileMapClip/TileMap.get_cell_autotile_coord(x, y).y
+	var box_color: int = CAKE_COLOR_INDEX if cake else get_cell_autotile_coord(x, y).y
 	
-	# corners
-	_set_box_block(x + 0, y + 0, Vector2(10, box_color))
-	_set_box_block(x + width - 1, y + 0, Vector2(6, box_color))
-	_set_box_block(x + 0, y + height - 1, Vector2(9, box_color))
-	_set_box_block(x + width - 1, y + height - 1, Vector2(5, box_color))
-	
-	# top/bottom edge
-	for curr_x in range(x + 1, x + width - 1):
-		_set_box_block(curr_x, y + 0, Vector2(14, box_color))
-		_set_box_block(curr_x, y + height - 1, Vector2(13, box_color))
-	
-	# center
-	for curr_x in range(x + 1, x + width - 1):
-		for curr_y in range(y + 1, y + height - 1):
-			_set_box_block(curr_x, curr_y, Vector2(15, box_color))
-	
-	# left/right edge
-	for curr_y in range(y + 1, y + height - 1):
-		_set_box_block(x + 0, curr_y, Vector2(11, box_color))
-		_set_box_block(x + width - 1, curr_y, Vector2(7, box_color))
+	make_box(x, y, width, height, box_color)
 	
 	return true
 
@@ -305,44 +369,22 @@ func _any_row_is_full() -> bool:
 	return result
 
 
+func get_cell(x: int, y:int) -> int:
+	return $TileMapClip/TileMap.get_cell(x, y)
+
+
+func get_cell_autotile_coord(x: int, y:int) -> Vector2:
+	return $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
+
+
 """
 Clears any full lines in the playfield. Updates the combo, awards points, and plays sounds appropriately.
 """
 func _process_line_clear() -> void:
-	var total_points := 0
-	var piece_points := 0
-	var lines_cleared := 0
 	for y in range(ROW_COUNT):
 		if _row_is_full(y):
-			var line_score := 1
-			line_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
-			Global.scenario_performance.lines += 1
-			Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
 			_cleared_lines.append(y)
-			for x in range(COL_COUNT):
-				var autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
-				if $TileMapClip/TileMap.get_cell(x, y) == 1 \
-						and not Connect.is_l(autotile_coord.x):
-					if autotile_coord.y == 4:
-						# cake piece
-						line_score += 10
-						Global.scenario_performance.box_score += 10
-						piece_points = int(max(piece_points, 2))
-					else:
-						# snack piece
-						line_score += 5
-						Global.scenario_performance.box_score += 5
-						piece_points = int(max(piece_points, 1))
-			_score.add_combo_score(line_score - 1)
-			_score.add_score(1)
-			_clear_row(y)
-			total_points += line_score
-			lines_cleared += 1
-			# each line cleared adds to the combo, increasing the score for the following lines
-			combo += 1
-			_combo_break = 0
-	_play_line_clear_sfx(piece_points)
-	emit_signal("line_cleared", lines_cleared)
+	clear_lines(_cleared_lines)
 
 
 """
@@ -431,9 +473,9 @@ Clear all cells in the specified row. This leaves any pieces above them floating
 """
 func _clear_row(y: int) -> void:
 	for x in range(COL_COUNT):
-		if $TileMapClip/TileMap.get_cell(x, y) == 0:
+		if get_cell(x, y) == 0:
 			_disconnect_block(x, y)
-		elif $TileMapClip/TileMap.get_cell(x, y) == 1:
+		elif get_cell(x, y) == 1:
 			_disconnect_box(x, y)
 		
 		_clear_block(x, y)
@@ -445,8 +487,8 @@ Deletes the specified row in the playfield, dropping all higher rows down to fil
 func _delete_row(y: int) -> void:
 	for curr_y in range(y, 0, -1):
 		for x in range(COL_COUNT):
-			var piece_color: int = $TileMapClip/TileMap.get_cell(x, curr_y - 1)
-			var autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, curr_y - 1)
+			var piece_color: int = get_cell(x, curr_y - 1)
+			var autotile_coord: Vector2 = get_cell_autotile_coord(x, curr_y - 1)
 			$TileMapClip/TileMap.set_cell(x, curr_y, piece_color, false, false, false, autotile_coord)
 			$TileMapClip/TileMap/CornerMap.dirty = true
 			if piece_color != -1:
@@ -463,12 +505,12 @@ Disconnects the specified block from all blocks it's connected to, directly or i
 turned into vegetables to ensure they can't be included in boxes in the future.
 """
 func _disconnect_block(x: int, y: int) -> void:
-	if $TileMapClip/TileMap.get_cell(x, y) != 0:
+	if get_cell(x, y) != 0:
 		# not a block; do nothing and don't recurse
 		return
 	
 	# store connections
-	var old_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
+	var old_autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
 	
 	# disconnect
 	var vegetable_type := old_autotile_coord.y
@@ -501,13 +543,13 @@ If we didn't perform this step, the chopped-off bottom of a bread box would stil
 bottom of a bread box looks like a delicious frosted snack and the player can tell it's special.
 """
 func _disconnect_box(x: int, y: int) -> void:
-	var old_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
+	var old_autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
 	if y > 0 and Connect.is_u(old_autotile_coord.x):
-		var above_autotile_coord: Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y - 1)
+		var above_autotile_coord: Vector2 = get_cell_autotile_coord(x, y - 1)
 		_set_box_block(x, y - 1, Vector2(Connect.unset_d(above_autotile_coord.x), above_autotile_coord.y))
 		_set_box_block(x, y, Vector2(Connect.unset_u(old_autotile_coord.x), old_autotile_coord.y))
 	if y < ROW_COUNT - 1 and Connect.is_d(old_autotile_coord.x):
-		var below_autotile_coord:Vector2 = $TileMapClip/TileMap.get_cell_autotile_coord(x, y + 1)
+		var below_autotile_coord:Vector2 = get_cell_autotile_coord(x, y + 1)
 		_set_box_block(x, y + 1,
 				Vector2(Connect.unset_u(below_autotile_coord.x), below_autotile_coord.y))
 		_set_box_block(x, y,

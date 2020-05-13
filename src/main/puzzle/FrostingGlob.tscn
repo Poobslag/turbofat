@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/puzzle/frosting-glob-sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/main/puzzle/frosting-glob.gd" type="Script" id=2]
+
+[node name="FrostingGlob" type="Sprite"]
+texture = ExtResource( 1 )
+vframes = 2
+hframes = 4
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

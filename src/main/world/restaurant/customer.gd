@@ -49,14 +49,6 @@ enum HeadBobMode {
 	SHUDDER # shaking left and right
 }
 
-# food colors for the food which gets hurled into the customer's mouth
-const FOOD_COLORS: Array = [
-	Color("a4470b"), # brown
-	Color("ff5d68"), # pink
-	Color("ffa357"), # bread
-	Color("fff6eb") # white
-]
-
 # delays between when customer arrives and when door chime is played (in seconds)
 const CHIME_DELAYS: Array = [0.5, 1.0, 1.5, 2.0, 3.0]
 
@@ -365,8 +357,9 @@ func show_food_effects(delay := 0.0) -> void:
 	munch_sound.pitch_scale = rand_range(0.96, 1.04)
 
 	# avoid using the same color twice consecutively
-	_food_color_index = (_food_color_index + 1 + randi() % (FOOD_COLORS.size() - 1)) % FOOD_COLORS.size()
-	var food_color: Color = FOOD_COLORS[_food_color_index]
+	_food_color_index = (_food_color_index + 1 + randi() % (Playfield.FOOD_COLORS.size() - 1)) \
+			% Playfield.FOOD_COLORS.size()
+	var food_color: Color = Playfield.FOOD_COLORS[_food_color_index]
 	$Sprites/Neck0/Neck1/Food.modulate = food_color
 	$Sprites/Neck0/Neck1/FoodLaser.modulate = food_color
 

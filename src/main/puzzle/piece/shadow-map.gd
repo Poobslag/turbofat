@@ -7,7 +7,7 @@ piece.
 # Tilemap for the active piece
 var piece_tile_map: TileMap
 
-onready var _parent_tile_map: TileMap = get_parent()
+onready var _parent_tile_map: TileMap = $"../.."
 
 func _process(_delta: float) -> void:
 	clear()

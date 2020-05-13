@@ -146,7 +146,7 @@ func _on_Puzzle_game_ended() -> void:
 """
 Method invoked when a line is cleared. Updates the level.
 """
-func _on_Puzzle_line_cleared(_lines_cleared: int) -> void:
+func _on_Puzzle_lines_cleared(_cleared_lines: Array) -> void:
 	var lines: int = Global.scenario_performance.lines
 	var new_level := _level
 	
