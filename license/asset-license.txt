@@ -12,6 +12,9 @@ Blogger Sans by Sergiy Tkachenko (https://firstsiteguide.com)
 Models:
 Nature Kit 2.1 by Kenney (www.kenney.nl)
 
+Other:
+Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc)
+
 Sounds
 --------------------------------------------------------------------------------
 assets/puzzle/applause.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
@@ -64,3 +67,9 @@ assets/world/environment/path-stone.gltf Kenney's Nature Kit 2.1
 assets/world/environment/path-stonecircle.gltf Kenney's Nature Kit 2.1
 assets/world/environment/path-stonecorner.gltf Kenney's Nature Kit 2.1
 assets/world/environment/path-stoneend.gltf Kenney's Nature Kit 2.1
+
+Other
+--------------------------------------------------------------------------------
+src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)
+
+

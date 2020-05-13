@@ -104,7 +104,7 @@ func unemote() -> void:
 		$ResetTween.interpolate_property(emote_sprite, "rotation_degrees", emote_sprite.rotation_degrees, 0,
 				UNEMOTE_DURATION)
 		$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
-				_to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
+				Global.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
 	$"..".head_bob_mode = Customer.HeadBobMode.BOB
 	$"..".head_motion_pixels = Customer.HEAD_BOB_PIXELS
 	$"..".head_motion_seconds = Customer.HEAD_BOB_SECONDS
@@ -147,16 +147,6 @@ func _post_unemote() -> void:
 		emote_sprite.modulate = Color.transparent
 	$"../Sprites/EmoteBody".scale = Vector2(0.418, 0.418)
 	$"../Sprites/Neck0/Neck1/EmoteGlow".material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
-
-
-"""
-Returns a transparent version of the specified color.
-
-Tweening from forest green to 'Color.transparent' results in some strange in-between frames which are grey or white.
-It's better to tween to a transparent forest green.
-"""
-static func _to_transparent(color: Color) -> Color:
-	return Color(color.r, color.g, color.b, 0)
 
 
 """
