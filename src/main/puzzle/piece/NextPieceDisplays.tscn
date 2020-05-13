@@ -31,6 +31,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FrostingMain" type="ColorRect" parent="."]
+visible = false
+modulate = Color( 1, 1, 1, 0.588235 )
+margin_right = 64.0
+margin_bottom = 484.0
+color = Color( 1, 0.364706, 0.407843, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FrostingGutter" type="ColorRect" parent="."]
+visible = false
+margin_top = 484.0
+margin_right = 64.0
+margin_bottom = 544.0
+color = Color( 1, 0.364706, 0.407843, 0.392157 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Shadow" type="ColorRect" parent="."]
 margin_right = 6.0
 margin_bottom = 544.0

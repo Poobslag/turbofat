@@ -12,7 +12,7 @@ signal before_game_started
 signal game_started
 
 # signal emitted when a line is cleared
-signal line_cleared(lines_cleared)
+signal lines_cleared(_cleared_lines)
 
 # signal emitted when the player's pieces reach the top of the playfield
 signal game_ended
@@ -25,7 +25,7 @@ onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 func _ready() -> void:
 	$NextPieceDisplays.hide_pieces()
 	$PieceManager.clear_piece()
-	$Playfield/TileMapClip/TileMap/ShadowMap.piece_tile_map = $PieceManager/TileMap
+	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
 	for i in range(3):
 		_summon_customer(i)
@@ -35,14 +35,14 @@ func _ready() -> void:
 Shows a detailed multi-line message, like how the game is controlled
 """
 func show_detail_message(text: String) -> void:
-	$Hud.show_detail_message(text)
+	$HudHolder/Hud.show_detail_message(text)
 
 
 """
 Shows a succinct single-line message, like 'Game Over'
 """
 func show_message(text: String) -> void:
-	$Hud.show_message(text)
+	$HudHolder/Hud.show_message(text)
 
 
 """
@@ -54,7 +54,7 @@ func end_game(delay: float, message: String) -> void:
 	$PieceManager.end_game()
 	show_message(message)
 	yield(get_tree().create_timer(delay), "timeout")
-	$Hud.after_game_ended()
+	$HudHolder/Hud.after_game_ended()
 	emit_signal("after_game_ended")
 
 
@@ -109,7 +109,7 @@ func _on_Hud_back_button_pressed() -> void:
 
 func _on_Hud_start_button_pressed() -> void:
 	emit_signal("before_game_started")
-	$Hud.hide_buttons_and_messages()
+	$HudHolder/Hud.hide_buttons_and_messages()
 	
 	$NextPieceDisplays.start_game()
 	$Playfield.start_game()
@@ -128,7 +128,7 @@ func _on_Hud_start_button_pressed() -> void:
 	show_message("1")
 	$ReadySound.play()
 	yield(get_tree().create_timer(0.8), "timeout")
-	$Hud.hide_buttons_and_messages()
+	$HudHolder/Hud.hide_buttons_and_messages()
 	$GoSound.play()
 	_go_voices[randi() % _go_voices.size()].play()
 	
@@ -145,19 +145,19 @@ func _on_Piece_game_ended() -> void:
 
 
 """
-Relays the 'line_cleared' signal to any listeners, and triggers the 'customer feeding' animation
+Relays the 'lines_cleared' signal to any listeners, and triggers the 'customer feeding' animation
 """
-func _on_Playfield_line_cleared(lines_cleared: int) -> void:
+func _on_Playfield_lines_cleared(cleared_lines: Array) -> void:
 	# Calculate whether or not the customer should say something positive about the combo. The customer talks after
 	# the 5th, 8th, 11th, 14th, 17th, 20th, 23rd, etc... line in a combo
-	var customer_talks: bool = $Playfield.combo >= 5 and lines_cleared > ($Playfield.combo + 1) % 3
+	var customer_talks: bool = $Playfield.combo >= 5 and cleared_lines.size() > ($Playfield.combo + 1) % 3
 	
-	emit_signal("line_cleared", lines_cleared)
+	emit_signal("lines_cleared", cleared_lines)
 	yield(get_tree().create_timer(rand_range(0.3, 0.5)), "timeout")
-	_feed_customer(1.0 / lines_cleared)
-	for i in range(lines_cleared - 1):
+	_feed_customer(1.0 / cleared_lines.size())
+	for i in range(cleared_lines.size() - 1):
 		yield(get_tree().create_timer(rand_range(0.066, 0.4)), "timeout")
-		_feed_customer(1.0 / (lines_cleared - i - 1))
+		_feed_customer(1.0 / (cleared_lines.size() - i - 1))
 	if customer_talks:
 		yield(get_tree().create_timer(0.5), "timeout")
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_combo_voice()
