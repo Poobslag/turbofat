@@ -14,19 +14,25 @@ const CELL_SIZE = Vector2(36, 32)
 
 # The pool of globs we're able to spawn. Some of these may be active but most will be inactive (process=false)
 var _globs := []
+var _rainbow_globs := []
 
 # The index of the next glob to spawn from the pool
 var _glob_index := 0
+var _rainbow_glob_index := 0
 
 onready var FrostingGlobScene := preload("res://src/main/puzzle/FrostingGlob.tscn")
 
 onready var playfield := $"../Playfield"
 
 func _ready() -> void:
-	for _i in range(GLOB_POOL_SIZE):
+	for i in range(GLOB_POOL_SIZE):
 		var glob: FrostingGlob = FrostingGlobScene.instance()
-		add_child(glob)
-		_globs.append(glob)
+		if i % 2 == 0:
+			$Viewport.add_child(glob)
+			_globs.append(glob)
+		else:
+			$RainbowViewport.add_child(glob)
+			_rainbow_globs.append(glob)
 
 
 """
@@ -43,6 +49,18 @@ func spawn_glob(color: Color, position: Vector2) -> void:
 
 
 """
+Launches a new rainbow colored frosting glob from the specified position.
+
+Parameters:
+	'position': An (x, y) coordinate relative to this node where the glob will appear
+"""
+func spawn_rainbow_glob(position: Vector2) -> void:
+	var glob: FrostingGlob = _rainbow_globs[_rainbow_glob_index]
+	_rainbow_glob_index = (_rainbow_glob_index + 1) % _rainbow_globs.size()
+	glob.initialize(Color.white, position)
+
+
+"""
 When a line is cleared, we generate frosting globs for any boxes involved in the line clear.
 
 This must be called before the line is cleared so that we can evaluate the food blocks before they're erased.
@@ -53,6 +71,7 @@ func _on_Playfield_before_lines_cleared(cleared_lines: Array) -> void:
 			var color_int: int
 			var glob_count: int
 			if playfield.get_cell(x, y) == 1:
+				color_int = playfield.get_cell_autotile_coord(x, y).y
 				if color_int in [0, 1, 2, 3]:
 					glob_count = 2
 				elif color_int == 4:
@@ -87,9 +106,8 @@ Parameters:
 """
 func _spawn_globs(x: int, y: int, color_int: int, glob_count: int) -> void:
 	for _i in range(glob_count):
-		var color: Color
 		if color_int in [0, 1, 2, 3]:
-			color = Playfield.FOOD_COLORS[color_int]
+			var color: Color = Playfield.FOOD_COLORS[color_int]
+			spawn_glob(color, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + playfield.rect_position)
 		else:
-			color = Color.from_hsv(randf(), 1.0, 1.0)
-		spawn_glob(color, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + playfield.rect_position)
+			spawn_rainbow_glob(Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + playfield.rect_position)

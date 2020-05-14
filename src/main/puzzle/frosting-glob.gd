@@ -27,15 +27,10 @@ func initialize(color: Color, new_position: Vector2) -> void:
 	visible = true
 	set_process(true)
 	
-	# randomly flip the sprite vertically/horizontally for variance
-	var initial_scale := Vector2(0.77, 0.77)
-	if randf() > 0.5:
-		initial_scale *= Vector2(-1.0, 1.0)
-	if randf() > 0.5:
-		initial_scale *= Vector2(1.0, -1.0)
-	
+	modulate = color
 	$Tween.remove_all()
-	$Tween.interpolate_property(self, "scale", initial_scale, Vector2.ZERO, DURATION, Tween.TRANS_CIRC, Tween.EASE_IN)
+	$Tween.interpolate_property(self, "modulate", color, Global.to_transparent(color), \
+			DURATION, Tween.TRANS_CIRC, Tween.EASE_IN)
 	$Tween.start()
 	
 	position = new_position
@@ -44,7 +39,14 @@ func initialize(color: Color, new_position: Vector2) -> void:
 	velocity.x += rand_range(-MAX_INITIAL_VELOCITY.x * 0.5, MAX_INITIAL_VELOCITY.x * 0.5)
 	velocity.x += rand_range(-MAX_INITIAL_VELOCITY.x * 0.5, MAX_INITIAL_VELOCITY.x * 0.5)
 	velocity.y = MAX_INITIAL_VELOCITY.y * rand_range(0.4, 1.0)
-	modulate = color
+	
+	scale = Vector2(0.25, 0.25)
+	# randomly flip the sprite vertically/horizontally for variance
+	if randf() > 0.5:
+		scale *= Vector2(-1.0, 1.0)
+	if randf() > 0.5:
+		scale *= Vector2(1.0, -1.0)
+
 
 
 func _process(delta: float)  -> void:

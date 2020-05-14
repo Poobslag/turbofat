@@ -175,3 +175,13 @@ func ui_released_dir(event: InputEvent = null) -> bool:
 		if Input.is_action_just_released("ui_right"):
 			ui_dir += Vector2.RIGHT
 	return ui_dir.length() > 0
+
+
+"""
+Returns a transparent version of the specified color.
+
+Tweening from forest green to 'Color.transparent' results in some strange in-between frames which are grey or white.
+It's better to tween to a transparent forest green.
+"""
+static func to_transparent(color: Color) -> Color:
+	return Color(color.r, color.g, color.b, 0)

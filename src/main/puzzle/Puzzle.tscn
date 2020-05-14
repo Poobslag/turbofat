@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://assets/world/chef/go-voice1.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/world/chef/go-voice2.wav" type="AudioStream" id=15]
 [ext_resource path="res://src/main/puzzle/frosting-globs.gd" type="Script" id=16]
+[ext_resource path="res://src/main/puzzle/metaball.shader" type="Shader" id=17]
 [ext_resource path="res://src/main/puzzle/stretch-map.gd" type="Script" id=19]
 [ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/piece/states/move-piece.gd" type="Script" id=21]
@@ -37,6 +38,7 @@
 [ext_resource path="res://src/main/puzzle/piece/states/none.gd" type="Script" id=37]
 [ext_resource path="res://src/main/puzzle/piece/states/game-ended.gd" type="Script" id=38]
 [ext_resource path="res://src/main/puzzle/piece/states/prespawn.gd" type="Script" id=39]
+[ext_resource path="res://src/main/puzzle/rainbow-metaball.shader" type="Shader" id=41]
 
 [sub_resource type="TileSet" id=1]
 0/name = "blocks.png 0"
@@ -60,6 +62,30 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 17 )
+
+[sub_resource type="ViewportTexture" id=3]
+flags = 5
+viewport_path = NodePath("FrostingGlobs/Viewport")
+
+[sub_resource type="OpenSimplexNoise" id=6]
+octaves = 1
+
+[sub_resource type="NoiseTexture" id=7]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 6 )
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = ExtResource( 41 )
+shader_param/noise = SubResource( 7 )
+
+[sub_resource type="ViewportTexture" id=5]
+flags = 5
+viewport_path = NodePath("FrostingGlobs/RainbowViewport")
 
 [node name="Puzzle" type="Control"]
 margin_right = 1024.0
@@ -231,6 +257,34 @@ __meta__ = {
 [node name="FrostingGlobs" type="Node2D" parent="."]
 z_index = 1
 script = ExtResource( 16 )
+
+[node name="Viewport" type="Viewport" parent="FrostingGlobs"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+
+[node name="TextureRect" type="TextureRect" parent="FrostingGlobs"]
+material = SubResource( 4 )
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = SubResource( 3 )
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RainbowViewport" type="Viewport" parent="FrostingGlobs"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+
+[node name="RainbowTextureRect" type="TextureRect" parent="FrostingGlobs"]
+material = SubResource( 2 )
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = SubResource( 5 )
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="FrostingWalls" type="Control" parent="."]
 visible = false
