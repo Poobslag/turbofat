@@ -5,22 +5,6 @@ such as 'Marathon mode', a game style which gets harder and harder but theoretic
 good enough.
 """
 
-# Hints displayed after the player loses
-const HINTS = [
-	"Make a snack box by arranging a pentomino and a quadromino into a square!",
-	"Make a rainbow cake by arranging 3 pentominos into a rectangle!",
-	"Make a rainbow cake by arranging 3 quadrominos into a rectangle!",
-	"A snack box scores 5 points per line, a rainbow cake scores 10. Make lots of cakes!",
-	"Combos can give you 20 bonus points for completing a line. Make lots of combos!",
-	"Build a big combo by making boxes and clearing lines!",
-	"When a piece locks, hold left or right to quickly move the next piece!",
-	"When a piece locks, hold a rotate key to quickly rotate the next piece!",
-	"When a piece locks, hold both rotate keys to quickly flip the next piece!",
-	"When a piece locks, hold up to quickly hard-drop the next piece!",
-	"After a hard drop, tap 'down' to delay the piece from locking!",
-	"Sometimes, pressing 'down' can cheat pieces through other pieces!"
-]
-
 # Colors used to render the level number. Easy levels are green, and hard levels are red.
 const LEVEL_COLOR_0 := Color(0.111, 0.888, 0.111, 1)
 const LEVEL_COLOR_1 := Color(0.444, 0.888, 0.111, 1)
@@ -33,13 +17,8 @@ var _rank_calculator := RankCalculator.new()
 
 var _level := 0
 
-# message shown to the player including stats, grades, and a gameplay hint
-var _grade_message := ""
-
 func _ready() -> void:
-	# reset statistics like time taken, lines cleared
-	Global.scenario_performance = ScenarioPerformance.new()
-	
+	PuzzleScore.reset()
 	$TimeHud.hide()
 	$LinesHud.hide()
 	$ScoreHud.hide()
@@ -60,17 +39,17 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if Global.scenario_settings.win_condition.type == ScenarioSettings.TIME and $Puzzle/Playfield.clock_running:
-		if Global.scenario_performance.seconds >= Global.scenario_settings.win_condition.value:
+		if PuzzleScore.scenario_performance.seconds >= Global.scenario_settings.win_condition.value:
 			$MatchEndSound.play()
 			$Puzzle.end_game(2.2, "Finish!")
 
 
 func _process(_delta: float) -> void:
 	if Global.scenario_settings.win_condition.type == ScenarioSettings.TIME:
-		var seconds := ceil(Global.scenario_settings.win_condition.value - Global.scenario_performance.seconds)
+		var seconds := ceil(Global.scenario_settings.win_condition.value - PuzzleScore.scenario_performance.seconds)
 		$TimeHud/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 	elif Global.scenario_settings.win_condition.type == ScenarioSettings.SCORE:
-		var seconds := ceil(Global.scenario_performance.seconds)
+		var seconds := ceil(PuzzleScore.scenario_performance.seconds)
 		$ScoreHud/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
 
 
@@ -111,43 +90,29 @@ func _set_level(new_level:int) -> void:
 
 
 """
-Method invoked when the game ends. Prepares a game over message to show to the player.
+Method invoked when the game ends. Stores the rank result for later.
 """
 func _on_Puzzle_game_ended() -> void:
 	# ensure score is up to date before calculating rank
-	$Puzzle/Score.end_combo()
+	PuzzleScore.end_combo()
 	var rank_result := _rank_calculator.calculate_rank()
 	PlayerData.add_scenario_history(Global.scenario_settings.name, rank_result)
 	PlayerData.money += rank_result.score
 	PlayerSave.save_player_data()
 	
-	_grade_message = ""
 	if Global.scenario_settings.win_condition.type == ScenarioSettings.SCORE:
-		_grade_message += "Speed: %.1f (%s)\n" % [rank_result.speed, Global.grade(rank_result.speed_rank)]
-	else:
-		_grade_message += "Lines: %.1f (%s)\n" % [rank_result.lines, Global.grade(rank_result.lines_rank)]
-	_grade_message += "Boxes: %.1f (%s)\n" % [rank_result.box_score_per_line,
-			Global.grade(rank_result.box_score_per_line_rank)]
-	_grade_message += "Combos: %.1f (%s)\n" % [rank_result.combo_score_per_line,
-			Global.grade(rank_result.combo_score_per_line_rank)]
-	if Global.scenario_settings.win_condition.type == ScenarioSettings.SCORE:
-		var seconds := ceil(Global.scenario_performance.seconds)
-		_grade_message += "Overall: %01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60,
-				Global.grade(rank_result.seconds_rank)]
-		if not Global.scenario_performance.died and rank_result.seconds_rank < 24:
+		if not PuzzleScore.scenario_performance.died and rank_result.seconds_rank < 24:
 			$ApplauseSound.play()
 	else:
-		_grade_message += "Overall: (%s)\n" % Global.grade(rank_result.score_rank)
-		if not Global.scenario_performance.died and rank_result.score_rank < 24:
+		if not PuzzleScore.scenario_performance.died and rank_result.score_rank < 24:
 			$ApplauseSound.play()
-	_grade_message += "Hint: %s" % HINTS[randi() % HINTS.size()]
 
 
 """
 Method invoked when a line is cleared. Updates the level.
 """
 func _on_Puzzle_lines_cleared(_cleared_lines: Array) -> void:
-	var lines: int = Global.scenario_performance.lines
+	var lines: int = PuzzleScore.scenario_performance.lines
 	var new_level := _level
 	
 	while new_level + 1 < Global.scenario_settings.level_ups.size() \
@@ -169,7 +134,7 @@ func _on_Puzzle_lines_cleared(_cleared_lines: Array) -> void:
 			$Puzzle.end_game(4.2, "You win!")
 	
 	if Global.scenario_settings.win_condition.type == ScenarioSettings.SCORE:
-		var total_score: int = $Puzzle/Score.score + $Puzzle/Score.combo_score
+		var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_combo_score()
 		$ScoreHud/ProgressBar.value = total_score
 		if total_score >= Global.scenario_settings.win_condition.value:
 			$MatchEndSound.play()
@@ -189,7 +154,3 @@ func _on_Puzzle_before_game_started() -> void:
 	
 	if Global.scenario_settings.win_condition.type == ScenarioSettings.LINES:
 		$LinesHud/ProgressBar.value = 0
-
-
-func _on_Puzzle_after_game_ended() -> void:
-	$Puzzle.show_detail_message(_grade_message)

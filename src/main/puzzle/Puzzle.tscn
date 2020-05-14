@@ -63,27 +63,27 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 17 )
 
 [sub_resource type="ViewportTexture" id=3]
 flags = 5
 viewport_path = NodePath("FrostingGlobs/Viewport")
 
-[sub_resource type="OpenSimplexNoise" id=6]
+[sub_resource type="OpenSimplexNoise" id=4]
 octaves = 1
 
-[sub_resource type="NoiseTexture" id=7]
+[sub_resource type="NoiseTexture" id=5]
 width = 1024
 height = 1024
 seamless = true
-noise = SubResource( 6 )
+noise = SubResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=6]
 shader = ExtResource( 41 )
-shader_param/noise = SubResource( 7 )
+shader_param/noise = SubResource( 5 )
 
-[sub_resource type="ViewportTexture" id=5]
+[sub_resource type="ViewportTexture" id=7]
 flags = 5
 viewport_path = NodePath("FrostingGlobs/RainbowViewport")
 
@@ -98,10 +98,7 @@ __meta__ = {
 [node name="Wood" type="TextureRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -1.90002
-margin_top = 1.89999
-margin_right = -1.90002
-margin_bottom = 1.90002
+margin_bottom = 6.10352e-05
 texture = ExtResource( 9 )
 expand = true
 __meta__ = {
@@ -263,7 +260,7 @@ size = Vector2( 1024, 600 )
 transparent_bg = true
 
 [node name="TextureRect" type="TextureRect" parent="FrostingGlobs"]
-material = SubResource( 4 )
+material = SubResource( 2 )
 margin_right = 1024.0
 margin_bottom = 600.0
 texture = SubResource( 3 )
@@ -277,10 +274,10 @@ size = Vector2( 1024, 600 )
 transparent_bg = true
 
 [node name="RainbowTextureRect" type="TextureRect" parent="FrostingGlobs"]
-material = SubResource( 2 )
+material = SubResource( 6 )
 margin_right = 1024.0
 margin_bottom = 600.0
-texture = SubResource( 5 )
+texture = SubResource( 7 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false

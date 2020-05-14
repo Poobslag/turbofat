@@ -159,11 +159,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario-settings.gd"
 }, {
-"base": "Control",
-"class": "Score",
-"language": "GDScript",
-"path": "res://src/main/puzzle/score.gd"
-}, {
 "base": "Label",
 "class": "SentenceLabel",
 "language": "GDScript",
@@ -225,7 +220,6 @@ _global_script_class_icons={
 "ScenarioButton": "",
 "ScenarioPerformance": "",
 "ScenarioSettings": "",
-"Score": "",
 "SentenceLabel": "",
 "SentenceSprite": "",
 "SmoothPath": "",
@@ -253,6 +247,7 @@ PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"
+PuzzleScore="*res://src/main/puzzle/puzzle-score.gd"
 ResourceCache="*res://src/main/ResourceCache.tscn"
 ScenarioLibrary="*res://src/main/puzzle/scenario-library.gd"
 

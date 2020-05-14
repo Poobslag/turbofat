@@ -1,24 +1,17 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/ui/xolonium-48-outline.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-hud.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=6]
 
 [sub_resource type="InputEventAction" id=1]
 action = "ui_cancel"
 
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 0.19873, 0.177771, 0.177771, 1 )
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color( 1, 1, 1, 1 )
 
 [node name="Hud" type="Control"]
 margin_left = 364.0
@@ -69,8 +62,8 @@ margin_left = -120.0
 margin_top = -248.0
 margin_right = 118.0
 margin_bottom = -70.0
-custom_styles/normal = SubResource( 3 )
-custom_fonts/normal_font = ExtResource( 2 )
+custom_styles/normal = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 6 )
 text = "Controls
 
 Arrows: Move
@@ -78,6 +71,9 @@ Up/Shift: Hard drop
 Down: Soft drop
 Z, X: Rotate"
 scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MessageLabel" type="Label" parent="."]
 anchor_left = 0.5

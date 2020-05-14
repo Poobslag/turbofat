@@ -142,12 +142,12 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
 	
 	# calculate raw player performance statistics
-	rank_result.lines = Global.scenario_performance.lines
-	rank_result.box_score = Global.scenario_performance.box_score
-	rank_result.combo_score = Global.scenario_performance.combo_score
-	rank_result.score = Global.scenario_performance.score
-	rank_result.seconds = Global.scenario_performance.seconds
-	rank_result.died = Global.scenario_performance.died
+	rank_result.lines = PuzzleScore.scenario_performance.lines
+	rank_result.box_score = PuzzleScore.scenario_performance.box_score
+	rank_result.combo_score = PuzzleScore.scenario_performance.combo_score
+	rank_result.score = PuzzleScore.scenario_performance.score
+	rank_result.seconds = PuzzleScore.scenario_performance.seconds
+	rank_result.died = PuzzleScore.scenario_performance.died
 	rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 1)
 	rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 1)
 	rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \
@@ -184,7 +184,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 			var tmp_speed := target_speed * pow(RDF_SPEED, tmp_overall_rank)
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
 			if (win_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
-					/ points_per_second < rank_result.seconds or Global.scenario_performance.died:
+					/ points_per_second < rank_result.seconds or PuzzleScore.scenario_performance.died:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank

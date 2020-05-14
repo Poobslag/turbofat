@@ -1,6 +1,6 @@
 class_name ScenarioPerformance
 """
-Stores statistics for how well the player performed in their current game. This includes how long they survived, how
+Stores persistent statistics for how well the player performed a scenario. This includes how long they survived, how
 many lines they cleared, and their score.
 """
 

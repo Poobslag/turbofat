@@ -63,6 +63,10 @@ func get_best_scenario_result(scenario: String, property: String = "score") -> R
 	return best_performance
 
 
+func get_last_scenario_result(scenario: String) -> RankResult:
+	return scenario_history[scenario][0]
+
+
 """
 Records the current scenario performance to the player's history.
 """

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/main/puzzle/scenario.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/ui/xolonium-48.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=12]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -206,6 +207,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="ResultsHud" parent="." instance=ExtResource( 12 )]
+
+[node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+bus = "Main Bus"
+
 [node name="LevelUpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 bus = "Main Bus"
@@ -214,18 +221,15 @@ bus = "Main Bus"
 stream = ExtResource( 4 )
 bus = "Main Bus"
 
-[node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-bus = "Main Bus"
-
 [node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 bus = "Main Bus"
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 11 )]
 codes = [ "delays" ]
-[connection signal="after_game_ended" from="Puzzle" to="." method="_on_Puzzle_after_game_ended"]
+[connection signal="after_game_ended" from="Puzzle" to="ResultsHud" method="_on_Puzzle_after_game_ended"]
 [connection signal="before_game_started" from="Puzzle" to="." method="_on_Puzzle_before_game_started"]
+[connection signal="before_game_started" from="Puzzle" to="ResultsHud" method="_on_Puzzle_before_game_started"]
 [connection signal="game_ended" from="Puzzle" to="." method="_on_Puzzle_game_ended"]
 [connection signal="lines_cleared" from="Puzzle" to="." method="_on_Puzzle_lines_cleared"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Puzzle/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]

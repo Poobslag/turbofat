@@ -178,7 +178,7 @@ func _spawn_piece() -> void:
 	if not _can_move_active_piece_to(active_piece.pos, active_piece.orientation):
 		$GameOverSound.play()
 		_game_over_voices[randi() % _game_over_voices.size()].play()
-		Global.scenario_performance.died = true
+		PuzzleScore.scenario_performance.died = true
 		end_game()
 		emit_signal("game_ended")
 
