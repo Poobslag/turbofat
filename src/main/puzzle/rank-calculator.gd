@@ -7,10 +7,10 @@ the best possible rank and 999 is the worst.
 # These constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99 means the ranks are really
 # narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like 0.96 means the ranks are
 # more forgiving.
-const RDF_SPEED := 0.96
-const RDF_LINES := 0.96
-const RDF_BOX_SCORE_PER_LINE := 0.96
-const RDF_COMBO_SCORE_PER_LINE := 0.98
+const RDF_SPEED := 0.960
+const RDF_LINES := 0.960
+const RDF_BOX_SCORE_PER_LINE := 0.970
+const RDF_COMBO_SCORE_PER_LINE := 0.970
 
 # Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
 # boxes, and easier to make boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a

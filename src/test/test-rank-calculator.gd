@@ -67,8 +67,8 @@ func test_calculate_rank_marathon_300_mixed() -> void:
 	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "A")
 	assert_eq(Global.grade(rank.lines_rank), "C")
-	assert_eq(Global.grade(rank.box_score_per_line_rank), "S-")
-	assert_eq(Global.grade(rank.combo_score_per_line_rank), "B")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "A+")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "A")
 	assert_eq(Global.grade(rank.score_rank), "B")
 
 func test_calculate_rank_marathon_lenient() -> void:
@@ -82,8 +82,8 @@ func test_calculate_rank_marathon_lenient() -> void:
 	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "A")
 	assert_eq(Global.grade(rank.lines_rank), "B")
-	assert_eq(Global.grade(rank.box_score_per_line_rank), "S-")
-	assert_eq(Global.grade(rank.combo_score_per_line_rank), "B")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "A+")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "A")
 	assert_eq(Global.grade(rank.score_rank), "B+")
 
 func test_calculate_rank_marathon_300_fail() -> void:
@@ -113,7 +113,7 @@ func test_calculate_rank_sprint_120() -> void:
 	assert_eq(Global.grade(rank.speed_rank), "A+")
 	assert_eq(Global.grade(rank.lines_rank), "A+")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "A")
-	assert_eq(Global.grade(rank.combo_score_per_line_rank), "A+")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "S")
 	assert_eq(Global.grade(rank.score_rank), "A+")
 
 func test_calculate_rank_ultra_200() -> void:
@@ -143,8 +143,8 @@ func test_calculate_rank_ultra_200_died() -> void:
 	var rank := _rank_calculator.calculate_rank()
 	assert_eq(Global.grade(rank.speed_rank), "B")
 	assert_eq(rank.seconds_rank, 999.0)
-	assert_eq(Global.grade(rank.box_score_per_line_rank), "C+")
-	assert_eq(Global.grade(rank.combo_score_per_line_rank), "-")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "D")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "D")
 
 """
 This is an edge case where, if the player gets too many points for ultra, they can sort of be robbed of a master rank.
