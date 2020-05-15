@@ -214,6 +214,46 @@ func test_v_snack_kick_ccw() -> void:
 	_assert_kick()
 
 
+func test_v_snack_kick_down_ccw() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		" vvv ",
+		":v:::",
+		":v:::",
+		"     ",
+	]
+	to_grid = [
+		"     ",
+		"     ",
+		"     ",
+		":v:::",
+		":v:::",
+		" vvv ",
+	]
+	_assert_kick()
+
+
+func test_v_snack_kick_down_cw() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		" vvv ",
+		":::v:",
+		":::v:",
+		"     ",
+	]
+	to_grid = [
+		"     ",
+		"     ",
+		"     ",
+		":::v:",
+		":::v:",
+		" vvv ",
+	]
+	_assert_kick()
+
+
 """
 The v piece can't technically wall kick, but it can kick against other blocks similar to a wall kick
 """
