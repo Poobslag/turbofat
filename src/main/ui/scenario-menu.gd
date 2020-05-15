@@ -3,8 +3,8 @@ extends Control
 Menu which lists a set of scenarios which the player can play over and over and try to beat their high scores.
 """
 
-# Rank required to unlock harder levels. Rank 23 is an A-
-const RANK_TO_UNLOCK := 23.0
+# Rank required to unlock harder levels. Rank 24 is an S-
+const RANK_TO_UNLOCK := 24.0
 
 func _ready() -> void:
 	var unlock_message: String = "(%s to unlock)" % Global.grade(RANK_TO_UNLOCK)

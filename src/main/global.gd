@@ -38,32 +38,29 @@ func _process(delta: float) -> void:
 
 
 """
-Converts a numeric grade such as '12.6' into a grade string such as 'A+'.
+Converts a numeric grade such as '12.6' into a grade string such as 'S+'.
 """
 func grade(rank: float) -> String:
 	var grade := NO_GRADE
-	if   rank <= 0:  grade = "M"
 	
-	elif rank <= 2:  grade = "S++"
-	elif rank <= 3:  grade = "S+"
-	elif rank <= 9:  grade = "S"
-	elif rank <= 10: grade = "S-"
+	if rank <= 0: grade = "M"
 	
-	elif rank <= 13: grade = "A+"
-	elif rank <= 22: grade = "A"
-	elif rank <= 23: grade = "A-"
+	elif rank <= 4: grade = "SSS"
+	elif rank <= 7: grade = "SS+"
+	elif rank <= 10: grade = "SS" # 4 stars (medium gap)
+	elif rank <= 16: grade = "S+"
+	elif rank <= 20: grade = "S"
+	elif rank <= 24: grade = "S-" # 1 star (big gap)
 	
-	elif rank <= 26: grade = "B+"
-	elif rank <= 33: grade = "B"
-	elif rank <= 34: grade = "B-"
+	elif rank <= 32: grade = "AA+"
+	elif rank <= 36: grade = "AA"
+	elif rank <= 40: grade = "A+"
+	elif rank <= 44: grade = "A"
+	elif rank <= 48: grade = "A-" # 1 triangle (big gap)
 	
-	elif rank <= 37: grade = "C+"
-	elif rank <= 44: grade = "C"
-	elif rank <= 45: grade = "C-"
-	
-	elif rank <= 48: grade = "D+"
-	elif rank <= 58: grade = "D"
-	elif rank <= 64: grade = "D-"
+	elif rank <= 56: grade = "B+"
+	elif rank <= 60: grade = "B"
+	elif rank <= 64: grade = "B-" # 1 dot (big gap)
 	return grade
 
 
