@@ -51,8 +51,6 @@ var _should_play_line_fall_sound := false
 # The number of pieces the player has dropped without clearing a line or making a box, plus one.
 var _combo_break := 0
 
-onready var _score: Score = $"../Score"
-
 # sounds which play as the player continues a combo.
 onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
 		$Combo01Sound, $Combo02Sound, $Combo03Sound, $Combo04Sound, $Combo05Sound, $Combo06Sound,
@@ -71,7 +69,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if clock_running:
-		Global.scenario_performance.seconds += delta
+		PuzzleScore.scenario_performance.seconds += delta
 	
 	if _remaining_box_build_frames > 0:
 		_remaining_box_build_frames -= 1
@@ -97,7 +95,6 @@ func ready_for_new_piece() -> bool:
 Clears the playfield and resets everything for a new game.
 """
 func start_game() -> void:
-	Global.scenario_performance = ScenarioPerformance.new()
 	$TileMapClip/TileMap.clear()
 	$TileMapClip/TileMap/CornerMap.clear()
 
@@ -141,7 +138,7 @@ func is_cell_empty(x: int, y: int) -> bool:
 
 
 func end_game() -> void:
-	_score.end_combo()
+	PuzzleScore.end_combo()
 	combo = 0
 
 
@@ -160,15 +157,15 @@ func _delete_rows() -> void:
 """
 Erases the specified lines from the TileMap and awards points.
 """
-func clear_lines(rows: Array) -> void:
+func _clear_lines() -> void:
 	emit_signal("before_lines_cleared", _cleared_lines)
 	var total_points := 0
 	var piece_points := 0
 	for y in _cleared_lines:
 		var line_score := 1
 		line_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
-		Global.scenario_performance.lines += 1
-		Global.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
+		PuzzleScore.scenario_performance.lines += 1
+		PuzzleScore.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
 		for x in range(COL_COUNT):
 			var autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
 			if get_cell(x, y) == 1 \
@@ -176,15 +173,16 @@ func clear_lines(rows: Array) -> void:
 				if autotile_coord.y == CAKE_COLOR_INDEX:
 					# cake piece
 					line_score += 10
-					Global.scenario_performance.box_score += 10
+					PuzzleScore.scenario_performance.box_score += 10
 					piece_points = int(max(piece_points, 2))
 				else:
 					# snack piece
 					line_score += 5
-					Global.scenario_performance.box_score += 5
+					PuzzleScore.scenario_performance.box_score += 5
 					piece_points = int(max(piece_points, 1))
-		_score.add_combo_score(line_score - 1)
-		_score.add_score(1)
+		PuzzleScore.add_score(1)
+		PuzzleScore.add_combo_score(line_score - 1)
+		PuzzleScore.add_customer_score(line_score)
 		_clear_row(y)
 		total_points += line_score
 		# each line cleared adds to the combo, increasing the score for the following lines
@@ -384,7 +382,7 @@ func _process_line_clear() -> void:
 	for y in range(ROW_COUNT):
 		if _row_is_full(y):
 			_cleared_lines.append(y)
-	clear_lines(_cleared_lines)
+	_clear_lines()
 
 
 """
@@ -393,16 +391,16 @@ Ends the player's combo if they drop 2 blocks without making a box or scoring po
 func _process_combo() -> void:
 	_combo_break += 1
 	if _combo_break >= 3:
-		if _score.combo_score > 0:
+		if PuzzleScore.get_combo_score() > 0:
 			if combo >= 20:
 				$Fanfare3.play()
 			elif combo >= 10:
 				$Fanfare2.play()
 			elif combo >= 5:
 				$Fanfare1.play()
-		if _score.customer_score > 0:
+		if PuzzleScore.get_customer_score() > 0:
 			emit_signal("customer_left")
-			_score.end_combo()
+			PuzzleScore.end_combo()
 			combo = 0
 
 

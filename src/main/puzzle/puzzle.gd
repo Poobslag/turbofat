@@ -74,7 +74,7 @@ func _feed_customer(fatness_pct: float) -> void:
 	
 	if $Playfield.clock_running:
 		var old_fatness: float = $CustomerView.get_fatness()
-		var target_fatness := sqrt(1 + $Score.customer_score / 50.0)
+		var target_fatness := sqrt(1 + PuzzleScore.get_customer_score() / 50.0)
 		$CustomerView.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
 
 
@@ -113,7 +113,7 @@ func _on_Hud_start_button_pressed() -> void:
 	
 	$NextPieceDisplays.start_game()
 	$Playfield.start_game()
-	$Score.start_game()
+	PuzzleScore.reset()
 	$PieceManager.clear_piece()
 	if $CustomerView.get_fatness() > 1:
 		# if they ended a game on a fattened customer, scroll to a new one

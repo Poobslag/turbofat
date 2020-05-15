@@ -3,7 +3,7 @@ extends Spatial
 A demo which shows off the customer's range of emotions
 
 Keys:
-	[1]: DEFAULT
+	[1]: Default mood
 	[Q, W, E, R]: Smile0 (Happy), Smile1 (Love), Laugh0 (Tickled), Laugh1 (Laughing)
 	[A, S, D, F]: Think0 (Pensive), Think1 (Confused), Cry0 (Disappointed), Cry1 (Distraught)
 	[Z, X, C, V]: Sweat0 (Nervous), Sweat1 (Fidgety), Rage0 (Upset), Rage1 (Rage)
