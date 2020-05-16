@@ -70,7 +70,7 @@ export (bool) var _movement_mode := false setget set_movement_mode
 export (Orientation) var _orientation := Orientation.SOUTHEAST setget set_orientation, get_orientation
 
 # these three fields control the customer's head motion: how it's moving, as well as how much/how fast
-export (HeadBobMode) var head_bob_mode := HeadBobMode.BOB
+export (HeadBobMode) var head_bob_mode := HeadBobMode.BOB setget set_head_bob_mode
 export (float) var head_motion_pixels := 2.0
 export (float) var head_motion_seconds := 6.5
 
@@ -171,16 +171,20 @@ func _process(delta: float) -> void:
 			var head_phase := _total_seconds * PI / head_motion_seconds
 			if head_bob_mode == HeadBobMode.BOB:
 				var bob_amount := head_motion_pixels * sin(2 * head_phase)
-				$Sprites/Neck0/Neck1.position.x = 0
 				$Sprites/Neck0/Neck1.position.y = -100 + bob_amount
 			elif head_bob_mode == HeadBobMode.BOUNCE:
 				var bounce_amount := head_motion_pixels * (1 - 2 * abs(sin(head_phase)))
-				$Sprites/Neck0/Neck1.position.x = 0
 				$Sprites/Neck0/Neck1.position.y = -100 + bounce_amount
 			elif head_bob_mode == HeadBobMode.SHUDDER:
 				var shudder_amount := head_motion_pixels * clamp(2 * sin(2 * head_phase), -1.0, 1.0)
 				$Sprites/Neck0/Neck1.position.x = shudder_amount
 				$Sprites/Neck0/Neck1.position.y = -100
+
+
+func set_head_bob_mode(new_head_bob_mode: int) -> void:
+	head_bob_mode = new_head_bob_mode
+	# Some head bob animations like 'shudder' offset the x position; reset it back to the center
+	$Sprites/Neck0/Neck1.position.x = 0
 
 
 """
