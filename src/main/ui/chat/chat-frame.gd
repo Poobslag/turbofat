@@ -108,3 +108,7 @@ func _on_Tween_pop_out_completed() -> void:
 
 func _on_SentenceManager_all_text_shown() -> void:
 	emit_signal("all_text_shown")
+
+
+func _on_ChatAdvancer_chat_finished() -> void:
+	pop_out()
