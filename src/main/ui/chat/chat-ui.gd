@@ -13,21 +13,11 @@ signal showed_choices
 # how long the player needs to hold the button to skip all dialog
 const HOLD_TO_SKIP_DURATION := 0.6
 
-# tree of chat events the player can page through
-var _chat_tree: ChatTree
-
-# historical array of ChatEvents the player can rewind through
-var _prev_chat_events := []
-var _prev_chat_event_index := 0
-
 # how long the player has been holding the 'interact' button
 var _interact_action_duration := 0.0
 
 # how long the player has been holding the 'rewind' button
 var _rewind_action_duration := 0.0
-
-# 'true' if the player is currently rewinding through the chat history
-var _rewinding_text := false
 
 func _process(delta: float) -> void:
 	_interact_action_duration = _interact_action_duration + delta if Input.is_action_pressed("ui_accept") else 0
@@ -47,9 +37,7 @@ func _input(event: InputEvent) -> void:
 
 
 func play_chat_tree(chat_tree: ChatTree) -> void:
-	_rewinding_text = false
-	_chat_tree = chat_tree
-	_play_chat_event()
+	$ChatAdvancer.play_chat_tree(chat_tree)
 
 
 """
@@ -68,8 +56,7 @@ func _handle_rewind_action(event: InputEvent) -> void:
 	
 	if rewind_action:
 		get_tree().set_input_as_handled()
-		if _decrement_line():
-			_play_chat_event()
+		$ChatAdvancer.rewind()
 
 
 """
@@ -93,68 +80,17 @@ func _handle_advance_action(event: InputEvent) -> void:
 		if not $ChatFrame.is_all_text_visible():
 			# text is still being slowly typed out, make it all visible
 			$ChatFrame.make_all_text_visible()
-		elif _increment_line():
-			# show the next dialog line to the player
-			_play_chat_event()
 		else:
-			# there is no more dialog, close the chat window
-			$ChatFrame.pop_out()
-
-
-"""
-Rewind to a previously shown dialog line.
-
-Returns 'true' if the rewind was successful, or 'false' if there were no lines to rewind to.
-"""
-func _decrement_line() -> bool:
-	var did_decrement := false
-	if _prev_chat_events.size() < 2:
-		# no events to rewind to
-		pass
-	elif not _rewinding_text:
-		# begin rewinding
-		_rewinding_text = true
-		_prev_chat_event_index = _prev_chat_events.size() - 2
-		did_decrement = true
-	elif _prev_chat_event_index > 0:
-		# continue rewinding further back
-		_prev_chat_event_index -= 1
-		did_decrement = true
-	return did_decrement
-
-
-"""
-Advance to the next dialog line.
-
-This is most likely the next spoken dialog line if the player is advancing dialog normally. However, it can also be a
-historical dialog line if the player was rewinding dialog.
-
-Returns 'true' if the increment was successful, or 'false' if there were no more lines to show.
-"""
-func _increment_line() -> bool:
-	var did_increment := false
-	if _rewinding_text:
-		if _prev_chat_event_index + 1 < _prev_chat_events.size():
-			# continue forward through rewound events
-			_prev_chat_event_index += 1
-			did_increment = true
-		else:
-			# done rewinding; back to current dialog
-			_rewinding_text = false
-	else:
-		did_increment = _chat_tree.advance(0)
-	return did_increment
+			$ChatAdvancer.advance()
 
 
 """
 Displays the current chat event to the player.
 """
-func _play_chat_event() -> void:
-	if _rewinding_text or $ChatChoices.is_showing_choices():
+func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
+	if $ChatAdvancer.rewinding_text or $ChatChoices.is_showing_choices():
 		# if we're asked to rewind or play more dialog without picking a choice, hide the choices
 		$ChatChoices.hide_choices()
-	
-	var chat_event := _current_chat_event()
 	
 	# reposition the nametags for whether the characters are on the left or right side
 	var interactable := InteractableManager.get_chatter(chat_event["who"])
@@ -169,62 +105,26 @@ func _play_chat_event() -> void:
 			# If we're facing left, we're on the right side. Put the nametag on the right.
 			nametag_right = true
 	
-	if _should_prompt():
+	if $ChatAdvancer.should_prompt():
 		# we're going to prompt the player for a response; squish the chat frame to the side
 		squished = true
 	
 	$ChatFrame.play_chat_event(chat_event, nametag_right, squished)
 	
-	if _rewinding_text:
+	if $ChatAdvancer.rewinding_text:
 		# immediately make all text visible when rewinding, so the player can rewind faster
 		$ChatFrame.make_all_text_visible()
 	else:
 		emit_signal("chat_event_played", chat_event)
 
 
-func _should_prompt() -> bool:
-	var result := true
-	var chat_event:ChatEvent = _current_chat_event()
-	if not chat_event:
-		result = false
-	if _rewinding_text and _prev_chat_event_index < _prev_chat_events.size() - 1:
-		# don't prompt for questions the player has already answered
-		result = false
-	elif chat_event.links.size() < 2:
-		# one or zero links, the player has no choice to make
-		result = false
-	return result
-
-
-func _current_chat_event() -> ChatEvent:
-	var chat_event: ChatEvent
-	if _rewinding_text:
-		chat_event = _prev_chat_events[_prev_chat_event_index]
-	elif _chat_tree:
-		chat_event = _chat_tree.get_event()
-	return chat_event
-
-
-func _on_chat_event_played(chat_event: ChatEvent) -> void:
-	# record the last 100 chat events so the player can review them later
-	_prev_chat_events.append(chat_event)
-	while _prev_chat_events.size() > 100:
-		_prev_chat_events.remove(0)
-
-
-func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:
-	_chat_tree.advance(choice_index)
-	# show the next dialog line to the player
-	_play_chat_event()
-
-
 func _on_ChatFrame_all_text_shown() -> void:
-	if _should_prompt():
-		var chat_event := _current_chat_event()
+	if $ChatAdvancer.should_prompt():
+		var chat_event: ChatEvent = $ChatAdvancer.current_chat_event()
 		var moods: Array = []
 		for link in chat_event.links:
-			if _chat_tree.events[link]:
-				var first_event: ChatEvent = _chat_tree.events[link][0]
+			if $ChatAdvancer.chat_tree.events[link]:
+				var first_event: ChatEvent = $ChatAdvancer.chat_tree.events[link][0]
 				if first_event and first_event.mood:
 					moods.append(first_event.mood)
 				else: moods.append(-1)

@@ -136,9 +136,14 @@ func _refresh_child_buttons() -> void:
 	if new_buttons.size() >= 4:
 		# with four or more buttons, it looks cute if they pop up out-of-order
 		new_buttons.shuffle()
+	
 	for button_object in new_buttons:
-		# the button we created could already be deleted if refresh_child_buttons was called again
-		if is_instance_valid(button_object):
+		# The button we created could already be deleted if refresh_child_buttons was called again. Surprisingly, it
+		# also sometimes randomly changes types, resulting in a transient error: "Trying to assign value of type
+		# 'chat-choice-label.gd' to a variable of type 'chat-choice-button.gd'"
+		#
+		# For these two reasons, we check the type of the object, and check that it's not null
+		if is_instance_valid(button_object) and button_object.is_class("ChatChoiceButton"):
 			var button: ChatChoiceButton = button_object
 			button.pop_in()
 			$PopSound.play()

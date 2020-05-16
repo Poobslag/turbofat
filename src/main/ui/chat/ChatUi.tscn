@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/ui/chat/ChatFrame.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/chat/ChatChoices.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/chat/chat-advancer.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/chat/chat-ui.gd" type="Script" id=16]
 
 [node name="ChatUi" type="Control"]
@@ -25,7 +26,12 @@ margin_right = 512.0
 margin_bottom = -0.000732422
 
 [node name="ChatChoices" parent="." instance=ExtResource( 2 )]
-[connection signal="chat_event_played" from="." to="." method="_on_chat_event_played"]
+
+[node name="ChatAdvancer" type="Node" parent="."]
+script = ExtResource( 3 )
+[connection signal="chat_event_played" from="." to="ChatAdvancer" method="_on_ChatUi_chat_event_played"]
 [connection signal="all_text_shown" from="ChatFrame" to="." method="_on_ChatFrame_all_text_shown"]
 [connection signal="pop_out_completed" from="ChatFrame" to="." method="_on_ChatFrame_pop_out_completed"]
-[connection signal="chat_choice_chosen" from="ChatChoices" to="." method="_on_ChatChoices_chat_choice_chosen"]
+[connection signal="chat_choice_chosen" from="ChatChoices" to="ChatAdvancer" method="_on_ChatChoices_chat_choice_chosen"]
+[connection signal="chat_event_shown" from="ChatAdvancer" to="." method="_on_ChatAdvancer_chat_event_shown"]
+[connection signal="chat_finished" from="ChatAdvancer" to="ChatFrame" method="_on_ChatAdvancer_chat_finished"]
