@@ -12,7 +12,7 @@ signal before_game_started
 signal game_started
 
 # signal emitted when a line is cleared
-signal lines_cleared(_cleared_lines)
+signal line_cleared(y, total_lines, remaining_lines)
 
 # signal emitted when the player's pieces reach the top of the playfield
 signal game_ended
@@ -21,6 +21,9 @@ signal game_ended
 signal after_game_ended
 
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
+
+# 'true' if the player has started a game which is still running.
+var game_active: bool = true
 
 func _ready() -> void:
 	$NextPieceDisplays.hide_pieces()
@@ -46,9 +49,10 @@ func show_message(text: String) -> void:
 
 
 """
-End the game and emit the appropriate signals. This can occur when the player loses, wins, or runs out of time.
+Ends the game. This occurs when the player loses, wins, or runs out of time.
 """
 func end_game(delay: float, message: String) -> void:
+	game_active = false
 	emit_signal("game_ended")
 	$Playfield.end_game()
 	$PieceManager.end_game()
@@ -56,6 +60,37 @@ func end_game(delay: float, message: String) -> void:
 	yield(get_tree().create_timer(delay), "timeout")
 	$HudHolder/Hud.after_game_ended()
 	emit_signal("after_game_ended")
+
+
+func start_game() -> void:
+	emit_signal("before_game_started")
+	$HudHolder/Hud.hide_buttons_and_messages()
+	
+	$NextPieceDisplays.start_game()
+	$Playfield.start_game()
+	PuzzleScore.reset()
+	$PieceManager.clear_piece()
+	if $CustomerView.get_fatness() > 1:
+		# if they ended a game on a fattened customer, scroll to a new one
+		_scroll_to_new_customer()
+	
+	show_message("3")
+	$ReadySound.play()
+	yield(get_tree().create_timer(0.8), "timeout")
+	show_message("2")
+	$ReadySound.play()
+	yield(get_tree().create_timer(0.8), "timeout")
+	show_message("1")
+	$ReadySound.play()
+	yield(get_tree().create_timer(0.8), "timeout")
+	$HudHolder/Hud.hide_buttons_and_messages()
+	$GoSound.play()
+	_go_voices[randi() % _go_voices.size()].play()
+	
+	$PieceManager.start_game()
+	
+	game_active = true
+	emit_signal("game_started")
 
 
 """
@@ -108,33 +143,7 @@ func _on_Hud_back_button_pressed() -> void:
 
 
 func _on_Hud_start_button_pressed() -> void:
-	emit_signal("before_game_started")
-	$HudHolder/Hud.hide_buttons_and_messages()
-	
-	$NextPieceDisplays.start_game()
-	$Playfield.start_game()
-	PuzzleScore.reset()
-	$PieceManager.clear_piece()
-	if $CustomerView.get_fatness() > 1:
-		# if they ended a game on a fattened customer, scroll to a new one
-		_scroll_to_new_customer()
-	
-	show_message("3")
-	$ReadySound.play()
-	yield(get_tree().create_timer(0.8), "timeout")
-	show_message("2")
-	$ReadySound.play()
-	yield(get_tree().create_timer(0.8), "timeout")
-	show_message("1")
-	$ReadySound.play()
-	yield(get_tree().create_timer(0.8), "timeout")
-	$HudHolder/Hud.hide_buttons_and_messages()
-	$GoSound.play()
-	_go_voices[randi() % _go_voices.size()].play()
-	
-	$PieceManager.start_game()
-	
-	emit_signal("game_started")
+	start_game()
 
 
 """
@@ -145,19 +154,16 @@ func _on_Piece_game_ended() -> void:
 
 
 """
-Relays the 'lines_cleared' signal to any listeners, and triggers the 'customer feeding' animation
+Relays the 'line_cleared' signal to any listeners, and triggers the 'customer feeding' animation
 """
-func _on_Playfield_lines_cleared(cleared_lines: Array) -> void:
+func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int) -> void:
 	# Calculate whether or not the customer should say something positive about the combo. The customer talks after
-	# the 5th, 8th, 11th, 14th, 17th, 20th, 23rd, etc... line in a combo
-	var customer_talks: bool = $Playfield.combo >= 5 and cleared_lines.size() > ($Playfield.combo + 1) % 3
+	var customer_talks: bool = remaining_lines == 0 and $Playfield.combo >= 5 \
+			and total_lines > ($Playfield.combo + 1) % 3
 	
-	emit_signal("lines_cleared", cleared_lines)
-	yield(get_tree().create_timer(rand_range(0.3, 0.5)), "timeout")
-	_feed_customer(1.0 / cleared_lines.size())
-	for i in range(cleared_lines.size() - 1):
-		yield(get_tree().create_timer(rand_range(0.066, 0.4)), "timeout")
-		_feed_customer(1.0 / (cleared_lines.size() - i - 1))
+	emit_signal("line_cleared", y, total_lines, remaining_lines)
+	_feed_customer(1.0 / (remaining_lines + 1))
+	
 	if customer_talks:
 		yield(get_tree().create_timer(0.5), "timeout")
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_combo_voice()
@@ -167,5 +173,3 @@ func _on_Playfield_customer_left() -> void:
 	if $Playfield.clock_running:
 		$CustomerView.play_goodbye_voice()
 		_scroll_to_new_customer()
-
-

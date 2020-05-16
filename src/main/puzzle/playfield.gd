@@ -7,6 +7,10 @@ or whether a box was made, pausing and playing sound effects
 
 const CAKE_COLOR_INDEX := 4
 
+# percent of the line clear delay which should be spent erasing lines.
+# 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
+const LINE_ERASE_TIMING_PCT := 0.667
+
 # food colors for the food which gets hurled into the customer's mouth
 const FOOD_COLORS: Array = [
 	Color("a4470b"), # brown
@@ -16,10 +20,10 @@ const FOOD_COLORS: Array = [
 ]
 
 # signal emitted before a line is cleared
-signal before_lines_cleared(cleared_lines)
+signal before_line_cleared(y, total_lines, remaining_lines)
 
-# signal emitted when lines are cleared
-signal lines_cleared(cleared_lines)
+# signal emitted when a line is cleared
+signal line_cleared(y, total_lines, remaining_lines)
 
 # signal emitted when a box (3x3, 3x4, 3x5) is made
 signal box_made(x, y, width, height, color)
@@ -41,26 +45,23 @@ var clock_running := false
 
 # lines which are currently being cleared
 var _cleared_lines := []
+var _cleared_line_index := 0
+
+# Stores timing values to ensure lines are erased one at a time with consistent timing.
+# Lines are erased when '_remaining_line_clear_frames' falls below the values in this array.
+var _remaining_line_clear_timings := []
+
 # remaining frames to wait for clearing the current lines
 var _remaining_line_clear_frames := 0
+
 # remaining frames to wait for making the current box
 var _remaining_box_build_frames := 0
-# 'true' if the 'line fall sound' should play after the current lines are cleared. The sound doesn't play if nothing
-# drops.
+
+# True if anything is dropping which will trigger the line fall sound.
 var _should_play_line_fall_sound := false
+
 # The number of pieces the player has dropped without clearing a line or making a box, plus one.
 var _combo_break := 0
-
-# sounds which play as the player continues a combo.
-onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
-		$Combo01Sound, $Combo02Sound, $Combo03Sound, $Combo04Sound, $Combo05Sound, $Combo06Sound,
-		$Combo07Sound, $Combo08Sound, $Combo09Sound, $Combo10Sound, $Combo11Sound, $Combo12Sound,
-		$Combo13Sound, $Combo14Sound, $Combo15Sound, $Combo16Sound, $Combo17Sound, $Combo18Sound,
-		$Combo19Sound, $Combo20Sound, $Combo21Sound, $Combo22Sound, $Combo23Sound, $Combo24Sound]
-
-onready var _combo_endless_sounds := [$ComboEndless00Sound, $ComboEndless01Sound, $ComboEndless02Sound, 
-		$ComboEndless03Sound, $ComboEndless04Sound, $ComboEndless05Sound, $ComboEndless06Sound, $ComboEndless07Sound,
-		$ComboEndless08Sound, $ComboEndless09Sound, $ComboEndless10Sound, $ComboEndless11Sound]
 
 func _ready() -> void:
 	$TileMapClip/TileMap.clear()
@@ -76,11 +77,16 @@ func _physics_process(delta: float) -> void:
 		if _remaining_box_build_frames <= 0:
 			if _remaining_line_clear_frames > 0:
 				_process_line_clear()
-				# processing line clear sets combo_break to 0, but it should be 1
-				_combo_break += 1
 	elif _remaining_line_clear_frames > 0:
+		if _cleared_line_index < _cleared_lines.size() \
+				and _remaining_line_clear_frames <= _remaining_line_clear_timings[_cleared_line_index]:
+			_clear_line(_cleared_lines[_cleared_line_index], _cleared_lines.size(),
+					_cleared_lines.size() - _cleared_line_index - 1)
+			_cleared_line_index += 1
+		
 		_remaining_line_clear_frames -= 1
 		if _remaining_line_clear_frames <= 0:
+			_cleared_line_index = 0
 			_delete_rows()
 
 
@@ -95,6 +101,7 @@ func ready_for_new_piece() -> bool:
 Clears the playfield and resets everything for a new game.
 """
 func start_game() -> void:
+	combo = 0
 	$TileMapClip/TileMap.clear()
 	$TileMapClip/TileMap/CornerMap.clear()
 
@@ -115,15 +122,17 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, piece_speed: P
 	if not death_piece and _process_boxes():
 		# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
 		_remaining_box_build_frames = max(1, piece_speed.box_delay)
+		_combo_break = 0
 	
 	_remaining_line_clear_frames = 0
 	if not death_piece and _any_row_is_full():
+		# set at least line clear frame; processing occurs when the frame goes from 1 -> 0
 		_remaining_line_clear_frames = max(1, piece_speed.line_clear_delay)
+		_combo_break = 0
+		
 		if _remaining_box_build_frames <= 0:
 			# process the line clear if we're not already making a box
 			_process_line_clear()
-	
-		# set at least 1 line clear frame; processing occurs when the frame goes from 1 -> 0
 	
 	_process_combo()
 	
@@ -143,53 +152,49 @@ func end_game() -> void:
 
 
 """
-Deletes all cleared lines from the playfield, shifting everything above them down to fill the gap.
+Deletes all erased rows from the playfield, shifting everything above them down to fill the gap.
 """
 func _delete_rows() -> void:
 	_should_play_line_fall_sound = false
-	for cleared_line in _cleared_lines:
-		_delete_row(cleared_line)
+	for y in _cleared_lines:
+		_delete_row(y)
 	_cleared_lines = []
 	if _should_play_line_fall_sound:
 		$LineFallSound.play()
 
 
 """
-Erases the specified lines from the TileMap and awards points.
+Clears a full line in the playfield.
+
+Updates the combo, awards points, and plays sounds appropriately.
 """
-func _clear_lines() -> void:
-	emit_signal("before_lines_cleared", _cleared_lines)
-	var total_points := 0
-	var piece_points := 0
-	for y in _cleared_lines:
-		var line_score := 1
-		line_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
-		PuzzleScore.scenario_performance.lines += 1
-		PuzzleScore.scenario_performance.combo_score += COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
-		for x in range(COL_COUNT):
-			var autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
-			if get_cell(x, y) == 1 \
-					and not Connect.is_l(autotile_coord.x):
-				if autotile_coord.y == CAKE_COLOR_INDEX:
-					# cake piece
-					line_score += 10
-					PuzzleScore.scenario_performance.box_score += 10
-					piece_points = int(max(piece_points, 2))
-				else:
-					# snack piece
-					line_score += 5
-					PuzzleScore.scenario_performance.box_score += 5
-					piece_points = int(max(piece_points, 1))
-		PuzzleScore.add_score(1)
-		PuzzleScore.add_combo_score(line_score - 1)
-		PuzzleScore.add_customer_score(line_score)
-		_clear_row(y)
-		total_points += line_score
-		# each line cleared adds to the combo, increasing the score for the following lines
-		combo += 1
-		_combo_break = 0
-	_play_line_clear_sfx(piece_points)
-	emit_signal("lines_cleared", _cleared_lines)
+func _clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
+	emit_signal("before_line_cleared", y, total_lines, remaining_lines)
+	var box_count := box_count(y)
+	var combo_score: int = COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
+	var box_score: int = 5 * (box_count % 10) + 10 * (box_count / 10)
+	PuzzleScore.add_line_score(combo_score, box_score)
+	_erase_row(y)
+	emit_signal("line_cleared", y, total_lines, remaining_lines)
+	combo += 1
+
+
+"""
+Returns a number encapsulating the number of cake boxes and snack boxes in the specified row.
+
+Parameters:
+	'y': A row in the playfield.
+
+Returns:
+	An integer with the cake box quantity in the 10s digit, and snack box quantity in the 1s digit.
+"""
+func box_count(y: int) -> int:
+	var result := 0
+	for x in range(COL_COUNT):
+		var autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
+		if get_cell(x, y) == 1 and not Connect.is_l(autotile_coord.x):
+			result += 10 if autotile_coord.y == CAKE_COLOR_INDEX else 1
+	return result
 
 
 """
@@ -286,43 +291,11 @@ func _process_boxes() -> bool:
 	
 	for y in range(ROW_COUNT):
 		for x in range(COL_COUNT):
-			# check for 5x3s (vertical)
-			if dt5[y][x] >= 3 and _process_box(x - 2, y - 4, 3, 5, true):
-				$MakeCakeBoxSound.play()
-				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				return true
-			
-			# check for 4x3s (vertical)
-			if dt4[y][x] >= 3 and _process_box(x - 2, y - 3, 3, 4, true):
-				$MakeCakeBoxSound.play()
-				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				return true
-			
-			# check for 5x3s (horizontal)
-			if dt3[y][x] >= 5 and _process_box(x - 4, y - 2, 5, 3, true):
-				$MakeCakeBoxSound.play()
-				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				return true
-			
-			# check for 4x3s (horizontal)
-			if dt3[y][x] >= 4 and _process_box(x - 3, y - 2, 4, 3, true):
-				$MakeCakeBoxSound.play()
-				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				return true
-			
-			# check for 3x3s
-			if dt3[y][x] >= 3 and _process_box(x - 2, y - 2, 3, 3):
-				var box_type := int(get_cell_autotile_coord(x - 2, y - 2).y)
-				if box_type == 0:
-					$MakeSnackBoxSound0.play()
-				elif box_type == 1:
-					$MakeSnackBoxSound1.play()
-				elif box_type == 2:
-					$MakeSnackBoxSound2.play()
-				elif box_type == 3:
-					$MakeSnackBoxSound3.play()
-				# exit box check; a dropped piece can only make one box, and making a box invalidates the db cache
-				return true
+			if dt5[y][x] >= 3 and _process_box(x, y, 3, 5): return true
+			if dt4[y][x] >= 3 and _process_box(x, y, 3, 4): return true
+			if dt3[y][x] >= 3 and _process_box(x, y, 3, 3): return true
+			if dt3[y][x] >= 4 and _process_box(x, y, 4, 3): return true
+			if dt3[y][x] >= 5 and _process_box(x, y, 5, 3): return true
 	return false
 
 
@@ -333,24 +306,26 @@ outside the box.
 It's assumed the rectangle's coordinates contain only dropped pieces which haven't been split apart by lines, and
 no empty/vegetable/box cells.
 """
-func _process_box(x: int, y: int, width: int, height: int, cake = false) -> bool:
-	for curr_x in range(x, x + width):
-		if Connect.is_u(get_cell_autotile_coord(curr_x, y).x):
+func _process_box(end_x: int, end_y: int, width: int, height: int) -> bool:
+	var start_x := end_x - (width - 1)
+	var start_y := end_y - (height - 1)
+	for x in range(start_x, end_x + 1):
+		if Connect.is_u(get_cell_autotile_coord(x, start_y).x):
 			return false
-		if Connect.is_d(get_cell_autotile_coord(curr_x, y + height - 1).x):
+		if Connect.is_d(get_cell_autotile_coord(x, end_y).x):
 			return false
-	for curr_y in range(y, y + height):
-		if Connect.is_l(get_cell_autotile_coord(x, curr_y).x):
+	for y in range(start_y, end_y + 1):
+		if Connect.is_l(get_cell_autotile_coord(start_x, y).x):
 			return false
-		if Connect.is_r(get_cell_autotile_coord(x + width - 1, curr_y).x):
+		if Connect.is_r(get_cell_autotile_coord(end_x, y).x):
 			return false
 	
-	# making a box continues the combo
-	_combo_break = 0
-	
-	var box_color: int = CAKE_COLOR_INDEX if cake else get_cell_autotile_coord(x, y).y
-	
-	make_box(x, y, width, height, box_color)
+	var box_color: int
+	if width == 3 and height == 3:
+		box_color = get_cell_autotile_coord(start_x, start_y).y
+	else:
+		box_color = CAKE_COLOR_INDEX
+	make_box(start_x, start_y, width, height, box_color)
 	
 	return true
 
@@ -376,13 +351,20 @@ func get_cell_autotile_coord(x: int, y:int) -> Vector2:
 
 
 """
-Clears any full lines in the playfield. Updates the combo, awards points, and plays sounds appropriately.
+Marks any full lines in the playfield to be cleared later.
 """
 func _process_line_clear() -> void:
 	for y in range(ROW_COUNT):
 		if _row_is_full(y):
 			_cleared_lines.append(y)
-	_clear_lines()
+	
+	if _cleared_lines:
+		# Calculate the timing values when lines will be cleared.
+		_remaining_line_clear_timings.clear()
+		var _line_erase_timing_window := LINE_ERASE_TIMING_PCT * _remaining_line_clear_frames
+		var _per_line_frame_delay := floor(_line_erase_timing_window / max(1, _cleared_lines.size() - 1))
+		for i in range(_cleared_lines.size()):
+			_remaining_line_clear_timings.append(_remaining_line_clear_frames - i * _per_line_frame_delay)
 
 
 """
@@ -391,67 +373,16 @@ Ends the player's combo if they drop 2 blocks without making a box or scoring po
 func _process_combo() -> void:
 	_combo_break += 1
 	if _combo_break >= 3:
-		if PuzzleScore.get_combo_score() > 0:
-			if combo >= 20:
-				$Fanfare3.play()
-			elif combo >= 10:
-				$Fanfare2.play()
-			elif combo >= 5:
-				$Fanfare1.play()
+		if combo >= 20:
+			$Fanfare3.play()
+		elif combo >= 10:
+			$Fanfare2.play()
+		elif combo >= 5:
+			$Fanfare1.play()
 		if PuzzleScore.get_customer_score() > 0:
 			emit_signal("customer_left")
 			PuzzleScore.end_combo()
 			combo = 0
-
-
-"""
-Play sound effects for clearing a line. A cleared line can result in several sound effects getting queued and played
-consecutively.
-"""
-func _play_line_clear_sfx(piece_points: int) -> void:
-	var scheduled_sfx := []
-	
-	# determine the main line-clear sound effect, which plays for clearing any line
-	if _cleared_lines.size() == 1:
-		scheduled_sfx.append($Erase1Sound)
-	elif _cleared_lines.size() == 2:
-		scheduled_sfx.append($Erase2Sound)
-	else:
-		scheduled_sfx.append($Erase3Sound)
-	
-	# determine any combo sound effects, which play for continuing a combo
-	for combo_sfx in range(combo - _cleared_lines.size(), combo):
-		var combo_sound := _get_combo_sound(combo_sfx)
-		if combo_sound:
-			scheduled_sfx.append(combo_sound)
-	if piece_points == 1:
-		scheduled_sfx.append($ClearSnackPieceSound)
-	elif piece_points >= 2:
-		scheduled_sfx.append($ClearCakePieceSound)
-	
-	# play the calculated sound effects
-	if scheduled_sfx.size() > 0:
-		# play the first sound effect immediately
-		scheduled_sfx[0].play()
-		# enqueue other sound effects and play them later
-		for sfx_index in range(1, scheduled_sfx.size()):
-			yield(get_tree().create_timer(0.025 * sfx_index), "timeout")
-			scheduled_sfx[sfx_index].play()
-
-
-"""
-Returns the combo sound which should play for the specified combo.
-
-For smaller combos this goes through an escalating list of sound effects. For larger combos this loops through a
-cyclic list of sound effects, where the cycling is masked using something resembling a shepard tone.
-"""
-func _get_combo_sound(combo: int) -> AudioStreamPlayer:
-	var combo_sound: AudioStreamPlayer
-	if combo < _combo_sounds.size():
-		combo_sound = _combo_sounds[combo]
-	else:
-		combo_sound = _combo_endless_sounds[(combo - _combo_sounds.size()) % _combo_endless_sounds.size()]
-	return combo_sound
 
 
 """
@@ -467,16 +398,16 @@ func _row_is_full(y: int) -> bool:
 
 
 """
-Clear all cells in the specified row. This leaves any pieces above them floating in mid-air.
+Erases all cells in the specified row. This leaves any pieces above them floating in mid-air.
 """
-func _clear_row(y: int) -> void:
+func _erase_row(y: int) -> void:
 	for x in range(COL_COUNT):
 		if get_cell(x, y) == 0:
 			_disconnect_block(x, y)
 		elif get_cell(x, y) == 1:
 			_disconnect_box(x, y)
 		
-		_clear_block(x, y)
+		_erase_block(x, y)
 
 
 """
@@ -495,7 +426,7 @@ func _delete_row(y: int) -> void:
 	
 	# remove row
 	for x in range(COL_COUNT):
-		_clear_block(x, 0)
+		_erase_block(x, 0)
 
 
 """
@@ -580,9 +511,6 @@ func _set_veg_block(x: int, y: int, block_color: Vector2) -> void:
 	$TileMapClip/TileMap/CornerMap.dirty = true
 
 
-"""
-Erases a block from the tile map.
-"""
-func _clear_block(x: int, y: int) -> void:
+func _erase_block(x: int, y: int) -> void:
 	$TileMapClip/TileMap.set_cell(x, y, -1)
 	$TileMapClip/TileMap/CornerMap.dirty = true

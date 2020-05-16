@@ -65,21 +65,20 @@ When a line is cleared, we generate frosting globs for any boxes involved in the
 
 This must be called before the line is cleared so that we can evaluate the food blocks before they're erased.
 """
-func _on_Playfield_before_lines_cleared(cleared_lines: Array) -> void:
-	for y in cleared_lines:
-		for x in range(Playfield.COL_COUNT):
-			var color_int: int
-			var glob_count: int
-			if playfield.get_cell(x, y) == 1:
-				color_int = playfield.get_cell_autotile_coord(x, y).y
-				if color_int in [0, 1, 2, 3]:
-					glob_count = 2
-				elif color_int == 4:
-					glob_count = 4
-			elif playfield.get_cell(x, y) == 2:
-				# vegetable
-				pass
-			_spawn_globs(x, y, color_int, glob_count)
+func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int) -> void:
+	for x in range(Playfield.COL_COUNT):
+		var color_int: int
+		var glob_count: int
+		if playfield.get_cell(x, y) == 1:
+			color_int = playfield.get_cell_autotile_coord(x, y).y
+			if color_int in [0, 1, 2, 3]:
+				glob_count = 2
+			elif color_int == 4:
+				glob_count = 4
+		elif playfield.get_cell(x, y) == 2:
+			# vegetable
+			pass
+		_spawn_globs(x, y, color_int, glob_count)
 
 
 """

@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/erase2.wav-a8435fd513ae78d46515475eaa03b20b.sample"
+path="res://.import/line-fall.wav-7865edd6350fac9c9332c59fd90146d6.sample"
 
 [deps]
 
-source_file="res://assets/puzzle/erase2.wav"
-dest_files=[ "res://.import/erase2.wav-a8435fd513ae78d46515475eaa03b20b.sample" ]
+source_file="res://assets/puzzle/line-fall.wav"
+dest_files=[ "res://.import/line-fall.wav-7865edd6350fac9c9332c59fd90146d6.sample" ]
 
 [params]
 
