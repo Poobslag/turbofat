@@ -3,6 +3,9 @@ extends RichTextLabel
 A results label which reveals its contents line by line.
 """
 
+# signal emitted when new characters appear in the window. newlines are stripped from the signal
+signal text_shown(new_text)
+
 # unshown character which causes the output to pause for 0.2 beats
 const LULL_CHARACTER := '/'
 
@@ -10,7 +13,7 @@ const LULL_CHARACTER := '/'
 var _pause := 0.0
 
 # timing at which messages appear. defaults to 136 bpm
-var beat_duration := 60 / 136.0
+var _beat_duration := 60 / 136.0
 
 # 1.0 = normal, 2.0 = fastest, 6.0 = fastestestest, 1000000.0 = fastestest
 var _text_speed := 1.0
@@ -23,28 +26,34 @@ These two fields are used to track unshown text which is gradually revealed. Ric
 var _unshown_text := ""
 var _unshown_index := 0
 
+func _ready() -> void:
+	hide_text()
+
+
 func _process(delta: float) -> void:
 	# clamped to prevent underflow (leaving the game open) or large values (a malicious string with tons of pauses)
 	_pause = clamp(_pause - delta * _text_speed, -5, 5)
 	
-	var showed_character := false
+	var new_text := ""
 	while _unshown_index < _unshown_text.length() and _pause <= 0.0:
 		# continue showing characters until we hit a pause
 		var unshown_char := _unshown_text[_unshown_index]
 		if unshown_char == '/':
-			_pause += 0.2 * beat_duration
+			_pause += 0.2 * _beat_duration
 		else:
 			text += unshown_char
-			
 			if unshown_char != '\n':
-				showed_character = true
+				# strip newlines from the results. newlines shouldn't play a
+				# sound, and recipients don't care about them
+				new_text += unshown_char
 		_unshown_index += 1
 	
-	if showed_character:
+	if new_text:
 		# play a sound; repeatedly increase the pitch for a 'counting up' sound
 		$BebebeSound.volume_db = rand_range(-7.0, -12.0)
 		$BebebeSound.pitch_scale = lerp($BebebeSound.pitch_scale, 3.0, 0.004)
 		$BebebeSound.play()
+		emit_signal("text_shown", new_text)
 
 
 """

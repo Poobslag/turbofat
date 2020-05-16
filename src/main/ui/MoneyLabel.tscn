@@ -4,11 +4,13 @@
 [ext_resource path="res://assets/ui/money-font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/ui/icon-money.png" type="Texture" id=3]
 
-[node name="Control" type="Control"]
+[node name="MoneyLabel" type="Control"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 129.0
 margin_bottom = 33.0
+rect_min_size = Vector2( 0, 32 )
+script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -25,7 +27,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MoneyLabel" type="Label" parent="."]
+[node name="Label" type="Label" parent="."]
 margin_left = 36.0
 margin_top = 5.0
 margin_right = 121.0
@@ -33,7 +35,6 @@ margin_bottom = 30.0
 custom_fonts/font = ExtResource( 2 )
 custom_colors/font_color = Color( 1, 0.942667, 0.92, 1 )
 text = "9,999 m"
-script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

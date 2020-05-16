@@ -74,7 +74,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/frosting-glob.gd"
 }, {
-"base": "Label",
+"base": "Control",
 "class": "MoneyLabel",
 "language": "GDScript",
 "path": "res://src/main/ui/money-label.gd"
