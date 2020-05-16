@@ -73,12 +73,14 @@ __meta__ = {
 margin_left = 0.0
 margin_top = 0.0
 margin_right = 502.0
-margin_bottom = 0.0
+margin_bottom = 32.0
+compact = true
 
 [node name="TurboTrace" type="Label" parent="Labels/NorthwestLabels"]
 visible = false
-margin_right = 507.0
-margin_bottom = 20.0
+margin_top = 36.0
+margin_right = 502.0
+margin_bottom = 56.0
 custom_fonts/font = ExtResource( 10 )
 text = "cb-----"
 script = ExtResource( 6 )
@@ -105,5 +107,5 @@ codes = [ "bigfps", "coyote" ]
 [connection signal="pop_out_completed" from="ChatUi" to="." method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="ChatUi" to="." method="_on_ChatUi_showed_choices"]
 [connection signal="pressed" from="PuzzleButton" to="." method="_on_PuzzleButton_pressed"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/NorthwestLabels/TurboTrace" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/NorthwestLabels/TurboTrace" method="_on_CheatCodeDetector_cheat_detected"]

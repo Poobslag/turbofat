@@ -19,8 +19,10 @@ const HINTS = [
 	"Sometimes, pressing 'down' can cheat pieces through other pieces!"
 ]
 
-func _ready() -> void:
+
+func hide_results_message() -> void:
 	$ResultsLabel.hide_text()
+	$MoneyLabelTween.hide_money()
 
 
 """
@@ -31,7 +33,7 @@ displayed.
 """
 func show_results_message(rank_result: RankResult, customer_scores: Array, win_condition_type: int) -> void:
 	# Generate post-game message with stats, grades, and a gameplay hint
-	var text := ""
+	var text := "//////////"
 	
 	# Append customer scores
 	for i in range(customer_scores.size()):
@@ -42,7 +44,7 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, win_c
 		var left := "Customer #%s " % Global.comma_sep(i + 1)
 		var right := "¥%s/\n" % Global.comma_sep(customer_score)
 		var middle := ""
-		var period_count := 50 - period_count(left + right)
+		var period_count := 50 - _period_count(left + right)
 		for _p in range(period_count):
 			middle += "."
 		text += left + middle + right
@@ -73,7 +75,10 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, win_c
 	text += "//////////\n"
 	text += "Hint: %s\n" % HINTS[randi() % HINTS.size()]
 	
+	$ShowResultsSound.play()
 	$ResultsLabel.show_text(text)
+	$MoneyLabelTween.show_money()
+	$MoneyLabel.set_shown_money(PlayerData.money - rank_result.score)
 
 
 """
@@ -81,7 +86,7 @@ Returns the string width as measured by period characters.
 
 We use this when right-justifying the dollar amounts.
 """
-func period_count(s: String) -> int:
+func _period_count(s: String) -> int:
 	var result := 0
 	for c in s:
 		if c in [',', '.', ' ']:
@@ -92,7 +97,7 @@ func period_count(s: String) -> int:
 
 
 func _on_Puzzle_before_game_started() -> void:
-	$ResultsLabel.hide_text()
+	hide_results_message()
 
 
 func _on_Puzzle_after_game_ended() -> void:
@@ -101,3 +106,9 @@ func _on_Puzzle_after_game_ended() -> void:
 	var win_condition_type := Global.scenario_settings.win_condition.type
 	
 	show_results_message(rank_result, customer_scores, win_condition_type)
+
+
+func _on_ResultsLabel_text_shown(new_text: String) -> void:
+	if new_text.begins_with("Customer #"):
+		var amount := int(new_text.substr(new_text.find_last("¥")).replace(",", ""))
+		$MoneyLabel.set_shown_money($MoneyLabel.shown_money + amount)

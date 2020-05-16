@@ -26,4 +26,4 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	match(Global.key_scancode(event)):
 		KEY_S: $ResultsHud.show_results_message(_rank_result, _customer_scores, _win_condition_type)
-		KEY_H: $ResultsHud/ResultsLabel.hide_text()
+		KEY_H: $ResultsHud.hide_results_message()
