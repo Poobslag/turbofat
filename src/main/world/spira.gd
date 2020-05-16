@@ -337,7 +337,7 @@ func _slip_from_ledges(delta: float) -> bool:
 	
 	var slip_direction := Vector3.ZERO
 	for i in range(LEDGE_RAY_COUNT):
-		var ledge_direction := LEDGE_RAY_RADIUS * Vector3.RIGHT.rotated(Vector3.UP, 2 * PI * i / LEDGE_RAY_COUNT)
+		var ledge_direction := LEDGE_RAY_RADIUS * Vector3.RIGHT.rotated(Vector3.UP, TAU * i / LEDGE_RAY_COUNT)
 		var ray_offset: Vector3 = $RayCast.global_transform.origin + ledge_direction
 		if get_world().direct_space_state.intersect_ray( \
 				$RayCast.translation + ray_offset, $RayCast.cast_to + ray_offset, [self]):

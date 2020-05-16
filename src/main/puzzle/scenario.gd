@@ -58,21 +58,20 @@ Sets the speed level and updates the UI elements accordingly.
 """
 func _set_level(new_level:int) -> void:
 	_level = new_level
-	var piece_speed: PieceSpeed = PieceSpeeds.speed(Global.scenario_settings.level_ups[new_level].level)
-	$Puzzle/PieceManager.piece_speed = piece_speed
+	PieceSpeeds.current_speed = PieceSpeeds.speed(Global.scenario_settings.level_ups[new_level].level)
 	
 	# update UI elements for the current level
-	$LinesHud/LevelValue.text = str(piece_speed.level)
+	$LinesHud/LevelValue.text = str(PieceSpeeds.current_speed.level)
 	var level_color := LEVEL_COLOR_0
-	if piece_speed.gravity >= 20 * PieceSpeeds.G and piece_speed.lock_delay < 20:
+	if PieceSpeeds.current_speed.gravity >= 20 * PieceSpeeds.G and PieceSpeeds.current_speed.lock_delay < 20:
 		level_color = LEVEL_COLOR_5
-	elif piece_speed.gravity >= 20 * PieceSpeeds.G:
+	elif PieceSpeeds.current_speed.gravity >= 20 * PieceSpeeds.G:
 		level_color = LEVEL_COLOR_4
-	elif piece_speed.gravity >=  1 * PieceSpeeds.G:
+	elif PieceSpeeds.current_speed.gravity >=  1 * PieceSpeeds.G:
 		level_color = LEVEL_COLOR_3
-	elif piece_speed.gravity >= 128:
+	elif PieceSpeeds.current_speed.gravity >= 128:
 		level_color = LEVEL_COLOR_2
-	elif piece_speed.gravity >= 32:
+	elif PieceSpeeds.current_speed.gravity >= 32:
 		level_color = LEVEL_COLOR_1
 	$LinesHud/LevelValue.add_color_override("font_color", level_color)
 	

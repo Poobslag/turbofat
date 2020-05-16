@@ -5,7 +5,7 @@ Stores data about the player's progress in memory.
 This data includes how well they've done on each level and how much money they've earned.
 """
 
-signal money_changed(money)
+signal money_changed(value)
 
 """
 Stores every RankResult the player has received for different scenarios. This is currently used for calculating high

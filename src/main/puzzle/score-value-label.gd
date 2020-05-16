@@ -8,5 +8,5 @@ func _ready() -> void:
 	text = "¥0"
 
 
-func _on_PuzzleScore_score_changed(new_score: int) -> void:
-	text = "¥%s" % new_score
+func _on_PuzzleScore_score_changed(value: int) -> void:
+	text = "¥%s" % value

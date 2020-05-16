@@ -33,9 +33,9 @@ a repeating list where the repetition is concealed using a shepard tone.
 func _play_combo_sound(y: int, total_lines: int, remaining_lines: int) -> void:
 	var sound: AudioStreamPlayer
 	if _playfield.combo < _combo_sounds.size():
-		sound = _combo_sounds[_playfield.combo]
+		sound = _combo_sounds[_playfield.combo - 1]
 	else:
-		sound = _combo_endless_sounds[(_playfield.combo - _combo_sounds.size()) % _combo_endless_sounds.size()]
+		sound = _combo_endless_sounds[(_playfield.combo - 1 - _combo_sounds.size()) % _combo_endless_sounds.size()]
 	if sound: sound.play()
 
 

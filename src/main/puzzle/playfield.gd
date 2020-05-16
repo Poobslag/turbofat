@@ -5,20 +5,6 @@ Stores information about the game playfield: writing pieces to the playfield, ca
 or whether a box was made, pausing and playing sound effects
 """
 
-const CAKE_COLOR_INDEX := 4
-
-# percent of the line clear delay which should be spent erasing lines.
-# 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
-const LINE_ERASE_TIMING_PCT := 0.667
-
-# food colors for the food which gets hurled into the customer's mouth
-const FOOD_COLORS: Array = [
-	Color("a4470b"), # brown
-	Color("ff5d68"), # pink
-	Color("ffa357"), # bread
-	Color("fff6eb") # white
-]
-
 # signal emitted before a line is cleared
 signal before_line_cleared(y, total_lines, remaining_lines)
 
@@ -26,10 +12,28 @@ signal before_line_cleared(y, total_lines, remaining_lines)
 signal line_cleared(y, total_lines, remaining_lines)
 
 # signal emitted when a box (3x3, 3x4, 3x5) is made
-signal box_made(x, y, width, height, color)
+signal box_made(x, y, width, height, color_int)
+
+signal combo_break_changed(value)
 
 # signal emitted when the customer should leave
 signal customer_left
+
+const CAKE_COLOR_INDEX := 4
+
+# percent of the line clear delay which should be spent erasing lines.
+# 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
+const LINE_ERASE_TIMING_PCT := 0.667
+
+# food colors for the food which gets hurled into the customer's mouth
+const VEGETABLE_COLOR := Color("335320")
+const RAINBOW_COLOR := Color.magenta
+const FOOD_COLORS: Array = [
+	Color("a4470b"), # brown
+	Color("ff5d68"), # pink
+	Color("ffa357"), # bread
+	Color("fff6eb") # white
+]
 
 # playfield dimensions. the playfield extends a few rows higher than what the player can see
 const ROW_COUNT = 20
@@ -38,13 +42,17 @@ const COL_COUNT = 9
 # bonus points which are awarded as the player continues a combo
 const COMBO_SCORE_ARR = [0, 0, 5, 5, 10, 10, 15, 15, 20]
 
-# player's current combo
+# number of lines the player has cleared without dropping their combo
 var combo := 0
+
+# The number of pieces the player has dropped without clearing a line or making a box.
+var combo_break := 0
+
 # 'true' if the player is currently playing, and the time spent should count towards their stats
 var clock_running := false
 
 # lines which are currently being cleared
-var _cleared_lines := []
+var cleared_lines := []
 var _cleared_line_index := 0
 
 # Stores timing values to ensure lines are erased one at a time with consistent timing.
@@ -59,9 +67,6 @@ var _remaining_box_build_frames := 0
 
 # True if anything is dropping which will trigger the line fall sound.
 var _should_play_line_fall_sound := false
-
-# The number of pieces the player has dropped without clearing a line or making a box, plus one.
-var _combo_break := 0
 
 func _ready() -> void:
 	$TileMapClip/TileMap.clear()
@@ -78,12 +83,12 @@ func _physics_process(delta: float) -> void:
 			if _remaining_line_clear_frames > 0:
 				_process_line_clear()
 	elif _remaining_line_clear_frames > 0:
-		if _cleared_line_index < _cleared_lines.size() \
+		if _cleared_line_index < cleared_lines.size() \
 				and _remaining_line_clear_frames <= _remaining_line_clear_timings[_cleared_line_index]:
-			_clear_line(_cleared_lines[_cleared_line_index], _cleared_lines.size(),
-					_cleared_lines.size() - _cleared_line_index - 1)
+			clear_line(cleared_lines[_cleared_line_index], cleared_lines.size(),
+					cleared_lines.size() - _cleared_line_index - 1)
 			_cleared_line_index += 1
-		
+
 		_remaining_line_clear_frames -= 1
 		if _remaining_line_clear_frames <= 0:
 			_cleared_line_index = 0
@@ -104,6 +109,7 @@ func start_game() -> void:
 	combo = 0
 	$TileMapClip/TileMap.clear()
 	$TileMapClip/TileMap/CornerMap.clear()
+	$TileMapClip/PlayfieldFx.reset()
 
 
 """
@@ -111,31 +117,31 @@ Writes a piece to the playfield, checking whether it makes any boxes or clears a
 
 Returns true if the written piece results in a line clear.
 """
-func write_piece(pos: Vector2, orientation: int, type: PieceType, piece_speed: PieceSpeed,
-		death_piece := false) -> bool:
+func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece := false) -> bool:
 	for i in range(type.pos_arr[orientation].size()):
 		var block_pos := type.get_cell_position(orientation, i)
 		var block_color := type.get_cell_color(orientation, i)
 		_set_piece_block(pos.x + block_pos.x, pos.y + block_pos.y, block_color)
 	
+	combo_break += 1
 	_remaining_box_build_frames = 0
 	if not death_piece and _process_boxes():
 		# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
-		_remaining_box_build_frames = max(1, piece_speed.box_delay)
-		_combo_break = 0
-	
+		_remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
+		combo_break = 0
+
 	_remaining_line_clear_frames = 0
 	if not death_piece and _any_row_is_full():
 		# set at least line clear frame; processing occurs when the frame goes from 1 -> 0
-		_remaining_line_clear_frames = max(1, piece_speed.line_clear_delay)
-		_combo_break = 0
-		
+		_remaining_line_clear_frames = max(1, PieceSpeeds.current_speed.line_clear_delay)
+		combo_break = 0
+
 		if _remaining_box_build_frames <= 0:
 			# process the line clear if we're not already making a box
 			_process_line_clear()
-	
-	_process_combo()
-	
+
+	_break_combo()
+	emit_signal("combo_break_changed", combo_break)
 	return _remaining_line_clear_frames > 0
 
 
@@ -152,31 +158,19 @@ func end_game() -> void:
 
 
 """
-Deletes all erased rows from the playfield, shifting everything above them down to fill the gap.
-"""
-func _delete_rows() -> void:
-	_should_play_line_fall_sound = false
-	for y in _cleared_lines:
-		_delete_row(y)
-	_cleared_lines = []
-	if _should_play_line_fall_sound:
-		$LineFallSound.play()
-
-
-"""
 Clears a full line in the playfield.
 
 Updates the combo, awards points, and plays sounds appropriately.
 """
-func _clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
-	emit_signal("before_line_cleared", y, total_lines, remaining_lines)
+func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
+	combo += 1
 	var box_count := box_count(y)
-	var combo_score: int = COMBO_SCORE_ARR[clamp(combo, 0, COMBO_SCORE_ARR.size() - 1)]
+	var combo_score: int = COMBO_SCORE_ARR[clamp(combo - 1, 0, COMBO_SCORE_ARR.size() - 1)]
 	var box_score: int = 5 * (box_count % 10) + 10 * (box_count / 10)
 	PuzzleScore.add_line_score(combo_score, box_score)
+	emit_signal("before_line_cleared", y, total_lines, remaining_lines)
 	_erase_row(y)
 	emit_signal("line_cleared", y, total_lines, remaining_lines)
-	combo += 1
 
 
 """
@@ -225,6 +219,18 @@ func make_box(x: int, y: int, width: int, height: int, box_color: int) -> void:
 		_set_box_block(x + width - 1, curr_y, Vector2(7, box_color))
 		
 	emit_signal("box_made", x, y, width, height, box_color)
+
+
+"""
+Deletes all erased rows from the playfield, shifting everything above them down to fill the gap.
+"""
+func _delete_rows() -> void:
+	_should_play_line_fall_sound = false
+	for y in cleared_lines:
+		_delete_row(y)
+	cleared_lines = []
+	if _should_play_line_fall_sound:
+		$LineFallSound.play()
 
 
 """
@@ -356,33 +362,35 @@ Marks any full lines in the playfield to be cleared later.
 func _process_line_clear() -> void:
 	for y in range(ROW_COUNT):
 		if _row_is_full(y):
-			_cleared_lines.append(y)
-	
-	if _cleared_lines:
+			cleared_lines.append(y)
+
+	if cleared_lines:
 		# Calculate the timing values when lines will be cleared.
 		_remaining_line_clear_timings.clear()
 		var _line_erase_timing_window := LINE_ERASE_TIMING_PCT * _remaining_line_clear_frames
-		var _per_line_frame_delay := floor(_line_erase_timing_window / max(1, _cleared_lines.size() - 1))
-		for i in range(_cleared_lines.size()):
+		var _per_line_frame_delay := floor(_line_erase_timing_window / max(1, cleared_lines.size() - 1))
+		for i in range(cleared_lines.size()):
 			_remaining_line_clear_timings.append(_remaining_line_clear_frames - i * _per_line_frame_delay)
 
 
 """
 Ends the player's combo if they drop 2 blocks without making a box or scoring points.
 """
-func _process_combo() -> void:
-	_combo_break += 1
-	if _combo_break >= 3:
-		if combo >= 20:
-			$Fanfare3.play()
-		elif combo >= 10:
-			$Fanfare2.play()
-		elif combo >= 5:
-			$Fanfare1.play()
-		if PuzzleScore.get_customer_score() > 0:
-			emit_signal("customer_left")
-			PuzzleScore.end_combo()
-			combo = 0
+func _break_combo() -> void:
+	if combo_break < 2:
+		return
+	
+	if combo >= 20:
+		$Fanfare3.play()
+	elif combo >= 10:
+		$Fanfare2.play()
+	elif combo >= 5:
+		$Fanfare1.play()
+	
+	if PuzzleScore.get_customer_score() > 0:
+		emit_signal("customer_left")
+		PuzzleScore.end_combo()
+		combo = 0
 
 
 """

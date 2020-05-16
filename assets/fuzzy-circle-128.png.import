@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/fuzzy-circle.png-0a5438200972f8de26e39c4a1506e1b6.stex"
+path="res://.import/fuzzy-circle-128.png-8d55ea7c6a4f7f066ff8d3a37bb14314.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/fuzzy-circle.png"
-dest_files=[ "res://.import/fuzzy-circle.png-0a5438200972f8de26e39c4a1506e1b6.stex" ]
+source_file="res://assets/fuzzy-circle-128.png"
+dest_files=[ "res://.import/fuzzy-circle-128.png-8d55ea7c6a4f7f066ff8d3a37bb14314.stex" ]
 
 [params]
 

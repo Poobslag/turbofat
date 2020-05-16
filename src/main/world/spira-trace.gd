@@ -17,8 +17,8 @@ func _process(delta: float) -> void:
 		text += "o" if spira.over_something() else "-"
 
 
-func _on_OverworldUi_spira_changed(new_spira: Spira) -> void:
-	spira = new_spira
+func _on_OverworldUi_spira_changed(value: Spira) -> void:
+	spira = value
 
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:

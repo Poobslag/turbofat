@@ -13,7 +13,7 @@ signal chat_ended
 # signal emitted when we present the player with a dialog choice
 signal showed_chat_choices
 
-signal spira_changed(spira)
+signal spira_changed(value)
 
 var spira: Spira setget set_spira
 

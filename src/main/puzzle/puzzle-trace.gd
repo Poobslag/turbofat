@@ -14,8 +14,8 @@ func _process(delta: float) -> void:
 		new_text += "l" if _playfield._remaining_line_clear_frames > 0 else "-"
 		new_text += "b" if _playfield._remaining_box_build_frames > 0 else "-"
 		new_text += "r" if _playfield.ready_for_new_piece() else "-"
-		var das: bool = _pieceManager._input_left_frames > _pieceManager.piece_speed.delayed_auto_shift_delay \
-				or _pieceManager._input_right_frames > _pieceManager.piece_speed.delayed_auto_shift_delay
+		var das: bool = _pieceManager._input_left_frames > PieceSpeeds.current_speed.delayed_auto_shift_delay \
+				or _pieceManager._input_right_frames > PieceSpeeds.current_speed.delayed_auto_shift_delay
 		new_text += "D" if das else "-"
 		new_text += "%1d%1d" % [min(9, _pieceManager._input_left_frames), min(9, _pieceManager._input_right_frames)]
 		new_text += " %s(%02d)" % [_pieceManager.get_state().name.left(4), min(99, _pieceManager.get_state().frames)]

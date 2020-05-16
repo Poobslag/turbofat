@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://FpsLabel.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=4]
@@ -46,9 +46,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 251.0
-margin_right = 507.0
-margin_bottom = 271.0
+margin_top = 246.0
+margin_right = 502.0
+margin_bottom = 266.0
 
 [node name="VersionLabel" parent="Labels/SoutheastLabels" instance=ExtResource( 3 )]
 anchor_left = 0.0
