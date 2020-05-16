@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=1]
 [ext_resource path="res://assets/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=2]
@@ -8,7 +8,6 @@
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/puzzle/money-label-tween.gd" type="Script" id=7]
 [ext_resource path="res://assets/ui/cheat-enable.wav" type="AudioStream" id=8]
-[ext_resource path="res://src/main/puzzle/ResultsPopupSound.gd" type="Script" id=9]
 
 [node name="ResultsHud" type="Control"]
 anchor_right = 1.0
@@ -49,5 +48,4 @@ bus = "Voice Bus"
 stream = ExtResource( 8 )
 volume_db = -8.0
 bus = "Main Bus"
-script = ExtResource( 9 )
 [connection signal="text_shown" from="ResultsLabel" to="." method="_on_ResultsLabel_text_shown"]
