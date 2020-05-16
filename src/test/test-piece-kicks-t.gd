@@ -74,46 +74,6 @@ func test_rose_kick_right() -> void:
 	_assert_kick()
 
 
-func test_triple_cw() -> void:
-	from_grid = [
-		"    ",
-		":t  ",
-		"ttt ",
-		" :::",
-		"  ::",
-		" :::",
-	]
-	to_grid = [
-		"    ",
-		":   ",
-		"    ",
-		"t:::",
-		"tt::",
-		"t:::",
-	]
-	_assert_kick()
-
-
-func test_triple_ccw() -> void:
-	from_grid = [
-		"    ",
-		"  t:",
-		" ttt",
-		"::: ",
-		"::  ",
-		"::: ",
-	]
-	to_grid = [
-		"    ",
-		"   :",
-		"    ",
-		":::t",
-		"::tt",
-		":::t",
-	]
-	_assert_kick()
-
-
 """
 A duck kick is when the T-piece tries to rotate an extrusion towards its flat side, and gets shoved away.
 
