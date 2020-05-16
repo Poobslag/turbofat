@@ -72,11 +72,11 @@ func test_calculate_rank_marathon_300_mixed() -> void:
 	PuzzleScore.scenario_performance.combo_score = 500
 	PuzzleScore.scenario_performance.score = 1160
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.speed_rank), "A")
-	assert_eq(Global.grade(rank.lines_rank), "C")
-	assert_eq(Global.grade(rank.box_score_per_line_rank), "A+")
-	assert_eq(Global.grade(rank.combo_score_per_line_rank), "A")
-	assert_eq(Global.grade(rank.score_rank), "B")
+	assert_eq(Global.grade(rank.speed_rank), "S")
+	assert_eq(Global.grade(rank.lines_rank), "A+")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "S+")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "S-")
+	assert_eq(Global.grade(rank.score_rank), "AA+")
 
 
 func test_calculate_rank_marathon_lenient() -> void:
@@ -88,11 +88,11 @@ func test_calculate_rank_marathon_lenient() -> void:
 	PuzzleScore.scenario_performance.combo_score = 500
 	PuzzleScore.scenario_performance.score = 1160
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.speed_rank), "A")
-	assert_eq(Global.grade(rank.lines_rank), "B")
-	assert_eq(Global.grade(rank.box_score_per_line_rank), "A+")
-	assert_eq(Global.grade(rank.combo_score_per_line_rank), "A")
-	assert_eq(Global.grade(rank.score_rank), "B+")
+	assert_eq(Global.grade(rank.speed_rank), "S")
+	assert_eq(Global.grade(rank.lines_rank), "AA+")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "S+")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "S-")
+	assert_eq(Global.grade(rank.score_rank), "AA+")
 
 
 func test_calculate_rank_marathon_300_fail() -> void:
@@ -120,11 +120,11 @@ func test_calculate_rank_sprint_120() -> void:
 	PuzzleScore.scenario_performance.combo_score = 570
 	PuzzleScore.scenario_performance.score = 1012
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.speed_rank), "A+")
-	assert_eq(Global.grade(rank.lines_rank), "A+")
-	assert_eq(Global.grade(rank.box_score_per_line_rank), "A")
-	assert_eq(Global.grade(rank.combo_score_per_line_rank), "S")
-	assert_eq(Global.grade(rank.score_rank), "A+")
+	assert_eq(Global.grade(rank.speed_rank), "S+")
+	assert_eq(Global.grade(rank.lines_rank), "S+")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "S")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "SS")
+	assert_eq(Global.grade(rank.score_rank), "S+")
 
 
 func test_calculate_rank_ultra_200() -> void:
@@ -136,11 +136,11 @@ func test_calculate_rank_ultra_200() -> void:
 	PuzzleScore.scenario_performance.combo_score = 60
 	PuzzleScore.scenario_performance.score = 8
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.speed_rank), "S")
+	assert_eq(Global.grade(rank.speed_rank), "SS+")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "M")
 	assert_eq(rank.combo_score_per_line, 20.0)
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "M")
-	assert_eq(Global.grade(rank.seconds_rank), "S++")
+	assert_eq(Global.grade(rank.seconds_rank), "SSS")
 
 
 func test_calculate_rank_ultra_200_died() -> void:
@@ -153,10 +153,10 @@ func test_calculate_rank_ultra_200_died() -> void:
 	PuzzleScore.scenario_performance.score = 150
 	PuzzleScore.scenario_performance.died = true
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.speed_rank), "B")
+	assert_eq(Global.grade(rank.speed_rank), "AA+")
 	assert_eq(rank.seconds_rank, 999.0)
-	assert_eq(Global.grade(rank.box_score_per_line_rank), "D")
-	assert_eq(Global.grade(rank.combo_score_per_line_rank), "D")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "B+")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "B")
 
 
 """
@@ -165,16 +165,16 @@ This is an edge case where, if the player gets too many points for ultra, they c
 func test_calculate_rank_ultra_200_overshot() -> void:
 	Global.scenario_settings.set_start_level("0")
 	Global.scenario_settings.set_win_condition(ScenarioSettings.SCORE, 200)
-	PuzzleScore.scenario_performance.seconds = 24
+	PuzzleScore.scenario_performance.seconds = 19
 	PuzzleScore.scenario_performance.lines = 10
 	PuzzleScore.scenario_performance.box_score = 150
 	PuzzleScore.scenario_performance.combo_score = 100
 	PuzzleScore.scenario_performance.score = 260
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.speed_rank), "S")
+	assert_eq(Global.grade(rank.speed_rank), "M")
 	assert_eq(Global.grade(rank.box_score_per_line_rank), "M")
 	assert_eq(Global.grade(rank.combo_score_per_line_rank), "M")
-	assert_eq(Global.grade(rank.seconds_rank), "S")
+	assert_eq(Global.grade(rank.seconds_rank), "SSS")
 
 
 """
@@ -185,12 +185,12 @@ func test_two_rank_s() -> void:
 	Global.scenario_settings.set_win_condition(ScenarioSettings.SCORE, 1000)
 	PuzzleScore.scenario_performance.seconds = 88.55
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank.seconds_rank), "S")
+	assert_eq(Global.grade(rank.seconds_rank), "SS+")
 
 	Global.scenario_settings.set_win_condition(ScenarioSettings.SCORE, 1000)
 	PuzzleScore.scenario_performance.seconds = 128.616
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(Global.grade(rank2.seconds_rank), "A+")
+	assert_eq(Global.grade(rank2.seconds_rank), "S+")
 
 
 """
