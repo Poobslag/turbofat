@@ -1,7 +1,7 @@
-class_name Turbo
+class_name Spira
 extends Customer3D
 """
-Script for manipulating the player-controlled character 'Turbo' in the 3D overworld.
+Script for manipulating the player-controlled character 'Spira' in the 3D overworld.
 """
 
 # If acceleration via gravity makes our vertical momentum something small like -6, there's a risk we won't actually
@@ -10,71 +10,71 @@ Script for manipulating the player-controlled character 'Turbo' in the 3D overwo
 # This is our minimum vertical velocity. Any non-zero values smaller than this will be scaled up.
 const MIN_GRAVITY_SPEED = 10.0
 
-# Number from [0.0, 1.0] which determines how quickly Turbo slows down
+# Number from [0.0, 1.0] which determines how quickly Spira slows down
 const FRICTION := 0.15
 
-# How fast can Turbo move
+# How fast can Spira move
 const MAX_RUN_SPEED := 90
 
-# How fast can Turbo slip
+# How fast can Spira slip
 const MAX_NARROW_SLIP_SPEED := 120
 
-# How fast can Turbo slip
+# How fast can Spira slip
 const MAX_LEDGE_SLIP_SPEED := 60
 
-# How fast Turbo slips off of slippery platforms
+# How fast Spira slips off of slippery platforms
 const MAX_SLIP_ACCELERATION := 900
 
-# How fast can Turbo accelerate
+# How fast can Spira accelerate
 const MAX_RUN_ACCELERATION := 600
 
-# How slow can Turbo move before she stops
+# How slow can Spira move before she stops
 const MIN_RUN_SPEED := 40
 
-# How fast does gravity accelerate Turbo
+# How fast does gravity accelerate Spira
 const GRAVITY := 400.0
 
-# Vertical force applied to Turbo when she jumps
+# Vertical force applied to Spira when she jumps
 const JUMP_SPEED := 160
 
-# Default position of camera relative to Turbo. The camera is above and in front.
+# Default position of camera relative to Spira. The camera is above and in front.
 const DEFAULT_CAMERA_TRANSLATION := Vector3(300, 250, 300)
 
-# How far the camera should lead Turbo's movement when Turbo is walking/jumping
+# How far the camera should lead Spira's movement when Spira is walking/jumping
 const CAMERA_LEAD_DISTANCE := 60
 
-# Number from [0.0, 1.0] for how tight the camera should snap to Turbo's movement
+# Number from [0.0, 1.0] for how tight the camera should snap to Spira's movement
 const CAMERA_JERKINESS := 0.04
 
-# How many rays we should cast when determining how Turbo falls from a ledge
+# How many rays we should cast when determining how Spira falls from a ledge
 const LEDGE_RAY_COUNT := 16
 
-# How far apart the rays should be when determining how Turbo falls from a ledge
+# How far apart the rays should be when determining how Spira falls from a ledge
 const LEDGE_RAY_RADIUS := 12.0
 
-# Turbo's (X, Y, Z) velocity
+# Spira's (X, Y, Z) velocity
 var _velocity := Vector3.ZERO
 
 # 'true' if the controls should be rotated 45 degrees, giving the player orthographic controls.
 # 'false' if the controls should not be rotated, giving the player isometric controls.
 var _rotate_controls := true
 
-# 'true' if Turbo is currently mid-air after having jumped
+# 'true' if Spira is currently mid-air after having jumped
 var _jumping := false
 
-# 'true' if Turbo is either slipping, or mid-air after having slipped
+# 'true' if Spira is either slipping, or mid-air after having slipped
 var _slipping := false
 
-# 'true' if Turbo is being slowed by friction while stopping or turning
+# 'true' if Spira is being slowed by friction while stopping or turning
 var _friction := false
 
-# The direction Turbo is walking in (X, Y) coordinates, where 'Y' is forward.
+# The direction Spira is walking in (X, Y) coordinates, where 'Y' is forward.
 var _walk_direction := Vector2.ZERO
 
 func _ready() -> void:
 	._ready()
 	$CollisionShape.disabled = false
-	InteractableManager.set_turbo(self)
+	InteractableManager.set_spira(self)
 
 
 func _physics_process(delta) -> void:
@@ -94,7 +94,7 @@ func _physics_process(delta) -> void:
 
 
 """
-Applies Turbo's jump/movement input for most cases. Some edge cases such as buffered jumps are handled outside this
+Applies Spira's jump/movement input for most cases. Some edge cases such as buffered jumps are handled outside this
 function.
 """
 func _unhandled_input(_event: InputEvent) -> void:
@@ -120,7 +120,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 
 
 """
-Turbo is dark red with black eyes.
+Spira is dark red with black eyes.
 """
 func get_customer_def() -> Dictionary:
 	return {
@@ -130,9 +130,9 @@ func get_customer_def() -> Dictionary:
 
 
 """
-Tries to halt Turbo's movement and make her idle.
+Tries to halt Spira's movement and make her idle.
 
-Returns 'true' if Turbo has entered the idle state, or 'false' if she was mid-air or out of the player's control.
+Returns 'true' if Spira has entered the idle state, or 'false' if she was mid-air or out of the player's control.
 """
 func stop_movement() -> bool:
 	_walk_direction = Vector2.ZERO
@@ -148,7 +148,7 @@ func stop_movement() -> bool:
 
 
 """
-Plays a bonk sound if Turbo bumps into a wall.
+Plays a bonk sound if Spira bumps into a wall.
 """
 func _maybe_play_bonk_sound(old_velocity: Vector3) -> void:
 	var velocity_diff := _velocity - old_velocity
@@ -233,14 +233,14 @@ func _is_midair() -> bool:
 
 
 """
-Gets Turbo's (X, Y, Z) velocity where 'Y' is up as an (X, Y) movement vector where 'Y' is forward.
+Gets Spira's (X, Y, Z) velocity where 'Y' is up as an (X, Y) movement vector where 'Y' is forward.
 """
 func _get_xy_velocity() -> Vector2:
 	return Vector2(_velocity.x, _velocity.z)
 
 
 """
-Sets Turbo's (X, Y, Z) velocity where 'Y' is up from an (X, Y) movement vector where 'Y' is forward.
+Sets Spira's (X, Y, Z) velocity where 'Y' is up from an (X, Y) movement vector where 'Y' is forward.
 """
 func _set_xy_velocity(xy_velocity: Vector2) -> void:
 	_velocity.x = xy_velocity.x
@@ -258,9 +258,9 @@ func _apply_player_walk(delta: float) -> void:
 
 
 """
-Accelerates Turbo horizontally.
+Accelerates Spira horizontally.
 
-If Turbo would be accelerated beyond the specified maximum speed, Turbo's acceleration is reduced.
+If Spira would be accelerated beyond the specified maximum speed, Spira's acceleration is reduced.
 """
 func _accelerate_player_xy(delta: float, push_direction: Vector2, acceleration: float, max_speed: float) -> void:
 	if push_direction.length() == 0:
@@ -286,9 +286,9 @@ func _jump() -> void:
 
 
 """
-Returns 'true' if Turbo is directly over something.
+Returns 'true' if Spira is directly over something.
 
-Most notably, this returns 'false' if Turbo is standing on a surface, but the surface is not directly beneath her.
+Most notably, this returns 'false' if Spira is standing on a surface, but the surface is not directly beneath her.
 This enables the slipping logic.
 """
 func over_something() -> bool:
@@ -296,10 +296,10 @@ func over_something() -> bool:
 
 
 """
-When Turbo attempts to jump onto a narrow surface (such as someone's head) she slips off unless she lands very
+When Spira attempts to jump onto a narrow surface (such as someone's head) she slips off unless she lands very
 squarely in the middle of it.
 
-This function triggers the slipping physics, and returns 'true' if Turbo is slipping from a narrow surface.
+This function triggers the slipping physics, and returns 'true' if Spira is slipping from a narrow surface.
 """
 func _slip_from_narrow_surfaces(delta: float) -> bool:
 	if not over_something():
@@ -309,11 +309,11 @@ func _slip_from_narrow_surfaces(delta: float) -> bool:
 	var slip_direction := Vector3.ZERO
 	var collider: Object = $RayCast.get_collider()
 	if collider.get("foothold_radius"):
-		# Turbo is standing on something she might slip from
+		# Spira is standing on something she might slip from
 		slip_direction = translation - collider.translation
 		slip_direction.y = 0
 		if slip_direction.length() <= collider.foothold_radius:
-			# Turbo is close enough to the center and shouldn't slip
+			# Spira is close enough to the center and shouldn't slip
 			slip_direction = Vector3.ZERO
 	if slip_direction:
 		_accelerate_player_xy(delta, Vector2(slip_direction.x, slip_direction.z),
@@ -322,12 +322,12 @@ func _slip_from_narrow_surfaces(delta: float) -> bool:
 
 
 """
-When Turbo steps too close to a ledge, she slips off of the ledge.
+When Spira steps too close to a ledge, she slips off of the ledge.
 
-This function triggers the slipping physics, and returns 'true' if Turbo is slipping from a ledge. This occurs when
+This function triggers the slipping physics, and returns 'true' if Spira is slipping from a ledge. This occurs when
 her center point is no longer above solid ground.
 
-This function is important because Turbo's collision shape is a box, but her sprite rarely fills the full box. Without
+This function is important because Spira's collision shape is a box, but her sprite rarely fills the full box. Without
 this logic she ends up hovering in space frequently.
 """
 func _slip_from_ledges(delta: float) -> bool:

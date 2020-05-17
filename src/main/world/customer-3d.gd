@@ -4,7 +4,7 @@ extends KinematicBody
 Script for representing a customer in the 3D overworld.
 """
 
-# Turbo cannot land on customers easily, but it is possible
+# Spira cannot land on customers easily, but it is possible
 var foothold_radius := 2.0
 
 func _ready() -> void:

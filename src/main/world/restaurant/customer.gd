@@ -24,7 +24,7 @@ signal customer_arrived
 # signal emitted when a stands up and customer leaves
 signal customer_left
 
-# signal emitted when a movement animation starts (e.g Turbo starts running in a direction)
+# signal emitted when a movement animation starts (e.g Spira starts running in a direction)
 signal movement_animation_started(anim_name)
 
 # signal emitted during the 'run' animation when the customer touches the ground

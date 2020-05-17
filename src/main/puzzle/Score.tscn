@@ -1,30 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/puzzle/score-value-label.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/main/puzzle/combo-score-value-label.gd" type="Script" id=3]
+[ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=4]
 
 [node name="Score" type="Control"]
 margin_right = 250.0
-margin_bottom = 100.0
+margin_bottom = 74.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScoreLabel" type="Label" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = -70.0
-custom_fonts/font = ExtResource( 2 )
-text = "Score"
-align = 2
-
 [node name="ScoreValueLabel" type="Label" parent="."]
-margin_top = 30.0
 margin_right = 250.0
-margin_bottom = 60.0
-custom_fonts/font = ExtResource( 2 )
-text = "616"
+margin_bottom = 44.0
+custom_fonts/font = ExtResource( 4 )
+text = "¥616"
 align = 2
 script = ExtResource( 1 )
 __meta__ = {
@@ -33,11 +25,11 @@ __meta__ = {
 
 [node name="ComboScoreValueLabel" type="Label" parent="."]
 modulate = Color( 1, 1, 1, 0.501961 )
-margin_top = 60.0
+margin_top = 36.0
 margin_right = 250.0
-margin_bottom = 90.0
+margin_bottom = 66.0
 custom_fonts/font = ExtResource( 2 )
-text = "+55"
+text = "+¥55"
 align = 2
 script = ExtResource( 3 )
 __meta__ = {

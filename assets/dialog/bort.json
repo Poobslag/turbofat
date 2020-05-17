@@ -19,7 +19,7 @@
   ],
   "yes" : [
     {
-      "who": "Turbo",
+      "who": "Spira",
       "text": "Yeah!\nThis is definitely a real conversation./ It has branches and everything!",
       "mood": "smile0"
     },
@@ -32,7 +32,7 @@
   ],
   "maybe" : [
     {
-      "who": "Turbo",
+      "who": "Spira",
       "text": "Maybe?/ I'm not sure!",
       "mood": "think0"
     },
@@ -45,7 +45,7 @@
   ],
   "no" : [
     {
-      "who": "Turbo",
+      "who": "Spira",
       "text": "I don't think so. I still have a lot of work to do...",
       "mood": "cry0"
     },

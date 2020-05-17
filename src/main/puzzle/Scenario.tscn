@@ -46,9 +46,9 @@ __meta__ = {
 }
 
 [node name="LinesHud" type="Control" parent="."]
-margin_top = 170.0
+margin_top = 180.0
 margin_right = 250.0
-margin_bottom = 210.0
+margin_bottom = 220.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -92,9 +92,9 @@ __meta__ = {
 }
 
 [node name="TimeHud" type="Control" parent="."]
-margin_top = 170.0
+margin_top = 180.0
 margin_right = 250.0
-margin_bottom = 210.0
+margin_bottom = 220.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -136,9 +136,9 @@ __meta__ = {
 }
 
 [node name="ScoreHud" type="Control" parent="."]
-margin_top = 170.0
+margin_top = 180.0
 margin_right = 250.0
-margin_bottom = 210.0
+margin_bottom = 220.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -175,7 +175,7 @@ margin_left = -100.0
 margin_top = 30.0
 margin_bottom = 75.0
 custom_fonts/font = ExtResource( 2 )
-text = "2000"
+text = "¥2000"
 align = 1
 valign = 1
 __meta__ = {

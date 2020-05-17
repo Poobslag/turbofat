@@ -32,7 +32,7 @@ func _ready() -> void:
 			_set_level(0)
 		ScenarioSettings.SCORE:
 			$ScoreHud.show()
-			$ScoreHud/ScoreValue.text = str(Global.scenario_settings.win_condition.value)
+			$ScoreHud/ScoreValue.text = "¥%s" % Global.scenario_settings.win_condition.value
 			$ScoreHud/TimeLabel.hide()
 			$ScoreHud/TimeValue.hide()
 

@@ -30,7 +30,7 @@ projection = 1
 current = true
 size = 400.0
 far = 2000.0
-target = NodePath("../Turbo/CameraTarget")
+target = NodePath("../Spira/CameraTarget")
 speed = 4.0
 enabled = true
 

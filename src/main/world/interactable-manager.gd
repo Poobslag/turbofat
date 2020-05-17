@@ -1,22 +1,22 @@
 extends Node
 """
-Tracks Turbo's location and the location of all interactables. Handles questions like 'which interactable is focused'
+Tracks Spira's location and the location of all interactables. Handles questions like 'which interactable is focused'
 and 'which interactables are nearby'.
 """
 
 # Signal emitted when focus changes to a new object, or when all objects are unfocused.
 signal focus_changed
 
-# Maximum range for Turbo to successfully interact with an object
+# Maximum range for Spira to successfully interact with an object
 const MAX_INTERACT_DISTANCE := 50.0
 
 # Chat appearance for different characters
 var _accent_defs := {
-	"Turbo": {"accent_scale":0.66,"accent_swapped":true,"accent_texture":13,"color":"b23823"}
+	"Spira": {"accent_scale":0.66,"accent_swapped":true,"accent_texture":13,"color":"b23823"}
 }
 
 # The player's sprite
-var _turbo: Turbo setget set_turbo
+var _spira: Spira setget set_spira
 
 # A list of all interactable objects which can be focused and interacted with
 var _interactables := []
@@ -31,13 +31,13 @@ func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focus: Spatial
 
-	if _focus_enabled and _turbo and _interactables:
+	if _focus_enabled and _spira and _interactables:
 		# iterate over all interactables and find the nearest one
 		for interactable_object in _interactables:
 			if not is_instance_valid(interactable_object):
 				continue
 			var interactable: Spatial = interactable_object
-			var distance := interactable.global_transform.origin.distance_to(_turbo.global_transform.origin)
+			var distance := interactable.global_transform.origin.distance_to(_spira.global_transform.origin)
 			if distance <= min_distance:
 				min_distance = distance
 				new_focus = interactable
@@ -54,17 +54,17 @@ Because InteractableManager is a singleton, node instances must be purged before
 possible for an invisible object from a previous scene to receive focus.
 """
 func clear() -> void:
-	_turbo = null
+	_spira = null
 	_interactables.clear()
 	_focused = null
 
 
-func set_turbo(turbo: Turbo) -> void:
-	_turbo = turbo
+func set_spira(spira: Spira) -> void:
+	_spira = spira
 
 
 """
-Adds an overworld object which Turbo can interact with.
+Adds an overworld object which Spira can interact with.
 """
 func add_interactable(interactable: Spatial) -> void:
 	_interactables.append(interactable)
@@ -115,8 +115,8 @@ dialog line. This function facilitates that.
 """
 func get_chatter(chat_name: String) -> Spatial:
 	var chatter: Spatial
-	if chat_name == "Turbo":
-		chatter = _turbo
+	if chat_name == "Spira":
+		chatter = _spira
 	else:
 		for interactable in _interactables:
 			var spatial: Spatial = interactable
