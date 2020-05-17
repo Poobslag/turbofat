@@ -8,9 +8,9 @@ is written eventually to the save file.
 This also includes transient data such as the current customer/bonus score. This is used visually, but never saved.
 """
 
-signal score_changed(new_score)
-signal bonus_score_changed(new_bonus_score)
-signal customer_score_changed(new_customer_score)
+signal score_changed(value)
+signal bonus_score_changed(value)
+signal customer_score_changed(value)
 
 # Player's performance on the current scenario
 var scenario_performance := ScenarioPerformance.new()

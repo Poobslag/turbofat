@@ -24,10 +24,6 @@ onready var playfield: Playfield = $"../Playfield"
 onready var _next_piece_displays: NextPieceDisplays = $"../NextPieceDisplays"
 onready var _game_over_voices := [$GameOverVoice0, $GameOverVoice1, $GameOverVoice2, $GameOverVoice3, $GameOverVoice4]
 
-# information about the current 'speed level', such as how fast pieces drop, how long it takes them to lock into the
-# playfield, and how long to pause when clearing lines.
-var piece_speed: PieceSpeed
-
 # settings and state for the currently active piece.
 var active_piece := ActivePiece.new(PieceTypes.piece_null)
 
@@ -38,7 +34,7 @@ var tile_map_dirty := false
 var _horizontal_movement_count := 0
 
 func _ready() -> void:
-	piece_speed = PieceSpeeds.speed("0")
+	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	$States.set_state($States/None)
 
 
@@ -92,8 +88,7 @@ Writes the current piece to the playfield, checking whether it makes any boxes o
 Returns true if the newly written piece results in a line clear.
 """
 func write_piece_to_playfield() -> bool:
-	var caused_line_clear := playfield.write_piece(
-			active_piece.pos, active_piece.orientation, active_piece.type, piece_speed)
+	var caused_line_clear := playfield.write_piece(active_piece.pos, active_piece.orientation, active_piece.type)
 	clear_piece()
 	return caused_line_clear
 
@@ -143,9 +138,9 @@ func _spawn_piece() -> void:
 	
 	# apply initial infinite DAS
 	var initial_das_dir := 0
-	if _input_left_frames >= piece_speed.delayed_auto_shift_delay:
+	if _input_left_frames >= PieceSpeeds.current_speed.delayed_auto_shift_delay:
 		initial_das_dir -= 1
-	if _input_right_frames >= piece_speed.delayed_auto_shift_delay:
+	if _input_right_frames >= PieceSpeeds.current_speed.delayed_auto_shift_delay:
 		initial_das_dir += 1
 	
 	if initial_das_dir == -1:
@@ -238,12 +233,13 @@ func apply_player_input() -> bool:
 				Vector2(active_piece.pos.x + 1, active_piece.pos.y), active_piece.orientation):
 			_input_right_frames = 3600
 		
-		if Input.is_action_just_pressed("hard_drop") or _input_hard_drop_frames > piece_speed.delayed_auto_shift_delay:
+		if Input.is_action_just_pressed("hard_drop") \
+				or _input_hard_drop_frames > PieceSpeeds.current_speed.delayed_auto_shift_delay:
 			_reset_piece_target()
 			while _move_piece_to_target():
 				_target_piece_pos.y += 1
 			# lock piece
-			active_piece.lock = piece_speed.lock_delay
+			active_piece.lock = PieceSpeeds.current_speed.lock_delay
 			did_hard_drop = true
 
 	if Input.is_action_just_pressed("soft_drop"):
@@ -259,7 +255,7 @@ func apply_player_input() -> bool:
 				_perform_lock_reset()
 				applied_player_input = true
 				$MoveSound.play()
-	elif Input.is_action_pressed("soft_drop") and active_piece.lock >= piece_speed.lock_delay:
+	elif Input.is_action_pressed("soft_drop") and active_piece.lock >= PieceSpeeds.current_speed.lock_delay:
 		if not _can_move_active_piece_to(
 				Vector2(active_piece.pos.x, active_piece.pos.y + 1), active_piece.orientation):
 			_reset_piece_target()
@@ -377,9 +373,9 @@ func apply_gravity() -> void:
 	else:
 		if Input.is_action_pressed("soft_drop"):
 			# soft drop
-			active_piece.gravity += int(max(PieceSpeeds.DROP_G, piece_speed.gravity))
+			active_piece.gravity += int(max(PieceSpeeds.DROP_G, PieceSpeeds.current_speed.gravity))
 		else:
-			active_piece.gravity += piece_speed.gravity
+			active_piece.gravity += PieceSpeeds.current_speed.gravity
 		
 		while active_piece.gravity >= PieceSpeeds.G:
 			active_piece.gravity -= PieceSpeeds.G
@@ -445,10 +441,12 @@ func _reset_piece_target() -> void:
 
 
 func _attempt_horizontal_movement() -> void:
-	if Input.is_action_just_pressed("ui_left") or _input_left_frames >= piece_speed.delayed_auto_shift_delay:
+	if Input.is_action_just_pressed("ui_left") \
+			or _input_left_frames >= PieceSpeeds.current_speed.delayed_auto_shift_delay:
 		_target_piece_pos.x -= 1
 	
-	if Input.is_action_just_pressed("ui_right") or _input_right_frames >= piece_speed.delayed_auto_shift_delay:
+	if Input.is_action_just_pressed("ui_right") \
+			or _input_right_frames >= PieceSpeeds.current_speed.delayed_auto_shift_delay:
 		_target_piece_pos.x += 1
 
 	if _target_piece_pos.x != active_piece.pos.x and _move_piece_to_target(true):

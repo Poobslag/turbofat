@@ -17,8 +17,8 @@ func _ready() -> void:
 	set_shown_money(PlayerData.money)
 
 
-func on_PlayerData_money_changed(money: int) -> void:
-	set_shown_money(PlayerData.money)
+func on_PlayerData_money_changed(value: int) -> void:
+	set_shown_money(value)
 
 
 func set_compact(new_compact: bool) -> void:

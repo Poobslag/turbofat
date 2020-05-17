@@ -17,6 +17,8 @@ const RDF_COMBO_SCORE_PER_LINE := 0.970
 # theoretical player to meet all three statistics simultaneously.
 const MASTER_BOX_SCORE := 14.5
 const MASTER_COMBO_SCORE := 17.5
+
+# The number of extra unnecessary frames a perfect player will spend moving their piece.
 const MASTER_MVMT_FRAMES := 6
 
 # amount of points lost while starting a combo
@@ -60,35 +62,43 @@ func _max_combo_score(lines: int) -> int:
 
 
 """
-Calculates the maximum theoretical lines per minute.
+Calculates the minimum theoretical frames per line for a given piece speed.
 
-Parameters:
-	'extra_movement_frames': The number of extra unnecessary frames the imaginary player will spend moving their piece.
+This assumes a skilled player who is making many boxes, clearing lines one at a time, and moving pieces very
+efficiently.
 """
-func _max_lpm(extra_movement_frames:float = 0) -> float:
+static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
+	var movement_frames := 1 + MASTER_MVMT_FRAMES
+	var frames_per_line := 0.0
+	
+	# eight pieces form three boxes and clear four lines
+
+	# time spent spawning eight pieces
+	frames_per_line += piece_speed.line_appearance_delay * 4 # four 'line clear' pieces spawned
+	frames_per_line += piece_speed.appearance_delay * 4 # four 'regular pieces' spawned
+	
+	# time spent moving nine pieces
+	frames_per_line += movement_frames * 8
+	
+	# time spent while pieces lock into the playfield
+	frames_per_line += piece_speed.post_lock_delay * 8 # eight pieces locked
+	frames_per_line += piece_speed.line_clear_delay * 4 # four lines cleared
+	frames_per_line += piece_speed.box_delay * 3 # three boxes formed
+	frames_per_line /= 4
+	return frames_per_line
+
+
+"""
+Calculates the maximum theoretical lines per minute.
+"""
+func _max_lpm() -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
 	
 	for i in range(Global.scenario_settings.level_ups.size()):
 		var piece_speed: PieceSpeed = PieceSpeeds.speed(Global.scenario_settings.level_ups[i].level)
 		
-		var movement_frames := 1 + extra_movement_frames
-		var frames_per_line := 0.0
-		
-		# eight pieces form three boxes and clear four lines
-
-		# time spent spawning eight pieces
-		frames_per_line += piece_speed.line_appearance_delay * 4 # four 'line clear' pieces spawned
-		frames_per_line += piece_speed.appearance_delay * 4 # four 'regular pieces' spawned
-		
-		# time spent moving nine pieces
-		frames_per_line += movement_frames * 8
-		
-		# time spent while pieces lock into the playfield
-		frames_per_line += piece_speed.post_lock_delay * 8 # eight pieces locked
-		frames_per_line += piece_speed.line_clear_delay * 4 # four lines cleared
-		frames_per_line += piece_speed.box_delay * 3 # three boxes formed
-		frames_per_line /= 4
+		var frames_per_line := min_frames_per_line(piece_speed)
 		
 		var level_lines := 100
 		if i + 1 < Global.scenario_settings.level_ups.size():
@@ -125,7 +135,7 @@ Parameters:
 func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var rank_result := RankResult.new()
 	
-	var max_lpm := _max_lpm(MASTER_MVMT_FRAMES)
+	var max_lpm := _max_lpm()
 	
 	var target_speed: float = max_lpm
 	var target_box_score_per_line := MASTER_BOX_SCORE

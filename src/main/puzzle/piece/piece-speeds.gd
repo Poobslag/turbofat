@@ -21,8 +21,10 @@ const DROP_G := 128
 # When the player does a 'smush move' the piece is unaffected by gravity for this many frames.
 const SMUSH_FRAMES := 4
 
-var speeds := {
-}
+# How fast the pieces are moving right now
+var current_speed: PieceSpeed
+
+var _speeds := {}
 
 func _ready() -> void:
 	# beginner; 10-30 blocks per minute
@@ -67,9 +69,13 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new( "FE", 20*G,  4, 2, 5,  7, 16, 3, 3))
 	_add_speed(PieceSpeed.new( "FF", 20*G,  4, 2, 5,  7, 14, 3, 3))
 	_add_speed(PieceSpeed.new("FFF", 20*G,  4, 2, 5,  7, 12, 3, 3))
+	
+	current_speed = PieceSpeeds.speed("0")
+
 
 func _add_speed(speed: PieceSpeed) -> void:
-	speeds[speed.level] = speed
+	_speeds[speed.level] = speed
+
 
 func speed(string: String) -> PieceSpeed:
-	return speeds[string]
+	return _speeds[string]

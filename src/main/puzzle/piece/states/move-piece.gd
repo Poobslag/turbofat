@@ -15,6 +15,6 @@ func update(piece_manager: PieceManager) -> String:
 	piece_manager.apply_player_input()
 	piece_manager.apply_gravity()
 	piece_manager.apply_lock()
-	if piece_manager.active_piece.lock > piece_manager.piece_speed.lock_delay:
+	if piece_manager.active_piece.lock > PieceSpeeds.current_speed.lock_delay:
 		new_state = "Prelock"
 	return new_state

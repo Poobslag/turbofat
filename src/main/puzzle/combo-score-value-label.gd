@@ -10,5 +10,5 @@ func _ready() -> void:
 	text = "-"
 
 
-func _on_PuzzleScore_bonus_score_changed(new_bonus_score: int) -> void:
-	text = "-" if new_bonus_score == 0 else "+¥%s" % new_bonus_score
+func _on_PuzzleScore_bonus_score_changed(value: int) -> void:
+	text = "-" if value == 0 else "+¥%s" % value

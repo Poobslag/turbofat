@@ -35,8 +35,8 @@ func _process(delta: float) -> void:
 	_total_time += delta
 	
 	# stretch the chat window vertically/horizontally in a circular way which preserves its area
-	scale.x = 0.20 + PULSE_AMOUNT.x * sin((_total_time + 8.96) * 2 * PI / PULSE_PERIOD)
-	scale.y = 0.20 + PULSE_AMOUNT.y * cos((_total_time + 8.96) * 2 * PI / PULSE_PERIOD)
+	scale.x = 0.20 + PULSE_AMOUNT.x * sin((_total_time + 8.96) * TAU / PULSE_PERIOD)
+	scale.y = 0.20 + PULSE_AMOUNT.y * cos((_total_time + 8.96) * TAU / PULSE_PERIOD)
 
 """
 Recolors and repositions the sprite based on the current chat appearance.
