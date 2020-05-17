@@ -13,11 +13,11 @@ signal chat_ended
 # signal emitted when we present the player with a dialog choice
 signal showed_chat_choices
 
-signal turbo_changed(turbo)
+signal spira_changed(spira)
 
-var turbo: Turbo setget set_turbo
+var spira: Spira setget set_spira
 
-# Characters we're currently chatting with. We try to keep them all in frame and facing Turbo.
+# Characters we're currently chatting with. We try to keep them all in frame and facing Spira.
 var chatters := []
 
 var _show_version := true setget set_show_version, is_show_version
@@ -62,19 +62,19 @@ func is_show_version() -> bool:
 Turn the the active chat participants towards each other, and make them face the camera.
 """
 func make_chatters_face_eachother() -> void:
-	# make turbo face the other characters
+	# make spira face the other characters
 	if chatters.size() >= 1:
-		turbo.orient_toward(chatters[0])
+		spira.orient_toward(chatters[0])
 	
-	# make the other characters face turbo
+	# make the other characters face spira
 	for chatter in chatters:
 		if chatter.has_method("orient_toward"):
-			chatter.orient_toward(turbo)
+			chatter.orient_toward(spira)
 
 
-func set_turbo(new_turbo: Turbo) -> void:
-	turbo = new_turbo
-	emit_signal("turbo_changed", turbo)
+func set_spira(new_spira: Spira) -> void:
+	spira = new_spira
+	emit_signal("spira_changed", spira)
 
 
 """

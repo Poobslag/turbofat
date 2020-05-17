@@ -3,7 +3,7 @@
 [ext_resource path="res://src/main/world/orange.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/overworld.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/OverworldUi.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/world/turbo.gd" type="Script" id=4]
+[ext_resource path="res://src/main/world/spira.gd" type="Script" id=4]
 [ext_resource path="res://src/main/environment/OverworldGridMap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/slippery-kinematic-body.gd" type="Script" id=6]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=7]
@@ -67,22 +67,22 @@ data = {
 _regenerate_empty_world = false
 _regenerate_dramatic_world = false
 
-[node name="Turbo" parent="." instance=ExtResource( 8 )]
+[node name="Spira" parent="." instance=ExtResource( 8 )]
 transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 10, 0 )
 script = ExtResource( 4 )
 
-[node name="CameraTarget" type="Spatial" parent="Turbo"]
+[node name="CameraTarget" type="Spatial" parent="Spira"]
 transform = Transform( 0.707107, -0.353553, 0.612372, 0, 0.866026, 0.5, -0.707108, -0.353553, 0.612373, 300, 250, 300 )
 
-[node name="CoyoteTimer" type="Timer" parent="Turbo"]
+[node name="CoyoteTimer" type="Timer" parent="Spira"]
 wait_time = 0.13
 one_shot = true
 
-[node name="JumpBuffer" type="Timer" parent="Turbo"]
+[node name="JumpBuffer" type="Timer" parent="Spira"]
 wait_time = 0.13
 one_shot = true
 
-[node name="RayCast" type="RayCast" parent="Turbo"]
+[node name="RayCast" type="RayCast" parent="Spira"]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0, 2.5 )
 enabled = true
 cast_to = Vector3( 0, -13, 0 )
@@ -150,7 +150,7 @@ current = true
 size = 140.0
 near = 0.5
 far = 1000.0
-target = NodePath("../Turbo/CameraTarget")
+target = NodePath("../Spira/CameraTarget")
 speed = 4.0
 enabled = true
 script = ExtResource( 18 )

@@ -66,7 +66,7 @@ func from_dict(json: Dictionary) -> void:
 	else:
 		# Dialog with no speaker; decorate it as a thought bubble
 		text = "(%s)" % text
-		accent_def = InteractableManager.get_accent_def("Turbo")
+		accent_def = InteractableManager.get_accent_def("Spira")
 
 
 """

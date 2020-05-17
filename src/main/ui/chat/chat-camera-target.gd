@@ -1,15 +1,15 @@
 extends Spatial
 """
-Target which the camera attaches to while Turbo is talking to someone.
+Target which the camera attaches to while Spira is talking to someone.
 
-The camera target tries to keep all speaking characters in frame. If Turbo runs
+The camera target tries to keep all speaking characters in frame. If Spira runs
 too far away, the target emits a signal to zoom out.
 """
 
-# signal emitted when the camera should zoom out because Turbo ran too far away
+# signal emitted when the camera should zoom out because Spira ran too far away
 signal left_zoom_radius
 
-# how far from the camera target Turbo can be before the camera zooms out
+# how far from the camera target Spira can be before the camera zooms out
 const ZOOM_OUT_DISTANCE := 50.0
 
 # the position of the camera target relative to the midpoint
@@ -25,10 +25,10 @@ func _physics_process(delta: float) -> void:
 		# camera is not zoomed in; don't worry about updating the target position
 		return
 	
-	# calculate a bounding box containing Turbo and all chat participants
+	# calculate a bounding box containing Spira and all chat participants
 	var bounding_box: AABB
-	var turbo_point := _overworld_ui.turbo.translation
-	bounding_box = AABB(turbo_point, Vector3(0, 0, 0))
+	var spira_point := _overworld_ui.spira.translation
+	bounding_box = AABB(spira_point, Vector3(0, 0, 0))
 	for chatter in _overworld_ui.chatters:
 		if not bounding_box:
 			bounding_box = AABB(chatter.translation, Vector3(0, 0, 0))
@@ -39,7 +39,7 @@ func _physics_process(delta: float) -> void:
 	var midpoint := bounding_box.position + bounding_box.size * 0.5
 	translation = RELATIVE_TRANSLATION + midpoint
 
-	if _overworld_ui.turbo.translation.distance_to(midpoint) > ZOOM_OUT_DISTANCE:
-		# Turbo ran too far from the midpoint; zoom out
+	if _overworld_ui.spira.translation.distance_to(midpoint) > ZOOM_OUT_DISTANCE:
+		# Spira ran too far from the midpoint; zoom out
 		emit_signal("left_zoom_radius")
 		zoomed_in = false
