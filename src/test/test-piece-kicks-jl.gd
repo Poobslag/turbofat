@@ -234,13 +234,13 @@ func test_j_vee_kick0() -> void:
 func test_j_vee_kick1() -> void:
 	from_grid = [
 		"     ",
-		"  j::",
+		"  j  ",
 		"::j  ",
 		" jj  ",
 	]
 	to_grid = [
 		"     ",
-		"jjj::",
+		"jjj  ",
 		"::j  ",
 		"     ",
 	]
@@ -267,14 +267,14 @@ func test_j_vee_kick3() -> void:
 	from_grid = [
 		"     ",
 		"  jj ",
-		"  j::",
-		"  j  ",
+		": j::",
+		": j  ",
 	]
 	to_grid = [
 		"     ",
 		"     ",
-		"  j::",
-		"  jjj",
+		": j::",
+		": jjj",
 	]
 	_assert_kick()
 
@@ -298,13 +298,13 @@ func test_l_vee_kick_cw0() -> void:
 func test_l_vee_kick1() -> void:
 	from_grid = [
 		"     ",
-		"::l  ",
+		"  l  ",
 		"  l::",
 		"  ll ",
 	]
 	to_grid = [
 		"     ",
-		"::lll",
+		"  lll",
 		"  l::",
 		"     ",
 	]
@@ -331,134 +331,14 @@ func test_l_vee_kick3() -> void:
 	from_grid = [
 		"     ",
 		" ll  ",
-		"::l  ",
-		"  l  ",
+		"::l :",
+		"  l :",
 	]
 	to_grid = [
 		"     ",
 		"     ",
-		"::l  ",
-		"lll  ",
-	]
-	_assert_kick()
-
-
-func test_j_triple0() -> void:
-	from_grid = [
-		"     ",
-		" j:: ",
-		" jjj ",
-		":: ::",
-		":: ::",
-		":  ::",
-	]
-	to_grid = [
-		"     ",
-		"  :: ",
-		"     ",
-		"::j::",
-		"::j::",
-		":jj::",
-	]
-	_assert_kick()
-
-
-func test_j_triple1() -> void:
-	from_grid = [
-		"     ",
-		"j :: ",
-		"jjj  ",
-		":: ::",
-		":: ::",
-		":  ::",
-	]
-	to_grid = [
-		"     ",
-		" ::  ",
-		"     ",
-		"::j::",
-		"::j::",
-		":jj::",
-	]
-	_assert_kick()
-
-
-func test_j_triple2() -> void:
-	from_grid = [
-		"   ::",
-		"     ",
-		"  jjj",
-		"::::j",
-		":::: ",
-		":::  ",
-	]
-	to_grid = [
-		"   ::",
-		"     ",
-		"     ",
-		"::::j",
-		"::::j",
-		":::jj",
-	]
-	_assert_kick()
-
-
-func test_l_triple0() -> void:
-	from_grid = [
-		"     ",
-		" ::l ",
-		" lll ",
-		":: ::",
-		":: ::",
-		"::  :",
-	]
-	to_grid = [
-		"     ",
-		" ::  ",
-		"     ",
-		"::l::",
-		"::l::",
-		"::ll:",
-	]
-	_assert_kick()
-
-
-func test_l_triple1() -> void:
-	from_grid = [
-		"     ",
-		" :: l",
-		"  lll",
-		":: ::",
-		":: ::",
-		"::  :",
-	]
-	to_grid = [
-		"     ",
-		" ::  ",
-		"     ",
-		"::l::",
-		"::l::",
-		"::ll:",
-	]
-	_assert_kick()
-
-
-func test_l_triple2() -> void:
-	from_grid = [
-		"::   ",
-		"     ",
-		"lll  ",
-		"l::::",
-		" ::::",
-		"  :::",
-	]
-	to_grid = [
-		"::   ",
-		"     ",
-		"     ",
-		"l::::",
-		"l::::",
-		"ll:::",
+		"::l :",
+		"lll :",
 	]
 	_assert_kick()
 
@@ -489,15 +369,15 @@ func test_j_gold_kick1() -> void:
 		"     ",
 		"     ",
 		"::j  ",
-		" :j  ",
-		" jj  ",
+		" :j :",
+		" jj :",
 	]
 	to_grid = [
 		"     ",
 		"     ",
 		"::   ",
-		"j:   ",
-		"jjj  ",
+		"j:  :",
+		"jjj :",
 	]
 	_assert_kick()
 
@@ -523,7 +403,7 @@ func test_j_gold_kick2() -> void:
 func test_j_gold_kick3() -> void:
 	from_grid = [
 		"     ",
-		"   ::",
+		"     ",
 		"  jj ",
 		"  j: ",
 		"  j::",
@@ -561,15 +441,15 @@ func test_l_gold_kick1() -> void:
 		"     ",
 		"     ",
 		"  l::",
-		"  l: ",
-		"  ll ",
+		": l: ",
+		": ll ",
 	]
 	to_grid = [
 		"     ",
 		"     ",
 		"   ::",
-		"   :l",
-		"  lll",
+		":  :l",
+		": lll",
 	]
 	_assert_kick()
 
@@ -658,15 +538,15 @@ func test_j_climb_kick0() -> void:
 		"     ",
 		"     ",
 		"  jj ",
-		"  j: ",
-		"  j::",
+		": j::",
+		": j::",
 	]
 	to_grid = [
 		"     ",
 		" jjj ",
 		"   j ",
-		"   : ",
-		"   ::",
+		":  ::",
+		":  ::",
 	]
 	_assert_kick()
 
@@ -698,9 +578,9 @@ func test_j_climb_kick2() -> void:
 		":jj::",
 	]
 	to_grid = [
-		" j   ",
-		" jjj ",
-		"   : ",
+		"     ",
+		"j    ",
+		"jjj: ",
 		":  ::",
 		":  ::",
 	]
@@ -726,7 +606,7 @@ func test_j_climb_kick3() -> void:
 func test_j_climb_kick4() -> void:
 	from_grid = [
 		"     ",
-		"  j  ",
+		": j  ",
 		"::j  ",
 		":jj  ",
 	]
@@ -739,20 +619,38 @@ func test_j_climb_kick4() -> void:
 	_assert_kick()
 
 
+func test_j_climb_kick5() -> void:
+	from_grid = [
+		"    ",
+		"    ",
+		"jj  ",
+		"j:::",
+		"j:::",
+	]
+	to_grid = [
+		"    ",
+		"jjj ",
+		"  j ",
+		" :::",
+		" :::",
+	]
+	_assert_kick()
+
+
 func test_l_climb_kick0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
 		" ll  ",
-		" :l  ",
-		"::l  ",
+		"::l :",
+		"::l :",
 	]
 	to_grid = [
 		"     ",
 		" lll ",
 		" l   ",
-		" :   ",
-		"::   ",
+		"::  :",
+		"::  :",
 	]
 	_assert_kick()
 
@@ -784,9 +682,9 @@ func test_l_climb_kick2() -> void:
 		"::ll:",
 	]
 	to_grid = [
-		"   l ",
-		" lll ",
-		" :   ",
+		"     ",
+		"    l",
+		" :lll",
 		"::  :",
 		"::  :",
 	]
@@ -812,15 +710,33 @@ func test_l_climb_kick3() -> void:
 func test_l_climb_kick4() -> void:
 	from_grid = [
 		"     ",
-		"  l  ",
+		"  l :",
 		"  l::",
 		"  ll:",
 	]
 	to_grid = [
 		"     ",
-		" lll ",
+		" lll:",
 		" l ::",
 		"    :",
+	]
+	_assert_kick()
+
+
+func test_l_climb_kick5() -> void:
+	from_grid = [
+		"    ",
+		"    ",
+		"  ll",
+		":::l",
+		":::l",
+	]
+	to_grid = [
+		"    ",
+		" lll",
+		" l  ",
+		"::: ",
+		"::: ",
 	]
 	_assert_kick()
 
@@ -935,5 +851,156 @@ func test_l_plant_kick1() -> void:
 		"  ll ",
 		":: ::",
 		":: ::",
+	]
+	_assert_kick()
+
+
+"""
+A 'snack kick' is when a j piece wraps around a p piece to make a snack block.
+"""
+func test_j_snack_kick0() -> void:
+	from_grid = [
+		"  :::",
+		" j:::",
+		" jjj:",
+		"   ::",
+		":: ::",
+	]
+	to_grid = [
+		"  :::",
+		"  :::",
+		"  jj:",
+		"  j::",
+		"::j::",
+	]
+	_assert_kick()
+
+
+func test_j_snack_kick1() -> void:
+	from_grid = [
+		"   :::",
+		"   :::",
+		" j   :",
+		" jjj::",
+		" :: ::",
+	]
+	to_grid = [
+		"   :::",
+		"   :::",
+		"   jj:",
+		"   j::",
+		"   j::",
+	]
+	_assert_kick()
+
+
+func test_j_snack_kick2() -> void:
+	from_grid = [
+		":    ",
+		": jj ",
+		"  j::",
+		"::j::",
+		":::::",
+	]
+	to_grid = [
+		":    ",
+		":    ",
+		"jjj::",
+		"::j::",
+		":::::",
+	]
+	_assert_kick()
+
+
+func test_j_snack_kick3() -> void:
+	from_grid = [
+		"     ",
+		":jj  ",
+		":j ::",
+		" j ::",
+		":: ::",
+		":::::",
+	]
+	to_grid = [
+		"     ",
+		":  ::",
+		":  ::",
+		"jjj::",
+		"::j::",
+		":::::",
+	]
+	_assert_kick()
+
+
+func test_l_snack_kick0() -> void:
+	from_grid = [
+		":::  ",
+		":::l ",
+		":lll ",
+		"::   ",
+		":: ::",
+	]
+	to_grid = [
+		":::  ",
+		":::  ",
+		":ll  ",
+		"::l  ",
+		"::l::",
+	]
+	_assert_kick()
+
+
+func test_l_snack_kick1() -> void:
+	from_grid = [
+		":::   ",
+		":::   ",
+		":   l ",
+		"::lll ",
+		":: :: ",
+	]
+	to_grid = [
+		":::   ",
+		":::   ",
+		":ll   ",
+		"::l   ",
+		"::l:: ",
+	]
+	_assert_kick()
+
+
+func test_l_snack_kick2() -> void:
+	from_grid = [
+		"    :",
+		" ll :",
+		"::l  ",
+		"::l::",
+		":::::",
+	]
+	to_grid = [
+		"    :",
+		"    :",
+		"::lll",
+		"::l::",
+		":::::",
+	]
+	_assert_kick()
+
+
+func test_l_snack_kick3() -> void:
+	from_grid = [
+		"     ",
+		"  ll:",
+		":: l:",
+		":: l ",
+		":: ::",
+		":::::",
+	]
+	to_grid = [
+		"     ",
+		"    :",
+		"::  :",
+		"::lll",
+		"::l::",
+		":::::",
 	]
 	_assert_kick()
