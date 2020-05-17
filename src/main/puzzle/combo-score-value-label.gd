@@ -6,9 +6,9 @@ This only includes bonuses and should be a round number like +55 or +130 for vis
 """
 
 func _ready() -> void:
-	PuzzleScore.connect("combo_score_changed", self, "_on_PuzzleScore_combo_score_changed")
+	PuzzleScore.connect("bonus_score_changed", self, "_on_PuzzleScore_bonus_score_changed")
 	text = "-"
 
 
-func _on_PuzzleScore_combo_score_changed(new_combo_score: int) -> void:
-	text = "-" if new_combo_score == 0 else "+" + str(new_combo_score)
+func _on_PuzzleScore_bonus_score_changed(new_bonus_score: int) -> void:
+	text = "-" if new_bonus_score == 0 else "+" + str(new_bonus_score)

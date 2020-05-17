@@ -111,7 +111,10 @@ func _on_Puzzle_game_ended() -> void:
 """
 Method invoked when a line is cleared. Updates the level.
 """
-func _on_Puzzle_lines_cleared(_cleared_lines: Array) -> void:
+func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int) -> void:
+	if not $Puzzle.game_active:
+		return
+	
 	var lines: int = PuzzleScore.scenario_performance.lines
 	var new_level := _level
 	
@@ -134,7 +137,7 @@ func _on_Puzzle_lines_cleared(_cleared_lines: Array) -> void:
 			$Puzzle.end_game(4.2, "You win!")
 	
 	if Global.scenario_settings.win_condition.type == ScenarioSettings.SCORE:
-		var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_combo_score()
+		var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
 		$ScoreHud/ProgressBar.value = total_score
 		if total_score >= Global.scenario_settings.win_condition.value:
 			$MatchEndSound.play()
