@@ -8,6 +8,10 @@ is written eventually to the save file.
 This also includes transient data such as the current customer/bonus score. This is used visually, but never saved.
 """
 
+# Signal emitted when the game will start soon. Everything should be erased and reset to zero.
+signal game_prepared
+signal game_started
+signal game_ended
 signal score_changed(value)
 signal bonus_score_changed(value)
 signal customer_score_changed(value)
@@ -22,6 +26,38 @@ var bonus_score := 0
 # The scores for each customer in the current scenario (bonuses and line clears)
 var customer_scores := [0]
 
+# 'true' if the player has started a game which is still running.
+var game_active: bool
+
+"""
+Resets all score data to prepare for a new game.
+"""
+func prepare_game() -> void:
+	scenario_performance = ScenarioPerformance.new()
+	emit_signal("score_changed", 0)
+	
+	bonus_score = 0
+	emit_signal("bonus_score_changed", 0)
+	
+	customer_scores = [0]
+	emit_signal("game_prepared")
+
+
+func start_game() -> void:
+	if game_active:
+		return
+	game_active = true
+	emit_signal("game_started")
+
+
+func end_game() -> void:
+	if not game_active:
+		return
+	game_active = false
+	end_combo()
+	emit_signal("game_ended")
+
+
 """
 Adds points for clearing a line.
 
@@ -32,6 +68,8 @@ Parameters:
 	'box_score': Bonus points for any boxes in the line.
 """
 func add_line_score(combo_score: int, box_score: int) -> void:
+	if not game_active:
+		return
 	scenario_performance.lines += 1
 	scenario_performance.combo_score += combo_score
 	scenario_performance.box_score += box_score
@@ -50,21 +88,11 @@ func end_combo() -> void:
 	bonus_score = 0
 	emit_signal("bonus_score_changed", 0)
 	
-	customer_scores.append(0)
-	emit_signal("customer_score_changed", 0)
-
-
-"""
-Reset all score data, such as when starting a scenario over.
-"""
-func reset() -> void:
-	scenario_performance = ScenarioPerformance.new()
-	emit_signal("score_changed", 0)
-	
-	bonus_score = 0
-	emit_signal("bonus_score_changed", 0)
-	
-	customer_scores = [0]
+	if get_customer_score() > 0:
+		# if the customer score is 0, there's no need to append more and more 0s
+		customer_scores.append(0)
+		emit_signal("customer_score_changed", 0)
+		print("appended customer score: %s" % [customer_scores])
 
 
 func get_score() -> int:

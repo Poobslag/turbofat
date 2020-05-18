@@ -100,6 +100,7 @@ func _max_lpm() -> float:
 		
 		var frames_per_line := min_frames_per_line(piece_speed)
 		
+		var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
 		var level_lines := 100
 		if i + 1 < Global.scenario_settings.level_ups.size():
 			var level_up: ScenarioSettings.LevelUp = Global.scenario_settings.level_ups[i + 1]
@@ -110,10 +111,10 @@ func _max_lpm() -> float:
 					level_lines = level_up.value * 60 / frames_per_line
 				ScenarioSettings.SCORE:
 					level_lines = level_up.value / (MASTER_BOX_SCORE + MASTER_COMBO_SCORE + 1)
-		elif Global.scenario_settings.win_condition.type == ScenarioSettings.LINES:
-			level_lines = Global.scenario_settings.win_condition.value
-		elif Global.scenario_settings.win_condition.type == ScenarioSettings.SCORE:
-			level_lines = Global.scenario_settings.win_condition.value / (MASTER_BOX_SCORE + MASTER_COMBO_SCORE + 1)
+		elif winish_condition.type == ScenarioSettings.LINES:
+			level_lines = winish_condition.value
+		elif winish_condition.type == ScenarioSettings.SCORE:
+			level_lines = winish_condition.value / (MASTER_BOX_SCORE + MASTER_COMBO_SCORE + 1)
 
 		total_frames += frames_per_line * level_lines
 		total_lines += level_lines
@@ -141,15 +142,17 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var target_box_score_per_line := MASTER_BOX_SCORE
 	var target_combo_score_per_line := MASTER_COMBO_SCORE
 	var target_lines: float
-	var win_condition: ScenarioSettings.WinCondition = Global.scenario_settings.win_condition
-	match win_condition.type:
+	
+	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
+	
+	match winish_condition.type:
 		ScenarioSettings.LINES:
-			target_lines = win_condition.lenient_value if lenient else win_condition.value
-		ScenarioSettings.TIME:
-			target_lines = max_lpm * win_condition.value / 60.0
+			target_lines = winish_condition.lenient_value if lenient else winish_condition.value
 		ScenarioSettings.SCORE:
-			target_lines = ceil((win_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
+			target_lines = ceil((winish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
+		ScenarioSettings.TIME:
+			target_lines = max_lpm * winish_condition.value / 60.0
 	
 	# calculate raw player performance statistics
 	rank_result.lines = PuzzleScore.scenario_performance.lines
@@ -190,10 +193,10 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 				* pow(RDF_BOX_SCORE_PER_LINE, tmp_overall_rank)
 		var tmp_combo_score_per_line := target_combo_score_per_line \
 				* pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
-		if win_condition.type == ScenarioSettings.SCORE:
+		if winish_condition.type == ScenarioSettings.SCORE:
 			var tmp_speed := target_speed * pow(RDF_SPEED, tmp_overall_rank)
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
-			if (win_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
+			if (winish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
 					/ points_per_second < rank_result.seconds or PuzzleScore.scenario_performance.died:
 				overall_rank_min = tmp_overall_rank
 			else:
@@ -204,7 +207,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank
-	if win_condition.type == ScenarioSettings.SCORE:
+	if winish_condition.type == ScenarioSettings.SCORE:
 		rank_result.seconds_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	else:
 		rank_result.score_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)

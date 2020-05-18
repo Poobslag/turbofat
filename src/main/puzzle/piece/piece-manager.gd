@@ -6,7 +6,7 @@ playfield.
 """
 
 # signal emitted when the current piece can't be placed in the playfield
-signal game_ended
+signal piece_spawn_blocked
 
 var _target_piece_pos: Vector2
 var _target_piece_orientation: int
@@ -34,8 +34,13 @@ var tile_map_dirty := false
 var _horizontal_movement_count := 0
 
 func _ready() -> void:
+	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
+	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
+	
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	$States.set_state($States/None)
+	clear_piece()
 
 
 func get_state() -> State:
@@ -91,21 +96,6 @@ func write_piece_to_playfield() -> bool:
 	var caused_line_clear := playfield.write_piece(active_piece.pos, active_piece.orientation, active_piece.type)
 	clear_piece()
 	return caused_line_clear
-
-
-func start_game() -> void:
-	$States.set_state($States/Prespawn)
-	# Set the state frames so that the piece spawns immediately
-	$States/Prespawn.frames = 3600
-	tile_map_dirty = true
-	playfield.clock_running = true
-
-
-func end_game() -> void:
-	if $States._state == $States/GameEnded:
-		return
-	playfield.clock_running = false
-	$States.set_state($States/GameEnded)
 
 
 """
@@ -174,8 +164,7 @@ func _spawn_piece() -> void:
 		$GameOverSound.play()
 		_game_over_voices[randi() % _game_over_voices.size()].play()
 		PuzzleScore.scenario_performance.died = true
-		end_game()
-		emit_signal("game_ended")
+		emit_signal("piece_spawn_blocked")
 
 
 """
@@ -480,3 +469,18 @@ func _update_tile_map() -> void:
 func _on_States_entered_state(state: State) -> void:
 	if state == $States/Prelock:
 		$LockSound.play()
+
+
+func _on_PuzzleScore_game_prepared() -> void:
+	clear_piece()
+
+
+func _on_PuzzleScore_game_started() -> void:
+	$States.set_state($States/Prespawn)
+	# Set the state frames so that the piece spawns immediately
+	$States/Prespawn.frames = 3600
+	tile_map_dirty = true
+
+
+func _on_PuzzleScore_game_ended() -> void:
+	$States.set_state($States/GameEnded)

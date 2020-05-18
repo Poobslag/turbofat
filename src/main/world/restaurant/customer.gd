@@ -21,7 +21,7 @@ signal food_eaten
 # signal emitted when a customer arrives and sits down
 signal customer_arrived
 
-# signal emitted when a stands up and customer leaves
+# signal emitted when a customer stands up and leaves
 signal customer_left
 
 # signal emitted when a movement animation starts (e.g Spira starts running in a direction)
@@ -337,10 +337,14 @@ func summon(customer_def: Dictionary, use_defaults: bool = true) -> void:
 		put_if_absent(_customer_def, "eye_rgb", "282828 dedede")
 		put_if_absent(_customer_def, "horn_rgb", "f1e398")
 		
-		put_if_absent(_customer_def, "eye", ["0", "0", "0", "1", "2"][randi() % 5])
-		put_if_absent(_customer_def, "ear", ["0", "0", "0", "1", "2"][randi() % 5])
-		put_if_absent(_customer_def, "horn", ["0", "0", "0", "1", "2"][randi() % 5])
-		put_if_absent(_customer_def, "mouth", ["0", "0", "1"][randi() % 3])
+		if ResourceCache.minimal_resources:
+			# avoid loading unnecessary resources for things like the scenario editor
+			pass
+		else:
+			put_if_absent(_customer_def, "eye", ["0", "0", "0", "1", "2"][randi() % 5])
+			put_if_absent(_customer_def, "ear", ["0", "0", "0", "1", "2"][randi() % 5])
+			put_if_absent(_customer_def, "horn", ["0", "0", "0", "1", "2"][randi() % 5])
+			put_if_absent(_customer_def, "mouth", ["0", "0", "1"][randi() % 3])
 		put_if_absent(_customer_def, "body", "0")
 	
 	_customer_loader.load_details(_customer_def)

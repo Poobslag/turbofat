@@ -1,6 +1,6 @@
 {
   "start-level": "0",
-  "win-condition": {
+  "finish-condition": {
     "type": "score",
     "value": "200"
   }

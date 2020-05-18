@@ -14,6 +14,9 @@ signal finished_loading
 # enables logging paths and durations for loaded resources
 export (bool) var _verbose := false
 
+# reduces the number of textures loaded throughout the game
+export (bool) var minimal_resources := false
+
 # maintains references to all resources to prevent them from being cleaned up
 var _cache := {}
 

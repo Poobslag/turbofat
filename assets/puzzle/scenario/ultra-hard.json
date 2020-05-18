@@ -1,6 +1,6 @@
 {
   "start-level": "A0",
-  "win-condition": {
+  "finish-condition": {
     "type": "score",
     "value": "1000"
   }
