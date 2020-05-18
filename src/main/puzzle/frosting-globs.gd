@@ -65,15 +65,15 @@ When a line is cleared, we generate frosting globs for any boxes involved in the
 
 This must be called before the line is cleared so that we can evaluate the food blocks before they're erased.
 """
-func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int) -> void:
+func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	for x in range(Playfield.COL_COUNT):
 		var color_int: int
 		var glob_count: int
 		if playfield.get_cell(x, y) == 1:
 			color_int = playfield.get_cell_autotile_coord(x, y).y
-			if color_int in [0, 1, 2, 3]:
+			if Playfield.is_snack_box(color_int):
 				glob_count = 2
-			elif color_int == 4:
+			elif Playfield.is_cake_box(color_int):
 				glob_count = 4
 		elif playfield.get_cell(x, y) == 2:
 			# vegetable
@@ -88,9 +88,9 @@ func _on_Playfield_box_made(left_x: int, top_y: int, width: int, height: int, co
 	for y in range(top_y, top_y + height):
 		for x in range(left_x, left_x + width):
 			var glob_count: int
-			if color_int in [0, 1, 2, 3]:
+			if Playfield.is_snack_box(color_int):
 				glob_count = 1
-			elif color_int == 4:
+			elif Playfield.is_cake_box(color_int):
 				glob_count = 2
 			_spawn_globs(x, y, color_int, glob_count)
 
@@ -105,8 +105,8 @@ Parameters:
 """
 func _spawn_globs(x: int, y: int, color_int: int, glob_count: int) -> void:
 	for _i in range(glob_count):
-		if color_int in [0, 1, 2, 3]:
+		if Playfield.is_snack_box(color_int):
 			var color: Color = Playfield.FOOD_COLORS[color_int]
 			spawn_glob(color, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + playfield.rect_position)
-		else:
+		elif Playfield.is_cake_box(color_int):
 			spawn_rainbow_glob(Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + playfield.rect_position)

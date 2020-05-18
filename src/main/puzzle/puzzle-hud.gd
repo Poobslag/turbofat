@@ -36,10 +36,33 @@ func show_message(text: String) -> void:
 	$MessageLabel.text = text
 
 
+func _hide_buttons_and_messages() -> void:
+	$StartGameButton.hide()
+	$BackButton.hide()
+	$MessageLabel.hide()
+	$DetailMessageLabel.hide()
+
+
+func _on_BackButton_pressed() -> void:
+	emit_signal("back_button_pressed")
+
+
+func _on_StartGameButton_pressed() -> void:
+	emit_signal("start_button_pressed")
+
+
+func _on_PuzzleScore_game_prepared() -> void:
+	_hide_buttons_and_messages()
+
+
+func _on_PuzzleScore_game_started() -> void:
+	_hide_buttons_and_messages()
+
+
 """
 Restores the HUD elements after the player wins or loses.
 """
-func after_game_ended() -> void:
+func _on_Puzzle_after_game_ended():
 	$BackButton.show()
 	$MessageLabel.hide()
 	
@@ -50,26 +73,3 @@ func after_game_ended() -> void:
 		# grab focus so the player can start a new game or navigate with the keyboard
 		$StartGameButton.show()
 		$StartGameButton.grab_focus()
-
-
-func _hide_buttons_and_messages() -> void:
-	$StartGameButton.hide()
-	$BackButton.hide()
-	$MessageLabel.hide()
-	$DetailMessageLabel.hide()
-
-
-func _on_StartGameButton_pressed() -> void:
-	emit_signal("start_button_pressed")
-
-
-func _on_BackButton_pressed() -> void:
-	emit_signal("back_button_pressed")
-
-
-func _on_PuzzleScore_game_started() -> void:
-	_hide_buttons_and_messages()
-
-
-func _on_PuzzleScore_game_prepared() -> void:
-	_hide_buttons_and_messages()

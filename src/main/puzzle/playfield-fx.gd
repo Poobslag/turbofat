@@ -48,7 +48,7 @@ const OFF_PATTERN: Array = [
 	".........",
 ]
 
-onready var _playfield: Playfield = $"../.."
+onready var _combo_tracker: ComboTracker = $"../../ComboTracker"
 
 # light pattern being shown.
 var _pattern := OFF_PATTERN
@@ -76,6 +76,7 @@ var _color_int := -1
 
 func _ready() -> void:
 	reset()
+	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	
 	for i in range(RAINBOW_COLOR_COUNT):
 		var rainbow_color := Color.red
@@ -106,12 +107,12 @@ func reset() -> void:
 	_remodulate_lights(0)
 
 
-func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int) -> void:
-	_calculate_brightness(_playfield.combo)
-	_calculate_line_color(y)
+func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+	_calculate_brightness(_combo_tracker.combo)
+	_calculate_line_color(box_ints)
 	_pattern_y += 1
 	_start_glow_tween()
-	_remodulate_lights(_playfield.combo)
+	_remodulate_lights(_combo_tracker.combo)
 
 
 """
@@ -132,21 +133,17 @@ func _start_glow_tween() -> void:
 """
 Calculates the RGB light color for a row in the playfield.
 """
-func _calculate_line_color(y: int) -> void:
-	var line_color_int := -1
-	for x in range(Playfield.COL_COUNT):
-		var glob_count: int
-		if _playfield.get_cell(x, y) == 1:
-			var cell_color_int: int = _playfield.get_cell_autotile_coord(x, y).y
-			if cell_color_int in [0, 1, 2, 3]:
-				if line_color_int == -1 or line_color_int == _color_int:
-					# avoid showing the same color twice, if we're given a choice
-					line_color_int = cell_color_int
-			elif cell_color_int == 4:
-				line_color_int = 4
-		elif _playfield.get_cell(x, y) == 2:
-			# vegetable
-			pass
+func _calculate_line_color(box_ints: Array) -> void:
+	var line_color_int
+	if box_ints.empty():
+		line_color_int = -1
+	elif box_ints.has(Playfield.BOX_INT_CAKE):
+		line_color_int = Playfield.BOX_INT_CAKE
+	elif box_ints.size() == 1 or box_ints[0] != _color_int:
+		line_color_int = box_ints[0]
+	else:
+		# avoid showing the same color twice if we can help it
+		line_color_int = box_ints[1]
 	
 	_color_int = line_color_int
 	_color = _tile_index_to_color(line_color_int)
@@ -160,10 +157,10 @@ static func _tile_index_to_color(color_int: int) -> Color:
 	if color_int == -1:
 		# vegetable
 		color = VEGETABLE_LIGHT_COLOR
-	elif color_int in [0, 1, 2, 3]:
+	elif Playfield.is_snack_box(color_int):
 		# snack box
 		color = FOOD_LIGHT_COLORS[color_int]
-	elif color_int == 4:
+	elif Playfield.is_cake_box(color_int):
 		# cake box
 		color = RAINBOW_LIGHT_COLOR
 		color.h = rand_range(0.0, 1.0)
@@ -210,7 +207,7 @@ Calculates the new light pattern and refreshes the tilemaps.
 func _refresh_tilemaps(combo: int) -> void:
 	var new_pattern: Array
 	
-	match _playfield.combo_break:
+	match _combo_tracker.combo_break:
 		0: new_pattern = ON_PATTERN
 		1: new_pattern = HALF_PATTERN
 		_: new_pattern = OFF_PATTERN
@@ -233,7 +230,7 @@ func _refresh_tilemaps(combo: int) -> void:
 """
 When the player's combo breaks or resets we update the lights.
 """
-func _on_Playfield_combo_break_changed(value: int) -> void:
+func _on_ComboTracker_combo_break_changed(value: int) -> void:
 	if value >= 2:
 		if _pattern != OFF_PATTERN:
 			reset()
@@ -246,5 +243,9 @@ func _on_Playfield_combo_break_changed(value: int) -> void:
 When the player makes a box we brighten the combo lights again.
 """
 func _on_Playfield_box_made(x: int, y: int, width: int, height: int, color_int: int) -> void:
-	_remodulate_lights(_playfield.combo)
+	_remodulate_lights(_combo_tracker.combo)
 	_start_glow_tween()
+
+
+func _on_PuzzleScore_game_prepared() -> void:
+	reset()

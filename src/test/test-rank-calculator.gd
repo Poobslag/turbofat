@@ -171,6 +171,34 @@ func test_calculate_rank_ultra_200_overshot() -> void:
 	assert_eq(Global.grade(rank.seconds_rank), "SSS")
 
 
+func test_calculate_rank_five_customers_good() -> void:
+	Global.scenario_settings.set_finish_condition(ScenarioSettings.CUSTOMERS, 5)
+	Global.scenario_settings.set_start_level("4")
+	PuzzleScore.scenario_performance.lines = 100
+	PuzzleScore.scenario_performance.box_score = 1025
+	PuzzleScore.scenario_performance.combo_score = 915
+	PuzzleScore.scenario_performance.score = 2040
+	var rank := _rank_calculator.calculate_rank()
+	assert_eq(Global.grade(rank.lines_rank), "SSS")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "S+")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "S")
+	assert_eq(Global.grade(rank.score_rank), "SS")
+
+
+func test_calculate_rank_five_customers_bad() -> void:
+	Global.scenario_settings.set_finish_condition(ScenarioSettings.CUSTOMERS, 5)
+	Global.scenario_settings.set_start_level("4")
+	PuzzleScore.scenario_performance.lines = 18
+	PuzzleScore.scenario_performance.box_score = 90
+	PuzzleScore.scenario_performance.combo_score = 60
+	PuzzleScore.scenario_performance.score = 168
+	var rank := _rank_calculator.calculate_rank()
+	assert_eq(Global.grade(rank.lines_rank), "A-")
+	assert_eq(Global.grade(rank.box_score_per_line_rank), "AA")
+	assert_eq(Global.grade(rank.combo_score_per_line_rank), "A")
+	assert_eq(Global.grade(rank.score_rank), "A-")
+
+
 """
 These two times are pretty far apart; they shouldn't yield the same rank
 """

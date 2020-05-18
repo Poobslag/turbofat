@@ -15,6 +15,7 @@ signal game_ended
 signal score_changed(value)
 signal bonus_score_changed(value)
 signal customer_score_changed(value)
+signal combo_ended
 
 # Player's performance on the current scenario
 var scenario_performance := ScenarioPerformance.new()
@@ -35,10 +36,10 @@ Resets all score data to prepare for a new game.
 func prepare_game() -> void:
 	scenario_performance = ScenarioPerformance.new()
 	emit_signal("score_changed", 0)
-	
+
 	bonus_score = 0
 	emit_signal("bonus_score_changed", 0)
-	
+
 	customer_scores = [0]
 	emit_signal("game_prepared")
 
@@ -92,7 +93,20 @@ func end_combo() -> void:
 		# if the customer score is 0, there's no need to append more and more 0s
 		customer_scores.append(0)
 		emit_signal("customer_score_changed", 0)
-		print("appended customer score: %s" % [customer_scores])
+		emit_signal("combo_ended")
+
+
+"""
+Reset all score data, such as when starting a scenario over.
+"""
+func reset() -> void:
+	scenario_performance = ScenarioPerformance.new()
+	emit_signal("score_changed", 0)
+	
+	bonus_score = 0
+	emit_signal("bonus_score_changed", 0)
+	
+	customer_scores = [0]
 
 
 func get_score() -> int:

@@ -1,0 +1,10 @@
+{
+  "start-level": "4",
+  "finish-condition": {
+    "type": "customers",
+    "value": "5"
+  },
+  "combo-break": [
+    "veg-row"
+  ]
+}

@@ -44,14 +44,14 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 		if customer_score == 0:
 			# last entry in customer_score is always 0; ignore it
 			continue
-		var left := "Customer #%s " % Global.comma_sep(i + 1)
-		var right := "¥%s/\n" % Global.comma_sep(customer_score)
+		var left := "Customer #%s " % StringUtils.comma_sep(i + 1)
+		var right := "¥%s/\n" % StringUtils.comma_sep(customer_score)
 		var middle := ""
 		var period_count := 50 - _period_count(left + right)
 		for _p in range(period_count):
 			middle += "."
 		text += left + middle + right
-	text += "Total: ¥%s\n" % Global.comma_sep(rank_result.score)
+	text += "Total: ¥%s\n" % StringUtils.comma_sep(rank_result.score)
 	
 	# Append grade information
 	text += "/////\n"
@@ -113,5 +113,5 @@ func _on_Puzzle_after_game_ended() -> void:
 
 func _on_ResultsLabel_text_shown(new_text: String) -> void:
 	if new_text.begins_with("Customer #"):
-		var amount := int(new_text.substr(new_text.find_last("¥")).replace(",", ""))
+		var amount := int(StringUtils.substring_after_last(new_text, "¥").replace(",", ""))
 		$MoneyLabel.set_shown_money($MoneyLabel.shown_money + amount)

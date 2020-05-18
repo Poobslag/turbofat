@@ -5,20 +5,20 @@ Stores information about the game playfield: writing pieces to the playfield, ca
 or whether a box was made, pausing and playing sound effects
 """
 
-# signal emitted before a line is cleared
-signal before_line_cleared(y, total_lines, remaining_lines)
-
-# signal emitted when a line is cleared
-signal line_cleared(y, total_lines, remaining_lines)
-
-# signal emitted when a box (3x3, 3x4, 3x5) is made
 signal box_made(x, y, width, height, color_int)
+signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
+signal line_cleared(y, total_lines, remaining_lines, box_ints)
+signal after_piece_written
 
-signal combo_break_changed(value)
+enum BoxInt {
+	BROWN,
+	PINK,
+	BREAD,
+	WHITE,
+	CAKE,
+}
 
-signal customer_left
-
-const CAKE_COLOR_INDEX := 4
+const BOX_INT_CAKE := BoxInt.CAKE
 
 # percent of the line clear delay which should be spent erasing lines.
 # 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
@@ -37,15 +37,6 @@ const FOOD_COLORS: Array = [
 # playfield dimensions. the playfield extends a few rows higher than what the player can see
 const ROW_COUNT = 20
 const COL_COUNT = 9
-
-# bonus points which are awarded as the player continues a combo
-const COMBO_SCORE_ARR = [0, 0, 5, 5, 10, 10, 15, 15, 20]
-
-# number of lines the player has cleared without dropping their combo
-var combo := 0
-
-# The number of pieces the player has dropped without clearing a line or making a box.
-var combo_break := 0
 
 # lines which are currently being cleared
 var cleared_lines := []
@@ -66,7 +57,6 @@ var _should_play_line_fall_sound := false
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	$TileMapClip/TileMap.clear()
 	$TileMapClip/TileMap/CornerMap.clear()
 
@@ -80,6 +70,8 @@ func _physics_process(delta: float) -> void:
 		if _remaining_box_build_frames <= 0:
 			if _remaining_line_clear_frames > 0:
 				_process_line_clear()
+			else:
+				emit_signal("after_piece_written")
 	elif _remaining_line_clear_frames > 0:
 		if _cleared_line_index < cleared_lines.size() \
 				and _remaining_line_clear_frames <= _remaining_line_clear_timings[_cleared_line_index]:
@@ -91,6 +83,7 @@ func _physics_process(delta: float) -> void:
 		if _remaining_line_clear_frames <= 0:
 			_cleared_line_index = 0
 			_delete_rows()
+			emit_signal("after_piece_written")
 
 
 """
@@ -111,25 +104,23 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 		var block_color := type.get_cell_color(orientation, i)
 		_set_piece_block(pos.x + block_pos.x, pos.y + block_pos.y, block_color)
 	
-	combo_break += 1
 	_remaining_box_build_frames = 0
 	if not death_piece and _process_boxes():
 		# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
 		_remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
-		combo_break = 0
 
 	_remaining_line_clear_frames = 0
 	if not death_piece and _any_row_is_full():
 		# set at least line clear frame; processing occurs when the frame goes from 1 -> 0
 		_remaining_line_clear_frames = max(1, PieceSpeeds.current_speed.line_clear_delay)
-		combo_break = 0
-
+	
 		if _remaining_box_build_frames <= 0:
 			# process the line clear if we're not already making a box
 			_process_line_clear()
-
-	_break_combo()
-	emit_signal("combo_break_changed", combo_break)
+	
+	if _remaining_box_build_frames == 0 and _remaining_line_clear_frames == 0:
+		emit_signal("after_piece_written")
+	
 	return _remaining_line_clear_frames > 0
 
 
@@ -146,32 +137,17 @@ Clears a full line in the playfield.
 Updates the combo, awards points, and plays sounds appropriately.
 """
 func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
-	combo += 1
-	var box_count := box_count(y)
-	var combo_score: int = COMBO_SCORE_ARR[clamp(combo - 1, 0, COMBO_SCORE_ARR.size() - 1)]
-	var box_score: int = 5 * (box_count % 10) + 10 * (box_count / 10)
-	PuzzleScore.add_line_score(combo_score, box_score)
-	emit_signal("before_line_cleared", y, total_lines, remaining_lines)
-	_erase_row(y)
-	emit_signal("line_cleared", y, total_lines, remaining_lines)
-
-
-"""
-Returns a number encapsulating the number of cake boxes and snack boxes in the specified row.
-
-Parameters:
-	'y': A row in the playfield.
-
-Returns:
-	An integer with the cake box quantity in the 10s digit, and snack box quantity in the 1s digit.
-"""
-func box_count(y: int) -> int:
-	var result := 0
+	var box_ints: Array = []
 	for x in range(COL_COUNT):
-		var autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
+		var autotile_coord := get_cell_autotile_coord(x, y)
 		if get_cell(x, y) == 1 and not Connect.is_l(autotile_coord.x):
-			result += 10 if autotile_coord.y == CAKE_COLOR_INDEX else 1
-	return result
+			box_ints.append(autotile_coord.y)
+	box_ints.shuffle()
+	
+	$ComboTracker.add_combo_and_score(y, total_lines, remaining_lines, box_ints)
+	emit_signal("before_line_cleared", y, total_lines, remaining_lines, box_ints)
+	_erase_row(y)
+	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
 
 
 """
@@ -179,29 +155,29 @@ Makes a box at the specified location.
 
 Boxes are made when the player forms a 3x3, 3x4, 3x5 rectangle from intact pieces.
 """
-func make_box(x: int, y: int, width: int, height: int, box_color: int) -> void:
+func make_box(x: int, y: int, width: int, height: int, box_int: int) -> void:
 	# corners
-	_set_box_block(x + 0, y + 0, Vector2(10, box_color))
-	_set_box_block(x + width - 1, y + 0, Vector2(6, box_color))
-	_set_box_block(x + 0, y + height - 1, Vector2(9, box_color))
-	_set_box_block(x + width - 1, y + height - 1, Vector2(5, box_color))
+	_set_box_block(x + 0, y + 0, Vector2(10, box_int))
+	_set_box_block(x + width - 1, y + 0, Vector2(6, box_int))
+	_set_box_block(x + 0, y + height - 1, Vector2(9, box_int))
+	_set_box_block(x + width - 1, y + height - 1, Vector2(5, box_int))
 	
 	# top/bottom edge
 	for curr_x in range(x + 1, x + width - 1):
-		_set_box_block(curr_x, y + 0, Vector2(14, box_color))
-		_set_box_block(curr_x, y + height - 1, Vector2(13, box_color))
+		_set_box_block(curr_x, y + 0, Vector2(14, box_int))
+		_set_box_block(curr_x, y + height - 1, Vector2(13, box_int))
 	
 	# center
 	for curr_x in range(x + 1, x + width - 1):
 		for curr_y in range(y + 1, y + height - 1):
-			_set_box_block(curr_x, curr_y, Vector2(15, box_color))
+			_set_box_block(curr_x, curr_y, Vector2(15, box_int))
 	
 	# left/right edge
 	for curr_y in range(y + 1, y + height - 1):
-		_set_box_block(x + 0, curr_y, Vector2(11, box_color))
-		_set_box_block(x + width - 1, curr_y, Vector2(7, box_color))
+		_set_box_block(x + 0, curr_y, Vector2(11, box_int))
+		_set_box_block(x + width - 1, curr_y, Vector2(7, box_int))
 		
-	emit_signal("box_made", x, y, width, height, box_color)
+	emit_signal("box_made", x, y, width, height, box_int)
 
 
 """
@@ -309,12 +285,12 @@ func _process_box(end_x: int, end_y: int, width: int, height: int) -> bool:
 		if Connect.is_r(get_cell_autotile_coord(end_x, y).x):
 			return false
 	
-	var box_color: int
+	var box_int: int
 	if width == 3 and height == 3:
-		box_color = get_cell_autotile_coord(start_x, start_y).y
+		box_int = get_cell_autotile_coord(start_x, start_y).y
 	else:
-		box_color = CAKE_COLOR_INDEX
-	make_box(start_x, start_y, width, height, box_color)
+		box_int = BOX_INT_CAKE
+	make_box(start_x, start_y, width, height, box_int)
 	
 	return true
 
@@ -339,6 +315,14 @@ func get_cell_autotile_coord(x: int, y:int) -> Vector2:
 	return $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
 
 
+static func is_snack_box(box_int: int) -> bool:
+	return box_int in [BoxInt.BROWN, BoxInt.PINK, BoxInt.BREAD, BoxInt.WHITE]
+
+
+static func is_cake_box(box_int: int) -> bool:
+	return box_int == BOX_INT_CAKE
+
+
 """
 Marks any full lines in the playfield to be cleared later.
 """
@@ -354,26 +338,6 @@ func _process_line_clear() -> void:
 		var _per_line_frame_delay := floor(_line_erase_timing_window / max(1, cleared_lines.size() - 1))
 		for i in range(cleared_lines.size()):
 			_remaining_line_clear_timings.append(_remaining_line_clear_frames - i * _per_line_frame_delay)
-
-
-"""
-Ends the player's combo if they drop 2 blocks without making a box or scoring points.
-"""
-func _break_combo() -> void:
-	if combo_break < 2:
-		return
-	
-	if combo >= 20:
-		$Fanfare3.play()
-	elif combo >= 10:
-		$Fanfare2.play()
-	elif combo >= 5:
-		$Fanfare1.play()
-	
-	if PuzzleScore.get_customer_score() > 0:
-		PuzzleScore.end_combo()
-		combo = 0
-		emit_signal("customer_left")
 
 
 """
@@ -480,8 +444,8 @@ func _disconnect_box(x: int, y: int) -> void:
 Writes a block which is a part of an intact piece into the tile map. These intact pieces might later become boxes or
 vegetables.
 """
-func _set_piece_block(x: int, y: int, block_color: Vector2) -> void:
-	$TileMapClip/TileMap.set_cell(x, y, 0, false, false, false, block_color)
+func _set_piece_block(x: int, y: int, piece_tile: Vector2) -> void:
+	$TileMapClip/TileMap.set_cell(x, y, 0, false, false, false, piece_tile)
 	$TileMapClip/TileMap/CornerMap.dirty = true
 
 
@@ -489,16 +453,16 @@ func _set_piece_block(x: int, y: int, block_color: Vector2) -> void:
 Writes a block which is a part of a snack box or cake box into the tile map. These are typically written when the
 player arranges pieces into a box.
 """
-func _set_box_block(x: int, y: int, box_color: Vector2) -> void:
-	$TileMapClip/TileMap.set_cell(x, y, 1, false, false, false, box_color)
+func _set_box_block(x: int, y: int, box_tile: Vector2) -> void:
+	$TileMapClip/TileMap.set_cell(x, y, 1, false, false, false, box_tile)
 	$TileMapClip/TileMap/CornerMap.dirty = true
 
 
 """
 Writes a vegetable block into the tile map. These are typically written when the player breaks up an intact piece.
 """
-func _set_veg_block(x: int, y: int, block_color: Vector2) -> void:
-	$TileMapClip/TileMap.set_cell(x, y, 2, false, false, false, block_color)
+func _set_veg_block(x: int, y: int, veg_tile: Vector2) -> void:
+	$TileMapClip/TileMap.set_cell(x, y, 2, false, false, false, veg_tile)
 	$TileMapClip/TileMap/CornerMap.dirty = true
 
 
@@ -508,15 +472,8 @@ func _erase_block(x: int, y: int) -> void:
 
 
 """
-Clears the playfield and prepares for a new game.
+Clears the playfield.
 """
 func _on_PuzzleScore_game_prepared() -> void:
-	combo = 0
 	$TileMapClip/TileMap.clear()
 	$TileMapClip/TileMap/CornerMap.clear()
-	$TileMapClip/PlayfieldFx.reset()
-
-
-func _on_PuzzleScore_game_ended() -> void:
-	PuzzleScore.end_combo()
-	combo = 0

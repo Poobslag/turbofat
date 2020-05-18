@@ -115,8 +115,13 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 		chatter.call("play_mood", chat_event.mood)
 	if chat_event.meta:
 		var meta: Array = chat_event.meta
-		if meta.has("scenario"):
-			_launched_scenario = ScenarioLibrary.load_scenario_from_file("boatricia")
+		var scenario: String
+		for meta_item_obj in meta:
+			var meta_item: String = meta_item_obj
+			if meta_item.begins_with("scenario-"):
+				scenario = StringUtils.substring_after(meta_item, "scenario-")
+		if scenario:
+			_launched_scenario = ScenarioLibrary.load_scenario_from_file(scenario)
 			if chatters[0].has_method("get_customer_def"):
 				_scenario_customer_def = chatters[0].get_customer_def()
 

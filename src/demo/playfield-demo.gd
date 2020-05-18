@@ -10,7 +10,7 @@ Keys:
 """
 
 var _line_clear_count := 1
-var _box_color := 0
+var _box_int := 0
 
 func _input(event: InputEvent) -> void:
 	match(Global.key_scancode(event)):
@@ -23,11 +23,11 @@ func _input(event: InputEvent) -> void:
 		KEY_R: _make_box(12)
 		KEY_T: _make_box(15)
 		
-		KEY_A: _box_color = 0
-		KEY_S: _box_color = 1
-		KEY_D: _box_color = 2
-		KEY_F: _box_color = 3
-		KEY_G: _box_color = 4
+		KEY_A: _box_int = 0
+		KEY_S: _box_int = 1
+		KEY_D: _box_int = 2
+		KEY_F: _box_int = 3
+		KEY_G: _box_int = 4
 		
 		# clear lines
 		KEY_Z: _clear_line(3)
@@ -41,12 +41,10 @@ func _input(event: InputEvent) -> void:
 
 
 func _make_box(y: int) -> void:
-	$Playfield.combo_break = 0
-	$Playfield.make_box(0, y, 3, 3, _box_color)
+	$Playfield.make_box(0, y, 3, 3, _box_int)
 
 
 func _clear_line(cleared_line: int) -> void:
-	$Playfield.combo_break = 0
 	$Playfield.cleared_lines = range(cleared_line, cleared_line + _line_clear_count)
 	$Playfield.clear_line(cleared_line, 1, 0)
 
