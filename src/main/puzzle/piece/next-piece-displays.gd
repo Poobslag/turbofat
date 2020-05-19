@@ -14,25 +14,9 @@ export (PackedScene) var NextPieceDisplay
 var _next_piece_displays := []
 
 func _ready() -> void:
+	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	for i in range(DISPLAY_COUNT):
 		_add_display(i, 5, 5 + i * (486 / (DISPLAY_COUNT - 1)), 0.5)
-
-
-"""
-Hides all next piece displays. We can't let the player see the upcoming pieces before the game starts.
-"""
-func hide_pieces() -> void:
-	for next_piece_display in _next_piece_displays:
-		next_piece_display.hide()
-
-
-"""
-Starts a new game, randomizing the pieces and filling the piece queues.
-"""
-func start_game() -> void:
-	_piece_queue.clear()
-	for next_piece_display in _next_piece_displays:
-		next_piece_display.show()
 
 
 """
@@ -50,5 +34,15 @@ func _add_display(piece_index: int, x: float, y: float, scale: float) -> void:
 	new_display.initialize(_piece_queue, piece_index)
 	new_display.scale = Vector2(scale, scale)
 	new_display.position = Vector2(x, y)
+	new_display.hide()
 	add_child(new_display)
 	_next_piece_displays.append(new_display)
+
+
+"""
+Gets ready for a new game, randomizing the pieces and filling the piece queues.
+"""
+func _on_PuzzleScore_game_prepared() -> void:
+	_piece_queue.clear()
+	for next_piece_display in _next_piece_displays:
+		next_piece_display.show()

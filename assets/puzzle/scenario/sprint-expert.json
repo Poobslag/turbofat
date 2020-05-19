@@ -1,6 +1,6 @@
 {
   "start-level": "F0",
-  "win-condition": {
+  "finish-condition": {
     "type": "time",
     "value": "180"
   }

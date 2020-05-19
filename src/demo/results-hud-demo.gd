@@ -13,7 +13,7 @@ var _customer_scores := [
 	89, 853, 986, 713, 294, 468, 207, 63, 59, 570, 98, 341, 461, 39, 56, 51, 6, 3, 16, 94, 72, 739, 459, 552, 968,
 	648, 688, 594, 9, 23, 669, 784, 496, 2, 258, 79, 679, 377, 41, 53, 522, 636, 77, 706, 981, 86, 438, 151, 74, 665,
 	754, 378, 937, 419, 840, 62, 289, 584, 640, 20, 28, 652, 25, 708, 12, 11, 727, 52, 466, 60, 306, 48, 45, 339]
-var _win_condition_type := ScenarioSettings.SCORE
+var _finish_condition_type := ScenarioSettings.SCORE
 
 func _ready() -> void:
 	_rank_result.seconds = 600.0
@@ -25,5 +25,5 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match(Global.key_scancode(event)):
-		KEY_S: $ResultsHud.show_results_message(_rank_result, _customer_scores, _win_condition_type)
+		KEY_S: $ResultsHud.show_results_message(_rank_result, _customer_scores, _finish_condition_type)
 		KEY_H: $ResultsHud.hide_results_message()

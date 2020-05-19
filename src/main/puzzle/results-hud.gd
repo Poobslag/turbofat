@@ -19,6 +19,9 @@ const HINTS = [
 	"Sometimes, pressing 'down' can cheat pieces through other pieces!"
 ]
 
+func _ready() -> void:
+	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+
 
 func hide_results_message() -> void:
 	$ResultsLabel.hide_text()
@@ -31,7 +34,7 @@ Prepares a game over message to show to the player.
 The message is littered with lull characters, '/', which are hidden from the player but result in a brief pause when
 displayed.
 """
-func show_results_message(rank_result: RankResult, customer_scores: Array, win_condition_type: int) -> void:
+func show_results_message(rank_result: RankResult, customer_scores: Array, finish_condition_type: int) -> void:
 	# Generate post-game message with stats, grades, and a gameplay hint
 	var text := "//////////"
 	
@@ -52,7 +55,7 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, win_c
 	
 	# Append grade information
 	text += "/////\n"
-	if win_condition_type == ScenarioSettings.SCORE:
+	if finish_condition_type == ScenarioSettings.SCORE:
 		text += "Speed: %d (%s)\n" % [round(rank_result.speed * 200 / 60), Global.grade(rank_result.speed_rank)]
 	else:
 		text += "Lines: %d (%s)\n" % [rank_result.lines, Global.grade(rank_result.lines_rank)]
@@ -65,7 +68,7 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, win_c
 	
 	text += "/////\nOverall: "
 	text += "//////////"
-	if win_condition_type == ScenarioSettings.SCORE:
+	if finish_condition_type == ScenarioSettings.SCORE:
 		var seconds := ceil(rank_result.seconds)
 		text += "%01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60,
 				Global.grade(rank_result.seconds_rank)]
@@ -96,16 +99,16 @@ func _period_count(s: String) -> int:
 	return result
 
 
-func _on_Puzzle_before_game_started() -> void:
+func _on_PuzzleScore_game_prepared() -> void:
 	hide_results_message()
 
 
 func _on_Puzzle_after_game_ended() -> void:
 	var rank_result: RankResult = PlayerData.get_last_scenario_result(Global.scenario_settings.name)
 	var customer_scores: Array = PuzzleScore.customer_scores
-	var win_condition_type := Global.scenario_settings.win_condition.type
+	var finish_condition_type := Global.scenario_settings.get_winish_condition().type
 	
-	show_results_message(rank_result, customer_scores, win_condition_type)
+	show_results_message(rank_result, customer_scores, finish_condition_type)
 
 
 func _on_ResultsLabel_text_shown(new_text: String) -> void:

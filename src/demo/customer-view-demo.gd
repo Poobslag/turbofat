@@ -37,13 +37,15 @@ func _input(event: InputEvent) -> void:
 			else:
 				_current_color_index += CustomerLoader.DEFINITIONS.size()
 				_current_color_index = (_current_color_index - 1) % CustomerLoader.DEFINITIONS.size()
-			$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index])
+			Global.customer_queue.push_front(CustomerLoader.DEFINITIONS[_current_color_index])
+			$CustomerView.summon_customer()
 		KEY_BRACERIGHT:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
 				_current_color_index = (_current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
-			$CustomerView.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index])
+			Global.customer_queue.push_front(CustomerLoader.DEFINITIONS[_current_color_index])
+			$CustomerView.summon_customer()
 		KEY_P:
 			print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.current_animation)
 			print($CustomerView/SceneClip/CustomerSwitcher/Scene/Customer/AnimationPlayer.is_playing())

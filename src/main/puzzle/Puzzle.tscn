@@ -377,7 +377,7 @@ bus = "Voice Bus"
 [connection signal="box_made" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_made"]
 [connection signal="customer_left" from="Playfield" to="." method="_on_Playfield_customer_left"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
-[connection signal="game_ended" from="PieceManager" to="." method="_on_Piece_game_ended"]
+[connection signal="piece_spawn_blocked" from="PieceManager" to="." method="_on_PieceManager_piece_spawn_blocked"]
 [connection signal="entered_state" from="PieceManager/States" to="PieceManager" method="_on_States_entered_state"]
 [connection signal="back_button_pressed" from="HudHolder/Hud" to="." method="_on_Hud_back_button_pressed"]
 [connection signal="start_button_pressed" from="HudHolder/Hud" to="." method="_on_Hud_start_button_pressed"]

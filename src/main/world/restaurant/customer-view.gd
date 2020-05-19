@@ -7,6 +7,10 @@ and scores points, the customer eats and grows larger.
 # the amount of time spent panning the camera to a new customer
 const PAN_DURATION_SECONDS := 0.4
 
+func _ready() -> void:
+	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+
+
 """
 Increases/decreases the camera and customer's fatness, playing an animation which gradually applies the change.
 
@@ -22,10 +26,13 @@ func set_fatness(fatness: float, customer_index: int = -1) -> void:
 """
 Recolors the customer according to the specified customer definition. This involves updating shaders and sprite
 properties.
-
-Parameter: 'customer_def' describes the colors and textures used to draw the customer.
 """
-func summon_customer(customer_def: Dictionary, customer_index: int = -1) -> void:
+func summon_customer(customer_index: int = -1) -> void:
+	var customer_def: Dictionary
+	if Global.customer_queue.empty():
+		customer_def = CustomerLoader.DEFINITIONS[randi() % CustomerLoader.DEFINITIONS.size()]
+	else:
+		customer_def = Global.customer_queue.pop_front()
 	$SceneClip/CustomerSwitcher/Scene.summon_customer(customer_def, customer_index)
 
 
@@ -62,3 +69,23 @@ Plays a 'check please!' voice sample, for when a customer is ready to leave
 """
 func play_goodbye_voice() -> void:
 	$SceneClip/CustomerSwitcher/Scene.play_goodbye_voice()
+
+
+"""
+Scroll to a new customer and replace the old customer.
+"""
+func scroll_to_new_customer() -> void:
+	var customer_index: int = get_current_customer_index()
+	var new_customer_index: int = (customer_index + randi() % 2 + 1) % 3
+	set_current_customer_index(new_customer_index)
+	yield(get_tree().create_timer(0.5), "timeout")
+	set_fatness(1, customer_index)
+	summon_customer(customer_index)
+
+
+"""
+If they ended the previous game while serving a customer, we scroll to a new one
+"""
+func _on_PuzzleScore_game_prepared() -> void:
+	if get_fatness() > 1:
+		scroll_to_new_customer()

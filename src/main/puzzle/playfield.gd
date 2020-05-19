@@ -16,7 +16,6 @@ signal box_made(x, y, width, height, color_int)
 
 signal combo_break_changed(value)
 
-# signal emitted when the customer should leave
 signal customer_left
 
 const CAKE_COLOR_INDEX := 4
@@ -48,9 +47,6 @@ var combo := 0
 # The number of pieces the player has dropped without clearing a line or making a box.
 var combo_break := 0
 
-# 'true' if the player is currently playing, and the time spent should count towards their stats
-var clock_running := false
-
 # lines which are currently being cleared
 var cleared_lines := []
 var _cleared_line_index := 0
@@ -69,12 +65,14 @@ var _remaining_box_build_frames := 0
 var _should_play_line_fall_sound := false
 
 func _ready() -> void:
+	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	$TileMapClip/TileMap.clear()
 	$TileMapClip/TileMap/CornerMap.clear()
 
 
 func _physics_process(delta: float) -> void:
-	if clock_running:
+	if PuzzleScore.game_active:
 		PuzzleScore.scenario_performance.seconds += delta
 	
 	if _remaining_box_build_frames > 0:
@@ -100,16 +98,6 @@ Returns false the playfield is paused for an of animation or delay which should 
 """
 func ready_for_new_piece() -> bool:
 	return _remaining_line_clear_frames <= 0 and _remaining_box_build_frames <= 0
-
-
-"""
-Clears the playfield and resets everything for a new game.
-"""
-func start_game() -> void:
-	combo = 0
-	$TileMapClip/TileMap.clear()
-	$TileMapClip/TileMap/CornerMap.clear()
-	$TileMapClip/PlayfieldFx.reset()
 
 
 """
@@ -150,11 +138,6 @@ Returns 'true' if the specified cell does not contain a block.
 """
 func is_cell_empty(x: int, y: int) -> bool:
 	return get_cell(x, y) == -1
-
-
-func end_game() -> void:
-	PuzzleScore.end_combo()
-	combo = 0
 
 
 """
@@ -388,9 +371,9 @@ func _break_combo() -> void:
 		$Fanfare1.play()
 	
 	if PuzzleScore.get_customer_score() > 0:
-		emit_signal("customer_left")
 		PuzzleScore.end_combo()
 		combo = 0
+		emit_signal("customer_left")
 
 
 """
@@ -522,3 +505,18 @@ func _set_veg_block(x: int, y: int, block_color: Vector2) -> void:
 func _erase_block(x: int, y: int) -> void:
 	$TileMapClip/TileMap.set_cell(x, y, -1)
 	$TileMapClip/TileMap/CornerMap.dirty = true
+
+
+"""
+Clears the playfield and prepares for a new game.
+"""
+func _on_PuzzleScore_game_prepared() -> void:
+	combo = 0
+	$TileMapClip/TileMap.clear()
+	$TileMapClip/TileMap/CornerMap.clear()
+	$TileMapClip/PlayfieldFx.reset()
+
+
+func _on_PuzzleScore_game_ended() -> void:
+	PuzzleScore.end_combo()
+	combo = 0

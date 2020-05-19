@@ -29,13 +29,15 @@ func _input(event: InputEvent) -> void:
 			else:
 				_current_color_index += CustomerLoader.DEFINITIONS.size()
 				_current_color_index = (_current_color_index - 1) % CustomerLoader.DEFINITIONS.size()
-			$RestaurantScene.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index], 1)
+			Global.customer_queue.push_front(CustomerLoader.DEFINITIONS[_current_color_index])
+			$RestaurantScene.summon_customer(1)
 		KEY_BRACERIGHT:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
 				_current_color_index = (_current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
-			$RestaurantScene.summon_customer(CustomerLoader.DEFINITIONS[_current_color_index], 1)
+			Global.customer_queue.push_front(CustomerLoader.DEFINITIONS[_current_color_index])
+			$RestaurantScene.summon_customer(1)
 		KEY_P:
 			print($RestaurantScene/Customer/AnimationPlayer.current_animation)
 			print($RestaurantScene/Customer/AnimationPlayer.is_playing())
