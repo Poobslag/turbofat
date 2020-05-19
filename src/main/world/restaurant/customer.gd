@@ -21,7 +21,8 @@ signal food_eaten
 # signal emitted when a customer arrives and sits down
 signal customer_arrived
 
-# signal emitted when a customer stands up and leaves
+# signal emitted when a customer stands up and leaves.
+# customers don't leave anymore, but they used to leave while new textures were loaded.
 signal customer_left
 
 # signal emitted when a movement animation starts (e.g Spira starts running in a direction)
@@ -348,7 +349,6 @@ func summon(customer_def: Dictionary, use_defaults: bool = true) -> void:
 		put_if_absent(_customer_def, "body", "0")
 	
 	_customer_loader.load_details(_customer_def)
-	emit_signal("customer_left")
 	_update_customer_properties()
 
 

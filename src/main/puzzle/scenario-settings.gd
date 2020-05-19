@@ -49,16 +49,34 @@ class FinishCondition:
 		value = int(json["value"])
 		lenient_value = int(json.get("lenient-value", -1))
 
+class ComboBreakConditions:
+	"""
+	Defines things that disrupt the player's combo.
+	"""
+	
+	var veg_row := false
+	var pieces := 2
+	
+	"""
+	Populates this object from a string array. Used for loading json data.
+	"""
+	func from_string_array(string_array: Array) -> void:
+		for string in string_array:
+			if string == "veg-row":
+				veg_row = true
+
 # Defines a type of goal or milestone type within a scenario, such as reaching a certain score, clearing a certain
 # number of lines or surviving a certain number of seconds
 enum MilestoneType {
 	NONE,
+	CUSTOMERS,
 	LINES,
 	SCORE,
 	TIME
 }
 
 const NONE := MilestoneType.NONE
+const CUSTOMERS := MilestoneType.CUSTOMERS
 const LINES := MilestoneType.LINES
 const SCORE := MilestoneType.SCORE
 const TIME := MilestoneType.TIME
@@ -66,6 +84,7 @@ const TIME := MilestoneType.TIME
 # converts json strings into milestone types
 const JSON_MILESTONE_TYPES := {
 	"none": MilestoneType.NONE,
+	"customers": MilestoneType.CUSTOMERS,
 	"lines": MilestoneType.LINES,
 	"score": MilestoneType.SCORE,
 	"time": MilestoneType.TIME
@@ -82,6 +101,9 @@ var win_condition := FinishCondition.new()
 # How the player finishes. When the player finishes, they can't play anymore, and the level just ends. It should be
 # used for limits such as serving 5 customers or clearing 10 lines. 
 var finish_condition := FinishCondition.new()
+
+# Things that disrupt the player's combo.
+var combo_break_conditions := ComboBreakConditions.new()
 
 # The scenario name, used internally for saving/loading data.
 var name := ""
@@ -163,3 +185,7 @@ func from_dict(new_name: String, json: Dictionary) -> void:
 	finish_condition = FinishCondition.new()
 	if json.has("finish-condition"):
 		finish_condition.from_dict(json["finish-condition"])
+	
+	combo_break_conditions = ComboBreakConditions.new()
+	if json.has("combo-break"):
+		combo_break_conditions.from_string_array(json["combo-break"])

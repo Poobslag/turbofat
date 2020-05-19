@@ -16,7 +16,8 @@ const RDF_COMBO_SCORE_PER_LINE := 0.970
 # boxes, and easier to make boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
 # theoretical player to meet all three statistics simultaneously.
 const MASTER_BOX_SCORE := 14.5
-const MASTER_COMBO_SCORE := 17.5
+const MASTER_COMBO_SCORE := 17.575
+const MASTER_COMBO := 22
 
 # The number of extra unnecessary frames a perfect player will spend moving their piece.
 const MASTER_MVMT_FRAMES := 6
@@ -105,6 +106,8 @@ func _max_lpm() -> float:
 		if i + 1 < Global.scenario_settings.level_ups.size():
 			var level_up: ScenarioSettings.LevelUp = Global.scenario_settings.level_ups[i + 1]
 			match level_up.type:
+				ScenarioSettings.CUSTOMERS:
+					level_lines = MASTER_COMBO
 				ScenarioSettings.LINES:
 					level_lines = level_up.value
 				ScenarioSettings.TIME:
@@ -142,10 +145,12 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var target_box_score_per_line := MASTER_BOX_SCORE
 	var target_combo_score_per_line := MASTER_COMBO_SCORE
 	var target_lines: float
-	
+
 	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	
+
 	match winish_condition.type:
+		ScenarioSettings.CUSTOMERS:
+			target_lines = MASTER_COMBO * winish_condition.value
 		ScenarioSettings.LINES:
 			target_lines = winish_condition.lenient_value if lenient else winish_condition.value
 		ScenarioSettings.SCORE:
@@ -153,7 +158,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
 		ScenarioSettings.TIME:
 			target_lines = max_lpm * winish_condition.value / 60.0
-	
+
 	# calculate raw player performance statistics
 	rank_result.lines = PuzzleScore.scenario_performance.lines
 	rank_result.box_score = PuzzleScore.scenario_performance.box_score

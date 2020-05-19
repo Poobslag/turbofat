@@ -34,6 +34,6 @@ Negative money is displayed as 0 to avoid UI oddities ($-300)
 func set_shown_money(money: int) -> void:
 	shown_money = money
 	if compact:
-		$Label.text = Global.compact(max(0, shown_money))
+		$Label.text = StringUtils.compact(max(0, shown_money))
 	else:
-		$Label.text = Global.comma_sep(max(0, shown_money))
+		$Label.text = StringUtils.comma_sep(max(0, shown_money))

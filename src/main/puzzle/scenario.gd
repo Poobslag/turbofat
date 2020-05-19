@@ -18,14 +18,21 @@ var _rank_calculator := RankCalculator.new()
 var _level := 0
 
 func _ready() -> void:
+	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	$CustomerHud.hide()
 	$LinesHud.hide()
 	$ScoreHud.hide()
 	$TimeHud.hide()
-	
+
 	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
 	match winish_condition.type:
+		ScenarioSettings.CUSTOMERS:
+			$CustomerHud.show()
+			$CustomerHud/ProgressBar.min_value = 1
+			$CustomerHud/ProgressBar.max_value = winish_condition.value
+			$CustomerHud/CustomerValue.text = "1/%s" % winish_condition.value
 		ScenarioSettings.LINES:
 			$LinesHud.show()
 			_set_level(0)
@@ -43,7 +50,7 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if not PuzzleScore.game_active:
 		return
-	
+
 	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
 	match winish_condition.type:
 		ScenarioSettings.TIME:
@@ -101,29 +108,74 @@ func _set_level(new_level:int) -> void:
 				$LinesHud/ProgressBar.max_value = winish_condition.value
 
 
-"""
-Method invoked when the game ends. Stores the rank result for later.
-"""
-func _on_PuzzleScore_game_ended() -> void:
-	# ensure score is up to date before calculating rank
-	PuzzleScore.end_combo()
-	var rank_result := _rank_calculator.calculate_rank()
-	PlayerData.add_scenario_history(Global.scenario_settings.name, rank_result)
-	PlayerData.money += rank_result.score
-	PlayerSave.save_player_data()
-	
+func _check_for_match_end() -> void:
+	if not PuzzleScore.game_active:
+		return
+
+	if _met_finish_condition(Global.scenario_settings.win_condition):
+		$ExcellentSound.play()
+		$Puzzle.end_game(4.2, "You win!")
+	elif _met_finish_condition(Global.scenario_settings.finish_condition):
+		$MatchEndSound.play()
+		$Puzzle.end_game(2.2, "Finish!")
+
+
+func _met_finish_condition(condition: ScenarioSettings.FinishCondition) -> bool:
+	var result := false
+	match condition.type:
+		ScenarioSettings.CUSTOMERS:
+			var served_customers := PuzzleScore.customer_scores.size() - 1
+			result = served_customers >= condition.value
+		ScenarioSettings.LINES:
+			var lines := PuzzleScore.scenario_performance.lines
+			result = lines >= condition.value
+		ScenarioSettings.SCORE:
+			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
+			result = total_score >= condition.value
+	return result
+
+
+func _update_goal_hud() -> void:
 	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
 	match winish_condition.type:
+		ScenarioSettings.CUSTOMERS:
+			var customers := min(PuzzleScore.customer_scores.size(), winish_condition.value)
+			$CustomerHud/ProgressBar.value = customers
+			$CustomerHud/CustomerValue.text = "%s/%s" % [customers, winish_condition.value]
+		ScenarioSettings.LINES:
+			var lines: int = PuzzleScore.scenario_performance.lines
+			if _level + 1 < Global.scenario_settings.level_ups.size():
+				if Global.scenario_settings.level_ups[_level + 1].type == ScenarioSettings.LINES:
+					$LinesHud/ProgressBar.value = lines
+			elif winish_condition.type == ScenarioSettings.LINES:
+				$LinesHud/ProgressBar.value = lines
 		ScenarioSettings.SCORE:
-			if not PuzzleScore.scenario_performance.died and rank_result.seconds_rank < 24: $ApplauseSound.play()
-		_:
-			if not PuzzleScore.scenario_performance.died and rank_result.score_rank < 24: $ApplauseSound.play()
+			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
+			$ScoreHud/ProgressBar.value = total_score
 
 
-"""
-Method invoked when a line is cleared. Updates the level.
-"""
-func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int) -> void:
+func _on_PuzzleScore_game_prepared() -> void:
+	_set_level(0)
+
+	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
+	match winish_condition.type:
+		ScenarioSettings.CUSTOMERS:
+			$CustomerHud/ProgressBar.min_value = 1
+			$CustomerHud/ProgressBar.max_value = winish_condition.value
+			$CustomerHud/ProgressBar.value = 0
+			$CustomerHud/CustomerValue.text = "1/%s" % winish_condition.value
+		ScenarioSettings.LINES:
+			$LinesHud/ProgressBar.value = 0
+		ScenarioSettings.SCORE:
+			$ScoreHud/TimeLabel.show()
+			$ScoreHud/TimeValue.show()
+			$ScoreHud/ScoreLabel.hide()
+			$ScoreHud/ScoreValue.hide()
+			$ScoreHud/ProgressBar.max_value = winish_condition.value
+			$ScoreHud/ProgressBar.value = 0
+
+
+func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	if not PuzzleScore.game_active:
 		return
 	
@@ -142,72 +194,25 @@ func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int) -> 
 	_check_for_match_end()
 
 
-func _check_for_match_end() -> void:
-	if not PuzzleScore.game_active:
-		return
-	
-	# toggled if the player reaches a score/time goal
-	var finish := false
-	
-	# toggled if the player reaches the end of a long survival/marathon level
-	var win := false
-	
-	match Global.scenario_settings.win_condition.type:
-		ScenarioSettings.LINES:
-			var lines := PuzzleScore.scenario_performance.lines
-			win = lines >= Global.scenario_settings.win_condition.value
-		ScenarioSettings.SCORE:
-			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
-			win = total_score >= Global.scenario_settings.win_condition.value
-	
-	match Global.scenario_settings.finish_condition.type:
-		ScenarioSettings.LINES:
-			var lines := PuzzleScore.scenario_performance.lines
-			finish = lines >= Global.scenario_settings.finish_condition.value
-		ScenarioSettings.SCORE:
-			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
-			finish = total_score >= Global.scenario_settings.finish_condition.value
-	
-	if win:
-		$ExcellentSound.play()
-		$Puzzle.end_game(4.2, "You win!")
-	elif finish:
-		$MatchEndSound.play()
-		$Puzzle.end_game(2.2, "Finish!")
-
-
-func _update_goal_hud() -> void:
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	match winish_condition.type:
-		ScenarioSettings.LINES:
-			var lines: int = PuzzleScore.scenario_performance.lines
-			if _level + 1 < Global.scenario_settings.level_ups.size():
-				if Global.scenario_settings.level_ups[_level + 1].type == ScenarioSettings.LINES:
-					$LinesHud/ProgressBar.value = lines
-			elif winish_condition.type == ScenarioSettings.LINES:
-				$LinesHud/ProgressBar.value = lines
-		ScenarioSettings.SCORE:
-			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
-			$ScoreHud/ProgressBar.value = total_score
-
-
-func _on_PuzzleScore_game_prepared() -> void:
-	_set_level(0)
-	
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	match winish_condition.type:
-		ScenarioSettings.LINES:
-			$LinesHud/ProgressBar.value = 0
-		ScenarioSettings.SCORE:
-			$ScoreHud/TimeLabel.show()
-			$ScoreHud/TimeValue.show()
-			$ScoreHud/ScoreLabel.hide()
-			$ScoreHud/ScoreValue.hide()
-			$ScoreHud/ProgressBar.max_value = winish_condition.value
-			$ScoreHud/ProgressBar.value = 0
-
-
-func _on_Puzzle_customer_left() -> void:
+func _on_PuzzleScore_combo_ended() -> void:
 	_update_goal_hud()
 	_check_for_match_end()
 
+
+"""
+Method invoked when the game ends. Stores the rank result for later.
+"""
+func _on_PuzzleScore_game_ended() -> void:
+	# ensure score is up to date before calculating rank
+	PuzzleScore.end_combo()
+	var rank_result := _rank_calculator.calculate_rank()
+	PlayerData.add_scenario_history(Global.scenario_settings.name, rank_result)
+	PlayerData.money += rank_result.score
+	PlayerSave.save_player_data()
+	
+	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
+	match winish_condition.type:
+		ScenarioSettings.SCORE:
+			if not PuzzleScore.scenario_performance.died and rank_result.seconds_rank < 24: $ApplauseSound.play()
+		_:
+			if not PuzzleScore.scenario_performance.died and rank_result.score_rank < 24: $ApplauseSound.play()

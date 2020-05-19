@@ -3,9 +3,6 @@ extends Node
 Contains global utilities, as well as variables for preserving state when loading different scenes.
 """
 
-# Numeric suffixes used to represent thousands, millions, billions
-const NUM_SUFFIXES := ["", " k", " m", " b", " t"]
-
 const NUM_SCANCODES: Dictionary = {
 	KEY_0: 0, KEY_1: 1, KEY_2: 2, KEY_3: 3, KEY_4: 4,
 	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9
@@ -182,37 +179,3 @@ It's better to tween to a transparent forest green.
 """
 static func to_transparent(color: Color, alpha := 0.0) -> Color:
 	return Color(color.r, color.g, color.b, alpha)
-
-
-"""
-Formats a potentially large number into a compact form like '5,982 k'.
-
-The resulting string is always seven or fewer characters, allowing for a compact UI.
-"""
-static func compact(n: int) -> String:
-	var suffix_index := 0
-	var i: int = n
-	
-	# determine suffix, such as ' b' in the number '5,982 b'
-	while abs(i) > 9999:
-		if suffix_index >= NUM_SUFFIXES.size() - 1:
-			i = clamp(i, -9999, 9999)
-			break
-		suffix_index += 1
-		i /= 1000
-	
-	return "%s%s" % [comma_sep(i), NUM_SUFFIXES[suffix_index]]
-
-
-"""
-Formats a number with commas like '1,234,567'.
-"""
-static func comma_sep(n: int) -> String:
-	var result := ""
-	var i: int = abs(n)
-	
-	while i > 999:
-		result = ",%03d%s" % [i % 1000, result]
-		i /= 1000
-	
-	return "%s%s%s" % ["-" if n < 0 else "", i, result]

@@ -373,9 +373,9 @@ bus = "Voice Bus"
 stream = ExtResource( 15 )
 volume_db = -4.0
 bus = "Voice Bus"
+[connection signal="after_game_ended" from="." to="HudHolder/Hud" method="_on_Puzzle_after_game_ended"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="box_made" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_made"]
-[connection signal="customer_left" from="Playfield" to="." method="_on_Playfield_customer_left"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="piece_spawn_blocked" from="PieceManager" to="." method="_on_PieceManager_piece_spawn_blocked"]
 [connection signal="entered_state" from="PieceManager/States" to="PieceManager" method="_on_States_entered_state"]

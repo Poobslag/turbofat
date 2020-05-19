@@ -5,18 +5,15 @@ Represents a minimal puzzle game with a piece, playfield of pieces, and next pie
 class to add goals, win conditions, challenges or time limits.
 """
 
-# signal emitted when a line is cleared
-signal line_cleared(y, total_lines, remaining_lines)
+signal line_cleared(y, total_lines, remaining_lines, box_ints)
 
 # signal emitted a few seconds after the game ends, for displaying messages
 signal after_game_ended
 
-# signal emitted after a customer leaves (usually when a combo ends)
-signal customer_left
-
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 
 func _ready() -> void:
+	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
 	for i in range(3):
@@ -41,11 +38,9 @@ func show_message(text: String) -> void:
 Ends the game. This occurs when the player loses, wins, or runs out of time.
 """
 func end_game(delay: float, message: String) -> void:
-	emit_signal("game_ended")
 	PuzzleScore.end_game()
 	show_message(message)
 	yield(get_tree().create_timer(delay), "timeout")
-	$HudHolder/Hud.after_game_ended()
 	emit_signal("after_game_ended")
 
 
@@ -106,12 +101,12 @@ func _on_PieceManager_piece_spawn_blocked() -> void:
 """
 Relays the 'line_cleared' signal to any listeners, and triggers the 'customer feeding' animation
 """
-func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int) -> void:
+func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	# Calculate whether or not the customer should say something positive about the combo. The customer talks after
-	var customer_talks: bool = remaining_lines == 0 and $Playfield.combo >= 5 \
-			and total_lines > ($Playfield.combo + 1) % 3
+	var customer_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 5 \
+			and total_lines > ($Playfield/ComboTracker.combo + 1) % 3
 	
-	emit_signal("line_cleared", y, total_lines, remaining_lines)
+	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
 	_feed_customer(1.0 / (remaining_lines + 1))
 	
 	if customer_talks:
@@ -119,8 +114,7 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int) 
 		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_combo_voice()
 
 
-func _on_Playfield_customer_left() -> void:
+func _on_PuzzleScore_combo_ended() -> void:
 	if PuzzleScore.game_active:
 		$CustomerView.play_goodbye_voice()
 		$CustomerView.scroll_to_new_customer()
-	emit_signal("customer_left")
