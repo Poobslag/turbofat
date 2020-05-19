@@ -35,7 +35,7 @@ the match, and return the better of the two ranks.
 """
 func calculate_rank() -> RankResult:
 	var rank_result := _inner_calculate_rank(false)
-	if Global.scenario_settings.win_condition.lenient_value != -1:
+	if Global.scenario_settings.win_condition.has_meta("lenient_value"):
 		var rank_results_lenient := _inner_calculate_rank(true)
 		rank_result.speed_rank = min(rank_result.speed_rank, rank_results_lenient.speed_rank)
 		rank_result.lines_rank = min(rank_result.lines_rank, rank_results_lenient.lines_rank)
@@ -97,26 +97,27 @@ func _max_lpm() -> float:
 	var total_lines := 0.0
 	
 	for i in range(Global.scenario_settings.level_ups.size()):
-		var piece_speed: PieceSpeed = PieceSpeeds.speed(Global.scenario_settings.level_ups[i].level)
+		var milestone: Milestone = Global.scenario_settings.level_ups[i]
+		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("level"))
 		
 		var frames_per_line := min_frames_per_line(piece_speed)
 		
-		var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
+		var winish_condition: Milestone = Global.scenario_settings.get_winish_condition()
 		var level_lines := 100
 		if i + 1 < Global.scenario_settings.level_ups.size():
-			var level_up: ScenarioSettings.LevelUp = Global.scenario_settings.level_ups[i + 1]
+			var level_up: Milestone = Global.scenario_settings.level_ups[i + 1]
 			match level_up.type:
-				ScenarioSettings.CUSTOMERS:
+				Milestone.CUSTOMERS:
 					level_lines = MASTER_COMBO
-				ScenarioSettings.LINES:
+				Milestone.LINES:
 					level_lines = level_up.value
-				ScenarioSettings.TIME:
+				Milestone.TIME:
 					level_lines = level_up.value * 60 / frames_per_line
-				ScenarioSettings.SCORE:
+				Milestone.SCORE:
 					level_lines = level_up.value / (MASTER_BOX_SCORE + MASTER_COMBO_SCORE + 1)
-		elif winish_condition.type == ScenarioSettings.LINES:
+		elif winish_condition.type == Milestone.LINES:
 			level_lines = winish_condition.value
-		elif winish_condition.type == ScenarioSettings.SCORE:
+		elif winish_condition.type == Milestone.SCORE:
 			level_lines = winish_condition.value / (MASTER_BOX_SCORE + MASTER_COMBO_SCORE + 1)
 
 		total_frames += frames_per_line * level_lines
@@ -146,17 +147,17 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var target_combo_score_per_line := MASTER_COMBO_SCORE
 	var target_lines: float
 
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
+	var winish_condition: Milestone = Global.scenario_settings.get_winish_condition()
 
 	match winish_condition.type:
-		ScenarioSettings.CUSTOMERS:
+		Milestone.CUSTOMERS:
 			target_lines = MASTER_COMBO * winish_condition.value
-		ScenarioSettings.LINES:
-			target_lines = winish_condition.lenient_value if lenient else winish_condition.value
-		ScenarioSettings.SCORE:
+		Milestone.LINES:
+			target_lines = winish_condition.get_meta("lenient_value") if lenient else winish_condition.value
+		Milestone.SCORE:
 			target_lines = ceil((winish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
-		ScenarioSettings.TIME:
+		Milestone.TIME:
 			target_lines = max_lpm * winish_condition.value / 60.0
 
 	# calculate raw player performance statistics
@@ -198,7 +199,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 				* pow(RDF_BOX_SCORE_PER_LINE, tmp_overall_rank)
 		var tmp_combo_score_per_line := target_combo_score_per_line \
 				* pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
-		if winish_condition.type == ScenarioSettings.SCORE:
+		if winish_condition.type == Milestone.SCORE:
 			var tmp_speed := target_speed * pow(RDF_SPEED, tmp_overall_rank)
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
 			if (winish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
@@ -212,7 +213,7 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank
-	if winish_condition.type == ScenarioSettings.SCORE:
+	if winish_condition.type == Milestone.SCORE:
 		rank_result.seconds_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	else:
 		rank_result.score_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)

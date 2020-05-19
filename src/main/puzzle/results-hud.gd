@@ -55,7 +55,7 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 	
 	# Append grade information
 	text += "/////\n"
-	if finish_condition_type == ScenarioSettings.SCORE:
+	if finish_condition_type == Milestone.SCORE:
 		text += "Speed: %d (%s)\n" % [round(rank_result.speed * 200 / 60), Global.grade(rank_result.speed_rank)]
 	else:
 		text += "Lines: %d (%s)\n" % [rank_result.lines, Global.grade(rank_result.lines_rank)]
@@ -68,10 +68,9 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 	
 	text += "/////\nOverall: "
 	text += "//////////"
-	if finish_condition_type == ScenarioSettings.SCORE:
-		var seconds := ceil(rank_result.seconds)
-		text += "%01d:%02d (%s)\n" % [int(seconds) / 60, int(seconds) % 60,
-				Global.grade(rank_result.seconds_rank)]
+	if finish_condition_type == Milestone.SCORE:
+		var duration := StringUtils.format_duration(rank_result.seconds)
+		text += "%s (%s)\n" % [duration, Global.grade(rank_result.seconds_rank)]
 	else:
 		text += "(%s)\n" % Global.grade(rank_result.score_rank)
 	

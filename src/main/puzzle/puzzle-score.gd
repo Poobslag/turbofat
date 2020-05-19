@@ -30,10 +30,16 @@ var customer_scores := [0]
 # 'true' if the player has started a game which is still running.
 var game_active: bool
 
+# 'true' if the player has started a game, or the countdown is currently active.
+var game_prepared: bool
+
 """
 Resets all score data to prepare for a new game.
 """
 func prepare_game() -> void:
+	if game_prepared:
+		return
+	game_prepared = true
 	scenario_performance = ScenarioPerformance.new()
 	emit_signal("score_changed", 0)
 
@@ -54,6 +60,7 @@ func start_game() -> void:
 func end_game() -> void:
 	if not game_active:
 		return
+	game_prepared = false
 	game_active = false
 	end_combo()
 	emit_signal("game_ended")

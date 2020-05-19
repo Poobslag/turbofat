@@ -1,0 +1,13 @@
+{
+  "start-level": "0",
+  "win-condition": {
+    "type": "score",
+    "value": "100"
+  },
+  "score": [
+    "cake-all-20"
+  ],
+  "other": [
+    "tutorial"
+  ]
+}

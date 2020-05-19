@@ -62,7 +62,7 @@ func _on_PuzzleScore_game_started() -> void:
 """
 Restores the HUD elements after the player wins or loses.
 """
-func _on_Puzzle_after_game_ended():
+func _on_Puzzle_after_game_ended() -> void:
 	$BackButton.show()
 	$MessageLabel.hide()
 	

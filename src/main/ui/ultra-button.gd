@@ -10,6 +10,6 @@ func get_best_text(scenario_name: String) -> String:
 	var text := ""
 	var best_result := PlayerData.get_best_scenario_result(scenario_name, "seconds")
 	if best_result:
-		var seconds := int(ceil(best_result.seconds))
-		text = "Top: %01d:%02d (%s)" % [seconds / 60, seconds % 60, Global.grade(best_result.seconds_rank)]
+		var duration := StringUtils.format_duration(best_result.seconds)
+		text = "Top: %s (%s)" % [duration, Global.grade(best_result.seconds_rank)]
 	return text
