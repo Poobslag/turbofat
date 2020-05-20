@@ -51,7 +51,7 @@ enum HeadBobMode {
 }
 
 # delays between when customer arrives and when door chime is played (in seconds)
-const CHIME_DELAYS: Array = [0.5, 1.0, 1.5, 2.0, 3.0]
+const CHIME_DELAYS: Array = [0.2, 0.3, 0.5, 1.0, 1.5]
 
 # maps customer orientations to appropriate (x, y) direction vectors
 const ORIENTATION_VECTORS := {
@@ -599,7 +599,9 @@ func _update_customer_properties() -> void:
 		if _suppress_one_chime:
 			_suppress_one_chime = false
 		else:
-			play_door_chime()
+			if Global.customer_switch:
+				# don't play chime for scenarios with only one customer (tutorials)
+				play_door_chime()
 
 
 """

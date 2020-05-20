@@ -34,10 +34,10 @@ const KICKS_T := [
 
 
 const KICKS_U := [
-		[Vector2( 1, -1), Vector2( 1, -2), Vector2( 0,  1), Vector2( 1,  1)],
-		[Vector2(-1,  1), Vector2(-1,  2), Vector2( 0, -1), Vector2(-1, -1)],
-		[Vector2(-1, -1), Vector2(-1, -2), Vector2( 0,  1), Vector2(-1,  1)],
-		[Vector2( 1,  1), Vector2( 1,  2), Vector2( 0, -1), Vector2( 1, -1)]
+		[Vector2( 1, -1), Vector2( 1, -2), Vector2( 0,  1), Vector2( 1,  1), Vector2( 1,  0)],
+		[Vector2(-1,  1), Vector2(-1,  2), Vector2( 0, -1), Vector2(-1, -1), Vector2(-1,  0)],
+		[Vector2(-1, -1), Vector2(-1, -2), Vector2( 0,  1), Vector2(-1,  1), Vector2(-1,  0)],
+		[Vector2( 1,  1), Vector2( 1,  2), Vector2( 0, -1), Vector2( 1, -1), Vector2( 1,  0)]
 	]
 
 const KICKS_P := [

@@ -63,7 +63,6 @@
 [ext_resource path="res://assets/ui/chat/emote-sweat1.wav" type="AudioStream" id=74]
 [ext_resource path="res://assets/ui/chat/emote-laugh1.wav" type="AudioStream" id=75]
 
-
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 46 )

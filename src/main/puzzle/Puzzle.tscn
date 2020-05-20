@@ -1,4 +1,4 @@
-[gd_scene load_steps=47 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://assets/world/chef/go-voice2.wav" type="AudioStream" id=15]
 [ext_resource path="res://src/main/puzzle/frosting-globs.gd" type="Script" id=16]
 [ext_resource path="res://src/main/puzzle/metaball.shader" type="Shader" id=17]
+[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=18]
 [ext_resource path="res://src/main/puzzle/stretch-map.gd" type="Script" id=19]
 [ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/piece/states/move-piece.gd" type="Script" id=21]
@@ -86,6 +87,17 @@ shader_param/noise = SubResource( 5 )
 [sub_resource type="ViewportTexture" id=7]
 flags = 5
 viewport_path = NodePath("FrostingGlobs/RainbowViewport")
+
+[sub_resource type="StyleBoxFlat" id=8]
+bg_color = Color( 1, 1, 1, 0.333333 )
+
+[sub_resource type="StyleBoxFlat" id=9]
+bg_color = Color( 0, 0, 0, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
 
 [node name="Puzzle" type="Control"]
 margin_right = 1024.0
@@ -341,6 +353,45 @@ margin_left = 58.0
 margin_top = 25.0
 margin_right = 308.0
 margin_bottom = 85.0
+
+[node name="MilestoneHud" type="Control" parent="Chalkboard"]
+margin_left = 58.0
+margin_top = 153.0
+margin_right = 308.0
+margin_bottom = 233.0
+rect_min_size = Vector2( 250, 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="Chalkboard/MilestoneHud"]
+margin_left = 150.0
+margin_top = 30.0
+margin_right = 250.0
+margin_bottom = 75.0
+custom_styles/fg = SubResource( 8 )
+custom_styles/bg = SubResource( 9 )
+percent_visible = false
+
+[node name="Desc" type="Label" parent="Chalkboard/MilestoneHud"]
+anchor_right = 1.0
+margin_bottom = 30.0
+custom_fonts/font = ExtResource( 18 )
+text = "Goal"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="Chalkboard/MilestoneHud"]
+margin_left = 150.0
+margin_top = 30.0
+margin_right = 250.0
+margin_bottom = 75.0
+custom_fonts/font = ExtResource( 18 )
+text = "¥2000"
+align = 1
+valign = 1
 
 [node name="HudHolder" type="Node2D" parent="."]
 position = Vector2( 364, 28 )
