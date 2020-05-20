@@ -78,7 +78,7 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 		emit_signal("combo_break_changed", combo_break)
 
 
-func _on_Playfield_after_piece_written():
+func _on_Playfield_after_piece_written() -> void:
 	if piece_broke_combo:
 		combo_break = Global.scenario_settings.combo_break_conditions.pieces
 		break_combo()

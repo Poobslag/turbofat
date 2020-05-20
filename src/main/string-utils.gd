@@ -54,3 +54,10 @@ Gets the substring after the last occurrence of a separator.
 """
 static func substring_after_last(s: String, sep: String) -> String:
 	return s.substr(s.find_last(sep) + sep.length())
+
+
+"""
+Formats a duration like 63.159 into '1:03'
+"""
+static func format_duration(seconds: float) -> String:
+	return "%01d:%02d" % [int(ceil(seconds)) / 60, int(ceil(seconds)) % 60]

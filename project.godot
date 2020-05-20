@@ -84,6 +84,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/frosting-glob.gd"
 }, {
+"base": "Reference",
+"class": "Milestone",
+"language": "GDScript",
+"path": "res://src/main/puzzle/milestone.gd"
+}, {
 "base": "Control",
 "class": "MoneyLabel",
 "language": "GDScript",
@@ -215,6 +220,7 @@ _global_script_class_icons={
 "Customer3D": "",
 "CustomerLoader": "",
 "FrostingGlob": "",
+"Milestone": "",
 "MoneyLabel": "",
 "MultiOutlineSprite": "",
 "NextPieceDisplay": "",

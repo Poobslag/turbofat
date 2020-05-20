@@ -105,24 +105,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Chalkboard Shadow" type="Polygon2D" parent="."]
-position = Vector2( -0.552702, -116.371 )
-scale = Vector2( 0.444724, 0.444458 )
-color = Color( 0.345098, 0.14902, 0.0705882, 1 )
-antialiased = true
-polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
-
-[node name="Chalkboard" type="TextureRect" parent="."]
-margin_left = -58.0
-margin_top = 27.0
-margin_right = 284.0
-margin_bottom = 292.0
-texture = ExtResource( 11 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Playfield Shadow" type="Polygon2D" parent="."]
 position = Vector2( 678.385, -289.115 )
 color = Color( 0.345098, 0.14902, 0.0705882, 1 )
@@ -335,9 +317,30 @@ __meta__ = {
 position = Vector2( 27.9925, 314.726 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="Score" parent="." instance=ExtResource( 5 )]
-margin_top = 52.0
-margin_bottom = 112.0
+[node name="Chalkboard" type="TextureRect" parent="."]
+margin_left = -58.0
+margin_top = 27.0
+margin_right = 284.0
+margin_bottom = 292.0
+texture = ExtResource( 11 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chalkboard Shadow" type="Polygon2D" parent="Chalkboard"]
+show_behind_parent = true
+position = Vector2( 57.4473, -143.371 )
+scale = Vector2( 0.444724, 0.444458 )
+color = Color( 0.345098, 0.14902, 0.0705882, 1 )
+antialiased = true
+polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
+
+[node name="Score" parent="Chalkboard" instance=ExtResource( 5 )]
+margin_left = 58.0
+margin_top = 25.0
+margin_right = 308.0
+margin_bottom = 85.0
 
 [node name="HudHolder" type="Node2D" parent="."]
 position = Vector2( 364, 28 )

@@ -12,6 +12,10 @@ var _scenario_scene_instance: Node
 var cheats := {
 	"boatric": "boatricia",
 	"novegi5": "five-customers-no-vegetables",
+	"tutobe0": "tutorial-beginner-0",
+	"ultrano": "ultra-normal",
+	"sprinno": "sprint-normal",
+	"maratno": "marathon-normal",
 }
 
 func _ready() -> void:

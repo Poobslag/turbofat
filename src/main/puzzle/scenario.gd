@@ -13,6 +13,10 @@ const LEVEL_COLOR_3 := Color(0.888, 0.444, 0.111, 1)
 const LEVEL_COLOR_4 := Color(0.888, 0.222, 0.111, 1)
 const LEVEL_COLOR_5 := Color(0.888, 0.111, 0.444, 1)
 
+var _xolonium_24 := preload("res://assets/ui/xolonium-24.tres")
+var _xolonium_36 := preload("res://assets/ui/xolonium-36.tres")
+var _xolonium_48 := preload("res://assets/ui/xolonium-48.tres")
+
 var _rank_calculator := RankCalculator.new()
 
 var _level := 0
@@ -21,54 +25,47 @@ func _ready() -> void:
 	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	$CustomerHud.hide()
-	$LinesHud.hide()
-	$ScoreHud.hide()
-	$TimeHud.hide()
 
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	match winish_condition.type:
-		ScenarioSettings.CUSTOMERS:
-			$CustomerHud.show()
-			$CustomerHud/ProgressBar.min_value = 1
-			$CustomerHud/ProgressBar.max_value = winish_condition.value
-			$CustomerHud/CustomerValue.text = "1/%s" % winish_condition.value
-		ScenarioSettings.LINES:
-			$LinesHud.show()
+	match _winish_type():
+		Milestone.CUSTOMERS:
+			$Hud/Label.text = "Now Serving"
+			$Hud/Value.set("custom_fonts/font", _xolonium_36)
+			$Hud/Value.text = "1/%s" % _winish_value()
+		Milestone.LINES:
+			$Hud/Label.text = "Level"
+			$Hud/Value.rect_position.y = 24
+			$Hud/Value.set("custom_fonts/font", _xolonium_48)
 			_set_level(0)
-		ScenarioSettings.SCORE:
-			$ScoreHud.show()
-			$ScoreHud/ScoreValue.text = "¥%s" % winish_condition.value
-			$ScoreHud/TimeLabel.hide()
-			$ScoreHud/TimeValue.hide()
-		ScenarioSettings.TIME:
-			$TimeHud.show()
-			var seconds := ceil(winish_condition.value)
-			$TimeHud/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
+		Milestone.SCORE:
+			$Hud/Label.text = "Goal"
+			$Hud/Value.set("custom_fonts/font", _xolonium_24)
+			$Hud/Value.text = "¥%s" % _winish_value()
+		Milestone.TIME:
+			$Hud/Label.text = "Time"
+			$Hud/Value.set("custom_fonts/font", _xolonium_36)
+			$Hud/Value.text = StringUtils.format_duration(_winish_value())
 
 
 func _physics_process(_delta: float) -> void:
 	if not PuzzleScore.game_active:
 		return
 
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	match winish_condition.type:
-		ScenarioSettings.TIME:
+	match _winish_type():
+		Milestone.TIME:
 			var seconds := PuzzleScore.scenario_performance.seconds
-			if seconds >= winish_condition.value:
+			if seconds >= _winish_value():
 				$MatchEndSound.play()
 				$Puzzle.end_game(2.2, "Finish!")
 
 
 func _process(_delta: float) -> void:
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	match winish_condition.type:
-		ScenarioSettings.SCORE:
-			var seconds := ceil(PuzzleScore.scenario_performance.seconds)
-			$ScoreHud/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
-		ScenarioSettings.TIME:
-			var seconds := ceil(winish_condition.value - PuzzleScore.scenario_performance.seconds)
-			$TimeHud/TimeValue.text = "%01d:%02d" % [int(seconds) / 60, int(seconds) % 60]
+	if not PuzzleScore.game_prepared:
+		return
+	
+	match _winish_type():
+		Milestone.SCORE, Milestone.TIME:
+			# update time display
+			_update_hud_content()
 
 
 """
@@ -76,36 +73,72 @@ Sets the speed level and updates the UI elements accordingly.
 """
 func _set_level(new_level:int) -> void:
 	_level = new_level
-	PieceSpeeds.current_speed = PieceSpeeds.speed(Global.scenario_settings.level_ups[new_level].level)
+	var milestone: Milestone = Global.scenario_settings.level_ups[new_level]
+	PieceSpeeds.current_speed = PieceSpeeds.speed(milestone.get_meta("level"))
 	
-	# update UI elements for the current level
-	$LinesHud/LevelValue.text = str(PieceSpeeds.current_speed.level)
-	var level_color := LEVEL_COLOR_0
-	if PieceSpeeds.current_speed.gravity >= 20 * PieceSpeeds.G and PieceSpeeds.current_speed.lock_delay < 20:
-		level_color = LEVEL_COLOR_5
-	elif PieceSpeeds.current_speed.gravity >= 20 * PieceSpeeds.G:
-		level_color = LEVEL_COLOR_4
-	elif PieceSpeeds.current_speed.gravity >=  1 * PieceSpeeds.G:
-		level_color = LEVEL_COLOR_3
-	elif PieceSpeeds.current_speed.gravity >= 128:
-		level_color = LEVEL_COLOR_2
-	elif PieceSpeeds.current_speed.gravity >= 32:
-		level_color = LEVEL_COLOR_1
-	$LinesHud/LevelValue.add_color_override("font_color", level_color)
-	
-	$LinesHud/ProgressBar.get("custom_styles/fg").set_bg_color(
-			Color(level_color.r, level_color.g, level_color.g, 0.33))
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	match winish_condition.type:
-		ScenarioSettings.LINES:
-			if new_level + 1 < Global.scenario_settings.level_ups.size():
+	_update_hud_colors()
+	if _winish_type() == Milestone.LINES:
+		# update level display
+		_update_hud_content()
+
+
+"""
+For marathon mode, faster speeds go from green and yellow to red.
+
+Other modes use white text on a cyan background. This originated as a typo but it looks OK.
+"""
+func _update_hud_colors() -> void:
+	var font_color: Color
+	var bg_color: Color
+	match _winish_type():
+		Milestone.LINES:
+			var level_color: Color
+			if PieceSpeeds.current_speed.gravity >= 20 * PieceSpeeds.G and PieceSpeeds.current_speed.lock_delay < 20:
+				level_color = LEVEL_COLOR_5
+			elif PieceSpeeds.current_speed.gravity >= 20 * PieceSpeeds.G:
+				level_color = LEVEL_COLOR_4
+			elif PieceSpeeds.current_speed.gravity >=  1 * PieceSpeeds.G:
+				level_color = LEVEL_COLOR_3
+			elif PieceSpeeds.current_speed.gravity >= 128:
+				level_color = LEVEL_COLOR_2
+			elif PieceSpeeds.current_speed.gravity >= 32:
+				level_color = LEVEL_COLOR_1
+			else:
+				level_color = LEVEL_COLOR_0
+			
+			font_color = level_color
+			bg_color = Global.to_transparent(level_color, 0.333)
+		_:
+			font_color = Color.white
+			bg_color = Color(0.111, 0.888, 0.888, 0.333)
+	$Hud/Value.add_color_override("font_color", font_color)
+	$Hud/ProgressBar.get("custom_styles/fg").set_bg_color(Global.to_transparent(bg_color, 0.33))
+
+
+func _update_hud_content() -> void:
+	match _winish_type():
+		Milestone.SCORE:
+			$Hud/Value.text = StringUtils.format_duration(PuzzleScore.scenario_performance.seconds)
+		Milestone.TIME:
+			$Hud/Value.text = StringUtils.format_duration(_winish_value() - PuzzleScore.scenario_performance.seconds)
+		Milestone.LINES:
+			$Hud/Value.text = str(PieceSpeeds.current_speed.level)
+			if _level + 1 < Global.scenario_settings.level_ups.size():
 				# marathon mode; fill up the bar as they approach the next level
-				$LinesHud/ProgressBar.min_value = Global.scenario_settings.level_ups[new_level].value
-				$LinesHud/ProgressBar.max_value = Global.scenario_settings.level_ups[new_level + 1].value
+				$Hud/ProgressBar.min_value = Global.scenario_settings.level_ups[_level].value
+				$Hud/ProgressBar.max_value = Global.scenario_settings.level_ups[_level + 1].value
 			else:
 				# final level of marathon mode; fill up the bar as they near their goal
-				$LinesHud/ProgressBar.min_value = Global.scenario_settings.level_ups[new_level].value
-				$LinesHud/ProgressBar.max_value = winish_condition.value
+				$Hud/ProgressBar.min_value = Global.scenario_settings.level_ups[_level].value
+				$Hud/ProgressBar.max_value = _winish_value()
+
+
+func _winish_type() -> int:
+	return Global.scenario_settings.get_winish_condition().type
+
+
+func _winish_value() -> int:
+	return Global.scenario_settings.get_winish_condition().value
 
 
 func _check_for_match_end() -> void:
@@ -120,59 +153,53 @@ func _check_for_match_end() -> void:
 		$Puzzle.end_game(2.2, "Finish!")
 
 
-func _met_finish_condition(condition: ScenarioSettings.FinishCondition) -> bool:
+func _met_finish_condition(condition: Milestone) -> bool:
 	var result := false
 	match condition.type:
-		ScenarioSettings.CUSTOMERS:
+		Milestone.CUSTOMERS:
 			var served_customers := PuzzleScore.customer_scores.size() - 1
 			result = served_customers >= condition.value
-		ScenarioSettings.LINES:
+		Milestone.LINES:
 			var lines := PuzzleScore.scenario_performance.lines
 			result = lines >= condition.value
-		ScenarioSettings.SCORE:
+		Milestone.SCORE:
 			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
 			result = total_score >= condition.value
 	return result
 
 
 func _update_goal_hud() -> void:
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	match winish_condition.type:
-		ScenarioSettings.CUSTOMERS:
-			var customers := min(PuzzleScore.customer_scores.size(), winish_condition.value)
-			$CustomerHud/ProgressBar.value = customers
-			$CustomerHud/CustomerValue.text = "%s/%s" % [customers, winish_condition.value]
-		ScenarioSettings.LINES:
+	match _winish_type():
+		Milestone.CUSTOMERS:
+			var customers := min(PuzzleScore.customer_scores.size(), _winish_value())
+			$Hud/ProgressBar.value = customers
+			$Hud/Value.text = "%s/%s" % [customers, _winish_value()]
+		Milestone.LINES:
 			var lines: int = PuzzleScore.scenario_performance.lines
-			if _level + 1 < Global.scenario_settings.level_ups.size():
-				if Global.scenario_settings.level_ups[_level + 1].type == ScenarioSettings.LINES:
-					$LinesHud/ProgressBar.value = lines
-			elif winish_condition.type == ScenarioSettings.LINES:
-				$LinesHud/ProgressBar.value = lines
-		ScenarioSettings.SCORE:
+			$Hud/ProgressBar.value = lines
+		Milestone.SCORE:
 			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
-			$ScoreHud/ProgressBar.value = total_score
+			$Hud/ProgressBar.value = total_score
 
 
 func _on_PuzzleScore_game_prepared() -> void:
 	_set_level(0)
 
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	match winish_condition.type:
-		ScenarioSettings.CUSTOMERS:
-			$CustomerHud/ProgressBar.min_value = 1
-			$CustomerHud/ProgressBar.max_value = winish_condition.value
-			$CustomerHud/ProgressBar.value = 0
-			$CustomerHud/CustomerValue.text = "1/%s" % winish_condition.value
-		ScenarioSettings.LINES:
-			$LinesHud/ProgressBar.value = 0
-		ScenarioSettings.SCORE:
-			$ScoreHud/TimeLabel.show()
-			$ScoreHud/TimeValue.show()
-			$ScoreHud/ScoreLabel.hide()
-			$ScoreHud/ScoreValue.hide()
-			$ScoreHud/ProgressBar.max_value = winish_condition.value
-			$ScoreHud/ProgressBar.value = 0
+	match _winish_type():
+		Milestone.CUSTOMERS:
+			$Hud/Value.text = "1/%s" % _winish_value()
+			$Hud/ProgressBar.min_value = 1
+			$Hud/ProgressBar.max_value = _winish_value()
+			$Hud/ProgressBar.value = 0
+		Milestone.LINES:
+			$Hud/ProgressBar.value = 0
+		Milestone.SCORE:
+			$Hud/Label.text = "Time"
+			$Hud/Value.set("custom_fonts/font", _xolonium_36)
+			$Hud/ProgressBar.max_value = _winish_value()
+			$Hud/ProgressBar.value = 0
+	_update_hud_colors()
+	_update_hud_content()
 
 
 func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
@@ -210,9 +237,8 @@ func _on_PuzzleScore_game_ended() -> void:
 	PlayerData.money += rank_result.score
 	PlayerSave.save_player_data()
 	
-	var winish_condition: ScenarioSettings.FinishCondition = Global.scenario_settings.get_winish_condition()
-	match winish_condition.type:
-		ScenarioSettings.SCORE:
+	match _winish_type():
+		Milestone.SCORE:
 			if not PuzzleScore.scenario_performance.died and rank_result.seconds_rank < 24: $ApplauseSound.play()
 		_:
 			if not PuzzleScore.scenario_performance.died and rank_result.score_rank < 24: $ApplauseSound.play()
