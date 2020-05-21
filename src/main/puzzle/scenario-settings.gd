@@ -18,9 +18,13 @@ class ComboBreakConditions:
 	Populates this object from a string array. Used for loading json data.
 	"""
 	func from_string_array(string_array: Array) -> void:
-		for string in string_array:
+		for string_obj in string_array:
+			var string: String = string_obj
 			if string == "veg-row":
 				veg_row = true
+			if string.begins_with("pieces-"):
+				pieces = int(StringUtils.substring_after(string, "pieces-"))
+
 
 # The requirements to level up and make the game harder. This mostly applies to 'Marathon Mode' where clearing lines
 # makes you level up.
@@ -73,7 +77,8 @@ func set_win_condition(type: int, value: int, lenient_value: int = -1) -> void:
 	win_condition = Milestone.new()
 	win_condition.type = type
 	win_condition.value = value
-	win_condition.lenient_value = lenient_value
+	if lenient_value > -1:
+		win_condition.set_meta("lenient_value", lenient_value)
 
 
 """

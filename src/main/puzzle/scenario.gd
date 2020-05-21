@@ -21,6 +21,11 @@ var _rank_calculator := RankCalculator.new()
 
 var _level := 0
 
+# milestone hud's description label, value label and progress bar
+onready var _miledesc: Label = $Puzzle.miledesc()
+onready var _milevalue: Label = $Puzzle.milevalue()
+onready var _milebar: Label = $Puzzle.milebar()
+
 func _ready() -> void:
 	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
@@ -28,22 +33,33 @@ func _ready() -> void:
 
 	match _winish_type():
 		Milestone.CUSTOMERS:
-			$Hud/Label.text = "Now Serving"
-			$Hud/Value.set("custom_fonts/font", _xolonium_36)
-			$Hud/Value.text = "1/%s" % _winish_value()
+			_miledesc.text = "Now Serving"
+			_milevalue.set("custom_fonts/font", _xolonium_36)
+			_milevalue.text = "1/%s" % _winish_value()
 		Milestone.LINES:
-			$Hud/Label.text = "Level"
-			$Hud/Value.rect_position.y = 24
-			$Hud/Value.set("custom_fonts/font", _xolonium_48)
+			_miledesc.text = "Level"
+			_milevalue.rect_position.y = 24
+			_milevalue.set("custom_fonts/font", _xolonium_48)
 			_set_level(0)
+			_update_milestone_hud()
 		Milestone.SCORE:
-			$Hud/Label.text = "Goal"
-			$Hud/Value.set("custom_fonts/font", _xolonium_24)
-			$Hud/Value.text = "¥%s" % _winish_value()
+			_miledesc.text = "Goal"
+			_milevalue.set("custom_fonts/font", _xolonium_24)
+			_milevalue.text = "¥%s" % _winish_value()
 		Milestone.TIME:
-			$Hud/Label.text = "Time"
-			$Hud/Value.set("custom_fonts/font", _xolonium_36)
-			$Hud/Value.text = StringUtils.format_duration(_winish_value())
+			_miledesc.text = "Time"
+			_milevalue.set("custom_fonts/font", _xolonium_36)
+			_milevalue.text = StringUtils.format_duration(_winish_value())
+	
+	if Global.scenario_settings.other.has("tutorial"):
+		Global.customer_queue.push_front({
+			"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
+			"ear": "2", "horn": "0", "mouth": "1", "eye": "1"
+		})
+		Global.customer_switch = false
+		Global.customer_fatten = false
+		$Puzzle/CustomerView.summon_customer()
+		$Puzzle.hide_chalkboard()
 
 
 func _physics_process(_delta: float) -> void:
@@ -65,7 +81,7 @@ func _process(_delta: float) -> void:
 	match _winish_type():
 		Milestone.SCORE, Milestone.TIME:
 			# update time display
-			_update_hud_content()
+			_update_milestone_hud()
 
 
 """
@@ -75,23 +91,65 @@ func _set_level(new_level:int) -> void:
 	_level = new_level
 	var milestone: Milestone = Global.scenario_settings.level_ups[new_level]
 	PieceSpeeds.current_speed = PieceSpeeds.speed(milestone.get_meta("level"))
+
+
+"""
+Prepare milestone hud content before the start of a game.
+
+This involves one-time setup such as fonts and progress bar boundaries.
+"""
+func _prepare_milestone_hud() -> void:
+	match _winish_type():
+		Milestone.CUSTOMERS:
+			_milebar.min_value = 1
+			_milebar.max_value = _winish_value() + 1
+		Milestone.SCORE:
+			_milevalue.set("custom_fonts/font", _xolonium_36)
+			_milebar.max_value = _winish_value()
 	
-	_update_hud_colors()
-	if _winish_type() == Milestone.LINES:
-		# update level display
-		_update_hud_content()
-
-
-"""
-For marathon mode, faster speeds go from green and yellow to red.
-
-Other modes use white text on a cyan background. This originated as a typo but it looks OK.
-"""
-func _update_hud_colors() -> void:
-	var font_color: Color
-	var bg_color: Color
+	# Marathon mode varies its milestone progress bar color, but most modes just use white on cyan.
 	match _winish_type():
 		Milestone.LINES:
+			pass
+		_:
+			_milevalue.add_color_override("font_color", Color.white)
+			_milebar.get("custom_styles/fg").set_bg_color(Color(0.111, 0.888, 0.888, 0.333))
+
+
+"""
+Update the milestone hud's content during a game.
+
+This involves refreshing 
+"""
+func _update_milestone_hud() -> void:
+	match _winish_type():
+		Milestone.CUSTOMERS:
+			var customers := PuzzleScore.customer_scores.size()
+			_milevalue.text = "%s/%s" % [min(customers, _winish_value()), _winish_value()]
+			_milebar.value = customers
+		Milestone.LINES:
+			_milevalue.text = PieceSpeeds.current_speed.level
+			if _level + 1 < Global.scenario_settings.level_ups.size():
+				# marathon mode; fill up the bar as they approach the next level
+				_milebar.min_value = Global.scenario_settings.level_ups[_level].value
+				_milebar.max_value = Global.scenario_settings.level_ups[_level + 1].value
+			else:
+				# final level of marathon mode; fill up the bar as they near their goal
+				_milebar.min_value = Global.scenario_settings.level_ups[_level].value
+				_milebar.max_value = _winish_value()
+			_milebar.value = PuzzleScore.scenario_performance.lines
+		Milestone.SCORE:
+			_milevalue.text = StringUtils.format_duration(PuzzleScore.scenario_performance.seconds)
+			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
+			_miledesc.text = "Time"
+			_milebar.value = total_score
+		Milestone.TIME:
+			_milevalue.text = \
+					StringUtils.format_duration(_winish_value() - PuzzleScore.scenario_performance.seconds)
+	
+	match _winish_type():
+		Milestone.LINES:
+			# For marathon mode, the progress bar changes from green to red as difficulty increases.
 			var level_color: Color
 			if PieceSpeeds.current_speed.gravity >= 20 * PieceSpeeds.G and PieceSpeeds.current_speed.lock_delay < 20:
 				level_color = LEVEL_COLOR_5
@@ -106,31 +164,10 @@ func _update_hud_colors() -> void:
 			else:
 				level_color = LEVEL_COLOR_0
 			
-			font_color = level_color
-			bg_color = Global.to_transparent(level_color, 0.333)
+			_milevalue.add_color_override("font_color", level_color)
+			_milebar.get("custom_styles/fg").set_bg_color(Global.to_transparent(level_color, 0.333))
 		_:
-			font_color = Color.white
-			bg_color = Color(0.111, 0.888, 0.888, 0.333)
-	$Hud/Value.add_color_override("font_color", font_color)
-	$Hud/ProgressBar.get("custom_styles/fg").set_bg_color(Global.to_transparent(bg_color, 0.33))
-
-
-func _update_hud_content() -> void:
-	match _winish_type():
-		Milestone.SCORE:
-			$Hud/Value.text = StringUtils.format_duration(PuzzleScore.scenario_performance.seconds)
-		Milestone.TIME:
-			$Hud/Value.text = StringUtils.format_duration(_winish_value() - PuzzleScore.scenario_performance.seconds)
-		Milestone.LINES:
-			$Hud/Value.text = str(PieceSpeeds.current_speed.level)
-			if _level + 1 < Global.scenario_settings.level_ups.size():
-				# marathon mode; fill up the bar as they approach the next level
-				$Hud/ProgressBar.min_value = Global.scenario_settings.level_ups[_level].value
-				$Hud/ProgressBar.max_value = Global.scenario_settings.level_ups[_level + 1].value
-			else:
-				# final level of marathon mode; fill up the bar as they near their goal
-				$Hud/ProgressBar.min_value = Global.scenario_settings.level_ups[_level].value
-				$Hud/ProgressBar.max_value = _winish_value()
+			pass
 
 
 func _winish_type() -> int:
@@ -168,38 +205,10 @@ func _met_finish_condition(condition: Milestone) -> bool:
 	return result
 
 
-func _update_goal_hud() -> void:
-	match _winish_type():
-		Milestone.CUSTOMERS:
-			var customers := min(PuzzleScore.customer_scores.size(), _winish_value())
-			$Hud/ProgressBar.value = customers
-			$Hud/Value.text = "%s/%s" % [customers, _winish_value()]
-		Milestone.LINES:
-			var lines: int = PuzzleScore.scenario_performance.lines
-			$Hud/ProgressBar.value = lines
-		Milestone.SCORE:
-			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
-			$Hud/ProgressBar.value = total_score
-
-
 func _on_PuzzleScore_game_prepared() -> void:
 	_set_level(0)
-
-	match _winish_type():
-		Milestone.CUSTOMERS:
-			$Hud/Value.text = "1/%s" % _winish_value()
-			$Hud/ProgressBar.min_value = 1
-			$Hud/ProgressBar.max_value = _winish_value()
-			$Hud/ProgressBar.value = 0
-		Milestone.LINES:
-			$Hud/ProgressBar.value = 0
-		Milestone.SCORE:
-			$Hud/Label.text = "Time"
-			$Hud/Value.set("custom_fonts/font", _xolonium_36)
-			$Hud/ProgressBar.max_value = _winish_value()
-			$Hud/ProgressBar.value = 0
-	_update_hud_colors()
-	_update_hud_content()
+	_prepare_milestone_hud()
+	_update_milestone_hud()
 
 
 func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
@@ -217,12 +226,12 @@ func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int, box
 		$LevelUpSound.play()
 		_set_level(new_level)
 	
-	_update_goal_hud()
+	_update_milestone_hud()
 	_check_for_match_end()
 
 
 func _on_PuzzleScore_combo_ended() -> void:
-	_update_goal_hud()
+	_update_milestone_hud()
 	_check_for_match_end()
 
 
