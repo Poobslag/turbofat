@@ -32,5 +32,5 @@ func _on_OverworldButton_pressed() -> void:
 
 
 func _on_ScenarioButton_chose_scenario(scenario_name: String) -> void:
-	var scenario_settings := ScenarioLibrary.load_scenario_from_file(scenario_name)
+	var scenario_settings := ScenarioLibrary.load_scenario_from_name(scenario_name)
 	ScenarioLibrary.change_scenario_scene(scenario_settings, false)

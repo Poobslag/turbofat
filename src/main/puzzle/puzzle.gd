@@ -10,6 +10,8 @@ signal line_cleared(y, total_lines, remaining_lines, box_ints)
 # signal emitted a few seconds after the game ends, for displaying messages
 signal after_game_ended
 
+signal back_button_pressed
+
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 
 func _ready() -> void:
@@ -106,10 +108,7 @@ func _feed_customer(fatness_pct: float) -> void:
 
 
 func _on_Hud_back_button_pressed() -> void:
-	if Global.overworld_puzzle:
-		get_tree().change_scene("res://src/main/world/Overworld.tscn")
-	else:
-		get_tree().change_scene("res://src/main/ui/ScenarioMenu.tscn")
+	emit_signal("back_button_pressed")
 
 
 func _on_Hud_start_button_pressed() -> void:
