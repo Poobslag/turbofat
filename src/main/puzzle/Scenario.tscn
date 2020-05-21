@@ -79,5 +79,6 @@ bus = "Main Bus"
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 11 )]
 codes = [ "delays" ]
 [connection signal="after_game_ended" from="Puzzle" to="ResultsHud" method="_on_Puzzle_after_game_ended"]
+[connection signal="back_button_pressed" from="Puzzle" to="." method="_on_Puzzle_back_button_pressed"]
 [connection signal="line_cleared" from="Puzzle" to="." method="_on_Puzzle_line_cleared"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Puzzle/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]

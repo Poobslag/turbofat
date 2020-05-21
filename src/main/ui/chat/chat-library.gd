@@ -29,9 +29,13 @@ Loads the chat events from the specified json file.
 """
 func load_chat_events_from_file(path: String) -> ChatTree:
 	var chat_tree := ChatTree.new()
+	
 	var file := File.new()
 	file.open(path, File.READ)
-	var json_tree := _parse_json_tree(file.get_as_text())
+	var text: String = file.get_as_text()
+	file.close()
+	
+	var json_tree := _parse_json_tree(text)
 	chat_tree.from_dict(json_tree)
 	return chat_tree
 

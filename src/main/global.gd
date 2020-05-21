@@ -29,6 +29,9 @@ var customer_fatten := true
 # 'true' if launching a puzzle from the overworld. This changes the menus and disallows restarting.
 var overworld_puzzle := false
 
+# Scenario to launch when the player exits a puzzle.
+var post_puzzle_target := "res://src/main/ui/ScenarioMenu.tscn"
+
 # Stores all of the benchmarks which have been started
 var _benchmark_start_times := Dictionary()
 
@@ -185,3 +188,11 @@ It's better to tween to a transparent forest green.
 """
 static func to_transparent(color: Color, alpha := 0.0) -> Color:
 	return Color(color.r, color.g, color.b, alpha)
+
+
+static func get_file_as_text(path: String) -> String:
+	var f := File.new()
+	f.open(path, f.READ)
+	var text := f.get_as_text()
+	f.close()
+	return text

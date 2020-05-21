@@ -8,15 +8,27 @@ can be used by the puzzle code.
 This class needs to be a node because it provides utility methods which utilize the scene tree.
 """
 
-"""
-Loads a scenario from a json file.
-"""
-func load_scenario_from_file(name: String) -> ScenarioSettings:
-	var file := File.new()
-	file.open("res://assets/puzzle/scenario/%s.json" % name, File.READ)
+func load_scenario_from_name(name: String) -> ScenarioSettings:
+	var text := Global.get_file_as_text(scenario_path(name))
+	return load_scenario(name, text)
+
+
+func load_scenario(name: String, text: String) -> ScenarioSettings:
 	var scenario_settings := ScenarioSettings.new()
-	scenario_settings.from_dict(name, parse_json(file.get_as_text()))
+	scenario_settings.from_dict(name, parse_json(text))
 	return scenario_settings
+
+
+func scenario_name(path: String) -> String:
+	return path.get_file().trim_suffix(".json")
+
+
+func scenario_path(name: String) -> String:
+	return "res://assets/puzzle/scenario/%s.json" % name
+
+
+func scenario_filename(name: String) -> String:
+	return "%s.json" % name
 
 
 """
@@ -34,4 +46,8 @@ func change_scenario_scene(scenario_settings: ScenarioSettings, overworld_puzzle
 	Global.scenario_settings = scenario_settings
 	Global.customer_queue.push_back(customer_def)
 	Global.overworld_puzzle = overworld_puzzle
+	if overworld_puzzle:
+		Global.post_puzzle_target = "res://src/main/world/Overworld.tscn"
+	else:
+		Global.post_puzzle_target = "res://src/main/ui/ScenarioMenu.tscn"
 	get_tree().change_scene("res://src/main/puzzle/Scenario.tscn")

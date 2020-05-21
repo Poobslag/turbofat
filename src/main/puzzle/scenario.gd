@@ -5,6 +5,8 @@ such as 'Marathon mode', a game style which gets harder and harder but theoretic
 good enough.
 """
 
+signal back_button_pressed
+
 # Colors used to render the level number. Easy levels are green, and hard levels are red.
 const LEVEL_COLOR_0 := Color(0.111, 0.888, 0.111, 1)
 const LEVEL_COLOR_1 := Color(0.444, 0.888, 0.111, 1)
@@ -251,3 +253,9 @@ func _on_PuzzleScore_game_ended() -> void:
 			if not PuzzleScore.scenario_performance.died and rank_result.seconds_rank < 24: $ApplauseSound.play()
 		_:
 			if not PuzzleScore.scenario_performance.died and rank_result.score_rank < 24: $ApplauseSound.play()
+
+
+func _on_Puzzle_back_button_pressed() -> void:
+	if Global.post_puzzle_target:
+		get_tree().change_scene(Global.post_puzzle_target)
+	emit_signal("back_button_pressed")
