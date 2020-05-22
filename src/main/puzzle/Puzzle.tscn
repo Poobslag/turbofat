@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
@@ -39,6 +39,7 @@
 [ext_resource path="res://src/main/puzzle/piece/states/none.gd" type="Script" id=37]
 [ext_resource path="res://src/main/puzzle/piece/states/game-ended.gd" type="Script" id=38]
 [ext_resource path="res://src/main/puzzle/piece/states/prespawn.gd" type="Script" id=39]
+[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=40]
 [ext_resource path="res://src/main/puzzle/rainbow-metaball.shader" type="Shader" id=41]
 
 [sub_resource type="TileSet" id=1]
@@ -140,16 +141,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TileMap" type="TileMap" parent="PieceManager"]
-position = Vector2( 0, -96 )
-scale = Vector2( 0.5, 0.5 )
-z_index = 1
-tile_set = SubResource( 1 )
-cell_size = Vector2( 72, 64 )
-format = 1
-tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 196608, 262149, 0, 196608 )
-
-[node name="CornerMap" parent="PieceManager/TileMap" instance=ExtResource( 24 )]
+[node name="TileMap" parent="PieceManager" instance=ExtResource( 40 )]
 
 [node name="StretchMap" type="TileMap" parent="PieceManager"]
 position = Vector2( 0, -96 )

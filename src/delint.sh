@@ -14,6 +14,5 @@ grep -R -n "^					.\{100,\}$" --include="*.gd" .
 
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
 grep -R -n "var [^:]* = " --include="*.gd" . \
-  | grep -v "chat-library.gd:52" \
-  | grep -v "chat-event.gd:76" \
-  | grep -v "player-save.gd:51" \
+  | grep -v " = parse_json(" \
+  | grep -v "chat-event.gd:76"

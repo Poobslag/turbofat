@@ -4,9 +4,35 @@ Contains settings for a 'scenario', such as trying to survive until level 100, o
 get in 90 seconds.
 """
 
+class BlocksStart:
+	"""
+	Blocks/boxes which begin on the playfield.
+	"""
+	
+	var used_cells := []
+	var tiles := {}
+	var autotile_coords := {}
+	
+	"""
+	Populates this object from a json dictionary.
+	"""
+	func from_dict(dict: Dictionary) -> void:
+		if dict.has("tiles"):
+			for json_tile in dict["tiles"]:
+				var json_pos_arr: PoolStringArray = json_tile["pos"].split(" ")
+				var json_tile_arr: PoolStringArray = json_tile["tile"].split(" ")
+				var pos := Vector2(int(json_pos_arr[0]), int(json_pos_arr[1]))
+				var tile := int(json_tile_arr[0])
+				var autotile_coord := Vector2(int(json_tile_arr[1]), int(json_tile_arr[2]))
+				
+				used_cells.append(pos)
+				tiles[pos] = tile
+				autotile_coords[pos] = autotile_coord
+
+
 class ComboBreakConditions:
 	"""
-	Defines things that disrupt the player's combo.
+	Things that disrupt the player's combo.
 	"""
 	
 	var veg_row := false
@@ -37,6 +63,9 @@ var win_condition := Milestone.new()
 # How the player finishes. When the player finishes, they can't play anymore, and the level just ends. It should be
 # used for limits such as serving 5 customers or clearing 10 lines. 
 var finish_condition := Milestone.new()
+
+# Blocks/boxes which begin on the playfield.
+var blocks_start := BlocksStart.new()
 
 # Things that disrupt the player's combo.
 var combo_break_conditions := ComboBreakConditions.new()
@@ -132,3 +161,7 @@ func from_dict(new_name: String, json: Dictionary) -> void:
 	
 	if json.has("other"):
 		other = json.get("other")
+	
+	blocks_start = BlocksStart.new()
+	if json.has("blocks-start"):
+		blocks_start.from_dict(json["blocks-start"])

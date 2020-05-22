@@ -142,3 +142,7 @@ func _on_PuzzleScore_combo_ended() -> void:
 	if PuzzleScore.game_active and Global.customer_switch:
 		$CustomerView.play_goodbye_voice()
 		$CustomerView.scroll_to_new_customer()
+
+
+func set_cell(pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
+	$Playfield.set_cell(pos, tile, autotile_coord)

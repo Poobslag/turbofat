@@ -1,20 +1,22 @@
 extends Control
 """
-Demonstrates different scenarios.
+A graphical scenario editor which lets players create, load and save scenarios.
 
-Scenarios are launched by typing the 7-character cheat codes shown when the demo starts up.
+Full instructions are available at https://github.com/Poobslag/turbofat/wiki/scenario-editor
 """
 
-onready var ScenarioScene := preload("res://src/main/puzzle/Scenario.tscn")
-onready var _scenario_text := $HBoxContainer/CenterPanel/ScenarioText
-onready var _scenario_name := $HBoxContainer/SidePanel/SideButtons/ScenarioName
+# scenario scene currently being tested
+var _test_scene: Node
 
-var _scenario_scene_instance: Node
+onready var ScenarioScene := preload("res://src/main/puzzle/Scenario.tscn")
+
+onready var _scenario_json := $HBoxContainer/CenterPanel/VBoxContainer/Json
+onready var _scenario_name := $HBoxContainer/RightPanel/SideButtons/ScenarioName
 
 func _ready() -> void:
 	ResourceCache.minimal_resources = true
 	var scenario_text: String = Global.get_file_as_text(ScenarioLibrary.scenario_path("ultra-normal"))
-	_scenario_text.text = scenario_text
+	_scenario_json.text = scenario_text
 	_scenario_name.text = "ultra-normal"
 	
 	# back button should close scenario; shouldn't redirect us to a new scene
@@ -24,28 +26,29 @@ func _ready() -> void:
 func _save_scenario(path: String) -> void:
 	var file := File.new()
 	file.open(path, File.WRITE)
-	file.store_string(_scenario_text.text)
+	file.store_string(_scenario_json.text)
 	file.close()
 
 
 func _load_scenario(path: String) -> void:
 	var scenario_text: String = Global.get_file_as_text(path)
-	_scenario_text.text = scenario_text
+	_scenario_json.text = scenario_text
+	_scenario_json.refresh_tilemap()
 	_scenario_name.text = ScenarioLibrary.scenario_name(path)
 
 
 func _start_test() -> void:
-	Global.scenario_settings = ScenarioLibrary.load_scenario(_scenario_name.text, _scenario_text.text)
-	_scenario_scene_instance = ScenarioScene.instance()
-	_scenario_scene_instance.connect("back_button_pressed", self, "_on_Scenario_back_button_pressed")
-	add_child(_scenario_scene_instance)
+	Global.scenario_settings = ScenarioLibrary.load_scenario(_scenario_name.text, _scenario_json.text)
+	_test_scene = ScenarioScene.instance()
+	_test_scene.connect("back_button_pressed", self, "_on_Scenario_back_button_pressed")
+	add_child(_test_scene)
 
 
 func _stop_test() -> void:
-	if _scenario_scene_instance:
-		remove_child(_scenario_scene_instance)
-		_scenario_scene_instance.queue_free()
-		_scenario_scene_instance = null
+	if _test_scene:
+		remove_child(_test_scene)
+		_test_scene.queue_free()
+		_test_scene = null
 
 
 func _on_OpenFile_pressed() -> void:
