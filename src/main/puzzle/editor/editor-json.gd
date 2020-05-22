@@ -43,7 +43,7 @@ func refresh_tilemap() -> void:
 			var pos := Vector2(int(json_pos_arr[0]), int(json_pos_arr[1]))
 			var tile := int(json_tile_arr[0])
 			var autotile_coord := Vector2(int(json_tile_arr[1]), int(json_tile_arr[2]))
-			_playfield.set_cell(pos, tile, autotile_coord)
+			_playfield.set_block(pos, tile, autotile_coord)
 
 
 """

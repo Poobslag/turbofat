@@ -82,17 +82,19 @@ func _ready() -> void:
 		var rainbow_color := Color.red
 		rainbow_color.h += i / float(RAINBOW_COLOR_COUNT)
 		
-		$LightMap.tile_set.create_tile(i + 1)
-		$LightMap.tile_set.tile_set_texture(i + 1, $LightMap.tile_set.tile_get_texture(0))
-		$LightMap.tile_set.tile_set_material(i + 1, $LightMap.tile_set.tile_get_material(0))
-		$LightMap.tile_set.tile_set_modulate(i + 1, rainbow_color)
-		$LightMap.tile_set.tile_set_texture_offset(i + 1, $LightMap.tile_set.tile_get_texture_offset(0))
+		if not $LightMap.tile_set.get_tiles_ids().has(i):
+			$LightMap.tile_set.create_tile(i + 1)
+			$LightMap.tile_set.tile_set_texture(i + 1, $LightMap.tile_set.tile_get_texture(0))
+			$LightMap.tile_set.tile_set_material(i + 1, $LightMap.tile_set.tile_get_material(0))
+			$LightMap.tile_set.tile_set_modulate(i + 1, rainbow_color)
+			$LightMap.tile_set.tile_set_texture_offset(i + 1, $LightMap.tile_set.tile_get_texture_offset(0))
 		
-		$GlowMap.tile_set.create_tile(i + 1)
-		$GlowMap.tile_set.tile_set_texture(i + 1, $GlowMap.tile_set.tile_get_texture(0))
-		$GlowMap.tile_set.tile_set_material(i + 1, $GlowMap.tile_set.tile_get_material(0))
-		$GlowMap.tile_set.tile_set_modulate(i + 1, rainbow_color)
-		$GlowMap.tile_set.tile_set_texture_offset(i + 1, $GlowMap.tile_set.tile_get_texture_offset(0))
+		if not $GlowMap.tile_set.get_tiles_ids().has(i):
+			$GlowMap.tile_set.create_tile(i + 1)
+			$GlowMap.tile_set.tile_set_texture(i + 1, $GlowMap.tile_set.tile_get_texture(0))
+			$GlowMap.tile_set.tile_set_material(i + 1, $GlowMap.tile_set.tile_get_material(0))
+			$GlowMap.tile_set.tile_set_modulate(i + 1, rainbow_color)
+			$GlowMap.tile_set.tile_set_texture_offset(i + 1, $GlowMap.tile_set.tile_get_texture_offset(0))
 
 
 func _process(delta: float) -> void:

@@ -79,11 +79,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/restaurant/customer-loader.gd"
 }, {
-"base": "Reference",
-"class": "EditorCell",
-"language": "GDScript",
-"path": "res://src/main/puzzle/editor/editor-cell.gd"
-}, {
 "base": "Control",
 "class": "EditorPlayfield",
 "language": "GDScript",
@@ -98,6 +93,16 @@ _global_script_classes=[ {
 "class": "JSONBeautifier",
 "language": "GDScript",
 "path": "res://addons/json_beautifier/json_beautifier.gd"
+}, {
+"base": "Reference",
+"class": "LevelChunk",
+"language": "GDScript",
+"path": "res://src/main/puzzle/editor/level-chunk.gd"
+}, {
+"base": "Control",
+"class": "LevelChunkControl",
+"language": "GDScript",
+"path": "res://src/main/puzzle/editor/level-chunk-control.gd"
 }, {
 "base": "Reference",
 "class": "Milestone",
@@ -134,6 +139,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/overworld-ui.gd"
 }, {
+"base": "LevelChunkControl",
+"class": "PieceControl",
+"language": "GDScript",
+"path": "res://src/main/puzzle/editor/piece-chunk.gd"
+}, {
 "base": "Control",
 "class": "PieceManager",
 "language": "GDScript",
@@ -163,6 +173,11 @@ _global_script_classes=[ {
 "class": "Puzzle",
 "language": "GDScript",
 "path": "res://src/main/puzzle/puzzle.gd"
+}, {
+"base": "TileMap",
+"class": "PuzzleTileMap",
+"language": "GDScript",
+"path": "res://src/main/puzzle/puzzle-tile-map.gd"
 }, {
 "base": "Reference",
 "class": "RankCalculator",
@@ -218,11 +233,6 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/main/state-machine.gd"
-}, {
-"base": "Control",
-"class": "TemplateVeg",
-"language": "GDScript",
-"path": "res://src/main/puzzle/editor/template-veg.gd"
 } ]
 _global_script_class_icons={
 "ActivePiece": "",
@@ -239,10 +249,11 @@ _global_script_class_icons={
 "Customer": "",
 "Customer3D": "",
 "CustomerLoader": "",
-"EditorCell": "",
 "EditorPlayfield": "",
 "FrostingGlob": "",
 "JSONBeautifier": "",
+"LevelChunk": "",
+"LevelChunkControl": "",
 "Milestone": "",
 "MoneyLabel": "",
 "MultiOutlineSprite": "",
@@ -250,12 +261,14 @@ _global_script_class_icons={
 "NextPieceDisplays": "",
 "OverworldGridMap": "",
 "OverworldUi": "",
+"PieceControl": "",
 "PieceManager": "",
 "PieceQueue": "",
 "PieceSpeed": "",
 "PieceType": "",
 "Playfield": "",
 "Puzzle": "",
+"PuzzleTileMap": "",
 "RankCalculator": "",
 "RankResult": "",
 "ScenarioButton": "",
@@ -266,8 +279,7 @@ _global_script_class_icons={
 "SmoothPath": "",
 "Spira": "",
 "State": "",
-"StateMachine": "",
-"TemplateVeg": ""
+"StateMachine": ""
 }
 
 [application]

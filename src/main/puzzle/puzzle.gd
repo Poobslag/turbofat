@@ -144,5 +144,5 @@ func _on_PuzzleScore_combo_ended() -> void:
 		$CustomerView.scroll_to_new_customer()
 
 
-func set_cell(pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
-	$Playfield.set_cell(pos, tile, autotile_coord)
+func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
+	$Playfield.set_block(pos, tile, autotile_coord)

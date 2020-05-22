@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
@@ -24,7 +24,7 @@
 [ext_resource path="res://src/main/puzzle/piece/states/wait-for-playfield.gd" type="Script" id=22]
 [ext_resource path="res://src/main/state-machine.gd" type="Script" id=23]
 [ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=24]
-[ext_resource path="res://assets/puzzle/blocks/blocks.png" type="Texture" id=25]
+[ext_resource path="res://src/main/puzzle/PuzzleTileSet.tres" type="TileSet" id=25]
 [ext_resource path="res://assets/puzzle/squish.wav" type="AudioStream" id=26]
 [ext_resource path="res://assets/world/chef/gameover-voice1.wav" type="AudioStream" id=27]
 [ext_resource path="res://assets/puzzle/lock.wav" type="AudioStream" id=28]
@@ -42,57 +42,34 @@
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=40]
 [ext_resource path="res://src/main/puzzle/rainbow-metaball.shader" type="Shader" id=41]
 
-[sub_resource type="TileSet" id=1]
-0/name = "blocks.png 0"
-0/texture = ExtResource( 25 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 2, 2, 1212, 268 )
-0/tile_mode = 2
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 72, 64 )
-0/autotile/spacing = 4
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 17 )
 
-[sub_resource type="ViewportTexture" id=3]
+[sub_resource type="ViewportTexture" id=2]
 flags = 5
 viewport_path = NodePath("FrostingGlobs/Viewport")
 
-[sub_resource type="OpenSimplexNoise" id=4]
+[sub_resource type="OpenSimplexNoise" id=3]
 octaves = 1
 
-[sub_resource type="NoiseTexture" id=5]
+[sub_resource type="NoiseTexture" id=4]
 width = 1024
 height = 1024
 seamless = true
-noise = SubResource( 4 )
+noise = SubResource( 3 )
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=5]
 shader = ExtResource( 41 )
-shader_param/noise = SubResource( 5 )
+shader_param/noise = SubResource( 4 )
 
-[sub_resource type="ViewportTexture" id=7]
+[sub_resource type="ViewportTexture" id=6]
 flags = 5
 viewport_path = NodePath("FrostingGlobs/RainbowViewport")
 
-[sub_resource type="StyleBoxFlat" id=8]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 1, 1, 1, 0.333333 )
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=8]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -142,12 +119,13 @@ __meta__ = {
 }
 
 [node name="TileMap" parent="PieceManager" instance=ExtResource( 40 )]
+position = Vector2( 0, -96 )
 
 [node name="StretchMap" type="TileMap" parent="PieceManager"]
 position = Vector2( 0, -96 )
 scale = Vector2( 0.5, 0.5 )
 z_index = 1
-tile_set = SubResource( 1 )
+tile_set = ExtResource( 25 )
 cell_size = Vector2( 72, 64 )
 format = 1
 tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 196608, 262149, 0, 196608 )
@@ -246,10 +224,10 @@ size = Vector2( 1024, 600 )
 transparent_bg = true
 
 [node name="TextureRect" type="TextureRect" parent="FrostingGlobs"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 margin_right = 1024.0
 margin_bottom = 600.0
-texture = SubResource( 3 )
+texture = SubResource( 2 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -260,10 +238,10 @@ size = Vector2( 1024, 600 )
 transparent_bg = true
 
 [node name="RainbowTextureRect" type="TextureRect" parent="FrostingGlobs"]
-material = SubResource( 6 )
+material = SubResource( 5 )
 margin_right = 1024.0
 margin_bottom = 600.0
-texture = SubResource( 7 )
+texture = SubResource( 6 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -361,8 +339,8 @@ margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
 margin_bottom = 75.0
-custom_styles/fg = SubResource( 8 )
-custom_styles/bg = SubResource( 9 )
+custom_styles/fg = SubResource( 7 )
+custom_styles/bg = SubResource( 8 )
 percent_visible = false
 
 [node name="Desc" type="Label" parent="Chalkboard/MilestoneHud"]
