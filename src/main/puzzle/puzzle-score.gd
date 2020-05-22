@@ -10,6 +10,8 @@ This also includes transient data such as the current customer/bonus score. This
 
 # Signal emitted when the game will start soon. Everything should be erased and reset to zero.
 signal game_prepared
+# Signal emitted after everything's been erased in preparation for a new game.
+signal after_game_prepared
 signal game_started
 signal game_ended
 signal score_changed(value)
@@ -48,6 +50,7 @@ func prepare_game() -> void:
 
 	customer_scores = [0]
 	emit_signal("game_prepared")
+	emit_signal("after_game_prepared")
 
 
 func start_game() -> void:

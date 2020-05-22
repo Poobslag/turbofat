@@ -14,6 +14,8 @@ Nature Kit 2.1 by Kenney (www.kenney.nl)
 
 Other:
 Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc)
+Gut by Tom "Butch" Wesley (MIT License)
+Json Beautifier by Michael Alexsander (Mozilla Public License Version 2.0)
 
 Sounds
 --------------------------------------------------------------------------------
@@ -71,5 +73,6 @@ assets/world/environment/path-stoneend.gltf Kenney's Nature Kit 2.1
 Other
 --------------------------------------------------------------------------------
 src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)
-
+addons/gut "Gut" by Tom "Butch" Wesley
+addons/json_beautifier "Json Beautifier" by Michael Alexsander
 

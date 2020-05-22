@@ -1,10 +1,7 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
-[ext_resource path="res://assets/puzzle/blocks/blocks.png" type="Texture" id=2]
-[ext_resource path="res://assets/puzzle/blocks/blocks-boxes.png" type="Texture" id=3]
-[ext_resource path="res://assets/puzzle/blocks/blocks-vegetable.png" type="Texture" id=4]
-[ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/puzzle/line-erase.wav" type="AudioStream" id=6]
 [ext_resource path="res://src/main/puzzle/line-clear-sfx.gd" type="Script" id=7]
 [ext_resource path="res://src/main/puzzle/make-box-sfx.gd" type="Script" id=8]
@@ -37,10 +34,6 @@
 [ext_resource path="res://assets/puzzle/combo-18.wav" type="AudioStream" id=35]
 [ext_resource path="res://assets/puzzle/combo-19.wav" type="AudioStream" id=36]
 [ext_resource path="res://assets/puzzle/playfield-bg.png" type="Texture" id=37]
-[ext_resource path="res://assets/puzzle/blocks/blocks-vegetable-shadows.png" type="Texture" id=38]
-[ext_resource path="res://assets/puzzle/blocks/blocks-boxes-shadows.png" type="Texture" id=39]
-[ext_resource path="res://assets/puzzle/blocks/blocks-shadows.png" type="Texture" id=40]
-[ext_resource path="res://src/main/puzzle/piece/shadow-map.gd" type="Script" id=41]
 [ext_resource path="res://assets/puzzle/combo-20.wav" type="AudioStream" id=42]
 [ext_resource path="res://assets/puzzle/combo-23.wav" type="AudioStream" id=43]
 [ext_resource path="res://assets/puzzle/combo-21.wav" type="AudioStream" id=44]
@@ -65,140 +58,10 @@
 [ext_resource path="res://assets/puzzle/playfield-light.png" type="Texture" id=63]
 [ext_resource path="res://src/main/puzzle/playfield-fx.gd" type="Script" id=64]
 
-[sub_resource type="TileSet" id=1]
-0/name = "blocks.png"
-0/texture = ExtResource( 2 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 2, 2, 1212, 268 )
-0/tile_mode = 2
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 72, 64 )
-0/autotile/spacing = 4
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "blocks-boxes.png"
-1/texture = ExtResource( 3 )
-1/tex_offset = Vector2( 0, 0 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 2, 2, 1212, 268 )
-1/tile_mode = 2
-1/autotile/icon_coordinate = Vector2( 0, 0 )
-1/autotile/tile_size = Vector2( 72, 64 )
-1/autotile/spacing = 4
-1/autotile/occluder_map = [  ]
-1/autotile/navpoly_map = [  ]
-1/autotile/priority_map = [  ]
-1/autotile/z_index_map = [  ]
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-2/name = "blocks-vegetable.png"
-2/texture = ExtResource( 4 )
-2/tex_offset = Vector2( 0, 0 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 2, 2, 1368, 268 )
-2/tile_mode = 2
-2/autotile/icon_coordinate = Vector2( 0, 0 )
-2/autotile/tile_size = Vector2( 72, 64 )
-2/autotile/spacing = 4
-2/autotile/occluder_map = [  ]
-2/autotile/navpoly_map = [  ]
-2/autotile/priority_map = [  ]
-2/autotile/z_index_map = [  ]
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
-
-[sub_resource type="TileSet" id=2]
-0/name = "blocks-shadows.png 0"
-0/texture = ExtResource( 40 )
-0/tex_offset = Vector2( 0, -64 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 2, 2, 2364, 656 )
-0/tile_mode = 2
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 144, 128 )
-0/autotile/spacing = 4
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-1/name = "blocks-boxes-shadows.png 1"
-1/texture = ExtResource( 39 )
-1/tex_offset = Vector2( 0, -64 )
-1/modulate = Color( 1, 1, 1, 1 )
-1/region = Rect2( 2, 2, 2364, 656 )
-1/tile_mode = 2
-1/autotile/icon_coordinate = Vector2( 0, 0 )
-1/autotile/tile_size = Vector2( 144, 128 )
-1/autotile/spacing = 4
-1/autotile/occluder_map = [  ]
-1/autotile/navpoly_map = [  ]
-1/autotile/priority_map = [  ]
-1/autotile/z_index_map = [  ]
-1/occluder_offset = Vector2( 0, 0 )
-1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
-1/shapes = [  ]
-1/z_index = 0
-2/name = "blocks-vegetable-shadows.png 2"
-2/texture = ExtResource( 38 )
-2/tex_offset = Vector2( 0, -64 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 2, 2, 2660, 524 )
-2/tile_mode = 2
-2/autotile/icon_coordinate = Vector2( 0, 0 )
-2/autotile/tile_size = Vector2( 144, 128 )
-2/autotile/spacing = 4
-2/autotile/occluder_map = [  ]
-2/autotile/navpoly_map = [  ]
-2/autotile/priority_map = [  ]
-2/autotile/z_index_map = [  ]
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape_one_way = false
-2/shape_one_way_margin = 0.0
-2/shapes = [  ]
-2/z_index = 0
-
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 
-[sub_resource type="TileSet" id=4]
+[sub_resource type="TileSet" id=2]
 0/name = "playfield-light.png 0"
 0/texture = ExtResource( 63 )
 0/tex_offset = Vector2( 0, 0 )
@@ -214,10 +77,10 @@ blend_mode = 1
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=3]
 blend_mode = 1
 
-[sub_resource type="TileSet" id=6]
+[sub_resource type="TileSet" id=4]
 0/name = "fuzzy-circle-128.png 0"
 0/texture = ExtResource( 62 )
 0/tex_offset = Vector2( -46, -48 )
@@ -233,10 +96,10 @@ blend_mode = 1
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="CanvasItemMaterial" id=7]
+[sub_resource type="CanvasItemMaterial" id=5]
 blend_mode = 1
 
-[sub_resource type="ViewportTexture" id=8]
+[sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("TileMapClip/TileMap/Viewport")
 
 [node name="Playfield" type="Control"]
@@ -283,33 +146,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TileMap" type="TileMap" parent="TileMapClip"]
-position = Vector2( 0, -96 )
-scale = Vector2( 0.5, 0.5 )
-z_index = 1
-tile_set = SubResource( 1 )
-cell_size = Vector2( 72, 64 )
-format = 1
-tile_data = PoolIntArray( 983046, 4, 0, 1048582, 4, 0, 1114113, 0, 2, 1114118, 4, 0, 1179648, 2, 0, 1179649, 0, 9, 1179650, 0, 12, 1179651, 0, 4, 1179656, 2, 4, 1245184, 2, 1, 1245185, 2, 2, 1245186, 2, 3, 1245190, 2, 5, 1245191, 2, 6, 1245192, 2, 7 )
-
-[node name="CornerMap" parent="TileMapClip/TileMap" instance=ExtResource( 5 )]
-tile_data = PoolIntArray( 2359299, 0, 1 )
-
-[node name="Viewport" type="Viewport" parent="TileMapClip/TileMap"]
-size = Vector2( 324, 544 )
-transparent_bg = true
-usage = 0
-
-[node name="ShadowMap" type="TileMap" parent="TileMapClip/TileMap/Viewport"]
-modulate = Color( 0, 0, 0, 1 )
-show_behind_parent = true
-position = Vector2( 0, -96 )
-scale = Vector2( 0.5, 0.5 )
-tile_set = SubResource( 2 )
-cell_size = Vector2( 72, 64 )
-format = 1
-tile_data = PoolIntArray( 1114113, 0, 2, 1179649, 0, 9, 1179650, 0, 3, 1179651, 0, 4 )
-script = ExtResource( 41 )
+[node name="TileMap" parent="TileMapClip" instance=ExtResource( 2 )]
 
 [node name="PlayfieldFx" type="Node2D" parent="TileMapClip"]
 position = Vector2( 0, -96 )
@@ -317,23 +154,23 @@ script = ExtResource( 64 )
 
 [node name="LightMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
 modulate = Color( 0.643137, 0.278431, 0.0431373, 0.752941 )
-material = SubResource( 3 )
-tile_set = SubResource( 4 )
+material = SubResource( 1 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 36, 32 )
 format = 1
 tile_data = PoolIntArray( 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 262144, 0, 0, 262145, 0, 0, 262151, 0, 0, 262152, 0, 0, 327680, 0, 0, 327688, 0, 0, 393220, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 786432, 0, 0, 786433, 0, 0, 786439, 0, 0, 786440, 0, 0, 851968, 0, 0, 851976, 0, 0, 917508, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 1048578, 0, 0, 1048579, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0 )
 
 [node name="GlowMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
 modulate = Color( 0.643137, 0.278431, 0.0431373, 0.376471 )
-material = SubResource( 5 )
+material = SubResource( 3 )
 z_index = 3
-tile_set = SubResource( 6 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 36, 32 )
 format = 1
 tile_data = PoolIntArray( 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 262144, 0, 0, 262145, 0, 0, 262151, 0, 0, 262152, 0, 0, 327680, 0, 0, 327688, 0, 0, 393220, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 786432, 0, 0, 786433, 0, 0, 786439, 0, 0, 786440, 0, 0, 851968, 0, 0, 851976, 0, 0, 917508, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 1048578, 0, 0, 1048579, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245191, 0, 0, 1245192, 0, 0 )
 
 [node name="BgStrobe" type="ColorRect" parent="TileMapClip/PlayfieldFx"]
-material = SubResource( 7 )
+material = SubResource( 5 )
 margin_top = 96.0
 margin_right = 324.0
 margin_bottom = 640.0
@@ -350,7 +187,7 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0.196078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 8 )
+texture = SubResource( 6 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false

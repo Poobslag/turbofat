@@ -86,6 +86,11 @@ func _physics_process(delta: float) -> void:
 			emit_signal("after_piece_written")
 
 
+func set_cell(pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
+	$TileMapClip/TileMap.set_cell(pos.x, pos.y, tile, false, false, false, autotile_coord)
+	$TileMapClip/TileMap.get_node("CornerMap").dirty = true
+
+
 """
 Returns false the playfield is paused for an of animation or delay which should prevent a new piece from appearing.
 """

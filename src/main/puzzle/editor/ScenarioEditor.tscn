@@ -1,0 +1,246 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/puzzle/blocks/blocks-vegetable.png" type="Texture" id=1]
+[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/puzzle/editor/editor-json.gd" type="Script" id=3]
+[ext_resource path="res://src/main/puzzle/editor/editor-playfield.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/editor/scenario-editor.gd" type="Script" id=5]
+[ext_resource path="res://src/main/puzzle/editor/template-veg.gd" type="Script" id=6]
+
+[node name="ScenarioEditor" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftPanel" type="Control" parent="HBoxContainer"]
+margin_right = 120.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 120, 600 )
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/LeftPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TemplateVeg" type="Control" parent="HBoxContainer/LeftPanel/GridContainer"]
+margin_right = 50.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 50, 50 )
+script = ExtResource( 6 )
+
+[node name="Sprite" type="Sprite" parent="HBoxContainer/LeftPanel/GridContainer/TemplateVeg"]
+position = Vector2( 25, 25 )
+scale = Vector2( 0.8, 0.8 )
+texture = ExtResource( 1 )
+vframes = 4
+hframes = 18
+
+[node name="CenterPanel" type="Control" parent="HBoxContainer"]
+margin_left = 124.0
+margin_right = 900.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Playfield" type="Control" parent="HBoxContainer/CenterPanel/VBoxContainer"]
+margin_right = 776.0
+margin_bottom = 397.0
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ZIndex" type="Node2D" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield"]
+z_index = -1
+
+[node name="Bg" type="ColorRect" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield/ZIndex"]
+margin_right = 195.0
+margin_bottom = 385.0
+mouse_filter = 2
+color = Color( 0.113725, 0.101961, 0.101961, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield/ZIndex" instance=ExtResource( 2 )]
+position = Vector2( 0, 0 )
+scale = Vector2( 0.3, 0.3 )
+tile_data = PoolIntArray( 262144, 1, 0, 262152, 1, 0, 1245184, 1, 0, 1245192, 1, 0 )
+
+[node name="TileMapDropPreview" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield/ZIndex" instance=ExtResource( 2 )]
+modulate = Color( 1, 1, 1, 0.25098 )
+position = Vector2( 0, 0 )
+scale = Vector2( 0.3, 0.3 )
+tile_data = PoolIntArray( 262144, 1, 0, 262152, 1, 0, 327681, 2, 0, 327683, 2, 0, 393218, 2, 0, 393220, 2, 0, 1245184, 1, 0, 1245192, 1, 0 )
+
+[node name="Json" type="TextEdit" parent="HBoxContainer/CenterPanel/VBoxContainer"]
+margin_top = 401.0
+margin_right = 776.0
+margin_bottom = 600.0
+size_flags_vertical = 3
+text = "abc"
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RightPanel" type="Control" parent="HBoxContainer"]
+margin_left = 904.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 120, 600 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SideButtons" type="VBoxContainer" parent="HBoxContainer/RightPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+rect_min_size = Vector2( 100, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScenarioName" type="LineEdit" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_right = 110.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 0, 20 )
+text = "default"
+
+[node name="HSeparator1" type="HSeparator" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 28.0
+margin_right = 110.0
+margin_bottom = 32.0
+
+[node name="OpenFile" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 36.0
+margin_right = 110.0
+margin_bottom = 56.0
+text = "Open File"
+
+[node name="OpenResource" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 60.0
+margin_right = 110.0
+margin_bottom = 80.0
+text = "Open Resource"
+
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 84.0
+margin_right = 110.0
+margin_bottom = 88.0
+
+[node name="Save" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 92.0
+margin_right = 110.0
+margin_bottom = 112.0
+text = "Save"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 116.0
+margin_right = 110.0
+margin_bottom = 120.0
+
+[node name="Test" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 124.0
+margin_right = 110.0
+margin_bottom = 144.0
+text = "Test"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OpenFileDialog" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -200.0
+margin_right = 300.0
+margin_bottom = 200.0
+window_title = "Open a File"
+mode = 0
+access = 2
+current_dir = "d:/workspace/turbofat"
+current_file = "boatricia.json"
+current_path = "d:/workspace/turbofat/boatricia.json"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OpenResourceDialog" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -200.0
+margin_right = 300.0
+margin_bottom = 200.0
+window_title = "Open a File"
+mode = 0
+current_dir = "res://assets/puzzle/scenario"
+current_file = "boatricia.json"
+current_path = "res://assets/puzzle/scenario/boatricia.json"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveDialog" type="FileDialog" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -200.0
+margin_right = 300.0
+margin_bottom = 200.0
+access = 2
+current_dir = "d:/workspace/turbofat"
+current_file = "boatricia.json"
+current_path = "d:/workspace/turbofat/boatricia.json"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="tile_map_changed" from="HBoxContainer/CenterPanel/VBoxContainer/Playfield" to="HBoxContainer/CenterPanel/VBoxContainer/Json" method="_on_Playfield_tile_map_changed"]
+[connection signal="text_changed" from="HBoxContainer/CenterPanel/VBoxContainer/Json" to="HBoxContainer/CenterPanel/VBoxContainer/Json" method="_on_text_changed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/OpenFile" to="." method="_on_OpenFile_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/OpenResource" to="." method="_on_OpenResource_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Test" to="." method="_on_Test_pressed"]
+[connection signal="file_selected" from="OpenFileDialog" to="." method="_on_OpenFileDialog_file_selected"]
+[connection signal="file_selected" from="OpenResourceDialog" to="." method="_on_OpenResourceDialog_file_selected"]
+[connection signal="file_selected" from="SaveDialog" to="." method="_on_SaveDialog_file_selected"]

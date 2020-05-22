@@ -32,6 +32,7 @@ func _ready() -> void:
 	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
 
 	match _winish_type():
 		Milestone.CUSTOMERS:
@@ -62,6 +63,8 @@ func _ready() -> void:
 		Global.customer_fatten = false
 		$Puzzle/CustomerView.summon_customer()
 		$Puzzle.hide_chalkboard()
+	
+	_prepare_blocks_start()
 
 
 func _physics_process(_delta: float) -> void:
@@ -211,6 +214,16 @@ func _on_PuzzleScore_game_prepared() -> void:
 	_set_level(0)
 	_prepare_milestone_hud()
 	_update_milestone_hud()
+
+
+func _on_PuzzleScore_after_game_prepared() -> void:
+	_prepare_blocks_start()
+
+
+func _prepare_blocks_start() -> void:
+	var blocks_start := Global.scenario_settings.blocks_start
+	for cell in blocks_start.used_cells:
+		$Puzzle.set_cell(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
 
 
 func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:

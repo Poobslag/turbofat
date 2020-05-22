@@ -79,10 +79,25 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/restaurant/customer-loader.gd"
 }, {
+"base": "Reference",
+"class": "EditorCell",
+"language": "GDScript",
+"path": "res://src/main/puzzle/editor/editor-cell.gd"
+}, {
+"base": "Control",
+"class": "EditorPlayfield",
+"language": "GDScript",
+"path": "res://src/main/puzzle/editor/editor-playfield.gd"
+}, {
 "base": "Sprite",
 "class": "FrostingGlob",
 "language": "GDScript",
 "path": "res://src/main/puzzle/frosting-glob.gd"
+}, {
+"base": "Reference",
+"class": "JSONBeautifier",
+"language": "GDScript",
+"path": "res://addons/json_beautifier/json_beautifier.gd"
 }, {
 "base": "Reference",
 "class": "Milestone",
@@ -203,6 +218,11 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/main/state-machine.gd"
+}, {
+"base": "Control",
+"class": "TemplateVeg",
+"language": "GDScript",
+"path": "res://src/main/puzzle/editor/template-veg.gd"
 } ]
 _global_script_class_icons={
 "ActivePiece": "",
@@ -219,7 +239,10 @@ _global_script_class_icons={
 "Customer": "",
 "Customer3D": "",
 "CustomerLoader": "",
+"EditorCell": "",
+"EditorPlayfield": "",
 "FrostingGlob": "",
+"JSONBeautifier": "",
 "Milestone": "",
 "MoneyLabel": "",
 "MultiOutlineSprite": "",
@@ -243,7 +266,8 @@ _global_script_class_icons={
 "SmoothPath": "",
 "Spira": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"TemplateVeg": ""
 }
 
 [application]
