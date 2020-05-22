@@ -9,6 +9,7 @@ This script provides drag/drop logic and other things specific to the level edit
 # Signal emitted when the player changes the tilemap's contents. This signal is not emitted when set_cell is called,
 # to prevent infinite recursion when populated by editor-json.gd.
 signal tile_map_changed
+var dragging_right_mouse := false
 
 func _ready() -> void:
 	$ZIndex/TileMap.clear()
@@ -18,7 +19,10 @@ func _ready() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_mask == BUTTON_RIGHT and event.is_pressed():
+		dragging_right_mouse = event.button_mask & BUTTON_RIGHT
+	
+	if event is InputEventMouseMotion or event is InputEventMouseButton:
+		if dragging_right_mouse:
 			set_block(_cell_pos(event.position), -1)
 			emit_signal("tile_map_changed")
 
@@ -59,5 +63,6 @@ func _cell_pos(pos: Vector2) -> Vector2:
 
 
 func _set_tilemap_block(tilemap: TileMap, pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
-	tilemap.set_block(pos, tile, autotile_coord)
-	tilemap.get_node("CornerMap").dirty = true
+	if Rect2(0, 0, Playfield.COL_COUNT, Playfield.ROW_COUNT).has_point(pos):
+		tilemap.set_block(pos, tile, autotile_coord)
+		tilemap.get_node("CornerMap").dirty = true

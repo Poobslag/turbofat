@@ -19,15 +19,29 @@ func get_drag_data(_pos: Vector2) -> Object:
 	return data
 
 
-func _refresh_tilemap() -> void:
-	pass
-
-
-func _refresh_scale() -> void:
+"""
+Calculates the extents of the tilemap's used cells.
+"""
+func _tilemap_extents() -> Rect2:
 	var extents := Rect2(Vector2.ZERO, Vector2.ZERO)
 	if $TileMap.get_used_cells():
 		extents.position = $TileMap.get_used_cells()[0]
 		for cell in $TileMap.get_used_cells():
 			extents = extents.expand(cell)
+	return extents
+
+
+"""
+Overridden by child classes, which use this method to populate the contents of the tilemap.
+"""
+func _refresh_tilemap() -> void:
+	pass
+
+
+"""
+Refreshes the scale to ensure the contents of the tilemap fit inside an item in the palette.
+"""
+func _refresh_scale() -> void:
+	var extents := _tilemap_extents()
 	$TileMap.scale.x = 0.50 / (1 + max(extents.end.x, extents.end.y))
 	$TileMap.scale.y = 0.50 / (1 + max(extents.end.x, extents.end.y))

@@ -139,11 +139,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/overworld-ui.gd"
 }, {
-"base": "LevelChunkControl",
-"class": "PieceControl",
-"language": "GDScript",
-"path": "res://src/main/puzzle/editor/piece-chunk.gd"
-}, {
 "base": "Control",
 "class": "PieceManager",
 "language": "GDScript",
@@ -261,7 +256,6 @@ _global_script_class_icons={
 "NextPieceDisplays": "",
 "OverworldGridMap": "",
 "OverworldUi": "",
-"PieceControl": "",
 "PieceManager": "",
 "PieceQueue": "",
 "PieceSpeed": "",

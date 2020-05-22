@@ -20,9 +20,11 @@ static func set_u(input: int) -> int: return input | UP
 static func set_d(input: int) -> int: return input | DOWN
 static func set_l(input: int) -> int: return input | LEFT
 static func set_r(input: int) -> int: return input | RIGHT
+static func set_dirs(input: int, bitmask: int) -> int: return input | bitmask
 
 # functions which disable a specific directional bitmask
 static func unset_u(input: int) -> int: return input & ~UP
 static func unset_d(input: int) -> int: return input & ~DOWN
 static func unset_l(input: int) -> int: return input & ~LEFT
 static func unset_r(input: int) -> int: return input & ~RIGHT
+static func unset_dirs(input: int, bitmask: int) -> int: return input & ~bitmask

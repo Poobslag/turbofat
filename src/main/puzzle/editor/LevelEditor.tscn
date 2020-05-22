@@ -1,17 +1,18 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://src/main/puzzle/editor/LevelChunkControl.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/puzzle/editor/editor-json.gd" type="Script" id=3]
-[ext_resource path="res://src/main/puzzle/editor/editor-playfield.gd" type="Script" id=4]
-[ext_resource path="res://src/main/puzzle/editor/scenario-editor.gd" type="Script" id=5]
-[ext_resource path="res://src/main/puzzle/editor/piece-chunk.gd" type="Script" id=6]
-[ext_resource path="res://src/main/puzzle/editor/veg-chunk.gd" type="Script" id=7]
+[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/puzzle/editor/editor-json.gd" type="Script" id=2]
+[ext_resource path="res://src/main/puzzle/editor/editor-playfield.gd" type="Script" id=3]
+[ext_resource path="res://src/main/puzzle/editor/box-chunk.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/editor/piece-chunk.gd" type="Script" id=5]
+[ext_resource path="res://src/main/puzzle/editor/veg-chunk.gd" type="Script" id=6]
+[ext_resource path="res://src/main/puzzle/editor/LevelChunkControl.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/puzzle/editor/level-editor.gd" type="Script" id=8]
 
-[node name="ScenarioEditor" type="Control"]
+[node name="LevelEditor" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource( 5 )
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -40,61 +41,117 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Veg" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
-script = ExtResource( 7 )
+[node name="RotateButton" type="Button" parent="HBoxContainer/LeftPanel/GridContainer"]
+margin_right = 36.0
+margin_bottom = 20.0
+text = "Rot"
 
-[node name="JPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+[node name="ChangeButton" type="Button" parent="HBoxContainer/LeftPanel/GridContainer"]
 margin_left = 40.0
 margin_right = 76.0
+margin_bottom = 20.0
+text = "Chg"
+
+[node name="Veg" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_top = 24.0
+margin_bottom = 56.0
 script = ExtResource( 6 )
 
-[node name="LPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
-margin_top = 36.0
-margin_bottom = 68.0
+[node name="Veg2x2" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_left = 40.0
+margin_top = 24.0
+margin_right = 76.0
+margin_bottom = 56.0
 script = ExtResource( 6 )
+_veg_size = Vector2( 2, 2 )
+
+[node name="JPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_top = 60.0
+margin_bottom = 92.0
+script = ExtResource( 5 )
+
+[node name="LPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_left = 40.0
+margin_top = 60.0
+margin_right = 76.0
+margin_bottom = 92.0
+script = ExtResource( 5 )
 _editor_piece = 1
 
-[node name="OPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
-margin_left = 40.0
-margin_top = 36.0
-margin_right = 76.0
-margin_bottom = 68.0
-script = ExtResource( 6 )
+[node name="OPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_top = 96.0
+margin_bottom = 128.0
+script = ExtResource( 5 )
 _editor_piece = 2
 
-[node name="PPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
-margin_top = 72.0
-margin_bottom = 104.0
-script = ExtResource( 6 )
+[node name="PPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_left = 40.0
+margin_top = 96.0
+margin_right = 76.0
+margin_bottom = 128.0
+script = ExtResource( 5 )
 _editor_piece = 3
 
-[node name="QPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
-margin_left = 40.0
-margin_top = 72.0
-margin_right = 76.0
-margin_bottom = 104.0
-script = ExtResource( 6 )
+[node name="QPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_top = 132.0
+margin_bottom = 164.0
+script = ExtResource( 5 )
 _editor_piece = 4
 
-[node name="TPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
-margin_top = 108.0
-margin_bottom = 140.0
-script = ExtResource( 6 )
+[node name="TPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_left = 40.0
+margin_top = 132.0
+margin_right = 76.0
+margin_bottom = 164.0
+script = ExtResource( 5 )
 _editor_piece = 5
 
-[node name="UPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
-margin_left = 40.0
-margin_top = 108.0
-margin_right = 76.0
-margin_bottom = 140.0
-script = ExtResource( 6 )
+[node name="UPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_top = 168.0
+margin_bottom = 200.0
+script = ExtResource( 5 )
 _editor_piece = 6
 
-[node name="VPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
-margin_top = 144.0
-margin_bottom = 176.0
-script = ExtResource( 6 )
+[node name="VPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_left = 40.0
+margin_top = 168.0
+margin_right = 76.0
+margin_bottom = 200.0
+script = ExtResource( 5 )
 _editor_piece = 7
+
+[node name="Box3x1" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_top = 204.0
+margin_bottom = 236.0
+script = ExtResource( 4 )
+_box_size = Vector2( 3, 1 )
+
+[node name="Box3x2" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_left = 40.0
+margin_top = 204.0
+margin_right = 76.0
+margin_bottom = 236.0
+script = ExtResource( 4 )
+_box_size = Vector2( 3, 2 )
+
+[node name="Box3x3" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_top = 240.0
+margin_bottom = 272.0
+script = ExtResource( 4 )
+
+[node name="Box3x4" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_left = 40.0
+margin_top = 240.0
+margin_right = 76.0
+margin_bottom = 272.0
+script = ExtResource( 4 )
+_box_size = Vector2( 3, 4 )
+
+[node name="Box3x5" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 7 )]
+margin_top = 276.0
+margin_bottom = 308.0
+script = ExtResource( 4 )
+_box_size = Vector2( 3, 5 )
 
 [node name="CenterPanel" type="Control" parent="HBoxContainer"]
 margin_left = 124.0
@@ -115,7 +172,7 @@ margin_right = 776.0
 margin_bottom = 397.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
-script = ExtResource( 4 )
+script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -132,11 +189,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TileMap" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield/ZIndex" instance=ExtResource( 2 )]
+[node name="TileMap" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield/ZIndex" instance=ExtResource( 1 )]
 scale = Vector2( 0.3, 0.3 )
 tile_data = PoolIntArray( 262144, 1, 0, 262152, 1, 0, 1245184, 1, 0, 1245192, 1, 0 )
 
-[node name="TileMapDropPreview" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield/ZIndex" instance=ExtResource( 2 )]
+[node name="TileMapDropPreview" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield/ZIndex" instance=ExtResource( 1 )]
 modulate = Color( 1, 1, 1, 0.25098 )
 scale = Vector2( 0.3, 0.3 )
 tile_data = PoolIntArray( 262144, 1, 0, 262152, 1, 0, 327681, 2, 0, 327683, 2, 0, 393218, 2, 0, 393220, 2, 0, 1245184, 1, 0, 1245192, 1, 0 )
@@ -147,7 +204,7 @@ margin_right = 776.0
 margin_bottom = 600.0
 size_flags_vertical = 3
 text = "abc"
-script = ExtResource( 3 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -196,30 +253,43 @@ margin_right = 110.0
 margin_bottom = 80.0
 text = "Open Resource"
 
-[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/RightPanel/SideButtons"]
+[node name="Save" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
 margin_top = 84.0
 margin_right = 110.0
-margin_bottom = 88.0
-
-[node name="Save" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
-margin_top = 92.0
-margin_right = 110.0
-margin_bottom = 112.0
+margin_bottom = 104.0
 text = "Save"
 __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="HSeparator3" type="HSeparator" parent="HBoxContainer/RightPanel/SideButtons"]
-margin_top = 116.0
+[node name="HSeparator2" type="HSeparator" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 108.0
 margin_right = 110.0
-margin_bottom = 120.0
+margin_bottom = 112.0
 
 [node name="Test" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
-margin_top = 124.0
+margin_top = 116.0
 margin_right = 110.0
-margin_bottom = 144.0
+margin_bottom = 136.0
 text = "Test"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Filler" type="Control" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 140.0
+margin_right = 110.0
+margin_bottom = 566.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Exit" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 570.0
+margin_right = 110.0
+margin_bottom = 590.0
+text = "Exit"
 __meta__ = {
 "_editor_description_": ""
 }
@@ -283,6 +353,7 @@ __meta__ = {
 [connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/OpenResource" to="." method="_on_OpenResource_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Test" to="." method="_on_Test_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Exit" to="." method="_on_Exit_pressed"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="_on_OpenFileDialog_file_selected"]
 [connection signal="file_selected" from="OpenResourceDialog" to="." method="_on_OpenResourceDialog_file_selected"]
 [connection signal="file_selected" from="SaveDialog" to="." method="_on_SaveDialog_file_selected"]

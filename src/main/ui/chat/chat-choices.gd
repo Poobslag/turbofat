@@ -105,7 +105,7 @@ func _delete_old_buttons(old_buttons: Array) -> void:
 
 
 func _button(node: Node) -> ChatChoiceButton:
-	var result: ChatChoiceButton = node if node.is_class("Button") else null
+	var result: ChatChoiceButton = node if node is Button else null
 	return result
 
 

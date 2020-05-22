@@ -103,12 +103,11 @@ z_index = 1
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 72, 64 )
 format = 1
-tile_data = PoolIntArray( 983046, 4, 0, 1048582, 4, 0, 1114113, 0, 2, 1114118, 4, 0, 1179648, 2, 0, 1179649, 0, 9, 1179650, 0, 12, 1179651, 0, 4, 1179656, 2, 4, 1245184, 2, 1, 1245185, 2, 2, 1245186, 2, 3, 1245190, 2, 5, 1245191, 2, 6, 1245192, 2, 7 )
+tile_data = PoolIntArray( 983046, 4, 0, 1048582, 4, 0, 1114118, 4, 0 )
 script = ExtResource( 5 )
 
 [node name="CornerMap" parent="." instance=ExtResource( 3 )]
 tile_set = SubResource( 1 )
-tile_data = PoolIntArray( 2359299, 0, 1 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 324, 544 )
