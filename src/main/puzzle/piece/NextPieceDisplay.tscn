@@ -1,41 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/puzzle/piece/next-piece-display.gd" type="Script" id=1]
-[ext_resource path="res://assets/puzzle/blocks/blocks.png" type="Texture" id=2]
-[ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=3]
-
-[sub_resource type="TileSet" id=1]
-0/name = "blocks.png 0"
-0/texture = ExtResource( 2 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 2, 2, 1212, 268 )
-0/tile_mode = 2
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 72, 64 )
-0/autotile/spacing = 4
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
+[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
 
 [node name="NextPieceDisplay" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="TileMap" type="TileMap" parent="."]
-scale = Vector2( 0.5, 0.5 )
-tile_set = SubResource( 1 )
-cell_size = Vector2( 72, 64 )
-format = 1
-tile_data = PoolIntArray( 1, 0, 524288, 65536, 0, 131074, 65538, 0, 131074, 131072, 0, 131081, 131073, 0, 131084, 131074, 0, 131077 )
-
-[node name="CornerMap" parent="TileMap" instance=ExtResource( 3 )]
-tile_data = PoolIntArray( 262145, 0, 262145, 262148, 0, 262144 )
+[node name="TileMap" parent="." instance=ExtResource( 2 )]

@@ -1,4 +1,4 @@
-extends TileMap
+extends PuzzleTileMap
 """
 This TileMap handles drawing the active piece when it's stretched around other pieces.
 """
@@ -27,9 +27,9 @@ func _process(delta: float) -> void:
 			for col in range(_col_count):
 				if _stretch_pos[row][col] > _max_distance \
 						* (_stretch_seconds_total -_stretch_seconds_remaining) / _stretch_seconds_total:
-					set_cell(col, row, 0, false, false, false, Vector2(0, _color_y))
+					set_block(Vector2(col, row), 0, Vector2(0, _color_y))
 				else:
-					set_cell(col, row, -1)
+					set_block(Vector2(col, row), -1)
 		
 		for row in range(_row_count):
 			for col in range(_col_count):
@@ -44,10 +44,9 @@ func _process(delta: float) -> void:
 					color_x = Connect.set_l(color_x)
 				if col < _col_count - 1 and get_cell(col + 1, row) == 0:
 					color_x = Connect.set_r(color_x)
-				set_cell(col, row, 0, false, false, false, Vector2(color_x, _color_y))
+				set_block(Vector2(col, row), 0, Vector2(color_x, _color_y))
 		
 		_stretch_seconds_remaining -= delta
-		$CornerMap.dirty = true
 
 
 """

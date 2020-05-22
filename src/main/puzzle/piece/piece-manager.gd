@@ -461,9 +461,7 @@ func _update_tile_map() -> void:
 	for i in range(active_piece.type.pos_arr[active_piece.orientation].size()):
 		var block_pos := active_piece.type.get_cell_position(active_piece.orientation, i)
 		var block_color := active_piece.type.get_cell_color(active_piece.orientation, i)
-		$TileMap.set_cell(active_piece.pos.x + block_pos.x, active_piece.pos.y + block_pos.y,
-				0, false, false, false, block_color)
-	$TileMap/CornerMap.dirty = true
+		$TileMap.set_block(active_piece.pos + block_pos, 0, block_color)
 
 
 func _on_States_entered_state(state: State) -> void:

@@ -223,7 +223,7 @@ func _on_PuzzleScore_after_game_prepared() -> void:
 func _prepare_blocks_start() -> void:
 	var blocks_start := Global.scenario_settings.blocks_start
 	for cell in blocks_start.used_cells:
-		$Puzzle.set_cell(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
+		$Puzzle.set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
 
 
 func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:

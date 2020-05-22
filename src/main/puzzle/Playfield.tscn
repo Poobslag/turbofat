@@ -147,6 +147,7 @@ __meta__ = {
 }
 
 [node name="TileMap" parent="TileMapClip" instance=ExtResource( 2 )]
+position = Vector2( 0, -96 )
 
 [node name="PlayfieldFx" type="Node2D" parent="TileMapClip"]
 position = Vector2( 0, -96 )

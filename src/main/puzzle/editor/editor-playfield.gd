@@ -19,28 +19,32 @@ func _ready() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_mask == BUTTON_RIGHT and event.is_pressed():
-			set_cell(_cell_pos(event.position), -1, Vector2.ZERO)
+			set_block(_cell_pos(event.position), -1)
 			emit_signal("tile_map_changed")
 
 
-func can_drop_data(pos: Vector2, data: Object) -> bool:
-	var can_drop := data is EditorCell \
-			and Rect2($ZIndex/Bg.rect_position, $ZIndex/Bg.rect_size).has_point(pos)
+func can_drop_data(pos: Vector2, data: LevelChunk) -> bool:
+	var can_drop := Rect2($ZIndex/Bg.rect_position, $ZIndex/Bg.rect_size).has_point(pos)
 	if can_drop:
 		# update drop preview
 		$ZIndex/TileMapDropPreview.clear()
-		_set_tilemap_cell($ZIndex/TileMapDropPreview, _cell_pos(pos), data.tile, data.autotile_coord)
+		for cell in data.used_cells:
+			var target_pos: Vector2 = _cell_pos(pos) + cell
+			_set_tilemap_block($ZIndex/TileMapDropPreview, target_pos,
+					data.tiles[cell], data.autotile_coords[cell])
 	return can_drop
 
 
-func drop_data(pos: Vector2, data: Object) -> void:
+func drop_data(pos: Vector2, data: LevelChunk) -> void:
 	$ZIndex/TileMapDropPreview.clear()
-	set_cell(_cell_pos(pos), data.tile, data.autotile_coord)
+	for cell in data.used_cells:
+		var target_pos: Vector2 = _cell_pos(pos) + cell
+		set_block(target_pos, data.tiles[cell], data.autotile_coords[cell])
 	emit_signal("tile_map_changed")
 
 
-func set_cell(pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
-	_set_tilemap_cell($ZIndex/TileMap, pos, tile, autotile_coord)
+func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
+	_set_tilemap_block($ZIndex/TileMap, pos, tile, autotile_coord)
 
 
 func get_tile_map() -> TileMap:
@@ -54,6 +58,6 @@ func _cell_pos(pos: Vector2) -> Vector2:
 	return pos * Vector2(Playfield.COL_COUNT, Playfield.ROW_COUNT) / $ZIndex/Bg.rect_size
 
 
-func _set_tilemap_cell(tilemap: TileMap, pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
-	tilemap.set_cell(pos.x, pos.y, tile, false, false, false, autotile_coord)
+func _set_tilemap_block(tilemap: TileMap, pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
+	tilemap.set_block(pos, tile, autotile_coord)
 	tilemap.get_node("CornerMap").dirty = true

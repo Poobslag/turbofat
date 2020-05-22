@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://assets/puzzle/blocks/blocks-vegetable.png" type="Texture" id=1]
+[ext_resource path="res://src/main/puzzle/editor/LevelChunkControl.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/puzzle/editor/editor-json.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/editor/editor-playfield.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/editor/scenario-editor.gd" type="Script" id=5]
-[ext_resource path="res://src/main/puzzle/editor/template-veg.gd" type="Script" id=6]
+[ext_resource path="res://src/main/puzzle/editor/piece-chunk.gd" type="Script" id=6]
+[ext_resource path="res://src/main/puzzle/editor/veg-chunk.gd" type="Script" id=7]
 
 [node name="ScenarioEditor" type="Control"]
 anchor_right = 1.0
@@ -39,18 +40,61 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TemplateVeg" type="Control" parent="HBoxContainer/LeftPanel/GridContainer"]
-margin_right = 50.0
-margin_bottom = 50.0
-rect_min_size = Vector2( 50, 50 )
+[node name="Veg" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+script = ExtResource( 7 )
+
+[node name="JPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+margin_left = 40.0
+margin_right = 76.0
 script = ExtResource( 6 )
 
-[node name="Sprite" type="Sprite" parent="HBoxContainer/LeftPanel/GridContainer/TemplateVeg"]
-position = Vector2( 25, 25 )
-scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 1 )
-vframes = 4
-hframes = 18
+[node name="LPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+margin_top = 36.0
+margin_bottom = 68.0
+script = ExtResource( 6 )
+_editor_piece = 1
+
+[node name="OPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+margin_left = 40.0
+margin_top = 36.0
+margin_right = 76.0
+margin_bottom = 68.0
+script = ExtResource( 6 )
+_editor_piece = 2
+
+[node name="PPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+margin_top = 72.0
+margin_bottom = 104.0
+script = ExtResource( 6 )
+_editor_piece = 3
+
+[node name="QPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+margin_left = 40.0
+margin_top = 72.0
+margin_right = 76.0
+margin_bottom = 104.0
+script = ExtResource( 6 )
+_editor_piece = 4
+
+[node name="TPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+margin_top = 108.0
+margin_bottom = 140.0
+script = ExtResource( 6 )
+_editor_piece = 5
+
+[node name="UPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+margin_left = 40.0
+margin_top = 108.0
+margin_right = 76.0
+margin_bottom = 140.0
+script = ExtResource( 6 )
+_editor_piece = 6
+
+[node name="VPiece" parent="HBoxContainer/LeftPanel/GridContainer" instance=ExtResource( 1 )]
+margin_top = 144.0
+margin_bottom = 176.0
+script = ExtResource( 6 )
+_editor_piece = 7
 
 [node name="CenterPanel" type="Control" parent="HBoxContainer"]
 margin_left = 124.0
@@ -89,13 +133,11 @@ __meta__ = {
 }
 
 [node name="TileMap" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield/ZIndex" instance=ExtResource( 2 )]
-position = Vector2( 0, 0 )
 scale = Vector2( 0.3, 0.3 )
 tile_data = PoolIntArray( 262144, 1, 0, 262152, 1, 0, 1245184, 1, 0, 1245192, 1, 0 )
 
 [node name="TileMapDropPreview" parent="HBoxContainer/CenterPanel/VBoxContainer/Playfield/ZIndex" instance=ExtResource( 2 )]
 modulate = Color( 1, 1, 1, 0.25098 )
-position = Vector2( 0, 0 )
 scale = Vector2( 0.3, 0.3 )
 tile_data = PoolIntArray( 262144, 1, 0, 262152, 1, 0, 327681, 2, 0, 327683, 2, 0, 393218, 2, 0, 393220, 2, 0, 1245184, 1, 0, 1245192, 1, 0 )
 

@@ -38,6 +38,11 @@ const FOOD_COLORS: Array = [
 const ROW_COUNT = 20
 const COL_COUNT = 9
 
+const TILE_EMPTY := -1
+const TILE_PIECE := 0 # part of an intact piece
+const TILE_BOX := 1 # part of a snack/cake box
+const TILE_VEG := 2 # vegetable created from line clears
+
 # lines which are currently being cleared
 var cleared_lines := []
 var _cleared_line_index := 0
@@ -86,9 +91,8 @@ func _physics_process(delta: float) -> void:
 			emit_signal("after_piece_written")
 
 
-func set_cell(pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
-	$TileMapClip/TileMap.set_cell(pos.x, pos.y, tile, false, false, false, autotile_coord)
-	$TileMapClip/TileMap.get_node("CornerMap").dirty = true
+func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
+	$TileMapClip/TileMap.set_block(pos, tile, autotile_coord)
 
 
 """
@@ -107,7 +111,7 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 	for i in range(type.pos_arr[orientation].size()):
 		var block_pos := type.get_cell_position(orientation, i)
 		var block_color := type.get_cell_color(orientation, i)
-		_set_piece_block(pos.x + block_pos.x, pos.y + block_pos.y, block_color)
+		_set_block(pos + block_pos, TILE_PIECE, block_color)
 	
 	_remaining_box_build_frames = 0
 	if not death_piece and _process_boxes():
@@ -162,25 +166,25 @@ Boxes are made when the player forms a 3x3, 3x4, 3x5 rectangle from intact piece
 """
 func make_box(x: int, y: int, width: int, height: int, box_int: int) -> void:
 	# corners
-	_set_box_block(x + 0, y + 0, Vector2(10, box_int))
-	_set_box_block(x + width - 1, y + 0, Vector2(6, box_int))
-	_set_box_block(x + 0, y + height - 1, Vector2(9, box_int))
-	_set_box_block(x + width - 1, y + height - 1, Vector2(5, box_int))
+	_set_block(Vector2(x + 0, y + 0), TILE_BOX, Vector2(10, box_int))
+	_set_block(Vector2(x + width - 1, y + 0), TILE_BOX, Vector2(6, box_int))
+	_set_block(Vector2(x + 0, y + height - 1), TILE_BOX, Vector2(9, box_int))
+	_set_block(Vector2(x + width - 1, y + height - 1), TILE_BOX, Vector2(5, box_int))
 	
 	# top/bottom edge
 	for curr_x in range(x + 1, x + width - 1):
-		_set_box_block(curr_x, y + 0, Vector2(14, box_int))
-		_set_box_block(curr_x, y + height - 1, Vector2(13, box_int))
+		_set_block(Vector2(curr_x, y + 0), TILE_BOX, Vector2(14, box_int))
+		_set_block(Vector2(curr_x, y + height - 1), TILE_BOX, Vector2(13, box_int))
 	
 	# center
 	for curr_x in range(x + 1, x + width - 1):
 		for curr_y in range(y + 1, y + height - 1):
-			_set_box_block(curr_x, curr_y, Vector2(15, box_int))
+			_set_block(Vector2(curr_x, curr_y), TILE_BOX, Vector2(15, box_int))
 	
 	# left/right edge
 	for curr_y in range(y + 1, y + height - 1):
-		_set_box_block(x + 0, curr_y, Vector2(11, box_int))
-		_set_box_block(x + width - 1, curr_y, Vector2(7, box_int))
+		_set_block(Vector2(x + 0, curr_y), TILE_BOX, Vector2(11, box_int))
+		_set_block(Vector2(x + width - 1, curr_y), TILE_BOX, Vector2(7, box_int))
 		
 	emit_signal("box_made", x, y, width, height, box_int)
 
@@ -367,7 +371,7 @@ func _erase_row(y: int) -> void:
 		elif get_cell(x, y) == 1:
 			_disconnect_box(x, y)
 		
-		_erase_block(x, y)
+		_set_block(Vector2(x, y), TILE_EMPTY)
 
 
 """
@@ -378,15 +382,14 @@ func _delete_row(y: int) -> void:
 		for x in range(COL_COUNT):
 			var piece_color: int = get_cell(x, curr_y - 1)
 			var autotile_coord: Vector2 = get_cell_autotile_coord(x, curr_y - 1)
-			$TileMapClip/TileMap.set_cell(x, curr_y, piece_color, false, false, false, autotile_coord)
-			$TileMapClip/TileMap/CornerMap.dirty = true
+			$TileMapClip/TileMap.set_block(Vector2(x, curr_y), piece_color, autotile_coord)
 			if piece_color != -1:
 				# only play the line falling sound if at least one block falls
 				_should_play_line_fall_sound = true
 	
 	# remove row
 	for x in range(COL_COUNT):
-		_erase_block(x, 0)
+		_set_block(Vector2(x, 0), TILE_EMPTY)
 
 
 """
@@ -406,7 +409,7 @@ func _disconnect_block(x: int, y: int) -> void:
 	if vegetable_type > 3:
 		# unusual blocks (maybe in future development) become leafy greens
 		vegetable_type = 0
-	_set_veg_block(x, y, Vector2(randi() % 18, vegetable_type))
+	_set_block(Vector2(x, y), TILE_VEG, Vector2(randi() % 18, vegetable_type))
 	
 	if y > 0 and Connect.is_u(old_autotile_coord.x):
 		_disconnect_block(x, y - 1)
@@ -435,45 +438,23 @@ func _disconnect_box(x: int, y: int) -> void:
 	var old_autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
 	if y > 0 and Connect.is_u(old_autotile_coord.x):
 		var above_autotile_coord: Vector2 = get_cell_autotile_coord(x, y - 1)
-		_set_box_block(x, y - 1, Vector2(Connect.unset_d(above_autotile_coord.x), above_autotile_coord.y))
-		_set_box_block(x, y, Vector2(Connect.unset_u(old_autotile_coord.x), old_autotile_coord.y))
+		_set_block(Vector2(x, y - 1), TILE_BOX,
+				Vector2(Connect.unset_d(above_autotile_coord.x), above_autotile_coord.y))
+		_set_block(Vector2(x, y), TILE_BOX,
+				Vector2(Connect.unset_u(old_autotile_coord.x), old_autotile_coord.y))
 	if y < ROW_COUNT - 1 and Connect.is_d(old_autotile_coord.x):
 		var below_autotile_coord:Vector2 = get_cell_autotile_coord(x, y + 1)
-		_set_box_block(x, y + 1,
+		_set_block(Vector2(x, y + 1), TILE_BOX,
 				Vector2(Connect.unset_u(below_autotile_coord.x), below_autotile_coord.y))
-		_set_box_block(x, y,
+		_set_block(Vector2(x, y), TILE_BOX,
 				Vector2(Connect.unset_d(old_autotile_coord.x), old_autotile_coord.y))
 
 
 """
-Writes a block which is a part of an intact piece into the tile map. These intact pieces might later become boxes or
-vegetables.
+Writes a block into the tile map.
 """
-func _set_piece_block(x: int, y: int, piece_tile: Vector2) -> void:
-	$TileMapClip/TileMap.set_cell(x, y, 0, false, false, false, piece_tile)
-	$TileMapClip/TileMap/CornerMap.dirty = true
-
-
-"""
-Writes a block which is a part of a snack box or cake box into the tile map. These are typically written when the
-player arranges pieces into a box.
-"""
-func _set_box_block(x: int, y: int, box_tile: Vector2) -> void:
-	$TileMapClip/TileMap.set_cell(x, y, 1, false, false, false, box_tile)
-	$TileMapClip/TileMap/CornerMap.dirty = true
-
-
-"""
-Writes a vegetable block into the tile map. These are typically written when the player breaks up an intact piece.
-"""
-func _set_veg_block(x: int, y: int, veg_tile: Vector2) -> void:
-	$TileMapClip/TileMap.set_cell(x, y, 2, false, false, false, veg_tile)
-	$TileMapClip/TileMap/CornerMap.dirty = true
-
-
-func _erase_block(x: int, y: int) -> void:
-	$TileMapClip/TileMap.set_cell(x, y, -1)
-	$TileMapClip/TileMap/CornerMap.dirty = true
+func _set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
+	$TileMapClip/TileMap.set_block(pos, tile, autotile_coord)
 
 
 """
