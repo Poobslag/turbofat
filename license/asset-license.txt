@@ -33,6 +33,8 @@ assets/puzzle/make-snack-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16b
 assets/puzzle/move.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_04.wav"
 assets/puzzle/rotate0.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 assets/puzzle/rotate1.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
+assets/puzzle/scenario/tutorial-section-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 06.wav"
+assets/puzzle/scenario/tutorial-task-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"
 assets/puzzle/smash.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
 assets/ui/chat/emote-*.wav "Developed using Jonathan Murphy's TS-808 emulator, licensed under the Creative Commons Attribution-Noncommercial-NoDerivative Works 3.0 Australia License. Consider donating at http://tactilesounds.blogspot.com/"
 assets/ui/cheat-disable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"

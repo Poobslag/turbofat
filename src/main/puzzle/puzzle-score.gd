@@ -41,6 +41,12 @@ Resets all score data to prepare for a new game.
 func prepare_game() -> void:
 	if game_prepared:
 		return
+	
+	var new_scenario_name := Global.scenario_settings.other.start_scenario_name
+	if new_scenario_name:
+		# Load a different scenario to start (used for tutorials)
+		Global.scenario_settings = ScenarioLibrary.load_scenario_from_name(new_scenario_name)
+	
 	game_prepared = true
 	scenario_performance = ScenarioPerformance.new()
 	emit_signal("score_changed", 0)
@@ -99,8 +105,13 @@ func end_combo() -> void:
 	bonus_score = 0
 	emit_signal("bonus_score_changed", 0)
 	
-	if get_customer_score() > 0:
-		# if the customer score is 0, there's no need to append more and more 0s
+	if get_customer_score() == 0:
+		# don't add $0 customers. customers don't pay if they owe $0
+		pass
+	elif Global.scenario_settings.other.tutorial:
+		# tutorial only has one customer
+		pass
+	else:
 		customer_scores.append(0)
 		emit_signal("customer_score_changed", 0)
 		emit_signal("combo_ended")

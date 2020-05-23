@@ -18,8 +18,8 @@ const MAX_LOCK_RESETS := 15
 # The gravity constant used when the player soft-drops a piece.
 const DROP_G := 128
 
-# When the player does a 'smush move' the piece is unaffected by gravity for this many frames.
-const SMUSH_FRAMES := 4
+# When the player does a 'squish move' the piece is unaffected by gravity for this many frames.
+const SQUISH_FRAMES := 4
 
 # How fast the pieces are moving right now
 var current_speed: PieceSpeed
@@ -27,6 +27,9 @@ var current_speed: PieceSpeed
 var _speeds := {}
 
 func _ready() -> void:
+	# tutorial; piece does not drop
+	_add_speed(PieceSpeed.new("T",   0, 20, 36, 7, 16, 40, 24, 12))
+	
 	# beginner; 10-30 blocks per minute
 	_add_speed(PieceSpeed.new("0",   4, 20, 36, 7, 16, 40, 24, 12))
 	_add_speed(PieceSpeed.new("1",   5, 20, 36, 7, 16, 40, 24, 12))
@@ -69,6 +72,9 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new( "FE", 20*G,  4, 2, 5,  7, 16, 3, 3))
 	_add_speed(PieceSpeed.new( "FF", 20*G,  4, 2, 5,  7, 14, 3, 3))
 	_add_speed(PieceSpeed.new("FFF", 20*G,  4, 2, 5,  7, 12, 3, 3))
+	
+	# easter egg
+	_add_speed(PieceSpeed.new("DB", 1*G, 20, 20, 7, 16, 40, 24, 12))
 	
 	current_speed = PieceSpeeds.speed("0")
 

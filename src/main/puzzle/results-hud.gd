@@ -109,6 +109,10 @@ func _on_PuzzleScore_game_prepared() -> void:
 
 func _on_Puzzle_after_game_ended() -> void:
 	var rank_result: RankResult = PlayerData.get_last_scenario_result(Global.scenario_settings.name)
+	if Global.scenario_settings.other.tutorial or not rank_result:
+		# no results for tutorial
+		return
+	
 	var customer_scores: Array = PuzzleScore.customer_scores
 	var finish_condition_type := Global.scenario_settings.get_winish_condition().type
 	

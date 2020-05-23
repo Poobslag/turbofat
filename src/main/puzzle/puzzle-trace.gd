@@ -6,7 +6,7 @@ Shows diagnostics for the piece physics. Enabled with the cheat code 'delays'.
 onready var _puzzle:Puzzle = get_parent()
 onready var _playfield:Playfield = _puzzle.get_node("Playfield")
 onready var _combo_tracker:ComboTracker = _puzzle.get_node("Playfield/ComboTracker")
-onready var _pieceManager:PieceManager= _puzzle.get_node("PieceManager")
+onready var _pieceManager:PieceManager= _puzzle.get_piece_manager()
 
 func _process(delta: float) -> void:
 	if visible:

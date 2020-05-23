@@ -1,0 +1,83 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/puzzle/scenario/tutorial-skill-tally.tres" type="Theme" id=1]
+[ext_resource path="res://src/main/puzzle/scenario/skill-tally-item.gd" type="Script" id=2]
+[ext_resource path="res://assets/puzzle/scenario/tutorial-task-complete.wav" type="AudioStream" id=3]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.11, 0.89, 0.11, 0.33 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.109804, 0.890196, 0.109804, 0 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.109804, 0.890196, 0.109804, 0 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.11, 0.89, 0.11, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 1, 1, 1, 1 )
+border_color = Color( 0.109804, 0.890196, 0.109804, 0.329412 )
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+
+[node name="SkillTallyItem" type="ProgressBar"]
+margin_left = 785.266
+margin_top = 23.158
+margin_right = 893.266
+margin_bottom = 87.158
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 1 )
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 5.0
+percent_visible = false
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Do Thing"
+
+[node name="Blink" type="Panel" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_pivot_offset = Vector2( 54, 32 )
+custom_styles/panel = SubResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Do Thing
+(0/5)"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="TaskCompleteSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -4.0
+bus = "Main Bus"
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

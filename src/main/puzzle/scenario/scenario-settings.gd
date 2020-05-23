@@ -28,7 +28,7 @@ var lose_condition := LoseConditionRules.new()
 var name := ""
 
 # Rules which are unique enough that it doesn't make sense to put them in their own groups.
-var other := []
+var other := OtherRules.new()
 
 # The selection of pieces provided to the player.
 var piece_types := PieceTypeRules.new()
@@ -42,6 +42,11 @@ var score := ScoreRules.new()
 # How the player wins. When the player wins, there's a big fanfare and celebration, it should be used for
 # accomplishments such as surviving 10 minutes or getting 1,000 points. 
 var win_condition := Milestone.new()
+
+func _init() -> void:
+	# avoid edge cases caused by absence of a speed level
+	set_start_level("0")
+
 
 """
 Adds criteria for leveling up, such as a time, score, or line limit.
@@ -118,7 +123,7 @@ func from_dict(new_name: String, json: Dictionary) -> void:
 	if json.has("lose-condition"):
 		lose_condition.from_string_array(json["lose-condition"])
 	if json.has("other"):
-		other = json.get("other")
+		other.from_string_array(json["other"])
 	if json.has("piece-types"):
 		piece_types.from_string_array(json["piece-types"])
 	if json.has("rank"):

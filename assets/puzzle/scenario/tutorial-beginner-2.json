@@ -223,6 +223,7 @@
     "top-out 999999"
   ],
   "other": [
+    "start-scenario tutorial-beginner-0",
     "tutorial"
   ],
   "piece-types": [
@@ -231,5 +232,5 @@
   "score": [
     "cake-all 20"
   ],
-  "start-level": "0"
+  "start-level": "T"
 }

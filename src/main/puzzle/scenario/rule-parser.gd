@@ -37,3 +37,11 @@ Returns the float value for the key previously passed into the 'has' function.
 """
 func float_value() -> float:
 	return float(_parsed_rules[_prev_key])
+
+
+"""
+Returns the string value for the key previously passed into the 'has' function.
+"""
+func string_value() -> String:
+	return str(_parsed_rules[_prev_key])
+

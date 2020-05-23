@@ -28,6 +28,7 @@ margin_bottom = 0.0
 script = ExtResource( 7 )
 
 [node name="ResultsLabel" type="RichTextLabel" parent="."]
+visible = false
 margin_left = 774.0
 margin_top = 10.0
 margin_right = 1014.0

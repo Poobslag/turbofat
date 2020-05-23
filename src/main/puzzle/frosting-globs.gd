@@ -22,7 +22,8 @@ var _rainbow_glob_index := 0
 
 onready var FrostingGlobScene := preload("res://src/main/puzzle/FrostingGlob.tscn")
 
-onready var playfield := $"../Playfield"
+onready var _puzzle: Puzzle = get_parent()
+onready var _playfield := _puzzle.get_playfield()
 
 func _ready() -> void:
 	for i in range(GLOB_POOL_SIZE):
@@ -69,13 +70,13 @@ func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines
 	for x in range(Playfield.COL_COUNT):
 		var color_int: int
 		var glob_count: int
-		if playfield.get_cell(x, y) == 1:
-			color_int = playfield.get_cell_autotile_coord(x, y).y
+		if _playfield.get_cell(x, y) == 1:
+			color_int = _playfield.get_cell_autotile_coord(x, y).y
 			if PuzzleTileMap.is_snack_box(color_int):
 				glob_count = 2
 			elif PuzzleTileMap.is_cake_box(color_int):
 				glob_count = 4
-		elif playfield.get_cell(x, y) == 2:
+		elif _playfield.get_cell(x, y) == 2:
 			# vegetable
 			pass
 		_spawn_globs(x, y, color_int, glob_count)
@@ -107,6 +108,6 @@ func _spawn_globs(x: int, y: int, color_int: int, glob_count: int) -> void:
 	for _i in range(glob_count):
 		if PuzzleTileMap.is_snack_box(color_int):
 			var color: Color = Playfield.FOOD_COLORS[color_int]
-			spawn_glob(color, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + playfield.rect_position)
+			spawn_glob(color, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + _playfield.rect_position)
 		elif PuzzleTileMap.is_cake_box(color_int):
-			spawn_rainbow_glob(Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + playfield.rect_position)
+			spawn_rainbow_glob(Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + _playfield.rect_position)

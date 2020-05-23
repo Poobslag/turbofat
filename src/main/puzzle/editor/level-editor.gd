@@ -5,6 +5,8 @@ A graphical level editor which lets players create, load and save scenarios.
 Full instructions are available at https://github.com/Poobslag/turbofat/wiki/level-editor
 """
 
+const DEFAULT_SCENARIO := "ultra-normal"
+
 # scenario scene currently being tested
 var _test_scene: Node
 
@@ -18,9 +20,10 @@ func _ready() -> void:
 		# when launched standalone, we don't load customer resources (they're slow)
 		ResourceCache.minimal_resources = true
 	
-	var scenario_text: String = Global.get_file_as_text(ScenarioLibrary.scenario_path("ultra-normal"))
+	var scenario_text: String = Global.get_file_as_text(ScenarioLibrary.scenario_path(DEFAULT_SCENARIO))
 	_scenario_json.text = scenario_text
-	_scenario_name.text = "ultra-normal"
+	_scenario_json.refresh_tilemap()
+	_scenario_name.text = DEFAULT_SCENARIO
 	
 	# back button should close scenario; shouldn't redirect us to a new scene
 	Global.post_puzzle_target = ""
