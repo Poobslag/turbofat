@@ -8,7 +8,7 @@ Full instructions are available at https://github.com/Poobslag/turbofat/wiki/lev
 # scenario scene currently being tested
 var _test_scene: Node
 
-onready var ScenarioScene := preload("res://src/main/puzzle/Scenario.tscn")
+onready var ScenarioScene := preload("res://src/main/puzzle/scenario/Scenario.tscn")
 
 onready var _scenario_json := $HBoxContainer/CenterPanel/VBoxContainer/Json
 onready var _scenario_name := $HBoxContainer/RightPanel/SideButtons/ScenarioName

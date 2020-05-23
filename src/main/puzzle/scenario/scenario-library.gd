@@ -50,4 +50,4 @@ func change_scenario_scene(scenario_settings: ScenarioSettings, overworld_puzzle
 		Global.post_puzzle_target = "res://src/main/world/Overworld.tscn"
 	else:
 		Global.post_puzzle_target = "res://src/main/ui/ScenarioMenu.tscn"
-	get_tree().change_scene("res://src/main/puzzle/Scenario.tscn")
+	get_tree().change_scene("res://src/main/puzzle/scenario/Scenario.tscn")

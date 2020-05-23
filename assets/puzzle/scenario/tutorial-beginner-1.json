@@ -99,14 +99,21 @@
     "type": "score",
     "value": "100"
   },
+  "lose-condition": [
+    "top-out-999999"
+  ],
   "other": [
     "tutorial"
   ],
   "piece-types": [
-    "start-piece-l", "piece-j", "piece-l", "piece-p", "piece-q"
+    "start-piece-l",
+    "piece-j",
+    "piece-l",
+    "piece-p",
+    "piece-q"
   ],
   "score": [
-    "cake-all-20"
+    "cake-all 20"
   ],
   "start-level": "0"
 }

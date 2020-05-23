@@ -30,47 +30,56 @@ var seconds_rank := 0.0
 var score := 0
 var score_rank := 0.0
 
-# did the player die?
-var died := false
+# how many times did the player top out?
+var top_out_count := 0
+
+# did the player lose?
+var lost := false
 
 """
-Returns this object's data as a dictionary. Used for saving json data.
+Returns this object's data in a json-friendly format.
 """
 func to_dict() -> Dictionary:
 	return {
-		"speed": speed,
-		"speed_rank": speed_rank,
-		"lines": lines,
-		"lines_rank": lines_rank,
 		"box_score": box_score,
 		"box_score_per_line": box_score_per_line,
 		"box_score_per_line_rank": box_score_per_line_rank,
 		"combo_score": combo_score,
 		"combo_score_per_line": combo_score_per_line,
 		"combo_score_per_line_rank": combo_score_per_line_rank,
-		"seconds": seconds,
-		"seconds_rank": seconds_rank,
+		"lines": lines,
+		"lines_rank": lines_rank,
+		"lost": lost,
 		"score": score,
 		"score_rank": score_rank,
-		"died": died }
+		"seconds": seconds,
+		"seconds_rank": seconds_rank,
+		"speed": speed,
+		"speed_rank": speed_rank,
+		"top_out_count": top_out_count }
 
 
 """
-Populates this object from a dictionary. Used for loading json data.
+Populates this object with json data.
 """
 func from_dict(json: Dictionary) -> void:
-	speed = json["speed"]
-	speed_rank = json["speed_rank"]
-	lines = int(json["lines"])
-	lines_rank = json["lines_rank"]
 	box_score = json["box_score"]
 	box_score_per_line = json["box_score_per_line"]
 	box_score_per_line_rank = json["box_score_per_line_rank"]
 	combo_score = json["combo_score"]
 	combo_score_per_line = json["combo_score_per_line"]
 	combo_score_per_line_rank = json["combo_score_per_line_rank"]
-	seconds = json["seconds"]
-	seconds_rank = json["seconds_rank"]
+	lines = int(json["lines"])
+	lines_rank = json["lines_rank"]
+	lost = json["lost"]
 	score = int(json["score"])
 	score_rank = json["score_rank"]
-	died = json["died"]
+	seconds = json["seconds"]
+	seconds_rank = json["seconds_rank"]
+	speed = json["speed"]
+	speed_rank = json["speed_rank"]
+	top_out_count = json["top_out_count"]
+
+
+func topped_out() -> bool:
+	return top_out_count > 0

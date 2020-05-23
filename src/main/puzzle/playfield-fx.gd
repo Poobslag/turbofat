@@ -139,8 +139,8 @@ func _calculate_line_color(box_ints: Array) -> void:
 	var line_color_int
 	if box_ints.empty():
 		line_color_int = -1
-	elif box_ints.has(Playfield.BOX_INT_CAKE):
-		line_color_int = Playfield.BOX_INT_CAKE
+	elif box_ints.has(PuzzleTileMap.BoxInt.CAKE):
+		line_color_int = PuzzleTileMap.BoxInt.CAKE
 	elif box_ints.size() == 1 or box_ints[0] != _color_int:
 		line_color_int = box_ints[0]
 	else:
@@ -159,10 +159,10 @@ static func _tile_index_to_color(color_int: int) -> Color:
 	if color_int == -1:
 		# vegetable
 		color = VEGETABLE_LIGHT_COLOR
-	elif Playfield.is_snack_box(color_int):
+	elif PuzzleTileMap.is_snack_box(color_int):
 		# snack box
 		color = FOOD_LIGHT_COLORS[color_int]
-	elif Playfield.is_cake_box(color_int):
+	elif PuzzleTileMap.is_cake_box(color_int):
 		# cake box
 		color = RAINBOW_LIGHT_COLOR
 		color.h = rand_range(0.0, 1.0)

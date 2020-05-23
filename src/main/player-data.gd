@@ -49,9 +49,10 @@ Parameters:
 func get_best_scenario_result(scenario: String, property: String = "score") -> RankResult:
 	var best_performance: RankResult
 	if scenario_history.has(scenario):
-		for rank_result in scenario_history[scenario]:
+		for rank_result_obj in scenario_history[scenario]:
+			var rank_result: RankResult = rank_result_obj
 			if property == "seconds":
-				if rank_result.died:
+				if rank_result.lost:
 					# when comparing seconds, deaths disqualify your score
 					pass
 				elif best_performance == null or rank_result.get(property) < best_performance.get(property):

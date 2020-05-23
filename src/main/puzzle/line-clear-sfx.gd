@@ -15,10 +15,11 @@ onready var _combo_endless_sounds := [$ComboEndless00Sound, $ComboEndless01Sound
 
 onready var _line_erase_sounds := [$LineEraseSound1, $LineEraseSound2, $LineEraseSound3]
 
-onready var _combo_tracker: Playfield = $"../ComboTracker"
+onready var _combo_tracker: ComboTracker = $"../ComboTracker"
 
 func _play_thump_sound(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	var sound: AudioStreamPlayer = _line_erase_sounds[total_lines - remaining_lines - 1]
+	var sound_index := clamp(total_lines - remaining_lines - 1, 0, _line_erase_sounds.size() - 1)
+	var sound: AudioStreamPlayer = _line_erase_sounds[sound_index]
 	if sound:
 		sound.pitch_scale = rand_range(0.90, 1.10)
 		sound.play()
@@ -32,7 +33,10 @@ a repeating list where the repetition is concealed using a shepard tone.
 """
 func _play_combo_sound(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	var sound: AudioStreamPlayer
-	if _combo_tracker.combo < _combo_sounds.size():
+	if _combo_tracker.combo <= 0:
+		# lines were cleared from top out or another unusual case. don't play combo sounds
+		pass
+	elif _combo_tracker.combo < _combo_sounds.size():
 		sound = _combo_sounds[_combo_tracker.combo - 1]
 	else:
 		sound = _combo_endless_sounds[(_combo_tracker.combo - 1 - _combo_sounds.size()) % _combo_endless_sounds.size()]
@@ -41,7 +45,7 @@ func _play_combo_sound(y: int, total_lines: int, remaining_lines: int, box_ints:
 
 func _play_box_sound(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	var sound: AudioStreamPlayer
-	if box_ints.has(Playfield.BOX_INT_CAKE):
+	if box_ints.has(PuzzleTileMap.BoxInt.CAKE):
 		sound = $ClearCakePieceSound
 	elif not box_ints.empty():
 		sound = $ClearSnackPieceSound

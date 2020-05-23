@@ -169,23 +169,18 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 			target_lines = max_lpm * winish_condition.value / 60.0
 
 	# calculate raw player performance statistics
-	rank_result.lines = PuzzleScore.scenario_performance.lines
 	rank_result.box_score = PuzzleScore.scenario_performance.box_score
 	rank_result.combo_score = PuzzleScore.scenario_performance.combo_score
+	rank_result.lines = PuzzleScore.scenario_performance.lines
+	rank_result.lost = PuzzleScore.scenario_performance.lost
 	rank_result.score = PuzzleScore.scenario_performance.score
 	rank_result.seconds = PuzzleScore.scenario_performance.seconds
-	rank_result.died = PuzzleScore.scenario_performance.died
-	rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 1)
+	rank_result.top_out_count = PuzzleScore.scenario_performance.top_out_count
+	
 	rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 1)
 	rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \
 			/ _max_combo_score(max(rank_result.lines, 1))
-	
-	if rank_result.died:
-		# don't let the player commit suicide to randomly get an 'M' rank
-		rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 24)
-		rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 24)
-		rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \
-				/ _max_combo_score(max(rank_result.lines, 24))
+	rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 1)
 	
 	# calculate rank
 	rank_result.speed_rank = clamp(log(rank_result.speed / target_speed) / log(RDF_SPEED), 0, 999)
@@ -210,8 +205,8 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 		if winish_condition.type == Milestone.SCORE:
 			var tmp_speed := target_speed * pow(RDF_SPEED, tmp_overall_rank)
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
-			if (winish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
-					/ points_per_second < rank_result.seconds or PuzzleScore.scenario_performance.died:
+			if (winish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) / points_per_second \
+					< rank_result.seconds:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank
@@ -235,8 +230,20 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 		rank_result.score_rank = max(1, rank_result.score_rank)
 		rank_result.seconds_rank = max(1, rank_result.seconds_rank)
 	
-	if rank_result.died:
-		# can't go above S++ if the player dies
-		rank_result.lines_rank = max(1, rank_result.lines_rank)
+	if rank_result.topped_out() or rank_result.lost:
+		# if they lose without topping out, we still apply one top out penalty.
+		# this keeps people from hitting 'esc' to get a good rank
+		var penalty_count := max(1, rank_result.top_out_count)
+		var all_penalty := penalty_count * Global.scenario_settings.rank.top_out_penalty
+		rank_result.speed_rank = min(rank_result.speed_rank + all_penalty, 999)
+		rank_result.lines_rank = min(rank_result.lines_rank + all_penalty, 999)
+		rank_result.box_score_per_line_rank = min(rank_result.box_score_per_line_rank + all_penalty, 999)
+		rank_result.combo_score_per_line_rank = min(rank_result.combo_score_per_line_rank + all_penalty, 999)
+		rank_result.score_rank = min(rank_result.score_rank + all_penalty, 999)
+		rank_result.seconds_rank = min(rank_result.seconds_rank + all_penalty, 999)
+	
+	if rank_result.lost:
+		if winish_condition.type == Milestone.SCORE:
+			rank_result.seconds_rank = 999
 	
 	return rank_result

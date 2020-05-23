@@ -6,7 +6,7 @@ playfield.
 """
 
 # signal emitted when the current piece can't be placed in the playfield
-signal piece_spawn_blocked
+signal topped_out
 
 var _target_piece_pos: Vector2
 var _target_piece_orientation: int
@@ -22,7 +22,6 @@ var _gravity_delay_frames := 0
 
 onready var playfield: Playfield = $"../Playfield"
 onready var _next_piece_displays: NextPieceDisplays = $"../NextPieceDisplays"
-onready var _game_over_voices := [$GameOverVoice0, $GameOverVoice1, $GameOverVoice2, $GameOverVoice3, $GameOverVoice4]
 
 # settings and state for the currently active piece.
 var active_piece := ActivePiece.new(PieceTypes.piece_null)
@@ -99,9 +98,21 @@ func write_piece_to_playfield() -> bool:
 
 
 """
-Spawns a new piece at the top of the playfield.
+Called when the player tops out, but doesn't lose.
+
+Enters a state which waits for the playfield to make room for the current piece.
 """
-func _spawn_piece() -> void:
+func enter_top_out_state(top_out_frames: int) -> void:
+	$States.set_state($States/TopOut)
+	active_piece.spawn_delay = top_out_frames
+
+
+"""
+Spawns a new piece at the top of the playfield.
+
+Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
+"""
+func spawn_piece() -> bool:
 	var piece_type := _next_piece_displays.pop_next_piece()
 	active_piece = ActivePiece.new(piece_type)
 	tile_map_dirty = true
@@ -160,27 +171,11 @@ func _spawn_piece() -> void:
 			$MoveSound.play()
 	
 	# lose?
+	var topped_out: bool = false
 	if not _can_move_active_piece_to(active_piece.pos, active_piece.orientation):
-		$GameOverSound.play()
-		_game_over_voices[randi() % _game_over_voices.size()].play()
-		PuzzleScore.scenario_performance.died = true
-		emit_signal("piece_spawn_blocked")
-
-
-"""
-Returns 'true' if the specified position and location is unobstructed, and the active piece could fit there. Returns
-'false' if parts of this piece would be out of the playfield or obstructed by blocks.
-"""
-func _can_move_active_piece_to(pos: Vector2, orientation: int) -> bool:
-	return active_piece.can_move_piece_to(funcref(self, "_is_cell_blocked"), pos, orientation)
-
-
-"""
-Counts the number of frames an input has been held for. If the player is pressing the specified action button, this
-increments and returns the new frame count. Otherwise, this returns 0.
-"""
-func _increment_input_frames(frames: int, action: String) -> int:
-	return frames + 1 if Input.is_action_pressed(action) else 0
+		emit_signal("topped_out")
+		topped_out = true
+	return not topped_out
 
 
 """
@@ -257,6 +252,22 @@ func apply_player_input() -> bool:
 			_perform_lock_reset()
 			applied_player_input = true
 	return applied_player_input
+
+
+"""
+Returns 'true' if the specified position and location is unobstructed, and the active piece could fit there. Returns
+'false' if parts of this piece would be out of the playfield or obstructed by blocks.
+"""
+func _can_move_active_piece_to(pos: Vector2, orientation: int) -> bool:
+	return active_piece.can_move_piece_to(funcref(self, "_is_cell_blocked"), pos, orientation)
+
+
+"""
+Counts the number of frames an input has been held for. If the player is pressing the specified action button, this
+increments and returns the new frame count. Otherwise, this returns 0.
+"""
+func _increment_input_frames(frames: int, action: String) -> int:
+	return frames + 1 if Input.is_action_pressed(action) else 0
 
 
 """

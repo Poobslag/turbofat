@@ -51,5 +51,8 @@
     "type": "lines",
     "value": "200",
     "lenient-value": "150"
-  }
+  },
+  "lose-condition": [
+    "top-out 1"
+  ]
 }

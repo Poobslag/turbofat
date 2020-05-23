@@ -53,24 +53,29 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 		text += left + middle + right
 	text += "Total: ¥%s\n" % StringUtils.comma_sep(rank_result.score)
 	
+	# We add a '?' to make the player aware if their rank is adjusted because they topped out or lost.
+	var topped_out := "?" if rank_result.topped_out() or rank_result.lost else ""
+	
 	# Append grade information
 	text += "/////\n"
 	if finish_condition_type == Milestone.SCORE:
-		text += "Speed: %d (%s)\n" % [round(rank_result.speed * 200 / 60), Global.grade(rank_result.speed_rank)]
+		text += "Speed: %d%s (%s)\n" % [round(rank_result.speed * 200 / 60),
+				topped_out, Global.grade(rank_result.speed_rank)]
 	else:
-		text += "Lines: %d (%s)\n" % [rank_result.lines, Global.grade(rank_result.lines_rank)]
+		text += "Lines: %d%s (%s)\n" % [rank_result.lines,
+				topped_out, Global.grade(rank_result.lines_rank)]
 		
-	text += "/////Boxes: %d (%s)\n" % [round(rank_result.box_score_per_line * 10),
-			Global.grade(rank_result.box_score_per_line_rank)]
+	text += "/////Boxes: %d%s (%s)\n" % [round(rank_result.box_score_per_line * 10),
+			topped_out, Global.grade(rank_result.box_score_per_line_rank)]
 	
-	text += "/////Combos: %d (%s)\n" % [round(rank_result.combo_score_per_line * 10),
-			Global.grade(rank_result.combo_score_per_line_rank)]
+	text += "/////Combos: %d%s (%s)\n" % [round(rank_result.combo_score_per_line * 10),
+			topped_out, Global.grade(rank_result.combo_score_per_line_rank)]
 	
 	text += "/////\nOverall: "
 	text += "//////////"
 	if finish_condition_type == Milestone.SCORE:
 		var duration := StringUtils.format_duration(rank_result.seconds)
-		text += "%s (%s)\n" % [duration, Global.grade(rank_result.seconds_rank)]
+		text += "%s%s (%s)\n" % [duration, topped_out, Global.grade(rank_result.seconds_rank)]
 	else:
 		text += "(%s)\n" % Global.grade(rank_result.score_rank)
 	

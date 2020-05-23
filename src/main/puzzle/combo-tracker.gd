@@ -37,12 +37,12 @@ func add_combo_and_score(y: int, total_lines: int, remaining_lines: int, box_int
 	var combo_score: int = COMBO_SCORE_ARR[clamp(combo - 1, 0, COMBO_SCORE_ARR.size() - 1)]
 	var box_score := 0
 	for box_int in box_ints:
-		if Playfield.is_snack_box(box_int):
-			box_score += Global.scenario_settings.score_rules.snack_points
-		elif Playfield.is_cake_box(box_int):
-			box_score += Global.scenario_settings.score_rules.cake_points
+		if PuzzleTileMap.is_snack_box(box_int):
+			box_score += Global.scenario_settings.score.snack_points
+		elif PuzzleTileMap.is_cake_box(box_int):
+			box_score += Global.scenario_settings.score.cake_points
 		else:
-			box_score += Global.scenario_settings.score_rules.veg_points
+			box_score += Global.scenario_settings.score.veg_points
 	PuzzleScore.add_line_score(combo_score, box_score)
 
 
@@ -71,7 +71,7 @@ func _on_Playfield_box_made(x: int, y: int, width: int, height: int, color_int: 
 
 
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	if Global.scenario_settings.combo_break_conditions.veg_row:
+	if Global.scenario_settings.combo_break.veg_row:
 		if box_ints.empty():
 			piece_broke_combo = true
 	piece_continued_combo = true
@@ -82,7 +82,7 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 
 func _on_Playfield_after_piece_written() -> void:
 	if piece_broke_combo:
-		combo_break = Global.scenario_settings.combo_break_conditions.pieces
+		combo_break = Global.scenario_settings.combo_break.pieces
 		break_combo()
 		emit_signal("combo_break_changed", combo_break)
 	elif piece_continued_combo:
@@ -90,7 +90,7 @@ func _on_Playfield_after_piece_written() -> void:
 	else:
 		# piece did not continue or break the combo; increment combo_break
 		combo_break += 1
-		if combo_break >= Global.scenario_settings.combo_break_conditions.pieces:
+		if combo_break >= Global.scenario_settings.combo_break.pieces:
 			break_combo()
 		emit_signal("combo_break_changed", combo_break)
 	

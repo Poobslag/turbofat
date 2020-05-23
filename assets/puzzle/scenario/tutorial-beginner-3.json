@@ -95,14 +95,17 @@
     "type": "score",
     "value": "100"
   },
+  "lose-condition": [
+    "top-out 999999"
+  ],
   "piece-types": [
     "start-piece-q", "start-piece-l"
   ],
   "rank": [
-    "box-factor-167"
+    "box-factor 1.667"
   ],
   "score": [
-    "cake-all-20"
+    "cake-all 20"
   ],
   "start-level": "0"
 }
