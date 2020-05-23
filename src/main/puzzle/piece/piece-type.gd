@@ -66,3 +66,7 @@ Returns the coordinate (subtile column and row) of the autotile variation for th
 """
 func get_cell_color(orientation: int, cell_index: int) -> Vector2:
 	return color_arr[orientation][cell_index]
+
+
+func _to_string() -> String:
+	return string

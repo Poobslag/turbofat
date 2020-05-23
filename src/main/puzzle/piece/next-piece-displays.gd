@@ -26,6 +26,14 @@ func pop_next_piece() -> PieceType:
 	return _piece_queue.pop_next_piece()
 
 
+func set_piece_types(types: Array) -> void:
+	_piece_queue.set_piece_types(types)
+
+
+func set_piece_start_types(types: Array) -> void:
+	_piece_queue.set_piece_start_types(types)
+
+
 """
 Adds a new next piece display.
 """

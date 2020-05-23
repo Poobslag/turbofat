@@ -63,8 +63,11 @@ func _ready() -> void:
 		Global.customer_fatten = false
 		$Puzzle/CustomerView.summon_customer()
 		$Puzzle.hide_chalkboard()
+	else:
+		Global.customer_switch = true
+		Global.customer_fatten = true
 	
-	_prepare_blocks_start()
+	_prepare_blocks()
 
 
 func _physics_process(_delta: float) -> void:
@@ -217,10 +220,25 @@ func _on_PuzzleScore_game_prepared() -> void:
 
 
 func _on_PuzzleScore_after_game_prepared() -> void:
-	_prepare_blocks_start()
+	_prepare_blocks()
+	_prepare_piece_types()
 
 
-func _prepare_blocks_start() -> void:
+func _prepare_piece_types() -> void:
+	if Global.scenario_settings.piece_types.types.empty():
+		# use default piece types
+		pass
+	else:
+		$Puzzle.set_piece_types(Global.scenario_settings.piece_types.types)
+	
+	if Global.scenario_settings.piece_types.start_types.empty():
+		# use default start piece
+		pass
+	else:
+		$Puzzle.set_piece_start_types(Global.scenario_settings.piece_types.start_types)
+
+
+func _prepare_blocks() -> void:
 	var blocks_start := Global.scenario_settings.blocks_start
 	for cell in blocks_start.used_cells:
 		$Puzzle.set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])

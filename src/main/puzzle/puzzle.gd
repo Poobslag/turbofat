@@ -87,6 +87,18 @@ func milevalue() -> Label:
 	return $Chalkboard/MilestoneHud/Value as Label
 
 
+func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
+	$Playfield.set_block(pos, tile, autotile_coord)
+
+
+func set_piece_types(types: Array) -> void:
+	$NextPieceDisplays.set_piece_types(types)
+
+
+func set_piece_start_types(types: Array) -> void:
+	$NextPieceDisplays.set_piece_start_types(types)
+
+
 """
 Triggers the eating animation and makes the customer fatter. Accepts a 'fatness_pct' parameter which defines how
 much fatter the customer should get. We can calculate how fat they should be, and a value of 0.4 means the customer
@@ -142,7 +154,3 @@ func _on_PuzzleScore_combo_ended() -> void:
 	if PuzzleScore.game_active and Global.customer_switch:
 		$CustomerView.play_goodbye_voice()
 		$CustomerView.scroll_to_new_customer()
-
-
-func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
-	$Playfield.set_block(pos, tile, autotile_coord)
