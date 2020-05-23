@@ -10,7 +10,7 @@ func get_best_text(scenario_name: String) -> String:
 	var has_lived := false
 	if PlayerData.scenario_history.has(scenario_name):
 		for rank_result in PlayerData.scenario_history[scenario_name]:
-			if not rank_result.died:
+			if not rank_result.topped_out():
 				has_lived = true
 				break
 	

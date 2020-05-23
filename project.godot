@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/active-piece.gd"
 }, {
+"base": "Reference",
+"class": "BlocksStart",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario/blocks-start.gd"
+}, {
 "base": "Node",
 "class": "ChatAdvancer",
 "language": "GDScript",
@@ -53,6 +58,11 @@ _global_script_classes=[ {
 "class": "CheatCodeDetector",
 "language": "GDScript",
 "path": "res://src/main/ui/cheat-code-detector.gd"
+}, {
+"base": "Reference",
+"class": "ComboBreakRules",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario/combo-break-rules.gd"
 }, {
 "base": "Node",
 "class": "ComboTracker",
@@ -103,6 +113,11 @@ _global_script_classes=[ {
 "class": "LevelChunkControl",
 "language": "GDScript",
 "path": "res://src/main/puzzle/editor/level-chunk-control.gd"
+}, {
+"base": "Reference",
+"class": "LoseConditionRules",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario/lose-condition-rules.gd"
 }, {
 "base": "Reference",
 "class": "Milestone",
@@ -159,6 +174,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/piece-type.gd"
 }, {
+"base": "Reference",
+"class": "PieceTypeRules",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario/piece-type-rules.gd"
+}, {
 "base": "Control",
 "class": "Playfield",
 "language": "GDScript",
@@ -184,6 +204,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/rank-result.gd"
 }, {
+"base": "Reference",
+"class": "RankRules",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario/rank-rules.gd"
+}, {
+"base": "Reference",
+"class": "RuleParser",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario/rule-parser.gd"
+}, {
 "base": "VBoxContainer",
 "class": "ScenarioButton",
 "language": "GDScript",
@@ -192,12 +222,17 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "ScenarioPerformance",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario-performance.gd"
+"path": "res://src/main/puzzle/scenario/scenario-performance.gd"
 }, {
 "base": "Reference",
 "class": "ScenarioSettings",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario-settings.gd"
+"path": "res://src/main/puzzle/scenario/scenario-settings.gd"
+}, {
+"base": "Reference",
+"class": "ScoreRules",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario/score-rules.gd"
 }, {
 "base": "Label",
 "class": "SentenceLabel",
@@ -231,6 +266,7 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ActivePiece": "",
+"BlocksStart": "",
 "ChatAdvancer": "",
 "ChatAppearance": "",
 "ChatChoiceButton": "",
@@ -239,6 +275,7 @@ _global_script_class_icons={
 "ChatLibrary": "",
 "ChatTree": "",
 "CheatCodeDetector": "",
+"ComboBreakRules": "",
 "ComboTracker": "",
 "Connect": "",
 "Customer": "",
@@ -249,6 +286,7 @@ _global_script_class_icons={
 "JSONBeautifier": "",
 "LevelChunk": "",
 "LevelChunkControl": "",
+"LoseConditionRules": "",
 "Milestone": "",
 "MoneyLabel": "",
 "MultiOutlineSprite": "",
@@ -260,14 +298,18 @@ _global_script_class_icons={
 "PieceQueue": "",
 "PieceSpeed": "",
 "PieceType": "",
+"PieceTypeRules": "",
 "Playfield": "",
 "Puzzle": "",
 "PuzzleTileMap": "",
 "RankCalculator": "",
 "RankResult": "",
+"RankRules": "",
+"RuleParser": "",
 "ScenarioButton": "",
 "ScenarioPerformance": "",
 "ScenarioSettings": "",
+"ScoreRules": "",
 "SentenceLabel": "",
 "SentenceSprite": "",
 "SmoothPath": "",
@@ -297,7 +339,7 @@ PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"
 PuzzleScore="*res://src/main/puzzle/puzzle-score.gd"
 ResourceCache="*res://src/main/ResourceCache.tscn"
-ScenarioLibrary="*res://src/main/puzzle/scenario-library.gd"
+ScenarioLibrary="*res://src/main/puzzle/scenario/scenario-library.gd"
 StringUtils="*res://src/main/string-utils.gd"
 
 [display]

@@ -5,12 +5,11 @@ Represents a minimal puzzle game with a piece, playfield of pieces, and next pie
 class to add goals, win conditions, challenges or time limits.
 """
 
-signal line_cleared(y, total_lines, remaining_lines, box_ints)
-
 # signal emitted a few seconds after the game ends, for displaying messages
 signal after_game_ended
-
 signal back_button_pressed
+signal line_cleared(y, total_lines, remaining_lines, box_ints)
+signal topped_out
 
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 
@@ -20,6 +19,11 @@ func _ready() -> void:
 	
 	for i in range(3):
 		$CustomerView.summon_customer(i)
+
+
+func _input(event: InputEvent) -> void:
+	if PuzzleScore.game_active and event.is_action_pressed("ui_cancel"):
+		$TopOutTracker.make_player_lose()
 
 
 """
@@ -128,16 +132,13 @@ func _on_Hud_start_button_pressed() -> void:
 
 
 """
-When the current piece can't be placed, we end the game and emit the appropriate signals.
-"""
-func _on_PieceManager_piece_spawn_blocked() -> void:
-	end_game(2.4, "Game over")
-
-
-"""
 Relays the 'line_cleared' signal to any listeners, and triggers the 'customer feeding' animation
 """
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+	if not $Playfield.awarding_line_clear_points:
+		# lines were cleared from top out or another unusual case. don't feed the customer
+		return
+	
 	# Calculate whether or not the customer should say something positive about the combo. The customer talks after
 	var customer_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 5 \
 			and total_lines > ($Playfield/ComboTracker.combo + 1) % 3

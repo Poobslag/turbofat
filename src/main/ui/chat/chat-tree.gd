@@ -75,7 +75,7 @@ func advance(link_index := -1) -> bool:
 
 
 """
-Populates this object from a dictionary. Used for loading json data.
+Populates this object with json data.
 """
 func from_dict(json: Dictionary) -> void:
 	for key in json.keys():

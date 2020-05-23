@@ -71,9 +71,9 @@ func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines
 		var glob_count: int
 		if playfield.get_cell(x, y) == 1:
 			color_int = playfield.get_cell_autotile_coord(x, y).y
-			if Playfield.is_snack_box(color_int):
+			if PuzzleTileMap.is_snack_box(color_int):
 				glob_count = 2
-			elif Playfield.is_cake_box(color_int):
+			elif PuzzleTileMap.is_cake_box(color_int):
 				glob_count = 4
 		elif playfield.get_cell(x, y) == 2:
 			# vegetable
@@ -88,9 +88,9 @@ func _on_Playfield_box_made(left_x: int, top_y: int, width: int, height: int, co
 	for y in range(top_y, top_y + height):
 		for x in range(left_x, left_x + width):
 			var glob_count: int
-			if Playfield.is_snack_box(color_int):
+			if PuzzleTileMap.is_snack_box(color_int):
 				glob_count = 1
-			elif Playfield.is_cake_box(color_int):
+			elif PuzzleTileMap.is_cake_box(color_int):
 				glob_count = 2
 			_spawn_globs(x, y, color_int, glob_count)
 
@@ -105,8 +105,8 @@ Parameters:
 """
 func _spawn_globs(x: int, y: int, color_int: int, glob_count: int) -> void:
 	for _i in range(glob_count):
-		if Playfield.is_snack_box(color_int):
+		if PuzzleTileMap.is_snack_box(color_int):
 			var color: Color = Playfield.FOOD_COLORS[color_int]
 			spawn_glob(color, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + playfield.rect_position)
-		elif Playfield.is_cake_box(color_int):
+		elif PuzzleTileMap.is_cake_box(color_int):
 			spawn_rainbow_glob(Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + playfield.rect_position)

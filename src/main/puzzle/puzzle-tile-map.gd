@@ -4,6 +4,14 @@ extends TileMap
 TileMap containing puzzle blocks such as pieces, boxes and vegetables.
 """
 
+enum BoxInt {
+	BROWN,
+	PINK,
+	BREAD,
+	WHITE,
+	CAKE,
+}
+
 const TILE_EMPTY := -1
 const TILE_PIECE := 0 # part of an intact piece
 const TILE_BOX := 1 # part of a snack/cake box
@@ -55,3 +63,11 @@ func make_box(x: int, y: int, width: int, height: int, box_int: int) -> void:
 	for curr_y in range(y, y + height):
 		disconnect_block(x, curr_y, Connect.LEFT)
 		disconnect_block(x + width - 1, curr_y, Connect.RIGHT)
+
+
+static func is_snack_box(box_int: int) -> bool:
+	return box_int in [BoxInt.BROWN, BoxInt.PINK, BoxInt.BREAD, BoxInt.WHITE]
+
+
+static func is_cake_box(box_int: int) -> bool:
+	return box_int == BoxInt.CAKE

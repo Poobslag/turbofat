@@ -1,13 +1,11 @@
 extends State
 """
-State: The piece will spawn soon.
+State: The player has topped out, but the game is still running. We're waiting for the playfield to make room for the
+current piece.
 """
 
 func update(piece_manager: PieceManager) -> String:
 	var new_state_name := ""
 	if frames >= piece_manager.active_piece.spawn_delay:
-		if piece_manager.spawn_piece():
-			new_state_name = "MovePiece"
-		else:
-			new_state_name = "TopOut"
+		new_state_name = "MovePiece"
 	return new_state_name

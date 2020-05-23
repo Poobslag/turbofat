@@ -1,27 +1,27 @@
 [gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://src/main/puzzle/scenario.gd" type="Script" id=1]
-[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/main/puzzle/Puzzle.tscn" type="PackedScene" id=3]
-[ext_resource path="res://assets/ui/excellent.wav" type="AudioStream" id=4]
-[ext_resource path="res://assets/ui/matchend.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/ui/applause.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/puzzle/levelup.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=8]
-[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=9]
-[ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=10]
-[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=1]
+[ext_resource path="res://assets/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=3]
+[ext_resource path="res://src/main/puzzle/scenario/scenario.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=5]
+[ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/puzzle/Puzzle.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/ui/excellent.wav" type="AudioStream" id=9]
+[ext_resource path="res://assets/ui/matchend.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/ui/applause.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/puzzle/levelup.wav" type="AudioStream" id=12]
 
 [node name="Scenario" type="Control"]
 margin_right = 1024.0
 margin_bottom = 600.0
-script = ExtResource( 1 )
+script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Puzzle" parent="." instance=ExtResource( 3 )]
+[node name="Puzzle" parent="." instance=ExtResource( 7 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_right = 0.0
@@ -33,14 +33,14 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 110.0
 margin_bottom = 40.0
-custom_fonts/font = ExtResource( 2 )
+custom_fonts/font = ExtResource( 1 )
 text = "abcd"
-script = ExtResource( 10 )
+script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ResultsHud" parent="." instance=ExtResource( 12 )]
+[node name="ResultsHud" parent="." instance=ExtResource( 6 )]
 
 [node name="TutorialHud" type="Control" parent="."]
 visible = false
@@ -56,27 +56,27 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 345.0
 margin_bottom = 305.0
-custom_styles/normal = ExtResource( 9 )
-custom_fonts/normal_font = ExtResource( 8 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/normal_font = ExtResource( 2 )
 text = "Oh my, you're not supposed to know how to do that! ...But yes, snack boxes get you $15 when you clear them. Maybe more if you're clever."
 
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 11 )
 bus = "Main Bus"
 
 [node name="LevelUpSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
+stream = ExtResource( 12 )
 bus = "Main Bus"
 
 [node name="ExcellentSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 4 )
+stream = ExtResource( 9 )
 bus = "Main Bus"
 
 [node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 5 )
+stream = ExtResource( 10 )
 bus = "Main Bus"
 
-[node name="CheatCodeDetector" parent="." instance=ExtResource( 11 )]
+[node name="CheatCodeDetector" parent="." instance=ExtResource( 8 )]
 codes = [ "delays" ]
 [connection signal="after_game_ended" from="Puzzle" to="ResultsHud" method="_on_Puzzle_after_game_ended"]
 [connection signal="back_button_pressed" from="Puzzle" to="." method="_on_Puzzle_back_button_pressed"]

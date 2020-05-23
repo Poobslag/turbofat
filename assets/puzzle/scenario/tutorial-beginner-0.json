@@ -199,14 +199,17 @@
     "type": "score",
     "value": "100"
   },
+  "lose-condition": [
+    "top-out 999999"
+  ],
+  "other": [
+    "tutorial"
+  ],
   "piece-types": [
     "piece-t"
   ],
   "start-level": "0",
   "score": [
-    "cake-all-20"
-  ],
-  "other": [
-    "tutorial"
+    "cake-all 20"
   ]
 }

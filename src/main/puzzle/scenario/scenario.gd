@@ -29,6 +29,7 @@ onready var _milevalue: Label = $Puzzle.milevalue()
 onready var _milebar: Label = $Puzzle.milebar()
 
 func _ready() -> void:
+	PuzzleScore.reset() # erase any lines/score from previous games
 	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
@@ -281,9 +282,9 @@ func _on_PuzzleScore_game_ended() -> void:
 	
 	match _winish_type():
 		Milestone.SCORE:
-			if not PuzzleScore.scenario_performance.died and rank_result.seconds_rank < 24: $ApplauseSound.play()
+			if not PuzzleScore.scenario_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
 		_:
-			if not PuzzleScore.scenario_performance.died and rank_result.score_rank < 24: $ApplauseSound.play()
+			if not PuzzleScore.scenario_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
 
 
 func _on_Puzzle_back_button_pressed() -> void:

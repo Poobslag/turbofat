@@ -219,6 +219,9 @@
     "type": "score",
     "value": "100"
   },
+  "lose-condition": [
+    "top-out 999999"
+  ],
   "other": [
     "tutorial"
   ],
@@ -226,7 +229,7 @@
     "piece-o"
   ],
   "score": [
-    "cake-all-20"
+    "cake-all 20"
   ],
   "start-level": "0"
 }

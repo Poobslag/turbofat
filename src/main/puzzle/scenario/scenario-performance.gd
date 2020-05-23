@@ -19,5 +19,11 @@ var combo_score := 0
 # overall score
 var score := 0
 
-# did the player die?
-var died := false
+# how many times did the player top out?
+var top_out_count := 0
+
+# did the player lose?
+var lost := false
+
+func topped_out() -> bool:
+	return top_out_count > 0

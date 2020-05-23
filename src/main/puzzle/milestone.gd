@@ -35,7 +35,7 @@ var type: int
 var value: int
 
 """
-Populates this object from a dictionary. Used for loading json data.
+Populates this object with json data.
 """
 func from_dict(json: Dictionary) -> void:
 	type = JSON_MILESTONE_TYPES[json["type"]]

@@ -50,5 +50,8 @@
   "win-condition": {
     "type": "lines",
     "value": "100"
-  }
+  },
+  "lose-condition": [
+    "top-out 1"
+  ]
 }

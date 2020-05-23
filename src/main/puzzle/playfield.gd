@@ -10,16 +10,6 @@ signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
 signal line_cleared(y, total_lines, remaining_lines, box_ints)
 signal after_piece_written
 
-enum BoxInt {
-	BROWN,
-	PINK,
-	BREAD,
-	WHITE,
-	CAKE,
-}
-
-const BOX_INT_CAKE := BoxInt.CAKE
-
 # percent of the line clear delay which should be spent erasing lines.
 # 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
 const LINE_ERASE_TIMING_PCT := 0.667
@@ -38,8 +28,11 @@ const FOOD_COLORS: Array = [
 const ROW_COUNT = 20
 const COL_COUNT = 9
 
-# lines which are currently being cleared
-var cleared_lines := []
+# 'true' if points are awarded for the current line clears. Top outs result in line clears, but the player isn't
+# awarded points for them.
+var awarding_line_clear_points: bool = true
+var lines_being_cleared := []
+
 var _cleared_line_index := 0
 
 # Stores timing values to ensure lines are erased one at a time with consistent timing.
@@ -69,14 +62,14 @@ func _physics_process(delta: float) -> void:
 		_remaining_box_build_frames -= 1
 		if _remaining_box_build_frames <= 0:
 			if _remaining_line_clear_frames > 0:
-				_process_line_clear()
+				_schedule_full_row_line_clears()
 			else:
 				emit_signal("after_piece_written")
 	elif _remaining_line_clear_frames > 0:
-		if _cleared_line_index < cleared_lines.size() \
+		if _cleared_line_index < lines_being_cleared.size() \
 				and _remaining_line_clear_frames <= _remaining_line_clear_timings[_cleared_line_index]:
-			clear_line(cleared_lines[_cleared_line_index], cleared_lines.size(),
-					cleared_lines.size() - _cleared_line_index - 1)
+			clear_line(lines_being_cleared[_cleared_line_index], lines_being_cleared.size(),
+					lines_being_cleared.size() - _cleared_line_index - 1)
 			_cleared_line_index += 1
 
 		_remaining_line_clear_frames -= 1
@@ -109,20 +102,15 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 		_set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
 	
 	_remaining_box_build_frames = 0
-	if not death_piece and _process_boxes():
-		# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
-		_remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
-
 	_remaining_line_clear_frames = 0
-	if not death_piece and _any_row_is_full():
-		# set at least line clear frame; processing occurs when the frame goes from 1 -> 0
-		_remaining_line_clear_frames = max(1, PieceSpeeds.current_speed.line_clear_delay)
 	
-		if _remaining_box_build_frames <= 0:
-			# process the line clear if we're not already making a box
-			_process_line_clear()
+	if not death_piece:
+		_process_boxes()
+		_schedule_full_row_line_clears()
 	
 	if _remaining_box_build_frames == 0 and _remaining_line_clear_frames == 0:
+		# If any boxes are being made or lines are being cleared, we emit the
+		# signal later. Otherwise we emit it now.
 		emit_signal("after_piece_written")
 	
 	return _remaining_line_clear_frames > 0
@@ -148,10 +136,16 @@ func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 			box_ints.append(autotile_coord.y)
 	box_ints.shuffle()
 	
-	$ComboTracker.add_combo_and_score(y, total_lines, remaining_lines, box_ints)
+	if awarding_line_clear_points:
+		$ComboTracker.add_combo_and_score(y, total_lines, remaining_lines, box_ints)
+	
 	emit_signal("before_line_cleared", y, total_lines, remaining_lines, box_ints)
 	_erase_row(y)
 	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
+
+
+func break_combo() -> void:
+	$ComboTracker.break_combo()
 
 
 """
@@ -160,6 +154,8 @@ Makes a box at the specified location.
 Boxes are made when the player forms a 3x3, 3x4, 3x5 rectangle from intact pieces.
 """
 func make_box(x: int, y: int, width: int, height: int, box_int: int) -> void:
+	# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
+	_remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
 	$TileMapClip/TileMap.make_box(x, y, width, height, box_int)
 	emit_signal("box_made", x, y, width, height, box_int)
 
@@ -169,9 +165,9 @@ Deletes all erased rows from the playfield, shifting everything above them down 
 """
 func _delete_rows() -> void:
 	_should_play_line_fall_sound = false
-	for y in cleared_lines:
+	for y in lines_being_cleared:
 		_delete_row(y)
-	cleared_lines = []
+	lines_being_cleared = []
 	if _should_play_line_fall_sound:
 		$LineFallSound.play()
 
@@ -273,7 +269,7 @@ func _process_box(end_x: int, end_y: int, width: int, height: int) -> bool:
 	if width == 3 and height == 3:
 		box_int = get_cell_autotile_coord(start_x, start_y).y
 	else:
-		box_int = BOX_INT_CAKE
+		box_int = PuzzleTileMap.BoxInt.CAKE
 	make_box(start_x, start_y, width, height, box_int)
 	
 	return true
@@ -299,29 +295,30 @@ func get_cell_autotile_coord(x: int, y:int) -> Vector2:
 	return $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
 
 
-static func is_snack_box(box_int: int) -> bool:
-	return box_int in [BoxInt.BROWN, BoxInt.PINK, BoxInt.BREAD, BoxInt.WHITE]
-
-
-static func is_cake_box(box_int: int) -> bool:
-	return box_int == BOX_INT_CAKE
+func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_points: bool = true) -> void:
+	lines_being_cleared = lines_to_clear
+	awarding_line_clear_points = award_points
+	
+	# Calculate the timing values when lines will be cleared. Set at least line
+	# clear frame; processing occurs when the frame goes from 1 -> 0
+	_remaining_line_clear_frames = max(1, line_clear_delay)
+	_remaining_line_clear_timings.clear()
+	var _line_erase_timing_window := LINE_ERASE_TIMING_PCT * _remaining_line_clear_frames
+	var _per_line_frame_delay := floor(_line_erase_timing_window / max(1, lines_being_cleared.size() - 1))
+	for i in range(lines_being_cleared.size()):
+		_remaining_line_clear_timings.append(_remaining_line_clear_frames - i * _per_line_frame_delay)
 
 
 """
 Marks any full lines in the playfield to be cleared later.
 """
-func _process_line_clear() -> void:
+func _schedule_full_row_line_clears() -> void:
+	var lines_to_clear := []
 	for y in range(ROW_COUNT):
 		if _row_is_full(y):
-			cleared_lines.append(y)
-
-	if cleared_lines:
-		# Calculate the timing values when lines will be cleared.
-		_remaining_line_clear_timings.clear()
-		var _line_erase_timing_window := LINE_ERASE_TIMING_PCT * _remaining_line_clear_frames
-		var _per_line_frame_delay := floor(_line_erase_timing_window / max(1, cleared_lines.size() - 1))
-		for i in range(cleared_lines.size()):
-			_remaining_line_clear_timings.append(_remaining_line_clear_frames - i * _per_line_frame_delay)
+			lines_to_clear.append(y)
+	if lines_to_clear:
+		schedule_line_clears(lines_to_clear, PieceSpeeds.current_speed.line_clear_delay)
 
 
 """

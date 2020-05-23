@@ -160,9 +160,8 @@ func _fill_remaining_pieces() -> void:
 			if new_piece_index < new_pieces.size():
 				extra_piece_types.remove(extra_piece_types.rfind(new_pieces[new_piece_index]))
 		if extra_piece_types[0] == PieceTypes.piece_o:
-			# the o piece is awful. it doesn't show up as often. it still shows up
+			# the o piece is awful, so it comes 10% less often
 			extra_piece_types.shuffle()
-			print("that was nice of me. have an %s instead" % extra_piece_types[0].string)
 		new_pieces.insert(new_piece_index, extra_piece_types[0])
 		
 		_pieces += new_pieces
