@@ -92,5 +92,6 @@ func _on_Exit_pressed() -> void:
 	var target_scene := "res://src/main/ui/ScenarioMenu.tscn"
 	if not ResourceCache.is_done():
 		# when launched standalone, we redirect to the loading screen to avoid jitter
+		ResourceCache.minimal_resources = false
 		target_scene = "res://src/main/ui/LoadingScreen.tscn"
 	get_tree().change_scene(target_scene)

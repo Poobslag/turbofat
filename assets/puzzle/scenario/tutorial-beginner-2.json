@@ -222,6 +222,9 @@
   "other": [
     "tutorial"
   ],
+  "piece-types": [
+    "piece-o"
+  ],
   "score": [
     "cake-all-20"
   ],

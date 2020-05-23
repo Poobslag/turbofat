@@ -5,6 +5,7 @@ Queue of upcoming randomized pieces.
 This queue stores the upcoming pieces so they can be displayed, and randomizes them according to some complex rules.
 """
 
+
 # minimum number of next _pieces in the queue, before we add more
 const MIN_SIZE := 50
 
@@ -15,6 +16,15 @@ The algorithm calculates five pieces which make a small and large box and shuffl
 of beginning every game with 3x3 boxes, and mitigates the variance in starting positions.
 """
 var _pieces := []
+
+# default pieces to pull from if none are provided by the scenario
+var _default_piece_types := PieceTypes.all_types
+
+# piece types to choose from. if empty, reverts to the default 8 types (jlopqtuv)
+var _piece_types := []
+
+# pieces to prepend to the piece queue before a game begins. these pieces are shuffled
+var _piece_start_types := []
 
 func _init() -> void:
 	# Ensure pieces are random
@@ -46,6 +56,16 @@ func get_next_piece(index: int) -> PieceType:
 	return _pieces[index]
 
 
+func set_piece_types(types: Array) -> void:
+	_piece_types = types
+	clear()
+
+
+func set_piece_start_types(types: Array) -> void:
+	_piece_start_types = types
+	clear()
+
+
 """
 Fills the queue with randomized pieces.
 
@@ -60,45 +80,57 @@ func _fill() -> void:
 
 """
 Initializes an empty queue with a set of starting pieces.
-
-The algorithm calculates five pieces which make a small and large box and shuffles them. This undermines the strategy
-of beginning every game with 3x3 boxes, and mitigates the variance in starting positions.
 """
 func _fill_initial_pieces() -> void:
-	# calculate five _pieces which can make a 3x3 and either a 3x4 or 3x5
-	var all_threes := [
-		[PieceTypes.piece_j, PieceTypes.piece_p],
-		[PieceTypes.piece_l, PieceTypes.piece_q],
-		[PieceTypes.piece_o, PieceTypes.piece_v],
-		[PieceTypes.piece_t, PieceTypes.piece_u]
-	]
-	_pieces += all_threes[randi() % all_threes.size()]
-	if randf() > 0.5:
-		var all_quads := [
-			[PieceTypes.piece_j, PieceTypes.piece_t, PieceTypes.piece_t],
-			[PieceTypes.piece_l, PieceTypes.piece_t, PieceTypes.piece_t],
-			[PieceTypes.piece_j, PieceTypes.piece_j, PieceTypes.piece_o],
-			[PieceTypes.piece_l, PieceTypes.piece_l, PieceTypes.piece_o],
-			[PieceTypes.piece_j, PieceTypes.piece_l, PieceTypes.piece_o]
+	if not _piece_types:
+		"""
+		Default piece selection:
+		1. Three same-size pieces which don't make a cake block; lot, jot, jlt or pqu
+		2. A piece which doesn't make a snack block
+		3. A piece which does make a snack block
+		4. The remaining three pieces get appended to the end
+		"""
+		var all_bad_starts := [
+			[PieceTypes.piece_l, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_p, PieceTypes.piece_q],
+			[PieceTypes.piece_l, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_p, PieceTypes.piece_v],
+			[PieceTypes.piece_l, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_p, PieceTypes.piece_u],
+			
+			[PieceTypes.piece_j, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_q, PieceTypes.piece_p],
+			[PieceTypes.piece_o, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_q, PieceTypes.piece_v],
+			[PieceTypes.piece_t, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_q, PieceTypes.piece_u],
+			
+			[PieceTypes.piece_j, PieceTypes.piece_l, PieceTypes.piece_t, PieceTypes.piece_v, PieceTypes.piece_p],
+			[PieceTypes.piece_j, PieceTypes.piece_l, PieceTypes.piece_t, PieceTypes.piece_v, PieceTypes.piece_q],
+			[PieceTypes.piece_j, PieceTypes.piece_l, PieceTypes.piece_t, PieceTypes.piece_v, PieceTypes.piece_u],
+			
+			[PieceTypes.piece_p, PieceTypes.piece_q, PieceTypes.piece_u, PieceTypes.piece_o, PieceTypes.piece_j],
+			[PieceTypes.piece_p, PieceTypes.piece_q, PieceTypes.piece_u, PieceTypes.piece_o, PieceTypes.piece_l],
+			[PieceTypes.piece_p, PieceTypes.piece_q, PieceTypes.piece_u, PieceTypes.piece_o, PieceTypes.piece_t],
 		]
-		_pieces += all_quads[randi() % all_quads.size()]
-	else:
-		var all_pentos := [
-			[PieceTypes.piece_p, PieceTypes.piece_u, PieceTypes.piece_v],
-			[PieceTypes.piece_q, PieceTypes.piece_u, PieceTypes.piece_v],
-			[PieceTypes.piece_p, PieceTypes.piece_q, PieceTypes.piece_v]
-		]
-		_pieces += all_pentos[randi() % all_pentos.size()]
-	
-	# shuffle the five pieces, ensuring no pieces appear back to back
-	for _mercy in range(1000):
+		_pieces += all_bad_starts[randi() % all_bad_starts.size()]
 		_pieces.shuffle()
-		var no_touching_pieces := true
-		for from_index in range(_pieces.size() - 1):
-			if _pieces[from_index] == _pieces[from_index + 1]:
-				no_touching_pieces = false
-		if no_touching_pieces:
-			break
+		
+		var _other_pieces := shuffled_piece_types()
+		for piece in _other_pieces:
+			if not _pieces.has(piece):
+				_pieces.push_back(piece)
+	
+	if _piece_start_types:
+		var pieces_tmp := _piece_start_types.duplicate()
+		pieces_tmp.shuffle()
+		for piece in pieces_tmp:
+			if _pieces.empty() or _pieces[0] != piece:
+				# avoid prepending duplicate pieces
+				_pieces.push_front(piece)
+
+
+func shuffled_piece_types() -> Array:
+	var result := _piece_types
+	if not result:
+		result = _default_piece_types
+	result = result.duplicate()
+	result.shuffle()
+	return result
 
 
 """
@@ -109,22 +141,28 @@ avoids pulling the same piece back to back. With this algorithm you're always ab
 extra piece acts as an helpful tool for 3x4 boxes and 3x5 boxes, or an annoying deterrent for 3x3 boxes.
 """
 func _fill_remaining_pieces() -> void:
+	
 	while _pieces.size() < MIN_SIZE:
 		# fill a bag with one of each piece and one extra; draw them out in a random order
-		var new_pieces := PieceTypes.all_types.duplicate()
-		new_pieces.shuffle()
+		var new_pieces := shuffled_piece_types()
 		
-		# avoid having two of the same piece consecutively
-		if new_pieces[0] == _pieces.back():
+		# avoid having two of the same piece consecutively, if we have at least 3 pieces to choose from
+		if new_pieces[0] == _pieces.back() and new_pieces.size() >= 3:
 			new_pieces.pop_front()
 			new_pieces.insert(int(rand_range(1, new_pieces.size() + 1)), _pieces.back())
 		
 		# add one extra piece
 		var new_piece_index := int(rand_range(1, new_pieces.size() + 1))
-		var extra_piece_types: Array = PieceTypes.all_types.duplicate()
-		extra_piece_types.remove(extra_piece_types.rfind(new_pieces[new_piece_index - 1]))
-		if new_piece_index < new_pieces.size():
-			extra_piece_types.remove(extra_piece_types.rfind(new_pieces[new_piece_index]))
-		new_pieces.insert(new_piece_index, extra_piece_types[randi() % extra_piece_types.size()])
+		var extra_piece_types: Array = shuffled_piece_types()
+		if extra_piece_types.size() >= 3:
+			# check the neighboring pieces, and remove those from the pieces we're picking from
+			extra_piece_types.remove(extra_piece_types.rfind(new_pieces[new_piece_index - 1]))
+			if new_piece_index < new_pieces.size():
+				extra_piece_types.remove(extra_piece_types.rfind(new_pieces[new_piece_index]))
+		if extra_piece_types[0] == PieceTypes.piece_o:
+			# the o piece is awful. it doesn't show up as often. it still shows up
+			extra_piece_types.shuffle()
+			print("that was nice of me. have an %s instead" % extra_piece_types[0].string)
+		new_pieces.insert(new_piece_index, extra_piece_types[0])
 		
 		_pieces += new_pieces

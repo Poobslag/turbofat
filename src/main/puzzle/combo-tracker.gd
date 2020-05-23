@@ -38,9 +38,11 @@ func add_combo_and_score(y: int, total_lines: int, remaining_lines: int, box_int
 	var box_score := 0
 	for box_int in box_ints:
 		if Playfield.is_snack_box(box_int):
-			box_score += 5
+			box_score += Global.scenario_settings.score_rules.snack_points
 		elif Playfield.is_cake_box(box_int):
-			box_score += 10
+			box_score += Global.scenario_settings.score_rules.cake_points
+		else:
+			box_score += Global.scenario_settings.score_rules.veg_points
 	PuzzleScore.add_line_score(combo_score, box_score)
 
 

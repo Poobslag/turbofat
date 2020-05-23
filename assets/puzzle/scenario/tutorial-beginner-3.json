@@ -95,6 +95,12 @@
     "type": "score",
     "value": "100"
   },
+  "piece-types": [
+    "start-piece-q", "start-piece-l"
+  ],
+  "rank": [
+    "box-factor-167"
+  ],
   "score": [
     "cake-all-20"
   ],

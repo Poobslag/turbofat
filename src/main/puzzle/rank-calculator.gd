@@ -58,7 +58,7 @@ the player's performance.
 func _max_combo_score(lines: int) -> int:
 	var result := lines * 20
 	result -= COMBO_DEFICIT[min(lines, COMBO_DEFICIT.size() - 1)]
-	result = max(result, 20)
+	result = max(result, 5)
 	return result
 
 
@@ -89,6 +89,14 @@ static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 	return frames_per_line
 
 
+func master_box_score() -> float:
+	return Global.scenario_settings.rank.box_factor * MASTER_BOX_SCORE
+
+
+func master_combo_score() -> float:
+	return Global.scenario_settings.rank.combo_factor * MASTER_COMBO_SCORE
+
+
 """
 Calculates the maximum theoretical lines per minute.
 """
@@ -114,11 +122,11 @@ func _max_lpm() -> float:
 				Milestone.TIME:
 					level_lines = level_up.value * 60 / frames_per_line
 				Milestone.SCORE:
-					level_lines = level_up.value / (MASTER_BOX_SCORE + MASTER_COMBO_SCORE + 1)
+					level_lines = level_up.value / (master_box_score() + master_combo_score() + 1)
 		elif winish_condition.type == Milestone.LINES:
 			level_lines = winish_condition.value
 		elif winish_condition.type == Milestone.SCORE:
-			level_lines = winish_condition.value / (MASTER_BOX_SCORE + MASTER_COMBO_SCORE + 1)
+			level_lines = winish_condition.value / (master_box_score() + master_combo_score() + 1)
 
 		total_frames += frames_per_line * level_lines
 		total_lines += level_lines
@@ -143,8 +151,8 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var max_lpm := _max_lpm()
 	
 	var target_speed: float = max_lpm
-	var target_box_score_per_line := MASTER_BOX_SCORE
-	var target_combo_score_per_line := MASTER_COMBO_SCORE
+	var target_box_score_per_line := master_box_score()
+	var target_combo_score_per_line := master_combo_score()
 	var target_lines: float
 
 	var winish_condition: Milestone = Global.scenario_settings.get_winish_condition()

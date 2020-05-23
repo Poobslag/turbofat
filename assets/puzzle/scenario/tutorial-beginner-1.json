@@ -102,6 +102,9 @@
   "other": [
     "tutorial"
   ],
+  "piece-types": [
+    "start-piece-l", "piece-j", "piece-l", "piece-p", "piece-q"
+  ],
   "score": [
     "cake-all-20"
   ],
