@@ -1,4 +1,3 @@
-class_name PieceControl
 extends LevelChunkControl
 """
 A level editor chunk which contains several blocks which make up a single piece, such as a t-piece.
@@ -8,7 +7,7 @@ enum EditorPiece {
 	PIECE_J, PIECE_L, PIECE_O, PIECE_P, PIECE_Q, PIECE_T, PIECE_U, PIECE_V,
 }
 
-export (EditorPiece) var _editor_piece: int
+export (EditorPiece) var _editor_piece: int setget set_editor_piece
 
 var _editor_pieces := {
 	EditorPiece.PIECE_J: PieceTypes.piece_j,
@@ -22,10 +21,38 @@ var _editor_pieces := {
 }
 
 var _orientation := 0
+var _piece: PieceType = PieceTypes.piece_j
+
+func _ready() -> void:
+	$"../RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
+
+
+func set_editor_piece(new_editor_piece: int) -> void:
+	_editor_piece = new_editor_piece
+	_piece = _editor_pieces[_editor_piece]
+	_refresh_tilemap()
+	_refresh_scale()
+
+
+"""
+Calculates the extents of the piece's used cells.
+"""
+func _piece_extents() -> Rect2:
+	var extents := Rect2(Vector2.ZERO, Vector2.ZERO)
+	extents.position = _piece.get_cell_position(_orientation, 0)
+	for pos in _piece.pos_arr[_orientation]:
+		extents = extents.expand(pos)
+	return extents
+
 
 func _refresh_tilemap() -> void:
+	var _extents := _piece_extents()
 	$TileMap.clear()
-	
-	var piece: PieceType = _editor_pieces[_editor_piece]
-	for i in range(piece.pos_arr[_orientation].size()):
-		$TileMap.set_block(piece.pos_arr[_orientation][i], 0, piece.color_arr[_orientation][i])
+	for i in range(_piece.pos_arr[_orientation].size()):
+		var target_pos := _piece.get_cell_position(_orientation, i) - _extents.position
+		$TileMap.set_block(target_pos, 0, _piece.color_arr[_orientation][i])
+
+
+func _on_RotateButton_pressed() -> void:
+	_orientation = (_orientation + 1) % _piece.pos_arr.size()
+	_refresh_tilemap()

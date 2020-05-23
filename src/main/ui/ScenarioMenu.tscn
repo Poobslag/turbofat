@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main/ui/scenario-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/puzzle/wood-backdrop.png" type="Texture" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/main/ui/ultra-button.gd" type="Script" id=7]
 [ext_resource path="res://src/main/ui/marathon-button.gd" type="Script" id=8]
 [ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=10]
 
 [node name="ScenarioMenu" type="Control"]
 anchor_right = 1.0
@@ -190,6 +191,19 @@ text = "O"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="LevelEditorButton" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 85.0
+margin_top = -46.0
+margin_right = 205.0
+margin_bottom = -10.0
+custom_fonts/font = ExtResource( 10 )
+text = "Editor"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="chose_scenario" from="VBoxContainer/Sprint/Normal" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="chose_scenario" from="VBoxContainer/Sprint/Expert" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="chose_scenario" from="VBoxContainer/Ultra/Normal" to="." method="_on_ScenarioButton_chose_scenario"]
@@ -200,3 +214,4 @@ __meta__ = {
 [connection signal="chose_scenario" from="VBoxContainer/Marathon/Expert" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="chose_scenario" from="VBoxContainer/Marathon/Master" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="pressed" from="OverworldButton" to="." method="_on_OverworldButton_pressed"]
+[connection signal="pressed" from="LevelEditorButton" to="." method="_on_LevelEditorButton_pressed"]

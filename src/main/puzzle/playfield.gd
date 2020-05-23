@@ -38,11 +38,6 @@ const FOOD_COLORS: Array = [
 const ROW_COUNT = 20
 const COL_COUNT = 9
 
-const TILE_EMPTY := -1
-const TILE_PIECE := 0 # part of an intact piece
-const TILE_BOX := 1 # part of a snack/cake box
-const TILE_VEG := 2 # vegetable created from line clears
-
 # lines which are currently being cleared
 var cleared_lines := []
 var _cleared_line_index := 0
@@ -111,7 +106,7 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 	for i in range(type.pos_arr[orientation].size()):
 		var block_pos := type.get_cell_position(orientation, i)
 		var block_color := type.get_cell_color(orientation, i)
-		_set_block(pos + block_pos, TILE_PIECE, block_color)
+		_set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
 	
 	_remaining_box_build_frames = 0
 	if not death_piece and _process_boxes():
@@ -165,27 +160,7 @@ Makes a box at the specified location.
 Boxes are made when the player forms a 3x3, 3x4, 3x5 rectangle from intact pieces.
 """
 func make_box(x: int, y: int, width: int, height: int, box_int: int) -> void:
-	# corners
-	_set_block(Vector2(x + 0, y + 0), TILE_BOX, Vector2(10, box_int))
-	_set_block(Vector2(x + width - 1, y + 0), TILE_BOX, Vector2(6, box_int))
-	_set_block(Vector2(x + 0, y + height - 1), TILE_BOX, Vector2(9, box_int))
-	_set_block(Vector2(x + width - 1, y + height - 1), TILE_BOX, Vector2(5, box_int))
-	
-	# top/bottom edge
-	for curr_x in range(x + 1, x + width - 1):
-		_set_block(Vector2(curr_x, y + 0), TILE_BOX, Vector2(14, box_int))
-		_set_block(Vector2(curr_x, y + height - 1), TILE_BOX, Vector2(13, box_int))
-	
-	# center
-	for curr_x in range(x + 1, x + width - 1):
-		for curr_y in range(y + 1, y + height - 1):
-			_set_block(Vector2(curr_x, curr_y), TILE_BOX, Vector2(15, box_int))
-	
-	# left/right edge
-	for curr_y in range(y + 1, y + height - 1):
-		_set_block(Vector2(x + 0, curr_y), TILE_BOX, Vector2(11, box_int))
-		_set_block(Vector2(x + width - 1, curr_y), TILE_BOX, Vector2(7, box_int))
-		
+	$TileMapClip/TileMap.make_box(x, y, width, height, box_int)
 	emit_signal("box_made", x, y, width, height, box_int)
 
 
@@ -367,11 +342,11 @@ Erases all cells in the specified row. This leaves any pieces above them floatin
 func _erase_row(y: int) -> void:
 	for x in range(COL_COUNT):
 		if get_cell(x, y) == 0:
-			_disconnect_block(x, y)
+			_convert_piece_to_veg(x, y)
 		elif get_cell(x, y) == 1:
 			_disconnect_box(x, y)
 		
-		_set_block(Vector2(x, y), TILE_EMPTY)
+		_set_block(Vector2(x, y), PuzzleTileMap.TILE_EMPTY)
 
 
 """
@@ -389,39 +364,29 @@ func _delete_row(y: int) -> void:
 	
 	# remove row
 	for x in range(COL_COUNT):
-		_set_block(Vector2(x, 0), TILE_EMPTY)
+		_set_block(Vector2(x, 0), PuzzleTileMap.TILE_EMPTY)
 
 
 """
-Disconnects the specified block from all blocks it's connected to, directly or indirectly. All disconnected blocks are
-turned into vegetables to ensure they can't be included in boxes in the future.
+Deconstructs the piece at the specified location into vegetable blocks.
 """
-func _disconnect_block(x: int, y: int) -> void:
-	if get_cell(x, y) != 0:
-		# not a block; do nothing and don't recurse
-		return
-	
+func _convert_piece_to_veg(x: int, y: int) -> void:
 	# store connections
 	var old_autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
 	
-	# disconnect
-	var vegetable_type := old_autotile_coord.y
-	if vegetable_type > 3:
-		# unusual blocks (maybe in future development) become leafy greens
-		vegetable_type = 0
-	_set_block(Vector2(x, y), TILE_VEG, Vector2(randi() % 18, vegetable_type))
+	# convert to vegetable. there are four kinds of vegetables
+	var vegetable_type := int(old_autotile_coord.y) % 4
+	_set_block(Vector2(x, y), PuzzleTileMap.TILE_VEG, Vector2(randi() % 18, vegetable_type))
 	
-	if y > 0 and Connect.is_u(old_autotile_coord.x):
-		_disconnect_block(x, y - 1)
-	
-	if y < ROW_COUNT - 1 and Connect.is_d(old_autotile_coord.x):
-		_disconnect_block(x, y + 1)
-	
-	if x > 0 and Connect.is_l(old_autotile_coord.x):
-		_disconnect_block(x - 1, y)
-	
-	if x < COL_COUNT - 1 and Connect.is_r(old_autotile_coord.x):
-		_disconnect_block(x + 1, y)
+	# recurse to neighboring connected cells
+	if get_cell(x, y - 1) == 0 and Connect.is_u(old_autotile_coord.x):
+		_convert_piece_to_veg(x, y - 1)
+	if get_cell(x, y + 1) == 0 and Connect.is_d(old_autotile_coord.x):
+		_convert_piece_to_veg(x, y + 1)
+	if get_cell(x - 1, y) == 0 and Connect.is_l(old_autotile_coord.x):
+		_convert_piece_to_veg(x - 1, y)
+	if get_cell(x + 1, y) == 0 and Connect.is_r(old_autotile_coord.x):
+		_convert_piece_to_veg(x + 1, y)
 
 
 """
@@ -436,18 +401,8 @@ bottom of a bread box looks like a delicious frosted snack and the player can te
 """
 func _disconnect_box(x: int, y: int) -> void:
 	var old_autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
-	if y > 0 and Connect.is_u(old_autotile_coord.x):
-		var above_autotile_coord: Vector2 = get_cell_autotile_coord(x, y - 1)
-		_set_block(Vector2(x, y - 1), TILE_BOX,
-				Vector2(Connect.unset_d(above_autotile_coord.x), above_autotile_coord.y))
-		_set_block(Vector2(x, y), TILE_BOX,
-				Vector2(Connect.unset_u(old_autotile_coord.x), old_autotile_coord.y))
-	if y < ROW_COUNT - 1 and Connect.is_d(old_autotile_coord.x):
-		var below_autotile_coord:Vector2 = get_cell_autotile_coord(x, y + 1)
-		_set_block(Vector2(x, y + 1), TILE_BOX,
-				Vector2(Connect.unset_u(below_autotile_coord.x), below_autotile_coord.y))
-		_set_block(Vector2(x, y), TILE_BOX,
-				Vector2(Connect.unset_d(old_autotile_coord.x), old_autotile_coord.y))
+	$TileMapClip/TileMap.disconnect_block(x, y - 1, Connect.DOWN)
+	$TileMapClip/TileMap.disconnect_block(x, y + 1, Connect.UP)
 
 
 """

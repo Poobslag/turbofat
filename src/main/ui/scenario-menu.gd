@@ -34,3 +34,7 @@ func _on_OverworldButton_pressed() -> void:
 func _on_ScenarioButton_chose_scenario(scenario_name: String) -> void:
 	var scenario_settings := ScenarioLibrary.load_scenario_from_name(scenario_name)
 	ScenarioLibrary.change_scenario_scene(scenario_settings, false)
+
+
+func _on_LevelEditorButton_pressed() -> void:
+	get_tree().change_scene("res://src/main/puzzle/editor/LevelEditor.tscn")

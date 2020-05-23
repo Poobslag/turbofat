@@ -28,7 +28,7 @@ var _load_thread: Thread
 
 # these two properties are used for the get_progress calculation
 var _work_done := 0.0
-var _work_remaining := 3.0
+var _work_total := 3.0
 var _remaining_png_paths := []
 
 """
@@ -61,7 +61,11 @@ func _exit_tree() -> void:
 
 
 func get_progress() -> float:
-	return clamp(_work_done / _work_remaining, 0.0, 1.0)
+	return clamp(_work_done / _work_total, 0.0, 1.0)
+
+
+func is_done() -> bool:
+	return _work_done >= _work_total
 
 
 """
@@ -126,7 +130,7 @@ func _find_png_paths() -> Array:
 	_remaining_png_paths.shuffle()
 	
 	# all pngs have been located. increment the progress bar and calculate its new maximum
-	_work_remaining += _remaining_png_paths.size()
+	_work_total += _remaining_png_paths.size()
 	_work_done += 3.0
 	
 	return _remaining_png_paths

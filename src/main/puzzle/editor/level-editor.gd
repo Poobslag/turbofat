@@ -1,8 +1,8 @@
 extends Control
 """
-A graphical scenario editor which lets players create, load and save scenarios.
+A graphical level editor which lets players create, load and save scenarios.
 
-Full instructions are available at https://github.com/Poobslag/turbofat/wiki/scenario-editor
+Full instructions are available at https://github.com/Poobslag/turbofat/wiki/level-editor
 """
 
 # scenario scene currently being tested
@@ -14,7 +14,10 @@ onready var _scenario_json := $HBoxContainer/CenterPanel/VBoxContainer/Json
 onready var _scenario_name := $HBoxContainer/RightPanel/SideButtons/ScenarioName
 
 func _ready() -> void:
-	ResourceCache.minimal_resources = true
+	if not ResourceCache.is_done():
+		# when launched standalone, we don't load customer resources (they're slow)
+		ResourceCache.minimal_resources = true
+	
 	var scenario_text: String = Global.get_file_as_text(ScenarioLibrary.scenario_path("ultra-normal"))
 	_scenario_json.text = scenario_text
 	_scenario_name.text = "ultra-normal"
@@ -83,3 +86,11 @@ func _on_Test_pressed() -> void:
 
 func _on_Scenario_back_button_pressed() -> void:
 	_stop_test()
+
+
+func _on_Exit_pressed() -> void:
+	var target_scene := "res://src/main/ui/ScenarioMenu.tscn"
+	if not ResourceCache.is_done():
+		# when launched standalone, we redirect to the loading screen to avoid jitter
+		target_scene = "res://src/main/ui/LoadingScreen.tscn"
+	get_tree().change_scene(target_scene)

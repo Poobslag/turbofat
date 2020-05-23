@@ -339,7 +339,7 @@ func summon(customer_def: Dictionary, use_defaults: bool = true) -> void:
 		put_if_absent(_customer_def, "horn_rgb", "f1e398")
 		
 		if ResourceCache.minimal_resources:
-			# avoid loading unnecessary resources for things like the scenario editor
+			# avoid loading unnecessary resources for things like the level editor
 			pass
 		else:
 			put_if_absent(_customer_def, "eye", ["0", "0", "0", "1", "2"][randi() % 5])

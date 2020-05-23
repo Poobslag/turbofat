@@ -102,7 +102,7 @@ __meta__ = {
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 7 )]
 codes = [ "bigfps", "coyote" ]
-[connection signal="turbo_changed" from="." to="Labels/NorthwestLabels/TurboTrace" method="_on_OverworldUi_turbo_changed"]
+[connection signal="spira_changed" from="." to="Labels/NorthwestLabels/TurboTrace" method="_on_OverworldUi_spira_changed"]
 [connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="ChatUi" to="." method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="ChatUi" to="." method="_on_ChatUi_showed_choices"]
