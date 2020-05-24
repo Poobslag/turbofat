@@ -19,11 +19,32 @@ const SCENARIO_CATEGORIES := [
 	["Survival", "Hard", "survival-hard"],
 	["Survival", "Expert", "survival-expert"],
 	["Survival", "Master", "survival-master"],
+	
 	["Ultra", "Normal", "ultra-normal"],
 	["Ultra", "Hard", "ultra-hard"],
 	["Ultra", "Expert", "ultra-expert"],
+	
 	["Sprint", "Normal", "sprint-normal"],
 	["Sprint", "Expert", "sprint-expert"],
+	
+	["Rank", "7k", "rank-7k"],
+	["Rank", "6k", "rank-6k"],
+	["Rank", "5k", "rank-5k"],
+	["Rank", "4k", "rank-4k"],
+	["Rank", "3k", "rank-3k"],
+	["Rank", "2k", "rank-2k"],
+	["Rank", "1k", "rank-1k"],
+	["Rank", "1d", "rank-1d"],
+	["Rank", "2d", "rank-2d"],
+	["Rank", "3d", "rank-3d"],
+	["Rank", "4d", "rank-4d"],
+	["Rank", "5d", "rank-5d"],
+	["Rank", "6d", "rank-6d"],
+	["Rank", "7d", "rank-7d"],
+	["Rank", "8d", "rank-8d"],
+	["Rank", "9d", "rank-9d"],
+	["Rank", "10d", "rank-10d"],
+	["Rank", "M", "rank-m"],
 ]
 
 """
@@ -37,6 +58,8 @@ Key: Mode/Difficulty names separated with a space, 'Survival Normal', 'Ultra Har
 Value: Scenario names, 'survival-normal', 'ultra-hard'
 """
 var scenarios: Dictionary
+
+var _rank_lowlights := []
 
 func _ready() -> void:
 	# default mode/difficulty if the player hasn't played a scenario recently
@@ -71,8 +94,48 @@ func _ready() -> void:
 
 func _refresh() -> void:
 	$VBoxContainer/Difficulty.set_difficulty_names(mode_difficulties[_get_mode()])
+	if _get_mode() == "Rank":
+		_calculate_lowlights()
+		$VBoxContainer/Difficulty.set_difficulty_lowlights(_rank_lowlights)
 	$VBoxContainer/Mode.set_scenario(_get_scenario())
 	$VBoxContainer/HighScores.set_scenario(_get_scenario())
+
+
+"""
+Calculates the lowlights for rank difficulties, if they have not yet been calculated.
+
+This calculation is complex and involves iterating over all of the player's performances for all of the rank
+scenarios, so we cache the result.
+"""
+func _calculate_lowlights() -> void:
+	if _rank_lowlights:
+		# already calculated
+		return
+	
+	for difficulty in mode_difficulties[_get_mode()]:
+		var scenario: ScenarioSettings = scenarios["%s %s" % [_get_mode(), difficulty]]
+		_rank_lowlights.append(_calculate_lowlight(scenario))
+
+
+"""
+Calculates whether the specified scenario should be lowlighted.
+
+If the player achieved the success condition without losing, the scenario appears lit up. Otherwise it's lowlighted.
+"""
+func _calculate_lowlight(scenario: ScenarioSettings) -> bool:
+	var best_results: Array = PlayerData.scenario_history.best_results(scenario.name, false)
+	if not best_results:
+		return true
+	
+	var success: bool
+	var best_result: RankResult = best_results[0]
+	if best_result.lost:
+		success = false
+	elif scenario.success_condition.type == Milestone.TIME_UNDER:
+		success = best_result.seconds <= scenario.success_condition.value
+	else:
+		success = best_result.score >= scenario.success_condition.value
+	return not success
 
 
 func _get_mode() -> String:

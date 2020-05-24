@@ -13,6 +13,9 @@ const SCENARIO_DATA_VERSION := "15d2"
 # Blocks/boxes which begin on the playfield.
 var blocks_start := BlocksStart.new()
 
+# Blocks/boxes which appear or disappear while the game is going on.
+var blocks_during := BlocksDuring.new()
+
 # Things that disrupt the player's combo.
 var combo_break := ComboBreakRules.new()
 
@@ -43,9 +46,9 @@ var rank := RankRules.new()
 # Rules for scoring points.
 var score := ScoreRules.new()
 
-# How the player wins. When the player wins, there's a big fanfare and celebration, it should be used for
-# accomplishments such as surviving 10 minutes or getting 1,000 points. 
-var win_condition := Milestone.new()
+# How the player succeeds. When the player succeeds, there's a big fanfare and celebration, it should be used for
+# accomplishments such as surviving 10 minutes or getting 1,000 points.
+var success_condition := Milestone.new()
 
 func _init() -> void:
 	# avoid edge cases caused by absence of a speed level
@@ -65,7 +68,7 @@ func add_level_up(type: int, value: int, level: String) -> void:
 
 func reset() -> void:
 	level_ups.clear()
-	win_condition = Milestone.new()
+	success_condition = Milestone.new()
 	finish_condition = Milestone.new()
 	name = ""
 
@@ -78,30 +81,21 @@ func set_start_level(level: String) -> void:
 """
 Sets the criteria for finishing the scenario, such as a time, score, or line goal.
 """
-func set_finish_condition(type: int, value: int) -> void:
+func set_finish_condition(type: int, value: int, lenient_value: int = -1) -> void:
 	finish_condition = Milestone.new()
 	finish_condition.type = type
 	finish_condition.value = value
-
-
-"""
-Sets the criteria for winning the scenario, such as a time, score, or line goal.
-"""
-func set_win_condition(type: int, value: int, lenient_value: int = -1) -> void:
-	win_condition = Milestone.new()
-	win_condition.type = type
-	win_condition.value = value
 	if lenient_value > -1:
-		win_condition.set_meta("lenient_value", lenient_value)
+		finish_condition.set_meta("lenient_value", lenient_value)
 
 
 """
-Returns the win or finish condition, whichever is defined.
-
-If both are defined, the win condition takes precedence.
+Sets the criteria for succeeding, such as a time or score goal.
 """
-func get_winish_condition() -> Milestone:
-	return win_condition if win_condition.type != Milestone.NONE else finish_condition
+func set_success_condition(type: int, value: int) -> void:
+	success_condition = Milestone.new()
+	success_condition.type = type
+	success_condition.value = value
 
 
 """
@@ -118,6 +112,8 @@ func from_json_dict(new_name: String, json: Dictionary) -> void:
 	set_start_level(json["start-level"])
 	if json.has("blocks-start"):
 		blocks_start.from_json_dict(json["blocks-start"])
+	if json.has("blocks-during"):
+		blocks_during.from_json_string_array(json["blocks-during"])
 	if json.has("combo-break"):
 		combo_break.from_json_string_array(json["combo-break"])
 	if json.has("finish-condition"):
@@ -137,5 +133,5 @@ func from_json_dict(new_name: String, json: Dictionary) -> void:
 		rank.from_json_string_array(json["rank"])
 	if json.has("score"):
 		score.from_json_string_array(json["score"])
-	if json.has("win-condition"):
-		win_condition.from_json_dict(json["win-condition"])
+	if json.has("success-condition"):
+		success_condition.from_json_dict(json["success-condition"])

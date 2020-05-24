@@ -1,0 +1,18 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "2000"
+  },
+  "start-level": "AA",
+  "finish-condition": {
+    "type": "time-over",
+    "value": "300"
+  },
+  "lose-condition": [
+    "top-out 1"
+  ],
+  "rank": [
+    "success-bonus 2"
+  ]
+}

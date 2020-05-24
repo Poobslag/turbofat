@@ -72,13 +72,16 @@ func _add_rows() -> void:
 		
 		# append score/time and grade
 		if best_result.compare == "-seconds":
+			var seconds_string := StringUtils.format_duration(best_result.seconds)
 			if best_result.lost:
-				row.append("-")
-			else:
-				row.append(StringUtils.format_duration(best_result.seconds))
+				seconds_string = "-"
+			row.append(seconds_string)
 			row.append(RankCalculator.grade(best_result.seconds_rank))
 		else:
-			row.append(StringUtils.comma_sep(best_result.score))
+			var score_string := "¥%s" % StringUtils.comma_sep(best_result.score)
+			if best_result.lost:
+				score_string += "*"
+			row.append(score_string)
 			row.append(RankCalculator.grade(best_result.score_rank))
 		
 		_add_row(row)

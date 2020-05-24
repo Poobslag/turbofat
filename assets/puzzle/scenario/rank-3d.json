@@ -1,0 +1,60 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "750"
+  },
+  "start-level": "A5",
+  "level-ups": [
+    {
+      "type": "lines",
+      "value": "5",
+      "level": "A6"
+    },
+    {
+      "type": "lines",
+      "value": "10",
+      "level": "A7"
+    },
+    {
+      "type": "lines",
+      "value": "15",
+      "level": "A8"
+    },
+    {
+      "type": "lines",
+      "value": "20",
+      "level": "A9"
+    },
+    {
+      "type": "lines",
+      "value": "25",
+      "level": "AA"
+    },
+    {
+      "type": "lines",
+      "value": "30",
+      "level": "AB"
+    },
+    {
+      "type": "lines",
+      "value": "35",
+      "level": "AC"
+    },
+    {
+      "type": "lines",
+      "value": "40",
+      "level": "AD"
+    }
+  ],
+  "finish-condition": {
+    "type": "lines",
+    "value": "100"
+  },
+  "lose-condition": [
+    "top-out 1"
+  ],
+  "rank": [
+    "success-bonus 2"
+  ]
+}

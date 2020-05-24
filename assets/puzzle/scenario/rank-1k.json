@@ -1,5 +1,9 @@
 {
   "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "1000"
+  },
   "start-level": "0",
   "level-ups": [
     {
@@ -48,15 +52,14 @@
       "level": "9"
     }
   ],
-  "success-condition": {
-    "type": "lines",
-    "value": "100"
-  },
   "finish-condition": {
     "type": "lines",
-    "value": "100"
+    "value": "150"
   },
   "lose-condition": [
     "top-out 1"
+  ],
+  "rank": [
+    "success-bonus 2"
   ]
 }

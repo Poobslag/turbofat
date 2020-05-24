@@ -61,18 +61,7 @@ func prepare_game() -> void:
 		Global.launched_scenario_name = Global.scenario_settings.name
 	
 	game_prepared = true
-
-	customer_scores = [0]
-	bonus_score = 0
-	scenario_performance = ScenarioPerformance.new()
-	level_index = 0
-	
-	emit_signal("customer_score_changed", get_customer_score())
-	emit_signal("bonus_score_changed", get_bonus_score())
-	emit_signal("score_changed", get_score())
-	emit_signal("lines_changed", get_lines())
-	emit_signal("level_index_changed", level_index)
-	
+	reset()
 	emit_signal("game_prepared")
 	emit_signal("after_game_prepared")
 	emit_signal("after_scenario_prepared")
@@ -156,13 +145,15 @@ Reset all score data, such as when starting a scenario over.
 """
 func reset() -> void:
 	customer_scores = [0]
-	emit_signal("customer_score_changed")
-	
 	bonus_score = 0
-	emit_signal("bonus_score_changed", 0)
-	
 	scenario_performance = ScenarioPerformance.new()
+	level_index = 0
+	
+	emit_signal("customer_score_changed")
+	emit_signal("bonus_score_changed", 0)
 	emit_signal("score_changed", 0)
+	emit_signal("lines_changed", 0)
+	emit_signal("level_index_changed", 0)
 
 
 func get_score() -> int:
@@ -179,6 +170,37 @@ func get_bonus_score() -> int:
 
 func get_customer_score() -> int:
 	return customer_scores[customer_scores.size() - 1]
+
+
+"""
+Returns 'true' if the player has met the specified milestone.
+"""
+func milestone_met(milestone: Milestone) -> bool:
+	var result := false
+	var progress := milestone_progress(milestone)
+	match milestone.type:
+		Milestone.TIME_UNDER:
+			result = progress <= milestone.value
+		_:
+			result = progress >= milestone.value
+	return result
+
+
+"""
+Returns the player's current progress toward the specified milestone.
+"""
+func milestone_progress(milestone: Milestone) -> float:
+	var progress: float
+	match milestone.type:
+		Milestone.CUSTOMERS:
+			progress = PuzzleScore.customer_scores.size() - 1
+		Milestone.LINES:
+			progress = PuzzleScore.scenario_performance.lines
+		Milestone.SCORE:
+			progress = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
+		Milestone.TIME_OVER, Milestone.TIME_UNDER:
+			progress = PuzzleScore.scenario_performance.seconds
+	return progress
 
 
 func _add_score(delta: int) -> void:

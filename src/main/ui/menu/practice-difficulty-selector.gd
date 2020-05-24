@@ -31,6 +31,18 @@ func set_selected_difficulty(name: String) -> void:
 
 
 """
+Lowlights difficulty labels, turning them black.
+
+In rank mode, this lets the player see which ranks haven't yet completed.
+"""
+func set_difficulty_lowlights(lowlights: Array) -> void:
+	for i in range($Labels.get_child_count()):
+		var label: Label = $Labels.get_child(i)
+		var lowlighted: bool = lowlights.size() > i and lowlights[i]
+		label.set("custom_colors/font_color", Color.black if lowlighted else Color.white)
+
+
+"""
 Sets the difficulty names which appear as tick mark labels.
 """
 func set_difficulty_names(names: Array) -> void:

@@ -33,7 +33,11 @@
       "level": "AF"
     }
   ],
-  "win-condition": {
+  "success-condition": {
+    "type": "lines",
+    "value": "300"
+  },
+  "finish-condition": {
     "type": "lines",
     "value": "300",
     "lenient-value": "200"

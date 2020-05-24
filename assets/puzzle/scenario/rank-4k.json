@@ -1,0 +1,15 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "300"
+  },
+  "start-level": "4",
+  "finish-condition": {
+    "type": "customers",
+    "value": "4"
+  },
+  "rank": [
+    "success-bonus 2"
+  ]
+}

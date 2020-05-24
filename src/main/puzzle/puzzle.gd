@@ -84,6 +84,10 @@ func end_game(delay: float, message: String) -> void:
 	emit_signal("after_game_ended")
 
 
+func get_milestone_hud() -> MilestoneHud:
+	return $Chalkboard/MilestoneHud as MilestoneHud
+
+
 func set_chalkboard_visible(visible: bool) -> void:
 	$Chalkboard.visible = visible
 

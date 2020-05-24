@@ -28,6 +28,8 @@ func set_selected_mode(selected_mode: String) -> void:
 			$Buttons/Ultra.pressed = true
 		"Sprint":
 			$Buttons/Sprint.pressed = true
+		"Rank":
+			$Buttons/Rank.pressed = true
 
 
 """
@@ -37,9 +39,9 @@ func set_scenario(scenario: ScenarioSettings) -> void:
 	var new_description := ""
 	match get_selected_mode():
 		"Survival":
-			var target_value := scenario.win_condition.value
-			if scenario.win_condition.has_meta("lenient_value"):
-				target_value = scenario.win_condition.get_meta("lenient_value")
+			var target_value := scenario.finish_condition.value
+			if scenario.finish_condition.has_meta("lenient_value"):
+				target_value = scenario.finish_condition.get_meta("lenient_value")
 			
 			new_description = "Survive as the pieces get faster and faster! Can you clear %s lines?" \
 					% StringUtils.comma_sep(target_value)
@@ -49,6 +51,15 @@ func set_scenario(scenario: ScenarioSettings) -> void:
 		"Sprint":
 			new_description = "Earn as much money as you can in %s!" \
 					% StringUtils.format_duration(scenario.finish_condition.value)
+		"Rank":
+			new_description = "An escalating set of challenges."
+			match scenario.success_condition.type:
+				Milestone.SCORE:
+					new_description += " Finish with ¥%s to achieve this rank!" \
+							% StringUtils.comma_sep(scenario.success_condition.value)
+				Milestone.TIME_UNDER:
+					new_description += " Finish in %s to achieve this rank!" \
+							% StringUtils.format_duration(scenario.success_condition.value)
 	$Desc.text = new_description
 
 

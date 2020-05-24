@@ -28,7 +28,11 @@
       "level": "FF"
     }
   ],
-  "win-condition": {
+  "success-condition": {
+    "type": "lines",
+    "value": "500",
+  },
+  "finish-condition": {
     "type": "lines",
     "value": "500",
     "lenient-value": "300"

@@ -1,7 +1,7 @@
 {
   "version": "15d2",
   "start-level": "0",
-  "win-condition": {
+  "finish-condition": {
     "type": "score",
     "value": "100"
   }

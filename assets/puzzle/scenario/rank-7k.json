@@ -1,0 +1,15 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "time-under",
+    "value": "300"
+  },
+  "start-level": "1",
+  "finish-condition": {
+    "type": "score",
+    "value": "200"
+  },
+  "rank": [
+    "success-bonus 2"
+  ]
+}

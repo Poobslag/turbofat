@@ -1,0 +1,87 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "4000"
+  },
+  "start-level": "A0",
+  "level-ups": [
+    {
+      "type": "lines",
+      "value": "20",
+      "level": "A1"
+    },
+    {
+      "type": "lines",
+      "value": "40",
+      "level": "A2"
+    },
+    {
+      "type": "lines",
+      "value": "60",
+      "level": "A3"
+    },
+    {
+      "type": "lines",
+      "value": "80",
+      "level": "A4"
+    },
+    {
+      "type": "lines",
+      "value": "100",
+      "level": "A5"
+    },
+
+    {
+      "type": "lines",
+      "value": "140",
+      "level": "AA"
+    },
+    {
+      "type": "lines",
+      "value": "160",
+      "level": "AC"
+    },
+    {
+      "type": "lines",
+      "value": "180",
+      "level": "AF"
+    },
+
+    {
+      "type": "lines",
+      "value": "220",
+      "level": "A1"
+    },
+    {
+      "type": "lines",
+      "value": "240",
+      "level": "A5"
+    },
+    {
+      "type": "lines",
+      "value": "260",
+      "level": "AA"
+    },
+    {
+      "type": "lines",
+      "value": "280",
+      "level": "AF"
+    },
+    {
+      "type": "lines",
+      "value": "300",
+      "level": "FA"
+    }
+  ],
+  "finish-condition": {
+    "type": "lines",
+    "value": "400"
+  },
+  "lose-condition": [
+    "top-out 1"
+  ],
+  "rank": [
+    "success-bonus 2"
+  ]
+}
