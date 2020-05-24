@@ -77,9 +77,6 @@ static func beautify_json(json: String, spaces := 0) -> String:
 					bracket_count -= 1
 
 				# Move through the indentation to see if there is a match.
-				
-				# Workaround for json-beautifier-for-godot issue #1:
-				# https://codeberg.org/Yeldham/json-beautifier-for-godot/issues/1
 				while json[bracket_end + 1] == indentation[0]:
 					bracket_end += 1
 
