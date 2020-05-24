@@ -17,6 +17,10 @@ const GREETINGS_PER_MINUTE := 3.0
 # The scenario currently being launched or played
 var scenario_settings := ScenarioSettings.new()
 
+# The scenario which was initially launched. Some tutorial scenarios transition
+# into other scenarios, so this keeps track of the original.
+var launched_scenario_name
+
 # The customers who will show up during the next puzzle. The first customer in the queue will show up first.
 var customer_queue := []
 

@@ -46,6 +46,7 @@ func prepare_game() -> void:
 	if new_scenario_name:
 		# Load a different scenario to start (used for tutorials)
 		Global.scenario_settings = ScenarioLibrary.load_scenario_from_name(new_scenario_name)
+		Global.launched_scenario_name = Global.scenario_settings.name
 	
 	game_prepared = true
 	scenario_performance = ScenarioPerformance.new()

@@ -45,6 +45,7 @@ func _load_scenario(path: String) -> void:
 
 func _start_test() -> void:
 	Global.scenario_settings = ScenarioLibrary.load_scenario(_scenario_name.text, _scenario_json.text)
+	Global.launched_scenario_name = Global.scenario_settings.name
 	_test_scene = ScenarioScene.instance()
 	_test_scene.connect("back_button_pressed", self, "_on_Scenario_back_button_pressed")
 	add_child(_test_scene)

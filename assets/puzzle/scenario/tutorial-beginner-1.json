@@ -113,6 +113,9 @@
     "piece-p",
     "piece-q"
   ],
+  "rank": [
+    "skip-results"
+  ],
   "score": [
     "cake-all 20"
   ],

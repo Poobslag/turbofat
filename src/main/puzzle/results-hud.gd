@@ -37,7 +37,19 @@ displayed.
 func show_results_message(rank_result: RankResult, customer_scores: Array, finish_condition_type: int) -> void:
 	# Generate post-game message with stats, grades, and a gameplay hint
 	var text := "//////////"
+	text = _append_customer_scores(rank_result, customer_scores, finish_condition_type, text)
+	text = _append_grade_information(rank_result, customer_scores, finish_condition_type, text)
+	text += "//////////\n"
+	text += "Hint: %s\n" % HINTS[randi() % HINTS.size()]
 	
+	$ShowResultsSound.play()
+	$ResultsLabel.show_text(text)
+	$MoneyLabelTween.show_money()
+	$MoneyLabel.set_shown_money(PlayerData.money - rank_result.score)
+
+
+func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
+		finish_condition_type: int, text: String) -> String:
 	# Append customer scores
 	for i in range(customer_scores.size()):
 		var customer_score: int = customer_scores[i]
@@ -52,11 +64,14 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 			middle += "."
 		text += left + middle + right
 	text += "Total: ¥%s\n" % StringUtils.comma_sep(rank_result.score)
-	
+	return text
+
+
+func _append_grade_information(rank_result: RankResult, customer_scores: Array, \
+		finish_condition_type: int, text: String) -> String:
 	# We add a '?' to make the player aware if their rank is adjusted because they topped out or lost.
 	var topped_out := "?" if rank_result.topped_out() or rank_result.lost else ""
 	
-	# Append grade information
 	text += "/////\n"
 	if finish_condition_type == Milestone.SCORE:
 		text += "Speed: %d%s (%s)\n" % [round(rank_result.speed * 200 / 60),
@@ -78,14 +93,7 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 		text += "%s%s (%s)\n" % [duration, topped_out, Global.grade(rank_result.seconds_rank)]
 	else:
 		text += "(%s)\n" % Global.grade(rank_result.score_rank)
-	
-	text += "//////////\n"
-	text += "Hint: %s\n" % HINTS[randi() % HINTS.size()]
-	
-	$ShowResultsSound.play()
-	$ResultsLabel.show_text(text)
-	$MoneyLabelTween.show_money()
-	$MoneyLabel.set_shown_money(PlayerData.money - rank_result.score)
+	return text
 
 
 """
@@ -109,8 +117,7 @@ func _on_PuzzleScore_game_prepared() -> void:
 
 func _on_Puzzle_after_game_ended() -> void:
 	var rank_result: RankResult = PlayerData.get_last_scenario_result(Global.scenario_settings.name)
-	if Global.scenario_settings.other.tutorial or not rank_result:
-		# no results for tutorial
+	if not rank_result or Global.scenario_settings.rank.skip_results:
 		return
 	
 	var customer_scores: Array = PuzzleScore.customer_scores
