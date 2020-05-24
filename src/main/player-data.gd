@@ -65,6 +65,8 @@ func get_best_scenario_result(scenario: String, property: String = "score") -> R
 
 
 func get_last_scenario_result(scenario: String) -> RankResult:
+	if not scenario_history.has(scenario) or scenario_history[scenario].empty():
+		return null
 	return scenario_history[scenario][0]
 
 

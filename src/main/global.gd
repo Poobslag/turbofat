@@ -20,12 +20,6 @@ var scenario_settings := ScenarioSettings.new()
 # The customers who will show up during the next puzzle. The first customer in the queue will show up first.
 var customer_queue := []
 
-# 'true' if the customer should change when breaking combo. Disabled for tutorials.
-var customer_switch := true
-
-# 'true' if the customer should get fatter. Disabled for tutorials.
-var customer_fatten := true
-
 # 'true' if launching a puzzle from the overworld. This changes the menus and disallows restarting.
 var overworld_puzzle := false
 

@@ -281,6 +281,10 @@ Parameter: 'delay' is the delay in seconds before the chime sound plays. The def
 	delay.
 """
 func play_door_chime(delay: float = -1) -> void:
+	if Global.scenario_settings.other.tutorial:
+		# suppress door chime for tutorials
+		return
+	
 	if delay < 0:
 		delay = CHIME_DELAYS[randi() % CHIME_DELAYS.size()]
 	yield(get_tree().create_timer(delay), "timeout")
@@ -599,9 +603,7 @@ func _update_customer_properties() -> void:
 		if _suppress_one_chime:
 			_suppress_one_chime = false
 		else:
-			if Global.customer_switch:
-				# don't play chime for scenarios with only one customer (tutorials)
-				play_door_chime()
+			play_door_chime()
 
 
 """

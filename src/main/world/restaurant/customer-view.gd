@@ -87,5 +87,5 @@ func scroll_to_new_customer() -> void:
 If they ended the previous game while serving a customer, we scroll to a new one
 """
 func _on_PuzzleScore_game_prepared() -> void:
-	if get_fatness() > 1 and Global.customer_switch:
+	if get_fatness() > 1 and not Global.scenario_settings.other.tutorial:
 		scroll_to_new_customer()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
@@ -12,6 +12,12 @@
 [ext_resource path="res://assets/ui/matchend.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/ui/applause.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/puzzle/levelup.wav" type="AudioStream" id=12]
+[ext_resource path="res://src/main/puzzle/scenario/SkillTallyItem.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/puzzle/scenario/tutorial-hud.gd" type="Script" id=14]
+[ext_resource path="res://assets/puzzle/scenario/tutorial-section-complete.wav" type="AudioStream" id=15]
+
+[sub_resource type="CanvasItemMaterial" id=1]
+blend_mode = 1
 
 [node name="Scenario" type="Control"]
 margin_right = 1024.0
@@ -24,8 +30,10 @@ __meta__ = {
 [node name="Puzzle" parent="." instance=ExtResource( 7 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_right = 0.0
-margin_bottom = 0.0
+margin_left = 0.815613
+margin_top = 0.407814
+margin_right = 0.815674
+margin_bottom = 0.407837
 
 [node name="PuzzleTrace" type="Label" parent="Puzzle"]
 visible = false
@@ -43,15 +51,16 @@ __meta__ = {
 [node name="ResultsHud" parent="." instance=ExtResource( 6 )]
 
 [node name="TutorialHud" type="Control" parent="."]
-visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
+script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RichTextLabel" type="RichTextLabel" parent="TutorialHud"]
+visible = false
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 345.0
@@ -59,6 +68,152 @@ margin_bottom = 305.0
 custom_styles/normal = ExtResource( 3 )
 custom_fonts/normal_font = ExtResource( 2 )
 text = "Oh my, you're not supposed to know how to do that! ...But yes, snack boxes get you $15 when you clear them. Maybe more if you're clever."
+
+[node name="SkillTallyItems" type="Panel" parent="TutorialHud"]
+margin_left = 774.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+custom_styles/panel = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="TutorialHud/SkillTallyItems"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -168.0
+margin_right = 110.0
+margin_bottom = 168.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveLeft" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 108.0
+margin_bottom = 64.0
+max_value = 6.0
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Move Left"
+signal_names = [ "moved_left", "das_moved_left", "initial_das_moved_left" ]
+
+[node name="MoveRight" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 112.0
+margin_top = 0.0
+margin_right = 220.0
+margin_bottom = 64.0
+max_value = 6.0
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Move Right"
+signal_names = [ "moved_right", "das_moved_right", "initial_das_moved_right" ]
+
+[node name="RotateLeft" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 0.0
+margin_top = 68.0
+margin_right = 108.0
+margin_bottom = 132.0
+max_value = 3.0
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Rotate Left"
+signal_names = [ "rotated_left", "initial_rotated_left" ]
+
+[node name="RotateRight" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 108.0
+margin_bottom = 64.0
+max_value = 3.0
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Rotate Right"
+signal_names = [ "rotated_right", "initial_rotated_right" ]
+
+[node name="SoftDrop" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 0.0
+margin_top = 136.0
+margin_right = 108.0
+margin_bottom = 200.0
+max_value = 30.0
+show_as_percent = true
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Soft Drop"
+signal_names = [ "soft_dropped" ]
+
+[node name="HardDrop" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 112.0
+margin_top = 0.0
+margin_right = 220.0
+margin_bottom = 64.0
+max_value = 2.0
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Hard Drop"
+signal_names = [ "hard_dropped" ]
+
+[node name="LineClear" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 112.0
+margin_top = 0.0
+margin_right = 220.0
+margin_bottom = 64.0
+max_value = 2.0
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Line Clear"
+signal_names = [ "line_cleared" ]
+
+[node name="SnackBox" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 112.0
+margin_top = 204.0
+margin_right = 220.0
+margin_bottom = 268.0
+max_value = 2.0
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Snack Box"
+signal_names = [ "box_made" ]
+
+[node name="SquishMove" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 0.0
+margin_top = 272.0
+margin_right = 108.0
+margin_bottom = 336.0
+max_value = 2.0
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Squish Move"
+signal_names = [ "squish_moved" ]
+
+[node name="ZIndex" type="Node2D" parent="TutorialHud"]
+z_index = 30
+z_as_relative = false
+
+[node name="ColorRect" type="ColorRect" parent="TutorialHud/ZIndex"]
+modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 1 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="TutorialHud"]
+
+[node name="SectionCompleteSound" type="AudioStreamPlayer" parent="TutorialHud"]
+stream = ExtResource( 15 )
+volume_db = -4.0
 
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )

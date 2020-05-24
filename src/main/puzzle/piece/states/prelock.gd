@@ -14,7 +14,7 @@ func update(piece_manager: PieceManager) -> String:
 			spawn_delay = PieceSpeeds.current_speed.line_appearance_delay
 		else:
 			spawn_delay = PieceSpeeds.current_speed.appearance_delay
-		piece_manager.active_piece.spawn_delay = spawn_delay
+		piece_manager.piece.spawn_delay = spawn_delay
 		new_state_name = "WaitForPlayfield"
 	
 	return new_state_name

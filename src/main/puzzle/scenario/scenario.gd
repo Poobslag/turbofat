@@ -1,3 +1,4 @@
+class_name Scenario
 extends Control
 """
 Contains the logic for running a puzzle scenario. A puzzle scenario might include specific rules or win conditions
@@ -34,53 +35,24 @@ func _ready() -> void:
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
-
-	match _winish_type():
-		Milestone.CUSTOMERS:
-			_miledesc.text = "Now Serving"
-			_milevalue.set("custom_fonts/font", _xolonium_36)
-			_milevalue.text = "1/%s" % _winish_value()
-		Milestone.LINES:
-			_miledesc.text = "Level"
-			_milevalue.rect_position.y = 24
-			_milevalue.set("custom_fonts/font", _xolonium_48)
-			_set_level(0)
-			_update_milestone_hud()
-		Milestone.SCORE:
-			_miledesc.text = "Goal"
-			_milevalue.set("custom_fonts/font", _xolonium_24)
-			_milevalue.text = "¥%s" % _winish_value()
-		Milestone.TIME:
-			_miledesc.text = "Time"
-			_milevalue.set("custom_fonts/font", _xolonium_36)
-			_milevalue.text = StringUtils.format_duration(_winish_value())
 	
-	if Global.scenario_settings.other.has("tutorial"):
+	if Global.scenario_settings.other.tutorial:
 		Global.customer_queue.push_front({
 			"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
 			"ear": "2", "horn": "0", "mouth": "1", "eye": "1"
 		})
-		Global.customer_switch = false
-		Global.customer_fatten = false
 		$Puzzle/CustomerView.summon_customer()
-		$Puzzle.hide_chalkboard()
-	else:
-		Global.customer_switch = true
-		Global.customer_fatten = true
-	
-	_prepare_blocks()
+	init_milestone_hud()
+	prepare_scenario()
 
 
 func _physics_process(_delta: float) -> void:
 	if not PuzzleScore.game_active:
 		return
-
+	
 	match _winish_type():
 		Milestone.TIME:
-			var seconds := PuzzleScore.scenario_performance.seconds
-			if seconds >= _winish_value():
-				$MatchEndSound.play()
-				$Puzzle.end_game(2.2, "Finish!")
+			_check_for_match_end()
 
 
 func _process(_delta: float) -> void:
@@ -92,14 +64,35 @@ func _process(_delta: float) -> void:
 			# update time display
 			_update_milestone_hud()
 
-
 """
 Sets the speed level and updates the UI elements accordingly.
 """
-func _set_level(new_level:int) -> void:
+func set_level(new_level:int) -> void:
 	_level = new_level
 	var milestone: Milestone = Global.scenario_settings.level_ups[new_level]
 	PieceSpeeds.current_speed = PieceSpeeds.speed(milestone.get_meta("level"))
+
+
+func init_milestone_hud() -> void:
+	match _winish_type():
+		Milestone.CUSTOMERS:
+			_miledesc.text = "Now Serving"
+			_milevalue.set("custom_fonts/font", _xolonium_36)
+			_milevalue.text = "1/%s" % _winish_value()
+		Milestone.LINES:
+			_miledesc.text = "Level"
+			_milevalue.rect_position.y = 24
+			_milevalue.set("custom_fonts/font", _xolonium_48)
+			set_level(0)
+			_update_milestone_hud()
+		Milestone.SCORE:
+			_miledesc.text = "Goal"
+			_milevalue.set("custom_fonts/font", _xolonium_24)
+			_milevalue.text = "¥%s" % _winish_value()
+		Milestone.TIME:
+			_miledesc.text = "Time"
+			_milevalue.set("custom_fonts/font", _xolonium_36)
+			_milevalue.text = StringUtils.format_duration(_winish_value())
 
 
 """
@@ -190,13 +183,16 @@ func _winish_value() -> int:
 func _check_for_match_end() -> void:
 	if not PuzzleScore.game_active:
 		return
-
+	
 	if _met_finish_condition(Global.scenario_settings.win_condition):
 		$ExcellentSound.play()
 		$Puzzle.end_game(4.2, "You win!")
 	elif _met_finish_condition(Global.scenario_settings.finish_condition):
 		$MatchEndSound.play()
-		$Puzzle.end_game(2.2, "Finish!")
+		var message := "Finish!"
+		if Global.scenario_settings.other.tutorial:
+			message = ""
+		$Puzzle.end_game(2.2, message)
 
 
 func _met_finish_condition(condition: Milestone) -> bool:
@@ -211,38 +207,43 @@ func _met_finish_condition(condition: Milestone) -> bool:
 		Milestone.SCORE:
 			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
 			result = total_score >= condition.value
+		Milestone.TIME:
+			var seconds := PuzzleScore.scenario_performance.seconds
+			result = seconds >= condition.value
 	return result
 
 
 func _on_PuzzleScore_game_prepared() -> void:
-	_set_level(0)
 	_prepare_milestone_hud()
 	_update_milestone_hud()
 
 
 func _on_PuzzleScore_after_game_prepared() -> void:
-	_prepare_blocks()
-	_prepare_piece_types()
+	prepare_scenario()
 
 
-func _prepare_piece_types() -> void:
-	if Global.scenario_settings.piece_types.types.empty():
-		# use default piece types
-		pass
-	else:
-		$Puzzle.set_piece_types(Global.scenario_settings.piece_types.types)
-	
-	if Global.scenario_settings.piece_types.start_types.empty():
-		# use default start piece
-		pass
-	else:
-		$Puzzle.set_piece_start_types(Global.scenario_settings.piece_types.start_types)
+func prepare_scenario() -> void:
+	set_level(0)
+	prepare_blocks()
+	prepare_piece_types()
+	prepare_tutorial()
 
 
-func _prepare_blocks() -> void:
+func prepare_tutorial() -> void:
+	var tutorial_scenario: bool = Global.scenario_settings.other.tutorial
+	$Puzzle.set_chalkboard_visible(!tutorial_scenario)
+
+
+func prepare_blocks() -> void:
+	$Puzzle.clear_playfield()
 	var blocks_start := Global.scenario_settings.blocks_start
 	for cell in blocks_start.used_cells:
 		$Puzzle.set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
+
+
+func prepare_piece_types() -> void:
+	$Puzzle.set_piece_types(Global.scenario_settings.piece_types.types)
+	$Puzzle.set_piece_start_types(Global.scenario_settings.piece_types.start_types)
 
 
 func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
@@ -258,7 +259,7 @@ func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int, box
 	
 	if _level != new_level:
 		$LevelUpSound.play()
-		_set_level(new_level)
+		set_level(new_level)
 	
 	_update_milestone_hud()
 	_check_for_match_end()
@@ -291,3 +292,4 @@ func _on_Puzzle_back_button_pressed() -> void:
 	if Global.post_puzzle_target:
 		get_tree().change_scene(Global.post_puzzle_target)
 	emit_signal("back_button_pressed")
+

@@ -98,6 +98,9 @@
   "lose-condition": [
     "top-out 999999"
   ],
+  "other": [
+    "start-scenario ultra-normal"
+  ],
   "piece-types": [
     "start-piece-q", "start-piece-l"
   ],

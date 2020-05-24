@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=2]
+[gd_scene load_steps=53 format=2]
 
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
@@ -43,6 +43,7 @@
 [ext_resource path="res://src/main/puzzle/rainbow-metaball.shader" type="Shader" id=41]
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=42]
 [ext_resource path="res://src/main/puzzle/top-out.gd" type="Script" id=43]
+[ext_resource path="res://src/main/puzzle/piece-sfx.gd" type="Script" id=44]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 17 )
@@ -159,23 +160,26 @@ script = ExtResource( 43 )
 [node name="GameEnded" type="Node" parent="PieceManager/States"]
 script = ExtResource( 38 )
 
-[node name="Rotate0Sound" type="AudioStreamPlayer" parent="PieceManager"]
+[node name="PieceSfx" type="Node" parent="PieceManager"]
+script = ExtResource( 44 )
+
+[node name="Rotate0Sound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 29 )
 bus = "Main Bus"
 
-[node name="Rotate1Sound" type="AudioStreamPlayer" parent="PieceManager"]
+[node name="Rotate1Sound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 30 )
 bus = "Main Bus"
 
-[node name="MoveSound" type="AudioStreamPlayer" parent="PieceManager"]
+[node name="MoveSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 31 )
 bus = "Main Bus"
 
-[node name="LockSound" type="AudioStreamPlayer" parent="PieceManager"]
+[node name="LockSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 28 )
 bus = "Main Bus"
 
-[node name="SmushSound" type="AudioStreamPlayer" parent="PieceManager"]
+[node name="SquishSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 26 )
 bus = "Main Bus"
 
@@ -409,6 +413,20 @@ bus = "Voice Bus"
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="box_made" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_made"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
+[connection signal="das_moved_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_das_moved_left"]
+[connection signal="das_moved_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_das_moved_right"]
+[connection signal="initial_das_moved_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_das_moved_left"]
+[connection signal="initial_das_moved_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_das_moved_right"]
+[connection signal="initial_rotated_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_rotated_left"]
+[connection signal="initial_rotated_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_rotated_right"]
+[connection signal="initial_rotated_twice" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_rotated_twice"]
+[connection signal="lock_cancelled" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_lock_cancelled"]
+[connection signal="lock_started" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_lock_started"]
+[connection signal="moved_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_moved_left"]
+[connection signal="moved_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_moved_right"]
+[connection signal="rotated_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_rotated_left"]
+[connection signal="rotated_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_rotated_right"]
+[connection signal="squish_moved" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_squish_moved"]
 [connection signal="topped_out" from="PieceManager" to="TopOutTracker" method="_on_PieceManager_topped_out"]
 [connection signal="entered_state" from="PieceManager/States" to="PieceManager" method="_on_States_entered_state"]
 [connection signal="back_button_pressed" from="HudHolder/Hud" to="." method="_on_Hud_back_button_pressed"]

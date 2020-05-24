@@ -26,6 +26,18 @@ func _input(event: InputEvent) -> void:
 		$TopOutTracker.make_player_lose()
 
 
+func get_playfield() -> Playfield:
+	return $Playfield as Playfield
+
+
+func get_next_piece_displays() -> NextPieceDisplays:
+	return $NextPieceDisplays as NextPieceDisplays
+
+
+func get_piece_manager() -> PieceManager:
+	return $PieceManager as PieceManager
+
+
 """
 Shows a detailed multi-line message, like how the game is controlled
 """
@@ -66,8 +78,8 @@ func end_game(delay: float, message: String) -> void:
 	emit_signal("after_game_ended")
 
 
-func hide_chalkboard() -> void:
-	$Chalkboard.visible = false
+func set_chalkboard_visible(visible: bool) -> void:
+	$Chalkboard.visible = visible
 
 
 """
@@ -89,6 +101,10 @@ Returns the milestone hud's value label.
 """
 func milevalue() -> Label:
 	return $Chalkboard/MilestoneHud/Value as Label
+
+
+func clear_playfield() -> void:
+	$Playfield.clear()
 
 
 func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
@@ -117,7 +133,7 @@ Parameters:
 func _feed_customer(fatness_pct: float) -> void:
 	$CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
 	
-	if PuzzleScore.game_active and Global.customer_fatten:
+	if PuzzleScore.game_active and not Global.scenario_settings.other.tutorial:
 		var old_fatness: float = $CustomerView.get_fatness()
 		var target_fatness := sqrt(1 + PuzzleScore.get_customer_score() / 50.0)
 		$CustomerView.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
@@ -152,6 +168,6 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 
 
 func _on_PuzzleScore_combo_ended() -> void:
-	if PuzzleScore.game_active and Global.customer_switch:
+	if PuzzleScore.game_active and not Global.scenario_settings.other.tutorial:
 		$CustomerView.play_goodbye_voice()
 		$CustomerView.scroll_to_new_customer()

@@ -5,7 +5,7 @@ State: The piece will spawn soon.
 
 func update(piece_manager: PieceManager) -> String:
 	var new_state_name := ""
-	if frames >= piece_manager.active_piece.spawn_delay:
+	if frames >= piece_manager.piece.spawn_delay:
 		if piece_manager.spawn_piece():
 			new_state_name = "MovePiece"
 		else:

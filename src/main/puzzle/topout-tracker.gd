@@ -2,8 +2,8 @@ extends Node
 
 onready var _game_over_voices := [$GameOverVoice0, $GameOverVoice1, $GameOverVoice2, $GameOverVoice3, $GameOverVoice4]
 onready var _puzzle: Puzzle = $".."
-onready var _playfield: Playfield = $"../Playfield"
-onready var _piece_manager: PieceManager = $"../PieceManager"
+onready var _playfield: Playfield = _puzzle.get_playfield()
+onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
 func make_player_lose() -> void:
 	PuzzleScore.scenario_performance.lost = true

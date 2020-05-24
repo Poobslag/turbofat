@@ -82,7 +82,7 @@ func _fill() -> void:
 Initializes an empty queue with a set of starting pieces.
 """
 func _fill_initial_pieces() -> void:
-	if not _piece_types:
+	if _piece_types.empty():
 		"""
 		Default piece selection:
 		1. Three same-size pieces which don't make a cake block; lot, jot, jlt or pqu
@@ -147,7 +147,7 @@ func _fill_remaining_pieces() -> void:
 		var new_pieces := shuffled_piece_types()
 		
 		# avoid having two of the same piece consecutively, if we have at least 3 pieces to choose from
-		if new_pieces[0] == _pieces.back() and new_pieces.size() >= 3:
+		if not _pieces.empty() and _pieces.back() == new_pieces[0] and new_pieces.size() >= 3:
 			new_pieces.pop_front()
 			new_pieces.insert(int(rand_range(1, new_pieces.size() + 1)), _pieces.back())
 		

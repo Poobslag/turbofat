@@ -33,6 +33,9 @@ const COL_COUNT = 9
 var awarding_line_clear_points: bool = true
 var lines_being_cleared := []
 
+# 'true' if the playfield can't be written to. Used for tutorials.
+var read_only := false
+
 var _cleared_line_index := 0
 
 # Stores timing values to ensure lines are erased one at a time with consistent timing.
@@ -44,6 +47,9 @@ var _remaining_line_clear_frames := 0
 
 # remaining frames to wait for making the current box
 var _remaining_box_build_frames := 0
+
+# remaining frames to delay for something besides making boxes/clearing lines
+var _remaining_misc_delay_frames := 0
 
 # True if anything is dropping which will trigger the line fall sound.
 var _should_play_line_fall_sound := false
@@ -77,6 +83,16 @@ func _physics_process(delta: float) -> void:
 			_cleared_line_index = 0
 			_delete_rows()
 			emit_signal("after_piece_written")
+	elif _remaining_misc_delay_frames > 0:
+		_remaining_misc_delay_frames -= 1
+
+
+func add_misc_delay_frames(frames: int) -> void:
+	_remaining_misc_delay_frames += frames
+
+
+func clear() -> void:
+	$TileMapClip/TileMap.clear()
 
 
 func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
@@ -87,7 +103,9 @@ func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) 
 Returns false the playfield is paused for an of animation or delay which should prevent a new piece from appearing.
 """
 func ready_for_new_piece() -> bool:
-	return _remaining_line_clear_frames <= 0 and _remaining_box_build_frames <= 0
+	return _remaining_box_build_frames <= 0 \
+			and _remaining_line_clear_frames <= 0 \
+			and _remaining_misc_delay_frames <= 0
 
 
 """
@@ -96,14 +114,15 @@ Writes a piece to the playfield, checking whether it makes any boxes or clears a
 Returns true if the written piece results in a line clear.
 """
 func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece := false) -> bool:
-	for i in range(type.pos_arr[orientation].size()):
-		var block_pos := type.get_cell_position(orientation, i)
-		var block_color := type.get_cell_color(orientation, i)
-		_set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
-	
 	_remaining_box_build_frames = 0
 	_remaining_line_clear_frames = 0
 	
+	if not read_only:
+		for i in range(type.pos_arr[orientation].size()):
+			var block_pos := type.get_cell_position(orientation, i)
+			var block_color := type.get_cell_color(orientation, i)
+			_set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
+		
 	if not death_piece:
 		_process_boxes()
 		_schedule_full_row_line_clears()
