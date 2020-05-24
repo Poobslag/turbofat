@@ -215,7 +215,6 @@ func _met_finish_condition(condition: Milestone) -> bool:
 
 func _on_PuzzleScore_game_prepared() -> void:
 	_prepare_milestone_hud()
-	_update_milestone_hud()
 
 
 func _on_PuzzleScore_after_game_prepared() -> void:
@@ -224,6 +223,7 @@ func _on_PuzzleScore_after_game_prepared() -> void:
 
 func prepare_scenario() -> void:
 	set_level(0)
+	_update_milestone_hud()
 	prepare_blocks()
 	prepare_piece_types()
 	prepare_tutorial()
@@ -232,6 +232,7 @@ func prepare_scenario() -> void:
 func prepare_tutorial() -> void:
 	var tutorial_scenario: bool = Global.scenario_settings.other.tutorial
 	$Puzzle.set_chalkboard_visible(!tutorial_scenario)
+	$TutorialHud.refresh()
 
 
 func prepare_blocks() -> void:
@@ -277,7 +278,7 @@ func _on_PuzzleScore_game_ended() -> void:
 	# ensure score is up to date before calculating rank
 	PuzzleScore.end_combo()
 	var rank_result := _rank_calculator.calculate_rank()
-	PlayerData.add_scenario_history(Global.scenario_settings.name, rank_result)
+	PlayerData.add_scenario_history(Global.launched_scenario_name, rank_result)
 	PlayerData.money += rank_result.score
 	PlayerSave.save_player_data()
 	

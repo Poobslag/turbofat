@@ -204,6 +204,19 @@ text = "Editor"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="TutorialButton" type="Button" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 220.0
+margin_top = -46.0
+margin_right = 340.0
+margin_bottom = -10.0
+custom_fonts/font = ExtResource( 10 )
+text = "Tutorial"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="chose_scenario" from="VBoxContainer/Sprint/Normal" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="chose_scenario" from="VBoxContainer/Sprint/Expert" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="chose_scenario" from="VBoxContainer/Ultra/Normal" to="." method="_on_ScenarioButton_chose_scenario"]
@@ -215,3 +228,4 @@ __meta__ = {
 [connection signal="chose_scenario" from="VBoxContainer/Marathon/Master" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="pressed" from="OverworldButton" to="." method="_on_OverworldButton_pressed"]
 [connection signal="pressed" from="LevelEditorButton" to="." method="_on_LevelEditorButton_pressed"]
+[connection signal="pressed" from="TutorialButton" to="." method="_on_TutorialButton_pressed"]

@@ -99,13 +99,14 @@
     "top-out 999999"
   ],
   "other": [
-    "start-scenario ultra-normal"
+    "start-scenario ultra-normal",
+    "after-tutorial"
   ],
   "piece-types": [
     "start-piece-q", "start-piece-l"
   ],
   "rank": [
-    "box-factor 1.667"
+    "skip-results"
   ],
   "score": [
     "cake-all 20"

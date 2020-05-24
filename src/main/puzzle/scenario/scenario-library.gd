@@ -44,6 +44,7 @@ Parameters:
 func change_scenario_scene(scenario_settings: ScenarioSettings, overworld_puzzle: bool,
 		customer_def: Dictionary = {}) -> void:
 	Global.scenario_settings = scenario_settings
+	Global.launched_scenario_name = scenario_settings.name
 	Global.customer_queue.push_back(customer_def)
 	Global.overworld_puzzle = overworld_puzzle
 	if overworld_puzzle:

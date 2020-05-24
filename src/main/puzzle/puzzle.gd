@@ -133,9 +133,12 @@ Parameters:
 func _feed_customer(fatness_pct: float) -> void:
 	$CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
 	
-	if PuzzleScore.game_active and not Global.scenario_settings.other.tutorial:
+	if PuzzleScore.game_active:
 		var old_fatness: float = $CustomerView.get_fatness()
 		var target_fatness := sqrt(1 + PuzzleScore.get_customer_score() / 50.0)
+		if Global.scenario_settings.other.tutorial:
+			# make them a tiny amount fatter, so that they'll change when a new level is started
+			target_fatness = min(target_fatness, 1.001)
 		$CustomerView.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
 
 

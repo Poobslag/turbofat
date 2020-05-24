@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
@@ -15,6 +15,9 @@
 [ext_resource path="res://src/main/puzzle/scenario/SkillTallyItem.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/puzzle/scenario/tutorial-hud.gd" type="Script" id=14]
 [ext_resource path="res://assets/puzzle/scenario/tutorial-section-complete.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/ui/chat/bebebe.wav" type="AudioStream" id=16]
+[ext_resource path="res://src/main/puzzle/scenario/tutorial-message.gd" type="Script" id=17]
+[ext_resource path="res://src/main/puzzle/scenario/tutorial-message-tween.gd" type="Script" id=18]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -59,15 +62,27 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TutorialHud"]
-visible = false
+[node name="Message" type="RichTextLabel" parent="TutorialHud"]
 margin_left = 10.0
 margin_top = 10.0
 margin_right = 345.0
 margin_bottom = 305.0
+rect_pivot_offset = Vector2( 168, 148 )
 custom_styles/normal = ExtResource( 3 )
 custom_fonts/normal_font = ExtResource( 2 )
-text = "Oh my, you're not supposed to know how to do that! ...But yes, snack boxes get you $15 when you clear them. Maybe more if you're clever."
+text = "OH, MY!!!"
+scroll_following = true
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BebebeSound" type="AudioStreamPlayer" parent="TutorialHud/Message"]
+stream = ExtResource( 16 )
+volume_db = -12.0
+
+[node name="Tween" type="Tween" parent="TutorialHud/Message"]
+script = ExtResource( 18 )
 
 [node name="SkillTallyItems" type="Panel" parent="TutorialHud"]
 margin_left = 774.0
@@ -236,4 +251,6 @@ codes = [ "delays" ]
 [connection signal="after_game_ended" from="Puzzle" to="ResultsHud" method="_on_Puzzle_after_game_ended"]
 [connection signal="back_button_pressed" from="Puzzle" to="." method="_on_Puzzle_back_button_pressed"]
 [connection signal="line_cleared" from="Puzzle" to="." method="_on_Puzzle_line_cleared"]
+[connection signal="pop_out_completed" from="TutorialHud/Message/Tween" to="TutorialHud/Message" method="_on_Tween_pop_out_completed"]
+[connection signal="tween_completed" from="TutorialHud/Message/Tween" to="TutorialHud/Message/Tween" method="_on_tween_completed"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Puzzle/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]

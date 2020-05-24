@@ -208,6 +208,9 @@
   "piece-types": [
     "piece-t"
   ],
+  "rank": [
+    "skip-results"
+  ],
   "start-level": "T",
   "score": [
     "cake-all 20"

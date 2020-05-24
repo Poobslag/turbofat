@@ -273,6 +273,16 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://src/main/state-machine.gd"
+}, {
+"base": "Control",
+"class": "TutorialHud",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario/tutorial-hud.gd"
+}, {
+"base": "RichTextLabel",
+"class": "TutorialMessage",
+"language": "GDScript",
+"path": "res://src/main/puzzle/scenario/tutorial-message.gd"
 } ]
 _global_script_class_icons={
 "ActivePiece": "",
@@ -327,7 +337,9 @@ _global_script_class_icons={
 "SmoothPath": "",
 "Spira": "",
 "State": "",
-"StateMachine": ""
+"StateMachine": "",
+"TutorialHud": "",
+"TutorialMessage": ""
 }
 
 [application]

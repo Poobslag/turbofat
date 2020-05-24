@@ -247,10 +247,14 @@
     "top-out 1"
   ],
   "other": [
-    "start-scenario marathon-hard"
+    "start-scenario marathon-hard",
+    "after-tutorial"
   ],
   "piece-types": [
     "piece-l"
+  ],
+  "rank": [
+    "skip-results"
   ],
   "start-level": "DB"
 }
