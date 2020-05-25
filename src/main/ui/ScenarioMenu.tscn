@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/main/ui/scenario-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/puzzle/wood-backdrop.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/main/ui/marathon-button.gd" type="Script" id=8]
 [ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=9]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=10]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=11]
 
 [node name="ScenarioMenu" type="Control"]
 anchor_right = 1.0
@@ -217,6 +218,9 @@ text = "Tutorial"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CheatCodeDetector" parent="." instance=ExtResource( 11 )]
+codes = [ "unlock" ]
 [connection signal="chose_scenario" from="VBoxContainer/Sprint/Normal" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="chose_scenario" from="VBoxContainer/Sprint/Expert" to="." method="_on_ScenarioButton_chose_scenario"]
 [connection signal="chose_scenario" from="VBoxContainer/Ultra/Normal" to="." method="_on_ScenarioButton_chose_scenario"]
@@ -229,3 +233,4 @@ __meta__ = {
 [connection signal="pressed" from="OverworldButton" to="." method="_on_OverworldButton_pressed"]
 [connection signal="pressed" from="LevelEditorButton" to="." method="_on_LevelEditorButton_pressed"]
 [connection signal="pressed" from="TutorialButton" to="." method="_on_TutorialButton_pressed"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]
