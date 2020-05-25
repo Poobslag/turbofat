@@ -22,7 +22,7 @@ var delayed_auto_shift_delay: int
 # number of frames to pause before locking a piece into the playfield
 var lock_delay: int
 
-# number of frames to pause after locking a piece into the playfield
+# number of frames to pause after locking a piece, when the player can lock cancel and squish
 var post_lock_delay: int
 
 # number of frames to pause when clearing a line
