@@ -5,7 +5,7 @@ Plays sound effects when the player piece is moved.
 
 func _play_move_sfx() -> void:
 	$MoveSound.pitch_scale = 0.94
-	$MoveSound.volume_db = 1.00
+	$MoveSound.volume_db = -4.00
 	$MoveSound.play()
 
 

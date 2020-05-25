@@ -10,6 +10,7 @@ hipass = 0.5
 wet = 0.15
 
 [resource]
+bus/0/volume_db = -7.0
 bus/1/name = "Main Bus"
 bus/1/solo = false
 bus/1/mute = false

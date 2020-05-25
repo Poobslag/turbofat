@@ -165,14 +165,17 @@ script = ExtResource( 44 )
 
 [node name="Rotate0Sound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 29 )
+volume_db = -4.0
 bus = "Main Bus"
 
 [node name="Rotate1Sound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 30 )
+volume_db = -4.0
 bus = "Main Bus"
 
 [node name="MoveSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 31 )
+volume_db = -4.0
 bus = "Main Bus"
 
 [node name="LockSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
@@ -387,12 +390,12 @@ bus = "Voice Bus"
 
 [node name="ReadySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
-volume_db = -4.0
+volume_db = -8.0
 bus = "Main Bus"
 
 [node name="GoSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
-volume_db = -4.0
+volume_db = -8.0
 bus = "Main Bus"
 
 [node name="GoVoice0" type="AudioStreamPlayer" parent="."]
