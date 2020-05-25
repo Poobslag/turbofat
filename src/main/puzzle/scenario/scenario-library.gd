@@ -15,7 +15,7 @@ func load_scenario_from_name(name: String) -> ScenarioSettings:
 
 func load_scenario(name: String, text: String) -> ScenarioSettings:
 	var scenario_settings := ScenarioSettings.new()
-	scenario_settings.from_dict(name, parse_json(text))
+	scenario_settings.from_json_dict(name, parse_json(text))
 	return scenario_settings
 
 

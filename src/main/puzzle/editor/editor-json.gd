@@ -26,8 +26,8 @@ func can_parse_json() -> bool:
 	var parsed = parse_json(text)
 	_json_tree = parsed if typeof(parsed) == TYPE_DICTIONARY else {}
 	if _json_tree:
-		_json_blocks_start = _json_tree[BLOCKS_START] if _json_tree.has(BLOCKS_START) else {}
-		_json_tiles = _json_blocks_start[TILES] if _json_blocks_start.has(TILES) else []
+		_json_blocks_start = _json_tree.get(BLOCKS_START, {})
+		_json_tiles = _json_blocks_start.get(TILES, [])
 	return not _json_tree.empty()
 
 
@@ -38,8 +38,10 @@ func refresh_tilemap() -> void:
 	if can_parse_json():
 		_tile_map.clear()
 		for json_tile in _json_tiles:
-			var json_pos_arr: PoolStringArray = json_tile["pos"].split(" ")
-			var json_tile_arr: PoolStringArray = json_tile["tile"].split(" ")
+			var json_pos_arr: PoolStringArray = json_tile.get("pos", "").split(" ")
+			var json_tile_arr: PoolStringArray = json_tile.get("tile", "").split(" ")
+			if json_pos_arr.size() < 2 or json_tile_arr.size() < 3:
+				continue
 			var pos := Vector2(int(json_pos_arr[0]), int(json_pos_arr[1]))
 			var tile := int(json_tile_arr[0])
 			var autotile_coord := Vector2(int(json_tile_arr[1]), int(json_tile_arr[2]))

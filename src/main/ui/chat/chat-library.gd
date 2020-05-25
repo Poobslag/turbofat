@@ -36,7 +36,7 @@ func load_chat_events_from_file(path: String) -> ChatTree:
 	file.close()
 	
 	var json_tree := _parse_json_tree(text)
-	chat_tree.from_dict(json_tree)
+	chat_tree.from_json_dict(json_tree)
 	return chat_tree
 
 

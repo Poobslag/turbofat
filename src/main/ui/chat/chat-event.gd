@@ -51,12 +51,9 @@ appearance, such as 'blue', 'soccer balls' and 'giant'.
 """
 var accent_def: Dictionary
 
-"""
-Populates this object with json data.
-"""
-func from_dict(json: Dictionary) -> void:
+func from_json_dict(json: Dictionary) -> void:
 	who = json.get("who", "")
-	text = json["text"]
+	text = json.get("text", "")
 	_parse_mood(json)
 	_parse_links(json)
 	_parse_meta(json)
