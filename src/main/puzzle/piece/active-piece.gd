@@ -103,7 +103,7 @@ Parameters:
 	'kicks': A list of positions to try.
 
 Returns:
-	The new 'kicked' position for the piece, or null if the piece could not be kicked.
+	The new 'kicked' position for the piece, or (0, 0) if the piece could not be kicked.
 """
 func kick_piece(is_cell_blocked: FuncRef, target_pos: Vector2, target_orientation: int, kicks: Array = []) -> Vector2:
 	if kicks == []:

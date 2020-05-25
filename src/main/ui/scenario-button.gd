@@ -23,6 +23,15 @@ func disable(unlock_message: String) -> void:
 	$Best.text = unlock_message
 
 
+func enable() -> void:
+	$Button.text = scenario_name.split("-")[1].capitalize()
+	$Button.disabled = false
+
+
+func is_disabled() -> bool:
+	return $Button.disabled
+
+
 """
 Calculates the label text for displaying a player's best scenario performance.
 """

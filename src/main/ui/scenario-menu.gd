@@ -50,3 +50,22 @@ func _on_LevelEditorButton_pressed() -> void:
 
 func _on_TutorialButton_pressed() -> void:
 	launch_scenario(BEGINNER_TUTORIAL_SCENARIO)
+
+
+func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector):
+	if cheat == "unlock":
+		var enabled_count := 0
+		for button_obj in [
+			$VBoxContainer/Sprint/Expert,
+			$VBoxContainer/Ultra/Hard,
+			$VBoxContainer/Ultra/Expert,
+			$VBoxContainer/Marathon/Hard,
+			$VBoxContainer/Marathon/Expert,
+			$VBoxContainer/Marathon/Master
+		]:
+			var button: ScenarioButton = button_obj
+			if button.is_disabled():
+				button.enable()
+				enabled_count += 1
+		if enabled_count >= 1:
+			detector.play_cheat_sound(true)

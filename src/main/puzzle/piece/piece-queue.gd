@@ -29,7 +29,6 @@ var _piece_start_types := []
 func _init() -> void:
 	# Ensure pieces are random
 	randomize()
-	_fill()
 
 
 """
@@ -85,10 +84,11 @@ func _fill_initial_pieces() -> void:
 	if _piece_types.empty():
 		"""
 		Default piece selection:
-		1. Three same-size pieces which don't make a cake block; lot, jot, jlt or pqu
-		2. A piece which doesn't make a snack block
-		3. A piece which does make a snack block
-		4. The remaining three pieces get appended to the end
+		1. Append three same-size pieces which don't make a cake block; lot, jot, jlt or pqu
+		2. Append a piece which doesn't make a snack block
+		3. Append a piece which does make a snack block
+		4. Append the remaining three pieces
+		5. Insert an extra piece in the last 3 positions
 		"""
 		var all_bad_starts := [
 			[PieceTypes.piece_l, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_p, PieceTypes.piece_q],
@@ -114,6 +114,8 @@ func _fill_initial_pieces() -> void:
 		for piece in _other_pieces:
 			if not _pieces.has(piece):
 				_pieces.push_back(piece)
+		
+		_insert_annoying_piece(3)
 	
 	if _piece_start_types:
 		var pieces_tmp := _piece_start_types.duplicate()
@@ -141,27 +143,36 @@ avoids pulling the same piece back to back. With this algorithm you're always ab
 extra piece acts as an helpful tool for 3x4 boxes and 3x5 boxes, or an annoying deterrent for 3x3 boxes.
 """
 func _fill_remaining_pieces() -> void:
-	
 	while _pieces.size() < MIN_SIZE:
 		# fill a bag with one of each piece and one extra; draw them out in a random order
 		var new_pieces := shuffled_piece_types()
-		
 		# avoid having two of the same piece consecutively, if we have at least 3 pieces to choose from
 		if not _pieces.empty() and _pieces.back() == new_pieces[0] and new_pieces.size() >= 3:
 			new_pieces.pop_front()
 			new_pieces.insert(int(rand_range(1, new_pieces.size() + 1)), _pieces.back())
-		
-		# add one extra piece
-		var new_piece_index := int(rand_range(1, new_pieces.size() + 1))
-		var extra_piece_types: Array = shuffled_piece_types()
-		if extra_piece_types.size() >= 3:
-			# check the neighboring pieces, and remove those from the pieces we're picking from
-			extra_piece_types.remove(extra_piece_types.rfind(new_pieces[new_piece_index - 1]))
-			if new_piece_index < new_pieces.size():
-				extra_piece_types.remove(extra_piece_types.rfind(new_pieces[new_piece_index]))
-		if extra_piece_types[0] == PieceTypes.piece_o:
-			# the o piece is awful, so it comes 10% less often
-			extra_piece_types.shuffle()
-		new_pieces.insert(new_piece_index, extra_piece_types[0])
-		
 		_pieces += new_pieces
+		_insert_annoying_piece(new_pieces.size())
+
+
+"""
+Inserts an extra piece into the bag.
+
+Turbo Fat's pieces fit together too well. We periodically add extra pieces to the bag to ensure the game isn't too
+easy.
+
+Parameters:
+	'max_pieces_to_right': The maximum number of pieces to the right of the new piece. '0' guarantees the new piece
+			will be appended to the end of the queue, '8' means it will be mixed in with the last eight pieces.
+"""
+func _insert_annoying_piece(max_pieces_to_right: int) -> void:
+	var new_piece_index := int(rand_range(_pieces.size() - max_pieces_to_right + 1, _pieces.size() + 1))
+	var extra_piece_types: Array = shuffled_piece_types()
+	if extra_piece_types.size() >= 3:
+		# check the neighboring pieces, and remove those from the pieces we're picking from
+		extra_piece_types.remove(extra_piece_types.rfind(_pieces[new_piece_index - 1]))
+		if new_piece_index < _pieces.size():
+			extra_piece_types.remove(extra_piece_types.rfind(_pieces[new_piece_index]))
+	if extra_piece_types[0] == PieceTypes.piece_o:
+		# the o piece is awful, so it comes 10% less often
+		extra_piece_types.shuffle()
+	_pieces.insert(new_piece_index, extra_piece_types[0])

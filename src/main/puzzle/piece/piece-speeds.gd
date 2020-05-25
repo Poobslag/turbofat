@@ -28,19 +28,19 @@ var _speeds := {}
 
 func _ready() -> void:
 	# tutorial; piece does not drop
-	_add_speed(PieceSpeed.new("T",   0, 20, 36, 7, 16, 40, 24, 12))
+	_add_speed(PieceSpeed.new("T",   0, 20, 36, 7, 16, 60, 24, 12))
 	
 	# beginner; 10-30 blocks per minute
-	_add_speed(PieceSpeed.new("0",   4, 20, 36, 7, 16, 40, 24, 12))
-	_add_speed(PieceSpeed.new("1",   5, 20, 36, 7, 16, 40, 24, 12))
-	_add_speed(PieceSpeed.new("2",   6, 20, 36, 7, 16, 40, 24, 12))
-	_add_speed(PieceSpeed.new("3",   8, 20, 36, 7, 16, 40, 24, 12))
-	_add_speed(PieceSpeed.new("4",  10, 20, 36, 7, 16, 40, 24, 12))
-	_add_speed(PieceSpeed.new("5",  12, 20, 36, 7, 16, 40, 24, 12))
-	_add_speed(PieceSpeed.new("6",  16, 20, 36, 7, 16, 40, 24, 12))
-	_add_speed(PieceSpeed.new("7",  24, 20, 36, 7, 16, 40, 24, 12))
-	_add_speed(PieceSpeed.new("8",  32, 20, 36, 7, 16, 40, 24, 12))
-	_add_speed(PieceSpeed.new("9",  48, 20, 36, 7, 16, 40, 24, 12))
+	_add_speed(PieceSpeed.new("0",   4, 20, 36, 7, 16, 60, 24, 12))
+	_add_speed(PieceSpeed.new("1",   5, 20, 36, 7, 16, 60, 24, 12))
+	_add_speed(PieceSpeed.new("2",   6, 20, 36, 7, 16, 60, 24, 12))
+	_add_speed(PieceSpeed.new("3",   8, 20, 36, 7, 16, 60, 24, 12))
+	_add_speed(PieceSpeed.new("4",  10, 20, 36, 7, 16, 60, 24, 12))
+	_add_speed(PieceSpeed.new("5",  12, 20, 36, 7, 16, 60, 24, 12))
+	_add_speed(PieceSpeed.new("6",  16, 20, 36, 7, 16, 60, 24, 12))
+	_add_speed(PieceSpeed.new("7",  24, 20, 36, 7, 16, 60, 24, 12))
+	_add_speed(PieceSpeed.new("8",  32, 20, 36, 7, 16, 60, 24, 12))
+	_add_speed(PieceSpeed.new("9",  48, 20, 36, 7, 16, 60, 24, 12))
 	
 	# normal; 30-60 blocks per minute
 	_add_speed(PieceSpeed.new("A0",    4, 20, 20, 7, 16, 40, 24, 12))
@@ -63,15 +63,15 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("AF", 20*G, 16, 12, 7, 10, 30, 12,  6))
 	
 	# crazy; 120-250 blocks per minute
-	_add_speed(PieceSpeed.new( "F0",    4, 12, 8, 7, 10, 24, 6, 3))
-	_add_speed(PieceSpeed.new( "F1",  1*G, 12, 8, 7, 10, 24, 6, 3))
-	_add_speed(PieceSpeed.new( "FA", 20*G, 12, 8, 7, 10, 24, 6, 3))
-	_add_speed(PieceSpeed.new( "FB", 20*G,  8, 6, 5,  7, 22, 5, 3))
-	_add_speed(PieceSpeed.new( "FC", 20*G,  6, 4, 5,  7, 20, 4, 3))
-	_add_speed(PieceSpeed.new( "FD", 20*G,  4, 2, 5,  7, 18, 3, 3))
-	_add_speed(PieceSpeed.new( "FE", 20*G,  4, 2, 5,  7, 16, 3, 3))
-	_add_speed(PieceSpeed.new( "FF", 20*G,  4, 2, 5,  7, 14, 3, 3))
-	_add_speed(PieceSpeed.new("FFF", 20*G,  4, 2, 5,  7, 12, 3, 3))
+	_add_speed(PieceSpeed.new( "F0",    4, 12, 8, 5,  8, 24, 6, 3))
+	_add_speed(PieceSpeed.new( "F1",  1*G, 12, 8, 5,  8, 24, 6, 3))
+	_add_speed(PieceSpeed.new( "FA", 20*G, 12, 8, 5,  8, 24, 6, 3))
+	_add_speed(PieceSpeed.new( "FB", 20*G,  8, 6, 5,  8, 22, 5, 3))
+	_add_speed(PieceSpeed.new( "FC", 20*G,  6, 4, 5,  8, 20, 4, 3))
+	_add_speed(PieceSpeed.new( "FD", 20*G,  4, 2, 5,  8, 18, 3, 3))
+	_add_speed(PieceSpeed.new( "FE", 20*G,  4, 2, 5,  8, 16, 3, 3))
+	_add_speed(PieceSpeed.new( "FF", 20*G,  4, 2, 5,  8, 14, 3, 3))
+	_add_speed(PieceSpeed.new("FFF", 20*G,  4, 2, 5,  8, 12, 3, 3))
 	
 	# easter egg
 	_add_speed(PieceSpeed.new("DB", 1*G, 20, 20, 7, 16, 40, 24, 12))
