@@ -16,3 +16,6 @@ grep -R -n "^					.\{100,\}$" --include="*.gd" .
 grep -R -n "var [^:]* = " --include="*.gd" . \
   | grep -v " = parse_json(" \
   | grep -v "chat-event.gd:76"
+
+find -name *.TMP
+find -name *.gd~

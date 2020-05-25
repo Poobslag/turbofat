@@ -1,13 +1,17 @@
-.*
-data_turbo Fat
-*.zip
-*.gd~
-**/*.TMP
-
-# exported artifacts
-Turbo Fat.exe
-Turbo Fat.pck
-Turbo Fat.x86_64
-/export/html5/*
-
 !.gitkeep
+
+# Exported artifacts: .zip, .pck
+/export
+
+# Godot-specific ignores
+.import/
+
+# Imported translations (automatically generated from CSV files)
+*.translation
+
+# Mono-specific ignores
+.mono/
+data_*/
+
+# IntelliJ-specific ignores
+.idea
