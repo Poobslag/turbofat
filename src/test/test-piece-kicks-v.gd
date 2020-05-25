@@ -3,7 +3,7 @@ extends "res://src/test/test-piece-kicks.gd"
 Tests the v piece's kick behavior.
 """
 
-func test_v_climb_kick_cw0() -> void:
+func test_climb_kick_cw0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -18,10 +18,10 @@ func test_v_climb_kick_cw0() -> void:
 		"   v ",
 		"  :::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_climb_kick_cw1() -> void:
+func test_climb_kick_cw1() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -36,10 +36,10 @@ func test_v_climb_kick_cw1() -> void:
 		"  v::",
 		"  :::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_climb_kick_cw2() -> void:
+func test_climb_kick_cw2() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -54,10 +54,10 @@ func test_v_climb_kick_cw2() -> void:
 		"  :::",
 		"  :::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_climb_kick_cw3() -> void:
+func test_climb_kick_cw3() -> void:
 	from_grid = [
 		"    ",
 		"vvv ",
@@ -70,10 +70,10 @@ func test_v_climb_kick_cw3() -> void:
 		" vvv",
 		" : :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_climb_kick_cw4() -> void:
+func test_climb_kick_cw4() -> void:
 	from_grid = [
 		"    ",
 		"vvv:",
@@ -86,10 +86,10 @@ func test_v_climb_kick_cw4() -> void:
 		"vvv ",
 		" : :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_climb_kick_ccw0() -> void:
+func test_climb_kick_ccw0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -104,10 +104,10 @@ func test_v_climb_kick_ccw0() -> void:
 		" v   ",
 		":::  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_climb_kick_ccw1() -> void:
+func test_climb_kick_ccw1() -> void:
 	from_grid = [
 		"      ",
 		"      ",
@@ -122,10 +122,10 @@ func test_v_climb_kick_ccw1() -> void:
 		"::v   ",
 		":::   ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_climb_kick_ccw2() -> void:
+func test_climb_kick_ccw2() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -140,10 +140,10 @@ func test_v_climb_kick_ccw2() -> void:
 		":::  ",
 		":::  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_climb_kick_ccw3() -> void:
+func test_climb_kick_ccw3() -> void:
 	from_grid = [
 		"    ",
 		" vvv",
@@ -156,10 +156,10 @@ func test_v_climb_kick_ccw3() -> void:
 		"vvv ",
 		": : ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_climb_kick_ccw4() -> void:
+func test_climb_kick_ccw4() -> void:
 	from_grid = [
 		"    ",
 		":vvv",
@@ -172,13 +172,13 @@ func test_v_climb_kick_ccw4() -> void:
 		" vvv",
 		": : ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
 A 'snack kick' is when a v piece rotates around an o piece to make a snack block.
 """
-func test_v_snack_kick_cw() -> void:
+func test_snack_kick_cw() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -193,10 +193,10 @@ func test_v_snack_kick_cw() -> void:
 		"  ::v",
 		"  ::v",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_snack_kick_ccw() -> void:
+func test_snack_kick_ccw() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -211,10 +211,10 @@ func test_v_snack_kick_ccw() -> void:
 		"v::  ",
 		"v::  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_snack_kick_down_ccw() -> void:
+func test_snack_kick_down_ccw() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -231,10 +231,10 @@ func test_v_snack_kick_down_ccw() -> void:
 		":v:::",
 		" vvv ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_snack_kick_down_cw() -> void:
+func test_snack_kick_down_cw() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -251,13 +251,13 @@ func test_v_snack_kick_down_cw() -> void:
 		":::v:",
 		" vvv ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
 The v piece can't technically wall kick, but it can kick against other blocks similar to a wall kick
 """
-func test_v_rwallkick_cw0() -> void:
+func test_rwallkick_cw0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -272,10 +272,10 @@ func test_v_rwallkick_cw0() -> void:
 		"  v  ",
 		"  v::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_rwallkick_cw1() -> void:
+func test_rwallkick_cw1() -> void:
 	from_grid = [
 		"    :",
 		"    :",
@@ -290,10 +290,10 @@ func test_v_rwallkick_cw1() -> void:
 		" v   ",
 		" v   ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_rwallkick_cw2() -> void:
+func test_rwallkick_cw2() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -308,10 +308,10 @@ func test_v_rwallkick_cw2() -> void:
 		"   v ",
 		"   v:",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_lwallkick_cw3() -> void:
+func test_lwallkick_cw3() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -326,10 +326,10 @@ func test_v_lwallkick_cw3() -> void:
 		"   v ",
 		":vvv ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_lwallkick_cw4() -> void:
+func test_lwallkick_cw4() -> void:
 	from_grid = [
 		":    ",
 		":    ",
@@ -344,10 +344,10 @@ func test_v_lwallkick_cw4() -> void:
 		" v   ",
 		" vvv ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_lwallkick_ccw0() -> void:
+func test_lwallkick_ccw0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -362,10 +362,10 @@ func test_v_lwallkick_ccw0() -> void:
 		"  v  ",
 		"::v  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_lwallkick_ccw1() -> void:
+func test_lwallkick_ccw1() -> void:
 	from_grid = [
 		":    ",
 		":    ",
@@ -380,10 +380,10 @@ func test_v_lwallkick_ccw1() -> void:
 		"   v ",
 		"   v ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_lwallkick_ccw2() -> void:
+func test_lwallkick_ccw2() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -398,11 +398,11 @@ func test_v_lwallkick_ccw2() -> void:
 		" v   ",
 		":v   ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 
-func test_v_rwallkick_ccw3() -> void:
+func test_rwallkick_ccw3() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -417,10 +417,10 @@ func test_v_rwallkick_ccw3() -> void:
 		" v   ",
 		" vvv:",
 	]
-	_assert_kick()
+	assert_kick()
 
 
-func test_v_rwallkick_ccw4() -> void:
+func test_rwallkick_ccw4() -> void:
 	from_grid = [
 		"    :",
 		"    :",
@@ -435,7 +435,7 @@ func test_v_rwallkick_ccw4() -> void:
 		"   v ",
 		" vvv ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -454,7 +454,7 @@ func test_ritzy_kick_cw0() -> void:
 		":vvv",
 		"   :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_ritzy_kick_cw1() -> void:
@@ -470,7 +470,7 @@ func test_ritzy_kick_cw1() -> void:
 		" v  ",
 		":v  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_ritzy_kick_cw2() -> void:
@@ -486,7 +486,7 @@ func test_ritzy_kick_cw2() -> void:
 		"  v ",
 		"  v ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_ritzy_kick_cw3() -> void:
@@ -502,7 +502,7 @@ func test_ritzy_kick_cw3() -> void:
 		"vvv ",
 		" :: ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_ritzy_kick_ccw0() -> void:
@@ -518,7 +518,7 @@ func test_ritzy_kick_ccw0() -> void:
 		"vvv:",
 		":   ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_ritzy_kick_ccw1() -> void:
@@ -534,7 +534,7 @@ func test_ritzy_kick_ccw1() -> void:
 		"  v ",
 		"  v:",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_ritzy_kick_ccw2() -> void:
@@ -550,7 +550,7 @@ func test_ritzy_kick_ccw2() -> void:
 		" v  ",
 		" v  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_ritzy_kick_ccw3() -> void:
@@ -566,7 +566,7 @@ func test_ritzy_kick_ccw3() -> void:
 		" vvv",
 		" :: ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -588,7 +588,7 @@ func test_plant_kick_cw0() -> void:
 		"::v::",
 		"::v::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_plant_kick_cw1() -> void:
@@ -606,7 +606,7 @@ func test_plant_kick_cw1() -> void:
 		":: ::",
 		":: ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_plant_kick_cw2() -> void:
@@ -620,7 +620,7 @@ func test_plant_kick_cw2() -> void:
 		"::v::",
 		"  vvv",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_plant_kick_cw3() -> void:
@@ -638,7 +638,7 @@ func test_plant_kick_cw3() -> void:
 		"  v::",
 		"  v::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_plant_kick_ccw0() -> void:
@@ -656,7 +656,7 @@ func test_plant_kick_ccw0() -> void:
 		"::v::",
 		"::v::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_plant_kick_ccw1() -> void:
@@ -674,7 +674,7 @@ func test_plant_kick_ccw1() -> void:
 		":: ::",
 		":: ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_plant_kick_ccw2() -> void:
@@ -688,7 +688,7 @@ func test_plant_kick_ccw2() -> void:
 		"::v::",
 		"vvv  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_plant_kick_ccw3() -> void:
@@ -706,5 +706,5 @@ func test_plant_kick_ccw3() -> void:
 		"::v::",
 		"::v::",
 	]
-	_assert_kick()
+	assert_kick()
 

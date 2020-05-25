@@ -14,7 +14,7 @@ func test_p_floorkick_cw() -> void:
 		"  pp ",
 		"  pp ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_floorkick_ccw() -> void:
@@ -28,7 +28,7 @@ func test_p_floorkick_ccw() -> void:
 		"  pp ",
 		"  p  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_floorkick_cw() -> void:
@@ -42,7 +42,7 @@ func test_q_floorkick_cw() -> void:
 		" qq  ",
 		"  q  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_floorkick_ccw() -> void:
@@ -56,7 +56,7 @@ func test_q_floorkick_ccw() -> void:
 		" qq  ",
 		" qq  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_rwallkick_cw() -> void:
@@ -74,7 +74,7 @@ func test_p_rwallkick_cw() -> void:
 		"    ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_lwallkick_ccw() -> void:
@@ -92,7 +92,7 @@ func test_p_lwallkick_ccw() -> void:
 		" pp ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_rwallkick_cw() -> void:
@@ -110,7 +110,7 @@ func test_q_rwallkick_cw() -> void:
 		" qq ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_lwallkick_ccw() -> void:
@@ -128,7 +128,7 @@ func test_q_lwallkick_ccw() -> void:
 		"    ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -147,7 +147,7 @@ func test_p_pump_kick0() -> void:
 		" pp:",
 		":ppp",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_pump_kick1() -> void:
@@ -161,7 +161,7 @@ func test_p_pump_kick1() -> void:
 		":   ",
 		"ppp ",
 		":pp "]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_pump_kick2() -> void:
@@ -177,7 +177,7 @@ func test_p_pump_kick2() -> void:
 		" ppp",
 		"  ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_pump_kick3() -> void:
@@ -195,7 +195,7 @@ func test_p_pump_kick3() -> void:
 		":pp:",
 		": ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_pump_kick0() -> void:
@@ -209,7 +209,7 @@ func test_q_pump_kick0() -> void:
 		"    ",
 		":qq ",
 		"qqq:"]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_pump_kick1() -> void:
@@ -223,7 +223,7 @@ func test_q_pump_kick1() -> void:
 		"   :",
 		" qqq",
 		" qq:"]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_pump_kick2() -> void:
@@ -239,7 +239,7 @@ func test_q_pump_kick2() -> void:
 		"qqq ",
 		"::  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_pump_kick3() -> void:
@@ -257,7 +257,7 @@ func test_q_pump_kick3() -> void:
 		":qq:",
 		":: :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -279,7 +279,7 @@ func test_p_murky_kick0() -> void:
 		"  pp",
 		"  pp",
 		" :p:"]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_murky_kick1() -> void:
@@ -293,7 +293,7 @@ func test_p_murky_kick1() -> void:
 		"pp  ",
 		"pp  ",
 		"::: "]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_murky_kick2() -> void:
@@ -307,7 +307,7 @@ func test_p_murky_kick2() -> void:
 		" pp ",
 		" pp ",
 		"  ::"]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_murky_kick0() -> void:
@@ -326,7 +326,7 @@ func test_q_murky_kick0() -> void:
 		"qq  ",
 		"qq  ",
 		":q: "]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_murky_kick1() -> void:
@@ -340,7 +340,7 @@ func test_q_murky_kick1() -> void:
 		"  qq",
 		"  qq",
 		" :::"]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_murky_kick2() -> void:
@@ -354,7 +354,7 @@ func test_q_murky_kick2() -> void:
 		" qq ",
 		" qq ",
 		"::  "]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_climb_kick0() -> void:
@@ -372,7 +372,7 @@ func test_p_climb_kick0() -> void:
 		"::pp ",
 		"::   ",
 		"::  :"]
-	_assert_kick()
+	assert_kick()
 
 
 func test_p_failed_climb_kick1() -> void:
@@ -390,7 +390,7 @@ func test_p_failed_climb_kick1() -> void:
 		"::pp ",
 		"::p  ",
 		"::   "]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_climb_kick0() -> void:
@@ -408,7 +408,7 @@ func test_q_climb_kick0() -> void:
 		" qq::",
 		"   ::",
 		":  ::"]
-	_assert_kick()
+	assert_kick()
 
 
 func test_q_failed_climb_kick1() -> void:
@@ -426,4 +426,4 @@ func test_q_failed_climb_kick1() -> void:
 		" qq::",
 		"  q::",
 		"   ::"]
-	_assert_kick()
+	assert_kick()
