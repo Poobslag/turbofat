@@ -18,7 +18,7 @@ func test_j_lwallkick_cw() -> void:
 		"  j ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_lwallkick_ccw() -> void:
@@ -36,7 +36,7 @@ func test_j_lwallkick_ccw() -> void:
 		"    ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_lwallkick_cw() -> void:
@@ -54,7 +54,7 @@ func test_l_lwallkick_cw() -> void:
 		"l   ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_lwallkick_ccw() -> void:
@@ -72,7 +72,7 @@ func test_l_lwallkick_ccw() -> void:
 		"    ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 
@@ -91,7 +91,7 @@ func test_j_rwallkick_cw() -> void:
 		"    ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_rwallkick_ccw() -> void:
@@ -109,7 +109,7 @@ func test_j_rwallkick_ccw() -> void:
 		"   j",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_rwallkick_cw() -> void:
@@ -127,7 +127,7 @@ func test_l_rwallkick_cw() -> void:
 		"    ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_rwallkick_ccw() -> void:
@@ -145,7 +145,7 @@ func test_l_rwallkick_ccw() -> void:
 		" l  ",
 		"    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_floorkick_cw() -> void:
@@ -161,7 +161,7 @@ func test_j_floorkick_cw() -> void:
 		" j   ",
 		" j   ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_floorkick_ccw() -> void:
@@ -177,7 +177,7 @@ func test_j_floorkick_ccw() -> void:
 		"   j ",
 		"  jj ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_floorkick_cw() -> void:
@@ -193,7 +193,7 @@ func test_l_floorkick_cw() -> void:
 		" l   ",
 		" ll  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_floorkick_ccw() -> void:
@@ -209,7 +209,7 @@ func test_l_floorkick_ccw() -> void:
 		"   l ",
 		"   l ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -228,7 +228,7 @@ func test_j_vee_kick0() -> void:
 		"   :j",
 		"   jj",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_vee_kick1() -> void:
@@ -244,7 +244,7 @@ func test_j_vee_kick1() -> void:
 		"::j  ",
 		"     ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_vee_kick2() -> void:
@@ -260,7 +260,7 @@ func test_j_vee_kick2() -> void:
 		"j:   ",
 		"j:   ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_vee_kick3() -> void:
@@ -276,7 +276,7 @@ func test_j_vee_kick3() -> void:
 		": j::",
 		": jjj",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_vee_kick_cw0() -> void:
@@ -292,7 +292,7 @@ func test_l_vee_kick_cw0() -> void:
 		"l:   ",
 		"ll   ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_vee_kick1() -> void:
@@ -308,7 +308,7 @@ func test_l_vee_kick1() -> void:
 		"  l::",
 		"     ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_vee_kick2() -> void:
@@ -324,7 +324,7 @@ func test_l_vee_kick2() -> void:
 		"   :l",
 		"   :l",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_vee_kick3() -> void:
@@ -340,7 +340,7 @@ func test_l_vee_kick3() -> void:
 		"::l :",
 		"lll :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -361,7 +361,7 @@ func test_j_gold_kick0() -> void:
 		"::j::",
 		":jj::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_gold_kick1() -> void:
@@ -379,7 +379,7 @@ func test_j_gold_kick1() -> void:
 		"j:  :",
 		"jjj :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_gold_kick2() -> void:
@@ -397,7 +397,7 @@ func test_j_gold_kick2() -> void:
 		"  j::",
 		"  j  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_gold_kick3() -> void:
@@ -415,7 +415,7 @@ func test_j_gold_kick3() -> void:
 		"   :j",
 		"   ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_gold_kick0() -> void:
@@ -433,7 +433,7 @@ func test_l_gold_kick0() -> void:
 		"::l::",
 		"::ll:",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_gold_kick1() -> void:
@@ -451,7 +451,7 @@ func test_l_gold_kick1() -> void:
 		":  :l",
 		": lll",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_gold_kick2() -> void:
@@ -469,7 +469,7 @@ func test_l_gold_kick2() -> void:
 		"::l  ",
 		"  l  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_gold_kick3() -> void:
@@ -487,7 +487,7 @@ func test_l_gold_kick3() -> void:
 		"l:   ",
 		"::   ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -510,7 +510,7 @@ func test_j_golder_kick() -> void:
 		":::j:",
 		"::jj:",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_golder_kick() -> void:
@@ -530,7 +530,7 @@ func test_l_golder_kick() -> void:
 		":l:::",
 		":ll::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_climb_kick0() -> void:
@@ -548,7 +548,7 @@ func test_j_climb_kick0() -> void:
 		":  ::",
 		":  ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_climb_kick1() -> void:
@@ -566,7 +566,7 @@ func test_j_climb_kick1() -> void:
 		":  ::",
 		":  ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_climb_kick2() -> void:
@@ -584,7 +584,7 @@ func test_j_climb_kick2() -> void:
 		":  ::",
 		":  ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_climb_kick3() -> void:
@@ -600,7 +600,7 @@ func test_j_climb_kick3() -> void:
 		": j  ",
 		":::  ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_climb_kick4() -> void:
@@ -616,7 +616,7 @@ func test_j_climb_kick4() -> void:
 		":: j ",
 		":    ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_climb_kick5() -> void:
@@ -634,7 +634,7 @@ func test_j_climb_kick5() -> void:
 		" :::",
 		" :::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_climb_kick0() -> void:
@@ -652,7 +652,7 @@ func test_l_climb_kick0() -> void:
 		"::  :",
 		"::  :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_climb_kick1() -> void:
@@ -670,7 +670,7 @@ func test_l_climb_kick1() -> void:
 		"::  :",
 		"::  :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_climb_kick2() -> void:
@@ -688,7 +688,7 @@ func test_l_climb_kick2() -> void:
 		"::  :",
 		"::  :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_climb_kick3() -> void:
@@ -704,7 +704,7 @@ func test_l_climb_kick3() -> void:
 		"  l :",
 		"  :::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_climb_kick4() -> void:
@@ -720,7 +720,7 @@ func test_l_climb_kick4() -> void:
 		" l ::",
 		"    :",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_climb_kick5() -> void:
@@ -738,7 +738,7 @@ func test_l_climb_kick5() -> void:
 		"::: ",
 		"::: ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -759,7 +759,7 @@ func test_j_hammer_kick0() -> void:
 		"jjj:",
 		"::j:",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_hammer_kick() -> void:
@@ -777,7 +777,7 @@ func test_l_hammer_kick() -> void:
 		":lll",
 		":l::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -798,7 +798,7 @@ func test_j_plant_kick0() -> void:
 		"::j::",
 		"::j::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_plant_kick1() -> void:
@@ -816,7 +816,7 @@ func test_j_plant_kick1() -> void:
 		":: ::",
 		":: ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_plant_kick0() -> void:
@@ -834,7 +834,7 @@ func test_l_plant_kick0() -> void:
 		"::l::",
 		"::l::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_plant_kick1() -> void:
@@ -852,7 +852,7 @@ func test_l_plant_kick1() -> void:
 		":: ::",
 		":: ::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -873,7 +873,7 @@ func test_j_snack_kick0() -> void:
 		"  j::",
 		"::j::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_snack_kick1() -> void:
@@ -891,7 +891,7 @@ func test_j_snack_kick1() -> void:
 		"   j::",
 		"   j::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_snack_kick2() -> void:
@@ -909,7 +909,7 @@ func test_j_snack_kick2() -> void:
 		"::j::",
 		":::::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_j_snack_kick3() -> void:
@@ -929,7 +929,7 @@ func test_j_snack_kick3() -> void:
 		"::j::",
 		":::::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_snack_kick0() -> void:
@@ -947,7 +947,7 @@ func test_l_snack_kick0() -> void:
 		"::l  ",
 		"::l::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_snack_kick1() -> void:
@@ -965,7 +965,7 @@ func test_l_snack_kick1() -> void:
 		"::l   ",
 		"::l:: ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_snack_kick2() -> void:
@@ -983,7 +983,7 @@ func test_l_snack_kick2() -> void:
 		"::l::",
 		":::::",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_l_snack_kick3() -> void:
@@ -1003,4 +1003,4 @@ func test_l_snack_kick3() -> void:
 		"::l::",
 		":::::",
 	]
-	_assert_kick()
+	assert_kick()

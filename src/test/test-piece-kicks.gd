@@ -1,4 +1,14 @@
 extends "res://addons/gut/test.gd"
+"""
+Framework for testing piece kicks.
+"""
+
+# Unit tests need to distinguish between a piece rotating in place and failing to rotate.
+# This should only be used in tests; a piece kicking to -99, -99 could cause a softlock the game.
+const FAILED_KICK := Vector2(-99, -99)
+
+var from_grid := []
+var to_grid := []
 
 var _piece_dict := {
 	"j": PieceTypes.piece_j,
@@ -10,9 +20,6 @@ var _piece_dict := {
 	"u": PieceTypes.piece_u,
 	"v": PieceTypes.piece_v
 }
-
-var from_grid := []
-var to_grid := []
 
 var _from_piece: ActivePiece
 var _to_piece: ActivePiece
@@ -49,23 +56,49 @@ func test_framework() -> void:
 	assert_eq(_to_piece.orientation, 1)
 
 
-func _assert_kick() -> void:
+"""
+Verifies that the piece kicks appropriately when rotated.
+
+Verifies the piece shown in 'from_grid' can rotate to the orientation shown in 'to_grid'. Also verifies the piece is
+moved to the correct position.
+"""
+func assert_kick() -> void:
 	var result := _kick_piece()
 	var text := "Rotating '%s' block from %s -> %s should kick %s" \
 			% [_from_piece.type.string, _from_piece.orientation,
 			_to_piece.orientation, _to_piece.pos - _from_piece.pos]
-	assert_eq(result, _to_piece.pos - _from_piece.pos, text)
+	if result == FAILED_KICK:
+		# fail with a nice message; [none] expected to equal [(0, 1)]
+		assert_eq("none", str(_to_piece.pos - _from_piece.pos), text)
+	else:
+		assert_eq(result, _to_piece.pos - _from_piece.pos, text)
 
 
+"""
+Attempts to rotate the piece to a new orientation, kicking if necessary
+
+Returns one of the following:
+	1. FAILED_KICK if the piece could not rotate.
+	2. A zero vector if the piece could rotate without kicking.
+	3. A non-zero vector if the piece could rotate, but needed to be kicked.
+"""
 func _kick_piece() -> Vector2:
-	var result := Vector2.ZERO
+	var result
 	_from_piece = _create_active_piece(from_grid)
 	_to_piece = _create_active_piece(to_grid)
-	if not _from_piece.can_move_piece_to(funcref(self, "_is_cell_blocked"), _from_piece.pos, _to_piece.orientation):
+	if _from_piece.can_move_piece_to(funcref(self, "_is_cell_blocked"), _from_piece.pos, _to_piece.orientation):
+		# no kick necessary
+		result = Vector2.ZERO
+	else:
 		result = _from_piece.kick_piece(funcref(self, "_is_cell_blocked"), _from_piece.pos, _to_piece.orientation)
+		if not result:
+			result = FAILED_KICK
 	return result
 
 
+"""
+Returns 'true' if the specified cell has a block in it or if it's outside the ascii drawing's boundaries.
+"""
 func _is_cell_blocked(pos: Vector2) -> bool:
 	var blocked := false
 	if pos.y < 0 or pos.y >= from_grid.size(): blocked = true
@@ -74,6 +107,11 @@ func _is_cell_blocked(pos: Vector2) -> bool:
 	return blocked
 
 
+"""
+Create an active piece from an ascii drawing.
+
+Calculates the piece's type, position and orientation.
+"""
 func _create_active_piece(ascii_grid: Array) -> ActivePiece:
 	var piece_type := _determine_piece_type(ascii_grid)
 	if !piece_type:

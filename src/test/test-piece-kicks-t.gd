@@ -23,7 +23,7 @@ func test_rose_kick_left() -> void:
 		"tt ",
 		"t: ",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_rose_kick_down0() -> void:
@@ -39,7 +39,7 @@ func test_rose_kick_down0() -> void:
 		":t ",
 		"ttt",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_rose_kick_down1() -> void:
@@ -55,7 +55,7 @@ func test_rose_kick_down1() -> void:
 		" t:",
 		"ttt",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_rose_kick_right() -> void:
@@ -71,7 +71,7 @@ func test_rose_kick_right() -> void:
 		" tt",
 		" :t",
 	]
-	_assert_kick()
+	assert_kick()
 
 
 """
@@ -92,7 +92,7 @@ func test_duck_kick_down0() -> void:
 		":tt:",
 		":t::"
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_duck_kick_down1() -> void:
@@ -108,7 +108,7 @@ func test_duck_kick_down1() -> void:
 		":tt:",
 		"::t:"
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_duck_kick_left0() -> void:
@@ -124,7 +124,7 @@ func test_duck_kick_left0() -> void:
 		"ttt:",
 		" : :"
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_duck_kick_left1() -> void:
@@ -140,7 +140,7 @@ func test_duck_kick_left1() -> void:
 		"ttt:",
 		" t :"
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_duck_kick_right0() -> void:
@@ -156,7 +156,7 @@ func test_duck_kick_right0() -> void:
 		":ttt",
 		": : "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_duck_kick_right1() -> void:
@@ -172,7 +172,7 @@ func test_duck_kick_right1() -> void:
 		":ttt",
 		": t "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_duck_kick_up0() -> void:
@@ -188,7 +188,7 @@ func test_duck_kick_up0() -> void:
 		"  tt ",
 		"  t  "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_duck_kick_up1() -> void:
@@ -204,7 +204,7 @@ func test_duck_kick_up1() -> void:
 		" tt  ",
 		"  t  "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_floorkick_cw() -> void:
@@ -220,7 +220,7 @@ func test_floorkick_cw() -> void:
 		" tt  ",
 		" t   "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_floorkick_ccw() -> void:
@@ -236,7 +236,7 @@ func test_floorkick_ccw() -> void:
 		"  tt ",
 		"   t "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_lwallkick0() -> void:
@@ -254,7 +254,7 @@ func test_lwallkick0() -> void:
 		"     ",
 		"     "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_lwallkick1() -> void:
@@ -272,7 +272,7 @@ func test_lwallkick1() -> void:
 		" t   ",
 		"     "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_rwallkick0() -> void:
@@ -290,7 +290,7 @@ func test_rwallkick0() -> void:
 		"     ",
 		"     "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_rwallkick1() -> void:
@@ -308,7 +308,7 @@ func test_rwallkick1() -> void:
 		"   t ",
 		"     "
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_climb_kick_cw() -> void:
@@ -324,7 +324,7 @@ func test_climb_kick_cw() -> void:
 		":  ::",
 		":: ::"
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_climb_kick_ccw() -> void:
@@ -340,7 +340,7 @@ func test_climb_kick_ccw() -> void:
 		"::  :",
 		":: ::"
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_failed_climb_kick_cw() -> void:
@@ -356,7 +356,7 @@ func test_failed_climb_kick_cw() -> void:
 		"ttt:",
 		":: :"
 	]
-	_assert_kick()
+	assert_kick()
 
 
 func test_failed_climb_kick_ccw() -> void:
@@ -372,4 +372,4 @@ func test_failed_climb_kick_ccw() -> void:
 		":ttt",
 		": ::"
 	]
-	_assert_kick()
+	assert_kick()
