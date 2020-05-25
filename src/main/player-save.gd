@@ -10,14 +10,14 @@ Save data is stored as a series of lines. Each line contains a 4-character strin
 """
 
 # filename to use when saving/loading player data. can be changed for tests
-var player_data_filename := "user://turbofat.save"
+var player_data_filename := "user://turbofat0.save"
 
 func _ready() -> void:
 	load_player_data()
 
 
 """
-Writes the scenario history to a save file, where it can be loaded next the the player starts the game.
+Writes the player's in-memory data to a save file.
 """
 func save_player_data() -> void:
 	var save_game := File.new()
@@ -28,7 +28,7 @@ func save_player_data() -> void:
 	for key in PlayerData.scenario_history.keys():
 		var rank_results_json := []
 		for rank_result in PlayerData.scenario_history[key]:
-			rank_results_json.append(rank_result.to_dict())
+			rank_results_json.append(rank_result.to_json_dict())
 		save_game.store_line("scen%s" % to_json({
 			"scenario_name": key,
 			"scenario_history": rank_results_json
@@ -37,7 +37,7 @@ func save_player_data() -> void:
 
 
 """
-Loads the scenario history from a save file.
+Populates the player's in-memory data based on their save file.
 """
 func load_player_data() -> void:
 	var save_game := File.new()
@@ -52,12 +52,25 @@ func load_player_data() -> void:
 			if not line_json:
 				continue
 			var line_dict: Dictionary = line_json
-			match line_prefix:
-				"plyr":
-					PlayerData.money = line_dict["money"]
-				"scen":
-					for rank_result_json in line_dict["scenario_history"]:
-						var rank_result := RankResult.new()
-						rank_result.from_dict(rank_result_json)
-						PlayerData.add_scenario_history(line_dict["scenario_name"], rank_result)
+			_load_line(line_prefix, line_dict)
 		save_game.close()
+
+
+"""
+Populates the player's in-memory data based on a single line from their save file.
+
+Parameters:
+	'type': A short string unique to each type of data
+	'json': The json dictionary containing the data
+"""
+func _load_line(type: String, json: Dictionary) -> void:
+	match type:
+		"plyr":
+			PlayerData.money = json.get("money", 0)
+		"scen":
+			for rank_result_json in json.get("scenario_history"):
+				var scenario_name: String = json.get("scenario_name")
+				if scenario_name:
+					var rank_result := RankResult.new()
+					rank_result.from_json_dict(rank_result_json)
+					PlayerData.add_scenario_history(scenario_name, rank_result)

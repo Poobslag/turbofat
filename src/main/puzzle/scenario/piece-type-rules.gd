@@ -9,7 +9,7 @@ var start_types: Array = []
 # pieces the player is given during a level
 var types: Array = []
 
-func from_string_array(strings: Array) -> void:
+func from_json_string_array(json: Array) -> void:
 	var json_types: Dictionary = {
 		"piece-j": PieceTypes.piece_j,
 		"piece-l": PieceTypes.piece_l,
@@ -21,7 +21,7 @@ func from_string_array(strings: Array) -> void:
 		"piece-v": PieceTypes.piece_v,
 	}
 	
-	var rules := RuleParser.new(strings)
+	var rules := RuleParser.new(json)
 	for key in json_types:
 		if rules.has(key): types.append(json_types[key])
 		if rules.has("start-%s" % key): start_types.append(json_types[key])

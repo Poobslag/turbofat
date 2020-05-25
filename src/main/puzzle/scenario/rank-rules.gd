@@ -17,11 +17,8 @@ var top_out_penalty := 4
 # 'true' if the results screen should be skipped. Used for tutorials.
 var skip_results: bool
 
-"""
-Populates this object with json data.
-"""
-func from_string_array(strings: Array) -> void:
-	var rules := RuleParser.new(strings)
+func from_json_string_array(json: Array) -> void:
+	var rules := RuleParser.new(json)
 	if rules.has("combo-factor"): combo_factor = rules.float_value()
 	if rules.has("box-factor"): box_factor = rules.float_value()
 	if rules.has("top-out-penalty"): top_out_penalty = rules.int_value()

@@ -74,12 +74,9 @@ func advance(link_index := -1) -> bool:
 	return did_increment
 
 
-"""
-Populates this object with json data.
-"""
-func from_dict(json: Dictionary) -> void:
+func from_json_dict(json: Dictionary) -> void:
 	for key in json.keys():
 		for json_chat_event in json[key]:
 			var event := ChatEvent.new()
-			event.from_dict(json_chat_event)
+			event.from_json_dict(json_chat_event)
 			append(key, event)

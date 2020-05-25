@@ -34,12 +34,9 @@ const JSON_MILESTONE_TYPES := {
 var type: int
 var value: int
 
-"""
-Populates this object with json data.
-"""
-func from_dict(json: Dictionary) -> void:
-	type = JSON_MILESTONE_TYPES[json["type"]]
-	value = int(json["value"])
+func from_json_dict(json: Dictionary) -> void:
+	type = JSON_MILESTONE_TYPES.get(json.get("type"), MilestoneType.NONE)
+	value = int(json.get("value", "0"))
 	for key in json.keys():
 		if not key in ["type", "value"]:
 			set_meta(key, json.get(key))

@@ -106,29 +106,29 @@ Populates this object with json data.
 Parameters:
 	'new_name': The scenario name used for saving statistics.
 """
-func from_dict(new_name: String, json: Dictionary) -> void:
+func from_json_dict(new_name: String, json: Dictionary) -> void:
 	name = new_name
 	set_start_level(json["start-level"])
 	if json.has("blocks-start"):
-		blocks_start.from_dict(json["blocks-start"])
+		blocks_start.from_json_dict(json["blocks-start"])
 	if json.has("combo-break"):
-		combo_break.from_string_array(json["combo-break"])
+		combo_break.from_json_string_array(json["combo-break"])
 	if json.has("finish-condition"):
-		finish_condition.from_dict(json["finish-condition"])
+		finish_condition.from_json_dict(json["finish-condition"])
 	if json.has("level-ups"):
 		for json_level_up in json["level-ups"]:
 			var level_up := Milestone.new()
-			level_up.from_dict(json_level_up)
+			level_up.from_json_dict(json_level_up)
 			level_ups.append(level_up)
 	if json.has("lose-condition"):
-		lose_condition.from_string_array(json["lose-condition"])
+		lose_condition.from_json_string_array(json["lose-condition"])
 	if json.has("other"):
-		other.from_string_array(json["other"])
+		other.from_json_string_array(json["other"])
 	if json.has("piece-types"):
-		piece_types.from_string_array(json["piece-types"])
+		piece_types.from_json_string_array(json["piece-types"])
 	if json.has("rank"):
-		rank.from_string_array(json["rank"])
+		rank.from_json_string_array(json["rank"])
 	if json.has("score"):
-		score.from_string_array(json["score"])
+		score.from_json_string_array(json["score"])
 	if json.has("win-condition"):
-		win_condition.from_dict(json["win-condition"])
+		win_condition.from_json_dict(json["win-condition"])
