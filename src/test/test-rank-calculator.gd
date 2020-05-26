@@ -29,7 +29,7 @@ func test_max_lpm_medium_marathon() -> void:
 
 func test_max_lpm_fast_marathon() -> void:
 	Global.scenario_settings.set_start_level("F0")
-	assert_almost_eq(_rank_calculator._max_lpm(), 64.00, 0.1)
+	assert_almost_eq(_rank_calculator._max_lpm(), 68.90, 0.1)
 
 
 func test_max_lpm_mixed_marathon() -> void:
@@ -37,7 +37,7 @@ func test_max_lpm_mixed_marathon() -> void:
 	Global.scenario_settings.add_level_up(Milestone.LINES, 30, "A0")
 	Global.scenario_settings.add_level_up(Milestone.LINES, 60, "F0")
 	Global.scenario_settings.set_win_condition(Milestone.LINES, 100)
-	assert_almost_eq(_rank_calculator._max_lpm(), 45.01, 0.1)
+	assert_almost_eq(_rank_calculator._max_lpm(), 46.23, 0.1)
 
 
 func test_max_lpm_mixed_sprint() -> void:
@@ -45,7 +45,7 @@ func test_max_lpm_mixed_sprint() -> void:
 	Global.scenario_settings.add_level_up(Milestone.TIME, 30, "A0")
 	Global.scenario_settings.add_level_up(Milestone.TIME, 60, "F0")
 	Global.scenario_settings.set_finish_condition(Milestone.TIME, 90)
-	assert_almost_eq(_rank_calculator._max_lpm(), 49.47, 0.1)
+	assert_almost_eq(_rank_calculator._max_lpm(), 51.36, 0.1)
 
 
 func test_calculate_rank_marathon_300_master() -> void:
