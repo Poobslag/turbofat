@@ -52,7 +52,7 @@ func _on_TutorialButton_pressed() -> void:
 	launch_scenario(BEGINNER_TUTORIAL_SCENARIO)
 
 
-func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector):
+func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "unlock":
 		var enabled_count := 0
 		for button_obj in [

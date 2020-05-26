@@ -6,6 +6,10 @@ This includes information about how the player loses/wins, what kind of pieces t
 time limit, and any other special rules.
 """
 
+# Current version for saved scenario data. Should be updated if and only if the scenario format changes.
+# This version number follows a 'ymdh' hex date format which is documented in issue #234.
+const SCENARIO_DATA_VERSION := "15d2"
+
 # Blocks/boxes which begin on the playfield.
 var blocks_start := BlocksStart.new()
 
@@ -108,6 +112,9 @@ Parameters:
 """
 func from_json_dict(new_name: String, json: Dictionary) -> void:
 	name = new_name
+	if json.get("version") != SCENARIO_DATA_VERSION:
+		push_warning("Unrecognized scenario data version: '%s'" % json.get("version"))
+	
 	set_start_level(json["start-level"])
 	if json.has("blocks-start"):
 		blocks_start.from_json_dict(json["blocks-start"])
