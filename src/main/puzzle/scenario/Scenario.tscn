@@ -34,10 +34,8 @@ __meta__ = {
 [node name="Puzzle" parent="." instance=ExtResource( 7 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 0.815613
-margin_top = 0.407814
-margin_right = 0.815674
-margin_bottom = 0.407837
+margin_right = 0.0
+margin_bottom = 0.0
 
 [node name="PuzzleTrace" type="Label" parent="Puzzle"]
 visible = false
@@ -208,6 +206,16 @@ max_value = 2.0
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Squish Move"
 signal_names = [ "squish_moved" ]
+
+[node name="SnackStack" parent="TutorialHud/SkillTallyItems/GridContainer" instance=ExtResource( 13 )]
+visible = false
+margin_left = 112.0
+margin_top = 204.0
+margin_right = 220.0
+margin_bottom = 268.0
+max_value = 2.0
+puzzle_path = NodePath("../../../../Puzzle")
+label_text = "Snack Stack"
 
 [node name="ZIndex" type="Node2D" parent="TutorialHud"]
 z_index = 30

@@ -23,37 +23,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartGameButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -70.0
-margin_top = -27.0
-margin_right = 70.0
-margin_bottom = 27.5
-custom_fonts/font = ExtResource( 4 )
-text = "Start"
-
-[node name="BackButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = 42.0
-margin_right = 50.0
-margin_bottom = 79.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-custom_fonts/font = ExtResource( 3 )
-shortcut_in_tooltip = false
-shortcut = SubResource( 2 )
-text = "Back"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="DetailMessageLabel" type="RichTextLabel" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
@@ -89,6 +58,37 @@ custom_fonts/font = ExtResource( 1 )
 text = "3"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StartGameButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -70.0
+margin_top = -27.0
+margin_right = 70.0
+margin_bottom = 27.5
+custom_fonts/font = ExtResource( 4 )
+text = "Start"
+
+[node name="BackButton" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -50.0
+margin_top = 42.0
+margin_right = 50.0
+margin_bottom = 79.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+custom_fonts/font = ExtResource( 3 )
+shortcut_in_tooltip = false
+shortcut = SubResource( 2 )
+text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }

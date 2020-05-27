@@ -85,11 +85,12 @@ func _on_Playfield_after_piece_written() -> void:
 		combo_break = Global.scenario_settings.combo_break.pieces
 		break_combo()
 		emit_signal("combo_break_changed", combo_break)
-	elif piece_continued_combo:
-		pass
 	else:
-		# piece did not continue or break the combo; increment combo_break
-		combo_break += 1
+		if not piece_continued_combo:
+			combo_break += 1
+		
+		# check for combo break even if the piece continued the combo.
+		# this is necessary to cover the 'combo_break.pieces = 0' case
 		if combo_break >= Global.scenario_settings.combo_break.pieces:
 			break_combo()
 		emit_signal("combo_break_changed", combo_break)
