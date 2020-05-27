@@ -62,8 +62,11 @@ class SaveItem:
 # This version number follows a 'ymdh' hex date format which is documented in issue #234.
 const PLAYER_DATA_VERSION := "15d2"
 
-# filename to use when saving/loading player data. can be changed for tests
+# Filename to use when saving/loading player data. Can be changed for tests
 var player_data_filename := "user://turbofat0.save"
+
+# Provides backwards compatibility with older save formats
+var old_save := OldSave.new()
 
 func _ready() -> void:
 	load_player_data()
@@ -81,28 +84,26 @@ func save_player_data() -> void:
 		for rank_result in PlayerData.scenario_history[key]:
 			rank_results_json.append(rank_result.to_json_dict())
 		save_json.append(SaveItem.named("scenario-history", key, rank_results_json).to_json_dict())
-	
-	var save_game := File.new()
-	save_game.open(player_data_filename, File.WRITE)
-	save_game.store_string(JSONBeautifier.beautify_json(to_json(save_json), 1))
-	save_game.close()
+	Global.write_file(player_data_filename, to_json(save_json))
 
 
 """
 Populates the player's in-memory data based on their save file.
 """
 func load_player_data() -> void:
+	# if the save doesn't exist, but the old save exists...
+	if old_save.only_has_old_save():
+		old_save.transform_old_save()
+	
 	var save_game := File.new()
 	if save_game.file_exists(player_data_filename):
-		save_game.open(player_data_filename, File.READ)
-		
 		var save_json_text := Global.get_file_as_text(player_data_filename)
 		var json_save_items: Array = parse_json(save_json_text)
 		for json_save_item_obj in json_save_items:
 			var save_item: SaveItem = SaveItem.new()
 			save_item.from_json_dict(json_save_item_obj)
 			_load_line(save_item.type, save_item.key, save_item.value)
-		save_game.close()
+	save_game.close()
 
 
 """

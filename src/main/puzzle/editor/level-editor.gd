@@ -30,10 +30,7 @@ func _ready() -> void:
 
 
 func _save_scenario(path: String) -> void:
-	var file := File.new()
-	file.open(path, File.WRITE)
-	file.store_string(_scenario_json.text)
-	file.close()
+	Global.write_file(path, _scenario_json.text)
 
 
 func _load_scenario(path: String) -> void:
