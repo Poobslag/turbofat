@@ -6,12 +6,14 @@ saved or loaded. That's why unit tests are particularly important for this code.
 """
 
 const TEMP_FILENAME := "test-ground-lucky.save"
+const TEMP_FILENAME_0517 := "test-ground-lucky-0517.save"
 
 var _rank_result: RankResult
 var _rank_calculator := RankCalculator.new()
 
 func before_each() -> void:
 	PlayerSave.player_data_filename = "user://%s" % TEMP_FILENAME
+	PlayerSave.old_save.player_data_filename_0517 = "user://%s" % TEMP_FILENAME_0517
 	PlayerData.scenario_history.clear()
 	PlayerData.money = 0
 	_rank_result = RankResult.new()
@@ -27,6 +29,7 @@ func after_each() -> void:
 	var save_dir := Directory.new()
 	save_dir.open("user://")
 	save_dir.remove(TEMP_FILENAME)
+	save_dir.remove(TEMP_FILENAME_0517)
 
 
 func test_one_history_entry() -> void:
@@ -68,3 +71,25 @@ func test_save_and_load() -> void:
 	PlayerSave.load_player_data()
 	assert_true(PlayerData.scenario_history.has("scenario-895"))
 	assert_eq(PlayerData.scenario_history["scenario-895"][0].score, 7890)
+
+
+func test_backwards_compatible() -> void:
+	var dir := Directory.new()
+	dir.copy("res://src/demo/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
+	
+	PlayerSave.load_player_data()
+	
+	# scenario where the player won
+	assert_true(PlayerData.scenario_history.has("ultra-normal"))
+	var history_ultra: RankResult = PlayerData.scenario_history.get("ultra-normal")[0]
+	assert_eq(history_ultra.lost, false)
+	assert_eq(history_ultra.top_out_count, 0)
+	
+	# scenario where the player lost
+	assert_true(PlayerData.scenario_history.has("sprint-normal"))
+	var history_sprint: RankResult = PlayerData.scenario_history.get("sprint-normal")[0]
+	assert_eq(history_sprint.lost, true)
+	assert_eq(history_sprint.top_out_count, 1)
+	
+	# other data
+	assert_eq(PlayerData.money, 202)

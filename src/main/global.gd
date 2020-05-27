@@ -194,3 +194,10 @@ static func get_file_as_text(path: String) -> String:
 	var text := f.get_as_text()
 	f.close()
 	return text
+
+
+static func write_file(path: String, text: String) -> void:
+	var f := File.new()
+	f.open(path, f.WRITE)
+	f.store_string(text)
+	f.close()
