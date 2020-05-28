@@ -5,8 +5,9 @@ Represents a minimal puzzle game with a piece, playfield of pieces, and next pie
 class to add goals, win conditions, challenges or time limits.
 """
 
-# signal emitted a few seconds after the game ends, for displaying messages
+# emitted a few seconds after the game ends, for displaying messages
 signal after_game_ended
+
 signal back_button_pressed
 signal line_cleared(y, total_lines, remaining_lines, box_ints)
 signal topped_out

@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/editor/editor-playfield.gd"
 }, {
+"base": "Timer",
+"class": "FreshnessInspector",
+"language": "GDScript",
+"path": "res://src/main/freshness-inspector.gd"
+}, {
 "base": "Sprite",
 "class": "FrostingGlob",
 "language": "GDScript",
@@ -307,6 +312,7 @@ _global_script_class_icons={
 "Customer3D": "",
 "CustomerLoader": "",
 "EditorPlayfield": "",
+"FreshnessInspector": "",
 "FrostingGlob": "",
 "JSONBeautifier": "",
 "LevelChunk": "",
@@ -363,6 +369,7 @@ default_bus_layout="res://assets/ui/default_bus_layout.tres"
 
 Global="*res://src/main/global.gd"
 InteractableManager="*res://src/main/world/interactable-manager.gd"
+MusicPlayer="*res://src/main/MusicPlayer.tscn"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 PlayerData="*res://src/main/player-data.gd"

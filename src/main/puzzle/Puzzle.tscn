@@ -166,25 +166,25 @@ script = ExtResource( 44 )
 [node name="Rotate0Sound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 29 )
 volume_db = -4.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="Rotate1Sound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 30 )
 volume_db = -4.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="MoveSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 31 )
 volume_db = -4.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="LockSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 28 )
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="SquishSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
 stream = ExtResource( 26 )
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="NextPieceDisplays" parent="." instance=ExtResource( 4 )]
 margin_left = 688.0
@@ -366,52 +366,52 @@ script = ExtResource( 42 )
 
 [node name="GameOverSound" type="AudioStreamPlayer" parent="TopOutTracker"]
 stream = ExtResource( 32 )
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="GameOverVoice0" type="AudioStreamPlayer" parent="TopOutTracker"]
 stream = ExtResource( 36 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GameOverVoice1" type="AudioStreamPlayer" parent="TopOutTracker"]
 stream = ExtResource( 27 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GameOverVoice2" type="AudioStreamPlayer" parent="TopOutTracker"]
 stream = ExtResource( 33 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GameOverVoice3" type="AudioStreamPlayer" parent="TopOutTracker"]
 stream = ExtResource( 34 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GameOverVoice4" type="AudioStreamPlayer" parent="TopOutTracker"]
 stream = ExtResource( 35 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ReadySound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -8.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="GoSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -8.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="GoVoice0" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 13 )
 volume_db = -4.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GoVoice1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 14 )
 volume_db = -4.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GoVoice2" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 15 )
 volume_db = -4.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 [connection signal="after_game_ended" from="." to="HudHolder/Hud" method="_on_Puzzle_after_game_ended"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="box_made" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_made"]

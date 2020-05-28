@@ -5,7 +5,7 @@ Button which launches a scenario from the scenario menu. Includes a clickable bu
 the player's high score on a separate label.
 """
 
-# signal emitted when the player presses the scenario button
+# emitted when the player presses the scenario button
 signal chose_scenario(scenario_name)
 
 export (String) var scenario_name: String

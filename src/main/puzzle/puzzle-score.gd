@@ -8,10 +8,12 @@ is written eventually to the save file.
 This also includes transient data such as the current customer/bonus score. This is used visually, but never saved.
 """
 
-# Signal emitted when the game will start soon. Everything should be erased and reset to zero.
+# emitted when the game will start soon. Everything should be erased and reset to zero.
 signal game_prepared
-# Signal emitted after everything's been erased in preparation for a new game.
+
+# emitted after everything's been erased in preparation for a new game.
 signal after_game_prepared
+
 signal game_started
 signal game_ended
 signal score_changed(value)

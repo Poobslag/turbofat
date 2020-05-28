@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/house-01.ogg-85ca29deaccd6a7caf3334d10d2a6349.oggstr"
+
+[deps]
+
+source_file="res://assets/music/house-01.ogg"
+dest_files=[ "res://.import/house-01.ogg-85ca29deaccd6a7caf3334d10d2a6349.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

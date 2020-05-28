@@ -4,7 +4,7 @@ Tracks Spira's location and the location of all interactables. Handles questions
 and 'which interactables are nearby'.
 """
 
-# Signal emitted when focus changes to a new object, or when all objects are unfocused.
+# emitted when focus changes to a new object, or when all objects are unfocused.
 signal focus_changed
 
 # Maximum range for Spira to successfully interact with an object
