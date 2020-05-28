@@ -254,7 +254,6 @@ codes = [ "delays" ]
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
 [connection signal="after_game_ended" from="Puzzle" to="ResultsHud" method="_on_Puzzle_after_game_ended"]
-[connection signal="back_button_pressed" from="Puzzle" to="." method="_on_Puzzle_back_button_pressed"]
 [connection signal="line_cleared" from="Puzzle" to="." method="_on_Puzzle_line_cleared"]
 [connection signal="pop_out_completed" from="TutorialHud/Message/Tween" to="TutorialHud/Message" method="_on_Tween_pop_out_completed"]
 [connection signal="tween_completed" from="TutorialHud/Message/Tween" to="TutorialHud/Message/Tween" method="_on_tween_completed"]

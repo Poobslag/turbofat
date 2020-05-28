@@ -27,9 +27,6 @@ var customer_queue := []
 # 'true' if launching a puzzle from the overworld. This changes the menus and disallows restarting.
 var overworld_puzzle := false
 
-# Scenario to launch when the player exits a puzzle.
-var post_puzzle_target := "res://src/main/ui/ScenarioMenu.tscn"
-
 # Stores all of the benchmarks which have been started
 var _benchmark_start_times := Dictionary()
 

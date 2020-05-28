@@ -88,7 +88,8 @@ func _preload_next_png() -> void:
 	_load_resource(_remaining_png_paths.pop_front())
 	_work_done += 1.0
 	if not _remaining_png_paths:
-		emit_signal("finished_loading")
+		# Emit signals on the main thread. Otherwise there are strange side effects like breakpoints not working
+		call_deferred("emit_signal", "finished_loading")
 
 
 """

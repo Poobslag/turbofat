@@ -124,6 +124,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/lose-condition-rules.gd"
 }, {
+"base": "Control",
+"class": "MainMenu",
+"language": "GDScript",
+"path": "res://src/main/ui/menu/main-menu.gd"
+}, {
 "base": "Reference",
 "class": "Milestone",
 "language": "GDScript",
@@ -199,6 +204,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/playfield.gd"
 }, {
+"base": "VBoxContainer",
+"class": "PracticeButton",
+"language": "GDScript",
+"path": "res://src/main/ui/menu/practice-button.gd"
+}, {
 "base": "Control",
 "class": "Puzzle",
 "language": "GDScript",
@@ -233,11 +243,6 @@ _global_script_classes=[ {
 "class": "Scenario",
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/scenario.gd"
-}, {
-"base": "VBoxContainer",
-"class": "ScenarioButton",
-"language": "GDScript",
-"path": "res://src/main/ui/scenario-button.gd"
 }, {
 "base": "Reference",
 "class": "ScenarioPerformance",
@@ -318,6 +323,7 @@ _global_script_class_icons={
 "LevelChunk": "",
 "LevelChunkControl": "",
 "LoseConditionRules": "",
+"MainMenu": "",
 "Milestone": "",
 "MoneyLabel": "",
 "MultiOutlineSprite": "",
@@ -333,6 +339,7 @@ _global_script_class_icons={
 "PieceType": "",
 "PieceTypeRules": "",
 "Playfield": "",
+"PracticeButton": "",
 "Puzzle": "",
 "PuzzleTileMap": "",
 "RankCalculator": "",
@@ -340,7 +347,6 @@ _global_script_class_icons={
 "RankRules": "",
 "RuleParser": "",
 "Scenario": "",
-"ScenarioButton": "",
 "ScenarioPerformance": "",
 "ScenarioSettings": "",
 "ScoreRules": "",
@@ -357,7 +363,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Turbo Fat"
-run/main_scene="res://src/main/ui/LoadingScreen.tscn"
+run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
 config/icon="res://assets/ui/icon.png"
 config/version="0.0524"
 
@@ -367,6 +373,7 @@ default_bus_layout="res://assets/ui/default_bus_layout.tres"
 
 [autoload]
 
+Breadcrumb="*res://src/main/breadcrumb.gd"
 Global="*res://src/main/global.gd"
 InteractableManager="*res://src/main/world/interactable-manager.gd"
 MusicPlayer="*res://src/main/MusicPlayer.tscn"

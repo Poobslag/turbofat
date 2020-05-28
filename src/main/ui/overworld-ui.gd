@@ -85,9 +85,8 @@ func _update_visible() -> void:
 	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
 
 
-func _on_PuzzleButton_pressed() -> void:
+func _on_System_quit_pressed() -> void:
 	InteractableManager.clear()
-	get_tree().change_scene("res://src/main/ui/ScenarioMenu.tscn")
 
 
 func _on_ChatUi_pop_out_completed() -> void:
@@ -103,7 +102,8 @@ func _on_ChatUi_pop_out_completed() -> void:
 	
 	if _launched_scenario:
 		InteractableManager.clear()
-		ScenarioLibrary.change_scenario_scene(_launched_scenario, true, _scenario_customer_def)
+		Global.overworld_puzzle = true
+		ScenarioLibrary.push_scenario_trail(_launched_scenario, _scenario_customer_def)
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:

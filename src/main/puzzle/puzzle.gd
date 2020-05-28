@@ -8,7 +8,6 @@ class to add goals, win conditions, challenges or time limits.
 # emitted a few seconds after the game ends, for displaying messages
 signal after_game_ended
 
-signal back_button_pressed
 signal line_cleared(y, total_lines, remaining_lines, box_ints)
 signal topped_out
 
@@ -141,10 +140,6 @@ func _feed_customer(fatness_pct: float) -> void:
 			# make them a tiny amount fatter, so that they'll change when a new level is started
 			target_fatness = min(target_fatness, 1.001)
 		$CustomerView.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
-
-
-func _on_Hud_back_button_pressed() -> void:
-	emit_signal("back_button_pressed")
 
 
 func _on_Hud_start_button_pressed() -> void:

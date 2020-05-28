@@ -1,4 +1,4 @@
-extends ScenarioButton
+extends PracticeButton
 """
 Button which launches an 'ultra' scenario.
 """

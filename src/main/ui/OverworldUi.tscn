@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=4]
-[ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=5]
+[ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/spira-trace.gd" type="Script" id=6]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=8]
@@ -88,24 +88,16 @@ script = ExtResource( 6 )
 [node name="ChatUi" parent="." instance=ExtResource( 2 )]
 visible = false
 
-[node name="PuzzleButton" type="Button" parent="."]
-margin_left = 10.0
-margin_top = 530.0
-margin_right = 70.0
-margin_bottom = 590.0
-focus_mode = 1
-custom_fonts/font = ExtResource( 5 )
-text = "P"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 7 )]
 codes = [ "bigfps", "coyote" ]
+
+[node name="System" parent="." instance=ExtResource( 5 )]
+anchor_right = 0.0
+margin_right = 156.0
 [connection signal="spira_changed" from="." to="Labels/NorthwestLabels/TurboTrace" method="_on_OverworldUi_spira_changed"]
 [connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="ChatUi" to="." method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="ChatUi" to="." method="_on_ChatUi_showed_choices"]
-[connection signal="pressed" from="PuzzleButton" to="." method="_on_PuzzleButton_pressed"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/NorthwestLabels/TurboTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="quit_pressed" from="System" to="." method="_on_System_quit_pressed"]
