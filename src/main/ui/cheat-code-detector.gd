@@ -11,7 +11,7 @@ It's recommended the class receiving a cheat code signal play an audio cue. The 
 res://assets/ui/cheat-enable.wav sound files exist for this purpose.
 """
 
-# Signal emitted when a cheat is entered.
+# emitted when a cheat is entered.
 signal cheat_detected(cheat, detector)
 
 # The maximum length of cheat codes. Entered keys are stored in a buffer, and we don't want the buffer to grow to a

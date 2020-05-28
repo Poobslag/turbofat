@@ -5,16 +5,16 @@ Contains logic for spawning new pieces, moving/rotating pieces, handling player 
 playfield.
 """
 
-# signal emitted when the current piece can't be placed in the _playfield
+# emitted when the current piece can't be placed in the _playfield
 signal topped_out
 signal piece_spawned
 
-# signals emitted when the player rotates a piece
+# emitted when the player rotates a piece
 signal initial_rotated_right
 signal initial_rotated_left
 signal initial_rotated_twice
 
-# signals emitted when the player moves a piece
+# emitted when the player moves a piece
 signal initial_das_moved_left
 signal initial_das_moved_right
 signal das_moved_left
@@ -27,7 +27,7 @@ signal soft_dropped
 signal hard_dropped
 signal squish_moved
 
-# signals emitted for piece locks
+# emitted for piece locks
 signal lock_cancelled
 signal lock_started
 

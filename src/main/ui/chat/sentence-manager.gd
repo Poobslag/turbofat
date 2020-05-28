@@ -8,7 +8,7 @@ Note: SentenceSprite does not contain its own labels to prevent the labels from 
 	and shrinks. Stationary text is easier to read.
 """
 
-# signal emitted after the full dialog sentence is typed out onscreen
+# emitted after the full dialog sentence is typed out onscreen
 signal all_text_shown
 
 # size of the sentence window needed to display the sentence text

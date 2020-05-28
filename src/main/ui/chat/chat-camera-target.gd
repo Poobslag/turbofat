@@ -6,7 +6,7 @@ The camera target tries to keep all speaking characters in frame. If Spira runs
 too far away, the target emits a signal to zoom out.
 """
 
-# signal emitted when the camera should zoom out because Spira ran too far away
+# emitted when the camera should zoom out because Spira ran too far away
 signal left_zoom_radius
 
 # how far from the camera target Spira can be before the camera zooms out

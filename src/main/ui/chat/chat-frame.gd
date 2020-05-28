@@ -9,7 +9,7 @@ set_accent_def function to configure the chat window's appearance.
 
 signal pop_out_completed
 
-# signal emitted after the full dialog sentence is typed out onscreen
+# emitted after the full dialog sentence is typed out onscreen
 signal all_text_shown
 
 # 'true' after pop_in is called, and 'false' after pop_out is called

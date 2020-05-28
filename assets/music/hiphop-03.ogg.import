@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hiphop-03.ogg-61952bc9ada5b3d124136f35a2b4e287.oggstr"
+
+[deps]
+
+source_file="res://assets/music/hiphop-03.ogg"
+dest_files=[ "res://.import/hiphop-03.ogg-61952bc9ada5b3d124136f35a2b4e287.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

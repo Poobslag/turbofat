@@ -2709,7 +2709,7 @@ script = ExtResource( 58 )
 
 [node name="EmoteSfx" type="AudioStreamPlayer" parent="EmoteAnims"]
 stream = ExtResource( 72 )
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="FatPlayer" type="AnimationPlayer" parent="."]
 anims/fat = SubResource( 52 )
@@ -2727,162 +2727,162 @@ anims/run-se = SubResource( 57 )
 [node name="Munch0" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 20 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="Munch1" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 25 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="Munch2" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 26 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="Munch3" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 44 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="Munch4" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 21 )
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="DoorChime0" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 15 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="DoorChime1" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="DoorChime2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 24 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="DoorChime3" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 16 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="DoorChime4" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 18 )
 volume_db = -4.0
 max_distance = 4000.0
-bus = "Main Bus"
+bus = "Reverb Sfx Bus"
 
 [node name="ComboVoice00" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 10 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice01" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 36 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice02" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 33 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice03" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 41 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice04" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 29 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice05" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 34 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice06" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 32 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice07" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 35 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice08" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 43 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice09" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 30 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice10" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 42 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice11" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 39 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice12" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 40 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice13" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 19 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice14" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 12 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice15" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
@@ -2890,91 +2890,91 @@ stream = ExtResource( 23 )
 volume_db = 6.0
 max_distance = 4000.0
 attenuation = 0.466517
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice16" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 22 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice17" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 17 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice18" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 27 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="ComboVoice19" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 13 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="HelloVoice0" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 31 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="HelloVoice1" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 37 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="HelloVoice2" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 7 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="HelloVoice3" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 28 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GoodbyeVoice0" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 38 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GoodbyeVoice1" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 6 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GoodbyeVoice2" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 9 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 
 [node name="GoodbyeVoice3" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( 160, 0 )
 stream = ExtResource( 8 )
 volume_db = 6.0
 max_distance = 4000.0
-bus = "Voice Bus"
+bus = "Voice Sfx Bus"
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
 [connection signal="before_mood_switched" from="EmoteAnims" to="." method="_on_EmoteAnims_before_mood_switched"]
 [connection signal="animation_started" from="MovementAnims" to="." method="_on_MovementAnims_animation_started"]

@@ -10,7 +10,7 @@ signal chat_started
 
 signal chat_ended
 
-# signal emitted when we present the player with a dialog choice
+# emitted when we present the player with a dialog choice
 signal showed_chat_choices
 
 signal spira_changed(value)

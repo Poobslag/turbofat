@@ -7,7 +7,7 @@ signal chat_event_played(chat_event)
 
 signal pop_out_completed
 
-# signal emitted when we present the player with a dialog choice
+# emitted when we present the player with a dialog choice
 signal showed_choices
 
 # how long the player needs to hold the button to skip all dialog

@@ -7,7 +7,7 @@ State nodes can be added to this node as children. This class provides logic for
 invoking their methods, and emitting signals.
 """
 
-# signal emitted once when a state is entered
+# emitted once when a state is entered
 signal entered_state(state)
 
 # the currently active state

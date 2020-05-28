@@ -4,7 +4,7 @@ extends Button
 Shows a button corresponding to a dialog branch the player can choose.
 """
 
-# signal emitted after pop_choose() is invoked and the animation completes
+# emitted after pop_choose() is invoked and the animation completes
 signal pop_choose_completed
 
 # Text to show the player. We cannot use the button's text property because it does not support multiline text.

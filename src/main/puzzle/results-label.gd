@@ -3,7 +3,7 @@ extends RichTextLabel
 A results label which reveals its contents line by line.
 """
 
-# signal emitted when new characters appear in the window. newlines are stripped from the signal
+# emitted when new characters appear in the window. newlines are stripped from the signal
 signal text_shown(new_text)
 
 # unshown character which causes the output to pause for 0.2 beats

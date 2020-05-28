@@ -15,23 +15,23 @@ Make sure to remove this customer eventually by setting the value back to '-1'. 
 slower since the customer's assets will need to be loaded for the scene.
 """
 
-# signal emitted on the frame when the food is launched into the customer's mouth
+# emitted on the frame when the food is launched into the customer's mouth
 signal food_eaten
 
-# signal emitted when a customer arrives and sits down
+# emitted when a customer arrives and sits down
 signal customer_arrived
 
-# signal emitted when a customer stands up and leaves.
+# emitted when a customer stands up and leaves.
 # customers don't leave anymore, but they used to leave while new textures were loaded.
 signal customer_left
 
-# signal emitted when a movement animation starts (e.g Spira starts running in a direction)
+# emitted when a movement animation starts (e.g Spira starts running in a direction)
 signal movement_animation_started(anim_name)
 
-# signal emitted during the 'run' animation when the customer touches the ground
+# emitted during the 'run' animation when the customer touches the ground
 signal landed
 
-# signal emitted during the 'jump' animation when the customer leaves the ground
+# emitted during the 'jump' animation when the customer leaves the ground
 signal jumped
 
 # directions the customer can face

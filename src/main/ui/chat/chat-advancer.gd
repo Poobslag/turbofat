@@ -14,10 +14,10 @@ var _prev_chat_event_index := 0
 # 'true' if the player is currently rewinding through the chat history
 var rewinding_text := false
 
-# signal emitted when a chat event (new or historical) is shown to the player
+# emitted when a chat event (new or historical) is shown to the player
 signal chat_event_shown(chat_event)
 
-# signal emitted when the chat sequence ends, and the window should close
+# emitted when the chat sequence ends, and the window should close
 signal chat_finished
 
 func play_chat_tree(new_chat_tree: ChatTree) -> void:
