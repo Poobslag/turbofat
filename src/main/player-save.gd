@@ -31,31 +31,37 @@ class SaveItem:
 	
 	func to_json_dict() -> Dictionary:
 		return {"type": type, "key": key, "value": value} if key else {"type": type, "value": value}
-	
-	
-	"""
-	Creates a 'generic' save item, something the player has only one of.
-	
-	This could be an attribute like their name, money, or how many levels they've beaten.
-	"""
-	static func generic(type: String, value) -> SaveItem:
-		var save_item := SaveItem.new()
-		save_item.type = type
-		save_item.value = value
-		return save_item
-	
-	
-	"""
-	Creates a 'named' save item, something the player has many of.
-	
-	This could be attributes like items they're carrying, or their high score for each level.
-	"""
-	static func named(type: String, key: String, value) -> SaveItem:
-		var save_item := SaveItem.new()
-		save_item.type = type
-		save_item.key = key
-		save_item.value = value
-		return save_item
+
+
+"""
+Creates a 'generic' save item, something the player has only one of.
+
+This could be an attribute like their name, money, or how many levels they've beaten.
+
+Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
+due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
+"""
+func generic_data(type: String, value) -> SaveItem:
+	var save_item := SaveItem.new()
+	save_item.type = type
+	save_item.value = value
+	return save_item
+
+
+"""
+Creates a 'named' save item, something the player has many of.
+
+This could be attributes like items they're carrying, or their high score for each level.
+
+Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
+due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
+"""
+func named_data(type: String, key: String, value) -> SaveItem:
+	var save_item := SaveItem.new()
+	save_item.type = type
+	save_item.key = key
+	save_item.value = value
+	return save_item
 
 
 # Current version for saved player data. Should be updated if and only if the player format changes.
@@ -77,13 +83,13 @@ Writes the player's in-memory data to a save file.
 """
 func save_player_data() -> void:
 	var save_json: Array = []
-	save_json.append(SaveItem.generic("version", PLAYER_DATA_VERSION).to_json_dict())
-	save_json.append(SaveItem.generic("player-info", {"money": PlayerData.money}).to_json_dict())
+	save_json.append(generic_data("version", PLAYER_DATA_VERSION).to_json_dict())
+	save_json.append(generic_data("player-info", {"money": PlayerData.money}).to_json_dict())
 	for key in PlayerData.scenario_history.keys():
 		var rank_results_json := []
 		for rank_result in PlayerData.scenario_history[key]:
 			rank_results_json.append(rank_result.to_json_dict())
-		save_json.append(SaveItem.named("scenario-history", key, rank_results_json).to_json_dict())
+		save_json.append(named_data("scenario-history", key, rank_results_json).to_json_dict())
 	Global.write_file(player_data_filename, to_json(save_json))
 
 
