@@ -53,6 +53,7 @@ func _stop_test() -> void:
 		remove_child(_test_scene)
 		_test_scene.queue_free()
 		_test_scene = null
+		MusicPlayer.stop()
 
 
 func _on_OpenFile_pressed() -> void:

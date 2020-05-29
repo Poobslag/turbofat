@@ -16,6 +16,17 @@ func _ready() -> void:
 	
 	if Global.overworld_puzzle:
 		$BackButton.text = "Quit"
+	if Global.scenario_settings.other.tutorial:
+		$BackButton.hide()
+
+
+func hide_start_button() -> void:
+	$StartGameButton.hide()
+
+
+func show_start_button() -> void:
+	$StartGameButton.show()
+	$StartGameButton.grab_focus()
 
 
 """
@@ -61,13 +72,22 @@ func _on_PuzzleScore_game_started() -> void:
 Restores the HUD elements after the player wins or loses.
 """
 func _on_Puzzle_after_game_ended() -> void:
-	$BackButton.show()
 	$MessageLabel.hide()
-	
-	if Global.overworld_puzzle:
-		# player can't restart a level if a customer asked them to do it, for thematic reasons
-		$BackButton.grab_focus()
+	if Global.scenario_settings.other.tutorial or Global.scenario_settings.other.after_tutorial:
+		if PuzzleScore.scenario_performance.lost:
+			# if they lost/gave up, make them retry
+			$StartGameButton.show()
+			$StartGameButton.grab_focus()
+		else:
+			# if they won, make them exit
+			$BackButton.show()
+			$BackButton.grab_focus()
 	else:
-		# grab focus so the player can start a new game or navigate with the keyboard
-		$StartGameButton.show()
-		$StartGameButton.grab_focus()
+		$BackButton.show()
+		if Global.overworld_puzzle:
+			# player can't restart a level if a customer asked them to do it, for thematic reasons
+			$BackButton.grab_focus()
+		else:
+			# grab focus so the player can start a new game or navigate with the keyboard
+			$StartGameButton.show()
+			$StartGameButton.grab_focus()

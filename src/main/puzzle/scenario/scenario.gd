@@ -50,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 	
 	match _winish_type():
 		Milestone.TIME:
-			_check_for_match_end()
+			check_for_match_end()
 
 
 func _process(_delta: float) -> void:
@@ -91,6 +91,21 @@ func init_milestone_hud() -> void:
 			_miledesc.text = "Time"
 			_milevalue.set("custom_fonts/font", _xolonium_36)
 			_milevalue.text = StringUtils.format_duration(_winish_value())
+
+
+func check_for_match_end() -> void:
+	if not PuzzleScore.game_active:
+		return
+	
+	if _met_finish_condition(Global.scenario_settings.win_condition):
+		$ExcellentSound.play()
+		$Puzzle.end_game(4.2, "You win!")
+	elif _met_finish_condition(Global.scenario_settings.finish_condition):
+		$MatchEndSound.play()
+		var message := "Finish!"
+		if Global.scenario_settings.other.tutorial:
+			message = ""
+		$Puzzle.end_game(2.2, message)
 
 
 """
@@ -178,21 +193,6 @@ func _winish_value() -> int:
 	return Global.scenario_settings.get_winish_condition().value
 
 
-func _check_for_match_end() -> void:
-	if not PuzzleScore.game_active:
-		return
-	
-	if _met_finish_condition(Global.scenario_settings.win_condition):
-		$ExcellentSound.play()
-		$Puzzle.end_game(4.2, "You win!")
-	elif _met_finish_condition(Global.scenario_settings.finish_condition):
-		$MatchEndSound.play()
-		var message := "Finish!"
-		if Global.scenario_settings.other.tutorial:
-			message = ""
-		$Puzzle.end_game(2.2, message)
-
-
 func _met_finish_condition(condition: Milestone) -> bool:
 	var result := false
 	match condition.type:
@@ -261,12 +261,12 @@ func _on_Puzzle_line_cleared(y: int, total_lines: int, remaining_lines: int, box
 		set_level(new_level)
 	
 	_update_milestone_hud()
-	_check_for_match_end()
+	check_for_match_end()
 
 
 func _on_PuzzleScore_combo_ended() -> void:
 	_update_milestone_hud()
-	_check_for_match_end()
+	check_for_match_end()
 
 
 """

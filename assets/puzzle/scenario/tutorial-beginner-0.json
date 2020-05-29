@@ -196,6 +196,9 @@
       }
     ]
   },
+  "combo-break": [
+    "pieces 0"
+  ],
   "finish-condition": {
     "type": "score",
     "value": "100"
@@ -212,8 +215,5 @@
   "rank": [
     "skip-results"
   ],
-  "start-level": "T",
-  "score": [
-    "cake-all 20"
-  ]
+  "start-level": "T"
 }

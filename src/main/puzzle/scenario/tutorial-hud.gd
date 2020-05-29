@@ -9,14 +9,30 @@ onready var _puzzle: Puzzle = $"../Puzzle"
 onready var _playfield: Playfield = _puzzle.get_playfield()
 onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
+# tracks what the player has done so far during this tutorial
+var _lines_cleared := 0
 var _boxes_made := 0
 var _squish_moves := 0
+var _snack_stacks := 0
+
+# tracks what the player did with the most recent piece
+var _did_line_clear := false
+var _did_make_box := false
+var _did_squish_move := false
 
 func _ready() -> void:
 	visible = false
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
 	refresh()
+	
+	if Global.scenario_settings.name.begins_with("tutorial-beginner"):
+		_puzzle.hide_start_button()
+		yield(get_tree().create_timer(0.40), "timeout")
+		append_message("Welcome to Turbo Fat!//"
+				+ " You seem to already be familiar with this sort of game,/ so let's dive right in.")
+		yield(get_tree().create_timer(0.80), "timeout")
+		_puzzle.show_start_button()
 
 
 """
@@ -58,75 +74,118 @@ func append_big_message(message: String) -> void:
 	$Message.append_big_message(message)
 
 
-func _on_PieceManager_squish_moved() -> void:
-	_squish_moves += 1
-	if Global.scenario_settings.name == "tutorial-beginner-2":
-		# for tutorial-beginner-2, they must perform a squish move or the piece is erased
-		_playfield.read_only = false
-	if _squish_moves == 1:
-		if Global.scenario_settings.name == "tutorial-beginner-2":
-			append_message("Well done!\n\nSquish moves can help you out of a jam./"
-					+ " They're also good for certain boxes.")
-		elif Global.scenario_settings.name in ["tutorial-beginner-0", "tutorial-beginner-1"]:
-			append_message("Oh my,/ you're not supposed to know how to do that!\n\n..."
-					+ "But yes,/ squish moves can help you out of a jam.")
-			$SkillTallyItems/GridContainer/SquishMove.visible = true
-
-
 func _on_PieceManager_piece_spawned() -> void:
-	if Global.scenario_settings.name == "tutorial-beginner-2":
-		# for tutorial-beginner-2, they must perform a squish move or the piece is erased
-		_playfield.read_only = true
+	_did_line_clear = false
+	_did_squish_move = false
+	_did_make_box = false
+
+
+func _on_PieceManager_squish_moved() -> void:
+	_did_squish_move = true
+	_squish_moves += 1
 
 
 func _on_Playfield_box_made(x: int, y: int, width: int, height: int, color: int) -> void:
+	_did_make_box = true
 	_boxes_made += 1
-	if _boxes_made == 1:
-		if Global.scenario_settings.name == "tutorial-beginner-1":
-			append_message("Well done!\n\nThose boxes earn ¥15 when you clear them./"
-					+ " Maybe more if you're clever.")
-		elif Global.scenario_settings.name == "tutorial-beginner-0":
-			append_message("Oh my,/ you're not supposed to know how to do that!\n\n"
-					+ "...But yes,/ those boxes earn $15 when you clear them./"
-					+ " Maybe more if you're clever.")
-			$SkillTallyItems/GridContainer/SnackBox.visible = true
 
 
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	if PuzzleScore.scenario_performance.lines == 1:
+	_did_line_clear = true
+	_lines_cleared += 1
+
+
+func _handle_line_clear_message() -> void:
+	if _did_line_clear and _lines_cleared == 1:
 		append_message("Well done!\n\nLine clears earn ¥1./ Maybe more if you can build a combo.")
+
+
+func _handle_squish_move_message() -> void:
+	if _did_squish_move and _squish_moves == 1:
+		match Global.scenario_settings.name:
+			"tutorial-beginner-0", "tutorial-beginner-1":
+				append_message("Oh my,/ you're not supposed to know how to do that!\n\n..."
+						+ "But yes,/ squish moves can help you out of a jam.")
+				$SkillTallyItems/GridContainer/SquishMove.visible = true
+			"tutorial-beginner-2":
+				append_message("Well done!\n\nSquish moves can help you out of a jam./"
+						+ " They're also good for certain boxes.")
+
+
+func _handle_make_box_message() -> void:
+	if _did_make_box and _boxes_made == 1:
+		match Global.scenario_settings.name:
+			"tutorial-beginner-0":
+				append_message("Oh my,/ you're not supposed to know how to do that!\n\n"
+						+ "...But yes,/ those boxes earn $15 when you clear them./"
+						+ " Maybe more if you're clever.")
+				$SkillTallyItems/GridContainer/SnackBox.visible = true
+			"tutorial-beginner-1":
+				append_message("Well done!\n\nThose boxes earn ¥15 when you clear them./"
+				+ " Maybe more if you're clever.")
+
+
+func _handle_snack_stack_message() -> void:
+	if Global.scenario_settings.name == "tutorial-beginner-3" and _did_make_box and _did_squish_move:
+		_snack_stacks += 1
+		$SkillTallyItems/GridContainer/SnackStack.increment()
+		if _snack_stacks == 1:
+			append_message("Impressive!/ Using squish moves,/" \
+					+ " you can organize boxes in tall vertical stacks and earn a lot of money.")	
 
 
 """
 After a piece is written to the playfield, we check if the player should advance further in the tutorial.
 """
 func _on_Playfield_after_piece_written() -> void:
+	# print tutorial messages if the player did something noteworthy
+	_handle_line_clear_message()
+	_handle_squish_move_message()
+	_handle_make_box_message()
+	_handle_snack_stack_message()
+	
 	var scenario_name := Global.scenario_settings.name
-	if Global.scenario_settings.name == "tutorial-beginner-0":
-		if PuzzleScore.scenario_performance.lines >= 2: _advance_scenario()
-	elif Global.scenario_settings.name == "tutorial-beginner-1":
-		if _boxes_made >= 2: _advance_scenario()
-	elif Global.scenario_settings.name == "tutorial-beginner-2":
-		if _squish_moves >= 2: _advance_scenario()
+	match Global.scenario_settings.name:
+		"tutorial-beginner-0":
+			if _lines_cleared >= 2: _advance_scenario()
+		"tutorial-beginner-1":
+			if _boxes_made >= 2: _advance_scenario()
+		"tutorial-beginner-2":
+			if not _did_squish_move:
+				_playfield.undo_last_piece()
+			if _squish_moves >= 2:
+				_advance_scenario()
+		"tutorial-beginner-3":
+			if not _did_make_box:
+				_playfield.undo_last_piece()
+			if _snack_stacks >= 2:
+				_advance_scenario()
 
 
 func _advance_scenario() -> void:
-	if PuzzleScore.scenario_performance.score >= Global.scenario_settings.finish_condition.value \
-			and Global.scenario_settings.name in ["tutorial-beginner-0", "tutorial-beginner-1",
-				"tutorial-beginner-2"]:
-		# 100 points is a remarkable feat; skip the tutorial entirely
+	# clear out any text to ensure we don't end up pages behind, if the player is fast
+	$Message.hide_text()
+	
+	if Global.scenario_settings.name == "tutorial-beginner-0" and _did_make_box and _did_squish_move:
+		# the player did something crazy; skip the tutorial entirely
 		_change_scenario("oh-my")
 		append_big_message("O/H/,/// M/Y/!/!/!")
 		$Message.set_pop_out_timer(1.0)
+		
+		# force match to end
+		PuzzleScore.scenario_performance.lines = 100
+		_scenario.check_for_match_end()
 		_scenario.init_milestone_hud()
-	elif PuzzleScore.scenario_performance.lines == 0:
+	elif _lines_cleared == 0:
 		_change_scenario("tutorial-beginner-0")
 	elif _boxes_made == 0:
 		_change_scenario("tutorial-beginner-1")
 	elif _squish_moves == 0:
 		_change_scenario("tutorial-beginner-2")
-	else:
+	elif _snack_stacks == 0:
 		_change_scenario("tutorial-beginner-3")
+	else:
+		_change_scenario("tutorial-beginner-4")
 
 
 """
@@ -145,7 +204,14 @@ func _change_scenario(name: String) -> void:
 			$SkillTallyItems/GridContainer/SquishMove.visible = true
 			append_message("Nicely done!\n\nNext, try holding soft drop to squish these pieces through these gaps.")
 		"tutorial-beginner-3":
-			_playfield.break_combo()
+			$SkillTallyItems/GridContainer/SnackStack.visible = true
+			$SkillTallyItems/GridContainer/SnackStack.reset()
+			append_message("One last lesson! Try holding soft drop to squish and complete these boxes.")
+		"tutorial-beginner-4":
+			# reset timer, scores
+			PuzzleScore.reset()
+			_puzzle.scroll_to_new_customer()
+			
 			append_message("You're a remarkably quick learner." \
 					+ "/ I think I hear some customers!\n\nSee if you can earn ¥100.")
 			$Message.set_pop_out_timer(3.0)
@@ -164,11 +230,10 @@ func _flash() -> void:
 
 
 func _on_PuzzleScore_game_prepared() -> void:
+	_lines_cleared = 0
 	_boxes_made = 0
 	_squish_moves = 0
-	$Message.hide_text()
-	append_message("Welcome to Turbo Fat!//"
-			+ " You seem to already be familiar with this sort of game,/ so let's dive right in.")
+	_snack_stacks = 0
 
 
 func _on_PuzzleScore_game_started() -> void:

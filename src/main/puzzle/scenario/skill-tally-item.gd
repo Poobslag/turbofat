@@ -30,8 +30,37 @@ func _ready() -> void:
 	if not Engine.is_editor_hint():
 		_playfield = _puzzle.get_playfield()
 		_piece_manager = _puzzle.get_piece_manager()
-	_reset()
+	reset()
 	_connect_signals()
+
+
+func set_label_text(new_label_text: String) -> void:
+	label_text = new_label_text
+	if is_inside_tree():
+		_update_label()
+
+
+"""
+Resets the skill tally to 0 when starting/restarting a tutorial.
+"""
+func reset() -> void:
+	value = 0
+	_update_label()
+
+
+func increment() -> void:
+	if not is_visible_in_tree():
+		return
+	
+	if value < max_value:
+		value += 1
+		if value == max_value:
+			_blink(true)
+		else:
+			_blink()
+	else:
+		_blink()
+	_update_label()
 
 
 """
@@ -53,20 +82,6 @@ func _connect_signals() -> void:
 			_piece_manager.connect(signal_name, self, "_on_skill_performed")
 		else:
 			push_error("Could not find sender for signal '%s'" % signal_name)
-
-
-"""
-Resets the skill tally to 0 when starting/restarting a tutorial.
-"""
-func _reset() -> void:
-	value = 0
-	_update_label()
-
-
-func set_label_text(new_label_text: String) -> void:
-	label_text = new_label_text
-	if is_inside_tree():
-		_update_label()
 
 
 """
@@ -114,25 +129,14 @@ func _update_label() -> void:
 
 
 func _on_PuzzleScore_game_prepared() -> void:
-	_reset()
+	reset()
 
 
 """
 When the player performs a skill we blink and increment our value.
 """
 func _on_skill_performed() -> void:
-	if not is_visible_in_tree():
-		return
-	
-	if value < max_value:
-		value += 1
-		if value == max_value:
-			_blink(true)
-		else:
-			_blink()
-	else:
-		_blink()
-	_update_label()
+	increment()
 
 
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:

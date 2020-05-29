@@ -88,8 +88,10 @@ Parameters:
 	'box_score': Bonus points for any boxes in the line.
 """
 func add_line_score(combo_score: int, box_score: int) -> void:
-	if not game_active:
+	if not game_active or Global.scenario_settings.other.tutorial:
+		# no money earned during tutorial
 		return
+	
 	scenario_performance.lines += 1
 	scenario_performance.combo_score += combo_score
 	scenario_performance.box_score += box_score

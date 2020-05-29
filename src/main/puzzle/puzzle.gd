@@ -38,6 +38,14 @@ func get_piece_manager() -> PieceManager:
 	return $PieceManager as PieceManager
 
 
+func hide_start_button() -> void:
+	$HudHolder/Hud.hide_start_button()
+
+
+func show_start_button() -> void:
+	$HudHolder/Hud.show_start_button()
+
+
 """
 Shows a detailed multi-line message, like how the game is controlled
 """
@@ -117,6 +125,10 @@ func set_piece_types(types: Array) -> void:
 
 func set_piece_start_types(types: Array) -> void:
 	$NextPieceDisplays.set_piece_start_types(types)
+
+
+func scroll_to_new_customer() -> void:
+	$CustomerView.scroll_to_new_customer()
 
 
 """

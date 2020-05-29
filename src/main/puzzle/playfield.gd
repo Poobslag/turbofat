@@ -33,9 +33,6 @@ const COL_COUNT = 9
 var awarding_line_clear_points: bool = true
 var lines_being_cleared := []
 
-# 'true' if the playfield can't be written to. Used for tutorials.
-var read_only := false
-
 var _cleared_line_index := 0
 
 # Stores timing values to ensure lines are erased one at a time with consistent timing.
@@ -87,6 +84,15 @@ func _physics_process(delta: float) -> void:
 		_remaining_misc_delay_frames -= 1
 
 
+"""
+Rolls back the piece previously written to the playfield.
+
+Also undoes any boxes that were made and lines that were cleared.
+"""
+func undo_last_piece() -> void:
+	$TileMapClip/TileMap.restore_state()
+
+
 func add_misc_delay_frames(frames: int) -> void:
 	_remaining_misc_delay_frames += frames
 
@@ -117,12 +123,13 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 	_remaining_box_build_frames = 0
 	_remaining_line_clear_frames = 0
 	
-	if not read_only:
-		for i in range(type.pos_arr[orientation].size()):
-			var block_pos := type.get_cell_position(orientation, i)
-			var block_color := type.get_cell_color(orientation, i)
-			_set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
-		
+	$TileMapClip/TileMap.save_state()
+	
+	for i in range(type.pos_arr[orientation].size()):
+		var block_pos := type.get_cell_position(orientation, i)
+		var block_color := type.get_cell_color(orientation, i)
+		_set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
+	
 	if not death_piece:
 		_process_boxes()
 		_schedule_full_row_line_clears()

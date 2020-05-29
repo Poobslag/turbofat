@@ -17,6 +17,11 @@ const TILE_PIECE := 0 # part of an intact piece
 const TILE_BOX := 1 # part of a snack/cake box
 const TILE_VEG := 2 # vegetable created from line clears
 
+# fields used to roll the tile map back to a previous state
+var _saved_used_cells := []
+var _saved_tiles := []
+var _saved_autotile_coords := []
+
 func _ready() -> void:
 	clear()
 
@@ -24,6 +29,26 @@ func _ready() -> void:
 func clear() -> void:
 	.clear()
 	$CornerMap.clear()
+
+
+func save_state() -> void:
+	_saved_used_cells.clear()
+	_saved_tiles.clear()
+	_saved_autotile_coords.clear()
+	for cell_obj in get_used_cells():
+		var cell: Vector2 = cell_obj
+		_saved_used_cells.append(cell)
+		_saved_tiles.append(get_cell(cell.x, cell.y))
+		_saved_autotile_coords.append(get_cell_autotile_coord(cell.x, cell.y))
+
+
+func restore_state() -> void:
+	clear()
+	for i in range(_saved_used_cells.size()):
+		var cell: Vector2 = _saved_used_cells[i]
+		var tile: int = _saved_tiles[i]
+		var autotile_coord: Vector2 = _saved_autotile_coords[i]
+		set_block(cell, tile, autotile_coord)
 
 
 func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:

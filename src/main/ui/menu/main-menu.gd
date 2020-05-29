@@ -19,6 +19,8 @@ func _ready() -> void:
 	if not MusicPlayer.is_playing_chill_bgm():
 		MusicPlayer.play_chill_bgm()
 		MusicPlayer.fade_in()
+	
+	$Play/Practice.grab_focus()
 
 
 func _on_PlayStory_pressed() -> void:
