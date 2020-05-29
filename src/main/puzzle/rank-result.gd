@@ -4,6 +4,8 @@ Contains rank information for a playthrough. This includes raw statistics such a
 cleared, as well as derived statistics such as the computed lines-per-minute rank.
 """
 
+var timestamp := OS.get_datetime()
+
 # player's speed in lines per minute.
 var speed := 0.0
 var speed_rank := 0.0
@@ -53,6 +55,7 @@ func to_json_dict() -> Dictionary:
 		"seconds_rank": seconds_rank,
 		"speed": speed,
 		"speed_rank": speed_rank,
+		"timestamp": timestamp,
 		"top_out_count": top_out_count }
 
 
@@ -72,6 +75,8 @@ func from_json_dict(json: Dictionary) -> void:
 	seconds_rank = float(json.get("seconds_rank", "999"))
 	speed = float(json.get("speed", "0"))
 	speed_rank = float(json.get("speed_rank", "999"))
+	timestamp = json.get("timestamp",
+			{"year": 2020, "month": 5, "day": 9, "weekday": 4, "dst": false, "hour": 17, "minute": 43, "second": 51})
 	top_out_count = int(json.get("top_out_count", "999999"))
 
 
