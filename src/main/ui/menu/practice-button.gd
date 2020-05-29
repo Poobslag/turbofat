@@ -1,4 +1,4 @@
-class_name ScenarioButton
+class_name PracticeButton
 extends VBoxContainer
 """
 Button which launches a scenario from the scenario menu. Includes a clickable button with the scenario difficulty and

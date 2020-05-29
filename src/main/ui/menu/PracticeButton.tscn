@@ -2,9 +2,9 @@
 
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=2]
-[ext_resource path="res://src/main/ui/scenario-button.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/menu/practice-button.gd" type="Script" id=3]
 
-[node name="ScenarioButton" type="VBoxContainer"]
+[node name="PracticeButton" type="VBoxContainer"]
 margin_right = 193.0
 margin_bottom = 71.0
 size_flags_horizontal = 3

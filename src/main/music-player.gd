@@ -18,16 +18,16 @@ const MAX_VOLUME := 0.0
 # the music currently playing
 var _current_bgm: AudioStreamPlayer
 
-func _ready() -> void:
-	play_chill_bgm()
-
-
 """
 Plays a 'chill' song; something suitable for background music when the player's navigating menus or wandering the
 overworld.
 """
 func play_chill_bgm() -> void:
 	play_music($HipHop03, $FreshnessInspector.freshest_start($HipHop03))
+
+
+func is_playing_chill_bgm() -> bool:
+	return _current_bgm in [$HipHop03]
 
 
 """

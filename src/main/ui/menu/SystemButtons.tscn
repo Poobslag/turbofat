@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=2]
+
+[node name="System" type="VBoxContainer"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -86.0
+custom_constants/separation = 10
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Settings" type="Button" parent="."]
+margin_left = 454.0
+margin_right = 570.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 116, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 1 )
+disabled = true
+text = "Settings"
+
+[node name="Quit" type="Button" parent="."]
+margin_left = 454.0
+margin_top = 38.0
+margin_right = 570.0
+margin_bottom = 66.0
+rect_min_size = Vector2( 116, 28 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_fonts/font = ExtResource( 1 )
+text = "Quit"
+[connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

@@ -24,9 +24,7 @@ func _ready() -> void:
 	_scenario_json.text = scenario_text
 	_scenario_json.refresh_tilemap()
 	_scenario_name.text = DEFAULT_SCENARIO
-	
-	# back button should close scenario; shouldn't redirect us to a new scene
-	Global.post_puzzle_target = ""
+	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 
 
 func _save_scenario(path: String) -> void:
@@ -44,7 +42,9 @@ func _start_test() -> void:
 	Global.scenario_settings = ScenarioLibrary.load_scenario(_scenario_name.text, _scenario_json.text)
 	Global.launched_scenario_name = Global.scenario_settings.name
 	_test_scene = ScenarioScene.instance()
-	_test_scene.connect("back_button_pressed", self, "_on_Scenario_back_button_pressed")
+	
+	# back button should close scenario; shouldn't redirect us to a new scene
+	Breadcrumb.push_trail("res://src/main/puzzle/editor/LevelEditor.tscn::test")
 	add_child(_test_scene)
 
 
@@ -85,14 +85,15 @@ func _on_Test_pressed() -> void:
 	_start_test()
 
 
-func _on_Scenario_back_button_pressed() -> void:
-	_stop_test()
+func _on_Breadcrumb_trail_popped(prev_path: String) -> void:
+	if prev_path == "res://src/main/puzzle/editor/LevelEditor.tscn::test":
+		# player exited the scenario under test; stop the test
+		_stop_test()
+	elif not Breadcrumb.trail:
+		# player exited the level editor when it was launched standalone; exit to loading screen to avoid jitter
+		ResourceCache.minimal_resources = false
+		get_tree().change_scene("res://src/main/ui/menu/LoadingScreen.tscn")
 
 
 func _on_Exit_pressed() -> void:
-	var target_scene := "res://src/main/ui/ScenarioMenu.tscn"
-	if not ResourceCache.is_done():
-		# when launched standalone, we redirect to the loading screen to avoid jitter
-		ResourceCache.minimal_resources = false
-		target_scene = "res://src/main/ui/LoadingScreen.tscn"
-	get_tree().change_scene(target_scene)
+	Breadcrumb.pop_trail()

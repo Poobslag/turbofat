@@ -7,8 +7,6 @@ This includes the countdown timer, the ending message, the controls, and the 'st
 
 signal start_button_pressed
 
-signal back_button_pressed
-
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
@@ -17,7 +15,7 @@ func _ready() -> void:
 	$StartGameButton.grab_focus()
 	
 	if Global.overworld_puzzle:
-		$BackButton.text = "Exit"
+		$BackButton.text = "Quit"
 
 
 """
@@ -44,7 +42,7 @@ func _hide_buttons_and_messages() -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	emit_signal("back_button_pressed")
+	Breadcrumb.pop_trail()
 
 
 func _on_StartGameButton_pressed() -> void:
