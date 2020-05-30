@@ -25,6 +25,9 @@ const MASTER_MVMT_FRAMES := 6
 # amount of points lost while starting a combo
 const COMBO_DEFICIT := [0, 20, 40, 55, 70, 80, 90, 95, 100]
 
+# String to display if the player scored worse than the lowest grade
+const NO_GRADE := "-"
+
 """
 Calculates the player's rank.
 
@@ -247,3 +250,30 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 			rank_result.seconds_rank = 999
 	
 	return rank_result
+
+
+"""
+Converts a numeric grade such as '12.6' into a grade string such as 'S+'.
+"""
+static func grade(rank: float) -> String:
+	var grade := NO_GRADE
+	
+	if rank <= 0: grade = "M"
+	
+	elif rank <= 4: grade = "SSS"
+	elif rank <= 7: grade = "SS+"
+	elif rank <= 10: grade = "SS" # 4 stars (medium gap)
+	elif rank <= 16: grade = "S+"
+	elif rank <= 20: grade = "S"
+	elif rank <= 24: grade = "S-" # 1 star (big gap)
+	
+	elif rank <= 32: grade = "AA+"
+	elif rank <= 36: grade = "AA"
+	elif rank <= 40: grade = "A+"
+	elif rank <= 44: grade = "A"
+	elif rank <= 48: grade = "A-" # 1 triangle (big gap)
+	
+	elif rank <= 56: grade = "B+"
+	elif rank <= 60: grade = "B"
+	elif rank <= 64: grade = "B-" # 1 dot (big gap)
+	return grade

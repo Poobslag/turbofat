@@ -90,7 +90,7 @@ func save_player_data() -> void:
 		for rank_result in PlayerData.scenario_history[key]:
 			rank_results_json.append(rank_result.to_json_dict())
 		save_json.append(named_data("scenario-history", key, rank_results_json).to_json_dict())
-	Global.write_file(player_data_filename, to_json(save_json))
+	FileUtils.write_file(player_data_filename, to_json(save_json))
 
 
 """
@@ -101,15 +101,13 @@ func load_player_data() -> void:
 	if old_save.only_has_old_save():
 		old_save.transform_old_save()
 	
-	var save_game := File.new()
-	if save_game.file_exists(player_data_filename):
-		var save_json_text := Global.get_file_as_text(player_data_filename)
+	if FileUtils.file_exists(player_data_filename):
+		var save_json_text := FileUtils.get_file_as_text(player_data_filename)
 		var json_save_items: Array = parse_json(save_json_text)
 		for json_save_item_obj in json_save_items:
 			var save_item: SaveItem = SaveItem.new()
 			save_item.from_json_dict(json_save_item_obj)
 			_load_line(save_item.type, save_item.key, save_item.value)
-	save_game.close()
 
 
 """

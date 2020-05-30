@@ -9,7 +9,7 @@ This class needs to be a node because it provides utility methods which utilize 
 """
 
 func load_scenario_from_name(name: String) -> ScenarioSettings:
-	var text := Global.get_file_as_text(scenario_path(name))
+	var text := FileUtils.get_file_as_text(scenario_path(name))
 	return load_scenario(name, text)
 
 

@@ -75,24 +75,24 @@ func _append_grade_information(rank_result: RankResult, customer_scores: Array, 
 	text += "/////\n"
 	if finish_condition_type == Milestone.SCORE:
 		text += "Speed: %d%s (%s)\n" % [round(rank_result.speed * 200 / 60),
-				topped_out, Global.grade(rank_result.speed_rank)]
+				topped_out, RankCalculator.grade(rank_result.speed_rank)]
 	else:
 		text += "Lines: %d%s (%s)\n" % [rank_result.lines,
-				topped_out, Global.grade(rank_result.lines_rank)]
+				topped_out, RankCalculator.grade(rank_result.lines_rank)]
 		
 	text += "/////Boxes: %d%s (%s)\n" % [round(rank_result.box_score_per_line * 10),
-			topped_out, Global.grade(rank_result.box_score_per_line_rank)]
+			topped_out, RankCalculator.grade(rank_result.box_score_per_line_rank)]
 	
 	text += "/////Combos: %d%s (%s)\n" % [round(rank_result.combo_score_per_line * 10),
-			topped_out, Global.grade(rank_result.combo_score_per_line_rank)]
+			topped_out, RankCalculator.grade(rank_result.combo_score_per_line_rank)]
 	
 	text += "/////\nOverall: "
 	text += "//////////"
 	if finish_condition_type == Milestone.SCORE:
 		var duration := StringUtils.format_duration(rank_result.seconds)
-		text += "%s%s (%s)\n" % [duration, topped_out, Global.grade(rank_result.seconds_rank)]
+		text += "%s%s (%s)\n" % [duration, topped_out, RankCalculator.grade(rank_result.seconds_rank)]
 	else:
-		text += "(%s)\n" % Global.grade(rank_result.score_rank)
+		text += "(%s)\n" % RankCalculator.grade(rank_result.score_rank)
 	return text
 
 
