@@ -35,7 +35,7 @@ func set_bus_volume_linear(volume_type: int, value: float) -> void:
 """
 Resets the sound, music and voice volumes to their default values.
 """
-func reset_to_default() -> void:
+func reset() -> void:
 	from_json_dict({})
 
 

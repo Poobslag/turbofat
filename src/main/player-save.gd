@@ -87,11 +87,11 @@ func save_player_data() -> void:
 	save_json.append(generic_data("version", PLAYER_DATA_VERSION).to_json_dict())
 	save_json.append(generic_data("player-info", {"money": PlayerData.money}).to_json_dict())
 	save_json.append(generic_data("volume-settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
-	for key in PlayerData.scenario_history.keys():
+	for scenario_name in PlayerData.scenario_history.scenario_names():
 		var rank_results_json := []
-		for rank_result in PlayerData.scenario_history[key]:
+		for rank_result in PlayerData.scenario_history.results(scenario_name):
 			rank_results_json.append(rank_result.to_json_dict())
-		save_json.append(named_data("scenario-history", key, rank_results_json).to_json_dict())
+		save_json.append(named_data("scenario-history", scenario_name, rank_results_json).to_json_dict())
 	FileUtils.write_file(player_data_filename, to_json(save_json))
 
 
@@ -134,7 +134,8 @@ func _load_line(type: String, key: String, json_value) -> void:
 			for rank_result_json in value:
 				var rank_result := RankResult.new()
 				rank_result.from_json_dict(rank_result_json)
-				PlayerData.add_scenario_history(key, rank_result)
+				PlayerData.scenario_history.add(key, rank_result)
+			PlayerData.scenario_history.prune(key)
 		"volume-settings":
 			var value: Dictionary = json_value
 			PlayerData.volume_settings.from_json_dict(value)

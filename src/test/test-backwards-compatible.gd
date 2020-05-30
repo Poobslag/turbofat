@@ -17,7 +17,6 @@ func before_each() -> void:
 
 
 func after_each() -> void:
-	PlayerData.history_size = 1000
 	var save_dir := Directory.new()
 	save_dir.open("user://")
 	save_dir.remove(TEMP_FILENAME)
@@ -26,16 +25,16 @@ func after_each() -> void:
 
 func test_lost_true() -> void:
 	# scenario where the player topped out and lost
-	assert_true(PlayerData.scenario_history.has("sprint-normal"))
-	var history_sprint: RankResult = PlayerData.scenario_history.get("sprint-normal")[0]
+	assert_true(PlayerData.scenario_history.scenario_names().has("sprint-normal"))
+	var history_sprint: RankResult = PlayerData.scenario_history.results("sprint-normal")[0]
 	assert_eq(history_sprint.lost, true)
 	assert_eq(history_sprint.top_out_count, 1)
 
 
 func test_lost_false() -> void:
 	# scenario where the player survived
-	assert_true(PlayerData.scenario_history.has("ultra-normal"))
-	var history_ultra: RankResult = PlayerData.scenario_history.get("ultra-normal")[0]
+	assert_true(PlayerData.scenario_history.scenario_names().has("ultra-normal"))
+	var history_ultra: RankResult = PlayerData.scenario_history.results("ultra-normal")[0]
 	assert_eq(history_ultra.lost, false)
 	assert_eq(history_ultra.top_out_count, 0)
 
@@ -47,15 +46,15 @@ func test_money_preserved() -> void:
 
 func test_survival_records_preserved() -> void:
 	# 'survival mode' used to be called 'marathon mode'
-	assert_true(PlayerData.scenario_history.has("survival-normal"))
-	var history_survival: RankResult = PlayerData.scenario_history.get("survival-normal")[0]
+	assert_true(PlayerData.scenario_history.scenario_names().has("survival-normal"))
+	var history_survival: RankResult = PlayerData.scenario_history.results("survival-normal")[0]
 	assert_eq(history_survival.lost, false)
 	assert_eq(history_survival.score, 1335)
 
 
 func test_timestamp_created() -> void:
-	assert_true(PlayerData.scenario_history.has("ultra-normal"))
-	var history_ultra: RankResult = PlayerData.scenario_history.get("ultra-normal")[0]
+	assert_true(PlayerData.scenario_history.scenario_names().has("ultra-normal"))
+	var history_ultra: RankResult = PlayerData.scenario_history.results("ultra-normal")[0]
 	
 	# save data doesn't include timestamp, so we make one up
 	assert_true(history_ultra.timestamp.has("year"))
