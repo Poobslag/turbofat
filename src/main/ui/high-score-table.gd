@@ -52,14 +52,8 @@ func _add_rows() -> void:
 	if not _scenario:
 		return
 	
-	var best_results: Array
-	if _scenario.name.begins_with("ultra-"):
-		best_results = PlayerData.get_best_scenario_results(_scenario.name, _daily, "seconds")
-	else:
-		best_results = PlayerData.get_best_scenario_results(_scenario.name, _daily)
-	
-	for i in range(min(best_results.size(), 3)):
-		var best_result: RankResult = best_results[i]
+	for best_result_obj in PlayerData.scenario_history.best_results(_scenario.name, _daily):
+		var best_result: RankResult = best_result_obj
 		var row := []
 		
 		# append timestamp
@@ -77,7 +71,7 @@ func _add_rows() -> void:
 		row.append(StringUtils.comma_sep(best_result.lines))
 		
 		# append score/time and grade
-		if _scenario.name.begins_with("ultra-"):
+		if ScenarioSettings.compare_seconds(_scenario.name):
 			if best_result.lost:
 				row.append("-")
 			else:
