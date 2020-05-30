@@ -46,6 +46,9 @@ func _start_test() -> void:
 	# back button should close scenario; shouldn't redirect us to a new scene
 	Breadcrumb.push_trail("res://src/main/puzzle/editor/LevelEditor.tscn::test")
 	add_child(_test_scene)
+	
+	# disable the settings button while testing a level, otherwise hitting 'esc' will do two things
+	$HBoxContainer/RightPanel/SideButtons/Settings.disabled = true
 
 
 func _stop_test() -> void:
@@ -54,6 +57,9 @@ func _stop_test() -> void:
 		_test_scene.queue_free()
 		_test_scene = null
 		MusicPlayer.stop()
+		
+		# re-enable the settings button, which was disabled while testing the level
+		$HBoxContainer/RightPanel/SideButtons/Settings.disabled = false
 
 
 func _on_OpenFile_pressed() -> void:
@@ -96,5 +102,5 @@ func _on_Breadcrumb_trail_popped(prev_path: String) -> void:
 		get_tree().change_scene("res://src/main/ui/menu/LoadingScreen.tscn")
 
 
-func _on_Exit_pressed() -> void:
+func _on_Quit_pressed() -> void:
 	Breadcrumb.pop_trail()

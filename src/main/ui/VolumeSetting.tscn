@@ -1,0 +1,83 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/volume-setting-control.gd" type="Script" id=2]
+[ext_resource path="res://assets/puzzle/squish.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/world/customer/combo-voice-00.wav" type="AudioStream" id=4]
+
+[node name="Control" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -10.0
+margin_right = 200.0
+margin_bottom = 10.0
+rect_min_size = Vector2( 400, 20 )
+size_flags_horizontal = 3
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 120.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+custom_fonts/font = ExtResource( 1 )
+text = "Music"
+align = 2
+
+[node name="Control" type="HBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -267.0
+margin_right = -17.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 240, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Control"]
+margin_top = 2.0
+margin_right = 160.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.1
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Percent" type="Label" parent="Control"]
+margin_left = 170.0
+margin_right = 230.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 60, 0 )
+custom_fonts/font = ExtResource( 1 )
+text = "100%"
+
+[node name="SampleTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="SampleSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+bus = "Sound Bus"
+
+[node name="SampleVoice" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = 6.0
+bus = "Voice Bus"
+[connection signal="value_changed" from="Control/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="timeout" from="SampleTimer" to="." method="_on_SampleTimer_timeout"]

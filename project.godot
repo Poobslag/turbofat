@@ -293,6 +293,11 @@ _global_script_classes=[ {
 "class": "TutorialMessage",
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/tutorial-message.gd"
+}, {
+"base": "Reference",
+"class": "VolumeSettings",
+"language": "GDScript",
+"path": "res://src/main/volume-settings.gd"
 } ]
 _global_script_class_icons={
 "ActivePiece": "",
@@ -351,7 +356,8 @@ _global_script_class_icons={
 "State": "",
 "StateMachine": "",
 "TutorialHud": "",
-"TutorialMessage": ""
+"TutorialMessage": "",
+"VolumeSettings": ""
 }
 
 [application]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=3]
 
 [node name="System" type="VBoxContainer"]
 anchor_top = 1.0
@@ -22,7 +23,8 @@ rect_min_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 1 )
-disabled = true
+shortcut_in_tooltip = false
+shortcut = ExtResource( 3 )
 text = "Settings"
 
 [node name="Quit" type="Button" parent="."]
@@ -35,4 +37,5 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 1 )
 text = "Quit"
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]

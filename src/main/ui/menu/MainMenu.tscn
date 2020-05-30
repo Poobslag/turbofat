@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://assets/ui/xolonium-36-outline.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=8]
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0
@@ -125,7 +126,12 @@ text = "Characters"
 [node name="System" parent="." instance=ExtResource( 5 )]
 
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
+visible = false
 [connection signal="pressed" from="Play/Story" to="." method="_on_PlayStory_pressed"]
 [connection signal="pressed" from="Play/Practice" to="." method="_on_PlayPractice_pressed"]
 [connection signal="pressed" from="Create/Levels" to="." method="_on_CreateLevels_pressed"]
 [connection signal="quit_pressed" from="System" to="." method="_on_System_quit_pressed"]
+[connection signal="settings_pressed" from="System" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="quit_pressed" from="SettingsMenu" to="System" method="_on_Quit_pressed"]

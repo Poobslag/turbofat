@@ -75,6 +75,7 @@ var player_data_filename := "user://turbofat0.save"
 var old_save := OldSave.new()
 
 func _ready() -> void:
+	PlayerData.reset()
 	load_player_data()
 
 
@@ -85,6 +86,7 @@ func save_player_data() -> void:
 	var save_json: Array = []
 	save_json.append(generic_data("version", PLAYER_DATA_VERSION).to_json_dict())
 	save_json.append(generic_data("player-info", {"money": PlayerData.money}).to_json_dict())
+	save_json.append(generic_data("volume-settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
 	for key in PlayerData.scenario_history.keys():
 		var rank_results_json := []
 		for rank_result in PlayerData.scenario_history[key]:
@@ -133,5 +135,8 @@ func _load_line(type: String, key: String, json_value) -> void:
 				var rank_result := RankResult.new()
 				rank_result.from_json_dict(rank_result_json)
 				PlayerData.add_scenario_history(key, rank_result)
+		"volume-settings":
+			var value: Dictionary = json_value
+			PlayerData.volume_settings.from_json_dict(value)
 		_:
 			push_warning("Unrecognized save data type: '%s'" % type)

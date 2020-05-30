@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/puzzle/editor/editor-json.gd" type="Script" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://src/main/puzzle/editor/veg-chunk.gd" type="Script" id=6]
 [ext_resource path="res://src/main/puzzle/editor/LevelChunkControl.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/puzzle/editor/level-editor.gd" type="Script" id=8]
+[ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=10]
 
 [node name="LevelEditor" type="Control"]
 anchor_right = 1.0
@@ -279,17 +281,27 @@ __meta__ = {
 [node name="Filler" type="Control" parent="HBoxContainer/RightPanel/SideButtons"]
 margin_top = 140.0
 margin_right = 110.0
-margin_bottom = 566.0
+margin_bottom = 542.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Exit" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
+[node name="Settings" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
+margin_top = 546.0
+margin_right = 110.0
+margin_bottom = 566.0
+shortcut = ExtResource( 10 )
+text = "Settings"
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="Quit" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
 margin_top = 570.0
 margin_right = 110.0
 margin_bottom = 590.0
-text = "Exit"
+text = "Quit"
 __meta__ = {
 "_editor_description_": ""
 }
@@ -347,13 +359,17 @@ current_path = "d:/workspace/turbofat/boatricia.json"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 9 )]
 [connection signal="tile_map_changed" from="HBoxContainer/CenterPanel/VBoxContainer/Playfield" to="HBoxContainer/CenterPanel/VBoxContainer/Json" method="_on_Playfield_tile_map_changed"]
 [connection signal="text_changed" from="HBoxContainer/CenterPanel/VBoxContainer/Json" to="HBoxContainer/CenterPanel/VBoxContainer/Json" method="_on_text_changed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/OpenFile" to="." method="_on_OpenFile_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/OpenResource" to="." method="_on_OpenResource_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Test" to="." method="_on_Test_pressed"]
-[connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="pressed" from="HBoxContainer/RightPanel/SideButtons/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="file_selected" from="OpenFileDialog" to="." method="_on_OpenFileDialog_file_selected"]
 [connection signal="file_selected" from="OpenResourceDialog" to="." method="_on_OpenResourceDialog_file_selected"]
 [connection signal="file_selected" from="SaveDialog" to="." method="_on_SaveDialog_file_selected"]
+[connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]

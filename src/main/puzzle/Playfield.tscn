@@ -200,215 +200,215 @@ script = ExtResource( 61 )
 [node name="Fanfare1" type="AudioStreamPlayer" parent="ComboTracker"]
 stream = ExtResource( 15 )
 volume_db = -4.0
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Fanfare2" type="AudioStreamPlayer" parent="ComboTracker"]
 stream = ExtResource( 16 )
 volume_db = -4.0
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Fanfare3" type="AudioStreamPlayer" parent="ComboTracker"]
 stream = ExtResource( 17 )
 volume_db = -4.0
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="LineClearSfx" type="Node" parent="."]
 script = ExtResource( 7 )
 
 [node name="LineEraseSound1" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 6 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="LineEraseSound2" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 6 )
 volume_db = -6.0
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="LineEraseSound3" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 6 )
 volume_db = -10.0
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ClearSnackPieceSound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 12 )
 volume_db = -4.0
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ClearCakePieceSound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 13 )
 volume_db = -4.0
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo01Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 14 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo02Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 18 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo03Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 19 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo04Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 20 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo05Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 21 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo06Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 22 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo07Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 23 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo08Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 24 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo09Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 25 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo10Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 26 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo11Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 27 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo12Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 28 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo13Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 29 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo14Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 30 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo15Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 31 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo16Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 32 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo17Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 33 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo18Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 34 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo19Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 35 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo20Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 36 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo21Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 42 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo22Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 44 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo23Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 45 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="Combo24Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 43 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless00Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 48 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless01Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 49 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless02Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 47 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless03Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 52 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless04Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 46 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless05Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 50 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless06Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 51 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless07Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 53 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless08Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 54 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless09Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 56 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless10Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 57 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ComboEndless11Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 55 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="MakeBoxSfx" type="Node" parent="."]
 script = ExtResource( 8 )
 
 [node name="MakeCakeBoxSound" type="AudioStreamPlayer" parent="MakeBoxSfx"]
 stream = ExtResource( 10 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="MakeSnackBoxSound0" type="AudioStreamPlayer" parent="MakeBoxSfx"]
 stream = ExtResource( 59 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="MakeSnackBoxSound1" type="AudioStreamPlayer" parent="MakeBoxSfx"]
 stream = ExtResource( 11 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="MakeSnackBoxSound2" type="AudioStreamPlayer" parent="MakeBoxSfx"]
 stream = ExtResource( 60 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="MakeSnackBoxSound3" type="AudioStreamPlayer" parent="MakeBoxSfx"]
 stream = ExtResource( 58 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="LineFallSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 [connection signal="after_piece_written" from="." to="ComboTracker" method="_on_Playfield_after_piece_written"]
 [connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
