@@ -73,6 +73,7 @@ func transform_old_save() -> void:
 	var transformer := StringTransformer.new(save_json_text)
 	transformer.transformed += "\n{\"type\":\"version\",\"value\":\"15d2\"}"
 	transformer.sub("plyr({.*})", "{\"type\":\"player-info\",\"value\":$1},")
+	transformer.sub("\"marathon-", "\"survival-")
 	transformer.sub("scenario_name", "key")
 	transformer.sub("scen{\"scenario_history\":(\\[.*\\])(.*)}", "{\"type\":\"scenario-history\",\"value\":$1$2},")
 	transformer.sub("\"died\":false", "\"top_out_count\":0,\"lost\":false")

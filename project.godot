@@ -204,11 +204,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/playfield.gd"
 }, {
-"base": "VBoxContainer",
-"class": "PracticeButton",
-"language": "GDScript",
-"path": "res://src/main/ui/menu/practice-button.gd"
-}, {
 "base": "Control",
 "class": "Puzzle",
 "language": "GDScript",
@@ -339,7 +334,6 @@ _global_script_class_icons={
 "PieceType": "",
 "PieceTypeRules": "",
 "Playfield": "",
-"PracticeButton": "",
 "Puzzle": "",
 "PuzzleTileMap": "",
 "RankCalculator": "",

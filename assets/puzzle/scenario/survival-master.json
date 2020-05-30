@@ -9,29 +9,29 @@
     },
     {
       "type": "lines",
-      "value": "200",
+      "value": "150",
       "level": "FC"
     },
     {
       "type": "lines",
-      "value": "300",
+      "value": "200",
       "level": "FD"
     },
     {
       "type": "lines",
-      "value": "400",
+      "value": "250",
       "level": "FE"
     },
     {
       "type": "lines",
-      "value": "500",
+      "value": "300",
       "level": "FF"
     }
   ],
   "win-condition": {
     "type": "lines",
-    "value": "1000",
-    "lenient-value": "500"
+    "value": "500",
+    "lenient-value": "300"
   },
   "lose-condition": [
     "top-out 1"

@@ -24,44 +24,52 @@ var history_size := 1000
 var _rank_calculator := RankCalculator.new()
 
 """
-Calculates the best rank a player's received for a specific scenario.
+Returns a player's best performances for a specific scenario.
 
 Parameters:
 	'scenario': The name of the scenario to evaluate
 	
-	'property': (Optional) The property evaluated to determine which of the player's RankResults was the best, such
-		as 'score' or 'seconds'. Defaults to 'score'.
-"""
-func get_best_scenario_rank(scenario: String, property: String = "score") -> float:
-	var best_rank_result := get_best_scenario_result(scenario, property)
-	return best_rank_result.get(property + "_rank") if best_rank_result else 999.0
-
-
-"""
-Calculates the best rank a player's received for a specific scenario.
-
-Parameters:
-	'scenario': The name of the scenario to evaluate
+	'daily': If true, only performances with today's date are included
 	
 	'property': (Optional) The property evaluated to determine which of the player's RankResults was the best, such
 		as 'score' or 'seconds'. Defaults to 'score'.
 """
-func get_best_scenario_result(scenario: String, property: String = "score") -> RankResult:
-	var best_performance: RankResult
-	if scenario_history.has(scenario):
-		for rank_result_obj in scenario_history[scenario]:
-			var rank_result: RankResult = rank_result_obj
-			if property == "seconds":
-				if rank_result.lost:
-					# when comparing seconds, deaths disqualify your score
-					pass
-				elif best_performance == null or rank_result.get(property) < best_performance.get(property):
-					# when comparing seconds, lower numbers are better
-					best_performance = rank_result
-			else:
-				if best_performance == null or rank_result.get(property) > best_performance.get(property):
-					best_performance = rank_result
-	return best_performance
+func get_best_scenario_results(scenario: String, daily: bool, property: String = "score") -> Array:
+	if not scenario_history.has(scenario):
+		return []
+	
+	var results: Array = scenario_history[scenario].duplicate()
+	if daily:
+		# only include items with today's date
+		var now := OS.get_datetime()
+		var daily_results := []
+		for result_obj in results:
+			var result: RankResult = result_obj
+			if result.timestamp["year"] == now["year"] \
+					and result.timestamp["month"] == now["month"] \
+					and result.timestamp["day"] == now["day"]:
+				daily_results.append(result)
+		results = daily_results
+	
+	if property == "seconds":
+		results.sort_custom(self, "_compare_by_seconds")
+	else:
+		results.sort_custom(self, "_compare_by_score")
+	return results
+
+
+func _compare_by_seconds(a: RankResult, b: RankResult) -> bool:
+	# when comparing seconds, dying disqualifies you
+	if a.lost and b.lost:
+		return a.lines > b.lines
+	if a.lost != b.lost:
+		return b.lost
+	# when comparing seconds, lower is better
+	return a.seconds < b.seconds
+
+
+func _compare_by_score(a: RankResult, b: RankResult) -> bool:
+	return a.score > b.score
 
 
 func get_last_scenario_result(scenario: String) -> RankResult:
