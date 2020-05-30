@@ -94,6 +94,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/editor/editor-playfield.gd"
 }, {
+"base": "Label",
+"class": "FontFitLabel",
+"language": "GDScript",
+"path": "res://src/main/ui/font-fit-label.gd"
+}, {
 "base": "Timer",
 "class": "FreshnessInspector",
 "language": "GDScript",
@@ -322,6 +327,7 @@ _global_script_class_icons={
 "Customer3D": "",
 "CustomerLoader": "",
 "EditorPlayfield": "",
+"FontFitLabel": "",
 "FreshnessInspector": "",
 "FrostingGlob": "",
 "JSONBeautifier": "",

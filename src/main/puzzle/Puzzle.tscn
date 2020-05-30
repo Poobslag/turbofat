@@ -1,4 +1,4 @@
-[gd_scene load_steps=53 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
@@ -44,6 +44,11 @@
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=42]
 [ext_resource path="res://src/main/puzzle/top-out.gd" type="Script" id=43]
 [ext_resource path="res://src/main/puzzle/piece-sfx.gd" type="Script" id=44]
+[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=45]
+[ext_resource path="res://assets/ui/xolonium-36.tres" type="DynamicFont" id=46]
+[ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=47]
+[ext_resource path="res://src/main/puzzle/milestone-hud.gd" type="Script" id=48]
+[ext_resource path="res://assets/puzzle/levelup.wav" type="AudioStream" id=49]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 17 )
@@ -186,6 +191,10 @@ bus = "Sound Bus"
 stream = ExtResource( 26 )
 bus = "Sound Bus"
 
+[node name="LevelUpSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
+stream = ExtResource( 49 )
+bus = "Sound Bus"
+
 [node name="NextPieceDisplays" parent="." instance=ExtResource( 4 )]
 margin_left = 688.0
 margin_top = 28.0
@@ -318,6 +327,7 @@ margin_top = 153.0
 margin_right = 308.0
 margin_bottom = 233.0
 rect_min_size = Vector2( 250, 40 )
+script = ExtResource( 48 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -346,10 +356,18 @@ margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
 margin_bottom = 75.0
+rect_min_size = Vector2( 100, 45 )
 custom_fonts/font = ExtResource( 18 )
-text = "¥2000"
+text = "10"
 align = 1
 valign = 1
+autowrap = true
+max_lines_visible = 1
+script = ExtResource( 47 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+fonts = [ ExtResource( 46 ), ExtResource( 18 ), ExtResource( 45 ) ]
 
 [node name="HudHolder" type="Node2D" parent="."]
 position = Vector2( 364, 28 )

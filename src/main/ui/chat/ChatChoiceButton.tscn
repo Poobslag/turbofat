@@ -1,12 +1,16 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://assets/ui/chat/choice-theme.tres" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/chat/mood-sprite.gd" type="Script" id=2]
 [ext_resource path="res://assets/ui/blogger-sans-medium-14.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/main/ui/chat/chat-choice-button.gd" type="Script" id=4]
-[ext_resource path="res://src/main/ui/chat/chat-choice-label.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=5]
 [ext_resource path="res://src/main/ui/chat/chat-choice-tween.gd" type="Script" id=6]
 [ext_resource path="res://assets/ui/chat/choice-mood-cry0.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=8]
+[ext_resource path="res://assets/ui/blogger-sans-medium-24.tres" type="DynamicFont" id=9]
+[ext_resource path="res://assets/ui/blogger-sans-medium-12.tres" type="DynamicFont" id=10]
+[ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "choose"
@@ -170,7 +174,7 @@ __meta__ = {
 }
 _choice_text = "Are you kidding me? That's not even close to what I said!"
 
-[node name="Label" type="Label" parent="."]
+[node name="FontFitLabel" type="Label" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -185,10 +189,11 @@ align = 1
 valign = 1
 autowrap = true
 max_lines_visible = 1
-script = ExtResource( 5 )
+script = ExtResource( 11 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+fonts = [ ExtResource( 5 ), ExtResource( 9 ), ExtResource( 8 ), ExtResource( 3 ), ExtResource( 10 ) ]
 
 [node name="MoodSprite" type="Control" parent="."]
 modulate = Color( 1, 1, 1, 0.894118 )
@@ -230,5 +235,4 @@ anims/choose = SubResource( 4 )
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="resized" from="." to="." method="_on_resized"]
-[connection signal="resized" from="Label" to="Label" method="_on_resized"]
 [connection signal="animation_finished" from="PopAnimation" to="." method="_on_PopAnimation_animation_finished"]

@@ -8,7 +8,6 @@ class to add goals, win conditions, challenges or time limits.
 # emitted a few seconds after the game ends, for displaying messages
 signal after_game_ended
 
-signal line_cleared(y, total_lines, remaining_lines, box_ints)
 signal topped_out
 
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
@@ -80,7 +79,6 @@ func start_game() -> void:
 Ends the game. This occurs when the player loses, wins, or runs out of time.
 """
 func end_game(delay: float, message: String) -> void:
-	PuzzleScore.end_game()
 	show_message(message)
 	yield(get_tree().create_timer(delay), "timeout")
 	emit_signal("after_game_ended")
@@ -88,27 +86,6 @@ func end_game(delay: float, message: String) -> void:
 
 func set_chalkboard_visible(visible: bool) -> void:
 	$Chalkboard.visible = visible
-
-
-"""
-Returns the milestone hud's description label.
-"""
-func miledesc() -> Label:
-	return $Chalkboard/MilestoneHud/Desc as Label
-
-
-"""
-Returns the milestone hud's progress bar.
-"""
-func milebar() -> ProgressBar:
-	return $Chalkboard/MilestoneHud/ProgressBar as ProgressBar
-
-
-"""
-Returns the milestone hud's value label.
-"""
-func milevalue() -> Label:
-	return $Chalkboard/MilestoneHud/Value as Label
 
 
 func clear_playfield() -> void:
@@ -159,7 +136,7 @@ func _on_Hud_start_button_pressed() -> void:
 
 
 """
-Relays the 'line_cleared' signal to any listeners, and triggers the 'customer feeding' animation
+Triggers the 'customer feeding' animation.
 """
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	if not $Playfield.awarding_line_clear_points:
@@ -170,7 +147,6 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 	var customer_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 5 \
 			and total_lines > ($Playfield/ComboTracker.combo + 1) % 3
 	
-	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
 	_feed_customer(1.0 / (remaining_lines + 1))
 	
 	if customer_talks:

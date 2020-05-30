@@ -84,7 +84,7 @@ text = "Practice"
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.523333
 margin_top = -23.5
 margin_right = 512.0
 margin_bottom = 120.5
@@ -128,7 +128,6 @@ text = "Characters"
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
-visible = false
 [connection signal="pressed" from="Play/Story" to="." method="_on_PlayStory_pressed"]
 [connection signal="pressed" from="Play/Practice" to="." method="_on_PlayPractice_pressed"]
 [connection signal="pressed" from="Create/Levels" to="." method="_on_CreateLevels_pressed"]

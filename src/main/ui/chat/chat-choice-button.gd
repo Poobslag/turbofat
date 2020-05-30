@@ -11,8 +11,8 @@ signal pop_choose_completed
 export (String) var _choice_text: String setget set_choice_text
 
 func _ready() -> void:
-	$Label.text = _choice_text
-	$Label.pick_largest_font()
+	$FontFitLabel.text = _choice_text
+	$FontFitLabel.pick_largest_font()
 	$MoodSprite/AnimationPlayer.advance(randf() * 2.5)
 	_set_pivot_to_center()
 
@@ -25,9 +25,9 @@ cannot wrap.
 """
 func set_choice_text(choice_text: String) -> void:
 	_choice_text = choice_text
-	if has_node("Label"):
-		$Label.text = _choice_text
-		$Label.pick_largest_font()
+	if has_node("FontFitLabel"):
+		$FontFitLabel.text = _choice_text
+		$FontFitLabel.pick_largest_font()
 
 
 """
@@ -93,7 +93,7 @@ When the chat choice is focused, it animates more visibly. The MoodSprite also b
 can read the text behind it.
 """
 func _on_focus_entered() -> void:
-	$Label.set("custom_colors/font_color", Color.white)
+	$FontFitLabel.set("custom_colors/font_color", Color.white)
 	$MoodSprite/AnimationPlayer.play("focus")
 	$MoodSprite/AnimationPlayer.advance(randf() * 2.5)
 
@@ -102,7 +102,7 @@ func _on_focus_entered() -> void:
 When the chat choice is unfocused, its animations are subtler.
 """
 func _on_focus_exited() -> void:
-	$Label.set("custom_colors/font_color", Color("6c4331"))
+	$FontFitLabel.set("custom_colors/font_color", Color("6c4331"))
 	$MoodSprite/AnimationPlayer.play("default")
 	$MoodSprite/AnimationPlayer.advance(randf() * 2.5)
 

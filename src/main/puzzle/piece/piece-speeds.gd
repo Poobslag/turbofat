@@ -73,15 +73,39 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new( "FF", 20*G,  4, 2, 5,  8, 14, 3, 3))
 	_add_speed(PieceSpeed.new("FFF", 20*G,  4, 2, 5,  8, 12, 3, 3))
 	
-	# easter egg
-	_add_speed(PieceSpeed.new("DB", 1*G, 20, 20, 7, 16, 40, 24, 12))
-	
 	current_speed = PieceSpeeds.speed("0")
+	PuzzleScore.connect("level_index_changed", self, "_on_PuzzleScore_level_index_changed")
+	PuzzleScore.connect("lines_changed", self, "_on_PuzzleScore_lines_changed")
+	PuzzleScore.connect("after_scenario_prepared", self, "_on_PuzzleScore_after_scenario_prepared")
+
+
+func speed(string: String) -> PieceSpeed:
+	return _speeds[string]
 
 
 func _add_speed(speed: PieceSpeed) -> void:
 	_speeds[speed.level] = speed
 
 
-func speed(string: String) -> PieceSpeed:
-	return _speeds[string]
+func _update_current_speed() -> void:
+	var milestone: Milestone = Global.scenario_settings.level_ups[PuzzleScore.level_index]
+	PieceSpeeds.current_speed = PieceSpeeds.speed(milestone.get_meta("level"))
+
+
+func _on_PuzzleScore_lines_changed(value: int) -> void:
+	var new_level_index: int = PuzzleScore.level_index
+	
+	while new_level_index + 1 < Global.scenario_settings.level_ups.size() \
+			and Global.scenario_settings.level_ups[new_level_index + 1].value <= value:
+		new_level_index += 1
+	
+	if PuzzleScore.level_index != new_level_index:
+		PuzzleScore.level_index = new_level_index
+
+
+func _on_PuzzleScore_level_index_changed(value: int) -> void:
+	_update_current_speed()
+
+
+func _on_PuzzleScore_after_scenario_prepared() -> void:
+	_update_current_speed()

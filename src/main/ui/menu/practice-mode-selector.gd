@@ -44,10 +44,10 @@ func set_scenario(scenario: ScenarioSettings) -> void:
 			new_description = "Survive as the pieces get faster and faster! Can you clear %s lines?" \
 					% StringUtils.comma_sep(target_value)
 		"Ultra":
-			new_description = "Score %s points as quickly as possible!" \
+			new_description = "Earn ¥%s as quickly as possible!" \
 					% StringUtils.comma_sep(scenario.finish_condition.value)
 		"Sprint":
-			new_description = "Score as many points as you can in %s!" \
+			new_description = "Earn as much money as you can in %s!" \
 					% StringUtils.format_duration(scenario.finish_condition.value)
 	$Desc.text = new_description
 

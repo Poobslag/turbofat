@@ -7,8 +7,9 @@ onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
 func make_player_lose() -> void:
 	PuzzleScore.scenario_performance.lost = true
+	PuzzleScore.end_game()
 	$GameOverSound.play()
-	_puzzle.end_game(2.4, "Game over")
+	_puzzle.end_game(2.2, "Game over")
 
 
 """
