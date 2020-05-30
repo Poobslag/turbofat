@@ -41,20 +41,14 @@ func only_has_old_save() -> bool:
 Returns 'true' if the player has a save file in the current format.
 """
 func has_new_save() -> bool:
-	var save_game := File.new()
-	var result := save_game.file_exists(PlayerSave.player_data_filename)
-	save_game.close()
-	return result
+	return FileUtils.file_exists(PlayerSave.player_data_filename)
 
 
 """
 Returns 'true' if the player has a save file in an old format.
 """
 func has_old_save() -> bool:
-	var save_game := File.new()
-	var result := save_game.file_exists(player_data_filename_0517)
-	save_game.close()
-	return result
+	return FileUtils.file_exists(player_data_filename_0517)
 
 
 """
@@ -69,7 +63,7 @@ func transform_old_save() -> void:
 		return
 	
 	# transform 0.0517 data to current format
-	var save_json_text := Global.get_file_as_text(player_data_filename_0517)
+	var save_json_text := FileUtils.get_file_as_text(player_data_filename_0517)
 	var transformer := StringTransformer.new(save_json_text)
 	transformer.transformed += "\n{\"type\":\"version\",\"value\":\"15d2\"}"
 	transformer.sub("plyr({.*})", "{\"type\":\"player-info\",\"value\":$1},")
@@ -82,4 +76,4 @@ func transform_old_save() -> void:
 	transformer.transformed = JSONBeautifier.beautify_json(transformer.transformed, 1)
 	save_json_text = transformer.transformed
 	
-	Global.write_file(PlayerSave.player_data_filename, save_json_text)
+	FileUtils.write_file(PlayerSave.player_data_filename, save_json_text)

@@ -368,6 +368,7 @@ default_bus_layout="res://assets/ui/default_bus_layout.tres"
 [autoload]
 
 Breadcrumb="*res://src/main/breadcrumb.gd"
+FileUtils="*res://src/main/file-utils.gd"
 Global="*res://src/main/global.gd"
 InteractableManager="*res://src/main/world/interactable-manager.gd"
 MusicPlayer="*res://src/main/MusicPlayer.tscn"

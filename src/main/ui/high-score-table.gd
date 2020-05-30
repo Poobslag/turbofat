@@ -82,10 +82,10 @@ func _add_rows() -> void:
 				row.append("-")
 			else:
 				row.append(StringUtils.format_duration(best_result.seconds))
-			row.append(Global.grade(best_result.seconds_rank))
+			row.append(RankCalculator.grade(best_result.seconds_rank))
 		else:
 			row.append(StringUtils.comma_sep(best_result.score))
-			row.append(Global.grade(best_result.score_rank))
+			row.append(RankCalculator.grade(best_result.score_rank))
 		
 		_add_row(row)
 

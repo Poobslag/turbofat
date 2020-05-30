@@ -8,9 +8,6 @@ const NUM_SCANCODES: Dictionary = {
 	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9
 }
 
-# String to display if the player scored worse than the lowest grade
-const NO_GRADE := "-"
-
 # Target number of customer greetings (hello, goodbye) per minute
 const GREETINGS_PER_MINUTE := 3.0
 
@@ -36,33 +33,6 @@ var _greetiness := 0.0
 
 func _process(delta: float) -> void:
 	_greetiness = clamp(_greetiness + delta * GREETINGS_PER_MINUTE / 60, -1.0, 1.0)
-
-
-"""
-Converts a numeric grade such as '12.6' into a grade string such as 'S+'.
-"""
-func grade(rank: float) -> String:
-	var grade := NO_GRADE
-	
-	if rank <= 0: grade = "M"
-	
-	elif rank <= 4: grade = "SSS"
-	elif rank <= 7: grade = "SS+"
-	elif rank <= 10: grade = "SS" # 4 stars (medium gap)
-	elif rank <= 16: grade = "S+"
-	elif rank <= 20: grade = "S"
-	elif rank <= 24: grade = "S-" # 1 star (big gap)
-	
-	elif rank <= 32: grade = "AA+"
-	elif rank <= 36: grade = "AA"
-	elif rank <= 40: grade = "A+"
-	elif rank <= 44: grade = "A"
-	elif rank <= 48: grade = "A-" # 1 triangle (big gap)
-	
-	elif rank <= 56: grade = "B+"
-	elif rank <= 60: grade = "B"
-	elif rank <= 64: grade = "B-" # 1 dot (big gap)
-	return grade
 
 
 """
@@ -183,18 +153,3 @@ It's better to tween to a transparent forest green.
 """
 static func to_transparent(color: Color, alpha := 0.0) -> Color:
 	return Color(color.r, color.g, color.b, alpha)
-
-
-static func get_file_as_text(path: String) -> String:
-	var f := File.new()
-	f.open(path, f.READ)
-	var text := f.get_as_text()
-	f.close()
-	return text
-
-
-static func write_file(path: String, text: String) -> void:
-	var f := File.new()
-	f.open(path, f.WRITE)
-	f.store_string(text)
-	f.close()
