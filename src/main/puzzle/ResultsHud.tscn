@@ -44,10 +44,10 @@ __meta__ = {
 [node name="BebebeSound" type="AudioStreamPlayer" parent="ResultsLabel"]
 stream = ExtResource( 5 )
 volume_db = -12.0
-bus = "Voice Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ShowResultsSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
 volume_db = -8.0
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 [connection signal="text_shown" from="ResultsLabel" to="." method="_on_ResultsLabel_text_shown"]

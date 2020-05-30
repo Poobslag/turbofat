@@ -1,11 +1,13 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/main/ui/menu/practice-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/practice-difficulty-selector.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/menu/practice-high-scores.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=5]
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=6]
 [ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=7]
+[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=8]
 [ext_resource path="res://assets/puzzle/wood-backdrop.png" type="Texture" id=10]
 [ext_resource path="res://assets/ui/xolonium-36-outline.tres" type="DynamicFont" id=11]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=12]
@@ -252,7 +254,7 @@ rect_min_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 custom_fonts/font = ExtResource( 7 )
-disabled = true
+shortcut = ExtResource( 8 )
 text = "Settings"
 
 [node name="Quit" type="Button" parent="VBoxContainer/System"]
@@ -301,6 +303,8 @@ _daily = true
 margin_left = 480.0
 margin_right = 760.0
 margin_bottom = 94.0
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 4 )]
 [connection signal="mode_changed" from="VBoxContainer/Mode" to="." method="_on_Mode_mode_changed"]
 [connection signal="pressed" from="VBoxContainer/Mode/Buttons/Survival" to="VBoxContainer/Mode" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Mode/Buttons/Ultra" to="VBoxContainer/Mode" method="_on_Button_pressed"]
@@ -310,4 +314,6 @@ margin_bottom = 94.0
 [connection signal="difficulty_changed" from="VBoxContainer/Difficulty" to="." method="_on_Difficulty_difficulty_changed"]
 [connection signal="value_changed" from="VBoxContainer/Difficulty/Slider" to="VBoxContainer/Difficulty" method="_on_Slider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/System/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="VBoxContainer/System/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/System/Quit" to="VBoxContainer/System" method="_on_Quit_pressed"]
+[connection signal="quit_pressed" from="SettingsMenu" to="VBoxContainer/System" method="_on_Quit_pressed"]

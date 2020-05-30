@@ -6,16 +6,14 @@ saved or loaded. That's why unit tests are particularly important for this code.
 """
 
 const TEMP_FILENAME := "test-ground-lucky.save"
-const TEMP_FILENAME_0517 := "test-ground-lucky-0517.save"
 
 var _rank_result: RankResult
 var _rank_calculator := RankCalculator.new()
 
 func before_each() -> void:
 	PlayerSave.player_data_filename = "user://%s" % TEMP_FILENAME
-	PlayerSave.old_save.player_data_filename_0517 = "user://%s" % TEMP_FILENAME_0517
-	PlayerData.scenario_history.clear()
-	PlayerData.money = 0
+	PlayerData.reset()
+	
 	_rank_result = RankResult.new()
 	_rank_result.seconds = 600.0
 	_rank_result.lines = 300
@@ -29,7 +27,6 @@ func after_each() -> void:
 	var save_dir := Directory.new()
 	save_dir.open("user://")
 	save_dir.remove(TEMP_FILENAME)
-	save_dir.remove(TEMP_FILENAME_0517)
 
 
 func test_one_history_entry() -> void:
@@ -71,70 +68,3 @@ func test_save_and_load() -> void:
 	PlayerSave.load_player_data()
 	assert_true(PlayerData.scenario_history.has("scenario-895"))
 	assert_eq(PlayerData.scenario_history["scenario-895"][0].score, 7890)
-
-
-func test_backwards_compatible_lost() -> void:
-	var dir := Directory.new()
-	dir.copy("res://src/demo/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
-	
-	PlayerSave.load_player_data()
-	
-	# scenario where the player topped out and lost
-	assert_true(PlayerData.scenario_history.has("sprint-normal"))
-	var history_sprint: RankResult = PlayerData.scenario_history.get("sprint-normal")[0]
-	assert_eq(history_sprint.lost, true)
-	assert_eq(history_sprint.top_out_count, 1)
-
-
-func test_backwards_compatible_won() -> void:
-	var dir := Directory.new()
-	dir.copy("res://src/demo/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
-	
-	PlayerSave.load_player_data()
-	
-	# scenario where the player survived
-	assert_true(PlayerData.scenario_history.has("ultra-normal"))
-	var history_ultra: RankResult = PlayerData.scenario_history.get("ultra-normal")[0]
-	assert_eq(history_ultra.lost, false)
-	assert_eq(history_ultra.top_out_count, 0)
-
-
-func test_backwards_compatible_money() -> void:
-	var dir := Directory.new()
-	dir.copy("res://src/demo/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
-	
-	PlayerSave.load_player_data()
-	
-	# other data
-	assert_eq(PlayerData.money, 202)
-
-
-func test_backwards_compatible_survival() -> void:
-	var dir := Directory.new()
-	dir.copy("res://src/demo/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
-	
-	PlayerSave.load_player_data()
-	
-	# 'survival mode' used to be called 'marathon mode'
-	assert_true(PlayerData.scenario_history.has("survival-normal"))
-	var history_survival: RankResult = PlayerData.scenario_history.get("survival-normal")[0]
-	assert_eq(history_survival.lost, false)
-	assert_eq(history_survival.score, 1335)
-
-
-func test_backwards_compatible_timestamp() -> void:
-	var dir := Directory.new()
-	dir.copy("res://src/demo/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
-	
-	PlayerSave.load_player_data()
-	
-	assert_true(PlayerData.scenario_history.has("ultra-normal"))
-	var history_ultra: RankResult = PlayerData.scenario_history.get("ultra-normal")[0]
-	
-	# save data doesn't include timestamp, so we make one up
-	assert_true(history_ultra.timestamp.has("year"))
-	assert_true(history_ultra.timestamp.has("month"))
-	assert_true(history_ultra.timestamp.has("day"))
-	assert_true(history_ultra.timestamp.has("hour"))
-	assert_true(history_ultra.timestamp.has("minute"))
-	assert_true(history_ultra.timestamp.has("second"))

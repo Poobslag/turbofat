@@ -16,12 +16,23 @@ value: (Array) All RankResults for the specified scenario
 """
 var scenario_history := {}
 
+var volume_settings := VolumeSettings.new()
+
 var money := 0 setget set_money
 
 # how many records we can store before we start deleting old ones
 var history_size := 1000
 
 var _rank_calculator := RankCalculator.new()
+
+"""
+Resets the player's in-memory data to a default state.
+"""
+func reset() -> void:
+	scenario_history.clear()
+	money = 0
+	volume_settings.reset_to_default()
+
 
 """
 Returns a player's best performances for a specific scenario.

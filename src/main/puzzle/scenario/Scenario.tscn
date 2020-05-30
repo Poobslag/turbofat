@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://src/main/puzzle/scenario/tutorial-message.gd" type="Script" id=17]
 [ext_resource path="res://src/main/puzzle/scenario/tutorial-message-tween.gd" type="Script" id=18]
 [ext_resource path="res://src/main/puzzle/scenario/puzzle-music-manager.gd" type="Script" id=19]
+[ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=20]
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
@@ -114,6 +115,7 @@ margin_top = 0.0
 margin_right = 108.0
 margin_bottom = 64.0
 max_value = 6.0
+show_as_percent = false
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Move Left"
 signal_names = [ "moved_left", "das_moved_left", "initial_das_moved_left" ]
@@ -125,6 +127,7 @@ margin_top = 0.0
 margin_right = 220.0
 margin_bottom = 64.0
 max_value = 6.0
+show_as_percent = false
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Move Right"
 signal_names = [ "moved_right", "das_moved_right", "initial_das_moved_right" ]
@@ -136,6 +139,7 @@ margin_top = 68.0
 margin_right = 108.0
 margin_bottom = 132.0
 max_value = 3.0
+show_as_percent = false
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Rotate Left"
 signal_names = [ "rotated_left", "initial_rotated_left" ]
@@ -147,6 +151,7 @@ margin_top = 0.0
 margin_right = 108.0
 margin_bottom = 64.0
 max_value = 3.0
+show_as_percent = false
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Rotate Right"
 signal_names = [ "rotated_right", "initial_rotated_right" ]
@@ -170,6 +175,7 @@ margin_top = 0.0
 margin_right = 220.0
 margin_bottom = 64.0
 max_value = 2.0
+show_as_percent = false
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Hard Drop"
 signal_names = [ "hard_dropped" ]
@@ -181,6 +187,7 @@ margin_top = 0.0
 margin_right = 220.0
 margin_bottom = 64.0
 max_value = 2.0
+show_as_percent = false
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Line Clear"
 signal_names = [ "line_cleared" ]
@@ -192,6 +199,7 @@ margin_top = 204.0
 margin_right = 220.0
 margin_bottom = 268.0
 max_value = 2.0
+show_as_percent = false
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Snack Box"
 signal_names = [ "box_made" ]
@@ -203,6 +211,7 @@ margin_top = 272.0
 margin_right = 108.0
 margin_bottom = 336.0
 max_value = 2.0
+show_as_percent = false
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Squish Move"
 signal_names = [ "squish_moved" ]
@@ -214,8 +223,10 @@ margin_top = 204.0
 margin_right = 220.0
 margin_bottom = 268.0
 max_value = 2.0
+show_as_percent = false
 puzzle_path = NodePath("../../../../Puzzle")
 label_text = "Snack Stack"
+signal_names = [  ]
 
 [node name="ZIndex" type="Node2D" parent="TutorialHud"]
 z_index = 30
@@ -241,28 +252,31 @@ volume_db = -4.0
 
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="LevelUpSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="ExcellentSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = -4.0
-bus = "Reverb Sfx Bus"
+bus = "Sound Bus"
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 8 )]
 codes = [ "delays" ]
 
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 20 )]
 [connection signal="after_game_ended" from="Puzzle" to="ResultsHud" method="_on_Puzzle_after_game_ended"]
 [connection signal="line_cleared" from="Puzzle" to="." method="_on_Puzzle_line_cleared"]
 [connection signal="pop_out_completed" from="TutorialHud/Message/Tween" to="TutorialHud/Message" method="_on_Tween_pop_out_completed"]
 [connection signal="tween_completed" from="TutorialHud/Message/Tween" to="TutorialHud/Message/Tween" method="_on_tween_completed"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Puzzle/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
