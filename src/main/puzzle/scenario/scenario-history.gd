@@ -57,10 +57,14 @@ func best_results(scenario: String, daily: bool) -> Array:
 				daily_results.append(result)
 		results = daily_results
 	
-	if ScenarioSettings.compare_seconds(scenario):
-		results.sort_custom(self, "_compare_by_seconds")
-	else:
-		results.sort_custom(self, "_compare_by_score")
+	if results:
+		# sort results
+		var result: RankResult = results[0]
+		match result.compare:
+			"-seconds":
+				results.sort_custom(self, "_compare_by_low_seconds")
+			_:
+				results.sort_custom(self, "_compare_by_high_score")
 	return results.slice(0, max_size - 1)
 
 
@@ -104,7 +108,7 @@ func prune(scenario: String) -> void:
 	rank_results[scenario] = [rank_results[scenario][0]] + best.keys()
 
 
-func _compare_by_seconds(a: RankResult, b: RankResult) -> bool:
+func _compare_by_low_seconds(a: RankResult, b: RankResult) -> bool:
 	# when comparing seconds, dying disqualifies you
 	if a.lost and b.lost:
 		return a.score > b.score
@@ -114,5 +118,5 @@ func _compare_by_seconds(a: RankResult, b: RankResult) -> bool:
 	return a.seconds < b.seconds
 
 
-func _compare_by_score(a: RankResult, b: RankResult) -> bool:
+func _compare_by_high_score(a: RankResult, b: RankResult) -> bool:
 	return a.score > b.score

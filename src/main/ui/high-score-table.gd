@@ -71,7 +71,7 @@ func _add_rows() -> void:
 		row.append(StringUtils.comma_sep(best_result.lines))
 		
 		# append score/time and grade
-		if ScenarioSettings.compare_seconds(_scenario.name):
+		if best_result.compare == "-seconds":
 			if best_result.lost:
 				row.append("-")
 			else:

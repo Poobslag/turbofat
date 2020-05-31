@@ -139,12 +139,3 @@ func from_json_dict(new_name: String, json: Dictionary) -> void:
 		score.from_json_string_array(json["score"])
 	if json.has("win-condition"):
 		win_condition.from_json_dict(json["win-condition"])
-
-
-"""
-Returns true if the specified scenario should be compared using seconds instead of score.
-
-This is true for 'ultra mode' where a lower time is better, and score is a tiebreaker.
-"""
-static func compare_seconds(scenario: String) -> bool:
-	return scenario.begins_with("ultra-")

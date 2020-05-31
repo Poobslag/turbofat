@@ -159,7 +159,10 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	var target_lines: float
 
 	var winish_condition: Milestone = Global.scenario_settings.get_winish_condition()
-
+	
+	if winish_condition.type == Milestone.SCORE:
+		rank_result.compare = "-seconds"
+	
 	match winish_condition.type:
 		Milestone.CUSTOMERS:
 			target_lines = MASTER_COMBO * winish_condition.value

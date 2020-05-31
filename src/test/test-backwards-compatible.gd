@@ -65,6 +65,22 @@ func test_timestamp_created() -> void:
 	assert_true(history_ultra.timestamp.has("second"))
 
 
+func test_compare_seconds() -> void:
+	assert_true(PlayerData.scenario_history.scenario_names().has("ultra-normal"))
+	var history_ultra: RankResult = PlayerData.scenario_history.results("ultra-normal")[0]
+	
+	# ultra records should be compared by lowest seconds. this 'compare' field didn't exist before
+	assert_eq(history_ultra.compare, "-seconds")
+
+
+func test_compare_score() -> void:
+	assert_true(PlayerData.scenario_history.scenario_names().has("sprint-normal"))
+	var history_sprint: RankResult = PlayerData.scenario_history.results("sprint-normal")[0]
+	
+	# sprint records should be compared by highest score. this 'compare' field didn't exist before
+	assert_eq(history_sprint.compare, "+score")
+
+
 func test_volume() -> void:
 	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.MUSIC), 0.500, 0.01)
 	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.SOUND), 0.500, 0.01)

@@ -70,6 +70,7 @@ func transform_old_save() -> void:
 	transformer.sub("\"marathon-", "\"survival-")
 	transformer.sub("scenario_name", "key")
 	transformer.sub("scen{\"scenario_history\":(\\[.*\\])(.*)}", "{\"type\":\"scenario-history\",\"value\":$1$2},")
+	transformer.sub("({[^{}]*)(}.*\"ultra-)", "$1,\"compare\":\"-seconds\"$2")
 	transformer.sub("\"died\":false", "\"top_out_count\":0,\"lost\":false")
 	transformer.sub("\"died\":true", "\"top_out_count\":1,\"lost\":true")
 	transformer.transformed = "[%s]" % transformer.transformed

@@ -118,7 +118,6 @@ rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 6 )
-disabled = true
 toggle_mode = true
 group = ExtResource( 14 )
 text = "Rank"
@@ -181,15 +180,15 @@ max_value = 3.0
 tick_count = 4
 
 [node name="Labels" type="HBoxContainer" parent="VBoxContainer/Difficulty"]
-margin_left = 192.0
+margin_left = 188.0
 margin_top = 68.0
-margin_right = 792.0
+margin_right = 796.0
 margin_bottom = 88.0
-rect_min_size = Vector2( 600, 0 )
+rect_min_size = Vector2( 608, 0 )
 size_flags_horizontal = 4
 
 [node name="Normal" type="Label" parent="VBoxContainer/Difficulty/Labels"]
-margin_right = 98.0
+margin_right = 99.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
@@ -197,8 +196,8 @@ custom_fonts/font = ExtResource( 7 )
 text = "Normal"
 
 [node name="Hard" type="Label" parent="VBoxContainer/Difficulty/Labels"]
-margin_left = 102.0
-margin_right = 298.0
+margin_left = 103.0
+margin_right = 301.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
@@ -206,8 +205,8 @@ text = "Hard"
 align = 1
 
 [node name="Expert" type="Label" parent="VBoxContainer/Difficulty/Labels"]
-margin_left = 302.0
-margin_right = 498.0
+margin_left = 305.0
+margin_right = 503.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 custom_fonts/font = ExtResource( 7 )
@@ -215,8 +214,8 @@ text = "Expert"
 align = 1
 
 [node name="Master" type="Label" parent="VBoxContainer/Difficulty/Labels"]
-margin_left = 502.0
-margin_right = 600.0
+margin_left = 507.0
+margin_right = 608.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
