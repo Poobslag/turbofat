@@ -384,10 +384,6 @@ margin_bottom = 544.0
 [node name="TopOutTracker" type="Node" parent="."]
 script = ExtResource( 42 )
 
-[node name="GameOverSound" type="AudioStreamPlayer" parent="TopOutTracker"]
-stream = ExtResource( 32 )
-bus = "Sound Bus"
-
 [node name="GameOverVoice0" type="AudioStreamPlayer" parent="TopOutTracker"]
 stream = ExtResource( 36 )
 bus = "Voice Bus"
@@ -440,6 +436,10 @@ bus = "Sound Bus"
 [node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 51 )
 volume_db = -4.0
+bus = "Sound Bus"
+
+[node name="GameOverSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 32 )
 bus = "Sound Bus"
 [connection signal="after_game_ended" from="." to="HudHolder/Hud" method="_on_Puzzle_after_game_ended"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
