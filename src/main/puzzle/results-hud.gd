@@ -70,29 +70,44 @@ func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
 func _append_grade_information(rank_result: RankResult, customer_scores: Array, \
 		finish_condition_type: int, text: String) -> String:
 	# We add a '?' to make the player aware if their rank is adjusted because they topped out or lost.
-	var topped_out := "?" if rank_result.topped_out() or rank_result.lost else ""
+	var topped_out := ""
+	if rank_result.topped_out() and Global.scenario_settings.rank.top_out_penalty > 0:
+		topped_out = "?"
 	
 	text += "/////\n"
 	if finish_condition_type == Milestone.SCORE:
-		text += "Speed: %d%s (%s)\n" % [round(rank_result.speed * 200 / 60),
-				topped_out, RankCalculator.grade(rank_result.speed_rank)]
+		text += "Speed: %d" % round(rank_result.speed * 200 / 60)
+		text += topped_out
+		if not Global.scenario_settings.rank.unranked:
+			text += " (%s)" % RankCalculator.grade(rank_result.speed_rank)
+		text += "\n"
 	else:
-		text += "Lines: %d%s (%s)\n" % [rank_result.lines,
-				topped_out, RankCalculator.grade(rank_result.lines_rank)]
+		text += "Lines: %d" % rank_result.lines
+		text += topped_out
+		if not Global.scenario_settings.rank.unranked:
+			text += " (%s)" % RankCalculator.grade(rank_result.lines_rank)
+		text += "\n"
 		
-	text += "/////Boxes: %d%s (%s)\n" % [round(rank_result.box_score_per_line * 10),
-			topped_out, RankCalculator.grade(rank_result.box_score_per_line_rank)]
+	text += "/////Boxes: %d" % round(rank_result.box_score_per_line * 10)
+	text += topped_out
+	if not Global.scenario_settings.rank.unranked:
+		text += " (%s)" % RankCalculator.grade(rank_result.box_score_per_line_rank)
+	text += "\n"
 	
-	text += "/////Combos: %d%s (%s)\n" % [round(rank_result.combo_score_per_line * 10),
-			topped_out, RankCalculator.grade(rank_result.combo_score_per_line_rank)]
+	text += "/////Combos: %d" % round(rank_result.combo_score_per_line * 10)
+	text += topped_out
+	if not Global.scenario_settings.rank.unranked:
+		text += " (%s)" % RankCalculator.grade(rank_result.combo_score_per_line_rank)
+	text += "\n"
 	
-	text += "/////\nOverall: "
-	text += "//////////"
-	if finish_condition_type == Milestone.SCORE:
-		var duration := StringUtils.format_duration(rank_result.seconds)
-		text += "%s%s (%s)\n" % [duration, topped_out, RankCalculator.grade(rank_result.seconds_rank)]
-	else:
-		text += "(%s)\n" % RankCalculator.grade(rank_result.score_rank)
+	if not Global.scenario_settings.rank.unranked:
+		text += "/////\nOverall: "
+		text += "//////////"
+		if finish_condition_type == Milestone.SCORE:
+			var duration := StringUtils.format_duration(rank_result.seconds)
+			text += "%s%s (%s)\n" % [duration, topped_out, RankCalculator.grade(rank_result.seconds_rank)]
+		else:
+			text += "(%s)\n" % RankCalculator.grade(rank_result.score_rank)
 	return text
 
 

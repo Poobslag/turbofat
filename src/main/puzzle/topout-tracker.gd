@@ -6,10 +6,9 @@ onready var _playfield: Playfield = _puzzle.get_playfield()
 onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
 func make_player_lose() -> void:
-	PuzzleScore.scenario_performance.lost = true
-	PuzzleScore.end_game()
-	$GameOverSound.play()
-	_puzzle.end_game(2.2, "Game over")
+	if not Global.scenario_settings.lose_condition.finish_on_lose:
+		PuzzleScore.scenario_performance.lost = true
+	_puzzle.end_game()
 
 
 """

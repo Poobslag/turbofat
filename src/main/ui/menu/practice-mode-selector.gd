@@ -30,6 +30,8 @@ func set_selected_mode(selected_mode: String) -> void:
 			$Buttons/Sprint.pressed = true
 		"Rank":
 			$Buttons/Rank.pressed = true
+		"Sandbox":
+			$Buttons/Sandbox.pressed = true
 
 
 """
@@ -60,6 +62,8 @@ func set_scenario(scenario: ScenarioSettings) -> void:
 				Milestone.TIME_UNDER:
 					new_description += " Finish in %s to achieve this rank!" \
 							% StringUtils.format_duration(scenario.success_condition.value)
+		"Sandbox":
+			new_description = "Just relax! There is no way to win or lose this mode."
 	$Desc.text = new_description
 
 

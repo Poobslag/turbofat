@@ -45,6 +45,11 @@ const SCENARIO_CATEGORIES := [
 	["Rank", "9d", "rank-9d"],
 	["Rank", "10d", "rank-10d"],
 	["Rank", "M", "rank-m"],
+	
+	["Sandbox", "Normal", "sandbox-normal"],
+	["Sandbox", "Hard", "sandbox-hard"],
+	["Sandbox", "Expert", "sandbox-expert"],
+	["Sandbox", "Master", "sandbox-master"],
 ]
 
 """

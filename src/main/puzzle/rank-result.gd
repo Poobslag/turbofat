@@ -13,29 +13,29 @@ var compare := "+score"
 
 # player's speed in lines per minute.
 var speed := 0.0
-var speed_rank := 0.0
+var speed_rank := 999.0
 
 # raw number of cleared lines, not including bonus points
 var lines := 0
-var lines_rank := 0.0
+var lines_rank := 999.0
 
 # bonus points awarded for clearing boxes
 var box_score := 0
 var box_score_per_line := 0.0
-var box_score_per_line_rank := 0.0
+var box_score_per_line_rank := 999.0
 
 # bonus points awarded for combos
 var combo_score := 0
 var combo_score_per_line := 0.0
-var combo_score_per_line_rank := 0.0
+var combo_score_per_line_rank := 999.0
 
 # number of seconds until the player won or lost
 var seconds := 0.0
-var seconds_rank := 0.0
+var seconds_rank := 999.0
 
 # overall score
 var score := 0
-var score_rank := 0.0
+var score_rank := 999.0
 
 # how many times did the player top out?
 var top_out_count := 0

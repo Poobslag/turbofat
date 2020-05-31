@@ -1,0 +1,19 @@
+{
+  "version": "15d2",
+  "blocks-during": [
+    "clear-on-top-out"
+  ],
+  "lose-condition": [
+    "top-out 999999",
+    "finish-on-lose"
+  ],
+  "rank": [
+    "unranked",
+    "top-out-penalty 0"
+  ],
+  "start-level": "A1",
+  "success-condition": {
+    "type": "lines",
+    "value": "200"
+  }
+}

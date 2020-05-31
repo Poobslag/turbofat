@@ -176,7 +176,6 @@ func _advance_scenario() -> void:
 		
 		# force match to end
 		PuzzleScore.scenario_performance.lines = 100
-		_scenario.check_for_match_end()
 	elif _lines_cleared == 0:
 		_change_scenario("tutorial-beginner-0")
 	elif _boxes_made == 0:
