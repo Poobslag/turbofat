@@ -43,7 +43,7 @@ func calculate_rank() -> RankResult:
 		
 		if Global.scenario_settings.finish_condition.has_meta("lenient_value"):
 			var lenient_rank_result := _unranked_result()
-			_populate_rank_fields(lenient_rank_result, false)
+			_populate_rank_fields(lenient_rank_result, true)
 			rank_result.speed_rank = min(rank_result.speed_rank, lenient_rank_result.speed_rank)
 			rank_result.lines_rank = min(rank_result.lines_rank, lenient_rank_result.lines_rank)
 			rank_result.box_score_per_line_rank = \
