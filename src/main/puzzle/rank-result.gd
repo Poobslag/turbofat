@@ -6,6 +6,11 @@ cleared, as well as derived statistics such as the computed lines-per-minute ran
 
 var timestamp := OS.get_datetime()
 
+# how this rank result should be compared:
+# '-seconds': lowest seconds is best
+# '+score': highest score is best (default)
+var compare := "+score"
+
 # player's speed in lines per minute.
 var speed := 0.0
 var speed_rank := 0.0
@@ -46,6 +51,7 @@ func to_json_dict() -> Dictionary:
 		"combo_score": combo_score,
 		"combo_score_per_line": combo_score_per_line,
 		"combo_score_per_line_rank": combo_score_per_line_rank,
+		"compare": compare,
 		"lines": lines,
 		"lines_rank": lines_rank,
 		"lost": lost,
@@ -66,6 +72,7 @@ func from_json_dict(json: Dictionary) -> void:
 	combo_score = int(json.get("combo_score", "0"))
 	combo_score_per_line = float(json.get("combo_score_per_line", "0"))
 	combo_score_per_line_rank = float(json.get("combo_score_per_line_rank", "999"))
+	compare = json.get("compare", "+score")
 	lines = int(json.get("lines", "0"))
 	lines_rank = float(json.get("lines_rank", "999"))
 	lost = bool(json.get("lost", "true"))
