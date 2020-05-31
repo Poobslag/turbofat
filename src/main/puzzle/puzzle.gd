@@ -78,7 +78,23 @@ func start_game() -> void:
 """
 Ends the game. This occurs when the player loses, wins, or runs out of time.
 """
-func end_game(delay: float, message: String) -> void:
+func end_game() -> void:
+	var delay: int = 2.2
+	var message: String
+	var sound: AudioStreamPlayer
+	if PuzzleScore.scenario_performance.lost:
+		sound = $GameOverSound
+		message = "Game over"
+	elif not PuzzleScore.milestone_met(Global.scenario_settings.success_condition):
+		sound = $MatchEndSound
+		message = "Finish!"
+	else:
+		sound = $ExcellentSound
+		message = "You win!"
+		delay = 4.2
+	
+	sound.play()
+	PuzzleScore.end_game()
 	show_message(message)
 	yield(get_tree().create_timer(delay), "timeout")
 	emit_signal("after_game_ended")

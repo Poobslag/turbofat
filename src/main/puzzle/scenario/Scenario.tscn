@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
@@ -8,8 +8,6 @@
 [ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/puzzle/Puzzle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/ui/excellent.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/ui/matchend.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/ui/applause.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/main/puzzle/scenario/SkillTallyItem.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/puzzle/scenario/tutorial-hud.gd" type="Script" id=14]
@@ -251,15 +249,6 @@ volume_db = -4.0
 
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 11 )
-bus = "Sound Bus"
-
-[node name="ExcellentSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
-bus = "Sound Bus"
-
-[node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
-volume_db = -4.0
 bus = "Sound Bus"
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 8 )]

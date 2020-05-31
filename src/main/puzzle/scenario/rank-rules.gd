@@ -19,8 +19,8 @@ var success_bonus := 0.0
 # rank penalty applied each time the player tops out
 var top_out_penalty := 4
 
-# 'true' if the results screen should be skipped. Used for tutorials.
-var skip_results: bool
+# If 'true' the player is not given a rank for this scenario.
+var unranked: bool = false
 
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
@@ -28,4 +28,4 @@ func from_json_string_array(json: Array) -> void:
 	if rules.has("box-factor"): box_factor = rules.float_value()
 	if rules.has("success-bonus"): success_bonus = rules.float_value()
 	if rules.has("top-out-penalty"): top_out_penalty = rules.int_value()
-	if rules.has("skip-results"): skip_results = true
+	if rules.has("unranked"): unranked = true

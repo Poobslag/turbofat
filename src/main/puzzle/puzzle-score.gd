@@ -179,6 +179,8 @@ func milestone_met(milestone: Milestone) -> bool:
 	var result := false
 	var progress := milestone_progress(milestone)
 	match milestone.type:
+		Milestone.NONE:
+			result = false
 		Milestone.TIME_UNDER:
 			result = progress <= milestone.value
 		_:

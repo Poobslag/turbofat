@@ -28,25 +28,11 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	check_for_match_end()
-
-
-func check_for_match_end() -> void:
 	if not PuzzleScore.game_active:
 		return
 	
 	if PuzzleScore.milestone_met(Global.scenario_settings.finish_condition):
-		if PuzzleScore.milestone_met(Global.scenario_settings.success_condition):
-			$ExcellentSound.play()
-			PuzzleScore.end_game()
-			$Puzzle.end_game(4.2, "You win!")
-		else:
-			$MatchEndSound.play()
-			PuzzleScore.end_game()
-			var message := "Finish!"
-			if Global.scenario_settings.other.tutorial:
-				message = ""
-			$Puzzle.end_game(2.2, message)
+		$Puzzle.end_game()
 
 
 func _on_PuzzleScore_after_game_prepared() -> void:

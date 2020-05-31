@@ -51,6 +51,8 @@ func update_milebar_text() -> void:
 	var milestone := Global.scenario_settings.finish_condition
 	var remaining: int = max(0, ceil(milestone.value - PuzzleScore.milestone_progress(milestone)))
 	match milestone.type:
+		Milestone.NONE:
+			$Value.text = "-"
 		Milestone.CUSTOMERS, Milestone.LINES:
 			$Value.text = StringUtils.comma_sep(remaining)
 		Milestone.SCORE:

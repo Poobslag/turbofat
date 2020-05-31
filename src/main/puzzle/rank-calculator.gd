@@ -37,17 +37,20 @@ player is not expected to actually finish them. So we also simulate a second S++
 the match, and return the better of the two ranks.
 """
 func calculate_rank() -> RankResult:
-	var rank_result := _inner_calculate_rank(false)
-	if Global.scenario_settings.finish_condition.has_meta("lenient_value"):
-		var rank_results_lenient := _inner_calculate_rank(true)
-		rank_result.speed_rank = min(rank_result.speed_rank, rank_results_lenient.speed_rank)
-		rank_result.lines_rank = min(rank_result.lines_rank, rank_results_lenient.lines_rank)
-		rank_result.box_score_per_line_rank = \
-				min(rank_result.box_score_per_line_rank, rank_results_lenient.box_score_per_line_rank)
-		rank_result.combo_score_per_line_rank = \
-				min(rank_result.combo_score_per_line_rank, rank_results_lenient.combo_score_per_line_rank)
-		rank_result.score_rank = min(rank_result.score_rank, rank_results_lenient.score_rank)
-	
+	var rank_result := _unranked_result()
+	if not Global.scenario_settings.rank.unranked:
+		_populate_rank_fields(rank_result, false)
+		
+		if Global.scenario_settings.finish_condition.has_meta("lenient_value"):
+			var lenient_rank_result := _unranked_result()
+			_populate_rank_fields(lenient_rank_result, false)
+			rank_result.speed_rank = min(rank_result.speed_rank, lenient_rank_result.speed_rank)
+			rank_result.lines_rank = min(rank_result.lines_rank, lenient_rank_result.lines_rank)
+			rank_result.box_score_per_line_rank = \
+					min(rank_result.box_score_per_line_rank, lenient_rank_result.box_score_per_line_rank)
+			rank_result.combo_score_per_line_rank = \
+					min(rank_result.combo_score_per_line_rank, lenient_rank_result.combo_score_per_line_rank)
+			rank_result.score_rank = min(rank_result.score_rank, lenient_rank_result.score_rank)
 	return rank_result
 
 
@@ -138,41 +141,15 @@ func _max_lpm() -> float:
 
 
 """
-Calculates the player's rank.
+Populates a new RankResult object with raw statistics.
 
-We calculate the player's rank in various areas by comparing them to a perfect player, and diminishing the perfect
-player's abilities until they match the actual player's performance.
-
-Parameters:
-	'lenient': If false, we compare the player to a perfect M-rank player. If true, we compare the player to a very
-		good S++ rank player. This is mostly done to avoid giving the player a C+ because they 'only' survived for 150
-		lines in Marathon mode.
+This does not include any rank data, only objective information like lines cleared and time taken.
 """
-func _inner_calculate_rank(lenient: bool) -> RankResult:
+func _unranked_result() -> RankResult:
 	var rank_result := RankResult.new()
 	
-	var max_lpm := _max_lpm()
-	
-	var target_speed: float = max_lpm
-	var target_box_score_per_line := master_box_score()
-	var target_combo_score_per_line := master_combo_score()
-	var target_lines: float
-
-	var finish_condition: Milestone = Global.scenario_settings.finish_condition
-	
-	if finish_condition.type == Milestone.SCORE:
+	if Global.scenario_settings.finish_condition.type == Milestone.SCORE:
 		rank_result.compare = "-seconds"
-	
-	match finish_condition.type:
-		Milestone.CUSTOMERS:
-			target_lines = MASTER_COMBO * finish_condition.value
-		Milestone.LINES:
-			target_lines = finish_condition.get_meta("lenient_value") if lenient else finish_condition.value
-		Milestone.SCORE:
-			target_lines = ceil((finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
-					/ (target_box_score_per_line + target_combo_score_per_line + 1))
-		Milestone.TIME_OVER:
-			target_lines = max_lpm * finish_condition.value / 60.0
 
 	# calculate raw player performance statistics
 	rank_result.box_score = PuzzleScore.scenario_performance.box_score
@@ -187,16 +164,46 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \
 			/ _max_combo_score(max(rank_result.lines, 1))
 	rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 1)
+	return rank_result
+
+
+"""
+Calculates the player's rank.
+
+We calculate the player's rank in various areas by comparing them to a perfect player, and diminishing the perfect
+player's abilities until they match the actual player's performance.
+
+Parameters:
+	'lenient': If false, we compare the player to a perfect M-rank player. If true, we compare the player to a very
+		good S++ rank player. This is mostly done to avoid giving the player a C+ because they 'only' survived for 150
+		lines in Marathon mode.
+"""
+func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
+	var max_lpm := _max_lpm()
 	
-	# calculate rank
+	var target_speed: float = max_lpm
+	var target_box_score_per_line := master_box_score()
+	var target_combo_score_per_line := master_combo_score()
+	var target_lines: float
+	
+	var finish_condition: Milestone = Global.scenario_settings.finish_condition
+	match finish_condition.type:
+		Milestone.CUSTOMERS:
+			target_lines = MASTER_COMBO * finish_condition.value
+		Milestone.LINES:
+			target_lines = finish_condition.get_meta("lenient_value") if lenient else finish_condition.value
+		Milestone.SCORE:
+			target_lines = ceil((finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
+					/ (target_box_score_per_line + target_combo_score_per_line + 1))
+		Milestone.TIME_OVER:
+			target_lines = max_lpm * finish_condition.value / 60.0
+	
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
 	rank_result.lines_rank = log(rank_result.lines / target_lines) / log(RDF_LINES)
 	rank_result.box_score_per_line_rank = log(rank_result.box_score_per_line / target_box_score_per_line) \
 			/ log(RDF_BOX_SCORE_PER_LINE)
 	rank_result.combo_score_per_line_rank = log(rank_result.combo_score_per_line / target_combo_score_per_line) \
 			/ log(RDF_COMBO_SCORE_PER_LINE)
-	rank_result.seconds_rank = 999.0
-	rank_result.score_rank = 999.0
 	
 	# Binary search for the player's score rank. Score is a function of several criteria, the rank doesn't deteriorate
 	# in a predictable way like the other ranks
@@ -239,8 +246,6 @@ func _inner_calculate_rank(lenient: bool) -> RankResult:
 	
 	_apply_top_out_penalty(rank_result)
 	_clamp_result(rank_result, lenient)
-	
-	return rank_result
 
 
 """

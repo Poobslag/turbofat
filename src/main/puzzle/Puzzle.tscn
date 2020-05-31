@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=2]
+[gd_scene load_steps=60 format=2]
 
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=2]
@@ -49,6 +49,8 @@
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=47]
 [ext_resource path="res://src/main/puzzle/milestone-hud.gd" type="Script" id=48]
 [ext_resource path="res://assets/puzzle/levelup.wav" type="AudioStream" id=49]
+[ext_resource path="res://assets/ui/excellent.wav" type="AudioStream" id=50]
+[ext_resource path="res://assets/ui/matchend.wav" type="AudioStream" id=51]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 17 )
@@ -430,6 +432,15 @@ bus = "Voice Bus"
 stream = ExtResource( 15 )
 volume_db = -4.0
 bus = "Voice Bus"
+
+[node name="ExcellentSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 50 )
+bus = "Sound Bus"
+
+[node name="MatchEndSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 51 )
+volume_db = -4.0
+bus = "Sound Bus"
 [connection signal="after_game_ended" from="." to="HudHolder/Hud" method="_on_Puzzle_after_game_ended"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="box_made" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_made"]
