@@ -13,6 +13,11 @@ func _ready() -> void:
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
 	
+	# Intuitively MilestoneHud could initialize its own milebar on _ready, but there is no guarantee it will happen
+	# after PuzzleScore.reset(). As a workaround, this class initializes the MilestoneHud's milebar after resetting
+	# PuzzleScore.
+	$Puzzle.get_milestone_hud().init_milebar()
+	
 	if Global.scenario_settings.other.tutorial:
 		Global.customer_queue.push_front({
 			"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
@@ -30,39 +35,18 @@ func check_for_match_end() -> void:
 	if not PuzzleScore.game_active:
 		return
 	
-	if _met_finish_condition(Global.scenario_settings.win_condition):
-		$ExcellentSound.play()
-		PuzzleScore.end_game()
-		$Puzzle.end_game(4.2, "You win!")
-	elif _met_finish_condition(Global.scenario_settings.finish_condition):
-		$MatchEndSound.play()
-		PuzzleScore.end_game()
-		var message := "Finish!"
-		if Global.scenario_settings.other.tutorial:
-			message = ""
-		$Puzzle.end_game(2.2, message)
-
-
-func _winish_type() -> int:
-	return Global.scenario_settings.get_winish_condition().type
-
-
-func _met_finish_condition(condition: Milestone) -> bool:
-	var result := false
-	match condition.type:
-		Milestone.CUSTOMERS:
-			var served_customers := PuzzleScore.customer_scores.size() - 1
-			result = served_customers >= condition.value
-		Milestone.LINES:
-			var lines := PuzzleScore.scenario_performance.lines
-			result = lines >= condition.value
-		Milestone.SCORE:
-			var total_score: int = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
-			result = total_score >= condition.value
-		Milestone.TIME:
-			var seconds := PuzzleScore.scenario_performance.seconds
-			result = seconds >= condition.value
-	return result
+	if PuzzleScore.milestone_met(Global.scenario_settings.finish_condition):
+		if PuzzleScore.milestone_met(Global.scenario_settings.success_condition):
+			$ExcellentSound.play()
+			PuzzleScore.end_game()
+			$Puzzle.end_game(4.2, "You win!")
+		else:
+			$MatchEndSound.play()
+			PuzzleScore.end_game()
+			var message := "Finish!"
+			if Global.scenario_settings.other.tutorial:
+				message = ""
+			$Puzzle.end_game(2.2, message)
 
 
 func _on_PuzzleScore_after_game_prepared() -> void:
@@ -105,7 +89,7 @@ func _on_PuzzleScore_game_ended() -> void:
 	PlayerData.money += rank_result.score
 	PlayerSave.save_player_data()
 	
-	match _winish_type():
+	match Global.scenario_settings.finish_condition.type:
 		Milestone.SCORE:
 			if not PuzzleScore.scenario_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
 		_:

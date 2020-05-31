@@ -11,14 +11,16 @@ enum MilestoneType {
 	CUSTOMERS,
 	LINES,
 	SCORE,
-	TIME
+	TIME_OVER,
+	TIME_UNDER
 }
 
 const NONE := MilestoneType.NONE
 const CUSTOMERS := MilestoneType.CUSTOMERS
 const LINES := MilestoneType.LINES
 const SCORE := MilestoneType.SCORE
-const TIME := MilestoneType.TIME
+const TIME_OVER := MilestoneType.TIME_OVER
+const TIME_UNDER := MilestoneType.TIME_UNDER
 
 # converts json strings into milestone types
 const JSON_MILESTONE_TYPES := {
@@ -26,13 +28,15 @@ const JSON_MILESTONE_TYPES := {
 	"customers": MilestoneType.CUSTOMERS,
 	"lines": MilestoneType.LINES,
 	"score": MilestoneType.SCORE,
-	"time": MilestoneType.TIME
+	"time-over": MilestoneType.TIME_OVER,
+	"time-under": MilestoneType.TIME_UNDER,
 }
 
 # These two parameters describe a MilestoneType and value to reach, such as scoring 50 points, clearing 10 lines
 # or surviving for 30 seconds.
 var type: int
 var value: int
+
 
 func from_json_dict(json: Dictionary) -> void:
 	type = JSON_MILESTONE_TYPES.get(json.get("type"), MilestoneType.NONE)

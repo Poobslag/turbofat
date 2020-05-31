@@ -1,0 +1,18 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "6000"
+  },
+  "start-level": "FB",
+  "finish-condition": {
+    "type": "lines",
+    "value": "200"
+  },
+  "lose-condition": [
+    "top-out 1"
+  ],
+  "rank": [
+    "success-bonus 2"
+  ]
+}

@@ -24,5 +24,8 @@ func _on_PieceManager_topped_out() -> void:
 	else:
 		var top_out_delay := PieceSpeeds.current_speed.appearance_delay + PieceSpeeds.current_speed.lock_delay
 		_playfield.break_combo()
-		_playfield.schedule_line_clears(range(Playfield.ROW_COUNT - 6, Playfield.ROW_COUNT), top_out_delay, false)
+		if Global.scenario_settings.blocks_during.clear_on_top_out:
+			_playfield.schedule_line_clears(range(0, Playfield.ROW_COUNT), top_out_delay, false)
+		else:
+			_playfield.schedule_line_clears(range(Playfield.ROW_COUNT - 6, Playfield.ROW_COUNT), top_out_delay, false)
 		_piece_manager.enter_top_out_state(top_out_delay)

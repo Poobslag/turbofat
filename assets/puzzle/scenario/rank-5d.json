@@ -1,0 +1,45 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "2500"
+  },
+  "start-level": "AA",
+  "level-ups": [
+    {
+      "type": "time-over",
+      "value": "60",
+      "level": "AB"
+    },
+    {
+      "type": "time-over",
+      "value": "120",
+      "level": "AC"
+    },
+    {
+      "type": "time-over",
+      "value": "180",
+      "level": "AD"
+    },
+    {
+      "type": "time-over",
+      "value": "240",
+      "level": "AA"
+    },
+    {
+      "type": "time-over",
+      "value": "300",
+      "level": "AE"
+    }
+  ],
+  "finish-condition": {
+    "type": "lines",
+    "value": "200"
+  },
+  "lose-condition": [
+    "top-out 1"
+  ],
+  "rank": [
+    "success-bonus 2"
+  ]
+}

@@ -48,7 +48,11 @@
       "level": "AA"
     }
   ],
-  "win-condition": {
+  "success-condition": {
+    "type": "lines",
+    "value": "200",
+  },
+  "finish-condition": {
     "type": "lines",
     "value": "200",
     "lenient-value": "150"

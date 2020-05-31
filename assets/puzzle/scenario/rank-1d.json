@@ -1,0 +1,40 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "1200"
+  },
+  "start-level": "A1",
+  "level-ups": [
+    {
+      "type": "lines",
+      "value": "40",
+      "level": "A2"
+    },
+    {
+      "type": "lines",
+      "value": "60",
+      "level": "A3"
+    },
+    {
+      "type": "lines",
+      "value": "80",
+      "level": "A4"
+    },
+    {
+      "type": "lines",
+      "value": "100",
+      "level": "A5"
+    }
+  ],
+  "finish-condition": {
+    "type": "lines",
+    "value": "180"
+  },
+  "lose-condition": [
+    "top-out 1"
+  ],
+  "rank": [
+    "success-bonus 2"
+  ]
+}

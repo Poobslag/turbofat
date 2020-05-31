@@ -2,7 +2,7 @@
   "version": "15d2",
   "start-level": "A0",
   "finish-condition": {
-    "type": "time",
+    "type": "time-over",
     "value": "150"
   }
 }

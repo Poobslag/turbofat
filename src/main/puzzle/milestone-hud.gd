@@ -1,3 +1,4 @@
+class_name MilestoneHud
 extends Control
 """
 Shows the user's scenario performance as a progress bar.
@@ -18,75 +19,43 @@ const LEVEL_COLOR_4 := Color("b94878")
 const LEVEL_COLOR_5 := Color("b948b9")
 
 func _ready() -> void:
-	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
-	PuzzleScore.connect("lines_changed", self, "_on_PuzzleScore_lines_changed")
-	PuzzleScore.connect("score_changed", self, "_on_PuzzleScore_score_changed")
-	PuzzleScore.connect("bonus_score_changed", self, "_on_PuzzleScore_bonus_score_changed")
 	PuzzleScore.connect("after_scenario_prepared", self, "_on_PuzzleScore_after_scenario_prepared")
-	match _winish_type():
+	match Global.scenario_settings.finish_condition.type:
 		Milestone.CUSTOMERS:
 			$Desc.text = "Customers"
 		Milestone.LINES:
 			$Desc.text = "Lines"
 		Milestone.SCORE:
 			$Desc.text = "Money"
-		Milestone.TIME:
+		Milestone.TIME_OVER:
 			$Desc.text = "Time"
-	update_milebar()
-	$Value.pick_largest_font()
 
 
 func _process(_delta: float) -> void:
-	if not PuzzleScore.game_prepared:
-		return
-	
-	match _winish_type():
-		Milestone.TIME:
-			# update time display
-			update_milebar()
+	update_milebar()
 
 
 """
-Defines the milestone progress bar min/max values.
+Updates the milestone progress bar's value and boundaries.
 """
-func update_milebar_bounds() -> void:
+func update_milebar_values() -> void:
 	$ProgressBar.min_value = Global.scenario_settings.level_ups[PuzzleScore.level_index].value
-	if PuzzleScore.level_index + 1 < Global.scenario_settings.level_ups.size():
-		# fill up the bar as they approach the next level
-		$ProgressBar.max_value = Global.scenario_settings.level_ups[PuzzleScore.level_index + 1].value
-	else:
-		# fill up the bar as they near their goal
-		$ProgressBar.max_value = _winish_value()
-
-
-"""
-Fills the milestone progress bar.
-"""
-func update_milebar_value() -> void:
-	var current_value: int
-	match _winish_type():
-		Milestone.CUSTOMERS:
-			current_value = PuzzleScore.customer_scores.size() - 1
-		Milestone.LINES:
-			current_value = PuzzleScore.scenario_performance.lines
-		Milestone.SCORE:
-			current_value = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
-		Milestone.TIME:
-			current_value = PuzzleScore.scenario_performance.seconds
-	$ProgressBar.value = current_value
+	$ProgressBar.max_value = _next_milestone().value
+	$ProgressBar.value = PuzzleScore.milestone_progress(_next_milestone())
 
 
 """
 Updates the milestone progress bar text.
 """
 func update_milebar_text() -> void:
-	var remaining := max(0, _winish_value() - $ProgressBar.value)
-	match _winish_type():
+	var milestone := Global.scenario_settings.finish_condition
+	var remaining: int = max(0, ceil(milestone.value - PuzzleScore.milestone_progress(milestone)))
+	match milestone.type:
 		Milestone.CUSTOMERS, Milestone.LINES:
 			$Value.text = StringUtils.comma_sep(remaining)
 		Milestone.SCORE:
 			$Value.text = "¥%s" % StringUtils.comma_sep(remaining)
-		Milestone.TIME:
+		Milestone.TIME_OVER:
 			$Value.text = StringUtils.format_duration(remaining)
 
 
@@ -113,42 +82,35 @@ func update_milebar_color() -> void:
 
 
 """
+Initializes the milestone progress bar's value and boundaries, and locks in the font size.
+
+It would be distracting if the font got bigger as the player progressed, so the font size is only assigned at the
+start of each scenario when the text should be at its longest value.
+"""
+func init_milebar() -> void:
+	update_milebar()
+	$Value.pick_largest_font()
+
+
+"""
 Update the milestone hud's content during a game.
 """
 func update_milebar() -> void:
-	update_milebar_bounds()
-	update_milebar_value()
+	update_milebar_values()
 	update_milebar_text()
 	update_milebar_color()
 
 
-func _winish_type() -> int:
-	return Global.scenario_settings.get_winish_condition().type
-
-
-func _winish_value() -> int:
-	return Global.scenario_settings.get_winish_condition().value
-
-
-func _on_PuzzleScore_lines_changed(_value: int) -> void:
-	update_milebar()
-
-
-func _on_PuzzleScore_score_changed(_value: int) -> void:
-	update_milebar()
-
-
-func _on_PuzzleScore_bonus_score_changed(_value: int) -> void:
-	update_milebar()
-
-
-func _on_PuzzleScore_combo_ended() -> void:
-	update_milebar()
+func _next_milestone() -> Milestone:
+	var milestone: Milestone
+	if PuzzleScore.level_index + 1 < Global.scenario_settings.level_ups.size():
+		# fill up the bar as they approach the next level
+		milestone = Global.scenario_settings.level_ups[PuzzleScore.level_index + 1]
+	else:
+		# fill up the bar as they near their goal
+		milestone = Global.scenario_settings.finish_condition
+	return milestone
 
 
 func _on_PuzzleScore_after_scenario_prepared() -> void:
-	update_milebar()
-	
-	# Lock in the font size at the start, but leave it the same after that. It would be distracting if the font got
-	# bigger as the player progressed.
-	$Value.pick_largest_font()
+	init_milebar()

@@ -96,7 +96,7 @@ func _on_PuzzleScore_lines_changed(value: int) -> void:
 	var new_level_index: int = PuzzleScore.level_index
 	
 	while new_level_index + 1 < Global.scenario_settings.level_ups.size() \
-			and Global.scenario_settings.level_ups[new_level_index + 1].value <= value:
+			and PuzzleScore.milestone_met(Global.scenario_settings.level_ups[new_level_index + 1]):
 		new_level_index += 1
 	
 	if PuzzleScore.level_index != new_level_index:

@@ -1,0 +1,15 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "750"
+  },
+  "start-level": "3",
+  "finish-condition": {
+    "type": "lines",
+    "value": "100"
+  },
+  "rank": [
+    "success-bonus 2"
+  ]
+}

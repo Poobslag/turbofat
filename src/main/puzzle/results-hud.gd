@@ -121,7 +121,7 @@ func _on_Puzzle_after_game_ended() -> void:
 		return
 	
 	var customer_scores: Array = PuzzleScore.customer_scores
-	var finish_condition_type := Global.scenario_settings.get_winish_condition().type
+	var finish_condition_type := Global.scenario_settings.finish_condition.type
 	
 	show_results_message(rank_result, customer_scores, finish_condition_type)
 

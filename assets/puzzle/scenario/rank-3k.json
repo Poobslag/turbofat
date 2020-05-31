@@ -1,0 +1,21 @@
+{
+  "version": "15d2",
+  "success-condition": {
+    "type": "score",
+    "value": "999"
+  },
+  "blocks-during": [
+    "clear-on-top-out"
+  ],
+  "start-level": "5",
+  "finish-condition": {
+    "type": "time-over",
+    "value": "540"
+  },
+  "lose-condition": [
+    "top-out 9"
+  ],
+  "rank": [
+    "success-bonus 2"
+  ]
+}

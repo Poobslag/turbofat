@@ -61,3 +61,11 @@ Formats a duration like 63.159 into '1:03'
 """
 static func format_duration(seconds: float) -> String:
 	return "%01d:%02d" % [int(ceil(seconds)) / 60, int(ceil(seconds)) % 60]
+
+
+"""
+Parses a duration like 1:03.159 into '63.159'
+"""
+static func parse_duration(s: String) -> float:
+	var split: Array = s.split(":")
+	return int(split[0]) * 60 + float(split[1])
