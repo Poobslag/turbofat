@@ -40,7 +40,11 @@ Updates the milestone progress bar's value and boundaries.
 """
 func update_milebar_values() -> void:
 	$ProgressBar.min_value = Global.scenario_settings.level_ups[PuzzleScore.level_index].value
-	$ProgressBar.max_value = _next_milestone().value
+	if _next_milestone().value == $ProgressBar.min_value:
+		# avoid 'cannot get ratio' errors in sandbox mode
+		$ProgressBar.max_value = $ProgressBar.min_value + 1.0
+	else:
+		$ProgressBar.max_value = _next_milestone().value
 	$ProgressBar.value = PuzzleScore.milestone_progress(_next_milestone())
 
 
