@@ -107,6 +107,7 @@ func _handle_squish_move_message() -> void:
 				append_message("Oh my,/ you're not supposed to know how to do that!\n\n..."
 						+ "But yes,/ squish moves can help you out of a jam.")
 				$SkillTallyItems/GridContainer/SquishMove.visible = true
+				$SkillTallyItems/GridContainer/SquishMove.increment()
 			"tutorial-beginner-2":
 				append_message("Well done!\n\nSquish moves can help you out of a jam./"
 						+ " They're also good for certain boxes.")
@@ -120,6 +121,7 @@ func _handle_make_box_message() -> void:
 						+ "...But yes,/ those boxes earn $15 when you clear them./"
 						+ " Maybe more if you're clever.")
 				$SkillTallyItems/GridContainer/SnackBox.visible = true
+				$SkillTallyItems/GridContainer/SnackBox.increment()
 			"tutorial-beginner-1":
 				append_message("Well done!\n\nThose boxes earn ¥15 when you clear them./"
 				+ " Maybe more if you're clever.")
@@ -175,7 +177,6 @@ func _advance_scenario() -> void:
 		# force match to end
 		PuzzleScore.scenario_performance.lines = 100
 		_scenario.check_for_match_end()
-		_scenario.init_milestone_hud()
 	elif _lines_cleared == 0:
 		_change_scenario("tutorial-beginner-0")
 	elif _boxes_made == 0:
@@ -205,7 +206,6 @@ func _change_scenario(name: String) -> void:
 			append_message("Nicely done!\n\nNext, try holding soft drop to squish these pieces through these gaps.")
 		"tutorial-beginner-3":
 			$SkillTallyItems/GridContainer/SnackStack.visible = true
-			$SkillTallyItems/GridContainer/SnackStack.reset()
 			append_message("One last lesson! Try holding soft drop to squish and complete these boxes.")
 		"tutorial-beginner-4":
 			# reset timer, scores

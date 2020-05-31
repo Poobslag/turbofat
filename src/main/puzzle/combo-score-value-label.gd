@@ -11,4 +11,4 @@ func _ready() -> void:
 
 
 func _on_PuzzleScore_bonus_score_changed(value: int) -> void:
-	text = "-" if value == 0 else "+¥%s" % value
+	text = "-" if value == 0 else "+¥%s" % StringUtils.comma_sep(value)

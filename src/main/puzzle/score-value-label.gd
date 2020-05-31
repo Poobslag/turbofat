@@ -9,4 +9,4 @@ func _ready() -> void:
 
 
 func _on_PuzzleScore_score_changed(value: int) -> void:
-	text = "¥%s" % value
+	text = "¥%s" % StringUtils.comma_sep(value)

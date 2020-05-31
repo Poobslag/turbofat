@@ -96,7 +96,7 @@ func set_win_condition(type: int, value: int, lenient_value: int = -1) -> void:
 
 
 """
-Returns either the win or finish condition, whichever is defined.
+Returns the win or finish condition, whichever is defined.
 
 If both are defined, the win condition takes precedence.
 """

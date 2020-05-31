@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=1]
 [ext_resource path="res://assets/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
@@ -11,7 +11,6 @@
 [ext_resource path="res://assets/ui/excellent.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/ui/matchend.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/ui/applause.wav" type="AudioStream" id=11]
-[ext_resource path="res://assets/puzzle/levelup.wav" type="AudioStream" id=12]
 [ext_resource path="res://src/main/puzzle/scenario/SkillTallyItem.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/puzzle/scenario/tutorial-hud.gd" type="Script" id=14]
 [ext_resource path="res://assets/puzzle/scenario/tutorial-section-complete.wav" type="AudioStream" id=15]
@@ -254,10 +253,6 @@ volume_db = -4.0
 stream = ExtResource( 11 )
 bus = "Sound Bus"
 
-[node name="LevelUpSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 12 )
-bus = "Sound Bus"
-
 [node name="ExcellentSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 9 )
 bus = "Sound Bus"
@@ -275,7 +270,6 @@ script = ExtResource( 19 )
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 20 )]
 [connection signal="after_game_ended" from="Puzzle" to="ResultsHud" method="_on_Puzzle_after_game_ended"]
-[connection signal="line_cleared" from="Puzzle" to="." method="_on_Puzzle_line_cleared"]
 [connection signal="pop_out_completed" from="TutorialHud/Message/Tween" to="TutorialHud/Message" method="_on_Tween_pop_out_completed"]
 [connection signal="tween_completed" from="TutorialHud/Message/Tween" to="TutorialHud/Message/Tween" method="_on_tween_completed"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Puzzle/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
