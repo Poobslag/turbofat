@@ -12,7 +12,7 @@ func before_each() -> void:
 	PlayerData.reset()
 	
 	var dir := Directory.new()
-	dir.copy("res://src/demo/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
+	dir.copy("res://src/test/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
 	PlayerSave.load_player_data()
 
 
@@ -67,10 +67,13 @@ func test_timestamp_created() -> void:
 
 func test_compare_seconds() -> void:
 	assert_true(PlayerData.scenario_history.scenario_names().has("ultra-normal"))
-	var history_ultra: RankResult = PlayerData.scenario_history.results("ultra-normal")[0]
+	var results: Array = PlayerData.scenario_history.results("ultra-normal")
+	assert_eq(results.size(), 3)
 	
 	# ultra records should be compared by lowest seconds. this 'compare' field didn't exist before
-	assert_eq(history_ultra.compare, "-seconds")
+	assert_eq(results[0].compare, "-seconds")
+	assert_eq(results[1].compare, "-seconds")
+	assert_eq(results[2].compare, "-seconds")
 
 
 func test_compare_score() -> void:

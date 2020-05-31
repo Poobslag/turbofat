@@ -70,11 +70,28 @@ func transform_old_save() -> void:
 	transformer.sub("\"marathon-", "\"survival-")
 	transformer.sub("scenario_name", "key")
 	transformer.sub("scen{\"scenario_history\":(\\[.*\\])(.*)}", "{\"type\":\"scenario-history\",\"value\":$1$2},")
-	transformer.sub("({[^{}]*)(}.*\"ultra-)", "$1,\"compare\":\"-seconds\"$2")
 	transformer.sub("\"died\":false", "\"top_out_count\":0,\"lost\":false")
 	transformer.sub("\"died\":true", "\"top_out_count\":1,\"lost\":true")
 	transformer.transformed = "[%s]" % transformer.transformed
 	transformer.transformed = JSONBeautifier.beautify_json(transformer.transformed, 1)
+	transformer.transformed = _append_compare_flag_for_0517(transformer.transformed)
 	save_json_text = transformer.transformed
 	
 	FileUtils.write_file(PlayerSave.player_data_filename, save_json_text)
+
+
+"""
+Appends a 'compare' flag to the ultra records.
+
+This method temporarily converts the save file into json. I couldn't figure out a regular expression to accomplish
+this.
+"""
+func _append_compare_flag_for_0517(save_json_text: String) -> String:
+	var json_save_items: Array = parse_json(save_json_text)
+	for json_save_item_obj in json_save_items:
+		var save_item: Dictionary = json_save_item_obj
+		if save_item.get("type") == "scenario-history" and save_item.get("key").begins_with("ultra-"):
+			for value_obj in save_item.get("value"):
+				var value: Dictionary = value_obj
+				value["compare"] = "-seconds"
+	return to_json(json_save_items)
