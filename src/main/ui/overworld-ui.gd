@@ -36,6 +36,9 @@ func _input(event: InputEvent) -> void:
 	if not chatters and event.is_action_pressed("interact") and InteractableManager.get_focused():
 		get_tree().set_input_as_handled()
 		start_chat()
+	if not chatters and event.is_action_pressed("ui_cancel"):
+		$SettingsMenu.show()
+		get_tree().set_input_as_handled()
 
 
 func start_chat() -> void:
@@ -85,10 +88,6 @@ func _update_visible() -> void:
 	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
 
 
-func _on_System_quit_pressed() -> void:
-	InteractableManager.clear()
-
-
 func _on_ChatUi_pop_out_completed() -> void:
 	# unset mood
 	for chatter in chatters:
@@ -128,3 +127,8 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 
 func _on_ChatUi_showed_choices() -> void:
 	emit_signal("showed_chat_choices")
+
+
+func _on_SettingsMenu_quit_pressed() -> void:
+	InteractableManager.clear()
+	Breadcrumb.pop_trail()
