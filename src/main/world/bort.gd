@@ -1,6 +1,6 @@
-extends Customer3D
+extends Creature3D
 """
-Script for showing a customer 'Bort' in the 3D overworld.
+Script for showing a creature 'Bort' in the 3D overworld.
 """
 
 func _ready() -> void:
@@ -12,7 +12,7 @@ func _ready() -> void:
 """
 Bort is light blue with a tentacle mouth.
 """
-func get_customer_def() -> Dictionary:
+func get_creature_def() -> Dictionary:
 	return {
 		"line_rgb": "6c4331", "body_rgb": "6f83db", "eye_rgb": "374265 eaf2f4", "horn_rgb": "f1e398",
 		"ear": "2", "horn": "1", "mouth": "1", "eye": "0"

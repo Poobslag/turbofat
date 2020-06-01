@@ -24,7 +24,7 @@ func scenario_name(path: String) -> String:
 
 
 func scenario_path(name: String) -> String:
-	return "res://assets/puzzle/scenario/%s.json" % name
+	return "res://assets/main/puzzle/scenario/%s.json" % name
 
 
 func scenario_filename(name: String) -> String:
@@ -39,10 +39,10 @@ Parameters:
 	
 	'overworld_puzzle': True if the player should return to the overworld when the puzzle is done
 	
-	'customer_def': Customers who should appear in the restaurant.
+	'creature_def': Creatures who should appear in the restaurant.
 """
-func push_scenario_trail(scenario_settings: ScenarioSettings, customer_def: Dictionary = {}) -> void:
+func push_scenario_trail(scenario_settings: ScenarioSettings, creature_def: Dictionary = {}) -> void:
 	Global.scenario_settings = scenario_settings
 	Global.launched_scenario_name = scenario_settings.name
-	Global.customer_queue.push_back(customer_def)
+	Global.creature_queue.push_back(creature_def)
 	Breadcrumb.push_trail("res://src/main/puzzle/scenario/Scenario.tscn")

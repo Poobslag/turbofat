@@ -5,15 +5,18 @@
 [ext_resource path="res://src/main/ui/menu/practice-high-scores.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=5]
-[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=6]
-[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=7]
+[ext_resource path="res://src/main/ui/xolonium-24.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=8]
-[ext_resource path="res://assets/puzzle/wood-backdrop.png" type="Texture" id=10]
-[ext_resource path="res://assets/ui/xolonium-36-outline.tres" type="DynamicFont" id=11]
+[ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=10]
+[ext_resource path="res://src/main/ui/xolonium-36-outline.tres" type="DynamicFont" id=11]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=12]
 [ext_resource path="res://src/main/ui/HighScoreTable.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/menu/mode-buttongroup.tres" type="ButtonGroup" id=14]
 [ext_resource path="res://src/main/ui/menu/practice-mode-selector.gd" type="Script" id=15]
+
+
+
 
 [node name="PracticeMenu" type="Control"]
 anchor_right = 1.0

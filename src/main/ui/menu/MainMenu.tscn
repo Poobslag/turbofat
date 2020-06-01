@@ -1,13 +1,16 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
-[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=2]
-[ext_resource path="res://assets/ui/xolonium-48-outline.tres" type="DynamicFont" id=3]
-[ext_resource path="res://assets/puzzle/wood-backdrop.png" type="Texture" id=4]
+[ext_resource path="res://src/main/ui/xolonium-24.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/ui/xolonium-48-outline.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=4]
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
-[ext_resource path="res://assets/ui/xolonium-36-outline.tres" type="DynamicFont" id=6]
+[ext_resource path="res://src/main/ui/xolonium-36-outline.tres" type="DynamicFont" id=6]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=8]
+
+
+
 
 [node name="MainMenu" type="Control"]
 anchor_right = 1.0

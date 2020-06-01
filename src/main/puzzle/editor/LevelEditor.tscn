@@ -336,9 +336,8 @@ margin_right = 300.0
 margin_bottom = 200.0
 window_title = "Open a File"
 mode = 0
-current_dir = "res://assets/puzzle/scenario"
-current_file = "boatricia.json"
-current_path = "res://assets/puzzle/scenario/boatricia.json"
+current_dir = "res://assets/main/puzzle/scenario"
+current_path = "res://assets/main/puzzle/scenario/"
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/fanfare3.wav-f9e022a076c3a8622bd19437fd3b4633.sample"
+
+[deps]
+
+source_file="res://assets/main/puzzle/fanfare3.wav"
+dest_files=[ "res://.import/fanfare3.wav-f9e022a076c3a8622bd19437fd3b4633.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

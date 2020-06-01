@@ -205,7 +205,7 @@ func test_calculate_rank_ultra_200_overshot() -> void:
 	assert_eq(RankCalculator.grade(rank.seconds_rank), "SSS")
 
 
-func test_calculate_rank_five_customers_good() -> void:
+func test_calculate_rank_five_creatures_good() -> void:
 	Global.scenario_settings.set_finish_condition(Milestone.CUSTOMERS, 5)
 	Global.scenario_settings.set_start_level("4")
 	PuzzleScore.scenario_performance.lines = 100
@@ -219,7 +219,7 @@ func test_calculate_rank_five_customers_good() -> void:
 	assert_eq(RankCalculator.grade(rank.score_rank), "SS")
 
 
-func test_calculate_rank_five_customers_bad() -> void:
+func test_calculate_rank_five_creatures_bad() -> void:
 	Global.scenario_settings.set_finish_condition(Milestone.CUSTOMERS, 5)
 	Global.scenario_settings.set_start_level("4")
 	PuzzleScore.scenario_performance.lines = 18

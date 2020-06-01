@@ -8,7 +8,7 @@ const NUM_SCANCODES: Dictionary = {
 	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9
 }
 
-# Target number of customer greetings (hello, goodbye) per minute
+# Target number of creature greetings (hello, goodbye) per minute
 const GREETINGS_PER_MINUTE := 3.0
 
 # The scenario currently being launched or played
@@ -18,8 +18,8 @@ var scenario_settings := ScenarioSettings.new()
 # into other scenarios, so this keeps track of the original.
 var launched_scenario_name
 
-# The customers who will show up during the next puzzle. The first customer in the queue will show up first.
-var customer_queue := []
+# The creatures who will show up during the next puzzle. The first creature in the queue will show up first.
+var creature_queue := []
 
 # 'true' if launching a puzzle from the overworld. This changes the menus and disallows restarting.
 var overworld_puzzle := false
@@ -55,10 +55,10 @@ func benchmark_end(key: String = "") -> void:
 
 
 """
-Returns 'true' if the customer should greet us. We calculate this based on how many times we've been greeted recently.
+Returns 'true' if the creature should greet us. We calculate this based on how many times we've been greeted recently.
 
 Novice players or fast players won't mind receiving a lot of sounds related to combos because those sounds are
-associated with positive reinforcement (big combos), but they could get annoyed if customers say hello/goodbye too
+associated with positive reinforcement (big combos), but they could get annoyed if creatures say hello/goodbye too
 frequently because those sounds are associated with negative reinforcement (broken combos).
 """
 func should_chat() -> bool:

@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/ui/version-label.gd" type="Script" id=1]
-[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=2]
+
+
 
 [node name="VersionLabel" type="Label"]
 anchor_left = 1.0

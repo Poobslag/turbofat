@@ -85,7 +85,7 @@ func _on_Puzzle_after_game_ended() -> void:
 	else:
 		$BackButton.show()
 		if Global.overworld_puzzle:
-			# player can't restart a level if a customer asked them to do it, for thematic reasons
+			# player can't restart a level if a creature asked them to do it, for thematic reasons
 			$BackButton.grab_focus()
 		else:
 			# grab focus so the player can start a new game or navigate with the keyboard

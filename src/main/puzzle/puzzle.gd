@@ -17,7 +17,7 @@ func _ready() -> void:
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
 	for i in range(3):
-		$CustomerView.summon_customer(i)
+		$CreatureView.summon_creature(i)
 
 
 func _input(event: InputEvent) -> void:
@@ -124,31 +124,31 @@ func set_piece_start_types(types: Array) -> void:
 	$NextPieceDisplays.set_piece_start_types(types)
 
 
-func scroll_to_new_customer() -> void:
-	$CustomerView.scroll_to_new_customer()
+func scroll_to_new_creature() -> void:
+	$CreatureView.scroll_to_new_creature()
 
 
 """
-Triggers the eating animation and makes the customer fatter. Accepts a 'fatness_pct' parameter which defines how
-much fatter the customer should get. We can calculate how fat they should be, and a value of 0.4 means the customer
+Triggers the eating animation and makes the creature fatter. Accepts a 'fatness_pct' parameter which defines how
+much fatter the creature should get. We can calculate how fat they should be, and a value of 0.4 means the creature
 should increase by 40% of the amount needed to reach that target.
 
 This 'fatness_pct' parameter is needed for the scenario where the player eliminates three lines at once. We don't
-want the customer to suddenly grow full size. We want it to take 3 bites.
+want the creature to suddenly grow full size. We want it to take 3 bites.
 
 Parameters:
-	'fatness_pct' A percent from [0.0-1.0] of how much fatter the customer should get from this bite of food.
+	'fatness_pct' A percent from [0.0-1.0] of how much fatter the creature should get from this bite of food.
 """
-func _feed_customer(fatness_pct: float) -> void:
-	$CustomerView/SceneClip/CustomerSwitcher/Scene.feed()
+func _feed_creature(fatness_pct: float) -> void:
+	$CreatureView/SceneClip/CreatureSwitcher/Scene.feed()
 	
 	if PuzzleScore.game_active:
-		var old_fatness: float = $CustomerView.get_fatness()
-		var target_fatness := sqrt(1 + PuzzleScore.get_customer_score() / 50.0)
+		var old_fatness: float = $CreatureView.get_fatness()
+		var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
 		if Global.scenario_settings.other.tutorial:
 			# make them a tiny amount fatter, so that they'll change when a new level is started
 			target_fatness = min(target_fatness, 1.001)
-		$CustomerView.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
+		$CreatureView.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
 
 
 func _on_Hud_start_button_pressed() -> void:
@@ -156,25 +156,25 @@ func _on_Hud_start_button_pressed() -> void:
 
 
 """
-Triggers the 'customer feeding' animation.
+Triggers the 'creature feeding' animation.
 """
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	if not $Playfield.awarding_line_clear_points:
-		# lines were cleared from top out or another unusual case. don't feed the customer
+		# lines were cleared from top out or another unusual case. don't feed the creature
 		return
 	
-	# Calculate whether or not the customer should say something positive about the combo. The customer talks after
-	var customer_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 5 \
+	# Calculate whether or not the creature should say something positive about the combo. The creature talks after
+	var creature_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 5 \
 			and total_lines > ($Playfield/ComboTracker.combo + 1) % 3
 	
-	_feed_customer(1.0 / (remaining_lines + 1))
+	_feed_creature(1.0 / (remaining_lines + 1))
 	
-	if customer_talks:
+	if creature_talks:
 		yield(get_tree().create_timer(0.5), "timeout")
-		$CustomerView/SceneClip/CustomerSwitcher/Scene.play_combo_voice()
+		$CreatureView/SceneClip/CreatureSwitcher/Scene.play_combo_voice()
 
 
 func _on_PuzzleScore_combo_ended() -> void:
 	if PuzzleScore.game_active and not Global.scenario_settings.other.tutorial:
-		$CustomerView.play_goodbye_voice()
-		$CustomerView.scroll_to_new_customer()
+		$CreatureView.play_goodbye_voice()
+		$CreatureView.scroll_to_new_creature()

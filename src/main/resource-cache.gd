@@ -105,7 +105,7 @@ func _find_png_paths() -> Array:
 	_remaining_png_paths.clear()
 	
 	# directories remaining to be traversed
-	var dir_queue := ["res://assets"]
+	var dir_queue := ["res://assets/main"]
 	
 	var dir: Directory
 	var file: String

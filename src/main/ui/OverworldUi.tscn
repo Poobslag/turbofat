@@ -8,7 +8,9 @@
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=10]
+[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=10]
+
+
 
 [node name="OverworldUi" type="Control"]
 anchor_right = 1.0

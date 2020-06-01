@@ -24,7 +24,7 @@ func load_chat_events() -> ChatTree:
 	else:
 		# open the json file for the currently focused interactable
 		var chat_id: String = focused.get_meta("chat_id")
-		chat_tree = load_chat_events_from_file("res://assets/dialog/%s.json" % chat_id)
+		chat_tree = load_chat_events_from_file("res://assets/main/dialog/%s.json" % chat_id)
 	return chat_tree
 
 

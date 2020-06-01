@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/combo-voice-01.wav-b149c9a7a3a7be8c94b01f5a5acc9fb0.sample"
+
+[deps]
+
+source_file="res://assets/main/world/creature/combo-voice-01.wav"
+dest_files=[ "res://.import/combo-voice-01.wav-b149c9a7a3a7be8c94b01f5a5acc9fb0.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

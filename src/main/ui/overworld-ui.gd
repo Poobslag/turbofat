@@ -26,7 +26,7 @@ var _chat_library := ChatLibrary.new()
 # These two fields store details for the upcoming scenario. We store the scenario details during the dialog sequence
 # and launch the scenario when the dialog window closes.
 var _launched_scenario: ScenarioSettings
-var _scenario_customer_def: Dictionary
+var _scenario_creature_def: Dictionary
 
 func _ready() -> void:
 	_update_visible()
@@ -102,7 +102,7 @@ func _on_ChatUi_pop_out_completed() -> void:
 	if _launched_scenario:
 		InteractableManager.clear()
 		Global.overworld_puzzle = true
-		ScenarioLibrary.push_scenario_trail(_launched_scenario, _scenario_customer_def)
+		ScenarioLibrary.push_scenario_trail(_launched_scenario, _scenario_creature_def)
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
@@ -121,8 +121,8 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 				scenario = StringUtils.substring_after(meta_item, "scenario-")
 		if scenario:
 			_launched_scenario = ScenarioLibrary.load_scenario_from_name(scenario)
-			if chatters[0].has_method("get_customer_def"):
-				_scenario_customer_def = chatters[0].get_customer_def()
+			if chatters[0].has_method("get_creature_def"):
+				_scenario_creature_def = chatters[0].get_creature_def()
 
 
 func _on_ChatUi_showed_choices() -> void:

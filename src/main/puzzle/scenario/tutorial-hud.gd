@@ -209,10 +209,10 @@ func _change_scenario(name: String) -> void:
 		"tutorial-beginner-4":
 			# reset timer, scores
 			PuzzleScore.reset()
-			_puzzle.scroll_to_new_customer()
+			_puzzle.scroll_to_new_creature()
 			
 			append_message("You're a remarkably quick learner." \
-					+ "/ I think I hear some customers!\n\nSee if you can earn ¥100.")
+					+ "/ I think I hear some creatures!\n\nSee if you can earn ¥100.")
 			$Message.set_pop_out_timer(3.0)
 
 

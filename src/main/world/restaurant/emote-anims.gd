@@ -50,17 +50,17 @@ onready var _emote_sprites := [
 ]
 
 """
-Randomly advances the current animation up to 2.0 seconds. Used to ensure all customers don't blink synchronously.
+Randomly advances the current animation up to 2.0 seconds. Used to ensure all creatures don't blink synchronously.
 """
 func advance_animation_randomly() -> void:
 	advance(randf() * 2.0)
 
 
 """
-Animates the customer's appearance according to the specified mood: happy, angry, etc...
+Animates the creature's appearance according to the specified mood: happy, angry, etc...
 
 Parameters:
-	'mood': The customer's new mood from ChatEvent.Mood
+	'mood': The creature's new mood from ChatEvent.Mood
 """
 func emote(mood: int) -> void:
 	_mood = mood
@@ -86,10 +86,10 @@ func emote(mood: int) -> void:
 
 
 """
-Starts resetting the customer to a default neutral mood.
+Starts resetting the creature to a default neutral mood.
 
 This does not take place immediately, but fires off a tween. Callers should wait until $ResetTween completes before
-updating the customer's appearance.
+updating the creature's appearance.
 """
 func unemote() -> void:
 	stop()
@@ -105,15 +105,15 @@ func unemote() -> void:
 				UNEMOTE_DURATION)
 		$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
 				Global.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
-	$"..".head_bob_mode = Customer.HeadBobMode.BOB
-	$"..".head_motion_pixels = Customer.HEAD_BOB_PIXELS
-	$"..".head_motion_seconds = Customer.HEAD_BOB_SECONDS
+	$"..".head_bob_mode = Creature.HeadBobMode.BOB
+	$"..".head_motion_pixels = Creature.HEAD_BOB_PIXELS
+	$"..".head_motion_seconds = Creature.HEAD_BOB_SECONDS
 	$ResetTween.start()
 	_prev_mood = ChatEvent.Mood.DEFAULT
 
 
 """
-Immediately resets the customer to a default neutral mood.
+Immediately resets the creature to a default neutral mood.
 
 This takes place immediately, callers do not need to wait for $ResetTween.
 """
@@ -126,18 +126,18 @@ func unemote_immediate() -> void:
 	for emote_sprite in _emote_sprites:
 		emote_sprite.rotation_degrees = 0
 		emote_sprite.modulate = Color.transparent
-	$"..".head_bob_mode = Customer.HeadBobMode.BOB
-	$"..".head_motion_pixels = Customer.HEAD_BOB_PIXELS
-	$"..".head_motion_seconds = Customer.HEAD_BOB_SECONDS
+	$"..".head_bob_mode = Creature.HeadBobMode.BOB
+	$"..".head_motion_pixels = Creature.HEAD_BOB_PIXELS
+	$"..".head_motion_seconds = Creature.HEAD_BOB_SECONDS
 	_prev_mood = ChatEvent.Mood.DEFAULT
 	_post_unemote()
 
 
 """
-Finishes resetting the customer to a default neutral mood.
+Finishes resetting the creature to a default neutral mood.
 
-The tweens reset most of the customer's appearance, but they don't adjust scale or blendmode. This is to avoid a
-jarring effect if a speech bubble gradually grows to a large side, or if a customer's pink blush swaps to a neon
+The tweens reset most of the creature's appearance, but they don't adjust scale or blendmode. This is to avoid a
+jarring effect if a speech bubble gradually grows to a large side, or if a creature's pink blush swaps to a neon
 green.
 """
 func _post_unemote() -> void:
@@ -161,7 +161,7 @@ Function for transitioning from laugh1 mood to laugh0 mood.
 """
 func _transition_laugh1_laugh0() -> void:
 	var emote_sprite := $"../Sprites/Neck0/Neck1/EmoteBrain"
-	$"..".head_bob_mode = Customer.HeadBobMode.BOB
+	$"..".head_bob_mode = Creature.HeadBobMode.BOB
 	$ResetTween.remove_all()
 	$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate, Color.transparent,
 			UNEMOTE_DURATION)

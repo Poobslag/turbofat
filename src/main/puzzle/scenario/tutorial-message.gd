@@ -26,10 +26,10 @@ var DEFAULT_PAUSE := 0.05
 var _text_speed := 2.0
 
 # huge font used for easter eggs
-var _huge_font := preload("res://assets/ui/blogger-sans-bold-72.tres")
+var _huge_font := preload("res://src/main/ui/blogger-sans-bold-72.tres")
 
 # normal font used for regular dialog
-var _normal_font := preload("res://assets/ui/blogger-sans-medium-30.tres")
+var _normal_font := preload("res://src/main/ui/blogger-sans-medium-30.tres")
 
 # stores pauses for each index in the text message.
 var _pauses := {}

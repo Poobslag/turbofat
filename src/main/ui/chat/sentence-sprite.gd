@@ -17,10 +17,10 @@ var _total_time := 0.0
 
 # Bigger chat windows are displayed using bigger textures
 onready var _sentence_textures := {
-	ChatAppearance.SENTENCE_SMALL: preload("res://assets/ui/chat/window-small-sheet.png"),
-	ChatAppearance.SENTENCE_MEDIUM: preload("res://assets/ui/chat/window-medium-sheet.png"),
-	ChatAppearance.SENTENCE_LARGE: preload("res://assets/ui/chat/window-large-sheet.png"),
-	ChatAppearance.SENTENCE_XL: preload("res://assets/ui/chat/window-extra-large-sheet.png")
+	ChatAppearance.SENTENCE_SMALL: preload("res://assets/main/ui/chat/window-small-sheet.png"),
+	ChatAppearance.SENTENCE_MEDIUM: preload("res://assets/main/ui/chat/window-medium-sheet.png"),
+	ChatAppearance.SENTENCE_LARGE: preload("res://assets/main/ui/chat/window-large-sheet.png"),
+	ChatAppearance.SENTENCE_XL: preload("res://assets/main/ui/chat/window-extra-large-sheet.png")
 }
 
 # Background textures which scroll behind the chat window
@@ -28,7 +28,7 @@ var _accent_textures := []
 
 func _ready() -> void:
 	for i in range(CHAT_TEXTURE_COUNT):
-		var path := "res://assets/ui/chat/texture/bg%02d.png" % i
+		var path := "res://assets/main/ui/chat/texture/bg%02d.png" % i
 		_accent_textures.append(load(path))
 
 func _process(delta: float) -> void:

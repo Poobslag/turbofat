@@ -34,11 +34,11 @@ Prepares a game over message to show to the player.
 The message is littered with lull characters, '/', which are hidden from the player but result in a brief pause when
 displayed.
 """
-func show_results_message(rank_result: RankResult, customer_scores: Array, finish_condition_type: int) -> void:
+func show_results_message(rank_result: RankResult, creature_scores: Array, finish_condition_type: int) -> void:
 	# Generate post-game message with stats, grades, and a gameplay hint
 	var text := "//////////"
-	text = _append_customer_scores(rank_result, customer_scores, finish_condition_type, text)
-	text = _append_grade_information(rank_result, customer_scores, finish_condition_type, text)
+	text = _append_creature_scores(rank_result, creature_scores, finish_condition_type, text)
+	text = _append_grade_information(rank_result, creature_scores, finish_condition_type, text)
 	text += "//////////\n"
 	text += "Hint: %s\n" % HINTS[randi() % HINTS.size()]
 	
@@ -48,16 +48,16 @@ func show_results_message(rank_result: RankResult, customer_scores: Array, finis
 	$MoneyLabel.set_shown_money(PlayerData.money - rank_result.score)
 
 
-func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
+func _append_creature_scores(rank_result: RankResult, creature_scores: Array, \
 		finish_condition_type: int, text: String) -> String:
-	# Append customer scores
-	for i in range(customer_scores.size()):
-		var customer_score: int = customer_scores[i]
-		if customer_score == 0:
-			# last entry in customer_score is always 0; ignore it
+	# Append creature scores
+	for i in range(creature_scores.size()):
+		var creature_score: int = creature_scores[i]
+		if creature_score == 0:
+			# last entry in creature_score is always 0; ignore it
 			continue
-		var left := "Customer #%s " % StringUtils.comma_sep(i + 1)
-		var right := "¥%s/\n" % StringUtils.comma_sep(customer_score)
+		var left := "Creature #%s " % StringUtils.comma_sep(i + 1)
+		var right := "¥%s/\n" % StringUtils.comma_sep(creature_score)
 		var middle := ""
 		var period_count := 50 - _period_count(left + right)
 		for _p in range(period_count):
@@ -67,7 +67,7 @@ func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
 	return text
 
 
-func _append_grade_information(rank_result: RankResult, customer_scores: Array, \
+func _append_grade_information(rank_result: RankResult, creature_scores: Array, \
 		finish_condition_type: int, text: String) -> String:
 	# We add a '?' to make the player aware if their rank is adjusted because they topped out or lost.
 	var topped_out := ""
@@ -135,13 +135,13 @@ func _on_Puzzle_after_game_ended() -> void:
 	if not rank_result or Global.scenario_settings.rank.skip_results:
 		return
 	
-	var customer_scores: Array = PuzzleScore.customer_scores
+	var creature_scores: Array = PuzzleScore.creature_scores
 	var finish_condition_type := Global.scenario_settings.finish_condition.type
 	
-	show_results_message(rank_result, customer_scores, finish_condition_type)
+	show_results_message(rank_result, creature_scores, finish_condition_type)
 
 
 func _on_ResultsLabel_text_shown(new_text: String) -> void:
-	if new_text.begins_with("Customer #"):
+	if new_text.begins_with("Creature #"):
 		var amount := int(StringUtils.substring_after_last(new_text, "¥").replace(",", ""))
 		$MoneyLabel.set_shown_money($MoneyLabel.shown_money + amount)

@@ -80,19 +80,19 @@ _global_script_classes=[ {
 "path": "res://src/main/connect.gd"
 }, {
 "base": "Node2D",
-"class": "Customer",
+"class": "Creature",
 "language": "GDScript",
-"path": "res://src/main/world/restaurant/customer.gd"
+"path": "res://src/main/world/restaurant/creature.gd"
 }, {
 "base": "KinematicBody",
-"class": "Customer3D",
+"class": "Creature3D",
 "language": "GDScript",
-"path": "res://src/main/world/customer-3d.gd"
+"path": "res://src/main/world/creature-3d.gd"
 }, {
 "base": "Reference",
-"class": "CustomerLoader",
+"class": "CreatureLoader",
 "language": "GDScript",
-"path": "res://src/main/world/restaurant/customer-loader.gd"
+"path": "res://src/main/world/restaurant/creature-loader.gd"
 }, {
 "base": "Control",
 "class": "EditorPlayfield",
@@ -182,7 +182,7 @@ _global_script_classes=[ {
 "base": "GridMap",
 "class": "OverworldGridMap",
 "language": "GDScript",
-"path": "res://src/main/environment/overworld-grid-map.gd"
+"path": "res://src/main/world/environment/overworld-grid-map.gd"
 }, {
 "base": "Control",
 "class": "OverworldUi",
@@ -279,7 +279,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/score-rules.gd"
 }, {
-"base": "Label",
+"base": "RectFitLabel",
 "class": "SentenceLabel",
 "language": "GDScript",
 "path": "res://src/main/ui/chat/sentence-label.gd"
@@ -294,7 +294,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/restaurant/smooth-path.gd"
 }, {
-"base": "Customer3D",
+"base": "Creature3D",
 "class": "Spira",
 "language": "GDScript",
 "path": "res://src/main/world/spira.gd"
@@ -339,9 +339,9 @@ _global_script_class_icons={
 "ComboBreakRules": "",
 "ComboTracker": "",
 "Connect": "",
-"Customer": "",
-"Customer3D": "",
-"CustomerLoader": "",
+"Creature": "",
+"Creature3D": "",
+"CreatureLoader": "",
 "EditorPlayfield": "",
 "FontFitLabel": "",
 "FreshnessInspector": "",
@@ -394,12 +394,12 @@ _global_script_class_icons={
 
 config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
-config/icon="res://assets/ui/icon.png"
+config/icon="res://assets/main/ui/icon.png"
 config/version="0.0600"
 
 [audio]
 
-default_bus_layout="res://assets/ui/default_bus_layout.tres"
+default_bus_layout="res://src/main/ui/default_bus_layout.tres"
 
 [autoload]
 

@@ -12,7 +12,7 @@ func before_each() -> void:
 	PlayerData.reset()
 	
 	var dir := Directory.new()
-	dir.copy("res://src/test/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
+	dir.copy("res://assets/test/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
 	PlayerSave.load_player_data()
 
 

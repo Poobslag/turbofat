@@ -1,11 +1,13 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
-[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/main/ui/xolonium-24.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/main/ui/menu/settings-menu.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/VolumeSetting.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=7]
+
+
 
 [node name="SettingsMenu" type="CanvasLayer"]
 pause_mode = 2

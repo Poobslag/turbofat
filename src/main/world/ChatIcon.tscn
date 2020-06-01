@@ -1,8 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/world/chat-icon-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/chat-icon-sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/main/world/chat-icon.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/chat-icon-mesh.gd" type="Script" id=3]
+
 
 [sub_resource type="Animation" id=1]
 resource_name = "pulse"

@@ -6,7 +6,7 @@ Scores are separated by mode and difficulty. We also keep daily scores separate.
 """
 
 # font to use for table cells
-var _cell_font := preload("res://assets/ui/xolonium-16.tres")
+var _cell_font := preload("res://src/main/ui/xolonium-16.tres")
 
 # scenario to display high scores for
 var _scenario: ScenarioSettings setget set_scenario
