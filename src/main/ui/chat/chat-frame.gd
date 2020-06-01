@@ -17,7 +17,7 @@ var _popped_in := false
 var _squished := false
 
 func _ready() -> void:
-	$SentenceManager.hide_labels()
+	$SentenceLabel.hide_message()
 	$SentenceSprite/NametagManager.hide_labels()
 
 
@@ -29,7 +29,7 @@ func pop_in() -> void:
 		# chat window is already popped in
 		return
 	_popped_in = true
-	$SentenceManager.hide_labels()
+	$SentenceLabel.hide_message()
 	$SentenceSprite/NametagManager.hide_labels()
 	$Tween.pop_in()
 	$PopInSound.play()
@@ -54,7 +54,7 @@ Also updates the chat UI's appearance based on the amount of text being displaye
 background texture.
 """
 func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool) -> void:
-	if not $SentenceManager.label_showing():
+	if not $SentenceLabel.visible:
 		# Ensure the chat window is showing before we start changing its text and playing sounds
 		pop_in()
 	
@@ -67,46 +67,45 @@ func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool)
 			$Tween.unsquish()
 		_squished = squished
 	
-	# set the text and update the stored size fields
-	$SentenceManager.set_text(chat_event.text)
+	var chat_appearance := ChatAppearance.new(chat_event.accent_def)
+	
+	# set the text and calculate how big of a frame we need
+	var sentence_size: int = $SentenceLabel.show_message(chat_event.text, 0.5)
 	$SentenceSprite/NametagManager.set_nametag_text(chat_event.who)
 	
 	# update the UI's appearance
-	var chat_appearance := ChatAppearance.new(chat_event.accent_def)
-	$SentenceManager.hide_labels()
-	$SentenceSprite/NametagManager.hide_labels()
-	$SentenceManager.show_label(chat_appearance, 0.5)
-	$SentenceSprite/NametagManager.show_label(chat_appearance, nametag_right, $SentenceManager.sentence_size)
-	$SentenceSprite.update_appearance(chat_appearance, $SentenceManager.sentence_size)
+	$SentenceSprite/NametagManager.show_label(chat_appearance, nametag_right, sentence_size)
+	$SentenceLabel.update_appearance(chat_appearance)
+	$SentenceSprite.update_appearance(chat_appearance, sentence_size)
 
 
 func chat_window_showing() -> bool:
-	return $SentenceManager.label_showing()
+	return $SentenceLabel.visible
 
 
 func is_all_text_visible() -> bool:
-	return $SentenceManager.is_all_text_visible()
+	return $SentenceLabel.is_all_text_visible()
 
 
 func make_all_text_visible() -> void:
-	$SentenceManager.make_all_text_visible()
+	$SentenceLabel.make_all_text_visible()
 
 
 """
 Returns the size of the sentence window needed to display the sentence text.
 """
 func get_sentence_size() -> int:
-	return $SentenceManager.sentence_size
+	return $SentenceLabel.chosen_size_index
 
 
 func _on_Tween_pop_out_completed() -> void:
-	# Call sentenceManager.hide_labels() to prevent sounds from playing
-	$SentenceManager.hide_labels()
+	# Hide label to prevent sounds from playing
+	$SentenceLabel.hide_message()
 	$SentenceSprite/NametagManager.hide_labels()
 	emit_signal("pop_out_completed")
 
 
-func _on_SentenceManager_all_text_shown() -> void:
+func _on_SentenceLabel_all_text_shown() -> void:
 	emit_signal("all_text_shown")
 
 

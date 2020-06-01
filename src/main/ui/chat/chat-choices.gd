@@ -35,13 +35,13 @@ Parameters:
 """
 func reposition(sentence_size: int) -> void:
 	match(sentence_size):
-		ChatAppearance.SentenceSize.SMALL:
+		ChatAppearance.SENTENCE_SMALL:
 			rect_position = Vector2(659, 355)
 			rect_size = Vector2(325, 240)
-		ChatAppearance.SentenceSize.MEDIUM, ChatAppearance.SentenceSize.LARGE:
+		ChatAppearance.SENTENCE_MEDIUM, ChatAppearance.SENTENCE_LARGE:
 			rect_position = Vector2(729, 355)
 			rect_size = Vector2(280, 240)
-		ChatAppearance.SentenceSize.EXTRA_LARGE:
+		ChatAppearance.SENTENCE_XL:
 			rect_position = Vector2(819, 355)
 			rect_size = Vector2(200, 240)
 

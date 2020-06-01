@@ -1,8 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/ui/chat/nametag-manager.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/chat/sentence-label.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/chat/sentence-manager.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/chat/chat-frame.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/chat/chat-frame-tween.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/chat/sentence-sprite.gd" type="Script" id=6]
@@ -33,6 +32,7 @@ shader_param/accent_texture = ExtResource( 10 )
 [node name="ChatFrame" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 400.0
 rect_pivot_offset = Vector2( 362, 79 )
 script = ExtResource( 4 )
 __meta__ = {
@@ -171,18 +171,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SentenceManager" type="Control" parent="."]
-margin_right = 1024.0
-margin_bottom = 200.0
-rect_pivot_offset = Vector2( 512, 100 )
-size_flags_horizontal = 3
-size_flags_vertical = 3
-script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Small" type="Label" parent="SentenceManager"]
+[node name="SentenceLabel" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -202,71 +191,9 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+sizes = [ Vector2( 360, 80 ), Vector2( 540, 80 ), Vector2( 540, 120 ), Vector2( 720, 120 ) ]
 
-[node name="Medium" type="Label" parent="SentenceManager"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -270.0
-margin_top = -40.0
-margin_right = 270.0
-margin_bottom = 40.0
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
-align = 1
-valign = 1
-autowrap = true
-max_lines_visible = 2
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Large" type="Label" parent="SentenceManager"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -270.0
-margin_top = -58.5
-margin_right = 270.0
-margin_bottom = 58.5
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
-align = 1
-valign = 1
-autowrap = true
-max_lines_visible = 3
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ExtraLarge" type="Label" parent="SentenceManager"]
-visible = false
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -360.0
-margin_top = -60.0002
-margin_right = 360.0
-margin_bottom = 60.0002
-custom_fonts/font = ExtResource( 7 )
-custom_colors/font_color = Color( 0.25098, 0.25098, 0.376471, 1 )
-align = 1
-valign = 1
-autowrap = true
-max_lines_visible = 3
-script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="BebebeSound" type="AudioStreamPlayer" parent="SentenceManager"]
+[node name="BebebeSound" type="AudioStreamPlayer" parent="SentenceLabel"]
 stream = ExtResource( 13 )
 volume_db = -12.0
 bus = "Sound Bus"
@@ -282,4 +209,4 @@ volume_db = -14.0
 bus = "Sound Bus"
 [connection signal="pop_out_completed" from="Tween" to="." method="_on_Tween_pop_out_completed"]
 [connection signal="tween_completed" from="Tween" to="Tween" method="_on_tween_completed"]
-[connection signal="all_text_shown" from="SentenceManager" to="." method="_on_SentenceManager_all_text_shown"]
+[connection signal="all_text_shown" from="SentenceLabel" to="." method="_on_SentenceLabel_all_text_shown"]

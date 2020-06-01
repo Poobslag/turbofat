@@ -8,16 +8,9 @@ signal pop_out_completed
 # the size the chat shrinks to when it disappears
 const POP_OUT_SCALE := Vector2(0.5, 0.5)
 
-# how far the chat window should slide over when prompting the player
-const SQUISH_OFFSET := Vector2(-100, 0)
-
-onready var _chat_frame := get_parent()
+onready var _chat_frame: Control = get_parent()
 onready var _sentence_sprite := $"../SentenceSprite"
-onready var _sentence_manager := $"../SentenceManager"
-
-# original sprite positions; stored to slide the chat window when prompting the player
-onready var _default_sentence_sprite_pos: Vector2 = _sentence_sprite.position
-onready var _default_manager_pos: Vector2 = _sentence_manager.rect_position
+onready var _sentence_label := $"../SentenceLabel"
 
 func _ready() -> void:
 	_reset_chat_frame()
@@ -71,17 +64,9 @@ func _reset_chat_frame() -> void:
 Squishes/unsquishes the chat window when prompting the player.
 """
 func _interpolate_squish(squished: bool) -> void:
-	remove(_sentence_sprite, "position")
-	remove(_sentence_manager, "rect_position")
-	var sprite_pos := _default_sentence_sprite_pos
-	var manager_pos := _default_manager_pos
-	if squished:
-		sprite_pos += SQUISH_OFFSET
-		manager_pos += SQUISH_OFFSET
-	interpolate_property(_sentence_sprite, "position", _sentence_sprite.position,
-			sprite_pos, 0.2, Tween.TRANS_CIRC, Tween.EASE_OUT)
-	interpolate_property(_sentence_manager, "rect_position", _sentence_manager.rect_position,
-			manager_pos, 0.2, Tween.TRANS_CIRC, Tween.EASE_OUT)
+	remove(_chat_frame, "rect_position:x")
+	interpolate_property(_chat_frame, "rect_position:x", _chat_frame.rect_position.x,
+			-100 if squished else 0, 0.2, Tween.TRANS_CIRC, Tween.EASE_OUT)
 
 
 """
