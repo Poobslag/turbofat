@@ -17,10 +17,10 @@ var _total_time := 0.0
 
 # Bigger chat windows are displayed using bigger textures
 onready var _sentence_textures := {
-	ChatAppearance.SentenceSize.SMALL: preload("res://assets/ui/chat/window-small-sheet.png"),
-	ChatAppearance.SentenceSize.MEDIUM: preload("res://assets/ui/chat/window-medium-sheet.png"),
-	ChatAppearance.SentenceSize.LARGE: preload("res://assets/ui/chat/window-large-sheet.png"),
-	ChatAppearance.SentenceSize.EXTRA_LARGE: preload("res://assets/ui/chat/window-extra-large-sheet.png")
+	ChatAppearance.SENTENCE_SMALL: preload("res://assets/ui/chat/window-small-sheet.png"),
+	ChatAppearance.SENTENCE_MEDIUM: preload("res://assets/ui/chat/window-medium-sheet.png"),
+	ChatAppearance.SENTENCE_LARGE: preload("res://assets/ui/chat/window-large-sheet.png"),
+	ChatAppearance.SENTENCE_XL: preload("res://assets/ui/chat/window-extra-large-sheet.png")
 }
 
 # Background textures which scroll behind the chat window

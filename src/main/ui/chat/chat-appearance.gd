@@ -10,16 +10,28 @@ enum NametagSize {
 	SMALL, # 1-10 characters, approximately
 	MEDIUM,  # 11-20 characters, approximately
 	LARGE,  # 21-30 characters, approximately
-	EXTRA_LARGE,  # 31-60 characters, approximately
-	EXTRA_EXTRA_LARGE  # 61-90 characters, approximately
+	XL,  # 31-60 characters, approximately
+	XXL  # 61-90 characters, approximately
 }
 
 enum SentenceSize {
 	SMALL, # 1-2 lines at 50% capacity
 	MEDIUM, # 2 lines at 75% capacity
 	LARGE, # 3 lines at 75% capacity
-	EXTRA_LARGE # 3 lines at 100% capacity
+	XL # 3 lines at 100% capacity
 }
+
+const SENTENCE_SMALL := SentenceSize.SMALL
+const SENTENCE_MEDIUM := SentenceSize.MEDIUM
+const SENTENCE_LARGE := SentenceSize.LARGE
+const SENTENCE_XL := SentenceSize.XL
+
+const NAMETAG_OFF := NametagSize.SMALL
+const NAMETAG_SMALL := NametagSize.SMALL
+const NAMETAG_MEDIUM := NametagSize.MEDIUM
+const NAMETAG_LARGE := NametagSize.LARGE
+const NAMETAG_XL := NametagSize.XL
+const NAMETAG_XXL := NametagSize.XXL
 
 var accent_color: Color
 var accent_scale: float

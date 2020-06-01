@@ -11,6 +11,8 @@ const FONT_GAP := 3
 # Different fonts to try. Should be ordered from largest to smallest.
 export(Array, Font) var fonts := [] setget set_fonts
 
+var chosen_font_index := -1 setget set_chosen_font_index
+
 func _ready() -> void:
 	connect("resized", self, "_on_resized")
 	pick_largest_font()
@@ -27,16 +29,22 @@ If the label's text is modified this should be called manually. This class canno
 set_text because of Godot #29390 (https://github.com/godotengine/godot/issues/29390)
 """
 func pick_largest_font() -> void:
-	if not fonts:
-		return
-	
-	for font in fonts:
+	for i in range(fonts.size()):
 		# start with the largest font, and try smaller and smaller fonts
-		max_lines_visible = (rect_size.y + FONT_GAP) / (font.get_height() + FONT_GAP)
-		set("custom_fonts/font", font)
-		if get_line_count() <= max_lines_visible:
+		set_chosen_font_index(i)
+		if _lines_fit():
 			# this font is small enough to accommodate all of the text
 			break
+
+
+func set_chosen_font_index(new_index: int) -> void:
+	chosen_font_index = new_index
+	set("custom_fonts/font", fonts[chosen_font_index])
+
+
+func _lines_fit() -> bool:
+	max_lines_visible = (rect_size.y + FONT_GAP) / (get("custom_fonts/font").get_height() + FONT_GAP)
+	return get_line_count() <= max_lines_visible
 
 
 func set_fonts(new_fonts: Array) -> void:
