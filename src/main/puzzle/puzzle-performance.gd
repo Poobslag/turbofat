@@ -1,7 +1,7 @@
-class_name ScenarioPerformance
+class_name PuzzlePerformance
 """
-Stores persistent statistics for how well the player performed a scenario. This includes how long they survived, how
-many lines they cleared, and their score.
+Stores persistent statistics for how the did during a puzzle. This includes how long they survived, how many lines
+they cleared, and their score.
 """
 
 # number of seconds until the player won or lost

@@ -11,10 +11,10 @@ time limit, and any other special rules.
 const SCENARIO_DATA_VERSION := "15d2"
 
 # Blocks/boxes which begin on the playfield.
-var blocks_start := BlocksStart.new()
+var blocks_start := BlocksStartRules.new()
 
 # Blocks/boxes which appear or disappear while the game is going on.
-var blocks_during := BlocksDuring.new()
+var blocks_during := BlocksDuringRules.new()
 
 # Things that disrupt the player's combo.
 var combo_break := ComboBreakRules.new()

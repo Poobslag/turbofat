@@ -10,13 +10,15 @@ signal start_button_pressed
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
+	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
+	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
 	$MessageLabel.hide()
 	# grab focus so the player can start a new game or navigate with the keyboard
 	$StartGameButton.grab_focus()
 	
-	if Global.overworld_puzzle:
+	if Scenario.overworld_puzzle:
 		$BackButton.text = "Quit"
-	if Global.scenario_settings.other.tutorial:
+	if Scenario.settings.other.tutorial:
 		$BackButton.hide()
 
 
@@ -27,14 +29,6 @@ func hide_start_button() -> void:
 func show_start_button() -> void:
 	$StartGameButton.show()
 	$StartGameButton.grab_focus()
-
-
-"""
-Shows a detailed multi-line message, like how the game is controlled
-"""
-func show_detail_message(text: String) -> void:
-	$DetailMessageLabel.show()
-	$DetailMessageLabel.text = text
 
 
 """
@@ -62,18 +56,31 @@ func _on_StartGameButton_pressed() -> void:
 
 func _on_PuzzleScore_game_prepared() -> void:
 	_hide_buttons_and_messages()
+	show_message("Ready?")
 
 
 func _on_PuzzleScore_game_started() -> void:
 	_hide_buttons_and_messages()
 
 
+func _on_PuzzleScore_game_ended() -> void:
+	var message: String
+	match PuzzleScore.end_result():
+		PuzzleScore.LOST:
+			message = "Game over"
+		PuzzleScore.FINISHED:
+			message = "Finish!"
+		PuzzleScore.WON:
+			message = "You win!"
+	show_message(message)
+
+
 """
 Restores the HUD elements after the player wins or loses.
 """
-func _on_Puzzle_after_game_ended() -> void:
+func _on_PuzzleScore_after_game_ended() -> void:
 	$MessageLabel.hide()
-	if Global.scenario_settings.other.tutorial or Global.scenario_settings.other.after_tutorial:
+	if Scenario.settings.other.tutorial or Scenario.settings.other.after_tutorial:
 		if PuzzleScore.scenario_performance.lost:
 			# if they lost/gave up, make them retry
 			$StartGameButton.show()
@@ -84,7 +91,7 @@ func _on_Puzzle_after_game_ended() -> void:
 			$BackButton.grab_focus()
 	else:
 		$BackButton.show()
-		if Global.overworld_puzzle:
+		if Scenario.overworld_puzzle:
 			# player can't restart a level if a creature asked them to do it, for thematic reasons
 			$BackButton.grab_focus()
 		else:

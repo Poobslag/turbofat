@@ -3,10 +3,10 @@ class_name PieceTypeRules
 Pieces the player is given.
 """
 
-# pieces the player is given at the start of a level (shuffled)
+# pieces to prepend to the piece queue before a game begins. these pieces are shuffled
 var start_types: Array = []
 
-# pieces the player is given during a level
+# piece types to choose from. if empty, reverts to the default 8 types (jlopqtuv)
 var types: Array = []
 
 func from_json_string_array(json: Array) -> void:

@@ -1,4 +1,4 @@
-class_name BlocksDuring
+class_name BlocksDuringRules
 """
 Blocks/boxes which appear or disappear while the game is going on.
 """

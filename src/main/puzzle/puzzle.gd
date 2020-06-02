@@ -5,32 +5,26 @@ Represents a minimal puzzle game with a piece, playfield of pieces, and next pie
 class to add goals, win conditions, challenges or time limits.
 """
 
-# emitted a few seconds after the game ends, for displaying messages
-signal after_game_ended
-
 signal topped_out
 
-onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
-
 func _ready() -> void:
-	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
+	PuzzleScore.reset() # erase any lines/score from previous games
+	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
 	for i in range(3):
 		$CreatureView.summon_creature(i)
-
-
-func _input(event: InputEvent) -> void:
-	if PuzzleScore.game_active and event.is_action_pressed("ui_cancel"):
-		$TopOutTracker.make_player_lose()
+	
+	if Scenario.settings.other.tutorial:
+		Global.creature_queue.push_front({
+			"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
+			"ear": "2", "horn": "0", "mouth": "1", "eye": "1"
+		})
+	$CreatureView.summon_creature()
 
 
 func get_playfield() -> Playfield:
 	return $Playfield as Playfield
-
-
-func get_next_piece_displays() -> NextPieceDisplays:
-	return $NextPieceDisplays as NextPieceDisplays
 
 
 func get_piece_manager() -> PieceManager:
@@ -43,85 +37,6 @@ func hide_start_button() -> void:
 
 func show_start_button() -> void:
 	$HudHolder/Hud.show_start_button()
-
-
-"""
-Shows a detailed multi-line message, like how the game is controlled
-"""
-func show_detail_message(text: String) -> void:
-	$HudHolder/Hud.show_detail_message(text)
-
-
-"""
-Shows a succinct single-line message, like 'Game Over'
-"""
-func show_message(text: String) -> void:
-	$HudHolder/Hud.show_message(text)
-
-
-func start_game() -> void:
-	PuzzleScore.prepare_game()
-	show_message("3")
-	$ReadySound.play()
-	yield(get_tree().create_timer(0.8), "timeout")
-	show_message("2")
-	$ReadySound.play()
-	yield(get_tree().create_timer(0.8), "timeout")
-	show_message("1")
-	$ReadySound.play()
-	yield(get_tree().create_timer(0.8), "timeout")
-	$GoSound.play()
-	_go_voices[randi() % _go_voices.size()].play()
-	PuzzleScore.start_game()
-
-
-"""
-Ends the game. This occurs when the player loses, wins, or runs out of time.
-"""
-func end_game() -> void:
-	var delay: int = 2.2
-	var message: String
-	var sound: AudioStreamPlayer
-	if PuzzleScore.scenario_performance.lost:
-		sound = $GameOverSound
-		message = "Game over"
-	elif not PuzzleScore.milestone_met(Global.scenario_settings.success_condition):
-		sound = $MatchEndSound
-		message = "Finish!"
-	else:
-		sound = $ExcellentSound
-		message = "You win!"
-		delay = 4.2
-	
-	sound.play()
-	PuzzleScore.end_game()
-	show_message(message)
-	yield(get_tree().create_timer(delay), "timeout")
-	emit_signal("after_game_ended")
-
-
-func get_milestone_hud() -> MilestoneHud:
-	return $Chalkboard/MilestoneHud as MilestoneHud
-
-
-func set_chalkboard_visible(visible: bool) -> void:
-	$Chalkboard.visible = visible
-
-
-func clear_playfield() -> void:
-	$Playfield.clear()
-
-
-func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
-	$Playfield.set_block(pos, tile, autotile_coord)
-
-
-func set_piece_types(types: Array) -> void:
-	$NextPieceDisplays.set_piece_types(types)
-
-
-func set_piece_start_types(types: Array) -> void:
-	$NextPieceDisplays.set_piece_start_types(types)
 
 
 func scroll_to_new_creature() -> void:
@@ -145,14 +60,14 @@ func _feed_creature(fatness_pct: float) -> void:
 	if PuzzleScore.game_active:
 		var old_fatness: float = $CreatureView.get_fatness()
 		var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
-		if Global.scenario_settings.other.tutorial:
+		if Scenario.settings.other.tutorial:
 			# make them a tiny amount fatter, so that they'll change when a new level is started
 			target_fatness = min(target_fatness, 1.001)
 		$CreatureView.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
 
 
 func _on_Hud_start_button_pressed() -> void:
-	start_game()
+	PuzzleScore.prepare_and_start_game()
 
 
 """
@@ -174,7 +89,20 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 		$CreatureView/SceneClip/CreatureSwitcher/Scene.play_combo_voice()
 
 
-func _on_PuzzleScore_combo_ended() -> void:
-	if PuzzleScore.game_active and not Global.scenario_settings.other.tutorial:
-		$CreatureView.play_goodbye_voice()
-		$CreatureView.scroll_to_new_creature()
+"""
+Method invoked when the game ends. Stores the rank result for later.
+"""
+func _on_PuzzleScore_game_ended() -> void:
+	# ensure score is up to date before calculating rank
+	PuzzleScore.end_combo()
+	var rank_result := RankCalculator.new().calculate_rank()
+	PlayerData.scenario_history.add(Scenario.launched_scenario_name, rank_result)
+	PlayerData.scenario_history.prune(Scenario.launched_scenario_name)
+	PlayerData.money += rank_result.score
+	PlayerSave.save_player_data()
+	
+	match Scenario.settings.finish_condition.type:
+		Milestone.SCORE:
+			if not PuzzleScore.scenario_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
+		_:
+			if not PuzzleScore.scenario_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()

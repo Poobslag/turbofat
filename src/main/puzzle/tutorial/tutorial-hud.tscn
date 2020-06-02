@@ -1,0 +1,235 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/main/puzzle/tutorial/SkillTallyItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=3]
+[ext_resource path="res://src/main/puzzle/tutorial/tutorial-message.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/tutorial/tutorial-hud.gd" type="Script" id=5]
+[ext_resource path="res://src/main/puzzle/tutorial/tutorial-message-tween.gd" type="Script" id=6]
+[ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-complete.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=8]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.11, 0.89, 0.11, 0.33 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.109804, 0.890196, 0.109804, 0 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.109804, 0.890196, 0.109804, 0 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.11, 0.89, 0.11, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="CanvasItemMaterial" id=3]
+blend_mode = 1
+
+[node name="TutorialHud" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Message" type="RichTextLabel" parent="."]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 345.0
+margin_bottom = 305.0
+rect_pivot_offset = Vector2( 168, 148 )
+custom_styles/normal = ExtResource( 3 )
+custom_fonts/normal_font = ExtResource( 2 )
+scroll_following = true
+script = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BebebeSound" type="AudioStreamPlayer" parent="Message"]
+stream = ExtResource( 8 )
+volume_db = -12.0
+
+[node name="Tween" type="Tween" parent="Message"]
+script = ExtResource( 6 )
+
+[node name="SkillTallyItems" type="Panel" parent="."]
+margin_left = 774.0
+margin_top = 10.0
+margin_right = 1014.0
+margin_bottom = 590.0
+custom_styles/panel = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="GridContainer" type="GridContainer" parent="SkillTallyItems"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -110.0
+margin_top = -168.0
+margin_right = 110.0
+margin_bottom = 168.0
+columns = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoveLeft" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 108.0
+margin_bottom = 64.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 6.0
+puzzle_path = NodePath("../../../..")
+label_text = "Move Left"
+signal_names = [ "moved_left", "das_moved_left", "initial_das_moved_left" ]
+
+[node name="MoveRight" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_left = 112.0
+margin_right = 220.0
+margin_bottom = 64.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 6.0
+puzzle_path = NodePath("../../../..")
+label_text = "Move Right"
+signal_names = [ "moved_right", "das_moved_right", "initial_das_moved_right" ]
+
+[node name="RotateLeft" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_top = 68.0
+margin_right = 108.0
+margin_bottom = 132.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 3.0
+puzzle_path = NodePath("../../../..")
+label_text = "Rotate Left"
+signal_names = [ "rotated_left", "initial_rotated_left" ]
+
+[node name="RotateRight" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_right = 108.0
+margin_bottom = 64.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 3.0
+puzzle_path = NodePath("../../../..")
+label_text = "Rotate Right"
+signal_names = [ "rotated_right", "initial_rotated_right" ]
+
+[node name="SoftDrop" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_top = 136.0
+margin_right = 108.0
+margin_bottom = 200.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 30.0
+show_as_percent = true
+puzzle_path = NodePath("../../../..")
+label_text = "Soft Drop"
+signal_names = [ "soft_dropped" ]
+
+[node name="HardDrop" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_left = 112.0
+margin_right = 220.0
+margin_bottom = 64.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 2.0
+puzzle_path = NodePath("../../../..")
+label_text = "Hard Drop"
+signal_names = [ "hard_dropped" ]
+
+[node name="LineClear" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_left = 112.0
+margin_right = 220.0
+margin_bottom = 64.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 2.0
+puzzle_path = NodePath("../../../..")
+label_text = "Line Clear"
+signal_names = [ "line_cleared" ]
+
+[node name="SnackBox" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_left = 112.0
+margin_top = 204.0
+margin_right = 220.0
+margin_bottom = 268.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 2.0
+puzzle_path = NodePath("../../../..")
+label_text = "Snack Box"
+signal_names = [ "box_made" ]
+
+[node name="SquishMove" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_top = 272.0
+margin_right = 108.0
+margin_bottom = 336.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 2.0
+puzzle_path = NodePath("../../../..")
+label_text = "Squish Move"
+signal_names = [ "squish_moved" ]
+
+[node name="SnackStack" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_left = 112.0
+margin_top = 204.0
+margin_right = 220.0
+margin_bottom = 268.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 2.0
+puzzle_path = NodePath("../../../..")
+label_text = "Snack Stack"
+
+[node name="ZIndex" type="Node2D" parent="."]
+z_index = 30
+z_as_relative = false
+
+[node name="ColorRect" type="ColorRect" parent="ZIndex"]
+modulate = Color( 1, 1, 1, 0 )
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 1024.0
+margin_bottom = 600.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="SectionCompleteSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -4.0
+[connection signal="pop_out_completed" from="Message/Tween" to="Message" method="_on_Tween_pop_out_completed"]
+[connection signal="tween_completed" from="Message/Tween" to="Message/Tween" method="_on_tween_completed"]

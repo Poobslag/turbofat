@@ -53,8 +53,8 @@ var _should_play_line_fall_sound := false
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	$TileMapClip/TileMap.clear()
-	$TileMapClip/TileMap/CornerMap.clear()
+	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
+	_prepare_scenario_blocks()
 
 
 func _physics_process(delta: float) -> void:
@@ -336,6 +336,16 @@ func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_po
 
 
 """
+Resets the playfield to the scenario's initial state.
+"""
+func _prepare_scenario_blocks() -> void:
+	clear()
+	var blocks_start: BlocksStartRules = Scenario.settings.blocks_start
+	for cell in blocks_start.used_cells:
+		set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
+
+
+"""
 Marks any full lines in the playfield to be cleared later.
 """
 func _schedule_full_row_line_clears() -> void:
@@ -439,5 +449,8 @@ func _set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO)
 Clears the playfield.
 """
 func _on_PuzzleScore_game_prepared() -> void:
-	$TileMapClip/TileMap.clear()
-	$TileMapClip/TileMap/CornerMap.clear()
+	_prepare_scenario_blocks()
+
+
+func _on_Scenario_settings_changed() -> void:
+	_prepare_scenario_blocks()

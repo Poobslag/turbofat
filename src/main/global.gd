@@ -11,18 +11,8 @@ const NUM_SCANCODES: Dictionary = {
 # Target number of creature greetings (hello, goodbye) per minute
 const GREETINGS_PER_MINUTE := 3.0
 
-# The scenario currently being launched or played
-var scenario_settings := ScenarioSettings.new()
-
-# The scenario which was initially launched. Some tutorial scenarios transition
-# into other scenarios, so this keeps track of the original.
-var launched_scenario_name
-
 # The creatures who will show up during the next puzzle. The first creature in the queue will show up first.
 var creature_queue := []
-
-# 'true' if launching a puzzle from the overworld. This changes the menus and disallows restarting.
-var overworld_puzzle := false
 
 # Stores all of the benchmarks which have been started
 var _benchmark_start_times := Dictionary()

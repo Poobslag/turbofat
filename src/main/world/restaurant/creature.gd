@@ -281,7 +281,7 @@ Parameter: 'delay' is the delay in seconds before the chime sound plays. The def
 	delay.
 """
 func play_door_chime(delay: float = -1) -> void:
-	if Global.scenario_settings.other.tutorial:
+	if Scenario.settings.other.tutorial:
 		# suppress door chime for tutorials
 		return
 	

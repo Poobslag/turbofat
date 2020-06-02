@@ -15,14 +15,14 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/piece/active-piece.gd"
 }, {
 "base": "Reference",
-"class": "BlocksDuring",
+"class": "BlocksDuringRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/blocks-during.gd"
+"path": "res://src/main/puzzle/scenario/blocks-during-rules.gd"
 }, {
 "base": "Reference",
-"class": "BlocksStart",
+"class": "BlocksStartRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/blocks-start.gd"
+"path": "res://src/main/puzzle/scenario/blocks-start-rules.gd"
 }, {
 "base": "Node",
 "class": "ChatAdvancer",
@@ -142,7 +142,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Milestone",
 "language": "GDScript",
-"path": "res://src/main/puzzle/milestone.gd"
+"path": "res://src/main/puzzle/scenario/milestone.gd"
 }, {
 "base": "Control",
 "class": "MilestoneHud",
@@ -194,7 +194,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/piece-manager.gd"
 }, {
-"base": "Reference",
+"base": "Node",
 "class": "PieceQueue",
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/piece-queue.gd"
@@ -223,6 +223,11 @@ _global_script_classes=[ {
 "class": "Puzzle",
 "language": "GDScript",
 "path": "res://src/main/puzzle/puzzle.gd"
+}, {
+"base": "Reference",
+"class": "PuzzlePerformance",
+"language": "GDScript",
+"path": "res://src/main/puzzle/puzzle-performance.gd"
 }, {
 "base": "TileMap",
 "class": "PuzzleTileMap",
@@ -254,20 +259,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/rule-parser.gd"
 }, {
-"base": "Control",
-"class": "Scenario",
-"language": "GDScript",
-"path": "res://src/main/puzzle/scenario/scenario.gd"
-}, {
 "base": "Reference",
 "class": "ScenarioHistory",
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/scenario-history.gd"
-}, {
-"base": "Reference",
-"class": "ScenarioPerformance",
-"language": "GDScript",
-"path": "res://src/main/puzzle/scenario/scenario-performance.gd"
 }, {
 "base": "Reference",
 "class": "ScenarioSettings",
@@ -312,12 +307,12 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "TutorialHud",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/tutorial-hud.gd"
+"path": "res://src/main/puzzle/tutorial/tutorial-hud.gd"
 }, {
 "base": "RichTextLabel",
 "class": "TutorialMessage",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/tutorial-message.gd"
+"path": "res://src/main/puzzle/tutorial/tutorial-message.gd"
 }, {
 "base": "Reference",
 "class": "VolumeSettings",
@@ -326,8 +321,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "ActivePiece": "",
-"BlocksDuring": "",
-"BlocksStart": "",
+"BlocksDuringRules": "",
+"BlocksStartRules": "",
 "ChatAdvancer": "",
 "ChatAppearance": "",
 "ChatChoiceButton": "",
@@ -368,15 +363,14 @@ _global_script_class_icons={
 "PieceTypeRules": "",
 "Playfield": "",
 "Puzzle": "",
+"PuzzlePerformance": "",
 "PuzzleTileMap": "",
 "RankCalculator": "",
 "RankResult": "",
 "RankRules": "",
 "RectFitLabel": "",
 "RuleParser": "",
-"Scenario": "",
 "ScenarioHistory": "",
-"ScenarioPerformance": "",
 "ScenarioSettings": "",
 "ScoreRules": "",
 "SentenceLabel": "",
@@ -414,7 +408,7 @@ PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"
 PuzzleScore="*res://src/main/puzzle/puzzle-score.gd"
 ResourceCache="*res://src/main/ResourceCache.tscn"
-ScenarioLibrary="*res://src/main/puzzle/scenario/scenario-library.gd"
+Scenario="*res://src/main/puzzle/scenario/scenario.gd"
 StringUtils="*res://src/main/string-utils.gd"
 
 [display]

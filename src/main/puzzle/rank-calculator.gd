@@ -38,10 +38,10 @@ the match, and return the better of the two ranks.
 """
 func calculate_rank() -> RankResult:
 	var rank_result := _unranked_result()
-	if not Global.scenario_settings.rank.unranked:
+	if not Scenario.settings.rank.unranked:
 		_populate_rank_fields(rank_result, false)
 		
-		if Global.scenario_settings.finish_condition.has_meta("lenient_value"):
+		if Scenario.settings.finish_condition.has_meta("lenient_value"):
 			var lenient_rank_result := _unranked_result()
 			_populate_rank_fields(lenient_rank_result, true)
 			rank_result.speed_rank = min(rank_result.speed_rank, lenient_rank_result.speed_rank)
@@ -96,11 +96,11 @@ static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 
 
 func master_box_score() -> float:
-	return Global.scenario_settings.rank.box_factor * MASTER_BOX_SCORE
+	return Scenario.settings.rank.box_factor * MASTER_BOX_SCORE
 
 
 func master_combo_score() -> float:
-	return Global.scenario_settings.rank.combo_factor * MASTER_COMBO_SCORE
+	return Scenario.settings.rank.combo_factor * MASTER_COMBO_SCORE
 
 
 """
@@ -110,16 +110,16 @@ func _max_lpm() -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
 	
-	for i in range(Global.scenario_settings.level_ups.size()):
-		var milestone: Milestone = Global.scenario_settings.level_ups[i]
+	for i in range(Scenario.settings.level_ups.size()):
+		var milestone: Milestone = Scenario.settings.level_ups[i]
 		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("level"))
 		
 		var frames_per_line := min_frames_per_line(piece_speed)
 		
-		var finish_condition: Milestone = Global.scenario_settings.finish_condition
+		var finish_condition: Milestone = Scenario.settings.finish_condition
 		var level_lines := 100
-		if i + 1 < Global.scenario_settings.level_ups.size():
-			var level_up: Milestone = Global.scenario_settings.level_ups[i + 1]
+		if i + 1 < Scenario.settings.level_ups.size():
+			var level_up: Milestone = Scenario.settings.level_ups[i + 1]
 			match level_up.type:
 				Milestone.CUSTOMERS:
 					level_lines = MASTER_COMBO
@@ -148,7 +148,7 @@ This does not include any rank data, only objective information like lines clear
 func _unranked_result() -> RankResult:
 	var rank_result := RankResult.new()
 	
-	if Global.scenario_settings.finish_condition.type == Milestone.SCORE:
+	if Scenario.settings.finish_condition.type == Milestone.SCORE:
 		rank_result.compare = "-seconds"
 
 	# calculate raw player performance statistics
@@ -186,7 +186,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var target_combo_score_per_line := master_combo_score()
 	var target_lines: float
 	
-	var finish_condition: Milestone = Global.scenario_settings.finish_condition
+	var finish_condition: Milestone = Scenario.settings.finish_condition
 	match finish_condition.type:
 		Milestone.CUSTOMERS:
 			target_lines = MASTER_COMBO * finish_condition.value
@@ -238,11 +238,11 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	else:
 		rank_result.score_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	
-	if PuzzleScore.milestone_met(Global.scenario_settings.success_condition):
+	if PuzzleScore.milestone_met(Scenario.settings.success_condition):
 		if rank_result.compare == "-seconds":
-			rank_result.seconds_rank -= Global.scenario_settings.rank.success_bonus
+			rank_result.seconds_rank -= Scenario.settings.rank.success_bonus
 		else:
-			rank_result.score_rank -= Global.scenario_settings.rank.success_bonus
+			rank_result.score_rank -= Scenario.settings.rank.success_bonus
 	
 	_apply_top_out_penalty(rank_result)
 	_clamp_result(rank_result, lenient)
@@ -260,7 +260,8 @@ purpose to achieve a good rank.
 func _apply_top_out_penalty(rank_result: RankResult) -> void:
 	if rank_result.topped_out() or rank_result.lost:
 		var penalty_count := max(1, rank_result.top_out_count)
-		var all_penalty := penalty_count * Global.scenario_settings.rank.top_out_penalty
+		var settings: ScenarioSettings = Scenario.settings
+		var all_penalty := penalty_count * settings.rank.top_out_penalty
 		rank_result.speed_rank = rank_result.speed_rank + all_penalty
 		rank_result.lines_rank = rank_result.lines_rank + all_penalty
 		rank_result.box_score_per_line_rank = rank_result.box_score_per_line_rank + all_penalty

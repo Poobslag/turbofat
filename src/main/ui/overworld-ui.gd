@@ -101,8 +101,8 @@ func _on_ChatUi_pop_out_completed() -> void:
 	
 	if _launched_scenario:
 		InteractableManager.clear()
-		Global.overworld_puzzle = true
-		ScenarioLibrary.push_scenario_trail(_launched_scenario, _scenario_creature_def)
+		Scenario.overworld_puzzle = true
+		Scenario.push_scenario_trail(_launched_scenario, _scenario_creature_def)
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
@@ -120,7 +120,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 			if meta_item.begins_with("scenario-"):
 				scenario = StringUtils.substring_after(meta_item, "scenario-")
 		if scenario:
-			_launched_scenario = ScenarioLibrary.load_scenario_from_name(scenario)
+			_launched_scenario = Scenario.load_scenario_from_name(scenario)
 			if chatters[0].has_method("get_creature_def"):
 				_scenario_creature_def = chatters[0].get_creature_def()
 

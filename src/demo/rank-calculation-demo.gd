@@ -41,7 +41,7 @@ func _ready() -> void:
 		var seconds: float = StringUtils.parse_duration(duration_string)
 		
 		# calculate target lines and score for a fake scenario which resembles the game's scenario
-		Global.scenario_settings = _scenario_settings(data_key, start_level, seconds)
+		Scenario.settings = _scenario_settings(data_key, start_level, seconds)
 		var target_score := _target_score(target_rank)
 		var target_lines := _target_lines(target_rank)
 		
@@ -160,7 +160,7 @@ Binary search for how many lines are needed to achieve the specified line_rank.
 This depends on the current scenario's duration and piece speed.
 """
 func _target_lines(target_rank: int) -> float:
-	Global.scenario_settings.finish_condition.type = Milestone.LINES
+	Scenario.settings.finish_condition.type = Milestone.LINES
 	var min_target_lines := 0
 	var max_target_lines := 5000
 	var rank_result: RankResult

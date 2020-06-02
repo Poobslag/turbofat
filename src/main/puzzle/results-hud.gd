@@ -21,6 +21,7 @@ const HINTS = [
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
 
 
 func hide_results_message() -> void:
@@ -71,36 +72,36 @@ func _append_grade_information(rank_result: RankResult, creature_scores: Array, 
 		finish_condition_type: int, text: String) -> String:
 	# We add a '?' to make the player aware if their rank is adjusted because they topped out or lost.
 	var topped_out := ""
-	if rank_result.topped_out() and Global.scenario_settings.rank.top_out_penalty > 0:
+	if rank_result.topped_out() and Scenario.settings.rank.top_out_penalty > 0:
 		topped_out = "?"
 	
 	text += "/////\n"
 	if finish_condition_type == Milestone.SCORE:
 		text += "Speed: %d" % round(rank_result.speed * 200 / 60)
 		text += topped_out
-		if not Global.scenario_settings.rank.unranked:
+		if not Scenario.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.speed_rank)
 		text += "\n"
 	else:
 		text += "Lines: %d" % rank_result.lines
 		text += topped_out
-		if not Global.scenario_settings.rank.unranked:
+		if not Scenario.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.lines_rank)
 		text += "\n"
 		
 	text += "/////Boxes: %d" % round(rank_result.box_score_per_line * 10)
 	text += topped_out
-	if not Global.scenario_settings.rank.unranked:
+	if not Scenario.settings.rank.unranked:
 		text += " (%s)" % RankCalculator.grade(rank_result.box_score_per_line_rank)
 	text += "\n"
 	
 	text += "/////Combos: %d" % round(rank_result.combo_score_per_line * 10)
 	text += topped_out
-	if not Global.scenario_settings.rank.unranked:
+	if not Scenario.settings.rank.unranked:
 		text += " (%s)" % RankCalculator.grade(rank_result.combo_score_per_line_rank)
 	text += "\n"
 	
-	if not Global.scenario_settings.rank.unranked:
+	if not Scenario.settings.rank.unranked:
 		text += "/////\nOverall: "
 		text += "//////////"
 		if finish_condition_type == Milestone.SCORE:
@@ -130,13 +131,13 @@ func _on_PuzzleScore_game_prepared() -> void:
 	hide_results_message()
 
 
-func _on_Puzzle_after_game_ended() -> void:
-	var rank_result: RankResult = PlayerData.scenario_history.prev_result(Global.scenario_settings.name)
-	if not rank_result or Global.scenario_settings.rank.skip_results:
+func _on_PuzzleScore_after_game_ended() -> void:
+	var rank_result: RankResult = PlayerData.scenario_history.prev_result(Scenario.settings.name)
+	if not rank_result or Scenario.settings.rank.skip_results:
 		return
 	
 	var creature_scores: Array = PuzzleScore.creature_scores
-	var finish_condition_type := Global.scenario_settings.finish_condition.type
+	var finish_condition_type := Scenario.settings.finish_condition.type
 	
 	show_results_message(rank_result, creature_scores, finish_condition_type)
 

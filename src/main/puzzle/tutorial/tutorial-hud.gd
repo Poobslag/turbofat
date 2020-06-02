@@ -4,8 +4,7 @@ extends Control
 UI items specific for puzzle tutorials.
 """
 
-onready var _scenario: Scenario = get_parent()
-onready var _puzzle: Puzzle = $"../Puzzle"
+onready var _puzzle: Puzzle = get_parent()
 onready var _playfield: Playfield = _puzzle.get_playfield()
 onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
@@ -24,9 +23,10 @@ func _ready() -> void:
 	visible = false
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
+	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
 	refresh()
 	
-	if Global.scenario_settings.name.begins_with("tutorial-beginner"):
+	if Scenario.settings.name.begins_with("tutorial-beginner"):
 		_puzzle.hide_start_button()
 		yield(get_tree().create_timer(0.40), "timeout")
 		append_message("Welcome to Turbo Fat!//"
@@ -40,9 +40,12 @@ Shows or hides the tutorial hud based on the current scenario.
 """
 func refresh() -> void:
 	# only visible for tutorial scenarios
-	visible = Global.scenario_settings.other.tutorial or Global.scenario_settings.other.after_tutorial
+	visible = Scenario.settings.other.tutorial or Scenario.settings.other.after_tutorial
 	
-	if Global.scenario_settings.name.begins_with("tutorial-beginner"):
+	for item in $SkillTallyItems/GridContainer.get_children():
+		item.visible = false
+	
+	if Scenario.settings.name.begins_with("tutorial-beginner"):
 		# prepare for the 'tutorial-beginner' tutorial
 		if not _playfield.is_connected("box_made", self, "_on_Playfield_box_made"):
 			_playfield.connect("box_made", self, "_on_Playfield_box_made")
@@ -102,7 +105,7 @@ func _handle_line_clear_message() -> void:
 
 func _handle_squish_move_message() -> void:
 	if _did_squish_move and _squish_moves == 1:
-		match Global.scenario_settings.name:
+		match Scenario.settings.name:
 			"tutorial-beginner-0", "tutorial-beginner-1":
 				append_message("Oh my,/ you're not supposed to know how to do that!\n\n..."
 						+ "But yes,/ squish moves can help you out of a jam.")
@@ -115,7 +118,7 @@ func _handle_squish_move_message() -> void:
 
 func _handle_make_box_message() -> void:
 	if _did_make_box and _boxes_made == 1:
-		match Global.scenario_settings.name:
+		match Scenario.settings.name:
 			"tutorial-beginner-0":
 				append_message("Oh my,/ you're not supposed to know how to do that!\n\n"
 						+ "...But yes,/ those boxes earn $15 when you clear them./"
@@ -128,7 +131,7 @@ func _handle_make_box_message() -> void:
 
 
 func _handle_snack_stack_message() -> void:
-	if Global.scenario_settings.name == "tutorial-beginner-3" and _did_make_box and _did_squish_move:
+	if Scenario.settings.name == "tutorial-beginner-3" and _did_make_box and _did_squish_move:
 		_snack_stacks += 1
 		$SkillTallyItems/GridContainer/SnackStack.increment()
 		if _snack_stacks == 1:
@@ -146,8 +149,8 @@ func _on_Playfield_after_piece_written() -> void:
 	_handle_make_box_message()
 	_handle_snack_stack_message()
 	
-	var scenario_name := Global.scenario_settings.name
-	match Global.scenario_settings.name:
+	var scenario_name := Scenario.settings.name
+	match Scenario.settings.name:
 		"tutorial-beginner-0":
 			if _lines_cleared >= 2: _advance_scenario()
 		"tutorial-beginner-1":
@@ -168,7 +171,7 @@ func _advance_scenario() -> void:
 	# clear out any text to ensure we don't end up pages behind, if the player is fast
 	$Message.hide_text()
 	
-	if Global.scenario_settings.name == "tutorial-beginner-0" and _did_make_box and _did_squish_move:
+	if Scenario.settings.name == "tutorial-beginner-0" and _did_make_box and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
 		_change_scenario("oh-my")
 		append_big_message("O/H/,/// M/Y/!/!/!")
@@ -192,9 +195,9 @@ func _advance_scenario() -> void:
 Change to a new tutorial scenario.
 """
 func _change_scenario(name: String) -> void:
-	Global.scenario_settings = ScenarioLibrary.load_scenario_from_name(name)
-	_scenario.prepare_scenario()
-	$SkillTallyItems.visible = Global.scenario_settings.other.tutorial
+	Scenario.settings = Scenario.load_scenario_from_name(name)
+	
+	$SkillTallyItems.visible = Scenario.settings.other.tutorial
 	_flash()
 	match(name):
 		"tutorial-beginner-1":
@@ -233,6 +236,11 @@ func _on_PuzzleScore_game_prepared() -> void:
 	_boxes_made = 0
 	_squish_moves = 0
 	_snack_stacks = 0
+	refresh()
+
+
+func _on_Scenario_settings_changed() -> void:
+	refresh()
 
 
 func _on_PuzzleScore_game_started() -> void:
