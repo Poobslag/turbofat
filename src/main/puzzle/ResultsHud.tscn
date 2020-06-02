@@ -1,13 +1,17 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=1]
-[ext_resource path="res://assets/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/main/puzzle/results-hud.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/results-label.gd" type="Script" id=4]
-[ext_resource path="res://assets/ui/chat/bebebe.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=5]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/puzzle/money-label-tween.gd" type="Script" id=7]
-[ext_resource path="res://assets/ui/cheat-enable.wav" type="AudioStream" id=8]
+[ext_resource path="res://assets/main/ui/cheat-enable.wav" type="AudioStream" id=8]
+
+
+
+
 
 [node name="ResultsHud" type="Control"]
 anchor_right = 1.0

@@ -5,7 +5,7 @@ Stores the player's score for the current puzzle.
 This includes persistent data such as how long they survived, how many lines they cleared, and their score. This data
 is written eventually to the save file.
 
-This also includes transient data such as the current customer/bonus score. This is used visually, but never saved.
+This also includes transient data such as the current creature/bonus score. This is used visually, but never saved.
 """
 
 # emitted when the game will start soon. Everything should be erased and reset to zero.
@@ -21,8 +21,8 @@ signal game_started
 signal game_ended
 signal level_index_changed(value)
 
-# These four signals are always emitted in this order: customer_score, bonus_score, score, lines
-signal customer_score_changed(value)
+# These four signals are always emitted in this order: creature_score, bonus_score, score, lines
+signal creature_score_changed(value)
 signal bonus_score_changed(value)
 signal score_changed(value)
 signal lines_changed(value)
@@ -32,8 +32,8 @@ signal combo_ended
 # Player's performance on the current scenario
 var scenario_performance := ScenarioPerformance.new()
 
-# The scores for each customer in the current scenario (bonuses and line clears)
-var customer_scores := [0]
+# The scores for each creature in the current scenario (bonuses and line clears)
+var creature_scores := [0]
 
 # Bonus points awarded during the current combo. This only includes bonuses
 # and should be a round number like +55 or +130 for visual aesthetics.
@@ -107,34 +107,34 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 	scenario_performance.combo_score += combo_score
 	scenario_performance.box_score += box_score
 	
-	_add_customer_score(1 + combo_score + box_score)
+	_add_creature_score(1 + combo_score + box_score)
 	_add_bonus_score(combo_score + box_score)
 	_add_score(1)
 	_add_line()
 
-	emit_signal("customer_score_changed", get_customer_score())
+	emit_signal("creature_score_changed", get_creature_score())
 	emit_signal("bonus_score_changed", get_bonus_score())
 	emit_signal("score_changed", get_score())
 	emit_signal("lines_changed", get_lines())
 
 
 """
-Ends the current combo, incrementing the score and resetting the bonus/customer scores to zero.
+Ends the current combo, incrementing the score and resetting the bonus/creature scores to zero.
 """
 func end_combo() -> void:
 	if Global.scenario_settings.other.tutorial:
-		# tutorial only has one customer
+		# tutorial only has one creature
 		pass
-	elif get_customer_score() == 0:
-		# don't add $0 customers. customers don't pay if they owe $0
+	elif get_creature_score() == 0:
+		# don't add $0 creatures. creatures don't pay if they owe $0
 		pass
 	else:
-		customer_scores.append(0)
+		creature_scores.append(0)
 	
 	_add_score(bonus_score)
 	bonus_score = 0
 		
-	emit_signal("customer_score_changed", 0)
+	emit_signal("creature_score_changed", 0)
 	emit_signal("bonus_score_changed", get_bonus_score())
 	emit_signal("score_changed", get_score())
 	emit_signal("combo_ended")
@@ -144,12 +144,12 @@ func end_combo() -> void:
 Reset all score data, such as when starting a scenario over.
 """
 func reset() -> void:
-	customer_scores = [0]
+	creature_scores = [0]
 	bonus_score = 0
 	scenario_performance = ScenarioPerformance.new()
 	level_index = 0
 	
-	emit_signal("customer_score_changed")
+	emit_signal("creature_score_changed")
 	emit_signal("bonus_score_changed", 0)
 	emit_signal("score_changed", 0)
 	emit_signal("lines_changed", 0)
@@ -168,8 +168,8 @@ func get_bonus_score() -> int:
 	return bonus_score
 
 
-func get_customer_score() -> int:
-	return customer_scores[customer_scores.size() - 1]
+func get_creature_score() -> int:
+	return creature_scores[creature_scores.size() - 1]
 
 
 """
@@ -195,7 +195,7 @@ func milestone_progress(milestone: Milestone) -> float:
 	var progress: float
 	match milestone.type:
 		Milestone.CUSTOMERS:
-			progress = PuzzleScore.customer_scores.size() - 1
+			progress = PuzzleScore.creature_scores.size() - 1
 		Milestone.LINES:
 			progress = PuzzleScore.scenario_performance.lines
 		Milestone.SCORE:
@@ -217,5 +217,5 @@ func _add_line() -> void:
 	scenario_performance.lines += 1
 
 
-func _add_customer_score(delta: int) -> void:
-	customer_scores[customer_scores.size() - 1] += delta
+func _add_creature_score(delta: int) -> void:
+	creature_scores[creature_scores.size() - 1] += delta

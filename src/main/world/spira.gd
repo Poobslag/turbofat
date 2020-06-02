@@ -1,5 +1,5 @@
 class_name Spira
-extends Customer3D
+extends Creature3D
 """
 Script for manipulating the player-controlled character 'Spira' in the 3D overworld.
 """
@@ -122,7 +122,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 """
 Spira is dark red with black eyes.
 """
-func get_customer_def() -> Dictionary:
+func get_creature_def() -> Dictionary:
 	return {
 		"line_rgb": "6c4331", "body_rgb": "b23823", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",
 		"ear": "0", "horn": "1", "mouth": "1", "eye": "0"
@@ -184,7 +184,7 @@ func _process_jump_buffers(was_on_floor: bool) -> void:
 
 
 func _update_animation() -> void:
-	var old_orientation: int = $Viewport/Customer.get_orientation()
+	var old_orientation: int = $Viewport/Creature.get_orientation()
 	if _slipping:
 		play_movement_animation("jump", _get_xy_velocity())
 	elif _jumping:
@@ -348,7 +348,7 @@ func _slip_from_ledges(delta: float) -> bool:
 	return slip_direction.length() > 0
 
 
-func _on_Customer_jumped() -> void:
+func _on_Creature_jumped() -> void:
 	if _slipping:
 		$HopSound.play()
 	else:

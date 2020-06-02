@@ -16,7 +16,7 @@ const TEXTS := [
 	"Hold soft drop to squish a piece through a narrow gap.",
 	"Make a snack box by arranging two pieces into a square.",
 	"Well done!\n\nSnack boxes earn $15 if you clear all three lines.",
-	"Now let's try it for real!/ Serve these customers and try to earn $100.",
+	"Now let's try it for real!/ Serve these creatures and try to earn $100.",
 	"Well done!\n\nLine clears earn $1./ Maybe more if you can build a combo.",
 	"Well done!\n\nSquish moves can help you out of a jam./ They're also good for certain boxes.",
 	"Welcome to Turbo Fat!/ You seem to already be familiar with this sort of game,/ so let's dive right in.",

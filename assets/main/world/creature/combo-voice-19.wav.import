@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/combo-voice-19.wav-08b0c2b1c12a90eeba1a5c45e9ef1fc6.sample"
+
+[deps]
+
+source_file="res://assets/main/world/creature/combo-voice-19.wav"
+dest_files=[ "res://.import/combo-voice-19.wav-08b0c2b1c12a90eeba1a5c45e9ef1fc6.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

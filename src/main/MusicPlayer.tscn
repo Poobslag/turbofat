@@ -1,10 +1,11 @@
 [gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/main/music-player.gd" type="Script" id=1]
-[ext_resource path="res://assets/music/hiphop-03.ogg" type="AudioStream" id=2]
-[ext_resource path="res://assets/music/house-01.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/main/music/hiphop-03.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/main/music/house-01.ogg" type="AudioStream" id=3]
 [ext_resource path="res://src/main/music-tween.gd" type="Script" id=4]
 [ext_resource path="res://src/main/freshness-inspector.gd" type="Script" id=5]
+
 
 [node name="MusicPlayer" type="Node"]
 pause_mode = 2

@@ -2,7 +2,8 @@
 
 [ext_resource path="res://src/main/puzzle/piece/next-piece-displays.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/piece/NextPieceDisplay.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/puzzle/next-piece-bg.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/puzzle/next-piece-bg.png" type="Texture" id=3]
+
 
 [node name="NextPieceDisplays" type="Control"]
 margin_right = 64.0

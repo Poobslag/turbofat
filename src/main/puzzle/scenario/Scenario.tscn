@@ -1,22 +1,27 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://assets/ui/xolonium-24.tres" type="DynamicFont" id=1]
-[ext_resource path="res://assets/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/ui/xolonium-24.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=3]
 [ext_resource path="res://src/main/puzzle/scenario/scenario.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=5]
 [ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/puzzle/Puzzle.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/ui/applause.wav" type="AudioStream" id=11]
+[ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/main/puzzle/scenario/SkillTallyItem.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/puzzle/scenario/tutorial-hud.gd" type="Script" id=14]
-[ext_resource path="res://assets/puzzle/scenario/tutorial-section-complete.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/ui/chat/bebebe.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/main/puzzle/scenario/tutorial-section-complete.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=16]
 [ext_resource path="res://src/main/puzzle/scenario/tutorial-message.gd" type="Script" id=17]
 [ext_resource path="res://src/main/puzzle/scenario/tutorial-message-tween.gd" type="Script" id=18]
 [ext_resource path="res://src/main/puzzle/scenario/puzzle-music-manager.gd" type="Script" id=19]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=20]
+
+
+
+
+
 
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1

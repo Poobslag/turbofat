@@ -16,11 +16,11 @@ onready var _labels := {
 
 # There are two nametag textures; one for small names, and four for big names
 onready var _textures := {
-	ChatAppearance.NAMETAG_SMALL: preload("res://assets/ui/chat/nametag-small-sheet.png"),
-	ChatAppearance.NAMETAG_MEDIUM: preload("res://assets/ui/chat/nametag-large-sheet.png"),
-	ChatAppearance.NAMETAG_LARGE: preload("res://assets/ui/chat/nametag-large-sheet.png"),
-	ChatAppearance.NAMETAG_XL: preload("res://assets/ui/chat/nametag-large-sheet.png"),
-	ChatAppearance.NAMETAG_XXL: preload("res://assets/ui/chat/nametag-large-sheet.png")
+	ChatAppearance.NAMETAG_SMALL: preload("res://assets/main/ui/chat/nametag-small-sheet.png"),
+	ChatAppearance.NAMETAG_MEDIUM: preload("res://assets/main/ui/chat/nametag-large-sheet.png"),
+	ChatAppearance.NAMETAG_LARGE: preload("res://assets/main/ui/chat/nametag-large-sheet.png"),
+	ChatAppearance.NAMETAG_XL: preload("res://assets/main/ui/chat/nametag-large-sheet.png"),
+	ChatAppearance.NAMETAG_XXL: preload("res://assets/main/ui/chat/nametag-large-sheet.png")
 }
 
 # size of the nametag needed to display the name text

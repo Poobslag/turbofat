@@ -20,7 +20,7 @@ var blocks_during := BlocksDuring.new()
 var combo_break := ComboBreakRules.new()
 
 # How the player finishes. When the player finishes, they can't play anymore, and the level just ends. It should be
-# used for limits such as serving 5 customers or clearing 10 lines. 
+# used for limits such as serving 5 creatures or clearing 10 lines. 
 var finish_condition := Milestone.new()
 
 # The requirements to level up and make the game harder. This mostly applies to 'Marathon Mode' where clearing lines

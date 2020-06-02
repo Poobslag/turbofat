@@ -19,11 +19,11 @@ func _ready() -> void:
 	$Puzzle.get_milestone_hud().init_milebar()
 	
 	if Global.scenario_settings.other.tutorial:
-		Global.customer_queue.push_front({
+		Global.creature_queue.push_front({
 			"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
 			"ear": "2", "horn": "0", "mouth": "1", "eye": "1"
 		})
-		$Puzzle/CustomerView.summon_customer()
+		$Puzzle/CreatureView.summon_creature()
 	prepare_scenario()
 
 

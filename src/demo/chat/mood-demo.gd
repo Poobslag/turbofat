@@ -1,6 +1,6 @@
 extends Spatial
 """
-A demo which shows off the customer's range of emotions
+A demo which shows off the creature's range of emotions
 
 Keys:
 	[1]: Default mood
@@ -11,16 +11,16 @@ Keys:
 
 func _input(event: InputEvent) -> void:
 	match(Global.key_scancode(event)):
-		KEY_1: $Customer.play_mood(ChatEvent.Mood.DEFAULT)
-		KEY_Q: $Customer.play_mood(ChatEvent.Mood.SMILE0)
-		KEY_W: $Customer.play_mood(ChatEvent.Mood.SMILE1)
-		KEY_E: $Customer.play_mood(ChatEvent.Mood.LAUGH0)
-		KEY_R: $Customer.play_mood(ChatEvent.Mood.LAUGH1)
-		KEY_A: $Customer.play_mood(ChatEvent.Mood.THINK0)
-		KEY_S: $Customer.play_mood(ChatEvent.Mood.THINK1)
-		KEY_D: $Customer.play_mood(ChatEvent.Mood.CRY0)
-		KEY_F: $Customer.play_mood(ChatEvent.Mood.CRY1)
-		KEY_Z: $Customer.play_mood(ChatEvent.Mood.SWEAT0)
-		KEY_X: $Customer.play_mood(ChatEvent.Mood.SWEAT1)
-		KEY_C: $Customer.play_mood(ChatEvent.Mood.RAGE0)
-		KEY_V: $Customer.play_mood(ChatEvent.Mood.RAGE1)
+		KEY_1: $Creature.play_mood(ChatEvent.Mood.DEFAULT)
+		KEY_Q: $Creature.play_mood(ChatEvent.Mood.SMILE0)
+		KEY_W: $Creature.play_mood(ChatEvent.Mood.SMILE1)
+		KEY_E: $Creature.play_mood(ChatEvent.Mood.LAUGH0)
+		KEY_R: $Creature.play_mood(ChatEvent.Mood.LAUGH1)
+		KEY_A: $Creature.play_mood(ChatEvent.Mood.THINK0)
+		KEY_S: $Creature.play_mood(ChatEvent.Mood.THINK1)
+		KEY_D: $Creature.play_mood(ChatEvent.Mood.CRY0)
+		KEY_F: $Creature.play_mood(ChatEvent.Mood.CRY1)
+		KEY_Z: $Creature.play_mood(ChatEvent.Mood.SWEAT0)
+		KEY_X: $Creature.play_mood(ChatEvent.Mood.SWEAT1)
+		KEY_C: $Creature.play_mood(ChatEvent.Mood.RAGE0)
+		KEY_V: $Creature.play_mood(ChatEvent.Mood.RAGE1)

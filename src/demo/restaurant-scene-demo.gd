@@ -3,10 +3,10 @@ extends Node2D
 A demo which shows off the restaurant scene.
 
 Keys:
-	[F]: Feed the customer
+	[F]: Feed the creature
 	[P]: Print the current animation details
-	[1-9,0]: Change the customer's size from 10% to 100%
-	brace keys: Change the customer's appearance
+	[1-9,0]: Change the creature's size from 10% to 100%
+	brace keys: Change the creature's appearance
 """
 
 const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
@@ -14,7 +14,7 @@ const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 var _current_color_index := -1
 
 func _ready() -> void:
-	# Ensure customers are random
+	# Ensure creatures are random
 	randomize()
 
 
@@ -27,17 +27,17 @@ func _input(event: InputEvent) -> void:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
-				_current_color_index += CustomerLoader.DEFINITIONS.size()
-				_current_color_index = (_current_color_index - 1) % CustomerLoader.DEFINITIONS.size()
-			Global.customer_queue.push_front(CustomerLoader.DEFINITIONS[_current_color_index])
-			$RestaurantScene.summon_customer(1)
+				_current_color_index += CreatureLoader.DEFINITIONS.size()
+				_current_color_index = (_current_color_index - 1) % CreatureLoader.DEFINITIONS.size()
+			Global.creature_queue.push_front(CreatureLoader.DEFINITIONS[_current_color_index])
+			$RestaurantScene.summon_creature(1)
 		KEY_BRACERIGHT:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
-				_current_color_index = (_current_color_index + 1) % CustomerLoader.DEFINITIONS.size()
-			Global.customer_queue.push_front(CustomerLoader.DEFINITIONS[_current_color_index])
-			$RestaurantScene.summon_customer(1)
+				_current_color_index = (_current_color_index + 1) % CreatureLoader.DEFINITIONS.size()
+			Global.creature_queue.push_front(CreatureLoader.DEFINITIONS[_current_color_index])
+			$RestaurantScene.summon_creature(1)
 		KEY_P:
-			print($RestaurantScene/Customer/AnimationPlayer.current_animation)
-			print($RestaurantScene/Customer/AnimationPlayer.is_playing())
+			print($RestaurantScene/Creature/AnimationPlayer.current_animation)
+			print($RestaurantScene/Creature/AnimationPlayer.is_playing())

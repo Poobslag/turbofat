@@ -1,6 +1,6 @@
-extends Customer3D
+extends Creature3D
 """
-Script for showing a customer 'Boatricia' in the 3D overworld.
+Script for showing a creature 'Boatricia' in the 3D overworld.
 """
 
 func _ready() -> void:
@@ -11,7 +11,7 @@ func _ready() -> void:
 """
 Boatricia is dark blue with short stubby horns.
 """
-func get_customer_def() -> Dictionary:
+func get_creature_def() -> Dictionary:
 	return {"line_rgb": "41281e", "body_rgb": "0b45a6", "eye_rgb": "fad541 ffffff", "horn_rgb": "282828",
 		"ear": "1", "horn": "0", "mouth": "0", "eye": "2"
 	}

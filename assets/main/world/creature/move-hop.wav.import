@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/move-hop.wav-135edce9d325d30683388d7661600e6c.sample"
+
+[deps]
+
+source_file="res://assets/main/world/creature/move-hop.wav"
+dest_files=[ "res://.import/move-hop.wav-135edce9d325d30683388d7661600e6c.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

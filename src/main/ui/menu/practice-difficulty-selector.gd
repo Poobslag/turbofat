@@ -6,7 +6,7 @@ User interface control which lets the player pick their difficulty in practice m
 signal difficulty_changed
 
 # font used for tick mark labels
-var _label_font := preload("res://assets/ui/xolonium-16.tres")
+var _label_font := preload("res://src/main/ui/xolonium-16.tres")
 
 # difficulties which appear as tick mark labels
 var _difficulty_names: Array setget set_difficulty_names

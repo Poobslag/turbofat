@@ -4,17 +4,22 @@
 [ext_resource path="res://src/main/world/overworld.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/OverworldUi.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/spira.gd" type="Script" id=4]
-[ext_resource path="res://src/main/environment/OverworldGridMap.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/world/environment/OverworldGridMap.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/slippery-kinematic-body.gd" type="Script" id=6]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=7]
-[ext_resource path="res://src/main/world/Customer3D.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/world/environment/environment.tres" type="Environment" id=11]
-[ext_resource path="res://assets/world/overworld-material-outline.tres" type="Material" id=13]
+[ext_resource path="res://src/main/world/Creature3D.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/world/environment/environment.tres" type="Environment" id=11]
+[ext_resource path="res://src/main/world/overworld-material-outline.tres" type="Material" id=13]
 [ext_resource path="res://src/main/world/bort.gd" type="Script" id=17]
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=18]
 [ext_resource path="res://src/main/ui/chat/chat-camera-target.gd" type="Script" id=19]
 [ext_resource path="res://src/main/world/ebe.gd" type="Script" id=20]
 [ext_resource path="res://src/main/world/boatricia.gd" type="Script" id=21]
+
+
+
+
+
 
 [sub_resource type="CylinderMesh" id=1]
 top_radius = 10.0

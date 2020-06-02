@@ -54,7 +54,7 @@ func break_combo() -> void:
 	elif combo >= 5:
 		$Fanfare1.play()
 	
-	if PuzzleScore.get_customer_score() > 0:
+	if PuzzleScore.get_creature_score() > 0:
 		PuzzleScore.end_combo()
 	combo = 0
 

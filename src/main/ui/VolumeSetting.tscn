@@ -1,9 +1,13 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://assets/ui/xolonium-16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/ui/volume-setting-control.gd" type="Script" id=2]
-[ext_resource path="res://assets/puzzle/squish.wav" type="AudioStream" id=3]
-[ext_resource path="res://assets/world/customer/combo-voice-00.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=3]
+[ext_resource path="res://assets/main/world/creature/combo-voice-00.wav" type="AudioStream" id=4]
+
+
+
+
 
 [node name="Control" type="Control"]
 anchor_left = 0.5

@@ -98,10 +98,10 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 	var squished := false
 	if interactable and interactable.has_method("get_orientation"):
 		var orientation: int = interactable.get_orientation()
-		if orientation in [Customer.Orientation.NORTHEAST, Customer.Orientation.SOUTHEAST]:
+		if orientation in [Creature.Orientation.NORTHEAST, Creature.Orientation.SOUTHEAST]:
 			# If we're facing right, we're on the left side. Put the nametag on the left.
 			nametag_right = false
-		elif orientation in [Customer.Orientation.NORTHWEST, Customer.Orientation.SOUTHWEST]:
+		elif orientation in [Creature.Orientation.NORTHWEST, Creature.Orientation.SOUTHWEST]:
 			# If we're facing left, we're on the right side. Put the nametag on the right.
 			nametag_right = true
 	

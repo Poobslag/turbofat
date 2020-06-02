@@ -7,8 +7,8 @@ When the player types a key, this class checks whether the user finished typing 
 typed, this class emits a signal which can be used to activate the cheat code. Any gameplay effects and sound effects
 are the responsibility of the class receiving the signal.
 
-It's recommended the class receiving a cheat code signal play an audio cue. The res://assets/ui/cheat-disable.wav and
-res://assets/ui/cheat-enable.wav sound files exist for this purpose.
+It's recommended the class receiving a cheat code signal play an audio cue. The res://assets/main/ui/cheat-disable.wav
+and res://assets/main/ui/cheat-enable.wav sound files exist for this purpose.
 """
 
 # emitted when a cheat is entered.

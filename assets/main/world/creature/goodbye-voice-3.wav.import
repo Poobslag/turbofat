@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/goodbye-voice-3.wav-4d62889a13677620f8321a94a9b442fc.sample"
+
+[deps]
+
+source_file="res://assets/main/world/creature/goodbye-voice-3.wav"
+dest_files=[ "res://.import/goodbye-voice-3.wav-4d62889a13677620f8321a94a9b442fc.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

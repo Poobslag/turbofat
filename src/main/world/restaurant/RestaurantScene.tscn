@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main/world/restaurant/Seat.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/world/restaurant/wall-metal.png" type="Texture" id=5]
-[ext_resource path="res://assets/world/restaurant/wall-metal-shadow.png" type="Texture" id=7]
-[ext_resource path="res://assets/world/shadow-oval-2.png" type="Texture" id=11]
-[ext_resource path="res://assets/world/restaurant/wood-pillar.png" type="Texture" id=12]
-[ext_resource path="res://assets/world/restaurant/poster2.png" type="Texture" id=13]
-[ext_resource path="res://assets/world/restaurant/light.png" type="Texture" id=14]
-[ext_resource path="res://assets/world/restaurant/poster1.png" type="Texture" id=15]
-[ext_resource path="res://assets/world/restaurant/poster0.png" type="Texture" id=16]
+[ext_resource path="res://assets/main/world/restaurant/wall-metal.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/world/restaurant/wall-metal-shadow.png" type="Texture" id=7]
+[ext_resource path="res://assets/main/world/shadow-oval-2.png" type="Texture" id=11]
+[ext_resource path="res://assets/main/world/restaurant/wood-pillar.png" type="Texture" id=12]
+[ext_resource path="res://assets/main/world/restaurant/poster2.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/world/restaurant/light.png" type="Texture" id=14]
+[ext_resource path="res://assets/main/world/restaurant/poster1.png" type="Texture" id=15]
+[ext_resource path="res://assets/main/world/restaurant/poster0.png" type="Texture" id=16]
 [ext_resource path="res://src/main/world/restaurant/restaurant-scene.gd" type="Script" id=24]
 
 [node name="RestaurantScene" type="Node2D"]
@@ -155,9 +155,6 @@ z_index = 10
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2380, 585 )
 z_index = 10
-[connection signal="food_eaten" from="Seat1/Customer" to="." method="_on_Customer_food_eaten"]
-[connection signal="food_eaten" from="Seat2/Customer" to="." method="_on_Customer_food_eaten"]
-[connection signal="food_eaten" from="Seat3/Customer" to="." method="_on_Customer_food_eaten"]
 
 [editable path="Seat1"]
 

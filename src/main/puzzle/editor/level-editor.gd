@@ -17,7 +17,7 @@ onready var _scenario_name := $HBoxContainer/RightPanel/SideButtons/ScenarioName
 
 func _ready() -> void:
 	if not ResourceCache.is_done():
-		# when launched standalone, we don't load customer resources (they're slow)
+		# when launched standalone, we don't load creature resources (they're slow)
 		ResourceCache.minimal_resources = true
 	
 	var scenario_text: String = FileUtils.get_file_as_text(ScenarioLibrary.scenario_path(DEFAULT_SCENARIO))

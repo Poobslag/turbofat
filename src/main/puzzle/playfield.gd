@@ -14,7 +14,7 @@ signal after_piece_written
 # 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
 const LINE_ERASE_TIMING_PCT := 0.667
 
-# food colors for the food which gets hurled into the customer's mouth
+# food colors for the food which gets hurled into the creature's mouth
 const VEGETABLE_COLOR := Color("335320")
 const RAINBOW_COLOR := Color.magenta
 const FOOD_COLORS: Array = [
