@@ -19,8 +19,9 @@ const LEVEL_COLOR_4 := Color("b94878")
 const LEVEL_COLOR_5 := Color("b948b9")
 
 func _ready() -> void:
-	PuzzleScore.connect("after_scenario_prepared", self, "_on_PuzzleScore_after_scenario_prepared")
-	match Global.scenario_settings.finish_condition.type:
+	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
+	match Scenario.settings.finish_condition.type:
 		Milestone.CUSTOMERS:
 			$Desc.text = "Customers"
 		Milestone.LINES:
@@ -29,6 +30,7 @@ func _ready() -> void:
 			$Desc.text = "Money"
 		Milestone.TIME_OVER:
 			$Desc.text = "Time"
+	init_milebar()
 
 
 func _process(_delta: float) -> void:
@@ -39,7 +41,7 @@ func _process(_delta: float) -> void:
 Updates the milestone progress bar's value and boundaries.
 """
 func update_milebar_values() -> void:
-	$ProgressBar.min_value = Global.scenario_settings.level_ups[PuzzleScore.level_index].value
+	$ProgressBar.min_value = Scenario.settings.level_ups[PuzzleScore.level_index].value
 	if _next_milestone().value == $ProgressBar.min_value:
 		# avoid 'cannot get ratio' errors in sandbox mode
 		$ProgressBar.max_value = $ProgressBar.min_value + 1.0
@@ -52,7 +54,7 @@ func update_milebar_values() -> void:
 Updates the milestone progress bar text.
 """
 func update_milebar_text() -> void:
-	var milestone := Global.scenario_settings.finish_condition
+	var milestone := Scenario.settings.finish_condition
 	var remaining: int = max(0, ceil(milestone.value - PuzzleScore.milestone_progress(milestone)))
 	match milestone.type:
 		Milestone.NONE:
@@ -109,14 +111,18 @@ func update_milebar() -> void:
 
 func _next_milestone() -> Milestone:
 	var milestone: Milestone
-	if PuzzleScore.level_index + 1 < Global.scenario_settings.level_ups.size():
+	if PuzzleScore.level_index + 1 < Scenario.settings.level_ups.size():
 		# fill up the bar as they approach the next level
-		milestone = Global.scenario_settings.level_ups[PuzzleScore.level_index + 1]
+		milestone = Scenario.settings.level_ups[PuzzleScore.level_index + 1]
 	else:
 		# fill up the bar as they near their goal
-		milestone = Global.scenario_settings.finish_condition
+		milestone = Scenario.settings.finish_condition
 	return milestone
 
 
-func _on_PuzzleScore_after_scenario_prepared() -> void:
+func _on_PuzzleScore_game_prepared() -> void:
+	init_milebar()
+
+
+func _on_Scenario_settings_changed() -> void:
 	init_milebar()

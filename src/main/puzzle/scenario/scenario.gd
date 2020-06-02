@@ -1,82 +1,66 @@
-class_name Scenario
-extends Control
+extends Node
 """
-Contains the logic for running a puzzle scenario. A puzzle scenario might include specific rules or win conditions
-such as 'Marathon mode', a game style which gets harder and harder but theoretically goes on forever if the player is
-good enough.
+Loads scenarios from files.
+
+Scenarios are stored as a set of json resources. This class parses those json resources into ScenarioSettings so they
+can be used by the puzzle code.
+
+This class needs to be a node because it provides utility methods which utilize the scene tree.
 """
 
-var _rank_calculator := RankCalculator.new()
+# emitted after the scenario has customized the puzzle's settings.
+signal settings_changed
 
-func _ready() -> void:
-	PuzzleScore.reset() # erase any lines/score from previous games
-	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
-	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
-	
-	# Intuitively MilestoneHud could initialize its own milebar on _ready, but there is no guarantee it will happen
-	# after PuzzleScore.reset(). As a workaround, this class initializes the MilestoneHud's milebar after resetting
-	# PuzzleScore.
-	$Puzzle.get_milestone_hud().init_milebar()
-	
-	if Global.scenario_settings.other.tutorial:
-		Global.creature_queue.push_front({
-			"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
-			"ear": "2", "horn": "0", "mouth": "1", "eye": "1"
-		})
-		$Puzzle/CreatureView.summon_creature()
-	prepare_scenario()
+# The settings for the scenario currently being launched or played
+var settings := ScenarioSettings.new() setget set_settings
+
+# The scenario which was initially launched. Some tutorial scenarios transition
+# into other scenarios, so this keeps track of the original.
+var launched_scenario_name
+
+# 'true' if launching a puzzle from the overworld. This changes the menus and disallows restarting.
+var overworld_puzzle := false
+
+func load_scenario_from_name(name: String) -> ScenarioSettings:
+	var text := FileUtils.get_file_as_text(scenario_path(name))
+	return load_scenario(name, text)
 
 
-func _physics_process(_delta: float) -> void:
-	if not PuzzleScore.game_active:
-		return
-	
-	if PuzzleScore.milestone_met(Global.scenario_settings.finish_condition):
-		$Puzzle.end_game()
+func load_scenario(name: String, text: String) -> ScenarioSettings:
+	var scenario_settings := ScenarioSettings.new()
+	scenario_settings.from_json_dict(name, parse_json(text))
+	return scenario_settings
 
 
-func _on_PuzzleScore_after_game_prepared() -> void:
-	prepare_scenario()
+func scenario_name(path: String) -> String:
+	return path.get_file().trim_suffix(".json")
 
 
-func prepare_scenario() -> void:
-	prepare_blocks()
-	prepare_piece_types()
-	prepare_tutorial()
+func scenario_path(name: String) -> String:
+	return "res://assets/main/puzzle/scenario/%s.json" % name
 
 
-func prepare_tutorial() -> void:
-	var tutorial_scenario: bool = Global.scenario_settings.other.tutorial
-	$Puzzle.set_chalkboard_visible(!tutorial_scenario)
-	$TutorialHud.refresh()
+func scenario_filename(name: String) -> String:
+	return "%s.json" % name
 
 
-func prepare_blocks() -> void:
-	$Puzzle.clear_playfield()
-	var blocks_start := Global.scenario_settings.blocks_start
-	for cell in blocks_start.used_cells:
-		$Puzzle.set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
-
-
-func prepare_piece_types() -> void:
-	$Puzzle.set_piece_types(Global.scenario_settings.piece_types.types)
-	$Puzzle.set_piece_start_types(Global.scenario_settings.piece_types.start_types)
+func set_settings(new_settings: ScenarioSettings) -> void:
+	settings = new_settings
+	emit_signal("settings_changed")
 
 
 """
-Method invoked when the game ends. Stores the rank result for later.
-"""
-func _on_PuzzleScore_game_ended() -> void:
-	# ensure score is up to date before calculating rank
-	PuzzleScore.end_combo()
-	var rank_result := _rank_calculator.calculate_rank()
-	PlayerData.scenario_history.add(Global.launched_scenario_name, rank_result)
-	PlayerData.scenario_history.prune(Global.launched_scenario_name)
-	PlayerData.money += rank_result.score
-	PlayerSave.save_player_data()
+Launches a puzzle scene with the specified scenario settings.
+
+Parameters:
+	'scenario_settings': Defines the scenario's difficulty and win condition
 	
-	match Global.scenario_settings.finish_condition.type:
-		Milestone.SCORE:
-			if not PuzzleScore.scenario_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
-		_:
-			if not PuzzleScore.scenario_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
+	'overworld_puzzle': True if the player should return to the overworld when the puzzle is done
+	
+	'creature_def': Creatures who should appear in the restaurant.
+"""
+func push_scenario_trail(scenario_settings: ScenarioSettings, creature_def: Dictionary = {}) -> void:
+	Scenario.settings = scenario_settings
+	Scenario.launched_scenario_name = scenario_settings.name
+	Global.creature_queue.push_back(creature_def)
+	Breadcrumb.push_trail("res://src/main/puzzle/Puzzle.tscn")

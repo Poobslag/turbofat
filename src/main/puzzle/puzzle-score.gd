@@ -14,11 +14,12 @@ signal game_prepared
 # emitted after everything's been erased in preparation for a new game.
 signal after_game_prepared
 
-# emitted after the scenario has customized the puzzle's settings.
-signal after_scenario_prepared
-
 signal game_started
 signal game_ended
+
+# emitted several seconds after the game ends
+signal after_game_ended
+
 signal level_index_changed(value)
 
 # These four signals are always emitted in this order: creature_score, bonus_score, score, lines
@@ -29,8 +30,18 @@ signal lines_changed(value)
 
 signal combo_ended
 
+enum EndResult {
+	WON, # The player succeeded.
+	FINISHED, # The player survived until the end.
+	LOST, # The player gave up or failed.
+}
+
+const LOST := EndResult.LOST
+const FINISHED := EndResult.FINISHED
+const WON := EndResult.WON
+
 # Player's performance on the current scenario
-var scenario_performance := ScenarioPerformance.new()
+var scenario_performance := PuzzlePerformance.new()
 
 # The scores for each creature in the current scenario (bonuses and line clears)
 var creature_scores := [0]
@@ -47,24 +58,18 @@ var game_prepared: bool
 
 var level_index: int setget set_level_index
 
+func _physics_process(_delta: float) -> void:
+	if game_active and milestone_met(Scenario.settings.finish_condition):
+		end_game()
+
+
 """
-Resets all score data to prepare for a new game.
+Resets all score data, and starts a new game after a brief pause.
 """
-func prepare_game() -> void:
-	if game_prepared:
-		return
-	
-	var new_scenario_name := Global.scenario_settings.other.start_scenario_name
-	if new_scenario_name:
-		# Load a different scenario to start (used for tutorials)
-		Global.scenario_settings = ScenarioLibrary.load_scenario_from_name(new_scenario_name)
-		Global.launched_scenario_name = Global.scenario_settings.name
-	
-	game_prepared = true
-	reset()
-	emit_signal("game_prepared")
-	emit_signal("after_game_prepared")
-	emit_signal("after_scenario_prepared")
+func prepare_and_start_game() -> void:
+	_prepare_game()
+	yield(get_tree().create_timer(1.4), "timeout")
+	_start_game()
 
 
 func set_level_index(new_level_index: int) -> void:
@@ -74,13 +79,6 @@ func set_level_index(new_level_index: int) -> void:
 	emit_signal("level_index_changed", level_index)
 
 
-func start_game() -> void:
-	if game_active:
-		return
-	game_active = true
-	emit_signal("game_started")
-
-
 func end_game() -> void:
 	if not game_active:
 		return
@@ -88,6 +86,8 @@ func end_game() -> void:
 	game_active = false
 	end_combo()
 	emit_signal("game_ended")
+	yield(get_tree().create_timer(4.2 if PuzzleScore.WON else 2.2), "timeout")
+	emit_signal("after_game_ended")
 
 
 """
@@ -100,7 +100,7 @@ Parameters:
 	'box_score': Bonus points for any boxes in the line.
 """
 func add_line_score(combo_score: int, box_score: int) -> void:
-	if not game_active or Global.scenario_settings.other.tutorial:
+	if not game_active or Scenario.settings.other.tutorial:
 		# no money earned during tutorial
 		return
 	
@@ -122,7 +122,7 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 Ends the current combo, incrementing the score and resetting the bonus/creature scores to zero.
 """
 func end_combo() -> void:
-	if Global.scenario_settings.other.tutorial:
+	if Scenario.settings.other.tutorial:
 		# tutorial only has one creature
 		pass
 	elif get_creature_score() == 0:
@@ -146,7 +146,7 @@ Reset all score data, such as when starting a scenario over.
 func reset() -> void:
 	creature_scores = [0]
 	bonus_score = 0
-	scenario_performance = ScenarioPerformance.new()
+	scenario_performance = PuzzlePerformance.new()
 	level_index = 0
 	
 	emit_signal("creature_score_changed")
@@ -203,6 +203,40 @@ func milestone_progress(milestone: Milestone) -> float:
 		Milestone.TIME_OVER, Milestone.TIME_UNDER:
 			progress = PuzzleScore.scenario_performance.seconds
 	return progress
+
+
+func end_result() -> int:
+	if scenario_performance.lost:
+		return LOST
+	elif milestone_met(Scenario.settings.success_condition):
+		return WON
+	else:
+		return FINISHED
+
+
+func _prepare_game() -> void:
+	if game_prepared:
+		return
+	
+	var settings: ScenarioSettings = Scenario.settings
+	var new_scenario_name := settings.other.start_scenario_name
+	if new_scenario_name:
+		# Load a different scenario to start (used for tutorials)
+		Scenario.settings = Scenario.load_scenario_from_name(new_scenario_name)
+		Scenario.launched_scenario_name = Scenario.settings.name
+	
+	game_prepared = true
+	reset()
+	emit_signal("game_prepared")
+	emit_signal("after_game_prepared")
+
+
+func _start_game() -> void:
+	if game_active:
+		return
+	
+	game_active = true
+	emit_signal("game_started")
 
 
 func _add_score(delta: int) -> void:

@@ -11,9 +11,9 @@ const BEGINNER_TUTORIAL_SCENARIO := "tutorial-beginner-0"
 
 func _ready() -> void:
 	if not PlayerData.scenario_history.scenario_names().has(BEGINNER_TUTORIAL_SCENARIO):
-		var scenario_settings := ScenarioLibrary.load_scenario_from_name(BEGINNER_TUTORIAL_SCENARIO)
-		Global.overworld_puzzle = false
-		ScenarioLibrary.push_scenario_trail(scenario_settings)
+		var scenario_settings := Scenario.load_scenario_from_name(BEGINNER_TUTORIAL_SCENARIO)
+		Scenario.overworld_puzzle = false
+		Scenario.push_scenario_trail(scenario_settings)
 	
 	# Fade in music when redirected from a scene with no music, such as the level editor
 	if not MusicPlayer.is_playing_chill_bgm():

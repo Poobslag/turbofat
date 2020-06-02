@@ -7,8 +7,10 @@ and scores points, the creature eats and grows larger.
 # the amount of time spent panning the camera to a new creature
 const PAN_DURATION_SECONDS := 0.4
 
+
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 
 
 """
@@ -58,13 +60,6 @@ func set_current_creature_index(current_creature_index: int) -> void:
 
 
 """
-Returns the index of the creature which the camera is currently focused on.
-"""
-func get_current_creature_index() -> int:
-	return $SceneClip/CreatureSwitcher/Scene.current_creature_index
-
-
-"""
 Plays a 'check please!' voice sample, for when a creature is ready to leave
 """
 func play_goodbye_voice() -> void:
@@ -75,7 +70,7 @@ func play_goodbye_voice() -> void:
 Scroll to a new creature and replace the old creature.
 """
 func scroll_to_new_creature() -> void:
-	var creature_index: int = get_current_creature_index()
+	var creature_index: int = $SceneClip/CreatureSwitcher/Scene.current_creature_index
 	var new_creature_index: int = (creature_index + randi() % 2 + 1) % 3
 	set_current_creature_index(new_creature_index)
 	yield(get_tree().create_timer(0.5), "timeout")
@@ -88,4 +83,10 @@ If they ended the previous game while serving a creature, we scroll to a new one
 """
 func _on_PuzzleScore_game_prepared() -> void:
 	if get_fatness() > 1:
+		scroll_to_new_creature()
+
+
+func _on_PuzzleScore_combo_ended() -> void:
+	if PuzzleScore.game_active and not Scenario.settings.other.tutorial:
+		play_goodbye_voice()
 		scroll_to_new_creature()

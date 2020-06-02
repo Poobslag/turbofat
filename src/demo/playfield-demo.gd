@@ -45,7 +45,7 @@ func _make_box(y: int) -> void:
 
 
 func _clear_line(cleared_line: int) -> void:
-	$Playfield.cleared_lines = range(cleared_line, cleared_line + _line_clear_count)
+	$Playfield.lines_being_cleared = range(cleared_line, cleared_line + _line_clear_count)
 	$Playfield.clear_line(cleared_line, 1, 0)
 
 

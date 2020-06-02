@@ -1,4 +1,5 @@
 class_name PieceQueue
+extends Node
 """
 Queue of upcoming randomized pieces.
 
@@ -20,15 +21,15 @@ var _pieces := []
 # default pieces to pull from if none are provided by the scenario
 var _default_piece_types := PieceTypes.all_types
 
-# piece types to choose from. if empty, reverts to the default 8 types (jlopqtuv)
-var _piece_types := []
-
-# pieces to prepend to the piece queue before a game begins. these pieces are shuffled
-var _piece_start_types := []
-
 func _init() -> void:
 	# Ensure pieces are random
 	randomize()
+
+
+func _ready() -> void:
+	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
+	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	_fill()
 
 
 """
@@ -55,16 +56,6 @@ func get_next_piece(index: int) -> PieceType:
 	return _pieces[index]
 
 
-func set_piece_types(types: Array) -> void:
-	_piece_types = types
-	clear()
-
-
-func set_piece_start_types(types: Array) -> void:
-	_piece_start_types = types
-	clear()
-
-
 """
 Fills the queue with randomized pieces.
 
@@ -81,7 +72,7 @@ func _fill() -> void:
 Initializes an empty queue with a set of starting pieces.
 """
 func _fill_initial_pieces() -> void:
-	if _piece_types.empty():
+	if Scenario.settings.piece_types.types.empty():
 		"""
 		Default piece selection:
 		1. Append three same-size pieces which don't make a cake block; lot, jot, jlt or pqu
@@ -117,8 +108,8 @@ func _fill_initial_pieces() -> void:
 		
 		_insert_annoying_piece(3)
 	
-	if _piece_start_types:
-		var pieces_tmp := _piece_start_types.duplicate()
+	if Scenario.settings.piece_types.start_types:
+		var pieces_tmp := Scenario.settings.piece_types.start_types.duplicate()
 		pieces_tmp.shuffle()
 		for piece in pieces_tmp:
 			if _pieces.empty() or _pieces[0] != piece:
@@ -127,7 +118,7 @@ func _fill_initial_pieces() -> void:
 
 
 func shuffled_piece_types() -> Array:
-	var result := _piece_types
+	var result := Scenario.settings.piece_types.types
 	if not result:
 		result = _default_piece_types
 	result = result.duplicate()
@@ -176,3 +167,11 @@ func _insert_annoying_piece(max_pieces_to_right: int) -> void:
 		# the o piece is awful, so it comes 10% less often
 		extra_piece_types.shuffle()
 	_pieces.insert(new_piece_index, extra_piece_types[0])
+
+
+func _on_Scenario_settings_changed() -> void:
+	clear()
+
+
+func _on_PuzzleScore_game_prepared() -> void:
+	clear()

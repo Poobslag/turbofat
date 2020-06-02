@@ -12,44 +12,44 @@ particularly important for this code.
 var _rank_calculator := RankCalculator.new()
 
 func before_each() -> void:
-	Global.scenario_settings.reset()
-	Global.scenario_settings.set_start_level("0")
-	PuzzleScore.scenario_performance = ScenarioPerformance.new()
+	Scenario.settings.reset()
+	Scenario.settings.set_start_level("0")
+	PuzzleScore.scenario_performance = PuzzlePerformance.new()
 
 
 func test_max_lpm_slow_marathon() -> void:
-	Global.scenario_settings.set_start_level("0")
+	Scenario.settings.set_start_level("0")
 	assert_almost_eq(_rank_calculator._max_lpm(), 30.77, 0.1)
 
 
 func test_max_lpm_medium_marathon() -> void:
-	Global.scenario_settings.set_start_level("A0")
+	Scenario.settings.set_start_level("A0")
 	assert_almost_eq(_rank_calculator._max_lpm(), 35.64, 0.1)
 
 
 func test_max_lpm_fast_marathon() -> void:
-	Global.scenario_settings.set_start_level("F0")
+	Scenario.settings.set_start_level("F0")
 	assert_almost_eq(_rank_calculator._max_lpm(), 68.90, 0.1)
 
 
 func test_max_lpm_mixed_marathon() -> void:
-	Global.scenario_settings.set_start_level("0")
-	Global.scenario_settings.add_level_up(Milestone.LINES, 30, "A0")
-	Global.scenario_settings.add_level_up(Milestone.LINES, 60, "F0")
-	Global.scenario_settings.set_finish_condition(Milestone.LINES, 100)
+	Scenario.settings.set_start_level("0")
+	Scenario.settings.add_level_up(Milestone.LINES, 30, "A0")
+	Scenario.settings.add_level_up(Milestone.LINES, 60, "F0")
+	Scenario.settings.set_finish_condition(Milestone.LINES, 100)
 	assert_almost_eq(_rank_calculator._max_lpm(), 46.23, 0.1)
 
 
 func test_max_lpm_mixed_sprint() -> void:
-	Global.scenario_settings.set_start_level("0")
-	Global.scenario_settings.add_level_up(Milestone.TIME_OVER, 30, "A0")
-	Global.scenario_settings.add_level_up(Milestone.TIME_OVER, 60, "F0")
-	Global.scenario_settings.set_finish_condition(Milestone.TIME_OVER, 90)
+	Scenario.settings.set_start_level("0")
+	Scenario.settings.add_level_up(Milestone.TIME_OVER, 30, "A0")
+	Scenario.settings.add_level_up(Milestone.TIME_OVER, 60, "F0")
+	Scenario.settings.set_finish_condition(Milestone.TIME_OVER, 90)
 	assert_almost_eq(_rank_calculator._max_lpm(), 51.36, 0.1)
 
 
 func test_calculate_rank_marathon_300_master() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.LINES, 300)
+	Scenario.settings.set_finish_condition(Milestone.LINES, 300)
 	PuzzleScore.scenario_performance.seconds = 580
 	PuzzleScore.scenario_performance.lines = 300
 	PuzzleScore.scenario_performance.box_score = 4400
@@ -64,7 +64,7 @@ func test_calculate_rank_marathon_300_master() -> void:
 
 
 func test_calculate_rank_marathon_300_mixed() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.LINES, 300)
+	Scenario.settings.set_finish_condition(Milestone.LINES, 300)
 	PuzzleScore.scenario_performance.seconds = 240
 	PuzzleScore.scenario_performance.lines = 60
 	PuzzleScore.scenario_performance.box_score = 600
@@ -79,7 +79,7 @@ func test_calculate_rank_marathon_300_mixed() -> void:
 
 
 func test_calculate_rank_marathon_lenient() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.LINES, 300, 200)
+	Scenario.settings.set_finish_condition(Milestone.LINES, 300, 200)
 	PuzzleScore.scenario_performance.seconds = 240
 	PuzzleScore.scenario_performance.lines = 60
 	PuzzleScore.scenario_performance.box_score = 600
@@ -94,7 +94,7 @@ func test_calculate_rank_marathon_lenient() -> void:
 
 
 func test_calculate_rank_marathon_300_fail() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.LINES, 300)
+	Scenario.settings.set_finish_condition(Milestone.LINES, 300)
 	PuzzleScore.scenario_performance.seconds = 0
 	PuzzleScore.scenario_performance.lines = 0
 	PuzzleScore.scenario_performance.box_score = 0
@@ -109,8 +109,8 @@ func test_calculate_rank_marathon_300_fail() -> void:
 
 
 func test_calculate_rank_sprint_120() -> void:
-	Global.scenario_settings.set_start_level("A0")
-	Global.scenario_settings.set_finish_condition(Milestone.TIME_OVER, 120)
+	Scenario.settings.set_start_level("A0")
+	Scenario.settings.set_finish_condition(Milestone.TIME_OVER, 120)
 	PuzzleScore.scenario_performance.seconds = 120
 	PuzzleScore.scenario_performance.lines = 47
 	PuzzleScore.scenario_performance.box_score = 395
@@ -125,8 +125,8 @@ func test_calculate_rank_sprint_120() -> void:
 
 
 func test_calculate_rank_top_out_once() -> void:
-	Global.scenario_settings.set_start_level("A0")
-	Global.scenario_settings.set_finish_condition(Milestone.TIME_OVER, 120)
+	Scenario.settings.set_start_level("A0")
+	Scenario.settings.set_finish_condition(Milestone.TIME_OVER, 120)
 	PuzzleScore.scenario_performance.seconds = 120
 	PuzzleScore.scenario_performance.lines = 47
 	PuzzleScore.scenario_performance.box_score = 395
@@ -142,8 +142,8 @@ func test_calculate_rank_top_out_once() -> void:
 
 
 func test_calculate_rank_top_out_twice() -> void:
-	Global.scenario_settings.set_start_level("A0")
-	Global.scenario_settings.set_finish_condition(Milestone.TIME_OVER, 120)
+	Scenario.settings.set_start_level("A0")
+	Scenario.settings.set_finish_condition(Milestone.TIME_OVER, 120)
 	PuzzleScore.scenario_performance.seconds = 120
 	PuzzleScore.scenario_performance.lines = 47
 	PuzzleScore.scenario_performance.box_score = 395
@@ -159,7 +159,7 @@ func test_calculate_rank_top_out_twice() -> void:
 
 
 func test_calculate_rank_ultra_200() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.SCORE, 200)
+	Scenario.settings.set_finish_condition(Milestone.SCORE, 200)
 	PuzzleScore.scenario_performance.seconds = 20.233
 	PuzzleScore.scenario_performance.lines = 8
 	PuzzleScore.scenario_performance.box_score = 135
@@ -174,7 +174,7 @@ func test_calculate_rank_ultra_200() -> void:
 
 
 func test_calculate_rank_ultra_200_lost() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.SCORE, 200)
+	Scenario.settings.set_finish_condition(Milestone.SCORE, 200)
 	PuzzleScore.scenario_performance.seconds = 60
 	PuzzleScore.scenario_performance.lines = 10
 	PuzzleScore.scenario_performance.box_score = 80
@@ -192,7 +192,7 @@ func test_calculate_rank_ultra_200_lost() -> void:
 This is an edge case where, if the player gets too many points for ultra, they can sort of be robbed of a master rank.
 """
 func test_calculate_rank_ultra_200_overshot() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.SCORE, 200)
+	Scenario.settings.set_finish_condition(Milestone.SCORE, 200)
 	PuzzleScore.scenario_performance.seconds = 19
 	PuzzleScore.scenario_performance.lines = 10
 	PuzzleScore.scenario_performance.box_score = 150
@@ -206,8 +206,8 @@ func test_calculate_rank_ultra_200_overshot() -> void:
 
 
 func test_calculate_rank_five_creatures_good() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.CUSTOMERS, 5)
-	Global.scenario_settings.set_start_level("4")
+	Scenario.settings.set_finish_condition(Milestone.CUSTOMERS, 5)
+	Scenario.settings.set_start_level("4")
 	PuzzleScore.scenario_performance.lines = 100
 	PuzzleScore.scenario_performance.box_score = 1025
 	PuzzleScore.scenario_performance.combo_score = 915
@@ -220,8 +220,8 @@ func test_calculate_rank_five_creatures_good() -> void:
 
 
 func test_calculate_rank_five_creatures_bad() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.CUSTOMERS, 5)
-	Global.scenario_settings.set_start_level("4")
+	Scenario.settings.set_finish_condition(Milestone.CUSTOMERS, 5)
+	Scenario.settings.set_start_level("4")
 	PuzzleScore.scenario_performance.lines = 18
 	PuzzleScore.scenario_performance.box_score = 90
 	PuzzleScore.scenario_performance.combo_score = 60
@@ -237,13 +237,13 @@ func test_calculate_rank_five_creatures_bad() -> void:
 These two times are pretty far apart; they shouldn't yield the same rank
 """
 func test_two_rank_s() -> void:
-	Global.scenario_settings.set_start_level("A0")
-	Global.scenario_settings.set_finish_condition(Milestone.SCORE, 1000)
+	Scenario.settings.set_start_level("A0")
+	Scenario.settings.set_finish_condition(Milestone.SCORE, 1000)
 	PuzzleScore.scenario_performance.seconds = 88.55
 	var rank := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank.seconds_rank), "SS+")
 
-	Global.scenario_settings.set_finish_condition(Milestone.SCORE, 1000)
+	Scenario.settings.set_finish_condition(Milestone.SCORE, 1000)
 	PuzzleScore.scenario_performance.seconds = 128.616
 	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.seconds_rank), "S+")
@@ -253,7 +253,7 @@ func test_two_rank_s() -> void:
 This edge case used to result in a combo_score_per_line of 22.5
 """
 func test_combo_score_per_line_ultra_overshot() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.SCORE, 200)
+	Scenario.settings.set_finish_condition(Milestone.SCORE, 200)
 	PuzzleScore.scenario_performance.combo_score = 45
 	PuzzleScore.scenario_performance.lines = 7
 	var rank := _rank_calculator.calculate_rank()
@@ -264,7 +264,7 @@ func test_combo_score_per_line_ultra_overshot() -> void:
 This edge case used to result in a combo_score_per_line of 0.305
 """
 func test_combo_score_per_line_death() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.LINES, 200, 150)
+	Scenario.settings.set_finish_condition(Milestone.LINES, 200, 150)
 	PuzzleScore.scenario_performance.combo_score = 195
 	PuzzleScore.scenario_performance.lines = 37
 	PuzzleScore.scenario_performance.top_out_count = 1
@@ -276,34 +276,34 @@ func test_combo_score_per_line_death() -> void:
 A player reaching a success condition should be given a rank boost.
 """
 func test_success_bonus_score() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.LINES, 300, 200)
+	Scenario.settings.set_finish_condition(Milestone.LINES, 300, 200)
 	PuzzleScore.scenario_performance.seconds = 240
 	PuzzleScore.scenario_performance.score = 1160
-	Global.scenario_settings.rank.success_bonus = 8
+	Scenario.settings.rank.success_bonus = 8
 	
 	# the player doesn't achieve the success condition; they get a worse grade
-	Global.scenario_settings.set_success_condition(Milestone.SCORE, 2000)
+	Scenario.settings.set_success_condition(Milestone.SCORE, 2000)
 	var rank1 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank1.score_rank), "AA+")
 
 	# the player achieves the success condition; they get a better grade
-	Global.scenario_settings.set_success_condition(Milestone.SCORE, 1000)
+	Scenario.settings.set_success_condition(Milestone.SCORE, 1000)
 	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.score_rank), "S")
 
 
 func test_success_bonus_seconds() -> void:
-	Global.scenario_settings.set_finish_condition(Milestone.SCORE, 1000)
+	Scenario.settings.set_finish_condition(Milestone.SCORE, 1000)
 	PuzzleScore.scenario_performance.seconds = 240
 	PuzzleScore.scenario_performance.score = 1160
-	Global.scenario_settings.rank.success_bonus = 8
+	Scenario.settings.rank.success_bonus = 8
 	
 	# the player doesn't achieve the success condition; they get a worse grade
-	Global.scenario_settings.set_success_condition(Milestone.TIME_UNDER, 180)
+	Scenario.settings.set_success_condition(Milestone.TIME_UNDER, 180)
 	var rank1 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank1.seconds_rank), "S")
 
 	# the player achieves the success condition; they get a better grade
-	Global.scenario_settings.set_success_condition(Milestone.TIME_UNDER, 300)
+	Scenario.settings.set_success_condition(Milestone.TIME_UNDER, 300)
 	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.seconds_rank), "S+")

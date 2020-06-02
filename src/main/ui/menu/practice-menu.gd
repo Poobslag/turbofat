@@ -80,9 +80,9 @@ func _ready() -> void:
 		if not mode_difficulties.has(mode):
 			mode_difficulties[mode] = []
 		mode_difficulties[mode].append(difficulty)
-		scenarios["%s %s" % [mode, difficulty]] = ScenarioLibrary.load_scenario_from_name(scenario_name)
+		scenarios["%s %s" % [mode, difficulty]] = Scenario.load_scenario_from_name(scenario_name)
 		
-		if scenario_name == Global.scenario_settings.name:
+		if scenario_name == Scenario.settings.name:
 			# if they've just played a practice mode scenario, we default to that scenario
 			current_mode = mode
 			current_scenario_name = scenario_name
@@ -164,5 +164,5 @@ func _on_Mode_mode_changed() -> void:
 
 
 func _on_Start_pressed() -> void:
-	Global.overworld_puzzle = false
-	ScenarioLibrary.push_scenario_trail(_get_scenario())
+	Scenario.overworld_puzzle = false
+	Scenario.push_scenario_trail(_get_scenario())

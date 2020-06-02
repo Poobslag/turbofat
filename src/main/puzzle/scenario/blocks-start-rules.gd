@@ -1,4 +1,4 @@
-class_name BlocksStart
+class_name BlocksStartRules
 """
 Blocks/boxes which begin on the playfield.
 """

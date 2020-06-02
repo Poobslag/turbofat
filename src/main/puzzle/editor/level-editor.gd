@@ -10,7 +10,7 @@ const DEFAULT_SCENARIO := "ultra-normal"
 # scenario scene currently being tested
 var _test_scene: Node
 
-onready var ScenarioScene := preload("res://src/main/puzzle/scenario/Scenario.tscn")
+onready var PuzzleScene := preload("res://src/main/puzzle/Puzzle.tscn")
 
 onready var _scenario_json := $HBoxContainer/CenterPanel/VBoxContainer/Json
 onready var _scenario_name := $HBoxContainer/RightPanel/SideButtons/ScenarioName
@@ -20,7 +20,7 @@ func _ready() -> void:
 		# when launched standalone, we don't load creature resources (they're slow)
 		ResourceCache.minimal_resources = true
 	
-	var scenario_text: String = FileUtils.get_file_as_text(ScenarioLibrary.scenario_path(DEFAULT_SCENARIO))
+	var scenario_text: String = FileUtils.get_file_as_text(Scenario.scenario_path(DEFAULT_SCENARIO))
 	_scenario_json.text = scenario_text
 	_scenario_json.refresh_tilemap()
 	_scenario_name.text = DEFAULT_SCENARIO
@@ -35,13 +35,13 @@ func _load_scenario(path: String) -> void:
 	var scenario_text: String = FileUtils.get_file_as_text(path)
 	_scenario_json.text = scenario_text
 	_scenario_json.refresh_tilemap()
-	_scenario_name.text = ScenarioLibrary.scenario_name(path)
+	_scenario_name.text = Scenario.scenario_name(path)
 
 
 func _start_test() -> void:
-	Global.scenario_settings = ScenarioLibrary.load_scenario(_scenario_name.text, _scenario_json.text)
-	Global.launched_scenario_name = Global.scenario_settings.name
-	_test_scene = ScenarioScene.instance()
+	Scenario.settings = Scenario.load_scenario(_scenario_name.text, _scenario_json.text)
+	Scenario.launched_scenario_name = Scenario.settings.name
+	_test_scene = PuzzleScene.instance()
 	
 	# back button should close scenario; shouldn't redirect us to a new scene
 	Breadcrumb.push_trail("res://src/main/puzzle/editor/LevelEditor.tscn::test")
@@ -71,7 +71,7 @@ func _on_OpenResource_pressed() -> void:
 
 
 func _on_Save_pressed() -> void:
-	$SaveDialog.current_file = ScenarioLibrary.scenario_filename(_scenario_name.text)
+	$SaveDialog.current_file = Scenario.scenario_filename(_scenario_name.text)
 	$SaveDialog.popup_centered()
 
 
