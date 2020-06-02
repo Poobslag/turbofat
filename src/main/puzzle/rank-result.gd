@@ -62,7 +62,8 @@ func to_json_dict() -> Dictionary:
 		"speed": speed,
 		"speed_rank": speed_rank,
 		"timestamp": timestamp,
-		"top_out_count": top_out_count }
+		"top_out_count": top_out_count,
+	}
 
 
 func from_json_dict(json: Dictionary) -> void:

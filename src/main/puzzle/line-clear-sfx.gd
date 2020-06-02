@@ -7,11 +7,13 @@ onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
 		$Combo01Sound, $Combo02Sound, $Combo03Sound, $Combo04Sound, $Combo05Sound, $Combo06Sound,
 		$Combo07Sound, $Combo08Sound, $Combo09Sound, $Combo10Sound, $Combo11Sound, $Combo12Sound,
 		$Combo13Sound, $Combo14Sound, $Combo15Sound, $Combo16Sound, $Combo17Sound, $Combo18Sound,
-		$Combo19Sound, $Combo20Sound, $Combo21Sound, $Combo22Sound, $Combo23Sound, $Combo24Sound]
+		$Combo19Sound, $Combo20Sound, $Combo21Sound, $Combo22Sound, $Combo23Sound, $Combo24Sound,
+	]
 
 onready var _combo_endless_sounds := [$ComboEndless00Sound, $ComboEndless01Sound, $ComboEndless02Sound, 
 		$ComboEndless03Sound, $ComboEndless04Sound, $ComboEndless05Sound, $ComboEndless06Sound, $ComboEndless07Sound,
-		$ComboEndless08Sound, $ComboEndless09Sound, $ComboEndless10Sound, $ComboEndless11Sound]
+		$ComboEndless08Sound, $ComboEndless09Sound, $ComboEndless10Sound, $ComboEndless11Sound,
+	]
 
 onready var _line_erase_sounds := [$LineEraseSound1, $LineEraseSound2, $LineEraseSound3]
 

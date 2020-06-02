@@ -5,7 +5,7 @@ Contains global utilities, as well as variables for preserving state when loadin
 
 const NUM_SCANCODES: Dictionary = {
 	KEY_0: 0, KEY_1: 1, KEY_2: 2, KEY_3: 3, KEY_4: 4,
-	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9
+	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9,
 }
 
 # Target number of creature greetings (hello, goodbye) per minute

@@ -16,7 +16,7 @@ const HINTS = [
 	"When a piece locks, hold both rotate keys to quickly flip the next piece!",
 	"When a piece locks, hold up to quickly hard-drop the next piece!",
 	"After a hard drop, tap 'down' to delay the piece from locking!",
-	"Sometimes, pressing 'down' can cheat pieces through other pieces!"
+	"Sometimes, pressing 'down' can cheat pieces through other pieces!",
 ]
 
 func _ready() -> void:

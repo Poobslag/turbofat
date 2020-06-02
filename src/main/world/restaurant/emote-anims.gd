@@ -19,7 +19,7 @@ const EMOTE_ANIMS := {
 	ChatEvent.Mood.SWEAT0: "sweat0",
 	ChatEvent.Mood.SWEAT1: "sweat1",
 	ChatEvent.Mood.RAGE0: "rage0",
-	ChatEvent.Mood.RAGE1: "rage1"
+	ChatEvent.Mood.RAGE1: "rage1",
 }
 
 # custom transition for cases where the default mood transition looks awkward
@@ -46,7 +46,7 @@ onready var _emote_sprites := [
 	$"../Sprites/Neck0/Neck1/EmoteBrain",
 	$"../Sprites/Neck0/Neck1/EmoteHead",
 	$"../Sprites/EmoteBody",
-	$"../Sprites/Neck0/Neck1/EmoteGlow"
+	$"../Sprites/Neck0/Neck1/EmoteGlow",
 ]
 
 """
