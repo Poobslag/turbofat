@@ -20,7 +20,7 @@ onready var _sentence_textures := {
 	ChatAppearance.SENTENCE_SMALL: preload("res://assets/main/ui/chat/window-small-sheet.png"),
 	ChatAppearance.SENTENCE_MEDIUM: preload("res://assets/main/ui/chat/window-medium-sheet.png"),
 	ChatAppearance.SENTENCE_LARGE: preload("res://assets/main/ui/chat/window-large-sheet.png"),
-	ChatAppearance.SENTENCE_XL: preload("res://assets/main/ui/chat/window-extra-large-sheet.png")
+	ChatAppearance.SENTENCE_XL: preload("res://assets/main/ui/chat/window-extra-large-sheet.png"),
 }
 
 # Background textures which scroll behind the chat window

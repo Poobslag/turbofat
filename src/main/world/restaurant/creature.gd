@@ -39,7 +39,7 @@ enum Orientation {
 	SOUTHEAST,
 	SOUTHWEST,
 	NORTHWEST,
-	NORTHEAST
+	NORTHEAST,
 }
 
 # ways the creature's head can move ambiently
@@ -47,7 +47,7 @@ enum HeadBobMode {
 	OFF, # no movement
 	BOB, # nodding vertically
 	BOUNCE, # bouncing vertically like a ball hitting the floor
-	SHUDDER # shaking left and right
+	SHUDDER, # shaking left and right
 }
 
 # delays between when creature arrives and when door chime is played (in seconds)
@@ -118,7 +118,7 @@ onready var _combo_voices := [
 	$ComboVoice04, $ComboVoice05, $ComboVoice06, $ComboVoice07,
 	$ComboVoice08, $ComboVoice09, $ComboVoice10, $ComboVoice11,
 	$ComboVoice12, $ComboVoice13, $ComboVoice14, $ComboVoice15,
-	$ComboVoice16, $ComboVoice17, $ComboVoice18, $ComboVoice19
+	$ComboVoice16, $ComboVoice17, $ComboVoice18, $ComboVoice19,
 ]
 
 # sounds the creatures make when they ask for their check
@@ -136,7 +136,7 @@ onready var _rotatable_sprites := [
 	$Sprites/Neck0/Neck1/Head,
 	$Sprites/Neck0/Neck1/EarZ1,
 	$Sprites/Neck0/Neck1/HornZ1,
-	$Sprites/Neck0/Neck1/EarZ2
+	$Sprites/Neck0/Neck1/EarZ2,
 ]
 
 onready var _mouth_animation_player := $Mouth0Anims

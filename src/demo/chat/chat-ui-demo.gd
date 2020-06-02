@@ -10,8 +10,9 @@ Keys:
 """
 
 const FRUITS := [
-	"Apple", "Apricot", "Banana", "Cantaloupe", "Cherry", "Grape", "Grapefruit", "Guava", "Lemon", "Lime", "Orange",
-	"Mandarin", "Mango", "Melon", "Papaya", "Peach", "Pear", "Pineapple", "Plantain", "Plum", "Tangerine", "Watermelon"
+	"Apple", "Apricot", "Banana", "Cantaloupe", "Cherry", "Grape", "Grapefruit",
+	"Guava", "Lemon", "Lime", "Orange", "Mandarin", "Mango", "Melon", "Papaya",
+	"Peach", "Pear", "Pineapple", "Plantain", "Plum", "Tangerine", "Watermelon",
 ]
 
 const SENTENCES := [
@@ -37,7 +38,7 @@ const CHOICES := [
 	"Is this ethical?",
 	"That's what you think!",
 	"Hey, don't steal my thunder!",
-	"This is not a productive line of discussion."
+	"This is not a productive line of discussion.",
 ]
 
 var _chat_library := ChatLibrary.new()

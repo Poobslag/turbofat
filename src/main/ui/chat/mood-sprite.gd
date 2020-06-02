@@ -19,7 +19,7 @@ var textures := {
 	ChatEvent.Mood.SWEAT0: preload("res://assets/main/ui/chat/choice-mood-sweat0.png"),
 	ChatEvent.Mood.SWEAT1: preload("res://assets/main/ui/chat/choice-mood-sweat1.png"),
 	ChatEvent.Mood.RAGE0: preload("res://assets/main/ui/chat/choice-mood-rage0.png"),
-	ChatEvent.Mood.RAGE1: preload("res://assets/main/ui/chat/choice-mood-rage1.png")
+	ChatEvent.Mood.RAGE1: preload("res://assets/main/ui/chat/choice-mood-rage1.png"),
 }
 
 

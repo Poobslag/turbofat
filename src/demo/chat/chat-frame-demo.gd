@@ -29,7 +29,7 @@ const TEXTS := [
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt",
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore" \
-		+ " magna aliqua. Ut enim ad minim"
+		+ " magna aliqua. Ut enim ad minim",
 ]
 
 const WHOS := [
@@ -44,18 +44,18 @@ const WHOS := [
 	"Lorem ipsum dolor sit amet",
 	"Lorem ipsum dolor sit amet, consectetur",
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
-	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid",
 ]
 
 const COLORS := [
 	"b23823", "eeda4d", "41a740", "b47922", "6f83db",
 	"a854cb", "f57e7d", "f9bb4a", "8fea40", "feceef",
-	"b1edee", "f9f7d9", "1a1a1e", "7a8289", "0b45a6"
+	"b1edee", "f9f7d9", "1a1a1e", "7a8289", "0b45a6",
 ]
 
 # 10 scales ranging from [0.25, 1.00] including 0.50
 const SCALES := [
-	0.25, 0.29, 0.33, 0.38, 0.44, 0.50, 0.57, 0.66, 0.75, 0.87, 1.00
+	0.25, 0.29, 0.33, 0.38, 0.44, 0.50, 0.57, 0.66, 0.75, 0.87, 1.00,
 ]
 
 # these fields store the results of the user's input

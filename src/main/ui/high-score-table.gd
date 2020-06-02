@@ -60,12 +60,14 @@ func _add_rows() -> void:
 		if _daily:
 			row.append("%02d:%02d" % [
 					best_result.timestamp["hour"],
-					best_result.timestamp["minute"]])
+					best_result.timestamp["minute"],
+				])
 		else:
 			row.append("%04d-%02d-%02d" % [
 					best_result.timestamp["year"],
 					best_result.timestamp["month"],
-					best_result.timestamp["day"]])
+					best_result.timestamp["day"],
+				])
 		
 		# append lines
 		row.append(StringUtils.comma_sep(best_result.lines))

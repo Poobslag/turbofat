@@ -12,7 +12,7 @@ enum MilestoneType {
 	LINES,
 	SCORE,
 	TIME_OVER,
-	TIME_UNDER
+	TIME_UNDER,
 }
 
 const NONE := MilestoneType.NONE

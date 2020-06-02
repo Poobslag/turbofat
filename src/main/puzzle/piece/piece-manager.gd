@@ -177,14 +177,16 @@ func spawn_piece() -> bool:
 		_reset_piece_target()
 		_kick_piece([Vector2(-4, 0), Vector2(-4, -1), Vector2(-3, 0), Vector2(-3, -1),
 				Vector2(-2, 0), Vector2(-2, -1), Vector2(-1, 0), Vector2(-1, -1),
-				Vector2(0, 0), Vector2(0, -1), Vector2(1, 0), Vector2(1, -1)])
+				Vector2(0, 0), Vector2(0, -1), Vector2(1, 0), Vector2(1, -1),
+			])
 		_move_piece_to_target()
 		if old_pos != piece.pos:
 			emit_signal("initial_das_moved_left")
 	elif initial_das_dir == 0:
 		_reset_piece_target()
-		_kick_piece([Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1),
-				Vector2(1, 0), Vector2(1, -1)])
+		_kick_piece([Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0),
+				Vector2(-1, -1), Vector2(1, 0), Vector2(1, -1),
+			])
 		_move_piece_to_target()
 	elif initial_das_dir == 1:
 		# player is holding right; start piece on the right side
@@ -192,7 +194,8 @@ func spawn_piece() -> bool:
 		_reset_piece_target()
 		_kick_piece([Vector2(4, 0), Vector2(4, -1), Vector2(3, 0), Vector2(3, -1),
 				Vector2(2, 0), Vector2(2, -1), Vector2(1, 0), Vector2(1, -1),
-				Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1)])
+				Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0), Vector2(-1, -1),
+			])
 		_move_piece_to_target()
 		if old_pos != piece.pos:
 			emit_signal("initial_das_moved_right")

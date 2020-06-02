@@ -84,7 +84,7 @@ const KICKS_NONE := [
 		[],
 		[],
 		[],
-		[]
+		[],
 	]
 
 var piece_j := PieceType.new("j",
