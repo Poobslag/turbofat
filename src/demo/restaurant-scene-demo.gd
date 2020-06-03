@@ -4,7 +4,6 @@ A demo which shows off the restaurant scene.
 
 Keys:
 	[F]: Feed the creature
-	[P]: Print the current animation details
 	[1-9,0]: Change the creature's size from 10% to 100%
 	brace keys: Change the creature's appearance
 """
@@ -20,24 +19,19 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_F: $RestaurantScene.feed()
+		KEY_F: $RestaurantScene.get_creature().feed()
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			$RestaurantScene.set_fatness(FATNESS_KEYS[Utils.key_num(event)])
+			$RestaurantScene.get_creature().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
 		KEY_BRACELEFT:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
 				_current_color_index += CreatureLoader.DEFINITIONS.size()
 				_current_color_index = (_current_color_index - 1) % CreatureLoader.DEFINITIONS.size()
-			Global.creature_queue.push_front(CreatureLoader.DEFINITIONS[_current_color_index])
-			$RestaurantScene.summon_creature(1)
+			$RestaurantScene.summon_creature(CreatureLoader.DEFINITIONS[_current_color_index])
 		KEY_BRACERIGHT:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
 				_current_color_index = (_current_color_index + 1) % CreatureLoader.DEFINITIONS.size()
-			Global.creature_queue.push_front(CreatureLoader.DEFINITIONS[_current_color_index])
-			$RestaurantScene.summon_creature(1)
-		KEY_P:
-			print($RestaurantScene/Creature/AnimationPlayer.current_animation)
-			print($RestaurantScene/Creature/AnimationPlayer.is_playing())
+			$RestaurantScene.summon_creature(CreatureLoader.DEFINITIONS[_current_color_index])

@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://src/main/world/restaurant/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/restaurant/Seat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal-shadow.png" type="Texture" id=7]
@@ -145,19 +146,28 @@ z_index = 10
 texture = ExtResource( 12 )
 offset = Vector2( 0, -550 )
 
+[node name="Creature1" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 381.228, 435.763 )
+z_index = 20
+
 [node name="Seat1" parent="." instance=ExtResource( 2 )]
-z_index = 10
+
+[node name="Creature2" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 1381.23, 435.763 )
+z_index = 20
 
 [node name="Seat2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1380, 585 )
-z_index = 10
+
+[node name="Creature3" parent="." instance=ExtResource( 1 )]
+visible = false
+position = Vector2( 2381.23, 435.763 )
+z_index = 20
 
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2380, 585 )
-z_index = 10
-
-[editable path="Seat1"]
-
-[editable path="Seat2"]
-
-[editable path="Seat3"]
+[connection signal="food_eaten" from="Creature1" to="." method="_on_Creature_food_eaten"]
+[connection signal="food_eaten" from="Creature2" to="." method="_on_Creature_food_eaten"]
+[connection signal="food_eaten" from="Creature3" to="." method="_on_Creature_food_eaten"]

@@ -182,6 +182,30 @@ func _process(delta: float) -> void:
 				$Sprites/Neck0/Neck1.position.y = -100
 
 
+"""
+Returns the creature's fatness, a float which determines how fat the creature
+should be; 5.0 = 5x normal size
+
+Parameters:
+	'creature_index': (Optional) The creature to ask about. Defaults to the current creature.
+"""
+func get_fatness() -> float:
+	return $FatPlayer.get_fatness()
+
+
+"""
+Increases/decreases the creature's fatness, a float which determines how fat
+the creature should be; 5.0 = 5x normal size
+
+Parameters:
+	'fatness_percent': Controls how fat the creature should be; 5.0 = 5x normal size
+	
+	'creature_index': (Optional) The creature to be altered. Defaults to the current creature.
+"""
+func set_fatness(fatness: float) -> void:
+	$FatPlayer.set_fatness(fatness)
+
+
 func set_head_bob_mode(new_head_bob_mode: int) -> void:
 	head_bob_mode = new_head_bob_mode
 	# Some head bob animations like 'shudder' offset the x position; reset it back to the center

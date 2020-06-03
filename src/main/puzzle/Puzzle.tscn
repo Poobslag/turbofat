@@ -61,8 +61,6 @@
 [ext_resource path="res://src/main/puzzle/chalkboard.gd" type="Script" id=66]
 [ext_resource path="res://src/main/puzzle/start-end-sfx.gd" type="Script" id=67]
 
-
-
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
 
