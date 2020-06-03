@@ -32,6 +32,13 @@ const DEFINITIONS := [
 ]
 
 """
+Returns a random creature definition.
+"""
+static func random_def() -> Dictionary:
+	return DEFINITIONS[randi() % DEFINITIONS.size()]
+
+
+"""
 Loads all the appropriate resources and property definitions for a creature. The resulting textures are stored back in
 the 'creature_def' parameter which is passed in.
 

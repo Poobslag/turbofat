@@ -6,59 +6,36 @@ contain the shadows itself, since they need to appear behind other objects outsi
 This script contains logic for scaling an injected 'creature shadow' object as the creature grows in size.
 """
 
-"""
-Plays a door chime sound effect, for when a creature enters the restaurant.
+var _creature: Creature setget set_creature
+var _door_sound_position: Vector2
 
-Parameter: 'delay' is the delay in seconds before the chime sound plays. The default value of '-1' results in a random
-	delay.
-"""
-func play_door_chime(delay: float = -1) -> void:
-	$Creature.play_door_chime(delay)
+func set_creature(creature: Creature) -> void:
+	_creature = creature
+	refresh()
 
 
 """
-Sets the relative position of sound affects related to the restaurant door. Each seat has a different position
+Updates the properties of the seat and the creature sitting in it.
+"""
+func refresh() -> void:
+	if _creature and _creature.is_visible_in_tree():
+		# draw a shadow on the creature's stool
+		$Stool0L.texture = preload("res://assets/main/world/restaurant/stool-occupied.png")
+		for chime_sound in _creature.chime_sounds:
+			chime_sound.position = _door_sound_position
+		for hello_voice in _creature.hello_voices:
+			hello_voice.position = _door_sound_position
+	else:
+		# remove the shadow from the creature's stool
+		$Stool0L.texture = preload("res://assets/main/world/restaurant/stool.png")
+
+
+"""
+Sets the relative position of sound effects related to the restaurant door. Each seat has a different position
 relative to the restaurant's entrance; some are close to the door, some are far away.
 
 Parameter: 'position' is the position of the door relative to this seat, in world coordinates.
 """
-func set_door_sound_position(position: Vector2) -> void:
-	for chime_sound in $Creature.chime_sounds:
-		chime_sound.position = position
-	for hello_voice in $Creature.hello_voices:
-		hello_voice.position = position
-
-
-"""
-Plays a 'mmm!' creature voice sample, for when a player builds a big combo.
-"""
-func play_combo_voice() -> void:
-	$Creature.play_combo_voice()
-
-
-"""
-Plays a 'hello!' voice sample, for when a creature enters the restaurant
-"""
-func play_hello_voice() -> void:
-	$Creature.play_hello_voice()
-
-
-"""
-Plays a 'check please!' voice sample, for when a creature is ready to leave
-"""
-func play_goodbye_voice() -> void:
-	$Creature.play_goodbye_voice()
-
-
-"""
-When the creature arrives, we draw a shadowy version of the stool they sat upon.
-"""
-func _on_Creature_creature_arrived() -> void:
-	$Stool0L.texture = preload("res://assets/main/world/restaurant/stool-occupied.png")
-
-
-"""
-When the creature leaves, we draw an unshadowed version of the stool they stood up from.
-"""
-func _on_Creature_creature_left() -> void:
-	$Stool0L.texture = preload("res://assets/main/world/restaurant/stool.png")
+func set_door_sound_position(door_sound_position: Vector2) -> void:
+	_door_sound_position = door_sound_position
+	refresh()

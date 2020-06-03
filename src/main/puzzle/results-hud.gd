@@ -143,6 +143,6 @@ func _on_PuzzleScore_after_game_ended() -> void:
 
 
 func _on_ResultsLabel_text_shown(new_text: String) -> void:
-	if new_text.begins_with("Creature #"):
+	if new_text.begins_with("Customer #"):
 		var amount := int(StringUtils.substring_after_last(new_text, "¥").replace(",", ""))
 		$MoneyLabel.set_shown_money($MoneyLabel.shown_money + amount)

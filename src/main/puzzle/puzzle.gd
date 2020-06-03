@@ -55,15 +55,15 @@ Parameters:
 	'fatness_pct' A percent from [0.0-1.0] of how much fatter the creature should get from this bite of food.
 """
 func _feed_creature(fatness_pct: float) -> void:
-	$CreatureView/SceneClip/CreatureSwitcher/Scene.feed()
+	$CreatureView.get_creature().feed()
 	
 	if PuzzleScore.game_active:
-		var old_fatness: float = $CreatureView.get_fatness()
+		var old_fatness: float = $CreatureView.get_creature().get_fatness()
 		var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
 		if Scenario.settings.other.tutorial:
 			# make them a tiny amount fatter, so that they'll change when a new level is started
 			target_fatness = min(target_fatness, 1.001)
-		$CreatureView.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
+		$CreatureView.get_creature().set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
 
 
 func _on_Hud_start_button_pressed() -> void:
@@ -86,7 +86,7 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 	
 	if creature_talks:
 		yield(get_tree().create_timer(0.5), "timeout")
-		$CreatureView/SceneClip/CreatureSwitcher/Scene.play_combo_voice()
+		$CreatureView.get_creature().play_combo_voice()
 
 
 """
