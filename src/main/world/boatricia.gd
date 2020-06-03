@@ -13,5 +13,5 @@ Boatricia is dark blue with short stubby horns.
 """
 func get_creature_def() -> Dictionary:
 	return {"line_rgb": "41281e", "body_rgb": "0b45a6", "eye_rgb": "fad541 ffffff", "horn_rgb": "282828",
-		"ear": "1", "horn": "0", "mouth": "0", "eye": "2"
+		"ear": "2", "horn": "0", "mouth": "1", "eye": "3"
 	}

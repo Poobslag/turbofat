@@ -46,16 +46,16 @@
 [ext_resource path="res://assets/main/world/creature/munch3.wav" type="AudioStream" id=44]
 [ext_resource path="res://src/main/world/multi-outline.shader" type="Shader" id=45]
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=46]
-[ext_resource path="res://assets/main/world/creature/0/emote-brain-sheet.png" type="Texture" id=53]
+[ext_resource path="res://assets/main/world/creature/1/emote-brain-sheet.png" type="Texture" id=53]
 [ext_resource path="res://assets/main/ui/chat/emote-think0.wav" type="AudioStream" id=54]
 [ext_resource path="res://src/main/world/restaurant/emote-anims.gd" type="Script" id=58]
-[ext_resource path="res://assets/main/world/creature/0/movement-z0-sheet.png" type="Texture" id=60]
-[ext_resource path="res://assets/main/world/creature/0/emote-arms-sheet.png" type="Texture" id=62]
-[ext_resource path="res://assets/main/world/creature/0/emote-body-sheet.png" type="Texture" id=65]
-[ext_resource path="res://assets/main/world/creature/0/emote-head-sheet.png" type="Texture" id=66]
+[ext_resource path="res://assets/main/world/creature/1/movement-z0-sheet.png" type="Texture" id=60]
+[ext_resource path="res://assets/main/world/creature/1/emote-arms-sheet.png" type="Texture" id=62]
+[ext_resource path="res://assets/main/world/creature/1/emote-body-sheet.png" type="Texture" id=65]
+[ext_resource path="res://assets/main/world/creature/1/emote-head-sheet.png" type="Texture" id=66]
 [ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=67]
 [ext_resource path="res://assets/main/ui/chat/emote-rage1.wav" type="AudioStream" id=68]
-[ext_resource path="res://assets/main/world/creature/0/emote-eyes-sheet.png" type="Texture" id=69]
+[ext_resource path="res://assets/main/world/creature/1/emote-eyes-sheet.png" type="Texture" id=69]
 [ext_resource path="res://assets/main/ui/chat/emote-rage0.wav" type="AudioStream" id=70]
 [ext_resource path="res://assets/main/ui/chat/emote-smile1.wav" type="AudioStream" id=71]
 [ext_resource path="res://assets/main/ui/chat/emote-think1.wav" type="AudioStream" id=72]
@@ -2420,14 +2420,8 @@ light_mask = 2
 rotation = 0.00355033
 curve = SubResource( 7 )
 script = ExtResource( 3 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
-line_color = Color( 0, 0, 0, 1 )
 fill_color = Color( 0, 0, 0, 1 )
 line_width = 2.0
-_fatness = 1.0
 editing = false
 
 [node name="Outline" type="Path2D" parent="Sprites/Body"]

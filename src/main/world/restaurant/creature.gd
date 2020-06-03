@@ -370,14 +370,15 @@ func summon(creature_def: Dictionary, use_defaults: bool = true) -> void:
 			# avoid loading unnecessary resources for things like the level editor
 			pass
 		else:
-			put_if_absent(_creature_def, "eye", ["0", "0", "0", "1", "2"][randi() % 5])
-			put_if_absent(_creature_def, "ear", ["0", "0", "0", "1", "2"][randi() % 5])
+			put_if_absent(_creature_def, "eye", ["1", "1", "1", "2", "3"][randi() % 5])
+			put_if_absent(_creature_def, "ear", ["1", "1", "1", "2", "3"][randi() % 5])
 			put_if_absent(_creature_def, "horn", ["0", "0", "0", "1", "2"][randi() % 5])
-			put_if_absent(_creature_def, "mouth", ["0", "0", "1"][randi() % 3])
-		put_if_absent(_creature_def, "body", "0")
+			put_if_absent(_creature_def, "mouth", ["1", "1", "2"][randi() % 3])
+		put_if_absent(_creature_def, "body", "1")
 	
 	_creature_loader.load_details(_creature_def)
 	_update_creature_properties()
+	set_fatness(1)
 
 
 """
@@ -600,9 +601,9 @@ func _update_creature_properties() -> void:
 	
 	if _creature_def.has("mouth"):
 		# set the sprite's color/texture properties
-		if _creature_def.mouth == "0":
+		if _creature_def.mouth == "1":
 			_mouth_animation_player = $Mouth0Anims
-		elif _creature_def.mouth == "1":
+		elif _creature_def.mouth == "2":
 			_mouth_animation_player = $Mouth1Anims
 		else:
 			print("Invalid mouth: %s", _creature_def.mouth)

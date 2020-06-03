@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/emote-arms-sheet.png-ae35d2e624a6f75e94adb3a8e4787f80.stex"
+path="res://.import/mouth-sheet.png-88d44ad913e25e0adc8baccfd57de552.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/0/emote-arms-sheet.png"
-dest_files=[ "res://.import/emote-arms-sheet.png-ae35d2e624a6f75e94adb3a8e4787f80.stex" ]
+source_file="res://assets/main/world/creature/2/mouth-sheet.png"
+dest_files=[ "res://.import/mouth-sheet.png-88d44ad913e25e0adc8baccfd57de552.stex" ]
 
 [params]
 

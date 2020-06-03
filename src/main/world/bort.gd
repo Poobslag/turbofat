@@ -15,5 +15,5 @@ Bort is light blue with a tentacle mouth.
 func get_creature_def() -> Dictionary:
 	return {
 		"line_rgb": "6c4331", "body_rgb": "6f83db", "eye_rgb": "374265 eaf2f4", "horn_rgb": "f1e398",
-		"ear": "2", "horn": "1", "mouth": "1", "eye": "0"
+		"ear": "3", "horn": "1", "mouth": "2", "eye": "1"
 	}

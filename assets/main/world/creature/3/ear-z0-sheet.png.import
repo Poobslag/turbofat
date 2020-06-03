@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/leg-z1-sheet.png-878721da787ae111967ce7908b5ce647.stex"
+path="res://.import/ear-z0-sheet.png-370ae33b9b3a2da20603d4662d0b3a59.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/0/leg-z1-sheet.png"
-dest_files=[ "res://.import/leg-z1-sheet.png-878721da787ae111967ce7908b5ce647.stex" ]
+source_file="res://assets/main/world/creature/3/ear-z0-sheet.png"
+dest_files=[ "res://.import/ear-z0-sheet.png-370ae33b9b3a2da20603d4662d0b3a59.stex" ]
 
 [params]
 
