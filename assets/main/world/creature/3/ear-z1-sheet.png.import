@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/food-sheet.png-40976191c4072a3f40c418fa17785503.stex"
+path="res://.import/ear-z1-sheet.png-0d7cab4d6644d018ee84b57e6bfbfb2b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/0/food-sheet.png"
-dest_files=[ "res://.import/food-sheet.png-40976191c4072a3f40c418fa17785503.stex" ]
+source_file="res://assets/main/world/creature/3/ear-z1-sheet.png"
+dest_files=[ "res://.import/ear-z1-sheet.png-0d7cab4d6644d018ee84b57e6bfbfb2b.stex" ]
 
 [params]
 

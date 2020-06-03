@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/neck-sheet.png-516ac0a5cb9d0fcba052cd31fe0634bb.stex"
+path="res://.import/eyes-sheet.png-0bad0bbddadd99cc9c473dce75868dd4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/0/neck-sheet.png"
-dest_files=[ "res://.import/neck-sheet.png-516ac0a5cb9d0fcba052cd31fe0634bb.stex" ]
+source_file="res://assets/main/world/creature/3/eyes-sheet.png"
+dest_files=[ "res://.import/eyes-sheet.png-0bad0bbddadd99cc9c473dce75868dd4.stex" ]
 
 [params]
 

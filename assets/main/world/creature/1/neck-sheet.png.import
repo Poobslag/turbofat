@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/food-laser-sheet.png-84d920cca3ac70f5132de154fccb0a6c.stex"
+path="res://.import/neck-sheet.png-1793f13a32d245e0e6ca6e496ae60304.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/0/food-laser-sheet.png"
-dest_files=[ "res://.import/food-laser-sheet.png-84d920cca3ac70f5132de154fccb0a6c.stex" ]
+source_file="res://assets/main/world/creature/1/neck-sheet.png"
+dest_files=[ "res://.import/neck-sheet.png-1793f13a32d245e0e6ca6e496ae60304.stex" ]
 
 [params]
 

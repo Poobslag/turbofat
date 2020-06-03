@@ -125,7 +125,7 @@ Spira is dark red with black eyes.
 func get_creature_def() -> Dictionary:
 	return {
 		"line_rgb": "6c4331", "body_rgb": "b23823", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",
-		"ear": "0", "horn": "1", "mouth": "1", "eye": "0"
+		"ear": "1", "horn": "1", "mouth": "2", "eye": "1"
 	}
 
 

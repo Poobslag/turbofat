@@ -121,5 +121,5 @@ bus = "Sound Bus"
 [connection signal="creature_arrived" from="Viewport/Creature" to="." method="_on_Creature_creature_arrived"]
 [connection signal="jumped" from="Viewport/Creature" to="." method="_on_Creature_jumped"]
 [connection signal="landed" from="Viewport/Creature" to="." method="_on_Creature_landed"]
-[connection signal="movement_animation_started" from="Viewport/Creature" to="." method="_on_Creature_movement_animation_started"]
 [connection signal="movement_animation_started" from="Viewport/Creature" to="Viewport" method="_on_Creature_movement_animation_started"]
+[connection signal="movement_animation_started" from="Viewport/Creature" to="." method="_on_Creature_movement_animation_started"]
