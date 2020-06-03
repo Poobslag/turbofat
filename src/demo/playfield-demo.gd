@@ -13,8 +13,8 @@ var _line_clear_count := 1
 var _box_int := 0
 
 func _input(event: InputEvent) -> void:
-	match(Global.key_scancode(event)):
-		KEY_1, KEY_2, KEY_3: _line_clear_count = Global.key_num(event)
+	match(Utils.key_scancode(event)):
+		KEY_1, KEY_2, KEY_3: _line_clear_count = Utils.key_num(event)
 		
 		# make boxes
 		KEY_Q: _make_box(3)

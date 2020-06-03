@@ -86,7 +86,7 @@ func update_milebar_color() -> void:
 		level_color = LEVEL_COLOR_1
 	else:
 		level_color = LEVEL_COLOR_0
-	$ProgressBar.get("custom_styles/fg").set_bg_color(Global.to_transparent(level_color, 0.333))
+	$ProgressBar.get("custom_styles/fg").set_bg_color(Utils.to_transparent(level_color, 0.333))
 
 
 """

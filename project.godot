@@ -410,6 +410,7 @@ PuzzleScore="*res://src/main/puzzle/puzzle-score.gd"
 ResourceCache="*res://src/main/ResourceCache.tscn"
 Scenario="*res://src/main/puzzle/scenario/scenario.gd"
 StringUtils="*res://src/main/string-utils.gd"
+Utils="*res://src/main/utils.gd"
 
 [display]
 

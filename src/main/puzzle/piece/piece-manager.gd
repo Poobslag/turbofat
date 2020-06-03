@@ -118,10 +118,9 @@ Writes the current piece to the playfield, checking whether it makes any boxes o
 
 Returns true if the newly written piece results in a line clear.
 """
-func write_piece_to_playfield() -> bool:
-	var caused_line_clear := _playfield.write_piece(piece.pos, piece.orientation, piece.type)
+func write_piece_to_playfield() -> void:
+	_playfield.write_piece(piece.pos, piece.orientation, piece.type)
 	clear_piece()
-	return caused_line_clear
 
 
 """
@@ -433,6 +432,10 @@ func apply_lock() -> void:
 		piece.gravity = 0
 	else:
 		piece.lock = 0
+
+
+func is_playfield_clearing_lines() -> bool:
+	return _playfield.remaining_line_clear_frames > 0
 
 
 func _is_cell_blocked(pos: Vector2) -> bool:

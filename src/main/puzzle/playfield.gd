@@ -36,11 +36,11 @@ var lines_being_cleared := []
 var _cleared_line_index := 0
 
 # Stores timing values to ensure lines are erased one at a time with consistent timing.
-# Lines are erased when '_remaining_line_clear_frames' falls below the values in this array.
+# Lines are erased when 'remaining_line_clear_frames' falls below the values in this array.
 var _remaining_line_clear_timings := []
 
 # remaining frames to wait for clearing the current lines
-var _remaining_line_clear_frames := 0
+var remaining_line_clear_frames := 0
 
 # remaining frames to wait for making the current box
 var _remaining_box_build_frames := 0
@@ -64,19 +64,19 @@ func _physics_process(delta: float) -> void:
 	if _remaining_box_build_frames > 0:
 		_remaining_box_build_frames -= 1
 		if _remaining_box_build_frames <= 0:
-			if _remaining_line_clear_frames > 0:
+			if remaining_line_clear_frames > 0:
 				_schedule_full_row_line_clears()
 			else:
 				emit_signal("after_piece_written")
-	elif _remaining_line_clear_frames > 0:
+	elif remaining_line_clear_frames > 0:
 		if _cleared_line_index < lines_being_cleared.size() \
-				and _remaining_line_clear_frames <= _remaining_line_clear_timings[_cleared_line_index]:
+				and remaining_line_clear_frames <= _remaining_line_clear_timings[_cleared_line_index]:
 			clear_line(lines_being_cleared[_cleared_line_index], lines_being_cleared.size(),
 					lines_being_cleared.size() - _cleared_line_index - 1)
 			_cleared_line_index += 1
 
-		_remaining_line_clear_frames -= 1
-		if _remaining_line_clear_frames <= 0:
+		remaining_line_clear_frames -= 1
+		if remaining_line_clear_frames <= 0:
 			_cleared_line_index = 0
 			_delete_rows()
 			emit_signal("after_piece_written")
@@ -110,7 +110,7 @@ Returns false the playfield is paused for an of animation or delay which should 
 """
 func ready_for_new_piece() -> bool:
 	return _remaining_box_build_frames <= 0 \
-			and _remaining_line_clear_frames <= 0 \
+			and remaining_line_clear_frames <= 0 \
 			and _remaining_misc_delay_frames <= 0
 
 
@@ -119,9 +119,9 @@ Writes a piece to the playfield, checking whether it makes any boxes or clears a
 
 Returns true if the written piece results in a line clear.
 """
-func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece := false) -> bool:
+func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece := false) -> void:
 	_remaining_box_build_frames = 0
-	_remaining_line_clear_frames = 0
+	remaining_line_clear_frames = 0
 	
 	$TileMapClip/TileMap.save_state()
 	
@@ -134,12 +134,10 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 		_process_boxes()
 		_schedule_full_row_line_clears()
 	
-	if _remaining_box_build_frames == 0 and _remaining_line_clear_frames == 0:
+	if _remaining_box_build_frames == 0 and remaining_line_clear_frames == 0:
 		# If any boxes are being made or lines are being cleared, we emit the
 		# signal later. Otherwise we emit it now.
 		emit_signal("after_piece_written")
-	
-	return _remaining_line_clear_frames > 0
 
 
 """
@@ -327,12 +325,12 @@ func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_po
 	
 	# Calculate the timing values when lines will be cleared. Set at least line
 	# clear frame; processing occurs when the frame goes from 1 -> 0
-	_remaining_line_clear_frames = max(1, line_clear_delay)
+	remaining_line_clear_frames = max(1, line_clear_delay)
 	_remaining_line_clear_timings.clear()
-	var _line_erase_timing_window := LINE_ERASE_TIMING_PCT * _remaining_line_clear_frames
+	var _line_erase_timing_window := LINE_ERASE_TIMING_PCT * remaining_line_clear_frames
 	var _per_line_frame_delay := floor(_line_erase_timing_window / max(1, lines_being_cleared.size() - 1))
 	for i in range(lines_being_cleared.size()):
-		_remaining_line_clear_timings.append(_remaining_line_clear_frames - i * _per_line_frame_delay)
+		_remaining_line_clear_timings.append(remaining_line_clear_frames - i * _per_line_frame_delay)
 
 
 """

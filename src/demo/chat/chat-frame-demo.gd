@@ -76,12 +76,12 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Global.key_scancode(event):
+	match Utils.key_scancode(event):
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			if Input.is_key_pressed(KEY_SHIFT):
-				_who_index = Global.key_num(event)
+				_who_index = Utils.key_num(event)
 			else:
-				_text_index = Global.key_num(event)
+				_text_index = Utils.key_num(event)
 			_play_chat_event()
 		KEY_A:
 			if $ChatFrame.chat_window_showing():

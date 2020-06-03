@@ -10,7 +10,7 @@ Keys:
 """
 
 func _input(event: InputEvent) -> void:
-	match(Global.key_scancode(event)):
+	match(Utils.key_scancode(event)):
 		KEY_1: $Creature.play_mood(ChatEvent.Mood.DEFAULT)
 		KEY_Q: $Creature.play_mood(ChatEvent.Mood.SMILE0)
 		KEY_W: $Creature.play_mood(ChatEvent.Mood.SMILE1)

@@ -196,9 +196,9 @@ func _calculate_brightness(combo: int) -> void:
 Adjust the modulation for the lights.
 """
 func _remodulate_lights(combo: int) -> void:
-	$LightMap.modulate = Global.to_transparent(_color)
-	$GlowMap.modulate = Global.to_transparent(_color)
-	$BgStrobe.color = Global.to_transparent(_color)
+	$LightMap.modulate = Utils.to_transparent(_color)
+	$GlowMap.modulate = Utils.to_transparent(_color)
+	$BgStrobe.color = Utils.to_transparent(_color)
 	
 	_refresh_tilemaps(combo)
 

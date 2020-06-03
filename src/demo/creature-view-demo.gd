@@ -22,12 +22,12 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Global.key_scancode(event):
+	match Utils.key_scancode(event):
 		KEY_F: $CreatureView/SceneClip/CreatureSwitcher/Scene.feed()
 		KEY_D: $CreatureView/SceneClip/CreatureSwitcher/Scene.play_door_chime(0)
 		KEY_V: $CreatureView.play_goodbye_voice()
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			$CreatureView.set_fatness(FATNESS_KEYS[Global.key_num(event)])
+			$CreatureView.set_fatness(FATNESS_KEYS[Utils.key_num(event)])
 		KEY_Q: $CreatureView.set_current_creature_index(0)
 		KEY_W: $CreatureView.set_current_creature_index(1)
 		KEY_E: $CreatureView.set_current_creature_index(2)

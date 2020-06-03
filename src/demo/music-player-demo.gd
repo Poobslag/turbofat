@@ -13,7 +13,7 @@ Keys:
 """
 
 func _input(event: InputEvent) -> void:
-	match(Global.key_scancode(event)):
+	match(Utils.key_scancode(event)):
 		KEY_C: MusicPlayer.play_chill_bgm()
 		KEY_EQUAL: MusicPlayer.fade_in()
 		KEY_U: MusicPlayer.play_upbeat_bgm()
