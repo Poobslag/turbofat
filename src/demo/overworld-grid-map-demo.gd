@@ -20,7 +20,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Global.key_scancode(event):
+	match Utils.key_scancode(event):
 		KEY_D: $GridMap.regenerate_dramatic_world()
 		KEY_E: $GridMap.regenerate_empty_world()
 		KEY_P: regenerate_path_world()

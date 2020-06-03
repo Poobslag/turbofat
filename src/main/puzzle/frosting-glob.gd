@@ -29,7 +29,7 @@ func initialize(color: Color, new_position: Vector2) -> void:
 	
 	modulate = color
 	$Tween.remove_all()
-	$Tween.interpolate_property(self, "modulate", color, Global.to_transparent(color), \
+	$Tween.interpolate_property(self, "modulate", color, Utils.to_transparent(color), \
 			DURATION, Tween.TRANS_CIRC, Tween.EASE_IN)
 	$Tween.start()
 	

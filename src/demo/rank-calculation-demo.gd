@@ -42,6 +42,7 @@ func _ready() -> void:
 		
 		# calculate target lines and score for a fake scenario which resembles the game's scenario
 		Scenario.settings = _scenario_settings(data_key, start_level, seconds)
+		Scenario.launched_scenario_name = Scenario.settings.name
 		var target_score := _target_score(target_rank)
 		var target_lines := _target_lines(target_rank)
 		

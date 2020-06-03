@@ -99,12 +99,12 @@ function.
 """
 func _unhandled_input(_event: InputEvent) -> void:
 	# apply movement
-	if Global.ui_pressed_dir() or Global.ui_released_dir():
+	if Utils.ui_pressed_dir() or Utils.ui_released_dir():
 		# calculate the direction the player wants to move
-		_walk_direction = Global.ui_pressed_dir()
+		_walk_direction = Utils.ui_pressed_dir()
 		if _rotate_controls:
 			_walk_direction = _walk_direction.rotated(-PI / 4)
-		if Global.ui_pressed_dir() or Global.ui_released_dir():
+		if Utils.ui_pressed_dir() or Utils.ui_released_dir():
 			get_tree().set_input_as_handled()
 	
 	# apply jump

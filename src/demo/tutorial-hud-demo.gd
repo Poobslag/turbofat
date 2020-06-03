@@ -35,9 +35,9 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match Global.key_scancode(event):
+	match Utils.key_scancode(event):
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			_tutorial_hud.append_message(TEXTS[Global.key_num(event)])
+			_tutorial_hud.append_message(TEXTS[Utils.key_num(event)])
 		KEY_O:
 			_tutorial_hud.append_big_message("O/H/,/// M/Y/!/!/!")
 		KEY_H:

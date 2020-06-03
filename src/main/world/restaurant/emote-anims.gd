@@ -104,7 +104,7 @@ func unemote() -> void:
 		$ResetTween.interpolate_property(emote_sprite, "rotation_degrees", emote_sprite.rotation_degrees, 0,
 				UNEMOTE_DURATION)
 		$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
-				Global.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
+				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
 	$"..".head_bob_mode = Creature.HeadBobMode.BOB
 	$"..".head_motion_pixels = Creature.HEAD_BOB_PIXELS
 	$"..".head_motion_seconds = Creature.HEAD_BOB_SECONDS
