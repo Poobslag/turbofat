@@ -118,16 +118,20 @@ func spawn_piece() -> bool:
 	piece = ActivePiece.new(piece_type)
 	tile_map_dirty = true
 	
-	# apply initial orientation if the button is held
-	if $InputCw.frames > 1 or $InputCcw.frames > 1:
-		if $InputCw.frames > 1 and $InputCcw.frames > 1:
+	# apply initial orientation if rotate buttons are pressed
+	if $InputCw.is_pressed() or $InputCcw.is_pressed():
+		if $InputCw.is_pressed() and $InputCcw.is_pressed():
 			piece.orientation = piece.get_flip_orientation(piece.orientation)
+			$InputCw.set_input_as_handled()
+			$InputCcw.set_input_as_handled()
 			emit_signal("initial_rotated_twice")
-		elif $InputCw.frames > 1:
+		elif $InputCw.is_pressed():
 			piece.orientation = piece.get_cw_orientation(piece.orientation)
+			$InputCw.set_input_as_handled()
 			emit_signal("initial_rotated_right")
-		elif $InputCcw.frames > 1:
+		elif $InputCcw.is_pressed():
 			piece.orientation = piece.get_ccw_orientation(piece.orientation)
+			$InputCcw.set_input_as_handled()
 			emit_signal("initial_rotated_left")
 		
 		# relocate rotated piece to the top of the _playfield
@@ -141,8 +145,10 @@ func spawn_piece() -> bool:
 	# apply initial infinite DAS
 	var initial_das_dir := 0
 	if $InputLeft.is_das_active():
+		$InputLeft.set_input_as_handled()
 		initial_das_dir -= 1
 	if $InputRight.is_das_active():
+		$InputRight.set_input_as_handled()
 		initial_das_dir += 1
 	
 	if initial_das_dir == -1:
@@ -185,18 +191,42 @@ func spawn_piece() -> bool:
 
 
 """
+Records any inputs to a buffer to be replayed later.
+"""
+func buffer_inputs() -> void:
+	$InputLeft.buffer = true
+	$InputRight.buffer = true
+	$InputCw.buffer = true
+	$InputCcw.buffer = true
+	$InputSoftDrop.buffer = true
+	$InputHardDrop.buffer = true
+
+
+"""
+Replays any inputs which were pressed while buffering.
+"""
+func pop_buffered_inputs() -> void:
+	$InputLeft.pop_buffered_input()
+	$InputRight.pop_buffered_input()
+	$InputCw.pop_buffered_input()
+	$InputCcw.pop_buffered_input()
+	$InputSoftDrop.pop_buffered_input()
+	$InputHardDrop.pop_buffered_input()
+
+
+"""
 If any move/rotate keys were pressed, this method will move the block accordingly.
 
 Returns 'true' if the piece was interacted with successfully resulting in a movement change, orientation change, or
 	lock reset
 """
 func apply_player_input() -> bool:
-	if not $InputHardDrop.pressed \
-			and not $InputSoftDrop.pressed \
-			and not $InputLeft.pressed \
-			and not $InputRight.pressed \
-			and not $InputCw.pressed \
-			and not $InputCcw.pressed:
+	if not $InputHardDrop.is_pressed() \
+			and not $InputSoftDrop.is_pressed() \
+			and not $InputLeft.is_pressed() \
+			and not $InputRight.is_pressed() \
+			and not $InputCw.is_pressed() \
+			and not $InputCcw.is_pressed():
 		return false
 	
 	var did_hard_drop := false
@@ -216,21 +246,23 @@ func apply_player_input() -> bool:
 		
 		# automatically trigger DAS if you're pushing a piece towards an obstruction. otherwise, pieces might slip
 		# past a nook if you're holding a direction before DAS triggers
-		if $InputLeft.pressed and not _can_move_piece_to(Vector2(piece.pos.x - 1, piece.pos.y), piece.orientation):
+		if $InputLeft.is_pressed() \
+				and not _can_move_piece_to(Vector2(piece.pos.x - 1, piece.pos.y), piece.orientation):
 			$InputLeft.frames = 3600
-		if $InputRight.pressed and not _can_move_piece_to(Vector2(piece.pos.x + 1, piece.pos.y), piece.orientation):
+		if $InputRight.is_pressed() \
+				and not _can_move_piece_to(Vector2(piece.pos.x + 1, piece.pos.y), piece.orientation):
 			$InputRight.frames = 3600
 		
-		if $InputHardDrop.just_pressed or $InputHardDrop.is_das_active():
+		if $InputHardDrop.is_just_pressed() or $InputHardDrop.is_das_active():
 			_reset_piece_target()
 			while _move_piece_to_target():
 				_target_piece_pos.y += 1
 			# lock piece
 			piece.lock = PieceSpeeds.current_speed.lock_delay
-			did_hard_drop = true
 			emit_signal("hard_dropped")
+			did_hard_drop = true
 
-	if $InputSoftDrop.just_pressed:
+	if $InputSoftDrop.is_just_pressed():
 		if not _can_move_piece_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
 			_reset_piece_target()
 			_calc_squish_target()
@@ -242,7 +274,7 @@ func apply_player_input() -> bool:
 				_perform_lock_reset()
 				applied_player_input = true
 				emit_signal("lock_cancelled")
-	elif $InputSoftDrop.pressed and piece.lock >= PieceSpeeds.current_speed.lock_delay:
+	elif $InputSoftDrop.is_pressed() and piece.lock >= PieceSpeeds.current_speed.lock_delay:
 		if not _can_move_piece_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
 			_reset_piece_target()
 			_calc_squish_target()
@@ -370,7 +402,7 @@ func apply_gravity() -> void:
 	if _gravity_delay_frames > 0:
 		_gravity_delay_frames -= 1
 	else:
-		if $InputSoftDrop.pressed:
+		if $InputSoftDrop.is_pressed():
 			# soft drop
 			piece.gravity += int(max(PieceSpeeds.DROP_G, PieceSpeeds.current_speed.gravity))
 			emit_signal("soft_dropped")
@@ -449,12 +481,12 @@ func _reset_piece_target() -> void:
 
 
 func _attempt_horizontal_movement() -> void:
-	if $InputLeft.just_pressed or $InputLeft.is_das_active():
+	if $InputLeft.is_just_pressed() or $InputLeft.is_das_active():
 		_target_piece_pos.x -= 1
 	
-	if $InputRight.just_pressed or $InputRight.is_das_active():
+	if $InputRight.is_just_pressed() or $InputRight.is_das_active():
 		_target_piece_pos.x += 1
-
+	
 	if _target_piece_pos.x != piece.pos.x and _move_piece_to_target(true):
 		_horizontal_movement_count += 1
 
@@ -463,10 +495,10 @@ func _attempt_horizontal_movement() -> void:
 Calculates the orientation the player is trying to rotate the piece to.
 """
 func _calc_target_orientation() -> void:
-	if $InputCw.just_pressed:
+	if $InputCw.is_just_pressed():
 		_target_piece_orientation = piece.get_cw_orientation(_target_piece_orientation)
 		
-	if $InputCcw.just_pressed:
+	if $InputCcw.is_just_pressed():
 		_target_piece_orientation = piece.get_ccw_orientation(_target_piece_orientation)
 
 

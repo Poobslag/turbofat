@@ -391,5 +391,6 @@ script = ExtResource( 19 )
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="box_made" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_made"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
+[connection signal="topped_out" from="PieceManager" to="TopOutTracker" method="_on_PieceManager_topped_out"]
 [connection signal="start_button_pressed" from="HudHolder/Hud" to="." method="_on_Hud_start_button_pressed"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]

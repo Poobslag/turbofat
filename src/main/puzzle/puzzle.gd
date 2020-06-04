@@ -8,6 +8,10 @@ class to add goals, win conditions, challenges or time limits.
 signal topped_out
 
 func _ready() -> void:
+	if not ResourceCache.is_done():
+		# when launched standalone, we don't load creature resources (they're slow)
+		ResourceCache.minimal_resources = true
+	
 	PuzzleScore.reset() # erase any lines/score from previous games
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
