@@ -15,6 +15,7 @@ func _ready() -> void:
 	$FontFitLabel.pick_largest_font()
 	$MoodSprite/AnimationPlayer.advance(randf() * 2.5)
 	_set_pivot_to_center()
+	add_to_group("chat-choices")
 
 
 """

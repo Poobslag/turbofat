@@ -67,11 +67,9 @@ func show_choices(choices: Array, moods: Array) -> void:
 	_refresh_child_buttons()
 	
 	if choices:
-		for child in get_children():
-			var button: ChatChoiceButton = _button(child)
-			if button:
-				button.grab_focus()
-				break
+		for button in get_tree().get_nodes_in_group("chat-choices"):
+			button.grab_focus()
+			break
 
 
 func is_showing_choices() -> bool:
@@ -113,11 +111,9 @@ func _button(node: Node) -> ChatChoiceButton:
 Removes and recreates all chat choice buttons.
 """
 func _refresh_child_buttons() -> void:
-	for child in get_children():
-		var button: ChatChoiceButton = _button(child)
-		if button:
-			child.queue_free()
-			remove_child(child)
+	for child in get_tree().get_nodes_in_group("chat-choices"):
+		child.queue_free()
+		remove_child(child)
 	
 	var new_buttons: Array = []
 	
@@ -165,11 +161,7 @@ Makes all the chat choice buttons disappear and emits a signal with the player's
 The chat choice buttons remain as children of this node so they can be animated away.
 """
 func _on_ChatChoiceButton_pressed() -> void:
-	var old_buttons := []
-	for child in get_children():
-		var button: ChatChoiceButton = _button(child)
-		if button:
-			old_buttons.append(button)
+	var old_buttons := get_tree().get_nodes_in_group("chat-choices")
 
 	# determine the currently selected choice
 	var choice_index := -1
