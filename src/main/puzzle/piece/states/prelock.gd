@@ -8,6 +8,7 @@ func update(piece_manager: PieceManager) -> String:
 	if piece_manager.apply_player_input():
 		new_state_name = "MovePiece"
 	elif frames >= PieceSpeeds.current_speed.post_lock_delay:
+		piece_manager.buffer_inputs()
 		piece_manager.write_piece_to_playfield()
 		var spawn_delay: float
 		if piece_manager.is_playfield_clearing_lines():

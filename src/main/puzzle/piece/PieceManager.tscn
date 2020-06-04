@@ -1,6 +1,5 @@
 [gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://src/main/puzzle/piece/frame-input.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://src/main/puzzle/piece/piece-manager.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=4]
@@ -11,6 +10,7 @@
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=11]
+[ext_resource path="res://src/main/puzzle/piece/FrameInput.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/puzzle/piece-sfx.gd" type="Script" id=13]
 [ext_resource path="res://src/main/puzzle/piece/states/game-ended.gd" type="Script" id=14]
 [ext_resource path="res://src/main/puzzle/stretch-map.gd" type="Script" id=15]
@@ -127,30 +127,24 @@ bus = "Sound Bus"
 stream = ExtResource( 5 )
 bus = "Sound Bus"
 
-[node name="InputLeft" type="Node" parent="."]
-script = ExtResource( 1 )
+[node name="InputLeft" parent="." instance=ExtResource( 12 )]
 action = "ui_left"
 cancel_action = "ui_right"
 
-[node name="InputRight" type="Node" parent="."]
-script = ExtResource( 1 )
+[node name="InputRight" parent="." instance=ExtResource( 12 )]
 action = "ui_right"
 cancel_action = "ui_left"
 
-[node name="InputCw" type="Node" parent="."]
-script = ExtResource( 1 )
+[node name="InputCw" parent="." instance=ExtResource( 12 )]
 action = "rotate_cw"
 
-[node name="InputCcw" type="Node" parent="."]
-script = ExtResource( 1 )
+[node name="InputCcw" parent="." instance=ExtResource( 12 )]
 action = "rotate_ccw"
 
-[node name="InputSoftDrop" type="Node" parent="."]
-script = ExtResource( 1 )
+[node name="InputSoftDrop" parent="." instance=ExtResource( 12 )]
 action = "soft_drop"
 
-[node name="InputHardDrop" type="Node" parent="."]
-script = ExtResource( 1 )
+[node name="InputHardDrop" parent="." instance=ExtResource( 12 )]
 action = "hard_drop"
 [connection signal="das_moved_left" from="." to="PieceSfx" method="_on_PieceManager_das_moved_left"]
 [connection signal="das_moved_right" from="." to="PieceSfx" method="_on_PieceManager_das_moved_right"]

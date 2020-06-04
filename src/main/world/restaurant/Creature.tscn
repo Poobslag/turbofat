@@ -2420,8 +2420,14 @@ light_mask = 2
 rotation = 0.00355033
 curve = SubResource( 7 )
 script = ExtResource( 3 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
+line_color = Color( 0, 0, 0, 1 )
 fill_color = Color( 0, 0, 0, 1 )
 line_width = 2.0
+_fatness = 1.0
 editing = false
 
 [node name="Outline" type="Path2D" parent="Sprites/Body"]

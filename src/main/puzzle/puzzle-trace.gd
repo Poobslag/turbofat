@@ -21,8 +21,8 @@ func _process(delta: float) -> void:
 		
 		new_text += input_char(_piece_manager.get_node("InputLeft"), "l")
 		new_text += input_char(_piece_manager.get_node("InputRight"), "r")
-		new_text += input_char(_piece_manager.get_node("InputCw"), "z")
-		new_text += input_char(_piece_manager.get_node("InputCcw"), "x")
+		new_text += input_char(_piece_manager.get_node("InputCw"), "x")
+		new_text += input_char(_piece_manager.get_node("InputCcw"), "z")
 		new_text += input_char(_piece_manager.get_node("InputSoftDrop"), "d")
 		new_text += input_char(_piece_manager.get_node("InputHardDrop"), "u")
 		var max_input_frames := 0
@@ -40,7 +40,7 @@ func _process(delta: float) -> void:
 Returns a FrameInput object as a single-character string.
 """
 func input_char(frame_input: FrameInput, character: String) -> String:
-	if not frame_input.pressed:
+	if not frame_input.is_pressed():
 		return "-"
 	elif not frame_input.is_das_active():
 		return character

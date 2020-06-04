@@ -188,6 +188,8 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	
 	var finish_condition: Milestone = Scenario.settings.finish_condition
 	match finish_condition.type:
+		Milestone.NONE:
+			target_lines = 999999
 		Milestone.CUSTOMERS:
 			target_lines = MASTER_COMBO * finish_condition.value
 		Milestone.LINES:
