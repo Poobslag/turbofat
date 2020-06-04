@@ -194,12 +194,12 @@ func spawn_piece() -> bool:
 Records any inputs to a buffer to be replayed later.
 """
 func buffer_inputs() -> void:
-	$InputLeft.buffer = true
-	$InputRight.buffer = true
-	$InputCw.buffer = true
-	$InputCcw.buffer = true
-	$InputSoftDrop.buffer = true
-	$InputHardDrop.buffer = true
+	$InputLeft.buffer_input()
+	$InputRight.buffer_input()
+	$InputCw.buffer_input()
+	$InputCcw.buffer_input()
+	$InputSoftDrop.buffer_input()
+	$InputHardDrop.buffer_input()
 
 
 """
