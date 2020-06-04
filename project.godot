@@ -104,6 +104,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/font-fit-label.gd"
 }, {
+"base": "Node",
+"class": "FrameInput",
+"language": "GDScript",
+"path": "res://src/main/puzzle/piece/frame-input.gd"
+}, {
 "base": "Timer",
 "class": "FreshnessInspector",
 "language": "GDScript",
@@ -339,6 +344,7 @@ _global_script_class_icons={
 "CreatureLoader": "",
 "EditorPlayfield": "",
 "FontFitLabel": "",
+"FrameInput": "",
 "FreshnessInspector": "",
 "FrostingGlob": "",
 "JSONBeautifier": "",

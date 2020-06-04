@@ -33,17 +33,17 @@ const COL_COUNT = 9
 var awarding_line_clear_points: bool = true
 var lines_being_cleared := []
 
+# remaining frames to wait for clearing the current lines
+var remaining_line_clear_frames := 0
+
+# remaining frames to wait for making the current box
+var remaining_box_build_frames := 0
+
 var _cleared_line_index := 0
 
 # Stores timing values to ensure lines are erased one at a time with consistent timing.
 # Lines are erased when 'remaining_line_clear_frames' falls below the values in this array.
 var _remaining_line_clear_timings := []
-
-# remaining frames to wait for clearing the current lines
-var remaining_line_clear_frames := 0
-
-# remaining frames to wait for making the current box
-var _remaining_box_build_frames := 0
 
 # remaining frames to delay for something besides making boxes/clearing lines
 var _remaining_misc_delay_frames := 0
@@ -61,9 +61,9 @@ func _physics_process(delta: float) -> void:
 	if PuzzleScore.game_active:
 		PuzzleScore.scenario_performance.seconds += delta
 	
-	if _remaining_box_build_frames > 0:
-		_remaining_box_build_frames -= 1
-		if _remaining_box_build_frames <= 0:
+	if remaining_box_build_frames > 0:
+		remaining_box_build_frames -= 1
+		if remaining_box_build_frames <= 0:
 			if remaining_line_clear_frames > 0:
 				_schedule_full_row_line_clears()
 			else:
@@ -109,7 +109,7 @@ func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) 
 Returns false the playfield is paused for an of animation or delay which should prevent a new piece from appearing.
 """
 func ready_for_new_piece() -> bool:
-	return _remaining_box_build_frames <= 0 \
+	return remaining_box_build_frames <= 0 \
 			and remaining_line_clear_frames <= 0 \
 			and _remaining_misc_delay_frames <= 0
 
@@ -120,7 +120,7 @@ Writes a piece to the playfield, checking whether it makes any boxes or clears a
 Returns true if the written piece results in a line clear.
 """
 func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece := false) -> void:
-	_remaining_box_build_frames = 0
+	remaining_box_build_frames = 0
 	remaining_line_clear_frames = 0
 	
 	$TileMapClip/TileMap.save_state()
@@ -134,7 +134,7 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 		_process_boxes()
 		_schedule_full_row_line_clears()
 	
-	if _remaining_box_build_frames == 0 and remaining_line_clear_frames == 0:
+	if remaining_box_build_frames == 0 and remaining_line_clear_frames == 0:
 		# If any boxes are being made or lines are being cleared, we emit the
 		# signal later. Otherwise we emit it now.
 		emit_signal("after_piece_written")
@@ -179,7 +179,7 @@ Boxes are made when the player forms a 3x3, 3x4, 3x5 rectangle from intact piece
 """
 func make_box(x: int, y: int, width: int, height: int, box_int: int) -> void:
 	# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
-	_remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
+	remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
 	$TileMapClip/TileMap.make_box(x, y, width, height, box_int)
 	emit_signal("box_made", x, y, width, height, box_int)
 

@@ -1,0 +1,169 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://src/main/puzzle/piece/frame-input.gd" type="Script" id=1]
+[ext_resource path="res://src/main/puzzle/PuzzleTileSet.tres" type="TileSet" id=2]
+[ext_resource path="res://src/main/puzzle/piece/piece-manager.gd" type="Script" id=3]
+[ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=4]
+[ext_resource path="res://assets/main/puzzle/levelup.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/main/puzzle/rotate0.wav" type="AudioStream" id=6]
+[ext_resource path="res://assets/main/puzzle/rotate1.wav" type="AudioStream" id=7]
+[ext_resource path="res://assets/main/puzzle/lock.wav" type="AudioStream" id=8]
+[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=11]
+[ext_resource path="res://src/main/puzzle/piece-sfx.gd" type="Script" id=13]
+[ext_resource path="res://src/main/puzzle/piece/states/game-ended.gd" type="Script" id=14]
+[ext_resource path="res://src/main/puzzle/stretch-map.gd" type="Script" id=15]
+[ext_resource path="res://src/main/puzzle/piece/states/prespawn.gd" type="Script" id=16]
+[ext_resource path="res://src/main/puzzle/piece/states/none.gd" type="Script" id=17]
+[ext_resource path="res://src/main/puzzle/piece/states/move-piece.gd" type="Script" id=18]
+[ext_resource path="res://src/main/state-machine.gd" type="Script" id=19]
+[ext_resource path="res://src/main/puzzle/piece/states/wait-for-playfield.gd" type="Script" id=20]
+[ext_resource path="res://src/main/puzzle/top-out.gd" type="Script" id=21]
+[ext_resource path="res://assets/main/puzzle/blocks/blocks-corners.png" type="Texture" id=22]
+[ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=23]
+
+[sub_resource type="TileSet" id=1]
+0/name = "blocks-corners.png 2"
+0/texture = ExtResource( 22 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 2, 2, 76, 284 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 36, 32 )
+0/autotile/spacing = 4
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[node name="PieceManager" type="Control"]
+margin_left = 364.0
+margin_top = 28.0
+margin_right = 688.0
+margin_bottom = 572.0
+rect_clip_content = true
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TileMap" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, -96 )
+
+[node name="StretchMap" type="TileMap" parent="."]
+position = Vector2( 0, -96 )
+scale = Vector2( 0.5, 0.5 )
+z_index = 1
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 72, 64 )
+format = 1
+tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 196608, 262149, 0, 196608 )
+script = ExtResource( 15 )
+
+[node name="CornerMap" parent="StretchMap" instance=ExtResource( 10 )]
+tile_set = SubResource( 1 )
+
+[node name="States" type="Node" parent="."]
+script = ExtResource( 19 )
+
+[node name="None" type="Node" parent="States"]
+script = ExtResource( 17 )
+
+[node name="Prespawn" type="Node" parent="States"]
+script = ExtResource( 16 )
+
+[node name="MovePiece" type="Node" parent="States"]
+script = ExtResource( 18 )
+
+[node name="Prelock" type="Node" parent="States"]
+script = ExtResource( 11 )
+
+[node name="WaitForPlayfield" type="Node" parent="States"]
+script = ExtResource( 20 )
+
+[node name="TopOut" type="Node" parent="States"]
+script = ExtResource( 21 )
+
+[node name="GameEnded" type="Node" parent="States"]
+script = ExtResource( 14 )
+
+[node name="PieceSfx" type="Node" parent="."]
+script = ExtResource( 13 )
+
+[node name="Rotate0Sound" type="AudioStreamPlayer" parent="PieceSfx"]
+stream = ExtResource( 6 )
+volume_db = -4.0
+bus = "Sound Bus"
+
+[node name="Rotate1Sound" type="AudioStreamPlayer" parent="PieceSfx"]
+stream = ExtResource( 7 )
+volume_db = -4.0
+bus = "Sound Bus"
+
+[node name="MoveSound" type="AudioStreamPlayer" parent="PieceSfx"]
+stream = ExtResource( 4 )
+volume_db = -4.0
+bus = "Sound Bus"
+
+[node name="LockSound" type="AudioStreamPlayer" parent="PieceSfx"]
+stream = ExtResource( 8 )
+bus = "Sound Bus"
+
+[node name="SquishSound" type="AudioStreamPlayer" parent="PieceSfx"]
+stream = ExtResource( 23 )
+bus = "Sound Bus"
+
+[node name="LevelUpSound" type="AudioStreamPlayer" parent="PieceSfx"]
+stream = ExtResource( 5 )
+bus = "Sound Bus"
+
+[node name="InputLeft" type="Node" parent="."]
+script = ExtResource( 1 )
+action = "ui_left"
+cancel_action = "ui_right"
+
+[node name="InputRight" type="Node" parent="."]
+script = ExtResource( 1 )
+action = "ui_right"
+cancel_action = "ui_left"
+
+[node name="InputCw" type="Node" parent="."]
+script = ExtResource( 1 )
+action = "rotate_cw"
+
+[node name="InputCcw" type="Node" parent="."]
+script = ExtResource( 1 )
+action = "rotate_ccw"
+
+[node name="InputSoftDrop" type="Node" parent="."]
+script = ExtResource( 1 )
+action = "soft_drop"
+
+[node name="InputHardDrop" type="Node" parent="."]
+script = ExtResource( 1 )
+action = "hard_drop"
+[connection signal="das_moved_left" from="." to="PieceSfx" method="_on_PieceManager_das_moved_left"]
+[connection signal="das_moved_right" from="." to="PieceSfx" method="_on_PieceManager_das_moved_right"]
+[connection signal="initial_das_moved_left" from="." to="PieceSfx" method="_on_PieceManager_initial_das_moved_left"]
+[connection signal="initial_das_moved_right" from="." to="PieceSfx" method="_on_PieceManager_initial_das_moved_right"]
+[connection signal="initial_rotated_left" from="." to="PieceSfx" method="_on_PieceManager_initial_rotated_left"]
+[connection signal="initial_rotated_right" from="." to="PieceSfx" method="_on_PieceManager_initial_rotated_right"]
+[connection signal="initial_rotated_twice" from="." to="PieceSfx" method="_on_PieceManager_initial_rotated_twice"]
+[connection signal="lock_cancelled" from="." to="PieceSfx" method="_on_PieceManager_lock_cancelled"]
+[connection signal="lock_started" from="." to="PieceSfx" method="_on_PieceManager_lock_started"]
+[connection signal="moved_left" from="." to="PieceSfx" method="_on_PieceManager_moved_left"]
+[connection signal="moved_right" from="." to="PieceSfx" method="_on_PieceManager_moved_right"]
+[connection signal="rotated_left" from="." to="PieceSfx" method="_on_PieceManager_rotated_left"]
+[connection signal="rotated_right" from="." to="PieceSfx" method="_on_PieceManager_rotated_right"]
+[connection signal="squish_moved" from="." to="PieceSfx" method="_on_PieceManager_squish_moved"]
+[connection signal="entered_state" from="States" to="." method="_on_States_entered_state"]
