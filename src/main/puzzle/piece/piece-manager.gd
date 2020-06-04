@@ -52,7 +52,6 @@ func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
-	PieceSpeeds.connect("speed_changed", self, "_on_PieceSpeeds_speed_changed")
 	
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	$States.set_state($States/None)

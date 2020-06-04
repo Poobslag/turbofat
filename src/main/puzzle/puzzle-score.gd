@@ -140,10 +140,7 @@ func reset() -> void:
 	scenario_performance = PuzzlePerformance.new()
 	level_index = 0
 	
-	emit_signal("creature_score_changed")
-	emit_signal("bonus_score_changed", 0)
-	emit_signal("score_changed", 0)
-	emit_signal("lines_changed", 0)
+	emit_signal("score_changed")
 	emit_signal("level_index_changed", 0)
 
 
