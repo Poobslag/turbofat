@@ -53,14 +53,6 @@ enum HeadBobMode {
 # delays between when creature arrives and when door chime is played (in seconds)
 const CHIME_DELAYS: Array = [0.2, 0.3, 0.5, 1.0, 1.5]
 
-# maps creature orientations to appropriate (x, y) direction vectors
-const ORIENTATION_VECTORS := {
-	Orientation.SOUTHEAST: Vector2(1.0, 0.0),
-	Orientation.SOUTHWEST: Vector2(0.0, 1.0),
-	Orientation.NORTHWEST: Vector2(-1.0, 0.0),
-	Orientation.NORTHEAST: Vector2(0.0, -1.0),
-}
-
 # in the editor, this rotates between a set of different creature appearances
 export (int) var _creature_preset := -1 setget set_creature_preset
 
@@ -492,20 +484,14 @@ func _compute_orientation(direction: Vector2) -> int:
 		# we default to the current orientation if given a zero-length vector
 		return _orientation
 	
-	# in case of a near-tie, we preserve their current orientation. this prevents them from rapidly flipping back and
-	# forth when moving horizontally or vertically
-	var highest_dot := direction.normalized().dot(ORIENTATION_VECTORS[_orientation]) + 0.1
-	var new_orientation := _orientation
-	for orientation in Orientation.values():
-		# calculate which potential orientation has the highest dot product
-		if orientation == _orientation:
-			continue
-		else:
-			var dot := direction.normalized().dot(ORIENTATION_VECTORS[orientation])
-			if dot > highest_dot:
-				new_orientation = orientation
-				highest_dot = dot
-
+	# preserve the old orientation if it's close to the new orientation. this prevents us from flipping repeatedly
+	# when our direction puts us between two orientations.
+	var new_orientation: int = _orientation
+	# unrounded orientation is a float in the range [-2.0, 2.0]
+	var unrounded_orientation := -2 * direction.angle_to(Vector2.RIGHT) / PI
+	if abs(unrounded_orientation - _orientation) >= 0.6 and abs(unrounded_orientation + 4 - _orientation) >= 0.6:
+		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
+		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
 	return new_orientation
 
 
