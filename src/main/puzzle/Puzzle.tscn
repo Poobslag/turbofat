@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=51 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-hud.tscn" type="PackedScene" id=2]
@@ -8,29 +8,16 @@
 [ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/puzzle/rainbow-metaball.shader" type="Shader" id=7]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=8]
-[ext_resource path="res://src/main/puzzle/PuzzleTileSet.tres" type="TileSet" id=9]
-[ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/puzzle/piece/PieceManager.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=11]
-[ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/main/ui/menu/theme/h4-font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/main/puzzle/puzzle-music-manager.gd" type="Script" id=19]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=21]
-[ext_resource path="res://src/main/puzzle/piece/piece-manager.gd" type="Script" id=22]
 [ext_resource path="res://src/main/puzzle/milestone-hud.gd" type="Script" id=23]
 [ext_resource path="res://src/main/puzzle/frosting-globs.gd" type="Script" id=24]
-[ext_resource path="res://src/main/puzzle/piece-sfx.gd" type="Script" id=25]
-[ext_resource path="res://src/main/puzzle/stretch-map.gd" type="Script" id=26]
-[ext_resource path="res://src/main/puzzle/piece/states/game-ended.gd" type="Script" id=27]
-[ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=28]
-[ext_resource path="res://src/main/puzzle/piece/states/prespawn.gd" type="Script" id=29]
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=30]
-[ext_resource path="res://src/main/puzzle/piece/states/move-piece.gd" type="Script" id=31]
-[ext_resource path="res://src/main/state-machine.gd" type="Script" id=32]
-[ext_resource path="res://src/main/puzzle/piece/states/wait-for-playfield.gd" type="Script" id=33]
-[ext_resource path="res://src/main/puzzle/piece/states/none.gd" type="Script" id=34]
-[ext_resource path="res://src/main/puzzle/top-out.gd" type="Script" id=35]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
 [ext_resource path="res://assets/main/ui/go.wav" type="AudioStream" id=38]
 [ext_resource path="res://assets/main/ui/ready.wav" type="AudioStream" id=39]
@@ -42,18 +29,12 @@
 [ext_resource path="res://assets/main/world/chef/gameover-voice0.wav" type="AudioStream" id=46]
 [ext_resource path="res://assets/main/ui/gameover.wav" type="AudioStream" id=47]
 [ext_resource path="res://assets/main/world/chef/gameover-voice2.wav" type="AudioStream" id=48]
-[ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=49]
-[ext_resource path="res://assets/main/puzzle/levelup.wav" type="AudioStream" id=50]
 [ext_resource path="res://assets/main/ui/excellent.wav" type="AudioStream" id=51]
 [ext_resource path="res://assets/main/ui/matchend.wav" type="AudioStream" id=52]
 [ext_resource path="res://assets/main/world/chef/go-voice0.wav" type="AudioStream" id=53]
 [ext_resource path="res://assets/main/world/chef/go-voice1.wav" type="AudioStream" id=54]
 [ext_resource path="res://assets/main/world/chef/go-voice2.wav" type="AudioStream" id=55]
-[ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=56]
 [ext_resource path="res://assets/main/world/chef/gameover-voice1.wav" type="AudioStream" id=57]
-[ext_resource path="res://assets/main/puzzle/lock.wav" type="AudioStream" id=58]
-[ext_resource path="res://assets/main/puzzle/rotate0.wav" type="AudioStream" id=59]
-[ext_resource path="res://assets/main/puzzle/rotate1.wav" type="AudioStream" id=60]
 [ext_resource path="res://src/main/puzzle/Score.tscn" type="PackedScene" id=61]
 [ext_resource path="res://src/main/puzzle/PuzzleHud.tscn" type="PackedScene" id=62]
 [ext_resource path="res://src/main/world/restaurant/CreatureView.tscn" type="PackedScene" id=63]
@@ -61,7 +42,6 @@
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=65]
 [ext_resource path="res://src/main/puzzle/chalkboard.gd" type="Script" id=66]
 [ext_resource path="res://src/main/puzzle/start-end-sfx.gd" type="Script" id=67]
-
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -128,85 +108,7 @@ margin_top = 28.0
 margin_right = 688.0
 margin_bottom = 572.0
 
-[node name="PieceManager" type="Control" parent="."]
-margin_left = 364.0
-margin_top = 28.0
-margin_right = 688.0
-margin_bottom = 572.0
-rect_clip_content = true
-script = ExtResource( 22 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TileMap" parent="PieceManager" instance=ExtResource( 12 )]
-position = Vector2( 0, -96 )
-
-[node name="StretchMap" type="TileMap" parent="PieceManager"]
-position = Vector2( 0, -96 )
-scale = Vector2( 0.5, 0.5 )
-z_index = 1
-tile_set = ExtResource( 9 )
-cell_size = Vector2( 72, 64 )
-format = 1
-tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 196608, 262149, 0, 196608 )
-script = ExtResource( 26 )
-
-[node name="CornerMap" parent="PieceManager/StretchMap" instance=ExtResource( 10 )]
-
-[node name="States" type="Node" parent="PieceManager"]
-script = ExtResource( 32 )
-
-[node name="None" type="Node" parent="PieceManager/States"]
-script = ExtResource( 34 )
-
-[node name="Prespawn" type="Node" parent="PieceManager/States"]
-script = ExtResource( 29 )
-
-[node name="MovePiece" type="Node" parent="PieceManager/States"]
-script = ExtResource( 31 )
-
-[node name="Prelock" type="Node" parent="PieceManager/States"]
-script = ExtResource( 28 )
-
-[node name="WaitForPlayfield" type="Node" parent="PieceManager/States"]
-script = ExtResource( 33 )
-
-[node name="TopOut" type="Node" parent="PieceManager/States"]
-script = ExtResource( 35 )
-
-[node name="GameEnded" type="Node" parent="PieceManager/States"]
-script = ExtResource( 27 )
-
-[node name="PieceSfx" type="Node" parent="PieceManager"]
-script = ExtResource( 25 )
-
-[node name="Rotate0Sound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
-stream = ExtResource( 59 )
-volume_db = -4.0
-bus = "Sound Bus"
-
-[node name="Rotate1Sound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
-stream = ExtResource( 60 )
-volume_db = -4.0
-bus = "Sound Bus"
-
-[node name="MoveSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
-stream = ExtResource( 49 )
-volume_db = -4.0
-bus = "Sound Bus"
-
-[node name="LockSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
-stream = ExtResource( 58 )
-bus = "Sound Bus"
-
-[node name="SquishSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
-stream = ExtResource( 56 )
-bus = "Sound Bus"
-
-[node name="LevelUpSound" type="AudioStreamPlayer" parent="PieceManager/PieceSfx"]
-stream = ExtResource( 50 )
-bus = "Sound Bus"
+[node name="PieceManager" parent="." instance=ExtResource( 9 )]
 
 [node name="NextPieceDisplays" parent="." instance=ExtResource( 64 )]
 margin_left = 688.0
@@ -489,21 +391,5 @@ script = ExtResource( 19 )
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="box_made" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_made"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
-[connection signal="das_moved_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_das_moved_left"]
-[connection signal="das_moved_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_das_moved_right"]
-[connection signal="initial_das_moved_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_das_moved_left"]
-[connection signal="initial_das_moved_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_das_moved_right"]
-[connection signal="initial_rotated_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_rotated_left"]
-[connection signal="initial_rotated_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_rotated_right"]
-[connection signal="initial_rotated_twice" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_initial_rotated_twice"]
-[connection signal="lock_cancelled" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_lock_cancelled"]
-[connection signal="lock_started" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_lock_started"]
-[connection signal="moved_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_moved_left"]
-[connection signal="moved_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_moved_right"]
-[connection signal="rotated_left" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_rotated_left"]
-[connection signal="rotated_right" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_rotated_right"]
-[connection signal="squish_moved" from="PieceManager" to="PieceManager/PieceSfx" method="_on_PieceManager_squish_moved"]
-[connection signal="topped_out" from="PieceManager" to="TopOutTracker" method="_on_PieceManager_topped_out"]
-[connection signal="entered_state" from="PieceManager/States" to="PieceManager" method="_on_States_entered_state"]
 [connection signal="start_button_pressed" from="HudHolder/Hud" to="." method="_on_Hud_start_button_pressed"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]

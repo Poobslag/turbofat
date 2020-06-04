@@ -34,13 +34,6 @@ signal lock_started
 var _target_piece_pos: Vector2
 var _target_piece_orientation: int
 
-var _input_left_frames := 0
-var _input_right_frames := 0
-var _input_down_frames := 0
-var _input_hard_drop_frames := 0
-var _input_cw_frames := 0
-var _input_ccw_frames := 0
-
 var _gravity_delay_frames := 0
 
 onready var _playfield: Playfield = $"../Playfield"
@@ -59,14 +52,11 @@ func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
+	PieceSpeeds.connect("speed_changed", self, "_on_PieceSpeeds_speed_changed")
 	
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	$States.set_state($States/None)
-	clear_piece()
-
-
-func get_state() -> State:
-	return $States.get_state()
+	_clear_piece()
 
 
 func _process(_delta: float) -> void:
@@ -82,20 +72,7 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	_input_left_frames = _increment_input_frames(_input_left_frames, "ui_left")
-	_input_right_frames = _increment_input_frames(_input_right_frames, "ui_right")
-	_input_down_frames = _increment_input_frames(_input_down_frames, "soft_drop")
-	_input_hard_drop_frames = _increment_input_frames(_input_hard_drop_frames, "hard_drop")
-	_input_cw_frames = _increment_input_frames(_input_cw_frames, "rotate_cw")
-	_input_ccw_frames = _increment_input_frames(_input_ccw_frames, "rotate_ccw")
 	_horizontal_movement_count = 0
-	
-	# Pressing a new key overrides das. Otherwise pieces can feel like they get stuck to a wall if you press left
-	# after holding right
-	if Input.is_action_just_pressed("ui_left"):
-		_input_right_frames = 0
-	if Input.is_action_just_pressed("ui_right"):
-		_input_left_frames = 0
 	
 	$States.update()
 	
@@ -104,13 +81,12 @@ func _physics_process(_delta: float) -> void:
 		tile_map_dirty = false
 
 
+func get_state() -> State:
+	return $States.get_state()
+
+
 func playfield_ready_for_new_piece() -> bool:
 	return _playfield.ready_for_new_piece()
-
-
-func clear_piece() -> void:
-	piece = ActivePiece.new(PieceTypes.piece_null)
-	tile_map_dirty = true
 
 
 """
@@ -120,7 +96,7 @@ Returns true if the newly written piece results in a line clear.
 """
 func write_piece_to_playfield() -> void:
 	_playfield.write_piece(piece.pos, piece.orientation, piece.type)
-	clear_piece()
+	_clear_piece()
 
 
 """
@@ -144,14 +120,14 @@ func spawn_piece() -> bool:
 	tile_map_dirty = true
 	
 	# apply initial orientation if the button is held
-	if _input_cw_frames > 1 or _input_ccw_frames > 1:
-		if _input_cw_frames > 1 and _input_ccw_frames > 1:
+	if $InputCw.frames > 1 or $InputCcw.frames > 1:
+		if $InputCw.frames > 1 and $InputCcw.frames > 1:
 			piece.orientation = piece.get_flip_orientation(piece.orientation)
 			emit_signal("initial_rotated_twice")
-		elif _input_cw_frames > 1:
+		elif $InputCw.frames > 1:
 			piece.orientation = piece.get_cw_orientation(piece.orientation)
 			emit_signal("initial_rotated_right")
-		elif _input_ccw_frames > 1:
+		elif $InputCcw.frames > 1:
 			piece.orientation = piece.get_ccw_orientation(piece.orientation)
 			emit_signal("initial_rotated_left")
 		
@@ -165,9 +141,9 @@ func spawn_piece() -> bool:
 	
 	# apply initial infinite DAS
 	var initial_das_dir := 0
-	if _left_das_active():
+	if $InputLeft.is_das_active():
 		initial_das_dir -= 1
-	if _right_das_active():
+	if $InputRight.is_das_active():
 		initial_das_dir += 1
 	
 	if initial_das_dir == -1:
@@ -216,12 +192,12 @@ Returns 'true' if the piece was interacted with successfully resulting in a move
 	lock reset
 """
 func apply_player_input() -> bool:
-	if not Input.is_action_pressed("hard_drop") \
-			and not Input.is_action_pressed("soft_drop") \
-			and not Input.is_action_pressed("ui_left") \
-			and not Input.is_action_pressed("ui_right") \
-			and not Input.is_action_pressed("rotate_cw") \
-			and not Input.is_action_pressed("rotate_ccw"):
+	if not $InputHardDrop.pressed \
+			and not $InputSoftDrop.pressed \
+			and not $InputLeft.pressed \
+			and not $InputRight.pressed \
+			and not $InputCw.pressed \
+			and not $InputCcw.pressed:
 		return false
 	
 	var did_hard_drop := false
@@ -232,8 +208,8 @@ func apply_player_input() -> bool:
 	if $States.get_state() == $States/MovePiece:
 		_reset_piece_target()
 		_calc_target_orientation()
-		if _target_piece_orientation != piece.orientation and not _can_move_piece_to(
-				_target_piece_pos, _target_piece_orientation):
+		if _target_piece_orientation != piece.orientation \
+				and not _can_move_piece_to(_target_piece_pos, _target_piece_orientation):
 			_kick_piece()
 		_move_piece_to_target(true)
 		
@@ -241,15 +217,12 @@ func apply_player_input() -> bool:
 		
 		# automatically trigger DAS if you're pushing a piece towards an obstruction. otherwise, pieces might slip
 		# past a nook if you're holding a direction before DAS triggers
-		if Input.is_action_pressed("ui_left") and not _can_move_piece_to(
-				Vector2(piece.pos.x - 1, piece.pos.y), piece.orientation):
-			_input_left_frames = 3600
-		if Input.is_action_pressed("ui_right") and not _can_move_piece_to(
-				Vector2(piece.pos.x + 1, piece.pos.y), piece.orientation):
-			_input_right_frames = 3600
+		if $InputLeft.pressed and not _can_move_piece_to(Vector2(piece.pos.x - 1, piece.pos.y), piece.orientation):
+			$InputLeft.frames = 3600
+		if $InputRight.pressed and not _can_move_piece_to(Vector2(piece.pos.x + 1, piece.pos.y), piece.orientation):
+			$InputRight.frames = 3600
 		
-		if Input.is_action_just_pressed("hard_drop") \
-				or _input_hard_drop_frames > PieceSpeeds.current_speed.delayed_auto_shift_delay:
+		if $InputHardDrop.just_pressed or $InputHardDrop.is_das_active():
 			_reset_piece_target()
 			while _move_piece_to_target():
 				_target_piece_pos.y += 1
@@ -258,9 +231,8 @@ func apply_player_input() -> bool:
 			did_hard_drop = true
 			emit_signal("hard_dropped")
 
-	if Input.is_action_just_pressed("soft_drop"):
-		if not _can_move_piece_to(
-				Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
+	if $InputSoftDrop.just_pressed:
+		if not _can_move_piece_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
 			_reset_piece_target()
 			_calc_squish_target()
 			if _target_piece_pos != piece.pos:
@@ -271,9 +243,8 @@ func apply_player_input() -> bool:
 				_perform_lock_reset()
 				applied_player_input = true
 				emit_signal("lock_cancelled")
-	elif Input.is_action_pressed("soft_drop") and piece.lock >= PieceSpeeds.current_speed.lock_delay:
-		if not _can_move_piece_to(
-				Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
+	elif $InputSoftDrop.pressed and piece.lock >= PieceSpeeds.current_speed.lock_delay:
+		if not _can_move_piece_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
 			_reset_piece_target()
 			_calc_squish_target()
 			if _target_piece_pos != piece.pos:
@@ -286,20 +257,17 @@ func apply_player_input() -> bool:
 	return applied_player_input
 
 
+func _clear_piece() -> void:
+	piece = ActivePiece.new(PieceTypes.piece_null)
+	tile_map_dirty = true
+
+
 """
 Returns 'true' if the specified position and location is unobstructed, and the active piece could fit there. Returns
 'false' if parts of this piece would be out of the _playfield or obstructed by blocks.
 """
 func _can_move_piece_to(pos: Vector2, orientation: int) -> bool:
 	return piece.can_move_piece_to(funcref(self, "_is_cell_blocked"), pos, orientation)
-
-
-"""
-Counts the number of frames an input has been held for. If the player is pressing the specified action button, this
-increments and returns the new frame count. Otherwise, this returns 0.
-"""
-func _increment_input_frames(frames: int, action: String) -> int:
-	return frames + 1 if Input.is_action_pressed(action) else 0
 
 
 """
@@ -403,7 +371,7 @@ func apply_gravity() -> void:
 	if _gravity_delay_frames > 0:
 		_gravity_delay_frames -= 1
 	else:
-		if Input.is_action_pressed("soft_drop"):
+		if $InputSoftDrop.pressed:
 			# soft drop
 			piece.gravity += int(max(PieceSpeeds.DROP_G, PieceSpeeds.current_speed.gravity))
 			emit_signal("soft_dropped")
@@ -460,12 +428,12 @@ func _move_piece_to_target(play_sfx := false) -> bool:
 					emit_signal("rotated_twice")
 			elif piece.pos != _target_piece_pos:
 				if _target_piece_pos.x > piece.pos.x:
-					if _right_das_active():
+					if $InputRight.is_das_active():
 						emit_signal("das_moved_right")
 					else:
 						emit_signal("moved_right")
 				elif _target_piece_pos.x < piece.pos.x:
-					if _left_das_active():
+					if $InputLeft.is_das_active():
 						emit_signal("das_moved_left")
 					else:
 						emit_signal("moved_left")
@@ -482,32 +450,24 @@ func _reset_piece_target() -> void:
 
 
 func _attempt_horizontal_movement() -> void:
-	if Input.is_action_just_pressed("ui_left") or _left_das_active():
+	if $InputLeft.just_pressed or $InputLeft.is_das_active():
 		_target_piece_pos.x -= 1
 	
-	if Input.is_action_just_pressed("ui_right") or _right_das_active():
+	if $InputRight.just_pressed or $InputRight.is_das_active():
 		_target_piece_pos.x += 1
 
 	if _target_piece_pos.x != piece.pos.x and _move_piece_to_target(true):
 		_horizontal_movement_count += 1
 
 
-func _left_das_active() -> bool:
-	return _input_left_frames >= PieceSpeeds.current_speed.delayed_auto_shift_delay
-
-
-func _right_das_active() -> bool:
-	return _input_right_frames >= PieceSpeeds.current_speed.delayed_auto_shift_delay
-
-
 """
 Calculates the orientation the player is trying to rotate the piece to.
 """
 func _calc_target_orientation() -> void:
-	if Input.is_action_just_pressed("rotate_cw"):
+	if $InputCw.just_pressed:
 		_target_piece_orientation = piece.get_cw_orientation(_target_piece_orientation)
 		
-	if Input.is_action_just_pressed("rotate_ccw"):
+	if $InputCcw.just_pressed:
 		_target_piece_orientation = piece.get_ccw_orientation(_target_piece_orientation)
 
 
@@ -528,7 +488,7 @@ func _on_States_entered_state(state: State) -> void:
 
 
 func _on_PuzzleScore_game_prepared() -> void:
-	clear_piece()
+	_clear_piece()
 
 
 func _on_PuzzleScore_game_started() -> void:
