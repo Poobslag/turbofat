@@ -1,12 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
-[ext_resource path="res://src/main/ui/xolonium-24.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=3]
 [ext_resource path="res://src/main/ui/menu/settings-menu.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/VolumeSetting.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=7]
-
 
 
 [node name="SettingsMenu" type="CanvasLayer"]
@@ -105,7 +104,7 @@ margin_bottom = 170.0
 rect_min_size = Vector2( 120, 40 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 3 )
+theme = ExtResource( 3 )
 shortcut_in_tooltip = false
 shortcut = ExtResource( 7 )
 text = "Ok"
@@ -118,7 +117,7 @@ margin_right = 80.0
 rect_min_size = Vector2( 80, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 1 )
+theme = ExtResource( 1 )
 shortcut_in_tooltip = false
 text = "Quit"
 __meta__ = {

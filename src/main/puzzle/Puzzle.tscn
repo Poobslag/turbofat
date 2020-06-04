@@ -1,7 +1,8 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
-[ext_resource path="res://src/main/ui/xolonium-24.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-hud.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/menu/theme/h3-font.tres" type="DynamicFont" id=3]
 [ext_resource path="res://src/main/puzzle/metaball.shader" type="Shader" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-trace.gd" type="Script" id=5]
 [ext_resource path="res://src/main/puzzle/ResultsHud.tscn" type="PackedScene" id=6]
@@ -11,6 +12,8 @@
 [ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/ui/menu/theme/h2-font.tres" type="DynamicFont" id=13]
+[ext_resource path="res://src/main/ui/menu/theme/h4-font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/main/puzzle/puzzle-music-manager.gd" type="Script" id=19]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=21]
@@ -29,13 +32,11 @@
 [ext_resource path="res://src/main/puzzle/piece/states/none.gd" type="Script" id=34]
 [ext_resource path="res://src/main/puzzle/top-out.gd" type="Script" id=35]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
-[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=37]
 [ext_resource path="res://assets/main/ui/go.wav" type="AudioStream" id=38]
 [ext_resource path="res://assets/main/ui/ready.wav" type="AudioStream" id=39]
 [ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=40]
 [ext_resource path="res://assets/main/puzzle/playfield-walls.png" type="Texture" id=41]
 [ext_resource path="res://assets/main/puzzle/chalkboard.png" type="Texture" id=42]
-[ext_resource path="res://src/main/ui/xolonium-36.tres" type="DynamicFont" id=43]
 [ext_resource path="res://assets/main/world/chef/gameover-voice4.wav" type="AudioStream" id=44]
 [ext_resource path="res://assets/main/world/chef/gameover-voice3.wav" type="AudioStream" id=45]
 [ext_resource path="res://assets/main/world/chef/gameover-voice0.wav" type="AudioStream" id=46]
@@ -60,6 +61,7 @@
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=65]
 [ext_resource path="res://src/main/puzzle/chalkboard.gd" type="Script" id=66]
 [ext_resource path="res://src/main/puzzle/start-end-sfx.gd" type="Script" id=67]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 4 )
@@ -356,7 +358,7 @@ percent_visible = false
 [node name="Desc" type="Label" parent="Chalkboard/MilestoneHud"]
 anchor_right = 1.0
 margin_bottom = 30.0
-custom_fonts/font = ExtResource( 1 )
+theme = ExtResource( 1 )
 text = "Goal"
 align = 2
 __meta__ = {
@@ -369,7 +371,7 @@ margin_top = 30.0
 margin_right = 250.0
 margin_bottom = 75.0
 rect_min_size = Vector2( 100, 45 )
-custom_fonts/font = ExtResource( 1 )
+custom_fonts/font = ExtResource( 14 )
 text = "10"
 align = 1
 valign = 1
@@ -379,7 +381,7 @@ script = ExtResource( 36 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-fonts = [ ExtResource( 43 ), ExtResource( 1 ), ExtResource( 37 ) ]
+fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
 
 [node name="HudHolder" type="Node2D" parent="."]
 position = Vector2( 364, 28 )
@@ -465,7 +467,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 110.0
 margin_bottom = 40.0
-custom_fonts/font = ExtResource( 1 )
+theme = ExtResource( 1 )
 text = "abcd"
 script = ExtResource( 5 )
 __meta__ = {
@@ -475,6 +477,7 @@ __meta__ = {
 [node name="ResultsHud" parent="." instance=ExtResource( 6 )]
 
 [node name="TutorialHud" parent="." instance=ExtResource( 2 )]
+visible = false
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 8 )]
 codes = [ "delays" ]
