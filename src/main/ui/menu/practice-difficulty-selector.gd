@@ -5,9 +5,6 @@ User interface control which lets the player pick their difficulty in practice m
 
 signal difficulty_changed
 
-# font used for tick mark labels
-var _label_font := preload("res://src/main/ui/xolonium-16.tres")
-
 # difficulties which appear as tick mark labels
 var _difficulty_names: Array setget set_difficulty_names
 
@@ -63,7 +60,6 @@ func set_difficulty_names(names: Array) -> void:
 		var label := Label.new()
 		label.text = name
 		label.align = Label.ALIGN_CENTER
-		label.set("custom_fonts/font", _label_font)
 		label.size_flags_horizontal = Label.SIZE_EXPAND_FILL
 		$Labels.add_child(label)
 	

@@ -5,9 +5,6 @@ A table which displays the player's high scores in practice mode.
 Scores are separated by mode and difficulty. We also keep daily scores separate.
 """
 
-# font to use for table cells
-var _cell_font := preload("res://src/main/ui/xolonium-16.tres")
-
 # scenario to display high scores for
 var _scenario: ScenarioSettings setget set_scenario
 
@@ -108,6 +105,5 @@ func _add_row(items: Array) -> void:
 		var item: String = item_obj
 		var item_label := Label.new()
 		item_label.text = item
-		item_label.set("custom_fonts/font", _cell_font)
 		item_label.size_flags_horizontal = Label.SIZE_EXPAND
 		$GridContainer.add_child(item_label)

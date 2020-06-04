@@ -1,12 +1,9 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/volume-setting-control.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/main/world/creature/combo-voice-00.wav" type="AudioStream" id=4]
-
-
-
 
 
 [node name="Control" type="Control"]
@@ -20,6 +17,7 @@ margin_right = 200.0
 margin_bottom = 10.0
 rect_min_size = Vector2( 400, 20 )
 size_flags_horizontal = 3
+theme = ExtResource( 1 )
 script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -31,9 +29,11 @@ margin_bottom = 20.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
-custom_fonts/font = ExtResource( 1 )
 text = "Music"
 align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Control" type="HBoxContainer" parent="."]
 anchor_left = 1.0
@@ -68,7 +68,6 @@ margin_left = 170.0
 margin_right = 230.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 60, 0 )
-custom_fonts/font = ExtResource( 1 )
 text = "100%"
 
 [node name="SampleTimer" type="Timer" parent="."]

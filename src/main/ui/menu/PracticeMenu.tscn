@@ -5,17 +5,15 @@
 [ext_resource path="res://src/main/ui/menu/practice-high-scores.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=5]
-[ext_resource path="res://src/main/ui/xolonium-24.tres" type="DynamicFont" id=6]
-[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=7]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=6]
 [ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=8]
+[ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=9]
 [ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=10]
-[ext_resource path="res://src/main/ui/xolonium-36-outline.tres" type="DynamicFont" id=11]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=12]
 [ext_resource path="res://src/main/ui/HighScoreTable.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/menu/mode-buttongroup.tres" type="ButtonGroup" id=14]
 [ext_resource path="res://src/main/ui/menu/practice-mode-selector.gd" type="Script" id=15]
-
-
+[ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=17]
 
 
 [node name="PracticeMenu" type="Control"]
@@ -57,7 +55,7 @@ margin_right = 984.0
 margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 17 )
 text = "Mode"
 align = 1
 valign = 1
@@ -83,7 +81,7 @@ margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 6 )
+theme = ExtResource( 9 )
 toggle_mode = true
 pressed = true
 group = ExtResource( 14 )
@@ -96,7 +94,7 @@ margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 6 )
+theme = ExtResource( 9 )
 toggle_mode = true
 group = ExtResource( 14 )
 text = "Ultra"
@@ -108,7 +106,7 @@ margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 6 )
+theme = ExtResource( 9 )
 toggle_mode = true
 group = ExtResource( 14 )
 text = "Sprint"
@@ -120,7 +118,7 @@ margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 6 )
+theme = ExtResource( 9 )
 toggle_mode = true
 group = ExtResource( 14 )
 text = "Rank"
@@ -132,7 +130,7 @@ margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 6 )
+theme = ExtResource( 9 )
 toggle_mode = true
 group = ExtResource( 14 )
 text = "Sandbox"
@@ -143,7 +141,7 @@ margin_right = 984.0
 margin_bottom = 108.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 7 )
+theme = ExtResource( 6 )
 text = "Score 200 points as quickly as possible!"
 align = 1
 valign = 1
@@ -163,7 +161,7 @@ margin_right = 984.0
 margin_bottom = 44.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-custom_fonts/font = ExtResource( 11 )
+custom_fonts/font = ExtResource( 17 )
 text = "Difficulty"
 align = 1
 valign = 1
@@ -188,13 +186,13 @@ margin_right = 796.0
 margin_bottom = 88.0
 rect_min_size = Vector2( 608, 0 )
 size_flags_horizontal = 4
+theme = ExtResource( 6 )
 
 [node name="Normal" type="Label" parent="VBoxContainer/Difficulty/Labels"]
 margin_right = 99.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
-custom_fonts/font = ExtResource( 7 )
 text = "Normal"
 
 [node name="Hard" type="Label" parent="VBoxContainer/Difficulty/Labels"]
@@ -202,7 +200,6 @@ margin_left = 103.0
 margin_right = 301.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 7 )
 text = "Hard"
 align = 1
 
@@ -211,7 +208,6 @@ margin_left = 305.0
 margin_right = 503.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
-custom_fonts/font = ExtResource( 7 )
 text = "Expert"
 align = 1
 
@@ -221,7 +217,6 @@ margin_right = 608.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
-custom_fonts/font = ExtResource( 7 )
 text = "Master"
 align = 2
 
@@ -243,7 +238,7 @@ margin_bottom = 60.0
 rect_min_size = Vector2( 180, 60 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 6 )
+theme = ExtResource( 9 )
 text = "Start"
 
 [node name="Settings" type="Button" parent="VBoxContainer/System"]
@@ -254,7 +249,7 @@ margin_bottom = 98.0
 rect_min_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 7 )
+theme = ExtResource( 6 )
 shortcut = ExtResource( 8 )
 text = "Settings"
 
@@ -266,7 +261,7 @@ margin_bottom = 136.0
 rect_min_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 7 )
+theme = ExtResource( 6 )
 text = "Quit"
 
 [node name="HighScores" type="Panel" parent="VBoxContainer"]

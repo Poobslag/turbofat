@@ -2,13 +2,11 @@
 
 [ext_resource path="res://src/main/ui/menu/splash-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/ui/xolonium-48-outline.tres" type="DynamicFont" id=3]
+[ext_resource path="res://src/main/ui/menu/theme/h1-font-outline.tres" type="DynamicFont" id=3]
 [ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=4]
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/ui/xolonium-48.tres" type="DynamicFont" id=7]
-
-
+[ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=7]
 
 
 [node name="SplashScreen" type="Control"]
@@ -64,7 +62,7 @@ margin_bottom = 40.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
-custom_fonts/font = ExtResource( 7 )
+theme = ExtResource( 7 )
 text = "Play"
 __meta__ = {
 "_edit_use_anchors_": false
@@ -75,7 +73,6 @@ __meta__ = {
 [node name="VersionLabel" parent="." instance=ExtResource( 2 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 6 )]
-visible = false
 [connection signal="pressed" from="PlayHolder/Play" to="." method="_on_Play_pressed"]
 [connection signal="quit_pressed" from="System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="System" to="SettingsMenu" method="_on_Settings_pressed"]

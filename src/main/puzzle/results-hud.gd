@@ -57,7 +57,7 @@ func _append_creature_scores(rank_result: RankResult, creature_scores: Array, \
 		if creature_score == 0:
 			# last entry in creature_score is always 0; ignore it
 			continue
-		var left := "Creature #%s " % StringUtils.comma_sep(i + 1)
+		var left := "Customer #%s " % StringUtils.comma_sep(i + 1)
 		var right := "¥%s/\n" % StringUtils.comma_sep(creature_score)
 		var middle := ""
 		var period_count := 50 - _period_count(left + right)

@@ -1,8 +1,7 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/ui/version-label.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/xolonium-16.tres" type="DynamicFont" id=2]
-
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
 
 
 [node name="VersionLabel" type="Label"]
@@ -13,7 +12,7 @@ anchor_bottom = 1.0
 margin_left = -110.0
 margin_top = -30.0
 margin_right = -9.99988
-custom_fonts/font = ExtResource( 2 )
+theme = ExtResource( 2 )
 text = "v1.2.3.4"
 align = 2
 script = ExtResource( 1 )
