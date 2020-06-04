@@ -21,10 +21,7 @@ func refresh() -> void:
 	if _creature and _creature.is_visible_in_tree():
 		# draw a shadow on the creature's stool
 		$Stool0L.texture = preload("res://assets/main/world/restaurant/stool-occupied.png")
-		for chime_sound in _creature.chime_sounds:
-			chime_sound.position = _door_sound_position
-		for hello_voice in _creature.hello_voices:
-			hello_voice.position = _door_sound_position
+		_creature.set_door_sound_position(_door_sound_position)
 	else:
 		# remove the shadow from the creature's stool
 		$Stool0L.texture = preload("res://assets/main/world/restaurant/stool.png")

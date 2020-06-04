@@ -35,6 +35,11 @@ const TRANSITIONS := {
 # Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
 const UNEMOTE_DURATION := 0.08
 
+export (NodePath) var eyes_path: NodePath
+
+onready var _eyes: Sprite = get_node(eyes_path)
+onready var _creature: Creature = $".."
+
 # stores the previous mood so that we can apply mood transitions.
 var _prev_mood: int
 
@@ -43,11 +48,27 @@ var _mood: int
 
 # list of sprites to reset when unemoting
 onready var _emote_sprites := [
-	$"../Sprites/Neck0/Neck1/EmoteBrain",
-	$"../Sprites/Neck0/Neck1/EmoteHead",
+	$"../Sprites/Neck0/HeadBobber/EmoteBrain",
+	$"../Sprites/Neck0/HeadBobber/EmoteHead",
 	$"../Sprites/EmoteBody",
-	$"../Sprites/Neck0/Neck1/EmoteGlow",
+	$"../Sprites/Neck0/HeadBobber/EmoteGlow",
 ]
+
+func _process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		# avoid playing animations in editor. manually set frames instead
+		_apply_default_eye_frames()
+	
+	if not Engine.is_editor_hint():
+		if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
+			if not is_playing():
+				play("ambient")
+				advance(randf() * current_animation_length)
+		else:
+			if is_playing():
+				stop()
+			_eyes.frame = 0
+
 
 """
 Randomly advances the current animation up to 2.0 seconds. Used to ensure all creatures don't blink synchronously.
@@ -94,20 +115,20 @@ updating the creature's appearance.
 func unemote() -> void:
 	stop()
 	emit_signal("before_mood_switched")
-	$"../Sprites/Neck0/Neck1/EmoteArms".frame = 0
-	$"../Sprites/Neck0/Neck1/EmoteEyes".frame = 0
+	$"../Sprites/Neck0/HeadBobber/EmoteArms".frame = 0
+	$"../Sprites/Neck0/HeadBobber/EmoteEyes".frame = 0
 	
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property($"../Sprites/Neck0/Neck1", "rotation_degrees",
-			$"../Sprites/Neck0/Neck1".rotation_degrees, 0, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property($"../Sprites/Neck0/HeadBobber", "rotation_degrees",
+			$"../Sprites/Neck0/HeadBobber".rotation_degrees, 0, UNEMOTE_DURATION)
 	for emote_sprite in _emote_sprites:
 		$ResetTween.interpolate_property(emote_sprite, "rotation_degrees", emote_sprite.rotation_degrees, 0,
 				UNEMOTE_DURATION)
 		$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
-	$"..".head_bob_mode = Creature.HeadBobMode.BOB
-	$"..".head_motion_pixels = Creature.HEAD_BOB_PIXELS
-	$"..".head_motion_seconds = Creature.HEAD_BOB_SECONDS
+	$"../Sprites/Neck0/HeadBobber".head_bob_mode = HeadBobber.BOB_BOB
+	$"../Sprites/Neck0/HeadBobber".head_motion_pixels = HeadBobber.HEAD_BOB_PIXELS
+	$"../Sprites/Neck0/HeadBobber".head_motion_seconds = HeadBobber.HEAD_BOB_SECONDS
 	$ResetTween.start()
 	_prev_mood = ChatEvent.Mood.DEFAULT
 
@@ -120,15 +141,15 @@ This takes place immediately, callers do not need to wait for $ResetTween.
 func unemote_immediate() -> void:
 	stop()
 	emit_signal("before_mood_switched")
-	$"../Sprites/Neck0/Neck1/EmoteArms".frame = 0
-	$"../Sprites/Neck0/Neck1/EmoteEyes".frame = 0
-	$"../Sprites/Neck0/Neck1".rotation_degrees = 0
+	$"../Sprites/Neck0/HeadBobber/EmoteArms".frame = 0
+	$"../Sprites/Neck0/HeadBobber/EmoteEyes".frame = 0
+	$"../Sprites/Neck0/HeadBobber".rotation_degrees = 0
 	for emote_sprite in _emote_sprites:
 		emote_sprite.rotation_degrees = 0
 		emote_sprite.modulate = Color.transparent
-	$"..".head_bob_mode = Creature.HeadBobMode.BOB
-	$"..".head_motion_pixels = Creature.HEAD_BOB_PIXELS
-	$"..".head_motion_seconds = Creature.HEAD_BOB_SECONDS
+	$"../Sprites/Neck0/HeadBobber".head_bob_mode = HeadBobber.BOB_BOB
+	$"../Sprites/Neck0/HeadBobber".head_motion_pixels = HeadBobber.HEAD_BOB_PIXELS
+	$"../Sprites/Neck0/HeadBobber".head_motion_seconds = HeadBobber.HEAD_BOB_SECONDS
 	_prev_mood = ChatEvent.Mood.DEFAULT
 	_post_unemote()
 
@@ -146,7 +167,7 @@ func _post_unemote() -> void:
 		emote_sprite.rotation_degrees = 0.0
 		emote_sprite.modulate = Color.transparent
 	$"../Sprites/EmoteBody".scale = Vector2(0.418, 0.418)
-	$"../Sprites/Neck0/Neck1/EmoteGlow".material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
+	$"../Sprites/Neck0/HeadBobber/EmoteGlow".material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
 
 
 """
@@ -160,8 +181,8 @@ func _transition_noop() -> void:
 Function for transitioning from laugh1 mood to laugh0 mood.
 """
 func _transition_laugh1_laugh0() -> void:
-	var emote_sprite := $"../Sprites/Neck0/Neck1/EmoteBrain"
-	$"..".head_bob_mode = Creature.HeadBobMode.BOB
+	var emote_sprite := $"../Sprites/Neck0/HeadBobber/EmoteBrain"
+	$"../Sprites/Neck0/HeadBobber".head_bob_mode = HeadBobber.BOB_BOB
 	$ResetTween.remove_all()
 	$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate, Color.transparent,
 			UNEMOTE_DURATION)
@@ -173,7 +194,7 @@ Function for transitioning from sweat1 mood to sweat0 mood.
 """
 func _transition_sweat1_sweat0() -> void:
 	$"../Sprites/NearArm".frame = 1
-	var emote_sprite := $"../Sprites/Neck0/Neck1/EmoteHead"
+	var emote_sprite := $"../Sprites/Neck0/HeadBobber/EmoteHead"
 	$ResetTween.remove_all()
 	$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate, Color.transparent,
 			UNEMOTE_DURATION)
@@ -185,12 +206,25 @@ Function for transitioning from smile1 mood to smile0 mood.
 """
 func _transition_smile1_smile0() -> void:
 	$ResetTween.remove_all()
-	for emote_sprite in [$"../Sprites/Neck0/Neck1/EmoteBrain", $"../Sprites/Neck0/Neck1/EmoteGlow"]:
+	for emote_sprite in [$"../Sprites/Neck0/HeadBobber/EmoteBrain", $"../Sprites/Neck0/HeadBobber/EmoteGlow"]:
 		$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate, Color("008c2261"),
 				UNEMOTE_DURATION)
-	$ResetTween.interpolate_property($"../Sprites/Neck0/Neck1", "rotation_degrees",
-			$"../Sprites/Neck0/Neck1".rotation_degrees, 0.0, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property($"../Sprites/Neck0/HeadBobber", "rotation_degrees",
+			$"../Sprites/Neck0/HeadBobber".rotation_degrees, 0.0, UNEMOTE_DURATION)
 	$ResetTween.start()
+
+
+"""
+Updates the mouth and eye frames to an appropriate frame for the creature's orientation.
+
+Usually the mouth and eyes are controlled by an animation. But when they're not, this method ensures they still look
+reasonable.
+"""
+func _apply_default_eye_frames() -> void:
+	if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
+		_eyes.frame = 1
+	else:
+		_eyes.frame = 0
 
 
 func _on_animation_finished(anim_name) -> void:
@@ -198,3 +232,12 @@ func _on_animation_finished(anim_name) -> void:
 		unemote()
 		yield($ResetTween, "tween_all_completed")
 		_post_unemote()
+
+
+"""
+Reset the eye frame when loading a new creature appearance.
+
+If we don't reset the eye frame, we have one strange transition frame.
+"""
+func _on_Creature_before_creature_arrived() -> void:
+	_apply_default_eye_frames()

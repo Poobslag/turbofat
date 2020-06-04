@@ -101,33 +101,33 @@ func _load_texture(creature_def: Dictionary, node_path: String, key: String, fil
 Loads the resources for a creature's ears based on a creature definition.
 """
 func _load_ear(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/Neck1/EarZ0", "ear", "ear-z0-sheet")
-	_load_texture(creature_def, "Neck0/Neck1/EarZ1", "ear", "ear-z1-sheet")
-	_load_texture(creature_def, "Neck0/Neck1/EarZ2", "ear", "ear-z2-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/EarZ0", "ear", "ear-z0-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/EarZ1", "ear", "ear-z1-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/EarZ2", "ear", "ear-z2-sheet")
 
 
 """
 Loads the resources for a creature's horn based on a creature definition.
 """
 func _load_horn(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/Neck1/HornZ0", "horn", "horn-z0-sheet")
-	_load_texture(creature_def, "Neck0/Neck1/HornZ1", "horn", "horn-z1-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-sheet")
 
 
 """
 Loads the resources for a creature's mouth based on a creature definition.
 """
 func _load_mouth(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/Neck1/Mouth", "mouth", "mouth-sheet")
-	_load_texture(creature_def, "Neck0/Neck1/Food", "mouth", "food-sheet")
-	_load_texture(creature_def, "Neck0/Neck1/FoodLaser", "mouth", "food-laser-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/Mouth", "mouth", "mouth-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/Food", "mouth", "food-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-sheet")
 
 
 """
 Loads the resources for a creature's eyes based on a creature definition.
 """
 func _load_eye(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/Neck1/Eyes", "eye", "eyes-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/Eyes", "eye", "eyes-sheet")
 
 
 """
@@ -142,7 +142,7 @@ func _load_body(creature_def: Dictionary) -> void:
 	_load_texture(creature_def, "Body/NeckBlend", "body", "neck-sheet")
 	_load_texture(creature_def, "NearLeg", "body", "leg-z1-sheet")
 	_load_texture(creature_def, "NearArm", "body", "arm-z1-sheet")
-	_load_texture(creature_def, "Neck0/Neck1/Head", "body", "head-sheet")
+	_load_texture(creature_def, "Neck0/HeadBobber/Head", "body", "head-sheet")
 
 
 """
@@ -157,31 +157,31 @@ func _load_colors(creature_def: Dictionary) -> void:
 	creature_def["property:Body/Outline:line_color"] = line_color
 	creature_def["shader:NearLeg/Outline:black"] = line_color
 	creature_def["shader:NearArm/Outline:black"] = line_color
-	creature_def["shader:Neck0/Neck1/EarZ0/Outline:black"] = line_color
-	creature_def["shader:Neck0/Neck1/HornZ0/Outline:black"] = line_color
-	creature_def["shader:Neck0/Neck1/Head/Outline:black"] = line_color
-	creature_def["shader:Neck0/Neck1/EarZ1/Outline:black"] = line_color
-	creature_def["shader:Neck0/Neck1/HornZ1/Outline:black"] = line_color
-	creature_def["shader:Neck0/Neck1/EarZ2/Outline:black"] = line_color
-	creature_def["shader:Neck0/Neck1/Mouth/Outline:black"] = line_color
-	creature_def["shader:Neck0/Neck1/Eyes/Outline:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/EarZ0/Outline:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/HornZ0/Outline:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/Head/Outline:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/EarZ1/Outline:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/HornZ1/Outline:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/EarZ2/Outline:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/Mouth/Outline:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/Eyes/Outline:black"] = line_color
 	creature_def["shader:FarArm:black"] = line_color
 	creature_def["shader:FarLeg:black"] = line_color
 	creature_def["property:Body:line_color"] = line_color
 	creature_def["shader:Body/NeckBlend:black"] = line_color
 	creature_def["shader:NearArm:black"] = line_color
 	creature_def["shader:NearLeg:black"] = line_color
-	creature_def["shader:Neck0/Neck1/EarZ0:black"] = line_color
-	creature_def["shader:Neck0/Neck1/HornZ0:black"] = line_color
-	creature_def["shader:Neck0/Neck1/Head:black"] = line_color
-	creature_def["shader:Neck0/Neck1/EarZ1:black"] = line_color
-	creature_def["shader:Neck0/Neck1/HornZ1:black"] = line_color
-	creature_def["shader:Neck0/Neck1/EarZ2:black"] = line_color
-	creature_def["shader:Neck0/Neck1/Mouth:black"] = line_color
-	creature_def["shader:Neck0/Neck1/Eyes:black"] = line_color
-	creature_def["shader:Neck0/Neck1/EmoteArms:black"] = line_color
-	creature_def["shader:Neck0/Neck1/EmoteEyes:black"] = line_color
-	creature_def["shader:Neck0/Neck1/EmoteBrain:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/EarZ0:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/HornZ0:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/Head:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/EarZ1:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/HornZ1:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/EarZ2:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/Mouth:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/Eyes:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/EmoteArms:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/EmoteEyes:black"] = line_color
+	creature_def["shader:Neck0/HeadBobber/EmoteBrain:black"] = line_color
 	creature_def["shader:EmoteBody:black"] = line_color
 	
 	var body_color: Color
@@ -192,15 +192,15 @@ func _load_colors(creature_def: Dictionary) -> void:
 	creature_def["shader:Body/NeckBlend:red"] = body_color
 	creature_def["shader:NearLeg:red"] = body_color
 	creature_def["shader:NearArm:red"] = body_color
-	creature_def["shader:Neck0/Neck1/EarZ0:red"] = body_color
-	creature_def["shader:Neck0/Neck1/HornZ0:red"] = body_color
-	creature_def["shader:Neck0/Neck1/Head:red"] = body_color
-	creature_def["shader:Neck0/Neck1/EarZ1:red"] = body_color
-	creature_def["shader:Neck0/Neck1/HornZ1:red"] = body_color
-	creature_def["shader:Neck0/Neck1/EarZ2:red"] = body_color
-	creature_def["shader:Neck0/Neck1/Mouth:red"] = body_color
-	creature_def["shader:Neck0/Neck1/Eyes:red"] = body_color
-	creature_def["shader:Neck0/Neck1/EmoteArms:red"] = body_color
+	creature_def["shader:Neck0/HeadBobber/EarZ0:red"] = body_color
+	creature_def["shader:Neck0/HeadBobber/HornZ0:red"] = body_color
+	creature_def["shader:Neck0/HeadBobber/Head:red"] = body_color
+	creature_def["shader:Neck0/HeadBobber/EarZ1:red"] = body_color
+	creature_def["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
+	creature_def["shader:Neck0/HeadBobber/EarZ2:red"] = body_color
+	creature_def["shader:Neck0/HeadBobber/Mouth:red"] = body_color
+	creature_def["shader:Neck0/HeadBobber/Eyes:red"] = body_color
+	creature_def["shader:Neck0/HeadBobber/EmoteArms:red"] = body_color
 	
 	var body_fill_color: Color
 	if line_color and body_color:
@@ -212,11 +212,11 @@ func _load_colors(creature_def: Dictionary) -> void:
 	if creature_def.has("eye_rgb"):
 		eye_color = Color(creature_def.eye_rgb.split(" ")[0])
 		eye_shine_color = Color(creature_def.eye_rgb.split(" ")[1])
-	creature_def["shader:Neck0/Neck1/Eyes:green"] = eye_color
-	creature_def["shader:Neck0/Neck1/Eyes:blue"] = eye_shine_color
+	creature_def["shader:Neck0/HeadBobber/Eyes:green"] = eye_color
+	creature_def["shader:Neck0/HeadBobber/Eyes:blue"] = eye_shine_color
 
 	var horn_color: Color
 	if creature_def.has("horn_rgb"):
 		horn_color = Color(creature_def.horn_rgb)
-	creature_def["shader:Neck0/Neck1/HornZ0:green"] = horn_color
-	creature_def["shader:Neck0/Neck1/HornZ1:green"] = horn_color
+	creature_def["shader:Neck0/HeadBobber/HornZ0:green"] = horn_color
+	creature_def["shader:Neck0/HeadBobber/HornZ1:green"] = horn_color
