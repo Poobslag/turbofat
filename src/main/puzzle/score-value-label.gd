@@ -8,5 +8,5 @@ func _ready() -> void:
 	text = "¥0"
 
 
-func _on_PuzzleScore_score_changed(value: int) -> void:
-	text = "¥%s" % StringUtils.comma_sep(value)
+func _on_PuzzleScore_score_changed() -> void:
+	text = "¥%s" % StringUtils.comma_sep(PuzzleScore.get_score())

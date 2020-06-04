@@ -22,11 +22,7 @@ signal after_game_ended
 
 signal level_index_changed(value)
 
-# These four signals are always emitted in this order: creature_score, bonus_score, score, lines
-signal creature_score_changed(value)
-signal bonus_score_changed(value)
-signal score_changed(value)
-signal lines_changed(value)
+signal score_changed
 
 signal combo_ended
 
@@ -112,10 +108,7 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 	_add_score(1)
 	_add_line()
 
-	emit_signal("creature_score_changed", get_creature_score())
-	emit_signal("bonus_score_changed", get_bonus_score())
-	emit_signal("score_changed", get_score())
-	emit_signal("lines_changed", get_lines())
+	emit_signal("score_changed")
 
 
 """
@@ -134,9 +127,7 @@ func end_combo() -> void:
 	_add_score(bonus_score)
 	bonus_score = 0
 		
-	emit_signal("creature_score_changed", 0)
-	emit_signal("bonus_score_changed", get_bonus_score())
-	emit_signal("score_changed", get_score())
+	emit_signal("score_changed")
 	emit_signal("combo_ended")
 
 
