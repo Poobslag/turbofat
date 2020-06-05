@@ -40,6 +40,7 @@ func _load_scenario(path: String) -> void:
 
 func _start_test() -> void:
 	Scenario.settings = Scenario.load_scenario(_scenario_name.text, _scenario_json.text)
+	PuzzleScore.reset()
 	Scenario.launched_scenario_name = Scenario.settings.name
 	_test_scene = PuzzleScene.instance()
 	
