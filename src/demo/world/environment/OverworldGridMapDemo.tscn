@@ -2,7 +2,8 @@
 
 [ext_resource path="res://src/main/world/environment/environment.tres" type="Environment" id=1]
 [ext_resource path="res://src/main/world/environment/OverworldGridMap.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/demo/overworld-grid-map-demo.gd" type="Script" id=3]
+[ext_resource path="res://src/demo/world/environment/overworld-grid-map-demo.gd" type="Script" id=3]
+
 
 
 
