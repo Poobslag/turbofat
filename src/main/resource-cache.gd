@@ -29,7 +29,7 @@ var _load_thread: Thread
 # these two properties are used for the get_progress calculation
 var _work_done := 0.0
 var _work_total := 3.0
-var _remaining_png_paths := []
+var _remaining_resource_paths := []
 
 """
 Initializes the resource load.
@@ -42,14 +42,14 @@ them one at a time in the _process function.
 func start_load() -> void:
 	if OS.has_feature("web"):
 		# Godot issue #12699; threads not supported for HTML5
-		_find_png_paths()
+		_find_resource_paths()
 	else:
 		_load_thread = Thread.new()
 		_load_thread.start(self, "_preload_all_pngs")
 
 
 func _process(delta: float) -> void:
-	if OS.has_feature("web") and _remaining_png_paths:
+	if OS.has_feature("web") and _remaining_resource_paths:
 		# Web targets do not support background threads, so we load resources one at a time
 		_preload_next_png()
 
@@ -75,9 +75,9 @@ Parameters:
 	'userdata': Unused; needed for threads
 """
 func _preload_all_pngs(userdata: Object) -> void:
-	_find_png_paths()
+	_find_resource_paths()
 	
-	while _remaining_png_paths and not _exiting:
+	while _remaining_resource_paths and not _exiting:
 		_preload_next_png()
 
 
@@ -85,9 +85,9 @@ func _preload_all_pngs(userdata: Object) -> void:
 Loads a single png in the /assets directory and stores the resulting resource in our cache
 """
 func _preload_next_png() -> void:
-	_load_resource(_remaining_png_paths.pop_front())
+	_load_resource(_remaining_resource_paths.pop_front())
 	_work_done += 1.0
-	if not _remaining_png_paths:
+	if not _remaining_resource_paths:
 		# Emit signals on the main thread. Otherwise there are strange side effects like breakpoints not working
 		call_deferred("emit_signal", "finished_loading")
 
@@ -101,8 +101,8 @@ a queue for later traversal.
 Note: We search for '.png.import' files instead of searching for png files directly. This is because png files
 	disappear when the project is exported.
 """
-func _find_png_paths() -> Array:
-	_remaining_png_paths.clear()
+func _find_resource_paths() -> Array:
+	_remaining_resource_paths.clear()
 	
 	# directories remaining to be traversed
 	var dir_queue := ["res://assets/main"]
@@ -113,8 +113,8 @@ func _find_png_paths() -> Array:
 		if file:
 			if dir.current_is_dir():
 				dir_queue.append("%s/%s" % [dir.get_current_dir(), file])
-			elif file.ends_with(".png.import"):
-				_remaining_png_paths.append("%s/%s" % [dir.get_current_dir(), file.get_basename()])
+			elif file.ends_with(".png.import") or file.ends_with(".wav.import"):
+				_remaining_resource_paths.append("%s/%s" % [dir.get_current_dir(), file.get_basename()])
 		else:
 			if dir:
 				dir.list_dir_end()
@@ -128,13 +128,13 @@ func _find_png_paths() -> Array:
 	
 	seed(253686)
 	# We shuffle the pngs to prevent clumps of similar files. We use a known seed to keep the timing predictable.
-	_remaining_png_paths.shuffle()
+	_remaining_resource_paths.shuffle()
 	
 	# all pngs have been located. increment the progress bar and calculate its new maximum
-	_work_total += _remaining_png_paths.size()
+	_work_total += _remaining_resource_paths.size()
 	_work_done += 3.0
 	
-	return _remaining_png_paths
+	return _remaining_resource_paths
 
 
 """

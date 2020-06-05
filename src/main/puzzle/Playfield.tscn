@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -7,52 +7,13 @@
 [ext_resource path="res://src/main/puzzle/make-box-sfx.gd" type="Script" id=8]
 [ext_resource path="res://assets/main/puzzle/line-fall.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/main/puzzle/make-cake-box.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/main/puzzle/make-snack-box1.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/main/puzzle/clear-snack-box.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/puzzle/clear-cake-box.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/main/puzzle/combo-00.wav" type="AudioStream" id=14]
 [ext_resource path="res://assets/main/puzzle/fanfare1.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/main/puzzle/fanfare2.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/puzzle/fanfare3.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/main/puzzle/combo-01.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/main/puzzle/combo-02.wav" type="AudioStream" id=19]
-[ext_resource path="res://assets/main/puzzle/combo-03.wav" type="AudioStream" id=20]
-[ext_resource path="res://assets/main/puzzle/combo-04.wav" type="AudioStream" id=21]
-[ext_resource path="res://assets/main/puzzle/combo-05.wav" type="AudioStream" id=22]
-[ext_resource path="res://assets/main/puzzle/combo-06.wav" type="AudioStream" id=23]
-[ext_resource path="res://assets/main/puzzle/combo-07.wav" type="AudioStream" id=24]
-[ext_resource path="res://assets/main/puzzle/combo-08.wav" type="AudioStream" id=25]
-[ext_resource path="res://assets/main/puzzle/combo-09.wav" type="AudioStream" id=26]
-[ext_resource path="res://assets/main/puzzle/combo-10.wav" type="AudioStream" id=27]
-[ext_resource path="res://assets/main/puzzle/combo-11.wav" type="AudioStream" id=28]
-[ext_resource path="res://assets/main/puzzle/combo-12.wav" type="AudioStream" id=29]
-[ext_resource path="res://assets/main/puzzle/combo-13.wav" type="AudioStream" id=30]
-[ext_resource path="res://assets/main/puzzle/combo-14.wav" type="AudioStream" id=31]
-[ext_resource path="res://assets/main/puzzle/combo-15.wav" type="AudioStream" id=32]
-[ext_resource path="res://assets/main/puzzle/combo-16.wav" type="AudioStream" id=33]
-[ext_resource path="res://assets/main/puzzle/combo-17.wav" type="AudioStream" id=34]
-[ext_resource path="res://assets/main/puzzle/combo-18.wav" type="AudioStream" id=35]
-[ext_resource path="res://assets/main/puzzle/combo-19.wav" type="AudioStream" id=36]
 [ext_resource path="res://assets/main/puzzle/playfield-bg.png" type="Texture" id=37]
-[ext_resource path="res://assets/main/puzzle/combo-20.wav" type="AudioStream" id=42]
-[ext_resource path="res://assets/main/puzzle/combo-23.wav" type="AudioStream" id=43]
-[ext_resource path="res://assets/main/puzzle/combo-21.wav" type="AudioStream" id=44]
-[ext_resource path="res://assets/main/puzzle/combo-22.wav" type="AudioStream" id=45]
-[ext_resource path="res://assets/main/puzzle/combo-e04.wav" type="AudioStream" id=46]
-[ext_resource path="res://assets/main/puzzle/combo-e02.wav" type="AudioStream" id=47]
-[ext_resource path="res://assets/main/puzzle/combo-e00.wav" type="AudioStream" id=48]
-[ext_resource path="res://assets/main/puzzle/combo-e01.wav" type="AudioStream" id=49]
-[ext_resource path="res://assets/main/puzzle/combo-e05.wav" type="AudioStream" id=50]
-[ext_resource path="res://assets/main/puzzle/combo-e06.wav" type="AudioStream" id=51]
-[ext_resource path="res://assets/main/puzzle/combo-e03.wav" type="AudioStream" id=52]
-[ext_resource path="res://assets/main/puzzle/combo-e07.wav" type="AudioStream" id=53]
-[ext_resource path="res://assets/main/puzzle/combo-e08.wav" type="AudioStream" id=54]
-[ext_resource path="res://assets/main/puzzle/combo-e11.wav" type="AudioStream" id=55]
-[ext_resource path="res://assets/main/puzzle/combo-e09.wav" type="AudioStream" id=56]
-[ext_resource path="res://assets/main/puzzle/combo-e10.wav" type="AudioStream" id=57]
-[ext_resource path="res://assets/main/puzzle/make-snack-box3.wav" type="AudioStream" id=58]
-[ext_resource path="res://assets/main/puzzle/make-snack-box0.wav" type="AudioStream" id=59]
-[ext_resource path="res://assets/main/puzzle/make-snack-box2.wav" type="AudioStream" id=60]
 [ext_resource path="res://src/main/puzzle/combo-tracker.gd" type="Script" id=61]
 [ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=62]
 [ext_resource path="res://assets/main/puzzle/playfield-light.png" type="Texture" id=63]
@@ -239,148 +200,8 @@ stream = ExtResource( 13 )
 volume_db = -4.0
 bus = "Sound Bus"
 
-[node name="Combo01Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
+[node name="ComboSound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 14 )
-bus = "Sound Bus"
-
-[node name="Combo02Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 18 )
-bus = "Sound Bus"
-
-[node name="Combo03Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 19 )
-bus = "Sound Bus"
-
-[node name="Combo04Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 20 )
-bus = "Sound Bus"
-
-[node name="Combo05Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 21 )
-bus = "Sound Bus"
-
-[node name="Combo06Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 22 )
-bus = "Sound Bus"
-
-[node name="Combo07Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 23 )
-bus = "Sound Bus"
-
-[node name="Combo08Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 24 )
-bus = "Sound Bus"
-
-[node name="Combo09Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 25 )
-bus = "Sound Bus"
-
-[node name="Combo10Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 26 )
-bus = "Sound Bus"
-
-[node name="Combo11Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 27 )
-bus = "Sound Bus"
-
-[node name="Combo12Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 28 )
-bus = "Sound Bus"
-
-[node name="Combo13Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 29 )
-bus = "Sound Bus"
-
-[node name="Combo14Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 30 )
-bus = "Sound Bus"
-
-[node name="Combo15Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 31 )
-bus = "Sound Bus"
-
-[node name="Combo16Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 32 )
-bus = "Sound Bus"
-
-[node name="Combo17Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 33 )
-bus = "Sound Bus"
-
-[node name="Combo18Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 34 )
-bus = "Sound Bus"
-
-[node name="Combo19Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 35 )
-bus = "Sound Bus"
-
-[node name="Combo20Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 36 )
-bus = "Sound Bus"
-
-[node name="Combo21Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 42 )
-bus = "Sound Bus"
-
-[node name="Combo22Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 44 )
-bus = "Sound Bus"
-
-[node name="Combo23Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 45 )
-bus = "Sound Bus"
-
-[node name="Combo24Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 43 )
-bus = "Sound Bus"
-
-[node name="ComboEndless00Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 48 )
-bus = "Sound Bus"
-
-[node name="ComboEndless01Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 49 )
-bus = "Sound Bus"
-
-[node name="ComboEndless02Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 47 )
-bus = "Sound Bus"
-
-[node name="ComboEndless03Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 52 )
-bus = "Sound Bus"
-
-[node name="ComboEndless04Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 46 )
-bus = "Sound Bus"
-
-[node name="ComboEndless05Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 50 )
-bus = "Sound Bus"
-
-[node name="ComboEndless06Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 51 )
-bus = "Sound Bus"
-
-[node name="ComboEndless07Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 53 )
-bus = "Sound Bus"
-
-[node name="ComboEndless08Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 54 )
-bus = "Sound Bus"
-
-[node name="ComboEndless09Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 56 )
-bus = "Sound Bus"
-
-[node name="ComboEndless10Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 57 )
-bus = "Sound Bus"
-
-[node name="ComboEndless11Sound" type="AudioStreamPlayer" parent="LineClearSfx"]
-stream = ExtResource( 55 )
 bus = "Sound Bus"
 
 [node name="MakeBoxSfx" type="Node" parent="."]
@@ -390,20 +211,7 @@ script = ExtResource( 8 )
 stream = ExtResource( 10 )
 bus = "Sound Bus"
 
-[node name="MakeSnackBoxSound0" type="AudioStreamPlayer" parent="MakeBoxSfx"]
-stream = ExtResource( 59 )
-bus = "Sound Bus"
-
-[node name="MakeSnackBoxSound1" type="AudioStreamPlayer" parent="MakeBoxSfx"]
-stream = ExtResource( 11 )
-bus = "Sound Bus"
-
-[node name="MakeSnackBoxSound2" type="AudioStreamPlayer" parent="MakeBoxSfx"]
-stream = ExtResource( 60 )
-bus = "Sound Bus"
-
-[node name="MakeSnackBoxSound3" type="AudioStreamPlayer" parent="MakeBoxSfx"]
-stream = ExtResource( 58 )
+[node name="MakeSnackBoxSound" type="AudioStreamPlayer" parent="MakeBoxSfx"]
 bus = "Sound Bus"
 
 [node name="LineFallSound" type="AudioStreamPlayer" parent="."]
