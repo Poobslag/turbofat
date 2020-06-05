@@ -10,7 +10,7 @@ var foothold_radius := 2.0
 func _ready() -> void:
 	$CollisionShape.disabled = true
 	$ShadowMesh.visible = false
-	$Viewport/Creature/Shadow.visible = false
+	$Viewport/Creature/Sprites/Shadow.visible = false
 	var creature_def := get_creature_def()
 	if creature_def:
 		$Viewport/Creature.summon(creature_def)
@@ -71,7 +71,7 @@ func orient_toward(spatial: Spatial) -> void:
 
 
 func get_orientation() -> int:
-	return $Viewport/Creature.get_orientation()
+	return $Viewport/Creature.orientation
 
 
 func _on_Creature_creature_arrived() -> void:

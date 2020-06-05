@@ -184,7 +184,7 @@ func _process_jump_buffers(was_on_floor: bool) -> void:
 
 
 func _update_animation() -> void:
-	var old_orientation: int = $Viewport/Creature.get_orientation()
+	var old_orientation: int = $Viewport/Creature.orientation
 	if _slipping:
 		play_movement_animation("jump", _get_xy_velocity())
 	elif _jumping:
