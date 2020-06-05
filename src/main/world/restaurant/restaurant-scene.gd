@@ -20,8 +20,8 @@ onready var _creatures := [$Creature1, $Creature2, $Creature3]
 
 func _ready() -> void:
 	for i in range(3):
-		_get_seat(i).set_door_sound_position(Vector2(-500 + 1000 * i, 0))
 		_get_seat(i).set_creature(_creatures[i])
+		_get_seat(i).set_door_sound_position(Vector2(-500 - 1000 * i, 0))
 		_get_seat(i).refresh()
 
 

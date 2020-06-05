@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=2]
+[gd_scene load_steps=86 format=2]
 
 [ext_resource path="res://src/main/world/multi-outline.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=2]
@@ -12,47 +12,9 @@
 [ext_resource path="res://src/main/world/creature/mouth-anims.gd" type="Script" id=10]
 [ext_resource path="res://src/main/world/creature/smooth-path-outline.gd" type="Script" id=11]
 [ext_resource path="res://src/main/world/creature/fat-player.gd" type="Script" id=12]
-[ext_resource path="res://assets/main/world/creature/combo-voice-00.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=14]
-[ext_resource path="res://assets/main/world/creature/combo-voice-15.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/main/world/creature/combo-voice-18.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/main/world/creature/combo-voice-04.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/main/world/door-chime3.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/main/world/creature/hello-voice-2.wav" type="AudioStream" id=19]
-[ext_resource path="res://assets/main/world/creature/combo-voice-17.wav" type="AudioStream" id=20]
-[ext_resource path="res://assets/main/world/creature/munch4.wav" type="AudioStream" id=21]
-[ext_resource path="res://assets/main/world/creature/goodbye-voice-2.wav" type="AudioStream" id=22]
-[ext_resource path="res://assets/main/world/creature/munch0.wav" type="AudioStream" id=23]
-[ext_resource path="res://assets/main/world/door-chime2.wav" type="AudioStream" id=24]
-[ext_resource path="res://assets/main/world/creature/munch1.wav" type="AudioStream" id=25]
-[ext_resource path="res://assets/main/world/creature/goodbye-voice-1.wav" type="AudioStream" id=26]
-[ext_resource path="res://assets/main/world/creature/hello-voice-3.wav" type="AudioStream" id=27]
-[ext_resource path="res://assets/main/world/creature/goodbye-voice-3.wav" type="AudioStream" id=28]
-[ext_resource path="res://assets/main/world/door-chime1.wav" type="AudioStream" id=29]
-[ext_resource path="res://assets/main/world/creature/combo-voice-14.wav" type="AudioStream" id=30]
-[ext_resource path="res://assets/main/world/creature/combo-voice-19.wav" type="AudioStream" id=31]
 [ext_resource path="res://assets/main/world/shadow-oval-0.png" type="Texture" id=32]
-[ext_resource path="res://assets/main/world/door-chime0.wav" type="AudioStream" id=33]
-[ext_resource path="res://assets/main/world/door-chime4.wav" type="AudioStream" id=34]
-[ext_resource path="res://assets/main/world/creature/combo-voice-13.wav" type="AudioStream" id=35]
-[ext_resource path="res://assets/main/world/creature/combo-voice-16.wav" type="AudioStream" id=36]
-[ext_resource path="res://assets/main/world/creature/munch2.wav" type="AudioStream" id=37]
-[ext_resource path="res://assets/main/world/creature/combo-voice-12.wav" type="AudioStream" id=38]
-[ext_resource path="res://assets/main/world/creature/combo-voice-09.wav" type="AudioStream" id=39]
-[ext_resource path="res://assets/main/world/creature/combo-voice-01.wav" type="AudioStream" id=40]
-[ext_resource path="res://assets/main/world/creature/combo-voice-07.wav" type="AudioStream" id=41]
-[ext_resource path="res://assets/main/world/creature/combo-voice-11.wav" type="AudioStream" id=42]
-[ext_resource path="res://assets/main/world/creature/munch3.wav" type="AudioStream" id=43]
-[ext_resource path="res://assets/main/world/creature/combo-voice-08.wav" type="AudioStream" id=44]
-[ext_resource path="res://assets/main/world/creature/combo-voice-03.wav" type="AudioStream" id=45]
 [ext_resource path="res://assets/main/world/creature/1/emote-brain-sheet.png" type="Texture" id=46]
-[ext_resource path="res://assets/main/world/creature/combo-voice-10.wav" type="AudioStream" id=47]
-[ext_resource path="res://assets/main/world/creature/combo-voice-05.wav" type="AudioStream" id=48]
-[ext_resource path="res://assets/main/world/creature/hello-voice-1.wav" type="AudioStream" id=49]
-[ext_resource path="res://assets/main/world/creature/goodbye-voice-0.wav" type="AudioStream" id=50]
-[ext_resource path="res://assets/main/world/creature/hello-voice-0.wav" type="AudioStream" id=51]
-[ext_resource path="res://assets/main/world/creature/combo-voice-02.wav" type="AudioStream" id=52]
-[ext_resource path="res://assets/main/world/creature/combo-voice-06.wav" type="AudioStream" id=53]
 [ext_resource path="res://assets/main/world/creature/1/movement-z0-sheet.png" type="Texture" id=54]
 [ext_resource path="res://assets/main/ui/chat/emote-think0.wav" type="AudioStream" id=55]
 [ext_resource path="res://assets/main/world/creature/1/emote-eyes-sheet.png" type="Texture" id=56]
@@ -2423,8 +2385,14 @@ light_mask = 2
 rotation = 0.00355033
 curve = SubResource( 7 )
 script = ExtResource( 5 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
+line_color = Color( 0, 0, 0, 1 )
 fill_color = Color( 0, 0, 0, 1 )
 line_width = 2.0
+_fatness = 1.0
 editing = false
 
 [node name="Outline" type="Path2D" parent="Sprites/Body"]
@@ -2760,290 +2728,50 @@ anims/run-se = SubResource( 57 )
 [node name="CreatureSfx" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
-[node name="Munch0" type="AudioStreamPlayer2D" parent="CreatureSfx"]
+[node name="Munch" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 23 )
+max_distance = 4000.0
 bus = "Voice Bus"
 
-[node name="Munch1" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 25 )
-bus = "Voice Bus"
-
-[node name="Munch2" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 37 )
-bus = "Voice Bus"
-
-[node name="Munch3" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 43 )
-bus = "Voice Bus"
-
-[node name="Munch4" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 21 )
-bus = "Voice Bus"
-
-[node name="DoorChime0" type="AudioStreamPlayer2D" parent="CreatureSfx"]
+[node name="DoorChime" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 108.587, 210.527 )
-stream = ExtResource( 33 )
 volume_db = -4.0
 max_distance = 4000.0
 bus = "Sound Bus"
 
-[node name="DoorChime1" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 108.587, 210.527 )
-stream = ExtResource( 29 )
-volume_db = -4.0
-max_distance = 4000.0
-bus = "Sound Bus"
-
-[node name="DoorChime2" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 108.587, 210.527 )
-stream = ExtResource( 24 )
-volume_db = -4.0
-max_distance = 4000.0
-bus = "Sound Bus"
-
-[node name="DoorChime3" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 108.587, 210.527 )
-stream = ExtResource( 18 )
-volume_db = -4.0
-max_distance = 4000.0
-bus = "Sound Bus"
-
-[node name="DoorChime4" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 108.587, 210.527 )
-stream = ExtResource( 34 )
-volume_db = -4.0
-max_distance = 4000.0
-bus = "Sound Bus"
-
-[node name="ComboVoice00" type="AudioStreamPlayer2D" parent="CreatureSfx"]
+[node name="Voice" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 13 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice01" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 40 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice02" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 52 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice03" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 45 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice04" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 17 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice05" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 48 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice06" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 53 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice07" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 41 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice08" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 44 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice09" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 39 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice10" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 47 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice11" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 42 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice12" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 38 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice13" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 35 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice14" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 30 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice15" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 15 )
-volume_db = 6.0
-max_distance = 4000.0
-attenuation = 0.466517
-bus = "Voice Bus"
-
-[node name="ComboVoice16" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 36 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice17" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 20 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice18" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 16 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="ComboVoice19" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 31 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="HelloVoice0" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 51 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="HelloVoice1" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 49 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="HelloVoice2" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 19 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="HelloVoice3" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 27 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="GoodbyeVoice0" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 50 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="GoodbyeVoice1" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 26 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="GoodbyeVoice2" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 22 )
-volume_db = 6.0
-max_distance = 4000.0
-bus = "Voice Bus"
-
-[node name="GoodbyeVoice3" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 28 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 [connection signal="before_creature_arrived" from="." to="Mouth0Anims" method="_on_Creature_before_creature_arrived"]
-[connection signal="before_creature_arrived" from="." to="EmoteAnims" method="_on_Creature_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="." to="Mouth1Anims" method="_on_Creature_before_creature_arrived"]
+[connection signal="before_creature_arrived" from="." to="EmoteAnims" method="_on_Creature_before_creature_arrived"]
 [connection signal="creature_arrived" from="." to="CreatureSfx" method="_on_Creature_creature_arrived"]
 [connection signal="food_eaten" from="." to="CreatureSfx" method="_on_Creature_food_eaten"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Body" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/FarArm" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/FarLeg" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/FarArm" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/NearArm" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/NearArm" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/NearLeg" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_movement_mode_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/FarArm" method="_on_Creature_orientation_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_movement_mode_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/FarLeg" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/FarArm" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/NearArm" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/NearArm" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/NearLeg" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_Creature_orientation_changed"]
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
