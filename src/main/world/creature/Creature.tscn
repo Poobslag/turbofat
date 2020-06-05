@@ -1,75 +1,75 @@
 [gd_scene load_steps=124 format=2]
 
-[ext_resource path="res://src/main/world/restaurant/fat-player.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/restaurant/smooth-path-outline.gd" type="Script" id=2]
-[ext_resource path="res://src/main/world/restaurant/creature-body.gd" type="Script" id=3]
-[ext_resource path="res://src/main/world/multi-outline-sprite.gd" type="Script" id=4]
-[ext_resource path="res://src/main/world/restaurant/creature.gd" type="Script" id=5]
-[ext_resource path="res://assets/main/world/creature/goodbye-voice-1.wav" type="AudioStream" id=6]
-[ext_resource path="res://assets/main/world/creature/hello-voice-2.wav" type="AudioStream" id=7]
-[ext_resource path="res://assets/main/world/creature/goodbye-voice-3.wav" type="AudioStream" id=8]
-[ext_resource path="res://assets/main/world/creature/goodbye-voice-2.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/main/world/creature/combo-voice-00.wav" type="AudioStream" id=10]
-[ext_resource path="res://assets/main/world/door-chime1.wav" type="AudioStream" id=11]
-[ext_resource path="res://assets/main/world/creature/combo-voice-14.wav" type="AudioStream" id=12]
-[ext_resource path="res://assets/main/world/creature/combo-voice-19.wav" type="AudioStream" id=13]
-[ext_resource path="res://assets/main/world/shadow-oval-0.png" type="Texture" id=14]
-[ext_resource path="res://assets/main/world/door-chime0.wav" type="AudioStream" id=15]
-[ext_resource path="res://assets/main/world/door-chime3.wav" type="AudioStream" id=16]
-[ext_resource path="res://assets/main/world/creature/combo-voice-17.wav" type="AudioStream" id=17]
-[ext_resource path="res://assets/main/world/door-chime4.wav" type="AudioStream" id=18]
-[ext_resource path="res://assets/main/world/creature/combo-voice-13.wav" type="AudioStream" id=19]
-[ext_resource path="res://assets/main/world/creature/munch0.wav" type="AudioStream" id=20]
+[ext_resource path="res://src/main/world/multi-outline.shader" type="Shader" id=1]
+[ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=2]
+[ext_resource path="res://src/main/world/creature/creature.gd" type="Script" id=3]
+[ext_resource path="res://src/main/world/creature/creature-sfx.gd" type="Script" id=4]
+[ext_resource path="res://src/main/world/creature/creature-body.gd" type="Script" id=5]
+[ext_resource path="res://src/main/world/creature/emote-anims.gd" type="Script" id=6]
+[ext_resource path="res://src/main/world/creature/head-bobber.gd" type="Script" id=7]
+[ext_resource path="res://src/main/world/creature/creature-sprite.gd" type="Script" id=8]
+[ext_resource path="res://src/main/world/multi-outline-sprite.gd" type="Script" id=9]
+[ext_resource path="res://src/main/world/creature/mouth-anims.gd" type="Script" id=10]
+[ext_resource path="res://src/main/world/creature/smooth-path-outline.gd" type="Script" id=11]
+[ext_resource path="res://src/main/world/creature/fat-player.gd" type="Script" id=12]
+[ext_resource path="res://assets/main/world/creature/combo-voice-00.wav" type="AudioStream" id=13]
+[ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=14]
+[ext_resource path="res://assets/main/world/creature/combo-voice-15.wav" type="AudioStream" id=15]
+[ext_resource path="res://assets/main/world/creature/combo-voice-18.wav" type="AudioStream" id=16]
+[ext_resource path="res://assets/main/world/creature/combo-voice-04.wav" type="AudioStream" id=17]
+[ext_resource path="res://assets/main/world/door-chime3.wav" type="AudioStream" id=18]
+[ext_resource path="res://assets/main/world/creature/hello-voice-2.wav" type="AudioStream" id=19]
+[ext_resource path="res://assets/main/world/creature/combo-voice-17.wav" type="AudioStream" id=20]
 [ext_resource path="res://assets/main/world/creature/munch4.wav" type="AudioStream" id=21]
-[ext_resource path="res://assets/main/world/creature/combo-voice-16.wav" type="AudioStream" id=22]
-[ext_resource path="res://assets/main/world/creature/combo-voice-15.wav" type="AudioStream" id=23]
+[ext_resource path="res://assets/main/world/creature/goodbye-voice-2.wav" type="AudioStream" id=22]
+[ext_resource path="res://assets/main/world/creature/munch0.wav" type="AudioStream" id=23]
 [ext_resource path="res://assets/main/world/door-chime2.wav" type="AudioStream" id=24]
 [ext_resource path="res://assets/main/world/creature/munch1.wav" type="AudioStream" id=25]
-[ext_resource path="res://assets/main/world/creature/munch2.wav" type="AudioStream" id=26]
-[ext_resource path="res://assets/main/world/creature/combo-voice-18.wav" type="AudioStream" id=27]
-[ext_resource path="res://assets/main/world/creature/hello-voice-3.wav" type="AudioStream" id=28]
-[ext_resource path="res://assets/main/world/creature/combo-voice-04.wav" type="AudioStream" id=29]
-[ext_resource path="res://assets/main/world/creature/combo-voice-09.wav" type="AudioStream" id=30]
-[ext_resource path="res://assets/main/world/creature/hello-voice-0.wav" type="AudioStream" id=31]
-[ext_resource path="res://assets/main/world/creature/combo-voice-06.wav" type="AudioStream" id=32]
-[ext_resource path="res://assets/main/world/creature/combo-voice-02.wav" type="AudioStream" id=33]
-[ext_resource path="res://assets/main/world/creature/combo-voice-05.wav" type="AudioStream" id=34]
-[ext_resource path="res://assets/main/world/creature/combo-voice-07.wav" type="AudioStream" id=35]
-[ext_resource path="res://assets/main/world/creature/combo-voice-01.wav" type="AudioStream" id=36]
-[ext_resource path="res://assets/main/world/creature/hello-voice-1.wav" type="AudioStream" id=37]
-[ext_resource path="res://assets/main/world/creature/goodbye-voice-0.wav" type="AudioStream" id=38]
-[ext_resource path="res://assets/main/world/creature/combo-voice-11.wav" type="AudioStream" id=39]
-[ext_resource path="res://assets/main/world/creature/combo-voice-12.wav" type="AudioStream" id=40]
-[ext_resource path="res://assets/main/world/creature/combo-voice-03.wav" type="AudioStream" id=41]
-[ext_resource path="res://assets/main/world/creature/combo-voice-10.wav" type="AudioStream" id=42]
-[ext_resource path="res://assets/main/world/creature/combo-voice-08.wav" type="AudioStream" id=43]
-[ext_resource path="res://assets/main/world/creature/munch3.wav" type="AudioStream" id=44]
-[ext_resource path="res://src/main/world/multi-outline.shader" type="Shader" id=45]
-[ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=46]
-[ext_resource path="res://src/main/world/restaurant/creature-sfx.gd" type="Script" id=47]
-[ext_resource path="res://src/main/world/restaurant/creature-sprite.gd" type="Script" id=48]
-[ext_resource path="res://src/main/world/restaurant/mouth-anims.gd" type="Script" id=49]
-[ext_resource path="res://src/main/world/restaurant/head-bobber.gd" type="Script" id=50]
-[ext_resource path="res://assets/main/world/creature/1/emote-brain-sheet.png" type="Texture" id=53]
-[ext_resource path="res://assets/main/ui/chat/emote-think0.wav" type="AudioStream" id=54]
-[ext_resource path="res://src/main/world/restaurant/emote-anims.gd" type="Script" id=58]
-[ext_resource path="res://assets/main/world/creature/1/movement-z0-sheet.png" type="Texture" id=60]
-[ext_resource path="res://assets/main/world/creature/1/emote-arms-sheet.png" type="Texture" id=62]
-[ext_resource path="res://assets/main/world/creature/1/emote-body-sheet.png" type="Texture" id=65]
-[ext_resource path="res://assets/main/world/creature/1/emote-head-sheet.png" type="Texture" id=66]
-[ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=67]
-[ext_resource path="res://assets/main/ui/chat/emote-rage1.wav" type="AudioStream" id=68]
-[ext_resource path="res://assets/main/world/creature/1/emote-eyes-sheet.png" type="Texture" id=69]
-[ext_resource path="res://assets/main/ui/chat/emote-rage0.wav" type="AudioStream" id=70]
-[ext_resource path="res://assets/main/ui/chat/emote-smile1.wav" type="AudioStream" id=71]
-[ext_resource path="res://assets/main/ui/chat/emote-think1.wav" type="AudioStream" id=72]
-[ext_resource path="res://assets/main/ui/chat/emote-cry0.wav" type="AudioStream" id=73]
-[ext_resource path="res://assets/main/ui/chat/emote-sweat1.wav" type="AudioStream" id=74]
-[ext_resource path="res://assets/main/ui/chat/emote-laugh1.wav" type="AudioStream" id=75]
+[ext_resource path="res://assets/main/world/creature/goodbye-voice-1.wav" type="AudioStream" id=26]
+[ext_resource path="res://assets/main/world/creature/hello-voice-3.wav" type="AudioStream" id=27]
+[ext_resource path="res://assets/main/world/creature/goodbye-voice-3.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/main/world/door-chime1.wav" type="AudioStream" id=29]
+[ext_resource path="res://assets/main/world/creature/combo-voice-14.wav" type="AudioStream" id=30]
+[ext_resource path="res://assets/main/world/creature/combo-voice-19.wav" type="AudioStream" id=31]
+[ext_resource path="res://assets/main/world/shadow-oval-0.png" type="Texture" id=32]
+[ext_resource path="res://assets/main/world/door-chime0.wav" type="AudioStream" id=33]
+[ext_resource path="res://assets/main/world/door-chime4.wav" type="AudioStream" id=34]
+[ext_resource path="res://assets/main/world/creature/combo-voice-13.wav" type="AudioStream" id=35]
+[ext_resource path="res://assets/main/world/creature/combo-voice-16.wav" type="AudioStream" id=36]
+[ext_resource path="res://assets/main/world/creature/munch2.wav" type="AudioStream" id=37]
+[ext_resource path="res://assets/main/world/creature/combo-voice-12.wav" type="AudioStream" id=38]
+[ext_resource path="res://assets/main/world/creature/combo-voice-09.wav" type="AudioStream" id=39]
+[ext_resource path="res://assets/main/world/creature/combo-voice-01.wav" type="AudioStream" id=40]
+[ext_resource path="res://assets/main/world/creature/combo-voice-07.wav" type="AudioStream" id=41]
+[ext_resource path="res://assets/main/world/creature/combo-voice-11.wav" type="AudioStream" id=42]
+[ext_resource path="res://assets/main/world/creature/munch3.wav" type="AudioStream" id=43]
+[ext_resource path="res://assets/main/world/creature/combo-voice-08.wav" type="AudioStream" id=44]
+[ext_resource path="res://assets/main/world/creature/combo-voice-03.wav" type="AudioStream" id=45]
+[ext_resource path="res://assets/main/world/creature/1/emote-brain-sheet.png" type="Texture" id=46]
+[ext_resource path="res://assets/main/world/creature/combo-voice-10.wav" type="AudioStream" id=47]
+[ext_resource path="res://assets/main/world/creature/combo-voice-05.wav" type="AudioStream" id=48]
+[ext_resource path="res://assets/main/world/creature/hello-voice-1.wav" type="AudioStream" id=49]
+[ext_resource path="res://assets/main/world/creature/goodbye-voice-0.wav" type="AudioStream" id=50]
+[ext_resource path="res://assets/main/world/creature/hello-voice-0.wav" type="AudioStream" id=51]
+[ext_resource path="res://assets/main/world/creature/combo-voice-02.wav" type="AudioStream" id=52]
+[ext_resource path="res://assets/main/world/creature/combo-voice-06.wav" type="AudioStream" id=53]
+[ext_resource path="res://assets/main/world/creature/1/movement-z0-sheet.png" type="Texture" id=54]
+[ext_resource path="res://assets/main/ui/chat/emote-think0.wav" type="AudioStream" id=55]
+[ext_resource path="res://assets/main/world/creature/1/emote-eyes-sheet.png" type="Texture" id=56]
+[ext_resource path="res://assets/main/world/creature/1/emote-arms-sheet.png" type="Texture" id=57]
+[ext_resource path="res://assets/main/world/creature/1/emote-body-sheet.png" type="Texture" id=58]
+[ext_resource path="res://assets/main/ui/chat/emote-rage1.wav" type="AudioStream" id=59]
+[ext_resource path="res://assets/main/ui/chat/emote-think1.wav" type="AudioStream" id=60]
+[ext_resource path="res://assets/main/ui/chat/emote-cry0.wav" type="AudioStream" id=61]
+[ext_resource path="res://assets/main/ui/chat/emote-sweat1.wav" type="AudioStream" id=62]
+[ext_resource path="res://assets/main/world/creature/1/emote-head-sheet.png" type="Texture" id=63]
+[ext_resource path="res://assets/main/ui/chat/emote-rage0.wav" type="AudioStream" id=64]
+[ext_resource path="res://assets/main/ui/chat/emote-smile1.wav" type="AudioStream" id=65]
+[ext_resource path="res://assets/main/ui/chat/emote-laugh1.wav" type="AudioStream" id=66]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -77,13 +77,13 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -91,13 +91,13 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -105,7 +105,7 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
@@ -117,7 +117,7 @@ _data = {
 
 [sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = null
 shader_param/blue = null
@@ -125,7 +125,7 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=9]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -133,13 +133,13 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=10]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=11]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -147,13 +147,13 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=12]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=13]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -161,13 +161,13 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=14]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=15]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -175,19 +175,19 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=16]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=17]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=18]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -195,13 +195,13 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=19]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=20]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
 shader_param/blue = null
@@ -209,13 +209,13 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=21]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=22]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -223,13 +223,13 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=23]
 resource_local_to_scene = true
-shader = ExtResource( 45 )
+shader = ExtResource( 1 )
 shader_param/width = 6.0
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=24]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 1, 1, 1, 1 )
 shader_param/green = null
 shader_param/blue = null
@@ -241,7 +241,7 @@ blend_mode = 1
 
 [sub_resource type="ShaderMaterial" id=26]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 1, 1, 1, 1 )
 shader_param/green = Color( 1, 1, 0.24, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -249,7 +249,7 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=27]
 resource_local_to_scene = true
-shader = ExtResource( 46 )
+shader = ExtResource( 2 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -746,7 +746,7 @@ tracks/12/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 73 )
+"stream": ExtResource( 61 )
 } ],
 "times": PoolRealArray( 0.2 )
 }
@@ -1103,7 +1103,7 @@ tracks/12/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 75 )
+"stream": ExtResource( 66 )
 } ],
 "times": PoolRealArray( 0.1 )
 }
@@ -1276,7 +1276,7 @@ tracks/13/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 70 )
+"stream": ExtResource( 64 )
 } ],
 "times": PoolRealArray( 0.2 )
 }
@@ -1449,7 +1449,7 @@ tracks/13/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 68 )
+"stream": ExtResource( 59 )
 } ],
 "times": PoolRealArray( 0.1 )
 }
@@ -1661,7 +1661,7 @@ tracks/14/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 71 )
+"stream": ExtResource( 65 )
 } ],
 "times": PoolRealArray( 0.1 )
 }
@@ -1849,7 +1849,7 @@ tracks/10/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 74 )
+"stream": ExtResource( 62 )
 } ],
 "times": PoolRealArray( 0.1 )
 }
@@ -1962,7 +1962,7 @@ tracks/8/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 54 )
+"stream": ExtResource( 55 )
 } ],
 "times": PoolRealArray( 0.1 )
 }
@@ -2075,7 +2075,7 @@ tracks/8/keys = {
 "clips": [ {
 "end_offset": 0.0,
 "start_offset": 0.0,
-"stream": ExtResource( 72 )
+"stream": ExtResource( 60 )
 } ],
 "times": PoolRealArray( 0.1 )
 }
@@ -2356,7 +2356,7 @@ tracks/2/keys = {
 light_mask = 2
 position = Vector2( 108.587, 210.527 )
 z_index = 10
-script = ExtResource( 5 )
+script = ExtResource( 3 )
 __meta__ = {
 "_editor_description_": ""
 }
@@ -2371,7 +2371,7 @@ visible = false
 light_mask = 2
 material = SubResource( 1 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 60 )
+texture = ExtResource( 54 )
 offset = Vector2( 0, -239 )
 vframes = 2
 hframes = 8
@@ -2381,7 +2381,7 @@ frame = 7
 light_mask = 2
 material = SubResource( 2 )
 offset = Vector2( 0, -239 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="FarArm" type="Sprite" parent="Sprites"]
 light_mask = 2
@@ -2390,7 +2390,7 @@ scale = Vector2( 0.418, 0.418 )
 offset = Vector2( 0, -239 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../..")
 invisible_while_moving = true
 
@@ -2398,7 +2398,7 @@ invisible_while_moving = true
 light_mask = 2
 material = SubResource( 4 )
 offset = Vector2( 0, -239 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="FarLeg" type="Sprite" parent="Sprites"]
 light_mask = 2
@@ -2407,7 +2407,7 @@ scale = Vector2( 0.418, 0.418 )
 offset = Vector2( 0, -239 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../..")
 invisible_while_moving = true
 
@@ -2415,14 +2415,14 @@ invisible_while_moving = true
 light_mask = 2
 material = SubResource( 6 )
 offset = Vector2( 0, -239 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="Body" type="Path2D" parent="Sprites"]
 self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
 rotation = 0.00355033
 curve = SubResource( 7 )
-script = ExtResource( 3 )
+script = ExtResource( 5 )
 fill_color = Color( 0, 0, 0, 1 )
 line_width = 2.0
 editing = false
@@ -2432,7 +2432,7 @@ self_modulate = Color( 1, 1, 1, 1 )
 light_mask = 2
 z_index = -2
 curve = SubResource( 7 )
-script = ExtResource( 2 )
+script = ExtResource( 11 )
 spline_length = 25.0
 _smooth = false
 _straighten = false
@@ -2448,7 +2448,7 @@ rotation = 3.13804
 scale = Vector2( 0.418, -0.418 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../../..")
 
 [node name="NearLeg" type="Sprite" parent="Sprites"]
@@ -2458,7 +2458,7 @@ scale = Vector2( 0.418, 0.418 )
 offset = Vector2( 0, -239 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../..")
 invisible_while_moving = true
 
@@ -2466,7 +2466,7 @@ invisible_while_moving = true
 light_mask = 2
 material = SubResource( 10 )
 offset = Vector2( 0, -239 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="NearArm" type="Sprite" parent="Sprites"]
 light_mask = 2
@@ -2475,7 +2475,7 @@ scale = Vector2( 0.418, 0.418 )
 offset = Vector2( 0, -239 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../..")
 invisible_while_moving = true
 
@@ -2483,7 +2483,7 @@ invisible_while_moving = true
 light_mask = 2
 material = SubResource( 2 )
 offset = Vector2( 0, -239 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="Neck0" type="Sprite" parent="Sprites"]
 __meta__ = {
@@ -2496,7 +2496,7 @@ position = Vector2( 0, -100 )
 scale = Vector2( 0.418, 0.418 )
 hframes = 3
 frame = 1
-script = ExtResource( 50 )
+script = ExtResource( 7 )
 __meta__ = {
 "_editor_description_": "Neck1 offsets the head's position as the creature bobs their head up and down"
 }
@@ -2507,13 +2507,13 @@ light_mask = 2
 material = SubResource( 11 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../../../..")
 
 [node name="Outline" type="Sprite" parent="Sprites/Neck0/HeadBobber/EarZ0"]
 light_mask = 2
 material = SubResource( 12 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="HornZ0" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
@@ -2521,13 +2521,13 @@ light_mask = 2
 material = SubResource( 13 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../../../..")
 
 [node name="Outline" type="Sprite" parent="Sprites/Neck0/HeadBobber/HornZ0"]
 light_mask = 2
 material = SubResource( 14 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="Head" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
@@ -2535,13 +2535,13 @@ light_mask = 2
 material = SubResource( 15 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../../../..")
 
 [node name="Outline" type="Sprite" parent="Sprites/Neck0/HeadBobber/Head"]
 light_mask = 2
 material = SubResource( 16 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="EarZ1" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
@@ -2549,13 +2549,13 @@ light_mask = 2
 material = SubResource( 11 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../../../..")
 
 [node name="Outline" type="Sprite" parent="Sprites/Neck0/HeadBobber/EarZ1"]
 light_mask = 2
 material = SubResource( 17 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="HornZ1" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
@@ -2563,13 +2563,13 @@ light_mask = 2
 material = SubResource( 13 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../../../..")
 
 [node name="Outline" type="Sprite" parent="Sprites/Neck0/HeadBobber/HornZ1"]
 light_mask = 2
 material = SubResource( 14 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="EarZ2" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
@@ -2577,13 +2577,13 @@ light_mask = 2
 material = SubResource( 18 )
 hframes = 3
 frame = 1
-script = ExtResource( 48 )
+script = ExtResource( 8 )
 creature_path = NodePath("../../../..")
 
 [node name="Outline" type="Sprite" parent="Sprites/Neck0/HeadBobber/EarZ2"]
 light_mask = 2
 material = SubResource( 19 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="Mouth" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
@@ -2600,7 +2600,7 @@ z_index = -2
 vframes = 2
 hframes = 8
 frame = 1
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="Eyes" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
@@ -2614,7 +2614,7 @@ light_mask = 2
 material = SubResource( 23 )
 hframes = 4
 frame = 1
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="Food" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
@@ -2633,7 +2633,7 @@ hframes = 3
 light_mask = 2
 material = SubResource( 1 )
 position = Vector2( 0, 234.708 )
-texture = ExtResource( 62 )
+texture = ExtResource( 57 )
 offset = Vector2( 0, -239 )
 hframes = 3
 
@@ -2641,13 +2641,13 @@ hframes = 3
 light_mask = 2
 material = SubResource( 2 )
 offset = Vector2( 0, -239 )
-script = ExtResource( 4 )
+script = ExtResource( 9 )
 
 [node name="EmoteEyes" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 light_mask = 2
 material = SubResource( 24 )
 position = Vector2( 0, 256 )
-texture = ExtResource( 69 )
+texture = ExtResource( 56 )
 offset = Vector2( 0, -239 )
 vframes = 2
 hframes = 8
@@ -2658,7 +2658,7 @@ light_mask = 2
 material = SubResource( 25 )
 position = Vector2( 25.3166, 262.374 )
 scale = Vector2( 1.8, 0.8 )
-texture = ExtResource( 67 )
+texture = ExtResource( 14 )
 offset = Vector2( 0, -239 )
 
 [node name="EmoteBrain" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
@@ -2666,7 +2666,7 @@ modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 material = SubResource( 26 )
 position = Vector2( 255.118, 133.989 )
-texture = ExtResource( 53 )
+texture = ExtResource( 46 )
 offset = Vector2( 0, -239 )
 vframes = 2
 hframes = 8
@@ -2676,7 +2676,7 @@ frame = 4
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 position = Vector2( 35.83, 239.786 )
-texture = ExtResource( 66 )
+texture = ExtResource( 63 )
 offset = Vector2( 0, -239 )
 vframes = 2
 hframes = 8
@@ -2688,7 +2688,7 @@ light_mask = 2
 material = SubResource( 27 )
 position = Vector2( 2.45544, 83.4862 )
 scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 65 )
+texture = ExtResource( 58 )
 offset = Vector2( 0, -239 )
 hframes = 6
 
@@ -2698,14 +2698,14 @@ show_behind_parent = true
 light_mask = 2
 scale = Vector2( 0.17, 0.17 )
 z_index = -20
-texture = ExtResource( 14 )
+texture = ExtResource( 32 )
 
 [node name="Mouth0Anims" type="AnimationPlayer" parent="."]
 anims/ambient-nw = SubResource( 28 )
 anims/ambient-se = SubResource( 29 )
 anims/eat = SubResource( 30 )
 anims/eat-again = SubResource( 31 )
-script = ExtResource( 49 )
+script = ExtResource( 10 )
 mouth_path = NodePath("../Sprites/Neck0/HeadBobber/Mouth")
 north_frame = 12
 
@@ -2714,7 +2714,7 @@ anims/ambient-nw = SubResource( 32 )
 anims/ambient-se = SubResource( 33 )
 anims/eat = SubResource( 34 )
 anims/eat-again = SubResource( 35 )
-script = ExtResource( 49 )
+script = ExtResource( 10 )
 mouth_path = NodePath("../Sprites/Neck0/HeadBobber/Mouth")
 north_frame = 17
 
@@ -2735,18 +2735,18 @@ anims/sweat0 = SubResource( 48 )
 anims/sweat1 = SubResource( 49 )
 anims/think0 = SubResource( 50 )
 anims/think1 = SubResource( 51 )
-script = ExtResource( 58 )
+script = ExtResource( 6 )
 eyes_path = NodePath("../Sprites/Neck0/HeadBobber/Eyes")
 
 [node name="ResetTween" type="Tween" parent="EmoteAnims"]
 
 [node name="EmoteSfx" type="AudioStreamPlayer" parent="EmoteAnims"]
-stream = ExtResource( 72 )
+stream = ExtResource( 60 )
 bus = "Sound Bus"
 
 [node name="FatPlayer" type="AnimationPlayer" parent="."]
 anims/fat = SubResource( 52 )
-script = ExtResource( 1 )
+script = ExtResource( 12 )
 
 [node name="MovementAnims" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 53 )
@@ -2758,11 +2758,11 @@ anims/run-se = SubResource( 57 )
 [node name="Tween" type="Tween" parent="."]
 
 [node name="CreatureSfx" type="Node" parent="."]
-script = ExtResource( 47 )
+script = ExtResource( 4 )
 
 [node name="Munch0" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 20 )
+stream = ExtResource( 23 )
 bus = "Voice Bus"
 
 [node name="Munch1" type="AudioStreamPlayer2D" parent="CreatureSfx"]
@@ -2772,12 +2772,12 @@ bus = "Voice Bus"
 
 [node name="Munch2" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 26 )
+stream = ExtResource( 37 )
 bus = "Voice Bus"
 
 [node name="Munch3" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 44 )
+stream = ExtResource( 43 )
 bus = "Voice Bus"
 
 [node name="Munch4" type="AudioStreamPlayer2D" parent="CreatureSfx"]
@@ -2787,14 +2787,14 @@ bus = "Voice Bus"
 
 [node name="DoorChime0" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 108.587, 210.527 )
-stream = ExtResource( 15 )
+stream = ExtResource( 33 )
 volume_db = -4.0
 max_distance = 4000.0
 bus = "Sound Bus"
 
 [node name="DoorChime1" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 108.587, 210.527 )
-stream = ExtResource( 11 )
+stream = ExtResource( 29 )
 volume_db = -4.0
 max_distance = 4000.0
 bus = "Sound Bus"
@@ -2808,126 +2808,126 @@ bus = "Sound Bus"
 
 [node name="DoorChime3" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 108.587, 210.527 )
-stream = ExtResource( 16 )
+stream = ExtResource( 18 )
 volume_db = -4.0
 max_distance = 4000.0
 bus = "Sound Bus"
 
 [node name="DoorChime4" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 108.587, 210.527 )
-stream = ExtResource( 18 )
+stream = ExtResource( 34 )
 volume_db = -4.0
 max_distance = 4000.0
 bus = "Sound Bus"
 
 [node name="ComboVoice00" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 10 )
+stream = ExtResource( 13 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice01" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 36 )
+stream = ExtResource( 40 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice02" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 33 )
+stream = ExtResource( 52 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice03" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 41 )
+stream = ExtResource( 45 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice04" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 29 )
+stream = ExtResource( 17 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice05" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 34 )
+stream = ExtResource( 48 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice06" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 32 )
+stream = ExtResource( 53 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice07" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 35 )
+stream = ExtResource( 41 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice08" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 43 )
+stream = ExtResource( 44 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice09" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 30 )
+stream = ExtResource( 39 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice10" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 42 )
+stream = ExtResource( 47 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice11" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 39 )
+stream = ExtResource( 42 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice12" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 40 )
+stream = ExtResource( 38 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice13" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 19 )
+stream = ExtResource( 35 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice14" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 12 )
+stream = ExtResource( 30 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice15" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 23 )
+stream = ExtResource( 15 )
 volume_db = 6.0
 max_distance = 4000.0
 attenuation = 0.466517
@@ -2935,84 +2935,84 @@ bus = "Voice Bus"
 
 [node name="ComboVoice16" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 22 )
+stream = ExtResource( 36 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice17" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 17 )
+stream = ExtResource( 20 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice18" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 27 )
+stream = ExtResource( 16 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="ComboVoice19" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 13 )
+stream = ExtResource( 31 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="HelloVoice0" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 31 )
+stream = ExtResource( 51 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="HelloVoice1" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 37 )
+stream = ExtResource( 49 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="HelloVoice2" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 7 )
+stream = ExtResource( 19 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="HelloVoice3" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 28 )
+stream = ExtResource( 27 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="GoodbyeVoice0" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 38 )
+stream = ExtResource( 50 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="GoodbyeVoice1" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 6 )
+stream = ExtResource( 26 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="GoodbyeVoice2" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 9 )
+stream = ExtResource( 22 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"
 
 [node name="GoodbyeVoice3" type="AudioStreamPlayer2D" parent="CreatureSfx"]
 position = Vector2( 268.587, 210.527 )
-stream = ExtResource( 8 )
+stream = ExtResource( 28 )
 volume_db = 6.0
 max_distance = 4000.0
 bus = "Voice Bus"

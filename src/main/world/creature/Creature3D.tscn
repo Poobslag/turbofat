@@ -1,12 +1,14 @@
 [gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://src/main/world/creature-3d.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/creature/creature-3d.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/world/creature/move-hop.wav" type="AudioStream" id=2]
-[ext_resource path="res://src/main/world/restaurant/Creature.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=3]
 [ext_resource path="res://assets/main/world/creature/move-jump.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/main/world/creature/move-bonk.wav" type="AudioStream" id=5]
-[ext_resource path="res://src/main/world/creature3d-viewport.gd" type="Script" id=6]
+[ext_resource path="res://src/main/world/creature/creature3d-viewport.gd" type="Script" id=6]
 [ext_resource path="res://src/main/world/shadow-mesh.gd" type="Script" id=7]
+
+
 
 [sub_resource type="ViewportTexture" id=1]
 viewport_path = NodePath("Viewport")

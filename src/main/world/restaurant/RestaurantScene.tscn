@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://src/main/world/restaurant/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/restaurant/Seat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal-shadow.png" type="Texture" id=7]
@@ -11,6 +11,7 @@
 [ext_resource path="res://assets/main/world/restaurant/poster1.png" type="Texture" id=15]
 [ext_resource path="res://assets/main/world/restaurant/poster0.png" type="Texture" id=16]
 [ext_resource path="res://src/main/world/restaurant/restaurant-scene.gd" type="Script" id=24]
+
 
 [node name="RestaurantScene" type="Node2D"]
 light_mask = 2

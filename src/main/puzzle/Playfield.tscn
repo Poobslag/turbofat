@@ -58,7 +58,6 @@
 [ext_resource path="res://assets/main/puzzle/playfield-light.png" type="Texture" id=63]
 [ext_resource path="res://src/main/puzzle/playfield-fx.gd" type="Script" id=64]
 
-
 [sub_resource type="CanvasItemMaterial" id=1]
 blend_mode = 1
 
@@ -411,10 +410,10 @@ bus = "Sound Bus"
 stream = ExtResource( 9 )
 bus = "Sound Bus"
 [connection signal="after_piece_written" from="." to="ComboTracker" method="_on_Playfield_after_piece_written"]
-[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
+[connection signal="box_made" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_made"]
 [connection signal="box_made" from="." to="ComboTracker" method="_on_Playfield_box_made"]
 [connection signal="box_made" from="." to="MakeBoxSfx" method="_on_Playfield_box_made"]
-[connection signal="box_made" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_made"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
 [connection signal="combo_break_changed" from="ComboTracker" to="TileMapClip/PlayfieldFx" method="_on_ComboTracker_combo_break_changed"]

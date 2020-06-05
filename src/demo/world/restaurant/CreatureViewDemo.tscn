@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/demo/creature-view-demo.gd" type="Script" id=1]
+[ext_resource path="res://src/demo/world/restaurant/creature-view-demo.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/restaurant/CreatureView.tscn" type="PackedScene" id=2]
+
 
 [node name="Demo" type="Node2D"]
 script = ExtResource( 1 )
