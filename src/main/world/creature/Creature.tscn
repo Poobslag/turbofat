@@ -2757,7 +2757,7 @@ anims/run-se = SubResource( 57 )
 
 [node name="Tween" type="Tween" parent="."]
 
-[node name="CreatureSfx" type="Node" parent="."]
+[node name="CreatureSfx" type="Node2D" parent="."]
 script = ExtResource( 4 )
 
 [node name="Munch0" type="AudioStreamPlayer2D" parent="CreatureSfx"]

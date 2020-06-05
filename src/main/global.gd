@@ -14,10 +14,10 @@ var _benchmark_start_times := Dictionary()
 
 # A number in the range [-1, 1] which corresponds to how many greetings we've given recently. If it's close to 1,
 # we're very unlikely to receive a greeting. If it's close to -1, we're very likely to receive a greeting.
-var _greetiness := 0.0
+var greetiness := 0.0
 
 func _process(delta: float) -> void:
-	_greetiness = clamp(_greetiness + delta * GREETINGS_PER_MINUTE / 60, -1.0, 1.0)
+	greetiness = clamp(greetiness + delta * GREETINGS_PER_MINUTE / 60, -1.0, 1.0)
 
 
 """
@@ -48,8 +48,8 @@ frequently because those sounds are associated with negative reinforcement (brok
 """
 func should_chat() -> bool:
 	var should_chat := true
-	if _greetiness + randf() > 1.0:
-		_greetiness -= 1.0 / GREETINGS_PER_MINUTE
+	if greetiness + randf() > 1.0:
+		greetiness -= 1.0 / GREETINGS_PER_MINUTE
 	else:
 		should_chat = false
 	return should_chat
