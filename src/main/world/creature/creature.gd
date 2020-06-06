@@ -159,10 +159,6 @@ func set_orientation(new_orientation: int) -> void:
 	emit_signal("orientation_changed", orientation)
 
 
-func set_door_sound_position(door_sound_position: Vector2) -> void:
-	$CreatureSfx.set_door_sound_position(door_sound_position)
-
-
 """
 If you make Creature a tool and play with the 'creature_preset' editor setting, you can view a creature in the editor.
 
@@ -270,6 +266,13 @@ func show_food_effects(delay := 0.0) -> void:
 
 
 """
+Plays a 'hello!' voice sample, for when a creature enters the restaurant
+"""
+func play_hello_voice(force: bool = false) -> void:
+	$CreatureSfx.play_hello_voice(force)
+
+
+"""
 Plays a 'mmm!' voice sample, for when a player builds a big combo.
 """
 func play_combo_voice() -> void:
@@ -279,8 +282,8 @@ func play_combo_voice() -> void:
 """
 Plays a 'check please!' voice sample, for when a creature is ready to leave
 """
-func play_goodbye_voice() -> void:
-	$CreatureSfx.play_goodbye_voice()
+func play_goodbye_voice(force: bool = false) -> void:
+	$CreatureSfx.play_goodbye_voice(force)
 
 
 """

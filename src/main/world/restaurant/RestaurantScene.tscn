@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/restaurant/Seat.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/world/restaurant/door-chime.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal-shadow.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/world/shadow-oval-2.png" type="Texture" id=11]
@@ -11,7 +12,6 @@
 [ext_resource path="res://assets/main/world/restaurant/poster1.png" type="Texture" id=15]
 [ext_resource path="res://assets/main/world/restaurant/poster0.png" type="Texture" id=16]
 [ext_resource path="res://src/main/world/restaurant/restaurant-scene.gd" type="Script" id=24]
-
 
 [node name="RestaurantScene" type="Node2D"]
 light_mask = 2
@@ -169,6 +169,25 @@ z_index = 20
 
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2380, 585 )
+
+[node name="DoorChime" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( -120, 200 )
+volume_db = -4.0
+max_distance = 4000.0
+bus = "Sound Bus"
+script = ExtResource( 3 )
+
+[node name="ChimeTimer" type="Timer" parent="DoorChime"]
+wait_time = 0.5
+one_shot = true
+
+[node name="SuppressSfxTimer" type="Timer" parent="DoorChime"]
+one_shot = true
+autostart = true
+[connection signal="creature_arrived" from="Creature1" to="DoorChime" method="_on_Creature_creature_arrived"]
 [connection signal="food_eaten" from="Creature1" to="." method="_on_Creature_food_eaten"]
+[connection signal="creature_arrived" from="Creature2" to="DoorChime" method="_on_Creature_creature_arrived"]
 [connection signal="food_eaten" from="Creature2" to="." method="_on_Creature_food_eaten"]
+[connection signal="creature_arrived" from="Creature3" to="DoorChime" method="_on_Creature_creature_arrived"]
 [connection signal="food_eaten" from="Creature3" to="." method="_on_Creature_food_eaten"]
+[connection signal="timeout" from="DoorChime/ChimeTimer" to="DoorChime" method="_on_ChimeTimer_timeout"]

@@ -3,24 +3,12 @@ extends Node
 Plays creature-related sound effects.
 """
 
-# delays between when creature arrives and when door chime is played (in seconds)
-const CHIME_DELAYS: Array = [0.2, 0.3, 0.5, 1.0, 1.5]
-
 # sounds the creatures make when they enter the restaurant
 onready var hello_voices := [
 	preload("res://assets/main/world/creature/hello-voice-0.wav"),
 	preload("res://assets/main/world/creature/hello-voice-1.wav"),
 	preload("res://assets/main/world/creature/hello-voice-2.wav"),
 	preload("res://assets/main/world/creature/hello-voice-3.wav"),
-]
-
-# sounds which get played when a creature shows up
-onready var _chime_sounds := [
-	preload("res://assets/main/world/door-chime0.wav"),
-	preload("res://assets/main/world/door-chime1.wav"),
-	preload("res://assets/main/world/door-chime2.wav"),
-	preload("res://assets/main/world/door-chime3.wav"),
-	preload("res://assets/main/world/door-chime4.wav"),
 ]
 
 # sounds which get played when the creature eats
@@ -64,22 +52,8 @@ onready var _goodbye_voices := [
 	preload("res://assets/main/world/creature/goodbye-voice-3.wav"),
 ]
 
-# we suppress the first door chime. we usually cheat and play the chime after the creature appears, but that doesn't
-# work when we can see them appear
-var _suppress_one_chime := true
-
 # index of the most recent combo sound that was played
 var _combo_voice_index := 0
-
-"""
-Sets the relative position of sound effects related to the restaurant door. Each seat has a different position
-relative to the restaurant's entrance; some are close to the door, some are far away.
-
-Parameter: 'position' is the position of the door relative to this seat, in world coordinates.
-"""
-func set_door_sound_position(door_sound_position: Vector2) -> void:
-	$DoorChime.position = door_sound_position
-
 
 """
 Plays a 'mmm!' voice sample, for when a player builds a big combo.
@@ -93,8 +67,8 @@ func play_combo_voice() -> void:
 """
 Plays a 'hello!' voice sample, for when a creature enters the restaurant
 """
-func play_hello_voice() -> void:
-	if Global.should_chat():
+func play_hello_voice(force: bool = false) -> void:
+	if Global.should_chat() or force:
 		$Voice.stream = hello_voices[randi() % hello_voices.size()]
 		$Voice.play()
 
@@ -102,34 +76,10 @@ func play_hello_voice() -> void:
 """
 Plays a 'check please!' voice sample, for when a creature is ready to leave
 """
-func play_goodbye_voice() -> void:
-	if Global.should_chat():
+func play_goodbye_voice(force: bool = false) -> void:
+	if Global.should_chat() or force:
 		$Voice.stream = _goodbye_voices[randi() % _goodbye_voices.size()]
 		$Voice.play()
-
-
-"""
-Plays a door chime sound effect, for when a creature enters the restaurant.
-
-Parameter: 'delay' is the delay in seconds before the chime sound plays. The default value of '-1' results in a random
-	delay.
-"""
-func play_door_chime(delay: float = -1) -> void:
-	if Scenario.settings.other.tutorial:
-		# suppress door chime for tutorials
-		return
-	
-	if delay < 0:
-		delay = CHIME_DELAYS[randi() % CHIME_DELAYS.size()]
-	yield(get_tree().create_timer(delay), "timeout")
-	
-	if is_inside_tree():
-		$DoorChime.stream = _chime_sounds[randi() % _chime_sounds.size()]
-		$DoorChime.play()
-		yield(get_tree().create_timer(0.5), "timeout")
-	
-	if is_inside_tree():
-		play_hello_voice()
 
 
 """
@@ -147,9 +97,13 @@ func _on_Creature_food_eaten() -> void:
 func _on_Creature_creature_arrived() -> void:
 	if Engine.is_editor_hint():
 		# Skip the sound effects if we're using this as an editor tool
-		pass
-	else:
-		if _suppress_one_chime:
-			_suppress_one_chime = false
-		else:
-			play_door_chime()
+		return
+	if not $SuppressSfxTimer.is_stopped():
+		# suppress greeting for first few seconds of a level
+		return
+	
+	$HelloTimer.start()
+
+
+func _on_HelloTimer_timeout() -> void:
+	play_hello_voice()

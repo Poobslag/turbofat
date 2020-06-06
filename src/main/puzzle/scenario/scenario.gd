@@ -63,5 +63,5 @@ func push_scenario_trail(scenario_settings: ScenarioSettings, creature_def: Dict
 	Scenario.settings = scenario_settings
 	PuzzleScore.reset()
 	Scenario.launched_scenario_name = scenario_settings.name
-	Global.creature_queue.push_back(creature_def)
+	Global.creature_queue.push_front(creature_def)
 	Breadcrumb.push_trail("res://src/main/puzzle/Puzzle.tscn")
