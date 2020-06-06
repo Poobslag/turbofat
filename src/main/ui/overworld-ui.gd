@@ -120,7 +120,9 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 			if meta_item.begins_with("scenario-"):
 				scenario = StringUtils.substring_after(meta_item, "scenario-")
 		if scenario:
-			_launched_scenario = Scenario.load_scenario_from_name(scenario)
+			var settings := ScenarioSettings.new()
+			settings.load_from_resource(scenario)
+			_launched_scenario = settings
 			if chatters[0].has_meta("creature_def"):
 				_scenario_creature_def = chatters[0].get_meta("creature_def")
 

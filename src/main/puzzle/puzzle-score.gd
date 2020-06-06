@@ -52,12 +52,8 @@ var game_active: bool
 # 'true' if the player has started a game, or the countdown is currently active.
 var game_prepared: bool
 
+# the level the player is currently on, if the scenario has different levels.
 var level_index: int setget set_level_index
-
-func _physics_process(_delta: float) -> void:
-	if game_active and milestone_met(Scenario.settings.finish_condition):
-		end_game()
-
 
 """
 Resets all score data, and starts a new game after a brief pause.
@@ -160,43 +156,10 @@ func get_creature_score() -> int:
 	return creature_scores[creature_scores.size() - 1]
 
 
-"""
-Returns 'true' if the player has met the specified milestone.
-"""
-func milestone_met(milestone: Milestone) -> bool:
-	var result := false
-	var progress := milestone_progress(milestone)
-	match milestone.type:
-		Milestone.NONE:
-			result = false
-		Milestone.TIME_UNDER:
-			result = progress <= milestone.value
-		_:
-			result = progress >= milestone.value
-	return result
-
-
-"""
-Returns the player's current progress toward the specified milestone.
-"""
-func milestone_progress(milestone: Milestone) -> float:
-	var progress: float
-	match milestone.type:
-		Milestone.CUSTOMERS:
-			progress = PuzzleScore.creature_scores.size() - 1
-		Milestone.LINES:
-			progress = PuzzleScore.scenario_performance.lines
-		Milestone.SCORE:
-			progress = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
-		Milestone.TIME_OVER, Milestone.TIME_UNDER:
-			progress = PuzzleScore.scenario_performance.seconds
-	return progress
-
-
 func end_result() -> int:
 	if scenario_performance.lost:
 		return LOST
-	elif milestone_met(Scenario.settings.success_condition):
+	elif MilestoneManager.milestone_met(Scenario.settings.success_condition):
 		return WON
 	else:
 		return FINISHED
@@ -206,12 +169,11 @@ func _prepare_game() -> void:
 	if game_prepared:
 		return
 	
-	var settings: ScenarioSettings = Scenario.settings
-	var new_scenario_name := settings.other.start_scenario_name
-	if new_scenario_name:
+	if Scenario.settings.other.start_scenario_name:
 		# Load a different scenario to start (used for tutorials)
-		Scenario.settings = Scenario.load_scenario_from_name(new_scenario_name)
-		Scenario.launched_scenario_name = Scenario.settings.name
+		var new_settings := ScenarioSettings.new()
+		new_settings.load_from_resource(Scenario.settings.other.start_scenario_name)
+		Scenario.start_scenario(new_settings)
 	
 	game_prepared = true
 	reset()

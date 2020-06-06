@@ -80,7 +80,10 @@ func _ready() -> void:
 		if not mode_difficulties.has(mode):
 			mode_difficulties[mode] = []
 		mode_difficulties[mode].append(difficulty)
-		scenarios["%s %s" % [mode, difficulty]] = Scenario.load_scenario_from_name(scenario_name)
+		
+		var settings: ScenarioSettings = ScenarioSettings.new()
+		settings.load_from_resource(scenario_name)
+		scenarios["%s %s" % [mode, difficulty]] = settings
 		
 		if scenario_name == Scenario.settings.name:
 			# if they've just played a practice mode scenario, we default to that scenario

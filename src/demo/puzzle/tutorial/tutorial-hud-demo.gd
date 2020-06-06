@@ -28,8 +28,9 @@ onready var _tutorial_message: TutorialMessage = $Scenario/TutorialHud/Message
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	Scenario.settings = Scenario.load_scenario_from_name("tutorial-beginner-0")
-	Scenario.launched_scenario_name = Scenario.settings.name
+	var settings := ScenarioSettings.new()
+	settings.load_from_resource("tutorial-beginner-0")
+	Scenario.start_scenario(settings)
 	$Scenario.init_milestone_hud()
 	_tutorial_hud.refresh()
 
