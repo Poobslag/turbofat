@@ -157,7 +157,7 @@ func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	for x in range(COL_COUNT):
 		var autotile_coord := get_cell_autotile_coord(x, y)
 		if get_cell(x, y) == 1 and not Connect.is_l(autotile_coord.x):
-			box_ints.append(autotile_coord.y)
+			box_ints.append(int(autotile_coord.y))
 	box_ints.shuffle()
 	
 	if awarding_line_clear_points:
