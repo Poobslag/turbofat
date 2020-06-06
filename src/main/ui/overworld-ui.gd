@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not chatters and event.is_action_pressed("interact") and InteractableManager.get_focused():
+	if not chatters and event.is_action_pressed("interact") and ChattableManager.get_focused():
 		get_tree().set_input_as_handled()
 		start_chat()
 	if not chatters and event.is_action_pressed("ui_cancel"):
@@ -44,9 +44,9 @@ func _input(event: InputEvent) -> void:
 func start_chat() -> void:
 	var chat_tree := _chat_library.load_chat_events()
 	
-	chatters = [InteractableManager.get_focused()]
+	chatters = [ChattableManager.get_focused()]
 	_update_visible()
-	InteractableManager.set_focus_enabled(false)
+	ChattableManager.set_focus_enabled(false)
 	make_chatters_face_eachother()
 	$ChatUi.play_chat_tree(chat_tree)
 	emit_signal("chat_started")
@@ -95,12 +95,12 @@ func _on_ChatUi_pop_out_completed() -> void:
 			chatter.call("play_mood", ChatEvent.Mood.DEFAULT)
 	
 	chatters = []
-	InteractableManager.set_focus_enabled(true)
+	ChattableManager.set_focus_enabled(true)
 	_update_visible()
 	emit_signal("chat_ended")
 	
 	if _launched_scenario:
-		InteractableManager.clear()
+		ChattableManager.clear()
 		Scenario.overworld_puzzle = true
 		Scenario.push_scenario_trail(_launched_scenario, _scenario_creature_def)
 
@@ -109,7 +109,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	make_chatters_face_eachother()
 	
 	# update the chatter's mood
-	var chatter := InteractableManager.get_chatter(chat_event.who)
+	var chatter := ChattableManager.get_chatter(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
 	if chat_event.meta:
@@ -130,5 +130,5 @@ func _on_ChatUi_showed_choices() -> void:
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
-	InteractableManager.clear()
+	ChattableManager.clear()
 	Breadcrumb.pop_trail()

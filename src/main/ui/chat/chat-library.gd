@@ -11,18 +11,18 @@ into the UI.
 const DIALOG_DATA_VERSION := "15d2"
 
 """
-Loads the chat events for the currently focused interactable.
+Loads the chat events for the currently focused chatter.
 
 Returns an array of ChatEvent objects for the dialog sequence which the player should see.
 """
 func load_chat_events() -> ChatTree:
 	var chat_tree
-	var focused := InteractableManager.get_focused()
+	var focused := ChattableManager.get_focused()
 	if not focused.has_meta("chat_id"):
 		# can't look up chat events without a chat_id; return an empty array
-		push_warning("Interactable %s does not define a 'chat_id' property." % focused)
+		push_warning("Chattable %s does not define a 'chat_id' property." % focused)
 	else:
-		# open the json file for the currently focused interactable
+		# open the json file for the currently focused chatter
 		var chat_id: String = focused.get_meta("chat_id")
 		chat_tree = load_chat_events_from_file("res://assets/main/dialog/%s.json" % chat_id)
 	return chat_tree

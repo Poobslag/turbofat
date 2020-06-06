@@ -9,8 +9,6 @@ signal pop_out_completed
 const POP_OUT_SCALE := Vector2(0.5, 0.5)
 
 onready var _chat_frame: Control = get_parent()
-onready var _sentence_sprite := $"../SentenceSprite"
-onready var _sentence_label := $"../SentenceLabel"
 
 func _ready() -> void:
 	_reset_chat_frame()

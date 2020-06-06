@@ -24,14 +24,14 @@ func _ready() -> void:
 		$ChatIconMesh.translation.z *= -1
 		$ChatIconMesh.flip_h = true
 		
-	InteractableManager.add_interactable(get_parent())
-	InteractableManager.connect("focus_changed", self, "_on_InteractableManager_focus_changed")
+	ChattableManager.add_chattable(get_parent())
+	ChattableManager.connect("focus_changed", self, "_on_ChattableManager_focus_changed")
 
 
-func _on_InteractableManager_focus_changed() -> void:
-	if not InteractableManager.is_focus_enabled():
+func _on_ChattableManager_focus_changed() -> void:
+	if not ChattableManager.is_focus_enabled():
 		$ChatIconMesh.vanish()
-	elif InteractableManager.is_focused(get_parent()):
+	elif ChattableManager.is_focused(get_parent()):
 		$ChatIconMesh.focus()
 	else:
 		$ChatIconMesh.unfocus()

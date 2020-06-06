@@ -1,6 +1,6 @@
 extends KinematicBody
 """
-Script for showing a placeholder interactable object in the 3D overworld.
+Script for showing a placeholder chattable object in the 3D overworld.
 """
 
 func _ready() -> void:

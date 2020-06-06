@@ -4,12 +4,12 @@ extends Control
 Window which displays a line of dialog.
 
 The chat window is decorated with objects in the background called 'accents'. These accents can be injected with the
-set_accent_def function to configure the chat window's appearance.
+set_chat_theme_def function to configure the chat window's appearance.
 """
 
 signal pop_out_completed
 
-# emitted after the full dialog sentence is typed out onscreen
+# emitted after the full dialog chat line is typed out onscreen
 signal all_text_shown
 
 # 'true' after pop_in is called, and 'false' after pop_out is called
@@ -17,8 +17,8 @@ var _popped_in := false
 var _squished := false
 
 func _ready() -> void:
-	$SentenceLabel.hide_message()
-	$SentenceSprite/NametagManager.hide_labels()
+	$ChatLineLabel.hide_message()
+	$ChatLineSprite/NametagManager.hide_labels()
 
 
 """
@@ -29,8 +29,8 @@ func pop_in() -> void:
 		# chat window is already popped in
 		return
 	_popped_in = true
-	$SentenceLabel.hide_message()
-	$SentenceSprite/NametagManager.hide_labels()
+	$ChatLineLabel.hide_message()
+	$ChatLineSprite/NametagManager.hide_labels()
 	$Tween.pop_in()
 	$PopInSound.play()
 
@@ -54,7 +54,7 @@ Also updates the chat UI's appearance based on the amount of text being displaye
 background texture.
 """
 func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool) -> void:
-	if not $SentenceLabel.visible:
+	if not $ChatLineLabel.visible:
 		# Ensure the chat window is showing before we start changing its text and playing sounds
 		pop_in()
 	
@@ -67,45 +67,45 @@ func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool)
 			$Tween.unsquish()
 		_squished = squished
 	
-	var chat_appearance := ChatAppearance.new(chat_event.accent_def)
+	var chat_theme := ChatTheme.new(chat_event.chat_theme_def)
 	
 	# set the text and calculate how big of a frame we need
-	var sentence_size: int = $SentenceLabel.show_message(chat_event.text, 0.5)
-	$SentenceSprite/NametagManager.set_nametag_text(chat_event.who)
+	var chat_line_size: int = $ChatLineLabel.show_message(chat_event.text, 0.5)
+	$ChatLineSprite/NametagManager.set_nametag_text(chat_event.who)
 	
 	# update the UI's appearance
-	$SentenceSprite/NametagManager.show_label(chat_appearance, nametag_right, sentence_size)
-	$SentenceLabel.update_appearance(chat_appearance)
-	$SentenceSprite.update_appearance(chat_appearance, sentence_size)
+	$ChatLineSprite/NametagManager.show_label(chat_theme, nametag_right, chat_line_size)
+	$ChatLineLabel.update_appearance(chat_theme)
+	$ChatLineSprite.update_appearance(chat_theme, chat_line_size)
 
 
 func chat_window_showing() -> bool:
-	return $SentenceLabel.visible
+	return $ChatLineLabel.visible
 
 
 func is_all_text_visible() -> bool:
-	return $SentenceLabel.is_all_text_visible()
+	return $ChatLineLabel.is_all_text_visible()
 
 
 func make_all_text_visible() -> void:
-	$SentenceLabel.make_all_text_visible()
+	$ChatLineLabel.make_all_text_visible()
 
 
 """
-Returns the size of the sentence window needed to display the sentence text.
+Returns the size of the chat line window needed to display the chat line text.
 """
-func get_sentence_size() -> int:
-	return $SentenceLabel.chosen_size_index
+func get_chat_line_size() -> int:
+	return $ChatLineLabel.chosen_size_index
 
 
 func _on_Tween_pop_out_completed() -> void:
 	# Hide label to prevent sounds from playing
-	$SentenceLabel.hide_message()
-	$SentenceSprite/NametagManager.hide_labels()
+	$ChatLineLabel.hide_message()
+	$ChatLineSprite/NametagManager.hide_labels()
 	emit_signal("pop_out_completed")
 
 
-func _on_SentenceLabel_all_text_shown() -> void:
+func _on_ChatLineLabel_all_text_shown() -> void:
 	emit_signal("all_text_shown")
 
 

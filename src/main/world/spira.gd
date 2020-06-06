@@ -74,7 +74,7 @@ var _walk_direction := Vector2.ZERO
 func _ready() -> void:
 	._ready()
 	$CollisionShape.disabled = false
-	InteractableManager.set_spira(self)
+	ChattableManager.set_spira(self)
 
 
 func _physics_process(delta) -> void:
