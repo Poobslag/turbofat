@@ -1,4 +1,5 @@
-tool
+# uncomment to alter grid map in editor
+#tool
 class_name OverworldGridMap
 extends GridMap
 """

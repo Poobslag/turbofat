@@ -1,4 +1,3 @@
-tool
 extends ProgressBar
 """
 Provides feedback to the player when they perform an action, such as rotating a piece or clearing a line.

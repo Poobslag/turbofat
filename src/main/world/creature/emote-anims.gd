@@ -1,3 +1,5 @@
+# uncomment to view creature in editor
+#tool
 extends AnimationPlayer
 """
 Script for AnimationPlayers which animate moods: blinking, smiling, sweating, etc.
@@ -221,10 +223,26 @@ Usually the mouth and eyes are controlled by an animation. But when they're not,
 reasonable.
 """
 func _apply_default_eye_frames() -> void:
+	if Engine.is_editor_hint():
+		_apply_tool_script_workaround()
 	if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
 		_eyes.frame = 1
 	else:
 		_eyes.frame = 0
+
+
+"""
+This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
+workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
+
+Tool scripts do not call _ready on reload, which means all onready fields will be null. This breaks this script's
+functionality and throws errors when it is used as a tool. This function manually assigns those fields to avoid those
+problems.
+"""
+func _apply_tool_script_workaround() -> void:
+	if not _creature:
+		_eyes = get_node(eyes_path)
+		_creature = $".."
 
 
 func _on_animation_finished(anim_name) -> void:
