@@ -24,7 +24,7 @@ func _ready() -> void:
 		$ChatIconMesh.translation.z *= -1
 		$ChatIconMesh.flip_h = true
 		
-	ChattableManager.add_chattable(get_parent())
+	get_parent().add_to_group("chattables")
 	ChattableManager.connect("focus_changed", self, "_on_ChattableManager_focus_changed")
 
 

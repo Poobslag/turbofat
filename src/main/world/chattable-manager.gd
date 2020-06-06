@@ -18,9 +18,6 @@ var _chat_theme_defs := {
 # The player's sprite
 var _spira: Spira setget set_spira
 
-# A list of all chattable objects which can be focused and interacted with
-var _chattables := []
-
 # The currently focused object
 var _focused: Spatial setget ,get_focused
 
@@ -31,9 +28,9 @@ func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focus: Spatial
 
-	if _focus_enabled and _spira and _chattables:
+	if _focus_enabled and _spira:
 		# iterate over all chattables and find the nearest one
-		for chattable_obj in _chattables:
+		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
 			if not is_instance_valid(chattable_obj):
 				continue
 			var chattable: Spatial = chattable_obj
@@ -55,19 +52,11 @@ possible for an invisible object from a previous scene to receive focus.
 """
 func clear() -> void:
 	_spira = null
-	_chattables.clear()
 	_focused = null
 
 
 func set_spira(spira: Spira) -> void:
 	_spira = spira
-
-
-"""
-Adds an overworld object which Spira can interact with.
-"""
-func add_chattable(chattable: Spatial) -> void:
-	_chattables.append(chattable)
 
 
 """
@@ -118,7 +107,7 @@ func get_chatter(chat_name: String) -> Spatial:
 	if chat_name == "Spira":
 		chatter = _spira
 	else:
-		for chattable_obj in _chattables:
+		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
 			var chattable: Spatial = chattable_obj
 			if chattable.has_meta("chat_name") and chattable.get_meta("chat_name") == chat_name:
 				chatter = chattable
@@ -132,7 +121,7 @@ Returns the accent definition for the overworld object which has the specified '
 func get_chat_theme_def(chat_name: String) -> Dictionary:
 	if chat_name and not _chat_theme_defs.has(chat_name):
 		# refresh our cache of accent definitions
-		for chattable in _chattables:
+		for chattable in get_tree().get_nodes_in_group("chattables"):
 			if chattable.has_meta("chat_name") and chattable.has_meta("chat_theme_def"):
 				add_chat_theme_def(chattable.get_meta("chat_name"), chattable.get_meta("chat_theme_def"))
 	
