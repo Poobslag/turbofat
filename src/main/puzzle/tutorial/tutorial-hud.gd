@@ -195,7 +195,9 @@ func _advance_scenario() -> void:
 Change to a new tutorial scenario.
 """
 func _change_scenario(name: String) -> void:
-	Scenario.settings = Scenario.load_scenario_from_name(name)
+	var settings := ScenarioSettings.new()
+	settings.load_from_resource(name)
+	Scenario.switch_scenario(settings)
 	
 	$SkillTallyItems.visible = Scenario.settings.other.tutorial
 	_flash()
@@ -215,7 +217,7 @@ func _change_scenario(name: String) -> void:
 			_puzzle.scroll_to_new_creature()
 			
 			append_message("You're a remarkably quick learner." \
-					+ "/ I think I hear some creatures!\n\nSee if you can earn ¥100.")
+					+ "/ I think I hear some customers!\n\nSee if you can earn ¥100.")
 			$Message.set_pop_out_timer(3.0)
 
 

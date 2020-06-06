@@ -41,13 +41,14 @@ func _process(_delta: float) -> void:
 Updates the milestone progress bar's value and boundaries.
 """
 func update_milebar_values() -> void:
-	$ProgressBar.min_value = Scenario.settings.level_ups[PuzzleScore.level_index].value
-	if _next_milestone().value == $ProgressBar.min_value:
+	$ProgressBar.min_value = MilestoneManager.prev_milestone().value
+	var next_milestone := MilestoneManager.next_milestone()
+	if next_milestone.value == $ProgressBar.min_value:
 		# avoid 'cannot get ratio' errors in sandbox mode
 		$ProgressBar.max_value = $ProgressBar.min_value + 1.0
 	else:
-		$ProgressBar.max_value = _next_milestone().value
-	$ProgressBar.value = PuzzleScore.milestone_progress(_next_milestone())
+		$ProgressBar.max_value = next_milestone.value
+	$ProgressBar.value = MilestoneManager.milestone_progress(next_milestone)
 
 
 """
@@ -55,7 +56,7 @@ Updates the milestone progress bar text.
 """
 func update_milebar_text() -> void:
 	var milestone := Scenario.settings.finish_condition
-	var remaining: int = max(0, ceil(milestone.value - PuzzleScore.milestone_progress(milestone)))
+	var remaining: int = max(0, ceil(milestone.value - MilestoneManager.milestone_progress(milestone)))
 	match milestone.type:
 		Milestone.NONE:
 			$Value.text = "-"
@@ -107,17 +108,6 @@ func update_milebar() -> void:
 	update_milebar_values()
 	update_milebar_text()
 	update_milebar_color()
-
-
-func _next_milestone() -> Milestone:
-	var milestone: Milestone
-	if PuzzleScore.level_index + 1 < Scenario.settings.level_ups.size():
-		# fill up the bar as they approach the next level
-		milestone = Scenario.settings.level_ups[PuzzleScore.level_index + 1]
-	else:
-		# fill up the bar as they near their goal
-		milestone = Scenario.settings.finish_condition
-	return milestone
 
 
 func _on_PuzzleScore_game_prepared() -> void:

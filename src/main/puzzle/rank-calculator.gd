@@ -240,7 +240,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	else:
 		rank_result.score_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	
-	if PuzzleScore.milestone_met(Scenario.settings.success_condition):
+	if MilestoneManager.milestone_met(Scenario.settings.success_condition):
 		if rank_result.compare == "-seconds":
 			rank_result.seconds_rank -= Scenario.settings.rank.success_bonus
 		else:

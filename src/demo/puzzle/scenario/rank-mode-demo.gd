@@ -41,8 +41,7 @@ func _ready() -> void:
 		var seconds: float = StringUtils.parse_duration(duration_string)
 		
 		# calculate target lines and score for a fake scenario which resembles the game's scenario
-		Scenario.settings = _scenario_settings(data_key, start_level, seconds)
-		Scenario.launched_scenario_name = Scenario.settings.name
+		Scenario.start_scenario(_scenario_settings(data_key, start_level, seconds))
 		var target_score := _target_score(target_rank)
 		var target_lines := _target_lines(target_rank)
 		
@@ -63,7 +62,7 @@ The piece speed starts at the specified start level, but might increase dependin
 increases defined in this method should align with the speed increases of the rank scenarios in the game.
 """
 func _scenario_settings(data_key: String, start_level: String, seconds: float) -> ScenarioSettings:
-	var settings: ScenarioSettings = ScenarioSettings.new()
+	var settings := ScenarioSettings.new()
 	settings.set_start_level(start_level)
 	settings.set_finish_condition(Milestone.TIME_OVER, seconds)
 	
