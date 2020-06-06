@@ -103,7 +103,7 @@ func _on_PuzzleScore_game_ended() -> void:
 	var rank_result := RankCalculator.new().calculate_rank()
 	PlayerData.scenario_history.add(Scenario.launched_scenario_name, rank_result)
 	PlayerData.scenario_history.prune(Scenario.launched_scenario_name)
-	PlayerData.money += rank_result.score
+	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, 9999999999999999))
 	PlayerSave.save_player_data()
 	
 	match Scenario.settings.finish_condition.type:
