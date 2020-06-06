@@ -23,7 +23,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_F: _creature().feed()
-		KEY_D: _creature().get_node("CreatureSfx").play_door_chime(0)
+		KEY_D: _creature().get_node("CreatureSfx").play_door_chime()
 		KEY_V:
 			Global.greetiness = 2
 			_creature().get_node("CreatureSfx").play_goodbye_voice()

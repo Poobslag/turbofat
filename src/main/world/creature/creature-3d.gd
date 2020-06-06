@@ -11,16 +11,11 @@ func _ready() -> void:
 	$CollisionShape.disabled = true
 	$ShadowMesh.visible = false
 	$Viewport/Creature/Sprites/Shadow.visible = false
-	var creature_def := get_creature_def()
-	if creature_def:
-		$Viewport/Creature.summon(creature_def)
 
 
-"""
-Subclasses can override this method to define the creature's appearance.
-"""
-func get_creature_def() -> Dictionary:
-	return {}
+func set_creature_def(creature_def: Dictionary) -> void:
+	set_meta("creature_def", creature_def)
+	$Viewport/Creature.summon(creature_def)
 
 
 """

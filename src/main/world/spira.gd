@@ -75,6 +75,11 @@ func _ready() -> void:
 	._ready()
 	$CollisionShape.disabled = false
 	ChattableManager.set_spira(self)
+	
+	# Spira is dark red with black eyes.
+	set_creature_def({
+		"line_rgb": "6c4331", "body_rgb": "b23823", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",
+		"ear": "1", "horn": "1", "mouth": "2", "eye": "1"})
 
 
 func _physics_process(delta) -> void:
@@ -117,16 +122,6 @@ func _unhandled_input(_event: InputEvent) -> void:
 			# only start the jump buffer when pressing the button, not when holding it
 			$JumpBuffer.start()
 		get_tree().set_input_as_handled()
-
-
-"""
-Spira is dark red with black eyes.
-"""
-func get_creature_def() -> Dictionary:
-	return {
-		"line_rgb": "6c4331", "body_rgb": "b23823", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",
-		"ear": "1", "horn": "1", "mouth": "2", "eye": "1"
-	}
 
 
 """
