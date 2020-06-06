@@ -3,7 +3,7 @@ extends Control
 A demo which shows off the chat window.
 
 Keys:
-	[0-9]: Prints a sentence; 1 = short, 9 = long, 0 = longest
+	[0-9]: Prints a chat line; 1 = short, 9 = long, 0 = longest
 	SHIFT+[0-9]: Changes the name; 1 = short, 9 = long, 0 = longest
 	'[', ']': Change the accent texture
 	Arrows: Change the color and scale
@@ -95,12 +95,12 @@ func _input(event: InputEvent) -> void:
 			_nametag_right = not _nametag_right
 			_play_chat_event()
 		KEY_P:
-			print(to_json(_get_accent_def()))
+			print(to_json(_get_chat_theme_def()))
 		KEY_R:
 			_color_index = randi() % COLORS.size()
 			_scale_index = randi() % SCALES.size()
 			_accent_swapped = randf() > 0.5
-			_texture_index = randi() % SentenceSprite.CHAT_TEXTURE_COUNT
+			_texture_index = randi() % ChatLineSprite.CHAT_TEXTURE_COUNT
 			_dark = randf() > 0.5
 			_play_chat_event()
 		KEY_S:
@@ -136,14 +136,14 @@ func _play_chat_event() -> void:
 	var chat_event := ChatEvent.new()
 	chat_event.who = WHOS[_who_index]
 	chat_event.text = TEXTS[_text_index]
-	chat_event.accent_def = _get_accent_def()
+	chat_event.chat_theme_def = _get_chat_theme_def()
 	$ChatFrame.play_chat_event(chat_event, _nametag_right, _squished)
 
 
 """
 Generates a new accent definition generated based on the user's input.
 """
-func _get_accent_def() -> Dictionary:
+func _get_chat_theme_def() -> Dictionary:
 	return {
 		"accent_texture": _texture_index,
 		"accent_scale": SCALES[clamp(_scale_index, 0, SCALES.size() - 1)],

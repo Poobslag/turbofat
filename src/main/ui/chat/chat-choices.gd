@@ -31,17 +31,17 @@ If a lot of dialog is displayed, the buttons are flush against the right side of
 is displayed, the buttons are closer to the center and wider.
 
 Parameters:
-	'sentence_size': An enum from ChatAppearance.SentenceSize corresponding to the amount of dialog displayed.
+	'chat_line_size': An enum from ChatTheme.ChatLineSize corresponding to the amount of dialog displayed.
 """
-func reposition(sentence_size: int) -> void:
-	match(sentence_size):
-		ChatAppearance.SENTENCE_SMALL:
+func reposition(chat_line_size: int) -> void:
+	match(chat_line_size):
+		ChatTheme.LINE_SMALL:
 			rect_position = Vector2(659, 355)
 			rect_size = Vector2(325, 240)
-		ChatAppearance.SENTENCE_MEDIUM, ChatAppearance.SENTENCE_LARGE:
+		ChatTheme.LINE_MEDIUM, ChatTheme.LINE_LARGE:
 			rect_position = Vector2(729, 355)
 			rect_size = Vector2(280, 240)
-		ChatAppearance.SENTENCE_XL:
+		ChatTheme.LINE_XL:
 			rect_position = Vector2(819, 355)
 			rect_size = Vector2(200, 240)
 

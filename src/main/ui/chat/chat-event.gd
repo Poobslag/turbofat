@@ -40,16 +40,16 @@ var link_texts: Array
 
 """
 The chat window changes its appearance based on who's talking. For example, one character's speech might be blue with
-a black background, and giant blue soccer balls in the background. The 'accent_def' property defines the chat window's
-appearance, such as 'blue', 'soccer balls' and 'giant'.
+a black background, and giant blue soccer balls in the background. The 'chat_theme_def' property defines the chat
+window's appearance, such as 'blue', 'soccer balls' and 'giant'.
 
-'accent_def/accent_scale': The scale of the accent's background texture
-'accent_def/accent_swapped': If 'true', the accent's foreground/background colors will be swapped
-'accent_def/accent_texture': A number in the range [0, 15] referring to a background texture
-'accent_def/color': The color of the chat window
-'accent_def/dark': True/false for whether the sentence window's background should be black/white
+'chat_theme_def/accent_scale': The scale of the accent's background texture
+'chat_theme_def/accent_swapped': If 'true', the accent's foreground/background colors will be swapped
+'chat_theme_def/accent_texture': A number in the range [0, 15] referring to a background texture
+'chat_theme_def/color': The color of the chat window
+'chat_theme_def/dark': True/false for whether the chat line window's background should be black/white
 """
-var accent_def: Dictionary
+var chat_theme_def: Dictionary
 
 func from_json_dict(json: Dictionary) -> void:
 	who = json.get("who", "")
@@ -59,11 +59,11 @@ func from_json_dict(json: Dictionary) -> void:
 	_parse_meta(json)
 	
 	if json.has("who"):
-		accent_def = InteractableManager.get_accent_def(who)
+		chat_theme_def = ChattableManager.get_chat_theme_def(who)
 	else:
 		# Dialog with no speaker; decorate it as a thought bubble
 		text = "(%s)" % text
-		accent_def = InteractableManager.get_accent_def("Spira")
+		chat_theme_def = ChattableManager.get_chat_theme_def("Spira")
 
 
 """

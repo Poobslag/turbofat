@@ -93,11 +93,11 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 		$ChatChoices.hide_choices()
 	
 	# reposition the nametags for whether the characters are on the left or right side
-	var interactable := InteractableManager.get_chatter(chat_event["who"])
+	var chatter := ChattableManager.get_chatter(chat_event["who"])
 	var nametag_right := false
 	var squished := false
-	if interactable and interactable.has_method("get_orientation"):
-		var orientation: int = interactable.get_orientation()
+	if chatter and chatter.has_method("get_orientation"):
+		var orientation: int = chatter.get_orientation()
 		if orientation in [Creature.Orientation.NORTHEAST, Creature.Orientation.SOUTHEAST]:
 			# If we're facing right, we're on the left side. Put the nametag on the left.
 			nametag_right = false
@@ -130,7 +130,7 @@ func _on_ChatFrame_all_text_shown() -> void:
 				else: moods.append(-1)
 			else:
 				moods.append(-1)
-		$ChatChoices.reposition($ChatFrame.get_sentence_size())
+		$ChatChoices.reposition($ChatFrame.get_chat_line_size())
 		$ChatChoices.show_choices(chat_event.link_texts, moods)
 		emit_signal("showed_choices")
 

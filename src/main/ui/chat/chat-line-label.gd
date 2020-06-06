@@ -1,4 +1,4 @@
-class_name SentenceLabel
+class_name ChatLineLabel
 extends RectFitLabel
 """
 A label which animates text in a way that mimics speech.
@@ -10,7 +10,7 @@ Dialog authors should use lull characters to mimic patterns of speech:
 	'Despite the promise of info,/ I was unable to determine what,/ if anything,/ a 'butt/ onion'/ is supposed to be.'
 """
 
-# emitted after the full dialog sentence is typed out onscreen
+# emitted after the full dialog chat line is typed out onscreen
 signal all_text_shown
 
 # How many seconds to delay when displaying a character.
@@ -66,7 +66,7 @@ Animates the label to gradually reveal the current text, mimicking speech.
 This function also calculates the duration to pause for each character. All visible characters cause a short pause.
 Newlines cause a long pause. Slashes cause a medium pause and are hidden from the player.
 
-Returns a ChatAppearance.SentenceSize corresponding to the required chat frame size.
+Returns a ChatTheme.ChatLineSize corresponding to the required chat frame size.
 """
 func show_message(text_with_lulls: String, initial_pause: float = 0.0) -> int:
 	# clear any pauses and data related to the old message
@@ -81,10 +81,10 @@ func show_message(text_with_lulls: String, initial_pause: float = 0.0) -> int:
 
 
 """
-Recolors the sentence label based on the specified chat appearance.
+Recolors the chat line label based on the specified chat appearance.
 """
-func update_appearance(chat_appearance: ChatAppearance) -> void:
-	set("custom_colors/font_color", chat_appearance.border_color)
+func update_appearance(chat_theme: ChatTheme) -> void:
+	set("custom_colors/font_color", chat_theme.border_color)
 
 
 func _calculate_pauses(text_with_lulls: String, initial_pause: float = 0.0) -> void:

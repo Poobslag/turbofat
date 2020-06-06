@@ -29,11 +29,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/chat/chat-advancer.gd"
 }, {
-"base": "Reference",
-"class": "ChatAppearance",
-"language": "GDScript",
-"path": "res://src/main/ui/chat/chat-appearance.gd"
-}, {
 "base": "Button",
 "class": "ChatChoiceButton",
 "language": "GDScript",
@@ -53,6 +48,21 @@ _global_script_classes=[ {
 "class": "ChatLibrary",
 "language": "GDScript",
 "path": "res://src/main/ui/chat/chat-library.gd"
+}, {
+"base": "RectFitLabel",
+"class": "ChatLineLabel",
+"language": "GDScript",
+"path": "res://src/main/ui/chat/chat-line-label.gd"
+}, {
+"base": "Sprite",
+"class": "ChatLineSprite",
+"language": "GDScript",
+"path": "res://src/main/ui/chat/chat-line-sprite.gd"
+}, {
+"base": "Reference",
+"class": "ChatTheme",
+"language": "GDScript",
+"path": "res://src/main/ui/chat/chat-theme.gd"
 }, {
 "base": "Reference",
 "class": "ChatTree",
@@ -284,16 +294,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/score-rules.gd"
 }, {
-"base": "RectFitLabel",
-"class": "SentenceLabel",
-"language": "GDScript",
-"path": "res://src/main/ui/chat/sentence-label.gd"
-}, {
-"base": "Sprite",
-"class": "SentenceSprite",
-"language": "GDScript",
-"path": "res://src/main/ui/chat/sentence-sprite.gd"
-}, {
 "base": "Path2D",
 "class": "SmoothPath",
 "language": "GDScript",
@@ -334,11 +334,13 @@ _global_script_class_icons={
 "BlocksDuringRules": "",
 "BlocksStartRules": "",
 "ChatAdvancer": "",
-"ChatAppearance": "",
 "ChatChoiceButton": "",
 "ChatEvent": "",
 "ChatFrame": "",
 "ChatLibrary": "",
+"ChatLineLabel": "",
+"ChatLineSprite": "",
+"ChatTheme": "",
 "ChatTree": "",
 "CheatCodeDetector": "",
 "ComboBreakRules": "",
@@ -385,8 +387,6 @@ _global_script_class_icons={
 "ScenarioHistory": "",
 "ScenarioSettings": "",
 "ScoreRules": "",
-"SentenceLabel": "",
-"SentenceSprite": "",
 "SmoothPath": "",
 "Spira": "",
 "State": "",
@@ -410,9 +410,9 @@ default_bus_layout="res://src/main/ui/default_bus_layout.tres"
 [autoload]
 
 Breadcrumb="*res://src/main/breadcrumb.gd"
+ChattableManager="*res://src/main/world/chattable-manager.gd"
 FileUtils="*res://src/main/file-utils.gd"
 Global="*res://src/main/global.gd"
-InteractableManager="*res://src/main/world/interactable-manager.gd"
 MusicPlayer="*res://src/main/MusicPlayer.tscn"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"

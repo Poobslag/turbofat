@@ -1,10 +1,10 @@
 [gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/ui/chat/nametag-manager.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/chat/sentence-label.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/chat/chat-line-label.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/chat/chat-frame.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/chat/chat-frame-tween.gd" type="Script" id=5]
-[ext_resource path="res://src/main/ui/chat/sentence-sprite.gd" type="Script" id=6]
+[ext_resource path="res://src/main/ui/chat/chat-line-sprite.gd" type="Script" id=6]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-36.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/main/ui/blogger-sans-bold-36.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/main/ui/chat/window-small-sheet.png" type="Texture" id=9]
@@ -14,9 +14,6 @@
 [ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-out.wav" type="AudioStream" id=14]
 [ext_resource path="res://src/main/ui/chat/chat.shader" type="Shader" id=15]
-
-
-
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 15 )
@@ -46,7 +43,7 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="."]
 script = ExtResource( 5 )
 
-[node name="SentenceSprite" type="Sprite" parent="."]
+[node name="ChatLineSprite" type="Sprite" parent="."]
 material = SubResource( 1 )
 position = Vector2( 512, 100 )
 scale = Vector2( 0.2, 0.2 )
@@ -57,7 +54,7 @@ __meta__ = {
 "_editor_description_": "	"
 }
 
-[node name="NametagManager" type="Sprite" parent="SentenceSprite"]
+[node name="NametagManager" type="Sprite" parent="ChatLineSprite"]
 self_modulate = Color( 0.188235, 0.188235, 0.376471, 1 )
 show_behind_parent = true
 position = Vector2( 956.611, -553.485 )
@@ -66,7 +63,7 @@ texture = ExtResource( 11 )
 vframes = 4
 script = ExtResource( 1 )
 
-[node name="Small" type="Label" parent="SentenceSprite/NametagManager"]
+[node name="Small" type="Label" parent="ChatLineSprite/NametagManager"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -87,7 +84,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Medium" type="Label" parent="SentenceSprite/NametagManager"]
+[node name="Medium" type="Label" parent="ChatLineSprite/NametagManager"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -109,7 +106,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Large" type="Label" parent="SentenceSprite/NametagManager"]
+[node name="Large" type="Label" parent="ChatLineSprite/NametagManager"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -131,7 +128,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExtraLarge" type="Label" parent="SentenceSprite/NametagManager"]
+[node name="ExtraLarge" type="Label" parent="ChatLineSprite/NametagManager"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
@@ -153,7 +150,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExtraExtraLarge" type="Label" parent="SentenceSprite/NametagManager"]
+[node name="ExtraExtraLarge" type="Label" parent="ChatLineSprite/NametagManager"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -174,7 +171,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SentenceLabel" type="Label" parent="."]
+[node name="ChatLineLabel" type="Label" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -196,7 +193,7 @@ __meta__ = {
 }
 sizes = [ Vector2( 360, 80 ), Vector2( 540, 80 ), Vector2( 540, 120 ), Vector2( 720, 120 ) ]
 
-[node name="BebebeSound" type="AudioStreamPlayer" parent="SentenceLabel"]
+[node name="BebebeSound" type="AudioStreamPlayer" parent="ChatLineLabel"]
 stream = ExtResource( 13 )
 volume_db = -12.0
 bus = "Sound Bus"
@@ -212,4 +209,4 @@ volume_db = -14.0
 bus = "Sound Bus"
 [connection signal="pop_out_completed" from="Tween" to="." method="_on_Tween_pop_out_completed"]
 [connection signal="tween_completed" from="Tween" to="Tween" method="_on_tween_completed"]
-[connection signal="all_text_shown" from="SentenceLabel" to="." method="_on_SentenceLabel_all_text_shown"]
+[connection signal="all_text_shown" from="ChatLineLabel" to="." method="_on_ChatLineLabel_all_text_shown"]

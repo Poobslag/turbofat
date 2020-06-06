@@ -1,4 +1,4 @@
-class_name ChatAppearance
+class_name ChatTheme
 """
 Stores metadata about the chat window's appearance.
 
@@ -14,19 +14,19 @@ enum NametagSize {
 	XXL  # 61-90 characters, approximately
 }
 
-enum SentenceSize {
+enum ChatLineSize {
 	SMALL, # 1-2 lines at 50% capacity
 	MEDIUM, # 2 lines at 75% capacity
 	LARGE, # 3 lines at 75% capacity
 	XL # 3 lines at 100% capacity
 }
 
-const SENTENCE_SMALL := SentenceSize.SMALL
-const SENTENCE_MEDIUM := SentenceSize.MEDIUM
-const SENTENCE_LARGE := SentenceSize.LARGE
-const SENTENCE_XL := SentenceSize.XL
+const LINE_SMALL := ChatLineSize.SMALL
+const LINE_MEDIUM := ChatLineSize.MEDIUM
+const LINE_LARGE := ChatLineSize.LARGE
+const LINE_XL := ChatLineSize.XL
 
-const NAMETAG_OFF := NametagSize.SMALL
+const NAMETAG_OFF := NametagSize.OFF
 const NAMETAG_SMALL := NametagSize.SMALL
 const NAMETAG_MEDIUM := NametagSize.MEDIUM
 const NAMETAG_LARGE := NametagSize.LARGE
@@ -41,17 +41,17 @@ var border_color: Color
 var dark: bool
 
 """
-Parses an accent_def into properties used by the chat UI.
+Parses an chat_theme_def into properties used by the chat UI.
 
-See ChatEvent.accent_def for a full description of the accent_def properties.
+See ChatEvent.chat_theme_def for a full description of the chat_theme_def properties.
 """
-func _init(accent_def: Dictionary) -> void:
-	accent_color = accent_def.get("color", Color.gray)
-	accent_scale = accent_def.get("accent_scale", 2.0)
-	accent_swapped = accent_def.get("accent_swapped", false)
-	border_color = accent_def.get("color", Color.gray)
-	dark = accent_def.get("dark", false)
-	accent_texture_index = accent_def.get("accent_texture", 0)
+func _init(chat_theme_def: Dictionary) -> void:
+	accent_color = chat_theme_def.get("color", Color.gray)
+	accent_scale = chat_theme_def.get("accent_scale", 2.0)
+	accent_swapped = chat_theme_def.get("accent_swapped", false)
+	border_color = chat_theme_def.get("color", Color.gray)
+	dark = chat_theme_def.get("dark", false)
+	accent_texture_index = chat_theme_def.get("accent_texture", 0)
 	
 	if dark:
 		# accent color is a darker version of the input color

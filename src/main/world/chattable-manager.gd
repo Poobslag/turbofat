@@ -1,7 +1,7 @@
 extends Node
 """
-Tracks Spira's location and the location of all interactables. Handles questions like 'which interactable is focused'
-and 'which interactables are nearby'.
+Tracks Spira's location and the location of all chattables. Handles questions like 'which chattable is focused' and
+'which chattables are nearby'.
 """
 
 # emitted when focus changes to a new object, or when all objects are unfocused.
@@ -11,15 +11,15 @@ signal focus_changed
 const MAX_INTERACT_DISTANCE := 50.0
 
 # Chat appearance for different characters
-var _accent_defs := {
+var _chat_theme_defs := {
 	"Spira": {"accent_scale":0.66,"accent_swapped":true,"accent_texture":13,"color":"b23823"}
 }
 
 # The player's sprite
 var _spira: Spira setget set_spira
 
-# A list of all interactable objects which can be focused and interacted with
-var _interactables := []
+# A list of all chattable objects which can be focused and interacted with
+var _chattables := []
 
 # The currently focused object
 var _focused: Spatial setget ,get_focused
@@ -31,16 +31,16 @@ func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focus: Spatial
 
-	if _focus_enabled and _spira and _interactables:
-		# iterate over all interactables and find the nearest one
-		for interactable_object in _interactables:
-			if not is_instance_valid(interactable_object):
+	if _focus_enabled and _spira and _chattables:
+		# iterate over all chattables and find the nearest one
+		for chattable_obj in _chattables:
+			if not is_instance_valid(chattable_obj):
 				continue
-			var interactable: Spatial = interactable_object
-			var distance := interactable.global_transform.origin.distance_to(_spira.global_transform.origin)
+			var chattable: Spatial = chattable_obj
+			var distance := chattable.global_transform.origin.distance_to(_spira.global_transform.origin)
 			if distance <= min_distance:
 				min_distance = distance
-				new_focus = interactable
+				new_focus = chattable
 	
 	if new_focus != _focused:
 		_focused = new_focus
@@ -50,12 +50,12 @@ func _physics_process(_delta: float) -> void:
 """
 Purges all node instances from the manager.
 
-Because InteractableManager is a singleton, node instances must be purged before changing scenes. Otherwise it's
+Because ChattableManager is a singleton, node instances must be purged before changing scenes. Otherwise it's
 possible for an invisible object from a previous scene to receive focus.
 """
 func clear() -> void:
 	_spira = null
-	_interactables.clear()
+	_chattables.clear()
 	_focused = null
 
 
@@ -66,8 +66,8 @@ func set_spira(spira: Spira) -> void:
 """
 Adds an overworld object which Spira can interact with.
 """
-func add_interactable(interactable: Spatial) -> void:
-	_interactables.append(interactable)
+func add_chattable(chattable: Spatial) -> void:
+	_chattables.append(chattable)
 
 
 """
@@ -80,8 +80,8 @@ func get_focused() -> Spatial:
 """
 Returns 'true' if the player will currently interact with the specified object if they hit the button.
 """
-func is_focused(interactable: Spatial) -> bool:
-	return interactable == _focused
+func is_focused(chattable: Spatial) -> bool:
+	return chattable == _focused
 
 
 """
@@ -118,10 +118,10 @@ func get_chatter(chat_name: String) -> Spatial:
 	if chat_name == "Spira":
 		chatter = _spira
 	else:
-		for interactable in _interactables:
-			var spatial: Spatial = interactable
-			if interactable.has_meta("chat_name") and interactable.get_meta("chat_name") == chat_name:
-				chatter = interactable
+		for chattable_obj in _chattables:
+			var chattable: Spatial = chattable_obj
+			if chattable.has_meta("chat_name") and chattable.get_meta("chat_name") == chat_name:
+				chatter = chattable
 				break
 	return chatter
 
@@ -129,20 +129,20 @@ func get_chatter(chat_name: String) -> Spatial:
 """
 Returns the accent definition for the overworld object which has the specified 'chat name'.
 """
-func get_accent_def(chat_name: String) -> Dictionary:
-	if chat_name and not _accent_defs.has(chat_name):
+func get_chat_theme_def(chat_name: String) -> Dictionary:
+	if chat_name and not _chat_theme_defs.has(chat_name):
 		# refresh our cache of accent definitions
-		for interactable in _interactables:
-			if interactable.has_meta("chat_name") and interactable.has_meta("accent_def"):
-				add_accent_def(interactable.get_meta("chat_name"), interactable.get_meta("accent_def"))
+		for chattable in _chattables:
+			if chattable.has_meta("chat_name") and chattable.has_meta("chat_theme_def"):
+				add_chat_theme_def(chattable.get_meta("chat_name"), chattable.get_meta("chat_theme_def"))
 	
-		if not _accent_defs.has(chat_name):
+		if not _chat_theme_defs.has(chat_name):
 			# report a warning and store a stub definition to prevent repeated errors
-			_accent_defs[chat_name] = {}
-			push_error("Missing accent_def for interactable '%s'" % chat_name)
+			_chat_theme_defs[chat_name] = {}
+			push_error("Missing chat_theme_def for chattable '%s'" % chat_name)
 	
-	return _accent_defs.get(chat_name, {})
+	return _chat_theme_defs.get(chat_name, {})
 
 
-func add_accent_def(chat_name: String, accent_def: Dictionary) -> void:
-	_accent_defs[chat_name] = accent_def
+func add_chat_theme_def(chat_name: String, chat_theme_def: Dictionary) -> void:
+	_chat_theme_defs[chat_name] = chat_theme_def

@@ -3,7 +3,7 @@ extends Control
 A demo which lets you test the chat UI by flipping through pages of dialog.
 
 Keys:
-	[0-9]: Changes sentence length; 1 = short, 9 = long, 0 = longest
+	[0-9]: Changes chat line length; 1 = short, 9 = long, 0 = longest
 	[Control + 0-9]: Changes response length; 1 = short, 9 = long, 0 = longest
 	[Q, W, E]: Shows questions with more and more options.
 	[A]: Shows a dialog line with no choices.
@@ -15,7 +15,7 @@ const FRUITS := [
 	"Peach", "Pear", "Pineapple", "Plantain", "Plum", "Tangerine", "Watermelon",
 ]
 
-const SENTENCES := [
+const CHAT_LINE := [
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et",
 	"Lorem",
 	"Lorem ipsum dolor",
@@ -47,7 +47,7 @@ var _text_override := ""
 var _choice_override := ""
 
 func _ready() -> void:
-	InteractableManager.add_accent_def("Lorum", {})
+	ChattableManager.add_chat_theme_def("Lorum", {})
 	_play_chat_tree("dialog-unbranched")
 
 
@@ -57,7 +57,7 @@ func _input(event: InputEvent) -> void:
 			if Input.is_key_pressed(KEY_CONTROL):
 				_choice_override = CHOICES[Utils.key_num(event)]
 			else:
-				_text_override = SENTENCES[Utils.key_num(event)]
+				_text_override = CHAT_LINE[Utils.key_num(event)]
 			_play_chat_tree()
 		KEY_Q:
 			_text_override = ""
