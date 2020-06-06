@@ -1,6 +1,5 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://src/main/puzzle/PuzzleTileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://src/main/puzzle/piece/piece-manager.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/main/puzzle/levelup.wav" type="AudioStream" id=5]
@@ -8,7 +7,6 @@
 [ext_resource path="res://assets/main/puzzle/rotate1.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/main/puzzle/lock.wav" type="AudioStream" id=8]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/puzzle/piece/CornerMap.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=11]
 [ext_resource path="res://src/main/puzzle/piece/FrameInput.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/puzzle/piece-sfx.gd" type="Script" id=13]
@@ -20,31 +18,7 @@
 [ext_resource path="res://src/main/state-machine.gd" type="Script" id=19]
 [ext_resource path="res://src/main/puzzle/piece/states/wait-for-playfield.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/top-out.gd" type="Script" id=21]
-[ext_resource path="res://assets/main/puzzle/blocks/blocks-corners.png" type="Texture" id=22]
 [ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=23]
-
-[sub_resource type="TileSet" id=1]
-0/name = "blocks-corners.png 2"
-0/texture = ExtResource( 22 )
-0/tex_offset = Vector2( 0, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 2, 2, 76, 284 )
-0/tile_mode = 2
-0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 36, 32 )
-0/autotile/spacing = 4
-0/autotile/occluder_map = [  ]
-0/autotile/navpoly_map = [  ]
-0/autotile/priority_map = [  ]
-0/autotile/z_index_map = [  ]
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
 
 [node name="PieceManager" type="Control"]
 margin_left = 364.0
@@ -60,18 +34,9 @@ __meta__ = {
 [node name="TileMap" parent="." instance=ExtResource( 9 )]
 position = Vector2( 0, -96 )
 
-[node name="StretchMap" type="TileMap" parent="."]
+[node name="StretchMap" parent="." instance=ExtResource( 9 )]
 position = Vector2( 0, -96 )
-scale = Vector2( 0.5, 0.5 )
-z_index = 1
-tile_set = ExtResource( 2 )
-cell_size = Vector2( 72, 64 )
-format = 1
-tile_data = PoolIntArray( 196613, 0, 196608, 262147, 0, 196608, 262148, 0, 196608, 262149, 0, 196608 )
 script = ExtResource( 15 )
-
-[node name="CornerMap" parent="StretchMap" instance=ExtResource( 10 )]
-tile_set = SubResource( 1 )
 
 [node name="States" type="Node" parent="."]
 script = ExtResource( 19 )

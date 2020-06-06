@@ -9,7 +9,6 @@
 [ext_resource path="res://assets/main/puzzle/blocks/blocks-vegetable-shadows.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/puzzle/blocks/blocks-shadows.png" type="Texture" id=8]
 
-
 [sub_resource type="TileSet" id=1]
 0/name = "blocks-corners.png 2"
 0/texture = ExtResource( 1 )
