@@ -1,3 +1,4 @@
+# uncomment to view creature in editor
 #tool
 class_name Creature
 extends Node2D
@@ -108,7 +109,8 @@ Parameters:
 	'creature_index': (Optional) The creature to be altered. Defaults to the current creature.
 """
 func set_fatness(fatness: float) -> void:
-	$FatPlayer.set_fatness(fatness)
+	if not Engine.is_editor_hint():
+		$FatPlayer.set_fatness(fatness)
 
 
 """

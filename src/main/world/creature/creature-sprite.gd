@@ -1,3 +1,5 @@
+# uncomment to view creature in editor
+#tool
 extends Sprite
 """
 Sprites which toggles between a single 'toward the camera' and 'away from the camera' frame

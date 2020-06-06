@@ -1,12 +1,11 @@
+# uncomment to view creature in editor
+#tool
 extends AnimationPlayer
 """
 An AnimationPlayer which animates mouths.
 """
 
 export (NodePath) var mouth_path: NodePath
-
-# A frame to switch to when the creature faces away from the camera.
-export (int) var north_frame: int
 
 onready var _mouth: Sprite = get_node(mouth_path)
 onready var _creature: Creature = $".."
@@ -40,7 +39,23 @@ Updates the frame to something appropriate for the creature's orientation.
 Usually the frame is controlled by an animation. But when it's not, this ensures it still looks reasonable.
 """
 func _apply_default_frames() -> void:
-	_mouth.frame = 1 if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST] else north_frame
+	if Engine.is_editor_hint():
+		_apply_tool_script_workaround()
+	_mouth.frame = 1 if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST] else 2
+
+
+"""
+This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
+workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
+
+Tool scripts do not call _ready on reload, which means all onready fields will be null. This breaks this script's
+functionality and throws errors when it is used as a tool. This function manually assigns those fields to avoid those
+problems.
+"""
+func _apply_tool_script_workaround() -> void:
+	if not _creature:
+		_mouth = get_node(mouth_path)
+		_creature = $".."
 
 
 """
@@ -53,5 +68,5 @@ func _on_Creature_before_creature_arrived() -> void:
 
 
 func _on_Creature_orientation_changed(orientation: int) -> void:
-	if is_processing():
+	if is_processing() and not Engine.is_editor_hint():
 		_play_mouth_ambient_animation()

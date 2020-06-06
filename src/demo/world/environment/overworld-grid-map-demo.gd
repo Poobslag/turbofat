@@ -1,4 +1,3 @@
-tool
 extends Spatial
 """
 A demo which shows off the overworld map generation.
