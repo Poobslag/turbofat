@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/ui/menu/practice-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/practice-difficulty-selector.gd" type="Script" id=2]
@@ -6,7 +6,8 @@
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=6]
-[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=8]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=8]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=9]
 [ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=10]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=12]
@@ -14,7 +15,6 @@
 [ext_resource path="res://src/main/ui/menu/mode-buttongroup.tres" type="ButtonGroup" id=14]
 [ext_resource path="res://src/main/ui/menu/practice-mode-selector.gd" type="Script" id=15]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=17]
-
 
 [node name="PracticeMenu" type="Control"]
 anchor_right = 1.0
@@ -83,6 +83,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 9 )
 toggle_mode = true
+shortcut_in_tooltip = false
 pressed = true
 group = ExtResource( 14 )
 text = "Survival"
@@ -96,6 +97,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 9 )
 toggle_mode = true
+shortcut_in_tooltip = false
 group = ExtResource( 14 )
 text = "Ultra"
 
@@ -108,6 +110,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 9 )
 toggle_mode = true
+shortcut_in_tooltip = false
 group = ExtResource( 14 )
 text = "Sprint"
 
@@ -120,6 +123,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 9 )
 toggle_mode = true
+shortcut_in_tooltip = false
 group = ExtResource( 14 )
 text = "Rank"
 
@@ -132,6 +136,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 9 )
 toggle_mode = true
+shortcut_in_tooltip = false
 group = ExtResource( 14 )
 text = "Sandbox"
 
@@ -239,6 +244,7 @@ rect_min_size = Vector2( 180, 60 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 9 )
+shortcut_in_tooltip = false
 text = "Start"
 
 [node name="Settings" type="Button" parent="VBoxContainer/System"]
@@ -250,8 +256,12 @@ rect_min_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 6 )
+shortcut_in_tooltip = false
 shortcut = ExtResource( 8 )
 text = "Settings"
+
+[node name="ShortcutHelper" parent="VBoxContainer/System/Settings" instance=ExtResource( 7 )]
+action = "ui_cancel"
 
 [node name="Quit" type="Button" parent="VBoxContainer/System"]
 margin_left = 434.0
@@ -262,6 +272,7 @@ rect_min_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 6 )
+shortcut_in_tooltip = false
 text = "Quit"
 
 [node name="HighScores" type="Panel" parent="VBoxContainer"]

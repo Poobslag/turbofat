@@ -7,7 +7,6 @@
 [ext_resource path="res://assets/main/world/environment/stone.material" type="Material" id=5]
 [ext_resource path="res://assets/main/world/environment/grass_tuft.material" type="Material" id=6]
 
-
 [sub_resource type="SpatialMaterial" id=1]
 flags_transparent = true
 albedo_color = Color( 0, 1, 0, 0 )

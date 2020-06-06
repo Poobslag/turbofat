@@ -6,7 +6,7 @@ onready var _playfield: Playfield = _puzzle.get_playfield()
 onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
 func _input(event: InputEvent) -> void:
-	if PuzzleScore.game_active and event.is_action_pressed("ui_cancel"):
+	if PuzzleScore.game_active and event.is_action_pressed("ui_menu"):
 		make_player_lose()
 
 
