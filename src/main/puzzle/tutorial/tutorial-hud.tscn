@@ -184,7 +184,7 @@ custom_styles/bg = SubResource( 2 )
 max_value = 2.0
 puzzle_path = NodePath("../../../..")
 label_text = "Snack Box"
-signal_names = [ "box_made" ]
+signal_names = [ "box_built" ]
 
 [node name="SquishMove" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
 visible = false

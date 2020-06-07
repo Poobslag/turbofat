@@ -91,3 +91,33 @@ It's better to tween to a transparent forest green.
 """
 static func to_transparent(color: Color, alpha := 0.0) -> Color:
 	return Color(color.r, color.g, color.b, alpha)
+
+
+"""
+Returns the arithmetic mean (average) of the specified array.
+
+Returns a default value of 0.0 if the array is empty.
+"""
+static func mean(values: Array, default := 0.0) -> float:
+	if not values:
+		return default
+	
+	var sum := 0.0
+	for value in values:
+		sum += value
+	return sum / len(values)
+
+
+"""
+Returns the maximum value of the specified array.
+
+Returns a default value of 0.0 if the array is empty.
+"""
+static func max_value(values: Array, default := 0.0) -> float:
+	if not values:
+		return default
+	
+	var max_value: float = values[0]
+	for value in range(1, len(values)):
+		max_value = max(value, max_value)
+	return max_value

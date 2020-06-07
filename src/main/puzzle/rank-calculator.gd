@@ -13,7 +13,7 @@ const RDF_BOX_SCORE_PER_LINE := 0.970
 const RDF_COMBO_SCORE_PER_LINE := 0.970
 
 # Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
-# boxes, and easier to make boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
+# boxes, and easier to build boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
 # theoretical player to meet all three statistics simultaneously.
 const MASTER_BOX_SCORE := 14.5
 const MASTER_COMBO_SCORE := 17.575
@@ -117,7 +117,7 @@ func _max_lpm() -> float:
 		var frames_per_line := min_frames_per_line(piece_speed)
 		
 		var finish_condition: Milestone = Scenario.settings.finish_condition
-		var level_lines := 100
+		var level_lines := 100.0
 		if i + 1 < Scenario.settings.level_ups.size():
 			var level_up: Milestone = Scenario.settings.level_ups[i + 1]
 			match level_up.type:
@@ -133,7 +133,10 @@ func _max_lpm() -> float:
 			level_lines = finish_condition.value
 		elif finish_condition.type == Milestone.SCORE:
 			level_lines = finish_condition.value / (master_box_score() + master_combo_score() + 1)
-
+		
+		# avoid divide by zero, and round up to the nearest line clear
+		level_lines = ceil(max(level_lines, 1.0))
+		
 		total_frames += frames_per_line * level_lines
 		total_lines += level_lines
 	
@@ -154,6 +157,7 @@ func _unranked_result() -> RankResult:
 	# calculate raw player performance statistics
 	rank_result.box_score = PuzzleScore.scenario_performance.box_score
 	rank_result.combo_score = PuzzleScore.scenario_performance.combo_score
+	rank_result.leftover_score = PuzzleScore.scenario_performance.leftover_score
 	rank_result.lines = PuzzleScore.scenario_performance.lines
 	rank_result.lost = PuzzleScore.scenario_performance.lost
 	rank_result.score = PuzzleScore.scenario_performance.score

@@ -25,7 +25,7 @@ func set_box_size(box_size: Vector2) -> void:
 
 func _refresh_tilemap() -> void:
 	$TileMap.clear()
-	$TileMap.make_box(0, 0, _box_size.x, _box_size.y, _box_type)
+	$TileMap.build_box(0, 0, _box_size.x, _box_size.y, _box_type)
 
 
 func _on_RotateButton_pressed() -> void:

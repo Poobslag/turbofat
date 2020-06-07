@@ -11,8 +11,8 @@ var _shake_total_seconds := 0.0
 var _shake_remaining_seconds := 0.0
 var _shake_magnitude := 2.5
 
-# the object's original position before the screen shake effect began
-var _shake_original_position: Vector2
+var _shake_position: Vector2
+var camera_position := Vector2(-89.881, -104.904)
 
 # all of the seats in the scene. each 'seat' includes a table, chairs, a creature, etc...
 onready var _seats := [$Seat1, $Seat2, $Seat3]
@@ -28,11 +28,11 @@ func _process(delta: float) -> void:
 	if _shake_remaining_seconds > 0:
 		_shake_remaining_seconds -= delta
 		if _shake_remaining_seconds <= 0:
-			position = _shake_original_position
+			_shake_position = Vector2.ZERO
 		else:
 			var max_shake := _shake_magnitude * _shake_remaining_seconds / _shake_total_seconds
-			var shake_vector := Vector2(rand_range(-max_shake, max_shake), rand_range(-max_shake, max_shake))
-			position = _shake_original_position + shake_vector
+			_shake_position = Vector2(rand_range(-max_shake, max_shake), rand_range(-max_shake, max_shake))
+	position = _shake_position + camera_position
 
 
 """
@@ -70,6 +70,5 @@ func _get_seat(seat_index: int = -1) -> Control:
 
 
 func _on_Creature_food_eaten() -> void:
-	_shake_original_position = position
 	_shake_total_seconds = 0.16
 	_shake_remaining_seconds = 0.16

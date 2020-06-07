@@ -75,8 +75,8 @@ func _connect_signals() -> void:
 			pass
 		elif signal_name == "line_cleared":
 			_playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
-		elif signal_name == "box_made":
-			_playfield.connect("box_made", self, "_on_Playfield_box_made")
+		elif signal_name == "box_built":
+			_playfield.connect("box_built", self, "_on_Playfield_box_built")
 		elif signal_name in _get_signal_names(_piece_manager):
 			_piece_manager.connect(signal_name, self, "_on_skill_performed")
 		else:
@@ -142,7 +142,7 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 	_on_skill_performed()
 
 
-func _on_Playfield_box_made(x: int, y: int, width: int, height: int, color: int) -> void:
+func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color: int) -> void:
 	_on_skill_performed()
 
 

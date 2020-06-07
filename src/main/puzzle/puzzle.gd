@@ -13,6 +13,7 @@ func _ready() -> void:
 		ResourceCache.minimal_resources = true
 	
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
+	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
 	for i in range(3):
@@ -62,13 +63,12 @@ Parameters:
 func _feed_creature(fatness_pct: float) -> void:
 	$CreatureView.get_creature().feed()
 	
-	if PuzzleScore.game_active:
-		var old_fatness: float = $CreatureView.get_creature().get_fatness()
-		var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
-		if Scenario.settings.other.tutorial:
-			# make them a tiny amount fatter, so that they'll change when a new level is started
-			target_fatness = min(target_fatness, 1.001)
-		$CreatureView.get_creature().set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
+	var old_fatness: float = $CreatureView.get_creature().get_fatness()
+	var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
+	if Scenario.settings.other.tutorial:
+		# make them a tiny amount fatter, so that they'll change when a new level is started
+		target_fatness = min(target_fatness, 1.001)
+	$CreatureView.get_creature().set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
 
 
 func _on_Hud_start_button_pressed() -> void:
@@ -79,10 +79,6 @@ func _on_Hud_start_button_pressed() -> void:
 Triggers the 'creature feeding' animation.
 """
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	if not $Playfield.awarding_line_clear_points:
-		# lines were cleared from top out or another unusual case. don't feed the creature
-		return
-	
 	# Calculate whether or not the creature should say something positive about the combo. The creature talks after
 	var creature_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 5 \
 			and total_lines > ($Playfield/ComboTracker.combo + 1) % 3
@@ -92,6 +88,11 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 	if creature_talks:
 		yield(get_tree().create_timer(0.5), "timeout")
 		$CreatureView.get_creature().play_combo_voice()
+
+
+func _on_Playfield_after_piece_written() -> void:
+	if not PuzzleScore.game_active and PuzzleScore.game_prepared:
+		PuzzleScore.end_game()
 
 
 """
@@ -104,10 +105,18 @@ func _on_PuzzleScore_game_ended() -> void:
 	PlayerData.scenario_history.add(Scenario.launched_scenario_name, rank_result)
 	PlayerData.scenario_history.prune(Scenario.launched_scenario_name)
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, 9999999999999999))
-	PlayerSave.save_player_data()
 	
 	match Scenario.settings.finish_condition.type:
 		Milestone.SCORE:
 			if not PuzzleScore.scenario_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
 		_:
 			if not PuzzleScore.scenario_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
+
+
+"""
+Wait until after the game ends to save the player's data.
+
+This makes the stutter from writing to disk less noticable.
+"""
+func _on_PuzzleScore_after_game_ended() -> void:
+	PlayerSave.save_player_data()

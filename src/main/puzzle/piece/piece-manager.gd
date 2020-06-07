@@ -51,6 +51,7 @@ var _horizontal_movement_count := 0
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
+	PuzzleScore.connect("finish_triggered", self, "_on_PuzzleScore_finish_triggered")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
@@ -89,7 +90,7 @@ func playfield_ready_for_new_piece() -> bool:
 
 
 """
-Writes the current piece to the playfield, checking whether it makes any boxes or clears any lines.
+Writes the current piece to the playfield, checking whether it builds any boxes or clears any lines.
 
 Returns true if the newly written piece results in a line clear.
 """
@@ -314,9 +315,9 @@ func _squish_to_target() -> void:
 			while i < unblocked_blocks.size():
 				var target_block_pos: Vector2 = unblocked_blocks[i] + piece.pos + Vector2(0, dy)
 				var valid_block_pos := true
-				if target_block_pos.x < 0 or target_block_pos.x >= Playfield.COL_COUNT:
+				if target_block_pos.x < 0 or target_block_pos.x >= PuzzleTileMap.COL_COUNT:
 					valid_block_pos = false
-				elif target_block_pos.y < 0 or target_block_pos.y >= Playfield.ROW_COUNT:
+				elif target_block_pos.y < 0 or target_block_pos.y >= PuzzleTileMap.ROW_COUNT:
 					valid_block_pos = false
 				elif not _playfield.is_cell_empty(target_block_pos.x, target_block_pos.y):
 					valid_block_pos = false
@@ -356,15 +357,17 @@ func _calc_squish_target() -> void:
 		unblocked_blocks.append(true)
 	
 	var valid_target_pos := false
-	while not valid_target_pos and _target_piece_pos.y < Playfield.ROW_COUNT:
+	while not valid_target_pos and _target_piece_pos.y < PuzzleTileMap.ROW_COUNT:
 		_target_piece_pos.y += 1
 		valid_target_pos = true
 		for i in range(piece.type.pos_arr[_target_piece_orientation].size()):
 			var target_block_pos := piece.type.get_cell_position(_target_piece_orientation, i) \
 					+ _target_piece_pos
 			var valid_block_pos := true
-			valid_block_pos = valid_block_pos and target_block_pos.x >= 0 and target_block_pos.x < Playfield.COL_COUNT
-			valid_block_pos = valid_block_pos and target_block_pos.y >= 0 and target_block_pos.y < Playfield.ROW_COUNT
+			valid_block_pos = valid_block_pos and target_block_pos.x >= 0 \
+					and target_block_pos.x < PuzzleTileMap.COL_COUNT
+			valid_block_pos = valid_block_pos and target_block_pos.y >= 0 \
+					and target_block_pos.y < PuzzleTileMap.ROW_COUNT
 			if _playfield:
 				valid_block_pos = valid_block_pos and _playfield.is_cell_empty(target_block_pos.x, target_block_pos.y)
 			valid_target_pos = valid_target_pos and valid_block_pos
@@ -434,13 +437,13 @@ func apply_lock() -> void:
 
 
 func is_playfield_clearing_lines() -> bool:
-	return _playfield.remaining_line_clear_frames > 0
+	return _playfield.get_remaining_line_erase_frames() > 0
 
 
 func _is_cell_blocked(pos: Vector2) -> bool:
 	var blocked := false
-	if pos.x < 0 or pos.x >= Playfield.COL_COUNT: blocked = true
-	if pos.y < 0 or pos.y >= Playfield.ROW_COUNT: blocked = true
+	if pos.x < 0 or pos.x >= PuzzleTileMap.COL_COUNT: blocked = true
+	if pos.y < 0 or pos.y >= PuzzleTileMap.ROW_COUNT: blocked = true
 	if not _playfield.is_cell_empty(pos.x, pos.y): blocked = true
 	return blocked
 
@@ -529,5 +532,17 @@ func _on_PuzzleScore_game_started() -> void:
 	tile_map_dirty = true
 
 
+"""
+The player finished the level, possibly while they were still moving a piece around. We clear their piece so that it's
+not left floating.
+"""
+func _on_PuzzleScore_finish_triggered() -> void:
+	_clear_piece()
+	$States.set_state($States/GameEnded)
+
+
+"""
+The game ended the game, possibly by a top out. We leave the piece in place so that they can see why they topped out.
+"""
 func _on_PuzzleScore_game_ended() -> void:
 	$States.set_state($States/GameEnded)

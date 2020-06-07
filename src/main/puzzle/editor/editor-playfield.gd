@@ -59,10 +59,10 @@ func get_tile_map() -> TileMap:
 Converts an x/y control coordinate like '58, 132' into a tilemap coordinate like '3, 2'
 """
 func _cell_pos(pos: Vector2) -> Vector2:
-	return pos * Vector2(Playfield.COL_COUNT, Playfield.ROW_COUNT) / $ZIndex/Bg.rect_size
+	return pos * Vector2(PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT) / $ZIndex/Bg.rect_size
 
 
 func _set_tilemap_block(tilemap: TileMap, pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
-	if Rect2(0, 0, Playfield.COL_COUNT, Playfield.ROW_COUNT).has_point(pos):
+	if Rect2(0, 0, PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT).has_point(pos):
 		tilemap.set_block(pos, tile, autotile_coord)
 		tilemap.get_node("CornerMap").dirty = true

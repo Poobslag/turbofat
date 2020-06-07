@@ -29,23 +29,6 @@ func _ready() -> void:
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 
 
-"""
-Increments the combo and score for the specified line clear.
-"""
-func add_combo_and_score(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	combo += 1
-	var combo_score: int = COMBO_SCORE_ARR[clamp(combo - 1, 0, COMBO_SCORE_ARR.size() - 1)]
-	var box_score := 0
-	for box_int in box_ints:
-		if PuzzleTileMap.is_snack_box(box_int):
-			box_score += Scenario.settings.score.snack_points
-		elif PuzzleTileMap.is_cake_box(box_int):
-			box_score += Scenario.settings.score.cake_points
-		else:
-			box_score += Scenario.settings.score.veg_points
-	PuzzleScore.add_line_score(combo_score, box_score)
-
-
 func break_combo() -> void:
 	if combo >= 20:
 		$Fanfare3.play()
@@ -63,7 +46,7 @@ func _on_PuzzleScore_game_prepared() -> void:
 	combo = 0
 
 
-func _on_Playfield_box_made(x: int, y: int, width: int, height: int, color_int: int) -> void:
+func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color_int: int) -> void:
 	piece_continued_combo = true
 	if combo_break != 0:
 		combo_break = 0
@@ -102,3 +85,20 @@ func _on_Playfield_after_piece_written() -> void:
 func _on_PuzzleScore_game_ended() -> void:
 	PuzzleScore.end_combo()
 	combo = 0
+
+
+"""
+Increments the combo and score for the specified line clear.
+"""
+func _on_Playfield_before_line_cleared(y, total_lines, remaining_lines, box_ints) -> void:
+	combo += 1
+	var combo_score: int = COMBO_SCORE_ARR[clamp(combo - 1, 0, COMBO_SCORE_ARR.size() - 1)]
+	var box_score := 0
+	for box_int in box_ints:
+		if PuzzleTileMap.is_snack_box(box_int):
+			box_score += Scenario.settings.score.snack_points
+		elif PuzzleTileMap.is_cake_box(box_int):
+			box_score += Scenario.settings.score.cake_points
+		else:
+			box_score += Scenario.settings.score.veg_points
+	PuzzleScore.add_line_score(combo_score, box_score)

@@ -17,7 +17,7 @@ func _ready() -> void:
 	refresh()
 
 
-func set_quit_on_cancel(quit_on_cancel: bool):
+func set_quit_on_cancel(quit_on_cancel: bool) -> void:
 	_quit_on_cancel = quit_on_cancel
 	if is_inside_tree():
 		refresh()

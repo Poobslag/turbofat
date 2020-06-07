@@ -15,6 +15,10 @@ signal game_prepared
 signal after_game_prepared
 
 signal game_started
+
+# emitted when the player survives until the end the level.
+signal finish_triggered
+
 signal game_ended
 
 # emitted several seconds after the game ends
@@ -72,14 +76,24 @@ func set_level_index(new_level_index: int) -> void:
 
 
 func end_game() -> void:
-	if not game_active:
-		return
 	game_prepared = false
 	game_active = false
 	end_combo()
 	emit_signal("game_ended")
 	yield(get_tree().create_timer(4.2 if PuzzleScore.WON else 2.2), "timeout")
 	emit_signal("after_game_ended")
+
+
+"""
+Triggers the 'finish' phase of the game when the player clears the level.
+
+Remaining lines are cleared and the player's awarded points. These points count towards their score, but don't
+help/hurt things like their box rank or combo rank. It's mostly to put on a show and help them feel like their work
+wasn't wasted, if they built a lot of boxes they didn't clear.
+"""
+func trigger_finish() -> void:
+	game_active = false
+	emit_signal("finish_triggered")
 
 
 """
@@ -92,17 +106,21 @@ Parameters:
 	'box_score': Bonus points for any boxes in the line.
 """
 func add_line_score(combo_score: int, box_score: int) -> void:
-	if not game_active or Scenario.settings.other.tutorial:
+	if Scenario.settings.other.tutorial:
 		# no money earned during tutorial
 		return
 	
-	scenario_performance.combo_score += combo_score
-	scenario_performance.box_score += box_score
+	if game_active:
+		scenario_performance.combo_score += combo_score
+		scenario_performance.box_score += box_score
+		_add_line()
+	else:
+		# boxes left on the screen count towards a 'finish_score'
+		scenario_performance.leftover_score += combo_score + box_score + 1
 	
 	_add_creature_score(1 + combo_score + box_score)
 	_add_bonus_score(combo_score + box_score)
 	_add_score(1)
-	_add_line()
 
 	emit_signal("score_changed")
 
