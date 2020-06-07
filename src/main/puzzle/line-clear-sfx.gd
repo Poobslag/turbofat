@@ -93,6 +93,9 @@ Clearing a line results in three overlapping sounds:
 	3. A 'glorp' sound when clearing a snack/cake box
 """
 func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	_play_thump_sound(y, total_lines, remaining_lines, box_ints)
 	_play_combo_sound(y, total_lines, remaining_lines, box_ints)
 	_play_box_sound(y, total_lines, remaining_lines, box_ints)
+
+
+func _on_Playfield_line_erased(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+	_play_thump_sound(y, total_lines, remaining_lines, box_ints)

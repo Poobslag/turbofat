@@ -1,7 +1,7 @@
 class_name FrostingGlob
 extends Sprite
 """
-A frosting glob which appears when the player clears a line or makes a box.
+A frosting glob which appears when the player clears a line or builds a box.
 """
 
 

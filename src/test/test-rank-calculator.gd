@@ -45,7 +45,7 @@ func test_max_lpm_mixed_sprint() -> void:
 	Scenario.settings.add_level_up(Milestone.TIME_OVER, 30, "A0")
 	Scenario.settings.add_level_up(Milestone.TIME_OVER, 60, "F0")
 	Scenario.settings.set_finish_condition(Milestone.TIME_OVER, 90)
-	assert_almost_eq(_rank_calculator._max_lpm(), 51.36, 0.1)
+	assert_almost_eq(_rank_calculator._max_lpm(), 50.98, 0.1)
 
 
 func test_calculate_rank_marathon_300_master() -> void:
@@ -202,6 +202,18 @@ func test_calculate_rank_ultra_200_overshot() -> void:
 	assert_eq(RankCalculator.grade(rank.speed_rank), "M")
 	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "M")
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "M")
+	assert_eq(RankCalculator.grade(rank.seconds_rank), "SSS")
+
+
+"""
+A level requiring only one line clear used to trigger divide by zero errors.
+"""
+func test_calculate_rank_ultra_1() -> void:
+	Scenario.settings.set_finish_condition(Milestone.SCORE, 1)
+	PuzzleScore.scenario_performance.seconds = 7.233
+	PuzzleScore.scenario_performance.lines = 1
+	PuzzleScore.scenario_performance.score = 1
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank.seconds_rank), "SSS")
 
 

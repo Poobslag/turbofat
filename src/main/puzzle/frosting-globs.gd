@@ -67,7 +67,7 @@ When a line is cleared, we generate frosting globs for any boxes involved in the
 This must be called before the line is cleared so that we can evaluate the food blocks before they're erased.
 """
 func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	for x in range(Playfield.COL_COUNT):
+	for x in range(PuzzleTileMap.COL_COUNT):
 		var color_int: int
 		var glob_count: int
 		if _playfield.get_cell(x, y) == 1:
@@ -83,9 +83,9 @@ func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines
 
 
 """
-When a box is made, we generate frosting globs on the inside of the box.
+When a box is built, we generate frosting globs on the inside of the box.
 """
-func _on_Playfield_box_made(left_x: int, top_y: int, width: int, height: int, color_int: int) -> void:
+func _on_Playfield_box_built(left_x: int, top_y: int, width: int, height: int, color_int: int) -> void:
 	for y in range(top_y, top_y + height):
 		for x in range(left_x, left_x + width):
 			var glob_count: int

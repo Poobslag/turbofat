@@ -192,8 +192,8 @@ func _refresh_tilemaps(combo: int) -> void:
 		_: new_pattern = OFF_PATTERN
 	_pattern = new_pattern
 	
-	for y in range(Playfield.ROW_COUNT):
-		for x in range(Playfield.COL_COUNT):
+	for y in range(PuzzleTileMap.ROW_COUNT):
+		for x in range(PuzzleTileMap.COL_COUNT):
 			var s: String = _pattern[(y + _pattern_y) % _pattern.size()]
 			var tile: int = -1
 			if s[x] == '#':
@@ -226,9 +226,9 @@ func _on_ComboTracker_combo_break_changed(value: int) -> void:
 
 
 """
-When the player makes a box we brighten the combo lights again.
+When the player builds a box we brighten the combo lights again.
 """
-func _on_Playfield_box_made(x: int, y: int, width: int, height: int, color_int: int) -> void:
+func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color_int: int) -> void:
 	_refresh_tilemaps(_combo_tracker.combo)
 	_start_glow_tween()
 

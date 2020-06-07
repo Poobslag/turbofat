@@ -249,7 +249,8 @@
   ],
   "other": [
     "start-scenario marathon-hard",
-    "after-tutorial"
+    "after-tutorial",
+    "no-clear-on-finish"
   ],
   "piece-types": [
     "piece-l"

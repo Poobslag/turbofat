@@ -1,12 +1,14 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/puzzle/line-clearer.gd" type="Script" id=3]
+[ext_resource path="res://src/main/puzzle/box-builder.gd" type="Script" id=4]
 [ext_resource path="res://assets/main/puzzle/line-erase.wav" type="AudioStream" id=6]
 [ext_resource path="res://src/main/puzzle/line-clear-sfx.gd" type="Script" id=7]
-[ext_resource path="res://src/main/puzzle/make-box-sfx.gd" type="Script" id=8]
+[ext_resource path="res://src/main/puzzle/build-box-sfx.gd" type="Script" id=8]
 [ext_resource path="res://assets/main/puzzle/line-fall.wav" type="AudioStream" id=9]
-[ext_resource path="res://assets/main/puzzle/make-cake-box.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/main/puzzle/build-cake-box.wav" type="AudioStream" id=10]
 [ext_resource path="res://assets/main/puzzle/clear-snack-box.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/puzzle/clear-cake-box.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/main/puzzle/combo-00.wav" type="AudioStream" id=14]
@@ -171,6 +173,18 @@ stream = ExtResource( 17 )
 volume_db = -4.0
 bus = "Sound Bus"
 
+[node name="BoxBuilder" type="Node" parent="."]
+script = ExtResource( 4 )
+_tile_map_path = NodePath("../TileMapClip/TileMap")
+
+[node name="LineClearer" type="Node" parent="."]
+script = ExtResource( 3 )
+_tile_map_path = NodePath("../TileMapClip/TileMap")
+
+[node name="LineFallSound" type="AudioStreamPlayer" parent="LineClearer"]
+stream = ExtResource( 9 )
+bus = "Sound Bus"
+
 [node name="LineClearSfx" type="Node" parent="."]
 script = ExtResource( 7 )
 
@@ -202,24 +216,28 @@ bus = "Sound Bus"
 stream = ExtResource( 14 )
 bus = "Sound Bus"
 
-[node name="MakeBoxSfx" type="Node" parent="."]
+[node name="BuildBoxSfx" type="Node" parent="."]
 script = ExtResource( 8 )
 
-[node name="MakeCakeBoxSound" type="AudioStreamPlayer" parent="MakeBoxSfx"]
+[node name="BuildCakeBoxSound" type="AudioStreamPlayer" parent="BuildBoxSfx"]
 stream = ExtResource( 10 )
 bus = "Sound Bus"
 
-[node name="MakeSnackBoxSound" type="AudioStreamPlayer" parent="MakeBoxSfx"]
-bus = "Sound Bus"
-
-[node name="LineFallSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 9 )
+[node name="BuildSnackBoxSound" type="AudioStreamPlayer" parent="BuildBoxSfx"]
 bus = "Sound Bus"
 [connection signal="after_piece_written" from="." to="ComboTracker" method="_on_Playfield_after_piece_written"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
-[connection signal="box_made" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_made"]
-[connection signal="box_made" from="." to="ComboTracker" method="_on_Playfield_box_made"]
-[connection signal="box_made" from="." to="MakeBoxSfx" method="_on_Playfield_box_made"]
+[connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
+[connection signal="line_erased" from="." to="LineClearSfx" method="_on_Playfield_line_erased"]
 [connection signal="combo_break_changed" from="ComboTracker" to="TileMapClip/PlayfieldFx" method="_on_ComboTracker_combo_break_changed"]
+[connection signal="after_boxes_built" from="BoxBuilder" to="." method="_on_BoxBuilder_after_boxes_built"]
+[connection signal="box_built" from="BoxBuilder" to="." method="_on_BoxBuilder_box_built"]
+[connection signal="before_line_cleared" from="LineClearer" to="." method="_on_LineClearer_before_line_cleared"]
+[connection signal="line_cleared" from="LineClearer" to="." method="_on_LineClearer_line_cleared"]
+[connection signal="line_erased" from="LineClearer" to="." method="_on_LineClearer_line_erased"]
+[connection signal="lines_deleted" from="LineClearer" to="." method="_on_LineClearer_lines_deleted"]

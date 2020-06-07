@@ -13,8 +13,8 @@ var _max_distance := 0
 var _color_y: int
 
 func _ready() -> void:
-	_col_count = Playfield.COL_COUNT
-	_row_count = Playfield.ROW_COUNT
+	_col_count = PuzzleTileMap.COL_COUNT
+	_row_count = PuzzleTileMap.ROW_COUNT
 	for row in range(_row_count):
 		_stretch_pos.append([])
 		for _col in range(_col_count):

@@ -6,16 +6,9 @@ Queue of upcoming randomized pieces.
 This queue stores the upcoming pieces so they can be displayed, and randomizes them according to some complex rules.
 """
 
-
 # minimum number of next _pieces in the queue, before we add more
 const MIN_SIZE := 50
 
-"""
-Initializes the queue with a set of starting pieces.
-
-The algorithm calculates five pieces which make a small and large box and shuffles them. This undermines the strategy
-of beginning every game with 3x3 boxes, and mitigates the variance in starting positions.
-"""
 var _pieces := []
 
 # default pieces to pull from if none are provided by the scenario
@@ -75,9 +68,9 @@ func _fill_initial_pieces() -> void:
 	if Scenario.settings.piece_types.types.empty():
 		"""
 		Default piece selection:
-		1. Append three same-size pieces which don't make a cake block; lot, jot, jlt or pqu
-		2. Append a piece which doesn't make a snack block
-		3. Append a piece which does make a snack block
+		1. Append three same-size pieces which can't build a cake box; lot, jot, jlt or pqu
+		2. Append a piece which can't build a snack box or a cake box
+		3. Append a piece which can build a snack box, but not a cake box
 		4. Append the remaining three pieces
 		5. Insert an extra piece in the last 3 positions
 		"""
@@ -130,7 +123,7 @@ func shuffled_piece_types() -> Array:
 Extends a non-empty queue by adding more pieces.
 
 The algorithm puts all 8 piece types into a bag with one extra random piece. It pulls random pieces from the bag, but
-avoids pulling the same piece back to back. With this algorithm you're always able to make four 3x3 boxes, but the
+avoids pulling the same piece back to back. With this algorithm you're always able to build four 3x3 boxes, but the
 extra piece acts as an helpful tool for 3x4 boxes and 3x5 boxes, or an annoying deterrent for 3x3 boxes.
 """
 func _fill_remaining_pieces() -> void:

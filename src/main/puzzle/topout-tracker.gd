@@ -11,6 +11,8 @@ func _input(event: InputEvent) -> void:
 
 
 func make_player_lose() -> void:
+	if not PuzzleScore.game_active:
+		return
 	if not Scenario.settings.lose_condition.finish_on_lose:
 		PuzzleScore.scenario_performance.lost = true
 	PuzzleScore.end_game()
@@ -29,7 +31,9 @@ func _on_PieceManager_topped_out() -> void:
 		var top_out_delay := PieceSpeeds.current_speed.appearance_delay + PieceSpeeds.current_speed.lock_delay
 		_playfield.break_combo()
 		if Scenario.settings.blocks_during.clear_on_top_out:
-			_playfield.schedule_line_clears(range(0, Playfield.ROW_COUNT), top_out_delay, false)
+			_playfield.schedule_line_clears(range(0, PuzzleTileMap.ROW_COUNT),
+					top_out_delay, false)
 		else:
-			_playfield.schedule_line_clears(range(Playfield.ROW_COUNT - 6, Playfield.ROW_COUNT), top_out_delay, false)
+			_playfield.schedule_line_clears(range(PuzzleTileMap.ROW_COUNT - 6, PuzzleTileMap.ROW_COUNT),
+					top_out_delay, false)
 		_piece_manager.enter_top_out_state(top_out_delay)

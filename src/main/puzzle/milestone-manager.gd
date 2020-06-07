@@ -14,7 +14,7 @@ func _ready() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if PuzzleScore.game_active and milestone_met(Scenario.settings.finish_condition):
-		PuzzleScore.end_game()
+		PuzzleScore.trigger_finish()
 
 
 func milestone_met(milestone: Milestone) -> bool:

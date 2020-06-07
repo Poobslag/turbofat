@@ -10,7 +10,7 @@
 resource_name = "fat"
 length = 10.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("SceneClip/CreatureSwitcher/Scene:position")
+tracks/0/path = NodePath("SceneClip/CreatureSwitcher/Scene:camera_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false

@@ -16,6 +16,9 @@ var box_score := 0
 # bonus points awarded for combos
 var combo_score := 0
 
+# points awarded for lines left over at the end
+var leftover_score := 0
+
 # overall score
 var score := 0
 

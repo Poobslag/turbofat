@@ -14,7 +14,7 @@ const TEXTS := [
 			+ "But yes,/ snack boxes earn $15 when you clear them./ Maybe more if you're clever.",
 	"Clear a row by filling it with blocks.",
 	"Hold soft drop to squish a piece through a narrow gap.",
-	"Make a snack box by arranging two pieces into a square.",
+	"Build a snack box by arranging two pieces into a square.",
 	"Well done!\n\nSnack boxes earn $15 if you clear all three lines.",
 	"Now let's try it for real!/ Serve these creatures and try to earn $100.",
 	"Well done!\n\nLine clears earn $1./ Maybe more if you can build a combo.",

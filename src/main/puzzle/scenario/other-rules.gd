@@ -12,8 +12,12 @@ var after_tutorial := false
 # If the player restarts, they restart from this scenario (used for tutorials)
 var start_scenario_name: String
 
+# When the player finishes the level, all lines are cleared
+var clear_on_finish := true
+
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
-	if rules.has("tutorial"): tutorial = true
 	if rules.has("after-tutorial"): after_tutorial = true
+	if rules.has("no-clear-on-finish"): clear_on_finish = false
 	if rules.has("start-scenario"): start_scenario_name = rules.string_value()
+	if rules.has("tutorial"): tutorial = true

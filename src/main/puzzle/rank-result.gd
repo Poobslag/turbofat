@@ -19,6 +19,9 @@ var speed_rank := 999.0
 var lines := 0
 var lines_rank := 999.0
 
+# points awarded for lines left over at the end
+var leftover_score := 0
+
 # bonus points awarded for clearing boxes
 var box_score := 0
 var box_score_per_line := 0.0
@@ -52,6 +55,7 @@ func to_json_dict() -> Dictionary:
 		"combo_score_per_line": combo_score_per_line,
 		"combo_score_per_line_rank": combo_score_per_line_rank,
 		"compare": compare,
+		"leftover_score": leftover_score,
 		"lines": lines,
 		"lines_rank": lines_rank,
 		"lost": lost,
@@ -74,6 +78,7 @@ func from_json_dict(json: Dictionary) -> void:
 	combo_score_per_line = float(json.get("combo_score_per_line", "0"))
 	combo_score_per_line_rank = float(json.get("combo_score_per_line_rank", "999"))
 	compare = json.get("compare", "+score")
+	leftover_score = json.get("leftover_score", 0)
 	lines = int(json.get("lines", "0"))
 	lines_rank = float(json.get("lines_rank", "999"))
 	lost = bool(json.get("lost", "true"))

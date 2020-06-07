@@ -5,18 +5,20 @@ Results screen shown after the player finishes a scenario.
 
 # Hints displayed after the player finishes
 const HINTS = [
-	"Make a snack box by arranging a pentomino and a quadromino into a square!",
-	"Make a rainbow cake by arranging 3 pentominos into a rectangle!",
-	"Make a rainbow cake by arranging 3 quadrominos into a rectangle!",
-	"A snack box scores 5 points per line, a rainbow cake scores 10. Make lots of cakes!",
+	"Build a snack box by arranging a pentomino and a quadromino into a square!",
+	"Build a cake box by arranging 3 pentominos into a rectangle!",
+	"Build a cake box by arranging 3 quadrominos into a rectangle!",
+	"A snack box scores 5 points per line, a cake box scores 10. Make lots of cakes!",
 	"Combos can give you 20 bonus points for completing a line. Make lots of combos!",
 	"Build a big combo by making boxes and clearing lines!",
+	"Making boxes keeps your combo going. You can keep your combo going forever!",
+	"Clear lines to keep your combo going. Combos get you lots of money!",
 	"When a piece locks, hold left or right to quickly move the next piece!",
 	"When a piece locks, hold a rotate key to quickly rotate the next piece!",
 	"When a piece locks, hold both rotate keys to quickly flip the next piece!",
 	"When a piece locks, hold up to quickly hard-drop the next piece!",
 	"After a hard drop, tap 'down' to delay the piece from locking!",
-	"Sometimes, pressing 'down' can cheat pieces through other pieces!",
+	"Press 'down' to squish pieces past other pieces!",
 ]
 
 func _ready() -> void:

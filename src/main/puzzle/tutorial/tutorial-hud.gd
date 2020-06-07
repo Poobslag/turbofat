@@ -10,13 +10,13 @@ onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
 # tracks what the player has done so far during this tutorial
 var _lines_cleared := 0
-var _boxes_made := 0
+var _boxes_built := 0
 var _squish_moves := 0
 var _snack_stacks := 0
 
 # tracks what the player did with the most recent piece
 var _did_line_clear := false
-var _did_make_box := false
+var _did_build_box := false
 var _did_squish_move := false
 
 func _ready() -> void:
@@ -47,8 +47,8 @@ func refresh() -> void:
 	
 	if Scenario.settings.name.begins_with("tutorial-beginner"):
 		# prepare for the 'tutorial-beginner' tutorial
-		if not _playfield.is_connected("box_made", self, "_on_Playfield_box_made"):
-			_playfield.connect("box_made", self, "_on_Playfield_box_made")
+		if not _playfield.is_connected("box_built", self, "_on_Playfield_box_built"):
+			_playfield.connect("box_built", self, "_on_Playfield_box_built")
 			_playfield.connect("after_piece_written", self, "_on_Playfield_after_piece_written")
 			_playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
 			_piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
@@ -61,8 +61,8 @@ func refresh() -> void:
 		$SkillTallyItems/GridContainer/HardDrop.visible = true
 		$SkillTallyItems/GridContainer/LineClear.visible = true
 	else:
-		if _playfield.is_connected("box_made", self, "_on_Playfield_box_made"):
-			_playfield.disconnect("box_made", self, "_on_Playfield_box_made")
+		if _playfield.is_connected("box_built", self, "_on_Playfield_box_built"):
+			_playfield.disconnect("box_built", self, "_on_Playfield_box_built")
 			_playfield.disconnect("after_piece_written", self, "_on_Playfield_after_piece_written")
 			_playfield.disconnect("line_cleared", self, "_on_Playfield_line_cleared")
 			_piece_manager.disconnect("squish_moved", self, "_on_PieceManager_squish_moved")
@@ -80,7 +80,7 @@ func append_big_message(message: String) -> void:
 func _on_PieceManager_piece_spawned() -> void:
 	_did_line_clear = false
 	_did_squish_move = false
-	_did_make_box = false
+	_did_build_box = false
 
 
 func _on_PieceManager_squish_moved() -> void:
@@ -88,9 +88,9 @@ func _on_PieceManager_squish_moved() -> void:
 	_squish_moves += 1
 
 
-func _on_Playfield_box_made(x: int, y: int, width: int, height: int, color: int) -> void:
-	_did_make_box = true
-	_boxes_made += 1
+func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color: int) -> void:
+	_did_build_box = true
+	_boxes_built += 1
 
 
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
@@ -116,8 +116,8 @@ func _handle_squish_move_message() -> void:
 						+ " They're also good for certain boxes.")
 
 
-func _handle_make_box_message() -> void:
-	if _did_make_box and _boxes_made == 1:
+func _handle_build_box_message() -> void:
+	if _did_build_box and _boxes_built == 1:
 		match Scenario.settings.name:
 			"tutorial-beginner-0":
 				append_message("Oh my,/ you're not supposed to know how to do that!\n\n"
@@ -131,7 +131,7 @@ func _handle_make_box_message() -> void:
 
 
 func _handle_snack_stack_message() -> void:
-	if Scenario.settings.name == "tutorial-beginner-3" and _did_make_box and _did_squish_move:
+	if Scenario.settings.name == "tutorial-beginner-3" and _did_build_box and _did_squish_move:
 		_snack_stacks += 1
 		$SkillTallyItems/GridContainer/SnackStack.increment()
 		if _snack_stacks == 1:
@@ -146,7 +146,7 @@ func _on_Playfield_after_piece_written() -> void:
 	# print tutorial messages if the player did something noteworthy
 	_handle_line_clear_message()
 	_handle_squish_move_message()
-	_handle_make_box_message()
+	_handle_build_box_message()
 	_handle_snack_stack_message()
 	
 	var scenario_name := Scenario.settings.name
@@ -154,14 +154,14 @@ func _on_Playfield_after_piece_written() -> void:
 		"tutorial-beginner-0":
 			if _lines_cleared >= 2: _advance_scenario()
 		"tutorial-beginner-1":
-			if _boxes_made >= 2: _advance_scenario()
+			if _boxes_built >= 2: _advance_scenario()
 		"tutorial-beginner-2":
 			if not _did_squish_move:
 				_playfield.undo_last_piece()
 			if _squish_moves >= 2:
 				_advance_scenario()
 		"tutorial-beginner-3":
-			if not _did_make_box:
+			if not _did_build_box:
 				_playfield.undo_last_piece()
 			if _snack_stacks >= 2:
 				_advance_scenario()
@@ -171,7 +171,7 @@ func _advance_scenario() -> void:
 	# clear out any text to ensure we don't end up pages behind, if the player is fast
 	$Message.hide_text()
 	
-	if Scenario.settings.name == "tutorial-beginner-0" and _did_make_box and _did_squish_move:
+	if Scenario.settings.name == "tutorial-beginner-0" and _did_build_box and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
 		_change_scenario("oh-my")
 		append_big_message("O/H/,/// M/Y/!/!/!")
@@ -181,7 +181,7 @@ func _advance_scenario() -> void:
 		PuzzleScore.scenario_performance.lines = 100
 	elif _lines_cleared == 0:
 		_change_scenario("tutorial-beginner-0")
-	elif _boxes_made == 0:
+	elif _boxes_built == 0:
 		_change_scenario("tutorial-beginner-1")
 	elif _squish_moves == 0:
 		_change_scenario("tutorial-beginner-2")
@@ -235,7 +235,7 @@ func _flash() -> void:
 
 func _on_PuzzleScore_game_prepared() -> void:
 	_lines_cleared = 0
-	_boxes_made = 0
+	_boxes_built = 0
 	_squish_moves = 0
 	_snack_stacks = 0
 	refresh()
