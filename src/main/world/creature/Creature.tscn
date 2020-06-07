@@ -2385,8 +2385,14 @@ light_mask = 2
 rotation = 0.00355033
 curve = SubResource( 7 )
 script = ExtResource( 5 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
+line_color = Color( 0, 0, 0, 1 )
 fill_color = Color( 0, 0, 0, 1 )
 line_width = 2.0
+_fatness = 1.0
 editing = false
 
 [node name="Outline" type="Path2D" parent="Sprites/Body"]
@@ -2395,6 +2401,12 @@ light_mask = 2
 z_index = -2
 curve = SubResource( 7 )
 script = ExtResource( 11 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
+line_color = Color( 0, 0, 0, 1 )
+fill_color = Color( 1, 1, 1, 0 )
 line_width = 6.0
 
 [node name="NeckBlend" type="Sprite" parent="Sprites/Body"]
@@ -2731,36 +2743,36 @@ one_shot = true
 [node name="SuppressSfxTimer" type="Timer" parent="CreatureSfx"]
 one_shot = true
 autostart = true
-[connection signal="before_creature_arrived" from="." to="Mouth0Anims" method="_on_Creature_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="." to="Mouth1Anims" method="_on_Creature_before_creature_arrived"]
+[connection signal="before_creature_arrived" from="." to="Mouth0Anims" method="_on_Creature_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="." to="EmoteAnims" method="_on_Creature_before_creature_arrived"]
 [connection signal="creature_arrived" from="." to="CreatureSfx" method="_on_Creature_creature_arrived"]
 [connection signal="food_eaten" from="." to="CreatureSfx" method="_on_Creature_food_eaten"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Body" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/FarLeg" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/FarArm" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/NearLeg" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/NearArm" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/FarArm" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_movement_mode_changed"]
-[connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_Creature_orientation_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_movement_mode_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/FarLeg" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/FarArm" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/NearLeg" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/NearArm" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/FarArm" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_orientation_changed"]
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
 [connection signal="before_mood_switched" from="EmoteAnims" to="." method="_on_EmoteAnims_before_mood_switched"]
 [connection signal="animation_started" from="MovementAnims" to="." method="_on_MovementAnims_animation_started"]
