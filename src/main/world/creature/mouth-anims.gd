@@ -67,6 +67,6 @@ func _on_Creature_before_creature_arrived() -> void:
 	_apply_default_frames()
 
 
-func _on_Creature_orientation_changed(orientation: int) -> void:
+func _on_Creature_orientation_changed(old_orientation: int, new_orientation: int) -> void:
 	if is_processing() and not Engine.is_editor_hint():
 		_play_mouth_ambient_animation()
