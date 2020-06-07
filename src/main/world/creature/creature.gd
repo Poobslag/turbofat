@@ -137,7 +137,7 @@ If the creature swaps between facing left or right, certain sprites are flipped 
 between facing forward or backward, certain sprites play different animations or toggle between different frames.
 """
 func set_orientation(new_orientation: int) -> void:
-	var old_orientation = orientation
+	var old_orientation := orientation
 	orientation = new_orientation
 	if not get_tree():
 		# avoid 'node not found' errors when tree is null
