@@ -1,12 +1,12 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/settings-menu.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/VolumeSetting.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=7]
-
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=7]
 
 [node name="SettingsMenu" type="CanvasLayer"]
 pause_mode = 2
@@ -108,6 +108,9 @@ theme = ExtResource( 3 )
 shortcut_in_tooltip = false
 shortcut = ExtResource( 7 )
 text = "Ok"
+
+[node name="ShiveringQuestion" parent="Window/UiArea/SettingsArea/Ok" instance=ExtResource( 4 )]
+action = "ui_cancel"
 
 [node name="Quit" type="Button" parent="Window/UiArea"]
 anchor_top = 1.0

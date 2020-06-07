@@ -10,6 +10,9 @@ signal quit_pressed
 # The text on the menu's quit button
 export (String, "Quit", "Save + Quit") var quit_text: String setget set_quit_text
 
+# the UI control which was focused before this settings menu popped up
+var _old_focus_owner: Control
+
 func _ready() -> void:
 	# starts invisible
 	hide()
@@ -28,6 +31,7 @@ func show() -> void:
 	$Bg.show()
 	$Window.show()
 	get_tree().paused = true
+	_old_focus_owner = $Window/UiArea/SettingsArea/Ok.get_focus_owner()
 	$Window/UiArea/SettingsArea/Ok.grab_focus()
 
 
@@ -38,6 +42,9 @@ func hide() -> void:
 	$Bg.hide()
 	$Window.hide()
 	get_tree().paused = false
+	if _old_focus_owner:
+		_old_focus_owner.grab_focus()
+		_old_focus_owner = null
 
 
 func _on_Ok_pressed() -> void:

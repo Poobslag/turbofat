@@ -9,7 +9,7 @@
 [ext_resource path="res://src/main/puzzle/editor/LevelChunkControl.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/puzzle/editor/level-editor.gd" type="Script" id=8]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=10]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=10]
 
 [node name="LevelEditor" type="Control"]
 anchor_right = 1.0
@@ -247,18 +247,21 @@ margin_bottom = 32.0
 margin_top = 36.0
 margin_right = 110.0
 margin_bottom = 56.0
+shortcut_in_tooltip = false
 text = "Open File"
 
 [node name="OpenResource" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
 margin_top = 60.0
 margin_right = 110.0
 margin_bottom = 80.0
+shortcut_in_tooltip = false
 text = "Open Resource"
 
 [node name="Save" type="Button" parent="HBoxContainer/RightPanel/SideButtons"]
 margin_top = 84.0
 margin_right = 110.0
 margin_bottom = 104.0
+shortcut_in_tooltip = false
 text = "Save"
 __meta__ = {
 "_editor_description_": ""
@@ -273,6 +276,7 @@ margin_bottom = 112.0
 margin_top = 116.0
 margin_right = 110.0
 margin_bottom = 136.0
+shortcut_in_tooltip = false
 text = "Test"
 __meta__ = {
 "_editor_description_": ""
@@ -291,6 +295,7 @@ __meta__ = {
 margin_top = 546.0
 margin_right = 110.0
 margin_bottom = 566.0
+shortcut_in_tooltip = false
 shortcut = ExtResource( 10 )
 text = "Settings"
 __meta__ = {
@@ -301,6 +306,7 @@ __meta__ = {
 margin_top = 570.0
 margin_right = 110.0
 margin_bottom = 590.0
+shortcut_in_tooltip = false
 text = "Quit"
 __meta__ = {
 "_editor_description_": ""

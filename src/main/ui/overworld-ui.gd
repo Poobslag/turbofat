@@ -36,7 +36,7 @@ func _input(event: InputEvent) -> void:
 	if not chatters and event.is_action_pressed("interact") and ChattableManager.get_focused():
 		get_tree().set_input_as_handled()
 		start_chat()
-	if not chatters and event.is_action_pressed("ui_cancel"):
+	if not chatters and event.is_action_pressed("ui_menu"):
 		$SettingsMenu.show()
 		get_tree().set_input_as_handled()
 

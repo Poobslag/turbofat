@@ -8,7 +8,6 @@
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=7]
 
-
 [node name="SplashScreen" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -69,6 +68,7 @@ __meta__ = {
 }
 
 [node name="System" parent="." instance=ExtResource( 5 )]
+_quit_on_cancel = false
 
 [node name="VersionLabel" parent="." instance=ExtResource( 2 )]
 

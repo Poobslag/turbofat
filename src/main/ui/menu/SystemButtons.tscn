@@ -1,9 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/menu/system-buttons.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=3]
-
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=3]
+[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=4]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=5]
 
 [node name="System" type="VBoxContainer"]
 anchor_top = 1.0
@@ -28,6 +29,10 @@ shortcut_in_tooltip = false
 shortcut = ExtResource( 3 )
 text = "Settings"
 
+[node name="ShortcutHelper" parent="Settings" instance=ExtResource( 5 )]
+action = "ui_cancel"
+overridden_action = "ui_menu"
+
 [node name="Quit" type="Button" parent="."]
 margin_left = 454.0
 margin_top = 38.0
@@ -36,6 +41,8 @@ margin_bottom = 66.0
 rect_min_size = Vector2( 116, 28 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
+shortcut_in_tooltip = false
+shortcut = ExtResource( 4 )
 text = "Quit"
 [connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
