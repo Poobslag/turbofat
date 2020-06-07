@@ -81,6 +81,94 @@ func transform_old_save() -> void:
 
 
 """
+Returns 'true' if the specified json save items don't match the latest version.
+"""
+func is_old_save_items(json_save_items: Array) -> bool:
+	var is_old: bool = false
+	var version_string := get_version_string(json_save_items)
+	match version_string:
+		PlayerSave.PLAYER_DATA_VERSION:
+			is_old = false
+		"15d2":
+			is_old = true
+		_:
+			push_warning("Unrecognized save data version: '%s'" % version_string)
+	return is_old
+
+
+"""
+Extracts a version string from the specified json save items.
+"""
+func get_version_string(json_save_items: Array) -> String:
+	var version: SaveItem
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		if save_item.type == "version":
+			version = save_item
+			break
+	return version.value if version else ""
+
+
+"""
+Transforms the specified json save items to the latest format.
+"""
+func transform_old_save_items(json_save_items: Array) -> Array:
+	var version_string := get_version_string(json_save_items)
+	if version_string == "15d2":
+		for json_save_item_obj in json_save_items:
+			var save_item: SaveItem = SaveItem.new()
+			save_item.from_json_dict(json_save_item_obj)
+			match save_item.type:
+				"scenario-history":
+					match save_item.key:
+						"rank-7k": _append_score_success_for_15d2(save_item, 200)
+						"rank-6k": _append_score_success_for_15d2(save_item, 200)
+						"rank-5k": _append_score_success_for_15d2(save_item, 750)
+						"rank-4k": _append_score_success_for_15d2(save_item, 300)
+						"rank-3k": _append_score_success_for_15d2(save_item, 999)
+						"rank-2k": _append_time_success_for_15d2(save_item, 180)
+						"rank-1k": _append_score_success_for_15d2(save_item, 1000)
+						"rank-1d": _append_score_success_for_15d2(save_item, 1200)
+						"rank-2d": _append_time_success_for_15d2(save_item, 300)
+						"rank-3d": _append_score_success_for_15d2(save_item, 750)
+						"rank-4d": _append_score_success_for_15d2(save_item, 2000)
+						"rank-5d": _append_score_success_for_15d2(save_item, 2500)
+						"rank-6d": _append_time_success_for_15d2(save_item, 180)
+						"rank-7d": _append_score_success_for_15d2(save_item, 4000)
+						"rank-8d": _append_score_success_for_15d2(save_item, 4000)
+						"rank-9d": _append_score_success_for_15d2(save_item, 6000)
+						"rank-10d": _append_score_success_for_15d2(save_item, 15000)
+				"version":
+					json_save_item_obj["value"] = PlayerSave.PLAYER_DATA_VERSION
+	return json_save_items
+
+
+"""
+Adds a 'success' key for a RankResult if the player met a target score and didn't lose.
+
+Provides backwards compatibility with 15d2, which did not include 'success' keys in rank results.
+"""
+func _append_score_success_for_15d2(save_item: SaveItem, target_score: int) -> void:
+	for rank_result_obj in save_item.value:
+		var rank_result_dict: Dictionary = rank_result_obj
+		rank_result_dict["success"] = not rank_result_dict.get("lost", true) \
+				and rank_result_dict.get("score", 0) >= target_score
+
+
+"""
+Adds a 'success' key for a RankResult if the player met a target time and didn't lose
+
+Provides backwards compatibility with 15d2, which did not include 'success' keys in rank results.
+"""
+func _append_time_success_for_15d2(save_item: SaveItem, target_time: float) -> void:
+	for rank_result_obj in save_item.value:
+		var rank_result_dict: Dictionary = rank_result_obj
+		rank_result_dict["success"] = not rank_result_dict.get("lost", true) \
+				and rank_result_dict.get("seconds", 0.0) <= target_time
+
+
+"""
 Appends a 'compare' flag to the ultra records.
 
 This method temporarily converts the save file into json. I couldn't figure out a regular expression to accomplish

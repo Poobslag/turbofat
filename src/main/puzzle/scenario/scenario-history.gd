@@ -114,9 +114,14 @@ func _compare_by_low_seconds(a: RankResult, b: RankResult) -> bool:
 		return a.score > b.score
 	if a.lost != b.lost:
 		return b.lost
+	if a.success != b.success:
+		return a.success
 	# when comparing seconds, lower is better
 	return a.seconds < b.seconds
 
 
 func _compare_by_high_score(a: RankResult, b: RankResult) -> bool:
+	if a.success != b.success:
+		# succeeding is more important than getting a high score, especially for survival challenges.
+		return a.success
 	return a.score > b.score

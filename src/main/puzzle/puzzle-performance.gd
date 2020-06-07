@@ -28,5 +28,8 @@ var top_out_count := 0
 # did the player lose?
 var lost := false
 
+# did the player succeed?
+var success := false
+
 func topped_out() -> bool:
 	return top_out_count > 0
