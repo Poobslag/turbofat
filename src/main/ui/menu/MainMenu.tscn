@@ -68,9 +68,8 @@ size_flags_vertical = 4
 custom_constants/separation = 10
 
 [node name="Story" type="Button" parent="Play/HBoxContainer"]
-margin_top = -1.0
 margin_right = 131.0
-margin_bottom = 46.0
+margin_bottom = 47.0
 rect_min_size = Vector2( 131, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -78,15 +77,13 @@ theme = ExtResource( 2 )
 text = "Continue"
 
 [node name="2d" type="Button" parent="Play/HBoxContainer"]
-margin_left = 140.0
-margin_top = -1.0
-margin_right = 192.0
-margin_bottom = 46.0
+margin_left = 141.0
+margin_right = 193.0
+margin_bottom = 47.0
 rect_min_size = Vector2( 52, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
-disabled = true
 text = "!"
 
 [node name="Practice" type="Button" parent="Play"]

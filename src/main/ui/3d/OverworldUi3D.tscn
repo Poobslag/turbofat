@@ -98,6 +98,6 @@ quit_text = "Save + Quit"
 [connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="ChatUi" to="." method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="ChatUi" to="." method="_on_ChatUi_showed_choices"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/NorthwestLabels/SpiraTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
