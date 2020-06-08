@@ -102,7 +102,7 @@ _global_script_classes=[ {
 "base": "KinematicBody",
 "class": "Creature3D",
 "language": "GDScript",
-"path": "res://src/main/world/creature/creature-3d.gd"
+"path": "res://src/main/world/3d/creature-3d.gd"
 }, {
 "base": "Reference",
 "class": "CreatureLoader",
@@ -215,14 +215,14 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/scenario/other-rules.gd"
 }, {
 "base": "GridMap",
-"class": "OverworldGridMap",
+"class": "OverworldGridMap3d",
 "language": "GDScript",
-"path": "res://src/main/world/environment/overworld-grid-map.gd"
+"path": "res://src/main/world/3d/environment/overworld-grid-map-3d.gd"
 }, {
 "base": "Control",
-"class": "OverworldUi",
+"class": "OverworldUi3D",
 "language": "GDScript",
-"path": "res://src/main/ui/overworld-ui.gd"
+"path": "res://src/main/ui/3d/overworld-ui-3d.gd"
 }, {
 "base": "Control",
 "class": "PieceManager",
@@ -320,9 +320,9 @@ _global_script_classes=[ {
 "path": "res://src/main/world/creature/smooth-path.gd"
 }, {
 "base": "Creature3D",
-"class": "Spira",
+"class": "Spira3D",
 "language": "GDScript",
-"path": "res://src/main/world/spira.gd"
+"path": "res://src/main/world/3d/spira-3d.gd"
 }, {
 "base": "Node",
 "class": "State",
@@ -391,8 +391,8 @@ _global_script_class_icons={
 "NextPieceDisplays": "",
 "OldSave": "",
 "OtherRules": "",
-"OverworldGridMap": "",
-"OverworldUi": "",
+"OverworldGridMap3d": "",
+"OverworldUi3D": "",
 "PieceManager": "",
 "PieceQueue": "",
 "PieceSpeed": "",
@@ -412,7 +412,7 @@ _global_script_class_icons={
 "ScenarioSettings": "",
 "ScoreRules": "",
 "SmoothPath": "",
-"Spira": "",
+"Spira3D": "",
 "State": "",
 "StateMachine": "",
 "TutorialHud": "",
@@ -434,7 +434,7 @@ default_bus_layout="res://src/main/ui/default_bus_layout.tres"
 [autoload]
 
 Breadcrumb="*res://src/main/breadcrumb.gd"
-ChattableManager="*res://src/main/world/chattable-manager.gd"
+ChattableManager3D="*res://src/main/world/3d/chattable-manager-3d.gd"
 FileUtils="*res://src/main/file-utils.gd"
 Global="*res://src/main/global.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
@@ -589,4 +589,4 @@ quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 threads/thread_model=2
 quality/filters/msaa=2
 quality/depth/hdr=false
-environment/default_environment="res://src/main/world/environment/default_env.tres"
+environment/default_environment="res://src/main/world/3d/environment/default_env_3d.tres"

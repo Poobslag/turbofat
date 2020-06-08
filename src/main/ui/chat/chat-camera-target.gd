@@ -18,7 +18,7 @@ const RELATIVE_TRANSLATION := Vector3(325, 250, 325)
 # 'true' if the camera should currently be zoomed into this target
 var zoomed_in := false
 
-onready var _overworld_ui: OverworldUi = $"../OverworldUi"
+onready var _overworld_ui: OverworldUi3D = $"../OverworldUi"
 
 func _physics_process(delta: float) -> void:
 	if not zoomed_in:
