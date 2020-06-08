@@ -1,0 +1,103 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/world/3d/spira-trace-3d.gd" type="Script" id=8]
+[ext_resource path="res://src/main/ui/3d/overworld-ui-3d.gd" type="Script" id=9]
+
+[node name="OverworldUi" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 9 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Labels" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoutheastLabels" type="VBoxContainer" parent="Labels"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -300.0
+margin_right = -10.0
+margin_bottom = -10.0
+theme = ExtResource( 1 )
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FpsLabel" parent="Labels/SoutheastLabels" instance=ExtResource( 4 )]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 246.0
+margin_right = 502.0
+margin_bottom = 266.0
+
+[node name="VersionLabel" parent="Labels/SoutheastLabels" instance=ExtResource( 5 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 270.0
+margin_right = 502.0
+margin_bottom = 290.0
+
+[node name="NorthwestLabels" type="VBoxContainer" parent="Labels"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 512.0
+margin_bottom = 300.0
+theme = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoneyLabel" parent="Labels/NorthwestLabels" instance=ExtResource( 2 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 502.0
+margin_bottom = 32.0
+compact = true
+
+[node name="SpiraTrace" type="Label" parent="Labels/NorthwestLabels"]
+visible = false
+margin_top = 36.0
+margin_right = 502.0
+margin_bottom = 56.0
+text = "cb-----"
+script = ExtResource( 8 )
+
+[node name="ChatUi" parent="." instance=ExtResource( 6 )]
+visible = false
+
+[node name="CheatCodeDetector" parent="." instance=ExtResource( 7 )]
+codes = [ "bigfps", "coyote" ]
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 3 )]
+quit_text = "Save + Quit"
+[connection signal="spira_changed" from="." to="Labels/NorthwestLabels/SpiraTrace" method="_on_OverworldUi_spira_changed"]
+[connection signal="chat_event_played" from="ChatUi" to="." method="_on_ChatUi_chat_event_played"]
+[connection signal="pop_out_completed" from="ChatUi" to="." method="_on_ChatUi_pop_out_completed"]
+[connection signal="showed_choices" from="ChatUi" to="." method="_on_ChatUi_showed_choices"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Labels/NorthwestLabels/SpiraTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
