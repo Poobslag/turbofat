@@ -109,7 +109,7 @@ shortcut_in_tooltip = false
 shortcut = ExtResource( 7 )
 text = "Ok"
 
-[node name="ShiveringQuestion" parent="Window/UiArea/SettingsArea/Ok" instance=ExtResource( 4 )]
+[node name="ShortcutHelper" parent="Window/UiArea/SettingsArea/Ok" instance=ExtResource( 4 )]
 action = "ui_cancel"
 
 [node name="Quit" type="Button" parent="Window/UiArea"]
