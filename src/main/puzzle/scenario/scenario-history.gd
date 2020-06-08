@@ -65,7 +65,7 @@ func best_results(scenario: String, daily: bool) -> Array:
 				results.sort_custom(self, "_compare_by_low_seconds")
 			_:
 				results.sort_custom(self, "_compare_by_high_score")
-	return results.slice(0, max_size - 1)
+	return results.slice(0, min(results.size() - 1, max_size - 1))
 
 
 func prev_result(scenario: String) -> RankResult:

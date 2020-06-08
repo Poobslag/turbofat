@@ -65,3 +65,11 @@ func test_prev_after_prune() -> void:
 func test_no_scenario_name() -> void:
 	_scenario_history.add("", rank_result())
 	assert_false(_scenario_history.scenario_names().has(""))
+
+
+func test_daily_best_no_duplicates() -> void:
+	_scenario_history.add("scenario-895", rank_result(1285))
+	_scenario_history.add("scenario-895", rank_result(1230))
+	
+	var best_results := _scenario_history.best_results("scenario-895", true)
+	assert_eq(best_results.size(), 2)
