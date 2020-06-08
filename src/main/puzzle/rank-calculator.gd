@@ -160,6 +160,7 @@ func _unranked_result() -> RankResult:
 	rank_result.leftover_score = PuzzleScore.scenario_performance.leftover_score
 	rank_result.lines = PuzzleScore.scenario_performance.lines
 	rank_result.lost = PuzzleScore.scenario_performance.lost
+	rank_result.success = PuzzleScore.scenario_performance.success
 	rank_result.score = PuzzleScore.scenario_performance.score
 	rank_result.seconds = PuzzleScore.scenario_performance.seconds
 	rank_result.top_out_count = PuzzleScore.scenario_performance.top_out_count

@@ -5,33 +5,15 @@ Reads and writes data about the player's progress from a file.
 This data includes how well they've done on each level and how much money they've earned.
 """
 
-class SaveItem:
-	"""
-	An individual piece of save data.
-	
-	A piece of save data includes a type and value and, optionally, a key. Some data, such as the player's money, is
-	unique to the player. Other data is organized by a key field. For example, their high scores are tracked by level
-	name.
-	"""
-	
-	# A string unique to each type of data (scenario-data, player-data)
-	var type: String
-	
-	# A string identifying a specific data item (sophie, marathon-normal)
-	var key: String
-	
-	# The value object (array, dictionary, string) containing the data
-	var value
-	
-	func from_json_dict(json: Dictionary) -> void:
-		type = json.get("type", "")
-		key = json.get("key", "")
-		value = json.get("value", "")
-	
-	
-	func to_json_dict() -> Dictionary:
-		return {"type": type, "key": key, "value": value} if key else {"type": type, "value": value}
+# Current version for saved player data. Should be updated if and only if the player format changes.
+# This version number follows a 'ymdh' hex date format which is documented in issue #234.
+const PLAYER_DATA_VERSION := "163e"
 
+# Filename to use when saving/loading player data. Can be changed for tests
+var player_data_filename := "user://turbofat0.save"
+
+# Provides backwards compatibility with older save formats
+var old_save := OldSave.new()
 
 """
 Creates a 'generic' save item, something the player has only one of.
@@ -63,16 +45,6 @@ func named_data(type: String, key: String, value) -> SaveItem:
 	save_item.value = value
 	return save_item
 
-
-# Current version for saved player data. Should be updated if and only if the player format changes.
-# This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const PLAYER_DATA_VERSION := "15d2"
-
-# Filename to use when saving/loading player data. Can be changed for tests
-var player_data_filename := "user://turbofat0.save"
-
-# Provides backwards compatibility with older save formats
-var old_save := OldSave.new()
 
 func _ready() -> void:
 	PlayerData.reset()
@@ -106,6 +78,10 @@ func load_player_data() -> void:
 	if FileUtils.file_exists(player_data_filename):
 		var save_json_text := FileUtils.get_file_as_text(player_data_filename)
 		var json_save_items: Array = parse_json(save_json_text)
+		
+		if old_save.is_old_save_items(json_save_items):
+			json_save_items = old_save.transform_old_save_items(json_save_items)
+		
 		for json_save_item_obj in json_save_items:
 			var save_item: SaveItem = SaveItem.new()
 			save_item.from_json_dict(json_save_item_obj)

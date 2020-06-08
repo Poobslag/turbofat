@@ -46,6 +46,9 @@ var top_out_count := 0
 # did the player lose?
 var lost := false
 
+# did the player succeed?
+var success := false
+
 func to_json_dict() -> Dictionary:
 	return {
 		"box_score": box_score,
@@ -65,6 +68,7 @@ func to_json_dict() -> Dictionary:
 		"seconds_rank": seconds_rank,
 		"speed": speed,
 		"speed_rank": speed_rank,
+		"success": success,
 		"timestamp": timestamp,
 		"top_out_count": top_out_count,
 	}
@@ -81,13 +85,14 @@ func from_json_dict(json: Dictionary) -> void:
 	leftover_score = json.get("leftover_score", 0)
 	lines = int(json.get("lines", "0"))
 	lines_rank = float(json.get("lines_rank", "999"))
-	lost = bool(json.get("lost", "true"))
+	lost = bool(json.get("lost", true))
 	score = int(json.get("score", "0"))
 	score_rank = float(json.get("score_rank", "999"))
 	seconds = float(json.get("seconds", "999999"))
 	seconds_rank = float(json.get("seconds_rank", "999"))
 	speed = float(json.get("speed", "0"))
 	speed_rank = float(json.get("speed_rank", "999"))
+	success = bool(json.get("success", false))
 	timestamp = json.get("timestamp",
 			{"year": 2020, "month": 5, "day": 9, "weekday": 4, "dst": false, "hour": 17, "minute": 43, "second": 51})
 	top_out_count = int(json.get("top_out_count", "999999"))

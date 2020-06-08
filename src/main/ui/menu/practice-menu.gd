@@ -135,15 +135,7 @@ func _calculate_lowlight(scenario: ScenarioSettings) -> bool:
 	if not best_results:
 		return true
 	
-	var success: bool
-	var best_result: RankResult = best_results[0]
-	if best_result.lost:
-		success = false
-	elif scenario.success_condition.type == Milestone.TIME_UNDER:
-		success = best_result.seconds <= scenario.success_condition.value
-	else:
-		success = best_result.score >= scenario.success_condition.value
-	return not success
+	return not best_results[0].success
 
 
 func _get_mode() -> String:

@@ -99,8 +99,6 @@ func _on_Playfield_after_piece_written() -> void:
 Method invoked when the game ends. Stores the rank result for later.
 """
 func _on_PuzzleScore_game_ended() -> void:
-	# ensure score is up to date before calculating rank
-	PuzzleScore.end_combo()
 	var rank_result := RankCalculator.new().calculate_rank()
 	PlayerData.scenario_history.add(Scenario.launched_scenario_name, rank_result)
 	PlayerData.scenario_history.prune(Scenario.launched_scenario_name)

@@ -79,6 +79,7 @@ func end_game() -> void:
 	game_prepared = false
 	game_active = false
 	end_combo()
+	scenario_performance.success = MilestoneManager.milestone_met(Scenario.settings.success_condition)
 	emit_signal("game_ended")
 	yield(get_tree().create_timer(4.2 if PuzzleScore.WON else 2.2), "timeout")
 	emit_signal("after_game_ended")

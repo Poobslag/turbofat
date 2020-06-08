@@ -10,10 +10,6 @@ func before_each() -> void:
 	PlayerSave.player_data_filename = "user://%s" % TEMP_FILENAME
 	PlayerSave.old_save.player_data_filename_0517 = "user://%s" % TEMP_FILENAME_0517
 	PlayerData.reset()
-	
-	var dir := Directory.new()
-	dir.copy("res://assets/test/turbofat-v0.0517.save", "user://%s" % TEMP_FILENAME_0517)
-	PlayerSave.load_player_data()
 
 
 func after_each() -> void:
@@ -23,7 +19,21 @@ func after_each() -> void:
 	save_dir.remove(TEMP_FILENAME_0517)
 
 
+func load_0517_data() -> void:
+	var dir := Directory.new()
+	dir.copy("res://assets/test/turbofat-0517.save", "user://%s" % TEMP_FILENAME_0517)
+	PlayerSave.load_player_data()
+
+
+func load_15d2_data() -> void:
+	var dir := Directory.new()
+	dir.copy("res://assets/test/turbofat-15d2.save", "user://%s" % TEMP_FILENAME)
+	PlayerSave.load_player_data()
+
+
 func test_lost_true() -> void:
+	load_0517_data()
+	
 	# scenario where the player topped out and lost
 	assert_true(PlayerData.scenario_history.scenario_names().has("sprint-normal"))
 	var history_sprint: RankResult = PlayerData.scenario_history.results("sprint-normal")[0]
@@ -32,6 +42,8 @@ func test_lost_true() -> void:
 
 
 func test_lost_false() -> void:
+	load_0517_data()
+	
 	# scenario where the player survived
 	assert_true(PlayerData.scenario_history.scenario_names().has("ultra-normal"))
 	var history_ultra: RankResult = PlayerData.scenario_history.results("ultra-normal")[0]
@@ -40,11 +52,15 @@ func test_lost_false() -> void:
 
 
 func test_money_preserved() -> void:
+	load_0517_data()
+	
 	# other data
 	assert_eq(PlayerData.money, 202)
 
 
 func test_survival_records_preserved() -> void:
+	load_0517_data()
+	
 	# 'survival mode' used to be called 'marathon mode'
 	assert_true(PlayerData.scenario_history.scenario_names().has("survival-normal"))
 	var history_survival: RankResult = PlayerData.scenario_history.results("survival-normal")[0]
@@ -53,6 +69,8 @@ func test_survival_records_preserved() -> void:
 
 
 func test_timestamp_created() -> void:
+	load_0517_data()
+	
 	assert_true(PlayerData.scenario_history.scenario_names().has("ultra-normal"))
 	var history_ultra: RankResult = PlayerData.scenario_history.results("ultra-normal")[0]
 	
@@ -66,6 +84,8 @@ func test_timestamp_created() -> void:
 
 
 func test_compare_seconds() -> void:
+	load_0517_data()
+	
 	assert_true(PlayerData.scenario_history.scenario_names().has("ultra-normal"))
 	var results: Array = PlayerData.scenario_history.results("ultra-normal")
 	assert_eq(results.size(), 3)
@@ -77,6 +97,8 @@ func test_compare_seconds() -> void:
 
 
 func test_compare_score() -> void:
+	load_0517_data()
+	
 	assert_true(PlayerData.scenario_history.scenario_names().has("sprint-normal"))
 	var history_sprint: RankResult = PlayerData.scenario_history.results("sprint-normal")[0]
 	
@@ -85,6 +107,17 @@ func test_compare_score() -> void:
 
 
 func test_volume() -> void:
+	load_0517_data()
+	
 	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.MUSIC), 0.500, 0.01)
 	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.SOUND), 0.500, 0.01)
 	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.VOICE), 0.500, 0.01)
+
+
+func test_15d2_rank_success() -> void:
+	load_15d2_data()
+	
+	var history_rank_7k: RankResult = PlayerData.scenario_history.results("rank-7k")[0]
+	
+	# we didn't used to store 'success', but it should be calculated based on how well they did
+	assert_eq(history_rank_7k.success, true)
