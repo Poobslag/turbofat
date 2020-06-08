@@ -69,6 +69,9 @@ Repopulate the grid map with a simple world.
 The world contains a valley, walls on both sides, and a path down the middle.
 """
 func regenerate_dramatic_world(regenerate: bool = true) -> void:
+	if not regenerate:
+		return
+	
 	regenerate_empty_world(true, Vector2(9, 6))
 	
 	var ridge_max_z := 3
@@ -126,6 +129,9 @@ Regenerates an empty world.
 The empty world only contains a floor surrounded by impassible walls.
 """
 func regenerate_empty_world(regenerate: bool = true, extents: Vector2 = Vector2(16, 16)) -> void:
+	if not regenerate:
+		return
+	
 	_extents = extents
 	clear()
 	
