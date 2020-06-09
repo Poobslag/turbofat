@@ -17,6 +17,7 @@ var _snack_stacks := 0
 # tracks what the player did with the most recent piece
 var _did_line_clear := false
 var _did_build_box := false
+var _did_build_cake := false
 var _did_squish_move := false
 
 func _ready() -> void:
@@ -81,6 +82,7 @@ func _on_PieceManager_piece_spawned() -> void:
 	_did_line_clear = false
 	_did_squish_move = false
 	_did_build_box = false
+	_did_build_cake = false
 
 
 func _on_PieceManager_squish_moved() -> void:
@@ -91,6 +93,9 @@ func _on_PieceManager_squish_moved() -> void:
 func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color: int) -> void:
 	_did_build_box = true
 	_boxes_built += 1
+	
+	if color == PuzzleTileMap.BoxInt.CAKE:
+		_did_build_cake = true
 
 
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
@@ -171,7 +176,7 @@ func _advance_scenario() -> void:
 	# clear out any text to ensure we don't end up pages behind, if the player is fast
 	$Message.hide_text()
 	
-	if Scenario.settings.name == "tutorial-beginner-0" and _did_build_box and _did_squish_move:
+	if Scenario.settings.name == "tutorial-beginner-0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
 		_change_scenario("oh-my")
 		append_big_message("O/H/,/// M/Y/!/!/!")
