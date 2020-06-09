@@ -249,6 +249,10 @@ func _schedule_finish_line_clears() -> void:
 			for i in range(_remaining_line_erase_timings.size()):
 				_remaining_line_erase_timings[i] -= min_line_clear_timing
 			remaining_line_erase_frames -= min_line_clear_timing
+	
+	# ensure remaining_line_erase_frames is always set to a non-zero value. the level end is triggered when this
+	# number decreases from 1 to 0, so if it ends up being 0 or less it causes a softlock
+	remaining_line_erase_frames = max(1, remaining_line_erase_frames)
 
 
 func _on_PuzzleScore_finish_triggered() -> void:
