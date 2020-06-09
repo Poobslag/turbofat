@@ -29,7 +29,7 @@ func _on_PlayStory3d_pressed() -> void:
 
 
 func _on_PlayStory2d_pressed() -> void:
-	Breadcrumb.push_trail("res://src/main/world/3d/Overworld3D.tscn")
+	Breadcrumb.push_trail("res://src/main/world/Overworld.tscn")
 
 
 func _on_PlayPractice_pressed() -> void:

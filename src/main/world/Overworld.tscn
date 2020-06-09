@@ -1,0 +1,119 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/world/spira.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/world/overworld-ui.gd" type="Script" id=10]
+[ext_resource path="res://assets/main/world/creature/move-hop.wav" type="AudioStream" id=11]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 24.0
+
+[node name="Overworld" type="Node2D"]
+
+[node name="Spira" type="KinematicBody2D" parent="."]
+position = Vector2( 308.005, 192.368 )
+script = ExtResource( 2 )
+
+[node name="Creature" parent="Spira" instance=ExtResource( 1 )]
+position = Vector2( 6.99835, 4.0014 )
+scale = Vector2( 0.4, 0.4 )
+z_index = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Spira"]
+position = Vector2( 2.33591, 4.45721 )
+scale = Vector2( 0.8, 0.4 )
+shape = SubResource( 1 )
+
+[node name="HopSound" type="AudioStreamPlayer2D" parent="Spira"]
+stream = ExtResource( 11 )
+volume_db = -12.0
+
+[node name="OverworldUi" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Labels" type="Control" parent="OverworldUi"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoutheastLabels" type="VBoxContainer" parent="OverworldUi/Labels"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -300.0
+margin_right = -10.0
+margin_bottom = -10.0
+theme = ExtResource( 3 )
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FpsLabel" parent="OverworldUi/Labels/SoutheastLabels" instance=ExtResource( 7 )]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 246.0
+margin_right = 502.0
+margin_bottom = 266.0
+
+[node name="VersionLabel" parent="OverworldUi/Labels/SoutheastLabels" instance=ExtResource( 8 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 270.0
+margin_right = 502.0
+margin_bottom = 290.0
+
+[node name="NorthwestLabels" type="VBoxContainer" parent="OverworldUi/Labels"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 512.0
+margin_bottom = 300.0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoneyLabel" parent="OverworldUi/Labels/NorthwestLabels" instance=ExtResource( 5 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 502.0
+margin_bottom = 32.0
+compact = true
+
+[node name="ChatUi" parent="OverworldUi" instance=ExtResource( 9 )]
+visible = false
+
+[node name="CheatCodeDetector" parent="OverworldUi" instance=ExtResource( 4 )]
+codes = [ "bigfps" ]
+
+[node name="SettingsMenu" parent="OverworldUi" instance=ExtResource( 6 )]
+quit_text = "Save + Quit"
+[connection signal="landed" from="Spira/Creature" to="Spira" method="_on_Creature_landed"]
+[connection signal="chat_event_played" from="OverworldUi/ChatUi" to="OverworldUi" method="_on_ChatUi_chat_event_played"]
+[connection signal="pop_out_completed" from="OverworldUi/ChatUi" to="OverworldUi" method="_on_ChatUi_pop_out_completed"]
+[connection signal="showed_choices" from="OverworldUi/ChatUi" to="OverworldUi" method="_on_ChatUi_showed_choices"]
+[connection signal="cheat_detected" from="OverworldUi/CheatCodeDetector" to="OverworldUi/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="quit_pressed" from="OverworldUi/SettingsMenu" to="OverworldUi" method="_on_SettingsMenu_quit_pressed"]

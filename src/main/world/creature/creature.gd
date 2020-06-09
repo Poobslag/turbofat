@@ -60,6 +60,8 @@ export (int) var _creature_preset := -1 setget set_creature_preset
 # 'true' if the creature is walking or jumping. toggling this makes certain sprites visible/invisible.
 export (bool) var _movement_mode := false setget set_movement_mode
 
+export (Vector2) var _southeast_dir := Vector2(0.70710678118, 0.70710678118)
+
 # the direction the creature is facing
 export (Orientation) var orientation := Orientation.SOUTHEAST setget set_orientation
 
@@ -350,7 +352,7 @@ func _compute_orientation(direction: Vector2) -> int:
 	# when our direction puts us between two orientations.
 	var new_orientation: int = orientation
 	# unrounded orientation is a float in the range [-2.0, 2.0]
-	var unrounded_orientation := -2 * direction.angle_to(Vector2.RIGHT) / PI
+	var unrounded_orientation := -2 * direction.angle_to(_southeast_dir) / PI
 	if abs(unrounded_orientation - orientation) >= 0.6 and abs(unrounded_orientation + 4 - orientation) >= 0.6:
 		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
 		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)

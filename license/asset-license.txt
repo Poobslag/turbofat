@@ -64,13 +64,13 @@ assets/main/ui/blogger-sans.otf Blogger Sans by Sergiy Tkachenko
 
 Models
 --------------------------------------------------------------------------------
-assets/main/world/environment/cliff-block-rock.gltf Kenney's Nature Kit 2.1
-assets/main/world/environment/cliff-block-rockrock.gltf Kenney's Nature Kit 2.1
-assets/main/world/environment/cliff-blockhalf-rock.gltf Kenney's Nature Kit 2.1
-assets/main/world/environment/path-stone.gltf Kenney's Nature Kit 2.1
-assets/main/world/environment/path-stonecircle.gltf Kenney's Nature Kit 2.1
-assets/main/world/environment/path-stonecorner.gltf Kenney's Nature Kit 2.1
-assets/main/world/environment/path-stoneend.gltf Kenney's Nature Kit 2.1
+assets/main/world/3d/environment/cliff-block-rock.gltf Kenney's Nature Kit 2.1
+assets/main/world/3d/environment/cliff-block-rockrock.gltf Kenney's Nature Kit 2.1
+assets/main/world/3d/environment/cliff-blockhalf-rock.gltf Kenney's Nature Kit 2.1
+assets/main/world/3d/environment/path-stone.gltf Kenney's Nature Kit 2.1
+assets/main/world/3d/environment/path-stonecircle.gltf Kenney's Nature Kit 2.1
+assets/main/world/3d/environment/path-stonecorner.gltf Kenney's Nature Kit 2.1
+assets/main/world/3d/environment/path-stoneend.gltf Kenney's Nature Kit 2.1
 
 Other
 --------------------------------------------------------------------------------

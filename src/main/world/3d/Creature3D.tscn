@@ -68,7 +68,7 @@ radius = 8.0
 height = 20.4
 
 [node name="Creature3D" type="KinematicBody"]
-transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 10, -40 )
+transform = Transform( 1, 0, 0, 0, 0.999999, 0, 0, 0, 0.999999, 0, 10, 0 )
 script = ExtResource( 1 )
 
 [node name="Viewport" type="Viewport" parent="."]
@@ -80,6 +80,7 @@ script = ExtResource( 6 )
 [node name="Creature" parent="Viewport" instance=ExtResource( 3 )]
 position = Vector2( 512, 932 )
 scale = Vector2( 2.5, 2.5 )
+_southeast_dir = Vector2( 1, 0 )
 
 [node name="Sprite" type="MeshInstance" parent="."]
 transform = Transform( 0.707107, 0, 0.707107, 0, 1.2, 0, -0.707107, 0, 0.707107, 2.5, 14, 2.5 )
