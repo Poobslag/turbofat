@@ -7,15 +7,18 @@ Script for representing a creature in the 3D overworld.
 # Spira cannot land on creatures easily, but it is possible
 var foothold_radius := 2.0
 
+onready var _creature := $Viewport/Creature
+
+
 func _ready() -> void:
 	$CollisionShape.disabled = true
 	$ShadowMesh.visible = false
-	$Viewport/Creature/Sprites/Shadow.visible = false
+	_creature.get_node("Sprites/Shadow").visible = false
 
 
 func set_creature_def(creature_def: Dictionary) -> void:
 	set_meta("creature_def", creature_def)
-	$Viewport/Creature.summon(creature_def)
+	_creature.summon(creature_def)
 
 
 """
@@ -27,7 +30,7 @@ Parameters:
 	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 """
 func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
-	$Viewport/Creature.play_movement_animation(animation_prefix, movement_direction)
+	_creature.play_movement_animation(animation_prefix, movement_direction)
 
 
 """
@@ -37,36 +40,36 @@ Parameters:
 	'mood': The creature's new mood from ChatEvent.Mood
 """
 func play_mood(mood: int) -> void:
-	$Viewport/Creature.play_mood(mood)
+	_creature.play_mood(mood)
 
 
 """
 Orients this creature so they're facing the specified spatial.
 """
-func orient_toward(spatial: Spatial) -> void:
-	if not $Viewport/Creature.is_idle():
+func orient_toward(target: Spatial) -> void:
+	if not _creature.is_idle():
 		# don't change this creature's orientation if they're performing an activity
 		return
 	
 	# calculate the relative direction of the object this creature should face
-	var direction_xz := Vector2(spatial.translation.x - translation.x, spatial.translation.z - translation.z)
+	var direction := Vector2(target.translation.x - translation.x, target.translation.z - translation.z)
 	var direction_dot := 0.0
-	if direction_xz.length() > 0:
-		direction_dot = direction_xz.normalized().dot(Vector2(1.0, -1.0).normalized())
+	if direction:
+		direction_dot = direction.normalized().dot(Vector2(1.0, -1.0).normalized())
 		if direction_dot == 0.0:
 			# if two characters are directly above/below each other, make them face opposite directions
-			direction_dot = direction_xz.normalized().dot(Vector2(1.0, 0))
+			direction_dot = direction.normalized().dot(Vector2(1.0, 0))
 	
 	if direction_dot > 0:
-		# the object is to the right; face right
-		$Viewport/Creature.set_orientation(Creature.Orientation.SOUTHEAST)
+		# the target is to the right; face right
+		_creature.set_orientation(Creature.Orientation.SOUTHEAST)
 	elif direction_dot < 0:
-		# the object is to the left; face left
-		$Viewport/Creature.set_orientation(Creature.Orientation.SOUTHWEST)
+		# the target is to the left; face left
+		_creature.set_orientation(Creature.Orientation.SOUTHWEST)
 
 
 func get_orientation() -> int:
-	return $Viewport/Creature.orientation
+	return _creature.orientation
 
 
 func _on_Creature_creature_arrived() -> void:
