@@ -6,6 +6,9 @@ extends GridMap
 GridMap containing an overworld environment with ground, walls, environmental sprites.
 """
 
+# kludge to disable world regeneration; i can't figure out how it's getting invoked
+const NO_REGEN := true
+
 # invisible wall extending up from the cell
 const TILE_IMPASSABLE := 0
 
@@ -71,6 +74,8 @@ The world contains a valley, walls on both sides, and a path down the middle.
 func regenerate_dramatic_world(regenerate: bool = true) -> void:
 	if not regenerate:
 		return
+	if NO_REGEN:
+		return
 	
 	regenerate_empty_world(true, Vector2(9, 6))
 	
@@ -130,6 +135,8 @@ The empty world only contains a floor surrounded by impassible walls.
 """
 func regenerate_empty_world(regenerate: bool = true, extents: Vector2 = Vector2(16, 16)) -> void:
 	if not regenerate:
+		return
+	if NO_REGEN:
 		return
 	
 	_extents = extents

@@ -8,7 +8,7 @@ Tracks Spira's location and the location of all chattables. Handles questions li
 signal focus_changed
 
 # Maximum range for Spira to successfully interact with an object
-const MAX_INTERACT_DISTANCE := 50.0
+const MAX_INTERACT_DISTANCE := 240.0
 
 # Chat appearance for different characters
 var _chat_theme_defs := {
@@ -16,25 +16,26 @@ var _chat_theme_defs := {
 }
 
 # The player's sprite
-var _spira: Spira3D setget set_spira
+var spira: Spira setget set_spira
 
 # The currently focused object
-var _focused: Spatial setget ,get_focused
+var _focused: Node2D setget ,get_focused
 
 # 'false' if the player is temporarily disallowed from interacting with nearby objects, such as while chatting
 var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
 
 func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
-	var new_focus: Spatial
+	var new_focus: Node2D
 
-	if _focus_enabled and _spira:
+	if _focus_enabled and spira:
 		# iterate over all chattables and find the nearest one
 		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
 			if not is_instance_valid(chattable_obj):
 				continue
-			var chattable: Spatial = chattable_obj
-			var distance := chattable.global_transform.origin.distance_to(_spira.global_transform.origin)
+			var chattable: Node2D = chattable_obj
+			var distance: float = Global.from_iso(chattable.global_transform.origin) \
+					.distance_to(Global.from_iso(spira.global_transform.origin))
 			if distance <= min_distance:
 				min_distance = distance
 				new_focus = chattable
@@ -47,29 +48,29 @@ func _physics_process(_delta: float) -> void:
 """
 Purges all node instances from the manager.
 
-Because ChattableManager3D is a singleton, node instances must be purged before changing scenes. Otherwise it's
+Because ChattableManager is a singleton, node instances must be purged before changing scenes. Otherwise it's
 possible for an invisible object from a previous scene to receive focus.
 """
 func clear() -> void:
-	_spira = null
+	spira = null
 	_focused = null
 
 
-func set_spira(spira: Spira3D) -> void:
-	_spira = spira
+func set_spira(new_spira: Spira) -> void:
+	spira = new_spira
 
 
 """
 Returns the overworld object which the player will currently interact with if they hit the button.
 """
-func get_focused() -> Spatial:
+func get_focused() -> Node2D:
 	return _focused
 
 
 """
 Returns 'true' if the player will currently interact with the specified object if they hit the button.
 """
-func is_focused(chattable: Spatial) -> bool:
+func is_focused(chattable: Node2D) -> bool:
 	return chattable == _focused
 
 
@@ -102,14 +103,14 @@ Returns the overworld object which has the specified 'chat name'.
 During dialog sequences, we sometimes need to know which overworld object corresponds to the person saying the current
 dialog line. This function facilitates that.
 """
-func get_chatter(chat_name: String) -> Spatial:
-	var chatter: Spatial
+func get_chatter(chat_name: String) -> Node2D:
+	var chatter: Node2D
 	if chat_name == "Spira":
-		chatter = _spira
+		chatter = spira
 	else:
 		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
 			var chattable: Node = chattable_obj
-			if chattable.is_class("Spatial") and chattable.has_meta("chat_name") \
+			if chattable.is_class("Node2D") and chattable.has_meta("chat_name") \
 					and chattable.get_meta("chat_name") == chat_name:
 				chatter = chattable
 				break

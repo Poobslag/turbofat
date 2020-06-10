@@ -49,6 +49,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/chat/chat-frame.gd"
 }, {
+"base": "Sprite",
+"class": "ChatIcon",
+"language": "GDScript",
+"path": "res://src/main/world/chat-icon.gd"
+}, {
 "base": "Reference",
 "class": "ChatLibrary",
 "language": "GDScript",
@@ -98,6 +103,11 @@ _global_script_classes=[ {
 "class": "Creature",
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "Creature2D",
+"language": "GDScript",
+"path": "res://src/main/world/creature/creature-2d.gd"
 }, {
 "base": "KinematicBody",
 "class": "Creature3D",
@@ -319,7 +329,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/smooth-path.gd"
 }, {
-"base": "KinematicBody2D",
+"base": "Creature2D",
 "class": "Spira",
 "language": "GDScript",
 "path": "res://src/main/world/spira.gd"
@@ -363,6 +373,7 @@ _global_script_class_icons={
 "ChatChoiceButton": "",
 "ChatEvent": "",
 "ChatFrame": "",
+"ChatIcon": "",
 "ChatLibrary": "",
 "ChatLineLabel": "",
 "ChatLineSprite": "",
@@ -373,6 +384,7 @@ _global_script_class_icons={
 "ComboTracker": "",
 "Connect": "",
 "Creature": "",
+"Creature2D": "",
 "Creature3D": "",
 "CreatureLoader": "",
 "EditorPlayfield": "",
@@ -431,7 +443,7 @@ _global_script_class_icons={
 config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
 config/icon="res://assets/main/ui/icon.png"
-config/version="0.0607"
+config/version="0.0608"
 
 [audio]
 
@@ -440,6 +452,7 @@ default_bus_layout="res://src/main/ui/default_bus_layout.tres"
 [autoload]
 
 Breadcrumb="*res://src/main/breadcrumb.gd"
+ChattableManager="*res://src/main/world/chattable-manager.gd"
 ChattableManager3D="*res://src/main/world/3d/chattable-manager-3d.gd"
 FileUtils="*res://src/main/file-utils.gd"
 Global="*res://src/main/global.gd"

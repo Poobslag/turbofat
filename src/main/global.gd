@@ -3,6 +3,9 @@ extends Node
 Contains variables for preserving state when loading different scenes.
 """
 
+# The factor to multiply by to convert non-isometric coordinates into isometric coordinates
+const ISO_FACTOR := Vector2(1.0, 0.5)
+
 # Target number of creature greetings (hello, goodbye) per minute
 const GREETINGS_PER_MINUTE := 3.0
 
@@ -18,6 +21,20 @@ var greetiness := 0.0
 
 func _process(delta: float) -> void:
 	greetiness = clamp(greetiness + delta * GREETINGS_PER_MINUTE / 60, -1.0, 1.0)
+
+
+"""
+Convert a coordinate from global coordinates to isometric (squashed) coordinates
+"""
+static func to_iso(vector: Vector2) -> Vector2:
+	return vector * ISO_FACTOR
+
+
+"""
+Convert a coordinate from isometric coordinates to global (unsquashed) coordinates
+"""
+static func from_iso(vector: Vector2) -> Vector2:
+	return vector / ISO_FACTOR
 
 
 """

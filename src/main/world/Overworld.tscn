@@ -1,6 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/world/creature/Creature2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/spira.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=3]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=4]
@@ -9,31 +9,111 @@
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/world/overworld-ui.gd" type="Script" id=10]
-[ext_resource path="res://assets/main/world/creature/move-hop.wav" type="AudioStream" id=11]
+[ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=10]
+[ext_resource path="res://src/main/world/glowy-sphere.gd" type="Script" id=11]
+[ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=13]
 
-[sub_resource type="CircleShape2D" id=1]
-radius = 24.0
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 28, 14 )
 
 [node name="Overworld" type="Node2D"]
 
-[node name="Spira" type="KinematicBody2D" parent="."]
-position = Vector2( 308.005, 192.368 )
+[node name="YSort" type="YSort" parent="."]
+
+[node name="Spira" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 150, 150 )
 script = ExtResource( 2 )
+creature_def = {
+"body_rgb": "b23823",
+"ear": "1",
+"eye": "1",
+"eye_rgb": "282828 dedede",
+"horn": "1",
+"horn_rgb": "f1e398",
+"line_rgb": "6c4331",
+"mouth": "2"
+}
 
-[node name="Creature" parent="Spira" instance=ExtResource( 1 )]
-position = Vector2( 6.99835, 4.0014 )
-scale = Vector2( 0.4, 0.4 )
-z_index = 0
+[node name="Ebe" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 508.005, 292.368 )
+creature_def = {
+"body_rgb": "b47922",
+"ear": "1",
+"eye": "2",
+"eye_rgb": "7d4c21 e5cd7d",
+"horn": "2",
+"horn_rgb": "f1e398",
+"line_rgb": "6c4331",
+"mouth": "1"
+}
+chat_id = "ebe"
+chat_name = "Ebe"
+chat_theme_def = {
+"accent_scale": 0.87,
+"accent_swapped": true,
+"accent_texture": 15,
+"color": "b47922"
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Spira"]
-position = Vector2( 2.33591, 4.45721 )
-scale = Vector2( 0.8, 0.4 )
+[node name="Bort" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 278.532, 401.841 )
+creature_def = {
+"body_rgb": "6f83db",
+"ear": "3",
+"eye": "1",
+"eye_rgb": "374265 eaf2f4",
+"horn": "1",
+"horn_rgb": "f1e398",
+"line_rgb": "6c4331",
+"mouth": "2"
+}
+chat_id = "bort"
+chat_name = "Bort"
+chat_theme_def = {
+"accent_scale": 1.3,
+"accent_swapped": false,
+"accent_texture": 0,
+"color": "6f83db"
+}
+
+[node name="Boatricia" parent="YSort" instance=ExtResource( 1 )]
+position = Vector2( 731.162, 406.052 )
+creature_def = {
+"body_rgb": "0b45a6",
+"ear": "2",
+"eye": "3",
+"eye_rgb": "fad541 ffffff",
+"horn": "0",
+"horn_rgb": "282828",
+"line_rgb": "41281e",
+"mouth": "1"
+}
+chat_id = "boatricia"
+chat_name = "Boatricia"
+chat_theme_def = {
+"accent_scale": 0.33,
+"accent_swapped": true,
+"accent_texture": 1,
+"color": "0b45a6",
+"dark": true
+}
+
+[node name="GlowySphere" type="KinematicBody2D" parent="YSort"]
+position = Vector2( 731.162, 206.052 )
+script = ExtResource( 11 )
+
+[node name="ChatIcon" parent="YSort/GlowySphere" instance=ExtResource( 12 )]
+bubble_type = 2
+right_side = false
+
+[node name="Sprite" type="Sprite" parent="YSort/GlowySphere"]
+position = Vector2( 0, -32 )
+scale = Vector2( 0.539476, 0.539476 )
+texture = ExtResource( 13 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="YSort/GlowySphere"]
 shape = SubResource( 1 )
-
-[node name="HopSound" type="AudioStreamPlayer2D" parent="Spira"]
-stream = ExtResource( 11 )
-volume_db = -12.0
 
 [node name="OverworldUi" type="Control" parent="."]
 anchor_right = 1.0
@@ -105,13 +185,15 @@ compact = true
 
 [node name="ChatUi" parent="OverworldUi" instance=ExtResource( 9 )]
 visible = false
+margin_top = 0.0
+margin_right = 1024.0
+margin_bottom = 600.0
 
 [node name="CheatCodeDetector" parent="OverworldUi" instance=ExtResource( 4 )]
 codes = [ "bigfps" ]
 
 [node name="SettingsMenu" parent="OverworldUi" instance=ExtResource( 6 )]
 quit_text = "Save + Quit"
-[connection signal="landed" from="Spira/Creature" to="Spira" method="_on_Creature_landed"]
 [connection signal="chat_event_played" from="OverworldUi/ChatUi" to="OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="OverworldUi/ChatUi" to="OverworldUi" method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="OverworldUi/ChatUi" to="OverworldUi" method="_on_ChatUi_showed_choices"]
