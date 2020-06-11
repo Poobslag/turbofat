@@ -4,24 +4,23 @@ Stores information on the various piece shapes. This includes information on the
 how they 'kick' when they're blocked from rotating.
 """
 
-
 const KICKS_J := [
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2(-1,  1)],
-		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 1, -1), Vector2( 0,  1), Vector2(-1,  0),
+		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1,  1)],
+		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1), Vector2(-1,  0),
 				Vector2( 0, -2), Vector2( 1, -2)],
-		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 1,  1), Vector2( 0,  1), Vector2(-1,  0),
+		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 1,  1), Vector2( 0, -1), Vector2( 0,  1), Vector2(-1,  0),
 				Vector2( 0,  2), Vector2( 1,  2)],
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2(-1, -1)],
+		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1, -1)],
 	]
 
 
 const KICKS_L := [
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2(-1,  1)],
-		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 1, -1), Vector2( 0, -1), Vector2(-1,  0),
+		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1,  1)],
+		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1), Vector2(-1,  0),
 				Vector2( 0, -2), Vector2( 1, -2)],
-		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 1,  1), Vector2( 0, -1), Vector2(-1,  0),
+		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 1,  1), Vector2( 0, -1), Vector2( 0,  1), Vector2(-1,  0),
 				Vector2( 0,  2), Vector2( 1,  2)],
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2(-1, -1)],
+		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2( 0, -1), Vector2(-1, -1)],
 	]
 
 

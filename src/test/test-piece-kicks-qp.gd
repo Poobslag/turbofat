@@ -357,25 +357,25 @@ func test_q_murky_kick2() -> void:
 	assert_kick()
 
 
-func test_p_climb_kick0() -> void:
+func test_q_climb_0r_failed() -> void:
 	from_grid = [
 		"     ",
 		"     ",
-		"     ",
-		":: p ",
-		"::pp ",
-		"::pp:"]
+		" qqq ",
+		" qq::",
+		"   ::",
+		"   ::"]
 	to_grid = [
 		"     ",
 		"     ",
-		" ppp ",
-		"::pp ",
-		"::   ",
-		"::  :"]
+		" qq  ",
+		" qq::",
+		"  q::",
+		"   ::"]
 	assert_kick()
 
 
-func test_p_failed_climb_kick1() -> void:
+func test_p_climb_0l_failed() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -393,7 +393,25 @@ func test_p_failed_climb_kick1() -> void:
 	assert_kick()
 
 
-func test_q_climb_kick0() -> void:
+func test_p_climb_r0() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		"     ",
+		":: p ",
+		"::pp ",
+		"::pp:"]
+	to_grid = [
+		"     ",
+		"     ",
+		" ppp ",
+		"::pp ",
+		"::   ",
+		"::  :"]
+	assert_kick()
+
+
+func test_q_climb_l0_failed() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -408,22 +426,4 @@ func test_q_climb_kick0() -> void:
 		" qq::",
 		"   ::",
 		":  ::"]
-	assert_kick()
-
-
-func test_q_failed_climb_kick1() -> void:
-	from_grid = [
-		"     ",
-		"     ",
-		" qqq ",
-		" qq::",
-		"   ::",
-		"   ::"]
-	to_grid = [
-		"     ",
-		"     ",
-		" qq  ",
-		" qq::",
-		"  q::",
-		"   ::"]
 	assert_kick()

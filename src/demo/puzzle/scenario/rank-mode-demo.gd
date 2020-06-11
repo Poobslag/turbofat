@@ -27,7 +27,7 @@ var _data_per_rank := {
 	"8d": ["7", "FA", "3:00"],
 	"9d": ["7", "FB", "4:00"],
 	"10d": ["4", "FC", "5:00"],
-	"M": ["4", "F0", "10:00"],
+	"M": ["4", "FA", "10:00"],
 }
 
 var _rank_calculator := RankCalculator.new()

@@ -311,23 +311,7 @@ func test_rwallkick1() -> void:
 	assert_kick()
 
 
-func test_climb_kick_cw() -> void:
-	from_grid = [
-		"     ",
-		"  t  ",
-		":tt::",
-		"::t::",
-	]
-	to_grid = [
-		"  t  ",
-		" ttt ",
-		":  ::",
-		":: ::"
-	]
-	assert_kick()
-
-
-func test_climb_kick_ccw() -> void:
+func test_climb_r0() -> void:
 	from_grid = [
 		"     ",
 		"  t  ",
@@ -343,23 +327,7 @@ func test_climb_kick_ccw() -> void:
 	assert_kick()
 
 
-func test_failed_climb_kick_cw() -> void:
-	from_grid = [
-		"    ",
-		"  t ",
-		" tt:",
-		"::t:",
-	]
-	to_grid = [
-		"    ",
-		" t  ",
-		"ttt:",
-		":: :"
-	]
-	assert_kick()
-
-
-func test_failed_climb_kick_ccw() -> void:
+func test_climb_r0_failed() -> void:
 	from_grid = [
 		"    ",
 		" t  ",
@@ -371,5 +339,37 @@ func test_failed_climb_kick_ccw() -> void:
 		"  t ",
 		":ttt",
 		": ::"
+	]
+	assert_kick()
+
+
+func test_climb_l0() -> void:
+	from_grid = [
+		"     ",
+		"  t  ",
+		":tt::",
+		"::t::",
+	]
+	to_grid = [
+		"  t  ",
+		" ttt ",
+		":  ::",
+		":: ::"
+	]
+	assert_kick()
+
+
+func test_climb_l0_failed() -> void:
+	from_grid = [
+		"    ",
+		"  t ",
+		" tt:",
+		"::t:",
+	]
+	to_grid = [
+		"    ",
+		" t  ",
+		"ttt:",
+		":: :"
 	]
 	assert_kick()

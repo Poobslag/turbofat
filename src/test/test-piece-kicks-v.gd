@@ -3,7 +3,40 @@ extends "res://src/test/test-piece-kicks.gd"
 Tests the v piece's kick behavior.
 """
 
-func test_climb_kick_cw0() -> void:
+
+func test_climb_r0_0() -> void:
+	from_grid = [
+		"    ",
+		" vvv",
+		" v  ",
+		":v: ",
+	]
+	to_grid = [
+		"v   ",
+		"v   ",
+		"vvv ",
+		": : ",
+	]
+	assert_kick()
+
+
+func test_climb_r0_1() -> void:
+	from_grid = [
+		"    ",
+		":vvv",
+		" v  ",
+		":v: ",
+	]
+	to_grid = [
+		" v  ",
+		" v  ",
+		" vvv",
+		": : ",
+	]
+	assert_kick()
+
+
+func test_climb_r2_0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -21,7 +54,7 @@ func test_climb_kick_cw0() -> void:
 	assert_kick()
 
 
-func test_climb_kick_cw1() -> void:
+func test_climb_r2_1() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -39,7 +72,7 @@ func test_climb_kick_cw1() -> void:
 	assert_kick()
 
 
-func test_climb_kick_cw2() -> void:
+func test_climb_r2_2() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -57,39 +90,7 @@ func test_climb_kick_cw2() -> void:
 	assert_kick()
 
 
-func test_climb_kick_cw3() -> void:
-	from_grid = [
-		"    ",
-		"vvv ",
-		"  v ",
-		" :v:",
-	]
-	to_grid = [
-		"   v",
-		"   v",
-		" vvv",
-		" : :",
-	]
-	assert_kick()
-
-
-func test_climb_kick_cw4() -> void:
-	from_grid = [
-		"    ",
-		"vvv:",
-		"  v ",
-		" :v:",
-	]
-	to_grid = [
-		"  v ",
-		"  v ",
-		"vvv ",
-		" : :",
-	]
-	assert_kick()
-
-
-func test_climb_kick_ccw0() -> void:
+func test_climb_2r_0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -107,7 +108,7 @@ func test_climb_kick_ccw0() -> void:
 	assert_kick()
 
 
-func test_climb_kick_ccw1() -> void:
+func test_climb_2r_1() -> void:
 	from_grid = [
 		"      ",
 		"      ",
@@ -125,7 +126,40 @@ func test_climb_kick_ccw1() -> void:
 	assert_kick()
 
 
-func test_climb_kick_ccw2() -> void:
+
+func test_climb_2l_0() -> void:
+	from_grid = [
+		"    ",
+		"vvv ",
+		"  v ",
+		" :v:",
+	]
+	to_grid = [
+		"   v",
+		"   v",
+		" vvv",
+		" : :",
+	]
+	assert_kick()
+
+
+func test_climb_2l_1() -> void:
+	from_grid = [
+		"    ",
+		"vvv:",
+		"  v ",
+		" :v:",
+	]
+	to_grid = [
+		"  v ",
+		"  v ",
+		"vvv ",
+		" : :",
+	]
+	assert_kick()
+
+
+func test_climb_2l_2() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -139,38 +173,6 @@ func test_climb_kick_ccw2() -> void:
 		"  v  ",
 		":::  ",
 		":::  ",
-	]
-	assert_kick()
-
-
-func test_climb_kick_ccw3() -> void:
-	from_grid = [
-		"    ",
-		" vvv",
-		" v  ",
-		":v: ",
-	]
-	to_grid = [
-		"v   ",
-		"v   ",
-		"vvv ",
-		": : ",
-	]
-	assert_kick()
-
-
-func test_climb_kick_ccw4() -> void:
-	from_grid = [
-		"    ",
-		":vvv",
-		" v  ",
-		":v: ",
-	]
-	to_grid = [
-		" v  ",
-		" v  ",
-		" vvv",
-		": : ",
 	]
 	assert_kick()
 

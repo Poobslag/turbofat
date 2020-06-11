@@ -533,7 +533,7 @@ func test_l_golder_kick() -> void:
 	assert_kick()
 
 
-func test_j_climb_kick0() -> void:
+func test_j_climb_r2_0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -551,75 +551,7 @@ func test_j_climb_kick0() -> void:
 	assert_kick()
 
 
-func test_j_climb_kick1() -> void:
-	from_grid = [
-		"     ",
-		"     ",
-		"  j  ",
-		": j::",
-		":jj::",
-	]
-	to_grid = [
-		"     ",
-		" j   ",
-		" jjj ",
-		":  ::",
-		":  ::",
-	]
-	assert_kick()
-
-
-func test_j_climb_kick2() -> void:
-	from_grid = [
-		"     ",
-		"     ",
-		"  j: ",
-		": j::",
-		":jj::",
-	]
-	to_grid = [
-		"     ",
-		"j    ",
-		"jjj: ",
-		":  ::",
-		":  ::",
-	]
-	assert_kick()
-
-
-func test_j_climb_kick3() -> void:
-	from_grid = [
-		"     ",
-		"::   ",
-		":jjj ",
-		":::j ",
-	]
-	to_grid = [
-		"  jj ",
-		"::j  ",
-		": j  ",
-		":::  ",
-	]
-	assert_kick()
-
-
-func test_j_climb_kick4() -> void:
-	from_grid = [
-		"     ",
-		": j  ",
-		"::j  ",
-		":jj  ",
-	]
-	to_grid = [
-		"     ",
-		" jjj ",
-		":: j ",
-		":    ",
-	]
-	assert_kick()
-
-
-func test_j_climb_kick5() -> void:
+func test_j_climb_r2_1() -> void:
 	from_grid = [
 		"    ",
 		"    ",
@@ -637,25 +569,96 @@ func test_j_climb_kick5() -> void:
 	assert_kick()
 
 
-func test_l_climb_kick0() -> void:
+"""
+It's important a j piece can climb onto an l piece against a wall, to start a jlo box
+"""
+func test_j_climb_r2_jlo() -> void:
 	from_grid = [
 		"     ",
-		"     ",
-		" ll  ",
-		"::l :",
-		"::l :",
+		"   jj",
+		"   j ",
+		"   j:",
+		"  :::",
 	]
 	to_grid = [
 		"     ",
-		" lll ",
-		" l   ",
-		"::  :",
-		"::  :",
+		"  jjj",
+		"    j",
+		"    :",
+		"  :::",
 	]
 	assert_kick()
 
 
-func test_l_climb_kick1() -> void:
+func test_j_climb_2l() -> void:
+	from_grid = [
+		"     ",
+		"::   ",
+		":jjj ",
+		":::j ",
+	]
+	to_grid = [
+		"  jj ",
+		"::j  ",
+		": j  ",
+		":::  ",
+	]
+	assert_kick()
+
+
+func test_j_climb_l0_0() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		"  j  ",
+		": j::",
+		":jj::",
+	]
+	to_grid = [
+		"     ",
+		" j   ",
+		" jjj ",
+		":  ::",
+		":  ::",
+	]
+	assert_kick()
+
+
+func test_j_climb_l0_1() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		"  j: ",
+		": j::",
+		":jj::",
+	]
+	to_grid = [
+		"     ",
+		"j    ",
+		"jjj: ",
+		":  ::",
+		":  ::",
+	]
+	assert_kick()
+
+
+func test_j_climb_l2() -> void:
+	from_grid = [
+		"     ",
+		": j  ",
+		"::j  ",
+		":jj  ",
+	]
+	to_grid = [
+		"     ",
+		" jjj ",
+		":: j ",
+		":    ",
+	]
+	assert_kick()
+
+
+func test_l_climb_r0_0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -673,7 +676,7 @@ func test_l_climb_kick1() -> void:
 	assert_kick()
 
 
-func test_l_climb_kick2() -> void:
+func test_l_climb_r0_1() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -691,23 +694,7 @@ func test_l_climb_kick2() -> void:
 	assert_kick()
 
 
-func test_l_climb_kick3() -> void:
-	from_grid = [
-		"     ",
-		"   ::",
-		" lll:",
-		" l:::",
-	]
-	to_grid = [
-		" ll  ",
-		"  l::",
-		"  l :",
-		"  :::",
-	]
-	assert_kick()
-
-
-func test_l_climb_kick4() -> void:
+func test_l_climb_r2() -> void:
 	from_grid = [
 		"     ",
 		"  l :",
@@ -723,7 +710,41 @@ func test_l_climb_kick4() -> void:
 	assert_kick()
 
 
-func test_l_climb_kick5() -> void:
+func test_l_climb_2l() -> void:
+	from_grid = [
+		"     ",
+		"   ::",
+		" lll:",
+		" l:::",
+	]
+	to_grid = [
+		" ll  ",
+		"  l::",
+		"  l :",
+		"  :::",
+	]
+	assert_kick()
+
+
+func test_l_climb_l2_0() -> void:
+	from_grid = [
+		"     ",
+		"     ",
+		" ll  ",
+		"::l :",
+		"::l :",
+	]
+	to_grid = [
+		"     ",
+		" lll ",
+		" l   ",
+		"::  :",
+		"::  :",
+	]
+	assert_kick()
+
+
+func test_l_climb_l2_1() -> void:
 	from_grid = [
 		"    ",
 		"    ",
@@ -737,6 +758,27 @@ func test_l_climb_kick5() -> void:
 		" l  ",
 		"::: ",
 		"::: ",
+	]
+	assert_kick()
+
+
+"""
+It's important an l piece can climb onto an j piece against a wall, to start a jlo box
+"""
+func test_l_climb_l2_jlo() -> void:
+	from_grid = [
+		"     ",
+		"ll   ",
+		" l   ",
+		":l   ",
+		":::  ",
+	]
+	to_grid = [
+		"     ",
+		"lll  ",
+		"l    ",
+		":    ",
+		":::  ",
 	]
 	assert_kick()
 
