@@ -43,7 +43,7 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("9",  48, 20, 36, 7, 16, 60, 24, 12))
 	
 	# normal; 30-60 blocks per minute
-	_add_speed(PieceSpeed.new("A0",    4, 20, 20, 7, 16, 40, 24, 12))
+	_add_speed(PieceSpeed.new("A0",    4, 20, 20, 7, 16, 60, 24, 12))
 	_add_speed(PieceSpeed.new("A1",   32, 20, 20, 7, 16, 40, 24, 12))
 	_add_speed(PieceSpeed.new("A2",   48, 20, 20, 7, 16, 40, 24, 12))
 	_add_speed(PieceSpeed.new("A3",   64, 20, 20, 7, 16, 40, 24, 12))
@@ -63,8 +63,8 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("AF", 20*G, 16, 12, 7, 10, 30, 12,  6))
 	
 	# crazy; 120-250 blocks per minute
-	_add_speed(PieceSpeed.new( "F0",    4, 12, 8, 5,  8, 24, 6, 3))
-	_add_speed(PieceSpeed.new( "F1",  1*G, 12, 8, 5,  8, 24, 6, 3))
+	_add_speed(PieceSpeed.new( "F0",    4, 12, 8, 5,  8, 60, 6, 3))
+	_add_speed(PieceSpeed.new( "F1",  1*G, 12, 8, 5,  8, 40, 6, 3))
 	_add_speed(PieceSpeed.new( "FA", 20*G, 12, 8, 5,  8, 24, 6, 3))
 	_add_speed(PieceSpeed.new( "FB", 20*G,  8, 6, 5,  8, 22, 5, 3))
 	_add_speed(PieceSpeed.new( "FC", 20*G,  6, 4, 5,  8, 20, 4, 3))
