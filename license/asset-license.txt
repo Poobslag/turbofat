@@ -72,6 +72,12 @@ assets/main/world/3d/environment/path-stonecircle.gltf Kenney's Nature Kit 2.1
 assets/main/world/3d/environment/path-stonecorner.gltf Kenney's Nature Kit 2.1
 assets/main/world/3d/environment/path-stoneend.gltf Kenney's Nature Kit 2.1
 
+Graphics
+--------------------------------------------------------------------------------
+assets/main/world/environment/cliff-block-rock.png Kenney's Nature Kit 2.1
+assets/main/world/environment/cliff-block-rockrock.png Kenney's Nature Kit 2.1
+assets/main/world/environment/path-00-sheet.png Kenney's Nature Kit 2.1
+
 Other
 --------------------------------------------------------------------------------
 src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)

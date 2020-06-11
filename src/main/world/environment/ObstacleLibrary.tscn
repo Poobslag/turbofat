@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/main/world/environment/path-stone-sheet.png" type="Texture" id=2]
+
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -64, 0, 0, -32, 64, 0, 0, 32 )
+
+[node name="ObstacleLibrary" type="Node2D"]
+
+[node name="PathNone" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+offset = Vector2( 0, -60 )
+vframes = 4
+hframes = 5
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PathNone"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PathNone/StaticBody2D"]
+shape = SubResource( 1 )

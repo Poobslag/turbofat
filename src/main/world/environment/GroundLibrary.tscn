@@ -1,0 +1,137 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/main/world/environment/path-00-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=2]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+points = PoolVector2Array( -64, 0, 0, -32, 64, 0, 0, 32 )
+
+[node name="NatureLibrary" type="Node2D"]
+
+[node name="Impassable" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+texture = ExtResource( 2 )
+offset = Vector2( 0, 20 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Impassable"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Impassable/StaticBody2D"]
+shape = SubResource( 1 )
+
+[node name="PathNone" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+
+[node name="PathNe" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 1
+
+[node name="PathSw" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 2
+
+[node name="PathNeSw" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 3
+
+[node name="PathNeSw2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 4
+
+[node name="PathNw" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 5
+
+[node name="PathNeNw" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 6
+
+[node name="PathNwSw" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 7
+
+[node name="PathSe" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 8
+
+[node name="PathNeSe" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 9
+
+[node name="PathSwSe" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 10
+
+[node name="PathNwSe" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 11
+
+[node name="PathNwSe2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 12
+
+[node name="PathAll" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 13
+
+[node name="PathAll2" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 14
+
+[node name="PathAll3" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 15
+
+[node name="PathAll4" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+offset = Vector2( 0, 20 )
+vframes = 4
+hframes = 5
+frame = 16
