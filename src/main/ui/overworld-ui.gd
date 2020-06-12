@@ -1,3 +1,4 @@
+class_name OverworldUi
 extends Control
 """
 UI elements for the overworld.
