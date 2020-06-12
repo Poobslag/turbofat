@@ -23,6 +23,14 @@ extents = Vector2( 28, 14 )
 
 [node name="Overworld" type="Node2D"]
 
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GroundMap" type="TileMap" parent="."]
 mode = 1
 tile_set = ExtResource( 14 )
