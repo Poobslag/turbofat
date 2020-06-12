@@ -25,7 +25,7 @@ position = Vector2( 381.228, 585.763 )
 script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
-self_modulate = Color( 0.521569, 0.368627, 0.270588, 1 )
+self_modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 show_behind_parent = true
 light_mask = 2
 scale = Vector2( 0.17, 0.17 )

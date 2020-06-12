@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/spira.gd" type="Script" id=2]
@@ -18,30 +18,8 @@
 [ext_resource path="res://src/main/world/environment/grass-tufts.gd" type="Script" id=16]
 [ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=17]
 [ext_resource path="res://src/main/world/creature/CreatureShadow.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=19]
-[ext_resource path="res://src/main/world/environment/obstacle-shadows.gd" type="Script" id=20]
 
-[sub_resource type="TileSet" id=1]
-0/name = "block-shadow.png 0"
-0/texture = ExtResource( 19 )
-0/tex_offset = Vector2( 0, 20 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 212, 212 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-
-[sub_resource type="ViewportTexture" id=3]
-flags = 5
-viewport_path = NodePath("Ground/Shadows/Viewport")
-
-[sub_resource type="RectangleShape2D" id=2]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 28, 14 )
 
 [node name="Overworld" type="Node2D"]
@@ -66,52 +44,27 @@ format = 1
 tile_data = PoolIntArray( -327677, 1, 0, -327676, 1, 0, -327675, 1, 0, -327667, 1, 0, -327666, 1, 0, -327665, 1, 0, -262144, 1, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -262129, 1, 0, -196608, 1, 0, -196607, 0, 0, -196606, 0, 0, -196605, 22, 0, -196604, 22, 0, -196603, 22, 0, -196602, 22, 0, -196601, 22, 0, -196600, 22, 0, -196599, 22, 0, -196598, 22, 0, -196597, 22, 0, -196596, 22, 0, -196595, 0, 0, -196594, 0, 0, -196593, 1, 0, -131072, 1, 0, -131071, 0, 0, -131070, 22, 0, -131069, 22, 0, -131068, 22, 0, -131067, 0, 0, -131066, 22, 0, -131065, 0, 0, -131064, 22, 0, -131063, 0, 0, -131062, 22, 0, -131061, 0, 0, -131060, 22, 0, -131059, 22, 0, -131058, 0, 0, -131057, 1, 0, -65536, 1, 0, -65535, 0, 0, -65534, 22, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 21, 2, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 22, 0, -65522, 0, 0, -65521, 1, 0, 0, 1, 0, 1, 0, 0, 2, 22, 0, 3, 21, 65539, 4, 21, 131073, 5, 21, 131073, 6, 21, 131073, 7, 21, 131075, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 22, 0, 14, 0, 0, 15, 1, 0, 65536, 1, 0, 65537, 0, 0, 65538, 22, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 21, 65540, 65544, 21, 131073, 65545, 21, 131073, 65546, 21, 65538, 65547, 0, 0, 65548, 0, 0, 65549, 22, 0, 65550, 0, 0, 65551, 1, 0, 131072, 1, 0, 131073, 0, 0, 131074, 22, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 21, 65540, 131083, 21, 65536, 131084, 0, 0, 131085, 22, 0, 131086, 0, 0, 131087, 1, 0, 196608, 1, 0, 196609, 0, 0, 196610, 22, 0, 196611, 22, 0, 196612, 0, 0, 196613, 22, 0, 196614, 21, 0, 196615, 22, 0, 196616, 0, 0, 196617, 22, 0, 196618, 0, 0, 196619, 22, 0, 196620, 22, 0, 196621, 22, 0, 196622, 0, 0, 196623, 1, 0, 262144, 1, 0, 262145, 0, 0, 262146, 0, 0, 262147, 22, 0, 262148, 22, 0, 262149, 22, 0, 262150, 22, 0, 262151, 22, 0, 262152, 22, 0, 262153, 22, 0, 262154, 22, 0, 262155, 22, 0, 262156, 22, 0, 262157, 0, 0, 262158, 0, 0, 262159, 1, 0, 327680, 1, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393231, 1, 0 )
 
 [node name="Shadows" type="Node2D" parent="Ground"]
-
-[node name="Viewport" type="Viewport" parent="Ground/Shadows"]
-size = Vector2( 1024, 600 )
-transparent_bg = true
-
-[node name="ObstacleShadows" type="TileMap" parent="Ground/Shadows/Viewport"]
-mode = 1
-tile_set = SubResource( 1 )
-cell_size = Vector2( 128, 64 )
-cell_tile_origin = 1
-centered_textures = true
-format = 1
-tile_data = PoolIntArray( -131069, 0, 0, -131068, 0, 0, -131067, 0, 0 )
-script = ExtResource( 20 )
-_obstacle_map_path = NodePath("../../../../Obstacles/ObstacleMap")
-
-[node name="SpiraShadow" parent="Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-position = Vector2( 0, 0 )
-_creature_path = NodePath("../../../../Obstacles/Spira")
-_shadow_scale = Vector2( 0.4, 0.4 )
-
-[node name="BortShadow" parent="Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-position = Vector2( 0, 0 )
-_creature_path = NodePath("../../../../Obstacles/Bort")
-_shadow_scale = Vector2( 0.4, 0.4 )
-
-[node name="EbeShadow" parent="Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-position = Vector2( 0, 0 )
-_creature_path = NodePath("../../../../Obstacles/Ebe")
-_shadow_scale = Vector2( 0.4, 0.4 )
-
-[node name="BoatriciaShadow" parent="Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-position = Vector2( 0, 0 )
-_creature_path = NodePath("../../../../Obstacles/Boatricia")
-_shadow_scale = Vector2( 0.4, 0.4 )
-
-[node name="TextureRect" type="TextureRect" parent="Ground/Shadows"]
 modulate = Color( 1, 1, 1, 0.501961 )
-margin_right = 40.0
-margin_bottom = 40.0
-rect_min_size = Vector2( 1024, 600 )
-texture = SubResource( 3 )
-flip_v = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
+
+[node name="SpiraShadow" parent="Ground/Shadows" instance=ExtResource( 18 )]
+position = Vector2( 0, 0 )
+_creature_path = NodePath("../../../Obstacles/Spira")
+_shadow_scale = Vector2( 0.4, 0.4 )
+
+[node name="BortShadow" parent="Ground/Shadows" instance=ExtResource( 18 )]
+position = Vector2( 0, 0 )
+_creature_path = NodePath("../../../Obstacles/Bort")
+_shadow_scale = Vector2( 0.4, 0.4 )
+
+[node name="EbeShadow" parent="Ground/Shadows" instance=ExtResource( 18 )]
+position = Vector2( 0, 0 )
+_creature_path = NodePath("../../../Obstacles/Ebe")
+_shadow_scale = Vector2( 0.4, 0.4 )
+
+[node name="BoatriciaShadow" parent="Ground/Shadows" instance=ExtResource( 18 )]
+position = Vector2( 0, 0 )
+_creature_path = NodePath("../../../Obstacles/Boatricia")
+_shadow_scale = Vector2( 0.4, 0.4 )
 
 [node name="Obstacles" type="YSort" parent="."]
 
@@ -222,7 +175,7 @@ scale = Vector2( 0.539476, 0.539476 )
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Obstacles/GlowySphere"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 
 [node name="OverworldUi" type="Control" parent="."]
 anchor_right = 1.0

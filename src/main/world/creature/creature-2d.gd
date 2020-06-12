@@ -4,6 +4,8 @@ extends KinematicBody2D
 Script for representing a creature in the 2D overworld.
 """
 
+signal fatness_changed
+
 # Number from [0.0, 1.0] which determines how quickly the creature slows down
 const FRICTION := 0.15
 
@@ -32,7 +34,7 @@ var _non_iso_velocity := Vector2.ZERO
 var _iso_walk_direction := Vector2.ZERO
 var _non_iso_walk_direction := Vector2.ZERO
 
-onready var _creature := $Viewport/Creature
+onready var _creature := $Viewport/Creature setget ,get_creature
 
 func _ready() -> void:
 	_refresh()
@@ -45,6 +47,14 @@ func _physics_process(delta: float) -> void:
 	set_iso_velocity(move_and_slide(_iso_velocity))
 	_update_animation()
 	_maybe_play_bonk_sound(old_non_iso_velocity)
+
+
+func get_fatness() -> float:
+	return _creature.get_fatness()
+
+
+func get_creature() -> Creature:
+	return _creature as Creature
 
 
 func set_non_iso_walk_direction(new_direction: Vector2) -> void:
@@ -190,3 +200,7 @@ func _update_animation() -> void:
 
 func _on_Creature_landed() -> void:
 	$HopSound.play()
+
+
+func _on_Creature_fatness_changed() -> void:
+	emit_signal("fatness_changed")
