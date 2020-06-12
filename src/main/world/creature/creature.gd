@@ -40,6 +40,7 @@ signal jumped
 
 signal orientation_changed(old_orientation, new_orientation)
 signal movement_mode_changed(movement_mode)
+signal fatness_changed
 
 # directions the creature can face
 enum Orientation {
@@ -116,6 +117,7 @@ Parameters:
 func set_fatness(fatness: float) -> void:
 	if not Engine.is_editor_hint():
 		$FatPlayer.set_fatness(fatness)
+		emit_signal("fatness_changed")
 
 
 """

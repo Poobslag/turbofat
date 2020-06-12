@@ -12,7 +12,7 @@ var _shake_remaining_seconds := 0.0
 var _shake_magnitude := 2.5
 
 var _shake_position: Vector2
-var camera_position := Vector2(-89.881, -104.904)
+export (Vector2) var camera_position := Vector2(-89.881, -104.904)
 
 # all of the seats in the scene. each 'seat' includes a table, chairs, a creature, etc...
 onready var _seats := [$Seat1, $Seat2, $Seat3]
