@@ -9,11 +9,9 @@ var foothold_radius := 2.0
 
 onready var _creature := $Viewport/Creature
 
-
 func _ready() -> void:
 	$CollisionShape.disabled = true
 	$ShadowMesh.visible = false
-	_creature.get_node("Sprites/Shadow").visible = false
 
 
 func set_creature_def(creature_def: Dictionary) -> void:

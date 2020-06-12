@@ -28,12 +28,6 @@ render_target_update_mode = 3
 position = Vector2( 512, 512 )
 z_index = 0
 
-[node name="ColorRect" type="ColorRect" parent="Viewport"]
-visible = false
-margin_right = 400.0
-margin_bottom = 400.0
-color = Color( 1, 1, 1, 0.462745 )
-
 [node name="TextureRect" type="TextureRect" parent="."]
 margin_left = -200.0
 margin_top = -206.315
@@ -58,4 +52,5 @@ bus = "Sound Bus"
 stream = ExtResource( 3 )
 volume_db = -4.0
 bus = "Sound Bus"
+[connection signal="fatness_changed" from="Viewport/Creature" to="." method="_on_Creature_fatness_changed"]
 [connection signal="landed" from="Viewport/Creature" to="." method="_on_Creature_landed"]
