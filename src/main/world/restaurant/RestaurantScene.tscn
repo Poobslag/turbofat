@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/restaurant/Seat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/restaurant/door-chime.gd" type="Script" id=3]
+[ext_resource path="res://src/main/world/creature/CreatureShadow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal-shadow.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/world/shadow-oval-2.png" type="Texture" id=11]
@@ -132,6 +133,23 @@ centered = false
 offset = Vector2( 0, -35 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 4400, 80 )
+
+[node name="CreatureShadow1" parent="FloorShadows" instance=ExtResource( 4 )]
+visible = false
+_creature_path = NodePath("../../Creature1")
+_shadow_offset = Vector2( 0, 150 )
+
+[node name="CreatureShadow2" parent="FloorShadows" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 1381.23, 585.763 )
+_creature_path = NodePath("../../Creature2")
+_shadow_offset = Vector2( 0, 150 )
+
+[node name="CreatureShadow3" parent="FloorShadows" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 2381.23, 585.763 )
+_creature_path = NodePath("../../Creature2")
+_shadow_offset = Vector2( 0, 150 )
 
 [node name="Pillar1" type="Sprite" parent="."]
 light_mask = 2
