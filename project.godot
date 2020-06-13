@@ -109,11 +109,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-2d.gd"
 }, {
-"base": "KinematicBody",
-"class": "Creature3D",
-"language": "GDScript",
-"path": "res://src/main/world/3d/creature-3d.gd"
-}, {
 "base": "Reference",
 "class": "CreatureLoader",
 "language": "GDScript",
@@ -224,20 +219,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/other-rules.gd"
 }, {
-"base": "GridMap",
-"class": "OverworldGridMap3d",
-"language": "GDScript",
-"path": "res://src/main/world/3d/environment/overworld-grid-map-3d.gd"
-}, {
 "base": "Control",
 "class": "OverworldUi",
 "language": "GDScript",
 "path": "res://src/main/ui/overworld-ui.gd"
-}, {
-"base": "Control",
-"class": "OverworldUi3D",
-"language": "GDScript",
-"path": "res://src/main/ui/3d/overworld-ui-3d.gd"
 }, {
 "base": "Control",
 "class": "PieceManager",
@@ -339,11 +324,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/spira.gd"
 }, {
-"base": "Creature3D",
-"class": "Spira3D",
-"language": "GDScript",
-"path": "res://src/main/world/3d/spira-3d.gd"
-}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -390,7 +370,6 @@ _global_script_class_icons={
 "Connect": "",
 "Creature": "",
 "Creature2D": "",
-"Creature3D": "",
 "CreatureLoader": "",
 "EditorPlayfield": "",
 "FontFitLabel": "",
@@ -413,9 +392,7 @@ _global_script_class_icons={
 "NextPieceDisplays": "",
 "OldSave": "",
 "OtherRules": "",
-"OverworldGridMap3d": "",
 "OverworldUi": "",
-"OverworldUi3D": "",
 "PieceManager": "",
 "PieceQueue": "",
 "PieceSpeed": "",
@@ -436,7 +413,6 @@ _global_script_class_icons={
 "ScoreRules": "",
 "SmoothPath": "",
 "Spira": "",
-"Spira3D": "",
 "State": "",
 "StateMachine": "",
 "TutorialHud": "",
@@ -459,7 +435,6 @@ default_bus_layout="res://src/main/ui/default_bus_layout.tres"
 
 Breadcrumb="*res://src/main/breadcrumb.gd"
 ChattableManager="*res://src/main/world/chattable-manager.gd"
-ChattableManager3D="*res://src/main/world/3d/chattable-manager-3d.gd"
 FileUtils="*res://src/main/file-utils.gd"
 Global="*res://src/main/global.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
@@ -563,12 +538,6 @@ ui_menu={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
-jump={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":88,"unicode":0,"echo":false,"script":null)
-, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":1,"pressure":0.0,"pressed":false,"script":null)
- ]
-}
 interact={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":90,"unicode":0,"echo":false,"script":null)
@@ -578,6 +547,7 @@ interact={
 rewind_text={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"unicode":0,"echo":false,"script":null)
+, Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
 rotate_cw={
@@ -614,4 +584,3 @@ quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
 threads/thread_model=2
 quality/filters/msaa=2
 quality/depth/hdr=false
-environment/default_environment="res://src/main/world/3d/environment/default_env_3d.tres"

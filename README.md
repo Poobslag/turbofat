@@ -15,7 +15,7 @@ While this game is still in development, my goal is for it to include three diff
 
 ## How to play
 
-On the overworld, press the directional keys to move, X to jump, and Z to talk.
+On the overworld, press the directional keys to move, Z to talk, and 'shift' to rewind dialog. Gamepads are also supported.
 
 In the puzzle mode, press the directional keys to control the piece, and Z/X to rotate the piece. Arrange your pieces into complete rows to clear lines and score points. Arrange your pieces into 3x3, 3x4 or 3x5 squares to form boxes, which award you additional points for line clears.
 

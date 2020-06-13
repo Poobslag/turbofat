@@ -18,8 +18,6 @@ Returns an array of ChatEvent objects for the dialog sequence which the player s
 func load_chat_events() -> ChatTree:
 	var chat_tree
 	var focused: Node = ChattableManager.get_focused()
-	if not focused:
-		focused = ChattableManager3D.get_focused()
 	if not focused.has_meta("chat_id"):
 		# can't look up chat events without a chat_id; return an empty array
 		push_warning("Chattable %s does not define a 'chat_id' property." % focused)

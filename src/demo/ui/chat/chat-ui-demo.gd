@@ -48,7 +48,6 @@ var _choice_override := ""
 
 func _ready() -> void:
 	ChattableManager.add_chat_theme_def("Lorum", {})
-	ChattableManager3D.add_chat_theme_def("Lorum", {})
 	_play_chat_tree("dialog-unbranched")
 
 

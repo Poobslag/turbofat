@@ -60,14 +60,10 @@ func from_json_dict(json: Dictionary) -> void:
 	
 	if json.has("who"):
 		chat_theme_def = ChattableManager.get_chat_theme_def(who)
-		if not chat_theme_def:
-			chat_theme_def = ChattableManager3D.get_chat_theme_def(who)
 	else:
 		# Dialog with no speaker; decorate it as a thought bubble
 		text = "(%s)" % text
 		chat_theme_def = ChattableManager.get_chat_theme_def("Spira")
-		if not chat_theme_def:
-			chat_theme_def = ChattableManager3D.get_chat_theme_def("Spira")
 
 
 """

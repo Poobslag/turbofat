@@ -1,4 +1,4 @@
-extends Spatial
+extends Node
 """
 A demo which shows off the creature's range of emotions
 
