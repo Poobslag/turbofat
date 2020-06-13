@@ -41,7 +41,7 @@ Usually the frame is controlled by an animation. But when it's not, this ensures
 func _apply_default_frames() -> void:
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
-	_mouth.frame = 1 if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST] else 2
+	_mouth.json_frame = 1 if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST] else 2
 
 
 """

@@ -25,7 +25,7 @@ creature_def = {
 "horn": "0",
 "horn_rgb": "282828",
 "line_rgb": "41281e",
-"mouth": "1"
+"mouth": "2"
 }
 chat_theme_def = {
 "accent_scale": 0.33,

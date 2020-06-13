@@ -1,0 +1,82 @@
+{ "frames": {
+   "Sprite-0001 0.": {
+    "frame": { "x": 56, "y": 68, "w": 40, "h": 38 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 40, "y": 42, "w": 40, "h": 38 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 100
+   },
+   "Sprite-0001 1.": {
+    "frame": { "x": 0, "y": 111, "w": 80, "h": 19 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 61, "w": 80, "h": 19 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 100
+   },
+   "Sprite-0001 2.": {
+    "frame": { "x": 56, "y": 0, "w": 46, "h": 38 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 42, "w": 46, "h": 38 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 100
+   },
+   "Sprite-0001 3.": {
+    "frame": { "x": 29, "y": 0, "w": 22, "h": 80 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 22, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 100
+   },
+   "Sprite-0001 4.": {
+    "frame": { "x": 101, "y": 68, "w": 37, "h": 39 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 37, "h": 39 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 100
+   },
+   "Sprite-0001 5.": {
+    "frame": { "x": 56, "y": 43, "w": 80, "h": 20 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 80, "h": 20 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 100
+   },
+   "Sprite-0001 6.": {
+    "frame": { "x": 107, "y": 0, "w": 41, "h": 38 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 39, "y": 0, "w": 41, "h": 38 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 100
+   },
+   "Sprite-0001 7.": {
+    "frame": { "x": 0, "y": 0, "w": 24, "h": 80 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 56, "y": 0, "w": 24, "h": 80 },
+    "sourceSize": { "w": 80, "h": 80 },
+    "duration": 100
+   }
+ },
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "ball-sheet.png",
+  "format": "RGBA8888",
+  "size": { "w": 148, "h": 130 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "Layer 1", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+  ]
+ }
+}
