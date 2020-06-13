@@ -146,7 +146,7 @@ func _load_resource(resource_path: String) -> void:
 	if _cache.has(resource_path):
 		# resource already cached
 		pass
-	elif !ResourceLoader.exists(resource_path):
+	elif not ResourceLoader.exists(resource_path):
 		# resource doesn't exist; cache so we don't try again
 		_cache[resource_path] = "_"
 	else:

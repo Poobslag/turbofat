@@ -83,7 +83,7 @@ func _load_texture(creature_def: Dictionary, node_path: String, key: String, fil
 		pass
 	else:
 		var resource_path := "res://assets/main/world/creature/%s/%s.png" % [creature_def[key], filename]
-		if !ResourceLoader.exists(resource_path):
+		if not ResourceLoader.exists(resource_path):
 			# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
 			# but also throws an error.
 			pass
@@ -91,10 +91,55 @@ func _load_texture(creature_def: Dictionary, node_path: String, key: String, fil
 			resource = load(resource_path)
 	
 	# assign the texture properties
-	creature_def["property:%s:texture" % node_path] = resource
 	if resource:
+		creature_def["property:%s:texture" % node_path] = resource
 		creature_def["property:%s:vframes" % node_path] = max(1, int(round(resource.get_height() / 1025)))
 		creature_def["property:%s:hframes" % node_path] = max(1, int(round(resource.get_width() / 1025)))
+	else:
+		creature_def.erase("property:%s:texture" % node_path)
+
+
+"""
+Loads a packed creature texture based on a creature_def key/value pair.
+
+The input creature_def contains key/value pairs which we need to map to a texture to load, such as {'ear': '0'}. We map
+this key/value pair to a resource such as res://assets/main/world/creature/0/ear-z1.png. The input parameters include
+the dictionary of key/value pairs, which specific key/value pair we should look up, and the filename to associate with
+the key/value pair.
+
+Parameters:
+	'creature_def': The dictionary of key/value pairs defining a set of textures to load. 
+	
+	'key': The specific key/value pair to be looked up.
+	
+	'filename': The stripped-down filename of the resource to look up. All creature texture files have a path of
+		res://assets/main/world/creature/0/{something}.png, so this parameter only specifies the {something}.
+"""
+func _load_packed_texture(creature_def: Dictionary, node_path: String, key: String, filename: String) -> void:
+	# load the texture resource
+	var resource_path: String
+	var json_path: String
+	var resource: Resource;
+	if not creature_def.has(key):
+		# The key was not specified in the creature definition. This is not an error condition, a creature might not
+		# have an 'ear' key if she doesn't have ears.
+		pass
+	else:
+		resource_path = "res://assets/main/world/creature/%s/%s.png" % [creature_def[key], filename]
+		json_path = "res://assets/main/world/creature/%s/%s.json" % [creature_def[key], filename]
+		if not ResourceLoader.exists(resource_path):
+			# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
+			# but also throws an error.
+			pass
+		else:
+			resource = load(resource_path)
+	
+	if resource:
+		creature_def["property:%s:texture" % node_path] = resource
+		creature_def["property:%s:json_path" % node_path] = json_path
+	else:
+		creature_def.erase("property:%s:texture" % node_path)
+		creature_def.erase("property:%s:json_path" % node_path)
 
 
 """
@@ -118,7 +163,7 @@ func _load_horn(creature_def: Dictionary) -> void:
 Loads the resources for a creature's mouth based on a creature definition.
 """
 func _load_mouth(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/HeadBobber/Mouth", "mouth", "mouth-sheet")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/Mouth", "mouth", "mouth-packed")
 	_load_texture(creature_def, "Neck0/HeadBobber/Food", "mouth", "food-sheet")
 	_load_texture(creature_def, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-sheet")
 
@@ -163,7 +208,6 @@ func _load_colors(creature_def: Dictionary) -> void:
 	creature_def["shader:Neck0/HeadBobber/EarZ1/Outline:black"] = line_color
 	creature_def["shader:Neck0/HeadBobber/HornZ1/Outline:black"] = line_color
 	creature_def["shader:Neck0/HeadBobber/EarZ2/Outline:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/Mouth/Outline:black"] = line_color
 	creature_def["shader:Neck0/HeadBobber/Eyes/Outline:black"] = line_color
 	creature_def["shader:FarArm:black"] = line_color
 	creature_def["shader:FarLeg:black"] = line_color

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/mouth-sheet.png-88d44ad913e25e0adc8baccfd57de552.stex"
+path="res://.import/mouth-packed.png-2829af7b5124e4394d09cff50d3b0d38.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/2/mouth-sheet.png"
-dest_files=[ "res://.import/mouth-sheet.png-88d44ad913e25e0adc8baccfd57de552.stex" ]
+source_file="res://assets/main/world/creature/2/mouth-packed.png"
+dest_files=[ "res://.import/mouth-packed.png-2829af7b5124e4394d09cff50d3b0d38.stex" ]
 
 [params]
 

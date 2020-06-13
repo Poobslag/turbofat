@@ -114,7 +114,7 @@ Calculates the piece's type, position and orientation.
 """
 func _create_active_piece(ascii_grid: Array) -> ActivePiece:
 	var piece_type := _determine_piece_type(ascii_grid)
-	if !piece_type:
+	if not piece_type:
 		push_error("Could not find piece type in '%s' grid" % ("from" if ascii_grid == from_grid else "to"))
 
 	var from_shape_data := []
@@ -138,7 +138,7 @@ func _create_active_piece(ascii_grid: Array) -> ActivePiece:
 			_active_piece.pos = position
 			_active_piece.orientation = pos_arr_index
 			break
-	if !_active_piece:
+	if not _active_piece:
 		push_error("Could not find piece position/orientation in '%s' grid"\
 				% ("from" if ascii_grid == from_grid else "to"))
 	return _active_piece

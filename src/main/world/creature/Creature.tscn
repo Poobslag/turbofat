@@ -12,6 +12,7 @@
 [ext_resource path="res://src/main/world/creature/mouth-anims.gd" type="Script" id=10]
 [ext_resource path="res://src/main/world/creature/smooth-path-outline.gd" type="Script" id=11]
 [ext_resource path="res://src/main/world/creature/fat-player.gd" type="Script" id=12]
+[ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=13]
 [ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=14]
 [ext_resource path="res://assets/main/world/creature/1/emote-brain-sheet.png" type="Texture" id=46]
 [ext_resource path="res://assets/main/world/creature/1/movement-z0-sheet.png" type="Texture" id=54]
@@ -168,12 +169,6 @@ shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
 shader_param/blue = null
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=21]
-resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/width = 6.0
-shader_param/black = Color( 0, 0, 0, 1 )
-
 [sub_resource type="ShaderMaterial" id=22]
 resource_local_to_scene = true
 shader = ExtResource( 2 )
@@ -221,13 +216,13 @@ length = 4.0
 loop = true
 step = 0.166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:json_frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.833335, 1.16667, 1.5, 1.83334, 3.16667, 3.5, 3.83333 ),
+"times": PoolRealArray( 0, 0.833335, 1.169, 1.5, 1.83334, 3.16667, 3.50001, 3.83334 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 2, 2, 13, 14, 15, 14, 13, 2 ]
@@ -238,13 +233,13 @@ length = 4.0
 loop = true
 step = 0.166667
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:json_frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.833333, 1.16667, 1.5, 1.837, 3.16667, 3.5, 3.83333 ),
+"times": PoolRealArray( 0, 0.833335, 1.16667, 1.5, 1.83334, 3.16667, 3.50001, 3.83334 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 1, 1, 10, 11, 12, 11, 10, 1 ]
@@ -254,7 +249,7 @@ tracks/0/keys = {
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:json_frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -294,7 +289,7 @@ tracks/2/keys = {
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:json_frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -334,7 +329,7 @@ tracks/2/keys = {
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:json_frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -350,7 +345,7 @@ tracks/0/keys = {
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:json_frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -366,7 +361,7 @@ tracks/0/keys = {
 length = 0.333333
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:json_frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -390,36 +385,24 @@ tracks/1/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Sprites/Neck0/HeadBobber/FoodLaser:frame")
+tracks/2/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:z_index")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 0, 1, 2, 0, 0 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:z_index")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
 "times": PoolRealArray( 0, 0.0333333, 0.266666, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 1, 1, 0 ]
 }
-tracks/4/type = "value"
-tracks/4/path = NodePath("Sprites/Neck0/HeadBobber/Food:z_index")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprites/Neck0/HeadBobber/Food:z_index")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0, 0.0666666, 0.0999999, 0.133333, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
@@ -430,7 +413,7 @@ tracks/4/keys = {
 length = 0.266666
 step = 0.0333333
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:frame")
+tracks/0/path = NodePath("Sprites/Neck0/HeadBobber/Mouth:json_frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -2460,25 +2443,18 @@ script = ExtResource( 9 )
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 20 )
-vframes = 2
-hframes = 8
-frame = 1
-
-[node name="Outline" type="Sprite" parent="Sprites/Neck0/HeadBobber/Mouth"]
-light_mask = 2
-material = SubResource( 21 )
-z_index = -2
-vframes = 2
-hframes = 8
-frame = 1
-script = ExtResource( 9 )
+position = Vector2( -512, -512 )
+scale = Vector2( 2, 2 )
+centered = false
+script = ExtResource( 13 )
+json_frame = 2
 
 [node name="Eyes" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 22 )
 hframes = 4
-frame = 3
+frame = 1
 
 [node name="Outline" type="Sprite" parent="Sprites/Neck0/HeadBobber/Eyes"]
 light_mask = 2
@@ -2643,28 +2619,28 @@ autostart = true
 [connection signal="movement_mode_changed" from="." to="Sprites/Body" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/FarArm" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/FarLeg" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/NearLeg" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/NearArm" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_movement_mode_changed"]
-[connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_Creature_orientation_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/NearLeg" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_movement_mode_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/FarArm" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/FarLeg" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/NearLeg" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/NearArm" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/NearLeg" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_orientation_changed"]
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
 [connection signal="before_mood_switched" from="EmoteAnims" to="." method="_on_EmoteAnims_before_mood_switched"]
 [connection signal="animation_started" from="MovementAnims" to="." method="_on_MovementAnims_animation_started"]
