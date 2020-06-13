@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://src/main/world/multi-outline.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=2]
@@ -2132,90 +2132,6 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=54]
-length = 30.0
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 30 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Vector2( -22.957, 9.645 ), Vector2( -14.17, -3.364 ), Vector2( -29.539, -23.439 ), Vector2( -43.054, -21.945 ), Vector2( -43.054, -21.945 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/FarMovement:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 30 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 7, 8, 9, 10, 10 ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.05 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "jumped" ],
-"method": "emit_sfx_signal"
-} ]
-}
-
-[sub_resource type="Animation" id=55]
-length = 30.0
-step = 0.05
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprites/Neck0:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 30 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ Vector2( 55.95, 51.64 ), Vector2( 47.17, 38.64 ), Vector2( 62.53, 18.57 ), Vector2( 76.05, 20.06 ), Vector2( 76.05, 20.06 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/FarMovement:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 30 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 2, 3, 4, 4 ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.05 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [ "jumped" ],
-"method": "emit_sfx_signal"
-} ]
-}
-
-[sub_resource type="Animation" id=56]
 length = 0.4
 loop = true
 step = 0.05
@@ -2258,7 +2174,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=57]
+[sub_resource type="Animation" id=55]
 length = 0.4
 loop = true
 step = 0.05
@@ -2694,10 +2610,8 @@ script = ExtResource( 12 )
 
 [node name="MovementAnims" type="AnimationPlayer" parent="."]
 anims/idle = SubResource( 53 )
-anims/jump-nw = SubResource( 54 )
-anims/jump-se = SubResource( 55 )
-anims/run-nw = SubResource( 56 )
-anims/run-se = SubResource( 57 )
+anims/run-nw = SubResource( 54 )
+anims/run-se = SubResource( 55 )
 
 [node name="Tween" type="Tween" parent="."]
 
@@ -2727,30 +2641,30 @@ autostart = true
 [connection signal="creature_arrived" from="." to="CreatureSfx" method="_on_Creature_creature_arrived"]
 [connection signal="food_eaten" from="." to="CreatureSfx" method="_on_Creature_food_eaten"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Body" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/FarLeg" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/NearLeg" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/FarArm" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/NearArm" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/FarLeg" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_movement_mode_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/FarLeg" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/NearLeg" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/FarArm" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/NearArm" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_orientation_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/NearLeg" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/NearArm" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_movement_mode_changed"]
 [connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/FarArm" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/FarLeg" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/NearLeg" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/NearArm" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_orientation_changed"]
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
 [connection signal="before_mood_switched" from="EmoteAnims" to="." method="_on_EmoteAnims_before_mood_switched"]
 [connection signal="animation_started" from="MovementAnims" to="." method="_on_MovementAnims_animation_started"]

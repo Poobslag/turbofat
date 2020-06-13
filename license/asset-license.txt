@@ -51,7 +51,6 @@ assets/main/world/customer/goodbye-*.wav "\CartoonVoices-4913\Cartoon Voices\Mal
 assets/main/world/customer/hello-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
 assets/main/world/customer/move-bonk.wav Cooking_Game_16bit
 assets/main/world/customer/move-hop.wav Cooking_Game_16bit
-assets/main/world/customer/move-jump.wav Cooking_Game_16bit
 assets/main/world/customer/munch*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 2.wav" "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 1.wav"
 assets/main/world/door-chime*.wav Doorbell Pull Store bell Doorbell Pull with pull Store Bell 06.wav from freesound.org; licensed under creative commons attribution license https://creativecommons.org/licenses/by/3.0/
 

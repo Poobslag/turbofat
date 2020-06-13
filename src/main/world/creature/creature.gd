@@ -35,9 +35,6 @@ signal movement_animation_started(anim_name)
 # emitted during the 'run' animation when the creature touches the ground
 signal landed
 
-# emitted during the 'jump' animation when the creature leaves the ground
-signal jumped
-
 signal orientation_changed(old_orientation, new_orientation)
 signal movement_mode_changed(movement_mode)
 signal fatness_changed
@@ -58,7 +55,7 @@ const NORTHEAST = Orientation.NORTHEAST
 # in the editor, this rotates between a set of different creature appearances
 export (int) var _creature_preset := -1 setget set_creature_preset
 
-# 'true' if the creature is walking or jumping. toggling this makes certain sprites visible/invisible.
+# 'true' if the creature is walking. toggling this makes certain sprites visible/invisible.
 export (bool) var _movement_mode := false setget set_movement_mode
 
 export (Vector2) var _southeast_dir := Vector2(0.70710678118, 0.70710678118)
