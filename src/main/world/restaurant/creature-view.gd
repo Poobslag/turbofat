@@ -14,12 +14,12 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	if $FatPlayer.get_fatness() != get_creature().get_fatness():
-		$FatPlayer.set_fatness(get_creature().get_fatness())
+	if $FatPlayer.get_fatness() != get_creature_2d().get_fatness():
+		$FatPlayer.set_fatness(get_creature_2d().get_fatness())
 
 
-func get_creature(creature_index: int = -1) -> Creature:
-	return $SceneClip/CreatureSwitcher/Scene.get_creature(creature_index)
+func get_creature_2d(creature_index: int = -1) -> Creature2D:
+	return $SceneClip/CreatureSwitcher/Scene.get_creature_2d(creature_index)
 
 
 """
@@ -62,11 +62,11 @@ func scroll_to_new_creature() -> void:
 If they ended the previous game while serving a creature, we scroll to a new one
 """
 func _on_PuzzleScore_game_prepared() -> void:
-	if get_creature().get_fatness() > 1:
+	if get_creature_2d().get_fatness() > 1:
 		scroll_to_new_creature()
 
 
 func _on_PuzzleScore_combo_ended() -> void:
 	if PuzzleScore.game_active and not Scenario.settings.other.tutorial:
-		get_creature().play_goodbye_voice()
+		get_creature_2d().play_goodbye_voice()
 		scroll_to_new_creature()

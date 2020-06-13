@@ -197,18 +197,6 @@ func _load_colors(creature_def: Dictionary) -> void:
 	var line_color: Color
 	if creature_def.has("line_rgb"):
 		line_color = Color(creature_def.line_rgb)
-	creature_def["shader:FarArm/Outline:black"] = line_color
-	creature_def["shader:FarLeg/Outline:black"] = line_color
-	creature_def["property:Body/Outline:line_color"] = line_color
-	creature_def["shader:NearLeg/Outline:black"] = line_color
-	creature_def["shader:NearArm/Outline:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/EarZ0/Outline:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/HornZ0/Outline:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/Head/Outline:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/EarZ1/Outline:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/HornZ1/Outline:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/EarZ2/Outline:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/Eyes/Outline:black"] = line_color
 	creature_def["shader:FarArm:black"] = line_color
 	creature_def["shader:FarLeg:black"] = line_color
 	creature_def["property:Body:line_color"] = line_color

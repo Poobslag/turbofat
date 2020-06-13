@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/world/creature/creature-2d.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/main/world/creature/move-bonk.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/main/world/creature/move-hop.wav" type="AudioStream" id=4]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/world/viewport-outline-material.tres" type="Material" id=6]
 
 [sub_resource type="ViewportTexture" id=1]
 flags = 5
@@ -23,16 +24,19 @@ size = Vector2( 1024, 1024 )
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
+audio_listener_enable_2d = true
 
 [node name="Creature" parent="Viewport" instance=ExtResource( 2 )]
-position = Vector2( 512, 512 )
+position = Vector2( 512, 912 )
 z_index = 0
 
 [node name="TextureRect" type="TextureRect" parent="."]
+light_mask = 2
+material = ExtResource( 6 )
 margin_left = -200.0
-margin_top = -206.315
+margin_top = -366.315
 margin_right = 824.0
-margin_bottom = 817.685
+margin_bottom = 657.685
 rect_scale = Vector2( 0.4, 0.4 )
 texture = SubResource( 1 )
 flip_v = true
@@ -52,5 +56,7 @@ bus = "Sound Bus"
 stream = ExtResource( 3 )
 volume_db = -4.0
 bus = "Sound Bus"
+[connection signal="creature_arrived" from="Viewport/Creature" to="." method="_on_Creature_creature_arrived"]
 [connection signal="fatness_changed" from="Viewport/Creature" to="." method="_on_Creature_fatness_changed"]
+[connection signal="food_eaten" from="Viewport/Creature" to="." method="_on_Creature_food_eaten"]
 [connection signal="landed" from="Viewport/Creature" to="." method="_on_Creature_landed"]

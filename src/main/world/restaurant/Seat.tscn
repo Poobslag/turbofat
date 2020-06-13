@@ -10,11 +10,13 @@
 shader = ExtResource( 9 )
 shader_param/width = 2.5
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = ExtResource( 9 )
 shader_param/width = 2.5
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
 
 [node name="Seat1" type="Node2D"]
 position = Vector2( 380, 585 )

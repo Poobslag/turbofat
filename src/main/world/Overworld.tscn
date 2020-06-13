@@ -39,7 +39,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="ViewportTexture" id=4]
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("World/Ground/Shadows/Viewport")
 
 [sub_resource type="RectangleShape2D" id=3]
@@ -113,7 +113,7 @@ modulate = Color( 1, 1, 1, 0.501961 )
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
-texture = SubResource( 4 )
+texture = SubResource( 2 )
 flip_v = true
 script = ExtResource( 22 )
 __meta__ = {

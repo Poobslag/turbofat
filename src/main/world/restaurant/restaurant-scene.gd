@@ -43,22 +43,22 @@ Parameters:
 	'creature_def': The colors and textures used to draw the creature.
 """
 func summon_creature(creature_def: Dictionary, creature_index: int = -1) -> void:
-	get_creature(creature_index).summon(creature_def)
+	get_creature_2d(creature_index).summon(creature_def)
 	_get_seat(creature_index).refresh()
 
 
 func set_fatness(fatness_percent: float, creature_index: int = -1) -> void:
-	get_creature(creature_index).set_fatness(fatness_percent)
+	get_creature_2d(creature_index).set_fatness(fatness_percent)
 
 
 func get_fatness(creature_index: int = -1) -> float:
-	return get_creature(creature_index).get_fatness()
+	return get_creature_2d(creature_index).get_fatness()
 
 
 """
 Returns the creature with the specified optional index. Defaults to the creature being fed.
 """
-func get_creature(creature_index: int = -1) -> Control:
+func get_creature_2d(creature_index: int = -1) -> Creature2D:
 	return _creatures[current_creature_index] if creature_index == -1 else _creatures[creature_index]
 
 

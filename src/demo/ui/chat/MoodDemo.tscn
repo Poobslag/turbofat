@@ -14,7 +14,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Creature" parent="." instance=ExtResource( 1 )]
+[node name="Creature2D" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 420 )
 scale = Vector2( 3, 3 )
 creature_def = {
