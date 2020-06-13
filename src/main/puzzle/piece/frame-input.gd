@@ -20,13 +20,13 @@ var frames: int
 var _buffer: bool
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed(action, false):
+	if event.is_action_pressed(action):
 		_just_pressed = true
 		_pressed = true
 	elif event.is_action_released(action):
 		_pressed = false
 	
-	if cancel_action and event.is_action_pressed(cancel_action, false):
+	if cancel_action and event.is_action_pressed(cancel_action):
 		_just_pressed = false
 		_pressed = false
 
