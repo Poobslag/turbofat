@@ -7,7 +7,7 @@ An AnimationPlayer which animates mouths.
 
 export (NodePath) var mouth_path: NodePath
 
-onready var _mouth: Sprite = get_node(mouth_path)
+onready var _mouth: PackedSprite = get_node(mouth_path)
 onready var _creature: Creature = $".."
 
 func _ready() -> void:

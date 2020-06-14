@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "mouth-sheet 0.png",
+    "filename": "mouth-packed 0.png",
     "frame": { "x": 440, "y": 84, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -9,7 +9,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 1.png",
+    "filename": "mouth-packed 1.png",
     "frame": { "x": 73, "y": 165, "w": 69, "h": 50 },
     "rotated": false,
     "trimmed": true,
@@ -18,7 +18,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 2.png",
+    "filename": "mouth-packed 2.png",
     "frame": { "x": 360, "y": 261, "w": 56, "h": 54 },
     "rotated": false,
     "trimmed": true,
@@ -27,7 +27,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 3.png",
+    "filename": "mouth-packed 3.png",
     "frame": { "x": 433, "y": 185, "w": 69, "h": 50 },
     "rotated": false,
     "trimmed": true,
@@ -36,7 +36,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 4.png",
+    "filename": "mouth-packed 4.png",
     "frame": { "x": 73, "y": 220, "w": 67, "h": 50 },
     "rotated": false,
     "trimmed": true,
@@ -45,7 +45,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 5.png",
+    "filename": "mouth-packed 5.png",
     "frame": { "x": 0, "y": 165, "w": 68, "h": 51 },
     "rotated": false,
     "trimmed": true,
@@ -54,7 +54,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 6.png",
+    "filename": "mouth-packed 6.png",
     "frame": { "x": 359, "y": 204, "w": 66, "h": 52 },
     "rotated": false,
     "trimmed": true,
@@ -63,7 +63,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 7.png",
+    "filename": "mouth-packed 7.png",
     "frame": { "x": 150, "y": 152, "w": 67, "h": 53 },
     "rotated": false,
     "trimmed": true,
@@ -72,7 +72,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 8.png",
+    "filename": "mouth-packed 8.png",
     "frame": { "x": 507, "y": 185, "w": 65, "h": 53 },
     "rotated": false,
     "trimmed": true,
@@ -81,7 +81,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 9.png",
+    "filename": "mouth-packed 9.png",
     "frame": { "x": 289, "y": 205, "w": 66, "h": 52 },
     "rotated": false,
     "trimmed": true,
@@ -90,7 +90,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 10.png",
+    "filename": "mouth-packed 10.png",
     "frame": { "x": 286, "y": 147, "w": 68, "h": 53 },
     "rotated": false,
     "trimmed": true,
@@ -99,7 +99,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 11.png",
+    "filename": "mouth-packed 11.png",
     "frame": { "x": 440, "y": 126, "w": 67, "h": 54 },
     "rotated": false,
     "trimmed": true,
@@ -108,7 +108,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 12.png",
+    "filename": "mouth-packed 12.png",
     "frame": { "x": 0, "y": 108, "w": 70, "h": 52 },
     "rotated": false,
     "trimmed": true,
@@ -117,7 +117,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 13.png",
+    "filename": "mouth-packed 13.png",
     "frame": { "x": 75, "y": 108, "w": 70, "h": 52 },
     "rotated": false,
     "trimmed": true,
@@ -126,7 +126,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 14.png",
+    "filename": "mouth-packed 14.png",
     "frame": { "x": 359, "y": 147, "w": 69, "h": 52 },
     "rotated": false,
     "trimmed": true,
@@ -135,7 +135,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 15.png",
+    "filename": "mouth-packed 15.png",
     "frame": { "x": 443, "y": 0, "w": 129, "h": 56 },
     "rotated": false,
     "trimmed": true,
@@ -144,7 +144,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 16.png",
+    "filename": "mouth-packed 16.png",
     "frame": { "x": 0, "y": 0, "w": 142, "h": 103 },
     "rotated": false,
     "trimmed": true,
@@ -153,7 +153,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 17.png",
+    "filename": "mouth-packed 17.png",
     "frame": { "x": 147, "y": 0, "w": 143, "h": 100 },
     "rotated": false,
     "trimmed": true,
@@ -162,7 +162,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 18.png",
+    "filename": "mouth-packed 18.png",
     "frame": { "x": 295, "y": 0, "w": 143, "h": 79 },
     "rotated": false,
     "trimmed": true,
@@ -171,7 +171,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 19.png",
+    "filename": "mouth-packed 19.png",
     "frame": { "x": 295, "y": 84, "w": 140, "h": 58 },
     "rotated": false,
     "trimmed": true,
@@ -180,7 +180,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 20.png",
+    "filename": "mouth-packed 20.png",
     "frame": { "x": 147, "y": 105, "w": 134, "h": 42 },
     "rotated": false,
     "trimmed": true,
@@ -189,7 +189,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 21.png",
+    "filename": "mouth-packed 21.png",
     "frame": { "x": 0, "y": 281, "w": 82, "h": 33 },
     "rotated": false,
     "trimmed": true,
@@ -198,7 +198,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 22.png",
+    "filename": "mouth-packed 22.png",
     "frame": { "x": 279, "y": 262, "w": 72, "h": 42 },
     "rotated": false,
     "trimmed": true,
@@ -207,7 +207,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 23.png",
+    "filename": "mouth-packed 23.png",
     "frame": { "x": 207, "y": 274, "w": 56, "h": 52 },
     "rotated": false,
     "trimmed": true,
@@ -216,7 +216,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 24.png",
+    "filename": "mouth-packed 24.png",
     "frame": { "x": 145, "y": 271, "w": 57, "h": 53 },
     "rotated": false,
     "trimmed": true,
@@ -225,7 +225,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 25.png",
+    "filename": "mouth-packed 25.png",
     "frame": { "x": 495, "y": 243, "w": 58, "h": 53 },
     "rotated": false,
     "trimmed": true,
@@ -234,7 +234,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 26.png",
+    "filename": "mouth-packed 26.png",
     "frame": { "x": 430, "y": 240, "w": 60, "h": 54 },
     "rotated": false,
     "trimmed": true,
@@ -243,7 +243,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 27.png",
+    "filename": "mouth-packed 27.png",
     "frame": { "x": 213, "y": 214, "w": 61, "h": 55 },
     "rotated": false,
     "trimmed": true,
@@ -252,7 +252,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 28.png",
+    "filename": "mouth-packed 28.png",
     "frame": { "x": 512, "y": 124, "w": 59, "h": 58 },
     "rotated": false,
     "trimmed": true,
@@ -261,7 +261,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 29.png",
+    "filename": "mouth-packed 29.png",
     "frame": { "x": 509, "y": 61, "w": 61, "h": 58 },
     "rotated": false,
     "trimmed": true,
@@ -270,7 +270,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 30.png",
+    "filename": "mouth-packed 30.png",
     "frame": { "x": 222, "y": 152, "w": 62, "h": 57 },
     "rotated": false,
     "trimmed": true,
@@ -279,7 +279,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 31.png",
+    "filename": "mouth-packed 31.png",
     "frame": { "x": 443, "y": 61, "w": 61, "h": 60 },
     "rotated": false,
     "trimmed": true,
@@ -288,7 +288,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 32.png",
+    "filename": "mouth-packed 32.png",
     "frame": { "x": 147, "y": 210, "w": 61, "h": 56 },
     "rotated": false,
     "trimmed": true,
@@ -297,7 +297,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 33.png",
+    "filename": "mouth-packed 33.png",
     "frame": { "x": 0, "y": 221, "w": 59, "h": 55 },
     "rotated": false,
     "trimmed": true,
@@ -306,7 +306,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 34.png",
+    "filename": "mouth-packed 34.png",
     "frame": { "x": 440, "y": 84, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -315,7 +315,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 35.png",
+    "filename": "mouth-packed 35.png",
     "frame": { "x": 440, "y": 84, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -324,7 +324,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 36.png",
+    "filename": "mouth-packed 36.png",
     "frame": { "x": 440, "y": 84, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -333,7 +333,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 37.png",
+    "filename": "mouth-packed 37.png",
     "frame": { "x": 440, "y": 84, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -342,7 +342,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 38.png",
+    "filename": "mouth-packed 38.png",
     "frame": { "x": 440, "y": 84, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -351,7 +351,7 @@
     "duration": 100
    },
    {
-    "filename": "mouth-sheet 39.png",
+    "filename": "mouth-packed 39.png",
     "frame": { "x": 440, "y": 84, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,

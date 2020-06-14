@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "ear-z2-packed 0.png",
+    "frame": { "x": 55, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "ear-z2-packed 1.png",
+    "frame": { "x": 0, "y": 0, "w": 50, "h": 61 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 190, "y": 165, "w": 50, "h": 61 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "ear-z2-packed 2.png",
+    "frame": { "x": 55, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "ear-z2-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 56, "h": 61 },
+  "scale": "1"
+ }
+}

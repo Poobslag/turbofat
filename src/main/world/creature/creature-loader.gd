@@ -146,17 +146,17 @@ func _load_packed_texture(creature_def: Dictionary, node_path: String, key: Stri
 Loads the resources for a creature's ears based on a creature definition.
 """
 func _load_ear(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/HeadBobber/EarZ0", "ear", "ear-z0-sheet")
-	_load_texture(creature_def, "Neck0/HeadBobber/EarZ1", "ear", "ear-z1-sheet")
-	_load_texture(creature_def, "Neck0/HeadBobber/EarZ2", "ear", "ear-z2-sheet")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/EarZ0", "ear", "ear-z0-packed")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/EarZ1", "ear", "ear-z1-packed")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/EarZ2", "ear", "ear-z2-packed")
 
 
 """
 Loads the resources for a creature's horn based on a creature definition.
 """
 func _load_horn(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-sheet")
-	_load_texture(creature_def, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-sheet")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-packed")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-packed")
 
 
 """
@@ -172,7 +172,7 @@ func _load_mouth(creature_def: Dictionary) -> void:
 Loads the resources for a creature's eyes based on a creature definition.
 """
 func _load_eye(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/HeadBobber/Eyes", "eye", "eyes-sheet")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/Eyes", "eye", "eyes-packed")
 
 
 """
@@ -187,7 +187,7 @@ func _load_body(creature_def: Dictionary) -> void:
 	_load_texture(creature_def, "Body/NeckBlend", "body", "neck-sheet")
 	_load_texture(creature_def, "NearLeg", "body", "leg-z1-sheet")
 	_load_texture(creature_def, "NearArm", "body", "arm-z1-sheet")
-	_load_texture(creature_def, "Neck0/HeadBobber/Head", "body", "head-sheet")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/Head", "body", "head-packed")
 
 
 """

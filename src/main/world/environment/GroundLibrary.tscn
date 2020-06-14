@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=2]
 
-[ext_resource path="res://assets/main/world/environment/path-00-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/path-stone-sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=2]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
