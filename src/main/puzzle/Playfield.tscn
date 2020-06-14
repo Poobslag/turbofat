@@ -1,14 +1,16 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/puzzle/line-clearer.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/box-builder.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/leaf-poofs.gd" type="Script" id=5]
 [ext_resource path="res://assets/main/puzzle/line-erase.wav" type="AudioStream" id=6]
 [ext_resource path="res://src/main/puzzle/line-clear-sfx.gd" type="Script" id=7]
 [ext_resource path="res://src/main/puzzle/build-box-sfx.gd" type="Script" id=8]
 [ext_resource path="res://assets/main/puzzle/line-fall.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/main/puzzle/build-cake-box.wav" type="AudioStream" id=10]
+[ext_resource path="res://assets/main/puzzle/veg-erase.wav" type="AudioStream" id=11]
 [ext_resource path="res://assets/main/puzzle/clear-snack-box.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/puzzle/clear-cake-box.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/main/puzzle/combo-00.wav" type="AudioStream" id=14]
@@ -145,6 +147,12 @@ __meta__ = {
 
 [node name="GlowTween" type="Tween" parent="TileMapClip/PlayfieldFx"]
 
+[node name="LeafPoofs" type="Node2D" parent="TileMapClip"]
+position = Vector2( 0, -96 )
+z_index = 5
+script = ExtResource( 5 )
+_puzzle_tile_map_path = NodePath("../TileMap")
+
 [node name="ShadowTexture" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.196078 )
 anchor_right = 1.0
@@ -202,6 +210,20 @@ stream = ExtResource( 6 )
 volume_db = -10.0
 bus = "Sound Bus"
 
+[node name="VegEraseSound1" type="AudioStreamPlayer" parent="LineClearSfx"]
+stream = ExtResource( 11 )
+bus = "Sound Bus"
+
+[node name="VegEraseSound2" type="AudioStreamPlayer" parent="LineClearSfx"]
+stream = ExtResource( 11 )
+volume_db = -6.0
+bus = "Sound Bus"
+
+[node name="VegEraseSound3" type="AudioStreamPlayer" parent="LineClearSfx"]
+stream = ExtResource( 11 )
+volume_db = -10.0
+bus = "Sound Bus"
+
 [node name="ClearSnackPieceSound" type="AudioStreamPlayer" parent="LineClearSfx"]
 stream = ExtResource( 12 )
 volume_db = -4.0
@@ -226,9 +248,10 @@ bus = "Sound Bus"
 [node name="BuildSnackBoxSound" type="AudioStreamPlayer" parent="BuildBoxSfx"]
 bus = "Sound Bus"
 [connection signal="after_piece_written" from="." to="ComboTracker" method="_on_Playfield_after_piece_written"]
+[connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
 [connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]

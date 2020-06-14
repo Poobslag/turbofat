@@ -149,6 +149,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/json_beautifier/json_beautifier.gd"
 }, {
+"base": "Sprite",
+"class": "LeafPoof",
+"language": "GDScript",
+"path": "res://src/main/puzzle/leaf-poof.gd"
+}, {
 "base": "Reference",
 "class": "LevelChunk",
 "language": "GDScript",
@@ -378,6 +383,7 @@ _global_script_class_icons={
 "FrostingGlob": "",
 "HeadBobber": "",
 "JSONBeautifier": "",
+"LeafPoof": "",
 "LevelChunk": "",
 "LevelChunkControl": "",
 "LineClearer": "",
