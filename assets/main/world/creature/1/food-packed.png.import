@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/food-sheet.png-587bfb951ab04bc0e941cda506c72488.stex"
+path="res://.import/food-packed.png-a1fa42ce201a5554d3264622527e025b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/1/food-sheet.png"
-dest_files=[ "res://.import/food-sheet.png-587bfb951ab04bc0e941cda506c72488.stex" ]
+source_file="res://assets/main/world/creature/1/food-packed.png"
+dest_files=[ "res://.import/food-packed.png-a1fa42ce201a5554d3264622527e025b.stex" ]
 
 [params]
 

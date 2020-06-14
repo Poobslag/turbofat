@@ -164,8 +164,8 @@ Loads the resources for a creature's mouth based on a creature definition.
 """
 func _load_mouth(creature_def: Dictionary) -> void:
 	_load_packed_texture(creature_def, "Neck0/HeadBobber/Mouth", "mouth", "mouth-packed")
-	_load_texture(creature_def, "Neck0/HeadBobber/Food", "mouth", "food-sheet")
-	_load_texture(creature_def, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-sheet")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/Food", "mouth", "food-packed")
+	_load_packed_texture(creature_def, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-packed")
 
 
 """
