@@ -1,0 +1,47 @@
+{ "frames": [
+   {
+    "filename": "eyes-packed 0.png",
+    "frame": { "x": 113, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "eyes-packed 1.png",
+    "frame": { "x": 0, "y": 0, "w": 108, "h": 58 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 227, "y": 235, "w": 108, "h": 58 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "eyes-packed 2.png",
+    "frame": { "x": 0, "y": 0, "w": 108, "h": 58 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 227, "y": 235, "w": 108, "h": 58 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "eyes-packed 3.png",
+    "frame": { "x": 0, "y": 0, "w": 108, "h": 58 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 227, "y": 235, "w": 108, "h": 58 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "eyes-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 114, "h": 58 },
+  "scale": "1"
+ }
+}

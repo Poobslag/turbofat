@@ -75,7 +75,7 @@ Graphics
 --------------------------------------------------------------------------------
 assets/main/world/environment/cliff-block-rock.png Kenney's Nature Kit 2.1
 assets/main/world/environment/cliff-block-rockrock.png Kenney's Nature Kit 2.1
-assets/main/world/environment/path-00-sheet.png Kenney's Nature Kit 2.1
+assets/main/world/environment/path-stone-sheet.png Kenney's Nature Kit 2.1
 
 Other
 --------------------------------------------------------------------------------
