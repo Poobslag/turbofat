@@ -6,6 +6,10 @@ Script for representing a creature in the 2D overworld.
 
 signal fatness_changed
 
+signal creature_arrived
+
+signal food_eaten
+
 # Number from [0.0, 1.0] which determines how quickly the creature slows down
 const FRICTION := 0.15
 
@@ -34,7 +38,7 @@ var _non_iso_velocity := Vector2.ZERO
 var _iso_walk_direction := Vector2.ZERO
 var _non_iso_walk_direction := Vector2.ZERO
 
-onready var _creature := $Viewport/Creature setget ,get_creature
+onready var _creature: Creature = $Viewport/Creature setget ,get_creature
 
 func _ready() -> void:
 	_refresh()
@@ -47,6 +51,10 @@ func _physics_process(delta: float) -> void:
 	set_iso_velocity(move_and_slide(_iso_velocity))
 	_update_animation()
 	_maybe_play_bonk_sound(old_non_iso_velocity)
+
+
+func set_fatness(fatness: float) -> void:
+	_creature.set_fatness(fatness)
 
 
 func get_fatness() -> float:
@@ -140,9 +148,30 @@ func orient_toward(target: Node2D) -> void:
 		_creature.set_orientation(Creature.Orientation.SOUTHWEST)
 
 
+func summon(creature_def: Dictionary, use_defaults: bool = true) -> void:
+	_creature.summon(creature_def, use_defaults)
+
+
+func play_hello_voice(force: bool = false) -> void:
+	_creature.play_hello_voice(force)
+
+
+func play_combo_voice() -> void:
+	_creature.play_combo_voice()
+
+
+func play_goodbye_voice(force: bool = false) -> void:
+	_creature.play_goodbye_voice(force)
+
+
+func feed() -> void:
+	_creature.feed()
+
+
 func _refresh() -> void:
 	if is_inside_tree():
-		_creature.summon(creature_def)
+		if creature_def:
+			_creature.summon(creature_def)
 		if not chat_id:
 			$ChatIcon.bubble_type = ChatIcon.BubbleType.NONE
 
@@ -194,7 +223,7 @@ func _update_animation() -> void:
 	var old_orientation: int = _creature.orientation
 	if _non_iso_walk_direction.length() > 0:
 		play_movement_animation("run", _non_iso_walk_direction)
-	else:
+	elif _creature.movement_mode:
 		play_movement_animation("idle", _non_iso_velocity)
 
 
@@ -204,3 +233,13 @@ func _on_Creature_landed() -> void:
 
 func _on_Creature_fatness_changed() -> void:
 	emit_signal("fatness_changed")
+
+
+func _on_Creature_creature_arrived() -> void:
+	visible = true
+	$TextureRect.material.set_shader_param("black", _creature.line_rgb)
+	emit_signal("creature_arrived")
+
+
+func _on_Creature_food_eaten() -> void:
+	emit_signal("food_eaten")

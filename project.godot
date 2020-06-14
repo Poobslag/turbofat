@@ -189,11 +189,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/money-label.gd"
 }, {
-"base": "Sprite",
-"class": "MultiOutlineSprite",
-"language": "GDScript",
-"path": "res://src/main/world/multi-outline-sprite.gd"
-}, {
 "base": "Reference",
 "class": "NearestSorter",
 "language": "GDScript",
@@ -391,7 +386,6 @@ _global_script_class_icons={
 "Milestone": "",
 "MilestoneHud": "",
 "MoneyLabel": "",
-"MultiOutlineSprite": "",
 "NearestSorter": "",
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",

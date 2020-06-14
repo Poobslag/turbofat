@@ -56,7 +56,7 @@ const NORTHEAST = Orientation.NORTHEAST
 export (int) var _creature_preset := -1 setget set_creature_preset
 
 # 'true' if the creature is walking. toggling this makes certain sprites visible/invisible.
-export (bool) var _movement_mode := false setget set_movement_mode
+export (bool) var movement_mode := false setget set_movement_mode
 
 export (Vector2) var _southeast_dir := Vector2(0.70710678118, 0.70710678118)
 
@@ -76,6 +76,9 @@ var _suppress_sfx_signal_timer := 0.0
 
 # forces listeners to update their animation frame
 var _force_orientation_change := false
+
+# the color of this creature's lines. also used for outlines in the enclosing Creature2D
+var line_rgb: Color
 
 onready var _mouth_animation_player := $Mouth0Anims
 
@@ -203,11 +206,9 @@ func feed() -> void:
 		_mouth_animation_player.play("eat-again")
 		$EmoteAnims.stop()
 		$EmoteAnims.play("eat-again")
-		show_food_effects()
 	else:
 		_mouth_animation_player.play("eat")
 		$EmoteAnims.play("eat")
-		show_food_effects(0.066)
 
 
 """
@@ -256,12 +257,8 @@ func summon(creature_def: Dictionary, use_defaults: bool = true) -> void:
 """
 The 'feed' animation causes a few side-effects. The creature's head recoils and some sounds play. This method controls
 all of those secondary visual effects of the creature being fed.
-
-Parameters:
-	'delay': (Optional) Causes the food effects to appear after the specified delay, in seconds. If omitted, there is
-		no delay.
 """
-func show_food_effects(delay := 0.0) -> void:
+func show_food_effects() -> void:
 	# avoid using the same color twice consecutively
 	_food_color_index = (_food_color_index + 1 + randi() % (Playfield.FOOD_COLORS.size() - 1)) \
 			% Playfield.FOOD_COLORS.size()
@@ -269,8 +266,6 @@ func show_food_effects(delay := 0.0) -> void:
 	$Sprites/Neck0/HeadBobber/Food.modulate = food_color
 	$Sprites/Neck0/HeadBobber/FoodLaser.modulate = food_color
 
-	if delay >= 0.0:
-		yield(get_tree().create_timer(delay), "timeout")
 	$Tween.interpolate_property($Sprites/Neck0/HeadBobber, "position:x",
 			clamp($Sprites/Neck0/HeadBobber.position.x - 6, -20, 0), 0, 0.5,
 			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
@@ -311,7 +306,7 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 	var animation_name: String
 	if animation_prefix == "idle":
 		animation_name = "idle"
-		if _movement_mode != false:
+		if movement_mode != false:
 			set_movement_mode(false)
 	else:
 		if movement_direction.length() > 0.1:
@@ -322,7 +317,7 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 				set_orientation(new_orientation)
 		var suffix := "se" if orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else "nw"
 		animation_name = "%s-%s" % [animation_prefix, suffix]
-		if _movement_mode != true:
+		if movement_mode != true:
 			set_movement_mode(true)
 	if $MovementAnims.current_animation != animation_name:
 		if not $EmoteAnims.current_animation in ["ambient", "ambient-nw"] and animation_name != "idle":
@@ -358,11 +353,11 @@ func _compute_orientation(direction: Vector2) -> int:
 	return new_orientation
 
 
-func set_movement_mode(movement_mode: bool) -> void:
-	_movement_mode = movement_mode
+func set_movement_mode(new_movement_mode: bool) -> void:
+	movement_mode = new_movement_mode
 	if is_inside_tree():
 		_update_movement_mode()
-		emit_signal("movement_mode_changed", _movement_mode)
+		emit_signal("movement_mode_changed", movement_mode)
 
 
 """
@@ -391,12 +386,12 @@ func play_mood(mood: int) -> void:
 Updates the visibility/position of nodes based on whether this creature is sitting or walking.
 """
 func _update_movement_mode() -> void:
-	if not _movement_mode:
+	if not movement_mode:
 		# reset position/size attributes that get altered during movement
 		$Sprites/Neck0.position = Vector2.ZERO
 	
 	# movement sprites are visible if movement_mode is true
-	$Sprites/FarMovement.visible = _movement_mode
+	$Sprites/FarMovement.visible = movement_mode
 
 
 """
@@ -425,6 +420,9 @@ func _update_creature_properties() -> void:
 		else:
 			print("Invalid mouth: %s", _creature_def.mouth)
 		_mouth_animation_player.set_process(true)
+	
+	if _creature_def.has("line_rgb"):
+		line_rgb = Color(_creature_def.line_rgb)
 	
 	for key in _creature_def.keys():
 		if key.find("property:") == 0:

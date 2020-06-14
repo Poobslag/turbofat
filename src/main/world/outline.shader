@@ -6,7 +6,10 @@
 shader_type canvas_item;
 
 uniform float width: hint_range(0.0, 16.0);
-uniform vec4 black : hint_color;
+uniform vec4 black: hint_color;
+
+// 1.0 for most textures, 0.001 for viewport textures. Fixes aliasing artifacts specific to viewport textures.
+uniform float edge_fix_factor = 1.0;
 
 void fragment() {
 	vec2 size = vec2(width) / vec2(textureSize(TEXTURE, 0));
@@ -27,6 +30,6 @@ void fragment() {
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(-size.x * 0.7071, size.y * 0.7071)).a);
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(-size.x * 0.7071, -size.y * 0.7071)).a);
 	
-	vec3 final_color = mix(black.rgb, sprite_color.rgb, sprite_color.a);
+	vec3 final_color = mix(black.rgb, sprite_color.rgb / max(sprite_color.a, edge_fix_factor), sprite_color.a);
 	COLOR = vec4(final_color, alpha);
 }
