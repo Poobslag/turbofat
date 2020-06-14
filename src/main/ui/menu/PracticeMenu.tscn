@@ -181,6 +181,7 @@ margin_right = 792.0
 margin_bottom = 64.0
 rect_min_size = Vector2( 600, 0 )
 size_flags_horizontal = 4
+theme = ExtResource( 6 )
 max_value = 3.0
 tick_count = 4
 
