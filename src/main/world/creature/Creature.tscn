@@ -555,7 +555,7 @@ tracks/0/keys = {
 "values": [ 1, 0, 0 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprites/Neck0/HeadBobber/EmoteEyes:json_frame")
+tracks/1/path = NodePath("Sprites/Neck0/HeadBobber/EmoteEyes:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
