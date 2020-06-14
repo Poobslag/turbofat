@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "food-packed 0.png",
+    "frame": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "food-packed 1.png",
+    "frame": { "x": 0, "y": 6, "w": 236, "h": 35 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 276, "y": 293, "w": 236, "h": 35 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "food-packed 2.png",
+    "frame": { "x": 0, "y": 46, "w": 234, "h": 33 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 278, "y": 294, "w": 234, "h": 33 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "food-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 236, "h": 79 },
+  "scale": "1"
+ }
+}
