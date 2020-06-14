@@ -70,15 +70,12 @@ func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var color_int: int
 		var glob_count: int
-		if _playfield.get_cell(x, y) == 1:
+		if _playfield.get_cell(x, y) == PuzzleTileMap.TILE_BOX:
 			color_int = _playfield.get_cell_autotile_coord(x, y).y
 			if PuzzleTileMap.is_snack_box(color_int):
 				glob_count = 2
 			elif PuzzleTileMap.is_cake_box(color_int):
 				glob_count = 4
-		elif _playfield.get_cell(x, y) == 2:
-			# vegetable
-			pass
 		_spawn_globs(x, y, color_int, glob_count)
 
 
