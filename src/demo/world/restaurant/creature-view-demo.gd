@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_F: _creature_2d().feed()
+		KEY_F: _creature_2d().feed(Playfield.FOOD_COLORS[0])
 		KEY_D: _creature_2d().get_creature().get_node("CreatureSfx").play_door_chime()
 		KEY_V:
 			Global.greetiness = 2

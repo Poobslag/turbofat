@@ -7,6 +7,9 @@ class to add goals, win conditions, challenges or time limits.
 
 signal topped_out
 
+# the previously launched food color. stored to avoid showing the same color twice consecutively
+var _food_color: Color
+
 func _ready() -> void:
 	if not ResourceCache.is_done():
 		# when launched standalone, we don't load creature resources (they're slow)
@@ -60,8 +63,8 @@ want the creature to suddenly grow full size. We want it to take 3 bites.
 Parameters:
 	'fatness_pct' A percent from [0.0-1.0] of how much fatter the creature should get from this bite of food.
 """
-func _feed_creature(fatness_pct: float) -> void:
-	$CreatureView.get_creature_2d().feed()
+func _feed_creature(fatness_pct: float, food_color: Color) -> void:
+	$CreatureView.get_creature_2d().feed(food_color)
 	
 	var old_fatness: float = $CreatureView.get_creature_2d().get_fatness()
 	var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
@@ -69,6 +72,25 @@ func _feed_creature(fatness_pct: float) -> void:
 		# make them a tiny amount fatter, so that they'll change when a new level is started
 		target_fatness = min(target_fatness, 1.001)
 	$CreatureView.get_creature_2d().set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
+
+
+"""
+Calculates the food color for a row in the playfield.
+"""
+func _calculate_food_color(box_ints: Array) -> void:
+	if box_ints.empty():
+		# vegetable
+		_food_color = Playfield.VEGETABLE_COLOR
+	elif box_ints.has(PuzzleTileMap.BoxInt.CAKE):
+		# cake box
+		_food_color = Color.magenta
+		_food_color.h = randf()
+	elif box_ints.size() == 1 or Playfield.FOOD_COLORS[box_ints[0]] != _food_color:
+		# snack box
+		_food_color = Playfield.FOOD_COLORS[box_ints[0]]
+	else:
+		# avoid showing the same color twice if we can help it
+		_food_color = Playfield.FOOD_COLORS[box_ints[1]]
 
 
 func _on_Hud_start_button_pressed() -> void:
@@ -83,7 +105,8 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 	var creature_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 5 \
 			and total_lines > ($Playfield/ComboTracker.combo + 1) % 3
 	
-	_feed_creature(1.0 / (remaining_lines + 1))
+	_calculate_food_color(box_ints)
+	_feed_creature(1.0 / (remaining_lines + 1), _food_color)
 	
 	if creature_talks:
 		yield(get_tree().create_timer(0.5), "timeout")
