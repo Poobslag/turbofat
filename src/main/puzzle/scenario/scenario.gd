@@ -44,5 +44,6 @@ Parameters:
 """
 func push_scenario_trail(scenario_settings: ScenarioSettings, creature_def: Dictionary = {}) -> void:
 	start_scenario(scenario_settings)
-	Global.creature_queue.push_front(creature_def)
+	if creature_def:
+		Global.creature_queue.push_front(creature_def)
 	Breadcrumb.push_trail("res://src/main/puzzle/Puzzle.tscn")
