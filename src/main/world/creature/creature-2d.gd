@@ -164,8 +164,8 @@ func play_goodbye_voice(force: bool = false) -> void:
 	_creature.play_goodbye_voice(force)
 
 
-func feed() -> void:
-	_creature.feed()
+func feed(food_color: Color) -> void:
+	_creature.feed(food_color)
 
 
 func _refresh() -> void:

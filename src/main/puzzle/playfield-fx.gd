@@ -139,7 +139,7 @@ func _start_glow_tween() -> void:
 
 
 """
-Calculates the RGB light color for a row in the playfield.
+Calculates the light color for a row in the playfield.
 """
 func _calculate_line_color(box_ints: Array) -> void:
 	if box_ints.empty():

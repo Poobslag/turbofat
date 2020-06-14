@@ -63,9 +63,6 @@ export (Vector2) var _southeast_dir := Vector2(0.70710678118, 0.70710678118)
 # the direction the creature is facing
 export (Orientation) var orientation := Orientation.SOUTHEAST setget set_orientation
 
-# the index of the previously launched food color. stored to avoid showing the same color twice consecutively
-var _food_color_index := 0
-
 # the definition of the creature who was most recently summoned
 var _creature_def: Dictionary
 
@@ -195,12 +192,14 @@ func set_creature_preset(creature_preset: int) -> void:
 """
 Launches the 'feed' animation, hurling a piece of food at the creature and having them catch it.
 """
-func feed() -> void:
+func feed(food_color: Color) -> void:
 	if not visible:
 		# If no creature is visible, it could mean their resources haven't loaded yet. Don't play any animations or
 		# sounds. ...Maybe as an easter egg some day, we can make the chef flinging food into empty air. Ha ha.
 		return
 	
+	$Sprites/Neck0/HeadBobber/Food.modulate = food_color
+	$Sprites/Neck0/HeadBobber/FoodLaser.modulate = food_color
 	if _mouth_animation_player.current_animation in ["eat", "eat-again"]:
 		_mouth_animation_player.stop()
 		_mouth_animation_player.play("eat-again")
@@ -259,13 +258,6 @@ The 'feed' animation causes a few side-effects. The creature's head recoils and 
 all of those secondary visual effects of the creature being fed.
 """
 func show_food_effects() -> void:
-	# avoid using the same color twice consecutively
-	_food_color_index = (_food_color_index + 1 + randi() % (Playfield.FOOD_COLORS.size() - 1)) \
-			% Playfield.FOOD_COLORS.size()
-	var food_color: Color = Playfield.FOOD_COLORS[_food_color_index]
-	$Sprites/Neck0/HeadBobber/Food.modulate = food_color
-	$Sprites/Neck0/HeadBobber/FoodLaser.modulate = food_color
-
 	$Tween.interpolate_property($Sprites/Neck0/HeadBobber, "position:x",
 			clamp($Sprites/Neck0/HeadBobber.position.x - 6, -20, 0), 0, 0.5,
 			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)

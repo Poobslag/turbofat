@@ -19,7 +19,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_F: $RestaurantScene.get_creature_2d().feed()
+		KEY_F: $RestaurantScene.get_creature_2d().feed(Playfield.FOOD_COLORS[0])
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			$RestaurantScene.get_creature_2d().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
 		KEY_BRACELEFT:
