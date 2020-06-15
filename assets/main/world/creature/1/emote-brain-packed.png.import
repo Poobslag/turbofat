@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/emote-body-sheet.png-ca4b4aeacd41a5d075a296984a69c40a.stex"
+path="res://.import/emote-brain-packed.png-cb6b85f1a511867913695fac9d6e7dd0.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/1/emote-body-sheet.png"
-dest_files=[ "res://.import/emote-body-sheet.png-ca4b4aeacd41a5d075a296984a69c40a.stex" ]
+source_file="res://assets/main/world/creature/1/emote-brain-packed.png"
+dest_files=[ "res://.import/emote-brain-packed.png-cb6b85f1a511867913695fac9d6e7dd0.stex" ]
 
 [params]
 

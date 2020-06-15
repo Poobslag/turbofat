@@ -165,10 +165,10 @@ green.
 """
 func _post_unemote() -> void:
 	for emote_sprite in _emote_sprites:
-		emote_sprite.scale = Vector2(1.0, 1.0)
+		emote_sprite.scale = Vector2(2.0, 2.0)
 		emote_sprite.rotation_degrees = 0.0
 		emote_sprite.modulate = Color.transparent
-	$"../Sprites/EmoteBody".scale = Vector2(0.418, 0.418)
+	$"../Sprites/EmoteBody".scale = Vector2(0.836, 0.836)
 	$"../Sprites/Neck0/HeadBobber/EmoteGlow".material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
 
 

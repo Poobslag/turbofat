@@ -1,0 +1,65 @@
+{ "frames": [
+   {
+    "filename": "emote-body-packed 0.png",
+    "frame": { "x": 635, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-body-packed 1.png",
+    "frame": { "x": 216, "y": 120, "w": 207, "h": 111 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 155, "y": 77, "w": 207, "h": 111 },
+    "sourceSize": { "w": 512, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-body-packed 2.png",
+    "frame": { "x": 430, "y": 0, "w": 200, "h": 115 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 153, "y": 72, "w": 200, "h": 115 },
+    "sourceSize": { "w": 512, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-body-packed 3.png",
+    "frame": { "x": 216, "y": 0, "w": 209, "h": 115 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 155, "y": 71, "w": 209, "h": 115 },
+    "sourceSize": { "w": 512, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-body-packed 4.png",
+    "frame": { "x": 0, "y": 0, "w": 211, "h": 119 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 153, "y": 67, "w": 211, "h": 119 },
+    "sourceSize": { "w": 512, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-body-packed 5.png",
+    "frame": { "x": 0, "y": 124, "w": 212, "h": 103 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 153, "y": 84, "w": 212, "h": 103 },
+    "sourceSize": { "w": 512, "h": 256 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "emote-body-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 636, "h": 231 },
+  "scale": "1"
+ }
+}

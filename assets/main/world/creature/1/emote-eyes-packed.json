@@ -1,0 +1,155 @@
+{ "frames": [
+   {
+    "filename": "emote-eyes-packed 0.png",
+    "frame": { "x": 258, "y": 83, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 1.png",
+    "frame": { "x": 113, "y": 160, "w": 113, "h": 27 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 229, "y": 253, "w": 113, "h": 27 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 2.png",
+    "frame": { "x": 258, "y": 155, "w": 111, "h": 38 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 232, "y": 250, "w": 111, "h": 38 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 3.png",
+    "frame": { "x": 113, "y": 192, "w": 117, "h": 23 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 222, "y": 264, "w": 117, "h": 23 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 4.png",
+    "frame": { "x": 133, "y": 0, "w": 131, "h": 78 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 217, "y": 226, "w": 131, "h": 78 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 5.png",
+    "frame": { "x": 0, "y": 0, "w": 128, "h": 80 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 222, "y": 226, "w": 128, "h": 80 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 6.png",
+    "frame": { "x": 269, "y": 79, "w": 124, "h": 71 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 227, "y": 230, "w": 124, "h": 71 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 7.png",
+    "frame": { "x": 401, "y": 0, "w": 123, "h": 74 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 226, "y": 229, "w": 123, "h": 74 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 8.png",
+    "frame": { "x": 398, "y": 79, "w": 124, "h": 70 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 224, "y": 230, "w": 124, "h": 70 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 9.png",
+    "frame": { "x": 0, "y": 157, "w": 108, "h": 31 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 231, "y": 261, "w": 108, "h": 31 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 10.png",
+    "frame": { "x": 133, "y": 83, "w": 120, "h": 72 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 226, "y": 230, "w": 120, "h": 72 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 11.png",
+    "frame": { "x": 0, "y": 85, "w": 121, "h": 67 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 228, "y": 233, "w": 121, "h": 67 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 12.png",
+    "frame": { "x": 398, "y": 154, "w": 118, "h": 67 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 229, "y": 231, "w": 118, "h": 67 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 13.png",
+    "frame": { "x": 269, "y": 0, "w": 127, "h": 74 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 223, "y": 229, "w": 127, "h": 74 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 14.png",
+    "frame": { "x": 258, "y": 83, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-eyes-packed 15.png",
+    "frame": { "x": 258, "y": 83, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "emote-eyes-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 524, "h": 221 },
+  "scale": "1"
+ }
+}

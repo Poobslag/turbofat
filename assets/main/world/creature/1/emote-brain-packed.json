@@ -1,0 +1,155 @@
+{ "frames": [
+   {
+    "filename": "emote-brain-packed 0.png",
+    "frame": { "x": 296, "y": 147, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 1.png",
+    "frame": { "x": 0, "y": 152, "w": 144, "h": 138 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 54, "y": 67, "w": 144, "h": 138 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 2.png",
+    "frame": { "x": 0, "y": 0, "w": 146, "h": 147 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 57, "y": 65, "w": 146, "h": 147 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 3.png",
+    "frame": { "x": 0, "y": 295, "w": 85, "h": 99 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 89, "y": 74, "w": 85, "h": 99 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 4.png",
+    "frame": { "x": 296, "y": 152, "w": 99, "h": 141 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 74, "y": 55, "w": 99, "h": 141 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 5.png",
+    "frame": { "x": 151, "y": 0, "w": 148, "h": 142 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 56, "y": 66, "w": 148, "h": 142 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 6.png",
+    "frame": { "x": 304, "y": 0, "w": 140, "h": 147 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 59, "y": 64, "w": 140, "h": 147 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 7.png",
+    "frame": { "x": 151, "y": 147, "w": 140, "h": 147 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 59, "y": 64, "w": 140, "h": 147 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 8.png",
+    "frame": { "x": 90, "y": 295, "w": 59, "h": 60 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 102, "y": 95, "w": 59, "h": 60 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 9.png",
+    "frame": { "x": 400, "y": 225, "w": 25, "h": 29 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 79, "y": 134, "w": 25, "h": 29 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 10.png",
+    "frame": { "x": 400, "y": 188, "w": 27, "h": 32 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 101, "y": 81, "w": 27, "h": 32 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 11.png",
+    "frame": { "x": 400, "y": 152, "w": 33, "h": 31 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 161, "y": 80, "w": 33, "h": 31 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 12.png",
+    "frame": { "x": 296, "y": 147, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 13.png",
+    "frame": { "x": 296, "y": 147, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 14.png",
+    "frame": { "x": 296, "y": 147, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-brain-packed 15.png",
+    "frame": { "x": 296, "y": 147, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 256, "h": 256 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "emote-brain-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 444, "h": 394 },
+  "scale": "1"
+ }
+}
