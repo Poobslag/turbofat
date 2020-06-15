@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/arm-z1-sheet.png-0ccc48e240d767f5c8036e932d869a95.stex"
+path="res://.import/arm-z1-packed.png-8ea2902a02ab8e23f5876bcf7fc54054.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/1/arm-z1-sheet.png"
-dest_files=[ "res://.import/arm-z1-sheet.png-0ccc48e240d767f5c8036e932d869a95.stex" ]
+source_file="res://assets/main/world/creature/1/arm-z1-packed.png"
+dest_files=[ "res://.import/arm-z1-packed.png-8ea2902a02ab8e23f5876bcf7fc54054.stex" ]
 
 [params]
 

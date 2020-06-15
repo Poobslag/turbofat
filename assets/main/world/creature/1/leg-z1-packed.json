@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "leg-z1-packed 0.png",
+    "frame": { "x": 175, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "leg-z1-packed 1.png",
+    "frame": { "x": 0, "y": 0, "w": 97, "h": 62 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 186, "y": 357, "w": 97, "h": 62 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "leg-z1-packed 2.png",
+    "frame": { "x": 102, "y": 0, "w": 68, "h": 53 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 184, "y": 356, "w": 68, "h": 53 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "leg-z1-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 176, "h": 62 },
+  "scale": "1"
+ }
+}

@@ -182,11 +182,11 @@ func _load_body(creature_def: Dictionary) -> void:
 	# All creatures have a body, but this class supports passing in an empty creature definition to unload the
 	# textures from creature sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# creature's body.
-	_load_texture(creature_def, "FarArm", "body", "arm-z0-sheet")
-	_load_texture(creature_def, "FarLeg", "body", "leg-z0-sheet")
+	_load_packed_texture(creature_def, "FarArm", "body", "arm-z0-packed")
+	_load_packed_texture(creature_def, "FarLeg", "body", "leg-z0-packed")
 	_load_texture(creature_def, "Body/NeckBlend", "body", "neck-sheet")
-	_load_texture(creature_def, "NearLeg", "body", "leg-z1-sheet")
-	_load_texture(creature_def, "NearArm", "body", "arm-z1-sheet")
+	_load_packed_texture(creature_def, "NearLeg", "body", "leg-z1-packed")
+	_load_packed_texture(creature_def, "NearArm", "body", "arm-z1-packed")
 	_load_packed_texture(creature_def, "Neck0/HeadBobber/Head", "body", "head-packed")
 
 

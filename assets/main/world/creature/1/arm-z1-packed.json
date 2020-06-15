@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "arm-z1-packed 0.png",
+    "frame": { "x": 0, "y": 69, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-packed 1.png",
+    "frame": { "x": 0, "y": 0, "w": 57, "h": 64 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 200, "y": 314, "w": 57, "h": 64 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-packed 2.png",
+    "frame": { "x": 62, "y": 0, "w": 51, "h": 68 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 195, "y": 305, "w": 51, "h": 68 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "arm-z1-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 113, "h": 70 },
+  "scale": "1"
+ }
+}
