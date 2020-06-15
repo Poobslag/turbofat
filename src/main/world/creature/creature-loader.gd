@@ -76,47 +76,6 @@ Parameters:
 """
 func _load_texture(creature_def: Dictionary, node_path: String, key: String, filename: String) -> void:
 	# load the texture resource
-	var resource: Resource;
-	if not creature_def.has(key):
-		# The key was not specified in the creature definition. This is not an error condition, a creature might not
-		# have an 'ear' key if she doesn't have ears.
-		pass
-	else:
-		var resource_path := "res://assets/main/world/creature/%s/%s.png" % [creature_def[key], filename]
-		if not ResourceLoader.exists(resource_path):
-			# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
-			# but also throws an error.
-			pass
-		else:
-			resource = load(resource_path)
-	
-	# assign the texture properties
-	if resource:
-		creature_def["property:%s:texture" % node_path] = resource
-		creature_def["property:%s:vframes" % node_path] = max(1, int(round(resource.get_height() / 1025)))
-		creature_def["property:%s:hframes" % node_path] = max(1, int(round(resource.get_width() / 1025)))
-	else:
-		creature_def.erase("property:%s:texture" % node_path)
-
-
-"""
-Loads a packed creature texture based on a creature_def key/value pair.
-
-The input creature_def contains key/value pairs which we need to map to a texture to load, such as {'ear': '0'}. We map
-this key/value pair to a resource such as res://assets/main/world/creature/0/ear-z1.png. The input parameters include
-the dictionary of key/value pairs, which specific key/value pair we should look up, and the filename to associate with
-the key/value pair.
-
-Parameters:
-	'creature_def': The dictionary of key/value pairs defining a set of textures to load. 
-	
-	'key': The specific key/value pair to be looked up.
-	
-	'filename': The stripped-down filename of the resource to look up. All creature texture files have a path of
-		res://assets/main/world/creature/0/{something}.png, so this parameter only specifies the {something}.
-"""
-func _load_packed_texture(creature_def: Dictionary, node_path: String, key: String, filename: String) -> void:
-	# load the texture resource
 	var resource_path: String
 	var frame_data: String
 	var resource: Resource;
@@ -146,33 +105,33 @@ func _load_packed_texture(creature_def: Dictionary, node_path: String, key: Stri
 Loads the resources for a creature's ears based on a creature definition.
 """
 func _load_ear(creature_def: Dictionary) -> void:
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/EarZ0", "ear", "ear-z0-packed")
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/EarZ1", "ear", "ear-z1-packed")
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/EarZ2", "ear", "ear-z2-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/EarZ0", "ear", "ear-z0-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/EarZ1", "ear", "ear-z1-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/EarZ2", "ear", "ear-z2-packed")
 
 
 """
 Loads the resources for a creature's horn based on a creature definition.
 """
 func _load_horn(creature_def: Dictionary) -> void:
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-packed")
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-packed")
 
 
 """
 Loads the resources for a creature's mouth based on a creature definition.
 """
 func _load_mouth(creature_def: Dictionary) -> void:
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/Mouth", "mouth", "mouth-packed")
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/Food", "mouth", "food-packed")
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/Mouth", "mouth", "mouth-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/Food", "mouth", "food-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-packed")
 
 
 """
 Loads the resources for a creature's eyes based on a creature definition.
 """
 func _load_eye(creature_def: Dictionary) -> void:
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/Eyes", "eye", "eyes-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/Eyes", "eye", "eyes-packed")
 
 
 """
@@ -182,12 +141,12 @@ func _load_body(creature_def: Dictionary) -> void:
 	# All creatures have a body, but this class supports passing in an empty creature definition to unload the
 	# textures from creature sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# creature's body.
-	_load_packed_texture(creature_def, "FarArm", "body", "arm-z0-packed")
-	_load_packed_texture(creature_def, "FarLeg", "body", "leg-z0-packed")
-	_load_texture(creature_def, "Body/NeckBlend", "body", "neck-sheet")
-	_load_packed_texture(creature_def, "NearLeg", "body", "leg-z1-packed")
-	_load_packed_texture(creature_def, "NearArm", "body", "arm-z1-packed")
-	_load_packed_texture(creature_def, "Neck0/HeadBobber/Head", "body", "head-packed")
+	_load_texture(creature_def, "FarArm", "body", "arm-z0-packed")
+	_load_texture(creature_def, "FarLeg", "body", "leg-z0-packed")
+	_load_texture(creature_def, "Body/NeckBlend", "body", "neck-packed")
+	_load_texture(creature_def, "NearLeg", "body", "leg-z1-packed")
+	_load_texture(creature_def, "NearArm", "body", "arm-z1-packed")
+	_load_texture(creature_def, "Neck0/HeadBobber/Head", "body", "head-packed")
 
 
 """

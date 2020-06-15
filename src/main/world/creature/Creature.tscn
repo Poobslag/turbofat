@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=2]
@@ -7,13 +7,12 @@
 [ext_resource path="res://src/main/world/creature/creature-body.gd" type="Script" id=5]
 [ext_resource path="res://src/main/world/creature/emote-anims.gd" type="Script" id=6]
 [ext_resource path="res://src/main/world/creature/head-bobber.gd" type="Script" id=7]
-[ext_resource path="res://src/main/world/creature/creature-sprite.gd" type="Script" id=8]
+[ext_resource path="res://assets/main/world/creature/1/movement-z0-packed.png" type="Texture" id=9]
 [ext_resource path="res://src/main/world/creature/mouth-anims.gd" type="Script" id=10]
 [ext_resource path="res://src/main/world/creature/fat-player.gd" type="Script" id=12]
 [ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=13]
 [ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=14]
 [ext_resource path="res://assets/main/world/creature/1/emote-brain-packed.png" type="Texture" id=46]
-[ext_resource path="res://assets/main/world/creature/1/movement-z0-sheet.png" type="Texture" id=54]
 [ext_resource path="res://assets/main/ui/chat/emote-think0.wav" type="AudioStream" id=55]
 [ext_resource path="res://assets/main/world/creature/1/emote-eyes-packed.png" type="Texture" id=56]
 [ext_resource path="res://assets/main/world/creature/1/emote-arms-packed.png" type="Texture" id=57]
@@ -2220,16 +2219,16 @@ __meta__ = {
 "_editor_description_": "Container for all of the creature's parts, to enable flipping by MovementAnims"
 }
 
-[node name="FarMovement" type="Sprite" parent="Sprites"]
+[node name="FarMovement" type="Node2D" parent="Sprites"]
 visible = false
 light_mask = 2
 material = SubResource( 1 )
-scale = Vector2( 0.418, 0.418 )
-texture = ExtResource( 54 )
-offset = Vector2( 0, -239 )
-vframes = 2
-hframes = 8
-frame = 1
+scale = Vector2( 0.836, 0.836 )
+script = ExtResource( 13 )
+texture = ExtResource( 9 )
+frame_data = "res://assets/main/world/creature/1/movement-z0-packed.json"
+rect_size = Vector2( 512, 512 )
+offset = Vector2( 0, -119 )
 
 [node name="FarArm" type="Node2D" parent="Sprites"]
 light_mask = 2
@@ -2268,14 +2267,14 @@ line_width = 2.0
 _fatness = 1.0
 editing = false
 
-[node name="NeckBlend" type="Sprite" parent="Sprites/Body"]
+[node name="NeckBlend" type="Node2D" parent="Sprites/Body"]
 material = SubResource( 5 )
 position = Vector2( -1.11823, -102.515 )
 rotation = 3.13804
-scale = Vector2( 0.418, -0.418 )
-hframes = 3
-frame = 1
-script = ExtResource( 8 )
+scale = Vector2( 0.836, -0.836 )
+script = ExtResource( 1 )
+rect_size = Vector2( 512, 512 )
+frame = 2
 creature_path = NodePath("../../..")
 
 [node name="NearLeg" type="Node2D" parent="Sprites"]
@@ -2544,36 +2543,36 @@ one_shot = true
 [node name="SuppressSfxTimer" type="Timer" parent="CreatureSfx"]
 one_shot = true
 autostart = true
-[connection signal="before_creature_arrived" from="." to="EmoteAnims" method="_on_Creature_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="." to="Mouth1Anims" method="_on_Creature_before_creature_arrived"]
+[connection signal="before_creature_arrived" from="." to="EmoteAnims" method="_on_Creature_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="." to="Mouth0Anims" method="_on_Creature_before_creature_arrived"]
 [connection signal="creature_arrived" from="." to="CreatureSfx" method="_on_Creature_creature_arrived"]
 [connection signal="food_eaten" from="." to="CreatureSfx" method="_on_Creature_food_eaten"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Body" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/NearArm" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/FarArm" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/FarLeg" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/NearLeg" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_movement_mode_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/NearArm" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/FarArm" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/FarLeg" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/NearLeg" method="_on_Creature_orientation_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/NearLeg" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/FarLeg" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/FarArm" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/NearArm" method="_on_Creature_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_movement_mode_changed"]
+[connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ1" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ1" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ2" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_Creature_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Sprites/Body/NeckBlend" method="_on_Creature_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/NearLeg" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/FarLeg" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/FarArm" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/EarZ0" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/HornZ0" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/NearArm" method="_on_Creature_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Sprites/Neck0/HeadBobber/Head" method="_on_Creature_orientation_changed"]
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
 [connection signal="before_mood_switched" from="EmoteAnims" to="." method="_on_EmoteAnims_before_mood_switched"]
 [connection signal="animation_started" from="MovementAnims" to="." method="_on_MovementAnims_animation_started"]
