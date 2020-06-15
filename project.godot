@@ -224,7 +224,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/overworld-ui.gd"
 }, {
-"base": "Sprite",
+"base": "Node2D",
 "class": "PackedSprite",
 "language": "GDScript",
 "path": "res://src/main/packed-sprite.gd"

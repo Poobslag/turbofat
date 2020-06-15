@@ -118,7 +118,7 @@ Parameters:
 func _load_packed_texture(creature_def: Dictionary, node_path: String, key: String, filename: String) -> void:
 	# load the texture resource
 	var resource_path: String
-	var json_path: String
+	var frame_data: String
 	var resource: Resource;
 	if not creature_def.has(key):
 		# The key was not specified in the creature definition. This is not an error condition, a creature might not
@@ -126,7 +126,7 @@ func _load_packed_texture(creature_def: Dictionary, node_path: String, key: Stri
 		pass
 	else:
 		resource_path = "res://assets/main/world/creature/%s/%s.png" % [creature_def[key], filename]
-		json_path = "res://assets/main/world/creature/%s/%s.json" % [creature_def[key], filename]
+		frame_data = "res://assets/main/world/creature/%s/%s.json" % [creature_def[key], filename]
 		if not ResourceLoader.exists(resource_path):
 			# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
 			# but also throws an error.
@@ -136,10 +136,10 @@ func _load_packed_texture(creature_def: Dictionary, node_path: String, key: Stri
 	
 	if resource:
 		creature_def["property:%s:texture" % node_path] = resource
-		creature_def["property:%s:json_path" % node_path] = json_path
+		creature_def["property:%s:frame_data" % node_path] = frame_data
 	else:
 		creature_def.erase("property:%s:texture" % node_path)
-		creature_def.erase("property:%s:json_path" % node_path)
+		creature_def.erase("property:%s:frame_data" % node_path)
 
 
 """

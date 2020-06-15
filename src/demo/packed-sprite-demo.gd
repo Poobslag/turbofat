@@ -9,7 +9,7 @@ Keys:
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
-		$PackedSprite.set_json_frame(wrapi($PackedSprite.json_frame + 1, 0, $PackedSprite.get_json_frame_count()))
+		$PackedSprite.frame = wrapi($PackedSprite.frame + 1, 0, $PackedSprite.frame_count)
 	if Input.is_action_just_pressed("ui_right"):
 		$PackedSprite.offset.x += 1
 		_print_frame_details()
@@ -25,4 +25,4 @@ func _process(delta: float) -> void:
 
 
 func _print_frame_details() -> void:
-	print("json_frame=%s offset=%s" % [$PackedSprite.json_frame, $PackedSprite.offset])
+	print("json_frame=%s offset=%s" % [$PackedSprite.frame, $PackedSprite.offset])

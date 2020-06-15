@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 		else:
 			if is_playing():
 				stop()
-			_eyes.json_frame = 0
+			_eyes.frame = 0
 
 
 """
@@ -226,9 +226,9 @@ func _apply_default_eye_frames() -> void:
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
 	if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
-		_eyes.json_frame = 1
+		_eyes.frame = 1
 	else:
-		_eyes.json_frame = 0
+		_eyes.frame = 0
 
 
 """
