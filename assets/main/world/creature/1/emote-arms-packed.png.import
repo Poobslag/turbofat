@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/emote-eyes-sheet.png-3eeeffce060aec620af76e6037f0ccdc.stex"
+path="res://.import/emote-arms-packed.png-29bae4598d6d19bf45daf1641b12cfb7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/1/emote-eyes-sheet.png"
-dest_files=[ "res://.import/emote-eyes-sheet.png-3eeeffce060aec620af76e6037f0ccdc.stex" ]
+source_file="res://assets/main/world/creature/1/emote-arms-packed.png"
+dest_files=[ "res://.import/emote-arms-packed.png-29bae4598d6d19bf45daf1641b12cfb7.stex" ]
 
 [params]
 

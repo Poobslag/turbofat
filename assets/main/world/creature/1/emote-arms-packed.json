@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "emote-arms-packed 0.png",
+    "frame": { "x": 191, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-arms-packed 1.png",
+    "frame": { "x": 133, "y": 0, "w": 53, "h": 57 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 305, "y": 307, "w": 53, "h": 57 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "emote-arms-packed 2.png",
+    "frame": { "x": 0, "y": 0, "w": 128, "h": 57 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 230, "y": 307, "w": 128, "h": 57 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.20-x64",
+  "image": "emote-arms-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 192, "h": 57 },
+  "scale": "1"
+ }
+}
