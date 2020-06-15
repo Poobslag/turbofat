@@ -34,10 +34,6 @@ var _frame_src_rects: Array = []
 # Rect2 instances representing screen regions where each frame should be drawn
 var _frame_dest_rects: Array = []
 
-func _ready() -> void:
-	_load_frame_data()
-
-
 """
 Sets the path of the Aseprite json file.
 
@@ -46,6 +42,7 @@ Loads the file and recalculates the frame data. Updates our region and offset ba
 func set_frame_data(new_frame_data: String) -> void:
 	frame_data = new_frame_data
 	_load_frame_data()
+	update()
 
 
 func get_frame_count() -> int:
