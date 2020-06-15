@@ -17,10 +17,10 @@ func _on_Creature_orientation_changed(old_orientation: int, new_orientation: int
 			pass
 		else:
 			# facing south; initialize textures to forward-facing frame
-			set_json_frame(1)
+			set_frame(1)
 	else:
 		# facing north; initialize textures to backward-facing frame
-		set_json_frame(2)
+		set_frame(2)
 
 
 func _on_Creature_movement_mode_changed(movement_mode: bool) -> void:
