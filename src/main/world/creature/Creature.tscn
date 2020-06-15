@@ -2320,114 +2320,95 @@ __meta__ = {
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 7 )
-position = Vector2( -512, -512 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = false
 creature_path = NodePath("../../../..")
 
 [node name="HornZ0" type="Node2D" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 8 )
-position = Vector2( -512, -512 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = false
 creature_path = NodePath("../../../..")
 
 [node name="Head" type="Node2D" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 9 )
-position = Vector2( -512, -512 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = false
 creature_path = NodePath("../../../..")
 
 [node name="EarZ1" type="Node2D" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 7 )
-position = Vector2( -512, -512 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = false
 creature_path = NodePath("../../../..")
 
 [node name="HornZ1" type="Node2D" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 8 )
-position = Vector2( -512, -512 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = false
 creature_path = NodePath("../../../..")
 
 [node name="EarZ2" type="Node2D" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 10 )
-position = Vector2( -512, -512 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 1 )
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = false
 creature_path = NodePath("../../../..")
 
 [node name="Mouth" type="Node2D" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 11 )
-position = Vector2( -512, -512 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 13 )
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = false
 
 [node name="Eyes" type="Node2D" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 12 )
-position = Vector2( -512, -512 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 13 )
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = false
 
 [node name="Food" type="Node2D" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-position = Vector2( -512, -512 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 13 )
 rect_size = Vector2( 512, 512 )
-centered = false
 
 [node name="FoodLaser" type="Node2D" parent="Sprites/Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-position = Vector2( 512, -512 )
+position = Vector2( 1024, 0 )
 scale = Vector2( 2, 2 )
 z_index = 1
 script = ExtResource( 13 )
 rect_size = Vector2( 512, 512 )
-centered = false
 
 [node name="EmoteArms" type="Sprite" parent="Sprites/Neck0/HeadBobber"]
 light_mask = 2
