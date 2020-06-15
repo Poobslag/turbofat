@@ -11,6 +11,9 @@ during the game.
 
 signal finished_loading
 
+# number of threads to launch; 1 is slower, but more than 4 doesn't seem to help
+const THREAD_COUNT := 4
+
 # enables logging paths and durations for loaded resources
 export (bool) var _verbose := false
 
@@ -19,17 +22,22 @@ export (bool) var minimal_resources := false
 
 # maintains references to all resources to prevent them from being cleaned up
 var _cache := {}
+var _cache_mutex := Mutex.new()
 
 # setting this to 'true' causes the background thread to terminate gracefully
 var _exiting := false
 
-# background thread for loading resources
-var _load_thread: Thread
+# background threads for loading resources
+var _load_threads := []
 
 # these two properties are used for the get_progress calculation
 var _work_done := 0.0
 var _work_total := 3.0
 var _remaining_resource_paths := []
+var _remaining_resource_paths_mutex := Mutex.new()
+
+# mutex which controls the 'finished' signal. locked once and never unlocked.
+var _finished_signal_mutex := Mutex.new()
 
 """
 Initializes the resource load.
@@ -40,12 +48,15 @@ Web targets do not support background threads (Godot issue #12699) so we initial
 them one at a time in the _process function.
 """
 func start_load() -> void:
+	_find_resource_paths()
 	if OS.has_feature("web"):
 		# Godot issue #12699; threads not supported for HTML5
-		_find_resource_paths()
+		pass
 	else:
-		_load_thread = Thread.new()
-		_load_thread.start(self, "_preload_all_pngs")
+		for i in range(THREAD_COUNT):
+			var thread = Thread.new()
+			thread.start(self, "_preload_all_pngs")
+			_load_threads.append(thread)
 
 
 func _process(delta: float) -> void:
@@ -55,9 +66,10 @@ func _process(delta: float) -> void:
 
 
 func _exit_tree() -> void:
-	if _load_thread:
+	if _load_threads:
 		_exiting = true
-		_load_thread.wait_to_finish()
+		for thread in _load_threads:
+			thread.wait_to_finish()
 
 
 func get_progress() -> float:
@@ -75,8 +87,6 @@ Parameters:
 	'userdata': Unused; needed for threads
 """
 func _preload_all_pngs(userdata: Object) -> void:
-	_find_resource_paths()
-	
 	while _remaining_resource_paths and not _exiting:
 		_preload_next_png()
 
@@ -85,9 +95,13 @@ func _preload_all_pngs(userdata: Object) -> void:
 Loads a single png in the /assets directory and stores the resulting resource in our cache
 """
 func _preload_next_png() -> void:
-	_load_resource(_remaining_resource_paths.pop_front())
+	_remaining_resource_paths_mutex.lock()
+	var path: String = _remaining_resource_paths.pop_front()
+	_remaining_resource_paths_mutex.unlock()
+	
+	_load_resource(path)
 	_work_done += 1.0
-	if not _remaining_resource_paths:
+	if is_done() and _finished_signal_mutex.try_lock() == OK:
 		# Emit signals on the main thread. Otherwise there are strange side effects like breakpoints not working
 		call_deferred("emit_signal", "finished_loading")
 
@@ -146,11 +160,17 @@ func _load_resource(resource_path: String) -> void:
 	if _cache.has(resource_path):
 		# resource already cached
 		pass
-	elif not ResourceLoader.exists(resource_path):
-		# resource doesn't exist; cache so we don't try again
-		_cache[resource_path] = "_"
 	else:
-		var start := OS.get_ticks_msec()
-		_cache[resource_path] = load(resource_path)
-		var duration := OS.get_ticks_msec() - start
-		if _verbose: print("resource loaded: %4d, %s" % [duration, resource_path])
+		var result
+		if not ResourceLoader.exists(resource_path):
+			# resource doesn't exist; cache so we don't try again
+			result = "_"
+		else:
+			var start := OS.get_ticks_msec()
+			result = load(resource_path)
+			var duration := OS.get_ticks_msec() - start
+			if _verbose: print("resource loaded: %4d, %s" % [duration, resource_path])
+		
+		_cache_mutex.lock()
+		_cache[resource_path] = result
+		_cache_mutex.unlock()
