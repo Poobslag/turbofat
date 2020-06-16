@@ -19,7 +19,7 @@ var _data_per_rank := {
 	"1k": ["26", "0", "10:00"],
 	"1d": ["24", "A1", "6:00"],
 	"2d": ["20", "A5", "5:00"],
-	"3d": ["20", "A5", "4:00"],
+	"3d": ["20", "A1", "4:00"],
 	"4d": ["16", "AA", "5:00"],
 	"5d": ["16", "AA", "6:00"],
 	"6d": ["10", "AE", "3:00"],
@@ -50,7 +50,7 @@ func _ready() -> void:
 		
 		# for survival scenarios, also print a diminished score which is more realistic to reach under pressure
 		match(data_key):
-			"1k", "3d", "7d", "M":
+			"1k", "7d", "M":
 				var survival_points := (target_score - target_lines) * 0.6 + target_lines
 				text += "  (%s survival: %s points)\n" % [data_key, survival_points]
 
@@ -85,15 +85,19 @@ func _scenario_settings(data_key: String, start_level: String, seconds: float) -
 			settings.add_level_up(Milestone.LINES, 80, "A4")
 			settings.add_level_up(Milestone.LINES, 100, "A5")
 		"3d":
-			settings.set_start_level("A5")
-			settings.add_level_up(Milestone.LINES, 5, "A6")
-			settings.add_level_up(Milestone.LINES, 10, "A7")
-			settings.add_level_up(Milestone.LINES, 15, "A8")
-			settings.add_level_up(Milestone.LINES, 20, "A9")
-			settings.add_level_up(Milestone.LINES, 25, "AA")
-			settings.add_level_up(Milestone.LINES, 30, "AB")
-			settings.add_level_up(Milestone.LINES, 35, "AC")
-			settings.add_level_up(Milestone.LINES, 40, "AD")
+			settings.set_start_level("A1")
+			settings.add_level_up(Milestone.LINES, 1, "A2")
+			settings.add_level_up(Milestone.LINES, 5, "A3")
+			settings.add_level_up(Milestone.LINES, 9, "A4")
+			settings.add_level_up(Milestone.LINES, 13, "A5")
+			settings.add_level_up(Milestone.LINES, 17, "A6")
+			settings.add_level_up(Milestone.LINES, 21, "A7")
+			settings.add_level_up(Milestone.LINES, 25, "A8")
+			settings.add_level_up(Milestone.LINES, 29, "A9")
+			settings.add_level_up(Milestone.LINES, 33, "AA")
+			settings.add_level_up(Milestone.LINES, 37, "AB")
+			settings.add_level_up(Milestone.LINES, 41, "AC")
+			settings.add_level_up(Milestone.LINES, 45, "AD")
 		"5d":
 			settings.set_start_level("AA")
 			settings.add_level_up(Milestone.TIME_OVER, 60, "AB")

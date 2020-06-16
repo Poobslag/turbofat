@@ -2,48 +2,68 @@
   "version": "15d2",
   "success-condition": {
     "type": "score",
-    "value": "750"
+    "value": "1200"
   },
-  "start-level": "A5",
+  "start-level": "A1",
   "level-ups": [
     {
       "type": "lines",
+      "value": "1",
+      "level": "A2"
+    },
+    {
+      "type": "lines",
       "value": "5",
+      "level": "A3"
+    },
+    {
+      "type": "lines",
+      "value": "9",
+      "level": "A4"
+    },
+    {
+      "type": "lines",
+      "value": "13",
+      "level": "A5"
+    },
+    {
+      "type": "lines",
+      "value": "17",
       "level": "A6"
     },
     {
       "type": "lines",
-      "value": "10",
+      "value": "21",
       "level": "A7"
     },
     {
       "type": "lines",
-      "value": "15",
+      "value": "25",
       "level": "A8"
     },
     {
       "type": "lines",
-      "value": "20",
+      "value": "29",
       "level": "A9"
     },
     {
       "type": "lines",
-      "value": "25",
+      "value": "33",
       "level": "AA"
     },
     {
       "type": "lines",
-      "value": "30",
+      "value": "37",
       "level": "AB"
     },
     {
       "type": "lines",
-      "value": "35",
+      "value": "41",
       "level": "AC"
     },
     {
       "type": "lines",
-      "value": "40",
+      "value": "45",
       "level": "AD"
     }
   ],
