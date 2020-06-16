@@ -1,0 +1,94 @@
+[
+  {
+    "type": "version",
+    "value": "163e"
+  },
+  {
+    "type": "player-info",
+    "value": {
+      "money": 529832
+    }
+  },
+  {
+    "type": "volume-settings",
+    "value": {
+      "music": 0,
+      "sound": 0.5,
+      "voice": 0.5
+    }
+  },
+  {
+    "key": "rank-6d",
+    "type": "scenario-history",
+    "value": [
+      {
+        "box_score": 990,
+        "box_score_per_line": 10.531915,
+        "box_score_per_line_rank": 10.497269,
+        "combo_score": 935,
+        "combo_score_per_line": 10.505618,
+        "combo_score_per_line_rank": 16.893652,
+        "compare": "-seconds",
+        "leftover_score": 186,
+        "lines": 94,
+        "lines_rank": 0,
+        "lost": false,
+        "score": 2205,
+        "score_rank": 999,
+        "seconds": 155.483341,
+        "seconds_rank": 5.18,
+        "speed": 36.273983,
+        "speed_rank": 2.73786,
+        "success": true,
+        "timestamp": {
+          "day": 15,
+          "dst": false,
+          "hour": 8,
+          "minute": 58,
+          "month": 6,
+          "second": 40,
+          "weekday": 1,
+          "year": 2020
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "key": "rank-7d",
+    "type": "scenario-history",
+    "value": [
+      {
+        "box_score": 2110,
+        "box_score_per_line": 10.242718,
+        "box_score_per_line_rank": 15.41138,
+        "combo_score": 1820,
+        "combo_score_per_line": 9.054726,
+        "combo_score_per_line_rank": 25.773073,
+        "compare": "+score",
+        "leftover_score": 0,
+        "lines": 206,
+        "lines_rank": 20.255657,
+        "lost": true,
+        "score": 4136,
+        "score_rank": 18.59,
+        "seconds": 417.683355,
+        "seconds_rank": 999,
+        "speed": 29.591795,
+        "speed_rank": 12.167942,
+        "success": true,
+        "timestamp": {
+          "day": 16,
+          "dst": false,
+          "hour": 8,
+          "minute": 47,
+          "month": 6,
+          "second": 18,
+          "weekday": 2,
+          "year": 2020
+        },
+        "top_out_count": 1
+      }
+    ]
+  }
+]

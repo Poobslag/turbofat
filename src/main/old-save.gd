@@ -89,6 +89,8 @@ func is_old_save_items(json_save_items: Array) -> bool:
 	match version_string:
 		PlayerSave.PLAYER_DATA_VERSION:
 			is_old = false
+		"163e":
+			is_old = true
 		"15d2":
 			is_old = true
 		_:
@@ -115,32 +117,55 @@ Transforms the specified json save items to the latest format.
 """
 func transform_old_save_items(json_save_items: Array) -> Array:
 	var version_string := get_version_string(json_save_items)
-	if version_string == "15d2":
-		for json_save_item_obj in json_save_items:
-			var save_item: SaveItem = SaveItem.new()
-			save_item.from_json_dict(json_save_item_obj)
-			match save_item.type:
-				"scenario-history":
-					match save_item.key:
-						"rank-7k": _append_score_success_for_15d2(save_item, 200)
-						"rank-6k": _append_score_success_for_15d2(save_item, 200)
-						"rank-5k": _append_score_success_for_15d2(save_item, 750)
-						"rank-4k": _append_score_success_for_15d2(save_item, 300)
-						"rank-3k": _append_score_success_for_15d2(save_item, 999)
-						"rank-2k": _append_time_success_for_15d2(save_item, 180)
-						"rank-1k": _append_score_success_for_15d2(save_item, 1000)
-						"rank-1d": _append_score_success_for_15d2(save_item, 1200)
-						"rank-2d": _append_time_success_for_15d2(save_item, 300)
-						"rank-3d": _append_score_success_for_15d2(save_item, 750)
-						"rank-4d": _append_score_success_for_15d2(save_item, 2000)
-						"rank-5d": _append_score_success_for_15d2(save_item, 2500)
-						"rank-6d": _append_time_success_for_15d2(save_item, 180)
-						"rank-7d": _append_score_success_for_15d2(save_item, 4000)
-						"rank-8d": _append_score_success_for_15d2(save_item, 4000)
-						"rank-9d": _append_score_success_for_15d2(save_item, 6000)
-						"rank-10d": _append_score_success_for_15d2(save_item, 15000)
-				"version":
-					json_save_item_obj["value"] = PlayerSave.PLAYER_DATA_VERSION
+	match version_string:
+		"163e":
+			json_save_items = _convert_163e(json_save_items)
+		"15d2":
+			json_save_items = _convert_15d2(json_save_items)
+	return json_save_items
+
+
+func _convert_163e(json_save_items: Array) -> Array:
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		match save_item.type:
+			"scenario-history":
+				for rank_result_obj in save_item.value:
+					var rank_result_dict: Dictionary = rank_result_obj
+					if rank_result_dict.get("lost", true):
+						rank_result_dict["success"] = false
+			"version":
+				json_save_item_obj["value"] = PlayerSave.PLAYER_DATA_VERSION
+	return json_save_items
+
+
+func _convert_15d2(json_save_items: Array) -> Array:
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		match save_item.type:
+			"scenario-history":
+				match save_item.key:
+					"rank-7k": _append_score_success_for_15d2(save_item, 200)
+					"rank-6k": _append_score_success_for_15d2(save_item, 200)
+					"rank-5k": _append_score_success_for_15d2(save_item, 750)
+					"rank-4k": _append_score_success_for_15d2(save_item, 300)
+					"rank-3k": _append_score_success_for_15d2(save_item, 999)
+					"rank-2k": _append_time_success_for_15d2(save_item, 180)
+					"rank-1k": _append_score_success_for_15d2(save_item, 1000)
+					"rank-1d": _append_score_success_for_15d2(save_item, 1200)
+					"rank-2d": _append_time_success_for_15d2(save_item, 300)
+					"rank-3d": _append_score_success_for_15d2(save_item, 750)
+					"rank-4d": _append_score_success_for_15d2(save_item, 2000)
+					"rank-5d": _append_score_success_for_15d2(save_item, 2500)
+					"rank-6d": _append_time_success_for_15d2(save_item, 180)
+					"rank-7d": _append_score_success_for_15d2(save_item, 4000)
+					"rank-8d": _append_score_success_for_15d2(save_item, 4000)
+					"rank-9d": _append_score_success_for_15d2(save_item, 6000)
+					"rank-10d": _append_score_success_for_15d2(save_item, 15000)
+			"version":
+				json_save_item_obj["value"] = "163e"
 	return json_save_items
 
 

@@ -1,0 +1,92 @@
+[
+  {
+    "type": "version",
+    "value": "15d2"
+  },
+  {
+    "type": "player-info",
+    "value": {
+      "money": 267
+    }
+  },
+  {
+    "type": "volume-settings",
+    "value": {
+      "music": 0,
+      "sound": 0.5,
+      "voice": 0.5
+    }
+  },
+  {
+    "key": "tutorial-beginner-0",
+    "type": "scenario-history",
+    "value": [
+      {
+        "box_score": 0,
+        "box_score_per_line": 0,
+        "box_score_per_line_rank": 999,
+        "combo_score": 0,
+        "combo_score_per_line": 0,
+        "combo_score_per_line_rank": 999,
+        "compare": "+score",
+        "leftover_score": 0,
+        "lines": 100,
+        "lines_rank": -0,
+        "lost": false,
+        "score": 0,
+        "score_rank": 999,
+        "seconds": 1.683333,
+        "seconds_rank": 999,
+        "speed": 3564.356301,
+        "speed_rank": 0,
+        "timestamp": {
+          "day": 7,
+          "dst": false,
+          "hour": 19,
+          "minute": 4,
+          "month": 6,
+          "second": 11,
+          "weekday": 0,
+          "year": 2020
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "key": "rank-7k",
+    "type": "scenario-history",
+    "value": [
+      {
+        "box_score": 95,
+        "box_score_per_line": 9.5,
+        "box_score_per_line_rank": 13.882727,
+        "combo_score": 100,
+        "combo_score_per_line": 20,
+        "combo_score_per_line_rank": 0,
+        "compare": "-seconds",
+        "leftover_score": 62,
+        "lines": 10,
+        "lines_rank": -0,
+        "lost": false,
+        "score": 267,
+        "score_rank": 999,
+        "seconds": 27.750001,
+        "seconds_rank": 4.41,
+        "speed": 21.62162,
+        "speed_rank": 8.642925,
+        "timestamp": {
+          "day": 7,
+          "dst": false,
+          "hour": 19,
+          "minute": 4,
+          "month": 6,
+          "second": 52,
+          "weekday": 0,
+          "year": 2020
+        },
+        "top_out_count": 0
+      }
+    ]
+  }
+]
