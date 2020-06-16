@@ -53,9 +53,12 @@ const COLORS := [
 	"b1edee", "f9f7d9", "1a1a1e", "7a8289", "0b45a6",
 ]
 
-# 10 scales ranging from [0.25, 1.00] including 0.50
 const SCALES := [
-	0.25, 0.29, 0.33, 0.38, 0.44, 0.50, 0.57, 0.66, 0.75, 0.87, 1.00,
+	0.50, 0.58, 0.67, 0.75, 0.88,
+	1.00, 1.15, 1.33, 1.50, 1.75,
+	2.00, 2.30, 2.66, 3.00, 3.50,
+	4.00, 4.60, 5.33, 6.00, 7.00,
+	8.00
 ]
 
 # these fields store the results of the user's input
@@ -107,23 +110,25 @@ func _input(event: InputEvent) -> void:
 			_accent_swapped = not _accent_swapped
 			_play_chat_event()
 		KEY_BRACERIGHT:
-			_texture_index += 1
+			_texture_index = wrapi(_texture_index + 1, 0, ChatLineSprite.CHAT_TEXTURE_COUNT)
 			_play_chat_event()
 		KEY_BRACELEFT:
-			_texture_index -= 1
+			_texture_index = wrapi(_texture_index - 1, 0, ChatLineSprite.CHAT_TEXTURE_COUNT)
 			_play_chat_event()
 		KEY_RIGHT:
-			_color_index += 1
+			_color_index = wrapi(_color_index + 1, 0, COLORS.size())
 			_play_chat_event()
 		KEY_LEFT:
-			_color_index -= 1
+			_color_index = wrapi(_color_index - 1, 0, COLORS.size())
 			_play_chat_event()
 		KEY_UP:
-			_scale_index += 1
-			_play_chat_event()
+			if _scale_index < SCALES.size():
+				_scale_index += 1
+				_play_chat_event()
 		KEY_DOWN:
-			_scale_index -= 1
-			_play_chat_event()
+			if _scale_index > 0:
+				_scale_index -= 1
+				_play_chat_event()
 		KEY_SHIFT:
 			_squished = !_squished
 			_play_chat_event()

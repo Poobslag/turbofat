@@ -12,7 +12,7 @@ const MAX_INTERACT_DISTANCE := 240.0
 
 # Chat appearance for different characters
 var _chat_theme_defs := {
-	"Spira": {"accent_scale":0.66,"accent_swapped":true,"accent_texture":13,"color":"b23823"}
+	"Spira": {"accent_scale":1.33,"accent_swapped":true,"accent_texture":13,"color":"b23823"}
 }
 
 # The player's sprite

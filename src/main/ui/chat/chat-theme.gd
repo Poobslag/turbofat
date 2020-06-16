@@ -47,7 +47,7 @@ See ChatEvent.chat_theme_def for a full description of the chat_theme_def proper
 """
 func _init(chat_theme_def: Dictionary) -> void:
 	accent_color = chat_theme_def.get("color", Color.gray)
-	accent_scale = chat_theme_def.get("accent_scale", 2.0)
+	accent_scale = chat_theme_def.get("accent_scale", 8.0)
 	accent_swapped = chat_theme_def.get("accent_swapped", false)
 	border_color = chat_theme_def.get("color", Color.gray)
 	dark = chat_theme_def.get("dark", false)

@@ -2,13 +2,13 @@
 
 [ext_resource path="res://src/main/ui/chat/nametag-manager.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/chat/chat-line-label.gd" type="Script" id=2]
+[ext_resource path="res://assets/main/ui/chat/texture/bg02.png" type="Texture" id=3]
 [ext_resource path="res://src/main/ui/chat/chat-frame.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/chat/chat-frame-tween.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/chat/chat-line-sprite.gd" type="Script" id=6]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-36.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/main/ui/blogger-sans-bold-36.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/main/ui/chat/window-small-sheet.png" type="Texture" id=9]
-[ext_resource path="res://assets/main/ui/chat/texture/bg01.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/ui/chat/nametag-large-sheet.png" type="Texture" id=11]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-in.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=13]
@@ -27,7 +27,7 @@ shader_param/accent_swapped = false
 shader_param/center_transparency = 0.16
 shader_param/scroll_period = Vector2( 7.377, 4.111 )
 shader_param/scroll_distance = Vector2( 120, 60 )
-shader_param/accent_texture = ExtResource( 10 )
+shader_param/accent_texture = ExtResource( 3 )
 
 [node name="ChatFrame" type="Control"]
 anchor_right = 1.0
