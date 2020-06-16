@@ -28,7 +28,7 @@ creature_def = {
 "mouth": "2"
 }
 chat_theme_def = {
-"accent_scale": 0.33,
+"accent_scale": 0.66,
 "accent_swapped": true,
 "accent_texture": 1,
 "color": "0b45a6",

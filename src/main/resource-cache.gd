@@ -54,7 +54,7 @@ func start_load() -> void:
 		pass
 	else:
 		for i in range(THREAD_COUNT):
-			var thread = Thread.new()
+			var thread := Thread.new()
 			thread.start(self, "_preload_all_pngs")
 			_load_threads.append(thread)
 

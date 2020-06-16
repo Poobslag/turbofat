@@ -29,7 +29,7 @@ uniform vec4 accent_color : hint_color;
 uniform sampler2D accent_texture;
 
 // These two parameters specify whether the accent texture is scaled or flipped
-uniform float accent_scale = 1.0;
+uniform float accent_scale = 2.0;
 uniform vec2 accent_flip = vec2(1.0, 1.0);
 
 // A number from [0, 1.0] representing how opaque the accents are; 1.0 = fully opaque
@@ -59,8 +59,10 @@ void fragment() {
 
 	// mix in the middle texture based on the red component of the source image
 	vec4 rgba_out = mix(border_color, center_color, rgba_in.r);
-	vec4 tex_color = accent_swapped ? texture(accent_texture, tex_uv) : 1.0 - texture(accent_texture, tex_uv);
-	rgba_out = mix(rgba_out, accent_color, rgba_in.r * accent_amount * tex_color);
+	// blur and sharpen the texture to keep it crisp when scaled up
+	float tex_amount = textureLod(accent_texture, tex_uv, 1.5).r;
+	tex_amount = smoothstep(0.49, 0.50, accent_swapped ? tex_amount : 1.0 - tex_amount);
+	rgba_out = mix(rgba_out, accent_color, rgba_in.r * accent_amount * tex_amount * vec4(1));
 	
 	// preserve transparency of source image
 	rgba_out.a *= rgba_in.a;
