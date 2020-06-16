@@ -27,7 +27,13 @@ func load_0517_data() -> void:
 
 func load_15d2_data() -> void:
 	var dir := Directory.new()
-	dir.copy("res://assets/test/turbofat-15d2.save", "user://%s" % TEMP_FILENAME)
+	dir.copy("res://assets/test/turbofat-15d2.json", "user://%s" % TEMP_FILENAME)
+	PlayerSave.load_player_data()
+
+
+func load_163e_data() -> void:
+	var dir := Directory.new()
+	dir.copy("res://assets/test/turbofat-163e.json", "user://%s" % TEMP_FILENAME)
 	PlayerSave.load_player_data()
 
 
@@ -121,3 +127,12 @@ func test_15d2_rank_success() -> void:
 	
 	# we didn't used to store 'success', but it should be calculated based on how well they did
 	assert_eq(history_rank_7k.success, true)
+
+
+func test_163e_lost_erases_success() -> void:
+	load_163e_data()
+	
+	# rank-6d was a success, and the player didn't lose
+	assert_eq(PlayerData.scenario_history.results("rank-6d")[0].success, true)
+	# rank-7d was recorded as a success, but the player lost
+	assert_eq(PlayerData.scenario_history.results("rank-7d")[0].success, false)

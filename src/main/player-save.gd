@@ -7,7 +7,7 @@ This data includes how well they've done on each level and how much money they'v
 
 # Current version for saved player data. Should be updated if and only if the player format changes.
 # This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const PLAYER_DATA_VERSION := "163e"
+const PLAYER_DATA_VERSION := "1682"
 
 # Filename to use when saving/loading player data. Can be changed for tests
 var player_data_filename := "user://turbofat0.save"
@@ -79,8 +79,12 @@ func load_player_data() -> void:
 		var save_json_text := FileUtils.get_file_as_text(player_data_filename)
 		var json_save_items: Array = parse_json(save_json_text)
 		
-		if old_save.is_old_save_items(json_save_items):
+		while old_save.is_old_save_items(json_save_items):
+			var old_version := old_save.get_version_string(json_save_items)
 			json_save_items = old_save.transform_old_save_items(json_save_items)
+			if old_save.get_version_string(json_save_items) == old_version:
+				push_warning("Couldn't convert old save data version '%s'" % old_version)
+				break
 		
 		for json_save_item_obj in json_save_items:
 			var save_item: SaveItem = SaveItem.new()
