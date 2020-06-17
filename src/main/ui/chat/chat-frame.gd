@@ -18,7 +18,7 @@ var _squished := false
 
 func _ready() -> void:
 	$ChatLineLabel.hide_message()
-	$ChatLineSprite/NametagManager.hide_labels()
+	$ChatLinePanel/NametagPanel.hide_labels()
 
 
 """
@@ -30,7 +30,7 @@ func pop_in() -> void:
 		return
 	_popped_in = true
 	$ChatLineLabel.hide_message()
-	$ChatLineSprite/NametagManager.hide_labels()
+	$ChatLinePanel/NametagPanel.hide_labels()
 	$Tween.pop_in()
 	$PopInSound.play()
 
@@ -71,12 +71,12 @@ func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool)
 	
 	# set the text and calculate how big of a frame we need
 	var chat_line_size: int = $ChatLineLabel.show_message(chat_event.text, 0.5)
-	$ChatLineSprite/NametagManager.set_nametag_text(chat_event.who)
+	$ChatLinePanel/NametagPanel.set_nametag_text(chat_event.who)
 	
 	# update the UI's appearance
-	$ChatLineSprite/NametagManager.show_label(chat_theme, nametag_right, chat_line_size)
 	$ChatLineLabel.update_appearance(chat_theme)
-	$ChatLineSprite.update_appearance(chat_theme, chat_line_size)
+	$ChatLinePanel.update_appearance(chat_theme, chat_line_size)
+	$ChatLinePanel/NametagPanel.show_label(chat_theme, nametag_right, chat_line_size)
 
 
 func chat_window_showing() -> bool:
@@ -101,7 +101,7 @@ func get_chat_line_size() -> int:
 func _on_Tween_pop_out_completed() -> void:
 	# Hide label to prevent sounds from playing
 	$ChatLineLabel.hide_message()
-	$ChatLineSprite/NametagManager.hide_labels()
+	$ChatLinePanel/NametagPanel.hide_labels()
 	emit_signal("pop_out_completed")
 
 

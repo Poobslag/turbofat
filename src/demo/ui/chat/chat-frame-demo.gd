@@ -103,17 +103,17 @@ func _input(event: InputEvent) -> void:
 			_color_index = randi() % COLORS.size()
 			_scale_index = randi() % SCALES.size()
 			_accent_swapped = randf() > 0.5
-			_texture_index = randi() % ChatLineSprite.CHAT_TEXTURE_COUNT
+			_texture_index = randi() % ChatLinePanel.CHAT_TEXTURE_COUNT
 			_dark = randf() > 0.5
 			_play_chat_event()
 		KEY_S:
 			_accent_swapped = not _accent_swapped
 			_play_chat_event()
 		KEY_BRACERIGHT:
-			_texture_index = wrapi(_texture_index + 1, 0, ChatLineSprite.CHAT_TEXTURE_COUNT)
+			_texture_index = wrapi(_texture_index + 1, 0, ChatLinePanel.CHAT_TEXTURE_COUNT)
 			_play_chat_event()
 		KEY_BRACELEFT:
-			_texture_index = wrapi(_texture_index - 1, 0, ChatLineSprite.CHAT_TEXTURE_COUNT)
+			_texture_index = wrapi(_texture_index - 1, 0, ChatLinePanel.CHAT_TEXTURE_COUNT)
 			_play_chat_event()
 		KEY_RIGHT:
 			_color_index = wrapi(_color_index + 1, 0, COLORS.size())
