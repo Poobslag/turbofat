@@ -1,0 +1,60 @@
+class_name ChatLinePanel
+extends Panel
+"""
+Note: ChatLinePanel does not contain its own chat line labels to avoid the labels being distorted as the panel
+	stretches and shrinks. It would make the text annoying to read.
+"""
+
+# The panel squishes over time. These two constants define the speed and squish amount
+const PULSE_PERIOD := 5.385
+const PULSE_AMOUNT := Vector2(0.015, 0.030)
+
+# The number of available background textures
+const CHAT_TEXTURE_COUNT := 16
+
+# The panel squishes over time. This field is used to calculate the squish amount
+var _total_time := 0.0
+
+# Longer lines of dialog are displayed in bigger panels
+onready var _panel_sizes := {
+	ChatTheme.LINE_SMALL: Vector2(420, 120),
+	ChatTheme.LINE_MEDIUM: Vector2(600, 120),
+	ChatTheme.LINE_LARGE: Vector2(600, 160),
+	ChatTheme.LINE_XL: Vector2(780, 160),
+}
+
+# Background textures which scroll behind the chat window
+var _accent_textures := []
+
+func _ready() -> void:
+	for i in range(CHAT_TEXTURE_COUNT):
+		var path := "res://assets/main/ui/chat/texture/bg%02d.png" % i
+		_accent_textures.append(load(path))
+
+
+func _process(delta: float) -> void:
+	_total_time += delta
+	
+	# stretch the chat window vertically/horizontally in a circular way which preserves its area
+	rect_scale.x = 1.00 + PULSE_AMOUNT.x * sin((_total_time + 8.96) * TAU / PULSE_PERIOD)
+	rect_scale.y = 1.00 + PULSE_AMOUNT.y * cos((_total_time + 8.96) * TAU / PULSE_PERIOD)
+
+
+"""
+Recolors and repositions the panel based on the current chat appearance.
+
+Parameters:
+	'chat_line_size': The size of the chat line window. This is needed for the panel to update its texture to show a
+		smaller/larger window.
+"""
+func update_appearance(chat_theme: ChatTheme, chat_line_size: int) -> void:
+	rect_size = _panel_sizes[chat_line_size]
+	rect_position = Vector2(512, 100) - rect_size / 2
+	
+	material.set_shader_param("accent_amount", 0.40 if chat_theme.dark else 0.24)
+	material.set_shader_param("accent_color", chat_theme.accent_color)
+	material.set_shader_param("accent_scale", chat_theme.accent_scale)
+	material.set_shader_param("accent_swapped", chat_theme.accent_swapped)
+	material.set_shader_param("accent_texture", _accent_textures[chat_theme.accent_texture_index])
+	material.set_shader_param("border_color", chat_theme.border_color)
+	material.set_shader_param("center_color", Color.black if chat_theme.dark else Color.white)

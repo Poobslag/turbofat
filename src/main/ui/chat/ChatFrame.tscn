@@ -1,33 +1,49 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://src/main/ui/chat/nametag-manager.gd" type="Script" id=1]
+[ext_resource path="res://src/main/ui/chat/nametag-panel.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/chat/chat-line-label.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/ui/chat/texture/bg02.png" type="Texture" id=3]
 [ext_resource path="res://src/main/ui/chat/chat-frame.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/chat/chat-frame-tween.gd" type="Script" id=5]
-[ext_resource path="res://src/main/ui/chat/chat-line-sprite.gd" type="Script" id=6]
+[ext_resource path="res://src/main/ui/chat/chat.shader" type="Shader" id=6]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-36.tres" type="DynamicFont" id=7]
 [ext_resource path="res://src/main/ui/blogger-sans-bold-36.tres" type="DynamicFont" id=8]
-[ext_resource path="res://assets/main/ui/chat/window-small-sheet.png" type="Texture" id=9]
-[ext_resource path="res://assets/main/ui/chat/nametag-large-sheet.png" type="Texture" id=11]
+[ext_resource path="res://src/main/ui/chat/chat-line-panel.gd" type="Script" id=10]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-in.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=13]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-out.wav" type="AudioStream" id=14]
-[ext_resource path="res://src/main/ui/chat/chat.shader" type="Shader" id=15]
 
 [sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 15 )
+shader = ExtResource( 6 )
 shader_param/border_color = Color( 0.188235, 0.188235, 0.376471, 1 )
 shader_param/center_color = Color( 1, 1, 1, 1 )
 shader_param/accent_color = Color( 0.435294, 0.513726, 0.858824, 1 )
 shader_param/accent_scale = 2.0
-shader_param/accent_flip = Vector2( 1, 1 )
 shader_param/accent_amount = 0.24
 shader_param/accent_swapped = false
 shader_param/center_transparency = 0.16
 shader_param/scroll_period = Vector2( 7.377, 4.111 )
 shader_param/scroll_distance = Vector2( 120, 60 )
 shader_param/accent_texture = ExtResource( 3 )
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 0, 0, 1 )
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.188235, 0.188235, 0.376471, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="ChatFrame" type="Control"]
 anchor_right = 1.0
@@ -43,37 +59,40 @@ __meta__ = {
 [node name="Tween" type="Tween" parent="."]
 script = ExtResource( 5 )
 
-[node name="ChatLineSprite" type="Sprite" parent="."]
+[node name="ChatLinePanel" type="Panel" parent="."]
 material = SubResource( 1 )
-position = Vector2( 512, 100 )
-scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 9 )
-vframes = 4
-script = ExtResource( 6 )
+margin_left = 218.0
+margin_top = 38.0
+margin_right = 807.0
+margin_bottom = 158.0
+custom_styles/panel = SubResource( 2 )
+script = ExtResource( 10 )
 __meta__ = {
-"_editor_description_": "	"
+"_edit_use_anchors_": false
 }
 
-[node name="NametagManager" type="Sprite" parent="ChatLineSprite"]
-self_modulate = Color( 0.188235, 0.188235, 0.376471, 1 )
-show_behind_parent = true
-position = Vector2( 956.611, -553.485 )
-rotation = 0.0174533
-texture = ExtResource( 11 )
-vframes = 4
+[node name="NametagPanel" type="Panel" parent="ChatLinePanel"]
+margin_left = 214.129
+margin_top = -56.8943
+margin_right = 574.129
+margin_bottom = 3.10575
+custom_styles/panel = SubResource( 3 )
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Small" type="Label" parent="ChatLineSprite/NametagManager"]
+[node name="Small" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -921.903
-margin_top = -330.684
-margin_right = -741.903
-margin_bottom = -293.684
-rect_scale = Vector2( 4.546, 4.546 )
+margin_left = -82.0
+margin_top = -16.0
+margin_right = 98.0
+margin_bottom = 21.0
+rect_scale = Vector2( 0.909, 0.909 )
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Lorem ipsu"
@@ -84,17 +103,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Medium" type="Label" parent="ChatLineSprite/NametagManager"]
+[node name="Medium" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -1819.44
-margin_top = -336.723
-margin_right = -1469.44
-margin_bottom = -299.723
-rect_scale = Vector2( 4.546, 4.546 )
+margin_left = -160.0
+margin_top = -16.0
+margin_right = 190.0
+margin_bottom = 21.0
+rect_scale = Vector2( 0.909, 0.909 )
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Lorem ipsum dolor s"
@@ -106,17 +125,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Large" type="Label" parent="ChatLineSprite/NametagManager"]
+[node name="Large" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -1819.44
-margin_top = -336.723
-margin_right = -1294.44
-margin_bottom = -299.723
-rect_scale = Vector2( 3.031, 4.546 )
+margin_left = -160.0
+margin_top = -16.0
+margin_right = 365.0
+margin_bottom = 21.0
+rect_scale = Vector2( 0.606, 0.909 )
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Lorem ipsum dolor sit amet"
@@ -128,17 +147,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExtraLarge" type="Label" parent="ChatLineSprite/NametagManager"]
+[node name="ExtraLarge" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -1509.42
-margin_top = -384.991
-margin_right = -1009.42
-margin_bottom = -304.991
-rect_scale = Vector2( 2.021, 3.031 )
+margin_left = -100.0
+margin_top = -23.0
+margin_right = 400.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 500, 80 )
+rect_scale = Vector2( 0.4, 0.6 )
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
@@ -150,20 +170,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ExtraExtraLarge" type="Label" parent="ChatLineSprite/NametagManager"]
+[node name="ExtraExtraLarge" type="Label" parent="ChatLinePanel/NametagPanel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -1762.15
-margin_top = -381.256
-margin_right = -1012.15
-margin_bottom = -301.256
-rect_scale = Vector2( 2.021, 3.031 )
+margin_left = -150.0
+margin_top = -23.0
+margin_right = 600.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 750, 80 )
+rect_scale = Vector2( 0.4, 0.6 )
 custom_fonts/font = ExtResource( 8 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
 align = 1
+valign = 1
 autowrap = true
 clip_text = true
 max_lines_visible = 2

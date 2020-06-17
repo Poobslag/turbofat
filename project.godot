@@ -64,10 +64,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/chat/chat-line-label.gd"
 }, {
-"base": "Sprite",
-"class": "ChatLineSprite",
+"base": "Panel",
+"class": "ChatLinePanel",
 "language": "GDScript",
-"path": "res://src/main/ui/chat/chat-line-sprite.gd"
+"path": "res://src/main/ui/chat/chat-line-panel.gd"
 }, {
 "base": "Reference",
 "class": "ChatTheme",
@@ -366,7 +366,7 @@ _global_script_class_icons={
 "ChatIcon": "",
 "ChatLibrary": "",
 "ChatLineLabel": "",
-"ChatLineSprite": "",
+"ChatLinePanel": "",
 "ChatTheme": "",
 "ChatTree": "",
 "CheatCodeDetector": "",

@@ -12,10 +12,6 @@ shader_type canvas_item;
 
 const float PI = 3.14159265358979;
 
-// The size of the sprite the shader is applied to. A larger value results in the texture being scaled down and
-// scrolling slower.
-const vec2 SPRITE_SIZE = vec2(1024.0, 1024.0);
-
 // The color of the border around the chat window, which is black in the source texture
 uniform vec4 border_color : hint_color;
 
@@ -28,9 +24,7 @@ uniform vec4 accent_color : hint_color;
 // A monochrome texture containing the accents to draw in the chat window's middle
 uniform sampler2D accent_texture;
 
-// These two parameters specify whether the accent texture is scaled or flipped
 uniform float accent_scale = 2.0;
-uniform vec2 accent_flip = vec2(1.0, 1.0);
 
 // A number from [0, 1.0] representing how opaque the accents are; 1.0 = fully opaque
 uniform float accent_amount = 0.24;
@@ -47,9 +41,9 @@ uniform vec2 scroll_period = vec2(7.377, 4.111);
 uniform vec2 scroll_distance = vec2(120.0, 60.0);
 
 void fragment() {
-	vec4 rgba_in = texture(TEXTURE, UV);
+	vec4 rgba_in = COLOR;
 	
-	vec2 tex_uv = UV * 2.0 * accent_flip * SPRITE_SIZE;
+	vec2 tex_uv = (SCREEN_UV / SCREEN_PIXEL_SIZE) * vec2(2.0, -2.0);
 	// scroll in a vaguely circle motion
 	tex_uv.x += scroll_distance.x * 0.5 * sin(2.0 * PI * TIME / scroll_period.x);
 	tex_uv.y += scroll_distance.y * 0.5 * cos(2.0 * PI * TIME / scroll_period.y);
@@ -61,7 +55,8 @@ void fragment() {
 	vec4 rgba_out = mix(border_color, center_color, rgba_in.r);
 	// blur and sharpen the texture to keep it crisp when scaled up
 	float tex_amount = textureLod(accent_texture, tex_uv, 1.5).r;
-	tex_amount = smoothstep(0.49, 0.50, accent_swapped ? tex_amount : 1.0 - tex_amount);
+	tex_amount = accent_swapped ? tex_amount : 1.0 - tex_amount;
+	tex_amount = smoothstep(0.50 - 0.50 / accent_scale, 0.50 + 0.50 / accent_scale, tex_amount);
 	rgba_out = mix(rgba_out, accent_color, rgba_in.r * accent_amount * tex_amount * vec4(1));
 	
 	// preserve transparency of source image
