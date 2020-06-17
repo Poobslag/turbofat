@@ -1386,7 +1386,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 0, 6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 2.45544, 83.4862 ), Vector2( 2.45544, 83.4862 ) ]
+"values": [ Vector2( -169.545, 19.486 ), Vector2( -169.545, 19.486 ) ]
 }
 tracks/13/type = "audio"
 tracks/13/path = NodePath("EmoteAnims/EmoteSfx")
@@ -2467,7 +2467,7 @@ offset = Vector2( 0, -119 )
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 material = SubResource( 16 )
-position = Vector2( 2.45544, 83.4862 )
+position = Vector2( -169.545, 19.486 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 13 )
 texture = ExtResource( 58 )
