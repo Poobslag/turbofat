@@ -1,3 +1,4 @@
+class_name SkillTallyItem
 extends ProgressBar
 """
 Provides feedback to the player when they perform an action, such as rotating a piece or clearing a line.
@@ -8,16 +9,15 @@ This is used during tutorials so the player can see what to do.
 # if 'true' the skill tally will be shown as '58%' instead of '52/90'
 export (bool) var show_as_percent: bool
 
-# path of the Puzzle node to monitor
-export (NodePath) var puzzle_path: NodePath
-
 # description of the skill being tallied such as 'Rotate Left'
 export (String) var label_text: String setget set_label_text
 
 # name of the signals this skill tally monitors
 export (Array, String) var signal_names: Array
 
-onready var _puzzle: Puzzle = get_node(puzzle_path)
+# puzzle to monitor for things such as moving the piece and clearing lines
+var puzzle: Puzzle setget set_puzzle
+
 var _playfield: Playfield
 var _piece_manager: PieceManager
 
@@ -26,11 +26,13 @@ var _piece_manager: PieceManager
 var _bright_tween_active: bool
 
 func _ready() -> void:
-	if not Engine.is_editor_hint():
-		_playfield = _puzzle.get_playfield()
-		_piece_manager = _puzzle.get_piece_manager()
 	reset()
-	_connect_signals()
+	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+
+
+func set_puzzle(new_puzzle: Puzzle) -> void:
+	puzzle = new_puzzle
+	_refresh_puzzle()
 
 
 func set_label_text(new_label_text: String) -> void:
@@ -63,13 +65,14 @@ func increment() -> void:
 
 
 """
-Connects the signals in 'signal_names' to the appropriate puzzle nodes.
+Initializes this node when the puzzle field is assigned.
+
+Connects the signals in 'signal_names' to the appropriate nodes.
 """
-func _connect_signals() -> void:
-	if Engine.is_editor_hint():
-		return
+func _refresh_puzzle() -> void:
+	_playfield = puzzle.get_playfield()
+	_piece_manager = puzzle.get_piece_manager()
 	
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	for signal_name in signal_names:
 		if not signal_name:
 			pass

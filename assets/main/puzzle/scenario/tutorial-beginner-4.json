@@ -100,7 +100,7 @@
     "top-out 999999"
   ],
   "other": [
-    "start-scenario ultra-normal",
+    "start-scenario tutorial-beginner-0",
     "after-tutorial"
   ],
   "piece-types": [

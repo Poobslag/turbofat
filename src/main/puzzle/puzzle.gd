@@ -41,11 +41,11 @@ func get_piece_manager() -> PieceManager:
 
 
 func hide_start_button() -> void:
-	$HudHolder/Hud.hide_start_button()
+	$Hud/PuzzleMessages.hide_start_button()
 
 
 func show_start_button() -> void:
-	$HudHolder/Hud.show_start_button()
+	$Hud/PuzzleMessages.show_start_button()
 
 
 func scroll_to_new_creature() -> void:
