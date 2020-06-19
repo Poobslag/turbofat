@@ -1,6 +1,7 @@
 !.gitkeep
 
 # Exported artifacts: .zip, .pck
+export_presets.cfg
 /export
 
 # Godot-specific ignores
@@ -15,3 +16,6 @@ data_*/
 
 # IntelliJ-specific ignores
 .idea
+
+# Keystores, passwords
+/secrets
