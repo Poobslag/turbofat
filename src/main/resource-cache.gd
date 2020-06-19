@@ -30,9 +30,11 @@ var _exiting := false
 # background threads for loading resources
 var _load_threads := []
 
-# these two properties are used for the get_progress calculation
+# properties used for the get_progress calculation
 var _work_done := 0.0
+var _work_done_mutex := Mutex.new()
 var _work_total := 3.0
+
 var _remaining_resource_paths := []
 var _remaining_resource_paths_mutex := Mutex.new()
 
@@ -100,7 +102,11 @@ func _preload_next_png() -> void:
 	_remaining_resource_paths_mutex.unlock()
 	
 	_load_resource(path)
+	
+	_work_done_mutex.lock()
 	_work_done += 1.0
+	_work_done_mutex.unlock()
+	
 	if is_done() and _finished_signal_mutex.try_lock() == OK:
 		# Emit signals on the main thread. Otherwise there are strange side effects like breakpoints not working
 		call_deferred("emit_signal", "finished_loading")
