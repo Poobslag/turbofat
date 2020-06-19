@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=2]
+[gd_scene load_steps=52 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/main/puzzle/rainbow-metaball.shader" type="Shader" id=7]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/puzzle/piece/PieceManager.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/ui/touch/TouchControlSet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=11]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/main/ui/menu/theme/h4-font.tres" type="DynamicFont" id=14]
@@ -308,6 +309,42 @@ _puzzle_path = NodePath("../..")
 [node name="TutorialHud" parent="Hud" instance=ExtResource( 2 )]
 visible = false
 _puzzle_path = NodePath("../..")
+
+[node name="TouchscreenButtons" type="Control" parent="Hud"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SouthwestButtons" parent="Hud/TouchscreenButtons" instance=ExtResource( 10 )]
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -250.0
+margin_right = 250.0
+margin_bottom = -10.0
+up_action = "hard_drop"
+down_action = "soft_drop"
+left_action = "ui_left"
+right_action = "ui_right"
+
+[node name="SoutheastButtons" parent="Hud/TouchscreenButtons" instance=ExtResource( 10 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -250.0
+margin_top = -250.0
+margin_right = -10.0
+margin_bottom = -10.0
+up_action = "hard_drop"
+down_action = "rotate_ccw"
+left_action = "soft_drop"
+right_action = "rotate_cw"
 
 [node name="TopOutTracker" type="Node" parent="."]
 script = ExtResource( 30 )

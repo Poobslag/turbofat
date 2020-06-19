@@ -1,0 +1,89 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/ui/touch/TouchControlButton.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/touch/touch-control-set.gd" type="Script" id=2]
+
+[node name="SouthwestButtons" type="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -120.0
+margin_top = -120.0
+margin_right = 120.0
+margin_bottom = 120.0
+rect_min_size = Vector2( 240, 240 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HorizontalButtons" type="HBoxContainer" parent="."]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -48.0
+margin_right = 1.52588e-05
+margin_bottom = 48.0
+rect_min_size = Vector2( 0, 96 )
+size_flags_horizontal = 3
+size_flags_vertical = 0
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Control" parent="HorizontalButtons"]
+margin_right = 96.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 96, 96 )
+
+[node name="Button" parent="HorizontalButtons/Left" instance=ExtResource( 1 )]
+
+[node name="Spacer" type="Control" parent="HorizontalButtons"]
+margin_left = 100.0
+margin_right = 140.0
+margin_bottom = 96.0
+size_flags_horizontal = 3
+
+[node name="Right" type="Control" parent="HorizontalButtons"]
+margin_left = 144.0
+margin_right = 240.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 96, 96 )
+
+[node name="Button" parent="HorizontalButtons/Right" instance=ExtResource( 1 )]
+
+[node name="VerticalButtons" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -48.0
+margin_right = 48.0
+rect_min_size = Vector2( 96, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Up" type="Control" parent="VerticalButtons"]
+margin_right = 96.0
+margin_bottom = 96.0
+rect_min_size = Vector2( 96, 96 )
+
+[node name="Button" parent="VerticalButtons/Up" instance=ExtResource( 1 )]
+
+[node name="Spacer" type="Control" parent="VerticalButtons"]
+margin_top = 100.0
+margin_right = 96.0
+margin_bottom = 140.0
+size_flags_vertical = 3
+
+[node name="Down" type="Control" parent="VerticalButtons"]
+margin_top = 144.0
+margin_right = 96.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 96, 96 )
+
+[node name="Button" parent="VerticalButtons/Down" instance=ExtResource( 1 )]

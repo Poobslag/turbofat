@@ -16,6 +16,7 @@ Other:
 Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc)
 Gut by Tom "Butch" Wesley (MIT License)
 Json Beautifier by Michael Alexsander (Mozilla Public License Version 2.0)
+Touch icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
 
 Sounds
 --------------------------------------------------------------------------------
@@ -45,6 +46,20 @@ assets/main/ui/gameover.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed\
 assets/main/ui/go.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
 assets/main/ui/matchend.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\ALARMS - BUZZERS - RINGERS - (44)\ALARM Alert Ringer Tiny 06.wav"
 assets/main/ui/ready.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
+assets/main/ui/touch/empty-pressed.png 'Empty' by Freepik
+assets/main/ui/touch/empty.png 'Empty' by Freepik
+assets/main/ui/touch/move-down-pressed.png 'Empty', 'Left arrow angle' by Freepik
+assets/main/ui/touch/move-down.png 'Empty', 'Left arrow angle' by Freepik
+assets/main/ui/touch/move-left-pressed.png 'Empty', 'Left arrow angle' by Freepik
+assets/main/ui/touch/move-left.png 'Empty', 'Left arrow angle' by Freepik
+assets/main/ui/touch/move-right-pressed.png 'Empty', 'Left arrow angle' by Freepik
+assets/main/ui/touch/move-right.png 'Empty', 'Left arrow angle' by Freepik
+assets/main/ui/touch/move-up-pressed.png 'Empty', 'Left arrow angle' by Freepik
+assets/main/ui/touch/move-up.png 'Empty', 'Left arrow angle' by Freepik
+assets/main/ui/touch/rotate-ccw-pressed.png 'Empty', 'Circular arrrow' by Freepik
+assets/main/ui/touch/rotate-ccw.png 'Empty', 'Circular arrrow' by Freepik
+assets/main/ui/touch/rotate-cw-pressed.png 'Empty', 'Circular arrrow' by Freepik
+assets/main/ui/touch/rotate-cw.png 'Empty', 'Circular arrrow' by Freepik
 assets/main/world/chef/gameover-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
 assets/main/world/chef/go-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
 assets/main/world/customer/combo-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
