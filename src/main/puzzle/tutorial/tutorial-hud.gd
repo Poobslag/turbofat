@@ -4,7 +4,9 @@ extends Control
 UI items specific for puzzle tutorials.
 """
 
-onready var _puzzle: Puzzle = get_parent()
+export (NodePath) var _puzzle_path: NodePath
+
+onready var _puzzle:Puzzle = get_node(_puzzle_path)
 onready var _playfield: Playfield = _puzzle.get_playfield()
 onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
@@ -25,6 +27,9 @@ func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
 	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
+	for skill_tally_item_obj in $SkillTallyItems/GridContainer.get_children():
+		var skill_tally_item: SkillTallyItem = skill_tally_item_obj
+		skill_tally_item.set_puzzle(_puzzle)
 	refresh()
 	
 	if Scenario.settings.name.begins_with("tutorial-beginner"):

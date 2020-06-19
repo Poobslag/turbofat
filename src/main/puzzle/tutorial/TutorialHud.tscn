@@ -97,7 +97,6 @@ margin_bottom = 64.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 6.0
-puzzle_path = NodePath("../../../..")
 label_text = "Move Left"
 signal_names = [ "moved_left", "das_moved_left", "initial_das_moved_left" ]
 
@@ -109,7 +108,6 @@ margin_bottom = 64.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 6.0
-puzzle_path = NodePath("../../../..")
 label_text = "Move Right"
 signal_names = [ "moved_right", "das_moved_right", "initial_das_moved_right" ]
 
@@ -121,7 +119,6 @@ margin_bottom = 132.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 3.0
-puzzle_path = NodePath("../../../..")
 label_text = "Rotate Left"
 signal_names = [ "rotated_left", "initial_rotated_left" ]
 
@@ -132,7 +129,6 @@ margin_bottom = 64.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 3.0
-puzzle_path = NodePath("../../../..")
 label_text = "Rotate Right"
 signal_names = [ "rotated_right", "initial_rotated_right" ]
 
@@ -145,7 +141,6 @@ custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 30.0
 show_as_percent = true
-puzzle_path = NodePath("../../../..")
 label_text = "Soft Drop"
 signal_names = [ "soft_dropped" ]
 
@@ -157,7 +152,6 @@ margin_bottom = 64.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 2.0
-puzzle_path = NodePath("../../../..")
 label_text = "Hard Drop"
 signal_names = [ "hard_dropped" ]
 
@@ -169,7 +163,6 @@ margin_bottom = 64.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 2.0
-puzzle_path = NodePath("../../../..")
 label_text = "Line Clear"
 signal_names = [ "line_cleared" ]
 
@@ -182,7 +175,6 @@ margin_bottom = 268.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 2.0
-puzzle_path = NodePath("../../../..")
 label_text = "Snack Box"
 signal_names = [ "box_built" ]
 
@@ -194,7 +186,6 @@ margin_bottom = 336.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 2.0
-puzzle_path = NodePath("../../../..")
 label_text = "Squish Move"
 signal_names = [ "squish_moved" ]
 
@@ -207,7 +198,6 @@ margin_bottom = 268.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 2.0
-puzzle_path = NodePath("../../../..")
 label_text = "Snack Stack"
 
 [node name="ZIndex" type="Node2D" parent="."]

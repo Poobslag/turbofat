@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
 [ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=3]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=4]
-[ext_resource path="res://src/main/puzzle/puzzle-hud.gd" type="Script" id=5]
+[ext_resource path="res://src/main/puzzle/puzzle-messages.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=6]
 
 [sub_resource type="InputEventAction" id=1]
@@ -13,7 +13,7 @@ action = "ui_cancel"
 [sub_resource type="ShortCut" id=2]
 shortcut = SubResource( 1 )
 
-[node name="Hud" type="Control"]
+[node name="PuzzleMessages" type="Control"]
 margin_left = 364.0
 margin_top = 28.0
 margin_right = 688.0
