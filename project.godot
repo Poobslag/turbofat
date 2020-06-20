@@ -349,11 +349,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/state-machine.gd"
 }, {
-"base": "TouchScreenButton",
-"class": "TouchControlButton",
-"language": "GDScript",
-"path": "res://src/main/ui/touch/touch-control-button.gd"
-}, {
 "base": "Control",
 "class": "TutorialHud",
 "language": "GDScript",
@@ -438,7 +433,6 @@ _global_script_class_icons={
 "Spira": "",
 "State": "",
 "StateMachine": "",
-"TouchControlButton": "",
 "TutorialHud": "",
 "TutorialMessage": "",
 "VolumeSettings": ""
@@ -601,6 +595,10 @@ soft_drop={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
  ]
 }
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
 
 [rendering]
 

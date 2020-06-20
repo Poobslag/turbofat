@@ -9,8 +9,8 @@
 [ext_resource path="res://src/main/puzzle/rainbow-metaball.shader" type="Shader" id=7]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/puzzle/piece/PieceManager.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/ui/touch/TouchControlSet.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=11]
+[ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/main/ui/menu/theme/h4-font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/main/puzzle/puzzle-music-manager.gd" type="Script" id=19]
@@ -318,7 +318,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SouthwestButtons" parent="Hud/TouchButtons" instance=ExtResource( 10 )]
+[node name="ButtonsSw" parent="Hud/TouchButtons" instance=ExtResource( 12 )]
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 0.0
@@ -327,12 +327,16 @@ margin_left = 10.0
 margin_top = -250.0
 margin_right = 250.0
 margin_bottom = -10.0
-up_action = "hard_drop"
-down_action = "soft_drop"
-left_action = "ui_left"
-right_action = "ui_right"
+_up_action = "hard_drop"
+_down_action = "soft_drop"
+_left_action = "ui_left"
+_right_action = "ui_right"
+_up_right_weight = 0.66
+_up_left_weight = 0.66
+_down_right_weight = 0.66
+_down_left_weight = 0.66
 
-[node name="SoutheastButtons" parent="Hud/TouchButtons" instance=ExtResource( 10 )]
+[node name="ButtonsSe" parent="Hud/TouchButtons" instance=ExtResource( 12 )]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -341,10 +345,12 @@ margin_left = -250.0
 margin_top = -250.0
 margin_right = -10.0
 margin_bottom = -10.0
-up_action = "hard_drop"
-down_action = "rotate_ccw"
-left_action = "soft_drop"
-right_action = "rotate_cw"
+_up_action = "hard_drop"
+_down_action = "rotate_ccw"
+_left_action = "soft_drop"
+_right_action = "rotate_cw"
+_up_left_weight = 0.66
+_down_right_weight = 0.66
 
 [node name="TopOutTracker" type="Node" parent="."]
 script = ExtResource( 30 )

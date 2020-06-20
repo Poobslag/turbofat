@@ -6,8 +6,8 @@ The player can press each button individually to emit different actions. If diag
 can press two diagonally adjacent buttons with a single touch.
 """
 
-# radius from the eightway's center where touches should be processed
-const RADIUS = 120
+# radius from the eightway's center where touches should be processed. significantly larger than its visual radius
+const RADIUS = 180
 
 # actions associated with each cardinal direction. if omitted, the button will not be shown
 export (String) var _up_action: String
