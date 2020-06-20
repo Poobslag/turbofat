@@ -1,22 +1,27 @@
+$$$ = MUST credit in your credits (you used their stuff, and their license requires it)
+$$ = SHOULD credit in your credits (you used their stuff, but their license is lenient)
+$ = MAY credit in your credits (you sort of used their stuff, i guess. or their license doesn't require it)
+
 Sounds: 
-"2000 Game SFX Collection" by GameBurp
-"Cartoon Voices" by Dawid Moroz, Soundholder Studio
-"Cooking Game" by Epic Stock Media
-"Doorbell Pull Store bell" by Maisonsonique at FreeSound.org (Creative Commons, https://creativecommons.org/licenses/by/3.0/)
-TS-808 emulator by Jonathan Murphy http://tactilesounds.blogspot.com/
+$$ "2000 Game SFX Collection" by GameBurp (Soniss license, https://sonniss.com/sound-effects-licensing/)
+$$ "Cartoon Voices" by Dawid Moroz, Soundholder Studio (Soniss license, https://sonniss.com/sound-effects-licensing/)
+$$ "Cooking Game" by Epic Stock Media (Coniss license, https://sonniss.com/sound-effects-licensing/)
+$$$ "Doorbell Pull Store bell" by Maisonsonique at FreeSound.org (Creative Commons, https://creativecommons.org/licenses/by/3.0/)
+$$$ TS-808 emulator by Jonathan Murphy (Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 Australia License., http://creativecommons.org/licenses/by-nc-nd/2.5/au/)
 
 Fonts:
-Xolonium by Severin Meyer <sev.ch@web.de>
-Blogger Sans by Sergiy Tkachenko (https://firstsiteguide.com)
+$$ Xolonium by Severin Meyer <sev.ch@web.de> (GPL, http://www.gnu.org/licenses/licenses.html#GPL)
+$$$ Blogger Sans by Sergiy Tkachenko (https://firstsiteguide.com) (Creative Commons Attribution-NoDerivatives 4.0 International Public License)
 
 Models:
-Nature Kit 2.1 by Kenney (www.kenney.nl)
+$$ Nature Kit 2.1 by Kenney (www.kenney.nl) (CC0 1.0 Universal)
 
 Other:
-Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc)
-Gut by Tom "Butch" Wesley (MIT License)
-Json Beautifier by Michael Alexsander (Mozilla Public License Version 2.0)
-Touch icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
+$ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
+$$ Gut by Tom "Butch" Wesley (MIT License)
+$ Json Beautifier by Michael Alexsander (Mozilla Public License Version 2.0)
+$ Touch icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
+$$$ Godot Engine (MIT license)
 
 Sounds
 --------------------------------------------------------------------------------
