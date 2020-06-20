@@ -5,6 +5,8 @@ Menu which lets the player adjust settings.
 This is meant to be overlaid over over scenes, which is why it is a CanvasLayer.
 """
 
+signal show
+signal hide
 signal quit_pressed
 
 # The text on the menu's quit button
@@ -33,6 +35,7 @@ func show() -> void:
 	get_tree().paused = true
 	_old_focus_owner = $Window/UiArea/SettingsArea/Ok.get_focus_owner()
 	$Window/UiArea/SettingsArea/Ok.grab_focus()
+	emit_signal("show")
 
 
 """
@@ -45,6 +48,7 @@ func hide() -> void:
 	if _old_focus_owner:
 		_old_focus_owner.grab_focus()
 		_old_focus_owner = null
+	emit_signal("hide")
 
 
 func _on_Ok_pressed() -> void:

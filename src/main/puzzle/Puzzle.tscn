@@ -310,7 +310,7 @@ _puzzle_path = NodePath("../..")
 visible = false
 _puzzle_path = NodePath("../..")
 
-[node name="TouchscreenButtons" type="Control" parent="Hud"]
+[node name="TouchButtons" type="Control" parent="Hud"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -318,7 +318,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SouthwestButtons" parent="Hud/TouchscreenButtons" instance=ExtResource( 10 )]
+[node name="SouthwestButtons" parent="Hud/TouchButtons" instance=ExtResource( 10 )]
 anchor_left = 0.0
 anchor_top = 1.0
 anchor_right = 0.0
@@ -332,7 +332,7 @@ down_action = "soft_drop"
 left_action = "ui_left"
 right_action = "ui_right"
 
-[node name="SoutheastButtons" parent="Hud/TouchscreenButtons" instance=ExtResource( 10 )]
+[node name="SoutheastButtons" parent="Hud/TouchButtons" instance=ExtResource( 10 )]
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0

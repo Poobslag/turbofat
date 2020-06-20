@@ -164,7 +164,6 @@ tracks/1/keys = {
 margin_right = 100.0
 margin_bottom = 66.0
 rect_pivot_offset = Vector2( 50, 33 )
-mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 1 )
