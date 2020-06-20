@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/demo/ui/touch/eight-way-demo.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=3]
+
+[node name="Demo" type="Node"]
+script = ExtResource( 2 )
+
+[node name="EightWay" parent="." instance=ExtResource( 1 )]
+_up_action = "ui_up"
+_down_action = "ui_down"
+_left_action = "ui_left"
+_right_action = "ui_right"
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_bottom = 44.0
+theme = ExtResource( 3 )
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}

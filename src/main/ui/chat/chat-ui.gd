@@ -3,30 +3,31 @@ extends Control
 Displays UI elements for a dialog sequence.
 """
 
+signal popped_in
 signal chat_event_played(chat_event)
-
-signal pop_out_completed
 
 # emitted when we present the player with a dialog choice
 signal showed_choices
+signal pop_out_completed
 
 # how long the player needs to hold the button to skip all dialog
 const HOLD_TO_SKIP_DURATION := 0.6
 
 # how long the player has been holding the 'interact' button
-var _interact_action_duration := 0.0
+var _accept_action_duration := 0.0
 
 # how long the player has been holding the 'rewind' button
 var _rewind_action_duration := 0.0
 
 func _process(delta: float) -> void:
-	_interact_action_duration = _interact_action_duration + delta if Input.is_action_pressed("ui_accept") else 0
 	_rewind_action_duration = _rewind_action_duration + delta if Input.is_action_pressed("rewind_text") else 0
+	_accept_action_duration = _accept_action_duration + delta if Input.is_action_pressed("ui_accept") else 0
 
 
 func _input(event: InputEvent) -> void:
 	if not $ChatFrame.chat_window_showing():
 		return
+	
 	if event.is_action_pressed("rewind_text", true):
 		_handle_rewind_action(event)
 		get_tree().set_input_as_handled()
@@ -38,6 +39,7 @@ func _input(event: InputEvent) -> void:
 
 func play_chat_tree(chat_tree: ChatTree) -> void:
 	$ChatAdvancer.play_chat_tree(chat_tree)
+	emit_signal("popped_in")
 
 
 """
@@ -71,7 +73,7 @@ func _handle_advance_action(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_accept"):
 		# if the player presses the 'interact' button, advance the text
 		advance_action = true
-	elif event.is_action_pressed("ui_accept", true) and _interact_action_duration >= HOLD_TO_SKIP_DURATION:
+	elif event.is_action_pressed("ui_accept", true) and _accept_action_duration >= HOLD_TO_SKIP_DURATION:
 		# if the player holds the 'interact' button, continuously advance the text
 		advance_action = true
 	

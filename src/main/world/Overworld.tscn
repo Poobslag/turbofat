@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature2D.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/spira.gd" type="Script" id=2]
@@ -22,6 +22,8 @@
 [ext_resource path="res://src/main/world/environment/obstacle-shadows.gd" type="Script" id=20]
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=21]
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=22]
+[ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/main/world/overworld-touch-buttons.gd" type="Script" id=24]
 
 [sub_resource type="TileSet" id=1]
 0/name = "block-shadow.png 0"
@@ -315,8 +317,45 @@ compact = true
 
 [node name="ChatUi" parent="Ui/OverworldUi" instance=ExtResource( 9 )]
 visible = false
-margin_top = 0.0
-margin_bottom = -0.000244141
+margin_bottom = 1.99976
+
+[node name="TouchButtons" type="Control" parent="Ui/OverworldUi"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ButtonsSw" parent="Ui/OverworldUi/TouchButtons" instance=ExtResource( 23 )]
+anchor_left = 0.0
+anchor_top = 1.0
+anchor_right = 0.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = -250.0
+margin_right = 250.0
+margin_bottom = -10.0
+_up_action = "ui_up"
+_down_action = "ui_down"
+_left_action = "ui_left"
+_right_action = "ui_right"
+_up_right_weight = 1.0
+_up_left_weight = 1.0
+_down_right_weight = 1.0
+_down_left_weight = 1.0
+
+[node name="ButtonsSe" parent="Ui/OverworldUi/TouchButtons" instance=ExtResource( 23 )]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -250.0
+margin_top = -250.0
+margin_right = -10.0
+margin_bottom = -10.0
+_up_action = "ui_menu"
+_down_action = "interact"
 
 [node name="CheatCodeDetector" parent="Ui/OverworldUi" instance=ExtResource( 4 )]
 codes = [ "bigfps" ]
@@ -324,9 +363,13 @@ codes = [ "bigfps" ]
 [node name="SettingsMenu" parent="Ui/OverworldUi" instance=ExtResource( 6 )]
 quit_text = "Save + Quit"
 [connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
 [connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_showed_choices"]
 [connection signal="cheat_detected" from="Ui/OverworldUi/CheatCodeDetector" to="Ui/OverworldUi/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_SettingsMenu_hide"]
 [connection signal="quit_pressed" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi" method="_on_SettingsMenu_quit_pressed"]
+[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_SettingsMenu_show"]

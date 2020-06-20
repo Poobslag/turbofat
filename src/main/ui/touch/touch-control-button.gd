@@ -8,8 +8,8 @@ var _empty_texture := preload("res://assets/main/ui/touch/empty.png")
 var _empty_pressed_texture := preload("res://assets/main/ui/touch/empty-pressed.png")
 
 var _normal_textures := {
-	"move_up": preload("res://assets/main/ui/touch/move-up.png"),
-	"move_down": preload("res://assets/main/ui/touch/move-down.png"),
+	"ui_up": preload("res://assets/main/ui/touch/move-up.png"),
+	"ui_down": preload("res://assets/main/ui/touch/move-down.png"),
 	"ui_left": preload("res://assets/main/ui/touch/move-left.png"),
 	"ui_right": preload("res://assets/main/ui/touch/move-right.png"),
 	
@@ -20,8 +20,8 @@ var _normal_textures := {
 }
 
 var _pressed_textures := {
-	"move_up": preload("res://assets/main/ui/touch/move-up-pressed.png"),
-	"move_down": preload("res://assets/main/ui/touch/move-down-pressed.png"),
+	"ui_up": preload("res://assets/main/ui/touch/move-up-pressed.png"),
+	"ui_down": preload("res://assets/main/ui/touch/move-down-pressed.png"),
 	"ui_left": preload("res://assets/main/ui/touch/move-left-pressed.png"),
 	"ui_right": preload("res://assets/main/ui/touch/move-right-pressed.png"),
 	

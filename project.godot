@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "TextureRect",
+"class": "ActionButton",
+"language": "GDScript",
+"path": "res://src/main/ui/touch/action-button.gd"
+}, {
 "base": "Reference",
 "class": "ActivePiece",
 "language": "GDScript",
@@ -365,6 +370,7 @@ _global_script_classes=[ {
 "path": "res://src/main/volume-settings.gd"
 } ]
 _global_script_class_icons={
+"ActionButton": "",
 "ActivePiece": "",
 "BlocksDuringRules": "",
 "BlocksStartRules": "",
