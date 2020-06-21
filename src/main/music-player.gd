@@ -16,7 +16,22 @@ const MIN_VOLUME := -40.0
 const MAX_VOLUME := 0.0
 
 # the music currently playing
-var _current_bgm: AudioStreamPlayer
+var current_bgm: AudioStreamPlayer
+
+func _ready() -> void:
+	$FreshnessInspector.add_checkpoint($HipHop03, 0.000)
+	$FreshnessInspector.add_checkpoint($HipHop03, 12.489)
+	$FreshnessInspector.add_checkpoint($HipHop03, 32.489)
+	$FreshnessInspector.add_checkpoint($HipHop03, 42.489)
+	$FreshnessInspector.add_checkpoint($HipHop03, 142.489)
+	$FreshnessInspector.add_checkpoint($HipHop03, 152.489)
+	$FreshnessInspector.add_checkpoint($HipHop03, 162.489)
+	
+	$FreshnessInspector.add_checkpoint($House01, 0.000)
+	$FreshnessInspector.add_checkpoint($House01, 7.747)
+	$FreshnessInspector.add_checkpoint($House01, 23.229)
+	$FreshnessInspector.add_checkpoint($House01, 38.696)
+
 
 """
 Plays a 'chill' song; something suitable for background music when the player's navigating menus or wandering the
@@ -27,7 +42,7 @@ func play_chill_bgm() -> void:
 
 
 func is_playing_chill_bgm() -> bool:
-	return _current_bgm in [$HipHop03]
+	return current_bgm in [$HipHop03]
 
 
 """
@@ -43,20 +58,20 @@ Gradually fades a track in.
 Usually it's OK for a track to start abrubtly, but sometimes we want to fade music in more gradually.
 """
 func fade_in() -> void:
-	_current_bgm.volume_db = -40.0
-	$MusicTween.fade_in(_current_bgm)
+	current_bgm.volume_db = -40.0
+	$MusicTween.fade_in(current_bgm)
 
 
 """
 Abruptly stops the currently playing track.
 """
 func stop() -> void:
-	if _current_bgm == null:
+	if current_bgm == null:
 		return
 	
-	$MusicTween.fade_out(_current_bgm)
-	_current_bgm = null
-	emit_signal("bgm_changed", _current_bgm)
+	$MusicTween.fade_out(current_bgm)
+	current_bgm = null
+	emit_signal("bgm_changed", current_bgm)
 
 
 """
@@ -65,11 +80,11 @@ Plays a new track.
 The currently track is abruptly stopped.
 """
 func play_music(new_bgm: AudioStreamPlayer, from_position: float = 0.0) -> void:
-	if _current_bgm == new_bgm:
+	if current_bgm == new_bgm:
 		return
 	
 	stop()
-	_current_bgm = new_bgm
-	_current_bgm.volume_db = 0.0
-	_current_bgm.play(from_position)
-	emit_signal("bgm_changed", _current_bgm)
+	current_bgm = new_bgm
+	current_bgm.volume_db = 0.0
+	current_bgm.play(from_position)
+	emit_signal("bgm_changed", current_bgm)

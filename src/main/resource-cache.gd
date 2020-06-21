@@ -149,6 +149,7 @@ func _find_resource_paths() -> Array:
 	seed(253686)
 	# We shuffle the pngs to prevent clumps of similar files. We use a known seed to keep the timing predictable.
 	_remaining_resource_paths.shuffle()
+	randomize()
 	
 	# all pngs have been located. increment the progress bar and calculate its new maximum
 	_work_total += _remaining_resource_paths.size()

@@ -12,11 +12,6 @@ const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 
 var _current_color_index := -1
 
-func _ready() -> void:
-	# Ensure creatures are random
-	randomize()
-
-
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_F: $RestaurantScene.get_creature_2d().feed(Playfield.FOOD_COLORS[0])

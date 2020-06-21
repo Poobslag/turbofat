@@ -14,11 +14,6 @@ var _pieces := []
 # default pieces to pull from if none are provided by the scenario
 var _default_piece_types := PieceTypes.all_types
 
-func _init() -> void:
-	# Ensure pieces are random
-	randomize()
-
-
 func _ready() -> void:
 	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
