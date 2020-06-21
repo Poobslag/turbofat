@@ -53,6 +53,10 @@ assets/main/ui/matchend.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Soun
 assets/main/ui/ready.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
 assets/main/ui/touch/empty-pressed.png 'Empty' by Freepik
 assets/main/ui/touch/empty.png 'Empty' by Freepik
+assets/main/ui/touch/interact-pressed.png 'Empty', 'Chat' by Freepik
+assets/main/ui/touch/interact.png 'Empty', 'Chat' by Freepik
+assets/main/ui/touch/menu-presed.png 'Empty', 'Adjust' by Freepik
+assets/main/ui/touch/menu.png 'Empty', 'Adjust' by Freepik
 assets/main/ui/touch/move-down-pressed.png 'Empty', 'Left arrow angle' by Freepik
 assets/main/ui/touch/move-down.png 'Empty', 'Left arrow angle' by Freepik
 assets/main/ui/touch/move-left-pressed.png 'Empty', 'Left arrow angle' by Freepik

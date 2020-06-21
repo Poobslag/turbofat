@@ -4,6 +4,7 @@
 [ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=2]
 
 [node name="TouchButtons" type="Control"]
+modulate = Color( 1, 1, 1, 0.627451 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2

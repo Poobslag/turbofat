@@ -4,6 +4,7 @@
 [ext_resource path="res://src/main/world/overworld-touch-buttons.gd" type="Script" id=3]
 
 [node name="TouchButtons" type="Control"]
+modulate = Color( 1, 1, 1, 0.627451 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )

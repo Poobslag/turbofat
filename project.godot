@@ -602,6 +602,10 @@ soft_drop={
  ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 quality/2d/gles2_use_nvidia_rect_flicker_workaround=true

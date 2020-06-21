@@ -60,11 +60,9 @@ func set_emit_actions(new_emit_actions: bool) -> void:
 """
 Refreshes the buttons based on the emit_actions property.
 
-Propogates the setting to the EightWay child objects and makes the buttons translucent.
+Propogates the setting to the EightWay child objects.
 """
 func _refresh_emit_actions() -> void:
-	modulate = Color.white if emit_actions else Utils.to_transparent(Color.white, 0.33)
-	
 	if is_inside_tree():
 		$ButtonsSw.emit_actions = emit_actions
 		$ButtonsSe.emit_actions = emit_actions
