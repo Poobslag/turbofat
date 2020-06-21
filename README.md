@@ -13,11 +13,13 @@ While this game is still in development, my goal is for it to include three diff
   * Several shorter sprint modes which last about 3 minutes, and the player is given a score or a time. They might aspire to finish faster or score more points.
   * A story mode made up of a wide variety of 3 minute scenarios. Some scenarios reward the player for learning basic game concepts and playing better. Other scenarios force the player to adapt to unusual scenario-specific rules. Some mandatory scenarios block the player's progress until they're able to clear them.
 
-## How to play
+## Controls
 
-On the overworld, press the directional keys to move, Z to talk, and 'shift' to rewind dialog. Gamepads are also supported.
+In the puzzle mode, use the **arrow keys** to control the piece, **Z/X** to rotate the piece, and **shift** to hard drop. **Esc** when you want to stop playing.
 
-In the puzzle mode, press the directional keys to control the piece, and Z/X to rotate the piece. Arrange your pieces into complete rows to clear lines and score points. Arrange your pieces into 3x3, 3x4 or 3x5 squares to form boxes, which award you additional points for line clears.
+In the overworld, press the **arrow keys** to move, **Z** to talk, and **shift** to rewind dialog. **Esc** brings up a menu.
+
+Gamepads are also supported.
 
 For more details about the scoring system or game mechanics, see [How to play](https://github.com/Poobslag/turbofat/wiki/How-to-play) in the Turbo Fat wiki.
 
