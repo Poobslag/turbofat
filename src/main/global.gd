@@ -19,6 +19,11 @@ var _benchmark_start_times := Dictionary()
 # we're very unlikely to receive a greeting. If it's close to -1, we're very likely to receive a greeting.
 var greetiness := 0.0
 
+func _init() -> void:
+	# ensure music, pieces are random
+	randomize()
+
+
 func _process(delta: float) -> void:
 	greetiness = clamp(greetiness + delta * GREETINGS_PER_MINUTE / 60, -1.0, 1.0)
 

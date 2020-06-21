@@ -16,33 +16,58 @@ var _current_bgm: AudioStreamPlayer
 
 # key: bgm node name
 # value: array of ints corresponding to how much each 'chunk' of music has been played
-var freshness_records: Dictionary 
+var bgm_staleness: Dictionary
+
+# key: bgm node name
+# value: array of floats corresponding to good start positions in each song
+var bgm_checkpoints: Dictionary
+
+# key: bgm node name
+# value: 'true' if the BGM node has been played
+var bgm_played: Dictionary
 
 func _ready() -> void:
 	wait_time = CHUNK_SIZE * 0.4
 
 
-func _on_MusicPlayer_bgm_changed(new_bgm: AudioStreamPlayer) -> void:
-	_current_bgm = new_bgm
-	_update_freshness()
+func add_checkpoint(bgm: AudioStreamPlayer, start: float) -> void:
+	if not bgm_checkpoints.has(bgm.name):
+		bgm_checkpoints[bgm.name] = []
+	bgm_checkpoints[bgm.name].append(start)
 
 
-func _on_timeout() -> void:
-	_update_freshness()
+func get_nearest_checkpoint(bgm: AudioStreamPlayer, start: float) -> float:
+	var checkpoints: Array = get_checkpoints(bgm)
+	var checkpoint_index: int = Utils.find_closest(checkpoints, start)
+	var result := start
+	if checkpoint_index != -1:
+		result = checkpoints[checkpoint_index]
+	return result
+
+
+func get_checkpoints(bgm: AudioStreamPlayer) -> Array:
+	return bgm_checkpoints.get(bgm.name, [])
 
 
 """
 Updates the 'freshness record' of the song currently playing.
 """
-func _update_freshness() -> void:
+func _update_staleness() -> void:
 	if _current_bgm == null:
 		return
 	
-	if not freshness_records.has(_current_bgm.name):
-		freshness_records[_current_bgm.name] = []
-		for _i in range(ceil(_current_bgm.stream.get_length() / CHUNK_SIZE)):
-			freshness_records[_current_bgm.name].append(0)
-	freshness_records[_current_bgm.name][int(_current_bgm.get_playback_position() / CHUNK_SIZE)] += 1
+	if not bgm_staleness.has(_current_bgm.name):
+		_init_staleness(_current_bgm)
+	
+	bgm_played[_current_bgm.name] = true
+	bgm_staleness[_current_bgm.name][int(_current_bgm.get_playback_position() / CHUNK_SIZE)] += 1
+
+
+func _init_staleness(bgm: AudioStreamPlayer) -> void:
+	bgm_staleness[bgm.name] = []
+	for _i in range(ceil(bgm.stream.get_length() / CHUNK_SIZE)):
+		bgm_staleness[bgm.name].append(randi() % 3)
+	print("init %s -> %s" % [bgm.name, bgm_staleness[bgm.name]])
 
 
 """
@@ -53,11 +78,11 @@ through the entire song, and figure out which half of the song has been played t
 the song at the start of that half.
 """
 func freshest_start(bgm: AudioStreamPlayer) -> float:
-	if not freshness_records.has(bgm.name):
-		return 0.0
+	if not bgm_staleness.has(bgm.name):
+		_init_staleness(bgm)
 	
-	var freshness_record: Array = freshness_records[bgm.name]
-	var freshest_start := 0
+	var freshness_record: Array = bgm_staleness[bgm.name]
+	var freshest_start_index := 0
 	var min_staleness: int = 0
 	var staleness: int = 0
 	var r: int = freshness_record.size() / 2
@@ -72,6 +97,20 @@ func freshest_start(bgm: AudioStreamPlayer) -> float:
 		if staleness < min_staleness:
 			# this is the freshest window; store the freshness and the window position
 			min_staleness = staleness
-			freshest_start = (l + 1) % freshness_record.size()
+			freshest_start_index = (l + 1) % freshness_record.size()
 	
-	return freshest_start * CHUNK_SIZE
+	var start := freshest_start_index * CHUNK_SIZE
+	if not bgm_played.has(bgm.name):
+		# the first time playing a particular song, we start at a checkpoint. this way the player doesn't boot up the
+		# game by hearing a musical solo or bridge without context. after the first time, anywhere is OK.
+		start = get_nearest_checkpoint(bgm, freshest_start_index)
+	return start
+
+
+func _on_MusicPlayer_bgm_changed(new_bgm: AudioStreamPlayer) -> void:
+	_current_bgm = new_bgm
+	_update_staleness()
+
+
+func _on_timeout() -> void:
+	_update_staleness()
