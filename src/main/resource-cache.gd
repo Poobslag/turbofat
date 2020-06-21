@@ -14,6 +14,8 @@ signal finished_loading
 # number of threads to launch; 1 is slower, but more than 4 doesn't seem to help
 const THREAD_COUNT := 4
 
+const CHUNK_SECONDS := 0.1
+
 # enables logging paths and durations for loaded resources
 export (bool) var _verbose := false
 
@@ -63,8 +65,10 @@ func start_load() -> void:
 
 func _process(delta: float) -> void:
 	if OS.has_feature("web") and _remaining_resource_paths:
-		# Web targets do not support background threads, so we load resources one at a time
-		_preload_next_png()
+		var start_usec := OS.get_ticks_usec()
+		# Web targets do not support background threads, so we load a few resources every frame
+		while _remaining_resource_paths and OS.get_ticks_usec() < start_usec + 1000000 * CHUNK_SECONDS: 
+			_preload_next_png()
 
 
 func _exit_tree() -> void:
