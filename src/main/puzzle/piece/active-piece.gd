@@ -42,28 +42,29 @@ func setType(new_type: PieceType) -> void:
 """
 Returns the orientation the piece will be in if it rotates clockwise.
 """
-func get_cw_orientation(in_orientation := -1) -> int:
-	if in_orientation == -1:
-		in_orientation = orientation
-	return (in_orientation + 1) % type.pos_arr.size()
+func get_cw_orientation() -> int:
+	return wrapi(orientation + 1, 0, type.pos_arr.size())
 
 
 """
 Returns the orientation the piece will be in if it rotates 180 degrees.
 """
-func get_flip_orientation(in_orientation := -1) -> int:
-	if in_orientation == -1:
-		in_orientation = orientation
-	return (in_orientation + 2) % type.pos_arr.size()
+func get_flip_orientation() -> int:
+	return wrapi(orientation + 2, 0, type.pos_arr.size())
+
+
+"""
+Returns the position the piece will be in if it rotates 180 degrees.
+"""
+func get_flip_position() -> Vector2:
+	return pos + type.flips[orientation]
 
 
 """
 Returns the orientation the piece will be in if it rotates counter-clockwise.
 """
-func get_ccw_orientation(in_orientation := -1) -> int:
-	if in_orientation == -1:
-		in_orientation = orientation
-	return (in_orientation + 3) % type.pos_arr.size()
+func get_ccw_orientation() -> int:
+	return wrapi(orientation - 1, 0, type.pos_arr.size())
 
 
 """
@@ -119,7 +120,7 @@ func kick_piece(is_cell_blocked: FuncRef, target_pos: Vector2, target_orientatio
 	
 	var successful_kick: Vector2
 	for kick in kicks:
-		if kick.y < 0 and floor_kicks >= type.max_floor_kicks:
+		if kick.y < 0 and not can_floor_kick():
 			if _trace_kicks: print("no: ", kick, " (too many floor kicks)")
 			continue
 		if can_move_piece_to(is_cell_blocked, target_pos + kick, target_orientation):
@@ -130,3 +131,7 @@ func kick_piece(is_cell_blocked: FuncRef, target_pos: Vector2, target_orientatio
 			if _trace_kicks: print("no: ", kick)
 	if _trace_kicks: print("-")
 	return successful_kick
+
+
+func can_floor_kick() -> bool:
+	return floor_kicks < type.max_floor_kicks

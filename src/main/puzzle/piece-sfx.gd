@@ -74,6 +74,10 @@ func _on_PieceManager_rotated_left() -> void:
 func _on_PieceManager_rotated_right() -> void:
 	$Rotate1Sound.play()
 
+
+func _on_PieceManager_rotated_twice() -> void:
+	$Rotate0Sound.play()
+
 # Other events -------------------------------------------------------------------
 
 func _on_PieceManager_lock_started() -> void:

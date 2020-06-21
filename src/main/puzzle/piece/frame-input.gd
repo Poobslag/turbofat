@@ -26,9 +26,14 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_released(action):
 		_pressed = false
 	
-	if cancel_action and event.is_action_pressed(cancel_action):
-		_just_pressed = false
-		_pressed = false
+	if cancel_action:
+		if event.is_action_pressed(cancel_action):
+			_just_pressed = false
+			_pressed = false
+		elif event.is_action_released(cancel_action) and Input.is_action_pressed(action) and not _pressed:
+			# player was holding both buttons, but let go of the cancel_button
+			_just_pressed = true
+			_pressed = true
 
 
 func _physics_process(_delta: float) -> void:

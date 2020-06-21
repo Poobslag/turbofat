@@ -26,11 +26,14 @@ var cw_kicks: Array
 # array of piece kicks to try when rotating counterclockwise
 var ccw_kicks: Array
 
+# position the piece should kick to when flipping in place
+var flips: Array
+
 # maximum number of 'floor kicks', kicks which move the piece upward
 var max_floor_kicks: int
 
-func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array, init_kicks: Array,
-		init_max_floor_kicks := 3) -> void:
+func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array,
+		init_kicks: Array, init_flips: Array, init_max_floor_kicks := 3) -> void:
 	string = init_string
 	pos_arr = init_pos_arr
 	color_arr = init_color_arr
@@ -51,6 +54,7 @@ func _init(init_string: String, init_pos_arr: Array, init_color_arr: Array, init
 			for i in range(cw_kick.size()):
 				ccw_kick[i] = Vector2(-cw_kick[i].x, -cw_kick[i].y)
 			ccw_kicks += [ccw_kick]
+	flips = init_flips
 	max_floor_kicks = init_max_floor_kicks
 
 

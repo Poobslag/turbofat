@@ -124,5 +124,6 @@ action = "hard_drop"
 [connection signal="moved_right" from="." to="PieceSfx" method="_on_PieceManager_moved_right"]
 [connection signal="rotated_left" from="." to="PieceSfx" method="_on_PieceManager_rotated_left"]
 [connection signal="rotated_right" from="." to="PieceSfx" method="_on_PieceManager_rotated_right"]
+[connection signal="rotated_twice" from="." to="PieceSfx" method="_on_PieceManager_rotated_twice"]
 [connection signal="squish_moved" from="." to="PieceSfx" method="_on_PieceManager_squish_moved"]
 [connection signal="entered_state" from="States" to="." method="_on_States_entered_state"]
