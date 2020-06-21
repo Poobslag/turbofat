@@ -1,6 +1,6 @@
 extends VBoxContainer
 """
-User interface control which lets the player pick their mode in practice mode.
+UI control for picking a mode in practice mode.
 
 Also displays a description of the mode, 'Score 200 points as quickly as possible!'
 """

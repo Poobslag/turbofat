@@ -25,6 +25,9 @@ diagonal presses.
 # the action activated by this button. also affects its appearance
 export (String) var action: String setget set_action
 
+# if false, pressing the button won't emit any actions.
+export (bool) var emit_actions: bool = true
+
 var pressed := false setget set_pressed
 
 # the current textures this button toggles between when pressed/unpressed
@@ -87,11 +90,12 @@ func set_pressed(new_pressed: bool) -> void:
 	pressed = new_pressed
 	texture = _pressed_texture if pressed else _normal_texture
 	
-	# fire the appropriate events
-	var ev := InputEventAction.new()
-	ev.action = action
-	ev.pressed = pressed
-	Input.parse_input_event(ev)
+	if emit_actions:
+		# fire the appropriate events
+		var ev := InputEventAction.new()
+		ev.action = action
+		ev.pressed = pressed
+		Input.parse_input_event(ev)
 
 
 """

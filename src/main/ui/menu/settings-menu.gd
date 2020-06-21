@@ -31,10 +31,11 @@ Shows the menu and pauses the scene tree.
 """
 func show() -> void:
 	$Bg.show()
+	$TouchButtons.visible = true
 	$Window.show()
 	get_tree().paused = true
-	_old_focus_owner = $Window/UiArea/SettingsArea/Ok.get_focus_owner()
-	$Window/UiArea/SettingsArea/Ok.grab_focus()
+	_old_focus_owner = $Window/UiArea/Bottom/Ok.get_focus_owner()
+	$Window/UiArea/Bottom/Ok.grab_focus()
 	emit_signal("show")
 
 
@@ -43,6 +44,7 @@ Hides the menu and unpauses the scene tree.
 """
 func hide() -> void:
 	$Bg.hide()
+	$TouchButtons.visible = false
 	$Window.hide()
 	get_tree().paused = false
 	if _old_focus_owner:

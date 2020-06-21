@@ -121,3 +121,21 @@ static func max_value(values: Array, default := 0.0) -> float:
 	for value in range(1, len(values)):
 		max_value = max(value, max_value)
 	return max_value
+
+
+"""
+Returns the array index whose contents are closest to a target number.
+
+Utils.find_closest([1.0, 2.0, 4.0, 8.0], 6.0) = 2
+Utils.find_closest([1.0, 2.0, 4.0, 8.0], 100) = 3
+Utils.find_closest([], 100)                   = -1
+"""
+static func find_closest(values: Array, target: float) -> int:
+	if not values:
+		return -1
+	
+	var result := 0
+	for i in range(1, values.size()):
+		if abs(target - values[i]) < abs(target - values[result]):
+			result = i
+	return result

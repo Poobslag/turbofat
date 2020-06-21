@@ -1,6 +1,6 @@
 extends VBoxContainer
 """
-User interface control which lets the player pick their difficulty in practice mode.
+UI control for selecting difficulty in practice mode.
 """
 
 signal difficulty_changed
