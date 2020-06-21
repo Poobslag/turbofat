@@ -59,6 +59,7 @@ func save_player_data() -> void:
 	save_json.append(generic_data("version", PLAYER_DATA_VERSION).to_json_dict())
 	save_json.append(generic_data("player-info", {"money": PlayerData.money}).to_json_dict())
 	save_json.append(generic_data("volume-settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
+	save_json.append(generic_data("touch-settings", PlayerData.touch_settings.to_json_dict()).to_json_dict())
 	for scenario_name in PlayerData.scenario_history.scenario_names():
 		var rank_results_json := []
 		for rank_result in PlayerData.scenario_history.results(scenario_name):
@@ -119,5 +120,8 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"volume-settings":
 			var value: Dictionary = json_value
 			PlayerData.volume_settings.from_json_dict(value)
+		"touch-settings":
+			var value: Dictionary = json_value
+			PlayerData.touch_settings.from_json_dict(value)
 		_:
 			push_warning("Unrecognized save data type: '%s'" % type)

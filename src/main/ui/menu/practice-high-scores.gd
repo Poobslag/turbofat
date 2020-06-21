@@ -1,6 +1,6 @@
 extends Panel
 """
-User interface element which shows daily and all-time high scores.
+UI control which shows daily and all-time high scores.
 """
 
 func set_scenario(scenario: ScenarioSettings) -> void:

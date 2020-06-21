@@ -349,6 +349,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/state-machine.gd"
 }, {
+"base": "Reference",
+"class": "TouchSettings",
+"language": "GDScript",
+"path": "res://src/main/touch-settings.gd"
+}, {
 "base": "Control",
 "class": "TutorialHud",
 "language": "GDScript",
@@ -433,6 +438,7 @@ _global_script_class_icons={
 "Spira": "",
 "State": "",
 "StateMachine": "",
+"TouchSettings": "",
 "TutorialHud": "",
 "TutorialMessage": "",
 "VolumeSettings": ""

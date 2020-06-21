@@ -8,12 +8,9 @@ This data includes how well they've done on each level and how much money they'v
 signal money_changed(value)
 
 var scenario_history := ScenarioHistory.new()
-
 var volume_settings := VolumeSettings.new()
-
+var touch_settings := TouchSettings.new()
 var money := 0 setget set_money
-
-var _rank_calculator := RankCalculator.new()
 
 """
 Resets the player's in-memory data to a default state.

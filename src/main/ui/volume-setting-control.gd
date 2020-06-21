@@ -1,6 +1,6 @@
 extends Control
 """
-User interface control which lets the player adjust volume.
+UI control for adjusting volume.
 
 Updates the player's stored settings, and also updates the audio server.
 """
