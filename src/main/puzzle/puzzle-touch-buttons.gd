@@ -31,7 +31,7 @@ const SCHEMES := {
 	},
 	TouchSettings.LOCO_CONSOLE: {
 		"sw_actions": ["soft_drop", "ui_right", "ui_left", "hard_drop"],
-		"sw_weights": [0, 1, 1, 0],
+		"sw_weights": [0, 1, 0, 0],
 		"se_actions": ["hard_drop", "rotate_ccw", "soft_drop", "rotate_cw"],
 		"se_weights": [1, 0, 0, 1],
 	},
@@ -39,7 +39,7 @@ const SCHEMES := {
 		"sw_actions": ["soft_drop", "rotate_cw", "rotate_ccw", "hard_drop"],
 		"sw_weights": [0, 1, 1, 0],
 		"se_actions": ["hard_drop", "ui_left", "soft_drop", "ui_right"],
-		"se_weights": [1, 0, 0, 1],
+		"se_weights": [1, 0, 0, 0],
 	},
 }
 
@@ -47,9 +47,13 @@ const SCHEMES := {
 export (bool) var emit_actions := true setget set_emit_actions
 
 func _ready() -> void:
-	PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
-	_refresh_emit_actions()
-	_refresh_settings()
+	if OS.has_touchscreen_ui_hint():
+		PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
+		_refresh_emit_actions()
+		_refresh_settings()
+		show()
+	else:
+		hide()
 
 
 func set_emit_actions(new_emit_actions: bool) -> void:

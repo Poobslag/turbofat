@@ -23,6 +23,7 @@ signal moved_left
 signal moved_right
 signal rotated_left
 signal rotated_right
+signal rotated_twice
 signal soft_dropped
 signal hard_dropped
 signal squish_moved
@@ -117,21 +118,22 @@ Returns 'true' if the piece was spawned successfully, or 'false' if the player t
 func spawn_piece() -> bool:
 	var piece_type := _next_piece_displays.pop_next_piece()
 	piece = ActivePiece.new(piece_type)
+	
 	tile_map_dirty = true
 	
 	# apply initial orientation if rotate buttons are pressed
 	if $InputCw.is_pressed() or $InputCcw.is_pressed():
 		if $InputCw.is_pressed() and $InputCcw.is_pressed():
-			piece.orientation = piece.get_flip_orientation(piece.orientation)
+			piece.orientation = piece.get_flip_orientation()
 			$InputCw.set_input_as_handled()
 			$InputCcw.set_input_as_handled()
 			emit_signal("initial_rotated_twice")
 		elif $InputCw.is_pressed():
-			piece.orientation = piece.get_cw_orientation(piece.orientation)
+			piece.orientation = piece.get_cw_orientation()
 			$InputCw.set_input_as_handled()
 			emit_signal("initial_rotated_right")
 		elif $InputCcw.is_pressed():
-			piece.orientation = piece.get_ccw_orientation(piece.orientation)
+			piece.orientation = piece.get_ccw_orientation()
 			$InputCcw.set_input_as_handled()
 			emit_signal("initial_rotated_left")
 		
@@ -236,13 +238,7 @@ func apply_player_input() -> bool:
 	var applied_player_input := false
 
 	if $States.get_state() == $States/MovePiece:
-		_reset_piece_target()
-		_calc_target_orientation()
-		if _target_piece_orientation != piece.orientation \
-				and not _can_move_piece_to(_target_piece_pos, _target_piece_orientation):
-			_kick_piece()
-		_move_piece_to_target(true)
-		
+		_attempt_rotation()
 		_attempt_horizontal_movement()
 		
 		# automatically trigger DAS if you're pushing a piece towards an obstruction. otherwise, pieces might slip
@@ -389,13 +385,11 @@ Kicks a rotated piece into a nearby empty space.
 This does not attempt to preserve the original position/orientation unless explicitly given a kick of (0, 0).
 """
 func _kick_piece(kicks: Array = []) -> void:
-	var successful_kick := piece.kick_piece(funcref(self, "_is_cell_blocked"), _target_piece_pos,
+	var kick_vector := piece.kick_piece(funcref(self, "_is_cell_blocked"), _target_piece_pos,
 			_target_piece_orientation, kicks)
 	
-	if successful_kick:
-		_target_piece_pos += successful_kick
-		if successful_kick.y < 0:
-			piece.floor_kicks += 1
+	if kick_vector:
+		_target_piece_pos += kick_vector
 
 
 """
@@ -478,12 +472,37 @@ func _move_piece_to_target(play_sfx := false) -> bool:
 	_reset_piece_target()
 	return valid_target_pos
 
+
 func _reset_piece_target() -> void:
 	_target_piece_pos = piece.pos
 	_target_piece_orientation = piece.orientation
 
 
+func _attempt_rotation() -> void:
+	_calc_rotate_target()
+	if _target_piece_orientation == piece.orientation:
+		return
+	
+	var old_piece_y := piece.pos.y
+	if not _can_move_piece_to(_target_piece_pos, _target_piece_orientation):
+		_kick_piece()
+	
+	var rotate_result := _move_piece_to_target(true)
+	if not rotate_result and $InputCw.is_pressed() and $InputCcw.is_pressed():
+		# flip the piece 180 degrees
+		_target_piece_pos = piece.get_flip_position()
+		_target_piece_orientation = piece.get_flip_orientation()
+		if _target_piece_pos.y < piece.pos.y and not piece.can_floor_kick():
+			pass
+		else:
+			rotate_result = _move_piece_to_target(true)
+	
+	if piece.pos.y < old_piece_y and rotate_result:
+		piece.floor_kicks += 1
+
+
 func _attempt_horizontal_movement() -> void:
+	_reset_piece_target()
 	if $InputLeft.is_just_pressed() or $InputLeft.is_das_active():
 		_target_piece_pos.x -= 1
 	
@@ -495,14 +514,23 @@ func _attempt_horizontal_movement() -> void:
 
 
 """
-Calculates the orientation the player is trying to rotate the piece to.
+Calculates the position and orientation the player is trying to rotate the piece to.
 """
-func _calc_target_orientation() -> void:
+func _calc_rotate_target() -> void:
+	_target_piece_pos = piece.pos
 	if $InputCw.is_just_pressed():
-		_target_piece_orientation = piece.get_cw_orientation(_target_piece_orientation)
+		if $InputCcw.is_pressed():
+			# flip the piece by rotating it again in the same direction
+			_target_piece_orientation = piece.get_ccw_orientation()
+		else:
+			_target_piece_orientation = piece.get_cw_orientation()
 		
 	if $InputCcw.is_just_pressed():
-		_target_piece_orientation = piece.get_ccw_orientation(_target_piece_orientation)
+		if $InputCw.is_pressed():
+			# flip the piece by rotating it again in the same direction
+			_target_piece_orientation = piece.get_cw_orientation()
+		else:
+			_target_piece_orientation = piece.get_ccw_orientation()
 
 
 """

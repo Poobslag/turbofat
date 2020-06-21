@@ -97,7 +97,8 @@ var piece_j := PieceType.new("j",
 		[Vector2(10, 0), Vector2(4, 0), Vector2(3, 0), Vector2(1, 0)],
 		[Vector2(8, 0), Vector2(12, 0), Vector2(6, 0), Vector2(1, 0)],
 		[Vector2(2, 0), Vector2(3, 0), Vector2(8, 0), Vector2(5, 0)]],
-		KICKS_J
+		KICKS_J,
+		[Vector2(0, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)]
 	)
 
 var piece_l := PieceType.new("l",
@@ -111,7 +112,8 @@ var piece_l := PieceType.new("l",
 		[Vector2(2, 1), Vector2(3, 1), Vector2(9, 1), Vector2(4, 1)],
 		[Vector2(10, 1), Vector2(12, 1), Vector2(4, 1), Vector2(1, 1)],
 		[Vector2(8, 1), Vector2(6, 1), Vector2(3, 1), Vector2(1, 1)]],
-		KICKS_L
+		KICKS_L,
+		[Vector2(0, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)]
 	)
 
 var piece_o := PieceType.new("o",
@@ -121,7 +123,8 @@ var piece_o := PieceType.new("o",
 		# color data
 		[[Vector2(10, 3), Vector2(6, 3), Vector2(9, 3), Vector2(5, 3)],
 		[Vector2(10, 3), Vector2(6, 3), Vector2(9, 3), Vector2(5, 3)]],
-		KICKS_NONE
+		KICKS_NONE,
+		[Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
 	)
 
 var piece_p := PieceType.new("p",
@@ -135,7 +138,8 @@ var piece_p := PieceType.new("p",
 		[Vector2(2, 0), Vector2(10, 0), Vector2(7, 0), Vector2(9, 0), Vector2(5, 0)],
 		[Vector2(10, 0), Vector2(6, 0), Vector2(9, 0), Vector2(13, 0), Vector2(4, 0)],
 		[Vector2(10, 0), Vector2(6, 0), Vector2(11, 0), Vector2(5, 0), Vector2(1, 0)]],
-		KICKS_P
+		KICKS_P,
+		[Vector2(0, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)]
 	)
 
 var piece_q := PieceType.new("q",
@@ -149,7 +153,8 @@ var piece_q := PieceType.new("q",
 		[Vector2(10, 1), Vector2(6, 1), Vector2(9, 1), Vector2(7, 1), Vector2(1, 1)],
 		[Vector2(10, 1), Vector2(6, 1), Vector2(8, 1), Vector2(13, 1), Vector2(5, 1)],
 		[Vector2(2, 1), Vector2(11, 1), Vector2(6, 1), Vector2(9, 1), Vector2(5, 1)]],
-		KICKS_Q
+		KICKS_Q,
+		[Vector2(0, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)]
 	)
 
 var piece_t := PieceType.new("t",
@@ -163,7 +168,8 @@ var piece_t := PieceType.new("t",
 		[Vector2(2, 2), Vector2(11, 2), Vector2(4, 2), Vector2(1, 2)],
 		[Vector2(8, 2), Vector2(14, 2), Vector2(4, 2), Vector2(1, 2)],
 		[Vector2(2, 2), Vector2(8, 2), Vector2(7, 2), Vector2(1, 2)]],
-		KICKS_T
+		KICKS_T,
+		[Vector2(0, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)]
 	)
 
 var piece_u := PieceType.new("u",
@@ -178,6 +184,7 @@ var piece_u := PieceType.new("u",
 		[Vector2(2, 2), Vector2(2, 2), Vector2(9, 2), Vector2(12, 2), Vector2(5, 2)],
 		[Vector2(10, 2), Vector2(4, 2), Vector2(3, 2), Vector2(9, 2), Vector2(4, 2)]],
 		KICKS_U,
+		[Vector2(0, 0), Vector2(-1, 0), Vector2(0, 0), Vector2(1, 0)],
 		5 # u-piece allows additional floor kicks because it kicks the floor twice if you rotate it four times
 	)
 
@@ -192,8 +199,9 @@ var piece_v := PieceType.new("v",
 		[Vector2(10, 3), Vector2(12, 3), Vector2(4, 3), Vector2(3, 3), Vector2(1, 3)],
 		[Vector2(8, 3), Vector2(12, 3), Vector2(6, 3), Vector2(3, 3), Vector2(1, 3)],
 		[Vector2(2, 3), Vector2(3, 3), Vector2(8, 3), Vector2(12, 3), Vector2(5, 3)]],
-		KICKS_V
+		KICKS_V,
+		[Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)]
 	)
 
-var piece_null := PieceType.new("_", [[]], [[]], KICKS_NONE)
+var piece_null := PieceType.new("_", [[]], [[]], KICKS_NONE, [])
 var all_types := [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];

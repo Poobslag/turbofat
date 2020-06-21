@@ -22,8 +22,8 @@ const DESKTOP_SCHEME := {
 func _ready() -> void:
 	if OS.has_touchscreen_ui_hint():
 		PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
-		show()
 		_refresh_settings()
+		show()
 	else:
 		hide()
 
