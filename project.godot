@@ -144,6 +144,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/frosting-glob.gd"
 }, {
+"base": "Control",
+"class": "FrostingViewports",
+"language": "GDScript",
+"path": "res://src/main/puzzle/frosting-viewports.gd"
+}, {
 "base": "Sprite",
 "class": "HeadBobber",
 "language": "GDScript",
@@ -397,6 +402,7 @@ _global_script_class_icons={
 "FrameInput": "",
 "FreshnessInspector": "",
 "FrostingGlob": "",
+"FrostingViewports": "",
 "HeadBobber": "",
 "JSONBeautifier": "",
 "LeafPoof": "",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -17,16 +17,44 @@
 [ext_resource path="res://assets/main/puzzle/fanfare1.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/main/puzzle/fanfare2.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/puzzle/fanfare3.wav" type="AudioStream" id=17]
+[ext_resource path="res://src/main/puzzle/texture-metaball.shader" type="Shader" id=18]
+[ext_resource path="res://src/main/puzzle/FrostingViewports.tscn" type="PackedScene" id=19]
 [ext_resource path="res://assets/main/puzzle/playfield-bg.png" type="Texture" id=37]
 [ext_resource path="res://src/main/puzzle/combo-tracker.gd" type="Script" id=61]
 [ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=62]
 [ext_resource path="res://assets/main/puzzle/playfield-light.png" type="Texture" id=63]
 [ext_resource path="res://src/main/puzzle/playfield-fx.gd" type="Script" id=64]
 
-[sub_resource type="CanvasItemMaterial" id=1]
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("BgGlobViewports/Viewport")
+
+[sub_resource type="OpenSimplexNoise" id=2]
+resource_local_to_scene = true
+seed = -2097381222
+octaves = 1
+
+[sub_resource type="NoiseTexture" id=3]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="ViewportTexture" id=4]
+viewport_path = NodePath("BgGlobViewports/RainbowViewport")
+
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = ExtResource( 18 )
+shader_param/frosting_texture_offset = Vector2( 0, 0 )
+shader_param/frosting_alpha = 0.6
+shader_param/noise = SubResource( 3 )
+shader_param/frosting_texture = SubResource( 1 )
+shader_param/rainbow_texture = SubResource( 4 )
+
+[sub_resource type="CanvasItemMaterial" id=6]
 blend_mode = 1
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=7]
 0/name = "playfield-light.png 0"
 0/texture = ExtResource( 63 )
 0/tex_offset = Vector2( 0, 0 )
@@ -42,10 +70,10 @@ blend_mode = 1
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="CanvasItemMaterial" id=3]
+[sub_resource type="CanvasItemMaterial" id=8]
 blend_mode = 1
 
-[sub_resource type="TileSet" id=4]
+[sub_resource type="TileSet" id=9]
 0/name = "fuzzy-circle-128.png 0"
 0/texture = ExtResource( 62 )
 0/tex_offset = Vector2( -46, -48 )
@@ -61,10 +89,10 @@ blend_mode = 1
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="CanvasItemMaterial" id=5]
+[sub_resource type="CanvasItemMaterial" id=10]
 blend_mode = 1
 
-[sub_resource type="ViewportTexture" id=6]
+[sub_resource type="ViewportTexture" id=11]
 viewport_path = NodePath("TileMapClip/TileMap/Viewport")
 
 [node name="Playfield" type="Control"]
@@ -75,16 +103,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BgColor" type="ColorRect" parent="."]
+[node name="BgGlobViewports" parent="." instance=ExtResource( 19 )]
 margin_right = 324.0
 margin_bottom = 544.0
-color = Color( 0.113725, 0.101961, 0.101961, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+glob_max_scale = 1.5
 
 [node name="BgSprite" type="TextureRect" parent="."]
-modulate = Color( 1, 1, 1, 0.25098 )
+material = SubResource( 5 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 37 )
@@ -93,12 +118,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Frosting" type="ColorRect" parent="."]
-visible = false
-modulate = Color( 1, 1, 1, 0.588235 )
+[node name="BgColor" type="ColorRect" parent="."]
 margin_right = 324.0
 margin_bottom = 544.0
-color = Color( 1, 0.364706, 0.407843, 1 )
+color = Color( 0, 0, 0, 0.627451 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -119,26 +142,24 @@ position = Vector2( 0, -96 )
 script = ExtResource( 64 )
 
 [node name="LightMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
-material = SubResource( 1 )
-tile_set = SubResource( 2 )
+material = SubResource( 6 )
+tile_set = SubResource( 7 )
 cell_size = Vector2( 36, 32 )
 format = 1
-tile_data = PoolIntArray( 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 262144, 0, 0, 262145, 0, 0, 262151, 0, 0, 262152, 0, 0, 327680, 0, 0, 327688, 0, 0, 393220, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 786432, 0, 0, 786433, 0, 0, 786439, 0, 0, 786440, 0, 0, 851968, 0, 0, 851976, 0, 0, 917508, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 1048578, 0, 0, 1048579, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 0, 1179651, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245190, 0, 0, 1245191, 0, 0, 1245192, 0, 0 )
 
 [node name="GlowMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
-material = SubResource( 3 )
+material = SubResource( 8 )
 z_index = 3
-tile_set = SubResource( 4 )
+tile_set = SubResource( 9 )
 cell_size = Vector2( 36, 32 )
 format = 1
-tile_data = PoolIntArray( 2, 0, 0, 3, 0, 0, 4, 0, 0, 5, 0, 0, 6, 0, 0, 65538, 0, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 0, 0, 131072, 0, 0, 131073, 0, 0, 131074, 0, 0, 131075, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 196608, 0, 0, 196609, 0, 0, 196610, 0, 0, 196614, 0, 0, 196615, 0, 0, 196616, 0, 0, 262144, 0, 0, 262145, 0, 0, 262151, 0, 0, 262152, 0, 0, 327680, 0, 0, 327688, 0, 0, 393220, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 524290, 0, 0, 524291, 0, 0, 524292, 0, 0, 524293, 0, 0, 524294, 0, 0, 589825, 0, 0, 589826, 0, 0, 589827, 0, 0, 589828, 0, 0, 589829, 0, 0, 589830, 0, 0, 589831, 0, 0, 655360, 0, 0, 655361, 0, 0, 655362, 0, 0, 655363, 0, 0, 655365, 0, 0, 655366, 0, 0, 655367, 0, 0, 655368, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 786432, 0, 0, 786433, 0, 0, 786439, 0, 0, 786440, 0, 0, 851968, 0, 0, 851976, 0, 0, 917508, 0, 0, 983043, 0, 0, 983044, 0, 0, 983045, 0, 0, 1048578, 0, 0, 1048579, 0, 0, 1048580, 0, 0, 1048581, 0, 0, 1048582, 0, 0, 1114113, 0, 0, 1114114, 0, 0, 1114115, 0, 0, 1114116, 0, 0, 1114117, 0, 0, 1114118, 0, 0, 1114119, 0, 0, 1179648, 0, 0, 1179649, 0, 0, 1179650, 0, 0, 1179653, 0, 0, 1179654, 0, 0, 1179655, 0, 0, 1179656, 0, 0, 1245184, 0, 0, 1245185, 0, 0, 1245186, 0, 0, 1245191, 0, 0, 1245192, 0, 0 )
 
 [node name="BgStrobe" type="ColorRect" parent="TileMapClip/PlayfieldFx"]
-material = SubResource( 5 )
+material = SubResource( 10 )
 margin_top = 96.0
 margin_right = 324.0
 margin_bottom = 640.0
-color = Color( 0.643137, 0.278431, 0.0431373, 1 )
+color = Color( 1, 1, 1, 0 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -157,7 +178,7 @@ _puzzle_tile_map_path = NodePath("../TileMap")
 modulate = Color( 1, 1, 1, 0.196078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 6 )
+texture = SubResource( 11 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -248,13 +269,13 @@ bus = "Sound Bus"
 [node name="BuildSnackBoxSound" type="AudioStreamPlayer" parent="BuildBoxSfx"]
 bus = "Sound Bus"
 [connection signal="after_piece_written" from="." to="ComboTracker" method="_on_Playfield_after_piece_written"]
-[connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
+[connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]
-[connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="." to="LineClearSfx" method="_on_Playfield_line_erased"]
 [connection signal="combo_break_changed" from="ComboTracker" to="TileMapClip/PlayfieldFx" method="_on_ComboTracker_combo_break_changed"]

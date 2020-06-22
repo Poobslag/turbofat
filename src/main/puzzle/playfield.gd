@@ -183,3 +183,7 @@ func _on_LineClearer_line_cleared(y: int, total_lines: int, remaining_lines: int
 
 func _on_LineClearer_lines_deleted() -> void:
 	emit_signal("after_piece_written")
+
+
+func _on_FrostingGlobs_hit_playfield(glob_copy: Node, glob_alpha: float) -> void:
+	$BgGlobViewports.add_smear(glob_copy)

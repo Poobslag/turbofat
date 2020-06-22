@@ -114,7 +114,7 @@ func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, 
 
 
 func _on_Playfield_after_piece_written() -> void:
-	if not PuzzleScore.game_active and PuzzleScore.game_prepared:
+	if PuzzleScore.finish_triggered:
 		PuzzleScore.end_game()
 
 
@@ -122,6 +122,10 @@ func _on_Playfield_after_piece_written() -> void:
 Method invoked when the game ends. Stores the rank result for later.
 """
 func _on_PuzzleScore_game_ended() -> void:
+	if not Scenario.launched_scenario_name:
+		# null check to avoid errors when launching Puzzle.tscn standalone
+		return
+	
 	var rank_result := RankCalculator.new().calculate_rank()
 	PlayerData.scenario_history.add(Scenario.launched_scenario_name, rank_result)
 	PlayerData.scenario_history.prune(Scenario.launched_scenario_name)

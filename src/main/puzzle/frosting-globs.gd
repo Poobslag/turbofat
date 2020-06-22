@@ -6,15 +6,26 @@ These frosting globs are pulled from a pool, reset to a specific color and posit
 direction.
 """
 
+# emitted when a frosting glob hits a wall
+signal hit_wall(glob, glob_alpha)
+
+# emitted when a frosting glob smears against the playfield, next pieces, or gutter.
+# passes in a copy of the original frosting glob, because the original remains unchanged
+signal hit_playfield(glob_copy, glob_alpha)
+signal hit_next_pieces(glob_copy, glob_alpha)
+signal hit_gutter(glob_copy, glob_alpha)
+
 # The maximum number of frosting globs we can display at once.
-const GLOB_POOL_SIZE := 200
+const GLOB_POOL_SIZE := 800
 
 # The cell size for the TileMap containing the playfield blocks. This is used to position our globs.
 const CELL_SIZE = Vector2(36, 32)
 
-# The pool of globs we're able to spawn. Some of these may be active but most will be inactive (process=false)
-var _globs := []
-var _rainbow_globs := []
+# The pool of unspawned globs. When spawning a new glob, we should look in this pool first and recycle one.
+var _offscreen_globs: Dictionary
+
+# The pool of spawned globs. We periodically check this list to move items back into unspawned_globs.
+var _onscreen_globs: Dictionary
 
 # The index of the next glob to spawn from the pool
 var _glob_index := 0
@@ -28,37 +39,62 @@ onready var _playfield := _puzzle.get_playfield()
 func _ready() -> void:
 	for i in range(GLOB_POOL_SIZE):
 		var glob: FrostingGlob = FrostingGlobScene.instance()
-		if i % 2 == 0:
-			$Viewport.add_child(glob)
-			_globs.append(glob)
-		else:
-			$RainbowViewport.add_child(glob)
-			_rainbow_globs.append(glob)
+		_offscreen_globs[glob] = "_"
+		glob.connect("hit_wall", self, "_on_FrostingGlob_hit_wall")
+		glob.connect("hit_playfield", self, "_on_FrostingGlob_hit_playfield")
+		glob.connect("hit_next_pieces", self, "_on_FrostingGlob_hit_next_pieces")
+		glob.connect("hit_gutter", self, "_on_FrostingGlob_hit_gutter")
+
+
+func _exit_tree() -> void:
+	for glob in _offscreen_globs.keys() + _onscreen_globs.keys():
+		glob.reparent(null)
+		
+		# calling queue_free results in 'ObjectDB Instances still exist' errors, so we free globs this way
+		glob.call_deferred("free")
 
 
 """
-Launches a new frosting glob from the specified position.
+Launches new frosting globs from the specified tile.
 
 Parameters:
-	'color': The color of the frosting glob to launch
-	'position': An (x, y) coordinate relative to this node where the glob will appear
+	'x', 'y': An (x, y) position in the TileMap containing the playfield blocks
+	'color_int': One of Playfield's food color indexes (brown, pink, bread, white, cake)
+	'glob_count': The number of frosting globs to launch
 """
-func spawn_glob(color: Color, position: Vector2) -> void:
-	var glob: FrostingGlob = _globs[_glob_index]
-	_glob_index = (_glob_index + 1) % _globs.size()
-	glob.initialize(color, position)
+func _spawn_globs(x: int, y: int, color_int: int, glob_count: int) -> void:
+	if not _offscreen_globs and not _onscreen_globs:
+		# pool is empty
+		return
+	
+	var viewport: Viewport
+	if PuzzleTileMap.is_cake_box(color_int):
+		viewport = $GlobViewports/RainbowViewport
+	else:
+		viewport = $GlobViewports/Viewport
+	
+	for _i in range(glob_count):
+		var glob: FrostingGlob = _recycle_glob(viewport)
+		glob.initialize(color_int, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + _playfield.rect_position)
+		glob.fall()
 
 
 """
-Launches a new rainbow colored frosting glob from the specified position.
+Reuse a FrostingGlob object without reallocating or 'newing' it.
 
-Parameters:
-	'position': An (x, y) coordinate relative to this node where the glob will appear
+Attempts to reuse an offscreen/expired frosting glob if one is available, but will fall back to onscreen frosting
+globs if needed.
 """
-func spawn_rainbow_glob(position: Vector2) -> void:
-	var glob: FrostingGlob = _rainbow_globs[_rainbow_glob_index]
-	_rainbow_glob_index = (_rainbow_glob_index + 1) % _rainbow_globs.size()
-	glob.initialize(Color.white, position)
+func _recycle_glob(new_parent: Node = null) -> FrostingGlob:
+	var glob: FrostingGlob
+	if _offscreen_globs:
+		glob = _offscreen_globs.keys()[0]
+		_offscreen_globs.erase(glob)
+		_onscreen_globs[glob] = "_"
+	else:
+		glob = _onscreen_globs.keys()[0]
+	glob.reparent(new_parent)
+	return glob
 
 
 """
@@ -93,18 +129,39 @@ func _on_Playfield_box_built(left_x: int, top_y: int, width: int, height: int, c
 			_spawn_globs(x, y, color_int, glob_count)
 
 
-"""
-Launches new frosting globs from the specified tile.
+func _on_FrostingGlob_hit_wall(glob: FrostingGlob) -> void:
+	emit_signal("hit_wall", glob, glob.modulate.a)
 
-Parameters:
-	'x', 'y': An (x, y) position in the TileMap containing the playfield blocks
-	'color_int': One of Playfield's food color indexes (brown, pink, bread, white, cake)
-	'glob_count': The number of frosting globs to launch
+
+func _on_FrostingGlob_hit_playfield(glob: FrostingGlob) -> void:
+	var glob_copy := _recycle_glob()
+	glob_copy.copy_from(glob)
+	emit_signal("hit_playfield", glob_copy, glob_copy.modulate.a)
+
+
+func _on_FrostingGlob_hit_next_pieces(glob: FrostingGlob) -> void:
+	var glob_copy := _recycle_glob()
+	glob_copy.copy_from(glob)
+	emit_signal("hit_next_pieces", glob_copy, glob_copy.modulate.a)
+
+
+func _on_FrostingGlob_hit_gutter(glob: FrostingGlob) -> void:
+	var glob_copy := _recycle_glob()
+	glob_copy.copy_from(glob)
+	emit_signal("hit_gutter", glob_copy, glob_copy.modulate.a)
+
+
 """
-func _spawn_globs(x: int, y: int, color_int: int, glob_count: int) -> void:
-	for _i in range(glob_count):
-		if PuzzleTileMap.is_snack_box(color_int):
-			var color: Color = Playfield.FOOD_COLORS[color_int]
-			spawn_glob(color, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + _playfield.rect_position)
-		elif PuzzleTileMap.is_cake_box(color_int):
-			spawn_rainbow_glob(Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + _playfield.rect_position)
+Repopulates the pool of offscreen frosting globs.
+
+The pool of offscreen globs is populated from globs which have been onscreen too long, or which have become invisible.
+"""
+func _on_GcTimer_timeout() -> void:
+	var globs_to_erase := []
+	for glob_obj in _onscreen_globs:
+		var glob: FrostingGlob = glob_obj
+		if not glob.visible or glob.get_age() > FrostingGlob.MAX_AGE:
+			globs_to_erase.append(glob)
+	for glob in globs_to_erase:
+		_onscreen_globs.erase(glob)
+		_offscreen_globs[glob] = "_"
