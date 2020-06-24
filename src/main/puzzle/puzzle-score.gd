@@ -53,8 +53,11 @@ var bonus_score := 0
 # 'true' if the player has started a game which is still running.
 var game_active: bool
 
-# 'true' if the player has started a game, or the countdown is currently active.
-var game_prepared: bool
+# 'true' if the player survived until the end the level.
+var finish_triggered: bool
+
+# 'true' if the end has been triggered by dying or meeting a finish condition
+var game_ended: bool
 
 # the level the player is currently on, if the scenario has different levels.
 var level_index: int setget set_level_index
@@ -76,8 +79,9 @@ func set_level_index(new_level_index: int) -> void:
 
 
 func end_game() -> void:
-	game_prepared = false
 	game_active = false
+	game_ended = true
+	
 	end_combo()
 	if not scenario_performance.lost:
 		scenario_performance.success = MilestoneManager.milestone_met(Scenario.settings.success_condition)
@@ -95,6 +99,7 @@ wasn't wasted, if they built a lot of boxes they didn't clear.
 """
 func trigger_finish() -> void:
 	game_active = false
+	finish_triggered = true
 	emit_signal("finish_triggered")
 
 
@@ -186,8 +191,9 @@ func end_result() -> int:
 
 
 func _prepare_game() -> void:
-	if game_prepared:
-		return
+	game_active = false
+	finish_triggered = false
+	game_ended = false
 	
 	if Scenario.settings.other.start_scenario_name:
 		# Load a different scenario to start (used for tutorials)
@@ -195,7 +201,6 @@ func _prepare_game() -> void:
 		new_settings.load_from_resource(Scenario.settings.other.start_scenario_name)
 		Scenario.start_scenario(new_settings)
 	
-	game_prepared = true
 	reset()
 	emit_signal("game_prepared")
 	emit_signal("after_game_prepared")

@@ -67,7 +67,6 @@ func _init_staleness(bgm: AudioStreamPlayer) -> void:
 	bgm_staleness[bgm.name] = []
 	for _i in range(ceil(bgm.stream.get_length() / CHUNK_SIZE)):
 		bgm_staleness[bgm.name].append(randi() % 3)
-	print("init %s -> %s" % [bgm.name, bgm_staleness[bgm.name]])
 
 
 """
