@@ -49,6 +49,9 @@ func reset() -> void:
 	_update_label()
 
 
+"""
+When the player performs a skill we blink and increment our value.
+"""
 func increment() -> void:
 	if not is_visible_in_tree():
 		return
@@ -80,6 +83,8 @@ func _refresh_puzzle() -> void:
 			_playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
 		elif signal_name == "box_built":
 			_playfield.connect("box_built", self, "_on_Playfield_box_built")
+		elif signal_name == "squish_moved":
+			_piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
 		elif signal_name in _get_signal_names(_piece_manager):
 			_piece_manager.connect(signal_name, self, "_on_skill_performed")
 		else:
@@ -134,19 +139,20 @@ func _on_PuzzleScore_game_prepared() -> void:
 	reset()
 
 
-"""
-When the player performs a skill we blink and increment our value.
-"""
 func _on_skill_performed() -> void:
 	increment()
 
 
+func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
+	increment()
+
+
 func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	_on_skill_performed()
+	increment()
 
 
 func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color: int) -> void:
-	_on_skill_performed()
+	increment()
 
 
 func _on_Tween_tween_all_completed() -> void:

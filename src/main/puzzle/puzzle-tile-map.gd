@@ -20,6 +20,9 @@ const TILE_VEG := 2 # vegetable created from line clears
 const ROW_COUNT = 20
 const COL_COUNT = 9
 
+# a number in the range [0, 1] which can be set to make the tile map flash or blink.
+var whiteness := 0.0 setget set_whiteness
+
 # fields used to roll the tile map back to a previous state
 var _saved_used_cells := []
 var _saved_tiles := []
@@ -156,6 +159,17 @@ func erase_playfield_row(y: int) -> void:
 			_disconnect_box(x, y)
 		
 		set_block(Vector2(x, y), -1)
+
+
+"""
+Sets the whiteness property to make the tile map flash or blink.
+"""
+func set_whiteness(new_whiteness: float) -> void:
+	if whiteness == new_whiteness:
+		return
+	whiteness = new_whiteness
+	material.set_shader_param("mix_color", Utils.to_transparent(Color.white, whiteness))
+	$CornerMap.material.set_shader_param("mix_color", Utils.to_transparent(Color.white, whiteness))
 
 
 """

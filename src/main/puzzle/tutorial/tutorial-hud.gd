@@ -90,7 +90,7 @@ func _on_PieceManager_piece_spawned() -> void:
 	_did_build_cake = false
 
 
-func _on_PieceManager_squish_moved() -> void:
+func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
 	_did_squish_move = true
 	_squish_moves += 1
 
