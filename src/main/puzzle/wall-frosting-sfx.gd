@@ -34,7 +34,7 @@ func _play_sfx(glob: FrostingGlob, glob_alpha: float, max_volume) -> void:
 	var player: AudioStreamPlayer = _splat_players[_splat_player_index]
 	player.stream = _splat_sfx[randi() % _splat_sfx.size()]
 	player.pitch_scale = rand_range(1.90, 2.10)
-	player.volume_db = rand_range(max_volume, max_volume - 4.0)
+	player.volume_db = rand_range(max_volume, max_volume - 8.0)
 	if glob_alpha < 0.7:
 		player.pitch_scale += 0.5
 		player.volume_db -= 6.0
@@ -46,16 +46,16 @@ func _play_sfx(glob: FrostingGlob, glob_alpha: float, max_volume) -> void:
 
 
 func _on_FrostingGlobs_hit_wall(glob: FrostingGlob, glob_alpha: float) -> void:
-	_play_sfx(glob, glob_alpha, -8.0)
+	_play_sfx(glob, glob_alpha, -10.0)
 
 
 func _on_FrostingGlobs_hit_playfield(glob_copy: FrostingGlob, glob_alpha: float) -> void:
-	_play_sfx(glob_copy, glob_alpha, -16.0)
+	_play_sfx(glob_copy, glob_alpha, -20.0)
 
 
 func _on_FrostingGlobs_hit_next_pieces(glob_copy: FrostingGlob, glob_alpha: float) -> void:
-	_play_sfx(glob_copy, glob_alpha, -16.0)
+	_play_sfx(glob_copy, glob_alpha, -20.0)
 
 
 func _on_FrostingGlobs_hit_gutter(glob_copy: FrostingGlob, glob_alpha: float) -> void:
-	_play_sfx(glob_copy, glob_alpha, -16.0)
+	_play_sfx(glob_copy, glob_alpha, -20.0)
