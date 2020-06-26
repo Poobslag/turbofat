@@ -1,6 +1,5 @@
-{ "frames": [
-   {
-    "filename": "ear-z2-packed 0.png",
+{ "frames": {
+   "ear-z2-1 0.png": {
     "frame": { "x": 117, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -8,8 +7,7 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "ear-z2-packed 1.png",
+   "ear-z2-1 1.png": {
     "frame": { "x": 0, "y": 0, "w": 54, "h": 76 },
     "rotated": false,
     "trimmed": true,
@@ -17,19 +15,18 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "ear-z2-packed 2.png",
+   "ear-z2-1 2.png": {
     "frame": { "x": 59, "y": 0, "w": 53, "h": 76 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 165, "y": 176, "w": 53, "h": 76 },
+    "spriteSourceSize": { "x": 183, "y": 177, "w": 53, "h": 76 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    }
- ],
+ },
  "meta": {
   "app": "http://www.aseprite.org/",
-  "version": "1.2.20-x64",
+  "version": "1.2.21-x64",
   "image": "ear-z2-packed.png",
   "format": "RGBA8888",
   "size": { "w": 118, "h": 76 },
