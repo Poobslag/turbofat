@@ -26,7 +26,7 @@ func add_smear(glob: FrostingGlob) -> void:
 	else:
 		glob.reparent($Viewport)
 	glob.position -= get_global_transform().get_origin()
-	glob.modulate.a = clamp(glob.modulate.a + rand_range(0.2, 0.4), 0.0, 1.0)
+	glob.modulate.a = clamp(glob.modulate.a + rand_range(0.1, 0.2), 0.0, 1.0)
 	
 	# stretch the glob in the direction of its movement
 	glob.scale.x = rand_range(glob_min_scale, glob_max_scale)

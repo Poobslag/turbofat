@@ -130,7 +130,7 @@ Called when a frosting glob is first spawned.
 """
 func fall() -> void:
 	falling = true
-	smear_time = min(rand_range(0.0, FALL_DURATION * 1.0), rand_range(0.0, FALL_DURATION * 1.5))
+	smear_time = min(rand_range(0.0, FALL_DURATION * 0.7), rand_range(0.0, FALL_DURATION * 1.2))
 	
 	$Tween.remove_all()
 	$Tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate), \
