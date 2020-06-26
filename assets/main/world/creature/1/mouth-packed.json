@@ -1,6 +1,5 @@
-{ "frames": [
-   {
-    "filename": "mouth-packed 0.png",
+{ "frames": {
+   "mouth-1 0.png": {
     "frame": { "x": 539, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -8,26 +7,23 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 1.png",
-    "frame": { "x": 177, "y": 131, "w": 79, "h": 49 },
+   "mouth-1 1.png": {
+    "frame": { "x": 176, "y": 136, "w": 79, "h": 49 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 250, "y": 295, "w": 79, "h": 49 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 2.png",
-    "frame": { "x": 394, "y": 138, "w": 61, "h": 49 },
+   "mouth-1 2.png": {
+    "frame": { "x": 408, "y": 138, "w": 61, "h": 49 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 174, "y": 281, "w": 61, "h": 49 },
+    "spriteSourceSize": { "x": 192, "y": 282, "w": 61, "h": 49 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 3.png",
+   "mouth-1 3.png": {
     "frame": { "x": 409, "y": 70, "w": 122, "h": 63 },
     "rotated": false,
     "trimmed": true,
@@ -35,8 +31,7 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 4.png",
+   "mouth-1 4.png": {
     "frame": { "x": 0, "y": 0, "w": 141, "h": 69 },
     "rotated": false,
     "trimmed": true,
@@ -44,8 +39,7 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 5.png",
+   "mouth-1 5.png": {
     "frame": { "x": 146, "y": 0, "w": 131, "h": 69 },
     "rotated": false,
     "trimmed": true,
@@ -53,8 +47,7 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 6.png",
+   "mouth-1 6.png": {
     "frame": { "x": 282, "y": 0, "w": 122, "h": 68 },
     "rotated": false,
     "trimmed": true,
@@ -62,8 +55,7 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 7.png",
+   "mouth-1 7.png": {
     "frame": { "x": 409, "y": 0, "w": 125, "h": 65 },
     "rotated": false,
     "trimmed": true,
@@ -71,8 +63,7 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 8.png",
+   "mouth-1 8.png": {
     "frame": { "x": 0, "y": 74, "w": 91, "h": 56 },
     "rotated": false,
     "trimmed": true,
@@ -80,8 +71,7 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 9.png",
+   "mouth-1 9.png": {
     "frame": { "x": 282, "y": 73, "w": 94, "h": 59 },
     "rotated": false,
     "trimmed": true,
@@ -89,26 +79,23 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 10.png",
-    "frame": { "x": 96, "y": 132, "w": 73, "h": 50 },
+   "mouth-1 10.png": {
+    "frame": { "x": 260, "y": 137, "w": 73, "h": 50 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 257, "y": 295, "w": 73, "h": 50 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 11.png",
-    "frame": { "x": 177, "y": 74, "w": 75, "h": 52 },
+   "mouth-1 11.png": {
+    "frame": { "x": 96, "y": 132, "w": 75, "h": 52 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 256, "y": 294, "w": 75, "h": 52 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 12.png",
+   "mouth-1 12.png": {
     "frame": { "x": 96, "y": 74, "w": 76, "h": 53 },
     "rotated": false,
     "trimmed": true,
@@ -116,43 +103,37 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 13.png",
-    "frame": { "x": 261, "y": 137, "w": 63, "h": 51 },
+   "mouth-1 13.png": {
+    "frame": { "x": 338, "y": 137, "w": 65, "h": 54 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 173, "y": 281, "w": 63, "h": 51 },
+    "spriteSourceSize": { "x": 191, "y": 279, "w": 65, "h": 54 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 14.png",
-    "frame": { "x": 329, "y": 137, "w": 60, "h": 52 },
+   "mouth-1 14.png": {
+    "frame": { "x": 0, "y": 135, "w": 68, "h": 57 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 172, "y": 282, "w": 60, "h": 52 },
+    "spriteSourceSize": { "x": 190, "y": 278, "w": 68, "h": 57 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   {
-    "filename": "mouth-packed 15.png",
-    "frame": { "x": 0, "y": 135, "w": 64, "h": 52 },
+   "mouth-1 15.png": {
+    "frame": { "x": 177, "y": 74, "w": 69, "h": 57 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 171, "y": 282, "w": 64, "h": 52 },
+    "spriteSourceSize": { "x": 189, "y": 278, "w": 69, "h": 57 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    }
- ],
+ },
  "meta": {
   "app": "http://www.aseprite.org/",
-  "version": "1.2.20-x64",
+  "version": "1.2.21-x64",
   "image": "mouth-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 540, "h": 189 },
-  "scale": "1",
-  "layers": [
-   { "name": "Sprite packed", "opacity": 255, "blendMode": "normal" }
-  ]
+  "size": { "w": 540, "h": 192 },
+  "scale": "1"
  }
 }

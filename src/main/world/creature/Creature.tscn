@@ -2133,7 +2133,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ Vector2( -22.9566, 9.64547 ), Vector2( -14.1704, -3.364 ), Vector2( -29.5388, -23.4392 ), Vector2( -29.5388, -23.4392 ), Vector2( -43.0543, -21.9454 ), Vector2( -43.0543, -21.9454 ), Vector2( -51.9001, -8.24006 ), Vector2( -36.0298, 8.88579 ) ]
+"values": [ Vector2( -40.957, 8.645 ), Vector2( -32.17, -4.364 ), Vector2( -47.539, -24.439 ), Vector2( -47.539, -24.439 ), Vector2( -61.054, -22.945 ), Vector2( -61.054, -22.945 ), Vector2( -69.9, -9.24 ), Vector2( -54.03, 7.886 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprites/FarMovement:frame")
