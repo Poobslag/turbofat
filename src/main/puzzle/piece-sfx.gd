@@ -50,7 +50,7 @@ func _on_PieceManager_initial_das_moved_right() -> void:
 	_play_move_sfx()
 
 
-func _on_PieceManager_squish_moved() -> void:
+func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
 	$SquishSound.play()
 
 # Rotation events ----------------------------------------------------------------

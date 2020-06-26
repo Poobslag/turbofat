@@ -1,5 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=32 format=2]
 
+[ext_resource path="res://src/main/puzzle/piece/squish-fx.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/filled-circle-8.png" type="Texture" id=2]
 [ext_resource path="res://src/main/puzzle/piece/piece-manager.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=4]
 [ext_resource path="res://assets/main/puzzle/levelup.wav" type="AudioStream" id=5]
@@ -7,18 +9,51 @@
 [ext_resource path="res://assets/main/puzzle/rotate1.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/main/puzzle/lock.wav" type="AudioStream" id=8]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=10]
 [ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=11]
 [ext_resource path="res://src/main/puzzle/piece/FrameInput.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/puzzle/piece-sfx.gd" type="Script" id=13]
 [ext_resource path="res://src/main/puzzle/piece/states/game-ended.gd" type="Script" id=14]
-[ext_resource path="res://src/main/puzzle/stretch-map.gd" type="Script" id=15]
+[ext_resource path="res://src/main/puzzle/squish-map.gd" type="Script" id=15]
 [ext_resource path="res://src/main/puzzle/piece/states/prespawn.gd" type="Script" id=16]
 [ext_resource path="res://src/main/puzzle/piece/states/none.gd" type="Script" id=17]
 [ext_resource path="res://src/main/puzzle/piece/states/move-piece.gd" type="Script" id=18]
 [ext_resource path="res://src/main/state-machine.gd" type="Script" id=19]
 [ext_resource path="res://src/main/puzzle/piece/states/wait-for-playfield.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/top-out.gd" type="Script" id=21]
+[ext_resource path="res://src/main/puzzle/piece/sweat-drops.gd" type="Script" id=22]
 [ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=23]
+[ext_resource path="res://src/main/puzzle/piece/presquish-sfx.gd" type="Script" id=24]
+[ext_resource path="res://assets/main/puzzle/presquish.wav" type="AudioStream" id=25]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="Curve" id=2]
+_data = [ Vector2( 0.131034, 0 ), 0.0, 0.0, 0, 0, Vector2( 0.875862, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 10 )
+shader_param/mix_color = Color( 1, 1, 1, 0 )
+
+[sub_resource type="Gradient" id=4]
+offsets = PoolRealArray( 0, 0.390947 )
+colors = PoolColorArray( 1, 1, 1, 0.752941, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+flag_disable_z = true
+direction = Vector3( 0, 1, 0 )
+gravity = Vector3( 0, 2400, 0 )
+initial_velocity = -400.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+color_ramp = SubResource( 5 )
 
 [node name="PieceManager" type="Control"]
 margin_left = 364.0
@@ -32,11 +67,39 @@ __meta__ = {
 }
 
 [node name="TileMap" parent="." instance=ExtResource( 9 )]
+material = SubResource( 1 )
 position = Vector2( 0, -96 )
 
-[node name="StretchMap" parent="." instance=ExtResource( 9 )]
+[node name="SquishFx" type="Control" parent="."]
+margin_right = 324.0
+margin_bottom = 544.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+squish_curve = SubResource( 2 )
+
+[node name="SquishMap" parent="SquishFx" instance=ExtResource( 9 )]
+material = SubResource( 3 )
 position = Vector2( 0, -96 )
 script = ExtResource( 15 )
+
+[node name="SweatDrops" type="Particles2D" parent="SquishFx"]
+position = Vector2( 200, 200 )
+z_index = 1
+emitting = false
+local_coords = false
+process_material = SubResource( 6 )
+texture = ExtResource( 2 )
+script = ExtResource( 22 )
+
+[node name="RelocateTimer" type="Timer" parent="SquishFx/SweatDrops"]
+wait_time = 0.1
+autostart = true
+
+[node name="PresquishSfx" type="AudioStreamPlayer" parent="SquishFx"]
+stream = ExtResource( 25 )
+script = ExtResource( 24 )
 
 [node name="States" type="Node" parent="."]
 script = ExtResource( 19 )
@@ -126,4 +189,7 @@ action = "hard_drop"
 [connection signal="rotated_right" from="." to="PieceSfx" method="_on_PieceManager_rotated_right"]
 [connection signal="rotated_twice" from="." to="PieceSfx" method="_on_PieceManager_rotated_twice"]
 [connection signal="squish_moved" from="." to="PieceSfx" method="_on_PieceManager_squish_moved"]
+[connection signal="squish_moved" from="." to="SquishFx" method="_on_PieceManager_squish_moved"]
+[connection signal="tiles_changed" from="." to="SquishFx/SweatDrops" method="_on_PieceManager_tiles_changed"]
+[connection signal="timeout" from="SquishFx/SweatDrops/RelocateTimer" to="SquishFx/SweatDrops" method="_on_RelocateTimer_timeout"]
 [connection signal="entered_state" from="States" to="." method="_on_States_entered_state"]

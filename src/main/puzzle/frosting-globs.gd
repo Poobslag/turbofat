@@ -59,10 +59,11 @@ Launches new frosting globs from the specified tile.
 
 Parameters:
 	'x', 'y': An (x, y) position in the TileMap containing the playfield blocks
-	'color_int': One of Playfield's food color indexes (brown, pink, bread, white, cake)
+	'color_int': One of PuzzleTileMap's food color indexes (brown, pink, bread, white, cake)
 	'glob_count': The number of frosting globs to launch
+	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
 """
-func _spawn_globs(x: int, y: int, color_int: int, glob_count: int) -> void:
+func _spawn_globs(x: int, y: int, color_int: int, glob_count: int, glob_alpha: float = 1.0) -> void:
 	if not _offscreen_globs and not _onscreen_globs:
 		# pool is empty
 		return
@@ -76,6 +77,7 @@ func _spawn_globs(x: int, y: int, color_int: int, glob_count: int) -> void:
 	for _i in range(glob_count):
 		var glob: FrostingGlob = _recycle_glob(viewport)
 		glob.initialize(color_int, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + _playfield.rect_position)
+		glob.modulate.a = glob_alpha
 		glob.fall()
 
 
@@ -127,6 +129,18 @@ func _on_Playfield_box_built(left_x: int, top_y: int, width: int, height: int, c
 			elif PuzzleTileMap.is_cake_box(color_int):
 				glob_count = 2
 			_spawn_globs(x, y, color_int, glob_count)
+
+
+"""
+When a squish move is performed, we generate frosting globs around the old and new piece position.
+"""
+func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
+	for i in range(piece.type.pos_arr[piece.orientation].size()):
+		var pos_arr_item: Vector2 = piece.type.pos_arr[piece.orientation][i]
+		var glob_cell_from := old_pos + pos_arr_item
+		var glob_cell_to := piece.pos + pos_arr_item
+		_spawn_globs(glob_cell_from.x, glob_cell_from.y, piece.type.get_color_int(), 1, 0.8)
+		_spawn_globs(glob_cell_to.x, glob_cell_to.y, piece.type.get_color_int(), 1, 0.8)
 
 
 func _on_FrostingGlob_hit_wall(glob: FrostingGlob) -> void:

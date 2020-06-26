@@ -141,6 +141,8 @@ margin_right = 688.0
 margin_bottom = 572.0
 
 [node name="PieceManager" parent="." instance=ExtResource( 9 )]
+_playfield_path = NodePath("../Playfield")
+_next_piece_displays_path = NodePath("../NextPieceDisplays")
 
 [node name="NextPieceDisplays" parent="." instance=ExtResource( 64 )]
 margin_left = 688.0
@@ -397,11 +399,12 @@ script = ExtResource( 19 )
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
+[connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="topped_out" from="PieceManager" to="TopOutTracker" method="_on_PieceManager_topped_out"]
 [connection signal="hit_gutter" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_gutter"]
 [connection signal="hit_next_pieces" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
-[connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
+[connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
 [connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
 [connection signal="timeout" from="FrostingGlobs/GcTimer" to="FrostingGlobs" method="_on_GcTimer_timeout"]

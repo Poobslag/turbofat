@@ -5,7 +5,7 @@ Contains logic for spawning new pieces, moving/rotating pieces, handling player 
 playfield.
 """
 
-# emitted when the current piece can't be placed in the _playfield
+# emitted when the current piece can't be placed in the playfield
 signal topped_out
 signal piece_spawned
 
@@ -26,19 +26,29 @@ signal rotated_right
 signal rotated_twice
 signal soft_dropped
 signal hard_dropped
-signal squish_moved
+signal squish_moved(piece, old_pos)
 
 # emitted for piece locks
 signal lock_cancelled
 signal lock_started
 
+signal tiles_changed(tile_map)
+
+# arbitrary coordinate for when the player is not performing a squish move
+const SQUISH_NONE := Vector2(-787, -868)
+
+# source/target for the current squish move
+var _squish_source_pos: Vector2
+var _squish_target_pos: Vector2
+
+# target for the current movement/rotation
 var _target_piece_pos: Vector2
 var _target_piece_orientation: int
 
 var _gravity_delay_frames := 0
 
-onready var _playfield: Playfield = $"../Playfield"
-onready var _next_piece_displays: NextPieceDisplays = $"../NextPieceDisplays"
+export (NodePath) var _playfield_path: NodePath
+export (NodePath) var _next_piece_displays_path: NodePath
 
 # settings and state for the currently active piece.
 var piece := ActivePiece.new(PieceTypes.piece_null)
@@ -48,6 +58,10 @@ var tile_map_dirty := false
 
 # how many times the piece has moved horizontally this frame
 var _horizontal_movement_count := 0
+
+onready var _next_piece_displays: NextPieceDisplays = get_node(_next_piece_displays_path)
+onready var playfield: Playfield = get_node(_playfield_path)
+onready var tile_map: PuzzleTileMap = $TileMap
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
@@ -61,14 +75,14 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	if $StretchMap._stretch_seconds_remaining > 0:
-		$StretchMap.show()
+	if $SquishFx/SquishMap.squish_seconds_remaining > 0:
+		$SquishFx/SquishMap.show()
 		$TileMap.hide()
 		
 		# if the player continues to move the piece, we keep stretching to its new location
-		$StretchMap.stretch_to(piece.type.pos_arr[piece.orientation], piece.pos)
+		$SquishFx/SquishMap.stretch_to(piece.type.pos_arr[piece.orientation], piece.pos)
 	else:
-		$StretchMap.hide()
+		$SquishFx/SquishMap.hide()
 		$TileMap.show()
 
 
@@ -80,6 +94,7 @@ func _physics_process(_delta: float) -> void:
 	if tile_map_dirty:
 		_update_tile_map()
 		tile_map_dirty = false
+		emit_signal("tiles_changed", $TileMap)
 
 
 func get_state() -> State:
@@ -87,7 +102,7 @@ func get_state() -> State:
 
 
 func playfield_ready_for_new_piece() -> bool:
-	return _playfield.ready_for_new_piece()
+	return playfield.ready_for_new_piece()
 
 
 """
@@ -96,14 +111,14 @@ Writes the current piece to the playfield, checking whether it builds any boxes 
 Returns true if the newly written piece results in a line clear.
 """
 func write_piece_to_playfield() -> void:
-	_playfield.write_piece(piece.pos, piece.orientation, piece.type)
+	playfield.write_piece(piece.pos, piece.orientation, piece.type)
 	_clear_piece()
 
 
 """
 Called when the player tops out, but doesn't lose.
 
-Enters a state which waits for the _playfield to make room for the current piece.
+Enters a state which waits for the playfield to make room for the current piece.
 """
 func enter_top_out_state(top_out_frames: int) -> void:
 	$States.set_state($States/TopOut)
@@ -111,7 +126,7 @@ func enter_top_out_state(top_out_frames: int) -> void:
 
 
 """
-Spawns a new piece at the top of the _playfield.
+Spawns a new piece at the top of the playfield.
 
 Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
 """
@@ -120,6 +135,7 @@ func spawn_piece() -> bool:
 	piece = ActivePiece.new(piece_type)
 	
 	tile_map_dirty = true
+	_squish_source_pos = SQUISH_NONE
 	
 	# apply initial orientation if rotate buttons are pressed
 	if $InputCw.is_pressed() or $InputCcw.is_pressed():
@@ -137,7 +153,7 @@ func spawn_piece() -> bool:
 			$InputCcw.set_input_as_handled()
 			emit_signal("initial_rotated_left")
 		
-		# relocate rotated piece to the top of the _playfield
+		# relocate rotated piece to the top of the playfield
 		var pos_arr: Array = piece.type.pos_arr[piece.orientation]
 		var highest_pos := 3
 		for pos in pos_arr:
@@ -224,22 +240,17 @@ Returns 'true' if the piece was interacted with successfully resulting in a move
 	lock reset
 """
 func apply_player_input() -> bool:
-	if not $InputHardDrop.is_pressed() \
-			and not $InputSoftDrop.is_pressed() \
-			and not $InputLeft.is_pressed() \
-			and not $InputRight.is_pressed() \
-			and not $InputCw.is_pressed() \
-			and not $InputCcw.is_pressed():
-		return false
-	
 	var did_hard_drop := false
 	var old_piece_pos := piece.pos
 	var old_piece_orientation := piece.orientation
 	var applied_player_input := false
 
 	if $States.get_state() == $States/MovePiece:
-		_attempt_rotation()
-		_attempt_horizontal_movement()
+		if $InputCw.is_pressed() or $InputCcw.is_pressed():
+			_attempt_rotation()
+		
+		if $InputLeft.is_pressed() or $InputRight.is_pressed():
+			_attempt_horizontal_movement()
 		
 		# automatically trigger DAS if you're pushing a piece towards an obstruction. otherwise, pieces might slip
 		# past a nook if you're holding a direction before DAS triggers
@@ -258,12 +269,19 @@ func apply_player_input() -> bool:
 			piece.lock = PieceSpeeds.current_speed.lock_delay
 			emit_signal("hard_dropped")
 			did_hard_drop = true
-
-	if $InputSoftDrop.is_just_pressed():
-		if not _can_move_piece_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
-			_reset_piece_target()
-			_calc_squish_target()
-			if _target_piece_pos != piece.pos:
+	
+	if $InputSoftDrop.is_pressed():
+		if $InputSoftDrop.is_pressed() \
+				and not _can_move_piece_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
+			if _squish_source_pos != piece.pos:
+				_reset_piece_target()
+				_calc_squish_target()
+				_squish_source_pos = piece.pos
+		else:
+			_squish_source_pos = SQUISH_NONE
+		
+		if $InputSoftDrop.is_just_pressed() and _squish_source_pos != SQUISH_NONE:
+			if _squish_target_pos != piece.pos:
 				_squish_to_target()
 			else:
 				# Player can tap soft drop to lock cancel, if their timing is good. This lets them hard-drop into a
@@ -271,18 +289,25 @@ func apply_player_input() -> bool:
 				_perform_lock_reset()
 				applied_player_input = true
 				emit_signal("lock_cancelled")
-	elif $InputSoftDrop.is_pressed() and piece.lock >= PieceSpeeds.current_speed.lock_delay:
-		if not _can_move_piece_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
-			_reset_piece_target()
-			_calc_squish_target()
-			if _target_piece_pos != piece.pos:
-				_squish_to_target()
+		elif $InputSoftDrop.is_pressed() and _squish_source_pos != SQUISH_NONE:
+			if _squish_target_pos != piece.pos:
+				if piece.lock >= PieceSpeeds.current_speed.lock_delay:
+					_squish_to_target()
 	
 	if old_piece_pos != piece.pos or old_piece_orientation != piece.orientation:
 		if piece.lock > 0 and not did_hard_drop:
 			_perform_lock_reset()
 			applied_player_input = true
 	return applied_player_input
+
+
+func squish_percent() -> float:
+	var result := 0.0
+	if $States.get_state() == $States/MovePiece \
+			and $InputSoftDrop.is_pressed() and _squish_source_pos != SQUISH_NONE \
+			and _squish_target_pos != piece.pos:
+		result = clamp(piece.lock / max(1.0, PieceSpeeds.current_speed.lock_delay), 0.0, 1.0)
+	return result
 
 
 func _clear_piece() -> void:
@@ -292,7 +317,7 @@ func _clear_piece() -> void:
 
 """
 Returns 'true' if the specified position and location is unobstructed, and the active piece could fit there. Returns
-'false' if parts of this piece would be out of the _playfield or obstructed by blocks.
+'false' if parts of this piece would be out of the playfield or obstructed by blocks.
 """
 func _can_move_piece_to(pos: Vector2, orientation: int) -> bool:
 	return piece.can_move_piece_to(funcref(self, "_is_cell_blocked"), pos, orientation)
@@ -302,29 +327,10 @@ func _can_move_piece_to(pos: Vector2, orientation: int) -> bool:
 Squishes a piece through other blocks towards the target.
 """
 func _squish_to_target() -> void:
-	# initialize the stretch animation for long stretches
-	if _target_piece_pos.y - piece.pos.y >= 3:
-		var unblocked_blocks: Array = piece.type.pos_arr[_target_piece_orientation].duplicate()
-		$StretchMap.start_stretch(PieceSpeeds.SQUISH_FRAMES, piece.type.color_arr[piece.orientation][0].y)
-		for dy in range(_target_piece_pos.y - piece.pos.y):
-			var i := 0
-			while i < unblocked_blocks.size():
-				var target_block_pos: Vector2 = unblocked_blocks[i] + piece.pos + Vector2(0, dy)
-				var valid_block_pos := true
-				if target_block_pos.x < 0 or target_block_pos.x >= PuzzleTileMap.COL_COUNT:
-					valid_block_pos = false
-				elif target_block_pos.y < 0 or target_block_pos.y >= PuzzleTileMap.ROW_COUNT:
-					valid_block_pos = false
-				elif not _playfield.is_cell_empty(target_block_pos.x, target_block_pos.y):
-					valid_block_pos = false
-				if not valid_block_pos:
-					unblocked_blocks.remove(i)
-				else:
-					i += 1
-			$StretchMap.stretch_to(unblocked_blocks, piece.pos + Vector2(0, dy))
-	
+	_target_piece_pos = _squish_target_pos
+	var old_pos := piece.pos
 	_move_piece_to_target()
-	emit_signal("squish_moved")
+	emit_signal("squish_moved", piece, old_pos)
 	piece.gravity = 0
 	_gravity_delay_frames = PieceSpeeds.SQUISH_FRAMES
 
@@ -340,7 +346,7 @@ func _perform_lock_reset() -> void:
 
 
 """
-Tries to 'squish' a piece past the _playfield blocks. This squish will be successful if there's a location below the
+Tries to 'squish' a piece past the playfield blocks. This squish will be successful if there's a location below the
 piece's current location where the piece can fit, and if at least one of the piece's blocks remains unobstructed
 along its path to the target location.
 
@@ -364,8 +370,8 @@ func _calc_squish_target() -> void:
 					and target_block_pos.x < PuzzleTileMap.COL_COUNT
 			valid_block_pos = valid_block_pos and target_block_pos.y >= 0 \
 					and target_block_pos.y < PuzzleTileMap.ROW_COUNT
-			if _playfield:
-				valid_block_pos = valid_block_pos and _playfield.is_cell_empty(target_block_pos.x, target_block_pos.y)
+			if playfield:
+				valid_block_pos = valid_block_pos and playfield.is_cell_empty(target_block_pos.x, target_block_pos.y)
 			valid_target_pos = valid_target_pos and valid_block_pos
 			unblocked_blocks[i] = unblocked_blocks[i] and valid_block_pos
 			
@@ -377,6 +383,7 @@ func _calc_squish_target() -> void:
 			any_unblocked_blocks = true
 	if not valid_target_pos or not any_unblocked_blocks:
 		_reset_piece_target()
+	_squish_target_pos = _target_piece_pos
 
 
 """
@@ -431,14 +438,14 @@ func apply_lock() -> void:
 
 
 func is_playfield_clearing_lines() -> bool:
-	return _playfield.get_remaining_line_erase_frames() > 0
+	return playfield.get_remaining_line_erase_frames() > 0
 
 
 func _is_cell_blocked(pos: Vector2) -> bool:
 	var blocked := false
 	if pos.x < 0 or pos.x >= PuzzleTileMap.COL_COUNT: blocked = true
 	if pos.y < 0 or pos.y >= PuzzleTileMap.ROW_COUNT: blocked = true
-	if not _playfield.is_cell_empty(pos.x, pos.y): blocked = true
+	if not playfield.is_cell_empty(pos.x, pos.y): blocked = true
 	return blocked
 
 
