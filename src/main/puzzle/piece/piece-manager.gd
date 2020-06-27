@@ -34,11 +34,15 @@ signal lock_started
 
 signal tiles_changed(tile_map)
 
-# arbitrary coordinate for when the player is not performing a squish move
-const SQUISH_NONE := Vector2(-787, -868)
+# state of the current squish move
+enum SquishState {
+	UNKNOWN, # unknown; we haven't checked yet
+	INVALID, # invalid; there's no empty space beneath the piece
+	VALID, # valid; there's empty space beneath the piece
+}
 
 # source/target for the current squish move
-var _squish_source_pos: Vector2
+var _squish_state: int = SquishState.UNKNOWN
 var _squish_target_pos: Vector2
 
 # target for the current movement/rotation
@@ -135,7 +139,7 @@ func spawn_piece() -> bool:
 	piece = ActivePiece.new(piece_type)
 	
 	tile_map_dirty = true
-	_squish_source_pos = SQUISH_NONE
+	_squish_state = SquishState.UNKNOWN
 	
 	# apply initial orientation if rotate buttons are pressed
 	if $InputCw.is_pressed() or $InputCcw.is_pressed():
@@ -270,18 +274,15 @@ func apply_player_input() -> bool:
 			emit_signal("hard_dropped")
 			did_hard_drop = true
 	
-	if $InputSoftDrop.is_pressed():
-		if $InputSoftDrop.is_pressed() \
-				and not _can_move_piece_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
-			if _squish_source_pos != piece.pos:
-				_reset_piece_target()
-				_calc_squish_target()
-				_squish_source_pos = piece.pos
-		else:
-			_squish_source_pos = SQUISH_NONE
+	if $InputSoftDrop.is_pressed() \
+			and not _can_move_piece_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
+		if _squish_state == SquishState.UNKNOWN:
+			_reset_piece_target()
+			_calc_squish_target()
+			_squish_state = SquishState.INVALID if _squish_target_pos == piece.pos else SquishState.VALID
 		
-		if $InputSoftDrop.is_just_pressed() and _squish_source_pos != SQUISH_NONE:
-			if _squish_target_pos != piece.pos:
+		if $InputSoftDrop.is_just_pressed():
+			if _squish_state == SquishState.VALID:
 				_squish_to_target()
 			else:
 				# Player can tap soft drop to lock cancel, if their timing is good. This lets them hard-drop into a
@@ -289,12 +290,13 @@ func apply_player_input() -> bool:
 				_perform_lock_reset()
 				applied_player_input = true
 				emit_signal("lock_cancelled")
-		elif $InputSoftDrop.is_pressed() and _squish_source_pos != SQUISH_NONE:
-			if _squish_target_pos != piece.pos:
+		else:
+			if _squish_state == SquishState.VALID:
 				if piece.lock >= PieceSpeeds.current_speed.lock_delay:
 					_squish_to_target()
 	
 	if old_piece_pos != piece.pos or old_piece_orientation != piece.orientation:
+		_squish_state = SquishState.UNKNOWN
 		if piece.lock > 0 and not did_hard_drop:
 			_perform_lock_reset()
 			applied_player_input = true
@@ -303,9 +305,8 @@ func apply_player_input() -> bool:
 
 func squish_percent() -> float:
 	var result := 0.0
-	if $States.get_state() == $States/MovePiece \
-			and $InputSoftDrop.is_pressed() and _squish_source_pos != SQUISH_NONE \
-			and _squish_target_pos != piece.pos:
+	if $States.get_state() == $States/MovePiece and $InputSoftDrop.is_pressed() \
+			and _squish_state == SquishState.VALID:
 		result = clamp(piece.lock / max(1.0, PieceSpeeds.current_speed.lock_delay), 0.0, 1.0)
 	return result
 
@@ -420,6 +421,7 @@ func apply_gravity() -> void:
 			if not _move_piece_to_target():
 				break
 			
+			_squish_state = SquishState.UNKNOWN
 			if _horizontal_movement_count == 0:
 				# move piece once per frame to allow pieces to slide into nooks during 20G
 				_attempt_horizontal_movement()
