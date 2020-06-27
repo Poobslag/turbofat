@@ -45,17 +45,17 @@ func _play_sfx(glob: FrostingGlob, glob_alpha: float, max_volume) -> void:
 	_splat_player_index = (_splat_player_index + 1) % _splat_players.size()
 
 
-func _on_FrostingGlobs_hit_wall(glob: FrostingGlob, glob_alpha: float) -> void:
-	_play_sfx(glob, glob_alpha, -10.0)
+func _on_FrostingGlobs_hit_wall(glob: FrostingGlob) -> void:
+	_play_sfx(glob, glob.modulate.a, -10.0)
 
 
-func _on_FrostingGlobs_hit_playfield(glob_copy: FrostingGlob, glob_alpha: float) -> void:
-	_play_sfx(glob_copy, glob_alpha, -20.0)
+func _on_FrostingGlobs_hit_playfield(glob: FrostingGlob) -> void:
+	_play_sfx(glob, glob.modulate.a, -20.0)
 
 
-func _on_FrostingGlobs_hit_next_pieces(glob_copy: FrostingGlob, glob_alpha: float) -> void:
-	_play_sfx(glob_copy, glob_alpha, -20.0)
+func _on_FrostingGlobs_hit_next_pieces(glob: FrostingGlob) -> void:
+	_play_sfx(glob, glob.modulate.a, -20.0)
 
 
-func _on_FrostingGlobs_hit_gutter(glob_copy: FrostingGlob, glob_alpha: float) -> void:
-	_play_sfx(glob_copy, glob_alpha, -20.0)
+func _on_FrostingGlobs_hit_gutter(glob: FrostingGlob) -> void:
+	_play_sfx(glob, glob.modulate.a, -20.0)

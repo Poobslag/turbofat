@@ -39,7 +39,6 @@ func _clear_rows() -> void:
 	for child_obj in $GridContainer.get_children():
 		var child: Node = child_obj
 		child.queue_free()
-		$GridContainer.remove_child(child)
 
 
 """

@@ -99,7 +99,6 @@ func _delete_old_buttons(old_buttons: Array) -> void:
 	for button_object in old_buttons:
 		var button: ChatChoiceButton = button_object
 		button.queue_free()
-		remove_child(button)
 
 
 func _button(node: Node) -> ChatChoiceButton:
@@ -113,7 +112,6 @@ Removes and recreates all chat choice buttons.
 func _refresh_child_buttons() -> void:
 	for child in get_tree().get_nodes_in_group("chat-choices"):
 		child.queue_free()
-		remove_child(child)
 	
 	var new_buttons: Array = []
 	

@@ -54,7 +54,6 @@ func _start_test() -> void:
 
 func _stop_test() -> void:
 	if _test_scene:
-		remove_child(_test_scene)
 		_test_scene.queue_free()
 		_test_scene = null
 		MusicPlayer.stop()

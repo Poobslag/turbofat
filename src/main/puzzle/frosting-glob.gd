@@ -56,12 +56,6 @@ var velocity := Vector2.ZERO
 # time in milliseconds between the engine starting and this node being initialized
 var _creation_time := 0.0
 
-func _ready() -> void:
-	frame = randi() % (hframes * vframes)
-	visible = false
-	set_process(false)
-
-
 """
 Populates this object from another FrostingGlob instance.
 
@@ -95,7 +89,6 @@ Resets this frosting glob's state, including its color and position, and adds it
 """
 func initialize(new_color_int: int, new_position: Vector2) -> void:
 	_creation_time = OS.get_ticks_msec()
-	visible = true
 	color_int = new_color_int
 	falling = true
 	set_process(true)
@@ -154,27 +147,6 @@ func fade() -> void:
 
 
 """
-Move this frosting glob to a new location in the scene tree.
-
-The same glob might be spawned in the playfield, but get splattered onto a wall which is a different node.
-"""
-func reparent(new_parent: Node) -> void:
-	if new_parent == get_parent():
-		return
-	
-	# removing a node from the tree unsets some flags; we store them so they can be restored
-	var old_process := is_processing()
-	var old_visible := visible
-	
-	if is_inside_tree():
-		get_parent().remove_child(self)
-	if new_parent:
-		new_parent.add_child(self)
-		set_process(old_process)
-		visible = old_visible
-
-
-"""
 Applies gravity and checks for collisions.
 """
 func _process(delta: float)  -> void:
@@ -199,8 +171,7 @@ func _process(delta: float)  -> void:
 
 
 func _on_Tween_tween_all_completed() -> void:
-	hide()
-	set_process(false)
+	queue_free()
 
 
 func _on_FadeTimer_timeout() -> void:
