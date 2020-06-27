@@ -23,7 +23,6 @@ func _ready() -> void:
 func _refresh() -> void:
 	for child in get_children():
 		child.queue_free()
-		remove_child(child)
 	
 	# add grass tufts over some of the tilemap's grassy cells
 	for cell_obj in _ground_map.get_used_cells():
