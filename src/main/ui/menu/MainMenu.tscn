@@ -60,9 +60,9 @@ align = 1
 
 [node name="2d" type="Button" parent="Play"]
 margin_left = 159.0
-margin_top = 53.0
+margin_top = 54.0
 margin_right = 352.0
-margin_bottom = 100.0
+margin_bottom = 101.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
