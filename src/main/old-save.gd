@@ -207,4 +207,4 @@ func _append_compare_flag_for_0517(save_json_text: String) -> String:
 			for value_obj in save_item.get("value"):
 				var value: Dictionary = value_obj
 				value["compare"] = "-seconds"
-	return to_json(json_save_items)
+	return JSON.print(json_save_items, " ")

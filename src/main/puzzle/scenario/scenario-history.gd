@@ -11,6 +11,14 @@ var max_size := 3
 # value: array of RankResults for the specified scenario
 var rank_results := {}
 
+# key: scenario name
+# value: date when the player was first successful at the scenario
+var successful_scenarios := {}
+
+# key: scenario name
+# value: date when the player first finished the scenario
+var finished_scenarios := {}
+
 func scenario_names() -> Array:
 	return rank_results.keys()
 
@@ -87,6 +95,10 @@ func add(scenario: String, rank_result: RankResult) -> void:
 	if not rank_results.has(scenario):
 		rank_results[scenario] = []
 	rank_results[scenario].push_front(rank_result)
+	if rank_result.success and not successful_scenarios.has(scenario):
+		successful_scenarios[scenario] = OS.get_datetime()
+	if not rank_result.lost and not successful_scenarios.has(scenario):
+		finished_scenarios[scenario] = OS.get_datetime()
 
 
 func has(scenario: String) -> bool:

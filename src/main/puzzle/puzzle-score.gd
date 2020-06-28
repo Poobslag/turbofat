@@ -31,7 +31,7 @@ signal score_changed
 signal combo_ended
 
 enum EndResult {
-	WON, # The player succeeded.
+	WON, # The player was successful.
 	FINISHED, # The player survived until the end.
 	LOST, # The player gave up or failed.
 }
