@@ -12,9 +12,9 @@ signal tile_map_changed
 var dragging_right_mouse := false
 
 func _ready() -> void:
-	$ZIndex/TileMap.clear()
-	$ZIndex/TileMap/CornerMap.dirty = true
-	$ZIndex/TileMapDropPreview.clear()
+	$Bg/TileMap.clear()
+	$Bg/TileMap/CornerMap.dirty = true
+	$Bg/TileMapDropPreview.clear()
 
 
 func _gui_input(event: InputEvent) -> void:
@@ -28,19 +28,19 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func can_drop_data(pos: Vector2, data: LevelChunk) -> bool:
-	var can_drop := Rect2($ZIndex/Bg.rect_position, $ZIndex/Bg.rect_size).has_point(pos)
+	var can_drop := Rect2(Vector2(0, 0), rect_size).has_point(pos)
 	if can_drop:
 		# update drop preview
-		$ZIndex/TileMapDropPreview.clear()
+		$Bg/TileMapDropPreview.clear()
 		for cell in data.used_cells:
 			var target_pos: Vector2 = _cell_pos(pos) + cell
-			_set_tilemap_block($ZIndex/TileMapDropPreview, target_pos,
+			_set_tilemap_block($Bg/TileMapDropPreview, target_pos,
 					data.tiles[cell], data.autotile_coords[cell])
 	return can_drop
 
 
 func drop_data(pos: Vector2, data: LevelChunk) -> void:
-	$ZIndex/TileMapDropPreview.clear()
+	$Bg/TileMapDropPreview.clear()
 	for cell in data.used_cells:
 		var target_pos: Vector2 = _cell_pos(pos) + cell
 		set_block(target_pos, data.tiles[cell], data.autotile_coords[cell])
@@ -48,18 +48,18 @@ func drop_data(pos: Vector2, data: LevelChunk) -> void:
 
 
 func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
-	_set_tilemap_block($ZIndex/TileMap, pos, tile, autotile_coord)
+	_set_tilemap_block($Bg/TileMap, pos, tile, autotile_coord)
 
 
 func get_tile_map() -> TileMap:
-	return $ZIndex/TileMap as TileMap
+	return $Bg/TileMap as TileMap
 
 
 """
 Converts an x/y control coordinate like '58, 132' into a tilemap coordinate like '3, 2'
 """
 func _cell_pos(pos: Vector2) -> Vector2:
-	return pos * Vector2(PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT) / $ZIndex/Bg.rect_size
+	return pos * Vector2(PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT) / rect_size
 
 
 func _set_tilemap_block(tilemap: TileMap, pos: Vector2, tile: int, autotile_coord: Vector2) -> void:

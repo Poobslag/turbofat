@@ -7,8 +7,8 @@ A level editor chunk which contains a vegetable block.
 export (Vector2) var _veg_size: Vector2 = Vector2(1, 1) setget set_veg_size
 
 func _ready() -> void:
-	$"../RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
-	$"../ChangeButton".connect("pressed", self, "_on_ChangeButton_pressed")
+	$"../../Buttons/RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
+	$"../../Buttons/ChangeButton".connect("pressed", self, "_on_ChangeButton_pressed")
 
 
 func set_veg_size(veg_size: Vector2) -> void:

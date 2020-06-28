@@ -8,8 +8,8 @@ export (PuzzleTileMap.BoxInt) var _box_type: int setget set_box_type
 export (Vector2) var _box_size: Vector2 = Vector2(3, 3) setget set_box_size
 
 func _ready() -> void:
-	$"../RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
-	$"../ChangeButton".connect("pressed", self, "_on_ChangeButton_pressed")
+	$"../../Buttons/RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
+	$"../../Buttons/ChangeButton".connect("pressed", self, "_on_ChangeButton_pressed")
 
 
 func set_box_type(box_type: int) -> void:
