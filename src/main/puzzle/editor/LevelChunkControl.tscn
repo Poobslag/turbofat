@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
+[ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/puzzle/editor/level-chunk-control.gd" type="Script" id=3]
 
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/mix_color = Color( 1, 1, 1, 0 )
+
 [node name="LevelChunkControl" type="Control"]
-margin_right = 36.0
-margin_bottom = 32.0
-rect_min_size = Vector2( 36, 32 )
+rect_min_size = Vector2( 72, 64 )
 script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -15,6 +19,7 @@ __meta__ = {
 [node name="ColorRect" type="ColorRect" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 72, 64 )
 mouse_filter = 2
 color = Color( 0.113725, 0.101961, 0.101961, 1 )
 __meta__ = {
@@ -22,5 +27,7 @@ __meta__ = {
 }
 
 [node name="TileMap" parent="." instance=ExtResource( 2 )]
+material = SubResource( 1 )
+scale = Vector2( 1, 1 )
 z_index = 0
 tile_data = PoolIntArray( 0, 1, 0, 983046, 4, 0, 1048582, 4, 0, 1114118, 4, 0 )

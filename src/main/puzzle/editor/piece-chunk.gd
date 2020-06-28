@@ -24,7 +24,7 @@ var _orientation := 0
 var _piece: PieceType = PieceTypes.piece_j
 
 func _ready() -> void:
-	$"../RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
+	$"../../Buttons/RotateButton".connect("pressed", self, "_on_RotateButton_pressed")
 
 
 func set_editor_piece(new_editor_piece: int) -> void:

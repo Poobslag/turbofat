@@ -12,8 +12,8 @@ var _test_scene: Node
 
 onready var PuzzleScene := preload("res://src/main/puzzle/Puzzle.tscn")
 
-onready var _scenario_json := $HBoxContainer/CenterPanel/VBoxContainer/Json
-onready var _scenario_name := $HBoxContainer/RightPanel/SideButtons/ScenarioName
+onready var _scenario_json := $HBoxContainer/SideButtons/Json
+onready var _scenario_name := $HBoxContainer/SideButtons/ScenarioName
 
 func _ready() -> void:
 	if not ResourceCache.is_done():
@@ -48,8 +48,8 @@ func _start_test() -> void:
 	Breadcrumb.push_trail("res://src/main/puzzle/editor/LevelEditor.tscn::test")
 	add_child(_test_scene)
 	
-	# disable the settings button while testing a level, otherwise hitting 'esc' will do two things
-	$HBoxContainer/RightPanel/SideButtons/Settings.disabled = true
+	# hide the level controls while testing a level, otherwise hitting 'esc' will do two things
+	$HBoxContainer.visible = false
 
 
 func _stop_test() -> void:
@@ -58,8 +58,8 @@ func _stop_test() -> void:
 		_test_scene = null
 		MusicPlayer.stop()
 		
-		# re-enable the settings button, which was disabled while testing the level
-		$HBoxContainer/RightPanel/SideButtons/Settings.disabled = false
+		# re-enable the level controls which was disabled while testing the level
+		$HBoxContainer.visible = true
 
 
 func _on_OpenFile_pressed() -> void:

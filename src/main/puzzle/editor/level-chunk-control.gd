@@ -43,5 +43,5 @@ Refreshes the scale to ensure the contents of the tilemap fit inside an item in 
 """
 func _refresh_scale() -> void:
 	var extents := _tilemap_extents()
-	$TileMap.scale.x = 0.50 / (1 + max(extents.end.x, extents.end.y))
-	$TileMap.scale.y = 0.50 / (1 + max(extents.end.x, extents.end.y))
+	$TileMap.scale.x = 1.00 / (1 + max(extents.end.x, extents.end.y))
+	$TileMap.scale.y = 1.00 / (1 + max(extents.end.x, extents.end.y))
