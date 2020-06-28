@@ -52,6 +52,8 @@ func set_difficulty_names(names: Array) -> void:
 	# clear out the old labels
 	for child in $Labels.get_children():
 		child.queue_free()
+		# remove_child to ensure old labels don't affect lowlight calculations
+		$Labels.remove_child(child)
 	
 	# add the new labels
 	for name_obj in names:

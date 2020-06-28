@@ -122,20 +122,7 @@ func _calculate_lowlights() -> void:
 	
 	for difficulty in mode_difficulties[_get_mode()]:
 		var scenario: ScenarioSettings = scenarios["%s %s" % [_get_mode(), difficulty]]
-		_rank_lowlights.append(_calculate_lowlight(scenario))
-
-
-"""
-Calculates whether the specified scenario should be lowlighted.
-
-If the player achieved the success condition without losing, the scenario appears lit up. Otherwise it's lowlighted.
-"""
-func _calculate_lowlight(scenario: ScenarioSettings) -> bool:
-	var best_results: Array = PlayerData.scenario_history.best_results(scenario.name, false)
-	if not best_results:
-		return true
-	
-	return not best_results[0].success
+		_rank_lowlights.append(not PlayerData.scenario_history.successful_scenarios.has(scenario.name))
 
 
 func _get_mode() -> String:

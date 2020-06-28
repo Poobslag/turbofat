@@ -10,7 +10,7 @@ Includes buttons starting a new game, launching the level editor, and exiting th
 const BEGINNER_TUTORIAL_SCENARIO := "tutorial-beginner-0"
 
 func _ready() -> void:
-	if not PlayerData.scenario_history.scenario_names().has(BEGINNER_TUTORIAL_SCENARIO):
+	if not PlayerData.scenario_history.finished_scenarios.has(BEGINNER_TUTORIAL_SCENARIO):
 		var settings := ScenarioSettings.new()
 		settings.load_from_resource(BEGINNER_TUTORIAL_SCENARIO)
 		Scenario.overworld_puzzle = false
