@@ -103,6 +103,7 @@ Stores the json mood string into our mood property as an enum.
 """
 func _parse_mood(json: Dictionary) -> void:
 	match json.get("mood", ""):
+		"": mood = Mood.NONE
 		"default": mood = Mood.DEFAULT
 		"smile0": mood = Mood.SMILE0
 		"smile1": mood = Mood.SMILE1
@@ -116,7 +117,9 @@ func _parse_mood(json: Dictionary) -> void:
 		"sweat1": mood = Mood.SWEAT1
 		"rage0": mood = Mood.RAGE0
 		"rage1": mood = Mood.RAGE1
-		_: mood = Mood.NONE
+		_:
+			push_warning("Unrecognized mood: %s" % json.get("mood", ""))
+			mood = Mood.NONE
 
 
 func _to_string() -> String:
