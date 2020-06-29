@@ -77,7 +77,7 @@ func refresh_json() -> void:
 				_json_tree[BLOCKS_START] = {}
 				_json_blocks_start = _json_tree[BLOCKS_START]
 			_json_blocks_start[TILES] = new_json_tiles
-		text = JSONBeautifier.beautify_json(to_json(_json_tree), 2)
+		text = Utils.print_json(_json_tree)
 
 
 func _on_Playfield_tile_map_changed() -> void:

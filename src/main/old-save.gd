@@ -73,7 +73,7 @@ func transform_old_save() -> void:
 	transformer.sub("\"died\":false", "\"top_out_count\":0,\"lost\":false")
 	transformer.sub("\"died\":true", "\"top_out_count\":1,\"lost\":true")
 	transformer.transformed = "[%s]" % transformer.transformed
-	transformer.transformed = JSONBeautifier.beautify_json(transformer.transformed, 1)
+	transformer.transformed = Utils.print_json(transformer.transformed)
 	transformer.transformed = _append_compare_flag_for_0517(transformer.transformed)
 	save_json_text = transformer.transformed
 	
@@ -207,4 +207,4 @@ func _append_compare_flag_for_0517(save_json_text: String) -> String:
 			for value_obj in save_item.get("value"):
 				var value: Dictionary = value_obj
 				value["compare"] = "-seconds"
-	return JSON.print(json_save_items, " ")
+	return Utils.print_json(json_save_items)

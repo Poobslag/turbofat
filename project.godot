@@ -154,11 +154,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/head-bobber.gd"
 }, {
-"base": "Reference",
-"class": "JSONBeautifier",
-"language": "GDScript",
-"path": "res://addons/json_beautifier/json_beautifier.gd"
-}, {
 "base": "Sprite",
 "class": "LeafPoof",
 "language": "GDScript",
@@ -404,7 +399,6 @@ _global_script_class_icons={
 "FrostingGlob": "",
 "FrostingViewports": "",
 "HeadBobber": "",
-"JSONBeautifier": "",
 "LeafPoof": "",
 "LevelChunk": "",
 "LevelChunkControl": "",
