@@ -1,23 +1,28 @@
 # Turbo Fat
-A block-dropping puzzle game. This is inspired by a few other block-dropping games but breaks some rules.
 
-  * Most games reward you for tidy horizontal stacks, but Turbo Fat rewards you for messy vertical stacks.
-  * Most games punish you for leaving horizontal crevices in your stack, but Turbo Fat encourages you to create these types of crevices and lets you squeeze pieces into them.
-  * Most games reward making a tall narrow column where you can clear multiple lines at once, but Turbo Fat punishes this. There are no line pieces and you do not score bonus points for simultaneous line clears.
-  * Most games reward you for building a mountain of blocks, and tearing it down with a big combo. Turbo Fat allows this, but you can fill up your screen while building a combo.
-  * Most games limit your combo by the number of blocks on the screen. In Turbo Fat, combos can continue forever.
+![Game screenshot showing blocks of food in a playfield, while a chubby monster sits at a table.](./screenshot-puzzle.png)
 
-While this game is still in development, my goal is for it to include three different modes:
+Turbo Fat is a block-dropping puzzle game. It's inspired by a few other block-dropping games but breaks some rules.
 
-  * A sustained marathon mode which lasts about 10 minutes, and the player is graded based on their performance. They might aspire to get a 'grand master' grade by playing better.
-  * Several shorter sprint modes which last about 3 minutes, and the player is given a score or a time. They might aspire to finish faster or score more points.
-  * A story mode made up of a wide variety of 3 minute scenarios. Some scenarios reward the player for learning basic game concepts and playing better. Other scenarios force the player to adapt to unusual scenario-specific rules. Some mandatory scenarios block the player's progress until they're able to clear them.
+Instead of being rewarded for clean horizontal stacks, multiline clears and T-spins, you're rewarded for messy vertical stacks, 3x3 boxes and 'squish moves' where you smush pieces into impossible positions.
+
+![Game screenshot monsters talking outdoors, surrounded by some boxy terrain.](./screenshot-overworld.png)
+
+The game also includes a story mode where you can interact with other monsters. This will eventually grow into an immersive story mode with many characters to meet, worlds to explore, and unique puzzle challenges.
+
+## Summary
+
+Rotate the falling pieces and arrange them into lines to clear them. To earn more money, arrange your pieces into 3x3, 3x4 and 3x5 boxes. The more of these boxes you make, the more money you'll get.
+
+Another way to earn more money is to clear a lot of lines in a row. It doesn't have to be at the same time. Making boxes also keeps your combo going.
+
+Pressing and holding the 'soft drop' key lets you move pieces past each other. This can help to recover from a poorly placed piece, but also helps when trying to make boxes.
 
 ## Controls
 
-In the puzzle mode, use the **arrow keys** to control the piece, **Z/X** to rotate the piece, and **shift** to hard drop. **Esc** when you want to stop playing.
+In the puzzle mode, <kbd>Left</kbd> and <kbd>Right</kbd> move the piece, <kbd>Z</kbd> and <kbd>X</kbd> rotate it and <kbd>Down</kbd> drops it. <kbd>Up</kbd> or <kbd>Shift</kbd> drop it more quickly. <kbd>Esc</kbd> quits the game.
 
-In the overworld, press the **arrow keys** to move, **Z** to talk, and **shift** to rewind dialog. **Esc** brings up a menu.
+In the overworld, <kbd>Up</kbd>, <kbd>Down</kbd>, <kbd>Left</kbd> and <kbd>Right</kbd> move your character. <kbd>Z</kbd> talks, and <kbd>Shift</kbd> rewinds dialog. <kbd>Esc</kbd> quits the game.
 
 Gamepads are also supported.
 
