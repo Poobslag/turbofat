@@ -43,7 +43,7 @@ Parameters:
 	'creature_def': The colors and textures used to draw the creature.
 """
 func summon_creature(creature_def: Dictionary, creature_index: int = -1) -> void:
-	get_creature_2d(creature_index).summon(creature_def)
+	get_creature_2d(creature_index).set_creature_def(creature_def)
 	_get_seat(creature_index).refresh()
 
 

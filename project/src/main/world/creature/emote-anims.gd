@@ -56,7 +56,7 @@ onready var _emote_sprites := [
 	$"../Sprites/Neck0/HeadBobber/EmoteGlow",
 ]
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		# avoid playing animations in editor. manually set frames instead
 		_apply_default_eye_frames()
@@ -245,7 +245,7 @@ func _apply_tool_script_workaround() -> void:
 		_creature = $".."
 
 
-func _on_animation_finished(anim_name) -> void:
+func _on_animation_finished(_anim_name: String) -> void:
 	if _prev_mood in EMOTE_ANIMS.keys():
 		unemote()
 		yield($ResetTween, "tween_all_completed")

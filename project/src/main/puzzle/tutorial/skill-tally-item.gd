@@ -95,10 +95,10 @@ func _refresh_puzzle() -> void:
 Returns the signal names for a node.
 """
 static func _get_signal_names(object: Object) -> Dictionary:
-	var signal_names: Dictionary = {}
+	var result: Dictionary = {}
 	for signal_dict in object.get_signal_list():
-		signal_names[signal_dict.name] = signal_dict.name
-	return signal_names
+		result[signal_dict.name] = signal_dict.name
+	return result
 
 
 """
@@ -143,15 +143,15 @@ func _on_skill_performed() -> void:
 	increment()
 
 
-func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
+func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
 	increment()
 
 
-func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	increment()
 
 
-func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color: int) -> void:
+func _on_Playfield_box_built(_x: int, _y: int, _width: int, _height: int, _color: int) -> void:
 	increment()
 
 

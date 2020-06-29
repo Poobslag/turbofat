@@ -21,7 +21,7 @@ func _ready() -> void:
 	set_physics_process(false)
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	remaining_box_build_frames -= 1
 	if remaining_box_build_frames <= 0:
 		# stop processing if we're done building boxes

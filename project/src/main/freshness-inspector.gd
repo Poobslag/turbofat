@@ -84,6 +84,7 @@ func freshest_start(bgm: AudioStreamPlayer) -> float:
 	var freshest_start_index := 0
 	var min_staleness: int = 0
 	var staleness: int = 0
+	# warning-ignore:integer_division
 	var r: int = freshness_record.size() / 2
 	for l in range(0, freshness_record.size()):
 		# advance the 'freshness window'

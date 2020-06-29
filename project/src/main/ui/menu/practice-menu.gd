@@ -70,7 +70,6 @@ func _ready() -> void:
 	# default mode/difficulty if the player hasn't played a scenario recently
 	var current_mode: String = "Ultra"
 	var current_difficulty: String = "Normal"
-	var current_scenario_name: String = "ultra-normal"
 	
 	for category_obj in SCENARIO_CATEGORIES:
 		var category: Array = category_obj
@@ -88,7 +87,6 @@ func _ready() -> void:
 		if scenario_name == Scenario.settings.name:
 			# if they've just played a practice mode scenario, we default to that scenario
 			current_mode = mode
-			current_scenario_name = scenario_name
 			current_difficulty = difficulty
 	
 	# grab focus so the player can navigate with the keyboard

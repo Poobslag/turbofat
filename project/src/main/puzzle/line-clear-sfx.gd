@@ -51,7 +51,7 @@ onready var _veg_erase_sounds := [$VegEraseSound1, $VegEraseSound2, $VegEraseSou
 
 onready var _combo_tracker: ComboTracker = $"../ComboTracker"
 
-func _play_thump_sound(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _play_thump_sound(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	var sound_index := clamp(total_lines - remaining_lines - 1, 0, _line_erase_sounds.size() - 1)
 	var sound: AudioStreamPlayer
 	if box_ints:
@@ -69,7 +69,7 @@ Plays an escalating sound for the current combo.
 For smaller combos this goes through a list of sound effects with higher pitches. For larger combos this loops through
 a repeating list where the repetition is concealed using a shepard tone.
 """
-func _play_combo_sound(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _play_combo_sound(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	var sound: AudioStream
 	if _combo_tracker.combo <= 0:
 		# lines were cleared from top out or another unusual case. don't play combo sounds
@@ -83,7 +83,7 @@ func _play_combo_sound(y: int, total_lines: int, remaining_lines: int, box_ints:
 		$ComboSound.play()
 
 
-func _play_box_sound(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _play_box_sound(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
 	var sound: AudioStreamPlayer
 	if box_ints.has(PuzzleTileMap.BoxInt.CAKE):
 		sound = $ClearCakePieceSound

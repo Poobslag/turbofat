@@ -15,12 +15,12 @@ resource_local_to_scene = true
 shader = ExtResource( 9 )
 shader_param/mix_color = Color( 1, 1, 1, 0 )
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=2]
 resource_local_to_scene = true
 shader = ExtResource( 9 )
 shader_param/mix_color = Color( 1, 1, 1, 0 )
 
-[sub_resource type="TileSet" id=2]
+[sub_resource type="TileSet" id=3]
 0/name = "blocks-corners.png 2"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
@@ -43,7 +43,7 @@ shader_param/mix_color = Color( 1, 1, 1, 0 )
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="TileSet" id=3]
+[sub_resource type="TileSet" id=4]
 0/name = "blocks-shadows.png 0"
 0/texture = ExtResource( 8 )
 0/tex_offset = Vector2( 0, -64 )
@@ -119,8 +119,8 @@ tile_data = PoolIntArray( 983046, 4, 0, 1048582, 4, 0, 1114118, 4, 0 )
 script = ExtResource( 5 )
 
 [node name="CornerMap" parent="." instance=ExtResource( 3 )]
-material = SubResource( 4 )
-tile_set = SubResource( 2 )
+material = SubResource( 2 )
+tile_set = SubResource( 3 )
 
 [node name="Viewport" type="Viewport" parent="."]
 size = Vector2( 324, 544 )
@@ -132,7 +132,7 @@ modulate = Color( 0, 0, 0, 1 )
 show_behind_parent = true
 position = Vector2( 0, -96 )
 scale = Vector2( 0.5, 0.5 )
-tile_set = SubResource( 3 )
+tile_set = SubResource( 4 )
 cell_size = Vector2( 72, 64 )
 format = 1
 tile_data = PoolIntArray( 1114113, 0, 2, 1179649, 0, 9, 1179650, 0, 3, 1179651, 0, 4 )

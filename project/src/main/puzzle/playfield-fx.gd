@@ -94,7 +94,7 @@ func reset() -> void:
 	$LightMap.modulate = Color.transparent
 	$GlowMap.modulate = Color.transparent
 	_calculate_brightness(0)
-	_refresh_tilemaps(0)
+	_refresh_tilemaps()
 
 
 func _init_tile_set() -> void:
@@ -182,7 +182,7 @@ func _calculate_brightness(combo: int) -> void:
 """
 Calculates the new light pattern and refreshes the tilemaps.
 """
-func _refresh_tilemaps(combo: int) -> void:
+func _refresh_tilemaps() -> void:
 	$BgStrobe.color = Utils.to_transparent(_color)
 	
 	var new_pattern: Array
@@ -205,12 +205,12 @@ func _refresh_tilemaps(combo: int) -> void:
 			$GlowMap.set_cell(x, y, tile)
 
 
-func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
 	_calculate_brightness(_combo_tracker.combo)
 	_calculate_line_color(box_ints)
 	_pattern_y += 1
 	_start_glow_tween()
-	_refresh_tilemaps(_combo_tracker.combo)
+	_refresh_tilemaps()
 
 
 """
@@ -220,16 +220,16 @@ func _on_ComboTracker_combo_break_changed(value: int) -> void:
 	if value >= 2:
 		if _pattern != OFF_PATTERN:
 			reset()
-			_refresh_tilemaps(value)
+			_refresh_tilemaps()
 	else:
-		_refresh_tilemaps(value)
+		_refresh_tilemaps()
 
 
 """
 When the player builds a box we brighten the combo lights again.
 """
-func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color_int: int) -> void:
-	_refresh_tilemaps(_combo_tracker.combo)
+func _on_Playfield_box_built(_x: int, _y: int, _width: int, _height: int, _color_int: int) -> void:
+	_refresh_tilemaps()
 	_start_glow_tween()
 
 

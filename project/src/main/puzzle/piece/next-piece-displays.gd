@@ -14,7 +14,7 @@ var _next_piece_displays := []
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	for i in range(DISPLAY_COUNT):
-		_add_display(i, 5, 5 + i * (486 / (DISPLAY_COUNT - 1)), 0.5)
+		_add_display(i, 5, 5 + i * (486.0 / (DISPLAY_COUNT - 1)), 0.5)
 
 
 """

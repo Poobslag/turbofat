@@ -90,7 +90,7 @@ func _update_current_speed() -> void:
 	PieceSpeeds.current_speed = PieceSpeeds.speed(MilestoneManager.prev_milestone().get_meta("level"))
 
 
-func _on_PuzzleScore_level_index_changed(value: int) -> void:
+func _on_PuzzleScore_level_index_changed(_value: int) -> void:
 	_update_current_speed()
 
 

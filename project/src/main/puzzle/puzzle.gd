@@ -5,8 +5,6 @@ Represents a minimal puzzle game with a piece, playfield of pieces, and next pie
 class to add goals, win conditions, challenges or time limits.
 """
 
-signal topped_out
-
 # the previously launched food color. stored to avoid showing the same color twice consecutively
 var _food_color: Color
 
@@ -100,7 +98,7 @@ func _on_Hud_start_button_pressed() -> void:
 """
 Triggers the 'creature feeding' animation.
 """
-func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	# Calculate whether or not the creature should say something positive about the combo. The creature talks after
 	var creature_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 5 \
 			and total_lines > ($Playfield/ComboTracker.combo + 1) % 3

@@ -76,7 +76,7 @@ func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool)
 	# update the UI's appearance
 	$ChatLineLabel.update_appearance(chat_theme)
 	$ChatLinePanel.update_appearance(chat_theme, chat_line_size)
-	$ChatLinePanel/NametagPanel.show_label(chat_theme, nametag_right, chat_line_size)
+	$ChatLinePanel/NametagPanel.show_label(chat_theme, nametag_right)
 
 
 func chat_window_showing() -> bool:

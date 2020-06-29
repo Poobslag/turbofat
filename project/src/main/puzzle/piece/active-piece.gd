@@ -75,18 +75,18 @@ Parameters:
 	'is_cell_blocked': A callback function which returns 'true' if a specified cell is blocked, either because it lies
 		outside the playfield or is obstructed by a block
 	
-	'pos': The desired position to move the piece to
+	'new_pos': The desired position to move the piece to
 	
-	'orientation': The desired orientation to rotate the piece to
+	'new_orientation': The desired orientation to rotate the piece to
 """
-func can_move_piece_to(is_cell_blocked: FuncRef, pos: Vector2, orientation: int) -> bool:
+func can_move_piece_to(is_cell_blocked: FuncRef, new_pos: Vector2, new_orientation: int) -> bool:
 	var valid_target_pos := true
 	if type.pos_arr.empty():
 		# Return 'false' for an empty piece to avoid an infinite loop
 		valid_target_pos = false
 	else:
-		for block_pos in type.pos_arr[orientation]:
-			valid_target_pos = valid_target_pos and not is_cell_blocked.call_func(pos + block_pos)
+		for block_pos in type.pos_arr[new_orientation]:
+			valid_target_pos = valid_target_pos and not is_cell_blocked.call_func(new_pos + block_pos)
 	return valid_target_pos
 
 

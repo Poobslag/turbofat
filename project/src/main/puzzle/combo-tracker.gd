@@ -46,14 +46,14 @@ func _on_PuzzleScore_game_prepared() -> void:
 	combo = 0
 
 
-func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color_int: int) -> void:
+func _on_Playfield_box_built(_x: int, _y: int, _width: int, _height: int, _color_int: int) -> void:
 	piece_continued_combo = true
 	if combo_break != 0:
 		combo_break = 0
 		emit_signal("combo_break_changed", combo_break)
 
 
-func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
 	if Scenario.settings.combo_break.veg_row:
 		if box_ints.empty():
 			piece_broke_combo = true
@@ -90,7 +90,7 @@ func _on_PuzzleScore_game_ended() -> void:
 """
 Increments the combo and score for the specified line clear.
 """
-func _on_Playfield_before_line_cleared(y, total_lines, remaining_lines, box_ints) -> void:
+func _on_Playfield_before_line_cleared(_y, _total_lines, _remaining_lines, box_ints) -> void:
 	combo += 1
 	var combo_score: int = COMBO_SCORE_ARR[clamp(combo - 1, 0, COMBO_SCORE_ARR.size() - 1)]
 	var box_score := 0

@@ -112,5 +112,5 @@ func _on_resized() -> void:
 	_set_pivot_to_center()
 
 
-func _on_PopAnimation_animation_finished(anim_name: String) -> void:
+func _on_PopAnimation_animation_finished(_anim_name: String) -> void:
 	emit_signal("pop_choose_completed")

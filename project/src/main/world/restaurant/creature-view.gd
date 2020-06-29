@@ -13,7 +13,7 @@ func _ready() -> void:
 	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if $FatPlayer.get_fatness() != get_creature_2d().get_fatness():
 		$FatPlayer.set_fatness(get_creature_2d().get_fatness())
 

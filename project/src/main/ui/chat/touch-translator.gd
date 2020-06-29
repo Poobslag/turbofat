@@ -37,7 +37,7 @@ func _input(event: InputEvent) -> void:
 			_emit_ui_accept_event(false, false)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _touch_index != -1:
 		# emit an echo event
 		_emit_ui_accept_event(true, true)
@@ -84,7 +84,7 @@ func _on_ChatUi_showed_choices() -> void:
 	_disable_translation()
 
 
-func _on_ChatChoices_chat_choice_chosen(choice_index) -> void:
+func _on_ChatChoices_chat_choice_chosen(_choice_index: int) -> void:
 	_enable_translation()
 
 

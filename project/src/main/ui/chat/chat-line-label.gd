@@ -76,7 +76,7 @@ func show_message(text_with_lulls: String, initial_pause: float = 0.0) -> int:
 	set_process(true)
 	text = text_with_lulls.replace("/", "")
 	pick_smallest_size()
-	_calculate_pauses(text_with_lulls)
+	_calculate_pauses(text_with_lulls, initial_pause)
 	return chosen_size_index
 
 

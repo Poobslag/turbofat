@@ -137,21 +137,21 @@ func from_json_dict(new_name: String, json: Dictionary) -> void:
 		success_condition.from_json_dict(json["success-condition"])
 
 
-func load_from_resource(name: String) -> void:
-	load_from_text(name, FileUtils.get_file_as_text(scenario_path(name)))
+func load_from_resource(new_name: String) -> void:
+	load_from_text(new_name, FileUtils.get_file_as_text(scenario_path(new_name)))
 
 
-func load_from_text(name: String, text: String) -> void:
-	from_json_dict(name, parse_json(text))
+func load_from_text(new_name: String, text: String) -> void:
+	from_json_dict(new_name, parse_json(text))
 
 
-static func scenario_path(name: String) -> String:
-	return "res://assets/main/puzzle/scenario/%s.json" % name
+static func scenario_path(scenario_name: String) -> String:
+	return "res://assets/main/puzzle/scenario/%s.json" % scenario_name
 
 
 static func scenario_name(path: String) -> String:
 	return path.get_file().trim_suffix(".json")
 
 
-static func scenario_filename(name: String) -> String:
-	return "%s.json" % name
+static func scenario_filename(scenario_name: String) -> String:
+	return "%s.json" % scenario_name

@@ -86,8 +86,8 @@ Deletes the specified row in the tile map, dropping all higher rows down to fill
 """
 func delete_row(y: int) -> void:
 	# First, erase and store all the old cells which are dropping
-	var piece_colors_to_set: Dictionary
-	var autotile_coords_to_set: Dictionary
+	var piece_colors_to_set := {}
+	var autotile_coords_to_set := {}
 	for cell in get_used_cells():
 		if cell.y > y:
 			# cells below the deleted row are left alone
@@ -205,7 +205,6 @@ If we didn't perform this step, the chopped-off bottom of a bread box would stil
 bottom of a bread box looks like a delicious frosted snack and the player can tell it's special.
 """
 func _disconnect_box(x: int, y: int) -> void:
-	var old_autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
 	_disconnect_block(x, y - 1, Connect.DOWN)
 	_disconnect_block(x, y + 1, Connect.UP)
 

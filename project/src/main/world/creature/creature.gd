@@ -25,14 +25,11 @@ signal before_creature_arrived
 # emitted when a creature arrives and sits down
 signal creature_arrived
 
-# emitted when a creature stands up and leaves.
-# creatures don't leave anymore, but they used to leave while new textures were loaded.
-signal creature_left
-
 # emitted when a movement animation starts (e.g Spira starts running in a direction)
 signal movement_animation_started(anim_name)
 
 # emitted during the 'run' animation when the creature touches the ground
+# warning-ignore:unused_signal
 signal landed
 
 signal orientation_changed(old_orientation, new_orientation)
