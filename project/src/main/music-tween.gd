@@ -30,7 +30,7 @@ func fade_in(player: AudioStreamPlayer) -> void:
 """
 When a music track is faded out, we stop it from playing.
 """
-func _on_tween_completed(object: Object, key: String) -> void:
+func _on_tween_completed(object: Object, _key: String) -> void:
 	if object is AudioStreamPlayer:
 		if object.volume_db == MusicPlayer.MIN_VOLUME:
 			object.stop()

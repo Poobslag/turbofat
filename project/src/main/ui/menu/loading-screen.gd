@@ -8,7 +8,7 @@ func _ready() -> void:
 	ResourceCache.start_load()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$ProgressBar.value = 100.0 * ResourceCache.get_progress()
 
 

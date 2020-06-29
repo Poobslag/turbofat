@@ -148,10 +148,6 @@ func orient_toward(target: Node2D) -> void:
 		_creature.set_orientation(Creature.Orientation.SOUTHWEST)
 
 
-func summon(creature_def: Dictionary, use_defaults: bool = true) -> void:
-	_creature.summon(creature_def, use_defaults)
-
-
 func play_hello_voice(force: bool = false) -> void:
 	_creature.play_hello_voice(force)
 
@@ -220,7 +216,6 @@ func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 
 
 func _update_animation() -> void:
-	var old_orientation: int = _creature.orientation
 	if _non_iso_walk_direction.length() > 0:
 		play_movement_animation("run", _non_iso_walk_direction)
 	elif _creature.movement_mode:

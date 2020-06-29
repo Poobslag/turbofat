@@ -52,7 +52,7 @@ func show_results_message(rank_result: RankResult, creature_scores: Array, finis
 
 
 func _append_creature_scores(rank_result: RankResult, creature_scores: Array, \
-		finish_condition_type: int, text: String) -> String:
+		_finish_condition_type: int, text: String) -> String:
 	# Append creature scores
 	for i in range(creature_scores.size()):
 		var creature_score: int = creature_scores[i]
@@ -70,7 +70,7 @@ func _append_creature_scores(rank_result: RankResult, creature_scores: Array, \
 	return text
 
 
-func _append_grade_information(rank_result: RankResult, creature_scores: Array, \
+func _append_grade_information(rank_result: RankResult, _creature_scores: Array, \
 		finish_condition_type: int, text: String) -> String:
 	# We add a '?' to make the player aware if their rank is adjusted because they topped out or lost.
 	var topped_out := ""

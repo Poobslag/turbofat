@@ -70,7 +70,7 @@ When a line is cleared, we generate frosting globs for any boxes involved in the
 
 This must be called before the line is cleared so that we can evaluate the food blocks before they're erased.
 """
-func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var color_int: int
 		var glob_count: int

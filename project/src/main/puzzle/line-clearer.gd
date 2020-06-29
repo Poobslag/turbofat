@@ -47,7 +47,7 @@ func _ready() -> void:
 	PuzzleScore.connect("finish_triggered", self, "_on_PuzzleScore_finish_triggered")
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	# clear lines from lines_being_cleared
 	while _cleared_line_index < lines_being_cleared.size() \
 			and remaining_line_erase_frames <= _remaining_line_clear_timings[_cleared_line_index]:
@@ -268,6 +268,7 @@ Non-full vegetable lines are erased simultaneously with the nearest line clear.
 This method takes a list of cleared lines and erased lines, and pairs all of the erased lines to the nearest cleared
 line.
 """
+# warning-ignore:shadowed_variable
 static func closest_clears(lines_being_cleared: Array, lines_being_erased: Array) -> Array:
 	var closest_clears := lines_being_erased.duplicate()
 	if not lines_being_cleared:

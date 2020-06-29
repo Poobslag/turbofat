@@ -90,12 +90,12 @@ func _on_PieceManager_piece_spawned() -> void:
 	_did_build_cake = false
 
 
-func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
+func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
 	_did_squish_move = true
 	_squish_moves += 1
 
 
-func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color: int) -> void:
+func _on_Playfield_box_built(_x: int, _y: int, _width: int, _height: int, color: int) -> void:
 	_did_build_box = true
 	_boxes_built += 1
 	
@@ -103,7 +103,7 @@ func _on_Playfield_box_built(x: int, y: int, width: int, height: int, color: int
 		_did_build_cake = true
 
 
-func _on_Playfield_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	_did_line_clear = true
 	_lines_cleared += 1
 
@@ -159,7 +159,6 @@ func _on_Playfield_after_piece_written() -> void:
 	_handle_build_box_message()
 	_handle_snack_stack_message()
 	
-	var scenario_name := Scenario.settings.name
 	match Scenario.settings.name:
 		"tutorial-beginner-0":
 			if _lines_cleared >= 2: _advance_scenario()

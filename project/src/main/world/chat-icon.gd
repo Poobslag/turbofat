@@ -32,7 +32,7 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	bounce_phase += delta * (2.5 if focused else 1)
+	bounce_phase += delta * (2.5 if focused else 1.0)
 	if bounce_phase * BOUNCES_PER_SECOND * PI > 10.0:
 		# keep bounce_phase bounded, otherwise a sprite will jitter slightly 3 billion millenia from now
 		bounce_phase -= 2 / BOUNCES_PER_SECOND
@@ -85,11 +85,13 @@ func _refresh() -> void:
 	
 	if is_inside_tree():
 		if bubble_type == BubbleType.NONE:
-			get_parent().remove_from_group("chattables")
+			if get_parent().is_in_group("chattables"):
+				get_parent().remove_from_group("chattables")
 			if ChattableManager.is_connected("focus_changed", self, "_on_ChattableManager_focus_changed"):
 				ChattableManager.disconnect("focus_changed", self, "_on_ChattableManager_focus_changed")
 		else:
-			get_parent().add_to_group("chattables")
+			if not get_parent().is_in_group("chattables"):
+				get_parent().add_to_group("chattables")
 			ChattableManager.connect("focus_changed", self, "_on_ChattableManager_focus_changed")
 
 

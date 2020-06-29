@@ -14,7 +14,7 @@ func _ready() -> void:
 	set_process(false)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		# avoid playing animations in editor. manually set frames instead
 		_apply_default_frames()
@@ -67,6 +67,6 @@ func _on_Creature_before_creature_arrived() -> void:
 	_apply_default_frames()
 
 
-func _on_Creature_orientation_changed(old_orientation: int, new_orientation: int) -> void:
+func _on_Creature_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
 	if is_processing() and not Engine.is_editor_hint():
 		_play_mouth_ambient_animation()

@@ -58,7 +58,7 @@ func _input(event: InputEvent) -> void:
 		_touch_dir = (event.position as Vector2 - center) / rect_scale
 		if _touch_dir.length() < RADIUS:
 			_touch_index = event.index
-			_press_buttons(event)
+			_press_buttons()
 		elif event.index == _touch_index:
 			_touch_index = -1
 			_release_buttons()
@@ -124,18 +124,18 @@ func _release_buttons() -> void:
 
 
 """
-Press the buttons associated with the specified touch event.
+Press the buttons associated with the newest touch event.
 
 This also emits InputEvents for any action buttons pressed or released.
 """
-func _press_buttons(event: InputEvent) -> void:
+func _press_buttons() -> void:
 	# cardinal direction; 0 = right, 1 = down, 2 = left, 3 = right
 	var touch_cardinal_dir := wrapi(round(2 * _touch_dir.angle() / PI), 0, 4)
 	
-	var up_right_pressed := _diagonalness(_touch_dir, Vector2(1.0, -1.0)) < up_right_weight
-	var up_left_pressed := _diagonalness(_touch_dir, Vector2(-1.0, -1.0)) < up_left_weight
-	var down_right_pressed := _diagonalness(_touch_dir, Vector2(1.0, 1.0)) < down_right_weight
-	var down_left_pressed := _diagonalness(_touch_dir, Vector2(-1.0, 1.0)) < down_left_weight
+	var up_right_pressed := _diagonalness(Vector2(1.0, -1.0)) < up_right_weight
+	var up_left_pressed := _diagonalness(Vector2(-1.0, -1.0)) < up_left_weight
+	var down_right_pressed := _diagonalness(Vector2(1.0, 1.0)) < down_right_weight
+	var down_left_pressed := _diagonalness(Vector2(-1.0, 1.0)) < down_left_weight
 	
 	_right.pressed = touch_cardinal_dir == 0 or up_right_pressed or down_right_pressed
 	_down.pressed = touch_cardinal_dir == 1 or down_right_pressed or down_left_pressed
@@ -149,5 +149,5 @@ Returns a number [0.0, 4.0] for how close the touch is to the specified diagonal
 0.0 = very close, 4.0 = very far. A value less than 1.0 indicates the touch is in the same correct quadrant as the
 diagonal.
 """
-func _diagonalness(_touch_dir: Vector2, diagonal_direction: Vector2) -> float:
+func _diagonalness(diagonal_direction: Vector2) -> float:
 	return abs(8 * _touch_dir.angle_to(diagonal_direction) / PI)

@@ -29,7 +29,7 @@ var close_up_position: Vector2
 onready var _spira: Spira = get_node(_spira_path)
 onready var _overworld_ui: OverworldUi = get_node(_overworld_ui_path)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# calculate the position to zoom in to
 	var bounding_box := Rect2(_spira.position, Vector2(0, 0))
 	for chatter in _overworld_ui.chatters:

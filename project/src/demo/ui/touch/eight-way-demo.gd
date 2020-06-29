@@ -19,7 +19,7 @@ func _input(event: InputEvent) -> void:
 		KEY_MINUS: $EightWay.rect_scale /= 1.3
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	var output := ""
 	for action in actions:
 		if Input.is_action_just_pressed(action):

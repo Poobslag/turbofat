@@ -9,6 +9,7 @@ By preloading resources used throughout the game, we have a slower startup time 
 during the game.
 """
 
+# warning-ignore:unused_signal
 signal finished_loading
 
 # number of threads to launch; 1 is slower, but more than 4 doesn't seem to help
@@ -57,13 +58,13 @@ func start_load() -> void:
 		# Godot issue #12699; threads not supported for HTML5
 		pass
 	else:
-		for i in range(THREAD_COUNT):
+		for _i in range(THREAD_COUNT):
 			var thread := Thread.new()
 			thread.start(self, "_preload_all_pngs")
 			_load_threads.append(thread)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if OS.has_feature("web") and _remaining_resource_paths:
 		var start_usec := OS.get_ticks_usec()
 		# Web targets do not support background threads, so we load a few resources every frame
@@ -90,9 +91,9 @@ func is_done() -> bool:
 Loads all pngs in the /assets directory and stores the resulting resources in our cache
 
 Parameters:
-	'userdata': Unused; needed for threads
+	'_userdata': Unused; needed for threads
 """
-func _preload_all_pngs(userdata: Object) -> void:
+func _preload_all_pngs(_userdata: Object) -> void:
 	while _remaining_resource_paths and not _exiting:
 		_preload_next_png()
 

@@ -19,7 +19,7 @@ func _ready() -> void:
 	visible = false
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	visible = _creature.visible
 	position = _creature.position + _shadow_offset
 

@@ -7,7 +7,7 @@ Keys:
 	Arrows: Move the sprite and print its offset.
 """
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
 		$PackedSprite.frame = wrapi($PackedSprite.frame + 1, 0, $PackedSprite.frame_count)
 	if Input.is_action_just_pressed("ui_right"):

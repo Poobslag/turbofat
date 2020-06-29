@@ -148,7 +148,7 @@ func _on_ChatChoiceButton_focus_entered() -> void:
 	$PopSound.play()
 
 
-func _on_ChatChoiceButton_gui_input(event: InputEvent) -> void:
+func _on_ChatChoiceButton_gui_input(_event: InputEvent) -> void:
 	# swallow input; player shouldn't move when answering dialog prompts
 	get_tree().set_input_as_handled()
 

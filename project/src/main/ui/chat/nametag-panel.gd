@@ -52,11 +52,11 @@ func hide_labels() -> void:
 Recolors and repositions the nametag based on the current accent definition.
 
 Parameters:
-	'chat_line_size': The size of the chat line window. This is needed for the nametag to reposition itself around it.
+	'chat_theme': metadata about the chat window's appearance.
 	
 	'nametag_right': true/false if the nametag should be drawn on the right/left side of the frame.
 """
-func show_label(chat_theme: ChatTheme, nametag_right: bool, chat_line_size: int) -> void:
+func show_label(chat_theme: ChatTheme, nametag_right: bool) -> void:
 	hide_labels()
 	visible = _nametag_size != ChatTheme.NAMETAG_OFF
 	if not visible:

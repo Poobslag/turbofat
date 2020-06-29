@@ -10,7 +10,7 @@ onready var _playfield:Playfield = _puzzle.get_playfield()
 onready var _combo_tracker:ComboTracker = _puzzle.get_node("Playfield/ComboTracker")
 onready var _piece_manager:PieceManager= _puzzle.get_piece_manager()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if visible:
 		var new_text: String = ""
 		

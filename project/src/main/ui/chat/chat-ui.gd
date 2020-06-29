@@ -20,8 +20,8 @@ var _accept_action_duration := 0.0
 var _rewind_action_duration := 0.0
 
 func _process(delta: float) -> void:
-	_rewind_action_duration = _rewind_action_duration + delta if Input.is_action_pressed("rewind_text") else 0
-	_accept_action_duration = _accept_action_duration + delta if Input.is_action_pressed("ui_accept") else 0
+	_rewind_action_duration = _rewind_action_duration + delta if Input.is_action_pressed("rewind_text") else 0.0
+	_accept_action_duration = _accept_action_duration + delta if Input.is_action_pressed("ui_accept") else 0.0
 
 
 func _input(event: InputEvent) -> void:
@@ -68,7 +68,6 @@ The player can tap the advance button to make dialog appear faster or advance to
 advance button to continuously advance the text.
 """
 func _handle_advance_action(event: InputEvent) -> void:
-	var handled_event := false
 	var advance_action := false
 	if event.is_action_pressed("ui_accept"):
 		# if the player presses the 'interact' button, advance the text

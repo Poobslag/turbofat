@@ -8,7 +8,7 @@ signal difficulty_changed
 # difficulties which appear as tick mark labels
 var _difficulty_names: Array setget set_difficulty_names
 
-func _on_Slider_value_changed(value: float) -> void:
+func _on_Slider_value_changed(_value: float) -> void:
 	emit_signal("difficulty_changed")
 
 """

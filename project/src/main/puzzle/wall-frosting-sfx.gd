@@ -30,7 +30,7 @@ Play sound effects for a collision.
 
 Globs with a higher alpha component appear larger, and play louder sounds.
 """
-func _play_sfx(glob: FrostingGlob, glob_alpha: float, max_volume) -> void:
+func _play_sfx(glob_alpha: float, max_volume: float) -> void:
 	var player: AudioStreamPlayer = _splat_players[_splat_player_index]
 	player.stream = _splat_sfx[randi() % _splat_sfx.size()]
 	player.pitch_scale = rand_range(1.90, 2.10)
@@ -46,16 +46,16 @@ func _play_sfx(glob: FrostingGlob, glob_alpha: float, max_volume) -> void:
 
 
 func _on_FrostingGlobs_hit_wall(glob: FrostingGlob) -> void:
-	_play_sfx(glob, glob.modulate.a, -10.0)
+	_play_sfx(glob.modulate.a, -10.0)
 
 
 func _on_FrostingGlobs_hit_playfield(glob: FrostingGlob) -> void:
-	_play_sfx(glob, glob.modulate.a, -20.0)
+	_play_sfx(glob.modulate.a, -20.0)
 
 
 func _on_FrostingGlobs_hit_next_pieces(glob: FrostingGlob) -> void:
-	_play_sfx(glob, glob.modulate.a, -20.0)
+	_play_sfx(glob.modulate.a, -20.0)
 
 
 func _on_FrostingGlobs_hit_gutter(glob: FrostingGlob) -> void:
-	_play_sfx(glob, glob.modulate.a, -20.0)
+	_play_sfx(glob.modulate.a, -20.0)

@@ -78,7 +78,7 @@ func _poof_count(veg_cell_count: int) -> int:
 """
 If the specified row includes enough vegetable cells, we spawn leaf poofs nearby.
 """
-func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
+func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	var veg_columns := []
 	for x in range(PuzzleTileMap.COL_COUNT):
 		if _puzzle_tile_map.get_cell(x, y) in [PuzzleTileMap.TILE_VEG, PuzzleTileMap.TILE_PIECE]:
