@@ -18,6 +18,9 @@ const MAX_VOLUME := 0.0
 # the music currently playing
 var current_bgm: AudioStreamPlayer
 
+onready var _chill_bgms := [$HipHop03, $HipHop04]
+onready var _upbeat_bgms := [$House01]
+
 func _ready() -> void:
 	$FreshnessInspector.add_checkpoint($HipHop03, 0.000)
 	$FreshnessInspector.add_checkpoint($HipHop03, 12.489)
@@ -26,6 +29,13 @@ func _ready() -> void:
 	$FreshnessInspector.add_checkpoint($HipHop03, 142.489)
 	$FreshnessInspector.add_checkpoint($HipHop03, 152.489)
 	$FreshnessInspector.add_checkpoint($HipHop03, 162.489)
+	
+	$FreshnessInspector.add_checkpoint($HipHop04, 0.000)
+	$FreshnessInspector.add_checkpoint($HipHop04, 10.646)
+	$FreshnessInspector.add_checkpoint($HipHop04, 21.326)
+	$FreshnessInspector.add_checkpoint($HipHop04, 63.988)
+	$FreshnessInspector.add_checkpoint($HipHop04, 74.660)
+	$FreshnessInspector.add_checkpoint($HipHop04, 202.670)
 	
 	$FreshnessInspector.add_checkpoint($House01, 0.000)
 	$FreshnessInspector.add_checkpoint($House01, 7.747)
@@ -38,18 +48,20 @@ Plays a 'chill' song; something suitable for background music when the player's 
 overworld.
 """
 func play_chill_bgm() -> void:
-	play_music($HipHop03, $FreshnessInspector.freshest_start($HipHop03))
+	var chill_bgm: AudioStreamPlayer = _chill_bgms[randi() % _chill_bgms.size()]
+	play_music(chill_bgm, $FreshnessInspector.freshest_start(chill_bgm))
 
 
 func is_playing_chill_bgm() -> bool:
-	return current_bgm in [$HipHop03]
+	return current_bgm in _chill_bgms
 
 
 """
 Plays an 'upbeat' song; something suitable when the player's playing a puzzle scenario.
 """
 func play_upbeat_bgm() -> void:
-	play_music($House01, $FreshnessInspector.freshest_start($House01))
+	var upbeat_bgm: AudioStreamPlayer = _upbeat_bgms[randi() % _upbeat_bgms.size()]
+	play_music(upbeat_bgm, $FreshnessInspector.freshest_start(upbeat_bgm))
 
 
 """
