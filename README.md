@@ -1,12 +1,12 @@
 # Turbo Fat
 
-![Game screenshot showing blocks of food in a playfield, while a chubby monster sits at a table.](./screenshot-puzzle.png)
+![Game screenshot showing blocks of food in a playfield, while a chubby monster sits at a table.](img/screenshot-puzzle.png)
 
 Turbo Fat is a block-dropping puzzle game. It's inspired by a few other block-dropping games but breaks some rules.
 
 Instead of being rewarded for clean horizontal stacks, multiline clears and T-spins, you're rewarded for messy vertical stacks, 3x3 boxes and 'squish moves' where you smush pieces into impossible positions.
 
-![Game screenshot monsters talking outdoors, surrounded by some boxy terrain.](./screenshot-overworld.png)
+![Game screenshot monsters talking outdoors, surrounded by some boxy terrain.](img/screenshot-overworld.png)
 
 The game also includes a story mode where you can interact with other monsters. This will eventually grow into an immersive story mode with many characters to meet, worlds to explore, and unique puzzle challenges.
 
