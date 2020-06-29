@@ -8,6 +8,10 @@ const NUM_SCANCODES: Dictionary = {
 	KEY_5: 5, KEY_6: 6, KEY_7: 7, KEY_8: 8, KEY_9: 9,
 }
 
+static func print_json(value) -> String:
+	return JSON.print(value, "  ")
+
+
 """
 Returns the scancode for a keypress event, or -1 if the event is not a keypress event.
 """

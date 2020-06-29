@@ -69,7 +69,7 @@ func save_player_data() -> void:
 			PlayerData.scenario_history.successful_scenarios).to_json_dict())
 	save_json.append(generic_data("finished-scenarios",
 			PlayerData.scenario_history.finished_scenarios).to_json_dict())
-	FileUtils.write_file(player_data_filename, JSON.print(save_json, " "))
+	FileUtils.write_file(player_data_filename, Utils.print_json(save_json))
 
 
 """
