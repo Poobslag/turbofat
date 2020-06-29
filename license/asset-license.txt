@@ -20,94 +20,92 @@ $$ Nature Kit 2.1 by Kenney (www.kenney.nl) (CC0 1.0 Universal)
 Other:
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
 $$ Gut by Tom "Butch" Wesley (MIT License)
-$ Json Beautifier by Michael Alexsander (Mozilla Public License Version 2.0)
 $ Touch icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
 $$$ Godot Engine (MIT license)
 
 Sounds
 --------------------------------------------------------------------------------
-assets/main/puzzle/applause.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
-assets/main/puzzle/clear-cake-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav" 
-assets/main/puzzle/clear-snack-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav"
-assets/main/puzzle/combo-*.wav Adapted from an SNES sound effect
-assets/main/puzzle/fanfare*.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS TUNE Win Complete Happy Flute 02.wav"
-assets/main/puzzle/frosting-splat*.wav "\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Batter_Pour_01"
-assets/main/puzzle/levelup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_03.wav"
-assets/main/puzzle/line-erase.wav "\Cooking_Game_16bit\Cooking_Actions\Chop\Cooking_Game_Action_Chop_B_02.wav"
-assets/main/puzzle/line-fall.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
-assets/main/puzzle/lock.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_01.wav"
-assets/main/puzzle/make-cake-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_03.wav" "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_C_02.wav" "\sfx-packs\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - PICKUPS - (109)\SUCCESS PICKUP Collect Beep 06.wav"
-assets/main/puzzle/make-snack-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_03.wav" "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_C_02.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - PICKUPS - (109)\SUCCESS PICKUP Collect Beep 03.wav"
-assets/main/puzzle/move.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_04.wav"
-assets/main/puzzle/presquish.wav "Foley Rubber Glove 1" by Epidemic Sound
-assets/main/puzzle/rotate0.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
-assets/main/puzzle/rotate1.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
-assets/main/puzzle/scenario/tutorial-section-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 06.wav"
-assets/main/puzzle/scenario/tutorial-task-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"
-assets/main/puzzle/smash.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
-assets/main/puzzle/veg-erase.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Squish_Vegetable_02.wav" 
-assets/main/ui/chat/emote-*.wav "Developed using Jonathan Murphy's TS-808 emulator, licensed under the Creative Commons Attribution-Noncommercial-NoDerivative Works 3.0 Australia License. Consider donating at http://tactilesounds.blogspot.com/"
-assets/main/ui/cheat-disable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
-assets/main/ui/cheat-enable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
-assets/main/ui/excellent.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Cute Vocal Chime 05.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
-assets/main/ui/gameover.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed\cartoon voices female anger 2.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\NEGATIVE - FAILURE - TENSION - (73)\NEGATIVE Failure Descending Bell Run 01.wav"
-assets/main/ui/go.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
-assets/main/ui/matchend.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\ALARMS - BUZZERS - RINGERS - (44)\ALARM Alert Ringer Tiny 06.wav"
-assets/main/ui/ready.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
-assets/main/ui/touch/empty-pressed.png 'Empty' by Freepik
-assets/main/ui/touch/empty.png 'Empty' by Freepik
-assets/main/ui/touch/interact-pressed.png 'Empty', 'Chat' by Freepik
-assets/main/ui/touch/interact.png 'Empty', 'Chat' by Freepik
-assets/main/ui/touch/menu-presed.png 'Empty', 'Adjust' by Freepik
-assets/main/ui/touch/menu.png 'Empty', 'Adjust' by Freepik
-assets/main/ui/touch/move-down-pressed.png 'Empty', 'Left arrow angle' by Freepik
-assets/main/ui/touch/move-down.png 'Empty', 'Left arrow angle' by Freepik
-assets/main/ui/touch/move-left-pressed.png 'Empty', 'Left arrow angle' by Freepik
-assets/main/ui/touch/move-left.png 'Empty', 'Left arrow angle' by Freepik
-assets/main/ui/touch/move-right-pressed.png 'Empty', 'Left arrow angle' by Freepik
-assets/main/ui/touch/move-right.png 'Empty', 'Left arrow angle' by Freepik
-assets/main/ui/touch/move-up-pressed.png 'Empty', 'Left arrow angle' by Freepik
-assets/main/ui/touch/move-up.png 'Empty', 'Left arrow angle' by Freepik
-assets/main/ui/touch/rotate-ccw-pressed.png 'Empty', 'Circular arrrow' by Freepik
-assets/main/ui/touch/rotate-ccw.png 'Empty', 'Circular arrrow' by Freepik
-assets/main/ui/touch/rotate-cw-pressed.png 'Empty', 'Circular arrrow' by Freepik
-assets/main/ui/touch/rotate-cw.png 'Empty', 'Circular arrrow' by Freepik
-assets/main/world/chef/gameover-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
-assets/main/world/chef/go-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
-assets/main/world/customer/combo-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
-assets/main/world/customer/goodbye-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
-assets/main/world/customer/hello-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
-assets/main/world/customer/move-bonk.wav Cooking_Game_16bit
-assets/main/world/customer/move-hop.wav Cooking_Game_16bit
-assets/main/world/customer/munch*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 2.wav" "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 1.wav"
-assets/main/world/door-chime*.wav Doorbell Pull Store bell Doorbell Pull with pull Store Bell 06.wav from freesound.org; licensed under creative commons attribution license https://creativecommons.org/licenses/by/3.0/
+project/assets/main/puzzle/applause.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
+project/assets/main/puzzle/clear-cake-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav" 
+project/assets/main/puzzle/clear-snack-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav"
+project/assets/main/puzzle/combo-*.wav Adapted from an SNES sound effect
+project/assets/main/puzzle/fanfare*.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS TUNE Win Complete Happy Flute 02.wav"
+project/assets/main/puzzle/frosting-splat*.wav "\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Batter_Pour_01"
+project/assets/main/puzzle/levelup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_03.wav"
+project/assets/main/puzzle/line-erase.wav "\Cooking_Game_16bit\Cooking_Actions\Chop\Cooking_Game_Action_Chop_B_02.wav"
+project/assets/main/puzzle/line-fall.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
+project/assets/main/puzzle/lock.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_01.wav"
+project/assets/main/puzzle/make-cake-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_03.wav" "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_C_02.wav" "\sfx-packs\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - PICKUPS - (109)\SUCCESS PICKUP Collect Beep 06.wav"
+project/assets/main/puzzle/make-snack-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_03.wav" "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_C_02.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - PICKUPS - (109)\SUCCESS PICKUP Collect Beep 03.wav"
+project/assets/main/puzzle/move.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_04.wav"
+project/assets/main/puzzle/presquish.wav "Foley Rubber Glove 1" by Epidemic Sound
+project/assets/main/puzzle/rotate0.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
+project/assets/main/puzzle/rotate1.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
+project/assets/main/puzzle/scenario/tutorial-section-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 06.wav"
+project/assets/main/puzzle/scenario/tutorial-task-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"
+project/assets/main/puzzle/smash.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
+project/assets/main/puzzle/veg-erase.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Squish_Vegetable_02.wav" 
+project/assets/main/ui/chat/emote-*.wav "Developed using Jonathan Murphy's TS-808 emulator, licensed under the Creative Commons Attribution-Noncommercial-NoDerivative Works 3.0 Australia License. Consider donating at http://tactilesounds.blogspot.com/"
+project/assets/main/ui/cheat-disable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
+project/assets/main/ui/cheat-enable.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\POPS - BURSTS - (26)\POP Brust 04.wav"
+project/assets/main/ui/excellent.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Cute Vocal Chime 05.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
+project/assets/main/ui/gameover.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed\cartoon voices female anger 2.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\NEGATIVE - FAILURE - TENSION - (73)\NEGATIVE Failure Descending Bell Run 01.wav"
+project/assets/main/ui/go.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
+project/assets/main/ui/matchend.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\ALARMS - BUZZERS - RINGERS - (44)\ALARM Alert Ringer Tiny 06.wav"
+project/assets/main/ui/ready.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
+project/assets/main/ui/touch/empty-pressed.png 'Empty' by Freepik
+project/assets/main/ui/touch/empty.png 'Empty' by Freepik
+project/assets/main/ui/touch/interact-pressed.png 'Empty', 'Chat' by Freepik
+project/assets/main/ui/touch/interact.png 'Empty', 'Chat' by Freepik
+project/assets/main/ui/touch/menu-presed.png 'Empty', 'Adjust' by Freepik
+project/assets/main/ui/touch/menu.png 'Empty', 'Adjust' by Freepik
+project/assets/main/ui/touch/move-down-pressed.png 'Empty', 'Left arrow angle' by Freepik
+project/assets/main/ui/touch/move-down.png 'Empty', 'Left arrow angle' by Freepik
+project/assets/main/ui/touch/move-left-pressed.png 'Empty', 'Left arrow angle' by Freepik
+project/assets/main/ui/touch/move-left.png 'Empty', 'Left arrow angle' by Freepik
+project/assets/main/ui/touch/move-right-pressed.png 'Empty', 'Left arrow angle' by Freepik
+project/assets/main/ui/touch/move-right.png 'Empty', 'Left arrow angle' by Freepik
+project/assets/main/ui/touch/move-up-pressed.png 'Empty', 'Left arrow angle' by Freepik
+project/assets/main/ui/touch/move-up.png 'Empty', 'Left arrow angle' by Freepik
+project/assets/main/ui/touch/rotate-ccw-pressed.png 'Empty', 'Circular arrrow' by Freepik
+project/assets/main/ui/touch/rotate-ccw.png 'Empty', 'Circular arrrow' by Freepik
+project/assets/main/ui/touch/rotate-cw-pressed.png 'Empty', 'Circular arrrow' by Freepik
+project/assets/main/ui/touch/rotate-cw.png 'Empty', 'Circular arrrow' by Freepik
+project/assets/main/world/chef/gameover-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
+project/assets/main/world/chef/go-*.wav "\CartoonVoices-4913\Cartoon Voices\Female\Designed"
+project/assets/main/world/customer/combo-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
+project/assets/main/world/customer/goodbye-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
+project/assets/main/world/customer/hello-*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed"
+project/assets/main/world/customer/move-bonk.wav Cooking_Game_16bit
+project/assets/main/world/customer/move-hop.wav Cooking_Game_16bit
+project/assets/main/world/customer/munch*.wav "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 2.wav" "\CartoonVoices-4913\Cartoon Voices\Male\Designed\cartoon voices male wet noises 1.wav"
+project/assets/main/world/door-chime*.wav Doorbell Pull Store bell Doorbell Pull with pull Store Bell 06.wav from freesound.org; licensed under creative commons attribution license https://creativecommons.org/licenses/by/3.0/
 
 Fonts
 --------------------------------------------------------------------------------
-assets/main/ui/Xolonium-Regular.ttf Xolonium by Severin Meyer
-assets/main/ui/blogger-sans-bold.otf Blogger Sans by Sergiy Tkachenko
-assets/main/ui/blogger-sans-medium.otf Blogger Sans by Sergiy Tkachenko
-assets/main/ui/blogger-sans.otf Blogger Sans by Sergiy Tkachenko
+project/assets/main/ui/Xolonium-Regular.ttf Xolonium by Severin Meyer
+project/assets/main/ui/blogger-sans-bold.otf Blogger Sans by Sergiy Tkachenko
+project/assets/main/ui/blogger-sans-medium.otf Blogger Sans by Sergiy Tkachenko
+project/assets/main/ui/blogger-sans.otf Blogger Sans by Sergiy Tkachenko
 
 Models
 --------------------------------------------------------------------------------
-assets/main/world/3d/environment/cliff-block-rock.gltf Kenney's Nature Kit 2.1
-assets/main/world/3d/environment/cliff-block-rockrock.gltf Kenney's Nature Kit 2.1
-assets/main/world/3d/environment/cliff-blockhalf-rock.gltf Kenney's Nature Kit 2.1
-assets/main/world/3d/environment/path-stone.gltf Kenney's Nature Kit 2.1
-assets/main/world/3d/environment/path-stonecircle.gltf Kenney's Nature Kit 2.1
-assets/main/world/3d/environment/path-stonecorner.gltf Kenney's Nature Kit 2.1
-assets/main/world/3d/environment/path-stoneend.gltf Kenney's Nature Kit 2.1
+project/assets/main/world/3d/environment/cliff-block-rock.gltf Kenney's Nature Kit 2.1
+project/assets/main/world/3d/environment/cliff-block-rockrock.gltf Kenney's Nature Kit 2.1
+project/assets/main/world/3d/environment/cliff-blockhalf-rock.gltf Kenney's Nature Kit 2.1
+project/assets/main/world/3d/environment/path-stone.gltf Kenney's Nature Kit 2.1
+project/assets/main/world/3d/environment/path-stonecircle.gltf Kenney's Nature Kit 2.1
+project/assets/main/world/3d/environment/path-stonecorner.gltf Kenney's Nature Kit 2.1
+project/assets/main/world/3d/environment/path-stoneend.gltf Kenney's Nature Kit 2.1
 
 Graphics
 --------------------------------------------------------------------------------
-assets/main/world/environment/cliff-block-rock.png Kenney's Nature Kit 2.1
-assets/main/world/environment/cliff-block-rockrock.png Kenney's Nature Kit 2.1
-assets/main/world/environment/path-stone-sheet.png Kenney's Nature Kit 2.1
+project/assets/main/world/environment/cliff-block-rock.png Kenney's Nature Kit 2.1
+project/assets/main/world/environment/cliff-block-rockrock.png Kenney's Nature Kit 2.1
+project/assets/main/world/environment/path-stone-sheet.png Kenney's Nature Kit 2.1
 
 Other
 --------------------------------------------------------------------------------
-src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)
-addons/gut "Gut" by Tom "Butch" Wesley
-addons/json_beautifier "Json Beautifier" by Michael Alexsander
+project/src/main/puzzle/rainbow-metaball.shader.hsv2rgb "Smooth HSV to RGB conversion" by Iniqo Quilez (https://www.shadertoy.com/view/MsS3Wc)
+project/addons/gut "Gut" by Tom "Butch" Wesley
 
