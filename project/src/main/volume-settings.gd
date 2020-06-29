@@ -26,10 +26,10 @@ func get_bus_volume_linear(volume_type: int) -> float:
 """
 Sets the volume of the specified bus with a linear energy value.
 """
-func set_bus_volume_linear(volume_type: int, value: float) -> void:
+func set_bus_volume_linear(volume_type: int, new_value: float) -> void:
 	var bus_index := _bus_index(volume_type)
-	AudioServer.set_bus_volume_db(bus_index, linear2db(value))
-	AudioServer.set_bus_mute(bus_index, value <= 0)
+	AudioServer.set_bus_volume_db(bus_index, linear2db(new_value))
+	AudioServer.set_bus_mute(bus_index, new_value <= 0)
 
 
 """

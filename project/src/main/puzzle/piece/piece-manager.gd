@@ -51,8 +51,8 @@ var _target_piece_orientation: int
 
 var _gravity_delay_frames := 0
 
-export (NodePath) var _playfield_path: NodePath
-export (NodePath) var _next_piece_displays_path: NodePath
+export (NodePath) var playfield_path: NodePath
+export (NodePath) var next_piece_displays_path: NodePath
 
 # settings and state for the currently active piece.
 var piece := ActivePiece.new(PieceTypes.piece_null)
@@ -63,8 +63,8 @@ var tile_map_dirty := false
 # how many times the piece has moved horizontally this frame
 var _horizontal_movement_count := 0
 
-onready var _next_piece_displays: NextPieceDisplays = get_node(_next_piece_displays_path)
-onready var playfield: Playfield = get_node(_playfield_path)
+onready var _next_piece_displays: NextPieceDisplays = get_node(next_piece_displays_path)
+onready var playfield: Playfield = get_node(playfield_path)
 onready var tile_map: PuzzleTileMap = $TileMap
 
 func _ready() -> void:

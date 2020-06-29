@@ -18,7 +18,7 @@ const THREAD_COUNT := 4
 const CHUNK_SECONDS := 0.1
 
 # enables logging paths and durations for loaded resources
-export (bool) var _verbose := false
+export (bool) var verbose := false
 
 # reduces the number of textures loaded throughout the game
 export (bool) var minimal_resources := false
@@ -181,7 +181,7 @@ func _load_resource(resource_path: String) -> void:
 			var start := OS.get_ticks_msec()
 			result = load(resource_path)
 			var duration := OS.get_ticks_msec() - start
-			if _verbose: print("resource loaded: %4d, %s" % [duration, resource_path])
+			if verbose: print("resource loaded: %4d, %s" % [duration, resource_path])
 		
 		_cache_mutex.lock()
 		_cache[resource_path] = result

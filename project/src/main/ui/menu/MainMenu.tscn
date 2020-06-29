@@ -124,7 +124,7 @@ disabled = true
 text = "Characters"
 
 [node name="System" parent="." instance=ExtResource( 5 )]
-_quit_on_cancel = false
+quit_on_cancel = false
 
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 

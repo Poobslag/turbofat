@@ -171,7 +171,7 @@ script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-_choice_text = "Are you kidding me? That's not even close to what I said!"
+choice_text = "Are you kidding me? That's not even close to what I said!"
 
 [node name="FontFitLabel" type="Label" parent="."]
 anchor_right = 1.0

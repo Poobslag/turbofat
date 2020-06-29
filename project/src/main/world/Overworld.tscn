@@ -87,27 +87,27 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( -131070, 0, 0, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0 )
 script = ExtResource( 20 )
-_obstacle_map_path = NodePath("../../../../Obstacles/ObstacleMap")
+obstacle_map_path = NodePath("../../../../Obstacles/ObstacleMap")
 
 [node name="SpiraShadow" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
 position = Vector2( 0, 0 )
-_creature_path = NodePath("../../../../Obstacles/Spira")
-_shadow_scale = Vector2( 0.4, 0.4 )
+creature_path = NodePath("../../../../Obstacles/Spira")
+shadow_scale = Vector2( 0.4, 0.4 )
 
 [node name="BortShadow" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
 position = Vector2( 0, 0 )
-_creature_path = NodePath("../../../../Obstacles/Bort")
-_shadow_scale = Vector2( 0.4, 0.4 )
+creature_path = NodePath("../../../../Obstacles/Bort")
+shadow_scale = Vector2( 0.4, 0.4 )
 
 [node name="EbeShadow" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
 position = Vector2( 0, 0 )
-_creature_path = NodePath("../../../../Obstacles/Ebe")
-_shadow_scale = Vector2( 0.4, 0.4 )
+creature_path = NodePath("../../../../Obstacles/Ebe")
+shadow_scale = Vector2( 0.4, 0.4 )
 
 [node name="BoatriciaShadow" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
 position = Vector2( 0, 0 )
-_creature_path = NodePath("../../../../Obstacles/Boatricia")
-_shadow_scale = Vector2( 0.4, 0.4 )
+creature_path = NodePath("../../../../Obstacles/Boatricia")
+shadow_scale = Vector2( 0.4, 0.4 )
 
 [node name="ScrewportTexrect" type="TextureRect" parent="World/Ground/Shadows"]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -135,8 +135,8 @@ tile_data = PoolIntArray( -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 
 
 [node name="GrassTufts" type="YSort" parent="World/Obstacles"]
 script = ExtResource( 16 )
-_ground_map_path = NodePath("../../Ground/GroundMap")
-_grass_tuft = ExtResource( 15 )
+ground_map_path = NodePath("../../Ground/GroundMap")
+GrassTuftScene = ExtResource( 15 )
 
 [node name="Spira" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 150, 150 )
@@ -237,8 +237,8 @@ position = Vector2( 150, 150 )
 current = true
 smoothing_enabled = true
 script = ExtResource( 21 )
-_spira_path = NodePath("../Obstacles/Spira")
-_overworld_ui_path = NodePath("../../Ui/OverworldUi")
+spira_path = NodePath("../Obstacles/Spira")
+overworld_ui_path = NodePath("../../Ui/OverworldUi")
 
 [node name="Tween" type="Tween" parent="World/Camera"]
 

@@ -9,7 +9,7 @@ maintain these curve definitions, as they can't be edited with the usual animati
 """
 
 # How fat the creature's body is; 5.0 = 5x normal size
-export (float) var _fatness := 1.0 setget set_fatness, get_fatness
+export (float) var fatness := 1.0 setget set_fatness, get_fatness
 
 """
 Setting this to 'true' will prevent the body's current curve from being overwritten by the fatness property, and will
@@ -87,8 +87,8 @@ Sets how fat the creature's body is, and recalculates the curve coordinates.
 Parameters:
 	'fatness': How fat the creature's body is; 5.0 = 5x normal size
 """
-func set_fatness(fatness: float) -> void:
-	_fatness = fatness
+func set_fatness(new_fatness: float) -> void:
+	fatness = new_fatness
 	if editing:
 		# Don't overwrite the curve based on the fatness attribute. The developer is currently making manual changes
 		# to it, and we don't want to undo their changes.
@@ -116,7 +116,7 @@ func set_fatness(fatness: float) -> void:
 
 
 func get_fatness() -> float:
-	return _fatness
+	return fatness
 
 
 func _on_Creature_movement_mode_changed(movement_mode: bool) -> void:

@@ -53,8 +53,8 @@ func _physics_process(delta: float) -> void:
 	_maybe_play_bonk_sound(old_non_iso_velocity)
 
 
-func set_fatness(fatness: float) -> void:
-	_creature.set_fatness(fatness)
+func set_fatness(new_fatness: float) -> void:
+	_creature.set_fatness(new_fatness)
 
 
 func get_fatness() -> float:

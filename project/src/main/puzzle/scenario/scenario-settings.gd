@@ -73,9 +73,9 @@ func reset() -> void:
 	name = ""
 
 
-func set_start_level(level: String) -> void:
+func set_start_level(new_start_level: String) -> void:
 	level_ups.clear()
-	add_level_up(Milestone.LINES, 0, level)
+	add_level_up(Milestone.LINES, 0, new_start_level)
 
 
 """

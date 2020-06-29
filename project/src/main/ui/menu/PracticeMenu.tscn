@@ -305,7 +305,7 @@ __meta__ = {
 [node name="DailyTable" parent="VBoxContainer/HighScores/Tables" instance=ExtResource( 13 )]
 margin_right = 280.0
 margin_bottom = 94.0
-_daily = true
+daily = true
 
 [node name="AllTimeTable" parent="VBoxContainer/HighScores/Tables" instance=ExtResource( 13 )]
 margin_left = 480.0

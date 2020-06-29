@@ -27,14 +27,14 @@ var _nametag_size: int
 """
 Assigns the name label's text and updates our _nametag_size field to the smallest name label which fit.
 """
-func set_nametag_text(name: String) -> void:
-	if name.empty():
+func set_nametag_text(new_text: String) -> void:
+	if new_text.empty():
 		_nametag_size = ChatTheme.NAMETAG_OFF
 	else:
 		_nametag_size = ChatTheme.NAMETAG_XXL
 		for new_nametag_size in _labels.keys():
 			var label: Label = _labels[new_nametag_size]
-			label.text = name
+			label.text = new_text
 			if label.get_line_count() <= label.max_lines_visible:
 				_nametag_size = new_nametag_size
 				break

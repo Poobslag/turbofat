@@ -11,7 +11,7 @@ const LEAF_POOL_SIZE := 50
 
 onready var LeafPoofScene := preload("res://src/main/puzzle/LeafPoof.tscn")
 
-export (NodePath) var _puzzle_tile_map_path: NodePath
+export (NodePath) var puzzle_tile_map_path: NodePath
 
 # The pool of leaf poofs we're able to spawn. Some of these may be active but most will be inactive (process=false)
 var _poofs: Array
@@ -19,7 +19,7 @@ var _poofs: Array
 # The index of the next leaf poof to spawn from the pool
 var _poof_index := 0
 
-onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
+onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 func _ready() -> void:
 	for _i in range(LEAF_POOL_SIZE):

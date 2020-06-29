@@ -179,7 +179,7 @@ __meta__ = {
 position = Vector2( 0, -96 )
 z_index = 5
 script = ExtResource( 5 )
-_puzzle_tile_map_path = NodePath("../TileMap")
+puzzle_tile_map_path = NodePath("../TileMap")
 
 [node name="ShadowTexture" type="TextureRect" parent="."]
 modulate = Color( 1, 1, 1, 0.196078 )
@@ -211,11 +211,11 @@ bus = "Sound Bus"
 
 [node name="BoxBuilder" type="Node" parent="."]
 script = ExtResource( 4 )
-_tile_map_path = NodePath("../TileMapClip/TileMap")
+tile_map_path = NodePath("../TileMapClip/TileMap")
 
 [node name="LineClearer" type="Node" parent="."]
 script = ExtResource( 3 )
-_tile_map_path = NodePath("../TileMapClip/TileMap")
+tile_map_path = NodePath("../TileMapClip/TileMap")
 
 [node name="LineFallSound" type="AudioStreamPlayer" parent="LineClearer"]
 stream = ExtResource( 9 )

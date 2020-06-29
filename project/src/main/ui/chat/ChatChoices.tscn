@@ -19,24 +19,24 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-ChatChoiceButton = ExtResource( 6 )
+ChatChoiceButtonScene = ExtResource( 6 )
 
 [node name="Button0" parent="." instance=ExtResource( 6 )]
 margin_right = 138.0
 margin_bottom = 115.0
-_choice_text = "That's neat"
+choice_text = "That's neat"
 
 [node name="Button1" parent="." instance=ExtResource( 6 )]
 margin_left = 142.0
 margin_right = 280.0
 margin_bottom = 115.0
-_choice_text = "That's an interesting choice"
+choice_text = "That's an interesting choice"
 
 [node name="Button2" parent="." instance=ExtResource( 6 )]
 margin_top = 119.0
 margin_right = 138.0
 margin_bottom = 234.0
-_choice_text = "I wouldn't choose this one!"
+choice_text = "I wouldn't choose this one!"
 
 [node name="PopSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )

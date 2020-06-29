@@ -81,8 +81,8 @@ Regardless of whether or not the focused object changed, this notifies all liste
 This is because some UI elements render themselves differently during chats when the player can't interact with
 anything.
 """
-func set_focus_enabled(focus_enabled: bool) -> void:
-	_focus_enabled = focus_enabled
+func set_focus_enabled(new_focus_enabled: bool) -> void:
+	_focus_enabled = new_focus_enabled
 	
 	if not _focus_enabled:
 		_focused = null

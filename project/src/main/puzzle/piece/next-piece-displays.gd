@@ -6,7 +6,7 @@ Displays upcoming pieces to the player and manages the next piece displays.
 
 const DISPLAY_COUNT := 9
 
-export (PackedScene) var NextPieceDisplay
+export (PackedScene) var NextPieceDisplayScene
 
 # The "next piece displays" which are shown to the user
 var _next_piece_displays := []
@@ -28,7 +28,7 @@ func pop_next_piece() -> PieceType:
 Adds a new next piece display.
 """
 func _add_display(piece_index: int, x: float, y: float, scale: float) -> void:
-	var new_display: NextPieceDisplay = NextPieceDisplay.instance()
+	var new_display: NextPieceDisplay = NextPieceDisplayScene.instance()
 	new_display.initialize($PieceQueue, piece_index)
 	new_display.scale = Vector2(scale, scale)
 	new_display.position = Vector2(x, y)

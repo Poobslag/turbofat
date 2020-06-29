@@ -48,8 +48,8 @@ func start_chat() -> void:
 	emit_signal("chat_started")
 
 
-func set_show_version(show_version: bool) -> void:
-	_show_version = show_version
+func set_show_version(new_show_version: bool) -> void:
+	_show_version = new_show_version
 	_update_visible()
 
 

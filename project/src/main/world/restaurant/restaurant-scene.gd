@@ -47,8 +47,8 @@ func summon_creature(creature_def: Dictionary, creature_index: int = -1) -> void
 	_get_seat(creature_index).refresh()
 
 
-func set_fatness(fatness_percent: float, creature_index: int = -1) -> void:
-	get_creature_2d(creature_index).set_fatness(fatness_percent)
+func set_fatness(new_fatness_percent: float, creature_index: int = -1) -> void:
+	get_creature_2d(creature_index).set_fatness(new_fatness_percent)
 
 
 func get_fatness(creature_index: int = -1) -> float:

@@ -11,7 +11,7 @@ const MAX_LABELS := 6
 # Time in seconds for all of the chat choices to pop up.
 const TOTAL_POP_IN_DELAY := 0.3
 
-export (PackedScene) var ChatChoiceButton
+export (PackedScene) var ChatChoiceButtonScene
 
 # Strings to show the player for each dialog branch.
 var _choices := []
@@ -116,7 +116,7 @@ func _refresh_child_buttons() -> void:
 	var new_buttons: Array = []
 	
 	for i in range(_choices.size()):
-		var button: ChatChoiceButton = ChatChoiceButton.instance()
+		var button: ChatChoiceButton = ChatChoiceButtonScene.instance()
 		button.set_choice_text(_choices[i])
 		button.set_mood(_moods[i])
 		button.set_mood_right(i % 2 == 1)

@@ -4,7 +4,7 @@ Shows a little 'happy face' icon next to each chat choice.
 """
 
 # the location of the mood icon; the right or left side of the dialog window
-export (bool) var _mood_right: bool setget set_mood_right
+export (bool) var mood_right: bool setget set_mood_right
 
 var textures := {
 	ChatEvent.Mood.DEFAULT: preload("res://assets/main/ui/chat/choice-mood-default.png"),
@@ -30,9 +30,9 @@ Parameters:
 	'mood': An enum in ChatEvent.Mood corresponding to the mood to show. '-1' is a valid value, and will result in no
 		mood being shown.
 """
-func set_mood(mood: int) -> void:
-	if textures.has(mood):
-		$Texture.texture = textures[mood]
+func set_mood(new_mood: int) -> void:
+	if textures.has(new_mood):
+		$Texture.texture = textures[new_mood]
 	else:
 		$Texture.texture = null
 
@@ -40,9 +40,9 @@ func set_mood(mood: int) -> void:
 """
 Sets the location of the mood icon.
 """
-func set_mood_right(mood_right: bool) -> void:
-	_mood_right = mood_right
-	if _mood_right:
+func set_mood_right(new_mood_right: bool) -> void:
+	mood_right = new_mood_right
+	if mood_right:
 		$Texture.rect_rotation = 8
 		anchor_left = 1
 		anchor_right = 1

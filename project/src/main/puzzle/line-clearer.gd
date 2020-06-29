@@ -22,7 +22,7 @@ signal lines_deleted
 # 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
 const LINE_ERASE_TIMING_PCT := 0.667
 
-export (NodePath) var _tile_map_path: NodePath
+export (NodePath) var tile_map_path: NodePath
 
 # lines currently being cleared/erased as a part of _physics_process
 var lines_being_cleared := []
@@ -40,7 +40,7 @@ var _erased_line_index := 0
 var _remaining_line_clear_timings := []
 var _remaining_line_erase_timings := []
 
-onready var _tile_map: PuzzleTileMap = get_node(_tile_map_path)
+onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 
 func _ready() -> void:
 	set_physics_process(false)

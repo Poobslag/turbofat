@@ -14,9 +14,9 @@ var _json_tree: Dictionary
 var _json_blocks_start: Dictionary
 var _json_tiles: Array
 
-export (NodePath) var _playfield_path: NodePath
+export (NodePath) var playfield_path: NodePath
 
-onready var _playfield: EditorPlayfield = get_node(_playfield_path)
+onready var _playfield: EditorPlayfield = get_node(playfield_path)
 onready var _tile_map: TileMap = _playfield.get_tile_map()
 
 """
