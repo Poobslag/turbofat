@@ -5,10 +5,10 @@ Generates grass tufts over grassy parts of a tilemap.
 
 const GRASS_CELL := 22
 
-export (NodePath) var _ground_map_path: NodePath
-export (PackedScene) var _grass_tuft: PackedScene
+export (NodePath) var ground_map_path: NodePath
+export (PackedScene) var GrassTuftScene: PackedScene
 
-onready var _ground_map: TileMap = get_node(_ground_map_path)
+onready var _ground_map: TileMap = get_node(ground_map_path)
 
 # the direction of the tilemap's x and y axis
 var _x_axis: Vector2
@@ -39,7 +39,7 @@ func _refresh() -> void:
 Adds a grass tuft to a random position within the specified cell.
 """
 func _add_tuft(cell: Vector2) -> void:
-	var new_tuft: Sprite = _grass_tuft.instance()
+	var new_tuft: Sprite = GrassTuftScene.instance()
 	new_tuft.position = _ground_map.map_to_world(cell) + _x_axis * randf() + _y_axis * randf()
 	new_tuft.flip_h = randf() > 0.5
 	add_child(new_tuft)

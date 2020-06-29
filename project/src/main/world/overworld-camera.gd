@@ -14,8 +14,8 @@ const ZOOM_DEFAULT := Vector2(1.0, 1.0)
 # how far from the camera center spira needs to be before the camera zooms out
 const AUTO_ZOOM_OUT_DISTANCE := 100.0
 
-export (NodePath) var _spira_path: NodePath
-export (NodePath) var _overworld_ui_path: NodePath
+export (NodePath) var spira_path: NodePath
+export (NodePath) var overworld_ui_path: NodePath
 
 # 'true' if the camera should currently be zoomed in for a conversation
 var close_up: bool setget set_close_up
@@ -26,8 +26,8 @@ var close_up_pct := 0.0
 # the position to zoom in to. the midpoint of the smallest rectangle containing all chatters
 var close_up_position: Vector2
 
-onready var _spira: Spira = get_node(_spira_path)
-onready var _overworld_ui: OverworldUi = get_node(_overworld_ui_path)
+onready var _spira: Spira = get_node(spira_path)
+onready var _overworld_ui: OverworldUi = get_node(overworld_ui_path)
 
 func _process(_delta: float) -> void:
 	# calculate the position to zoom in to

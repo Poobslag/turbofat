@@ -8,10 +8,10 @@ Shows a button corresponding to a dialog branch the player can choose.
 signal pop_choose_completed
 
 # Text to show the player. We cannot use the button's text property because it does not support multiline text.
-export (String) var _choice_text: String setget set_choice_text
+export (String) var choice_text: String setget set_choice_text
 
 func _ready() -> void:
-	$FontFitLabel.text = _choice_text
+	$FontFitLabel.text = choice_text
 	$FontFitLabel.pick_largest_font()
 	$MoodSprite/AnimationPlayer.advance(randf() * 2.5)
 	_set_pivot_to_center()
@@ -24,10 +24,10 @@ Sets the text corresponding to the dialog branch.
 This is distinct from the button's 'text' property. We don't use the button's 'text' property because button text
 cannot wrap.
 """
-func set_choice_text(choice_text: String) -> void:
-	_choice_text = choice_text
+func set_choice_text(new_choice_text: String) -> void:
+	choice_text = new_choice_text
 	if has_node("FontFitLabel"):
-		$FontFitLabel.text = _choice_text
+		$FontFitLabel.text = choice_text
 		$FontFitLabel.pick_largest_font()
 
 
@@ -57,15 +57,15 @@ func pop_choose() -> void:
 """
 Sets the mood corresponding to the chat choice.
 """
-func set_mood(mood: int) -> void:
-	$MoodSprite.set_mood(mood)
+func set_mood(new_mood: int) -> void:
+	$MoodSprite.set_mood(new_mood)
 
 
 """
 Sets the location of the mood icon.
 """
-func set_mood_right(mood_right: bool) -> void:
-	$MoodSprite.set_mood_right(mood_right)
+func set_mood_right(new_mood_right: bool) -> void:
+	$MoodSprite.set_mood_right(new_mood_right)
 
 
 """

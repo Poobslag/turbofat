@@ -72,8 +72,8 @@ Sets the pop out timer property.
 
 This timer counts down after all text is shown. When it reaches zero the message pops out.
 """
-func set_pop_out_timer(pop_out_timer: float) -> void:
-	_pop_out_timer = pop_out_timer
+func set_pop_out_timer(new_pop_out_timer: float) -> void:
+	_pop_out_timer = new_pop_out_timer
 
 
 """

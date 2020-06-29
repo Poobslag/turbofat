@@ -20,8 +20,8 @@ func get_selected_mode() -> String:
 """
 Sets the currently selected mode string such as 'Survival' or 'Sprint'
 """
-func set_selected_mode(selected_mode: String) -> void:
-	match selected_mode:
+func set_selected_mode(new_selected_mode: String) -> void:
+	match new_selected_mode:
 		"Survival":
 			$Buttons/Survival.pressed = true
 		"Ultra":
@@ -37,31 +37,31 @@ func set_selected_mode(selected_mode: String) -> void:
 """
 Sets the currently selected scenario, used for generating a description.
 """
-func set_scenario(scenario: ScenarioSettings) -> void:
+func set_scenario(new_scenario: ScenarioSettings) -> void:
 	var new_description := ""
 	match get_selected_mode():
 		"Survival":
-			var target_value := scenario.finish_condition.value
-			if scenario.finish_condition.has_meta("lenient_value"):
-				target_value = scenario.finish_condition.get_meta("lenient_value")
+			var target_value := new_scenario.finish_condition.value
+			if new_scenario.finish_condition.has_meta("lenient_value"):
+				target_value = new_scenario.finish_condition.get_meta("lenient_value")
 			
 			new_description = "Survive as the pieces get faster and faster! Can you clear %s lines?" \
 					% StringUtils.comma_sep(target_value)
 		"Ultra":
 			new_description = "Earn ¥%s as quickly as possible!" \
-					% StringUtils.comma_sep(scenario.finish_condition.value)
+					% StringUtils.comma_sep(new_scenario.finish_condition.value)
 		"Sprint":
 			new_description = "Earn as much money as you can in %s!" \
-					% StringUtils.format_duration(scenario.finish_condition.value)
+					% StringUtils.format_duration(new_scenario.finish_condition.value)
 		"Rank":
 			new_description = "An escalating set of challenges."
-			match scenario.success_condition.type:
+			match new_scenario.success_condition.type:
 				Milestone.SCORE:
 					new_description += " Finish with ¥%s to achieve this rank!" \
-							% StringUtils.comma_sep(scenario.success_condition.value)
+							% StringUtils.comma_sep(new_scenario.success_condition.value)
 				Milestone.TIME_UNDER:
 					new_description += " Finish in %s to achieve this rank!" \
-							% StringUtils.format_duration(scenario.success_condition.value)
+							% StringUtils.format_duration(new_scenario.success_condition.value)
 		"Sandbox":
 			new_description = "Just relax! There is no way to win or lose this mode."
 	$Desc.text = new_description

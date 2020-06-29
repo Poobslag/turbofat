@@ -31,8 +31,8 @@ Updates the label to show the player's current money.
 
 Negative money is displayed as 0 to avoid UI oddities ($-300)
 """
-func set_shown_money(money: int) -> void:
-	shown_money = money
+func set_shown_money(new_money: int) -> void:
+	shown_money = new_money
 	if compact:
 		$Label.text = StringUtils.compact(max(0, shown_money))
 	else:

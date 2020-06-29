@@ -38,11 +38,11 @@ func summon_creature(creature_index: int = -1) -> void:
 """
 Pans the camera to a new creature. This also changes which creature will be fed.
 """
-func set_current_creature_index(current_creature_index: int) -> void:
-	$SceneClip/CreatureSwitcher/Scene.current_creature_index = current_creature_index
+func set_current_creature_index(new_index: int) -> void:
+	$SceneClip/CreatureSwitcher/Scene.current_creature_index = new_index
 	$SceneClip/CreatureSwitcher/CreatureSwitchTween.interpolate_property(
 			$SceneClip/CreatureSwitcher, "position:x",
-			$SceneClip/CreatureSwitcher.position.x, -1000 * current_creature_index, PAN_DURATION_SECONDS,
+			$SceneClip/CreatureSwitcher.position.x, -1000 * new_index, PAN_DURATION_SECONDS,
 			Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$SceneClip/CreatureSwitcher/CreatureSwitchTween.start()
 

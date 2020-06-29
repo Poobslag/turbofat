@@ -3,9 +3,9 @@ extends TileMap
 Draws shadows under tiles from an obstacle tile map.
 """
 
-export (NodePath) var _obstacle_map_path: NodePath
+export (NodePath) var obstacle_map_path: NodePath
 
-onready var _obstacle_map: TileMap = get_node(_obstacle_map_path)
+onready var _obstacle_map: TileMap = get_node(obstacle_map_path)
 
 func _ready() -> void:
 	clear()

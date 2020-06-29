@@ -21,10 +21,10 @@ const GLOB_POOL_SIZE := 800
 # The cell size for the TileMap containing the playfield blocks. This is used to position our globs.
 const CELL_SIZE = Vector2(36, 32)
 
-export (NodePath) var _playfield_path: NodePath
+export (NodePath) var playfield_path: NodePath
 
 onready var FrostingGlobScene := preload("res://src/main/puzzle/FrostingGlob.tscn")
-onready var _playfield := get_node(_playfield_path)
+onready var _playfield := get_node(playfield_path)
 
 """
 Launches new frosting globs from the specified tile.

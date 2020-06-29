@@ -203,20 +203,20 @@ region_rect = Rect2( 0, 0, 4400, 80 )
 
 [node name="CreatureShadow1" parent="Shadows/Viewport" instance=ExtResource( 4 )]
 visible = false
-_shadow_offset = Vector2( 0, 150 )
-_creature_path = NodePath("../../../Creature1")
+shadow_offset = Vector2( 0, 150 )
+creature_path = NodePath("../../../Creature1")
 
 [node name="CreatureShadow2" parent="Shadows/Viewport" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 1381.23, 585.763 )
-_shadow_offset = Vector2( 0, 150 )
-_creature_path = NodePath("../../../Creature2")
+shadow_offset = Vector2( 0, 150 )
+creature_path = NodePath("../../../Creature2")
 
 [node name="CreatureShadow3" parent="Shadows/Viewport" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 2381.23, 585.763 )
-_shadow_offset = Vector2( 0, 150 )
-_creature_path = NodePath("../../../Creature3")
+shadow_offset = Vector2( 0, 150 )
+creature_path = NodePath("../../../Creature3")
 
 [node name="TextureRect" type="TextureRect" parent="Shadows"]
 modulate = Color( 1, 1, 1, 0.501961 )

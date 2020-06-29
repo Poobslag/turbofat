@@ -7,7 +7,7 @@ enum EditorPiece {
 	PIECE_J, PIECE_L, PIECE_O, PIECE_P, PIECE_Q, PIECE_T, PIECE_U, PIECE_V,
 }
 
-export (EditorPiece) var _editor_piece: int setget set_editor_piece
+export (EditorPiece) var editor_piece: int setget set_editor_piece
 
 var _editor_pieces := {
 	EditorPiece.PIECE_J: PieceTypes.piece_j,
@@ -28,8 +28,8 @@ func _ready() -> void:
 
 
 func set_editor_piece(new_editor_piece: int) -> void:
-	_editor_piece = new_editor_piece
-	_piece = _editor_pieces[_editor_piece]
+	editor_piece = new_editor_piece
+	_piece = _editor_pieces[editor_piece]
 	_refresh_tilemap()
 	_refresh_scale()
 

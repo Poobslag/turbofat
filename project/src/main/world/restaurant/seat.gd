@@ -8,8 +8,8 @@ This script contains logic for scaling an injected 'creature shadow' object as t
 
 var _creature: Creature setget set_creature
 
-func set_creature(creature: Creature) -> void:
-	_creature = creature
+func set_creature(new_creature: Creature) -> void:
+	_creature = new_creature
 	refresh()
 
 

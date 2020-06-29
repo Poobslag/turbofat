@@ -3,9 +3,9 @@ extends Label
 Shows diagnostics for the piece physics. Enabled with the cheat code 'delays'.
 """
 
-export (NodePath) var _puzzle_path: NodePath
+export (NodePath) var puzzle_path: NodePath
 
-onready var _puzzle:Puzzle = get_node(_puzzle_path)
+onready var _puzzle:Puzzle = get_node(puzzle_path)
 onready var _playfield:Playfield = _puzzle.get_playfield()
 onready var _combo_tracker:ComboTracker = _puzzle.get_node("Playfield/ComboTracker")
 onready var _piece_manager:PieceManager= _puzzle.get_piece_manager()

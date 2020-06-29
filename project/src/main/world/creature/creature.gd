@@ -50,12 +50,12 @@ const NORTHWEST = Orientation.NORTHWEST
 const NORTHEAST = Orientation.NORTHEAST
 
 # in the editor, this rotates between a set of different creature appearances
-export (int) var _creature_preset := -1 setget set_creature_preset
+export (int) var creature_preset := -1 setget set_creature_preset
 
 # 'true' if the creature is walking. toggling this makes certain sprites visible/invisible.
 export (bool) var movement_mode := false setget set_movement_mode
 
-export (Vector2) var _southeast_dir := Vector2(0.70710678118, 0.70710678118)
+export (Vector2) var southeast_dir := Vector2(0.70710678118, 0.70710678118)
 
 # the direction the creature is facing
 export (Orientation) var orientation := Orientation.SOUTHEAST setget set_orientation
@@ -108,9 +108,9 @@ Parameters:
 	
 	'creature_index': (Optional) The creature to be altered. Defaults to the current creature.
 """
-func set_fatness(fatness: float) -> void:
+func set_fatness(new_fatness: float) -> void:
 	if not Engine.is_editor_hint():
-		$FatPlayer.set_fatness(fatness)
+		$FatPlayer.set_fatness(new_fatness)
 		emit_signal("fatness_changed")
 
 
@@ -175,10 +175,10 @@ If you make Creature a tool and play with the 'creature_preset' editor setting, 
 Make sure to remove this creature eventually by setting the value back to '-1'. Otherwise the game will load a little
 slower since the creature's assets will need to be loaded for the scene.
 """
-func set_creature_preset(creature_preset: int) -> void:
-	_creature_preset = creature_preset
+func set_creature_preset(new_creature_preset: int) -> void:
+	creature_preset = new_creature_preset
 	
-	if _creature_preset == -1:
+	if creature_preset == -1:
 		summon({}, false)
 	elif Engine.is_editor_hint():
 		_apply_tool_script_workaround()
@@ -335,15 +335,15 @@ func _compute_orientation(direction: Vector2) -> int:
 	# when our direction puts us between two orientations.
 	var new_orientation: int = orientation
 	# unrounded orientation is a float in the range [-2.0, 2.0]
-	var unrounded_orientation := -2 * direction.angle_to(_southeast_dir) / PI
+	var unrounded_orientation := -2 * direction.angle_to(southeast_dir) / PI
 	if abs(unrounded_orientation - orientation) >= 0.6 and abs(unrounded_orientation + 4 - orientation) >= 0.6:
 		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
 		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
 	return new_orientation
 
 
-func set_movement_mode(new_movement_mode: bool) -> void:
-	movement_mode = new_movement_mode
+func set_movement_mode(new_mode: bool) -> void:
+	movement_mode = new_mode
 	if is_inside_tree():
 		_update_movement_mode()
 		emit_signal("movement_mode_changed", movement_mode)

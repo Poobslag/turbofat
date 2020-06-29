@@ -8,10 +8,10 @@
 script = ExtResource( 2 )
 
 [node name="EightWay" parent="." instance=ExtResource( 1 )]
-_up_action = "ui_up"
-_down_action = "ui_down"
-_left_action = "ui_left"
-_right_action = "ui_right"
+up_action = "ui_up"
+down_action = "ui_down"
+left_action = "ui_left"
+right_action = "ui_right"
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0

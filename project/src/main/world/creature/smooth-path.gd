@@ -9,8 +9,8 @@ Adapted from Dlean Jeans' code at https://godotengine.org/qa/32506/how-to-draw-a
 """
 
 export(float) var spline_length := 25.0
-export(bool) var _smooth: bool setget smooth
-export(bool) var _straighten: bool setget straighten
+export(bool) var smooth: bool setget smooth
+export(bool) var straighten: bool setget straighten
 export(bool) var closed := true
 
 export(Color) var line_color := Color.black

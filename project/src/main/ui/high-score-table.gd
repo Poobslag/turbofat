@@ -9,7 +9,7 @@ Scores are separated by mode and difficulty. We also keep daily scores separate.
 var _scenario: ScenarioSettings setget set_scenario
 
 # if true, only performances with today's date are included
-export (bool) var _daily := false setget set_daily
+export (bool) var daily := false setget set_daily
 
 func _ready() -> void:
 	_refresh_contents()
@@ -19,15 +19,15 @@ func _ready() -> void:
 Toggles this high score table between 'Today's Best' and 'All-time Best'
 """
 func set_daily(new_daily: bool) -> void:
-	_daily = new_daily
+	daily = new_daily
 	_refresh_contents()
 
 
 """
 Sets the scenario to display high scores for.
 """
-func set_scenario(scenario: ScenarioSettings) -> void:
-	_scenario = scenario
+func set_scenario(new_scenario: ScenarioSettings) -> void:
+	_scenario = new_scenario
 	_refresh_contents()
 
 
@@ -35,7 +35,7 @@ func set_scenario(scenario: ScenarioSettings) -> void:
 Clears all rows in the grid container.
 """
 func _clear_rows() -> void:
-	$Label.text = "Today's Best" if _daily else "All-time Best"
+	$Label.text = "Today's Best" if daily else "All-time Best"
 	for child_obj in $GridContainer.get_children():
 		var child: Node = child_obj
 		child.queue_free()
@@ -48,12 +48,12 @@ func _add_rows() -> void:
 	if not _scenario:
 		return
 	
-	for best_result_obj in PlayerData.scenario_history.best_results(_scenario.name, _daily):
+	for best_result_obj in PlayerData.scenario_history.best_results(_scenario.name, daily):
 		var best_result: RankResult = best_result_obj
 		var row := []
 		
 		# append timestamp
-		if _daily:
+		if daily:
 			row.append("%02d:%02d" % [
 					best_result.timestamp["hour"],
 					best_result.timestamp["minute"],
