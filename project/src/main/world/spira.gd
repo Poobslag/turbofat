@@ -1,5 +1,5 @@
 class_name Spira
-extends Creature2D
+extends Creature
 """
 Script for manipulating the player-controlled character 'Spira' in the overworld.
 """

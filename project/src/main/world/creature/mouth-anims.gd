@@ -8,7 +8,7 @@ An AnimationPlayer which animates mouths.
 export (NodePath) var mouth_path: NodePath
 
 onready var _mouth: PackedSprite = get_node(mouth_path)
-onready var _creature: Creature = $".."
+onready var _creature: CreatureVisuals = $".."
 
 func _ready() -> void:
 	set_process(false)
@@ -63,10 +63,10 @@ Reset the mouth frame when loading a new creature appearance.
 
 If we don't reset the eye frame, we have one strange transition frame.
 """
-func _on_Creature_before_creature_arrived() -> void:
+func _on_CreatureVisuals_before_creature_arrived() -> void:
 	_apply_default_frames()
 
 
-func _on_Creature_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
 	if is_processing() and not Engine.is_editor_hint():
 		_play_mouth_ambient_animation()

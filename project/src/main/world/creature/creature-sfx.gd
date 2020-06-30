@@ -88,13 +88,13 @@ Use a different AudioStreamPlayer for munch sounds, to avoid interrupting speech
 Of course in real life you can't talk with your mouth full -- but combo sounds are positive feedback, so it's nice to
 avoid interrupting them.
 """
-func _on_Creature_food_eaten() -> void:
+func _on_CreatureVisuals_food_eaten() -> void:
 	$Munch.stream = _munch_sounds[randi() % _munch_sounds.size()]
 	$Munch.pitch_scale = rand_range(0.96, 1.04)
 	$Munch.play()
 
 
-func _on_Creature_creature_arrived() -> void:
+func _on_CreatureVisuals_creature_arrived() -> void:
 	if Engine.is_editor_hint():
 		# Skip the sound effects if we're using this as an editor tool
 		return

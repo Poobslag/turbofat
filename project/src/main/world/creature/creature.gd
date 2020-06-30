@@ -1,265 +1,152 @@
-# uncomment to view creature in editor
-#tool
 class_name Creature
-extends Node2D
+extends KinematicBody2D
 """
-Handles animations and audio/visual effects for a creature.
-
----
-Notes:
-
-If you make Creature a tool and play with the 'creature_preset' editor setting, you can view a creature in the editor.
-After a creature is in the editor, make this 'not a tool' again or it has some negative consequences, such as forcing
-certain animation frames.
-
-Make sure to remove this creature eventually by setting the value back to '-1'. Otherwise the game will load a little
-slower since the creature's assets will need to be loaded for the scene.
+Script for representing a creature in the 2D overworld.
 """
 
-# emitted on the frame when the food is launched into the creature's mouth
-signal food_eaten
-
-# emitted before a creature arrives and sits down
-signal before_creature_arrived
-
-# emitted when a creature arrives and sits down
-signal creature_arrived
-
-# emitted when a movement animation starts (e.g Spira starts running in a direction)
-signal movement_animation_started(anim_name)
-
-# emitted during the 'run' animation when the creature touches the ground
-# warning-ignore:unused_signal
-signal landed
-
-signal orientation_changed(old_orientation, new_orientation)
-signal movement_mode_changed(movement_mode)
 signal fatness_changed
 
-# directions the creature can face
-enum Orientation {
-	SOUTHEAST,
-	SOUTHWEST,
-	NORTHWEST,
-	NORTHEAST,
-}
+signal creature_arrived
 
-const SOUTHEAST = Orientation.SOUTHEAST
-const SOUTHWEST = Orientation.SOUTHWEST
-const NORTHWEST = Orientation.NORTHWEST
-const NORTHEAST = Orientation.NORTHEAST
+signal food_eaten
 
-# in the editor, this rotates between a set of different creature appearances
-export (int) var creature_preset := -1 setget set_creature_preset
+const SOUTHEAST = CreatureVisuals.SOUTHEAST
+const SOUTHWEST = CreatureVisuals.SOUTHWEST
+const NORTHWEST = CreatureVisuals.NORTHWEST
+const NORTHEAST = CreatureVisuals.NORTHEAST
 
-# 'true' if the creature is walking. toggling this makes certain sprites visible/invisible.
-export (bool) var movement_mode := false setget set_movement_mode
+# Number from [0.0, 1.0] which determines how quickly the creature slows down
+const FRICTION := 0.15
 
-export (Vector2) var southeast_dir := Vector2(0.70710678118, 0.70710678118)
+# How slow can the creature move before she stops
+const MIN_RUN_SPEED := 150
 
-# the direction the creature is facing
-export (Orientation) var orientation := Orientation.SOUTHEAST setget set_orientation
+# How fast can the creature move
+const MAX_RUN_SPEED := 338
 
-# the definition of the creature who was most recently summoned
-var _creature_def: Dictionary
+# How fast can the creature accelerate
+const MAX_RUN_ACCELERATION := 2250
 
-var _creature_loader := CreatureLoader.new()
+export (Dictionary) var creature_def: Dictionary setget set_creature_def
+export (String) var chat_id: String setget set_chat_id
+export (String) var chat_name: String setget set_chat_name
+export (Dictionary) var chat_theme_def: Dictionary setget set_chat_theme_def
 
-# used to temporarily suppress sfx signals. used when skipping to the middle of animations which play sfx
-var _suppress_sfx_signal_timer := 0.0
+# 'true' if the creature is being slowed by friction while stopping or turning
+var _friction := false
 
-# forces listeners to update their animation frame
-var _force_orientation_change := false
+# the velocity the player is moving, in isometric and non-isometric coordinates
+var _iso_velocity := Vector2.ZERO
+var _non_iso_velocity := Vector2.ZERO
 
-# the color of this creature's lines. also used for outlines in the enclosing Creature2D
-var line_rgb: Color
+# the direction the creature wants to move, in isometric and non-isometric coordinates
+var _iso_walk_direction := Vector2.ZERO
+var _non_iso_walk_direction := Vector2.ZERO
 
-onready var _mouth_animation_player := $Mouth0Anims
+onready var _creature: CreatureVisuals = $Visuals
 
 func _ready() -> void:
-	# Update creature's appearance based on their behavior and orientation
-	_update_movement_mode()
-	set_orientation(orientation)
-	_mouth_animation_player.set_process(true)
+	_refresh()
 
 
-func _process(delta: float) -> void:
-	if _suppress_sfx_signal_timer > 0.0:
-		_suppress_sfx_signal_timer -= delta
+func _physics_process(delta: float) -> void:
+	_apply_friction()
+	_apply_walk(delta)
+	var old_non_iso_velocity := _non_iso_velocity
+	set_iso_velocity(move_and_slide(_iso_velocity))
+	_update_animation()
+	_maybe_play_bonk_sound(old_non_iso_velocity)
 
 
-"""
-Returns the creature's fatness, a float which determines how fat the creature
-should be; 5.0 = 5x normal size
-
-Parameters:
-	'creature_index': (Optional) The creature to ask about. Defaults to the current creature.
-"""
-func get_fatness() -> float:
-	return $FatPlayer.get_fatness()
-
-
-"""
-Increases/decreases the creature's fatness, a float which determines how fat
-the creature should be; 5.0 = 5x normal size
-
-Parameters:
-	'fatness_percent': Controls how fat the creature should be; 5.0 = 5x normal size
-	
-	'creature_index': (Optional) The creature to be altered. Defaults to the current creature.
-"""
 func set_fatness(new_fatness: float) -> void:
-	if not Engine.is_editor_hint():
-		$FatPlayer.set_fatness(new_fatness)
-		emit_signal("fatness_changed")
+	_creature.set_fatness(new_fatness)
+
+
+func get_fatness() -> float:
+	return _creature.get_fatness()
+
+
+func set_non_iso_walk_direction(new_direction: Vector2) -> void:
+	_non_iso_walk_direction = new_direction
+	_iso_walk_direction = Global.to_iso(new_direction)
+
+
+func set_iso_velocity(new_velocity: Vector2) -> void:
+	_iso_velocity = new_velocity
+	_non_iso_velocity = Global.from_iso(new_velocity)
+
+
+func set_non_iso_velocity(new_velocity: Vector2) -> void:
+	_non_iso_velocity = new_velocity
+	_iso_velocity = Global.to_iso(new_velocity)
+
+
+func set_creature_def(new_creature_def: Dictionary) -> void:
+	creature_def = new_creature_def
+	set_meta("creature_def", creature_def)
+	_refresh()
+
+
+func set_chat_id(new_chat_id: String) -> void:
+	chat_id = new_chat_id
+	set_meta("chat_id", chat_id)
+
+
+func set_chat_name(new_chat_name: String) -> void:
+	chat_name = new_chat_name
+	set_meta("chat_name", chat_name)
+
+
+func set_chat_theme_def(new_chat_theme_def: Dictionary) -> void:
+	chat_theme_def = new_chat_theme_def
+	set_meta("chat_theme_def", chat_theme_def)
 
 
 """
-This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
-workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
-
-Tool scripts do not call _ready on reload, which means all onready fields will be null. This breaks this script's
-functionality and throws errors when it is used as a tool. This function manually assigns those fields to avoid those
-problems.
-"""
-func _apply_tool_script_workaround() -> void:
-	if not _mouth_animation_player:
-		_mouth_animation_player = $Mouth0Anims
-		_mouth_animation_player.set_process(true)
-
-
-"""
-Sets the creature's orientation, and alters their appearance appropriately.
-
-If the creature swaps between facing left or right, certain sprites are flipped horizontally. If the creature swaps
-between facing forward or backward, certain sprites play different animations or toggle between different frames.
-"""
-func set_orientation(new_orientation: int) -> void:
-	var old_orientation := orientation
-	orientation = new_orientation
-	if not get_tree():
-		# avoid 'node not found' errors when tree is null
-		return
-	
-	if Engine.is_editor_hint():
-		_apply_tool_script_workaround()
-	
-	if orientation in [Orientation.SOUTHWEST, Orientation.SOUTHEAST]:
-		# facing south; initialize textures to forward-facing frames
-		$Sprites/Neck0.z_index = 0
-	else:
-		# facing north; initialize textures to backward-facing frames
-		$Sprites/Neck0.z_index = -1
-	
-	# sprites are drawn facing southeast/northwest, and are horizontally flipped for other directions
-	$Sprites.scale = \
-			Vector2(1, 1) if orientation in [Orientation.SOUTHEAST, Orientation.NORTHWEST] else Vector2(-1, 1)
-	
-	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
-	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
-	$Sprites/Body.scale = \
-			Vector2(1, 1) if orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else Vector2(-1, 1)
-	
-	if _force_orientation_change:
-		# some listeners try to distinguish between 'big orientation changes' and 'little orientation changes'. if
-		# _force_orientation_change is true, we signal to everyone that they cannot transition from the old
-		# orientation by making it something nonsensical
-		old_orientation = -1
-	
-	emit_signal("orientation_changed", old_orientation, new_orientation)
-
-
-"""
-If you make Creature a tool and play with the 'creature_preset' editor setting, you can view a creature in the editor.
-
-Make sure to remove this creature eventually by setting the value back to '-1'. Otherwise the game will load a little
-slower since the creature's assets will need to be loaded for the scene.
-"""
-func set_creature_preset(new_creature_preset: int) -> void:
-	creature_preset = new_creature_preset
-	
-	if creature_preset == -1:
-		summon({}, false)
-	elif Engine.is_editor_hint():
-		_apply_tool_script_workaround()
-		# only summon in the editor; otherwise we get NPEs because our children are uninitialized
-		summon(CreatureLoader.DEFINITIONS[clamp(creature_preset, 0, CreatureLoader.DEFINITIONS.size() - 1)])
-
-
-"""
-Launches the 'feed' animation, hurling a piece of food at the creature and having them catch it.
-"""
-func feed(food_color: Color) -> void:
-	if not visible:
-		# If no creature is visible, it could mean their resources haven't loaded yet. Don't play any animations or
-		# sounds. ...Maybe as an easter egg some day, we can make the chef flinging food into empty air. Ha ha.
-		return
-	
-	$Sprites/Neck0/HeadBobber/Food.modulate = food_color
-	$Sprites/Neck0/HeadBobber/FoodLaser.modulate = food_color
-	if _mouth_animation_player.current_animation in ["eat", "eat-again"]:
-		_mouth_animation_player.stop()
-		_mouth_animation_player.play("eat-again")
-		$EmoteAnims.stop()
-		$EmoteAnims.play("eat-again")
-	else:
-		_mouth_animation_player.play("eat")
-		$EmoteAnims.play("eat")
-
-
-"""
-If the specified key is not associated with a value, this method associates it with the given value.
-"""
-func put_if_absent(creature_def: Dictionary, key: String, value) -> void:
-	if not creature_def.has(key):
-		creature_def[key] = value
-
-
-"""
-Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
-properties.
+Plays a movement animation with the specified prefix and direction, such as a 'run' animation going left.
 
 Parameters:
-	'creature_def': Describes the colors and textures used to draw the creature.
+	'animation_prefix': A partial name of an animation on Creature/MovementAnims, omitting the directional suffix
 	
-	'use_defaults': Can be set to true to fill in the creature's missing traits with random values. Otherwise,
-		missing values will be left empty, leading to invisible body parts or strange colors.
+	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 """
-func summon(creature_def: Dictionary, use_defaults: bool = true) -> void:
-	# duplicate the creature_def so that we don't modify the original
-	_creature_def = creature_def.duplicate()
-	
-	if use_defaults:
-		put_if_absent(_creature_def, "line_rgb", "6c4331")
-		put_if_absent(_creature_def, "body_rgb", "b23823")
-		put_if_absent(_creature_def, "eye_rgb", "282828 dedede")
-		put_if_absent(_creature_def, "horn_rgb", "f1e398")
-		
-		if ResourceCache.minimal_resources:
-			# avoid loading unnecessary resources for things like the level editor
-			pass
-		else:
-			put_if_absent(_creature_def, "eye", ["1", "1", "1", "2", "3"][randi() % 5])
-			put_if_absent(_creature_def, "ear", ["1", "1", "1", "2", "3"][randi() % 5])
-			put_if_absent(_creature_def, "horn", ["0", "0", "0", "1", "2"][randi() % 5])
-			put_if_absent(_creature_def, "mouth", ["1", "1", "2"][randi() % 3])
-		put_if_absent(_creature_def, "body", "1")
-	
-	_creature_loader.load_details(_creature_def)
-	_update_creature_properties()
-	set_fatness(1)
+func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
+	_creature.play_movement_animation(animation_prefix, movement_direction)
 
 
 """
-The 'feed' animation causes a few side-effects. The creature's head recoils and some sounds play. This method controls
-all of those secondary visual effects of the creature being fed.
+Animates the creature's appearance according to the specified mood: happy, angry, etc...
+
+Parameters:
+	'mood': The creature's new mood from ChatEvent.Mood
 """
-func show_food_effects() -> void:
-	$Tween.interpolate_property($Sprites/Neck0/HeadBobber, "position:x",
-			clamp($Sprites/Neck0/HeadBobber.position.x - 6, -20, 0), 0, 0.5,
-			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-	$Tween.start()
-	emit_signal("food_eaten")
+func play_mood(mood: int) -> void:
+	_creature.play_mood(mood)
+
+
+"""
+Orients this creature so they're facing the specified target.
+"""
+func orient_toward(target: Node2D) -> void:
+	if not _creature.is_idle():
+		# don't change this creature's orientation if they're performing an activity
+		return
+	
+	# calculate the relative direction of the object this creature should face
+	var direction: Vector2 = Global.from_iso(position.direction_to(target.position))
+	var direction_dot := 0.0
+	if direction:
+		direction_dot = direction.normalized().dot(Vector2.RIGHT)
+		if direction_dot == 0.0:
+			# if two characters are directly above/below each other, make them face opposite directions
+			direction_dot = direction.normalized().dot(Vector2.DOWN)
+
+	if direction_dot > 0:
+		# the target is to the right; face right
+		_creature.set_orientation(SOUTHEAST)
+	elif direction_dot < 0:
+		# the target is to the left; face left
+		_creature.set_orientation(SOUTHWEST)
 
 
 """
@@ -283,167 +170,80 @@ func play_goodbye_voice(force: bool = false) -> void:
 	$CreatureSfx.play_goodbye_voice(force)
 
 
-"""
-Plays a movement animation with the specified prefix and direction, such as a 'run' animation going left.
-
-Parameters:
-	'animation_prefix': A partial name of an animation on $Creature/MovementAnims, omitting the directional suffix
-	
-	'movement_direction': A vector in the (X, Y) direction the creature is moving.
-"""
-func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
-	var animation_name: String
-	if animation_prefix == "idle":
-		animation_name = "idle"
-		if movement_mode != false:
-			set_movement_mode(false)
-	else:
-		if movement_direction.length() > 0.1:
-			# tiny movement vectors are often the result of a collision. we ignore these to avoid constantly flipping
-			# their orientation if they're mashing themselves into a wall
-			var new_orientation := _compute_orientation(movement_direction)
-			if new_orientation != orientation:
-				set_orientation(new_orientation)
-		var suffix := "se" if orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else "nw"
-		animation_name = "%s-%s" % [animation_prefix, suffix]
-		if movement_mode != true:
-			set_movement_mode(true)
-	if $MovementAnims.current_animation != animation_name:
-		if not $EmoteAnims.current_animation in ["ambient", "ambient-nw"] and animation_name != "idle":
-			$EmoteAnims.unemote_immediate()
-		if $MovementAnims.current_animation.begins_with(animation_prefix + "-"):
-			var old_position: float = $MovementAnims.current_animation_position
-			_suppress_sfx_signal_timer = 0.000000001
-			$MovementAnims.play(animation_name)
-			$MovementAnims.advance(old_position)
-		else:
-			$MovementAnims.play(animation_name)
+func feed(food_color: Color) -> void:
+	_creature.feed(food_color)
 
 
-"""
-Computes the nearest orientation for the specified direction.
-
-For example, a direction of (0.99, -0.13) is mostly pointing towards the x-axis, so it would result in an orientation
-of 'southeast'.
-"""
-func _compute_orientation(direction: Vector2) -> int:
-	if direction.length() == 0:
-		# we default to the current orientation if given a zero-length vector
-		return orientation
-	
-	# preserve the old orientation if it's close to the new orientation. this prevents us from flipping repeatedly
-	# when our direction puts us between two orientations.
-	var new_orientation: int = orientation
-	# unrounded orientation is a float in the range [-2.0, 2.0]
-	var unrounded_orientation := -2 * direction.angle_to(southeast_dir) / PI
-	if abs(unrounded_orientation - orientation) >= 0.6 and abs(unrounded_orientation + 4 - orientation) >= 0.6:
-		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
-		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
-	return new_orientation
-
-
-func set_movement_mode(new_mode: bool) -> void:
-	movement_mode = new_mode
+func _refresh() -> void:
 	if is_inside_tree():
-		_update_movement_mode()
-		emit_signal("movement_mode_changed", movement_mode)
+		if creature_def:
+			_creature.summon(creature_def)
+		if not chat_id:
+			$ChatIcon.bubble_type = ChatIcon.BubbleType.NONE
 
 
-"""
-Returns 'true' if the creature isn't doing anything important, and we can rotate their head or turn them around.
-"""
-func is_idle() -> bool:
-	return not $MovementAnims.is_playing() or $MovementAnims.current_animation == "idle"
-
-
-"""
-Animates the creature's appearance according to the specified mood: happy, angry, etc...
-
-Parameters:
-	'mood': The creature's new mood from ChatEvent.Mood
-"""
-func play_mood(mood: int) -> void:
-	if mood == ChatEvent.Mood.NONE:
-		pass
-	elif mood == ChatEvent.Mood.DEFAULT:
-		$EmoteAnims.unemote()
+func _apply_friction() -> void:
+	if _iso_velocity and _iso_walk_direction:
+		_friction = _non_iso_velocity.normalized().dot(_non_iso_walk_direction.normalized()) < 0.25
 	else:
-		$EmoteAnims.emote(mood)
+		_friction = true
+	
+	if _friction:
+		set_non_iso_velocity(lerp(_non_iso_velocity, Vector2.ZERO, FRICTION))
+		if _non_iso_velocity.length() < MIN_RUN_SPEED:
+			set_non_iso_velocity(Vector2.ZERO)
+
+
+func _apply_walk(delta: float) -> void:
+	if _iso_walk_direction:
+		_accelerate_xy(delta, _non_iso_walk_direction, MAX_RUN_ACCELERATION, MAX_RUN_SPEED)
 
 
 """
-Updates the visibility/position of nodes based on whether this creature is sitting or walking.
+Accelerates the creature horizontally.
+
+If the creature would be accelerated beyond the specified maximum speed, the creature's acceleration is reduced.
 """
-func _update_movement_mode() -> void:
-	if not movement_mode:
-		# reset position/size attributes that get altered during movement
-		$Sprites/Neck0.position = Vector2.ZERO
-	
-	# movement sprites are visible if movement_mode is true
-	$Sprites/FarMovement.visible = movement_mode
+func _accelerate_xy(delta: float, _non_iso_push_direction: Vector2,
+		acceleration: float, max_speed: float) -> void:
+	if _non_iso_push_direction.length() == 0:
+		return
+
+	var accel_vector := _non_iso_push_direction.normalized() * acceleration * delta
+	var new_velocity := _non_iso_velocity + accel_vector
+	if new_velocity.length() > _non_iso_velocity.length() and new_velocity.length() > max_speed:
+		new_velocity = new_velocity.normalized() * max_speed
+	set_non_iso_velocity(new_velocity)
 
 
 """
-Updates the properties of the various creature sprites and Node2D objects based on the contents of the creature
-definition. This assumes the CreatureLoader has finished loading all of the appropriate textures and values.
+Plays a bonk sound if Spira bumps into a wall.
 """
-func _update_creature_properties() -> void:
-	if Engine.is_editor_hint():
-		_apply_tool_script_workaround()
-	
-	emit_signal("before_creature_arrived")
-	
-	# stop any AnimationPlayers, otherwise two AnimationPlayers might fight over control of the sprite
-	_mouth_animation_player.stop()
-	$EmoteAnims.stop()
-	
-	emit_signal("before_creature_arrived")
-	
-	if _creature_def.has("mouth"):
-		# set the sprite's color/texture properties
-		_mouth_animation_player.set_process(false)
-		if _creature_def.mouth == "1":
-			_mouth_animation_player = $Mouth0Anims
-		elif _creature_def.mouth == "2":
-			_mouth_animation_player = $Mouth1Anims
-		else:
-			print("Invalid mouth: %s", _creature_def.mouth)
-		_mouth_animation_player.set_process(true)
-	
-	if _creature_def.has("line_rgb"):
-		line_rgb = Color(_creature_def.line_rgb)
-	
-	for key in _creature_def.keys():
-		if key.find("property:") == 0:
-			var node_path: String = "Sprites/" + key.split(":")[1]
-			var property_name: String = key.split(":")[2]
-			get_node(node_path).set(property_name, _creature_def[key])
-		if key.find("shader:") == 0:
-			var node_path: String = "Sprites/" + key.split(":")[1]
-			var shader_param: String = key.split(":")[2]
-			get_node(node_path).material.set_shader_param(shader_param, _creature_def[key])
-	$Sprites/Body.update()
+func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
+	var velocity_diff := _non_iso_velocity - old_non_iso_velocity
+	if velocity_diff.length() > MAX_RUN_SPEED * 0.9:
+		$BonkSound.play()
+
+
+func _update_animation() -> void:
+	if _non_iso_walk_direction.length() > 0:
+		play_movement_animation("run", _non_iso_walk_direction)
+	elif _creature.movement_mode:
+		play_movement_animation("idle", _non_iso_velocity)
+
+
+func _on_Creature_landed() -> void:
+	$HopSound.play()
+
+
+func _on_Creature_fatness_changed() -> void:
+	emit_signal("fatness_changed")
+
+
+func _on_CreatureVisuals_creature_arrived() -> void:
 	visible = true
 	emit_signal("creature_arrived")
 
 
-"""
-Emits a signal to play a sound effect.
-
-We temporarily suppress sound effect signals when skipping forward in an animation which plays sound effects.
-"""
-func emit_sfx_signal(signal_name: String) -> void:
-	if _suppress_sfx_signal_timer > 0.0:
-		pass
-	else:
-		emit_signal(signal_name)
-
-
-func _on_EmoteAnims_before_mood_switched() -> void:
-	# some moods modify the sprites for our eyes and arms, so we reset them
-	_force_orientation_change = true
-	set_orientation(orientation)
-
-
-func _on_MovementAnims_animation_started(anim_name: String) -> void:
-	emit_signal("movement_animation_started", anim_name)
+func _on_CreatureVisuals_food_eaten() -> void:
+	emit_signal("food_eaten")

@@ -12,7 +12,7 @@ onready var _chime_sounds := [
 	preload("res://assets/main/world/door-chime4.wav"),
 ]
 
-func _on_Creature_creature_arrived() -> void:
+func _on_CreatureVisuals_creature_arrived() -> void:
 	if not $SuppressSfxTimer.is_stopped():
 		# suppress door chime at the start of a scenario
 		return

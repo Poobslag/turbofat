@@ -58,7 +58,7 @@ func get_fatness(creature_index: int = -1) -> float:
 """
 Returns the creature with the specified optional index. Defaults to the creature being fed.
 """
-func get_creature_2d(creature_index: int = -1) -> Creature2D:
+func get_creature_2d(creature_index: int = -1) -> Creature:
 	return _creatures[current_creature_index] if creature_index == -1 else _creatures[creature_index]
 
 
@@ -69,6 +69,6 @@ func _get_seat(seat_index: int = -1) -> Control:
 	return _seats[current_creature_index] if seat_index == -1 else _seats[seat_index]
 
 
-func _on_Creature_food_eaten() -> void:
+func _on_CreatureVisuals_food_eaten() -> void:
 	_shake_total_seconds = 0.16
 	_shake_remaining_seconds = 0.16
