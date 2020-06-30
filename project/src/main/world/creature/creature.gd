@@ -43,7 +43,7 @@ var _non_iso_velocity := Vector2.ZERO
 var _iso_walk_direction := Vector2.ZERO
 var _non_iso_walk_direction := Vector2.ZERO
 
-onready var _creature: CreatureVisuals = $Visuals
+onready var _creature_visuals: CreatureVisuals = $Visuals
 
 func _ready() -> void:
 	_refresh()
@@ -59,11 +59,11 @@ func _physics_process(delta: float) -> void:
 
 
 func set_fatness(new_fatness: float) -> void:
-	_creature.set_fatness(new_fatness)
+	_creature_visuals.set_fatness(new_fatness)
 
 
 func get_fatness() -> float:
-	return _creature.get_fatness()
+	return _creature_visuals.get_fatness()
 
 
 func set_non_iso_walk_direction(new_direction: Vector2) -> void:
@@ -111,7 +111,7 @@ Parameters:
 	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 """
 func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
-	_creature.play_movement_animation(animation_prefix, movement_direction)
+	_creature_visuals.play_movement_animation(animation_prefix, movement_direction)
 
 
 """
@@ -121,14 +121,14 @@ Parameters:
 	'mood': The creature's new mood from ChatEvent.Mood
 """
 func play_mood(mood: int) -> void:
-	_creature.play_mood(mood)
+	_creature_visuals.play_mood(mood)
 
 
 """
 Orients this creature so they're facing the specified target.
 """
 func orient_toward(target: Node2D) -> void:
-	if not _creature.is_idle():
+	if not _creature_visuals.is_idle():
 		# don't change this creature's orientation if they're performing an activity
 		return
 	
@@ -143,10 +143,10 @@ func orient_toward(target: Node2D) -> void:
 
 	if direction_dot > 0:
 		# the target is to the right; face right
-		_creature.set_orientation(SOUTHEAST)
+		_creature_visuals.set_orientation(SOUTHEAST)
 	elif direction_dot < 0:
 		# the target is to the left; face left
-		_creature.set_orientation(SOUTHWEST)
+		_creature_visuals.set_orientation(SOUTHWEST)
 
 
 """
@@ -171,13 +171,14 @@ func play_goodbye_voice(force: bool = false) -> void:
 
 
 func feed(food_color: Color) -> void:
-	_creature.feed(food_color)
+	_creature_visuals.feed(food_color)
 
 
 func _refresh() -> void:
 	if is_inside_tree():
 		if creature_def:
-			_creature.summon(creature_def)
+			var filled_creature_def := CreatureLoader.fill_creature_def(creature_def)
+			_creature_visuals.creature_def = filled_creature_def
 		if not chat_id:
 			$ChatIcon.bubble_type = ChatIcon.BubbleType.NONE
 
@@ -228,7 +229,7 @@ func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 func _update_animation() -> void:
 	if _non_iso_walk_direction.length() > 0:
 		play_movement_animation("run", _non_iso_walk_direction)
-	elif _creature.movement_mode:
+	elif _creature_visuals.movement_mode:
 		play_movement_animation("idle", _non_iso_velocity)
 
 

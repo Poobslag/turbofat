@@ -78,7 +78,7 @@ func _load_texture(creature_def: Dictionary, node_path: String, key: String, fil
 	# load the texture resource
 	var resource_path: String
 	var frame_data: String
-	var resource: Resource;
+	var resource: Resource
 	if not creature_def.has(key):
 		# The key was not specified in the creature definition. This is not an error condition, a creature might not
 		# have an 'ear' key if she doesn't have ears.
@@ -211,3 +211,35 @@ func _load_colors(creature_def: Dictionary) -> void:
 		horn_color = Color(creature_def.horn_rgb)
 	creature_def["shader:Neck0/HeadBobber/HornZ0:green"] = horn_color
 	creature_def["shader:Neck0/HeadBobber/HornZ1:green"] = horn_color
+
+
+"""
+If the specified key is not associated with a value, this method associates it with the given value.
+"""
+static func put_if_absent(creature_def: Dictionary, key: String, value) -> void:
+	creature_def[key] = creature_def.get(key, value)
+
+
+"""
+Fill in the creature's missing traits with random values.
+
+Otherwise, missing values will be left empty, leading to invisible body parts or strange colors.
+"""
+static func fill_creature_def(creature_def: Dictionary) -> Dictionary:
+	# duplicate the creature_def so that we don't modify the original
+	var result := creature_def.duplicate()
+	put_if_absent(result, "line_rgb", "6c4331")
+	put_if_absent(result, "body_rgb", "b23823")
+	put_if_absent(result, "eye_rgb", "282828 dedede")
+	put_if_absent(result, "horn_rgb", "f1e398")
+	
+	if ResourceCache.minimal_resources:
+		# avoid loading unnecessary resources for things like the level editor
+		pass
+	else:
+		put_if_absent(result, "eye", ["1", "1", "1", "2", "3"][randi() % 5])
+		put_if_absent(result, "ear", ["1", "1", "1", "2", "3"][randi() % 5])
+		put_if_absent(result, "horn", ["0", "0", "0", "1", "2"][randi() % 5])
+		put_if_absent(result, "mouth", ["1", "1", "2"][randi() % 3])
+	put_if_absent(result, "body", "1")
+	return result

@@ -1,19 +1,18 @@
-# uncomment to view creature in editor
-#tool
+#tool #uncomment to view creature in editor
 class_name CreatureVisuals
 extends Node2D
 """
 Handles animations and audio/visual effects for a creature.
 
----
-Notes:
+To edit creatures in the Godot editor:
+	1. Run the 'edit-creature.sh on' shell command to enable the necessary tool scripts
+	2. Toggle the CreatureVisuals.random_creature property in the Godot editor
+	3. Make your changes
+	4. When you're finished, toggle the CreatureVisuals.reset_creature property in the Godot editor
+	5. Lastly, run the 'edit-creature.sh off' shell command to disable the necessary tool scripts
 
-If you make Creature a tool and play with the 'creature_preset' editor setting, you can view a creature in the editor.
-After a creature is in the editor, make this 'not a tool' again or it has some negative consequences, such as forcing
-certain animation frames.
-
-Make sure to remove this creature eventually by setting the value back to '-1'. Otherwise the game will load a little
-slower since the creature's assets will need to be loaded for the scene.
+Do not leave the tool scripts enabled. Doing so causes errors in the Godot console and impacts performance as
+unnecessary textures are loaded.
 """
 
 # emitted on the frame when the food is launched into the creature's mouth
@@ -49,8 +48,14 @@ const SOUTHWEST = Orientation.SOUTHWEST
 const NORTHWEST = Orientation.NORTHWEST
 const NORTHEAST = Orientation.NORTHEAST
 
-# in the editor, this rotates between a set of different creature appearances
-export (int) var creature_preset := -1 setget set_creature_preset
+# toggle to assign default animation frames based on the creature's orientation
+export (bool) var reset_frames setget reset_frames
+
+# toggle to remove the creature's textures
+export (bool) var reset_creature setget reset_creature
+
+# toggle to generate a creature with a random appearance
+export (bool) var random_creature setget random_creature
 
 # 'true' if the creature is walking. toggling this makes certain sprites visible/invisible.
 export (bool) var movement_mode := false setget set_movement_mode
@@ -60,8 +65,8 @@ export (Vector2) var southeast_dir := Vector2(0.70710678118, 0.70710678118)
 # the direction the creature is facing
 export (Orientation) var orientation := SOUTHEAST setget set_orientation
 
-# the definition of the creature who was most recently summoned
-var _creature_def: Dictionary
+# describes the colors and textures used to draw the creature
+export (Dictionary) var creature_def: Dictionary setget set_creature_def
 
 var _creature_loader := CreatureLoader.new()
 
@@ -126,6 +131,44 @@ func _apply_tool_script_workaround() -> void:
 
 
 """
+Updates the frame to something appropriate for the creature's orientation.
+
+Usually the frame is controlled by an animation. But when it's not, this ensures it still looks reasonable.
+"""
+func reset_frames(value: bool = true) -> void:
+	if not value:
+		return
+	reset_eye_frames()
+	$Viewport/Sprites/Neck0/HeadBobber/Mouth.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+
+
+func reset_eye_frames() -> void:
+	$Viewport/Sprites/Neck0/HeadBobber/Eyes.update_orientation(orientation)
+
+
+"""
+Remove the creature's textures.
+"""
+func reset_creature(value: bool = true) -> void:
+	if not value:
+		return
+	set_creature_def({})
+
+
+"""
+Generates a creature with a random appearance.
+"""
+func random_creature(value: bool = true) -> void:
+	if not value:
+		return
+	if Engine.is_editor_hint():
+		_apply_tool_script_workaround()
+	var new_creature_def := CreatureLoader.fill_creature_def(
+			CreatureLoader.DEFINITIONS[randi() % CreatureLoader.DEFINITIONS.size()])
+	set_creature_def(new_creature_def)
+
+
+"""
 Sets the creature's orientation, and alters their appearance appropriately.
 
 If the creature swaps between facing left or right, certain sprites are flipped horizontally. If the creature swaps
@@ -167,23 +210,6 @@ func set_orientation(new_orientation: int) -> void:
 
 
 """
-If you make Creature a tool and play with the 'creature_preset' editor setting, you can view a creature in the editor.
-
-Make sure to remove this creature eventually by setting the value back to '-1'. Otherwise the game will load a little
-slower since the creature's assets will need to be loaded for the scene.
-"""
-func set_creature_preset(new_creature_preset: int) -> void:
-	creature_preset = new_creature_preset
-	
-	if creature_preset == -1:
-		summon({}, false)
-	elif Engine.is_editor_hint():
-		_apply_tool_script_workaround()
-		# only summon in the editor; otherwise we get NPEs because our children are uninitialized
-		summon(CreatureLoader.DEFINITIONS[clamp(creature_preset, 0, CreatureLoader.DEFINITIONS.size() - 1)])
-
-
-"""
 Launches the 'feed' animation, hurling a piece of food at the creature and having them catch it.
 """
 func feed(food_color: Color) -> void:
@@ -205,46 +231,15 @@ func feed(food_color: Color) -> void:
 
 
 """
-If the specified key is not associated with a value, this method associates it with the given value.
-"""
-func put_if_absent(creature_def: Dictionary, key: String, value) -> void:
-	if not creature_def.has(key):
-		creature_def[key] = value
-
-
-"""
 Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
 properties.
-
-Parameters:
-	'creature_def': Describes the colors and textures used to draw the creature.
-	
-	'use_defaults': Can be set to true to fill in the creature's missing traits with random values. Otherwise,
-		missing values will be left empty, leading to invisible body parts or strange colors.
 """
-func summon(creature_def: Dictionary, use_defaults: bool = true) -> void:
-	# duplicate the creature_def so that we don't modify the original
-	_creature_def = creature_def.duplicate()
-	
-	if use_defaults:
-		put_if_absent(_creature_def, "line_rgb", "6c4331")
-		put_if_absent(_creature_def, "body_rgb", "b23823")
-		put_if_absent(_creature_def, "eye_rgb", "282828 dedede")
-		put_if_absent(_creature_def, "horn_rgb", "f1e398")
-		
-		if ResourceCache.minimal_resources:
-			# avoid loading unnecessary resources for things like the level editor
-			pass
-		else:
-			put_if_absent(_creature_def, "eye", ["1", "1", "1", "2", "3"][randi() % 5])
-			put_if_absent(_creature_def, "ear", ["1", "1", "1", "2", "3"][randi() % 5])
-			put_if_absent(_creature_def, "horn", ["0", "0", "0", "1", "2"][randi() % 5])
-			put_if_absent(_creature_def, "mouth", ["1", "1", "2"][randi() % 3])
-		put_if_absent(_creature_def, "body", "1")
-	
-	_creature_loader.load_details(_creature_def)
-	_update_creature_properties()
-	set_fatness(1)
+func set_creature_def(new_creature_def: Dictionary) -> void:
+	creature_def = new_creature_def
+	if is_inside_tree():
+		_creature_loader.load_details(creature_def)
+		_update_creature_properties()
+		set_fatness(1)
 
 
 """
@@ -367,37 +362,56 @@ func _update_creature_properties() -> void:
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
 	
-	emit_signal("before_creature_arrived")
-	
 	# stop any AnimationPlayers, otherwise two AnimationPlayers might fight over control of the sprite
 	_mouth_animation_player.stop()
 	$EmoteAnims.stop()
-	
 	emit_signal("before_creature_arrived")
 	
-	if _creature_def.has("mouth"):
+	for packed_sprite_obj in [
+		$Viewport/Sprites/FarMovement,
+		$Viewport/Sprites/FarArm,
+		$Viewport/Sprites/FarLeg,
+		$Viewport/Sprites/Body/NeckBlend,
+		$Viewport/Sprites/NearLeg,
+		$Viewport/Sprites/NearArm,
+		$Viewport/Sprites/Neck0/HeadBobber/EarZ0,
+		$Viewport/Sprites/Neck0/HeadBobber/HornZ0,
+		$Viewport/Sprites/Neck0/HeadBobber/Head,
+		$Viewport/Sprites/Neck0/HeadBobber/EarZ1,
+		$Viewport/Sprites/Neck0/HeadBobber/HornZ1,
+		$Viewport/Sprites/Neck0/HeadBobber/EarZ2,
+		$Viewport/Sprites/Neck0/HeadBobber/Mouth,
+		$Viewport/Sprites/Neck0/HeadBobber/Eyes,
+		$Viewport/Sprites/Neck0/HeadBobber/Food,
+		$Viewport/Sprites/Neck0/HeadBobber/FoodLaser,
+	]:
+		var packed_sprite: PackedSprite = packed_sprite_obj
+		packed_sprite.texture = null
+		packed_sprite.frame_data = ""
+	
+	if creature_def.has("mouth"):
 		# set the sprite's color/texture properties
 		_mouth_animation_player.set_process(false)
-		if _creature_def.mouth == "1":
+		if creature_def.mouth == "1":
 			_mouth_animation_player = $Mouth0Anims
-		elif _creature_def.mouth == "2":
+		elif creature_def.mouth == "2":
 			_mouth_animation_player = $Mouth1Anims
 		else:
-			print("Invalid mouth: %s", _creature_def.mouth)
+			print("Invalid mouth: %s", creature_def.mouth)
 		_mouth_animation_player.set_process(true)
 	
-	if _creature_def.has("line_rgb"):
-		$TextureRect.material.set_shader_param("black", Color(_creature_def.line_rgb))
+	if creature_def.has("line_rgb"):
+		$TextureRect.material.set_shader_param("black", Color(creature_def.line_rgb))
 	
-	for key in _creature_def.keys():
+	for key in creature_def.keys():
 		if key.find("property:") == 0:
 			var node_path: String = "Viewport/Sprites/" + key.split(":")[1]
 			var property_name: String = key.split(":")[2]
-			get_node(node_path).set(property_name, _creature_def[key])
+			get_node(node_path).set(property_name, creature_def[key])
 		if key.find("shader:") == 0:
 			var node_path: String = "Viewport/Sprites/" + key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
-			get_node(node_path).material.set_shader_param(shader_param, _creature_def[key])
+			get_node(node_path).material.set_shader_param(shader_param, creature_def[key])
 	$Viewport/Sprites/Body.update()
 	visible = true
 	emit_signal("creature_arrived")

@@ -1,5 +1,6 @@
 #!/bin/sh
-# analyzes code for stylistic errors, printing them to the console
+################################################################################
+# Analyzes code for stylistic errors, printing them to the console
 
 # functions missing return type
 grep -R -n "^func.*):$" --include="*.gd" ./project/src
@@ -17,8 +18,11 @@ grep -R -n "var [^:]* = " --include="*.gd" ./project/src \
   | grep -v " = parse_json(" \
   | grep -v "chat-event.gd:73"
 
-find ./project/src -name *.TMP
-find ./project/src -name *.gd~
+find ./project/src -name "*.TMP"
+find ./project/src -name "*.gd~"
 
 # project settings which are enabled temporarily, but shouldn't be pushed
 grep "emulate_touch_from_mouse=true" ./project/project.godot 
+
+# check for enabled creature tool scripts; these should be disabled before merging
+grep -lR "^tool #uncomment to view creature in editor" project/src/main/world/creature

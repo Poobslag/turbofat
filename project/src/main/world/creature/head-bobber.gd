@@ -49,6 +49,12 @@ func _process(delta: float) -> void:
 		position.y = -100
 
 
+func reset_head_bob() -> void:
+	set_head_bob_mode(BOB_BOB)
+	head_motion_pixels = HEAD_BOB_PIXELS
+	head_motion_seconds = HEAD_BOB_SECONDS
+
+
 func set_head_bob_mode(new_mode: int) -> void:
 	head_bob_mode = new_mode
 	# Some head bob animations like 'shudder' offset the x position; reset it back to the center

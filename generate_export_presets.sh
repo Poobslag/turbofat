@@ -1,5 +1,4 @@
 #!/bin/sh
-
 ################################################################################
 # This script generates our export_presets.cfg and project.godot files. It
 # updates version numbers and sensitive properties which cannot be kept in
