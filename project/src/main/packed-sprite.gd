@@ -79,6 +79,8 @@ Loads the Aseprite json file.
 Stores the offset and region_rect for each frame.
 """
 func _load_frame_data() -> void:
+	_frame_src_rects.clear()
+	_frame_dest_rects.clear()
 	if not frame_data:
 		return
 	
@@ -92,8 +94,6 @@ func _load_frame_data() -> void:
 		json_frames = json_root["frames"].values()
 	
 	# store json frame data as Rect2 instances
-	_frame_src_rects.clear()
-	_frame_dest_rects.clear()
 	for json_frame in json_frames:
 		_frame_src_rects.append(json_to_rect2(json_frame["frame"]))
 		_frame_dest_rects.append(json_to_rect2(json_frame["spriteSourceSize"]))

@@ -1,5 +1,4 @@
-# uncomment to view creature in editor
-#tool
+#tool #uncomment to view creature in editor
 extends AnimationPlayer
 """
 Script for AnimationPlayers which animate moods: blinking, smiling, sweating, etc.
@@ -37,10 +36,7 @@ const TRANSITIONS := {
 # Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
 const UNEMOTE_DURATION := 0.08
 
-export (NodePath) var eyes_path: NodePath
-
-onready var _eyes: PackedSprite = get_node(eyes_path)
-onready var _creature: CreatureVisuals = $".."
+onready var _creature_visuals: CreatureVisuals = $".."
 
 # stores the previous mood so that we can apply mood transitions.
 var _prev_mood: int
@@ -57,19 +53,15 @@ onready var _emote_sprites := [
 ]
 
 func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
-		# avoid playing animations in editor. manually set frames instead
-		_apply_default_eye_frames()
-	
 	if not Engine.is_editor_hint():
-		if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
+		if _creature_visuals.orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
 			if not is_playing():
 				play("ambient")
 				advance(randf() * current_animation_length)
 		else:
 			if is_playing():
 				stop()
-			_eyes.frame = 0
+			_creature_visuals.reset_eye_frames()
 
 
 """
@@ -149,9 +141,7 @@ func unemote_immediate() -> void:
 	for emote_sprite in _emote_sprites:
 		emote_sprite.rotation_degrees = 0
 		emote_sprite.modulate = Color.transparent
-	$"../Viewport/Sprites/Neck0/HeadBobber".head_bob_mode = HeadBobber.BOB_BOB
-	$"../Viewport/Sprites/Neck0/HeadBobber".head_motion_pixels = HeadBobber.HEAD_BOB_PIXELS
-	$"../Viewport/Sprites/Neck0/HeadBobber".head_motion_seconds = HeadBobber.HEAD_BOB_SECONDS
+	$"../Viewport/Sprites/Neck0/HeadBobber".reset_head_bob()
 	_prev_mood = ChatEvent.Mood.DEFAULT
 	_post_unemote()
 
@@ -183,7 +173,7 @@ func _transition_noop() -> void:
 Function for transitioning from laugh1 mood to laugh0 mood.
 """
 func _transition_laugh1_laugh0() -> void:
-	$"../Viewport/Sprites/Neck0/HeadBobber".head_bob_mode = HeadBobber.BOB_BOB
+	$"../Viewport/Sprites/Neck0/HeadBobber".reset_head_bob()
 	$ResetTween.remove_all()
 	$ResetTween.interpolate_property($"../Viewport/Sprites/Neck0/HeadBobber/EmoteBrain", "modulate",
 			$"../Viewport/Sprites/Neck0/HeadBobber/EmoteBrain".modulate, Color.transparent, UNEMOTE_DURATION)
@@ -194,6 +184,7 @@ func _transition_laugh1_laugh0() -> void:
 Function for transitioning from sweat1 mood to sweat0 mood.
 """
 func _transition_sweat1_sweat0() -> void:
+	$"../Viewport/Sprites/Neck0/HeadBobber".reset_head_bob()
 	$"../Viewport/Sprites/NearArm".frame = 1
 	$ResetTween.remove_all()
 	$ResetTween.interpolate_property($"../Viewport/Sprites/Neck0/HeadBobber/EmoteHead", "modulate",
@@ -224,10 +215,7 @@ reasonable.
 func _apply_default_eye_frames() -> void:
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
-	if _creature.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
-		_eyes.frame = 1
-	else:
-		_eyes.frame = 0
+	_creature_visuals.reset_eye_frames()
 
 
 """
@@ -239,9 +227,8 @@ functionality and throws errors when it is used as a tool. This function manuall
 problems.
 """
 func _apply_tool_script_workaround() -> void:
-	if not _creature:
-		_eyes = get_node(eyes_path)
-		_creature = $".."
+	if not _creature_visuals:
+		_creature_visuals = $".."
 
 
 func _on_animation_finished(_anim_name: String) -> void:

@@ -114,6 +114,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-loader.gd"
 }, {
+"base": "PackedSprite",
+"class": "CreaturePackedSprite",
+"language": "GDScript",
+"path": "res://src/main/world/creature/creature-packed-sprite.gd"
+}, {
 "base": "Node2D",
 "class": "CreatureVisuals",
 "language": "GDScript",
@@ -391,6 +396,7 @@ _global_script_class_icons={
 "Connect": "",
 "Creature": "",
 "CreatureLoader": "",
+"CreaturePackedSprite": "",
 "CreatureVisuals": "",
 "EditorPlayfield": "",
 "FontFitLabel": "",

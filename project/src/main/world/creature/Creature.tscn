@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/world/creature/creature-visuals.gd" type="Script" id=2]
@@ -10,7 +10,6 @@
 [ext_resource path="res://assets/main/ui/chat/emote-rage1.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/main/world/creature/1/emote-arms-packed.png" type="Texture" id=9]
 [ext_resource path="res://assets/main/world/creature/1/emote-brain-packed.png" type="Texture" id=10]
-[ext_resource path="res://assets/main/world/creature/1/movement-z0-packed.png" type="Texture" id=11]
 [ext_resource path="res://assets/main/ui/chat/emote-rage0.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/world/creature/1/emote-body-packed.png" type="Texture" id=13]
 [ext_resource path="res://assets/main/ui/chat/emote-laugh1.wav" type="AudioStream" id=14]
@@ -30,11 +29,6 @@
 [ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=28]
 [ext_resource path="res://src/main/world/creature/emote-anims.gd" type="Script" id=29]
 [ext_resource path="res://src/main/world/creature/mouth-anims.gd" type="Script" id=30]
-[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=32]
-[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=34]
-[ext_resource path="res://assets/main/world/creature/1/neck-packed.png" type="Texture" id=35]
-[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=42]
-[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=43]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -140,7 +134,6 @@ shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="CanvasItemMaterial" id=14]
 resource_local_to_scene = true
-blend_mode = 1
 
 [sub_resource type="ShaderMaterial" id=15]
 resource_local_to_scene = true
@@ -506,7 +499,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 7.86667, 7.9, 7.93333, 7.96667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 1, 3, 2, 1 ]
+"values": [ 1, 1, 4, 3, 1 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath("EmoteAnims")
@@ -827,7 +820,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.533333, 0.566667, 0.6 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 2, 3, 3, 2, 1 ]
+"values": [ 1, 3, 4, 4, 3, 1 ]
 }
 
 [sub_resource type="Animation" id=31]
@@ -843,7 +836,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.699999, 0.733333, 0.766667 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 3, 3, 2, 1 ]
+"values": [ 4, 4, 3, 1 ]
 }
 
 [sub_resource type="Animation" id=32]
@@ -2228,6 +2221,45 @@ script = ExtResource( 3 )
 
 [node name="Visuals" type="Node2D" parent="."]
 script = ExtResource( 2 )
+creature_def = {
+"property:Body:fill_color": Color( 0, 0, 0, 1 ),
+"property:Body:line_color": Color( 0, 0, 0, 1 ),
+"shader:Body/NeckBlend:black": Color( 0, 0, 0, 1 ),
+"shader:Body/NeckBlend:red": Color( 0, 0, 0, 1 ),
+"shader:EmoteBody:black": Color( 0, 0, 0, 1 ),
+"shader:FarArm:black": Color( 0, 0, 0, 1 ),
+"shader:FarArm:red": Color( 0, 0, 0, 1 ),
+"shader:FarLeg:black": Color( 0, 0, 0, 1 ),
+"shader:FarLeg:red": Color( 0, 0, 0, 1 ),
+"shader:NearArm:black": Color( 0, 0, 0, 1 ),
+"shader:NearArm:red": Color( 0, 0, 0, 1 ),
+"shader:NearLeg:black": Color( 0, 0, 0, 1 ),
+"shader:NearLeg:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EmoteArms:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EmoteArms:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyes:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Eyes:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Eyes:blue": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Eyes:green": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Eyes:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Head:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Head:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:green": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:green": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Mouth:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Mouth:red": Color( 0, 0, 0, 1 )
+}
 
 [node name="Viewport" type="Viewport" parent="Visuals"]
 size = Vector2( 1024, 1024 )
@@ -2245,8 +2277,6 @@ light_mask = 2
 material = SubResource( 1 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 27 )
-texture = ExtResource( 11 )
-frame_data = "res://assets/main/world/creature/1/movement-z0-packed.json"
 rect_size = Vector2( 512, 512 )
 offset = Vector2( 0, -119 )
 
@@ -2255,8 +2285,6 @@ light_mask = 2
 material = SubResource( 2 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 28 )
-texture = ExtResource( 34 )
-frame_data = "res://assets/main/world/creature/1/arm-z0-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
@@ -2267,8 +2295,6 @@ light_mask = 2
 material = SubResource( 3 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 28 )
-texture = ExtResource( 32 )
-frame_data = "res://assets/main/world/creature/1/leg-z0-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
@@ -2295,18 +2321,14 @@ position = Vector2( -1.11823, -102.515 )
 rotation = 3.13804
 scale = Vector2( 0.836, -0.836 )
 script = ExtResource( 28 )
-texture = ExtResource( 35 )
-frame_data = "res://assets/main/world/creature/1/neck-packed.json"
 rect_size = Vector2( 512, 512 )
-frame = 2
+frame = 1
 
 [node name="NearLeg" type="Node2D" parent="Visuals/Viewport/Sprites"]
 light_mask = 2
 material = SubResource( 6 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 28 )
-texture = ExtResource( 42 )
-frame_data = "res://assets/main/world/creature/1/leg-z1-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
@@ -2317,8 +2339,6 @@ light_mask = 2
 material = SubResource( 1 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 28 )
-texture = ExtResource( 43 )
-frame_data = "res://assets/main/world/creature/1/arm-z1-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
@@ -2408,7 +2428,7 @@ show_behind_parent = true
 light_mask = 2
 material = SubResource( 12 )
 scale = Vector2( 2, 2 )
-script = ExtResource( 27 )
+script = ExtResource( 28 )
 rect_size = Vector2( 512, 512 )
 frame = 1
 
@@ -2514,7 +2534,6 @@ anims/ambient-se = SubResource( 19 )
 anims/eat = SubResource( 20 )
 anims/eat-again = SubResource( 21 )
 script = ExtResource( 30 )
-mouth_path = NodePath("../Viewport/Sprites/Neck0/HeadBobber/Mouth")
 
 [node name="Mouth1Anims" type="AnimationPlayer" parent="Visuals"]
 anims/ambient-nw = SubResource( 22 )
@@ -2522,7 +2541,6 @@ anims/ambient-se = SubResource( 23 )
 anims/eat = SubResource( 24 )
 anims/eat-again = SubResource( 25 )
 script = ExtResource( 30 )
-mouth_path = NodePath("../Viewport/Sprites/Neck0/HeadBobber/Mouth")
 
 [node name="EmoteAnims" type="AnimationPlayer" parent="Visuals"]
 anims/ambient = SubResource( 26 )
@@ -2542,7 +2560,6 @@ anims/sweat1 = SubResource( 39 )
 anims/think0 = SubResource( 40 )
 anims/think1 = SubResource( 41 )
 script = ExtResource( 29 )
-eyes_path = NodePath("../Viewport/Sprites/Neck0/HeadBobber/Eyes")
 
 [node name="ResetTween" type="Tween" parent="Visuals/EmoteAnims"]
 
@@ -2591,35 +2608,35 @@ bus = "Sound Bus"
 stream = ExtResource( 5 )
 volume_db = -4.0
 bus = "Sound Bus"
+[connection signal="before_creature_arrived" from="Visuals" to="Visuals/EmoteAnims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="Visuals" to="Visuals/Mouth0Anims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="Visuals" to="Visuals/Mouth1Anims" method="_on_CreatureVisuals_before_creature_arrived"]
-[connection signal="before_creature_arrived" from="Visuals" to="Visuals/EmoteAnims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="creature_arrived" from="Visuals" to="." method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="creature_arrived" from="Visuals" to="CreatureSfx" method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="food_eaten" from="Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Body" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearLeg" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarArm" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarLeg" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearArm" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarLeg" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Mouth0Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Mouth1Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="animation_finished" from="Visuals/EmoteAnims" to="Visuals/EmoteAnims" method="_on_animation_finished"]
