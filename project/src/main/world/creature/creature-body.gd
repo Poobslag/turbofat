@@ -119,5 +119,5 @@ func get_fatness() -> float:
 	return fatness
 
 
-func _on_Creature_movement_mode_changed(movement_mode: bool) -> void:
+func _on_CreatureVisuals_movement_mode_changed(movement_mode: bool) -> void:
 	visible = not movement_mode

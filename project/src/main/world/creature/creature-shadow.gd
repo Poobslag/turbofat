@@ -9,7 +9,7 @@ export (Vector2) var shadow_offset: Vector2
 export (NodePath) var creature_path: NodePath
 export (Vector2) var shadow_scale := Vector2(1.0, 1.0)
 
-# The Creature or Creature2D instance this shadow is for
+# The Creature or Creature instance this shadow is for
 onready var _creature: Node = get_node(creature_path)
 
 func _ready() -> void:

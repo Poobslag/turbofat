@@ -18,7 +18,7 @@ func _physics_process(_delta: float) -> void:
 		$FatPlayer.set_fatness(get_creature_2d().get_fatness())
 
 
-func get_creature_2d(creature_index: int = -1) -> Creature2D:
+func get_creature_2d(creature_index: int = -1) -> Creature:
 	return $SceneClip/CreatureSwitcher/Scene.get_creature_2d(creature_index)
 
 
