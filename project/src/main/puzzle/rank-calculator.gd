@@ -18,6 +18,7 @@ const RDF_COMBO_SCORE_PER_LINE := 0.970
 const MASTER_BOX_SCORE := 14.5
 const MASTER_COMBO_SCORE := 17.575
 const MASTER_COMBO := 22
+const MASTER_LEFTOVER_LINES := 12
 
 # The number of extra unnecessary frames a perfect player will spend moving their piece.
 const MASTER_MVMT_FRAMES := 6
@@ -190,6 +191,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var target_box_score_per_line := master_box_score()
 	var target_combo_score_per_line := master_combo_score()
 	var target_lines: float
+	var leftover_lines := MASTER_LEFTOVER_LINES
 	
 	var finish_condition: Milestone = Scenario.settings.finish_condition
 	match finish_condition.type:
@@ -202,8 +204,10 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		Milestone.SCORE:
 			target_lines = ceil((finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
+			leftover_lines = 0
 		Milestone.TIME_OVER:
 			target_lines = max_lpm * finish_condition.value / 60.0
+			leftover_lines = 0
 	
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
 	rank_result.lines_rank = log(rank_result.lines / target_lines) / log(RDF_LINES)
@@ -231,7 +235,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			else:
 				overall_rank_max = tmp_overall_rank
 		else:
-			var tmp_lines := target_lines * pow(RDF_LINES, tmp_overall_rank)
+			var tmp_lines := target_lines * pow(RDF_LINES, tmp_overall_rank) + leftover_lines
 			if tmp_lines * (1 + tmp_box_score_per_line + tmp_combo_score_per_line) > rank_result.score:
 				overall_rank_min = tmp_overall_rank
 			else:

@@ -73,7 +73,6 @@ func transform_old_save() -> void:
 	transformer.sub("\"died\":false", "\"top_out_count\":0,\"lost\":false")
 	transformer.sub("\"died\":true", "\"top_out_count\":1,\"lost\":true")
 	transformer.transformed = "[%s]" % transformer.transformed
-	transformer.transformed = Utils.print_json(transformer.transformed)
 	transformer.transformed = _append_compare_flag_for_0517(transformer.transformed)
 	save_json_text = transformer.transformed
 	

@@ -54,7 +54,7 @@ func test_calculate_rank_marathon_300_master() -> void:
 	PuzzleScore.scenario_performance.lines = 300
 	PuzzleScore.scenario_performance.box_score = 4400
 	PuzzleScore.scenario_performance.combo_score = 5300
-	PuzzleScore.scenario_performance.score = 10000
+	PuzzleScore.scenario_performance.score = 10400
 	var rank :=  _rank_calculator.calculate_rank()
 	assert_eq(rank.speed_rank, 0.0)
 	assert_eq(rank.lines_rank, 0.0)
@@ -75,7 +75,7 @@ func test_calculate_rank_marathon_300_mixed() -> void:
 	assert_eq(RankCalculator.grade(rank.lines_rank), "A+")
 	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "S+")
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S-")
-	assert_eq(RankCalculator.grade(rank.score_rank), "AA+")
+	assert_eq(RankCalculator.grade(rank.score_rank), "AA")
 
 
 func test_calculate_rank_marathon_lenient() -> void:
@@ -228,7 +228,7 @@ func test_calculate_rank_five_creatures_good() -> void:
 	assert_eq(RankCalculator.grade(rank.lines_rank), "SSS")
 	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "S+")
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S")
-	assert_eq(RankCalculator.grade(rank.score_rank), "SS")
+	assert_eq(RankCalculator.grade(rank.score_rank), "S+")
 
 
 func test_calculate_rank_five_creatures_bad() -> void:
@@ -242,7 +242,7 @@ func test_calculate_rank_five_creatures_bad() -> void:
 	assert_eq(RankCalculator.grade(rank.lines_rank), "A-")
 	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "AA")
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "A")
-	assert_eq(RankCalculator.grade(rank.score_rank), "A-")
+	assert_eq(RankCalculator.grade(rank.score_rank), "B+")
 
 
 """

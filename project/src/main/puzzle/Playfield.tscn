@@ -52,15 +52,15 @@ shader_param/noise = SubResource( 3 )
 shader_param/frosting_texture = SubResource( 1 )
 shader_param/rainbow_texture = SubResource( 4 )
 
-[sub_resource type="ShaderMaterial" id=12]
+[sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
 shader = ExtResource( 20 )
 shader_param/mix_color = Color( 1, 1, 1, 0 )
 
-[sub_resource type="CanvasItemMaterial" id=6]
+[sub_resource type="CanvasItemMaterial" id=7]
 blend_mode = 1
 
-[sub_resource type="TileSet" id=7]
+[sub_resource type="TileSet" id=8]
 0/name = "playfield-light.png 0"
 0/texture = ExtResource( 63 )
 0/tex_offset = Vector2( 0, 0 )
@@ -76,10 +76,10 @@ blend_mode = 1
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="CanvasItemMaterial" id=8]
+[sub_resource type="CanvasItemMaterial" id=9]
 blend_mode = 1
 
-[sub_resource type="TileSet" id=9]
+[sub_resource type="TileSet" id=10]
 0/name = "fuzzy-circle-128.png 0"
 0/texture = ExtResource( 62 )
 0/tex_offset = Vector2( -46, -48 )
@@ -95,10 +95,10 @@ blend_mode = 1
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="CanvasItemMaterial" id=10]
+[sub_resource type="CanvasItemMaterial" id=11]
 blend_mode = 1
 
-[sub_resource type="ViewportTexture" id=11]
+[sub_resource type="ViewportTexture" id=12]
 viewport_path = NodePath("TileMapClip/TileMap/Viewport")
 
 [node name="Playfield" type="Control"]
@@ -141,7 +141,7 @@ __meta__ = {
 }
 
 [node name="TileMap" parent="TileMapClip" instance=ExtResource( 2 )]
-material = SubResource( 12 )
+material = SubResource( 6 )
 position = Vector2( 0, -96 )
 
 [node name="PlayfieldFx" type="Node2D" parent="TileMapClip"]
@@ -149,20 +149,20 @@ position = Vector2( 0, -96 )
 script = ExtResource( 64 )
 
 [node name="LightMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
-material = SubResource( 6 )
-tile_set = SubResource( 7 )
+material = SubResource( 7 )
+tile_set = SubResource( 8 )
 cell_size = Vector2( 36, 32 )
 format = 1
 
 [node name="GlowMap" type="TileMap" parent="TileMapClip/PlayfieldFx"]
-material = SubResource( 8 )
+material = SubResource( 9 )
 z_index = 3
-tile_set = SubResource( 9 )
+tile_set = SubResource( 10 )
 cell_size = Vector2( 36, 32 )
 format = 1
 
 [node name="BgStrobe" type="ColorRect" parent="TileMapClip/PlayfieldFx"]
-material = SubResource( 10 )
+material = SubResource( 11 )
 margin_top = 96.0
 margin_right = 324.0
 margin_bottom = 640.0
@@ -185,7 +185,7 @@ puzzle_tile_map_path = NodePath("../TileMap")
 modulate = Color( 1, 1, 1, 0.196078 )
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = SubResource( 11 )
+texture = SubResource( 12 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -276,13 +276,13 @@ bus = "Sound Bus"
 [node name="BuildSnackBoxSound" type="AudioStreamPlayer" parent="BuildBoxSfx"]
 bus = "Sound Bus"
 [connection signal="after_piece_written" from="." to="ComboTracker" method="_on_Playfield_after_piece_written"]
-[connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
+[connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]
-[connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="." to="LineClearSfx" method="_on_Playfield_line_erased"]
 [connection signal="combo_break_changed" from="ComboTracker" to="TileMapClip/PlayfieldFx" method="_on_ComboTracker_combo_break_changed"]
