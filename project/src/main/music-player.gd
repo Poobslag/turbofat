@@ -18,7 +18,8 @@ const MAX_VOLUME := 0.0
 # the music currently playing
 var current_bgm: AudioStreamPlayer
 
-onready var _chill_bgms := [$HipHop03, $HipHop04]
+# newest track plays twice as often
+onready var _chill_bgms := [$HipHop03, $HipHop04, $HipHop04]
 onready var _upbeat_bgms := [$House01]
 
 func _ready() -> void:
@@ -34,8 +35,8 @@ func _ready() -> void:
 	$FreshnessInspector.add_checkpoint($HipHop04, 10.646)
 	$FreshnessInspector.add_checkpoint($HipHop04, 21.326)
 	$FreshnessInspector.add_checkpoint($HipHop04, 63.988)
-	$FreshnessInspector.add_checkpoint($HipHop04, 74.660)
-	$FreshnessInspector.add_checkpoint($HipHop04, 202.670)
+	$FreshnessInspector.add_checkpoint($HipHop04, 85.330)
+	$FreshnessInspector.add_checkpoint($HipHop04, 213.328)
 	
 	$FreshnessInspector.add_checkpoint($House01, 0.000)
 	$FreshnessInspector.add_checkpoint($House01, 7.747)
