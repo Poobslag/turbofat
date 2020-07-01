@@ -20,7 +20,7 @@ func _ready() -> void:
 		# when launched standalone, we don't load creature resources (they're slow)
 		ResourceCache.minimal_resources = true
 	
-	var scenario_text: String = FileUtils.get_file_as_text(ScenarioSettings.scenario_path(DEFAULT_SCENARIO))
+	var scenario_text := FileUtils.get_file_as_text(ScenarioSettings.scenario_path(DEFAULT_SCENARIO))
 	_scenario_json.text = scenario_text
 	_scenario_json.refresh_tilemap()
 	_scenario_name.text = DEFAULT_SCENARIO
@@ -32,7 +32,7 @@ func _save_scenario(path: String) -> void:
 
 
 func _load_scenario(path: String) -> void:
-	var scenario_text: String = FileUtils.get_file_as_text(path)
+	var scenario_text := FileUtils.get_file_as_text(path)
 	_scenario_json.text = scenario_text
 	_scenario_json.refresh_tilemap()
 	_scenario_name.text = ScenarioSettings.scenario_name(path)

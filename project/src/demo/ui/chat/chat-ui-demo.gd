@@ -41,7 +41,6 @@ const CHOICES := [
 	"This is not a productive line of discussion.",
 ]
 
-var _chat_library := ChatLibrary.new()
 var _filename: String
 var _text_override := ""
 var _choice_override := ""
@@ -76,7 +75,7 @@ func _input(event: InputEvent) -> void:
 func _play_chat_tree(filename: String = "") -> void:
 	if filename:
 		_filename = filename
-	var chat_tree := _chat_library.load_chat_events_from_file("res://assets/demo/chat/%s.json" % _filename)
+	var chat_tree := ChatLibrary.load_chat_events_from_file("res://assets/demo/chat/%s.json" % _filename)
 	if _text_override:
 		chat_tree.get_event().text = _text_override
 	if _choice_override:

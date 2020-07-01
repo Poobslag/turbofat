@@ -27,12 +27,12 @@ Recolors the creature according to the specified creature definition. This invol
 properties.
 """
 func summon_creature(creature_index: int = -1) -> void:
-	var creature_def: Dictionary
+	var dna: Dictionary
 	if Global.creature_queue.empty():
-		creature_def = CreatureLoader.random_def()
+		dna = CreatureLoader.random_def()
 	else:
-		creature_def = Global.creature_queue.pop_front()
-	$SceneClip/CreatureSwitcher/Scene.summon_creature(creature_def, creature_index)
+		dna = Global.creature_queue.pop_front()
+	$SceneClip/CreatureSwitcher/Scene.summon_creature(dna, creature_index)
 
 
 """

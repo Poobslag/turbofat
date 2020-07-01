@@ -10,13 +10,17 @@ enum BubbleType {
 	THOUGHT
 }
 
+const NONE := BubbleType.NONE
+const SPEECH := BubbleType.SPEECH
+const THOUGHT := BubbleType.THOUGHT
+
 # The chat icons bounce. These constants control how they bounce.
-const BOUNCES_PER_SECOND := 0.7
+const BOUNCE_DURATION := 0.7
 const BOUNCE_HEIGHT := 12.0
 
 # The chat icons fade in and fade out as the player get close. These constants control how they fade.
-const FOCUSED_COLOR := Color(1.0, 1.0, 1.0, 1.00)
-const UNFOCUSED_COLOR := Color(1.0, 1.0, 1.0, 0.25)
+const COLOR_FOCUSED := Color(1.0, 1.0, 1.0, 1.00)
+const COLOR_UNFOCUSED := Color(1.0, 1.0, 1.0, 0.25)
 
 export (BubbleType) var bubble_type: int setget set_bubble_type
 
@@ -27,17 +31,17 @@ var bounce_phase := 0.0
 var focused := false
 
 func _ready() -> void:
-	modulate = UNFOCUSED_COLOR
+	modulate = COLOR_UNFOCUSED
 	_refresh()
 
 
 func _physics_process(delta: float) -> void:
 	bounce_phase += delta * (2.5 if focused else 1.0)
-	if bounce_phase * BOUNCES_PER_SECOND * PI > 10.0:
+	if bounce_phase * BOUNCE_DURATION * PI > 10.0:
 		# keep bounce_phase bounded, otherwise a sprite will jitter slightly 3 billion millenia from now
-		bounce_phase -= 2 / BOUNCES_PER_SECOND
+		bounce_phase -= 2 / BOUNCE_DURATION
 	
-	position.y = -52 - abs(BOUNCE_HEIGHT * sin(bounce_phase * BOUNCES_PER_SECOND * PI))
+	position.y = -52 - abs(BOUNCE_HEIGHT * sin(bounce_phase * BOUNCE_DURATION * PI))
 
 
 func set_bubble_type(new_bubble_type: int) -> void:
@@ -57,7 +61,7 @@ Make the chat icon focused, so the player knows they can interact with it.
 This brightens the icon and makes it bounce faster.
 """
 func focus() -> void:
-	_tween_modulate(FOCUSED_COLOR, 0.8)
+	_tween_modulate(COLOR_FOCUSED, 0.8)
 	focused = true
 
 
@@ -67,7 +71,7 @@ Make the chat icon unfocused, so the player knows they need to get closer to int
 This dims the icon and makes it bounce slower.
 """
 func unfocus() -> void:
-	_tween_modulate(UNFOCUSED_COLOR, 1.6)
+	_tween_modulate(COLOR_UNFOCUSED, 1.6)
 	focused = false
 
 
@@ -92,7 +96,8 @@ func _refresh() -> void:
 		else:
 			if not get_parent().is_in_group("chattables"):
 				get_parent().add_to_group("chattables")
-			ChattableManager.connect("focus_changed", self, "_on_ChattableManager_focus_changed")
+			if not ChattableManager.is_connected("focus_changed", self, "_on_ChattableManager_focus_changed"):
+				ChattableManager.connect("focus_changed", self, "_on_ChattableManager_focus_changed")
 
 
 """

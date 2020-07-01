@@ -66,7 +66,7 @@ export (Vector2) var southeast_dir := Vector2(0.70710678118, 0.70710678118)
 export (Orientation) var orientation := SOUTHEAST setget set_orientation
 
 # describes the colors and textures used to draw the creature
-export (Dictionary) var creature_def: Dictionary setget set_creature_def
+export (Dictionary) var dna: Dictionary setget set_dna
 
 var _creature_loader := CreatureLoader.new()
 
@@ -152,8 +152,8 @@ Remove the creature's textures.
 func reset_creature(value: bool = true) -> void:
 	if not value:
 		return
-	set_creature_def({})
-	creature_def = {}
+	set_dna({})
+	dna = {}
 
 
 """
@@ -164,9 +164,9 @@ func random_creature(value: bool = true) -> void:
 		return
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
-	var new_creature_def := CreatureLoader.fill_creature_def(
+	var new_dna := CreatureLoader.fill_dna(
 			CreatureLoader.DEFINITIONS[randi() % CreatureLoader.DEFINITIONS.size()])
-	set_creature_def(new_creature_def)
+	set_dna(new_dna)
 
 
 """
@@ -235,10 +235,10 @@ func feed(food_color: Color) -> void:
 Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
 properties.
 """
-func set_creature_def(new_creature_def: Dictionary) -> void:
-	creature_def = new_creature_def
+func set_dna(new_dna: Dictionary) -> void:
+	dna = new_dna
 	if is_inside_tree():
-		_creature_loader.load_details(creature_def)
+		_creature_loader.load_details(dna)
 		_update_creature_properties()
 		set_fatness(1)
 
@@ -390,29 +390,29 @@ func _update_creature_properties() -> void:
 		packed_sprite.texture = null
 		packed_sprite.frame_data = ""
 	
-	if creature_def.has("mouth"):
+	if dna.has("mouth"):
 		# set the sprite's color/texture properties
 		_mouth_animation_player.set_process(false)
-		if creature_def.mouth == "1":
+		if dna.mouth == "1":
 			_mouth_animation_player = $Mouth0Anims
-		elif creature_def.mouth == "2":
+		elif dna.mouth == "2":
 			_mouth_animation_player = $Mouth1Anims
 		else:
-			print("Invalid mouth: %s", creature_def.mouth)
+			print("Invalid mouth: %s", dna.mouth)
 		_mouth_animation_player.set_process(true)
 	
-	if creature_def.has("line_rgb"):
-		$TextureRect.material.set_shader_param("black", Color(creature_def.line_rgb))
+	if dna.has("line_rgb"):
+		$TextureRect.material.set_shader_param("black", Color(dna.line_rgb))
 	
-	for key in creature_def.keys():
+	for key in dna.keys():
 		if key.find("property:") == 0:
 			var node_path: String = "Viewport/Sprites/" + key.split(":")[1]
 			var property_name: String = key.split(":")[2]
-			get_node(node_path).set(property_name, creature_def[key])
+			get_node(node_path).set(property_name, dna[key])
 		if key.find("shader:") == 0:
 			var node_path: String = "Viewport/Sprites/" + key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
-			get_node(node_path).material.set_shader_param(shader_param, creature_def[key])
+			get_node(node_path).material.set_shader_param(shader_param, dna[key])
 	$Viewport/Sprites/Body.update()
 	visible = true
 	emit_signal("creature_arrived")

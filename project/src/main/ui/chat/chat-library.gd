@@ -11,38 +11,16 @@ into the UI.
 const DIALOG_DATA_VERSION := "15d2"
 
 """
-Loads the chat events for the currently focused chatter.
-
-Returns an array of ChatEvent objects for the dialog sequence which the player should see.
-"""
-func load_chat_events() -> ChatTree:
-	var chat_tree
-	var focused: Node = ChattableManager.get_focused()
-	if not focused.has_meta("chat_id"):
-		# can't look up chat events without a chat_id; return an empty array
-		push_warning("Chattable %s does not define a 'chat_id' property." % focused)
-	else:
-		# open the json file for the currently focused chatter
-		var chat_id: String = focused.get_meta("chat_id")
-		chat_tree = load_chat_events_from_file("res://assets/main/dialog/%s.json" % chat_id)
-	return chat_tree
-
-
-"""
 Loads the chat events from the specified json file.
 """
-func load_chat_events_from_file(path: String) -> ChatTree:
+static func load_chat_events_from_file(path: String) -> ChatTree:
 	var chat_tree := ChatTree.new()
 	
-	var file := File.new()
-	file.open(path, File.READ)
-	var text: String = file.get_as_text()
-	file.close()
-	
-	if not text:
+	if not FileUtils.file_exists(path):
 		push_error("File not found: %s" % path)
 	else:
-		var json_tree := _parse_json_tree(text)
+		var tree_text: String = FileUtils.get_file_as_text(path)
+		var json_tree := _parse_json_tree(tree_text)
 		chat_tree.from_json_dict(json_tree)
 	
 	return chat_tree
@@ -55,7 +33,7 @@ Our dialog parser needs a dictionary wrapped in an array wrapped in a dictionary
 wrapping the parsed objects ourselves. This prevents trivial dialog sequences such as 'Tweet!' from requiring
 two extra json wrapper objects.
 """
-func _parse_json_tree(json: String) -> Dictionary:
+static func _parse_json_tree(json: String) -> Dictionary:
 	var json_tree: Dictionary
 	var parsed = parse_json(json)
 	if typeof(parsed) == TYPE_DICTIONARY and parsed.has(""):

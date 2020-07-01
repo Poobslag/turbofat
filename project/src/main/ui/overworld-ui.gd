@@ -17,12 +17,11 @@ signal showed_chat_choices
 var chatters := []
 
 var _show_version := true setget set_show_version, is_show_version
-var _chat_library := ChatLibrary.new()
 
 # These two fields store details for the upcoming scenario. We store the scenario details during the dialog sequence
 # and launch the scenario when the dialog window closes.
 var _launched_scenario: ScenarioSettings
-var _scenario_creature_def: Dictionary
+var _scenario_dna: Dictionary
 
 func _ready() -> void:
 	_update_visible()
@@ -38,7 +37,7 @@ func _input(event: InputEvent) -> void:
 
 
 func start_chat() -> void:
-	var chat_tree := _chat_library.load_chat_events()
+	var chat_tree: ChatTree = ChattableManager.load_chat_events()
 	
 	chatters = [ChattableManager.get_focused()]
 	_update_visible()
@@ -93,7 +92,7 @@ func _on_ChatUi_pop_out_completed() -> void:
 	if _launched_scenario:
 		ChattableManager.clear()
 		Scenario.overworld_puzzle = true
-		Scenario.push_scenario_trail(_launched_scenario, _scenario_creature_def)
+		Scenario.push_scenario_trail(_launched_scenario, _scenario_dna)
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
@@ -114,8 +113,8 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 			var settings := ScenarioSettings.new()
 			settings.load_from_resource(scenario)
 			_launched_scenario = settings
-			if chatters[0].has_meta("creature_def"):
-				_scenario_creature_def = chatters[0].get_meta("creature_def")
+			if chatters[0].has_meta("dna"):
+				_scenario_dna = chatters[0].get_meta("dna")
 
 
 func _on_ChatUi_showed_choices() -> void:

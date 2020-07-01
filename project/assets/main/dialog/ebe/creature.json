@@ -1,0 +1,24 @@
+{
+  "version": "170e",
+  "id": "ebe",
+  "name": "Ebe",
+  "dna": {
+    "body_rgb": "b47922",
+    "ear": "1",
+    "eye": "2",
+    "eye_rgb": "7d4c21 e5cd7d",
+    "horn": "2",
+    "horn_rgb": "f1e398",
+    "line_rgb": "6c4331",
+    "mouth": "1"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.75,
+    "accent_swapped": true,
+    "accent_texture": 15,
+    "color": "b47922"
+  },
+  "dialog": [
+    "dialog"
+  ]
+}

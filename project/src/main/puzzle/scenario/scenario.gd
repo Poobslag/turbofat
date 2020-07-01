@@ -40,10 +40,10 @@ Parameters:
 	
 	'overworld_puzzle': True if the player should return to the overworld when the puzzle is done
 	
-	'creature_def': Creatures who should appear in the restaurant.
+	'dna': Creature who should appear in the restaurant.
 """
-func push_scenario_trail(scenario_settings: ScenarioSettings, creature_def: Dictionary = {}) -> void:
+func push_scenario_trail(scenario_settings: ScenarioSettings, dna: Dictionary = {}) -> void:
 	start_scenario(scenario_settings)
-	if creature_def:
-		Global.creature_queue.push_front(creature_def)
+	if dna:
+		Global.creature_queue.push_front(dna)
 	Breadcrumb.push_trail("res://src/main/puzzle/Puzzle.tscn")

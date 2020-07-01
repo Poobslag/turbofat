@@ -11,9 +11,7 @@ signal focus_changed
 const MAX_INTERACT_DISTANCE := 240.0
 
 # Chat appearance for different characters
-var _chat_theme_defs := {
-	"Spira": {"accent_scale":1.33,"accent_swapped":true,"accent_texture":13,"color":"b23823"}
-}
+var _chat_theme_defs: Dictionary
 
 # The player's sprite
 var spira: Spira setget set_spira
@@ -33,6 +31,8 @@ func _physics_process(_delta: float) -> void:
 		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
 			if not is_instance_valid(chattable_obj):
 				continue
+			if spira == chattable_obj:
+				continue
 			var chattable: Node2D = chattable_obj
 			var distance: float = Global.from_iso(chattable.global_transform.origin) \
 					.distance_to(Global.from_iso(spira.global_transform.origin))
@@ -43,6 +43,22 @@ func _physics_process(_delta: float) -> void:
 	if new_focus != _focused:
 		_focused = new_focus
 		emit_signal("focus_changed")
+
+"""
+Loads the chat events for the currently focused chatter.
+
+Returns an array of ChatEvent objects for the dialog sequence which the player should see.
+"""
+func load_chat_events() -> ChatTree:
+	var chat_tree: ChatTree
+	var focused: Node = get_focused()
+	if focused.has_meta("chat_path"):
+		var chat_path: String = focused.get_meta("chat_path")
+		chat_tree = ChatLibrary.load_chat_events_from_file(chat_path)
+	else:
+		# can't look up chat events without a chat_path; return an empty array
+		push_warning("Chattable %s does not define a 'chat_path' property." % focused)
+	return chat_tree
 
 
 """
@@ -58,6 +74,7 @@ func clear() -> void:
 
 func set_spira(new_spira: Spira) -> void:
 	spira = new_spira
+	add_chat_theme_def(spira.get_meta("chat_name"), spira.get_meta("chat_theme_def"))
 
 
 """

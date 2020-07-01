@@ -40,52 +40,52 @@ static func random_def() -> Dictionary:
 
 """
 Loads all the appropriate resources and property definitions for a creature. The resulting textures are stored back in
-the 'creature_def' parameter which is passed in.
+the 'dna' parameter which is passed in.
 
 This can also be invoked with an empty creature definition, in which case the creature definition will be populated
 with the property definitions needed to unload all of their textures and colors.
 
 Parameters:
-	'creature_def': Describes some high-level information about the creature's appearance, such as 'she has red
-		eyes'. The response includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
+	'dna': Defines high-level information about the creature's appearance, such as 'she has red eyes'. The response
+		includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
 """
-func load_details(creature_def: Dictionary) -> void:
-	_load_ear(creature_def)
-	_load_horn(creature_def)
-	_load_mouth(creature_def)
-	_load_eye(creature_def)
-	_load_body(creature_def)
-	_load_colors(creature_def)
+func load_details(dna: Dictionary) -> void:
+	_load_ear(dna)
+	_load_horn(dna)
+	_load_mouth(dna)
+	_load_eye(dna)
+	_load_body(dna)
+	_load_colors(dna)
 
 
 """
-Loads a creature texture based on a creature_def key/value pair.
+Loads a creature texture based on a dna key/value pair.
 
-The input creature_def contains key/value pairs which we need to map to a texture to load, such as {'ear': '0'}. We map
+The input dna contains key/value pairs which we need to map to a texture to load, such as {'ear': '0'}. We map
 this key/value pair to a resource such as res://assets/main/world/creature/0/ear-z1.png. The input parameters include
 the dictionary of key/value pairs, which specific key/value pair we should look up, and the filename to associate with
 the key/value pair.
 
 Parameters:
-	'creature_def': The dictionary of key/value pairs defining a set of textures to load. 
+	'dna': The dictionary of key/value pairs defining a set of textures to load.
 	
 	'key': The specific key/value pair to be looked up.
 	
 	'filename': The stripped-down filename of the resource to look up. All creature texture files have a path of
 		res://assets/main/world/creature/0/{something}.png, so this parameter only specifies the {something}.
 """
-func _load_texture(creature_def: Dictionary, node_path: String, key: String, filename: String) -> void:
+func _load_texture(dna: Dictionary, node_path: String, key: String, filename: String) -> void:
 	# load the texture resource
 	var resource_path: String
 	var frame_data: String
 	var resource: Resource
-	if not creature_def.has(key):
+	if not dna.has(key):
 		# The key was not specified in the creature definition. This is not an error condition, a creature might not
 		# have an 'ear' key if she doesn't have ears.
 		pass
 	else:
-		resource_path = "res://assets/main/world/creature/%s/%s.png" % [creature_def[key], filename]
-		frame_data = "res://assets/main/world/creature/%s/%s.json" % [creature_def[key], filename]
+		resource_path = "res://assets/main/world/creature/%s/%s.png" % [dna[key], filename]
+		frame_data = "res://assets/main/world/creature/%s/%s.json" % [dna[key], filename]
 		if not ResourceLoader.exists(resource_path):
 			# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
 			# but also throws an error.
@@ -94,131 +94,139 @@ func _load_texture(creature_def: Dictionary, node_path: String, key: String, fil
 			resource = load(resource_path)
 	
 	if resource:
-		creature_def["property:%s:texture" % node_path] = resource
-		creature_def["property:%s:frame_data" % node_path] = frame_data
+		dna["property:%s:texture" % node_path] = resource
+		dna["property:%s:frame_data" % node_path] = frame_data
 	else:
-		creature_def.erase("property:%s:texture" % node_path)
-		creature_def.erase("property:%s:frame_data" % node_path)
+		dna.erase("property:%s:texture" % node_path)
+		dna.erase("property:%s:frame_data" % node_path)
 
 
 """
 Loads the resources for a creature's ears based on a creature definition.
 """
-func _load_ear(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/HeadBobber/EarZ0", "ear", "ear-z0-packed")
-	_load_texture(creature_def, "Neck0/HeadBobber/EarZ1", "ear", "ear-z1-packed")
-	_load_texture(creature_def, "Neck0/HeadBobber/EarZ2", "ear", "ear-z2-packed")
+func _load_ear(dna: Dictionary) -> void:
+	_load_texture(dna, "Neck0/HeadBobber/EarZ0", "ear", "ear-z0-packed")
+	_load_texture(dna, "Neck0/HeadBobber/EarZ1", "ear", "ear-z1-packed")
+	_load_texture(dna, "Neck0/HeadBobber/EarZ2", "ear", "ear-z2-packed")
 
 
 """
 Loads the resources for a creature's horn based on a creature definition.
 """
-func _load_horn(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-packed")
-	_load_texture(creature_def, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-packed")
+func _load_horn(dna: Dictionary) -> void:
+	_load_texture(dna, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-packed")
+	_load_texture(dna, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-packed")
 
 
 """
 Loads the resources for a creature's mouth based on a creature definition.
 """
-func _load_mouth(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/HeadBobber/Mouth", "mouth", "mouth-packed")
-	_load_texture(creature_def, "Neck0/HeadBobber/Food", "mouth", "food-packed")
-	_load_texture(creature_def, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-packed")
+func _load_mouth(dna: Dictionary) -> void:
+	_load_texture(dna, "Neck0/HeadBobber/Mouth", "mouth", "mouth-packed")
+	_load_texture(dna, "Neck0/HeadBobber/Food", "mouth", "food-packed")
+	_load_texture(dna, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-packed")
 
 
 """
 Loads the resources for a creature's eyes based on a creature definition.
 """
-func _load_eye(creature_def: Dictionary) -> void:
-	_load_texture(creature_def, "Neck0/HeadBobber/Eyes", "eye", "eyes-packed")
+func _load_eye(dna: Dictionary) -> void:
+	_load_texture(dna, "Neck0/HeadBobber/Eyes", "eye", "eyes-packed")
 
 
 """
 Loads the resources for a creature's arms, legs and torso based on a creature definition.
 """
-func _load_body(creature_def: Dictionary) -> void:
+func _load_body(dna: Dictionary) -> void:
 	# All creatures have a body, but this class supports passing in an empty creature definition to unload the
 	# textures from creature sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# creature's body.
-	_load_texture(creature_def, "FarMovement", "body", "movement-z0-packed")
-	_load_texture(creature_def, "FarArm", "body", "arm-z0-packed")
-	_load_texture(creature_def, "FarLeg", "body", "leg-z0-packed")
-	_load_texture(creature_def, "Body/NeckBlend", "body", "neck-packed")
-	_load_texture(creature_def, "NearLeg", "body", "leg-z1-packed")
-	_load_texture(creature_def, "NearArm", "body", "arm-z1-packed")
-	_load_texture(creature_def, "Neck0/HeadBobber/Head", "body", "head-packed")
+	_load_texture(dna, "FarMovement", "body", "movement-z0-packed")
+	_load_texture(dna, "FarArm", "body", "arm-z0-packed")
+	_load_texture(dna, "FarLeg", "body", "leg-z0-packed")
+	_load_texture(dna, "Body/NeckBlend", "body", "neck-packed")
+	_load_texture(dna, "NearLeg", "body", "leg-z1-packed")
+	_load_texture(dna, "NearArm", "body", "arm-z1-packed")
+	_load_texture(dna, "Neck0/HeadBobber/Head", "body", "head-packed")
 
 
 """
 Assigns the creature's colors based on a creature definition.
 """
-func _load_colors(creature_def: Dictionary) -> void:
+func _load_colors(dna: Dictionary) -> void:
 	var line_color: Color
-	if creature_def.has("line_rgb"):
-		line_color = Color(creature_def.line_rgb)
-	creature_def["shader:FarArm:black"] = line_color
-	creature_def["shader:FarLeg:black"] = line_color
-	creature_def["property:Body:line_color"] = line_color
-	creature_def["shader:Body/NeckBlend:black"] = line_color
-	creature_def["shader:NearArm:black"] = line_color
-	creature_def["shader:NearLeg:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/EarZ0:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/HornZ0:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/Head:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/EarZ1:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/HornZ1:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/EarZ2:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/Mouth:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/Eyes:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/EmoteArms:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/EmoteEyes:black"] = line_color
-	creature_def["shader:Neck0/HeadBobber/EmoteBrain:black"] = line_color
-	creature_def["shader:EmoteBody:black"] = line_color
+	if dna.has("line_rgb"):
+		line_color = Color(dna.line_rgb)
+	dna["shader:FarArm:black"] = line_color
+	dna["shader:FarLeg:black"] = line_color
+	dna["property:Body:line_color"] = line_color
+	dna["shader:Body/NeckBlend:black"] = line_color
+	dna["shader:NearArm:black"] = line_color
+	dna["shader:NearLeg:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EarZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/HornZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/Head:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EarZ1:black"] = line_color
+	dna["shader:Neck0/HeadBobber/HornZ1:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EarZ2:black"] = line_color
+	dna["shader:Neck0/HeadBobber/Mouth:black"] = line_color
+	dna["shader:Neck0/HeadBobber/Eyes:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EmoteArms:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EmoteEyes:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EmoteBrain:black"] = line_color
+	dna["shader:EmoteBody:black"] = line_color
 	
 	var body_color: Color
-	if creature_def.has("body_rgb"):
-		body_color = Color(creature_def.body_rgb)
-	creature_def["shader:FarArm:red"] = body_color
-	creature_def["shader:FarLeg:red"] = body_color
-	creature_def["shader:Body/NeckBlend:red"] = body_color
-	creature_def["shader:NearLeg:red"] = body_color
-	creature_def["shader:NearArm:red"] = body_color
-	creature_def["shader:Neck0/HeadBobber/EarZ0:red"] = body_color
-	creature_def["shader:Neck0/HeadBobber/HornZ0:red"] = body_color
-	creature_def["shader:Neck0/HeadBobber/Head:red"] = body_color
-	creature_def["shader:Neck0/HeadBobber/EarZ1:red"] = body_color
-	creature_def["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
-	creature_def["shader:Neck0/HeadBobber/EarZ2:red"] = body_color
-	creature_def["shader:Neck0/HeadBobber/Mouth:red"] = body_color
-	creature_def["shader:Neck0/HeadBobber/Eyes:red"] = body_color
-	creature_def["shader:Neck0/HeadBobber/EmoteArms:red"] = body_color
+	if dna.has("body_rgb"):
+		body_color = Color(dna.body_rgb)
+	dna["shader:FarArm:red"] = body_color
+	dna["shader:FarLeg:red"] = body_color
+	dna["shader:Body/NeckBlend:red"] = body_color
+	dna["shader:NearLeg:red"] = body_color
+	dna["shader:NearArm:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EarZ0:red"] = body_color
+	dna["shader:Neck0/HeadBobber/HornZ0:red"] = body_color
+	dna["shader:Neck0/HeadBobber/Head:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EarZ1:red"] = body_color
+	dna["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EarZ2:red"] = body_color
+	dna["shader:Neck0/HeadBobber/Mouth:red"] = body_color
+	dna["shader:Neck0/HeadBobber/Eyes:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EmoteArms:red"] = body_color
 	
 	var body_fill_color: Color
 	if line_color and body_color:
 		body_fill_color = body_color.blend(Color(line_color.r, line_color.g, line_color.b, 0.25))
-	creature_def["property:Body:fill_color"] = body_fill_color
+	dna["property:Body:fill_color"] = body_fill_color
 	
 	var eye_color: Color
 	var eye_shine_color: Color
-	if creature_def.has("eye_rgb"):
-		eye_color = Color(creature_def.eye_rgb.split(" ")[0])
-		eye_shine_color = Color(creature_def.eye_rgb.split(" ")[1])
-	creature_def["shader:Neck0/HeadBobber/Eyes:green"] = eye_color
-	creature_def["shader:Neck0/HeadBobber/Eyes:blue"] = eye_shine_color
+	if dna.has("eye_rgb"):
+		eye_color = Color(dna.eye_rgb.split(" ")[0])
+		eye_shine_color = Color(dna.eye_rgb.split(" ")[1])
+	dna["shader:Neck0/HeadBobber/Eyes:green"] = eye_color
+	dna["shader:Neck0/HeadBobber/Eyes:blue"] = eye_shine_color
 
 	var horn_color: Color
-	if creature_def.has("horn_rgb"):
-		horn_color = Color(creature_def.horn_rgb)
-	creature_def["shader:Neck0/HeadBobber/HornZ0:green"] = horn_color
-	creature_def["shader:Neck0/HeadBobber/HornZ1:green"] = horn_color
+	if dna.has("horn_rgb"):
+		horn_color = Color(dna.horn_rgb)
+	dna["shader:Neck0/HeadBobber/HornZ0:green"] = horn_color
+	dna["shader:Neck0/HeadBobber/HornZ1:green"] = horn_color
+
+
+func load_creature_def(id: String) -> CreatureDef:
+	var creature_def_text: String = FileUtils.get_file_as_text("res://assets/main/dialog/%s/creature.json" % id)
+	var json_creature_def: Dictionary = parse_json(creature_def_text)
+	var creature_def := CreatureDef.new()
+	creature_def.from_json_dict(json_creature_def)
+	return creature_def
 
 
 """
 If the specified key is not associated with a value, this method associates it with the given value.
 """
-static func put_if_absent(creature_def: Dictionary, key: String, value) -> void:
-	creature_def[key] = creature_def.get(key, value)
+func put_if_absent(dna: Dictionary, key: String, value) -> void:
+	dna[key] = dna.get(key, value)
 
 
 """
@@ -226,9 +234,9 @@ Fill in the creature's missing traits with random values.
 
 Otherwise, missing values will be left empty, leading to invisible body parts or strange colors.
 """
-static func fill_creature_def(creature_def: Dictionary) -> Dictionary:
-	# duplicate the creature_def so that we don't modify the original
-	var result := creature_def.duplicate()
+func fill_dna(dna: Dictionary) -> Dictionary:
+	# duplicate the dna so that we don't modify the original
+	var result := dna.duplicate()
 	put_if_absent(result, "line_rgb", "6c4331")
 	put_if_absent(result, "body_rgb", "b23823")
 	put_if_absent(result, "eye_rgb", "282828 dedede")
