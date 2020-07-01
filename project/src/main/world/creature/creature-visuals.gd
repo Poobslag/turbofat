@@ -153,6 +153,7 @@ func reset_creature(value: bool = true) -> void:
 	if not value:
 		return
 	set_creature_def({})
+	creature_def = {}
 
 
 """
