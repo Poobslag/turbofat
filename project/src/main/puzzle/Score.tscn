@@ -5,7 +5,6 @@
 [ext_resource path="res://src/main/puzzle/combo-score-value-label.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=4]
 
-
 [node name="Score" type="Control"]
 margin_right = 250.0
 margin_bottom = 74.0

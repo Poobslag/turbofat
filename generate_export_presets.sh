@@ -20,11 +20,11 @@ echo "version=$version"
 . secrets/android.properties
 
 # Update export presets
-cp export_presets.cfg.template export_presets.cfg
-sed -i "s/##VERSION##/$version/g" export_presets.cfg
-sed -i "s/##ANDROID_KEYSTORE_RELEASE_PASSWORD##/$ANDROID_KEYSTORE_RELEASE_PASSWORD/g" export_presets.cfg
+cp project/export_presets.cfg.template project/export_presets.cfg
+sed -i "s/##VERSION##/$version/g" project/export_presets.cfg
+sed -i "s/##ANDROID_KEYSTORE_RELEASE_PASSWORD##/$ANDROID_KEYSTORE_RELEASE_PASSWORD/g" project/export_presets.cfg
 echo "Updated export_presets.cfg"
 
 # Update project.godot
-sed -i "s/^config\/version=\".*\"$/config\/version=\"$version\"/g" project.godot
+sed -i "s/^config\/version=\".*\"$/config\/version=\"$version\"/g" project/project.godot
 echo "Updated project.godot"

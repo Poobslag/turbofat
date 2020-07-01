@@ -7,13 +7,13 @@ Touchscreen buttons displayed for the overworld.
 const CONSOLE_SCHEME := {
 	"sw_actions": ["ui_up", "ui_down", "ui_left", "ui_right"],
 	"sw_weights": [1, 1, 1, 1],
-	"se_actions": ["ui_menu", "interact", "", ""],
+	"se_actions": ["", "interact", "", ""],
 	"se_weights": [0, 0, 0, 0],
 }
 
 # control scheme which emulates PCs; buttons on left, directions on right
 const DESKTOP_SCHEME := {
-	"sw_actions": ["ui_menu", "interact", "", ""],
+	"sw_actions": ["", "interact", "", ""],
 	"sw_weights": [0, 0, 0, 0],
 	"se_actions": ["ui_up", "ui_down", "ui_left", "ui_right"],
 	"se_weights": [1, 1, 1, 1],
@@ -60,6 +60,9 @@ func _refresh_button_positions() -> void:
 	$ButtonsSe.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
 	$ButtonsSe.rect_position.x = 1024 - 10 - $ButtonsSw.rect_size.x * $ButtonsSw.rect_scale.x
 	$ButtonsSe.rect_position.y = 600 - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
+	
+	$MenuButton.scale = Vector2(0.375, 0.375) * PlayerData.touch_settings.size
+	$MenuButton.position.x = 1024 - 10 - $MenuButton.pressed.get_size().x * $MenuButton.scale.x
 
 
 """
