@@ -8,7 +8,7 @@ Instead of being rewarded for clean horizontal stacks, multiline clears and T-sp
 
 ![Game screenshot monsters talking outdoors, surrounded by some boxy terrain.](img/screenshot-overworld.png)
 
-The game also includes a story mode where you can interact with other monsters. This will eventually grow into an immersive story mode with many characters to meet, worlds to explore, and unique puzzle challenges.
+The game also includes a story mode where you can interact with other monsters. This will eventually grow to include many characters to meet with unique stories, worlds to explore, and crazy puzzle challenges.
 
 ## Summary
 
