@@ -2221,45 +2221,6 @@ script = ExtResource( 3 )
 
 [node name="Visuals" type="Node2D" parent="."]
 script = ExtResource( 2 )
-creature_def = {
-"property:Body:fill_color": Color( 0, 0, 0, 1 ),
-"property:Body:line_color": Color( 0, 0, 0, 1 ),
-"shader:Body/NeckBlend:black": Color( 0, 0, 0, 1 ),
-"shader:Body/NeckBlend:red": Color( 0, 0, 0, 1 ),
-"shader:EmoteBody:black": Color( 0, 0, 0, 1 ),
-"shader:FarArm:black": Color( 0, 0, 0, 1 ),
-"shader:FarArm:red": Color( 0, 0, 0, 1 ),
-"shader:FarLeg:black": Color( 0, 0, 0, 1 ),
-"shader:FarLeg:red": Color( 0, 0, 0, 1 ),
-"shader:NearArm:black": Color( 0, 0, 0, 1 ),
-"shader:NearArm:red": Color( 0, 0, 0, 1 ),
-"shader:NearLeg:black": Color( 0, 0, 0, 1 ),
-"shader:NearLeg:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ0:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ1:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ2:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteArms:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteArms:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyes:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Eyes:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Eyes:blue": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Eyes:green": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Eyes:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Head:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Head:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:green": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:green": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Mouth:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Mouth:red": Color( 0, 0, 0, 1 )
-}
 
 [node name="Viewport" type="Viewport" parent="Visuals"]
 size = Vector2( 1024, 1024 )
@@ -2278,6 +2239,7 @@ material = SubResource( 1 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 27 )
 rect_size = Vector2( 512, 512 )
+frame = 1
 offset = Vector2( 0, -119 )
 
 [node name="FarArm" type="Node2D" parent="Visuals/Viewport/Sprites"]
@@ -2608,37 +2570,37 @@ bus = "Sound Bus"
 stream = ExtResource( 5 )
 volume_db = -4.0
 bus = "Sound Bus"
+[connection signal="before_creature_arrived" from="Visuals" to="Visuals/Mouth1Anims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="Visuals" to="Visuals/EmoteAnims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="Visuals" to="Visuals/Mouth0Anims" method="_on_CreatureVisuals_before_creature_arrived"]
-[connection signal="before_creature_arrived" from="Visuals" to="Visuals/Mouth1Anims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="creature_arrived" from="Visuals" to="." method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="creature_arrived" from="Visuals" to="CreatureSfx" method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="food_eaten" from="Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Body" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearLeg" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarArm" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarLeg" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearLeg" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/NearArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Viewport/Sprites/Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="Visuals" to="Visuals/Mouth0Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="Visuals" to="Visuals/Mouth1Anims" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="Visuals" to="Visuals/Mouth0Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="animation_finished" from="Visuals/EmoteAnims" to="Visuals/EmoteAnims" method="_on_animation_finished"]
 [connection signal="before_mood_switched" from="Visuals/EmoteAnims" to="Visuals" method="_on_EmoteAnims_before_mood_switched"]
 [connection signal="animation_started" from="Visuals/MovementAnims" to="Visuals" method="_on_MovementAnims_animation_started"]
