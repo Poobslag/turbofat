@@ -53,6 +53,10 @@ project/assets/main/ui/gameover.wav "\CartoonVoices-4913\Cartoon Voices\Female\D
 project/assets/main/ui/go.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
 project/assets/main/ui/matchend.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\ALARMS - BUZZERS - RINGERS - (44)\ALARM Alert Ringer Tiny 06.wav"
 project/assets/main/ui/ready.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - BEEPS - (81)\SUCCESS BEEPS Single Tone Long 05.wav"
+project/assets/main/ui/touch/close-pressed.png 'Empty', 'Close' by Freepik
+project/assets/main/ui/touch/close.png 'Empty', 'Close' by Freepik
+project/assets/main/ui/touch/duck-pressed.png 'Empty', 'Duck' by Freepik
+project/assets/main/ui/touch/duck.png 'Empty', 'Duck' by Freepik
 project/assets/main/ui/touch/empty-pressed.png 'Empty' by Freepik
 project/assets/main/ui/touch/empty.png 'Empty' by Freepik
 project/assets/main/ui/touch/interact-pressed.png 'Empty', 'Chat' by Freepik

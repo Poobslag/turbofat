@@ -46,6 +46,14 @@ const SCHEMES := {
 # if false, pressing the buttons won't emit any actions.
 export (bool) var emit_actions := true setget set_emit_actions
 
+onready var _close := preload("res://assets/main/ui/touch/close.png")
+onready var _close_pressed := preload("res://assets/main/ui/touch/close-pressed.png")
+
+# when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying to quit
+# (although... there's an argument that replacing the close button with a duck might confuse them more...)
+onready var _duck := preload("res://assets/main/ui/touch/duck.png")
+onready var _duck_pressed := preload("res://assets/main/ui/touch/duck-pressed.png")
+
 func _ready() -> void:
 	if OS.has_touchscreen_ui_hint():
 		PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
@@ -70,6 +78,33 @@ func _refresh_emit_actions() -> void:
 	if is_inside_tree():
 		$ButtonsSw.emit_actions = emit_actions
 		$ButtonsSe.emit_actions = emit_actions
+		if emit_actions:
+			$MenuButton.action = "ui_menu"
+			$MenuButton.normal = _close
+			$MenuButton.pressed = _close_pressed
+		else:
+			# when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying
+			# to quit. (there's an argument that replacing the close button with a duck might confuse them more...)
+			$MenuButton.action = ""
+			$MenuButton.normal = _duck
+			$MenuButton.pressed = _duck_pressed
+
+
+"""
+Updates the buttons based on the player's settings.
+
+This updates their location and size.
+"""
+func _refresh_button_positions() -> void:
+	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
+	$ButtonsSw.rect_position.y = 600 - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
+	
+	$ButtonsSe.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
+	$ButtonsSe.rect_position.x = 1024 - 10 - $ButtonsSw.rect_size.x * $ButtonsSw.rect_scale.x
+	$ButtonsSe.rect_position.y = 600 - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
+	
+	$MenuButton.scale = Vector2(0.375, 0.375) * PlayerData.touch_settings.size
+	$MenuButton.position.x = 1024 - 10 - $MenuButton.pressed.get_size().x * $MenuButton.scale.x
 
 
 """
@@ -79,12 +114,7 @@ This updates their location, size, how they're arranged and their sensitivity.
 """
 func _refresh_settings() -> void:
 	# update scale/position
-	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
-	$ButtonsSw.rect_position.y = 600 - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
-	
-	$ButtonsSe.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
-	$ButtonsSe.rect_position.x = 1024 - 10 - $ButtonsSw.rect_size.x * $ButtonsSw.rect_scale.x
-	$ButtonsSe.rect_position.y = 600 - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
+	_refresh_button_positions()
 	
 	# update actions
 	var scheme_dict: Dictionary = SCHEMES.get(PlayerData.touch_settings.scheme, TouchSettings.EASY_CONSOLE)
