@@ -2575,6 +2575,7 @@ bus = "Sound Bus"
 [connection signal="before_creature_arrived" from="Visuals" to="Visuals/Mouth0Anims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="creature_arrived" from="Visuals" to="." method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="creature_arrived" from="Visuals" to="CreatureSfx" method="_on_CreatureVisuals_creature_arrived"]
+[connection signal="food_eaten" from="Visuals" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="food_eaten" from="Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/Body" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="Visuals" to="Visuals/Viewport/Sprites/FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
