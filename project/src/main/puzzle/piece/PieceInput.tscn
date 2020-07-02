@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/puzzle/piece/FrameInput.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/puzzle/piece/piece-input.gd" type="Script" id=2]
+
+[node name="Input" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Left" parent="." instance=ExtResource( 1 )]
+action = "ui_left"
+cancel_action = "ui_right"
+
+[node name="Right" parent="." instance=ExtResource( 1 )]
+action = "ui_right"
+cancel_action = "ui_left"
+
+[node name="Cw" parent="." instance=ExtResource( 1 )]
+action = "rotate_cw"
+
+[node name="Ccw" parent="." instance=ExtResource( 1 )]
+action = "rotate_ccw"
+
+[node name="SoftDrop" parent="." instance=ExtResource( 1 )]
+action = "soft_drop"
+
+[node name="HardDrop" parent="." instance=ExtResource( 1 )]
+action = "hard_drop"

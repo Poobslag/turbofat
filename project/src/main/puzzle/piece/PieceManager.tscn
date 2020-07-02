@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/main/puzzle/piece/squish-fx.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/filled-circle-8.png" type="Texture" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=10]
 [ext_resource path="res://src/main/puzzle/piece/states/prelock.gd" type="Script" id=11]
-[ext_resource path="res://src/main/puzzle/piece/FrameInput.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/puzzle/piece/PieceInput.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/puzzle/piece-sfx.gd" type="Script" id=13]
 [ext_resource path="res://src/main/puzzle/piece/states/game-ended.gd" type="Script" id=14]
 [ext_resource path="res://src/main/puzzle/squish-map.gd" type="Script" id=15]
@@ -25,6 +25,10 @@
 [ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=23]
 [ext_resource path="res://src/main/puzzle/piece/presquish-sfx.gd" type="Script" id=24]
 [ext_resource path="res://assets/main/puzzle/presquish.wav" type="AudioStream" id=25]
+[ext_resource path="res://src/main/puzzle/piece/piece-rotator.gd" type="Script" id=26]
+[ext_resource path="res://src/main/puzzle/piece/piece-mover.gd" type="Script" id=27]
+[ext_resource path="res://src/main/puzzle/piece/piece-dropper.gd" type="Script" id=28]
+[ext_resource path="res://src/main/puzzle/piece/piece-squisher.gd" type="Script" id=29]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -125,71 +129,89 @@ script = ExtResource( 21 )
 [node name="GameEnded" type="Node" parent="States"]
 script = ExtResource( 14 )
 
-[node name="PieceSfx" type="Node" parent="."]
+[node name="Physics" type="Node" parent="."]
+
+[node name="Rotator" type="Node" parent="Physics"]
+script = ExtResource( 26 )
+input_path = NodePath("../../Input")
+
+[node name="Mover" type="Node" parent="Physics"]
+script = ExtResource( 27 )
+input_path = NodePath("../../Input")
+
+[node name="Dropper" type="Node" parent="Physics"]
+script = ExtResource( 28 )
+input_path = NodePath("../../Input")
+piece_mover_path = NodePath("../Mover")
+
+[node name="Squisher" type="Node" parent="Physics"]
+script = ExtResource( 29 )
+input_path = NodePath("../../Input")
+
+[node name="Input" parent="." instance=ExtResource( 12 )]
+
+[node name="Sfx" type="Node" parent="."]
 script = ExtResource( 13 )
 
-[node name="Rotate0Sound" type="AudioStreamPlayer" parent="PieceSfx"]
+[node name="Rotate0Sound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 6 )
 volume_db = -4.0
 bus = "Sound Bus"
 
-[node name="Rotate1Sound" type="AudioStreamPlayer" parent="PieceSfx"]
+[node name="Rotate1Sound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 7 )
 volume_db = -4.0
 bus = "Sound Bus"
 
-[node name="MoveSound" type="AudioStreamPlayer" parent="PieceSfx"]
+[node name="MoveSound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 4 )
 volume_db = -4.0
 bus = "Sound Bus"
 
-[node name="LockSound" type="AudioStreamPlayer" parent="PieceSfx"]
+[node name="LockSound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 8 )
 bus = "Sound Bus"
 
-[node name="SquishSound" type="AudioStreamPlayer" parent="PieceSfx"]
+[node name="SquishSound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 23 )
 bus = "Sound Bus"
 
-[node name="LevelUpSound" type="AudioStreamPlayer" parent="PieceSfx"]
+[node name="LevelUpSound" type="AudioStreamPlayer" parent="Sfx"]
 stream = ExtResource( 5 )
 bus = "Sound Bus"
-
-[node name="InputLeft" parent="." instance=ExtResource( 12 )]
-action = "ui_left"
-cancel_action = "ui_right"
-
-[node name="InputRight" parent="." instance=ExtResource( 12 )]
-action = "ui_right"
-cancel_action = "ui_left"
-
-[node name="InputCw" parent="." instance=ExtResource( 12 )]
-action = "rotate_cw"
-
-[node name="InputCcw" parent="." instance=ExtResource( 12 )]
-action = "rotate_ccw"
-
-[node name="InputSoftDrop" parent="." instance=ExtResource( 12 )]
-action = "soft_drop"
-
-[node name="InputHardDrop" parent="." instance=ExtResource( 12 )]
-action = "hard_drop"
-[connection signal="das_moved_left" from="." to="PieceSfx" method="_on_PieceManager_das_moved_left"]
-[connection signal="das_moved_right" from="." to="PieceSfx" method="_on_PieceManager_das_moved_right"]
-[connection signal="initial_das_moved_left" from="." to="PieceSfx" method="_on_PieceManager_initial_das_moved_left"]
-[connection signal="initial_das_moved_right" from="." to="PieceSfx" method="_on_PieceManager_initial_das_moved_right"]
-[connection signal="initial_rotated_left" from="." to="PieceSfx" method="_on_PieceManager_initial_rotated_left"]
-[connection signal="initial_rotated_right" from="." to="PieceSfx" method="_on_PieceManager_initial_rotated_right"]
-[connection signal="initial_rotated_twice" from="." to="PieceSfx" method="_on_PieceManager_initial_rotated_twice"]
-[connection signal="lock_cancelled" from="." to="PieceSfx" method="_on_PieceManager_lock_cancelled"]
-[connection signal="lock_started" from="." to="PieceSfx" method="_on_PieceManager_lock_started"]
-[connection signal="moved_left" from="." to="PieceSfx" method="_on_PieceManager_moved_left"]
-[connection signal="moved_right" from="." to="PieceSfx" method="_on_PieceManager_moved_right"]
-[connection signal="rotated_left" from="." to="PieceSfx" method="_on_PieceManager_rotated_left"]
-[connection signal="rotated_right" from="." to="PieceSfx" method="_on_PieceManager_rotated_right"]
-[connection signal="rotated_twice" from="." to="PieceSfx" method="_on_PieceManager_rotated_twice"]
-[connection signal="squish_moved" from="." to="PieceSfx" method="_on_PieceManager_squish_moved"]
+[connection signal="das_moved_left" from="." to="Sfx" method="_on_PieceManager_das_moved_left"]
+[connection signal="das_moved_right" from="." to="Sfx" method="_on_PieceManager_das_moved_right"]
+[connection signal="initial_das_moved_left" from="." to="Sfx" method="_on_PieceManager_initial_das_moved_left"]
+[connection signal="initial_das_moved_right" from="." to="Sfx" method="_on_PieceManager_initial_das_moved_right"]
+[connection signal="initial_rotated_left" from="." to="Sfx" method="_on_PieceManager_initial_rotated_left"]
+[connection signal="initial_rotated_right" from="." to="Sfx" method="_on_PieceManager_initial_rotated_right"]
+[connection signal="initial_rotated_twice" from="." to="Sfx" method="_on_PieceManager_initial_rotated_twice"]
+[connection signal="lock_cancelled" from="." to="Sfx" method="_on_PieceManager_lock_cancelled"]
+[connection signal="lock_started" from="." to="Sfx" method="_on_PieceManager_lock_started"]
+[connection signal="moved_left" from="." to="Sfx" method="_on_PieceManager_moved_left"]
+[connection signal="moved_right" from="." to="Sfx" method="_on_PieceManager_moved_right"]
+[connection signal="rotated_left" from="." to="Sfx" method="_on_PieceManager_rotated_left"]
+[connection signal="rotated_right" from="." to="Sfx" method="_on_PieceManager_rotated_right"]
+[connection signal="rotated_twice" from="." to="Sfx" method="_on_PieceManager_rotated_twice"]
 [connection signal="squish_moved" from="." to="SquishFx" method="_on_PieceManager_squish_moved"]
+[connection signal="squish_moved" from="." to="Sfx" method="_on_PieceManager_squish_moved"]
 [connection signal="tiles_changed" from="." to="SquishFx/SweatDrops" method="_on_PieceManager_tiles_changed"]
 [connection signal="timeout" from="SquishFx/SweatDrops/RelocateTimer" to="SquishFx/SweatDrops" method="_on_RelocateTimer_timeout"]
 [connection signal="entered_state" from="States" to="." method="_on_States_entered_state"]
+[connection signal="initial_rotated_left" from="Physics/Rotator" to="." method="_on_Rotator_initial_rotated_left"]
+[connection signal="initial_rotated_right" from="Physics/Rotator" to="." method="_on_Rotator_initial_rotated_right"]
+[connection signal="initial_rotated_twice" from="Physics/Rotator" to="." method="_on_Rotator_initial_rotated_twice"]
+[connection signal="rotated_left" from="Physics/Rotator" to="." method="_on_Rotator_rotated_left"]
+[connection signal="rotated_right" from="Physics/Rotator" to="." method="_on_Rotator_rotated_right"]
+[connection signal="rotated_twice" from="Physics/Rotator" to="." method="_on_Rotator_rotated_twice"]
+[connection signal="das_moved_left" from="Physics/Mover" to="." method="_on_Mover_das_moved_left"]
+[connection signal="das_moved_right" from="Physics/Mover" to="." method="_on_Mover_das_moved_right"]
+[connection signal="initial_das_moved_left" from="Physics/Mover" to="." method="_on_Mover_initial_das_moved_left"]
+[connection signal="initial_das_moved_right" from="Physics/Mover" to="." method="_on_Mover_initial_das_moved_right"]
+[connection signal="moved_left" from="Physics/Mover" to="." method="_on_Mover_moved_left"]
+[connection signal="moved_right" from="Physics/Mover" to="." method="_on_Mover_moved_right"]
+[connection signal="hard_dropped" from="Physics/Dropper" to="." method="_on_Dropper_hard_dropped"]
+[connection signal="soft_dropped" from="Physics/Dropper" to="." method="_on_Dropper_soft_dropped"]
+[connection signal="lock_cancelled" from="Physics/Squisher" to="." method="_on_Squisher_lock_cancelled"]
+[connection signal="squish_moved" from="Physics/Squisher" to="." method="_on_Squisher_squish_moved"]
+[connection signal="squish_moved" from="Physics/Squisher" to="Physics/Dropper" method="_on_Squisher_squish_moved"]

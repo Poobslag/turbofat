@@ -49,13 +49,13 @@ const NORTHWEST = Orientation.NORTHWEST
 const NORTHEAST = Orientation.NORTHEAST
 
 # toggle to assign default animation frames based on the creature's orientation
-export (bool) var reset_frames setget reset_frames
+export (bool) var _reset_frames setget reset_frames
 
 # toggle to remove the creature's textures
-export (bool) var reset_creature setget reset_creature
+export (bool) var _reset_creature setget reset_creature
 
 # toggle to generate a creature with a random appearance
-export (bool) var random_creature setget random_creature
+export (bool) var _random_creature setget random_creature
 
 # 'true' if the creature is walking. toggling this makes certain sprites visible/invisible.
 export (bool) var movement_mode := false setget set_movement_mode
