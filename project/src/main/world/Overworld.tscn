@@ -24,7 +24,6 @@
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=22]
 [ext_resource path="res://src/main/world/OverworldTouchButtons.tscn" type="PackedScene" id=23]
 
-
 [sub_resource type="TileSet" id=1]
 0/name = "block-shadow.png 0"
 0/texture = ExtResource( 19 )
@@ -142,80 +141,19 @@ GrassTuftScene = ExtResource( 15 )
 [node name="Spira" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 150, 150 )
 script = ExtResource( 2 )
-creature_def = {
-"body_rgb": "b23823",
-"ear": "1",
-"eye": "1",
-"eye_rgb": "282828 dedede",
-"horn": "1",
-"horn_rgb": "f1e398",
-"line_rgb": "6c4331",
-"mouth": "2"
-}
+creature_id = "spira"
 
 [node name="Bort" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 313.439, 344.721 )
-creature_def = {
-"body_rgb": "6f83db",
-"ear": "3",
-"eye": "1",
-"eye_rgb": "374265 eaf2f4",
-"horn": "1",
-"horn_rgb": "f1e398",
-"line_rgb": "6c4331",
-"mouth": "2"
-}
-chat_id = "bort"
-chat_name = "Bort"
-chat_theme_def = {
-"accent_scale": 2.6,
-"accent_swapped": false,
-"accent_texture": 0,
-"color": "6f83db"
-}
+creature_id = "bort"
 
 [node name="Ebe" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 444.163, 149.951 )
-creature_def = {
-"body_rgb": "b47922",
-"ear": "1",
-"eye": "2",
-"eye_rgb": "7d4c21 e5cd7d",
-"horn": "2",
-"horn_rgb": "f1e398",
-"line_rgb": "6c4331",
-"mouth": "1"
-}
-chat_id = "ebe"
-chat_name = "Ebe"
-chat_theme_def = {
-"accent_scale": 1.75,
-"accent_swapped": true,
-"accent_texture": 15,
-"color": "b47922"
-}
+creature_id = "ebe"
 
 [node name="Boatricia" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 652.587, 320.111 )
-creature_def = {
-"body_rgb": "0b45a6",
-"ear": "2",
-"eye": "3",
-"eye_rgb": "fad541 ffffff",
-"horn": "0",
-"horn_rgb": "282828",
-"line_rgb": "41281e",
-"mouth": "1"
-}
-chat_id = "boatricia"
-chat_name = "Boatricia"
-chat_theme_def = {
-"accent_scale": 0.67,
-"accent_swapped": true,
-"accent_texture": 1,
-"color": "0b45a6",
-"dark": true
-}
+creature_id = "boatricia"
 
 [node name="GlowySphere" type="KinematicBody2D" parent="World/Obstacles"]
 position = Vector2( 731.162, 206.052 )
@@ -326,10 +264,6 @@ codes = [ "bigfps" ]
 
 [node name="SettingsMenu" parent="Ui/OverworldUi" instance=ExtResource( 6 )]
 quit_text = "Save + Quit"
-[connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
-[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
-[connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
-[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
 [connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_showed_choices"]

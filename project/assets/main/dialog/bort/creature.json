@@ -1,0 +1,24 @@
+{
+  "version": "170e",
+  "id": "bort",
+  "name": "Bort",
+  "dna": {
+    "body_rgb": "6f83db",
+    "ear": "3",
+    "eye": "1",
+    "eye_rgb": "374265 eaf2f4",
+    "horn": "1",
+    "horn_rgb": "f1e398",
+    "line_rgb": "6c4331",
+    "mouth": "2"
+  },
+  "chat_theme_def": {
+    "accent_scale": 2.6,
+    "accent_swapped": false,
+    "accent_texture": 0,
+    "color": "6f83db"
+  },
+  "dialog": [
+    "dialog"
+  ]
+}

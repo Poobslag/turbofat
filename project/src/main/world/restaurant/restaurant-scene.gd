@@ -40,10 +40,10 @@ Recolors the creature according to the specified creature definition. This invol
 properties.
 
 Parameters:
-	'creature_def': The colors and textures used to draw the creature.
+	'dna': defines the creature's appearance such as eye color and mouth shape.
 """
-func summon_creature(creature_def: Dictionary, creature_index: int = -1) -> void:
-	get_creature_2d(creature_index).set_creature_def(creature_def)
+func summon_creature(dna: Dictionary, creature_index: int = -1) -> void:
+	get_creature_2d(creature_index).set_dna(dna)
 	_get_seat(creature_index).refresh()
 
 

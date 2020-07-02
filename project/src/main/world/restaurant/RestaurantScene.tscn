@@ -256,7 +256,7 @@ visible = false
 position = Vector2( 1381.23, 435.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
-creature_def = {
+dna = {
 
 }
 chat_theme_def = {
@@ -271,7 +271,7 @@ visible = false
 position = Vector2( 2381.23, 435.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
-creature_def = {
+dna = {
 
 }
 chat_theme_def = {

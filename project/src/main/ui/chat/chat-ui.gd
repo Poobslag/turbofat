@@ -94,7 +94,7 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 		$ChatChoices.hide_choices()
 	
 	# reposition the nametags for whether the characters are on the left or right side
-	var chatter: Node = ChattableManager.get_chatter(chat_event["who"])
+	var chatter := ChattableManager.get_chatter(chat_event["who"])
 	var nametag_right := false
 	var squished := false
 	if chatter and chatter.has_method("get_orientation"):

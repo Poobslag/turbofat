@@ -86,7 +86,7 @@ _grass_tuft = ExtResource( 15 )
 [node name="Spira" parent="Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 150, 150 )
 script = ExtResource( 2 )
-creature_def = {
+dna = {
 "body_rgb": "b23823",
 "ear": "1",
 "eye": "1",
@@ -99,7 +99,7 @@ creature_def = {
 
 [node name="Bort" parent="Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 313.439, 344.721 )
-creature_def = {
+dna = {
 "body_rgb": "6f83db",
 "ear": "3",
 "eye": "1",
@@ -109,8 +109,8 @@ creature_def = {
 "line_rgb": "6c4331",
 "mouth": "2"
 }
-chat_id = "bort"
-chat_name = "Bort"
+creature_id = "bort"
+creature_name = "Bort"
 chat_theme_def = {
 "accent_scale": 2.6,
 "accent_swapped": false,
@@ -120,7 +120,7 @@ chat_theme_def = {
 
 [node name="Ebe" parent="Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 444.163, 149.951 )
-creature_def = {
+dna = {
 "body_rgb": "b47922",
 "ear": "1",
 "eye": "2",
@@ -130,8 +130,8 @@ creature_def = {
 "line_rgb": "6c4331",
 "mouth": "1"
 }
-chat_id = "ebe"
-chat_name = "Ebe"
+creature_id = "ebe"
+creature_name = "Ebe"
 chat_theme_def = {
 "accent_scale": 1.75,
 "accent_swapped": true,
@@ -141,7 +141,7 @@ chat_theme_def = {
 
 [node name="Boatricia" parent="Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 652.587, 320.111 )
-creature_def = {
+dna = {
 "body_rgb": "0b45a6",
 "ear": "2",
 "eye": "3",
@@ -151,8 +151,8 @@ creature_def = {
 "line_rgb": "41281e",
 "mouth": "1"
 }
-chat_id = "boatricia"
-chat_name = "Boatricia"
+creature_id = "boatricia"
+creature_name = "Boatricia"
 chat_theme_def = {
 "accent_scale": 0.67,
 "accent_swapped": true,

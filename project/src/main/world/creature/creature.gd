@@ -27,10 +27,13 @@ const MAX_RUN_SPEED := 338
 # How fast can the creature accelerate
 const MAX_RUN_ACCELERATION := 2250
 
-export (Dictionary) var creature_def: Dictionary setget set_creature_def
-export (String) var chat_id: String setget set_chat_id
-export (String) var chat_name: String setget set_chat_name
-export (Dictionary) var chat_theme_def: Dictionary setget set_chat_theme_def
+export (String) var creature_id: String setget set_creature_id
+export (Dictionary) var dna: Dictionary setget set_dna
+
+var creature_def: CreatureDef
+var chat_path: String setget set_chat_path
+var creature_name: String setget set_creature_name
+var chat_theme_def: Dictionary setget set_chat_theme_def
 
 # 'true' if the creature is being slowed by friction while stopping or turning
 var _friction := false
@@ -46,7 +49,11 @@ var _non_iso_walk_direction := Vector2.ZERO
 onready var _creature_visuals: CreatureVisuals = $Visuals
 
 func _ready() -> void:
-	_refresh()
+	if creature_id:
+		_refresh_creature_id()
+	else:
+		_refresh_dna()
+		_refresh_chat_path()
 
 
 func _physics_process(delta: float) -> void:
@@ -81,20 +88,26 @@ func set_non_iso_velocity(new_velocity: Vector2) -> void:
 	_iso_velocity = Global.to_iso(new_velocity)
 
 
-func set_creature_def(new_creature_def: Dictionary) -> void:
-	creature_def = new_creature_def
-	set_meta("creature_def", creature_def)
-	_refresh()
+func set_dna(new_dna: Dictionary) -> void:
+	dna = new_dna
+	set_meta("dna", dna)
+	_refresh_dna()
 
 
-func set_chat_id(new_chat_id: String) -> void:
-	chat_id = new_chat_id
-	set_meta("chat_id", chat_id)
+func set_chat_path(new_chat_path: String) -> void:
+	chat_path = new_chat_path
+	set_meta("chat_path", chat_path)
+	_refresh_chat_path()
 
 
-func set_chat_name(new_chat_name: String) -> void:
-	chat_name = new_chat_name
-	set_meta("chat_name", chat_name)
+func set_creature_id(new_creature_id: String) -> void:
+	creature_id = new_creature_id
+	_refresh_creature_id()
+
+
+func set_creature_name(new_creature_name: String) -> void:
+	creature_name = new_creature_name
+	set_meta("chat_name", creature_name)
 
 
 func set_chat_theme_def(new_chat_theme_def: Dictionary) -> void:
@@ -174,13 +187,26 @@ func feed(food_color: Color) -> void:
 	_creature_visuals.feed(food_color)
 
 
-func _refresh() -> void:
+func _refresh_creature_id() -> void:
 	if is_inside_tree():
-		if creature_def:
-			var filled_creature_def := CreatureLoader.fill_creature_def(creature_def)
-			_creature_visuals.creature_def = filled_creature_def
-		if not chat_id:
-			$ChatIcon.bubble_type = ChatIcon.BubbleType.NONE
+		creature_def = CreatureLoader.load_creature_def(creature_id)
+		set_dna(creature_def.dna)
+		set_creature_name(creature_def.creature_name)
+		set_chat_path(creature_def.chat_path)
+		set_chat_theme_def(creature_def.chat_theme_def)
+
+
+func _refresh_dna() -> void:
+	if is_inside_tree():
+		if dna:
+			_creature_visuals.dna = CreatureLoader.fill_dna(dna)
+		else:
+			_creature_visuals.dna = {}
+
+
+func _refresh_chat_path() -> void:
+	if is_inside_tree():
+		$ChatIcon.bubble_type = ChatIcon.SPEECH if chat_path else ChatIcon.NONE
 
 
 func _apply_friction() -> void:

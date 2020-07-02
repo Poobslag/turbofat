@@ -17,7 +17,7 @@ __meta__ = {
 [node name="Creature" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 420 )
 scale = Vector2( 3, 3 )
-creature_def = {
+dna = {
 "body_rgb": "0b45a6",
 "ear": "2",
 "eye": "3",

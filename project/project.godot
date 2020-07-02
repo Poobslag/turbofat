@@ -110,6 +110,11 @@ _global_script_classes=[ {
 "path": "res://src/main/world/creature/creature.gd"
 }, {
 "base": "Reference",
+"class": "CreatureDef",
+"language": "GDScript",
+"path": "res://src/main/world/creature/creature-def.gd"
+}, {
+"base": "Reference",
 "class": "CreatureLoader",
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-loader.gd"
@@ -395,6 +400,7 @@ _global_script_class_icons={
 "ComboTracker": "",
 "Connect": "",
 "Creature": "",
+"CreatureDef": "",
 "CreatureLoader": "",
 "CreaturePackedSprite": "",
 "CreatureVisuals": "",

@@ -1,0 +1,21 @@
+{
+  "version": "170e",
+  "id": "spira",
+  "name": "Spira",
+  "dna": {
+    "body_rgb": "b23823",
+    "ear": "1",
+    "eye": "1",
+    "eye_rgb": "282828 dedede",
+    "horn": "1",
+    "horn_rgb": "f1e398",
+    "line_rgb": "6c4331",
+    "mouth": "2"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "b23823"
+  }
+}

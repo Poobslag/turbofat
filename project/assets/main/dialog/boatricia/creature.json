@@ -1,0 +1,25 @@
+{
+  "version": "170e",
+  "id": "boatricia",
+  "name": "Boatricia",
+  "dna": {
+    "body_rgb": "0b45a6",
+    "ear": "2",
+    "eye": "3",
+    "eye_rgb": "fad541 ffffff",
+    "horn": "0",
+    "horn_rgb": "282828",
+    "line_rgb": "41281e",
+    "mouth": "1"
+  },
+  "chat_theme_def": {
+    "accent_scale": 0.67,
+    "accent_swapped": true,
+    "accent_texture": 1,
+    "color": "0b45a6",
+    "dark": true
+  },
+  "dialog": [
+    "dialog"
+  ]
+}
