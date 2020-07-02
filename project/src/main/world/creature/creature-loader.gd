@@ -49,7 +49,7 @@ Parameters:
 	'dna': Defines high-level information about the creature's appearance, such as 'she has red eyes'. The response
 		includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
 """
-func load_details(dna: Dictionary) -> void:
+static func load_details(dna: Dictionary) -> void:
 	_load_ear(dna)
 	_load_horn(dna)
 	_load_mouth(dna)
@@ -74,7 +74,7 @@ Parameters:
 	'filename': The stripped-down filename of the resource to look up. All creature texture files have a path of
 		res://assets/main/world/creature/0/{something}.png, so this parameter only specifies the {something}.
 """
-func _load_texture(dna: Dictionary, node_path: String, key: String, filename: String) -> void:
+static func _load_texture(dna: Dictionary, node_path: String, key: String, filename: String) -> void:
 	# load the texture resource
 	var resource_path: String
 	var frame_data: String
@@ -104,7 +104,7 @@ func _load_texture(dna: Dictionary, node_path: String, key: String, filename: St
 """
 Loads the resources for a creature's ears based on a creature definition.
 """
-func _load_ear(dna: Dictionary) -> void:
+static func _load_ear(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/EarZ0", "ear", "ear-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/EarZ1", "ear", "ear-z1-packed")
 	_load_texture(dna, "Neck0/HeadBobber/EarZ2", "ear", "ear-z2-packed")
@@ -113,7 +113,7 @@ func _load_ear(dna: Dictionary) -> void:
 """
 Loads the resources for a creature's horn based on a creature definition.
 """
-func _load_horn(dna: Dictionary) -> void:
+static func _load_horn(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-packed")
 
@@ -121,7 +121,7 @@ func _load_horn(dna: Dictionary) -> void:
 """
 Loads the resources for a creature's mouth based on a creature definition.
 """
-func _load_mouth(dna: Dictionary) -> void:
+static func _load_mouth(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/Mouth", "mouth", "mouth-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Food", "mouth", "food-packed")
 	_load_texture(dna, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-packed")
@@ -130,14 +130,14 @@ func _load_mouth(dna: Dictionary) -> void:
 """
 Loads the resources for a creature's eyes based on a creature definition.
 """
-func _load_eye(dna: Dictionary) -> void:
+static func _load_eye(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/Eyes", "eye", "eyes-packed")
 
 
 """
 Loads the resources for a creature's arms, legs and torso based on a creature definition.
 """
-func _load_body(dna: Dictionary) -> void:
+static func _load_body(dna: Dictionary) -> void:
 	# All creatures have a body, but this class supports passing in an empty creature definition to unload the
 	# textures from creature sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# creature's body.
@@ -153,7 +153,7 @@ func _load_body(dna: Dictionary) -> void:
 """
 Assigns the creature's colors based on a creature definition.
 """
-func _load_colors(dna: Dictionary) -> void:
+static func _load_colors(dna: Dictionary) -> void:
 	var line_color: Color
 	if dna.has("line_rgb"):
 		line_color = Color(dna.line_rgb)
@@ -214,7 +214,7 @@ func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/HornZ1:green"] = horn_color
 
 
-func load_creature_def(id: String) -> CreatureDef:
+static func load_creature_def(id: String) -> CreatureDef:
 	var creature_def_text: String = FileUtils.get_file_as_text("res://assets/main/dialog/%s/creature.json" % id)
 	var json_creature_def: Dictionary = parse_json(creature_def_text)
 	var creature_def := CreatureDef.new()
@@ -225,7 +225,7 @@ func load_creature_def(id: String) -> CreatureDef:
 """
 If the specified key is not associated with a value, this method associates it with the given value.
 """
-func put_if_absent(dna: Dictionary, key: String, value) -> void:
+static func put_if_absent(dna: Dictionary, key: String, value) -> void:
 	dna[key] = dna.get(key, value)
 
 
@@ -234,7 +234,7 @@ Fill in the creature's missing traits with random values.
 
 Otherwise, missing values will be left empty, leading to invisible body parts or strange colors.
 """
-func fill_dna(dna: Dictionary) -> Dictionary:
+static func fill_dna(dna: Dictionary) -> Dictionary:
 	# duplicate the dna so that we don't modify the original
 	var result := dna.duplicate()
 	put_if_absent(result, "line_rgb", "6c4331")

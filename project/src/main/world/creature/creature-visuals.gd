@@ -68,8 +68,6 @@ export (Orientation) var orientation := SOUTHEAST setget set_orientation
 # describes the colors and textures used to draw the creature
 export (Dictionary) var dna: Dictionary setget set_dna
 
-var _creature_loader := CreatureLoader.new()
-
 # used to temporarily suppress sfx signals. used when skipping to the middle of animations which play sfx
 var _suppress_sfx_signal_timer := 0.0
 
@@ -238,7 +236,7 @@ properties.
 func set_dna(new_dna: Dictionary) -> void:
 	dna = new_dna
 	if is_inside_tree():
-		_creature_loader.load_details(dna)
+		CreatureLoader.load_details(dna)
 		_update_creature_properties()
 		set_fatness(1)
 

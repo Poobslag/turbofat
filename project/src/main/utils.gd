@@ -1,4 +1,4 @@
-extends Node
+class_name Utils
 """
 Contains global utilities.
 """

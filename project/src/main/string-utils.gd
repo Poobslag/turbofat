@@ -1,4 +1,4 @@
-extends Node
+class_name StringUtils
 """
 Utility class for string operations.
 

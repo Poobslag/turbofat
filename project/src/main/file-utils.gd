@@ -1,4 +1,4 @@
-extends Node
+class_name FileUtils
 """
 Utility class for file operations.
 
