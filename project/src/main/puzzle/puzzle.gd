@@ -34,8 +34,10 @@ func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_menu"):
 		if PuzzleScore.game_active:
 			$TopOutTracker.make_player_lose()
-		else:
+			get_tree().set_input_as_handled()
+		elif $Hud/PuzzleMessages/BackButton.visible:
 			Breadcrumb.pop_trail()
+			get_tree().set_input_as_handled()
 
 
 func get_playfield() -> Playfield:
