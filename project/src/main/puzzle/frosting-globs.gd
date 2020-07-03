@@ -15,47 +15,37 @@ signal hit_playfield(glob)
 signal hit_next_pieces(glob)
 signal hit_gutter(glob)
 
-# The maximum number of frosting globs we can display at once.
-const GLOB_POOL_SIZE := 800
-
-# The cell size for the TileMap containing the playfield blocks. This is used to position our globs.
-const CELL_SIZE = Vector2(36, 32)
-
-export (NodePath) var playfield_path: NodePath
+export (NodePath) var puzzle_tile_map_path: NodePath
 
 onready var FrostingGlobScene := preload("res://src/main/puzzle/FrostingGlob.tscn")
-onready var _playfield := get_node(playfield_path)
+onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
 """
 Launches new frosting globs from the specified tile.
 
 Parameters:
-	'x', 'y': An (x, y) position in the TileMap containing the playfield blocks
+	'cell_pos': An (x, y) position in the TileMap containing the playfield blocks
 	'color_int': One of PuzzleTileMap's food color indexes (brown, pink, bread, white, cake)
 	'glob_count': The number of frosting globs to launch
 	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
 """
-func _spawn_globs(x: int, y: int, color_int: int, glob_count: int, glob_alpha: float = 1.0) -> void:
+func _spawn_globs(cell_pos: Vector2, color_int: int, glob_count: int, glob_alpha: float = 1.0) -> void:
 	var viewport: Viewport
 	if PuzzleTileMap.is_cake_box(color_int):
 		viewport = $GlobViewports/RainbowViewport
 	else:
 		viewport = $GlobViewports/Viewport
 	
+	var glob_position_offset: Vector2 = _puzzle_tile_map.get_global_transform().origin - get_global_transform().origin
 	for _i in range(glob_count):
-		var glob: FrostingGlob = _recycle_glob(viewport)
-		glob.initialize(color_int, Vector2(x + randf(), y - 3 + randf()) * CELL_SIZE + _playfield.rect_position)
+		var glob: FrostingGlob = _instance_glob(viewport)
+		var glob_position := _puzzle_tile_map.somewhere_near_cell(cell_pos) + glob_position_offset
+		glob.initialize(color_int, glob_position)
 		glob.modulate.a = glob_alpha
 		glob.fall()
 
 
-"""
-Reuse a FrostingGlob object without reallocating or 'newing' it.
-
-Attempts to reuse an offscreen/expired frosting glob if one is available, but will fall back to onscreen frosting
-globs if needed.
-"""
-func _recycle_glob(new_parent: Node = null) -> FrostingGlob:
+func _instance_glob(new_parent: Node = null) -> FrostingGlob:
 	var glob: FrostingGlob = FrostingGlobScene.instance()
 	glob.connect("hit_wall", self, "_on_FrostingGlob_hit_wall")
 	glob.connect("hit_playfield", self, "_on_FrostingGlob_hit_playfield")
@@ -74,13 +64,13 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var color_int: int
 		var glob_count: int
-		if _playfield.get_cell(x, y) == PuzzleTileMap.TILE_BOX:
-			color_int = _playfield.get_cell_autotile_coord(x, y).y
+		if _puzzle_tile_map.get_cell(x, y) == PuzzleTileMap.TILE_BOX:
+			color_int = _puzzle_tile_map.get_cell_autotile_coord(x, y).y
 			if PuzzleTileMap.is_snack_box(color_int):
 				glob_count = 2
 			elif PuzzleTileMap.is_cake_box(color_int):
 				glob_count = 4
-		_spawn_globs(x, y, color_int, glob_count)
+		_spawn_globs(Vector2(x, y), color_int, glob_count)
 
 
 """
@@ -94,7 +84,7 @@ func _on_Playfield_box_built(left_x: int, top_y: int, width: int, height: int, c
 				glob_count = 1
 			elif PuzzleTileMap.is_cake_box(color_int):
 				glob_count = 2
-			_spawn_globs(x, y, color_int, glob_count)
+			_spawn_globs(Vector2(x, y), color_int, glob_count)
 
 
 """
@@ -105,8 +95,8 @@ func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void
 		var pos_arr_item: Vector2 = piece.type.pos_arr[piece.orientation][i]
 		var glob_cell_from := old_pos + pos_arr_item
 		var glob_cell_to := piece.pos + pos_arr_item
-		_spawn_globs(glob_cell_from.x, glob_cell_from.y, piece.type.get_color_int(), 1, 0.8)
-		_spawn_globs(glob_cell_to.x, glob_cell_to.y, piece.type.get_color_int(), 1, 0.8)
+		_spawn_globs(glob_cell_from, piece.type.get_color_int(), 1, 0.8)
+		_spawn_globs(glob_cell_to, piece.type.get_color_int(), 1, 0.8)
 
 
 func _on_FrostingGlob_hit_wall(glob: FrostingGlob) -> void:

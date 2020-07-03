@@ -173,6 +173,23 @@ func set_whiteness(new_whiteness: float) -> void:
 
 
 """
+Returns a position randomly near a cell.
+
+This is useful when we want visual effects to appear somewhere within the cell at (3, 6) with random variation.
+
+Parameters:
+	'cell_pos': Grid-based coordinates of a cell in the tilemap.
+	
+	'cell_offset': (Optional) Grid-based coordinates of the random offset to apply. If unspecified, the coordinate
+		will be randomly offset by a value in the range [(0, 0), (1, 1)]
+"""
+func somewhere_near_cell(cell_pos: Vector2, cell_offset: Vector2 = Vector2.ZERO) -> Vector2:
+	if not cell_offset:
+		cell_offset = Vector2(randf(), randf())
+	return (cell_pos + cell_offset) * cell_size * scale
+
+
+"""
 Deconstructs the piece at the specified location into vegetable blocks.
 """
 func _convert_piece_to_veg(x: int, y: int) -> void:
