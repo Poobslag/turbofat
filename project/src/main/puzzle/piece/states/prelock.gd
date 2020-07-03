@@ -5,7 +5,9 @@ The piece has locked into position. The player can still press 'down' to unlock 
 
 func update(piece_manager: PieceManager) -> String:
 	var new_state_name := ""
-	if piece_manager.apply_player_input():
+	piece_manager.move_piece()
+	if piece_manager.piece.lock == 0:
+		# piece was unlocked
 		new_state_name = "MovePiece"
 	elif frames >= PieceSpeeds.current_speed.post_lock_delay:
 		piece_manager.buffer_inputs()

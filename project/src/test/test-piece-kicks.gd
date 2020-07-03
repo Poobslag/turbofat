@@ -83,16 +83,21 @@ Returns one of the following:
 	3. A non-zero vector if the piece could rotate, but needed to be kicked.
 """
 func _kick_piece() -> Vector2:
-	var result
+	var result: Vector2
 	_from_piece = _create_active_piece(from_grid)
 	_to_piece = _create_active_piece(to_grid)
-	if _from_piece.can_move_piece_to(funcref(self, "_is_cell_blocked"), _from_piece.pos, _to_piece.orientation):
-		# no kick necessary
-		result = Vector2.ZERO
+	
+	# if the piece is blocked, kick the piece
+	if not _to_piece.can_move_to(_from_piece.pos, _to_piece.orientation):
+		_to_piece.target_pos = _from_piece.pos
+		_to_piece.target_orientation = _to_piece.orientation
+		_to_piece.kick_piece()
+	
+	# if the piece is still blocked, it's a failed kick
+	if not _to_piece.can_move_to(_to_piece.pos, _to_piece.orientation):
+		result = FAILED_KICK
 	else:
-		result = _from_piece.kick_piece(funcref(self, "_is_cell_blocked"), _from_piece.pos, _to_piece.orientation)
-		if not result:
-			result = FAILED_KICK
+		result = _to_piece.pos - _from_piece.pos
 	return result
 
 
@@ -134,7 +139,7 @@ func _create_active_piece(ascii_grid: Array) -> ActivePiece:
 				shape_match = false
 				break
 		if shape_match:
-			_active_piece = ActivePiece.new(piece_type)
+			_active_piece = ActivePiece.new(piece_type, funcref(self, "_is_cell_blocked"))
 			_active_piece.pos = position
 			_active_piece.orientation = pos_arr_index
 			break

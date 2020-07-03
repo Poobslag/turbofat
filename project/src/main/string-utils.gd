@@ -60,6 +60,7 @@ static func substring_after_last(s: String, sep: String) -> String:
 Formats a duration like 63.159 into '1:03'
 """
 static func format_duration(seconds: float) -> String:
+	# warning-ignore:integer_division
 	return "%01d:%02d" % [int(ceil(seconds)) / 60, int(ceil(seconds)) % 60]
 
 

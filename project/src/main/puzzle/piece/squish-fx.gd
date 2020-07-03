@@ -81,14 +81,7 @@ func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void
 			var i := 0
 			while i < unblocked_blocks.size():
 				var target_block_pos: Vector2 = unblocked_blocks[i] + old_pos + Vector2(0, dy)
-				var valid_block_pos := true
-				if target_block_pos.x < 0 or target_block_pos.x >= PuzzleTileMap.COL_COUNT:
-					valid_block_pos = false
-				elif target_block_pos.y < 0 or target_block_pos.y >= PuzzleTileMap.ROW_COUNT:
-					valid_block_pos = false
-				elif not _piece_manager.playfield.is_cell_empty(target_block_pos.x, target_block_pos.y):
-					valid_block_pos = false
-				if not valid_block_pos:
+				if piece.is_cell_blocked(target_block_pos):
 					unblocked_blocks.remove(i)
 				else:
 					i += 1
