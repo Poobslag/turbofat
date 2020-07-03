@@ -34,9 +34,9 @@ func can_parse_json() -> bool:
 
 
 """
-Refreshes the tilemap based on our json text.
+Refreshes the tile map based on our json text.
 """
-func refresh_tilemap() -> void:
+func refresh_tile_map() -> void:
 	if can_parse_json():
 		_tile_map.clear()
 		for json_tile in _json_tiles:
@@ -47,18 +47,18 @@ func refresh_tilemap() -> void:
 			var pos := Vector2(int(json_pos_arr[0]), int(json_pos_arr[1]))
 			var tile := int(json_tile_arr[0])
 			var autotile_coord := Vector2(int(json_tile_arr[1]), int(json_tile_arr[2]))
-			_playfield.set_block(pos, tile, autotile_coord)
+			_playfield.tilemap.set_block(pos, tile, autotile_coord)
 
 
 """
-Refreshes our json text based on the tilemap.
+Refreshes our json text based on the tile map.
 """
 func refresh_json() -> void:
 	if can_parse_json():
 		var new_json_tiles: Array = []
 		for used_cell in _tile_map.get_used_cells():
 			var autotile_coord: Vector2 = _tile_map.get_cell_autotile_coord(used_cell.x, used_cell.y)
-			var tile_index: int = _tile_map.get_cell(used_cell.x, used_cell.y)
+			var tile_index: int = _tile_map.get_cellv(used_cell)
 			var json_tile: Dictionary = {
 				"pos": "%s %s" % [used_cell.x, used_cell.y],
 				"tile": "%s %s %s" % [tile_index, autotile_coord.x, autotile_coord.y]
@@ -85,4 +85,4 @@ func _on_Playfield_tile_map_changed() -> void:
 
 
 func _on_text_changed() -> void:
-	refresh_tilemap()
+	refresh_tile_map()

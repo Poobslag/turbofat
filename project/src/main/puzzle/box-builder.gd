@@ -8,7 +8,7 @@ Builds boxes in a tilemap as new pieces are placed.
 signal after_boxes_built
 
 # emitted when a new box is built
-signal box_built(x, y, width, height, color_int)
+signal box_built(rect, color_int)
 
 export (NodePath) var tile_map_path: NodePath
 
@@ -34,11 +34,11 @@ Builds a box with the specified location and size.
 
 Boxes are built when the player forms a 3x3, 3x4, 3x5 rectangle from intact pieces.
 """
-func build_box(x: int, y: int, width: int, height: int, box_int: int) -> void:
+func build_box(rect: Rect2, color_int: int) -> void:
 	# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
 	remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
-	_tile_map.build_box(x, y, width, height, box_int)
-	emit_signal("box_built", x, y, width, height, box_int)
+	_tile_map.build_box(rect, color_int)
+	emit_signal("box_built", rect, color_int)
 
 
 """
@@ -134,11 +134,11 @@ func _process_box(end_x: int, end_y: int, width: int, height: int) -> bool:
 		if Connect.is_r(_tile_map.get_cell_autotile_coord(end_x, y).x):
 			return false
 	
-	var box_int: int
+	var color_int: int
 	if width == 3 and height == 3:
-		box_int = _tile_map.get_cell_autotile_coord(start_x, start_y).y
+		color_int = _tile_map.get_cell_autotile_coord(start_x, start_y).y
 	else:
-		box_int = PuzzleTileMap.BoxInt.CAKE
-	build_box(start_x, start_y, width, height, box_int)
+		color_int = PuzzleTileMap.BoxColorInt.CAKE
+	build_box(Rect2(start_x, start_y, width, height), color_int)
 	
 	return true

@@ -37,14 +37,14 @@ signal tiles_changed(tile_map)
 export (NodePath) var playfield_path: NodePath
 export (NodePath) var next_piece_displays_path: NodePath
 
-# settings and state for the currently active piece.
-onready var piece := ActivePiece.new(PieceTypes.piece_null, funcref(self, "_is_cell_blocked"))
-
 onready var _next_piece_displays: NextPieceDisplays = get_node(next_piece_displays_path)
 onready var _playfield: Playfield = get_node(playfield_path)
 onready var tile_map: PuzzleTileMap = $TileMap
 
-# information about the piece previously rendered to the tilemap
+# settings and state for the currently active piece.
+onready var piece := ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
+
+# information about the piece previously rendered to the tile map
 var drawn_piece_type: PieceType
 var drawn_piece_pos: Vector2
 var drawn_piece_orientation: int
@@ -120,7 +120,7 @@ Returns 'true' if the piece was spawned successfully, or 'false' if the player t
 """
 func spawn_piece() -> bool:
 	var piece_type := _next_piece_displays.pop_next_piece()
-	piece = ActivePiece.new(piece_type, funcref(self, "_is_cell_blocked"))
+	piece = ActivePiece.new(piece_type, funcref(_playfield.tile_map, "is_cell_blocked"))
 	
 	$Physics/Squisher.squish_state = PieceSquisher.UNKNOWN
 	$Physics/Rotator.apply_initial_rotate_input(piece)
@@ -203,19 +203,11 @@ func is_playfield_clearing_lines() -> bool:
 
 
 func _clear_piece() -> void:
-	piece = ActivePiece.new(PieceTypes.piece_null, funcref(self, "_is_cell_blocked"))
-
-
-func _is_cell_blocked(pos: Vector2) -> bool:
-	var blocked := false
-	if pos.x < 0 or pos.x >= PuzzleTileMap.COL_COUNT: blocked = true
-	if pos.y < 0 or pos.y >= PuzzleTileMap.ROW_COUNT: blocked = true
-	if not _playfield.is_cell_empty(pos.x, pos.y): blocked = true
-	return blocked
+	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
 
 
 """
-Refresh the tilemap which displays the piece, based on the current piece's position and orientation.
+Refresh the tile map which displays the piece, based on the current piece's position and orientation.
 """
 func _update_tile_map() -> void:
 	$TileMap.clear()

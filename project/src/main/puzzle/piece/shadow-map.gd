@@ -24,10 +24,10 @@ func _process(_delta: float) -> void:
 	# draw shadows cast by blocks in the playfield
 	for cell in _parent_tile_map.get_used_cells():
 		var autotile_coord: Vector2 = _parent_tile_map.get_cell_autotile_coord(cell.x, cell.y)
-		set_cell(cell.x, cell.y, _parent_tile_map.get_cell(cell.x, cell.y), false, false, false, autotile_coord)
+		set_cell(cell.x, cell.y, _parent_tile_map.get_cellv(cell), false, false, false, autotile_coord)
 
 	# draw shadows cast by the current piece
 	if piece_tile_map:
 		for cell in piece_tile_map.get_used_cells():
 			var autotile_coord: Vector2 = piece_tile_map.get_cell_autotile_coord(cell.x, cell.y)
-			set_cell(cell.x, cell.y, piece_tile_map.get_cell(cell.x, cell.y), false, false, false, autotile_coord)
+			set_cell(cell.x, cell.y, piece_tile_map.get_cellv(cell), false, false, false, autotile_coord)

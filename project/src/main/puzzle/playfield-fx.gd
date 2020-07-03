@@ -94,7 +94,7 @@ func reset() -> void:
 	$LightMap.modulate = Color.transparent
 	$GlowMap.modulate = Color.transparent
 	_calculate_brightness(0)
-	_refresh_tilemaps()
+	_refresh_tile_maps()
 
 
 func _init_tile_set() -> void:
@@ -145,7 +145,7 @@ func _calculate_line_color(box_ints: Array) -> void:
 	if box_ints.empty():
 		# vegetable
 		_color = VEGETABLE_LIGHT_COLOR
-	elif box_ints.has(PuzzleTileMap.BoxInt.CAKE):
+	elif box_ints.has(PuzzleTileMap.BoxColorInt.CAKE):
 		# cake box
 		_color = RAINBOW_LIGHT_COLOR
 	elif box_ints.size() == 1 or FOOD_LIGHT_COLORS[box_ints[0]] != _color:
@@ -180,9 +180,9 @@ func _calculate_brightness(combo: int) -> void:
 
 
 """
-Calculates the new light pattern and refreshes the tilemaps.
+Calculates the new light pattern and refreshes the tile maps.
 """
-func _refresh_tilemaps() -> void:
+func _refresh_tile_maps() -> void:
 	$BgStrobe.color = Utils.to_transparent(_color)
 	
 	var new_pattern: Array
@@ -210,7 +210,7 @@ func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_li
 	_calculate_line_color(box_ints)
 	_pattern_y += 1
 	_start_glow_tween()
-	_refresh_tilemaps()
+	_refresh_tile_maps()
 
 
 """
@@ -220,16 +220,16 @@ func _on_ComboTracker_combo_break_changed(value: int) -> void:
 	if value >= 2:
 		if _pattern != OFF_PATTERN:
 			reset()
-			_refresh_tilemaps()
+			_refresh_tile_maps()
 	else:
-		_refresh_tilemaps()
+		_refresh_tile_maps()
 
 
 """
 When the player builds a box we brighten the combo lights again.
 """
-func _on_Playfield_box_built(_x: int, _y: int, _width: int, _height: int, _color_int: int) -> void:
-	_refresh_tilemaps()
+func _on_Playfield_box_built(_rect: Rect2, _color_int: int) -> void:
+	_refresh_tile_maps()
 	_start_glow_tween()
 
 

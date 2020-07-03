@@ -30,7 +30,7 @@ func _ready() -> void:
 func set_editor_piece(new_editor_piece: int) -> void:
 	editor_piece = new_editor_piece
 	_piece = _editor_pieces[editor_piece]
-	_refresh_tilemap()
+	_refresh_tile_map()
 	_refresh_scale()
 
 
@@ -45,7 +45,7 @@ func _piece_extents() -> Rect2:
 	return extents
 
 
-func _refresh_tilemap() -> void:
+func _refresh_tile_map() -> void:
 	var _extents := _piece_extents()
 	$TileMap.clear()
 	for i in range(_piece.pos_arr[_orientation].size()):
@@ -55,4 +55,4 @@ func _refresh_tilemap() -> void:
 
 func _on_RotateButton_pressed() -> void:
 	_orientation = (_orientation + 1) % _piece.pos_arr.size()
-	_refresh_tilemap()
+	_refresh_tile_map()

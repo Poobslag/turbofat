@@ -6,7 +6,7 @@ or whether a box was built, pausing and playing sound effects
 """
 
 # emitted when a new box is built
-signal box_built(x, y, width, height, color_int)
+signal box_built(rect, color_int)
 
 # emitted before a 'line clear' where a line is erased and the player is rewarded
 signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
@@ -32,6 +32,8 @@ const FOOD_COLORS: Array = [
 
 # remaining frames to delay for something besides making boxes/clearing lines
 var _remaining_misc_delay_frames := 0
+
+onready var tile_map := $TileMapClip/TileMap
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
@@ -61,32 +63,12 @@ func get_remaining_box_build_frames() -> int:
 	return $BoxBuilder.remaining_box_build_frames
 
 
-"""
-Rolls back the piece previously written to the playfield.
-
-Also undoes any boxes that were built and lines that were cleared.
-"""
-func undo_last_piece() -> void:
-	$TileMapClip/TileMap.restore_state()
-
-
 func add_misc_delay_frames(frames: int) -> void:
 	_remaining_misc_delay_frames += frames
 
 
-func clear() -> void:
-	$TileMapClip/TileMap.clear()
-
-
 func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_points: bool = true) -> void:
 	$LineClearer.schedule_line_clears(lines_to_clear, line_clear_delay, award_points)
-
-
-"""
-Writes a block into the tile map.
-"""
-func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
-	$TileMapClip/TileMap.set_block(pos, tile, autotile_coord)
 
 
 """
@@ -107,12 +89,12 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 	$BoxBuilder.remaining_box_build_frames = 0
 	$LineClearer.remaining_line_erase_frames = 0
 	
-	$TileMapClip/TileMap.save_state()
+	tile_map.save_state()
 	
 	for i in range(type.pos_arr[orientation].size()):
 		var block_pos := type.get_cell_position(orientation, i)
 		var block_color := type.get_cell_color(orientation, i)
-		set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
+		tile_map.set_block(pos + block_pos, PuzzleTileMap.TILE_PIECE, block_color)
 	
 	if not death_piece:
 		$BoxBuilder.process_boxes()
@@ -124,30 +106,18 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 		emit_signal("after_piece_written")
 
 
-func is_cell_empty(x: int, y: int) -> bool:
-	return $TileMapClip/TileMap.is_cell_empty(x, y)
-
-
 func break_combo() -> void:
 	$ComboTracker.break_combo()
-
-
-func get_cell(x: int, y:int) -> int:
-	return $TileMapClip/TileMap.get_cell(x, y)
-
-
-func get_cell_autotile_coord(x: int, y:int) -> Vector2:
-	return $TileMapClip/TileMap.get_cell_autotile_coord(x, y)
 
 
 """
 Resets the playfield to the scenario's initial state.
 """
 func _prepare_scenario_blocks() -> void:
-	clear()
+	tile_map.clear()
 	var blocks_start: BlocksStartRules = Scenario.settings.blocks_start
 	for cell in blocks_start.used_cells:
-		set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
+		tile_map.set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
 
 
 func _on_PuzzleScore_game_prepared() -> void:
@@ -158,8 +128,8 @@ func _on_Scenario_settings_changed() -> void:
 	_prepare_scenario_blocks()
 
 
-func _on_BoxBuilder_box_built(x: int, y: int, width: int, height: int, color: int) -> void:
-	emit_signal("box_built", x, y, width, height, color)
+func _on_BoxBuilder_box_built(rect: Rect2, color_int: int) -> void:
+	emit_signal("box_built", rect, color_int)
 
 
 func _on_BoxBuilder_after_boxes_built() -> void:

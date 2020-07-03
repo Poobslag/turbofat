@@ -9,7 +9,7 @@ Keys:
 """
 
 var _line_clear_count := 1
-var _box_int := 0
+var _color_int := 0
 
 func _ready() -> void:
 	Scenario.settings.set_start_level("T")
@@ -23,11 +23,11 @@ func _input(event: InputEvent) -> void:
 		KEY_W: _build_box(9)
 		KEY_E: _build_box(15)
 		
-		KEY_A: _box_int = 0
-		KEY_S: _box_int = 1
-		KEY_D: _box_int = 2
-		KEY_F: _box_int = 3
-		KEY_G: _box_int = 4
+		KEY_A: _color_int = 0
+		KEY_S: _color_int = 1
+		KEY_D: _color_int = 2
+		KEY_F: _color_int = 3
+		KEY_G: _color_int = 4
 		
 		KEY_U: _clear_line(3)
 		KEY_I: _clear_line(9)
@@ -35,7 +35,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _build_box(y: int) -> void:
-	$Puzzle/Playfield/BoxBuilder.build_box(6, y, 3, 3, _box_int)
+	$Puzzle/Playfield/BoxBuilder.build_box(6, y, 3, 3, _color_int)
 
 
 func _clear_line(cleared_line: int) -> void:

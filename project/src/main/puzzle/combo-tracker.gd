@@ -46,7 +46,7 @@ func _on_PuzzleScore_game_prepared() -> void:
 	combo = 0
 
 
-func _on_Playfield_box_built(_x: int, _y: int, _width: int, _height: int, _color_int: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2, _color_int: int) -> void:
 	piece_continued_combo = true
 	if combo_break != 0:
 		combo_break = 0

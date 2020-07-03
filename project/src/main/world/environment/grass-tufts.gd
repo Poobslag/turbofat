@@ -27,7 +27,7 @@ func _refresh() -> void:
 	# add grass tufts over some of the tilemap's grassy cells
 	for cell_obj in _ground_map.get_used_cells():
 		var cell: Vector2 = cell_obj
-		if _ground_map.get_cell(cell.x, cell.y) == GRASS_CELL:
+		if _ground_map.get_cellv(cell) == GRASS_CELL:
 			if randf() < 0.12:
 				_add_tuft(cell)
 				_add_tuft(cell)

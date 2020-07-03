@@ -25,7 +25,7 @@ func _process(_delta: float) -> void:
 	var next_piece := _piece_queue.get_next_piece(_piece_index)
 	if next_piece != _displayed_piece:
 		var bounding_box := Rect2(next_piece.get_cell_position(UNROTATED, 0), Vector2(1.0, 1.0))
-		# update the tilemap with the new piece type
+		# update the tile map with the new piece type
 		$TileMap.clear()
 		for i in range(next_piece.pos_arr[0].size()):
 			var block_pos := next_piece.get_cell_position(UNROTATED, i)
