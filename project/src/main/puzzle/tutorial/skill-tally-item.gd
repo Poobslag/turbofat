@@ -151,7 +151,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 	increment()
 
 
-func _on_Playfield_box_built(_x: int, _y: int, _width: int, _height: int, _color: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2, _color_int: int) -> void:
 	increment()
 
 

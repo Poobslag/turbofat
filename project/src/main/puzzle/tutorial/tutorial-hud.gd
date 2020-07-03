@@ -95,11 +95,11 @@ func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> vo
 	_squish_moves += 1
 
 
-func _on_Playfield_box_built(_x: int, _y: int, _width: int, _height: int, color: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
 	_did_build_box = true
 	_boxes_built += 1
 	
-	if color == PuzzleTileMap.BoxInt.CAKE:
+	if color == PuzzleTileMap.BoxColorInt.CAKE:
 		_did_build_cake = true
 
 
@@ -166,12 +166,12 @@ func _on_Playfield_after_piece_written() -> void:
 			if _boxes_built >= 2: _advance_scenario()
 		"tutorial-beginner-2":
 			if not _did_squish_move:
-				_playfield.undo_last_piece()
+				_playfield.tile_map.restore_state()
 			if _squish_moves >= 2:
 				_advance_scenario()
 		"tutorial-beginner-3":
 			if not _did_build_box:
-				_playfield.undo_last_piece()
+				_playfield.tile_map.restore_state()
 			if _snack_stacks >= 2:
 				_advance_scenario()
 

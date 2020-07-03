@@ -5,24 +5,24 @@ UI component for a draggable chunk of level editor data.
 """
 
 func _ready() -> void:
-	_refresh_tilemap()
+	_refresh_tile_map()
 	_refresh_scale()
 
 
 func get_drag_data(_pos: Vector2) -> Object:
 	var data: LevelChunk = LevelChunk.new()
 	for cell in $TileMap.get_used_cells():
-		var tile: int = $TileMap.get_cell(cell.x, cell.y)
+		var tile: int = $TileMap.get_cellv(cell)
 		var autotile_coord: Vector2 = $TileMap.get_cell_autotile_coord(cell.x, cell.y)
 		data.set_block(cell, tile, autotile_coord)
-	_refresh_tilemap()
+	_refresh_tile_map()
 	return data
 
 
 """
-Calculates the extents of the tilemap's used cells.
+Calculates the extents of the tile map's used cells.
 """
-func _tilemap_extents() -> Rect2:
+func _tile_map_extents() -> Rect2:
 	var extents := Rect2(Vector2.ZERO, Vector2.ZERO)
 	if $TileMap.get_used_cells():
 		extents.position = $TileMap.get_used_cells()[0]
@@ -32,16 +32,16 @@ func _tilemap_extents() -> Rect2:
 
 
 """
-Overridden by child classes, which use this method to populate the contents of the tilemap.
+Overridden by child classes, which use this method to populate the contents of the tile map.
 """
-func _refresh_tilemap() -> void:
+func _refresh_tile_map() -> void:
 	pass
 
 
 """
-Refreshes the scale to ensure the contents of the tilemap fit inside an item in the palette.
+Refreshes the scale to ensure the contents of the tile map fit inside an item in the palette.
 """
 func _refresh_scale() -> void:
-	var extents := _tilemap_extents()
+	var extents := _tile_map_extents()
 	$TileMap.scale.x = 1.00 / (1 + max(extents.end.x, extents.end.y))
 	$TileMap.scale.y = 1.00 / (1 + max(extents.end.x, extents.end.y))

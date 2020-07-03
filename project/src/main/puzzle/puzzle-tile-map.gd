@@ -4,7 +4,7 @@ extends TileMap
 TileMap containing puzzle blocks such as pieces, boxes and vegetables.
 """
 
-enum BoxInt {
+enum BoxColorInt {
 	BROWN,
 	PINK,
 	BREAD,
@@ -44,10 +44,15 @@ func save_state() -> void:
 	for cell_obj in get_used_cells():
 		var cell: Vector2 = cell_obj
 		_saved_used_cells.append(cell)
-		_saved_tiles.append(get_cell(cell.x, cell.y))
+		_saved_tiles.append(get_cellv(cell))
 		_saved_autotile_coords.append(get_cell_autotile_coord(cell.x, cell.y))
 
 
+"""
+Rolls back the piece previously written to the tile map.
+
+Also undoes any boxes that were built and lines that were cleared.
+"""
 func restore_state() -> void:
 	clear()
 	for i in range(_saved_used_cells.size()):
@@ -65,20 +70,20 @@ func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) 
 """
 Creates a snack box or cake box.
 """
-func build_box(x: int, y: int, width: int, height: int, box_int: int) -> void:
-	for curr_x in range(x, x + width):
-		for curr_y in range (y, y + height):
-			set_block(Vector2(curr_x, curr_y), TILE_BOX, Vector2(15, box_int))
+func build_box(rect: Rect2, color_int: int) -> void:
+	for curr_x in range(rect.position.x, rect.end.x):
+		for curr_y in range (rect.position.y, rect.end.y):
+			set_block(Vector2(curr_x, curr_y), TILE_BOX, Vector2(15, color_int))
 	
 	# top/bottom edge
-	for curr_x in range(x, x + width):
-		_disconnect_block(curr_x, y, Connect.UP)
-		_disconnect_block(curr_x, y + height - 1, Connect.DOWN)
+	for curr_x in range(rect.position.x, rect.end.x):
+		_disconnect_block(Vector2(curr_x, rect.position.y), Connect.UP)
+		_disconnect_block(Vector2(curr_x, rect.end.y - 1), Connect.DOWN)
 	
 	# left/right edge
-	for curr_y in range(y, y + height):
-		_disconnect_block(x, curr_y, Connect.LEFT)
-		_disconnect_block(x + width - 1, curr_y, Connect.RIGHT)
+	for curr_y in range(rect.position.y, rect.end.y):
+		_disconnect_block(Vector2(rect.position.x, curr_y), Connect.LEFT)
+		_disconnect_block(Vector2(rect.end.x - 1, curr_y), Connect.RIGHT)
 
 
 """
@@ -94,7 +99,7 @@ func delete_row(y: int) -> void:
 			continue
 		if cell.y < y:
 			# cells above the deleted row are shifted
-			var piece_color: int = get_cell(cell.x, cell.y)
+			var piece_color: int = get_cellv(cell)
 			var autotile_coord: Vector2 = get_cell_autotile_coord(cell.x, cell.y)
 			piece_colors_to_set[Vector2(cell.x, cell.y + 1)] = piece_color
 			autotile_coords_to_set[Vector2(cell.x, cell.y + 1)] = autotile_coord
@@ -118,10 +123,17 @@ func delete_rows(rows: Array) -> void:
 
 
 """
-Returns 'true' if the specified cell does not contain a block.
+Returns 'true' if the specified cell is within the playfield bounds and does not contain a block.
 """
-func is_cell_empty(x: int, y: int) -> bool:
-	return get_cell(x, y) == -1
+func is_cell_empty(pos: Vector2) -> bool:
+	return Rect2(0, 0, COL_COUNT, ROW_COUNT).has_point(pos) and get_cellv(pos) == -1
+
+
+"""
+Returns 'true' if the specified cell is outside the playfield bounds or contains a block.
+"""
+func is_cell_blocked(pos: Vector2) -> bool:
+	return not is_cell_empty(pos)
 
 
 """
@@ -130,7 +142,7 @@ Returns true if the specified row has no empty cells.
 func playfield_row_is_full(y: int) -> bool:
 	var row_is_full := true
 	for x in range(COL_COUNT):
-		if is_cell_empty(x, y):
+		if is_cell_empty(Vector2(x, y)):
 			row_is_full = false
 			break
 	return row_is_full
@@ -142,7 +154,7 @@ Returns true if the specified row has only empty cells.
 func playfield_row_is_empty(y: int) -> bool:
 	var row_is_empty := true
 	for x in range(COL_COUNT):
-		if not is_cell_empty(x, y):
+		if not is_cell_empty(Vector2(x, y)):
 			row_is_empty = false
 			break
 	return row_is_empty
@@ -153,10 +165,10 @@ Erases all cells in the specified row.
 """
 func erase_playfield_row(y: int) -> void:
 	for x in range(COL_COUNT):
-		if get_cell(x, y) == 0:
-			_convert_piece_to_veg(x, y)
-		elif get_cell(x, y) == 1:
-			_disconnect_box(x, y)
+		if get_cellv(Vector2(x, y)) == 0:
+			_convert_piece_to_veg(Vector2(x, y))
+		elif get_cellv(Vector2(x, y)) == 1:
+			_disconnect_box(Vector2(x, y))
 		
 		set_block(Vector2(x, y), -1)
 
@@ -178,7 +190,7 @@ Returns a position randomly near a cell.
 This is useful when we want visual effects to appear somewhere within the cell at (3, 6) with random variation.
 
 Parameters:
-	'cell_pos': Grid-based coordinates of a cell in the tilemap.
+	'cell_pos': Grid-based coordinates of a cell in the tile map.
 	
 	'cell_offset': (Optional) Grid-based coordinates of the random offset to apply. If unspecified, the coordinate
 		will be randomly offset by a value in the range [(0, 0), (1, 1)]
@@ -192,23 +204,23 @@ func somewhere_near_cell(cell_pos: Vector2, cell_offset: Vector2 = Vector2.ZERO)
 """
 Deconstructs the piece at the specified location into vegetable blocks.
 """
-func _convert_piece_to_veg(x: int, y: int) -> void:
+func _convert_piece_to_veg(pos: Vector2) -> void:
 	# store connections
-	var old_autotile_coord: Vector2 = get_cell_autotile_coord(x, y)
+	var old_autotile_coord: Vector2 = get_cell_autotile_coord(pos.x, pos.y)
 	
 	# convert to vegetable. there are four kinds of vegetables
 	var vegetable_type := int(old_autotile_coord.y) % 4
-	set_block(Vector2(x, y), TILE_VEG, Vector2(randi() % 18, vegetable_type))
+	set_block(pos, TILE_VEG, Vector2(randi() % 18, vegetable_type))
 	
 	# recurse to neighboring connected cells
-	if get_cell(x, y - 1) == 0 and Connect.is_u(old_autotile_coord.x):
-		_convert_piece_to_veg(x, y - 1)
-	if get_cell(x, y + 1) == 0 and Connect.is_d(old_autotile_coord.x):
-		_convert_piece_to_veg(x, y + 1)
-	if get_cell(x - 1, y) == 0 and Connect.is_l(old_autotile_coord.x):
-		_convert_piece_to_veg(x - 1, y)
-	if get_cell(x + 1, y) == 0 and Connect.is_r(old_autotile_coord.x):
-		_convert_piece_to_veg(x + 1, y)
+	if get_cellv(pos + Vector2.UP) == 0 and Connect.is_u(old_autotile_coord.x):
+		_convert_piece_to_veg(pos + Vector2.UP)
+	if get_cellv(pos + Vector2.DOWN) == 0 and Connect.is_d(old_autotile_coord.x):
+		_convert_piece_to_veg(pos + Vector2.DOWN)
+	if get_cellv(pos + Vector2.LEFT) == 0 and Connect.is_l(old_autotile_coord.x):
+		_convert_piece_to_veg(pos + Vector2.LEFT)
+	if get_cellv(pos + Vector2.RIGHT) == 0 and Connect.is_r(old_autotile_coord.x):
+		_convert_piece_to_veg(pos + Vector2.RIGHT)
 
 
 """
@@ -221,9 +233,9 @@ smaller 2x3 and 1x3 boxes.
 If we didn't perform this step, the chopped-off bottom of a bread box would still just look like bread. This way, the
 bottom of a bread box looks like a delicious frosted snack and the player can tell it's special.
 """
-func _disconnect_box(x: int, y: int) -> void:
-	_disconnect_block(x, y - 1, Connect.DOWN)
-	_disconnect_block(x, y + 1, Connect.UP)
+func _disconnect_box(pos: Vector2) -> void:
+	_disconnect_block(pos + Vector2.UP, Connect.DOWN)
+	_disconnect_block(pos + Vector2.DOWN, Connect.UP)
 
 
 """
@@ -232,18 +244,18 @@ Disconnects a block from its surrounding directions.
 Parameters:
 	'dir_mask': Directions to be disconnected. Defaults to 15 which disconnects it from all four directions.
 """
-func _disconnect_block(x: int, y: int, dir_mask: int = 15) -> void:
-	if get_cell(x, y) == -1:
+func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
+	if get_cellv(pos) == -1:
 		# empty cell; nothing to disconnect
 		return
-	var autotile_coord := get_cell_autotile_coord(x, y)
+	var autotile_coord := get_cell_autotile_coord(pos.x, pos.y)
 	autotile_coord.x = Connect.unset_dirs(autotile_coord.x, dir_mask)
-	set_block(Vector2(x, y), get_cell(x, y), autotile_coord)
+	set_block(pos, get_cellv(pos), autotile_coord)
 
 
-static func is_snack_box(box_int: int) -> bool:
-	return box_int in [BoxInt.BROWN, BoxInt.PINK, BoxInt.BREAD, BoxInt.WHITE]
+static func is_snack_box(color_int: int) -> bool:
+	return color_int in [BoxColorInt.BROWN, BoxColorInt.PINK, BoxColorInt.BREAD, BoxColorInt.WHITE]
 
 
-static func is_cake_box(box_int: int) -> bool:
-	return box_int == BoxInt.CAKE
+static func is_cake_box(color_int: int) -> bool:
+	return color_int == BoxColorInt.CAKE

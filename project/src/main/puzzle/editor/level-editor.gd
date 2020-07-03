@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	var scenario_text := FileUtils.get_file_as_text(ScenarioSettings.scenario_path(DEFAULT_SCENARIO))
 	_scenario_json.text = scenario_text
-	_scenario_json.refresh_tilemap()
+	_scenario_json.refresh_tile_map()
 	_scenario_name.text = DEFAULT_SCENARIO
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 
@@ -34,7 +34,7 @@ func _save_scenario(path: String) -> void:
 func _load_scenario(path: String) -> void:
 	var scenario_text := FileUtils.get_file_as_text(path)
 	_scenario_json.text = scenario_text
-	_scenario_json.refresh_tilemap()
+	_scenario_json.refresh_tile_map()
 	_scenario_name.text = ScenarioSettings.scenario_name(path)
 
 

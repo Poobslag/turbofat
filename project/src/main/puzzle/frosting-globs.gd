@@ -84,9 +84,9 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 """
 When a box is built, we generate frosting globs on the inside of the box.
 """
-func _on_Playfield_box_built(left_x: int, top_y: int, width: int, height: int, color_int: int) -> void:
-	for y in range(top_y, top_y + height):
-		for x in range(left_x, left_x + width):
+func _on_Playfield_box_built(rect: Rect2, color_int: int) -> void:
+	for y in range(rect.position.y, rect.end.y):
+		for x in range(rect.position.x, rect.end.x):
 			var glob_count: int
 			if PuzzleTileMap.is_snack_box(color_int):
 				glob_count = 1
