@@ -213,7 +213,7 @@ script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-sizes = [ Vector2( 360, 80 ), Vector2( 540, 80 ), Vector2( 540, 120 ), Vector2( 720, 120 ) ]
+chat_line_panel_path = NodePath("../ChatLinePanel")
 
 [node name="BebebeSound" type="AudioStreamPlayer" parent="ChatLineLabel"]
 stream = ExtResource( 13 )

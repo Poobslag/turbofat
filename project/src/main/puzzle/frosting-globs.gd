@@ -9,16 +9,24 @@ direction.
 # emitted when a frosting glob hits a wall
 signal hit_wall(glob)
 
-# emitted when a frosting glob smears against the playfield, next pieces, or gutter.
-# passes in a copy of the original frosting glob, because the original remains unchanged
+# emitted when a frosting glob smears against the playfield or next piece area
 signal hit_playfield(glob)
 signal hit_next_pieces(glob)
-signal hit_gutter(glob)
 
 export (NodePath) var puzzle_tile_map_path: NodePath
+export (NodePath) var playfield_path: NodePath
+export (NodePath) var next_piece_displays_path: NodePath
 
 onready var FrostingGlobScene := preload("res://src/main/puzzle/FrostingGlob.tscn")
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
+onready var _puzzle_areas: PuzzleAreas
+
+func _ready() -> void:
+	_puzzle_areas = PuzzleAreas.new()
+	_puzzle_areas.playfield_area = get_node(playfield_path).get_rect()
+	_puzzle_areas.next_pieces_area = get_node(next_piece_displays_path).get_rect()
+	_puzzle_areas.walled_area = _puzzle_areas.playfield_area.merge(_puzzle_areas.next_pieces_area)
+
 
 """
 Launches new frosting globs from the specified tile.
@@ -47,10 +55,10 @@ func _spawn_globs(cell_pos: Vector2, color_int: int, glob_count: int, glob_alpha
 
 func _instance_glob(new_parent: Node = null) -> FrostingGlob:
 	var glob: FrostingGlob = FrostingGlobScene.instance()
+	glob.puzzle_areas = _puzzle_areas
 	glob.connect("hit_wall", self, "_on_FrostingGlob_hit_wall")
 	glob.connect("hit_playfield", self, "_on_FrostingGlob_hit_playfield")
 	glob.connect("hit_next_pieces", self, "_on_FrostingGlob_hit_next_pieces")
-	glob.connect("hit_gutter", self, "_on_FrostingGlob_hit_gutter")
 	new_parent.add_child(glob)
 	return glob
 
@@ -110,7 +118,3 @@ func _on_FrostingGlob_hit_playfield(glob: FrostingGlob) -> void:
 
 func _on_FrostingGlob_hit_next_pieces(glob: FrostingGlob) -> void:
 	emit_signal("hit_next_pieces", glob)
-
-
-func _on_FrostingGlob_hit_gutter(glob: FrostingGlob) -> void:
-	emit_signal("hit_gutter", glob)
