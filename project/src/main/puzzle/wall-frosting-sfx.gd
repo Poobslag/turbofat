@@ -55,7 +55,3 @@ func _on_FrostingGlobs_hit_playfield(glob: FrostingGlob) -> void:
 
 func _on_FrostingGlobs_hit_next_pieces(glob: FrostingGlob) -> void:
 	_play_sfx(glob.modulate.a, -20.0)
-
-
-func _on_FrostingGlobs_hit_gutter(glob: FrostingGlob) -> void:
-	_play_sfx(glob.modulate.a, -20.0)

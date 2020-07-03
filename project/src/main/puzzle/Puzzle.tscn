@@ -184,6 +184,8 @@ __meta__ = {
 z_index = 1
 script = ExtResource( 24 )
 puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
+playfield_path = NodePath("../Playfield")
+next_piece_displays_path = NodePath("../NextPieceDisplays")
 
 [node name="GlobViewports" type="Node" parent="FrostingGlobs"]
 
@@ -398,7 +400,6 @@ script = ExtResource( 19 )
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="topped_out" from="PieceManager" to="TopOutTracker" method="_on_PieceManager_topped_out"]
-[connection signal="hit_gutter" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_gutter"]
 [connection signal="hit_next_pieces" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
 [connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]

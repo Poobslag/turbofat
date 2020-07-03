@@ -23,6 +23,8 @@ const PAUSE_CHARACTERS := {
 	"\n": 0.80,
 }
 
+export (NodePath) var chat_line_panel_path: NodePath
+
 # Stores the delay in seconds for each visible_characters index.
 var _visible_character_pauses := {}
 
@@ -32,7 +34,16 @@ var _pause := 0.0
 # 1.0 = slow, 2.0 = normal, 3.0 = faster, 5.0 = fastest, 1000000.0 = fastestest
 var _text_speed := 2.0
 
+onready var chat_line_panel: ChatLinePanel = get_node(chat_line_panel_path)
+
 func _ready() -> void:
+	# Populate the chat line sizes based on the chat line panel sizes.
+	# They're the same except for a little padding on the outside.
+	var new_sizes := []
+	for panel_size in chat_line_panel.panel_sizes.values():
+		new_sizes.append(panel_size - Vector2(60, 40))
+	set_sizes(new_sizes)
+	
 	# hidden by default to avoid firing signals and playing sounds
 	hide_message()
 

@@ -13,22 +13,8 @@ signal hit_playfield(glob)
 # emitted when the glob smears against the next piece area
 signal hit_next_pieces(glob)
 
-# emitted when the glob smears against the gutter below the next piece area
-signal hit_gutter(glob)
-
 const MAX_INITIAL_VELOCITY := Vector2(600, -500)
 const GRAVITY := 2400
-
-# the area within the four outer walls
-const WALLED_AREA := Rect2(364, 28, 388, 544)
-
-# the playfield area behind the blocks
-const PLAYFIELD_AREA := Rect2(364, 28, 324, 544)
-
-const NEXT_PIECES_AREA := Rect2(688, 28, 64, 484)
-
-# the gutter below the next piece area
-const GUTTER_AREA := Rect2(688, 512, 64, 60)
 
 # how long globs are visible while falling
 const FALL_DURATION := 0.6
@@ -41,6 +27,8 @@ const FADE_DURATION := 1.5
 
 # the duration when a glob should be recycled, even if it's somehow still visible
 const MAX_AGE := 7.0
+
+var puzzle_areas: PuzzleAreas
 
 # the PuzzleTileMap food color index for this glob (brown, pink, bread, white, cake)
 var color_int := -1
@@ -67,6 +55,7 @@ Parameters:
 """
 func copy_from(glob: Node) -> void:
 	initialize(glob.color_int, glob.position)
+	puzzle_areas = glob.puzzle_areas
 	falling = glob.falling
 	velocity = glob.velocity
 	smear_time = glob.smear_time
@@ -85,7 +74,7 @@ func is_rainbow() -> bool:
 
 
 """
-Resets this frosting glob's state, including its color and position, and adds it to the scene tree.
+Resets this frosting glob's state, including its color and position.
 """
 func initialize(new_color_int: int, new_position: Vector2) -> void:
 	_creation_time = OS.get_ticks_msec()
@@ -159,14 +148,12 @@ func _process(delta: float)  -> void:
 	if smear_time > 0.0:
 		smear_time -= delta
 		if smear_time <= 0.0:
-			if PLAYFIELD_AREA.has_point(position):
+			if puzzle_areas.playfield_area.has_point(position):
 				emit_signal("hit_playfield", self)
-			elif NEXT_PIECES_AREA.has_point(position):
+			elif puzzle_areas.next_pieces_area.has_point(position):
 				emit_signal("hit_next_pieces", self)
-			elif GUTTER_AREA.has_point(position):
-				emit_signal("hit_gutter", self)
 	
-	if not WALLED_AREA.has_point(position):
+	if not puzzle_areas.walled_area.has_point(position):
 		emit_signal("hit_wall", self)
 
 

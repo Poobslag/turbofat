@@ -12,16 +12,16 @@ const PULSE_AMOUNT := Vector2(0.015, 0.030)
 # The number of available background textures
 const CHAT_TEXTURE_COUNT := 16
 
-# The panel squishes over time. This field is used to calculate the squish amount
-var _total_time := 0.0
-
 # Longer lines of dialog are displayed in bigger panels
-onready var _panel_sizes := {
+var panel_sizes := {
 	ChatTheme.LINE_SMALL: Vector2(420, 120),
 	ChatTheme.LINE_MEDIUM: Vector2(600, 120),
 	ChatTheme.LINE_LARGE: Vector2(600, 160),
 	ChatTheme.LINE_XL: Vector2(780, 160),
 }
+
+# The panel squishes over time. This field is used to calculate the squish amount
+var _total_time := 0.0
 
 # Background textures which scroll behind the chat window
 var _accent_textures := []
@@ -48,7 +48,7 @@ Parameters:
 		smaller/larger window.
 """
 func update_appearance(chat_theme: ChatTheme, chat_line_size: int) -> void:
-	rect_size = _panel_sizes[chat_line_size]
+	rect_size = panel_sizes[chat_line_size]
 	rect_position = Vector2(512, 100) - rect_size / 2
 	
 	material.set_shader_param("accent_amount", 0.40 if chat_theme.dark else 0.24)
