@@ -3,9 +3,6 @@ extends Particles2D
 Emits sweat particles for a piece during a squish move.
 """
 
-# The cell size for the TileMap containing the playfield blocks. This is used to position our globs.
-const CELL_SIZE = Vector2(36, 32)
-
 # local coordinates to emit sweat from
 var _sweat_positions: Array
 
@@ -30,7 +27,7 @@ func _on_PieceManager_tiles_changed(tile_map: PuzzleTileMap) -> void:
 	if tile_map.get_used_cells():
 		for used_cell in tile_map.get_used_cells():
 			for _i in range(2):
-				_sweat_positions.append(Vector2(used_cell.x + randf(), used_cell.y - 3 + randf()) * CELL_SIZE)
+				_sweat_positions.append(tile_map.somewhere_near_cell(used_cell + Vector2(0, -3)))
 		_sweat_positions.shuffle()
 		relocate_randomly()
 	else:

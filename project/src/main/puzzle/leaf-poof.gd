@@ -55,9 +55,5 @@ func _physics_process(delta: float) -> void:
 	position += delta * velocity
 
 
-"""
-After the leaf fades out, we turn it invisible and disable it from processing.
-"""
 func _on_Tween_tween_all_completed() -> void:
-	visible = false
-	set_physics_process(false)
+	queue_free()
