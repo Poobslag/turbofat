@@ -35,7 +35,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _build_box(y: int) -> void:
-	$Puzzle/Playfield/BoxBuilder.build_box(6, y, 3, 3, _color_int)
+	$Puzzle/Playfield/BoxBuilder.build_box(Rect2(6, y, 3, 3), _color_int)
 
 
 func _clear_line(cleared_line: int) -> void:

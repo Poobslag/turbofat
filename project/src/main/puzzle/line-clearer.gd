@@ -16,7 +16,7 @@ signal line_cleared(y, total_lines, remaining_lines, box_ints)
 signal line_erased(y, total_lines, remaining_lines, box_ints)
 
 # emitted when erased lines are deleted, causing the rows above them to drop down
-signal lines_deleted
+signal lines_deleted(lines)
 
 # percent of the line clear delay which should be spent erasing lines.
 # 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
@@ -70,7 +70,6 @@ func _physics_process(_delta: float) -> void:
 	if remaining_line_erase_frames <= 0:
 		# stop processing if we're done clearing lines
 		_delete_rows()
-		emit_signal("lines_deleted")
 		set_physics_process(false)
 
 
@@ -172,17 +171,20 @@ Deletes all erased rows from the playfield, dropping all rows above them.
 func _delete_rows() -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false
-	var lines_to_delete := lines_being_cleared + lines_being_erased
-	var max_line := Utils.max_value(lines_to_delete)
+	var lines_being_deleted := lines_being_cleared + lines_being_erased
+	lines_being_deleted.sort()
+	var max_line: int = lines_being_deleted.back()
 	for y in range(0, max_line):
-		if not _tile_map.playfield_row_is_empty(y) and not lines_to_delete.has(y):
+		if not _tile_map.playfield_row_is_empty(y) and not lines_being_deleted.has(y):
 			play_sound = true
 			break
 	
-	_tile_map.delete_rows(lines_to_delete)
+	_tile_map.delete_rows(lines_being_deleted)
 	
 	if play_sound:
 		$LineFallSound.play()
+	
+	emit_signal("lines_deleted", lines_being_deleted)
 
 
 """

@@ -101,13 +101,13 @@ func delete_row(y: int) -> void:
 			# cells above the deleted row are shifted
 			var piece_color: int = get_cellv(cell)
 			var autotile_coord: Vector2 = get_cell_autotile_coord(cell.x, cell.y)
-			piece_colors_to_set[Vector2(cell.x, cell.y + 1)] = piece_color
-			autotile_coords_to_set[Vector2(cell.x, cell.y + 1)] = autotile_coord
-		set_block(Vector2(cell.x, cell.y), -1)
+			piece_colors_to_set[cell + Vector2.DOWN] = piece_color
+			autotile_coords_to_set[cell + Vector2.DOWN] = autotile_coord
+		set_block(cell, -1)
 	
 	# Next, write the old cells in their new locations
 	for cell in piece_colors_to_set:
-		set_block(Vector2(cell.x, cell.y), piece_colors_to_set[cell], autotile_coords_to_set[cell])
+		set_block(cell, piece_colors_to_set[cell], autotile_coords_to_set[cell])
 
 
 """
@@ -117,7 +117,6 @@ func delete_rows(rows: Array) -> void:
 	# sort to avoid edge cases with row indexes changing during deletion
 	var rows_to_delete := rows.duplicate()
 	rows_to_delete.sort()
-	
 	for y in rows:
 		delete_row(y)
 
