@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=2]
+[gd_scene load_steps=61 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/main/puzzle/texture-metaball.shader" type="Shader" id=15]
 [ext_resource path="res://src/main/puzzle/wall-glob-viewports.gd" type="Script" id=16]
 [ext_resource path="res://src/main/puzzle/FrostingViewports.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/puzzle/star-seeds.gd" type="Script" id=18]
 [ext_resource path="res://src/main/puzzle/puzzle-music-manager.gd" type="Script" id=19]
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=21]
 [ext_resource path="res://src/main/puzzle/milestone-hud.gd" type="Script" id=23]
@@ -139,6 +140,17 @@ margin_left = 364.0
 margin_top = 28.0
 margin_right = 688.0
 margin_bottom = 572.0
+
+[node name="StarSeeds" type="Control" parent="."]
+margin_left = 364.0
+margin_top = 28.0
+margin_right = 688.0
+margin_bottom = 572.0
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+_puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 
 [node name="PieceManager" parent="." instance=ExtResource( 9 )]
 playfield_path = NodePath("../Playfield")
@@ -396,14 +408,18 @@ codes = [ "delays" ]
 script = ExtResource( 19 )
 [connection signal="after_piece_written" from="Playfield" to="." method="_on_Playfield_after_piece_written"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
+[connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
+[connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
+[connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
+[connection signal="lines_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_lines_deleted"]
 [connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="topped_out" from="PieceManager" to="TopOutTracker" method="_on_PieceManager_topped_out"]
 [connection signal="hit_next_pieces" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
-[connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
-[connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
 [connection signal="start_button_pressed" from="Hud/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]

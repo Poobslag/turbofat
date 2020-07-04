@@ -17,6 +17,11 @@ signal line_cleared(y, total_lines, remaining_lines, box_ints)
 # emitted when a line is erased. this includes line clears but also top outs and non-scoring end game rows.
 signal line_erased(y, total_lines, remaining_lines, box_ints)
 
+# emitted when erased lines are deleted, causing the rows above them to drop down
+signal lines_deleted(lines)
+
+signal blocks_prepared
+
 # emitted after a piece is written and all boxes are made and all lines are cleared
 signal after_piece_written
 
@@ -118,6 +123,7 @@ func _prepare_scenario_blocks() -> void:
 	var blocks_start: BlocksStartRules = Scenario.settings.blocks_start
 	for cell in blocks_start.used_cells:
 		tile_map.set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
+	emit_signal("blocks_prepared")
 
 
 func _on_PuzzleScore_game_prepared() -> void:
@@ -151,8 +157,9 @@ func _on_LineClearer_line_cleared(y: int, total_lines: int, remaining_lines: int
 	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
 
 
-func _on_LineClearer_lines_deleted() -> void:
+func _on_LineClearer_lines_deleted(lines: Array) -> void:
 	emit_signal("after_piece_written")
+	emit_signal("lines_deleted", lines)
 
 
 func _on_FrostingGlobs_hit_playfield(glob: Node) -> void:

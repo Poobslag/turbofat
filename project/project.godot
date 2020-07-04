@@ -413,6 +413,11 @@ _global_script_classes=[ {
 "class": "VolumeSettings",
 "language": "GDScript",
 "path": "res://src/main/volume-settings.gd"
+}, {
+"base": "Sprite",
+"class": "Wobbler",
+"language": "GDScript",
+"path": "res://src/main/puzzle/wobbler.gd"
 } ]
 _global_script_class_icons={
 "ActionButton": "",
@@ -495,7 +500,8 @@ _global_script_class_icons={
 "TutorialHud": "",
 "TutorialMessage": "",
 "Utils": "",
-"VolumeSettings": ""
+"VolumeSettings": "",
+"Wobbler": ""
 }
 
 [application]
