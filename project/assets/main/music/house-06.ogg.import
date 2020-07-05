@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/house-06.ogg-6ebfd33cd74f593144d8028b7bd5e0c6.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/house-06.ogg"
+dest_files=[ "res://.import/house-06.ogg-6ebfd33cd74f593144d8028b7bd5e0c6.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

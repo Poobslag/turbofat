@@ -18,11 +18,14 @@ const MAX_VOLUME := 0.0
 # the music currently playing
 var current_bgm: AudioStreamPlayer
 
-# newest track plays twice as often
+# newest track(s) play twice as often
 onready var _chill_bgms := [$HipHop03, $HipHop04, $HipHop04]
-onready var _upbeat_bgms := [$House01]
+onready var _upbeat_bgms := [$House01, $House04, $House04, $House06, $House06]
 
 func _ready() -> void:
+	_chill_bgms.shuffle()
+	_upbeat_bgms.shuffle()
+	
 	$FreshnessInspector.add_checkpoint($HipHop03, 0.000)
 	$FreshnessInspector.add_checkpoint($HipHop03, 12.489)
 	$FreshnessInspector.add_checkpoint($HipHop03, 32.489)
@@ -42,6 +45,17 @@ func _ready() -> void:
 	$FreshnessInspector.add_checkpoint($House01, 7.747)
 	$FreshnessInspector.add_checkpoint($House01, 23.229)
 	$FreshnessInspector.add_checkpoint($House01, 38.696)
+	
+	$FreshnessInspector.add_checkpoint($House04, 0.000)
+	$FreshnessInspector.add_checkpoint($House04, 15.233)
+	$FreshnessInspector.add_checkpoint($House04, 45.721)
+	$FreshnessInspector.add_checkpoint($House04, 76.196)
+	$FreshnessInspector.add_checkpoint($House04, 106.670)
+	$FreshnessInspector.add_checkpoint($House04, 167.613)
+	
+	$FreshnessInspector.add_checkpoint($House06, 0.000)
+	$FreshnessInspector.add_checkpoint($House06, 15.230)
+	$FreshnessInspector.add_checkpoint($House06, 30.474)
 
 
 """
@@ -49,8 +63,9 @@ Plays a 'chill' song; something suitable for background music when the player's 
 overworld.
 """
 func play_chill_bgm() -> void:
-	var chill_bgm: AudioStreamPlayer = _chill_bgms[randi() % _chill_bgms.size()]
+	var chill_bgm: AudioStreamPlayer = _chill_bgms.pop_front()
 	play_music(chill_bgm, $FreshnessInspector.freshest_start(chill_bgm))
+	_chill_bgms.push_back(chill_bgm)
 
 
 func is_playing_chill_bgm() -> bool:
@@ -61,8 +76,9 @@ func is_playing_chill_bgm() -> bool:
 Plays an 'upbeat' song; something suitable when the player's playing a puzzle scenario.
 """
 func play_upbeat_bgm() -> void:
-	var upbeat_bgm: AudioStreamPlayer = _upbeat_bgms[randi() % _upbeat_bgms.size()]
+	var upbeat_bgm: AudioStreamPlayer = _upbeat_bgms.pop_front()
 	play_music(upbeat_bgm, $FreshnessInspector.freshest_start(upbeat_bgm))
+	_upbeat_bgms.push_back(upbeat_bgm)
 
 
 """

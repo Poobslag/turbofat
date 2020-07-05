@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/music-player.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/music/hiphop-03.ogg" type="AudioStream" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://src/main/music-tween.gd" type="Script" id=4]
 [ext_resource path="res://src/main/freshness-inspector.gd" type="Script" id=5]
 [ext_resource path="res://assets/main/music/hiphop-04.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/main/music/house-04.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/main/music/house-06.ogg" type="AudioStream" id=8]
 
 [node name="MusicPlayer" type="Node"]
 pause_mode = 2
@@ -21,6 +23,14 @@ bus = "Music Bus"
 
 [node name="House01" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
+bus = "Music Bus"
+
+[node name="House04" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+bus = "Music Bus"
+
+[node name="House06" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
 bus = "Music Bus"
 
 [node name="MusicTween" type="Tween" parent="."]
