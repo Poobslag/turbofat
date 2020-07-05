@@ -4,10 +4,10 @@
 # workaround for Godot #40000
 # (https://github.com/godotengine/godot/issues/40000)
 #
-# edit-creature.sh on: Enable creature editing in the editor. This causes errors
-#     in the Godot console.
-#
-# edit-creature.sh off: Disable creature editing in the editor. This fixes the
+# Usage:
+#   edit-creature.sh on: Enable creature editing in the editor. This causes
+#     errors in the Godot console.
+#   edit-creature.sh off: Disable creature editing in the editor. This fixes the
 #     errors in the Godot console.
 
 tool_line='tool #uncomment to view creature in editor'
