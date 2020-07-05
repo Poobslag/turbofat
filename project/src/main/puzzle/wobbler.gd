@@ -26,6 +26,9 @@ onready var _pulse_period := avg_pulse_period * rand_range(0.8, 1.2)
 var base_scale := Vector2(1.0, 1.0) setget set_base_scale
 var base_rotation := 0.0 setget set_base_rotation
 
+# The food type represented by this wobbler
+var food_type := 0
+
 # Stars/seeds pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
 
@@ -56,8 +59,11 @@ func set_base_rotation(new_base_rotation: float) -> void:
 
 
 func _refresh_scale() -> void:
-	scale = base_scale * (1 - _pulse_amount * (0.5 + 0.5 * sin(_total_time * TAU / _pulse_period)))
+	var _scale_modifier := Vector2(1.0, 1.0) \
+			* (1 - _pulse_amount * (0.5 + 0.5 * sin(_total_time * TAU / _pulse_period)))
+	scale = base_scale * _scale_modifier
 
 
 func _refresh_rotation() -> void:
-	rotation = base_rotation + _spin_amount * PI * sin(_total_time * TAU / _spin_period)
+	var _rotation_modifier := _spin_amount * PI * sin(_total_time * TAU / _spin_period)
+	rotation = base_rotation + _rotation_modifier

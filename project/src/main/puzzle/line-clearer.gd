@@ -271,14 +271,14 @@ This method takes a list of cleared lines and erased lines, and pairs all of the
 line.
 """
 # warning-ignore:shadowed_variable
-static func closest_clears(lines_being_cleared: Array, lines_being_erased: Array) -> Array:
-	var closest_clears := lines_being_erased.duplicate()
-	if not lines_being_cleared:
+static func closest_clears(cleared: Array, erased: Array) -> Array:
+	var closest_clears := erased.duplicate()
+	if not cleared:
 		return closest_clears
 	
-	for i in range(lines_being_erased.size()): 
-		closest_clears[i] = lines_being_cleared[0]
-		for j in range(1, lines_being_cleared.size()):
-			if abs(lines_being_erased[i] - lines_being_cleared[j]) < abs(lines_being_erased[i] - closest_clears[i]):
-				closest_clears[i] = lines_being_cleared[j]
+	for i in range(erased.size()):
+		closest_clears[i] = cleared[0]
+		for j in range(1, cleared.size()):
+			if abs(erased[i] - cleared[j]) < abs(erased[i] - closest_clears[i]):
+				closest_clears[i] = cleared[j]
 	return closest_clears

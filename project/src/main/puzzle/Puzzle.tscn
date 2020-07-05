@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=2]
+[gd_scene load_steps=64 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -19,7 +19,9 @@
 [ext_resource path="res://src/main/puzzle/FrostingViewports.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/puzzle/star-seeds.gd" type="Script" id=18]
 [ext_resource path="res://src/main/puzzle/puzzle-music-manager.gd" type="Script" id=19]
+[ext_resource path="res://src/main/puzzle/food-items.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=21]
+[ext_resource path="res://src/main/viewport-outline-material.tres" type="Material" id=22]
 [ext_resource path="res://src/main/puzzle/milestone-hud.gd" type="Script" id=23]
 [ext_resource path="res://src/main/puzzle/frosting-globs.gd" type="Script" id=24]
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=30]
@@ -100,10 +102,13 @@ shader_param/noise = SubResource( 9 )
 flags = 5
 viewport_path = NodePath("FrostingGlobs/GlobViewports/RainbowViewport")
 
-[sub_resource type="StyleBoxFlat" id=12]
+[sub_resource type="ViewportTexture" id=15]
+viewport_path = NodePath("FoodItems/Viewport")
+
+[sub_resource type="StyleBoxFlat" id=16]
 bg_color = Color( 1, 1, 1, 0.333333 )
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -229,6 +234,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="FoodItems" type="Node2D" parent="."]
+z_index = 1
+script = ExtResource( 20 )
+playfield_path = NodePath("../Playfield")
+
+[node name="Viewport" type="Viewport" parent="FoodItems"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+
+[node name="TextureRect" type="TextureRect" parent="FoodItems"]
+material = ExtResource( 22 )
+margin_right = 1024.0
+margin_bottom = 600.0
+texture = SubResource( 15 )
+flip_v = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CreatureView" parent="." instance=ExtResource( 63 )]
 position = Vector2( 27.9925, 314.726 )
 scale = Vector2( 0.5, 0.5 )
@@ -277,8 +301,8 @@ margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
 margin_bottom = 75.0
-custom_styles/fg = SubResource( 12 )
-custom_styles/bg = SubResource( 13 )
+custom_styles/fg = SubResource( 16 )
+custom_styles/bg = SubResource( 14 )
 percent_visible = false
 
 [node name="Desc" type="Label" parent="Hud/Chalkboard/MilestoneHud"]
@@ -407,6 +431,7 @@ codes = [ "delays" ]
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
 [connection signal="after_piece_written" from="Playfield" to="." method="_on_Playfield_after_piece_written"]
+[connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
@@ -414,6 +439,7 @@ script = ExtResource( 19 )
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
 [connection signal="lines_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_lines_deleted"]
+[connection signal="food_spawned" from="StarSeeds" to="FoodItems" method="_on_StarSeeds_food_spawned"]
 [connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="topped_out" from="PieceManager" to="TopOutTracker" method="_on_PieceManager_topped_out"]
 [connection signal="hit_next_pieces" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]

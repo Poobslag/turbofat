@@ -5,8 +5,7 @@ Draws shadowy stars and seeds inside snack boxes and cake boxes.
 These star and seed sprites are referred to as 'wobblers'.
 """
 
-# The highest visible playfield row. Wobblers above this row will be made invisible.
-const FIRST_VISIBLE_ROW := 3
+signal food_spawned(cell, food_type)
 
 # Aesthetically pleasing wobbler arrangements. It looks nice if they're balanced on the left and right sides.
 const WOBBLER_POSITIONS_BY_SIZE := {
@@ -115,8 +114,14 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 			wobbler = SeedScene.instance()
 		
 		var cell := rect.position + Vector2(wobbler_positions[wobbler_y], wobbler_y)
-		if cell.y < FIRST_VISIBLE_ROW:
+		if cell.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
 			wobbler.visible = false
+		match(color_int):
+			PuzzleTileMap.BoxColorInt.BROWN: wobbler.food_type = 0 + int(cell.y) % 2
+			PuzzleTileMap.BoxColorInt.PINK: wobbler.food_type = 2 + int(cell.y) % 2
+			PuzzleTileMap.BoxColorInt.BREAD: wobbler.food_type = 4 + int(cell.y) % 2
+			PuzzleTileMap.BoxColorInt.WHITE: wobbler.food_type = 6 + int(cell.y) % 2
+			PuzzleTileMap.BoxColorInt.CAKE: wobbler.food_type = 8
 		wobbler.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
 		wobbler.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
 		wobbler.position *= _puzzle_tile_map.scale
@@ -175,7 +180,7 @@ func _delete_row(y: int) -> void:
 			# wobblers above the deleted row are shifted
 			_wobblers_by_cell[cell].position += \
 					Vector2(0, _puzzle_tile_map.cell_size.y) * _puzzle_tile_map.scale
-			if cell.y == FIRST_VISIBLE_ROW - 1:
+			if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
 				_wobblers_by_cell[cell].visible = true
 			shifted[cell + Vector2.DOWN] = _wobblers_by_cell[cell]
 		_wobblers_by_cell.erase(cell)
@@ -207,3 +212,9 @@ func _on_Playfield_blocks_prepared() -> void:
 
 func _on_PuzzleScore_game_started() -> void:
 	_prepared = false
+
+
+func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
+	for x in range(PuzzleTileMap.COL_COUNT):
+		if _wobblers_by_cell.has(Vector2(x, y)):
+			emit_signal("food_spawned", Vector2(x, y), _wobblers_by_cell[Vector2(x, y)].food_type)

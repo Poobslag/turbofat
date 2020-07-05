@@ -1,10 +1,11 @@
 [gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://assets/main/world/restaurant/wood-table.png" type="Texture" id=8]
-[ext_resource path="res://src/main/world/outline.shader" type="Shader" id=9]
+[ext_resource path="res://src/main/outline.shader" type="Shader" id=9]
 [ext_resource path="res://assets/main/world/restaurant/stool.png" type="Texture" id=10]
 [ext_resource path="res://src/main/world/restaurant/seat.gd" type="Script" id=30]
-[ext_resource path="res://src/main/world/outline-material.tres" type="Material" id=51]
+[ext_resource path="res://src/main/outline-material.tres" type="Material" id=51]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 9 )
