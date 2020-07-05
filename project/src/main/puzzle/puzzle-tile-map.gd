@@ -12,6 +12,9 @@ enum BoxColorInt {
 	CAKE,
 }
 
+# The highest visible playfield row. Food/wobblers/vfx should not be drawn above this row.
+const FIRST_VISIBLE_ROW := 3
+
 const TILE_PIECE := 0 # part of an intact piece
 const TILE_BOX := 1 # part of a snack/cake box
 const TILE_VEG := 2 # vegetable created from line clears

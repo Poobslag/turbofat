@@ -6,6 +6,7 @@ Keys:
 	[Q,W,E]: Build a box at different locations in the playfield
 	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
 	[U,I,O]: Clear a line at different locations in the playfield
+	[J]: Generate a food item
 """
 
 var _line_clear_count := 1
@@ -32,6 +33,8 @@ func _input(event: InputEvent) -> void:
 		KEY_U: _clear_line(3)
 		KEY_I: _clear_line(9)
 		KEY_O: _clear_line(15)
+		
+		KEY_J: $Puzzle/FoodItems.add_food_item(Vector2(1, 4), 0)
 
 
 func _build_box(y: int) -> void:

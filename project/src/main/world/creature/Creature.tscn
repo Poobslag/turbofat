@@ -5,7 +5,7 @@
 [ext_resource path="res://src/main/world/creature/creature.gd" type="Script" id=3]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/main/world/creature/move-bonk.wav" type="AudioStream" id=5]
-[ext_resource path="res://src/main/world/viewport-outline-material.tres" type="Material" id=6]
+[ext_resource path="res://src/main/viewport-outline-material.tres" type="Material" id=6]
 [ext_resource path="res://assets/main/world/creature/move-hop.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/main/ui/chat/emote-rage1.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/main/world/creature/1/emote-arms-packed.png" type="Texture" id=9]
@@ -29,6 +29,7 @@
 [ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=28]
 [ext_resource path="res://src/main/world/creature/emote-anims.gd" type="Script" id=29]
 [ext_resource path="res://src/main/world/creature/mouth-anims.gd" type="Script" id=30]
+
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
