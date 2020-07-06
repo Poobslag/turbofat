@@ -46,10 +46,10 @@ var _mood: int
 
 # list of sprites to reset when unemoting
 onready var _emote_sprites := [
-	$"../Viewport/Sprites/Neck0/HeadBobber/EmoteBrain",
-	$"../Viewport/Sprites/Neck0/HeadBobber/EmoteHead",
-	$"../Viewport/Sprites/EmoteBody",
-	$"../Viewport/Sprites/Neck0/HeadBobber/EmoteGlow",
+	$"../Neck0/HeadBobber/EmoteBrain",
+	$"../Neck0/HeadBobber/EmoteHead",
+	$"../EmoteBody",
+	$"../Neck0/HeadBobber/EmoteGlow",
 ]
 
 func _process(_delta: float) -> void:
@@ -109,20 +109,20 @@ updating the creature's appearance.
 func unemote() -> void:
 	stop()
 	emit_signal("before_mood_switched")
-	$"../Viewport/Sprites/Neck0/HeadBobber/EmoteArms".frame = 0
-	$"../Viewport/Sprites/Neck0/HeadBobber/EmoteEyes".frame = 0
+	$"../Neck0/HeadBobber/EmoteArms".frame = 0
+	$"../Neck0/HeadBobber/EmoteEyes".frame = 0
 	
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property($"../Viewport/Sprites/Neck0/HeadBobber", "rotation_degrees",
-			$"../Viewport/Sprites/Neck0/HeadBobber".rotation_degrees, 0, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property($"../Neck0/HeadBobber", "rotation_degrees",
+			$"../Neck0/HeadBobber".rotation_degrees, 0, UNEMOTE_DURATION)
 	for emote_sprite in _emote_sprites:
 		$ResetTween.interpolate_property(emote_sprite, "rotation_degrees", emote_sprite.rotation_degrees, 0,
 				UNEMOTE_DURATION)
 		$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
-	$"../Viewport/Sprites/Neck0/HeadBobber".head_bob_mode = HeadBobber.BOB_BOB
-	$"../Viewport/Sprites/Neck0/HeadBobber".head_motion_pixels = HeadBobber.HEAD_BOB_PIXELS
-	$"../Viewport/Sprites/Neck0/HeadBobber".head_motion_seconds = HeadBobber.HEAD_BOB_SECONDS
+	$"../Neck0/HeadBobber".head_bob_mode = HeadBobber.BOB_BOB
+	$"../Neck0/HeadBobber".head_motion_pixels = HeadBobber.HEAD_BOB_PIXELS
+	$"../Neck0/HeadBobber".head_motion_seconds = HeadBobber.HEAD_BOB_SECONDS
 	$ResetTween.start()
 	_prev_mood = ChatEvent.Mood.DEFAULT
 
@@ -135,13 +135,13 @@ This takes place immediately, callers do not need to wait for $ResetTween.
 func unemote_immediate() -> void:
 	stop()
 	emit_signal("before_mood_switched")
-	$"../Viewport/Sprites/Neck0/HeadBobber/EmoteArms".frame = 0
-	$"../Viewport/Sprites/Neck0/HeadBobber/EmoteEyes".frame = 0
-	$"../Viewport/Sprites/Neck0/HeadBobber".rotation_degrees = 0
+	$"../Neck0/HeadBobber/EmoteArms".frame = 0
+	$"../Neck0/HeadBobber/EmoteEyes".frame = 0
+	$"../Neck0/HeadBobber".rotation_degrees = 0
 	for emote_sprite in _emote_sprites:
 		emote_sprite.rotation_degrees = 0
 		emote_sprite.modulate = Color.transparent
-	$"../Viewport/Sprites/Neck0/HeadBobber".reset_head_bob()
+	$"../Neck0/HeadBobber".reset_head_bob()
 	_prev_mood = ChatEvent.Mood.DEFAULT
 	_post_unemote()
 
@@ -158,8 +158,8 @@ func _post_unemote() -> void:
 		emote_sprite.scale = Vector2(2.0, 2.0)
 		emote_sprite.rotation_degrees = 0.0
 		emote_sprite.modulate = Color.transparent
-	$"../Viewport/Sprites/EmoteBody".scale = Vector2(0.836, 0.836)
-	$"../Viewport/Sprites/Neck0/HeadBobber/EmoteGlow".material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
+	$"../EmoteBody".scale = Vector2(0.836, 0.836)
+	$"../Neck0/HeadBobber/EmoteGlow".material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
 
 
 """
@@ -173,10 +173,10 @@ func _transition_noop() -> void:
 Function for transitioning from laugh1 mood to laugh0 mood.
 """
 func _transition_laugh1_laugh0() -> void:
-	$"../Viewport/Sprites/Neck0/HeadBobber".reset_head_bob()
+	$"../Neck0/HeadBobber".reset_head_bob()
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property($"../Viewport/Sprites/Neck0/HeadBobber/EmoteBrain", "modulate",
-			$"../Viewport/Sprites/Neck0/HeadBobber/EmoteBrain".modulate, Color.transparent, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteBrain", "modulate",
+			$"../Neck0/HeadBobber/EmoteBrain".modulate, Color.transparent, UNEMOTE_DURATION)
 	$ResetTween.start()
 
 
@@ -184,11 +184,11 @@ func _transition_laugh1_laugh0() -> void:
 Function for transitioning from sweat1 mood to sweat0 mood.
 """
 func _transition_sweat1_sweat0() -> void:
-	$"../Viewport/Sprites/Neck0/HeadBobber".reset_head_bob()
-	$"../Viewport/Sprites/NearArm".frame = 1
+	$"../Neck0/HeadBobber".reset_head_bob()
+	$"../NearArm".frame = 1
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property($"../Viewport/Sprites/Neck0/HeadBobber/EmoteHead", "modulate",
-			$"../Viewport/Sprites/Neck0/HeadBobber/EmoteHead".modulate, Color.transparent, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteHead", "modulate",
+			$"../Neck0/HeadBobber/EmoteHead".modulate, Color.transparent, UNEMOTE_DURATION)
 	$ResetTween.start()
 
 
@@ -197,12 +197,12 @@ Function for transitioning from smile1 mood to smile0 mood.
 """
 func _transition_smile1_smile0() -> void:
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property($"../Viewport/Sprites/Neck0/HeadBobber/EmoteBrain", "modulate",
-			$"../Viewport/Sprites/Neck0/HeadBobber/EmoteBrain".modulate, Color("008c2261"), UNEMOTE_DURATION)
-	$ResetTween.interpolate_property($"../Viewport/Sprites/Neck0/HeadBobber/EmoteGlow", "modulate",
-			$"../Viewport/Sprites/Neck0/HeadBobber/EmoteGlow".modulate, Color("008c2261"), UNEMOTE_DURATION)
-	$ResetTween.interpolate_property($"../Viewport/Sprites/Neck0/HeadBobber", "rotation_degrees",
-			$"../Viewport/Sprites/Neck0/HeadBobber".rotation_degrees, 0.0, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteBrain", "modulate",
+			$"../Neck0/HeadBobber/EmoteBrain".modulate, Color("008c2261"), UNEMOTE_DURATION)
+	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteGlow", "modulate",
+			$"../Neck0/HeadBobber/EmoteGlow".modulate, Color("008c2261"), UNEMOTE_DURATION)
+	$ResetTween.interpolate_property($"../Neck0/HeadBobber", "rotation_degrees",
+			$"../Neck0/HeadBobber".rotation_degrees, 0.0, UNEMOTE_DURATION)
 	$ResetTween.start()
 
 

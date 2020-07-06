@@ -137,11 +137,11 @@ func reset_frames(value: bool = true) -> void:
 	if not value:
 		return
 	reset_eye_frames()
-	$Viewport/Sprites/Neck0/HeadBobber/Mouth.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	$Neck0/HeadBobber/Mouth.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 
 
 func reset_eye_frames() -> void:
-	$Viewport/Sprites/Neck0/HeadBobber/Eyes.update_orientation(orientation)
+	$Neck0/HeadBobber/Eyes.update_orientation(orientation)
 
 
 """
@@ -185,10 +185,10 @@ func set_orientation(new_orientation: int) -> void:
 	
 	if orientation in [SOUTHWEST, SOUTHEAST]:
 		# facing south; initialize textures to forward-facing frames
-		$Viewport/Sprites/Neck0.z_index = 0
+		$Neck0.z_index = 0
 	else:
 		# facing north; initialize textures to backward-facing frames
-		$Viewport/Sprites/Neck0.z_index = -1
+		$Neck0.z_index = -1
 	
 	# sprites are drawn facing southeast/northwest, and are horizontally flipped for other directions
 	scale = \
@@ -196,7 +196,7 @@ func set_orientation(new_orientation: int) -> void:
 	
 	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
 	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
-	$Viewport/Sprites/Body.scale = \
+	$Body.scale = \
 			Vector2(1, 1) if orientation in [SOUTHEAST, SOUTHWEST] else Vector2(-1, 1)
 	
 	if _force_orientation_change:
@@ -217,8 +217,8 @@ func feed(food_color: Color) -> void:
 		# sounds. ...Maybe as an easter egg some day, we can make the chef flinging food into empty air. Ha ha.
 		return
 	
-	$Viewport/Sprites/Neck0/HeadBobber/Food.modulate = food_color
-	$Viewport/Sprites/Neck0/HeadBobber/FoodLaser.modulate = food_color
+	$Neck0/HeadBobber/Food.modulate = food_color
+	$Neck0/HeadBobber/FoodLaser.modulate = food_color
 	if _mouth_animation_player.current_animation in ["eat", "eat-again"]:
 		_mouth_animation_player.stop()
 		_mouth_animation_player.play("eat-again")
@@ -246,8 +246,8 @@ The 'feed' animation causes a few side-effects. The creature's head recoils and 
 all of those secondary visual effects of the creature being fed.
 """
 func show_food_effects() -> void:
-	$Tween.interpolate_property($Viewport/Sprites/Neck0/HeadBobber, "position:x",
-			clamp($Viewport/Sprites/Neck0/HeadBobber.position.x - 6, -20, 0), 0, 0.5,
+	$Tween.interpolate_property($Neck0/HeadBobber, "position:x",
+			clamp($Neck0/HeadBobber.position.x - 6, -20, 0), 0, 0.5,
 			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 	$Tween.start()
 	emit_signal("food_eaten")
@@ -347,10 +347,10 @@ Updates the visibility/position of nodes based on whether this creature is sitti
 func _update_movement_mode() -> void:
 	if not movement_mode:
 		# reset position/size attributes that get altered during movement
-		$Viewport/Sprites/Neck0.position = Vector2.ZERO
+		$Neck0.position = Vector2.ZERO
 	
 	# movement sprites are visible if movement_mode is true
-	$Viewport/Sprites/FarMovement.visible = movement_mode
+	$FarMovement.visible = movement_mode
 
 
 """
@@ -367,22 +367,22 @@ func _update_creature_properties() -> void:
 	emit_signal("before_creature_arrived")
 	
 	for packed_sprite_obj in [
-		$Viewport/Sprites/FarMovement,
-		$Viewport/Sprites/FarArm,
-		$Viewport/Sprites/FarLeg,
-		$Viewport/Sprites/Body/NeckBlend,
-		$Viewport/Sprites/NearLeg,
-		$Viewport/Sprites/NearArm,
-		$Viewport/Sprites/Neck0/HeadBobber/EarZ0,
-		$Viewport/Sprites/Neck0/HeadBobber/HornZ0,
-		$Viewport/Sprites/Neck0/HeadBobber/Head,
-		$Viewport/Sprites/Neck0/HeadBobber/EarZ1,
-		$Viewport/Sprites/Neck0/HeadBobber/HornZ1,
-		$Viewport/Sprites/Neck0/HeadBobber/EarZ2,
-		$Viewport/Sprites/Neck0/HeadBobber/Mouth,
-		$Viewport/Sprites/Neck0/HeadBobber/Eyes,
-		$Viewport/Sprites/Neck0/HeadBobber/Food,
-		$Viewport/Sprites/Neck0/HeadBobber/FoodLaser,
+		$FarMovement,
+		$FarArm,
+		$FarLeg,
+		$Body/NeckBlend,
+		$NearLeg,
+		$NearArm,
+		$Neck0/HeadBobber/EarZ0,
+		$Neck0/HeadBobber/HornZ0,
+		$Neck0/HeadBobber/Head,
+		$Neck0/HeadBobber/EarZ1,
+		$Neck0/HeadBobber/HornZ1,
+		$Neck0/HeadBobber/EarZ2,
+		$Neck0/HeadBobber/Mouth,
+		$Neck0/HeadBobber/Eyes,
+		$Neck0/HeadBobber/Food,
+		$Neck0/HeadBobber/FoodLaser,
 	]:
 		var packed_sprite: PackedSprite = packed_sprite_obj
 		packed_sprite.texture = null
@@ -399,19 +399,16 @@ func _update_creature_properties() -> void:
 			print("Invalid mouth: %s", dna.mouth)
 		_mouth_animation_player.set_process(true)
 	
-	if dna.has("line_rgb"):
-		$TextureRect.material.set_shader_param("black", Color(dna.line_rgb))
-	
 	for key in dna.keys():
 		if key.find("property:") == 0:
-			var node_path: String = "Viewport/Sprites/" + key.split(":")[1]
+			var node_path: String = key.split(":")[1]
 			var property_name: String = key.split(":")[2]
 			get_node(node_path).set(property_name, dna[key])
 		if key.find("shader:") == 0:
-			var node_path: String = "Viewport/Sprites/" + key.split(":")[1]
+			var node_path: String = key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
 			get_node(node_path).material.set_shader_param(shader_param, dna[key])
-	$Viewport/Sprites/Body.update()
+	$Body.update()
 	visible = true
 	emit_signal("creature_arrived")
 
