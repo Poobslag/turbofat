@@ -196,7 +196,9 @@ func set_orientation(new_orientation: int) -> void:
 	
 	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
 	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
-	$Body.scale = \
+	$Body/Viewport/Body.scale = \
+			Vector2(1, 1) if orientation in [SOUTHEAST, SOUTHWEST] else Vector2(-1, 1)
+	$BodyShadows/Viewport/Body.scale = \
 			Vector2(1, 1) if orientation in [SOUTHEAST, SOUTHWEST] else Vector2(-1, 1)
 	
 	if _force_orientation_change:
@@ -370,7 +372,7 @@ func _update_creature_properties() -> void:
 		$FarMovement,
 		$FarArm,
 		$FarLeg,
-		$Body/NeckBlend,
+		$Body/Viewport/Body/NeckBlend,
 		$NearLeg,
 		$NearArm,
 		$Neck0/HeadBobber/EarZ0,
@@ -408,7 +410,7 @@ func _update_creature_properties() -> void:
 			var node_path: String = key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
 			get_node(node_path).material.set_shader_param(shader_param, dna[key])
-	$Body.update()
+	$Body/Viewport/Body.update()
 	visible = true
 	emit_signal("creature_arrived")
 

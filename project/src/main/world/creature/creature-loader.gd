@@ -144,7 +144,7 @@ static func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "FarMovement", "body", "movement-z0-packed")
 	_load_texture(dna, "FarArm", "body", "arm-z0-packed")
 	_load_texture(dna, "FarLeg", "body", "leg-z0-packed")
-	_load_texture(dna, "Body/NeckBlend", "body", "neck-packed")
+	_load_texture(dna, "Body/Viewport/Body/NeckBlend", "body", "neck-packed")
 	_load_texture(dna, "NearLeg", "body", "leg-z1-packed")
 	_load_texture(dna, "NearArm", "body", "arm-z1-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Head", "body", "head-packed")
@@ -159,8 +159,7 @@ static func _load_colors(dna: Dictionary) -> void:
 		line_color = Color(dna.line_rgb)
 	dna["shader:FarArm:black"] = line_color
 	dna["shader:FarLeg:black"] = line_color
-	dna["property:Body:line_color"] = line_color
-	dna["shader:Body/NeckBlend:black"] = line_color
+	dna["shader:Body:black"] = line_color
 	dna["shader:NearArm:black"] = line_color
 	dna["shader:NearLeg:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EarZ0:black"] = line_color
@@ -181,7 +180,7 @@ static func _load_colors(dna: Dictionary) -> void:
 		body_color = Color(dna.body_rgb)
 	dna["shader:FarArm:red"] = body_color
 	dna["shader:FarLeg:red"] = body_color
-	dna["shader:Body/NeckBlend:red"] = body_color
+	dna["shader:Body:red"] = body_color
 	dna["shader:NearLeg:red"] = body_color
 	dna["shader:NearArm:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EarZ0:red"] = body_color
@@ -193,11 +192,6 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/Mouth:red"] = body_color
 	dna["shader:Neck0/HeadBobber/Eyes:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EmoteArms:red"] = body_color
-	
-	var body_fill_color: Color
-	if line_color and body_color:
-		body_fill_color = body_color.blend(Color(line_color.r, line_color.g, line_color.b, 0.25))
-	dna["property:Body:fill_color"] = body_fill_color
 	
 	var eye_color: Color
 	var eye_shine_color: Color

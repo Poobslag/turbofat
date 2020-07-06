@@ -162,6 +162,10 @@ func orient_toward(target: Node2D) -> void:
 		_creature_visuals.set_orientation(SOUTHWEST)
 
 
+func set_orientation(orientation: int) -> void:
+	_creature_visuals.set_orientation(orientation)
+
+
 """
 Plays a 'hello!' voice sample, for when a creature enters the restaurant
 """

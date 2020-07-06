@@ -17,9 +17,15 @@ func update_orientation(orientation: int) -> void:
 
 
 func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientation: int) -> void:
-	if (new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]) \
-			!= (old_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]):
-		# we went from facing south to north, or from facing north to south
+	if (new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]
+		and old_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]):
+			# still facing south, just like before
+			pass
+	elif (new_orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]
+		and old_orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]):
+			# still facing north, just like before
+			pass
+	else:
 		update_orientation(new_orientation)
 
 

@@ -13,12 +13,16 @@ export(bool) var _smooth: bool setget smooth
 export(bool) var _straighten: bool setget straighten
 export(bool) var closed := true
 
-export(Color) var line_color := Color.black
+export(Color) var line_color := Color.black setget set_line_color
 export(Color) var fill_color := Color.transparent setget set_fill_color
 export(float) var line_width := 8.0
 
 # internal array used for drawing polygons
 var _poly_colors := PoolColorArray()
+
+func _ready() -> void:
+	update()
+
 
 func _draw() -> void:
 	var points := curve.get_baked_points()
@@ -27,8 +31,8 @@ func _draw() -> void:
 			# don't waste cycles drawing invisible polygons
 			if _poly_colors.size() != points.size():
 				_poly_colors.resize(points.size())
-				for _i in range(_poly_colors.size()):
-					_poly_colors[_i] = fill_color
+				for i in range(_poly_colors.size()):
+					_poly_colors[i] = fill_color
 			draw_polygon(points, _poly_colors)
 		if line_color.a > 0:
 			# don't waste cycles drawing invisible lines
@@ -37,10 +41,16 @@ func _draw() -> void:
 			draw_polyline(points, line_color, line_width, true)
 
 
+func set_line_color(new_line_color: Color) -> void:
+	line_color = new_line_color
+	update()
+
+
 func set_fill_color(new_fill_color: Color) -> void:
 	fill_color = new_fill_color
 	for i in range(_poly_colors.size()):
 		_poly_colors.set(i, new_fill_color)
+	update()
 
 
 """
