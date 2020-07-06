@@ -264,6 +264,10 @@ codes = [ "bigfps" ]
 
 [node name="SettingsMenu" parent="Ui/OverworldUi" instance=ExtResource( 6 )]
 quit_text = "Save + Quit"
+[connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
 [connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_showed_choices"]
