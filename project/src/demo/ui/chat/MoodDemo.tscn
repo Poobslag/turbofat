@@ -27,10 +27,3 @@ dna = {
 "line_rgb": "41281e",
 "mouth": "2"
 }
-chat_theme_def = {
-"accent_scale": 0.66,
-"accent_swapped": true,
-"accent_texture": 1,
-"color": "0b45a6",
-"dark": true
-}

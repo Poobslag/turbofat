@@ -46,7 +46,7 @@ var _non_iso_velocity := Vector2.ZERO
 var _iso_walk_direction := Vector2.ZERO
 var _non_iso_walk_direction := Vector2.ZERO
 
-onready var _creature_visuals: CreatureVisuals = $Visuals
+onready var _creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visuals
 
 func _ready() -> void:
 	if creature_id:
@@ -202,6 +202,8 @@ func _refresh_dna() -> void:
 			_creature_visuals.dna = CreatureLoader.fill_dna(dna)
 		else:
 			_creature_visuals.dna = {}
+		if dna.has("line_rgb"):
+			$CreatureOutline/TextureRect.material.set_shader_param("black", Color(dna.line_rgb))
 
 
 func _refresh_chat_path() -> void:
@@ -274,3 +276,7 @@ func _on_CreatureVisuals_creature_arrived() -> void:
 
 func _on_CreatureVisuals_food_eaten() -> void:
 	emit_signal("food_eaten")
+
+
+func _on_CreatureVisuals_before_creature_arrived() -> void:
+	pass # Replace with function body.
