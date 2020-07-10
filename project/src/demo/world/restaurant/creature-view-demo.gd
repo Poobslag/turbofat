@@ -8,6 +8,7 @@ Keys:
 	[V]: Say something
 	[1-9,0]: Change the creature's size from 10% to 100%
 	[Q,W,E]: Switch to the 1st, 2nd or 3rd creature.
+	arrows: Change the creature's orientation
 	brace keys: Change the creature's appearance
 """
 
@@ -42,6 +43,14 @@ func _input(event: InputEvent) -> void:
 				_current_color_index = (_current_color_index + 1) % CreatureLoader.DEFINITIONS.size()
 			Global.creature_queue.push_front(CreatureLoader.DEFINITIONS[_current_color_index])
 			$CreatureView.summon_creature()
+		KEY_RIGHT:
+			$CreatureView.get_creature_2d().set_orientation(CreatureVisuals.SOUTHEAST)
+		KEY_DOWN:
+			$CreatureView.get_creature_2d().set_orientation(CreatureVisuals.SOUTHWEST)
+		KEY_LEFT:
+			$CreatureView.get_creature_2d().set_orientation(CreatureVisuals.NORTHWEST)
+		KEY_UP:
+			$CreatureView.get_creature_2d().set_orientation(CreatureVisuals.NORTHEAST)
 
 
 func _creature_2d() -> Creature:

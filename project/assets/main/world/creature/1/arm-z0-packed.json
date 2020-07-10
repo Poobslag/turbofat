@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "arm-z0-packed 0.png",
+    "filename": "arm-z0-1 0.png",
     "frame": { "x": 57, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -9,7 +9,7 @@
     "duration": 100
    },
    {
-    "filename": "arm-z0-packed 1.png",
+    "filename": "arm-z0-1 1.png",
     "frame": { "x": 0, "y": 0, "w": 52, "h": 58 },
     "rotated": false,
     "trimmed": true,
@@ -18,7 +18,7 @@
     "duration": 100
    },
    {
-    "filename": "arm-z0-packed 2.png",
+    "filename": "arm-z0-1 2.png",
     "frame": { "x": 57, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -29,7 +29,7 @@
  ],
  "meta": {
   "app": "http://www.aseprite.org/",
-  "version": "1.2.20-x64",
+  "version": "1.2.21-x64",
   "image": "arm-z0-packed.png",
   "format": "RGBA8888",
   "size": { "w": 58, "h": 58 },

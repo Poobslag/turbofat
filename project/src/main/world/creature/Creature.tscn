@@ -1,6 +1,6 @@
 [gd_scene load_steps=10 format=2]
 
-[ext_resource path="res://src/main/world/creature/CreatureSprites.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/world/creature/CreatureVisuals.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/creature.gd" type="Script" id=3]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/main/world/creature/move-bonk.wav" type="AudioStream" id=5]
@@ -23,13 +23,14 @@ script = ExtResource( 3 )
 [node name="CreatureOutline" type="Node2D" parent="."]
 
 [node name="Viewport" type="Viewport" parent="CreatureOutline"]
-size = Vector2( 1024, 1024 )
+size = Vector2( 1200, 1200 )
 transparent_bg = true
 handle_input_locally = false
 render_target_update_mode = 3
 audio_listener_enable_2d = true
 
 [node name="Visuals" parent="CreatureOutline/Viewport" instance=ExtResource( 1 )]
+position = Vector2( 512, 912 )
 dna = {
 "property:Body:fill_color": Color( 0, 0, 0, 1 ),
 "property:Body:line_color": Color( 0, 0, 0, 1 ),
@@ -75,8 +76,8 @@ light_mask = 2
 material = ExtResource( 6 )
 margin_left = -200.0
 margin_top = -366.315
-margin_right = 824.0
-margin_bottom = 657.685
+margin_right = 1000.0
+margin_bottom = 833.685
 rect_scale = Vector2( 0.4, 0.4 )
 texture = SubResource( 1 )
 flip_v = true
