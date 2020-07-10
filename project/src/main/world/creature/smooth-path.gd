@@ -33,7 +33,7 @@ func _draw() -> void:
 				_poly_colors.resize(points.size())
 				for i in range(_poly_colors.size()):
 					_poly_colors[i] = fill_color
-			draw_polygon(points, _poly_colors)
+			draw_polygon(points, _poly_colors, PoolVector2Array(), null, null, true)
 		if line_color.a > 0:
 			# don't waste cycles drawing invisible lines
 			if closed:

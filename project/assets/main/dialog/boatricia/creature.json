@@ -4,6 +4,8 @@
   "name": "Boatricia",
   "dna": {
     "body_rgb": "0b45a6",
+    "belly": "1",
+    "belly_rgb": "eec086",
     "ear": "2",
     "eye": "3",
     "eye_rgb": "fad541 ffffff",

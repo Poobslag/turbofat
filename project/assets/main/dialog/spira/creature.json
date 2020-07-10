@@ -4,6 +4,8 @@
   "name": "Spira",
   "dna": {
     "body_rgb": "b23823",
+    "belly": "1",
+    "belly_rgb": "c9442a",
     "ear": "1",
     "eye": "1",
     "eye_rgb": "282828 dedede",

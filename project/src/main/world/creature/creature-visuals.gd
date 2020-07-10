@@ -151,7 +151,6 @@ func reset_creature(value: bool = true) -> void:
 	if not value:
 		return
 	set_dna({})
-	dna = {}
 
 
 """
@@ -405,11 +404,16 @@ func _update_creature_properties() -> void:
 		if key.find("property:") == 0:
 			var node_path: String = key.split(":")[1]
 			var property_name: String = key.split(":")[2]
-			get_node(node_path).set(property_name, dna[key])
+			var property_value = dna[key]
+			if node_path == "BodyColors" and property_name == "belly":
+				# set_belly requires an int, not a string
+				property_value = int(property_value)
+			get_node(node_path).set(property_name, property_value)
 		if key.find("shader:") == 0:
 			var node_path: String = key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
-			get_node(node_path).material.set_shader_param(shader_param, dna[key])
+			var shader_value = dna[key]
+			get_node(node_path).material.set_shader_param(shader_param, shader_value)
 	$Body/Viewport/Body.update()
 	visible = true
 	emit_signal("creature_arrived")
