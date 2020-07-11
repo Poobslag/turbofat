@@ -13,23 +13,23 @@ uniform float edge_fix_factor = 1.0;
 
 void fragment() {
 	vec2 size = vec2(width) / vec2(textureSize(TEXTURE, 0));
-	
+
 	vec4 sprite_color = texture(TEXTURE, UV);
-	
+
 	float alpha = sprite_color.a;
-	
+
 	// cardinal directions
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(0.0, -size.y)).a);
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(size.x, 0.0)).a);
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(0.0, size.y)).a);
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(-size.x, 0.0)).a);
-	
+
 	// diagonal directions; divide by sqrt(2)
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(size.x * 0.7071, -size.y * 0.7071)).a);
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(size.x * 0.7071, size.y * 0.7071)).a);
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(-size.x * 0.7071, size.y * 0.7071)).a);
 	alpha = max(alpha, texture(TEXTURE, UV + vec2(-size.x * 0.7071, -size.y * 0.7071)).a);
-	
+
 	vec3 final_color = mix(black.rgb, sprite_color.rgb / max(sprite_color.a, edge_fix_factor), sprite_color.a);
 	COLOR = vec4(final_color, alpha);
 }

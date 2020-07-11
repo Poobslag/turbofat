@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=2]
@@ -23,8 +23,10 @@
 [ext_resource path="res://assets/main/world/creature/1/emote-head-packed.png" type="Texture" id=21]
 [ext_resource path="res://assets/main/ui/chat/emote-sweat1.wav" type="AudioStream" id=22]
 [ext_resource path="res://src/main/world/creature/body-shadows.shader" type="Shader" id=23]
+[ext_resource path="res://src/main/world/creature/creature-belly.gd" type="Script" id=24]
 [ext_resource path="res://src/main/world/creature/creature-visuals.gd" type="Script" id=37]
-[ext_resource path="res://src/main/world/creature/body-shadow.gd" type="Script" id=38]
+[ext_resource path="res://src/main/world/creature/creature-curve.gd" type="Script" id=38]
+[ext_resource path="res://src/main/world/creature/body-colors.gd" type="Script" id=40]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -51,53 +53,50 @@ shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="Curve2D" id=4]
+resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0.0132871, -28.7557, -0.0132871, 28.7557, -71.9184, -48.9366, -35.1478, -0.510676, 35.1478, 0.510676, 4.40906, 0.451691, -1.01159, 23.918, 1.01159, -23.918, 78.4915, -51.1815, 39.4804, 0.0106763, -39.4804, -0.0106763, 11.1438, -102.815, -0.98502, -37.2608, 0.98502, 37.2608, -71.9184, -51.1815 )
 }
 
 [sub_resource type="Curve2D" id=5]
+resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 0.0132871, -18.8562, -0.0132871, 18.8562, -43.3209, -25.7077, -12.5204, -0.510676, 12.5204, 0.510676, -23.5219, 16.7188, 0.429193, 20.722, -0.429193, -20.722, -3.7229, -27.1219 )
 }
 
 [sub_resource type="Curve2D" id=6]
+resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( -6.14105, 120.347, 6.14105, -120.347, -71.2125, 123.297, 0, 0, 0, 0, -67.5195, -45.2749, -53.2356, -1.9201, 53.2356, 1.9201, -3.26202, -13.9503, 0, 0, 0, 0, 50.3065, -45.2051, 3.34171, -88.48, -3.34171, 88.48, 53.3065, 121.814 )
 }
 
-[sub_resource type="ViewportTexture" id=7]
+[sub_resource type="Curve2D" id=7]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array(  )
+}
+
+[sub_resource type="ViewportTexture" id=8]
+viewport_path = NodePath("BodyColors/Viewport")
+
+[sub_resource type="ViewportTexture" id=9]
 viewport_path = NodePath("BodyShadows/Viewport")
 
-[sub_resource type="ShaderMaterial" id=8]
+[sub_resource type="ShaderMaterial" id=10]
 resource_local_to_scene = true
 shader = ExtResource( 23 )
 shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = null
+shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = null
 shader_param/black = Color( 0, 0, 0, 1 )
-shader_param/shadow_texture = SubResource( 7 )
+shader_param/color_texture = SubResource( 8 )
+shader_param/shadow_texture = SubResource( 9 )
 
-[sub_resource type="Curve2D" id=9]
+[sub_resource type="Curve2D" id=11]
 resource_local_to_scene = true
 _data = {
 "points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
 }
-
-[sub_resource type="ShaderMaterial" id=10]
-resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=11]
-resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=12]
 resource_local_to_scene = true
@@ -127,8 +126,8 @@ shader_param/black = Color( 0, 0, 0, 1 )
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
-shader_param/blue = null
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=16]
@@ -142,23 +141,12 @@ shader_param/black = Color( 0, 0, 0, 1 )
 [sub_resource type="ShaderMaterial" id=17]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
-shader_param/red = Color( 1, 1, 1, 1 )
-shader_param/green = null
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
 shader_param/blue = null
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="CanvasItemMaterial" id=18]
-resource_local_to_scene = true
-
-[sub_resource type="ShaderMaterial" id=19]
-resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 1, 1, 1, 1 )
-shader_param/green = Color( 1, 0.552941, 0.67451, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=20]
+[sub_resource type="ShaderMaterial" id=18]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
@@ -166,7 +154,34 @@ shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Animation" id=21]
+[sub_resource type="ShaderMaterial" id=19]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 1, 1, 1, 1 )
+shader_param/green = null
+shader_param/blue = null
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="CanvasItemMaterial" id=20]
+resource_local_to_scene = true
+
+[sub_resource type="ShaderMaterial" id=21]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 1, 1, 1, 1 )
+shader_param/green = Color( 1, 0.552941, 0.67451, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=22]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="Animation" id=23]
 length = 4.0
 loop = true
 step = 0.166667
@@ -183,7 +198,7 @@ tracks/0/keys = {
 "values": [ 2, 2, 13, 14, 15, 14, 13, 2 ]
 }
 
-[sub_resource type="Animation" id=22]
+[sub_resource type="Animation" id=24]
 length = 4.0
 loop = true
 step = 0.166667
@@ -200,7 +215,7 @@ tracks/0/keys = {
 "values": [ 1, 1, 10, 11, 12, 11, 10, 1 ]
 }
 
-[sub_resource type="Animation" id=23]
+[sub_resource type="Animation" id=25]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -254,7 +269,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=24]
+[sub_resource type="Animation" id=26]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -308,7 +323,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=25]
+[sub_resource type="Animation" id=27]
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
@@ -324,7 +339,7 @@ tracks/0/keys = {
 "values": [ 2, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33 ]
 }
 
-[sub_resource type="Animation" id=26]
+[sub_resource type="Animation" id=28]
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
@@ -340,7 +355,7 @@ tracks/0/keys = {
 "values": [ 1, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13 ]
 }
 
-[sub_resource type="Animation" id=27]
+[sub_resource type="Animation" id=29]
 length = 0.333333
 step = 0.0333333
 tracks/0/type = "value"
@@ -418,7 +433,7 @@ tracks/5/keys = {
 "values": [ 0, 0, 1, 2, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=28]
+[sub_resource type="Animation" id=30]
 length = 0.266666
 step = 0.0333333
 tracks/0/type = "value"
@@ -496,7 +511,7 @@ tracks/5/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=29]
+[sub_resource type="Animation" id=31]
 length = 7.99999
 loop = true
 step = 0.0333333
@@ -527,7 +542,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=30]
+[sub_resource type="Animation" id=32]
 loop = true
 step = 1.0
 tracks/0/type = "value"
@@ -557,7 +572,7 @@ tracks/1/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=31]
+[sub_resource type="Animation" id=33]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/Eyes:frame")
@@ -718,7 +733,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 0.2 )
 }
 
-[sub_resource type="Animation" id=32]
+[sub_resource type="Animation" id=34]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -818,7 +833,7 @@ tracks/7/keys = {
 "values": [ 2.0, 3.0, 3.0 ]
 }
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=35]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -834,7 +849,7 @@ tracks/0/keys = {
 "values": [ 1, 3, 4, 4, 3, 1 ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=36]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -850,7 +865,7 @@ tracks/0/keys = {
 "values": [ 4, 4, 3, 1 ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=37]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EmoteArms:frame")
@@ -913,7 +928,7 @@ tracks/4/keys = {
 "values": [ 0, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=38]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EmoteArms:frame")
@@ -1074,7 +1089,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=39]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/Eyes:frame")
@@ -1247,7 +1262,7 @@ tracks/13/keys = {
 "times": PoolRealArray( 0.2 )
 }
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=40]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/Eyes:frame")
@@ -1420,7 +1435,7 @@ tracks/13/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=39]
+[sub_resource type="Animation" id=41]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/Eyes:frame")
@@ -1447,7 +1462,7 @@ tracks/1/keys = {
 "values": [ 0, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=40]
+[sub_resource type="Animation" id=42]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/Eyes:frame")
@@ -1632,7 +1647,7 @@ tracks/14/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=41]
+[sub_resource type="Animation" id=43]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/Eyes:frame")
@@ -1683,7 +1698,7 @@ tracks/3/keys = {
 "values": [ 1, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=44]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/Eyes:frame")
@@ -1820,7 +1835,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=43]
+[sub_resource type="Animation" id=45]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EmoteArms:frame")
@@ -1933,7 +1948,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=44]
+[sub_resource type="Animation" id=46]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/Eyes:frame")
@@ -2046,8 +2061,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=45]
-resource_name = "fat-nw"
+[sub_resource type="Animation" id=47]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:position")
@@ -2169,8 +2183,20 @@ tracks/9/keys = {
 "update": 0,
 "values": [ Vector2( -1.11823, -102.515 ), Vector2( -1.11823, -102.515 ), Vector2( 16.118, -127.515 ), Vector2( 21.118, -152.515 ), Vector2( 21.118, -232.515 ) ]
 }
+tracks/10/type = "value"
+tracks/10/path = NodePath("BodyColors/Viewport/Body/Belly:fatness")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 1, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 10.0 ]
+}
 
-[sub_resource type="Animation" id=46]
+[sub_resource type="Animation" id=48]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:position")
@@ -2280,8 +2306,20 @@ tracks/8/keys = {
 "update": 0,
 "values": [ 1.0, 1.0, 10.0 ]
 }
+tracks/9/type = "value"
+tracks/9/path = NodePath("BodyColors/Viewport/Body/Belly:fatness")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 1, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 1.0, 1.0, 10.0 ]
+}
 
-[sub_resource type="Animation" id=47]
+[sub_resource type="Animation" id=49]
 step = 0.0555556
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0:position")
@@ -2296,7 +2334,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=48]
+[sub_resource type="Animation" id=50]
 length = 0.4
 loop = true
 step = 0.05
@@ -2339,7 +2377,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=51]
 length = 0.4
 loop = true
 step = 0.05
@@ -2446,7 +2484,7 @@ self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 4 )
 script = ExtResource( 38 )
 line_color = Color( 0.254902, 0.156863, 0.117647, 0 )
-fill_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+fill_color = Color( 0, 0, 0, 1 )
 editing = false
 curve_defs = [ {
 "curve_def": [ [ Vector2( -71.9184, -48.9366 ), Vector2( 0.0132871, -28.7557 ), Vector2( -0.0132871, 28.7557 ) ], [ Vector2( 4.40906, 0.451691 ), Vector2( -35.1478, -0.510676 ), Vector2( 35.1478, 0.510676 ) ], [ Vector2( 78.4915, -51.1815 ), Vector2( -1.01159, 23.918 ), Vector2( 1.01159, -23.918 ) ], [ Vector2( 11.1438, -102.815 ), Vector2( 39.4804, 0.0106763 ), Vector2( -39.4804, -0.0106763 ) ], [ Vector2( -71.9184, -51.1815 ), Vector2( -0.98502, -37.2608 ), Vector2( 0.98502, 37.2608 ) ] ],
@@ -2467,7 +2505,7 @@ self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 5 )
 script = ExtResource( 38 )
 line_color = Color( 0, 0, 0, 0 )
-fill_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+fill_color = Color( 0, 0, 0, 1 )
 editing = false
 curve_defs = [ {
 "curve_def": [ [ Vector2( -43.3209, -25.7077 ), Vector2( 0.0132871, -18.8562 ), Vector2( -0.0132871, 18.8562 ) ], [ Vector2( -23.5219, 16.7188 ), Vector2( -12.5204, -0.510676 ), Vector2( 12.5204, 0.510676 ) ], [ Vector2( -3.7229, -27.1219 ), Vector2( 0.429193, 20.722 ), Vector2( -0.429193, -20.722 ) ] ],
@@ -2494,7 +2532,7 @@ self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 6 )
 script = ExtResource( 38 )
 line_color = Color( 0, 0, 0, 0 )
-fill_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+fill_color = Color( 0, 0, 0, 1 )
 editing = false
 curve_defs = [ {
 "curve_def": [ [ Vector2( -71.2125, 123.297 ), Vector2( -6.14105, 120.347 ), Vector2( 6.14105, -120.347 ) ], [ Vector2( -67.5195, -45.2749 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( -3.26202, -13.9503 ), Vector2( -53.2356, -1.9201 ), Vector2( 53.2356, 1.9201 ) ], [ Vector2( 50.3065, -45.2051 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 53.3065, 121.814 ), Vector2( 3.34171, -88.48 ), Vector2( -3.34171, 88.48 ) ] ],
@@ -2507,8 +2545,70 @@ curve_defs = [ {
 "fatness": 10.0
 } ]
 
+[node name="BodyColors" type="ViewportContainer" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -580.0
+margin_top = -850.0
+margin_right = 620.0
+margin_bottom = 350.0
+script = ExtResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+belly = 0
+curve_defs_by_belly = {
+1: [ {
+"curve_def": [ [ Vector2( -16.4229, -16.8725 ), Vector2( -0.827609, -19.5058 ), Vector2( 0.827609, 19.5058 ) ], [ Vector2( 18.2874, 11.2822 ), Vector2( -14.9663, 1.17112 ), Vector2( 14.9663, -1.17112 ) ], [ Vector2( 49.4005, -24.8763 ), Vector2( 0.670203, 16.3499 ), Vector2( -0.670203, -16.3499 ) ], [ Vector2( 12.944, -59.7323 ), Vector2( 15.2832, -1.67112 ), Vector2( -15.2832, 1.67112 ) ], [ Vector2( -16.4229, -19.2536 ), Vector2( -0.144124, -20.4429 ), Vector2( 0.144124, 20.4429 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( -14.0417, -44.652 ), Vector2( -5.07054, -36.988 ), Vector2( 5.07054, 36.988 ) ], [ Vector2( 53.4227, 10.1133 ), Vector2( -31.3813, 2.0557 ), Vector2( 31.3813, -2.0557 ) ], [ Vector2( 100.251, -56.5575 ), Vector2( 6.51624, 31.0115 ), Vector2( -6.51624, -31.0115 ) ], [ Vector2( 30.4055, -119.26 ), Vector2( 31.663, -1.97161 ), Vector2( -31.663, 1.97161 ) ], [ Vector2( -15.6292, -47.8268 ), Vector2( -3.40593, -37.2924 ), Vector2( 3.40593, 37.2924 ) ] ],
+"fatness": 2.0
+}, {
+"curve_def": [ [ Vector2( -92.8664, -265.233 ), Vector2( -39.014, -176.845 ), Vector2( 39.014, 176.845 ) ], [ Vector2( 263.896, 1.14941 ), Vector2( -162.701, 9.13235 ), Vector2( 162.701, -9.13235 ) ], [ Vector2( 487.467, -308.044 ), Vector2( 53.2845, 148.304 ), Vector2( -53.2845, -148.304 ) ], [ Vector2( 121.191, -617.238 ), Vector2( 162.701, -4.37552 ), Vector2( -162.701, 4.37552 ) ], [ Vector2( -92.8664, -274.747 ), Vector2( -29.5004, -172.088 ), Vector2( 29.5004, 172.088 ) ] ],
+"fatness": 10.0
+} ],
+2: [ {
+"curve_def": [ [ Vector2( 19.4769, 22.0837 ), Vector2( -12.6411, 1.01899 ), Vector2( 12.6411, -1.01899 ) ], [ Vector2( 41.1959, -4.93256 ), Vector2( -0.49842, 13.9646 ), Vector2( 0.49842, -13.9646 ) ], [ Vector2( 36.4283, -25.5921 ), Vector2( 3.76837, 1.76346 ), Vector2( -3.76837, -1.76346 ) ], [ Vector2( 28.4823, -28.2407 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 20.0066, -29.83 ), Vector2( 4.58138, 0.641052 ), Vector2( -4.58138, -0.641052 ) ], [ Vector2( 11.0012, -30.3597 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 1.99573, -28.7704 ), Vector2( 5.30145, -1.33283 ), Vector2( -5.30145, 1.33283 ) ], [ Vector2( -7.0097, -25.5921 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( -13.3665, -20.8245 ), Vector2( 3.07046, -2.72488 ), Vector2( -3.07046, 2.72488 ) ], [ Vector2( -16.5449, 1.42426 ), Vector2( -3.00874, -15.751 ), Vector2( 3.00874, 15.751 ) ], [ Vector2( 17.8877, 22.0837 ), Vector2( -13.7799, 0.699882 ), Vector2( 13.7799, -0.699882 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( 41.4606, 21.8189 ), Vector2( -21.3817, 2.34332 ), Vector2( 21.3817, -2.34332 ) ], [ Vector2( 83.0994, -18.1308 ), Vector2( 0.296178, 20.3213 ), Vector2( -0.296178, -20.3213 ) ], [ Vector2( 70.3638, -45.8495 ), Vector2( 6.63645, 3.57208 ), Vector2( -6.63645, -3.57208 ) ], [ Vector2( 56.1298, -52.5919 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 45.6417, -54.8394 ), Vector2( 5.90571, 0.641052 ), Vector2( -5.90571, -0.641052 ) ], [ Vector2( 34.4044, -55.5885 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 23.1671, -54.8394 ), Vector2( 6.09604, -1.06797 ), Vector2( -6.09604, 1.06797 ) ], [ Vector2( 11.9297, -51.8427 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( -0.805847, -42.8528 ), Vector2( 6.37738, -5.01778 ), Vector2( -6.37738, 5.01778 ) ], [ Vector2( -10.1882, -8.11093 ), Vector2( -3.53847, -21.3132 ), Vector2( 3.53847, 21.3132 ) ], [ Vector2( 39.6065, 22.0837 ), Vector2( -23.8448, 2.02421 ), Vector2( 23.8448, -2.02421 ) ] ],
+"fatness": 1.5
+}, {
+"curve_def": [ [ Vector2( 63.4443, 21.554 ), Vector2( -30.1222, 3.66765 ), Vector2( 30.1222, -3.66765 ) ], [ Vector2( 104.234, -26.6516 ), Vector2( 1.09077, 26.6781 ), Vector2( -1.09077, -26.6781 ) ], [ Vector2( 86.7831, -68.3598 ), Vector2( 8.00622, 3.88239 ), Vector2( -8.00622, -3.88239 ) ], [ Vector2( 73.4196, -74.1506 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 60.0561, -76.3779 ), Vector2( 7.23004, 0.641052 ), Vector2( -7.23004, -0.641052 ) ], [ Vector2( 46.6926, -76.8233 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 34.6655, -75.4869 ), Vector2( 6.89064, -0.803103 ), Vector2( -6.89064, 0.803103 ) ], [ Vector2( 19.9657, -72.3688 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 6.60217, -63.4598 ), Vector2( 5.18938, -4.31407 ), Vector2( -5.18938, 4.31407 ) ], [ Vector2( -3.8316, -17.6461 ), Vector2( -4.0682, -26.8754 ), Vector2( 4.0682, 26.8754 ) ], [ Vector2( 61.3254, 22.0837 ), Vector2( -33.9097, 3.34854 ), Vector2( 33.9097, -3.34854 ) ] ],
+"fatness": 2.0
+}, {
+"curve_def": [ [ Vector2( 157.915, 8.39392 ), Vector2( -69.9569, 13.57 ), Vector2( 69.9569, -13.57 ) ], [ Vector2( 245.441, -138.358 ), Vector2( 12.1738, 57.1177 ), Vector2( -12.1738, -57.1177 ) ], [ Vector2( 194.498, -219.266 ), Vector2( 26.7805, 8.54604 ), Vector2( -26.7805, -8.54604 ) ], [ Vector2( 176.029, -171.583 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 128.573, -247.734 ), Vector2( 32.5679, 6.19786 ), Vector2( -32.5679, -6.19786 ) ], [ Vector2( 110.103, -198.553 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 55.1557, -244.737 ), Vector2( 31.4279, -6.74347 ), Vector2( -31.4279, 6.74347 ) ], [ Vector2( 50.171, -159.597 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 4.21326, -196.792 ), Vector2( 19.5156, -16.1333 ), Vector2( -19.5156, 16.1333 ) ], [ Vector2( -15.2648, -81.4219 ), Vector2( -13.058, -60.8277 ), Vector2( 13.058, 60.8277 ) ], [ Vector2( 153.712, 9.07025 ), Vector2( -81.8555, 9.34177 ), Vector2( 81.8555, -9.34177 ) ] ],
+"fatness": 5.0
+}, {
+"curve_def": [ [ Vector2( 351.338, -9.41907 ), Vector2( -127.143, 30.6224 ), Vector2( 168.544, -40.5937 ) ], [ Vector2( 487.725, -300.49 ), Vector2( 40.1355, 128.205 ), Vector2( -31.4327, -100.406 ) ], [ Vector2( 382, -484 ), Vector2( 42.9136, 5.92072 ), Vector2( -43.5736, -6.01178 ) ], [ Vector2( 364, -386 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 257.593, -536.035 ), Vector2( 45.8762, 3.59069 ), Vector2( -42.6172, -3.33561 ) ], [ Vector2( 236, -422 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 125.168, -510.071 ), Vector2( 47.9093, -20.2282 ), Vector2( -39.8701, 16.8339 ) ], [ Vector2( 120, -346 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 33.7709, -421.671 ), Vector2( 34.7119, -10.354 ), Vector2( -34.0173, 10.1468 ) ], [ Vector2( -12.5286, -228.756 ), Vector2( -15.991, -99.3122 ), Vector2( 19.1425, 118.885 ) ], [ Vector2( 344.901, -9.12219 ), Vector2( -226.018, 33.3689 ), Vector2( 125.149, -18.4767 ) ] ],
+"fatness": 10.0
+} ]
+}
+save_belly = false
+
+[node name="Viewport" type="Viewport" parent="BodyColors"]
+size = Vector2( 1200, 1200 )
+transparent_bg = true
+handle_input_locally = false
+usage = 0
+render_target_update_mode = 3
+
+[node name="Body" type="Node2D" parent="BodyColors/Viewport"]
+position = Vector2( 580, 850 )
+
+[node name="Belly" type="Path2D" parent="BodyColors/Viewport/Body"]
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 7 )
+script = ExtResource( 24 )
+spline_length = 120.0
+line_color = Color( 0.254902, 0.156863, 0.117647, 0 )
+fill_color = Color( 0, 1, 0, 1 )
+editing = false
+
 [node name="Body" type="ViewportContainer" parent="."]
-material = SubResource( 8 )
+material = SubResource( 10 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -580.0
@@ -2528,16 +2628,34 @@ render_target_update_mode = 3
 
 [node name="Body" type="Path2D" parent="Body/Viewport"]
 self_modulate = Color( 1, 1, 1, 1 )
-light_mask = 2
 position = Vector2( 580, 850 )
-curve = SubResource( 9 )
+curve = SubResource( 11 )
 script = ExtResource( 3 )
 fill_color = Color( 1, 0, 0, 1 )
 line_width = 2.0
 editing = false
+curve_defs = [ {
+"curve_def": [ [ Vector2( -11.158, -72.0639 ), Vector2( 24.9977, 0.341151 ), Vector2( -32.9037, -0.449047 ) ], [ Vector2( -62.0516, -16.4455 ), Vector2( -0.631155, -31.5491 ), Vector2( 0.500038, 24.995 ) ], [ Vector2( -13.1955, 28.0658 ), Vector2( -27.2528, -0.551655 ), Vector2( 30.9852, 0.627207 ) ], [ Vector2( 37.7671, -13.4088 ), Vector2( -0.010441, 25 ), Vector2( 0.011404, -27.3082 ) ], [ Vector2( -11.0971, -72.0781 ), Vector2( 27.0964, -1.30105 ), Vector2( -24.9712, 1.19901 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( 2.48196, -98.0519 ), Vector2( 24.9796, 1.01005 ), Vector2( -47.2111, -1.90899 ) ], [ Vector2( -73.3638, -25.1984 ), Vector2( -0.830624, -38.0932 ), Vector2( 0.634766, 29.1109 ) ], [ Vector2( 0.225128, 32.502 ), Vector2( -35.9932, -0.577805 ), Vector2( 42.1136, 0.676056 ) ], [ Vector2( 77.9952, -21.8535 ), Vector2( -0.801091, 32.9443 ), Vector2( 1.04004, -42.7709 ) ], [ Vector2( 3.64993, -98.0519 ), Vector2( 47.5356, -1.59304 ), Vector2( -24.986, 0.837346 ) ] ],
+"fatness": 1.5
+}, {
+"curve_def": [ [ Vector2( -0.795074, -123.774 ), Vector2( 24.9736, 1.14793 ), Vector2( -54.3328, -2.49744 ) ], [ Vector2( -103.721, -28.4092 ), Vector2( 0.105613, -58.0879 ), Vector2( -0.072546, 39.901 ) ], [ Vector2( -3.13336, 45.2353 ), Vector2( -63.8023, 0.391274 ), Vector2( 61.3144, -0.376016 ) ], [ Vector2( 99.2505, -28.4092 ), Vector2( -0.06645, 39.2979 ), Vector2( 0.097053, -57.3966 ) ], [ Vector2( -0.352325, -123.878 ), Vector2( 52.4123, -1.59304 ), Vector2( -24.9885, 0.759509 ) ] ],
+"fatness": 2.0
+}, {
+"curve_def": [ [ Vector2( -8.91397, -205.409 ), Vector2( 24.9987, 0.254314 ), Vector2( -81.0925, -0.824962 ) ], [ Vector2( -153.753, -56.6687 ), Vector2( -0.645028, -82.3391 ), Vector2( 0.43048, 54.9516 ) ], [ Vector2( -7.45096, 49.1566 ), Vector2( -83.8696, 1.41249 ), Vector2( 82.6315, -1.39163 ) ], [ Vector2( 138.364, -50.8166 ), Vector2( -0.945125, 49.6637 ), Vector2( 1.22209, -64.2175 ) ], [ Vector2( -8.91397, -204.922 ), Vector2( 88.3706, -1.59304 ), Vector2( -24.996, 0.450598 ) ] ],
+"fatness": 3.0
+}, {
+"curve_def": [ [ Vector2( -15.1975, -342.556 ), Vector2( 24.9942, -0.537486 ), Vector2( -120.34, 2.58783 ) ], [ Vector2( -262.069, -87.7643 ), Vector2( -2.46623, -173.91 ), Vector2( 1.31159, 92.489 ) ], [ Vector2( -29.1206, 90.6122 ), Vector2( -137.336, -0.624495 ), Vector2( 163.981, 0.745659 ) ], [ Vector2( 236.408, -78.8047 ), Vector2( -0.799582, 82.6504 ), Vector2( 1.55683, -160.925 ) ], [ Vector2( -14.9055, -342.556 ), Vector2( 128.187, -2.16184 ), Vector2( -24.9965, 0.421561 ) ] ],
+"fatness": 5.0
+}, {
+"curve_def": [ [ Vector2( -1.29367, -658.921 ), Vector2( 24.9962, 0.436254 ), Vector2( -186.573, -3.25622 ) ], [ Vector2( -494.142, -156.333 ), Vector2( -4.48658, -290.76 ), Vector2( 3.44123, 223.014 ) ], [ Vector2( -18.8258, 204.05 ), Vector2( -219.143, -2.18805 ), Vector2( 241.903, 2.4153 ) ], [ Vector2( 497.398, -131.008 ), Vector2( 2.04043, 215.119 ), Vector2( -3.31852, -349.867 ) ], [ Vector2( 0.654327, -658.921 ), Vector2( 194.42, -4.10986 ), Vector2( -24.9945, 0.528361 ) ] ],
+"fatness": 10.0
+} ]
 
 [node name="NeckBlend" type="Node2D" parent="Body/Viewport/Body"]
-position = Vector2( 21.118, -232.515 )
+position = Vector2( -1.11823, -102.515 )
 rotation = 3.13804
 scale = Vector2( 0.836, -0.836 )
 script = ExtResource( 6 )
@@ -2546,7 +2664,7 @@ frame = 1
 
 [node name="NearLeg" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 10 )
+material = SubResource( 12 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -2583,7 +2701,7 @@ __meta__ = {
 [node name="EarZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 11 )
+material = SubResource( 13 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -2592,7 +2710,7 @@ frame = 1
 [node name="HornZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 12 )
+material = SubResource( 14 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -2601,7 +2719,7 @@ frame = 1
 [node name="Head" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 13 )
+material = SubResource( 15 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -2610,7 +2728,7 @@ frame = 1
 [node name="EarZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 11 )
+material = SubResource( 13 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -2619,7 +2737,7 @@ frame = 1
 [node name="HornZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 12 )
+material = SubResource( 14 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -2628,7 +2746,7 @@ frame = 1
 [node name="EarZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 14 )
+material = SubResource( 16 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -2637,7 +2755,7 @@ frame = 1
 [node name="Mouth" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 15 )
+material = SubResource( 17 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
@@ -2646,7 +2764,7 @@ frame = 1
 [node name="Eyes" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 16 )
+material = SubResource( 18 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -2681,7 +2799,7 @@ offset = Vector2( 0, -119 )
 
 [node name="EmoteEyes" type="Node2D" parent="Neck0/HeadBobber"]
 light_mask = 2
-material = SubResource( 17 )
+material = SubResource( 19 )
 position = Vector2( 0, 256 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
@@ -2693,7 +2811,7 @@ offset = Vector2( 0, -119 )
 [node name="EmoteGlow" type="Sprite" parent="Neck0/HeadBobber"]
 modulate = Color( 0.54902, 0.133333, 0.380392, 0 )
 light_mask = 2
-material = SubResource( 18 )
+material = SubResource( 20 )
 position = Vector2( 25.3166, 262.374 )
 scale = Vector2( 1.8, 0.8 )
 texture = ExtResource( 4 )
@@ -2705,7 +2823,7 @@ __meta__ = {
 [node name="EmoteBrain" type="Node2D" parent="Neck0/HeadBobber"]
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
-material = SubResource( 19 )
+material = SubResource( 21 )
 position = Vector2( -18.2593, -72.9644 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
@@ -2729,7 +2847,7 @@ offset = Vector2( 0, -119 )
 [node name="EmoteBody" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
-material = SubResource( 20 )
+material = SubResource( 22 )
 position = Vector2( -169.545, 19.486 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
@@ -2738,36 +2856,36 @@ frame_data = "res://assets/main/world/creature/1/emote-body-packed.json"
 offset = Vector2( 0, -119 )
 
 [node name="Mouth0Anims" type="AnimationPlayer" parent="."]
-anims/ambient-nw = SubResource( 21 )
-anims/ambient-se = SubResource( 22 )
-anims/eat = SubResource( 23 )
-anims/eat-again = SubResource( 24 )
+anims/ambient-nw = SubResource( 23 )
+anims/ambient-se = SubResource( 24 )
+anims/eat = SubResource( 25 )
+anims/eat-again = SubResource( 26 )
 script = ExtResource( 5 )
 
 [node name="Mouth1Anims" type="AnimationPlayer" parent="."]
-anims/ambient-nw = SubResource( 25 )
-anims/ambient-se = SubResource( 26 )
-anims/eat = SubResource( 27 )
-anims/eat-again = SubResource( 28 )
+anims/ambient-nw = SubResource( 27 )
+anims/ambient-se = SubResource( 28 )
+anims/eat = SubResource( 29 )
+anims/eat-again = SubResource( 30 )
 script = ExtResource( 5 )
 
 [node name="EmoteAnims" type="AnimationPlayer" parent="."]
-anims/ambient = SubResource( 29 )
-anims/ambient-nw = SubResource( 30 )
-anims/cry0 = SubResource( 31 )
-anims/cry1 = SubResource( 32 )
-anims/eat = SubResource( 33 )
-anims/eat-again = SubResource( 34 )
-anims/laugh0 = SubResource( 35 )
-anims/laugh1 = SubResource( 36 )
-anims/rage0 = SubResource( 37 )
-anims/rage1 = SubResource( 38 )
-anims/smile0 = SubResource( 39 )
-anims/smile1 = SubResource( 40 )
-anims/sweat0 = SubResource( 41 )
-anims/sweat1 = SubResource( 42 )
-anims/think0 = SubResource( 43 )
-anims/think1 = SubResource( 44 )
+anims/ambient = SubResource( 31 )
+anims/ambient-nw = SubResource( 32 )
+anims/cry0 = SubResource( 33 )
+anims/cry1 = SubResource( 34 )
+anims/eat = SubResource( 35 )
+anims/eat-again = SubResource( 36 )
+anims/laugh0 = SubResource( 37 )
+anims/laugh1 = SubResource( 38 )
+anims/rage0 = SubResource( 39 )
+anims/rage1 = SubResource( 40 )
+anims/smile0 = SubResource( 41 )
+anims/smile1 = SubResource( 42 )
+anims/sweat0 = SubResource( 43 )
+anims/sweat1 = SubResource( 44 )
+anims/think0 = SubResource( 45 )
+anims/think1 = SubResource( 46 )
 script = ExtResource( 7 )
 
 [node name="ResetTween" type="Tween" parent="EmoteAnims"]
@@ -2777,46 +2895,47 @@ stream = ExtResource( 19 )
 bus = "Sound Bus"
 
 [node name="FatPlayer" type="AnimationPlayer" parent="."]
-anims/fat-nw = SubResource( 45 )
-anims/fat-se = SubResource( 46 )
+anims/fat-nw = SubResource( 47 )
+anims/fat-se = SubResource( 48 )
 script = ExtResource( 8 )
 
 [node name="MovementAnims" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 47 )
-anims/run-nw = SubResource( 48 )
-anims/run-se = SubResource( 49 )
+anims/idle = SubResource( 49 )
+anims/run-nw = SubResource( 50 )
+anims/run-se = SubResource( 51 )
 
 [node name="Tween" type="Tween" parent="."]
-[connection signal="before_creature_arrived" from="." to="Mouth0Anims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="." to="Mouth1Anims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="before_creature_arrived" from="." to="EmoteAnims" method="_on_CreatureVisuals_before_creature_arrived"]
+[connection signal="before_creature_arrived" from="." to="Mouth0Anims" method="_on_CreatureVisuals_before_creature_arrived"]
 [connection signal="movement_mode_changed" from="." to="Body/Viewport/Body" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FatPlayer" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="orientation_changed" from="." to="BodyColors/Viewport/Body/Belly" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="FarArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="FarLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Mouth0Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="FatPlayer" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
 [connection signal="before_mood_switched" from="EmoteAnims" to="." method="_on_EmoteAnims_before_mood_switched"]
 [connection signal="animation_started" from="MovementAnims" to="." method="_on_MovementAnims_animation_started"]

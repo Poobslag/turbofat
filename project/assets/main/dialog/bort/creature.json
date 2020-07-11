@@ -4,6 +4,8 @@
   "name": "Bort",
   "dna": {
     "body_rgb": "6f83db",
+    "belly": "2",
+    "belly_rgb": "92d8e5",
     "ear": "3",
     "eye": "1",
     "eye_rgb": "374265 eaf2f4",

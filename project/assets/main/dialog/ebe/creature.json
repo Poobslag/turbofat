@@ -4,6 +4,8 @@
   "name": "Ebe",
   "dna": {
     "body_rgb": "b47922",
+    "belly": "0",
+    "belly_rgb": "d0ec5c",
     "ear": "1",
     "eye": "2",
     "eye_rgb": "7d4c21 e5cd7d",
