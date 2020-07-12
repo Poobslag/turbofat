@@ -83,4 +83,5 @@ bus = "Sound Bus"
 [connection signal="creature_arrived" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="food_eaten" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="food_eaten" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
+[connection signal="visual_fatness_changed" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_visual_fatness_changed"]
 [connection signal="timeout" from="CreatureSfx/HelloTimer" to="CreatureSfx" method="_on_HelloTimer_timeout"]

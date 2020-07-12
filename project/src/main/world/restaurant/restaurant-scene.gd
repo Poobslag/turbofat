@@ -1,10 +1,13 @@
+class_name RestaurantScene
 extends Node2D
 """
 Handles animations and audio/visual effects for the restaurant and its creatures.
 """
 
+signal current_creature_index_changed(value)
+
 # the creature which food is currently being served to
-var current_creature_index := 0
+var current_creature_index := 0 setget set_current_creature_index
 
 # fields which control the screen shake effect
 var _shake_total_seconds := 0.0
@@ -33,6 +36,13 @@ func _process(delta: float) -> void:
 			var max_shake := _shake_magnitude * _shake_remaining_seconds / _shake_total_seconds
 			_shake_position = Vector2(rand_range(-max_shake, max_shake), rand_range(-max_shake, max_shake))
 	position = _shake_position + camera_position
+
+
+func set_current_creature_index(new_index: int) -> void:
+	if current_creature_index == new_index:
+		return
+	current_creature_index = new_index
+	emit_signal("current_creature_index_changed", new_index)
 
 
 """

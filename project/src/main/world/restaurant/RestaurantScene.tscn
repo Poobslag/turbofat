@@ -259,9 +259,6 @@ z_index = 20
 dna = {
 
 }
-chat_theme_def = {
-
-}
 
 [node name="Seat2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1380, 585 )
@@ -272,9 +269,6 @@ position = Vector2( 2381.23, 435.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
 dna = {
-
-}
-chat_theme_def = {
 
 }
 
