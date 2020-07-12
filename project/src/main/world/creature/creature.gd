@@ -5,6 +5,7 @@ Script for representing a creature in the 2D overworld.
 """
 
 signal fatness_changed
+signal visual_fatness_changed
 
 signal creature_arrived
 
@@ -71,6 +72,10 @@ func set_fatness(new_fatness: float) -> void:
 
 func get_fatness() -> float:
 	return _creature_visuals.get_fatness()
+
+
+func get_visual_fatness() -> float:
+	return _creature_visuals.visual_fatness
 
 
 func set_non_iso_walk_direction(new_direction: Vector2) -> void:
@@ -282,5 +287,5 @@ func _on_CreatureVisuals_food_eaten() -> void:
 	emit_signal("food_eaten")
 
 
-func _on_CreatureVisuals_before_creature_arrived() -> void:
-	pass # Replace with function body.
+func _on_CreatureVisuals_visual_fatness_changed() -> void:
+	emit_signal("visual_fatness_changed")

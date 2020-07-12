@@ -1,16 +1,17 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://assets/main/puzzle/creature-view-outline.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/puzzle/creature-view-mask.png" type="Texture" id=2]
 [ext_resource path="res://src/main/world/restaurant/RestaurantScene.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/restaurant/creature-view.gd" type="Script" id=4]
-[ext_resource path="res://src/main/world/creature/fat-player.gd" type="Script" id=5]
+[ext_resource path="res://src/main/world/restaurant/restaurant-camera-mover.gd" type="Script" id=5]
+[ext_resource path="res://src/main/world/restaurant/creature-switch-tween.gd" type="Script" id=6]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fat-nw"
 length = 10.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("SceneClip/CreatureSwitcher/Scene:camera_position")
+tracks/0/path = NodePath("RestaurantCameraMover:_target_camera_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -25,7 +26,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 length = 10.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("SceneClip/CreatureSwitcher/Scene:camera_position")
+tracks/0/path = NodePath("RestaurantCameraMover:_target_camera_position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -61,14 +62,19 @@ position = Vector2( -89.8812, -104.904 )
 camera_position = Vector2( -89.8812, -104.904 )
 
 [node name="CreatureSwitchTween" type="Tween" parent="SceneClip/CreatureSwitcher"]
+script = ExtResource( 6 )
+
+[node name="RestaurantCameraMover" type="AnimationPlayer" parent="SceneClip/CreatureSwitcher"]
+anims/fat-nw = SubResource( 1 )
+anims/fat-se = SubResource( 2 )
+script = ExtResource( 5 )
+restaurant_scene_path = NodePath("../Scene")
+_target_camera_position = Vector2( -89.8812, -104.904 )
 
 [node name="OvalOutline" type="Sprite" parent="."]
 self_modulate = Color( 0.360784, 0.192157, 0.12549, 1 )
 z_index = 25
 texture = ExtResource( 1 )
 centered = false
-
-[node name="FatPlayer" type="AnimationPlayer" parent="."]
-anims/fat-nw = SubResource( 1 )
-anims/fat-se = SubResource( 2 )
-script = ExtResource( 5 )
+[connection signal="current_creature_index_changed" from="SceneClip/CreatureSwitcher/Scene" to="SceneClip/CreatureSwitcher/RestaurantCameraMover" method="_on_RestaurantScene_current_creature_index_changed"]
+[connection signal="current_creature_index_changed" from="SceneClip/CreatureSwitcher/Scene" to="SceneClip/CreatureSwitcher/CreatureSwitchTween" method="_on_RestaurantScene_current_creature_index_changed"]

@@ -34,6 +34,7 @@ signal landed
 signal orientation_changed(old_orientation, new_orientation)
 signal movement_mode_changed(movement_mode)
 signal fatness_changed
+signal visual_fatness_changed
 
 # directions the creature can face
 enum Orientation {
@@ -74,6 +75,12 @@ var _suppress_sfx_signal_timer := 0.0
 # forces listeners to update their animation frame
 var _force_orientation_change := false
 
+# how fat the creature will become eventually; visual_fatness gradually approaches this value
+var fatness := 1.0 setget set_fatness, get_fatness
+
+# how fat the creature looks right now; gradually approaches the 'fatness' property
+export (float) var visual_fatness := 1.0 setget set_visual_fatness
+
 onready var _mouth_animation_player := $Mouth0Anims
 
 func _ready() -> void:
@@ -88,6 +95,25 @@ func _process(delta: float) -> void:
 		_suppress_sfx_signal_timer -= delta
 
 
+func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		# don't move stuff in the editor
+		return
+	
+	# lerp plus a little extra
+	if visual_fatness != fatness:
+		if visual_fatness < fatness:
+			visual_fatness = min(visual_fatness + 4 * delta, fatness)
+		elif visual_fatness > fatness:
+			visual_fatness = max(visual_fatness - 4 * delta, fatness)
+		set_visual_fatness(lerp(visual_fatness, fatness, 0.008))
+
+
+func set_visual_fatness(new_visual_fatness: float) -> void:
+	visual_fatness = new_visual_fatness
+	emit_signal("visual_fatness_changed")
+
+
 """
 Returns the creature's fatness, a float which determines how fat the creature
 should be; 5.0 = 5x normal size
@@ -96,7 +122,7 @@ Parameters:
 	'creature_index': (Optional) The creature to ask about. Defaults to the current creature.
 """
 func get_fatness() -> float:
-	return $FatPlayer.get_fatness()
+	return fatness
 
 
 """
@@ -109,9 +135,8 @@ Parameters:
 	'creature_index': (Optional) The creature to be altered. Defaults to the current creature.
 """
 func set_fatness(new_fatness: float) -> void:
-	if not Engine.is_editor_hint():
-		$FatPlayer.set_fatness(new_fatness)
-		emit_signal("fatness_changed")
+	fatness = new_fatness
+	emit_signal("fatness_changed")
 
 
 """

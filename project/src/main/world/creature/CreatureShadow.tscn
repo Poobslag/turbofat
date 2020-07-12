@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/main/world/creature/creature-shadow.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/creature/fat-player.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/world/shadow-oval-0.png" type="Texture" id=3]
 
 [sub_resource type="Animation" id=1]
@@ -33,4 +32,3 @@ texture = ExtResource( 3 )
 
 [node name="FatPlayer" type="AnimationPlayer" parent="."]
 anims/fat = SubResource( 1 )
-script = ExtResource( 2 )

@@ -4,18 +4,9 @@ A small bubble which appears alongside the game window which shows the current c
 and scores points, the creature eats and grows larger.
 """
 
-# the amount of time spent panning the camera to a new creature
-const PAN_DURATION_SECONDS := 0.4
-
-
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
-
-
-func _physics_process(_delta: float) -> void:
-	if $FatPlayer.get_fatness() != get_creature_2d().get_fatness():
-		$FatPlayer.set_fatness(get_creature_2d().get_fatness())
 
 
 func get_creature_2d(creature_index: int = -1) -> Creature:
@@ -40,11 +31,6 @@ Pans the camera to a new creature. This also changes which creature will be fed.
 """
 func set_current_creature_index(new_index: int) -> void:
 	$SceneClip/CreatureSwitcher/Scene.current_creature_index = new_index
-	$SceneClip/CreatureSwitcher/CreatureSwitchTween.interpolate_property(
-			$SceneClip/CreatureSwitcher, "position:x",
-			$SceneClip/CreatureSwitcher.position.x, -1000 * new_index, PAN_DURATION_SECONDS,
-			Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	$SceneClip/CreatureSwitcher/CreatureSwitchTween.start()
 
 
 """
