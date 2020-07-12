@@ -21,6 +21,9 @@ var chat_theme_def: Dictionary
 # filenames containing dialog
 var dialog: Array
 
+# how fat the creature's body is; 5.0 = 5x normal size
+var fatness := 1.0
+
 func from_json_dict(json: Dictionary) -> void:
 	if json.get("version") != "170e":
 		push_warning("Unrecognized creature data version: '%s'" % json.get("version"))
@@ -29,5 +32,6 @@ func from_json_dict(json: Dictionary) -> void:
 	dna = json.get("dna", {})
 	chat_theme_def = json.get("chat_theme_def", {})
 	dialog = json.get("dialog", [])
+	fatness = json.get("fatness", 1.0)
 	if dialog:
 		chat_path = "res://assets/main/dialog/%s/%s.json" % [creature_id, dialog[0]]

@@ -19,7 +19,7 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 	_refresh_sprite_positions()
 
 
-func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
 	_refresh_sprite_positions()
 
 
@@ -27,3 +27,4 @@ func _refresh_sprite_positions() -> void:
 	play("fat-se" if _creature_visuals.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST] else "fat-nw")
 	advance(_creature_visuals.visual_fatness)
 	stop()
+	_creature_visuals.emit_signal("head_moved")

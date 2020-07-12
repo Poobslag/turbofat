@@ -27,6 +27,9 @@ export (BubbleType) var bubble_type: int setget set_bubble_type
 # 'true' if this bubble should appear on the right side, 'false' if it's on the left side
 export (bool) var right_side := true setget set_right_side
 
+# the position the bubble should point to
+export (Vector2) var target_position: Vector2 setget set_target_position
+
 var bounce_phase := 0.0
 var focused := false
 
@@ -41,7 +44,7 @@ func _physics_process(delta: float) -> void:
 		# keep bounce_phase bounded, otherwise a sprite will jitter slightly 3 billion millenia from now
 		bounce_phase -= 2 / BOUNCE_DURATION
 	
-	position.y = -52 - abs(BOUNCE_HEIGHT * sin(bounce_phase * BOUNCE_DURATION * PI))
+	position.y = target_position.y - 52 - abs(BOUNCE_HEIGHT * sin(bounce_phase * BOUNCE_DURATION * PI))
 
 
 func set_bubble_type(new_bubble_type: int) -> void:
@@ -51,8 +54,12 @@ func set_bubble_type(new_bubble_type: int) -> void:
 
 func set_right_side(new_right_side: bool) -> void:
 	right_side = new_right_side
-	position.x = 64 if right_side else -64
-	flip_h = not right_side
+	_refresh()
+
+
+func set_target_position(new_target_position: Vector2) -> void:
+	target_position = new_target_position
+	_refresh()
 
 
 """
@@ -84,6 +91,8 @@ func vanish() -> void:
 
 
 func _refresh() -> void:
+	position.x = target_position.x + (64 if right_side else -64)
+	flip_h = not right_side
 	visible = bubble_type != BubbleType.NONE
 	frame = randi() % 3 + (3 if bubble_type == BubbleType.THOUGHT else 0)
 	

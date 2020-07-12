@@ -36,6 +36,10 @@ signal movement_mode_changed(movement_mode)
 signal fatness_changed
 signal visual_fatness_changed
 
+# emitted by FatSpriteMover when it moves the head by making the creature fatter
+# warning-ignore:unused_signal
+signal head_moved
+
 # directions the creature can face
 enum Orientation {
 	SOUTHEAST,

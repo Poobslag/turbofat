@@ -14,6 +14,7 @@
     "line_rgb": "6c4331",
     "mouth": "2"
   },
+  "fatness": 2.0,
   "chat_theme_def": {
     "accent_scale": 2.6,
     "accent_swapped": false,

@@ -34,8 +34,20 @@ func _physics_process(_delta: float) -> void:
 			if spira == chattable_obj:
 				continue
 			var chattable: Node2D = chattable_obj
-			var distance: float = Global.from_iso(chattable.global_transform.origin) \
-					.distance_to(Global.from_iso(spira.global_transform.origin))
+			
+			var chattable_pos: Vector2 = chattable.global_transform.origin
+			var spira_pos: Vector2 = spira.global_transform.origin
+			
+			if "chat_extents" in chattable:
+				# if the chattable object has extents, we measure from its closest point
+				var new_chattable_pos := chattable_pos
+				new_chattable_pos.x += clamp(spira_pos.x - chattable_pos.x,
+						-chattable.chat_extents.x, chattable.chat_extents.x)
+				new_chattable_pos.y += clamp(spira_pos.y - chattable_pos.y,
+						-chattable.chat_extents.y, chattable.chat_extents.y)
+				chattable_pos = new_chattable_pos
+			
+			var distance: float = Global.from_iso(chattable_pos).distance_to(Global.from_iso(spira_pos))
 			if distance <= min_distance:
 				min_distance = distance
 				new_focus = chattable

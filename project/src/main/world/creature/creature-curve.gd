@@ -61,18 +61,13 @@ func save_curve(value: bool) -> void:
 
 
 """
-Recalculates the curve coordinates based on how fat the creature is.
-
-Parameters:
-	'fatness': How fat the creature's body is; 5.0 = 5x normal size
+Updates the 'visible' property based on the creature's orientation.
 """
-func _on_CreatureVisuals_visual_fatness_changed() -> void:
-	_refresh_curve()
-
-
-func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientation: int) -> void:
-	if not visible_when_facing_north:
-		visible = new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]
+func refresh_visible() -> void:
+	visible = true
+	if not visible_when_facing_north \
+			and _creature_visuals.orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]:
+		visible = false
 
 
 func set_curve_defs(new_curve_defs: Array) -> void:
@@ -107,3 +102,17 @@ func _refresh_curve() -> void:
 			var point_out: Vector2 = lerp(curve_def_low.curve_def[i][2], curve_def_high.curve_def[i][2], f_pct)
 			curve.add_point(point_pos, point_in, point_out)
 	update()
+
+
+"""
+Recalculates the curve coordinates based on how fat the creature is.
+
+Parameters:
+	'fatness': How fat the creature's body is; 5.0 = 5x normal size
+"""
+func _on_CreatureVisuals_visual_fatness_changed() -> void:
+	_refresh_curve()
+
+
+func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientation: int) -> void:
+	refresh_visible()

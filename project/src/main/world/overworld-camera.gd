@@ -5,7 +5,7 @@ Overworld camera. Follows the main character and zooms in during conversations.
 
 const ZOOM_DURATION := 1.0
 
-# zoom amount for conversations
+# maximum zoom amount for conversations
 const ZOOM_CLOSE_UP := Vector2(0.5, 0.5)
 
 # zoom amount when running around
@@ -26,18 +26,26 @@ var close_up_pct := 0.0
 # the position to zoom in to. the midpoint of the smallest rectangle containing all chatters
 var close_up_position: Vector2
 
+# zoom amount for the current conversation; we don't zoom in as much if the creature is fat
+var zoom_close_up := ZOOM_CLOSE_UP
+
 onready var _spira: Spira = get_node(spira_path)
 onready var _overworld_ui: OverworldUi = get_node(overworld_ui_path)
 
 func _process(_delta: float) -> void:
 	# calculate the position to zoom in to
 	var bounding_box := Rect2(_spira.position, Vector2(0, 0))
-	for chatter in _overworld_ui.chatters:
-		bounding_box = bounding_box.expand(chatter.position)
+	if _overworld_ui.chatters:
+		var max_visual_fatness := 1.0
+		for chatter in _overworld_ui.chatters:
+			bounding_box = bounding_box.expand(chatter.position)
+			if chatter is Creature:
+				max_visual_fatness = max(max_visual_fatness, chatter.get_visual_fatness())
+		zoom_close_up = lerp(ZOOM_CLOSE_UP, ZOOM_DEFAULT, inverse_lerp(1.0, 10.0, max_visual_fatness))
 	close_up_position = bounding_box.position + bounding_box.size * 0.5
 	
 	position = lerp(_spira.position, close_up_position, close_up_pct)
-	zoom = lerp(ZOOM_DEFAULT, ZOOM_CLOSE_UP, close_up_pct)
+	zoom = lerp(ZOOM_DEFAULT, zoom_close_up, close_up_pct)
 	
 	if close_up and _spira.position.distance_to(close_up_position) > AUTO_ZOOM_OUT_DISTANCE:
 		# player left the chat area; zoom back out
