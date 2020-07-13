@@ -22,10 +22,14 @@ export (bool) var _save_curve: bool setget save_curve
 # defines the shadow curve coordinates for each of the creature's levels of fatness.
 export (Array) var curve_defs: Array setget set_curve_defs
 
+# if false, the curve is made invisible when the creature faces away from the camera.
+export (bool) var visible_when_facing_north: bool = true
+
 onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
 
 func _ready() -> void:
 	_creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
+	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 	_refresh_curve()
 
 
@@ -64,6 +68,11 @@ Parameters:
 """
 func _on_CreatureVisuals_visual_fatness_changed() -> void:
 	_refresh_curve()
+
+
+func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientation: int) -> void:
+	if not visible_when_facing_north:
+		visible = new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]
 
 
 func set_curve_defs(new_curve_defs: Array) -> void:
