@@ -35,6 +35,7 @@ var creature_def: CreatureDef
 var chat_path: String setget set_chat_path
 var creature_name: String setget set_creature_name
 var chat_theme_def: Dictionary setget set_chat_theme_def
+var chat_extents: Vector2
 
 # 'true' if the creature is being slowed by friction while stopping or turning
 var _friction := false
@@ -203,6 +204,8 @@ func _refresh_creature_id() -> void:
 		set_creature_name(creature_def.creature_name)
 		set_chat_path(creature_def.chat_path)
 		set_chat_theme_def(creature_def.chat_theme_def)
+		set_fatness(creature_def.fatness)
+		_creature_visuals.set_visual_fatness(creature_def.fatness)
 
 
 func _refresh_dna() -> void:
@@ -289,3 +292,7 @@ func _on_CreatureVisuals_food_eaten() -> void:
 
 func _on_CreatureVisuals_visual_fatness_changed() -> void:
 	emit_signal("visual_fatness_changed")
+
+
+func _on_CollisionShape2D_extents_changed(value: Vector2) -> void:
+	chat_extents = value

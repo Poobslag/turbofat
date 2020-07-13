@@ -11,6 +11,8 @@ frame within the sprite sheet, as well as the position where it should be drawn.
 This spatial data is available in a separate Aseprite json file.
 """
 
+signal frame_changed
+
 export (Texture) var texture: Texture
 
 # the path of the Aseprite json file containing spatial data for the packed texture
@@ -57,6 +59,7 @@ func set_rect_size(new_rect_size: Vector2) -> void:
 func set_frame(new_frame: int) -> void:
 	frame = new_frame
 	update()
+	emit_signal("frame_changed")
 
 
 func set_centered(new_centered: bool) -> void:
