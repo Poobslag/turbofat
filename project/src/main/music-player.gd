@@ -20,7 +20,7 @@ var current_bgm: AudioStreamPlayer
 
 # newest track(s) play twice as often
 onready var _chill_bgms := [$HipHop03, $HipHop04, $HipHop04]
-onready var _upbeat_bgms := [$House01, $House04, $House04, $House06, $House06]
+onready var _upbeat_bgms := [$House01, $House04, $House06, $House08, $House08]
 
 func _ready() -> void:
 	_chill_bgms.shuffle()
@@ -56,6 +56,11 @@ func _ready() -> void:
 	$FreshnessInspector.add_checkpoint($House06, 0.000)
 	$FreshnessInspector.add_checkpoint($House06, 15.230)
 	$FreshnessInspector.add_checkpoint($House06, 30.474)
+	
+	$FreshnessInspector.add_checkpoint($House08, 0.000)
+	$FreshnessInspector.add_checkpoint($House08, 33.166)
+	$FreshnessInspector.add_checkpoint($House08, 64.386)
+	$FreshnessInspector.add_checkpoint($House08, 204.877)
 
 
 """

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/house-08.ogg-42a909dab087b1d831180aeb971db401.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/house-08.ogg"
+dest_files=[ "res://.import/house-08.ogg-42a909dab087b1d831180aeb971db401.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

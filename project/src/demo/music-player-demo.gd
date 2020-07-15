@@ -13,6 +13,10 @@ Keys:
 	]: Skip to next checkpoint in song
 """
 
+func _ready() -> void:
+	PlayerData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.5)
+
+
 func _input(event: InputEvent) -> void:
 	match(Utils.key_scancode(event)):
 		KEY_C: MusicPlayer.play_chill_bgm()
