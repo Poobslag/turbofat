@@ -72,14 +72,23 @@ Parameters:
 	'fatness_pct' A percent from [0.0-1.0] of how much fatter the creature should get from this bite of food.
 """
 func _feed_creature(fatness_pct: float, food_color: Color) -> void:
-	$CreatureView.get_creature_2d().feed(food_color)
-	
 	var old_fatness: float = $CreatureView.get_creature_2d().get_fatness()
 	var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
 	if Scenario.settings.other.tutorial:
 		# make them a tiny amount fatter, so that they'll change when a new level is started
 		target_fatness = min(target_fatness, 1.001)
+	
+	var comfort := 0.0
+	# ate five things; comfortable
+	comfort += clamp(inverse_lerp(5, 15, PuzzleScore.get_creature_line_clears()), 0.0, 1.0)
+	# starting to overeat; less comfortable
+	comfort -= clamp(inverse_lerp(400, 600, PuzzleScore.get_creature_score()), 0.0, 1.0)
+	# overate; uncomfortable
+	comfort -= clamp(inverse_lerp(600, 1200, PuzzleScore.get_creature_score()), 0.0, 1.0)
+	
+	$CreatureView.get_creature_2d().set_comfort(comfort)
 	$CreatureView.get_creature_2d().set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
+	$CreatureView.get_creature_2d().feed(food_color)
 
 
 """

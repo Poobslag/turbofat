@@ -72,6 +72,38 @@ func advance_animation_randomly() -> void:
 
 
 """
+Plays an eating animation appropriate to the creature's comfort level.
+"""
+func eat() -> void:
+	# default eating animation
+	var emote_anim_name := "eat-again"
+	var emote_advance_amount := 0.0
+	
+	if _creature_visuals.comfort > 0.5:
+		# creature is very comfortable; they have a heart balloon and they're blushing
+		emote_anim_name = "eat-smile1"
+		
+		if current_animation in ["eat-smile1", "eat-again-smile1"]:
+			emote_anim_name = "eat-again-smile1"
+		elif current_animation in ["eat-smile0", "eat-again-smile0"]:
+			emote_anim_name = "eat-smile1"
+			# Their eyes are already closed, but the heart balloon isn't visible. Advance
+			# the animation so the heart balloon pops up, but they don't reopen their eyes
+			emote_advance_amount = 0.0667
+	elif _creature_visuals.comfort > 0.0:
+		# creature is comfortable; they're smiling and bouncing their head
+		emote_anim_name = "eat-smile0"
+		
+		if current_animation in ["eat-smile0", "eat-again-smile0", "eat-smile1", "eat-again-smile1"]:
+			emote_anim_name = "eat-again-smile0"
+	
+	unemote_immediate()
+	play(emote_anim_name)
+	if emote_advance_amount > 0:
+		advance(emote_advance_amount)
+
+
+"""
 Animates the creature's appearance according to the specified mood: happy, angry, etc...
 
 Parameters:
@@ -120,9 +152,7 @@ func unemote() -> void:
 				UNEMOTE_DURATION)
 		$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
-	$"../Neck0/HeadBobber".head_bob_mode = HeadBobber.BOB_BOB
-	$"../Neck0/HeadBobber".head_motion_pixels = HeadBobber.HEAD_BOB_PIXELS
-	$"../Neck0/HeadBobber".head_motion_seconds = HeadBobber.HEAD_BOB_SECONDS
+	$"../Neck0/HeadBobber".reset_head_bob()
 	$ResetTween.start()
 	_prev_mood = ChatEvent.Mood.DEFAULT
 
@@ -231,8 +261,9 @@ func _apply_tool_script_workaround() -> void:
 		_creature_visuals = $".."
 
 
-func _on_animation_finished(_anim_name: String) -> void:
-	if _prev_mood in EMOTE_ANIMS.keys():
+func _on_animation_finished(anim_name: String) -> void:
+	if _prev_mood in EMOTE_ANIMS.keys() \
+			or anim_name in ["eat-smile0", "eat-again-smile0", "eat-smile1", "eat-again-smile1"]:
 		unemote()
 		yield($ResetTween, "tween_all_completed")
 		_post_unemote()

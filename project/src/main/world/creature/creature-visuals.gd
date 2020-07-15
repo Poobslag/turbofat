@@ -48,10 +48,10 @@ enum Orientation {
 	NORTHEAST,
 }
 
-const SOUTHEAST = Orientation.SOUTHEAST
-const SOUTHWEST = Orientation.SOUTHWEST
-const NORTHWEST = Orientation.NORTHWEST
-const NORTHEAST = Orientation.NORTHEAST
+const SOUTHEAST := Orientation.SOUTHEAST
+const SOUTHWEST := Orientation.SOUTHWEST
+const NORTHWEST := Orientation.NORTHWEST
+const NORTHEAST := Orientation.NORTHEAST
 
 # toggle to assign default animation frames based on the creature's orientation
 export (bool) var _reset_frames setget reset_frames
@@ -73,14 +73,18 @@ export (Orientation) var orientation := SOUTHEAST setget set_orientation
 # describes the colors and textures used to draw the creature
 export (Dictionary) var dna: Dictionary setget set_dna
 
+# how fat the creature will become eventually; visual_fatness gradually approaches this value
+var fatness := 1.0 setget set_fatness, get_fatness
+
+# comfort improves as the creature eats, and degrades as they overeat. comfort is a number from [-1.0, 1.0]. -1.0 is
+# very uncomfortable, 1.0 is very comfortable
+var comfort := 0.0 setget set_comfort
+
 # used to temporarily suppress sfx signals. used when skipping to the middle of animations which play sfx
 var _suppress_sfx_signal_timer := 0.0
 
 # forces listeners to update their animation frame
 var _force_orientation_change := false
-
-# how fat the creature will become eventually; visual_fatness gradually approaches this value
-var fatness := 1.0 setget set_fatness, get_fatness
 
 # how fat the creature looks right now; gradually approaches the 'fatness' property
 export (float) var visual_fatness := 1.0 setget set_visual_fatness
@@ -111,6 +115,10 @@ func _physics_process(delta: float) -> void:
 		elif visual_fatness > fatness:
 			visual_fatness = max(visual_fatness - 4 * delta, fatness)
 		set_visual_fatness(lerp(visual_fatness, fatness, 0.008))
+
+
+func set_comfort(new_comfort: float) -> void:
+	comfort = new_comfort
 
 
 func set_visual_fatness(new_visual_fatness: float) -> void:
@@ -249,14 +257,13 @@ func feed(food_color: Color) -> void:
 	
 	$Neck0/HeadBobber/Food.modulate = food_color
 	$Neck0/HeadBobber/FoodLaser.modulate = food_color
-	if _mouth_animation_player.current_animation in ["eat", "eat-again"]:
+	$EmoteAnims.eat()
+	if _mouth_animation_player.current_animation.begins_with("eat"):
 		_mouth_animation_player.stop()
 		_mouth_animation_player.play("eat-again")
-		$EmoteAnims.stop()
-		$EmoteAnims.play("eat-again")
 	else:
+		_mouth_animation_player.stop()
 		_mouth_animation_player.play("eat")
-		$EmoteAnims.play("eat")
 
 
 """
@@ -392,8 +399,8 @@ func _update_creature_properties() -> void:
 		_apply_tool_script_workaround()
 	
 	# stop any AnimationPlayers, otherwise two AnimationPlayers might fight over control of the sprite
+	$EmoteAnims.unemote_immediate()
 	_mouth_animation_player.stop()
-	$EmoteAnims.stop()
 	emit_signal("before_creature_arrived")
 	
 	for packed_sprite_obj in [

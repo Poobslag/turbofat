@@ -76,5 +76,5 @@ self_modulate = Color( 0.360784, 0.192157, 0.12549, 1 )
 z_index = 25
 texture = ExtResource( 1 )
 centered = false
-[connection signal="current_creature_index_changed" from="SceneClip/CreatureSwitcher/Scene" to="SceneClip/CreatureSwitcher/RestaurantCameraMover" method="_on_RestaurantScene_current_creature_index_changed"]
 [connection signal="current_creature_index_changed" from="SceneClip/CreatureSwitcher/Scene" to="SceneClip/CreatureSwitcher/CreatureSwitchTween" method="_on_RestaurantScene_current_creature_index_changed"]
+[connection signal="current_creature_index_changed" from="SceneClip/CreatureSwitcher/Scene" to="SceneClip/CreatureSwitcher/RestaurantCameraMover" method="_on_RestaurantScene_current_creature_index_changed"]
