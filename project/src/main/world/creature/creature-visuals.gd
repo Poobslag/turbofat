@@ -35,6 +35,7 @@ signal orientation_changed(old_orientation, new_orientation)
 signal movement_mode_changed(movement_mode)
 signal fatness_changed
 signal visual_fatness_changed
+signal comfort_changed
 
 # emitted by FatSpriteMover when it moves the head by making the creature fatter
 # warning-ignore:unused_signal
@@ -119,6 +120,7 @@ func _physics_process(delta: float) -> void:
 
 func set_comfort(new_comfort: float) -> void:
 	comfort = new_comfort
+	emit_signal("comfort_changed")
 
 
 func set_visual_fatness(new_visual_fatness: float) -> void:
@@ -276,6 +278,7 @@ func set_dna(new_dna: Dictionary) -> void:
 		CreatureLoader.load_details(dna)
 		_update_creature_properties()
 		set_fatness(1)
+		set_comfort(0)
 
 
 """
@@ -316,7 +319,7 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 		if movement_mode != true:
 			set_movement_mode(true)
 	if $MovementAnims.current_animation != animation_name:
-		if not $EmoteAnims.current_animation in ["ambient", "ambient-nw"] and animation_name != "idle":
+		if not $EmoteAnims.current_animation.begins_with("ambient") and animation_name != "idle":
 			$EmoteAnims.unemote_immediate()
 		if $MovementAnims.current_animation.begins_with(animation_prefix + "-"):
 			var old_position: float = $MovementAnims.current_animation_position

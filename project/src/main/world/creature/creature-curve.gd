@@ -114,5 +114,5 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 	_refresh_curve()
 
 
-func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
 	refresh_visible()

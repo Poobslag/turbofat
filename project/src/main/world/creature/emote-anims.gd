@@ -23,6 +23,24 @@ const EMOTE_ANIMS := {
 	ChatEvent.Mood.RAGE1: "rage1",
 }
 
+# animation names for eating while smiling; referenced for animation transitions
+const EAT_SMILE_ANIMS := {
+	"eat-smile0": "_",
+	"eat-again-smile0": "_",
+	"eat-smile1": "_",
+	"eat-again-smile1": "_",
+}
+
+# animation names for eating while sweating; referenced for animation transitions
+const EAT_SWEAT_ANIMS := {
+	"eat-sweat0": "_",
+	"eat-again-sweat0": "_",
+	"eat-sweat1": "_",
+	"eat-again-sweat1": "_",
+	"eat-sweat2": "_",
+	"eat-again-sweat2": "_"
+}
+
 # custom transition for cases where the default mood transition looks awkward
 const TRANSITIONS := {
 	[ChatEvent.Mood.LAUGH0, ChatEvent.Mood.LAUGH1]: "_transition_noop",
@@ -52,6 +70,10 @@ onready var _emote_sprites := [
 	$"../Neck0/HeadBobber/EmoteGlow",
 ]
 
+# specific sprites manipulated frequently when emoting
+onready var _emote_eyes: PackedSprite = $"../Neck0/HeadBobber/EmoteEyes"
+onready var _head_bobber: Sprite = $"../Neck0/HeadBobber"
+
 func _process(_delta: float) -> void:
 	if not Engine.is_editor_hint():
 		if _creature_visuals.orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
@@ -79,23 +101,72 @@ func eat() -> void:
 	var emote_anim_name := "eat-again"
 	var emote_advance_amount := 0.0
 	
-	if _creature_visuals.comfort > 0.5:
-		# creature is very comfortable; they have a heart balloon and they're blushing
+	if _creature_visuals.comfort > 0.60:
+		# creature is very comfortable (0.6, 1.0]; they have a heart balloon and they're blushing
 		emote_anim_name = "eat-smile1"
 		
 		if current_animation in ["eat-smile1", "eat-again-smile1"]:
 			emote_anim_name = "eat-again-smile1"
-		elif current_animation in ["eat-smile0", "eat-again-smile0"]:
+		elif _emote_eyes.frame != 0:
 			emote_anim_name = "eat-smile1"
 			# Their eyes are already closed, but the heart balloon isn't visible. Advance
 			# the animation so the heart balloon pops up, but they don't reopen their eyes
 			emote_advance_amount = 0.0667
-	elif _creature_visuals.comfort > 0.0:
-		# creature is comfortable; they're smiling and bouncing their head
+	elif _creature_visuals.comfort > 0.20:
+		# creature is comfortable (0.2, 0.6]; they're smiling and bouncing their head
 		emote_anim_name = "eat-smile0"
 		
-		if current_animation in ["eat-smile0", "eat-again-smile0", "eat-smile1", "eat-again-smile1"]:
+		if _emote_eyes.frame != 0:
 			emote_anim_name = "eat-again-smile0"
+	elif _creature_visuals.comfort > -0.20:
+		# creature is so-so (-0.2, 0.2]
+		pass
+	elif _creature_visuals.comfort > -0.60:
+		# creature is uncomfortable (-0.6, -0.2]
+		emote_anim_name = "eat-sweat0"
+		
+		if current_animation in ["eat-sweat0", "eat-again-sweat0"]:
+			# wavy lines are already visible; keep them visible
+			emote_anim_name = "eat-again-sweat0"
+		elif _emote_eyes.frame != 0:
+			# Their eyes are already closed, but the wavy lines aren't visible. Advance
+			# the animation so the wavy lines appear, but they don't reopen their eyes
+			emote_advance_amount = 0.0667
+		
+		# discomfort_amount increases from 0.0 to 1.0 and controls the visual effects
+		var discomfort_amount := inverse_lerp(-0.2, -0.6, _creature_visuals.comfort)
+		
+		# wavy lines become more pronounced
+		var brain_color := Utils.to_transparent(Color.white, lerp(0.5, 1.0, discomfort_amount))
+		_update_animation_keys("eat-sweat0", "Neck0/HeadBobber/EmoteBrain:modulate", [1, 2], brain_color)
+		_update_animation_keys("eat-again-sweat0", "Neck0/HeadBobber/EmoteBrain:modulate", [0, 1], brain_color)
+		
+		# gradually become bluer and bluer
+		var glow_color := Utils.to_transparent(Color("800000bc"), lerp(0.25, 0.50, discomfort_amount))
+		_update_animation_keys("eat-sweat0", "Neck0/HeadBobber/EmoteGlow:modulate", [1, 2], glow_color)
+		_update_animation_keys("eat-again-sweat0", "Neck0/HeadBobber/EmoteGlow:modulate", [0, 1], glow_color)
+	elif _creature_visuals.comfort > -1.00:
+		# creature is very uncomfortable (-1.0, -0.6]
+		emote_anim_name = "eat-sweat1"
+		
+		if current_animation in ["eat-sweat1", "eat-again-sweat1", "eat-sweat2", "eat-again-sweat2"]:
+			# black glow is already visible; keep it visible
+			emote_anim_name = "eat-again-sweat1"
+		elif _emote_eyes.frame != 0:
+			# Their eyes are already closed, but the black glow isn't visible. Advance
+			# the animation so the black glow appears, but they don't reopen their eyes
+			emote_advance_amount = 0.0667
+	else:
+		# creature is going to die [-1.0]
+		emote_anim_name = "eat-sweat2"
+		
+		if current_animation in ["eat-sweat1", "eat-again-sweat1", "eat-sweat2", "eat-again-sweat2"]:
+			# black glow is already visible; keep it visible
+			emote_anim_name = "eat-again-sweat2"
+		elif _emote_eyes.frame != 0:
+			# Their eyes are already closed, but the black glow isn't visible. Advance
+			# the animation so the black glow appears, but they don't reopen their eyes
+			emote_advance_amount = 0.0667
 	
 	unemote_immediate()
 	play(emote_anim_name)
@@ -111,7 +182,7 @@ Parameters:
 """
 func emote(mood: int) -> void:
 	_mood = mood
-	if _prev_mood in EMOTE_ANIMS.keys():
+	if _prev_mood in EMOTE_ANIMS:
 		if TRANSITIONS.has([_prev_mood, mood]):
 			# call the custom transition instead of interrupting the animation
 			call(TRANSITIONS.get([_prev_mood, mood]))
@@ -121,7 +192,7 @@ func emote(mood: int) -> void:
 			yield($ResetTween, "tween_all_completed")
 			_post_unemote()
 	
-	if _mood == mood and mood in EMOTE_ANIMS.keys():
+	if _mood == mood and mood in EMOTE_ANIMS:
 		# we double-check that the mood we were passed is still the current mood. this invariant can be violated
 		# if we're called multiple times in quick succession. in those cases, we want the newest mood to 'win'.
 		play(EMOTE_ANIMS[mood])
@@ -137,22 +208,33 @@ Starts resetting the creature to a default neutral mood.
 
 This does not take place immediately, but fires off a tween. Callers should wait until $ResetTween completes before
 updating the creature's appearance.
+
+Parameters:
+	'anim_name': (Optional) The animation which was previously playing.
 """
-func unemote() -> void:
+func unemote(anim_name: String = "") -> void:
 	stop()
 	emit_signal("before_mood_switched")
 	$"../Neck0/HeadBobber/EmoteArms".frame = 0
-	$"../Neck0/HeadBobber/EmoteEyes".frame = 0
+	_emote_eyes.frame = 0
+	if anim_name in EAT_SMILE_ANIMS:
+		$"../Neck0/HeadBobber/Eyes".frame = 0
+		_emote_eyes.frame = 1
+		play("ambient-smile")
+	elif anim_name in EAT_SWEAT_ANIMS:
+		$"../Neck0/HeadBobber/Eyes".frame = 0
+		_emote_eyes.frame = 2
+		play("ambient-sweat")
 	
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property($"../Neck0/HeadBobber", "rotation_degrees",
-			$"../Neck0/HeadBobber".rotation_degrees, 0, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property(_head_bobber, "rotation_degrees",
+			_head_bobber.rotation_degrees, 0, UNEMOTE_DURATION)
 	for emote_sprite in _emote_sprites:
 		$ResetTween.interpolate_property(emote_sprite, "rotation_degrees", emote_sprite.rotation_degrees, 0,
 				UNEMOTE_DURATION)
 		$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
-	$"../Neck0/HeadBobber".reset_head_bob()
+	_head_bobber.reset_head_bob()
 	$ResetTween.start()
 	_prev_mood = ChatEvent.Mood.DEFAULT
 
@@ -166,14 +248,36 @@ func unemote_immediate() -> void:
 	stop()
 	emit_signal("before_mood_switched")
 	$"../Neck0/HeadBobber/EmoteArms".frame = 0
-	$"../Neck0/HeadBobber/EmoteEyes".frame = 0
-	$"../Neck0/HeadBobber".rotation_degrees = 0
+	_emote_eyes.frame = 0
+	_head_bobber.rotation_degrees = 0
 	for emote_sprite in _emote_sprites:
 		emote_sprite.rotation_degrees = 0
 		emote_sprite.modulate = Color.transparent
-	$"../Neck0/HeadBobber".reset_head_bob()
+	_head_bobber.reset_head_bob()
 	_prev_mood = ChatEvent.Mood.DEFAULT
 	_post_unemote()
+
+
+"""
+Updates the values for a set of animation keys.
+
+Parameters:
+	'anim_name': The animation to update
+	
+	'track_path': The track to update
+	
+	'key_indexes': The key indexes to update
+	
+	'value': The new value to set the animation keys to
+"""
+func _update_animation_keys(anim_name: String, track_path: String, key_indexes: Array, value) -> void:
+	var track_index := get_animation(anim_name).find_track(NodePath(track_path))
+	if track_index == -1:
+		push_warning("Track not found: %s -> %s" % [anim_name, track_path])
+		return
+	
+	for key_index in key_indexes:
+		get_animation(anim_name).track_set_key_value(track_index, key_index, value)
 
 
 """
@@ -203,7 +307,7 @@ func _transition_noop() -> void:
 Function for transitioning from laugh1 mood to laugh0 mood.
 """
 func _transition_laugh1_laugh0() -> void:
-	$"../Neck0/HeadBobber".reset_head_bob()
+	_head_bobber.reset_head_bob()
 	$ResetTween.remove_all()
 	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteBrain", "modulate",
 			$"../Neck0/HeadBobber/EmoteBrain".modulate, Color.transparent, UNEMOTE_DURATION)
@@ -214,7 +318,7 @@ func _transition_laugh1_laugh0() -> void:
 Function for transitioning from sweat1 mood to sweat0 mood.
 """
 func _transition_sweat1_sweat0() -> void:
-	$"../Neck0/HeadBobber".reset_head_bob()
+	_head_bobber.reset_head_bob()
 	$"../NearArm".frame = 1
 	$ResetTween.remove_all()
 	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteHead", "modulate",
@@ -231,8 +335,8 @@ func _transition_smile1_smile0() -> void:
 			$"../Neck0/HeadBobber/EmoteBrain".modulate, Color("008c2261"), UNEMOTE_DURATION)
 	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteGlow", "modulate",
 			$"../Neck0/HeadBobber/EmoteGlow".modulate, Color("008c2261"), UNEMOTE_DURATION)
-	$ResetTween.interpolate_property($"../Neck0/HeadBobber", "rotation_degrees",
-			$"../Neck0/HeadBobber".rotation_degrees, 0.0, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property(_head_bobber, "rotation_degrees",
+			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
 	$ResetTween.start()
 
 
@@ -262,9 +366,8 @@ func _apply_tool_script_workaround() -> void:
 
 
 func _on_animation_finished(anim_name: String) -> void:
-	if _prev_mood in EMOTE_ANIMS.keys() \
-			or anim_name in ["eat-smile0", "eat-again-smile0", "eat-smile1", "eat-again-smile1"]:
-		unemote()
+	if _prev_mood in EMOTE_ANIMS or anim_name in EAT_SMILE_ANIMS or anim_name in EAT_SWEAT_ANIMS:
+		unemote(anim_name)
 		yield($ResetTween, "tween_all_completed")
 		_post_unemote()
 

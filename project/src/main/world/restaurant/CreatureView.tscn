@@ -25,6 +25,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 length = 10.0
+step = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("RestaurantCameraMover:_target_camera_position")
 tracks/0/interp = 1
@@ -35,7 +36,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 3, 10 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -89.8812, -104.904 ), Vector2( -89.8812, -104.904 ), Vector2( -89.881, -59.478 ), Vector2( -139.078, 301.161 ) ]
+"values": [ Vector2( -89.8812, -104.904 ), Vector2( -89.8812, -104.904 ), Vector2( -89.881, -19.478 ), Vector2( -139.078, 421.161 ) ]
 }
 
 [node name="CreatureView" type="Node2D"]
