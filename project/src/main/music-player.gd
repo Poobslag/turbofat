@@ -58,8 +58,7 @@ func _ready() -> void:
 	$FreshnessInspector.add_checkpoint($House06, 30.474)
 	
 	$FreshnessInspector.add_checkpoint($House08, 0.000)
-	$FreshnessInspector.add_checkpoint($House08, 33.166)
-	$FreshnessInspector.add_checkpoint($House08, 64.386)
+	$FreshnessInspector.add_checkpoint($House08, 1.951)
 	$FreshnessInspector.add_checkpoint($House08, 204.877)
 
 
