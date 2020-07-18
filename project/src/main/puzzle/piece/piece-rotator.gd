@@ -57,6 +57,8 @@ func apply_rotate_input(piece: ActivePiece) -> void:
 			rotation_signal = "rotated_right"
 		elif piece.target_orientation == piece.get_ccw_orientation():
 			rotation_signal = "rotated_left"
+		elif piece.target_orientation == piece.get_flip_orientation():
+			rotation_signal = "rotated_twice"
 		
 		var old_piece_y := piece.pos.y
 		if not piece.can_move_to_target():
@@ -85,14 +87,16 @@ func _calc_rotate_target(piece: ActivePiece) -> void:
 		return
 	
 	piece.reset_target()
-	if input.is_cw_just_pressed():
+	if input.is_cw_just_pressed() and input.is_ccw_just_pressed():
+		# flip the piece by rotating it twice
+		piece.target_orientation = piece.get_flip_orientation()
+	elif input.is_cw_just_pressed():
 		if input.is_ccw_pressed():
 			# flip the piece by rotating it again in the same direction
 			piece.target_orientation = piece.get_ccw_orientation()
 		else:
 			piece.target_orientation = piece.get_cw_orientation()
-	
-	if input.is_ccw_just_pressed():
+	elif input.is_ccw_just_pressed():
 		if input.is_cw_pressed():
 			# flip the piece by rotating it again in the same direction
 			piece.target_orientation = piece.get_cw_orientation()
