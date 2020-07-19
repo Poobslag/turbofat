@@ -381,6 +381,10 @@ func play_mood(mood: int) -> void:
 		$EmoteAnims.emote(mood)
 
 
+func restart_idle_timer() -> void:
+	$IdleTimer.restart()
+
+
 """
 Updates the visibility/position of nodes based on whether this creature is sitting or walking.
 """

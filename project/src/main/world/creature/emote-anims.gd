@@ -80,7 +80,7 @@ func _process(_delta: float) -> void:
 			if not is_playing():
 				play("ambient")
 				advance(randf() * current_animation_length)
-		else:
+		if _creature_visuals.orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]:
 			if is_playing():
 				stop()
 			_creature_visuals.reset_eye_frames()
@@ -293,6 +293,7 @@ func _post_unemote() -> void:
 		emote_sprite.rotation_degrees = 0.0
 		emote_sprite.modulate = Color.transparent
 	$"../EmoteBody".scale = Vector2(0.836, 0.836)
+	$"../Neck0".scale = Vector2(1.0, 1.0)
 	$"../Neck0/HeadBobber/EmoteGlow".material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
 
 
@@ -379,3 +380,8 @@ If we don't reset the eye frame, we have one strange transition frame.
 """
 func _on_CreatureVisuals_before_creature_arrived() -> void:
 	_apply_default_eye_frames()
+
+
+func _on_IdleTimer_start_idle_animation(anim_name: String) -> void:
+	if is_processing() and anim_name in get_animation_list():
+		play(anim_name)

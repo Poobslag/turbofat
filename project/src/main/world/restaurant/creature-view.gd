@@ -40,6 +40,7 @@ func scroll_to_new_creature() -> void:
 	var creature_index: int = $SceneClip/CreatureSwitcher/Scene.current_creature_index
 	var new_creature_index: int = (creature_index + randi() % 2 + 1) % 3
 	set_current_creature_index(new_creature_index)
+	$SceneClip/CreatureSwitcher/Scene.get_creature_2d().restart_idle_timer()
 	yield(get_tree().create_timer(0.5), "timeout")
 	summon_creature(creature_index)
 

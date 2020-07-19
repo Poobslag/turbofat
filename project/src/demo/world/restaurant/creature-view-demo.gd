@@ -3,8 +3,9 @@ extends Node2D
 A demo which shows off the creature view.
 
 Keys:
-	[F]: Feed the creature
 	[D]: Ring the doorbell
+	[F]: Feed the creature
+	[I]: Launch an idle animation
 	[V]: Say something
 	[1-9,0]: Change the creature's size from 10% to 100%
 	SHIFT+[1-9,0]: Change the creature's comfort from 0.0 -> 1.0 -> -1.0
@@ -19,8 +20,9 @@ var _current_color_index := -1
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_F: _creature_2d().feed(Playfield.FOOD_COLORS[0])
 		KEY_D: _creature_2d().get_node("CreatureSfx").play_door_chime()
+		KEY_F: _creature_2d().feed(Playfield.FOOD_COLORS[0])
+		KEY_I: _creature_2d().creature_visuals.get_node("IdleTimer").start(0.01)
 		KEY_V:
 			Global.greetiness = 2
 			_creature_2d().get_node("CreatureSfx").play_goodbye_voice()
