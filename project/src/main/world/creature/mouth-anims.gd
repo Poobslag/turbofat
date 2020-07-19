@@ -56,3 +56,8 @@ func _on_CreatureVisuals_before_creature_arrived() -> void:
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
 	if is_processing() and not Engine.is_editor_hint():
 		_play_mouth_ambient_animation()
+
+
+func _on_IdleTimer_start_idle_animation(anim_name) -> void:
+	if is_processing() and anim_name in get_animation_list():
+		play(anim_name)

@@ -48,7 +48,7 @@ var _non_iso_velocity := Vector2.ZERO
 var _iso_walk_direction := Vector2.ZERO
 var _non_iso_walk_direction := Vector2.ZERO
 
-onready var _creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visuals
+onready var creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visuals
 
 func _ready() -> void:
 	if creature_id:
@@ -68,19 +68,19 @@ func _physics_process(delta: float) -> void:
 
 
 func set_comfort(new_comfort: float) -> void:
-	_creature_visuals.set_comfort(new_comfort)
+	creature_visuals.set_comfort(new_comfort)
 
 
 func set_fatness(new_fatness: float) -> void:
-	_creature_visuals.set_fatness(new_fatness)
+	creature_visuals.set_fatness(new_fatness)
 
 
 func get_fatness() -> float:
-	return _creature_visuals.get_fatness()
+	return creature_visuals.get_fatness()
 
 
 func get_visual_fatness() -> float:
-	return _creature_visuals.visual_fatness
+	return creature_visuals.visual_fatness
 
 
 func set_non_iso_walk_direction(new_direction: Vector2) -> void:
@@ -134,7 +134,7 @@ Parameters:
 	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 """
 func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
-	_creature_visuals.play_movement_animation(animation_prefix, movement_direction)
+	creature_visuals.play_movement_animation(animation_prefix, movement_direction)
 
 
 """
@@ -144,14 +144,14 @@ Parameters:
 	'mood': The creature's new mood from ChatEvent.Mood
 """
 func play_mood(mood: int) -> void:
-	_creature_visuals.play_mood(mood)
+	creature_visuals.play_mood(mood)
 
 
 """
 Orients this creature so they're facing the specified target.
 """
 func orient_toward(target: Node2D) -> void:
-	if not _creature_visuals.is_idle():
+	if not creature_visuals.is_idle():
 		# don't change this creature's orientation if they're performing an activity
 		return
 	
@@ -166,14 +166,14 @@ func orient_toward(target: Node2D) -> void:
 
 	if direction_dot > 0:
 		# the target is to the right; face right
-		_creature_visuals.set_orientation(SOUTHEAST)
+		creature_visuals.set_orientation(SOUTHEAST)
 	elif direction_dot < 0:
 		# the target is to the left; face left
-		_creature_visuals.set_orientation(SOUTHWEST)
+		creature_visuals.set_orientation(SOUTHWEST)
 
 
 func set_orientation(orientation: int) -> void:
-	_creature_visuals.set_orientation(orientation)
+	creature_visuals.set_orientation(orientation)
 
 
 """
@@ -198,7 +198,11 @@ func play_goodbye_voice(force: bool = false) -> void:
 
 
 func feed(food_color: Color) -> void:
-	_creature_visuals.feed(food_color)
+	creature_visuals.feed(food_color)
+
+
+func restart_idle_timer() -> void:
+	creature_visuals.restart_idle_timer()
 
 
 func _refresh_creature_id() -> void:
@@ -209,15 +213,15 @@ func _refresh_creature_id() -> void:
 		set_chat_path(creature_def.chat_path)
 		set_chat_theme_def(creature_def.chat_theme_def)
 		set_fatness(creature_def.fatness)
-		_creature_visuals.set_visual_fatness(creature_def.fatness)
+		creature_visuals.set_visual_fatness(creature_def.fatness)
 
 
 func _refresh_dna() -> void:
 	if is_inside_tree():
 		if dna:
-			_creature_visuals.dna = CreatureLoader.fill_dna(dna)
+			creature_visuals.dna = CreatureLoader.fill_dna(dna)
 		else:
-			_creature_visuals.dna = {}
+			creature_visuals.dna = {}
 		if dna.has("line_rgb"):
 			$CreatureOutline/TextureRect.material.set_shader_param("black", Color(dna.line_rgb))
 
@@ -273,7 +277,7 @@ func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 func _update_animation() -> void:
 	if _non_iso_walk_direction.length() > 0:
 		play_movement_animation("run", _non_iso_walk_direction)
-	elif _creature_visuals.movement_mode:
+	elif creature_visuals.movement_mode:
 		play_movement_animation("idle", _non_iso_velocity)
 
 
