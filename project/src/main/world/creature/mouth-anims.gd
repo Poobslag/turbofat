@@ -4,9 +4,10 @@ extends AnimationPlayer
 An AnimationPlayer which animates mouths.
 """
 
-onready var _creature_visuals: CreatureVisuals = $".."
+onready var _creature_visuals: CreatureVisuals = get_parent()
 
 func _ready() -> void:
+	_creature_visuals.connect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
 	set_process(false)
 
 
@@ -39,18 +40,11 @@ problems.
 """
 func _apply_tool_script_workaround() -> void:
 	if not _creature_visuals:
-		_creature_visuals = $".."
+		_creature_visuals = get_parent()
 
 
-"""
-Reset the mouth frame when loading a new creature appearance.
-
-If we don't reset the eye frame, we have one strange transition frame.
-"""
 func _on_CreatureVisuals_before_creature_arrived() -> void:
-	if Engine.is_editor_hint():
-		_apply_tool_script_workaround()
-	_creature_visuals.reset_frames()
+	stop()
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:

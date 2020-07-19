@@ -18,6 +18,8 @@ const IDLE_ANIMS := [
 	"idle-yawn1",
 	"idle-close-eyes0",
 	"idle-close-eyes1",
+	"idle-ear-wiggle0",
+	"idle-ear-wiggle1",
 ]
 
 # animationplayer which is monitored to see if the creature is in the 'ambient' state
