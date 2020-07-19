@@ -1,35 +1,65 @@
-{ "frames": {
-   "ear-z0-1 0.png": {
-    "frame": { "x": 156, "y": 0, "w": 1, "h": 1 },
+{ "frames": [
+   {
+    "filename": "ear-z0-1 0.png",
+    "frame": { "x": 235, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "ear-z0-1 1.png": {
-    "frame": { "x": 0, "y": 0, "w": 73, "h": 53 },
+   {
+    "filename": "ear-z0-1 1.png",
+    "frame": { "x": 79, "y": 0, "w": 73, "h": 53 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 301, "y": 201, "w": 73, "h": 53 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "ear-z0-1 2.png": {
-    "frame": { "x": 78, "y": 0, "w": 73, "h": 53 },
+   {
+    "filename": "ear-z0-1 2.png",
+    "frame": { "x": 157, "y": 0, "w": 73, "h": 53 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 299, "y": 202, "w": 73, "h": 53 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
+   },
+   {
+    "filename": "ear-z0-1 3.png",
+    "frame": { "x": 79, "y": 58, "w": 73, "h": 51 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 301, "y": 203, "w": 73, "h": 51 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "ear-z0-1 4.png",
+    "frame": { "x": 157, "y": 58, "w": 72, "h": 50 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 301, "y": 205, "w": 72, "h": 50 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "ear-z0-1 5.png",
+    "frame": { "x": 0, "y": 0, "w": 74, "h": 55 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 301, "y": 199, "w": 74, "h": 55 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
    }
- },
+ ],
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.21-x64",
   "image": "ear-z0-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 157, "h": 53 },
+  "size": { "w": 236, "h": 109 },
   "scale": "1"
  }
 }

@@ -54,7 +54,7 @@ const TRANSITIONS := {
 # Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
 const UNEMOTE_DURATION := 0.08
 
-onready var _creature_visuals: CreatureVisuals = $".."
+onready var _creature_visuals: CreatureVisuals = get_parent()
 
 # stores the previous mood so that we can apply mood transitions.
 var _prev_mood: int
@@ -75,15 +75,18 @@ onready var _emote_eyes: PackedSprite = $"../Neck0/HeadBobber/EmoteEyes"
 onready var _head_bobber: Sprite = $"../Neck0/HeadBobber"
 
 func _process(_delta: float) -> void:
-	if not Engine.is_editor_hint():
-		if _creature_visuals.orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
-			if not is_playing():
-				play("ambient")
-				advance(randf() * current_animation_length)
-		if _creature_visuals.orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]:
-			if is_playing():
-				stop()
-			_creature_visuals.reset_eye_frames()
+	if Engine.is_editor_hint():
+		# don't trigger animations in editor
+		return
+	
+	if _creature_visuals.orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
+		if not is_playing():
+			play("ambient")
+			advance(randf() * current_animation_length)
+	if _creature_visuals.orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]:
+		if is_playing():
+			stop()
+		_creature_visuals.reset_eye_frames()
 
 
 """
@@ -342,18 +345,6 @@ func _transition_smile1_smile0() -> void:
 
 
 """
-Updates the mouth and eye frames to an appropriate frame for the creature's orientation.
-
-Usually the mouth and eyes are controlled by an animation. But when they're not, this method ensures they still look
-reasonable.
-"""
-func _apply_default_eye_frames() -> void:
-	if Engine.is_editor_hint():
-		_apply_tool_script_workaround()
-	_creature_visuals.reset_eye_frames()
-
-
-"""
 This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
 workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
 
@@ -363,7 +354,7 @@ problems.
 """
 func _apply_tool_script_workaround() -> void:
 	if not _creature_visuals:
-		_creature_visuals = $".."
+		_creature_visuals = get_parent()
 
 
 func _on_animation_finished(anim_name: String) -> void:
@@ -371,15 +362,6 @@ func _on_animation_finished(anim_name: String) -> void:
 		unemote(anim_name)
 		yield($ResetTween, "tween_all_completed")
 		_post_unemote()
-
-
-"""
-Reset the eye frame when loading a new creature appearance.
-
-If we don't reset the eye frame, we have one strange transition frame.
-"""
-func _on_CreatureVisuals_before_creature_arrived() -> void:
-	_apply_default_eye_frames()
 
 
 func _on_IdleTimer_start_idle_animation(anim_name: String) -> void:

@@ -90,7 +90,7 @@ var _force_orientation_change := false
 # how fat the creature looks right now; gradually approaches the 'fatness' property
 export (float) var visual_fatness := 1.0 setget set_visual_fatness
 
-onready var _mouth_animation_player := $Mouth0Anims
+onready var _mouth_animation_player := $Mouth1Anims
 
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
@@ -163,7 +163,7 @@ problems.
 """
 func _apply_tool_script_workaround() -> void:
 	if not _mouth_animation_player:
-		_mouth_animation_player = $Mouth0Anims
+		_mouth_animation_player = $Mouth1Anims
 		_mouth_animation_player.set_process(true)
 
 
@@ -405,10 +405,11 @@ func _update_creature_properties() -> void:
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
 	
-	# stop any AnimationPlayers, otherwise two AnimationPlayers might fight over control of the sprite
+	# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
 	$EmoteAnims.unemote_immediate()
-	_mouth_animation_player.stop()
 	emit_signal("before_creature_arrived")
+	# reset the mouth/eye frame, otherwise we have one strange transition frame
+	reset_frames()
 	
 	for packed_sprite_obj in [
 		$FarMovement,
@@ -433,15 +434,17 @@ func _update_creature_properties() -> void:
 		packed_sprite.frame_data = ""
 	
 	if dna.has("mouth"):
-		# set the sprite's color/texture properties
-		_mouth_animation_player.set_process(false)
-		if dna.mouth == "1":
-			_mouth_animation_player = $Mouth0Anims
-		elif dna.mouth == "2":
-			_mouth_animation_player = $Mouth1Anims
-		else:
-			print("Invalid mouth: %s", dna.mouth)
-		_mouth_animation_player.set_process(true)
+		$Mouth1Anims.set_process(dna.mouth == "1")
+		$Mouth2Anims.set_process(dna.mouth == "2")
+		match dna.mouth:
+			"1": _mouth_animation_player = $Mouth1Anims
+			"2": _mouth_animation_player = $Mouth2Anims
+			_: print("Invalid mouth: %s", dna.mouth)
+	
+	if dna.has("ear"):
+		$Ear1Anims.set_process(dna.ear == "1")
+		$Ear2Anims.set_process(dna.ear == "2")
+		$Ear3Anims.set_process(dna.ear == "3")
 	
 	for key in dna.keys():
 		if key.find("property:") == 0:
