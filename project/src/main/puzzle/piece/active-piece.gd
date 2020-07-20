@@ -159,7 +159,9 @@ func kick_piece(kicks: Array = []) -> void:
 	for kick in kicks:
 		if kick.y < 0 and not can_floor_kick():
 			if _trace_kicks: print("no: ", kick, " (too many floor kicks)")
-			continue
+			# don't try any kicks after a failed floor kick; otherwise the player's forced to clumsily exhaust all
+			# floor kicks to get the piece to kick differently
+			break
 		if can_move_to(target_pos + kick, target_orientation):
 			successful_kick = kick
 			target_pos += successful_kick
