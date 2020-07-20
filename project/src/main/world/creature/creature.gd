@@ -37,16 +37,16 @@ var creature_name: String setget set_creature_name
 var chat_theme_def: Dictionary setget set_chat_theme_def
 var chat_extents: Vector2
 
+# the direction the creature wants to move, in isometric and non-isometric coordinates
+var iso_walk_direction := Vector2.ZERO
+var non_iso_walk_direction := Vector2.ZERO
+
 # 'true' if the creature is being slowed by friction while stopping or turning
 var _friction := false
 
 # the velocity the player is moving, in isometric and non-isometric coordinates
 var _iso_velocity := Vector2.ZERO
 var _non_iso_velocity := Vector2.ZERO
-
-# the direction the creature wants to move, in isometric and non-isometric coordinates
-var _iso_walk_direction := Vector2.ZERO
-var _non_iso_walk_direction := Vector2.ZERO
 
 onready var creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visuals
 
@@ -84,8 +84,8 @@ func get_visual_fatness() -> float:
 
 
 func set_non_iso_walk_direction(new_direction: Vector2) -> void:
-	_non_iso_walk_direction = new_direction
-	_iso_walk_direction = Global.to_iso(new_direction)
+	non_iso_walk_direction = new_direction
+	iso_walk_direction = Global.to_iso(new_direction)
 
 
 func set_iso_velocity(new_velocity: Vector2) -> void:
@@ -232,8 +232,8 @@ func _refresh_chat_path() -> void:
 
 
 func _apply_friction() -> void:
-	if _iso_velocity and _iso_walk_direction:
-		_friction = _non_iso_velocity.normalized().dot(_non_iso_walk_direction.normalized()) < 0.25
+	if _iso_velocity and iso_walk_direction:
+		_friction = _non_iso_velocity.normalized().dot(non_iso_walk_direction.normalized()) < 0.25
 	else:
 		_friction = true
 	
@@ -244,8 +244,8 @@ func _apply_friction() -> void:
 
 
 func _apply_walk(delta: float) -> void:
-	if _iso_walk_direction:
-		_accelerate_xy(delta, _non_iso_walk_direction, MAX_RUN_ACCELERATION, MAX_RUN_SPEED)
+	if iso_walk_direction:
+		_accelerate_xy(delta, non_iso_walk_direction, MAX_RUN_ACCELERATION, MAX_RUN_SPEED)
 
 
 """
@@ -275,8 +275,8 @@ func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 
 
 func _update_animation() -> void:
-	if _non_iso_walk_direction.length() > 0:
-		play_movement_animation("run", _non_iso_walk_direction)
+	if non_iso_walk_direction.length() > 0:
+		play_movement_animation("run", non_iso_walk_direction)
 	elif creature_visuals.movement_mode:
 		play_movement_animation("idle", _non_iso_velocity)
 
