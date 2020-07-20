@@ -25,11 +25,11 @@ export (Array) var curve_defs: Array setget set_curve_defs
 # if false, the curve is made invisible when the creature faces away from the camera.
 export (bool) var visible_when_facing_north: bool = true
 
-onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
+onready var creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
 
 func _ready() -> void:
-	_creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
-	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+	creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
+	creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 	_refresh_curve()
 
 
@@ -41,18 +41,18 @@ func save_curve(value: bool) -> void:
 		return
 	
 	var fatness_index := 0
-	while fatness_index < curve_defs.size() and float(curve_defs[fatness_index].fatness) < _creature_visuals.fatness:
+	while fatness_index < curve_defs.size() and float(curve_defs[fatness_index].fatness) < creature_visuals.fatness:
 		fatness_index += 1
 	
 	var new_entry: Dictionary = {
-		"fatness": _creature_visuals.fatness,
+		"fatness": creature_visuals.fatness,
 		"curve_def": []
 	}
 	for i in curve.get_point_count():
 		new_entry.curve_def.append([curve.get_point_position(i), curve.get_point_in(i), curve.get_point_out(i)])
 	
 	if fatness_index < curve_defs.size() \
-			and is_equal_approx(float(curve_defs[fatness_index].fatness), _creature_visuals.fatness):
+			and is_equal_approx(float(curve_defs[fatness_index].fatness), creature_visuals.fatness):
 		# Found an exact match. Replace the current curve.
 		curve_defs[fatness_index] = new_entry
 	else:
@@ -66,7 +66,7 @@ Updates the 'visible' property based on the creature's orientation.
 func refresh_visible() -> void:
 	visible = true
 	if not visible_when_facing_north \
-			and _creature_visuals.orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]:
+			and creature_visuals.orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]:
 		visible = false
 
 
@@ -85,7 +85,7 @@ func _refresh_curve() -> void:
 	if curve_defs.size() >= 2:
 		var fatness_index := 0
 		while fatness_index < curve_defs.size() - 2 \
-				and curve_defs[fatness_index + 1].fatness < _creature_visuals.visual_fatness:
+				and curve_defs[fatness_index + 1].fatness < creature_visuals.visual_fatness:
 			fatness_index += 1
 	
 		# curve_def_low is the lower fatness curve. curve_def_high is the higher fatness curve
@@ -94,7 +94,7 @@ func _refresh_curve() -> void:
 		
 		# Calculate how much of each curve we should use. A value greater than 0.5 means we'll mostly use
 		# curve_def_high, a value less than 0.5 means we'll mostly use curve_def_low.
-		var f_pct := inverse_lerp(curve_def_low.fatness, curve_def_high.fatness, _creature_visuals.visual_fatness)
+		var f_pct := inverse_lerp(curve_def_low.fatness, curve_def_high.fatness, creature_visuals.visual_fatness)
 	
 		for i in range(curve_def_low.curve_def.size()):
 			var point_pos: Vector2 = lerp(curve_def_low.curve_def[i][0], curve_def_high.curve_def[i][0], f_pct)
