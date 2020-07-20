@@ -8,6 +8,7 @@ onready var _creature_visuals: CreatureVisuals = get_parent()
 
 func _ready() -> void:
 	_creature_visuals.connect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
+	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 	set_process(false)
 
 
@@ -36,4 +37,10 @@ func _on_IdleTimer_start_idle_animation(anim_name) -> void:
 
 
 func _on_CreatureVisuals_before_creature_arrived() -> void:
-	stop()
+	if is_processing():
+		stop()
+
+
+func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
+	if is_processing() and not _new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
+		stop()

@@ -13,3 +13,11 @@ func _unhandled_input(_event: InputEvent) -> void:
 		# calculate the direction the player wants to move
 		set_non_iso_walk_direction(Utils.ui_pressed_dir())
 		get_tree().set_input_as_handled()
+
+
+"""
+Stop moving when a chat choice appears.
+"""
+func _on_OverworldUi_showed_chat_choices() -> void:
+	if non_iso_walk_direction:
+		set_non_iso_walk_direction(Vector2.ZERO)

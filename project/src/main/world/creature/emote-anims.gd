@@ -7,6 +7,8 @@ Script for AnimationPlayers which animate moods: blinking, smiling, sweating, et
 # fired before we switch to a new mood; arms/legs/etc should be reset to default
 signal before_mood_switched
 
+signal animation_stopped
+
 # mapping from moods to animation names
 const EMOTE_ANIMS := {
 	ChatEvent.Mood.SMILE0: "smile0",
@@ -87,6 +89,15 @@ func _process(_delta: float) -> void:
 		if is_playing():
 			stop()
 		_creature_visuals.reset_eye_frames()
+
+
+"""
+Stops and emits an 'animation_stopped' signal.
+"""
+func stop(reset: bool = true) -> void:
+	var old_anim := current_animation
+	.stop(reset)
+	emit_signal("animation_stopped", old_anim)
 
 
 """

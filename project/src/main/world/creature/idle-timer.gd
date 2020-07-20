@@ -29,6 +29,7 @@ onready var _emote_anims: AnimationPlayer = get_node(emote_anims_path)
 
 func _ready() -> void:
 	_emote_anims.connect("animation_started", self, "_on_EmoteAnims_animation_started")
+	_emote_anims.connect("animation_stopped", self, "_on_EmoteAnims_animation_stopped")
 	_emote_anims.connect("animation_changed", self, "_on_EmoteAnims_animation_changed")
 	_emote_anims.connect("animation_finished", self, "_on_EmoteAnims_animation_finished")
 	connect("timeout", self, "_on_timeout")
@@ -54,6 +55,10 @@ func _update_state(start: bool = false) -> void:
 
 
 func _on_EmoteAnims_animation_started(_anim_name: String) -> void:
+	_update_state()
+
+
+func _on_EmoteAnims_animation_stopped(_anim_name: String) -> void:
 	_update_state()
 
 
