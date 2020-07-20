@@ -387,7 +387,7 @@ _global_script_classes=[ {
 "base": "Creature",
 "class": "Spira",
 "language": "GDScript",
-"path": "res://src/main/world/spira.gd"
+"path": "res://src/main/world/creature/spira.gd"
 }, {
 "base": "Node",
 "class": "State",
