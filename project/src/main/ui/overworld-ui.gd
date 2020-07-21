@@ -43,8 +43,9 @@ func start_chat() -> void:
 	_update_visible()
 	ChattableManager.set_focus_enabled(false)
 	make_chatters_face_eachother()
-	$ChatUi.play_chat_tree(chat_tree)
+	# emit 'chat_started' event first to prepare chatters before emoting
 	emit_signal("chat_started")
+	$ChatUi.play_chat_tree(chat_tree)
 
 
 func set_show_version(new_show_version: bool) -> void:

@@ -39,7 +39,7 @@ var chat_extents: Vector2
 
 # the direction the creature wants to move, in isometric and non-isometric coordinates
 var iso_walk_direction := Vector2.ZERO
-var non_iso_walk_direction := Vector2.ZERO
+var non_iso_walk_direction := Vector2.ZERO setget set_non_iso_walk_direction
 
 # 'true' if the creature is being slowed by friction while stopping or turning
 var _friction := false

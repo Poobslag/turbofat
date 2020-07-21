@@ -1,7 +1,9 @@
 class_name State
 extends Node
 """
-An abstract 'state' object for use in conjunction with the StateMachine class.
+An empty 'state' script for use in conjunction with the StateMachine class.
+
+States should extend from this script to define functionality.
 """
 
 # The number of frames this state has been active for.

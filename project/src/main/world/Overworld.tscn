@@ -1,7 +1,7 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/world/spira.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/creature/spira.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=3]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=5]
@@ -23,6 +23,7 @@
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=21]
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=22]
 [ext_resource path="res://src/main/world/OverworldTouchButtons.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/main/world/creature/ebe.gd" type="Script" id=24]
 
 [sub_resource type="TileSet" id=1]
 0/name = "block-shadow.png 0"
@@ -149,7 +150,13 @@ creature_id = "bort"
 
 [node name="Ebe" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 444.163, 149.951 )
+script = ExtResource( 24 )
 creature_id = "ebe"
+overworld_ui_path = NodePath("../../../Ui/OverworldUi")
+
+[node name="MoveTimer" type="Timer" parent="World/Obstacles/Ebe"]
+wait_time = 0.9
+autostart = true
 
 [node name="Boatricia" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 652.587, 320.111 )
@@ -264,6 +271,7 @@ codes = [ "bigfps" ]
 
 [node name="SettingsMenu" parent="Ui/OverworldUi" instance=ExtResource( 6 )]
 quit_text = "Save + Quit"
+[connection signal="timeout" from="World/Obstacles/Ebe/MoveTimer" to="World/Obstacles/Ebe" method="_on_MoveTimer_timeout"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]

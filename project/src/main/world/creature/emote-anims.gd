@@ -88,7 +88,7 @@ func _process(_delta: float) -> void:
 	if _creature_visuals.orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]:
 		if is_playing():
 			stop()
-		_creature_visuals.reset_eye_frames()
+			_creature_visuals.reset_eye_frames()
 
 
 """
@@ -205,7 +205,10 @@ func emote(mood: int) -> void:
 			unemote()
 			yield($ResetTween, "tween_all_completed")
 			_post_unemote()
-	
+	else:
+		# initialize eye frames in case the eyes were previously invisible, such as for north-facing creatures
+		_creature_visuals.reset_eye_frames()
+
 	if _mood == mood and mood in EMOTE_ANIMS:
 		# we double-check that the mood we were passed is still the current mood. this invariant can be violated
 		# if we're called multiple times in quick succession. in those cases, we want the newest mood to 'win'.
