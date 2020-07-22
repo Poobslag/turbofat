@@ -20,11 +20,19 @@ const VALID = SquishState.VALID
 
 export (NodePath) var input_path: NodePath
 
+# 'true' if the player did a squish move this frame
+var did_squish: bool
+
 # potential source/target for the current squish move
 var squish_state: int = SquishState.UNKNOWN
 var _squish_target_pos: Vector2
 
 onready var input: PieceInput = get_node(input_path)
+
+
+func _physics_process(_delta: float) -> void:
+	did_squish = false
+
 
 func attempt_squish(piece: ActivePiece) -> void:
 	if not input.is_soft_drop_pressed() \
@@ -68,6 +76,7 @@ func _squish_to_target(piece: ActivePiece) -> void:
 	var old_pos := piece.pos
 	piece.move_to_target()
 	piece.gravity = 0
+	did_squish = true
 	emit_signal("squish_moved", piece, old_pos)
 
 
