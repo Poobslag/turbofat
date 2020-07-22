@@ -1,7 +1,7 @@
 { "frames": [
    {
     "filename": "arm-z1-1 0.png",
-    "frame": { "x": 0, "y": 69, "w": 1, "h": 1 },
+    "frame": { "x": 355, "y": 73, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -10,7 +10,7 @@
    },
    {
     "filename": "arm-z1-1 1.png",
-    "frame": { "x": 0, "y": 0, "w": 57, "h": 64 },
+    "frame": { "x": 66, "y": 299, "w": 57, "h": 64 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 200, "y": 314, "w": 57, "h": 64 },
@@ -19,10 +19,226 @@
    },
    {
     "filename": "arm-z1-1 2.png",
-    "frame": { "x": 62, "y": 0, "w": 51, "h": 68 },
+    "frame": { "x": 128, "y": 304, "w": 51, "h": 68 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 195, "y": 305, "w": 51, "h": 68 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 3.png",
+    "frame": { "x": 0, "y": 237, "w": 61, "h": 66 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 182, "y": 311, "w": 61, "h": 66 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 4.png",
+    "frame": { "x": 64, "y": 227, "w": 61, "h": 67 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 182, "y": 308, "w": 61, "h": 67 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 5.png",
+    "frame": { "x": 273, "y": 162, "w": 63, "h": 65 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 180, "y": 306, "w": 63, "h": 65 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 6.png",
+    "frame": { "x": 133, "y": 158, "w": 63, "h": 67 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 181, "y": 307, "w": 63, "h": 67 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 7.png",
+    "frame": { "x": 0, "y": 162, "w": 59, "h": 70 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 185, "y": 306, "w": 59, "h": 70 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 8.png",
+    "frame": { "x": 337, "y": 241, "w": 54, "h": 70 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 190, "y": 312, "w": 54, "h": 70 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 9.png",
+    "frame": { "x": 130, "y": 230, "w": 59, "h": 69 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 196, "y": 315, "w": 59, "h": 69 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 10.png",
+    "frame": { "x": 214, "y": 78, "w": 66, "h": 71 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 196, "y": 313, "w": 66, "h": 71 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 11.png",
+    "frame": { "x": 72, "y": 77, "w": 67, "h": 70 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 198, "y": 313, "w": 67, "h": 70 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 12.png",
+    "frame": { "x": 66, "y": 152, "w": 62, "h": 70 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 197, "y": 315, "w": 62, "h": 70 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 13.png",
+    "frame": { "x": 273, "y": 232, "w": 59, "h": 69 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 194, "y": 315, "w": 59, "h": 69 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 14.png",
+    "frame": { "x": 355, "y": 0, "w": 53, "h": 68 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 189, "y": 313, "w": 53, "h": 68 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 15.png",
+    "frame": { "x": 285, "y": 79, "w": 60, "h": 78 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 208, "y": 301, "w": 60, "h": 78 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 16.png",
+    "frame": { "x": 350, "y": 79, "w": 58, "h": 76 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 215, "y": 302, "w": 58, "h": 76 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 17.png",
+    "frame": { "x": 194, "y": 236, "w": 54, "h": 75 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 223, "y": 302, "w": 54, "h": 75 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 18.png",
+    "frame": { "x": 350, "y": 160, "w": 55, "h": 76 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 221, "y": 301, "w": 55, "h": 76 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 19.png",
+    "frame": { "x": 212, "y": 154, "w": 56, "h": 77 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 218, "y": 300, "w": 56, "h": 77 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 20.png",
+    "frame": { "x": 0, "y": 81, "w": 61, "h": 76 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 207, "y": 301, "w": 61, "h": 76 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 21.png",
+    "frame": { "x": 72, "y": 0, "w": 68, "h": 72 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 194, "y": 303, "w": 68, "h": 72 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 22.png",
+    "frame": { "x": 214, "y": 0, "w": 66, "h": 73 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 191, "y": 302, "w": 66, "h": 73 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 23.png",
+    "frame": { "x": 144, "y": 81, "w": 63, "h": 72 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 189, "y": 301, "w": 63, "h": 72 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 24.png",
+    "frame": { "x": 285, "y": 0, "w": 65, "h": 74 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 191, "y": 302, "w": 65, "h": 74 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 25.png",
+    "frame": { "x": 0, "y": 0, "w": 67, "h": 76 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 193, "y": 303, "w": 67, "h": 76 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "arm-z1-1 26.png",
+    "frame": { "x": 145, "y": 0, "w": 64, "h": 76 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 201, "y": 303, "w": 64, "h": 76 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    }
@@ -32,7 +248,7 @@
   "version": "1.2.21-x64",
   "image": "arm-z1-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 113, "h": 70 },
+  "size": { "w": 408, "h": 372 },
   "scale": "1"
  }
 }

@@ -28,3 +28,8 @@ func _refresh_sprite_positions() -> void:
 	advance(_creature_visuals.visual_fatness)
 	stop()
 	_creature_visuals.emit_signal("head_moved")
+
+
+func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
+	if new_mode != CreatureVisuals.SPRINT:
+		_refresh_sprite_positions()

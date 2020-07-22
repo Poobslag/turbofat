@@ -24,15 +24,12 @@ signal before_creature_arrived
 # emitted when a creature arrives and sits down
 signal creature_arrived
 
-# emitted when a movement animation starts (e.g Spira starts running in a direction)
-signal movement_animation_started(anim_name)
-
 # emitted during the 'run' animation when the creature touches the ground
 # warning-ignore:unused_signal
 signal landed
 
 signal orientation_changed(old_orientation, new_orientation)
-signal movement_mode_changed(movement_mode)
+signal movement_mode_changed(old_mode, new_mode)
 signal fatness_changed
 signal visual_fatness_changed
 signal comfort_changed
@@ -49,6 +46,16 @@ enum Orientation {
 	NORTHEAST,
 }
 
+enum MovementMode {
+	IDLE, # not walking/running
+	SPRINT, # quadrapedal run
+	RUN # bipedal run
+}
+
+const IDLE := MovementMode.IDLE
+const SPRINT := MovementMode.SPRINT
+const RUN := MovementMode.RUN
+
 const SOUTHEAST := Orientation.SOUTHEAST
 const SOUTHWEST := Orientation.SOUTHWEST
 const NORTHWEST := Orientation.NORTHWEST
@@ -63,8 +70,8 @@ export (bool) var _reset_creature setget reset_creature
 # toggle to generate a creature with a random appearance
 export (bool) var _random_creature setget random_creature
 
-# 'true' if the creature is walking. toggling this makes certain sprites visible/invisible.
-export (bool) var movement_mode := false setget set_movement_mode
+# the state of whether the creature is walking, running or idle
+export (int) var movement_mode := MovementMode.IDLE setget set_movement_mode
 
 export (Vector2) var southeast_dir := Vector2(0.70710678118, 0.70710678118)
 
@@ -94,7 +101,6 @@ onready var _mouth_animation_player := $Mouth1Anims
 
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
-	_update_movement_mode()
 	set_orientation(orientation)
 	_mouth_animation_player.set_process(true)
 
@@ -175,12 +181,20 @@ Usually the frame is controlled by an animation. But when it's not, this ensures
 func reset_frames(value: bool = true) -> void:
 	if not value:
 		return
+	
 	reset_eye_frames()
 	$Neck0/HeadBobber/Mouth.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	emit_signal("orientation_changed", -1, orientation)
 
 
+"""
+Resets the eyes to a forward/backward facing frame.
+
+Because the eye frames also become visible/invisible during emotes, they don't react to normal orientation/movement
+changes and are instead reset manually.
+"""
 func reset_eye_frames() -> void:
-	$Neck0/HeadBobber/Eyes.update_orientation(orientation)
+	$Neck0/HeadBobber/Eyes.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 
 
 """
@@ -302,26 +316,27 @@ Parameters:
 	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 """
 func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
-	var animation_name: String
-	if animation_prefix == "idle":
-		animation_name = "idle"
-		if movement_mode != false:
-			set_movement_mode(false)
-	else:
-		if movement_direction.length() > 0.1:
-			# tiny movement vectors are often the result of a collision. we ignore these to avoid constantly flipping
-			# their orientation if they're mashing themselves into a wall
-			var new_orientation := _compute_orientation(movement_direction)
-			if new_orientation != orientation:
-				set_orientation(new_orientation)
-		var suffix := "se" if orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else "nw"
-		animation_name = "%s-%s" % [animation_prefix, suffix]
-		if movement_mode != true:
-			set_movement_mode(true)
+	if movement_direction.length() > 0.1:
+		# tiny movement vectors are often the result of a collision. we ignore these to avoid constantly flipping
+		# their orientation if they're mashing themselves into a wall
+		var new_orientation := _compute_orientation(movement_direction)
+		if new_orientation != orientation:
+			set_orientation(new_orientation)
+	var suffix := "se" if orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else "nw"
+	var animation_name := "%s-%s" % [animation_prefix, suffix]
+	
+	if animation_prefix == "idle" and movement_mode != IDLE:
+		set_movement_mode(IDLE)
+	elif animation_prefix == "sprint" and movement_mode != SPRINT:
+		set_movement_mode(SPRINT)
+	elif animation_prefix == "run" and movement_mode != RUN:
+		set_movement_mode(RUN)
+	
 	if $MovementAnims.current_animation != animation_name:
-		if not $EmoteAnims.current_animation.begins_with("ambient") and animation_name != "idle":
+		if not $EmoteAnims.current_animation.begins_with("ambient") and not animation_name.begins_with("idle"):
+			# don't unemote during sitting-still animations; only when changing movement stances
 			$EmoteAnims.unemote_immediate()
-		if $MovementAnims.current_animation.begins_with(animation_prefix + "-"):
+		if $MovementAnims.current_animation.begins_with(animation_prefix):
 			var old_position: float = $MovementAnims.current_animation_position
 			_suppress_sfx_signal_timer = 0.000000001
 			$MovementAnims.play(animation_name)
@@ -352,18 +367,18 @@ func _compute_orientation(direction: Vector2) -> int:
 	return new_orientation
 
 
-func set_movement_mode(new_mode: bool) -> void:
+func set_movement_mode(new_mode: int) -> void:
+	var old_mode := movement_mode
 	movement_mode = new_mode
 	if is_inside_tree():
-		_update_movement_mode()
-		emit_signal("movement_mode_changed", movement_mode)
+		emit_signal("movement_mode_changed", old_mode, new_mode)
 
 
 """
 Returns 'true' if the creature isn't doing anything important, and we can rotate their head or turn them around.
 """
 func is_idle() -> bool:
-	return not $MovementAnims.is_playing() or $MovementAnims.current_animation == "idle"
+	return not $MovementAnims.is_playing() or $MovementAnims.current_animation.begins_with("idle")
 
 
 """
@@ -386,18 +401,6 @@ func restart_idle_timer() -> void:
 
 
 """
-Updates the visibility/position of nodes based on whether this creature is sitting or walking.
-"""
-func _update_movement_mode() -> void:
-	if not movement_mode:
-		# reset position/size attributes that get altered during movement
-		$Neck0.position = Vector2.ZERO
-	
-	# movement sprites are visible if movement_mode is true
-	$FarMovement.visible = movement_mode
-
-
-"""
 Updates the properties of the various creature sprites and Node2D objects based on the contents of the creature
 definition. This assumes the CreatureLoader has finished loading all of the appropriate textures and values.
 """
@@ -412,7 +415,7 @@ func _update_creature_properties() -> void:
 	reset_frames()
 	
 	for packed_sprite_obj in [
-		$FarMovement,
+		$Sprint,
 		$FarArm,
 		$FarLeg,
 		$Body/Viewport/Body/NeckBlend,
@@ -432,6 +435,11 @@ func _update_creature_properties() -> void:
 		var packed_sprite: PackedSprite = packed_sprite_obj
 		packed_sprite.texture = null
 		packed_sprite.frame_data = ""
+	$Body.rect_position = Vector2(-580, -850)
+	$Neck0/HeadBobber.position = Vector2(0, -100)
+	
+	if _mouth_animation_player:
+		_mouth_animation_player.stop()
 	
 	if dna.has("mouth"):
 		$Mouth1Anims.set_process(dna.mouth == "1")
@@ -481,7 +489,3 @@ func _on_EmoteAnims_before_mood_switched() -> void:
 	# some moods modify the sprites for our eyes and arms, so we reset them
 	_force_orientation_change = true
 	set_orientation(orientation)
-
-
-func _on_MovementAnims_animation_started(anim_name: String) -> void:
-	emit_signal("movement_animation_started", anim_name)

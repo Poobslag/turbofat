@@ -1,4 +1,4 @@
-[gd_scene load_steps=127 format=2]
+[gd_scene load_steps=131 format=2]
 
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://src/main/world/creature/head-sweat-drops.gd" type="Script" id=45]
 [ext_resource path="res://src/main/world/creature/body-sweat.gd" type="Script" id=46]
 [ext_resource path="res://src/main/world/creature/ear-anims.gd" type="Script" id=48]
+[ext_resource path="res://src/main/world/creature/sprint.gd" type="Script" id=50]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -80,7 +81,7 @@ _data = {
 [sub_resource type="Curve2D" id=7]
 resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array(  )
+"points": PoolVector2Array( -0.827609, -19.5058, 0.827609, 19.5058, -16.4229, -16.8725, -14.9663, 1.17112, 14.9663, -1.17112, 18.2874, 11.2822, 0.670203, 16.3499, -0.670203, -16.3499, 49.4005, -24.8763, 15.2832, -1.67112, -15.2832, 1.67112, 12.944, -59.7323, -0.144124, -20.4429, 0.144124, 20.4429, -16.4229, -19.2536 )
 }
 
 [sub_resource type="ViewportTexture" id=8]
@@ -238,7 +239,7 @@ blend_mode = 1
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 1, 1, 1, 1 )
-shader_param/green = Color( 1, 0.552941, 0.67451, 1 )
+shader_param/green = Color( 1, 0.682353, 0.6, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
@@ -4488,21 +4489,322 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=90]
+resource_name = "idle-nw"
 step = 0.0555556
 tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0:position")
+tracks/0/path = NodePath("FarArm:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.008 ),
+"times": PoolRealArray( 0, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+"update": 1,
+"values": [ 2, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FarLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 2 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NearLeg:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NearArm:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 2 ]
 }
 
 [sub_resource type="Animation" id=91]
+step = 0.0555556
+tracks/0/type = "value"
+tracks/0/path = NodePath("FarArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FarLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NearLeg:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("NearArm:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 1 ]
+}
+
+[sub_resource type="Animation" id=92]
+resource_name = "run-nw"
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("NearArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FarArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FarLeg:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -580, -848 ), Vector2( -580, -850 ), Vector2( -580, -852 ), Vector2( -580, -851 ), Vector2( -580, -850 ), Vector2( -580, -849 ), Vector2( -580, -848 ), Vector2( -580, -850 ), Vector2( -580, -852 ), Vector2( -580, -851 ), Vector2( -580, -850 ), Vector2( -580, -849 ), Vector2( -580, -848 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Neck0/HeadBobber:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -99 ), Vector2( 0, -99 ), Vector2( 0, -100 ), Vector2( 0, -101 ), Vector2( 0, -100 ), Vector2( 0, -99 ), Vector2( 0, -99 ), Vector2( 0, -100 ), Vector2( 0, -101 ), Vector2( 0, -100 ), Vector2( 0, -99 ) ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.25, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "landed" ],
+"method": "emit_sfx_signal"
+}, {
+"args": [ "landed" ],
+"method": "emit_sfx_signal"
+} ]
+}
+
+[sub_resource type="Animation" id=93]
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("NearArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 3 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FarArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 3 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("FarLeg:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 3 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Body:rect_position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -580, -848 ), Vector2( -580, -850 ), Vector2( -580, -852 ), Vector2( -580, -851 ), Vector2( -580, -850 ), Vector2( -580, -849 ), Vector2( -580, -848 ), Vector2( -580, -850 ), Vector2( -580, -852 ), Vector2( -580, -851 ), Vector2( -580, -850 ), Vector2( -580, -849 ), Vector2( -580, -848 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Neck0/HeadBobber:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -99 ), Vector2( 0, -99 ), Vector2( 0, -100 ), Vector2( 0, -101 ), Vector2( 0, -100 ), Vector2( 0, -99 ), Vector2( 0, -99 ), Vector2( 0, -100 ), Vector2( 0, -101 ), Vector2( 0, -100 ), Vector2( 0, -99 ) ]
+}
+tracks/7/type = "method"
+tracks/7/path = NodePath(".")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.25, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "landed" ],
+"method": "emit_sfx_signal"
+}, {
+"args": [ "landed" ],
+"method": "emit_sfx_signal"
+} ]
+}
+
+[sub_resource type="Animation" id=94]
 length = 0.4
 loop = true
 step = 0.05
@@ -4519,7 +4821,7 @@ tracks/0/keys = {
 "values": [ Vector2( -40.957, 8.645 ), Vector2( -32.17, -4.364 ), Vector2( -47.539, -24.439 ), Vector2( -47.539, -24.439 ), Vector2( -61.054, -22.945 ), Vector2( -61.054, -22.945 ), Vector2( -69.9, -9.24 ), Vector2( -54.03, 7.886 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("FarMovement:frame")
+tracks/1/path = NodePath("Sprint:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -4545,7 +4847,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=92]
+[sub_resource type="Animation" id=95]
 length = 0.4
 loop = true
 step = 0.05
@@ -4562,7 +4864,7 @@ tracks/0/keys = {
 "values": [ Vector2( 55.95, 51.64 ), Vector2( 47.17, 38.64 ), Vector2( 62.53, 18.57 ), Vector2( 62.53, 18.57 ), Vector2( 76.05, 20.06 ), Vector2( 76.05, 20.06 ), Vector2( 84.9, 33.76 ), Vector2( 69.02, 50.88 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("FarMovement:frame")
+tracks/1/path = NodePath("Sprint:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -4591,52 +4893,13 @@ tracks/2/keys = {
 [node name="Visuals" type="Node2D"]
 position = Vector2( 580, 850 )
 script = ExtResource( 37 )
-dna = {
-"property:BodyColors:belly": 0,
-"shader:Body:black": Color( 0, 0, 0, 1 ),
-"shader:Body:green": Color( 0, 0, 0, 1 ),
-"shader:Body:red": Color( 0, 0, 0, 1 ),
-"shader:EmoteBody:black": Color( 0, 0, 0, 1 ),
-"shader:FarArm:black": Color( 0, 0, 0, 1 ),
-"shader:FarArm:red": Color( 0, 0, 0, 1 ),
-"shader:FarLeg:black": Color( 0, 0, 0, 1 ),
-"shader:FarLeg:red": Color( 0, 0, 0, 1 ),
-"shader:NearArm:black": Color( 0, 0, 0, 1 ),
-"shader:NearArm:red": Color( 0, 0, 0, 1 ),
-"shader:NearLeg:black": Color( 0, 0, 0, 1 ),
-"shader:NearLeg:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ0:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ1:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ2:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EarZ2:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteArms:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteArms:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyes:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Eyes:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Eyes:blue": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Eyes:green": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Eyes:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Head:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Head:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:green": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:green": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:red": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Mouth:black": Color( 0, 0, 0, 1 ),
-"shader:Neck0/HeadBobber/Mouth:red": Color( 0, 0, 0, 1 )
-}
 
-[node name="FarMovement" type="Node2D" parent="."]
+[node name="Sprint" type="Node2D" parent="."]
 visible = false
 light_mask = 2
 material = SubResource( 1 )
 scale = Vector2( 0.836, 0.836 )
-script = ExtResource( 2 )
+script = ExtResource( 50 )
 rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
@@ -4649,7 +4912,7 @@ script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
-invisible_while_moving = true
+invisible_while_sprinting = true
 
 [node name="FarLeg" type="Node2D" parent="."]
 light_mask = 2
@@ -4659,7 +4922,7 @@ script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
-invisible_while_moving = true
+invisible_while_sprinting = true
 
 [node name="BodyShadows" type="ViewportContainer" parent="."]
 modulate = Color( 1, 1, 1, 0 )
@@ -4879,7 +5142,7 @@ script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
-invisible_while_moving = true
+invisible_while_sprinting = true
 
 [node name="NearArm" type="Node2D" parent="."]
 light_mask = 2
@@ -4889,7 +5152,7 @@ script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
 frame = 1
 offset = Vector2( 0, -119 )
-invisible_while_moving = true
+invisible_while_sprinting = true
 
 [node name="BodySweat" type="Particles2D" parent="."]
 material = SubResource( 13 )
@@ -4919,6 +5182,7 @@ script = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": "Neck1 offsets the head's position as the creature bobs their head up and down"
 }
+head_bob_mode = 0
 
 [node name="EarZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
@@ -4988,7 +5252,7 @@ show_behind_parent = true
 light_mask = 2
 material = SubResource( 22 )
 scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
+script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
 frame = 1
 
@@ -5056,8 +5320,8 @@ creature_visuals_path = NodePath("../../..")
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 material = SubResource( 28 )
-position = Vector2( 25.3166, 262.374 )
-scale = Vector2( 1.8, 0.8 )
+position = Vector2( -95.728, 468.808 )
+scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -239 )
 __meta__ = {
@@ -5068,13 +5332,12 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 material = SubResource( 29 )
-position = Vector2( -18, -36 )
+position = Vector2( -25.4782, 211.932 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 texture = ExtResource( 10 )
 frame_data = "res://assets/main/world/creature/1/emote-brain-packed.json"
 rect_size = Vector2( 256, 256 )
-frame = 1
 offset = Vector2( 0, -119 )
 
 [node name="EmoteHead" type="Node2D" parent="Neck0/HeadBobber"]
@@ -5192,35 +5455,40 @@ script = ExtResource( 8 )
 creature_visuals_path = NodePath("..")
 
 [node name="MovementAnims" type="AnimationPlayer" parent="."]
-anims/idle = SubResource( 90 )
-anims/run-nw = SubResource( 91 )
-anims/run-se = SubResource( 92 )
+anims/idle-nw = SubResource( 90 )
+anims/idle-se = SubResource( 91 )
+anims/run-nw = SubResource( 92 )
+anims/run-se = SubResource( 93 )
+anims/sprint-nw = SubResource( 94 )
+anims/sprint-se = SubResource( 95 )
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="creature_arrived" from="." to="IdleTimer" method="_on_CreatureVisuals_creature_arrived"]
-[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprint" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="FatSpriteMover" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="FarArm" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="FarLeg" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="FarLeg" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="FarArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Mouth2Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="start_idle_animation" from="IdleTimer" to="Ear1Anims" method="_on_IdleTimer_start_idle_animation"]
@@ -5231,4 +5499,3 @@ anims/run-se = SubResource( 92 )
 [connection signal="start_idle_animation" from="IdleTimer" to="EmoteAnims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
 [connection signal="before_mood_switched" from="EmoteAnims" to="." method="_on_EmoteAnims_before_mood_switched"]
-[connection signal="animation_started" from="MovementAnims" to="." method="_on_MovementAnims_animation_started"]
