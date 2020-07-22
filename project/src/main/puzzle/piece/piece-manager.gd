@@ -172,8 +172,15 @@ func move_piece() -> void:
 	
 	if old_piece_pos != piece.pos or old_piece_orientation != piece.orientation:
 		$Physics/Squisher.squish_state = PieceSquisher.UNKNOWN
-		if piece.lock > 0 and not $Physics/Dropper.did_hard_drop:
-			piece.perform_lock_reset()
+		if piece.lock > 0:
+			if $Physics/Dropper.did_hard_drop:
+				# hard drop doesn't cause lock reset
+				pass
+			elif $Physics/Squisher.did_squish and $Input/HardDrop.is_pressed():
+				# don't reset lock if doing a combination hard drop + squish move
+				pass
+			else:
+				piece.perform_lock_reset()
 
 
 """
