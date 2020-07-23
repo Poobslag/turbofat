@@ -7,7 +7,7 @@ const TEMP_FILENAME := "test-ground-lucky.save"
 const TEMP_FILENAME_0517 := "test-ground-lucky-0517.save"
 
 func before_each() -> void:
-	PlayerSave.player_data_filename = "user://%s" % TEMP_FILENAME
+	PlayerSave.current_player_data_filename = "user://%s" % TEMP_FILENAME
 	PlayerSave.old_save.player_data_filename_0517 = "user://%s" % TEMP_FILENAME_0517
 	PlayerData.reset()
 
