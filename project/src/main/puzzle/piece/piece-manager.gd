@@ -176,9 +176,8 @@ func move_piece() -> void:
 			if $Physics/Dropper.did_hard_drop:
 				# hard drop doesn't cause lock reset
 				pass
-			elif $Physics/Squisher.did_squish and $Input/HardDrop.is_pressed() \
-					and not piece.can_move_to(piece.pos + Vector2(0, 1), piece.orientation):
-				# don't reset lock if doing a combination hard drop + squish move
+			elif $Physics/Squisher.did_squish_drop:
+				# don't reset lock if doing a squish drop
 				pass
 			else:
 				piece.perform_lock_reset()
