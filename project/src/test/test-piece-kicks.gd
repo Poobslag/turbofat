@@ -87,17 +87,18 @@ func _kick_piece() -> Vector2:
 	_from_piece = _create_active_piece(from_grid)
 	_to_piece = _create_active_piece(to_grid)
 	
+	var piece := _create_active_piece(from_grid)
+	piece.target_orientation = _to_piece.orientation
+	
 	# if the piece is blocked, kick the piece
-	if not _to_piece.can_move_to(_from_piece.pos, _to_piece.orientation):
-		_to_piece.target_pos = _from_piece.pos
-		_to_piece.target_orientation = _to_piece.orientation
-		_to_piece.kick_piece()
+	if not piece.can_move_to(piece.target_pos, piece.target_orientation):
+		piece.kick_piece()
 	
 	# if the piece is still blocked, it's a failed kick
-	if not _to_piece.can_move_to(_to_piece.pos, _to_piece.orientation):
+	if not piece.can_move_to(piece.target_pos, piece.target_orientation):
 		result = FAILED_KICK
 	else:
-		result = _to_piece.pos - _from_piece.pos
+		result = piece.target_pos - piece.pos
 	return result
 
 
@@ -146,6 +147,7 @@ func _create_active_piece(ascii_grid: Array) -> ActivePiece:
 	if not _active_piece:
 		push_error("Could not find piece position/orientation in '%s' grid"\
 				% ("from" if ascii_grid == from_grid else "to"))
+	_active_piece.reset_target()
 	return _active_piece
 
 
