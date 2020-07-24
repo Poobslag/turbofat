@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/main/puzzle/PuzzleTouchButtons.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/ui/settings-touch-scheme.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/settings-touch-fat-finger.gd" type="Script" id=11]
+[ext_resource path="res://src/main/ui/settings-ghost-piece.gd" type="Script" id=12]
 
 [node name="SettingsMenu" type="CanvasLayer"]
 pause_mode = 2
@@ -30,7 +31,6 @@ visible = false
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -66,7 +66,7 @@ __meta__ = {
 
 [node name="Settings" type="VBoxContainer" parent="Window/UiArea/Center"]
 margin_right = 400.0
-margin_bottom = 286.0
+margin_bottom = 338.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -75,24 +75,34 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings" type="Label" parent="Window/UiArea/Center/Settings"]
-margin_top = 22.0
+[node name="Volume" type="Label" parent="Window/UiArea/Center/Settings"]
 margin_right = 400.0
-margin_bottom = 42.0
+margin_bottom = 20.0
 theme = ExtResource( 1 )
-text = "Settings"
+text = "Volume"
 align = 1
 valign = 1
 
-[node name="Music" parent="Window/UiArea/Center/Settings" instance=ExtResource( 6 )]
+[node name="Master" parent="Window/UiArea/Center/Settings" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 52.0
+margin_top = 30.0
 margin_right = 400.0
-margin_bottom = 72.0
+margin_bottom = 50.0
+
+[node name="Music2" parent="Window/UiArea/Center/Settings" instance=ExtResource( 6 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 60.0
+margin_right = 400.0
+margin_bottom = 80.0
+volume_type = 1
 
 [node name="Sounds" parent="Window/UiArea/Center/Settings" instance=ExtResource( 6 )]
 anchor_left = 0.0
@@ -100,10 +110,10 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 82.0
+margin_top = 90.0
 margin_right = 400.0
-margin_bottom = 102.0
-volume_type = 1
+margin_bottom = 110.0
+volume_type = 2
 
 [node name="Voices" parent="Window/UiArea/Center/Settings" instance=ExtResource( 6 )]
 anchor_left = 0.0
@@ -111,24 +121,70 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 112.0
+margin_top = 120.0
 margin_right = 400.0
-margin_bottom = 132.0
-volume_type = 2
+margin_bottom = 140.0
+volume_type = 3
+
+[node name="Gameplay" type="Label" parent="Window/UiArea/Center/Settings"]
+margin_top = 150.0
+margin_right = 400.0
+margin_bottom = 170.0
+theme = ExtResource( 1 )
+text = "Gameplay"
+align = 1
+valign = 1
+
+[node name="GhostPiece" type="Control" parent="Window/UiArea/Center/Settings"]
+margin_top = 180.0
+margin_right = 400.0
+margin_bottom = 206.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Window/UiArea/Center/Settings/GhostPiece"]
+anchor_bottom = 1.0
+margin_right = 66.0
+rect_min_size = Vector2( 120, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.5
+text = "Ghost Piece"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="CheckBox" parent="Window/UiArea/Center/Settings/GhostPiece"]
+margin_left = 133.0
+margin_right = 293.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 160, 26 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Touch" type="Label" parent="Window/UiArea/Center/Settings"]
-margin_top = 142.0
+margin_top = 216.0
 margin_right = 400.0
-margin_bottom = 162.0
+margin_bottom = 236.0
 theme = ExtResource( 1 )
 text = "Touch"
 align = 1
 valign = 1
 
 [node name="Size" type="Control" parent="Window/UiArea/Center/Settings"]
-margin_top = 172.0
+margin_top = 246.0
 margin_right = 400.0
-margin_bottom = 192.0
+margin_bottom = 266.0
 rect_min_size = Vector2( 400, 20 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
@@ -183,9 +239,9 @@ theme = ExtResource( 1 )
 text = "1.00x"
 
 [node name="Scheme" type="Control" parent="Window/UiArea/Center/Settings"]
-margin_top = 202.0
+margin_top = 276.0
 margin_right = 400.0
-margin_bottom = 228.0
+margin_bottom = 302.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
@@ -221,9 +277,9 @@ __meta__ = {
 }
 
 [node name="FatFinger" type="Control" parent="Window/UiArea/Center/Settings"]
-margin_top = 238.0
+margin_top = 312.0
 margin_right = 400.0
-margin_bottom = 264.0
+margin_bottom = 338.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
@@ -300,6 +356,7 @@ text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+[connection signal="toggled" from="Window/UiArea/Center/Settings/GhostPiece/OptionButton" to="Window/UiArea/Center/Settings/GhostPiece" method="_on_OptionButton_toggled"]
 [connection signal="value_changed" from="Window/UiArea/Center/Settings/Size/Control/HSlider" to="Window/UiArea/Center/Settings/Size" method="_on_HSlider_value_changed"]
 [connection signal="item_selected" from="Window/UiArea/Center/Settings/Scheme/OptionButton" to="Window/UiArea/Center/Settings/Scheme" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/Center/Settings/FatFinger/OptionButton" to="Window/UiArea/Center/Settings/FatFinger" method="_on_OptionButton_item_selected"]

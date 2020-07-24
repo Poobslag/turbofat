@@ -9,6 +9,9 @@ _playfield.
 signal topped_out
 signal piece_spawned
 
+# emitted when the current piece changes in some way (moved, replaced, reoriented)
+signal piece_changed(piece)
+
 # emitted when the player rotates a piece
 signal initial_rotated_right
 signal initial_rotated_left
@@ -122,7 +125,6 @@ func spawn_piece() -> bool:
 	var piece_type := _next_piece_displays.pop_next_piece()
 	piece = ActivePiece.new(piece_type, funcref(_playfield.tile_map, "is_cell_blocked"))
 	
-	$Physics/Squisher.squish_state = PieceSquisher.UNKNOWN
 	$Physics/Rotator.apply_initial_rotate_input(piece)
 	$Physics/Mover.apply_initial_move_input(piece)
 	
@@ -133,6 +135,9 @@ func spawn_piece() -> bool:
 		topped_out = true
 	
 	emit_signal("piece_spawned")
+	emit_signal("piece_changed", piece)
+	if PlayerData.gameplay_settings.ghost_piece:
+		$TileMap.set_ghost_shadow_offset($Physics/Dropper.hard_drop_target_pos - piece.pos)
 	return not topped_out
 
 
@@ -161,7 +166,7 @@ Returns 'true' if the piece was interacted with successfully resulting in a move
 func move_piece() -> void:
 	var old_piece_pos := piece.pos
 	var old_piece_orientation := piece.orientation
-
+	
 	if $States.get_state() == $States/MovePiece:
 		$Physics/Rotator.apply_rotate_input(piece)
 		$Physics/Mover.apply_move_input(piece)
@@ -171,7 +176,9 @@ func move_piece() -> void:
 	$Physics/Dropper.apply_gravity(piece)
 	
 	if old_piece_pos != piece.pos or old_piece_orientation != piece.orientation:
-		$Physics/Squisher.squish_state = PieceSquisher.UNKNOWN
+		emit_signal("piece_changed", piece)
+		if PlayerData.gameplay_settings.ghost_piece:
+			$TileMap.set_ghost_shadow_offset($Physics/Dropper.hard_drop_target_pos - piece.pos)
 		if piece.lock > 0:
 			if $Physics/Dropper.did_hard_drop:
 				# hard drop doesn't cause lock reset

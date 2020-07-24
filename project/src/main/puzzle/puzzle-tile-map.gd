@@ -26,6 +26,9 @@ const COL_COUNT = 9
 # a number in the range [0, 1] which can be set to make the tile map flash or blink.
 var whiteness := 0.0 setget set_whiteness
 
+# offset used for drawing the 'ghost piece'
+var ghost_shadow_offset: Vector2
+
 # fields used to roll the tile map back to a previous state
 var _saved_used_cells := []
 var _saved_tiles := []
@@ -33,6 +36,10 @@ var _saved_autotile_coords := []
 
 func _ready() -> void:
 	clear()
+
+
+func set_ghost_shadow_offset(new_ghost_shadow_offset: Vector2) -> void:
+	ghost_shadow_offset = new_ghost_shadow_offset
 
 
 func clear() -> void:
