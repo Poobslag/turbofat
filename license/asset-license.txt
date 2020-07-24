@@ -57,6 +57,7 @@ project/assets/main/ui/touch/close-pressed.png 'Empty', 'Close' by Freepik
 project/assets/main/ui/touch/close.png 'Empty', 'Close' by Freepik
 project/assets/main/ui/touch/duck-pressed.png 'Empty', 'Duck' by Freepik
 project/assets/main/ui/touch/duck.png 'Empty', 'Duck' by Freepik
+project/assets/main/ui/touch/duck.wav "Cooking_Game_16bit\Cooking_Game_16bit\Emotes\Cooking_Game_Emotes_Chef_A_03_Cartoon_Voice.wav"
 project/assets/main/ui/touch/empty-pressed.png 'Empty' by Freepik
 project/assets/main/ui/touch/empty.png 'Empty' by Freepik
 project/assets/main/ui/touch/interact-pressed.png 'Empty', 'Chat' by Freepik

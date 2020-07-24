@@ -6,6 +6,8 @@ The player can press each button individually to emit different actions. If diag
 can press two diagonally adjacent buttons with a single touch.
 """
 
+signal pressed
+
 # radius from the eightway's center where touches should be processed. significantly larger than its visual radius
 const RADIUS = 180
 
@@ -151,3 +153,7 @@ diagonal.
 """
 func _diagonalness(diagonal_direction: Vector2) -> float:
 	return abs(8 * _touch_dir.angle_to(diagonal_direction) / PI)
+
+
+func _on_ActionButton_pressed() -> void:
+	emit_signal("pressed")
