@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/spira.gd" type="Script" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=22]
 [ext_resource path="res://src/main/world/OverworldTouchButtons.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/world/creature/ebe.gd" type="Script" id=24]
+[ext_resource path="res://src/main/world/overworld-bg.gd" type="Script" id=25]
 
 [sub_resource type="TileSet" id=1]
 0/name = "block-shadow.png 0"
@@ -56,6 +57,7 @@ layer = -1
 margin_right = 1024.0
 margin_bottom = 600.0
 color = Color( 0.423529, 0.262745, 0.192157, 1 )
+script = ExtResource( 25 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -201,8 +203,15 @@ __meta__ = {
 }
 
 [node name="Labels" type="Control" parent="Ui/OverworldUi"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 1024, 600 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -272,15 +281,14 @@ codes = [ "bigfps" ]
 [node name="SettingsMenu" parent="Ui/OverworldUi" instance=ExtResource( 6 )]
 quit_text = "Save + Quit"
 [connection signal="timeout" from="World/Obstacles/Ebe/MoveTimer" to="World/Obstacles/Ebe" method="_on_MoveTimer_timeout"]
-[connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
-[connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
 [connection signal="showed_chat_choices" from="Ui/OverworldUi" to="World/Obstacles/Spira" method="_on_OverworldUi_showed_chat_choices"]
 [connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_showed_choices"]
-[connection signal="resized" from="Ui/OverworldUi/TouchButtons" to="Ui/OverworldUi/TouchButtons" method="_on_resized"]
 [connection signal="cheat_detected" from="Ui/OverworldUi/CheatCodeDetector" to="Ui/OverworldUi/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_SettingsMenu_hide"]
 [connection signal="quit_pressed" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi" method="_on_SettingsMenu_quit_pressed"]

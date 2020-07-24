@@ -11,7 +11,8 @@ onready var _playfield: Playfield = get_node(playfield_path)
 onready var _puzzle_tile_map := _playfield.tile_map
 
 # relative position of the PuzzleTileMap, used for positioning food
-onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin
+onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
+		- get_global_transform().origin
 
 """
 Adds a food item in the specified cell.

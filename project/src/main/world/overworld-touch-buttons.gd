@@ -55,14 +55,15 @@ This updates their location and size.
 """
 func _refresh_button_positions() -> void:
 	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
-	$ButtonsSw.rect_position.y = 600 - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
+	$ButtonsSw.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
 	
 	$ButtonsSe.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
-	$ButtonsSe.rect_position.x = 1024 - 10 - $ButtonsSw.rect_size.x * $ButtonsSw.rect_scale.x
-	$ButtonsSe.rect_position.y = 600 - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
+	$ButtonsSe.rect_position.x = rect_size.x - 10 - $ButtonsSw.rect_size.x * $ButtonsSw.rect_scale.x
+	$ButtonsSe.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
 	
-	$MenuButton.scale = Vector2(0.375, 0.375) * PlayerData.touch_settings.size
-	$MenuButton.position.x = 1024 - 10 - $MenuButton.pressed.get_size().x * $MenuButton.scale.x
+	$MenuButtonHolder/MenuButton.scale = Vector2(0.375, 0.375) * PlayerData.touch_settings.size
+	$MenuButtonHolder.rect_position.x = rect_size.x - 20 \
+			- $MenuButtonHolder/MenuButton.pressed.get_size().x * $MenuButtonHolder/MenuButton.scale.x
 
 
 """
@@ -124,7 +125,3 @@ func _on_SettingsMenu_hide() -> void:
 
 func _on_TouchSettings_settings_changed() -> void:
 	_refresh_settings()
-
-
-func _on_resized() -> void:
-	_refresh_button_positions()

@@ -37,8 +37,17 @@ margin_top = -250.0
 margin_right = -10.0
 margin_bottom = -10.0
 
-[node name="MenuButton" type="TouchScreenButton" parent="."]
-position = Vector2( 918, 10 )
+[node name="MenuButtonHolder" type="Control" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -116.0
+margin_bottom = 116.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MenuButton" type="TouchScreenButton" parent="MenuButtonHolder"]
+position = Vector2( 10, 10 )
 scale = Vector2( 0.375, 0.375 )
 normal = ExtResource( 3 )
 pressed = ExtResource( 4 )

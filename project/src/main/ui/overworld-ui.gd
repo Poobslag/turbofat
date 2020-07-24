@@ -25,6 +25,7 @@ var _scenario_dna: Dictionary
 
 func _ready() -> void:
 	_update_visible()
+	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
 
 
 func _input(event: InputEvent) -> void:
@@ -125,3 +126,7 @@ func _on_ChatUi_showed_choices() -> void:
 func _on_SettingsMenu_quit_pressed() -> void:
 	ChattableManager.clear()
 	Breadcrumb.pop_trail()
+
+
+func _on_Viewport_size_changed() -> void:
+	rect_size = get_viewport_rect().size

@@ -117,8 +117,15 @@ border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
 [node name="Puzzle" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -218,9 +225,11 @@ size = Vector2( 1024, 600 )
 transparent_bg = true
 
 [node name="TextureRect" type="TextureRect" parent="FrostingGlobs"]
+modulate = Color( 1, 1, 1, 0.768627 )
 material = SubResource( 6 )
 margin_right = 1024.0
 margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
 texture = SubResource( 7 )
 flip_v = true
 __meta__ = {
@@ -231,6 +240,7 @@ __meta__ = {
 material = SubResource( 10 )
 margin_right = 1024.0
 margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
 texture = SubResource( 11 )
 flip_v = true
 __meta__ = {
@@ -250,6 +260,7 @@ transparent_bg = true
 material = ExtResource( 22 )
 margin_right = 1024.0
 margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
 texture = SubResource( 12 )
 flip_v = true
 __meta__ = {
@@ -262,7 +273,21 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
-[node name="Chalkboard" type="TextureRect" parent="Hud"]
+[node name="HudUi" type="Control" parent="Hud"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 1024, 600 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chalkboard" type="TextureRect" parent="Hud/HudUi"]
 margin_left = -58.0
 margin_top = 27.0
 margin_right = 284.0
@@ -274,7 +299,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Chalkboard Shadow" type="Polygon2D" parent="Hud/Chalkboard"]
+[node name="Chalkboard Shadow" type="Polygon2D" parent="Hud/HudUi/Chalkboard"]
 show_behind_parent = true
 position = Vector2( 57.4473, -143.371 )
 scale = Vector2( 0.444724, 0.444458 )
@@ -282,13 +307,13 @@ color = Color( 0.345098, 0.14902, 0.0705882, 1 )
 antialiased = true
 polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
 
-[node name="Score" parent="Hud/Chalkboard" instance=ExtResource( 61 )]
+[node name="Score" parent="Hud/HudUi/Chalkboard" instance=ExtResource( 61 )]
 margin_left = 58.0
 margin_top = 25.0
 margin_right = 308.0
 margin_bottom = 85.0
 
-[node name="MilestoneHud" type="Control" parent="Hud/Chalkboard"]
+[node name="MilestoneHud" type="Control" parent="Hud/HudUi/Chalkboard"]
 margin_left = 58.0
 margin_top = 153.0
 margin_right = 308.0
@@ -299,7 +324,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="Hud/Chalkboard/MilestoneHud"]
+[node name="ProgressBar" type="ProgressBar" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
 margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
@@ -308,7 +333,7 @@ custom_styles/fg = SubResource( 13 )
 custom_styles/bg = SubResource( 14 )
 percent_visible = false
 
-[node name="Desc" type="Label" parent="Hud/Chalkboard/MilestoneHud"]
+[node name="Desc" type="Label" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
 anchor_right = 1.0
 margin_bottom = 30.0
 theme = ExtResource( 1 )
@@ -318,7 +343,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="Hud/Chalkboard/MilestoneHud"]
+[node name="Value" type="Label" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
 margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
@@ -336,9 +361,9 @@ __meta__ = {
 }
 fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
 
-[node name="PuzzleMessages" parent="Hud" instance=ExtResource( 62 )]
+[node name="PuzzleMessages" parent="Hud/HudUi" instance=ExtResource( 62 )]
 
-[node name="PuzzleTrace" type="Label" parent="Hud"]
+[node name="PuzzleTrace" type="Label" parent="Hud/HudUi"]
 visible = false
 margin_left = 10.0
 margin_top = 10.0
@@ -350,13 +375,13 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-puzzle_path = NodePath("../..")
+puzzle_path = NodePath("../../..")
 
-[node name="ResultsHud" parent="Hud" instance=ExtResource( 6 )]
+[node name="ResultsHud" parent="Hud/HudUi" instance=ExtResource( 6 )]
 
-[node name="TutorialHud" parent="Hud" instance=ExtResource( 2 )]
+[node name="TutorialHud" parent="Hud/HudUi" instance=ExtResource( 2 )]
 visible = false
-puzzle_path = NodePath("../..")
+puzzle_path = NodePath("../../..")
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 
@@ -450,5 +475,5 @@ script = ExtResource( 19 )
 [connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
 [connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
-[connection signal="start_button_pressed" from="Hud/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="start_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
