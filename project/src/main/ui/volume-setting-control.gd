@@ -33,6 +33,7 @@ func _refresh_percent_label() -> void:
 func _refresh_setting_label() -> void:
 	var label_text: String
 	match volume_type:
+		VolumeSettings.MASTER: label_text = "Master"
 		VolumeSettings.MUSIC: label_text = "Music"
 		VolumeSettings.SOUND: label_text = "Sounds"
 		VolumeSettings.VOICE: label_text = "Voices"
@@ -47,5 +48,6 @@ func _on_HSlider_value_changed(value: float) -> void:
 
 func _on_SampleTimer_timeout() -> void:
 	match volume_type:
+		VolumeSettings.MASTER: $SampleSound.play()
 		VolumeSettings.SOUND: $SampleSound.play()
 		VolumeSettings.VOICE: $SampleVoice.play()

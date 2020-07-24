@@ -35,7 +35,7 @@ func _input(event: InputEvent) -> void:
 		if PuzzleScore.game_active:
 			$TopOutTracker.make_player_lose()
 			get_tree().set_input_as_handled()
-		elif $Hud/PuzzleMessages/BackButton.visible:
+		elif $Hud/HudUi/PuzzleMessages/BackButton.visible:
 			Breadcrumb.pop_trail()
 			get_tree().set_input_as_handled()
 
@@ -49,11 +49,11 @@ func get_piece_manager() -> PieceManager:
 
 
 func hide_start_button() -> void:
-	$Hud/PuzzleMessages.hide_start_button()
+	$Hud/HudUi/PuzzleMessages.hide_start_button()
 
 
 func show_start_button() -> void:
-	$Hud/PuzzleMessages.show_start_button()
+	$Hud/HudUi/PuzzleMessages.show_start_button()
 
 
 func scroll_to_new_creature() -> void:

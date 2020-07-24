@@ -32,6 +32,7 @@ onready var input: PieceInput = get_node(input_path)
 func _physics_process(_delta: float) -> void:
 	did_squish_drop = false
 
+
 func attempt_squish(piece: ActivePiece) -> void:
 	if not input.is_soft_drop_pressed():
 		return
@@ -130,3 +131,7 @@ func _squish_target(piece: ActivePiece, reset_target: bool = true) -> Vector2:
 	if not valid_target_pos or not any_unblocked_blocks:
 		piece.reset_target()
 	return piece.target_pos
+
+
+func _on_PieceManager_piece_changed(_piece: ActivePiece) -> void:
+	squish_state = UNKNOWN

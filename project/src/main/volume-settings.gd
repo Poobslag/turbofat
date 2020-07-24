@@ -3,8 +3,9 @@ class_name VolumeSettings
 Manages settings which control the game audio volume.
 """
 
-enum VolumeType { MUSIC, SOUND, VOICE }
+enum VolumeType { MASTER, MUSIC, SOUND, VOICE }
 
+const MASTER := VolumeType.MASTER
 const MUSIC := VolumeType.MUSIC
 const SOUND := VolumeType.SOUND
 const VOICE := VolumeType.VOICE
@@ -41,6 +42,7 @@ func reset() -> void:
 
 func to_json_dict() -> Dictionary:
 	return {
+		"master": get_bus_volume_linear(MASTER),
 		"music": get_bus_volume_linear(MUSIC),
 		"sound": get_bus_volume_linear(SOUND),
 		"voice": get_bus_volume_linear(VOICE),
@@ -48,14 +50,16 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	set_bus_volume_linear(MUSIC, json.get("music", 0.5))
-	set_bus_volume_linear(SOUND, json.get("sound", 0.5))
-	set_bus_volume_linear(VOICE, json.get("voice", 0.5))
+	set_bus_volume_linear(MASTER, json.get("master", 0.7))
+	set_bus_volume_linear(MUSIC, json.get("music", 0.7))
+	set_bus_volume_linear(SOUND, json.get("sound", 0.7))
+	set_bus_volume_linear(VOICE, json.get("voice", 0.7))
 
 
 func _bus_index(volume_type: int) -> int:
 	var bus_name: String
 	match volume_type:
+		MASTER: bus_name = "Master"
 		MUSIC: bus_name = "Music Bus"
 		SOUND: bus_name = "Sound Bus"
 		VOICE: bus_name = "Voice Bus"

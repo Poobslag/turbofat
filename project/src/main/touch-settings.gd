@@ -31,6 +31,10 @@ var scheme: int = ControlScheme.EASY_CONSOLE setget set_scheme
 # how easy it is to mash two buttons with one finger; 0.0 = impossible, 1.0 = very easy
 var fat_finger := 0.00 setget set_fat_finger
 
+func reset() -> void:
+	from_json_dict({})
+
+
 func set_size(new_size: float) -> void:
 	size = new_size
 	emit_signal("settings_changed")
@@ -57,4 +61,4 @@ func to_json_dict() -> Dictionary:
 func from_json_dict(json: Dictionary) -> void:
 	size = json.get("size", 1.00)
 	scheme = json.get("scheme", 0)
-	fat_finger = json.get("fat_finger", 0.67)
+	fat_finger = json.get("fat_finger", 0.00)
