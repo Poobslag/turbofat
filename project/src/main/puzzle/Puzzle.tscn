@@ -117,8 +117,15 @@ border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
 [node name="Puzzle" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -207,6 +214,14 @@ puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 playfield_path = NodePath("../Playfield")
 next_piece_displays_path = NodePath("../NextPieceDisplays")
 
+[node name="ColorRect" type="ColorRect" parent="FrostingGlobs"]
+margin_right = 409.0
+margin_bottom = 347.0
+color = Color( 1, 0, 0.423529, 0.545098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="GlobViewports" type="Node" parent="FrostingGlobs"]
 
 [node name="Viewport" type="Viewport" parent="FrostingGlobs/GlobViewports"]
@@ -242,6 +257,14 @@ z_index = 1
 script = ExtResource( 20 )
 playfield_path = NodePath("../Playfield")
 
+[node name="ColorRect" type="ColorRect" parent="FoodItems"]
+margin_right = 373.0
+margin_bottom = 326.0
+color = Color( 0, 1, 0.0392157, 0.462745 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Viewport" type="Viewport" parent="FoodItems"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
@@ -262,7 +285,21 @@ scale = Vector2( 0.5, 0.5 )
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
-[node name="Chalkboard" type="TextureRect" parent="Hud"]
+[node name="HudUi" type="Control" parent="Hud"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 1024, 600 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chalkboard" type="TextureRect" parent="Hud/HudUi"]
 margin_left = -58.0
 margin_top = 27.0
 margin_right = 284.0
@@ -274,7 +311,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Chalkboard Shadow" type="Polygon2D" parent="Hud/Chalkboard"]
+[node name="Chalkboard Shadow" type="Polygon2D" parent="Hud/HudUi/Chalkboard"]
 show_behind_parent = true
 position = Vector2( 57.4473, -143.371 )
 scale = Vector2( 0.444724, 0.444458 )
@@ -282,13 +319,13 @@ color = Color( 0.345098, 0.14902, 0.0705882, 1 )
 antialiased = true
 polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
 
-[node name="Score" parent="Hud/Chalkboard" instance=ExtResource( 61 )]
+[node name="Score" parent="Hud/HudUi/Chalkboard" instance=ExtResource( 61 )]
 margin_left = 58.0
 margin_top = 25.0
 margin_right = 308.0
 margin_bottom = 85.0
 
-[node name="MilestoneHud" type="Control" parent="Hud/Chalkboard"]
+[node name="MilestoneHud" type="Control" parent="Hud/HudUi/Chalkboard"]
 margin_left = 58.0
 margin_top = 153.0
 margin_right = 308.0
@@ -299,7 +336,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ProgressBar" type="ProgressBar" parent="Hud/Chalkboard/MilestoneHud"]
+[node name="ProgressBar" type="ProgressBar" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
 margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
@@ -308,7 +345,7 @@ custom_styles/fg = SubResource( 13 )
 custom_styles/bg = SubResource( 14 )
 percent_visible = false
 
-[node name="Desc" type="Label" parent="Hud/Chalkboard/MilestoneHud"]
+[node name="Desc" type="Label" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
 anchor_right = 1.0
 margin_bottom = 30.0
 theme = ExtResource( 1 )
@@ -318,7 +355,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Value" type="Label" parent="Hud/Chalkboard/MilestoneHud"]
+[node name="Value" type="Label" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
 margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
@@ -336,9 +373,9 @@ __meta__ = {
 }
 fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
 
-[node name="PuzzleMessages" parent="Hud" instance=ExtResource( 62 )]
+[node name="PuzzleMessages" parent="Hud/HudUi" instance=ExtResource( 62 )]
 
-[node name="PuzzleTrace" type="Label" parent="Hud"]
+[node name="PuzzleTrace" type="Label" parent="Hud/HudUi"]
 visible = false
 margin_left = 10.0
 margin_top = 10.0
@@ -350,13 +387,13 @@ script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-puzzle_path = NodePath("../..")
+puzzle_path = NodePath("../../..")
 
-[node name="ResultsHud" parent="Hud" instance=ExtResource( 6 )]
+[node name="ResultsHud" parent="Hud/HudUi" instance=ExtResource( 6 )]
 
-[node name="TutorialHud" parent="Hud" instance=ExtResource( 2 )]
+[node name="TutorialHud" parent="Hud/HudUi" instance=ExtResource( 2 )]
 visible = false
-puzzle_path = NodePath("../..")
+puzzle_path = NodePath("../../..")
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 
@@ -434,11 +471,11 @@ codes = [ "delays" ]
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
 [connection signal="after_piece_written" from="Playfield" to="." method="_on_Playfield_after_piece_written"]
-[connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
-[connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
 [connection signal="lines_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_lines_deleted"]
@@ -446,9 +483,9 @@ script = ExtResource( 19 )
 [connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="topped_out" from="PieceManager" to="TopOutTracker" method="_on_PieceManager_topped_out"]
 [connection signal="hit_next_pieces" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
-[connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
-[connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
-[connection signal="start_button_pressed" from="Hud/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="start_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]

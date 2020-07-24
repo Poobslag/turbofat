@@ -1,0 +1,20 @@
+%try camera approach: 2D, expand, shrink=1
+*apply to SplashScreen
+*move controls to corners
+*overworld touch buttons are bound by 1024
+*overworld touch buttons don't appear right away
+*puzzle chalkboard is out of place
+*puzzle messages are out of place
+-puzzle effects don't work
+*apply to other screens
+ *main menu
+ *practice menu
+ *level editor
+ *overworld
+  *and controls
+ *puzzle
+  *and controls
+ -loader
+-works when resizing controls in settings menu
+-cleanup
+-merge

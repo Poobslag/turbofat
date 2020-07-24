@@ -556,7 +556,7 @@ gdscript/warnings/return_value_discarded=false
 [display]
 
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
+window/stretch/aspect="expand"
 
 [editor_plugins]
 
@@ -682,9 +682,14 @@ soft_drop={
  ]
 }
 
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
 [rendering]
 
 threads/thread_model=2
+environment/default_clear_color=Color( 0.12549, 0.12549, 0.12549, 1 )
 quality/filters/msaa=2
 quality/depth/hdr=false
 quality/2d/gles2_use_nvidia_rect_flicker_workaround=true
