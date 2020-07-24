@@ -22,7 +22,8 @@ onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 onready var _puzzle_areas: PuzzleAreas
 
 # relative position of the PuzzleTileMap, used for positioning frosting
-onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin
+onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
+		- get_global_transform().origin
 
 func _ready() -> void:
 	_puzzle_areas = PuzzleAreas.new()
@@ -50,6 +51,7 @@ func _spawn_globs(cell_pos: Vector2, color_int: int, glob_count: int, glob_alpha
 	for _i in range(glob_count):
 		var glob: FrostingGlob = _instance_glob(viewport)
 		var glob_position := _puzzle_tile_map.somewhere_near_cell(cell_pos) + _puzzle_tile_map_position
+		print("glob position=%s _puzzle_tile_map_position=%s" % [glob_position, _puzzle_tile_map_position])
 		glob.initialize(color_int, glob_position)
 		glob.modulate.a = glob_alpha
 		glob.fall()
