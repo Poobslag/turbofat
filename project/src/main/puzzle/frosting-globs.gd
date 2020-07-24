@@ -51,7 +51,6 @@ func _spawn_globs(cell_pos: Vector2, color_int: int, glob_count: int, glob_alpha
 	for _i in range(glob_count):
 		var glob: FrostingGlob = _instance_glob(viewport)
 		var glob_position := _puzzle_tile_map.somewhere_near_cell(cell_pos) + _puzzle_tile_map_position
-		print("glob position=%s _puzzle_tile_map_position=%s" % [glob_position, _puzzle_tile_map_position])
 		glob.initialize(color_int, glob_position)
 		glob.modulate.a = glob_alpha
 		glob.fall()

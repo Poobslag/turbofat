@@ -64,7 +64,7 @@ func _ready() -> void:
 		show()
 	else:
 		hide()
-	$MenuButton.connect("pressed", self, "_on_MenuButton_pressed")
+	_menu_button.connect("pressed", self, "_on_MenuButton_pressed")
 
 
 func set_emit_actions(new_emit_actions: bool) -> void:
