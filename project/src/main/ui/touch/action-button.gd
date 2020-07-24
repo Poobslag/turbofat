@@ -22,6 +22,8 @@ outside of its boundaries. This makes it difficult to arrange TouchscreenButtons
 diagonal presses.
 """
 
+signal pressed
+
 # the action activated by this button. also affects its appearance
 export (String) var action: String setget set_action
 
@@ -96,6 +98,7 @@ func set_pressed(new_pressed: bool) -> void:
 		ev.action = action
 		ev.pressed = pressed
 		Input.parse_input_event(ev)
+	emit_signal("pressed")
 
 
 """

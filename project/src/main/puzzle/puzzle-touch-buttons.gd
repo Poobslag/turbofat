@@ -56,6 +56,8 @@ onready var _duck_pressed := preload("res://assets/main/ui/touch/duck-pressed.pn
 
 onready var _menu_button := $MenuButtonHolder/MenuButton
 
+var play_sound
+
 func _ready() -> void:
 	if OS.has_touchscreen_ui_hint():
 		PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
@@ -64,6 +66,7 @@ func _ready() -> void:
 		show()
 	else:
 		hide()
+	_menu_button.connect("pressed", self, "_on_MenuButton_pressed")
 
 
 func set_emit_actions(new_emit_actions: bool) -> void:
@@ -142,3 +145,19 @@ func _refresh_settings() -> void:
 
 func _on_TouchSettings_settings_changed() -> void:
 	_refresh_settings()
+
+
+"""
+Plays sounds when testing out controls in the 'settings' menu.
+"""
+func _on_MenuButton_pressed() -> void:
+	if not emit_actions:
+		$DuckSound.play()
+
+
+"""
+Plays sounds when testing out controls in the 'settings' menu.
+"""
+func _on_EightWay_pressed() -> void:
+	if not emit_actions:
+		$ButtonSound.play()
