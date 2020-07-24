@@ -17,7 +17,9 @@ func _ready() -> void:
 		push_error("ViewportTexture with Viewport must be set.")
 		return
 	
+	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
 	_viewport = get_tree().current_scene.get_node(texture.viewport_path)
+	rect_size = get_viewport_rect().size
 
 
 func _process(_delta: float) -> void:
@@ -28,3 +30,8 @@ func _process(_delta: float) -> void:
 	rect_position -= get_global_transform_with_canvas().origin
 	# align the viewport with our new position
 	_viewport.canvas_transform.origin = -rect_position
+
+
+func _on_Viewport_size_changed() -> void:
+	_viewport.size = get_viewport_rect().size
+	rect_size = get_viewport_rect().size

@@ -117,8 +117,15 @@ border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
 [node name="Puzzle" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -207,14 +214,6 @@ puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 playfield_path = NodePath("../Playfield")
 next_piece_displays_path = NodePath("../NextPieceDisplays")
 
-[node name="ColorRect" type="ColorRect" parent="FrostingGlobs"]
-margin_right = 409.0
-margin_bottom = 347.0
-color = Color( 1, 0, 0.423529, 0.545098 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="GlobViewports" type="Node" parent="FrostingGlobs"]
 
 [node name="Viewport" type="Viewport" parent="FrostingGlobs/GlobViewports"]
@@ -226,9 +225,11 @@ size = Vector2( 1024, 600 )
 transparent_bg = true
 
 [node name="TextureRect" type="TextureRect" parent="FrostingGlobs"]
+modulate = Color( 1, 1, 1, 0.768627 )
 material = SubResource( 6 )
 margin_right = 1024.0
 margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
 texture = SubResource( 7 )
 flip_v = true
 __meta__ = {
@@ -239,6 +240,7 @@ __meta__ = {
 material = SubResource( 10 )
 margin_right = 1024.0
 margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
 texture = SubResource( 11 )
 flip_v = true
 __meta__ = {
@@ -250,14 +252,6 @@ z_index = 1
 script = ExtResource( 20 )
 playfield_path = NodePath("../Playfield")
 
-[node name="ColorRect" type="ColorRect" parent="FoodItems"]
-margin_right = 373.0
-margin_bottom = 326.0
-color = Color( 0, 1, 0.0392157, 0.462745 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Viewport" type="Viewport" parent="FoodItems"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
@@ -266,6 +260,7 @@ transparent_bg = true
 material = ExtResource( 22 )
 margin_right = 1024.0
 margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
 texture = SubResource( 12 )
 flip_v = true
 __meta__ = {

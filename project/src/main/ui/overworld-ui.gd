@@ -129,5 +129,4 @@ func _on_SettingsMenu_quit_pressed() -> void:
 
 
 func _on_Viewport_size_changed() -> void:
-	print("oh! %s" % get_viewport_rect().size)
 	rect_size = get_viewport_rect().size

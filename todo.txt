@@ -5,7 +5,13 @@
 *overworld touch buttons don't appear right away
 *puzzle chalkboard is out of place
 *puzzle messages are out of place
--puzzle effects don't work
+*shadows
+-subtle trail for shadows on edge of screen?
+*dialog system doesn't scale
+*puzzle effects don't work
+ *fix globs
+ *when resizing?
+ *food items?
 *apply to other screens
  *main menu
  *practice menu
@@ -14,7 +20,30 @@
   *and controls
  *puzzle
   *and controls
- -loader
--works when resizing controls in settings menu
+ *loader
+*works when resizing controls in settings menu
 -cleanup
 -merge
+
+
+
+
+[node name="Puzzle" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+
+-anchor_left = 0.5
+-anchor_top = 0.5
+-anchor_right = 0.5
+-anchor_bottom = 0.5
+-margin_left = -512.0
+-margin_top = -300.0
+-margin_right = 512.0
+-margin_bottom = 300.0
+-rect_min_size = Vector2( 1024, 600 )
+

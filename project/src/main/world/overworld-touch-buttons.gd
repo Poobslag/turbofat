@@ -60,7 +60,6 @@ func _refresh_button_positions() -> void:
 	$ButtonsSe.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
 	$ButtonsSe.rect_position.x = rect_size.x - 10 - $ButtonsSw.rect_size.x * $ButtonsSw.rect_scale.x
 	$ButtonsSe.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
-	print("ButtonsSe -> %s" % $ButtonsSe.rect_position)
 	
 	$MenuButtonHolder/MenuButton.scale = Vector2(0.375, 0.375) * PlayerData.touch_settings.size
 	$MenuButtonHolder.rect_position.x = rect_size.x - 20 \

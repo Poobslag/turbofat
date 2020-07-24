@@ -203,8 +203,15 @@ __meta__ = {
 }
 
 [node name="Labels" type="Control" parent="Ui/OverworldUi"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 1024, 600 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -274,10 +281,10 @@ codes = [ "bigfps" ]
 [node name="SettingsMenu" parent="Ui/OverworldUi" instance=ExtResource( 6 )]
 quit_text = "Save + Quit"
 [connection signal="timeout" from="World/Obstacles/Ebe/MoveTimer" to="World/Obstacles/Ebe" method="_on_MoveTimer_timeout"]
-[connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
-[connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
 [connection signal="showed_chat_choices" from="Ui/OverworldUi" to="World/Obstacles/Spira" method="_on_OverworldUi_showed_chat_choices"]
 [connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
