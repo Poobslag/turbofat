@@ -41,7 +41,7 @@ func only_has_old_save() -> bool:
 Returns 'true' if the player has a save file in the current format.
 """
 func has_new_save() -> bool:
-	return FileUtils.file_exists(PlayerSave.player_data_filename)
+	return FileUtils.file_exists(PlayerSave.current_player_data_filename)
 
 
 """
@@ -76,7 +76,7 @@ func transform_old_save() -> void:
 	transformer.transformed = _append_compare_flag_for_0517(transformer.transformed)
 	save_json_text = transformer.transformed
 	
-	FileUtils.write_file(PlayerSave.player_data_filename, save_json_text)
+	FileUtils.write_file(PlayerSave.current_player_data_filename, save_json_text)
 
 
 """

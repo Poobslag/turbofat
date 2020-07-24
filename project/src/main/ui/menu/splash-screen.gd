@@ -6,6 +6,8 @@ A splash screen which precedes the main menu.
 func _ready() -> void:
 	MusicPlayer.play_chill_bgm()
 	$PlayHolder/Play.grab_focus()
+	if PlayerSave.corrupt_filenames:
+		$BadSaveDataControl.popup()
 
 
 func _on_Play_pressed() -> void:

@@ -18,7 +18,7 @@ static func get_file_as_text(path: String) -> String:
 		return ""
 	
 	var f := File.new()
-	f.open(path, f.READ)
+	f.open(path, File.READ)
 	var text := f.get_as_text()
 	f.close()
 	return text
