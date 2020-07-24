@@ -20,8 +20,8 @@ const VALID = SquishState.VALID
 
 export (NodePath) var input_path: NodePath
 
-# 'true' if the player did a squish move this frame
-var did_squish: bool
+# 'true' if the player did a squish drop this frame
+var did_squish_drop: bool
 
 # potential source/target for the current squish move
 var squish_state: int = SquishState.UNKNOWN
@@ -29,33 +29,43 @@ var _squish_target_pos: Vector2
 
 onready var input: PieceInput = get_node(input_path)
 
-
 func _physics_process(_delta: float) -> void:
-	did_squish = false
-
+	did_squish_drop = false
 
 func attempt_squish(piece: ActivePiece) -> void:
-	if not input.is_soft_drop_pressed() \
-			or piece.can_move_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
+	if not input.is_soft_drop_pressed():
 		return
 	
-	if squish_state == SquishState.UNKNOWN:
-		piece.reset_target()
-		_calc_squish_target(piece)
-		squish_state = SquishState.INVALID if _squish_target_pos == piece.pos else SquishState.VALID
-	
-	if input.is_soft_drop_just_pressed():
-		if squish_state == SquishState.VALID:
-			_squish_to_target(piece)
-		else:
-			# Player can tap soft drop to lock cancel if their timing is good. This lets them hard-drop into a
-			# horizontal move or squish move to play faster
+	if input.is_hard_drop_just_pressed() and not input.is_hard_drop_das_active():
+		# calculate squish drop target
+		var squish_drop_target := _squish_target(piece)
+		while squish_drop_target != piece.pos:
+			var prev_squish_drop_target := squish_drop_target
+			squish_drop_target = _squish_target(piece, false)
+			if squish_drop_target == piece.pos:
+				squish_drop_target = prev_squish_drop_target
+				break
+		
+		if squish_drop_target != piece.pos:
+			# squish drop
+			_squish_to(piece, squish_drop_target)
+			did_squish_drop = true
+	elif not piece.can_move_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
+		# calculate and cache squish target
+		if squish_state == SquishState.UNKNOWN:
+			_squish_target_pos = _squish_target(piece)
+			squish_state = SquishState.INVALID if _squish_target_pos == piece.pos else SquishState.VALID
+		
+		if input.is_soft_drop_just_pressed() and squish_state == SquishState.VALID:
+			# fast squish
+			_squish_to(piece, _squish_target_pos)
+		elif input.is_soft_drop_just_pressed() and squish_state == SquishState.INVALID:
+			# lock cancel
 			piece.perform_lock_reset()
 			emit_signal("lock_cancelled")
-	else:
-		if squish_state == SquishState.VALID:
-			if piece.lock >= PieceSpeeds.current_speed.lock_delay:
-				_squish_to_target(piece)
+		elif squish_state == SquishState.VALID and piece.lock >= PieceSpeeds.current_speed.lock_delay:
+			# slow squish
+			_squish_to(piece, _squish_target_pos)
 
 
 """
@@ -71,12 +81,11 @@ func squish_percent(piece: ActivePiece) -> float:
 """
 Squishes a piece through other blocks towards the target.
 """
-func _squish_to_target(piece: ActivePiece) -> void:
-	piece.target_pos = _squish_target_pos
+func _squish_to(piece: ActivePiece, target_pos: Vector2) -> void:
 	var old_pos := piece.pos
+	piece.target_pos = target_pos
 	piece.move_to_target()
 	piece.gravity = 0
-	did_squish = true
 	emit_signal("squish_moved", piece, old_pos)
 
 
@@ -85,10 +94,19 @@ Calculates the position a piece can 'squish' to. This squish will be successful 
 piece's current location where the piece can fit, and if at least one of the piece's blocks remains unobstructed
 along its path to the target location.
 
-If a squish is possible, the piece.target_pos field will be updated. If unsuccessful, the field will retain its
-original value.
+If a squish is possible, the piece.target_pos field will be updated. If unsuccessful, the target_pos field will be
+reset to the piece's current position.
+
+Parameters:
+	'piece': The piece to squish
+	
+	'reset_target': If true, the piece's target will be reset to its current position before starting the squish. If
+		false, the piece will be squished from its current target.
 """
-func _calc_squish_target(piece: ActivePiece) -> void:
+func _squish_target(piece: ActivePiece, reset_target: bool = true) -> Vector2:
+	if reset_target:
+		piece.reset_target()
+	
 	var unblocked_blocks := []
 	for _i in range(piece.type.pos_arr[piece.target_orientation].size()):
 		unblocked_blocks.append(true)
@@ -111,4 +129,4 @@ func _calc_squish_target(piece: ActivePiece) -> void:
 			any_unblocked_blocks = true
 	if not valid_target_pos or not any_unblocked_blocks:
 		piece.reset_target()
-	_squish_target_pos = piece.target_pos
+	return piece.target_pos
