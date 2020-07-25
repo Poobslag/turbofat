@@ -30,7 +30,7 @@ const PLAYER_DATA_VERSION := "1682"
 
 const SECONDS_PER_MINUTE = 60
 const SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE
-const SECONDS_PER_DAY = 60 * SECONDS_PER_HOUR
+const SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR
 
 # The rolling save which was successfully loaded
 var loaded_rolling_save := -1
