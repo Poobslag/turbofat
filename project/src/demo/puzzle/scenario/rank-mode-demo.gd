@@ -46,7 +46,9 @@ func _ready() -> void:
 		var target_lines := _target_lines(target_rank)
 		
 		# print the resulting lines and score
-		text += "Rank %s: %s points in %s (%s lines)\n" % [data_key, target_score, duration_string, target_lines]
+		text += "Rank %s: %s points in %s" % [data_key, target_score, duration_string]
+		text += " (%s lines, %01d bpm, %01d ppl)\n" \
+				% [target_lines, (2 * target_lines) / (seconds / 60.0), target_score / target_lines]
 		
 		# for survival scenarios, also print a diminished score which is more realistic to reach under pressure
 		match(data_key):
@@ -63,6 +65,7 @@ increases defined in this method should align with the speed increases of the ra
 """
 func _scenario_settings(data_key: String, start_level: String, seconds: float) -> ScenarioSettings:
 	var settings := ScenarioSettings.new()
+	settings.name = data_key
 	settings.set_start_level(start_level)
 	settings.set_finish_condition(Milestone.TIME_OVER, seconds)
 	
@@ -164,7 +167,6 @@ Binary search for how many lines are needed to achieve the specified line_rank.
 This depends on the current scenario's duration and piece speed.
 """
 func _target_lines(target_rank: int) -> float:
-	Scenario.settings.finish_condition.type = Milestone.LINES
 	var min_target_lines := 0
 	var max_target_lines := 5000
 	var rank_result: RankResult
