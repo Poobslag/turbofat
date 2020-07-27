@@ -51,8 +51,8 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -512.0
-margin_top = -23.5
-margin_bottom = 120.5
+margin_top = -63.5
+margin_bottom = 151.5
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -87,14 +87,25 @@ size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Practice"
 
+[node name="Tutorial" type="Button" parent="Play"]
+margin_left = 159.0
+margin_top = 168.0
+margin_right = 352.0
+margin_bottom = 215.0
+rect_min_size = Vector2( 193, 47 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 2 )
+text = "Tutorial"
+
 [node name="Create" type="VBoxContainer" parent="."]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.523333
-margin_top = -23.5
+margin_top = -43.5
 margin_right = 512.0
-margin_bottom = 120.5
+margin_bottom = 100.5
 custom_constants/separation = 10
 __meta__ = {
 "_edit_use_anchors_": false
@@ -138,6 +149,7 @@ quit_on_cancel = false
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
 [connection signal="pressed" from="Play/2d" to="." method="_on_PlayStory_pressed"]
 [connection signal="pressed" from="Play/Practice" to="." method="_on_PlayPractice_pressed"]
+[connection signal="pressed" from="Play/Tutorial" to="." method="_on_Tutorial_pressed"]
 [connection signal="pressed" from="Create/Levels" to="." method="_on_CreateLevels_pressed"]
 [connection signal="quit_pressed" from="System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="System" to="SettingsMenu" method="_on_Settings_pressed"]

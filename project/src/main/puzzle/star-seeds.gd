@@ -49,27 +49,15 @@ export (NodePath) var _puzzle_tile_map_path: NodePath
 # value: Wobbler node contained within that cell
 var _wobblers_by_cell: Dictionary
 
-# 'true' if the wobblers have been prepared for this scenario
-var _prepared := false
-
 onready var StarScene := preload("res://src/main/puzzle/Star.tscn")
 onready var SeedScene := preload("res://src/main/puzzle/Seed.tscn")
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
-
-func _ready() -> void:
-	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
-	_prepare_wobblers_for_scenario()
 
 
 """
 Detects boxes in the playfield, and places wobblers in them.
 """
 func _prepare_wobblers_for_scenario() -> void:
-	if _prepared:
-		# already placed wobblers. don't place them again or they'll blink to new positions
-		return
-	
-	_prepared = true
 	_clear_wobblers()
 	for x in range(PuzzleTileMap.COL_COUNT):
 		for y in range(PuzzleTileMap.ROW_COUNT):
@@ -208,10 +196,6 @@ func _on_Playfield_blocks_prepared() -> void:
 		return
 	
 	_prepare_wobblers_for_scenario()
-
-
-func _on_PuzzleScore_game_started() -> void:
-	_prepared = false
 
 
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
