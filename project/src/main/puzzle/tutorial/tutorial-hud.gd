@@ -204,6 +204,7 @@ func _advance_scenario() -> void:
 		_change_scenario("tutorial-beginner-3")
 	else:
 		_change_scenario("tutorial-beginner-4")
+		MusicPlayer.play_upbeat_bgm()
 
 
 """
