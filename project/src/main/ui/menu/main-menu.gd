@@ -11,10 +11,7 @@ const BEGINNER_TUTORIAL_SCENARIO := "tutorial-beginner-0"
 
 func _ready() -> void:
 	if not PlayerData.scenario_history.finished_scenarios.has(BEGINNER_TUTORIAL_SCENARIO):
-		var settings := ScenarioSettings.new()
-		settings.load_from_resource(BEGINNER_TUTORIAL_SCENARIO)
-		Scenario.overworld_puzzle = false
-		Scenario.push_scenario_trail(settings)
+		_launch_tutorial()
 	
 	# Fade in music when redirected from a scene with no music, such as the level editor
 	if not MusicPlayer.is_playing_chill_bgm():
@@ -22,6 +19,13 @@ func _ready() -> void:
 		MusicPlayer.fade_in()
 	
 	$Play/Practice.grab_focus()
+
+
+func _launch_tutorial() -> void:
+	var settings := ScenarioSettings.new()
+	settings.load_from_resource(BEGINNER_TUTORIAL_SCENARIO)
+	Scenario.overworld_puzzle = false
+	Scenario.push_scenario_trail(settings)
 
 
 func _on_PlayStory_pressed() -> void:
@@ -39,3 +43,7 @@ func _on_CreateLevels_pressed() -> void:
 
 func _on_System_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_Tutorial_pressed() -> void:
+	_launch_tutorial()

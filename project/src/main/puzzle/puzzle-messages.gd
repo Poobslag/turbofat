@@ -18,8 +18,6 @@ func _ready() -> void:
 	
 	if Scenario.overworld_puzzle:
 		$BackButton.text = "Quit"
-	if Scenario.settings.other.tutorial:
-		$BackButton.hide()
 
 
 func hide_start_button() -> void:
@@ -29,6 +27,14 @@ func hide_start_button() -> void:
 func show_start_button() -> void:
 	$StartGameButton.show()
 	$StartGameButton.grab_focus()
+
+
+func hide_back_button() -> void:
+	$BackButton.hide()
+
+
+func show_back_button() -> void:
+	$BackButton.show()
 
 
 """

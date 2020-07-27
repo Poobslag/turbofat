@@ -56,6 +56,14 @@ func show_start_button() -> void:
 	$Hud/HudUi/PuzzleMessages.show_start_button()
 
 
+func hide_back_button() -> void:
+	$Hud/HudUi/PuzzleMessages.hide_back_button()
+
+
+func show_back_button() -> void:
+	$Hud/HudUi/PuzzleMessages.show_back_button()
+
+
 func scroll_to_new_creature() -> void:
 	$CreatureView.scroll_to_new_creature()
 

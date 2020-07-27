@@ -4,6 +4,9 @@ extends Control
 UI items specific for puzzle tutorials.
 """
 
+# The mandatory tutorial the player must complete before playing the game
+const BEGINNER_TUTORIAL_SCENARIO := "tutorial-beginner-0"
+
 export (NodePath) var puzzle_path: NodePath
 
 onready var _puzzle:Puzzle = get_node(puzzle_path)
@@ -34,11 +37,14 @@ func _ready() -> void:
 	
 	if Scenario.settings.name.begins_with("tutorial-beginner"):
 		_puzzle.hide_start_button()
+		_puzzle.hide_back_button()
 		yield(get_tree().create_timer(0.40), "timeout")
 		append_message("Welcome to Turbo Fat!//"
 				+ " You seem to already be familiar with this sort of game,/ so let's dive right in.")
 		yield(get_tree().create_timer(0.80), "timeout")
 		_puzzle.show_start_button()
+		if PlayerData.scenario_history.finished_scenarios.has(BEGINNER_TUTORIAL_SCENARIO):
+			_puzzle.show_back_button()
 
 
 """
