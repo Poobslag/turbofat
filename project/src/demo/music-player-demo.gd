@@ -8,6 +8,7 @@ When playing a music track, it skips to the least stale parts of the track.
 Keys:
 	C: Play chill song
 	U: Play upbeat song
+	T: Play tutorial song
 	=: Fade in the current song
 	-: Fade out the current song
 	]: Skip to next checkpoint in song
@@ -22,6 +23,7 @@ func _input(event: InputEvent) -> void:
 		KEY_C: MusicPlayer.play_chill_bgm()
 		KEY_EQUAL: MusicPlayer.fade_in()
 		KEY_U: MusicPlayer.play_upbeat_bgm()
+		KEY_T: MusicPlayer.play_tutorial_bgm()
 		KEY_MINUS: MusicPlayer.stop()
 		KEY_BRACERIGHT: next_checkpoint()
 

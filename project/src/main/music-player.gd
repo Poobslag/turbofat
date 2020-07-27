@@ -19,8 +19,9 @@ const MAX_VOLUME := 0.0
 var current_bgm: AudioStreamPlayer
 
 # newest track(s) play twice as often
-onready var _chill_bgms := [$HipHop03, $HipHop04, $HipHop04]
+onready var _chill_bgms := [$HipHop03, $HipHop04, $HipHop08, $HipHop08]
 onready var _upbeat_bgms := [$House01, $House04, $House06, $House08, $House08]
+onready var _tutorial_bgm := $Tutorial
 
 func _ready() -> void:
 	_chill_bgms.shuffle()
@@ -41,6 +42,12 @@ func _ready() -> void:
 	$FreshnessInspector.add_checkpoint($HipHop04, 85.330)
 	$FreshnessInspector.add_checkpoint($HipHop04, 213.328)
 	
+	$FreshnessInspector.add_checkpoint($HipHop08, 0.000)
+	$FreshnessInspector.add_checkpoint($HipHop08, 8.707)
+	$FreshnessInspector.add_checkpoint($HipHop08, 17.456)
+	$FreshnessInspector.add_checkpoint($HipHop08, 69.826)
+	$FreshnessInspector.add_checkpoint($HipHop08, 165.814)
+	
 	$FreshnessInspector.add_checkpoint($House01, 0.000)
 	$FreshnessInspector.add_checkpoint($House01, 7.747)
 	$FreshnessInspector.add_checkpoint($House01, 23.229)
@@ -60,6 +67,11 @@ func _ready() -> void:
 	$FreshnessInspector.add_checkpoint($House08, 0.000)
 	$FreshnessInspector.add_checkpoint($House08, 1.951)
 	$FreshnessInspector.add_checkpoint($House08, 204.877)
+	
+	$FreshnessInspector.add_checkpoint($Tutorial, 0.000)
+	$FreshnessInspector.add_checkpoint($Tutorial, 25.098)
+	$FreshnessInspector.add_checkpoint($Tutorial, 50.196)
+	$FreshnessInspector.add_checkpoint($Tutorial, 74.681)
 
 
 """
@@ -83,6 +95,13 @@ func play_upbeat_bgm() -> void:
 	var upbeat_bgm: AudioStreamPlayer = _upbeat_bgms.pop_front()
 	play_music(upbeat_bgm, $FreshnessInspector.freshest_start(upbeat_bgm))
 	_upbeat_bgms.push_back(upbeat_bgm)
+
+
+"""
+Plays a 'tutorial song'; something suitable when the player is following a puzzle tutorial.
+"""
+func play_tutorial_bgm() -> void:
+	play_music(_tutorial_bgm, $FreshnessInspector.freshest_start(_tutorial_bgm))
 
 
 """
