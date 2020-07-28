@@ -115,9 +115,9 @@ func test_compare_score() -> void:
 func test_volume() -> void:
 	load_0517_data()
 	
-	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.MUSIC), 0.500, 0.01)
-	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.SOUND), 0.500, 0.01)
-	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.VOICE), 0.500, 0.01)
+	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.MUSIC), 0.700, 0.01)
+	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.SOUND), 0.700, 0.01)
+	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.VOICE), 0.700, 0.01)
 
 
 func test_15d2_rank_success() -> void:
