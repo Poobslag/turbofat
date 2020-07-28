@@ -33,10 +33,17 @@ const KICKS_T := [
 
 
 const KICKS_U := [
-		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0, -1), Vector2( 1,  1), Vector2( 0,  1), Vector2( 1, -2)],
-		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2(-1, -1), Vector2( 0,  1), Vector2(-1,  2)],
-		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2(-1,  1), Vector2( 0, -1), Vector2(-1, -2)],
-		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0,  1), Vector2( 1, -1), Vector2( 0, -1), Vector2( 1,  2)],
+		[Vector2( 0, -1), Vector2(-1, -1), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -2)],
+		[Vector2( 0,  1), Vector2( 1,  1), Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  2)],
+		
+		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  1), Vector2( 1,  1), Vector2( 0,  2)],
+		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2(-1, -1), Vector2( 0, -2)],
+		
+		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1), Vector2( 1, -1), Vector2( 0, -2)],
+		[Vector2( 0,  1), Vector2(-1, -1), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  2)],
+		
+		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2(-1, -1), Vector2( 0,  2)],
+		[Vector2( 0, -1), Vector2( 1, -1), Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -2)],
 	]
 
 const KICKS_P := [
@@ -175,9 +182,9 @@ var piece_t := PieceType.new("t",
 var piece_u := PieceType.new("u",
 		# shape data
 		[[Vector2(0, 0), Vector2(1, 0), Vector2(2, 0), Vector2(0, 1), Vector2(2, 1)],
-		[Vector2(0, 0), Vector2(1, 0), Vector2(1, 1), Vector2(0, 2), Vector2(1, 2)],
+		[Vector2(1, 0), Vector2(2, 0), Vector2(2, 1), Vector2(1, 2), Vector2(2, 2)],
 		[Vector2(0, 0), Vector2(2, 0), Vector2(0, 1), Vector2(1, 1), Vector2(2, 1)],
-		[Vector2(1, 0), Vector2(2, 0), Vector2(1, 1), Vector2(1, 2), Vector2(2, 2)]],
+		[Vector2(0, 0), Vector2(1, 0), Vector2(0, 1), Vector2(0, 2), Vector2(1, 2)]],
 		# color data
 		[[Vector2(10, 2), Vector2(12, 2), Vector2(6, 2), Vector2(1, 2), Vector2(1, 2)],
 		[Vector2(8, 2), Vector2(6, 2), Vector2(3, 2), Vector2(8, 2), Vector2(5, 2)],
