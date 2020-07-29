@@ -4,23 +4,13 @@ Stores information on the various piece shapes. This includes information on the
 how they 'kick' when they're blocked from rotating.
 """
 
-const KICKS_J := [
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1,  1)],
+const KICKS_JL := [
+		[Vector2( 1,  0), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1,  1)],
 		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1), Vector2(-1,  0),
 				Vector2( 0, -2), Vector2( 1, -2)],
 		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 1,  1), Vector2( 0, -1), Vector2( 0,  1), Vector2(-1,  0),
 				Vector2( 0,  2), Vector2( 1,  2)],
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1, -1)],
-	]
-
-
-const KICKS_L := [
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1,  1)],
-		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1), Vector2(-1,  0),
-				Vector2( 0, -2), Vector2( 1, -2)],
-		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 1,  1), Vector2( 0, -1), Vector2( 0,  1), Vector2(-1,  0),
-				Vector2( 0,  2), Vector2( 1,  2)],
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2( 0, -1), Vector2(-1, -1)],
+		[Vector2( 1,  0), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1, -1)],
 	]
 
 
@@ -104,7 +94,7 @@ var piece_j := PieceType.new("j",
 		[Vector2(10, 0), Vector2(4, 0), Vector2(3, 0), Vector2(1, 0)],
 		[Vector2(8, 0), Vector2(12, 0), Vector2(6, 0), Vector2(1, 0)],
 		[Vector2(2, 0), Vector2(3, 0), Vector2(8, 0), Vector2(5, 0)]],
-		KICKS_J,
+		KICKS_JL,
 		[Vector2(0, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)]
 	)
 
@@ -119,7 +109,7 @@ var piece_l := PieceType.new("l",
 		[Vector2(2, 1), Vector2(3, 1), Vector2(9, 1), Vector2(4, 1)],
 		[Vector2(10, 1), Vector2(12, 1), Vector2(4, 1), Vector2(1, 1)],
 		[Vector2(8, 1), Vector2(6, 1), Vector2(3, 1), Vector2(1, 1)]],
-		KICKS_L,
+		KICKS_JL,
 		[Vector2(0, -1), Vector2(1, 0), Vector2(0, 1), Vector2(-1, 0)]
 	)
 

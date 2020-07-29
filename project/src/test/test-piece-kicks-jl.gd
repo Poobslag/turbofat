@@ -924,14 +924,14 @@ func test_j_snack_kick1() -> void:
 		"   :::",
 		" j   :",
 		" jjj::",
-		" :: ::",
+		"  : ::",
 	]
 	to_grid = [
 		"   :::",
 		"   :::",
 		"   jj:",
 		"   j::",
-		"   j::",
+		"  :j::",
 	]
 	assert_kick()
 
@@ -998,14 +998,14 @@ func test_l_snack_kick1() -> void:
 		":::   ",
 		":   l ",
 		"::lll ",
-		":: :: ",
+		":: :  ",
 	]
 	to_grid = [
 		":::   ",
 		":::   ",
 		":ll   ",
 		"::l   ",
-		"::l:: ",
+		"::l:  ",
 	]
 	assert_kick()
 
