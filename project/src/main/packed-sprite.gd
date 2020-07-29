@@ -91,7 +91,9 @@ func _load_frame_data() -> void:
 	var json: String = get_file_as_text(frame_data)
 	var json_root: Dictionary = parse_json(json)
 	var json_frames: Array
-	if json_root["frames"] is Array:
+	if not json_root.has("frames"):
+		push_warning("Invalid frame data in file '%s'" % frame_data)
+	elif json_root["frames"] is Array:
 		json_frames = json_root["frames"]
 	elif json_root["frames"] is Dictionary:
 		json_frames = json_root["frames"].values()
@@ -111,7 +113,10 @@ func _draw() -> void:
 	rect.position += offset
 	if centered:
 		rect.position -= rect_size * 0.5
-	draw_texture_rect_region(texture, rect, _frame_src_rects[frame])
+	if frame < 0 or frame >= _frame_src_rects.size():
+		push_warning("Frame data '%s' does not define a frame #%s" % [frame_data, frame])
+	else:
+		draw_texture_rect_region(texture, rect, _frame_src_rects[frame])
 
 
 static func get_file_as_text(path: String) -> String:
