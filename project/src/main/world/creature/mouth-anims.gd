@@ -49,6 +49,8 @@ func _on_CreatureVisuals_before_creature_arrived() -> void:
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
 	if is_processing() and not Engine.is_editor_hint():
+		_creature_visuals.get_node("Neck0/HeadBobber/Mouth").z_index = 0
+		_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow").z_index = 0
 		_play_mouth_ambient_animation()
 
 

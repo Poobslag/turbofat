@@ -235,6 +235,7 @@ func set_orientation(new_orientation: int) -> void:
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
 	
+	reset_eye_frames()
 	if orientation in [SOUTHWEST, SOUTHEAST]:
 		# facing south; initialize textures to forward-facing frames
 		$Neck0.z_index = 0

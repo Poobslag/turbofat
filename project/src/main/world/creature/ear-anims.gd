@@ -41,6 +41,6 @@ func _on_CreatureVisuals_before_creature_arrived() -> void:
 		stop()
 
 
-func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
-	if is_processing() and not _new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
+	if is_processing() and not new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
 		stop()
