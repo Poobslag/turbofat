@@ -156,7 +156,7 @@ static func _load_body(dna: Dictionary) -> void:
 	# All creatures have a body, but this class supports passing in an empty creature definition to unload the
 	# textures from creature sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# creature's body.
-	_load_texture(dna, "FarMovement", "body", "movement-z0-packed")
+	_load_texture(dna, "Sprint", "body", "sprint-z0-packed")
 	_load_texture(dna, "FarArm", "body", "arm-z0-packed")
 	_load_texture(dna, "FarLeg", "body", "leg-z0-packed")
 	_load_texture(dna, "Body/Viewport/Body/NeckBlend", "body", "neck-packed")

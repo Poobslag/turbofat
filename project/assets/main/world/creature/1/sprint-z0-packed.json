@@ -1,6 +1,6 @@
 { "frames": [
    {
-    "filename": "movement-z0-packed 0.png",
+    "filename": "sprint-z0-packed 0.png",
     "frame": { "x": 1064, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -9,7 +9,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 1.png",
+    "filename": "sprint-z0-packed 1.png",
     "frame": { "x": 308, "y": 338, "w": 137, "h": 144 },
     "rotated": false,
     "trimmed": true,
@@ -18,7 +18,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 2.png",
+    "filename": "sprint-z0-packed 2.png",
     "frame": { "x": 0, "y": 190, "w": 163, "h": 145 },
     "rotated": false,
     "trimmed": true,
@@ -27,7 +27,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 3.png",
+    "filename": "sprint-z0-packed 3.png",
     "frame": { "x": 544, "y": 0, "w": 256, "h": 166 },
     "rotated": false,
     "trimmed": true,
@@ -36,7 +36,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 4.png",
+    "filename": "sprint-z0-packed 4.png",
     "frame": { "x": 268, "y": 0, "w": 271, "h": 176 },
     "rotated": false,
     "trimmed": true,
@@ -45,7 +45,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 5.png",
+    "filename": "sprint-z0-packed 5.png",
     "frame": { "x": 805, "y": 147, "w": 169, "h": 185 },
     "rotated": false,
     "trimmed": true,
@@ -54,7 +54,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 6.png",
+    "filename": "sprint-z0-packed 6.png",
     "frame": { "x": 874, "y": 337, "w": 138, "h": 154 },
     "rotated": false,
     "trimmed": true,
@@ -63,7 +63,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 7.png",
+    "filename": "sprint-z0-packed 7.png",
     "frame": { "x": 168, "y": 338, "w": 135, "h": 149 },
     "rotated": false,
     "trimmed": true,
@@ -72,7 +72,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 8.png",
+    "filename": "sprint-z0-packed 8.png",
     "frame": { "x": 544, "y": 171, "w": 177, "h": 172 },
     "rotated": false,
     "trimmed": true,
@@ -81,7 +81,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 9.png",
+    "filename": "sprint-z0-packed 9.png",
     "frame": { "x": 0, "y": 0, "w": 263, "h": 185 },
     "rotated": false,
     "trimmed": true,
@@ -90,7 +90,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 10.png",
+    "filename": "sprint-z0-packed 10.png",
     "frame": { "x": 805, "y": 0, "w": 254, "h": 142 },
     "rotated": false,
     "trimmed": true,
@@ -99,7 +99,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 11.png",
+    "filename": "sprint-z0-packed 11.png",
     "frame": { "x": 268, "y": 181, "w": 172, "h": 152 },
     "rotated": false,
     "trimmed": true,
@@ -108,7 +108,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 12.png",
+    "filename": "sprint-z0-packed 12.png",
     "frame": { "x": 726, "y": 337, "w": 143, "h": 149 },
     "rotated": false,
     "trimmed": true,
@@ -117,7 +117,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 13.png",
+    "filename": "sprint-z0-packed 13.png",
     "frame": { "x": 1064, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -126,7 +126,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 14.png",
+    "filename": "sprint-z0-packed 14.png",
     "frame": { "x": 1064, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -135,7 +135,7 @@
     "duration": 100
    },
    {
-    "filename": "movement-z0-packed 15.png",
+    "filename": "sprint-z0-packed 15.png",
     "frame": { "x": 1064, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
@@ -147,7 +147,7 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.20-x64",
-  "image": "movement-z0-packed.png",
+  "image": "sprint-z0-packed.png",
   "format": "RGBA8888",
   "size": { "w": 1065, "h": 491 },
   "scale": "1"

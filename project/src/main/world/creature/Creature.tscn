@@ -20,9 +20,15 @@ extents = Vector2( 28, 14 )
 
 [node name="Creature" type="KinematicBody2D"]
 script = ExtResource( 3 )
+__meta__ = {
+"dna": {
+
+}
+}
 
 [node name="ChatIcon" parent="." instance=ExtResource( 4 )]
 script = ExtResource( 2 )
+bubble_type = 0
 creature_visuals_path = NodePath("../CreatureOutline/Viewport/Visuals")
 
 [node name="CreatureOutline" type="Node2D" parent="."]
@@ -36,9 +42,6 @@ audio_listener_enable_2d = true
 
 [node name="Visuals" parent="CreatureOutline/Viewport" instance=ExtResource( 1 )]
 position = Vector2( 512, 912 )
-dna = {
-
-}
 
 [node name="TextureRect" type="TextureRect" parent="CreatureOutline"]
 light_mask = 2
@@ -90,6 +93,7 @@ bus = "Sound Bus"
 [connection signal="creature_arrived" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="food_eaten" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="food_eaten" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
+[connection signal="movement_mode_changed" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="visual_fatness_changed" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_visual_fatness_changed"]
 [connection signal="timeout" from="CreatureSfx/HelloTimer" to="CreatureSfx" method="_on_HelloTimer_timeout"]
 [connection signal="extents_changed" from="CollisionShape2D" to="." method="_on_CollisionShape2D_extents_changed"]

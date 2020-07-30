@@ -203,19 +203,16 @@ region_rect = Rect2( 0, 0, 4400, 80 )
 
 [node name="CreatureShadow1" parent="Shadows/Viewport" instance=ExtResource( 4 )]
 visible = false
-shadow_offset = Vector2( 0, 150 )
 creature_path = NodePath("../../../Creature1")
 
 [node name="CreatureShadow2" parent="Shadows/Viewport" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 1381.23, 585.763 )
-shadow_offset = Vector2( 0, 150 )
 creature_path = NodePath("../../../Creature2")
 
 [node name="CreatureShadow3" parent="Shadows/Viewport" instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 2381.23, 585.763 )
-shadow_offset = Vector2( 0, 150 )
 creature_path = NodePath("../../../Creature3")
 
 [node name="TextureRect" type="TextureRect" parent="Shadows"]
@@ -244,33 +241,36 @@ texture = ExtResource( 12 )
 offset = Vector2( 0, -550 )
 
 [node name="Creature1" parent="." instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 381.228, 435.763 )
-scale = Vector2( 2.5, 2.5 )
-z_index = 20
-
-[node name="Seat1" parent="." instance=ExtResource( 2 )]
-
-[node name="Creature2" parent="." instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 1381.23, 435.763 )
+position = Vector2( 381.228, 585.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
 dna = {
 
 }
+elevation = 150
+
+[node name="Seat1" parent="." instance=ExtResource( 2 )]
+
+[node name="Creature2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 1381.23, 585.763 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 20
+dna = {
+
+}
+elevation = 150
 
 [node name="Seat2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1380, 585 )
 
 [node name="Creature3" parent="." instance=ExtResource( 8 )]
-visible = false
-position = Vector2( 2381.23, 435.763 )
+position = Vector2( 2381.23, 585.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
 dna = {
 
 }
+elevation = 150
 
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2380, 585 )

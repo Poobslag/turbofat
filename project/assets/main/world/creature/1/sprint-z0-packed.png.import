@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/movement-z0-packed.png-73b129f6f9952724ba94ff23ed0a4304.stex"
+path="res://.import/sprint-z0-packed.png-61dcf05e5d9666123531b276cb66576e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/1/movement-z0-packed.png"
-dest_files=[ "res://.import/movement-z0-packed.png-73b129f6f9952724ba94ff23ed0a4304.stex" ]
+source_file="res://assets/main/world/creature/1/sprint-z0-packed.png"
+dest_files=[ "res://.import/sprint-z0-packed.png-61dcf05e5d9666123531b276cb66576e.stex" ]
 
 [params]
 

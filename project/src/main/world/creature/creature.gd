@@ -1,3 +1,4 @@
+#tool #uncomment to view creature in editor
 class_name Creature
 extends KinematicBody2D
 """
@@ -31,6 +32,9 @@ const MAX_RUN_ACCELERATION := 2250
 export (String) var creature_id: String setget set_creature_id
 export (Dictionary) var dna: Dictionary setget set_dna
 
+# how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
+export (int) var elevation: int setget set_elevation
+
 var creature_def: CreatureDef
 var chat_path: String setget set_chat_path
 var creature_name: String setget set_creature_name
@@ -59,12 +63,20 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if Engine.is_editor_hint():
+		return
+	
 	_apply_friction()
 	_apply_walk(delta)
 	var old_non_iso_velocity := _non_iso_velocity
 	set_iso_velocity(move_and_slide(_iso_velocity))
 	_update_animation()
 	_maybe_play_bonk_sound(old_non_iso_velocity)
+
+
+func set_elevation(new_elevation: int) -> void:
+	elevation = new_elevation
+	$CreatureOutline.position.y = -new_elevation * $CreatureOutline/TextureRect.rect_scale.y
 
 
 func set_comfort(new_comfort: float) -> void:
@@ -276,8 +288,14 @@ func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 
 func _update_animation() -> void:
 	if non_iso_walk_direction.length() > 0:
-		play_movement_animation("run", non_iso_walk_direction)
-	elif creature_visuals.movement_mode:
+		var animation_prefix: String
+		if creature_visuals.fatness >= 1.5:
+			animation_prefix = "run"
+		else:
+			animation_prefix = "sprint"
+		
+		play_movement_animation(animation_prefix, non_iso_walk_direction)
+	elif creature_visuals.movement_mode != CreatureVisuals.IDLE:
 		play_movement_animation("idle", _non_iso_velocity)
 
 
@@ -304,3 +322,11 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 
 func _on_CollisionShape2D_extents_changed(value: Vector2) -> void:
 	chat_extents = value
+
+
+func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
+	if new_mode == CreatureVisuals.RUN:
+		# when running, the body is a little higher off the ground
+		set_elevation(35)
+	else:
+		set_elevation(0)

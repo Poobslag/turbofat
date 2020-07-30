@@ -5,7 +5,7 @@ extends PackedSprite
 Sprites which toggles between a single 'toward the camera' and 'away from the camera' frame
 """
 
-export (bool) var invisible_while_moving := false
+export (bool) var invisible_while_sprinting := false
 
 func update_orientation(orientation: int) -> void:
 	if orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
@@ -29,6 +29,6 @@ func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientati
 		update_orientation(new_orientation)
 
 
-func _on_CreatureVisuals_movement_mode_changed(movement_mode: bool) -> void:
-	if invisible_while_moving:
-		visible = not movement_mode
+func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
+	if invisible_while_sprinting:
+		visible = new_mode != CreatureVisuals.SPRINT
