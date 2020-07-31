@@ -49,12 +49,16 @@ enum Orientation {
 enum MovementMode {
 	IDLE, # not walking/running
 	SPRINT, # quadrapedal run
-	RUN # bipedal run
+	RUN, # bipedal run
+	WALK, # bipedal walk
+	WIGGLE, # flailing their arms and legs helplessly
 }
 
 const IDLE := MovementMode.IDLE
 const SPRINT := MovementMode.SPRINT
 const RUN := MovementMode.RUN
+const WALK := MovementMode.WALK
+const WIGGLE := MovementMode.WIGGLE
 
 const SOUTHEAST := Orientation.SOUTHEAST
 const SOUTHWEST := Orientation.SOUTHWEST
@@ -332,6 +336,10 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 		set_movement_mode(SPRINT)
 	elif animation_prefix == "run" and movement_mode != RUN:
 		set_movement_mode(RUN)
+	elif animation_prefix == "walk" and movement_mode != WALK:
+		set_movement_mode(WALK)
+	elif animation_prefix == "wiggle" and movement_mode != WIGGLE:
+		set_movement_mode(WIGGLE)
 	
 	if $MovementAnims.current_animation != animation_name:
 		if not $EmoteAnims.current_animation.begins_with("ambient") and not animation_name.begins_with("idle"):

@@ -52,6 +52,9 @@ var _friction := false
 var _iso_velocity := Vector2.ZERO
 var _non_iso_velocity := Vector2.ZERO
 
+# a number from [0.0 - 1.0] based on how fast the creature can move with their current animation
+var _run_anim_speed := 1.0
+
 onready var creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visuals
 
 func _ready() -> void:
@@ -68,9 +71,9 @@ func _physics_process(delta: float) -> void:
 	
 	_apply_friction()
 	_apply_walk(delta)
+	_update_animation()
 	var old_non_iso_velocity := _non_iso_velocity
 	set_iso_velocity(move_and_slide(_iso_velocity))
-	_update_animation()
 	_maybe_play_bonk_sound(old_non_iso_velocity)
 
 
@@ -251,13 +254,13 @@ func _apply_friction() -> void:
 	
 	if _friction:
 		set_non_iso_velocity(lerp(_non_iso_velocity, Vector2.ZERO, FRICTION))
-		if _non_iso_velocity.length() < MIN_RUN_SPEED:
+		if _non_iso_velocity.length() < MIN_RUN_SPEED * _run_anim_speed:
 			set_non_iso_velocity(Vector2.ZERO)
 
 
 func _apply_walk(delta: float) -> void:
 	if iso_walk_direction:
-		_accelerate_xy(delta, non_iso_walk_direction, MAX_RUN_ACCELERATION, MAX_RUN_SPEED)
+		_accelerate_xy(delta, non_iso_walk_direction, MAX_RUN_ACCELERATION, MAX_RUN_SPEED * _run_anim_speed)
 
 
 """
@@ -278,28 +281,41 @@ func _accelerate_xy(delta: float, _non_iso_push_direction: Vector2,
 
 
 """
-Plays a bonk sound if Spira bumps into a wall.
+Plays a bonk sound if a creature bumps into a wall.
 """
 func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 	var velocity_diff := _non_iso_velocity - old_non_iso_velocity
-	if velocity_diff.length() > MAX_RUN_SPEED * 0.9:
+	if velocity_diff.length() > MAX_RUN_SPEED * _run_anim_speed * 0.9:
 		$BonkSound.play()
 
 
+"""
+Updates the movement animation and run speed.
+
+The run speed varies based on how fat the creature is.
+"""
 func _update_animation() -> void:
 	if non_iso_walk_direction.length() > 0:
 		var animation_prefix: String
-		if creature_visuals.fatness >= 1.5:
+		if creature_visuals.fatness >= 3.5:
+			animation_prefix = "wiggle"
+			_run_anim_speed = 0.200
+		elif creature_visuals.fatness >= 2.2:
+			animation_prefix = "walk"
+			_run_anim_speed = 0.400
+		elif creature_visuals.fatness >= 1.1:
 			animation_prefix = "run"
+			_run_anim_speed = 0.700
 		else:
 			animation_prefix = "sprint"
+			_run_anim_speed = 1.000
 		
 		play_movement_animation(animation_prefix, non_iso_walk_direction)
 	elif creature_visuals.movement_mode != CreatureVisuals.IDLE:
 		play_movement_animation("idle", _non_iso_velocity)
 
 
-func _on_Creature_landed() -> void:
+func _on_CreatureVisuals_landed() -> void:
 	$HopSound.play()
 
 
@@ -325,8 +341,8 @@ func _on_CollisionShape2D_extents_changed(value: Vector2) -> void:
 
 
 func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
-	if new_mode == CreatureVisuals.RUN:
-		# when running, the body is a little higher off the ground
+	if new_mode in [CreatureVisuals.WALK, CreatureVisuals.RUN]:
+		# when on two legs, the body is a little higher off the ground
 		set_elevation(35)
 	else:
 		set_elevation(0)

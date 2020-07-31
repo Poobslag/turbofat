@@ -154,7 +154,7 @@ creature_id = "bort"
 overworld_ui_path = NodePath("../../../Ui/OverworldUi")
 
 [node name="MoveTimer" type="Timer" parent="World/Obstacles/Bort"]
-wait_time = 0.9
+wait_time = 1.6
 autostart = true
 
 [node name="Ebe" parent="World/Obstacles" instance=ExtResource( 1 )]
