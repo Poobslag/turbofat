@@ -42,6 +42,45 @@ audio_listener_enable_2d = true
 
 [node name="Visuals" parent="CreatureOutline/Viewport" instance=ExtResource( 1 )]
 position = Vector2( 512, 912 )
+dna = {
+"property:BodyColors:belly": 0,
+"shader:Body:black": Color( 0, 0, 0, 1 ),
+"shader:Body:green": Color( 0, 0, 0, 1 ),
+"shader:Body:red": Color( 0, 0, 0, 1 ),
+"shader:EmoteBody:black": Color( 0, 0, 0, 1 ),
+"shader:FarArm:black": Color( 0, 0, 0, 1 ),
+"shader:FarArm:red": Color( 0, 0, 0, 1 ),
+"shader:FarLeg:black": Color( 0, 0, 0, 1 ),
+"shader:FarLeg:red": Color( 0, 0, 0, 1 ),
+"shader:NearArm:black": Color( 0, 0, 0, 1 ),
+"shader:NearArm:red": Color( 0, 0, 0, 1 ),
+"shader:NearLeg:black": Color( 0, 0, 0, 1 ),
+"shader:NearLeg:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EmoteArms:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EmoteArms:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyes:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Eyes:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Eyes:blue": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Eyes:green": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Eyes:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Head:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Head:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:green": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ0:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:green": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/HornZ1:red": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Mouth:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Mouth:red": Color( 0, 0, 0, 1 )
+}
 
 [node name="TextureRect" type="TextureRect" parent="CreatureOutline"]
 light_mask = 2
@@ -93,6 +132,7 @@ bus = "Sound Bus"
 [connection signal="creature_arrived" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="food_eaten" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="food_eaten" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
+[connection signal="landed" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_landed"]
 [connection signal="movement_mode_changed" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="visual_fatness_changed" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_visual_fatness_changed"]
 [connection signal="timeout" from="CreatureSfx/HelloTimer" to="CreatureSfx" method="_on_HelloTimer_timeout"]

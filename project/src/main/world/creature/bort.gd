@@ -19,7 +19,7 @@ Run back and forth every few seconds.
 """
 func _on_MoveTimer_timeout() -> void:
 	var move_dir: Vector2
-	if not non_iso_walk_direction and randf() < 0.20:
+	if not non_iso_walk_direction and randf() < 0.30:
 		move_dir = Vector2(-1, -1) if position.y > 340 else Vector2(1, 1)
 	set_non_iso_walk_direction(move_dir)
 
