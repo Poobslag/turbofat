@@ -43,7 +43,7 @@ func show_results_message(rank_result: RankResult, creature_scores: Array, finis
 	text = _append_creature_scores(rank_result, creature_scores, finish_condition_type, text)
 	text = _append_grade_information(rank_result, creature_scores, finish_condition_type, text)
 	text += "//////////\n"
-	text += "Hint: %s\n" % HINTS[randi() % HINTS.size()]
+	text += "Hint: %s\n" % Utils.rand_value(HINTS)
 	
 	$ShowResultsSound.play()
 	$ResultsLabel.show_text(text)

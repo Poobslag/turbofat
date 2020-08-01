@@ -17,7 +17,7 @@ func make_player_lose() -> void:
 When the current piece can't be placed, we end the game and emit the appropriate signals.
 """
 func _on_PieceManager_topped_out() -> void:
-	_game_over_voices[randi() % _game_over_voices.size()].play()
+	Utils.rand_value(_game_over_voices).play()
 	PuzzleScore.scenario_performance.top_out_count += 1
 	
 	if PuzzleScore.scenario_performance.top_out_count >= Scenario.settings.lose_condition.top_out:

@@ -87,7 +87,7 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 	var wobbler_positions: Array
 	if WOBBLER_POSITIONS_BY_SIZE.has(rect.size):
 		# load one of the random aesthetically pleasing wobbler arrangements
-		wobbler_positions = WOBBLER_POSITIONS_BY_SIZE[rect.size][randi() % WOBBLER_POSITIONS_BY_SIZE[rect.size].size()]
+		wobbler_positions = Utils.rand_value(WOBBLER_POSITIONS_BY_SIZE[rect.size])
 	else:
 		# create a random arrangement
 		wobbler_positions = []

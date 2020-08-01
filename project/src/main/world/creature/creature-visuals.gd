@@ -198,7 +198,8 @@ Because the eye frames also become visible/invisible during emotes, they don't r
 changes and are instead reset manually.
 """
 func reset_eye_frames() -> void:
-	$Neck0/HeadBobber/Eyes.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	$Neck0/HeadBobber/EyeZ0.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	$Neck0/HeadBobber/EyeZ1.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 
 
 """
@@ -218,8 +219,7 @@ func random_creature(value: bool = true) -> void:
 		return
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
-	var new_dna := CreatureLoader.fill_dna(
-			CreatureLoader.DEFINITIONS[randi() % CreatureLoader.DEFINITIONS.size()])
+	var new_dna := CreatureLoader.fill_dna(Utils.rand_value(CreatureLoader.DEFINITIONS))
 	set_dna(new_dna)
 
 
@@ -437,7 +437,9 @@ func _update_creature_properties() -> void:
 		$Neck0/HeadBobber/HornZ1,
 		$Neck0/HeadBobber/EarZ2,
 		$Neck0/HeadBobber/Mouth,
-		$Neck0/HeadBobber/Eyes,
+		$Neck0/HeadBobber/EyeZ0,
+		$Neck0/HeadBobber/Nose,
+		$Neck0/HeadBobber/EyeZ1,
 		$Neck0/HeadBobber/Food,
 		$Neck0/HeadBobber/FoodLaser,
 	]:

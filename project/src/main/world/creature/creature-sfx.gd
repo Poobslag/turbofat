@@ -69,7 +69,7 @@ Plays a 'hello!' voice sample, for when a creature enters the restaurant
 """
 func play_hello_voice(force: bool = false) -> void:
 	if Global.should_chat() or force:
-		$Voice.stream = hello_voices[randi() % hello_voices.size()]
+		$Voice.stream = Utils.rand_value(hello_voices)
 		$Voice.play()
 
 
@@ -78,7 +78,7 @@ Plays a 'check please!' voice sample, for when a creature is ready to leave
 """
 func play_goodbye_voice(force: bool = false) -> void:
 	if Global.should_chat() or force:
-		$Voice.stream = _goodbye_voices[randi() % _goodbye_voices.size()]
+		$Voice.stream = Utils.rand_value(_goodbye_voices)
 		$Voice.play()
 
 
@@ -89,7 +89,7 @@ Of course in real life you can't talk with your mouth full -- but combo sounds a
 avoid interrupting them.
 """
 func _on_CreatureVisuals_food_eaten() -> void:
-	$Munch.stream = _munch_sounds[randi() % _munch_sounds.size()]
+	$Munch.stream = Utils.rand_value(_munch_sounds)
 	$Munch.pitch_scale = rand_range(0.96, 1.04)
 	$Munch.play()
 

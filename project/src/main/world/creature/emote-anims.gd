@@ -73,7 +73,8 @@ onready var _emote_sprites := [
 ]
 
 # specific sprites manipulated frequently when emoting
-onready var _emote_eyes: PackedSprite = $"../Neck0/HeadBobber/EmoteEyes"
+onready var _emote_eye_z0: PackedSprite = $"../Neck0/HeadBobber/EmoteEyeZ0"
+onready var _emote_eye_z1: PackedSprite = $"../Neck0/HeadBobber/EmoteEyeZ1"
 onready var _head_bobber: Sprite = $"../Neck0/HeadBobber"
 
 func _process(_delta: float) -> void:
@@ -121,7 +122,7 @@ func eat() -> void:
 		
 		if current_animation in ["eat-smile1", "eat-again-smile1"]:
 			emote_anim_name = "eat-again-smile1"
-		elif _emote_eyes.frame != 0:
+		elif _emote_eye_z0.frame != 0:
 			emote_anim_name = "eat-smile1"
 			# Their eyes are already closed, but the heart balloon isn't visible. Advance
 			# the animation so the heart balloon pops up, but they don't reopen their eyes
@@ -130,7 +131,7 @@ func eat() -> void:
 		# creature is comfortable (0.2, 0.6]; they're smiling and bouncing their head
 		emote_anim_name = "eat-smile0"
 		
-		if _emote_eyes.frame != 0:
+		if _emote_eye_z0.frame != 0:
 			emote_anim_name = "eat-again-smile0"
 	elif _creature_visuals.comfort > -0.20:
 		# creature is so-so (-0.2, 0.2]
@@ -142,7 +143,7 @@ func eat() -> void:
 		if current_animation in ["eat-sweat0", "eat-again-sweat0"]:
 			# wavy lines are already visible; keep them visible
 			emote_anim_name = "eat-again-sweat0"
-		elif _emote_eyes.frame != 0:
+		elif _emote_eye_z0.frame != 0:
 			# Their eyes are already closed, but the wavy lines aren't visible. Advance
 			# the animation so the wavy lines appear, but they don't reopen their eyes
 			emote_advance_amount = 0.0667
@@ -166,7 +167,7 @@ func eat() -> void:
 		if current_animation in ["eat-sweat1", "eat-again-sweat1", "eat-sweat2", "eat-again-sweat2"]:
 			# black glow is already visible; keep it visible
 			emote_anim_name = "eat-again-sweat1"
-		elif _emote_eyes.frame != 0:
+		elif _emote_eye_z0.frame != 0:
 			# Their eyes are already closed, but the black glow isn't visible. Advance
 			# the animation so the black glow appears, but they don't reopen their eyes
 			emote_advance_amount = 0.0667
@@ -177,7 +178,7 @@ func eat() -> void:
 		if current_animation in ["eat-sweat1", "eat-again-sweat1", "eat-sweat2", "eat-again-sweat2"]:
 			# black glow is already visible; keep it visible
 			emote_anim_name = "eat-again-sweat2"
-		elif _emote_eyes.frame != 0:
+		elif _emote_eye_z0.frame != 0:
 			# Their eyes are already closed, but the black glow isn't visible. Advance
 			# the animation so the black glow appears, but they don't reopen their eyes
 			emote_advance_amount = 0.0667
@@ -233,14 +234,19 @@ func unemote(anim_name: String = "") -> void:
 	stop()
 	emit_signal("before_mood_switched")
 	$"../Neck0/HeadBobber/EmoteArms".frame = 0
-	_emote_eyes.frame = 0
+	_emote_eye_z0.frame = 0
+	_emote_eye_z1.frame = 0
 	if anim_name in EAT_SMILE_ANIMS:
-		$"../Neck0/HeadBobber/Eyes".frame = 0
-		_emote_eyes.frame = 1
+		$"../Neck0/HeadBobber/EyeZ0".frame = 0
+		$"../Neck0/HeadBobber/EyeZ1".frame = 0
+		_emote_eye_z0.frame = 1
+		_emote_eye_z1.frame = 1
 		play("ambient-smile")
 	elif anim_name in EAT_SWEAT_ANIMS:
-		$"../Neck0/HeadBobber/Eyes".frame = 0
-		_emote_eyes.frame = 2
+		$"../Neck0/HeadBobber/EyeZ0".frame = 0
+		$"../Neck0/HeadBobber/EyeZ1".frame = 0
+		_emote_eye_z0.frame = 2
+		_emote_eye_z1.frame = 2
 		play("ambient-sweat")
 	
 	$ResetTween.remove_all()
@@ -266,7 +272,8 @@ func unemote_immediate(emit_signal: bool = true) -> void:
 	if emit_signal:
 		emit_signal("before_mood_switched")
 	$"../Neck0/HeadBobber/EmoteArms".frame = 0
-	_emote_eyes.frame = 0
+	_emote_eye_z0.frame = 0
+	_emote_eye_z1.frame = 0
 	_head_bobber.rotation_degrees = 0
 	for emote_sprite in _emote_sprites:
 		emote_sprite.rotation_degrees = 0

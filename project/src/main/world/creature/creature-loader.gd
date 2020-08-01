@@ -50,7 +50,7 @@ const DEFINITIONS := [
 Returns a random creature definition.
 """
 static func random_def() -> Dictionary:
-	return DEFINITIONS[randi() % DEFINITIONS.size()]
+	return Utils.rand_value(DEFINITIONS)
 
 
 """
@@ -69,6 +69,7 @@ static func load_details(dna: Dictionary) -> void:
 	_load_horn(dna)
 	_load_mouth(dna)
 	_load_eye(dna)
+	_load_nose(dna)
 	_load_body(dna)
 	_load_colors(dna)
 
@@ -146,7 +147,15 @@ static func _load_mouth(dna: Dictionary) -> void:
 Loads the resources for a creature's eyes based on a creature definition.
 """
 static func _load_eye(dna: Dictionary) -> void:
-	_load_texture(dna, "Neck0/HeadBobber/Eyes", "eye", "eyes-packed")
+	_load_texture(dna, "Neck0/HeadBobber/EyeZ0", "eye", "eye-z0-packed")
+	_load_texture(dna, "Neck0/HeadBobber/EyeZ1", "eye", "eye-z1-packed")
+
+
+"""
+Loads the resources for a creature's nose based on a creature definition.
+"""
+static func _load_nose(dna: Dictionary) -> void:
+	_load_texture(dna, "Neck0/HeadBobber/Nose", "nose", "nose-packed")
 
 
 """
@@ -186,9 +195,12 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/HornZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EarZ2:black"] = line_color
 	dna["shader:Neck0/HeadBobber/Mouth:black"] = line_color
-	dna["shader:Neck0/HeadBobber/Eyes:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EyeZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/Nose:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EyeZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteArms:black"] = line_color
-	dna["shader:Neck0/HeadBobber/EmoteEyes:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EmoteEyeZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EmoteEyeZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteBrain:black"] = line_color
 	dna["shader:EmoteBody:black"] = line_color
 	
@@ -207,7 +219,9 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EarZ2:red"] = body_color
 	dna["shader:Neck0/HeadBobber/Mouth:red"] = body_color
-	dna["shader:Neck0/HeadBobber/Eyes:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EyeZ0:red"] = body_color
+	dna["shader:Neck0/HeadBobber/Nose:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EyeZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EmoteArms:red"] = body_color
 	
 	var belly_color: Color
@@ -220,8 +234,10 @@ static func _load_colors(dna: Dictionary) -> void:
 	if dna.has("eye_rgb"):
 		eye_color = Color(dna.eye_rgb.split(" ")[0])
 		eye_shine_color = Color(dna.eye_rgb.split(" ")[1])
-	dna["shader:Neck0/HeadBobber/Eyes:green"] = eye_color
-	dna["shader:Neck0/HeadBobber/Eyes:blue"] = eye_shine_color
+	dna["shader:Neck0/HeadBobber/EyeZ0:green"] = eye_color
+	dna["shader:Neck0/HeadBobber/EyeZ1:green"] = eye_color
+	dna["shader:Neck0/HeadBobber/EyeZ0:blue"] = eye_shine_color
+	dna["shader:Neck0/HeadBobber/EyeZ1:blue"] = eye_shine_color
 
 	var horn_color: Color
 	if dna.has("horn_rgb"):
@@ -263,10 +279,12 @@ static func fill_dna(dna: Dictionary) -> Dictionary:
 		# avoid loading unnecessary resources for things like the level editor
 		pass
 	else:
-		put_if_absent(result, "eye", ["1", "1", "1", "2", "3"][randi() % 5])
-		put_if_absent(result, "ear", ["1", "1", "1", "2", "3"][randi() % 5])
-		put_if_absent(result, "horn", ["0", "0", "0", "1", "2"][randi() % 5])
-		put_if_absent(result, "mouth", ["1", "1", "2"][randi() % 3])
-		put_if_absent(result, "belly", ["0", "0", "1", "1", "2"][randi() % 5])
+		put_if_absent(result, "eye", Utils.rand_value(["1", "1", "1", "2", "3"]))
+		put_if_absent(result, "ear", Utils.rand_value(["1", "1", "1", "2", "3"]))
+		put_if_absent(result, "horn", Utils.rand_value(["0", "0", "0", "1", "2"]))
+		put_if_absent(result, "mouth", Utils.rand_value(["1", "1", "2"]))
+		
+		put_if_absent(result, "nose", Utils.rand_value(["0", "0", "0", "1", "2", "3"]))
+		put_if_absent(result, "belly", Utils.rand_value(["0", "0", "1", "1", "2"]))
 	put_if_absent(result, "body", "1")
 	return result

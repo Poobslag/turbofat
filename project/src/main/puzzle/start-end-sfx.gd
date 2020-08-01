@@ -17,7 +17,7 @@ func _on_PuzzleScore_game_prepared() -> void:
 
 func _on_PuzzleScore_game_started() -> void:
 	$GoSound.play()
-	_go_voices[randi() % _go_voices.size()].play()
+	Utils.rand_value(_go_voices).play()
 
 
 func _on_PuzzleScore_game_ended() -> void:

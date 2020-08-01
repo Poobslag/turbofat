@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "nose1 0.png",
+    "frame": { "x": 24, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "nose1 1.png",
+    "frame": { "x": 0, "y": 0, "w": 19, "h": 18 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 295, "y": 275, "w": 19, "h": 18 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "nose1 2.png",
+    "frame": { "x": 24, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.21-x64",
+  "image": "nose-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 25, "h": 18 },
+  "scale": "1"
+ }
+}

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/emote-eyes-packed.png-70ab17f2122fb1e25d2a1c7207458e10.stex"
+path="res://.import/nose-packed.png-38372e0fd8f7e9ce20153b4cf725c44b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/creature/1/emote-eyes-packed.png"
-dest_files=[ "res://.import/emote-eyes-packed.png-70ab17f2122fb1e25d2a1c7207458e10.stex" ]
+source_file="res://assets/main/world/creature/2/nose-packed.png"
+dest_files=[ "res://.import/nose-packed.png-38372e0fd8f7e9ce20153b4cf725c44b.stex" ]
 
 [params]
 

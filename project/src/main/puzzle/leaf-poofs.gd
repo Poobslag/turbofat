@@ -41,7 +41,7 @@ func _spawn_poofs(y: int, veg_columns: Array, poof_count: int) -> void:
 		var x: int = veg_columns[i % veg_columns.size()]
 		
 		# determine the leaf type. the third leaf in each variety is spawned less frequently
-		var type: int = [0, 0, 1, 1, 2][randi() % 5]
+		var type: int = Utils.rand_value([0, 0, 1, 1, 2])
 		if x < cutoff != cutoff_direction:
 			type += 3
 		
