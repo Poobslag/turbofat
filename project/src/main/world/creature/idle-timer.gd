@@ -74,7 +74,7 @@ func _on_EmoteAnims_animation_finished(_anim_name: String) -> void:
 Launches an idle animation and restarts the timer.
 """
 func _on_timeout() -> void:
-	var idle_anim: String = IDLE_ANIMS[randi() % IDLE_ANIMS.size()]
+	var idle_anim: String = Utils.rand_value(IDLE_ANIMS)
 	if idle_anim:
 		emit_signal("start_idle_animation", idle_anim)
 	_update_state(true)

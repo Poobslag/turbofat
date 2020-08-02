@@ -21,5 +21,5 @@ func _on_CreatureVisuals_creature_arrived() -> void:
 
 
 func _on_ChimeTimer_timeout() -> void:
-	stream = _chime_sounds[randi() % _chime_sounds.size()]
+	stream = Utils.rand_value(_chime_sounds)
 	play()

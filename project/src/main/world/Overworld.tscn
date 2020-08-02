@@ -146,11 +146,17 @@ GrassTuftScene = ExtResource( 15 )
 position = Vector2( 150, 150 )
 script = ExtResource( 2 )
 creature_id = "spira"
+dna = {
+
+}
 
 [node name="Bort" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 313.439, 344.721 )
 script = ExtResource( 26 )
 creature_id = "bort"
+dna = {
+
+}
 overworld_ui_path = NodePath("../../../Ui/OverworldUi")
 
 [node name="MoveTimer" type="Timer" parent="World/Obstacles/Bort"]
@@ -161,6 +167,9 @@ autostart = true
 position = Vector2( 444.163, 149.951 )
 script = ExtResource( 24 )
 creature_id = "ebe"
+dna = {
+
+}
 overworld_ui_path = NodePath("../../../Ui/OverworldUi")
 
 [node name="MoveTimer" type="Timer" parent="World/Obstacles/Ebe"]

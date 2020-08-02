@@ -1,0 +1,56 @@
+{ "frames": [
+   {
+    "filename": "eye-z1 0.png",
+    "frame": { "x": 64, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "eye-z1 1.png",
+    "frame": { "x": 0, "y": 0, "w": 59, "h": 11 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 227, "y": 282, "w": 59, "h": 11 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "eye-z1 2.png",
+    "frame": { "x": 64, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "eye-z1 3.png",
+    "frame": { "x": 0, "y": 0, "w": 59, "h": 11 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 227, "y": 282, "w": 59, "h": 11 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "eye-z1 4.png",
+    "frame": { "x": 0, "y": 0, "w": 59, "h": 11 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 227, "y": 282, "w": 59, "h": 11 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.21-x64",
+  "image": "eye-z1-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 65, "h": 11 },
+  "scale": "1"
+ }
+}

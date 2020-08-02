@@ -128,6 +128,13 @@ static func max_value(values: Array, default := 0.0) -> float:
 
 
 """
+Returns a random value from the specified array.
+"""
+static func rand_value(values: Array):
+	return values[randi() % values.size()]
+
+
+"""
 Returns the array index whose contents are closest to a target number.
 
 Utils.find_closest([1.0, 2.0, 4.0, 8.0], 6.0) = 2

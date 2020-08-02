@@ -86,7 +86,7 @@ func _fill_initial_pieces() -> void:
 			[PieceTypes.piece_p, PieceTypes.piece_q, PieceTypes.piece_u, PieceTypes.piece_o, PieceTypes.piece_l],
 			[PieceTypes.piece_p, PieceTypes.piece_q, PieceTypes.piece_u, PieceTypes.piece_o, PieceTypes.piece_t],
 		]
-		_pieces += all_bad_starts[randi() % all_bad_starts.size()]
+		_pieces += Utils.rand_value(all_bad_starts)
 		_pieces.shuffle()
 		
 		var _other_pieces := shuffled_piece_types()

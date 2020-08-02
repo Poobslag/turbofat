@@ -32,7 +32,7 @@ Globs with a higher alpha component appear larger, and play louder sounds.
 """
 func _play_sfx(glob_alpha: float, max_volume: float) -> void:
 	var player: AudioStreamPlayer = _splat_players[_splat_player_index]
-	player.stream = _splat_sfx[randi() % _splat_sfx.size()]
+	player.stream = Utils.rand_value(_splat_sfx)
 	player.pitch_scale = rand_range(1.90, 2.10)
 	player.volume_db = rand_range(max_volume, max_volume - 8.0)
 	if glob_alpha < 0.7:
