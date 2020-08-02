@@ -452,9 +452,9 @@ func _update_creature_properties() -> void:
 	$Neck0/HeadBobber.position = Vector2(0, -100)
 	
 	if _mouth_animation_player:
-		if $EmoteAnims.is_connected("animation_started", _mouth_animation_player, "on_EmoteAnims_animation_started"):
-			_mouth_animation_player.disconnect(
-					"animation_started", _mouth_animation_player, "on_EmoteAnims_animation_started")
+		if $EmoteAnims.is_connected("animation_started", _mouth_animation_player, "_on_EmoteAnims_animation_started"):
+			$EmoteAnims.disconnect(
+					"animation_started", _mouth_animation_player, "_on_EmoteAnims_animation_started")
 		_mouth_animation_player.stop()
 	
 	if dna.has("mouth"):
