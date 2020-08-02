@@ -12,8 +12,8 @@
     "horn": "1",
     "horn_rgb": "f1e398",
     "line_rgb": "6c4331",
-    "mouth": "2",
-    "nose": "0"
+    "mouth": "3",
+    "nose": "1"
   },
   "fatness": 2.0,
   "chat_theme_def": {

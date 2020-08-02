@@ -450,15 +450,21 @@ func _update_creature_properties() -> void:
 	$Neck0/HeadBobber.position = Vector2(0, -100)
 	
 	if _mouth_animation_player:
+		if $EmoteAnims.is_connected("animation_started", _mouth_animation_player, "on_EmoteAnims_animation_started"):
+			_mouth_animation_player.disconnect(
+					"animation_started", _mouth_animation_player, "on_EmoteAnims_animation_started")
 		_mouth_animation_player.stop()
 	
 	if dna.has("mouth"):
 		$Mouth1Anims.set_process(dna.mouth == "1")
 		$Mouth2Anims.set_process(dna.mouth == "2")
+		$Mouth3Anims.set_process(dna.mouth == "3")
 		match dna.mouth:
 			"1": _mouth_animation_player = $Mouth1Anims
 			"2": _mouth_animation_player = $Mouth2Anims
+			"3": _mouth_animation_player = $Mouth3Anims
 			_: print("Invalid mouth: %s", dna.mouth)
+		$EmoteAnims.connect("animation_started", _mouth_animation_player, "_on_EmoteAnims_animation_started")
 	
 	if dna.has("ear"):
 		$Ear1Anims.set_process(dna.ear == "1")
