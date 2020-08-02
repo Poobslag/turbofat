@@ -3,17 +3,17 @@
   "id": "ebe",
   "name": "Ebe",
   "dna": {
-    "body_rgb": "b47922",
-    "belly": "0",
-    "belly_rgb": "d0ec5c",
+    "body_rgb": "feceef",
+    "belly": "1",
+    "belly_rgb": "ffeffc",
     "ear": "1",
-    "eye": "2",
-    "eye_rgb": "7d4c21 e5cd7d",
+    "eye": "1",
+    "eye_rgb": "ffddf4 ffffff",
     "horn": "2",
-    "horn_rgb": "f1e398",
+    "horn_rgb": "ffffff",
     "line_rgb": "6c4331",
-    "mouth": "1",
-    "nose": "0"
+    "mouth": "3",
+    "nose": "2"
   },
   "chat_theme_def": {
     "accent_scale": 1.75,

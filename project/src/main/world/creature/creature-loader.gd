@@ -32,6 +32,8 @@ const DEFINITIONS := [
 			"eye_rgb": "f9a74c fff6df", "horn_rgb": "b47922"}, # orange
 	{"line_rgb": "6c4331", "body_rgb": "8fea40", "belly_rgb": "e8fa95",
 			"eye_rgb": "f5d561 fcf3cd", "horn_rgb": "b47922"}, # light green
+	{"line_rgb": "6c4331", "body_rgb": "70843a", "belly_rgb": "8c9537",
+			"eye_rgb": "7d4c21 e5cd7d", "horn_rgb": "f1e398"}, # goblin green
 	{"line_rgb": "6c4331", "body_rgb": "feceef", "belly_rgb": "ffeffc",
 			"eye_rgb": "ffddf4 ffffff", "horn_rgb": "ffffff"}, # pink
 	{"line_rgb": "6c4331", "body_rgb": "b1edee", "belly_rgb": "dff2f0",

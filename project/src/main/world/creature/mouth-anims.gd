@@ -5,7 +5,22 @@ An AnimationPlayer which animates mouths.
 """
 
 # emote animations which should result in a frown, if the mouth is capable of frowning
-const FROWN_ANIMS = ["ambient-sweat", "cry0", "cry1", "rage0", "rage1", "sweat0", "sweat1", "think1"]
+const FROWN_ANIMS = {
+	"ambient-sweat": "",
+	"cry0": "",
+	"cry1": "",
+	"eat-sweat0": "",
+	"eat-sweat1": "",
+	"eat-sweat2": "",
+	"eat-again-sweat0": "",
+	"eat-again-sweat1": "",
+	"eat-again-sweat2": "",
+	"rage0": "",
+	"rage1": "",
+	"sweat0": "",
+	"sweat1": "",
+	"think1": "",
+}
 
 export (NodePath) var emote_anims_path: NodePath
 
@@ -36,7 +51,7 @@ func _play_mouth_ambient_animation() -> void:
 				and current_animation in ["ambient-se", "ambient-unhappy"]:
 			# keep old mood; otherwise we have one 'happy mouth frame' between two angry moods
 			mouth_ambient_animation = current_animation
-		elif has_animation("ambient-unhappy") and _emote_anims.current_animation in FROWN_ANIMS:
+		elif has_animation("ambient-unhappy") and FROWN_ANIMS.has(_emote_anims.current_animation):
 			mouth_ambient_animation = "ambient-unhappy"
 		else:
 			mouth_ambient_animation = "ambient-se"

@@ -3,17 +3,17 @@
   "id": "bort",
   "name": "Bort",
   "dna": {
-    "body_rgb": "6f83db",
+    "body_rgb": "70843a",
     "belly": "2",
-    "belly_rgb": "92d8e5",
+    "belly_rgb": "8c9537",
     "ear": "3",
-    "eye": "1",
-    "eye_rgb": "374265 eaf2f4",
-    "horn": "1",
+    "eye": "2",
+    "eye_rgb": "7d4c21 e5cd7d",
+    "horn": "3",
     "horn_rgb": "f1e398",
     "line_rgb": "6c4331",
     "mouth": "3",
-    "nose": "1"
+    "nose": "3"
   },
   "fatness": 2.0,
   "chat_theme_def": {
