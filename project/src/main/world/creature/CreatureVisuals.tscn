@@ -3553,64 +3553,64 @@ tracks/1/keys = {
 "values": [ 1, 0, 0 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("Neck0/HeadBobber/EmoteBrain:modulate")
+tracks/2/path = NodePath("NearArm:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5, 6 ),
+"times": PoolRealArray( 0, 0.1, 6 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+"update": 1,
+"values": [ 1, 0, 0 ]
 }
 tracks/3/type = "value"
-tracks/3/path = NodePath("Neck0/HeadBobber/EmoteBrain:material:shader_param/green")
+tracks/3/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 0.552941, 0.67451, 1 ), Color( 1, 0.552941, 0.67451, 1 ) ]
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 0, 0 ]
 }
 tracks/4/type = "value"
-tracks/4/path = NodePath("Neck0/HeadBobber/EmoteBrain:frame")
+tracks/4/path = NodePath("Neck0/HeadBobber/EyeZ1:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 6 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ 2, 2 ]
+"values": [ 1, 0, 0 ]
 }
 tracks/5/type = "value"
-tracks/5/path = NodePath("Neck0/HeadBobber/EmoteBrain:scale")
+tracks/5/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:frame")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 2, 2 ), Vector2( 2.4, 1.6 ), Vector2( 1.4, 2.6 ), Vector2( 2, 2 ) ]
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 1 ]
 }
 tracks/6/type = "value"
-tracks/6/path = NodePath("Neck0/HeadBobber/EmoteBrain:position")
-tracks/6/interp = 2
+tracks/6/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:frame")
+tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.2, 0.5, 0.8, 1.1, 1.4, 1.7, 2, 2.3, 2.6, 2.9, 3.2, 3.5, 3.8, 4.1, 4.4, 4.7, 5, 5.3, 5.6, 5.9, 6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -18.2593, -72.9644 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -42.964 ) ]
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 1 ]
 }
 
 [sub_resource type="Animation" id=79]
@@ -4501,6 +4501,30 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
 "values": [ 0, 2, 2 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Neck0/HeadBobber/EmoteArms:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 1 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("FarArm:frame")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 0, 0 ]
 }
 
 [sub_resource type="Animation" id=85]
