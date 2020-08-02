@@ -239,13 +239,15 @@ func set_orientation(new_orientation: int) -> void:
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
 	
-	reset_eye_frames()
-	if orientation in [SOUTHWEST, SOUTHEAST]:
-		# facing south; initialize textures to forward-facing frames
-		$Neck0.z_index = 0
-	else:
-		# facing north; initialize textures to backward-facing frames
-		$Neck0.z_index = -1
+	if (orientation in [SOUTHEAST, SOUTHWEST]) != (old_orientation in [SOUTHEAST, SOUTHWEST]):
+		# creature changed from facing north to south or vice versa
+		
+		# update their eyes to a default frame to prevent them from having
+		# eyes on the back of their head, or no eyes at all
+		reset_eye_frames()
+		
+		# when facing north, the head goes behind the body
+		$Neck0.z_index = 0 if orientation in [SOUTHWEST, SOUTHEAST] else -1
 	
 	# sprites are drawn facing southeast/northwest, and are horizontally flipped for other directions
 	scale = \
@@ -463,7 +465,7 @@ func _update_creature_properties() -> void:
 			"1": _mouth_animation_player = $Mouth1Anims
 			"2": _mouth_animation_player = $Mouth2Anims
 			"3": _mouth_animation_player = $Mouth3Anims
-			_: print("Invalid mouth: %s", dna.mouth)
+			_: push_warning("Invalid mouth: %s" % dna.mouth)
 		$EmoteAnims.connect("animation_started", _mouth_animation_player, "_on_EmoteAnims_animation_started")
 	
 	if dna.has("ear"):
@@ -500,9 +502,3 @@ func emit_sfx_signal(signal_name: String) -> void:
 		pass
 	else:
 		emit_signal(signal_name)
-
-
-func _on_EmoteAnims_before_mood_switched() -> void:
-	# some moods modify the sprites for our eyes and arms, so we reset them
-	_force_orientation_change = true
-	set_orientation(orientation)

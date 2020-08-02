@@ -12,6 +12,8 @@ signal creature_arrived
 
 signal food_eaten
 
+const IDLE = CreatureVisuals.IDLE
+
 const SOUTHEAST = CreatureVisuals.SOUTHEAST
 const SOUTHWEST = CreatureVisuals.SOUTHWEST
 const NORTHWEST = CreatureVisuals.NORTHWEST
@@ -166,10 +168,6 @@ func play_mood(mood: int) -> void:
 Orients this creature so they're facing the specified target.
 """
 func orient_toward(target: Node2D) -> void:
-	if not creature_visuals.is_idle():
-		# don't change this creature's orientation if they're performing an activity
-		return
-	
 	# calculate the relative direction of the object this creature should face
 	var direction: Vector2 = Global.from_iso(position.direction_to(target.position))
 	var direction_dot := 0.0
@@ -313,6 +311,10 @@ func _update_animation() -> void:
 		play_movement_animation(animation_prefix, non_iso_walk_direction)
 	elif creature_visuals.movement_mode != CreatureVisuals.IDLE:
 		play_movement_animation("idle", _non_iso_velocity)
+
+
+func get_movement_mode() -> int:
+	return creature_visuals.movement_mode
 
 
 func _on_CreatureVisuals_landed() -> void:

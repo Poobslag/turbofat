@@ -64,11 +64,14 @@ Turn the the active chat participants towards each other, and make them face the
 func make_chatters_face_eachother() -> void:
 	# make spira face the other characters
 	if chatters.size() >= 1:
-		ChattableManager.spira.orient_toward(chatters[0])
+		if ChattableManager.spira.get_movement_mode() == Creature.IDLE:
+			# let Spira move while chatting, unless she's asked a question
+			ChattableManager.spira.orient_toward(chatters[0])
 	
 	# make the other characters face spira
 	for chatter in chatters:
 		if chatter.has_method("orient_toward"):
+			# other characters must orient towards Spira to avoid visual glitches when emoting while moving
 			chatter.orient_toward(ChattableManager.spira)
 
 
