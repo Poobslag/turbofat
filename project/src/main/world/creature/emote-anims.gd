@@ -232,8 +232,9 @@ Parameters:
 """
 func unemote(anim_name: String = "") -> void:
 	stop()
-	emit_signal("before_mood_switched")
 	$"../Neck0/HeadBobber/EmoteArms".frame = 0
+	$"../NearArm".update_orientation(_creature_visuals.orientation)
+	$"../FarArm".update_orientation(_creature_visuals.orientation)
 	_emote_eye_z0.frame = 0
 	_emote_eye_z1.frame = 0
 	if anim_name in EAT_SMILE_ANIMS:
@@ -267,11 +268,11 @@ Immediately resets the creature to a default neutral mood.
 
 This takes place immediately, callers do not need to wait for $ResetTween.
 """
-func unemote_immediate(emit_signal: bool = true) -> void:
+func unemote_immediate() -> void:
 	stop()
-	if emit_signal:
-		emit_signal("before_mood_switched")
 	$"../Neck0/HeadBobber/EmoteArms".frame = 0
+	$"../NearArm".update_orientation(_creature_visuals.orientation)
+	$"../FarArm".update_orientation(_creature_visuals.orientation)
 	_emote_eye_z0.frame = 0
 	_emote_eye_z1.frame = 0
 	_head_bobber.rotation_degrees = 0
@@ -393,4 +394,4 @@ func _on_IdleTimer_start_idle_animation(anim_name: String) -> void:
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
 	if is_processing() and not new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
-		unemote_immediate(false)
+		unemote_immediate()
