@@ -1,7 +1,7 @@
 { "frames": [
    {
-    "filename": "emote-arms-1 0.png",
-    "frame": { "x": 198, "y": 0, "w": 1, "h": 1 },
+    "filename": "food 0.png",
+    "frame": { "x": 248, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -9,20 +9,20 @@
     "duration": 100
    },
    {
-    "filename": "emote-arms-1 1.png",
-    "frame": { "x": 140, "y": 0, "w": 53, "h": 57 },
+    "filename": "food 1.png",
+    "frame": { "x": 0, "y": 0, "w": 243, "h": 38 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 312, "y": 282, "w": 53, "h": 57 },
+    "spriteSourceSize": { "x": 269, "y": 296, "w": 243, "h": 38 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-arms-1 2.png",
-    "frame": { "x": 0, "y": 0, "w": 135, "h": 80 },
+    "filename": "food 2.png",
+    "frame": { "x": 0, "y": 43, "w": 241, "h": 33 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 230, "y": 282, "w": 135, "h": 80 },
+    "spriteSourceSize": { "x": 271, "y": 299, "w": 241, "h": 33 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    }
@@ -30,9 +30,9 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.21-x64",
-  "image": "emote-arms-packed.png",
+  "image": "food-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 199, "h": 80 },
+  "size": { "w": 249, "h": 76 },
   "scale": "1"
  }
 }

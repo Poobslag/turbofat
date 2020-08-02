@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=2]
+[gd_scene load_steps=143 format=2]
 
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=2]
@@ -717,7 +717,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.0666667 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -771,7 +771,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0.066 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -901,7 +901,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0 ),
+"times": PoolRealArray( 0.0666667 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -1003,7 +1003,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.066 ),
+"times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -1104,6 +1104,198 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=52]
+length = 4.0
+loop = true
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 2 ]
+}
+
+[sub_resource type="Animation" id=53]
+length = 4.0
+loop = true
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.66667, 3.33333, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 3, 4, 3, 1 ]
+}
+
+[sub_resource type="Animation" id=54]
+resource_name = "ambient-unhappy"
+length = 4.0
+loop = true
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.66667, 3.33334, 4.00001 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 5, 6, 7, 6, 5 ]
+}
+
+[sub_resource type="Animation" id=55]
+length = 0.6
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.4, 0.433333, 0.599999 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 8, 9, 11, 12, 9, 13, 8, 14, 13, 13, 14, 14, 8, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/HeadBobber/Food:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.1, 0.133333, 0.599999 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 0, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Neck0/HeadBobber/FoodLaser:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.599999 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 0, 1, 2, 0, 0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.0666667 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "show_food_effects"
+} ]
+}
+
+[sub_resource type="Animation" id=56]
+length = 0.8
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.266667, 0.3, 0.333333, 0.366667, 0.599999 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 10, 11, 12, 9, 13, 8, 14, 13, 13, 14, 14, 8, 8 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/HeadBobber/Food:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.766666 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Neck0/HeadBobber/FoodLaser:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.766666 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 0, 0 ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "show_food_effects"
+} ]
+}
+
+[sub_resource type="Animation" id=57]
+length = 4.0
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666666, 0.133333, 0.2, 0.266666, 0.866666, 0.999999, 1.66667, 1.83333, 1.93333, 2.23333, 2.3, 2.36667, 2.43333, 2.5, 2.56666, 2.63333, 2.7, 2.76667, 2.83333, 2.9, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 13, 12, 11, 10, 11, 10, 11, 12, 11, 12, 13, 14, 7, 14, 14, 7, 7, 14, 14, 7, 7 ]
+}
+
+[sub_resource type="Animation" id=58]
+length = 4.0
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.633333, 0.8, 0.9, 1.2, 1.26667, 1.33333, 1.4, 1.46667, 1.53333, 1.6, 1.66667, 1.73333, 1.8, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 13, 12, 11, 10, 11, 12, 11, 12, 13, 14, 7, 14, 13, 13, 14, 14, 7, 7 ]
+}
+
+[sub_resource type="Animation" id=59]
 length = 7.99999
 step = 0.0333333
 tracks/0/type = "value"
@@ -1145,7 +1337,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=53]
+[sub_resource type="Animation" id=60]
 loop = true
 step = 1.0
 tracks/0/type = "value"
@@ -1187,7 +1379,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=54]
+[sub_resource type="Animation" id=61]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -1238,7 +1430,7 @@ tracks/3/keys = {
 "values": [ 1, 1 ]
 }
 
-[sub_resource type="Animation" id=55]
+[sub_resource type="Animation" id=62]
 loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -1289,7 +1481,7 @@ tracks/3/keys = {
 "values": [ 2, 2 ]
 }
 
-[sub_resource type="Animation" id=56]
+[sub_resource type="Animation" id=63]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -1474,7 +1666,7 @@ tracks/14/keys = {
 "times": PoolRealArray( 0.2 )
 }
 
-[sub_resource type="Animation" id=57]
+[sub_resource type="Animation" id=64]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -1598,7 +1790,7 @@ tracks/9/keys = {
 "values": [ 2.0, 3.0, 3.0 ]
 }
 
-[sub_resource type="Animation" id=58]
+[sub_resource type="Animation" id=65]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -1626,7 +1818,7 @@ tracks/1/keys = {
 "values": [ 1, 3, 4, 4, 3, 1 ]
 }
 
-[sub_resource type="Animation" id=59]
+[sub_resource type="Animation" id=66]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -1654,7 +1846,7 @@ tracks/1/keys = {
 "values": [ 4, 4, 3, 1 ]
 }
 
-[sub_resource type="Animation" id=60]
+[sub_resource type="Animation" id=67]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1742,7 +1934,7 @@ tracks/6/keys = {
 "values": [ 0.6, 0.6 ]
 }
 
-[sub_resource type="Animation" id=61]
+[sub_resource type="Animation" id=68]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1938,7 +2130,7 @@ tracks/15/keys = {
 "values": [ Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ) ]
 }
 
-[sub_resource type="Animation" id=62]
+[sub_resource type="Animation" id=69]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2122,7 +2314,7 @@ tracks/14/keys = {
 "values": [ 0.0, 0.0, 3.0, -3.0, 3.0, -3.0, 3.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=63]
+[sub_resource type="Animation" id=70]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -2270,7 +2462,7 @@ tracks/11/keys = {
 "values": [ 0.0, 0.0, 6.0, -6.0, 6.0, -6.0, 6.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=64]
+[sub_resource type="Animation" id=71]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2454,7 +2646,7 @@ tracks/14/keys = {
 "values": [ 0.1, 0.1 ]
 }
 
-[sub_resource type="Animation" id=65]
+[sub_resource type="Animation" id=72]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2542,7 +2734,7 @@ tracks/6/keys = {
 "values": [ 6.5, 0.6, 0.6 ]
 }
 
-[sub_resource type="Animation" id=66]
+[sub_resource type="Animation" id=73]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2738,7 +2930,7 @@ tracks/15/keys = {
 "values": [ Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ) ]
 }
 
-[sub_resource type="Animation" id=67]
+[sub_resource type="Animation" id=74]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2922,7 +3114,7 @@ tracks/14/keys = {
 "values": [ 0.0, 0.0, 3.0, -3.0, 3.0, -3.0, 3.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=68]
+[sub_resource type="Animation" id=75]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3070,7 +3262,7 @@ tracks/11/keys = {
 "values": [ 0.0, 0.0, 6.0, -6.0, 6.0, -6.0, 6.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=69]
+[sub_resource type="Animation" id=76]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3242,7 +3434,7 @@ tracks/13/keys = {
 "values": [ 0.1, 0.1 ]
 }
 
-[sub_resource type="Animation" id=70]
+[sub_resource type="Animation" id=77]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3282,7 +3474,7 @@ tracks/2/keys = {
 "values": [ 0.0, 3.0, 1.0, 3.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=71]
+[sub_resource type="Animation" id=78]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3322,8 +3514,7 @@ tracks/2/keys = {
 "values": [ 0.0, 5.0, 2.0, 5.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=72]
-resource_name = "idle-ear-wiggle0"
+[sub_resource type="Animation" id=79]
 length = 2.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3375,8 +3566,7 @@ tracks/3/keys = {
 "values": [ 0, 0, 1, 1, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=73]
-resource_name = "idle-ear-wiggle1"
+[sub_resource type="Animation" id=80]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3392,7 +3582,7 @@ tracks/0/keys = {
 "values": [ 0.0, 0.0, 3.0, 3.0, -4.0, -4.0, 6.0, 6.0, -6.0, -6.0, 4.0, 4.0, -3.0, -3.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=74]
+[sub_resource type="Animation" id=81]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0:scale")
@@ -3419,7 +3609,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.0, -10.0, -8.0, -10.0, -8.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=75]
+[sub_resource type="Animation" id=82]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0:scale")
@@ -3446,7 +3636,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.0, -10.0, -8.0, -10.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=76]
+[sub_resource type="Animation" id=83]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3486,7 +3676,7 @@ tracks/2/keys = {
 "values": [ 0.0, -6.0, -4.0, -6.0, -6.0, 2.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=77]
+[sub_resource type="Animation" id=84]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3526,7 +3716,7 @@ tracks/2/keys = {
 "values": [ 0.0, -6.0, -4.0, -6.0, -6.0, 2.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=78]
+[sub_resource type="Animation" id=85]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EmoteArms:frame")
@@ -3613,7 +3803,7 @@ tracks/6/keys = {
 "values": [ 0, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=79]
+[sub_resource type="Animation" id=86]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EmoteArms:frame")
@@ -3798,7 +3988,7 @@ tracks/14/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=80]
+[sub_resource type="Animation" id=87]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -3995,7 +4185,7 @@ tracks/15/keys = {
 "times": PoolRealArray( 0.2 )
 }
 
-[sub_resource type="Animation" id=81]
+[sub_resource type="Animation" id=88]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -4192,7 +4382,7 @@ tracks/15/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=82]
+[sub_resource type="Animation" id=89]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -4243,7 +4433,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=83]
+[sub_resource type="Animation" id=90]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -4452,7 +4642,7 @@ tracks/16/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=84]
+[sub_resource type="Animation" id=91]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -4527,7 +4717,7 @@ tracks/5/keys = {
 "values": [ 1, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=85]
+[sub_resource type="Animation" id=92]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -4688,7 +4878,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=86]
+[sub_resource type="Animation" id=93]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EmoteArms:frame")
@@ -4801,7 +4991,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=87]
+[sub_resource type="Animation" id=94]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -4939,7 +5129,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=88]
+[sub_resource type="Animation" id=95]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:position")
@@ -5038,7 +5228,7 @@ tracks/7/keys = {
 "values": [ Vector2( -10, -50 ), Vector2( -10, -50 ), Vector2( 0, -50 ), Vector2( -2.5, -60 ), Vector2( -10, -140 ), Vector2( 0, -240 ) ]
 }
 
-[sub_resource type="Animation" id=89]
+[sub_resource type="Animation" id=96]
 length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("NearArm:position")
@@ -5125,8 +5315,7 @@ tracks/6/keys = {
 "values": [ Vector2( -10, -50 ), Vector2( -10, -50 ), Vector2( 0, -50 ), Vector2( -2.5, -60 ), Vector2( -10, -140 ), Vector2( 0, -240 ) ]
 }
 
-[sub_resource type="Animation" id=90]
-resource_name = "idle-nw"
+[sub_resource type="Animation" id=97]
 step = 0.0555556
 tracks/0/type = "value"
 tracks/0/path = NodePath("FarArm:frame")
@@ -5177,7 +5366,7 @@ tracks/3/keys = {
 "values": [ 2, 2 ]
 }
 
-[sub_resource type="Animation" id=91]
+[sub_resource type="Animation" id=98]
 step = 0.0555556
 tracks/0/type = "value"
 tracks/0/path = NodePath("FarArm:frame")
@@ -5228,8 +5417,7 @@ tracks/3/keys = {
 "values": [ 1, 1 ]
 }
 
-[sub_resource type="Animation" id=92]
-resource_name = "run-nw"
+[sub_resource type="Animation" id=99]
 length = 0.6
 loop = true
 step = 0.05
@@ -5335,7 +5523,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=93]
+[sub_resource type="Animation" id=100]
 length = 0.6
 loop = true
 step = 0.05
@@ -5441,7 +5629,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=94]
+[sub_resource type="Animation" id=101]
 length = 0.4
 loop = true
 step = 0.05
@@ -5484,7 +5672,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=95]
+[sub_resource type="Animation" id=102]
 length = 0.4
 loop = true
 step = 0.05
@@ -5527,8 +5715,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=96]
-resource_name = "walk-nw"
+[sub_resource type="Animation" id=103]
 length = 0.533333
 loop = true
 step = 0.0666667
@@ -5634,8 +5821,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=97]
-resource_name = "walk-se"
+[sub_resource type="Animation" id=104]
 length = 0.533333
 loop = true
 step = 0.0666667
@@ -5741,7 +5927,7 @@ tracks/7/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=98]
+[sub_resource type="Animation" id=105]
 length = 0.6
 loop = true
 step = 0.05
@@ -5850,7 +6036,7 @@ tracks/7/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=99]
+[sub_resource type="Animation" id=106]
 length = 0.6
 loop = true
 step = 0.05
@@ -6306,6 +6492,7 @@ script = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": "Neck1 offsets the head's position as the creature bobs their head up and down"
 }
+head_bob_mode = 0
 
 [node name="EarZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
@@ -6485,13 +6672,13 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 material = SubResource( 29 )
-position = Vector2( 255.118, 133.989 )
+position = Vector2( -18, -36 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 texture = ExtResource( 10 )
 frame_data = "res://assets/main/world/creature/1/emote-brain-packed.json"
 rect_size = Vector2( 256, 256 )
-frame = 4
+frame = 1
 offset = Vector2( 0, -119 )
 
 [node name="EmoteHead" type="Node2D" parent="Neck0/HeadBobber"]
@@ -6547,6 +6734,7 @@ anims/eat-again = SubResource( 43 )
 anims/idle-yawn0 = SubResource( 44 )
 anims/idle-yawn1 = SubResource( 45 )
 script = ExtResource( 5 )
+emote_anims_path = NodePath("../EmoteAnims")
 
 [node name="Mouth2Anims" type="AnimationPlayer" parent="."]
 anims/ambient-nw = SubResource( 46 )
@@ -6556,44 +6744,56 @@ anims/eat-again = SubResource( 49 )
 anims/idle-yawn0 = SubResource( 50 )
 anims/idle-yawn1 = SubResource( 51 )
 script = ExtResource( 5 )
+emote_anims_path = NodePath("../EmoteAnims")
+
+[node name="Mouth3Anims" type="AnimationPlayer" parent="."]
+anims/ambient-nw = SubResource( 52 )
+anims/ambient-se = SubResource( 53 )
+anims/ambient-unhappy = SubResource( 54 )
+anims/eat = SubResource( 55 )
+anims/eat-again = SubResource( 56 )
+anims/idle-yawn0 = SubResource( 57 )
+anims/idle-yawn1 = SubResource( 58 )
+script = ExtResource( 5 )
+emote_anims_path = NodePath("../EmoteAnims")
 
 [node name="EmoteAnims" type="AnimationPlayer" parent="."]
-anims/ambient = SubResource( 52 )
-anims/ambient-nw = SubResource( 53 )
-anims/ambient-smile = SubResource( 54 )
-anims/ambient-sweat = SubResource( 55 )
-anims/cry0 = SubResource( 56 )
-anims/cry1 = SubResource( 57 )
-anims/eat = SubResource( 58 )
-anims/eat-again = SubResource( 59 )
-anims/eat-again-smile0 = SubResource( 60 )
-anims/eat-again-smile1 = SubResource( 61 )
-anims/eat-again-sweat0 = SubResource( 62 )
-anims/eat-again-sweat1 = SubResource( 63 )
-anims/eat-again-sweat2 = SubResource( 64 )
-anims/eat-smile0 = SubResource( 65 )
-anims/eat-smile1 = SubResource( 66 )
-anims/eat-sweat0 = SubResource( 67 )
-anims/eat-sweat1 = SubResource( 68 )
-anims/eat-sweat2 = SubResource( 69 )
-anims/idle-close-eyes0 = SubResource( 70 )
-anims/idle-close-eyes1 = SubResource( 71 )
-anims/idle-ear-wiggle0 = SubResource( 72 )
-anims/idle-ear-wiggle1 = SubResource( 73 )
-anims/idle-look-over-shoulder0 = SubResource( 74 )
-anims/idle-look-over-shoulder1 = SubResource( 75 )
-anims/idle-yawn0 = SubResource( 76 )
-anims/idle-yawn1 = SubResource( 77 )
-anims/laugh0 = SubResource( 78 )
-anims/laugh1 = SubResource( 79 )
-anims/rage0 = SubResource( 80 )
-anims/rage1 = SubResource( 81 )
-anims/smile0 = SubResource( 82 )
-anims/smile1 = SubResource( 83 )
-anims/sweat0 = SubResource( 84 )
-anims/sweat1 = SubResource( 85 )
-anims/think0 = SubResource( 86 )
-anims/think1 = SubResource( 87 )
+anims/ambient = SubResource( 59 )
+anims/ambient-nw = SubResource( 60 )
+anims/ambient-smile = SubResource( 61 )
+anims/ambient-sweat = SubResource( 62 )
+anims/cry0 = SubResource( 63 )
+anims/cry1 = SubResource( 64 )
+anims/eat = SubResource( 65 )
+anims/eat-again = SubResource( 66 )
+anims/eat-again-smile0 = SubResource( 67 )
+anims/eat-again-smile1 = SubResource( 68 )
+anims/eat-again-sweat0 = SubResource( 69 )
+anims/eat-again-sweat1 = SubResource( 70 )
+anims/eat-again-sweat2 = SubResource( 71 )
+anims/eat-smile0 = SubResource( 72 )
+anims/eat-smile1 = SubResource( 73 )
+anims/eat-sweat0 = SubResource( 74 )
+anims/eat-sweat1 = SubResource( 75 )
+anims/eat-sweat2 = SubResource( 76 )
+anims/idle-close-eyes0 = SubResource( 77 )
+anims/idle-close-eyes1 = SubResource( 78 )
+anims/idle-ear-wiggle0 = SubResource( 79 )
+anims/idle-ear-wiggle1 = SubResource( 80 )
+anims/idle-look-over-shoulder0 = SubResource( 81 )
+anims/idle-look-over-shoulder1 = SubResource( 82 )
+anims/idle-yawn0 = SubResource( 83 )
+anims/idle-yawn1 = SubResource( 84 )
+anims/laugh0 = SubResource( 85 )
+anims/laugh1 = SubResource( 86 )
+anims/rage0 = SubResource( 87 )
+anims/rage1 = SubResource( 88 )
+anims/smile0 = SubResource( 89 )
+anims/smile1 = SubResource( 90 )
+anims/sweat0 = SubResource( 91 )
+anims/sweat1 = SubResource( 92 )
+anims/think0 = SubResource( 93 )
+anims/think1 = SubResource( 94 )
 script = ExtResource( 7 )
 
 [node name="ResetTween" type="Tween" parent="EmoteAnims"]
@@ -6603,60 +6803,62 @@ stream = ExtResource( 18 )
 bus = "Sound Bus"
 
 [node name="FatSpriteMover" type="AnimationPlayer" parent="."]
-anims/fat-nw = SubResource( 88 )
-anims/fat-se = SubResource( 89 )
+anims/fat-nw = SubResource( 95 )
+anims/fat-se = SubResource( 96 )
 script = ExtResource( 8 )
 creature_visuals_path = NodePath("..")
 
 [node name="MovementAnims" type="AnimationPlayer" parent="."]
-anims/idle-nw = SubResource( 90 )
-anims/idle-se = SubResource( 91 )
-anims/run-nw = SubResource( 92 )
-anims/run-se = SubResource( 93 )
-anims/sprint-nw = SubResource( 94 )
-anims/sprint-se = SubResource( 95 )
-anims/walk-nw = SubResource( 96 )
-anims/walk-se = SubResource( 97 )
-anims/wiggle-nw = SubResource( 98 )
-anims/wiggle-se = SubResource( 99 )
+anims/idle-nw = SubResource( 97 )
+anims/idle-se = SubResource( 98 )
+anims/run-nw = SubResource( 99 )
+anims/run-se = SubResource( 100 )
+anims/sprint-nw = SubResource( 101 )
+anims/sprint-se = SubResource( 102 )
+anims/walk-nw = SubResource( 103 )
+anims/walk-se = SubResource( 104 )
+anims/wiggle-nw = SubResource( 105 )
+anims/wiggle-se = SubResource( 106 )
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="creature_arrived" from="." to="IdleTimer" method="_on_CreatureVisuals_creature_arrived"]
-[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Sprint" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="FatSpriteMover" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprint" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="FatSpriteMover" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="orientation_changed" from="." to="Mouth2Anims" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Mouth3Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="EmoteAnims" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="FarArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="FarLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="FarArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="start_idle_animation" from="IdleTimer" to="Mouth2Anims" method="_on_IdleTimer_start_idle_animation"]
+[connection signal="start_idle_animation" from="IdleTimer" to="Mouth3Anims" method="_on_IdleTimer_start_idle_animation"]
+[connection signal="start_idle_animation" from="IdleTimer" to="Ear1Anims" method="_on_IdleTimer_start_idle_animation"]
+[connection signal="start_idle_animation" from="IdleTimer" to="Ear2Anims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="start_idle_animation" from="IdleTimer" to="EmoteAnims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="start_idle_animation" from="IdleTimer" to="Ear3Anims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="start_idle_animation" from="IdleTimer" to="Mouth1Anims" method="_on_IdleTimer_start_idle_animation"]
-[connection signal="start_idle_animation" from="IdleTimer" to="Ear2Anims" method="_on_IdleTimer_start_idle_animation"]
-[connection signal="start_idle_animation" from="IdleTimer" to="Ear1Anims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
 [connection signal="before_mood_switched" from="EmoteAnims" to="." method="_on_EmoteAnims_before_mood_switched"]

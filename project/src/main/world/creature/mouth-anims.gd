@@ -4,7 +4,13 @@ extends AnimationPlayer
 An AnimationPlayer which animates mouths.
 """
 
+# emote animations which should result in a frown, if the mouth is capable of frowning
+const FROWN_ANIMS = ["ambient-sweat", "cry0", "cry1", "rage0", "rage1", "sweat0", "sweat1", "think1"]
+
+export (NodePath) var emote_anims_path: NodePath
+
 onready var _creature_visuals: CreatureVisuals = get_parent()
+onready var _emote_anims: AnimationPlayer = get_node(emote_anims_path)
 
 func _ready() -> void:
 	_creature_visuals.connect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
@@ -21,13 +27,22 @@ func _process(_delta: float) -> void:
 
 
 """
-Plays an appropriate mouth ambient animation for the creature's orientation.
+Plays an appropriate mouth ambient animation for the creature's orientation and mood.
 """
 func _play_mouth_ambient_animation() -> void:
+	var mouth_ambient_animation: String
 	if _creature_visuals.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
-		play("ambient-se")
+		if _emote_anims.current_animation in ["", "ambient"] \
+				and current_animation in ["ambient-se", "ambient-unhappy"]:
+			# keep old mood; otherwise we have one 'happy mouth frame' between two angry moods
+			mouth_ambient_animation = current_animation
+		elif has_animation("ambient-unhappy") and _emote_anims.current_animation in FROWN_ANIMS:
+			mouth_ambient_animation = "ambient-unhappy"
+		else:
+			mouth_ambient_animation = "ambient-se"
 	else:
-		play("ambient-nw")
+		mouth_ambient_animation = "ambient-nw"
+	play(mouth_ambient_animation)
 
 
 """
@@ -54,6 +69,11 @@ func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orienta
 		_play_mouth_ambient_animation()
 
 
-func _on_IdleTimer_start_idle_animation(anim_name) -> void:
+func _on_IdleTimer_start_idle_animation(anim_name: String) -> void:
 	if is_processing() and anim_name in get_animation_list():
 		play(anim_name)
+
+
+func _on_EmoteAnims_animation_started(_anim_name: String) -> void:
+	if current_animation.begins_with("ambient-"):
+		_play_mouth_ambient_animation()

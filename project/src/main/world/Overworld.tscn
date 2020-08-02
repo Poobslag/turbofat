@@ -179,6 +179,19 @@ autostart = true
 [node name="Boatricia" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( 652.587, 320.111 )
 creature_id = "boatricia"
+dna = {
+"belly": "1",
+"belly_rgb": "eec086",
+"body_rgb": "0b45a6",
+"ear": "2",
+"eye": "3",
+"eye_rgb": "fad541 ffffff",
+"horn": "0",
+"horn_rgb": "282828",
+"line_rgb": "41281e",
+"mouth": "1",
+"nose": "1"
+}
 
 [node name="GlowySphere" type="KinematicBody2D" parent="World/Obstacles"]
 position = Vector2( 731.162, 206.052 )

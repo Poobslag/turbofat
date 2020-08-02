@@ -282,9 +282,13 @@ static func fill_dna(dna: Dictionary) -> Dictionary:
 		put_if_absent(result, "eye", Utils.rand_value(["1", "1", "1", "2", "3"]))
 		put_if_absent(result, "ear", Utils.rand_value(["1", "1", "1", "2", "3"]))
 		put_if_absent(result, "horn", Utils.rand_value(["0", "0", "0", "1", "2"]))
-		put_if_absent(result, "mouth", Utils.rand_value(["1", "1", "2"]))
+		put_if_absent(result, "mouth", Utils.rand_value(["1", "1", "2", "3", "3"]))
 		
-		put_if_absent(result, "nose", Utils.rand_value(["0", "0", "0", "1", "2", "3"]))
+		var noses := ["0", "1", "1", "2", "2", "3", "3"]
+		if result["mouth"] in ["1", "2"]:
+			# creatures with beaky mouths are less likely to have nose
+			noses = ["0", "0", "0", "0", "0", "0", "0", "1", "1", "2", "2", "3"]
+		put_if_absent(result, "nose", Utils.rand_value(noses))
 		put_if_absent(result, "belly", Utils.rand_value(["0", "0", "1", "1", "2"]))
 	put_if_absent(result, "body", "1")
 	return result
