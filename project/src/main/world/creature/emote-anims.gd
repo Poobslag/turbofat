@@ -232,7 +232,8 @@ Parameters:
 """
 func unemote(anim_name: String = "") -> void:
 	stop()
-	$"../Neck0/HeadBobber/EmoteArms".frame = 0
+	$"../Neck0/HeadBobber/EmoteArmZ0".frame = 0
+	$"../Neck0/HeadBobber/EmoteArmZ1".frame = 0
 	$"../NearArm".update_orientation(_creature_visuals.orientation)
 	$"../FarArm".update_orientation(_creature_visuals.orientation)
 	_emote_eye_z0.frame = 0
@@ -270,7 +271,8 @@ This takes place immediately, callers do not need to wait for $ResetTween.
 """
 func unemote_immediate() -> void:
 	stop()
-	$"../Neck0/HeadBobber/EmoteArms".frame = 0
+	$"../Neck0/HeadBobber/EmoteArmZ0".frame = 0
+	$"../Neck0/HeadBobber/EmoteArmZ1".frame = 0
 	$"../NearArm".update_orientation(_creature_visuals.orientation)
 	$"../FarArm".update_orientation(_creature_visuals.orientation)
 	_emote_eye_z0.frame = 0
