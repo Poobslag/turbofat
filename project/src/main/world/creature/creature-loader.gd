@@ -183,7 +183,8 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/Nose:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EyeZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/CheekZ2:black"] = line_color
-	dna["shader:Neck0/HeadBobber/EmoteArms:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EmoteArmZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EmoteArmZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteEyeZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteEyeZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteBrain:black"] = line_color
@@ -210,8 +211,9 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/Nose:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EyeZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/CheekZ2:red"] = body_color
-	dna["shader:Neck0/HeadBobber/EmoteArms:red"] = body_color
-	
+	dna["shader:Neck0/HeadBobber/EmoteArmZ0:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EmoteArmZ1:red"] = body_color
+
 	var belly_color: Color
 	if dna.has("belly_rgb"):
 		belly_color = Color(dna.belly_rgb)
