@@ -67,11 +67,7 @@ Parameters:
 		includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
 """
 static func load_details(dna: Dictionary) -> void:
-	_load_ear(dna)
-	_load_horn(dna)
-	_load_mouth(dna)
-	_load_eye(dna)
-	_load_nose(dna)
+	_load_head(dna)
 	_load_body(dna)
 	_load_colors(dna)
 
@@ -120,43 +116,27 @@ static func _load_texture(dna: Dictionary, node_path: String, key: String, filen
 
 
 """
-Loads the resources for a creature's ears based on a creature definition.
+Loads the resources for a creature's head based on a creature definition.
 """
-static func _load_ear(dna: Dictionary) -> void:
+static func _load_head(dna: Dictionary) -> void:
+	_load_texture(dna, "Neck0/HeadBobber/CheekZ0", "cheek", "cheek-z0-packed")
+	_load_texture(dna, "Neck0/HeadBobber/CheekZ1", "cheek", "cheek-z1-packed")
+	_load_texture(dna, "Neck0/HeadBobber/CheekZ2", "cheek", "cheek-z2-packed")
+	
 	_load_texture(dna, "Neck0/HeadBobber/EarZ0", "ear", "ear-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/EarZ1", "ear", "ear-z1-packed")
 	_load_texture(dna, "Neck0/HeadBobber/EarZ2", "ear", "ear-z2-packed")
-
-
-"""
-Loads the resources for a creature's horn based on a creature definition.
-"""
-static func _load_horn(dna: Dictionary) -> void:
+	
+	_load_texture(dna, "Neck0/HeadBobber/EyeZ0", "eye", "eye-z0-packed")
+	_load_texture(dna, "Neck0/HeadBobber/EyeZ1", "eye", "eye-z1-packed")
+	
 	_load_texture(dna, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-packed")
-
-
-"""
-Loads the resources for a creature's mouth based on a creature definition.
-"""
-static func _load_mouth(dna: Dictionary) -> void:
+	
 	_load_texture(dna, "Neck0/HeadBobber/Mouth", "mouth", "mouth-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Food", "mouth", "food-packed")
 	_load_texture(dna, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-packed")
-
-
-"""
-Loads the resources for a creature's eyes based on a creature definition.
-"""
-static func _load_eye(dna: Dictionary) -> void:
-	_load_texture(dna, "Neck0/HeadBobber/EyeZ0", "eye", "eye-z0-packed")
-	_load_texture(dna, "Neck0/HeadBobber/EyeZ1", "eye", "eye-z1-packed")
-
-
-"""
-Loads the resources for a creature's nose based on a creature definition.
-"""
-static func _load_nose(dna: Dictionary) -> void:
+	
 	_load_texture(dna, "Neck0/HeadBobber/Nose", "nose", "nose-packed")
 
 
@@ -192,14 +172,17 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:NearLeg:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EarZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/HornZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/CheekZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/Head:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EarZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/HornZ1:black"] = line_color
+	dna["shader:Neck0/HeadBobber/CheekZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EarZ2:black"] = line_color
 	dna["shader:Neck0/HeadBobber/Mouth:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EyeZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/Nose:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EyeZ1:black"] = line_color
+	dna["shader:Neck0/HeadBobber/CheekZ2:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteArms:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteEyeZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteEyeZ1:black"] = line_color
@@ -216,14 +199,17 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:NearArm:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EarZ0:red"] = body_color
 	dna["shader:Neck0/HeadBobber/HornZ0:red"] = body_color
+	dna["shader:Neck0/HeadBobber/CheekZ0:red"] = body_color
 	dna["shader:Neck0/HeadBobber/Head:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EarZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
+	dna["shader:Neck0/HeadBobber/CheekZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EarZ2:red"] = body_color
 	dna["shader:Neck0/HeadBobber/Mouth:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EyeZ0:red"] = body_color
 	dna["shader:Neck0/HeadBobber/Nose:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EyeZ1:red"] = body_color
+	dna["shader:Neck0/HeadBobber/CheekZ2:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EmoteArms:red"] = body_color
 	
 	var belly_color: Color
@@ -281,6 +267,7 @@ static func fill_dna(dna: Dictionary) -> Dictionary:
 		# avoid loading unnecessary resources for things like the level editor
 		pass
 	else:
+		put_if_absent(result, "cheek", Utils.rand_value(["0", "0", "0", "1", "1", "2", "2", "3"]))
 		put_if_absent(result, "eye", Utils.rand_value(["1", "1", "1", "2", "3"]))
 		put_if_absent(result, "ear", Utils.rand_value(["1", "1", "1", "2", "3"]))
 		put_if_absent(result, "horn", Utils.rand_value(["0", "0", "0", "1", "2"]))

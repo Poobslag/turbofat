@@ -13,7 +13,8 @@
     "horn_rgb": "f1e398",
     "line_rgb": "6c4331",
     "mouth": "2",
-    "nose": "0"
+    "nose": "0",
+    "cheek": "3"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,
