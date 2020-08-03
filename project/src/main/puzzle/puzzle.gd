@@ -23,7 +23,7 @@ func _ready() -> void:
 	if Scenario.settings.other.tutorial:
 		Global.creature_queue.push_front({
 			"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
-			"ear": "3", "horn": "0", "mouth": "2", "eye": "2"
+			"ear": "3", "horn": "0", "mouth": "2", "eye": "2", "cheek": "0", "nose": "2"
 		})
 		$CreatureView.summon_creature()
 	
