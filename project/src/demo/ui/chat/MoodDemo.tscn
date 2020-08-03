@@ -19,6 +19,7 @@ position = Vector2( 512, 420 )
 scale = Vector2( 3, 3 )
 dna = {
 "body_rgb": "0b45a6",
+"cheek": "1",
 "ear": "2",
 "eye": "3",
 "eye_rgb": "fad541 ffffff",

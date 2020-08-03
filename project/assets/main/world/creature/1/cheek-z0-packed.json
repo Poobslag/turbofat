@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "cheek-z0- 0.png",
+    "frame": { "x": 34, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "cheek-z0- 1.png",
+    "frame": { "x": 34, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "cheek-z0- 2.png",
+    "frame": { "x": 0, "y": 0, "w": 29, "h": 38 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 308, "y": 270, "w": 29, "h": 38 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.21-x64",
+  "image": "cheek-z0-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 35, "h": 38 },
+  "scale": "1"
+ }
+}
