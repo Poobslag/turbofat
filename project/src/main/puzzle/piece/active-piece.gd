@@ -42,7 +42,7 @@ Parameters:
 	'init_type': Piece shape, color, kick information
 	
 	'init_is_cell_blocked': A callback function which returns 'true' if a specified cell is
-			blocked, either because it lies outside the playfield or is obstructed by a block
+		blocked, either because it lies outside the playfield or is obstructed by a block
 """
 func _init(init_type: PieceType, init_cell_blocked_func: FuncRef) -> void:
 	type = init_type

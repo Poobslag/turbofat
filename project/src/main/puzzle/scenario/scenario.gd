@@ -11,6 +11,9 @@ This class needs to be a node because it provides utility methods which utilize 
 # emitted after the scenario has customized the puzzle's settings.
 signal settings_changed
 
+# The mandatory tutorial the player must complete before playing the game
+const BEGINNER_TUTORIAL := "tutorial-beginner-0"
+
 # The settings for the scenario currently being launched or played
 var settings := ScenarioSettings.new() setget switch_scenario
 

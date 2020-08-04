@@ -158,8 +158,8 @@ func _on_LineClearer_line_cleared(y: int, total_lines: int, remaining_lines: int
 
 
 func _on_LineClearer_lines_deleted(lines: Array) -> void:
-	emit_signal("after_piece_written")
 	emit_signal("lines_deleted", lines)
+	emit_signal("after_piece_written")
 
 
 func _on_FrostingGlobs_hit_playfield(glob: Node) -> void:

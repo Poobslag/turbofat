@@ -10,20 +10,20 @@ const FADE_IN_DURATION := 2.5
 """
 Gradually silences a music track.
 """
-func fade_out(player: AudioStreamPlayer) -> void:
+func fade_out(player: AudioStreamPlayer, min_volume: float) -> void:
 	stop(player, "volume_db")
 	remove(player, "volume_db")
-	interpolate_property(player, "volume_db", player.volume_db, MusicPlayer.MIN_VOLUME, FADE_OUT_DURATION)
+	interpolate_property(player, "volume_db", player.volume_db, min_volume, FADE_OUT_DURATION)
 	start()
 
 
 """
 Gradually raises a music track to full volume.
 """
-func fade_in(player: AudioStreamPlayer) -> void:
+func fade_in(player: AudioStreamPlayer, max_volume: float) -> void:
 	stop(player, "volume_db")
 	remove(player, "volume_db")
-	interpolate_property(player, "volume_db", player.volume_db, MusicPlayer.MAX_VOLUME, FADE_IN_DURATION)
+	interpolate_property(player, "volume_db", player.volume_db, max_volume, FADE_IN_DURATION)
 	start()
 
 

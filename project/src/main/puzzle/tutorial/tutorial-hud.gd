@@ -4,9 +4,6 @@ extends Control
 UI items specific for puzzle tutorials.
 """
 
-# The mandatory tutorial the player must complete before playing the game
-const BEGINNER_TUTORIAL_SCENARIO := "tutorial-beginner-0"
-
 export (NodePath) var puzzle_path: NodePath
 
 onready var _puzzle:Puzzle = get_node(puzzle_path)
@@ -43,7 +40,7 @@ func _ready() -> void:
 				+ " You seem to already be familiar with this sort of game,/ so let's dive right in.")
 		yield(get_tree().create_timer(0.80), "timeout")
 		_puzzle.show_start_button()
-		if PlayerData.scenario_history.finished_scenarios.has(BEGINNER_TUTORIAL_SCENARIO):
+		if PlayerData.scenario_history.finished_scenarios.has(Scenario.BEGINNER_TUTORIAL):
 			_puzzle.show_back_button()
 
 
@@ -250,6 +247,9 @@ func _flash() -> void:
 
 
 func _on_PuzzleScore_game_prepared() -> void:
+	# summon the instructor. this is redundant for the first attempt of a tutorial, but necessary when retrying
+	_puzzle.summon_instructor()
+	
 	_lines_cleared = 0
 	_boxes_built = 0
 	_squish_moves = 0

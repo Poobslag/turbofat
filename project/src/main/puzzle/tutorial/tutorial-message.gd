@@ -95,6 +95,8 @@ func append_big_message(text_with_lulls: String) -> void:
 
 
 func _append_message_with_font(text_with_lulls, font) -> void:
+	# remove the pop out timer. otherwise a new message would inherit the timer from an old message
+	_pop_out_timer = 0
 	if not visible:
 		$Tween.pop_in()
 	
