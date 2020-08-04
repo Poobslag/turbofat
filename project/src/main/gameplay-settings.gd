@@ -20,4 +20,4 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	ghost_piece = json.get("music", true)
+	ghost_piece = json.get("ghost_piece", true)

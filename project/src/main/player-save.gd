@@ -116,6 +116,7 @@ func save_player_data() -> void:
 	var save_json: Array = []
 	save_json.append(generic_data("version", PLAYER_DATA_VERSION).to_json_dict())
 	save_json.append(generic_data("player-info", {"money": PlayerData.money}).to_json_dict())
+	save_json.append(generic_data("gameplay-settings", PlayerData.gameplay_settings.to_json_dict()).to_json_dict())
 	save_json.append(generic_data("volume-settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
 	save_json.append(generic_data("touch-settings", PlayerData.touch_settings.to_json_dict()).to_json_dict())
 	for scenario_name in PlayerData.scenario_history.scenario_names():
@@ -285,6 +286,9 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"successful-scenarios":
 			var value: Dictionary = json_value
 			PlayerData.scenario_history.successful_scenarios = value
+		"gameplay-settings":
+			var value: Dictionary = json_value
+			PlayerData.gameplay_settings.from_json_dict(value)
 		"volume-settings":
 			var value: Dictionary = json_value
 			PlayerData.volume_settings.from_json_dict(value)
