@@ -28,3 +28,6 @@ grep "emulate_touch_from_mouse=true" ./project/project.godot
 
 # check for enabled creature tool scripts; these should be disabled before merging
 grep -lR "^tool #uncomment to view creature in editor" project/src/main/world/creature
+
+# check for print statements that got left in by mistake
+git diff master | grep print\(

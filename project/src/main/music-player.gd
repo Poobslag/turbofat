@@ -110,8 +110,17 @@ Gradually fades a track in.
 Usually it's OK for a track to start abrubtly, but sometimes we want to fade music in more gradually.
 """
 func fade_in() -> void:
-	current_bgm.volume_db = -40.0
-	$MusicTween.fade_in(current_bgm)
+	current_bgm.volume_db = MIN_VOLUME
+	$MusicTween.fade_in(current_bgm, max_volume(current_bgm))
+
+
+"""
+Returns the volume a song should play at.
+
+The tutorial music is noticably quieter than the other songs, so we increase its volume.
+"""
+func max_volume(bgm: AudioStreamPlayer) -> float:
+	return 4.0 if current_bgm == _tutorial_bgm else MAX_VOLUME
 
 
 """
@@ -121,7 +130,7 @@ func stop() -> void:
 	if current_bgm == null:
 		return
 	
-	$MusicTween.fade_out(current_bgm)
+	$MusicTween.fade_out(current_bgm, MIN_VOLUME)
 	current_bgm = null
 	emit_signal("bgm_changed", current_bgm)
 
@@ -137,6 +146,6 @@ func play_music(new_bgm: AudioStreamPlayer, from_position: float = 0.0) -> void:
 	
 	stop()
 	current_bgm = new_bgm
-	current_bgm.volume_db = 0.0
+	current_bgm.volume_db = max_volume(new_bgm)
 	current_bgm.play(from_position)
 	emit_signal("bgm_changed", current_bgm)

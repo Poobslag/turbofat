@@ -91,8 +91,16 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 	else:
 		# create a random arrangement
 		wobbler_positions = []
+		var prev_position := randi() % int(rect.size.x)
 		for _y in range(rect.size.y):
-			wobbler_positions.append(randi() % int(rect.size.x))
+			var new_position
+			if rect.size.x < 2:
+				new_position = 0
+			else:
+				# avoid placing two wobblers above each other
+				new_position = (prev_position + 1 + randi() % int(rect.size.x - 1)) % int(rect.size.x)
+			wobbler_positions.append(new_position)
+			prev_position = new_position
 	
 	for wobbler_y in range(rect.size.y):
 		var wobbler: Wobbler

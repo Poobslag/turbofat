@@ -6,11 +6,8 @@ The menu the user sees when they start the game.
 Includes buttons starting a new game, launching the level editor, and exiting the game.
 """
 
-# The mandatory tutorial the player must complete before seeing the main menu
-const BEGINNER_TUTORIAL_SCENARIO := "tutorial-beginner-0"
-
 func _ready() -> void:
-	if not PlayerData.scenario_history.finished_scenarios.has(BEGINNER_TUTORIAL_SCENARIO):
+	if not PlayerData.scenario_history.finished_scenarios.has(Scenario.BEGINNER_TUTORIAL):
 		_launch_tutorial()
 	
 	# Fade in music when redirected from a scene with no music, such as the level editor
@@ -23,7 +20,7 @@ func _ready() -> void:
 
 func _launch_tutorial() -> void:
 	var settings := ScenarioSettings.new()
-	settings.load_from_resource(BEGINNER_TUTORIAL_SCENARIO)
+	settings.load_from_resource(Scenario.BEGINNER_TUTORIAL)
 	Scenario.overworld_puzzle = false
 	Scenario.push_scenario_trail(settings)
 

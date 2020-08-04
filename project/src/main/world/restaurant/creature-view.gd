@@ -36,13 +36,18 @@ func set_current_creature_index(new_index: int) -> void:
 """
 Scroll to a new creature and replace the old creature.
 """
-func scroll_to_new_creature() -> void:
-	var creature_index: int = $SceneClip/CreatureSwitcher/Scene.current_creature_index
-	var new_creature_index: int = (creature_index + randi() % 2 + 1) % 3
+func scroll_to_new_creature(new_creature_index: int = -1) -> void:
+	var old_creature_index: int = get_current_creature_index()
+	if new_creature_index == -1:
+		new_creature_index = (old_creature_index + randi() % 2 + 1) % 3
 	set_current_creature_index(new_creature_index)
 	$SceneClip/CreatureSwitcher/Scene.get_creature_2d().restart_idle_timer()
 	yield(get_tree().create_timer(0.5), "timeout")
-	summon_creature(creature_index)
+	summon_creature(old_creature_index)
+
+
+func get_current_creature_index() -> int:
+	return $SceneClip/CreatureSwitcher/Scene.current_creature_index
 
 
 """

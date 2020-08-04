@@ -389,7 +389,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/smooth-path.gd"
 }, {
-"base": "Creature",
+"base": "Reference",
 "class": "Spira",
 "language": "GDScript",
 "path": "res://src/main/world/creature/spira.gd"

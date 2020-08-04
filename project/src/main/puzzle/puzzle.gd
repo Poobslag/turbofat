@@ -21,13 +21,33 @@ func _ready() -> void:
 		$CreatureView.summon_creature(i)
 	
 	if Scenario.settings.other.tutorial:
-		Global.creature_queue.push_front({
-			"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
-			"ear": "3", "horn": "0", "mouth": "2", "eye": "2", "cheek": "0", "nose": "2"
-		})
-		$CreatureView.summon_creature()
+		summon_instructor(true)
 	
 	$CreatureView.get_creature_2d().play_hello_voice(true)
+
+
+"""
+Summon an instructor who leads tutorials.
+
+Parameters:
+	'replace_current': 'true' if the instructor should replace the currently visible customer, or false if the camera
+		should scroll to the instructor.
+"""
+func summon_instructor(replace_current: bool = false) -> void:
+	if $CreatureView.get_creature_2d().dna.get("instructor") == "true":
+		return
+	
+	Global.creature_queue.push_front({
+		"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
+		"ear": "3", "horn": "0", "mouth": "2", "eye": "2", "cheek": "0", "nose": "2",
+		"instructor": "true"
+	})
+	if replace_current:
+		$CreatureView.summon_creature()
+	else:
+		var new_creature_index: int = ($CreatureView.get_current_creature_index() + 1) % 2
+		$CreatureView.summon_creature(new_creature_index)
+		$CreatureView.scroll_to_new_creature(new_creature_index)
 
 
 func _input(event: InputEvent) -> void:
