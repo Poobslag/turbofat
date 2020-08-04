@@ -4,9 +4,6 @@ extends AnimationPlayer
 Script for AnimationPlayers which animate moods: blinking, smiling, sweating, etc.
 """
 
-# fired before we switch to a new mood; arms/legs/etc should be reset to default
-signal before_mood_switched
-
 signal animation_stopped
 
 # mapping from moods to animation names
