@@ -54,7 +54,8 @@ func get_current_creature_index() -> int:
 If they ended the previous game while serving a creature, we scroll to a new one
 """
 func _on_PuzzleScore_game_prepared() -> void:
-	if get_creature_2d().get_fatness() > 1:
+	if get_creature_2d().get_fatness() > 1 and not Scenario.settings.other.tutorial:
+		# don't scroll if we're doing a tutorial; the tutorial will scroll back to the instructor if necessary.
 		scroll_to_new_creature()
 
 
