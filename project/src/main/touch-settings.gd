@@ -54,7 +54,7 @@ func to_json_dict() -> Dictionary:
 	return {
 		"size": size,
 		"scheme": scheme,
-		"fat-finger": fat_finger,
+		"fat_finger": fat_finger,
 	}
 
 
