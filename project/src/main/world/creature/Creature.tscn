@@ -18,13 +18,19 @@ viewport_path = NodePath("CreatureOutline/Viewport")
 resource_local_to_scene = true
 extents = Vector2( 28, 14 )
 
-[node name="Creature" type="KinematicBody2D"]
+[node name="Creature" type="KinematicBody2D" groups=[
+"creatures",
+]]
 script = ExtResource( 3 )
 __meta__ = {
 "dna": {
 
 }
 }
+
+[node name="NametagHook" type="RemoteTransform2D" parent="."]
+update_rotation = false
+update_scale = false
 
 [node name="ChatIcon" parent="." instance=ExtResource( 4 )]
 script = ExtResource( 2 )
@@ -88,6 +94,7 @@ margin_top = -366.315
 margin_right = 1000.0
 margin_bottom = 833.685
 rect_scale = Vector2( 0.4, 0.4 )
+mouse_filter = 2
 texture = SubResource( 1 )
 flip_v = true
 __meta__ = {

@@ -55,10 +55,16 @@ onready var _goodbye_voices := [
 # index of the most recent combo sound that was played
 var _combo_voice_index := 0
 
+# 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
+var suppress_sfx := false
+
 """
 Plays a 'mmm!' voice sample, for when a player builds a big combo.
 """
 func play_combo_voice() -> void:
+	if suppress_sfx:
+		return
+	
 	_combo_voice_index = (_combo_voice_index + 1 + randi() % (_combo_voices.size() - 1)) % _combo_voices.size()
 	$Voice.stream = _combo_voices[_combo_voice_index]
 	$Voice.play()
@@ -68,6 +74,9 @@ func play_combo_voice() -> void:
 Plays a 'hello!' voice sample, for when a creature enters the restaurant
 """
 func play_hello_voice(force: bool = false) -> void:
+	if suppress_sfx:
+		return
+	
 	if Global.should_chat() or force:
 		$Voice.stream = Utils.rand_value(hello_voices)
 		$Voice.play()
@@ -77,6 +86,9 @@ func play_hello_voice(force: bool = false) -> void:
 Plays a 'check please!' voice sample, for when a creature is ready to leave
 """
 func play_goodbye_voice(force: bool = false) -> void:
+	if suppress_sfx:
+		return
+	
 	if Global.should_chat() or force:
 		$Voice.stream = Utils.rand_value(_goodbye_voices)
 		$Voice.play()
@@ -89,6 +101,9 @@ Of course in real life you can't talk with your mouth full -- but combo sounds a
 avoid interrupting them.
 """
 func _on_CreatureVisuals_food_eaten() -> void:
+	if suppress_sfx:
+		return
+	
 	$Munch.stream = Utils.rand_value(_munch_sounds)
 	$Munch.pitch_scale = rand_range(0.96, 1.04)
 	$Munch.play()
@@ -100,6 +115,8 @@ func _on_CreatureVisuals_creature_arrived() -> void:
 		return
 	if not $SuppressSfxTimer.is_stopped():
 		# suppress greeting for first few seconds of a level
+		return
+	if suppress_sfx:
 		return
 	
 	$HelloTimer.start()

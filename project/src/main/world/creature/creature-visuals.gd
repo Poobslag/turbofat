@@ -219,7 +219,7 @@ func random_creature(value: bool = true) -> void:
 		return
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
-	var new_dna := CreatureLoader.fill_dna(Utils.rand_value(CreatureLoader.DEFINITIONS))
+	var new_dna := DnaUtils.fill_dna(Utils.rand_value(DnaUtils.CREATURE_PALETTES))
 	set_dna(new_dna)
 
 
@@ -298,8 +298,6 @@ func set_dna(new_dna: Dictionary) -> void:
 	if is_inside_tree():
 		CreatureLoader.load_details(dna)
 		_update_creature_properties()
-		set_fatness(1)
-		set_comfort(0)
 
 
 """

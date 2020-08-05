@@ -7,6 +7,7 @@ Script for representing a creature in the 2D overworld.
 
 signal fatness_changed
 signal visual_fatness_changed
+signal creature_name_changed
 
 signal creature_arrived
 
@@ -33,6 +34,7 @@ const MAX_RUN_ACCELERATION := 2250
 
 export (String) var creature_id: String setget set_creature_id
 export (Dictionary) var dna: Dictionary setget set_dna
+export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 
 # how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
 export (int) var elevation: int setget set_elevation
@@ -79,6 +81,11 @@ func _physics_process(delta: float) -> void:
 	_maybe_play_bonk_sound(old_non_iso_velocity)
 
 
+func set_suppress_sfx(new_suppress_sfx: bool) -> void:
+	suppress_sfx = new_suppress_sfx
+	$CreatureSfx.suppress_sfx = new_suppress_sfx
+
+
 func set_elevation(new_elevation: int) -> void:
 	elevation = new_elevation
 	$CreatureOutline.position.y = -new_elevation * $CreatureOutline/TextureRect.rect_scale.y
@@ -94,6 +101,10 @@ func set_fatness(new_fatness: float) -> void:
 
 func get_fatness() -> float:
 	return creature_visuals.get_fatness()
+
+
+func set_visual_fatness(new_visual_fatness: float) -> void:
+	creature_visuals.visual_fatness = new_visual_fatness
 
 
 func get_visual_fatness() -> float:
@@ -135,6 +146,7 @@ func set_creature_id(new_creature_id: String) -> void:
 func set_creature_name(new_creature_name: String) -> void:
 	creature_name = new_creature_name
 	set_meta("chat_name", creature_name)
+	emit_signal("creature_name_changed")
 
 
 func set_chat_theme_def(new_chat_theme_def: Dictionary) -> void:
@@ -189,25 +201,32 @@ func set_orientation(orientation: int) -> void:
 	creature_visuals.set_orientation(orientation)
 
 
+func get_orientation() -> int:
+	return creature_visuals.orientation
+
+
 """
 Plays a 'hello!' voice sample, for when a creature enters the restaurant
 """
 func play_hello_voice(force: bool = false) -> void:
-	$CreatureSfx.play_hello_voice(force)
+	if not suppress_sfx:
+		$CreatureSfx.play_hello_voice(force)
 
 
 """
 Plays a 'mmm!' voice sample, for when a player builds a big combo.
 """
 func play_combo_voice() -> void:
-	$CreatureSfx.play_combo_voice()
+	if not suppress_sfx:
+		$CreatureSfx.play_combo_voice()
 
 
 """
 Plays a 'check please!' voice sample, for when a creature is ready to leave
 """
 func play_goodbye_voice(force: bool = false) -> void:
-	$CreatureSfx.play_goodbye_voice(force)
+	if not suppress_sfx:
+		$CreatureSfx.play_goodbye_voice(force)
 
 
 func feed(food_color: Color) -> void:
@@ -232,9 +251,8 @@ func _refresh_creature_id() -> void:
 func _refresh_dna() -> void:
 	if is_inside_tree():
 		if dna:
-			creature_visuals.dna = CreatureLoader.fill_dna(dna)
-		else:
-			creature_visuals.dna = {}
+			dna = DnaUtils.fill_dna(dna)
+		creature_visuals.dna = dna
 		if dna.has("line_rgb"):
 			$CreatureOutline/TextureRect.material.set_shader_param("black", Color(dna.line_rgb))
 
@@ -284,7 +302,8 @@ Plays a bonk sound if a creature bumps into a wall.
 func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 	var velocity_diff := _non_iso_velocity - old_non_iso_velocity
 	if velocity_diff.length() > MAX_RUN_SPEED * _run_anim_speed * 0.9:
-		$BonkSound.play()
+		if not suppress_sfx:
+			$BonkSound.play()
 
 
 """
@@ -318,7 +337,8 @@ func get_movement_mode() -> int:
 
 
 func _on_CreatureVisuals_landed() -> void:
-	$HopSound.play()
+	if not suppress_sfx:
+		$HopSound.play()
 
 
 func _on_Creature_fatness_changed() -> void:

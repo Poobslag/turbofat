@@ -129,7 +129,7 @@ size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Levels"
 
-[node name="Characters" type="Button" parent="Create"]
+[node name="Creatures" type="Button" parent="Create"]
 margin_left = 159.0
 margin_top = 111.0
 margin_right = 352.0
@@ -138,8 +138,7 @@ rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
-disabled = true
-text = "Characters"
+text = "Creatures"
 
 [node name="System" parent="." instance=ExtResource( 5 )]
 quit_on_cancel = false
@@ -151,6 +150,7 @@ quit_on_cancel = false
 [connection signal="pressed" from="Play/Practice" to="." method="_on_PlayPractice_pressed"]
 [connection signal="pressed" from="Play/Tutorial" to="." method="_on_Tutorial_pressed"]
 [connection signal="pressed" from="Create/Levels" to="." method="_on_CreateLevels_pressed"]
+[connection signal="pressed" from="Create/Creatures" to="." method="_on_CreateCreatures_pressed"]
 [connection signal="quit_pressed" from="System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="System" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="System" method="_on_Quit_pressed"]

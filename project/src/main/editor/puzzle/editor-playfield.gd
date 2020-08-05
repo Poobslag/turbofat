@@ -22,6 +22,7 @@ func _gui_input(event: InputEvent) -> void:
 		dragging_right_mouse = event.button_mask & BUTTON_RIGHT
 	
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
+		# click/drag the right mouse to erase parts of the tilemap
 		if dragging_right_mouse:
 			set_block(_cell_pos(event.position), -1)
 			emit_signal("tile_map_changed")
