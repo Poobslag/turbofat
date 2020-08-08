@@ -24,9 +24,22 @@ func _physics_process(_delta: float) -> void:
 	did_hard_drop = false
 
 
+"""
+Recalculates the hard drop destination for the current piece.
+"""
+func calculate_hard_drop_target(piece: ActivePiece) -> void:
+	piece.reset_target()
+	while piece.can_move_to(piece.target_pos + Vector2(0, 1), piece.orientation):
+		piece.target_pos.y += 1
+	hard_drop_target_pos = piece.target_pos
+
+
 func apply_hard_drop_input(piece: ActivePiece) -> void:
 	if not input.is_hard_drop_just_pressed() and not input.is_hard_drop_das_active():
 		return
+	
+	# recalculate hard drop target to avoid bugs when rotating/dropping simultaneously
+	calculate_hard_drop_target(piece)
 	
 	# move and lock piece
 	piece.pos = hard_drop_target_pos
@@ -71,7 +84,5 @@ func _on_Squisher_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
 
 
 func _on_PieceManager_piece_changed(piece: ActivePiece) -> void:
-	piece.reset_target()
-	while piece.can_move_to(piece.target_pos + Vector2(0, 1), piece.orientation):
-		piece.target_pos.y += 1
-	hard_drop_target_pos = piece.target_pos
+	# recalculate hard drop target to draw ghost piece
+	calculate_hard_drop_target(piece)

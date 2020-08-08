@@ -120,7 +120,7 @@ Returns the volume a song should play at.
 The tutorial music is noticably quieter than the other songs, so we increase its volume.
 """
 func max_volume(bgm: AudioStreamPlayer) -> float:
-	return 4.0 if current_bgm == _tutorial_bgm else MAX_VOLUME
+	return 4.0 if bgm == _tutorial_bgm else MAX_VOLUME
 
 
 """
