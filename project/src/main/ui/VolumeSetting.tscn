@@ -5,7 +5,7 @@
 [ext_resource path="res://assets/main/puzzle/squish.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/main/world/creature/combo-voice-00.wav" type="AudioStream" id=4]
 
-[node name="Control" type="Control"]
+[node name="Setting" type="Control"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -34,7 +34,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -47,7 +47,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="Control"]
+[node name="HSlider" type="HSlider" parent="HBoxContainer"]
 margin_top = 2.0
 margin_right = 160.0
 margin_bottom = 18.0
@@ -61,7 +61,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Percent" type="Label" parent="Control"]
+[node name="Percent" type="Label" parent="HBoxContainer"]
 margin_left = 170.0
 margin_right = 230.0
 margin_bottom = 20.0
@@ -80,5 +80,5 @@ bus = "Sound Bus"
 stream = ExtResource( 4 )
 volume_db = 6.0
 bus = "Voice Bus"
-[connection signal="value_changed" from="Control/HSlider" to="." method="_on_HSlider_value_changed"]
+[connection signal="value_changed" from="HBoxContainer/HSlider" to="." method="_on_HSlider_value_changed"]
 [connection signal="timeout" from="SampleTimer" to="." method="_on_SampleTimer_timeout"]

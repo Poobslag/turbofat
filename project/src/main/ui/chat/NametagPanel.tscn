@@ -1,0 +1,132 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/ui/chat/nametag-panel.gd" type="Script" id=1]
+[ext_resource path="res://src/main/ui/blogger-sans-bold-36.tres" type="DynamicFont" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+resource_local_to_scene = true
+bg_color = Color( 0.188235, 0.188235, 0.376471, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[node name="NametagPanel" type="Panel"]
+margin_right = 360.0
+margin_bottom = 60.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Small" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -82.0
+margin_top = -16.0
+margin_right = 98.0
+margin_bottom = 21.0
+rect_scale = Vector2( 0.909, 0.909 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsu"
+align = 1
+autowrap = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Medium" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -16.0
+margin_right = 190.0
+margin_bottom = 21.0
+rect_scale = Vector2( 0.909, 0.909 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsum dolor s"
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Large" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -160.0
+margin_top = -16.0
+margin_right = 365.0
+margin_bottom = 21.0
+rect_scale = Vector2( 0.606, 0.909 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsum dolor sit amet"
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExtraLarge" type="Label" parent="."]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -23.0
+margin_right = 400.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 500, 80 )
+rect_scale = Vector2( 0.4, 0.6 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
+align = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExtraExtraLarge" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -150.0
+margin_top = -23.0
+margin_right = 600.0
+margin_bottom = 57.0
+rect_min_size = Vector2( 750, 80 )
+rect_scale = Vector2( 0.4, 0.6 )
+custom_fonts/font = ExtResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid"
+align = 1
+valign = 1
+autowrap = true
+clip_text = true
+max_lines_visible = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

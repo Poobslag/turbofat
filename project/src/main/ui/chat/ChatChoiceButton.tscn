@@ -160,7 +160,9 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="ChatChoice" type="Button"]
+[node name="ChatChoice" type="Button" groups=[
+"chat_choices",
+]]
 margin_right = 100.0
 margin_bottom = 66.0
 rect_pivot_offset = Vector2( 50, 33 )

@@ -1,0 +1,363 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
+[ext_resource path="res://src/main/editor/creature/creature-editor-nametags.gd" type="Script" id=3]
+[ext_resource path="res://src/main/editor/creature/HookableNametag.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/creature/CreatureShadow.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/editor/creature/creature-editor-shadows.gd" type="Script" id=6]
+[ext_resource path="res://src/main/editor/creature/creature-selector.gd" type="Script" id=7]
+[ext_resource path="res://src/main/editor/creature/creature-editor.gd" type="Script" id=8]
+[ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=9]
+[ext_resource path="res://src/main/editor/creature/mutagen-control.gd" type="Script" id=10]
+[ext_resource path="res://src/main/editor/creature/LockAlleleButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/editor/creature/mutate-ui.gd" type="Script" id=12]
+[ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=14]
+[ext_resource path="res://assets/main/editor/creature/unlocked.png" type="Texture" id=15]
+[ext_resource path="res://assets/main/puzzle/rotate0.wav" type="AudioStream" id=16]
+
+[node name="CreatureEditor" type="Node"]
+script = ExtResource( 8 )
+
+[node name="World" type="Node" parent="."]
+
+[node name="Shadows" type="Node2D" parent="World"]
+script = ExtResource( 6 )
+CreatureShadowScene = ExtResource( 5 )
+
+[node name="Creatures" type="Node2D" parent="World"]
+
+[node name="NwCreature" parent="World/Creatures" instance=ExtResource( 1 )]
+position = Vector2( 164, 244 )
+scale = Vector2( 1.5, 1.5 )
+dna = {
+
+}
+suppress_sfx = true
+
+[node name="NeCreature" parent="World/Creatures" instance=ExtResource( 1 )]
+position = Vector2( 384, 244 )
+scale = Vector2( 1.5, 1.5 )
+dna = {
+
+}
+suppress_sfx = true
+
+[node name="ECreature" parent="World/Creatures" instance=ExtResource( 1 )]
+position = Vector2( 464, 384 )
+scale = Vector2( 1.5, 1.5 )
+dna = {
+
+}
+suppress_sfx = true
+
+[node name="WCreature" parent="World/Creatures" instance=ExtResource( 1 )]
+position = Vector2( 84, 384 )
+scale = Vector2( 1.5, 1.5 )
+dna = {
+
+}
+suppress_sfx = true
+
+[node name="CenterCreature" parent="World/Creatures" instance=ExtResource( 1 )]
+position = Vector2( 260, 400 )
+scale = Vector2( 2.5, 2.5 )
+suppress_sfx = true
+
+[node name="SwCreature" parent="World/Creatures" instance=ExtResource( 1 )]
+position = Vector2( 164, 524 )
+scale = Vector2( 1.5, 1.5 )
+dna = {
+
+}
+suppress_sfx = true
+
+[node name="SeCreature" parent="World/Creatures" instance=ExtResource( 1 )]
+position = Vector2( 384, 524 )
+scale = Vector2( 1.5, 1.5 )
+dna = {
+
+}
+suppress_sfx = true
+
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="Nametags" type="Node" parent="Ui"]
+script = ExtResource( 3 )
+HookableNametagScene = ExtResource( 4 )
+
+[node name="CreatureSelector" type="Control" parent="Ui"]
+margin_right = 600.0
+margin_bottom = 600.0
+mouse_filter = 1
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Reroll" type="Button" parent="Ui/CreatureSelector"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -90.0
+margin_top = 30.0
+margin_right = 90.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 180, 52 )
+theme = ExtResource( 2 )
+shortcut_in_tooltip = false
+shortcut = ExtResource( 14 )
+text = "Reroll"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="Ui/CreatureSelector"]
+stream = ExtResource( 9 )
+volume_db = -8.0
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="Ui/CreatureSelector"]
+stream = ExtResource( 16 )
+volume_db = -4.0
+
+[node name="TabContainer" type="TabContainer" parent="Ui"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -414.0
+margin_top = 5.0
+margin_right = -6.0
+margin_bottom = 533.0
+rect_min_size = Vector2( 408, 528 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mutate" type="Panel" parent="Ui/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+script = ExtResource( 12 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/TabContainer/Mutate"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -10.0
+margin_bottom = -5.0
+custom_constants/separation = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Mutagen" type="Control" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+margin_right = 390.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 390, 20 )
+size_flags_horizontal = 3
+theme = ExtResource( 2 )
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Ui/TabContainer/Mutate/VBoxContainer/Mutagen"]
+anchor_bottom = 1.0
+margin_right = 120.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.5
+text = "Mutagen"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer/Mutagen"]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -267.0
+rect_min_size = Vector2( 240, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSlider" type="HSlider" parent="Ui/TabContainer/Mutate/VBoxContainer/Mutagen/HBoxContainer"]
+margin_top = 2.0
+margin_right = 160.0
+margin_bottom = 18.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 0
+size_flags_vertical = 4
+max_value = 1.0
+step = 0.0
+value = 1.0
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Percent" type="Label" parent="Ui/TabContainer/Mutate/VBoxContainer/Mutagen/HBoxContainer"]
+margin_left = 170.0
+margin_right = 230.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 60, 0 )
+text = "100%"
+
+[node name="Name" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+text = "Name"
+icon = ExtResource( 15 )
+allele = "name"
+two_states = true
+
+[node name="Color" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+margin_top = 56.0
+margin_right = 205.0
+margin_bottom = 82.0
+rect_min_size = Vector2( 205, 0 )
+text = "Overall Color"
+allele = "body_rgb"
+
+[node name="EyeContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+margin_top = 87.0
+margin_right = 390.0
+margin_bottom = 113.0
+custom_constants/separation = 5
+
+[node name="Eye" parent="Ui/TabContainer/Mutate/VBoxContainer/EyeContainer" instance=ExtResource( 11 )]
+margin_top = 0.0
+margin_bottom = 26.0
+text = "Eye"
+allele = "eye"
+
+[node name="Color" parent="Ui/TabContainer/Mutate/VBoxContainer/EyeContainer" instance=ExtResource( 11 )]
+margin_left = 105.0
+margin_top = 0.0
+margin_right = 205.0
+margin_bottom = 26.0
+text = "Color"
+allele = "eye_rgb"
+
+[node name="Nose" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+margin_top = 118.0
+margin_bottom = 144.0
+text = "Nose"
+allele = "nose"
+
+[node name="Mouth" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+margin_top = 149.0
+margin_bottom = 175.0
+text = "Mouth"
+allele = "mouth"
+
+[node name="Cheek" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+margin_top = 180.0
+margin_bottom = 206.0
+text = "Cheek"
+allele = "cheek"
+
+[node name="Ear" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+margin_top = 211.0
+margin_bottom = 237.0
+text = "Ear"
+allele = "ear"
+
+[node name="HornContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+margin_top = 242.0
+margin_right = 390.0
+margin_bottom = 268.0
+custom_constants/separation = 5
+
+[node name="Horn" parent="Ui/TabContainer/Mutate/VBoxContainer/HornContainer" instance=ExtResource( 11 )]
+margin_top = 0.0
+margin_bottom = 26.0
+text = "Horn"
+allele = "horn"
+
+[node name="Color" parent="Ui/TabContainer/Mutate/VBoxContainer/HornContainer" instance=ExtResource( 11 )]
+margin_left = 105.0
+margin_top = 0.0
+margin_right = 205.0
+margin_bottom = 26.0
+text = "Color"
+allele = "horn_rgb"
+
+[node name="BellyContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+margin_top = 273.0
+margin_right = 390.0
+margin_bottom = 299.0
+custom_constants/separation = 5
+
+[node name="Belly" parent="Ui/TabContainer/Mutate/VBoxContainer/BellyContainer" instance=ExtResource( 11 )]
+margin_top = 0.0
+margin_bottom = 26.0
+text = "Belly"
+allele = "belly"
+
+[node name="Color" parent="Ui/TabContainer/Mutate/VBoxContainer/BellyContainer" instance=ExtResource( 11 )]
+margin_left = 105.0
+margin_top = 0.0
+margin_right = 205.0
+margin_bottom = 26.0
+text = "Color"
+allele = "belly_rgb"
+
+[node name="Size" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+margin_top = 304.0
+margin_bottom = 330.0
+text = "Size"
+allele = "fatness"
+
+[node name="Tweak" type="Panel" parent="Ui/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+
+[node name="Settings" type="Button" parent="Ui"]
+margin_left = 839.0
+margin_top = 539.0
+margin_right = 1019.0
+margin_bottom = 565.0
+theme = ExtResource( 2 )
+shortcut_in_tooltip = false
+shortcut = ExtResource( 14 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="Quit" type="Button" parent="Ui"]
+margin_left = 839.0
+margin_top = 569.0
+margin_right = 1019.0
+margin_bottom = 595.0
+theme = ExtResource( 2 )
+shortcut_in_tooltip = false
+text = "Quit"
+__meta__ = {
+"_edit_use_anchors_": false,
+"_editor_description_": ""
+}
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 13 )]
+[connection signal="creature_clicked" from="Ui/CreatureSelector" to="." method="_on_CreatureSelector_creature_clicked"]
+[connection signal="hovered_creature_changed" from="Ui/CreatureSelector" to="Ui/Nametags" method="_on_CreatureSelector_hovered_creature_changed"]
+[connection signal="mouse_exited" from="Ui/CreatureSelector" to="Ui/CreatureSelector" method="_on_mouse_exited"]
+[connection signal="pressed" from="Ui/CreatureSelector/Reroll" to="." method="_on_Reroll_pressed"]
+[connection signal="value_changed" from="Ui/TabContainer/Mutate/VBoxContainer/Mutagen/HBoxContainer/HSlider" to="Ui/TabContainer/Mutate/VBoxContainer/Mutagen" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="Ui/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="pressed" from="Ui/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]

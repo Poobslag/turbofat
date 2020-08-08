@@ -35,7 +35,12 @@ func _on_PlayPractice_pressed() -> void:
 
 func _on_CreateLevels_pressed() -> void:
 	MusicPlayer.stop()
-	Breadcrumb.push_trail("res://src/main/puzzle/editor/LevelEditor.tscn")
+	Breadcrumb.push_trail("res://src/main/editor/puzzle/LevelEditor.tscn")
+
+
+func _on_CreateCreatures_pressed() -> void:
+	MusicPlayer.stop()
+	Breadcrumb.push_trail("res://src/main/editor/creature/CreatureEditor.tscn")
 
 
 func _on_System_quit_pressed() -> void:

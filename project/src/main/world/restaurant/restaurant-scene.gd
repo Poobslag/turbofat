@@ -54,6 +54,9 @@ Parameters:
 """
 func summon_creature(dna: Dictionary, creature_index: int = -1) -> void:
 	get_creature_2d(creature_index).set_dna(dna)
+	get_creature_2d(creature_index).set_comfort(0)
+	get_creature_2d(creature_index).set_fatness(1)
+	get_creature_2d(creature_index).set_visual_fatness(1)
 	_get_seat(creature_index).refresh()
 
 

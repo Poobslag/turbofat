@@ -50,16 +50,16 @@ func _input(event: InputEvent) -> void:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
-				_current_color_index += CreatureLoader.DEFINITIONS.size()
-				_current_color_index = (_current_color_index - 1) % CreatureLoader.DEFINITIONS.size()
-			Global.creature_queue.push_front(CreatureLoader.DEFINITIONS[_current_color_index])
+				_current_color_index += DnaUtils.CREATURE_PALETTES.size()
+				_current_color_index = (_current_color_index - 1) % DnaUtils.CREATURE_PALETTES.size()
+			Global.creature_queue.push_front(DnaUtils.CREATURE_PALETTES[_current_color_index])
 			$CreatureView.summon_creature()
 		KEY_BRACERIGHT:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
-				_current_color_index = (_current_color_index + 1) % CreatureLoader.DEFINITIONS.size()
-			Global.creature_queue.push_front(CreatureLoader.DEFINITIONS[_current_color_index])
+				_current_color_index = (_current_color_index + 1) % DnaUtils.CREATURE_PALETTES.size()
+			Global.creature_queue.push_front(DnaUtils.CREATURE_PALETTES[_current_color_index])
 			$CreatureView.summon_creature()
 		KEY_RIGHT:
 			$CreatureView.get_creature_2d().set_orientation(CreatureVisuals.SOUTHEAST)

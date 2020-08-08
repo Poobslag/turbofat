@@ -11,7 +11,7 @@ export (VolumeSettings.VolumeType) var volume_type: int setget set_volume_type
 func _ready() -> void:
 	_refresh_setting_label()
 	_refresh_percent_label()
-	$Control/HSlider.value = PlayerData.volume_settings.get_bus_volume_linear(volume_type)
+	$HBoxContainer/HSlider.value = PlayerData.volume_settings.get_bus_volume_linear(volume_type)
 	
 	# don't play sample sounds during initialization
 	$SampleTimer.stop()
@@ -24,10 +24,10 @@ func set_volume_type(new_volume_type: int) -> void:
 
 
 func _refresh_percent_label() -> void:
-	if $Control/HSlider.value > 0:
-		$Control/Percent.text = "%d%%" % int($Control/HSlider.value * 100)
+	if $HBoxContainer/HSlider.value > 0:
+		$HBoxContainer/Percent.text = "%d%%" % int($HBoxContainer/HSlider.value * 100)
 	else:
-		$Control/Percent.text = "Mute"
+		$HBoxContainer/Percent.text = "Mute"
 
 
 func _refresh_setting_label() -> void:

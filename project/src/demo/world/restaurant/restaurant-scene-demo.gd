@@ -22,9 +22,9 @@ func _input(event: InputEvent) -> void:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
-				_current_color_index += CreatureLoader.DEFINITIONS.size()
-				_current_color_index = (_current_color_index - 1) % CreatureLoader.DEFINITIONS.size()
-			$RestaurantScene.summon_creature(CreatureLoader.DEFINITIONS[_current_color_index])
+				_current_color_index += DnaUtils.CREATURE_PALETTES.size()
+				_current_color_index = (_current_color_index - 1) % DnaUtils.CREATURE_PALETTES.size()
+			$RestaurantScene.summon_creature(DnaUtils.CREATURE_PALETTES[_current_color_index])
 		KEY_Q: $RestaurantScene.current_creature_index = 0
 		KEY_W: $RestaurantScene.current_creature_index = 1
 		KEY_E: $RestaurantScene.current_creature_index = 2
@@ -32,5 +32,5 @@ func _input(event: InputEvent) -> void:
 			if _current_color_index == -1:
 				_current_color_index = 0
 			else:
-				_current_color_index = (_current_color_index + 1) % CreatureLoader.DEFINITIONS.size()
-			$RestaurantScene.summon_creature(CreatureLoader.DEFINITIONS[_current_color_index])
+				_current_color_index = (_current_color_index + 1) % DnaUtils.CREATURE_PALETTES.size()
+			$RestaurantScene.summon_creature(DnaUtils.CREATURE_PALETTES[_current_color_index])
