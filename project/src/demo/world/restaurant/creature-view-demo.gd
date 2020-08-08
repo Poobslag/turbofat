@@ -20,7 +20,7 @@ var _current_color_index := -1
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_D: _creature_2d().get_node("CreatureSfx").play_door_chime()
+		KEY_D: $CreatureView/SceneClip/CreatureSwitcher/Scene.get_node("DoorChime").play_door_chime()
 		KEY_F: _creature_2d().feed(Playfield.FOOD_COLORS[0])
 		KEY_I: _creature_2d().creature_visuals.get_node("IdleTimer").start(0.01)
 		KEY_V:

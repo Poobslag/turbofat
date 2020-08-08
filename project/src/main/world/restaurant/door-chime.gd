@@ -12,6 +12,11 @@ onready var _chime_sounds := [
 	preload("res://assets/main/world/door-chime4.wav"),
 ]
 
+func play_door_chime() -> void:
+	stream = Utils.rand_value(_chime_sounds)
+	play()
+
+
 func _on_CreatureVisuals_creature_arrived() -> void:
 	if not $SuppressSfxTimer.is_stopped():
 		# suppress door chime at the start of a scenario
@@ -21,5 +26,4 @@ func _on_CreatureVisuals_creature_arrived() -> void:
 
 
 func _on_ChimeTimer_timeout() -> void:
-	stream = Utils.rand_value(_chime_sounds)
-	play()
+	play_door_chime()

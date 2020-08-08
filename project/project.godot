@@ -144,7 +144,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/dna-utils.gd"
 }, {
-"base": "Reference",
+"base": "Control",
 "class": "EditorPlayfield",
 "language": "GDScript",
 "path": "res://src/main/editor/puzzle/editor-playfield.gd"
