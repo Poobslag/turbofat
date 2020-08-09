@@ -219,7 +219,7 @@ func random_creature(value: bool = true) -> void:
 		return
 	if Engine.is_editor_hint():
 		_apply_tool_script_workaround()
-	var new_dna := DnaUtils.fill_dna(Utils.rand_value(DnaUtils.CREATURE_PALETTES))
+	var new_dna := DnaUtils.fill_dna(DnaUtils.random_creature_palette())
 	set_dna(new_dna)
 
 

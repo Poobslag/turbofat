@@ -6,12 +6,15 @@ Provides utilities for manipulating DNA definitions.
 DNA is defined using dictionaries. The keys or 'alleles' include things like eye color or mouth shape.
 """
 
+# Colors used for creature's outlines
+const LINE_COLORS := ["6c4331", "41281e", "3c3c3d"]
+
 # Palettes used for recoloring creatures
 const CREATURE_PALETTES := [
 	{"line_rgb": "6c4331", "body_rgb": "b23823", "belly_rgb": "c9442a",
 			"eye_rgb": "282828 dedede", "horn_rgb": "f1e398"}, # dark red
-	{"line_rgb": "6c4331", "body_rgb": "eeda4d", "belly_rgb": "f7f0cc",
-			"eye_rgb": "c0992f f1e398", "horn_rgb": "f1e398"}, # yellow
+	{"line_rgb": "6c4331", "body_rgb": "f9bb4a", "belly_rgb": "fff4b2",
+			"eye_rgb": "f9a74c fff6df", "horn_rgb": "b47922"}, # yellow
 	{"line_rgb": "6c4331", "body_rgb": "41a740", "belly_rgb": "4fa94e",
 			"eye_rgb": "c09a2f f1e398", "horn_rgb": "f1e398"}, # dark green
 	{"line_rgb": "6c4331", "body_rgb": "b47922", "belly_rgb": "d0ec5c",
@@ -22,14 +25,14 @@ const CREATURE_PALETTES := [
 			"eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398"}, # purple
 	{"line_rgb": "6c4331", "body_rgb": "f57e7d", "belly_rgb": "fde8c9",
 			"eye_rgb": "7ac252 e9f4dc", "horn_rgb": "f1e398"}, # light red
-	{"line_rgb": "6c4331", "body_rgb": "f9bb4a", "belly_rgb": "fff4b2",
-			"eye_rgb": "f9a74c fff6df", "horn_rgb": "b47922"}, # orange
+	{"line_rgb": "6c4331", "body_rgb": "e27c3d", "belly_rgb": "b1bd84",
+			"eye_rgb": "1c0f00 655944", "horn_rgb": "927c86"}, # termite orange
 	{"line_rgb": "6c4331", "body_rgb": "8fea40", "belly_rgb": "e8fa95",
 			"eye_rgb": "f5d561 fcf3cd", "horn_rgb": "b47922"}, # light green
 	{"line_rgb": "6c4331", "body_rgb": "70843a", "belly_rgb": "a9aa2f",
 			"eye_rgb": "7d4c21 e5cd7d", "horn_rgb": "f1e398"}, # goblin green
-	{"line_rgb": "6c4331", "body_rgb": "feceef", "belly_rgb": "ffeffc",
-			"eye_rgb": "ffddf4 ffffff", "horn_rgb": "ffffff"}, # pink
+	{"line_rgb": "6c4331", "body_rgb": "ffbfcb", "belly_rgb": "fffaff",
+			"eye_rgb": "fad4cf ffffff", "horn_rgb": "ffffff"}, # pink
 	{"line_rgb": "6c4331", "body_rgb": "b1edee", "belly_rgb": "dff2f0",
 			"eye_rgb": "c1f1f2 ffffff", "horn_rgb": "ffffff"}, # cyan
 	{"line_rgb": "6c4331", "body_rgb": "f9f7d9", "belly_rgb": "d7c2a4",
@@ -39,7 +42,55 @@ const CREATURE_PALETTES := [
 	{"line_rgb": "6c4331", "body_rgb": "7a8289", "belly_rgb": "c8c3b5",
 			"eye_rgb": "f5f0d1 ffffff", "horn_rgb": "282828"}, # grey
 	{"line_rgb": "41281e", "body_rgb": "0b45a6", "belly_rgb": "eec086",
-			"eye_rgb": "fad541 ffffff", "horn_rgb": "282828"}  # dark blue
+			"eye_rgb": "fad541 ffffff", "horn_rgb": "282828"},  # dark blue
+	{"line_rgb": "6c4331", "body_rgb": "db2a25", "belly_rgb": "ffcd78",
+			"eye_rgb": "5ba964 a9e0bb", "horn_rgb": "f4ffff"}, # dragon red
+	{"line_rgb": "3c3c3d", "body_rgb": "725e96", "belly_rgb": "a9d252",
+			"eye_rgb": "41f2ff d6ffff", "horn_rgb": "5a635d"}, # dragon muted purple
+	{"line_rgb": "41281e", "body_rgb": "3b494f", "belly_rgb": "7b8780",
+			"eye_rgb": "ad1000 b73a36", "horn_rgb": "5d0218"}, # gargoyle gray
+	{"line_rgb": "6c4331", "body_rgb": "68d50a", "belly_rgb": "4baf20",
+			"eye_rgb": "9134bc b392df", "horn_rgb": "ffffed"}, # hulk green
+	{"line_rgb": "6c4331", "body_rgb": "9a7f5d", "belly_rgb": "c9dac6",
+			"eye_rgb": "25291b 606060", "horn_rgb": "b9b9b9"}, # goblin tan
+	{"line_rgb": "6c4331", "body_rgb": "ffb12c", "belly_rgb": "ffffff",
+			"eye_rgb": "cb5340 ffb597", "horn_rgb": "d2c9cd"}, # goober yellow
+	{"line_rgb": "6c4331", "body_rgb": "fa5c2c", "belly_rgb": "ffd461",
+			"eye_rgb": "a7b958 ecf1bf", "horn_rgb": "529e43"}, # pumpkin orange
+	{"line_rgb": "6c4331", "body_rgb": "8ff0dc", "belly_rgb": "fefcf2",
+			"eye_rgb": "fff5df f3ffff", "horn_rgb": "fcfcff"}, # angelic green
+	{"line_rgb": "6c4331", "body_rgb": "23a2e3", "belly_rgb": "35e1e0",
+			"eye_rgb": "415a73 c8cbd6", "horn_rgb": "ffe7e5"}, # fishy blue
+	{"line_rgb": "6c4331", "body_rgb": "9d3df6", "belly_rgb": "df318d",
+			"eye_rgb": "ecdf32 fcfcdb", "horn_rgb": "a66643"}, # mystic purple
+	{"line_rgb": "6c4331", "body_rgb": "25785f", "belly_rgb": "876edb",
+			"eye_rgb": "ff5c6f fff1f0", "horn_rgb": "a6a1a1"}, # sea monster turquoise
+	{"line_rgb": "6c4331", "body_rgb": "bd5a16", "belly_rgb": "ffffd7",
+			"eye_rgb": "020202 577c76", "horn_rgb": "c3c3c2"}, # ogre brown
+	{"line_rgb": "6c4331", "body_rgb": "f5ffc1", "belly_rgb": "61d541",
+			"eye_rgb": "6fb964 ffffff", "horn_rgb": "f8ae44"}, # celtic white
+	{"line_rgb": "41281e", "body_rgb": "8f1b21", "belly_rgb": "838382",
+			"eye_rgb": "546127 a8ad89", "horn_rgb": "2b2b2b"}, # heckraiser red
+	{"line_rgb": "41281e", "body_rgb": "a7380b", "belly_rgb": "98b58f",
+			"eye_rgb": "917a1e fae9c5", "horn_rgb": "43493d"}, # muddy orange
+	{"line_rgb": "41281e", "body_rgb": "907027", "belly_rgb": "e5d6b7",
+			"eye_rgb": "d5c26a ffffff", "horn_rgb": "afa7ae"}, # golem bronze
+	{"line_rgb": "41281e", "body_rgb": "48366e", "belly_rgb": "8b70a1",
+			"eye_rgb": "121011 4d6c6a", "horn_rgb": "828863"}, # grape jelly
+	{"line_rgb": "41281e", "body_rgb": "2c4b9e", "belly_rgb": "c78e69",
+			"eye_rgb": "a58900 e3d48e", "horn_rgb": "98a49a"}, # bold blue
+	{"line_rgb": "41281e", "body_rgb": "025d28", "belly_rgb": "67aa0f",
+			"eye_rgb": "ccd44d ffffd9", "horn_rgb": "959f78"}, # broccoli green
+	{"line_rgb": "41281e", "body_rgb": "664437", "belly_rgb": "eaf9c7",
+			"eye_rgb": "74a27f fffaff", "horn_rgb": "e8a261"}, # chocolate brown
+	{"line_rgb": "6c4331", "body_rgb": "68af25", "belly_rgb": "8fff54",
+			"eye_rgb": "ce4224 fff6e3", "horn_rgb": "587f44"}, # tomato green
+	{"line_rgb": "6c4331", "body_rgb": "f6bd44", "belly_rgb": "2a2a2a",
+			"eye_rgb": "f0f3bd ffffff", "horn_rgb": "2c2c2c"}, # honeybee yellow
+	{"line_rgb": "3c3c3d", "body_rgb": "171419", "belly_rgb": "b0b4d1",
+			"eye_rgb": "4e8eee f8ffff", "horn_rgb": "c4c4c5"}, # penguin black
+	{"line_rgb": "3c3c3d", "body_rgb": "e63f2d", "belly_rgb": "f77429",
+			"eye_rgb": "f2c12a ffffa2", "horn_rgb": "486965"}, # magma orange
 ]
 
 # body part names shown to the player
@@ -139,6 +190,14 @@ static func unique_allele_values(property: String) -> Array:
 			"nose": result = ["0", "1", "2", "3"]
 	
 	return result
+
+
+"""
+Returns a random palette from a list of preset palettes.
+"""
+static func random_creature_palette() -> Dictionary:
+	return Utils.rand_value(CREATURE_PALETTES).duplicate()
+
 
 """
 Returns a weighted list of values for the specified allele.

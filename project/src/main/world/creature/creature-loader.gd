@@ -16,7 +16,7 @@ const GROWTH_SECONDS := 0.12
 Returns a random creature definition.
 """
 static func random_def() -> Dictionary:
-	return Utils.rand_value(DnaUtils.CREATURE_PALETTES)
+	return DnaUtils.random_creature_palette()
 
 
 """

@@ -139,6 +139,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-packed-sprite.gd"
 }, {
+"base": "Control",
+"class": "CreaturePaletteDemo",
+"language": "GDScript",
+"path": "res://src/demo/world/creature/creature-palette-demo.gd"
+}, {
 "base": "Node2D",
 "class": "CreatureShadow",
 "language": "GDScript",
@@ -308,6 +313,16 @@ _global_script_classes=[ {
 "class": "PackedSprite",
 "language": "GDScript",
 "path": "res://src/main/packed-sprite.gd"
+}, {
+"base": "ColorRect",
+"class": "PaletteButton",
+"language": "GDScript",
+"path": "res://src/demo/world/creature/palette-button.gd"
+}, {
+"base": "VBoxContainer",
+"class": "PaletteEditorTab",
+"language": "GDScript",
+"path": "res://src/demo/world/creature/palette-editor-tab.gd"
 }, {
 "base": "Node",
 "class": "PieceInput",
@@ -511,6 +526,7 @@ _global_script_class_icons={
 "CreatureLibrary": "",
 "CreatureLoader": "",
 "CreaturePackedSprite": "",
+"CreaturePaletteDemo": "",
 "CreatureShadow": "",
 "CreatureVisuals": "",
 "DnaUtils": "",
@@ -545,6 +561,8 @@ _global_script_class_icons={
 "OtherRules": "",
 "OverworldUi": "",
 "PackedSprite": "",
+"PaletteButton": "",
+"PaletteEditorTab": "",
 "PieceInput": "",
 "PieceManager": "",
 "PieceMover": "",
@@ -587,7 +605,7 @@ _global_script_class_icons={
 config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
 config/icon="res://assets/main/ui/icon.png"
-config/version="0.0809"
+config/version="0.0804"
 
 [audio]
 
