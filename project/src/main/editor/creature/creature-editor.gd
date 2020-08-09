@@ -88,16 +88,17 @@ func _ready() -> void:
 	$World/Creatures/ECreature.set_meta("nametag_right", true)
 	$World/Creatures/SeCreature.set_meta("nametag_right", true)
 	
-	_initialize_creature(_center_creature)
-	for creature in _outer_creatures:
-		_initialize_creature(creature)
+	_center_creature.creature_def = PlayerData.creature_library.player_def
+	_mutate_all_creatures()
 
 
 """
 Returns a chat theme definition for a generated creature.
 """
-func _random_chat_theme_def() -> Dictionary:
-	return {}
+func _chat_theme_def(dna: Dictionary) -> Dictionary:
+	var new_def := PlayerData.creature_library.player_def.chat_theme_def.duplicate()
+	new_def.color = dna.body_rgb
+	return new_def
 
 
 """
@@ -159,6 +160,7 @@ func _mutate_creature(creature: Creature) -> void:
 				dna[allele] = Utils.rand_value(new_alleles)
 	
 	creature.dna = dna
+	creature.chat_theme_def = _chat_theme_def(dna)
 
 
 """
@@ -214,18 +216,6 @@ func _alleles_to_mutate() -> Array:
 	return result
 
 
-"""
-Initializes a new creature with random characteristics.
-"""
-func _initialize_creature(_creature: Creature) -> void:
-	_creature.dna = CreatureLoader.random_def()
-	var fatness: float = Utils.rand_value(FATNESSES)
-	_creature.set_fatness(fatness)
-	_creature.set_visual_fatness(fatness)
-	_creature.set_chat_theme_def(_random_chat_theme_def())
-	_creature.creature_name = Utils.rand_value(NAMES)
-
-
 func _on_Breadcrumb_trail_popped(_prev_path: String) -> void:
 	if not Breadcrumb.trail:
 		get_tree().change_scene("res://src/main/ui/menu/LoadingScreen.tscn")
@@ -263,3 +253,18 @@ func _on_CreatureSelector_creature_clicked(creature: Creature) -> void:
 	creature.set_visual_fatness(fatness_tmp)
 	creature.set_chat_theme_def(chat_theme_def_tmp)
 	creature.creature_name = creature_name_tmp
+
+
+func _on_Save_pressed() -> void:
+	$Ui/SaveConfirmationDialog.popup_centered()
+
+
+"""
+Updates the player character and writes it to their save file.
+"""
+func _on_SaveConfirmationDialog_confirmed() -> void:
+	PlayerData.creature_library.player_def.dna = _center_creature.dna
+	PlayerData.creature_library.player_def.fatness = _center_creature.get_fatness()
+	PlayerData.creature_library.player_def.chat_theme_def = _center_creature.chat_theme_def
+	PlayerData.creature_library.player_def.creature_name = _center_creature.creature_name
+	PlayerSave.save_player_data()
