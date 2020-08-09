@@ -1,11 +1,12 @@
-class_name Spira
+class_name Player
 extends Creature
 """
-Script for manipulating the player-controlled character 'Spira' in the overworld.
+Script for manipulating the player-controlled character in the overworld.
 """
 
 func _ready() -> void:
-	ChattableManager.spira = self
+	set_creature_def(PlayerData.creature_library.player_def)
+	ChattableManager.player = self
 
 
 func _unhandled_input(_event: InputEvent) -> void:

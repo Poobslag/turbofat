@@ -32,7 +32,7 @@ func _on_OverworldUi_chat_started() -> void:
 		$MoveTimer.paused = true
 		set_non_iso_walk_direction(Vector2.ZERO)
 		play_movement_animation("idle")
-		orient_toward(ChattableManager.spira)
+		orient_toward(ChattableManager.player)
 
 
 """

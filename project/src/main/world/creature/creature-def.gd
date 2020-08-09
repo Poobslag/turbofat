@@ -3,6 +3,8 @@ class_name CreatureDef
 Stores information about a creature such as their name, appearance, and dialog.
 """
 
+const CREATURE_DATA_VERSION := "170e"
+
 # creature's id, e.g 'boatricia'
 var creature_id: String
 
@@ -25,7 +27,7 @@ var dialog: Array
 var fatness := 1.0
 
 func from_json_dict(json: Dictionary) -> void:
-	if json.get("version") != "170e":
+	if json.get("version") != CREATURE_DATA_VERSION:
 		push_warning("Unrecognized creature data version: '%s'" % json.get("version"))
 	creature_id = json.get("id", "")
 	creature_name = json.get("name", "")
@@ -35,3 +37,15 @@ func from_json_dict(json: Dictionary) -> void:
 	fatness = json.get("fatness", 1.0)
 	if dialog:
 		chat_path = "res://assets/main/dialog/%s/%s.json" % [creature_id, dialog[0]]
+
+
+func to_json_dict() -> Dictionary:
+	return {
+		"version": CREATURE_DATA_VERSION,
+		"id": creature_id,
+		"name": creature_name,
+		"dna": dna,
+		"chat_theme_def": chat_theme_def,
+		"dialog": dialog,
+		"fatness": fatness,
+	}

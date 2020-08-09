@@ -80,6 +80,8 @@ Newlines cause a long pause. Slashes cause a medium pause and are hidden from th
 Returns a ChatTheme.ChatLineSize corresponding to the required chat frame size.
 """
 func show_message(text_with_lulls: String, initial_pause: float = 0.0) -> int:
+	text_with_lulls = ChattableManager.substitute_variables(text_with_lulls)
+	
 	# clear any pauses and data related to the old message
 	hide_message()
 	

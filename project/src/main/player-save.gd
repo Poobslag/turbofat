@@ -124,6 +124,7 @@ func save_player_data() -> void:
 		for rank_result in PlayerData.scenario_history.results(scenario_name):
 			rank_results_json.append(rank_result.to_json_dict())
 		save_json.append(named_data("scenario-history", scenario_name, rank_results_json).to_json_dict())
+	save_json.append(generic_data("creature-library", PlayerData.creature_library.to_json_dict()).to_json_dict())
 	save_json.append(generic_data("successful-scenarios",
 			PlayerData.scenario_history.successful_scenarios).to_json_dict())
 	save_json.append(generic_data("finished-scenarios",
@@ -280,6 +281,9 @@ func _load_line(type: String, key: String, json_value) -> void:
 				rank_result.from_json_dict(rank_result_json)
 				PlayerData.scenario_history.add(key, rank_result)
 			PlayerData.scenario_history.prune(key)
+		"creature-library":
+			var value: Dictionary = json_value
+			PlayerData.creature_library.from_json_dict(value)
 		"finished-scenarios":
 			var value: Dictionary = json_value
 			PlayerData.scenario_history.finished_scenarios = value

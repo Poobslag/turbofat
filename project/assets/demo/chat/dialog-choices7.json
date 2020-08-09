@@ -9,7 +9,7 @@
   ],
   "one": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "One.",
       "mood": "smile0"
     },
@@ -20,7 +20,7 @@
   ],
   "two": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Two.",
       "mood": "smile1"
     },
@@ -31,7 +31,7 @@
   ],
   "three": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Three.",
       "mood": "laugh0"
     },
@@ -42,7 +42,7 @@
   ],
   "four": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Four."
     },
     {
@@ -52,7 +52,7 @@
   ],
   "five": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Five.",
       "mood": "laugh1"
     },
@@ -63,7 +63,7 @@
   ],
   "six": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Six.",
       "mood": "think0"
     },
@@ -74,7 +74,7 @@
   ],
   "seven": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Seven.",
       "mood": "think1"
     },

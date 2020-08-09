@@ -20,7 +20,7 @@
   ],
   "cook": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "I'll cook for you!",
       "mood": "smile0",
       "meta": "scenario-five-customers-no-vegetables"
@@ -104,7 +104,7 @@
   ],
   "bye": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Um,/ I don't want any of that...",
       "mood": "sweat0"
     },

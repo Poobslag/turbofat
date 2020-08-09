@@ -1,20 +1,20 @@
 extends Node
 """
-Tracks Spira's location and the location of all chattables. Handles questions like 'which chattable is focused' and
-'which chattables are nearby'.
+Tracks the player's location and the location of all chattables. Handles questions like 'which chattable is focused'
+and 'which chattables are nearby'.
 """
 
 # emitted when focus changes to a new object, or when all objects are unfocused.
 signal focus_changed
 
-# Maximum range for Spira to successfully interact with an object
+# Maximum range for the player to successfully interact with an object
 const MAX_INTERACT_DISTANCE := 240.0
 
 # Chat appearance for different characters
 var _chat_theme_defs: Dictionary
 
 # The player's sprite
-var spira: Spira setget set_spira
+var player: Player setget set_player
 
 # The currently focused object
 var _focused: Node2D setget ,get_focused
@@ -26,28 +26,28 @@ func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focus: Node2D
 
-	if _focus_enabled and spira:
+	if _focus_enabled and player:
 		# iterate over all chattables and find the nearest one
 		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
 			if not is_instance_valid(chattable_obj):
 				continue
-			if spira == chattable_obj:
+			if player == chattable_obj:
 				continue
 			var chattable: Node2D = chattable_obj
 			
 			var chattable_pos: Vector2 = chattable.global_transform.origin
-			var spira_pos: Vector2 = spira.global_transform.origin
+			var player_pos: Vector2 = player.global_transform.origin
 			
 			if "chat_extents" in chattable:
 				# if the chattable object has extents, we measure from its closest point
 				var new_chattable_pos := chattable_pos
-				new_chattable_pos.x += clamp(spira_pos.x - chattable_pos.x,
+				new_chattable_pos.x += clamp(player_pos.x - chattable_pos.x,
 						-chattable.chat_extents.x, chattable.chat_extents.x)
-				new_chattable_pos.y += clamp(spira_pos.y - chattable_pos.y,
+				new_chattable_pos.y += clamp(player_pos.y - chattable_pos.y,
 						-chattable.chat_extents.y, chattable.chat_extents.y)
 				chattable_pos = new_chattable_pos
 			
-			var distance: float = Global.from_iso(chattable_pos).distance_to(Global.from_iso(spira_pos))
+			var distance: float = Global.from_iso(chattable_pos).distance_to(Global.from_iso(player_pos))
 			if distance <= min_distance:
 				min_distance = distance
 				new_focus = chattable
@@ -80,13 +80,13 @@ Because ChattableManager is a singleton, node instances must be purged before ch
 possible for an invisible object from a previous scene to receive focus.
 """
 func clear() -> void:
-	spira = null
+	player = null
 	_focused = null
 
 
-func set_spira(new_spira: Spira) -> void:
-	spira = new_spira
-	add_chat_theme_def(spira.get_meta("chat_name"), spira.get_meta("chat_theme_def"))
+func set_player(new_player: Player) -> void:
+	player = new_player
+	add_chat_theme_def("#player#", player.get_meta("chat_theme_def"))
 
 
 """
@@ -134,8 +134,8 @@ dialog line. This function facilitates that.
 """
 func get_chatter(chat_name: String) -> Node2D:
 	var chatter: Node2D
-	if chat_name == "Spira":
-		chatter = spira
+	if chat_name == "#player#":
+		chatter = player
 	else:
 		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
 			var chattable: Node = chattable_obj
@@ -166,3 +166,14 @@ func get_chat_theme_def(chat_name: String) -> Dictionary:
 
 func add_chat_theme_def(chat_name: String, chat_theme_def: Dictionary) -> void:
 	_chat_theme_defs[chat_name] = chat_theme_def
+
+
+"""
+Substitutes variables in player-visible text.
+
+Text variables are pound sign delimited: 'Hello #player#'. This matches the syntax of Tracery.
+"""
+func substitute_variables(string: String) -> String:
+	var result := string
+	result = result.replace("#player#", PlayerData.creature_library.player_def.creature_name)
+	return result

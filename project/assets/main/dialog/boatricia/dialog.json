@@ -3,7 +3,7 @@
   "" : [
     {
       "who": "Boatricia",
-      "text": "Oh hey Spira!/ I have so much on my plate right now./ I could use some cheering up...",
+      "text": "Oh hey #player#!/ I have so much on my plate right now./ I could use some cheering up...",
       "mood": "cry0",
       "links": [
         {
@@ -17,7 +17,7 @@
   ],
   "cook" : [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Anything I can cook for you?",
       "mood": "think0"
     },
@@ -36,7 +36,7 @@
   ],
   "cook-yes" : [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Okay!",
       "mood": "smile0",
       "meta": "scenario-boatricia"
@@ -44,14 +44,14 @@
   ],
   "cook-no" : [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Not right now, sorry...",
       "mood": "sweat0"
     }
   ],
   "hi" : [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "I was just saying hello!/ Don't stress yourself out too much,/ okay?",
       "mood": "smile0"
     },

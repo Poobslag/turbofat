@@ -8,6 +8,8 @@ This data includes how well they've done on each level and how much money they'v
 signal money_changed(value)
 
 var scenario_history := ScenarioHistory.new()
+var creature_library := CreatureLibrary.new()
+
 var gameplay_settings := GameplaySettings.new()
 var volume_settings := VolumeSettings.new()
 var touch_settings := TouchSettings.new()
@@ -18,6 +20,8 @@ Resets the player's in-memory data to a default state.
 """
 func reset() -> void:
 	scenario_history.reset()
+	creature_library.reset()
+	
 	gameplay_settings.reset()
 	volume_settings.reset()
 	touch_settings.reset()
