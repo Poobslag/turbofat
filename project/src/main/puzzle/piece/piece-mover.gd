@@ -104,16 +104,17 @@ func apply_move_input(piece: ActivePiece) -> void:
 			piece.move_to_target()
 			_horizontal_movement_count += 1
 			emit_signal(movement_signal)
-		
-		# To prevent pieces from slipping past nooks before DAS, we automatically trigger DAS if you're pushing a
-		# piece towards an obstruction. We even trigger DAS if the piece already moved successfully.
-		#
-		# Otherwise, there are some unusual scenarios where, for example, 'O' pieces in a 3-column well will get
-		# instant DAS to the right (where they're blocked) but not to the left (where they can move)
-		if input.is_left_pressed() and not piece.can_move_to(piece.pos + Vector2.LEFT, piece.orientation):
-			input.set_left_das_active()
-		if input.is_right_pressed() and not piece.can_move_to(piece.pos + Vector2.RIGHT, piece.orientation):
-			input.set_right_das_active()
+	
+	# To prevent pieces from slipping past nooks before DAS, we automatically trigger DAS if you're pushing a
+	# piece towards an obstruction. We trigger DAS if the piece already moved successfully, or they're pressing the
+	# direction but DAS hasn't yet activated.
+	#
+	# Otherwise, there are some unusual scenarios where, for example, 'O' pieces in a 3-column well will get
+	# instant DAS to the right (where they're blocked) but not to the left (where they can move)
+	if input.is_left_pressed() and not piece.can_move_to(piece.pos + Vector2.LEFT, piece.orientation):
+		input.set_left_das_active()
+	if input.is_right_pressed() and not piece.can_move_to(piece.pos + Vector2.RIGHT, piece.orientation):
+		input.set_right_das_active()
 
 
 """
