@@ -5,8 +5,6 @@ Contains logic for spawning new pieces, moving/rotating pieces, handling player 
 _playfield.
 """
 
-# emitted when the current piece can't be placed in the _playfield
-signal topped_out
 signal piece_spawned
 
 # emitted when the current piece changes in some way (moved, replaced, reoriented)
@@ -131,7 +129,7 @@ func spawn_piece() -> bool:
 	# lose?
 	var topped_out: bool = false
 	if not piece.can_move_to_target():
-		emit_signal("topped_out")
+		PuzzleScore.top_out()
 		topped_out = true
 	
 	emit_signal("piece_spawned")

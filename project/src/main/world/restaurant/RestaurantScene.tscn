@@ -27,7 +27,7 @@ script = ExtResource( 24 )
 light_mask = 2
 margin_left = -800.0
 margin_top = -3.28479
-margin_right = 3600.0
+margin_right = 4000.0
 margin_bottom = 1005.72
 color = Color( 0.596078, 0.45098, 0.333333, 1 )
 __meta__ = {
@@ -43,7 +43,7 @@ z_index = 10
 light_mask = 2
 margin_left = -800.0
 margin_top = -258.0
-margin_right = 3600.0
+margin_right = 4000.0
 margin_bottom = 880.0
 color = Color( 0.737255, 0.239216, 0.239216, 1 )
 __meta__ = {
@@ -97,7 +97,7 @@ texture = ExtResource( 15 )
 light_mask = 2
 margin_left = -800.0
 margin_top = 670.0
-margin_right = 3600.0
+margin_right = 4000.0
 margin_bottom = 920.0
 texture = ExtResource( 5 )
 expand = true
@@ -109,7 +109,7 @@ __meta__ = {
 [node name="Shadows" type="Node2D" parent="."]
 
 [node name="Viewport" type="Viewport" parent="Shadows"]
-size = Vector2( 3600, 1000 )
+size = Vector2( 4000, 1000 )
 transparent_bg = true
 
 [node name="Pillar1" type="Sprite" parent="Shadows/Viewport"]
@@ -199,7 +199,7 @@ texture = ExtResource( 7 )
 centered = false
 offset = Vector2( 0, -35 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 4400, 80 )
+region_rect = Rect2( 0, 0, 4800, 80 )
 
 [node name="CreatureShadow1" parent="Shadows/Viewport" instance=ExtResource( 4 )]
 visible = false
@@ -215,11 +215,16 @@ visible = false
 position = Vector2( 2381.23, 585.763 )
 creature_path = NodePath("../../../Creature3")
 
+[node name="PlayerShadow" parent="Shadows/Viewport" instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 2381.23, 585.763 )
+creature_path = NodePath("../../../Player")
+
 [node name="TextureRect" type="TextureRect" parent="Shadows"]
 modulate = Color( 1, 1, 1, 0.501961 )
 light_mask = 2
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 4000.0
+margin_bottom = 1000.0
 texture = SubResource( 1 )
 flip_v = true
 __meta__ = {
@@ -275,10 +280,18 @@ elevation = 150
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2380, 585 )
 
+[node name="Player" parent="." instance=ExtResource( 8 )]
+position = Vector2( 3381.23, 585.763 )
+scale = Vector2( 2.5, 2.5 )
+z_index = 20
+dna = {
+
+}
+
 [node name="DoorChime" type="AudioStreamPlayer2D" parent="."]
 position = Vector2( -120, 200 )
 volume_db = -4.0
-max_distance = 4000.0
+max_distance = 6000.0
 bus = "Sound Bus"
 script = ExtResource( 3 )
 
@@ -295,4 +308,6 @@ autostart = true
 [connection signal="food_eaten" from="Creature2" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="creature_arrived" from="Creature3" to="DoorChime" method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="food_eaten" from="Creature3" to="." method="_on_CreatureVisuals_food_eaten"]
+[connection signal="creature_arrived" from="Player" to="DoorChime" method="_on_CreatureVisuals_creature_arrived"]
+[connection signal="food_eaten" from="Player" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="timeout" from="DoorChime/ChimeTimer" to="DoorChime" method="_on_ChimeTimer_timeout"]

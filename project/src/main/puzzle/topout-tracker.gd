@@ -5,24 +5,14 @@ onready var _puzzle: Puzzle = $".."
 onready var _playfield: Playfield = _puzzle.get_playfield()
 onready var _piece_manager: PieceManager = _puzzle.get_piece_manager()
 
-func make_player_lose() -> void:
-	if not PuzzleScore.game_active:
-		return
-	if not Scenario.settings.lose_condition.finish_on_lose:
-		PuzzleScore.scenario_performance.lost = true
-	PuzzleScore.end_game()
+func _ready() -> void:
+	PuzzleScore.connect("topped_out", self, "_on_PuzzleScore_topped_out")
 
 
-"""
-When the current piece can't be placed, we end the game and emit the appropriate signals.
-"""
-func _on_PieceManager_topped_out() -> void:
+func _on_PuzzleScore_topped_out() -> void:
 	Utils.rand_value(_game_over_voices).play()
-	PuzzleScore.scenario_performance.top_out_count += 1
 	
-	if PuzzleScore.scenario_performance.top_out_count >= Scenario.settings.lose_condition.top_out:
-		make_player_lose()
-	else:
+	if not PuzzleScore.scenario_performance.lost:
 		var top_out_delay := PieceSpeeds.current_speed.appearance_delay + PieceSpeeds.current_speed.lock_delay
 		_playfield.break_combo()
 		if Scenario.settings.blocks_during.clear_on_top_out:
