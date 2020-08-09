@@ -18,12 +18,12 @@ func _ready() -> void:
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
 	for i in range(3):
-		$CreatureView.summon_creature(i)
+		$RestaurantView.summon_creature(i)
 	
 	if Scenario.settings.other.tutorial:
 		summon_instructor(true)
 	
-	$CreatureView.get_creature_2d().play_hello_voice(true)
+	$RestaurantView.get_customer().play_hello_voice(true)
 
 
 """
@@ -34,26 +34,26 @@ Parameters:
 		should scroll to the instructor.
 """
 func summon_instructor(replace_current: bool = false) -> void:
-	if $CreatureView.get_creature_2d().dna.get("instructor") == "true":
+	if $RestaurantView.get_customer().dna.get("instructor") == "true":
 		return
-	
+
 	Global.creature_queue.push_front({
 		"line_rgb": "6c4331", "body_rgb": "a854cb", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
 		"ear": "3", "horn": "0", "mouth": "2", "eye": "2", "cheek": "0", "nose": "2",
 		"instructor": "true"
 	})
 	if replace_current:
-		$CreatureView.summon_creature()
+		$RestaurantView.summon_creature()
 	else:
-		var new_creature_index: int = ($CreatureView.get_current_creature_index() + 1) % 2
-		$CreatureView.summon_creature(new_creature_index)
-		$CreatureView.scroll_to_new_creature(new_creature_index)
+		var new_creature_index: int = ($RestaurantView.get_current_creature_index() + 1) % 2
+		$RestaurantView.summon_creature(new_creature_index)
+		$RestaurantView.scroll_to_new_creature(new_creature_index)
 
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_menu"):
 		if PuzzleScore.game_active:
-			$TopOutTracker.make_player_lose()
+			PuzzleScore.make_player_lose()
 			get_tree().set_input_as_handled()
 		elif $Hud/HudUi/PuzzleMessages/BackButton.visible:
 			Breadcrumb.pop_trail()
@@ -85,7 +85,7 @@ func show_back_button() -> void:
 
 
 func scroll_to_new_creature() -> void:
-	$CreatureView.scroll_to_new_creature()
+	$RestaurantView.scroll_to_new_creature()
 
 
 """
@@ -100,12 +100,12 @@ Parameters:
 	'fatness_pct' A percent from [0.0-1.0] of how much fatter the creature should get from this bite of food.
 """
 func _feed_creature(fatness_pct: float, food_color: Color) -> void:
-	var old_fatness: float = $CreatureView.get_creature_2d().get_fatness()
+	var old_fatness: float = $RestaurantView.get_customer().get_fatness()
 	var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
 	if Scenario.settings.other.tutorial:
 		# make them a tiny amount fatter, so that they'll change when a new level is started
 		target_fatness = min(target_fatness, 1.001)
-	
+
 	var comfort := 0.0
 	# ate five things; comfortable
 	comfort += clamp(inverse_lerp(5, 15, PuzzleScore.get_creature_line_clears()), 0.0, 1.0)
@@ -113,10 +113,10 @@ func _feed_creature(fatness_pct: float, food_color: Color) -> void:
 	comfort -= clamp(inverse_lerp(400, 600, PuzzleScore.get_creature_score()), 0.0, 1.0)
 	# overate; uncomfortable
 	comfort -= clamp(inverse_lerp(600, 1200, PuzzleScore.get_creature_score()), 0.0, 1.0)
-	
-	$CreatureView.get_creature_2d().set_comfort(comfort)
-	$CreatureView.get_creature_2d().set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
-	$CreatureView.get_creature_2d().feed(food_color)
+
+	$RestaurantView.get_customer().set_comfort(comfort)
+	$RestaurantView.get_customer().set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
+	$RestaurantView.get_customer().feed(food_color)
 
 
 """
@@ -155,7 +155,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	
 	if creature_talks:
 		yield(get_tree().create_timer(0.5), "timeout")
-		$CreatureView.get_creature_2d().play_combo_voice()
+		$RestaurantView.get_customer().play_combo_voice()
 
 
 func _on_Playfield_after_piece_written() -> void:

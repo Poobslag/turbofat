@@ -26,9 +26,13 @@ signal after_game_ended
 
 signal level_index_changed(value)
 
+signal added_line_score(combo_score, box_score)
 signal score_changed
 
 signal combo_ended
+
+# emitted when the current piece can't be placed in the _playfield
+signal topped_out
 
 enum EndResult {
 	WON, # The player was successful.
@@ -81,6 +85,21 @@ func set_level_index(new_level_index: int) -> void:
 	emit_signal("level_index_changed", level_index)
 
 
+func top_out() -> void:
+	scenario_performance.top_out_count += 1
+	if scenario_performance.top_out_count >= Scenario.settings.lose_condition.top_out:
+		make_player_lose()
+	emit_signal("topped_out")
+
+
+func make_player_lose() -> void:
+	if not game_active:
+		return
+	if not Scenario.settings.lose_condition.finish_on_lose:
+		scenario_performance.lost = true
+	end_game()
+
+
 func end_game() -> void:
 	game_active = false
 	game_ended = true
@@ -89,7 +108,7 @@ func end_game() -> void:
 	if not scenario_performance.lost:
 		scenario_performance.success = MilestoneManager.milestone_met(Scenario.settings.success_condition)
 	emit_signal("game_ended")
-	yield(get_tree().create_timer(4.2 if PuzzleScore.WON else 2.2), "timeout")
+	yield(get_tree().create_timer(4.2 if WON else 2.2), "timeout")
 	emit_signal("after_game_ended")
 
 
@@ -133,6 +152,7 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 	_add_bonus_score(combo_score + box_score)
 	_add_score(1)
 
+	emit_signal("added_line_score", combo_score, box_score)
 	emit_signal("score_changed")
 
 

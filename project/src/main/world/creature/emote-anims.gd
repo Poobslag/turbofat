@@ -42,12 +42,24 @@ const EAT_SWEAT_ANIMS := {
 
 # custom transition for cases where the default mood transition looks awkward
 const TRANSITIONS := {
+	[ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE0]: "_transition_noop",
+	[ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE1]: "_transition_noop",
+	[ChatEvent.Mood.SMILE1, ChatEvent.Mood.SMILE1]: "_transition_noop",
+	[ChatEvent.Mood.SMILE1, ChatEvent.Mood.SMILE0]: "_transition_smile1_smile0",
+	[ChatEvent.Mood.LAUGH0, ChatEvent.Mood.LAUGH0]: "_transition_noop",
 	[ChatEvent.Mood.LAUGH0, ChatEvent.Mood.LAUGH1]: "_transition_noop",
 	[ChatEvent.Mood.LAUGH1, ChatEvent.Mood.LAUGH0]: "_transition_laugh1_laugh0",
+	[ChatEvent.Mood.LAUGH1, ChatEvent.Mood.LAUGH1]: "_transition_noop",
+	[ChatEvent.Mood.THINK0, ChatEvent.Mood.THINK0]: "_transition_noop",
+	[ChatEvent.Mood.THINK1, ChatEvent.Mood.THINK1]: "_transition_noop",
+	[ChatEvent.Mood.CRY0, ChatEvent.Mood.CRY0]: "_transition_noop",
+	[ChatEvent.Mood.CRY1, ChatEvent.Mood.CRY1]: "_transition_noop",
 	[ChatEvent.Mood.SWEAT0, ChatEvent.Mood.SWEAT1]: "_transition_noop",
+	[ChatEvent.Mood.SWEAT0, ChatEvent.Mood.SWEAT0]: "_transition_noop",
 	[ChatEvent.Mood.SWEAT1, ChatEvent.Mood.SWEAT0]: "_transition_sweat1_sweat0",
-	[ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE1]: "_transition_noop",
-	[ChatEvent.Mood.SMILE1, ChatEvent.Mood.SMILE0]: "_transition_smile1_smile0",
+	[ChatEvent.Mood.SWEAT1, ChatEvent.Mood.SWEAT1]: "_transition_noop",
+	[ChatEvent.Mood.RAGE0, ChatEvent.Mood.RAGE0]: "_transition_noop",
+	[ChatEvent.Mood.RAGE1, ChatEvent.Mood.RAGE1]: "_transition_noop",
 }
 
 # Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
@@ -198,6 +210,7 @@ func emote(mood: int) -> void:
 		if TRANSITIONS.has([_prev_mood, mood]):
 			# call the custom transition instead of interrupting the animation
 			call(TRANSITIONS.get([_prev_mood, mood]))
+			stop()
 		else:
 			# reset to the default mood, and wait for the tween to complete
 			unemote()
@@ -210,6 +223,7 @@ func emote(mood: int) -> void:
 	if _mood == mood and mood in EMOTE_ANIMS:
 		# we double-check that the mood we were passed is still the current mood. this invariant can be violated
 		# if we're called multiple times in quick succession. in those cases, we want the newest mood to 'win'.
+		
 		play(EMOTE_ANIMS[mood])
 		
 		if TRANSITIONS.has([_prev_mood, mood]):

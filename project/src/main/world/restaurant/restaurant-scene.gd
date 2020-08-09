@@ -4,18 +4,11 @@ extends Node2D
 Handles animations and audio/visual effects for the restaurant and its creatures.
 """
 
+signal food_eaten
 signal current_creature_index_changed(value)
 
 # the creature which food is currently being served to
 var current_creature_index := 0 setget set_current_creature_index
-
-# fields which control the screen shake effect
-var _shake_total_seconds := 0.0
-var _shake_remaining_seconds := 0.0
-var _shake_magnitude := 2.5
-
-var _shake_position: Vector2
-export (Vector2) var camera_position := Vector2(-89.881, -104.904)
 
 # all of the seats in the scene. each 'seat' includes a table, chairs, a creature, etc...
 onready var _seats := [$Seat1, $Seat2, $Seat3]
@@ -25,17 +18,9 @@ func _ready() -> void:
 	for i in range(3):
 		_get_seat(i).set_creature(_creatures[i])
 		_get_seat(i).refresh()
-
-
-func _process(delta: float) -> void:
-	if _shake_remaining_seconds > 0:
-		_shake_remaining_seconds -= delta
-		if _shake_remaining_seconds <= 0:
-			_shake_position = Vector2.ZERO
-		else:
-			var max_shake := _shake_magnitude * _shake_remaining_seconds / _shake_total_seconds
-			_shake_position = Vector2(rand_range(-max_shake, max_shake), rand_range(-max_shake, max_shake))
-	position = _shake_position + camera_position
+	
+	$Player.set_creature_def(PlayerData.creature_library.player_def)
+	$Player.set_orientation(Creature.SOUTHWEST)
 
 
 func set_current_creature_index(new_index: int) -> void:
@@ -53,25 +38,29 @@ Parameters:
 	'dna': defines the creature's appearance such as eye color and mouth shape.
 """
 func summon_creature(dna: Dictionary, creature_index: int = -1) -> void:
-	get_creature_2d(creature_index).set_dna(dna)
-	get_creature_2d(creature_index).set_comfort(0)
-	get_creature_2d(creature_index).set_fatness(1)
-	get_creature_2d(creature_index).set_visual_fatness(1)
+	get_customer(creature_index).set_dna(dna)
+	get_customer(creature_index).set_comfort(0)
+	get_customer(creature_index).set_fatness(1)
+	get_customer(creature_index).set_visual_fatness(1)
 	_get_seat(creature_index).refresh()
 
 
 func set_fatness(new_fatness_percent: float, creature_index: int = -1) -> void:
-	get_creature_2d(creature_index).set_fatness(new_fatness_percent)
+	get_customer(creature_index).set_fatness(new_fatness_percent)
 
 
 func get_fatness(creature_index: int = -1) -> float:
-	return get_creature_2d(creature_index).get_fatness()
+	return get_customer(creature_index).get_fatness()
+
+
+func get_player() -> Creature:
+	return $Player as Creature
 
 
 """
 Returns the creature with the specified optional index. Defaults to the creature being fed.
 """
-func get_creature_2d(creature_index: int = -1) -> Creature:
+func get_customer(creature_index: int = -1) -> Creature:
 	return _creatures[current_creature_index] if creature_index == -1 else _creatures[creature_index]
 
 
@@ -83,5 +72,4 @@ func _get_seat(seat_index: int = -1) -> Control:
 
 
 func _on_CreatureVisuals_food_eaten() -> void:
-	_shake_total_seconds = 0.16
-	_shake_remaining_seconds = 0.16
+	emit_signal("food_eaten")
