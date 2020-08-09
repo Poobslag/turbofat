@@ -19,7 +19,7 @@
   ],
   "one": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Just one adipiscing elit, please.",
       "mood": "sweat0"
     },
@@ -30,7 +30,7 @@
   ],
   "two": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Two adipiscing elit should be enough.",
       "mood": "think0"
     },
@@ -41,7 +41,7 @@
   ],
   "three": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "As many adipiscing elit as you can give me!",
       "mood": "smile1"
     },

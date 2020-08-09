@@ -16,7 +16,7 @@
   ],
   "yes": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "Yes! Yes adipiscing elit.",
       "mood": "smile0"
     },
@@ -27,7 +27,7 @@
   ],
   "no": [
     {
-      "who": "Spira",
+      "who": "#player#",
       "text": "No... No adipiscing elit.",
       "mood": "rage0"
     },

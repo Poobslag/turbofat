@@ -63,7 +63,7 @@ func from_json_dict(json: Dictionary) -> void:
 	else:
 		# Dialog with no speaker; decorate it as a thought bubble
 		text = "(%s)" % text
-		chat_theme_def = ChattableManager.get_chat_theme_def("Spira")
+		chat_theme_def = ChattableManager.get_chat_theme_def("#player#")
 
 
 """

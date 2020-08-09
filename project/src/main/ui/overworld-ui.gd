@@ -13,7 +13,7 @@ signal chat_ended
 # emitted when we present the player with a dialog choice
 signal showed_chat_choices
 
-# Characters we're currently chatting with. We try to keep them all in frame and facing Spira.
+# Characters we're currently chatting with. We try to keep them all in frame and facing the player.
 var chatters := []
 
 var _show_version := true setget set_show_version, is_show_version
@@ -62,17 +62,17 @@ func is_show_version() -> bool:
 Turn the the active chat participants towards each other, and make them face the camera.
 """
 func make_chatters_face_eachother() -> void:
-	# make spira face the other characters
+	# make the player face the other characters
 	if chatters.size() >= 1:
-		if ChattableManager.spira.get_movement_mode() == Creature.IDLE:
-			# let Spira move while chatting, unless she's asked a question
-			ChattableManager.spira.orient_toward(chatters[0])
-	
-	# make the other characters face spira
+		if ChattableManager.player.get_movement_mode() == Creature.IDLE:
+			# let the player move while chatting, unless she's asked a question
+			ChattableManager.player.orient_toward(chatters[0])
+
+	# make the other characters face the player
 	for chatter in chatters:
 		if chatter.has_method("orient_toward"):
-			# other characters must orient towards Spira to avoid visual glitches when emoting while moving
-			chatter.orient_toward(ChattableManager.spira)
+			# other characters must orient towards the player to avoid visual glitches when emoting while moving
+			chatter.orient_toward(ChattableManager.player)
 
 
 """

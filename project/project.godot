@@ -120,6 +120,11 @@ _global_script_classes=[ {
 "path": "res://src/main/world/creature/creature-def.gd"
 }, {
 "base": "Reference",
+"class": "CreatureLibrary",
+"language": "GDScript",
+"path": "res://src/main/creature-library.gd"
+}, {
+"base": "Reference",
 "class": "CreatureLoader",
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-loader.gd"
@@ -324,6 +329,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/piece-type-rules.gd"
 }, {
+"base": "Creature",
+"class": "Player",
+"language": "GDScript",
+"path": "res://src/main/world/creature/player.gd"
+}, {
 "base": "Control",
 "class": "Playfield",
 "language": "GDScript",
@@ -409,11 +419,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/smooth-path.gd"
 }, {
-"base": "Reference",
-"class": "Spira",
-"language": "GDScript",
-"path": "res://src/main/world/creature/spira.gd"
-}, {
 "base": "Node",
 "class": "State",
 "language": "GDScript",
@@ -482,6 +487,7 @@ _global_script_class_icons={
 "Creature": "",
 "CreatureCurve": "",
 "CreatureDef": "",
+"CreatureLibrary": "",
 "CreatureLoader": "",
 "CreaturePackedSprite": "",
 "CreatureShadow": "",
@@ -523,6 +529,7 @@ _global_script_class_icons={
 "PieceSquisher": "",
 "PieceType": "",
 "PieceTypeRules": "",
+"Player": "",
 "Playfield": "",
 "Puzzle": "",
 "PuzzleAreas": "",
@@ -540,7 +547,6 @@ _global_script_class_icons={
 "ScoreRules": "",
 "SkillTallyItem": "",
 "SmoothPath": "",
-"Spira": "",
 "State": "",
 "StateMachine": "",
 "StringUtils": "",

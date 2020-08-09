@@ -39,7 +39,7 @@ export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 # how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
 export (int) var elevation: int setget set_elevation
 
-var creature_def: CreatureDef
+var creature_def: CreatureDef setget set_creature_def
 var chat_path: String setget set_chat_path
 var creature_name: String setget set_creature_name
 var chat_theme_def: Dictionary setget set_chat_theme_def
@@ -237,15 +237,19 @@ func restart_idle_timer() -> void:
 	creature_visuals.restart_idle_timer()
 
 
+func set_creature_def(new_creature_def: CreatureDef) -> void:
+	creature_def = new_creature_def
+	set_dna(creature_def.dna)
+	set_creature_name(creature_def.creature_name)
+	set_chat_path(creature_def.chat_path)
+	set_chat_theme_def(creature_def.chat_theme_def)
+	set_fatness(creature_def.fatness)
+	creature_visuals.set_visual_fatness(creature_def.fatness)
+
+
 func _refresh_creature_id() -> void:
 	if is_inside_tree():
-		creature_def = CreatureLoader.load_creature_def(creature_id)
-		set_dna(creature_def.dna)
-		set_creature_name(creature_def.creature_name)
-		set_chat_path(creature_def.chat_path)
-		set_chat_theme_def(creature_def.chat_theme_def)
-		set_fatness(creature_def.fatness)
-		creature_visuals.set_visual_fatness(creature_def.fatness)
+		set_creature_def(CreatureLoader.load_creature_def(creature_id))
 
 
 func _refresh_dna() -> void:
