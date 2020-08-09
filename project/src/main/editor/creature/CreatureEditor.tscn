@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=14]
 [ext_resource path="res://assets/main/editor/creature/unlocked.png" type="Texture" id=15]
 [ext_resource path="res://assets/main/puzzle/rotate0.wav" type="AudioStream" id=16]
+[ext_resource path="res://src/main/editor/creature/ui-darkener.gd" type="Script" id=17]
 
 [node name="CreatureEditor" type="Node"]
 script = ExtResource( 8 )
@@ -316,6 +317,20 @@ margin_bottom = 330.0
 text = "Size"
 allele = "fatness"
 
+[node name="Save" type="Button" parent="Ui/TabContainer/Mutate"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = -31.0
+margin_right = 107.52
+margin_bottom = -10.0
+rect_min_size = Vector2( 100, 0 )
+theme = ExtResource( 2 )
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Tweak" type="Panel" parent="Ui/TabContainer"]
 visible = false
 anchor_right = 1.0
@@ -352,12 +367,49 @@ __meta__ = {
 "_editor_description_": ""
 }
 
+[node name="UiDarkener" type="ColorRect" parent="Ui"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.752941 )
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SaveConfirmationDialog" type="ConfirmationDialog" parent="Ui"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -35.0
+margin_right = 100.0
+margin_bottom = 45.0
+popup_exclusive = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Ui/SaveConfirmationDialog"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -36.0
+text = "Is this what you want to look like?"
+
 [node name="SettingsMenu" parent="." instance=ExtResource( 13 )]
 [connection signal="creature_clicked" from="Ui/CreatureSelector" to="." method="_on_CreatureSelector_creature_clicked"]
 [connection signal="hovered_creature_changed" from="Ui/CreatureSelector" to="Ui/Nametags" method="_on_CreatureSelector_hovered_creature_changed"]
 [connection signal="mouse_exited" from="Ui/CreatureSelector" to="Ui/CreatureSelector" method="_on_mouse_exited"]
 [connection signal="pressed" from="Ui/CreatureSelector/Reroll" to="." method="_on_Reroll_pressed"]
 [connection signal="value_changed" from="Ui/TabContainer/Mutate/VBoxContainer/Mutagen/HBoxContainer/HSlider" to="Ui/TabContainer/Mutate/VBoxContainer/Mutagen" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/Save" to="." method="_on_Save_pressed"]
 [connection signal="pressed" from="Ui/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="Ui/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="about_to_show" from="Ui/SaveConfirmationDialog" to="Ui/UiDarkener" method="_on_ConfirmationDialog_about_to_show"]
+[connection signal="about_to_show" from="Ui/SaveConfirmationDialog" to="Ui/SaveConfirmationDialog" method="_on_about_to_show"]
+[connection signal="confirmed" from="Ui/SaveConfirmationDialog" to="." method="_on_SaveConfirmationDialog_confirmed"]
+[connection signal="popup_hide" from="Ui/SaveConfirmationDialog" to="Ui/UiDarkener" method="_on_ConfirmationDialog_popup_hide"]
+[connection signal="popup_hide" from="Ui/SaveConfirmationDialog" to="Ui/SaveConfirmationDialog" method="_on_popup_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]
