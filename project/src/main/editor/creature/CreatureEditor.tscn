@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
@@ -16,7 +16,8 @@
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=14]
 [ext_resource path="res://assets/main/editor/creature/unlocked.png" type="Texture" id=15]
 [ext_resource path="res://assets/main/puzzle/rotate0.wav" type="AudioStream" id=16]
-[ext_resource path="res://src/main/editor/creature/ui-darkener.gd" type="Script" id=17]
+[ext_resource path="res://src/main/editor/creature/dialog-backdrop.gd" type="Script" id=17]
+[ext_resource path="res://src/main/editor/creature/dialogs.gd" type="Script" id=18]
 
 [node name="CreatureEditor" type="Node"]
 script = ExtResource( 8 )
@@ -317,14 +318,50 @@ margin_bottom = 330.0
 text = "Size"
 allele = "fatness"
 
-[node name="Save" type="Button" parent="Ui/TabContainer/Mutate"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_left = 5.0
-margin_top = -31.0
-margin_right = 107.52
-margin_bottom = -10.0
+[node name="Spacer" type="Control" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+margin_top = 335.0
+margin_right = 390.0
+margin_bottom = 420.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ImportContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+margin_top = 425.0
+margin_right = 390.0
+margin_bottom = 451.0
+custom_constants/separation = 5
+
+[node name="Import" type="Button" parent="Ui/TabContainer/Mutate/VBoxContainer/ImportContainer"]
+margin_right = 100.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 0
+theme = ExtResource( 2 )
+text = "Import"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Export" type="Button" parent="Ui/TabContainer/Mutate/VBoxContainer/ImportContainer"]
+margin_left = 105.0
+margin_right = 205.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 0
+theme = ExtResource( 2 )
+text = "Export"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+margin_top = 456.0
+margin_right = 100.0
+margin_bottom = 482.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 0
 theme = ExtResource( 2 )
 text = "Save"
 __meta__ = {
@@ -367,7 +404,18 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="UiDarkener" type="ColorRect" parent="Ui"]
+[node name="Dialogs" type="Control" parent="Ui"]
+pause_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 18 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+creature_editor_path = NodePath("../..")
+
+[node name="Backdrop" type="ColorRect" parent="Ui/Dialogs"]
 visible = false
 margin_right = 1024.0
 margin_bottom = 600.0
@@ -377,26 +425,60 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SaveConfirmationDialog" type="ConfirmationDialog" parent="Ui"]
-pause_mode = 2
+[node name="SaveConfirmation" type="ConfirmationDialog" parent="Ui/Dialogs"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -100.0
-margin_top = -35.0
-margin_right = 100.0
-margin_bottom = 45.0
+margin_left = 392.0
+margin_top = 245.0
+margin_right = 592.0
+margin_bottom = 325.0
 popup_exclusive = true
+window_title = "Confirm"
+dialog_text = "Is this what you want to look like?"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Ui/SaveConfirmationDialog"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 8.0
-margin_top = 8.0
-margin_right = -8.0
-margin_bottom = -36.0
-text = "Is this what you want to look like?"
+[node name="Import" type="FileDialog" parent="Ui/Dialogs"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 192.0
+margin_top = 80.0
+margin_right = 792.0
+margin_bottom = 480.0
+popup_exclusive = true
+window_title = "Import Creature"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.json" )
+current_dir = "/workspace/turbofat/project"
+current_path = "/workspace/turbofat/project/"
+
+[node name="Export" type="FileDialog" parent="Ui/Dialogs"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 192.0
+margin_top = 80.0
+margin_right = 792.0
+margin_bottom = 480.0
+popup_exclusive = true
+window_title = "Export Creature"
+access = 2
+current_dir = "/workspace/turbofat/project"
+current_path = "/workspace/turbofat/project/"
+
+[node name="Error" type="AcceptDialog" parent="Ui/Dialogs"]
+margin_right = 83.0
+margin_bottom = 58.0
+popup_exclusive = true
+window_title = "Error"
+dialog_text = "Error importing creature."
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 13 )]
 [connection signal="creature_clicked" from="Ui/CreatureSelector" to="." method="_on_CreatureSelector_creature_clicked"]
@@ -404,12 +486,20 @@ text = "Is this what you want to look like?"
 [connection signal="mouse_exited" from="Ui/CreatureSelector" to="Ui/CreatureSelector" method="_on_mouse_exited"]
 [connection signal="pressed" from="Ui/CreatureSelector/Reroll" to="." method="_on_Reroll_pressed"]
 [connection signal="value_changed" from="Ui/TabContainer/Mutate/VBoxContainer/Mutagen/HBoxContainer/HSlider" to="Ui/TabContainer/Mutate/VBoxContainer/Mutagen" method="_on_HSlider_value_changed"]
-[connection signal="pressed" from="Ui/TabContainer/Mutate/Save" to="." method="_on_Save_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/VBoxContainer/ImportContainer/Import" to="Ui/Dialogs" method="_on_ImportButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/VBoxContainer/ImportContainer/Export" to="Ui/Dialogs" method="_on_ExportButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/VBoxContainer/Save" to="Ui/Dialogs" method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="Ui/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="Ui/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="about_to_show" from="Ui/SaveConfirmationDialog" to="Ui/UiDarkener" method="_on_ConfirmationDialog_about_to_show"]
-[connection signal="about_to_show" from="Ui/SaveConfirmationDialog" to="Ui/SaveConfirmationDialog" method="_on_about_to_show"]
-[connection signal="confirmed" from="Ui/SaveConfirmationDialog" to="." method="_on_SaveConfirmationDialog_confirmed"]
-[connection signal="popup_hide" from="Ui/SaveConfirmationDialog" to="Ui/UiDarkener" method="_on_ConfirmationDialog_popup_hide"]
-[connection signal="popup_hide" from="Ui/SaveConfirmationDialog" to="Ui/SaveConfirmationDialog" method="_on_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="confirmed" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs" method="_on_SaveConfirmation_confirmed"]
+[connection signal="popup_hide" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/Import" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="file_selected" from="Ui/Dialogs/Import" to="Ui/Dialogs" method="_on_ImportDialog_file_selected"]
+[connection signal="popup_hide" from="Ui/Dialogs/Import" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/Export" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="file_selected" from="Ui/Dialogs/Export" to="Ui/Dialogs" method="_on_ExportDialog_file_selected"]
+[connection signal="popup_hide" from="Ui/Dialogs/Export" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]

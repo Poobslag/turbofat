@@ -8,6 +8,21 @@ Where possible, these functions mimic the style of org.apache.commons.lang3.Stri
 # Numeric suffixes used to represent thousands, millions, billions
 const NUM_SUFFIXES := ["", " k", " m", " b", " t"]
 
+# Characters to omit from the first part of a filename
+const BAD_FILE_ROOT_CHARS := {
+	" ": true,
+	
+	"!": true, "\"": true, "#": true, "$": true, "%": true, "&": true,
+	"'": true, "(": true, ")": true, "*": true, "+": true, ",": true,
+	".": true, "/": true,
+	
+	":": true, ";": true, "<": true, "=": true, ">": true, "?": true, "@": true,
+	
+	"[": true, "\\": true, "]": true, "^": true,
+	
+	"_": true, "`": true, "{": true, "|": true, "}": true, "~": true,
+}
+
 """
 Formats a potentially large number into a compact form like '5,982 k'.
 
@@ -77,3 +92,29 @@ Parses a duration like 1:03.159 into '63.159'
 static func parse_duration(s: String) -> float:
 	var split: Array = s.split(":")
 	return int(split[0]) * 60 + float(split[1])
+
+
+"""
+Sanitizes the 'file root' to avoid creating files with unusual filenames.
+
+The file root is the part of a filename preceding the file extension. To limit bugs and user error we sanitize file
+roots to ensure they're short, lower-case, and don't include unusual characters.
+"""
+static func sanitize_file_root(file_root: String) -> String:
+	var result := ""
+	var utf8 := file_root.to_lower().to_utf8()
+	
+	# sanitize characters we don't want in filenames
+	for i in range(file_root.length()):
+		if utf8[i] < 32 or file_root[i] in BAD_FILE_ROOT_CHARS:
+			# replace sequences of one or more bad characters with a single hyphen
+			if not result.ends_with("-"):
+				result += "-"
+		else:
+			result += file_root[i]
+	
+	# filenames should be a reasonable length, lowercase, and shouldn't start/end with a hyphen
+	result = result.to_lower()
+	result = result.lstrip("-")
+	result = result.rstrip("-")
+	return result.substr(0, 31)
