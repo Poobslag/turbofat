@@ -71,19 +71,20 @@ func _on_OpenResource_pressed() -> void:
 
 
 func _on_Save_pressed() -> void:
-	$SaveDialog.current_file = ScenarioSettings.scenario_filename(_scenario_name.text)
+	var file_root := StringUtils.sanitize_file_root(_scenario_name.text)
+	$SaveDialog.current_file = ScenarioSettings.scenario_filename(file_root)
 	$SaveDialog.popup_centered()
 
 
-func _on_OpenResourceDialog_file_selected(path) -> void:
+func _on_OpenResourceDialog_file_selected(path: String) -> void:
 	_load_scenario(path)
 
 
-func _on_OpenFileDialog_file_selected(path) -> void:
+func _on_OpenFileDialog_file_selected(path: String) -> void:
 	_load_scenario(path)
 
 
-func _on_SaveDialog_file_selected(path) -> void:
+func _on_SaveDialog_file_selected(path: String) -> void:
 	_save_scenario(path)
 
 

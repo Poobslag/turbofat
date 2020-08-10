@@ -82,7 +82,7 @@ This uses the creature's current dna to avoid combining creature parts that don'
 static func allele_values(dna: Dictionary, property: String) -> Array:
 	var result := []
 	
-	if property in ["eye_rgb", "horn_rgb", "body_rgb", "belly_rgb"]:
+	if property in ["eye_rgb", "horn_rgb", "body_rgb", "belly_rgb", "line_rgb"]:
 		# color palette properties
 		for palette in CREATURE_PALETTES:
 			result.append(palette[property])

@@ -200,9 +200,25 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/HornZ1:green"] = horn_color
 
 
-static func load_creature_def(id: String) -> CreatureDef:
-	var creature_def_text: String = FileUtils.get_file_as_text("res://assets/main/dialog/%s/creature.json" % id)
-	var json_creature_def: Dictionary = parse_json(creature_def_text)
-	var creature_def := CreatureDef.new()
-	creature_def.from_json_dict(json_creature_def)
+static func load_creature_def_by_id(id: String) -> CreatureDef:
+	return load_creature_def("res://assets/main/dialog/%s/creature.json" % id)
+
+
+static func load_creature_def(path: String) -> CreatureDef:
+	var creature_def_text: String = FileUtils.get_file_as_text(path)
+	var parsed = parse_json(creature_def_text)
+	var creature_def: CreatureDef
+	if typeof(parsed) == TYPE_DICTIONARY:
+		creature_def = CreatureDef.new()
+		var json_creature_def: Dictionary = parsed
+		creature_def.from_json_dict(json_creature_def)
+		
+		# populate default values when importing incomplete json
+		for allele in ["line_rgb", "body_rgb", "belly_rgb", "eye_rgb", "horn_rgb",
+				"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
+			DnaUtils.put_if_absent(creature_def.dna, allele, CreatureLibrary.DEFAULT_DNA[allele])
+		if not creature_def.creature_name:
+			creature_def.creature_name = CreatureLibrary.DEFAULT_NAME
+		if not creature_def.chat_theme_def:
+			creature_def.chat_theme_def = CreatureLibrary.DEFAULT_CHAT_THEME_DEF.duplicate()
 	return creature_def

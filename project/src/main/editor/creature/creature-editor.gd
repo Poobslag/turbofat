@@ -1,3 +1,4 @@
+class_name CreatureEditor
 extends Node
 """
 A graphical creature editor which lets players design their own creatures.
@@ -89,7 +90,7 @@ func _ready() -> void:
 	$World/Creatures/SeCreature.set_meta("nametag_right", true)
 	
 	_center_creature.creature_def = PlayerData.creature_library.player_def
-	_mutate_all_creatures()
+	mutate_all_creatures()
 
 
 """
@@ -104,7 +105,7 @@ func _chat_theme_def(dna: Dictionary) -> Dictionary:
 """
 Regenerates all of the outer creatures to be variations of the center creature.
 """
-func _mutate_all_creatures() -> void:
+func mutate_all_creatures() -> void:
 	for creature_obj in _outer_creatures:
 		_mutate_creature(creature_obj)
 
@@ -120,11 +121,10 @@ func _mutate_creature(creature: Creature) -> void:
 	
 	# copy the center creature's definition into the target creature
 	var dna := {}
-	for dna_property in [
-			"line_rgb", "body_rgb", "belly_rgb", "eye_rgb", "horn_rgb",
-			"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"
-	]:
-		dna[dna_property] = _center_creature.dna[dna_property]
+	for allele in ["line_rgb", "body_rgb", "belly_rgb", "eye_rgb", "horn_rgb",
+			"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
+		if _center_creature.dna.has(allele):
+			dna[allele] = _center_creature.dna[allele]
 	creature.set_fatness(_center_creature.get_fatness())
 	creature.set_visual_fatness(_center_creature.get_visual_fatness())
 	creature.set_chat_theme_def(_center_creature.chat_theme_def)
@@ -226,7 +226,7 @@ func _on_Quit_pressed() -> void:
 
 
 func _on_Reroll_pressed() -> void:
-	_mutate_all_creatures()
+	mutate_all_creatures()
 	_mutate_ui.mutagen *= 0.84
 
 
@@ -237,34 +237,6 @@ func _on_CreatureSelector_creature_clicked(creature: Creature) -> void:
 	if creature == _center_creature:
 		return
 	
-	var dna_tmp: Dictionary = _center_creature.dna
-	var fatness_tmp: float = _center_creature.get_fatness()
-	var chat_theme_def_tmp: Dictionary = _center_creature.chat_theme_def
-	var creature_name_tmp: String = _center_creature.creature_name
-	
-	_center_creature.dna = creature.dna
-	_center_creature.set_fatness(creature.get_fatness())
-	_center_creature.set_visual_fatness(creature.get_fatness())
-	_center_creature.set_chat_theme_def(creature.chat_theme_def)
-	_center_creature.creature_name = creature.creature_name
-
-	creature.dna = dna_tmp
-	creature.set_fatness(fatness_tmp)
-	creature.set_visual_fatness(fatness_tmp)
-	creature.set_chat_theme_def(chat_theme_def_tmp)
-	creature.creature_name = creature_name_tmp
-
-
-func _on_Save_pressed() -> void:
-	$Ui/SaveConfirmationDialog.popup_centered()
-
-
-"""
-Updates the player character and writes it to their save file.
-"""
-func _on_SaveConfirmationDialog_confirmed() -> void:
-	PlayerData.creature_library.player_def.dna = _center_creature.dna
-	PlayerData.creature_library.player_def.fatness = _center_creature.get_fatness()
-	PlayerData.creature_library.player_def.chat_theme_def = _center_creature.chat_theme_def
-	PlayerData.creature_library.player_def.creature_name = _center_creature.creature_name
-	PlayerSave.save_player_data()
+	var creature_def_tmp: CreatureDef = _center_creature.creature_def
+	_center_creature.creature_def = creature.creature_def
+	creature.creature_def = creature_def_tmp
