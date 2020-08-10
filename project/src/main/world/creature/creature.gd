@@ -42,6 +42,7 @@ export (int) var elevation: int setget set_elevation
 var creature_def: CreatureDef setget set_creature_def, get_creature_def
 var chat_path: String setget set_chat_path
 var creature_name: String setget set_creature_name
+var creature_short_name: String
 var chat_theme_def: Dictionary setget set_chat_theme_def
 var chat_extents: Vector2
 
@@ -65,7 +66,7 @@ func _ready() -> void:
 	if creature_id:
 		_refresh_creature_id()
 	else:
-		_refresh_dna()
+		refresh_dna()
 		_refresh_chat_path()
 
 
@@ -129,7 +130,7 @@ func set_non_iso_velocity(new_velocity: Vector2) -> void:
 func set_dna(new_dna: Dictionary) -> void:
 	dna = new_dna
 	set_meta("dna", dna)
-	_refresh_dna()
+	refresh_dna()
 
 
 func set_chat_path(new_chat_path: String) -> void:
@@ -240,6 +241,7 @@ func restart_idle_timer() -> void:
 func set_creature_def(new_creature_def: CreatureDef) -> void:
 	set_dna(new_creature_def.dna)
 	set_creature_name(new_creature_def.creature_name)
+	creature_short_name = new_creature_def.creature_short_name
 	set_chat_path(new_creature_def.chat_path)
 	set_chat_theme_def(new_creature_def.chat_theme_def)
 	set_fatness(new_creature_def.fatness)
@@ -250,6 +252,7 @@ func get_creature_def() -> CreatureDef:
 	var result := CreatureDef.new()
 	result.dna = dna
 	result.creature_name = creature_name
+	result.creature_short_name = creature_short_name
 	result.chat_path = chat_path
 	result.chat_theme_def = chat_theme_def
 	result.fatness = get_fatness()
@@ -261,7 +264,7 @@ func _refresh_creature_id() -> void:
 		set_creature_def(CreatureLoader.load_creature_def_by_id(creature_id))
 
 
-func _refresh_dna() -> void:
+func refresh_dna() -> void:
 	if is_inside_tree():
 		if dna:
 			dna = DnaUtils.fill_dna(dna)

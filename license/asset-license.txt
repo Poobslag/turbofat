@@ -25,6 +25,9 @@ $$$ Godot Engine (MIT license)
 
 Sounds
 --------------------------------------------------------------------------------
+project/assets/main/editor/creature/edit.png 'Dna' by Freepik
+project/assets/main/editor/creature/locked.png 'Unlock' by Freepik
+project/assets/main/editor/creature/unlocked.png 'Safe' by Freepik
 project/assets/main/puzzle/applause.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS CHEERS Win Claps Applause 01.wav"
 project/assets/main/puzzle/clear-cake-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav" 
 project/assets/main/puzzle/clear-snack-box.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_A_01.wav"
@@ -33,8 +36,6 @@ project/assets/main/puzzle/fanfare*.wav "\GameBurp - 2000 Game Sound FX Collecti
 project/assets/main/puzzle/frosting-splat*.wav "\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Batter_Pour_01"
 project/assets/main/puzzle/levelup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_03.wav"
 project/assets/main/puzzle/line-erase.wav "\Cooking_Game_16bit\Cooking_Actions\Chop\Cooking_Game_Action_Chop_B_02.wav"
-project/assets/main/editor/creature/locked.png 'Unlock' by Freepik
-project/assets/main/editor/creature/unlocked.png 'Safe' by Freepik
 project/assets/main/puzzle/line-fall.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
 project/assets/main/puzzle/lock.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_01.wav"
 project/assets/main/puzzle/make-cake-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_03.wav" "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_C_02.wav" "\sfx-packs\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - PICKUPS - (109)\SUCCESS PICKUP Collect Beep 06.wav"

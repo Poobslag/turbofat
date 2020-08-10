@@ -7,12 +7,14 @@ Provides buttons/sliders for the player to control how the creatures mutate.
 # A higher mutagen level means more alleles will be mutated.
 var mutagen: float setget set_mutagen, get_mutagen
 
+onready var _mutagen_slider := $ScrollContainer/MarginContainer/VBoxContainer/Mutagen/HBoxContainer/HSlider
+
 func get_mutagen() -> float:
-	return $VBoxContainer/Mutagen/HBoxContainer/HSlider.value
+	return _mutagen_slider.value
 
 
 func set_mutagen(new_mutagen: float) -> void:
-	$VBoxContainer/Mutagen/HBoxContainer/HSlider.value = new_mutagen
+	_mutagen_slider.value = new_mutagen
 
 
 """

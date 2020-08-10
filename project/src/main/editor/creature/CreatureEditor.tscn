@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
@@ -10,7 +10,7 @@
 [ext_resource path="res://src/main/editor/creature/creature-editor.gd" type="Script" id=8]
 [ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=9]
 [ext_resource path="res://src/main/editor/creature/mutagen-control.gd" type="Script" id=10]
-[ext_resource path="res://src/main/editor/creature/LockAlleleButton.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/editor/creature/MutateAlleleButton.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/editor/creature/mutate-ui.gd" type="Script" id=12]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=14]
@@ -18,6 +18,12 @@
 [ext_resource path="res://assets/main/puzzle/rotate0.wav" type="AudioStream" id=16]
 [ext_resource path="res://src/main/editor/creature/dialog-backdrop.gd" type="Script" id=17]
 [ext_resource path="res://src/main/editor/creature/dialogs.gd" type="Script" id=18]
+[ext_resource path="res://src/main/editor/creature/TweakSizeRow.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/editor/creature/TweakColorRow.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/main/editor/creature/TweakNameRow.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/main/editor/creature/TweakEyeRow.tscn" type="PackedScene" id=24]
+[ext_resource path="res://src/main/editor/creature/TweakAlleleRow.tscn" type="PackedScene" id=25]
+
 
 [node name="CreatureEditor" type="Node"]
 script = ExtResource( 8 )
@@ -144,20 +150,38 @@ margin_right = -4.0
 margin_bottom = -4.0
 script = ExtResource( 12 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Ui/TabContainer/Mutate"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Ui/TabContainer/Mutate"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui/TabContainer/Mutate/ScrollContainer"]
+margin_right = 412.0
+margin_bottom = 492.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = -10.0
-margin_bottom = -5.0
+margin_right = 407.0
+margin_bottom = 487.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 custom_constants/separation = 5
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Mutagen" type="Control" parent="Ui/TabContainer/Mutate/VBoxContainer"]
-margin_right = 390.0
+[node name="Mutagen" type="Control" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_right = 402.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 390, 20 )
 size_flags_horizontal = 3
@@ -167,7 +191,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Ui/TabContainer/Mutate/VBoxContainer/Mutagen"]
+[node name="Label" type="Label" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/Mutagen"]
 anchor_bottom = 1.0
 margin_right = 120.0
 rect_min_size = Vector2( 120, 0 )
@@ -179,7 +203,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer/Mutagen"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/Mutagen"]
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -192,7 +216,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="Ui/TabContainer/Mutate/VBoxContainer/Mutagen/HBoxContainer"]
+[node name="HSlider" type="HSlider" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/Mutagen/HBoxContainer"]
 margin_top = 2.0
 margin_right = 160.0
 margin_bottom = 18.0
@@ -207,20 +231,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Percent" type="Label" parent="Ui/TabContainer/Mutate/VBoxContainer/Mutagen/HBoxContainer"]
+[node name="Percent" type="Label" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/Mutagen/HBoxContainer"]
 margin_left = 170.0
 margin_right = 230.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 60, 0 )
 text = "100%"
 
-[node name="Name" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Name" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 text = "Name"
 icon = ExtResource( 15 )
 allele = "name"
 two_states = true
 
-[node name="Color" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Color" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 56.0
 margin_right = 205.0
 margin_bottom = 82.0
@@ -228,19 +252,19 @@ rect_min_size = Vector2( 205, 0 )
 text = "Overall Color"
 allele = "body_rgb"
 
-[node name="EyeContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+[node name="EyeContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 87.0
-margin_right = 390.0
+margin_right = 402.0
 margin_bottom = 113.0
 custom_constants/separation = 5
 
-[node name="Eye" parent="Ui/TabContainer/Mutate/VBoxContainer/EyeContainer" instance=ExtResource( 11 )]
+[node name="Eye" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/EyeContainer" instance=ExtResource( 11 )]
 margin_top = 0.0
 margin_bottom = 26.0
 text = "Eye"
 allele = "eye"
 
-[node name="Color" parent="Ui/TabContainer/Mutate/VBoxContainer/EyeContainer" instance=ExtResource( 11 )]
+[node name="Color" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/EyeContainer" instance=ExtResource( 11 )]
 margin_left = 105.0
 margin_top = 0.0
 margin_right = 205.0
@@ -248,43 +272,43 @@ margin_bottom = 26.0
 text = "Color"
 allele = "eye_rgb"
 
-[node name="Nose" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Nose" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 118.0
 margin_bottom = 144.0
 text = "Nose"
 allele = "nose"
 
-[node name="Mouth" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Mouth" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 149.0
 margin_bottom = 175.0
 text = "Mouth"
 allele = "mouth"
 
-[node name="Cheek" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Cheek" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 180.0
 margin_bottom = 206.0
 text = "Cheek"
 allele = "cheek"
 
-[node name="Ear" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Ear" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 211.0
 margin_bottom = 237.0
 text = "Ear"
 allele = "ear"
 
-[node name="HornContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+[node name="HornContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 242.0
-margin_right = 390.0
+margin_right = 402.0
 margin_bottom = 268.0
 custom_constants/separation = 5
 
-[node name="Horn" parent="Ui/TabContainer/Mutate/VBoxContainer/HornContainer" instance=ExtResource( 11 )]
+[node name="Horn" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/HornContainer" instance=ExtResource( 11 )]
 margin_top = 0.0
 margin_bottom = 26.0
 text = "Horn"
 allele = "horn"
 
-[node name="Color" parent="Ui/TabContainer/Mutate/VBoxContainer/HornContainer" instance=ExtResource( 11 )]
+[node name="Color" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/HornContainer" instance=ExtResource( 11 )]
 margin_left = 105.0
 margin_top = 0.0
 margin_right = 205.0
@@ -292,19 +316,19 @@ margin_bottom = 26.0
 text = "Color"
 allele = "horn_rgb"
 
-[node name="BellyContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+[node name="BellyContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 273.0
-margin_right = 390.0
+margin_right = 402.0
 margin_bottom = 299.0
 custom_constants/separation = 5
 
-[node name="Belly" parent="Ui/TabContainer/Mutate/VBoxContainer/BellyContainer" instance=ExtResource( 11 )]
+[node name="Belly" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/BellyContainer" instance=ExtResource( 11 )]
 margin_top = 0.0
 margin_bottom = 26.0
 text = "Belly"
 allele = "belly"
 
-[node name="Color" parent="Ui/TabContainer/Mutate/VBoxContainer/BellyContainer" instance=ExtResource( 11 )]
+[node name="Color" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/BellyContainer" instance=ExtResource( 11 )]
 margin_left = 105.0
 margin_top = 0.0
 margin_right = 205.0
@@ -312,28 +336,28 @@ margin_bottom = 26.0
 text = "Color"
 allele = "belly_rgb"
 
-[node name="Size" parent="Ui/TabContainer/Mutate/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Size" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 304.0
 margin_bottom = 330.0
 text = "Size"
 allele = "fatness"
 
-[node name="Spacer" type="Control" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+[node name="Spacer" type="Control" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 335.0
-margin_right = 390.0
+margin_right = 402.0
 margin_bottom = 420.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ImportContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+[node name="ImportContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 425.0
-margin_right = 390.0
+margin_right = 402.0
 margin_bottom = 451.0
 custom_constants/separation = 5
 
-[node name="Import" type="Button" parent="Ui/TabContainer/Mutate/VBoxContainer/ImportContainer"]
+[node name="Import" type="Button" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer"]
 margin_right = 100.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 0 )
@@ -344,7 +368,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Export" type="Button" parent="Ui/TabContainer/Mutate/VBoxContainer/ImportContainer"]
+[node name="Export" type="Button" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer"]
 margin_left = 105.0
 margin_right = 205.0
 margin_bottom = 26.0
@@ -356,7 +380,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Save" type="Button" parent="Ui/TabContainer/Mutate/VBoxContainer"]
+[node name="Save" type="Button" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 456.0
 margin_right = 100.0
 margin_bottom = 482.0
@@ -376,6 +400,185 @@ margin_left = 4.0
 margin_top = 32.0
 margin_right = -4.0
 margin_bottom = -4.0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Ui/TabContainer/Tweak"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+scroll_horizontal_enabled = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Ui/TabContainer/Tweak/ScrollContainer"]
+margin_right = 400.0
+margin_bottom = 494.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 395.0
+margin_bottom = 489.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Name" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 22 )]
+margin_right = 378.0
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+margin_top = 34.0
+margin_right = 378.0
+margin_bottom = 60.0
+allele = "body_rgb"
+text = "Color"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Line Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+margin_top = 64.0
+margin_right = 378.0
+margin_bottom = 90.0
+allele = "line_rgb"
+text = "Line Color"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Eye" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
+margin_top = 94.0
+margin_right = 378.0
+margin_bottom = 120.0
+allele = "eye"
+text = "Eye"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Eye Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 24 )]
+margin_right = 378.0
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Nose" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
+margin_top = 154.0
+margin_right = 378.0
+margin_bottom = 180.0
+allele = "nose"
+text = "Nose"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Mouth" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
+margin_top = 184.0
+margin_right = 378.0
+margin_bottom = 210.0
+allele = "mouth"
+text = "Mouth"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Cheek" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
+margin_top = 214.0
+margin_right = 378.0
+margin_bottom = 240.0
+allele = "cheek"
+text = "Cheek"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Ear" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
+margin_top = 244.0
+margin_right = 378.0
+margin_bottom = 270.0
+allele = "ear"
+text = "Ear"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Horn" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
+margin_top = 274.0
+margin_right = 378.0
+margin_bottom = 300.0
+allele = "horn"
+text = "Horn"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Horn Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+margin_top = 304.0
+margin_right = 378.0
+margin_bottom = 330.0
+allele = "horn_rgb"
+text = "Horn Color"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Belly" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
+margin_top = 334.0
+margin_right = 378.0
+margin_bottom = 360.0
+allele = "belly"
+text = "Belly"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Belly Color" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+margin_top = 364.0
+margin_right = 378.0
+margin_bottom = 390.0
+allele = "belly_rgb"
+text = "Belly Color"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Size" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 19 )]
+margin_right = 378.0
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Spacer" type="Control" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 424.0
+margin_right = 378.0
+margin_bottom = 424.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ImportContainer" type="HBoxContainer" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 428.0
+margin_right = 378.0
+margin_bottom = 454.0
+custom_constants/separation = 5
+
+[node name="Import" type="Button" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer"]
+margin_right = 100.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 0
+theme = ExtResource( 2 )
+text = "Import"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Export" type="Button" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer"]
+margin_left = 105.0
+margin_right = 205.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 0
+theme = ExtResource( 2 )
+text = "Export"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Save" type="Button" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 458.0
+margin_right = 100.0
+margin_bottom = 484.0
+rect_min_size = Vector2( 100, 0 )
+size_flags_horizontal = 0
+theme = ExtResource( 2 )
+text = "Save"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Settings" type="Button" parent="Ui"]
 margin_left = 839.0
@@ -451,7 +654,7 @@ margin_top = 80.0
 margin_right = 792.0
 margin_bottom = 480.0
 popup_exclusive = true
-window_title = "Import Creature"
+window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.json" )
@@ -485,10 +688,13 @@ dialog_text = "Error importing creature."
 [connection signal="hovered_creature_changed" from="Ui/CreatureSelector" to="Ui/Nametags" method="_on_CreatureSelector_hovered_creature_changed"]
 [connection signal="mouse_exited" from="Ui/CreatureSelector" to="Ui/CreatureSelector" method="_on_mouse_exited"]
 [connection signal="pressed" from="Ui/CreatureSelector/Reroll" to="." method="_on_Reroll_pressed"]
-[connection signal="value_changed" from="Ui/TabContainer/Mutate/VBoxContainer/Mutagen/HBoxContainer/HSlider" to="Ui/TabContainer/Mutate/VBoxContainer/Mutagen" method="_on_HSlider_value_changed"]
-[connection signal="pressed" from="Ui/TabContainer/Mutate/VBoxContainer/ImportContainer/Import" to="Ui/Dialogs" method="_on_ImportButton_pressed"]
-[connection signal="pressed" from="Ui/TabContainer/Mutate/VBoxContainer/ImportContainer/Export" to="Ui/Dialogs" method="_on_ExportButton_pressed"]
-[connection signal="pressed" from="Ui/TabContainer/Mutate/VBoxContainer/Save" to="Ui/Dialogs" method="_on_SaveButton_pressed"]
+[connection signal="value_changed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/Mutagen/HBoxContainer/HSlider" to="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/Mutagen" method="_on_HSlider_value_changed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Import" to="Ui/Dialogs" method="_on_ImportButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Export" to="Ui/Dialogs" method="_on_ExportButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/Save" to="Ui/Dialogs" method="_on_SaveButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Import" to="Ui/Dialogs" method="_on_ImportButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer/Export" to="Ui/Dialogs" method="_on_ExportButton_pressed"]
+[connection signal="pressed" from="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/Save" to="Ui/Dialogs" method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="Ui/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="Ui/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="about_to_show" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]

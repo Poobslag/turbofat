@@ -4,18 +4,8 @@ extends Node
 A graphical creature editor which lets players design their own creatures.
 """
 
-# creature characteristics which the player can edit
-const EDITABLE_ALLELES := [
-	"name",
-	"eye", "eye_rgb",
-	"nose",
-	"mouth",
-	"ear",
-	"horn", "horn_rgb",
-	"cheek", "body_rgb",
-	"belly", "belly_rgb",
-	"fatness",
-]
+# emitted when the center creature is first initialized, and later when it is swapped out
+signal center_creature_changed
 
 # generated using 'American Forenames + Animals' from https://www.samcodes.co.uk/project/markov-namegen/
 const NAMES := [
@@ -65,8 +55,10 @@ const FATNESSES := [
 	1.8, 2.3,
 ]
 
+var _recent_tweaked_allele_values := {}
+
 # the creature the player is editing
-onready var _center_creature := $World/Creatures/CenterCreature
+onready var center_creature := $World/Creatures/CenterCreature
 
 # alternative creatures the player can choose
 onready var _outer_creatures := [
@@ -83,13 +75,17 @@ onready var _mutate_ui := $Ui/TabContainer/Mutate
 
 func _ready() -> void:
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
-
-	_center_creature.set_meta("main_creature", true)
+	
+	for allele in ["cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
+		_recent_tweaked_allele_values[allele] = []
+	
+	center_creature.set_meta("main_creature", true)
 	$World/Creatures/NeCreature.set_meta("nametag_right", true)
 	$World/Creatures/ECreature.set_meta("nametag_right", true)
 	$World/Creatures/SeCreature.set_meta("nametag_right", true)
 	
-	_center_creature.creature_def = PlayerData.creature_library.player_def
+	center_creature.creature_def = PlayerData.creature_library.player_def
+	emit_signal("center_creature_changed")
 	mutate_all_creatures()
 
 
@@ -104,6 +100,8 @@ func _chat_theme_def(dna: Dictionary) -> Dictionary:
 
 """
 Regenerates all of the outer creatures to be variations of the center creature.
+
+Any number of aspects of the creature are changed.
 """
 func mutate_all_creatures() -> void:
 	for creature_obj in _outer_creatures:
@@ -119,16 +117,13 @@ locked/unlocked alleles.
 func _mutate_creature(creature: Creature) -> void:
 	var new_palette: Dictionary = Utils.rand_value(DnaUtils.CREATURE_PALETTES)
 	
-	# copy the center creature's definition into the target creature
+	# copy the center creature's dna, name, weight
+	creature.creature_def = center_creature.creature_def
 	var dna := {}
 	for allele in ["line_rgb", "body_rgb", "belly_rgb", "eye_rgb", "horn_rgb",
 			"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
-		if _center_creature.dna.has(allele):
-			dna[allele] = _center_creature.dna[allele]
-	creature.set_fatness(_center_creature.get_fatness())
-	creature.set_visual_fatness(_center_creature.get_visual_fatness())
-	creature.set_chat_theme_def(_center_creature.chat_theme_def)
-	creature.creature_name = _center_creature.creature_name
+		if center_creature.dna.has(allele):
+			dna[allele] = center_creature.dna[allele]
 	
 	# mutate the appropriate alleles
 	for allele in _alleles_to_mutate():
@@ -143,21 +138,89 @@ func _mutate_creature(creature: Creature) -> void:
 				creature.set_fatness(new_fatness)
 				creature.set_visual_fatness(new_fatness)
 			"body_rgb":
-				dna["body_rgb"] = new_palette["body_rgb"]
 				dna["line_rgb"] = new_palette["line_rgb"]
+				dna["body_rgb"] = new_palette["body_rgb"]
 			"all_rgb":
-				dna["body_rgb"] = new_palette["body_rgb"]
 				dna["line_rgb"] = new_palette["line_rgb"]
+				dna["body_rgb"] = new_palette["body_rgb"]
 				dna["belly_rgb"] = new_palette["belly_rgb"]
 				dna["eye_rgb"] = new_palette["eye_rgb"]
 				dna["horn_rgb"] = new_palette["horn_rgb"]
-			"belly_rgb", "eye_rgb", "horn_rgb":
+			"line_rgb", "belly_rgb", "eye_rgb", "horn_rgb":
 				dna[allele] = new_palette[allele]
 			_:
-				var new_alleles := DnaUtils.allele_values(dna, allele)
+				var new_alleles := DnaUtils.weighted_allele_values(dna, allele)
 				while new_alleles.has(dna[allele]):
 					new_alleles.erase(dna[allele])
-				dna[allele] = Utils.rand_value(new_alleles)
+				if new_alleles:
+					dna[allele] = Utils.rand_value(new_alleles)
+	
+	creature.dna = dna
+	creature.chat_theme_def = _chat_theme_def(dna)
+
+
+"""
+Regenerates all of the outer creatures to be variations of the center creature.
+
+Only one aspect of the creature is changed. We select a value which is different from the creature's current value, and
+which hasn't been selected recently.
+"""
+func tweak_all_creatures(allele: String) -> void:
+	for creature_obj in _outer_creatures:
+		_tweak_creature(creature_obj, allele)
+
+
+"""
+Regenerates a creature to be a variation of the center creature.
+
+Only one aspect of the creature is changed. We select a value which is different from the creature's current value, and
+which hasn't been selected recently.
+"""
+func _tweak_creature(creature: Creature, allele: String) -> void:
+	var new_palette: Dictionary = Utils.rand_value(DnaUtils.CREATURE_PALETTES)
+	
+	# copy the center creature's dna, name, weight
+	creature.creature_def = center_creature.creature_def
+	var dna := {}
+	for allele in ["line_rgb", "body_rgb", "belly_rgb", "eye_rgb", "horn_rgb",
+			"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
+		if center_creature.dna.has(allele):
+			dna[allele] = center_creature.dna[allele]
+	
+	match allele:
+		"name":
+			creature.creature_name = Utils.rand_value(NAMES)
+		"fatness":
+			var new_fatnesses := FATNESSES.duplicate()
+			while new_fatnesses.has(creature.get_visual_fatness()):
+				new_fatnesses.erase(creature.get_visual_fatness())
+			var new_fatness: float = Utils.rand_value(new_fatnesses)
+			creature.set_fatness(new_fatness)
+			creature.set_visual_fatness(new_fatness)
+		"body_rgb":
+			dna["line_rgb"] = new_palette["line_rgb"]
+			dna["body_rgb"] = new_palette["body_rgb"]
+		"all_rgb":
+			dna["line_rgb"] = new_palette["line_rgb"]
+			dna["body_rgb"] = new_palette["body_rgb"]
+			dna["belly_rgb"] = new_palette["belly_rgb"]
+			dna["eye_rgb"] = new_palette["eye_rgb"]
+			dna["horn_rgb"] = new_palette["horn_rgb"]
+		"belly_rgb", "eye_rgb", "horn_rgb", "line_rgb":
+			dna[allele] = new_palette[allele]
+		_:
+			var new_alleles := DnaUtils.unique_allele_values(allele)
+			var unpicked_alleles := new_alleles.duplicate()
+			unpicked_alleles.erase(dna[allele])
+			for recent_allele in _recent_tweaked_allele_values[allele]:
+				unpicked_alleles.erase(recent_allele)
+			if not unpicked_alleles:
+				unpicked_alleles = new_alleles
+				unpicked_alleles.erase(dna[allele])
+				_recent_tweaked_allele_values[allele].clear()
+			if unpicked_alleles:
+				dna[allele] = Utils.rand_value(unpicked_alleles)
+				_recent_tweaked_allele_values[allele].append(dna[allele])
 	
 	creature.dna = dna
 	creature.chat_theme_def = _chat_theme_def(dna)
@@ -234,9 +297,10 @@ func _on_Reroll_pressed() -> void:
 Swap the clicked creature with the center creature.
 """
 func _on_CreatureSelector_creature_clicked(creature: Creature) -> void:
-	if creature == _center_creature:
+	if creature == center_creature:
 		return
 	
-	var creature_def_tmp: CreatureDef = _center_creature.creature_def
-	_center_creature.creature_def = creature.creature_def
+	var creature_def_tmp: CreatureDef = center_creature.creature_def
+	center_creature.creature_def = creature.creature_def
 	creature.creature_def = creature_def_tmp
+	emit_signal("center_creature_changed")

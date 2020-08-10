@@ -15,6 +15,7 @@ const DEFAULT_CHAT_THEME_DEF := {
 
 # default creature appearance when starting a new game
 const DEFAULT_DNA := {
+	"line_rgb": "6c4331",
 	"body_rgb": "b23823",
 	"belly": "1",
 	"belly_rgb": "c9442a",
@@ -23,7 +24,6 @@ const DEFAULT_DNA := {
 	"eye_rgb": "282828 dedede",
 	"horn": "1",
 	"horn_rgb": "f1e398",
-	"line_rgb": "6c4331",
 	"mouth": "2",
 	"nose": "0",
 	"cheek": "3"
@@ -38,6 +38,7 @@ func reset() -> void:
 	# default player appearance and name
 	player_def = CreatureDef.new()
 	player_def.creature_name = DEFAULT_NAME
+	player_def.creature_short_name = NameUtils.sanitize_short_name(player_def.creature_name)
 	player_def.dna = DEFAULT_DNA.duplicate()
 	player_def.fatness = 1.0
 	player_def.chat_theme_def = DEFAULT_CHAT_THEME_DEF.duplicate()

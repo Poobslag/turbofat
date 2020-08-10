@@ -8,6 +8,8 @@ Where possible, these functions mimic the style of org.apache.commons.lang3.Stri
 # Numeric suffixes used to represent thousands, millions, billions
 const NUM_SUFFIXES := ["", " k", " m", " b", " t"]
 
+const MAX_FILE_ROOT_LENGTH := 31
+
 # Characters to omit from the first part of a filename
 const BAD_FILE_ROOT_CHARS := {
 	" ": true,
@@ -106,7 +108,7 @@ static func sanitize_file_root(file_root: String) -> String:
 	
 	# sanitize characters we don't want in filenames
 	for i in range(file_root.length()):
-		if utf8[i] < 32 or file_root[i] in BAD_FILE_ROOT_CHARS:
+		if utf8[i] < 32 or utf8[i] == 127 or file_root[i] in BAD_FILE_ROOT_CHARS:
 			# replace sequences of one or more bad characters with a single hyphen
 			if not result.ends_with("-"):
 				result += "-"
@@ -117,4 +119,4 @@ static func sanitize_file_root(file_root: String) -> String:
 	result = result.to_lower()
 	result = result.lstrip("-")
 	result = result.rstrip("-")
-	return result.substr(0, 31)
+	return result.substr(0, MAX_FILE_ROOT_LENGTH)

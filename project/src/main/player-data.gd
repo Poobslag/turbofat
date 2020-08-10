@@ -13,6 +13,7 @@ var creature_library := CreatureLibrary.new()
 var gameplay_settings := GameplaySettings.new()
 var volume_settings := VolumeSettings.new()
 var touch_settings := TouchSettings.new()
+
 var money := 0 setget set_money
 
 """
