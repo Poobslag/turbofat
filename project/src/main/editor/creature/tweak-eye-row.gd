@@ -19,7 +19,7 @@ func _ready() -> void:
 """
 Update the creature with the player's chosen eye color.
 """
-func _on_Edit_color_changed(color: Color) -> void:
+func _on_Edit_color_changed(_color: Color) -> void:
 	var color_string := "%s %s" % [$Edit1.color.to_html(false).to_lower(), $Edit2.color.to_html(false).to_lower()]
 	_creature_editor.center_creature.dna[_allele] = color_string
 	_creature_editor.center_creature.refresh_dna()

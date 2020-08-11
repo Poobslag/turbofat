@@ -120,3 +120,17 @@ static func sanitize_file_root(file_root: String) -> String:
 	result = result.lstrip("-")
 	result = result.rstrip("-")
 	return result.substr(0, MAX_FILE_ROOT_LENGTH)
+
+
+static func is_letter(character: String) -> bool:
+	return character >= "A" and character <= "Z" or character >= "a" and character <= "z"
+
+
+static func capitalize_words(string: String) -> String:
+	var result := string[0].to_upper()
+	for i in range(1, string.length()):
+		if is_letter(string[i]) and is_letter(string[i-1]):
+			result += string[i].to_lower()
+		else:
+			result += string[i].to_upper()
+	return result
