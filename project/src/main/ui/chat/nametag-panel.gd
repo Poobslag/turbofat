@@ -28,7 +28,7 @@ var _nametag_size: int
 Assigns the name label's text and updates our _nametag_size field to the smallest name label which fit.
 """
 func set_nametag_text(new_text: String) -> void:
-	new_text = ChattableManager.substitute_variables(new_text)
+	new_text = ChattableManager.substitute_variables(new_text, true)
 	
 	if new_text.empty():
 		_nametag_size = ChatTheme.NAMETAG_OFF

@@ -26,7 +26,7 @@ const CREATURE_PALETTES := [
 			"eye_rgb": "f9a74c fff6df", "horn_rgb": "b47922"}, # orange
 	{"line_rgb": "6c4331", "body_rgb": "8fea40", "belly_rgb": "e8fa95",
 			"eye_rgb": "f5d561 fcf3cd", "horn_rgb": "b47922"}, # light green
-	{"line_rgb": "6c4331", "body_rgb": "70843a", "belly_rgb": "8c9537",
+	{"line_rgb": "6c4331", "body_rgb": "70843a", "belly_rgb": "a9aa2f",
 			"eye_rgb": "7d4c21 e5cd7d", "horn_rgb": "f1e398"}, # goblin green
 	{"line_rgb": "6c4331", "body_rgb": "feceef", "belly_rgb": "ffeffc",
 			"eye_rgb": "ffddf4 ffffff", "horn_rgb": "ffffff"}, # pink
@@ -42,6 +42,41 @@ const CREATURE_PALETTES := [
 			"eye_rgb": "fad541 ffffff", "horn_rgb": "282828"}  # dark blue
 ]
 
+# body part names shown to the player
+const ALLELE_NAMES := {
+	"eye-0": "(none)",
+	"eye-1": "Giant",
+	"eye-2": "Zen",
+	"eye-3": "Decaf",
+	
+	"nose-0": "(none)",
+	"nose-1": "Nub",
+	"nose-2": "Speck",
+	"nose-3": "Goblin",
+	
+	"mouth-0": "(none)",
+	"mouth-1": "Ant",
+	"mouth-2": "Illithid",
+	"mouth-3": "Imp",
+	
+	"cheek-0": "Round",
+	"cheek-1": "Razor Sharp",
+	"cheek-2": "Fluffy Tuft",
+	"cheek-3": "Fish Whisker",
+	
+	"ear-0": "(none)",
+	"ear-1": "Cattail",
+	"ear-2": "Cannon",
+	"ear-3": "Dangler",
+	
+	"horn-0": "(none)",
+	"horn-1": "Straw Hole",
+	"horn-2": "Rhino Nub",
+	
+	"belly-0": "(none)",
+	"belly-1": "Full",
+	"belly-2": "Half",
+}
 
 """
 If the specified key is not associated with a value, this method associates it with the given value.
@@ -69,20 +104,52 @@ static func fill_dna(dna: Dictionary) -> Dictionary:
 		pass
 	else:
 		for allele in ["cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
-			put_if_absent(result, allele, Utils.rand_value(allele_values(result, allele)))
+			put_if_absent(result, allele, Utils.rand_value(weighted_allele_values(result, allele)))
 	put_if_absent(result, "body", "1")
 	return result
 
 
 """
-Returns a list of potential values for the specified allele.
-
-This uses the creature's current dna to avoid combining creature parts that don't look good together.
+Returns a human-readable allele name for use in the editor.
 """
-static func allele_values(dna: Dictionary, property: String) -> Array:
+static func allele_name(key: String, value: String) -> String:
+	var combo_key := "%s-%s" % [key, value]
+	return ALLELE_NAMES.get(combo_key, combo_key)
+
+
+"""
+Returns a unique list of values for the specified allele.
+"""
+static func unique_allele_values(property: String) -> Array:
 	var result := []
 	
-	if property in ["eye_rgb", "horn_rgb", "body_rgb", "belly_rgb", "line_rgb"]:
+	if property in ["line_rgb", "body_rgb", "eye_rgb", "horn_rgb", "belly_rgb", "line_rgb"]:
+		# color palette properties
+		for palette in CREATURE_PALETTES:
+			result.append(palette[property])
+	else:
+		# other properties
+		match property:
+			"belly": result = ["0", "1", "2"]
+			"cheek": result = ["0", "1", "2", "3"]
+			"ear": result = ["1", "2", "3"]
+			"eye": result = ["1", "2", "3"]
+			"horn": result = ["0", "1", "2"]
+			"mouth": result = ["1", "2", "3"]
+			"nose": result = ["0", "1", "2", "3"]
+	
+	return result
+
+"""
+Returns a weighted list of values for the specified allele.
+
+The values are weighted to make some values more common than others. The values uses the creature's current dna to
+avoid combining creature parts that don't look good together.
+"""
+static func weighted_allele_values(dna: Dictionary, property: String) -> Array:
+	var result := []
+	
+	if property in ["line_rgb", "body_rgb", "eye_rgb", "horn_rgb", "belly_rgb", "line_rgb"]:
 		# color palette properties
 		for palette in CREATURE_PALETTES:
 			result.append(palette[property])

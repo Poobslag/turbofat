@@ -11,6 +11,9 @@ var creature_id: String
 # creature's name, e.g 'Boatricia'
 var creature_name: String
 
+# a shortened version of the creature's name, for use in conversation
+var creature_short_name: String
+
 # the path with the json containing the creature's dialog
 var chat_path: String
 
@@ -31,6 +34,7 @@ func from_json_dict(json: Dictionary) -> void:
 		push_warning("Unrecognized creature data version: '%s'" % json.get("version"))
 	creature_id = json.get("id", "")
 	creature_name = json.get("name", "")
+	creature_short_name = json.get("short_name", NameUtils.sanitize_short_name(creature_name))
 	dna = json.get("dna", {})
 	chat_theme_def = json.get("chat_theme_def", {})
 	dialog = json.get("dialog", [])
@@ -44,6 +48,7 @@ func to_json_dict() -> Dictionary:
 		"version": CREATURE_DATA_VERSION,
 		"id": creature_id,
 		"name": creature_name,
+		"short_name": creature_short_name,
 		"dna": dna,
 		"chat_theme_def": chat_theme_def,
 		"dialog": dialog,

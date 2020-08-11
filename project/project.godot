@@ -227,7 +227,7 @@ _global_script_classes=[ {
 "base": "Button",
 "class": "LockAlleleButton",
 "language": "GDScript",
-"path": "res://src/main/editor/creature/lock-allele-button.gd"
+"path": "res://src/main/editor/creature/mutate-allele-button.gd"
 }, {
 "base": "Reference",
 "class": "LoseConditionRules",
@@ -258,6 +258,11 @@ _global_script_classes=[ {
 "class": "MutateUi",
 "language": "GDScript",
 "path": "res://src/main/editor/creature/mutate-ui.gd"
+}, {
+"base": "Reference",
+"class": "NameUtils",
+"language": "GDScript",
+"path": "res://src/main/name-utils.gd"
 }, {
 "base": "Reference",
 "class": "NearestSorter",
@@ -520,6 +525,7 @@ _global_script_class_icons={
 "MilestoneHud": "",
 "MoneyLabel": "",
 "MutateUi": "",
+"NameUtils": "",
 "NearestSorter": "",
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",

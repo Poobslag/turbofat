@@ -219,6 +219,8 @@ static func load_creature_def(path: String) -> CreatureDef:
 			DnaUtils.put_if_absent(creature_def.dna, allele, CreatureLibrary.DEFAULT_DNA[allele])
 		if not creature_def.creature_name:
 			creature_def.creature_name = CreatureLibrary.DEFAULT_NAME
+		if not creature_def.creature_short_name:
+			creature_def.creature_short_name = CreatureLibrary.DEFAULT_NAME
 		if not creature_def.chat_theme_def:
 			creature_def.chat_theme_def = CreatureLibrary.DEFAULT_CHAT_THEME_DEF.duplicate()
 	return creature_def

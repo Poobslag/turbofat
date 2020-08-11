@@ -173,7 +173,10 @@ Substitutes variables in player-visible text.
 
 Text variables are pound sign delimited: 'Hello #player#'. This matches the syntax of Tracery.
 """
-func substitute_variables(string: String) -> String:
+func substitute_variables(string: String, full_name: bool = false) -> String:
 	var result := string
-	result = result.replace("#player#", PlayerData.creature_library.player_def.creature_name)
+	if full_name:
+		result = result.replace("#player#", PlayerData.creature_library.player_def.creature_name)
+	else:
+		result = result.replace("#player#", PlayerData.creature_library.player_def.creature_short_name)
 	return result
