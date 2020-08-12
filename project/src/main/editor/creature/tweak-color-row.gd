@@ -21,7 +21,7 @@ func _ready() -> void:
 """
 Update the creature with the player's chosen color.
 """
-func _on_Edit_color_changed(color: Color) -> void:
+func _on_Edit_color_changed(_color: Color) -> void:
 	_creature_editor.center_creature.dna[allele] = $Edit.color.to_html(false).to_lower()
 	_creature_editor.center_creature.refresh_dna()
 

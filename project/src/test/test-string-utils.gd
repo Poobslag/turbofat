@@ -126,3 +126,9 @@ func test_sanitize_file_root_too_long() -> void:
 	# 31 character limit
 	assert_eq(StringUtils.sanitize_file_root("0123456789012345678901234567890123456789"),
 			"0123456789012345678901234567890")
+
+
+func test_capitalize() -> void:
+	assert_eq(StringUtils.capitalize_words("a"), "A")
+	assert_eq(StringUtils.capitalize_words("hot dog"), "Hot Dog")
+	assert_eq(StringUtils.capitalize_words("HOT DOG"), "Hot Dog")

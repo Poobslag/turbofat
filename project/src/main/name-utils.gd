@@ -35,22 +35,14 @@ static func sanitize_name(name: String) -> String:
 """
 Sorts an array of strings by length.
 
-In Haxe this requires one line of code:
-	strings.sort(function(a, b) return b.length - a.length);
-
-In GDScript this requires a few lines of code, and a custom class, and two methods which call each other, and neither
-method can be static because of Godot #30668. But, that is okay. All languages are beautiful.
+In GDScript this requires an internal class because of Godot #30668.
 """
 static func sort_by_length(strings: Array) -> void:
-	var sorter := LengthSorter.new()
-	sorter.sort_by_length(strings)
+	strings.sort_custom(LengthSorter, '_compare_by_length')
 
 
 class LengthSorter:
-	func sort_by_length(strings: Array) -> void:
-		strings.sort_custom(self, "_compare_by_length")
-	
-	func _compare_by_length(a: String, b: String) -> bool:
+	static func _compare_by_length(a: String, b: String) -> bool:
 		return a.length() > b.length()
 
 

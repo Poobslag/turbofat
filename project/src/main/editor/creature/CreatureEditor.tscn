@@ -24,7 +24,6 @@
 [ext_resource path="res://src/main/editor/creature/TweakEyeRow.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/editor/creature/TweakAlleleRow.tscn" type="PackedScene" id=25]
 
-
 [node name="CreatureEditor" type="Node"]
 script = ExtResource( 8 )
 
@@ -159,7 +158,7 @@ __meta__ = {
 }
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/TabContainer/Mutate/ScrollContainer"]
-margin_right = 412.0
+margin_right = 400.0
 margin_bottom = 492.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -171,7 +170,7 @@ custom_constants/margin_bottom = 5
 [node name="VBoxContainer" type="VBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
-margin_right = 407.0
+margin_right = 395.0
 margin_bottom = 487.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -181,7 +180,7 @@ __meta__ = {
 }
 
 [node name="Mutagen" type="Control" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_right = 402.0
+margin_right = 390.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 390, 20 )
 size_flags_horizontal = 3
@@ -254,7 +253,7 @@ allele = "body_rgb"
 
 [node name="EyeContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 87.0
-margin_right = 402.0
+margin_right = 390.0
 margin_bottom = 113.0
 custom_constants/separation = 5
 
@@ -298,7 +297,7 @@ allele = "ear"
 
 [node name="HornContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 242.0
-margin_right = 402.0
+margin_right = 390.0
 margin_bottom = 268.0
 custom_constants/separation = 5
 
@@ -318,7 +317,7 @@ allele = "horn_rgb"
 
 [node name="BellyContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 273.0
-margin_right = 402.0
+margin_right = 390.0
 margin_bottom = 299.0
 custom_constants/separation = 5
 
@@ -344,7 +343,7 @@ allele = "fatness"
 
 [node name="Spacer" type="Control" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 335.0
-margin_right = 402.0
+margin_right = 390.0
 margin_bottom = 420.0
 size_flags_vertical = 3
 __meta__ = {
@@ -353,7 +352,7 @@ __meta__ = {
 
 [node name="ImportContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
 margin_top = 425.0
-margin_right = 402.0
+margin_right = 390.0
 margin_bottom = 451.0
 custom_constants/separation = 5
 

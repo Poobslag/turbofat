@@ -7,47 +7,6 @@ A graphical creature editor which lets players design their own creatures.
 # emitted when the center creature is first initialized, and later when it is swapped out
 signal center_creature_changed
 
-# generated using 'American Forenames + Animals' from https://www.samcodes.co.uk/project/markov-namegen/
-const NAMES := [
-	"Agnessica", "Alandredes", "Alion", "Allie", "Alvador", "Amantis", "Ambernetta", "Ambert",
-	"Amela", "Anaco", "Anathy", "Annah", "Anthia", "Antpanda", "Aphie", "Aphinchilis",
-	"Arnandra", "Artha", "Arthantlion", "Badgehog", "Barah", "Basilip", "Basilvia", "Bassa",
-	"Bearthur", "Beathy", "Beaven", "Beetah", "Bernarwigh", "Bernesse", "Bernet", "Berta",
-	"Beula", "Blandra", "Blanie", "Bluewhal", "Brancy", "Brene", "Bridge", "Byronald",
-	"Calvadorey", "Camelody", "Camie", "Candee", "Cardon", "Carolive", "Carone", "Cassand",
-	"Chael", "Chary", "Chelly", "Chenriquel", "Chickerry", "Childred", "Chriscil", "Christi",
-	"Cindsloth", "Clare", "Claudith", "Claure", "Condo", "Constancis", "Corpion", "Corpoise",
-	"Crabbit", "Danacle", "Danie", "Darrence", "Darry", "Davieve", "Davievelynx", "Debrad",
-	"Deerkatha", "Derick", "Diann", "Diannah", "Dianthew", "Donate", "Doriettany", "Dwiniferyl",
-	"Earlotte", "Eduan", "Edwayne", "Edwightin", "Eleph", "Elephia", "Eliam", "Elvia",
-	"Enrie", "Ermanatha", "Ernessie", "Estepheroy", "Estina", "Fernandra", "Ferryl", "Franda",
-	"Frane", "Franha", "Franton", "Fredith", "Fruitorie", "Gabridget", "Gabrin", "Gabrita",
-	"Galla", "Gazel", "Geckeremy", "Gecky", "Gibbonobo", "Girafael", "Giranca", "Glerfish",
-	"Glorent", "Glorey", "Gregordtail", "Grine", "Groundsay", "Guana", "Gwendy", "Hammy",
-	"Hannie", "Harlesnake", "Haronice", "Harooke", "Hectorianna", "Hectorto", "Heryl", "Howardwolf",
-	"Howarrel", "Hummie", "Humpback", "Ianne", "Iantipeder", "Irebecca", "Irmantheodo", "Jackadelly",
-	"Jackwhale", "Jacque", "Jaguadale", "Jeffe", "Jellian", "Jenne", "Jeresa", "Jeroy",
-	"Joannow", "Joris", "Josemarlie", "Josemarmen", "Joset", "Juanest", "Judian", "Kariel",
-	"Katheryl", "Keredpandra", "Kimbert", "Kimbertoise", "Koalam", "Krilla", "Kristalicia", "Kristian",
-	"Kristiana", "Kristoad", "Krystace", "Krystalicia", "Kyler", "Ladys", "Laude", "Laudre",
-	"Lawrena", "Leightina", "Lemma", "Lilligator", "Limpeter", "Locus", "Loria", "Luise",
-	"Mabette", "Mamma", "Mandra", "Margaron", "Marianthia", "Maril", "Marjord", "Marjorge",
-	"Marmonkey", "Marshantlio", "Marthan", "Marvey", "Mathryn", "Mattheremy", "Maurie", "Meadow",
-	"Melance", "Melia", "Melice", "Merheatrica", "Miche", "Michenriel", "Micholly", "Miguelynn",
-	"Mistie", "Mitchel", "Mitcrab", "Monaldine", "Monda", "Mooset", "Natalibutte", "Natashan",
-	"Natashanice", "Nellip", "Nichollie", "Octori", "Panthony", "Parri", "Parrow", "Parry",
-	"Parta", "Patrine", "Patshannie", "Patthew", "Pattie", "Paulah", "Paulianna", "Peline",
-	"Pengutany", "Phylliam", "Polanacle", "Praig", "Rafferyl", "Ramonio", "Randice", "Rankline",
-	"Rayingmana", "Rebecket", "Rences", "Reptileen", "Rhond", "Rickie", "Robertrine", "Rocod",
-	"Ronita", "Rosephilda", "Roxandice", "Salma", "Sandice", "Seasey", "Sergil", "Sharles",
-	"Sharyann", "Shelma", "Shirlenne", "Silkwormot", "Skingel", "Snipermin", "Squirren", "Stara",
-	"Suzannie", "Swalla", "Swallie", "Swanda", "Tamie", "Tamily", "Tammeremy", "Tashany",
-	"Terpion", "Theryl", "Tiffalo", "Tigeorge", "Traccoon", "Tracharona", "Trine", "Tureen",
-	"Vampirank", "Verfish", "Victori", "Violark", "Violeticia", "Virgian", "Vivia", "Voleticia",
-	"Vultureen", "Walrush", "Walterranda", "Watee", "Weslie", "White", "Wilda", "Wildrew",
-	"Woodpeckent", "Yvonnie", "Zachark"
-]
-
 # weighted distribution of 'fatnesses' in the range [1.0, 10.0]. most creatures are skinny.
 const FATNESSES := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
@@ -55,7 +14,12 @@ const FATNESSES := [
 	1.8, 2.3,
 ]
 
+# key: allele
+# value: values which have been randomly chosen by the 'tweak dna' button
 var _recent_tweaked_allele_values := {}
+
+# generates random names
+var _name_generator: NameGenerator
 
 # the creature the player is editing
 onready var center_creature := $World/Creatures/CenterCreature
@@ -74,6 +38,13 @@ onready var _outer_creatures := [
 onready var _mutate_ui := $Ui/TabContainer/Mutate
 
 func _ready() -> void:
+	_name_generator = NameGenerator.new()
+	_name_generator.add_seed_resource("res://assets/main/editor/creature/animals.txt")
+	_name_generator.add_seed_resource("res://assets/main/editor/creature/american-male-given-names.txt")
+	_name_generator.add_seed_resource("res://assets/main/editor/creature/american-female-given-names.txt")
+	_name_generator.min_length = 5
+	_name_generator.max_length = 11
+	
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 	
 	for allele in ["cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
@@ -129,7 +100,7 @@ func _mutate_creature(creature: Creature) -> void:
 	for allele in _alleles_to_mutate():
 		match allele:
 			"name":
-				creature.creature_name = Utils.rand_value(NAMES)
+				creature.creature_name = _name_generator.generate_name()
 			"fatness":
 				var new_fatnesses := FATNESSES.duplicate()
 				while new_fatnesses.has(creature.get_visual_fatness()):
@@ -189,7 +160,7 @@ func _tweak_creature(creature: Creature, allele: String) -> void:
 	
 	match allele:
 		"name":
-			creature.creature_name = Utils.rand_value(NAMES)
+			creature.creature_name = _name_generator.generate_name()
 		"fatness":
 			var new_fatnesses := FATNESSES.duplicate()
 			while new_fatnesses.has(creature.get_visual_fatness()):
