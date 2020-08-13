@@ -1,0 +1,14 @@
+{
+  "version": "15d2",
+  "" : [
+    {
+      "who": "Boatricia",
+      "text": "Could you maybe just cook me something small? I'm not very hungry today.",
+    },
+    {
+      "who": "#player#",
+      "text": "Okay!",
+      "mood": "smile0"
+    }
+  ]
+}

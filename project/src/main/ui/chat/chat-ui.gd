@@ -117,6 +117,15 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 		$ChatFrame.make_all_text_visible()
 	else:
 		emit_signal("chat_event_played", chat_event)
+	
+	$ChatFrame.visible = true if chat_event.text else false
+	if not chat_event.text:
+		# emitting the 'all_text_shown' signal while other nodes are still receiving the current 'chat_event_shown'
+		# signal introduces complications, so we pause for a fraction of a second
+		yield(get_tree().create_timer(0.0001), "timeout")
+		$ChatFrame.emit_signal("all_text_shown")
+		if not $ChatAdvancer.should_prompt():
+			$ChatAdvancer.advance()
 
 
 func _on_ChatFrame_all_text_shown() -> void:
@@ -124,7 +133,7 @@ func _on_ChatFrame_all_text_shown() -> void:
 		var chat_event: ChatEvent = $ChatAdvancer.current_chat_event()
 		var moods: Array = []
 		for link in chat_event.links:
-			if $ChatAdvancer.chat_tree.events[link]:
+			if $ChatAdvancer.chat_tree.events.has(link):
 				var first_event: ChatEvent = $ChatAdvancer.chat_tree.events[link][0]
 				if first_event and first_event.mood:
 					moods.append(first_event.mood)

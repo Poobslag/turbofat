@@ -1,0 +1,18 @@
+{
+  "version": "15d2",
+  "meta": {
+    "notable": true
+  },
+  "" : [
+    {
+      "who": "Boatricia",
+      "mood": "cry0",
+      "text": "My maid died!"
+    },
+    {
+      "who": "#player#",
+      "text": "Oh no!/ ./././That's so sad!",
+      "mood": "cry0"
+    }
+  ]
+}

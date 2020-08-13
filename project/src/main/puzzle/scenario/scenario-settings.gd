@@ -145,6 +145,20 @@ func load_from_text(new_name: String, text: String) -> void:
 	from_json_dict(new_name, parse_json(text))
 
 
+"""
+Loads a scenario based on the creature's chat selectors.
+
+Parameters:
+	'creature': The creature whose level should be loaded.
+	
+	'level_int': Which level should be loaded; '1' is the first level.
+"""
+func load_from_creature(creature: Creature, level_int: int) -> void:
+	var level_names := creature.get_level_names()
+	var level_name: String = level_names[level_int - 1]
+	load_from_resource(level_name)
+
+
 static func scenario_path(scenario_name: String) -> String:
 	return "res://assets/main/puzzle/scenario/%s.json" % scenario_name
 

@@ -1,0 +1,15 @@
+{
+  "version": "15d2",
+  "" : [
+    {
+      "who": "Boatricia",
+      "text": "I built up an appetite today! Think you can cook something filling for me and my friends?",
+      "meta": "scenario-boatricia2"
+    },
+    {
+      "who": "#player#",
+      "text": "Sure, no problem!",
+      "mood": "smile0"
+    }
+  ]
+}

@@ -54,15 +54,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/chat/chat-frame.gd"
 }, {
+"base": "Reference",
+"class": "ChatHistory",
+"language": "GDScript",
+"path": "res://src/main/ui/chat/chat-history.gd"
+}, {
 "base": "Sprite",
 "class": "ChatIcon",
 "language": "GDScript",
 "path": "res://src/main/world/chat-icon.gd"
-}, {
-"base": "Reference",
-"class": "ChatLibrary",
-"language": "GDScript",
-"path": "res://src/main/ui/chat/chat-library.gd"
 }, {
 "base": "RectFitLabel",
 "class": "ChatLineLabel",
@@ -509,8 +509,8 @@ _global_script_class_icons={
 "ChatChoiceButton": "",
 "ChatEvent": "",
 "ChatFrame": "",
+"ChatHistory": "",
 "ChatIcon": "",
-"ChatLibrary": "",
 "ChatLineLabel": "",
 "ChatLinePanel": "",
 "ChatTheme": "",
@@ -614,6 +614,7 @@ default_bus_layout="res://src/main/ui/default_bus_layout.tres"
 [autoload]
 
 Breadcrumb="*res://src/main/breadcrumb.gd"
+ChatLibrary="*res://src/main/ui/chat/chat-library.gd"
 ChattableManager="*res://src/main/world/chattable-manager.gd"
 Global="*res://src/main/global.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"

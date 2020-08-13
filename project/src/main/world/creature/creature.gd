@@ -39,8 +39,21 @@ export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 # how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
 export (int) var elevation: int setget set_elevation
 
+# virtual property; value is only exposed through getters/setters
+export (ChatIcon.BubbleType) var chat_bubble_type: int setget set_chat_bubble_type, get_chat_bubble_type
+
+# virtual property; value is only exposed through getters/setters
 var creature_def: CreatureDef setget set_creature_def, get_creature_def
-var chat_path: String setget set_chat_path
+
+# dictionaries containing metadata for which dialog sequences should be launched in which order
+var chat_selectors: Array setget set_chat_selectors
+
+# creature conversations which were embedded in the creature definition
+#
+# key: chat tree id (string)
+# value: chat tree json for a conversation the creature can have
+var dialog: Dictionary
+
 var creature_name: String setget set_creature_name
 var creature_short_name: String
 var chat_theme_def: Dictionary setget set_chat_theme_def
@@ -67,7 +80,6 @@ func _ready() -> void:
 		_refresh_creature_id()
 	else:
 		refresh_dna()
-		_refresh_chat_path()
 
 
 func _physics_process(delta: float) -> void:
@@ -80,6 +92,14 @@ func _physics_process(delta: float) -> void:
 	var old_non_iso_velocity := _non_iso_velocity
 	set_iso_velocity(move_and_slide(_iso_velocity))
 	_maybe_play_bonk_sound(old_non_iso_velocity)
+
+
+func set_chat_bubble_type(new_chat_bubble_type: int) -> void:
+	$ChatIcon.set_bubble_type(new_chat_bubble_type)
+
+
+func get_chat_bubble_type() -> int:
+	return $ChatIcon.bubble_type
 
 
 func set_suppress_sfx(new_suppress_sfx: bool) -> void:
@@ -133,10 +153,9 @@ func set_dna(new_dna: Dictionary) -> void:
 	refresh_dna()
 
 
-func set_chat_path(new_chat_path: String) -> void:
-	chat_path = new_chat_path
-	set_meta("chat_path", chat_path)
-	_refresh_chat_path()
+func set_chat_selectors(new_chat_selectors: Array) -> void:
+	chat_selectors = new_chat_selectors
+	set_meta("chat_selectors", chat_selectors)
 
 
 func set_creature_id(new_creature_id: String) -> void:
@@ -239,10 +258,12 @@ func restart_idle_timer() -> void:
 
 
 func set_creature_def(new_creature_def: CreatureDef) -> void:
+	creature_id = new_creature_def.creature_id
 	set_dna(new_creature_def.dna)
 	set_creature_name(new_creature_def.creature_name)
 	creature_short_name = new_creature_def.creature_short_name
-	set_chat_path(new_creature_def.chat_path)
+	set_chat_selectors(new_creature_def.chat_selectors)
+	dialog = new_creature_def.dialog
 	set_chat_theme_def(new_creature_def.chat_theme_def)
 	set_fatness(new_creature_def.fatness)
 	creature_visuals.set_visual_fatness(new_creature_def.fatness)
@@ -250,18 +271,26 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 
 func get_creature_def() -> CreatureDef:
 	var result := CreatureDef.new()
+	result.creature_id = creature_id
 	result.dna = dna
 	result.creature_name = creature_name
 	result.creature_short_name = creature_short_name
-	result.chat_path = chat_path
+	result.dialog = dialog
 	result.chat_theme_def = chat_theme_def
 	result.fatness = get_fatness()
 	return result
 
 
-func _refresh_creature_id() -> void:
-	if is_inside_tree():
-		set_creature_def(CreatureLoader.load_creature_def_by_id(creature_id))
+"""
+Build a list of level names from the creature's chat selectors.
+"""
+func get_level_names() -> Array:
+	var level_names := []
+	for chat_selector_obj in chat_selectors:
+		var chat_selector: Dictionary = chat_selector_obj
+		if chat_selector.has("level"):
+			level_names.append(chat_selector["level"])
+	return level_names
 
 
 func refresh_dna() -> void:
@@ -273,9 +302,9 @@ func refresh_dna() -> void:
 			$CreatureOutline/TextureRect.material.set_shader_param("black", Color(dna.line_rgb))
 
 
-func _refresh_chat_path() -> void:
+func _refresh_creature_id() -> void:
 	if is_inside_tree():
-		$ChatIcon.bubble_type = ChatIcon.SPEECH if chat_path else ChatIcon.NONE
+		set_creature_def(CreatureLoader.load_creature_def_by_id(creature_id))
 
 
 func _apply_friction() -> void:

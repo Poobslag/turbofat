@@ -1,0 +1,24 @@
+{
+  "version": "15d2",
+  "" : [
+    {
+      "who": "Boatricia",
+      "text": "Oh!/ I remember you from before./ I'm Boatricia,/ I'm sort of new here and trying to make some friends.",
+      "mood": "smile0"
+    },
+    {
+      "who": "#player#",
+      "text": "Nice to meet you! People here call me #player#."
+    },
+    {
+      "who": "#player#",
+      "text": "Well!/ ./././If you're trying to make some friends,/ I'll try to cook you something special okay?/ Then maybe you can be my friend.",
+      "mood": "think0"
+    },
+    {
+      "who": "Boatricia",
+      "text": "Oh! Well aren't you sweet~",
+      "mood": "smile1"
+    }
+  ]
+}

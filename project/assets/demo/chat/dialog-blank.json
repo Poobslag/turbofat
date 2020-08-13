@@ -1,0 +1,36 @@
+{
+  "version": "15d2",
+  "": [
+    {
+      "who": "Lorum",
+      "links": [
+        {
+          "yes": "Yes, that's right."
+        },
+        {
+          "no": "No, that's wrong."
+        }
+      ]
+    }
+  ],
+  "yes": [
+    {
+      "who": "#player#",
+      "mood": "smile0"
+    },
+    {
+      "who": "Lorum",
+      "text": "I agree! Sed do eiusmod."
+    }
+  ],
+  "no": [
+    {
+      "who": "#player#",
+      "text": "No... No adipiscing elit.",
+      "mood": "rage0"
+    },
+    {
+      "who": "Lorum"
+    }
+  ]
+}

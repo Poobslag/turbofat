@@ -70,6 +70,9 @@ Parameters:
 	'nametag_right': true/false if the nametag should be drawn on the right/left side of the frame.
 """
 func show_label(chat_theme: ChatTheme, nametag_right: bool) -> void:
+	if _nametag_size == ChatTheme.NAMETAG_OFF:
+		return
+	
 	set_bg_color(chat_theme.border_color)
 	_labels[_nametag_size].set("custom_colors/font_color", Color.black if chat_theme.dark else Color.white)
 	

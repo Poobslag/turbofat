@@ -1,0 +1,8 @@
+{
+  "version": "15d2",
+  "start-level": "0",
+  "finish-condition": {
+    "type": "score",
+    "value": "500"
+  }
+}

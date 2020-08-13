@@ -6,6 +6,7 @@ Keys:
 	[0-9]: Changes chat line length; 1 = short, 9 = long, 0 = longest
 	[Control + 0-9]: Changes response length; 1 = short, 9 = long, 0 = longest
 	[Q, W, E]: Shows questions with more and more options.
+	[R]: Shows a dialog tree missing a lot of chat lines.
 	[A]: Shows a dialog line with no choices.
 """
 
@@ -67,6 +68,9 @@ func _input(event: InputEvent) -> void:
 		KEY_E:
 			_text_override = ""
 			_play_chat_tree("dialog-choices7")
+		KEY_R:
+			_text_override = ""
+			_play_chat_tree("dialog-blank")
 		KEY_A:
 			_text_override = ""
 			_play_chat_tree("dialog-unbranched")
