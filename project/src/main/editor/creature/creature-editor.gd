@@ -7,12 +7,25 @@ A graphical creature editor which lets players design their own creatures.
 # emitted when the center creature is first initialized, and later when it is swapped out
 signal center_creature_changed
 
+enum ColorMode {
+	RANDOM_COLORS, # generate colors with random RGB values
+	THEME_COLORS, # load colors from preset themes
+	SIMILAR_COLORS, # generate colors similar to the current colors
+}
+
+const RANDOM_COLORS := ColorMode.RANDOM_COLORS
+const THEME_COLORS := ColorMode.THEME_COLORS
+const SIMILAR_COLORS := ColorMode.SIMILAR_COLORS
+
 # weighted distribution of 'fatnesses' in the range [1.0, 10.0]. most creatures are skinny.
 const FATNESSES := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
 	1.1, 1.2, 1.3, 1.5,
 	1.8, 2.3,
 ]
+
+var _rng := RandomNumberGenerator.new()
+var _next_line_color_index := 0
 
 # key: allele
 # value: values which have been randomly chosen by the 'tweak dna' button
@@ -22,10 +35,10 @@ var _recent_tweaked_allele_values := {}
 var _name_generator: NameGenerator
 
 # the creature the player is editing
-onready var center_creature := $World/Creatures/CenterCreature
+onready var center_creature: Creature = $World/Creatures/CenterCreature
 
 # alternative creatures the player can choose
-onready var _outer_creatures := [
+onready var outer_creatures := [
 	$World/Creatures/NwCreature,
 	$World/Creatures/NeCreature,
 	$World/Creatures/WCreature,
@@ -75,7 +88,7 @@ Regenerates all of the outer creatures to be variations of the center creature.
 Any number of aspects of the creature are changed.
 """
 func mutate_all_creatures() -> void:
-	for creature_obj in _outer_creatures:
+	for creature_obj in outer_creatures:
 		_mutate_creature(creature_obj)
 
 
@@ -86,13 +99,13 @@ The amount of variance depends on the 'mutagen' level. The mutated alleles are r
 locked/unlocked alleles.
 """
 func _mutate_creature(creature: Creature) -> void:
-	var new_palette: Dictionary = Utils.rand_value(DnaUtils.CREATURE_PALETTES)
+	var new_palette: Dictionary = _palette()
 	
 	# copy the center creature's dna, name, weight
 	creature.creature_def = center_creature.creature_def
 	var dna := {}
 	for allele in ["line_rgb", "body_rgb", "belly_rgb", "eye_rgb", "horn_rgb",
-			"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
+		"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
 		if center_creature.dna.has(allele):
 			dna[allele] = center_creature.dna[allele]
 	
@@ -101,6 +114,7 @@ func _mutate_creature(creature: Creature) -> void:
 		match allele:
 			"name":
 				creature.creature_name = _name_generator.generate_name()
+				creature.creature_short_name = NameUtils.sanitize_short_name(creature.creature_name)
 			"fatness":
 				var new_fatnesses := FATNESSES.duplicate()
 				while new_fatnesses.has(creature.get_visual_fatness()):
@@ -136,9 +150,63 @@ Regenerates all of the outer creatures to be variations of the center creature.
 Only one aspect of the creature is changed. We select a value which is different from the creature's current value, and
 which hasn't been selected recently.
 """
-func tweak_all_creatures(allele: String) -> void:
-	for creature_obj in _outer_creatures:
-		_tweak_creature(creature_obj, allele)
+func tweak_all_creatures(allele: String, color_mode: int = THEME_COLORS) -> void:
+	for creature_obj in outer_creatures:
+		_tweak_creature(creature_obj, allele, color_mode)
+
+
+"""
+Generates a palette.
+
+Depending on the specified color mode, the new palette is either loaded from a preset, or generated with completely
+random colors, or derived from the current palette.
+"""
+func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
+	var result := {}
+	if color_mode == THEME_COLORS:
+		# load a preset palette
+		result = DnaUtils.random_creature_palette()
+	elif color_mode == RANDOM_COLORS:
+		# generate a palette with random colors
+		var body := Color(randf(), randf(), randf())
+		var belly := Color(randf(), randf(), randf())
+		var eye0 := Color(randf(), randf(), randf())
+		var eye1 := Color(randf(), randf(), randf())
+		var horn := Color(randf(), randf(), randf())
+		
+		# blend the belly color with the body color
+		belly = lerp(belly, body, rand_range(0.0, 1.0))
+		if randf() > 0.5:
+			# light belly
+			belly.s -= _rng.randfn(0.3, 0.15)
+			belly.v += _rng.randfn(0.3, 0.15)
+		else:
+			# similar-colored belly
+			belly.s += _rng.randfn(0.0, 0.2)
+			belly.v += _rng.randfn(0.0, 0.2)
+		
+		# secondary eye color is a lighter variation of the regular color
+		eye1 = _random_highlight_color(eye0)
+		
+		# desaturate the horns
+		horn.s = pow(horn.s, 8)
+		
+		result["body_rgb"] = body.to_html(false)
+		result["belly_rgb"] = belly.to_html(false)
+		result["eye_rgb"] = "%s %s" % [eye0.to_html(false), eye1.to_html(false)]
+		result["horn_rgb"] = horn.to_html(false)
+		result["line_rgb"] = center_creature.dna["line_rgb"]
+	elif color_mode == SIMILAR_COLORS:
+		# derive a palette from the creature's current palette
+		result["line_rgb"] = center_creature.dna["line_rgb"]
+		for allele in ["body_rgb", "belly_rgb", "horn_rgb"]:
+			var body := Color(center_creature.dna[allele])
+			result[allele] = _random_similar_color(body).to_html(false)
+		
+		var eye0: Color = Color(center_creature.dna["eye_rgb"].split(" ")[0])
+		eye0 = _random_similar_color(eye0)
+		result["eye_rgb"] = "%s %s" % [eye0.to_html(false), _random_highlight_color(eye0).to_html(false)]
+	return result
 
 
 """
@@ -147,20 +215,28 @@ Regenerates a creature to be a variation of the center creature.
 Only one aspect of the creature is changed. We select a value which is different from the creature's current value, and
 which hasn't been selected recently.
 """
-func _tweak_creature(creature: Creature, allele: String) -> void:
-	var new_palette: Dictionary = Utils.rand_value(DnaUtils.CREATURE_PALETTES)
+func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> void:
+	var palette: Dictionary = _palette(color_mode)
+	if allele == "line_rgb":
+		# cycle through line colors predictably
+		palette["line_rgb"] = Color(DnaUtils.LINE_COLORS[_next_line_color_index]).to_html(false)
+		_next_line_color_index = (_next_line_color_index + 1) % DnaUtils.LINE_COLORS.size()
+	elif color_mode == RANDOM_COLORS:
+		# leave the line color alone
+		palette["line_rgb"] = center_creature.dna["line_rgb"]
 	
 	# copy the center creature's dna, name, weight
 	creature.creature_def = center_creature.creature_def
 	var dna := {}
 	for allele in ["line_rgb", "body_rgb", "belly_rgb", "eye_rgb", "horn_rgb",
-			"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
+		"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
 		if center_creature.dna.has(allele):
 			dna[allele] = center_creature.dna[allele]
 	
 	match allele:
 		"name":
 			creature.creature_name = _name_generator.generate_name()
+			creature.creature_short_name = NameUtils.sanitize_short_name(creature.creature_name)
 		"fatness":
 			var new_fatnesses := FATNESSES.duplicate()
 			while new_fatnesses.has(creature.get_visual_fatness()):
@@ -169,16 +245,16 @@ func _tweak_creature(creature: Creature, allele: String) -> void:
 			creature.set_fatness(new_fatness)
 			creature.set_visual_fatness(new_fatness)
 		"body_rgb":
-			dna["line_rgb"] = new_palette["line_rgb"]
-			dna["body_rgb"] = new_palette["body_rgb"]
+			dna["line_rgb"] = palette["line_rgb"]
+			dna["body_rgb"] = palette["body_rgb"]
 		"all_rgb":
-			dna["line_rgb"] = new_palette["line_rgb"]
-			dna["body_rgb"] = new_palette["body_rgb"]
-			dna["belly_rgb"] = new_palette["belly_rgb"]
-			dna["eye_rgb"] = new_palette["eye_rgb"]
-			dna["horn_rgb"] = new_palette["horn_rgb"]
+			dna["line_rgb"] = palette["line_rgb"]
+			dna["body_rgb"] = palette["body_rgb"]
+			dna["belly_rgb"] = palette["belly_rgb"]
+			dna["eye_rgb"] = palette["eye_rgb"]
+			dna["horn_rgb"] = palette["horn_rgb"]
 		"belly_rgb", "eye_rgb", "horn_rgb", "line_rgb":
-			dna[allele] = new_palette[allele]
+			dna[allele] = palette[allele]
 		_:
 			var new_alleles := DnaUtils.unique_allele_values(allele)
 			var unpicked_alleles := new_alleles.duplicate()
@@ -248,6 +324,28 @@ func _alleles_to_mutate() -> Array:
 		result = new_result
 	
 	return result
+
+
+"""
+Randomly generates a color with a similar HSV to the specified color.
+"""
+func _random_similar_color(color: Color) -> Color:
+	var new_color := color
+	new_color.h = new_color.h + _rng.randfn(0.0, 0.06)
+	new_color.s = new_color.s + _rng.randfn(0.0, 0.06)
+	new_color.v = new_color.v + _rng.randfn(0.0, 0.06)
+	return new_color
+
+
+"""
+Randomly generates a brighter version of the specified color.
+"""
+func _random_highlight_color(color: Color) -> Color:
+	var new_color := color
+	new_color.h = color.h + _rng.randfn(+0.00, 0.03)
+	new_color.s = color.s + _rng.randfn(-0.50, 0.20)
+	new_color.v = color.v + _rng.randfn(+0.40, 0.10)
+	return new_color
 
 
 func _on_Breadcrumb_trail_popped(_prev_path: String) -> void:

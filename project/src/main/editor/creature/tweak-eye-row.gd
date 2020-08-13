@@ -33,8 +33,16 @@ func _on_Edit_pressed() -> void:
 	get_tree().paused = true
 
 
-func _on_Dna_pressed() -> void:
-	_creature_editor.tweak_all_creatures(_allele)
+func _on_GrayDna_pressed() -> void:
+	_creature_editor.tweak_all_creatures(_allele, CreatureEditor.SIMILAR_COLORS)
+
+
+func _on_PurpleDna_pressed() -> void:
+	_creature_editor.tweak_all_creatures(_allele, CreatureEditor.THEME_COLORS)
+
+
+func _on_RainbowDna_pressed() -> void:
+	_creature_editor.tweak_all_creatures(_allele, CreatureEditor.RANDOM_COLORS)
 
 
 """
