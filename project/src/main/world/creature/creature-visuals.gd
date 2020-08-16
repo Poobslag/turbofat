@@ -188,6 +188,7 @@ func reset_frames(value: bool = true) -> void:
 	
 	reset_eye_frames()
 	$Neck0/HeadBobber/Mouth.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	$Neck0/HeadBobber/Chin.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 	emit_signal("orientation_changed", -1, orientation)
 
 
@@ -434,6 +435,7 @@ func _update_creature_properties() -> void:
 		$Neck0/HeadBobber/HornZ0,
 		$Neck0/HeadBobber/CheekZ0,
 		$Neck0/HeadBobber/Head,
+		$Neck0/HeadBobber/Chin,
 		$Neck0/HeadBobber/EarZ1,
 		$Neck0/HeadBobber/HornZ1,
 		$Neck0/HeadBobber/CheekZ1,

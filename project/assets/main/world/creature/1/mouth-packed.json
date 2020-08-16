@@ -1,117 +1,132 @@
-{ "frames": {
-   "mouth-1 0.png": {
-    "frame": { "x": 539, "y": 0, "w": 1, "h": 1 },
+{ "frames": [
+   {
+    "filename": "mouth-1 0.png",
+    "frame": { "x": 449, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 1.png": {
-    "frame": { "x": 176, "y": 136, "w": 79, "h": 49 },
+   {
+    "filename": "mouth-1 1.png",
+    "frame": { "x": 238, "y": 137, "w": 72, "h": 49 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 250, "y": 295, "w": 79, "h": 49 },
+    "spriteSourceSize": { "x": 257, "y": 295, "w": 72, "h": 49 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 2.png": {
-    "frame": { "x": 408, "y": 138, "w": 61, "h": 49 },
+   {
+    "filename": "mouth-1 2.png",
+    "frame": { "x": 385, "y": 138, "w": 61, "h": 49 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 192, "y": 282, "w": 61, "h": 49 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 3.png": {
-    "frame": { "x": 409, "y": 70, "w": 122, "h": 63 },
+   {
+    "filename": "mouth-1 3.png",
+    "frame": { "x": 352, "y": 0, "w": 92, "h": 63 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 215, "y": 287, "w": 122, "h": 63 },
+    "spriteSourceSize": { "x": 245, "y": 287, "w": 92, "h": 63 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 4.png": {
-    "frame": { "x": 0, "y": 0, "w": 141, "h": 69 },
+   {
+    "filename": "mouth-1 4.png",
+    "frame": { "x": 0, "y": 0, "w": 125, "h": 69 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 210, "y": 281, "w": 141, "h": 69 },
+    "spriteSourceSize": { "x": 226, "y": 281, "w": 125, "h": 69 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 5.png": {
-    "frame": { "x": 146, "y": 0, "w": 131, "h": 69 },
+   {
+    "filename": "mouth-1 5.png",
+    "frame": { "x": 130, "y": 0, "w": 113, "h": 69 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 215, "y": 278, "w": 131, "h": 69 },
+    "spriteSourceSize": { "x": 233, "y": 278, "w": 113, "h": 69 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 6.png": {
-    "frame": { "x": 282, "y": 0, "w": 122, "h": 68 },
+   {
+    "filename": "mouth-1 6.png",
+    "frame": { "x": 248, "y": 0, "w": 99, "h": 68 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 220, "y": 280, "w": 122, "h": 68 },
+    "spriteSourceSize": { "x": 243, "y": 280, "w": 99, "h": 68 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 7.png": {
-    "frame": { "x": 409, "y": 0, "w": 125, "h": 65 },
+   {
+    "filename": "mouth-1 7.png",
+    "frame": { "x": 352, "y": 68, "w": 85, "h": 65 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 211, "y": 282, "w": 125, "h": 65 },
+    "spriteSourceSize": { "x": 251, "y": 282, "w": 85, "h": 65 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 8.png": {
-    "frame": { "x": 0, "y": 74, "w": 91, "h": 56 },
+   {
+    "filename": "mouth-1 8.png",
+    "frame": { "x": 0, "y": 74, "w": 75, "h": 56 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 241, "y": 288, "w": 91, "h": 56 },
+    "spriteSourceSize": { "x": 257, "y": 288, "w": 75, "h": 56 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 9.png": {
-    "frame": { "x": 282, "y": 73, "w": 94, "h": 59 },
+   {
+    "filename": "mouth-1 9.png",
+    "frame": { "x": 248, "y": 73, "w": 87, "h": 59 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 244, "y": 287, "w": 94, "h": 59 },
+    "spriteSourceSize": { "x": 251, "y": 287, "w": 87, "h": 59 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 10.png": {
-    "frame": { "x": 260, "y": 137, "w": 73, "h": 50 },
+   {
+    "filename": "mouth-1 10.png",
+    "frame": { "x": 160, "y": 136, "w": 73, "h": 50 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 257, "y": 295, "w": 73, "h": 50 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 11.png": {
-    "frame": { "x": 96, "y": 132, "w": 75, "h": 52 },
+   {
+    "filename": "mouth-1 11.png",
+    "frame": { "x": 80, "y": 132, "w": 75, "h": 52 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 256, "y": 294, "w": 75, "h": 52 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 12.png": {
-    "frame": { "x": 96, "y": 74, "w": 76, "h": 53 },
+   {
+    "filename": "mouth-1 12.png",
+    "frame": { "x": 80, "y": 74, "w": 76, "h": 53 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 256, "y": 294, "w": 76, "h": 53 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 13.png": {
-    "frame": { "x": 338, "y": 137, "w": 65, "h": 54 },
+   {
+    "filename": "mouth-1 13.png",
+    "frame": { "x": 315, "y": 138, "w": 65, "h": 54 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 191, "y": 279, "w": 65, "h": 54 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 14.png": {
+   {
+    "filename": "mouth-1 14.png",
     "frame": { "x": 0, "y": 135, "w": 68, "h": 57 },
     "rotated": false,
     "trimmed": true,
@@ -119,21 +134,22 @@
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
-   "mouth-1 15.png": {
-    "frame": { "x": 177, "y": 74, "w": 69, "h": 57 },
+   {
+    "filename": "mouth-1 15.png",
+    "frame": { "x": 161, "y": 74, "w": 69, "h": 57 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 189, "y": 278, "w": 69, "h": 57 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    }
- },
+ ],
  "meta": {
   "app": "http://www.aseprite.org/",
-  "version": "1.2.21-x64",
+  "version": "1.2.24-x64",
   "image": "mouth-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 540, "h": 192 },
+  "size": { "w": 450, "h": 192 },
   "scale": "1"
  }
 }
