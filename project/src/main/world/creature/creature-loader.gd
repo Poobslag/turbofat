@@ -118,6 +118,7 @@ static func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "NearLeg", "body", "leg-z1-packed")
 	_load_texture(dna, "NearArm", "body", "arm-z1-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Head", "body", "head-packed")
+	_load_texture(dna, "Neck0/HeadBobber/Chin", "body", "chin-packed")
 	
 	dna["property:BodyColors:belly"] = dna.get("belly", 0)
 
@@ -138,6 +139,7 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/HornZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/CheekZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/Head:black"] = line_color
+	dna["shader:Neck0/HeadBobber/Chin:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EarZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/HornZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/CheekZ1:black"] = line_color
@@ -166,6 +168,7 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/HornZ0:red"] = body_color
 	dna["shader:Neck0/HeadBobber/CheekZ0:red"] = body_color
 	dna["shader:Neck0/HeadBobber/Head:red"] = body_color
+	dna["shader:Neck0/HeadBobber/Chin:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EarZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/CheekZ1:red"] = body_color
