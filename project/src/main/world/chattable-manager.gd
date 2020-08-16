@@ -64,7 +64,9 @@ Returns an array of ChatEvent objects for the dialog sequence which the player s
 func load_chat_events() -> ChatTree:
 	var chat_tree: ChatTree
 	var focused: Node = get_focused()
-	if focused.has_meta("chat_path"):
+	if focused is Creature:
+		chat_tree = ChatLibrary.load_chat_events_for_creature(focused)
+	elif focused.has_meta("chat_path"):
 		var chat_path: String = focused.get_meta("chat_path")
 		chat_tree = ChatLibrary.load_chat_events_from_file(chat_path)
 	else:

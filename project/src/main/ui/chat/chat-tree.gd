@@ -20,6 +20,16 @@ class Position:
 	func _to_string():
 		return ("(%s:%s)" % [key, index]) if key else ("(%s)" % index)
 
+# Current version for saved dialog data. Should be updated if and only if the dialog format breaks backwards
+# compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
+const DIALOG_DATA_VERSION := "15d2"
+
+# unique key to identify this conversation in the chat history
+var history_key: String
+
+# metadata including whether the chat event is 'filler' or 'notable'
+var meta: Dictionary
+
 # tree of chat events
 var events: Dictionary = {}
 
@@ -62,7 +72,7 @@ Parameters:
 """
 func advance(link_index := -1) -> bool:
 	var did_increment := false
-	if get_event().links:
+	if get_event().links and events.has(get_event().links[link_index]):
 		# reset to beginning of a new chat branch
 		_position.key = get_event().links[link_index]
 		_position.index = 0
@@ -76,7 +86,14 @@ func advance(link_index := -1) -> bool:
 
 func from_json_dict(json: Dictionary) -> void:
 	for key in json.keys():
-		for json_chat_event in json[key]:
-			var event := ChatEvent.new()
-			event.from_json_dict(json_chat_event)
-			append(key, event)
+		match key:
+			"version":
+				if json[key] != DIALOG_DATA_VERSION:
+					push_warning("Unrecognized dialog data version: '%s'" % [json[key]])
+			"meta":
+				meta = json[key]
+			_:
+				for json_chat_event in json[key]:
+					var event := ChatEvent.new()
+					event.from_json_dict(json_chat_event)
+					append(key, event)

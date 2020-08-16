@@ -156,6 +156,7 @@ creature_id = "bort"
 dna = {
 
 }
+chat_bubble_type = 1
 overworld_ui_path = NodePath("../../../Ui/OverworldUi")
 
 [node name="MoveTimer" type="Timer" parent="World/Obstacles/Bort"]
@@ -169,6 +170,7 @@ creature_id = "ebe"
 dna = {
 
 }
+chat_bubble_type = 1
 overworld_ui_path = NodePath("../../../Ui/OverworldUi")
 
 [node name="MoveTimer" type="Timer" parent="World/Obstacles/Ebe"]
@@ -191,6 +193,7 @@ dna = {
 "mouth": "1",
 "nose": "1"
 }
+chat_bubble_type = 1
 
 [node name="GlowySphere" type="KinematicBody2D" parent="World/Obstacles"]
 position = Vector2( 731.162, 206.052 )

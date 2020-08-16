@@ -5,6 +5,7 @@ Provides buttons/sliders for the player to control how the creatures mutate.
 """
 
 # A higher mutagen level means more alleles will be mutated.
+# Virtual property; value is only exposed through getters/setters
 var mutagen: float setget set_mutagen, get_mutagen
 
 onready var _mutagen_slider := $ScrollContainer/MarginContainer/VBoxContainer/Mutagen/HBoxContainer/HSlider

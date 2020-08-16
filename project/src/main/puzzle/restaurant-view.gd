@@ -5,6 +5,7 @@ Showing the player's chef character and active customer in a restaurant scene.
 As the player drops blocks and scores points, the characters animate and react.
 """
 
+# virtual property; value is only exposed through getters/setters
 var current_creature_index: int setget set_current_creature_index, get_current_creature_index
 
 # bonus points scored for recent lines; used for determining when the chef should smile

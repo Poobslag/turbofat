@@ -122,10 +122,16 @@ static func sanitize_file_root(file_root: String) -> String:
 	return result.substr(0, MAX_FILE_ROOT_LENGTH)
 
 
+"""
+Returns true if the specified character is a letter (a-z, A-Z)
+"""
 static func is_letter(character: String) -> bool:
 	return character >= "A" and character <= "Z" or character >= "a" and character <= "z"
 
 
+"""
+Capitalizes all the whitespace separated words in a String.
+"""
 static func capitalize_words(string: String) -> String:
 	var result := string[0].to_upper()
 	for i in range(1, string.length()):
@@ -133,4 +139,24 @@ static func capitalize_words(string: String) -> String:
 			result += string[i].to_lower()
 		else:
 			result += string[i].to_upper()
+	return result
+
+
+"""
+Removes a substring only if it is at the beginning of a source string, otherwise returns the source string.
+"""
+static func remove_start(string: String, remove: String) -> String:
+	var result := string
+	if string.begins_with(remove):
+		result = string.substr(remove.length())
+	return result
+
+
+"""
+Removes a substring only if it is at the end of a source string, otherwise returns the source string.
+"""
+static func remove_end(string: String, remove: String) -> String:
+	var result := string
+	if string.ends_with(remove):
+		result = string.substr(0, string.length() - remove.length())
 	return result

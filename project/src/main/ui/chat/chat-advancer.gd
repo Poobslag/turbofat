@@ -118,6 +118,9 @@ func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:
 	if rewinding_text:
 		# The player rewound, advanced to a dialog prompt and chose an answer. Remove them from the rewind state.
 		rewinding_text = false
-	chat_tree.advance(choice_index)
-	# show the next dialog line to the player
-	emit_signal("chat_event_shown", current_chat_event())
+	var did_increment := chat_tree.advance(choice_index)
+	if did_increment:
+		# show the next dialog line to the player
+		emit_signal("chat_event_shown", current_chat_event())
+	else:
+		emit_signal("chat_finished")
