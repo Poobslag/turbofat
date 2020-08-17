@@ -27,7 +27,7 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.21-x64",
-  "image": "neck-packed.png",
+  "image": "neck-blend-packed.png",
   "format": "RGBA8888",
   "size": { "w": 73, "h": 20 },
   "scale": "1"

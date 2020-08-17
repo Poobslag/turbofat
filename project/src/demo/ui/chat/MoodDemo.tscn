@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/main/world/creature/3/eye-z1-packed.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/world/creature/3/nose-packed.png" type="Texture" id=6]
 [ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=7]
-[ext_resource path="res://assets/main/world/creature/1/neck-packed.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/world/creature/1/neck-blend-packed.png" type="Texture" id=8]
 [ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=9]
 [ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=11]
@@ -22,6 +22,7 @@
 [ext_resource path="res://assets/main/world/creature/2/ear-z0-packed.png" type="Texture" id=20]
 [ext_resource path="res://assets/main/world/creature/1/cheek-z1-packed.png" type="Texture" id=21]
 [ext_resource path="res://assets/main/world/creature/1/mouth-packed.png" type="Texture" id=22]
+[ext_resource path="res://assets/main/world/creature/1/collar-packed.png" type="Texture" id=23]
 
 [node name="MoodDemo" type="Node"]
 script = ExtResource( 3 )
@@ -43,6 +44,8 @@ dna = {
 "body": "1",
 "body_rgb": "0b45a6",
 "cheek": "1",
+"cloth_rgb": "282828",
+"collar": "1",
 "ear": "2",
 "eye": "3",
 "eye_rgb": "fad541 ffffff",
@@ -51,9 +54,11 @@ dna = {
 "line_rgb": "41281e",
 "mouth": "1",
 "nose": "3",
-"property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-packed.json",
+"property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 8 ),
 "property:BodyColors:belly": "1",
+"property:Collar:frame_data": "res://assets/main/world/creature/1/collar-packed.json",
+"property:Collar:texture": ExtResource( 23 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 9 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
@@ -95,6 +100,8 @@ dna = {
 "shader:Body:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Body:green": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Body:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Collar:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Collar:red": Color( 0.156863, 0.156863, 0.156863, 1 ),
 "shader:EmoteBody:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:FarArm:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:FarArm:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),

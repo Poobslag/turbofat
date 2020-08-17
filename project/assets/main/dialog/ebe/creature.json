@@ -6,6 +6,7 @@
     "body_rgb": "feceef",
     "belly": "1",
     "belly_rgb": "ffeffc",
+    "collar": "1",
     "ear": "1",
     "eye": "1",
     "eye_rgb": "ffddf4 ffffff",
@@ -14,7 +15,8 @@
     "line_rgb": "6c4331",
     "mouth": "3",
     "nose": "2",
-    "cheek": "2"
+    "cheek": "2",
+    "cloth_rgb": "9999f4"
   },
   "chat_theme_def": {
     "accent_scale": 1.75,

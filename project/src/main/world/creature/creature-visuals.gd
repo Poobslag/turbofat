@@ -75,7 +75,7 @@ export (bool) var _reset_creature setget reset_creature
 export (bool) var _random_creature setget random_creature
 
 # the state of whether the creature is walking, running or idle
-export (int) var movement_mode := MovementMode.IDLE setget set_movement_mode
+export (MovementMode) var movement_mode := MovementMode.IDLE setget set_movement_mode
 
 export (Vector2) var southeast_dir := Vector2(0.70710678118, 0.70710678118)
 
@@ -431,6 +431,7 @@ func _update_creature_properties() -> void:
 		$Body/Viewport/Body/NeckBlend,
 		$NearLeg,
 		$NearArm,
+		$Collar,
 		$Neck0/HeadBobber/EarZ0,
 		$Neck0/HeadBobber/HornZ0,
 		$Neck0/HeadBobber/CheekZ0,
