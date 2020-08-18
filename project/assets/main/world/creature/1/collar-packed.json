@@ -1,7 +1,7 @@
 { "frames": [
    {
     "filename": "collar-1 0.png",
-    "frame": { "x": 237, "y": 0, "w": 1, "h": 1 },
+    "frame": { "x": 248, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -10,16 +10,16 @@
    },
    {
     "filename": "collar-1 1.png",
-    "frame": { "x": 0, "y": 0, "w": 130, "h": 94 },
+    "frame": { "x": 0, "y": 0, "w": 141, "h": 99 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 171, "y": 276, "w": 130, "h": 94 },
+    "spriteSourceSize": { "x": 171, "y": 276, "w": 141, "h": 99 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "collar-1 2.png",
-    "frame": { "x": 135, "y": 0, "w": 97, "h": 46 },
+    "frame": { "x": 146, "y": 0, "w": 97, "h": 46 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 231, "y": 258, "w": 97, "h": 46 },
@@ -32,7 +32,7 @@
   "version": "1.2.24-x64",
   "image": "collar-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 238, "h": 94 },
+  "size": { "w": 249, "h": 99 },
   "scale": "1"
  }
 }
