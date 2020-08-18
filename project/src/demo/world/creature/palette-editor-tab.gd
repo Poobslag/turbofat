@@ -49,11 +49,11 @@ func _on_PaletteButton_pressed(palette: Dictionary) -> void:
 	
 	# update the center creature with new dna
 	var dna := {}
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb",
-			"cheek", "eye", "ear", "horn", "mouth", "nose", "collar", "belly"]:
+	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb",
+			"cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "belly"]:
 		if get_center_creature().dna.has(allele):
 			dna[allele] = get_center_creature().dna[allele]
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb"]:
+	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb"]:
 		dna[allele] = palette[allele]
 	get_center_creature().dna = dna
 	
@@ -72,6 +72,7 @@ func _print_palette(palette: Dictionary) -> void:
 	result += "\"body_rgb\": \"%s\", " % palette["body_rgb"]
 	result += "\"belly_rgb\": \"%s\", " % palette["belly_rgb"]
 	result += "\"cloth_rgb\": \"%s\",\n\t\t\t" % palette["cloth_rgb"]
+	result += "\"hair_rgb\": \"%s\", " % palette["hair_rgb"]
 	result += "\"eye_rgb\": \"%s\", " % palette["eye_rgb"]
 	result += "\"horn_rgb\": \"%s\"}, # ??????" % palette["horn_rgb"]
 	print(result)
@@ -92,7 +93,7 @@ Appends a palette and prints it to the console.
 """
 func _on_Add_pressed() -> void:
 	var palette := {}
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb"]:
+	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb"]:
 		palette[allele] = get_center_creature().dna[allele]
 	_print_palette(palette)
 	_add_palette(palette)

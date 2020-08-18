@@ -94,6 +94,10 @@ static func _load_head(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/EyeZ0", "eye", "eye-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/EyeZ1", "eye", "eye-z1-packed")
 	
+	_load_texture(dna, "Neck0/HeadBobber/HairZ0", "hair", "hair-z0-packed")
+	_load_texture(dna, "Neck0/HeadBobber/HairZ1", "hair", "hair-z1-packed")
+	_load_texture(dna, "Neck0/HeadBobber/HairZ2", "hair", "hair-z2-packed")
+	
 	_load_texture(dna, "Neck0/HeadBobber/HornZ0", "horn", "horn-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-packed")
 	
@@ -131,62 +135,73 @@ static func _load_colors(dna: Dictionary) -> void:
 	var line_color: Color
 	if dna.has("line_rgb"):
 		line_color = Color(dna.line_rgb)
+	dna["shader:Body:black"] = line_color
+	dna["shader:Collar:black"] = line_color
+	dna["shader:EmoteBody:black"] = line_color
 	dna["shader:FarArm:black"] = line_color
 	dna["shader:FarLeg:black"] = line_color
-	dna["shader:Body:black"] = line_color
-	dna["shader:NearLeg:black"] = line_color
 	dna["shader:NearArm:black"] = line_color
-	dna["shader:Collar:black"] = line_color
-	dna["shader:Neck0/HeadBobber/EarZ0:black"] = line_color
-	dna["shader:Neck0/HeadBobber/HornZ0:black"] = line_color
+	dna["shader:NearLeg:black"] = line_color
 	dna["shader:Neck0/HeadBobber/CheekZ0:black"] = line_color
-	dna["shader:Neck0/HeadBobber/Head:black"] = line_color
-	dna["shader:Neck0/HeadBobber/Chin:black"] = line_color
-	dna["shader:Neck0/HeadBobber/EarZ1:black"] = line_color
-	dna["shader:Neck0/HeadBobber/HornZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/CheekZ1:black"] = line_color
-	dna["shader:Neck0/HeadBobber/EarZ2:black"] = line_color
-	dna["shader:Neck0/HeadBobber/Mouth:black"] = line_color
-	dna["shader:Neck0/HeadBobber/EyeZ0:black"] = line_color
-	dna["shader:Neck0/HeadBobber/Nose:black"] = line_color
-	dna["shader:Neck0/HeadBobber/EyeZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/CheekZ2:black"] = line_color
+	dna["shader:Neck0/HeadBobber/Chin:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EarZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EarZ1:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EarZ2:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteArmZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteArmZ1:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EmoteBrain:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteEyeZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteEyeZ1:black"] = line_color
-	dna["shader:Neck0/HeadBobber/EmoteBrain:black"] = line_color
-	dna["shader:EmoteBody:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EyeZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/EyeZ1:black"] = line_color
+	dna["shader:Neck0/HeadBobber/HairZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/HairZ1:black"] = line_color
+	dna["shader:Neck0/HeadBobber/HairZ2:black"] = line_color
+	dna["shader:Neck0/HeadBobber/Head:black"] = line_color
+	dna["shader:Neck0/HeadBobber/HornZ0:black"] = line_color
+	dna["shader:Neck0/HeadBobber/HornZ1:black"] = line_color
+	dna["shader:Neck0/HeadBobber/Mouth:black"] = line_color
+	dna["shader:Neck0/HeadBobber/Nose:black"] = line_color
+	
+	var hair_color: Color
+	if dna.has("hair_rgb"):
+		hair_color = Color(dna.hair_rgb)
+	dna["shader:Neck0/HeadBobber/HairZ0:red"] = hair_color
+	dna["shader:Neck0/HeadBobber/HairZ1:red"] = hair_color
+	dna["shader:Neck0/HeadBobber/HairZ2:red"] = hair_color
 	
 	var cloth_color: Color
 	if dna.has("cloth_rgb"):
 		cloth_color = Color(dna.cloth_rgb)
 	dna["shader:Collar:red"] = cloth_color
+	dna["shader:Collar:green"] = hair_color
 	
 	var body_color: Color
 	if dna.has("body_rgb"):
 		body_color = Color(dna.body_rgb)
+	dna["shader:Body:red"] = body_color
 	dna["shader:FarArm:red"] = body_color
 	dna["shader:FarLeg:red"] = body_color
-	dna["shader:Body:red"] = body_color
-	dna["shader:NearLeg:red"] = body_color
 	dna["shader:NearArm:red"] = body_color
-	dna["shader:Neck0/HeadBobber/EarZ0:red"] = body_color
-	dna["shader:Neck0/HeadBobber/HornZ0:red"] = body_color
+	dna["shader:NearLeg:red"] = body_color
 	dna["shader:Neck0/HeadBobber/CheekZ0:red"] = body_color
-	dna["shader:Neck0/HeadBobber/Head:red"] = body_color
-	dna["shader:Neck0/HeadBobber/Chin:red"] = body_color
-	dna["shader:Neck0/HeadBobber/EarZ1:red"] = body_color
-	dna["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/CheekZ1:red"] = body_color
-	dna["shader:Neck0/HeadBobber/EarZ2:red"] = body_color
-	dna["shader:Neck0/HeadBobber/Mouth:red"] = body_color
-	dna["shader:Neck0/HeadBobber/EyeZ0:red"] = body_color
-	dna["shader:Neck0/HeadBobber/Nose:red"] = body_color
-	dna["shader:Neck0/HeadBobber/EyeZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/CheekZ2:red"] = body_color
+	dna["shader:Neck0/HeadBobber/Chin:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EarZ0:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EarZ1:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EarZ2:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EmoteArmZ0:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EmoteArmZ1:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EyeZ0:red"] = body_color
+	dna["shader:Neck0/HeadBobber/EyeZ1:red"] = body_color
+	dna["shader:Neck0/HeadBobber/Head:red"] = body_color
+	dna["shader:Neck0/HeadBobber/HornZ0:red"] = body_color
+	dna["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
+	dna["shader:Neck0/HeadBobber/Mouth:red"] = body_color
+	dna["shader:Neck0/HeadBobber/Nose:red"] = body_color
 
 	var belly_color: Color
 	if dna.has("belly_rgb"):
@@ -225,7 +240,7 @@ static func load_creature_def(path: String) -> CreatureDef:
 		
 		# populate default values when importing incomplete json
 		for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb",
-				"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
+				"cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "belly"]:
 			DnaUtils.put_if_absent(creature_def.dna, allele, CreatureLibrary.DEFAULT_DNA[allele])
 		if not creature_def.creature_name:
 			creature_def.creature_name = CreatureLibrary.DEFAULT_NAME

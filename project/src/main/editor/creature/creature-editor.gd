@@ -60,7 +60,7 @@ func _ready() -> void:
 	
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 	
-	for allele in ["cheek", "eye", "ear", "horn", "mouth", "nose", "collar", "belly"]:
+	for allele in ["cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "belly"]:
 		_recent_tweaked_allele_values[allele] = []
 	
 	center_creature.set_meta("main_creature", true)
@@ -104,8 +104,8 @@ func _mutate_creature(creature: Creature) -> void:
 	# copy the center creature's dna, name, weight
 	creature.creature_def = center_creature.creature_def
 	var dna := {}
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb",
-		"cheek", "eye", "ear", "horn", "mouth", "nose", "collar", "belly"]:
+	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb",
+		"cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "belly"]:
 		if center_creature.dna.has(allele):
 			dna[allele] = center_creature.dna[allele]
 	
@@ -130,14 +130,16 @@ func _mutate_creature(creature: Creature) -> void:
 				dna["body_rgb"] = new_palette["body_rgb"]
 				dna["belly_rgb"] = new_palette["belly_rgb"]
 				dna["cloth_rgb"] = new_palette["cloth_rgb"]
+				dna["hair_rgb"] = new_palette["hair_rgb"]
 				dna["eye_rgb"] = new_palette["eye_rgb"]
 				dna["horn_rgb"] = new_palette["horn_rgb"]
-			"line_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb":
+			"line_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb":
 				dna[allele] = new_palette[allele]
 			_:
 				var new_alleles := DnaUtils.weighted_allele_values(dna, allele)
-				while new_alleles.has(dna[allele]):
-					new_alleles.erase(dna[allele])
+				if _mutate_ui.mutagen <= 0.5:
+					while new_alleles.has(dna[allele]):
+						new_alleles.erase(dna[allele])
 				if new_alleles:
 					dna[allele] = Utils.rand_value(new_alleles)
 	
@@ -171,6 +173,7 @@ func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 		# generate a palette with random colors
 		var body := Color(randf(), randf(), randf())
 		var cloth := Color(randf(), randf(), randf())
+		var hair := Color(randf(), randf(), randf())
 		var belly := Color(randf(), randf(), randf())
 		var eye0 := Color(randf(), randf(), randf())
 		var eye1 := Color(randf(), randf(), randf())
@@ -190,19 +193,21 @@ func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 		# secondary eye color is a lighter variation of the regular color
 		eye1 = _random_highlight_color(eye0)
 		
-		# desaturate the horns
+		# desaturate the horns, hair
 		horn.s = pow(horn.s, 8)
+		hair.s = pow(hair.s, 4)
 		
 		result["body_rgb"] = body.to_html(false)
 		result["belly_rgb"] = belly.to_html(false)
 		result["cloth_rgb"] = cloth.to_html(false)
+		result["hair_rgb"] = hair.to_html(false)
 		result["eye_rgb"] = "%s %s" % [eye0.to_html(false), eye1.to_html(false)]
 		result["horn_rgb"] = horn.to_html(false)
 		result["line_rgb"] = center_creature.dna["line_rgb"]
 	elif color_mode == SIMILAR_COLORS:
 		# derive a palette from the creature's current palette
 		result["line_rgb"] = center_creature.dna["line_rgb"]
-		for allele in ["body_rgb", "belly_rgb", "cloth_rgb", "horn_rgb"]:
+		for allele in ["body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "horn_rgb"]:
 			var body := Color(center_creature.dna[allele])
 			result[allele] = _random_similar_color(body).to_html(false)
 		
@@ -231,8 +236,8 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 	# copy the center creature's dna, name, weight
 	creature.creature_def = center_creature.creature_def
 	var dna := {}
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb",
-		"cheek", "eye", "ear", "horn", "mouth", "nose", "collar", "belly"]:
+	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb",
+		"cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "belly"]:
 		if center_creature.dna.has(allele):
 			dna[allele] = center_creature.dna[allele]
 	
@@ -255,9 +260,10 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 			dna["body_rgb"] = palette["body_rgb"]
 			dna["belly_rgb"] = palette["belly_rgb"]
 			dna["cloth_rgb"] = palette["cloth_rgb"]
+			dna["hair_rgb"] = palette["hair_rgb"]
 			dna["eye_rgb"] = palette["eye_rgb"]
 			dna["horn_rgb"] = palette["horn_rgb"]
-		"belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb", "line_rgb":
+		"belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb", "line_rgb":
 			dna[allele] = palette[allele]
 		_:
 			var new_alleles := DnaUtils.unique_allele_values(allele)
