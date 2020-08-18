@@ -114,9 +114,10 @@ static func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "Sprint", "body", "sprint-z0-packed")
 	_load_texture(dna, "FarArm", "body", "arm-z0-packed")
 	_load_texture(dna, "FarLeg", "body", "leg-z0-packed")
-	_load_texture(dna, "Body/Viewport/Body/NeckBlend", "body", "neck-packed")
+	_load_texture(dna, "Body/Viewport/Body/NeckBlend", "body", "neck-blend-packed")
 	_load_texture(dna, "NearLeg", "body", "leg-z1-packed")
 	_load_texture(dna, "NearArm", "body", "arm-z1-packed")
+	_load_texture(dna, "Collar", "collar", "collar-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Head", "body", "head-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Chin", "body", "chin-packed")
 	
@@ -133,8 +134,9 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:FarArm:black"] = line_color
 	dna["shader:FarLeg:black"] = line_color
 	dna["shader:Body:black"] = line_color
-	dna["shader:NearArm:black"] = line_color
 	dna["shader:NearLeg:black"] = line_color
+	dna["shader:NearArm:black"] = line_color
+	dna["shader:Collar:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EarZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/HornZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/CheekZ0:black"] = line_color
@@ -155,6 +157,11 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/EmoteEyeZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/EmoteBrain:black"] = line_color
 	dna["shader:EmoteBody:black"] = line_color
+	
+	var cloth_color: Color
+	if dna.has("cloth_rgb"):
+		cloth_color = Color(dna.cloth_rgb)
+	dna["shader:Collar:red"] = cloth_color
 	
 	var body_color: Color
 	if dna.has("body_rgb"):
@@ -217,7 +224,7 @@ static func load_creature_def(path: String) -> CreatureDef:
 		creature_def.from_json_dict(json_creature_def)
 		
 		# populate default values when importing incomplete json
-		for allele in ["line_rgb", "body_rgb", "belly_rgb", "eye_rgb", "horn_rgb",
+		for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb",
 				"cheek", "eye", "ear", "horn", "mouth", "nose", "belly"]:
 			DnaUtils.put_if_absent(creature_def.dna, allele, CreatureLibrary.DEFAULT_DNA[allele])
 		if not creature_def.creature_name:

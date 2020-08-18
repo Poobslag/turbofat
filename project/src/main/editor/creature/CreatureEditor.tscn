@@ -315,10 +315,16 @@ margin_bottom = 26.0
 text = "Color"
 allele = "horn_rgb"
 
-[node name="BellyContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
+[node name="Collar" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 273.0
-margin_right = 390.0
 margin_bottom = 299.0
+text = "Collar"
+allele = "collar"
+
+[node name="BellyContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
+margin_top = 304.0
+margin_right = 390.0
+margin_bottom = 330.0
 custom_constants/separation = 5
 
 [node name="Belly" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/BellyContainer" instance=ExtResource( 11 )]
@@ -336,13 +342,13 @@ text = "Color"
 allele = "belly_rgb"
 
 [node name="Size" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 304.0
-margin_bottom = 330.0
+margin_top = 335.0
+margin_bottom = 361.0
 text = "Size"
 allele = "fatness"
 
 [node name="Spacer" type="Control" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 335.0
+margin_top = 366.0
 margin_right = 390.0
 margin_bottom = 420.0
 size_flags_vertical = 3
@@ -410,7 +416,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/TabContainer/Tweak/ScrollContainer"]
 margin_right = 400.0
-margin_bottom = 524.0
+margin_bottom = 554.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -422,7 +428,7 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 395.0
-margin_bottom = 519.0
+margin_bottom = 549.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -519,6 +525,14 @@ allele = "horn_rgb"
 text = "Horn Color"
 creature_editor_path = NodePath("../../../../../../..")
 
+[node name="Collar" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
+margin_top = 364.0
+margin_right = 378.0
+margin_bottom = 390.0
+allele = "collar"
+text = "Collar"
+creature_editor_path = NodePath("../../../../../../..")
+
 [node name="Belly" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
 margin_top = 364.0
 margin_right = 378.0
@@ -539,6 +553,14 @@ creature_editor_path = NodePath("../../../../../../..")
 margin_top = 424.0
 margin_right = 378.0
 margin_bottom = 450.0
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Belly Color2" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 20 )]
+margin_top = 394.0
+margin_right = 378.0
+margin_bottom = 420.0
+allele = "cloth_rgb"
+text = "Cloth Color"
 creature_editor_path = NodePath("../../../../../../..")
 
 [node name="Spacer" type="Control" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer"]

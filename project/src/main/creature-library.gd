@@ -19,6 +19,7 @@ const DEFAULT_DNA := {
 	"body_rgb": "b23823",
 	"belly": "1",
 	"belly_rgb": "c9442a",
+	"cloth_rgb": "282828",
 	"ear": "1",
 	"eye": "1",
 	"eye_rgb": "282828 dedede",
@@ -26,7 +27,8 @@ const DEFAULT_DNA := {
 	"horn_rgb": "f1e398",
 	"mouth": "2",
 	"nose": "0",
-	"cheek": "3"
+	"cheek": "3",
+	"collar": "0",
 }
 
 # default name when starting a new game
