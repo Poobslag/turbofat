@@ -83,6 +83,9 @@ static func _load_texture(dna: Dictionary, node_path: String, key: String, filen
 Loads the resources for a creature's head based on a creature definition.
 """
 static func _load_head(dna: Dictionary) -> void:
+	_load_texture(dna, "Collar", "collar", "collar-packed")
+	_load_texture(dna, "Neck0/HeadBobber/Head", "head", "head-packed")
+	
 	_load_texture(dna, "Neck0/HeadBobber/CheekZ0", "cheek", "cheek-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/CheekZ1", "cheek", "cheek-z1-packed")
 	_load_texture(dna, "Neck0/HeadBobber/CheekZ2", "cheek", "cheek-z2-packed")
@@ -121,8 +124,6 @@ static func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "Body/Viewport/Body/NeckBlend", "body", "neck-blend-packed")
 	_load_texture(dna, "NearLeg", "body", "leg-z1-packed")
 	_load_texture(dna, "NearArm", "body", "arm-z1-packed")
-	_load_texture(dna, "Collar", "collar", "collar-packed")
-	_load_texture(dna, "Neck0/HeadBobber/Head", "body", "head-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Chin", "body", "chin-packed")
 	
 	dna["property:BodyColors:belly"] = dna.get("belly", 0)
@@ -181,47 +182,63 @@ static func _load_colors(dna: Dictionary) -> void:
 	var body_color: Color
 	if dna.has("body_rgb"):
 		body_color = Color(dna.body_rgb)
+	var belly_color: Color
+	if dna.has("belly_rgb"):
+		belly_color = Color(dna.belly_rgb)
+	
 	dna["shader:Body:red"] = body_color
+	dna["shader:Body:green"] = belly_color
+	
 	dna["shader:FarArm:red"] = body_color
 	dna["shader:FarLeg:red"] = body_color
 	dna["shader:NearArm:red"] = body_color
 	dna["shader:NearLeg:red"] = body_color
-	dna["shader:Neck0/HeadBobber/CheekZ0:red"] = body_color
-	dna["shader:Neck0/HeadBobber/CheekZ1:red"] = body_color
-	dna["shader:Neck0/HeadBobber/CheekZ2:red"] = body_color
-	dna["shader:Neck0/HeadBobber/Chin:red"] = body_color
+	
+	var cheek_skin_color := belly_color if dna.get("head") in ["2", "3", "5"] else body_color
+	var cheek_eye_color := belly_color if dna.get("head") in ["2", "3", "4", "5"] else body_color
+	dna["shader:Neck0/HeadBobber/CheekZ0:red"] = cheek_skin_color
+	dna["shader:Neck0/HeadBobber/CheekZ0:green"] = cheek_eye_color
+	dna["shader:Neck0/HeadBobber/CheekZ1:red"] = cheek_skin_color
+	dna["shader:Neck0/HeadBobber/CheekZ1:green"] = cheek_eye_color
+	dna["shader:Neck0/HeadBobber/CheekZ2:red"] = cheek_skin_color
+	dna["shader:Neck0/HeadBobber/CheekZ2:green"] = cheek_eye_color
+	
+	var chin_skin_color := belly_color if dna.get("head") in ["2", "3", "5"] else body_color
+	dna["shader:Neck0/HeadBobber/Chin:red"] = chin_skin_color
+	
 	dna["shader:Neck0/HeadBobber/EarZ0:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EarZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EarZ2:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EmoteArmZ0:red"] = body_color
 	dna["shader:Neck0/HeadBobber/EmoteArmZ1:red"] = body_color
-	dna["shader:Neck0/HeadBobber/EyeZ0:red"] = body_color
-	dna["shader:Neck0/HeadBobber/EyeZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/Head:red"] = body_color
-	dna["shader:Neck0/HeadBobber/HornZ0:red"] = body_color
-	dna["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
-	dna["shader:Neck0/HeadBobber/Mouth:red"] = body_color
-	dna["shader:Neck0/HeadBobber/Nose:red"] = body_color
-
-	var belly_color: Color
-	if dna.has("belly_rgb"):
-		belly_color = Color(dna.belly_rgb)
-	dna["shader:Body:green"] = belly_color
+	dna["shader:Neck0/HeadBobber/Head:green"] = belly_color
+	
+	var mouth_skin_color := belly_color if dna.get("head") in ["2", "3", "5"] else body_color
+	dna["shader:Neck0/HeadBobber/Mouth:red"] = mouth_skin_color
+	
+	var nose_skin_color := belly_color if dna.get("head") in ["2", "3"] else body_color
+	dna["shader:Neck0/HeadBobber/Nose:red"] = nose_skin_color
 	
 	var eye_color: Color
 	var eye_shine_color: Color
+	var eye_skin_color := belly_color if dna.get("head") in ["2", "4", "5"] else body_color
 	if dna.has("eye_rgb"):
 		eye_color = Color(dna.eye_rgb.split(" ")[0])
 		eye_shine_color = Color(dna.eye_rgb.split(" ")[1])
+	dna["shader:Neck0/HeadBobber/EyeZ0:red"] = eye_skin_color
 	dna["shader:Neck0/HeadBobber/EyeZ0:green"] = eye_color
-	dna["shader:Neck0/HeadBobber/EyeZ1:green"] = eye_color
 	dna["shader:Neck0/HeadBobber/EyeZ0:blue"] = eye_shine_color
+	dna["shader:Neck0/HeadBobber/EyeZ1:red"] = eye_skin_color
+	dna["shader:Neck0/HeadBobber/EyeZ1:green"] = eye_color
 	dna["shader:Neck0/HeadBobber/EyeZ1:blue"] = eye_shine_color
 
 	var horn_color: Color
 	if dna.has("horn_rgb"):
 		horn_color = Color(dna.horn_rgb)
+	dna["shader:Neck0/HeadBobber/HornZ0:red"] = body_color
 	dna["shader:Neck0/HeadBobber/HornZ0:green"] = horn_color
+	dna["shader:Neck0/HeadBobber/HornZ1:red"] = body_color
 	dna["shader:Neck0/HeadBobber/HornZ1:green"] = horn_color
 
 
@@ -240,7 +257,7 @@ static func load_creature_def(path: String) -> CreatureDef:
 		
 		# populate default values when importing incomplete json
 		for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb",
-				"cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "belly"]:
+				"head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "belly"]:
 			DnaUtils.put_if_absent(creature_def.dna, allele, CreatureLibrary.DEFAULT_DNA[allele])
 		if not creature_def.creature_name:
 			creature_def.creature_name = CreatureLibrary.DEFAULT_NAME
