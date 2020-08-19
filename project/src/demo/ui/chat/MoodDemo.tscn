@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=2]
@@ -23,6 +23,9 @@
 [ext_resource path="res://assets/main/world/creature/1/cheek-z1-packed.png" type="Texture" id=21]
 [ext_resource path="res://assets/main/world/creature/1/mouth-packed.png" type="Texture" id=22]
 [ext_resource path="res://assets/main/world/creature/1/collar-packed.png" type="Texture" id=23]
+[ext_resource path="res://assets/main/world/creature/2/hair-z0-packed.png" type="Texture" id=24]
+[ext_resource path="res://assets/main/world/creature/2/hair-z1-packed.png" type="Texture" id=25]
+[ext_resource path="res://assets/main/world/creature/2/hair-z2-packed.png" type="Texture" id=26]
 
 [node name="MoodDemo" type="Node"]
 script = ExtResource( 3 )
@@ -49,6 +52,8 @@ dna = {
 "ear": "2",
 "eye": "3",
 "eye_rgb": "fad541 ffffff",
+"hair": "0",
+"hair_rgb": "f1e398",
 "horn": "0",
 "horn_rgb": "282828",
 "line_rgb": "41281e",
@@ -89,6 +94,12 @@ dna = {
 "property:Neck0/HeadBobber/Food:texture": ExtResource( 15 ),
 "property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/1/food-laser-packed.json",
 "property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 17 ),
+"property:Neck0/HeadBobber/HairZ0:frame_data": "res://assets/main/world/creature/2/hair-z0-packed.json",
+"property:Neck0/HeadBobber/HairZ0:texture": ExtResource( 24 ),
+"property:Neck0/HeadBobber/HairZ1:frame_data": "res://assets/main/world/creature/2/hair-z1-packed.json",
+"property:Neck0/HeadBobber/HairZ1:texture": ExtResource( 25 ),
+"property:Neck0/HeadBobber/HairZ2:frame_data": "res://assets/main/world/creature/2/hair-z2-packed.json",
+"property:Neck0/HeadBobber/HairZ2:texture": ExtResource( 26 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/1/head-packed.json",
 "property:Neck0/HeadBobber/Head:texture": ExtResource( 12 ),
 "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/1/mouth-packed.json",
@@ -101,6 +112,7 @@ dna = {
 "shader:Body:green": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Body:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Collar:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Collar:green": Color( 0.945098, 0.890196, 0.596078, 1 ),
 "shader:Collar:red": Color( 0.156863, 0.156863, 0.156863, 1 ),
 "shader:EmoteBody:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:FarArm:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
@@ -140,6 +152,12 @@ dna = {
 "shader:Neck0/HeadBobber/EyeZ1:blue": Color( 1, 1, 1, 1 ),
 "shader:Neck0/HeadBobber/EyeZ1:green": Color( 0.980392, 0.835294, 0.254902, 1 ),
 "shader:Neck0/HeadBobber/EyeZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/HairZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/HairZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/HairZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/HairZ2:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/Head:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/Head:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/HornZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),

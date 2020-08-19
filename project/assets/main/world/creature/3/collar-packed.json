@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "collar-1 0.png",
+    "frame": { "x": 132, "y": 66, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "collar-1 1.png",
+    "frame": { "x": 0, "y": 0, "w": 127, "h": 73 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 187, "y": 266, "w": 127, "h": 73 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "collar-1 2.png",
+    "frame": { "x": 132, "y": 0, "w": 137, "h": 61 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 202, "y": 256, "w": 137, "h": 61 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.24-x64",
+  "image": "collar-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 269, "h": 73 },
+  "scale": "1"
+ }
+}

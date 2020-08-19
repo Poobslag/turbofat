@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "hair-z1-1 0.png",
+    "frame": { "x": 67, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "hair-z1-1 1.png",
+    "frame": { "x": 0, "y": 0, "w": 62, "h": 53 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 237, "y": 171, "w": 62, "h": 53 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "hair-z1-1 2.png",
+    "frame": { "x": 67, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.24-x64",
+  "image": "hair-z1-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 68, "h": 53 },
+  "scale": "1"
+ }
+}
