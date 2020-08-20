@@ -18,13 +18,14 @@ uniform vec4 black : hint_color;
 void fragment() {
 	vec4 rgba_in = texture(TEXTURE, UV);
 	
-	// color defaults to the black replacement color
+	// mix black/red/blue/green colors sequentially. if all rgb components are equal, we first mix in 100% of the red
+	// color, then 50% of the green color, then 33% of the blue color.
+	float black_amount = max(0.0, 1.0 - rgba_in.r - rgba_in.g - rgba_in.b);
 	vec4 rgb_out = black;
-	
-	// mix in other colors based on the red, green and blue components of the source image
-	rgb_out = mix(rgb_out, red.rgba, rgba_in.r);
-	rgb_out = mix(rgb_out, green.rgba, rgba_in.g);
-	rgb_out = mix(rgb_out, blue.rgba, rgba_in.b);
+	rgb_out = mix(rgb_out, red, rgba_in.r / max(0.00001, rgba_in.r + black_amount));
+	rgb_out = mix(rgb_out, green, rgba_in.g / max(0.00001, rgba_in.g + rgba_in.r + black_amount));
+	rgb_out = mix(rgb_out, blue, rgba_in.b / max(0.00001, rgba_in.b + rgba_in.g + rgba_in.r + black_amount));
+	rgb_out.a = rgba_in.a;
 	
 	// Assign final color for the pixel, and preserve transparency
 	COLOR = vec4(rgb_out.rgb, rgba_in.a * rgb_out.a);
