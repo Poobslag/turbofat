@@ -15,7 +15,7 @@ const CREATURE_PALETTES := [
 			"hair_rgb": "f1e398", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398"}, # dark red
 	{"line_rgb": "6c4331", "body_rgb": "f9bb4a", "belly_rgb": "fff4b2", "cloth_rgb": "f9a74c",
 			"hair_rgb": "b47922", "eye_rgb": "f9a74c fff6df", "horn_rgb": "b47922"}, # yellow
-	{"line_rgb": "6c4331", "body_rgb": "41a740", "belly_rgb": "4fa94e", "cloth_rgb": "c09a2f",
+	{"line_rgb": "6c4331", "body_rgb": "41a740", "belly_rgb": "6dcb4c", "cloth_rgb": "c09a2f",
 			"hair_rgb": "f1e398", "eye_rgb": "c09a2f f1e398", "horn_rgb": "f1e398"}, # dark green
 	{"line_rgb": "6c4331", "body_rgb": "b47922", "belly_rgb": "d0ec5c", "cloth_rgb": "7d4c21",
 			"hair_rgb": "f1e398", "eye_rgb": "7d4c21 e5cd7d", "horn_rgb": "f1e398"}, # brown
@@ -37,8 +37,8 @@ const CREATURE_PALETTES := [
 			"hair_rgb": "ffffff", "eye_rgb": "c1f1f2 ffffff", "horn_rgb": "ffffff"}, # cyan
 	{"line_rgb": "6c4331", "body_rgb": "f9f7d9", "belly_rgb": "d7c2a4", "cloth_rgb": "91e6ff",
 			"hair_rgb": "ffffff", "eye_rgb": "91e6ff ffffff", "horn_rgb": "ffffff"}, # white
-	{"line_rgb": "3c3c3d", "body_rgb": "1a1a1e", "belly_rgb": "433028", "cloth_rgb": "b8260b",
-			"hair_rgb": "282828", "eye_rgb": "b8260b f45e40", "horn_rgb": "282828"}, # black
+	{"line_rgb": "41281e", "body_rgb": "1a1a1e", "belly_rgb": "65412e", "cloth_rgb": "b8260b",
+			"hair_rgb": "282828", "eye_rgb": "b8260b f45e40", "horn_rgb": "282828"}, # doberman black
 	{"line_rgb": "6c4331", "body_rgb": "7a8289", "belly_rgb": "c8c3b5", "cloth_rgb": "f5f0d1",
 			"hair_rgb": "282828", "eye_rgb": "f5f0d1 ffffff", "horn_rgb": "282828"}, # grey
 	{"line_rgb": "41281e", "body_rgb": "0b45a6", "belly_rgb": "eec086", "cloth_rgb": "fad541",
@@ -49,8 +49,8 @@ const CREATURE_PALETTES := [
 			"hair_rgb": "5a635d", "eye_rgb": "41f2ff d6ffff", "horn_rgb": "5a635d"}, # dragon muted purple
 	{"line_rgb": "41281e", "body_rgb": "3b494f", "belly_rgb": "7b8780", "cloth_rgb": "ad1000",
 			"hair_rgb": "5d0218", "eye_rgb": "ad1000 b73a36", "horn_rgb": "5d0218"}, # gargoyle gray
-	{"line_rgb": "6c4331", "body_rgb": "68d50a", "belly_rgb": "4baf20", "cloth_rgb": "9134bc",
-			"hair_rgb": "ffffed", "eye_rgb": "9134bc b392df", "horn_rgb": "ffffed"}, # hulk green
+	{"line_rgb": "6c4331", "body_rgb": "68d50a", "belly_rgb": "4baf20", "cloth_rgb": "994dbd",
+			"hair_rgb": "ffffed", "eye_rgb": "994dbd b392df", "horn_rgb": "ffffed"}, # hulk green
 	{"line_rgb": "6c4331", "body_rgb": "9a7f5d", "belly_rgb": "c9dac6", "cloth_rgb": "25291b",
 			"hair_rgb": "b9b9b9", "eye_rgb": "25291b 606060", "horn_rgb": "b9b9b9"}, # goblin tan
 	{"line_rgb": "6c4331", "body_rgb": "ffb12c", "belly_rgb": "ffffff", "cloth_rgb": "cb5340",
@@ -61,14 +61,14 @@ const CREATURE_PALETTES := [
 			"hair_rgb": "fcfcff", "eye_rgb": "fff5df f3ffff", "horn_rgb": "fcfcff"}, # angelic green
 	{"line_rgb": "6c4331", "body_rgb": "23a2e3", "belly_rgb": "35e1e0", "cloth_rgb": "415a73",
 			"hair_rgb": "ffe7e5", "eye_rgb": "415a73 c8cbd6", "horn_rgb": "ffe7e5"}, # fishy blue
-	{"line_rgb": "6c4331", "body_rgb": "9d3df6", "belly_rgb": "df318d", "cloth_rgb": "ecdf32",
-			"hair_rgb": "a66643", "eye_rgb": "ecdf32 fcfcdb", "horn_rgb": "a66643"}, # mystic purple
+	{"line_rgb": "6c4331", "body_rgb": "9d3df6", "belly_rgb": "e055a0", "cloth_rgb": "ecdf32",
+			"hair_rgb": "e1dabb", "eye_rgb": "ecdf32 fcfcdb", "horn_rgb": "ac4577"}, # mystic purple
 	{"line_rgb": "6c4331", "body_rgb": "25785f", "belly_rgb": "876edb", "cloth_rgb": "ff5c6f",
 			"hair_rgb": "a6a1a1", "eye_rgb": "ff5c6f fff1f0", "horn_rgb": "a6a1a1"}, # sea monster turquoise
 	{"line_rgb": "6c4331", "body_rgb": "bd5a16", "belly_rgb": "ffffd7", "cloth_rgb": "020202",
 			"hair_rgb": "c3c3c2", "eye_rgb": "020202 577c76", "horn_rgb": "c3c3c2"}, # ogre brown
-	{"line_rgb": "6c4331", "body_rgb": "f5ffc1", "belly_rgb": "61d541", "cloth_rgb": "6fb964",
-			"hair_rgb": "f8ae44", "eye_rgb": "6fb964 ffffff", "horn_rgb": "f8ae44"}, # celtic white
+	{"line_rgb": "6c4331", "body_rgb": "dbffc8", "belly_rgb": "d69e63", "cloth_rgb": "95c152",
+			"hair_rgb": "bdab30", "eye_rgb": "8bb253 ffebff", "horn_rgb": "caf877"}, # celtic white
 	{"line_rgb": "41281e", "body_rgb": "8f1b21", "belly_rgb": "838382", "cloth_rgb": "546127",
 			"hair_rgb": "2b2b2b", "eye_rgb": "546127 a8ad89", "horn_rgb": "2b2b2b"}, # heckraiser red
 	{"line_rgb": "41281e", "body_rgb": "a7380b", "belly_rgb": "98b58f", "cloth_rgb": "917a1e",
@@ -136,6 +136,12 @@ const ALLELE_NAMES := {
 	"belly-0": "(none)",
 	"belly-1": "Full",
 	"belly-2": "Half",
+	
+	"head-1": "(none)",
+	"head-2": "Chimp",
+	"head-3": "Hedgehog",
+	"head-4": "Raccoon",
+	"head-5": "Marmoset",
 }
 
 """
@@ -165,7 +171,7 @@ static func fill_dna(dna: Dictionary) -> Dictionary:
 		# avoid loading unnecessary resources for things like the level editor
 		pass
 	else:
-		for allele in ["cheek", "ear", "eye", "horn", "mouth", "nose", "hair", "collar", "belly"]:
+		for allele in ["head", "cheek", "ear", "eye", "horn", "mouth", "nose", "hair", "collar", "belly"]:
 			put_if_absent(result, allele, Utils.rand_value(weighted_allele_values(result, allele)))
 	put_if_absent(result, "body", "1")
 	return result
@@ -192,6 +198,7 @@ static func unique_allele_values(property: String) -> Array:
 	else:
 		# other properties
 		match property:
+			"head": result = ["1", "2", "3", "4", "5"]
 			"belly": result = ["0", "1", "2"]
 			"cheek": result = ["0", "1", "2", "3"]
 			"ear": result = ["1", "2", "3"]
@@ -228,6 +235,7 @@ static func weighted_allele_values(dna: Dictionary, property: String) -> Array:
 	else:
 		# other properties
 		match property:
+			"head": result = ["1", "1", "1", "1", "1", "1", "2", "3", "4", "5"]
 			"belly": result = ["0", "0", "1", "1", "2"]
 			"cheek": result = ["0", "0", "0", "1", "1", "2", "2", "3"]
 			"ear": result = ["1", "1", "1", "2", "3"]

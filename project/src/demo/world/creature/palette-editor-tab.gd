@@ -50,7 +50,7 @@ func _on_PaletteButton_pressed(palette: Dictionary) -> void:
 	# update the center creature with new dna
 	var dna := {}
 	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb",
-			"cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "belly"]:
+			"head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "belly"]:
 		if get_center_creature().dna.has(allele):
 			dna[allele] = get_center_creature().dna[allele]
 	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb"]:

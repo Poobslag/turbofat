@@ -1,4 +1,4 @@
-[gd_scene load_steps=152 format=2]
+[gd_scene load_steps=154 format=2]
 
 [ext_resource path="res://src/main/world/rgb-palette.shader" type="Shader" id=1]
 [ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=2]
@@ -152,85 +152,33 @@ shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Shader" id=18]
-code = "/*
- * A shader which takes an RGB image, and replaces the red component with one color, the green component with a second
- * color, and the blue component with a third color. Black pixels are also replaced with a fourth color. A pixel
- * which is mostly red but a little green will be replaced with the first and second colors.
- *
- * This approach allow a sprite to be recolored with up to four channels, and the recoloring can be handled by the
- * graphics card. It's performant and looks reasonable even if the sprite is resized before being passed off to the
- * graphics card.
- */
-shader_type canvas_item;
-
-// the replacement colors
-uniform vec4 red : hint_color;
-uniform vec4 green : hint_color;
-uniform vec4 blue : hint_color;
-uniform vec4 black : hint_color;
-
-void fragment() {
-	vec4 rgba_in = texture(TEXTURE, UV);
-	
-	// color defaults to the black replacement color
-	vec4 rgb_out = black;
-	
-	// mix in other colors based on the red, green and blue components of the source image
-	rgb_out = mix(rgb_out, red.rgba, rgba_in.r);
-	rgb_out = mix(rgb_out, green.rgba, rgba_in.g);
-	rgb_out = mix(rgb_out, blue.rgba, rgba_in.b);
-	
-	// Assign final color for the pixel, and preserve transparency
-	COLOR = vec4(rgb_out.rgb, rgba_in.a * rgb_out.a);
-}"
-custom_defines = ""
-
-[sub_resource type="ShaderMaterial" id=19]
+[sub_resource type="ShaderMaterial" id=18]
 resource_local_to_scene = true
-shader = SubResource( 18 )
+shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Shader" id=20]
-code = "/*
- * A shader which takes an RGB image, and replaces the red component with one color, the green component with a second
- * color, and the blue component with a third color. Black pixels are also replaced with a fourth color. A pixel
- * which is mostly red but a little green will be replaced with the first and second colors.
- *
- * This approach allow a sprite to be recolored with up to four channels, and the recoloring can be handled by the
- * graphics card. It's performant and looks reasonable even if the sprite is resized before being passed off to the
- * graphics card.
- */
-shader_type canvas_item;
+[sub_resource type="ShaderMaterial" id=19]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
-// the replacement colors
-uniform vec4 red : hint_color;
-uniform vec4 green : hint_color;
-uniform vec4 blue : hint_color;
-uniform vec4 black : hint_color;
-
-void fragment() {
-	vec4 rgba_in = texture(TEXTURE, UV);
-	
-	// color defaults to the black replacement color
-	vec4 rgb_out = black;
-	
-	// mix in other colors based on the red, green and blue components of the source image
-	rgb_out = mix(rgb_out, red.rgba, rgba_in.r);
-	rgb_out = mix(rgb_out, green.rgba, rgba_in.g);
-	rgb_out = mix(rgb_out, blue.rgba, rgba_in.b);
-	
-	// Assign final color for the pixel, and preserve transparency
-	COLOR = vec4(rgb_out.rgb, rgba_in.a * rgb_out.a);
-}"
-custom_defines = ""
+[sub_resource type="ShaderMaterial" id=20]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=21]
 resource_local_to_scene = true
-shader = SubResource( 20 )
+shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
@@ -248,16 +196,16 @@ shader_param/black = Color( 0, 0, 0, 1 )
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
+shader_param/blue = null
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=24]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
-shader_param/blue = null
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=25]
@@ -272,95 +220,59 @@ shader_param/black = Color( 0, 0, 0, 1 )
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
+shader_param/blue = null
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=27]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="Shader" id=27]
-code = "/*
- * A shader which takes an RGB image, and replaces the red component with one color, the green component with a second
- * color, and the blue component with a third color. Black pixels are also replaced with a fourth color. A pixel
- * which is mostly red but a little green will be replaced with the first and second colors.
- *
- * This approach allow a sprite to be recolored with up to four channels, and the recoloring can be handled by the
- * graphics card. It's performant and looks reasonable even if the sprite is resized before being passed off to the
- * graphics card.
- */
-shader_type canvas_item;
-
-// the replacement colors
-uniform vec4 red : hint_color;
-uniform vec4 green : hint_color;
-uniform vec4 blue : hint_color;
-uniform vec4 black : hint_color;
-
-void fragment() {
-	vec4 rgba_in = texture(TEXTURE, UV);
-	
-	// color defaults to the black replacement color
-	vec4 rgb_out = black;
-	
-	// mix in other colors based on the red, green and blue components of the source image
-	rgb_out = mix(rgb_out, red.rgba, rgba_in.r);
-	rgb_out = mix(rgb_out, green.rgba, rgba_in.g);
-	rgb_out = mix(rgb_out, blue.rgba, rgba_in.b);
-	
-	// Assign final color for the pixel, and preserve transparency
-	COLOR = vec4(rgb_out.rgb, rgba_in.a * rgb_out.a);
-}"
-custom_defines = ""
 
 [sub_resource type="ShaderMaterial" id=28]
 resource_local_to_scene = true
-shader = SubResource( 27 )
+shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Shader" id=29]
-code = "/*
- * A shader which takes an RGB image, and replaces the red component with one color, the green component with a second
- * color, and the blue component with a third color. Black pixels are also replaced with a fourth color. A pixel
- * which is mostly red but a little green will be replaced with the first and second colors.
- *
- * This approach allow a sprite to be recolored with up to four channels, and the recoloring can be handled by the
- * graphics card. It's performant and looks reasonable even if the sprite is resized before being passed off to the
- * graphics card.
- */
-shader_type canvas_item;
-
-// the replacement colors
-uniform vec4 red : hint_color;
-uniform vec4 green : hint_color;
-uniform vec4 blue : hint_color;
-uniform vec4 black : hint_color;
-
-void fragment() {
-	vec4 rgba_in = texture(TEXTURE, UV);
-	
-	// color defaults to the black replacement color
-	vec4 rgb_out = black;
-	
-	// mix in other colors based on the red, green and blue components of the source image
-	rgb_out = mix(rgb_out, red.rgba, rgba_in.r);
-	rgb_out = mix(rgb_out, green.rgba, rgba_in.g);
-	rgb_out = mix(rgb_out, blue.rgba, rgba_in.b);
-	
-	// Assign final color for the pixel, and preserve transparency
-	COLOR = vec4(rgb_out.rgb, rgba_in.a * rgb_out.a);
-}"
-custom_defines = ""
+[sub_resource type="ShaderMaterial" id=29]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=30]
 resource_local_to_scene = true
-shader = SubResource( 29 )
+shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0.909804, 0.635294, 0.380392, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=31]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=32]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
+
+[sub_resource type="ShaderMaterial" id=33]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 1, 1, 1, 1 )
@@ -368,14 +280,14 @@ shader_param/green = null
 shader_param/blue = null
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Gradient" id=32]
+[sub_resource type="Gradient" id=34]
 offsets = PoolRealArray( 0.00473934, 0.390947 )
 colors = PoolColorArray( 1, 1, 1, 0.752941, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=33]
-gradient = SubResource( 32 )
+[sub_resource type="GradientTexture" id=35]
+gradient = SubResource( 34 )
 
-[sub_resource type="ParticlesMaterial" id=34]
+[sub_resource type="ParticlesMaterial" id=36]
 emission_shape = 1
 emission_sphere_radius = 120.0
 flag_disable_z = true
@@ -385,9 +297,9 @@ initial_velocity = -800.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 1.7
-color_ramp = SubResource( 33 )
+color_ramp = SubResource( 35 )
 
-[sub_resource type="ParticlesMaterial" id=35]
+[sub_resource type="ParticlesMaterial" id=37]
 emission_shape = 1
 emission_sphere_radius = 45.0
 flag_disable_z = true
@@ -401,11 +313,11 @@ damping = 50.0
 scale = 0.7
 color_ramp = SubResource( 15 )
 
-[sub_resource type="CanvasItemMaterial" id=36]
+[sub_resource type="CanvasItemMaterial" id=38]
 resource_local_to_scene = true
 blend_mode = 1
 
-[sub_resource type="ShaderMaterial" id=37]
+[sub_resource type="ShaderMaterial" id=39]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 1, 1, 1, 1 )
@@ -413,7 +325,7 @@ shader_param/green = Color( 1, 1, 0.24, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=38]
+[sub_resource type="ShaderMaterial" id=40]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
@@ -421,7 +333,7 @@ shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="Animation" id=39]
+[sub_resource type="Animation" id=41]
 length = 6.0
 loop = true
 tracks/0/type = "value"
@@ -466,7 +378,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=40]
+[sub_resource type="Animation" id=42]
 length = 2.0
 step = 0.0666667
 tracks/0/type = "value"
@@ -494,7 +406,7 @@ tracks/1/keys = {
 "values": [ 1, 5, 1, 3, 4, 3, 1, 5, 1, 3, 4, 3, 1, 5, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=41]
+[sub_resource type="Animation" id=43]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -522,7 +434,7 @@ tracks/1/keys = {
 "values": [ 1, 1, 5, 1, 3, 4, 3, 1, 5, 1, 3, 4, 3, 1, 5, 1, 3, 4, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=44]
 length = 8.0
 loop = true
 step = 0.0333333
@@ -580,7 +492,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=43]
+[sub_resource type="Animation" id=45]
 length = 2.0
 step = 0.0666667
 tracks/0/type = "value"
@@ -620,7 +532,7 @@ tracks/2/keys = {
 "values": [ 3, 4, 5, 1, 3, 4, 5, 1, 3, 4, 5, 1, 3, 4, 4 ]
 }
 
-[sub_resource type="Animation" id=44]
+[sub_resource type="Animation" id=46]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -660,7 +572,7 @@ tracks/2/keys = {
 "values": [ 1, 1, 3, 5, 1, 3, 4, 3, 5, 1, 3, 4, 3, 5, 1, 3, 4, 4 ]
 }
 
-[sub_resource type="Animation" id=45]
+[sub_resource type="Animation" id=47]
 length = 6.0
 loop = true
 tracks/0/type = "value"
@@ -717,7 +629,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=46]
+[sub_resource type="Animation" id=48]
 length = 2.0
 step = 0.0666667
 tracks/0/type = "value"
@@ -757,7 +669,7 @@ tracks/2/keys = {
 "values": [ 1, 5, 1, 3, 4, 3, 1, 5, 1, 3, 4, 3, 1, 5, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=47]
+[sub_resource type="Animation" id=49]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -797,7 +709,7 @@ tracks/2/keys = {
 "values": [ 1, 1, 5, 1, 3, 4, 3, 1, 5, 1, 3, 4, 3, 1, 5, 1, 3, 4, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=48]
+[sub_resource type="Animation" id=50]
 length = 4.0
 loop = true
 step = 0.166667
@@ -826,7 +738,7 @@ tracks/1/keys = {
 "values": [ 2, 2 ]
 }
 
-[sub_resource type="Animation" id=49]
+[sub_resource type="Animation" id=51]
 length = 4.0
 loop = true
 step = 0.166667
@@ -855,7 +767,7 @@ tracks/1/keys = {
 "values": [ 1, 1 ]
 }
 
-[sub_resource type="Animation" id=50]
+[sub_resource type="Animation" id=52]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -921,7 +833,7 @@ tracks/4/keys = {
 "values": [ 1, 8, 10, 9, 7, 6, 4, 1, 4, 6, 6, 4, 4, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=51]
+[sub_resource type="Animation" id=53]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -987,7 +899,7 @@ tracks/4/keys = {
 "values": [ 10, 9, 7, 6, 4, 1, 4, 6, 6, 4, 4, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=52]
+[sub_resource type="Animation" id=54]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1015,7 +927,7 @@ tracks/1/keys = {
 "values": [ 1, 6, 7, 9, 10, 9, 10, 9, 7, 9, 7, 6, 4, 1, 4, 6, 6, 4, 4, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=53]
+[sub_resource type="Animation" id=55]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1043,7 +955,7 @@ tracks/1/keys = {
 "values": [ 1, 6, 7, 9, 10, 9, 7, 9, 7, 6, 4, 1, 4, 6, 6, 4, 4, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=54]
+[sub_resource type="Animation" id=56]
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
@@ -1071,7 +983,7 @@ tracks/1/keys = {
 "values": [ 2, 2 ]
 }
 
-[sub_resource type="Animation" id=55]
+[sub_resource type="Animation" id=57]
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
@@ -1099,7 +1011,7 @@ tracks/1/keys = {
 "values": [ 1, 1 ]
 }
 
-[sub_resource type="Animation" id=56]
+[sub_resource type="Animation" id=58]
 length = 0.333333
 step = 0.0333333
 tracks/0/type = "value"
@@ -1201,7 +1113,7 @@ tracks/7/keys = {
 "values": [ 1, 5, 10, 9, 6, 4, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=57]
+[sub_resource type="Animation" id=59]
 length = 0.266666
 step = 0.0333333
 tracks/0/type = "value"
@@ -1303,7 +1215,7 @@ tracks/7/keys = {
 "values": [ 10, 9, 6, 4, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=58]
+[sub_resource type="Animation" id=60]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1355,7 +1267,7 @@ tracks/3/keys = {
 "values": [ 1, 1, 3, 4, 5, 9, 10, 9, 10, 9, 10, 9, 5, 4, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=59]
+[sub_resource type="Animation" id=61]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1407,7 +1319,7 @@ tracks/3/keys = {
 "values": [ 1, 1, 3, 4, 5, 9, 10, 9, 10, 9, 5, 4, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=60]
+[sub_resource type="Animation" id=62]
 length = 4.0
 loop = true
 step = 0.166667
@@ -1436,7 +1348,7 @@ tracks/1/keys = {
 "values": [ 2, 2 ]
 }
 
-[sub_resource type="Animation" id=61]
+[sub_resource type="Animation" id=63]
 length = 4.0
 loop = true
 step = 0.166667
@@ -1465,7 +1377,7 @@ tracks/1/keys = {
 "values": [ 1, 1 ]
 }
 
-[sub_resource type="Animation" id=62]
+[sub_resource type="Animation" id=64]
 length = 4.0
 loop = true
 step = 0.166667
@@ -1482,7 +1394,7 @@ tracks/0/keys = {
 "values": [ 5, 6, 7, 6, 5 ]
 }
 
-[sub_resource type="Animation" id=63]
+[sub_resource type="Animation" id=65]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -1548,7 +1460,7 @@ tracks/4/keys = {
 "values": [ 3, 6, 10, 9, 8, 6, 4, 1, 3, 4, 4, 3, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=64]
+[sub_resource type="Animation" id=66]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -1614,7 +1526,7 @@ tracks/4/keys = {
 "values": [ 10, 9, 8, 6, 4, 1, 3, 4, 4, 3, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=65]
+[sub_resource type="Animation" id=67]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1642,7 +1554,7 @@ tracks/1/keys = {
 "values": [ 1, 4, 7, 9, 10, 9, 10, 9, 7, 9, 7, 4, 3, 1, 3, 3, 1, 1, 3, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=66]
+[sub_resource type="Animation" id=68]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -1670,7 +1582,7 @@ tracks/1/keys = {
 "values": [ 1, 4, 7, 9, 10, 9, 7, 9, 7, 4, 3, 1, 3, 4, 4, 3, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=67]
+[sub_resource type="Animation" id=69]
 length = 7.99999
 step = 0.0333333
 tracks/0/type = "value"
@@ -1712,7 +1624,7 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=68]
+[sub_resource type="Animation" id=70]
 loop = true
 step = 1.0
 tracks/0/type = "value"
@@ -1754,109 +1666,109 @@ tracks/2/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=69]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0/HeadBobber/EyeZ1:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 1, 1 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 1, 1 ]
-}
-
-[sub_resource type="Animation" id=70]
-loop = true
-tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 0 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0/HeadBobber/EyeZ1:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 0 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 2 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:frame")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 2, 2 ]
-}
-
 [sub_resource type="Animation" id=71]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/HeadBobber/EyeZ1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 1 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 1, 1 ]
+}
+
+[sub_resource type="Animation" id=72]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/HeadBobber/EyeZ1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Neck0/HeadBobber/EmoteEyeZ0:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Neck0/HeadBobber/EmoteEyeZ1:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 2, 2 ]
+}
+
+[sub_resource type="Animation" id=73]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -2041,7 +1953,7 @@ tracks/14/keys = {
 "times": PoolRealArray( 0.2 )
 }
 
-[sub_resource type="Animation" id=72]
+[sub_resource type="Animation" id=74]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -2165,7 +2077,7 @@ tracks/9/keys = {
 "values": [ 2.0, 3.0, 3.0 ]
 }
 
-[sub_resource type="Animation" id=73]
+[sub_resource type="Animation" id=75]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -2193,7 +2105,7 @@ tracks/1/keys = {
 "values": [ 1, 3, 4, 4, 3, 1 ]
 }
 
-[sub_resource type="Animation" id=74]
+[sub_resource type="Animation" id=76]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -2221,7 +2133,7 @@ tracks/1/keys = {
 "values": [ 4, 4, 3, 1 ]
 }
 
-[sub_resource type="Animation" id=75]
+[sub_resource type="Animation" id=77]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2309,7 +2221,7 @@ tracks/6/keys = {
 "values": [ 0.6, 0.6 ]
 }
 
-[sub_resource type="Animation" id=76]
+[sub_resource type="Animation" id=78]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2505,7 +2417,7 @@ tracks/15/keys = {
 "values": [ Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ) ]
 }
 
-[sub_resource type="Animation" id=77]
+[sub_resource type="Animation" id=79]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -2689,7 +2601,7 @@ tracks/14/keys = {
 "values": [ 0.0, 0.0, 3.0, -3.0, 3.0, -3.0, 3.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=78]
+[sub_resource type="Animation" id=80]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -2837,7 +2749,7 @@ tracks/11/keys = {
 "values": [ 0.0, 0.0, 6.0, -6.0, 6.0, -6.0, 6.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=79]
+[sub_resource type="Animation" id=81]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3021,7 +2933,7 @@ tracks/14/keys = {
 "values": [ 0.1, 0.1 ]
 }
 
-[sub_resource type="Animation" id=80]
+[sub_resource type="Animation" id=82]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3109,7 +3021,7 @@ tracks/6/keys = {
 "values": [ 6.5, 0.6, 0.6 ]
 }
 
-[sub_resource type="Animation" id=81]
+[sub_resource type="Animation" id=83]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3305,7 +3217,7 @@ tracks/15/keys = {
 "values": [ Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ), Vector2( -18.259, -42.964 ), Vector2( -18.259, -72.964 ) ]
 }
 
-[sub_resource type="Animation" id=82]
+[sub_resource type="Animation" id=84]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3489,7 +3401,7 @@ tracks/14/keys = {
 "values": [ 0.0, 0.0, 3.0, -3.0, 3.0, -3.0, 3.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=83]
+[sub_resource type="Animation" id=85]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3637,7 +3549,7 @@ tracks/11/keys = {
 "values": [ 0.0, 0.0, 6.0, -6.0, 6.0, -6.0, 6.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=84]
+[sub_resource type="Animation" id=86]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3809,7 +3721,7 @@ tracks/13/keys = {
 "values": [ 0.1, 0.1 ]
 }
 
-[sub_resource type="Animation" id=85]
+[sub_resource type="Animation" id=87]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3849,7 +3761,7 @@ tracks/2/keys = {
 "values": [ 0.0, 3.0, 1.0, 3.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=86]
+[sub_resource type="Animation" id=88]
 length = 6.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3889,7 +3801,7 @@ tracks/2/keys = {
 "values": [ 0.0, 5.0, 2.0, 5.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=87]
+[sub_resource type="Animation" id=89]
 length = 2.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3941,7 +3853,7 @@ tracks/3/keys = {
 "values": [ 0, 0, 1, 1, 0, 0 ]
 }
 
-[sub_resource type="Animation" id=88]
+[sub_resource type="Animation" id=90]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -3957,7 +3869,7 @@ tracks/0/keys = {
 "values": [ 0.0, 0.0, 3.0, 3.0, -4.0, -4.0, 6.0, 6.0, -6.0, -6.0, 4.0, 4.0, -3.0, -3.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=89]
+[sub_resource type="Animation" id=91]
 length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0:scale")
@@ -3984,7 +3896,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.0, -10.0, -8.0, -10.0, -8.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=90]
+[sub_resource type="Animation" id=92]
 length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0:scale")
@@ -4011,7 +3923,7 @@ tracks/1/keys = {
 "values": [ 0.0, 0.0, -10.0, -8.0, -10.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=91]
+[sub_resource type="Animation" id=93]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -4051,7 +3963,7 @@ tracks/2/keys = {
 "values": [ 0.0, -6.0, -4.0, -6.0, -6.0, 2.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=92]
+[sub_resource type="Animation" id=94]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -4091,7 +4003,7 @@ tracks/2/keys = {
 "values": [ 0.0, -6.0, -4.0, -6.0, -6.0, 2.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=93]
+[sub_resource type="Animation" id=95]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EmoteArmZ0:frame")
@@ -4178,7 +4090,7 @@ tracks/6/keys = {
 "values": [ 0, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=94]
+[sub_resource type="Animation" id=96]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EmoteArmZ0:frame")
@@ -4363,7 +4275,7 @@ tracks/14/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=95]
+[sub_resource type="Animation" id=97]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -4560,7 +4472,7 @@ tracks/15/keys = {
 "times": PoolRealArray( 0.2 )
 }
 
-[sub_resource type="Animation" id=96]
+[sub_resource type="Animation" id=98]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -4757,7 +4669,7 @@ tracks/15/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=97]
+[sub_resource type="Animation" id=99]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -4808,7 +4720,7 @@ tracks/3/keys = {
 "values": [ 0, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=98]
+[sub_resource type="Animation" id=100]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -5017,7 +4929,7 @@ tracks/16/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=99]
+[sub_resource type="Animation" id=101]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -5092,7 +5004,7 @@ tracks/5/keys = {
 "values": [ 0, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=100]
+[sub_resource type="Animation" id=102]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EyeZ0:frame")
@@ -5253,7 +5165,7 @@ tracks/12/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=101]
+[sub_resource type="Animation" id=103]
 length = 6.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Neck0/HeadBobber/EmoteArmZ0:frame")
@@ -5366,7 +5278,7 @@ tracks/8/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=102]
+[sub_resource type="Animation" id=104]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -5504,7 +5416,7 @@ tracks/10/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=103]
+[sub_resource type="Animation" id=105]
 length = 10.0
 step = 1.0
 tracks/0/type = "value"
@@ -5616,7 +5528,7 @@ tracks/8/keys = {
 "values": [ 0.0, 0.0, -4.46358, -9.26012, -12.8267, -16.3329 ]
 }
 
-[sub_resource type="Animation" id=104]
+[sub_resource type="Animation" id=106]
 length = 10.0
 step = 1.0
 tracks/0/type = "value"
@@ -5716,99 +5628,19 @@ tracks/7/keys = {
 "values": [ 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=105]
-step = 0.0555556
-tracks/0/type = "value"
-tracks/0/path = NodePath("FarLeg:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 2 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("NearLeg:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 2 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("NearArm:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 2 ]
-}
-
-[sub_resource type="Animation" id=106]
-step = 0.0555556
-tracks/0/type = "value"
-tracks/0/path = NodePath("FarLeg:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("NearLeg:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("NearArm:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 1 ]
-}
-
 [sub_resource type="Animation" id=107]
-length = 0.6
-loop = true
-step = 0.05
+step = 0.0555556
 tracks/0/type = "value"
-tracks/0/path = NodePath("NearArm:frame")
+tracks/0/path = NodePath("FarLeg:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15 ]
+"values": [ 2 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("NearLeg:frame")
@@ -5817,78 +5649,158 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15 ]
+"values": [ 2 ]
 }
 tracks/2/type = "value"
-tracks/2/path = NodePath("FarLeg:frame")
+tracks/2/path = NodePath("NearArm:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15 ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("Body:rect_position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( -580, -848 ), Vector2( -580, -850 ), Vector2( -580, -852 ), Vector2( -580, -851 ), Vector2( -580, -850 ), Vector2( -580, -849 ), Vector2( -580, -848 ), Vector2( -580, -850 ), Vector2( -580, -852 ), Vector2( -580, -851 ), Vector2( -580, -850 ), Vector2( -580, -849 ), Vector2( -580, -848 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath("Neck0/HeadBobber:head_bob_mode")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 0, 0.6 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ 0, 0 ]
-}
-tracks/5/type = "value"
-tracks/5/path = NodePath("Neck0/HeadBobber:position")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/keys = {
-"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -99 ), Vector2( 0, -99 ), Vector2( 0, -100 ), Vector2( 0, -101 ), Vector2( 0, -100 ), Vector2( 0, -99 ), Vector2( 0, -99 ), Vector2( 0, -100 ), Vector2( 0, -101 ), Vector2( 0, -100 ), Vector2( 0, -99 ) ]
-}
-tracks/6/type = "method"
-tracks/6/path = NodePath(".")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/keys = {
-"times": PoolRealArray( 0.25, 0.55 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "landed" ],
-"method": "emit_sfx_signal"
-}, {
-"args": [ "landed" ],
-"method": "emit_sfx_signal"
-} ]
+"values": [ 2 ]
 }
 
 [sub_resource type="Animation" id=108]
+step = 0.0555556
+tracks/0/type = "value"
+tracks/0/path = NodePath("FarLeg:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("NearArm:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 1 ]
+}
+
+[sub_resource type="Animation" id=109]
+length = 0.6
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("NearArm:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("NearLeg:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("FarLeg:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 15 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Body:rect_position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -580, -848 ), Vector2( -580, -850 ), Vector2( -580, -852 ), Vector2( -580, -851 ), Vector2( -580, -850 ), Vector2( -580, -849 ), Vector2( -580, -848 ), Vector2( -580, -850 ), Vector2( -580, -852 ), Vector2( -580, -851 ), Vector2( -580, -850 ), Vector2( -580, -849 ), Vector2( -580, -848 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Neck0/HeadBobber:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2, 0.3, 0.35, 0.4, 0.45, 0.5, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -99 ), Vector2( 0, -99 ), Vector2( 0, -100 ), Vector2( 0, -101 ), Vector2( 0, -100 ), Vector2( 0, -99 ), Vector2( 0, -99 ), Vector2( 0, -100 ), Vector2( 0, -101 ), Vector2( 0, -100 ), Vector2( 0, -99 ) ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.25, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "landed" ],
+"method": "emit_sfx_signal"
+}, {
+"args": [ "landed" ],
+"method": "emit_sfx_signal"
+} ]
+}
+
+[sub_resource type="Animation" id=110]
 length = 0.6
 loop = true
 step = 0.05
@@ -5982,7 +5894,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=109]
+[sub_resource type="Animation" id=111]
 length = 0.4
 loop = true
 step = 0.05
@@ -6049,7 +5961,7 @@ tracks/4/keys = {
 "values": [ -22.4144, -22.837, -17.5703, -17.5703, -22.837, -22.837, -36.4778, -29.6574 ]
 }
 
-[sub_resource type="Animation" id=110]
+[sub_resource type="Animation" id=112]
 length = 0.4
 loop = true
 step = 0.05
@@ -6104,7 +6016,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=111]
+[sub_resource type="Animation" id=113]
 length = 0.533333
 loop = true
 step = 0.0666667
@@ -6198,7 +6110,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=112]
+[sub_resource type="Animation" id=114]
 length = 0.533333
 loop = true
 step = 0.0666667
@@ -6292,7 +6204,7 @@ tracks/6/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=113]
+[sub_resource type="Animation" id=115]
 length = 0.6
 loop = true
 step = 0.05
@@ -6389,7 +6301,7 @@ tracks/6/keys = {
 "values": [ 0 ]
 }
 
-[sub_resource type="Animation" id=114]
+[sub_resource type="Animation" id=116]
 length = 0.6
 loop = true
 step = 0.05
@@ -6542,6 +6454,7 @@ dna = {
 "shader:Neck0/HeadBobber/HairZ2:black": Color( 0, 0, 0, 1 ),
 "shader:Neck0/HeadBobber/HairZ2:red": Color( 0, 0, 0, 1 ),
 "shader:Neck0/HeadBobber/Head:black": Color( 0, 0, 0, 1 ),
+"shader:Neck0/HeadBobber/Head:green": Color( 0, 0, 0, 1 ),
 "shader:Neck0/HeadBobber/Head:red": Color( 0, 0, 0, 1 ),
 "shader:Neck0/HeadBobber/HornZ0:black": Color( 0, 0, 0, 1 ),
 "shader:Neck0/HeadBobber/HornZ0:green": Color( 0, 0, 0, 1 ),
@@ -6556,6 +6469,7 @@ dna = {
 }
 
 [node name="Sprint" type="Node2D" parent="."]
+visible = false
 light_mask = 2
 material = SubResource( 1 )
 scale = Vector2( 0.836, 0.836 )
@@ -6856,7 +6770,7 @@ head_bob_mode = 0
 [node name="HairZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 19 )
+material = SubResource( 18 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -6865,7 +6779,7 @@ frame = 1
 [node name="EarZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 21 )
+material = SubResource( 19 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -6874,7 +6788,7 @@ frame = 1
 [node name="HornZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 22 )
+material = SubResource( 20 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -6892,7 +6806,7 @@ frame = 1
 [node name="Head" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 23 )
+material = SubResource( 22 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -6901,7 +6815,7 @@ frame = 1
 [node name="Chin" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 24 )
+material = SubResource( 23 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
@@ -6910,7 +6824,7 @@ frame = 1
 [node name="EarZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 21 )
+material = SubResource( 19 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -6919,7 +6833,7 @@ frame = 1
 [node name="CheekZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 21 )
+material = SubResource( 24 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -6937,7 +6851,7 @@ frame = 1
 [node name="Mouth" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 24 )
+material = SubResource( 26 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
@@ -6946,7 +6860,7 @@ frame = 1
 [node name="EyeZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 26 )
+material = SubResource( 27 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
@@ -6955,7 +6869,7 @@ frame = 1
 [node name="EmoteEyeZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 26 )
+material = SubResource( 27 )
 position = Vector2( 0, 256 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
@@ -6988,7 +6902,7 @@ frame = 1
 [node name="HornZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 22 )
+material = SubResource( 29 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -6997,7 +6911,7 @@ frame = 1
 [node name="Nose" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 22 )
+material = SubResource( 30 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -7006,7 +6920,7 @@ frame = 1
 [node name="EyeZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 26 )
+material = SubResource( 27 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
@@ -7015,7 +6929,7 @@ frame = 1
 [node name="CheekZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 25 )
+material = SubResource( 31 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -7024,7 +6938,7 @@ frame = 1
 [node name="HairZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 30 )
+material = SubResource( 32 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
 rect_size = Vector2( 512, 512 )
@@ -7032,7 +6946,7 @@ frame = 1
 
 [node name="EmoteEyeZ1" type="Node2D" parent="Neck0/HeadBobber"]
 light_mask = 2
-material = SubResource( 31 )
+material = SubResource( 33 )
 position = Vector2( 0, 256 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
@@ -7073,7 +6987,7 @@ offset = Vector2( 0, -119 )
 z_index = 1
 emitting = false
 local_coords = false
-process_material = SubResource( 34 )
+process_material = SubResource( 36 )
 texture = ExtResource( 42 )
 script = ExtResource( 43 )
 creature_visuals_path = NodePath("../../..")
@@ -7086,7 +7000,7 @@ emitting = false
 amount = 3
 lifetime = 3.6
 randomness = 1.0
-process_material = SubResource( 35 )
+process_material = SubResource( 37 )
 texture = ExtResource( 44 )
 script = ExtResource( 45 )
 creature_visuals_path = NodePath("../../..")
@@ -7094,7 +7008,7 @@ creature_visuals_path = NodePath("../../..")
 [node name="EmoteGlow" type="Sprite" parent="Neck0/HeadBobber"]
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
-material = SubResource( 36 )
+material = SubResource( 38 )
 position = Vector2( -95.728, 468.808 )
 scale = Vector2( 2, 2 )
 texture = ExtResource( 4 )
@@ -7106,7 +7020,7 @@ __meta__ = {
 [node name="EmoteBrain" type="Node2D" parent="Neck0/HeadBobber"]
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
-material = SubResource( 37 )
+material = SubResource( 39 )
 position = Vector2( -18, -36 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
@@ -7131,7 +7045,7 @@ offset = Vector2( 0, -119 )
 [node name="EmoteBody" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
-material = SubResource( 38 )
+material = SubResource( 40 )
 position = Vector2( -169.545, 19.486 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
@@ -7144,91 +7058,91 @@ script = ExtResource( 33 )
 emote_anims_path = NodePath("../EmoteAnims")
 
 [node name="Ear1Anims" type="AnimationPlayer" parent="."]
-anims/ambient = SubResource( 39 )
-anims/idle-ear-wiggle0 = SubResource( 40 )
-anims/idle-ear-wiggle1 = SubResource( 41 )
+anims/ambient = SubResource( 41 )
+anims/idle-ear-wiggle0 = SubResource( 42 )
+anims/idle-ear-wiggle1 = SubResource( 43 )
 script = ExtResource( 48 )
 
 [node name="Ear2Anims" type="AnimationPlayer" parent="."]
-anims/ambient = SubResource( 42 )
-anims/idle-ear-wiggle0 = SubResource( 43 )
-anims/idle-ear-wiggle1 = SubResource( 44 )
+anims/ambient = SubResource( 44 )
+anims/idle-ear-wiggle0 = SubResource( 45 )
+anims/idle-ear-wiggle1 = SubResource( 46 )
 script = ExtResource( 48 )
 
 [node name="Ear3Anims" type="AnimationPlayer" parent="."]
-anims/ambient = SubResource( 45 )
-anims/idle-ear-wiggle0 = SubResource( 46 )
-anims/idle-ear-wiggle1 = SubResource( 47 )
+anims/ambient = SubResource( 47 )
+anims/idle-ear-wiggle0 = SubResource( 48 )
+anims/idle-ear-wiggle1 = SubResource( 49 )
 script = ExtResource( 48 )
 
 [node name="Mouth1Anims" type="AnimationPlayer" parent="."]
-anims/ambient-nw = SubResource( 48 )
-anims/ambient-se = SubResource( 49 )
-anims/eat = SubResource( 50 )
-anims/eat-again = SubResource( 51 )
-anims/idle-yawn0 = SubResource( 52 )
-anims/idle-yawn1 = SubResource( 53 )
+anims/ambient-nw = SubResource( 50 )
+anims/ambient-se = SubResource( 51 )
+anims/eat = SubResource( 52 )
+anims/eat-again = SubResource( 53 )
+anims/idle-yawn0 = SubResource( 54 )
+anims/idle-yawn1 = SubResource( 55 )
 script = ExtResource( 5 )
 emote_anims_path = NodePath("../EmoteAnims")
 
 [node name="Mouth2Anims" type="AnimationPlayer" parent="."]
-anims/ambient-nw = SubResource( 54 )
-anims/ambient-se = SubResource( 55 )
-anims/eat = SubResource( 56 )
-anims/eat-again = SubResource( 57 )
-anims/idle-yawn0 = SubResource( 58 )
-anims/idle-yawn1 = SubResource( 59 )
+anims/ambient-nw = SubResource( 56 )
+anims/ambient-se = SubResource( 57 )
+anims/eat = SubResource( 58 )
+anims/eat-again = SubResource( 59 )
+anims/idle-yawn0 = SubResource( 60 )
+anims/idle-yawn1 = SubResource( 61 )
 script = ExtResource( 5 )
 emote_anims_path = NodePath("../EmoteAnims")
 
 [node name="Mouth3Anims" type="AnimationPlayer" parent="."]
-anims/ambient-nw = SubResource( 60 )
-anims/ambient-se = SubResource( 61 )
-anims/ambient-unhappy = SubResource( 62 )
-anims/eat = SubResource( 63 )
-anims/eat-again = SubResource( 64 )
-anims/idle-yawn0 = SubResource( 65 )
-anims/idle-yawn1 = SubResource( 66 )
+anims/ambient-nw = SubResource( 62 )
+anims/ambient-se = SubResource( 63 )
+anims/ambient-unhappy = SubResource( 64 )
+anims/eat = SubResource( 65 )
+anims/eat-again = SubResource( 66 )
+anims/idle-yawn0 = SubResource( 67 )
+anims/idle-yawn1 = SubResource( 68 )
 script = ExtResource( 5 )
 emote_anims_path = NodePath("../EmoteAnims")
 
 [node name="EmoteAnims" type="AnimationPlayer" parent="."]
-anims/ambient = SubResource( 67 )
-anims/ambient-nw = SubResource( 68 )
-anims/ambient-smile = SubResource( 69 )
-anims/ambient-sweat = SubResource( 70 )
-anims/cry0 = SubResource( 71 )
-anims/cry1 = SubResource( 72 )
-anims/eat = SubResource( 73 )
-anims/eat-again = SubResource( 74 )
-anims/eat-again-smile0 = SubResource( 75 )
-anims/eat-again-smile1 = SubResource( 76 )
-anims/eat-again-sweat0 = SubResource( 77 )
-anims/eat-again-sweat1 = SubResource( 78 )
-anims/eat-again-sweat2 = SubResource( 79 )
-anims/eat-smile0 = SubResource( 80 )
-anims/eat-smile1 = SubResource( 81 )
-anims/eat-sweat0 = SubResource( 82 )
-anims/eat-sweat1 = SubResource( 83 )
-anims/eat-sweat2 = SubResource( 84 )
-anims/idle-close-eyes0 = SubResource( 85 )
-anims/idle-close-eyes1 = SubResource( 86 )
-anims/idle-ear-wiggle0 = SubResource( 87 )
-anims/idle-ear-wiggle1 = SubResource( 88 )
-anims/idle-look-over-shoulder0 = SubResource( 89 )
-anims/idle-look-over-shoulder1 = SubResource( 90 )
-anims/idle-yawn0 = SubResource( 91 )
-anims/idle-yawn1 = SubResource( 92 )
-anims/laugh0 = SubResource( 93 )
-anims/laugh1 = SubResource( 94 )
-anims/rage0 = SubResource( 95 )
-anims/rage1 = SubResource( 96 )
-anims/smile0 = SubResource( 97 )
-anims/smile1 = SubResource( 98 )
-anims/sweat0 = SubResource( 99 )
-anims/sweat1 = SubResource( 100 )
-anims/think0 = SubResource( 101 )
-anims/think1 = SubResource( 102 )
+anims/ambient = SubResource( 69 )
+anims/ambient-nw = SubResource( 70 )
+anims/ambient-smile = SubResource( 71 )
+anims/ambient-sweat = SubResource( 72 )
+anims/cry0 = SubResource( 73 )
+anims/cry1 = SubResource( 74 )
+anims/eat = SubResource( 75 )
+anims/eat-again = SubResource( 76 )
+anims/eat-again-smile0 = SubResource( 77 )
+anims/eat-again-smile1 = SubResource( 78 )
+anims/eat-again-sweat0 = SubResource( 79 )
+anims/eat-again-sweat1 = SubResource( 80 )
+anims/eat-again-sweat2 = SubResource( 81 )
+anims/eat-smile0 = SubResource( 82 )
+anims/eat-smile1 = SubResource( 83 )
+anims/eat-sweat0 = SubResource( 84 )
+anims/eat-sweat1 = SubResource( 85 )
+anims/eat-sweat2 = SubResource( 86 )
+anims/idle-close-eyes0 = SubResource( 87 )
+anims/idle-close-eyes1 = SubResource( 88 )
+anims/idle-ear-wiggle0 = SubResource( 89 )
+anims/idle-ear-wiggle1 = SubResource( 90 )
+anims/idle-look-over-shoulder0 = SubResource( 91 )
+anims/idle-look-over-shoulder1 = SubResource( 92 )
+anims/idle-yawn0 = SubResource( 93 )
+anims/idle-yawn1 = SubResource( 94 )
+anims/laugh0 = SubResource( 95 )
+anims/laugh1 = SubResource( 96 )
+anims/rage0 = SubResource( 97 )
+anims/rage1 = SubResource( 98 )
+anims/smile0 = SubResource( 99 )
+anims/smile1 = SubResource( 100 )
+anims/sweat0 = SubResource( 101 )
+anims/sweat1 = SubResource( 102 )
+anims/think0 = SubResource( 103 )
+anims/think1 = SubResource( 104 )
 script = ExtResource( 7 )
 
 [node name="ResetTween" type="Tween" parent="EmoteAnims"]
@@ -7238,75 +7152,75 @@ stream = ExtResource( 18 )
 bus = "Sound Bus"
 
 [node name="FatSpriteMover" type="AnimationPlayer" parent="."]
-anims/fat-nw = SubResource( 103 )
-anims/fat-se = SubResource( 104 )
+anims/fat-nw = SubResource( 105 )
+anims/fat-se = SubResource( 106 )
 script = ExtResource( 8 )
 creature_visuals_path = NodePath("..")
 
 [node name="MovementAnims" type="AnimationPlayer" parent="."]
-anims/idle-nw = SubResource( 105 )
-anims/idle-se = SubResource( 106 )
-anims/run-nw = SubResource( 107 )
-anims/run-se = SubResource( 108 )
-anims/sprint-nw = SubResource( 109 )
-anims/sprint-se = SubResource( 110 )
-anims/walk-nw = SubResource( 111 )
-anims/walk-se = SubResource( 112 )
-anims/wiggle-nw = SubResource( 113 )
-anims/wiggle-se = SubResource( 114 )
+anims/idle-nw = SubResource( 107 )
+anims/idle-se = SubResource( 108 )
+anims/run-nw = SubResource( 109 )
+anims/run-se = SubResource( 110 )
+anims/sprint-nw = SubResource( 111 )
+anims/sprint-se = SubResource( 112 )
+anims/walk-nw = SubResource( 113 )
+anims/walk-se = SubResource( 114 )
+anims/wiggle-nw = SubResource( 115 )
+anims/wiggle-se = SubResource( 116 )
 
 [node name="Tween" type="Tween" parent="."]
 [connection signal="creature_arrived" from="." to="IdleTimer" method="_on_CreatureVisuals_creature_arrived"]
-[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Collar" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprint" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Collar" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ2" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ2" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ2" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ2" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Body/Viewport/Body" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FatSpriteMover" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="FarLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Collar" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="FarArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Body/Viewport/Body/NeckBlend" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Collar" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ2" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ2" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ2" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ2" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Mouth3Anims" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="EmoteAnims" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Mouth1Anims" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Mouth2Anims" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="start_idle_animation" from="IdleTimer" to="Ear2Anims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="start_idle_animation" from="IdleTimer" to="Ear1Anims" method="_on_IdleTimer_start_idle_animation"]
-[connection signal="start_idle_animation" from="IdleTimer" to="Ear3Anims" method="_on_IdleTimer_start_idle_animation"]
+[connection signal="start_idle_animation" from="IdleTimer" to="Ear2Anims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="start_idle_animation" from="IdleTimer" to="Mouth3Anims" method="_on_IdleTimer_start_idle_animation"]
-[connection signal="start_idle_animation" from="IdleTimer" to="Mouth1Anims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="start_idle_animation" from="IdleTimer" to="EmoteAnims" method="_on_IdleTimer_start_idle_animation"]
+[connection signal="start_idle_animation" from="IdleTimer" to="Ear3Anims" method="_on_IdleTimer_start_idle_animation"]
+[connection signal="start_idle_animation" from="IdleTimer" to="Mouth1Anims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="start_idle_animation" from="IdleTimer" to="Mouth2Anims" method="_on_IdleTimer_start_idle_animation"]
 [connection signal="animation_finished" from="EmoteAnims" to="EmoteAnims" method="_on_animation_finished"]
