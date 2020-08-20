@@ -142,6 +142,12 @@ const ALLELE_NAMES := {
 	"head-3": "Hedgehog",
 	"head-4": "Raccoon",
 	"head-5": "Marmoset",
+	
+	"tail-0": "(none)",
+	"tail-1": "Kind Cat",
+	"tail-2": "Cute Cat",
+	"tail-3": "Devil",
+	"tail-4": "Bunny",
 }
 
 """
@@ -171,7 +177,7 @@ static func fill_dna(dna: Dictionary) -> Dictionary:
 		# avoid loading unnecessary resources for things like the level editor
 		pass
 	else:
-		for allele in ["head", "cheek", "ear", "eye", "horn", "mouth", "nose", "hair", "collar", "belly"]:
+		for allele in ["head", "cheek", "ear", "eye", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
 			put_if_absent(result, allele, Utils.rand_value(weighted_allele_values(result, allele)))
 	put_if_absent(result, "body", "1")
 	return result
@@ -208,6 +214,7 @@ static func unique_allele_values(property: String) -> Array:
 			"nose": result = ["0", "1", "2", "3"]
 			"hair": result = ["0", "1", "2"]
 			"collar": result = ["0", "1", "2", "3"]
+			"tail": result = ["0", "1", "2", "3", "4"]
 	
 	return result
 
@@ -263,5 +270,7 @@ static func weighted_allele_values(dna: Dictionary, property: String) -> Array:
 				if dna.has("mouth") and dna["mouth"] in ["1", "2"]:
 					# creatures with beaky mouths are less likely to have a fuzzy neck
 					result += ["0", "0", "0", "0", "0", "0", "0", "1", "1"]
+			"tail":
+				result = ["0", "0", "0", "0", "0", "0", "0", "0", "1", "2", "3", "4"]
 	
 	return result

@@ -121,7 +121,7 @@ func set_fatness(new_fatness: float) -> void:
 
 
 func get_fatness() -> float:
-	return creature_visuals.get_fatness()
+	return creature_visuals.get_fatness() if creature_visuals else 1.0
 
 
 func set_visual_fatness(new_visual_fatness: float) -> void:

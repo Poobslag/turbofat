@@ -14,7 +14,8 @@
     "line_rgb": "41281e",
     "mouth": "1",
     "nose": "2",
-    "cheek": "2"
+    "cheek": "2",
+    "tail": "3"
   },
   "chat_theme_def": {
     "accent_scale": 0.67,

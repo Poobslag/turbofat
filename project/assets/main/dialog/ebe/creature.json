@@ -16,7 +16,8 @@
     "mouth": "3",
     "nose": "2",
     "cheek": "2",
-    "cloth_rgb": "9999f4"
+    "cloth_rgb": "9999f4",
+    "tail": "4"
   },
   "chat_theme_def": {
     "accent_scale": 1.75,
