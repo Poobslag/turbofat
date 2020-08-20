@@ -23,7 +23,19 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 1, 3, 10 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 770, 650 ), Vector2( 770, 650 ), Vector2( 770, 565 ), Vector2( 830, -120 ) ]
+"values": [ Vector2( 770, 650 ), Vector2( 770, 650 ), Vector2( 770, 565 ), Vector2( 830, 40 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CustomerView/Viewport/Camera2D:zoom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 4, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0.8, 0.8 ), Vector2( 0.8, 0.8 ), Vector2( 1.4, 1.4 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -89,6 +101,7 @@ audio_listener_enable_2d = true
 [node name="Camera2D" type="Camera2D" parent="CustomerView/Viewport"]
 position = Vector2( 700, 600 )
 current = true
+zoom = Vector2( 0.8, 0.8 )
 
 [node name="CustomerOutline" type="TextureRect" parent="."]
 self_modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
@@ -107,6 +120,7 @@ anims/fat-se = SubResource( 1 )
 script = ExtResource( 9 )
 restaurant_scene_path = NodePath("../RestaurantViewport/Scene")
 customer_camera_path = NodePath("../CustomerView/Viewport/Camera2D")
+target_camera_position = Vector2( 778.571, 490 )
 
 [node name="ChefClip" type="Light2D" parent="."]
 position = Vector2( 875.713, 224.956 )
