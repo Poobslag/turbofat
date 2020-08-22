@@ -24,30 +24,30 @@ const KICKS_T := [
 
 const KICKS_U := [
 		[Vector2( 0, -1), Vector2(-1, -1), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -2)],
-		[Vector2( 0,  1), Vector2( 1,  1), Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  2)],
+		[Vector2( 0,  1), Vector2( 1,  0), Vector2( 1,  1), Vector2( 1, -1), Vector2( 0,  2)],
 		
 		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  1), Vector2( 1,  1), Vector2( 0,  2)],
-		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1), Vector2(-1, -1), Vector2( 0, -2)],
+		[Vector2( 0, -1), Vector2(-1,  0), Vector2(-1,  1), Vector2(-1, -1), Vector2( 0, -2)],
 		
-		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1), Vector2( 1, -1), Vector2( 0, -2)],
-		[Vector2( 0,  1), Vector2(-1, -1), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  2)],
+		[Vector2( 0, -1), Vector2( 1,  1), Vector2( 1,  0), Vector2( 1, -1), Vector2( 0, -2)],
+		[Vector2( 0,  1), Vector2(-1,  0), Vector2(-1, -1), Vector2(-1,  1), Vector2( 0,  2)],
 		
 		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2(-1, -1), Vector2( 0,  2)],
-		[Vector2( 0, -1), Vector2( 1, -1), Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -2)],
+		[Vector2( 0, -1), Vector2( 1,  0), Vector2( 1, -1), Vector2( 1,  1), Vector2( 0, -2)],
 	]
 
 const KICKS_P := [
-		[Vector2( 0, -1), Vector2(-1, -1), Vector2( 0,  1), Vector2(-1,  0)],
+		[Vector2( 0, -1), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1)],
 		[Vector2( 1,  0), Vector2( 1, -1), Vector2( 0, -1), Vector2( 0,  1)],
-		[Vector2( 0,  1), Vector2( 1,  1), Vector2( 0, -1), Vector2( 1,  0)],
+		[Vector2( 0,  1), Vector2( 1,  0), Vector2( 1,  1), Vector2( 0, -1)],
 		[Vector2(-1,  0), Vector2(-1,  1), Vector2( 0,  1), Vector2( 0, -1)],
 	]
 
 const KICKS_Q := [
 		[Vector2(-1,  0), Vector2(-1, -1), Vector2( 0, -1), Vector2( 0,  1)],
-		[Vector2( 0, -1), Vector2( 1, -1), Vector2( 0,  1), Vector2( 1,  0)],
+		[Vector2( 0, -1), Vector2( 1,  0), Vector2( 1, -1), Vector2( 0,  1)],
 		[Vector2( 1,  0), Vector2( 1,  1), Vector2( 0,  1), Vector2( 0, -1)],
-		[Vector2( 0,  1), Vector2(-1,  1), Vector2( 0, -1), Vector2(-1,  0)],
+		[Vector2( 0,  1), Vector2(-1,  0), Vector2(-1,  1), Vector2( 0, -1)],
 	]
 
 const KICKS_V := [

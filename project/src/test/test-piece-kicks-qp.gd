@@ -59,7 +59,7 @@ func test_q_floorkick_ccw() -> void:
 	assert_kick()
 
 
-func test_p_rwallkick_cw() -> void:
+func test_p_rwallkick_l0() -> void:
 	from_grid = [
 		"    ",
 		"  pp",
@@ -77,7 +77,25 @@ func test_p_rwallkick_cw() -> void:
 	assert_kick()
 
 
-func test_p_lwallkick_ccw() -> void:
+func test_p_rwallkick_l2() -> void:
+	from_grid = [
+		"    ",
+		"  pp",
+		"  pp",
+		"  p ",
+		"    ",
+	]
+	to_grid = [
+		"    ",
+		"    ",
+		" pp ",
+		" ppp",
+		"    ",
+	]
+	assert_kick()
+
+
+func test_p_lwallkick_r0() -> void:
 	from_grid = [
 		"    ",
 		" p  ",
@@ -87,15 +105,33 @@ func test_p_lwallkick_ccw() -> void:
 	]
 	to_grid = [
 		"    ",
-		"    ",
 		"ppp ",
 		" pp ",
+		"    ",
 		"    ",
 	]
 	assert_kick()
 
 
-func test_q_rwallkick_cw() -> void:
+func test_q_lwallkick_r2() -> void:
+	from_grid = [
+		"    ",
+		"qq  ",
+		"qq  ",
+		" q  ",
+		"    ",
+	]
+	to_grid = [
+		"    ",
+		"    ",
+		" qq ",
+		"qqq ",
+		"    ",
+	]
+	assert_kick()
+
+
+func test_q_rwallkick_l0() -> void:
 	from_grid = [
 		"    ",
 		"  q ",
@@ -105,15 +141,15 @@ func test_q_rwallkick_cw() -> void:
 	]
 	to_grid = [
 		"    ",
-		"    ",
 		" qqq",
 		" qq ",
+		"    ",
 		"    ",
 	]
 	assert_kick()
 
 
-func test_q_lwallkick_ccw() -> void:
+func test_q_lwallkick_r0() -> void:
 	from_grid = [
 		"    ",
 		"qq  ",
@@ -399,32 +435,32 @@ func test_p_climb_r0() -> void:
 		"     ",
 		"     ",
 		":: p ",
-		"::pp ",
+		"::pp:",
 		"::pp:"]
 	to_grid = [
 		"     ",
 		"     ",
 		" ppp ",
 		"::pp ",
-		"::   ",
+		"::  :",
 		"::  :"]
 	assert_kick()
 
 
-func test_q_climb_l0_failed() -> void:
+func test_q_climb_l0() -> void:
 	from_grid = [
 		"     ",
 		"     ",
 		"     ",
 		" q ::",
-		" qq::",
+		":qq::",
 		":qq::"]
 	to_grid = [
 		"     ",
 		"     ",
 		" qqq ",
 		" qq::",
-		"   ::",
+		":  ::",
 		":  ::"]
 	assert_kick()
 
