@@ -126,6 +126,9 @@ static func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "NearArm", "body", "arm-z1-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Chin", "body", "chin-packed")
 	
+	_load_texture(dna, "TailZ0", "tail", "tail-z0-packed")
+	_load_texture(dna, "TailZ1", "tail", "tail-z1-packed")
+	
 	dna["property:BodyColors:belly"] = dna.get("belly", 0)
 
 
@@ -143,6 +146,10 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:FarLeg:black"] = line_color
 	dna["shader:NearArm:black"] = line_color
 	dna["shader:NearLeg:black"] = line_color
+	
+	dna["shader:TailZ0:black"] = line_color
+	dna["shader:TailZ1:black"] = line_color
+	
 	dna["shader:Neck0/HeadBobber/CheekZ0:black"] = line_color
 	dna["shader:Neck0/HeadBobber/CheekZ1:black"] = line_color
 	dna["shader:Neck0/HeadBobber/CheekZ2:black"] = line_color
@@ -193,6 +200,13 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:FarLeg:red"] = body_color
 	dna["shader:NearArm:red"] = body_color
 	dna["shader:NearLeg:red"] = body_color
+	
+	dna["shader:TailZ0:red"] = body_color
+	dna["shader:TailZ0:green"] = belly_color
+	dna["shader:TailZ0:blue"] = hair_color
+	dna["shader:TailZ1:red"] = body_color
+	dna["shader:TailZ1:green"] = belly_color
+	dna["shader:TailZ1:blue"] = hair_color
 	
 	var cheek_skin_color := belly_color if dna.get("head") in ["2", "3", "5"] else body_color
 	var cheek_eye_color := belly_color if dna.get("head") in ["2", "3", "4", "5"] else body_color

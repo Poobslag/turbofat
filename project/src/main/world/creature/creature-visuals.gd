@@ -353,6 +353,9 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 			$MovementAnims.advance(old_position)
 		else:
 			$MovementAnims.play(animation_name)
+		if not animation_name.begins_with("sprint"):
+			$TailZ0.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+			$TailZ1.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 
 
 """
@@ -431,6 +434,8 @@ func _update_creature_properties() -> void:
 		$NearArm,
 		$NearLeg,
 		$Sprint,
+		$TailZ0,
+		$TailZ1,
 		$Body/Viewport/Body/NeckBlend,
 		$Neck0/HeadBobber/CheekZ0,
 		$Neck0/HeadBobber/CheekZ1,
@@ -488,12 +493,18 @@ func _update_creature_properties() -> void:
 			if node_path == "BodyColors" and property_name == "belly":
 				# set_belly requires an int, not a string
 				property_value = int(property_value)
-			get_node(node_path).set(property_name, property_value)
+			if has_node(node_path):
+				get_node(node_path).set(property_name, property_value)
+			else:
+				push_warning("node not found for key: %s" % key)
 		if key.find("shader:") == 0:
 			var node_path: String = key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
 			var shader_value = dna[key]
-			get_node(node_path).material.set_shader_param(shader_param, shader_value)
+			if has_node(node_path):
+				get_node(node_path).material.set_shader_param(shader_param, shader_value)
+			else:
+				push_warning("node not found for key: %s" % key)
 	$Body/Viewport/Body.update()
 	visible = true
 	emit_signal("creature_arrived")

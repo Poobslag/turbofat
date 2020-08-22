@@ -14,7 +14,8 @@
     "line_rgb": "6c4331",
     "mouth": "3",
     "nose": "3",
-    "cheek": "1"
+    "cheek": "1",
+    "tail": "0"
   },
   "fatness": 2.0,
   "chat_theme_def": {

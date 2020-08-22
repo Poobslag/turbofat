@@ -32,6 +32,7 @@ const DEFAULT_DNA := {
 	"nose": "0",
 	"cheek": "3",
 	"collar": "0",
+	"tail": "0",
 }
 
 # default name when starting a new game
