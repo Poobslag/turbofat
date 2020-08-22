@@ -3,7 +3,7 @@ extends "res://src/test/test-piece-kicks.gd"
 Tests the u piece's kick behavior.
 """
 
-func test_floorkick_cw() -> void:
+func test_floorkick_2l() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -19,7 +19,7 @@ func test_floorkick_cw() -> void:
 	assert_kick()
 
 
-func test_floorkick_ccw() -> void:
+func test_floorkick_2r() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -35,7 +35,25 @@ func test_floorkick_ccw() -> void:
 	assert_kick()
 
 
-func test_rwallkick_cw() -> void:
+func test_rwallkick_r0() -> void:
+	from_grid = [
+		"    ",
+		"  uu",
+		"   u",
+		"  uu",
+		"    ",
+	]
+	to_grid = [
+		"    ",
+		" uuu",
+		" u u",
+		"    ",
+		"    ",
+	]
+	assert_kick()
+
+
+func test_rwallkick_r2() -> void:
 	from_grid = [
 		"    ",
 		"  uu",
@@ -53,7 +71,97 @@ func test_rwallkick_cw() -> void:
 	assert_kick()
 
 
-func test_lwallkick_ccw() -> void:
+func test_rwallkick_l0() -> void:
+	from_grid = [
+		"    ",
+		"  uu",
+		"  u ",
+		"  uu",
+		"    ",
+	]
+	to_grid = [
+		"    ",
+		" uuu",
+		" u u",
+		"    ",
+		"    ",
+	]
+	assert_kick()
+
+
+func test_rwallkick_l2() -> void:
+	from_grid = [
+		"    ",
+		"  uu",
+		"  u ",
+		"  uu",
+		"    ",
+	]
+	to_grid = [
+		"    ",
+		" u u",
+		" uuu",
+		"    ",
+		"    ",
+	]
+	assert_kick()
+
+
+func test_lwallkick_r0() -> void:
+	from_grid = [
+		"    ",
+		"uu  ",
+		" u  ",
+		"uu  ",
+		"    ",
+	]
+	to_grid = [
+		"    ",
+		"uuu ",
+		"u u ",
+		"    ",
+		"    ",
+	]
+	assert_kick()
+
+
+func test_lwallkick_r2() -> void:
+	from_grid = [
+		"    ",
+		"uu  ",
+		" u  ",
+		"uu  ",
+		"    ",
+	]
+	to_grid = [
+		"    ",
+		"u u ",
+		"uuu ",
+		"    ",
+		"    ",
+	]
+	assert_kick()
+
+
+func test_lwallkick_l0() -> void:
+	from_grid = [
+		"    ",
+		"uu  ",
+		"u   ",
+		"uu  ",
+		"    ",
+	]
+	to_grid = [
+		"    ",
+		"uuu ",
+		"u u ",
+		"    ",
+		"    ",
+	]
+	assert_kick()
+
+
+func test_lwallkick_l2() -> void:
 	from_grid = [
 		"    ",
 		"uu  ",
@@ -74,7 +182,7 @@ func test_lwallkick_ccw() -> void:
 """
 A spire kick is when a u piece rotates while a block is in its gap.
 """
-func test_spire_kick_cw0() -> void:
+func test_spire_kick_0r() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -90,7 +198,7 @@ func test_spire_kick_cw0() -> void:
 	assert_kick()
 
 
-func test_spire_kick_cw1() -> void:
+func test_spire_kick_r2() -> void:
 	from_grid = [
 		"     ",
 		"uu   ",
@@ -108,7 +216,7 @@ func test_spire_kick_cw1() -> void:
 	assert_kick()
 
 
-func test_spire_kick_cw2() -> void:
+func test_spire_kick_l0() -> void:
 	from_grid = [
 		"     ",
 		"   uu",
@@ -126,7 +234,7 @@ func test_spire_kick_cw2() -> void:
 	assert_kick()
 
 
-func test_spire_kick_ccw0() -> void:
+func test_spire_kick_0l() -> void:
 	from_grid = [
 		"     ",
 		"     ",
@@ -142,7 +250,7 @@ func test_spire_kick_ccw0() -> void:
 	assert_kick()
 
 
-func test_spire_kick_ccw1() -> void:
+func test_spire_kick_l2() -> void:
 	from_grid = [
 		"     ",
 		"   uu",
@@ -160,7 +268,7 @@ func test_spire_kick_ccw1() -> void:
 	assert_kick()
 
 
-func test_spire_kick_ccw2() -> void:
+func test_spire_kick_r0() -> void:
 	from_grid = [
 		"     ",
 		"uu   ",
@@ -181,7 +289,7 @@ func test_spire_kick_ccw2() -> void:
 """
 a 'diagonalnw kick' is when the u piece is boxed in by the nw/se corners
 """
-func test_diagonalnw_kick_0r() -> void:
+func test_diagonalnw_kick_2l() -> void:
 	from_grid = [
 		"::   ",
 		":u u ",
@@ -197,7 +305,7 @@ func test_diagonalnw_kick_0r() -> void:
 	assert_kick()
 
 
-func test_diagonalnw_kick_r2() -> void:
+func test_diagonalnw_kick_l0() -> void:
 	from_grid = [
 		"::  ",
 		":uu ",
@@ -215,7 +323,7 @@ func test_diagonalnw_kick_r2() -> void:
 	assert_kick()
 
 
-func test_diagonalnw_kick_2l() -> void:
+func test_diagonalnw_kick_0r() -> void:
 	from_grid = [
 		"::   ",
 		":uuu ",
@@ -231,7 +339,7 @@ func test_diagonalnw_kick_2l() -> void:
 	assert_kick()
 
 
-func test_diagonalnw_kick_l0() -> void:
+func test_diagonalnw_kick_r2() -> void:
 	from_grid = [
 		"::  ",
 		":uu ",
@@ -252,7 +360,7 @@ func test_diagonalnw_kick_l0() -> void:
 """
 a 'diagonalne kick' is when the u piece is boxed in by the ne/sw corners
 """
-func test_diagonalne_kick_0r() -> void:
+func test_diagonalne_kick_2l() -> void:
 	from_grid = [
 		"   ::",
 		" u u:",
@@ -260,15 +368,15 @@ func test_diagonalne_kick_0r() -> void:
 		"::   ",
 	]
 	to_grid = [
-		"   ::",
-		"  uu:",
-		": u  ",
-		"::uu ",
+		" uu::",
+		" u  :",
+		":uu  ",
+		"::   ",
 	]
 	assert_kick()
 
 
-func test_diagonalne_kick_r2() -> void:
+func test_diagonalne_kick_l0() -> void:
 	from_grid = [
 		"  ::",
 		" uu:",
@@ -286,7 +394,7 @@ func test_diagonalne_kick_r2() -> void:
 	assert_kick()
 
 
-func test_diagonalne_kick_2l() -> void:
+func test_diagonalne_kick_0r() -> void:
 	from_grid = [
 		"   ::",
 		" uuu:",
@@ -302,7 +410,7 @@ func test_diagonalne_kick_2l() -> void:
 	assert_kick()
 
 
-func test_diagonalne_kick_l0() -> void:
+func test_diagonalne_kick_r2() -> void:
 	from_grid = [
 		"  ::",
 		" uu:",
@@ -323,113 +431,18 @@ func test_diagonalne_kick_l0() -> void:
 """
 a 'shaft kick' is when the u piece rotates after being dropped down a narrow shaft
 """
-func test_shaft_kick_l0_0() -> void:
-	from_grid = [
-		"  ::",
-		"uu::",
-		" u  ",
-		"uu  ",
-	]
-	to_grid = [
-		"  ::",
-		"  ::",
-		"u u ",
-		"uuu ",
-	]
-	assert_kick()
-
-
-func test_shaft_kick_l0_1() -> void:
-	from_grid = [
-		"::  ",
-		"::uu",
-		"   u",
-		"  uu",
-	]
-	to_grid = [
-		"::  ",
-		"::  ",
-		" u u",
-		" uuu",
-	]
-	assert_kick()
-
-
-func test_shaft_kick_l2_0() -> void:
-	from_grid = [
-		"  ::",
-		"uu::",
-		" u  ",
-		"uu  ",
-	]
-	to_grid = [
-		"  ::",
-		"  ::",
-		"uuu ",
-		"u u ",
-	]
-	assert_kick()
-
-
-func test_shaft_kick_l2_1() -> void:
-	from_grid = [
-		"::  ",
-		"::uu",
-		"   u",
-		"  uu",
-	]
-	to_grid = [
-		"::  ",
-		"::  ",
-		" uuu",
-		" u u",
-	]
-	assert_kick()
-
-func test_shaft_kick_r0_0() -> void:
-	from_grid = [
-		"  ::",
-		"uu::",
-		"u   ",
-		"uu  ",
-	]
-	to_grid = [
-		"  ::",
-		"  ::",
-		"u u ",
-		"uuu ",
-	]
-	assert_kick()
-
-
-func test_shaft_kick_r0_1() -> void:
-	from_grid = [
-		"::  ",
-		"::uu",
-		"  u ",
-		"  uu",
-	]
-	to_grid = [
-		"::  ",
-		"::  ",
-		" u u",
-		" uuu",
-	]
-	assert_kick()
-
-
 func test_shaft_kick_r2_0() -> void:
 	from_grid = [
 		"  ::",
 		"uu::",
-		"u   ",
+		" u  ",
 		"uu  ",
 	]
 	to_grid = [
 		"  ::",
 		"  ::",
-		"uuu ",
 		"u u ",
+		"uuu ",
 	]
 	assert_kick()
 
@@ -438,6 +451,101 @@ func test_shaft_kick_r2_1() -> void:
 	from_grid = [
 		"::  ",
 		"::uu",
+		"   u",
+		"  uu",
+	]
+	to_grid = [
+		"::  ",
+		"::  ",
+		" u u",
+		" uuu",
+	]
+	assert_kick()
+
+
+func test_shaft_kick_r0_0() -> void:
+	from_grid = [
+		"  ::",
+		"uu::",
+		" u  ",
+		"uu  ",
+	]
+	to_grid = [
+		"  ::",
+		"  ::",
+		"uuu ",
+		"u u ",
+	]
+	assert_kick()
+
+
+func test_shaft_kick_r0_1() -> void:
+	from_grid = [
+		"::  ",
+		"::uu",
+		"   u",
+		"  uu",
+	]
+	to_grid = [
+		"::  ",
+		"::  ",
+		" uuu",
+		" u u",
+	]
+	assert_kick()
+
+func test_shaft_kick_l2_0() -> void:
+	from_grid = [
+		"  ::",
+		"uu::",
+		"u   ",
+		"uu  ",
+	]
+	to_grid = [
+		"  ::",
+		"  ::",
+		"u u ",
+		"uuu ",
+	]
+	assert_kick()
+
+
+func test_shaft_kick_l2_1() -> void:
+	from_grid = [
+		"::  ",
+		"::uu",
+		"  u ",
+		"  uu",
+	]
+	to_grid = [
+		"::  ",
+		"::  ",
+		" u u",
+		" uuu",
+	]
+	assert_kick()
+
+
+func test_shaft_kick_l0_0() -> void:
+	from_grid = [
+		"  ::",
+		"uu::",
+		"u   ",
+		"uu  ",
+	]
+	to_grid = [
+		"  ::",
+		"  ::",
+		"uuu ",
+		"u u ",
+	]
+	assert_kick()
+
+
+func test_shaft_kick_l0_1() -> void:
+	from_grid = [
+		"::  ",
+		"::uu",
 		"  u ",
 		"  uu",
 	]
@@ -450,7 +558,7 @@ func test_shaft_kick_r2_1() -> void:
 	assert_kick()
 
 
-func test_climb_kick_r2() -> void:
+func test_climb_kick_l0() -> void:
 	from_grid = [
 		"    ",
 		" uu ",
@@ -466,7 +574,7 @@ func test_climb_kick_r2() -> void:
 	assert_kick()
 
 
-func test_climb_kick_l0() -> void:
+func test_climb_kick_r0() -> void:
 	from_grid = [
 		"    ",
 		" uu ",
@@ -533,7 +641,7 @@ func test_ledge_kick_right_l0() -> void:
 	assert_kick()
 
 
-func test_ledge_kick_left_0r() -> void:
+func test_ledge_kick_left_0l() -> void:
 	from_grid = [
 		"    ",
 		"uuu ",
@@ -549,7 +657,7 @@ func test_ledge_kick_left_0r() -> void:
 	assert_kick()
 
 
-func test_ledge_kick_left_r2() -> void:
+func test_ledge_kick_left_l2() -> void:
 	from_grid = [
 		"uu  ",
 		"u   ",
@@ -565,7 +673,7 @@ func test_ledge_kick_left_r2() -> void:
 	assert_kick()
 
 
-func test_ledge_kick_left_l0() -> void:
+func test_ledge_kick_left_r0() -> void:
 	from_grid = [
 		"uu  ",
 		" u  ",
@@ -573,9 +681,9 @@ func test_ledge_kick_left_l0() -> void:
 		":   ",
 	]
 	to_grid = [
-		"    ",
 		"uuu ",
 		"u u ",
+		"    ",
 		":   ",
 	]
 	assert_kick()
