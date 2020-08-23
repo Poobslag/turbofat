@@ -55,7 +55,7 @@ rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 0
 size_flags_vertical = 4
 max_value = 1.0
-step = 0.0
+step = 0.1
 tick_count = 11
 __meta__ = {
 "_edit_use_anchors_": false
