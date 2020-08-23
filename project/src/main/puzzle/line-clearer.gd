@@ -195,12 +195,16 @@ The resulting array can be any of the following:
 	2. [BROWN], [PINK], [BREAD] or [WHITE] if the row has a snack box
 	3. [CAKE] if the row has a cake box
 	4. an array with multiple items, if the row has many boxes
+
+A horizontal box results in multiple duplicate box ints being added. This is by design to result in larger scoring
+bonuses for horizontal boxes, as they're less efficient.
 """
 func _box_ints(y: int) -> Array:
 	var box_ints: Array = []
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var autotile_coord := _tile_map.get_cell_autotile_coord(x, y)
-		if _tile_map.get_cell(x, y) == 1 and not Connect.is_l(autotile_coord.x):
+		if _tile_map.get_cell(x, y) == 1 and Connect.is_l(autotile_coord.x) and Connect.is_r(autotile_coord.x):
+			# wide boxes count multiple times to reward difficult horizontal builds
 			box_ints.append(int(autotile_coord.y))
 	box_ints.shuffle()
 	return box_ints

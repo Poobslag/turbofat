@@ -10,36 +10,33 @@ signal food_spawned(cell, food_type)
 # Aesthetically pleasing wobbler arrangements. It looks nice if they're balanced on the left and right sides.
 const WOBBLER_POSITIONS_BY_SIZE := {
 	Vector2(3, 3): [
-			[0, 1, 2], [0, 2, 1],
-			[1, 0, 2], [1, 2, 0],
-			[2, 0, 1], [2, 1, 0],
+			[1, 2, 3], [1, 3, 2],
+			[2, 1, 3], [2, 3, 1],
+			[3, 1, 2], [3, 2, 1],
 		],
 	Vector2(3, 4):
 		[
-			[0, 1, 2, 0], [0, 2, 1, 0],
-			[1, 0, 2, 1], [1, 2, 0, 1],
-			[2, 0, 1, 2], [2, 1, 0, 2],
+			[1, 2, 3, 1], [1, 3, 2, 1],
+			[2, 1, 3, 2], [2, 3, 1, 2],
+			[3, 1, 2, 3], [3, 2, 1, 3],
 		],
 	Vector2(3, 5):
 		[
-			[0, 1, 2, 0, 1], [0, 2, 1, 0, 2],
-			[1, 0, 2, 1, 0], [1, 2, 0, 1, 2],
-			[2, 0, 1, 2, 0], [2, 1, 0, 2, 1],
+			[1, 2, 3, 1, 2], [1, 3, 2, 1, 3],
+			[2, 1, 3, 2, 1], [2, 3, 1, 2, 3],
+			[3, 1, 2, 3, 1], [3, 2, 1, 3, 2],
 		],
 	Vector2(4, 3):
 		[
-			[0, 1, 3], [0, 2, 3], [0, 3, 1], [0, 3, 2],
-			[1, 0, 3], [1, 3, 0],
-			[2, 0, 3], [2, 3, 0],
-			[3, 0, 1], [3, 0, 2], [3, 1, 0], [3, 2, 0],
+			[12, 23, 34], [12, 14, 34], [13, 24, 13], [14, 23, 14],
+			[24, 13, 24], [23, 14, 23],
+			[34, 23, 12], [34, 14, 12],
 		],
 	Vector2(5, 3):
 		[
-			[0, 2, 4], [0, 4, 2],
-			[1, 2, 3], [1, 3, 2],
-			[2, 0, 4], [2, 1, 3], [2, 3, 1], [2, 4, 0],
-			[3, 1, 2], [3, 2, 1],
-			[4, 0, 2], [4, 2, 0],
+			[123, 234, 345], [123, 135, 345], [123, 125, 145], [135, 234, 135],
+			[234, 135, 234],
+			[345, 234, 123], [345, 135, 123], [345, 145, 125],
 		],
 }
 
@@ -91,39 +88,66 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 	else:
 		# create a random arrangement
 		wobbler_positions = []
-		var prev_position := randi() % int(rect.size.x)
 		for _y in range(rect.size.y):
-			var new_position
-			if rect.size.x < 2:
-				new_position = 0
-			else:
-				# avoid placing two wobblers above each other
-				new_position = (prev_position + 1 + randi() % int(rect.size.x - 1)) % int(rect.size.x)
-			wobbler_positions.append(new_position)
-			prev_position = new_position
+			# calculate a random set of wobbler positions. the number of wobblers is two less than the width of the
+			# box -- but every box will always have at least one.
+			var new_positions := range(0, rect.size.x)
+			new_positions.shuffle()
+			new_positions = new_positions.slice(min(2, new_positions.size() - 1), new_positions.size())
+			
+			wobbler_positions.append(_wobbler_x_int(new_positions))
 	
 	for wobbler_y in range(rect.size.y):
-		var wobbler: Wobbler
-		if PuzzleTileMap.is_cake_box(color_int):
-			wobbler = StarScene.instance()
-		else:
-			wobbler = SeedScene.instance()
-		
-		var cell := rect.position + Vector2(wobbler_positions[wobbler_y], wobbler_y)
-		if cell.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
-			wobbler.visible = false
-		match(color_int):
-			PuzzleTileMap.BoxColorInt.BROWN: wobbler.food_type = 0 + int(cell.y) % 2
-			PuzzleTileMap.BoxColorInt.PINK: wobbler.food_type = 2 + int(cell.y) % 2
-			PuzzleTileMap.BoxColorInt.BREAD: wobbler.food_type = 4 + int(cell.y) % 2
-			PuzzleTileMap.BoxColorInt.WHITE: wobbler.food_type = 6 + int(cell.y) % 2
-			PuzzleTileMap.BoxColorInt.CAKE: wobbler.food_type = 8
-		wobbler.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
-		wobbler.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
-		wobbler.position *= _puzzle_tile_map.scale
-		wobbler.base_scale = _puzzle_tile_map.scale * Vector2(0.5, 0.5)
-		wobbler.z_index = 2
-		_add_wobbler(cell, wobbler)
+		for wobbler_x in _wobbler_x_array(wobbler_positions[wobbler_y]):
+			var wobbler: Wobbler
+			if PuzzleTileMap.is_cake_box(color_int):
+				wobbler = StarScene.instance()
+			else:
+				wobbler = SeedScene.instance()
+			
+			var cell := rect.position + Vector2(wobbler_x, wobbler_y)
+			if cell.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
+				wobbler.visible = false
+			match(color_int):
+				PuzzleTileMap.BoxColorInt.BROWN: wobbler.food_type = 0 + int(cell.y) % 2
+				PuzzleTileMap.BoxColorInt.PINK: wobbler.food_type = 2 + int(cell.y) % 2
+				PuzzleTileMap.BoxColorInt.BREAD: wobbler.food_type = 4 + int(cell.y) % 2
+				PuzzleTileMap.BoxColorInt.WHITE: wobbler.food_type = 6 + int(cell.y) % 2
+				PuzzleTileMap.BoxColorInt.CAKE: wobbler.food_type = 8
+			wobbler.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
+			wobbler.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
+			wobbler.position *= _puzzle_tile_map.scale
+			wobbler.base_scale = _puzzle_tile_map.scale * Vector2(0.5, 0.5)
+			wobbler.z_index = 2
+			_add_wobbler(cell, wobbler)
+
+
+"""
+Converts a wobbler position array into a number.
+
+Wobbler positions are stored as numbers like '235' representing the second, third and fifth horizontal position in a
+box. This method creates that kind of number from a position array like [1, 3, 4]
+"""
+func _wobbler_x_array(x_int: int) -> Array:
+	var x_array := []
+	var x_int_tmp := x_int
+	while x_int_tmp > 0:
+		x_array.append(x_int_tmp % 10 - 1)
+		x_int_tmp /= 10
+	return x_array
+
+
+"""
+Converts a wobbler position number into an array of x coordinates.
+
+Wobbler positions are stored as numbers like '235' representing the second, third and fifth horizontal position in a
+box. This method converts those ints into a position array like [1, 3, 4].
+"""
+func _wobbler_x_int(x_array: Array) -> int:
+	var x_int := 0
+	for wobbler_x in x_array:
+		x_int = x_int * 10 + wobbler_x + 1
+	return x_int
 
 
 """
@@ -202,7 +226,6 @@ func _on_Playfield_blocks_prepared() -> void:
 	if not _puzzle_tile_map:
 		# _ready() has not yet been called
 		return
-	
 	_prepare_wobblers_for_scenario()
 
 
