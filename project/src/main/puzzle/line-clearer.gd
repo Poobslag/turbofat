@@ -187,6 +187,8 @@ Deletes rows from the playfield, dropping all rows above them.
 func _delete_lines(lines: Array) -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false
+	for i in range(lines.size()):
+		lines[i] = PuzzleTileMap.ROW_COUNT - i - 1
 	lines.sort()
 	var max_line: int = lines.back() if lines else -1
 	for y in range(0, max_line):
