@@ -8,7 +8,7 @@
     "value": "150"
   },
   "rank": [
-    "extra_seconds_per_piece", "0.6",
+    "extra_seconds_per_piece 0.6",
     "box_factor 0.8"
   ],
   "piece_types": [

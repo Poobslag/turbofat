@@ -18,7 +18,7 @@ onready var level_name := $HBoxContainer/SideButtons/LevelName
 onready var _level_json := $HBoxContainer/SideButtons/Json
 
 func _ready() -> void:
-	var level_text := FileUtils.get_file_as_text(LevelSettings.level_path(DEFAULT_LEVEL))
+	var level_text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(DEFAULT_LEVEL))
 	_level_json.text = level_text
 	_level_json.refresh_tile_map()
 	level_name.text = DEFAULT_LEVEL
@@ -33,7 +33,11 @@ func load_level(path: String) -> void:
 	var level_text := FileUtils.get_file_as_text(path)
 	_level_json.text = level_text
 	_level_json.refresh_tile_map()
-	level_name.text = LevelSettings.level_name(path)
+	
+	var new_level_name := path.get_file()
+	new_level_name = new_level_name.trim_suffix(".json")
+	new_level_name = StringUtils.hyphens_to_underscores(new_level_name)
+	level_name.text = new_level_name
 
 
 func _start_test() -> void:

@@ -42,5 +42,5 @@ func _on_Save_pressed() -> void:
 	
 	Utils.assign_default_dialog_path($Save, "res://assets/main/puzzle/levels/")
 	var file_root := StringUtils.sanitize_file_root(_level_editor.level_name.text)
-	$Save.current_file = LevelSettings.level_filename(file_root)
+	$Save.current_file = "%s.json" % StringUtils.underscores_to_hyphens(file_root)
 	$Save.popup_centered()
