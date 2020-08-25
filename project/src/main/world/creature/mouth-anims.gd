@@ -84,7 +84,7 @@ func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orienta
 		_play_mouth_ambient_animation()
 
 
-func _on_IdleTimer_start_idle_animation(anim_name: String) -> void:
+func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
 	if is_processing() and anim_name in get_animation_list():
 		play(anim_name)
 
@@ -92,3 +92,8 @@ func _on_IdleTimer_start_idle_animation(anim_name: String) -> void:
 func _on_EmoteAnims_animation_started(_anim_name: String) -> void:
 	if current_animation.begins_with("ambient-"):
 		_play_mouth_ambient_animation()
+
+
+func _on_IdleTimer_idle_animation_stopped() -> void:
+	if is_processing() and current_animation.begins_with("idle"):
+		stop()
