@@ -187,6 +187,15 @@ Deletes rows from the playfield, dropping all rows above them.
 func _delete_lines(lines: Array) -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false
+	
+	if CurrentLevel.settings.blocks_during.line_clear_type == BlocksDuringRules.LineClearType.FLOAT_FALL:
+		# instead of deleting the filled lines, delete the bottom lines
+		for i in range(lines.size()):
+			lines[i] = PuzzleTileMap.ROW_COUNT - i - 1
+	elif CurrentLevel.settings.blocks_during.line_clear_type == BlocksDuringRules.LineClearType.FLOAT:
+		# don't delete the filled lines
+		lines = []
+	
 	lines.sort()
 	var max_line: int = lines.back() if lines else -1
 	for y in range(0, max_line):
@@ -194,7 +203,8 @@ func _delete_lines(lines: Array) -> void:
 			play_sound = true
 			break
 	
-	_tile_map.delete_rows(lines)
+	if lines:
+		_tile_map.delete_rows(lines)
 	
 	if play_sound:
 		_line_fall_sound.play()
@@ -210,6 +220,8 @@ func _delete_lines(lines: Array) -> void:
 				_new_rows_to_preserve_at_end[new_key] = true
 			_rows_to_preserve_at_end = _new_rows_to_preserve_at_end
 	
+	# we even emit the signal if zero lines are deleted.
+	# the 'lines_deleted' signal triggers other important events
 	emit_signal("lines_deleted", lines)
 
 

@@ -316,6 +316,18 @@
           "unlocked_if": "group_finished choco_main 5"
         }
       ]
+    },
+    {
+      "id": "experiment",
+      "name": "Experimental Levels",
+      "levels": [
+        {
+          "id": "experiment/000"
+        },
+        {
+          "id": "experiment/001"
+        }
+      ]
     }
   ]
 }

@@ -252,6 +252,9 @@ func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int,
 
 func _on_Playfield_lines_deleted(lines: Array) -> void:
 	for y in lines:
+		# some levels might have rows which are deleted, but not erased. erase any wobblers
+		_erase_row(y)
+		
 		_delete_row(y)
 
 
