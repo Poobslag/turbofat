@@ -25,8 +25,8 @@ const CREATURE_PALETTES := [
 			"hair_rgb": "f1e398", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398"}, # purple
 	{"line_rgb": "6c4331", "body_rgb": "f57e7d", "belly_rgb": "fde8c9", "cloth_rgb": "7ac252",
 			"hair_rgb": "f1e398", "eye_rgb": "7ac252 e9f4dc", "horn_rgb": "f1e398"}, # light red
-	{"line_rgb": "6c4331", "body_rgb": "e27c3d", "belly_rgb": "b1bd84", "cloth_rgb": "1c0f00",
-			"hair_rgb": "927c86", "eye_rgb": "1c0f00 655944", "horn_rgb": "927c86"}, # termite orange
+	{"line_rgb": "6c4331", "body_rgb": "e17827", "belly_rgb": "dbbd9e", "cloth_rgb": "4aadc5",
+			"hair_rgb": "dfca7a", "eye_rgb": "1492d6 33d4f0", "horn_rgb": "e9ebf0"}, # fox orange
 	{"line_rgb": "6c4331", "body_rgb": "8fea40", "belly_rgb": "e8fa95", "cloth_rgb": "f5d561",
 			"hair_rgb": "b47922", "eye_rgb": "f5d561 fcf3cd", "horn_rgb": "b47922"}, # light green
 	{"line_rgb": "6c4331", "body_rgb": "70843a", "belly_rgb": "a9aa2f", "cloth_rgb": "7d4c21",
@@ -48,7 +48,7 @@ const CREATURE_PALETTES := [
 	{"line_rgb": "3c3c3d", "body_rgb": "725e96", "belly_rgb": "a9d252", "cloth_rgb": "41f2ff",
 			"hair_rgb": "5a635d", "eye_rgb": "41f2ff d6ffff", "horn_rgb": "5a635d"}, # dragon muted purple
 	{"line_rgb": "41281e", "body_rgb": "3b494f", "belly_rgb": "7b8780", "cloth_rgb": "ad1000",
-			"hair_rgb": "5d0218", "eye_rgb": "ad1000 b73a36", "horn_rgb": "5d0218"}, # gargoyle gray
+			"hair_rgb": "1f1e1e", "eye_rgb": "ad1000 b73a36", "horn_rgb": "1f1e1e"}, # gargoyle gray
 	{"line_rgb": "6c4331", "body_rgb": "68d50a", "belly_rgb": "4baf20", "cloth_rgb": "994dbd",
 			"hair_rgb": "ffffed", "eye_rgb": "994dbd b392df", "horn_rgb": "ffffed"}, # hulk green
 	{"line_rgb": "6c4331", "body_rgb": "9a7f5d", "belly_rgb": "c9dac6", "cloth_rgb": "25291b",
@@ -57,22 +57,22 @@ const CREATURE_PALETTES := [
 			"hair_rgb": "d2c9cd", "eye_rgb": "cb5340 ffb597", "horn_rgb": "d2c9cd"}, # goober yellow
 	{"line_rgb": "6c4331", "body_rgb": "fa5c2c", "belly_rgb": "ffd461", "cloth_rgb": "a7b958",
 			"hair_rgb": "529e43", "eye_rgb": "a7b958 ecf1bf", "horn_rgb": "529e43"}, # pumpkin orange
-	{"line_rgb": "6c4331", "body_rgb": "8ff0dc", "belly_rgb": "fefcf2", "cloth_rgb": "fff5df",
-			"hair_rgb": "fcfcff", "eye_rgb": "fff5df f3ffff", "horn_rgb": "fcfcff"}, # angelic green
+	{"line_rgb": "6c4331", "body_rgb": "99ffb5", "belly_rgb": "ffffff", "cloth_rgb": "c49877",
+			"hair_rgb": "f0ffe5", "eye_rgb": "e9c57d ffffff", "horn_rgb": "f2f1f1"}, # angelic green
 	{"line_rgb": "6c4331", "body_rgb": "23a2e3", "belly_rgb": "35e1e0", "cloth_rgb": "415a73",
 			"hair_rgb": "ffe7e5", "eye_rgb": "415a73 c8cbd6", "horn_rgb": "ffe7e5"}, # fishy blue
 	{"line_rgb": "6c4331", "body_rgb": "9d3df6", "belly_rgb": "e055a0", "cloth_rgb": "ecdf32",
 			"hair_rgb": "e1dabb", "eye_rgb": "ecdf32 fcfcdb", "horn_rgb": "ac4577"}, # mystic purple
 	{"line_rgb": "6c4331", "body_rgb": "25785f", "belly_rgb": "876edb", "cloth_rgb": "ff5c6f",
 			"hair_rgb": "a6a1a1", "eye_rgb": "ff5c6f fff1f0", "horn_rgb": "a6a1a1"}, # sea monster turquoise
-	{"line_rgb": "6c4331", "body_rgb": "bd5a16", "belly_rgb": "ffffd7", "cloth_rgb": "020202",
-			"hair_rgb": "c3c3c2", "eye_rgb": "020202 577c76", "horn_rgb": "c3c3c2"}, # ogre brown
+	{"line_rgb": "6c4331", "body_rgb": "411c17", "belly_rgb": "e29b6e", "cloth_rgb": "cb1b2e",
+			"hair_rgb": "d98227", "eye_rgb": "ff912e ffd061", "horn_rgb": "c9d9bd"}, # ogre brown
 	{"line_rgb": "6c4331", "body_rgb": "dbffc8", "belly_rgb": "d69e63", "cloth_rgb": "95c152",
 			"hair_rgb": "bdab30", "eye_rgb": "8bb253 ffebff", "horn_rgb": "caf877"}, # celtic white
 	{"line_rgb": "41281e", "body_rgb": "8f1b21", "belly_rgb": "838382", "cloth_rgb": "546127",
 			"hair_rgb": "2b2b2b", "eye_rgb": "546127 a8ad89", "horn_rgb": "2b2b2b"}, # heckraiser red
-	{"line_rgb": "41281e", "body_rgb": "a7380b", "belly_rgb": "98b58f", "cloth_rgb": "917a1e",
-			"hair_rgb": "43493d", "eye_rgb": "917a1e fae9c5", "horn_rgb": "43493d"}, # muddy orange
+	{"line_rgb": "41281e", "body_rgb": "b24b10", "belly_rgb": "d58944", "cloth_rgb": "ffd256",
+			"hair_rgb": "464a40", "eye_rgb": "7c4725 b8ad9f", "horn_rgb": "4c5245"}, # muddy orange
 	{"line_rgb": "41281e", "body_rgb": "907027", "belly_rgb": "e5d6b7", "cloth_rgb": "d5c26a",
 			"hair_rgb": "afa7ae", "eye_rgb": "d5c26a ffffff", "horn_rgb": "afa7ae"}, # golem bronze
 	{"line_rgb": "41281e", "body_rgb": "48366e", "belly_rgb": "8b70a1", "cloth_rgb": "121011",
