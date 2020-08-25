@@ -163,6 +163,10 @@ func set_fatness(new_fatness: float) -> void:
 	emit_signal("fatness_changed")
 
 
+func play_idle_animation(idle_anim: String) -> void:
+	$IdleTimer.play_idle_animation(idle_anim)
+
+
 """
 This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
 workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
@@ -401,6 +405,8 @@ Parameters:
 	'mood': The creature's new mood from ChatEvent.Mood
 """
 func play_mood(mood: int) -> void:
+	$IdleTimer.stop_idle_animation()
+	
 	if mood == ChatEvent.Mood.NONE:
 		pass
 	elif mood == ChatEvent.Mood.DEFAULT:

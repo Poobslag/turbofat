@@ -31,7 +31,7 @@ func advance_animation_randomly() -> void:
 	advance(min(randf(), randf()))
 
 
-func _on_IdleTimer_start_idle_animation(anim_name) -> void:
+func _on_IdleTimer_idle_animation_started(anim_name) -> void:
 	if is_processing() and anim_name in get_animation_list():
 		play(anim_name)
 
@@ -43,4 +43,9 @@ func _on_CreatureVisuals_before_creature_arrived() -> void:
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
 	if is_processing() and not new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
+		stop()
+
+
+func _on_IdleTimer_idle_animation_stopped() -> void:
+	if is_processing() and current_animation.begins_with("idle"):
 		stop()

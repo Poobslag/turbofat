@@ -114,6 +114,7 @@ func stop(reset: bool = true) -> void:
 Randomly advances the current animation up to 2.0 seconds. Used to ensure all creatures don't blink synchronously.
 """
 func advance_animation_randomly() -> void:
+	var old_animation_position := current_animation_position
 	advance(randf() * 2.0)
 
 
@@ -288,6 +289,7 @@ func unemote_immediate() -> void:
 	$"../FarArm".update_orientation(_creature_visuals.orientation)
 	_emote_eye_z0.frame = 0
 	_emote_eye_z1.frame = 0
+	_creature_visuals.reset_eye_frames()
 	_head_bobber.rotation_degrees = 0
 	for emote_sprite in _emote_sprites:
 		emote_sprite.rotation_degrees = 0
@@ -400,11 +402,17 @@ func _on_animation_finished(anim_name: String) -> void:
 		_post_unemote()
 
 
-func _on_IdleTimer_start_idle_animation(anim_name: String) -> void:
+func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
 	if is_processing() and anim_name in get_animation_list():
+		unemote_immediate()
 		play(anim_name)
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
 	if is_processing() and not new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
+		unemote_immediate()
+
+
+func _on_IdleTimer_idle_animation_stopped() -> void:
+	if is_processing() and current_animation.begins_with("idle"):
 		unemote_immediate()
