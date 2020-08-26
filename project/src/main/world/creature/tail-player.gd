@@ -5,13 +5,13 @@ An AnimationPlayer which animates a creature's tail.
 Specifically, this animationplayer ensures the tail is always moving, if nothing else is animating it.
 """
 
-export (NodePath) var movement_anims_path: NodePath
+export (NodePath) var movement_player_path: NodePath
 
 onready var _creature_visuals: CreatureVisuals = get_parent()
-onready var _movement_anims: AnimationPlayer = get_node(movement_anims_path)
+onready var _movement_player: AnimationPlayer = get_node(movement_player_path)
 
 func _ready() -> void:
-	_movement_anims.connect("animation_started", self, "_on_MovementAnims_animation_started")
+	_movement_player.connect("animation_started", self, "_on_MovementPlayer_animation_started")
 
 
 func _process(_delta: float) -> void:
@@ -19,7 +19,7 @@ func _process(_delta: float) -> void:
 		# avoid playing animations in editor
 		return
 	
-	if not is_playing() and not _movement_anims.current_animation.begins_with("sprint"):
+	if not is_playing() and not _movement_player.current_animation.begins_with("sprint"):
 		_play_tail_ambient_animation()
 
 
@@ -35,7 +35,7 @@ func _play_tail_ambient_animation() -> void:
 	play(tail_ambient_animation)
 
 
-func _on_MovementAnims_animation_started(anim_name: String) -> void:
+func _on_MovementPlayer_animation_started(anim_name: String) -> void:
 	if anim_name.begins_with("sprint"):
 		stop()
 

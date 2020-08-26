@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=2]
@@ -11,7 +11,7 @@
 [ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=9]
 [ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=11]
-[ext_resource path="res://assets/main/world/creature/1/head-packed.png" type="Texture" id=12]
+[ext_resource path="res://assets/main/world/creature/1/tail-z0-packed.png" type="Texture" id=12]
 [ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=13]
 [ext_resource path="res://assets/main/world/creature/1/cheek-z2-packed.png" type="Texture" id=14]
 [ext_resource path="res://assets/main/world/creature/1/food-packed.png" type="Texture" id=15]
@@ -23,9 +23,8 @@
 [ext_resource path="res://assets/main/world/creature/1/cheek-z1-packed.png" type="Texture" id=21]
 [ext_resource path="res://assets/main/world/creature/1/mouth-packed.png" type="Texture" id=22]
 [ext_resource path="res://assets/main/world/creature/1/collar-packed.png" type="Texture" id=23]
-[ext_resource path="res://assets/main/world/creature/2/hair-z0-packed.png" type="Texture" id=24]
-[ext_resource path="res://assets/main/world/creature/2/hair-z1-packed.png" type="Texture" id=25]
-[ext_resource path="res://assets/main/world/creature/2/hair-z2-packed.png" type="Texture" id=26]
+[ext_resource path="res://assets/main/world/creature/1/tail-z1-packed.png" type="Texture" id=24]
+[ext_resource path="res://assets/main/world/creature/5/head-packed.png" type="Texture" id=25]
 
 [node name="MoodDemo" type="Node"]
 script = ExtResource( 3 )
@@ -41,6 +40,7 @@ __meta__ = {
 [node name="Creature" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 420 )
 scale = Vector2( 3, 3 )
+creature_id = ""
 dna = {
 "belly": "1",
 "belly_rgb": "ffa86d",
@@ -54,6 +54,7 @@ dna = {
 "eye_rgb": "fad541 ffffff",
 "hair": "0",
 "hair_rgb": "f1e398",
+"head": "5",
 "horn": "0",
 "horn_rgb": "282828",
 "line_rgb": "41281e",
@@ -94,20 +95,18 @@ dna = {
 "property:Neck0/HeadBobber/Food:texture": ExtResource( 15 ),
 "property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/1/food-laser-packed.json",
 "property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 17 ),
-"property:Neck0/HeadBobber/HairZ0:frame_data": "res://assets/main/world/creature/2/hair-z0-packed.json",
-"property:Neck0/HeadBobber/HairZ0:texture": ExtResource( 24 ),
-"property:Neck0/HeadBobber/HairZ1:frame_data": "res://assets/main/world/creature/2/hair-z1-packed.json",
-"property:Neck0/HeadBobber/HairZ1:texture": ExtResource( 25 ),
-"property:Neck0/HeadBobber/HairZ2:frame_data": "res://assets/main/world/creature/2/hair-z2-packed.json",
-"property:Neck0/HeadBobber/HairZ2:texture": ExtResource( 26 ),
-"property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/1/head-packed.json",
-"property:Neck0/HeadBobber/Head:texture": ExtResource( 12 ),
+"property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/5/head-packed.json",
+"property:Neck0/HeadBobber/Head:texture": ExtResource( 25 ),
 "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/1/mouth-packed.json",
 "property:Neck0/HeadBobber/Mouth:texture": ExtResource( 22 ),
 "property:Neck0/HeadBobber/Nose:frame_data": "res://assets/main/world/creature/3/nose-packed.json",
 "property:Neck0/HeadBobber/Nose:texture": ExtResource( 6 ),
 "property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
 "property:Sprint:texture": ExtResource( 13 ),
+"property:TailZ0:frame_data": "res://assets/main/world/creature/1/tail-z0-packed.json",
+"property:TailZ0:texture": ExtResource( 12 ),
+"property:TailZ1:frame_data": "res://assets/main/world/creature/1/tail-z1-packed.json",
+"property:TailZ1:texture": ExtResource( 24 ),
 "shader:Body:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Body:green": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Body:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
@@ -124,13 +123,16 @@ dna = {
 "shader:NearLeg:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:NearLeg:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/CheekZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/CheekZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/CheekZ0:green": Color( 1, 0.658824, 0.427451, 1 ),
+"shader:Neck0/HeadBobber/CheekZ0:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/CheekZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/CheekZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/CheekZ1:green": Color( 1, 0.658824, 0.427451, 1 ),
+"shader:Neck0/HeadBobber/CheekZ1:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/CheekZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/CheekZ2:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/CheekZ2:green": Color( 1, 0.658824, 0.427451, 1 ),
+"shader:Neck0/HeadBobber/CheekZ2:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/Chin:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/Chin:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/Chin:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/EarZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/EarZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/EarZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
@@ -147,18 +149,19 @@ dna = {
 "shader:Neck0/HeadBobber/EyeZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/EyeZ0:blue": Color( 1, 1, 1, 1 ),
 "shader:Neck0/HeadBobber/EyeZ0:green": Color( 0.980392, 0.835294, 0.254902, 1 ),
-"shader:Neck0/HeadBobber/EyeZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/EyeZ0:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/EyeZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/EyeZ1:blue": Color( 1, 1, 1, 1 ),
 "shader:Neck0/HeadBobber/EyeZ1:green": Color( 0.980392, 0.835294, 0.254902, 1 ),
-"shader:Neck0/HeadBobber/EyeZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/EyeZ1:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/HairZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/HairZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/HairZ0:red": Color( 0.945098, 0.890196, 0.596078, 1 ),
 "shader:Neck0/HeadBobber/HairZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/HairZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/HairZ1:red": Color( 0.945098, 0.890196, 0.596078, 1 ),
 "shader:Neck0/HeadBobber/HairZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/HairZ2:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/HairZ2:red": Color( 0.945098, 0.890196, 0.596078, 1 ),
 "shader:Neck0/HeadBobber/Head:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Head:green": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/Head:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/HornZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/HornZ0:green": Color( 0.156863, 0.156863, 0.156863, 1 ),
@@ -167,7 +170,19 @@ dna = {
 "shader:Neck0/HeadBobber/HornZ1:green": Color( 0.156863, 0.156863, 0.156863, 1 ),
 "shader:Neck0/HeadBobber/HornZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/Mouth:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/Mouth:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/Mouth:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/Nose:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/Nose:red": Color( 0.0431373, 0.270588, 0.65098, 1 )
+"shader:Neck0/HeadBobber/Nose:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:TailZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:TailZ0:blue": Color( 0.945098, 0.890196, 0.596078, 1 ),
+"shader:TailZ0:green": Color( 1, 0.658824, 0.427451, 1 ),
+"shader:TailZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:TailZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:TailZ1:blue": Color( 0.945098, 0.890196, 0.596078, 1 ),
+"shader:TailZ1:green": Color( 1, 0.658824, 0.427451, 1 ),
+"shader:TailZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"tail": "1"
 }
+suppress_sfx = false
+elevation = 0
+chat_bubble_type = 0

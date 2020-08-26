@@ -178,7 +178,7 @@ func set_chat_theme_def(new_chat_theme_def: Dictionary) -> void:
 Plays a movement animation with the specified prefix and direction, such as a 'run' animation going left.
 
 Parameters:
-	'animation_prefix': A partial name of an animation on Creature/MovementAnims, omitting the directional suffix
+	'animation_prefix': A partial name of an animation on Creature/MovementPlayer, omitting the directional suffix
 	
 	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 """

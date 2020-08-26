@@ -1,0 +1,67 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/world/creature/tail-player.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ambient-nw"
+loop = true
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("TailZ0:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TailZ1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 3, 4, 5, 6, 7, 2 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "ambient-se"
+loop = true
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("TailZ0:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 3, 4, 5, 6, 7, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("TailZ1:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[node name="TailPlayer" type="AnimationPlayer"]
+anims/ambient-nw = SubResource( 1 )
+anims/ambient-se = SubResource( 2 )
+script = ExtResource( 1 )
+movement_player_path = NodePath("../MovementPlayer")
