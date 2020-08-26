@@ -1,0 +1,3 @@
+-...make it fun (it's not very fun, just weird)
+-(later) better visual feedback?
+-(cleanup) remove obnoxious.json, replace it with something else
