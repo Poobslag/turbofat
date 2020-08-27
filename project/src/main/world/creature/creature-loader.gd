@@ -1,4 +1,6 @@
-class_name CreatureLoader
+#tool #uncomment to view creature in editor
+extends Node
+
 """
 Loads creature resources based on creature definitions. For example, a creature definition might describe high-level
 information about the creature's appearance, such as 'she has red eyes' or 'she has a star on her forehead'. This
@@ -12,11 +14,45 @@ const MAX_FATNESS := 10.0
 # How long it takes a creature to grow to a new size
 const GROWTH_SECONDS := 0.12
 
+# AnimationPlayer scenes with animations for each type of mouth
+var _mouth_player_scenes := {
+	"1": preload("res://src/main/world/creature/Mouth1Player.tscn"),
+	"2": preload("res://src/main/world/creature/Mouth2Player.tscn"),
+	"3": preload("res://src/main/world/creature/Mouth3Player.tscn"),
+}
+
+# AnimationPlayer scenes with animations for each type of ear
+var _ear_player_scenes := {
+	"1": preload("res://src/main/world/creature/Ear1Player.tscn"),
+	"2": preload("res://src/main/world/creature/Ear2Player.tscn"),
+	"3": preload("res://src/main/world/creature/Ear3Player.tscn"),
+}
+
 """
 Returns a random creature definition.
 """
-static func random_def() -> Dictionary:
+func random_def() -> Dictionary:
 	return DnaUtils.random_creature_palette()
+
+
+"""
+Returns an AnimationPlayer for the specified type type of mouth.
+"""
+func new_mouth_player(mouth_key: String) -> AnimationPlayer:
+	var result: AnimationPlayer
+	if _mouth_player_scenes.has(mouth_key):
+		result = _mouth_player_scenes[mouth_key].instance()
+	return result
+
+
+"""
+Returns an AnimationPlayer for the specified type of ear.
+"""
+func new_ear_player(ear_key: String) -> AnimationPlayer:
+	var result: AnimationPlayer
+	if _ear_player_scenes.has(ear_key):
+		result = _ear_player_scenes[ear_key].instance()
+	return result
 
 
 """
@@ -30,7 +66,7 @@ Parameters:
 	'dna': Defines high-level information about the creature's appearance, such as 'she has red eyes'. The response
 		includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
 """
-static func load_details(dna: Dictionary) -> void:
+func load_details(dna: Dictionary) -> void:
 	_load_head(dna)
 	_load_body(dna)
 	_load_colors(dna)
@@ -52,7 +88,7 @@ Parameters:
 	'filename': The stripped-down filename of the resource to look up. All creature texture files have a path of
 		res://assets/main/world/creature/0/{something}.png, so this parameter only specifies the {something}.
 """
-static func _load_texture(dna: Dictionary, node_path: String, key: String, filename: String) -> void:
+func _load_texture(dna: Dictionary, node_path: String, key: String, filename: String) -> void:
 	# load the texture resource
 	var resource_path: String
 	var frame_data: String
@@ -82,7 +118,7 @@ static func _load_texture(dna: Dictionary, node_path: String, key: String, filen
 """
 Loads the resources for a creature's head based on a creature definition.
 """
-static func _load_head(dna: Dictionary) -> void:
+func _load_head(dna: Dictionary) -> void:
 	_load_texture(dna, "Collar", "collar", "collar-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Head", "head", "head-packed")
 	
@@ -114,7 +150,7 @@ static func _load_head(dna: Dictionary) -> void:
 """
 Loads the resources for a creature's arms, legs and torso based on a creature definition.
 """
-static func _load_body(dna: Dictionary) -> void:
+func _load_body(dna: Dictionary) -> void:
 	# All creatures have a body, but this class supports passing in an empty creature definition to unload the
 	# textures from creature sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# creature's body.
@@ -135,7 +171,7 @@ static func _load_body(dna: Dictionary) -> void:
 """
 Assigns the creature's colors based on a creature definition.
 """
-static func _load_colors(dna: Dictionary) -> void:
+func _load_colors(dna: Dictionary) -> void:
 	var line_color: Color
 	if dna.has("line_rgb"):
 		line_color = Color(dna.line_rgb)
@@ -256,11 +292,11 @@ static func _load_colors(dna: Dictionary) -> void:
 	dna["shader:Neck0/HeadBobber/HornZ1:green"] = horn_color
 
 
-static func load_creature_def_by_id(id: String) -> CreatureDef:
+func load_creature_def_by_id(id: String) -> CreatureDef:
 	return load_creature_def("res://assets/main/dialog/%s/creature.json" % id)
 
 
-static func load_creature_def(path: String) -> CreatureDef:
+func load_creature_def(path: String) -> CreatureDef:
 	var creature_def_text: String = FileUtils.get_file_as_text(path)
 	var parsed = parse_json(creature_def_text)
 	var creature_def: CreatureDef
