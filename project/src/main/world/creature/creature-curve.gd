@@ -82,20 +82,26 @@ func _refresh_curve() -> void:
 		return
 	
 	curve.clear_points()
-	if curve_defs.size() >= 2:
-		var fatness_index := 0
-		while fatness_index < curve_defs.size() - 2 \
-				and curve_defs[fatness_index + 1].fatness < creature_visuals.visual_fatness:
-			fatness_index += 1
-	
-		# curve_def_low is the lower fatness curve. curve_def_high is the higher fatness curve
-		var curve_def_low: Dictionary = curve_defs[fatness_index]
-		var curve_def_high: Dictionary = curve_defs[fatness_index + 1]
+	if curve_defs:
+		# curve_def_low is the lower fatness curve. curve_def_high is the higher fatness curve. we lerp between them
+		# to calculate the curve to draw
+		var curve_def_low: Dictionary = curve_defs[0]
+		var curve_def_high: Dictionary = curve_defs[0]
 		
-		# Calculate how much of each curve we should use. A value greater than 0.5 means we'll mostly use
-		# curve_def_high, a value less than 0.5 means we'll mostly use curve_def_low.
-		var f_pct := inverse_lerp(curve_def_low.fatness, curve_def_high.fatness, creature_visuals.visual_fatness)
-	
+		# How much of each curve we should use. A value greater than 0.5 means we'll mostly use curve_def_high, a
+		# value less than 0.5 means we'll mostly use curve_def_low.
+		var f_pct := 1.0
+		
+		if curve_defs.size() > 1:
+			var fatness_index := 0
+			while fatness_index < curve_defs.size() - 2 \
+					and curve_defs[fatness_index + 1].fatness < creature_visuals.visual_fatness:
+				fatness_index += 1
+		
+			curve_def_low = curve_defs[fatness_index]
+			curve_def_high = curve_defs[fatness_index + 1]
+			f_pct = inverse_lerp(curve_def_low.fatness, curve_def_high.fatness, creature_visuals.visual_fatness)
+		
 		for i in range(curve_def_low.curve_def.size()):
 			var point_pos: Vector2 = lerp(curve_def_low.curve_def[i][0], curve_def_high.curve_def[i][0], f_pct)
 			var point_in: Vector2 = lerp(curve_def_low.curve_def[i][1], curve_def_high.curve_def[i][1], f_pct)
