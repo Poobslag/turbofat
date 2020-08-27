@@ -26,7 +26,7 @@ func _ready() -> void:
 
 func _draw() -> void:
 	var points := curve.get_baked_points()
-	if points:
+	if points.size() >= 3:
 		if fill_color.a > 0:
 			# don't waste cycles drawing invisible polygons
 			if _poly_colors.size() != points.size():
