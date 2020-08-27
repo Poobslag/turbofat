@@ -129,11 +129,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/creature-library.gd"
 }, {
-"base": "Reference",
-"class": "CreatureLoader",
-"language": "GDScript",
-"path": "res://src/main/world/creature/creature-loader.gd"
-}, {
 "base": "PackedSprite",
 "class": "CreaturePackedSprite",
 "language": "GDScript",
@@ -524,7 +519,6 @@ _global_script_class_icons={
 "CreatureDef": "",
 "CreatureEditor": "",
 "CreatureLibrary": "",
-"CreatureLoader": "",
 "CreaturePackedSprite": "",
 "CreaturePaletteDemo": "",
 "CreatureShadow": "",
@@ -616,6 +610,7 @@ default_bus_layout="res://src/main/ui/default_bus_layout.tres"
 Breadcrumb="*res://src/main/breadcrumb.gd"
 ChatLibrary="*res://src/main/ui/chat/chat-library.gd"
 ChattableManager="*res://src/main/world/chattable-manager.gd"
+CreatureLoader="*res://src/main/world/creature/creature-loader.gd"
 Global="*res://src/main/global.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/MusicPlayer.tscn"

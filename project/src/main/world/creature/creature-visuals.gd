@@ -101,12 +101,11 @@ var _force_orientation_change := false
 # how fat the creature looks right now; gradually approaches the 'fatness' property
 export (float) var visual_fatness := 1.0 setget set_visual_fatness
 
-onready var _mouth_animation_player := $Mouth1Player
+var _mouth_player
 
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
 	set_orientation(orientation)
-	_mouth_animation_player.set_process(true)
 
 
 func _process(delta: float) -> void:
@@ -168,20 +167,6 @@ func play_idle_animation(idle_anim: String) -> void:
 
 
 """
-This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
-workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
-
-Tool scripts do not call _ready on reload, which means all onready fields will be null. This breaks this script's
-functionality and throws errors when it is used as a tool. This function manually assigns those fields to avoid those
-problems.
-"""
-func _apply_tool_script_workaround() -> void:
-	if not _mouth_animation_player:
-		_mouth_animation_player = $Mouth1Player
-		_mouth_animation_player.set_process(true)
-
-
-"""
 Updates the frame to something appropriate for the creature's orientation.
 
 Usually the frame is controlled by an animation. But when it's not, this ensures it still looks reasonable.
@@ -222,8 +207,6 @@ Generates a creature with a random appearance.
 func random_creature(value: bool = true) -> void:
 	if not value:
 		return
-	if Engine.is_editor_hint():
-		_apply_tool_script_workaround()
 	var new_dna := DnaUtils.fill_dna(DnaUtils.random_creature_palette())
 	set_dna(new_dna)
 
@@ -240,9 +223,6 @@ func set_orientation(new_orientation: int) -> void:
 	if not get_tree():
 		# avoid 'node not found' errors when tree is null
 		return
-	
-	if Engine.is_editor_hint():
-		_apply_tool_script_workaround()
 	
 	if (orientation in [SOUTHEAST, SOUTHWEST]) != (old_orientation in [SOUTHEAST, SOUTHWEST]):
 		# creature changed from facing north to south or vice versa
@@ -286,12 +266,8 @@ func feed(food_color: Color) -> void:
 	$Neck0/HeadBobber/Food.modulate = food_color
 	$Neck0/HeadBobber/FoodLaser.modulate = food_color
 	$EmotePlayer.eat()
-	if _mouth_animation_player.current_animation.begins_with("eat"):
-		_mouth_animation_player.stop()
-		_mouth_animation_player.play("eat-again")
-	else:
-		_mouth_animation_player.stop()
-		_mouth_animation_player.play("eat")
+	if _mouth_player:
+		_mouth_player.eat()
 
 
 """
@@ -315,6 +291,20 @@ func show_food_effects() -> void:
 			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
 	$Tween.start()
 	emit_signal("food_eaten")
+
+
+"""
+Returns an AnimationPlayer which animates moods: blinking, smiling, sweating, etc.
+"""
+func get_emote_player() -> AnimationPlayer:
+	return $EmotePlayer as AnimationPlayer
+
+
+"""
+Returns a Timer which launches idle animations periodically.
+"""
+func get_idle_timer() -> Timer:
+	return $IdleTimer as Timer
 
 
 """
@@ -424,9 +414,6 @@ Updates the properties of the various creature sprites and Node2D objects based 
 definition. This assumes the CreatureLoader has finished loading all of the appropriate textures and values.
 """
 func _update_creature_properties() -> void:
-	if Engine.is_editor_hint():
-		_apply_tool_script_workaround()
-	
 	# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
 	$EmotePlayer.unemote_immediate()
 	emit_signal("before_creature_arrived")
@@ -469,27 +456,35 @@ func _update_creature_properties() -> void:
 	$Body.rect_position = Vector2(-580, -850)
 	$Neck0/HeadBobber.position = Vector2(0, -100)
 	
-	if _mouth_animation_player:
-		if $EmotePlayer.is_connected("animation_started", _mouth_animation_player, "_on_EmotePlayer_animation_started"):
-			$EmotePlayer.disconnect(
-					"animation_started", _mouth_animation_player, "_on_EmotePlayer_animation_started")
-		_mouth_animation_player.stop()
+	if has_node("MouthPlayer"):
+		var old_mouth_player := get_node("MouthPlayer")
+		remove_child(old_mouth_player)
+		old_mouth_player.queue_free()
+	
+	if has_node("EarPlayer"):
+		var old_ear_player := get_node("EarPlayer")
+		remove_child(old_ear_player)
+		old_ear_player.queue_free()
 	
 	if dna.has("mouth"):
-		$Mouth1Player.set_process(dna.mouth == "1")
-		$Mouth2Player.set_process(dna.mouth == "2")
-		$Mouth3Player.set_process(dna.mouth == "3")
-		match dna.mouth:
-			"1": _mouth_animation_player = $Mouth1Player
-			"2": _mouth_animation_player = $Mouth2Player
-			"3": _mouth_animation_player = $Mouth3Player
-			_: push_warning("Invalid mouth: %s" % dna.mouth)
-		$EmotePlayer.connect("animation_started", _mouth_animation_player, "_on_EmotePlayer_animation_started")
+		_mouth_player = CreatureLoader.new_mouth_player(dna.mouth)
+		if not _mouth_player:
+			push_warning("Invalid mouth: %s" % dna.mouth)
+		else:
+			add_child(_mouth_player)
+			move_child(_mouth_player, $IdleTimer.get_position_in_parent() + 1)
+			_mouth_player.owner = self
+			_mouth_player.creature_visuals_path = _mouth_player.get_path_to(self)
 	
 	if dna.has("ear"):
-		$Ear1Player.set_process(dna.ear == "1")
-		$Ear2Player.set_process(dna.ear == "2")
-		$Ear3Player.set_process(dna.ear == "3")
+		var ear_player: AnimationPlayer = CreatureLoader.new_ear_player(dna.ear)
+		if not ear_player:
+			push_warning("Invalid ear: %s" % dna.ear)
+		else:
+			add_child(ear_player)
+			move_child(ear_player, $IdleTimer.get_position_in_parent() + 1)
+			ear_player.owner = self
+			ear_player.creature_visuals_path = ear_player.get_path_to(self)
 	
 	for key in dna.keys():
 		if key.find("property:") == 0:

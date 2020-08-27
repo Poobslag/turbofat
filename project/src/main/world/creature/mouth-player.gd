@@ -22,14 +22,13 @@ const FROWN_ANIMS = {
 	"think1": "",
 }
 
-export (NodePath) var emote_player_path: NodePath
+export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
-onready var _creature_visuals: CreatureVisuals = get_parent()
-onready var _emote_player: AnimationPlayer = get_node(emote_player_path)
+var _creature_visuals: CreatureVisuals
+var _emote_player: AnimationPlayer
 
 func _ready() -> void:
-	_creature_visuals.connect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
-	set_process(false)
+	_refresh_creature_visuals_path()
 
 
 func _process(_delta: float) -> void:
@@ -39,6 +38,46 @@ func _process(_delta: float) -> void:
 	
 	if not is_playing():
 		_play_mouth_ambient_animation()
+
+
+func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
+	creature_visuals_path = new_creature_visuals_path
+	_refresh_creature_visuals_path()
+
+
+"""
+Plays an eating animation.
+"""
+func eat() -> void:
+	if current_animation.begins_with("eat"):
+		stop()
+		play("eat-again")
+	else:
+		stop()
+		play("eat")
+
+
+func _refresh_creature_visuals_path() -> void:
+	if not (is_inside_tree() and creature_visuals_path):
+		return
+	
+	if _creature_visuals:
+		_creature_visuals.disconnect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
+		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+		_emote_player.disconnect("animation_started", self, "_on_EmotePlayer_animation_started")
+		_creature_visuals.get_idle_timer().disconnect(
+				"idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
+		_creature_visuals.get_idle_timer().disconnect(
+				"idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
+	
+	_creature_visuals = get_node(creature_visuals_path)
+	_emote_player = _creature_visuals.get_emote_player()
+	
+	_creature_visuals.connect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
+	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+	_emote_player.connect("animation_started", self, "_on_EmotePlayer_animation_started")
+	_creature_visuals.get_idle_timer().connect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
+	_creature_visuals.get_idle_timer().connect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
 
 
 """
@@ -78,22 +117,22 @@ func _on_CreatureVisuals_before_creature_arrived() -> void:
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
-	if is_processing() and not Engine.is_editor_hint():
+	if not Engine.is_editor_hint():
 		_creature_visuals.get_node("Neck0/HeadBobber/Mouth").z_index = 0
 		_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow").z_index = 0
 		_play_mouth_ambient_animation()
 
 
 func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
-	if is_processing() and anim_name in get_animation_list():
+	if anim_name in get_animation_list():
 		play(anim_name)
+
+
+func _on_IdleTimer_idle_animation_stopped() -> void:
+	if current_animation.begins_with("idle"):
+		stop()
 
 
 func _on_EmotePlayer_animation_started(_anim_name: String) -> void:
 	if current_animation.begins_with("ambient-"):
 		_play_mouth_ambient_animation()
-
-
-func _on_IdleTimer_idle_animation_stopped() -> void:
-	if is_processing() and current_animation.begins_with("idle"):
-		stop()
