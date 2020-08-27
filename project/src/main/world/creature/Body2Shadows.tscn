@@ -1,0 +1,94 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/main/world/creature/creature-curve.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/creature/arm-shadow.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/creature/body-shadows.gd" type="Script" id=3]
+
+[sub_resource type="Curve2D" id=1]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0.0132871, -28.7557, -0.0132871, 28.7557, -71.9184, -48.9366, -35.1478, -0.510676, 35.1478, 0.510676, 4.40906, 0.451691, -1.01159, 23.918, 1.01159, -23.918, 78.4915, -51.1815, 39.4804, 0.0106763, -39.4804, -0.0106763, 11.1438, -102.815, -0.98502, -37.2608, 0.98502, 37.2608, -71.9184, -51.1815 )
+}
+
+[sub_resource type="Curve2D" id=2]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 0.0132871, -18.8562, -0.0132871, 18.8562, -43.3209, -25.7077, -12.5204, -0.510676, 12.5204, 0.510676, -23.5219, 16.7188, 0.429193, 20.722, -0.429193, -20.722, -3.7229, -27.1219 )
+}
+
+[sub_resource type="Curve2D" id=3]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( -6.14105, 120.347, 6.14105, -120.347, -71.2125, 123.297, 0, 0, 0, 0, -67.5195, -45.2749, -53.2356, -1.9201, 53.2356, 1.9201, -3.26202, -13.9503, 0, 0, 0, 0, 50.3065, -45.2051, 3.34171, -88.48, -3.34171, 88.48, 53.3065, 121.814 )
+}
+
+[node name="Body" type="Node2D"]
+position = Vector2( 580, 850 )
+script = ExtResource( 3 )
+
+[node name="HeadShadow" type="Path2D" parent="."]
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+line_color = Color( 0.254902, 0.156863, 0.117647, 0 )
+fill_color = Color( 0, 0, 0, 1 )
+editing = false
+curve_defs = [ {
+"curve_def": [ [ Vector2( -71.9184, -48.9366 ), Vector2( 0.0132871, -28.7557 ), Vector2( -0.0132871, 28.7557 ) ], [ Vector2( 4.40906, 0.451691 ), Vector2( -35.1478, -0.510676 ), Vector2( 35.1478, 0.510676 ) ], [ Vector2( 78.4915, -51.1815 ), Vector2( -1.01159, 23.918 ), Vector2( 1.01159, -23.918 ) ], [ Vector2( 11.1438, -102.815 ), Vector2( 39.4804, 0.0106763 ), Vector2( -39.4804, -0.0106763 ) ], [ Vector2( -71.9184, -51.1815 ), Vector2( -0.98502, -37.2608 ), Vector2( 0.98502, 37.2608 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( -54.4694, -175.468 ), Vector2( 0.0132871, -28.7557 ), Vector2( -0.0132871, 28.7557 ) ], [ Vector2( 23.7187, -128.356 ), Vector2( -35.1478, -0.510676 ), Vector2( 35.1478, 0.510676 ) ], [ Vector2( 93.5086, -176.031 ), Vector2( -1.01159, 23.918 ), Vector2( 1.01159, -23.918 ) ], [ Vector2( 29.712, -230.241 ), Vector2( 39.4804, 0.0106763 ), Vector2( -39.4804, -0.0106763 ) ], [ Vector2( -54.4694, -176.966 ), Vector2( -0.98502, -37.2608 ), Vector2( 0.98502, 37.2608 ) ] ],
+"fatness": 3.0
+}, {
+"curve_def": [ [ Vector2( -62.4057, -304.309 ), Vector2( 0.0132871, -28.7557 ), Vector2( -0.0132871, 28.7557 ) ], [ Vector2( 24.4962, -253.367 ), Vector2( -42.7029, -0.510676 ), Vector2( 42.7029, 0.510676 ) ], [ Vector2( 106.903, -308.804 ), Vector2( -0.0127228, 28.4765 ), Vector2( 0.0127228, -28.4765 ) ], [ Vector2( 27.4927, -365.74 ), Vector2( 39.4804, 0.0106763 ), Vector2( -39.4804, -0.0106763 ) ], [ Vector2( -62.4057, -307.306 ), Vector2( 0.0138513, -40.2574 ), Vector2( -0.0138513, 40.2574 ) ] ],
+"fatness": 5.0
+}, {
+"curve_def": [ [ Vector2( -12.2013, -606.693 ), Vector2( 0.0132871, -28.7557 ), Vector2( -0.0132871, 28.7557 ) ], [ Vector2( 78.4106, -548.172 ), Vector2( -46.4804, -0.510676 ), Vector2( 46.4804, 0.510676 ) ], [ Vector2( 170.91, -610.468 ), Vector2( 0.486713, 30.7557 ), Vector2( -0.486713, -30.7557 ) ], [ Vector2( 89.7434, -668.309 ), Vector2( 39.4804, 0.0106763 ), Vector2( -39.4804, -0.0106763 ) ], [ Vector2( -12.2013, -608.58 ), Vector2( 0.513287, -41.7557 ), Vector2( -0.513287, 41.7557 ) ] ],
+"fatness": 10.0
+} ]
+
+[node name="ArmShadow" type="Path2D" parent="."]
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 2 )
+script = ExtResource( 2 )
+line_color = Color( 0, 0, 0, 0 )
+fill_color = Color( 0, 0, 0, 1 )
+editing = false
+curve_defs = [ {
+"curve_def": [ [ Vector2( -43.3209, -25.7077 ), Vector2( 0.0132871, -18.8562 ), Vector2( -0.0132871, 18.8562 ) ], [ Vector2( -23.5219, 16.7188 ), Vector2( -12.5204, -0.510676 ), Vector2( 12.5204, 0.510676 ) ], [ Vector2( -3.7229, -27.1219 ), Vector2( 0.429193, 20.722 ), Vector2( -0.429193, -20.722 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( -34.382, -41.4907 ), Vector2( -0.0915878, -20.4549 ), Vector2( 0.0915878, 20.4549 ) ], [ Vector2( -16.4227, 4.53021 ), Vector2( -13.1486, -0.615551 ), Vector2( 13.1486, 0.615551 ) ], [ Vector2( 0.414307, -43.7357 ), Vector2( 0.433865, 22.1801 ), Vector2( -0.433865, -22.1801 ) ] ],
+"fatness": 1.5
+}, {
+"curve_def": [ [ Vector2( -40.6024, -57.1281 ), Vector2( -0.196463, -22.0536 ), Vector2( 0.196463, 22.0536 ) ], [ Vector2( -24.2234, -11.7709 ), Vector2( -13.7767, -0.720426 ), Vector2( 13.7767, 0.720426 ) ], [ Vector2( -6.58453, -60.9078 ), Vector2( 0.438537, 23.6383 ), Vector2( -0.438537, -23.6383 ) ] ],
+"fatness": 2.0
+}, {
+"curve_def": [ [ Vector2( -56.8292, -108.066 ), Vector2( -0.406213, -25.2511 ), Vector2( 0.406213, 25.2511 ) ], [ Vector2( -39.1902, -41.2906 ), Vector2( -15.0331, -0.930176 ), Vector2( 15.0331, 0.930176 ) ], [ Vector2( -21.5513, -108.066 ), Vector2( 0.447881, 26.5545 ), Vector2( -0.447881, -26.5545 ) ] ],
+"fatness": 3.0
+}, {
+"curve_def": [ [ Vector2( -84.9582, -183.719 ), Vector2( -0.825712, -31.646 ), Vector2( 0.825712, 31.646 ) ], [ Vector2( -67.9876, -103.109 ), Vector2( -17.5457, -1.34968 ), Vector2( 17.5457, 1.34968 ) ], [ Vector2( -51.0171, -183.719 ), Vector2( 0.466568, 32.3871 ), Vector2( -0.466568, -32.3871 ) ] ],
+"fatness": 5.0
+}, {
+"curve_def": [ [ Vector2( -132.954, -366.841 ), Vector2( -1.87446, -47.6332 ), Vector2( 1.87446, 47.6332 ) ], [ Vector2( -112.92, -243.024 ), Vector2( -23.8274, -2.39842 ), Vector2( 23.8274, 2.39842 ) ], [ Vector2( -95.9306, -369.504 ), Vector2( 0.513287, 46.9685 ), Vector2( -0.513287, -46.9685 ) ] ],
+"fatness": 10.0
+} ]
+visible_when_facing_north = false
+
+[node name="BellyShadow" type="Path2D" parent="."]
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 3 )
+script = ExtResource( 1 )
+line_color = Color( 0, 0, 0, 0 )
+fill_color = Color( 0, 0, 0, 1 )
+editing = false
+curve_defs = [ {
+"curve_def": [ [ Vector2( -71.2125, 123.297 ), Vector2( -6.14105, 120.347 ), Vector2( 6.14105, -120.347 ) ], [ Vector2( -67.5195, -45.2749 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( -3.26202, -13.9503 ), Vector2( -53.2356, -1.9201 ), Vector2( 53.2356, 1.9201 ) ], [ Vector2( 50.3065, -45.2051 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 53.3065, 121.814 ), Vector2( 3.34171, -88.48 ), Vector2( -3.34171, 88.48 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( -277.604, 115.917 ), Vector2( 19.3148, 227.827 ), Vector2( -19.3148, -227.827 ) ], [ Vector2( -288.295, -126.407 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 3.92017, -58.6991 ), Vector2( -155.072, -3.80785 ), Vector2( 155.072, 3.80785 ) ], [ Vector2( 253.372, -119.28 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 246.245, 147.989 ), Vector2( 0.513287, -232.73 ), Vector2( -0.513287, 232.73 ) ] ],
+"fatness": 5.0
+}, {
+"curve_def": [ [ Vector2( -531.709, 275.346 ), Vector2( 19.3148, 227.827 ), Vector2( -19.3148, -227.827 ) ], [ Vector2( -527.472, -279.813 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 2.25995, -101.823 ), Vector2( -326.124, -3.80785 ), Vector2( 326.124, 3.80785 ) ], [ Vector2( 540.467, -275.575 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 540.467, 279.583 ), Vector2( 0.513287, -232.73 ), Vector2( -0.513287, 232.73 ) ] ],
+"fatness": 10.0
+} ]

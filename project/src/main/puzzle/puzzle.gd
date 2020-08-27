@@ -40,7 +40,7 @@ func summon_instructor(replace_current: bool = false) -> void:
 	Global.creature_queue.push_front({
 		"line_rgb": "6c4331", "body_rgb": "a854cb", "cloth_rgb": "4fa94e",
 		"hair_rgb": "f1e398", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
-		"head": "1",
+		"head": "1", "body": "1",
 		"ear": "3", "horn": "0", "mouth": "2", "eye": "2", "cheek": "0", "nose": "2",
 		"hair": "0", "collar": "0", "tail": "0",
 		"instructor": "true"

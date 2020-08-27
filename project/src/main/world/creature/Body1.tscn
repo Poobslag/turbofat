@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/world/creature/creature-body.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=11]
+
+[sub_resource type="Curve2D" id=1]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
+}
+
+[node name="Body" type="Path2D"]
+self_modulate = Color( 1, 1, 1, 1 )
+position = Vector2( 580, 850 )
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+fill_color = Color( 1, 0, 0, 1 )
+line_width = 2.0
+editing = false
+curve_defs = [ {
+"curve_def": [ [ Vector2( -11.158, -72.0639 ), Vector2( 24.9977, 0.341151 ), Vector2( -32.9037, -0.449047 ) ], [ Vector2( -62.0516, -16.4455 ), Vector2( -0.631155, -31.5491 ), Vector2( 0.500038, 24.995 ) ], [ Vector2( -13.1955, 28.0658 ), Vector2( -27.2528, -0.551655 ), Vector2( 30.9852, 0.627207 ) ], [ Vector2( 37.7671, -13.4088 ), Vector2( -0.010441, 25 ), Vector2( 0.011404, -27.3082 ) ], [ Vector2( -11.0971, -72.0781 ), Vector2( 27.0964, -1.30105 ), Vector2( -24.9712, 1.19901 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( 2.48196, -98.0519 ), Vector2( 24.9796, 1.01005 ), Vector2( -47.2111, -1.90899 ) ], [ Vector2( -73.3638, -25.1984 ), Vector2( -0.830624, -38.0932 ), Vector2( 0.634766, 29.1109 ) ], [ Vector2( 0.225128, 32.502 ), Vector2( -35.9932, -0.577805 ), Vector2( 42.1136, 0.676056 ) ], [ Vector2( 77.9952, -21.8535 ), Vector2( -0.801091, 32.9443 ), Vector2( 1.04004, -42.7709 ) ], [ Vector2( 3.64993, -98.0519 ), Vector2( 47.5356, -1.59304 ), Vector2( -24.986, 0.837346 ) ] ],
+"fatness": 1.5
+}, {
+"curve_def": [ [ Vector2( -0.795074, -123.774 ), Vector2( 24.9736, 1.14793 ), Vector2( -54.3328, -2.49744 ) ], [ Vector2( -103.721, -28.4092 ), Vector2( 0.105613, -58.0879 ), Vector2( -0.072546, 39.901 ) ], [ Vector2( -3.13336, 45.2353 ), Vector2( -63.8023, 0.391274 ), Vector2( 61.3144, -0.376016 ) ], [ Vector2( 99.2505, -28.4092 ), Vector2( -0.06645, 39.2979 ), Vector2( 0.097053, -57.3966 ) ], [ Vector2( -0.352325, -123.878 ), Vector2( 52.4123, -1.59304 ), Vector2( -24.9885, 0.759509 ) ] ],
+"fatness": 2.0
+}, {
+"curve_def": [ [ Vector2( -8.91397, -205.409 ), Vector2( 24.9987, 0.254314 ), Vector2( -81.0925, -0.824962 ) ], [ Vector2( -153.753, -56.6687 ), Vector2( -0.645028, -82.3391 ), Vector2( 0.43048, 54.9516 ) ], [ Vector2( -7.45096, 49.1566 ), Vector2( -83.8696, 1.41249 ), Vector2( 82.6315, -1.39163 ) ], [ Vector2( 138.364, -50.8166 ), Vector2( -0.945125, 49.6637 ), Vector2( 1.22209, -64.2175 ) ], [ Vector2( -8.91397, -204.922 ), Vector2( 88.3706, -1.59304 ), Vector2( -24.996, 0.450598 ) ] ],
+"fatness": 3.0
+}, {
+"curve_def": [ [ Vector2( -15.1975, -342.556 ), Vector2( 24.9942, -0.537486 ), Vector2( -120.34, 2.58783 ) ], [ Vector2( -262.069, -87.7643 ), Vector2( -2.46623, -173.91 ), Vector2( 1.31159, 92.489 ) ], [ Vector2( -29.1206, 90.6122 ), Vector2( -137.336, -0.624495 ), Vector2( 163.981, 0.745659 ) ], [ Vector2( 236.408, -78.8047 ), Vector2( -0.799582, 82.6504 ), Vector2( 1.55683, -160.925 ) ], [ Vector2( -14.9055, -342.556 ), Vector2( 128.187, -2.16184 ), Vector2( -24.9965, 0.421561 ) ] ],
+"fatness": 5.0
+}, {
+"curve_def": [ [ Vector2( -1.29367, -658.921 ), Vector2( 24.9962, 0.436254 ), Vector2( -186.573, -3.25622 ) ], [ Vector2( -494.142, -156.333 ), Vector2( -4.48658, -290.76 ), Vector2( 3.44123, 223.014 ) ], [ Vector2( -18.8258, 204.05 ), Vector2( -219.143, -2.18805 ), Vector2( 241.903, 2.4153 ) ], [ Vector2( 497.398, -131.008 ), Vector2( 2.04043, 215.119 ), Vector2( -3.31852, -349.867 ) ], [ Vector2( 0.654327, -658.921 ), Vector2( 194.42, -4.10986 ), Vector2( -24.9945, 0.528361 ) ] ],
+"fatness": 10.0
+} ]
+
+[node name="NeckBlend" type="Node2D" parent="."]
+position = Vector2( -1.11823, -102.515 )
+rotation = 3.13804
+scale = Vector2( 0.836, -0.836 )
+script = ExtResource( 11 )
+rect_size = Vector2( 512, 512 )
+frame = 1
