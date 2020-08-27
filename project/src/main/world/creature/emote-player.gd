@@ -114,7 +114,6 @@ func stop(reset: bool = true) -> void:
 Randomly advances the current animation up to 2.0 seconds. Used to ensure all creatures don't blink synchronously.
 """
 func advance_animation_randomly() -> void:
-	var old_animation_position := current_animation_position
 	advance(randf() * 2.0)
 
 

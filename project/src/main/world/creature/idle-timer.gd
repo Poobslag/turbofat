@@ -32,15 +32,15 @@ const IDLE_ANIMS := [
 ]
 
 # animationplayer which is monitored to see if the creature is in the 'ambient' state
-export (NodePath) var emote_anims_path: NodePath
+export (NodePath) var emote_player_path: NodePath
 
-onready var _emote_anims: AnimationPlayer = get_node(emote_anims_path)
+onready var _emote_player: AnimationPlayer = get_node(emote_player_path)
 
 func _ready() -> void:
-	_emote_anims.connect("animation_started", self, "_on_EmoteAnims_animation_started")
-	_emote_anims.connect("animation_stopped", self, "_on_EmoteAnims_animation_stopped")
-	_emote_anims.connect("animation_changed", self, "_on_EmoteAnims_animation_changed")
-	_emote_anims.connect("animation_finished", self, "_on_EmoteAnims_animation_finished")
+	_emote_player.connect("animation_started", self, "_on_EmotePlayer_animation_started")
+	_emote_player.connect("animation_stopped", self, "_on_EmotePlayer_animation_stopped")
+	_emote_player.connect("animation_changed", self, "_on_EmotePlayer_animation_changed")
+	_emote_player.connect("animation_finished", self, "_on_EmotePlayer_animation_finished")
 	connect("timeout", self, "_on_timeout")
 	
 	_update_state(true)
@@ -75,22 +75,22 @@ If the current animation is not 'ambient' state, the timer pauses and does not l
 func _update_state(start: bool = false) -> void:
 	if start:
 		start(rand_range(IDLE_FREQUENCY * 0.5, IDLE_FREQUENCY * 1.5))
-	paused = _emote_anims.current_animation != "ambient"
+	paused = _emote_player.current_animation != "ambient"
 
 
-func _on_EmoteAnims_animation_started(_anim_name: String) -> void:
+func _on_EmotePlayer_animation_started(_anim_name: String) -> void:
 	_update_state()
 
 
-func _on_EmoteAnims_animation_stopped(_anim_name: String) -> void:
+func _on_EmotePlayer_animation_stopped(_anim_name: String) -> void:
 	_update_state()
 
 
-func _on_EmoteAnims_animation_changed(_old_name: String, _new_name: String) -> void:
+func _on_EmotePlayer_animation_changed(_old_name: String, _new_name: String) -> void:
 	_update_state()
 
 
-func _on_EmoteAnims_animation_finished(_anim_name: String) -> void:
+func _on_EmotePlayer_animation_finished(_anim_name: String) -> void:
 	_update_state()
 
 

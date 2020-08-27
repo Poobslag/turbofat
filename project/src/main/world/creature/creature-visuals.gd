@@ -101,7 +101,7 @@ var _force_orientation_change := false
 # how fat the creature looks right now; gradually approaches the 'fatness' property
 export (float) var visual_fatness := 1.0 setget set_visual_fatness
 
-onready var _mouth_animation_player := $Mouth1Anims
+onready var _mouth_animation_player := $Mouth1Player
 
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
@@ -177,7 +177,7 @@ problems.
 """
 func _apply_tool_script_workaround() -> void:
 	if not _mouth_animation_player:
-		_mouth_animation_player = $Mouth1Anims
+		_mouth_animation_player = $Mouth1Player
 		_mouth_animation_player.set_process(true)
 
 
@@ -285,7 +285,7 @@ func feed(food_color: Color) -> void:
 	
 	$Neck0/HeadBobber/Food.modulate = food_color
 	$Neck0/HeadBobber/FoodLaser.modulate = food_color
-	$EmoteAnims.eat()
+	$EmotePlayer.eat()
 	if _mouth_animation_player.current_animation.begins_with("eat"):
 		_mouth_animation_player.stop()
 		_mouth_animation_player.play("eat-again")
@@ -321,7 +321,7 @@ func show_food_effects() -> void:
 Plays a movement animation with the specified prefix and direction, such as a 'run' animation going left.
 
 Parameters:
-	'animation_prefix': A partial name of an animation on $Creature/MovementAnims, omitting the directional suffix
+	'animation_prefix': A partial name of an animation on $Creature/MovementPlayer, omitting the directional suffix
 	
 	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 """
@@ -346,17 +346,17 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 	elif animation_prefix == "wiggle" and movement_mode != WIGGLE:
 		set_movement_mode(WIGGLE)
 	
-	if $MovementAnims.current_animation != animation_name:
-		if not $EmoteAnims.current_animation.begins_with("ambient") and not animation_name.begins_with("idle"):
+	if $MovementPlayer.current_animation != animation_name:
+		if not $EmotePlayer.current_animation.begins_with("ambient") and not animation_name.begins_with("idle"):
 			# don't unemote during sitting-still animations; only when changing movement stances
-			$EmoteAnims.unemote_immediate()
-		if $MovementAnims.current_animation.begins_with(animation_prefix):
-			var old_position: float = $MovementAnims.current_animation_position
+			$EmotePlayer.unemote_immediate()
+		if $MovementPlayer.current_animation.begins_with(animation_prefix):
+			var old_position: float = $MovementPlayer.current_animation_position
 			_suppress_sfx_signal_timer = 0.000000001
-			$MovementAnims.play(animation_name)
-			$MovementAnims.advance(old_position)
+			$MovementPlayer.play(animation_name)
+			$MovementPlayer.advance(old_position)
 		else:
-			$MovementAnims.play(animation_name)
+			$MovementPlayer.play(animation_name)
 		if not animation_name.begins_with("sprint"):
 			$TailZ0.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 			$TailZ1.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
@@ -395,7 +395,7 @@ func set_movement_mode(new_mode: int) -> void:
 Returns 'true' if the creature isn't doing anything important, and we can rotate their head or turn them around.
 """
 func is_idle() -> bool:
-	return not $MovementAnims.is_playing() or $MovementAnims.current_animation.begins_with("idle")
+	return not $MovementPlayer.is_playing() or $MovementPlayer.current_animation.begins_with("idle")
 
 
 """
@@ -410,9 +410,9 @@ func play_mood(mood: int) -> void:
 	if mood == ChatEvent.Mood.NONE:
 		pass
 	elif mood == ChatEvent.Mood.DEFAULT:
-		$EmoteAnims.unemote()
+		$EmotePlayer.unemote()
 	else:
-		$EmoteAnims.emote(mood)
+		$EmotePlayer.emote(mood)
 
 
 func restart_idle_timer() -> void:
@@ -428,7 +428,7 @@ func _update_creature_properties() -> void:
 		_apply_tool_script_workaround()
 	
 	# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
-	$EmoteAnims.unemote_immediate()
+	$EmotePlayer.unemote_immediate()
 	emit_signal("before_creature_arrived")
 	# reset the mouth/eye frame, otherwise we have one strange transition frame
 	reset_frames()
@@ -470,26 +470,26 @@ func _update_creature_properties() -> void:
 	$Neck0/HeadBobber.position = Vector2(0, -100)
 	
 	if _mouth_animation_player:
-		if $EmoteAnims.is_connected("animation_started", _mouth_animation_player, "_on_EmoteAnims_animation_started"):
-			$EmoteAnims.disconnect(
-					"animation_started", _mouth_animation_player, "_on_EmoteAnims_animation_started")
+		if $EmotePlayer.is_connected("animation_started", _mouth_animation_player, "_on_EmotePlayer_animation_started"):
+			$EmotePlayer.disconnect(
+					"animation_started", _mouth_animation_player, "_on_EmotePlayer_animation_started")
 		_mouth_animation_player.stop()
 	
 	if dna.has("mouth"):
-		$Mouth1Anims.set_process(dna.mouth == "1")
-		$Mouth2Anims.set_process(dna.mouth == "2")
-		$Mouth3Anims.set_process(dna.mouth == "3")
+		$Mouth1Player.set_process(dna.mouth == "1")
+		$Mouth2Player.set_process(dna.mouth == "2")
+		$Mouth3Player.set_process(dna.mouth == "3")
 		match dna.mouth:
-			"1": _mouth_animation_player = $Mouth1Anims
-			"2": _mouth_animation_player = $Mouth2Anims
-			"3": _mouth_animation_player = $Mouth3Anims
+			"1": _mouth_animation_player = $Mouth1Player
+			"2": _mouth_animation_player = $Mouth2Player
+			"3": _mouth_animation_player = $Mouth3Player
 			_: push_warning("Invalid mouth: %s" % dna.mouth)
-		$EmoteAnims.connect("animation_started", _mouth_animation_player, "_on_EmoteAnims_animation_started")
+		$EmotePlayer.connect("animation_started", _mouth_animation_player, "_on_EmotePlayer_animation_started")
 	
 	if dna.has("ear"):
-		$Ear1Anims.set_process(dna.ear == "1")
-		$Ear2Anims.set_process(dna.ear == "2")
-		$Ear3Anims.set_process(dna.ear == "3")
+		$Ear1Player.set_process(dna.ear == "1")
+		$Ear2Player.set_process(dna.ear == "2")
+		$Ear3Player.set_process(dna.ear == "3")
 	
 	for key in dna.keys():
 		if key.find("property:") == 0:

@@ -22,10 +22,10 @@ const FROWN_ANIMS = {
 	"think1": "",
 }
 
-export (NodePath) var emote_anims_path: NodePath
+export (NodePath) var emote_player_path: NodePath
 
 onready var _creature_visuals: CreatureVisuals = get_parent()
-onready var _emote_anims: AnimationPlayer = get_node(emote_anims_path)
+onready var _emote_player: AnimationPlayer = get_node(emote_player_path)
 
 func _ready() -> void:
 	_creature_visuals.connect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
@@ -47,11 +47,11 @@ Plays an appropriate mouth ambient animation for the creature's orientation and 
 func _play_mouth_ambient_animation() -> void:
 	var mouth_ambient_animation: String
 	if _creature_visuals.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
-		if _emote_anims.current_animation in ["", "ambient"] \
+		if _emote_player.current_animation in ["", "ambient"] \
 				and current_animation in ["ambient-se", "ambient-unhappy"]:
 			# keep old mood; otherwise we have one 'happy mouth frame' between two angry moods
 			mouth_ambient_animation = current_animation
-		elif has_animation("ambient-unhappy") and FROWN_ANIMS.has(_emote_anims.current_animation):
+		elif has_animation("ambient-unhappy") and FROWN_ANIMS.has(_emote_player.current_animation):
 			mouth_ambient_animation = "ambient-unhappy"
 		else:
 			mouth_ambient_animation = "ambient-se"
@@ -89,7 +89,7 @@ func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
 		play(anim_name)
 
 
-func _on_EmoteAnims_animation_started(_anim_name: String) -> void:
+func _on_EmotePlayer_animation_started(_anim_name: String) -> void:
 	if current_animation.begins_with("ambient-"):
 		_play_mouth_ambient_animation()
 
