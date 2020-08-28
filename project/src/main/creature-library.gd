@@ -19,6 +19,7 @@ const DEFAULT_DNA := {
 	"body_rgb": "b23823",
 	"belly": "1",
 	"belly_rgb": "c9442a",
+	"body": "1",
 	"cloth_rgb": "282828",
 	"hair_rgb": "f1e398",
 	"head": "1",

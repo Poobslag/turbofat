@@ -1,0 +1,40 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/world/creature/creature-body.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/world/creature/1/neck-blend-packed.png" type="Texture" id=2]
+[ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=11]
+
+[sub_resource type="Curve2D" id=86]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 527.875, -14.5819, -527.875, 14.5819, -1.29367, -658.921, 5.02708, -420.384, -5.02708, 420.384, -494.142, -156.333, -515.255, -10.5125, 515.255, 10.5125, -18.8258, 204.05, 7.98646, 433.933, -7.98646, -433.933, 497.398, -131.008, 514.317, 1.83618, -514.317, -1.83618, 0.654327, -658.921 )
+}
+
+[node name="Body" type="Path2D"]
+self_modulate = Color( 1, 1, 1, 1 )
+position = Vector2( 580, 850 )
+curve = SubResource( 86 )
+script = ExtResource( 1 )
+fill_color = Color( 1, 0, 0, 1 )
+line_width = 2.0
+editing = false
+curve_defs = [ {
+"curve_def": [ [ Vector2( -11.158, -72.0639 ), Vector2( 54.4705, 0.0954936 ), Vector2( -54.4705, -0.0954936 ) ], [ Vector2( -62.0516, -16.4455 ), Vector2( -0.277602, -51.3481 ), Vector2( 0.277602, 51.3481 ) ], [ Vector2( -13.1955, 28.0658 ), Vector2( -50.2338, -0.198102 ), Vector2( 50.2338, 0.198102 ) ], [ Vector2( 37.7671, -13.4088 ), Vector2( -1.0711, 58.9411 ), Vector2( 1.0711, -58.9411 ) ], [ Vector2( -11.0971, -72.0781 ), Vector2( 52.1987, 0.113164 ), Vector2( -52.1987, -0.113164 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( -1.29367, -658.921 ), Vector2( 527.875, -14.5819 ), Vector2( -527.875, 14.5819 ) ], [ Vector2( -494.142, -156.333 ), Vector2( 5.02708, -420.384 ), Vector2( -5.02708, 420.384 ) ], [ Vector2( -18.8258, 204.05 ), Vector2( -515.255, -10.5125 ), Vector2( 515.255, 10.5125 ) ], [ Vector2( 497.398, -131.008 ), Vector2( 7.98646, 433.933 ), Vector2( -7.98646, -433.933 ) ], [ Vector2( 0.654327, -658.921 ), Vector2( 514.317, 1.83618 ), Vector2( -514.317, -1.83618 ) ] ],
+"fatness": 10.0
+} ]
+
+[node name="NeckBlend" type="Node2D" parent="."]
+position = Vector2( -1.11823, -102.515 )
+rotation = 3.13804
+scale = Vector2( 0.836, -0.836 )
+script = ExtResource( 11 )
+texture = ExtResource( 2 )
+frame_data = "res://assets/main/world/creature/1/neck-blend-packed.json"
+rect_size = Vector2( 512, 512 )
+frame = 1
+centered = true
+offset = Vector2( 0, 0 )
+invisible_while_sprinting = false

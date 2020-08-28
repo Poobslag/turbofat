@@ -28,6 +28,30 @@ var _ear_player_scenes := {
 	"3": preload("res://src/main/world/creature/Ear3Player.tscn"),
 }
 
+# Scenes which draw different bodies
+var _body_scenes := {
+	"1": preload("res://src/main/world/creature/Body1.tscn"),
+	"2": preload("res://src/main/world/creature/Body2.tscn"),
+}
+
+# Scenes which draw belly colors for different bodies
+var _body_colors_scenes := {
+	"1": preload("res://src/main/world/creature/Body1Colors.tscn"),
+	"2": preload("res://src/main/world/creature/Body2Colors.tscn"),
+}
+
+# Scenes which draw body shadows for different bodies
+var _body_shadows_scenes := {
+	"1": preload("res://src/main/world/creature/Body1Shadows.tscn"),
+	"2": preload("res://src/main/world/creature/Body2Shadows.tscn"),
+}
+
+# AnimationPlayers which rearrange body parts for different bodies
+var _fat_sprite_mover_scenes := {
+	"1": preload("res://src/main/world/creature/FatSpriteMover1.tscn"),
+	"2": preload("res://src/main/world/creature/FatSpriteMover2.tscn"),
+}
+
 """
 Returns a random creature definition.
 """
@@ -52,6 +76,46 @@ func new_ear_player(ear_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
 	if _ear_player_scenes.has(ear_key):
 		result = _ear_player_scenes[ear_key].instance()
+	return result
+
+
+"""
+Returns a CreatureCurve for drawing a type of body.
+"""
+func new_body(body_key: String) -> CreatureCurve:
+	var result: CreatureCurve
+	if _body_scenes.has(body_key):
+		result = _body_scenes[body_key].instance()
+	return result
+
+
+"""
+Returns a Node2D for drawing belly colors for a type of body.
+"""
+func new_body_colors(body_key: String) -> Node2D:
+	var result: Node2D
+	if _body_colors_scenes.has(body_key):
+		result = _body_colors_scenes[body_key].instance()
+	return result
+
+
+"""
+Returns a Node2D for drawing shadows for a type of body.
+"""
+func new_body_shadows(body_key: String) -> Node2D:
+	var result: Node2D
+	if _body_shadows_scenes.has(body_key):
+		result = _body_shadows_scenes[body_key].instance()
+	return result
+
+
+"""
+Returns an AnimationPlayer which rearranges body parts for a type of bodyq.
+"""
+func new_fat_sprite_mover(body_key: String) -> AnimationPlayer:
+	var result: AnimationPlayer
+	if _fat_sprite_mover_scenes.has(body_key):
+		result = _fat_sprite_mover_scenes[body_key].instance()
 	return result
 
 
@@ -83,7 +147,7 @@ the key/value pair.
 Parameters:
 	'dna': The dictionary of key/value pairs defining a set of textures to load.
 	
-	'key': The specific key/value pair to be looked up.
+	'key': The specific key/value pair to be looked up. If the key is empty, the value will be hard-coded to '1'.
 	
 	'filename': The stripped-down filename of the resource to look up. All creature texture files have a path of
 		res://assets/main/world/creature/0/{something}.png, so this parameter only specifies the {something}.
@@ -93,13 +157,14 @@ func _load_texture(dna: Dictionary, node_path: String, key: String, filename: St
 	var resource_path: String
 	var frame_data: String
 	var resource: Resource
-	if not dna.has(key):
+	if key and not dna.has(key):
 		# The key was not specified in the creature definition. This is not an error condition, a creature might not
 		# have an 'ear' key if she doesn't have ears.
 		pass
 	else:
-		resource_path = "res://assets/main/world/creature/%s/%s.png" % [dna[key], filename]
-		frame_data = "res://assets/main/world/creature/%s/%s.json" % [dna[key], filename]
+		var dna_value: String = dna[key] if key else "1"
+		resource_path = "res://assets/main/world/creature/%s/%s.png" % [dna_value, filename]
+		frame_data = "res://assets/main/world/creature/%s/%s.json" % [dna_value, filename]
 		if not ResourceLoader.exists(resource_path):
 			# Avoid loading non-existent resources. Loading a non-existent resource returns null which is what we want,
 			# but also throws an error.
@@ -154,18 +219,18 @@ func _load_body(dna: Dictionary) -> void:
 	# All creatures have a body, but this class supports passing in an empty creature definition to unload the
 	# textures from creature sprites. So we leave those textures as null if we're not explicitly told to draw the
 	# creature's body.
-	_load_texture(dna, "Sprint", "body", "sprint-z0-packed")
-	_load_texture(dna, "FarArm", "body", "arm-z0-packed")
-	_load_texture(dna, "FarLeg", "body", "leg-z0-packed")
-	_load_texture(dna, "Body/Viewport/Body/NeckBlend", "body", "neck-blend-packed")
-	_load_texture(dna, "NearLeg", "body", "leg-z1-packed")
-	_load_texture(dna, "NearArm", "body", "arm-z1-packed")
-	_load_texture(dna, "Neck0/HeadBobber/Chin", "body", "chin-packed")
+	_load_texture(dna, "Sprint", "", "sprint-z0-packed")
+	_load_texture(dna, "FarArm", "", "arm-z0-packed")
+	_load_texture(dna, "FarLeg", "", "leg-z0-packed")
+	_load_texture(dna, "Body/Viewport/Body/NeckBlend", "", "neck-blend-packed")
+	_load_texture(dna, "NearLeg", "", "leg-z1-packed")
+	_load_texture(dna, "NearArm", "", "arm-z1-packed")
+	_load_texture(dna, "Neck0/HeadBobber/Chin", "", "chin-packed")
 	
 	_load_texture(dna, "TailZ0", "tail", "tail-z0-packed")
 	_load_texture(dna, "TailZ1", "tail", "tail-z1-packed")
 	
-	dna["property:BodyColors:belly"] = dna.get("belly", 0)
+	dna["property:BodyColors/Viewport/Body:belly"] = dna.get("belly", 0)
 
 
 """

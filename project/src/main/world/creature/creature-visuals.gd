@@ -178,6 +178,8 @@ func reset_frames(value: bool = true) -> void:
 	reset_eye_frames()
 	$Neck0/HeadBobber/Mouth.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 	$Neck0/HeadBobber/Chin.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	$TailZ0.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	$TailZ1.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 	emit_signal("orientation_changed", -1, orientation)
 
 
@@ -240,10 +242,12 @@ func set_orientation(new_orientation: int) -> void:
 	
 	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
 	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
-	$Body/Viewport/Body.scale = \
-			Vector2(1, 1) if orientation in [SOUTHEAST, SOUTHWEST] else Vector2(-1, 1)
-	$BodyShadows/Viewport/Body.scale = \
-			Vector2(1, 1) if orientation in [SOUTHEAST, SOUTHWEST] else Vector2(-1, 1)
+	if has_node("Body/Viewport/Body"):
+		$Body/Viewport/Body.scale = \
+				Vector2(1, 1) if orientation in [SOUTHEAST, SOUTHWEST] else Vector2(-1, 1)
+	if has_node("BodyShadows/Viewport/Body"):
+		$BodyShadows/Viewport/Body.scale = \
+				Vector2(1, 1) if orientation in [SOUTHEAST, SOUTHWEST] else Vector2(-1, 1)
 	
 	if _force_orientation_change:
 		# some listeners try to distinguish between 'big orientation changes' and 'little orientation changes'. if
@@ -429,7 +433,6 @@ func _update_creature_properties() -> void:
 		$Sprint,
 		$TailZ0,
 		$TailZ1,
-		$Body/Viewport/Body/NeckBlend,
 		$Neck0/HeadBobber/CheekZ0,
 		$Neck0/HeadBobber/CheekZ1,
 		$Neck0/HeadBobber/CheekZ2,
@@ -451,8 +454,9 @@ func _update_creature_properties() -> void:
 		$Neck0/HeadBobber/Nose,
 	]:
 		var packed_sprite: PackedSprite = packed_sprite_obj
-		packed_sprite.texture = null
-		packed_sprite.frame_data = ""
+		if packed_sprite:
+			packed_sprite.texture = null
+			packed_sprite.frame_data = ""
 	$Body.rect_position = Vector2(-580, -850)
 	$Neck0/HeadBobber.position = Vector2(0, -100)
 	
@@ -465,6 +469,26 @@ func _update_creature_properties() -> void:
 		var old_ear_player := get_node("EarPlayer")
 		remove_child(old_ear_player)
 		old_ear_player.queue_free()
+	
+	if has_node("Body/Viewport/Body"):
+		var old_body := get_node("Body/Viewport/Body")
+		$Body/Viewport.remove_child(old_body)
+		old_body.queue_free()
+	
+	if has_node("BodyColors/Viewport/Body"):
+		var old_body_colors := get_node("BodyColors/Viewport/Body")
+		$BodyColors/Viewport.remove_child(old_body_colors)
+		old_body_colors.queue_free()
+	
+	if has_node("BodyShadows/Viewport/Body"):
+		var old_body_shadows := get_node("BodyShadows/Viewport/Body")
+		$BodyShadows/Viewport.remove_child(old_body_shadows)
+		old_body_shadows.queue_free()
+	
+	if has_node("FatSpriteMover"):
+		var old_mover := get_node("FatSpriteMover")
+		remove_child(old_mover)
+		old_mover.queue_free()
 	
 	if dna.has("mouth"):
 		_mouth_player = CreatureLoader.new_mouth_player(dna.mouth)
@@ -486,27 +510,58 @@ func _update_creature_properties() -> void:
 			ear_player.owner = self
 			ear_player.creature_visuals_path = ear_player.get_path_to(self)
 	
+	if dna.has("body"):
+		var body: Node2D = CreatureLoader.new_body(dna.body)
+		if not body:
+			push_warning("Invalid body: %s" % dna.body)
+		else:
+			$Body/Viewport.add_child(body)
+			body.owner = self
+			body.creature_visuals_path = body.get_path_to(self)
+			
+		var body_colors: Node2D = CreatureLoader.new_body_colors(dna.body)
+		if not body_colors:
+			push_warning("Invalid body colors: %s" % dna.body)
+		else:
+			$BodyColors/Viewport.add_child(body_colors)
+			body_colors.owner = self
+			body_colors.creature_visuals_path = body.get_path_to(self)
+		
+		var body_shadows: Node2D = CreatureLoader.new_body_shadows(dna.body)
+		if not body_shadows:
+			push_warning("Invalid body shadows: %s" % dna.body)
+		else:
+			$BodyShadows/Viewport.add_child(body_shadows)
+			body_shadows.owner = self
+			body_shadows.creature_visuals_path = body.get_path_to(self)
+		
+		var fat_sprite_mover: AnimationPlayer = CreatureLoader.new_fat_sprite_mover(dna.body)
+		if not fat_sprite_mover:
+			push_warning("Invalid fat sprite mover: %s" % dna.body)
+		else:
+			add_child(fat_sprite_mover)
+			fat_sprite_mover.owner = self
+			fat_sprite_mover.creature_visuals_path = fat_sprite_mover.get_path_to(self)
+	
 	for key in dna.keys():
 		if key.find("property:") == 0:
 			var node_path: String = key.split(":")[1]
 			var property_name: String = key.split(":")[2]
 			var property_value = dna[key]
-			if node_path == "BodyColors" and property_name == "belly":
+			if node_path == "BodyColors/Viewport/Body" and property_name == "belly":
 				# set_belly requires an int, not a string
 				property_value = int(property_value)
 			if has_node(node_path):
 				get_node(node_path).set(property_name, property_value)
-			else:
-				push_warning("node not found for key: %s" % key)
 		if key.find("shader:") == 0:
 			var node_path: String = key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
 			var shader_value = dna[key]
 			if has_node(node_path):
 				get_node(node_path).material.set_shader_param(shader_param, shader_value)
-			else:
-				push_warning("node not found for key: %s" % key)
-	$Body/Viewport/Body.update()
+	
+	if has_node("Body/Viewport/Body"):
+		$Body/Viewport/Body.update()
 	visible = true
 	emit_signal("creature_arrived")
 

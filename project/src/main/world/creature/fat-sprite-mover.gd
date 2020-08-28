@@ -6,13 +6,43 @@ While this is an AnimationPlayer, the animation is only used to rearrange their 
 played as an animation.
 """
 
-export (NodePath) var creature_visuals_path: NodePath
+export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
-onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
+var _creature_visuals: CreatureVisuals
 
 func _ready() -> void:
+	_refresh_creature_visuals_path()
+
+
+func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
+	creature_visuals_path = new_creature_visuals_path
+	_refresh_creature_visuals_path()
+
+
+func _refresh_creature_visuals_path() -> void:
+	if not (is_inside_tree() and creature_visuals_path):
+		return
+	
+	if _creature_visuals:
+		_creature_visuals.disconnect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
+		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+		_creature_visuals.disconnect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
+	
+	_creature_visuals = get_node(creature_visuals_path)
+	
 	_creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
 	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+	_creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
+
+
+func _refresh_sprite_positions() -> void:
+	if not is_inside_tree():
+		return
+	
+	play("fat-se" if _creature_visuals.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST] else "fat-nw")
+	advance(_creature_visuals.visual_fatness)
+	stop()
+	_creature_visuals.emit_signal("head_moved")
 
 
 func _on_CreatureVisuals_visual_fatness_changed() -> void:
@@ -21,13 +51,6 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
 	_refresh_sprite_positions()
-
-
-func _refresh_sprite_positions() -> void:
-	play("fat-se" if _creature_visuals.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST] else "fat-nw")
-	advance(_creature_visuals.visual_fatness)
-	stop()
-	_creature_visuals.emit_signal("head_moved")
 
 
 func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:

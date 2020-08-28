@@ -3,6 +3,7 @@
   "id": "ebe",
   "name": "Ebe",
   "dna": {
+    "body": "1",
     "body_rgb": "feceef",
     "belly": "1",
     "belly_rgb": "ffeffc",
@@ -10,6 +11,7 @@
     "ear": "1",
     "eye": "1",
     "eye_rgb": "ffddf4 ffffff",
+    "head": "3",
     "horn": "2",
     "horn_rgb": "ffffff",
     "line_rgb": "6c4331",

@@ -177,9 +177,9 @@ static func fill_dna(dna: Dictionary) -> Dictionary:
 		# avoid loading unnecessary resources for things like the level editor
 		pass
 	else:
-		for allele in ["head", "cheek", "ear", "eye", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
+		for allele in ["body", "head", "cheek", "ear", "eye", "horn", "mouth",
+				"nose", "hair", "collar", "tail", "belly"]:
 			put_if_absent(result, allele, Utils.rand_value(weighted_allele_values(result, allele)))
-	put_if_absent(result, "body", "1")
 	return result
 
 
@@ -204,6 +204,7 @@ static func unique_allele_values(property: String) -> Array:
 	else:
 		# other properties
 		match property:
+			"body": result = ["1"]
 			"head": result = ["1", "2", "3", "4", "5"]
 			"belly": result = ["0", "1", "2"]
 			"cheek": result = ["0", "1", "2", "3"]
@@ -242,6 +243,7 @@ static func weighted_allele_values(dna: Dictionary, property: String) -> Array:
 	else:
 		# other properties
 		match property:
+			"body": result = ["1"]
 			"head": result = ["1", "1", "1", "1", "1", "1", "2", "3", "4", "5"]
 			"belly": result = ["0", "0", "1", "1", "2"]
 			"cheek": result = ["0", "0", "0", "1", "1", "2", "2", "3"]
