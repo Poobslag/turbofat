@@ -149,9 +149,10 @@ func _on_Hud_start_button_pressed() -> void:
 Triggers the 'creature feeding' animation.
 """
 func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	# Calculate whether or not the creature should say something positive about the combo. The creature talks after
-	var creature_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 5 \
-			and total_lines > ($Playfield/ComboTracker.combo + 1) % 3
+	# Calculate whether or not the creature should say something positive about the combo.
+	# They say something after clearing [6, 12, 18, 24...] lines.
+	var creature_talks: bool = remaining_lines == 0 and $Playfield/ComboTracker.combo >= 6 \
+			and total_lines > $Playfield/ComboTracker.combo % 6
 	
 	_calculate_food_color(box_ints)
 	_feed_creature(1.0 / (remaining_lines + 1), _food_color)
