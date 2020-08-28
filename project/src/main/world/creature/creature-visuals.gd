@@ -237,17 +237,14 @@ func set_orientation(new_orientation: int) -> void:
 		$Neck0.z_index = 0 if orientation in [SOUTHWEST, SOUTHEAST] else -1
 	
 	# sprites are drawn facing southeast/northwest, and are horizontally flipped for other directions
-	scale = \
-			Vector2(1, 1) if orientation in [SOUTHEAST, NORTHWEST] else Vector2(-1, 1)
+	scale.x = abs(scale.x) if orientation in [SOUTHEAST, NORTHWEST] else -abs(scale.x)
 	
 	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
 	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
 	if has_node("Body/Viewport/Body"):
-		$Body/Viewport/Body.scale = \
-				Vector2(1, 1) if orientation in [SOUTHEAST, SOUTHWEST] else Vector2(-1, 1)
+		$Body/Viewport/Body.scale.x = 1 if orientation in [SOUTHEAST, SOUTHWEST] else -1
 	if has_node("BodyShadows/Viewport/Body"):
-		$BodyShadows/Viewport/Body.scale = \
-				Vector2(1, 1) if orientation in [SOUTHEAST, SOUTHWEST] else Vector2(-1, 1)
+		$BodyShadows/Viewport/Body.scale.x = 1 if orientation in [SOUTHEAST, SOUTHWEST] else -1
 	
 	if _force_orientation_change:
 		# some listeners try to distinguish between 'big orientation changes' and 'little orientation changes'. if
@@ -421,8 +418,6 @@ func _update_creature_properties() -> void:
 	# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
 	$EmotePlayer.unemote_immediate()
 	emit_signal("before_creature_arrived")
-	# reset the mouth/eye frame, otherwise we have one strange transition frame
-	reset_frames()
 	
 	for packed_sprite_obj in [
 		$Collar,
@@ -560,9 +555,12 @@ func _update_creature_properties() -> void:
 			if has_node(node_path):
 				get_node(node_path).material.set_shader_param(shader_param, shader_value)
 	
-	if has_node("Body/Viewport/Body"):
-		$Body/Viewport/Body.update()
+	scale = Vector2(0.60, 0.60) if dna.get("body") == "2" else Vector2(1.00, 1.00)
 	visible = true
+	
+	# initialize creature curves, and reset the mouth/eye frame to avoid a strange transition frame
+	reset_frames()
+	
 	emit_signal("creature_arrived")
 
 

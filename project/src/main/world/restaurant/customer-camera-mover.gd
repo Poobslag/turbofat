@@ -47,7 +47,12 @@ func _physics_process(delta: float) -> void:
 
 func _refresh_target_camera_position() -> void:
 	play("fat-se")
-	advance(_restaurant_scene.get_customer(_restaurant_scene.current_creature_index).get_visual_fatness())
+	var customer := _restaurant_scene.get_customer(_restaurant_scene.current_creature_index)
+	if customer.dna.get("body") == "2":
+		# small creatures (squirrels) don't advance the camera as far
+		advance(customer.get_visual_fatness() * customer.creature_visuals.scale.y)
+	else:
+		advance(customer.get_visual_fatness())
 	stop()
 	target_camera_position.x += 2000 * _restaurant_scene.current_creature_index
 

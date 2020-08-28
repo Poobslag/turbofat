@@ -359,18 +359,19 @@ The run speed varies based on how fat the creature is.
 func _update_animation() -> void:
 	if non_iso_walk_direction.length() > 0:
 		var animation_prefix: String
+		_run_anim_speed = creature_visuals.scale.y
 		if creature_visuals.fatness >= 3.5:
 			animation_prefix = "wiggle"
-			_run_anim_speed = 0.200
+			_run_anim_speed *= 0.200
 		elif creature_visuals.fatness >= 2.2:
 			animation_prefix = "walk"
-			_run_anim_speed = 0.400
+			_run_anim_speed *= 0.400
 		elif creature_visuals.fatness >= 1.1:
 			animation_prefix = "run"
-			_run_anim_speed = 0.700
+			_run_anim_speed *= 0.700
 		else:
 			animation_prefix = "sprint"
-			_run_anim_speed = 1.000
+			_run_anim_speed *= 1.000
 		
 		play_movement_animation(animation_prefix, non_iso_walk_direction)
 	elif creature_visuals.movement_mode != CreatureVisuals.IDLE:

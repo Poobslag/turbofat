@@ -14,7 +14,6 @@ export (Vector2) var shadow_scale := Vector2(1.0, 1.0)
 var _creature: Creature
 
 func _ready() -> void:
-	$Sprite.scale = Vector2(0.17, 0.17) * shadow_scale
 	visible = false
 	_refresh_creature_path()
 
@@ -39,12 +38,21 @@ func _refresh_creature_path() -> void:
 	
 	if _creature and _creature.is_connected("visual_fatness_changed", self, "_on_Creature_visual_fatness_changed"):
 		_creature.disconnect("visual_fatness_changed", self, "_on_Creature_visual_fatness_changed")
+		_creature.disconnect("creature_arrived", self, "_on_Creature_creature_arrived")
 	_creature = get_node(creature_path)
-	position = _creature.position + shadow_offset
 	_creature.connect("visual_fatness_changed", self, "_on_Creature_visual_fatness_changed")
+	_creature.connect("creature_arrived", self, "_on_Creature_creature_arrived")
+	
+	position = _creature.position + shadow_offset
+	if _creature.creature_visuals:
+		$Sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y
 
 
 func _on_Creature_visual_fatness_changed() -> void:
 	$FatPlayer.play("fat")
 	$FatPlayer.advance(_creature.get_visual_fatness())
 	$FatPlayer.stop()
+
+
+func _on_Creature_creature_arrived() -> void:
+	$Sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y

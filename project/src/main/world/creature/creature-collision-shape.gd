@@ -22,7 +22,7 @@ func _refresh() -> void:
 	var rectangle_shape: RectangleShape2D = shape
 	
 	# increase collision shape size for fatter creatures
-	rectangle_shape.extents = Vector2(16, 8) * _creature_visuals.visual_fatness
+	rectangle_shape.extents = Vector2(16, 8) * _creature_visuals.visual_fatness * _creature_visuals.scale.y
 	
 	# small creatures still occupy a minimal amount of space
 	rectangle_shape.extents.x = max(rectangle_shape.extents.x, 28)

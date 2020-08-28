@@ -1,3 +1,4 @@
+#tool #uncomment to view creature in editor
 extends CreatureCurve
 """
 The shadow drawn below the creature's arm.

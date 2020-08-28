@@ -60,7 +60,7 @@ func _ready() -> void:
 	
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 	
-	for allele in ["head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
+	for allele in ["body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
 		_recent_tweaked_allele_values[allele] = []
 	
 	center_creature.set_meta("main_creature", true)
@@ -105,7 +105,7 @@ func _mutate_creature(creature: Creature) -> void:
 	creature.creature_def = center_creature.creature_def
 	var dna := {}
 	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb",
-		"head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
+		"body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
 		if center_creature.dna.has(allele):
 			dna[allele] = center_creature.dna[allele]
 	
@@ -237,7 +237,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 	creature.creature_def = center_creature.creature_def
 	var dna := {}
 	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb",
-		"head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
+		"body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
 		if center_creature.dna.has(allele):
 			dna[allele] = center_creature.dna[allele]
 	

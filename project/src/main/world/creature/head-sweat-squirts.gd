@@ -1,14 +1,34 @@
+#tool #uncomment to view creature in editor
 extends Particles2D
 """
 Manages the sweat drops which leap from the creature's head.
 """
 
-export var creature_visuals_path: NodePath
+export var creature_visuals_path: NodePath setget set_creature_visuals_path
 
-onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
+var _creature_visuals: CreatureVisuals
 
 func _ready() -> void:
+	_refresh_creature_visuals_path()
+
+
+func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
+	creature_visuals_path = new_creature_visuals_path
+	_refresh_creature_visuals_path()
+
+
+func _refresh_creature_visuals_path() -> void:
+	if not (is_inside_tree() and creature_visuals_path):
+		return
+	
+	if _creature_visuals:
+		_creature_visuals.disconnect("comfort_changed", self, "_on_CreatureVisuals_comfort_changed")
+		_creature_visuals.disconnect("creature_arrived", self, "_on_CreatureVisuals_creature_arrived")
+	
+	_creature_visuals = get_node(creature_visuals_path)
+	
 	_creature_visuals.connect("comfort_changed", self, "_on_CreatureVisuals_comfort_changed")
+	_creature_visuals.connect("creature_arrived", self, "_on_CreatureVisuals_creature_arrived")
 
 
 func _on_CreatureVisuals_comfort_changed() -> void:
@@ -16,3 +36,8 @@ func _on_CreatureVisuals_comfort_changed() -> void:
 	if emitting:
 		var sweat_amount := clamp(inverse_lerp(-0.6, -1.0, _creature_visuals.comfort), 0.0, 1.0)
 		amount = lerp(3, 8, sweat_amount)
+
+
+func _on_CreatureVisuals_creature_arrived() -> void:
+	var particles_material: ParticlesMaterial = process_material
+	particles_material.scale = _creature_visuals.scale.x * 1.7

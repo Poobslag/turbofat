@@ -13,6 +13,9 @@ func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
 
 
 func _refresh_creature_visuals_path() -> void:
+	if not (is_inside_tree() and creature_visuals_path):
+		return
+	
 	if creature_visuals_path and has_node(creature_visuals_path):
 		$HeadShadow.creature_visuals_path = $HeadShadow.get_path_to(get_node(creature_visuals_path))
 		$ArmShadow.creature_visuals_path = $ArmShadow.get_path_to(get_node(creature_visuals_path))

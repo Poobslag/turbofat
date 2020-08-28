@@ -120,7 +120,7 @@ anims/fat-se = SubResource( 1 )
 script = ExtResource( 9 )
 restaurant_scene_path = NodePath("../RestaurantViewport/Scene")
 customer_camera_path = NodePath("../CustomerView/Viewport/Camera2D")
-target_camera_position = Vector2( 778.571, 490 )
+target_camera_position = Vector2( 770, 650 )
 
 [node name="ChefClip" type="Light2D" parent="."]
 position = Vector2( 875.713, 224.956 )

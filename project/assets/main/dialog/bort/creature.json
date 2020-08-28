@@ -3,7 +3,7 @@
   "id": "bort",
   "name": "Bort",
   "dna": {
-    "body": "1",
+    "body": "2",
     "body_rgb": "70843a",
     "belly": "2",
     "belly_rgb": "a9aa2f",
@@ -19,7 +19,7 @@
     "cheek": "1",
     "tail": "0"
   },
-  "fatness": 2.0,
+  "fatness": 1.5,
   "chat_theme_def": {
     "accent_scale": 2.6,
     "accent_swapped": false,
