@@ -12,6 +12,7 @@ onready var _movement_player: AnimationPlayer = get_node(movement_player_path)
 
 func _ready() -> void:
 	_movement_player.connect("animation_started", self, "_on_MovementPlayer_animation_started")
+	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 
 
 func _process(_delta: float) -> void:

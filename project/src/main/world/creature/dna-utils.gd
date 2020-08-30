@@ -151,6 +151,8 @@ const ALLELE_NAMES := {
 	"tail-2": "Cute Cat",
 	"tail-3": "Devil",
 	"tail-4": "Bunny",
+	"tail-5": "Soft Squirrel",
+	"tail-6": "Fancy Squirrel",
 }
 
 """
@@ -218,7 +220,7 @@ static func unique_allele_values(property: String) -> Array:
 			"nose": result = ["0", "1", "2", "3"]
 			"hair": result = ["0", "1", "2"]
 			"collar": result = ["0", "1", "2", "3"]
-			"tail": result = ["0", "1", "2", "3", "4"]
+			"tail": result = ["0", "1", "2", "3", "4", "5", "6"]
 	
 	return result
 
@@ -276,6 +278,6 @@ static func weighted_allele_values(dna: Dictionary, property: String) -> Array:
 					# creatures with beaky mouths are less likely to have a fuzzy neck
 					result += ["0", "0", "0", "0", "0", "0", "0", "1", "1"]
 			"tail":
-				result = ["0", "0", "0", "0", "0", "0", "0", "0", "1", "2", "3", "4"]
+				result = ["0", "0", "0", "0", "0", "0", "0", "0", "1", "2", "3", "4", "5", "6"]
 	
 	return result
