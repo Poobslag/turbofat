@@ -99,6 +99,7 @@ const ALLELE_NAMES := {
 	"eye-1": "Giant",
 	"eye-2": "Zen",
 	"eye-3": "Decaf",
+	"eye-4": "Ping Pong",
 	
 	"nose-0": "(none)",
 	"nose-1": "Nub",
@@ -117,11 +118,14 @@ const ALLELE_NAMES := {
 	"cheek-1": "Razor Sharp",
 	"cheek-2": "Fluffy Tuft",
 	"cheek-3": "Fish Whisker",
+	"cheek-4": "Fat Whisker",
 	
 	"ear-0": "(none)",
 	"ear-1": "Cattail",
 	"ear-2": "Cannon",
 	"ear-3": "Dangler",
+	"ear-4": "Nubble",
+	"ear-5": "Pancake",
 	
 	"horn-0": "(none)",
 	"horn-1": "Straw Hole",
@@ -212,9 +216,9 @@ static func unique_allele_values(property: String) -> Array:
 			"body": result = ["1", "2"]
 			"head": result = ["1", "2", "3", "4", "5"]
 			"belly": result = ["0", "1", "2"]
-			"cheek": result = ["0", "1", "2", "3"]
-			"ear": result = ["1", "2", "3"]
-			"eye": result = ["1", "2", "3"]
+			"cheek": result = ["0", "1", "2", "3", "4"]
+			"ear": result = ["1", "2", "3", "4", "5"]
+			"eye": result = ["1", "2", "3", "4"]
 			"horn": result = ["0", "1", "2"]
 			"mouth": result = ["1", "2", "3"]
 			"nose": result = ["0", "1", "2", "3"]
@@ -251,9 +255,9 @@ static func weighted_allele_values(dna: Dictionary, property: String) -> Array:
 			"body": result = ["1", "1", "1", "1", "1", "1", "2"]
 			"head": result = ["1", "1", "1", "1", "1", "1", "2", "3", "4", "5"]
 			"belly": result = ["0", "0", "1", "1", "2"]
-			"cheek": result = ["0", "0", "0", "1", "1", "2", "2", "3"]
-			"ear": result = ["1", "1", "1", "2", "3"]
-			"eye": result = ["1", "1", "1", "2", "3"]
+			"cheek": result = ["0", "0", "0", "1", "1", "2", "2", "3", "4", "4"]
+			"ear": result = ["1", "1", "1", "2", "3", "4", "4", "5"]
+			"eye": result = ["1", "1", "1", "2", "3", "4"]
 			"horn": result = ["0", "0", "0", "1", "2"]
 			"mouth":
 				result = ["1", "1", "2", "3", "3"]

@@ -26,6 +26,8 @@ var _ear_player_scenes := {
 	"1": preload("res://src/main/world/creature/Ear1Player.tscn"),
 	"2": preload("res://src/main/world/creature/Ear2Player.tscn"),
 	"3": preload("res://src/main/world/creature/Ear3Player.tscn"),
+	"4": preload("res://src/main/world/creature/Ear4Player.tscn"),
+	"5": preload("res://src/main/world/creature/Ear5Player.tscn"),
 }
 
 # Scenes which draw different bodies
