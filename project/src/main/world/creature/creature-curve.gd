@@ -95,6 +95,7 @@ Can be overridden to disconnect additional listeners.
 func disconnect_creature_visuals_listeners() -> void:
 	creature_visuals.disconnect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
 	creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+	creature_visuals.disconnect("creature_arrived", self, "_on_CreatureVisuals_creature_arrived")
 
 
 """
@@ -105,6 +106,7 @@ Can be overridden to connect additional listeners.
 func connect_creature_visuals_listeners() -> void:
 	creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
 	creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+	creature_visuals.connect("creature_arrived", self, "_on_CreatureVisuals_creature_arrived")
 
 
 func _refresh_creature_visuals_path() -> void:
@@ -164,3 +166,7 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
 	refresh_visible()
+
+
+func _on_CreatureVisuals_creature_arrived() -> void:
+	_refresh_curve()

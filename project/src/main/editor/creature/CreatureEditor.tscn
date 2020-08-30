@@ -107,6 +107,7 @@ dna = {
 "nose": "3",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
+"property:BodyColors/Viewport/Body:belly": "2",
 "property:BodyColors:belly": "2",
 "property:Collar:frame_data": "res://assets/main/world/creature/3/collar-packed.json",
 "property:Collar:texture": ExtResource( 59 ),
@@ -248,6 +249,7 @@ dna = {
 "nose": "0",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
+"property:BodyColors/Viewport/Body:belly": "1",
 "property:BodyColors:belly": "1",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
@@ -391,6 +393,7 @@ dna = {
 "nose": "2",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
+"property:BodyColors/Viewport/Body:belly": "2",
 "property:BodyColors:belly": "2",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
@@ -538,6 +541,7 @@ dna = {
 "nose": "1",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
+"property:BodyColors/Viewport/Body:belly": "2",
 "property:BodyColors:belly": "2",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
@@ -685,6 +689,7 @@ dna = {
 "nose": "2",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
+"property:BodyColors/Viewport/Body:belly": "0",
 "property:BodyColors:belly": "0",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
@@ -834,6 +839,7 @@ dna = {
 "nose": "3",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
+"property:BodyColors/Viewport/Body:belly": "0",
 "property:BodyColors:belly": "0",
 "property:Collar:frame_data": "res://assets/main/world/creature/2/collar-packed.json",
 "property:Collar:texture": ExtResource( 43 ),
@@ -975,6 +981,7 @@ dna = {
 "nose": "0",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
+"property:BodyColors/Viewport/Body:belly": "1",
 "property:BodyColors:belly": "1",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
@@ -1165,7 +1172,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/TabContainer/Mutate/ScrollContainer"]
 margin_right = 400.0
-margin_bottom = 531.0
+margin_bottom = 562.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -1177,7 +1184,7 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 395.0
-margin_bottom = 526.0
+margin_bottom = 557.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 5
@@ -1257,16 +1264,22 @@ rect_min_size = Vector2( 205, 0 )
 text = "Overall Color"
 allele = "body_rgb"
 
-[node name="Face" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
+[node name="Body" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
 margin_top = 87.0
 margin_bottom = 113.0
+text = "Body"
+allele = "body"
+
+[node name="Face" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
+margin_top = 118.0
+margin_bottom = 144.0
 text = "Face"
 allele = "head"
 
 [node name="EyeContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 118.0
+margin_top = 149.0
 margin_right = 390.0
-margin_bottom = 144.0
+margin_bottom = 175.0
 custom_constants/separation = 5
 
 [node name="Eye" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/EyeContainer" instance=ExtResource( 11 )]
@@ -1284,33 +1297,33 @@ text = "Color"
 allele = "eye_rgb"
 
 [node name="Nose" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 149.0
-margin_bottom = 175.0
+margin_top = 180.0
+margin_bottom = 206.0
 text = "Nose"
 allele = "nose"
 
 [node name="Mouth" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 180.0
-margin_bottom = 206.0
+margin_top = 211.0
+margin_bottom = 237.0
 text = "Mouth"
 allele = "mouth"
 
 [node name="Cheek" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 211.0
-margin_bottom = 237.0
+margin_top = 242.0
+margin_bottom = 268.0
 text = "Cheek"
 allele = "cheek"
 
 [node name="Ear" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 242.0
-margin_bottom = 268.0
+margin_top = 273.0
+margin_bottom = 299.0
 text = "Ear"
 allele = "ear"
 
 [node name="HornContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 273.0
+margin_top = 304.0
 margin_right = 390.0
-margin_bottom = 299.0
+margin_bottom = 330.0
 custom_constants/separation = 5
 
 [node name="Horn" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/HornContainer" instance=ExtResource( 11 )]
@@ -1328,9 +1341,9 @@ text = "Color"
 allele = "horn_rgb"
 
 [node name="HairContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 304.0
+margin_top = 335.0
 margin_right = 390.0
-margin_bottom = 330.0
+margin_bottom = 361.0
 custom_constants/separation = 5
 
 [node name="Hair" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/HairContainer" instance=ExtResource( 11 )]
@@ -1348,15 +1361,15 @@ text = "Color"
 allele = "hair_rgb"
 
 [node name="Collar" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 335.0
-margin_bottom = 361.0
+margin_top = 366.0
+margin_bottom = 392.0
 text = "Collar"
 allele = "collar"
 
 [node name="BellyContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 366.0
+margin_top = 397.0
 margin_right = 390.0
-margin_bottom = 392.0
+margin_bottom = 423.0
 custom_constants/separation = 5
 
 [node name="Belly" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/BellyContainer" instance=ExtResource( 11 )]
@@ -1374,30 +1387,30 @@ text = "Color"
 allele = "belly_rgb"
 
 [node name="Tail" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 397.0
-margin_bottom = 423.0
+margin_top = 428.0
+margin_bottom = 454.0
 text = "Tail"
 allele = "tail"
 
 [node name="Size" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 11 )]
-margin_top = 428.0
-margin_bottom = 454.0
+margin_top = 459.0
+margin_bottom = 485.0
 text = "Size"
 allele = "fatness"
 
 [node name="Spacer" type="Control" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 459.0
+margin_top = 490.0
 margin_right = 390.0
-margin_bottom = 459.0
+margin_bottom = 490.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="ImportContainer" type="HBoxContainer" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 464.0
+margin_top = 495.0
 margin_right = 390.0
-margin_bottom = 490.0
+margin_bottom = 521.0
 custom_constants/separation = 5
 
 [node name="Import" type="Button" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer/ImportContainer"]
@@ -1424,9 +1437,9 @@ __meta__ = {
 }
 
 [node name="Save" type="Button" parent="Ui/TabContainer/Mutate/ScrollContainer/MarginContainer/VBoxContainer"]
-margin_top = 495.0
+margin_top = 526.0
 margin_right = 100.0
-margin_bottom = 521.0
+margin_bottom = 552.0
 rect_min_size = Vector2( 100, 0 )
 size_flags_horizontal = 0
 theme = ExtResource( 2 )
@@ -1454,7 +1467,7 @@ __meta__ = {
 
 [node name="MarginContainer" type="MarginContainer" parent="Ui/TabContainer/Tweak/ScrollContainer"]
 margin_right = 400.0
-margin_bottom = 704.0
+margin_bottom = 734.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 5
@@ -1466,7 +1479,7 @@ custom_constants/margin_bottom = 5
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 395.0
-margin_bottom = 699.0
+margin_bottom = 729.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 __meta__ = {
@@ -1499,6 +1512,14 @@ margin_right = 378.0
 margin_bottom = 120.0
 allele = "line_rgb"
 text = "Line Color"
+creature_editor_path = NodePath("../../../../../../..")
+
+[node name="Body" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]
+margin_top = 124.0
+margin_right = 378.0
+margin_bottom = 150.0
+allele = "body"
+text = "Body"
 creature_editor_path = NodePath("../../../../../../..")
 
 [node name="Face" parent="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer" instance=ExtResource( 25 )]

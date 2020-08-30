@@ -12,6 +12,8 @@ Overrides the superclass's implementation to disconnect additional listeners.
 func disconnect_creature_visuals_listeners() -> void:
 	.disconnect_creature_visuals_listeners()
 	creature_visuals.disconnect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
+	creature_visuals.disconnect("orientation_changed", $NeckBlend, "_on_CreatureVisuals_orientation_changed")
+	creature_visuals.disconnect("movement_mode_changed", $NeckBlend, "_on_CreatureVisuals_movement_mode_changed")
 
 
 """
@@ -22,6 +24,8 @@ Overrides the superclass's implementation to connect additional listeners.
 func connect_creature_visuals_listeners() -> void:
 	.connect_creature_visuals_listeners()
 	creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
+	creature_visuals.connect("orientation_changed", $NeckBlend, "_on_CreatureVisuals_orientation_changed")
+	creature_visuals.connect("movement_mode_changed", $NeckBlend, "_on_CreatureVisuals_movement_mode_changed")
 
 
 """

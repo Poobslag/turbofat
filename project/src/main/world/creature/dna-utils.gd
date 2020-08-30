@@ -110,6 +110,9 @@ const ALLELE_NAMES := {
 	"mouth-2": "Illithid",
 	"mouth-3": "Imp",
 	
+	"body-1": "Koala",
+	"body-2": "Squirrel",
+	
 	"cheek-0": "Round",
 	"cheek-1": "Razor Sharp",
 	"cheek-2": "Fluffy Tuft",
@@ -204,7 +207,7 @@ static func unique_allele_values(property: String) -> Array:
 	else:
 		# other properties
 		match property:
-			"body": result = ["1"]
+			"body": result = ["1", "2"]
 			"head": result = ["1", "2", "3", "4", "5"]
 			"belly": result = ["0", "1", "2"]
 			"cheek": result = ["0", "1", "2", "3"]
@@ -243,7 +246,7 @@ static func weighted_allele_values(dna: Dictionary, property: String) -> Array:
 	else:
 		# other properties
 		match property:
-			"body": result = ["1"]
+			"body": result = ["1", "1", "1", "1", "1", "1", "2"]
 			"head": result = ["1", "1", "1", "1", "1", "1", "2", "3", "4", "5"]
 			"belly": result = ["0", "0", "1", "1", "2"]
 			"cheek": result = ["0", "0", "0", "1", "1", "2", "2", "3"]
