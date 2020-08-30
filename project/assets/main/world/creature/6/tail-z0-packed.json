@@ -1,0 +1,137 @@
+{ "frames": [
+   {
+    "filename": "tail-z0-1 0.png",
+    "frame": { "x": 662, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 1.png",
+    "frame": { "x": 0, "y": 325, "w": 151, "h": 170 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 73, "y": 242, "w": 151, "h": 170 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 2.png",
+    "frame": { "x": 662, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 3.png",
+    "frame": { "x": 174, "y": 176, "w": 155, "h": 168 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 70, "y": 243, "w": 155, "h": 168 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 4.png",
+    "frame": { "x": 334, "y": 176, "w": 155, "h": 166 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 69, "y": 245, "w": 155, "h": 166 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 5.png",
+    "frame": { "x": 501, "y": 0, "w": 156, "h": 169 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 67, "y": 242, "w": 156, "h": 169 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 6.png",
+    "frame": { "x": 177, "y": 0, "w": 159, "h": 171 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 65, "y": 241, "w": 159, "h": 171 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 7.png",
+    "frame": { "x": 341, "y": 0, "w": 155, "h": 171 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 69, "y": 241, "w": 155, "h": 171 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 8.png",
+    "frame": { "x": 327, "y": 488, "w": 170, "h": 143 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 203, "y": 122, "w": 170, "h": 143 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 9.png",
+    "frame": { "x": 494, "y": 333, "w": 168, "h": 150 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 169, "y": 115, "w": 168, "h": 150 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 10.png",
+    "frame": { "x": 156, "y": 349, "w": 166, "h": 150 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 163, "y": 110, "w": 166, "h": 150 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 11.png",
+    "frame": { "x": 0, "y": 164, "w": 169, "h": 156 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 170, "y": 106, "w": 169, "h": 156 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 12.png",
+    "frame": { "x": 0, "y": 0, "w": 172, "h": 159 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 176, "y": 92, "w": 172, "h": 159 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "tail-z0-1 13.png",
+    "frame": { "x": 501, "y": 174, "w": 171, "h": 154 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 194, "y": 106, "w": 171, "h": 154 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.25-x64",
+  "image": "tail-z0-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 672, "h": 631 },
+  "scale": "1"
+ }
+}
