@@ -63,7 +63,7 @@ tracks/4/keys = {
 "times": PoolRealArray( 0, 2, 3, 10 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -50 ), Vector2( 0, -50 ), Vector2( -29.6163, -133.714 ), Vector2( -147.073, -557.208 ) ]
+"values": [ Vector2( 0, -67 ), Vector2( 0, -67 ), Vector2( -29.6163, -133.714 ), Vector2( -147.073, -557.208 ) ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Collar:position")
@@ -87,7 +87,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0, 1, 1.5, 2, 10 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( -1.118, -164.515 ), Vector2( -10, -154.515 ), Vector2( -1.118, -164.515 ), Vector2( -1.118, -172 ), Vector2( -1.118, -152.515 ) ]
+"values": [ Vector2( -8, -156 ), Vector2( -8, -156 ), Vector2( -1.118, -164.515 ), Vector2( -1.118, -172 ), Vector2( -1.118, -152.515 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("BodySweat:process_material:emission_sphere_radius")

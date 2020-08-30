@@ -399,6 +399,7 @@ dna = {
 "shader:TailZ1:green": Color( 0, 0, 0, 1 ),
 "shader:TailZ1:red": Color( 0, 0, 0, 1 )
 }
+visual_fatness = 1.0
 
 [node name="FarArm" type="Node2D" parent="."]
 light_mask = 2
@@ -435,15 +436,16 @@ texture = ExtResource( 51 )
 frame_data = "res://assets/main/world/creature/1/sprint-z0-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 6
+centered = true
 offset = Vector2( 0, -119 )
 
 [node name="TailZ0" type="Node2D" parent="."]
 light_mask = 2
 material = SubResource( 4 )
-position = Vector2( -25, 0 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
+frame = 1
 offset = Vector2( 0, -119 )
 
 [node name="BodyShadows" type="ViewportContainer" parent="."]
@@ -551,7 +553,7 @@ rect_size = Vector2( 512, 512 )
 frame = 1
 
 [node name="Neck0" type="Sprite" parent="."]
-position = Vector2( 0, -50 )
+position = Vector2( 0, -67 )
 __meta__ = {
 "_editor_description_": "Neck0 offsets the head's position as the creature grows in size."
 }
@@ -862,7 +864,7 @@ material = SubResource( 4 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
 rect_size = Vector2( 512, 512 )
-frame = 2
+frame = 1
 offset = Vector2( 0, -119 )
 
 [node name="IdleTimer" type="Timer" parent="."]
@@ -880,39 +882,39 @@ root_node = NodePath("..")
 [connection signal="creature_arrived" from="." to="IdleTimer" method="_on_CreatureVisuals_creature_arrived"]
 [connection signal="movement_mode_changed" from="." to="FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Sprint" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Collar" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ0" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Collar" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ2" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ2" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="orientation_changed" from="." to="FarArm" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="FarLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Collar" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ0" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Collar" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ2" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ2" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="idle_animation_started" from="IdleTimer" to="EmotePlayer" method="_on_IdleTimer_idle_animation_started"]
