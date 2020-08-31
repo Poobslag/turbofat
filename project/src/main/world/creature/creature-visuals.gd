@@ -18,11 +18,8 @@ unnecessary textures are loaded.
 # emitted on the frame when the food is launched into the creature's mouth
 signal food_eaten
 
-# emitted before a creature arrives and sits down
-signal before_creature_arrived
-
-# emitted when a creature arrives and sits down
-signal creature_arrived
+# emitted when a creature's textures and animations are loaded
+signal dna_loaded
 
 # emitted during the 'run' animation when the creature touches the ground
 # warning-ignore:unused_signal
@@ -85,6 +82,9 @@ export (Orientation) var orientation := SOUTHEAST setget set_orientation
 # describes the colors and textures used to draw the creature
 export (Dictionary) var dna: Dictionary setget set_dna
 
+# how fat the creature looks right now; gradually approaches the 'fatness' property
+export (float) var visual_fatness := 1.0 setget set_visual_fatness
+
 # how fat the creature will become eventually; visual_fatness gradually approaches this value
 var fatness := 1.0 setget set_fatness, get_fatness
 
@@ -97,9 +97,6 @@ var _suppress_sfx_signal_timer := 0.0
 
 # forces listeners to update their animation frame
 var _force_orientation_change := false
-
-# how fat the creature looks right now; gradually approaches the 'fatness' property
-export (float) var visual_fatness := 1.0 setget set_visual_fatness
 
 var _mouth_player
 
@@ -279,7 +276,9 @@ func set_dna(new_dna: Dictionary) -> void:
 	dna = new_dna
 	if is_inside_tree():
 		CreatureLoader.load_details(dna)
-		_update_creature_properties()
+		# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
+		_unload_dna()
+		_load_dna()
 
 
 """
@@ -353,28 +352,6 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 			$TailZ1.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 
 
-"""
-Computes the nearest orientation for the specified direction.
-
-For example, a direction of (0.99, -0.13) is mostly pointing towards the x-axis, so it would result in an orientation
-of 'southeast'.
-"""
-func _compute_orientation(direction: Vector2) -> int:
-	if direction.length() == 0:
-		# we default to the current orientation if given a zero-length vector
-		return orientation
-	
-	# preserve the old orientation if it's close to the new orientation. this prevents us from flipping repeatedly
-	# when our direction puts us between two orientations.
-	var new_orientation: int = orientation
-	# unrounded orientation is a float in the range [-2.0, 2.0]
-	var unrounded_orientation := -2 * direction.angle_to(southeast_dir) / PI
-	if abs(unrounded_orientation - orientation) >= 0.6 and abs(unrounded_orientation + 4 - orientation) >= 0.6:
-		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
-		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
-	return new_orientation
-
-
 func set_movement_mode(new_mode: int) -> void:
 	var old_mode := movement_mode
 	movement_mode = new_mode
@@ -411,14 +388,73 @@ func restart_idle_timer() -> void:
 
 
 """
-Updates the properties of the various creature sprites and Node2D objects based on the contents of the creature
-definition. This assumes the CreatureLoader has finished loading all of the appropriate textures and values.
+Emits a signal to play a sound effect.
+
+We temporarily suppress sound effect signals when skipping forward in an animation which plays sound effects.
 """
-func _update_creature_properties() -> void:
-	# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
-	$EmotePlayer.unemote_immediate()
-	emit_signal("before_creature_arrived")
+func emit_sfx_signal(signal_name: String) -> void:
+	if _suppress_sfx_signal_timer > 0.0:
+		pass
+	else:
+		emit_signal(signal_name)
+
+
+"""
+Computes the nearest orientation for the specified direction.
+
+For example, a direction of (0.99, -0.13) is mostly pointing towards the x-axis, so it would result in an orientation
+of 'southeast'.
+"""
+func _compute_orientation(direction: Vector2) -> int:
+	if direction.length() == 0:
+		# we default to the current orientation if given a zero-length vector
+		return orientation
 	
+	# preserve the old orientation if it's close to the new orientation. this prevents us from flipping repeatedly
+	# when our direction puts us between two orientations.
+	var new_orientation: int = orientation
+	# unrounded orientation is a float in the range [-2.0, 2.0]
+	var unrounded_orientation := -2 * direction.angle_to(southeast_dir) / PI
+	if abs(unrounded_orientation - orientation) >= 0.6 and abs(unrounded_orientation + 4 - orientation) >= 0.6:
+		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
+		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
+	return new_orientation
+
+
+"""
+Removes a 'dna node', one which swaps out based on the creature's DNA.
+"""
+func _remove_dna_node(path: NodePath) -> void:
+	if not has_node(path):
+		return
+	
+	var node := get_node(path)
+	# These nodes must be immediately removed to avoid name conflicts with the nodes which replace them.
+	node.get_parent().remove_child(node)
+	node.queue_free()
+
+
+"""
+Adds a 'dna node', one which swaps out based on the creature's DNA.
+"""
+func _add_dna_node(node: Node, key_message: String, value_message: String, parent: Node = self) -> void:
+	if not node:
+		push_warning("Invalid %s: %s" % [key_message, value_message])
+		return
+	
+	parent.add_child(node)
+	node.owner = self
+	node.creature_visuals_path = node.get_path_to(self)
+
+
+"""
+Unassigns the sprites and animations for the creature.
+
+Different body parts have different animations and textures. Before changing the creature's appearance, any old
+textures and animations need to be stopped and removed, and any signals disconnected. This method handles all of that.
+"""
+func _unload_dna() -> void:
+	$EmotePlayer.unemote_immediate()
 	for packed_sprite_obj in [
 		$Collar,
 		$FarArm,
@@ -454,89 +490,39 @@ func _update_creature_properties() -> void:
 			packed_sprite.frame_data = ""
 	$Body.rect_position = Vector2(-580, -850)
 	$Neck0/HeadBobber.position = Vector2(0, -100)
+	scale = Vector2(1.00, 1.00)
 	
-	if has_node("MouthPlayer"):
-		var old_mouth_player := get_node("MouthPlayer")
-		remove_child(old_mouth_player)
-		old_mouth_player.queue_free()
-	
-	if has_node("EarPlayer"):
-		var old_ear_player := get_node("EarPlayer")
-		remove_child(old_ear_player)
-		old_ear_player.queue_free()
-	
-	if has_node("Body/Viewport/Body"):
-		var old_body := get_node("Body/Viewport/Body")
-		$Body/Viewport.remove_child(old_body)
-		old_body.queue_free()
-	
-	if has_node("BodyColors/Viewport/Body"):
-		var old_body_colors := get_node("BodyColors/Viewport/Body")
-		$BodyColors/Viewport.remove_child(old_body_colors)
-		old_body_colors.queue_free()
-	
-	if has_node("BodyShadows/Viewport/Body"):
-		var old_body_shadows := get_node("BodyShadows/Viewport/Body")
-		$BodyShadows/Viewport.remove_child(old_body_shadows)
-		old_body_shadows.queue_free()
-	
-	if has_node("FatSpriteMover"):
-		var old_mover := get_node("FatSpriteMover")
-		remove_child(old_mover)
-		old_mover.queue_free()
-	
+	_remove_dna_node("MouthPlayer")
+	_remove_dna_node("EarPlayer")
+	_remove_dna_node("Body/Viewport/Body")
+	_remove_dna_node("BodyColors/Viewport/Body")
+	_remove_dna_node("BodyShadows/Viewport/Body")
+	_remove_dna_node("FatSpriteMover")
+
+
+"""
+Assigns the sprites and animations based on the creature's dna.
+
+This method assumes that any existing animations and connections have been disconnected.
+"""
+func _load_dna() -> void:
 	if dna.has("mouth"):
-		_mouth_player = CreatureLoader.new_mouth_player(dna.mouth)
-		if not _mouth_player:
-			push_warning("Invalid mouth: %s" % dna.mouth)
-		else:
-			add_child(_mouth_player)
-			move_child(_mouth_player, $IdleTimer.get_position_in_parent() + 1)
-			_mouth_player.owner = self
-			_mouth_player.creature_visuals_path = _mouth_player.get_path_to(self)
+		_add_dna_node(CreatureLoader.new_mouth_player(dna.mouth), "mouth", dna.mouth)
 	
 	if dna.has("ear"):
-		var ear_player: AnimationPlayer = CreatureLoader.new_ear_player(dna.ear)
-		if not ear_player:
-			push_warning("Invalid ear: %s" % dna.ear)
-		else:
-			add_child(ear_player)
-			move_child(ear_player, $IdleTimer.get_position_in_parent() + 1)
-			ear_player.owner = self
-			ear_player.creature_visuals_path = ear_player.get_path_to(self)
+		_add_dna_node(CreatureLoader.new_ear_player(dna.ear), "ear", dna.ear)
 	
 	if dna.has("body"):
-		var body: Node2D = CreatureLoader.new_body(dna.body)
-		if not body:
-			push_warning("Invalid body: %s" % dna.body)
-		else:
-			$Body/Viewport.add_child(body)
-			body.owner = self
-			body.creature_visuals_path = body.get_path_to(self)
-			
-		var body_colors: Node2D = CreatureLoader.new_body_colors(dna.body)
-		if not body_colors:
-			push_warning("Invalid body colors: %s" % dna.body)
-		else:
-			$BodyColors/Viewport.add_child(body_colors)
-			body_colors.owner = self
-			body_colors.creature_visuals_path = body.get_path_to(self)
-		
-		var body_shadows: Node2D = CreatureLoader.new_body_shadows(dna.body)
-		if not body_shadows:
-			push_warning("Invalid body shadows: %s" % dna.body)
-		else:
-			$BodyShadows/Viewport.add_child(body_shadows)
-			body_shadows.owner = self
-			body_shadows.creature_visuals_path = body.get_path_to(self)
-		
-		var fat_sprite_mover: AnimationPlayer = CreatureLoader.new_fat_sprite_mover(dna.body)
-		if not fat_sprite_mover:
-			push_warning("Invalid fat sprite mover: %s" % dna.body)
-		else:
-			add_child(fat_sprite_mover)
-			fat_sprite_mover.owner = self
-			fat_sprite_mover.creature_visuals_path = fat_sprite_mover.get_path_to(self)
+		_add_dna_node(CreatureLoader.new_body(dna.body), "body", dna.body, $Body/Viewport)
+		_add_dna_node(CreatureLoader.new_body_colors(dna.body), "body colors", dna.body, $BodyColors/Viewport)
+		_add_dna_node(CreatureLoader.new_body_shadows(dna.body), "body shadows", dna.body, $BodyShadows/Viewport)
+		_add_dna_node(CreatureLoader.new_fat_sprite_mover(dna.body), "fat sprite mover", dna.body)
+	
+	if has_node("EarPlayer"):
+		move_child(get_node("EarPlayer"), $IdleTimer.get_position_in_parent() + 1)
+	if has_node("MouthPlayer"):
+		_mouth_player = get_node("MouthPlayer")
+		move_child(get_node("MouthPlayer"), $IdleTimer.get_position_in_parent() + 1)
 	
 	for key in dna.keys():
 		if key.find("property:") == 0:
@@ -560,17 +546,4 @@ func _update_creature_properties() -> void:
 	
 	# initialize creature curves, and reset the mouth/eye frame to avoid a strange transition frame
 	reset_frames()
-	
-	emit_signal("creature_arrived")
-
-
-"""
-Emits a signal to play a sound effect.
-
-We temporarily suppress sound effect signals when skipping forward in an animation which plays sound effects.
-"""
-func emit_sfx_signal(signal_name: String) -> void:
-	if _suppress_sfx_signal_timer > 0.0:
-		pass
-	else:
-		emit_signal(signal_name)
+	emit_signal("dna_loaded")

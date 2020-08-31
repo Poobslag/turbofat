@@ -23,12 +23,12 @@ func _refresh_creature_visuals_path() -> void:
 	
 	if _creature_visuals:
 		_creature_visuals.disconnect("comfort_changed", self, "_on_CreatureVisuals_comfort_changed")
-		_creature_visuals.disconnect("creature_arrived", self, "_on_CreatureVisuals_creature_arrived")
+		_creature_visuals.disconnect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
 	
 	_creature_visuals = get_node(creature_visuals_path)
 	
 	_creature_visuals.connect("comfort_changed", self, "_on_CreatureVisuals_comfort_changed")
-	_creature_visuals.connect("creature_arrived", self, "_on_CreatureVisuals_creature_arrived")
+	_creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
 
 
 func _on_CreatureVisuals_comfort_changed() -> void:
@@ -38,6 +38,6 @@ func _on_CreatureVisuals_comfort_changed() -> void:
 		amount = lerp(3, 8, sweat_amount)
 
 
-func _on_CreatureVisuals_creature_arrived() -> void:
+func _on_CreatureVisuals_dna_loaded() -> void:
 	var particles_material: ParticlesMaterial = process_material
 	particles_material.scale = _creature_visuals.scale.x * 1.7

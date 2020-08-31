@@ -41,7 +41,6 @@ func _refresh_creature_visuals_path() -> void:
 		return
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
 		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 		_creature_visuals.get_idle_timer().disconnect(
 				"idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
@@ -50,14 +49,9 @@ func _refresh_creature_visuals_path() -> void:
 	
 	_creature_visuals = get_node(creature_visuals_path)
 	
-	_creature_visuals.connect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
 	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 	_creature_visuals.get_idle_timer().connect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
 	_creature_visuals.get_idle_timer().connect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
-
-
-func _on_CreatureVisuals_before_creature_arrived() -> void:
-	stop()
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:

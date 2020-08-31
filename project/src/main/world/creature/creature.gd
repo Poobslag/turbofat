@@ -9,7 +9,7 @@ signal fatness_changed
 signal visual_fatness_changed
 signal creature_name_changed
 
-signal creature_arrived
+signal dna_loaded
 
 signal food_eaten
 
@@ -391,9 +391,9 @@ func _on_Creature_fatness_changed() -> void:
 	emit_signal("fatness_changed")
 
 
-func _on_CreatureVisuals_creature_arrived() -> void:
+func _on_CreatureVisuals_dna_loaded() -> void:
 	visible = true
-	emit_signal("creature_arrived")
+	emit_signal("dna_loaded")
 
 
 func _on_CreatureVisuals_food_eaten() -> void:
