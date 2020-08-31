@@ -62,7 +62,6 @@ func _refresh_creature_visuals_path() -> void:
 		return
 	
 	if _creature_visuals:
-		_creature_visuals.disconnect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
 		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 		_emote_player.disconnect("animation_started", self, "_on_EmotePlayer_animation_started")
 		_creature_visuals.get_idle_timer().disconnect(
@@ -73,7 +72,6 @@ func _refresh_creature_visuals_path() -> void:
 	_creature_visuals = get_node(creature_visuals_path)
 	_emote_player = _creature_visuals.get_emote_player()
 	
-	_creature_visuals.connect("before_creature_arrived", self, "_on_CreatureVisuals_before_creature_arrived")
 	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 	_emote_player.connect("animation_started", self, "_on_EmotePlayer_animation_started")
 	_creature_visuals.get_idle_timer().connect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
@@ -110,10 +108,6 @@ problems.
 func _apply_tool_script_workaround() -> void:
 	if not _creature_visuals:
 		_creature_visuals = get_parent()
-
-
-func _on_CreatureVisuals_before_creature_arrived() -> void:
-	stop()
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:

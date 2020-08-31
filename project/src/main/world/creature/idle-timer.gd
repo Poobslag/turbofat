@@ -107,5 +107,5 @@ func _on_timeout() -> void:
 """
 Restarts the idle timer when a new creature shows up.
 """
-func _on_CreatureVisuals_creature_arrived() -> void:
+func _on_CreatureVisuals_dna_loaded() -> void:
 	_update_state(true)

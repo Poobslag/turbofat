@@ -109,7 +109,7 @@ func _on_CreatureVisuals_food_eaten() -> void:
 	$Munch.play()
 
 
-func _on_CreatureVisuals_creature_arrived() -> void:
+func _on_CreatureVisuals_dna_loaded() -> void:
 	if Engine.is_editor_hint():
 		# Skip the sound effects if we're using this as an editor tool
 		return

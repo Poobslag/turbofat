@@ -38,10 +38,10 @@ func _refresh_creature_path() -> void:
 	
 	if _creature and _creature.is_connected("visual_fatness_changed", self, "_on_Creature_visual_fatness_changed"):
 		_creature.disconnect("visual_fatness_changed", self, "_on_Creature_visual_fatness_changed")
-		_creature.disconnect("creature_arrived", self, "_on_Creature_creature_arrived")
+		_creature.disconnect("dna_loaded", self, "_on_Creature_dna_loaded")
 	_creature = get_node(creature_path)
 	_creature.connect("visual_fatness_changed", self, "_on_Creature_visual_fatness_changed")
-	_creature.connect("creature_arrived", self, "_on_Creature_creature_arrived")
+	_creature.connect("dna_loaded", self, "_on_Creature_dna_loaded")
 	
 	position = _creature.position + shadow_offset
 	if _creature.creature_visuals:
@@ -54,5 +54,5 @@ func _on_Creature_visual_fatness_changed() -> void:
 	$FatPlayer.stop()
 
 
-func _on_Creature_creature_arrived() -> void:
+func _on_Creature_dna_loaded() -> void:
 	$Sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y
