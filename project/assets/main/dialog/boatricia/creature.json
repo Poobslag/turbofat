@@ -3,10 +3,11 @@
   "id": "boatricia",
   "name": "Boatricia",
   "dna": {
-    "body": "1",
-    "body_rgb": "0b45a6",
     "belly": "0",
     "belly_rgb": "eec086",
+    "body": "1",
+    "body_rgb": "0b45a6",
+    "cheek": "2",
     "ear": "2",
     "eye": "3",
     "eye_rgb": "fad541 ffffff",
@@ -16,7 +17,6 @@
     "line_rgb": "41281e",
     "mouth": "1",
     "nose": "2",
-    "cheek": "2",
     "tail": "3"
   },
   "chat_theme_def": {

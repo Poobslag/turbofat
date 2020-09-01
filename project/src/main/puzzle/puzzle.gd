@@ -36,15 +36,10 @@ Parameters:
 func summon_instructor(replace_current: bool = false) -> void:
 	if $RestaurantView.get_customer().dna.get("instructor") == "true":
 		return
-
-	Global.creature_queue.push_front({
-		"line_rgb": "6c4331", "body_rgb": "a854cb", "cloth_rgb": "4fa94e",
-		"hair_rgb": "f1e398", "eye_rgb": "4fa94e dbe28e", "horn_rgb": "f1e398",
-		"head": "1", "body": "1",
-		"ear": "3", "horn": "0", "mouth": "2", "eye": "2", "cheek": "0", "nose": "2",
-		"hair": "0", "collar": "0", "tail": "0",
-		"instructor": "true"
-	})
+	
+	var creature_def := CreatureLoader.load_creature_def_by_id("instructor")
+	Global.creature_queue.push_front(creature_def.dna)
+	
 	if replace_current:
 		$RestaurantView.summon_creature()
 	else:
