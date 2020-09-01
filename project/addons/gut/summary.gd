@@ -7,13 +7,15 @@ class Test:
 	var fail_texts = []
 	var pending_texts = []
 
+	# NOTE:  The "failed" and "pending" text must match what is outputted by
+	# the logger in order for text highlighting to occur in summary.
 	func to_s():
 		var pad = '     '
 		var to_return = ''
 		for i in range(fail_texts.size()):
-			to_return += str(pad, 'FAILED:  ', fail_texts[i], "\n")
+			to_return += str(pad, '[Failed]:  ', fail_texts[i], "\n")
 		for i in range(pending_texts.size()):
-			to_return += str(pad, 'Pending:  ', pending_texts[i], "\n")
+			to_return += str(pad, '[Pending]:  ', pending_texts[i], "\n")
 		return to_return
 
 # ------------------------------------------------------------------------------
@@ -47,11 +49,11 @@ class TestScript:
 			count += _tests[key].pending_texts.size()
 		return count
 
-	func get_test_obj(name):
-		if(!_tests.has(name)):
-			_tests[name] = Test.new()
-			_test_order.append(name)
-		return _tests[name]
+	func get_test_obj(obj_name):
+		if(!_tests.has(obj_name)):
+			_tests[obj_name] = Test.new()
+			_test_order.append(obj_name)
+		return _tests[obj_name]
 
 	func add_pass(test_name, reason):
 		var t = get_test_obj(test_name)
@@ -101,7 +103,6 @@ func get_test_text(test_name):
 # end.  Used for displaying the number of scripts without including all the
 # Inner Classes.
 func get_non_inner_class_script_count():
-	var count = 0
 	var unique_scripts = {}
 	for i in range(_scripts.size()):
 		var ext_loc = _scripts[i].name.find_last('.gd.')
@@ -130,24 +131,42 @@ func get_totals():
 
 	return totals
 
-func get_summary_text():
-	var _totals = get_totals()
+func log_summary_text(lgr):
+	var orig_indent = lgr.get_indent_level()
+	var found_failing_or_pending = false
 
-	var to_return = ''
 	for s in range(_scripts.size()):
+		lgr.set_indent_level(0)
 		if(_scripts[s].get_fail_count() > 0 or _scripts[s].get_pending_count() > 0):
-			to_return += _scripts[s].name + "\n"
+			lgr.log(_scripts[s].name, lgr.fmts.underline)
+
+
 		for t in range(_scripts[s]._test_order.size()):
 			var tname = _scripts[s]._test_order[t]
 			var test = _scripts[s].get_test_obj(tname)
 			if(test.fail_texts.size() > 0 or test.pending_texts.size() > 0):
-				to_return += str('  - ', tname, "\n", test.to_s())
+				found_failing_or_pending = true
+				lgr.log(str('- ', tname))
+				lgr.inc_indent()
 
-	var header = "***  Totals  ***\n"
-	header += str('  scripts:          ', get_non_inner_class_script_count(), "\n")
-	header += str('  tests:            ', _totals.tests, "\n")
-	header += str('  passing asserts:  ', _totals.passing, "\n")
-	header += str('  failing asserts:  ',_totals.failing, "\n")
-	header += str('  pending:          ', _totals.pending, "\n")
+				for i in range(test.fail_texts.size()):
+					lgr.failed(test.fail_texts[i])
+				for i in range(test.pending_texts.size()):
+					lgr.pending(test.pending_texts[i])
+				lgr.dec_indent()
 
-	return to_return + "\n" + header
+	lgr.set_indent_level(0)
+	if(!found_failing_or_pending):
+		lgr.log('All tests passed', lgr.fmts.green)
+
+	lgr.log()
+	var _totals = get_totals()
+	lgr.log("Totals", lgr.fmts.yellow)
+	lgr.log(str('Scripts:          ', get_non_inner_class_script_count()))
+	lgr.log(str('Tests:            ', _totals.tests))
+	lgr.log(str('Passing asserts:  ', _totals.passing))
+	lgr.log(str('Failing asserts:  ',_totals.failing))
+	lgr.log(str('Pending:          ', _totals.pending))
+
+	lgr.set_indent_level(orig_indent)
+
