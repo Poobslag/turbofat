@@ -1,40 +1,40 @@
-################################################################################
+# ##############################################################################
 #(G)odot (U)nit (T)est class
 #
-################################################################################
-#The MIT License (MIT)
-#=====================
+# ##############################################################################
+# The MIT License (MIT)
+# =====================
 #
-#Copyright (c) 2019 Tom "Butch" Wesley
+# Copyright (c) 2020 Tom "Butch" Wesley
 #
-#Permission is hereby granted, free of charge, to any person obtaining a copy
-#of this software and associated documentation files (the "Software"), to deal
-#in the Software without restriction, including without limitation the rights
-#to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-#copies of the Software, and to permit persons to whom the Software is
-#furnished to do so, subject to the following conditions:
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
 #
-#The above copyright notice and this permission notice shall be included in
-#all copies or substantial portions of the Software.
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
 #
-#THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-#IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-#FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-#AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-#LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-#OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-#THE SOFTWARE.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
 #
-################################################################################
+# ##############################################################################
 # View readme for usage details.
 #
 # Version - see gut.gd
-################################################################################
+# ##############################################################################
 # Class that all test scripts must extend.
 #
 # This provides all the asserts and other testing features.  Test scripts are
 # run by the Gut class in gut.gd
-################################################################################
+# ##############################################################################
 extends Node
 
 # ------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ class DoubleInfo:
 	var strategy
 	var make_partial
 	var extension
-	var _utils = load('res://addons/gut/utils.gd').new()
+	var _utils = load('res://addons/gut/utils.gd').get_instance()
 	var _is_native = false
 
 	# Flexible init method.  p2 can be subpath or stategy unless p3 is
@@ -99,49 +99,14 @@ const YIELD = 'timeout'
 # is set by the gut class when it runs the tests.  This gets you
 # access to the asserts in the tests you write.
 var gut = null
-var passed = false
-var failed = false
+
+var passed = false # idk if this does anything TODO remove or document
+var failed = false # idk if this does anything TODO remove or document
 var _disable_strict_datatype_checks = false
 # Holds all the text for a test's fail/pass.  This is used for testing purposes
 # to see the text of a failed sub-test in test_test.gd
 var _fail_pass_text = []
 
-# Hash containing all the built in types in Godot.  This provides an English
-# name for the types that corosponds with the type constants defined in the
-# engine.  This is used for priting out messages when comparing types fails.
-var types = {}
-
-func _init_types_dictionary():
-	types[TYPE_NIL] = 'TYPE_NIL'
-	types[TYPE_BOOL] = 'Bool'
-	types[TYPE_INT] = 'Int'
-	types[TYPE_REAL] = 'Float/Real'
-	types[TYPE_STRING] = 'String'
-	types[TYPE_VECTOR2] = 'Vector2'
-	types[TYPE_RECT2] = 'Rect2'
-	types[TYPE_VECTOR3] = 'Vector3'
-	#types[8] = 'Matrix32'
-	types[TYPE_PLANE] = 'Plane'
-	types[TYPE_QUAT] = 'QUAT'
-	types[TYPE_AABB] = 'AABB'
-	#types[12] = 'Matrix3'
-	types[TYPE_TRANSFORM] = 'Transform'
-	types[TYPE_COLOR] = 'Color'
-	#types[15] = 'Image'
-	types[TYPE_NODE_PATH] = 'Node Path'
-	types[TYPE_RID] = 'RID'
-	types[TYPE_OBJECT] = 'TYPE_OBJECT'
-	#types[19] = 'TYPE_INPUT_EVENT'
-	types[TYPE_DICTIONARY] = 'Dictionary'
-	types[TYPE_ARRAY] = 'Array'
-	types[TYPE_RAW_ARRAY] = 'TYPE_RAW_ARRAY'
-	types[TYPE_INT_ARRAY] = 'TYPE_INT_ARRAY'
-	types[TYPE_REAL_ARRAY] = 'TYPE_REAL_ARRAY'
-	types[TYPE_STRING_ARRAY] = 'TYPE_STRING_ARRAY'
-	types[TYPE_VECTOR2_ARRAY] = 'TYPE_VECTOR2_ARRAY'
-	types[TYPE_VECTOR3_ARRAY] = 'TYPE_VECTOR3_ARRAY'
-	types[TYPE_COLOR_ARRAY] = 'TYPE_COLOR_ARRAY'
-	types[TYPE_MAX] = 'TYPE_MAX'
 
 const EDITOR_PROPERTY = PROPERTY_USAGE_SCRIPT_VARIABLE | PROPERTY_USAGE_DEFAULT
 const VARIABLE_PROPERTY = PROPERTY_USAGE_SCRIPT_VARIABLE
@@ -160,12 +125,17 @@ var _signal_watcher = load('res://addons/gut/signal_watcher.gd').new()
 
 # Convenience copy of _utils.DOUBLE_STRATEGY
 var DOUBLE_STRATEGY = null
-var _utils = load('res://addons/gut/utils.gd').new()
+var _utils = load('res://addons/gut/utils.gd').get_instance()
 var _lgr = _utils.get_logger()
+var _strutils = _utils.Strutils.new()
+# syntax sugar
+var ParameterFactory = _utils.ParameterFactory
 
 func _init():
-	_init_types_dictionary()
 	DOUBLE_STRATEGY = _utils.DOUBLE_STRATEGY # yes, this is right
+
+func _str(thing):
+	return _strutils.type2str(thing)
 
 # ------------------------------------------------------------------------------
 # Fail an assertion.  Causes test and script to fail as well.
@@ -173,10 +143,9 @@ func _init():
 func _fail(text):
 	_summary.asserts += 1
 	_summary.failed += 1
-	var msg = 'FAILED:  ' + text
-	_fail_pass_text.append(msg)
+	_fail_pass_text.append('failed:  ' + text)
 	if(gut):
-		gut.p(msg, gut.LOG_LEVEL_FAIL_ONLY)
+		_lgr.failed(text)
 		gut._fail(text)
 
 # ------------------------------------------------------------------------------
@@ -185,10 +154,9 @@ func _fail(text):
 func _pass(text):
 	_summary.asserts += 1
 	_summary.passed += 1
-	var msg = "PASSED:  " + text
-	_fail_pass_text.append(msg)
+	_fail_pass_text.append('passed:  ' + text)
 	if(gut):
-		gut.p(msg, gut.LOG_LEVEL_ALL_ASSERTS)
+		_lgr.passed(text)
 		gut._pass(text)
 
 # ------------------------------------------------------------------------------
@@ -197,7 +165,7 @@ func _pass(text):
 # used in all the assertions that compare values.
 # ------------------------------------------------------------------------------
 func _do_datatypes_match__fail_if_not(got, expected, text):
-	var passed = true
+	var did_pass = true
 
 	if(!_disable_strict_datatype_checks):
 		var got_type = typeof(got)
@@ -206,12 +174,14 @@ func _do_datatypes_match__fail_if_not(got, expected, text):
 			# If we have a mismatch between float and int (types 2 and 3) then
 			# print out a warning but do not fail.
 			if([2, 3].has(got_type) and [2, 3].has(expect_type)):
-				_lgr.warn(str('Warn:  Float/Int comparison.  Got ', types[got_type], ' but expected ', types[expect_type]))
+				_lgr.warn(str('Warn:  Float/Int comparison.  Got ', _strutils.types[got_type],
+					' but expected ', _strutils.types[expect_type]))
 			else:
-				_fail('Cannot compare ' + types[got_type] + '[' + str(got) + '] to ' + types[expect_type] + '[' + str(expected) + '].  ' + text)
-				passed = false
+				_fail('Cannot compare ' + _strutils.types[got_type] + '[' + _str(got) + '] to ' + \
+					_strutils.types[expect_type] + '[' + _str(expected) + '].  ' + text)
+				did_pass = false
 
-	return passed
+	return did_pass
 
 # ------------------------------------------------------------------------------
 # Create a string that lists all the methods that were called on an spied
@@ -235,6 +205,7 @@ func _fail_if_does_not_have_signal(object, signal_name):
 		_fail(str('Object ', object, ' does not have the signal [', signal_name, ']'))
 		did_fail = true
 	return did_fail
+
 # ------------------------------------------------------------------------------
 # Signal assertion helper.  Do not call directly, use _can_make_signal_assertions
 # ------------------------------------------------------------------------------
@@ -302,7 +273,7 @@ func set_logger(logger):
 # Asserts that the expected value equals the value got.
 # ------------------------------------------------------------------------------
 func assert_eq(got, expected, text=""):
-	var disp = "[" + str(got) + "] expected to equal [" + str(expected) + "]:  " + text
+	var disp = "[" + _str(got) + "] expected to equal [" + _str(expected) + "]:  " + text
 	if(_do_datatypes_match__fail_if_not(got, expected, text)):
 		if(expected != got):
 			_fail(disp)
@@ -313,7 +284,7 @@ func assert_eq(got, expected, text=""):
 # Asserts that the value got does not equal the "not expected" value.
 # ------------------------------------------------------------------------------
 func assert_ne(got, not_expected, text=""):
-	var disp = "[" + str(got) + "] expected to be anything except [" + str(not_expected) + "]:  " + text
+	var disp = "[" + _str(got) + "] expected to be anything except [" + _str(not_expected) + "]:  " + text
 	if(_do_datatypes_match__fail_if_not(got, not_expected, text)):
 		if(got == not_expected):
 			_fail(disp)
@@ -324,7 +295,7 @@ func assert_ne(got, not_expected, text=""):
 # Asserts that the expected value almost equals the value got.
 # ------------------------------------------------------------------------------
 func assert_almost_eq(got, expected, error_interval, text=''):
-	var disp = "[" + str(got) + "] expected to equal [" + str(expected) + "] +/- [" + str(error_interval) + "]:  " + text
+	var disp = "[" + _str(got) + "] expected to equal [" + _str(expected) + "] +/- [" + str(error_interval) + "]:  " + text
 	if(_do_datatypes_match__fail_if_not(got, expected, text) and _do_datatypes_match__fail_if_not(got, error_interval, text)):
 		if(got < (expected - error_interval) or got > (expected + error_interval)):
 			_fail(disp)
@@ -335,7 +306,7 @@ func assert_almost_eq(got, expected, error_interval, text=''):
 # Asserts that the expected value does not almost equal the value got.
 # ------------------------------------------------------------------------------
 func assert_almost_ne(got, not_expected, error_interval, text=''):
-	var disp = "[" + str(got) + "] expected to not equal [" + str(not_expected) + "] +/- [" + str(error_interval) + "]:  " + text
+	var disp = "[" + _str(got) + "] expected to not equal [" + _str(not_expected) + "] +/- [" + str(error_interval) + "]:  " + text
 	if(_do_datatypes_match__fail_if_not(got, not_expected, text) and _do_datatypes_match__fail_if_not(got, error_interval, text)):
 		if(got < (not_expected - error_interval) or got > (not_expected + error_interval)):
 			_pass(disp)
@@ -346,7 +317,7 @@ func assert_almost_ne(got, not_expected, error_interval, text=''):
 # Asserts got is greater than expected
 # ------------------------------------------------------------------------------
 func assert_gt(got, expected, text=""):
-	var disp = "[" + str(got) + "] expected to be > than [" + str(expected) + "]:  " + text
+	var disp = "[" + _str(got) + "] expected to be > than [" + _str(expected) + "]:  " + text
 	if(_do_datatypes_match__fail_if_not(got, expected, text)):
 		if(got > expected):
 			_pass(disp)
@@ -357,7 +328,7 @@ func assert_gt(got, expected, text=""):
 # Asserts got is less than expected
 # ------------------------------------------------------------------------------
 func assert_lt(got, expected, text=""):
-	var disp = "[" + str(got) + "] expected to be < than [" + str(expected) + "]:  " + text
+	var disp = "[" + _str(got) + "] expected to be < than [" + _str(expected) + "]:  " + text
 	if(_do_datatypes_match__fail_if_not(got, expected, text)):
 		if(got < expected):
 			_pass(disp)
@@ -386,7 +357,7 @@ func assert_false(got, text=""):
 # Asserts value is between (inclusive) the two expected values.
 # ------------------------------------------------------------------------------
 func assert_between(got, expect_low, expect_high, text=""):
-	var disp = "[" + str(got) + "] expected to be between [" + str(expect_low) + "] and [" + str(expect_high) + "]:  " + text
+	var disp = "[" + _str(got) + "] expected to be between [" + _str(expect_low) + "] and [" + str(expect_high) + "]:  " + text
 
 	if(_do_datatypes_match__fail_if_not(got, expect_low, text) and _do_datatypes_match__fail_if_not(got, expect_high, text)):
 		if(expect_low > expect_high):
@@ -403,7 +374,7 @@ func assert_between(got, expect_low, expect_high, text=""):
 # the passed in element.
 # ------------------------------------------------------------------------------
 func assert_has(obj, element, text=""):
-	var disp = str('Expected [', obj, '] to contain value:  [', element, ']:  ', text)
+	var disp = str('Expected [', _str(obj), '] to contain value:  [', _str(element), ']:  ', text)
 	if(obj.has(element)):
 		_pass(disp)
 	else:
@@ -412,7 +383,7 @@ func assert_has(obj, element, text=""):
 # ------------------------------------------------------------------------------
 # ------------------------------------------------------------------------------
 func assert_does_not_have(obj, element, text=""):
-	var disp = str('Expected [', obj, '] to NOT contain value:  [', element, ']:  ', text)
+	var disp = str('Expected [', _str(obj), '] to NOT contain value:  [', _str(element), ']:  ', text)
 	if(obj.has(element)):
 		_fail(disp)
 	else:
@@ -465,7 +436,7 @@ func assert_file_not_empty(file_path):
 # Asserts the object has the specified method
 # ------------------------------------------------------------------------------
 func assert_has_method(obj, method):
-	assert_true(obj.has_method(method), 'Should have method: ' + method)
+	assert_true(obj.has_method(method), _str(obj) + ' should have method: ' + method)
 
 # Old deprecated method name
 func assert_get_set_methods(obj, property, default, set_to):
@@ -518,10 +489,10 @@ func _find_object_property(obj, property_name, property_usage=null):
 # Asserts a class exports a variable.
 # ------------------------------------------------------------------------------
 func assert_exports(obj, property_name, type):
-	var disp = 'expected %s to have editor property [%s]' % [obj, property_name]
+	var disp = 'expected %s to have editor property [%s]' % [_str(obj), property_name]
 	var property = _find_object_property(obj, property_name, EDITOR_PROPERTY)
 	if property != null:
-		disp += ' of type [%s]. Got type [%s].' % [types[type], types[property['type']]]
+		disp += ' of type [%s]. Got type [%s].' % [_strutils.types[type], _strutils.types[property['type']]]
 		if property['type'] == type:
 			_pass(disp)
 		else:
@@ -540,11 +511,61 @@ func _can_make_signal_assertions(object, signal_name):
 	return !(_fail_if_not_watching(object) or _fail_if_does_not_have_signal(object, signal_name))
 
 # ------------------------------------------------------------------------------
+# Check if an object is connected to a signal on another object. Returns True
+# if it is and false otherwise
+# ------------------------------------------------------------------------------
+func _is_connected(signaler_obj, connect_to_obj, signal_name, method_name=""):
+	if(method_name != ""):
+		return signaler_obj.is_connected(signal_name, connect_to_obj, method_name)
+	else:
+		var connections = signaler_obj.get_signal_connection_list(signal_name)
+		for conn in connections:
+			if((conn.source == signaler_obj) and (conn.target == connect_to_obj)):
+				return true
+		return false
+# ------------------------------------------------------------------------------
 # Watch the signals for an object.  This must be called before you can make
 # any assertions about the signals themselves.
 # ------------------------------------------------------------------------------
 func watch_signals(object):
 	_signal_watcher.watch_signals(object)
+
+# ------------------------------------------------------------------------------
+# Asserts that an object is connected to a signal on another object
+#
+# This will fail with specific messages if the target object is not connected
+# to the specified signal on the source object.
+# ------------------------------------------------------------------------------
+func assert_connected(signaler_obj, connect_to_obj, signal_name, method_name=""):
+	pass
+	var method_disp = ''
+	if (method_name != ""):
+		method_disp = str(' using method: [', method_name, '] ')
+	var disp = str('Expected object ', _str(signaler_obj),\
+		' to be connected to signal: [', signal_name, '] on ',\
+		_str(connect_to_obj), method_disp)
+	if(_is_connected(signaler_obj, connect_to_obj, signal_name, method_name)):
+		_pass(disp)
+	else:
+		_fail(disp)
+
+# ------------------------------------------------------------------------------
+# Asserts that an object is not connected to a signal on another object
+#
+# This will fail with specific messages if the target object is connected
+# to the specified signal on the source object.
+# ------------------------------------------------------------------------------
+func assert_not_connected(signaler_obj, connect_to_obj, signal_name, method_name=""):
+	var method_disp = ''
+	if (method_name != ""):
+		method_disp = str(' using method: [', method_name, '] ')
+	var disp = str('Expected object ', _str(signaler_obj),\
+		' to not be connected to signal: [', signal_name, '] on ',\
+		_str(connect_to_obj), method_disp)
+	if(_is_connected(signaler_obj, connect_to_obj, signal_name, method_name)):
+		_fail(disp)
+	else:
+		_pass(disp)
 
 # ------------------------------------------------------------------------------
 # Asserts that a signal has been emitted at least once.
@@ -553,7 +574,7 @@ func watch_signals(object):
 # the object does not have the specified signal
 # ------------------------------------------------------------------------------
 func assert_signal_emitted(object, signal_name, text=""):
-	var disp = str('Expected object ', object, ' to have emitted signal [', signal_name, ']:  ', text)
+	var disp = str('Expected object ', _str(object), ' to have emitted signal [', signal_name, ']:  ', text)
 	if(_can_make_signal_assertions(object, signal_name)):
 		if(_signal_watcher.did_emit(object, signal_name)):
 			_pass(disp)
@@ -567,7 +588,7 @@ func assert_signal_emitted(object, signal_name, text=""):
 # the object does not have the specified signal
 # ------------------------------------------------------------------------------
 func assert_signal_not_emitted(object, signal_name, text=""):
-	var disp = str('Expected object ', object, ' to NOT emit signal [', signal_name, ']:  ', text)
+	var disp = str('Expected object ', _str(object), ' to NOT emit signal [', signal_name, ']:  ', text)
 	if(_can_make_signal_assertions(object, signal_name)):
 		if(_signal_watcher.did_emit(object, signal_name)):
 			_fail(disp)
@@ -584,7 +605,7 @@ func assert_signal_not_emitted(object, signal_name, text=""):
 # the object does not have the specified signal
 # ------------------------------------------------------------------------------
 func assert_signal_emitted_with_parameters(object, signal_name, parameters, index=-1):
-	var disp = str('Expected object ', object, ' to emit signal [', signal_name, '] with parameters ', parameters, ', got ')
+	var disp = str('Expected object ', _str(object), ' to emit signal [', signal_name, '] with parameters ', parameters, ', got ')
 	if(_can_make_signal_assertions(object, signal_name)):
 		if(_signal_watcher.did_emit(object, signal_name)):
 			var parms_got = _signal_watcher.get_signal_parameters(object, signal_name, index)
@@ -616,7 +637,7 @@ func assert_signal_emit_count(object, signal_name, times, text=""):
 # Assert that the passed in object has the specified signal
 # ------------------------------------------------------------------------------
 func assert_has_signal(object, signal_name, text=""):
-	var disp = str('Expected object ', object, ' to have signal [', signal_name, ']:  ', text)
+	var disp = str('Expected object ', _str(object), ' to have signal [', signal_name, ']:  ', text)
 	if(_signal_watcher.does_object_have_signal(object, signal_name)):
 		_pass(disp)
 	else:
@@ -666,25 +687,58 @@ func assert_extends(object, a_class, text=''):
 
 # Alias for assert_extends
 func assert_is(object, a_class, text=''):
-	var disp = str('Expected [', object, '] to be type of [', a_class, ']: ', text)
+	var disp = str('Expected [', _str(object), '] to be type of [', a_class, ']: ', text)
 	var NATIVE_CLASS = 'GDScriptNativeClass'
 	var GDSCRIPT_CLASS = 'GDScript'
 	var bad_param_2 = 'Parameter 2 must be a Class (like Node2D or Label).  You passed '
 
 	if(typeof(object) != TYPE_OBJECT):
-		_fail(str('Parameter 1 must be an instance of an object.  You passed:  ', types[typeof(object)]))
+		_fail(str('Parameter 1 must be an instance of an object.  You passed:  ', _str(object)))
 	elif(typeof(a_class) != TYPE_OBJECT):
-		_fail(str(bad_param_2, types[typeof(a_class)]))
+		_fail(str(bad_param_2, _str(a_class)))
 	else:
-		disp = str('Expected [', object.get_class(), '] to extend [', a_class.get_class(), ']: ', text)
+		disp = str('Expected [', _str(object), '] to extend [', _str(a_class), ']: ', text)
 		if(a_class.get_class() != NATIVE_CLASS and a_class.get_class() != GDSCRIPT_CLASS):
-			_fail(str(bad_param_2, a_class.get_class(), '  ', types[typeof(a_class)]))
+			_fail(str(bad_param_2, _str(a_class)))
 		else:
 			if(object is a_class):
 				_pass(disp)
 			else:
 				_fail(disp)
 
+func _get_typeof_string(the_type):
+	var to_return = ""
+	if(_strutils.types.has(the_type)):
+		to_return += str(the_type, '(',  _strutils.types[the_type], ')')
+	else:
+		to_return += str(the_type)
+	return to_return
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+func assert_typeof(object, type, text=''):
+	var disp = str('Expected [typeof(', object, ') = ')
+	disp += _get_typeof_string(typeof(object))
+	disp += '] to equal ['
+	disp += _get_typeof_string(type) +  ']'
+	disp += '.  ' + text
+	if(typeof(object) == type):
+		_pass(disp)
+	else:
+		_fail(disp)
+
+# ------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+func assert_not_typeof(object, type, text=''):
+	var disp = str('Expected [typeof(', object, ') = ')
+	disp += _get_typeof_string(typeof(object))
+	disp += '] to not equal ['
+	disp += _get_typeof_string(type) +  ']'
+	disp += '.  ' + text
+	if(typeof(object) != type):
+		_pass(disp)
+	else:
+		_fail(disp)
 
 # ------------------------------------------------------------------------------
 # Assert that text contains given search string.
@@ -755,7 +809,7 @@ func assert_string_ends_with(text, search, match_case=true):
 #      annoying.
 # ------------------------------------------------------------------------------
 func assert_called(inst, method_name, parameters=null):
-	var disp = str('Expected [',method_name,'] to have been called on ',inst)
+	var disp = str('Expected [',method_name,'] to have been called on ',_str(inst))
 
 	if(_fail_if_parameters_not_array(parameters)):
 		return
@@ -776,7 +830,7 @@ func assert_called(inst, method_name, parameters=null):
 # sent matching parameters.
 # ------------------------------------------------------------------------------
 func assert_not_called(inst, method_name, parameters=null):
-	var disp = str('Expected [', method_name, '] to NOT have been called on ', inst)
+	var disp = str('Expected [', method_name, '] to NOT have been called on ', _str(inst))
 
 	if(_fail_if_parameters_not_array(parameters)):
 		return
@@ -806,7 +860,7 @@ func assert_call_count(inst, method_name, expected_count, parameters=null):
 	if(parameters):
 		param_text = ' with parameters ' + str(parameters)
 	var disp = 'Expected [%s] on %s to be called [%s] times%s.  It was called [%s] times.'
-	disp = disp % [method_name, inst, expected_count, param_text, count]
+	disp = disp % [method_name, _str(inst), expected_count, param_text, count]
 
 	if(!_utils.is_double(inst)):
 		_fail('You must pass a doubled instance to assert_call_count.  Check the wiki for info on using double.')
@@ -820,7 +874,7 @@ func assert_call_count(inst, method_name, expected_count, parameters=null):
 # Asserts the passed in value is null
 # ------------------------------------------------------------------------------
 func assert_null(got, text=''):
-	var disp = str('Expected [', got, '] to be NULL:  ', text)
+	var disp = str('Expected [', _str(got), '] to be NULL:  ', text)
 	if(got == null):
 		_pass(disp)
 	else:
@@ -830,7 +884,7 @@ func assert_null(got, text=''):
 # Asserts the passed in value is null
 # ------------------------------------------------------------------------------
 func assert_not_null(got, text=''):
-	var disp = str('Expected [', got, '] to be anything but NULL:  ', text)
+	var disp = str('Expected [', _str(got), '] to be anything but NULL:  ', text)
 	if(got == null):
 		_fail(disp)
 	else:
@@ -841,13 +895,37 @@ func assert_not_null(got, text=''):
 # We pass in a title (since if it is freed, we lost all identity data)
 # -----------------------------------------------------------------------------
 func assert_freed(obj, title):
-	assert_true(not is_instance_valid(obj), "Object %s is freed" % title)
+	var disp = title
+	if(is_instance_valid(obj)):
+		disp = _strutils.type2str(obj) + title
+	assert_true(not is_instance_valid(obj), "Expected [%s] to be freed" % disp)
 
 # ------------------------------------------------------------------------------
 # Asserts Object has not been freed from memory
 # -----------------------------------------------------------------------------
 func assert_not_freed(obj, title):
-	assert_true(is_instance_valid(obj), "Object %s is not freed" % title)
+	var disp = title
+	if(is_instance_valid(obj)):
+		disp = _strutils.type2str(obj) + title
+	assert_true(is_instance_valid(obj), "Expected [%s] to not be freed" % disp)
+
+# ------------------------------------------------------------------------------
+# Asserts that the current test has not introduced any new orphans.  This only
+# applies to the test code that preceedes a call to this method so it should be
+# the last thing your test does.
+# ------------------------------------------------------------------------------
+func assert_no_new_orphans(text=''):
+	var count = gut.get_orphan_counter().get_counter('test')
+	var msg = ''
+	if(text != ''):
+		msg = ':  ' + text
+	# Note that get_counter will return -1 if the counter does not exist.  This
+	# can happen with a misplaced assert_no_new_orphans.  Checking for > 0
+	# ensures this will not cause some weird failure.
+	if(count > 0):
+		_fail(str('Expected no orphans, but found ', count, msg))
+	else:
+		_pass('No new orphans found.' + msg)
 
 # ------------------------------------------------------------------------------
 # Mark the current test as pending.
@@ -855,10 +933,7 @@ func assert_not_freed(obj, title):
 func pending(text=""):
 	_summary.pending += 1
 	if(gut):
-		if(text == ""):
-			gut.p("Pending")
-		else:
-			gut.p("Pending:  " + text)
+		_lgr.pending(text)
 		gut._pending(text)
 
 # ------------------------------------------------------------------------------
@@ -1054,6 +1129,8 @@ func simulate(obj, times, delta):
 # get all the groups that the node that was replaced had.
 #
 # The node that was replaced is queued to be freed.
+#
+# TODO see replace_by method, this could simplify the logic here.
 # ------------------------------------------------------------------------------
 func replace_node(base_node, path_or_node, with_this):
 	var path = path_or_node
@@ -1086,3 +1163,57 @@ func replace_node(base_node, path_or_node, with_this):
 		with_this.add_to_group(groups[i])
 
 	to_replace.queue_free()
+
+
+# ------------------------------------------------------------------------------
+# This method does a somewhat complicated dance with Gut.  It assumes that Gut
+# will clear its parameter handler after it finishes calling a parameterized test
+# enough times.
+# ------------------------------------------------------------------------------
+func use_parameters(params):
+	var ph = gut.get_parameter_handler()
+	if(ph == null):
+		ph = _utils.ParameterHandler.new(params)
+		gut.set_parameter_handler(ph)
+	else:
+		_lgr.dec_indent()
+
+	var output = str('(call #', ph.get_call_count() + 1, ') with paramters:  ', ph.get_current_parameters())
+	gut.p(output, 0, 0)
+	_lgr.inc_indent()
+	return ph.next_parameters()
+
+# ------------------------------------------------------------------------------
+# Marks whatever is passed in to be freed after the test finishes.  It also
+# returns what is passed in so you can save a line of code.
+#   var thing = autofree(Thing.new())
+# ------------------------------------------------------------------------------
+func autofree(thing):
+	gut.get_autofree().add_free(thing)
+	return thing
+
+# ------------------------------------------------------------------------------
+# Works the same as autofree except queue_free will be called on the object
+# instead.  This also imparts a brief pause after the test finishes so that
+# the queued object has time to free.
+# ------------------------------------------------------------------------------
+func autoqfree(thing):
+	gut.get_autofree().add_queue_free(thing)
+	return thing
+
+# ------------------------------------------------------------------------------
+# The same as autofree but it also adds the object as a child of the test.
+# ------------------------------------------------------------------------------
+func add_child_autofree(node, legible_unique_name = false):
+	gut.get_autofree().add_free(node)
+	# Explicitly calling super here b/c add_child MIGHT change and I don't want
+	# a bug sneaking its way in here.
+	.add_child(node, legible_unique_name)
+	return node
+
+func add_child_autoqfree(node, legible_unique_name=false):
+	gut.get_autofree().add_queue_free(node)
+	# Explicitly calling super here b/c add_child MIGHT change and I don't want
+	# a bug sneaking its way in here.
+	.add_child(node, legible_unique_name)
+	return node
