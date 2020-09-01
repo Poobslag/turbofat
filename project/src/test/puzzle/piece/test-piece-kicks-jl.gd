@@ -1,4 +1,4 @@
-extends "res://src/test/test-piece-kicks.gd"
+extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
 """
 Tests the j/l piece's kick behavior.
 """
