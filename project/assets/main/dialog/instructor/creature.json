@@ -1,0 +1,26 @@
+{
+  "version": "187d",
+  "id": "instructor",
+  "name": "Master Fat",
+  "dna": {
+    "instructor": "true",
+    "belly": "0",
+    "body": "1",
+    "body_rgb": "a854cb",
+    "cheek": "0",
+    "cloth_rgb": "4fa94e",
+    "collar": "0",
+    "ear": "3",
+    "eye": "2",
+    "eye_rgb": "4fa94e dbe28e",
+    "hair": "0",
+    "hair_rgb": "f1e398",
+    "head": "1",
+    "horn": "0",
+    "horn_rgb": "f1e398",
+    "line_rgb": "6c4331",
+    "mouth": "2",
+    "nose": "2",
+    "tail": "3"
+  }
+}

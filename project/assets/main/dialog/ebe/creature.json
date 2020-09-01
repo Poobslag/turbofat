@@ -3,10 +3,12 @@
   "id": "ebe",
   "name": "Ebe",
   "dna": {
-    "body": "1",
-    "body_rgb": "feceef",
     "belly": "1",
     "belly_rgb": "ffeffc",
+    "body": "1",
+    "body_rgb": "feceef",
+    "cheek": "2",
+    "cloth_rgb": "9999f4",
     "collar": "1",
     "ear": "1",
     "eye": "1",
@@ -17,8 +19,6 @@
     "line_rgb": "6c4331",
     "mouth": "3",
     "nose": "2",
-    "cheek": "2",
-    "cloth_rgb": "9999f4",
     "tail": "4"
   },
   "chat_theme_def": {

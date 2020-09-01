@@ -3,10 +3,11 @@
   "id": "bort",
   "name": "Bort",
   "dna": {
-    "body": "2",
-    "body_rgb": "70843a",
     "belly": "2",
     "belly_rgb": "a9aa2f",
+    "body": "2",
+    "body_rgb": "70843a",
+    "cheek": "1",
     "ear": "3",
     "eye": "2",
     "eye_rgb": "7d4c21 e5cd7d",
@@ -16,7 +17,6 @@
     "line_rgb": "6c4331",
     "mouth": "3",
     "nose": "3",
-    "cheek": "1",
     "tail": "0"
   },
   "fatness": 1.5,
