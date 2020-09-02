@@ -22,6 +22,8 @@ grep -R -n "var [^:]* = " --include="*.gd" ./project/src \
 
 find ./project/src -name "*.TMP"
 find ./project/src -name "*.gd~"
+find ./project/src -name "[A-Z]*.gd"
+find ./project/src -name "[a-z]*.tscn"
 
 # project settings which are enabled temporarily, but shouldn't be pushed
 grep "emulate_touch_from_mouse=true" ./project/project.godot 
