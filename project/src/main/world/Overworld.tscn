@@ -345,6 +345,7 @@ dna = {
 "shader:TailZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "tail": "3"
 }
+chat_bubble_type = 1
 
 [node name="GlowySphere" type="KinematicBody2D" parent="World/Obstacles"]
 position = Vector2( 731.162, 206.052 )
