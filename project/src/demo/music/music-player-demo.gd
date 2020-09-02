@@ -29,8 +29,10 @@ func _input(event: InputEvent) -> void:
 
 
 func next_checkpoint() -> void:
-	var freshness_inspector: FreshnessInspector = MusicPlayer.get_node("FreshnessInspector")
-	var checkpoints: Array = freshness_inspector.get_checkpoints(MusicPlayer.current_bgm)
+	if not MusicPlayer.current_bgm:
+		return
+	
+	var checkpoints: Array = MusicPlayer.current_bgm.checkpoints
 	var curr_playback_position := MusicPlayer.current_bgm.get_playback_position()
 	var closest_checkpoint := 0.0
 	for checkpoint in checkpoints:
@@ -42,7 +44,6 @@ func next_checkpoint() -> void:
 
 
 func _on_Timer_timeout() -> void:
-	var freshness_inspector: FreshnessInspector = MusicPlayer.get_node("FreshnessInspector")
 	$RichTextLabel.clear()
-	for key in freshness_inspector.bgm_staleness.keys():
-		$RichTextLabel.text += "%s %s\n" % [key, freshness_inspector.bgm_staleness.get(key)]
+	for bgm in MusicPlayer.all_bgms:
+		$RichTextLabel.text += "%s %s\n" % [bgm.name, bgm._staleness_record]

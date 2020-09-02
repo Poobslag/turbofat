@@ -89,6 +89,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/cheat-code-detector.gd"
 }, {
+"base": "AudioStreamPlayer",
+"class": "CheckpointSong",
+"language": "GDScript",
+"path": "res://src/main/music/checkpoint-song.gd"
+}, {
 "base": "Reference",
 "class": "ComboBreakRules",
 "language": "GDScript",
@@ -178,11 +183,6 @@ _global_script_classes=[ {
 "class": "FrameInput",
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/frame-input.gd"
-}, {
-"base": "Timer",
-"class": "FreshnessInspector",
-"language": "GDScript",
-"path": "res://src/main/freshness-inspector.gd"
 }, {
 "base": "Sprite",
 "class": "FrostingGlob",
@@ -511,6 +511,7 @@ _global_script_class_icons={
 "ChatTheme": "",
 "ChatTree": "",
 "CheatCodeDetector": "",
+"CheckpointSong": "",
 "ComboBreakRules": "",
 "ComboTracker": "",
 "Connect": "",
@@ -529,7 +530,6 @@ _global_script_class_icons={
 "FontFitLabel": "",
 "FoodItem": "",
 "FrameInput": "",
-"FreshnessInspector": "",
 "FrostingGlob": "",
 "FrostingViewports": "",
 "GameplaySettings": "",
@@ -613,7 +613,7 @@ ChattableManager="*res://src/main/world/chattable-manager.gd"
 CreatureLoader="*res://src/main/world/creature/creature-loader.gd"
 Global="*res://src/main/global.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
-MusicPlayer="*res://src/main/MusicPlayer.tscn"
+MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 PlayerData="*res://src/main/player-data.gd"

@@ -1,0 +1,59 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://src/main/music/music-player.gd" type="Script" id=1]
+[ext_resource path="res://src/main/music/CheckpointSong.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/main/music/house-01.ogg" type="AudioStream" id=3]
+[ext_resource path="res://src/main/music/music-tween.gd" type="Script" id=4]
+[ext_resource path="res://assets/main/music/hiphop-04.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/main/music/house-04.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/main/music/house-06.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/main/music/house-08.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/main/music/hiphop-08.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/main/music/tutorial.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/main/music/house-10.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/main/music/hiphop-03.ogg" type="AudioStream" id=13]
+
+[node name="MusicPlayer" type="Node"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="HipHop03" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 13 )
+checkpoints = [ 0.0, 12.489, 32.489, 42.489, 142.489, 152.489, 162.489 ]
+
+[node name="HipHop04" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 6 )
+checkpoints = [ 0.0, 10.646, 21.326, 63.988, 85.33, 213.328 ]
+
+[node name="HipHop08" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 10 )
+checkpoints = [ 0.0, 8.707, 17.456, 69.826, 165.814 ]
+
+[node name="House01" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 3 )
+checkpoints = [ 0.0, 7.747, 23.229, 38.696 ]
+
+[node name="House04" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 7 )
+checkpoints = [ 0.0, 15.233, 45.721, 76.196, 106.67, 167.613 ]
+
+[node name="House06" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 8 )
+checkpoints = [ 0.0, 15.23, 30.474 ]
+
+[node name="House08" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 9 )
+checkpoints = [ 0.0, 1.951, 204.877 ]
+
+[node name="House10" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 12 )
+checkpoints = [ 0.0, 14.989, 29.982, 59.993 ]
+
+[node name="Tutorial" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 11 )
+volume_db = 4.0
+checkpoints = [ 0.0, 25.098, 50.196, 74.681 ]
+
+[node name="MusicTween" type="Tween" parent="."]
+script = ExtResource( 4 )
+[connection signal="tween_completed" from="MusicTween" to="MusicTween" method="_on_tween_completed"]
