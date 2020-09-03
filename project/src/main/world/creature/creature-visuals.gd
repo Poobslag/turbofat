@@ -206,7 +206,7 @@ Generates a creature with a random appearance.
 func random_creature(value: bool = true) -> void:
 	if not value:
 		return
-	var new_dna := DnaUtils.fill_dna(DnaUtils.random_creature_palette())
+	var new_dna: Dictionary = DnaUtils.fill_dna(DnaUtils.random_creature_palette())
 	set_dna(new_dna)
 
 

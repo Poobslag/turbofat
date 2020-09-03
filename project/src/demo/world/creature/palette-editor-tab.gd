@@ -49,11 +49,10 @@ func _on_PaletteButton_pressed(palette: Dictionary) -> void:
 	
 	# update the center creature with new dna
 	var dna := {}
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb",
-			"body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
+	for allele in DnaUtils.ALLELES:
 		if get_center_creature().dna.has(allele):
 			dna[allele] = get_center_creature().dna[allele]
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb"]:
+	for allele in DnaUtils.COLOR_ALLELES:
 		dna[allele] = palette[allele]
 	get_center_creature().dna = dna
 	
@@ -93,7 +92,7 @@ Appends a palette and prints it to the console.
 """
 func _on_Add_pressed() -> void:
 	var palette := {}
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb"]:
+	for allele in DnaUtils.COLOR_ALLELES:
 		palette[allele] = get_center_creature().dna[allele]
 	_print_palette(palette)
 	_add_palette(palette)

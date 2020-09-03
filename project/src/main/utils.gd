@@ -135,6 +135,29 @@ static func rand_value(values: Array):
 
 
 """
+Returns a random key from the specified dictionary.
+
+The values in the dictionary are numeric weights for each key.
+"""
+static func weighted_rand_value(weights_map: Dictionary):
+	# select a random index in the range [0.0, sum_of_weights)
+	var selected_index := 0.0
+	for value in weights_map.values():
+		selected_index += value
+	selected_index *= randf()
+	
+	# calculate which value corresponds to the selected index
+	var selected_value
+	for key in weights_map:
+		selected_index -= weights_map[key]
+		if selected_index <= 0.0:
+			selected_value = key
+			break
+	
+	return selected_value
+
+
+"""
 Returns the array index whose contents are closest to a target number.
 
 Utils.find_closest([1.0, 2.0, 4.0, 8.0], 6.0) = 2
@@ -150,3 +173,10 @@ static func find_closest(values: Array, target: float) -> int:
 		if abs(target - values[i]) < abs(target - values[result]):
 			result = i
 	return result
+
+
+"""
+If the specified key does not exist, this method associates it with the given value.
+"""
+static func put_if_absent(dna: Dictionary, key: String, value) -> void:
+	dna[key] = dna.get(key, value)
