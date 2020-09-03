@@ -15,6 +15,9 @@ signal finished_loading
 # number of threads to launch; 1 is slower, but more than 4 doesn't seem to help
 const THREAD_COUNT := 4
 
+# loading scenes is slower than loading regular resources; this constant estimates how much slower
+const WORK_PER_SCENE := 8.0
+
 const CHUNK_SECONDS := 0.1
 
 # enables logging paths and durations for loaded resources
@@ -41,8 +44,7 @@ var _work_total := 3.0
 var _remaining_resource_paths := []
 var _remaining_resource_paths_mutex := Mutex.new()
 
-# mutex which controls the 'finished' signal. locked once and never unlocked.
-var _finished_signal_mutex := Mutex.new()
+var _remaining_scene_paths := []
 
 """
 Initializes the resource load.
@@ -60,16 +62,25 @@ func start_load() -> void:
 	else:
 		for _i in range(THREAD_COUNT):
 			var thread := Thread.new()
-			thread.start(self, "_preload_all_pngs")
+			thread.start(self, "_preload_all_resources")
 			_load_threads.append(thread)
 
 
 func _process(_delta: float) -> void:
-	if OS.has_feature("web") and _remaining_resource_paths:
+	if _remaining_resource_paths:
+		if OS.has_feature("web"):
+			var start_usec := OS.get_ticks_usec()
+			# Web targets do not support background threads, so we load a few resources every frame
+			while _remaining_resource_paths and OS.get_ticks_usec() < start_usec + 1000000 * CHUNK_SECONDS: 
+				_preload_next_resource()
+	elif _remaining_scene_paths:
 		var start_usec := OS.get_ticks_usec()
-		# Web targets do not support background threads, so we load a few resources every frame
-		while _remaining_resource_paths and OS.get_ticks_usec() < start_usec + 1000000 * CHUNK_SECONDS: 
-			_preload_next_png()
+		# Loading scenes in threads causes 'another resource is loaded' errors, so we don't thread this
+		while _remaining_scene_paths and OS.get_ticks_usec() < start_usec + 1000000 * CHUNK_SECONDS:
+			_preload_next_scene()
+	else:
+		set_process(false)
+		call_deferred("emit_signal", "finished_loading")
 
 
 func _exit_tree() -> void:
@@ -87,21 +98,31 @@ func is_done() -> bool:
 	return _work_done >= _work_total
 
 
+func has_cached_resource(path: String) -> bool:
+	return _cache.has(path)
+
+
+func get_cached_resource(path: String) -> Resource:
+	return _cache.get(path)
+
+
 """
 Loads all pngs in the /assets directory and stores the resulting resources in our cache
 
 Parameters:
 	'_userdata': Unused; needed for threads
 """
-func _preload_all_pngs(_userdata: Object) -> void:
+func _preload_all_resources(_userdata: Object) -> void:
 	while _remaining_resource_paths and not _exiting:
-		_preload_next_png()
+		_preload_next_resource()
 
 
 """
-Loads a single png in the /assets directory and stores the resulting resource in our cache
+Loads a single resource and stores the resulting resource in our cache.
+
+Thread safe.
 """
-func _preload_next_png() -> void:
+func _preload_next_resource() -> void:
 	_remaining_resource_paths_mutex.lock()
 	var path: String = _remaining_resource_paths.pop_front()
 	_remaining_resource_paths_mutex.unlock()
@@ -111,10 +132,17 @@ func _preload_next_png() -> void:
 	_work_done_mutex.lock()
 	_work_done += 1.0
 	_work_done_mutex.unlock()
-	
-	if is_done() and _finished_signal_mutex.try_lock() == OK:
-		# Emit signals on the main thread. Otherwise there are strange side effects like breakpoints not working
-		call_deferred("emit_signal", "finished_loading")
+
+
+"""
+Loads a single scene and stores the resulting resource in our cache.
+
+Loading scenes in threads causes 'another resource is loaded' errors, so this is not threaded.
+"""
+func _preload_next_scene() -> void:
+	var path: String = _remaining_scene_paths.pop_front()
+	_load_resource(path)
+	_work_done += WORK_PER_SCENE
 
 
 """
@@ -130,7 +158,7 @@ func _find_resource_paths() -> Array:
 	_remaining_resource_paths.clear()
 	
 	# directories remaining to be traversed
-	var dir_queue := ["res://assets/main"]
+	var dir_queue := ["res://assets/main", "res://src/main"]
 	
 	var dir: Directory
 	var file: String
@@ -138,6 +166,8 @@ func _find_resource_paths() -> Array:
 		if file:
 			if dir.current_is_dir():
 				dir_queue.append("%s/%s" % [dir.get_current_dir(), file])
+			elif file.ends_with(".tscn"):
+				_remaining_scene_paths.append("%s/%s" % [dir.get_current_dir(), file.get_file()])
 			elif file.ends_with(".png.import") or file.ends_with(".wav.import"):
 				_remaining_resource_paths.append("%s/%s" % [dir.get_current_dir(), file.get_basename()])
 		else:
@@ -154,10 +184,12 @@ func _find_resource_paths() -> Array:
 	seed(253686)
 	# We shuffle the pngs to prevent clumps of similar files. We use a known seed to keep the timing predictable.
 	_remaining_resource_paths.shuffle()
+	_remaining_scene_paths.shuffle()
 	randomize()
 	
 	# all pngs have been located. increment the progress bar and calculate its new maximum
 	_work_total += _remaining_resource_paths.size()
+	_work_total += _remaining_scene_paths.size() * WORK_PER_SCENE
 	_work_done += 3.0
 	
 	return _remaining_resource_paths

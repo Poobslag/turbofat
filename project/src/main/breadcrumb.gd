@@ -49,4 +49,7 @@ Changes the running scene to the one at the front of the breadcrumb trail.
 """
 func _change_scene() -> void:
 	if trail:
-		get_tree().change_scene(trail.front())
+		if ResourceCache.has_cached_resource(trail.front()):
+			get_tree().change_scene_to(ResourceCache.get_cached_resource(trail.front()))
+		else:
+			get_tree().change_scene(trail.front())
