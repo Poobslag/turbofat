@@ -60,7 +60,7 @@ func _ready() -> void:
 	
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 	
-	for allele in ["body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
+	for allele in DnaUtils.BODY_PART_ALLELES:
 		_recent_tweaked_allele_values[allele] = []
 	
 	center_creature.set_meta("main_creature", true)
@@ -104,8 +104,7 @@ func _mutate_creature(creature: Creature) -> void:
 	# copy the center creature's dna, name, weight
 	creature.creature_def = center_creature.creature_def
 	var dna := {}
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb",
-		"body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
+	for allele in DnaUtils.ALLELES:
 		if center_creature.dna.has(allele):
 			dna[allele] = center_creature.dna[allele]
 	
@@ -136,12 +135,12 @@ func _mutate_creature(creature: Creature) -> void:
 			"line_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb":
 				dna[allele] = new_palette[allele]
 			_:
-				var new_alleles := DnaUtils.weighted_allele_values(dna, allele)
+				var new_alleles := DnaUtils.allele_weights(dna, allele)
 				if _mutate_ui.mutagen <= 0.5:
 					while new_alleles.has(dna[allele]):
 						new_alleles.erase(dna[allele])
 				if new_alleles:
-					dna[allele] = Utils.rand_value(new_alleles)
+					dna[allele] = Utils.weighted_rand_value(new_alleles)
 	
 	creature.dna = dna
 	creature.chat_theme_def = _chat_theme_def(dna)
@@ -207,7 +206,10 @@ func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 	elif color_mode == SIMILAR_COLORS:
 		# derive a palette from the creature's current palette
 		result["line_rgb"] = center_creature.dna["line_rgb"]
-		for allele in ["body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "horn_rgb"]:
+		for allele in DnaUtils.COLOR_ALLELES:
+			if allele in ["line_rgb", "eye_rgb"]:
+				# these color alleles are special; lines aren't randomly mutated, and eyes have two colors
+				continue
 			var body := Color(center_creature.dna[allele])
 			result[allele] = _random_similar_color(body).to_html(false)
 		
@@ -236,8 +238,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 	# copy the center creature's dna, name, weight
 	creature.creature_def = center_creature.creature_def
 	var dna := {}
-	for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb",
-		"body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"]:
+	for allele in DnaUtils.ALLELES:
 		if center_creature.dna.has(allele):
 			dna[allele] = center_creature.dna[allele]
 	

@@ -152,9 +152,8 @@ func load_creature_def(path: String) -> CreatureDef:
 		creature_def.from_json_dict(json_creature_def)
 		
 		# populate default values when importing incomplete json
-		for allele in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb",
-				"body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "belly"]:
-			DnaUtils.put_if_absent(creature_def.dna, allele, CreatureLibrary.DEFAULT_DNA[allele])
+		for allele in DnaUtils.ALLELES:
+			Utils.put_if_absent(creature_def.dna, allele, CreatureLibrary.DEFAULT_DNA[allele])
 		if not creature_def.creature_name:
 			creature_def.creature_name = CreatureLibrary.DEFAULT_NAME
 		if not creature_def.creature_short_name:

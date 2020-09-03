@@ -154,11 +154,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-visuals.gd"
 }, {
-"base": "Node",
-"class": "DnaUtils",
-"language": "GDScript",
-"path": "res://src/main/world/creature/dna-utils.gd"
-}, {
 "base": "Reference",
 "class": "EditorPlayfield",
 "language": "GDScript",
@@ -524,7 +519,6 @@ _global_script_class_icons={
 "CreaturePaletteDemo": "",
 "CreatureShadow": "",
 "CreatureVisuals": "",
-"DnaUtils": "",
 "EditorPlayfield": "",
 "FileUtils": "",
 "FontFitLabel": "",
@@ -611,6 +605,7 @@ Breadcrumb="*res://src/main/breadcrumb.gd"
 ChatLibrary="*res://src/main/ui/chat/chat-library.gd"
 ChattableManager="*res://src/main/world/chattable-manager.gd"
 CreatureLoader="*res://src/main/world/creature/creature-loader.gd"
+DnaUtils="*res://src/main/world/creature/dna-utils.gd"
 Global="*res://src/main/global.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"

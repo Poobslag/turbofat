@@ -1,4 +1,3 @@
-class_name DnaUtils
 extends Node
 """
 Provides utilities for manipulating DNA definitions.
@@ -93,6 +92,19 @@ const CREATURE_PALETTES := [
 			"hair_rgb": "486965", "eye_rgb": "f2c12a ffffa2", "horn_rgb": "486965"}, # magma orange
 ]
 
+# alleles corresponding to creature body parts
+const BODY_PART_ALLELES := [
+	"body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"
+]
+
+# alleles corresponding to creature colors
+const COLOR_ALLELES := [
+	"line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb"
+]
+
+# all alleles, including body parts and colors
+const ALLELES := BODY_PART_ALLELES + COLOR_ALLELES
+
 # body part names shown to the player
 const ALLELE_NAMES := {
 	"eye-0": "(none)",
@@ -159,11 +171,42 @@ const ALLELE_NAMES := {
 	"tail-6": "Fancy Squirrel",
 }
 
-"""
-If the specified key is not associated with a value, this method associates it with the given value.
-"""
-static func put_if_absent(dna: Dictionary, key: String, value) -> void:
-	dna[key] = dna.get(key, value)
+# key: alleles
+# value: positive numeric weights [0.0-100.0]. high values for common alleles
+var _allele_weights := {}
+
+# key: alleles
+# value: positive/negative adjustments [-100, 100]. positive for good combos, negative for bad combos
+var _allele_combo_adjustments := {}
+
+func _ready() -> void:
+	for mouth in ["1", "2"]:
+		for nose in ["1", "2", "3"]:
+			# creatures with ant/illithid mouth are less likely to have noses
+			_set_allele_combo_adjustment("mouth", mouth, "nose", nose, -2)
+		
+		# creatures with ant/illithid mouth are less likely to have fuzzy hair
+		_set_allele_combo_adjustment("mouth", mouth, "hair", "1", -2)
+		_set_allele_combo_adjustment("mouth", mouth, "hair", "2", -2)
+		
+		# creatures with ant/illithid mouth are less likely to have fuzzy neck
+		_set_allele_combo_adjustment("mouth", mouth, "collar", "2", -2)
+		_set_allele_combo_adjustment("mouth", mouth, "collar", "3", -2)
+	
+	_set_allele_weight("body", "1", 6.0)
+	_set_allele_weight("head", "1", 6.0)
+	_set_allele_weight("belly", "0", 2.0)
+	_set_allele_weight("belly", "1", 2.0)
+	_set_allele_weight("ear", "1", 3.0)
+	_set_allele_weight("ear", "4", 2.0)
+	_set_allele_weight("eye", "1", 3.0)
+	_set_allele_weight("horn", "0", 3.0)
+	_set_allele_weight("mouth", "1", 2.0)
+	_set_allele_weight("mouth", "2", 2.0)
+	_set_allele_weight("hair", "0", 5.0)
+	_set_allele_weight("collar", "0", 5.0)
+	_set_allele_weight("collar", "1", 2.0)
+	_set_allele_weight("tail", "0", 5.0)
 
 
 """
@@ -171,31 +214,30 @@ Fill in the creature's missing traits with random values.
 
 Otherwise, missing values will be left empty, leading to invisible body parts or strange colors.
 """
-static func fill_dna(dna: Dictionary) -> Dictionary:
+func fill_dna(dna: Dictionary) -> Dictionary:
 	# duplicate the dna so that we don't modify the original
 	var result := dna.duplicate()
-	put_if_absent(result, "line_rgb", "6c4331")
-	put_if_absent(result, "body_rgb", "b23823")
-	put_if_absent(result, "belly_rgb", "ffa86d")
-	put_if_absent(result, "cloth_rgb", "282828")
-	put_if_absent(result, "hair_rgb", "f1e398")
-	put_if_absent(result, "eye_rgb", "282828 dedede")
-	put_if_absent(result, "horn_rgb", "f1e398")
+	Utils.put_if_absent(result, "line_rgb", "6c4331")
+	Utils.put_if_absent(result, "body_rgb", "b23823")
+	Utils.put_if_absent(result, "belly_rgb", "ffa86d")
+	Utils.put_if_absent(result, "cloth_rgb", "282828")
+	Utils.put_if_absent(result, "hair_rgb", "f1e398")
+	Utils.put_if_absent(result, "eye_rgb", "282828 dedede")
+	Utils.put_if_absent(result, "horn_rgb", "f1e398")
 	
 	if ResourceCache.minimal_resources:
 		# avoid loading unnecessary resources for things like the level editor
 		pass
 	else:
-		for allele in ["body", "head", "cheek", "ear", "eye", "horn", "mouth",
-				"nose", "hair", "collar", "tail", "belly"]:
-			put_if_absent(result, allele, Utils.rand_value(weighted_allele_values(result, allele)))
+		for allele in BODY_PART_ALLELES:
+			Utils.put_if_absent(result, allele, Utils.weighted_rand_value(allele_weights(result, allele)))
 	return result
 
 
 """
 Returns a human-readable allele name for use in the editor.
 """
-static func allele_name(key: String, value: String) -> String:
+func allele_name(key: String, value: String) -> String:
 	var combo_key := "%s-%s" % [key, value]
 	return ALLELE_NAMES.get(combo_key, combo_key)
 
@@ -203,10 +245,10 @@ static func allele_name(key: String, value: String) -> String:
 """
 Returns a unique list of values for the specified allele.
 """
-static func unique_allele_values(property: String) -> Array:
+func unique_allele_values(property: String) -> Array:
 	var result := []
 	
-	if property in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb", "line_rgb"]:
+	if property in COLOR_ALLELES:
 		# color palette properties
 		for palette in CREATURE_PALETTES:
 			result.append(palette[property])
@@ -232,56 +274,67 @@ static func unique_allele_values(property: String) -> Array:
 """
 Returns a random palette from a list of preset palettes.
 """
-static func random_creature_palette() -> Dictionary:
+func random_creature_palette() -> Dictionary:
 	return Utils.rand_value(CREATURE_PALETTES).duplicate()
 
 
 """
-Returns a weighted list of values for the specified allele.
+Returns a dictionary with weights for the specified allele.
 
-The values are weighted to make some values more common than others. The values uses the creature's current dna to
-avoid combining creature parts that don't look good together.
+Some values are more common than others, and some combinations are more common as well.
 """
-static func weighted_allele_values(dna: Dictionary, property: String) -> Array:
-	var result := []
+func allele_weights(dna: Dictionary, property: String) -> Dictionary:
+	var result := {}
 	
-	if property in ["line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "eye_rgb", "horn_rgb", "line_rgb"]:
-		# color palette properties
-		for palette in CREATURE_PALETTES:
-			result.append(palette[property])
-	else:
-		# other properties
-		match property:
-			"body": result = ["1", "1", "1", "1", "1", "1", "2"]
-			"head": result = ["1", "1", "1", "1", "1", "1", "2", "3", "4", "5"]
-			"belly": result = ["0", "0", "1", "1", "2"]
-			"cheek": result = ["0", "0", "0", "1", "1", "2", "2", "3", "4", "4"]
-			"ear": result = ["1", "1", "1", "2", "3", "4", "4", "5"]
-			"eye": result = ["1", "1", "1", "2", "3", "4"]
-			"horn": result = ["0", "0", "0", "1", "2"]
-			"mouth":
-				result = ["1", "1", "2", "3", "3"]
-				if dna.has("nose") and dna["nose"] != "0" \
-						or dna.has("hair") and dna["hair"] != "0" \
-						or dna.has("mouth") and dna["mouth"] in ["2", "3"]:
-					# creatures with nose/hair are less likely to have beaky mouth
-					result += ["3", "3", "3", "3", "3"]
-			"nose":
-				result = ["0", "1", "1", "2", "2", "3", "3"]
-				if dna.has("mouth") and dna["mouth"] in ["1", "2"]:
-					# creatures with beaky mouths are less likely to have nose
-					result += ["0", "0", "0", "0", "0", "0", "0"]
-			"hair":
-				result = ["0", "0", "0", "0", "0", "1", "2"]
-				if dna.has("mouth") and dna["mouth"] in ["1", "2"]:
-					# creatures with beaky mouths are less likely to have hair
-					result += ["0", "0", "0", "0", "0", "0", "0"]
-			"collar":
-				result = ["0", "0", "0", "0", "0", "1", "1", "2", "3"]
-				if dna.has("mouth") and dna["mouth"] in ["1", "2"]:
-					# creatures with beaky mouths are less likely to have a fuzzy neck
-					result += ["0", "0", "0", "0", "0", "0", "0", "1", "1"]
-			"tail":
-				result = ["0", "0", "0", "0", "0", "0", "0", "0", "1", "2", "3", "4", "5", "6"]
+	if property in COLOR_ALLELES:
+		for allele_value in unique_allele_values(property):
+			result[allele_value] = 1.0
+	elif property in BODY_PART_ALLELES:
+		for allele_value in unique_allele_values(property):
+			result[allele_value] = _get_allele_weight(property, allele_value)
+		for allele_value in result:
+			var total_score := 0.0
+			for other_property in BODY_PART_ALLELES:
+				if other_property == property:
+					continue
+				var other_value: String = dna.get(other_property, "0")
+				total_score += _get_allele_combo_adjustment(property, allele_value, other_property, other_value)
+			if total_score > 0:
+				# chance increases to 200%, 300%, 400%...
+				result[allele_value] += total_score
+			elif total_score < 0:
+				# chance decreases to 50%, 33%, 25%...
+				result[allele_value] /= (1 - total_score)
 	
 	return result
+
+
+func _set_allele_weight(key: String, value: String, weight: float) -> void:
+	_allele_weights[_allele_value_key(key, value)] = weight
+
+
+func _get_allele_weight(key: String, value: String) -> float:
+	return _allele_weights.get(_allele_value_key(key, value), 1.0)
+
+
+func _set_allele_combo_adjustment(key1: String, value1: String, key2: String, value2: String, score: int) -> void:
+	var combo_key := _allele_combo_key(key1, value1, key2, value2)
+	_allele_combo_adjustments[combo_key] = score
+
+
+func _get_allele_combo_adjustment(key1: String, value1: String, key2: String, value2: String) -> int:
+	var combo_key := _allele_combo_key(key1, value1, key2, value2)
+	return _allele_combo_adjustments.get(combo_key, 0)
+
+
+func _allele_combo_key(key1: String, value1: String, key2: String, value2: String) -> String:
+	var combo_key: String
+	if key1 <= key2:
+		combo_key = "%s-%s-%s-%s" % [key1, value1, key2, value2]
+	else:
+		combo_key = "%s-%s-%s-%s" % [key2, value2, key1, value1]
+	return combo_key
+
+
+func _allele_value_key(key: String, value: String) -> String:
+	return "%s-%s" % [key, value]
