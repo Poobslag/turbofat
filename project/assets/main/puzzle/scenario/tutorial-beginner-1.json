@@ -1,6 +1,6 @@
 {
-  "version": "15d2",
-  "blocks-start": {
+  "version": "1922",
+  "blocks_start": {
     "tiles": [
       {
         "pos": "0 14",
@@ -96,29 +96,29 @@
       }
     ]
   },
-  "combo-break": [
+  "combo_break": [
     "pieces 0"
   ],
-  "finish-condition": {
+  "finish_condition": {
     "type": "score",
     "value": "100"
   },
-  "lose-condition": [
-    "top-out-999999"
+  "lose_condition": [
+    "top_out 999999"
   ],
   "other": [
-    "start-scenario tutorial-beginner-0",
+    "start_scenario tutorial_beginner_0",
     "tutorial"
   ],
-  "piece-types": [
-    "start-piece-l",
-    "piece-j",
-    "piece-l",
-    "piece-p",
-    "piece-q"
+  "piece_types": [
+    "start_piece_l",
+    "piece_j",
+    "piece_l",
+    "piece_p",
+    "piece_q"
   ],
   "rank": [
-    "skip-results"
+    "skip_results"
   ],
-  "start-level": "T"
+  "start_level": "T"
 }

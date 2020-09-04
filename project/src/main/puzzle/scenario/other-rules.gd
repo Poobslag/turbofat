@@ -17,7 +17,7 @@ var clear_on_finish := true
 
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
-	if rules.has("after-tutorial"): after_tutorial = true
-	if rules.has("no-clear-on-finish"): clear_on_finish = false
-	if rules.has("start-scenario"): start_scenario_name = rules.string_value()
+	if rules.has("after_tutorial"): after_tutorial = true
+	if rules.has("no_clear_on_finish"): clear_on_finish = false
+	if rules.has("start_scenario"): start_scenario_name = rules.string_value()
 	if rules.has("tutorial"): tutorial = true

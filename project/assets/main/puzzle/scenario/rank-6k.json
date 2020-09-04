@@ -1,15 +1,15 @@
 {
-  "version": "15d2",
-  "success-condition": {
+  "version": "1922",
+  "success_condition": {
     "type": "score",
     "value": "200"
   },
-  "start-level": "2",
-  "finish-condition": {
-    "type": "time-over",
+  "start_level": "2",
+  "finish_condition": {
+    "type": "time_over",
     "value": "180"
   },
   "rank": [
-    "success-bonus 2"
+    "success_bonus 2"
   ]
 }

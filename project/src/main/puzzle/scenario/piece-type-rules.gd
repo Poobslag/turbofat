@@ -11,14 +11,14 @@ var types: Array = []
 
 func from_json_string_array(json: Array) -> void:
 	var json_types: Dictionary = {
-		"piece-j": PieceTypes.piece_j,
-		"piece-l": PieceTypes.piece_l,
-		"piece-o": PieceTypes.piece_o,
-		"piece-p": PieceTypes.piece_p,
-		"piece-q": PieceTypes.piece_q,
-		"piece-t": PieceTypes.piece_t,
-		"piece-u": PieceTypes.piece_u,
-		"piece-v": PieceTypes.piece_v,
+		"piece_j": PieceTypes.piece_j,
+		"piece_l": PieceTypes.piece_l,
+		"piece_o": PieceTypes.piece_o,
+		"piece_p": PieceTypes.piece_p,
+		"piece_q": PieceTypes.piece_q,
+		"piece_t": PieceTypes.piece_t,
+		"piece_u": PieceTypes.piece_u,
+		"piece_v": PieceTypes.piece_v,
 	}
 	
 	var rules := RuleParser.new(json)

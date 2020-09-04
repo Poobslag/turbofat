@@ -29,7 +29,7 @@
   },
   "dialog": {
     "filler": {
-      "version": "15d2",
+      "version": "1922",
       "": [
         {
           "who": "Ebe",
@@ -53,7 +53,7 @@
           "who": "#player#",
           "text": "I'll cook for you!",
           "mood": "smile0",
-          "meta": "scenario-five-customers-no-vegetables"
+          "meta": "scenario_five_customers_no_vegetables"
         },
         {
           "who": "Ebe",

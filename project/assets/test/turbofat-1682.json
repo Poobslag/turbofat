@@ -1,0 +1,306 @@
+[
+  {
+    "type": "version",
+    "value": "1682"
+  },
+  {
+    "type": "player-info",
+    "value": {
+      "money": 2915792
+    }
+  },
+  {
+    "type": "gameplay-settings",
+    "value": {
+      "ghost_piece": false
+    }
+  },
+  {
+    "type": "volume-settings",
+    "value": {
+      "master": 0.15,
+      "music": 0,
+      "sound": 0.7,
+      "voice": 0.7
+    }
+  },
+  {
+    "type": "touch-settings",
+    "value": {
+      "size": 1,
+      "scheme": 4,
+      "fat_finger": 1
+    }
+  },
+  {
+    "type": "scenario-history",
+    "key": "tutorial-beginner-0",
+    "value": [
+      {
+        "box_score": 120,
+        "box_score_per_line": 40,
+        "box_score_per_line_rank": 0,
+        "combo_score": 5,
+        "combo_score_per_line": 20,
+        "combo_score_per_line_rank": 0,
+        "compare": "+score",
+        "leftover_score": 0,
+        "lines": 3,
+        "lines_rank": 20.755915,
+        "lost": false,
+        "score": 128,
+        "score_rank": 999,
+        "seconds": 1.533333,
+        "seconds_rank": 0,
+        "speed": 117.391298,
+        "speed_rank": 0,
+        "success": false,
+        "timestamp": {
+          "day": 9,
+          "dst": false,
+          "hour": 17,
+          "minute": 43,
+          "month": 5,
+          "second": 51,
+          "weekday": 4,
+          "year": 2020
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "chat-history",
+    "value": {
+      "history-items": {
+        "dialog/level-select": 10,
+        "dialog/boatricia/level-1": 0,
+        "dialog/boatricia/hi": 1,
+        "dialog/boatricia/filler": 12,
+        "dialog/boatricia/my-maid-died": 7,
+        "dialog/boatricia/level-2": 9,
+        "dialog/boatricia/life-is-so-short": 10,
+        "dialog/ebe/filler": 7,
+        "dialog/level-select-2": 12,
+        "dialog/bort/filler": 1,
+        "dialog/glowy-sphere": 16
+      },
+      "counts": {
+        "dialog": 17,
+        "dialog/boatricia": 13,
+        "dialog/ebe": 8,
+        "dialog/bort": 2
+      },
+      "filler-counts": {
+        "dialog": 17,
+        "dialog/boatricia": 13,
+        "dialog/ebe": 8,
+        "dialog/bort": 2
+      }
+    }
+  },
+  {
+    "type": "creature-library",
+    "value": {
+      "#player#": {
+        "version": "187d",
+        "id": "",
+        "name": "Adamselfish",
+        "short_name": "Adamselfish",
+        "dna": {
+          "line_rgb": "6c4331",
+          "body_rgb": "68af25",
+          "belly_rgb": "b0b4d1",
+          "cloth_rgb": "4e8eee",
+          "hair_rgb": "587f44",
+          "eye_rgb": "4e8eee f8ffff",
+          "horn_rgb": "c4c4c5",
+          "body": "2",
+          "head": "1",
+          "cheek": "4",
+          "eye": "4",
+          "ear": "2",
+          "horn": "1",
+          "mouth": "3",
+          "nose": "1",
+          "hair": "1",
+          "collar": "1",
+          "tail": "6",
+          "belly": "1",
+          "property:Collar:texture": "[StreamTexture:2026]",
+          "property:Collar:frame_data": "res://assets/main/world/creature/1/collar-packed.json",
+          "property:Neck0/HeadBobber/Head:texture": "[StreamTexture:2500]",
+          "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/1/head-packed.json",
+          "property:Neck0/HeadBobber/CheekZ0:texture": "[StreamTexture:3336]",
+          "property:Neck0/HeadBobber/CheekZ0:frame_data": "res://assets/main/world/creature/4/cheek-z0-packed.json",
+          "property:Neck0/HeadBobber/CheekZ1:texture": "[StreamTexture:3322]",
+          "property:Neck0/HeadBobber/CheekZ1:frame_data": "res://assets/main/world/creature/4/cheek-z1-packed.json",
+          "property:Neck0/HeadBobber/CheekZ2:texture": "[StreamTexture:3594]",
+          "property:Neck0/HeadBobber/CheekZ2:frame_data": "res://assets/main/world/creature/4/cheek-z2-packed.json",
+          "property:Neck0/HeadBobber/EarZ0:texture": "[StreamTexture:2876]",
+          "property:Neck0/HeadBobber/EarZ0:frame_data": "res://assets/main/world/creature/2/ear-z0-packed.json",
+          "property:Neck0/HeadBobber/EarZ1:texture": "[StreamTexture:2367]",
+          "property:Neck0/HeadBobber/EarZ1:frame_data": "res://assets/main/world/creature/2/ear-z1-packed.json",
+          "property:Neck0/HeadBobber/EarZ2:texture": "[StreamTexture:3254]",
+          "property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/2/ear-z2-packed.json",
+          "property:Neck0/HeadBobber/EyeZ0:texture": "[StreamTexture:2644]",
+          "property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/4/eye-z0-packed.json",
+          "property:Neck0/HeadBobber/EyeZ1:texture": "[StreamTexture:1978]",
+          "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/4/eye-z1-packed.json",
+          "property:Neck0/HeadBobber/HairZ0:texture": "[StreamTexture:1869]",
+          "property:Neck0/HeadBobber/HairZ0:frame_data": "res://assets/main/world/creature/1/hair-z0-packed.json",
+          "property:Neck0/HeadBobber/HairZ1:texture": "[StreamTexture:2046]",
+          "property:Neck0/HeadBobber/HairZ1:frame_data": "res://assets/main/world/creature/1/hair-z1-packed.json",
+          "property:Neck0/HeadBobber/HairZ2:texture": "[StreamTexture:2316]",
+          "property:Neck0/HeadBobber/HairZ2:frame_data": "res://assets/main/world/creature/1/hair-z2-packed.json",
+          "property:Neck0/HeadBobber/HornZ1:texture": "[StreamTexture:3701]",
+          "property:Neck0/HeadBobber/HornZ1:frame_data": "res://assets/main/world/creature/1/horn-z1-packed.json",
+          "property:Neck0/HeadBobber/Mouth:texture": "[StreamTexture:1989]",
+          "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/3/mouth-packed.json",
+          "property:Neck0/HeadBobber/Food:texture": "[StreamTexture:3676]",
+          "property:Neck0/HeadBobber/Food:frame_data": "res://assets/main/world/creature/3/food-packed.json",
+          "property:Neck0/HeadBobber/FoodLaser:texture": "[StreamTexture:3269]",
+          "property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/3/food-laser-packed.json",
+          "property:Neck0/HeadBobber/Nose:texture": "[StreamTexture:1872]",
+          "property:Neck0/HeadBobber/Nose:frame_data": "res://assets/main/world/creature/1/nose-packed.json",
+          "property:Sprint:texture": "[StreamTexture:2762]",
+          "property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
+          "property:FarArm:texture": "[StreamTexture:1892]",
+          "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
+          "property:FarLeg:texture": "[StreamTexture:3568]",
+          "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
+          "property:Body/Viewport/Body/NeckBlend:texture": "[StreamTexture:1285]",
+          "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
+          "property:NearLeg:texture": "[StreamTexture:2977]",
+          "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
+          "property:NearArm:texture": "[StreamTexture:2788]",
+          "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
+          "property:Neck0/HeadBobber/Chin:texture": "[StreamTexture:3172]",
+          "property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
+          "property:TailZ0:texture": "[StreamTexture:3155]",
+          "property:TailZ0:frame_data": "res://assets/main/world/creature/6/tail-z0-packed.json",
+          "property:TailZ1:texture": "[StreamTexture:3333]",
+          "property:TailZ1:frame_data": "res://assets/main/world/creature/6/tail-z1-packed.json",
+          "property:BodyColors/Viewport/Body:belly": "1",
+          "shader:Body:black": "0.423529,0.262745,0.192157,1",
+          "shader:Collar:black": "0.423529,0.262745,0.192157,1",
+          "shader:EmoteBody:black": "0.423529,0.262745,0.192157,1",
+          "shader:FarArm:black": "0.423529,0.262745,0.192157,1",
+          "shader:FarLeg:black": "0.423529,0.262745,0.192157,1",
+          "shader:NearArm:black": "0.423529,0.262745,0.192157,1",
+          "shader:NearLeg:black": "0.423529,0.262745,0.192157,1",
+          "shader:TailZ0:black": "0.423529,0.262745,0.192157,1",
+          "shader:TailZ1:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/CheekZ0:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/CheekZ1:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/CheekZ2:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/Chin:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EarZ0:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EarZ1:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EarZ2:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EmoteArmZ0:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EmoteArmZ1:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EmoteBrain:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EmoteEyeZ0:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EmoteEyeZ1:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EyeZ0:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/EyeZ1:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/HairZ0:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/HairZ1:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/HairZ2:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/Head:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/HornZ0:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/HornZ1:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/Mouth:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/Nose:black": "0.423529,0.262745,0.192157,1",
+          "shader:Neck0/HeadBobber/HairZ0:red": "0.345098,0.498039,0.266667,1",
+          "shader:Neck0/HeadBobber/HairZ1:red": "0.345098,0.498039,0.266667,1",
+          "shader:Neck0/HeadBobber/HairZ2:red": "0.345098,0.498039,0.266667,1",
+          "shader:Collar:red": "0.305882,0.556863,0.933333,1",
+          "shader:Collar:green": "0.345098,0.498039,0.266667,1",
+          "shader:Body:red": "0.407843,0.686275,0.145098,1",
+          "shader:Body:green": "0.690196,0.705882,0.819608,1",
+          "shader:FarArm:red": "0.407843,0.686275,0.145098,1",
+          "shader:FarLeg:red": "0.407843,0.686275,0.145098,1",
+          "shader:NearArm:red": "0.407843,0.686275,0.145098,1",
+          "shader:NearLeg:red": "0.407843,0.686275,0.145098,1",
+          "shader:TailZ0:red": "0.407843,0.686275,0.145098,1",
+          "shader:TailZ0:green": "0.690196,0.705882,0.819608,1",
+          "shader:TailZ0:blue": "0.345098,0.498039,0.266667,1",
+          "shader:TailZ1:red": "0.407843,0.686275,0.145098,1",
+          "shader:TailZ1:green": "0.690196,0.705882,0.819608,1",
+          "shader:TailZ1:blue": "0.345098,0.498039,0.266667,1",
+          "shader:Neck0/HeadBobber/CheekZ0:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/CheekZ0:green": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/CheekZ1:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/CheekZ1:green": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/CheekZ2:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/CheekZ2:green": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/Chin:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/EarZ0:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/EarZ1:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/EarZ2:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/EmoteArmZ0:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/EmoteArmZ1:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/Head:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/Head:green": "0.690196,0.705882,0.819608,1",
+          "shader:Neck0/HeadBobber/Mouth:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/Nose:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/EyeZ0:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/EyeZ0:green": "0.305882,0.556863,0.933333,1",
+          "shader:Neck0/HeadBobber/EyeZ0:blue": "0.972549,1,1,1",
+          "shader:Neck0/HeadBobber/EyeZ1:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/EyeZ1:green": "0.305882,0.556863,0.933333,1",
+          "shader:Neck0/HeadBobber/EyeZ1:blue": "0.972549,1,1,1",
+          "shader:Neck0/HeadBobber/HornZ0:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/HornZ0:green": "0.768627,0.768627,0.772549,1",
+          "shader:Neck0/HeadBobber/HornZ1:red": "0.407843,0.686275,0.145098,1",
+          "shader:Neck0/HeadBobber/HornZ1:green": "0.768627,0.768627,0.772549,1"
+        },
+        "chat_theme_def": {
+          "accent_scale": 1.33,
+          "accent_swapped": true,
+          "accent_texture": 13,
+          "color": "68af25"
+        },
+        "dialog": {
+
+        },
+        "chat_selectors": [
+
+        ],
+        "fatness": 1
+      }
+    }
+  },
+  {
+    "type": "successful-scenarios",
+    "value": {
+      "survival-normal": {
+        "year": 2020,
+        "month": 6,
+        "day": 28,
+        "weekday": 0,
+        "dst": false,
+        "hour": 16,
+        "minute": 30,
+        "second": 22
+      }
+    }
+  },
+  {
+    "type": "finished-scenarios",
+    "value": {
+      "tutorial-beginner-0": {
+        "year": 2020,
+        "month": 9,
+        "day": 1,
+        "weekday": 2,
+        "dst": false,
+        "hour": 7,
+        "minute": 5,
+        "second": 27
+      }
+    }
+  }
+]

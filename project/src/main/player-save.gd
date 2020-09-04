@@ -26,7 +26,7 @@ const PREV_WEEK := RollingSave.PREV_WEEK
 
 # Current version for saved player data. Should be updated if and only if the player format changes.
 # This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const PLAYER_DATA_VERSION := "1682"
+const PLAYER_DATA_VERSION := "1922"
 
 const SECONDS_PER_MINUTE = 60
 const SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE
@@ -115,20 +115,20 @@ Writes the player's in-memory data to a save file.
 func save_player_data() -> void:
 	var save_json: Array = []
 	save_json.append(generic_data("version", PLAYER_DATA_VERSION).to_json_dict())
-	save_json.append(generic_data("player-info", {"money": PlayerData.money}).to_json_dict())
-	save_json.append(generic_data("gameplay-settings", PlayerData.gameplay_settings.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("volume-settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("touch-settings", PlayerData.touch_settings.to_json_dict()).to_json_dict())
+	save_json.append(generic_data("player_info", {"money": PlayerData.money}).to_json_dict())
+	save_json.append(generic_data("gameplay_settings", PlayerData.gameplay_settings.to_json_dict()).to_json_dict())
+	save_json.append(generic_data("volume_settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
+	save_json.append(generic_data("touch_settings", PlayerData.touch_settings.to_json_dict()).to_json_dict())
 	for scenario_name in PlayerData.scenario_history.scenario_names():
 		var rank_results_json := []
 		for rank_result in PlayerData.scenario_history.results(scenario_name):
 			rank_results_json.append(rank_result.to_json_dict())
-		save_json.append(named_data("scenario-history", scenario_name, rank_results_json).to_json_dict())
-	save_json.append(generic_data("chat-history", PlayerData.chat_history.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("creature-library", PlayerData.creature_library.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("successful-scenarios",
+		save_json.append(named_data("scenario_history", scenario_name, rank_results_json).to_json_dict())
+	save_json.append(generic_data("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
+	save_json.append(generic_data("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
+	save_json.append(generic_data("successful_scenarios",
 			PlayerData.scenario_history.successful_scenarios).to_json_dict())
-	save_json.append(generic_data("finished-scenarios",
+	save_json.append(generic_data("finished_scenarios",
 			PlayerData.scenario_history.finished_scenarios).to_json_dict())
 	FileUtils.write_file(current_player_data_filename, Utils.print_json(save_json))
 	rotate_backups()
@@ -272,35 +272,35 @@ func _load_line(type: String, key: String, json_value) -> void:
 			var value: String = json_value
 			if value != PLAYER_DATA_VERSION:
 				push_warning("Unrecognized save data version: '%s'" % value)
-		"player-info":
+		"player_info":
 			var value: Dictionary = json_value
 			PlayerData.money = value.get("money", 0)
-		"scenario-history":
+		"scenario_history":
 			var value: Array = json_value
 			for rank_result_json in value:
 				var rank_result := RankResult.new()
 				rank_result.from_json_dict(rank_result_json)
 				PlayerData.scenario_history.add(key, rank_result)
 			PlayerData.scenario_history.prune(key)
-		"chat-history":
+		"chat_history":
 			var value: Dictionary = json_value
 			PlayerData.chat_history.from_json_dict(value)
-		"creature-library":
+		"creature_library":
 			var value: Dictionary = json_value
 			PlayerData.creature_library.from_json_dict(value)
-		"finished-scenarios":
+		"finished_scenarios":
 			var value: Dictionary = json_value
 			PlayerData.scenario_history.finished_scenarios = value
-		"successful-scenarios":
+		"successful_scenarios":
 			var value: Dictionary = json_value
 			PlayerData.scenario_history.successful_scenarios = value
-		"gameplay-settings":
+		"gameplay_settings":
 			var value: Dictionary = json_value
 			PlayerData.gameplay_settings.from_json_dict(value)
-		"volume-settings":
+		"volume_settings":
 			var value: Dictionary = json_value
 			PlayerData.volume_settings.from_json_dict(value)
-		"touch-settings":
+		"touch_settings":
 			var value: Dictionary = json_value
 			PlayerData.touch_settings.from_json_dict(value)
 		_:

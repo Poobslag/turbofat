@@ -29,14 +29,14 @@
   "chat_selectors": [
     {
       "level": "boatricia1",
-      "dialog": "level-1",
+      "dialog": "level_1",
       "if_conditions": [
         "current_level/1"
       ]
     },
     {
       "level": "boatricia2",
-      "dialog": "level-2",
+      "dialog": "level_2",
       "if_conditions": [
         "current_level/2"
       ]
@@ -46,14 +46,14 @@
       "repeat": 999999
     },
     {
-      "dialog": "my-maid-died",
+      "dialog": "my_maid_died",
       "if_conditions": [
         "notable_chat"
       ],
       "repeat": 999999
     },
     {
-      "dialog": "life-is-so-short",
+      "dialog": "life_is_so_short",
       "if_conditions": [
         "notable_chat"
       ],

@@ -1,11 +1,11 @@
 {
-  "version": "15d2",
-  "success-condition": {
+  "version": "1922",
+  "success_condition": {
     "type": "score",
     "value": "1000"
   },
-  "start-level": "0",
-  "level-ups": [
+  "start_level": "0",
+  "level_ups": [
     {
       "type": "lines",
       "value": "10",
@@ -52,14 +52,14 @@
       "level": "9"
     }
   ],
-  "finish-condition": {
+  "finish_condition": {
     "type": "lines",
     "value": "150"
   },
-  "lose-condition": [
-    "top-out 1"
+  "lose_condition": [
+    "top_out 1"
   ],
   "rank": [
-    "success-bonus 2"
+    "success_bonus 2"
   ]
 }

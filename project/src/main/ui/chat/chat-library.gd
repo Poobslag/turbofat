@@ -38,7 +38,7 @@ func load_chat_events_for_creature(creature: Creature, level_int: int = -1) -> C
 			chat_tree.from_json_dict(creature.dialog[chosen_dialog])
 			chat_tree.history_key = "dialog/%s/%s" % [creature.creature_id, chosen_dialog]
 		else:
-			var path := "res://assets/main/dialog/%s/%s.json" % [creature.creature_id, chosen_dialog]
+			var path := "res://assets/main/dialog/%s/%s.json" % [creature.creature_id, chosen_dialog.replace("_", "-")]
 			chat_tree = load_chat_events_from_file(path)
 	else:
 		push_warning("Unexpected level names count: %s" % level_names.size())
