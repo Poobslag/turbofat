@@ -22,7 +22,7 @@ var _max_volume_db_by_bgm := {}
 
 # newest track(s) play twice as often
 onready var _chill_bgms := [$HipHop03, $HipHop04, $HipHop08, $HipHop08]
-onready var _upbeat_bgms := [$House01, $House04, $House06, $House08, $House10, $House10]
+onready var _upbeat_bgms := [$House01, $House04, $House06, $House08, $House10, $Breakbeat01, $Breakbeat01]
 onready var _tutorial_bgms := [$Tutorial]
 onready var all_bgms := _chill_bgms + _upbeat_bgms + _tutorial_bgms
 
