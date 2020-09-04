@@ -14,6 +14,6 @@ var cake_points := 10
 
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
-	if rules.has("veg-row"): veg_points = rules.int_value()
+	if rules.has("veg_row"): veg_points = rules.int_value()
 	if rules.has("snack-all"): snack_points = rules.int_value()
 	if rules.has("cake-all"): cake_points = rules.int_value()

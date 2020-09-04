@@ -8,7 +8,7 @@ time limit, and any other special rules.
 
 # Current version for saved scenario data. Should be updated if and only if the scenario format changes.
 # This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const SCENARIO_DATA_VERSION := "15d2"
+const SCENARIO_DATA_VERSION := "1922"
 
 # Blocks/boxes which begin on the playfield.
 var blocks_start := BlocksStartRules.new()
@@ -109,32 +109,32 @@ func from_json_dict(new_name: String, json: Dictionary) -> void:
 	if json.get("version") != SCENARIO_DATA_VERSION:
 		push_warning("Unrecognized scenario data version: '%s'" % json.get("version"))
 	
-	set_start_level(json["start-level"])
-	if json.has("blocks-start"):
-		blocks_start.from_json_dict(json["blocks-start"])
-	if json.has("blocks-during"):
-		blocks_during.from_json_string_array(json["blocks-during"])
-	if json.has("combo-break"):
-		combo_break.from_json_string_array(json["combo-break"])
-	if json.has("finish-condition"):
-		finish_condition.from_json_dict(json["finish-condition"])
-	if json.has("level-ups"):
-		for json_level_up in json["level-ups"]:
+	set_start_level(json["start_level"])
+	if json.has("blocks_start"):
+		blocks_start.from_json_dict(json["blocks_start"])
+	if json.has("blocks_during"):
+		blocks_during.from_json_string_array(json["blocks_during"])
+	if json.has("combo_break"):
+		combo_break.from_json_string_array(json["combo_break"])
+	if json.has("finish_condition"):
+		finish_condition.from_json_dict(json["finish_condition"])
+	if json.has("level_ups"):
+		for json_level_up in json["level_ups"]:
 			var level_up := Milestone.new()
 			level_up.from_json_dict(json_level_up)
 			level_ups.append(level_up)
-	if json.has("lose-condition"):
-		lose_condition.from_json_string_array(json["lose-condition"])
+	if json.has("lose_condition"):
+		lose_condition.from_json_string_array(json["lose_condition"])
 	if json.has("other"):
 		other.from_json_string_array(json["other"])
-	if json.has("piece-types"):
-		piece_types.from_json_string_array(json["piece-types"])
+	if json.has("piece_types"):
+		piece_types.from_json_string_array(json["piece_types"])
 	if json.has("rank"):
 		rank.from_json_string_array(json["rank"])
 	if json.has("score"):
 		score.from_json_string_array(json["score"])
-	if json.has("success-condition"):
-		success_condition.from_json_dict(json["success-condition"])
+	if json.has("success_condition"):
+		success_condition.from_json_dict(json["success_condition"])
 
 
 func load_from_resource(new_name: String) -> void:
@@ -160,12 +160,12 @@ func load_from_creature(creature: Creature, level_int: int) -> void:
 
 
 static func scenario_path(scenario_name: String) -> String:
-	return "res://assets/main/puzzle/scenario/%s.json" % scenario_name
+	return "res://assets/main/puzzle/scenario/%s.json" % (scenario_name.replace("_", "-"))
 
 
 static func scenario_name(path: String) -> String:
-	return path.get_file().trim_suffix(".json")
+	return path.get_file().trim_suffix(".json").replace("_", "-")
 
 
 static func scenario_filename(scenario_name: String) -> String:
-	return "%s.json" % scenario_name
+	return "%s.json" % scenario_name.replace("_", "-")

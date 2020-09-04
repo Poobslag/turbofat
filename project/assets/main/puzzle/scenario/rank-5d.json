@@ -1,45 +1,45 @@
 {
-  "version": "15d2",
-  "success-condition": {
+  "version": "1922",
+  "success_condition": {
     "type": "score",
     "value": "2500"
   },
-  "start-level": "AA",
-  "level-ups": [
+  "start_level": "AA",
+  "level_ups": [
     {
-      "type": "time-over",
+      "type": "time_over",
       "value": "60",
       "level": "AB"
     },
     {
-      "type": "time-over",
+      "type": "time_over",
       "value": "120",
       "level": "AC"
     },
     {
-      "type": "time-over",
+      "type": "time_over",
       "value": "180",
       "level": "AD"
     },
     {
-      "type": "time-over",
+      "type": "time_over",
       "value": "240",
       "level": "AA"
     },
     {
-      "type": "time-over",
+      "type": "time_over",
       "value": "300",
       "level": "AE"
     }
   ],
-  "finish-condition": {
+  "finish_condition": {
     "type": "lines",
     "value": "200"
   },
-  "lose-condition": [
-    "top-out 1"
+  "lose_condition": [
+    "top_out 1"
   ],
   "rank": [
-    "success-bonus 2"
+    "success_bonus 2"
   ]
 }

@@ -1,7 +1,7 @@
 {
-  "version": "15d2",
-  "start-level": "A1",
-  "level-ups": [
+  "version": "1922",
+  "start_level": "A1",
+  "level_ups": [
     {
       "type": "lines",
       "value": "50",
@@ -48,16 +48,16 @@
       "level": "AA"
     }
   ],
-  "success-condition": {
+  "success_condition": {
     "type": "lines",
     "value": "200",
   },
-  "finish-condition": {
+  "finish_condition": {
     "type": "lines",
     "value": "200",
-    "lenient-value": "150"
+    "lenient_value": "150"
   },
-  "lose-condition": [
-    "top-out 1"
+  "lose_condition": [
+    "top_out 1"
   ]
 }

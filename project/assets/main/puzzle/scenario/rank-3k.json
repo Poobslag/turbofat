@@ -1,21 +1,21 @@
 {
-  "version": "15d2",
-  "success-condition": {
+  "version": "1922",
+  "success_condition": {
     "type": "score",
     "value": "999"
   },
-  "blocks-during": [
-    "clear-on-top-out"
+  "blocks_during": [
+    "clear_on_top_out"
   ],
-  "start-level": "5",
-  "finish-condition": {
-    "type": "time-over",
+  "start_level": "5",
+  "finish_condition": {
+    "type": "time_over",
     "value": "540"
   },
-  "lose-condition": [
-    "top-out 9"
+  "lose_condition": [
+    "top_out 9"
   ],
   "rank": [
-    "success-bonus 2"
+    "success_bonus 2"
   ]
 }

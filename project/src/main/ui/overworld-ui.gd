@@ -93,7 +93,7 @@ func _update_visible() -> void:
 Process a 'scenario-*' event, loading the appropriate scenario data to launch.
 """
 func _process_scenario_meta_item(meta_item: String) -> void:
-	var scenario := StringUtils.substring_after(meta_item, "scenario-")
+	var scenario := StringUtils.substring_after(meta_item, "scenario_")
 	var settings := ScenarioSettings.new()
 	settings.load_from_resource(scenario)
 	_launched_scenario = settings
@@ -166,7 +166,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 		var meta: Array = chat_event.meta
 		for meta_item_obj in meta:
 			var meta_item: String = meta_item_obj
-			if meta_item.begins_with("scenario-"):
+			if meta_item.begins_with("scenario_"):
 				_process_scenario_meta_item(meta_item)
 			if meta_item.begins_with("select_level_"):
 				_process_select_level_meta_item(meta_item)

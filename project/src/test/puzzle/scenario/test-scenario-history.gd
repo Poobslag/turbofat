@@ -20,46 +20,46 @@ static func rank_result(score: int = 7890) -> RankResult:
 
 
 func test_prune_one() -> void:
-	_scenario_history.add("scenario-895", rank_result(7890))
-	_scenario_history.prune("scenario-895")
+	_scenario_history.add("scenario_895", rank_result(7890))
+	_scenario_history.prune("scenario_895")
 	
-	assert_eq(_scenario_history.results("scenario-895")[0].score, 7890)
+	assert_eq(_scenario_history.results("scenario_895")[0].score, 7890)
 
 
 func test_prune_two() -> void:
-	_scenario_history.add("scenario-895", rank_result(7890))
-	_scenario_history.add("scenario-895", rank_result(6780))
-	_scenario_history.prune("scenario-895")
+	_scenario_history.add("scenario_895", rank_result(7890))
+	_scenario_history.add("scenario_895", rank_result(6780))
+	_scenario_history.prune("scenario_895")
 	
-	assert_eq(_scenario_history.results("scenario-895")[0].score, 6780)
-	assert_eq(_scenario_history.results("scenario-895")[1].score, 7890)
+	assert_eq(_scenario_history.results("scenario_895")[0].score, 6780)
+	assert_eq(_scenario_history.results("scenario_895")[1].score, 7890)
 
 
 func test_prune_many() -> void:
-	_scenario_history.add("scenario-895", rank_result(500))
-	_scenario_history.add("scenario-895", rank_result(700))
-	_scenario_history.add("scenario-895", rank_result(30))
-	_scenario_history.add("scenario-895", rank_result(10))
-	_scenario_history.add("scenario-895", rank_result(600))
-	_scenario_history.add("scenario-895", rank_result(20))
-	_scenario_history.add("scenario-895", rank_result(40))
-	assert_eq(_scenario_history.results("scenario-895").size(), 7)
+	_scenario_history.add("scenario_895", rank_result(500))
+	_scenario_history.add("scenario_895", rank_result(700))
+	_scenario_history.add("scenario_895", rank_result(30))
+	_scenario_history.add("scenario_895", rank_result(10))
+	_scenario_history.add("scenario_895", rank_result(600))
+	_scenario_history.add("scenario_895", rank_result(20))
+	_scenario_history.add("scenario_895", rank_result(40))
+	assert_eq(_scenario_history.results("scenario_895").size(), 7)
 	
-	_scenario_history.prune("scenario-895")
-	assert_eq(_scenario_history.results("scenario-895").size(), 4)
+	_scenario_history.prune("scenario_895")
+	assert_eq(_scenario_history.results("scenario_895").size(), 4)
 
 
 func test_prev_after_prune() -> void:
-	_scenario_history.add("scenario-895", rank_result(500))
-	_scenario_history.add("scenario-895", rank_result(700))
-	_scenario_history.add("scenario-895", rank_result(30))
-	_scenario_history.add("scenario-895", rank_result(10))
-	_scenario_history.add("scenario-895", rank_result(600))
-	_scenario_history.add("scenario-895", rank_result(20))
-	_scenario_history.add("scenario-895", rank_result(40))
-	_scenario_history.prune("scenario-895")
+	_scenario_history.add("scenario_895", rank_result(500))
+	_scenario_history.add("scenario_895", rank_result(700))
+	_scenario_history.add("scenario_895", rank_result(30))
+	_scenario_history.add("scenario_895", rank_result(10))
+	_scenario_history.add("scenario_895", rank_result(600))
+	_scenario_history.add("scenario_895", rank_result(20))
+	_scenario_history.add("scenario_895", rank_result(40))
+	_scenario_history.prune("scenario_895")
 	
-	assert_eq(_scenario_history.prev_result("scenario-895").score, 40)
+	assert_eq(_scenario_history.prev_result("scenario_895").score, 40)
 
 
 func test_no_scenario_name() -> void:
@@ -68,8 +68,8 @@ func test_no_scenario_name() -> void:
 
 
 func test_daily_best_no_duplicates() -> void:
-	_scenario_history.add("scenario-895", rank_result(1285))
-	_scenario_history.add("scenario-895", rank_result(1230))
+	_scenario_history.add("scenario_895", rank_result(1285))
+	_scenario_history.add("scenario_895", rank_result(1230))
 	
-	var best_results := _scenario_history.best_results("scenario-895", true)
+	var best_results := _scenario_history.best_results("scenario_895", true)
 	assert_eq(best_results.size(), 2)

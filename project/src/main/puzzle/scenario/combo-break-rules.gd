@@ -11,5 +11,5 @@ var pieces := 2
 
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
-	if rules.has("veg-row"): veg_row = true
+	if rules.has("veg_row"): veg_row = true
 	if rules.has("pieces"): pieces = rules.int_value()

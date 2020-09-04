@@ -8,4 +8,4 @@ var clear_on_top_out := false
 
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
-	if rules.has("clear-on-top-out"): clear_on_top_out = true
+	if rules.has("clear_on_top_out"): clear_on_top_out = true

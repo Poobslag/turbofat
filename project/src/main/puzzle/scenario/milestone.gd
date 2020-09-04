@@ -28,8 +28,8 @@ const JSON_MILESTONE_TYPES := {
 	"customers": MilestoneType.CUSTOMERS,
 	"lines": MilestoneType.LINES,
 	"score": MilestoneType.SCORE,
-	"time-over": MilestoneType.TIME_OVER,
-	"time-under": MilestoneType.TIME_UNDER,
+	"time_over": MilestoneType.TIME_OVER,
+	"time_under": MilestoneType.TIME_UNDER,
 }
 
 # These two parameters describe a MilestoneType and value to reach, such as scoring 50 points, clearing 10 lines

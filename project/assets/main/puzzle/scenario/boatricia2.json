@@ -1,7 +1,7 @@
 {
-  "version": "15d2",
-  "start-level": "0",
-  "finish-condition": {
+  "version": "1922",
+  "start_level": "0",
+  "finish_condition": {
     "type": "score",
     "value": "500"
   }

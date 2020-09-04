@@ -1,6 +1,6 @@
 {
-  "version": "15d2",
-  "blocks-start": {
+  "version": "1922",
+  "blocks_start": {
     "tiles": [
       {
         "pos": "1 5",
@@ -240,23 +240,23 @@
       }
     ]
   },
-  "finish-condition": {
+  "finish_condition": {
     "type": "lines",
     "value": "100"
   },
-  "lose-condition": [
-    "top-out 1"
+  "lose_condition": [
+    "top_out 1"
   ],
   "other": [
-    "start-scenario marathon-hard",
-    "after-tutorial",
-    "no-clear-on-finish"
+    "start_scenario marathon_hard",
+    "after_tutorial",
+    "no_clear_on_finish"
   ],
-  "piece-types": [
-    "piece-l"
+  "piece_types": [
+    "piece_l"
   ],
   "rank": [
-    "skip-results"
+    "skip_results"
   ],
-  "start-level": "A1"
+  "start_level": "A1"
 }

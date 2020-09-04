@@ -32,7 +32,7 @@ func _ready() -> void:
 		skill_tally_item.set_puzzle(_puzzle)
 	refresh()
 	
-	if Scenario.settings.name.begins_with("tutorial-beginner"):
+	if Scenario.settings.name.begins_with("tutorial_beginner"):
 		_puzzle.hide_start_button()
 		_puzzle.hide_back_button()
 		yield(get_tree().create_timer(0.40), "timeout")
@@ -54,8 +54,8 @@ func refresh() -> void:
 	for item in $SkillTallyItems/GridContainer.get_children():
 		item.visible = false
 	
-	if Scenario.settings.name.begins_with("tutorial-beginner"):
-		# prepare for the 'tutorial-beginner' tutorial
+	if Scenario.settings.name.begins_with("tutorial_beginner"):
+		# prepare for the 'tutorial_beginner' tutorial
 		if not _playfield.is_connected("box_built", self, "_on_Playfield_box_built"):
 			_playfield.connect("box_built", self, "_on_Playfield_box_built")
 			_playfield.connect("after_piece_written", self, "_on_Playfield_after_piece_written")
@@ -119,12 +119,12 @@ func _handle_line_clear_message() -> void:
 func _handle_squish_move_message() -> void:
 	if _did_squish_move and _squish_moves == 1:
 		match Scenario.settings.name:
-			"tutorial-beginner-0", "tutorial-beginner-1":
+			"tutorial_beginner_0", "tutorial_beginner_1":
 				append_message("Oh my,/ you're not supposed to know how to do that!\n\n..."
 						+ "But yes,/ squish moves can help you out of a jam.")
 				$SkillTallyItems/GridContainer/SquishMove.visible = true
 				$SkillTallyItems/GridContainer/SquishMove.increment()
-			"tutorial-beginner-2":
+			"tutorial_beginner_2":
 				append_message("Well done!\n\nSquish moves can help you out of a jam./"
 						+ " They're also good for certain boxes.")
 
@@ -132,19 +132,19 @@ func _handle_squish_move_message() -> void:
 func _handle_build_box_message() -> void:
 	if _did_build_box and _boxes_built == 1:
 		match Scenario.settings.name:
-			"tutorial-beginner-0":
+			"tutorial_beginner_0":
 				append_message("Oh my,/ you're not supposed to know how to do that!\n\n"
 						+ "...But yes,/ those boxes earn $15 when you clear them./"
 						+ " Maybe more if you're clever.")
 				$SkillTallyItems/GridContainer/SnackBox.visible = true
 				$SkillTallyItems/GridContainer/SnackBox.increment()
-			"tutorial-beginner-1":
+			"tutorial_beginner_1":
 				append_message("Well done!\n\nThose boxes earn ¥15 when you clear them./"
 				+ " Maybe more if you're clever.")
 
 
 func _handle_snack_stack_message() -> void:
-	if Scenario.settings.name == "tutorial-beginner-3" and _did_build_box and _did_squish_move:
+	if Scenario.settings.name == "tutorial_beginner_3" and _did_build_box and _did_squish_move:
 		_snack_stacks += 1
 		$SkillTallyItems/GridContainer/SnackStack.increment()
 		if _snack_stacks == 1:
@@ -163,16 +163,16 @@ func _on_Playfield_after_piece_written() -> void:
 	_handle_snack_stack_message()
 	
 	match Scenario.settings.name:
-		"tutorial-beginner-0":
+		"tutorial_beginner_0":
 			if _lines_cleared >= 2: _advance_scenario()
-		"tutorial-beginner-1":
+		"tutorial_beginner_1":
 			if _boxes_built >= 2: _advance_scenario()
-		"tutorial-beginner-2":
+		"tutorial_beginner_2":
 			if not _did_squish_move:
 				_playfield.tile_map.restore_state()
 			if _squish_moves >= 2:
 				_advance_scenario()
-		"tutorial-beginner-3":
+		"tutorial_beginner_3":
 			if not _did_build_box:
 				_playfield.tile_map.restore_state()
 			if _snack_stacks >= 2:
@@ -183,24 +183,24 @@ func _advance_scenario() -> void:
 	# clear out any text to ensure we don't end up pages behind, if the player is fast
 	$Message.hide_text()
 	
-	if Scenario.settings.name == "tutorial-beginner-0" and _did_build_cake and _did_squish_move:
+	if Scenario.settings.name == "tutorial_beginner_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
-		_change_scenario("oh-my")
+		_change_scenario("oh_my")
 		append_big_message("O/H/,/// M/Y/!/!/!")
 		$Message.set_pop_out_timer(1.0)
 		
 		# force match to end
 		PuzzleScore.scenario_performance.lines = 100
 	elif _lines_cleared == 0:
-		_change_scenario("tutorial-beginner-0")
+		_change_scenario("tutorial_beginner_0")
 	elif _boxes_built == 0:
-		_change_scenario("tutorial-beginner-1")
+		_change_scenario("tutorial_beginner_1")
 	elif _squish_moves == 0:
-		_change_scenario("tutorial-beginner-2")
+		_change_scenario("tutorial_beginner_2")
 	elif _snack_stacks == 0:
-		_change_scenario("tutorial-beginner-3")
+		_change_scenario("tutorial_beginner_3")
 	else:
-		_change_scenario("tutorial-beginner-4")
+		_change_scenario("tutorial_beginner_4")
 		MusicPlayer.play_upbeat_bgm()
 
 
@@ -215,16 +215,16 @@ func _change_scenario(name: String) -> void:
 	$SkillTallyItems.visible = Scenario.settings.other.tutorial
 	_flash()
 	match(name):
-		"tutorial-beginner-1":
+		"tutorial_beginner_1":
 			$SkillTallyItems/GridContainer/SnackBox.visible = true
 			append_message("Good job!\n\nTry making a snack box by arranging two pieces into a square.")
-		"tutorial-beginner-2":
+		"tutorial_beginner_2":
 			$SkillTallyItems/GridContainer/SquishMove.visible = true
 			append_message("Nicely done!\n\nNext, try holding soft drop to squish these pieces through these gaps.")
-		"tutorial-beginner-3":
+		"tutorial_beginner_3":
 			$SkillTallyItems/GridContainer/SnackStack.visible = true
 			append_message("One last lesson! Try holding soft drop to squish and complete these boxes.")
-		"tutorial-beginner-4":
+		"tutorial_beginner_4":
 			# reset timer, scores
 			PuzzleScore.reset()
 			_puzzle.scroll_to_new_creature()

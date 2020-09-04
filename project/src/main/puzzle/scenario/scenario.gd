@@ -12,7 +12,7 @@ This class needs to be a node because it provides utility methods which utilize 
 signal settings_changed
 
 # The mandatory tutorial the player must complete before playing the game
-const BEGINNER_TUTORIAL := "tutorial-beginner-0"
+const BEGINNER_TUTORIAL := "tutorial_beginner_0"
 
 # The settings for the scenario currently being launched or played
 var settings := ScenarioSettings.new() setget switch_scenario

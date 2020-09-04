@@ -83,13 +83,13 @@ func get_chat_age(history_key: String) -> int:
 
 func to_json_dict() -> Dictionary:
 	return {
-		"history-items": chat_history,
+		"history_items": chat_history,
 		"counts": chat_counts,
-		"filler-counts": chat_counts,
+		"filler_counts": chat_counts,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
-	chat_history = json.get("history-items", {})
+	chat_history = json.get("history_items", {})
 	chat_counts = json.get("counts", {})
-	filler_counts = json.get("filler-counts", {})
+	filler_counts = json.get("filler_counts", {})

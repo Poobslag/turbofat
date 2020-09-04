@@ -6,7 +6,7 @@ This script includes logic for populating the json model from the level editor, 
 """
 
 # json field name constants
-const BLOCKS_START := "blocks-start"
+const BLOCKS_START := "blocks_start"
 const TILES := "tiles"
 
 # these fields store different parts of the parsed json

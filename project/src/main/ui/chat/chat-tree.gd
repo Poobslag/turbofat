@@ -22,7 +22,7 @@ class Position:
 
 # Current version for saved dialog data. Should be updated if and only if the dialog format breaks backwards
 # compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const DIALOG_DATA_VERSION := "15d2"
+const DIALOG_DATA_VERSION := "1922"
 
 # unique key to identify this conversation in the chat history
 var history_key: String

@@ -88,6 +88,8 @@ func is_old_save_items(json_save_items: Array) -> bool:
 	match version_string:
 		PlayerSave.PLAYER_DATA_VERSION:
 			is_old = false
+		"1682":
+			is_old = true
 		"163e":
 			is_old = true
 		"15d2":
@@ -117,11 +119,40 @@ Transforms the specified json save items to the latest format.
 func transform_old_save_items(json_save_items: Array) -> Array:
 	var version_string := get_version_string(json_save_items)
 	match version_string:
+		"1682":
+			json_save_items = _convert_1682(json_save_items)
 		"163e":
 			json_save_items = _convert_163e(json_save_items)
 		"15d2":
 			json_save_items = _convert_15d2(json_save_items)
 	return json_save_items
+
+
+func _convert_1682(json_save_items: Array) -> Array:
+	var new_save_items := []
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		save_item.type = save_item.type.replace("-", "_")
+		save_item.key = save_item.key.replace("-", "_")
+		if typeof(save_item.value) == TYPE_DICTIONARY:
+			_replace_key_hyphens_with_underscores(save_item.value)
+		
+		match save_item.type:
+			"version":
+				save_item["value"] = "1922"
+			"chat_history":
+				_replace_key_hyphens_with_underscores(save_item["value"]["history_items"])
+		
+		new_save_items.append(save_item.to_json_dict())
+	return new_save_items
+
+
+func _replace_key_hyphens_with_underscores(dict: Dictionary) -> void:
+	for key in dict.keys():
+		if key.find("-") != -1:
+			dict[key.replace("-", "_")] = dict[key]
+			dict.erase(key)
 
 
 func _convert_163e(json_save_items: Array) -> Array:
@@ -135,7 +166,7 @@ func _convert_163e(json_save_items: Array) -> Array:
 					if rank_result_dict.get("lost", true):
 						rank_result_dict["success"] = false
 			"version":
-				json_save_item_obj["value"] = PlayerSave.PLAYER_DATA_VERSION
+				json_save_item_obj["value"] = "1682"
 	return json_save_items
 
 

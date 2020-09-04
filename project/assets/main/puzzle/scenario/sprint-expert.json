@@ -1,8 +1,8 @@
 {
-  "version": "15d2",
-  "start-level": "F0",
-  "finish-condition": {
-    "type": "time-over",
+  "version": "1922",
+  "start_level": "F0",
+  "finish_condition": {
+    "type": "time_over",
     "value": "180"
   }
 }

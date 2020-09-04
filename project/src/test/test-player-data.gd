@@ -33,12 +33,12 @@ func after_each() -> void:
 
 
 func test_save_and_load() -> void:
-	PlayerData.scenario_history.add("scenario-895", _rank_result)
+	PlayerData.scenario_history.add("scenario_895", _rank_result)
 	PlayerSave.save_player_data()
 	PlayerData.reset()
 	PlayerSave.load_player_data()
-	assert_true(PlayerData.scenario_history.has("scenario-895"))
-	assert_eq(PlayerData.scenario_history.results("scenario-895")[0].score, 7890)
+	assert_true(PlayerData.scenario_history.has("scenario_895"))
+	assert_eq(PlayerData.scenario_history.results("scenario_895")[0].score, 7890)
 
 
 func test_rolling_filename() -> void:
@@ -99,13 +99,13 @@ func test_move_backups() -> void:
 
 
 func test_one_bad_file() -> void:
-	PlayerData.scenario_history.add("scenario-895", _rank_result)
+	PlayerData.scenario_history.add("scenario_895", _rank_result)
 	PlayerSave.save_player_data()
 	PlayerData.reset()
 	FileUtils.write_file(PlayerSave.current_player_data_filename, "invalid-772")
 	PlayerSave.load_player_data()
-	assert_true(PlayerData.scenario_history.has("scenario-895"))
-	assert_eq(PlayerData.scenario_history.results("scenario-895")[0].score, 7890)
+	assert_true(PlayerData.scenario_history.has("scenario_895"))
+	assert_eq(PlayerData.scenario_history.results("scenario_895")[0].score, 7890)
 	assert_true(FileUtils.file_exists("user://test936.save.corrupt"), "user://test936.save.corrupt")
 	assert_true(FileUtils.file_exists("user://test936.save"), "user://test936.save")
 	
