@@ -1,9 +1,10 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/main/music/music-player.gd" type="Script" id=1]
 [ext_resource path="res://src/main/music/CheckpointSong.tscn" type="PackedScene" id=2]
 [ext_resource path="res://assets/main/music/house-01.ogg" type="AudioStream" id=3]
 [ext_resource path="res://src/main/music/music-tween.gd" type="Script" id=4]
+[ext_resource path="res://assets/main/music/breakbeat-01.ogg" type="AudioStream" id=5]
 [ext_resource path="res://assets/main/music/hiphop-04.ogg" type="AudioStream" id=6]
 [ext_resource path="res://assets/main/music/house-04.ogg" type="AudioStream" id=7]
 [ext_resource path="res://assets/main/music/house-06.ogg" type="AudioStream" id=8]
@@ -16,6 +17,10 @@
 [node name="MusicPlayer" type="Node"]
 pause_mode = 2
 script = ExtResource( 1 )
+
+[node name="Breakbeat01" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 5 )
+checkpoints = [ 0.0, 12.916, 29.532, 88.61 ]
 
 [node name="HipHop03" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 13 )
