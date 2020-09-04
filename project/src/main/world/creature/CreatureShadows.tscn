@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/creature/CreatureShadow.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/editor/creature/creature-shadows.gd" type="Script" id=2]
+
+[node name="CreatureShadows" type="Node2D"]
+script = ExtResource( 2 )
+CreatureShadowScene = ExtResource( 1 )

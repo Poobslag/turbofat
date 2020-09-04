@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/editor/creature/dialog-backdrop.gd" type="Script" id=1]
+
+[node name="Backdrop" type="ColorRect"]
+visible = false
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0, 0, 0, 0.752941 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

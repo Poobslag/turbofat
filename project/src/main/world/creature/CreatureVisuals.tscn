@@ -65,7 +65,7 @@ shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ViewportTexture" id=5]
-viewport_path = NodePath("BodyColors/Viewport")
+viewport_path = NodePath("BellyColors/Viewport")
 
 [sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("BodyShadows/Viewport")
@@ -311,7 +311,7 @@ script = ExtResource( 37 )
 dna = {
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 39 ),
-"property:BodyColors/Viewport/Body:belly": 0,
+"property:BellyColors/Viewport/Body:belly": 0,
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 49 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
@@ -467,7 +467,7 @@ handle_input_locally = false
 usage = 0
 render_target_update_mode = 3
 
-[node name="BodyColors" type="ViewportContainer" parent="."]
+[node name="BellyColors" type="ViewportContainer" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -479,7 +479,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Viewport" type="Viewport" parent="BodyColors"]
+[node name="Viewport" type="Viewport" parent="BellyColors"]
 size = Vector2( 1200, 1200 )
 transparent_bg = true
 handle_input_locally = false

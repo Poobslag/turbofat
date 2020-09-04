@@ -17,7 +17,7 @@
 [ext_resource path="res://src/main/world/environment/GrassTuft.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/grass-tufts.gd" type="Script" id=16]
 [ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=17]
-[ext_resource path="res://src/main/world/creature/CreatureShadow.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=19]
 [ext_resource path="res://src/main/world/environment/obstacle-shadows.gd" type="Script" id=20]
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=21]
@@ -116,25 +116,7 @@ tile_data = PoolIntArray( -131070, 0, 0, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131
 script = ExtResource( 20 )
 obstacle_map_path = NodePath("../../../../Obstacles/ObstacleMap")
 
-[node name="PlayerShadow" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-position = Vector2( 0, 0 )
-creature_path = NodePath("../../../../Obstacles/Player")
-shadow_scale = Vector2( 0.4, 0.4 )
-
-[node name="BortShadow" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-position = Vector2( 0, 0 )
-creature_path = NodePath("../../../../Obstacles/Bort")
-shadow_scale = Vector2( 0.4, 0.4 )
-
-[node name="EbeShadow" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-position = Vector2( 0, 0 )
-creature_path = NodePath("../../../../Obstacles/Ebe")
-shadow_scale = Vector2( 0.4, 0.4 )
-
-[node name="BoatriciaShadow" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-position = Vector2( 0, 0 )
-creature_path = NodePath("../../../../Obstacles/Boatricia")
-shadow_scale = Vector2( 0.4, 0.4 )
+[node name="CreatureShadows" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
 
 [node name="ScrewportTexrect" type="TextureRect" parent="World/Ground/Shadows"]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -222,9 +204,9 @@ dna = {
 "line_rgb": "41281e",
 "mouth": "1",
 "nose": "2",
+"property:BellyColors/Viewport/Body:belly": "0",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
-"property:BodyColors/Viewport/Body:belly": "0",
 "property:Collar:frame_data": "res://assets/main/world/creature/2/collar-packed.json",
 "property:Collar:texture": ExtResource( 38 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",

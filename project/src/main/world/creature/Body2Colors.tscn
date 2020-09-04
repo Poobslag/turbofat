@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/main/world/creature/creature-curve.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/creature/body-colors.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/creature/belly-colors.gd" type="Script" id=2]
 
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true

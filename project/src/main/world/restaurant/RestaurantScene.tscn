@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/main/world/creature/1/cheek-z2-packed.png" type="Texture" id=1]
 [ext_resource path="res://src/main/world/restaurant/Seat.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/restaurant/door-chime.gd" type="Script" id=3]
-[ext_resource path="res://src/main/world/creature/CreatureShadow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/world/shadow-oval-0.png" type="Texture" id=6]
 [ext_resource path="res://assets/main/world/restaurant/wall-metal-shadow.png" type="Texture" id=7]
@@ -249,24 +249,7 @@ offset = Vector2( 0, -35 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 4800, 80 )
 
-[node name="CreatureShadow1" parent="Shadows/Viewport" instance=ExtResource( 4 )]
-visible = false
-creature_path = NodePath("../../../Creature1")
-
-[node name="CreatureShadow2" parent="Shadows/Viewport" instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 1381.23, 585.763 )
-creature_path = NodePath("../../../Creature2")
-
-[node name="CreatureShadow3" parent="Shadows/Viewport" instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 2381.23, 585.763 )
-creature_path = NodePath("../../../Creature3")
-
-[node name="PlayerShadow" parent="Shadows/Viewport" instance=ExtResource( 4 )]
-visible = false
-position = Vector2( 2381.23, 585.763 )
-creature_path = NodePath("../../../Player")
+[node name="CreatureShadows" parent="Shadows/Viewport" instance=ExtResource( 4 )]
 
 [node name="TextureRect" type="TextureRect" parent="Shadows"]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -316,10 +299,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "2",
 "nose": "1",
+"property:BellyColors/Viewport/Body:belly": "2",
+"property:BellyColors:belly": "2",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 10 ),
-"property:BodyColors/Viewport/Body:belly": "2",
-"property:BodyColors:belly": "2",
 "property:Collar:frame_data": "res://assets/main/world/creature/1/collar-packed.json",
 "property:Collar:texture": ExtResource( 33 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
@@ -467,10 +450,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "1",
 "nose": "2",
+"property:BellyColors/Viewport/Body:belly": "2",
+"property:BellyColors:belly": "2",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 10 ),
-"property:BodyColors/Viewport/Body:belly": "2",
-"property:BodyColors:belly": "2",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 29 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
@@ -615,10 +598,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "1",
 "nose": "1",
+"property:BellyColors/Viewport/Body:belly": "1",
+"property:BellyColors:belly": "1",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 10 ),
-"property:BodyColors/Viewport/Body:belly": "1",
-"property:BodyColors:belly": "1",
 "property:Collar:frame_data": "res://assets/main/world/creature/2/collar-packed.json",
 "property:Collar:texture": ExtResource( 59 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
@@ -763,10 +746,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "3",
 "nose": "2",
+"property:BellyColors/Viewport/Body:belly": "1",
+"property:BellyColors:belly": "1",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 10 ),
-"property:BodyColors/Viewport/Body:belly": "1",
-"property:BodyColors:belly": "1",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 29 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
