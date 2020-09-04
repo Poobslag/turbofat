@@ -257,7 +257,7 @@ func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "TailZ0", "tail", "tail-z0-packed")
 	_load_texture(dna, "TailZ1", "tail", "tail-z1-packed")
 	
-	dna["property:BodyColors/Viewport/Body:belly"] = dna.get("belly", 0)
+	dna["property:BellyColors/Viewport/Body:belly"] = dna.get("belly", 0)
 
 
 """

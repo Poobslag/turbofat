@@ -1,11 +1,10 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
 [ext_resource path="res://src/main/editor/creature/creature-editor-nametags.gd" type="Script" id=3]
 [ext_resource path="res://src/main/editor/creature/HookableNametag.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/world/creature/CreatureShadow.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/editor/creature/creature-editor-shadows.gd" type="Script" id=6]
+[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/editor/creature/creature-selector.gd" type="Script" id=7]
 [ext_resource path="res://src/main/editor/creature/creature-editor.gd" type="Script" id=8]
 [ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=9]
@@ -16,7 +15,7 @@
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=14]
 [ext_resource path="res://assets/main/editor/creature/unlocked.png" type="Texture" id=15]
 [ext_resource path="res://assets/main/puzzle/rotate0.wav" type="AudioStream" id=16]
-[ext_resource path="res://src/main/editor/creature/dialog-backdrop.gd" type="Script" id=17]
+[ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/editor/creature/dialogs.gd" type="Script" id=18]
 [ext_resource path="res://src/main/editor/creature/TweakSizeRow.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/editor/creature/TweakColorRow.tscn" type="PackedScene" id=20]
@@ -77,9 +76,7 @@ script = ExtResource( 8 )
 
 [node name="World" type="Node" parent="."]
 
-[node name="Shadows" type="Node2D" parent="World"]
-script = ExtResource( 6 )
-CreatureShadowScene = ExtResource( 5 )
+[node name="CreatureShadows" parent="World" instance=ExtResource( 5 )]
 
 [node name="Creatures" type="Node2D" parent="World"]
 
@@ -105,10 +102,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "1",
 "nose": "3",
+"property:BellyColors/Viewport/Body:belly": "2",
+"property:BellyColors:belly": "2",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
-"property:BodyColors/Viewport/Body:belly": "2",
-"property:BodyColors:belly": "2",
 "property:Collar:frame_data": "res://assets/main/world/creature/3/collar-packed.json",
 "property:Collar:texture": ExtResource( 59 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
@@ -247,10 +244,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "3",
 "nose": "0",
+"property:BellyColors/Viewport/Body:belly": "1",
+"property:BellyColors:belly": "1",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
-"property:BodyColors/Viewport/Body:belly": "1",
-"property:BodyColors:belly": "1",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
@@ -391,10 +388,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "3",
 "nose": "2",
+"property:BellyColors/Viewport/Body:belly": "2",
+"property:BellyColors:belly": "2",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
-"property:BodyColors/Viewport/Body:belly": "2",
-"property:BodyColors:belly": "2",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
@@ -539,10 +536,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "3",
 "nose": "1",
+"property:BellyColors/Viewport/Body:belly": "2",
+"property:BellyColors:belly": "2",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
-"property:BodyColors/Viewport/Body:belly": "2",
-"property:BodyColors:belly": "2",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
@@ -687,10 +684,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "2",
 "nose": "2",
+"property:BellyColors/Viewport/Body:belly": "0",
+"property:BellyColors:belly": "0",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
-"property:BodyColors/Viewport/Body:belly": "0",
-"property:BodyColors:belly": "0",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
@@ -837,10 +834,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "3",
 "nose": "3",
+"property:BellyColors/Viewport/Body:belly": "0",
+"property:BellyColors:belly": "0",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
-"property:BodyColors/Viewport/Body:belly": "0",
-"property:BodyColors:belly": "0",
 "property:Collar:frame_data": "res://assets/main/world/creature/2/collar-packed.json",
 "property:Collar:texture": ExtResource( 43 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
@@ -979,10 +976,10 @@ dna = {
 "line_rgb": "6c4331",
 "mouth": "2",
 "nose": "0",
+"property:BellyColors/Viewport/Body:belly": "1",
+"property:BellyColors:belly": "1",
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
-"property:BodyColors/Viewport/Body:belly": "1",
-"property:BodyColors:belly": "1",
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 23 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
@@ -1742,15 +1739,7 @@ __meta__ = {
 }
 creature_editor_path = NodePath("../..")
 
-[node name="Backdrop" type="ColorRect" parent="Ui/Dialogs"]
-visible = false
-margin_right = 1024.0
-margin_bottom = 600.0
-color = Color( 0, 0, 0, 0.752941 )
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Backdrop" parent="Ui/Dialogs" instance=ExtResource( 17 )]
 
 [node name="SaveConfirmation" type="ConfirmationDialog" parent="Ui/Dialogs"]
 anchor_left = 0.5
@@ -1821,15 +1810,7 @@ dialog_text = "Error importing creature."
 [connection signal="pressed" from="Ui/TabContainer/Tweak/ScrollContainer/MarginContainer/VBoxContainer/Save" to="Ui/Dialogs" method="_on_SaveButton_pressed"]
 [connection signal="pressed" from="Ui/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="Ui/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="about_to_show" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="confirmed" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs" method="_on_SaveConfirmation_confirmed"]
-[connection signal="popup_hide" from="Ui/Dialogs/SaveConfirmation" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="about_to_show" from="Ui/Dialogs/Import" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="file_selected" from="Ui/Dialogs/Import" to="Ui/Dialogs" method="_on_ImportDialog_file_selected"]
-[connection signal="popup_hide" from="Ui/Dialogs/Import" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="about_to_show" from="Ui/Dialogs/Export" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="file_selected" from="Ui/Dialogs/Export" to="Ui/Dialogs" method="_on_ExportDialog_file_selected"]
-[connection signal="popup_hide" from="Ui/Dialogs/Export" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="about_to_show" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="popup_hide" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]

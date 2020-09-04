@@ -1,3 +1,4 @@
+class_name LevelEditor
 extends Control
 """
 A graphical level editor which lets players create, load and save scenarios.
@@ -12,8 +13,8 @@ var _test_scene: Node
 
 onready var PuzzleScene := preload("res://src/main/puzzle/Puzzle.tscn")
 
+onready var scenario_name := $HBoxContainer/SideButtons/ScenarioName
 onready var _scenario_json := $HBoxContainer/SideButtons/Json
-onready var _scenario_name := $HBoxContainer/SideButtons/ScenarioName
 
 func _ready() -> void:
 	if not ResourceCache.is_done():
@@ -23,24 +24,24 @@ func _ready() -> void:
 	var scenario_text := FileUtils.get_file_as_text(ScenarioSettings.scenario_path(DEFAULT_SCENARIO))
 	_scenario_json.text = scenario_text
 	_scenario_json.refresh_tile_map()
-	_scenario_name.text = DEFAULT_SCENARIO
+	scenario_name.text = DEFAULT_SCENARIO
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 
 
-func _save_scenario(path: String) -> void:
+func save_scenario(path: String) -> void:
 	FileUtils.write_file(path, _scenario_json.text)
 
 
-func _load_scenario(path: String) -> void:
+func load_scenario(path: String) -> void:
 	var scenario_text := FileUtils.get_file_as_text(path)
 	_scenario_json.text = scenario_text
 	_scenario_json.refresh_tile_map()
-	_scenario_name.text = ScenarioSettings.scenario_name(path)
+	scenario_name.text = ScenarioSettings.scenario_name(path)
 
 
 func _start_test() -> void:
 	var settings := ScenarioSettings.new()
-	settings.load_from_text(_scenario_name.text, _scenario_json.text)
+	settings.load_from_text(scenario_name.text, _scenario_json.text)
 	Scenario.start_scenario(settings)
 	_test_scene = PuzzleScene.instance()
 	
@@ -60,32 +61,6 @@ func _stop_test() -> void:
 		
 		# re-enable the level controls which was disabled while testing the level
 		$HBoxContainer.visible = true
-
-
-func _on_OpenFile_pressed() -> void:
-	$OpenFileDialog.popup_centered()
-
-
-func _on_OpenResource_pressed() -> void:
-	$OpenResourceDialog.popup_centered()
-
-
-func _on_Save_pressed() -> void:
-	var file_root := StringUtils.sanitize_file_root(_scenario_name.text)
-	$SaveDialog.current_file = ScenarioSettings.scenario_filename(file_root)
-	$SaveDialog.popup_centered()
-
-
-func _on_OpenResourceDialog_file_selected(path: String) -> void:
-	_load_scenario(path)
-
-
-func _on_OpenFileDialog_file_selected(path: String) -> void:
-	_load_scenario(path)
-
-
-func _on_SaveDialog_file_selected(path: String) -> void:
-	_save_scenario(path)
 
 
 func _on_Test_pressed() -> void:

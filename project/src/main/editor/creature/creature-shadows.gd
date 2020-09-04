@@ -1,6 +1,6 @@
 extends Node2D
 """
-Manages shadows for the creature editor.
+Manages shadows for all creatures in a scene.
 """
 
 export (PackedScene) var CreatureShadowScene: PackedScene

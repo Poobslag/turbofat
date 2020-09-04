@@ -495,7 +495,7 @@ func _unload_dna() -> void:
 	_remove_dna_node("MouthPlayer")
 	_remove_dna_node("EarPlayer")
 	_remove_dna_node("Body/Viewport/Body")
-	_remove_dna_node("BodyColors/Viewport/Body")
+	_remove_dna_node("BellyColors/Viewport/Body")
 	_remove_dna_node("BodyShadows/Viewport/Body")
 	_remove_dna_node("FatSpriteMover")
 
@@ -514,7 +514,7 @@ func _load_dna() -> void:
 	
 	if dna.has("body"):
 		_add_dna_node(CreatureLoader.new_body(dna.body), "body", dna.body, $Body/Viewport)
-		_add_dna_node(CreatureLoader.new_body_colors(dna.body), "body colors", dna.body, $BodyColors/Viewport)
+		_add_dna_node(CreatureLoader.new_body_colors(dna.body), "body colors", dna.body, $BellyColors/Viewport)
 		_add_dna_node(CreatureLoader.new_body_shadows(dna.body), "body shadows", dna.body, $BodyShadows/Viewport)
 		_add_dna_node(CreatureLoader.new_fat_sprite_mover(dna.body), "fat sprite mover", dna.body)
 	
@@ -529,7 +529,7 @@ func _load_dna() -> void:
 			var node_path: String = key.split(":")[1]
 			var property_name: String = key.split(":")[2]
 			var property_value = dna[key]
-			if node_path == "BodyColors/Viewport/Body" and property_name == "belly":
+			if node_path == "BellyColors/Viewport/Body" and property_name == "belly":
 				# set_belly requires an int, not a string
 				property_value = int(property_value)
 			if has_node(node_path):
