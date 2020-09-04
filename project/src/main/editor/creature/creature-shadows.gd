@@ -10,6 +10,6 @@ func _ready() -> void:
 	for creature_node in get_tree().get_nodes_in_group("creatures"):
 		var creature: Creature = creature_node
 		var creature_shadow: CreatureShadow = CreatureShadowScene.instance()
-		creature_shadow.shadow_scale = creature.scale * 0.4
+		creature_shadow.shadow_scale = creature.scale * Creature.TEXTURE_SCALE
 		add_child(creature_shadow)
 		creature_shadow.creature_path = creature_shadow.get_path_to(creature)

@@ -13,6 +13,9 @@ signal dna_loaded
 
 signal food_eaten
 
+# The scale of the TextureRect the creature is rendered to
+const TEXTURE_SCALE := 0.4
+
 const IDLE = CreatureVisuals.IDLE
 
 const SOUTHEAST = CreatureVisuals.SOUTHEAST
@@ -76,6 +79,7 @@ var _run_anim_speed := 1.0
 onready var creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visuals
 
 func _ready() -> void:
+	$CreatureOutline/TextureRect.rect_scale = Vector2(TEXTURE_SCALE, TEXTURE_SCALE)
 	if creature_id:
 		_refresh_creature_id()
 	else:
