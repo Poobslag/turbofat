@@ -24,9 +24,10 @@ const LINE_ERASE_TIMING_PCT := 0.667
 
 export (NodePath) var tile_map_path: NodePath
 
-# lines currently being cleared/erased as a part of _physics_process
+# lines currently being cleared/erased/deleted as a part of _physics_process
 var lines_being_cleared := []
 var lines_being_erased := []
+var lines_being_deleted := []
 
 # remaining frames to wait for erasing the current lines
 var remaining_line_erase_frames := 0
@@ -71,6 +72,9 @@ func _physics_process(_delta: float) -> void:
 		# stop processing if we're done clearing lines
 		_delete_rows()
 		set_physics_process(false)
+		lines_being_cleared = []
+		lines_being_erased = []
+		lines_being_deleted = []
 
 
 """
@@ -119,38 +123,35 @@ func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_po
 	_remaining_line_erase_timings.clear()
 	lines_being_cleared = []
 	lines_being_erased = []
+	lines_being_deleted = []
 	
-	var closest_clears := closest_clears(unscheduled_clears, unscheduled_erases)
-	var erased_line_count := 0
 	while unscheduled_clears:
 		# schedule the next cleared line
 		var next_clear: int = unscheduled_clears.pop_front()
-		_remaining_line_clear_timings.append(erased_line_count)
+		_remaining_line_clear_timings.append(lines_being_cleared.size() + lines_being_erased.size())
 		lines_being_cleared.append(next_clear)
-		# schedule any erased lines which are close to this line clear to be cleared simultaneously
-		for i in range(unscheduled_erases.size() - 1, -1, -1):
-			if closest_clears[i] == next_clear:
-				_remaining_line_erase_timings.append(erased_line_count)
-				lines_being_erased.append(unscheduled_erases[i])
-				unscheduled_erases.remove(i)
-				closest_clears.remove(i)
-		erased_line_count += 1
+		lines_being_deleted.append(next_clear)
 	
 	while unscheduled_erases:
-		_remaining_line_erase_timings.append(erased_line_count)
-		lines_being_erased.append(unscheduled_erases.pop_front())
-		erased_line_count += 1
+		var next_erase: int = unscheduled_erases.pop_front()
+		_remaining_line_erase_timings.append(lines_being_cleared.size() + lines_being_erased.size())
+		lines_being_erased.append(next_erase)
+		lines_being_deleted.append(next_erase)
 	
 	# Convert all timings from [0, 1, 2...] to delays like [264, 232, 200...]
 	remaining_line_erase_frames = max(1, line_clear_delay)
-	var _line_erase_timing_window := LINE_ERASE_TIMING_PCT * remaining_line_erase_frames
-	var _per_line_frame_delay := floor(_line_erase_timing_window / max(1, erased_line_count - 1))
+	var per_line_frame_delay := _per_line_frame_delay()
 	for i in range(lines_being_cleared.size()):
 		_remaining_line_clear_timings[i] = remaining_line_erase_frames \
-			- _remaining_line_clear_timings[i] * _per_line_frame_delay
+			- _remaining_line_clear_timings[i] * per_line_frame_delay
 	for i in range(lines_being_erased.size()):
 		_remaining_line_erase_timings[i] = remaining_line_erase_frames \
-			- _remaining_line_erase_timings[i] * _per_line_frame_delay
+			- _remaining_line_erase_timings[i] * per_line_frame_delay
+
+
+func _per_line_frame_delay() -> float:
+	var line_erase_timing_window := LINE_ERASE_TIMING_PCT * remaining_line_erase_frames
+	return floor(line_erase_timing_window / max(1, lines_being_cleared.size() + lines_being_erased.size() - 1))
 
 
 """
@@ -171,7 +172,6 @@ Deletes all erased rows from the playfield, dropping all rows above them.
 func _delete_rows() -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false
-	var lines_being_deleted := lines_being_cleared + lines_being_erased
 	lines_being_deleted.sort()
 	var max_line: int = lines_being_deleted.back()
 	for y in range(0, max_line):
@@ -215,46 +215,37 @@ Schedules line clears which occur when a puzzle is finished.
 
 Any full lines and lines containing boxes result in line clears, and the player is awarded points.
 
-Any partial lines containing only vegetables are erased, the player is not awarded points for those.
+Any partial lines containing only vegetables are left behind, the player is not awarded points for those.
 """
 func _schedule_finish_line_clears() -> void:
-	# count how many rows are to be cleared; don't count mostly-empty rows
-	var box_line_count := 0
-	
 	var full_lines := []
-	var partial_lines := []
+	var box_lines := []
 	for y in range(PuzzleTileMap.ROW_COUNT):
 		if _tile_map.playfield_row_is_full(y):
 			full_lines.append(y)
-		elif not _tile_map.playfield_row_is_empty(y):
-			partial_lines.append(y)
-			if _box_ints(y):
-				box_line_count += 1
-	NearestSorter.new().sort(partial_lines, Utils.mean(full_lines + lines_being_cleared, 0.0))
-	var lines_to_clear := full_lines + partial_lines
+		elif _box_ints(y):
+			box_lines.append(y)
+	NearestSorter.new().sort(box_lines, Utils.mean(full_lines + lines_being_cleared, 0.0))
+	var lines_to_clear := full_lines + box_lines
 	
 	# schedule line clears, same pace as clearing three lines concurrently
-	if full_lines or box_line_count > 0:
+	if full_lines or box_lines:
 		# hard-code the line clear delay; faster values don't look good
 		var line_clear_delay := 24
-		var total_duration: int = line_clear_delay * ((box_line_count - 1) / 3.0) / LINE_ERASE_TIMING_PCT
-		schedule_line_clears(lines_to_clear, total_duration, true)
-	
-		# insert a small delay
-		var small_delay: int = line_clear_delay / 3.0
-		remaining_line_erase_frames += small_delay
+		var total_duration: int = line_clear_delay * ((box_lines.size() - 1) / 3.0) / LINE_ERASE_TIMING_PCT
+		var old_lines_being_deleted := lines_being_deleted.duplicate()
+		var was_clearing_lines: bool = lines_being_cleared or lines_being_erased
 		
-		# adjust all the timings so that the level ends simultaneously with the last line clear
-		if lines_being_cleared:
-			var min_line_clear_timing: int = _remaining_line_clear_timings[0]
-			for line_clear_timing in _remaining_line_clear_timings:
-				min_line_clear_timing = min(min_line_clear_timing, line_clear_timing)
-			min_line_clear_timing -= 1
-			for i in range(_remaining_line_clear_timings.size()):
-				_remaining_line_clear_timings[i] -= min_line_clear_timing
-			for i in range(_remaining_line_erase_timings.size()):
-				_remaining_line_erase_timings[i] -= min_line_clear_timing
-			remaining_line_erase_frames -= min_line_clear_timing
+		schedule_line_clears(lines_to_clear, total_duration, true)
+		
+		# preserve full lines which were already being deleted
+		for line in old_lines_being_deleted:
+			if not lines_being_deleted.has(line):
+				lines_being_deleted.append(line)
+		
+		# if we were already clearing lines, we pause before triggering additional line clears
+		if was_clearing_lines:
+			remaining_line_erase_frames += _per_line_frame_delay()
 	
 	# ensure remaining_line_erase_frames is always set to a non-zero value. the level end is triggered when this
 	# number decreases from 1 to 0, so if it ends up being 0 or less it causes a softlock
@@ -266,23 +257,3 @@ func _on_PuzzleScore_finish_triggered() -> void:
 		_schedule_finish_line_clears()
 	else:
 		PuzzleScore.end_game()
-
-
-"""
-Non-full vegetable lines are erased simultaneously with the nearest line clear.
-
-This method takes a list of cleared lines and erased lines, and pairs all of the erased lines to the nearest cleared
-line.
-"""
-# warning-ignore:shadowed_variable
-static func closest_clears(cleared: Array, erased: Array) -> Array:
-	var closest_clears := erased.duplicate()
-	if not cleared:
-		return closest_clears
-	
-	for i in range(erased.size()):
-		closest_clears[i] = cleared[0]
-		for j in range(1, cleared.size()):
-			if abs(erased[i] - cleared[j]) < abs(erased[i] - closest_clears[i]):
-				closest_clears[i] = cleared[j]
-	return closest_clears
