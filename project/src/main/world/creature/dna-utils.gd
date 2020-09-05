@@ -210,6 +210,20 @@ func _ready() -> void:
 
 
 """
+Return a minimal copy of the specified dna.
+
+CreatureLoader populates the dna dictionary with redundant properties such as textures and shader properties. This
+returns a version of the dna with that extra stuff stripped out so it doesn't clutter our save files.
+"""
+func trim_dna(dna: Dictionary) -> Dictionary:
+	var result := {}
+	for allele in ALLELES:
+		if dna.has(allele):
+			result[allele] = dna[allele]
+	return result
+
+
+"""
 Fill in the creature's missing traits with random values.
 
 Otherwise, missing values will be left empty, leading to invisible body parts or strange colors.
