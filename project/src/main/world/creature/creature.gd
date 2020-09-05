@@ -276,7 +276,7 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 func get_creature_def() -> CreatureDef:
 	var result := CreatureDef.new()
 	result.creature_id = creature_id
-	result.dna = dna
+	result.dna = DnaUtils.trim_dna(dna)
 	result.creature_name = creature_name
 	result.creature_short_name = creature_short_name
 	result.dialog = dialog
