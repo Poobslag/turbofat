@@ -1,3 +1,4 @@
+#tool #uncomment to view creature in editor
 extends AnimationPlayer
 """
 Moves the creature's body parts around as they become fatter.
@@ -28,6 +29,7 @@ func _refresh_creature_visuals_path() -> void:
 		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 		_creature_visuals.disconnect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
 	
+	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
 	
 	_creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
