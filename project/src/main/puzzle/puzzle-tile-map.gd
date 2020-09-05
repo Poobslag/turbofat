@@ -243,8 +243,10 @@ If we didn't perform this step, the chopped-off bottom of a bread box would stil
 bottom of a bread box looks like a delicious frosted snack and the player can tell it's special.
 """
 func _disconnect_box(pos: Vector2) -> void:
-	_disconnect_block(pos + Vector2.UP, Connect.DOWN)
-	_disconnect_block(pos + Vector2.DOWN, Connect.UP)
+	if get_cellv(pos + Vector2.UP) == TILE_BOX:
+		_disconnect_block(pos + Vector2.UP, Connect.DOWN)
+	if get_cellv(pos + Vector2.DOWN) == TILE_BOX:
+		_disconnect_block(pos + Vector2.DOWN, Connect.UP)
 
 
 """
