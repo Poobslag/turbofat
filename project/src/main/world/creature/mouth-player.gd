@@ -69,6 +69,7 @@ func _refresh_creature_visuals_path() -> void:
 		_creature_visuals.get_idle_timer().disconnect(
 				"idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
 	
+	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
 	_emote_player = _creature_visuals.get_emote_player()
 	

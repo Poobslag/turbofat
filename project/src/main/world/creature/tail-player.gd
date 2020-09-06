@@ -6,8 +6,9 @@ Specifically, this animationplayer ensures the tail is always moving, if nothing
 """
 
 export (NodePath) var movement_player_path: NodePath
+export (NodePath) var creature_visuals_path: NodePath
 
-onready var _creature_visuals: CreatureVisuals = get_parent()
+onready var _creature_visuals: CreatureVisuals = get_node(creature_visuals_path)
 onready var _movement_player: AnimationPlayer = get_node(movement_player_path)
 
 func _ready() -> void:

@@ -1,3 +1,4 @@
+#tool #uncomment to view creature in editor
 extends Node
 """
 Provides utilities for manipulating DNA definitions.

@@ -160,7 +160,7 @@ func set_fatness(new_fatness: float) -> void:
 
 
 func play_idle_animation(idle_anim: String) -> void:
-	$IdleTimer.play_idle_animation(idle_anim)
+	$Animations/IdleTimer.play_idle_animation(idle_anim)
 
 
 """
@@ -263,7 +263,7 @@ func feed(food_color: Color) -> void:
 	
 	$Neck0/HeadBobber/Food.modulate = food_color
 	$Neck0/HeadBobber/FoodLaser.modulate = food_color
-	$EmotePlayer.eat()
+	$Animations/EmotePlayer.eat()
 	if _mouth_player:
 		_mouth_player.eat()
 
@@ -286,10 +286,10 @@ The 'feed' animation causes a few side-effects. The creature's head recoils and 
 all of those secondary visual effects of the creature being fed.
 """
 func show_food_effects() -> void:
-	$Tween.interpolate_property($Neck0/HeadBobber, "position:x",
+	$Animations/Tween.interpolate_property($Neck0/HeadBobber, "position:x",
 			clamp($Neck0/HeadBobber.position.x - 6, -20, 0), 0, 0.5,
 			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-	$Tween.start()
+	$Animations/Tween.start()
 	emit_signal("food_eaten")
 
 
@@ -297,21 +297,22 @@ func show_food_effects() -> void:
 Returns an AnimationPlayer which animates moods: blinking, smiling, sweating, etc.
 """
 func get_emote_player() -> AnimationPlayer:
-	return $EmotePlayer as AnimationPlayer
+	return $Animations/EmotePlayer as AnimationPlayer
 
 
 """
 Returns a Timer which launches idle animations periodically.
 """
 func get_idle_timer() -> Timer:
-	return $IdleTimer as Timer
+	return $Animations/IdleTimer as Timer
 
 
 """
 Plays a movement animation with the specified prefix and direction, such as a 'run' animation going left.
 
 Parameters:
-	'animation_prefix': A partial name of an animation on $Creature/MovementPlayer, omitting the directional suffix
+	'animation_prefix': A partial name of an animation on $Creature/Animations/MovementPlayer, omitting the directional
+			suffix
 	
 	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 """
@@ -336,17 +337,18 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 	elif animation_prefix == "wiggle" and movement_mode != WIGGLE:
 		set_movement_mode(WIGGLE)
 	
-	if $MovementPlayer.current_animation != animation_name:
-		if not $EmotePlayer.current_animation.begins_with("ambient") and not animation_name.begins_with("idle"):
+	if $Animations/MovementPlayer.current_animation != animation_name:
+		if not $Animations/EmotePlayer.current_animation.begins_with("ambient") \
+				and not animation_name.begins_with("idle"):
 			# don't unemote during sitting-still animations; only when changing movement stances
-			$EmotePlayer.unemote_immediate()
-		if $MovementPlayer.current_animation.begins_with(animation_prefix):
-			var old_position: float = $MovementPlayer.current_animation_position
+			$Animations/EmotePlayer.unemote_immediate()
+		if $Animations/MovementPlayer.current_animation.begins_with(animation_prefix):
+			var old_position: float = $Animations/MovementPlayer.current_animation_position
 			_suppress_sfx_signal_timer = 0.000000001
-			$MovementPlayer.play(animation_name)
-			$MovementPlayer.advance(old_position)
+			$Animations/MovementPlayer.play(animation_name)
+			$Animations/MovementPlayer.advance(old_position)
 		else:
-			$MovementPlayer.play(animation_name)
+			$Animations/MovementPlayer.play(animation_name)
 		if not animation_name.begins_with("sprint"):
 			$TailZ0.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
 			$TailZ1.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
@@ -363,7 +365,8 @@ func set_movement_mode(new_mode: int) -> void:
 Returns 'true' if the creature isn't doing anything important, and we can rotate their head or turn them around.
 """
 func is_idle() -> bool:
-	return not $MovementPlayer.is_playing() or $MovementPlayer.current_animation.begins_with("idle")
+	return not $Animations/MovementPlayer.is_playing() \
+			or $Animations/MovementPlayer.current_animation.begins_with("idle")
 
 
 """
@@ -373,18 +376,18 @@ Parameters:
 	'mood': The creature's new mood from ChatEvent.Mood
 """
 func play_mood(mood: int) -> void:
-	$IdleTimer.stop_idle_animation()
+	$Animations/IdleTimer.stop_idle_animation()
 	
 	if mood == ChatEvent.Mood.NONE:
 		pass
 	elif mood == ChatEvent.Mood.DEFAULT:
-		$EmotePlayer.unemote()
+		$Animations/EmotePlayer.unemote()
 	else:
-		$EmotePlayer.emote(mood)
+		$Animations/EmotePlayer.emote(mood)
 
 
 func restart_idle_timer() -> void:
-	$IdleTimer.restart()
+	$Animations/IdleTimer.restart()
 
 
 """
@@ -454,7 +457,7 @@ Different body parts have different animations and textures. Before changing the
 textures and animations need to be stopped and removed, and any signals disconnected. This method handles all of that.
 """
 func _unload_dna() -> void:
-	$EmotePlayer.unemote_immediate()
+	$Animations/EmotePlayer.unemote_immediate()
 	for packed_sprite_obj in [
 		$Collar,
 		$FarArm,
@@ -488,16 +491,22 @@ func _unload_dna() -> void:
 		if packed_sprite:
 			packed_sprite.texture = null
 			packed_sprite.frame_data = ""
+			if packed_sprite.material:
+				packed_sprite.material.set_shader_param("red", Color.black)
+				packed_sprite.material.set_shader_param("green", Color.black)
+				packed_sprite.material.set_shader_param("blue", Color.black)
+				packed_sprite.material.set_shader_param("black", Color.black)
+	
 	$Body.rect_position = Vector2(-580, -850)
 	$Neck0/HeadBobber.position = Vector2(0, -100)
 	scale = Vector2(1.00, 1.00)
 	
-	_remove_dna_node("MouthPlayer")
-	_remove_dna_node("EarPlayer")
+	_remove_dna_node("Animations/MouthPlayer")
+	_remove_dna_node("Animations/EarPlayer")
+	_remove_dna_node("Animations/FatSpriteMover")
 	_remove_dna_node("Body/Viewport/Body")
 	_remove_dna_node("BellyColors/Viewport/Body")
 	_remove_dna_node("BodyShadows/Viewport/Body")
-	_remove_dna_node("FatSpriteMover")
 
 
 """
@@ -507,22 +516,19 @@ This method assumes that any existing animations and connections have been disco
 """
 func _load_dna() -> void:
 	if dna.has("mouth"):
-		_add_dna_node(CreatureLoader.new_mouth_player(dna.mouth), "mouth", dna.mouth)
+		_add_dna_node(CreatureLoader.new_mouth_player(dna.mouth), "mouth", dna.mouth, $Animations)
 	
 	if dna.has("ear"):
-		_add_dna_node(CreatureLoader.new_ear_player(dna.ear), "ear", dna.ear)
+		_add_dna_node(CreatureLoader.new_ear_player(dna.ear), "ear", dna.ear, $Animations)
 	
 	if dna.has("body"):
 		_add_dna_node(CreatureLoader.new_body(dna.body), "body", dna.body, $Body/Viewport)
 		_add_dna_node(CreatureLoader.new_body_colors(dna.body), "body colors", dna.body, $BellyColors/Viewport)
 		_add_dna_node(CreatureLoader.new_body_shadows(dna.body), "body shadows", dna.body, $BodyShadows/Viewport)
-		_add_dna_node(CreatureLoader.new_fat_sprite_mover(dna.body), "fat sprite mover", dna.body)
+		_add_dna_node(CreatureLoader.new_fat_sprite_mover(dna.body), "fat sprite mover", dna.body, $Animations)
 	
-	if has_node("EarPlayer"):
-		move_child(get_node("EarPlayer"), $IdleTimer.get_position_in_parent() + 1)
-	if has_node("MouthPlayer"):
-		_mouth_player = get_node("MouthPlayer")
-		move_child(get_node("MouthPlayer"), $IdleTimer.get_position_in_parent() + 1)
+	if $Animations.has_node("MouthPlayer"):
+		_mouth_player = $Animations.get_node("MouthPlayer")
 	
 	for key in dna.keys():
 		if key.find("property:") == 0:

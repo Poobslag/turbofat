@@ -1,3 +1,4 @@
+#tool #uncomment to view creature in editor
 class_name HeadBobber
 extends Sprite
 """

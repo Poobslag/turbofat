@@ -65,7 +65,7 @@ const TRANSITIONS := {
 # Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
 const UNEMOTE_DURATION := 0.08
 
-onready var _creature_visuals: CreatureVisuals = get_parent()
+export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
 # stores the previous mood so that we can apply mood transitions.
 var _prev_mood: int
@@ -73,18 +73,19 @@ var _prev_mood: int
 # stores the current mood. used to prevent sync issues when changing moods faster than 80 milliseconds.
 var _mood: int
 
-# list of sprites to reset when unemoting
-onready var _emote_sprites := [
-	$"../Neck0/HeadBobber/EmoteBrain",
-	$"../Neck0/HeadBobber/EmoteHead",
-	$"../EmoteBody",
-	$"../Neck0/HeadBobber/EmoteGlow",
-]
+var _creature_visuals: CreatureVisuals
 
 # specific sprites manipulated frequently when emoting
-onready var _emote_eye_z0: PackedSprite = $"../Neck0/HeadBobber/EmoteEyeZ0"
-onready var _emote_eye_z1: PackedSprite = $"../Neck0/HeadBobber/EmoteEyeZ1"
-onready var _head_bobber: Sprite = $"../Neck0/HeadBobber"
+var _emote_eye_z0: PackedSprite
+var _emote_eye_z1: PackedSprite
+var _head_bobber: Sprite
+
+# list of sprites to reset when unemoting
+var _emote_sprites: Array
+
+func _ready() -> void:
+	_refresh_creature_visuals_path()
+
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -99,6 +100,11 @@ func _process(_delta: float) -> void:
 		if is_playing():
 			stop()
 			_creature_visuals.reset_eye_frames()
+
+
+func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
+	creature_visuals_path = new_creature_visuals_path
+	_refresh_creature_visuals_path()
 
 
 """
@@ -243,21 +249,21 @@ Parameters:
 """
 func unemote(anim_name: String = "") -> void:
 	stop()
-	$"../Neck0/HeadBobber/EmoteArmZ0".frame = 0
-	$"../Neck0/HeadBobber/EmoteArmZ1".frame = 0
-	$"../NearArm".update_orientation(_creature_visuals.orientation)
-	$"../FarArm".update_orientation(_creature_visuals.orientation)
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ0").frame = 0
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ1").frame = 0
+	_creature_visuals.get_node("NearArm").update_orientation(_creature_visuals.orientation)
+	_creature_visuals.get_node("FarArm").update_orientation(_creature_visuals.orientation)
 	_emote_eye_z0.frame = 0
 	_emote_eye_z1.frame = 0
 	if anim_name in EAT_SMILE_ANIMS:
-		$"../Neck0/HeadBobber/EyeZ0".frame = 0
-		$"../Neck0/HeadBobber/EyeZ1".frame = 0
+		_creature_visuals.get_node("Neck0/HeadBobber/EyeZ0").frame = 0
+		_creature_visuals.get_node("Neck0/HeadBobber/EyeZ1").frame = 0
 		_emote_eye_z0.frame = 1
 		_emote_eye_z1.frame = 1
 		play("ambient-smile")
 	elif anim_name in EAT_SWEAT_ANIMS:
-		$"../Neck0/HeadBobber/EyeZ0".frame = 0
-		$"../Neck0/HeadBobber/EyeZ1".frame = 0
+		_creature_visuals.get_node("Neck0/HeadBobber/EyeZ0").frame = 0
+		_creature_visuals.get_node("Neck0/HeadBobber/EyeZ1").frame = 0
 		_emote_eye_z0.frame = 2
 		_emote_eye_z1.frame = 2
 		play("ambient-sweat")
@@ -282,10 +288,10 @@ This takes place immediately, callers do not need to wait for $ResetTween.
 """
 func unemote_immediate() -> void:
 	stop()
-	$"../Neck0/HeadBobber/EmoteArmZ0".frame = 0
-	$"../Neck0/HeadBobber/EmoteArmZ1".frame = 0
-	$"../NearArm".update_orientation(_creature_visuals.orientation)
-	$"../FarArm".update_orientation(_creature_visuals.orientation)
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ0").frame = 0
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ1").frame = 0
+	_creature_visuals.get_node("NearArm").update_orientation(_creature_visuals.orientation)
+	_creature_visuals.get_node("FarArm").update_orientation(_creature_visuals.orientation)
 	_emote_eye_z0.frame = 0
 	_emote_eye_z1.frame = 0
 	_creature_visuals.reset_eye_frames()
@@ -332,9 +338,9 @@ func _post_unemote() -> void:
 		emote_sprite.scale = Vector2(2.0, 2.0)
 		emote_sprite.rotation_degrees = 0.0
 		emote_sprite.modulate = Color.transparent
-	$"../EmoteBody".scale = Vector2(0.836, 0.836)
-	$"../Neck0".scale = Vector2(1.0, 1.0)
-	$"../Neck0/HeadBobber/EmoteGlow".material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
+	_creature_visuals.get_node("EmoteBody").scale = Vector2(0.836, 0.836)
+	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow").material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
 
 
 """
@@ -350,8 +356,8 @@ Function for transitioning from laugh1 mood to laugh0 mood.
 func _transition_laugh1_laugh0() -> void:
 	_head_bobber.reset_head_bob()
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteBrain", "modulate",
-			$"../Neck0/HeadBobber/EmoteBrain".modulate, Color.transparent, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property(_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain"), "modulate",
+			_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain").modulate, Color.transparent, UNEMOTE_DURATION)
 	$ResetTween.start()
 
 
@@ -360,10 +366,10 @@ Function for transitioning from sweat1 mood to sweat0 mood.
 """
 func _transition_sweat1_sweat0() -> void:
 	_head_bobber.reset_head_bob()
-	$"../NearArm".frame = 1
+	_creature_visuals.get_node("NearArm").frame = 1
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteHead", "modulate",
-			$"../Neck0/HeadBobber/EmoteHead".modulate, Color.transparent, UNEMOTE_DURATION)
+	$ResetTween.interpolate_property(_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead"), "modulate",
+			_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead").modulate, Color.transparent, UNEMOTE_DURATION)
 	$ResetTween.start()
 
 
@@ -372,10 +378,10 @@ Function for transitioning from smile1 mood to smile0 mood.
 """
 func _transition_smile1_smile0() -> void:
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteBrain", "modulate",
-			$"../Neck0/HeadBobber/EmoteBrain".modulate, Color("008c2261"), UNEMOTE_DURATION)
-	$ResetTween.interpolate_property($"../Neck0/HeadBobber/EmoteGlow", "modulate",
-			$"../Neck0/HeadBobber/EmoteGlow".modulate, Color("008c2261"), UNEMOTE_DURATION)
+	$ResetTween.interpolate_property(_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain"), "modulate",
+			_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain").modulate, Color("008c2261"), UNEMOTE_DURATION)
+	$ResetTween.interpolate_property(_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow"), "modulate",
+			_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow").modulate, Color("008c2261"), UNEMOTE_DURATION)
 	$ResetTween.interpolate_property(_head_bobber, "rotation_degrees",
 			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
 	$ResetTween.start()
@@ -393,6 +399,27 @@ func _apply_tool_script_workaround() -> void:
 	if not _creature_visuals:
 		_creature_visuals = get_parent()
 
+
+func _refresh_creature_visuals_path() -> void:
+	if not (is_inside_tree() and creature_visuals_path):
+		return
+	
+	if _creature_visuals:
+		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+	
+	root_node = creature_visuals_path
+	_creature_visuals = get_node(creature_visuals_path)
+	
+	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+	_emote_eye_z0 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ0")
+	_emote_eye_z1 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ1")
+	_head_bobber = _creature_visuals.get_node("Neck0/HeadBobber")
+	_emote_sprites = [
+		_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain"),
+		_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead"),
+		_creature_visuals.get_node("EmoteBody"),
+		_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow"),
+	]
 
 func _on_animation_finished(anim_name: String) -> void:
 	if _prev_mood in EMOTE_ANIMS or anim_name in EAT_SMILE_ANIMS or anim_name in EAT_SWEAT_ANIMS:

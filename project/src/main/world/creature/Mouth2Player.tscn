@@ -367,6 +367,7 @@ tracks/3/keys = {
 }
 
 [node name="MouthPlayer" type="AnimationPlayer"]
+root_node = NodePath("")
 anims/ambient-nw = SubResource( 1 )
 anims/ambient-se = SubResource( 2 )
 anims/eat = SubResource( 3 )
