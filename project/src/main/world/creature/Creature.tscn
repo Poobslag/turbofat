@@ -1,9 +1,7 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/main/world/creature/CreatureVisuals.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/world/creature/creature-chat-icon.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/creature/creature.gd" type="Script" id=3]
-[ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/main/world/creature/move-bonk.wav" type="AudioStream" id=5]
 [ext_resource path="res://src/main/viewport-outline-material.tres" type="Material" id=6]
 [ext_resource path="res://assets/main/world/creature/move-hop.wav" type="AudioStream" id=7]
@@ -30,6 +28,7 @@
 [ext_resource path="res://assets/main/world/creature/2/cheek-z0-packed.png" type="Texture" id=28]
 [ext_resource path="res://assets/main/world/creature/2/cheek-z2-packed.png" type="Texture" id=29]
 [ext_resource path="res://assets/main/world/creature/4/head-packed.png" type="Texture" id=30]
+[ext_resource path="res://src/main/world/creature/creature-chat-icon-hook.gd" type="Script" id=31]
 
 [sub_resource type="ViewportTexture" id=1]
 flags = 5
@@ -328,9 +327,10 @@ dna = {
 update_rotation = false
 update_scale = false
 
-[node name="ChatIcon" parent="." instance=ExtResource( 4 )]
-script = ExtResource( 2 )
-bubble_type = 0
+[node name="ChatIconHook" type="RemoteTransform2D" parent="."]
+update_rotation = false
+update_scale = false
+script = ExtResource( 31 )
 creature_visuals_path = NodePath("../CreatureOutline/Viewport/Visuals")
 
 [node name="CreatureOutline" type="Node2D" parent="."]

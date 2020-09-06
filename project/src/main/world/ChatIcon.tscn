@@ -9,7 +9,7 @@ length = 1.8
 loop = true
 step = 0.05
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:scale")
+tracks/0/path = NodePath("Sprite:scale")
 tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -21,13 +21,14 @@ tracks/0/keys = {
 "values": [ Vector2( 0.085, 0.085 ), Vector2( 0.1, 0.1 ), Vector2( 0.1, 0.1 ), Vector2( 0.085, 0.085 ), Vector2( 0.085, 0.085 ) ]
 }
 
-[node name="ChatIcon" type="Sprite"]
+[node name="ChatIcon" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 64, -52 )
 scale = Vector2( 0.085, 0.085 )
 texture = ExtResource( 1 )
 hframes = 6
-script = ExtResource( 2 )
-bubble_type = 1
 
 [node name="PulsePlayer" type="AnimationPlayer" parent="."]
 autoplay = "pulse"
