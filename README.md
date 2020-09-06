@@ -36,7 +36,7 @@ Pressing and holding the 'soft drop' key lets you move pieces past each other. T
 
 Gamepads are also supported.
 
-For more details about the scoring system or game mechanics, see [How to play](https://github.com/Poobslag/turbofat/wiki/How-to-play) in the Turbo Fat wiki.
+For more details about the scoring system and game mechanics, see [How to play](https://github.com/Poobslag/turbofat/wiki/How-to-play) in the Turbo Fat wiki.
 
 # License
 
