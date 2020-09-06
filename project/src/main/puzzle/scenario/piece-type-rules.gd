@@ -24,4 +24,4 @@ func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
 	for key in json_types:
 		if rules.has(key): types.append(json_types[key])
-		if rules.has("start-%s" % key): start_types.append(json_types[key])
+		if rules.has("start_%s" % key): start_types.append(json_types[key])

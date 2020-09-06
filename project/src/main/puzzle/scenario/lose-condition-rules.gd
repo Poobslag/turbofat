@@ -12,5 +12,5 @@ var finish_on_lose := false
 
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
-	if rules.has("top-out"): top_out = rules.int_value()
+	if rules.has("top_out"): top_out = rules.int_value()
 	if rules.has("finish_on_lose"): finish_on_lose = true
