@@ -200,7 +200,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		Milestone.CUSTOMERS:
 			target_lines = MASTER_COMBO * finish_condition.value
 		Milestone.LINES:
-			target_lines = finish_condition.get_meta("lenient_value") if lenient else finish_condition.value
+			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
 		Milestone.SCORE:
 			target_lines = ceil((finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
