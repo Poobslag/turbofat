@@ -14,7 +14,7 @@ The game also includes a story mode where you can interact with other monsters. 
 
 Rotate the falling pieces and arrange them into lines to clear them. To earn more money, arrange your pieces into 3x3, 3x4 and 3x5 boxes. The more of these boxes you make, the more money you'll get.
 
-Another way to earn more money is to clear a lot of lines in a row. It doesn't have to be at the same time. Making boxes also keeps your combo going.
+Another way to earn more money is to clear a lot of lines one after the other, which builds a combo. Making boxes also keeps your combo going.
 
 Pressing and holding the 'soft drop' key lets you move pieces past each other. This can help to recover from a poorly placed piece, but also helps when trying to make boxes.
 
