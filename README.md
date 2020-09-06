@@ -2,9 +2,11 @@
 
 ![Game screenshot showing blocks of food in a playfield, while a chubby monster sits at a table.](img/screenshot-puzzle.png)
 
-Turbo Fat is a block-dropping puzzle game. It's inspired by a few other block-dropping games but breaks some rules.
+Turbo Fat is a block-dropping puzzle game for Windows, Linux, iOS, Android and HTML5.
 
-Instead of being rewarded for clean horizontal stacks, multiline clears and T-spins, you're rewarded for messy vertical stacks, 3x3 boxes and 'squish moves' where you smush pieces into impossible positions.
+**Turbo Fat is free; you can download the latest version on the [releases page](https://github.com/Poobslag/turbofat/releases), or play it online at [itch.io](https://poobslag.itch.io/turbo-fat).**
+
+The game is inspired by a few other block-dropping games but breaks some rules. Instead of being rewarded for clean horizontal stacks, multiline clears and T-spins, you're rewarded for messy vertical stacks, 3x3 boxes and 'squish moves' where you smush pieces into impossible positions.
 
 ![Game screenshot monsters talking outdoors, surrounded by some boxy terrain.](img/screenshot-overworld.png)
 
