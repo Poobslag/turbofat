@@ -29,7 +29,7 @@ class StringTransformer:
 
 
 """
-Returns 'true' if the player has an old save file, but no new save file.
+Returns 'true' if the player has an old save file but no new save file.
 
 This indicates we should convert their old save file to the new format.
 """

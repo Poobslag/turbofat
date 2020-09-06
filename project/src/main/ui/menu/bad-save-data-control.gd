@@ -19,24 +19,24 @@ func popup() -> void:
 	# Construct a message to show the player. The tone is informal and sympathetic. Hopefully this endears the player
 	# toward us because they're going to have a bad day. (Hopefully the backups worked.)
 	var message := ""
-	if PlayerSave.loaded_rolling_save == -1:
+	if PlayerSave.loaded_backup == -1:
 		message += "So... I had some kind of problem loading your save data."
 		message += " Unfortunately, none of the backups worked either, so I don't really know how to fix it."
 	else:
 		message += "So... I had some kind of problem loading your save data,"
 		message += " which means you're going to lose some progress."
-		match PlayerSave.loaded_rolling_save:
-			PlayerSave.THIS_HOUR:
+		match PlayerSave.loaded_backup:
+			RollingBackups.THIS_HOUR:
 				message += " There was a backup, so at least you'll only lose the last half-hour or so."
-			PlayerSave.PREV_HOUR:
+			RollingBackups.PREV_HOUR:
 				message += " There was a backup, so at least you'll only lose the last hour or so."
-			PlayerSave.THIS_DAY:
+			RollingBackups.THIS_DAY:
 				message += " There was a backup, but you'll lose everything from the last few hours."
-			PlayerSave.PREV_DAY:
+			RollingBackups.PREV_DAY:
 				message += " There was a backup, but you'll lose everything from the last day or so."
-			PlayerSave.THIS_WEEK:
+			RollingBackups.THIS_WEEK:
 				message += " There was a backup, but it was pretty old. You'll lose everything from the last few days."
-			PlayerSave.PREV_WEEK:
+			RollingBackups.PREV_WEEK:
 				message += " There was a backup, but it was very old. You'll lose everything from the last week or so."
 	message += "\n\n"
 	message += "The invalid save data is available in the following path:"
