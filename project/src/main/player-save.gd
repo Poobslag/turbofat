@@ -5,77 +5,43 @@ Reads and writes data about the player's progress from a file.
 This data includes how well they've done on each level and how much money they've earned.
 """
 
-# Categories of rolling backups for the player's save data.
-enum RollingSave {
-	CURRENT, # the newest save
-	THIS_HOUR, # a save which will eventually become the hourly backup
-	PREV_HOUR, # a backup which is 1-2 hours old
-	THIS_DAY, # a save which will eventually become the daily backup
-	PREV_DAY, # a backup which is 1-2 days old
-	THIS_WEEK, # a save which will eventually become the weekly backup
-	PREV_WEEK, # a backup which is 1-2 weeks old
-}
-
-const CURRENT := RollingSave.CURRENT
-const THIS_HOUR := RollingSave.THIS_HOUR
-const PREV_HOUR := RollingSave.PREV_HOUR
-const THIS_DAY := RollingSave.THIS_DAY
-const PREV_DAY := RollingSave.PREV_DAY
-const THIS_WEEK := RollingSave.THIS_WEEK
-const PREV_WEEK := RollingSave.PREV_WEEK
-
 # Current version for saved player data. Should be updated if and only if the player format changes.
 # This version number follows a 'ymdh' hex date format which is documented in issue #234.
 const PLAYER_DATA_VERSION := "1922"
 
-const SECONDS_PER_MINUTE = 60
-const SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE
-const SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR
+var rolling_backups := RollingBackups.new()
 
-# The rolling save which was successfully loaded
-var loaded_rolling_save := -1
+# Enum value for the backup was successfully loaded. 'RollingBackups.CURRENT' if the current file worked.
+# Virtual property; value is only exposed through getters/setters
+var loaded_backup: int setget ,get_loaded_backup
 
 # Newly renamed save files which couldn't be loaded
-var corrupt_filenames: Array
+# Virtual property; value is only exposed through getters/setters
+var corrupt_filenames: Array setget ,get_corrupt_filenames
 
 # Filename to use when saving/loading player data. Can be changed for tests
-var current_player_data_filename := "user://turbofat0.save"
+var current_player_data_filename := "user://turbofat0.save" setget set_current_player_data_filename
 
 # Provides backwards compatibility with older save formats
 var old_save := OldSave.new()
 
 func _ready() -> void:
 	PlayerData.reset()
+	rolling_backups.current_filename = current_player_data_filename
 	load_player_data()
 
 
-"""
-Returns a filename with a '.corrupt' suffix to flag saves which couldn't be loaded.
-"""
-func corrupt_filename(in_filename: String) -> String:
-	return StringUtils.substring_before_last(in_filename, ".save") + ".save.corrupt"
+func get_corrupt_filenames() -> Array:
+	return rolling_backups.corrupt_filenames
 
 
-"""
-Returns filename with a '.save' or '.bak' suffix to differentiate backup saves.
+func get_loaded_backup() -> int:
+	return rolling_backups.loaded_backup
 
-Parameters:
-	'rolling_save': A constant from the RollingSave enum for to the filename to return.
-"""
-func rolling_filename(rolling_save: int) -> String:
-	var suffix := StringUtils.substring_after_last(current_player_data_filename, ".")
-	var middle := "."
-	var prefix := StringUtils.substring_before_last(current_player_data_filename, ".")
-	match(rolling_save):
-		RollingSave.THIS_HOUR: middle += "this-hour."
-		RollingSave.PREV_HOUR: middle += "prev-hour."
-		RollingSave.THIS_DAY: middle += "this-day."
-		RollingSave.PREV_DAY: middle += "prev-day."
-		RollingSave.THIS_WEEK: middle += "this-week."
-		RollingSave.PREV_WEEK: middle += "prev-week."
-	if rolling_save != RollingSave.CURRENT:
-		suffix += ".bak"
-	return prefix + middle + suffix
+
+func set_current_player_data_filename(new_current_player_data_filename: String) -> void:
+	current_player_data_filename = new_current_player_data_filename
+	rolling_backups.current_filename = current_player_data_filename
 
 
 """
@@ -131,92 +97,17 @@ func save_player_data() -> void:
 	save_json.append(generic_data("finished_scenarios",
 			PlayerData.scenario_history.finished_scenarios).to_json_dict())
 	FileUtils.write_file(current_player_data_filename, Utils.print_json(save_json))
-	rotate_backups()
+	rolling_backups.rotate_backups()
 
-
-"""
-Deletes any old backup saves, replacing it with newer data.
-"""
-func rotate_backups() -> void:
-	_rotate_backup(THIS_HOUR, PREV_HOUR, SECONDS_PER_HOUR)
-	_rotate_backup(THIS_DAY, PREV_DAY, SECONDS_PER_DAY)
-	_rotate_backup(THIS_WEEK, PREV_WEEK, 7 * SECONDS_PER_DAY)
-
-
-"""
-Deletes an old backup save, replacing it with newer data.
-
-If the newer 'this-xxx' backup file is older than the specified rotation time, it replaces the older 'prev-xxx' backup
-file.
-
-Afterwards, if the 'this-xxx' backup file does not exist or was just rotated, it's replaced with the newest save file.
-"""
-func _rotate_backup(this_save: int, prev_save: int, rotate_millis: int) -> void:
-	if not FileUtils.file_exists(current_player_data_filename):
-		return
-	
-	var dir := Directory.new()
-	var this_filename := rolling_filename(this_save)
-	var prev_filename := rolling_filename(prev_save)
-	
-	var file_age := 0
-	if dir.file_exists(this_filename):
-		file_age = OS.get_unix_time() - File.new().get_modified_time(this_filename)
-	if file_age >= rotate_millis:
-		# replace the 'prev-xxx' backup with the 'this-xxx' backup
-		var copy_result := dir.copy(this_filename, prev_filename)
-		if copy_result == OK:
-			dir.remove(this_filename)
-	
-	if not dir.file_exists(this_filename):
-		# populate the 'this-xxx' backup from the current save
-		dir.copy(current_player_data_filename, this_filename)
 
 """
 Populates the player's in-memory data based on their save files.
-
-If the newest save file can't be loaded, this tries older and older backups one is successful.
 """
 func load_player_data() -> void:
-	loaded_rolling_save = -1
-	corrupt_filenames = []
-	var bad_filenames := [] # save filenames which couldn't be loaded
-	
-	# if the save doesn't exist, but the old save exists...
 	if old_save.only_has_old_save():
 		old_save.transform_old_save()
 	
-	var load_successful := false
-	for rolling_save in [CURRENT, THIS_HOUR, PREV_HOUR, THIS_DAY, PREV_DAY, THIS_WEEK, PREV_WEEK]:
-		var rolling_filename := rolling_filename(rolling_save)
-		if not FileUtils.file_exists(rolling_filename):
-			# file not found; try next file
-			continue
-		
-		var success := _load_rolling_save(rolling_filename)
-		if not success:
-			# couldn't load; try next file
-			bad_filenames.append(rolling_filename)
-			continue
-		
-		# loaded successfully; don't load any more files
-		loaded_rolling_save = rolling_save
-		load_successful = true
-		break
-	
-	if bad_filenames:
-		var dir := Directory.new()
-		# loaded successfully, but there were some save files that couldn't be loaded
-		for bad_filename in bad_filenames:
-			# copy each bad file name to a filename like 'foo.save.corrupt'
-			var corrupt_filename := corrupt_filename(bad_filename)
-			dir.copy(bad_filename, corrupt_filename)
-			dir.remove(bad_filename)
-			corrupt_filenames.append(corrupt_filename)
-		
-		if load_successful:
-			# copy the good filename back to 'foo.save'
-			dir.copy(rolling_filename(loaded_rolling_save), current_player_data_filename)
+	rolling_backups.load_newest_save(self, "_load_player_data_from_file")
 
 
 """
@@ -224,25 +115,26 @@ Populates the player's in-memory data based on a save file.
 
 Returns 'true' if the data is loaded successfully.
 """
-func _load_rolling_save(rolling_filename: String) -> bool:
+func _load_player_data_from_file(filename: String) -> bool:
 	var file := File.new()
-	var open_result := file.open(rolling_filename, File.READ)
+	var open_result := file.open(filename, File.READ)
 	if open_result != OK:
 		# validation failed; couldn't open file
-		push_warning("Couldn't open file '%s' for reading: %s" % [rolling_filename, open_result])
+		push_warning("Couldn't open file '%s' for reading: %s" % [filename, open_result])
 		return false
 	
-	var save_json_text := FileUtils.get_file_as_text(rolling_filename)
+	var save_json_text := FileUtils.get_file_as_text(filename)
 	
 	var validate_json_result := validate_json(save_json_text)
 	if validate_json_result != "":
 		# validation failed; invalid json
-		push_warning("Invalid json in file '%s': %s" % [rolling_filename, validate_json_result])
+		push_warning("Invalid json in file '%s': %s" % [filename, validate_json_result])
 		return false
 	
 	var json_save_items: Array = parse_json(save_json_text)
 	
 	while old_save.is_old_save_items(json_save_items):
+		# convert the old save file to a new format
 		var old_version := old_save.get_version_string(json_save_items)
 		json_save_items = old_save.transform_old_save_items(json_save_items)
 		if old_save.get_version_string(json_save_items) == old_version:

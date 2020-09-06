@@ -12,7 +12,7 @@ func test_weighted_rand_value() -> void:
 	
 	# we pick three times, just in case we hit the 0.1% chance
 	var results := {}
-	for i in range(3):
+	for _i in range(3):
 		results[Utils.weighted_rand_value(weights_map)] = true
 	
 	assert_has(results, "item-575")
