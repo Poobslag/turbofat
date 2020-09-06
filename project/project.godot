@@ -59,7 +59,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/chat/chat-history.gd"
 }, {
-"base": "Sprite",
+"base": "Node2D",
 "class": "ChatIcon",
 "language": "GDScript",
 "path": "res://src/main/world/chat-icon.gd"

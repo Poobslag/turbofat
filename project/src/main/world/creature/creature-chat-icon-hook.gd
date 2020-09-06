@@ -1,6 +1,6 @@
-extends ChatIcon
+extends RemoteTransform2D
 """
-A visual icon which appears next to something the player can interact with.
+Defines the position so that chat icons appear next to the creature's head.
 """
 
 export (NodePath) var creature_visuals_path: NodePath
@@ -18,7 +18,7 @@ Reposition the icon next to the creature's head.
 If we don't reposition the icon, it gets lost behind creatures that are fat.
 """
 func _refresh_target_position() -> void:
-	set_target_position(_creature_visuals.get_node("Neck0").position * 0.4)
+	position = _creature_visuals.get_node("Neck0").position * _creature_visuals.scale.y * 0.4
 
 
 func _on_CreatureVisuals_head_moved() -> void:

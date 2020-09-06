@@ -1,5 +1,5 @@
 class_name ChatIcon
-extends Sprite
+extends Node2D
 """
 A visual icon which appears next to something the player can interact with.
 """
@@ -22,43 +22,42 @@ const BOUNCE_HEIGHT := 12.0
 const COLOR_FOCUSED := Color(1.0, 1.0, 1.0, 1.00)
 const COLOR_UNFOCUSED := Color(1.0, 1.0, 1.0, 0.25)
 
-export (BubbleType) var bubble_type: int setget set_bubble_type
-
-# 'true' if this bubble should appear on the right side, 'false' if it's on the left side
-export (bool) var right_side := true setget set_right_side
-
-# the position the bubble should point to
-export (Vector2) var target_position: Vector2 setget set_target_position
-
-var bounce_phase := 0.0
-var focused := false
+var bubble_type: int = BubbleType.SPEECH setget set_bubble_type
+var _bounce_phase := 0.0
+var _focused := false
+var _chattable: Node
 
 func _ready() -> void:
-	modulate = COLOR_UNFOCUSED
+	$Sprite.modulate = COLOR_UNFOCUSED
 	_refresh()
 
 
 func _physics_process(delta: float) -> void:
-	bounce_phase += delta * (2.5 if focused else 1.0)
-	if bounce_phase * BOUNCE_DURATION * PI > 10.0:
+	_bounce_phase += delta * (2.5 if _focused else 1.0)
+	if _bounce_phase * BOUNCE_DURATION * PI > 10.0:
 		# keep bounce_phase bounded, otherwise a sprite will jitter slightly 3 billion millenia from now
-		bounce_phase -= 2 / BOUNCE_DURATION
+		_bounce_phase -= 2 / BOUNCE_DURATION
+
+	$Sprite.position.y = -52 - abs(BOUNCE_HEIGHT * sin(_bounce_phase * BOUNCE_DURATION * PI))
+
+
+"""
+Initializes the icon's appearance and position for the specified chattable.
+
+Chattables must have a 'ChatIconHook' node. ChatIconHook is a RemoteTransform2D which updates the icon's position.
+"""
+func initialize(chattable: Node) -> void:
+	_chattable = chattable
+	if _chattable.has_meta("chat_bubble_type"):
+		set_bubble_type(_chattable.get_meta("chat_bubble_type"))
 	
-	position.y = target_position.y - 52 - abs(BOUNCE_HEIGHT * sin(bounce_phase * BOUNCE_DURATION * PI))
+	var hook: RemoteTransform2D = _chattable.get_node("ChatIconHook")
+	hook.remote_path = hook.get_path_to(self)
+	global_position = hook.global_position
 
 
 func set_bubble_type(new_bubble_type: int) -> void:
 	bubble_type = new_bubble_type
-	_refresh()
-
-
-func set_right_side(new_right_side: bool) -> void:
-	right_side = new_right_side
-	_refresh()
-
-
-func set_target_position(new_target_position: Vector2) -> void:
-	target_position = new_target_position
 	_refresh()
 
 
@@ -69,7 +68,7 @@ This brightens the icon and makes it bounce faster.
 """
 func focus() -> void:
 	_tween_modulate(COLOR_FOCUSED, 0.8)
-	focused = true
+	_focused = true
 
 
 """
@@ -79,7 +78,7 @@ This dims the icon and makes it bounce slower.
 """
 func unfocus() -> void:
 	_tween_modulate(COLOR_UNFOCUSED, 1.6)
-	focused = false
+	_focused = false
 
 
 """
@@ -87,26 +86,22 @@ Makes the chat icon invisible, so the player knows they can't interact with it.
 """
 func vanish() -> void:
 	_tween_modulate(Color.transparent, 0.4)
-	focused = false
+	_focused = false
 
 
 func _refresh() -> void:
-	position.x = target_position.x + (64 if right_side else -64)
-	flip_h = not right_side
-	visible = bubble_type != BubbleType.NONE
-	frame = randi() % 3 + (3 if bubble_type == BubbleType.THOUGHT else 0)
+	if not is_inside_tree():
+		return
 	
-	if is_inside_tree():
-		if bubble_type == BubbleType.NONE:
-			if get_parent().is_in_group("chattables"):
-				get_parent().remove_from_group("chattables")
-			if ChattableManager.is_connected("focus_changed", self, "_on_ChattableManager_focus_changed"):
-				ChattableManager.disconnect("focus_changed", self, "_on_ChattableManager_focus_changed")
-		else:
-			if not get_parent().is_in_group("chattables"):
-				get_parent().add_to_group("chattables")
-			if not ChattableManager.is_connected("focus_changed", self, "_on_ChattableManager_focus_changed"):
-				ChattableManager.connect("focus_changed", self, "_on_ChattableManager_focus_changed")
+	visible = bubble_type != BubbleType.NONE
+	$Sprite.frame = randi() % 3 + (3 if bubble_type == BubbleType.THOUGHT else 0)
+	
+	if bubble_type == BubbleType.NONE:
+		if ChattableManager.is_connected("focus_changed", self, "_on_ChattableManager_focus_changed"):
+			ChattableManager.disconnect("focus_changed", self, "_on_ChattableManager_focus_changed")
+	else:
+		if not ChattableManager.is_connected("focus_changed", self, "_on_ChattableManager_focus_changed"):
+			ChattableManager.connect("focus_changed", self, "_on_ChattableManager_focus_changed")
 
 
 """
@@ -114,7 +109,7 @@ Tweens this objects 'modulate' property to a new value.
 """
 func _tween_modulate(new_modulate: Color, duration: float) -> void:
 	$FocusTween.remove_all()
-	$FocusTween.interpolate_property(self, "modulate", modulate, new_modulate,
+	$FocusTween.interpolate_property($Sprite, "modulate", modulate, new_modulate,
 			duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	$FocusTween.start()
 
@@ -122,7 +117,7 @@ func _tween_modulate(new_modulate: Color, duration: float) -> void:
 func _on_ChattableManager_focus_changed() -> void:
 	if not ChattableManager.is_focus_enabled():
 		vanish()
-	elif ChattableManager.is_focused(get_parent()):
+	elif ChattableManager.is_focused(_chattable):
 		focus()
 	else:
 		unfocus()

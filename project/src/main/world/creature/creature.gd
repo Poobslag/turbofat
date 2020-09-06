@@ -43,9 +43,6 @@ export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 export (int) var elevation: int setget set_elevation
 
 # virtual property; value is only exposed through getters/setters
-export (ChatIcon.BubbleType) var chat_bubble_type: int setget set_chat_bubble_type, get_chat_bubble_type
-
-# virtual property; value is only exposed through getters/setters
 var creature_def: CreatureDef setget set_creature_def, get_creature_def
 
 # dictionaries containing metadata for which dialog sequences should be launched in which order
@@ -96,14 +93,6 @@ func _physics_process(delta: float) -> void:
 	var old_non_iso_velocity := _non_iso_velocity
 	set_iso_velocity(move_and_slide(_iso_velocity))
 	_maybe_play_bonk_sound(old_non_iso_velocity)
-
-
-func set_chat_bubble_type(new_chat_bubble_type: int) -> void:
-	$ChatIcon.set_bubble_type(new_chat_bubble_type)
-
-
-func get_chat_bubble_type() -> int:
-	return $ChatIcon.bubble_type
 
 
 func set_suppress_sfx(new_suppress_sfx: bool) -> void:
@@ -304,6 +293,20 @@ func refresh_dna() -> void:
 		creature_visuals.dna = dna
 		if dna.has("line_rgb"):
 			$CreatureOutline/TextureRect.material.set_shader_param("black", Color(dna.line_rgb))
+
+
+"""
+Workaround for Godot #21789 to make get_class return class_name
+"""
+func get_class() -> String:
+	return "Creature"
+
+
+"""
+Workaround for Godot #21789 to make is_class match class_name
+"""
+func is_class(name: String) -> bool:
+	return name == "Creature" or .is_class(name)
 
 
 func _refresh_creature_id() -> void:
