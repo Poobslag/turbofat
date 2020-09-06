@@ -17,7 +17,6 @@ asp
 ass
 baboon
 badger
-bald eagle
 bandicoot
 barnacle
 barracuda
@@ -32,11 +31,7 @@ beetle
 bird
 bison
 blackbird
-black panther
-black widow
 bluebird
-blue jay
-blue whale
 boa
 boar
 bobcat
@@ -77,7 +72,6 @@ cow
 coyote
 crab
 crane
-crane fly
 crayfish
 cricket
 crocodile
@@ -98,7 +92,6 @@ dove
 dragonfly
 duck
 dugong
-dung beetle
 dunlin
 eagle
 earthworm
@@ -108,7 +101,6 @@ eel
 egret
 eland
 elephant
-elephant seal
 elk
 emu
 ermine
@@ -130,8 +122,6 @@ gaur
 gazelle
 gecko
 gerbil
-giant panda
-giant squid
 gibbon
 giraffe
 gnat
@@ -144,23 +134,16 @@ gopher
 gorilla
 goshawk
 grasshopper
-grizzly bear
-ground shark
-ground sloth
 grouse
 guan
 guanaco
-guinea fowl
-guinea pig
 gull
 haddock
 halibut
-hammerhead shark
 hamster
 hare
 hawk
 hedgehog
-hermit crab
 heron
 herring
 hippopotamus
@@ -169,7 +152,6 @@ horse
 hoverfly
 human
 hummingbird
-humpback whale
 hyena
 ibex
 ibis
@@ -214,7 +196,6 @@ mallard
 mammal
 manatee
 mandrill
-manta ray
 mantis
 marmoset
 marmot
@@ -273,7 +254,6 @@ porpoise
 possum
 prairiedog
 prawn
-praying mantis
 primate
 puffin
 puma
@@ -288,8 +268,6 @@ ram
 rat
 rattlesnake
 raven
-red deer
-red panda
 redpanda
 reindeer
 reptile
@@ -300,15 +278,11 @@ rook
 rooster
 salamander
 salmon
-sand dollar
 sandpiper
 sardine
 scorpion
 seahorse
 seal
-sea lion
-sea slug
-sea snail
 shark
 sheep
 shrew
@@ -324,16 +298,12 @@ snake
 snipe
 sole
 sparrow
-sperm whale
 spider
-spider monkey
 spoonbill
 squid
 squirrel
 starfish
 starling
-sting ray
-stink bug
 stoat
 stork
 swallow
@@ -347,24 +317,20 @@ tarsier
 termite
 thrush
 tiger
-tiger shark
 toad
 tortoise
 toucan
-tree frog
 trout
 tuna
 turkey
 turtle
 tyrannosaurus
-vampire bat
 viper
 vole
 vulture
 wallaby
 walrus
 wasp
-water buffalo
 weasel
 whale
 whitefish

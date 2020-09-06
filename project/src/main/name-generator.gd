@@ -8,7 +8,7 @@ Accepts as input a list of words like 'banana' and 'anabelle', and mixes them in
 var markov_model := MarkovModel.new()
 var min_length: int setget set_min_length
 var max_length: int setget set_max_length
-var order: int setget set_order
+var order: float setget set_order
 
 # Key: Word from the source material
 # Value: true
@@ -38,7 +38,7 @@ func set_max_length(new_max_length: int) -> void:
 	markov_model.max_length = new_max_length
 
 
-func set_order(new_order: int) -> void:
+func set_order(new_order: float) -> void:
 	markov_model.order = new_order
 
 
