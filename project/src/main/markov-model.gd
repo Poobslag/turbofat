@@ -8,8 +8,9 @@ Maintains a list of letter sequences and letters which can follow them.
 var min_length := 3
 var max_length := 15
 
-# the smallest cluster of letters which are guaranteed to stay together.
-var order := 3
+# The smallest cluster of letters which are guaranteed to stay together. A fractional value will randomly alternate
+# between the lower and higher values while generating words.
+var order := 2.5
 
 # Key: Letter cluster, newline-terminated for the word's end
 # Value: Number of times the cluster appeared in the input data
@@ -31,11 +32,16 @@ func add_word(word: String) -> void:
 	if word.length() <= 1:
 		return
 	
-	for i in range(1, word.length() + order + 1):
-		var cluster := word.substr(max(i - order - 1, 0), min(i, order + 1))
-		if i > word.length():
-			cluster += "\n"
-		_add_cluster(cluster)
+	var int_orders := [floor(order)]
+	if floor(order) != ceil(order):
+		int_orders.append(ceil(order))
+	
+	for int_order in int_orders:
+		for i in range(1, word.length() + int_order + 1):
+			var cluster := word.substr(max(i - int_order - 1, 0), min(i, int_order + 1))
+			if i > word.length():
+				cluster += "\n"
+			_add_cluster(cluster)
 
 
 """
@@ -50,7 +56,7 @@ Returns:
 func generate_word() -> String:
 	var word := ""
 	while true:
-		var cluster := word.substr(max(0, word.length() - order - 1), order + 1)
+		var cluster := word.substr(max(0, word.length() - ceil(order) - 1), ceil(order) + 1)
 		cluster = _get_cluster(cluster, word.length() >= min_length)
 		if not cluster:
 			# failure; couldn't find a continuation
@@ -81,7 +87,8 @@ Returns:
 func _get_cluster(cluster_in: String, may_end: bool) -> String:
 	# calculate the total number of connections
 	var total := 0
-	var prefix := cluster_in.substr(max(cluster_in.length() - order, 0))
+	var int_order := floor(order) if randf() > order - floor(order) else ceil(order)
+	var prefix := cluster_in.substr(max(cluster_in.length() - int_order, 0))
 	for cluster in connections.get(prefix):
 		if cluster.ends_with("\n") and not may_end:
 			continue

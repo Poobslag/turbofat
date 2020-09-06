@@ -55,6 +55,7 @@ func _ready() -> void:
 	_name_generator.add_seed_resource("res://assets/main/editor/creature/animals.txt")
 	_name_generator.add_seed_resource("res://assets/main/editor/creature/american-male-given-names.txt")
 	_name_generator.add_seed_resource("res://assets/main/editor/creature/american-female-given-names.txt")
+	_name_generator.order = 2.7
 	_name_generator.min_length = 5
 	_name_generator.max_length = 11
 	

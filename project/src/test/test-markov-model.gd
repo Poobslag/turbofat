@@ -7,6 +7,7 @@ var _model
 
 func before_each() -> void:
 	_model = MarkovModel.new()
+	_model.order = 3
 
 
 func test_add_word_order_2() -> void:
