@@ -14,6 +14,9 @@ const MAX_FATNESS := 10.0
 # How long it takes a creature to grow to a new size
 const GROWTH_SECONDS := 0.12
 
+# The color inside a creature's mouth.
+const PINK_INSIDE_COLOR := Color("f39274")
+
 # AnimationPlayer scenes with animations for each type of mouth
 var _mouth_player_scenes := {
 	"1": preload("res://src/main/world/creature/Mouth1Player.tscn"),
@@ -316,7 +319,7 @@ func _load_colors(dna: Dictionary) -> void:
 	_set_krgb(dna, "Neck0/HeadBobber/Chin", line_color, chin_skin_color)
 	
 	var mouth_skin_color := belly_color if dna.get("head") in ["2", "3", "5"] else body_color
-	_set_krgb(dna, "Neck0/HeadBobber/Mouth", line_color, mouth_skin_color)
+	_set_krgb(dna, "Neck0/HeadBobber/Mouth", line_color, mouth_skin_color, PINK_INSIDE_COLOR)
 	
 	var nose_skin_color := belly_color if dna.get("head") in ["2", "3"] else body_color
 	_set_krgb(dna, "Neck0/HeadBobber/Nose", line_color, nose_skin_color)
