@@ -55,6 +55,7 @@ Web targets do not support background threads (Godot issue #12699) so we initial
 them one at a time in the _process function.
 """
 func start_load() -> void:
+	set_process(true)
 	_find_resource_paths()
 	if OS.has_feature("web"):
 		# Godot issue #12699; threads not supported for HTML5
@@ -188,6 +189,7 @@ func _find_resource_paths() -> Array:
 	randomize()
 	
 	# all pngs have been located. increment the progress bar and calculate its new maximum
+	_work_total = 3.0
 	_work_total += _remaining_resource_paths.size()
 	_work_total += _remaining_scene_paths.size() * WORK_PER_SCENE
 	_work_done += 3.0
