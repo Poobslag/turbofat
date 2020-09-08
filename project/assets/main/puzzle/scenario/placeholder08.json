@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "3",
+  "title":"Cleaning Duty",
+  "description": "Who made this mess! ...Do we need to set up a chore board?",
   "finish_condition": {
     "type": "time_over",
     "value": "90"

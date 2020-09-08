@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "3",
+  "title":"It's Square to be Square",
+  "description": "If you can't handle all this sugar, try to go down swinging!",
   "finish_condition": {
     "type": "score",
     "value": "300"

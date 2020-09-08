@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "3",
+  "title":"Cakes and Ladders",
+  "description": "Who prepared all these delicious desserts? ...Isn't that supposed to be your job?",
   "finish_condition": {
     "type": "lines",
     "value": "50"

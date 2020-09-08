@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "5",
+  "title":"Finish Your Veggies",
+  "description": "Yuck! Vegetables! I'm not cleaning that up.",
   "finish_condition": {
     "type": "score",
     "value": "400"

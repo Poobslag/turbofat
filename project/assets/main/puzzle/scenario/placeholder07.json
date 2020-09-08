@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "7",
+  "title":"Muffin Impossible",
+  "description": "So many awkward mismatched pieces! This is like solving a jigsaw puzzle with no edges...",
   "finish_condition": {
     "type": "score",
     "value": "300"

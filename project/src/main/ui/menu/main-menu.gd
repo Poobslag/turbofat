@@ -49,3 +49,7 @@ func _on_System_quit_pressed() -> void:
 
 func _on_Tutorial_pressed() -> void:
 	_launch_tutorial()
+
+
+func _on_LevelSelect_pressed() -> void:
+	Breadcrumb.push_trail("res://src/main/ui/level-select/LevelSelect.tscn")

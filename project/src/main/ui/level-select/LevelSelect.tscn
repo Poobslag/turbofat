@@ -1,0 +1,228 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=2]
+[ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=5]
+[ext_resource path="res://src/main/ui/level-select/level-info-panel.gd" type="Script" id=6]
+[ext_resource path="res://src/main/ui/level-select/level-select.gd" type="Script" id=7]
+[ext_resource path="res://src/main/ui/level-select/level-description-panel.gd" type="Script" id=8]
+[ext_resource path="res://src/main/ui/level-select/level-buttons.gd" type="Script" id=9]
+[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=10]
+[ext_resource path="res://src/main/ui/swipe-container.gd" type="Script" id=11]
+
+[node name="LevelSelect" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 7 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 496.0
+size_flags_vertical = 3
+follow_focus = true
+script = ExtResource( 11 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer"]
+margin_right = 1024.0
+margin_bottom = 496.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/margin_right = 256
+custom_constants/margin_top = 150
+custom_constants/margin_left = 256
+custom_constants/margin_bottom = 150
+
+[node name="LevelButtons" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer"]
+margin_left = 256.0
+margin_top = 150.0
+margin_right = 768.0
+margin_bottom = 346.0
+custom_constants/separation = 5
+script = ExtResource( 9 )
+LevelSelectButtonScene = ExtResource( 4 )
+
+[node name="Buttons1" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
+margin_right = 98.0
+margin_bottom = 196.0
+size_flags_horizontal = 3
+custom_constants/separation = 6
+alignment = 2
+
+[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons1" instance=ExtResource( 4 )]
+margin_top = 116.0
+margin_right = 98.0
+margin_bottom = 196.0
+
+[node name="Buttons2" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
+margin_left = 103.0
+margin_right = 201.0
+margin_bottom = 196.0
+size_flags_horizontal = 3
+custom_constants/separation = 6
+alignment = 2
+
+[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons2" instance=ExtResource( 4 )]
+margin_top = 116.0
+margin_right = 98.0
+margin_bottom = 196.0
+
+[node name="Buttons3" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
+margin_left = 206.0
+margin_right = 304.0
+margin_bottom = 196.0
+size_flags_horizontal = 3
+custom_constants/separation = 6
+alignment = 2
+
+[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons3" instance=ExtResource( 4 )]
+margin_top = 116.0
+margin_right = 98.0
+margin_bottom = 196.0
+
+[node name="Buttons4" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
+margin_left = 309.0
+margin_right = 407.0
+margin_bottom = 196.0
+size_flags_horizontal = 3
+custom_constants/separation = 6
+alignment = 2
+
+[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons4" instance=ExtResource( 4 )]
+margin_top = 116.0
+margin_right = 98.0
+margin_bottom = 196.0
+
+[node name="Buttons5" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
+margin_left = 412.0
+margin_right = 512.0
+margin_bottom = 196.0
+size_flags_horizontal = 3
+custom_constants/separation = 6
+alignment = 2
+
+[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons5" instance=ExtResource( 4 )]
+margin_top = 116.0
+margin_right = 100.0
+margin_bottom = 196.0
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+margin_top = 500.0
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Control/HBoxContainer"]
+margin_right = 82.0
+margin_bottom = 100.0
+
+[node name="Settings" type="Button" parent="VBoxContainer/Control/HBoxContainer/VBoxContainer"]
+margin_right = 82.0
+margin_bottom = 48.0
+rect_min_size = Vector2( 48, 0 )
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+shortcut_in_tooltip = false
+shortcut = ExtResource( 2 )
+text = "Settings"
+
+[node name="ShortcutHelper" parent="VBoxContainer/Control/HBoxContainer/VBoxContainer/Settings" instance=ExtResource( 1 )]
+action = "ui_cancel"
+
+[node name="Quit" type="Button" parent="VBoxContainer/Control/HBoxContainer/VBoxContainer"]
+margin_top = 52.0
+margin_right = 82.0
+margin_bottom = 100.0
+size_flags_vertical = 3
+theme = ExtResource( 5 )
+shortcut_in_tooltip = false
+text = "Quit"
+
+[node name="Description" type="Panel" parent="VBoxContainer/Control/HBoxContainer"]
+margin_left = 86.0
+margin_right = 553.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 10 )
+script = ExtResource( 8 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control/HBoxContainer/Description"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Description/MarginContainer"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 447.0
+margin_bottom = 95.0
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Panel" parent="VBoxContainer/Control/HBoxContainer"]
+margin_left = 557.0
+margin_right = 1024.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 10 )
+script = ExtResource( 6 )
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/Control/HBoxContainer/Info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Info/MarginContainer"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 447.0
+margin_bottom = 95.0
+size_flags_vertical = 1
+theme = ExtResource( 5 )
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsMenu" parent="." instance=ExtResource( 3 )]
+[connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_level_selected"]
+[connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_level_selected"]
+[connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Quit" to="SettingsMenu" method="_on_Quit_pressed"]
+[connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
