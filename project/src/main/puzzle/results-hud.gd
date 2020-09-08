@@ -8,6 +8,7 @@ const HINTS = [
 	"Build a snack box by arranging a pentomino and a quadromino into a square!",
 	"Build a cake box by arranging 3 pentominos into a rectangle!",
 	"Build a cake box by arranging 3 quadrominos into a rectangle!",
+	"Two different pieces with the same color can always make a square!",
 	"A snack box scores 5 points per line, a cake box scores 10. Make lots of cakes!",
 	"Combos can give you 20 bonus points for completing a line. Make lots of combos!",
 	"Build a big combo by making boxes and clearing lines!",

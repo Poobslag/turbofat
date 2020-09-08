@@ -8,6 +8,7 @@ Keys:
 	[A, S, D, F]: Think0 (Pensive), Think1 (Confused), Cry0 (Disappointed), Cry1 (Distraught)
 	[Z, X, C, V]: Sweat0 (Nervous), Sweat1 (Fidgety), Rage0 (Upset), Rage1 (Rage)
 	[=]: Make the creature fat
+	[brace keys]: Change the creature's appearance
 	
 	[Shift + Q, W]: Look over shoulder
 	[Shift + E, R]: Yawn
@@ -28,6 +29,7 @@ func _input(event: InputEvent) -> void:
 			KEY_F: $Creature.creature_visuals.play_idle_animation("idle-ear-wiggle1")
 	else:
 		match(Utils.key_scancode(event)):
+			KEY_BRACELEFT, KEY_BRACERIGHT: $Creature.dna = DnaUtils.fill_dna(DnaUtils.random_creature_palette())
 			KEY_1: $Creature.play_mood(ChatEvent.Mood.DEFAULT)
 			KEY_Q: $Creature.play_mood(ChatEvent.Mood.SMILE0)
 			KEY_W: $Creature.play_mood(ChatEvent.Mood.SMILE1)

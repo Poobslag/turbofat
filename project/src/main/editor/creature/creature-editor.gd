@@ -49,6 +49,7 @@ onready var outer_creatures := [
 
 # the UI which tracks things like mutagen level and locked/unlocked alleles
 onready var _mutate_ui := $Ui/TabContainer/Mutate
+onready var _reroll_ui := $Ui/Reroll
 
 func _ready() -> void:
 	_name_generator = NameGenerator.new()
@@ -137,7 +138,7 @@ func _mutate_creature(creature: Creature) -> void:
 				dna[allele] = new_palette[allele]
 			_:
 				var new_alleles := DnaUtils.allele_weights(dna, allele)
-				if _mutate_ui.mutagen <= 0.5:
+				if _reroll_ui.mutagen <= 0.5:
 					while new_alleles.has(dna[allele]):
 						new_alleles.erase(dna[allele])
 				if new_alleles:
@@ -313,7 +314,7 @@ func _alleles_to_mutate() -> Array:
 		flexible_alleles = new_flexible_alleles
 	
 	# determine how many alleles to mutate based on the 'mutagen' value
-	var extra_mutations_float: float = lerp(0, flexible_alleles.size(), _mutate_ui.mutagen)
+	var extra_mutations_float: float = lerp(0, flexible_alleles.size(), _reroll_ui.mutagen)
 	var extra_mutations := int(extra_mutations_float)
 	if randf() < (extra_mutations_float - extra_mutations):
 		# numbers like 2.35 are rounded down 35% of the time, and rounded up 65% of the time
@@ -371,7 +372,7 @@ func _on_Quit_pressed() -> void:
 
 func _on_Reroll_pressed() -> void:
 	mutate_all_creatures()
-	_mutate_ui.mutagen *= 0.84
+	_reroll_ui.mutagen *= 0.84
 
 
 """
