@@ -32,7 +32,7 @@ func _ready() -> void:
 		skill_tally_item.set_puzzle(_puzzle)
 	refresh()
 	
-	if Scenario.settings.name.begins_with("tutorial_beginner"):
+	if Scenario.settings.id.begins_with("tutorial_beginner"):
 		_puzzle.hide_start_button()
 		_puzzle.hide_back_button()
 		yield(get_tree().create_timer(0.40), "timeout")
@@ -54,7 +54,7 @@ func refresh() -> void:
 	for item in $SkillTallyItems/GridContainer.get_children():
 		item.visible = false
 	
-	if Scenario.settings.name.begins_with("tutorial_beginner"):
+	if Scenario.settings.id.begins_with("tutorial_beginner"):
 		# prepare for the 'tutorial_beginner' tutorial
 		if not _playfield.is_connected("box_built", self, "_on_Playfield_box_built"):
 			_playfield.connect("box_built", self, "_on_Playfield_box_built")
@@ -118,7 +118,7 @@ func _handle_line_clear_message() -> void:
 
 func _handle_squish_move_message() -> void:
 	if _did_squish_move and _squish_moves == 1:
-		match Scenario.settings.name:
+		match Scenario.settings.id:
 			"tutorial_beginner_0", "tutorial_beginner_1":
 				append_message("Oh my,/ you're not supposed to know how to do that!\n\n..."
 						+ "But yes,/ squish moves can help you out of a jam.")
@@ -131,7 +131,7 @@ func _handle_squish_move_message() -> void:
 
 func _handle_build_box_message() -> void:
 	if _did_build_box and _boxes_built == 1:
-		match Scenario.settings.name:
+		match Scenario.settings.id:
 			"tutorial_beginner_0":
 				append_message("Oh my,/ you're not supposed to know how to do that!\n\n"
 						+ "...But yes,/ those boxes earn $15 when you clear them./"
@@ -144,7 +144,7 @@ func _handle_build_box_message() -> void:
 
 
 func _handle_snack_stack_message() -> void:
-	if Scenario.settings.name == "tutorial_beginner_3" and _did_build_box and _did_squish_move:
+	if Scenario.settings.id == "tutorial_beginner_3" and _did_build_box and _did_squish_move:
 		_snack_stacks += 1
 		$SkillTallyItems/GridContainer/SnackStack.increment()
 		if _snack_stacks == 1:
@@ -162,7 +162,7 @@ func _on_Playfield_after_piece_written() -> void:
 	_handle_build_box_message()
 	_handle_snack_stack_message()
 	
-	match Scenario.settings.name:
+	match Scenario.settings.id:
 		"tutorial_beginner_0":
 			if _lines_cleared >= 2: _advance_scenario()
 		"tutorial_beginner_1":
@@ -183,7 +183,7 @@ func _advance_scenario() -> void:
 	# clear out any text to ensure we don't end up pages behind, if the player is fast
 	$Message.hide_text()
 	
-	if Scenario.settings.name == "tutorial_beginner_0" and _did_build_cake and _did_squish_move:
+	if Scenario.settings.id == "tutorial_beginner_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
 		_change_scenario("oh_my")
 		append_big_message("O/H/,/// M/Y/!/!/!")

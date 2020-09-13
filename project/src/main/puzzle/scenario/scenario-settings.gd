@@ -23,16 +23,16 @@ var combo_break := ComboBreakRules.new()
 # used for limits such as serving 5 creatures or clearing 10 lines. 
 var finish_condition := Milestone.new()
 
-# The requirements to level up and make the game harder. This mostly applies to 'Marathon Mode' where clearing lines
-# makes you level up.
+# Array of Milestone objects representing the requirements to level up. This mostly applies to 'Marathon Mode' where
+# clearing lines makes you level up.
 var level_ups := []
 
 # How the player loses. The player usually loses if they top out a certain number of times, but some scenarios might
 # have different rules.
 var lose_condition := LoseConditionRules.new()
 
-# The scenario name, used internally for saving/loading data.
-var name := ""
+# The scenario id used for saving/loading data.
+var id := ""
 
 # Rules which are unique enough that it doesn't make sense to put them in their own groups.
 var other := OtherRules.new()
@@ -70,7 +70,7 @@ func reset() -> void:
 	level_ups.clear()
 	success_condition = Milestone.new()
 	finish_condition = Milestone.new()
-	name = ""
+	id = ""
 
 
 func set_start_level(new_start_level: String) -> void:
@@ -102,10 +102,10 @@ func set_success_condition(type: int, value: int) -> void:
 Populates this object with json data.
 
 Parameters:
-	'new_name': The scenario name used for saving statistics.
+	'new_id': The scenario id used for saving statistics.
 """
-func from_json_dict(new_name: String, json: Dictionary) -> void:
-	name = new_name
+func from_json_dict(new_id: String, json: Dictionary) -> void:
+	id = new_id
 	if json.get("version") != SCENARIO_DATA_VERSION:
 		push_warning("Unrecognized scenario data version: '%s'" % json.get("version"))
 	
@@ -137,12 +137,12 @@ func from_json_dict(new_name: String, json: Dictionary) -> void:
 		success_condition.from_json_dict(json["success_condition"])
 
 
-func load_from_resource(new_name: String) -> void:
-	load_from_text(new_name, FileUtils.get_file_as_text(scenario_path(new_name)))
+func load_from_resource(new_id: String) -> void:
+	load_from_text(new_id, FileUtils.get_file_as_text(scenario_path(new_id)))
 
 
-func load_from_text(new_name: String, text: String) -> void:
-	from_json_dict(new_name, parse_json(text))
+func load_from_text(new_id: String, text: String) -> void:
+	from_json_dict(new_id, parse_json(text))
 
 
 """
@@ -154,9 +154,9 @@ Parameters:
 	'level_int': Which level should be loaded; '1' is the first level.
 """
 func load_from_creature(creature: Creature, level_int: int) -> void:
-	var level_names := creature.get_level_names()
-	var level_name: String = level_names[level_int - 1]
-	load_from_resource(level_name)
+	var level_ids := creature.get_level_ids()
+	var level_id: String = level_ids[level_int - 1]
+	load_from_resource(level_id)
 
 
 static func scenario_path(scenario_name: String) -> String:

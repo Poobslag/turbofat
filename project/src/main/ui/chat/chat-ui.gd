@@ -121,8 +121,8 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 	$ChatFrame.visible = true if chat_event.text else false
 	if not chat_event.text:
 		# emitting the 'all_text_shown' signal while other nodes are still receiving the current 'chat_event_shown'
-		# signal introduces complications, so we pause for a fraction of a second
-		yield(get_tree().create_timer(0.0001), "timeout")
+		# signal introduces complications, so we wait until the next frame
+		yield(get_tree(), "idle_frame")
 		$ChatFrame.emit_signal("all_text_shown")
 		if not $ChatAdvancer.should_prompt():
 			$ChatAdvancer.advance()

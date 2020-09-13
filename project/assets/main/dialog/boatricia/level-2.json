@@ -3,8 +3,7 @@
   "" : [
     {
       "who": "Boatricia",
-      "text": "I built up an appetite today! Think you can cook something filling for me and my friends?",
-      "meta": "scenario_boatricia2"
+      "text": "I built up an appetite today! Think you can cook something filling for me and my friends?"
     },
     {
       "who": "#player#",

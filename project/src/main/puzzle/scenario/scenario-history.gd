@@ -33,26 +33,23 @@ func reset() -> void:
 """
 Returns a player's performances for a specific scenario.
 """
-func results(scenario: String) -> Array:
-	return rank_results.get(scenario, [])
+func results(scenario_id: String) -> Array:
+	return rank_results.get(scenario_id, [])
 
 
 """
 Returns a player's best performances for a specific scenario.
 
 Parameters:
-	'scenario': The name of the scenario to evaluate
+	'scenario_id': The id of the scenario to evaluate
 	
-	'daily': If true, only performances with today's date are included
-	
-	'property': (Optional) The property evaluated to determine which of the player's RankResults was the best, such
-		as 'score' or 'seconds'. Defaults to 'score'.
+	'daily': (Optional) If true, only performances with today's date are included
 """
-func best_results(scenario: String, daily: bool) -> Array:
-	if not rank_results.has(scenario):
+func best_results(scenario_id: String, daily: bool = false) -> Array:
+	if not rank_results.has(scenario_id):
 		return []
 	
-	var results: Array = rank_results[scenario].duplicate()
+	var results: Array = rank_results[scenario_id].duplicate()
 	if daily:
 		# only include items with today's date
 		var now := OS.get_datetime()
@@ -76,10 +73,10 @@ func best_results(scenario: String, daily: bool) -> Array:
 	return results.slice(0, min(results.size() - 1, max_size - 1))
 
 
-func prev_result(scenario: String) -> RankResult:
-	if not rank_results.has(scenario) or rank_results[scenario].empty():
+func prev_result(scenario_id: String) -> RankResult:
+	if not rank_results.has(scenario_id) or rank_results[scenario_id].empty():
 		return null
-	return rank_results[scenario][0]
+	return rank_results[scenario_id][0]
 
 
 """
@@ -87,37 +84,37 @@ Records the current scenario performance to the player's history.
 
 'add' should be followed by 'prune' to ensure the history does not grow too large.
 """
-func add(scenario: String, rank_result: RankResult) -> void:
-	if not scenario:
-		# can't store history without a scenario name
+func add(scenario_id: String, rank_result: RankResult) -> void:
+	if not scenario_id:
+		# can't store history without a scenario id
 		return
 	
-	if not rank_results.has(scenario):
-		rank_results[scenario] = []
-	rank_results[scenario].push_front(rank_result)
-	if rank_result.success and not successful_scenarios.has(scenario):
-		successful_scenarios[scenario] = OS.get_datetime()
-	if not rank_result.lost and not successful_scenarios.has(scenario):
-		finished_scenarios[scenario] = OS.get_datetime()
+	if not rank_results.has(scenario_id):
+		rank_results[scenario_id] = []
+	rank_results[scenario_id].push_front(rank_result)
+	if rank_result.success and not successful_scenarios.has(scenario_id):
+		successful_scenarios[scenario_id] = OS.get_datetime()
+	if not rank_result.lost and not successful_scenarios.has(scenario_id):
+		finished_scenarios[scenario_id] = OS.get_datetime()
 
 
-func has(scenario: String) -> bool:
-	return rank_results.has(scenario) and rank_results.get(scenario).size() >= 1
+func has(scenario_id: String) -> bool:
+	return rank_results.has(scenario_id) and rank_results.get(scenario_id).size() >= 1
 
 
 """
 Prunes the history down to only the best daily results, best all-time results, and the most recent result.
 """
-func prune(scenario: String) -> void:
-	if not has(scenario):
+func prune(scenario_id: String) -> void:
+	if not has(scenario_id):
 		return
 	
 	# collect the best scores, but reinsert the newest score at index 0 for prev_result()
 	var best: Dictionary = {}
-	for result in best_results(scenario, false) + best_results(scenario, true):
+	for result in best_results(scenario_id, false) + best_results(scenario_id, true):
 		best[result] = ""
-	best.erase(rank_results[scenario][0])
-	rank_results[scenario] = [rank_results[scenario][0]] + best.keys()
+	best.erase(rank_results[scenario_id][0])
+	rank_results[scenario_id] = [rank_results[scenario_id][0]] + best.keys()
 
 
 func _compare_by_low_seconds(a: RankResult, b: RankResult) -> bool:

@@ -275,15 +275,15 @@ func get_creature_def() -> CreatureDef:
 
 
 """
-Build a list of level names from the creature's chat selectors.
+Build a list of level ids from the creature's chat selectors.
 """
-func get_level_names() -> Array:
-	var level_names := []
+func get_level_ids() -> Array:
+	var level_ids := []
 	for chat_selector_obj in chat_selectors:
 		var chat_selector: Dictionary = chat_selector_obj
 		if chat_selector.has("level"):
-			level_names.append(chat_selector["level"])
-	return level_names
+			level_ids.append(chat_selector["level"])
+	return level_ids
 
 
 func refresh_dna() -> void:

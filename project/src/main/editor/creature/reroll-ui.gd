@@ -29,5 +29,5 @@ func _refresh_percent_label() -> void:
 	$Button.text = "Reroll (%d%%)" % int($HSlider.value * 100)
 
 
-func _on_HSlider_value_changed(value: float) -> void:
+func _on_HSlider_value_changed(_value: float) -> void:
 	_refresh_percent_label()
