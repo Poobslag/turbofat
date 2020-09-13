@@ -25,7 +25,7 @@ var launched_scenario_name
 var overworld_puzzle := false
 
 func start_scenario(new_settings: ScenarioSettings) -> void:
-	Scenario.launched_scenario_name = new_settings.name
+	Scenario.launched_scenario_name = new_settings.id
 	PuzzleScore.reset()
 	switch_scenario(new_settings)
 

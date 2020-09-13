@@ -75,16 +75,16 @@ func _ready() -> void:
 		var category: Array = category_obj
 		var mode: String = category[0]
 		var difficulty: String = category[1]
-		var scenario_name: String = category[2]
+		var scenario_id: String = category[2]
 		if not mode_difficulties.has(mode):
 			mode_difficulties[mode] = []
 		mode_difficulties[mode].append(difficulty)
 		
 		var settings: ScenarioSettings = ScenarioSettings.new()
-		settings.load_from_resource(scenario_name)
+		settings.load_from_resource(scenario_id)
 		scenarios["%s %s" % [mode, difficulty]] = settings
 		
-		if scenario_name == Scenario.settings.name:
+		if scenario_id == Scenario.settings.id:
 			# if they've just played a practice mode scenario, we default to that scenario
 			current_mode = mode
 			current_difficulty = difficulty
@@ -120,7 +120,7 @@ func _calculate_lowlights() -> void:
 	
 	for difficulty in mode_difficulties[_get_mode()]:
 		var scenario: ScenarioSettings = scenarios["%s %s" % [_get_mode(), difficulty]]
-		_rank_lowlights.append(not PlayerData.scenario_history.successful_scenarios.has(scenario.name))
+		_rank_lowlights.append(not PlayerData.scenario_history.successful_scenarios.has(scenario.id))
 
 
 func _get_mode() -> String:

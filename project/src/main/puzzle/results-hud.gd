@@ -135,7 +135,7 @@ func _on_PuzzleScore_game_prepared() -> void:
 
 
 func _on_PuzzleScore_after_game_ended() -> void:
-	var rank_result: RankResult = PlayerData.scenario_history.prev_result(Scenario.settings.name)
+	var rank_result: RankResult = PlayerData.scenario_history.prev_result(Scenario.settings.id)
 	if not rank_result or Scenario.settings.rank.skip_results:
 		return
 	

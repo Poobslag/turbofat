@@ -17,7 +17,7 @@ const RDF_COMBO_SCORE_PER_LINE := 0.970
 # theoretical player to meet all three statistics simultaneously.
 const MASTER_BOX_SCORE := 14.5
 const MASTER_COMBO_SCORE := 17.575
-const MASTER_COMBO := 22
+const MASTER_CUSTOMER_COMBO := 22
 const MASTER_LEFTOVER_LINES := 12
 
 # The number of extra unnecessary frames a perfect player will spend moving their piece.
@@ -123,7 +123,7 @@ func _max_lpm() -> float:
 			var level_up: Milestone = Scenario.settings.level_ups[i + 1]
 			match level_up.type:
 				Milestone.CUSTOMERS:
-					level_lines = MASTER_COMBO
+					level_lines = MASTER_CUSTOMER_COMBO
 				Milestone.LINES:
 					level_lines = level_up.value
 				Milestone.TIME_OVER:
@@ -198,7 +198,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		Milestone.NONE:
 			target_lines = 999999
 		Milestone.CUSTOMERS:
-			target_lines = MASTER_COMBO * finish_condition.value
+			target_lines = MASTER_CUSTOMER_COMBO * finish_condition.value
 		Milestone.LINES:
 			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
 		Milestone.SCORE:

@@ -27,11 +27,11 @@ func load_chat_events_for_creature(creature: Creature, level_int: int = -1) -> C
 		state["level_int"] = 1
 	
 	var chat_tree: ChatTree
-	var level_names := creature.get_level_names()
-	if level_names.size() == 2 and level_int == -1:
+	var level_ids := creature.get_level_ids()
+	if level_ids.size() == 2 and level_int == -1:
 		# talking to a creature with two or more levels results in a selection menu (for now)
 		chat_tree = load_chat_events_from_file("res://assets/main/dialog/level-select-2.json")
-	elif level_names.size() <= 2:
+	elif level_ids.size() <= 2:
 		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state)
 		if creature.dialog.has(chosen_dialog):
 			chat_tree = ChatTree.new()
@@ -41,7 +41,7 @@ func load_chat_events_for_creature(creature: Creature, level_int: int = -1) -> C
 			var path := "res://assets/main/dialog/%s/%s.json" % [creature.creature_id, chosen_dialog.replace("_", "-")]
 			chat_tree = load_chat_events_from_file(path)
 	else:
-		push_warning("Unexpected level names count: %s" % level_names.size())
+		push_warning("Unexpected level ids count: %s" % level_ids.size())
 	return chat_tree
 
 

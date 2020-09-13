@@ -48,10 +48,10 @@ func _add_rows() -> void:
 	if not _scenario:
 		return
 	
-	for best_result_obj in PlayerData.scenario_history.best_results(_scenario.name, daily):
+	for best_result_obj in PlayerData.scenario_history.best_results(_scenario.id, daily):
 		var best_result: RankResult = best_result_obj
 		var row := []
-		
+
 		# append timestamp
 		if daily:
 			row.append("%02d:%02d" % [
@@ -64,10 +64,10 @@ func _add_rows() -> void:
 					best_result.timestamp["month"],
 					best_result.timestamp["day"],
 				])
-		
+
 		# append lines
 		row.append(StringUtils.comma_sep(best_result.lines))
-		
+
 		# append score/time and grade
 		if best_result.compare == "-seconds":
 			var seconds_string := StringUtils.format_duration(best_result.seconds)
@@ -81,7 +81,7 @@ func _add_rows() -> void:
 				score_string += "*"
 			row.append(score_string)
 			row.append(RankCalculator.grade(best_result.score_rank))
-		
+
 		_add_row(row)
 
 
