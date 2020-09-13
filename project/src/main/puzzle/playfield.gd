@@ -43,6 +43,7 @@ onready var tile_map := $TileMapClip/TileMap
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
+	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	_prepare_scenario_blocks()
 
 
@@ -164,3 +165,8 @@ func _on_LineClearer_lines_deleted(lines: Array) -> void:
 
 func _on_FrostingGlobs_hit_playfield(glob: Node) -> void:
 	$BgGlobViewports.add_smear(glob)
+
+
+func _on_Pauser_paused_changed(value: bool) -> void:
+	$TileMapClip.visible = !value
+	$ShadowTexture.visible = !value

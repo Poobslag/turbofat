@@ -464,6 +464,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/scenario/score-rules.gd"
 }, {
+"base": "CanvasLayer",
+"class": "SettingsMenu",
+"language": "GDScript",
+"path": "res://src/main/ui/menu/settings-menu.gd"
+}, {
 "base": "ProgressBar",
 "class": "SkillTallyItem",
 "language": "GDScript",
@@ -616,6 +621,7 @@ _global_script_class_icons={
 "ScenarioHistory": "",
 "ScenarioSettings": "",
 "ScoreRules": "",
+"SettingsMenu": "",
 "SkillTallyItem": "",
 "SmoothPath": "",
 "State": "",
@@ -651,6 +657,7 @@ DnaUtils="*res://src/main/world/creature/dna-utils.gd"
 Global="*res://src/main/global.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
+Pauser="*res://src/main/pauser.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 PlayerData="*res://src/main/player-data.gd"

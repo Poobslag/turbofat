@@ -13,6 +13,7 @@ func _ready() -> void:
 		# when launched standalone, we don't load creature resources (they're slow)
 		ResourceCache.minimal_resources = true
 	
+	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
@@ -24,6 +25,13 @@ func _ready() -> void:
 		summon_instructor(true)
 	
 	$RestaurantView.get_customer().play_hello_voice(true)
+
+
+func _input(event: InputEvent) -> void:
+	if event.is_action_pressed("ui_menu") and not $Hud/HudUi/PuzzleMessages.is_settings_button_visible():
+		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
+		$SettingsMenu.show()
+		get_tree().set_input_as_handled()
 
 
 """
@@ -48,16 +56,6 @@ func summon_instructor(replace_current: bool = false) -> void:
 		$RestaurantView.scroll_to_new_creature(new_creature_index)
 
 
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_menu"):
-		if PuzzleScore.game_active:
-			PuzzleScore.make_player_lose()
-			get_tree().set_input_as_handled()
-		elif $Hud/HudUi/PuzzleMessages/BackButton.visible:
-			Breadcrumb.pop_trail()
-			get_tree().set_input_as_handled()
-
-
 func get_playfield() -> Playfield:
 	return $Playfield as Playfield
 
@@ -66,20 +64,12 @@ func get_piece_manager() -> PieceManager:
 	return $PieceManager as PieceManager
 
 
-func hide_start_button() -> void:
-	$Hud/HudUi/PuzzleMessages.hide_start_button()
+func hide_buttons() -> void:
+	$Hud/HudUi/PuzzleMessages.hide_buttons()
 
 
-func show_start_button() -> void:
-	$Hud/HudUi/PuzzleMessages.show_start_button()
-
-
-func hide_back_button() -> void:
-	$Hud/HudUi/PuzzleMessages.hide_back_button()
-
-
-func show_back_button() -> void:
-	$Hud/HudUi/PuzzleMessages.show_back_button()
+func show_buttons() -> void:
+	$Hud/HudUi/PuzzleMessages.show_buttons()
 
 
 func scroll_to_new_creature() -> void:
@@ -145,6 +135,14 @@ func _on_Hud_start_button_pressed() -> void:
 	PuzzleScore.prepare_and_start_game()
 
 
+func _on_Hud_settings_button_pressed() -> void:
+	$SettingsMenu.show()
+
+
+func _on_Hud_back_button_pressed() -> void:
+	Breadcrumb.pop_trail()
+
+
 """
 Triggers the 'creature feeding' animation.
 """
@@ -168,6 +166,10 @@ func _on_Playfield_after_piece_written() -> void:
 	_check_for_game_end()
 
 
+func _on_PuzzleScore_game_started() -> void:
+	$SettingsMenu.quit_text = SettingsMenu.GIVE_UP
+
+
 """
 Method invoked when the game ends. Stores the rank result for later.
 """
@@ -176,6 +178,7 @@ func _on_PuzzleScore_game_ended() -> void:
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
 	
+	$SettingsMenu.quit_text = SettingsMenu.QUIT
 	var rank_result := RankCalculator.new().calculate_rank()
 	PlayerData.scenario_history.add(Scenario.launched_scenario_name, rank_result)
 	PlayerData.scenario_history.prune(Scenario.launched_scenario_name)
@@ -195,3 +198,10 @@ This makes the stutter from writing to disk less noticable.
 """
 func _on_PuzzleScore_after_game_ended() -> void:
 	PlayerSave.save_player_data()
+
+
+func _on_SettingsMenu_quit_pressed() -> void:
+	if $SettingsMenu.quit_text == SettingsMenu.GIVE_UP:
+		PuzzleScore.make_player_lose()
+	else:
+		Breadcrumb.pop_trail()

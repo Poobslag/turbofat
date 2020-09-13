@@ -50,6 +50,9 @@ onready var StarScene := preload("res://src/main/puzzle/Star.tscn")
 onready var SeedScene := preload("res://src/main/puzzle/Seed.tscn")
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
 
+func _ready() -> void:
+	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+
 
 """
 Detects boxes in the playfield, and places wobblers in them.
@@ -233,3 +236,7 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 	for x in range(PuzzleTileMap.COL_COUNT):
 		if _wobblers_by_cell.has(Vector2(x, y)):
 			emit_signal("food_spawned", Vector2(x, y), _wobblers_by_cell[Vector2(x, y)].food_type)
+
+
+func _on_Pauser_paused_changed(value: bool) -> void:
+	visible = !value

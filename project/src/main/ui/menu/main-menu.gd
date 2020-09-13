@@ -8,6 +8,8 @@ Includes buttons starting a new game, launching the level editor, and exiting th
 
 func _ready() -> void:
 	if not PlayerData.scenario_history.finished_scenarios.has(Scenario.BEGINNER_TUTORIAL):
+		# if the player fails/quits the first tutorial, they're redirected to the splash screen
+		Breadcrumb.trail = ["res://src/main/ui/menu/SplashScreen.tscn"]
 		_launch_tutorial()
 	
 	# Fade in music when redirected from a scene with no music, such as the level editor

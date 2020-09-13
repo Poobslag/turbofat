@@ -33,15 +33,12 @@ func _ready() -> void:
 	refresh()
 	
 	if Scenario.settings.id.begins_with("tutorial_beginner"):
-		_puzzle.hide_start_button()
-		_puzzle.hide_back_button()
+		_puzzle.hide_buttons()
 		yield(get_tree().create_timer(0.40), "timeout")
 		append_message("Welcome to Turbo Fat!//"
 				+ " You seem to already be familiar with this sort of game,/ so let's dive right in.")
 		yield(get_tree().create_timer(0.80), "timeout")
-		_puzzle.show_start_button()
-		if PlayerData.scenario_history.finished_scenarios.has(Scenario.BEGINNER_TUTORIAL):
-			_puzzle.show_back_button()
+		_puzzle.show_buttons()
 
 
 """
