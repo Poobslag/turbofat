@@ -41,6 +41,9 @@ var _erased_line_index := 0
 var _remaining_line_clear_timings := []
 var _remaining_line_erase_timings := []
 
+# rows containing prebuilt scenario boxes, which aren't cleared at the end of the level.
+var _rows_to_preserve_at_end := {}
+
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 
 func _ready() -> void:
@@ -163,6 +166,8 @@ the combo or award points.
 func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	var box_ints:= _box_ints(y)
 	_tile_map.erase_playfield_row(y)
+	if _rows_to_preserve_at_end:
+		_rows_to_preserve_at_end.erase(y)
 	emit_signal("line_erased", y, total_lines, remaining_lines, box_ints)
 
 
@@ -183,6 +188,17 @@ func _delete_rows() -> void:
 	
 	if play_sound:
 		$LineFallSound.play()
+	
+	if _rows_to_preserve_at_end:
+		# Shift all _rows_to_preserve_at_end entries above the deleted rows
+		for line_being_deleted in lines_being_deleted:
+			var _new_rows_to_preserve_at_end := {}
+			for key in _rows_to_preserve_at_end:
+				var new_key: int = key
+				if key < line_being_deleted:
+					new_key += 1
+				_new_rows_to_preserve_at_end[new_key] = true
+			_rows_to_preserve_at_end = _new_rows_to_preserve_at_end
 	
 	emit_signal("lines_deleted", lines_being_deleted)
 
@@ -232,7 +248,7 @@ func _schedule_finish_line_clears() -> void:
 	for y in range(PuzzleTileMap.ROW_COUNT):
 		if _tile_map.playfield_row_is_full(y):
 			full_lines.append(y)
-		elif _box_ints(y):
+		elif _box_ints(y) and not _rows_to_preserve_at_end.has(y):
 			box_lines.append(y)
 	NearestSorter.new().sort(box_lines, Utils.mean(full_lines + lines_being_cleared, 0.0))
 	var lines_to_clear := full_lines + box_lines
@@ -266,3 +282,27 @@ func _on_PuzzleScore_finish_triggered() -> void:
 		_schedule_finish_line_clears()
 	else:
 		PuzzleScore.end_game()
+
+
+"""
+When a new set of blocks is loaded, we recalculate the rows to preserve at the end.
+
+Any prebuilt scenario boxes aren't cleared at the end of the level.
+"""
+func _on_Playfield_blocks_prepared() -> void:
+	_rows_to_preserve_at_end.clear()
+	for cell in _tile_map.get_used_cells():
+		if _tile_map.get_cell(cell.x, cell.y) == 1:
+			_rows_to_preserve_at_end[int(cell.y)] = true
+
+
+"""
+When a box is made, we remove those rows from the rows to preserve at the end.
+
+Any prebuilt scenario boxes aren't cleared at the end of the level, but if the player makes additional boxes next to
+them, then they're cleared.
+"""
+func _on_BoxBuilder_box_built(rect: Rect2, _color_int: int) -> void:
+	if _rows_to_preserve_at_end:
+		for y in range(rect.position.y, rect.end.y):
+			_rows_to_preserve_at_end.erase(y)
