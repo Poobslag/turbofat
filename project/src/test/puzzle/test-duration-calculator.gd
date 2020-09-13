@@ -4,10 +4,10 @@ Unit test demonstrating duration calculation logic.
 """
 
 var _duration_calculator := DurationCalculator.new()
-var _settings := ScenarioSettings.new()
+var _settings: ScenarioSettings
 
 func before_each() -> void:
-	_settings.reset()
+	_settings = ScenarioSettings.new()
 	_settings.set_start_level("0")
 
 
@@ -81,7 +81,7 @@ func test_customers() -> void:
 func test_customers_high_value() -> void:
 	_settings.finish_condition.set_milestone(Milestone.CUSTOMERS, 25)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 581, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 562.5, 10)
 
 
 func test_customers_high_difficulty() -> void:

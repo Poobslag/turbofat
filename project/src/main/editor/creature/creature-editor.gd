@@ -112,40 +112,59 @@ func _mutate_creature(creature: Creature) -> void:
 	
 	# mutate the appropriate alleles
 	for allele in _alleles_to_mutate():
-		match allele:
-			"name":
-				creature.creature_name = _name_generator.generate_name()
-				creature.creature_short_name = NameUtils.sanitize_short_name(creature.creature_name)
-			"fatness":
-				var new_fatnesses := FATNESSES.duplicate()
-				while new_fatnesses.has(creature.get_visual_fatness()):
-					new_fatnesses.erase(creature.get_visual_fatness())
-				var new_fatness: float = Utils.rand_value(new_fatnesses)
-				creature.set_fatness(new_fatness)
-				creature.set_visual_fatness(new_fatness)
-			"body_rgb":
-				dna["line_rgb"] = new_palette["line_rgb"]
-				dna["body_rgb"] = new_palette["body_rgb"]
-			"all_rgb":
-				dna["line_rgb"] = new_palette["line_rgb"]
-				dna["body_rgb"] = new_palette["body_rgb"]
-				dna["belly_rgb"] = new_palette["belly_rgb"]
-				dna["cloth_rgb"] = new_palette["cloth_rgb"]
-				dna["hair_rgb"] = new_palette["hair_rgb"]
-				dna["eye_rgb"] = new_palette["eye_rgb"]
-				dna["horn_rgb"] = new_palette["horn_rgb"]
-			"line_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb":
-				dna[allele] = new_palette[allele]
-			_:
-				var new_alleles := DnaUtils.allele_weights(dna, allele)
-				if _reroll_ui.mutagen <= 0.5:
-					while new_alleles.has(dna[allele]):
-						new_alleles.erase(dna[allele])
-				if new_alleles:
-					dna[allele] = Utils.weighted_rand_value(new_alleles)
+		_mutate_allele(creature, dna, new_palette, allele)
 	
 	creature.dna = dna
 	creature.chat_theme_def = _chat_theme_def(dna)
+
+
+"""
+Mutate a single allele.
+
+Picks a new value for the specified allele, weighted to pick more common/appealing attributes more frequently, and to
+avoid illegal allele combinations.
+
+Parameters:
+	'creature': The creature to modify for non-DNA attributes, such as fatness and name.
+	
+	'dna': The dna dictionary to modify.
+	
+	'new_palette': The palette to use for any new colors.
+	
+	'property': The allele property to mutate.
+"""
+func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary, property: String) -> void:
+	match property:
+		"name":
+			creature.creature_name = _name_generator.generate_name()
+			creature.creature_short_name = NameUtils.sanitize_short_name(creature.creature_name)
+		"fatness":
+			var new_fatnesses := FATNESSES.duplicate()
+			while new_fatnesses.has(creature.get_visual_fatness()):
+				new_fatnesses.erase(creature.get_visual_fatness())
+			var new_fatness: float = Utils.rand_value(new_fatnesses)
+			creature.set_fatness(new_fatness)
+			creature.set_visual_fatness(new_fatness)
+		"body_rgb":
+			dna["line_rgb"] = new_palette["line_rgb"]
+			dna["body_rgb"] = new_palette["body_rgb"]
+		"all_rgb":
+			dna["line_rgb"] = new_palette["line_rgb"]
+			dna["body_rgb"] = new_palette["body_rgb"]
+			dna["belly_rgb"] = new_palette["belly_rgb"]
+			dna["cloth_rgb"] = new_palette["cloth_rgb"]
+			dna["hair_rgb"] = new_palette["hair_rgb"]
+			dna["eye_rgb"] = new_palette["eye_rgb"]
+			dna["horn_rgb"] = new_palette["horn_rgb"]
+		"line_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb":
+			dna[property] = new_palette[property]
+		_:
+			var new_alleles := DnaUtils.allele_weights(dna, property)
+			if _reroll_ui.mutagen <= 0.5:
+				while new_alleles.has(dna[property]):
+					new_alleles.erase(dna[property])
+			if new_alleles:
+				dna[property] = Utils.weighted_rand_value(new_alleles)
 
 
 """
@@ -280,6 +299,15 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 				_recent_tweaked_allele_values[allele].clear()
 			if unpicked_alleles:
 				dna[allele] = Utils.rand_value(unpicked_alleles)
+				# if there are any conflicting allele combinations, mutate the creature's DNA
+				var invalid_value := DnaUtils.invalid_allele_value(dna, allele, dna[allele])
+				if invalid_value:
+					var new_palette: Dictionary = _palette()
+					for _i in range(48):
+						_mutate_allele(creature, dna, new_palette, invalid_value)
+						invalid_value = DnaUtils.invalid_allele_value(dna, allele, dna[allele])
+						if not invalid_value:
+							break
 				_recent_tweaked_allele_values[allele].append(dna[allele])
 	
 	creature.dna = dna
@@ -311,6 +339,11 @@ func _alleles_to_mutate() -> Array:
 		for allele in flexible_alleles:
 			if not allele.ends_with("_rgb"):
 				new_flexible_alleles.append(allele)
+		var immutable_alleles := []
+		for allele in new_flexible_alleles:
+			if DnaUtils.allele_weights(center_creature.dna, allele).size() == 1:
+				immutable_alleles.append(allele)
+		new_flexible_alleles = Utils.subtract(new_flexible_alleles, immutable_alleles)
 		flexible_alleles = new_flexible_alleles
 	
 	# determine how many alleles to mutate based on the 'mutagen' value

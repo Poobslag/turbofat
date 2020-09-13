@@ -123,6 +123,7 @@ const ALLELE_NAMES := {
 	"mouth-1": "Ant",
 	"mouth-2": "Illithid",
 	"mouth-3": "Imp",
+	"mouth-4": "Crow",
 	
 	"body-1": "Koala",
 	"body-2": "Squirrel",
@@ -134,11 +135,12 @@ const ALLELE_NAMES := {
 	"cheek-4": "Fat Whisker",
 	
 	"ear-0": "(none)",
-	"ear-1": "Cattail",
+	"ear-1": "Sausage",
 	"ear-2": "Cannon",
 	"ear-3": "Dangler",
 	"ear-4": "Nubble",
 	"ear-5": "Pancake",
+	"ear-6": "Chonky Cat",
 	
 	"horn-0": "(none)",
 	"horn-1": "Straw Hole",
@@ -193,6 +195,10 @@ func _ready() -> void:
 		# creatures with ant/illithid mouth are less likely to have fuzzy neck
 		_set_allele_combo_adjustment("mouth", mouth, "collar", "2", -2)
 		_set_allele_combo_adjustment("mouth", mouth, "collar", "3", -2)
+	
+	for nose in ["1", "2", "3"]:
+		# creatures with beak can NEVER have nose
+		_set_allele_combo_adjustment("mouth", "4", "nose", nose, -999)
 	
 	_set_allele_weight("body", "1", 6.0)
 	_set_allele_weight("head", "1", 6.0)
@@ -274,10 +280,10 @@ func unique_allele_values(property: String) -> Array:
 			"head": result = ["1", "2", "3", "4", "5"]
 			"belly": result = ["0", "1", "2"]
 			"cheek": result = ["0", "1", "2", "3", "4"]
-			"ear": result = ["1", "2", "3", "4", "5"]
+			"ear": result = ["1", "2", "3", "4", "5", "6"]
 			"eye": result = ["1", "2", "3", "4"]
 			"horn": result = ["0", "1", "2"]
-			"mouth": result = ["1", "2", "3"]
+			"mouth": result = ["1", "2", "3", "4"]
 			"nose": result = ["0", "1", "2", "3"]
 			"hair": result = ["0", "1", "2"]
 			"collar": result = ["0", "1", "2", "3"]
@@ -291,6 +297,18 @@ Returns a random palette from a list of preset palettes.
 """
 func random_creature_palette() -> Dictionary:
 	return Utils.rand_value(CREATURE_PALETTES).duplicate()
+
+
+func invalid_allele_value(dna: Dictionary, property: String, value: String) -> String:
+	var invalid_property: String
+	for other_property in BODY_PART_ALLELES:
+		if other_property == property:
+			continue
+		var other_value: String = dna.get(other_property, "0")
+		if _get_allele_combo_adjustment(property, value, other_property, other_value) < -50:
+			invalid_property = other_property
+			break
+	return invalid_property
 
 
 """
@@ -307,6 +325,7 @@ func allele_weights(dna: Dictionary, property: String) -> Dictionary:
 	elif property in BODY_PART_ALLELES:
 		for allele_value in unique_allele_values(property):
 			result[allele_value] = _get_allele_weight(property, allele_value)
+		var invalid_allele_values := []
 		for allele_value in result:
 			var total_score := 0.0
 			for other_property in BODY_PART_ALLELES:
@@ -314,12 +333,16 @@ func allele_weights(dna: Dictionary, property: String) -> Dictionary:
 					continue
 				var other_value: String = dna.get(other_property, "0")
 				total_score += _get_allele_combo_adjustment(property, allele_value, other_property, other_value)
-			if total_score > 0:
-				# chance increases to 200%, 300%, 400%...
-				result[allele_value] += total_score
+			if total_score < -50:
+				invalid_allele_values.append(allele_value)
 			elif total_score < 0:
 				# chance decreases to 50%, 33%, 25%...
 				result[allele_value] /= (1 - total_score)
+			else:
+				# chance increases to 200%, 300%, 400%...
+				result[allele_value] += total_score
+		for allele_value in invalid_allele_values:
+			result.erase(allele_value)
 	
 	return result
 

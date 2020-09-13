@@ -22,6 +22,7 @@ var _mouth_player_scenes := {
 	"1": preload("res://src/main/world/creature/Mouth1Player.tscn"),
 	"2": preload("res://src/main/world/creature/Mouth2Player.tscn"),
 	"3": preload("res://src/main/world/creature/Mouth3Player.tscn"),
+	"4": preload("res://src/main/world/creature/Mouth4Player.tscn"),
 }
 
 # AnimationPlayer scenes with animations for each type of ear
@@ -31,6 +32,7 @@ var _ear_player_scenes := {
 	"3": preload("res://src/main/world/creature/Ear3Player.tscn"),
 	"4": preload("res://src/main/world/creature/Ear4Player.tscn"),
 	"5": preload("res://src/main/world/creature/Ear5Player.tscn"),
+	"6": preload("res://src/main/world/creature/Ear6Player.tscn"),
 }
 
 # Scenes which draw different bodies
@@ -287,6 +289,10 @@ func _load_colors(dna: Dictionary) -> void:
 	if dna.has("belly_rgb"):
 		belly_color = Color(dna.belly_rgb)
 	
+	var horn_color: Color
+	if dna.has("horn_rgb"):
+		horn_color = Color(dna.horn_rgb)
+	
 	_set_krgb(dna, "Body", line_color, body_color, belly_color)
 	_set_krgb(dna, "Collar", line_color, cloth_color, hair_color)
 	_set_krgb(dna, "EmoteBody", line_color)
@@ -318,7 +324,13 @@ func _load_colors(dna: Dictionary) -> void:
 	var chin_skin_color := belly_color if dna.get("head") in ["2", "3", "5"] else body_color
 	_set_krgb(dna, "Neck0/HeadBobber/Chin", line_color, chin_skin_color)
 	
-	var mouth_skin_color := belly_color if dna.get("head") in ["2", "3", "5"] else body_color
+	var mouth_skin_color := body_color
+	if dna.get("mouth") in ["4"]:
+		# beaks
+		mouth_skin_color = horn_color
+	elif dna.get("head") in ["2", "3", "5"]:
+		# bottom half of the head is belly-colored
+		mouth_skin_color = belly_color
 	_set_krgb(dna, "Neck0/HeadBobber/Mouth", line_color, mouth_skin_color, PINK_INSIDE_COLOR)
 	
 	var nose_skin_color := belly_color if dna.get("head") in ["2", "3"] else body_color
@@ -333,9 +345,6 @@ func _load_colors(dna: Dictionary) -> void:
 	_set_krgb(dna, "Neck0/HeadBobber/EyeZ0", line_color, eye_skin_color, eye_color, eye_shine_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EyeZ1", line_color, eye_skin_color, eye_color, eye_shine_color)
 
-	var horn_color: Color
-	if dna.has("horn_rgb"):
-		horn_color = Color(dna.horn_rgb)
 	_set_krgb(dna, "Neck0/HeadBobber/HornZ0", line_color, body_color, horn_color)
 	_set_krgb(dna, "Neck0/HeadBobber/HornZ1", line_color, body_color, horn_color)
 
