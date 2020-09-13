@@ -75,6 +75,9 @@ Resets all score data, and starts a new game after a brief pause.
 func prepare_and_start_game() -> void:
 	_prepare_game()
 	yield(get_tree().create_timer(1.4), "timeout")
+	if get_tree().paused:
+		# If the player pauses during the initial countdown, we wait to start until the game is unpaused.
+		yield(Pauser, "paused_changed")
 	_start_game()
 
 
