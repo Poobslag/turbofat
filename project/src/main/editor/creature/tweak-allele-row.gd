@@ -34,6 +34,15 @@ Populate the option button with the available allele values.
 """
 func _on_Edit_pressed() -> void:
 	_allele_values = DnaUtils.unique_allele_values(allele)
+	
+	var allele_index := 0
+	while allele_index < _allele_values.size():
+		var allele_value: String = _allele_values[allele_index]
+		if DnaUtils.invalid_allele_value(_creature_editor.center_creature.dna, allele, allele_value):
+			_allele_values.remove(allele_index)
+		else:
+			allele_index += 1
+	
 	$Edit.clear()
 	for value in _allele_values:
 		$Edit.add_item(DnaUtils.allele_name(allele, value))
