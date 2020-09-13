@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "2",
+  "title":"Leftovers",
+  "description": "Another big mess to clean. Why does this always fall to you?",
   "finish_condition": {
     "type": "time_over",
     "value": "150"

@@ -34,6 +34,15 @@ var lose_condition := LoseConditionRules.new()
 # The scenario id used for saving/loading data.
 var id := ""
 
+# The scenario title shown in menus.
+var title := ""
+
+# The scenario description shown when selecting a scenario.
+var description := ""
+
+# (optional) The scenario difficulty shown when selecting a scenario.
+var difficulty := "" setget ,get_difficulty
+
 # Rules which are unique enough that it doesn't make sense to put them in their own groups.
 var other := OtherRules.new()
 
@@ -99,8 +108,11 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 	if json.get("version") != SCENARIO_DATA_VERSION:
 		push_warning("Unrecognized scenario data version: '%s'" % json.get("version"))
 	
+	title = json.get("title", "")
+	description = json.get("description", "")
+	difficulty = json.get("difficulty", "")
 	set_start_level(json.get("start_level", "0"))
-	
+
 	if json.has("blocks_start"):
 		blocks_start.from_json_dict(json["blocks_start"])
 	if json.has("blocks_during"):
@@ -148,6 +160,28 @@ func load_from_creature(creature: Creature, level_int: int) -> void:
 	var level_ids := creature.get_level_ids()
 	var level_id: String = level_ids[level_int - 1]
 	load_from_resource(level_id)
+
+
+func get_difficulty() -> String:
+	var result: String
+	if difficulty:
+		result = difficulty
+	else:
+		result = _get_max_speed_level()
+	return result
+
+
+func _get_max_speed_level() -> String:
+	var max_speed_level_index := 0
+	var max_speed_level: String = PieceSpeeds.speed_levels[0]
+	for milestone_obj in level_ups:
+		var milestone: Milestone = milestone_obj
+		var speed_level: String = milestone.get_meta("level")
+		var speed_level_index := PieceSpeeds.speed_levels.find(speed_level)
+		if speed_level_index > max_speed_level_index:
+			max_speed_level_index = speed_level_index
+			max_speed_level = speed_level
+	return max_speed_level
 
 
 static func scenario_path(scenario_name: String) -> String:

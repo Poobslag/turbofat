@@ -24,6 +24,9 @@ const SQUISH_FRAMES := 4
 # How fast the pieces are moving right now
 var current_speed: PieceSpeed
 
+# Array of speed level strings in ascending order
+var speed_levels := []
+
 var _speeds := {}
 
 func _ready() -> void:
@@ -83,6 +86,7 @@ func speed(string: String) -> PieceSpeed:
 
 
 func _add_speed(speed: PieceSpeed) -> void:
+	speed_levels.append(speed.level)
 	_speeds[speed.level] = speed
 
 

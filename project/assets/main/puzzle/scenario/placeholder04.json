@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "4",
+  "title":"Pineapple On Its Side Cake",
+  "description": "Why is this cake on its side? Whoever left this here was either very smart, or very stupid...",
   "finish_condition": {
     "type": "score",
     "value": "400"

@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "6",
+  "title":"It's Tee Time",
+  "description": "Augh, bread overload! And half the end pieces are missing...",
   "finish_condition": {
     "type": "time_over",
     "value": "120"

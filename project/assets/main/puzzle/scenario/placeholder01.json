@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "1",
+  "title":"Just Getting Started",
+  "description": "Was someone in the middle of cooking something?",
   "finish_condition": {
     "type": "time_over",
     "value": "90"

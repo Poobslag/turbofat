@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "0",
+  "title": "Teensy Taste",
+  "description": "Just a quick bite.",
   "finish_condition": {
     "type": "score",
     "value": "200"

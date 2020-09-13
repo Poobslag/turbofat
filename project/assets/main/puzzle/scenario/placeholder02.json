@@ -1,6 +1,8 @@
 {
   "version": "1922",
   "start_level": "2",
+  "title":"Unfresh Fruits",
+  "description": "This fruit's going bad soon! Maybe someone will eat it...",
   "finish_condition": {
     "type": "score",
     "value": "200"
