@@ -15,6 +15,10 @@
 [node name="LevelSelect" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
 script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -28,15 +32,15 @@ __meta__ = {
 }
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
-margin_right = 1024.0
-margin_bottom = 496.0
+margin_right = 1014.0
+margin_bottom = 486.0
 size_flags_vertical = 3
 follow_focus = true
 script = ExtResource( 11 )
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer/ScrollContainer"]
-margin_right = 1024.0
-margin_bottom = 496.0
+margin_right = 1014.0
+margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/margin_right = 256
@@ -47,80 +51,80 @@ custom_constants/margin_bottom = 150
 [node name="LevelButtons" type="HBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer"]
 margin_left = 256.0
 margin_top = 150.0
-margin_right = 768.0
-margin_bottom = 346.0
+margin_right = 758.0
+margin_bottom = 336.0
 custom_constants/separation = 5
 script = ExtResource( 9 )
 LevelSelectButtonScene = ExtResource( 4 )
 
 [node name="Buttons1" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_right = 98.0
-margin_bottom = 196.0
+margin_right = 96.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 2
 
 [node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons1" instance=ExtResource( 4 )]
-margin_top = 116.0
-margin_right = 98.0
-margin_bottom = 196.0
+margin_top = 106.0
+margin_right = 96.0
+margin_bottom = 186.0
 
 [node name="Buttons2" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 103.0
-margin_right = 201.0
-margin_bottom = 196.0
+margin_left = 101.0
+margin_right = 197.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 2
 
 [node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons2" instance=ExtResource( 4 )]
-margin_top = 116.0
-margin_right = 98.0
-margin_bottom = 196.0
+margin_top = 106.0
+margin_right = 96.0
+margin_bottom = 186.0
 
 [node name="Buttons3" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 206.0
-margin_right = 304.0
-margin_bottom = 196.0
+margin_left = 202.0
+margin_right = 298.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 2
 
 [node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons3" instance=ExtResource( 4 )]
-margin_top = 116.0
-margin_right = 98.0
-margin_bottom = 196.0
+margin_top = 106.0
+margin_right = 96.0
+margin_bottom = 186.0
 
 [node name="Buttons4" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 309.0
-margin_right = 407.0
-margin_bottom = 196.0
+margin_left = 303.0
+margin_right = 399.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 2
 
 [node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons4" instance=ExtResource( 4 )]
-margin_top = 116.0
-margin_right = 98.0
-margin_bottom = 196.0
+margin_top = 106.0
+margin_right = 96.0
+margin_bottom = 186.0
 
 [node name="Buttons5" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 412.0
-margin_right = 512.0
-margin_bottom = 196.0
+margin_left = 404.0
+margin_right = 502.0
+margin_bottom = 186.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
 alignment = 2
 
 [node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons5" instance=ExtResource( 4 )]
-margin_top = 116.0
-margin_right = 100.0
-margin_bottom = 196.0
+margin_top = 106.0
+margin_right = 98.0
+margin_bottom = 186.0
 
 [node name="Control" type="Control" parent="VBoxContainer"]
-margin_top = 500.0
-margin_right = 1024.0
-margin_bottom = 600.0
+margin_top = 490.0
+margin_right = 1014.0
+margin_bottom = 590.0
 rect_min_size = Vector2( 0, 100 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Control"]
@@ -158,7 +162,7 @@ text = "Quit"
 
 [node name="Description" type="Panel" parent="VBoxContainer/Control/HBoxContainer"]
 margin_left = 86.0
-margin_right = 553.0
+margin_right = 548.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 10 )
@@ -178,7 +182,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Description/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 447.0
+margin_right = 442.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 5 )
@@ -190,8 +194,8 @@ __meta__ = {
 }
 
 [node name="Info" type="Panel" parent="VBoxContainer/Control/HBoxContainer"]
-margin_left = 557.0
-margin_right = 1024.0
+margin_left = 552.0
+margin_right = 1014.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 10 )
@@ -211,7 +215,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Info/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 447.0
+margin_right = 442.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 5 )
@@ -221,8 +225,8 @@ __meta__ = {
 }
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 3 )]
-[connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_level_selected"]
 [connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_level_selected"]
+[connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_level_selected"]
 [connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Quit" to="SettingsMenu" method="_on_Quit_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]

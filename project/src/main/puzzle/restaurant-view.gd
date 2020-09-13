@@ -75,7 +75,9 @@ func _on_PuzzleScore_game_prepared() -> void:
 
 
 func _on_PuzzleScore_combo_ended() -> void:
-	if PuzzleScore.game_active and not Scenario.settings.other.tutorial:
+	if PuzzleScore.no_more_customers:
+		pass
+	elif PuzzleScore.game_active:
 		get_customer().play_goodbye_voice()
 		scroll_to_new_creature()
 	

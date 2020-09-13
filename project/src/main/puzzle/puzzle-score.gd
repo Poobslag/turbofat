@@ -69,6 +69,10 @@ var game_ended: bool
 # the level the player is currently on, if the scenario has different levels.
 var level_index: int setget set_level_index
 
+# This is true if the final customer has been fed and we shouldn't rotate to any other customers. It also gets used
+# for tutorials to prevent the instructor from leaving.
+var no_more_customers: bool
+
 """
 Resets all score data, and starts a new game after a brief pause.
 """
@@ -163,12 +167,15 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 Ends the current combo, incrementing the score and resetting the bonus/creature scores to zero.
 """
 func end_combo() -> void:
-	if Scenario.settings.other.tutorial:
-		# tutorial only has one creature
+	if no_more_customers:
 		pass
 	elif get_creature_score() == 0:
 		# don't add $0 creatures. creatures don't pay if they owe $0
 		pass
+	elif Scenario.settings.finish_condition.type == Milestone.CUSTOMERS \
+			and PuzzleScore.creature_scores.size() >= Scenario.settings.finish_condition.value:
+		# some scenarios have a limited number of customers
+		no_more_customers = true
 	else:
 		creature_scores.append(0)
 		creature_line_clears.append(0)
@@ -189,6 +196,7 @@ func reset() -> void:
 	bonus_score = 0
 	scenario_performance = PuzzlePerformance.new()
 	level_index = 0
+	no_more_customers = false
 	
 	emit_signal("score_changed")
 	emit_signal("level_index_changed", 0)

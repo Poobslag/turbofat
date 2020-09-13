@@ -40,7 +40,11 @@ func milestone_progress(milestone: Milestone) -> float:
 	var progress: float
 	match milestone.type:
 		Milestone.CUSTOMERS:
-			progress = PuzzleScore.creature_scores.size() - 1
+			progress = PuzzleScore.creature_scores.size()
+			if not PuzzleScore.no_more_customers:
+				progress -= 0.5
+				if PuzzleScore.get_creature_score() == 0:
+					progress -= 0.5
 		Milestone.LINES:
 			progress = PuzzleScore.scenario_performance.lines
 		Milestone.SCORE:

@@ -42,6 +42,7 @@ Parameters:
 		should scroll to the instructor.
 """
 func summon_instructor(replace_current: bool = false) -> void:
+	PuzzleScore.no_more_customers = true
 	if $RestaurantView.get_customer().dna.get("instructor") == "true":
 		return
 	
