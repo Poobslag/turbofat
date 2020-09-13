@@ -173,7 +173,7 @@ func _delete_rows() -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false
 	lines_being_deleted.sort()
-	var max_line: int = lines_being_deleted.back()
+	var max_line: int = lines_being_deleted.back() if lines_being_deleted else -1
 	for y in range(0, max_line):
 		if not _tile_map.playfield_row_is_empty(y) and not lines_being_deleted.has(y):
 			play_sound = true
@@ -203,9 +203,18 @@ func _box_ints(y: int) -> Array:
 	var box_ints: Array = []
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var autotile_coord := _tile_map.get_cell_autotile_coord(x, y)
-		if _tile_map.get_cell(x, y) == 1 and Connect.is_l(autotile_coord.x) and Connect.is_r(autotile_coord.x):
-			# wide boxes count multiple times to reward difficult horizontal builds
-			box_ints.append(int(autotile_coord.y))
+		var right_autotile_coord := _tile_map.get_cell_autotile_coord(x + 1, y)
+		if _tile_map.get_cell(x, y) == 1:
+			var should_count: bool = false
+			if (Connect.is_l(autotile_coord.x) and Connect.is_r(autotile_coord.x)):
+				# wide boxes count multiple times to reward difficult horizontal builds
+				should_count = true
+			elif not Connect.is_l(autotile_coord.x) and \
+					(not Connect.is_r(autotile_coord.x) or not Connect.is_r(right_autotile_coord.x)):
+				# narrow boxes (1 wide, 2 wide) still count
+				should_count = true
+			if should_count:
+				box_ints.append(int(autotile_coord.y))
 	box_ints.shuffle()
 	return box_ints
 

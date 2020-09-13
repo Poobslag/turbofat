@@ -16,3 +16,15 @@ func test_weighted_rand_value() -> void:
 		results[Utils.weighted_rand_value(weights_map)] = true
 	
 	assert_has(results, "item-575")
+
+
+func test_remove_all() -> void:
+	assert_eq([4, 10, 15], Utils.remove_all([1, 4, 10, 1, 15], 1))
+
+
+func test_remove_all_not_found() -> void:
+	assert_eq([1, 4, 10, 1, 15], Utils.remove_all([1, 4, 10, 1, 15], 2))
+
+
+func test_remove_all_empty() -> void:
+	assert_eq([], Utils.remove_all([], 2))

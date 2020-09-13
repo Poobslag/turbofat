@@ -2,7 +2,7 @@
   "version": "1922",
   "success_condition": {
     "type": "score",
-    "value": "750"
+    "value": "500"
   },
   "start_level": "3",
   "finish_condition": {

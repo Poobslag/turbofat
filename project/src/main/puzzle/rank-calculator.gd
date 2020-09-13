@@ -96,14 +96,6 @@ static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 	return frames_per_line
 
 
-func master_box_score() -> float:
-	return Scenario.settings.rank.box_factor * MASTER_BOX_SCORE
-
-
-func master_combo_score() -> float:
-	return Scenario.settings.rank.combo_factor * MASTER_COMBO_SCORE
-
-
 """
 Calculates the maximum theoretical lines per minute.
 """
@@ -123,17 +115,19 @@ func _max_lpm() -> float:
 			var level_up: Milestone = Scenario.settings.level_ups[i + 1]
 			match level_up.type:
 				Milestone.CUSTOMERS:
-					level_lines = MASTER_CUSTOMER_COMBO
+					level_lines = master_customer_combo(Scenario.settings)
 				Milestone.LINES:
 					level_lines = level_up.value
 				Milestone.TIME_OVER:
 					level_lines = level_up.value * 60 / frames_per_line
 				Milestone.SCORE:
-					level_lines = level_up.value / (master_box_score() + master_combo_score() + 1)
+					level_lines = level_up.value / \
+							(master_box_score(Scenario.settings) + master_combo_score(Scenario.settings) + 1)
 		elif finish_condition.type == Milestone.LINES:
 			level_lines = finish_condition.value
 		elif finish_condition.type == Milestone.SCORE:
-			level_lines = finish_condition.value / (master_box_score() + master_combo_score() + 1)
+			level_lines = finish_condition.value / \
+					(master_box_score(Scenario.settings) + master_combo_score(Scenario.settings) + 1)
 		
 		# avoid divide by zero, and round up to the nearest line clear
 		level_lines = ceil(max(level_lines, 1.0))
@@ -188,17 +182,17 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var max_lpm := _max_lpm()
 	
 	var target_speed: float = max_lpm
-	var target_box_score_per_line := master_box_score()
-	var target_combo_score_per_line := master_combo_score()
+	var target_box_score_per_line := master_box_score(Scenario.settings)
+	var target_combo_score_per_line := master_combo_score(Scenario.settings)
 	var target_lines: float
-	var leftover_lines := MASTER_LEFTOVER_LINES
+	var leftover_lines := master_leftover_lines(Scenario.settings)
 	
 	var finish_condition: Milestone = Scenario.settings.finish_condition
 	match finish_condition.type:
 		Milestone.NONE:
 			target_lines = 999999
 		Milestone.CUSTOMERS:
-			target_lines = MASTER_CUSTOMER_COMBO * finish_condition.value
+			target_lines = master_customer_combo(Scenario.settings) * finish_condition.value
 		Milestone.LINES:
 			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
 		Milestone.SCORE:
@@ -236,7 +230,11 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 				overall_rank_max = tmp_overall_rank
 		else:
 			var tmp_lines := target_lines * pow(RDF_LINES, tmp_overall_rank) + leftover_lines
-			if tmp_lines * (1 + tmp_box_score_per_line + tmp_combo_score_per_line) > rank_result.score:
+			var tmp_box_score := tmp_box_score_per_line * tmp_lines
+			var tmp_combo_score := tmp_combo_score_per_line * tmp_lines
+			tmp_combo_score = max(0, tmp_combo_score - COMBO_DEFICIT[min(ceil(tmp_lines), COMBO_DEFICIT.size() - 1)])
+			var tmp_score := tmp_lines + tmp_box_score + tmp_combo_score
+			if tmp_score > rank_result.score:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank
@@ -322,3 +320,31 @@ static func grade(rank: float) -> String:
 	elif rank <= 60: grade = "B"
 	elif rank <= 64: grade = "B-" # 1 dot (big gap)
 	return grade
+
+
+"""
+Returns the maximum box score per line for the specified scenario.
+"""
+static func master_box_score(settings: ScenarioSettings) -> float:
+	return settings.rank.box_factor * MASTER_BOX_SCORE
+
+
+"""
+Returns the maximum combo score per line for the specified scenario.
+"""
+static func master_combo_score(settings: ScenarioSettings) -> float:
+	return settings.rank.combo_factor * MASTER_COMBO_SCORE
+
+
+"""
+Returns the maximum combo expected for a single customer for the specified scenario.
+"""
+static func master_customer_combo(settings: ScenarioSettings) -> int:
+	return settings.rank.customer_combo if settings.rank.customer_combo else MASTER_CUSTOMER_COMBO
+
+
+"""
+Returns the maximum number of leftover lines expected for the specified scenario.
+"""
+static func master_leftover_lines(settings: ScenarioSettings) -> int:
+	return settings.rank.leftover_lines if settings.rank.leftover_lines else MASTER_LEFTOVER_LINES

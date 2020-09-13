@@ -1,3 +1,4 @@
+class_name HighScoreTable
 extends VBoxContainer
 """
 A table which displays the player's high scores in practice mode.
@@ -48,41 +49,8 @@ func _add_rows() -> void:
 	if not _scenario:
 		return
 	
-	for best_result_obj in PlayerData.scenario_history.best_results(_scenario.id, daily):
-		var best_result: RankResult = best_result_obj
-		var row := []
-
-		# append timestamp
-		if daily:
-			row.append("%02d:%02d" % [
-					best_result.timestamp["hour"],
-					best_result.timestamp["minute"],
-				])
-		else:
-			row.append("%04d-%02d-%02d" % [
-					best_result.timestamp["year"],
-					best_result.timestamp["month"],
-					best_result.timestamp["day"],
-				])
-
-		# append lines
-		row.append(StringUtils.comma_sep(best_result.lines))
-
-		# append score/time and grade
-		if best_result.compare == "-seconds":
-			var seconds_string := StringUtils.format_duration(best_result.seconds)
-			if best_result.lost:
-				seconds_string = "-"
-			row.append(seconds_string)
-			row.append(RankCalculator.grade(best_result.seconds_rank))
-		else:
-			var score_string := "¥%s" % StringUtils.comma_sep(best_result.score)
-			if best_result.lost:
-				score_string += "*"
-			row.append(score_string)
-			row.append(RankCalculator.grade(best_result.score_rank))
-
-		_add_row(row)
+	for best_result in PlayerData.scenario_history.best_results(_scenario.id, daily):
+		_add_row(rank_result_row(best_result, daily))
 
 
 """
@@ -106,3 +74,44 @@ func _add_row(items: Array) -> void:
 		item_label.text = item
 		item_label.size_flags_horizontal = Label.SIZE_EXPAND
 		$GridContainer.add_child(item_label)
+
+
+"""
+Returns a table row for the specified rank result.
+
+This table row includes a timestamp, number of line clears, score/time, and grade.
+"""
+static func rank_result_row(result: RankResult, daily_result: bool = false) -> Array:
+	var row := []
+
+	# append timestamp
+	if daily_result:
+		row.append("%02d:%02d" % [
+				result.timestamp["hour"],
+				result.timestamp["minute"],
+			])
+	else:
+		row.append("%04d-%02d-%02d" % [
+				result.timestamp["year"],
+				result.timestamp["month"],
+				result.timestamp["day"],
+			])
+
+	# append lines
+	row.append(StringUtils.comma_sep(result.lines))
+
+	# append score/time and grade
+	if result.compare == "-seconds":
+		var seconds_string := StringUtils.format_duration(result.seconds)
+		if result.lost:
+			seconds_string = "-"
+		row.append(seconds_string)
+		row.append(RankCalculator.grade(result.seconds_rank))
+	else:
+		var score_string := "¥%s" % StringUtils.comma_sep(result.score)
+		if result.lost:
+			score_string += "*"
+		row.append(score_string)
+		row.append(RankCalculator.grade(result.score_rank))
+
+	return row

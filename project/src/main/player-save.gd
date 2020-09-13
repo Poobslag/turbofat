@@ -169,6 +169,8 @@ func _load_line(type: String, key: String, json_value) -> void:
 			PlayerData.money = value.get("money", 0)
 		"scenario_history":
 			var value: Array = json_value
+			# load the values from oldest to newest; that way the newest one is at the front
+			value.invert()
 			for rank_result_json in value:
 				var rank_result := RankResult.new()
 				rank_result.from_json_dict(rank_result_json)

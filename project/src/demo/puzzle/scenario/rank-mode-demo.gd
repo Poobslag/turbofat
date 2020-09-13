@@ -12,7 +12,7 @@ This was used to assign a roughly increasing level of difficulty for rank scenar
 var _data_per_rank := {
 	"7k": ["48", "1", "5:00"],
 	"6k": ["40", "2", "3:00"],
-	"5k": ["30", "3", "6:00"],
+	"5k": ["36", "3", "6:00"],
 	"4k": ["32", "4", "2:56"],
 	"3k": ["30", "5", "9:00"],
 	"2k": ["28", "6", "3:00"],
@@ -65,7 +65,7 @@ increases defined in this method should align with the speed increases of the ra
 """
 func _scenario_settings(data_key: String, start_level: String, seconds: float) -> ScenarioSettings:
 	var settings := ScenarioSettings.new()
-	settings.name = data_key
+	settings.id = data_key
 	settings.set_start_level(start_level)
 	settings.set_finish_condition(Milestone.TIME_OVER, seconds)
 	

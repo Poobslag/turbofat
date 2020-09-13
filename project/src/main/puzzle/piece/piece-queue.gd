@@ -125,12 +125,31 @@ func _fill_remaining_pieces() -> void:
 	while _pieces.size() < MIN_SIZE:
 		# fill a bag with one of each piece and one extra; draw them out in a random order
 		var new_pieces := shuffled_piece_types()
-		# avoid having two of the same piece consecutively, if we have at least 3 pieces to choose from
-		if not _pieces.empty() and _pieces.back() == new_pieces[0] and new_pieces.size() >= 3:
-			new_pieces.pop_front()
-			new_pieces.insert(int(rand_range(1, new_pieces.size() + 1)), _pieces.back())
+		
+		# avoid having two of the same piece consecutively
+		if new_pieces.size() >= 3:
+			for _i in range(48):
+				if _has_duplicate_pieces(new_pieces):
+					new_pieces.shuffle()
+				elif not _pieces.empty() and _pieces.back() == new_pieces[0]:
+					new_pieces.pop_front()
+					new_pieces.insert(int(rand_range(1, new_pieces.size() + 1)), _pieces.back())
+				else:
+					break
 		_pieces += new_pieces
 		_insert_annoying_piece(new_pieces.size())
+
+
+"""
+Returns 'true' if the specified array has the same piece back-to-back.
+"""
+func _has_duplicate_pieces(pieces: Array) -> bool:
+	var result := false
+	for i in range(pieces.size() - 1):
+		if pieces[i] == pieces[i+1]:
+			result = true
+			break
+	return result
 
 
 """
@@ -148,9 +167,9 @@ func _insert_annoying_piece(max_pieces_to_right: int) -> void:
 	var extra_piece_types: Array = shuffled_piece_types()
 	if extra_piece_types.size() >= 3:
 		# check the neighboring pieces, and remove those from the pieces we're picking from
-		extra_piece_types.remove(extra_piece_types.rfind(_pieces[new_piece_index - 1]))
+		Utils.remove_all(extra_piece_types, _pieces[new_piece_index - 1])
 		if new_piece_index < _pieces.size():
-			extra_piece_types.remove(extra_piece_types.rfind(_pieces[new_piece_index]))
+			Utils.remove_all(extra_piece_types, _pieces[new_piece_index])
 	if extra_piece_types[0] == PieceTypes.piece_o:
 		# the o piece is awful, so it comes 10% less often
 		extra_piece_types.shuffle()

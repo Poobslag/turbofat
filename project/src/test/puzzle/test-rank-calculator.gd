@@ -12,7 +12,7 @@ particularly important for this code.
 var _rank_calculator := RankCalculator.new()
 
 func before_each() -> void:
-	Scenario.settings.reset()
+	Scenario.settings = ScenarioSettings.new()
 	Scenario.settings.set_start_level("0")
 	PuzzleScore.scenario_performance = PuzzlePerformance.new()
 
@@ -75,7 +75,7 @@ func test_calculate_rank_marathon_300_mixed() -> void:
 	assert_eq(RankCalculator.grade(rank.lines_rank), "A+")
 	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "S+")
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S-")
-	assert_eq(RankCalculator.grade(rank.score_rank), "AA")
+	assert_eq(RankCalculator.grade(rank.score_rank), "AA+")
 
 
 func test_calculate_rank_marathon_lenient() -> void:
@@ -138,7 +138,7 @@ func test_calculate_rank_top_out_once() -> void:
 	assert_eq(RankCalculator.grade(rank.lines_rank), "S+")
 	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "S-")
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S+")
-	assert_eq(RankCalculator.grade(rank.score_rank), "S")
+	assert_eq(RankCalculator.grade(rank.score_rank), "S+")
 
 
 func test_calculate_rank_top_out_twice() -> void:
@@ -155,7 +155,7 @@ func test_calculate_rank_top_out_twice() -> void:
 	assert_eq(RankCalculator.grade(rank.lines_rank), "S")
 	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "AA+")
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S")
-	assert_eq(RankCalculator.grade(rank.score_rank), "S-")
+	assert_eq(RankCalculator.grade(rank.score_rank), "S")
 
 
 func test_calculate_rank_ultra_200() -> void:
@@ -228,7 +228,7 @@ func test_calculate_rank_five_creatures_good() -> void:
 	assert_eq(RankCalculator.grade(rank.lines_rank), "SSS")
 	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "S+")
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S")
-	assert_eq(RankCalculator.grade(rank.score_rank), "S+")
+	assert_eq(RankCalculator.grade(rank.score_rank), "SS")
 
 
 func test_calculate_rank_five_creatures_bad() -> void:
@@ -242,7 +242,7 @@ func test_calculate_rank_five_creatures_bad() -> void:
 	assert_eq(RankCalculator.grade(rank.lines_rank), "A-")
 	assert_eq(RankCalculator.grade(rank.box_score_per_line_rank), "AA")
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "A")
-	assert_eq(RankCalculator.grade(rank.score_rank), "B+")
+	assert_eq(RankCalculator.grade(rank.score_rank), "A-")
 
 
 """
@@ -319,3 +319,14 @@ func test_success_bonus_seconds() -> void:
 	Scenario.settings.set_success_condition(Milestone.TIME_UNDER, 300)
 	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.seconds_rank), "S+")
+
+
+func test_customer_combo() -> void:
+	Scenario.settings.rank.customer_combo = 8
+	Scenario.settings.rank.leftover_lines = 3
+	Scenario.settings.set_finish_condition(Milestone.CUSTOMERS, 1)
+	PuzzleScore.scenario_performance.score = 296
+	
+	# the player doesn't achieve the success condition; they get a worse grade
+	var rank1 := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank1.score_rank), "M")

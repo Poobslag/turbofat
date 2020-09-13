@@ -11,6 +11,12 @@ var box_factor := 1.0
 # needs 3x the usual combo points per line to get a good rank
 var combo_factor := 1.0
 
+# expected combo per customer
+var customer_combo := 0
+
+# expected leftover lines
+var leftover_lines := 0
+
 # 'true' if the results screen should be skipped. Used for tutorials.
 var skip_results: bool
 
@@ -28,6 +34,8 @@ var unranked: bool = false
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
 	if rules.has("combo_factor"): combo_factor = rules.float_value()
+	if rules.has("customer_combo"): customer_combo = rules.int_value()
+	if rules.has("leftover_lines"): leftover_lines = rules.int_value()
 	if rules.has("box_factor"): box_factor = rules.float_value()
 	if rules.has("success_bonus"): success_bonus = rules.float_value()
 	if rules.has("top_out_penalty"): top_out_penalty = rules.int_value()
