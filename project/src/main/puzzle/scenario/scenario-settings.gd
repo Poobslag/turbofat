@@ -60,17 +60,9 @@ Adds criteria for leveling up, such as a time, score, or line limit.
 """
 func add_level_up(type: int, value: int, level: String) -> void:
 	var level_up := Milestone.new()
-	level_up.type = type
-	level_up.value = value
+	level_up.set_milestone(type, value)
 	level_up.set_meta("level", level)
 	level_ups.append(level_up)
-
-
-func reset() -> void:
-	level_ups.clear()
-	success_condition = Milestone.new()
-	finish_condition = Milestone.new()
-	id = ""
 
 
 func set_start_level(new_start_level: String) -> void:
@@ -83,8 +75,7 @@ Sets the criteria for finishing the scenario, such as a time, score, or line goa
 """
 func set_finish_condition(type: int, value: int, lenient_value: int = -1) -> void:
 	finish_condition = Milestone.new()
-	finish_condition.type = type
-	finish_condition.value = value
+	finish_condition.set_milestone(type, value)
 	if lenient_value > -1:
 		finish_condition.set_meta("lenient_value", lenient_value)
 
@@ -94,8 +85,7 @@ Sets the criteria for succeeding, such as a time or score goal.
 """
 func set_success_condition(type: int, value: int) -> void:
 	success_condition = Milestone.new()
-	success_condition.type = type
-	success_condition.value = value
+	success_condition.set_milestone(type, value)
 
 
 """
@@ -109,7 +99,8 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 	if json.get("version") != SCENARIO_DATA_VERSION:
 		push_warning("Unrecognized scenario data version: '%s'" % json.get("version"))
 	
-	set_start_level(json["start_level"])
+	set_start_level(json.get("start_level", "0"))
+	
 	if json.has("blocks_start"):
 		blocks_start.from_json_dict(json["blocks_start"])
 	if json.has("blocks_during"):

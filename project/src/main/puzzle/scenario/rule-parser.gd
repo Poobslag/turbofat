@@ -5,6 +5,8 @@ Parses scenario rules.
 Scenario rules involve lists of strings like 'top-out 3' or 'piece-t'.
 """
 
+# Stores key/value pairs parsed from JSON.
+# For keys which have no value, we store the number of times the key is repeated.
 var _parsed_rules: Dictionary
 
 # The queried key which we store to avoid repetitive 'has value foo, get value foo' code
@@ -15,7 +17,9 @@ func _init(strings: Array) -> void:
 		var string: String = string_obj
 		var split := string.split(" ")
 		if split.size() == 1:
-			_parsed_rules[split[0]] = split[0]
+			if not _parsed_rules.has(split[0]):
+				_parsed_rules[split[0]] = 0
+			_parsed_rules[split[0]] += 1
 		elif split.size() >= 2:
 			_parsed_rules[split[0]] = split[1]
 

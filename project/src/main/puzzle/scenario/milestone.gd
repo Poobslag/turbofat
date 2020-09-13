@@ -38,6 +38,11 @@ var type: int
 var value: int
 
 
+func set_milestone(new_type: int, new_value: int) -> void:
+	type = new_type
+	value = new_value
+
+
 func from_json_dict(json: Dictionary) -> void:
 	type = JSON_MILESTONE_TYPES.get(json.get("type"), MilestoneType.NONE)
 	value = int(json.get("value", "0"))

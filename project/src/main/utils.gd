@@ -180,3 +180,13 @@ If the specified key does not exist, this method associates it with the given va
 """
 static func put_if_absent(dna: Dictionary, key: String, value) -> void:
 	dna[key] = dna.get(key, value)
+
+
+static func remove_all(values: Array, value) -> Array:
+	var index := 0
+	while index < values.size():
+		if values[index] == value:
+			values.remove(index)
+		else:
+			index += 1
+	return values
