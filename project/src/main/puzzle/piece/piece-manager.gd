@@ -55,6 +55,7 @@ func _ready() -> void:
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
 	PuzzleScore.connect("finish_triggered", self, "_on_PuzzleScore_finish_triggered")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
+	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	$States.set_state($States/None)
@@ -258,6 +259,10 @@ The game ended the game, possibly by a top out. We leave the piece in place so t
 """
 func _on_PuzzleScore_game_ended() -> void:
 	$States.set_state($States/GameEnded)
+
+
+func _on_Pauser_paused_changed(value: bool) -> void:
+	visible = !value
 
 
 func _on_Dropper_hard_dropped() -> void: emit_signal("hard_dropped")

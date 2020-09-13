@@ -1,17 +1,14 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h1-font-outline.tres" type="DynamicFont" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
-[ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=3]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-messages.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=6]
-
-[sub_resource type="InputEventAction" id=1]
-action = "ui_cancel"
-
-[sub_resource type="ShortCut" id=2]
-shortcut = SubResource( 1 )
+[ext_resource path="res://src/main/ui/UiCancelShortcut.tres" type="ShortCut" id=7]
+[ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=8]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=9]
 
 [node name="PuzzleMessages" type="Control"]
 margin_left = 364.0
@@ -62,36 +59,59 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartGameButton" type="Button" parent="."]
-anchor_left = 0.5
+[node name="Buttons" type="VBoxContainer" parent="."]
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -70.0
-margin_top = -27.0
-margin_right = 70.0
-margin_bottom = 27.5
-theme = ExtResource( 3 )
+custom_constants/separation = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Start" type="Button" parent="Buttons"]
+margin_left = 72.0
+margin_right = 252.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 180, 60 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource( 4 )
 shortcut_in_tooltip = false
 text = "Start"
 
-[node name="BackButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -50.0
-margin_top = 42.0
-margin_right = 50.0
-margin_bottom = 79.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
-theme = ExtResource( 4 )
+[node name="Settings" type="Button" parent="Buttons"]
+margin_left = 104.0
+margin_top = 70.0
+margin_right = 220.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 116, 28 )
+size_flags_horizontal = 4
+theme = ExtResource( 3 )
 shortcut_in_tooltip = false
-shortcut = SubResource( 2 )
+shortcut = ExtResource( 8 )
+text = "Settings"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ShortcutHelper" parent="Buttons/Settings" instance=ExtResource( 9 )]
+action = "ui_cancel"
+overridden_action = "ui_menu"
+
+[node name="Back" type="Button" parent="Buttons"]
+margin_left = 104.0
+margin_top = 108.0
+margin_right = 220.0
+margin_bottom = 136.0
+rect_min_size = Vector2( 116, 28 )
+size_flags_horizontal = 4
+theme = ExtResource( 3 )
+shortcut_in_tooltip = false
+shortcut = ExtResource( 7 )
 text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="StartGameButton" to="." method="_on_StartGameButton_pressed"]
-[connection signal="pressed" from="BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="Buttons/Start" to="." method="_on_Start_pressed"]
+[connection signal="pressed" from="Buttons/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Buttons/Back" to="." method="_on_Back_pressed"]

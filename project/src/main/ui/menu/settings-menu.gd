@@ -1,3 +1,4 @@
+class_name SettingsMenu
 extends CanvasLayer
 """
 Menu which lets the player adjust settings.
@@ -9,8 +10,12 @@ signal show
 signal hide
 signal quit_pressed
 
+const QUIT := "Quit"
+const SAVE_AND_QUIT := "Save + Quit"
+const GIVE_UP := "Give Up"
+
 # The text on the menu's quit button
-export (String, "Quit", "Save + Quit") var quit_text: String setget set_quit_text
+export (String, "Quit", "Save + Quit", "Give Up") var quit_text: String setget set_quit_text
 
 # the UI control which was focused before this settings menu popped up
 var _old_focus_owner: Control
@@ -23,7 +28,7 @@ func _ready() -> void:
 func set_quit_text(new_quit_text: String) -> void:
 	quit_text = new_quit_text
 	if is_inside_tree():
-		$Panel/Control/Quit.text = quit_text
+		$Window/UiArea/Bottom/Quit.text = quit_text
 
 
 """
@@ -60,6 +65,7 @@ func _on_Ok_pressed() -> void:
 
 
 func _on_Quit_pressed() -> void:
+	hide()
 	emit_signal("quit_pressed")
 
 

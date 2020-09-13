@@ -6,6 +6,8 @@ This includes the countdown timer, the ending message, the controls, and the 'st
 """
 
 signal start_button_pressed
+signal settings_button_pressed
+signal back_button_pressed
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
@@ -14,27 +16,14 @@ func _ready() -> void:
 	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
 	$MessageLabel.hide()
 	# grab focus so the player can start a new game or navigate with the keyboard
-	$StartGameButton.grab_focus()
+	$Buttons/Start.grab_focus()
 	
 	if Scenario.overworld_puzzle:
-		$BackButton.text = "Quit"
+		$Buttons/Back.text = "Quit"
 
 
-func hide_start_button() -> void:
-	$StartGameButton.hide()
-
-
-func show_start_button() -> void:
-	$StartGameButton.show()
-	$StartGameButton.grab_focus()
-
-
-func hide_back_button() -> void:
-	$BackButton.hide()
-
-
-func show_back_button() -> void:
-	$BackButton.show()
+func is_settings_button_visible() -> bool:
+	return $Buttons/Settings.is_visible_in_tree()
 
 
 """
@@ -45,19 +34,35 @@ func show_message(text: String) -> void:
 	$MessageLabel.text = text
 
 
+func hide_buttons() -> void:
+	$Buttons/Start.hide()
+	$Buttons/Settings.hide()
+	$Buttons/Back.hide()
+
+
+func show_buttons() -> void:
+	$Buttons/Start.show()
+	$Buttons/Start.grab_focus()
+	$Buttons/Settings.show()
+	$Buttons/Back.show()
+
+
 func _hide_buttons_and_messages() -> void:
-	$StartGameButton.hide()
-	$BackButton.hide()
+	hide_buttons()
 	$MessageLabel.hide()
 	$DetailMessageLabel.hide()
 
 
-func _on_BackButton_pressed() -> void:
-	Breadcrumb.pop_trail()
-
-
-func _on_StartGameButton_pressed() -> void:
+func _on_Start_pressed() -> void:
 	emit_signal("start_button_pressed")
+
+
+func _on_Settings_pressed() -> void:
+	emit_signal("settings_button_pressed")
+
+
+func _on_Back_pressed() -> void:
+	emit_signal("back_button_pressed")
 
 
 func _on_PuzzleScore_game_prepared() -> void:
@@ -86,21 +91,23 @@ Restores the HUD elements after the player wins or loses.
 """
 func _on_PuzzleScore_after_game_ended() -> void:
 	$MessageLabel.hide()
+	$Buttons/Settings.show()
+	$Buttons/Back.show()
+	$Buttons/Start.show()
+	if Scenario.overworld_puzzle:
+		# player can't restart a level if a creature asked them to do it, for thematic reasons
+		$Buttons/Start.hide()
 	if Scenario.settings.other.tutorial or Scenario.settings.other.after_tutorial:
-		if PuzzleScore.scenario_performance.lost:
-			# if they lost/gave up, make them retry
-			$StartGameButton.show()
-			$StartGameButton.grab_focus()
-		else:
-			# if they won, make them exit
-			$BackButton.show()
-			$BackButton.grab_focus()
-	else:
-		$BackButton.show()
-		if Scenario.overworld_puzzle:
-			# player can't restart a level if a creature asked them to do it, for thematic reasons
-			$BackButton.grab_focus()
-		else:
-			# grab focus so the player can start a new game or navigate with the keyboard
-			$StartGameButton.show()
-			$StartGameButton.grab_focus()
+		if not PuzzleScore.scenario_performance.lost:
+			# if they won, make them exit; hide the start button
+			$Buttons/Start.hide()
+			
+			# don't redirect them back to the splash screen, send them to the main menu
+			if Breadcrumb.trail[1] == "res://src/main/ui/menu/SplashScreen.tscn":
+				Breadcrumb.trail.insert(1, "res://src/main/ui/menu/MainMenu.tscn")
+	
+	if $Buttons/Start.is_visible_in_tree():
+		# grab focus so the player can retry or navigate with the keyboard
+		$Buttons/Start.grab_focus()
+	elif $Buttons/Back.is_visible_in_tree():
+		$Buttons/Back.grab_focus()

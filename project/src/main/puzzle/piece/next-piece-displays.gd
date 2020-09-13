@@ -13,6 +13,7 @@ var _next_piece_displays := []
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	for i in range(DISPLAY_COUNT):
 		_add_display(i, 5, 5 + i * (486.0 / (DISPLAY_COUNT - 1)), 0.5)
 
@@ -43,3 +44,8 @@ Gets ready for a new game, randomizing the pieces and filling the piece queues.
 func _on_PuzzleScore_game_prepared() -> void:
 	for next_piece_display in _next_piece_displays:
 		next_piece_display.show()
+
+
+func _on_Pauser_paused_changed(value: bool) -> void:
+	for display in _next_piece_displays:
+		display.visible = !value
