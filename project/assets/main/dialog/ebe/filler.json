@@ -1,0 +1,100 @@
+{
+  "version": "1922",
+  "meta": {
+    "filler": true
+  },
+  "": [
+    {
+      "who": "Ebe",
+      "text": "Did you want to get friend zoned?",
+      "mood": "think0",
+      "links": [
+        {
+          "hi": "Friend zone me!"
+        },
+        {
+          "bye": "Um, I don't think so..."
+        }
+      ]
+    }
+  ],
+  "hi": [
+    {
+      "who": "Ebe",
+      "text": "You tell me you're in love with me,",
+      "mood": "laugh1"
+    },
+    {
+      "who": "Ebe",
+      "text": "...Like you can't take your pretty eyes away from me.",
+      "mood": "laugh0"
+    },
+    {
+      "who": "Ebe",
+      "text": "It's not that I don't wanna stay,",
+      "mood": "rage0"
+    },
+    {
+      "who": "Ebe",
+      "text": "...But every time you come too close I move away.",
+      "mood": "rage1"
+    },
+    {
+      "who": "Ebe",
+      "text": "I wanna believe in everything that you say,/ 'cause it sounds so good...",
+      "mood": "think1"
+    },
+    {
+      "who": "Ebe",
+      "text": "But if you really want me,/ move slow,",
+      "mood": "think0"
+    },
+    {
+      "who": "Ebe",
+      "text": "There's things about me you just have to know.",
+      "mood": "cry0"
+    },
+    {
+      "who": "Ebe",
+      "text": "Sometimes I run.",
+      "mood": "cry1"
+    },
+    {
+      "who": "Ebe",
+      "text": "Sometimes I hide.",
+      "mood": "sweat0"
+    },
+    {
+      "who": "Ebe",
+      "text": "Sometimes I'm scared of you,",
+      "mood": "sweat1"
+    },
+    {
+      "who": "Ebe",
+      "text": "But all I really want is to hold you tight, treat you right,",
+      "mood": "default"
+    },
+    {
+      "who": "Ebe",
+      "text": "Be with you day and night.",
+      "mood": "smile0"
+    },
+    {
+      "who": "Ebe",
+      "text": "Baby,/ all I need is time.",
+      "mood": "smile1"
+    }
+  ],
+  "bye": [
+    {
+      "who": "#player#",
+      "text": "Um,/ maybe later...",
+      "mood": "sweat0"
+    },
+    {
+      "who": "Ebe",
+      "text": "./././",
+      "mood": "sweat0"
+    }
+  ]
+}

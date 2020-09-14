@@ -21,13 +21,12 @@ func _ready() -> void:
 
 
 func _launch_tutorial() -> void:
-	var settings := ScenarioSettings.new()
-	settings.load_from_resource(Scenario.BEGINNER_TUTORIAL)
-	Scenario.overworld_puzzle = false
-	Scenario.push_scenario_trail(settings)
+	Scenario.set_launched_scenario(Scenario.BEGINNER_TUTORIAL)
+	Scenario.push_scenario_trail(false)
 
 
 func _on_PlayStory_pressed() -> void:
+	Scenario.clear_launched_scenario()
 	Breadcrumb.push_trail("res://src/main/world/Overworld.tscn")
 
 

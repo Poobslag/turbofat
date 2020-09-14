@@ -46,7 +46,7 @@ func before_each() -> void:
 	PlayerData.chat_history.reset()
 	
 	_state["creature_id"] = "gurus750"
-	_state["level_int"] = 1
+	_state["level_num"] = 1
 	_state["notable_chat"] = true
 	
 	PlayerData.chat_history.add_history_item("dialog/gurus750/level-001")
@@ -64,7 +64,7 @@ func test_level_1() -> void:
 
 
 func test_level_2() -> void:
-	_state["level_int"] = 2
+	_state["level_num"] = 2
 	PlayerData.chat_history.delete_history_item("dialog/gurus750/level-001")
 	PlayerData.chat_history.delete_history_item("dialog/gurus750/level-002")
 	

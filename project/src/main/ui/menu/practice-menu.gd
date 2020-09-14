@@ -144,5 +144,5 @@ func _on_Mode_mode_changed() -> void:
 
 
 func _on_Start_pressed() -> void:
-	Scenario.overworld_puzzle = false
-	Scenario.push_scenario_trail(_get_scenario())
+	Scenario.set_launched_scenario(_get_scenario().id)
+	Scenario.push_scenario_trail(false)

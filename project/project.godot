@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/chat-icon.gd"
 }, {
+"base": "Node2D",
+"class": "ChatIcons",
+"language": "GDScript",
+"path": "res://src/main/world/chat-icons.gd"
+}, {
 "base": "RectFitLabel",
 "class": "ChatLineLabel",
 "language": "GDScript",
@@ -148,6 +153,11 @@ _global_script_classes=[ {
 "class": "CreatureShadow",
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-shadow.gd"
+}, {
+"base": "Node2D",
+"class": "CreatureShadows",
+"language": "GDScript",
+"path": "res://src/main/editor/creature/creature-shadows.gd"
 }, {
 "base": "Node2D",
 "class": "CreatureVisuals",
@@ -541,6 +551,7 @@ _global_script_class_icons={
 "ChatFrame": "",
 "ChatHistory": "",
 "ChatIcon": "",
+"ChatIcons": "",
 "ChatLineLabel": "",
 "ChatLinePanel": "",
 "ChatTheme": "",
@@ -558,6 +569,7 @@ _global_script_class_icons={
 "CreaturePackedSprite": "",
 "CreaturePaletteDemo": "",
 "CreatureShadow": "",
+"CreatureShadows": "",
 "CreatureVisuals": "",
 "DurationCalculator": "",
 "EditorPlayfield": "",

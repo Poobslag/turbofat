@@ -30,19 +30,31 @@ var _column_width := COLUMN_WIDTH_SMALL
 var _scenario_settings_by_id: Dictionary
 
 var _duration_calculator := DurationCalculator.new()
+var _level_ids: Array
+var _level_details: Dictionary
 
 func _ready() -> void:
-	var level_ids := [
-		"boatricia1", "boatricia2", "five-customers-no-vegetables", "placeholder01", "placeholder02", "placeholder03",
-		"placeholder04", "placeholder05", "placeholder06", "placeholder07", "placeholder08", "placeholder09",
-		"placeholder10", "placeholder11",
-	]
+	_add_level("boatricia1", "boatricia", 1)
+	_add_level("boatricia2", "boatricia", 2)
+	_add_level("five-customers-no-vegetables", "ebe", 1)
+	_add_level("placeholder01", "ebe")
+	_add_level("placeholder02", "bort")
+	_add_level("placeholder03", "bort")
+	_add_level("placeholder04", "boatricia")
+	_add_level("placeholder05", "boatricia")
+	_add_level("placeholder06", "ebe")
+	_add_level("placeholder07", "ebe")
+	_add_level("placeholder08", "bort")
+	_add_level("placeholder09", "bort")
+	_add_level("placeholder10", "bort")
+	_add_level("placeholder11", "ebe")
+	_add_level("placeholder12")
 	
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
 	
-	var column_count := ceil(sqrt(level_ids.size() + 1))
+	var column_count := ceil(sqrt(_level_ids.size() + 1))
 	for _i in range(column_count):
 		var vbox_container := VBoxContainer.new()
 		vbox_container.alignment = BoxContainer.ALIGN_END
@@ -51,13 +63,13 @@ func _ready() -> void:
 		_columns.append(vbox_container)
 		add_child(vbox_container)
 	
-	for level_id in level_ids:
+	for level_id in _level_ids:
 		var scenario_settings := ScenarioSettings.new()
 		scenario_settings.load_from_resource(level_id)
 		_scenario_settings_by_id[level_id] = scenario_settings
 	
-	for i in range(level_ids.size()):
-		var level_id: String = level_ids[i]
+	for i in range(_level_ids.size()):
+		var level_id: String = _level_ids[i]
 		var column: VBoxContainer = _columns[(i + 1) % _columns.size()]
 		column.add_child(_level_select_button(level_id))
 	
@@ -107,9 +119,26 @@ func _level_select_button(level_id: String) -> LevelSelectButton:
 	return level_select_button
 
 
+func _add_level(level_id: String, creature_id: String = "", level_num: int = -1) -> void:
+	_level_ids.append(level_id)
+	_level_details[level_id] = {"creature_id": creature_id, "level_num": level_num}
+
+
 func _on_LevelSelectButton_scenario_started(settings: ScenarioSettings) -> void:
-	Scenario.overworld_puzzle = false
-	Scenario.push_scenario_trail(settings)
+	var creature_id := ""
+	if _level_details.has(settings.id):
+		creature_id = _level_details[settings.id].get("creature_id", "")
+	
+	var level_num := -1
+	if _level_details.has(settings.id):
+		level_num = _level_details[settings.id].get("level_num", -1)
+	
+	Scenario.set_launched_scenario(settings.id, creature_id, level_num)
+	
+	if creature_id and level_num >= 1:
+		Breadcrumb.push_trail("res://src/main/world/Overworld.tscn")
+	else:
+		Scenario.push_scenario_trail(true)
 
 
 func _on_LevelSelectButton_focus_entered(settings: ScenarioSettings) -> void:
