@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/mellow-01.ogg-0913acf60f144dddc921c2f4c817c1aa.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/mellow-01.ogg"
+dest_files=[ "res://.import/mellow-01.ogg-0913acf60f144dddc921c2f4c817c1aa.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
