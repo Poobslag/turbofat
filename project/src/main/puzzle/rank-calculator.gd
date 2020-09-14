@@ -29,6 +29,9 @@ const COMBO_DEFICIT := [0, 20, 40, 55, 70, 80, 90, 95, 100]
 # String to display if the player scored worse than the lowest grade
 const NO_GRADE := "-"
 
+# highest attainable grade; useful for logic which checks if the player's grade can increase
+const HIGHEST_GRADE := "M"
+
 """
 Calculates the player's rank.
 

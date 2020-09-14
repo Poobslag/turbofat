@@ -6,6 +6,9 @@ Creates and arranges level buttons for the level select screen.
 # Emitted when the player highlights a level to show information and statistics.
 signal level_selected(settings)
 
+# Emitted when the player highlights the 'overall' button.
+signal overall_selected(ranks)
+
 # The width of level buttons when they're small (about 10-20 visible)
 const COLUMN_WIDTH_SMALL := 120
 
@@ -75,8 +78,10 @@ func _add_overall_button() -> void:
 	level_select_button.level_column_width = _column_width
 	level_select_button.level_duration = LevelSelectButton.LONG
 	level_select_button.text = "(overall)"
+	level_select_button.connect("focus_entered", self, "_on_OverallButton_focus_entered")
 	
 	_columns[0].add_child(level_select_button)
+	level_select_button.grab_focus()
 
 
 """
@@ -109,3 +114,18 @@ func _on_LevelSelectButton_scenario_started(settings: ScenarioSettings) -> void:
 
 func _on_LevelSelectButton_focus_entered(settings: ScenarioSettings) -> void:
 	emit_signal("level_selected", settings)
+
+
+func _on_OverallButton_focus_entered() -> void:
+	# populate an array of level ranks. incomplete levels are treated as rank 999
+	var ranks := []
+	for settings_obj in _scenario_settings_by_id.values():
+		var settings: ScenarioSettings = settings_obj
+		var best_results := PlayerData.scenario_history.best_results(settings.id)
+		var rank := 999.0
+		if best_results:
+			var result: RankResult = best_results[0]
+			rank = result.seconds_rank if result.compare == "-seconds" else result.score_rank
+		ranks.append(rank)
+	
+	emit_signal("overall_selected", ranks)

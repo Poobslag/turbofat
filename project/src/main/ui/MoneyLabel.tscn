@@ -4,14 +4,13 @@
 [ext_resource path="res://src/main/ui/money-font.tres" type="DynamicFont" id=2]
 [ext_resource path="res://assets/main/ui/icon-money.png" type="Texture" id=3]
 
-
-
 [node name="MoneyLabel" type="Control"]
 margin_left = 1.0
 margin_top = 1.0
 margin_right = 129.0
 margin_bottom = 33.0
 rect_min_size = Vector2( 0, 32 )
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false

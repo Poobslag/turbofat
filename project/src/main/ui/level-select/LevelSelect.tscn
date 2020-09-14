@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/main/ui/level-select/level-buttons.gd" type="Script" id=9]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=10]
 [ext_resource path="res://src/main/ui/swipe-container.gd" type="Script" id=11]
+[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=12]
 
 [node name="LevelSelect" type="Control"]
 anchor_right = 1.0
@@ -225,8 +226,12 @@ __meta__ = {
 }
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 3 )]
-[connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_level_selected"]
+
+[node name="MoneyLabel" parent="." instance=ExtResource( 12 )]
 [connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_level_selected"]
+[connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_level_selected"]
+[connection signal="overall_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_overall_selected"]
+[connection signal="overall_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_overall_selected"]
 [connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Quit" to="SettingsMenu" method="_on_Quit_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
