@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/world/creature/mouth-player.gd" type="Script" id=1]
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=1]
 length = 4.0
 loop = true
 step = 0.166667
@@ -31,7 +31,7 @@ tracks/1/keys = {
 "values": [ 2, 2 ]
 }
 
-[sub_resource type="Animation" id=39]
+[sub_resource type="Animation" id=2]
 length = 4.0
 loop = true
 step = 0.166667
@@ -60,24 +60,7 @@ tracks/1/keys = {
 "values": [ 1, 1 ]
 }
 
-[sub_resource type="Animation" id=40]
-length = 4.0
-loop = true
-step = 0.166667
-tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 1.66667, 3.33334, 4.00001 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 1, 1, 7, 6, 5 ]
-}
-
-[sub_resource type="Animation" id=41]
+[sub_resource type="Animation" id=3]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -131,7 +114,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=42]
+[sub_resource type="Animation" id=4]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -185,7 +168,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=43]
+[sub_resource type="Animation" id=5]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -201,7 +184,7 @@ tracks/0/keys = {
 "values": [ 1, 11, 7, 10, 9, 8, 9, 10, 7, 11, 12, 1, 11, 12, 1, 12, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=44]
+[sub_resource type="Animation" id=6]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -219,12 +202,11 @@ tracks/0/keys = {
 
 [node name="MouthPlayer" type="AnimationPlayer"]
 root_node = NodePath("../..")
-anims/ambient-nw = SubResource( 38 )
-anims/ambient-se = SubResource( 39 )
-anims/ambient-unhappy = SubResource( 40 )
-anims/eat = SubResource( 41 )
-anims/eat-again = SubResource( 42 )
-anims/idle-yawn0 = SubResource( 43 )
-anims/idle-yawn1 = SubResource( 44 )
+anims/ambient-nw = SubResource( 1 )
+anims/ambient-se = SubResource( 2 )
+anims/eat = SubResource( 3 )
+anims/eat-again = SubResource( 4 )
+anims/idle-yawn0 = SubResource( 5 )
+anims/idle-yawn1 = SubResource( 6 )
 script = ExtResource( 1 )
 creature_visuals_path = NodePath("../..")

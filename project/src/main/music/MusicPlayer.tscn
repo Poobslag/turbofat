@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://src/main/music/music-player.gd" type="Script" id=1]
 [ext_resource path="res://src/main/music/CheckpointSong.tscn" type="PackedScene" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://assets/main/music/tutorial.ogg" type="AudioStream" id=11]
 [ext_resource path="res://assets/main/music/house-10.ogg" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/music/hiphop-03.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/main/music/mellow-01.ogg" type="AudioStream" id=14]
 
 [node name="MusicPlayer" type="Node"]
 pause_mode = 2
@@ -53,6 +54,10 @@ checkpoints = [ 0.0, 1.951, 204.877 ]
 [node name="House10" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 12 )
 checkpoints = [ 0.0, 14.989, 29.982, 59.993 ]
+
+[node name="Mellow01" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 14 )
+checkpoints = [ 0.0, 31.473, 62.95, 94.422, 188.845 ]
 
 [node name="Tutorial" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 11 )
