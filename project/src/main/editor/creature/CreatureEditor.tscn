@@ -1765,11 +1765,11 @@ current_dir = "/workspace/turbofat/project"
 current_path = "/workspace/turbofat/project/"
 
 [node name="Error" type="AcceptDialog" parent="Ui/Dialogs"]
-margin_right = 83.0
+margin_right = 250.0
 margin_bottom = 58.0
 popup_exclusive = true
 window_title = "Error"
-dialog_text = "Error importing creature."
+dialog_autowrap = true
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 13 )]
 [connection signal="creature_clicked" from="Ui/CreatureSelector" to="." method="_on_CreatureSelector_creature_clicked"]
