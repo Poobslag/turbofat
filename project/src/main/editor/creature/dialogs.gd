@@ -7,7 +7,16 @@ export (NodePath) var creature_editor_path: NodePath
 
 onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
 
+func _show_import_export_not_supported_error() -> void:
+	$Error.dialog_text = "Import/export isn't supported over the web. Sorry!"
+	$Error.popup_centered()
+
+
 func _on_ImportButton_pressed() -> void:
+	if OS.has_feature("web"):
+		_show_import_export_not_supported_error()
+		return
+	
 	$Import.popup_centered()
 
 
@@ -20,10 +29,15 @@ func _on_ImportDialog_file_selected(path: String) -> void:
 		_creature_editor.center_creature.creature_def = loaded_def
 		_creature_editor.mutate_all_creatures()
 	else:
+		$Error.dialog_text = "Error importing creature."
 		$Error.popup_centered()
 
 
 func _on_ExportButton_pressed() -> void:
+	if OS.has_feature("web"):
+		_show_import_export_not_supported_error()
+		return
+	
 	var exported_creature: Creature = _creature_editor.center_creature
 	var sanitized_creature_name := StringUtils.sanitize_file_root(exported_creature.creature_short_name)
 	$Export.current_file = "%s.json" % sanitized_creature_name

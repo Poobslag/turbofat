@@ -395,8 +395,9 @@ __meta__ = {
 
 [node name="Dialogs" type="Control" parent="."]
 pause_mode = 2
-margin_right = 40.0
-margin_bottom = 40.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -462,6 +463,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Error" type="AcceptDialog" parent="Dialogs"]
+margin_right = 250.0
+margin_bottom = 58.0
+popup_exclusive = true
+window_title = "Error"
+dialog_autowrap = true
+
 [node name="SettingsMenu" parent="." instance=ExtResource( 9 )]
 [connection signal="tile_map_changed" from="HBoxContainer/TabContainer/Playfield/CenterPanel/Playfield" to="HBoxContainer/SideButtons/Json" method="_on_Playfield_tile_map_changed"]
 [connection signal="pressed" from="HBoxContainer/SideButtons/OpenFile" to="Dialogs" method="_on_OpenFile_pressed"]
@@ -480,4 +488,6 @@ __meta__ = {
 [connection signal="about_to_show" from="Dialogs/SaveDialog" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="file_selected" from="Dialogs/SaveDialog" to="Dialogs" method="_on_SaveDialog_file_selected"]
 [connection signal="popup_hide" from="Dialogs/SaveDialog" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]
