@@ -1,7 +1,7 @@
 {
   "version": "1922",
   "start_level": "2",
-  "title":"Leftovers",
+  "title": "Leftovers",
   "description": "Another big mess to clean. Why does this always fall to you?",
   "finish_condition": {
     "type": "time_over",
@@ -71,15 +71,15 @@
       },
       {
         "pos": "6 11",
-        "tile": "0 10 1"
+        "tile": "0 10 0"
       },
       {
         "pos": "7 11",
-        "tile": "0 12 1"
+        "tile": "0 12 0"
       },
       {
         "pos": "8 11",
-        "tile": "0 4 1"
+        "tile": "0 4 0"
       },
       {
         "pos": "0 12",
@@ -103,7 +103,7 @@
       },
       {
         "pos": "6 12",
-        "tile": "0 1 1"
+        "tile": "0 1 0"
       },
       {
         "pos": "7 12",
@@ -195,7 +195,7 @@
       },
       {
         "pos": "4 15",
-        "tile": "0 2 1"
+        "tile": "0 2 0"
       },
       {
         "pos": "5 15",
@@ -219,7 +219,7 @@
       },
       {
         "pos": "4 16",
-        "tile": "0 3 1"
+        "tile": "0 3 0"
       },
       {
         "pos": "5 16",
@@ -251,11 +251,11 @@
       },
       {
         "pos": "4 17",
-        "tile": "0 9 1"
+        "tile": "0 9 0"
       },
       {
         "pos": "5 17",
-        "tile": "0 4 1"
+        "tile": "0 4 0"
       },
       {
         "pos": "6 17",
