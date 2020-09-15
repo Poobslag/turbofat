@@ -1,7 +1,7 @@
 {
   "version": "1922",
   "start_level": "5",
-  "title":"Too Fast to Fast",
+  "title": "Too Fast to Fast",
   "description": "Can you survive the increasing speeds?",
   "finish_condition": {
     "type": "time_over",
@@ -53,11 +53,11 @@
       },
       {
         "pos": "3 15",
-        "tile": "0 10 0"
+        "tile": "0 10 1"
       },
       {
         "pos": "4 15",
-        "tile": "0 6 0"
+        "tile": "0 6 1"
       },
       {
         "pos": "0 16",
@@ -73,27 +73,27 @@
       },
       {
         "pos": "3 16",
-        "tile": "0 9 0"
+        "tile": "0 9 1"
       },
       {
         "pos": "4 16",
-        "tile": "0 13 0"
+        "tile": "0 13 1"
       },
       {
         "pos": "5 16",
-        "tile": "0 4 0"
+        "tile": "0 4 1"
       },
       {
         "pos": "0 17",
-        "tile": "1 10 1"
+        "tile": "1 10 0"
       },
       {
         "pos": "1 17",
-        "tile": "1 14 1"
+        "tile": "1 14 0"
       },
       {
         "pos": "2 17",
-        "tile": "1 6 1"
+        "tile": "1 6 0"
       },
       {
         "pos": "3 17",
@@ -109,15 +109,15 @@
       },
       {
         "pos": "0 18",
-        "tile": "1 11 1"
+        "tile": "1 11 0"
       },
       {
         "pos": "1 18",
-        "tile": "1 15 1"
+        "tile": "1 15 0"
       },
       {
         "pos": "2 18",
-        "tile": "1 7 1"
+        "tile": "1 7 0"
       },
       {
         "pos": "3 18",
@@ -133,15 +133,15 @@
       },
       {
         "pos": "0 19",
-        "tile": "1 9 1"
+        "tile": "1 9 0"
       },
       {
         "pos": "1 19",
-        "tile": "1 13 1"
+        "tile": "1 13 0"
       },
       {
         "pos": "2 19",
-        "tile": "1 5 1"
+        "tile": "1 5 0"
       },
       {
         "pos": "3 19",
