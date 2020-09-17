@@ -3,14 +3,27 @@ extends Node
 Contains variables for preserving state when loading different scenes.
 """
 
+# splash screen which precedes the main menu.
+const SCENE_SPLASH := "res://src/main/ui/menu/SplashScreen.tscn"
+
+# menu the user sees after starting the game.
+const SCENE_MAIN_MENU := "res://src/main/ui/menu/MainMenu.tscn"
+
+# overworld which the player character can run around on and talk to other creatures.
+const SCENE_OVERWORLD := "res://src/main/world/Overworld.tscn"
+
+# puzzle where a player drops pieces into a playfield of blocks.
+const SCENE_PUZZLE := "res://src/main/puzzle/Puzzle.tscn"
+
 # The factor to multiply by to convert non-isometric coordinates into isometric coordinates
 const ISO_FACTOR := Vector2(1.0, 0.5)
 
 # Target number of creature greetings (hello, goodbye) per minute
 const GREETINGS_PER_MINUTE := 3.0
 
-# The creatures who will show up during the next puzzle. The first creature in the queue will show up first.
+# The creatures who will show up during the next puzzle.
 var creature_queue := []
+var creature_queue_index: int
 
 # Stores all of the benchmarks which have been started
 var _benchmark_start_times := Dictionary()
@@ -75,3 +88,8 @@ func should_chat() -> bool:
 	else:
 		should_chat = false
 	return should_chat
+
+
+func clear_creature_queue() -> void:
+	Global.creature_queue = []
+	Global.creature_queue_index = 0

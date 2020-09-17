@@ -57,11 +57,14 @@ var dialog: Dictionary
 var creature_name: String setget set_creature_name
 var creature_short_name: String
 var chat_theme_def: Dictionary setget set_chat_theme_def
-var chat_extents: Vector2
+var chat_extents: Vector2 setget ,get_chat_extents
 
 # the direction the creature wants to move, in isometric and non-isometric coordinates
 var iso_walk_direction := Vector2.ZERO
 var non_iso_walk_direction := Vector2.ZERO setget set_non_iso_walk_direction
+
+# the number of times the creature was fed during this puzzle
+var feed_count := 0
 
 # 'true' if the creature is being slowed by friction while stopping or turning
 var _friction := false
@@ -144,6 +147,7 @@ func set_dna(new_dna: Dictionary) -> void:
 	dna = new_dna
 	set_meta("dna", dna)
 	refresh_dna()
+	feed_count = 0
 
 
 func set_chat_selectors(new_chat_selectors: Array) -> void:
@@ -243,6 +247,7 @@ func play_goodbye_voice(force: bool = false) -> void:
 
 
 func feed(food_color: Color) -> void:
+	feed_count += 1
 	creature_visuals.feed(food_color)
 
 
@@ -260,6 +265,7 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 	set_chat_theme_def(new_creature_def.chat_theme_def)
 	set_fatness(new_creature_def.fatness)
 	creature_visuals.set_visual_fatness(new_creature_def.fatness)
+	feed_count = 0
 
 
 func get_creature_def() -> CreatureDef:
@@ -307,6 +313,21 @@ Workaround for Godot #21789 to make is_class match class_name
 """
 func is_class(name: String) -> bool:
 	return name == "Creature" or .is_class(name)
+
+
+func get_movement_mode() -> int:
+	return creature_visuals.movement_mode
+
+
+func get_chat_extents() -> Vector2:
+	return $CollisionShape2D.shape.extents
+
+
+"""
+Temporarily suppresses 'hello' sounds.
+"""
+func start_suppress_sfx_timer() -> void:
+	$CreatureSfx/SuppressSfxTimer.start(1.0)
 
 
 func _refresh_creature_id() -> void:
@@ -385,10 +406,6 @@ func _update_animation() -> void:
 		play_movement_animation("idle", _non_iso_velocity)
 
 
-func get_movement_mode() -> int:
-	return creature_visuals.movement_mode
-
-
 func _on_CreatureVisuals_landed() -> void:
 	if not suppress_sfx:
 		$HopSound.play()
@@ -409,10 +426,6 @@ func _on_CreatureVisuals_food_eaten() -> void:
 
 func _on_CreatureVisuals_visual_fatness_changed() -> void:
 	emit_signal("visual_fatness_changed")
-
-
-func _on_CollisionShape2D_extents_changed(value: Vector2) -> void:
-	chat_extents = value
 
 
 func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:

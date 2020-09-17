@@ -93,6 +93,7 @@ script = ExtResource( 51 )
 creature_shadows_path = NodePath("Ground/Shadows/Viewport/CreatureShadows")
 chat_icons_path = NodePath("ChatIcons")
 overworld_ui_path = NodePath("../Ui/OverworldUi")
+player_path = NodePath("Obstacles/Player")
 CreaturePackedScene = ExtResource( 1 )
 
 [node name="Ground" type="Node2D" parent="World"]

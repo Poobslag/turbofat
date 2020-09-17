@@ -1,12 +1,15 @@
 class_name Puzzle
 extends Control
 """
-Represents a minimal puzzle game with a piece, playfield of pieces, and next pieces. Other classes can extend this
-class to add goals, win conditions, challenges or time limits.
+A puzzle scene where a player drops pieces into a playfield of blocks.
 """
 
 # the previously launched food color. stored to avoid showing the same color twice consecutively
 var _food_color: Color
+
+# The number of times the start button has been pressed. Certain cleanup steps
+# are only necessary when starting a puzzle for the second time.
+var _start_button_click_count := 0
 
 func _ready() -> void:
 	if not ResourceCache.is_done():
@@ -18,11 +21,9 @@ func _ready() -> void:
 	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
+	Global.creature_queue_index = 0
 	for i in range(3):
 		$RestaurantView.summon_creature(i)
-	
-	if Scenario.settings.other.tutorial:
-		summon_instructor(true)
 	
 	$RestaurantView.get_customer().play_hello_voice(true)
 
@@ -32,29 +33,6 @@ func _input(event: InputEvent) -> void:
 		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
 		$SettingsMenu.show()
 		get_tree().set_input_as_handled()
-
-
-"""
-Summon an instructor who leads tutorials.
-
-Parameters:
-	'replace_current': 'true' if the instructor should replace the currently visible customer, or false if the camera
-		should scroll to the instructor.
-"""
-func summon_instructor(replace_current: bool = false) -> void:
-	PuzzleScore.no_more_customers = true
-	if $RestaurantView.get_customer().dna.get("instructor") == "true":
-		return
-	
-	var creature_def := CreatureLoader.load_creature_def_by_id("instructor")
-	Global.creature_queue.push_front(creature_def.dna)
-	
-	if replace_current:
-		$RestaurantView.summon_creature()
-	else:
-		var new_creature_index: int = ($RestaurantView.get_current_creature_index() + 1) % 2
-		$RestaurantView.summon_creature(new_creature_index)
-		$RestaurantView.scroll_to_new_creature(new_creature_index)
 
 
 func get_playfield() -> Playfield:
@@ -91,9 +69,6 @@ Parameters:
 func _feed_creature(fatness_pct: float, food_color: Color) -> void:
 	var old_fatness: float = $RestaurantView.get_customer().get_fatness()
 	var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
-	if Scenario.settings.other.tutorial:
-		# make them a tiny amount fatter, so that they'll change when a new level is started
-		target_fatness = min(target_fatness, 1.001)
 
 	var comfort := 0.0
 	# ate five things; comfortable
@@ -133,6 +108,14 @@ func _check_for_game_end() -> void:
 
 
 func _on_Hud_start_button_pressed() -> void:
+	_start_button_click_count += 1
+	if _start_button_click_count > 1 and Global.creature_queue:
+		Global.creature_queue_index = 0
+		# restart puzzle; reset customers
+		$RestaurantView.start_suppress_sfx_timer()
+		for i in range(3):
+			$RestaurantView.summon_creature(i)
+		$RestaurantView.set_current_creature_index(0)
 	PuzzleScore.prepare_and_start_game()
 
 
@@ -141,6 +124,7 @@ func _on_Hud_settings_button_pressed() -> void:
 
 
 func _on_Hud_back_button_pressed() -> void:
+	Global.clear_creature_queue()
 	Scenario.clear_launched_scenario()
 	Breadcrumb.pop_trail()
 
@@ -206,5 +190,10 @@ func _on_SettingsMenu_quit_pressed() -> void:
 	if $SettingsMenu.quit_text == SettingsMenu.GIVE_UP:
 		PuzzleScore.make_player_lose()
 	else:
+		if not MusicPlayer.is_playing_chill_bgm():
+			MusicPlayer.stop()
+			MusicPlayer.play_chill_bgm()
+			MusicPlayer.fade_in()
+		Global.clear_creature_queue()
 		Scenario.clear_launched_scenario()
 		Breadcrumb.pop_trail()

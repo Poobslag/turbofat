@@ -17,6 +17,13 @@ func play_door_chime() -> void:
 	play()
 
 
+"""
+Temporarily suppresses door chime sounds.
+"""
+func start_suppress_sfx_timer() -> void:
+	$SuppressSfxTimer.start(1.0)
+
+
 func _on_CreatureVisuals_dna_loaded() -> void:
 	if not $SuppressSfxTimer.is_stopped():
 		# suppress door chime at the start of a scenario

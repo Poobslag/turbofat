@@ -136,9 +136,9 @@ func _on_LevelSelectButton_scenario_started(settings: ScenarioSettings) -> void:
 	Scenario.set_launched_scenario(settings.id, creature_id, level_num)
 	
 	if creature_id and level_num >= 1:
-		Breadcrumb.push_trail("res://src/main/world/Overworld.tscn")
+		Breadcrumb.push_trail(Global.SCENE_OVERWORLD)
 	else:
-		Scenario.push_scenario_trail(true)
+		Scenario.push_scenario_trail()
 
 
 func _on_LevelSelectButton_focus_entered(settings: ScenarioSettings) -> void:
@@ -150,11 +150,10 @@ func _on_OverallButton_focus_entered() -> void:
 	var ranks := []
 	for settings_obj in _scenario_settings_by_id.values():
 		var settings: ScenarioSettings = settings_obj
-		var best_results := PlayerData.scenario_history.best_results(settings.id)
+		var best_result := PlayerData.scenario_history.best_result(settings.id)
 		var rank := 999.0
-		if best_results:
-			var result: RankResult = best_results[0]
-			rank = result.seconds_rank if result.compare == "-seconds" else result.score_rank
+		if best_result:
+			rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank
 		ranks.append(rank)
 	
 	emit_signal("overall_selected", ranks)

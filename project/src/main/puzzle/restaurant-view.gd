@@ -45,10 +45,11 @@ properties.
 """
 func summon_creature(creature_index: int = -1) -> void:
 	var dna: Dictionary
-	if Global.creature_queue.empty():
-		dna = CreatureLoader.random_def()
+	if Global.creature_queue_index < Global.creature_queue.size():
+		dna = Global.creature_queue[Global.creature_queue_index]
+		Global.creature_queue_index += 1
 	else:
-		dna = Global.creature_queue.pop_front()
+		dna = CreatureLoader.random_def()
 	$RestaurantViewport/Scene.summon_creature(dna, creature_index)
 
 
@@ -66,11 +67,19 @@ func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 
 
 """
+Temporarily suppresses 'hello' and 'door chime' sounds.
+"""
+func start_suppress_sfx_timer() -> void:
+	for i in range(3):
+		get_customer(i).start_suppress_sfx_timer()
+	$RestaurantViewport/Scene.start_suppress_sfx_timer()
+
+
+"""
 If they ended the previous game while serving a creature, we scroll to a new one
 """
 func _on_PuzzleScore_game_prepared() -> void:
-	if get_customer().get_fatness() > 1 and not Scenario.settings.other.tutorial:
-		# don't scroll if we're doing a tutorial; the tutorial will scroll back to the instructor if necessary.
+	if get_customer().feed_count > 0:
 		scroll_to_new_creature()
 
 

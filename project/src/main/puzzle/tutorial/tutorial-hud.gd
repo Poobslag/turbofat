@@ -244,10 +244,6 @@ func _flash() -> void:
 
 
 func _on_PuzzleScore_game_prepared() -> void:
-	if Scenario.settings.other.tutorial:
-		# summon the instructor. this is redundant for the first attempt of a tutorial, but necessary when retrying
-		_puzzle.summon_instructor()
-	
 	_lines_cleared = 0
 	_boxes_built = 0
 	_squish_moves = 0

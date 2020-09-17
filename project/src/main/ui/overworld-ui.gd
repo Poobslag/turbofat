@@ -121,7 +121,7 @@ func _process_select_level_meta_item(level_num: int = -1) -> void:
 		
 		if level_num >= 1:
 			var level_ids := creature.get_level_ids()
-			var scenario_id: String = level_ids[Scenario.launched_level_num - 1]
+			var scenario_id: String = level_ids[level_num - 1]
 			Scenario.set_launched_scenario(scenario_id, creature.creature_id, level_num)
 
 
@@ -146,11 +146,11 @@ func _on_ChatUi_pop_out_completed() -> void:
 		
 		if Scenario.launched_scenario_id:
 			ChattableManager.clear()
-			Scenario.push_scenario_trail(cutscene)
+			Scenario.push_scenario_trail()
 			
 			if cutscene:
 				# upon completing a puzzle, return to the level select screen
-				Breadcrumb.trail.erase("res://src/main/world/Overworld.tscn")
+				Breadcrumb.trail.erase(Global.SCENE_OVERWORLD)
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:

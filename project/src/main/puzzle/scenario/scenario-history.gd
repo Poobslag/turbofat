@@ -38,6 +38,22 @@ func results(scenario_id: String) -> Array:
 
 
 """
+Returns a player's best performance for a specific scenario.
+
+Parameters:
+	'scenario_id': The id of the scenario to evaluate
+	
+	'daily': (Optional) If true, only performances with today's date are included
+"""
+func best_result(scenario_id: String, daily: bool = false) -> RankResult:
+	var best_result: RankResult
+	var best_results := best_results(scenario_id, daily)
+	if best_results:
+		best_result = best_results[0]
+	return best_result
+
+
+"""
 Returns a player's best performances for a specific scenario.
 
 Parameters:
