@@ -12,7 +12,7 @@ func _ready() -> void:
 
 
 func _on_Play_pressed() -> void:
-	Breadcrumb.push_trail("res://src/main/ui/menu/MainMenu.tscn")
+	Breadcrumb.push_trail(Global.SCENE_MAIN_MENU)
 
 
 func _on_System_quit_pressed() -> void:

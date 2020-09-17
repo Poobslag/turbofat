@@ -27,9 +27,6 @@ var launched_creature_id: String
 # The number of the creature's launched level, '1' being their first level.
 var launched_level_num: int = -1
 
-# 'true' if launching a puzzle from the overworld. This changes the menus and disallows restarting.
-var overworld_puzzle := false
-
 """
 Unsets all of the 'launched scenario' data.
 
@@ -72,12 +69,11 @@ func switch_scenario(new_settings: ScenarioSettings) -> void:
 """
 Launches a puzzle scene with the previously specified 'launched scenario' settings.
 """
-func push_scenario_trail(new_overworld_puzzle: bool) -> void:
-	overworld_puzzle = new_overworld_puzzle
+func push_scenario_trail() -> void:
 	var scenario_settings := ScenarioSettings.new()
 	scenario_settings.load_from_resource(launched_scenario_id)
 	start_scenario(scenario_settings)
 	if Scenario.launched_creature_id:
 		var creature_def := CreatureLoader.load_creature_def_by_id(Scenario.launched_creature_id)
 		Global.creature_queue.push_front(creature_def.dna)
-	Breadcrumb.push_trail("res://src/main/puzzle/Puzzle.tscn")
+	Breadcrumb.push_trail(Global.SCENE_PUZZLE)

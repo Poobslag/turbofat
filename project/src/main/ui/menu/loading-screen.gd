@@ -13,4 +13,4 @@ func _process(_delta: float) -> void:
 
 
 func _on_ResourceCache_finished_loading() -> void:
-	Breadcrumb.push_trail("res://src/main/ui/menu/SplashScreen.tscn")
+	Breadcrumb.push_trail(Global.SCENE_SPLASH)

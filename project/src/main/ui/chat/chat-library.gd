@@ -27,7 +27,7 @@ func load_chat_events_for_creature(creature: Creature, level_num: int = -1, chit
 		state["level_num"] = level_num
 	
 	var chat_tree: ChatTree
-	if chit_chat or level_num != -1:
+	if chit_chat or level_num != -1 or not creature.get_level_ids():
 		# returning dialog for the creature
 		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state)
 		if creature.dialog.has(chosen_dialog):

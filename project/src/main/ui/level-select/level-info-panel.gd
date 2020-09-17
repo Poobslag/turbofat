@@ -43,15 +43,13 @@ func _on_LevelButtons_level_selected(settings: ScenarioSettings) -> void:
 	text += "Duration: %s\n" % [duration_string]
 	
 	var prev_result := PlayerData.scenario_history.prev_result(settings.id)
-	var best_results := PlayerData.scenario_history.best_results(settings.id)
 	if prev_result:
 		text += "New: %s\n" % [PoolStringArray(HighScoreTable.rank_result_row(prev_result)).join("   ")]
 	else:
 		text += "\n"
-	if best_results:
-		text += "Top: %s" % [PoolStringArray(HighScoreTable.rank_result_row(best_results[0])).join("   ")]
-	else:
-		text += ""
+	var best_result := PlayerData.scenario_history.best_result(settings.id)
+	if best_result:
+		text += "Top: %s" % [PoolStringArray(HighScoreTable.rank_result_row(best_result)).join("   ")]
 	$MarginContainer/Label.text = text
 
 

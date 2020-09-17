@@ -196,7 +196,7 @@ func reset() -> void:
 	bonus_score = 0
 	scenario_performance = PuzzlePerformance.new()
 	level_index = 0
-	no_more_customers = false
+	no_more_customers = Scenario.settings.other.tutorial
 	
 	emit_signal("score_changed")
 	emit_signal("level_index_changed", 0)

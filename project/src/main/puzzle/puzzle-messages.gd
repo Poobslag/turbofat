@@ -17,9 +17,6 @@ func _ready() -> void:
 	$MessageLabel.hide()
 	# grab focus so the player can start a new game or navigate with the keyboard
 	$Buttons/Start.grab_focus()
-	
-	if Scenario.overworld_puzzle:
-		$Buttons/Back.text = "Quit"
 
 
 func is_settings_button_visible() -> bool:
@@ -94,17 +91,14 @@ func _on_PuzzleScore_after_game_ended() -> void:
 	$Buttons/Settings.show()
 	$Buttons/Back.show()
 	$Buttons/Start.show()
-	if Scenario.overworld_puzzle:
-		# player can't restart a level if a creature asked them to do it, for thematic reasons
-		$Buttons/Start.hide()
 	if Scenario.settings.other.tutorial or Scenario.settings.other.after_tutorial:
 		if not PuzzleScore.scenario_performance.lost:
 			# if they won, make them exit; hide the start button
 			$Buttons/Start.hide()
 			
 			# don't redirect them back to the splash screen, send them to the main menu
-			if Breadcrumb.trail[1] == "res://src/main/ui/menu/SplashScreen.tscn":
-				Breadcrumb.trail.insert(1, "res://src/main/ui/menu/MainMenu.tscn")
+			if Breadcrumb.trail[1] == Global.SCENE_SPLASH:
+				Breadcrumb.trail.insert(1, Global.SCENE_MAIN_MENU)
 	
 	if $Buttons/Start.is_visible_in_tree():
 		# grab focus so the player can retry or navigate with the keyboard

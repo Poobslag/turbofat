@@ -65,6 +65,13 @@ func get_customer(creature_index: int = -1) -> Creature:
 
 
 """
+Temporarily suppresses 'hello' and 'door chime' sounds.
+"""
+func start_suppress_sfx_timer() -> void:
+	$DoorChime.start_suppress_sfx_timer()
+
+
+"""
 Returns the seat with the specified optional index. Defaults to the seat of the creature being fed.
 """
 func _get_seat(seat_index: int = -1) -> Control:
