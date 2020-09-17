@@ -74,13 +74,14 @@ var _glow_duration := 0.0
 # the current background light color
 var _color := Color.transparent
 
-# tile indexes for each food/vegetable color
+# tile indexes by food/vegetable color
 var _color_tile_indexes: Dictionary
 
 func _ready() -> void:
-	reset()
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	_init_tile_set()
+	_init_color_tile_indexes()
+	reset()
 
 
 func _process(delta: float) -> void:
@@ -97,6 +98,9 @@ func reset() -> void:
 	_refresh_tile_maps()
 
 
+"""
+Initializes the different colored tiles in LightMap/GlowMap.
+"""
 func _init_tile_set() -> void:
 	if len($LightMap.tile_set.get_tiles_ids()) > 1:
 		return
@@ -112,10 +116,21 @@ func _init_tile_set() -> void:
 		_init_tile(rainbow_color)
 
 
+"""
+Initializes the mapping of tile indexes by food/vegetable color.
+"""
+func _init_color_tile_indexes() -> void:
+	if _color_tile_indexes:
+		return
+	
+	for tile_index in $LightMap.tile_set.get_tiles_ids():
+		var color: Color = $LightMap.tile_set.tile_get_modulate(tile_index)
+		_color_tile_indexes[color] = tile_index
+
+
 func _init_tile(color: Color) -> void:
 	for tile_set in [$LightMap.tile_set, $GlowMap.tile_set]:
 		var tile_index := len(tile_set.get_tiles_ids())
-		_color_tile_indexes[color] = tile_index
 		tile_set.create_tile(tile_index)
 		tile_set.tile_set_texture(tile_index, tile_set.tile_get_texture(0))
 		tile_set.tile_set_material(tile_index, tile_set.tile_get_material(0))
