@@ -7,9 +7,6 @@
           "level_1": "(Play level 1)"
         },
         {
-          "level_2": "(Play level 2)"
-        },
-        {
           "chit_chat": "(Chit chat)"
         }
       ]
@@ -18,11 +15,6 @@
   "level_1": [
     {
       "meta": "select_level_1"
-    }
-  ],
-  "level_2": [
-    {
-      "meta": "select_level_2"
     }
   ],
   "chit_chat": [

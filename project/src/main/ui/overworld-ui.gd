@@ -16,14 +16,19 @@ signal showed_chat_choices
 # Characters we're currently chatting with. We try to keep them all in frame and facing the player.
 var chatters := []
 
+# If 'true' the overworld is being used to play a cutscene. If 'false' the overworld is allowing free roam.
+var cutscene := false
+
 var _show_version := true setget set_show_version, is_show_version
 
 # These two fields store details for the upcoming scenario. We store the scenario details during the dialog sequence
 # and launch the scenario when the dialog window closes.
-var _launched_scenario: ScenarioSettings
 var _current_chat_tree: ChatTree
 var _next_chat_tree: ChatTree
-var _scenario_dna: Dictionary
+
+# A cache of ChatTree objects representing dialog the player's seen since this scene was loaded. This prevents the
+# player from cycling through the dialog over and over if you talk to a creature multiple times repetitively.
+var _chat_tree_cache: Dictionary
 
 func _ready() -> void:
 	_update_visible()
@@ -33,15 +38,15 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	if not chatters and event.is_action_pressed("interact") and ChattableManager.get_focused():
 		get_tree().set_input_as_handled()
-		start_chat()
+		start_chat(ChattableManager.load_chat_events(), [ChattableManager.get_focused()])
 	if not chatters and event.is_action_pressed("ui_menu"):
 		$SettingsMenu.show()
 		get_tree().set_input_as_handled()
 
 
-func start_chat() -> void:
-	_current_chat_tree = ChattableManager.load_chat_events()
-	chatters = [ChattableManager.get_focused()]
+func start_chat(new_chat_tree: ChatTree, new_chatters: Array) -> void:
+	_current_chat_tree = new_chat_tree
+	chatters = new_chatters
 	_update_visible()
 	ChattableManager.set_focus_enabled(false)
 	make_chatters_face_eachother()
@@ -49,8 +54,6 @@ func start_chat() -> void:
 	emit_signal("chat_started")
 	
 	# reset state variables
-	_launched_scenario = null
-	_scenario_dna = {}
 	_next_chat_tree = null
 	$ChatUi.play_chat_tree(_current_chat_tree)
 
@@ -90,21 +93,9 @@ func _update_visible() -> void:
 
 
 """
-Process a 'scenario-*' event, loading the appropriate scenario data to launch.
-"""
-func _process_scenario_meta_item(meta_item: String) -> void:
-	var scenario := StringUtils.substring_after(meta_item, "scenario_")
-	var settings := ScenarioSettings.new()
-	settings.load_from_resource(scenario)
-	_launched_scenario = settings
-	if chatters[0].has_meta("dna"):
-		_scenario_dna = chatters[0].get_meta("dna")
-
-
-"""
 Process a 'select_level_*' event, loading the appropriate scenario data or conversation to launch.
 """
-func _process_select_level_meta_item(meta_item: String) -> void:
+func _process_select_level_meta_item(level_num: int = -1) -> void:
 	var creature_chatters := []
 	for chatter in chatters:
 		if chatter is Creature and chatter != ChattableManager.player:
@@ -116,18 +107,22 @@ func _process_select_level_meta_item(meta_item: String) -> void:
 	elif creature_chatters.size() <= 0:
 		push_warning("No creature_chatters found for select_level")
 	else:
-		var level_int := int(StringUtils.substring_after(meta_item, "select_level_"))
 		var creature: Creature = creature_chatters[0]
-		_next_chat_tree = ChatLibrary.load_chat_events_for_creature(creature, level_int)
-		if _next_chat_tree.meta.get("filler", false):
-			PlayerData.chat_history.increment_filler_count(creature.creature_id)
-		if _next_chat_tree.meta.get("notable", false):
-			PlayerData.chat_history.reset_filler_count(creature.creature_id)
+		if not _chat_tree_cache.has(creature.creature_id):
+			var chit_chat: bool = level_num < 1
+			_next_chat_tree = ChatLibrary.load_chat_events_for_creature(creature, level_num, chit_chat)
+			if _next_chat_tree.meta.get("filler", false):
+				PlayerData.chat_history.increment_filler_count(creature.creature_id)
+			if _next_chat_tree.meta.get("notable", false):
+				PlayerData.chat_history.reset_filler_count(creature.creature_id)
+			_chat_tree_cache[creature.creature_id] = _next_chat_tree
 		
-		var settings := ScenarioSettings.new()
-		settings.load_from_creature(creature, level_int)
-		_launched_scenario = settings
-		_scenario_dna = creature.get_meta("dna")
+		_next_chat_tree = _chat_tree_cache[creature.creature_id]
+		
+		if level_num >= 1:
+			var level_ids := creature.get_level_ids()
+			var scenario_id: String = level_ids[Scenario.launched_level_num - 1]
+			Scenario.set_launched_scenario(scenario_id, creature.creature_id, level_num)
 
 
 func _on_ChatUi_pop_out_completed() -> void:
@@ -149,10 +144,13 @@ func _on_ChatUi_pop_out_completed() -> void:
 		_update_visible()
 		emit_signal("chat_ended")
 		
-		if _launched_scenario:
+		if Scenario.launched_scenario_id:
 			ChattableManager.clear()
-			Scenario.overworld_puzzle = true
-			Scenario.push_scenario_trail(_launched_scenario, _scenario_dna)
+			Scenario.push_scenario_trail(cutscene)
+			
+			if cutscene:
+				# upon completing a puzzle, return to the level select screen
+				Breadcrumb.trail.erase("res://src/main/world/Overworld.tscn")
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
@@ -166,10 +164,10 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 		var meta: Array = chat_event.meta
 		for meta_item_obj in meta:
 			var meta_item: String = meta_item_obj
-			if meta_item.begins_with("scenario_"):
-				_process_scenario_meta_item(meta_item)
 			if meta_item.begins_with("select_level_"):
-				_process_select_level_meta_item(meta_item)
+				_process_select_level_meta_item(int(StringUtils.substring_after(meta_item, "select_level_")))
+			elif meta_item == "chit_chat":
+				_process_select_level_meta_item()
 
 
 func _on_ChatUi_showed_choices() -> void:

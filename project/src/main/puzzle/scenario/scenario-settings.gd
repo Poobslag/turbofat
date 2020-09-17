@@ -154,11 +154,11 @@ Loads a scenario based on the creature's chat selectors.
 Parameters:
 	'creature': The creature whose level should be loaded.
 	
-	'level_int': Which level should be loaded; '1' is the first level.
+	'level_num': Which level should be loaded; '1' is the first level.
 """
-func load_from_creature(creature: Creature, level_int: int) -> void:
+func load_from_creature(creature: Creature, level_num: int) -> void:
 	var level_ids := creature.get_level_ids()
-	var level_id: String = level_ids[level_int - 1]
+	var level_id: String = level_ids[level_num - 1]
 	load_from_resource(level_id)
 
 

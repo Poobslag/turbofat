@@ -15,23 +15,20 @@ chat selectors until it finds one suitable for the current game state.
 Parameters:
 	'creature': The creature whose conversation should be returned
 	
-	'level_int': (Optional) The current level being chosen; '1' being the creature's first level. If specified, this
+	'level_num': (Optional) The current level being chosen; '1' being the creature's first level. If specified, this
 			allows the creature to say something about the upcoming level.
 """
-func load_chat_events_for_creature(creature: Creature, level_int: int = -1) -> ChatTree:
+func load_chat_events_for_creature(creature: Creature, level_num: int = -1, chit_chat: bool = false) -> ChatTree:
 	var state := {
 		"creature_id": creature.creature_id,
 		"notable_chat": PlayerData.chat_history.get_filler_count(creature.creature_id) > 0
 	}
-	if level_int != -1:
-		state["level_int"] = 1
+	if level_num != -1:
+		state["level_num"] = level_num
 	
 	var chat_tree: ChatTree
-	var level_ids := creature.get_level_ids()
-	if level_ids.size() == 2 and level_int == -1:
-		# talking to a creature with two or more levels results in a selection menu (for now)
-		chat_tree = load_chat_events_from_file("res://assets/main/dialog/level-select-2.json")
-	elif level_ids.size() <= 2:
+	if chit_chat or level_num != -1:
+		# returning dialog for the creature
 		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state)
 		if creature.dialog.has(chosen_dialog):
 			chat_tree = ChatTree.new()
@@ -41,7 +38,13 @@ func load_chat_events_for_creature(creature: Creature, level_int: int = -1) -> C
 			var path := "res://assets/main/dialog/%s/%s.json" % [creature.creature_id, chosen_dialog.replace("_", "-")]
 			chat_tree = load_chat_events_from_file(path)
 	else:
-		push_warning("Unexpected level ids count: %s" % level_ids.size())
+		# returning a tree where the player can select creature dialog
+		var level_ids := creature.get_level_ids()
+		match level_ids.size():
+			2: chat_tree = load_chat_events_from_file("res://assets/main/dialog/level-select-2.json")
+			1: chat_tree = load_chat_events_from_file("res://assets/main/dialog/level-select-1.json")
+			_: push_warning("Unexpected level ids count: %s" % level_ids.size())
+		
 	return chat_tree
 
 
@@ -104,7 +107,7 @@ func _if_condition_met(if_condition: String, state: Dictionary) -> bool:
 	var result := false
 	match if_match:
 		"current_level:2":
-			result = state.get("level_int", -1) == int(if_split[1])
+			result = state.get("level_num", -1) == int(if_split[1])
 		_:
 			result = state.get(if_condition, false)
 	return result

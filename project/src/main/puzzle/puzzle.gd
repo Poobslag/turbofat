@@ -141,6 +141,7 @@ func _on_Hud_settings_button_pressed() -> void:
 
 
 func _on_Hud_back_button_pressed() -> void:
+	Scenario.clear_launched_scenario()
 	Breadcrumb.pop_trail()
 
 
@@ -175,14 +176,14 @@ func _on_PuzzleScore_game_started() -> void:
 Method invoked when the game ends. Stores the rank result for later.
 """
 func _on_PuzzleScore_game_ended() -> void:
-	if not Scenario.launched_scenario_name:
+	if not Scenario.launched_scenario_id:
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
 	
 	$SettingsMenu.quit_text = SettingsMenu.QUIT
 	var rank_result := RankCalculator.new().calculate_rank()
-	PlayerData.scenario_history.add(Scenario.launched_scenario_name, rank_result)
-	PlayerData.scenario_history.prune(Scenario.launched_scenario_name)
+	PlayerData.scenario_history.add(Scenario.launched_scenario_id, rank_result)
+	PlayerData.scenario_history.prune(Scenario.launched_scenario_id)
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, 9999999999999999))
 	
 	match Scenario.settings.finish_condition.type:
@@ -205,4 +206,5 @@ func _on_SettingsMenu_quit_pressed() -> void:
 	if $SettingsMenu.quit_text == SettingsMenu.GIVE_UP:
 		PuzzleScore.make_player_lose()
 	else:
+		Scenario.clear_launched_scenario()
 		Breadcrumb.pop_trail()

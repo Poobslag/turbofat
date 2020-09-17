@@ -27,123 +27,13 @@
     "accent_texture": 15,
     "color": "feceef"
   },
-  "dialog": {
-    "filler": {
-      "version": "1922",
-      "": [
-        {
-          "who": "Ebe",
-          "text": "Did you want to cook for me,/ or get friend zoned?",
-          "mood": "think0",
-          "links": [
-            {
-              "cook": "I'll cook for you!"
-            },
-            {
-              "hi": "Friend zone me!"
-            },
-            {
-              "bye": "Um, I don't want any of that..."
-            }
-          ]
-        }
-      ],
-      "cook": [
-        {
-          "who": "#player#",
-          "text": "I'll cook for you!",
-          "mood": "smile0",
-          "meta": "scenario_five_customers_no_vegetables"
-        },
-        {
-          "who": "Ebe",
-          "text": "Okay,/ I'll invite my friends too!/ But/ -/-/ no vegetables okay?"
-        },
-        {
-          "who": "Ebe",
-          "text": "I HATE vegetables!/ ./././I hate them so much...",
-          "mood": "rage0"
-        }
-      ],
-      "hi": [
-        {
-          "who": "Ebe",
-          "text": "You tell me you're in love with me,",
-          "mood": "laugh1"
-        },
-        {
-          "who": "Ebe",
-          "text": "...Like you can't take your pretty eyes away from me.",
-          "mood": "laugh0"
-        },
-        {
-          "who": "Ebe",
-          "text": "It's not that I don't wanna stay,",
-          "mood": "rage0"
-        },
-        {
-          "who": "Ebe",
-          "text": "...But every time you come too close I move away.",
-          "mood": "rage1"
-        },
-        {
-          "who": "Ebe",
-          "text": "I wanna believe in everything that you say,/ 'cause it sounds so good...",
-          "mood": "think1"
-        },
-        {
-          "who": "Ebe",
-          "text": "But if you really want me,/ move slow,",
-          "mood": "think0"
-        },
-        {
-          "who": "Ebe",
-          "text": "There's things about me you just have to know.",
-          "mood": "cry0"
-        },
-        {
-          "who": "Ebe",
-          "text": "Sometimes I run.",
-          "mood": "cry1"
-        },
-        {
-          "who": "Ebe",
-          "text": "Sometimes I hide.",
-          "mood": "sweat0"
-        },
-        {
-          "who": "Ebe",
-          "text": "Sometimes I'm scared of you,",
-          "mood": "sweat1"
-        },
-        {
-          "who": "Ebe",
-          "text": "But all I really want is to hold you tight, treat you right,",
-          "mood": "default"
-        },
-        {
-          "who": "Ebe",
-          "text": "Be with you day and night.",
-          "mood": "smile0"
-        },
-        {
-          "who": "Ebe",
-          "text": "Baby,/ all I need is time.",
-          "mood": "smile1"
-        }
-      ],
-      "bye": [
-        {
-          "who": "#player#",
-          "text": "Um,/ I don't want any of that...",
-          "mood": "sweat0"
-        },
-        {
-          "who": "Ebe",
-          "text": "./././",
-          "mood": "sweat0"
-        }
+  "chat_selectors": [
+    {
+      "level": "five_customers_no_vegetables",
+      "dialog": "no_vegetables",
+      "if_conditions": [
+        "current_level/1"
       ]
     }
-  }
+  ]
 }
