@@ -65,8 +65,9 @@ func apply_rotate_input(piece: ActivePiece) -> void:
 			piece.kick_piece()
 		if not piece.can_move_to_target() and input.is_cw_pressed() and input.is_ccw_pressed():
 			rotation_signal = "rotated_twice"
-			piece.target_pos = piece.get_flip_position()
 			piece.target_orientation = piece.get_flip_orientation()
+			if not piece.can_move_to_target():
+				piece.target_pos = piece.get_flip_position()
 		
 		if piece.target_pos.y < piece.pos.y and not piece.can_floor_kick():
 			# tried to flip but we don't have any floor kicks for it
