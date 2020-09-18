@@ -53,12 +53,7 @@ onready var _reroll_ui := $Ui/Reroll
 
 func _ready() -> void:
 	_name_generator = NameGenerator.new()
-	_name_generator.add_seed_resource("res://assets/main/editor/creature/animals.txt")
-	_name_generator.add_seed_resource("res://assets/main/editor/creature/american-male-given-names.txt")
-	_name_generator.add_seed_resource("res://assets/main/editor/creature/american-female-given-names.txt")
-	_name_generator.order = 2.7
-	_name_generator.min_length = 5
-	_name_generator.max_length = 11
+	_name_generator.load_american_animals()
 	
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 	
@@ -73,15 +68,6 @@ func _ready() -> void:
 	center_creature.creature_def = PlayerData.creature_library.player_def
 	emit_signal("center_creature_changed")
 	mutate_all_creatures()
-
-
-"""
-Returns a chat theme definition for a generated creature.
-"""
-func _chat_theme_def(dna: Dictionary) -> Dictionary:
-	var new_def := PlayerData.creature_library.player_def.chat_theme_def.duplicate()
-	new_def.color = dna.body_rgb
-	return new_def
 
 
 """
@@ -115,7 +101,7 @@ func _mutate_creature(creature: Creature) -> void:
 		_mutate_allele(creature, dna, new_palette, allele)
 	
 	creature.dna = dna
-	creature.chat_theme_def = _chat_theme_def(dna)
+	creature.chat_theme_def = CreatureLoader.chat_theme_def(dna)
 
 
 """
@@ -311,7 +297,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 				_recent_tweaked_allele_values[allele].append(dna[allele])
 	
 	creature.dna = dna
-	creature.chat_theme_def = _chat_theme_def(dna)
+	creature.chat_theme_def = CreatureLoader.chat_theme_def(dna)
 
 
 """

@@ -35,13 +35,11 @@ Recolors the creature according to the specified creature definition. This invol
 properties.
 
 Parameters:
-	'dna': defines the creature's appearance such as eye color and mouth shape.
+	'creature_def': defines the creature's attributes such as name and appearance.
 """
-func summon_creature(dna: Dictionary, creature_index: int = -1) -> void:
-	get_customer(creature_index).set_dna(dna)
+func summon_creature(creature_def: CreatureDef, creature_index: int = -1) -> void:
+	get_customer(creature_index).set_creature_def(creature_def)
 	get_customer(creature_index).set_comfort(0)
-	get_customer(creature_index).set_fatness(1)
-	get_customer(creature_index).set_visual_fatness(1)
 	_get_seat(creature_index).refresh()
 
 
@@ -55,6 +53,13 @@ func get_fatness(creature_index: int = -1) -> float:
 
 func get_player() -> Creature:
 	return $Player as Creature
+
+
+"""
+Returns an array of Creature objects representing customers in the scene.
+"""
+func get_customers() -> Array:
+	return _creatures
 
 
 """

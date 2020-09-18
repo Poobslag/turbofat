@@ -22,12 +22,9 @@ onready var _restaurant_scene: RestaurantScene = get_node(restaurant_scene_path)
 onready var _customer_camera: Camera2D = get_node(customer_camera_path)
 
 func _ready() -> void:
-	_restaurant_scene.get_customer(0).connect("visual_fatness_changed", self, \
-			"_on_Creature_visual_fatness_changed", [0])
-	_restaurant_scene.get_customer(1).connect("visual_fatness_changed", self, \
-			"_on_Creature_visual_fatness_changed", [1])
-	_restaurant_scene.get_customer(2).connect("visual_fatness_changed", self, \
-			"_on_Creature_visual_fatness_changed", [2])
+	var customers := _restaurant_scene.get_customers()
+	for i in range(0, customers.size()):
+		customers[i].connect("visual_fatness_changed", self, "_on_Creature_visual_fatness_changed", [0])
 	_refresh_target_camera_position()
 	_customer_camera.position = target_camera_position
 

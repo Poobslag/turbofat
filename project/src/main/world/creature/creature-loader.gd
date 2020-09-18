@@ -59,11 +59,31 @@ var _fat_sprite_mover_scenes := {
 	"2": preload("res://src/main/world/creature/FatSpriteMover2.tscn"),
 }
 
+var _name_generator := NameGenerator.new()
+
+func _init() -> void:
+	_name_generator.load_american_animals()
+
+
 """
 Returns a random creature definition.
 """
-func random_def() -> Dictionary:
-	return DnaUtils.random_creature_palette()
+func random_def() -> CreatureDef:
+	var result := CreatureDef.new()
+	result.dna = DnaUtils.random_creature_palette()
+	result.creature_name = _name_generator.generate_name()
+	result.creature_short_name = NameUtils.sanitize_short_name(result.creature_name)
+	result.chat_theme_def = chat_theme_def(result.dna)
+	return result
+
+
+"""
+Returns a chat theme definition for a generated creature.
+"""
+func chat_theme_def(dna: Dictionary) -> Dictionary:
+	var new_def: Dictionary = PlayerData.creature_library.player_def.chat_theme_def.duplicate()
+	new_def.color = dna.body_rgb
+	return new_def
 
 
 """

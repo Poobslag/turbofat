@@ -16,7 +16,7 @@ func show_label(chat_theme: ChatTheme, nametag_right: bool) -> void:
 		return
 	
 	set_bg_color(chat_theme.border_color)
-	_labels[nametag_size].set("custom_colors/font_color", Color.black if chat_theme.dark else Color.white)
+	set_font_color(chat_theme.nametag_font_color)
 	
 	rect_position.y = 2 - rect_size.y
 	if nametag_right:

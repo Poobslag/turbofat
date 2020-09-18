@@ -75,5 +75,5 @@ func push_scenario_trail() -> void:
 	start_scenario(scenario_settings)
 	if Scenario.launched_creature_id:
 		var creature_def := CreatureLoader.load_creature_def_by_id(Scenario.launched_creature_id)
-		Global.creature_queue.push_front(creature_def.dna)
+		Global.creature_queue.push_front(creature_def)
 	Breadcrumb.push_trail(Global.SCENE_PUZZLE)

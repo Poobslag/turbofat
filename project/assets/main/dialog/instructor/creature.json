@@ -1,7 +1,7 @@
 {
   "version": "187d",
   "id": "instructor",
-  "name": "Master Fat",
+  "name": "Turbo",
   "dna": {
     "instructor": "true",
     "belly": "0",
@@ -22,5 +22,12 @@
     "mouth": "2",
     "nose": "2",
     "tail": "3"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.5,
+    "accent_swapped": true,
+    "accent_texture": 6,
+    "color": "a854cb",
+    "dark": false
   }
 }

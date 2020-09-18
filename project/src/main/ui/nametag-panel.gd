@@ -4,6 +4,11 @@ extends Panel
 Resizes and shows nametag labels.
 """
 
+export (Array, Vector2) var panel_sizes: Array
+
+# size of the nametag needed to display the name text
+var nametag_size: int
+
 # The name is copied into multiple labels. We display the smallest label which fits.
 onready var _labels := {
 	ChatTheme.NAMETAG_SMALL: $Small,
@@ -12,18 +17,6 @@ onready var _labels := {
 	ChatTheme.NAMETAG_XL: $ExtraLarge,
 	ChatTheme.NAMETAG_XXL: $ExtraExtraLarge,
 }
-
-# Longer names are displayed in bigger panels
-onready var _panel_sizes := {
-	ChatTheme.NAMETAG_SMALL: Vector2(180, 60),
-	ChatTheme.NAMETAG_MEDIUM: Vector2(360, 60),
-	ChatTheme.NAMETAG_LARGE: Vector2(360, 60),
-	ChatTheme.NAMETAG_XL: Vector2(240, 60),
-	ChatTheme.NAMETAG_XXL: Vector2(360, 60),
-}
-
-# size of the nametag needed to display the name text
-var nametag_size: int
 
 """
 Assigns the name label's text and updates our nametag_size field to the smallest name label which fit.
@@ -47,7 +40,7 @@ func set_nametag_text(new_text: String) -> void:
 	visible = nametag_size != ChatTheme.NAMETAG_OFF
 	if visible:
 		_labels[nametag_size].visible = true
-		rect_size = _panel_sizes[nametag_size]
+		rect_size = panel_sizes[nametag_size - 1]
 
 
 """
@@ -60,3 +53,8 @@ func hide_labels() -> void:
 
 func set_bg_color(color: Color) -> void:
 	get("custom_styles/panel").set("bg_color", color)
+
+
+func set_font_color(color: Color) -> void:
+	for label in _labels.values():
+		label.set("custom_colors/font_color", color)

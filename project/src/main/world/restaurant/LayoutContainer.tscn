@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/world/restaurant/layout-container.gd" type="Script" id=3]
+
+[node name="LayoutContainer" type="Control"]
+margin_right = 240.0
+margin_bottom = 90.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
