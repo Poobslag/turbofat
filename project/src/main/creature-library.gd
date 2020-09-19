@@ -41,6 +41,12 @@ const DEFAULT_NAME := "Spira"
 
 var player_def: CreatureDef
 
+# fatnesses by creature id
+var _fatnesses: Dictionary
+
+# fatnesses saved to roll the tile map back to a previous state
+var _saved_fatnesses: Dictionary
+
 func reset() -> void:
 	# default player appearance and name
 	player_def = CreatureDef.new()
@@ -51,9 +57,45 @@ func reset() -> void:
 	player_def.chat_theme_def = DEFAULT_CHAT_THEME_DEF.duplicate()
 
 
+"""
+Saves the current fatness state so that we can roll back later.
+"""
+func save_fatness_state() -> void:
+	_saved_fatnesses = _fatnesses.duplicate()
+
+
+"""
+Restores the previously saved fatness state.
+
+This prevents a creature from gaining weight when retrying a level over and over.
+Thematically, we're turning back time.
+"""
+func restore_fatness_state() -> void:
+	_fatnesses = _saved_fatnesses.duplicate()
+
+
+func has_fatness(creature_id: String) -> bool:
+	if not creature_id:
+		return false
+	
+	return _fatnesses.has(creature_id)
+
+
+func get_fatness(creature_id: String) -> float:
+	return _fatnesses[creature_id]
+
+
+func set_fatness(creature_id: String, fatness: float) -> void:
+	if not creature_id:
+		return
+	
+	_fatnesses[creature_id] = fatness
+
+
 func to_json_dict() -> Dictionary:
 	return {
 		"#player#": player_def.to_json_dict(),
+		"fatnesses": _fatnesses,
 	}
 
 
@@ -61,3 +103,5 @@ func from_json_dict(json: Dictionary) -> void:
 	reset()
 	if json.has("#player#"):
 		player_def.from_json_dict(json.get("#player#", {}))
+	if json.has("fatnesses"):
+		_fatnesses = json.get("fatnesses")
