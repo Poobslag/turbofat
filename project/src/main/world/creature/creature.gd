@@ -65,6 +65,14 @@ var non_iso_walk_direction := Vector2.ZERO setget set_non_iso_walk_direction
 
 # the number of times the creature was fed during this puzzle
 var feed_count := 0
+var box_feed_count := 0
+
+# the minimum fatness; some creatures never get very thin
+var min_fatness := 1.0
+
+# the base fatness when the creature enters the restaurant
+# player score is added to this to determine their new fatness
+var base_fatness := 1.0
 
 # 'true' if the creature is being slowed by friction while stopping or turning
 var _friction := false
@@ -148,6 +156,7 @@ func set_dna(new_dna: Dictionary) -> void:
 	set_meta("dna", dna)
 	refresh_dna()
 	feed_count = 0
+	box_feed_count = 0
 
 
 func set_chat_selectors(new_chat_selectors: Array) -> void:
@@ -223,6 +232,23 @@ func get_orientation() -> int:
 
 
 """
+Stores this creature's fatness in the CreatureLibrary.
+
+This allows the creature to maintain their fatness if we see them again. They lose a little weight in between.
+"""
+func store_fatness() -> void:
+	if not creature_id:
+		# randomly-generated creatures have no creature id; their fatness isn't stored
+		return
+	
+	var stored_fatness := get_fatness()
+	# weight decreases by 10% if they ate normally; 25% if they ate only vegetables
+	stored_fatness *= 0.9 if box_feed_count > 0 else 0.75
+	stored_fatness = clamp(stored_fatness, min_fatness, CreatureLoader.MAX_FATNESS)
+	PlayerData.creature_library.set_fatness(creature_id, stored_fatness)
+
+
+"""
 Plays a 'hello!' voice sample, for when a creature enters the restaurant
 """
 func play_hello_voice(force: bool = false) -> void:
@@ -248,7 +274,10 @@ func play_goodbye_voice(force: bool = false) -> void:
 
 func feed(food_color: Color) -> void:
 	feed_count += 1
+	if food_color != Playfield.VEGETABLE_COLOR:
+		box_feed_count += 1
 	creature_visuals.feed(food_color)
+	store_fatness()
 
 
 func restart_idle_timer() -> void:
@@ -263,9 +292,15 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 	creature_short_name = new_creature_def.creature_short_name
 	set_chat_selectors(new_creature_def.chat_selectors)
 	dialog = new_creature_def.dialog
-	set_fatness(new_creature_def.fatness)
-	creature_visuals.set_visual_fatness(new_creature_def.fatness)
+	min_fatness = new_creature_def.fatness
+	if PlayerData.creature_library.has_fatness(creature_id):
+		set_fatness(PlayerData.creature_library.get_fatness(creature_id))
+	else:
+		set_fatness(min_fatness)
+	base_fatness = get_fatness()
+	creature_visuals.set_visual_fatness(get_fatness())
 	feed_count = 0
+	box_feed_count = 0
 
 
 func get_creature_def() -> CreatureDef:
@@ -434,3 +469,17 @@ func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) ->
 		set_elevation(35)
 	else:
 		set_elevation(0)
+
+
+"""
+Converts a score in the range [0.0, 5000.0] to a fatness in the range [1.0, 10.0]
+"""
+static func score_to_fatness(in_score: float) -> float:
+	return sqrt(1 + in_score / 50.0)
+
+
+"""
+Converts a fatness in the range [1.0, 10.0] to a score in the range [0.0, 5000.0]
+"""
+static func fatness_to_score(in_fatness: float) -> float:
+	return 50 * (pow(in_fatness, 2) - 1)

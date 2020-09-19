@@ -68,8 +68,10 @@ Parameters:
 	'fatness_pct' A percent from [0.0-1.0] of how much fatter the creature should get from this bite of food.
 """
 func _feed_creature(fatness_pct: float, food_color: Color) -> void:
-	var old_fatness: float = $RestaurantView.get_customer().get_fatness()
-	var target_fatness := sqrt(1 + PuzzleScore.get_creature_score() / 50.0)
+	var customer: Creature = $RestaurantView.get_customer()
+	var old_fatness: float = customer.get_fatness()
+	var base_score := Creature.fatness_to_score(customer.base_fatness)
+	var target_fatness := Creature.score_to_fatness(base_score + PuzzleScore.get_creature_score())
 
 	var comfort := 0.0
 	# ate five things; comfortable
@@ -79,9 +81,9 @@ func _feed_creature(fatness_pct: float, food_color: Color) -> void:
 	# overate; uncomfortable
 	comfort -= clamp(inverse_lerp(600, 1200, PuzzleScore.get_creature_score()), 0.0, 1.0)
 
-	$RestaurantView.get_customer().set_comfort(comfort)
-	$RestaurantView.get_customer().set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
-	$RestaurantView.get_customer().feed(food_color)
+	customer.set_comfort(comfort)
+	customer.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
+	customer.feed(food_color)
 
 
 """
@@ -114,12 +116,17 @@ func _on_Hud_start_button_pressed() -> void:
 	if _start_button_click_count > 1:
 		# restart puzzle; reset customers
 		CreatureLoader.reset_secondary_creature_queue()
+		if Global.creature_queue:
+			# Reset fatness. Playing the same puzzle over and over shouldn't
+			# make a creature super fat. Thematically, we're turning back time.
+			PlayerData.creature_library.restore_fatness_state()
 		Global.creature_queue_index = 0
 		$RestaurantView.start_suppress_sfx_timer()
 		for i in range(3):
 			$RestaurantView.summon_creature(i)
 		$RestaurantView.set_current_creature_index(0)
 	
+	PlayerData.creature_library.save_fatness_state()
 	PuzzleScore.prepare_and_start_game()
 
 

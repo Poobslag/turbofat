@@ -192,7 +192,7 @@ func load_details(dna: Dictionary) -> void:
 
 
 func load_creature_def_by_id(id: String) -> CreatureDef:
-	return load_creature_def("res://assets/main/primary/%s/creature.json" % id)
+	return load_creature_def("res://assets/main/creatures/primary/%s/creature.json" % id)
 
 
 func load_creature_def(path: String) -> CreatureDef:
@@ -225,7 +225,9 @@ func _load_secondary_creatures() -> void:
 		if not file:
 			break
 		else:
-			_secondary_creature_queue.append(load_creature_def("%s/%s" % [dir.get_current_dir(), file.get_file()]))
+			var creature_def := load_creature_def("%s/%s" % [dir.get_current_dir(), file.get_file()])
+			creature_def.creature_id = file.get_file().get_basename()
+			_secondary_creature_queue.append(creature_def)
 	dir.list_dir_end()
 	_secondary_creature_queue.shuffle()
 
