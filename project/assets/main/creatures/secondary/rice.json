@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Rice",
+  "short_name": "Rice",
+  "dna": {
+    "body": "2",
+    "head": "1",
+    "cheek": "1",
+    "eye": "3",
+    "ear": "1",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "2",
+    "hair": "2",
+    "collar": "0",
+    "tail": "5",
+    "belly": "1",
+    "line_rgb": "0d0d0d",
+    "body_rgb": "212121",
+    "belly_rgb": "601000",
+    "cloth_rgb": "bd5757",
+    "hair_rgb": "151514",
+    "eye_rgb": "9d0505 ec3333",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "212121"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

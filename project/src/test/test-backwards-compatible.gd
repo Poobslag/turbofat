@@ -83,8 +83,8 @@ func test_survival_records_preserved() -> void:
 func test_chat_history_preserved() -> void:
 	load_1682_data()
 	
-	assert_eq(5, PlayerData.chat_history.get_chat_age("dialog/boatricia/my_maid_died"))
-	assert_eq(13, PlayerData.chat_history.get_filler_count("dialog/boatricia"))
+	assert_eq(5, PlayerData.chat_history.get_chat_age("creatures/primary/boatricia/my_maid_died"))
+	assert_eq(13, PlayerData.chat_history.get_filler_count("creatures/primary/boatricia"))
 
 
 func test_timestamp_created() -> void:

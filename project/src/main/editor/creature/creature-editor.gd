@@ -65,8 +65,7 @@ func _ready() -> void:
 	$World/Creatures/ECreature.set_meta("nametag_right", true)
 	$World/Creatures/SeCreature.set_meta("nametag_right", true)
 	
-	center_creature.creature_def = PlayerData.creature_library.player_def
-	emit_signal("center_creature_changed")
+	set_center_creature_def(PlayerData.creature_library.player_def)
 	mutate_all_creatures()
 
 
@@ -164,6 +163,11 @@ func tweak_all_creatures(allele: String, color_mode: int = THEME_COLORS) -> void
 		_tweak_creature(creature_obj, allele, color_mode)
 
 
+func set_center_creature_def(creature_def: CreatureDef) -> void:
+	center_creature.creature_def = creature_def
+	emit_signal("center_creature_changed")
+
+
 """
 Generates a palette.
 
@@ -236,8 +240,9 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 	var palette: Dictionary = _palette(color_mode)
 	if allele == "line_rgb":
 		# cycle through line colors predictably
-		palette["line_rgb"] = Color(DnaUtils.LINE_COLORS[_next_line_color_index]).to_html(false)
-		_next_line_color_index = (_next_line_color_index + 1) % DnaUtils.LINE_COLORS.size()
+		var line_colors := DnaUtils.line_colors(center_creature.dna)
+		palette["line_rgb"] = Color(line_colors[_next_line_color_index]).to_html(false)
+		_next_line_color_index = (_next_line_color_index + 1) % line_colors.size()
 	elif color_mode == RANDOM_COLORS:
 		# leave the line color alone
 		palette["line_rgb"] = center_creature.dna["line_rgb"]
@@ -401,7 +406,6 @@ func _on_CreatureSelector_creature_clicked(creature: Creature) -> void:
 	if creature == center_creature:
 		return
 	
-	var creature_def_tmp: CreatureDef = center_creature.creature_def
-	center_creature.creature_def = creature.creature_def
-	creature.creature_def = creature_def_tmp
-	emit_signal("center_creature_changed")
+	var creature_def_tmp: CreatureDef = creature.creature_def
+	creature.creature_def = center_creature.creature_def
+	set_center_creature_def(creature_def_tmp)

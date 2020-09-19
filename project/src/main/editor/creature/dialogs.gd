@@ -26,7 +26,7 @@ Imports the specified creature into the editor.
 func _on_ImportDialog_file_selected(path: String) -> void:
 	var loaded_def := CreatureLoader.load_creature_def(path)
 	if loaded_def:
-		_creature_editor.center_creature.creature_def = loaded_def
+		_creature_editor.set_center_creature_def(loaded_def)
 		_creature_editor.mutate_all_creatures()
 	else:
 		$Error.dialog_text = "Error importing creature."

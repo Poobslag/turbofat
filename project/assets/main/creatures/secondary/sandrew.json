@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Sandrew",
+  "short_name": "Sandrew",
+  "dna": {
+    "body": "1",
+    "head": "5",
+    "cheek": "2",
+    "eye": "1",
+    "ear": "1",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "1",
+    "hair": "0",
+    "collar": "0",
+    "tail": "0",
+    "belly": "2",
+    "line_rgb": "41281e",
+    "body_rgb": "b24b10",
+    "belly_rgb": "d58944",
+    "cloth_rgb": "5ba964",
+    "hair_rgb": "464a40",
+    "eye_rgb": "7c4725 b8ad9f",
+    "horn_rgb": "b47922"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "b24b10"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

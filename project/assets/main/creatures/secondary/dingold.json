@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Dingold",
+  "short_name": "Dingold",
+  "dna": {
+    "body": "2",
+    "head": "1",
+    "cheek": "0",
+    "eye": "4",
+    "ear": "4",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "1",
+    "hair": "1",
+    "collar": "3",
+    "tail": "2",
+    "belly": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "664437",
+    "belly_rgb": "d69e63",
+    "cloth_rgb": "4e8eee",
+    "hair_rgb": "e8a261",
+    "eye_rgb": "4e8eee f8ffff",
+    "horn_rgb": "c4c4c5"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "664437"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.2
+}

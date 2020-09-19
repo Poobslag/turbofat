@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Rhybug",
+  "short_name": "Rhybug",
+  "dna": {
+    "body": "1",
+    "head": "1",
+    "cheek": "1",
+    "eye": "3",
+    "ear": "1",
+    "horn": "2",
+    "mouth": "1",
+    "nose": "0",
+    "hair": "0",
+    "collar": "0",
+    "tail": "0",
+    "belly": "2",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "5f5c5c",
+    "belly_rgb": "f6e183",
+    "cloth_rgb": "282828",
+    "hair_rgb": "f1e398",
+    "eye_rgb": "282828 dedede",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "5f5c5c"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

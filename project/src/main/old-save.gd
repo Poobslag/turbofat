@@ -88,11 +88,7 @@ func is_old_save_items(json_save_items: Array) -> bool:
 	match version_string:
 		PlayerSave.PLAYER_DATA_VERSION:
 			is_old = false
-		"1682":
-			is_old = true
-		"163e":
-			is_old = true
-		"15d2":
+		"1922", "1682", "163e", "15d2":
 			is_old = true
 		_:
 			push_warning("Unrecognized save data version: '%s'" % version_string)
@@ -119,6 +115,8 @@ Transforms the specified json save items to the latest format.
 func transform_old_save_items(json_save_items: Array) -> Array:
 	var version_string := get_version_string(json_save_items)
 	match version_string:
+		"1922":
+			json_save_items = _convert_1922(json_save_items)
 		"1682":
 			json_save_items = _convert_1682(json_save_items)
 		"163e":
@@ -126,6 +124,37 @@ func transform_old_save_items(json_save_items: Array) -> Array:
 		"15d2":
 			json_save_items = _convert_15d2(json_save_items)
 	return json_save_items
+
+
+func _convert_1922(json_save_items: Array) -> Array:
+	var new_save_items := []
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		save_item.type = save_item.type.replace("-", "_")
+		save_item.key = save_item.key.replace("-", "_")
+		if typeof(save_item.value) == TYPE_DICTIONARY:
+			_replace_key_hyphens_with_underscores(save_item.value)
+		
+		match save_item.type:
+			"version":
+				save_item["value"] = "199c"
+			"chat_history":
+				_replace_dialog_with_creatures_primary(save_item["value"])
+		
+		new_save_items.append(save_item.to_json_dict())
+	return new_save_items
+
+
+func _replace_dialog_with_creatures_primary(dict: Dictionary) -> void:
+	for sub_dict in dict.values():
+		for key in sub_dict.keys():
+			for creature_id in ["boatricia", "ebe", "bort"]:
+				var search_string: String = "dialog/%s" % creature_id
+				var replacement: String = "creatures/primary/%s" % creature_id
+				if key.find(search_string) != -1:
+					sub_dict[key.replace(search_string, replacement)] = sub_dict[key]
+					sub_dict.erase(key)
 
 
 func _convert_1682(json_save_items: Array) -> Array:

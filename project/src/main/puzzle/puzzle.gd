@@ -22,6 +22,7 @@ func _ready() -> void:
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
 	Global.creature_queue_index = 0
+	CreatureLoader.reset_secondary_creature_queue()
 	for i in range(3):
 		$RestaurantView.summon_creature(i)
 	
@@ -109,13 +110,16 @@ func _check_for_game_end() -> void:
 
 func _on_Hud_start_button_pressed() -> void:
 	_start_button_click_count += 1
-	if _start_button_click_count > 1 and Global.creature_queue:
-		Global.creature_queue_index = 0
+	
+	if _start_button_click_count > 1:
 		# restart puzzle; reset customers
+		CreatureLoader.reset_secondary_creature_queue()
+		Global.creature_queue_index = 0
 		$RestaurantView.start_suppress_sfx_timer()
 		for i in range(3):
 			$RestaurantView.summon_creature(i)
 		$RestaurantView.set_current_creature_index(0)
+	
 	PuzzleScore.prepare_and_start_game()
 
 

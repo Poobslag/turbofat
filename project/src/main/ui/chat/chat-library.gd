@@ -35,7 +35,8 @@ func load_chat_events_for_creature(creature: Creature, level_num: int = -1, chit
 			chat_tree.from_json_dict(creature.dialog[chosen_dialog])
 			chat_tree.history_key = "dialog/%s/%s" % [creature.creature_id, chosen_dialog]
 		else:
-			var path := "res://assets/main/dialog/%s/%s.json" % [creature.creature_id, chosen_dialog.replace("_", "-")]
+			var path := "res://assets/main/creatures/primary/%s/%s.json" % \
+					[creature.creature_id, chosen_dialog.replace("_", "-")]
 			chat_tree = load_chat_events_from_file(path)
 	else:
 		# returning a tree where the player can select creature dialog

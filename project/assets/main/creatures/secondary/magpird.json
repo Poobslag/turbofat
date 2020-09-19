@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Magpird",
+  "short_name": "Magpird",
+  "dna": {
+    "body": "1",
+    "head": "4",
+    "cheek": "3",
+    "eye": "3",
+    "ear": "3",
+    "horn": "2",
+    "mouth": "4",
+    "nose": "0",
+    "hair": "0",
+    "collar": "0",
+    "tail": "1",
+    "belly": "0",
+    "line_rgb": "013e1b",
+    "body_rgb": "025d28",
+    "belly_rgb": "67aa0f",
+    "cloth_rgb": "ccd44d",
+    "hair_rgb": "959f78",
+    "eye_rgb": "ccd44d ffffd9",
+    "horn_rgb": "959f78"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "025d28"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.2
+}
