@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Pandon",
+  "short_name": "Pandon",
+  "dna": {
+    "body": "1",
+    "head": "2",
+    "cheek": "1",
+    "eye": "2",
+    "ear": "2",
+    "horn": "1",
+    "mouth": "3",
+    "nose": "2",
+    "hair": "0",
+    "collar": "1",
+    "tail": "2",
+    "belly": "1",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "171419",
+    "belly_rgb": "b0b4d1",
+    "cloth_rgb": "4e8eee",
+    "hair_rgb": "c4c4c5",
+    "eye_rgb": "4e8eee f8ffff",
+    "horn_rgb": "c4c4c5"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "171419"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.3
+}

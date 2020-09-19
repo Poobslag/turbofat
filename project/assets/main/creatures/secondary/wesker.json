@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Wesker",
+  "short_name": "Wesker",
+  "dna": {
+    "body": "1",
+    "head": "4",
+    "cheek": "4",
+    "eye": "1",
+    "ear": "1",
+    "horn": "1",
+    "mouth": "3",
+    "nose": "2",
+    "hair": "0",
+    "collar": "2",
+    "tail": "3",
+    "belly": "1",
+    "line_rgb": "6c4331",
+    "body_rgb": "f9bb4a",
+    "belly_rgb": "f74b29",
+    "cloth_rgb": "282828",
+    "hair_rgb": "f4351c",
+    "eye_rgb": "f9a74c fff6df",
+    "horn_rgb": "4c5245"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "f9bb4a"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

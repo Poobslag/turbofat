@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Mocha",
+  "short_name": "Mocha",
+  "dna": {
+    "body": "1",
+    "head": "1",
+    "cheek": "2",
+    "eye": "1",
+    "ear": "2",
+    "horn": "1",
+    "mouth": "1",
+    "nose": "0",
+    "hair": "0",
+    "collar": "0",
+    "tail": "0",
+    "belly": "1",
+    "line_rgb": "6c4331",
+    "body_rgb": "f9f7d9",
+    "belly_rgb": "c49161",
+    "cloth_rgb": "74a27f",
+    "hair_rgb": "e8a261",
+    "eye_rgb": "977968 fffaff",
+    "horn_rgb": "e8a261"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "f9f7d9"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Alexander",
+  "short_name": "Alexander",
+  "dna": {
+    "body": "1",
+    "head": "5",
+    "cheek": "1",
+    "eye": "1",
+    "ear": "5",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "2",
+    "hair": "1",
+    "collar": "0",
+    "tail": "2",
+    "belly": "1",
+    "line_rgb": "1e1e1e",
+    "body_rgb": "2e2e2e",
+    "belly_rgb": "fed73d",
+    "cloth_rgb": "cf9393",
+    "hair_rgb": "303030",
+    "eye_rgb": "13c39e ffffff",
+    "horn_rgb": "ac4577"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "2e2e2e"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

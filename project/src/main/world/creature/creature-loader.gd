@@ -61,20 +61,48 @@ var _fat_sprite_mover_scenes := {
 
 var _name_generator := NameGenerator.new()
 
-func _init() -> void:
+# Queue of 'secondary creatures'; recognizable characters who show up now and then,
+# but don't have any dialog or levels
+var _secondary_creature_queue: Array
+var _secondary_creature_queue_index := 0
+
+func _ready() -> void:
 	_name_generator.load_american_animals()
+	_load_secondary_creatures()
 
 
 """
 Returns a random creature definition.
 """
 func random_def() -> CreatureDef:
-	var result := CreatureDef.new()
-	result.dna = DnaUtils.random_creature_palette()
-	result.creature_name = _name_generator.generate_name()
-	result.creature_short_name = NameUtils.sanitize_short_name(result.creature_name)
-	result.chat_theme_def = chat_theme_def(result.dna)
+	var result
+	if _secondary_creature_queue_index < _secondary_creature_queue.size() and randf() < 0.2:
+		# don't loop back through the queue; we don't want the same customer showing up twice
+		result = _secondary_creature_queue[_secondary_creature_queue_index]
+		_secondary_creature_queue_index += 1
+	else:
+		result = CreatureDef.new()
+		result.dna = DnaUtils.random_creature_palette()
+		result.creature_name = _name_generator.generate_name()
+		result.creature_short_name = NameUtils.sanitize_short_name(result.creature_name)
+		result.chat_theme_def = chat_theme_def(result.dna)
 	return result
+
+
+"""
+Resets the queue of secondary creatures; recognizable characters who show up now and then, but don't have any dialog or
+levels
+
+This resets the queue_index to 0, and moves the beginning of the queue to the end.
+"""
+func reset_secondary_creature_queue() -> void:
+	if _secondary_creature_queue and _secondary_creature_queue_index > 0:
+		var new_queue := []
+		new_queue += _secondary_creature_queue.slice(
+				_secondary_creature_queue_index, _secondary_creature_queue.size() - 1)
+		new_queue += _secondary_creature_queue.slice(0, _secondary_creature_queue_index - 1)
+		_secondary_creature_queue = new_queue
+		_secondary_creature_queue_index = 0
 
 
 """
@@ -164,7 +192,7 @@ func load_details(dna: Dictionary) -> void:
 
 
 func load_creature_def_by_id(id: String) -> CreatureDef:
-	return load_creature_def("res://assets/main/dialog/%s/creature.json" % id)
+	return load_creature_def("res://assets/main/primary/%s/creature.json" % id)
 
 
 func load_creature_def(path: String) -> CreatureDef:
@@ -186,6 +214,20 @@ func load_creature_def(path: String) -> CreatureDef:
 		if not creature_def.chat_theme_def:
 			creature_def.chat_theme_def = CreatureLibrary.DEFAULT_CHAT_THEME_DEF.duplicate()
 	return creature_def
+
+
+func _load_secondary_creatures() -> void:
+	var dir := Directory.new()
+	dir.open("res://assets/main/creatures/secondary")
+	dir.list_dir_begin(true, true)
+	while true:
+		var file := dir.get_next()
+		if not file:
+			break
+		else:
+			_secondary_creature_queue.append(load_creature_def("%s/%s" % [dir.get_current_dir(), file.get_file()]))
+	dir.list_dir_end()
+	_secondary_creature_queue.shuffle()
 
 
 """

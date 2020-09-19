@@ -217,6 +217,20 @@ func _ready() -> void:
 
 
 """
+Returns unique list of line colors for the specified dna.
+
+This includes some fixed brownish/greyish colors, as well as a darker version of the body color.
+"""
+func line_colors(dna: Dictionary) -> Array:
+	var result := LINE_COLORS.duplicate()
+	if dna.has("body_rgb"):
+		var darker_line_rgb := Color(dna["body_rgb"])
+		darker_line_rgb.v -= max(darker_line_rgb.v * 0.33, 0.08)
+		result.append(darker_line_rgb.to_html(false))
+	return result
+
+
+"""
 Return a minimal copy of the specified dna.
 
 CreatureLoader populates the dna dictionary with redundant properties such as textures and shader properties. This

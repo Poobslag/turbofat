@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Snorz",
+  "short_name": "Snorz",
+  "dna": {
+    "body": "1",
+    "head": "2",
+    "cheek": "0",
+    "eye": "2",
+    "ear": "2",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "0",
+    "hair": "0",
+    "collar": "0",
+    "tail": "0",
+    "belly": "1",
+    "line_rgb": "095046",
+    "body_rgb": "0d7768",
+    "belly_rgb": "f5e59c",
+    "cloth_rgb": "bd5757",
+    "hair_rgb": "e1dabb",
+    "eye_rgb": "ecdf32 fcfcdb",
+    "horn_rgb": "ac4577"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "0d7768"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.6
+}

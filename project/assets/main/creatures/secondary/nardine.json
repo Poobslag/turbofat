@@ -1,0 +1,40 @@
+{
+  "version": "187d",
+  "id": "",
+  "name": "Nardine",
+  "short_name": "Nardine",
+  "dna": {
+    "body": "2",
+    "head": "5",
+    "cheek": "3",
+    "eye": "3",
+    "ear": "1",
+    "horn": "0",
+    "mouth": "1",
+    "nose": "1",
+    "hair": "0",
+    "collar": "0",
+    "tail": "0",
+    "belly": "2",
+    "line_rgb": "6c4331",
+    "body_rgb": "f9bb4a",
+    "belly_rgb": "fac978",
+    "cloth_rgb": "f9a74c",
+    "hair_rgb": "b47922",
+    "eye_rgb": "7d4c21 e5cd7d",
+    "horn_rgb": "b47922"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "f9bb4a"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.2
+}

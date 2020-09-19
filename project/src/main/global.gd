@@ -93,3 +93,4 @@ func should_chat() -> bool:
 func clear_creature_queue() -> void:
 	Global.creature_queue = []
 	Global.creature_queue_index = 0
+	CreatureLoader.reset_secondary_creature_queue()
