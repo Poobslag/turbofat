@@ -82,6 +82,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+panel_sizes = [ Vector2( 180, 60 ), Vector2( 360, 60 ), Vector2( 360, 60 ), Vector2( 240, 60 ), Vector2( 360, 60 ) ]
 
 [node name="Small" type="Label" parent="ChatLinePanel/NametagPanel"]
 visible = false

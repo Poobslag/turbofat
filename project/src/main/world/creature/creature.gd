@@ -258,11 +258,11 @@ func restart_idle_timer() -> void:
 func set_creature_def(new_creature_def: CreatureDef) -> void:
 	creature_id = new_creature_def.creature_id
 	set_dna(new_creature_def.dna)
+	set_chat_theme_def(new_creature_def.chat_theme_def)
 	set_creature_name(new_creature_def.creature_name)
 	creature_short_name = new_creature_def.creature_short_name
 	set_chat_selectors(new_creature_def.chat_selectors)
 	dialog = new_creature_def.dialog
-	set_chat_theme_def(new_creature_def.chat_theme_def)
 	set_fatness(new_creature_def.fatness)
 	creature_visuals.set_visual_fatness(new_creature_def.fatness)
 	feed_count = 0

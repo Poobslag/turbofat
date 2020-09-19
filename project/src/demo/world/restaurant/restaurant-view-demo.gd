@@ -7,6 +7,7 @@ Keys:
 	[F]: Feed the creature
 	[I]: Launch an idle animation
 	[V]: Say something
+	[N]: Change the nametag names
 	[1-9,0]: Change the creature's size from 10% to 100%
 	SHIFT+[1-9,0]: Change the creature's comfort from 0.0 -> 1.0 -> -1.0
 	[Q,W,E]: Switch to the 1st, 2nd or 3rd creature.
@@ -15,8 +16,22 @@ Keys:
 """
 
 const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
+const NAMES = [
+	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore" \
+		+ " magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea" \
+		+ " commodo consequat.",
+	"",
+	"Lo",
+	"Lorem",
+	"Lorem ipsum",
+	"Lorem ipsum dolor",
+	"Lorem ipsum dolor sit amet",
+	"Lorem ipsum dolor sit amet, consectetur",
+	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed",
+	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incidid",
+]
 
-var _current_color_index := -1
+var _current_name_index := 4
 
 func _ready() -> void:
 	$RestaurantView.summon_creature()
@@ -27,6 +42,10 @@ func _input(event: InputEvent) -> void:
 		KEY_D: $RestaurantView/RestaurantViewport/Scene.get_node("DoorChime").play_door_chime()
 		KEY_F: _customer().feed(Playfield.FOOD_COLORS[0])
 		KEY_I: _customer().creature_visuals.get_node("IdleTimer").start(0.01)
+		KEY_N:
+			_current_name_index = (_current_name_index + 1) % NAMES.size()
+			_customer().creature_name = NAMES[_current_name_index]
+			_player().creature_name = NAMES[_current_name_index]
 		KEY_V:
 			Global.greetiness = 2
 			_customer().get_node("CreatureSfx").play_goodbye_voice()
@@ -50,20 +69,7 @@ func _input(event: InputEvent) -> void:
 		KEY_Q: $RestaurantView.set_current_creature_index(0)
 		KEY_W: $RestaurantView.set_current_creature_index(1)
 		KEY_E: $RestaurantView.set_current_creature_index(2)
-		KEY_BRACELEFT:
-			if _current_color_index == -1:
-				_current_color_index = 0
-			else:
-				_current_color_index += DnaUtils.CREATURE_PALETTES.size()
-				_current_color_index = (_current_color_index - 1) % DnaUtils.CREATURE_PALETTES.size()
-			Global.creature_queue.push_front(DnaUtils.CREATURE_PALETTES[_current_color_index])
-			$RestaurantView.summon_creature()
-		KEY_BRACERIGHT:
-			if _current_color_index == -1:
-				_current_color_index = 0
-			else:
-				_current_color_index = (_current_color_index + 1) % DnaUtils.CREATURE_PALETTES.size()
-			Global.creature_queue.push_front(DnaUtils.CREATURE_PALETTES[_current_color_index])
+		KEY_BRACELEFT, KEY_BRACERIGHT:
 			$RestaurantView.summon_creature()
 		KEY_RIGHT:
 			$RestaurantView.get_customer().set_orientation(CreatureVisuals.SOUTHEAST)
@@ -77,3 +83,7 @@ func _input(event: InputEvent) -> void:
 
 func _customer() -> Creature:
 	return $RestaurantView/RestaurantViewport/Scene.get_customer()
+
+
+func _player() -> Creature:
+	return $RestaurantView/RestaurantViewport/Scene.get_player()

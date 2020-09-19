@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/ui/NametagPanel.tscn" type="PackedScene" id=1]
 
+[sub_resource type="StyleBoxFlat" id=1]
+resource_local_to_scene = true
+bg_color = Color( 0.188235, 0.188235, 0.376471, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
 
 [node name="HookableNametag" type="Node2D"]
 
 [node name="Nametag" parent="." instance=ExtResource( 1 )]
+custom_styles/panel = SubResource( 1 )

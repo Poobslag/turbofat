@@ -39,6 +39,8 @@ var accent_swapped: bool
 var accent_texture_index: int
 var border_color: Color
 var dark: bool
+# virtual property; value is only exposed through getters/setters
+var nametag_font_color setget ,get_nametag_font_color
 
 """
 Parses an chat_theme_def into properties used by the chat UI.
@@ -65,3 +67,7 @@ func _init(chat_theme_def: Dictionary) -> void:
 		accent_color.s = pow(accent_color.s, 0.22)
 		# border color is a darker version of the input color
 		border_color.v = lerp(border_color.v, 0.22, 0.8)
+
+
+func get_nametag_font_color() -> Color:
+	return Color.black if dark else Color.white

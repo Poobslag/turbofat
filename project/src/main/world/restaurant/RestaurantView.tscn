@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/world/restaurant/chef-camera-mover.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/restaurant/RestaurantScene.tscn" type="PackedScene" id=2]
@@ -9,6 +9,8 @@
 [ext_resource path="res://assets/main/puzzle/customer-view-mask.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/puzzle/customer-view-outline.png" type="Texture" id=8]
 [ext_resource path="res://src/main/world/restaurant/customer-camera-mover.gd" type="Script" id=9]
+[ext_resource path="res://src/main/world/restaurant/RestaurantNametagPanel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/world/restaurant/LayoutContainer.tscn" type="PackedScene" id=11]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fat-se"
@@ -54,6 +56,22 @@ tracks/0/keys = {
 "values": [ Vector2( 6780, 960 ), Vector2( 6780, 960 ), Vector2( 6750, 775 ), Vector2( 6610, -120 ) ]
 }
 
+[sub_resource type="StyleBoxFlat" id=3]
+resource_local_to_scene = true
+bg_color = Color( 0.172549, 0.666667, 0.32549, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
+[sub_resource type="StyleBoxFlat" id=4]
+resource_local_to_scene = true
+bg_color = Color( 0.172549, 0.666667, 0.32549, 1 )
+corner_radius_top_left = 25
+corner_radius_top_right = 25
+corner_radius_bottom_right = 25
+corner_radius_bottom_left = 25
+
 [node name="RestaurantView" type="Control"]
 script = ExtResource( 4 )
 __meta__ = {
@@ -70,7 +88,7 @@ render_target_update_mode = 3
 scale = Vector2( 2, 2 )
 
 [node name="CustomerClip" type="Light2D" parent="."]
-position = Vector2( 165.578, 445.648 )
+position = Vector2( 179.832, 444.757 )
 texture = ExtResource( 7 )
 texture_scale = 0.5
 mode = 3
@@ -78,10 +96,10 @@ range_item_cull_mask = 2
 
 [node name="CustomerView" type="ViewportContainer" parent="."]
 light_mask = 2
-margin_left = 20.0
-margin_top = 311.0
-margin_right = 310.0
-margin_bottom = 581.0
+margin_left = 34.2544
+margin_top = 310.109
+margin_right = 324.254
+margin_bottom = 580.109
 stretch = true
 stretch_shrink = 4
 script = ExtResource( 5 )
@@ -105,10 +123,10 @@ zoom = Vector2( 0.8, 0.8 )
 
 [node name="CustomerOutline" type="TextureRect" parent="."]
 self_modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
-margin_left = 20.0
-margin_top = 311.0
-margin_right = 600.0
-margin_bottom = 851.0
+margin_left = 34.2544
+margin_top = 310.109
+margin_right = 614.254
+margin_bottom = 850.109
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
 __meta__ = {
@@ -123,7 +141,7 @@ customer_camera_path = NodePath("../CustomerView/Viewport/Camera2D")
 target_camera_position = Vector2( 770, 650 )
 
 [node name="ChefClip" type="Light2D" parent="."]
-position = Vector2( 875.713, 224.956 )
+position = Vector2( 891.99, 225.143 )
 texture = ExtResource( 7 )
 texture_scale = 0.26
 mode = 3
@@ -131,10 +149,10 @@ range_item_cull_mask = 4
 
 [node name="ChefView" type="ViewportContainer" parent="."]
 light_mask = 4
-margin_left = 800.0
-margin_top = 155.0
-margin_right = 950.0
-margin_bottom = 295.0
+margin_left = 816.277
+margin_top = 155.187
+margin_right = 966.277
+margin_bottom = 295.187
 stretch = true
 stretch_shrink = 4
 script = ExtResource( 3 )
@@ -161,14 +179,42 @@ restaurant_scene_path = NodePath("../RestaurantViewport/Scene")
 
 [node name="ChefOutline" type="TextureRect" parent="."]
 self_modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
-margin_left = 798.384
-margin_top = 153.437
-margin_right = 1088.38
-margin_bottom = 423.437
+margin_left = 814.661
+margin_top = 153.624
+margin_right = 1104.66
+margin_bottom = 423.624
 rect_scale = Vector2( 0.53, 0.53 )
 texture = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CustomerNametag" parent="." instance=ExtResource( 11 )]
+margin_left = 58.1141
+margin_top = 499.247
+margin_right = 298.114
+margin_bottom = 589.247
+layout = 7
+
+[node name="Panel" parent="CustomerNametag" instance=ExtResource( 10 )]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -60.0
+margin_top = -30.0
+margin_right = 60.0
+margin_bottom = 0.0
+custom_styles/panel = SubResource( 3 )
+
+[node name="RestaurantNametag" parent="." instance=ExtResource( 11 )]
+margin_left = 772.0
+margin_top = 277.0
+margin_right = 1012.0
+margin_bottom = 367.0
+
+[node name="Panel" parent="RestaurantNametag" instance=ExtResource( 10 )]
+margin_left = -60.0
+margin_right = 60.0
+custom_styles/panel = SubResource( 4 )
 [connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="CustomerCameraMover" method="_on_RestaurantScene_current_creature_index_changed"]
+[connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="." method="_on_RestaurantScene_current_creature_index_changed"]
 [connection signal="food_eaten" from="RestaurantViewport/Scene" to="CustomerCameraMover" method="_on_RestaurantScene_food_eaten"]

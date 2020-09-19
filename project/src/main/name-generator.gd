@@ -23,6 +23,20 @@ var _seed_paths := []
 # seed names loaded from the resource files
 var _seed_word_lists := []
 
+"""
+Configures the name generator with 'American given names' and 'animals'.
+
+This generates names like 'Boala', 'Badgehog' and 'Coyce'.
+"""
+func load_american_animals() -> void:
+	add_seed_resource("res://assets/main/editor/creature/animals.txt")
+	add_seed_resource("res://assets/main/editor/creature/american-male-given-names.txt")
+	add_seed_resource("res://assets/main/editor/creature/american-female-given-names.txt")
+	set_order(2.7)
+	set_min_length(4)
+	set_max_length(11)
+
+
 func reset() -> void:
 	markov_model.clear()
 	_generated_names.clear()
