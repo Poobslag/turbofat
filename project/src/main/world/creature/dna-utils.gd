@@ -95,7 +95,7 @@ const CREATURE_PALETTES := [
 
 # alleles corresponding to creature body parts
 const BODY_PART_ALLELES := [
-	"body", "head", "cheek", "eye", "ear", "horn", "mouth", "nose", "hair", "collar", "tail", "belly"
+	"belly", "bellybutton", "body", "cheek", "collar", "ear", "eye", "hair", "head", "horn", "mouth", "nose", "tail"
 ]
 
 # alleles corresponding to creature colors
@@ -108,22 +108,15 @@ const ALLELES := BODY_PART_ALLELES + COLOR_ALLELES
 
 # body part names shown to the player
 const ALLELE_NAMES := {
-	"eye-0": "(none)",
-	"eye-1": "Giant",
-	"eye-2": "Zen",
-	"eye-3": "Decaf",
-	"eye-4": "Ping Pong",
+	"belly-0": "(none)",
+	"belly-1": "Full",
+	"belly-2": "Half",
 	
-	"nose-0": "(none)",
-	"nose-1": "Nub",
-	"nose-2": "Speck",
-	"nose-3": "Goblin",
-	
-	"mouth-0": "(none)",
-	"mouth-1": "Ant",
-	"mouth-2": "Illithid",
-	"mouth-3": "Imp",
-	"mouth-4": "Crow",
+	"bellybutton-0": "(none)",
+	"bellybutton-1": "Innie",
+	"bellybutton-2": "Outie",
+	"bellybutton-3": "Stabby",
+	"bellybutton-4": "Puffy",
 	
 	"body-1": "Koala",
 	"body-2": "Squirrel",
@@ -134,6 +127,13 @@ const ALLELE_NAMES := {
 	"cheek-3": "Fish Whisker",
 	"cheek-4": "Fat Whisker",
 	
+	"collar-0": "(none)",
+	"collar-1": "Handkerchief",
+	"collar-2": "Bushy",
+	"collar-3": "Scruffy",
+	"collar-4": "Inner Tube",
+	"collar-5": "Neckfro",
+	
 	"ear-0": "(none)",
 	"ear-1": "Sausage",
 	"ear-2": "Cannon",
@@ -142,28 +142,36 @@ const ALLELE_NAMES := {
 	"ear-5": "Pancake",
 	"ear-6": "Chonky Cat",
 	
-	"horn-0": "(none)",
-	"horn-1": "Straw Hole",
-	"horn-2": "Rhino Nub",
+	"eye-0": "(none)",
+	"eye-1": "Giant",
+	"eye-2": "Zen",
+	"eye-3": "Decaf",
+	"eye-4": "Ping Pong",
 	
 	"hair-0": "(none)", 
 	"hair-1": "Lion", 
 	"hair-2": "Shaggy",
-	
-	"collar-0": "(none)",
-	"collar-1": "Handkerchief",
-	"collar-2": "Bushy",
-	"collar-3": "Scruffy",
-	
-	"belly-0": "(none)",
-	"belly-1": "Full",
-	"belly-2": "Half",
 	
 	"head-1": "(none)",
 	"head-2": "Chimp",
 	"head-3": "Hedgehog",
 	"head-4": "Raccoon",
 	"head-5": "Marmoset",
+	
+	"horn-0": "(none)",
+	"horn-1": "Straw Hole",
+	"horn-2": "Rhino Nub",
+	
+	"mouth-0": "(none)",
+	"mouth-1": "Ant",
+	"mouth-2": "Illithid",
+	"mouth-3": "Imp",
+	"mouth-4": "Crow",
+	
+	"nose-0": "(none)",
+	"nose-1": "Nub",
+	"nose-2": "Speck",
+	"nose-3": "Goblin",
 	
 	"tail-0": "(none)",
 	"tail-1": "Kind Cat",
@@ -200,19 +208,21 @@ func _ready() -> void:
 		# creatures with beak can NEVER have nose
 		_set_allele_combo_adjustment("mouth", "4", "nose", nose, -999)
 	
-	_set_allele_weight("body", "1", 6.0)
-	_set_allele_weight("head", "1", 6.0)
 	_set_allele_weight("belly", "0", 2.0)
 	_set_allele_weight("belly", "1", 2.0)
+	_set_allele_weight("bellybutton", "0", 8.0)
+	_set_allele_weight("bellybutton", "1", 2.0)
+	_set_allele_weight("body", "1", 6.0)
+	_set_allele_weight("collar", "0", 8.0)
+	_set_allele_weight("collar", "1", 2.0)
 	_set_allele_weight("ear", "1", 3.0)
 	_set_allele_weight("ear", "4", 2.0)
 	_set_allele_weight("eye", "1", 3.0)
+	_set_allele_weight("hair", "0", 5.0)
+	_set_allele_weight("head", "1", 6.0)
 	_set_allele_weight("horn", "0", 3.0)
 	_set_allele_weight("mouth", "1", 2.0)
 	_set_allele_weight("mouth", "2", 2.0)
-	_set_allele_weight("hair", "0", 5.0)
-	_set_allele_weight("collar", "0", 5.0)
-	_set_allele_weight("collar", "1", 2.0)
 	_set_allele_weight("tail", "0", 5.0)
 
 
@@ -290,17 +300,18 @@ func unique_allele_values(property: String) -> Array:
 	else:
 		# other properties
 		match property:
-			"body": result = ["1", "2"]
-			"head": result = ["1", "2", "3", "4", "5"]
 			"belly": result = ["0", "1", "2"]
+			"bellybutton": result = ["0", "1", "2", "3", "4"]
+			"body": result = ["1", "2"]
 			"cheek": result = ["0", "1", "2", "3", "4"]
+			"collar": result = ["0", "1", "2", "3", "4", "5"]
 			"ear": result = ["1", "2", "3", "4", "5", "6"]
 			"eye": result = ["1", "2", "3", "4"]
+			"hair": result = ["0", "1", "2"]
+			"head": result = ["1", "2", "3", "4", "5"]
 			"horn": result = ["0", "1", "2"]
 			"mouth": result = ["1", "2", "3", "4"]
 			"nose": result = ["0", "1", "2", "3"]
-			"hair": result = ["0", "1", "2"]
-			"collar": result = ["0", "1", "2", "3"]
 			"tail": result = ["0", "1", "2", "3", "4", "5", "6"]
 	
 	return result

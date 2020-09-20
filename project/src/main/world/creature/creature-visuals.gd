@@ -459,6 +459,7 @@ textures and animations need to be stopped and removed, and any signals disconne
 func _unload_dna() -> void:
 	$Animations/EmotePlayer.unemote_immediate()
 	for packed_sprite_obj in [
+		$Bellybutton,
 		$Collar,
 		$FarArm,
 		$FarLeg,
