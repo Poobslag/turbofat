@@ -22,7 +22,7 @@ func _ready() -> void:
 
 func _launch_tutorial() -> void:
 	Global.clear_creature_queue()
-	var creature_def := CreatureLoader.load_creature_def_by_id("instructor")
+	var creature_def := CreatureLoader.load_creature_def("res://assets/main/creatures/instructor/creature.json")
 	Global.creature_queue.push_front(creature_def)
 	Scenario.set_launched_scenario(Scenario.BEGINNER_TUTORIAL)
 	Scenario.push_scenario_trail()

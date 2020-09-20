@@ -15,6 +15,15 @@ const SCENE_OVERWORLD := "res://src/main/world/Overworld.tscn"
 # puzzle where a player drops pieces into a playfield of blocks.
 const SCENE_PUZZLE := "res://src/main/puzzle/Puzzle.tscn"
 
+# weighted distribution of 'fatnesses' in the range [1.0, 10.0]. most creatures are skinny.
+const FATNESSES := [
+	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
+	1.1, 1.2, 1.3, 1.5,
+	1.8, 2.3,
+]
+
+const CREATURE_ID_PLAYER := "#player#"
+
 # The factor to multiply by to convert non-isometric coordinates into isometric coordinates
 const ISO_FACTOR := Vector2(1.0, 0.5)
 

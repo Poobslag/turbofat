@@ -86,6 +86,9 @@ func random_def() -> CreatureDef:
 		result.creature_name = _name_generator.generate_name()
 		result.creature_short_name = NameUtils.sanitize_short_name(result.creature_name)
 		result.chat_theme_def = chat_theme_def(result.dna)
+		# set the filler ID, but not the fatness. the fatness attribute in the CreatureDef is the creature's natural
+		# fatness -- not their fatness after being stuffed
+		result.creature_id = PlayerData.creature_library.next_filler_id()
 	return result
 
 

@@ -88,7 +88,7 @@ func clear() -> void:
 
 func set_player(new_player: Player) -> void:
 	player = new_player
-	add_chat_theme_def("#player#", player.get_meta("chat_theme_def"))
+	add_chat_theme_def(Global.CREATURE_ID_PLAYER, player.get_meta("chat_theme_def"))
 
 
 """
@@ -136,7 +136,7 @@ dialog line. This function facilitates that.
 """
 func get_chatter(chat_name: String) -> Node2D:
 	var chatter: Node2D
-	if chat_name == "#player#":
+	if chat_name == Global.CREATURE_ID_PLAYER:
 		chatter = player
 	else:
 		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
@@ -178,7 +178,7 @@ Text variables are pound sign delimited: 'Hello #player#'. This matches the synt
 func substitute_variables(string: String, full_name: bool = false) -> String:
 	var result := string
 	if full_name:
-		result = result.replace("#player#", PlayerData.creature_library.player_def.creature_name)
+		result = result.replace(Global.CREATURE_ID_PLAYER, PlayerData.creature_library.player_def.creature_name)
 	else:
-		result = result.replace("#player#", PlayerData.creature_library.player_def.creature_short_name)
+		result = result.replace(Global.CREATURE_ID_PLAYER, PlayerData.creature_library.player_def.creature_short_name)
 	return result
