@@ -280,7 +280,6 @@ func _load_texture(dna: Dictionary, node_path: String, key: String, filename: St
 Loads the resources for a creature's head based on a creature definition.
 """
 func _load_head(dna: Dictionary) -> void:
-	_load_texture(dna, "Collar", "collar", "collar-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Head", "head", "head-packed")
 	
 	_load_texture(dna, "Neck0/HeadBobber/CheekZ0", "cheek", "cheek-z0-packed")
@@ -323,6 +322,8 @@ func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "NearArm", "", "arm-z1-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Chin", "", "chin-packed")
 	
+	_load_texture(dna, "Collar", "collar", "collar-packed")
+	_load_texture(dna, "Bellybutton", "bellybutton", "bellybutton-packed")
 	_load_texture(dna, "TailZ0", "tail", "tail-z0-packed")
 	_load_texture(dna, "TailZ1", "tail", "tail-z1-packed")
 	
@@ -378,6 +379,9 @@ func _load_colors(dna: Dictionary) -> void:
 	_set_krgb(dna, "Neck0/HeadBobber/Head", line_color, body_color, belly_color)
 	_set_krgb(dna, "TailZ0", line_color, body_color, belly_color, hair_color)
 	_set_krgb(dna, "TailZ1", line_color, body_color, belly_color, hair_color)
+	
+	var bellybutton_color := body_color if dna.get("belly") in ["0"] else belly_color
+	_set_krgb(dna, "Bellybutton", line_color, bellybutton_color)
 	
 	var cheek_skin_color := belly_color if dna.get("head") in ["2", "3", "5"] else body_color
 	var cheek_eye_color := belly_color if dna.get("head") in ["2", "3", "4", "5"] else body_color

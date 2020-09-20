@@ -3,7 +3,7 @@ class_name CreatureDef
 Stores information about a creature such as their name, appearance, and dialog.
 """
 
-const CREATURE_DATA_VERSION := "187d"
+const CREATURE_DATA_VERSION := "19a3"
 
 # creature's id, e.g 'boatricia'
 var creature_id: String
@@ -35,6 +35,9 @@ func from_json_dict(json: Dictionary) -> void:
 		CREATURE_DATA_VERSION:
 			# latest version
 			pass
+		"187d":
+			if json.has("dna"):
+				json.get("dna")["bellybutton"] = "0"
 		"170e":
 			# old save data might have an empty array; we need to overwrite this with an empty dictionary to avoid
 			# type issues

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://assets/main/world/creature/1/collar-packed.png" type="Texture" id=23]
 [ext_resource path="res://assets/main/world/creature/1/tail-z1-packed.png" type="Texture" id=24]
 [ext_resource path="res://assets/main/world/creature/5/head-packed.png" type="Texture" id=25]
+[ext_resource path="res://assets/main/world/creature/4/bellybutton-packed.png" type="Texture" id=26]
 
 [node name="MoodDemo" type="Node"]
 script = ExtResource( 3 )
@@ -43,6 +44,7 @@ scale = Vector2( 3, 3 )
 dna = {
 "belly": "1",
 "belly_rgb": "ffa86d",
+"bellybutton": "4",
 "body": "1",
 "body_rgb": "0b45a6",
 "cheek": "1",
@@ -61,6 +63,8 @@ dna = {
 "nose": "3",
 "property:BellyColors/Viewport/Body:belly": "1",
 "property:BellyColors:belly": "1",
+"property:Bellybutton:frame_data": "res://assets/main/world/creature/4/bellybutton-packed.json",
+"property:Bellybutton:texture": ExtResource( 26 ),
 "property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
 "property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 8 ),
 "property:Collar:frame_data": "res://assets/main/world/creature/1/collar-packed.json",
@@ -107,6 +111,8 @@ dna = {
 "property:TailZ0:texture": ExtResource( 12 ),
 "property:TailZ1:frame_data": "res://assets/main/world/creature/1/tail-z1-packed.json",
 "property:TailZ1:texture": ExtResource( 24 ),
+"shader:Bellybutton:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Bellybutton:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Body:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Body:green": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Body:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
