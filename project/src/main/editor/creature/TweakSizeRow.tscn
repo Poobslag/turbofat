@@ -5,7 +5,6 @@
 [ext_resource path="res://assets/main/editor/creature/edit.png" type="Texture" id=3]
 [ext_resource path="res://src/main/editor/creature/tweak-size-row.gd" type="Script" id=4]
 
-
 [node name="Size" type="HBoxContainer"]
 margin_top = 394.0
 margin_right = 306.0

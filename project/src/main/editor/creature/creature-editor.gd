@@ -17,13 +17,6 @@ const RANDOM_COLORS := ColorMode.RANDOM_COLORS
 const THEME_COLORS := ColorMode.THEME_COLORS
 const SIMILAR_COLORS := ColorMode.SIMILAR_COLORS
 
-# weighted distribution of 'fatnesses' in the range [1.0, 10.0]. most creatures are skinny.
-const FATNESSES := [
-	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
-	1.1, 1.2, 1.3, 1.5,
-	1.8, 2.3,
-]
-
 var _rng := RandomNumberGenerator.new()
 var _next_line_color_index := 0
 
@@ -124,7 +117,7 @@ func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary
 			creature.creature_name = _name_generator.generate_name()
 			creature.creature_short_name = NameUtils.sanitize_short_name(creature.creature_name)
 		"fatness":
-			var new_fatnesses := FATNESSES.duplicate()
+			var new_fatnesses := Global.FATNESSES.duplicate()
 			while new_fatnesses.has(creature.get_visual_fatness()):
 				new_fatnesses.erase(creature.get_visual_fatness())
 			var new_fatness: float = Utils.rand_value(new_fatnesses)
@@ -259,7 +252,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 			creature.creature_name = _name_generator.generate_name()
 			creature.creature_short_name = NameUtils.sanitize_short_name(creature.creature_name)
 		"fatness":
-			var new_fatnesses := FATNESSES.duplicate()
+			var new_fatnesses := Global.FATNESSES.duplicate()
 			while new_fatnesses.has(creature.get_visual_fatness()):
 				new_fatnesses.erase(creature.get_visual_fatness())
 			var new_fatness: float = Utils.rand_value(new_fatnesses)
