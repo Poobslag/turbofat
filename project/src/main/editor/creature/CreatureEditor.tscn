@@ -1792,8 +1792,9 @@ window_title = "Open a File"
 mode = 0
 access = 2
 filters = PoolStringArray( "*.json" )
-current_dir = "/workspace/turbofat/project"
-current_path = "/workspace/turbofat/project/"
+current_dir = "/"
+current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
+current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
 
 [node name="Export" type="FileDialog" parent="Ui/Dialogs"]
 anchor_left = 0.5
@@ -1807,8 +1808,9 @@ margin_bottom = 480.0
 popup_exclusive = true
 window_title = "Export Creature"
 access = 2
-current_dir = "/workspace/turbofat/project"
-current_path = "/workspace/turbofat/project/"
+current_dir = "/"
+current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
+current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
 
 [node name="Error" type="AcceptDialog" parent="Ui/Dialogs"]
 margin_right = 250.0

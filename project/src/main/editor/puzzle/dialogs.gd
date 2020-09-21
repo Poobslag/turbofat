@@ -10,15 +10,15 @@ func _show_save_load_not_supported_error() -> void:
 	$Error.popup_centered()
 
 
-func _on_OpenResourceDialog_file_selected(path: String) -> void:
+func _on_OpenResource_file_selected(path: String) -> void:
 	_level_editor.load_scenario(path)
 
 
-func _on_OpenFileDialog_file_selected(path: String) -> void:
+func _on_OpenFile_file_selected(path: String) -> void:
 	_level_editor.load_scenario(path)
 
 
-func _on_SaveDialog_file_selected(path: String) -> void:
+func _on_Save_file_selected(path: String) -> void:
 	_level_editor.save_scenario(path)
 
 
@@ -27,11 +27,12 @@ func _on_OpenFile_pressed() -> void:
 		_show_save_load_not_supported_error()
 		return
 	
-	$OpenFileDialog.popup_centered()
+	Utils.assign_default_dialog_path($OpenFile, "res://assets/main/puzzle/scenario/")
+	$OpenFile.popup_centered()
 
 
 func _on_OpenResource_pressed() -> void:
-	$OpenResourceDialog.popup_centered()
+	$OpenResource.popup_centered()
 
 
 func _on_Save_pressed() -> void:
@@ -39,6 +40,7 @@ func _on_Save_pressed() -> void:
 		_show_save_load_not_supported_error()
 		return
 	
+	Utils.assign_default_dialog_path($Save, "res://assets/main/puzzle/scenario/")
 	var file_root := StringUtils.sanitize_file_root(_level_editor.scenario_name.text)
-	$SaveDialog.current_file = ScenarioSettings.scenario_filename(file_root)
-	$SaveDialog.popup_centered()
+	$Save.current_file = ScenarioSettings.scenario_filename(file_root)
+	$Save.popup_centered()

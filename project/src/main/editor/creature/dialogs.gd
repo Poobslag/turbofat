@@ -17,6 +17,7 @@ func _on_ImportButton_pressed() -> void:
 		_show_import_export_not_supported_error()
 		return
 	
+	Utils.assign_default_dialog_path($Import, "res://assets/main/creatures/secondary/")
 	$Import.popup_centered()
 
 
@@ -38,6 +39,7 @@ func _on_ExportButton_pressed() -> void:
 		_show_import_export_not_supported_error()
 		return
 	
+	Utils.assign_default_dialog_path($Export, "res://assets/main/creatures/secondary/")
 	var exported_creature: Creature = _creature_editor.center_creature
 	var sanitized_creature_name := StringUtils.sanitize_file_root(exported_creature.creature_short_name)
 	$Export.current_file = "%s.json" % sanitized_creature_name
