@@ -239,6 +239,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/editor/puzzle/level-editor.gd"
 }, {
+"base": "Reference",
+"class": "LevelLock",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/level-lock.gd"
+}, {
 "base": "Button",
 "class": "LevelSelectButton",
 "language": "GDScript",
@@ -538,6 +543,11 @@ _global_script_classes=[ {
 "class": "Wobbler",
 "language": "GDScript",
 "path": "res://src/main/puzzle/wobbler.gd"
+}, {
+"base": "Reference",
+"class": "WorldLocks",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/world-locks.gd"
 } ]
 _global_script_class_icons={
 "ActionButton": "",
@@ -586,6 +596,7 @@ _global_script_class_icons={
 "LevelChunk": "",
 "LevelChunkControl": "",
 "LevelEditor": "",
+"LevelLock": "",
 "LevelSelectButton": "",
 "LineClearer": "",
 "LockAlleleButton": "",
@@ -645,7 +656,8 @@ _global_script_class_icons={
 "TutorialMessage": "",
 "Utils": "",
 "VolumeSettings": "",
-"Wobbler": ""
+"Wobbler": "",
+"WorldLocks": ""
 }
 
 [application]

@@ -1,0 +1,102 @@
+{
+  "worlds": [
+    {
+      "id": "world0",
+      "name": "Chocolava Canyon",
+      "levels": [
+        {
+          "id": "placeholder01",
+          "creature_id": "ebe",
+          "groups": "choco_intro"
+        },
+        {
+          "id": "placeholder02",
+          "creature_id": "bort",
+          "groups": "choco_intro",
+          "locked_until": "level_finished placeholder01"
+        },
+        {
+          "id": "boatricia1",
+          "creature_id": "boatricia",
+          "level_num": 1,
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "boatricia2",
+          "creature_id": "boatricia",
+          "level_num": 2,
+          "locked_until": "level_finished boatricia1",
+          "groups": "choco_main"
+        },
+        {
+          "id": "five-customers-no-vegetables",
+          "creature_id": "ebe",
+          "level_num": 1,
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder03",
+          "creature_id": "bort",
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder04",
+          "creature_id": "boatricia",
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder05",
+          "creature_id": "boatricia",
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder06",
+          "creature_id": "ebe",
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder07",
+          "creature_id": "ebe",
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder08",
+          "creature_id": "bort",
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder09",
+          "creature_id": "bort",
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder11",
+          "creature_id": "ebe",
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder12",
+          "creature_id": "boatricia",
+          "locked_until": "group_finished choco_intro",
+          "groups": "choco_main"
+        },
+        {
+          "id": "placeholder10",
+          "creature_id": "bort",
+          "locked_until": "group_finished choco_main 5"
+        }
+      ],
+      "last_level": "placeholder10"
+    }
+  ]
+}
