@@ -44,8 +44,8 @@ project/assets/main/puzzle/move.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingr
 project/assets/main/puzzle/presquish.wav "Foley Rubber Glove 1" by Epidemic Sound
 project/assets/main/puzzle/rotate0.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 project/assets/main/puzzle/rotate1.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
-project/assets/main/puzzle/scenario/tutorial-section-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 06.wav"
-project/assets/main/puzzle/scenario/tutorial-task-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"
+project/assets/main/puzzle/tutorial/tutorial-section-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 06.wav"
+project/assets/main/puzzle/tutorial/tutorial-task-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"
 project/assets/main/puzzle/smash.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
 project/assets/main/puzzle/veg-erase.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Squish_Vegetable_02.wav" 
 project/assets/main/ui/chat/emote-*.wav "Developed using Jonathan Murphy's TS-808 emulator, licensed under the Creative Commons Attribution-Noncommercial-NoDerivative Works 3.0 Australia License. Consider donating at http://tactilesounds.blogspot.com/"
