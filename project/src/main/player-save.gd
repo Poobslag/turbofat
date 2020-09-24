@@ -7,7 +7,7 @@ This data includes how well they've done on each level and how much money they'v
 
 # Current version for saved player data. Should be updated if and only if the player format changes.
 # This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const PLAYER_DATA_VERSION := "199c"
+const PLAYER_DATA_VERSION := "19c5"
 
 var rolling_backups := RollingBackups.new()
 
@@ -85,17 +85,17 @@ func save_player_data() -> void:
 	save_json.append(generic_data("gameplay_settings", PlayerData.gameplay_settings.to_json_dict()).to_json_dict())
 	save_json.append(generic_data("volume_settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
 	save_json.append(generic_data("touch_settings", PlayerData.touch_settings.to_json_dict()).to_json_dict())
-	for scenario_name in PlayerData.scenario_history.scenario_names():
+	for level_name in PlayerData.level_history.level_names():
 		var rank_results_json := []
-		for rank_result in PlayerData.scenario_history.results(scenario_name):
+		for rank_result in PlayerData.level_history.results(level_name):
 			rank_results_json.append(rank_result.to_json_dict())
-		save_json.append(named_data("scenario_history", scenario_name, rank_results_json).to_json_dict())
+		save_json.append(named_data("level_history", level_name, rank_results_json).to_json_dict())
 	save_json.append(generic_data("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
 	save_json.append(generic_data("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("successful_scenarios",
-			PlayerData.scenario_history.successful_scenarios).to_json_dict())
-	save_json.append(generic_data("finished_scenarios",
-			PlayerData.scenario_history.finished_scenarios).to_json_dict())
+	save_json.append(generic_data("successful_levels",
+			PlayerData.level_history.successful_levels).to_json_dict())
+	save_json.append(generic_data("finished_levels",
+			PlayerData.level_history.finished_levels).to_json_dict())
 	FileUtils.write_file(current_player_data_filename, Utils.print_json(save_json))
 	rolling_backups.rotate_backups()
 
@@ -154,7 +154,7 @@ func _load_player_data_from_file(filename: String) -> bool:
 Populates the player's in-memory data based on a single line from their save file.
 
 Parameters:
-	'type': A string unique to each type of data (scenario-data, player-data)
+	'type': A string unique to each type of data (level-data, player-data)
 	'key': A string identifying a specific data item (sophie, marathon-normal)
 	'json_value': The value object (array, dictionary, string) containing the data
 """
@@ -167,27 +167,27 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"player_info":
 			var value: Dictionary = json_value
 			PlayerData.money = value.get("money", 0)
-		"scenario_history":
+		"level_history":
 			var value: Array = json_value
 			# load the values from oldest to newest; that way the newest one is at the front
 			value.invert()
 			for rank_result_json in value:
 				var rank_result := RankResult.new()
 				rank_result.from_json_dict(rank_result_json)
-				PlayerData.scenario_history.add(key, rank_result)
-			PlayerData.scenario_history.prune(key)
+				PlayerData.level_history.add(key, rank_result)
+			PlayerData.level_history.prune(key)
 		"chat_history":
 			var value: Dictionary = json_value
 			PlayerData.chat_history.from_json_dict(value)
 		"creature_library":
 			var value: Dictionary = json_value
 			PlayerData.creature_library.from_json_dict(value)
-		"finished_scenarios":
+		"finished_levels":
 			var value: Dictionary = json_value
-			PlayerData.scenario_history.finished_scenarios = value
-		"successful_scenarios":
+			PlayerData.level_history.finished_levels = value
+		"successful_levels":
 			var value: Dictionary = json_value
-			PlayerData.scenario_history.successful_scenarios = value
+			PlayerData.level_history.successful_levels = value
 		"gameplay_settings":
 			var value: Dictionary = json_value
 			PlayerData.gameplay_settings.from_json_dict(value)

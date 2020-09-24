@@ -1,0 +1,8 @@
+{
+  "version": "19c5",
+  "start_speed": "0",
+  "finish_condition": {
+    "type": "score",
+    "value": "200"
+  }
+}

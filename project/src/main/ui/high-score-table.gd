@@ -6,8 +6,8 @@ A table which displays the player's high scores in practice mode.
 Scores are separated by mode and difficulty. We also keep daily scores separate.
 """
 
-# scenario to display high scores for
-var _scenario: ScenarioSettings setget set_scenario
+# level to display high scores for
+var _level: LevelSettings setget set_level
 
 # if true, only performances with today's date are included
 export (bool) var daily := false setget set_daily
@@ -25,10 +25,10 @@ func set_daily(new_daily: bool) -> void:
 
 
 """
-Sets the scenario to display high scores for.
+Sets the level to display high scores for.
 """
-func set_scenario(new_scenario: ScenarioSettings) -> void:
-	_scenario = new_scenario
+func set_level(new_level: LevelSettings) -> void:
+	_level = new_level
 	_refresh_contents()
 
 
@@ -46,10 +46,10 @@ func _clear_rows() -> void:
 Adds new rows to the grid container.
 """
 func _add_rows() -> void:
-	if not _scenario:
+	if not _level:
 		return
 	
-	for best_result in PlayerData.scenario_history.best_results(_scenario.id, daily):
+	for best_result in PlayerData.level_history.best_results(_level.id, daily):
 		_add_row(rank_result_row(best_result, daily))
 
 

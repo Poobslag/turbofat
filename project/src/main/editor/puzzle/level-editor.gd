@@ -1,51 +1,51 @@
 class_name LevelEditor
 extends Control
 """
-A graphical level editor which lets players create, load and save scenarios.
+A graphical level editor which lets players create, load and save levels.
 
 Full instructions are available at https://github.com/Poobslag/turbofat/wiki/level-editor
 """
 
-const DEFAULT_SCENARIO := "ultra-normal"
+const DEFAULT_LEVEL := "ultra-normal"
 
-# scenario scene currently being tested
+# level scene currently being tested
 var _test_scene: Node
 
 onready var PuzzleScene := preload("res://src/main/puzzle/Puzzle.tscn")
 
-onready var scenario_name := $HBoxContainer/SideButtons/ScenarioName
-onready var _scenario_json := $HBoxContainer/SideButtons/Json
+onready var level_name := $HBoxContainer/SideButtons/LevelName
+onready var _level_json := $HBoxContainer/SideButtons/Json
 
 func _ready() -> void:
 	if not ResourceCache.is_done():
 		# when launched standalone, we don't load creature resources (they're slow)
 		ResourceCache.minimal_resources = true
 	
-	var scenario_text := FileUtils.get_file_as_text(ScenarioSettings.scenario_path(DEFAULT_SCENARIO))
-	_scenario_json.text = scenario_text
-	_scenario_json.refresh_tile_map()
-	scenario_name.text = DEFAULT_SCENARIO
+	var level_text := FileUtils.get_file_as_text(LevelSettings.level_path(DEFAULT_LEVEL))
+	_level_json.text = level_text
+	_level_json.refresh_tile_map()
+	level_name.text = DEFAULT_LEVEL
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 
 
-func save_scenario(path: String) -> void:
-	FileUtils.write_file(path, _scenario_json.text)
+func save_level(path: String) -> void:
+	FileUtils.write_file(path, _level_json.text)
 
 
-func load_scenario(path: String) -> void:
-	var scenario_text := FileUtils.get_file_as_text(path)
-	_scenario_json.text = scenario_text
-	_scenario_json.refresh_tile_map()
-	scenario_name.text = ScenarioSettings.scenario_name(path)
+func load_level(path: String) -> void:
+	var level_text := FileUtils.get_file_as_text(path)
+	_level_json.text = level_text
+	_level_json.refresh_tile_map()
+	level_name.text = LevelSettings.level_name(path)
 
 
 func _start_test() -> void:
-	var settings := ScenarioSettings.new()
-	settings.load_from_text(scenario_name.text, _scenario_json.text)
-	Scenario.start_scenario(settings)
+	var settings := LevelSettings.new()
+	settings.load_from_text(level_name.text, _level_json.text)
+	Level.start_level(settings)
 	_test_scene = PuzzleScene.instance()
 	
-	# back button should close scenario; shouldn't redirect us to a new scene
+	# back button should close level; shouldn't redirect us to a new scene
 	Breadcrumb.push_trail("res://src/main/editor/puzzle/LevelEditor.tscn::test")
 	add_child(_test_scene)
 	
@@ -70,7 +70,7 @@ func _on_Test_pressed() -> void:
 
 func _on_Breadcrumb_trail_popped(prev_path: String) -> void:
 	if prev_path == "res://src/main/editor/puzzle/LevelEditor.tscn::test":
-		# player exited the scenario under test; stop the test
+		# player exited the level under test; stop the test
 		_stop_test()
 	elif not Breadcrumb.trail:
 		# player exited the level editor when it was launched standalone; exit to loading screen to avoid jitter

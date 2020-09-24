@@ -22,12 +22,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "BlocksDuringRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/blocks-during-rules.gd"
+"path": "res://src/main/puzzle/level/blocks-during-rules.gd"
 }, {
 "base": "Reference",
 "class": "BlocksStartRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/blocks-start-rules.gd"
+"path": "res://src/main/puzzle/level/blocks-start-rules.gd"
 }, {
 "base": "Node",
 "class": "BoxBuilder",
@@ -102,7 +102,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "ComboBreakRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/combo-break-rules.gd"
+"path": "res://src/main/puzzle/level/combo-break-rules.gd"
 }, {
 "base": "Node",
 "class": "ComboTracker",
@@ -240,6 +240,11 @@ _global_script_classes=[ {
 "path": "res://src/main/editor/puzzle/level-editor.gd"
 }, {
 "base": "Reference",
+"class": "LevelHistory",
+"language": "GDScript",
+"path": "res://src/main/puzzle/level/level-history.gd"
+}, {
+"base": "Reference",
 "class": "LevelLock",
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/level-lock.gd"
@@ -248,6 +253,11 @@ _global_script_classes=[ {
 "class": "LevelSelectButton",
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/level-select-button.gd"
+}, {
+"base": "Reference",
+"class": "LevelSettings",
+"language": "GDScript",
+"path": "res://src/main/puzzle/level/level-settings.gd"
 }, {
 "base": "Node",
 "class": "LineClearer",
@@ -262,7 +272,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "LoseConditionRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/lose-condition-rules.gd"
+"path": "res://src/main/puzzle/level/lose-condition-rules.gd"
 }, {
 "base": "Control",
 "class": "MainMenu",
@@ -277,7 +287,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "Milestone",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/milestone.gd"
+"path": "res://src/main/puzzle/level/milestone.gd"
 }, {
 "base": "Control",
 "class": "MilestoneHud",
@@ -332,7 +342,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "OtherRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/other-rules.gd"
+"path": "res://src/main/puzzle/level/other-rules.gd"
 }, {
 "base": "Control",
 "class": "OverworldUi",
@@ -392,7 +402,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "PieceTypeRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/piece-type-rules.gd"
+"path": "res://src/main/puzzle/level/piece-type-rules.gd"
 }, {
 "base": "Creature",
 "class": "Player",
@@ -437,7 +447,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "RankRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/rank-rules.gd"
+"path": "res://src/main/puzzle/level/rank-rules.gd"
 }, {
 "base": "Label",
 "class": "RectFitLabel",
@@ -457,7 +467,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "RuleParser",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/rule-parser.gd"
+"path": "res://src/main/puzzle/level/rule-parser.gd"
 }, {
 "base": "Reference",
 "class": "SaveItem",
@@ -465,19 +475,9 @@ _global_script_classes=[ {
 "path": "res://src/main/save-item.gd"
 }, {
 "base": "Reference",
-"class": "ScenarioHistory",
-"language": "GDScript",
-"path": "res://src/main/puzzle/scenario/scenario-history.gd"
-}, {
-"base": "Reference",
-"class": "ScenarioSettings",
-"language": "GDScript",
-"path": "res://src/main/puzzle/scenario/scenario-settings.gd"
-}, {
-"base": "Reference",
 "class": "ScoreRules",
 "language": "GDScript",
-"path": "res://src/main/puzzle/scenario/score-rules.gd"
+"path": "res://src/main/puzzle/level/score-rules.gd"
 }, {
 "base": "CanvasLayer",
 "class": "SettingsMenu",
@@ -596,8 +596,10 @@ _global_script_class_icons={
 "LevelChunk": "",
 "LevelChunkControl": "",
 "LevelEditor": "",
+"LevelHistory": "",
 "LevelLock": "",
 "LevelSelectButton": "",
+"LevelSettings": "",
 "LineClearer": "",
 "LockAlleleButton": "",
 "LoseConditionRules": "",
@@ -641,8 +643,6 @@ _global_script_class_icons={
 "RollingBackups": "",
 "RuleParser": "",
 "SaveItem": "",
-"ScenarioHistory": "",
-"ScenarioSettings": "",
 "ScoreRules": "",
 "SettingsMenu": "",
 "SkillTallyItem": "",
@@ -688,7 +688,7 @@ PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"
 PuzzleScore="*res://src/main/puzzle/puzzle-score.gd"
 ResourceCache="*res://src/main/ResourceCache.tscn"
-Scenario="*res://src/main/puzzle/scenario/scenario.gd"
+Level="*res://src/main/puzzle/level/level.gd"
 
 [debug]
 

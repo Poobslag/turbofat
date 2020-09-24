@@ -6,7 +6,7 @@ A panel on the level select screen which shows level descriptions.
 """
 When an unlocked level is selected, we display the level's description.
 """
-func _on_LevelButtons_unlocked_level_selected(settings: ScenarioSettings) -> void:
+func _on_LevelButtons_unlocked_level_selected(settings: LevelSettings) -> void:
 	$MarginContainer/Label.text = settings.description
 
 

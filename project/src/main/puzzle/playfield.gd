@@ -42,14 +42,14 @@ onready var tile_map := $TileMapClip/TileMap
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
+	Level.connect("settings_changed", self, "_on_Level_settings_changed")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
-	_prepare_scenario_blocks()
+	_prepare_level_blocks()
 
 
 func _physics_process(delta: float) -> void:
 	if PuzzleScore.game_active:
-		PuzzleScore.scenario_performance.seconds += delta
+		PuzzleScore.level_performance.seconds += delta
 	
 	if $BoxBuilder.remaining_box_build_frames > 0:
 		if not $BoxBuilder.is_physics_processing():
@@ -117,22 +117,22 @@ func break_combo() -> void:
 
 
 """
-Resets the playfield to the scenario's initial state.
+Resets the playfield to the level's initial state.
 """
-func _prepare_scenario_blocks() -> void:
+func _prepare_level_blocks() -> void:
 	tile_map.clear()
-	var blocks_start: BlocksStartRules = Scenario.settings.blocks_start
+	var blocks_start: BlocksStartRules = Level.settings.blocks_start
 	for cell in blocks_start.used_cells:
 		tile_map.set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
 	emit_signal("blocks_prepared")
 
 
 func _on_PuzzleScore_game_prepared() -> void:
-	_prepare_scenario_blocks()
+	_prepare_level_blocks()
 
 
-func _on_Scenario_settings_changed() -> void:
-	_prepare_scenario_blocks()
+func _on_Level_settings_changed() -> void:
+	_prepare_level_blocks()
 
 
 func _on_BoxBuilder_box_built(rect: Rect2, color_int: int) -> void:

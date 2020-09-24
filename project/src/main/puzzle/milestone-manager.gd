@@ -5,7 +5,7 @@ Tracks the player's progress towards milestones.
 Milestones can involve reaching a certain score, clearing a certain number of lines or surviving a certain number of
 seconds.
 
-Reaching a milestone can increase the level, end the scenario, or trigger a success condition.
+Reaching a milestone can increase the speed, end the level, or trigger a success condition.
 """
 
 func _ready() -> void:
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if PuzzleScore.game_active and milestone_met(Scenario.settings.finish_condition):
+	if PuzzleScore.game_active and milestone_met(Level.settings.finish_condition):
 		PuzzleScore.trigger_finish()
 
 
@@ -46,11 +46,11 @@ func milestone_progress(milestone: Milestone) -> float:
 				if PuzzleScore.get_creature_score() == 0:
 					progress -= 0.5
 		Milestone.LINES:
-			progress = PuzzleScore.scenario_performance.lines
+			progress = PuzzleScore.level_performance.lines
 		Milestone.SCORE:
 			progress = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
 		Milestone.TIME_OVER, Milestone.TIME_UNDER:
-			progress = PuzzleScore.scenario_performance.seconds
+			progress = PuzzleScore.level_performance.seconds
 	return progress
 
 
@@ -60,33 +60,33 @@ Returns the previously completed milestone.
 This controls the speed at which the pieces move.
 """
 func prev_milestone() -> Milestone:
-	return Scenario.settings.level_ups[PuzzleScore.level_index]
+	return Level.settings.speed_ups[PuzzleScore.speed_index]
 
 
 """
 Returns the next upcoming milestone. This is reflected in the UI.
 
-The next upcoming milestone could be a 'level up' if this scenario has multiple levels, or it could be the scenario's
+The next upcoming milestone could be a 'speed up' if this level has multiple speeds, or it could be the level's
 finish condition.
 """
 func next_milestone() -> Milestone:
 	var milestone: Milestone
-	if PuzzleScore.level_index + 1 < Scenario.settings.level_ups.size():
-		milestone = Scenario.settings.level_ups[PuzzleScore.level_index + 1]
+	if PuzzleScore.speed_index + 1 < Level.settings.speed_ups.size():
+		milestone = Level.settings.speed_ups[PuzzleScore.speed_index + 1]
 	else:
-		milestone = Scenario.settings.finish_condition
+		milestone = Level.settings.finish_condition
 	return milestone
 
 
 """
-If the player reached a milestone, we increase the level.
+If the player reached a milestone, we increase the speed.
 """
 func _on_PuzzleScore_score_changed() -> void:
-	var new_level_index: int = PuzzleScore.level_index
+	var new_speed_index: int = PuzzleScore.speed_index
 	
-	while new_level_index + 1 < Scenario.settings.level_ups.size() \
-			and milestone_met(Scenario.settings.level_ups[new_level_index + 1]):
-		new_level_index += 1
+	while new_speed_index + 1 < Level.settings.speed_ups.size() \
+			and milestone_met(Level.settings.speed_ups[new_speed_index + 1]):
+		new_speed_index += 1
 	
-	if PuzzleScore.level_index != new_level_index:
-		PuzzleScore.level_index = new_level_index
+	if PuzzleScore.speed_index != new_speed_index:
+		PuzzleScore.speed_index = new_speed_index

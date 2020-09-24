@@ -7,7 +7,7 @@ This data includes how well they've done on each level and how much money they'v
 
 signal money_changed(value)
 
-var scenario_history := ScenarioHistory.new()
+var level_history := LevelHistory.new()
 var chat_history := ChatHistory.new()
 
 var creature_library := CreatureLibrary.new()
@@ -22,7 +22,7 @@ var money := 0 setget set_money
 Resets the player's in-memory data to a default state.
 """
 func reset() -> void:
-	scenario_history.reset()
+	level_history.reset()
 	chat_history.reset()
 	creature_library.reset()
 	

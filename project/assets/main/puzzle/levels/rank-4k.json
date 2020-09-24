@@ -1,0 +1,15 @@
+{
+  "version": "19c5",
+  "success_condition": {
+    "type": "score",
+    "value": "300"
+  },
+  "start_speed": "4",
+  "finish_condition": {
+    "type": "customers",
+    "value": "4"
+  },
+  "rank": [
+    "success_bonus 2"
+  ]
+}

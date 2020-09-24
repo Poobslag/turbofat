@@ -29,8 +29,8 @@ var _columns := []
 # current column width; shrinks when zoomed out
 var _column_width := COLUMN_WIDTH_SMALL
 
-# mapping from scenario IDs to ScenarioSettings instances
-var _scenario_settings_by_id: Dictionary
+# mapping from level IDs to LevelSettings instances
+var _level_settings_by_id: Dictionary
 
 var _duration_calculator := DurationCalculator.new()
 
@@ -68,9 +68,9 @@ func _add_level_buttons() -> void:
 		add_child(vbox_container)
 	
 	for level_id in _world_locks.level_ids:
-		var scenario_settings := ScenarioSettings.new()
-		scenario_settings.load_from_resource(level_id)
-		_scenario_settings_by_id[level_id] = scenario_settings
+		var level_settings := LevelSettings.new()
+		level_settings.load_from_resource(level_id)
+		_level_settings_by_id[level_id] = level_settings
 	
 	for i in range(_world_locks.level_ids.size()):
 		var level_id: String = _world_locks.level_ids[i]
@@ -107,11 +107,11 @@ func _misalign_columns() -> void:
 Creates a level select button for the specified level.
 """
 func _level_select_button(level_id: String) -> LevelSelectButton:
-	var scenario_settings: ScenarioSettings = _scenario_settings_by_id[level_id]
+	var level_settings: LevelSettings = _level_settings_by_id[level_id]
 	var level_select_button: LevelSelectButton = LevelSelectButtonScene.instance()
 	level_select_button.level_column_width = _column_width
 	
-	var duration := _duration_calculator.duration(scenario_settings)
+	var duration := _duration_calculator.duration(level_settings)
 	if duration < 100:
 		level_select_button.level_duration = LevelSelectButton.SHORT
 	elif duration < 200:
@@ -122,17 +122,17 @@ func _level_select_button(level_id: String) -> LevelSelectButton:
 	var level_lock: LevelLock = _world_locks.level_locks[level_id]
 	level_select_button.lock_status = level_lock.status
 	level_select_button.keys_needed = level_lock.keys_needed
-	level_select_button.level_title = scenario_settings.title
-	level_select_button.connect("scenario_started", self,
-			"_on_LevelSelectButton_scenario_started", [scenario_settings])
-	level_select_button.connect("focus_entered", self, "_on_LevelSelectButton_focus_entered", [scenario_settings])
+	level_select_button.level_title = level_settings.title
+	level_select_button.connect("level_started", self,
+			"_on_LevelSelectButton_level_started", [level_settings])
+	level_select_button.connect("focus_entered", self, "_on_LevelSelectButton_focus_entered", [level_settings])
 	return level_select_button
 
 
 """
-When the player clicks a level button twice, we launch the selected scenario
+When the player clicks a level button twice, we launch the selected level
 """
-func _on_LevelSelectButton_scenario_started(settings: ScenarioSettings) -> void:
+func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 	var creature_id := ""
 	if _world_locks.level_locks.has(settings.id):
 		var level_lock: LevelLock = _world_locks.level_locks.get(settings.id)
@@ -143,18 +143,18 @@ func _on_LevelSelectButton_scenario_started(settings: ScenarioSettings) -> void:
 		var level_lock: LevelLock = _world_locks.level_locks.get(settings.id)
 		level_num = level_lock.level_num
 	
-	Scenario.set_launched_scenario(settings.id, creature_id, level_num)
+	Level.set_launched_level(settings.id, creature_id, level_num)
 	
 	if creature_id and level_num >= 1:
 		Breadcrumb.push_trail(Global.SCENE_OVERWORLD)
 	else:
-		Scenario.push_scenario_trail()
+		Level.push_level_trail()
 
 
 """
 When the player clicks a level button once, we emit a signal to show more information.
 """
-func _on_LevelSelectButton_focus_entered(settings: ScenarioSettings) -> void:
+func _on_LevelSelectButton_focus_entered(settings: LevelSettings) -> void:
 	if _world_locks.is_locked(settings.id):
 		emit_signal("locked_level_selected", _world_locks.level_locks[settings.id])
 	else:
@@ -167,9 +167,9 @@ When the player clicks the 'overall' button once, we emit a signal to show more 
 func _on_OverallButton_focus_entered() -> void:
 	# populate an array of level ranks. incomplete levels are treated as rank 999
 	var ranks := []
-	for settings_obj in _scenario_settings_by_id.values():
-		var settings: ScenarioSettings = settings_obj
-		var best_result := PlayerData.scenario_history.best_result(settings.id)
+	for settings_obj in _level_settings_by_id.values():
+		var settings: LevelSettings = settings_obj
+		var best_result := PlayerData.level_history.best_result(settings.id)
 		var rank := 999.0
 		if best_result:
 			rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank

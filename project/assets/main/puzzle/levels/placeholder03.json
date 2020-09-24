@@ -1,0 +1,69 @@
+{
+  "version": "19c5",
+  "start_speed": "3",
+  "title":"It's Square to be Square",
+  "description": "Can you handle all this sugar, or will you go down swinging?",
+  "finish_condition": {
+    "type": "score",
+    "value": "300"
+  },
+  "piece_types": [
+    "piece_j",
+    "piece_l",
+    "piece_o",
+    "piece_o",
+    "piece_v"
+  ],
+  "blocks_start": {
+    "tiles": [
+      {
+        "pos": "0 17",
+        "tile": "1 10 4"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 14 4"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 14 4"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 6 4"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 15 4"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 15 4"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 9 4"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 13 4"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 13 4"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 5 4"
+      }
+    ]
+  }
+}

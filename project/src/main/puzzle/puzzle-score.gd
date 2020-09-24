@@ -24,7 +24,7 @@ signal game_ended
 # emitted several seconds after the game ends
 signal after_game_ended
 
-signal level_index_changed(value)
+signal speed_index_changed(value)
 
 signal added_line_score(combo_score, box_score)
 signal score_changed
@@ -44,13 +44,13 @@ const LOST := EndResult.LOST
 const FINISHED := EndResult.FINISHED
 const WON := EndResult.WON
 
-# Player's performance on the current scenario
-var scenario_performance := PuzzlePerformance.new()
+# Player's performance on the current level
+var level_performance := PuzzlePerformance.new()
 
-# The scores for each creature in the current scenario (bonuses and line clears)
+# The scores for each creature in the current level (bonuses and line clears)
 var creature_scores := [0]
 
-# The number of line clears for each creature in the current scenario
+# The number of line clears for each creature in the current level
 var creature_line_clears := [0]
 
 # Bonus points awarded during the current combo. This only includes bonuses
@@ -66,8 +66,8 @@ var finish_triggered: bool
 # 'true' if the end has been triggered by dying or meeting a finish condition
 var game_ended: bool
 
-# the level the player is currently on, if the scenario has different levels.
-var level_index: int setget set_level_index
+# the speed the player is currently on, if the level has different speeds.
+var speed_index: int setget set_speed_index
 
 # This is true if the final customer has been fed and we shouldn't rotate to any other customers. It also gets used
 # for tutorials to prevent the instructor from leaving.
@@ -85,16 +85,16 @@ func prepare_and_start_game() -> void:
 	_start_game()
 
 
-func set_level_index(new_level_index: int) -> void:
-	if new_level_index == level_index:
+func set_speed_index(new_speed_index: int) -> void:
+	if new_speed_index == speed_index:
 		return
-	level_index = new_level_index
-	emit_signal("level_index_changed", level_index)
+	speed_index = new_speed_index
+	emit_signal("speed_index_changed", speed_index)
 
 
 func top_out() -> void:
-	scenario_performance.top_out_count += 1
-	if scenario_performance.top_out_count >= Scenario.settings.lose_condition.top_out:
+	level_performance.top_out_count += 1
+	if level_performance.top_out_count >= Level.settings.lose_condition.top_out:
 		make_player_lose()
 	emit_signal("topped_out")
 
@@ -102,8 +102,8 @@ func top_out() -> void:
 func make_player_lose() -> void:
 	if not game_active:
 		return
-	if not Scenario.settings.lose_condition.finish_on_lose:
-		scenario_performance.lost = true
+	if not Level.settings.lose_condition.finish_on_lose:
+		level_performance.lost = true
 	end_game()
 
 
@@ -112,8 +112,8 @@ func end_game() -> void:
 	game_ended = true
 	
 	end_combo()
-	if not scenario_performance.lost:
-		scenario_performance.success = MilestoneManager.milestone_met(Scenario.settings.success_condition)
+	if not level_performance.lost:
+		level_performance.success = MilestoneManager.milestone_met(Level.settings.success_condition)
 	emit_signal("game_ended")
 	yield(get_tree().create_timer(4.2 if WON else 2.2), "timeout")
 	emit_signal("after_game_ended")
@@ -135,24 +135,24 @@ func trigger_finish() -> void:
 """
 Adds points for clearing a line.
 
-Increments persistent data for the current scenario and transient data displayed on the screen.
+Increments persistent data for the current level and transient data displayed on the screen.
 
 Parameters:
 	'combo_score': Bonus points for the current combo.
 	'box_score': Bonus points for any boxes in the line.
 """
 func add_line_score(combo_score: int, box_score: int) -> void:
-	if Scenario.settings.other.tutorial:
+	if Level.settings.other.tutorial:
 		# no money earned during tutorial
 		return
 	
 	if game_active:
-		scenario_performance.combo_score += combo_score
-		scenario_performance.box_score += box_score
+		level_performance.combo_score += combo_score
+		level_performance.box_score += box_score
 		_add_line()
 	else:
 		# boxes left on the screen count towards a 'finish_score'
-		scenario_performance.leftover_score += combo_score + box_score + 1
+		level_performance.leftover_score += combo_score + box_score + 1
 	
 	_add_creature_score(1 + combo_score + box_score)
 	_add_creature_line_clear()
@@ -172,9 +172,9 @@ func end_combo() -> void:
 	elif get_creature_score() == 0:
 		# don't add $0 creatures. creatures don't pay if they owe $0
 		pass
-	elif Scenario.settings.finish_condition.type == Milestone.CUSTOMERS \
-			and PuzzleScore.creature_scores.size() >= Scenario.settings.finish_condition.value:
-		# some scenarios have a limited number of customers
+	elif Level.settings.finish_condition.type == Milestone.CUSTOMERS \
+			and PuzzleScore.creature_scores.size() >= Level.settings.finish_condition.value:
+		# some levels have a limited number of customers
 		no_more_customers = true
 	else:
 		creature_scores.append(0)
@@ -188,26 +188,26 @@ func end_combo() -> void:
 
 
 """
-Reset all score data, such as when starting a scenario over.
+Reset all score data, such as when starting a level over.
 """
 func reset() -> void:
 	creature_scores = [0]
 	creature_line_clears = [0]
 	bonus_score = 0
-	scenario_performance = PuzzlePerformance.new()
-	level_index = 0
-	no_more_customers = Scenario.settings.other.tutorial
+	level_performance = PuzzlePerformance.new()
+	speed_index = 0
+	no_more_customers = Level.settings.other.tutorial
 	
 	emit_signal("score_changed")
-	emit_signal("level_index_changed", 0)
+	emit_signal("speed_index_changed", 0)
 
 
 func get_score() -> int:
-	return scenario_performance.score
+	return level_performance.score
 
 
 func get_lines() -> int:
-	return scenario_performance.lines
+	return level_performance.lines
 
 
 func get_bonus_score() -> int:
@@ -223,9 +223,9 @@ func get_creature_line_clears() -> int:
 
 
 func end_result() -> int:
-	if scenario_performance.lost:
+	if level_performance.lost:
 		return LOST
-	elif MilestoneManager.milestone_met(Scenario.settings.success_condition):
+	elif MilestoneManager.milestone_met(Level.settings.success_condition):
 		return WON
 	else:
 		return FINISHED
@@ -236,11 +236,11 @@ func _prepare_game() -> void:
 	finish_triggered = false
 	game_ended = false
 	
-	if Scenario.settings.other.start_scenario_name:
-		# Load a different scenario to start (used for tutorials)
-		var new_settings := ScenarioSettings.new()
-		new_settings.load_from_resource(Scenario.settings.other.start_scenario_name)
-		Scenario.start_scenario(new_settings)
+	if Level.settings.other.start_level_name:
+		# Load a different level to start (used for tutorials)
+		var new_settings := LevelSettings.new()
+		new_settings.load_from_resource(Level.settings.other.start_level_name)
+		Level.start_level(new_settings)
 	
 	reset()
 	emit_signal("game_prepared")
@@ -256,7 +256,7 @@ func _start_game() -> void:
 
 
 func _add_score(delta: int) -> void:
-	scenario_performance.score += delta
+	level_performance.score += delta
 
 
 func _add_bonus_score(delta: int) -> void:
@@ -264,7 +264,7 @@ func _add_bonus_score(delta: int) -> void:
 
 
 func _add_line() -> void:
-	scenario_performance.lines += 1
+	level_performance.lines += 1
 
 
 func _add_creature_score(delta: int) -> void:

@@ -29,7 +29,7 @@ var text: String
 # The behavior the chatter should perform while saying the text (laughing, sweating, etc)
 var mood: int = Mood.NONE
 
-# Metadata about the chat event, such as whether it should launch a scenario
+# Metadata about the chat event, such as whether it should launch a level
 var meta: Array
 
 # List of string keys corresponding to branches off of this chat event.

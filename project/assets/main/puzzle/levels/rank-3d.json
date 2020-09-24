@@ -1,0 +1,80 @@
+{
+  "version": "19c5",
+  "success_condition": {
+    "type": "score",
+    "value": "1200"
+  },
+  "start_speed": "A1",
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": "1",
+      "speed": "A2"
+    },
+    {
+      "type": "lines",
+      "value": "5",
+      "speed": "A3"
+    },
+    {
+      "type": "lines",
+      "value": "9",
+      "speed": "A4"
+    },
+    {
+      "type": "lines",
+      "value": "13",
+      "speed": "A5"
+    },
+    {
+      "type": "lines",
+      "value": "17",
+      "speed": "A6"
+    },
+    {
+      "type": "lines",
+      "value": "21",
+      "speed": "A7"
+    },
+    {
+      "type": "lines",
+      "value": "25",
+      "speed": "A8"
+    },
+    {
+      "type": "lines",
+      "value": "29",
+      "speed": "A9"
+    },
+    {
+      "type": "lines",
+      "value": "33",
+      "speed": "AA"
+    },
+    {
+      "type": "lines",
+      "value": "37",
+      "speed": "AB"
+    },
+    {
+      "type": "lines",
+      "value": "41",
+      "speed": "AC"
+    },
+    {
+      "type": "lines",
+      "value": "45",
+      "speed": "AD"
+    }
+  ],
+  "finish_condition": {
+    "type": "lines",
+    "value": "100"
+  },
+  "lose_condition": [
+    "top_out 1"
+  ],
+  "rank": [
+    "success_bonus 2"
+  ]
+}

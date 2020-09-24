@@ -1,6 +1,6 @@
 extends Control
 """
-Scene which lets the player repeatedly play a set of scenarios.
+Scene which lets the player repeatedly play a set of levels.
 
 Displays their daily and all-time high scores for each mode, encouraging the player to improve.
 """
@@ -9,12 +9,12 @@ Displays their daily and all-time high scores for each mode, encouraging the pla
 const RANK_TO_UNLOCK := 24.0
 
 """
-Array of scenario categories used to initialize the scene.
+Array of level categories used to initialize the scene.
 [0]: Mode name, used to reference the mode selector
 [1]: Difficulty name, used to populate the difficulty selector
-[2]: Scenario name, used to load the scenario definitions
+[2]: Level name, used to load the level definitions
 """
-const SCENARIO_CATEGORIES := [
+const LEVEL_CATEGORIES := [
 	["Survival", "Normal", "survival_normal"],
 	["Survival", "Hard", "survival_hard"],
 	["Survival", "Expert", "survival_expert"],
@@ -60,39 +60,39 @@ var mode_difficulties: Dictionary
 
 """
 Key: Mode/Difficulty names separated with a space, 'Survival Normal', 'Ultra Hard'
-Value: Scenario names, 'survival_normal', 'ultra_hard'
+Value: Level names, 'survival_normal', 'ultra_hard'
 """
-var scenarios: Dictionary
+var levels: Dictionary
 
 var _rank_lowlights := []
 
 func _ready() -> void:
-	# default mode/difficulty if the player hasn't played a scenario recently
+	# default mode/difficulty if the player hasn't played a level recently
 	var current_mode: String = "Ultra"
 	var current_difficulty: String = "Normal"
 	
-	for category_obj in SCENARIO_CATEGORIES:
+	for category_obj in LEVEL_CATEGORIES:
 		var category: Array = category_obj
 		var mode: String = category[0]
 		var difficulty: String = category[1]
-		var scenario_id: String = category[2]
+		var level_id: String = category[2]
 		if not mode_difficulties.has(mode):
 			mode_difficulties[mode] = []
 		mode_difficulties[mode].append(difficulty)
 		
-		var settings: ScenarioSettings = ScenarioSettings.new()
-		settings.load_from_resource(scenario_id)
-		scenarios["%s %s" % [mode, difficulty]] = settings
+		var settings: LevelSettings = LevelSettings.new()
+		settings.load_from_resource(level_id)
+		levels["%s %s" % [mode, difficulty]] = settings
 		
-		if scenario_id == Scenario.settings.id:
-			# if they've just played a practice mode scenario, we default to that scenario
+		if level_id == Level.settings.id:
+			# if they've just played a practice mode level, we default to that level
 			current_mode = mode
 			current_difficulty = difficulty
 	
 	# grab focus so the player can navigate with the keyboard
 	$VBoxContainer/System/Start.grab_focus()
 	
-	# populate the UI with their selected scenario
+	# populate the UI with their selected level
 	$VBoxContainer/Mode.set_selected_mode(current_mode)
 	_refresh()
 	$VBoxContainer/Difficulty.set_selected_difficulty(current_difficulty)
@@ -103,15 +103,15 @@ func _refresh() -> void:
 	if _get_mode() == "Rank":
 		_calculate_lowlights()
 		$VBoxContainer/Difficulty.set_difficulty_lowlights(_rank_lowlights)
-	$VBoxContainer/Mode.set_scenario(_get_scenario())
-	$VBoxContainer/HighScores.set_scenario(_get_scenario())
+	$VBoxContainer/Mode.set_level(_get_level())
+	$VBoxContainer/HighScores.set_level(_get_level())
 
 
 """
 Calculates the lowlights for rank difficulties, if they have not yet been calculated.
 
 This calculation is complex and involves iterating over all of the player's performances for all of the rank
-scenarios, so we cache the result.
+levels, so we cache the result.
 """
 func _calculate_lowlights() -> void:
 	if _rank_lowlights:
@@ -119,8 +119,8 @@ func _calculate_lowlights() -> void:
 		return
 	
 	for difficulty in mode_difficulties[_get_mode()]:
-		var scenario: ScenarioSettings = scenarios["%s %s" % [_get_mode(), difficulty]]
-		_rank_lowlights.append(not PlayerData.scenario_history.successful_scenarios.has(scenario.id))
+		var level: LevelSettings = levels["%s %s" % [_get_mode(), difficulty]]
+		_rank_lowlights.append(not PlayerData.level_history.successful_levels.has(level.id))
 
 
 func _get_mode() -> String:
@@ -131,8 +131,8 @@ func _get_difficulty() -> String:
 	return $VBoxContainer/Difficulty.get_selected_difficulty()
 
 
-func _get_scenario() -> ScenarioSettings:
-	return scenarios["%s %s" % [_get_mode(), _get_difficulty()]]
+func _get_level() -> LevelSettings:
+	return levels["%s %s" % [_get_mode(), _get_difficulty()]]
 
 
 func _on_Difficulty_difficulty_changed() -> void:
@@ -144,5 +144,5 @@ func _on_Mode_mode_changed() -> void:
 
 
 func _on_Start_pressed() -> void:
-	Scenario.set_launched_scenario(_get_scenario().id)
-	Scenario.push_scenario_trail()
+	Level.set_launched_level(_get_level().id)
+	Level.push_level_trail()

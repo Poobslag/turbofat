@@ -1,0 +1,40 @@
+{
+  "version": "19c5",
+  "success_condition": {
+    "type": "score",
+    "value": "1200"
+  },
+  "start_speed": "A1",
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": "40",
+      "speed": "A2"
+    },
+    {
+      "type": "lines",
+      "value": "60",
+      "speed": "A3"
+    },
+    {
+      "type": "lines",
+      "value": "80",
+      "speed": "A4"
+    },
+    {
+      "type": "lines",
+      "value": "100",
+      "speed": "A5"
+    }
+  ],
+  "finish_condition": {
+    "type": "lines",
+    "value": "180"
+  },
+  "lose_condition": [
+    "top_out 1"
+  ],
+  "rank": [
+    "success_bonus 2"
+  ]
+}

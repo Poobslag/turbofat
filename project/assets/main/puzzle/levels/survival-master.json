@@ -1,0 +1,43 @@
+{
+  "version": "19c5",
+  "start_speed": "FA",
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": "100",
+      "speed": "FB"
+    },
+    {
+      "type": "lines",
+      "value": "150",
+      "speed": "FC"
+    },
+    {
+      "type": "lines",
+      "value": "200",
+      "speed": "FD"
+    },
+    {
+      "type": "lines",
+      "value": "250",
+      "speed": "FE"
+    },
+    {
+      "type": "lines",
+      "value": "300",
+      "speed": "FF"
+    }
+  ],
+  "success_condition": {
+    "type": "lines",
+    "value": "500",
+  },
+  "finish_condition": {
+    "type": "lines",
+    "value": "500",
+    "lenient_value": "300"
+  },
+  "lose_condition": [
+    "top_out 1"
+  ]
+}

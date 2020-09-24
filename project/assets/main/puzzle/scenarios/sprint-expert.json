@@ -1,8 +1,0 @@
-{
-  "version": "1922",
-  "start_level": "F0",
-  "finish_condition": {
-    "type": "time_over",
-    "value": "180"
-  }
-}

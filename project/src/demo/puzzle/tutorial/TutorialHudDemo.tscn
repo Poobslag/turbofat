@@ -11,4 +11,4 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Scenario" parent="." instance=ExtResource( 1 )]
+[node name="Level" parent="." instance=ExtResource( 1 )]

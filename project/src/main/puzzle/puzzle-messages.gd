@@ -91,8 +91,8 @@ func _on_PuzzleScore_after_game_ended() -> void:
 	$Buttons/Settings.show()
 	$Buttons/Back.show()
 	$Buttons/Start.show()
-	if Scenario.settings.other.tutorial or Scenario.settings.other.after_tutorial:
-		if not PuzzleScore.scenario_performance.lost:
+	if Level.settings.other.tutorial or Level.settings.other.after_tutorial:
+		if not PuzzleScore.level_performance.lost:
 			# if they won, make them exit; hide the start button
 			$Buttons/Start.hide()
 			

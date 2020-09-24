@@ -33,8 +33,8 @@ func initialize() -> void:
 """
 Returns true if the level cannot be played, because it is locked.
 """
-func is_locked(scenario_id: String) -> bool:
-	return level_locks[scenario_id].status in [LevelLock.STATUS_SOFT_LOCK, LevelLock.STATUS_HARD_LOCK]
+func is_locked(level_id: String) -> bool:
+	return level_locks[level_id].status in [LevelLock.STATUS_SOFT_LOCK, LevelLock.STATUS_HARD_LOCK]
 
 
 """
@@ -53,13 +53,13 @@ func _load_raw_json_data() -> void:
 			var level_lock := LevelLock.new()
 			level_lock.from_json_dict(level)
 			
-			level_ids.append(level_lock.scenario_id)
-			level_locks[level_lock.scenario_id] = level_lock
+			level_ids.append(level_lock.level_id)
+			level_locks[level_lock.level_id] = level_lock
 			
 			for group_id in level_lock.groups:
 				if not _level_groups.has(group_id):
 					_level_groups[group_id] = {}
-				_level_groups[group_id][level_lock.scenario_id] = true
+				_level_groups[group_id][level_lock.level_id] = true
 
 
 """
@@ -75,7 +75,7 @@ func _update_locked_levels() -> void:
 		var allowed_skips := _allowed_skips(level_lock)
 		var skip_count := 0
 		for unlock_level_id in unlock_level_ids:
-			if not PlayerData.scenario_history.finished_scenarios.has(unlock_level_id):
+			if not PlayerData.level_history.finished_levels.has(unlock_level_id):
 				skip_count += 1
 		if skip_count > allowed_skips:
 			level_lock.status = LevelLock.STATUS_HARD_LOCK
@@ -123,7 +123,7 @@ func _update_unlockable_levels() -> void:
 		var unlock_level_ids := _unlock_level_ids(level_lock)
 		for unlock_level_id in unlock_level_ids:
 			var other_level_lock: LevelLock = level_locks[unlock_level_id]
-			if PlayerData.scenario_history.finished_scenarios.has(other_level_lock.scenario_id):
+			if PlayerData.level_history.finished_levels.has(other_level_lock.level_id):
 				# key already collected
 				continue
 			if is_locked(unlock_level_id):

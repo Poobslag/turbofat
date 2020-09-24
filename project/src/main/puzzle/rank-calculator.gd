@@ -42,10 +42,10 @@ the match, and return the better of the two ranks.
 """
 func calculate_rank() -> RankResult:
 	var rank_result := _unranked_result()
-	if not Scenario.settings.rank.unranked:
+	if not Level.settings.rank.unranked:
 		_populate_rank_fields(rank_result, false)
 		
-		if Scenario.settings.finish_condition.has_meta("lenient_value"):
+		if Level.settings.finish_condition.has_meta("lenient_value"):
 			var lenient_rank_result := _unranked_result()
 			_populate_rank_fields(lenient_rank_result, true)
 			rank_result.speed_rank = min(rank_result.speed_rank, lenient_rank_result.speed_rank)
@@ -106,31 +106,31 @@ func _max_lpm() -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
 	
-	for i in range(Scenario.settings.level_ups.size()):
-		var milestone: Milestone = Scenario.settings.level_ups[i]
-		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("level"))
+	for i in range(Level.settings.speed_ups.size()):
+		var milestone: Milestone = Level.settings.speed_ups[i]
+		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("speed"))
 		
 		var frames_per_line := min_frames_per_line(piece_speed)
 		
-		var finish_condition: Milestone = Scenario.settings.finish_condition
+		var finish_condition: Milestone = Level.settings.finish_condition
 		var level_lines := 100.0
-		if i + 1 < Scenario.settings.level_ups.size():
-			var level_up: Milestone = Scenario.settings.level_ups[i + 1]
-			match level_up.type:
+		if i + 1 < Level.settings.speed_ups.size():
+			var speed_up: Milestone = Level.settings.speed_ups[i + 1]
+			match speed_up.type:
 				Milestone.CUSTOMERS:
-					level_lines = master_customer_combo(Scenario.settings)
+					level_lines = master_customer_combo(Level.settings)
 				Milestone.LINES:
-					level_lines = level_up.value
+					level_lines = speed_up.value
 				Milestone.TIME_OVER:
-					level_lines = level_up.value * 60 / frames_per_line
+					level_lines = speed_up.value * 60 / frames_per_line
 				Milestone.SCORE:
-					level_lines = level_up.value / \
-							(master_box_score(Scenario.settings) + master_combo_score(Scenario.settings) + 1)
+					level_lines = speed_up.value / \
+							(master_box_score(Level.settings) + master_combo_score(Level.settings) + 1)
 		elif finish_condition.type == Milestone.LINES:
 			level_lines = finish_condition.value
 		elif finish_condition.type == Milestone.SCORE:
 			level_lines = finish_condition.value / \
-					(master_box_score(Scenario.settings) + master_combo_score(Scenario.settings) + 1)
+					(master_box_score(Level.settings) + master_combo_score(Level.settings) + 1)
 		
 		# avoid divide by zero, and round up to the nearest line clear
 		level_lines = ceil(max(level_lines, 1.0))
@@ -149,19 +149,19 @@ This does not include any rank data, only objective information like lines clear
 func _unranked_result() -> RankResult:
 	var rank_result := RankResult.new()
 	
-	if Scenario.settings.finish_condition.type == Milestone.SCORE:
+	if Level.settings.finish_condition.type == Milestone.SCORE:
 		rank_result.compare = "-seconds"
 
 	# calculate raw player performance statistics
-	rank_result.box_score = PuzzleScore.scenario_performance.box_score
-	rank_result.combo_score = PuzzleScore.scenario_performance.combo_score
-	rank_result.leftover_score = PuzzleScore.scenario_performance.leftover_score
-	rank_result.lines = PuzzleScore.scenario_performance.lines
-	rank_result.lost = PuzzleScore.scenario_performance.lost
-	rank_result.success = PuzzleScore.scenario_performance.success
-	rank_result.score = PuzzleScore.scenario_performance.score
-	rank_result.seconds = PuzzleScore.scenario_performance.seconds
-	rank_result.top_out_count = PuzzleScore.scenario_performance.top_out_count
+	rank_result.box_score = PuzzleScore.level_performance.box_score
+	rank_result.combo_score = PuzzleScore.level_performance.combo_score
+	rank_result.leftover_score = PuzzleScore.level_performance.leftover_score
+	rank_result.lines = PuzzleScore.level_performance.lines
+	rank_result.lost = PuzzleScore.level_performance.lost
+	rank_result.success = PuzzleScore.level_performance.success
+	rank_result.score = PuzzleScore.level_performance.score
+	rank_result.seconds = PuzzleScore.level_performance.seconds
+	rank_result.top_out_count = PuzzleScore.level_performance.top_out_count
 	
 	rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 1)
 	rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \
@@ -185,17 +185,17 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var max_lpm := _max_lpm()
 	
 	var target_speed: float = max_lpm
-	var target_box_score_per_line := master_box_score(Scenario.settings)
-	var target_combo_score_per_line := master_combo_score(Scenario.settings)
+	var target_box_score_per_line := master_box_score(Level.settings)
+	var target_combo_score_per_line := master_combo_score(Level.settings)
 	var target_lines: float
-	var leftover_lines := master_leftover_lines(Scenario.settings)
+	var leftover_lines := master_leftover_lines(Level.settings)
 	
-	var finish_condition: Milestone = Scenario.settings.finish_condition
+	var finish_condition: Milestone = Level.settings.finish_condition
 	match finish_condition.type:
 		Milestone.NONE:
 			target_lines = 999999
 		Milestone.CUSTOMERS:
-			target_lines = master_customer_combo(Scenario.settings) * finish_condition.value
+			target_lines = master_customer_combo(Level.settings) * finish_condition.value
 		Milestone.LINES:
 			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
 		Milestone.SCORE:
@@ -250,11 +250,11 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	else:
 		rank_result.score_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	
-	if MilestoneManager.milestone_met(Scenario.settings.success_condition):
+	if MilestoneManager.milestone_met(Level.settings.success_condition):
 		if rank_result.compare == "-seconds":
-			rank_result.seconds_rank -= Scenario.settings.rank.success_bonus
+			rank_result.seconds_rank -= Level.settings.rank.success_bonus
 		else:
-			rank_result.score_rank -= Scenario.settings.rank.success_bonus
+			rank_result.score_rank -= Level.settings.rank.success_bonus
 	
 	_apply_top_out_penalty(rank_result)
 	_clamp_result(rank_result, lenient)
@@ -272,7 +272,7 @@ purpose to achieve a good rank.
 func _apply_top_out_penalty(rank_result: RankResult) -> void:
 	if rank_result.topped_out() or rank_result.lost:
 		var penalty_count := max(1, rank_result.top_out_count)
-		var settings: ScenarioSettings = Scenario.settings
+		var settings: LevelSettings = Level.settings
 		var all_penalty := penalty_count * settings.rank.top_out_penalty
 		rank_result.speed_rank = rank_result.speed_rank + all_penalty
 		rank_result.lines_rank = rank_result.lines_rank + all_penalty
@@ -326,28 +326,28 @@ static func grade(rank: float) -> String:
 
 
 """
-Returns the maximum box score per line for the specified scenario.
+Returns the maximum box score per line for the specified level.
 """
-static func master_box_score(settings: ScenarioSettings) -> float:
+static func master_box_score(settings: LevelSettings) -> float:
 	return settings.rank.box_factor * MASTER_BOX_SCORE
 
 
 """
-Returns the maximum combo score per line for the specified scenario.
+Returns the maximum combo score per line for the specified level.
 """
-static func master_combo_score(settings: ScenarioSettings) -> float:
+static func master_combo_score(settings: LevelSettings) -> float:
 	return settings.rank.combo_factor * MASTER_COMBO_SCORE
 
 
 """
-Returns the maximum combo expected for a single customer for the specified scenario.
+Returns the maximum combo expected for a single customer for the specified level.
 """
-static func master_customer_combo(settings: ScenarioSettings) -> int:
+static func master_customer_combo(settings: LevelSettings) -> int:
 	return settings.rank.customer_combo if settings.rank.customer_combo else MASTER_CUSTOMER_COMBO
 
 
 """
-Returns the maximum number of leftover lines expected for the specified scenario.
+Returns the maximum number of leftover lines expected for the specified level.
 """
-static func master_leftover_lines(settings: ScenarioSettings) -> int:
+static func master_leftover_lines(settings: LevelSettings) -> int:
 	return settings.rank.leftover_lines if settings.rank.leftover_lines else MASTER_LEFTOVER_LINES

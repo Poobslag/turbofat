@@ -10,7 +10,7 @@ This is shown to the user on the level select screen, and also affects the relat
 # player.
 const MIN_LINES_PER_MINUTE := 8.0
 
-# Estimated rank for each difficulty based on the various rank scenarios
+# Estimated rank for each difficulty based on the various rank levels
 const RANKS_BY_DIFFICULTY := {
 	# beginner; 10-30 blocks per minute
 	"T": 48.0,
@@ -30,12 +30,12 @@ const RANKS_BY_DIFFICULTY := {
 }
 
 """
-Returns the estimated duration for the specified scenario.
+Returns the estimated duration for the specified level.
 
-We calculate an approprate rank based on the scenario difficulty, and then estimate how long a player of that rank
+We calculate an approprate rank based on the level difficulty, and then estimate how long a player of that rank
 would take to achieve the clear condition.
 """
-func duration(settings: ScenarioSettings) -> float:
+func duration(settings: LevelSettings) -> float:
 	var result := 600.0
 	
 	match settings.finish_condition.type:
@@ -59,7 +59,7 @@ func duration(settings: ScenarioSettings) -> float:
 """
 Returns the estimated time to clear the specified number of lines.
 """
-func _duration_for_lines(settings: ScenarioSettings, lines: float) -> float:
+func _duration_for_lines(settings: LevelSettings, lines: float) -> float:
 	var min_frames_per_line := RankCalculator.min_frames_per_line(PieceSpeeds.speed(settings.difficulty))
 	var lines_per_minute := 60 * 60 / min_frames_per_line
 	lines_per_minute *= pow(RankCalculator.RDF_SPEED, _rank(settings))
@@ -69,19 +69,19 @@ func _duration_for_lines(settings: ScenarioSettings, lines: float) -> float:
 
 
 """
-Returns the rank the player is expected to perform at for the specified scenario.
+Returns the rank the player is expected to perform at for the specified level.
 """
-func _rank(settings: ScenarioSettings) -> float:
+func _rank(settings: LevelSettings) -> float:
 	return RANKS_BY_DIFFICULTY[settings.get_difficulty()]
 
 
 """
-Returns the estimated score per line for the specified scenario.
+Returns the estimated score per line for the specified level.
 
-We calculate an approprate rank based on the scenario difficulty, and then estimate how many bonus points a player of
+We calculate an approprate rank based on the level difficulty, and then estimate how many bonus points a player of
 that rank would achieve from combos and boxes.
 """
-func _score_per_line(settings: ScenarioSettings) -> float:
+func _score_per_line(settings: LevelSettings) -> float:
 	var combo_score_per_line := RankCalculator.master_combo_score(settings)
 	combo_score_per_line *= pow(RankCalculator.RDF_COMBO_SCORE_PER_LINE, _rank(settings))
 	

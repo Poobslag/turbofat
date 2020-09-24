@@ -23,15 +23,15 @@ const TEXTS := [
 	"Oh my,/ you're not supposed to know how to do that!\n\n...But yes,/ squish moves can help you out of a jam.",
 ]
 
-onready var _tutorial_hud: TutorialHud = $Scenario/Hud/TutorialHud
-onready var _tutorial_message: TutorialMessage = $Scenario/Hud/TutorialHud/Message
+onready var _tutorial_hud: TutorialHud = $Level/Hud/TutorialHud
+onready var _tutorial_message: TutorialMessage = $Level/Hud/TutorialHud/Message
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var settings := ScenarioSettings.new()
-	settings.load_from_resource(Scenario.BEGINNER_TUTORIAL)
-	Scenario.start_scenario(settings)
-	$Scenario.init_milestone_hud()
+	var settings := LevelSettings.new()
+	settings.load_from_resource(Level.BEGINNER_TUTORIAL)
+	Level.start_level(settings)
+	$Level.init_milestone_hud()
 	_tutorial_hud.refresh()
 
 

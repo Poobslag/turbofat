@@ -302,7 +302,7 @@ margin_right = 1014.0
 margin_bottom = 590.0
 rect_min_size = Vector2( 180, 0 )
 
-[node name="ScenarioName" type="LineEdit" parent="HBoxContainer/SideButtons"]
+[node name="LevelName" type="LineEdit" parent="HBoxContainer/SideButtons"]
 margin_right = 180.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 20 )
@@ -439,8 +439,8 @@ popup_exclusive = true
 window_title = "Open a File"
 mode = 0
 filters = PoolStringArray( "*.json" )
-current_dir = "res://assets/main/puzzle/scenarios"
-current_path = "res://assets/main/puzzle/scenarios/"
+current_dir = "res://assets/main/puzzle/levels"
+current_path = "res://assets/main/puzzle/levels/"
 __meta__ = {
 "_edit_use_anchors_": false
 }

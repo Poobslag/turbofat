@@ -1,12 +1,12 @@
 class_name MilestoneHud
 extends Control
 """
-Shows the user's scenario performance as a progress bar.
+Shows the user's level performance as a progress bar.
 
-the progress bar fills up as they approach the next level up milestone. If there are no more levelups, it fills as they
-approach the scenario's win/finish condition.
+the progress bar fills up as they approach the next level up milestone. If there are no more speedups, it fills as they
+approach the level's win/finish condition.
 
-A label overlaid on the progress bar shows them how much further they need to progress to reach the scenario's
+A label overlaid on the progress bar shows them how much further they need to progress to reach the level's
 win/finish condition.
 """
 
@@ -20,8 +20,8 @@ const LEVEL_COLOR_5 := Color("b948b9")
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
-	match Scenario.settings.finish_condition.type:
+	Level.connect("settings_changed", self, "_on_Level_settings_changed")
+	match Level.settings.finish_condition.type:
 		Milestone.CUSTOMERS:
 			$Desc.text = "Customers"
 		Milestone.LINES:
@@ -55,7 +55,7 @@ func update_milebar_values() -> void:
 Updates the milestone progress bar text.
 """
 func update_milebar_text() -> void:
-	var milestone := Scenario.settings.finish_condition
+	var milestone := Level.settings.finish_condition
 	var remaining: int = max(0, ceil(milestone.value - MilestoneManager.milestone_progress(milestone)))
 	match milestone.type:
 		Milestone.NONE:
@@ -94,7 +94,7 @@ func update_milebar_color() -> void:
 Initializes the milestone progress bar's value and boundaries, and locks in the font size.
 
 It would be distracting if the font got bigger as the player progressed, so the font size is only assigned at the
-start of each scenario when the text should be at its longest value.
+start of each level when the text should be at its longest value.
 """
 func init_milebar() -> void:
 	update_milebar()
@@ -114,5 +114,5 @@ func _on_PuzzleScore_game_prepared() -> void:
 	init_milebar()
 
 
-func _on_Scenario_settings_changed() -> void:
+func _on_Level_settings_changed() -> void:
 	init_milebar()

@@ -13,8 +13,8 @@ var _line_clear_count := 1
 var _color_int := 0
 
 func _ready() -> void:
-	Scenario.settings.set_start_level("T")
-	Scenario.settings.set_finish_condition(Milestone.NONE, 100)
+	Level.settings.set_start_speed("T")
+	Level.settings.set_finish_condition(Milestone.NONE, 100)
 	PuzzleScore.prepare_and_start_game()
 
 

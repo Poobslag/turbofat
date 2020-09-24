@@ -57,7 +57,7 @@ func _ready() -> void:
 """
 Detects boxes in the playfield, and places wobblers in them.
 """
-func _prepare_wobblers_for_scenario() -> void:
+func _prepare_wobblers_for_level() -> void:
 	_clear_wobblers()
 	for x in range(PuzzleTileMap.COL_COUNT):
 		for y in range(PuzzleTileMap.ROW_COUNT):
@@ -229,7 +229,7 @@ func _on_Playfield_blocks_prepared() -> void:
 	if not _puzzle_tile_map:
 		# _ready() has not yet been called
 		return
-	_prepare_wobblers_for_scenario()
+	_prepare_wobblers_for_level()
 
 
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
