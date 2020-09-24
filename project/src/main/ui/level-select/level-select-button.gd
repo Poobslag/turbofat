@@ -20,6 +20,9 @@ const LONG := LevelSize.LONG
 
 const VERTICAL_SPACING := 6
 
+var world_id: String
+var level_id: String
+
 # the duration of the level; this affects the button size
 var level_duration: int = LevelSize.MEDIUM setget set_level_duration
 
@@ -41,6 +44,7 @@ var _focus_just_entered := false
 # 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_started := false
 
+var _crown_texture: Texture = preload("res://assets/main/ui/level-select/crown.png")
 var _key_texture: Texture = preload("res://assets/main/ui/level-select/key.png")
 var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked.png")
 var _unlockable_texture: Texture = preload("res://assets/main/ui/level-select/unlockable.png")
@@ -88,6 +92,10 @@ func _refresh_appearance() -> void:
 		LevelLock.STATUS_NONE:
 			icon = null
 			set("custom_colors/font_color", null)
+			text = "%s" % text
+		LevelLock.STATUS_CROWN:
+			icon = _crown_texture
+			set("custom_colors/font_color", Color("36d936"))
 			text = "%s" % text
 		LevelLock.STATUS_KEY:
 			icon = _key_texture

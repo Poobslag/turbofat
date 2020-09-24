@@ -255,6 +255,11 @@ _global_script_classes=[ {
 "path": "res://src/main/ui/level-select/level-select-button.gd"
 }, {
 "base": "Reference",
+"class": "LevelSelectModel",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/level-select-model.gd"
+}, {
+"base": "Reference",
 "class": "LevelSettings",
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/level-settings.gd"
@@ -545,9 +550,9 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/wobbler.gd"
 }, {
 "base": "Reference",
-"class": "WorldLocks",
+"class": "WorldLock",
 "language": "GDScript",
-"path": "res://src/main/ui/level-select/world-locks.gd"
+"path": "res://src/main/ui/level-select/world-lock.gd"
 } ]
 _global_script_class_icons={
 "ActionButton": "",
@@ -599,6 +604,7 @@ _global_script_class_icons={
 "LevelHistory": "",
 "LevelLock": "",
 "LevelSelectButton": "",
+"LevelSelectModel": "",
 "LevelSettings": "",
 "LineClearer": "",
 "LockAlleleButton": "",
@@ -657,7 +663,7 @@ _global_script_class_icons={
 "Utils": "",
 "VolumeSettings": "",
 "Wobbler": "",
-"WorldLocks": ""
+"WorldLock": ""
 }
 
 [application]
