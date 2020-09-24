@@ -7,7 +7,7 @@ unique to the player. Other data is organized by a key field. For example, their
 name.
 """
 
-# A string unique to each type of data (scenario-data, player-data)
+# A string unique to each type of data (level-data, player-data)
 var type: String
 
 # A string identifying a specific data item (sophie, marathon-normal)

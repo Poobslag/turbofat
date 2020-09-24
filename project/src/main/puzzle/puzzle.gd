@@ -61,7 +61,7 @@ Triggers the eating animation and makes the creature fatter. Accepts a 'fatness_
 much fatter the creature should get. We can calculate how fat they should be, and a value of 0.4 means the creature
 should increase by 40% of the amount needed to reach that target.
 
-This 'fatness_pct' parameter is needed for the scenario where the player eliminates three lines at once. We don't
+This 'fatness_pct' parameter is needed for the level where the player eliminates three lines at once. We don't
 want the creature to suddenly grow full size. We want it to take 3 bites.
 
 Parameters:
@@ -136,7 +136,7 @@ func _on_Hud_settings_button_pressed() -> void:
 
 func _on_Hud_back_button_pressed() -> void:
 	Global.clear_creature_queue()
-	Scenario.clear_launched_scenario()
+	Level.clear_launched_level()
 	Breadcrumb.pop_trail()
 
 
@@ -171,21 +171,21 @@ func _on_PuzzleScore_game_started() -> void:
 Method invoked when the game ends. Stores the rank result for later.
 """
 func _on_PuzzleScore_game_ended() -> void:
-	if not Scenario.launched_scenario_id:
+	if not Level.launched_level_id:
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
 	
 	$SettingsMenu.quit_text = SettingsMenu.QUIT
 	var rank_result := RankCalculator.new().calculate_rank()
-	PlayerData.scenario_history.add(Scenario.launched_scenario_id, rank_result)
-	PlayerData.scenario_history.prune(Scenario.launched_scenario_id)
+	PlayerData.level_history.add(Level.launched_level_id, rank_result)
+	PlayerData.level_history.prune(Level.launched_level_id)
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, 9999999999999999))
 	
-	match Scenario.settings.finish_condition.type:
+	match Level.settings.finish_condition.type:
 		Milestone.SCORE:
-			if not PuzzleScore.scenario_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
+			if not PuzzleScore.level_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
 		_:
-			if not PuzzleScore.scenario_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
+			if not PuzzleScore.level_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
 
 
 """
@@ -206,5 +206,5 @@ func _on_SettingsMenu_quit_pressed() -> void:
 			MusicPlayer.play_chill_bgm()
 			MusicPlayer.fade_in()
 		Global.clear_creature_queue()
-		Scenario.clear_launched_scenario()
+		Level.clear_launched_level()
 		Breadcrumb.pop_trail()

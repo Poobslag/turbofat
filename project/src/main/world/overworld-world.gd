@@ -15,7 +15,7 @@ onready var _overworld_ui: OverworldUi = get_node(overworld_ui_path)
 onready var _player: Creature = get_node(player_path)
 
 func _ready() -> void:
-	if Scenario.launched_scenario_id:
+	if Level.launched_level_id:
 		_overworld_ui.cutscene = true
 		
 		# remove all of the creatures from the overworld
@@ -24,7 +24,7 @@ func _ready() -> void:
 		
 		# add the cutscene creatures
 		var creature: Creature = CreaturePackedScene.instance()
-		creature.creature_id = Scenario.launched_creature_id
+		creature.creature_id = Level.launched_creature_id
 		creature.add_to_group("chattables")
 		$Obstacles.add_child(creature)
 		_chat_icons.create_icon(creature)
@@ -41,5 +41,5 @@ func _ready() -> void:
 
 func _schedule_chat(creature: Creature) -> void:
 	yield(get_tree(), "idle_frame")
-	var chat_tree := ChatLibrary.load_chat_events_for_creature(creature, Scenario.launched_level_num)
+	var chat_tree := ChatLibrary.load_chat_events_for_creature(creature, Level.launched_level_num)
 	_overworld_ui.start_chat(chat_tree, [creature])

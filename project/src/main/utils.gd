@@ -218,7 +218,7 @@ static func subtract(a: Array, b: Array) -> Array:
 Assigns a default path for a FileDialog.
 
 At runtime, this will default to the user's data directory. During development, this will default to a resource path
-for convenience when authoring Turbo Fat's creature's/scenarios.
+for convenience when authoring Turbo Fat's creature's/levels.
 
 Note: We only want to assign the path the first time, but we can't check 'is the path empty' because an empty path is a
 valid choice -- a user can navigate to the root directory. So instead of checking 'is the path empty' we check 'is the

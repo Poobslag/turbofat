@@ -1,0 +1,27 @@
+{
+  "version": "1922",
+  "start_level": "2",
+  "level_ups": [
+    {
+      "type": "lines",
+      "value": "20",
+      "level": "3"
+    },
+    {
+      "type": "lines",
+      "value": "40",
+      "level": "4"
+    }
+  ],
+  "success_condition": {
+    "type": "lines",
+    "value": "60"
+  },
+  "finish_condition": {
+    "type": "lines",
+    "value": "60"
+  },
+  "lose_condition": [
+    "top_out 1"
+  ]
+}

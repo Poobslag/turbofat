@@ -1,0 +1,219 @@
+[
+  {
+    "type": "version",
+    "value": "199c"
+  },
+  {
+    "type": "player_info",
+    "value": {
+      "money": 3332838
+    }
+  },
+  {
+    "type": "gameplay_settings",
+    "value": {
+      "ghost_piece": false
+    }
+  },
+  {
+    "type": "volume_settings",
+    "value": {
+      "master": 0.7,
+      "music": 0,
+      "sound": 0.7,
+      "voice": 0.69
+    }
+  },
+  {
+    "type": "touch_settings",
+    "value": {
+      "size": 1,
+      "scheme": 4,
+      "fat_finger": 1
+    }
+  },
+  {
+    "type": "scenario_history",
+    "key": "tutorial_beginner_0",
+    "value": [
+      {
+        "box_score": 95,
+        "box_score_per_line": 19,
+        "box_score_per_line_rank": 0,
+        "combo_score": 5,
+        "combo_score_per_line": 5,
+        "combo_score_per_line_rank": 41.269608,
+        "compare": "-seconds",
+        "leftover_score": 137,
+        "lines": 5,
+        "lines_rank": 8.242425,
+        "lost": false,
+        "score": 242,
+        "score_rank": 999,
+        "seconds": 15.650001,
+        "seconds_rank": 4.03,
+        "speed": 19.169328,
+        "speed_rank": 11.59188,
+        "success": false,
+        "timestamp": {
+          "year": 2020,
+          "month": 9,
+          "day": 20,
+          "weekday": 0,
+          "dst": false,
+          "hour": 17,
+          "minute": 44,
+          "second": 39
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "chat_history",
+    "value": {
+      "history_items": {
+        "dialog/level_select": 10,
+        "dialog/level_select_2": 12,
+        "dialog/glowy_sphere": 16,
+        "dialog/level-select-2": 47,
+        "dialog/level-select-1": 48,
+        "creatures/primary/boatricia/hi": 1,
+        "creatures/primary/boatricia/filler": 31,
+        "creatures/primary/ebe/filler": 28,
+        "creatures/primary/bort/filler": 1,
+        "creatures/primary/boatricia/level_1": 0,
+        "creatures/primary/boatricia/my_maid_died": 7,
+        "creatures/primary/boatricia/level_2": 9,
+        "creatures/primary/boatricia/life_is_so_short": 10,
+        "creatures/primary/boatricia/level-1": 49,
+        "creatures/primary/ebe/no-vegetables": 30,
+        "creatures/primary/boatricia/level-2": 50,
+        "dialog/bort/filler": 0
+      },
+      "counts": {
+        "dialog": 49,
+        "creatures/primary/boatricia": 51,
+        "creatures/primary/ebe": 31,
+        "creatures/primary/bort": 2,
+        "dialog/bort": 1
+      },
+      "filler_counts": {
+        "dialog": 49,
+        "creatures/primary/boatricia": 51,
+        "creatures/primary/ebe": 31,
+        "creatures/primary/bort": 2,
+        "dialog/bort": 1
+      }
+    }
+  },
+  {
+    "type": "creature_library",
+    "value": {
+      "#player#": {
+        "version": "19a3",
+        "id": "",
+        "name": "Magpird",
+        "short_name": "Magpird",
+        "dna": {
+          "belly": "0",
+          "bellybutton": "4",
+          "body": "1",
+          "cheek": "3",
+          "collar": "0",
+          "ear": "3",
+          "eye": "3",
+          "hair": "0",
+          "head": "4",
+          "horn": "2",
+          "mouth": "4",
+          "nose": "0",
+          "tail": "1",
+          "line_rgb": "013e1b",
+          "body_rgb": "025d28",
+          "belly_rgb": "67aa0f",
+          "cloth_rgb": "ccd44d",
+          "hair_rgb": "959f78",
+          "eye_rgb": "ccd44d ffffd9",
+          "horn_rgb": "959f78"
+        },
+        "chat_theme_def": {
+          "accent_scale": 1.33,
+          "accent_swapped": true,
+          "accent_texture": 13,
+          "color": "025d28"
+        },
+        "dialog": {
+
+        },
+        "chat_selectors": [
+
+        ],
+        "fatness": 1.2
+      },
+      "fatnesses": {
+        "ebe": 2.951863,
+        "boatricia": 1.950225,
+        "mewow": 1.435593,
+        "instructor": 1,
+        "#filler-000#": 1,
+        "#filler-001#": 1.64481,
+        "#filler-002#": 1.034021,
+        "#filler-003#": 2.5,
+        "#filler-004#": 1.2,
+        "#filler-005#": 1.010247,
+        "bort": 1.561442
+      }
+    }
+  },
+  {
+    "type": "successful_scenarios",
+    "value": {
+      "survival_normal": {
+        "year": 2020,
+        "month": 6,
+        "day": 28,
+        "weekday": 0,
+        "dst": false,
+        "hour": 16,
+        "minute": 30,
+        "second": 22
+      },
+      "rank_7k": {
+        "year": 2020,
+        "month": 6,
+        "day": 28,
+        "weekday": 0,
+        "dst": false,
+        "hour": 16,
+        "minute": 30,
+        "second": 22
+      }
+    }
+  },
+  {
+    "type": "finished_scenarios",
+    "value": {
+      "boatricia": {
+        "year": 2020,
+        "month": 8,
+        "day": 3,
+        "weekday": 1,
+        "dst": false,
+        "hour": 8,
+        "minute": 17,
+        "second": 34
+      },
+      "example": {
+        "year": 2020,
+        "month": 6,
+        "day": 28,
+        "weekday": 0,
+        "dst": false,
+        "hour": 16,
+        "minute": 30,
+        "second": 22
+      }
+    }
+  }
+]

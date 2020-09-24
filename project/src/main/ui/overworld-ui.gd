@@ -21,8 +21,8 @@ var cutscene := false
 
 var _show_version := true setget set_show_version, is_show_version
 
-# These two fields store details for the upcoming scenario. We store the scenario details during the dialog sequence
-# and launch the scenario when the dialog window closes.
+# These two fields store details for the upcoming level. We store the level details during the dialog sequence
+# and launch the level when the dialog window closes.
 var _current_chat_tree: ChatTree
 var _next_chat_tree: ChatTree
 
@@ -93,7 +93,7 @@ func _update_visible() -> void:
 
 
 """
-Process a 'select_level_*' event, loading the appropriate scenario data or conversation to launch.
+Process a 'select_level_*' event, loading the appropriate level data or conversation to launch.
 """
 func _process_select_level_meta_item(level_num: int = -1) -> void:
 	var creature_chatters := []
@@ -121,8 +121,8 @@ func _process_select_level_meta_item(level_num: int = -1) -> void:
 		
 		if level_num >= 1:
 			var level_ids := creature.get_level_ids()
-			var scenario_id: String = level_ids[level_num - 1]
-			Scenario.set_launched_scenario(scenario_id, creature.creature_id, level_num)
+			var level_id: String = level_ids[level_num - 1]
+			Level.set_launched_level(level_id, creature.creature_id, level_num)
 
 
 func _on_ChatUi_pop_out_completed() -> void:
@@ -130,7 +130,7 @@ func _on_ChatUi_pop_out_completed() -> void:
 	
 	if _next_chat_tree:
 		_current_chat_tree = _next_chat_tree
-		# don't reset launched_scenario; this is currently set by the first of a series of chat trees
+		# don't reset launched_level; this is currently set by the first of a series of chat trees
 		_next_chat_tree = null
 		$ChatUi.play_chat_tree(_current_chat_tree)
 	else:
@@ -144,9 +144,9 @@ func _on_ChatUi_pop_out_completed() -> void:
 		_update_visible()
 		emit_signal("chat_ended")
 		
-		if Scenario.launched_scenario_id:
+		if Level.launched_level_id:
 			ChattableManager.clear()
-			Scenario.push_scenario_trail()
+			Level.push_level_trail()
 			
 			if cutscene:
 				# upon completing a puzzle, return to the level select screen

@@ -21,7 +21,7 @@ var combo_break := 0
 var piece_continued_combo := false
 
 # 'true' if the player drops a piece which discontinues the combo.
-# Some scenarios might break your combo if you clear a vegetable line, for example.
+# Some levels might break your combo if you clear a vegetable line, for example.
 var piece_broke_combo := false
 
 func _ready() -> void:
@@ -54,7 +54,7 @@ func _on_Playfield_box_built(_rect: Rect2, _color_int: int) -> void:
 
 
 func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
-	if Scenario.settings.combo_break.veg_row:
+	if Level.settings.combo_break.veg_row:
 		if box_ints.empty():
 			piece_broke_combo = true
 	piece_continued_combo = true
@@ -65,7 +65,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 
 func _on_Playfield_after_piece_written() -> void:
 	if piece_broke_combo:
-		combo_break = Scenario.settings.combo_break.pieces
+		combo_break = Level.settings.combo_break.pieces
 		break_combo()
 		emit_signal("combo_break_changed", combo_break)
 	else:
@@ -74,7 +74,7 @@ func _on_Playfield_after_piece_written() -> void:
 		
 		# check for combo break even if the piece continued the combo.
 		# this is necessary to cover the 'combo_break.pieces = 0' case
-		if combo_break >= Scenario.settings.combo_break.pieces:
+		if combo_break >= Level.settings.combo_break.pieces:
 			break_combo()
 		emit_signal("combo_break_changed", combo_break)
 	
@@ -96,9 +96,9 @@ func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_li
 	var box_score := 0
 	for box_int in box_ints:
 		if PuzzleTileMap.is_snack_box(box_int):
-			box_score += Scenario.settings.score.snack_points
+			box_score += Level.settings.score.snack_points
 		elif PuzzleTileMap.is_cake_box(box_int):
-			box_score += Scenario.settings.score.cake_points
+			box_score += Level.settings.score.cake_points
 		else:
-			box_score += Scenario.settings.score.veg_points
+			box_score += Level.settings.score.veg_points
 	PuzzleScore.add_line_score(combo_score, box_score)

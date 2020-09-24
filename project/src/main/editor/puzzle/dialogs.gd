@@ -11,15 +11,15 @@ func _show_save_load_not_supported_error() -> void:
 
 
 func _on_OpenResource_file_selected(path: String) -> void:
-	_level_editor.load_scenario(path)
+	_level_editor.load_level(path)
 
 
 func _on_OpenFile_file_selected(path: String) -> void:
-	_level_editor.load_scenario(path)
+	_level_editor.load_level(path)
 
 
 func _on_Save_file_selected(path: String) -> void:
-	_level_editor.save_scenario(path)
+	_level_editor.save_level(path)
 
 
 func _on_OpenFile_pressed() -> void:
@@ -27,7 +27,7 @@ func _on_OpenFile_pressed() -> void:
 		_show_save_load_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path($OpenFile, "res://assets/main/puzzle/scenario/")
+	Utils.assign_default_dialog_path($OpenFile, "res://assets/main/puzzle/level/")
 	$OpenFile.popup_centered()
 
 
@@ -40,7 +40,7 @@ func _on_Save_pressed() -> void:
 		_show_save_load_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path($Save, "res://assets/main/puzzle/scenario/")
-	var file_root := StringUtils.sanitize_file_root(_level_editor.scenario_name.text)
-	$Save.current_file = ScenarioSettings.scenario_filename(file_root)
+	Utils.assign_default_dialog_path($Save, "res://assets/main/puzzle/level/")
+	var file_root := StringUtils.sanitize_file_root(_level_editor.level_name.text)
+	$Save.current_file = LevelSettings.level_filename(file_root)
 	$Save.popup_centered()

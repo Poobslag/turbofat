@@ -47,7 +47,7 @@ func is_playing_chill_bgm() -> bool:
 
 
 """
-Plays an 'upbeat' song; something suitable when the player's playing a puzzle scenario.
+Plays an 'upbeat' song; something suitable when the player's playing a puzzle level.
 """
 func play_upbeat_bgm() -> void:
 	play_music(_upbeat_bgms)

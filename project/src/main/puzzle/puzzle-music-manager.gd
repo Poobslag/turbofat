@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func _on_PuzzleScore_game_prepared() -> void:
-	if Scenario.settings.other.tutorial:
+	if Level.settings.other.tutorial:
 		MusicPlayer.play_tutorial_bgm()
 	else:
 		MusicPlayer.play_upbeat_bgm()

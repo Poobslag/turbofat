@@ -1,0 +1,18 @@
+{
+  "version": "19c5",
+  "success_condition": {
+    "type": "score",
+    "value": "2000"
+  },
+  "start_speed": "AA",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "300"
+  },
+  "lose_condition": [
+    "top_out 1"
+  ],
+  "rank": [
+    "success_bonus 2"
+  ]
+}

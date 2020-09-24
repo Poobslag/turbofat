@@ -4,10 +4,10 @@ Plays sound effects when the player piece is moved.
 """
 
 func _ready() -> void:
-	PuzzleScore.connect("level_index_changed", self, "_on_PuzzleScore_level_index_changed")
+	PuzzleScore.connect("speed_index_changed", self, "_on_PuzzleScore_speed_index_changed")
 
 
-func _on_PuzzleScore_level_index_changed(value: int) -> void:
+func _on_PuzzleScore_speed_index_changed(value: int) -> void:
 	if value > 0:
 		$LevelUpSound.play()
 

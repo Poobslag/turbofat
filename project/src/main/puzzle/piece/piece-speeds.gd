@@ -1,6 +1,6 @@
 extends Node
 """
-Stores data about the different 'speed levels' such as how fast pieces should drop, how long it takes them to lock
+Stores data about the different 'piece speeds' such as how fast pieces should drop, how long it takes them to lock
 into the playfield, and how long to pause when clearing lines.
 
 Much of this speed data was derived from wikis for other piece-dropping games which have the concept of a 'hold piece'
@@ -24,8 +24,8 @@ const SQUISH_FRAMES := 4
 # How fast the pieces are moving right now
 var current_speed: PieceSpeed
 
-# Array of speed level strings in ascending order
-var speed_levels := []
+# Array of speed ids in ascending order
+var speed_ids := []
 
 var _speeds := {}
 
@@ -77,7 +77,7 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("FFF", 20*G,  2, 2, 7,  8, 12, 3, 3))
 	
 	current_speed = PieceSpeeds.speed("0")
-	PuzzleScore.connect("level_index_changed", self, "_on_PuzzleScore_level_index_changed")
+	PuzzleScore.connect("speed_index_changed", self, "_on_PuzzleScore_speed_index_changed")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 
 
@@ -86,15 +86,15 @@ func speed(string: String) -> PieceSpeed:
 
 
 func _add_speed(speed: PieceSpeed) -> void:
-	speed_levels.append(speed.level)
-	_speeds[speed.level] = speed
+	speed_ids.append(speed.id)
+	_speeds[speed.id] = speed
 
 
 func _update_current_speed() -> void:
-	PieceSpeeds.current_speed = PieceSpeeds.speed(MilestoneManager.prev_milestone().get_meta("level"))
+	PieceSpeeds.current_speed = PieceSpeeds.speed(MilestoneManager.prev_milestone().get_meta("speed"))
 
 
-func _on_PuzzleScore_level_index_changed(_value: int) -> void:
+func _on_PuzzleScore_speed_index_changed(_value: int) -> void:
 	_update_current_speed()
 
 

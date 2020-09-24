@@ -26,7 +26,7 @@ func start_suppress_sfx_timer() -> void:
 
 func _on_CreatureVisuals_dna_loaded() -> void:
 	if not $SuppressSfxTimer.is_stopped():
-		# suppress door chime at the start of a scenario
+		# suppress door chime at the start of a level
 		return
 	
 	$ChimeTimer.start()

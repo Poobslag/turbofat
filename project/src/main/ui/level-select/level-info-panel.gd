@@ -16,7 +16,7 @@ var _duration_calculator := DurationCalculator.new()
 """
 When an unlocked level is selected, we display some statistics for that level.
 """
-func _on_LevelButtons_unlocked_level_selected(settings: ScenarioSettings) -> void:
+func _on_LevelButtons_unlocked_level_selected(settings: LevelSettings) -> void:
 	var text := ""
 	var difficulty_string := "Unknown"
 	match settings.get_difficulty():
@@ -42,12 +42,12 @@ func _on_LevelButtons_unlocked_level_selected(settings: ScenarioSettings) -> voi
 	
 	text += "Duration: %s\n" % [duration_string]
 	
-	var prev_result := PlayerData.scenario_history.prev_result(settings.id)
+	var prev_result := PlayerData.level_history.prev_result(settings.id)
 	if prev_result:
 		text += "New: %s\n" % [PoolStringArray(HighScoreTable.rank_result_row(prev_result)).join("   ")]
 	else:
 		text += "\n"
-	var best_result := PlayerData.scenario_history.best_result(settings.id)
+	var best_result := PlayerData.level_history.best_result(settings.id)
 	if best_result:
 		text += "Top: %s" % [PoolStringArray(HighScoreTable.rank_result_row(best_result)).join("   ")]
 	$MarginContainer/Label.text = text

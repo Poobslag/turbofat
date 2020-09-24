@@ -1,0 +1,65 @@
+{
+  "version": "19c5",
+  "success_condition": {
+    "type": "score",
+    "value": "1000"
+  },
+  "start_speed": "0",
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": "10",
+      "speed": "1"
+    },
+    {
+      "type": "lines",
+      "value": "20",
+      "speed": "2"
+    },
+    {
+      "type": "lines",
+      "value": "30",
+      "speed": "3"
+    },
+    {
+      "type": "lines",
+      "value": "40",
+      "speed": "4"
+    },
+    {
+      "type": "lines",
+      "value": "50",
+      "speed": "5"
+    },
+    {
+      "type": "lines",
+      "value": "60",
+      "speed": "6"
+    },
+    {
+      "type": "lines",
+      "value": "70",
+      "speed": "7"
+    },
+    {
+      "type": "lines",
+      "value": "80",
+      "speed": "8"
+    },
+    {
+      "type": "lines",
+      "value": "90",
+      "speed": "9"
+    }
+  ],
+  "finish_condition": {
+    "type": "lines",
+    "value": "150"
+  },
+  "lose_condition": [
+    "top_out 1"
+  ],
+  "rank": [
+    "success_bonus 2"
+  ]
+}

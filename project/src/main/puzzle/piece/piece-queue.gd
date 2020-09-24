@@ -11,11 +11,11 @@ const MIN_SIZE := 50
 
 var _pieces := []
 
-# default pieces to pull from if none are provided by the scenario
+# default pieces to pull from if none are provided by the level
 var _default_piece_types := PieceTypes.all_types
 
 func _ready() -> void:
-	Scenario.connect("settings_changed", self, "_on_Scenario_settings_changed")
+	Level.connect("settings_changed", self, "_on_Level_settings_changed")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	_fill()
 
@@ -60,7 +60,7 @@ func _fill() -> void:
 Initializes an empty queue with a set of starting pieces.
 """
 func _fill_initial_pieces() -> void:
-	if Scenario.settings.piece_types.types.empty():
+	if Level.settings.piece_types.types.empty():
 		"""
 		Default piece selection:
 		1. Append three same-size pieces which can't build a cake box; lot, jot, jlt or pqu
@@ -96,8 +96,8 @@ func _fill_initial_pieces() -> void:
 		
 		_insert_annoying_piece(3)
 	
-	if Scenario.settings.piece_types.start_types:
-		var pieces_tmp := Scenario.settings.piece_types.start_types.duplicate()
+	if Level.settings.piece_types.start_types:
+		var pieces_tmp := Level.settings.piece_types.start_types.duplicate()
 		pieces_tmp.shuffle()
 		for piece in pieces_tmp:
 			if _pieces.empty() or _pieces[0] != piece:
@@ -106,7 +106,7 @@ func _fill_initial_pieces() -> void:
 
 
 func shuffled_piece_types() -> Array:
-	var result := Scenario.settings.piece_types.types
+	var result := Level.settings.piece_types.types
 	if not result:
 		result = _default_piece_types
 	result = result.duplicate()
@@ -176,7 +176,7 @@ func _insert_annoying_piece(max_pieces_to_right: int) -> void:
 	_pieces.insert(new_piece_index, extra_piece_types[0])
 
 
-func _on_Scenario_settings_changed() -> void:
+func _on_Level_settings_changed() -> void:
 	clear()
 
 

@@ -1,11 +1,11 @@
 class_name LevelSelectButton
 extends Button
 """
-A button on the level select screen which launches a scenario.
+A button on the level select screen which launches a level.
 """
 
-# emitted when a scenario is launched.
-signal scenario_started
+# emitted when a level is launched.
+signal level_started
 
 # short levels have smaller buttons; long levels have larger buttons
 enum LevelSize {
@@ -34,12 +34,12 @@ var keys_needed := -1 setget set_keys_needed
 
 var level_title: String setget set_level_title
 
-# 'true' if this button just received focus this frame. a mouse click which grants focus doesn't emit a 'scenario
+# 'true' if this button just received focus this frame. a mouse click which grants focus doesn't emit a 'level
 # started' event
 var _focus_just_entered := false
 
-# 'true' if the 'scenario started' signal should be emitted in response to a button click.
-var _emit_scenario_started := false
+# 'true' if the 'level started' signal should be emitted in response to a button click.
+var _emit_level_started := false
 
 var _key_texture: Texture = preload("res://assets/main/ui/level-select/key.png")
 var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked.png")
@@ -105,12 +105,12 @@ func _refresh_appearance() -> void:
 
 func _on_pressed() -> void:
 	if lock_status in [LevelLock.STATUS_SOFT_LOCK, LevelLock.STATUS_HARD_LOCK]:
-		# level is locked, don't launch the scenario
+		# level is locked, don't launch the level
 		return
 	
-	if _emit_scenario_started:
-		_emit_scenario_started = false
-		emit_signal("scenario_started")
+	if _emit_level_started:
+		_emit_level_started = false
+		emit_signal("level_started")
 
 
 func _on_focus_entered() -> void:
@@ -121,4 +121,4 @@ func _on_button_down() -> void:
 	if _focus_just_entered:
 		pass
 	else:
-		_emit_scenario_started = true
+		_emit_level_started = true

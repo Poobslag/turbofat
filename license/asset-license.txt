@@ -31,7 +31,7 @@ project/assets/main/puzzle/clear-snack-box.wav "\Cooking_Game_16bit\Cooking_Game
 project/assets/main/puzzle/combo-*.wav Adapted from an SNES sound effect
 project/assets/main/puzzle/fanfare*.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS TUNE Win Complete Happy Flute 02.wav"
 project/assets/main/puzzle/frosting-splat*.wav "\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Batter_Pour_01"
-project/assets/main/puzzle/levelup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_03.wav"
+project/assets/main/puzzle/speedup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_03.wav"
 project/assets/main/puzzle/line-erase.wav "\Cooking_Game_16bit\Cooking_Actions\Chop\Cooking_Game_Action_Chop_B_02.wav"
 project/assets/main/puzzle/line-fall.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
 project/assets/main/puzzle/lock.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_01.wav"

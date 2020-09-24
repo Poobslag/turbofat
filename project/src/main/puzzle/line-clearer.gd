@@ -41,7 +41,7 @@ var _erased_line_index := 0
 var _remaining_line_clear_timings := []
 var _remaining_line_erase_timings := []
 
-# rows containing prebuilt scenario boxes, which aren't cleared at the end of the level.
+# rows containing prebuilt level boxes, which aren't cleared at the end of the level.
 var _rows_to_preserve_at_end := {}
 
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
@@ -278,7 +278,7 @@ func _schedule_finish_line_clears() -> void:
 
 
 func _on_PuzzleScore_finish_triggered() -> void:
-	if Scenario.settings.other.clear_on_finish:
+	if Level.settings.other.clear_on_finish:
 		_schedule_finish_line_clears()
 	else:
 		PuzzleScore.end_game()
@@ -287,7 +287,7 @@ func _on_PuzzleScore_finish_triggered() -> void:
 """
 When a new set of blocks is loaded, we recalculate the rows to preserve at the end.
 
-Any prebuilt scenario boxes aren't cleared at the end of the level.
+Any prebuilt level boxes aren't cleared at the end of the level.
 """
 func _on_Playfield_blocks_prepared() -> void:
 	_rows_to_preserve_at_end.clear()
@@ -299,7 +299,7 @@ func _on_Playfield_blocks_prepared() -> void:
 """
 When a box is made, we remove those rows from the rows to preserve at the end.
 
-Any prebuilt scenario boxes aren't cleared at the end of the level, but if the player makes additional boxes next to
+Any prebuilt level boxes aren't cleared at the end of the level, but if the player makes additional boxes next to
 them, then they're cleared.
 """
 func _on_BoxBuilder_box_built(rect: Rect2, _color_int: int) -> void:

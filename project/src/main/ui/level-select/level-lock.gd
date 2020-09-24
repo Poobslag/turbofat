@@ -27,7 +27,7 @@ const STATUS_KEY := LockStatus.KEY
 const STATUS_SOFT_LOCK := LockStatus.SOFT_LOCK
 const STATUS_HARD_LOCK := LockStatus.HARD_LOCK
 
-var scenario_id: String
+var level_id: String
 
 # Some levels activate dialog sequences. These two fields specify which character's dialog should activate.
 var creature_id: String
@@ -54,7 +54,7 @@ var keys_needed := -1
 var groups := []
 
 func from_json_dict(json: Dictionary) -> void:
-	scenario_id = json.get("id", "")
+	level_id = json.get("id", "")
 	creature_id = json.get("creature_id", "")
 	level_num = json.get("level_num", -1)
 	
