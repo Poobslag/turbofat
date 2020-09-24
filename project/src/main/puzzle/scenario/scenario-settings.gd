@@ -185,7 +185,7 @@ func _get_max_speed_level() -> String:
 
 
 static func scenario_path(scenario_name: String) -> String:
-	return "res://assets/main/puzzle/scenario/%s.json" % (scenario_name.replace("_", "-"))
+	return "res://assets/main/puzzle/scenarios/%s.json" % (scenario_name.replace("_", "-"))
 
 
 static func scenario_name(path: String) -> String:
