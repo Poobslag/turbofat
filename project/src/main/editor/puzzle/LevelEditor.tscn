@@ -439,8 +439,8 @@ popup_exclusive = true
 window_title = "Open a File"
 mode = 0
 filters = PoolStringArray( "*.json" )
-current_dir = "res://assets/main/puzzle/scenario"
-current_path = "res://assets/main/puzzle/scenario/"
+current_dir = "res://assets/main/puzzle/scenarios"
+current_path = "res://assets/main/puzzle/scenarios/"
 __meta__ = {
 "_edit_use_anchors_": false
 }
