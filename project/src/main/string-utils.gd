@@ -160,3 +160,20 @@ static func remove_end(string: String, remove: String) -> String:
 	if string.ends_with(remove):
 		result = string.substr(0, string.length() - remove.length())
 	return result
+
+
+"""
+Returns an english representation of a number suitable for a message.
+
+This is useful for messages like 'You need to beat three more levels' or 'You need 3,125 more points.' We don't want to
+display messages like 'You need three thousand one hundred and twenty-five more points', so we leave larger numbers
+alone.
+"""
+static func english_number(i: int) -> String:
+	if i < 0 or i > 20:
+		return comma_sep(i)
+	
+	return ["zero", "one", "two", "three", "four", "five", \
+			"six", "seven", "eight", "nine", "ten", \
+			"eleven", "twelve", "thirteen", "fourteen", "fifteen", \
+			"sixteen", "seventeen", "eighteen", "nineteen", "twenty"][i];

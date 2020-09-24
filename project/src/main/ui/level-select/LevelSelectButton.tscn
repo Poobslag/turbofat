@@ -3,10 +3,9 @@
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/ui/level-select/level-select-button.gd" type="Script" id=2]
 
-
 [node name="Button" type="Button"]
 margin_right = 72.0
-margin_bottom = 26.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 0, 80 )
 theme = ExtResource( 1 )
 text = "Level 1"

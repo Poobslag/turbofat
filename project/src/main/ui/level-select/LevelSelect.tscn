@@ -85,7 +85,7 @@ margin_bottom = 186.0
 
 [node name="Buttons3" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
 margin_left = 202.0
-margin_right = 298.0
+margin_right = 299.0
 margin_bottom = 186.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
@@ -93,12 +93,12 @@ alignment = 2
 
 [node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons3" instance=ExtResource( 4 )]
 margin_top = 106.0
-margin_right = 96.0
+margin_right = 97.0
 margin_bottom = 186.0
 
 [node name="Buttons4" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 303.0
-margin_right = 399.0
+margin_left = 304.0
+margin_right = 400.0
 margin_bottom = 186.0
 size_flags_horizontal = 3
 custom_constants/separation = 6
@@ -110,7 +110,7 @@ margin_right = 96.0
 margin_bottom = 186.0
 
 [node name="Buttons5" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 404.0
+margin_left = 405.0
 margin_right = 502.0
 margin_bottom = 186.0
 size_flags_horizontal = 3
@@ -119,7 +119,7 @@ alignment = 2
 
 [node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons5" instance=ExtResource( 4 )]
 margin_top = 106.0
-margin_right = 98.0
+margin_right = 97.0
 margin_bottom = 186.0
 
 [node name="Control" type="Control" parent="VBoxContainer"]
@@ -228,10 +228,12 @@ __meta__ = {
 [node name="SettingsMenu" parent="." instance=ExtResource( 3 )]
 
 [node name="MoneyLabel" parent="." instance=ExtResource( 12 )]
-[connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_level_selected"]
-[connection signal="level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_level_selected"]
+[connection signal="locked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_locked_level_selected"]
+[connection signal="locked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_locked_level_selected"]
 [connection signal="overall_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_overall_selected"]
 [connection signal="overall_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_overall_selected"]
+[connection signal="unlocked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_unlocked_level_selected"]
+[connection signal="unlocked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_unlocked_level_selected"]
 [connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Quit" to="SettingsMenu" method="_on_Quit_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]

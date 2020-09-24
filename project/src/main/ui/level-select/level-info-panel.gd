@@ -14,9 +14,9 @@ const DURATIONS := [
 var _duration_calculator := DurationCalculator.new()
 
 """
-Updates the info panel when a new level is selected.
+When an unlocked level is selected, we display some statistics for that level.
 """
-func _on_LevelButtons_level_selected(settings: ScenarioSettings) -> void:
+func _on_LevelButtons_unlocked_level_selected(settings: ScenarioSettings) -> void:
 	var text := ""
 	var difficulty_string := "Unknown"
 	match settings.get_difficulty():
@@ -54,7 +54,14 @@ func _on_LevelButtons_level_selected(settings: ScenarioSettings) -> void:
 
 
 """
-When the 'overall' button is selected, we generate and show some level statistics.
+When a locked level is selected, we clear out the info panel.
+"""
+func _on_LevelButtons_locked_level_selected(_level_lock: LevelLock) -> void:
+	$MarginContainer/Label.text = ""
+
+
+"""
+When the 'overall' button is selected, we display statistics for all of the levels.
 """
 func _on_LevelButtons_overall_selected(ranks: Array) -> void:
 	var text := ""
@@ -89,4 +96,3 @@ func _on_LevelButtons_overall_selected(ranks: Array) -> void:
 	if star_count > 0:
 		text += "\nTotal stars: %s" % [star_count]
 	$MarginContainer/Label.text = text
-
