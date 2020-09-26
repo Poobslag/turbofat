@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/music/music-player.gd" type="Script" id=1]
 [ext_resource path="res://src/main/music/CheckpointSong.tscn" type="PackedScene" id=2]
@@ -14,6 +14,7 @@
 [ext_resource path="res://assets/main/music/house-10.ogg" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/music/hiphop-03.ogg" type="AudioStream" id=13]
 [ext_resource path="res://assets/main/music/mellow-01.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/main/music/mellow-02.ogg" type="AudioStream" id=15]
 
 [node name="MusicPlayer" type="Node"]
 pause_mode = 2
@@ -21,6 +22,7 @@ script = ExtResource( 1 )
 
 [node name="Breakbeat01" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 5 )
+volume_db = -5.0
 checkpoints = [ 0.0, 12.916, 29.532, 88.61 ]
 
 [node name="HipHop03" parent="." instance=ExtResource( 2 )]
@@ -58,6 +60,10 @@ checkpoints = [ 0.0, 14.989, 29.982, 59.993 ]
 [node name="Mellow01" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 14 )
 checkpoints = [ 0.0, 31.473, 62.95, 94.422, 188.845 ]
+
+[node name="Mellow02" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 15 )
+checkpoints = [ 0.0, 22.575, 101.642 ]
 
 [node name="Tutorial" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 11 )
