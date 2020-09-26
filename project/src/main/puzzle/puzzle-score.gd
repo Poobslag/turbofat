@@ -16,6 +16,10 @@ signal after_game_prepared
 
 signal game_started
 
+# emitted during tutorials, when changing from one section of the tutorial to the next
+signal before_level_changed
+signal after_level_changed
+
 # emitted when the player survives until the end the level.
 signal finish_triggered
 
@@ -43,6 +47,8 @@ enum EndResult {
 const LOST := EndResult.LOST
 const FINISHED := EndResult.FINISHED
 const WON := EndResult.WON
+
+const READY_DURATION := 1.4
 
 # Player's performance on the current level
 var level_performance := PuzzlePerformance.new()
@@ -78,10 +84,16 @@ Resets all score data, and starts a new game after a brief pause.
 """
 func prepare_and_start_game() -> void:
 	_prepare_game()
-	yield(get_tree().create_timer(1.4), "timeout")
-	if get_tree().paused:
-		# If the player pauses during the initial countdown, we wait to start until the game is unpaused.
-		yield(Pauser, "paused_changed")
+	
+	if Level.settings.other.skip_intro:
+		# when skipping the intro, we don't pause between preparing/starting the game
+		pass
+	else:
+		yield(get_tree().create_timer(READY_DURATION), "timeout")
+		if get_tree().paused:
+			# If the player pauses during the initial countdown, we wait to start until the game is unpaused.
+			yield(Pauser, "paused_changed")
+	
 	_start_game()
 
 
@@ -117,6 +129,18 @@ func end_game() -> void:
 	emit_signal("game_ended")
 	yield(get_tree().create_timer(4.2 if WON else 2.2), "timeout")
 	emit_signal("after_game_ended")
+
+
+func change_level(level_id: String, delay_between_levels: bool = true) -> void:
+	emit_signal("before_level_changed")
+	
+	if delay_between_levels:
+		yield(get_tree().create_timer(1.60), "timeout")
+	
+	var settings := LevelSettings.new()
+	settings.load_from_resource(level_id)
+	Level.switch_level(settings)
+	emit_signal("after_level_changed")
 
 
 """

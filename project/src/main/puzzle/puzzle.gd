@@ -27,6 +27,11 @@ func _ready() -> void:
 		$RestaurantView.summon_creature(i)
 	
 	$RestaurantView.get_customer().play_hello_voice(true)
+	
+	if Level.settings.other.skip_intro:
+		$PuzzleMusicManager.start_puzzle_music()
+		yield(get_tree().create_timer(0.8), "timeout")
+		_start_puzzle()
 
 
 func _input(event: InputEvent) -> void:
@@ -54,6 +59,43 @@ func show_buttons() -> void:
 
 func scroll_to_new_creature() -> void:
 	$RestaurantView.scroll_to_new_creature()
+
+
+"""
+Start a countdown when transitioning between levels. Used during tutorials.
+"""
+func start_level_countdown() -> void:
+	$PieceManager.set_physics_process(false)
+	$Hud/HudUi/PuzzleMessages.show_message("Ready?")
+	$StartEndSfx.play_ready_sound()
+	yield(get_tree().create_timer(PuzzleScore.READY_DURATION), "timeout")
+	$Hud/HudUi/PuzzleMessages.hide_message()
+	$PieceManager.set_physics_process(true)
+	$PieceManager.skip_prespawn()
+	$StartEndSfx.play_go_sound()
+
+
+"""
+Starts or restarts the puzzle, loading new customers and preparing the level.
+"""
+func _start_puzzle() -> void:
+	_start_button_click_count += 1
+	
+	if _start_button_click_count > 1:
+		# restart puzzle; reset customers
+		CreatureLoader.reset_secondary_creature_queue()
+		if Global.creature_queue:
+			# Reset fatness. Playing the same puzzle over and over shouldn't
+			# make a creature super fat. Thematically, we're turning back time.
+			PlayerData.creature_library.restore_fatness_state()
+		Global.creature_queue_index = 0
+		$RestaurantView.start_suppress_sfx_timer()
+		for i in range(3):
+			$RestaurantView.summon_creature(i)
+		$RestaurantView.set_current_creature_index(0)
+	
+	PlayerData.creature_library.save_fatness_state()
+	PuzzleScore.prepare_and_start_game()
 
 
 """
@@ -111,23 +153,7 @@ func _check_for_game_end() -> void:
 
 
 func _on_Hud_start_button_pressed() -> void:
-	_start_button_click_count += 1
-	
-	if _start_button_click_count > 1:
-		# restart puzzle; reset customers
-		CreatureLoader.reset_secondary_creature_queue()
-		if Global.creature_queue:
-			# Reset fatness. Playing the same puzzle over and over shouldn't
-			# make a creature super fat. Thematically, we're turning back time.
-			PlayerData.creature_library.restore_fatness_state()
-		Global.creature_queue_index = 0
-		$RestaurantView.start_suppress_sfx_timer()
-		for i in range(3):
-			$RestaurantView.summon_creature(i)
-		$RestaurantView.set_current_creature_index(0)
-	
-	PlayerData.creature_library.save_fatness_state()
-	PuzzleScore.prepare_and_start_game()
+	_start_puzzle()
 
 
 func _on_Hud_settings_button_pressed() -> void:

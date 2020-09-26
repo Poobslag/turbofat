@@ -72,6 +72,12 @@ Launches a puzzle scene with the previously specified 'launched level' settings.
 func push_level_trail() -> void:
 	var level_settings := LevelSettings.new()
 	level_settings.load_from_resource(launched_level_id)
+	
+	# When the player first launches the game and does the tutorial, we skip the typical puzzle intro.
+	if launched_level_id == Level.BEGINNER_TUTORIAL \
+			and not PlayerData.level_history.finished_levels.has(Level.BEGINNER_TUTORIAL):
+		level_settings.other.skip_intro = true
+	
 	start_level(level_settings)
 	if Level.launched_creature_id:
 		var creature_def := CreatureLoader.load_creature_def_by_id(Level.launched_creature_id)

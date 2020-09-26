@@ -8,11 +8,15 @@ func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func start_puzzle_music() -> void:
 	if Level.settings.other.tutorial:
 		MusicPlayer.play_tutorial_bgm()
 	else:
 		MusicPlayer.play_upbeat_bgm()
+
+
+func _on_PuzzleScore_game_prepared() -> void:
+	start_puzzle_music()
 
 
 func _on_PuzzleScore_game_ended() -> void:

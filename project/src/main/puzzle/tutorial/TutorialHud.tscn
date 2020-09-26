@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main/puzzle/tutorial/SkillTallyItem.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-message.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-hud.gd" type="Script" id=5]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-message-tween.gd" type="Script" id=6]
-[ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-complete.wav" type="AudioStream" id=7]
 [ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -178,6 +177,17 @@ max_value = 2.0
 label_text = "Snack Box"
 signal_names = [ "box_built" ]
 
+[node name="BoxClear" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
+visible = false
+margin_left = 112.0
+margin_top = 204.0
+margin_right = 220.0
+margin_bottom = 268.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 2.0
+label_text = "Box Clear"
+
 [node name="SquishMove" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
 visible = false
 margin_top = 272.0
@@ -191,10 +201,10 @@ signal_names = [ "squish_moved" ]
 
 [node name="SnackStack" parent="SkillTallyItems/GridContainer" instance=ExtResource( 1 )]
 visible = false
-margin_left = 112.0
-margin_top = 204.0
-margin_right = 220.0
-margin_bottom = 268.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 108.0
+margin_bottom = 64.0
 custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 2.0
@@ -217,9 +227,5 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
-
-[node name="SectionCompleteSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 7 )
-volume_db = -4.0
 [connection signal="pop_out_completed" from="Message/Tween" to="Message" method="_on_Tween_pop_out_completed"]
 [connection signal="tween_completed" from="Message/Tween" to="Message/Tween" method="_on_tween_completed"]
