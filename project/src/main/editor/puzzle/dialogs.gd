@@ -27,7 +27,7 @@ func _on_OpenFile_pressed() -> void:
 		_show_save_load_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path($OpenFile, "res://assets/main/puzzle/level/")
+	Utils.assign_default_dialog_path($OpenFile, "res://assets/main/puzzle/levels/")
 	$OpenFile.popup_centered()
 
 
@@ -40,7 +40,7 @@ func _on_Save_pressed() -> void:
 		_show_save_load_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path($Save, "res://assets/main/puzzle/level/")
+	Utils.assign_default_dialog_path($Save, "res://assets/main/puzzle/levels/")
 	var file_root := StringUtils.sanitize_file_root(_level_editor.level_name.text)
 	$Save.current_file = LevelSettings.level_filename(file_root)
 	$Save.popup_centered()
