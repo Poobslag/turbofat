@@ -29,19 +29,15 @@ var _columns := []
 # current column width; shrinks when zoomed out
 var _column_width := COLUMN_WIDTH_SMALL
 
-# mapping from level IDs to LevelSettings instances
-var _level_settings_by_id: Dictionary
-
 var _duration_calculator := DurationCalculator.new()
 
-# tracks which levels unlock other levels
-var _world_locks := WorldLocks.new()
+# keeps track of which worlds and levels are available to the player and how to unlock them.
+var _level_select_model := LevelSelectModel.new()
 
 func _ready() -> void:
-	_world_locks.initialize()
+	_level_select_model.initialize()
 	_clear_contents()
-	_add_level_buttons()
-	_add_overall_button()
+	_add_buttons()
 	_misalign_columns()
 
 
@@ -57,39 +53,51 @@ func _clear_contents() -> void:
 """
 Adds buttons representing levels the player can choose.
 """
-func _add_level_buttons() -> void:
-	var column_count := ceil(sqrt(_world_locks.level_ids.size() + 1))
-	for _i in range(column_count):
-		var vbox_container := VBoxContainer.new()
-		vbox_container.alignment = BoxContainer.ALIGN_END
-		vbox_container.rect_min_size.x = _column_width
-		vbox_container.set("custom_constants/separation", VERTICAL_SPACING)
-		_columns.append(vbox_container)
-		add_child(vbox_container)
-	
-	for level_id in _world_locks.level_ids:
-		var level_settings := LevelSettings.new()
-		level_settings.load_from_resource(level_id)
-		_level_settings_by_id[level_id] = level_settings
-	
-	for i in range(_world_locks.level_ids.size()):
-		var level_id: String = _world_locks.level_ids[i]
-		var column: VBoxContainer = _columns[(i + 1) % _columns.size()]
-		column.add_child(_level_select_button(level_id))
+func _add_buttons() -> void:
+	var last_world_button: LevelSelectButton
+	for world_id_obj in _level_select_model.world_ids:
+		var world_id: String = world_id_obj
+		var shown_level_ids := _level_select_model.shown_level_ids(world_id)
+		
+		if not shown_level_ids:
+			continue
+		
+		var column_count := ceil(sqrt(shown_level_ids.size() + 1))
+		for _i in range(column_count):
+			var vbox_container := VBoxContainer.new()
+			vbox_container.alignment = BoxContainer.ALIGN_END
+			vbox_container.rect_min_size.x = _column_width
+			vbox_container.set("custom_constants/separation", VERTICAL_SPACING)
+			_columns.append(vbox_container)
+			add_child(vbox_container)
+		
+		for i in range(shown_level_ids.size()):
+			var level_id: String = shown_level_ids[i]
+			var level_lock: LevelLock =  _level_select_model.level_lock(level_id)
+			if level_lock.status == LevelLock.STATUS_HARD_LOCK:
+				# 'hard lock' levels are hidden from the player
+				continue
+			var column: VBoxContainer = _columns[(i + 1) % _columns.size()]
+			column.add_child(_level_select_button(world_id, level_id))
+		
+		last_world_button = _add_world_button(world_id)
+	last_world_button.grab_focus()
 
 
 """
-Adds the 'overall' button which shows the player's progress for all puzzles.
+Adds the world button which show the player's progress for a world.
 """
-func _add_overall_button() -> void:
+func _add_world_button(world_id: String) -> LevelSelectButton:
 	var level_select_button: LevelSelectButton = LevelSelectButtonScene.instance()
+	level_select_button.world_id = world_id
 	level_select_button.level_column_width = _column_width
 	level_select_button.level_duration = LevelSelectButton.LONG
-	level_select_button.level_title = "(overall)"
-	level_select_button.connect("focus_entered", self, "_on_OverallButton_focus_entered")
+	var world_lock: WorldLock = _level_select_model.world_lock(world_id)
+	level_select_button.level_title = "(%s)" % [world_lock.world_name]
+	level_select_button.connect("focus_entered", self, "_on_WorldButton_focus_entered", [world_id])
 	
 	_columns[0].add_child(level_select_button)
-	level_select_button.grab_focus()
+	return level_select_button
 
 
 """
@@ -106,9 +114,11 @@ func _misalign_columns() -> void:
 """
 Creates a level select button for the specified level.
 """
-func _level_select_button(level_id: String) -> LevelSelectButton:
-	var level_settings: LevelSettings = _level_settings_by_id[level_id]
+func _level_select_button(world_id: String, level_id: String) -> LevelSelectButton:
+	var level_settings: LevelSettings = _level_select_model.level_settings(level_id)
 	var level_select_button: LevelSelectButton = LevelSelectButtonScene.instance()
+	level_select_button.world_id = world_id
+	level_select_button.level_id = level_id
 	level_select_button.level_column_width = _column_width
 	
 	var duration := _duration_calculator.duration(level_settings)
@@ -119,7 +129,7 @@ func _level_select_button(level_id: String) -> LevelSelectButton:
 	else:
 		level_select_button.level_duration = LevelSelectButton.LONG
 	
-	var level_lock: LevelLock = _world_locks.level_locks[level_id]
+	var level_lock: LevelLock = _level_select_model.level_lock(level_id)
 	level_select_button.lock_status = level_lock.status
 	level_select_button.keys_needed = level_lock.keys_needed
 	level_select_button.level_title = level_settings.title
@@ -129,23 +139,21 @@ func _level_select_button(level_id: String) -> LevelSelectButton:
 	return level_select_button
 
 
+func _lowlight_unrelated_buttons(world_id: String) -> void:
+	for button in get_tree().get_nodes_in_group("level_select_buttons"):
+		var level_select_button: LevelSelectButton = button
+		if world_id == level_select_button.world_id:
+			level_select_button.modulate = Color.white
+		else:
+			level_select_button.modulate = Color("50ffffff")
+
 """
 When the player clicks a level button twice, we launch the selected level
 """
 func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
-	var creature_id := ""
-	if _world_locks.level_locks.has(settings.id):
-		var level_lock: LevelLock = _world_locks.level_locks.get(settings.id)
-		creature_id = level_lock.creature_id
-	
-	var level_num := -1
-	if _world_locks.level_locks.has(settings.id):
-		var level_lock: LevelLock = _world_locks.level_locks.get(settings.id)
-		level_num = level_lock.level_num
-	
-	Level.set_launched_level(settings.id, creature_id, level_num)
-	
-	if creature_id and level_num >= 1:
+	var level_lock: LevelLock = _level_select_model.level_lock(settings.id)
+	Level.set_launched_level(settings.id, level_lock.creature_id, level_lock.level_num)
+	if level_lock.creature_id and level_lock.level_num >= 1:
 		Breadcrumb.push_trail(Global.SCENE_OVERWORLD)
 	else:
 		Level.push_level_trail()
@@ -155,8 +163,10 @@ func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 When the player clicks a level button once, we emit a signal to show more information.
 """
 func _on_LevelSelectButton_focus_entered(settings: LevelSettings) -> void:
-	if _world_locks.is_locked(settings.id):
-		emit_signal("locked_level_selected", _world_locks.level_locks[settings.id])
+	var world_lock: WorldLock = _level_select_model.world_lock_for_level(settings.id)
+	_lowlight_unrelated_buttons(world_lock.world_id)
+	if _level_select_model.is_locked(settings.id):
+		emit_signal("locked_level_selected", _level_select_model.level_lock(settings.id))
 	else:
 		emit_signal("unlocked_level_selected", settings)
 
@@ -164,15 +174,16 @@ func _on_LevelSelectButton_focus_entered(settings: LevelSettings) -> void:
 """
 When the player clicks the 'overall' button once, we emit a signal to show more information.
 """
-func _on_OverallButton_focus_entered() -> void:
+func _on_WorldButton_focus_entered(world_id: String) -> void:
+	_lowlight_unrelated_buttons(world_id)
+	var world_lock: WorldLock = _level_select_model.world_lock(world_id)
 	# populate an array of level ranks. incomplete levels are treated as rank 999
 	var ranks := []
-	for settings_obj in _level_settings_by_id.values():
-		var settings: LevelSettings = settings_obj
+	for level_id in world_lock.level_ids:
+		var settings: LevelSettings = _level_select_model.level_settings(level_id)
 		var best_result := PlayerData.level_history.best_result(settings.id)
 		var rank := 999.0
 		if best_result:
 			rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank
 		ranks.append(rank)
-	
 	emit_signal("overall_selected", ranks)

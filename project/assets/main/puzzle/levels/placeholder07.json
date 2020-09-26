@@ -1,6 +1,6 @@
 {
   "version": "19c5",
-  "start_speed": "7",
+  "start_speed": "5",
   "title": "Muffin Impossible",
   "description": "So many awkward mismatched pieces! This is like solving a jigsaw puzzle with no edges...",
   "finish_condition": {

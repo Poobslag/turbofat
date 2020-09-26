@@ -69,6 +69,7 @@ Graphics
 project/assets/main/editor/creature/edit.png 'Dna' by Freepik
 project/assets/main/editor/creature/locked.png 'Unlock' by Freepik
 project/assets/main/editor/creature/unlocked.png 'Safe' by Freepik
+project/assets/main/ui/level-select/crown.png 'Crown' by Freepik
 project/assets/main/ui/level-select/key.png 'Old Key' by Freepik
 project/assets/main/ui/level-select/locked.png 'Unlock' by Freepik
 project/assets/main/ui/level-select/unlockable.png 'Unlock' by Freepik
