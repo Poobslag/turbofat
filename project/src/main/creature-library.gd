@@ -23,6 +23,7 @@ const DEFAULT_CHAT_THEME_DEF := {
 
 # default creature appearance when starting a new game
 const DEFAULT_DNA := {
+	"accessory": "0",
 	"belly": "1",
 	"belly_rgb": "c9442a",
 	"bellybutton": "0",
@@ -34,6 +35,7 @@ const DEFAULT_DNA := {
 	"ear": "1",
 	"eye": "1",
 	"eye_rgb": "282828 dedede",
+	"glass_rgb": "282828",
 	"hair": "0",
 	"hair_rgb": "f1e398",
 	"head": "1",
@@ -42,6 +44,7 @@ const DEFAULT_DNA := {
 	"line_rgb": "6c4331",
 	"mouth": "2",
 	"nose": "0",
+	"plastic_rgb": "282828",
 	"tail": "0",
 }
 

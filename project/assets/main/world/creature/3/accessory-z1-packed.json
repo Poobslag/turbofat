@@ -1,0 +1,38 @@
+{ "frames": [
+   {
+    "filename": "accessory-z1-1 0.png",
+    "frame": { "x": 211, "y": 0, "w": 1, "h": 1 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "accessory-z1-1 1.png",
+    "frame": { "x": 107, "y": 0, "w": 99, "h": 137 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 169, "y": 158, "w": 99, "h": 137 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   },
+   {
+    "filename": "accessory-z1-1 2.png",
+    "frame": { "x": 0, "y": 0, "w": 102, "h": 137 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 162, "y": 159, "w": 102, "h": 137 },
+    "sourceSize": { "w": 512, "h": 512 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.25-x64",
+  "image": "accessory-z1-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 212, "h": 137 },
+  "scale": "1"
+ }
+}

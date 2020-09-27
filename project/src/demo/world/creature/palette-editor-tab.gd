@@ -69,11 +69,13 @@ func _print_palette(palette: Dictionary) -> void:
 	var result := ""
 	result += "\t{\"line_rgb\": \"%s\", " % palette["line_rgb"]
 	result += "\"body_rgb\": \"%s\", " % palette["body_rgb"]
-	result += "\"belly_rgb\": \"%s\", " % palette["belly_rgb"]
-	result += "\"cloth_rgb\": \"%s\",\n\t\t\t" % palette["cloth_rgb"]
+	result += "\"belly_rgb\": \"%s\",\n\t\t\t" % palette["belly_rgb"]
 	result += "\"hair_rgb\": \"%s\", " % palette["hair_rgb"]
 	result += "\"eye_rgb\": \"%s\", " % palette["eye_rgb"]
-	result += "\"horn_rgb\": \"%s\"}, # ??????" % palette["horn_rgb"]
+	result += "\"horn_rgb\": \"%s\",\n\t\t\t" % palette["horn_rgb"]
+	result += "\"cloth_rgb\": \"%s\", " % palette["cloth_rgb"]
+	result += "\"glass_rgb\": \"%s\", " % palette["glass_rgb"]
+	result += "\"plastic_rgb\": \"%s\"}, # ??????" % palette["plastic_rgb"]
 	print(result)
 
 

@@ -3,7 +3,7 @@ class_name CreatureDef
 Stores information about a creature such as their name, appearance, and dialog.
 """
 
-const CREATURE_DATA_VERSION := "19a3"
+const CREATURE_DATA_VERSION := "19dd"
 
 # creature's id, e.g 'boatricia'
 var creature_id: String
@@ -31,19 +31,25 @@ var chat_selectors: Array
 var fatness := 1.0
 
 func from_json_dict(json: Dictionary) -> void:
-	match json.get("version"):
-		CREATURE_DATA_VERSION:
-			# latest version
-			pass
-		"187d":
-			if json.has("dna"):
-				json.get("dna")["bellybutton"] = "0"
-		"170e":
-			# old save data might have an empty array; we need to overwrite this with an empty dictionary to avoid
-			# type issues
-			json["dialog"] = {}
-		_:
-			push_warning("Unrecognized creature data version: '%s'" % json.get("version"))
+	var version: String = json.get("version")
+	while version != CREATURE_DATA_VERSION:
+		match version:
+			"19a3":
+				if json.has("dna"):
+					json.get("dna")["accessory"] = "0"
+				version = "19dd"
+			"187d":
+				if json.has("dna"):
+					json.get("dna")["bellybutton"] = "0"
+				version = "19a3"
+			"170e":
+				# old save data might have an empty array; we need to overwrite this with an empty dictionary to avoid
+				# type issues
+				json["dialog"] = {}
+				version = "187d"
+			_:
+				push_warning("Unrecognized creature data version: '%s'" % json.get("version"))
+				break
 	
 	creature_id = json.get("id", "")
 	creature_name = json.get("name", "")
