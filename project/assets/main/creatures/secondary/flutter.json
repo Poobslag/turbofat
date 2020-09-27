@@ -1,0 +1,41 @@
+{
+  "version": "19a3",
+  "id": "",
+  "name": "Flutter",
+  "short_name": "Flutter",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "1",
+    "collar": "0",
+    "ear": "6",
+    "eye": "3",
+    "hair": "0",
+    "head": "5",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "2",
+    "tail": "6",
+    "line_rgb": "6c4331",
+    "body_rgb": "f48fbc",
+    "belly_rgb": "ffd9ca",
+    "cloth_rgb": "e9d4fb",
+    "hair_rgb": "e7e7e7",
+    "eye_rgb": "866c95 faf5ff",
+    "horn_rgb": "f4e6db"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "f48fbc"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.2
+}

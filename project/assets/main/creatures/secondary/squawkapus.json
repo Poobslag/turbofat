@@ -1,0 +1,41 @@
+{
+  "version": "19a3",
+  "id": "",
+  "name": "Sir Clarnacle Squawkapus George Rufus Branley VIII",
+  "short_name": "Squawkapus",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "4",
+    "body": "1",
+    "cheek": "0",
+    "collar": "5",
+    "ear": "4",
+    "eye": "3",
+    "hair": "0",
+    "head": "1",
+    "horn": "1",
+    "mouth": "4",
+    "nose": "0",
+    "tail": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "664437",
+    "belly_rgb": "a9d252",
+    "cloth_rgb": "95c152",
+    "hair_rgb": "5a635d",
+    "eye_rgb": "74a27f fffaff",
+    "horn_rgb": "caf877"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "664437"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.6
+}
