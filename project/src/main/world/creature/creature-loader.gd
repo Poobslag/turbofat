@@ -33,6 +33,10 @@ var _ear_player_scenes := {
 	"4": preload("res://src/main/world/creature/Ear4Player.tscn"),
 	"5": preload("res://src/main/world/creature/Ear5Player.tscn"),
 	"6": preload("res://src/main/world/creature/Ear6Player.tscn"),
+	"7": preload("res://src/main/world/creature/EarPlayerDefault.tscn"),
+	"8": preload("res://src/main/world/creature/EarPlayerDefault.tscn"),
+	"9": preload("res://src/main/world/creature/EarPlayerDefault.tscn"),
+	"10": preload("res://src/main/world/creature/EarPlayerDefault.tscn"),
 }
 
 # Scenes which draw different bodies
@@ -296,6 +300,9 @@ func _load_head(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/EyeZ0", "eye", "eye-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/EyeZ1", "eye", "eye-z1-packed")
 	
+	_load_texture(dna, "Neck0/HeadBobber/EmoteEyeZ0", "emote-eye", "emote-eye-z0-packed")
+	_load_texture(dna, "Neck0/HeadBobber/EmoteEyeZ1", "emote-eye", "emote-eye-z1-packed")
+	
 	_load_texture(dna, "Neck0/HeadBobber/HairZ0", "hair", "hair-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/HairZ1", "hair", "hair-z1-packed")
 	_load_texture(dna, "Neck0/HeadBobber/HairZ2", "hair", "hair-z2-packed")
@@ -308,6 +315,9 @@ func _load_head(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-packed")
 	
 	_load_texture(dna, "Neck0/HeadBobber/Nose", "nose", "nose-packed")
+	
+	_load_texture(dna, "Neck0/HeadBobber/AccessoryZ0", "accessory", "accessory-z0-packed")
+	_load_texture(dna, "Neck0/HeadBobber/AccessoryZ1", "accessory", "accessory-z1-packed")
 
 
 """
@@ -337,29 +347,37 @@ func _load_body(dna: Dictionary) -> void:
 Assigns the creature's colors based on a creature definition.
 """
 func _load_colors(dna: Dictionary) -> void:
-	var line_color: Color
-	if dna.has("line_rgb"):
-		line_color = Color(dna.line_rgb)
-	
-	var hair_color: Color
-	if dna.has("hair_rgb"):
-		hair_color = Color(dna.hair_rgb)
-	
-	var cloth_color: Color
-	if dna.has("cloth_rgb"):
-		cloth_color = Color(dna.cloth_rgb)
+	var belly_color: Color
+	if dna.has("belly_rgb"):
+		belly_color = Color(dna.belly_rgb)
 	
 	var body_color: Color
 	if dna.has("body_rgb"):
 		body_color = Color(dna.body_rgb)
 	
-	var belly_color: Color
-	if dna.has("belly_rgb"):
-		belly_color = Color(dna.belly_rgb)
+	var cloth_color: Color
+	if dna.has("cloth_rgb"):
+		cloth_color = Color(dna.cloth_rgb)
+	
+	var glass_color: Color
+	if dna.has("glass_rgb"):
+		glass_color = Color(dna.glass_rgb)
+	
+	var hair_color: Color
+	if dna.has("hair_rgb"):
+		hair_color = Color(dna.hair_rgb)
 	
 	var horn_color: Color
 	if dna.has("horn_rgb"):
 		horn_color = Color(dna.horn_rgb)
+	
+	var line_color: Color
+	if dna.has("line_rgb"):
+		line_color = Color(dna.line_rgb)
+	
+	var plastic_color: Color
+	if dna.has("plastic_rgb"):
+		plastic_color = Color(dna.plastic_rgb)
 	
 	_set_krgb(dna, "Body", line_color, body_color, belly_color)
 	_set_krgb(dna, "Collar", line_color, cloth_color, hair_color)
@@ -368,9 +386,12 @@ func _load_colors(dna: Dictionary) -> void:
 	_set_krgb(dna, "FarLeg", line_color, body_color)
 	_set_krgb(dna, "NearArm", line_color, body_color)
 	_set_krgb(dna, "NearLeg", line_color, body_color)
-	_set_krgb(dna, "Neck0/HeadBobber/EarZ0", line_color, body_color)
-	_set_krgb(dna, "Neck0/HeadBobber/EarZ1", line_color, body_color)
-	_set_krgb(dna, "Neck0/HeadBobber/EarZ2", line_color, body_color)
+	
+	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ0", line_color, plastic_color, glass_color, Color.white)
+	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ1", line_color, plastic_color, glass_color, Color.white)
+	_set_krgb(dna, "Neck0/HeadBobber/EarZ0", line_color, body_color, hair_color, horn_color)
+	_set_krgb(dna, "Neck0/HeadBobber/EarZ1", line_color, body_color, hair_color, horn_color)
+	_set_krgb(dna, "Neck0/HeadBobber/EarZ2", line_color, body_color, hair_color, horn_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EmoteArmZ0", line_color, body_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EmoteArmZ1", line_color, body_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EmoteBrain", line_color)

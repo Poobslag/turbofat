@@ -1556,10 +1556,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray(0.0666667, 1.53333),
+"times": PoolRealArray( 0.0666667, 1.53333 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [1, 1]
+"values": [ 1, 1 ]
 }
 
 [sub_resource type="Animation" id=22]

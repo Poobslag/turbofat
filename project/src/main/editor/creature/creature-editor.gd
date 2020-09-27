@@ -131,10 +131,12 @@ func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary
 			dna["body_rgb"] = new_palette["body_rgb"]
 			dna["belly_rgb"] = new_palette["belly_rgb"]
 			dna["cloth_rgb"] = new_palette["cloth_rgb"]
+			dna["glass_rgb"] = new_palette["glass_rgb"]
+			dna["plastic_rgb"] = new_palette["plastic_rgb"]
 			dna["hair_rgb"] = new_palette["hair_rgb"]
 			dna["eye_rgb"] = new_palette["eye_rgb"]
 			dna["horn_rgb"] = new_palette["horn_rgb"]
-		"line_rgb", "belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb":
+		"line_rgb", "belly_rgb", "cloth_rgb", "glass_rgb", "plastic_rgb", "hair_rgb", "eye_rgb", "horn_rgb":
 			dna[property] = new_palette[property]
 		_:
 			var new_alleles := DnaUtils.allele_weights(dna, property)
@@ -176,6 +178,8 @@ func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 		# generate a palette with random colors
 		var body := Color(randf(), randf(), randf())
 		var cloth := Color(randf(), randf(), randf())
+		var glass := Color(randf(), randf(), randf())
+		var plastic := Color(randf(), randf(), randf())
 		var hair := Color(randf(), randf(), randf())
 		var belly := Color(randf(), randf(), randf())
 		var eye0 := Color(randf(), randf(), randf())
@@ -203,6 +207,8 @@ func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 		result["body_rgb"] = body.to_html(false)
 		result["belly_rgb"] = belly.to_html(false)
 		result["cloth_rgb"] = cloth.to_html(false)
+		result["glass_rgb"] = glass.to_html(false)
+		result["plastic_rgb"] = plastic.to_html(false)
 		result["hair_rgb"] = hair.to_html(false)
 		result["eye_rgb"] = "%s %s" % [eye0.to_html(false), eye1.to_html(false)]
 		result["horn_rgb"] = horn.to_html(false)
@@ -266,10 +272,12 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 			dna["body_rgb"] = palette["body_rgb"]
 			dna["belly_rgb"] = palette["belly_rgb"]
 			dna["cloth_rgb"] = palette["cloth_rgb"]
+			dna["glass_rgb"] = palette["glass_rgb"]
+			dna["plastic_rgb"] = palette["plastic_rgb"]
 			dna["hair_rgb"] = palette["hair_rgb"]
 			dna["eye_rgb"] = palette["eye_rgb"]
 			dna["horn_rgb"] = palette["horn_rgb"]
-		"belly_rgb", "cloth_rgb", "hair_rgb", "eye_rgb", "horn_rgb", "line_rgb":
+		"belly_rgb", "cloth_rgb", "glass_rgb", "plastic_rgb", "hair_rgb", "eye_rgb", "horn_rgb", "line_rgb":
 			dna[allele] = palette[allele]
 		_:
 			var new_alleles := DnaUtils.unique_allele_values(allele)

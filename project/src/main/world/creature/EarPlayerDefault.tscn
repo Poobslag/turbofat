@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/creature/ear-player.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=1]
+resource_name = "ambient"
+length = 6.0
+
+[node name="EarPlayer" type="AnimationPlayer"]
+anims/ambient = SubResource( 1 )
+script = ExtResource( 1 )

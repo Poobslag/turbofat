@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=2]
@@ -26,6 +26,8 @@
 [ext_resource path="res://assets/main/world/creature/1/tail-z1-packed.png" type="Texture" id=24]
 [ext_resource path="res://assets/main/world/creature/5/head-packed.png" type="Texture" id=25]
 [ext_resource path="res://assets/main/world/creature/4/bellybutton-packed.png" type="Texture" id=26]
+[ext_resource path="res://assets/main/world/creature/1/emote-eye-z1-packed.png" type="Texture" id=27]
+[ext_resource path="res://assets/main/world/creature/1/emote-eye-z0-packed.png" type="Texture" id=28]
 
 [node name="MoodDemo" type="Node"]
 script = ExtResource( 3 )
@@ -42,6 +44,7 @@ __meta__ = {
 position = Vector2( 512, 420 )
 scale = Vector2( 3, 3 )
 dna = {
+"accessory": "0",
 "belly": "1",
 "belly_rgb": "ffa86d",
 "bellybutton": "4",
@@ -51,8 +54,10 @@ dna = {
 "cloth_rgb": "282828",
 "collar": "1",
 "ear": "2",
+"emote-eye": "1",
 "eye": "3",
 "eye_rgb": "fad541 ffffff",
+"glass_rgb": "282828",
 "hair": "0",
 "hair_rgb": "f1e398",
 "head": "5",
@@ -61,6 +66,7 @@ dna = {
 "line_rgb": "41281e",
 "mouth": "1",
 "nose": "3",
+"plastic_rgb": "282828",
 "property:BellyColors/Viewport/Body:belly": "1",
 "property:BellyColors:belly": "1",
 "property:Bellybutton:frame_data": "res://assets/main/world/creature/4/bellybutton-packed.json",
@@ -91,6 +97,10 @@ dna = {
 "property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 16 ),
 "property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/2/ear-z2-packed.json",
 "property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 18 ),
+"property:Neck0/HeadBobber/EmoteEyeZ0:frame_data": "res://assets/main/world/creature/1/emote-eye-z0-packed.json",
+"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 28 ),
+"property:Neck0/HeadBobber/EmoteEyeZ1:frame_data": "res://assets/main/world/creature/1/emote-eye-z1-packed.json",
+"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 27 ),
 "property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/3/eye-z0-packed.json",
 "property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 4 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/3/eye-z1-packed.json",
@@ -128,6 +138,14 @@ dna = {
 "shader:NearArm:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:NearLeg:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:NearLeg:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:blue": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:green": Color( 0.156863, 0.156863, 0.156863, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ0:red": Color( 0.156863, 0.156863, 0.156863, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:blue": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:green": Color( 0.156863, 0.156863, 0.156863, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ1:red": Color( 0.156863, 0.156863, 0.156863, 1 ),
 "shader:Neck0/HeadBobber/CheekZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/CheekZ0:green": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/CheekZ0:red": Color( 1, 0.658824, 0.427451, 1 ),
@@ -140,10 +158,16 @@ dna = {
 "shader:Neck0/HeadBobber/Chin:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/Chin:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/EarZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:blue": Color( 0.156863, 0.156863, 0.156863, 1 ),
+"shader:Neck0/HeadBobber/EarZ0:green": Color( 0.945098, 0.890196, 0.596078, 1 ),
 "shader:Neck0/HeadBobber/EarZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/EarZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:blue": Color( 0.156863, 0.156863, 0.156863, 1 ),
+"shader:Neck0/HeadBobber/EarZ1:green": Color( 0.945098, 0.890196, 0.596078, 1 ),
 "shader:Neck0/HeadBobber/EarZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/EarZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:blue": Color( 0.156863, 0.156863, 0.156863, 1 ),
+"shader:Neck0/HeadBobber/EarZ2:green": Color( 0.945098, 0.890196, 0.596078, 1 ),
 "shader:Neck0/HeadBobber/EarZ2:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/EmoteArmZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/EmoteArmZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
