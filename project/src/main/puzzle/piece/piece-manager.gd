@@ -53,6 +53,8 @@ var drawn_piece_orientation: int
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
+	PuzzleScore.connect("before_level_changed", self, "_on_PuzzleScore_before_level_changed")
+	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
 	PuzzleScore.connect("finish_triggered", self, "_on_PuzzleScore_finish_triggered")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
@@ -215,6 +217,15 @@ func is_playfield_clearing_lines() -> bool:
 	return _playfield.get_remaining_line_erase_frames() > 0
 
 
+"""
+Set the state frames so that the piece spawns immediately.
+"""
+func skip_prespawn() -> void:
+	if $States.get_state() != $States/Prespawn:
+		$States.set_state($States/Prespawn)
+	$States/Prespawn.frames = 3600
+
+
 func _clear_piece() -> void:
 	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
 
@@ -241,8 +252,7 @@ func _on_PuzzleScore_game_prepared() -> void:
 
 func _on_PuzzleScore_game_started() -> void:
 	$States.set_state($States/Prespawn)
-	# Set the state frames so that the piece spawns immediately
-	$States/Prespawn.frames = 3600
+	skip_prespawn()
 
 
 """
@@ -259,6 +269,14 @@ The game ended the game, possibly by a top out. We leave the piece in place so t
 """
 func _on_PuzzleScore_game_ended() -> void:
 	$States.set_state($States/GameEnded)
+
+
+func _on_PuzzleScore_before_level_changed() -> void:
+	set_physics_process(false)
+
+
+func _on_PuzzleScore_after_level_changed() -> void:
+	set_physics_process(true)
 
 
 func _on_Pauser_paused_changed(value: bool) -> void:

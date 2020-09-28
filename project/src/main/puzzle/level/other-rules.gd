@@ -15,6 +15,9 @@ var start_level_name: String
 # When the player finishes the level, all lines are cleared
 var clear_on_finish := true
 
+# When the player first launches the game and does the tutorial, we skip the start button and countdown.
+var skip_intro := false
+
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
 	if rules.has("after_tutorial"): after_tutorial = true

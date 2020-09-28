@@ -12,6 +12,8 @@ signal back_button_pressed
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
+	PuzzleScore.connect("before_level_changed", self, "_on_PuzzleScore_before_level_changed")
+	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
 	$MessageLabel.hide()
@@ -31,6 +33,10 @@ func show_message(text: String) -> void:
 	$MessageLabel.text = text
 
 
+func hide_message() -> void:
+	$MessageLabel.hide()
+
+
 func hide_buttons() -> void:
 	$Buttons/Start.hide()
 	$Buttons/Settings.hide()
@@ -42,12 +48,6 @@ func show_buttons() -> void:
 	$Buttons/Start.grab_focus()
 	$Buttons/Settings.show()
 	$Buttons/Back.show()
-
-
-func _hide_buttons_and_messages() -> void:
-	hide_buttons()
-	$MessageLabel.hide()
-	$DetailMessageLabel.hide()
 
 
 func _on_Start_pressed() -> void:
@@ -63,12 +63,20 @@ func _on_Back_pressed() -> void:
 
 
 func _on_PuzzleScore_game_prepared() -> void:
-	_hide_buttons_and_messages()
+	hide_buttons()
 	show_message("Ready?")
 
 
 func _on_PuzzleScore_game_started() -> void:
-	_hide_buttons_and_messages()
+	hide_message()
+
+
+func _on_PuzzleScore_before_level_changed() -> void:
+	show_message("Good!")
+
+
+func _on_PuzzleScore_after_level_changed() -> void:
+	hide_message()
 
 
 func _on_PuzzleScore_game_ended() -> void:

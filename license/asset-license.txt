@@ -13,6 +13,7 @@ $$$ TS-808 emulator by Jonathan Murphy (Creative Commons Attribution-Noncommerci
 Fonts:
 $$ Xolonium by Severin Meyer <sev.ch@web.de> (GPL, http://www.gnu.org/licenses/licenses.html#GPL)
 $$$ Blogger Sans by Sergiy Tkachenko (https://firstsiteguide.com) (Creative Commons Attribution-NoDerivatives 4.0 International Public License)
+$$ Fredoka One by Milena Brandao
 
 Models:
 $$ Nature Kit 2.1 by Kenney (www.kenney.nl) (CC0 1.0 Universal)
@@ -31,7 +32,7 @@ project/assets/main/puzzle/clear-snack-box.wav "\Cooking_Game_16bit\Cooking_Game
 project/assets/main/puzzle/combo-*.wav Adapted from an SNES sound effect
 project/assets/main/puzzle/fanfare*.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - TUNES - CHEERS - (64)\SUCCESS TUNE Win Complete Happy Flute 02.wav"
 project/assets/main/puzzle/frosting-splat*.wav "\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Batter_Pour_01"
-project/assets/main/puzzle/speedup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_03.wav"
+project/assets/main/puzzle/level-change.wav "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SWIPES - SLASHES - WHOOSHES - (58)\SWIPE Whoosh 07.wav"
 project/assets/main/puzzle/line-erase.wav "\Cooking_Game_16bit\Cooking_Actions\Chop\Cooking_Game_Action_Chop_B_02.wav"
 project/assets/main/puzzle/line-fall.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
 project/assets/main/puzzle/lock.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_01.wav"
@@ -42,6 +43,7 @@ project/assets/main/puzzle/presquish.wav "Foley Rubber Glove 1" by Epidemic Soun
 project/assets/main/puzzle/rotate0.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 project/assets/main/puzzle/rotate1.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 project/assets/main/puzzle/smash.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Squish_04.wav"
+project/assets/main/puzzle/speedup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Power_Ups\Cooking_Game_Power_Up_03.wav"
 project/assets/main/puzzle/tutorial/tutorial-section-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 06.wav"
 project/assets/main/puzzle/tutorial/tutorial-task-complete.wav "\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - CHIMES - (55)\SUCCESS CHIME Bells Sparkle Tune Short 05.wav"
 project/assets/main/puzzle/veg-erase.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Cooking_Actions\Organic_Actions\Cooking_Game_Actions_Squish_Vegetable_02.wav" 
@@ -105,6 +107,7 @@ project/assets/main/ui/Xolonium-Regular.ttf Xolonium by Severin Meyer
 project/assets/main/ui/blogger-sans-bold.otf Blogger Sans by Sergiy Tkachenko
 project/assets/main/ui/blogger-sans-medium.otf Blogger Sans by Sergiy Tkachenko
 project/assets/main/ui/blogger-sans.otf Blogger Sans by Sergiy Tkachenko
+project/assets/main/ui/fredoka-one-regular.ttf Fredoka One by Milena Brandao
 
 Other
 --------------------------------------------------------------------------------
