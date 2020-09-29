@@ -79,7 +79,7 @@ shader_param/black = Color( 0, 0, 0, 1 )
 shader_param/shadow_texture = SubResource( 6 )
 shader_param/color_texture = SubResource( 5 )
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=8]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
@@ -87,20 +87,20 @@ shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="CanvasItemMaterial" id=10]
+[sub_resource type="CanvasItemMaterial" id=9]
 particles_animation = true
 particles_anim_h_frames = 2
 particles_anim_v_frames = 2
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id=11]
+[sub_resource type="Gradient" id=10]
 offsets = PoolRealArray( 0, 0.255924, 0.796209, 0.976303 )
 colors = PoolColorArray( 1, 1, 1, 0, 1, 1, 1, 0.752941, 1, 1, 1, 0.501961, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=12]
-gradient = SubResource( 11 )
+[sub_resource type="GradientTexture" id=11]
+gradient = SubResource( 10 )
 
-[sub_resource type="ParticlesMaterial" id=13]
+[sub_resource type="ParticlesMaterial" id=12]
 resource_local_to_scene = true
 emission_shape = 1
 emission_sphere_radius = 50.0
@@ -113,7 +113,15 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 50.0
 scale = 0.7
-color_ramp = SubResource( 12 )
+color_ramp = SubResource( 11 )
+
+[sub_resource type="ShaderMaterial" id=13]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/red = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=14]
 resource_local_to_scene = true
@@ -144,7 +152,7 @@ resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
+shader_param/blue = Color( 1, 1, 1, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=18]
@@ -152,7 +160,7 @@ resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 1, 1, 1, 1 )
+shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
 [sub_resource type="ShaderMaterial" id=19]
@@ -191,7 +199,7 @@ shader_param/black = Color( 0, 0, 0, 1 )
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
+shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
@@ -199,7 +207,7 @@ shader_param/black = Color( 0, 0, 0, 1 )
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0.952941, 0.572549, 0.454902, 1 )
+shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
@@ -264,14 +272,6 @@ resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
 shader_param/green = Color( 0, 0, 0, 1 )
-shader_param/blue = Color( 0, 0, 0, 1 )
-shader_param/black = Color( 0, 0, 0, 1 )
-
-[sub_resource type="ShaderMaterial" id=39]
-resource_local_to_scene = true
-shader = ExtResource( 1 )
-shader_param/red = Color( 0, 0, 0, 1 )
-shader_param/green = Color( 0, 0, 0, 1 )
 shader_param/blue = Color( 1, 1, 1, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
@@ -306,10 +306,11 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 damping = 50.0
 scale = 0.7
-color_ramp = SubResource( 12 )
+color_ramp = SubResource( 11 )
 
 [sub_resource type="CanvasItemMaterial" id=37]
 resource_local_to_scene = true
+blend_mode = 1
 
 [sub_resource type="ShaderMaterial" id=38]
 resource_local_to_scene = true
@@ -319,7 +320,7 @@ shader_param/green = Color( 1, 1, 0.24, 1 )
 shader_param/blue = Color( 0, 0, 0, 1 )
 shader_param/black = Color( 0, 0, 0, 1 )
 
-[sub_resource type="ShaderMaterial" id=40]
+[sub_resource type="ShaderMaterial" id=39]
 resource_local_to_scene = true
 shader = ExtResource( 1 )
 shader_param/red = Color( 0, 0, 0, 1 )
@@ -394,7 +395,6 @@ texture = ExtResource( 49 )
 frame_data = "res://assets/main/world/creature/1/arm-z0-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
 
@@ -407,7 +407,6 @@ texture = ExtResource( 58 )
 frame_data = "res://assets/main/world/creature/1/leg-z0-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
 
@@ -421,7 +420,6 @@ texture = ExtResource( 51 )
 frame_data = "res://assets/main/world/creature/1/sprint-z0-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 6
-centered = true
 offset = Vector2( 0, -119 )
 
 [node name="TailZ0" type="Node2D" parent="."]
@@ -429,11 +427,8 @@ light_mask = 2
 material = SubResource( 4 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
 offset = Vector2( 0, -119 )
 
 [node name="BodyShadows" type="ViewportContainer" parent="."]
@@ -495,14 +490,13 @@ render_target_update_mode = 3
 
 [node name="NearLeg" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 9 )
+material = SubResource( 8 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
 texture = ExtResource( 57 )
 frame_data = "res://assets/main/world/creature/1/leg-z1-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
 
@@ -515,49 +509,39 @@ texture = ExtResource( 52 )
 frame_data = "res://assets/main/world/creature/1/arm-z1-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
 offset = Vector2( 0, -119 )
 invisible_while_sprinting = true
 
 [node name="BodySweat" type="Particles2D" parent="."]
-material = SubResource( 10 )
+material = SubResource( 9 )
 position = Vector2( -10, -50 )
 scale = Vector2( 1, 0.9 )
 emitting = false
 amount = 3
 lifetime = 3.6
 randomness = 1.0
-process_material = SubResource( 13 )
+process_material = SubResource( 12 )
 texture = ExtResource( 44 )
 script = ExtResource( 46 )
 creature_visuals_path = NodePath("..")
 
 [node name="Bellybutton" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 14 )
+material = SubResource( 13 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
 offset = Vector2( 0, -119 )
-invisible_while_sprinting = false
 
 [node name="Collar" type="Node2D" parent="."]
 light_mask = 2
-material = SubResource( 15 )
+material = SubResource( 14 )
 position = Vector2( 0, -100 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
 [node name="Neck0" type="Sprite" parent="."]
 __meta__ = {
@@ -574,173 +558,116 @@ script = ExtResource( 9 )
 __meta__ = {
 "_editor_description_": "Neck1 offsets the head's position as the creature bobs their head up and down"
 }
-head_bob_mode = 1
-head_motion_pixels = 2.0
-head_motion_seconds = 6.5
 
 [node name="HairZ0" type="Node2D" parent="Neck0/HeadBobber"]
+show_behind_parent = true
+light_mask = 2
+material = SubResource( 15 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 6 )
+rect_size = Vector2( 512, 512 )
+frame = 1
+
+[node name="EarZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 16 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
-[node name="EarZ0" type="Node2D" parent="Neck0/HeadBobber"]
+[node name="AccessoryZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 17 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
-[node name="AccessoryZ0" type="Node2D" parent="Neck0/HeadBobber"]
+[node name="HornZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 18 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
-[node name="HornZ0" type="Node2D" parent="Neck0/HeadBobber"]
+[node name="CheekZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 19 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
-[node name="CheekZ0" type="Node2D" parent="Neck0/HeadBobber"]
+[node name="Head" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 20 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
-
-[node name="Head" type="Node2D" parent="Neck0/HeadBobber"]
-show_behind_parent = true
-light_mask = 2
-material = SubResource( 21 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-texture = null
-frame_data = ""
-rect_size = Vector2( 512, 512 )
-frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
 [node name="Chin" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 22 )
+material = SubResource( 21 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 texture = ExtResource( 56 )
 frame_data = "res://assets/main/world/creature/1/chin-packed.json"
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
 
 [node name="EarZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 17 )
+material = SubResource( 16 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
 [node name="CheekZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 23 )
+material = SubResource( 22 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
 [node name="Mouth" type="Node2D" parent="Neck0/HeadBobber"]
+show_behind_parent = true
+light_mask = 2
+material = SubResource( 23 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+rect_size = Vector2( 512, 512 )
+frame = 1
+
+[node name="EyeZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 24 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-
-[node name="EyeZ0" type="Node2D" parent="Neck0/HeadBobber"]
-show_behind_parent = true
-light_mask = 2
-material = SubResource( 25 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-texture = null
-frame_data = ""
-rect_size = Vector2( 512, 512 )
-frame = 1
-centered = true
-offset = Vector2( 0, 0 )
 
 [node name="EmoteEyeZ0" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 25 )
+material = SubResource( 24 )
 position = Vector2( 0, 256 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
-frame = 0
-centered = true
 offset = Vector2( 0, -119 )
 
 [node name="EmoteArmZ0" type="Node2D" parent="Neck0/HeadBobber"]
@@ -753,145 +680,95 @@ script = ExtResource( 2 )
 texture = ExtResource( 25 )
 frame_data = "res://assets/main/world/creature/1/emote-arm-z0-packed.json"
 rect_size = Vector2( 512, 512 )
-frame = 0
-centered = true
 offset = Vector2( 0, -119 )
 
 [node name="HairZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
+material = SubResource( 25 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 6 )
+rect_size = Vector2( 512, 512 )
+frame = 1
+
+[node name="HornZ1" type="Node2D" parent="Neck0/HeadBobber"]
+show_behind_parent = true
+light_mask = 2
 material = SubResource( 26 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
-[node name="HornZ1" type="Node2D" parent="Neck0/HeadBobber"]
+[node name="Nose" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 27 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
-[node name="Nose" type="Node2D" parent="Neck0/HeadBobber"]
+[node name="EyeZ1" type="Node2D" parent="Neck0/HeadBobber"]
+show_behind_parent = true
+light_mask = 2
+material = SubResource( 24 )
+scale = Vector2( 2, 2 )
+script = ExtResource( 2 )
+rect_size = Vector2( 512, 512 )
+frame = 1
+
+[node name="EarZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 28 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
-[node name="EyeZ1" type="Node2D" parent="Neck0/HeadBobber"]
-show_behind_parent = true
-light_mask = 2
-material = SubResource( 25 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 2 )
-texture = null
-frame_data = ""
-rect_size = Vector2( 512, 512 )
-frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-
-[node name="EarZ2" type="Node2D" parent="Neck0/HeadBobber"]
+[node name="CheekZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 material = SubResource( 29 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
-
-[node name="CheekZ2" type="Node2D" parent="Neck0/HeadBobber"]
-show_behind_parent = true
-light_mask = 2
-material = SubResource( 30 )
-scale = Vector2( 2, 2 )
-script = ExtResource( 6 )
-texture = null
-frame_data = ""
-rect_size = Vector2( 512, 512 )
-frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
 [node name="HairZ2" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
-material = SubResource( 31 )
+material = SubResource( 30 )
 scale = Vector2( 2, 2 )
 z_index = 1
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
 [node name="EmoteEyeZ1" type="Node2D" parent="Neck0/HeadBobber"]
 light_mask = 2
-material = SubResource( 32 )
+material = SubResource( 31 )
 position = Vector2( 0, 256 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
-frame = 0
-centered = true
 offset = Vector2( 0, -119 )
 
 [node name="AccessoryZ1" type="Node2D" parent="Neck0/HeadBobber"]
 light_mask = 2
-material = SubResource( 39 )
+material = SubResource( 32 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 6 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
-offset = Vector2( 0, 0 )
-invisible_while_sprinting = false
 
 [node name="Food" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
 light_mask = 2
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
-frame = 0
-centered = true
-offset = Vector2( 0, 0 )
 
 [node name="FoodLaser" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
@@ -900,12 +777,7 @@ position = Vector2( 1024, 0 )
 scale = Vector2( 2, 2 )
 z_index = 1
 script = ExtResource( 2 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
-frame = 0
-centered = true
-offset = Vector2( 0, 0 )
 
 [node name="EmoteArmZ1" type="Node2D" parent="Neck0/HeadBobber"]
 show_behind_parent = true
@@ -917,8 +789,6 @@ script = ExtResource( 2 )
 texture = ExtResource( 14 )
 frame_data = "res://assets/main/world/creature/1/emote-arm-z1-packed.json"
 rect_size = Vector2( 512, 512 )
-frame = 0
-centered = true
 offset = Vector2( 0, -119 )
 
 [node name="SweatSquirts" type="Particles2D" parent="Neck0/HeadBobber"]
@@ -931,7 +801,7 @@ script = ExtResource( 43 )
 creature_visuals_path = NodePath("../../..")
 
 [node name="SweatDrops" type="Particles2D" parent="Neck0/HeadBobber"]
-material = SubResource( 10 )
+material = SubResource( 9 )
 position = Vector2( 6, -60 )
 scale = Vector2( 2.8, 2.4 )
 emitting = false
@@ -948,7 +818,7 @@ modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 material = SubResource( 37 )
 position = Vector2( 25.3166, 262.374 )
-scale = Vector2( 2, 2 )
+scale = Vector2( 1.8, 0.8 )
 texture = ExtResource( 4 )
 offset = Vector2( 0, -239 )
 __meta__ = {
@@ -959,14 +829,13 @@ __meta__ = {
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
 material = SubResource( 38 )
-position = Vector2( 255.118, 133.989 )
+position = Vector2( -18.259, -42.964 )
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 texture = ExtResource( 10 )
 frame_data = "res://assets/main/world/creature/1/emote-brain-packed.json"
 rect_size = Vector2( 256, 256 )
-frame = 4
-centered = true
+frame = 2
 offset = Vector2( 0, -119 )
 
 [node name="EmoteHead" type="Node2D" parent="Neck0/HeadBobber"]
@@ -979,21 +848,17 @@ texture = ExtResource( 21 )
 frame_data = "res://assets/main/world/creature/1/emote-head-packed.json"
 rect_size = Vector2( 512, 256 )
 frame = 1
-centered = true
 offset = Vector2( 0, -119 )
 
 [node name="EmoteBody" type="Node2D" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 light_mask = 2
-material = SubResource( 40 )
+material = SubResource( 39 )
 position = Vector2( -169.545, 19.486 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
 texture = ExtResource( 15 )
 frame_data = "res://assets/main/world/creature/1/emote-body-packed.json"
-rect_size = Vector2( 100, 100 )
-frame = 0
-centered = true
 offset = Vector2( 0, -119 )
 
 [node name="TailZ1" type="Node2D" parent="."]
@@ -1001,15 +866,13 @@ light_mask = 2
 material = SubResource( 4 )
 scale = Vector2( 0.836, 0.836 )
 script = ExtResource( 2 )
-texture = null
-frame_data = ""
 rect_size = Vector2( 512, 512 )
 frame = 1
-centered = true
 offset = Vector2( 0, -119 )
 
 [node name="Animations" type="Node" parent="."]
 script = ExtResource( 5 )
+eye_frame = 1
 creature_visuals_path = NodePath("..")
 
 [node name="IdleTimer" type="Timer" parent="Animations"]
@@ -1029,44 +892,44 @@ root_node = NodePath("../..")
 root_node = NodePath("../..")
 creature_visuals_path = NodePath("../..")
 [connection signal="dna_loaded" from="." to="Animations/IdleTimer" method="_on_CreatureVisuals_dna_loaded"]
-[connection signal="movement_mode_changed" from="." to="Sprint" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FarArm" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="FarLeg" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Collar" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Bellybutton" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Sprint" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearArm" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="NearLeg" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Collar" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Bellybutton" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/HairZ2" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ2" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/CheekZ1" method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="movement_mode_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="orientation_changed" from="." to="FarArm" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="FarLeg" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Collar" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Bellybutton" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
-[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearArm" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="NearLeg" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Collar" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Bellybutton" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ0" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ2" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HornZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ1" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Head" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/Nose" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/HairZ2" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ2" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/CheekZ1" method="_on_CreatureVisuals_orientation_changed"]
+[connection signal="orientation_changed" from="." to="Neck0/HeadBobber/EarZ1" method="_on_CreatureVisuals_orientation_changed"]
 [connection signal="idle_animation_started" from="Animations/IdleTimer" to="Animations/EmotePlayer" method="_on_IdleTimer_idle_animation_started"]
 [connection signal="idle_animation_stopped" from="Animations/IdleTimer" to="Animations/EmotePlayer" method="_on_IdleTimer_idle_animation_stopped"]
