@@ -54,12 +54,12 @@ __meta__ = {
 
 [node name="Mode" type="VBoxContainer" parent="VBoxContainer"]
 margin_right = 984.0
-margin_bottom = 108.0
+margin_bottom = 109.0
 script = ExtResource( 15 )
 
 [node name="Title" type="Label" parent="VBoxContainer/Mode"]
 margin_right = 984.0
-margin_bottom = 44.0
+margin_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 17 )
@@ -71,10 +71,10 @@ __meta__ = {
 }
 
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer/Mode"]
-margin_left = 87.0
-margin_top = 48.0
-margin_right = 897.0
-margin_bottom = 84.0
+margin_left = 92.0
+margin_top = 49.0
+margin_right = 892.0
+margin_bottom = 85.0
 size_flags_horizontal = 4
 size_flags_vertical = 3
 custom_constants/separation = 50
@@ -136,7 +136,7 @@ text = "Rank"
 
 [node name="Sandbox" type="Button" parent="VBoxContainer/Mode/Buttons"]
 margin_left = 680.0
-margin_right = 810.0
+margin_right = 800.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -148,9 +148,9 @@ group = ExtResource( 14 )
 text = "Sandbox"
 
 [node name="Desc" type="Label" parent="VBoxContainer/Mode"]
-margin_top = 88.0
+margin_top = 89.0
 margin_right = 984.0
-margin_bottom = 108.0
+margin_bottom = 109.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource( 6 )
@@ -164,13 +164,13 @@ __meta__ = {
 [node name="Difficulty" type="VBoxContainer" parent="VBoxContainer"]
 margin_top = 156.0
 margin_right = 984.0
-margin_bottom = 244.0
+margin_bottom = 245.0
 size_flags_vertical = 6
 script = ExtResource( 2 )
 
 [node name="Title" type="Label" parent="VBoxContainer/Difficulty"]
 margin_right = 984.0
-margin_bottom = 44.0
+margin_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_fonts/font = ExtResource( 17 )
@@ -183,9 +183,9 @@ __meta__ = {
 
 [node name="Slider" type="HSlider" parent="VBoxContainer/Difficulty"]
 margin_left = 192.0
-margin_top = 48.0
+margin_top = 49.0
 margin_right = 792.0
-margin_bottom = 64.0
+margin_bottom = 65.0
 rect_min_size = Vector2( 600, 0 )
 size_flags_horizontal = 4
 theme = ExtResource( 6 )
@@ -194,9 +194,9 @@ tick_count = 4
 
 [node name="Labels" type="HBoxContainer" parent="VBoxContainer/Difficulty"]
 margin_left = 188.0
-margin_top = 68.0
+margin_top = 69.0
 margin_right = 796.0
-margin_bottom = 88.0
+margin_bottom = 89.0
 rect_min_size = Vector2( 608, 0 )
 size_flags_horizontal = 4
 theme = ExtResource( 6 )
@@ -210,22 +210,22 @@ text = "Normal"
 
 [node name="Hard" type="Label" parent="VBoxContainer/Difficulty/Labels"]
 margin_left = 103.0
-margin_right = 301.0
+margin_right = 302.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Hard"
 align = 1
 
 [node name="Expert" type="Label" parent="VBoxContainer/Difficulty/Labels"]
-margin_left = 305.0
-margin_right = 503.0
+margin_left = 306.0
+margin_right = 504.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 text = "Expert"
 align = 1
 
 [node name="Master" type="Label" parent="VBoxContainer/Difficulty/Labels"]
-margin_left = 507.0
+margin_left = 508.0
 margin_right = 608.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
