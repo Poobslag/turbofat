@@ -12,6 +12,9 @@ signal locked_level_selected(level_lock)
 # Emitted when the player highlights the 'overall' button.
 signal overall_selected(ranks)
 
+# Emitted when a new level select button or world select button is added.
+signal button_added(button)
+
 # The width of level buttons when they're small (about 10-20 visible)
 const COLUMN_WIDTH_SMALL := 120
 
@@ -22,6 +25,8 @@ const COLUMN_WIDTH_LARGE := 180
 const VERTICAL_SPACING := LevelSelectButton.VERTICAL_SPACING
 
 export (PackedScene) var LevelSelectButtonScene: PackedScene
+
+export (PackedScene) var WorldSelectButtonScene: PackedScene
 
 # VBoxContainer instances containing columns of level buttons
 var _columns := []
@@ -87,17 +92,29 @@ func _add_buttons() -> void:
 """
 Adds the world button which show the player's progress for a world.
 """
-func _add_world_button(world_id: String) -> LevelSelectButton:
-	var level_select_button: LevelSelectButton = LevelSelectButtonScene.instance()
-	level_select_button.world_id = world_id
-	level_select_button.level_column_width = _column_width
-	level_select_button.level_duration = LevelSelectButton.LONG
+func _add_world_button(world_id: String) -> WorldSelectButton:
+	var world_select_button: WorldSelectButton = WorldSelectButtonScene.instance()
+	world_select_button.world_id = world_id
+	world_select_button.level_column_width = _column_width
+	world_select_button.level_duration = WorldSelectButton.LONG
 	var world_lock: WorldLock = _level_select_model.world_lock(world_id)
-	level_select_button.level_title = "(%s)" % [world_lock.world_name]
-	level_select_button.connect("focus_entered", self, "_on_WorldButton_focus_entered", [world_id])
+	world_select_button.level_title = "(%s)" % [world_lock.world_name]
+	world_select_button.connect("focus_entered", self, "_on_WorldButton_focus_entered", [world_select_button])
 	
-	_columns[0].add_child(level_select_button)
-	return level_select_button
+	# populate an array of level ranks. incomplete levels are treated as rank 999
+	var ranks := []
+	for level_id in world_lock.level_ids:
+		var settings: LevelSettings = _level_select_model.level_settings(level_id)
+		var best_result := PlayerData.level_history.best_result(settings.id)
+		var rank := 999.0
+		if best_result:
+			rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank
+		ranks.append(rank)
+	world_select_button.ranks = ranks
+	
+	_columns[0].add_child(world_select_button)
+	emit_signal("button_added", world_select_button)
+	return world_select_button
 
 
 """
@@ -143,9 +160,9 @@ func _lowlight_unrelated_buttons(world_id: String) -> void:
 	for button in get_tree().get_nodes_in_group("level_select_buttons"):
 		var level_select_button: LevelSelectButton = button
 		if world_id == level_select_button.world_id:
-			level_select_button.modulate = Color.white
+			level_select_button.lowlight = false
 		else:
-			level_select_button.modulate = Color("50ffffff")
+			level_select_button.lowlight = true
 
 """
 When the player clicks a level button twice, we launch the selected level
@@ -174,16 +191,7 @@ func _on_LevelSelectButton_focus_entered(settings: LevelSettings) -> void:
 """
 When the player clicks the 'overall' button once, we emit a signal to show more information.
 """
-func _on_WorldButton_focus_entered(world_id: String) -> void:
-	_lowlight_unrelated_buttons(world_id)
-	var world_lock: WorldLock = _level_select_model.world_lock(world_id)
-	# populate an array of level ranks. incomplete levels are treated as rank 999
-	var ranks := []
-	for level_id in world_lock.level_ids:
-		var settings: LevelSettings = _level_select_model.level_settings(level_id)
-		var best_result := PlayerData.level_history.best_result(settings.id)
-		var rank := 999.0
-		if best_result:
-			rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank
-		ranks.append(rank)
-	emit_signal("overall_selected", ranks)
+func _on_WorldButton_focus_entered(world_select_button: WorldSelectButton) -> void:
+	_lowlight_unrelated_buttons(world_select_button.world_id)
+	var world_lock: WorldLock = _level_select_model.world_lock(world_select_button.world_id)
+	emit_signal("overall_selected", world_select_button.ranks)

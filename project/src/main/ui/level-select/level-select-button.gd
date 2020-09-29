@@ -7,6 +7,8 @@ A button on the level select screen which launches a level.
 # emitted when a level is launched.
 signal level_started
 
+signal lowlight_changed
+
 # short levels have smaller buttons; long levels have larger buttons
 enum LevelSize {
 	SHORT,
@@ -37,6 +39,9 @@ var keys_needed := -1 setget set_keys_needed
 
 var level_title: String setget set_level_title
 
+# 'true' if this button should be darkened so that it doesn't draw the player's attention.
+var lowlight: bool setget set_lowlight
+
 # 'true' if this button just received focus this frame. a mouse click which grants focus doesn't emit a 'level
 # started' event
 var _focus_just_entered := false
@@ -44,12 +49,8 @@ var _focus_just_entered := false
 # 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_started := false
 
-var _crown_texture: Texture = preload("res://assets/main/ui/level-select/crown.png")
-var _key_texture: Texture = preload("res://assets/main/ui/level-select/key.png")
-var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked.png")
-var _unlockable_texture: Texture = preload("res://assets/main/ui/level-select/unlockable.png")
-
 func _ready() -> void:
+	text = ""
 	_refresh_appearance()
 
 
@@ -77,6 +78,12 @@ func set_level_duration(new_level_duration: int) -> void:
 	_refresh_appearance()
 
 
+func set_lowlight(new_lowlight: bool) -> void:
+	lowlight = new_lowlight
+	modulate = Color("50ffffff") if lowlight else Color.white
+	emit_signal("lowlight_changed")
+
+
 """
 Updates the button's text, colors, size and icon based on the level and its status.
 """
@@ -86,29 +93,18 @@ func _refresh_appearance() -> void:
 		LevelSize.MEDIUM: rect_min_size.y = level_column_width * 0.75 + VERTICAL_SPACING * 0.5
 		LevelSize.LONG: rect_min_size.y = level_column_width + VERTICAL_SPACING
 	
-	text = level_title if level_title else "-"
+	$Label.text = level_title if level_title else "-"
 	
-	match lock_status:
-		LevelLock.STATUS_NONE:
-			icon = null
-			set("custom_colors/font_color", null)
-			text = "%s" % text
-		LevelLock.STATUS_CROWN:
-			icon = _crown_texture
-			set("custom_colors/font_color", Color("36d936"))
-			text = "%s" % text
-		LevelLock.STATUS_KEY:
-			icon = _key_texture
-			set("custom_colors/font_color", Color("36d936"))
-			text = "%s" % text
-		LevelLock.STATUS_SOFT_LOCK:
-			icon = _unlockable_texture
-			set("custom_colors/font_color", Color("d9be36"))
-			text = "(%s)" % text
-		LevelLock.STATUS_HARD_LOCK:
-			icon = _locked_texture
-			set("custom_colors/font_color", Color("d93636"))
-			text = "(???)"
+	var hue: float
+	match $Label.text.hash() % 5:
+		0: hue = 0.9611 # red
+		1: hue = 0.0389 # orange
+		2: hue = 0.1250 # yellow
+		3: hue = 0.2861 # green
+		4: hue = 0.7472 # purple
+		
+	get("custom_styles/normal").bg_color.h = hue
+	get("custom_styles/hover").bg_color.h = hue
 
 
 func _on_pressed() -> void:
@@ -123,6 +119,13 @@ func _on_pressed() -> void:
 
 func _on_focus_entered() -> void:
 	_focus_just_entered = true
+	var font: DynamicFont = $Label.get("custom_fonts/font")
+	font.outline_color = Color("007a99")
+
+
+func _on_focus_exited() -> void:
+	var font: DynamicFont = $Label.get("custom_fonts/font")
+	font.outline_color = Color("6c4331")
 
 
 func _on_button_down() -> void:

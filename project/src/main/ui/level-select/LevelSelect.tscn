@@ -1,9 +1,9 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=2]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/level-select/HookableGradeLabel.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=5]
 [ext_resource path="res://src/main/ui/level-select/level-info-panel.gd" type="Script" id=6]
 [ext_resource path="res://src/main/ui/level-select/level-select.gd" type="Script" id=7]
@@ -12,6 +12,9 @@
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=10]
 [ext_resource path="res://src/main/ui/swipe-container.gd" type="Script" id=11]
 [ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/ui/level-select/grade-labels.gd" type="Script" id=14]
+[ext_resource path="res://src/main/ui/level-select/WorldSelectButton.tscn" type="PackedScene" id=15]
 
 [node name="LevelSelect" type="Control"]
 anchor_right = 1.0
@@ -56,71 +59,17 @@ margin_right = 758.0
 margin_bottom = 336.0
 custom_constants/separation = 5
 script = ExtResource( 9 )
-LevelSelectButtonScene = ExtResource( 4 )
+LevelSelectButtonScene = ExtResource( 13 )
+WorldSelectButtonScene = ExtResource( 15 )
 
-[node name="Buttons1" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_right = 96.0
-margin_bottom = 186.0
-size_flags_horizontal = 3
-custom_constants/separation = 6
-alignment = 2
-
-[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons1" instance=ExtResource( 4 )]
-margin_top = 106.0
-margin_right = 96.0
-margin_bottom = 186.0
-
-[node name="Buttons2" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 101.0
-margin_right = 197.0
-margin_bottom = 186.0
-size_flags_horizontal = 3
-custom_constants/separation = 6
-alignment = 2
-
-[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons2" instance=ExtResource( 4 )]
-margin_top = 106.0
-margin_right = 96.0
-margin_bottom = 186.0
-
-[node name="Buttons3" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 202.0
-margin_right = 299.0
-margin_bottom = 186.0
-size_flags_horizontal = 3
-custom_constants/separation = 6
-alignment = 2
-
-[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons3" instance=ExtResource( 4 )]
-margin_top = 106.0
-margin_right = 97.0
-margin_bottom = 186.0
-
-[node name="Buttons4" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 304.0
-margin_right = 400.0
-margin_bottom = 186.0
-size_flags_horizontal = 3
-custom_constants/separation = 6
-alignment = 2
-
-[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons4" instance=ExtResource( 4 )]
-margin_top = 106.0
-margin_right = 96.0
-margin_bottom = 186.0
-
-[node name="Buttons5" type="VBoxContainer" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons"]
-margin_left = 405.0
-margin_right = 502.0
-margin_bottom = 186.0
-size_flags_horizontal = 3
-custom_constants/separation = 6
-alignment = 2
-
-[node name="Button" parent="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons/Buttons5" instance=ExtResource( 4 )]
-margin_top = 106.0
-margin_right = 97.0
-margin_bottom = 186.0
+[node name="GradeLabels" type="Control" parent="VBoxContainer/ScrollContainer/MarginContainer"]
+margin_left = 256.0
+margin_top = 150.0
+margin_right = 758.0
+margin_bottom = 336.0
+mouse_filter = 2
+script = ExtResource( 14 )
+GradeLabelScene = ExtResource( 4 )
 
 [node name="Control" type="Control" parent="VBoxContainer"]
 margin_top = 490.0
@@ -136,11 +85,11 @@ __meta__ = {
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/Control/HBoxContainer"]
-margin_right = 82.0
+margin_right = 75.0
 margin_bottom = 100.0
 
 [node name="Settings" type="Button" parent="VBoxContainer/Control/HBoxContainer/VBoxContainer"]
-margin_right = 82.0
+margin_right = 75.0
 margin_bottom = 48.0
 rect_min_size = Vector2( 48, 0 )
 size_flags_vertical = 3
@@ -154,7 +103,7 @@ action = "ui_cancel"
 
 [node name="Quit" type="Button" parent="VBoxContainer/Control/HBoxContainer/VBoxContainer"]
 margin_top = 52.0
-margin_right = 82.0
+margin_right = 75.0
 margin_bottom = 100.0
 size_flags_vertical = 3
 theme = ExtResource( 5 )
@@ -162,8 +111,8 @@ shortcut_in_tooltip = false
 text = "Quit"
 
 [node name="Description" type="Panel" parent="VBoxContainer/Control/HBoxContainer"]
-margin_left = 86.0
-margin_right = 548.0
+margin_left = 79.0
+margin_right = 544.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 10 )
@@ -183,7 +132,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Description/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 442.0
+margin_right = 445.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 5 )
@@ -195,7 +144,7 @@ __meta__ = {
 }
 
 [node name="Info" type="Panel" parent="VBoxContainer/Control/HBoxContainer"]
-margin_left = 552.0
+margin_left = 548.0
 margin_right = 1014.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
@@ -216,7 +165,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="VBoxContainer/Control/HBoxContainer/Info/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 442.0
+margin_right = 446.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 5 )
@@ -228,12 +177,13 @@ __meta__ = {
 [node name="SettingsMenu" parent="." instance=ExtResource( 3 )]
 
 [node name="MoneyLabel" parent="." instance=ExtResource( 12 )]
-[connection signal="locked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_locked_level_selected"]
+[connection signal="button_added" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/ScrollContainer/MarginContainer/GradeLabels" method="_on_LevelButtons_button_added"]
 [connection signal="locked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_locked_level_selected"]
-[connection signal="overall_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_overall_selected"]
+[connection signal="locked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_locked_level_selected"]
 [connection signal="overall_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_overall_selected"]
-[connection signal="unlocked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_unlocked_level_selected"]
+[connection signal="overall_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_overall_selected"]
 [connection signal="unlocked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Info" method="_on_LevelButtons_unlocked_level_selected"]
+[connection signal="unlocked_level_selected" from="VBoxContainer/ScrollContainer/MarginContainer/LevelButtons" to="VBoxContainer/Control/HBoxContainer/Description" method="_on_LevelButtons_unlocked_level_selected"]
 [connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="VBoxContainer/Control/HBoxContainer/VBoxContainer/Quit" to="SettingsMenu" method="_on_Quit_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
