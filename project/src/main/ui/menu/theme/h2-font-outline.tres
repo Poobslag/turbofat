@@ -1,9 +1,9 @@
 [gd_resource type="DynamicFont" load_steps=2 format=2]
 
-[ext_resource path="res://assets/main/ui/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/main/ui/fredoka-one-regular.ttf" type="DynamicFontData" id=1]
 
 [resource]
 size = 36
-outline_size = 2
-outline_color = Color( 0.113725, 0.101961, 0.101961, 0.752941 )
+outline_size = 3
+outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
 font_data = ExtResource( 1 )

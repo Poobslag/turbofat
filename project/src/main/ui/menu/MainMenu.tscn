@@ -1,13 +1,19 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=2]
-[ext_resource path="res://src/main/ui/menu/theme/h1-font-outline.tres" type="DynamicFont" id=3]
+[ext_resource path="res://assets/main/ui/fredoka-one-regular.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=4]
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=9]
+
+[sub_resource type="DynamicFont" id=1]
+size = 72
+outline_size = 6
+outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+font_data = ExtResource( 3 )
 
 [node name="MainMenu" type="Control"]
 anchor_left = 0.5
@@ -37,8 +43,8 @@ __meta__ = {
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 margin_bottom = 300.0
-custom_fonts/font = ExtResource( 3 )
-text = "Turbo Fat"
+custom_fonts/font = SubResource( 1 )
+text = "turbo fat"
 align = 1
 valign = 1
 __meta__ = {
@@ -60,16 +66,16 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Play"]
 margin_right = 512.0
-margin_bottom = 44.0
+margin_bottom = 45.0
 custom_fonts/font = ExtResource( 9 )
 text = "Play"
 align = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Play"]
 margin_left = 159.0
-margin_top = 54.0
+margin_top = 55.0
 margin_right = 352.0
-margin_bottom = 101.0
+margin_bottom = 102.0
 size_flags_horizontal = 4
 custom_constants/separation = 10
 
@@ -94,9 +100,9 @@ text = "L"
 
 [node name="Practice" type="Button" parent="Play"]
 margin_left = 159.0
-margin_top = 111.0
+margin_top = 112.0
 margin_right = 352.0
-margin_bottom = 158.0
+margin_bottom = 159.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -105,9 +111,9 @@ text = "Practice"
 
 [node name="Tutorial" type="Button" parent="Play"]
 margin_left = 159.0
-margin_top = 168.0
+margin_top = 169.0
 margin_right = 352.0
-margin_bottom = 215.0
+margin_bottom = 216.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -129,16 +135,16 @@ __meta__ = {
 
 [node name="Label" type="Label" parent="Create"]
 margin_right = 512.0
-margin_bottom = 44.0
+margin_bottom = 45.0
 custom_fonts/font = ExtResource( 9 )
 text = "Create"
 align = 1
 
 [node name="Levels" type="Button" parent="Create"]
 margin_left = 159.0
-margin_top = 54.0
+margin_top = 55.0
 margin_right = 352.0
-margin_bottom = 101.0
+margin_bottom = 102.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -147,9 +153,9 @@ text = "Levels"
 
 [node name="Creatures" type="Button" parent="Create"]
 margin_left = 159.0
-margin_top = 111.0
+margin_top = 112.0
 margin_right = 352.0
-margin_bottom = 158.0
+margin_bottom = 159.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
