@@ -82,7 +82,7 @@ project/assets/main/ui/touch/empty-pressed.png 'Empty' by Freepik
 project/assets/main/ui/touch/empty.png 'Empty' by Freepik
 project/assets/main/ui/touch/interact-pressed.png 'Empty', 'Chat' by Freepik
 project/assets/main/ui/touch/interact.png 'Empty', 'Chat' by Freepik
-project/assets/main/ui/touch/menu-presed.png 'Empty', 'Adjust' by Freepik
+project/assets/main/ui/touch/menu-pressed.png 'Empty', 'Adjust' by Freepik
 project/assets/main/ui/touch/menu.png 'Empty', 'Adjust' by Freepik
 project/assets/main/ui/touch/move-down-pressed.png 'Empty', 'Left arrow angle' by Freepik
 project/assets/main/ui/touch/move-down.png 'Empty', 'Left arrow angle' by Freepik
@@ -92,6 +92,8 @@ project/assets/main/ui/touch/move-right-pressed.png 'Empty', 'Left arrow angle' 
 project/assets/main/ui/touch/move-right.png 'Empty', 'Left arrow angle' by Freepik
 project/assets/main/ui/touch/move-up-pressed.png 'Empty', 'Left arrow angle' by Freepik
 project/assets/main/ui/touch/move-up.png 'Empty', 'Left arrow angle' by Freepik
+project/assets/main/ui/touch/phone.png 'Empty', 'Smartphone' by Freepik
+project/assets/main/ui/touch/phone-pressed.png 'Empty', 'Smartphone' by Freepik
 project/assets/main/ui/touch/rotate-ccw-pressed.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-ccw.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw-pressed.png 'Empty', 'Circular arrrow' by Freepik

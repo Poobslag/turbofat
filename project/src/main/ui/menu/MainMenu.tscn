@@ -71,32 +71,16 @@ custom_fonts/font = ExtResource( 9 )
 text = "Play"
 align = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Play"]
+[node name="2d" type="Button" parent="Play"]
 margin_left = 159.0
-margin_top = 55.0
+margin_top = 54.0
 margin_right = 352.0
-margin_bottom = 102.0
-size_flags_horizontal = 4
-custom_constants/separation = 10
-
-[node name="2d" type="Button" parent="Play/HBoxContainer"]
-margin_right = 136.0
-margin_bottom = 47.0
-rect_min_size = Vector2( 136, 47 )
+margin_bottom = 101.0
+rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Continue"
-
-[node name="LevelSelect" type="Button" parent="Play/HBoxContainer"]
-margin_left = 146.0
-margin_right = 193.0
-margin_bottom = 47.0
-rect_min_size = Vector2( 47, 47 )
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme = ExtResource( 2 )
-text = "L"
 
 [node name="Practice" type="Button" parent="Play"]
 margin_left = 159.0
@@ -168,8 +152,7 @@ quit_on_cancel = false
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
-[connection signal="pressed" from="Play/HBoxContainer/2d" to="." method="_on_PlayStory_pressed"]
-[connection signal="pressed" from="Play/HBoxContainer/LevelSelect" to="." method="_on_LevelSelect_pressed"]
+[connection signal="pressed" from="Play/2d" to="." method="_on_PlayStory_pressed"]
 [connection signal="pressed" from="Play/Practice" to="." method="_on_PlayPractice_pressed"]
 [connection signal="pressed" from="Play/Tutorial" to="." method="_on_Tutorial_pressed"]
 [connection signal="pressed" from="Create/Levels" to="." method="_on_CreateLevels_pressed"]

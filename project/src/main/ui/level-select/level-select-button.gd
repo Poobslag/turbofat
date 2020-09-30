@@ -58,6 +58,11 @@ func _process(_delta: float) -> void:
 	_focus_just_entered = false
 
 
+func set_bg_color(color: Color) -> void:
+	get("custom_styles/normal").bg_color = color
+	get("custom_styles/hover").bg_color = color
+
+
 func set_lock_status(new_lock_status: int) -> void:
 	lock_status = new_lock_status
 	_refresh_appearance()
@@ -95,16 +100,14 @@ func _refresh_appearance() -> void:
 	
 	$Label.text = level_title if level_title else "-"
 	
-	var hue: float
+	var new_bg_color: Color = get("custom_styles/normal").bg_color
 	match $Label.text.hash() % 5:
-		0: hue = 0.9611 # red
-		1: hue = 0.0389 # orange
-		2: hue = 0.1250 # yellow
-		3: hue = 0.2861 # green
-		4: hue = 0.7472 # purple
-		
-	get("custom_styles/normal").bg_color.h = hue
-	get("custom_styles/hover").bg_color.h = hue
+		0: new_bg_color.h = 0.9611 # red
+		1: new_bg_color.h = 0.0389 # orange
+		2: new_bg_color.h = 0.1250 # yellow
+		3: new_bg_color.h = 0.2861 # green
+		4: new_bg_color.h = 0.7472 # purple
+	set_bg_color(new_bg_color)
 
 
 func _on_pressed() -> void:

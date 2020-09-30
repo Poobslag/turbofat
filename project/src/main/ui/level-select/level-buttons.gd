@@ -12,8 +12,8 @@ signal locked_level_selected(level_lock)
 # Emitted when the player highlights the 'overall' button.
 signal overall_selected(ranks)
 
-# Emitted when a new level select button or world select button is added.
-signal button_added(button)
+# Levels are arranged into a big rectangle. This is the ratio of the rectangle's width to height.
+const BUTTON_ARRANGEMENT_WIDTH_FACTOR := 1.77778
 
 # The width of level buttons when they're small (about 10-20 visible)
 const COLUMN_WIDTH_SMALL := 120
@@ -29,6 +29,7 @@ export (PackedScene) var LevelSelectButtonScene: PackedScene
 export (PackedScene) var WorldSelectButtonScene: PackedScene
 
 # VBoxContainer instances containing columns of level buttons
+var _max_row_count
 var _columns := []
 
 # current column width; shrinks when zoomed out
@@ -43,7 +44,6 @@ func _ready() -> void:
 	_level_select_model.initialize()
 	_clear_contents()
 	_add_buttons()
-	_misalign_columns()
 
 
 """
@@ -59,6 +59,14 @@ func _clear_contents() -> void:
 Adds buttons representing levels the player can choose.
 """
 func _add_buttons() -> void:
+	# determine how many rows of buttons should be shown
+	var total_shown_levels := 0
+	for world_id_obj in _level_select_model.world_ids:
+		var shown_level_ids := _level_select_model.shown_level_ids(world_id_obj)
+		total_shown_levels += shown_level_ids.size() + 1 if shown_level_ids else 0
+	_max_row_count = max(1, floor(sqrt((total_shown_levels - 1) / BUTTON_ARRANGEMENT_WIDTH_FACTOR)))
+	
+	# create and add the level/world buttons
 	var last_world_button: LevelSelectButton
 	for world_id_obj in _level_select_model.world_ids:
 		var world_id: String = world_id_obj
@@ -67,38 +75,49 @@ func _add_buttons() -> void:
 		if not shown_level_ids:
 			continue
 		
-		var column_count := ceil(sqrt(shown_level_ids.size() + 1))
-		for _i in range(column_count):
-			var vbox_container := VBoxContainer.new()
-			vbox_container.alignment = BoxContainer.ALIGN_END
-			vbox_container.rect_min_size.x = _column_width
-			vbox_container.set("custom_constants/separation", VERTICAL_SPACING)
-			_columns.append(vbox_container)
-			add_child(vbox_container)
-		
 		for i in range(shown_level_ids.size()):
 			var level_id: String = shown_level_ids[i]
 			var level_lock: LevelLock =  _level_select_model.level_lock(level_id)
 			if level_lock.status == LevelLock.STATUS_HARD_LOCK:
 				# 'hard lock' levels are hidden from the player
 				continue
-			var column: VBoxContainer = _columns[(i + 1) % _columns.size()]
-			column.add_child(_level_select_button(world_id, level_id))
-		
-		last_world_button = _add_world_button(world_id)
+			_add_node_to_column(_level_select_button(world_id, level_id))
+			
+			# warning-ignore:integer_division
+			if i == (shown_level_ids.size() - 1) / 2:
+				last_world_button = _world_button(world_id)
+				_add_node_to_column(last_world_button)
 	last_world_button.grab_focus()
+
+
+"""
+Adds a node to the rightmost column, or creates a new column if the column is full
+"""
+func _add_node_to_column(node: Node) -> void:
+	if not _columns or _columns[_columns.size() - 1].get_child_count() >= _max_row_count:
+		# create a new column
+		var column := VBoxContainer.new()
+		column.alignment = BoxContainer.ALIGN_CENTER
+		column.rect_min_size.x = _column_width
+		column.set("custom_constants/separation", VERTICAL_SPACING)
+		_columns.append(column)
+		add_child(column)
+	
+	# add the node to the rightmost column
+	_columns[_columns.size() - 1].add_child(node)
 
 
 """
 Adds the world button which show the player's progress for a world.
 """
-func _add_world_button(world_id: String) -> WorldSelectButton:
+func _world_button(world_id: String) -> WorldSelectButton:
 	var world_select_button: WorldSelectButton = WorldSelectButtonScene.instance()
 	world_select_button.world_id = world_id
 	world_select_button.level_column_width = _column_width
 	world_select_button.level_duration = WorldSelectButton.LONG
 	var world_lock: WorldLock = _level_select_model.world_lock(world_id)
 	world_select_button.level_title = "(%s)" % [world_lock.world_name]
+	world_select_button.set_bg_color(Color.white)
 	world_select_button.connect("focus_entered", self, "_on_WorldButton_focus_entered", [world_select_button])
 	
 	# populate an array of level ranks. incomplete levels are treated as rank 999
@@ -111,21 +130,7 @@ func _add_world_button(world_id: String) -> WorldSelectButton:
 			rank = best_result.seconds_rank if best_result.compare == "-seconds" else best_result.score_rank
 		ranks.append(rank)
 	world_select_button.ranks = ranks
-	
-	_columns[0].add_child(world_select_button)
-	emit_signal("button_added", world_select_button)
 	return world_select_button
-
-
-"""
-Adds spacers so that the columns aren't perfectly aligned.
-"""
-func _misalign_columns() -> void:
-	for i in range(_columns.size()):
-		if i % 2 == 0:
-			var spacer := Control.new()
-			spacer.rect_min_size.y = _column_width * 0.25 - VERTICAL_SPACING * 0.5
-			_columns[i].add_child(spacer)
 
 
 """
@@ -193,5 +198,4 @@ When the player clicks the 'overall' button once, we emit a signal to show more 
 """
 func _on_WorldButton_focus_entered(world_select_button: WorldSelectButton) -> void:
 	_lowlight_unrelated_buttons(world_select_button.world_id)
-	var world_lock: WorldLock = _level_select_model.world_lock(world_select_button.world_id)
 	emit_signal("overall_selected", world_select_button.ranks)
