@@ -363,7 +363,6 @@ audio_listener_enable_2d = true
 
 [node name="Visuals" parent="CreatureOutline/Viewport" instance=ExtResource( 1 )]
 position = Vector2( 512, 912 )
-scale = Vector2( 1, 1 )
 dna = {
 "belly": "1",
 "belly_rgb": "ffa86d",

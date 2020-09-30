@@ -219,6 +219,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/high-score-table.gd"
 }, {
+"base": "Node2D",
+"class": "HookableGradeLabel",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/hookable-grade-label.gd"
+}, {
 "base": "Sprite",
 "class": "LeafPoof",
 "language": "GDScript",
@@ -553,6 +558,11 @@ _global_script_classes=[ {
 "class": "WorldLock",
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/world-lock.gd"
+}, {
+"base": "LevelSelectButton",
+"class": "WorldSelectButton",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/world-select-button.gd"
 } ]
 _global_script_class_icons={
 "ActionButton": "",
@@ -597,6 +607,7 @@ _global_script_class_icons={
 "GameplaySettings": "",
 "HeadBobber": "",
 "HighScoreTable": "",
+"HookableGradeLabel": "",
 "LeafPoof": "",
 "LevelChunk": "",
 "LevelChunkControl": "",
@@ -663,7 +674,8 @@ _global_script_class_icons={
 "Utils": "",
 "VolumeSettings": "",
 "Wobbler": "",
-"WorldLock": ""
+"WorldLock": "",
+"WorldSelectButton": ""
 }
 
 [application]
