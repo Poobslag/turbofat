@@ -30,6 +30,7 @@ Pressing and holding the 'soft drop' key lets you move pieces past each other. T
 ### Walking around
   * <kbd>Up</kbd>, <kbd>Down</kbd>, <kbd>Left</kbd> or <kbd>Right</kbd> moves your character.
   * <kbd>Z</kbd> talks to other characters.
+  * <kbd>Tab</kbd> brings up a level select.
   * <kbd>Shift</kbd> rewinds dialog.
 
 <kbd>Esc</kbd> quits the game.
