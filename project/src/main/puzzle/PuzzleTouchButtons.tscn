@@ -2,8 +2,8 @@
 
 [ext_resource path="res://src/main/puzzle/puzzle-touch-buttons.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=4]
 [ext_resource path="res://assets/main/ui/touch/duck.wav" type="AudioStream" id=5]
 [ext_resource path="res://assets/main/puzzle/move.wav" type="AudioStream" id=6]
 

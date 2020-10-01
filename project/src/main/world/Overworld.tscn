@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=74 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -51,6 +51,19 @@
 [ext_resource path="res://assets/main/world/creature/3/tail-z0-packed.png" type="Texture" id=49]
 [ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=50]
 [ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=51]
+[ext_resource path="res://src/main/world/phone-menu.gd" type="Script" id=52]
+[ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=53]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=54]
+[ext_resource path="res://assets/main/ui/touch/interact.png" type="Texture" id=55]
+[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=56]
+[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=57]
+[ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=58]
+[ext_resource path="res://assets/main/ui/touch/interact-pressed.png" type="Texture" id=59]
+[ext_resource path="res://assets/main/ui/touch/phone.png" type="Texture" id=60]
+[ext_resource path="res://assets/main/ui/touch/phone-pressed.png" type="Texture" id=61]
+[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=62]
+[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=63]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectPanel.tscn" type="PackedScene" id=64]
 
 [sub_resource type="TileSet" id=1]
 0/name = "block-shadow.png 0"
@@ -73,6 +86,24 @@ viewport_path = NodePath("World/Ground/Shadows/Viewport")
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 28, 14 )
+
+[sub_resource type="InputEventAction" id=4]
+action = "phone"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
+
+[sub_resource type="InputEventAction" id=6]
+action = "interact"
+
+[sub_resource type="ShortCut" id=7]
+shortcut = SubResource( 6 )
+
+[sub_resource type="InputEventAction" id=8]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=9]
+shortcut = SubResource( 8 )
 
 [node name="Overworld" type="Node"]
 
@@ -420,9 +451,9 @@ anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 246.0
-margin_right = 502.0
-margin_bottom = 266.0
+margin_top = 236.0
+margin_right = 492.0
+margin_bottom = 256.0
 
 [node name="VersionLabel" parent="Ui/OverworldUi/Labels/SoutheastLabels" instance=ExtResource( 8 )]
 anchor_left = 0.0
@@ -457,22 +488,174 @@ margin_bottom = 1.99976
 
 [node name="TouchButtons" parent="Ui/OverworldUi" instance=ExtResource( 23 )]
 
+[node name="Buttons" type="Control" parent="Ui/OverworldUi"]
+modulate = Color( 1, 1, 1, 0.627451 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 53 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Northeast" type="HBoxContainer" parent="Ui/OverworldUi/Buttons"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -512.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 100, 100 )
+custom_constants/separation = 10
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhoneButton" parent="Ui/OverworldUi/Buttons/Northeast" instance=ExtResource( 58 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 292.0
+margin_right = 392.0
+margin_bottom = 100.0
+size_flags_horizontal = 0
+shortcut = SubResource( 5 )
+icon = ExtResource( 60 )
+expand_icon = true
+normal_icon = ExtResource( 60 )
+pressed_icon = ExtResource( 61 )
+
+[node name="SettingsButton" parent="Ui/OverworldUi/Buttons/Northeast" instance=ExtResource( 58 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 402.0
+margin_right = 502.0
+margin_bottom = 100.0
+icon = ExtResource( 56 )
+expand_icon = true
+normal_icon = ExtResource( 56 )
+pressed_icon = ExtResource( 57 )
+
+[node name="Southeast" type="HBoxContainer" parent="Ui/OverworldUi/Buttons"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -160.0
+margin_right = -10.0
+margin_bottom = -60.0
+rect_min_size = Vector2( 100, 100 )
+custom_constants/separation = 10
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TalkButton" parent="Ui/OverworldUi/Buttons/Southeast" instance=ExtResource( 58 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 402.0
+margin_right = 502.0
+margin_bottom = 100.0
+shortcut = SubResource( 7 )
+icon = ExtResource( 55 )
+expand_icon = true
+normal_icon = ExtResource( 55 )
+pressed_icon = ExtResource( 59 )
+
 [node name="CheatCodeDetector" parent="Ui/OverworldUi" instance=ExtResource( 4 )]
 codes = [ "bigfps" ]
 
 [node name="SettingsMenu" parent="Ui/OverworldUi" instance=ExtResource( 6 )]
 quit_text = "Save + Quit"
+
+[node name="CellPhoneMenu" type="CanvasLayer" parent="Ui/OverworldUi"]
+script = ExtResource( 52 )
+
+[node name="Bg" type="ColorRect" parent="Ui/OverworldUi/CellPhoneMenu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.752941 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect" parent="Ui/OverworldUi/CellPhoneMenu" instance=ExtResource( 64 )]
+visible = false
+
+[node name="Buttons" type="Control" parent="Ui/OverworldUi/CellPhoneMenu"]
+visible = false
+modulate = Color( 1, 1, 1, 0.627451 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Northeast" type="HBoxContainer" parent="Ui/OverworldUi/CellPhoneMenu/Buttons"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -512.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 100, 100 )
+mouse_filter = 2
+custom_constants/separation = 10
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" parent="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast" instance=ExtResource( 58 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 292.0
+margin_right = 392.0
+margin_bottom = 100.0
+size_flags_horizontal = 0
+shortcut = SubResource( 9 )
+icon = ExtResource( 62 )
+expand_icon = true
+normal_icon = ExtResource( 62 )
+pressed_icon = ExtResource( 63 )
+
+[node name="ShortcutHelper" parent="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast/BackButton" instance=ExtResource( 54 )]
+action = "phone"
+
+[node name="Spacer" parent="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast" instance=ExtResource( 58 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 402.0
+margin_right = 502.0
+margin_bottom = 100.0
+mouse_filter = 2
+disabled = true
 [connection signal="timeout" from="World/Obstacles/Bort/MoveTimer" to="World/Obstacles/Bort" method="_on_MoveTimer_timeout"]
 [connection signal="timeout" from="World/Obstacles/Ebe/MoveTimer" to="World/Obstacles/Ebe" method="_on_MoveTimer_timeout"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_started"]
 [connection signal="showed_chat_choices" from="Ui/OverworldUi" to="World/Obstacles/Player" method="_on_OverworldUi_showed_chat_choices"]
 [connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_showed_choices"]
+[connection signal="pressed" from="Ui/OverworldUi/Buttons/Northeast/PhoneButton" to="Ui/OverworldUi" method="_on_CellPhoneButton_pressed"]
+[connection signal="pressed" from="Ui/OverworldUi/Buttons/Northeast/SettingsButton" to="Ui/OverworldUi" method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="Ui/OverworldUi/Buttons/Southeast/TalkButton" to="Ui/OverworldUi" method="_on_TalkButton_pressed"]
 [connection signal="cheat_detected" from="Ui/OverworldUi/CheatCodeDetector" to="Ui/OverworldUi/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_SettingsMenu_hide"]
+[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
+[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi" method="_on_SettingsMenu_quit_pressed"]
-[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_SettingsMenu_show"]
+[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
+[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
+[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
+[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
+[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
+[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
+[connection signal="pressed" from="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast/BackButton" to="Ui/OverworldUi/CellPhoneMenu" method="_on_BackButton_pressed"]

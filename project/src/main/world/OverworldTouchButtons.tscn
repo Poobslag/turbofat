@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/ui/touch/EightWay.tscn" type="PackedScene" id=1]
-[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=2]
 [ext_resource path="res://src/main/world/overworld-touch-buttons.gd" type="Script" id=3]
-[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=4]
 
 [node name="TouchButtons" type="Control"]
 modulate = Color( 1, 1, 1, 0.627451 )
@@ -23,30 +21,11 @@ margin_left = 10.0
 margin_top = -250.0
 margin_right = 250.0
 margin_bottom = -10.0
-
-[node name="ButtonsSe" parent="." instance=ExtResource( 1 )]
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -250.0
-margin_top = -250.0
-margin_right = -9.99994
-margin_bottom = -10.0
-
-[node name="MenuButtonHolder" type="Control" parent="."]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -116.0
-margin_bottom = 116.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="MenuButton" type="TouchScreenButton" parent="MenuButtonHolder"]
-position = Vector2( 10, 10 )
-scale = Vector2( 0.375, 0.375 )
-normal = ExtResource( 2 )
-pressed = ExtResource( 4 )
-action = "ui_menu"
-visibility_mode = 1
+up_action = "ui_up"
+down_action = "ui_down"
+left_action = "ui_left"
+right_action = "ui_right"
+up_right_weight = 1.0
+up_left_weight = 1.0
+down_right_weight = 1.0
+down_left_weight = 1.0

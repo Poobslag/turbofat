@@ -41,13 +41,13 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = -4.0
 margin_bottom = -4.0
-size_flags_horizontal = 0
-size_flags_vertical = 0
+size_flags_vertical = 1
 custom_fonts/font = ExtResource( 6 )
 text = "Just getting started"
 align = 1
 valign = 1
 autowrap = true
+clip_text = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

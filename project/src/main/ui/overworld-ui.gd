@@ -35,15 +35,6 @@ func _ready() -> void:
 	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
 
 
-func _input(event: InputEvent) -> void:
-	if not chatters and event.is_action_pressed("interact") and ChattableManager.get_focused():
-		get_tree().set_input_as_handled()
-		start_chat(ChattableManager.load_chat_events(), [ChattableManager.get_focused()])
-	if not chatters and event.is_action_pressed("ui_menu"):
-		$SettingsMenu.show()
-		get_tree().set_input_as_handled()
-
-
 func start_chat(new_chat_tree: ChatTree, new_chatters: Array) -> void:
 	_current_chat_tree = new_chat_tree
 	chatters = new_chatters
@@ -181,3 +172,17 @@ func _on_SettingsMenu_quit_pressed() -> void:
 
 func _on_Viewport_size_changed() -> void:
 	rect_size = get_viewport_rect().size
+
+
+func _on_CellPhoneButton_pressed() -> void:
+	$CellPhoneMenu.show()
+
+
+func _on_SettingsButton_pressed() -> void:
+	$SettingsMenu.show()
+
+
+func _on_TalkButton_pressed() -> void:
+	if ChattableManager.get_focused():
+		get_tree().set_input_as_handled()
+		start_chat(ChattableManager.load_chat_events(), [ChattableManager.get_focused()])
