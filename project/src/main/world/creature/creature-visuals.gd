@@ -470,6 +470,7 @@ func _unload_dna() -> void:
 		$TailZ1,
 		$Neck0/HeadBobber/AccessoryZ0,
 		$Neck0/HeadBobber/AccessoryZ1,
+		$Neck0/HeadBobber/AccessoryZ2,
 		$Neck0/HeadBobber/CheekZ0,
 		$Neck0/HeadBobber/CheekZ1,
 		$Neck0/HeadBobber/CheekZ2,

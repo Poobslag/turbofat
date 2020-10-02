@@ -43,7 +43,6 @@ const CREATURE_PALETTES := [
 		"hair_rgb": "f1e398", "eye_rgb": "7d4c21 e5cd7d", "horn_rgb": "eabc75",
 		"cloth_rgb": "7d4c21", "glass_rgb": "1a1919", "plastic_rgb": "442f1c"}, # goblin green
 
-
 	{"line_rgb": "6c4331", "body_rgb": "ffbfcb", "belly_rgb": "fffaff",
 			"hair_rgb": "ffffff", "eye_rgb": "fad4cf ffffff", "horn_rgb": "fde9e7",
 			"cloth_rgb": "fad4cf", "glass_rgb": "f66451", "plastic_rgb": "f5dfdc"}, # pink
@@ -75,8 +74,6 @@ const CREATURE_PALETTES := [
 	{"line_rgb": "6c4331", "body_rgb": "68d50a", "belly_rgb": "4baf20",
 			"hair_rgb": "ffffed", "eye_rgb": "994dbd b392df", "horn_rgb": "d59fef",
 			"cloth_rgb": "994dbd", "glass_rgb": "bac5d6", "plastic_rgb": "2b2a29"}, # hulk green
-
-
 
 	{"line_rgb": "6c4331", "body_rgb": "9a7f5d", "belly_rgb": "c9dac6",
 			"hair_rgb": "40342d", "eye_rgb": "25291b 606060", "horn_rgb": "b9b9b9",
@@ -247,7 +244,7 @@ const ALLELE_NAMES := {
 # value: positive numeric weights [0.0-100.0]. high values for common alleles
 var _allele_weights := {}
 
-# key: alleles
+# key: allele combo key, such as 'mouth-1-nose-2'
 # value: positive/negative adjustments [-100, 100]. positive for good combos, negative for bad combos
 var _allele_combo_adjustments := {}
 
@@ -459,6 +456,12 @@ func _get_allele_combo_adjustment(key1: String, value1: String, key2: String, va
 	return _allele_combo_adjustments.get(combo_key, 0)
 
 
+"""
+A key corresponding to an allele combination, such as 'bird beak with tiny eyes'.
+
+A combination such as 'bird beak with tiny eyes' gets turned into a string key such as 'mouth-4-eye-2' which is
+compatible with dictionaries.
+"""
 func _allele_combo_key(key1: String, value1: String, key2: String, value2: String) -> String:
 	var combo_key: String
 	if key1 <= key2:

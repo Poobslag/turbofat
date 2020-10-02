@@ -19,10 +19,10 @@
    },
    {
     "filename": "accessory-z0-1 2.png",
-    "frame": { "x": 0, "y": 0, "w": 199, "h": 95 },
+    "frame": { "x": 0, "y": 0, "w": 199, "h": 94 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 137, "y": 193, "w": 199, "h": 95 },
+    "spriteSourceSize": { "x": 137, "y": 186, "w": 199, "h": 94 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    }
@@ -32,7 +32,7 @@
   "version": "1.2.25-x64",
   "image": "accessory-z0-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 205, "h": 95 },
+  "size": { "w": 205, "h": 94 },
   "scale": "1"
  }
 }

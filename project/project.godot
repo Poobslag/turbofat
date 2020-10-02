@@ -165,6 +165,11 @@ _global_script_classes=[ {
 "path": "res://src/main/world/creature/creature-visuals.gd"
 }, {
 "base": "Reference",
+"class": "DnaAlternatives",
+"language": "GDScript",
+"path": "res://src/main/world/creature/dna-alternatives.gd"
+}, {
+"base": "Reference",
 "class": "DurationCalculator",
 "language": "GDScript",
 "path": "res://src/main/puzzle/duration-calculator.gd"
@@ -596,6 +601,7 @@ _global_script_class_icons={
 "CreatureShadow": "",
 "CreatureShadows": "",
 "CreatureVisuals": "",
+"DnaAlternatives": "",
 "DurationCalculator": "",
 "EditorPlayfield": "",
 "FileUtils": "",
