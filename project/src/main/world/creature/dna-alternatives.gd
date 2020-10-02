@@ -16,7 +16,7 @@ value: array of three items
 """
 var _alternatives: Dictionary
 
-func _ready() -> void:
+func _init() -> void:
 	# for some noses, we switch up the glasses
 	_add_alternative("nose", ["3"], "accessory", "1", "1a")
 	_add_alternative("nose", ["3"], "accessory", "2", "2a")
