@@ -70,6 +70,8 @@ var _name_generator := NameGenerator.new()
 var _secondary_creature_queue: Array
 var _secondary_creature_queue_index := 0
 
+var _dna_alternatives := DnaAlternatives.new()
+
 func _ready() -> void:
 	_name_generator.load_american_animals()
 	_load_secondary_creatures()
@@ -265,7 +267,8 @@ func _load_texture(dna: Dictionary, node_path: String, key: String, filename: St
 		# have an 'ear' key if she doesn't have ears.
 		pass
 	else:
-		var dna_value: String = dna[key] if key else "1"
+		var dna_value := _dna_value(dna, key)
+		
 		resource_path = "res://assets/main/world/creature/%s/%s.png" % [dna_value, filename]
 		frame_data = "res://assets/main/world/creature/%s/%s.json" % [dna_value, filename]
 		if not ResourceLoader.exists(resource_path):
@@ -281,6 +284,16 @@ func _load_texture(dna: Dictionary, node_path: String, key: String, filename: St
 	else:
 		dna.erase("property:%s:texture" % node_path)
 		dna.erase("property:%s:frame_data" % node_path)
+
+
+func _dna_value(dna: Dictionary, key: String) -> String:
+	var dna_value: String = dna[key] if key else "1"
+	
+	var alternative := _dna_alternatives.alternative(dna, key, dna_value)
+	if alternative:
+		dna_value = alternative
+	
+	return dna_value
 
 
 """
@@ -318,6 +331,7 @@ func _load_head(dna: Dictionary) -> void:
 	
 	_load_texture(dna, "Neck0/HeadBobber/AccessoryZ0", "accessory", "accessory-z0-packed")
 	_load_texture(dna, "Neck0/HeadBobber/AccessoryZ1", "accessory", "accessory-z1-packed")
+	_load_texture(dna, "Neck0/HeadBobber/AccessoryZ2", "accessory", "accessory-z2-packed")
 
 
 """
@@ -389,6 +403,7 @@ func _load_colors(dna: Dictionary) -> void:
 	
 	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ0", line_color, plastic_color, glass_color, Color.white)
 	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ1", line_color, plastic_color, glass_color, Color.white)
+	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ2", line_color, plastic_color, glass_color, Color.white)
 	_set_krgb(dna, "Neck0/HeadBobber/EarZ0", line_color, body_color, hair_color, horn_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EarZ1", line_color, body_color, hair_color, horn_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EarZ2", line_color, body_color, hair_color, horn_color)

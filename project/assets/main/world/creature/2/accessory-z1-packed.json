@@ -1,7 +1,7 @@
 { "frames": [
    {
     "filename": "accessory-z1-1 0.png",
-    "frame": { "x": 171, "y": 0, "w": 1, "h": 1 },
+    "frame": { "x": 55, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -10,19 +10,19 @@
    },
    {
     "filename": "accessory-z1-1 1.png",
-    "frame": { "x": 0, "y": 0, "w": 131, "h": 83 },
+    "frame": { "x": 0, "y": 0, "w": 50, "h": 70 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 211, "y": 224, "w": 131, "h": 83 },
+    "spriteSourceSize": { "x": 292, "y": 224, "w": 50, "h": 70 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "accessory-z1-1 2.png",
-    "frame": { "x": 136, "y": 0, "w": 30, "h": 20 },
+    "frame": { "x": 55, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 174, "y": 261, "w": 30, "h": 20 },
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    }
@@ -32,7 +32,7 @@
   "version": "1.2.25-x64",
   "image": "accessory-z1-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 172, "h": 83 },
+  "size": { "w": 56, "h": 70 },
   "scale": "1"
  }
 }
