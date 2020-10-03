@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/ui/wallpaper/sticker-row.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/ui/wallpaper/tex-strawberry0.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/ui/wallpaper/tex-strawberry1.png" type="Texture" id=3]
+
+[node name="StickerRow" type="Control"]
+anchor_right = 1.0
+margin_top = 100.0
+margin_bottom = 200.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+color = Color( 1, 0, 0, 1 )
+texture_0 = ExtResource( 2 )
+texture_1 = ExtResource( 3 )

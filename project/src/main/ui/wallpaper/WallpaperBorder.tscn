@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://src/main/ui/wallpaper/wallpaper-gradient-texture.tres" type="Texture" id=1]
+[ext_resource path="res://assets/main/ui/wallpaper/bg00.png" type="Texture" id=2]
+[ext_resource path="res://src/main/ui/wallpaper/wallpaper-border.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/wallpaper/wallpaper-border.shader" type="Shader" id=4]
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/gradient = ExtResource( 1 )
+
+[node name="Border" type="Control"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.913725, 0.396078, 0.917647, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource( 2 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}

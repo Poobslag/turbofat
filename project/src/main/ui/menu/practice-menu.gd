@@ -67,6 +67,8 @@ var levels: Dictionary
 var _rank_lowlights := []
 
 func _ready() -> void:
+	ResourceCache.substitute_singletons(self)
+	
 	# default mode/difficulty if the player hasn't played a level recently
 	var current_mode: String = "Ultra"
 	var current_difficulty: String = "Normal"
@@ -96,6 +98,10 @@ func _ready() -> void:
 	$VBoxContainer/Mode.set_selected_mode(current_mode)
 	_refresh()
 	$VBoxContainer/Difficulty.set_selected_difficulty(current_difficulty)
+
+
+func _exit_tree() -> void:
+	ResourceCache.remove_singletons(self)
 
 
 func _refresh() -> void:

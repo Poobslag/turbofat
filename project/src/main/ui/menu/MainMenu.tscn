@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=2]
 [ext_resource path="res://assets/main/ui/fredoka-one-regular.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=4]
+[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/menu/SystemButtons.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=6]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=9]
@@ -16,33 +17,31 @@ outline_color = Color( 0.254902, 0.156863, 0.117647, 1 )
 font_data = ExtResource( 3 )
 
 [node name="MainMenu" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Wallpaper" parent="." instance=ExtResource( 4 )]
+
+[node name="DropPanel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 4 )
-expand = true
-stretch_mode = 1
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_styles/panel = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="."]
+[node name="TurboFat" type="Label" parent="DropPanel"]
 anchor_right = 1.0
-margin_bottom = 300.0
+margin_bottom = 150.0
 custom_fonts/font = SubResource( 1 )
 text = "turbo fat"
 align = 1
@@ -51,112 +50,113 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Play" type="VBoxContainer" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
+[node name="Play" type="VBoxContainer" parent="DropPanel"]
 anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -63.5
-margin_bottom = 151.5
+anchor_bottom = 1.0
+margin_top = 150.0
+margin_bottom = -100.0
 custom_constants/separation = 10
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Play"]
-margin_right = 512.0
-margin_bottom = 45.0
+[node name="Label" type="Label" parent="DropPanel/Play"]
+margin_top = 17.0
+margin_right = 462.0
+margin_bottom = 62.0
 custom_fonts/font = ExtResource( 9 )
 text = "Play"
 align = 1
 
-[node name="2d" type="Button" parent="Play"]
-margin_left = 159.0
-margin_top = 54.0
-margin_right = 352.0
-margin_bottom = 101.0
+[node name="2d" type="Button" parent="DropPanel/Play"]
+margin_left = 134.0
+margin_top = 72.0
+margin_right = 327.0
+margin_bottom = 119.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Continue"
 
-[node name="Practice" type="Button" parent="Play"]
-margin_left = 159.0
-margin_top = 112.0
-margin_right = 352.0
-margin_bottom = 159.0
+[node name="Practice" type="Button" parent="DropPanel/Play"]
+margin_left = 134.0
+margin_top = 129.0
+margin_right = 327.0
+margin_bottom = 176.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Practice"
 
-[node name="Tutorial" type="Button" parent="Play"]
-margin_left = 159.0
-margin_top = 169.0
-margin_right = 352.0
-margin_bottom = 216.0
+[node name="Tutorial" type="Button" parent="DropPanel/Play"]
+margin_left = 134.0
+margin_top = 186.0
+margin_right = 327.0
+margin_bottom = 233.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Tutorial"
 
-[node name="Create" type="VBoxContainer" parent="."]
+[node name="Create" type="VBoxContainer" parent="DropPanel"]
 anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.523333
-margin_top = -43.5
-margin_right = 512.0
-margin_bottom = 100.5
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 150.0
+margin_bottom = -100.0
 custom_constants/separation = 10
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Create"]
-margin_right = 512.0
-margin_bottom = 45.0
+[node name="Label" type="Label" parent="DropPanel/Create"]
+margin_top = 45.0
+margin_right = 462.0
+margin_bottom = 90.0
 custom_fonts/font = ExtResource( 9 )
 text = "Create"
 align = 1
 
-[node name="Levels" type="Button" parent="Create"]
-margin_left = 159.0
-margin_top = 55.0
-margin_right = 352.0
-margin_bottom = 102.0
+[node name="Levels" type="Button" parent="DropPanel/Create"]
+margin_left = 134.0
+margin_top = 100.0
+margin_right = 327.0
+margin_bottom = 147.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Levels"
 
-[node name="Creatures" type="Button" parent="Create"]
-margin_left = 159.0
-margin_top = 112.0
-margin_right = 352.0
-margin_bottom = 159.0
+[node name="Creatures" type="Button" parent="DropPanel/Create"]
+margin_left = 134.0
+margin_top = 157.0
+margin_right = 327.0
+margin_bottom = 204.0
 rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Creatures"
 
-[node name="System" parent="." instance=ExtResource( 5 )]
+[node name="System" parent="DropPanel" instance=ExtResource( 5 )]
+margin_top = -100.0
+alignment = 1
 quit_on_cancel = false
 
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
-[connection signal="pressed" from="Play/2d" to="." method="_on_PlayStory_pressed"]
-[connection signal="pressed" from="Play/Practice" to="." method="_on_PlayPractice_pressed"]
-[connection signal="pressed" from="Play/Tutorial" to="." method="_on_Tutorial_pressed"]
-[connection signal="pressed" from="Create/Levels" to="." method="_on_CreateLevels_pressed"]
-[connection signal="pressed" from="Create/Creatures" to="." method="_on_CreateCreatures_pressed"]
-[connection signal="quit_pressed" from="System" to="." method="_on_System_quit_pressed"]
-[connection signal="settings_pressed" from="System" to="SettingsMenu" method="_on_Settings_pressed"]
-[connection signal="quit_pressed" from="SettingsMenu" to="System" method="_on_Quit_pressed"]
+[connection signal="pressed" from="DropPanel/Play/2d" to="." method="_on_PlayStory_pressed"]
+[connection signal="pressed" from="DropPanel/Play/Practice" to="." method="_on_PlayPractice_pressed"]
+[connection signal="pressed" from="DropPanel/Play/Tutorial" to="." method="_on_Tutorial_pressed"]
+[connection signal="pressed" from="DropPanel/Create/Levels" to="." method="_on_CreateLevels_pressed"]
+[connection signal="pressed" from="DropPanel/Create/Creatures" to="." method="_on_CreateCreatures_pressed"]
+[connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
+[connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="quit_pressed" from="SettingsMenu" to="DropPanel/System" method="_on_Quit_pressed"]
