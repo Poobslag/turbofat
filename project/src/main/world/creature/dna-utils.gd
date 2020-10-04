@@ -239,6 +239,7 @@ const ALLELE_NAMES := {
 	"tail-4": "Bunny",
 	"tail-5": "Soft Squirrel",
 	"tail-6": "Fancy Squirrel",
+	"tail-7": "Lizard",
 }
 
 # key: alleles
@@ -377,7 +378,7 @@ func unique_allele_values(property: String) -> Array:
 			"horn": result = ["0", "1", "2"]
 			"mouth": result = ["1", "2", "3", "4", "5"]
 			"nose": result = ["0", "1", "2", "3"]
-			"tail": result = ["0", "1", "2", "3", "4", "5", "6"]
+			"tail": result = ["0", "1", "2", "3", "4", "5", "6", "7"]
 	
 	return result
 
