@@ -43,6 +43,7 @@ __meta__ = {
 [node name="Creature" parent="." instance=ExtResource( 1 )]
 position = Vector2( 512, 420 )
 scale = Vector2( 3, 3 )
+creature_id = ""
 dna = {
 "accessory": "0",
 "belly": "1",
@@ -146,6 +147,10 @@ dna = {
 "shader:Neck0/HeadBobber/AccessoryZ1:blue": Color( 1, 1, 1, 1 ),
 "shader:Neck0/HeadBobber/AccessoryZ1:green": Color( 0.156863, 0.156863, 0.156863, 1 ),
 "shader:Neck0/HeadBobber/AccessoryZ1:red": Color( 0.156863, 0.156863, 0.156863, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:blue": Color( 1, 1, 1, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:green": Color( 0.156863, 0.156863, 0.156863, 1 ),
+"shader:Neck0/HeadBobber/AccessoryZ2:red": Color( 0.156863, 0.156863, 0.156863, 1 ),
 "shader:Neck0/HeadBobber/CheekZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/CheekZ0:green": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/CheekZ0:red": Color( 1, 0.658824, 0.427451, 1 ),
@@ -175,7 +180,9 @@ dna = {
 "shader:Neck0/HeadBobber/EmoteArmZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/EmoteEyeZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ0:red": Color( 1, 1, 1, 1 ),
 "shader:Neck0/HeadBobber/EmoteEyeZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/EmoteEyeZ1:red": Color( 1, 1, 1, 1 ),
 "shader:Neck0/HeadBobber/EyeZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Neck0/HeadBobber/EyeZ0:blue": Color( 1, 1, 1, 1 ),
 "shader:Neck0/HeadBobber/EyeZ0:green": Color( 0.980392, 0.835294, 0.254902, 1 ),
@@ -200,6 +207,7 @@ dna = {
 "shader:Neck0/HeadBobber/HornZ1:green": Color( 0.156863, 0.156863, 0.156863, 1 ),
 "shader:Neck0/HeadBobber/HornZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Neck0/HeadBobber/Mouth:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"shader:Neck0/HeadBobber/Mouth:blue": Color( 0.156863, 0.156863, 0.156863, 1 ),
 "shader:Neck0/HeadBobber/Mouth:green": Color( 0.952941, 0.572549, 0.454902, 1 ),
 "shader:Neck0/HeadBobber/Mouth:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Neck0/HeadBobber/Nose:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
@@ -214,3 +222,5 @@ dna = {
 "shader:TailZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "tail": "1"
 }
+suppress_sfx = false
+elevation = 0

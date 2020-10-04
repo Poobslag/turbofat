@@ -225,6 +225,7 @@ const ALLELE_NAMES := {
 	"mouth-2": "Illithid",
 	"mouth-3": "Imp",
 	"mouth-4": "Crow",
+	"mouth-5": "Shark",
 	
 	"nose-0": "(none)",
 	"nose-1": "Nub",
@@ -283,8 +284,6 @@ func _ready() -> void:
 	_set_allele_weight("hair", "0", 5.0)
 	_set_allele_weight("head", "1", 6.0)
 	_set_allele_weight("horn", "0", 3.0)
-	_set_allele_weight("mouth", "1", 2.0)
-	_set_allele_weight("mouth", "2", 2.0)
 	_set_allele_weight("tail", "0", 5.0)
 
 
@@ -376,7 +375,7 @@ func unique_allele_values(property: String) -> Array:
 			"hair": result = ["0", "1", "2"]
 			"head": result = ["1", "2", "3", "4", "5"]
 			"horn": result = ["0", "1", "2"]
-			"mouth": result = ["1", "2", "3", "4"]
+			"mouth": result = ["1", "2", "3", "4", "5"]
 			"nose": result = ["0", "1", "2", "3"]
 			"tail": result = ["0", "1", "2", "3", "4", "5", "6"]
 	
