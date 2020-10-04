@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -94,16 +94,22 @@ action = "phone"
 shortcut = SubResource( 4 )
 
 [sub_resource type="InputEventAction" id=6]
-action = "interact"
+action = "ui_cancel"
 
 [sub_resource type="ShortCut" id=7]
 shortcut = SubResource( 6 )
 
 [sub_resource type="InputEventAction" id=8]
-action = "ui_cancel"
+action = "interact"
 
 [sub_resource type="ShortCut" id=9]
 shortcut = SubResource( 8 )
+
+[sub_resource type="InputEventAction" id=10]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=11]
+shortcut = SubResource( 10 )
 
 [node name="Overworld" type="Node"]
 
@@ -530,6 +536,7 @@ anchor_bottom = 0.0
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
+shortcut = SubResource( 7 )
 icon = ExtResource( 56 )
 expand_icon = true
 normal_icon = ExtResource( 56 )
@@ -557,7 +564,7 @@ anchor_bottom = 0.0
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
-shortcut = SubResource( 7 )
+shortcut = SubResource( 9 )
 icon = ExtResource( 55 )
 expand_icon = true
 normal_icon = ExtResource( 55 )
@@ -616,7 +623,7 @@ margin_left = 292.0
 margin_right = 392.0
 margin_bottom = 100.0
 size_flags_horizontal = 0
-shortcut = SubResource( 9 )
+shortcut = SubResource( 11 )
 icon = ExtResource( 62 )
 expand_icon = true
 normal_icon = ExtResource( 62 )
