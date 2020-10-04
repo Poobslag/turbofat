@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Darry",
+  "short_name": "Darry",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "4",
+    "body": "1",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "9",
+    "eye": "3",
+    "hair": "0",
+    "head": "4",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "0",
+    "tail": "3",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "772628",
+    "belly_rgb": "b72226",
+    "cloth_rgb": "7786b3",
+    "glass_rgb": "ee2b91",
+    "plastic_rgb": "79ff19",
+    "hair_rgb": "b9a1c3",
+    "eye_rgb": "e6c670 ffffd2",
+    "horn_rgb": "bfb6b2"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "772628"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.1
+}

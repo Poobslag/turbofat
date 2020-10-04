@@ -1,26 +1,30 @@
 {
-  "version": "187d",
+  "version": "19dd",
   "id": "",
   "name": "Spood",
   "short_name": "Spood",
   "dna": {
+    "belly": "1",
+    "bellybutton": "2",
     "body": "1",
-    "head": "5",
     "cheek": "3",
-    "eye": "3",
+    "collar": "1",
     "ear": "3",
-    "horn": "0",
+    "eye": "3",
+    "hair": "0",
+    "head": "5",
+    "horn": "1",
     "mouth": "3",
     "nose": "3",
-    "hair": "0",
-    "collar": "1",
-    "tail": "3",
-    "belly": "1",
+    "tail": "0",
+    "accessory": "0",
     "line_rgb": "41281e",
     "body_rgb": "664437",
     "belly_rgb": "e5d6b7",
     "cloth_rgb": "cb5340",
-    "hair_rgb": "664437",
+    "glass_rgb": "282828",
+    "plastic_rgb": "282828",
+    "hair_rgb": "e5d6b7",
     "eye_rgb": "c1f1f2 ffffff",
     "horn_rgb": "f1e398"
   },
@@ -36,5 +40,5 @@
   "chat_selectors": [
 
   ],
-  "fatness": 1.2
+  "fatness": 1.4
 }
