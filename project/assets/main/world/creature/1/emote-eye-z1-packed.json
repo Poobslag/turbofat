@@ -1,7 +1,7 @@
 { "frames": [
    {
-    "filename": "emote-eye-z1- 0.png",
-    "frame": { "x": 263, "y": 86, "w": 1, "h": 1 },
+    "filename": "emote-eye-z1-1 0.png",
+    "frame": { "x": 306, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -9,8 +9,8 @@
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 1.png",
-    "frame": { "x": 1, "y": 162, "w": 58, "h": 22 },
+    "filename": "emote-eye-z1-1 1.png",
+    "frame": { "x": 0, "y": 153, "w": 58, "h": 22 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 229, "y": 258, "w": 58, "h": 22 },
@@ -18,116 +18,116 @@
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 2.png",
-    "frame": { "x": 263, "y": 160, "w": 47, "h": 36 },
+    "filename": "emote-eye-z1-1 2.png",
+    "frame": { "x": 153, "y": 148, "w": 48, "h": 37 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 232, "y": 251, "w": 47, "h": 36 },
+    "spriteSourceSize": { "x": 232, "y": 251, "w": 48, "h": 37 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 3.png",
-    "frame": { "x": 66, "y": 162, "w": 66, "h": 12 },
+    "filename": "emote-eye-z1-1 3.png",
+    "frame": { "x": 0, "y": 180, "w": 66, "h": 13 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 222, "y": 274, "w": 66, "h": 12 },
+    "spriteSourceSize": { "x": 222, "y": 274, "w": 66, "h": 13 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 4.png",
-    "frame": { "x": 136, "y": 1, "w": 131, "h": 78 },
+    "filename": "emote-eye-z1-1 4.png",
+    "frame": { "x": 0, "y": 0, "w": 78, "h": 77 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 217, "y": 226, "w": 131, "h": 78 },
+    "spriteSourceSize": { "x": 217, "y": 226, "w": 78, "h": 77 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 5.png",
-    "frame": { "x": 1, "y": 1, "w": 128, "h": 80 },
+    "filename": "emote-eye-z1-1 5.png",
+    "frame": { "x": 83, "y": 0, "w": 74, "h": 73 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 222, "y": 226, "w": 128, "h": 80 },
+    "spriteSourceSize": { "x": 222, "y": 232, "w": 74, "h": 73 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 6.png",
-    "frame": { "x": 274, "y": 82, "w": 124, "h": 71 },
+    "filename": "emote-eye-z1-1 6.png",
+    "frame": { "x": 162, "y": 74, "w": 66, "h": 69 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 227, "y": 230, "w": 124, "h": 71 },
+    "spriteSourceSize": { "x": 227, "y": 231, "w": 66, "h": 69 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 7.png",
-    "frame": { "x": 408, "y": 1, "w": 123, "h": 74 },
+    "filename": "emote-eye-z1-1 7.png",
+    "frame": { "x": 233, "y": 75, "w": 66, "h": 67 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 226, "y": 229, "w": 123, "h": 74 },
+    "spriteSourceSize": { "x": 226, "y": 235, "w": 66, "h": 67 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 8.png",
-    "frame": { "x": 405, "y": 82, "w": 124, "h": 70 },
+    "filename": "emote-eye-z1-1 8.png",
+    "frame": { "x": 162, "y": 0, "w": 68, "h": 69 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 224, "y": 230, "w": 124, "h": 70 },
+    "spriteSourceSize": { "x": 224, "y": 230, "w": 68, "h": 69 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 9.png",
-    "frame": { "x": 317, "y": 160, "w": 54, "h": 27 },
+    "filename": "emote-eye-z1-1 9.png",
+    "frame": { "x": 68, "y": 150, "w": 55, "h": 28 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 231, "y": 264, "w": 54, "h": 27 },
+    "spriteSourceSize": { "x": 231, "y": 264, "w": 55, "h": 28 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 10.png",
-    "frame": { "x": 136, "y": 86, "w": 120, "h": 72 },
+    "filename": "emote-eye-z1-1 10.png",
+    "frame": { "x": 83, "y": 78, "w": 65, "h": 67 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 226, "y": 230, "w": 120, "h": 72 },
+    "spriteSourceSize": { "x": 226, "y": 234, "w": 65, "h": 67 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 11.png",
-    "frame": { "x": 1, "y": 88, "w": 121, "h": 67 },
+    "filename": "emote-eye-z1-1 11.png",
+    "frame": { "x": 233, "y": 147, "w": 66, "h": 62 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 228, "y": 233, "w": 121, "h": 67 },
+    "spriteSourceSize": { "x": 228, "y": 237, "w": 66, "h": 62 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 12.png",
-    "frame": { "x": 405, "y": 159, "w": 118, "h": 67 },
+    "filename": "emote-eye-z1-1 12.png",
+    "frame": { "x": 0, "y": 82, "w": 63, "h": 66 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 229, "y": 231, "w": 118, "h": 67 },
+    "spriteSourceSize": { "x": 229, "y": 231, "w": 63, "h": 66 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 13.png",
-    "frame": { "x": 274, "y": 1, "w": 127, "h": 74 },
+    "filename": "emote-eye-z1-1 13.png",
+    "frame": { "x": 235, "y": 0, "w": 66, "h": 70 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 223, "y": 229, "w": 127, "h": 74 },
+    "spriteSourceSize": { "x": 223, "y": 233, "w": 66, "h": 70 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 14.png",
-    "frame": { "x": 263, "y": 86, "w": 1, "h": 1 },
+    "filename": "emote-eye-z1-1 14.png",
+    "frame": { "x": 306, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -135,8 +135,8 @@
     "duration": 100
    },
    {
-    "filename": "emote-eye-z1- 15.png",
-    "frame": { "x": 263, "y": 86, "w": 1, "h": 1 },
+    "filename": "emote-eye-z1-1 15.png",
+    "frame": { "x": 306, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -146,10 +146,10 @@
  ],
  "meta": {
   "app": "http://www.aseprite.org/",
-  "version": "1.2.21-x64",
+  "version": "1.2.25-x64",
   "image": "emote-eye-z1-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 532, "h": 227 },
+  "size": { "w": 307, "h": 209 },
   "scale": "1"
  }
 }

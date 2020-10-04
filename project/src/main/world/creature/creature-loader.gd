@@ -23,6 +23,7 @@ var _mouth_player_scenes := {
 	"2": preload("res://src/main/world/creature/Mouth2Player.tscn"),
 	"3": preload("res://src/main/world/creature/Mouth3Player.tscn"),
 	"4": preload("res://src/main/world/creature/Mouth4Player.tscn"),
+	"5": preload("res://src/main/world/creature/Mouth5Player.tscn"),
 }
 
 # AnimationPlayer scenes with animations for each type of ear
@@ -438,7 +439,7 @@ func _load_colors(dna: Dictionary) -> void:
 	elif dna.get("head") in ["2", "3", "5"]:
 		# bottom half of the head is belly-colored
 		mouth_skin_color = belly_color
-	_set_krgb(dna, "Neck0/HeadBobber/Mouth", line_color, mouth_skin_color, PINK_INSIDE_COLOR)
+	_set_krgb(dna, "Neck0/HeadBobber/Mouth", line_color, mouth_skin_color, PINK_INSIDE_COLOR, horn_color)
 	
 	var nose_skin_color := belly_color if dna.get("head") in ["2", "3"] else body_color
 	_set_krgb(dna, "Neck0/HeadBobber/Nose", line_color, nose_skin_color)
