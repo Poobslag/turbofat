@@ -7,6 +7,10 @@
     "type": "time_over",
     "value": "150"
   },
+  "rank": [
+    "box_factor 0.8",
+    "combo_factor 0.5"
+  ],
   "blocks_start": {
     "tiles": [
       {

@@ -7,6 +7,10 @@
     "type": "time_over",
     "value": "90"
   },
+  "rank": [
+    "box_factor 0.5",
+    "combo_factor 0.5"
+  ],
   "lose_condition": [
     "top_out 1"
   ],
