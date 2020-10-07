@@ -26,7 +26,6 @@ const TEXTS := [
 onready var _tutorial_hud: TutorialHud = $Level/Hud/TutorialHud
 onready var _tutorial_message: TutorialMessage = $Level/Hud/TutorialHud/Message
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var settings := LevelSettings.new()
 	settings.load_from_resource(Level.BEGINNER_TUTORIAL)

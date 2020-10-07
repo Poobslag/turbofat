@@ -12,12 +12,18 @@ func _ready() -> void:
 		Breadcrumb.trail = [Global.SCENE_SPLASH]
 		_launch_tutorial()
 	
+	ResourceCache.substitute_singletons(self)
+	
 	# Fade in music when redirected from a scene with no music, such as the level editor
 	if not MusicPlayer.is_playing_chill_bgm():
 		MusicPlayer.play_chill_bgm()
 		MusicPlayer.fade_in()
 	
-	$Play/Practice.grab_focus()
+	$DropPanel/Play/Practice.grab_focus()
+
+
+func _exit_tree() -> void:
+	ResourceCache.remove_singletons(self)
 
 
 func _launch_tutorial() -> void:

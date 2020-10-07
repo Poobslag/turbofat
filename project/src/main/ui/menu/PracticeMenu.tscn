@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://src/main/ui/menu/practice-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/practice-difficulty-selector.gd" type="Script" id=2]
@@ -9,7 +9,8 @@
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/UiMenuShortcut.tres" type="ShortCut" id=8]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=9]
-[ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=10]
+[ext_resource path="res://src/main/ui/menu/drop-panel.tres" type="StyleBox" id=10]
+[ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=12]
 [ext_resource path="res://src/main/ui/HighScoreTable.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/menu/mode-buttongroup.tres" type="ButtonGroup" id=14]
@@ -17,25 +18,24 @@
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=17]
 
 [node name="PracticeMenu" type="Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -512.0
-margin_top = -300.0
-margin_right = 512.0
-margin_bottom = 300.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Wallpaper" parent="." instance=ExtResource( 11 )]
+
+[node name="Panel" type="Panel" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
-texture = ExtResource( 10 )
-expand = true
+margin_left = 50.0
+margin_top = 10.0
+margin_right = -50.0
+margin_bottom = -10.0
+custom_styles/panel = ExtResource( 10 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -46,7 +46,7 @@ anchor_bottom = 1.0
 margin_left = 20.0
 margin_top = 20.0
 margin_right = -20.0
-margin_bottom = -20.0
+margin_bottom = -25.0
 custom_constants/separation = 20
 __meta__ = {
 "_edit_use_anchors_": false
@@ -162,9 +162,9 @@ __meta__ = {
 }
 
 [node name="Difficulty" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 156.0
+margin_top = 155.0
 margin_right = 984.0
-margin_bottom = 245.0
+margin_bottom = 244.0
 size_flags_vertical = 6
 script = ExtResource( 2 )
 
@@ -234,9 +234,9 @@ text = "Master"
 align = 2
 
 [node name="System" type="VBoxContainer" parent="VBoxContainer"]
-margin_top = 300.0
+margin_top = 295.0
 margin_right = 984.0
-margin_bottom = 436.0
+margin_bottom = 431.0
 size_flags_vertical = 10
 custom_constants/separation = 10
 script = ExtResource( 5 )
@@ -285,9 +285,9 @@ text = "Quit"
 
 [node name="HighScores" type="Panel" parent="VBoxContainer"]
 margin_left = 92.0
-margin_top = 456.0
+margin_top = 451.0
 margin_right = 892.0
-margin_bottom = 560.0
+margin_bottom = 555.0
 rect_min_size = Vector2( 800, 104 )
 size_flags_horizontal = 4
 size_flags_vertical = 4

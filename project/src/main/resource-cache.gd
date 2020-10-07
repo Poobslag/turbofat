@@ -45,6 +45,9 @@ var _remaining_resource_paths := []
 var _remaining_resource_paths_mutex := Mutex.new()
 
 var _remaining_scene_paths := []
+ 
+# the wallpaper singleton, cached to preserve its appearance during scene transitions
+var wallpaper: Node
 
 """
 Initializes the resource load.
@@ -85,10 +88,39 @@ func _process(_delta: float) -> void:
 
 
 func _exit_tree() -> void:
+	if wallpaper:
+		# singletons are not freed when their parent scene is removed from the tree, we have to free them manually
+		wallpaper.free()
 	if _load_threads:
 		_exiting = true
 		for thread in _load_threads:
 			thread.wait_to_finish()
+
+
+"""
+Replaces non-singletons in the scene tree with their singleton counterparts.
+"""
+func substitute_singletons(parent: Node) -> void:
+	if wallpaper and parent.has_node("Wallpaper"):
+		# we have a singleton value to substitute; remove the non-singleton value
+		var wallpaper_index := parent.get_children().find(parent.get_node("Wallpaper"))
+		parent.get_node("Wallpaper").queue_free()
+		parent.remove_child(parent.get_node("Wallpaper"))
+		
+		# add the singleton value
+		parent.add_child(wallpaper)
+		parent.move_child(wallpaper, wallpaper_index)
+	else:
+		# we have no singleton value stored; store a new singleton value
+		wallpaper = parent.get_node("Wallpaper")
+
+
+"""
+Removes singletons from the scene tree to prevent them from being freed.
+"""
+func remove_singletons(parent: Node) -> void:
+	if wallpaper and parent.has_node("Wallpaper"):
+		parent.remove_child(wallpaper)
 
 
 func get_progress() -> float:
