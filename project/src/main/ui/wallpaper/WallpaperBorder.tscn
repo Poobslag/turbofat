@@ -5,7 +5,7 @@
 [ext_resource path="res://src/main/ui/wallpaper/wallpaper-border.gd" type="Script" id=3]
 [ext_resource path="res://src/main/ui/wallpaper/wallpaper-border.shader" type="Shader" id=4]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 4 )
 shader_param/gradient = ExtResource( 1 )
@@ -19,16 +19,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ColorRect" type="ColorRect" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.913725, 0.396078, 0.917647, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="TextureRect" type="TextureRect" parent="."]
-material = SubResource( 2 )
+material = SubResource( 1 )
 texture = ExtResource( 2 )
 expand = true
 stretch_mode = 2

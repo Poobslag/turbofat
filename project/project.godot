@@ -519,6 +519,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/state-machine.gd"
 }, {
+"base": "Sprite",
+"class": "Sticker",
+"language": "GDScript",
+"path": "res://src/main/ui/wallpaper/sticker.gd"
+}, {
 "base": "Control",
 "class": "StickerRow",
 "language": "GDScript",
@@ -682,6 +687,7 @@ _global_script_class_icons={
 "SmoothPath": "",
 "State": "",
 "StateMachine": "",
+"Sticker": "",
 "StickerRow": "",
 "StringUtils": "",
 "SwipeContainer": "",
