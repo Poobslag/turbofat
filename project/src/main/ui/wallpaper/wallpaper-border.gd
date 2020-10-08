@@ -5,8 +5,6 @@ A wavy border which separates two solid colored sections of wallpaper.
 
 TextureRects can't scale their textures unless the control itself is scaled. However, scaled controls wreak havoc with
 Godot's layout manager. To reconcile this, WallpaperBorder is an unscaled control which contains a scaled TextureRect.
-
-The ColorRect's purpose is baffling, but if removed then the TextureRect behaves strangely.
 """
 
 # the size in pixels of the source wallpaper texture. this texture is scaled to the dimensions of the border.
@@ -20,6 +18,12 @@ export (Vector2) var velocity: Vector2
 export (Vector2) var texture_scale: Vector2 = Vector2(512.0, 512.0) setget set_texture_scale
 
 func _ready() -> void:
+	# Bafflingly, removing this mysterious ColorRect makes the TextureRect render incorrectly.
+	var texture_rect_glitch_workaround: ColorRect = ColorRect.new()
+	texture_rect_glitch_workaround.name = "WorkaroundForSomeCrazyGodotBug"
+	texture_rect_glitch_workaround.color = Color.transparent
+	add_child(texture_rect_glitch_workaround)
+	
 	connect("resized", self, "_on_resized")
 	_recalculate_texture_rect_size()
 

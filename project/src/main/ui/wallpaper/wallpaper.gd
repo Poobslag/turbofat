@@ -15,9 +15,7 @@ var _color_0: Color
 var _color_1: Color
 
 func _ready() -> void:
-	_color_0 = Color("009cf3")
-	_color_1 = _color_0
-	_color_1.s = 0.60
+	_assign_daily_colors()
 	
 	# add borders
 	var border_index := 0
@@ -51,6 +49,34 @@ func _ready() -> void:
 		sticker_row.color = _color_1 if sticker_row_index % 2 == 0 else _color_0
 		sticker_row.velocity = Vector2(-30.0, 0) if sticker_row_index % 2 == 0 else Vector2(30, 0)
 		sticker_row_index += 1
+
+
+"""
+Assigns the background colors based on the day of the week.
+"""
+func _assign_daily_colors() -> void:
+	match OS.get_datetime().get("weekday"):
+		OS.DAY_MONDAY: # chocolate brown
+			_color_0 = Color("280808")
+			_color_1 = Color("360f09")
+		OS.DAY_TUESDAY: # baby blue
+			_color_0 = Color("009cf3")
+			_color_1 = Color("61bff3")
+		OS.DAY_WEDNESDAY: # dark purple
+			_color_0 = Color("602091")
+			_color_1 = Color("7125a9")
+		OS.DAY_THURSDAY: # sugar white
+			_color_0 = Color("cba688")
+			_color_1 = Color("e3c9b1")
+		OS.DAY_FRIDAY: # grassy green
+			_color_0 = Color("36b16a")
+			_color_1 = Color("6adc8d")
+		OS.DAY_SATURDAY: # bready orange
+			_color_0 = Color("e87d25")
+			_color_1 = Color("f79545")
+		OS.DAY_SUNDAY, _: # strawberry red
+			_color_0 = Color("ed333b")
+			_color_1 = Color("ff5d68")
 
 
 func _add_sticker_row(row_y: float, row_height: float) -> StickerRow:

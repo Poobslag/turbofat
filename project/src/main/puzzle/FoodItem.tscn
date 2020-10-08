@@ -62,12 +62,13 @@ tracks/1/keys = {
 
 [node name="FoodItem" type="Node2D"]
 position = Vector2( 0, -5738.04 )
-rotation = -0.1
+rotation = 0.14452
 script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/food/food-packed.json"
 rect_size = Vector2( 128, 128 )
-rotation_modifier = -0.1
+scale_modifier = Vector2( 0.6, 0.6 )
+rotation_modifier = 0.14452
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "jiggle-and-fade"
