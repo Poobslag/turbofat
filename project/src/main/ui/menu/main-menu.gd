@@ -28,7 +28,7 @@ func _exit_tree() -> void:
 
 func _launch_tutorial() -> void:
 	Global.clear_creature_queue()
-	var creature_def := CreatureLoader.load_creature_def("res://assets/main/creatures/instructor/creature.json")
+	var creature_def := CreatureLoader.load_creature_def(CreatureLoader.INSTRUCTOR_PATH)
 	Global.creature_queue.push_front(creature_def)
 	Level.set_launched_level(Level.BEGINNER_TUTORIAL)
 	Level.push_level_trail()

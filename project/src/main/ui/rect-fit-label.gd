@@ -8,7 +8,7 @@ where the text does not overrun its boundaries.
 # When calculating how much text we can accommodate, there is a 3 pixel gap between each row.
 const FONT_GAP := 3
 
-# Different sizes to try. Should be ordered from smallest to largest.
+# Different label sizes to try, ordered from smallest to largest.
 export(Array, Vector2) var sizes := [] setget set_sizes
 
 var chosen_size_index := -1 setget set_chosen_size_index
