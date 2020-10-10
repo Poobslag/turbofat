@@ -1,12 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://src/main/puzzle/tutorial/SkillTallyItem.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/ui/blogger-sans-medium-30.tres" type="DynamicFont" id=2]
+[ext_resource path="res://src/main/ui/chat/ChatLineLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=3]
-[ext_resource path="res://src/main/puzzle/tutorial/tutorial-message.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/tutorial/tutorial-messages.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-hud.gd" type="Script" id=5]
-[ext_resource path="res://src/main/puzzle/tutorial/tutorial-message-tween.gd" type="Script" id=6]
-[ext_resource path="res://assets/main/ui/chat/bebebe.wav" type="AudioStream" id=8]
+[ext_resource path="res://src/main/ui/chat/ChatPanelTween.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/ui/chat/ChatLinePanel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/main/ui/chat/frame-pop-in.wav" type="AudioStream" id=12]
+[ext_resource path="res://assets/main/ui/chat/frame-pop-out.wav" type="AudioStream" id=13]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.11, 0.89, 0.11, 0.33 )
@@ -44,26 +46,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Message" type="RichTextLabel" parent="."]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 345.0
-margin_bottom = 305.0
-rect_pivot_offset = Vector2( 168, 148 )
-custom_styles/normal = ExtResource( 3 )
-custom_fonts/normal_font = ExtResource( 2 )
-scroll_following = true
+[node name="Messages" type="Control" parent="."]
+margin_right = 360.0
+margin_bottom = 370.0
+rect_pivot_offset = Vector2( 180, 185 )
 script = ExtResource( 4 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BebebeSound" type="AudioStreamPlayer" parent="Message"]
-stream = ExtResource( 8 )
-volume_db = -12.0
+[node name="Panel" parent="Messages" instance=ExtResource( 7 )]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+rect_pivot_offset = Vector2( 170, 175 )
+panel_sizes = [ Vector2( 340, 110 ), Vector2( 340, 145 ), Vector2( 340, 215 ), Vector2( 340, 300 ), Vector2( 340, 350 ) ]
 
-[node name="Tween" type="Tween" parent="Message"]
-script = ExtResource( 6 )
+[node name="Label" parent="Messages" instance=ExtResource( 2 )]
+margin_left = -140.0
+margin_right = 140.0
+panel_padding = Vector2( 40, 40 )
+chat_line_panel_path = NodePath("../Panel")
+
+[node name="QueueTimer" type="Timer" parent="Messages"]
+wait_time = 2.5
+one_shot = true
+
+[node name="Tween" parent="Messages" instance=ExtResource( 6 )]
+
+[node name="PopInSound" type="AudioStreamPlayer" parent="Messages"]
+stream = ExtResource( 12 )
+volume_db = -14.0
+bus = "Sound Bus"
+
+[node name="PopOutSound" type="AudioStreamPlayer" parent="Messages"]
+stream = ExtResource( 13 )
+volume_db = -14.0
+bus = "Sound Bus"
 
 [node name="SkillTallyItems" type="Panel" parent="."]
 margin_left = 774.0
@@ -227,5 +249,6 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
-[connection signal="pop_out_completed" from="Message/Tween" to="Message" method="_on_Tween_pop_out_completed"]
-[connection signal="tween_completed" from="Message/Tween" to="Message/Tween" method="_on_tween_completed"]
+[connection signal="all_text_shown" from="Messages/Label" to="Messages" method="_on_Label_all_text_shown"]
+[connection signal="timeout" from="Messages/QueueTimer" to="Messages" method="_on_QueueTimer_timeout"]
+[connection signal="pop_out_completed" from="Messages/Tween" to="Messages" method="_on_Tween_pop_out_completed"]

@@ -23,6 +23,9 @@ const PAUSE_CHARACTERS := {
 	"\n": 0.80,
 }
 
+# The amount of empty space between the text borders and panel borders.
+export (Vector2) var panel_padding: Vector2
+
 export (NodePath) var chat_line_panel_path: NodePath
 
 # Stores the delay in seconds for each visible_characters index.
@@ -40,8 +43,8 @@ func _ready() -> void:
 	# Populate the chat line sizes based on the chat line panel sizes.
 	# They're the same except for a little padding on the outside.
 	var new_sizes := []
-	for panel_size in chat_line_panel.panel_sizes.values():
-		new_sizes.append(panel_size - Vector2(60, 40))
+	for panel_size in chat_line_panel.panel_sizes:
+		new_sizes.append(panel_size - panel_padding)
 	set_sizes(new_sizes)
 	
 	# hidden by default to avoid firing signals and playing sounds

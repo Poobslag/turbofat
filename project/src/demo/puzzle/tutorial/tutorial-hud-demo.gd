@@ -4,14 +4,15 @@ Shows off the tutorial message UI.
 
 Keys:
 	[0-9]: Prints a message; 1 = short, 0 = long
+	[shift+0-9]: Enqueues a message; 1 = short, 0 = long
 	[O]: Prints a message in a big font
 	[H]: Hides the message after a short delay
-	[shift+H]: Hides the message immediately
 """
 
 const TEXTS := [
-	"Oh my,/ you're not supposed to know how to do that!\n\n..." \
-			+ "But yes,/ snack boxes earn $15 when you clear them./ Maybe more if you're clever.",
+	"Oh my,/ you're not supposed to know how to do that!\n\n" \
+			+ "...But yes,/ box clears earn you five times as much money./" \
+			+ " Maybe more than that if you're clever.",
 	"Clear a row by filling it with blocks.",
 	"Hold soft drop to squish a piece through a narrow gap.",
 	"Build a snack box by arranging two pieces into a square.",
@@ -23,25 +24,24 @@ const TEXTS := [
 	"Oh my,/ you're not supposed to know how to do that!\n\n...But yes,/ squish moves can help you out of a jam.",
 ]
 
-onready var _tutorial_hud: TutorialHud = $Level/Hud/TutorialHud
-onready var _tutorial_message: TutorialMessage = $Level/Hud/TutorialHud/Message
+onready var _tutorial_hud: TutorialHud = $Level/Hud/HudUi/TutorialHud
+onready var _tutorial_messages: TutorialMessages = $Level/Hud/HudUi/TutorialHud/Messages
 
 func _ready() -> void:
 	var settings := LevelSettings.new()
 	settings.load_from_resource(Level.BEGINNER_TUTORIAL)
 	Level.start_level(settings)
-	$Level.init_milestone_hud()
 	_tutorial_hud.refresh()
 
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			_tutorial_hud.append_message(TEXTS[Utils.key_num(event)])
-		KEY_O:
-			_tutorial_hud.append_big_message("O/H/,/// M/Y/!/!/!")
-		KEY_H:
 			if Input.is_key_pressed(KEY_SHIFT):
-				_tutorial_message.set_pop_out_timer(0.01)
+				_tutorial_messages.enqueue_message(TEXTS[Utils.key_num(event)])
 			else:
-				_tutorial_message.set_pop_out_timer(3.0)
+				_tutorial_messages.set_message(TEXTS[Utils.key_num(event)])
+		KEY_O:
+			_tutorial_messages.set_big_message("O/H/,/// M/Y/!/!/!")
+		KEY_H:
+			_tutorial_messages.enqueue_pop_out()

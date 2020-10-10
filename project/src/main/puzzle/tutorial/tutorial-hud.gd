@@ -40,7 +40,7 @@ func _ready() -> void:
 		
 		if not Level.settings.other.skip_intro:
 			yield(get_tree().create_timer(0.40), "timeout")
-			append_message("Welcome to Turbo Fat!//"
+			$Messages.set_message("Welcome to Turbo Fat!//"
 					+ " You seem to already be familiar with this sort of game,/ so let's dive right in.")
 			yield(get_tree().create_timer(0.80), "timeout")
 			_puzzle.show_buttons()
@@ -80,14 +80,6 @@ func refresh() -> void:
 			_piece_manager.disconnect("piece_spawned", self, "_on_PieceManager_piece_spawned")
 
 
-func append_message(message: String) -> void:
-	$Message.append_message(message)
-
-
-func append_big_message(message: String) -> void:
-	$Message.append_big_message(message)
-
-
 func _on_PieceManager_piece_spawned() -> void:
 	_did_line_clear = false
 	_did_squish_move = false
@@ -116,11 +108,29 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 	if _box_ints:
 		_did_box_clear = true
 		_box_clears += 1
+		$SkillTallyItems/GridContainer/BoxClear.increment()
 
 
 func _handle_line_clear_message() -> void:
 	if _did_line_clear and _line_clears == 1:
-		append_message("Well done!\n\nLine clears earn ¥1./ Maybe more if you can build a combo.")
+		$Messages.set_message("Well done!\n\nLine clears earn ¥1./ Maybe more if you can build a combo.")
+
+
+"""
+Enqueues a message describing how to progress in the tutorial, after skipping.
+
+Skipping the tutorial shows a message like 'Wow, you did a squish move!' But if we display that forever, the player
+might forget how to progress in the tutorial. This function displays a 'how to progress' message after a delay.
+"""
+func _add_post_skip_message() -> void:
+	match Level.settings.id:
+		"tutorial_beginner_0":
+			$Messages.enqueue_message("Clear a row by filling it with blocks.")
+		"tutorial_beginner_1":
+			if _boxes_built == 0:
+				$Messages.enqueue_message("Try making a snack box by arranging two pieces into a square.")
+			elif _box_clears == 0:
+				$Messages.enqueue_message("Try clearing a few box lines.")
 
 
 func _handle_box_clear_message() -> void:
@@ -128,14 +138,13 @@ func _handle_box_clear_message() -> void:
 		if _box_clears == 1:
 			match Level.settings.id:
 				"tutorial_beginner_0":
-					append_message("Oh my,/ you're not supposed to know how to do that!\n\n"
-							+ "...But yes,/ box clears earn you five times as much money./"
+					$Messages.set_message("Well done!\n\nBox clears earn you five times as much money./"
 							+ " Maybe more than that if you're clever.")
+					_add_post_skip_message()
 					$SkillTallyItems/GridContainer/BoxClear.visible = true
 				"tutorial_beginner_1":
-					append_message("Well done!\n\nBox clears earn you five times as much money./"
+					$Messages.set_message("Well done!\n\nBox clears earn you five times as much money./"
 							+ " Maybe more than that if you're clever.")
-		$SkillTallyItems/GridContainer/BoxClear.increment()
 
 
 func _handle_squish_move_message() -> void:
@@ -143,11 +152,12 @@ func _handle_squish_move_message() -> void:
 		if _squish_moves == 1:
 			match Level.settings.id:
 				"tutorial_beginner_0", "tutorial_beginner_1":
-					append_message("Oh my,/ you're not supposed to know how to do that!\n\n"
+					$Messages.set_message("Oh my,/ you're not supposed to know how to do that!\n\n"
 							+ "...But yes,/ squish moves can help you out of a jam.")
+					_add_post_skip_message()
 					$SkillTallyItems/GridContainer/SquishMove.visible = true
 				"tutorial_beginner_2":
-					append_message("Well done!\n\nSquish moves can help you out of a jam./"
+					$Messages.set_message("Well done!\n\nSquish moves can help you out of a jam./"
 							+ " They're also good for certain boxes.")
 
 
@@ -156,12 +166,12 @@ func _handle_build_box_message() -> void:
 		if _boxes_built == 1:
 			match Level.settings.id:
 				"tutorial_beginner_0":
-					append_message("Oh my,/ you're not supposed to know how to do that!\n\n"
-							+ "...But yes,/ those boxes earn $15 when you clear them./"
-							+ " Try clearing a few box lines.")
+					$Messages.set_message("Oh my,/ you're not supposed to know how to do that!\n\n"
+							+ "...But yes,/ those boxes earn $15 when you clear them.")
+					_add_post_skip_message()
 					$SkillTallyItems/GridContainer/SnackBox.visible = true
 				"tutorial_beginner_1":
-					append_message("Well done!\n\nThose boxes earn ¥15 when you clear them./"
+					$Messages.set_message("Well done!\n\nThose boxes earn ¥15 when you clear them./"
 					+ " Try clearing a few box lines.")
 		$SkillTallyItems/GridContainer/SnackBox.increment()
 
@@ -171,7 +181,7 @@ func _handle_snack_stack_message() -> void:
 		$SkillTallyItems/GridContainer/SnackStack.increment()
 		_snack_stacks += 1
 		if _snack_stacks == 1:
-			append_message("Impressive!/ Using squish moves,/" \
+			$Messages.set_message("Impressive!/ Using squish moves,/" \
 					+ " you can organize boxes in tall vertical stacks and earn a lot of money.")	
 
 
@@ -204,24 +214,25 @@ func _on_Playfield_after_piece_written() -> void:
 
 
 func _advance_level() -> void:
-	# clear out any text to ensure we don't end up pages behind, if the player is fast
-	$Message.hide_text()
-	
 	if Level.settings.id == "tutorial_beginner_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
 		PuzzleScore.change_level("oh_my", false)
-		append_big_message("O/H/,/// M/Y/!/!/!")
-		$Message.set_pop_out_timer(1.0)
+		$Messages.set_big_message("O/H/,/// M/Y/!/!/!")
+		$Messages.enqueue_pop_out()
 		
 		# force match to end
 		PuzzleScore.level_performance.lines = 100
 	elif _boxes_built == 0 or _box_clears == 0:
+		$Messages.set_message("Good job!")
 		PuzzleScore.change_level("tutorial_beginner_1")
 	elif _squish_moves == 0:
+		$Messages.set_message("Nicely done!")
 		PuzzleScore.change_level("tutorial_beginner_2")
 	elif _snack_stacks == 0:
+		$Messages.set_message("Impressive!")
 		PuzzleScore.change_level("tutorial_beginner_3")
 	else:
+		$Messages.set_message("Oh! I thought that would be more difficult...")
 		PuzzleScore.change_level("tutorial_beginner_4")
 		yield(PuzzleScore, "after_level_changed")
 		MusicPlayer.play_upbeat_bgm()
@@ -254,11 +265,11 @@ func _on_Level_settings_changed() -> void:
 
 func _on_PuzzleScore_game_started() -> void:
 	if Level.settings.other.skip_intro:
-		append_message("Welcome to Turbo Fat!/"
+		$Messages.set_message("Welcome to Turbo Fat!/"
 					+ " You seem to already be familiar with this sort of game,/ so let's dive right in."
 					+ "\n\nClear a row by filling it with blocks.")
 	else:
-		append_message("Clear a row by filling it with blocks.")
+		$Messages.set_message("Clear a row by filling it with blocks.")
 
 
 func _on_PuzzleScore_after_level_changed() -> void:
@@ -268,18 +279,18 @@ func _on_PuzzleScore_after_level_changed() -> void:
 		"tutorial_beginner_1":
 			$SkillTallyItems/GridContainer/SnackBox.visible = true
 			$SkillTallyItems/GridContainer/BoxClear.visible = true
-			append_message("Good job!\n\nTry making a snack box by arranging two pieces into a square.")
+			$Messages.set_message("Try making a snack box by arranging two pieces into a square.")
 		"tutorial_beginner_2":
 			$SkillTallyItems/GridContainer/SquishMove.visible = true
-			append_message("Nicely done!\n\nNext,/ try holding soft drop to squish these pieces through these gaps.")
+			$Messages.set_message("Next,/ try holding soft drop to squish pieces through these gaps.")
 		"tutorial_beginner_3":
 			$SkillTallyItems/GridContainer/SnackStack.visible = true
-			append_message("One last lesson!/ Try holding soft drop to squish and complete these boxes.")
+			$Messages.set_message("One last lesson!/ Try holding soft drop to squish and complete these boxes.")
 		"tutorial_beginner_4":
 			# reset timer, scores
 			PuzzleScore.reset()
 			_puzzle.scroll_to_new_creature()
 			
-			append_message("You're a remarkably quick learner." \
+			$Messages.set_message("You're a remarkably quick learner." \
 					+ "/ I think I hear some customers!\n\nSee if you can earn ¥100.")
-			$Message.set_pop_out_timer(3.0)
+			$Messages.enqueue_pop_out()
