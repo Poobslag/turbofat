@@ -1,5 +1,7 @@
 {
   "version": "19c5",
+  "title": "Basic Techniques",
+  "description": "Learn to clear lines, to make snack boxes and to squish pieces.",
   "blocks_start": {
     "tiles": [
       {
@@ -213,7 +215,8 @@
     "piece_t"
   ],
   "rank": [
-    "skip_results"
+    "skip_results",
+    "unranked"
   ],
   "start_speed": "T"
 }

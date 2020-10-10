@@ -1,7 +1,7 @@
 {
   "version": "19c5",
   "start_speed": "3",
-  "title":"Cleaning Duty",
+  "title": "Cleaning Duty",
   "description": "Who made this mess! ...Do we need to set up a chore board?",
   "finish_condition": {
     "type": "time_over",

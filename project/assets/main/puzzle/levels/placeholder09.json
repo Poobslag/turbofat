@@ -1,7 +1,7 @@
 {
   "version": "19c5",
   "start_speed": "3",
-  "title":"Cakes and Ladders",
+  "title": "Cakes and Ladders",
   "description": "Who prepared all these delicious desserts? ...Isn't that supposed to be your job?",
   "finish_condition": {
     "type": "lines",

@@ -6,6 +6,14 @@ This information is used to determine if a player can play a level, and to commu
 with descriptive messages like 'Clear four more levels to unlock this!'
 """
 
+enum LevelsToInclude {
+	ALL_LEVELS, # show both tutorial levels and regular levels
+	TUTORIALS_ONLY, # only show tutorials; hide regular levels
+}
+
+const ALL_LEVELS := LevelsToInclude.ALL_LEVELS
+const TUTORIALS_ONLY := LevelsToInclude.TUTORIALS_ONLY
+
 # Ordered list of all world IDs
 var world_ids: Array
 
@@ -29,14 +37,22 @@ var _world_locks: Dictionary
 # value: WorldLock containing the specified level
 var _world_locks_by_level_id: Dictionary
 
+# An enum in LevelsToInclude which allows for hiding/showing certain levels
+var _levels_to_include: int
+
 """
 Loads the list of levels from JSON, processing it to determine which levels are locked.
+
+Parameters:
+	'levels_to_include': (Optional) An enum in LevelsToInclude which allows for hiding/showing certain levels.
 """
-func initialize() -> void:
+func initialize(levels_to_include: int = LevelsToInclude.ALL_LEVELS) -> void:
+	_levels_to_include = levels_to_include
 	_load_raw_json_data()
 	_update_locked_worlds()
 	_update_locked_levels()
 	_update_unlockable_levels()
+	_update_cleared_tutorials()
 
 
 func is_locked(level_id: String) -> bool:
@@ -80,9 +96,18 @@ func _load_raw_json_data() -> void:
 	var worlds_text := FileUtils.get_file_as_text("res://assets/main/puzzle/worlds.json")
 	var worlds_json: Dictionary = parse_json(worlds_text)
 	
-	# populate _world_locks, world_ids
+	# calculate included_worlds based on _levels_to_include
 	var worlds_array: Array = worlds_json.get("worlds", [])
+	var included_worlds: Array = []
 	for world_obj in worlds_array:
+		var world: Dictionary = world_obj
+		if _levels_to_include == TUTORIALS_ONLY and world.get("id") != Level.TUTORIAL_WORLD_ID:
+			# tutorials only; skip non-tutorial worlds
+			continue
+		included_worlds.append(world_obj)
+	
+	# populate _world_locks, world_ids
+	for world_obj in included_worlds:
 		var world: Dictionary = world_obj
 		var world_lock := WorldLock.new()
 		world_lock.from_json_dict(world)
@@ -96,7 +121,7 @@ func _load_raw_json_data() -> void:
 			_world_locks_by_level_id[level_id] = world_lock
 	
 	# populate _level_locks, _level_settings_by_id
-	for world_obj in worlds_array:
+	for world_obj in included_worlds:
 		var world: Dictionary = world_obj
 		var levels_array: Array = world.get("levels", [])
 		for level_obj in levels_array:
@@ -241,3 +266,24 @@ func _update_unlockable_levels() -> void:
 			# level is locked
 			continue
 		_level_locks[world_lock.last_level].status = LevelLock.STATUS_CROWN
+
+
+func _update_cleared_tutorials() -> void:
+	# update levels with locks/keys
+	for level_lock_obj in _level_locks.values():
+		var level_lock: LevelLock = level_lock_obj
+		var level_settings: LevelSettings = _level_settings_by_id[level_lock.level_id]
+		
+		if level_lock.status == LevelLock.STATUS_NONE and level_settings.other.tutorial:
+			level_lock.status = LevelLock.STATUS_CLEARED
+	
+	var tutorial_world_lock: WorldLock = _world_locks.get(Level.TUTORIAL_WORLD_ID)
+	if tutorial_world_lock:
+		var all_cleared := true
+		for tutorial_level_id in tutorial_world_lock.level_ids:
+			if not PlayerData.level_history.finished_levels.has(tutorial_level_id):
+				all_cleared = false
+				break
+		
+		if all_cleared:
+			tutorial_world_lock.status = LevelLock.STATUS_CLEARED

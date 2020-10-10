@@ -3,17 +3,53 @@ extends Panel
 A panel on the level select screen which shows level descriptions.
 """
 
+func _update_tutorial_world_text(ranks: Array) -> void:
+	var text := ""
+	
+	# calculate the percent of tutorials which the player hasn't cleared
+	var worst_rank_count := 0
+	for rank in ranks:
+		if RankCalculator.grade(rank) == RankCalculator.NO_GRADE:
+			worst_rank_count += 1
+	var progress_pct := float(ranks.size() - worst_rank_count) / ranks.size()
+	
+	if progress_pct < 1.00:
+		text = "Don't worry about completing all the tutorials right away! You know more than you realize."
+	else:
+		text = "Nice, you've completed the tutorials. Now you're ready to play the game!"
+	$MarginContainer/Label.text = text
+
+
+func _update_world_text(ranks: Array) -> void:
+	var text := ""
+	
+	# calculate the worst rank
+	var worst_rank := 0.0
+	for rank in ranks:
+		worst_rank = max(worst_rank, rank)
+	
+	match RankCalculator.grade(worst_rank):
+		RankCalculator.NO_GRADE:
+			text += "Try to get a B- or better on every level. Good luck!"
+		RankCalculator.HIGHEST_GRADE:
+			text += "You are a master of Turbo Fat!"
+		_:
+			text += "Wow, you beat every level! Good job!"
+			text += "\n\nImprove your level scores to earn more stars and increase your grade. Good luck!"
+	$MarginContainer/Label.text = text
+
+
 """
 When an unlocked level is selected, we display the level's description.
 """
-func _on_LevelButtons_unlocked_level_selected(settings: LevelSettings) -> void:
+func _on_LevelButtons_unlocked_level_selected(_level_lock: LevelLock, settings: LevelSettings) -> void:
 	$MarginContainer/Label.text = settings.description
 
 
 """
 When a locked level is selected, we tell the player how to unlock it.
 """
-func _on_LevelButtons_locked_level_selected(level_lock: LevelLock) -> void:
+func _on_LevelButtons_locked_level_selected(level_lock: LevelLock, settings: LevelSettings) -> void:
 	var text := ""
 	match level_lock.status:
 		LevelLock.STATUS_SOFT_LOCK:
@@ -26,26 +62,19 @@ func _on_LevelButtons_locked_level_selected(level_lock: LevelLock) -> void:
 		_:
 			push_warning("Unexpected lock status: %s" % [level_lock.status])
 	
+	# change 'Clear one more level' to 'Finish one more tutorial'
+	if settings.other.tutorial:
+		text = text.replace("level", "tutorial")
+		text = text.replace("Clear", "Finish")
+	
 	$MarginContainer/Label.text = text
 
 
 """
 When the 'overall' button is selected, we summarize the player's progress.
 """
-func _on_LevelButtons_overall_selected(ranks: Array) -> void:
-	# calculate the worst rank
-	var worst_rank := 0.0
-	for rank in ranks:
-		worst_rank = max(worst_rank, rank)
-	
-	var text := ""
-	match RankCalculator.grade(worst_rank):
-		RankCalculator.NO_GRADE:
-			text += "Try to get a B- or better on every level. Good luck!"
-		RankCalculator.HIGHEST_GRADE:
-			text += "You are a master of Turbo Fat!"
-		_:
-			text += "Wow, you beat every level! Good job!"
-			text += "\n\nImprove your level scores to earn more stars and increase your grade. Good luck!"
-	
-	$MarginContainer/Label.text = text
+func _on_LevelButtons_overall_selected(world_id: String, ranks: Array) -> void:
+	if world_id == Level.TUTORIAL_WORLD_ID:
+		_update_tutorial_world_text(ranks)
+	else:
+		_update_world_text(ranks)

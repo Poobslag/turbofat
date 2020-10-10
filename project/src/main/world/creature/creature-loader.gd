@@ -205,7 +205,13 @@ func load_details(dna: Dictionary) -> void:
 
 
 func load_creature_def_by_id(id: String) -> CreatureDef:
-	return load_creature_def("res://assets/main/creatures/primary/%s/creature.json" % id)
+	var path: String
+	match id:
+		"#instructor#":
+			path = INSTRUCTOR_PATH
+		_:
+			path = "res://assets/main/creatures/primary/%s/creature.json" % id
+	return load_creature_def(path)
 
 
 func load_creature_def(path: String) -> CreatureDef:

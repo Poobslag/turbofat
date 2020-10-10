@@ -1,0 +1,244 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/main/puzzle/tutorial/SkillTallyItem.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/puzzle/tutorial/tutorial-skill-tally.tres" type="Theme" id=2]
+[ext_resource path="res://src/main/puzzle/tutorial/skill-tally-item.gd" type="Script" id=3]
+[ext_resource path="res://src/main/puzzle/tutorial/tutorial-basics-module.gd" type="Script" id=4]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.11, 0.89, 0.11, 0.33 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.109804, 0.890196, 0.109804, 0 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.109804, 0.890196, 0.109804, 0 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.11, 0.89, 0.11, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TutorialBasicsModule" type="Node"]
+script = ExtResource( 4 )
+_hud_path = NodePath("..")
+
+[node name="SkillTallyItems" type="Node" parent="."]
+
+[node name="MoveLeft" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 1569.27
+margin_top = 155.158
+margin_right = 1677.27
+margin_bottom = 219.158
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 6.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Move Left"
+signal_names = [ "moved_left", "das_moved_left", "initial_das_moved_left" ]
+
+[node name="MoveRight" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 896.0
+margin_top = 155.158
+margin_right = 1004.0
+margin_bottom = 219.158
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 6.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Move Right"
+signal_names = [ "moved_right", "das_moved_right", "initial_das_moved_right" ]
+
+[node name="RotateLeft" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 1569.27
+margin_top = 200.0
+margin_right = 1677.27
+margin_bottom = 264.0
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 3.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Rotate Left"
+signal_names = [ "rotated_left", "initial_rotated_left" ]
+
+[node name="RotateRight" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 1569.27
+margin_top = 155.158
+margin_right = 1677.27
+margin_bottom = 219.158
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 3.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Rotate Right"
+signal_names = [ "rotated_right", "initial_rotated_right" ]
+
+[node name="SoftDrop" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 1569.27
+margin_top = 268.0
+margin_right = 1677.27
+margin_bottom = 332.0
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 30.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+show_as_percent = true
+label_text = "Soft Drop"
+signal_names = [ "soft_dropped" ]
+
+[node name="HardDrop" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 896.0
+margin_top = 155.158
+margin_right = 1004.0
+margin_bottom = 219.158
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 2.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Hard Drop"
+signal_names = [ "hard_dropped" ]
+
+[node name="LineClear" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 896.0
+margin_top = 155.158
+margin_right = 1004.0
+margin_bottom = 219.158
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 2.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Line Clear"
+signal_names = [ "line_cleared" ]
+
+[node name="SnackBox" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 896.0
+margin_top = 336.0
+margin_right = 1004.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 2.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Snack Box"
+signal_names = [ "box_built" ]
+
+[node name="BoxClear" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 896.0
+margin_top = 336.0
+margin_right = 1004.0
+margin_bottom = 400.0
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 2.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Box Clear"
+
+[node name="SquishMove" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 1569.27
+margin_top = 404.0
+margin_right = 1677.27
+margin_bottom = 468.0
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 2.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Squish Move"
+signal_names = [ "squish_moved" ]
+
+[node name="SnackStack" type="ProgressBar" parent="SkillTallyItems" instance=ExtResource( 1 )]
+visible = false
+margin_left = 784.0
+margin_top = 132.0
+margin_right = 892.0
+margin_bottom = 196.0
+rect_min_size = Vector2( 108, 64 )
+theme = ExtResource( 2 )
+custom_styles/fg = SubResource( 2 )
+custom_styles/bg = SubResource( 3 )
+max_value = 2.0
+percent_visible = false
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+label_text = "Snack Stack"

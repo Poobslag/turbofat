@@ -10,6 +10,7 @@ which haven't yet been cleared.
 # the level button this grade label applies to
 var button: LevelSelectButton setget set_button
 
+var _cleared_texture: Texture = preload("res://assets/main/ui/level-select/cleared.png")
 var _crown_texture: Texture = preload("res://assets/main/ui/level-select/crown.png")
 var _key_texture: Texture = preload("res://assets/main/ui/level-select/key.png")
 var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked.png")
@@ -48,15 +49,23 @@ func _refresh_appearance() -> void:
 		var worst_rank := 0.0
 		for rank in world_button.ranks:
 			worst_rank = max(worst_rank, rank)
-		_refresh_grade_text(worst_rank)
+		if world_button.world_id == Level.TUTORIAL_WORLD_ID:
+			# tutorial world does not show a grade; only a check mark
+			_refresh_status_icon(world_button.lock_status)
+		else:
+			# worlds show a grade
+			_refresh_grade_text(worst_rank)
 	else:
 		var result := PlayerData.level_history.best_result(button.level_id)
 		if not result:
+			# uncleared levels do not show a grade
 			_refresh_status_icon(button.lock_status)
-		elif result.compare == "-seconds":
-			_refresh_grade_text(result.seconds_rank)
+		elif button.lock_status == LevelLock.STATUS_CLEARED:
+			# tutorial levels do not show a grade; only a check mark
+			_refresh_status_icon(button.lock_status)
 		else:
-			_refresh_grade_text(result.score_rank)
+			# cleared levels show a grade
+			_refresh_grade_text(result.seconds_rank if result.compare == "-seconds" else result.score_rank)
 	
 	visible = false if button.lowlight else true
 
@@ -75,6 +84,9 @@ func _refresh_status_icon(lock_status: int) -> void:
 		LevelLock.STATUS_NONE:
 			$StatusIcon.texture = null
 			$StatusIcon.modulate = Color.white
+		LevelLock.STATUS_CLEARED:
+			$StatusIcon.texture = _cleared_texture
+			$StatusIcon.modulate = Color("36d936")
 		LevelLock.STATUS_CROWN:
 			$StatusIcon.texture = _crown_texture
 			$StatusIcon.modulate = Color("36d936")

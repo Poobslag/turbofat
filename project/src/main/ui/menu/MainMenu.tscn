@@ -91,7 +91,7 @@ size_flags_vertical = 4
 theme = ExtResource( 2 )
 text = "Practice"
 
-[node name="Tutorial" type="Button" parent="DropPanel/Play"]
+[node name="Tutorials" type="Button" parent="DropPanel/Play"]
 margin_left = 134.0
 margin_top = 186.0
 margin_right = 327.0
@@ -100,7 +100,7 @@ rect_min_size = Vector2( 193, 47 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme = ExtResource( 2 )
-text = "Tutorial"
+text = "Tutorials"
 
 [node name="Create" type="VBoxContainer" parent="DropPanel"]
 anchor_left = 0.5
@@ -154,7 +154,7 @@ quit_on_cancel = false
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
 [connection signal="pressed" from="DropPanel/Play/2d" to="." method="_on_PlayStory_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Practice" to="." method="_on_PlayPractice_pressed"]
-[connection signal="pressed" from="DropPanel/Play/Tutorial" to="." method="_on_Tutorial_pressed"]
+[connection signal="pressed" from="DropPanel/Play/Tutorials" to="." method="_on_Tutorials_pressed"]
 [connection signal="pressed" from="DropPanel/Create/Levels" to="." method="_on_CreateLevels_pressed"]
 [connection signal="pressed" from="DropPanel/Create/Creatures" to="." method="_on_CreateCreatures_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]

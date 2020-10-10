@@ -28,9 +28,7 @@ func _exit_tree() -> void:
 
 func _launch_tutorial() -> void:
 	Global.clear_creature_queue()
-	var creature_def := CreatureLoader.load_creature_def(CreatureLoader.INSTRUCTOR_PATH)
-	Global.creature_queue.push_front(creature_def)
-	Level.set_launched_level(Level.BEGINNER_TUTORIAL)
+	Level.set_launched_level(Level.BEGINNER_TUTORIAL, "#instructor#")
 	Level.push_level_trail()
 
 
@@ -58,5 +56,5 @@ func _on_System_quit_pressed() -> void:
 	get_tree().quit()
 
 
-func _on_Tutorial_pressed() -> void:
-	_launch_tutorial()
+func _on_Tutorials_pressed() -> void:
+	Breadcrumb.push_trail("res://src/main/ui/menu/TutorialMenu.tscn")

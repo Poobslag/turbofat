@@ -252,8 +252,8 @@ func test_two_rank_s() -> void:
 	Level.settings.set_start_speed("A0")
 	Level.settings.set_finish_condition(Milestone.SCORE, 1000)
 	PuzzleScore.level_performance.seconds = 88.55
-	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.seconds_rank), "SS+")
+	var rank1 := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank1.seconds_rank), "SS+")
 
 	Level.settings.set_finish_condition(Milestone.SCORE, 1000)
 	PuzzleScore.level_performance.seconds = 128.616
@@ -328,5 +328,24 @@ func test_customer_combo() -> void:
 	PuzzleScore.level_performance.score = 296
 	
 	# the player doesn't achieve the success condition; they get a worse grade
-	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.score_rank), "M")
+	var rank := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank.score_rank), "M")
+
+
+func test_unranked() -> void:
+	Level.settings.rank.unranked = true
+	
+	# the player finishes the level; they automatically get a master rank
+	var rank := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank.seconds_rank), "M")
+	assert_eq(RankCalculator.grade(rank.score_rank), "M")
+
+
+func test_unranked_loss() -> void:
+	Level.settings.rank.unranked = true
+	PuzzleScore.level_performance.lost = true
+	
+	# the player lost the level; they get the worst rank
+	var rank := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank.seconds_rank), "-")
+	assert_eq(RankCalculator.grade(rank.score_rank), "-")

@@ -12,7 +12,8 @@ This class needs to be a node because it provides utility methods which utilize 
 signal settings_changed
 
 # The mandatory tutorial the player must complete before playing the game
-const BEGINNER_TUTORIAL := "tutorial_beginner_0"
+const BEGINNER_TUTORIAL := "tutorial_basics_0"
+const TUTORIAL_WORLD_ID := "tutorial"
 
 # The settings for the level currently being launched or played
 var settings := LevelSettings.new() setget switch_level

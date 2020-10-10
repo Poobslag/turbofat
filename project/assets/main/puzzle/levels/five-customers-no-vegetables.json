@@ -1,7 +1,7 @@
 {
   "version": "19c5",
   "start_speed": "4",
-  "title":"Table for Five",
+  "title": "Table for Five",
   "description": "Five of the pickiest customers you'll ever meet!",
   "finish_condition": {
     "type": "customers",

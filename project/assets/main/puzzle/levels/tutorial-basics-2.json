@@ -227,14 +227,15 @@
     "top_out 999999"
   ],
   "other": [
-    "start_level tutorial_beginner_0",
+    "start_level tutorial_basics_0",
     "tutorial"
   ],
   "piece_types": [
     "piece_o"
   ],
   "rank": [
-    "skip_results"
+    "skip_results",
+    "unranked"
   ],
   "start_speed": "T"
 }
