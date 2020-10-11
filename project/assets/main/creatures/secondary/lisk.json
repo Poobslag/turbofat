@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Lisk",
+  "short_name": "Lisk",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "4",
+    "body": "1",
+    "cheek": "0",
+    "collar": "0",
+    "ear": "9",
+    "eye": "0",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "5",
+    "nose": "0",
+    "tail": "3",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "664437",
+    "belly_rgb": "eaf9c7",
+    "cloth_rgb": "74a27f",
+    "glass_rgb": "d2d1be",
+    "plastic_rgb": "1e1e1e",
+    "hair_rgb": "c58549",
+    "eye_rgb": "7d4c21 e5cd7d",
+    "horn_rgb": "e8a261"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "664437"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

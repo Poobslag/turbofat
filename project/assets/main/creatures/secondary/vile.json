@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Vile",
+  "short_name": "Vile",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "2",
+    "body": "1",
+    "cheek": "0",
+    "collar": "5",
+    "ear": "8",
+    "eye": "1",
+    "hair": "0",
+    "head": "1",
+    "horn": "1",
+    "mouth": "5",
+    "nose": "1",
+    "tail": "3",
+    "accessory": "1",
+    "line_rgb": "6c4331",
+    "body_rgb": "e60202",
+    "belly_rgb": "000000",
+    "cloth_rgb": "ccd44d",
+    "glass_rgb": "ff8600",
+    "plastic_rgb": "d4aa4d",
+    "hair_rgb": "e2f1e1",
+    "eye_rgb": "f6f200 faffa3",
+    "horn_rgb": "fcfcfb"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "e60202"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.1
+}

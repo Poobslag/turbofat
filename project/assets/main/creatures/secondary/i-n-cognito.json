@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "I. N. Cognito",
+  "short_name": "I. N. Cognito",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "0",
+    "collar": "1",
+    "ear": "1",
+    "eye": "0",
+    "hair": "1",
+    "head": "3",
+    "horn": "0",
+    "mouth": "2",
+    "nose": "3",
+    "tail": "0",
+    "accessory": "2",
+    "line_rgb": "41281e",
+    "body_rgb": "ffbf45",
+    "belly_rgb": "d9d8d7",
+    "cloth_rgb": "ce4224",
+    "glass_rgb": "41b34e",
+    "plastic_rgb": "353232",
+    "hair_rgb": "1f1f1f",
+    "eye_rgb": "ce4224 fff6e3",
+    "horn_rgb": "090909"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "ffbf45"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.3
+}

@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Cast",
+  "short_name": "Cast",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "4",
+    "collar": "0",
+    "ear": "10",
+    "eye": "0",
+    "hair": "0",
+    "head": "4",
+    "horn": "2",
+    "mouth": "1",
+    "nose": "0",
+    "tail": "2",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "737373",
+    "belly_rgb": "fe5911",
+    "cloth_rgb": "95c152",
+    "glass_rgb": "232521",
+    "plastic_rgb": "5e885a",
+    "hair_rgb": "bdab30",
+    "eye_rgb": "d25e00 ffebff",
+    "horn_rgb": "fa6400"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "dbffc8"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

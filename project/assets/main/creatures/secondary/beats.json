@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Beats",
+  "short_name": "Beats",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "0",
+    "collar": "0",
+    "ear": "8",
+    "eye": "1",
+    "hair": "1",
+    "head": "1",
+    "horn": "0",
+    "mouth": "5",
+    "nose": "1",
+    "tail": "0",
+    "accessory": "3",
+    "line_rgb": "30244a",
+    "body_rgb": "354181",
+    "belly_rgb": "8f5786",
+    "cloth_rgb": "010000",
+    "glass_rgb": "5d1b2b",
+    "plastic_rgb": "0f0f0f",
+    "hair_rgb": "29325f",
+    "eye_rgb": "0d0d0d 20383f",
+    "horn_rgb": "b8ae81"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "354181"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}
