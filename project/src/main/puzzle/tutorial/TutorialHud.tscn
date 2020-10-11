@@ -1,11 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
+[ext_resource path="res://src/main/ui/chat/ChatChoices.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/chat/ChatLineLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=3]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-messages.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-hud.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/chat/ChatPanelTween.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/chat/ChatLinePanel.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/puzzle/tutorial/tutorial-diagram.gd" type="Script" id=8]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-in.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-out.wav" type="AudioStream" id=13]
 
@@ -62,6 +64,65 @@ stream = ExtResource( 13 )
 volume_db = -14.0
 bus = "Sound Bus"
 
+[node name="Diagram" type="Control" parent="."]
+visible = false
+margin_left = 355.0
+margin_right = 760.0
+margin_bottom = 600.0
+script = ExtResource( 8 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Diagram"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureMarginContainer" type="MarginContainer" parent="Diagram/VBoxContainer"]
+margin_right = 405.0
+margin_bottom = 446.0
+size_flags_vertical = 3
+custom_constants/margin_right = 10
+custom_constants/margin_top = 10
+custom_constants/margin_left = 10
+custom_constants/margin_bottom = 10
+
+[node name="TexturePanel" type="Panel" parent="Diagram/VBoxContainer/TextureMarginContainer"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 395.0
+margin_bottom = 436.0
+size_flags_vertical = 3
+custom_styles/panel = ExtResource( 3 )
+
+[node name="TextureRect" type="TextureRect" parent="Diagram/VBoxContainer/TextureMarginContainer/TexturePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+size_flags_vertical = 3
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ChatChoices" parent="Diagram/VBoxContainer" instance=ExtResource( 1 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 450.0
+margin_right = 405.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 0, 150 )
+
 [node name="SkillTallyItems" type="Panel" parent="."]
 margin_left = 774.0
 margin_top = 10.0
@@ -106,3 +167,4 @@ __meta__ = {
 [connection signal="all_text_shown" from="Messages/Label" to="Messages" method="_on_Label_all_text_shown"]
 [connection signal="timeout" from="Messages/QueueTimer" to="Messages" method="_on_QueueTimer_timeout"]
 [connection signal="pop_out_completed" from="Messages/Tween" to="Messages" method="_on_Tween_pop_out_completed"]
+[connection signal="chat_choice_chosen" from="Diagram/VBoxContainer/ChatChoices" to="Diagram" method="_on_ChatChoices_chat_choice_chosen"]

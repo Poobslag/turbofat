@@ -1,0 +1,19 @@
+{
+  "version": "19c5",
+  "start_speed": "T",
+  "combo_break": [
+    "pieces 0"
+  ],
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "start_level tutorial_squish_0",
+    "tutorial",
+    "non_interactive"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ]
+}

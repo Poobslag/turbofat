@@ -71,8 +71,11 @@ func _on_PuzzleScore_game_started() -> void:
 	hide_message()
 
 
-func _on_PuzzleScore_before_level_changed() -> void:
-	show_message("Good!")
+func _on_PuzzleScore_before_level_changed(new_level_id: String) -> void:
+	if new_level_id == Level.settings.id:
+		show_message("Regret...")
+	else:
+		show_message("Good!")
 
 
 func _on_PuzzleScore_after_level_changed() -> void:

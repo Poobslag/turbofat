@@ -103,7 +103,7 @@ Parameters:
 """
 func can_move_to(new_pos: Vector2, new_orientation: int) -> bool:
 	var valid_target_pos := true
-	if type.pos_arr.empty():
+	if type == PieceTypes.piece_null:
 		# Return 'false' for an empty piece to avoid an infinite loop
 		valid_target_pos = false
 	else:

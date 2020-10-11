@@ -38,8 +38,15 @@ func _on_PuzzleScore_game_started() -> void:
 	play_go_sound()
 
 
-func _on_PuzzleScore_before_level_changed() -> void:
-	$SectionCompleteSound.play()
+func _on_PuzzleScore_before_level_changed(new_level_id: String) -> void:
+	if Level.settings.other.non_interactive:
+		# no sound effect or fanfare for non-interactive levels
+		return
+	
+	if new_level_id == Level.settings.id:
+		$SectionFailSound.play()
+	else:
+		$SectionCompleteSound.play()
 
 
 func _on_PuzzleScore_after_level_changed() -> void:

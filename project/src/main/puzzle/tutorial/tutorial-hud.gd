@@ -19,6 +19,14 @@ func _ready() -> void:
 	replace_tutorial_module()
 
 
+func get_tutorial_diagram() -> TutorialDiagram:
+	return $Diagram as TutorialDiagram
+
+
+func get_tutorial_messages() -> TutorialMessages:
+	return $Messages as TutorialMessages
+
+
 """
 Loads a new tutorial module corresponding to the current level.
 
@@ -27,8 +35,13 @@ Tutorial modules show messages and advance the player through the tutorial as th
 func replace_tutorial_module() -> void:
 	if has_node("TutorialModule"):
 		remove_child(get_node("TutorialModule"))
+	var module_path: String
 	if Level.settings.id.begins_with("tutorial_basics"):
-		var tutorial_module_scene: PackedScene = load("res://src/main/puzzle/tutorial/TutorialBasicsModule.tscn")
+		module_path = "res://src/main/puzzle/tutorial/TutorialBasicsModule.tscn"
+	elif Level.settings.id.begins_with("tutorial_squish"):
+		module_path = "res://src/main/puzzle/tutorial/TutorialSquishModule.tscn"
+	if module_path:
+		var tutorial_module_scene: PackedScene = load(module_path)
 		var tutorial_module: Node = tutorial_module_scene.instance()
 		tutorial_module.hud = self
 		tutorial_module.name = "TutorialModule"
@@ -45,6 +58,7 @@ Shows or hides the tutorial hud based on the current level.
 func refresh() -> void:
 	# only visible for tutorial levels
 	visible = Level.settings.other.tutorial or Level.settings.other.after_tutorial
+	$Diagram.hide()
 	emit_signal("refreshed")
 
 
@@ -67,6 +81,13 @@ Adds a new SkillTallyItem instance to the panel.
 """
 func add_skill_tally_item(item: SkillTallyItem) -> void:
 	$SkillTallyItems/GridContainer.add_child(item)
+
+
+"""
+Displays a sequence of messages from the tutorial's instructor.
+"""
+func set_messages(messages: Array) -> void:
+	$Messages.set_messages(messages)
 
 
 """
@@ -106,6 +127,8 @@ Shows the panel containing skill tally items.
 """
 func show_skill_tally_items() -> void:
 	$SkillTallyItems.show()
+	for skill_tally_item in skill_tally_items():
+		skill_tally_item.visible = true
 
 
 """

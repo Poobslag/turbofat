@@ -4,6 +4,9 @@ extends Control
 Shows the instructor's dialog during tutorials.
 """
 
+# emitted after the full dialog chat line is typed out onscreen, and no messages remain in the queue
+signal all_messages_shown
+
 # huge font used for easter eggs
 var _huge_font := preload("res://src/main/ui/blogger-sans-bold-72.tres")
 
@@ -24,6 +27,22 @@ func _ready() -> void:
 	var _instructor_creature_def := CreatureLoader.load_creature_def(CreatureLoader.INSTRUCTOR_PATH)
 	_instructor_chat_theme = ChatTheme.new(_instructor_creature_def.chat_theme_def)
 	_hide_message()
+
+
+"""
+Returns 'true' if the full dialog chat line is typed out onscreen, and no messages remain in the queue
+"""
+func is_all_messages_visible() -> bool:
+	return _message_queue.empty() and $Label.is_all_text_visible()
+
+
+"""
+Displays a sequence of messages from the tutorial's instructor.
+"""
+func set_messages(messages: Array) -> void:
+	set_message(messages[0] if messages else "")
+	for i in range(1, messages.size()):
+		enqueue_message(messages[i])
 
 
 """
@@ -135,6 +154,8 @@ When the message is entirely visible, we pause for a moment and show the next me
 """
 func _on_Label_all_text_shown() -> void:
 	_refresh_queue_timer()
+	if not _message_queue:
+		emit_signal("all_messages_shown")
 
 
 """

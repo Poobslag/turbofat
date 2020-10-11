@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=26]
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-complete.wav" type="AudioStream" id=27]
 [ext_resource path="res://assets/main/puzzle/level-change.wav" type="AudioStream" id=28]
+[ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav" type="AudioStream" id=29]
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=30]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
 [ext_resource path="res://assets/main/ui/go.wav" type="AudioStream" id=38]
@@ -457,6 +458,10 @@ stream = ExtResource( 27 )
 volume_db = -4.0
 bus = "Sound Bus"
 
+[node name="SectionFailSound" type="AudioStreamPlayer" parent="StartEndSfx"]
+stream = ExtResource( 29 )
+bus = "Sound Bus"
+
 [node name="LevelChangeSound" type="AudioStreamPlayer" parent="StartEndSfx"]
 stream = ExtResource( 28 )
 volume_db = -8.0
@@ -472,21 +477,21 @@ codes = [ "delays" ]
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
 [connection signal="after_piece_written" from="Playfield" to="." method="_on_Playfield_after_piece_written"]
-[connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
-[connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
 [connection signal="lines_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_lines_deleted"]
 [connection signal="food_spawned" from="StarSeeds" to="FoodItems" method="_on_StarSeeds_food_spawned"]
 [connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="hit_next_pieces" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
-[connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
-[connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
 [connection signal="back_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_back_button_pressed"]
 [connection signal="settings_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_settings_button_pressed"]
 [connection signal="start_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]

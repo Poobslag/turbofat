@@ -99,10 +99,6 @@
   "combo_break": [
     "pieces 0"
   ],
-  "finish_condition": {
-    "type": "score",
-    "value": "100"
-  },
   "lose_condition": [
     "top_out 999999"
   ],
