@@ -46,8 +46,8 @@ func calculate_rank() -> RankResult:
 	var rank_result := _unranked_result()
 	if Level.settings.rank.unranked:
 		# automatic master rank for unranked levels
-		rank_result.seconds_rank = WORST_RANK if rank_result.lost else 0
-		rank_result.score_rank = WORST_RANK if rank_result.lost else 0
+		rank_result.seconds_rank = WORST_RANK if rank_result.lost else 0.0
+		rank_result.score_rank = WORST_RANK if rank_result.lost else 0.0
 	else:
 		_populate_rank_fields(rank_result, false)
 		
