@@ -100,14 +100,15 @@
     "top_out 999999"
   ],
   "other": [
-    "start_level tutorial_beginner_0",
+    "start_level tutorial_basics_0",
     "after_tutorial"
   ],
   "piece_types": [
     "start_piece_q", "start_piece_l"
   ],
   "rank": [
-    "skip_results"
+    "skip_results",
+    "unranked"
   ],
   "start_speed": "0"
 }

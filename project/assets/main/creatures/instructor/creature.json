@@ -1,6 +1,6 @@
 {
   "version": "187d",
-  "id": "instructor",
+  "id": "#instructor#",
   "name": "Turbo",
   "dna": {
     "instructor": "true",

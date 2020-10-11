@@ -105,7 +105,7 @@ func _on_PuzzleScore_after_game_ended() -> void:
 			$Buttons/Start.hide()
 			
 			# don't redirect them back to the splash screen, send them to the main menu
-			if Breadcrumb.trail[1] == Global.SCENE_SPLASH:
+			if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_SPLASH:
 				Breadcrumb.trail.insert(1, Global.SCENE_MAIN_MENU)
 	
 	if $Buttons/Start.is_visible_in_tree():

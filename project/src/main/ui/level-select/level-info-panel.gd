@@ -13,10 +13,21 @@ const DURATIONS := [
 
 var _duration_calculator := DurationCalculator.new()
 
-"""
-When an unlocked level is selected, we display some statistics for that level.
-"""
-func _on_LevelButtons_unlocked_level_selected(settings: LevelSettings) -> void:
+func _update_tutorial_level_text(settings: LevelSettings) -> void:
+	var text := ""
+	if PlayerData.level_history.finished_levels.has(settings.id):
+		var result := PlayerData.level_history.best_result(settings.id)
+		text += "Completed: %04d-%02d-%02d" % [
+				result.timestamp["year"],
+				result.timestamp["month"],
+				result.timestamp["day"],
+			]
+	else:
+		text += ""
+	$MarginContainer/Label.text = text
+
+
+func _update_level_text(settings: LevelSettings) -> void:
 	var text := ""
 	var difficulty_string := "Unknown"
 	match settings.get_difficulty():
@@ -53,17 +64,21 @@ func _on_LevelButtons_unlocked_level_selected(settings: LevelSettings) -> void:
 	$MarginContainer/Label.text = text
 
 
-"""
-When a locked level is selected, we clear out the info panel.
-"""
-func _on_LevelButtons_locked_level_selected(_level_lock: LevelLock) -> void:
-	$MarginContainer/Label.text = ""
+func _update_tutorial_world_text(ranks: Array) -> void:
+	var text := ""
+	
+	# calculate the percent of tutorials which the player hasn't cleared
+	var worst_rank_count := 0
+	for rank in ranks:
+		if RankCalculator.grade(rank) == RankCalculator.NO_GRADE:
+			worst_rank_count += 1
+	var progress_pct := float(ranks.size() - worst_rank_count) / ranks.size()
+	
+	text = "Tutorial progress: %.1f%%" % [100 * progress_pct]
+	$MarginContainer/Label.text = text
 
 
-"""
-When the 'overall' button is selected, we display statistics for all of the levels.
-"""
-func _on_LevelButtons_overall_selected(ranks: Array) -> void:
+func _update_world_text(ranks: Array) -> void:
 	var text := ""
 	
 	# calculate the worst rank
@@ -96,3 +111,30 @@ func _on_LevelButtons_overall_selected(ranks: Array) -> void:
 	if star_count > 0:
 		text += "\nTotal stars: %s" % [star_count]
 	$MarginContainer/Label.text = text
+
+
+"""
+When an unlocked level is selected, we display some statistics for that level.
+"""
+func _on_LevelButtons_unlocked_level_selected(_level_lock: LevelLock, settings: LevelSettings) -> void:
+	if settings.other.tutorial:
+		_update_tutorial_level_text(settings)
+	else:
+		_update_level_text(settings)
+
+
+"""
+When a locked level is selected, we clear out the info panel.
+"""
+func _on_LevelButtons_locked_level_selected(_level_lock: LevelLock, _settings: LevelSettings) -> void:
+	$MarginContainer/Label.text = ""
+
+
+"""
+When the 'overall' button is selected, we display statistics for all of the levels.
+"""
+func _on_LevelButtons_overall_selected(world_id: String, ranks: Array) -> void:
+	if world_id == Level.TUTORIAL_WORLD_ID:
+		_update_tutorial_world_text(ranks)
+	else:
+		_update_world_text(ranks)

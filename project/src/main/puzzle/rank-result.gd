@@ -4,6 +4,8 @@ Contains rank information for a playthrough. This includes raw statistics such a
 cleared, as well as derived statistics such as the computed lines-per-minute rank.
 """
 
+const WORST_RANK := 999.0
+
 var timestamp := OS.get_datetime()
 
 # how this rank result should be compared:
@@ -13,11 +15,11 @@ var compare := "+score"
 
 # player's speed in lines per minute.
 var speed := 0.0
-var speed_rank := 999.0
+var speed_rank := WORST_RANK
 
 # raw number of cleared lines, not including bonus points
 var lines := 0
-var lines_rank := 999.0
+var lines_rank := WORST_RANK
 
 # points awarded for lines left over at the end
 var leftover_score := 0
@@ -25,20 +27,20 @@ var leftover_score := 0
 # bonus points awarded for clearing boxes
 var box_score := 0
 var box_score_per_line := 0.0
-var box_score_per_line_rank := 999.0
+var box_score_per_line_rank := WORST_RANK
 
 # bonus points awarded for combos
 var combo_score := 0
 var combo_score_per_line := 0.0
-var combo_score_per_line_rank := 999.0
+var combo_score_per_line_rank := WORST_RANK
 
 # number of seconds until the player won or lost
 var seconds := 0.0
-var seconds_rank := 999.0
+var seconds_rank := WORST_RANK
 
 # overall score
 var score := 0
-var score_rank := 999.0
+var score_rank := WORST_RANK
 
 # how many times did the player top out?
 var top_out_count := 0

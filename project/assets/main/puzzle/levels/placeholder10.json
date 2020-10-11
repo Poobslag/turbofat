@@ -1,7 +1,7 @@
 {
   "version": "19c5",
   "start_speed": "A1",
-  "title":"Wedding Cake for One",
+  "title": "Wedding Cake for One",
   "description": "One VERY hungry customer and one VERY big cake! ...Are they going eat the entire thing?",
   "difficulty": "5",
   "finish_condition": {

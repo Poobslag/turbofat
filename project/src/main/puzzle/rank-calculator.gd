@@ -4,6 +4,8 @@ Contains logic for calculating the player's performance. This performance is sto
 the best possible rank and 999 is the worst.
 """
 
+const WORST_RANK := RankResult.WORST_RANK
+
 # These constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99 means the ranks are really
 # narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like 0.96 means the ranks are
 # more forgiving.
@@ -42,7 +44,11 @@ the match, and return the better of the two ranks.
 """
 func calculate_rank() -> RankResult:
 	var rank_result := _unranked_result()
-	if not Level.settings.rank.unranked:
+	if Level.settings.rank.unranked:
+		# automatic master rank for unranked levels
+		rank_result.seconds_rank = WORST_RANK if rank_result.lost else 0
+		rank_result.score_rank = WORST_RANK if rank_result.lost else 0
+	else:
 		_populate_rank_fields(rank_result, false)
 		
 		if Level.settings.finish_condition.has_meta("lenient_value"):
@@ -215,7 +221,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	
 	# Binary search for the player's score rank. Score is a function of several criteria, the rank doesn't deteriorate
 	# in a predictable way like the other ranks
-	var overall_rank_max := 999.0
+	var overall_rank_max := WORST_RANK
 	var overall_rank_min := 0.0
 	for _i in range(20):
 		var tmp_overall_rank := (overall_rank_max + overall_rank_min) / 2.0
@@ -244,7 +250,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	
 	if rank_result.compare == "-seconds":
 		if rank_result.lost:
-			rank_result.seconds_rank = 999
+			rank_result.seconds_rank = WORST_RANK
 		else:
 			rank_result.seconds_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	else:
@@ -289,7 +295,7 @@ The player cannot achieve a master rank if the lenient flag is set.
 """
 func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
 	var min_rank := 1 if lenient else 0
-	var max_rank := 999
+	var max_rank := WORST_RANK
 	rank_result.speed_rank = clamp(rank_result.speed_rank, min_rank, max_rank)
 	rank_result.lines_rank = clamp(rank_result.lines_rank, min_rank, max_rank)
 	rank_result.box_score_per_line_rank = clamp(rank_result.box_score_per_line_rank, min_rank, max_rank)

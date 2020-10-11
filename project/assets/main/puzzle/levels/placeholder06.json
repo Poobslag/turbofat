@@ -1,7 +1,7 @@
 {
   "version": "19c5",
   "start_speed": "6",
-  "title":"It's Tee Time",
+  "title": "It's Tee Time",
   "description": "Augh, bread overload! And half the end pieces are missing...",
   "finish_condition": {
     "type": "time_over",

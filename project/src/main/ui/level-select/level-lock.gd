@@ -13,6 +13,7 @@ enum LockedUntil {
 # the status whether or not a level is locked/unlocked
 enum LockStatus {
 	NONE, # not locked
+	CLEARED, # cleared without any rank; used for tutorials
 	KEY, # not locked, and can unlock another level
 	CROWN, # not locked, and can unlock another world
 	SOFT_LOCK, # locked, but the player can unlock it by clearing more levels
@@ -26,6 +27,7 @@ const UNTIL_GROUP_FINISHED := LockedUntil.UNTIL_GROUP_FINISHED
 const STATUS_NONE := LockStatus.NONE
 const STATUS_KEY := LockStatus.KEY
 const STATUS_CROWN := LockStatus.CROWN
+const STATUS_CLEARED := LockStatus.CLEARED
 const STATUS_SOFT_LOCK := LockStatus.SOFT_LOCK
 const STATUS_HARD_LOCK := LockStatus.HARD_LOCK
 

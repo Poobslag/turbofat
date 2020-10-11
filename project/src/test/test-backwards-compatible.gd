@@ -43,7 +43,7 @@ func load_1682_data() -> void:
 	PlayerSave.load_player_data()
 
 
-func test_lost_true() -> void:
+func test_0517_lost_true() -> void:
 	load_0517_data()
 	
 	# level where the player topped out and lost
@@ -53,7 +53,7 @@ func test_lost_true() -> void:
 	assert_eq(history_sprint.top_out_count, 1)
 
 
-func test_lost_false() -> void:
+func test_0517_lost_false() -> void:
 	load_0517_data()
 	
 	# level where the player survived
@@ -63,14 +63,14 @@ func test_lost_false() -> void:
 	assert_eq(history_ultra.top_out_count, 0)
 
 
-func test_money_preserved() -> void:
+func test_0517_money_preserved() -> void:
 	load_0517_data()
 	
 	# other data
 	assert_eq(PlayerData.money, 202)
 
 
-func test_survival_records_preserved() -> void:
+func test_0517_survival_records_preserved() -> void:
 	load_0517_data()
 	
 	# 'survival mode' used to be called 'marathon mode'
@@ -80,14 +80,7 @@ func test_survival_records_preserved() -> void:
 	assert_eq(history_survival.score, 1335)
 
 
-func test_chat_history_preserved() -> void:
-	load_1682_data()
-	
-	assert_eq(5, PlayerData.chat_history.get_chat_age("creatures/primary/boatricia/my_maid_died"))
-	assert_eq(13, PlayerData.chat_history.get_filler_count("creatures/primary/boatricia"))
-
-
-func test_timestamp_created() -> void:
+func test_0517_timestamp_created() -> void:
 	load_0517_data()
 	
 	assert_true(PlayerData.level_history.level_names().has("ultra_normal"))
@@ -102,7 +95,7 @@ func test_timestamp_created() -> void:
 	assert_true(history_ultra.timestamp.has("second"))
 
 
-func test_compare_seconds() -> void:
+func test_0517_compare_seconds() -> void:
 	load_0517_data()
 	
 	assert_true(PlayerData.level_history.level_names().has("ultra_normal"))
@@ -115,7 +108,7 @@ func test_compare_seconds() -> void:
 	assert_eq(results[2].compare, "-seconds")
 
 
-func test_compare_score() -> void:
+func test_0517_compare_score() -> void:
 	load_0517_data()
 	
 	assert_true(PlayerData.level_history.level_names().has("sprint_normal"))
@@ -125,7 +118,7 @@ func test_compare_score() -> void:
 	assert_eq(history_sprint.compare, "+score")
 
 
-func test_volume() -> void:
+func test_0517_volume() -> void:
 	load_0517_data()
 	
 	assert_almost_eq(PlayerData.volume_settings.get_bus_volume_linear(VolumeSettings.MUSIC), 0.700, 0.01)
@@ -149,6 +142,13 @@ func test_163e_lost_erases_success() -> void:
 	assert_eq(PlayerData.level_history.results("rank_6d")[0].success, true)
 	# rank-7d was recorded as a success, but the player lost
 	assert_eq(PlayerData.level_history.results("rank_7d")[0].success, false)
+
+
+func test_1682_chat_history_preserved() -> void:
+	load_1682_data()
+	
+	assert_eq(5, PlayerData.chat_history.get_chat_age("creatures/primary/boatricia/my_maid_died"))
+	assert_eq(13, PlayerData.chat_history.get_filler_count("creatures/primary/boatricia"))
 
 
 func test_199c() -> void:

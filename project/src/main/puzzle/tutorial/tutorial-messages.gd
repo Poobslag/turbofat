@@ -26,11 +26,17 @@ func _ready() -> void:
 	_hide_message()
 
 
+"""
+Displays a message from the tutorial's instructor.
+"""
 func set_message(message: String) -> void:
 	_clear_message_queue()
 	_show_or_hide_message(message)
 
 
+"""
+Displays a BIG message from the tutorial's instructor, for use in easter eggs.
+"""
 func set_big_message(message: String) -> void:
 	_clear_message_queue()
 	_show_or_hide_message(message, _huge_font)

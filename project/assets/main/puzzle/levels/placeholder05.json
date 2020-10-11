@@ -1,7 +1,7 @@
 {
   "version": "19c5",
   "start_speed": "5",
-  "title":"Finish Your Veggies",
+  "title": "Finish Your Veggies",
   "description": "Yuck! Vegetables! I'm not cleaning that up.",
   "finish_condition": {
     "type": "score",
