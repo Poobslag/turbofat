@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/harder-butter.ogg-2a802009353ca061def06e5f6ea9aa7d.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/harder-butter.ogg"
+dest_files=[ "res://.import/harder-butter.ogg-2a802009353ca061def06e5f6ea9aa7d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
