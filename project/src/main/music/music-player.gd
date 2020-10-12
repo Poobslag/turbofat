@@ -21,7 +21,8 @@ var current_bgm: CheckpointSong
 var _max_volume_db_by_bgm := {}
 
 # newest track(s) play twice as often
-onready var _chill_bgms := [$HipHop03, $HipHop04, $HipHop08, $HipHop08]
+onready var _chill_bgms := [$HipHop03, $HipHop04, $HipHop08,
+		$DessertCourse, $DessertCourse, $HarderButter, $HarderButter]
 onready var _upbeat_bgms := [$House01, $House04, $House06, $House08, $House10,
 		$Breakbeat01,
 		$Mellow01, $Mellow02, $Mellow02]
