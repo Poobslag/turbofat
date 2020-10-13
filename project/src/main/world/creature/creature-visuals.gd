@@ -51,9 +51,6 @@ enum MovementMode {
 	WIGGLE, # flailing their arms and legs helplessly
 }
 
-# The maximum amount of microseconds to spend loading DNA in each frame. This is capped to avoid frame drops.
-const MAX_DNA_USEC_PER_FRAME := 2400
-
 const IDLE := MovementMode.IDLE
 const SPRINT := MovementMode.SPRINT
 const RUN := MovementMode.RUN
@@ -101,11 +98,7 @@ var _suppress_sfx_signal_timer := 0.0
 # forces listeners to update their animation frame
 var _force_orientation_change := false
 
-# the AnimationPlayer which animates the creature's mouth
-var _mouth_player: AnimationPlayer
-
-# locked to ensure only one set of DNA is loaded at a time
-var _load_dna_mutex := Mutex.new()
+var _mouth_player
 
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
@@ -543,7 +536,22 @@ func _load_dna() -> void:
 	if $Animations.has_node("MouthPlayer"):
 		_mouth_player = $Animations.get_node("MouthPlayer")
 	
-	_load_dna_keys()
+	for key in dna.keys():
+		if key.find("property:") == 0:
+			var node_path: String = key.split(":")[1]
+			var property_name: String = key.split(":")[2]
+			var property_value = dna[key]
+			if node_path == "BellyColors/Viewport/Body" and property_name == "belly":
+				# set_belly requires an int, not a string
+				property_value = int(property_value)
+			if has_node(node_path):
+				get_node(node_path).set(property_name, property_value)
+		if key.find("shader:") == 0:
+			var node_path: String = key.split(":")[1]
+			var shader_param: String = key.split(":")[2]
+			var shader_value = dna[key]
+			if has_node(node_path):
+				get_node(node_path).material.set_shader_param(shader_param, shader_value)
 	
 	scale = Vector2(0.60, 0.60) if dna.get("body") == "2" else Vector2(1.00, 1.00)
 	visible = true
@@ -551,51 +559,3 @@ func _load_dna() -> void:
 	# initialize creature curves, and reset the mouth/eye frame to avoid a strange transition frame
 	reset_frames()
 	emit_signal("dna_loaded")
-
-
-"""
-Populates the textures and colors for the creature's nodes from their dna.
-
-This can take about 10-20 milliseconds so it runs in the background to avoid frame drops. We load as much as we
-can in 2-3 millisecond chunks.
-"""
-func _load_dna_keys() -> void:
-	_load_dna_mutex.lock()
-	var start_ticks_usec := OS.get_ticks_usec()
-	var dna_copy := dna.duplicate()
-	var original_dna := dna
-	for key in dna_copy:
-		if dna != original_dna:
-			# the creature's DNA changed while we were loading. abort the load
-			break
-		if OS.get_ticks_usec() - start_ticks_usec > MAX_DNA_USEC_PER_FRAME:
-			# if loading takes more than a few milliseconds, yield to avoid frame drops
-			yield(get_tree(), "idle_frame")
-			start_ticks_usec = OS.get_ticks_usec()
-		# load from a copy to avoid a race condition where the dna is changed while being loaded
-		_load_dna_key(key, dna_copy[key])
-	_load_dna_mutex.unlock()
-
-
-"""
-Loads a single DNA key such as a texture or shader value.
-
-Note: This function does not use the 'dna' property. This function is invoked in a background process and needs to
-		avoid a race condition where the dna is changed while we're loading it.
-"""
-func _load_dna_key(key: String, value) -> void:
-	if key.find("property:") == 0:
-		var node_path: String = key.split(":")[1]
-		var property_name: String = key.split(":")[2]
-		var property_value = value
-		if node_path == "BellyColors/Viewport/Body" and property_name == "belly":
-			# set_belly requires an int, not a string
-			property_value = int(property_value)
-		if has_node(node_path):
-			get_node(node_path).set(property_name, property_value)
-	if key.find("shader:") == 0:
-		var node_path: String = key.split(":")[1]
-		var shader_param: String = key.split(":")[2]
-		var shader_value = value
-		if has_node(node_path):
-			get_node(node_path).material.set_shader_param(shader_param, shader_value)
