@@ -72,12 +72,15 @@ func _physics_process(_delta: float) -> void:
 
 	remaining_line_erase_frames -= 1
 	if remaining_line_erase_frames <= 0:
-		# stop processing if we're done clearing lines
-		_delete_rows()
+		# Disable processing and reset our state. We need to do this before deleting lines, because deleting lines can
+		# potentially trigger the end of the level which in turn schedules more line clears.
+		var old_lines_being_deleted := lines_being_deleted
 		set_physics_process(false)
 		lines_being_cleared = []
 		lines_being_erased = []
 		lines_being_deleted = []
+		
+		_delete_lines(old_lines_being_deleted)
 
 
 """
@@ -172,26 +175,26 @@ func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 
 
 """
-Deletes all erased rows from the playfield, dropping all rows above them.
+Deletes rows from the playfield, dropping all rows above them.
 """
-func _delete_rows() -> void:
+func _delete_lines(lines: Array) -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false
-	lines_being_deleted.sort()
-	var max_line: int = lines_being_deleted.back() if lines_being_deleted else -1
+	lines.sort()
+	var max_line: int = lines.back() if lines else -1
 	for y in range(0, max_line):
-		if not _tile_map.playfield_row_is_empty(y) and not lines_being_deleted.has(y):
+		if not _tile_map.playfield_row_is_empty(y) and not lines.has(y):
 			play_sound = true
 			break
 	
-	_tile_map.delete_rows(lines_being_deleted)
+	_tile_map.delete_rows(lines)
 	
 	if play_sound:
 		$LineFallSound.play()
 	
 	if _rows_to_preserve_at_end:
 		# Shift all _rows_to_preserve_at_end entries above the deleted rows
-		for line_being_deleted in lines_being_deleted:
+		for line_being_deleted in lines:
 			var _new_rows_to_preserve_at_end := {}
 			for key in _rows_to_preserve_at_end:
 				var new_key: int = key
@@ -200,7 +203,7 @@ func _delete_rows() -> void:
 				_new_rows_to_preserve_at_end[new_key] = true
 			_rows_to_preserve_at_end = _new_rows_to_preserve_at_end
 	
-	emit_signal("lines_deleted", lines_being_deleted)
+	emit_signal("lines_deleted", lines)
 
 
 """

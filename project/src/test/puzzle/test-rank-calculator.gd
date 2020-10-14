@@ -108,6 +108,13 @@ func test_calculate_rank_marathon_300_fail() -> void:
 	assert_eq(rank.score_rank, 999.0)
 
 
+func test_calculate_pieces_rank() -> void:
+	Level.settings.set_finish_condition(Milestone.PIECES, 80)
+	PuzzleScore.level_performance.pieces = 40
+	var rank := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank.pieces_rank), "S")
+
+
 func test_calculate_rank_sprint_120() -> void:
 	Level.settings.set_start_speed("A0")
 	Level.settings.set_finish_condition(Milestone.TIME_OVER, 120)

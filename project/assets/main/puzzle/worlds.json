@@ -102,6 +102,11 @@
           "groups": "choco_main"
         },
         {
+          "id": "veggie_patty",
+          "creature_id": "bort",
+          "locked_until": "group_finished choco_main 5"
+        },
+        {
           "id": "placeholder10",
           "creature_id": "bort",
           "locked_until": "group_finished choco_main 5"
@@ -123,6 +128,10 @@
         },
         {
           "id": "placeholder15",
+          "creature_id": "wesker"
+        },
+        {
+          "id": "accelerator",
           "creature_id": "wesker"
         }
       ]

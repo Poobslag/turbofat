@@ -24,16 +24,17 @@ func initialize(piece_queue: PieceQueue, piece_index: int) -> void:
 func _process(_delta: float) -> void:
 	var next_piece := _piece_queue.get_next_piece(_piece_index)
 	if next_piece != _displayed_piece:
-		var bounding_box := Rect2(next_piece.get_cell_position(UNROTATED, 0), Vector2(1.0, 1.0))
-		# update the tile map with the new piece type
 		$TileMap.clear()
-		for i in range(next_piece.pos_arr[0].size()):
-			var block_pos := next_piece.get_cell_position(UNROTATED, i)
-			var block_color := next_piece.get_cell_color(UNROTATED, i)
-			$TileMap.set_block(block_pos, 0, block_color)
-			bounding_box = bounding_box.expand(next_piece.get_cell_position(UNROTATED, i))
-			bounding_box = bounding_box.expand(next_piece.get_cell_position(UNROTATED, i) + Vector2(1, 1))
-		$TileMap/CornerMap.dirty = true
-		_displayed_piece = next_piece
-		$TileMap.position = $TileMap.cell_size \
-				* (Vector2(1.5, 1.5) - (bounding_box.position + bounding_box.size / 2.0)) / 2.0
+		if next_piece != PieceTypes.piece_null:
+			var bounding_box := Rect2(next_piece.get_cell_position(UNROTATED, 0), Vector2(1.0, 1.0))
+			# update the tile map with the new piece type
+			for i in range(next_piece.pos_arr[0].size()):
+				var block_pos := next_piece.get_cell_position(UNROTATED, i)
+				var block_color := next_piece.get_cell_color(UNROTATED, i)
+				$TileMap.set_block(block_pos, 0, block_color)
+				bounding_box = bounding_box.expand(next_piece.get_cell_position(UNROTATED, i))
+				bounding_box = bounding_box.expand(next_piece.get_cell_position(UNROTATED, i) + Vector2(1, 1))
+			$TileMap/CornerMap.dirty = true
+			_displayed_piece = next_piece
+			$TileMap.position = $TileMap.cell_size \
+					* (Vector2(1.5, 1.5) - (bounding_box.position + bounding_box.size / 2.0)) / 2.0
