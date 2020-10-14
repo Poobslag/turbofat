@@ -68,6 +68,16 @@ func increment() -> void:
 
 
 """
+Duplicates the SkillTallyItem, reconnecting all playfield and piece manager signals in the new node.
+"""
+func duplicate(flags: int = 15) -> Node:
+	var result: SkillTallyItem = .duplicate(flags)
+	# reconnect signals from piece manager and playfield
+	result.puzzle = puzzle
+	return result
+
+
+"""
 Initializes this node when the puzzle field is assigned.
 
 Connects the signals in 'signal_names' to the appropriate nodes.
