@@ -121,6 +121,7 @@ func _handle_box_clear_message() -> void:
 				"tutorial_basics_1":
 					hud.set_message("Well done!\n\nBox clears earn you five times as much money./"
 							+ " Maybe more than that if you're clever.")
+					_add_post_skip_message()
 
 
 func _handle_squish_move_message() -> void:
@@ -132,6 +133,7 @@ func _handle_squish_move_message() -> void:
 							+ "...But yes,/ squish moves can help you out of a jam.")
 					_add_post_skip_message()
 					hud.skill_tally_item("SquishMove").visible = true
+					hud.skill_tally_item("SquishMove").increment()
 				"tutorial_basics_2":
 					hud.set_message("Well done!\n\nSquish moves can help you out of a jam./"
 							+ " They're also good for certain boxes.")
@@ -146,10 +148,10 @@ func _handle_build_box_message() -> void:
 							+ "...But yes,/ those boxes earn $15 when you clear them.")
 					_add_post_skip_message()
 					hud.skill_tally_item("SnackBox").visible = true
+					hud.skill_tally_item("SnackBox").increment()
 				"tutorial_basics_1":
 					hud.set_message("Well done!\n\nThose boxes earn ¥15 when you clear them./"
 					+ " Try clearing a few box lines.")
-		hud.skill_tally_item("SnackBox").increment()
 
 
 func _handle_snack_stack_message() -> void:
@@ -222,13 +224,12 @@ func _on_Playfield_after_piece_written() -> void:
 
 func _on_PuzzleScore_game_prepared() -> void:
 	hud.show_skill_tally_items()
-	hud.skill_tally_item("MoveLeft").visible = true
-	hud.skill_tally_item("MoveRight").visible = true
-	hud.skill_tally_item("RotateLeft").visible = true
-	hud.skill_tally_item("RotateRight").visible = true
-	hud.skill_tally_item("SoftDrop").visible = true
-	hud.skill_tally_item("HardDrop").visible = true
-	hud.skill_tally_item("LineClear").visible = true
+	for skill_tally_item in hud.skill_tally_items():
+		skill_tally_item.visible = true
+	hud.skill_tally_item("SnackBox").visible = false
+	hud.skill_tally_item("BoxClear").visible = false
+	hud.skill_tally_item("SquishMove").visible = false
+	hud.skill_tally_item("SnackStack").visible = false
 	
 	_line_clears = 0
 	_box_clears = 0
