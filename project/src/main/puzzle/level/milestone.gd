@@ -10,6 +10,7 @@ enum MilestoneType {
 	NONE,
 	CUSTOMERS,
 	LINES,
+	PIECES,
 	SCORE,
 	TIME_OVER,
 	TIME_UNDER,
@@ -18,6 +19,7 @@ enum MilestoneType {
 const NONE := MilestoneType.NONE
 const CUSTOMERS := MilestoneType.CUSTOMERS
 const LINES := MilestoneType.LINES
+const PIECES := MilestoneType.PIECES
 const SCORE := MilestoneType.SCORE
 const TIME_OVER := MilestoneType.TIME_OVER
 const TIME_UNDER := MilestoneType.TIME_UNDER
@@ -27,6 +29,7 @@ const JSON_MILESTONE_TYPES := {
 	"none": MilestoneType.NONE,
 	"customers": MilestoneType.CUSTOMERS,
 	"lines": MilestoneType.LINES,
+	"pieces": MilestoneType.PIECES,
 	"score": MilestoneType.SCORE,
 	"time_over": MilestoneType.TIME_OVER,
 	"time_under": MilestoneType.TIME_UNDER,

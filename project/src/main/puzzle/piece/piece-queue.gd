@@ -6,13 +6,17 @@ Queue of upcoming randomized pieces.
 This queue stores the upcoming pieces so they can be displayed, and randomizes them according to some complex rules.
 """
 
-# minimum number of next _pieces in the queue, before we add more
+# minimum number of next pieces in the queue, before we add more
 const MIN_SIZE := 50
+
+const UNLIMITED_PIECES := 999999
 
 var _pieces := []
 
 # default pieces to pull from if none are provided by the level
 var _default_piece_types := PieceTypes.all_types
+
+var _remaining_piece_count := UNLIMITED_PIECES
 
 func _ready() -> void:
 	Level.connect("settings_changed", self, "_on_Level_settings_changed")
@@ -24,6 +28,10 @@ func _ready() -> void:
 Clears the pieces and refills the piece queues.
 """
 func clear() -> void:
+	if Level.settings.finish_condition.type == Milestone.PIECES:
+		_remaining_piece_count = Level.settings.finish_condition.value
+	else:
+		_remaining_piece_count = UNLIMITED_PIECES
 	_pieces.clear()
 	_fill()
 
@@ -33,6 +41,8 @@ Pops the next piece off the queue.
 """
 func pop_next_piece() -> PieceType:
 	var next_piece_type: PieceType = _pieces.pop_front()
+	if _remaining_piece_count != UNLIMITED_PIECES:
+		_remaining_piece_count -= 1
 	_fill()
 	return next_piece_type
 
@@ -42,6 +52,12 @@ Returns a specific piece in the queue.
 """
 func get_next_piece(index: int) -> PieceType:
 	return _pieces[index]
+
+
+func _apply_piece_limit() -> void:
+	if _remaining_piece_count < _pieces.size():
+		for i in range(_remaining_piece_count, _pieces.size()):
+			_pieces[i] = PieceTypes.piece_null
 
 
 """
@@ -54,6 +70,7 @@ func _fill() -> void:
 	if _pieces.empty():
 		_fill_initial_pieces()
 	_fill_remaining_pieces()
+	_apply_piece_limit()
 
 
 """

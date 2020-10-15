@@ -26,6 +26,8 @@ func _ready() -> void:
 			$Desc.text = "Customers"
 		Milestone.LINES:
 			$Desc.text = "Lines"
+		Milestone.PIECES:
+			$Desc.text = "Pieces"
 		Milestone.SCORE:
 			$Desc.text = "Money"
 		Milestone.TIME_OVER:
@@ -60,7 +62,7 @@ func update_milebar_text() -> void:
 	match milestone.type:
 		Milestone.NONE:
 			$Value.text = "-"
-		Milestone.CUSTOMERS, Milestone.LINES:
+		Milestone.CUSTOMERS, Milestone.LINES, Milestone.PIECES:
 			$Value.text = StringUtils.comma_sep(remaining)
 		Milestone.SCORE:
 			$Value.text = "¥%s" % StringUtils.comma_sep(remaining)

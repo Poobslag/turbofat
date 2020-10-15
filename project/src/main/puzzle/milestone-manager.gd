@@ -9,12 +9,15 @@ Reaching a milestone can increase the speed, end the level, or trigger a success
 """
 
 func _ready() -> void:
+	PuzzleScore.connect("before_piece_written", self, "_on_PuzzleScore_before_piece_written")
+	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
 	PuzzleScore.connect("score_changed", self, "_on_PuzzleScore_score_changed")
 
 
 func _physics_process(_delta: float) -> void:
-	if PuzzleScore.game_active and milestone_met(Level.settings.finish_condition):
-		PuzzleScore.trigger_finish()
+	if Level.settings.finish_condition.type == Milestone.TIME_OVER:
+		# only check for 'time over' milestones; other milestones only trigger after a piece is finished locking
+		_check_for_finish()
 
 
 func milestone_met(milestone: Milestone) -> bool:
@@ -47,6 +50,8 @@ func milestone_progress(milestone: Milestone) -> float:
 					progress -= 0.5
 		Milestone.LINES:
 			progress = PuzzleScore.level_performance.lines
+		Milestone.PIECES:
+			progress = PuzzleScore.level_performance.pieces
 		Milestone.SCORE:
 			progress = PuzzleScore.get_score() + PuzzleScore.get_bonus_score()
 		Milestone.TIME_OVER, Milestone.TIME_UNDER:
@@ -81,7 +86,7 @@ func next_milestone() -> Milestone:
 """
 If the player reached a milestone, we increase the speed.
 """
-func _on_PuzzleScore_score_changed() -> void:
+func _check_for_speed_up() -> void:
 	var new_speed_index: int = PuzzleScore.speed_index
 	
 	while new_speed_index + 1 < Level.settings.speed_ups.size() \
@@ -90,3 +95,24 @@ func _on_PuzzleScore_score_changed() -> void:
 	
 	if PuzzleScore.speed_index != new_speed_index:
 		PuzzleScore.speed_index = new_speed_index
+
+
+"""
+If the player reached the finish milestone, we end the level.
+"""
+func _check_for_finish() -> void:
+	if PuzzleScore.game_active and milestone_met(Level.settings.finish_condition):
+		PuzzleScore.trigger_finish()
+
+
+func _on_PuzzleScore_before_piece_written() -> void:
+	_check_for_speed_up()
+
+
+func _on_PuzzleScore_after_piece_written() -> void:
+	_check_for_speed_up()
+	_check_for_finish()
+
+
+func _on_PuzzleScore_score_changed() -> void:
+	_check_for_speed_up()

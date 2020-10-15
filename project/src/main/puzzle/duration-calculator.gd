@@ -44,6 +44,8 @@ func duration(settings: LevelSettings) -> float:
 			result = _duration_for_lines(settings, lines)
 		Milestone.LINES:
 			result = _duration_for_lines(settings, settings.finish_condition.value)
+		Milestone.PIECES:
+			result = _duration_for_lines(settings, settings.finish_condition.value * 2)
 		Milestone.TIME_OVER:
 			result = settings.finish_condition.value
 		Milestone.CUSTOMERS:

@@ -21,6 +21,10 @@ var speed_rank := WORST_RANK
 var lines := 0
 var lines_rank := WORST_RANK
 
+# number of pieces placed
+var pieces := 0
+var pieces_rank := WORST_RANK
+
 # points awarded for lines left over at the end
 var leftover_score := 0
 
@@ -63,6 +67,8 @@ func to_json_dict() -> Dictionary:
 		"leftover_score": leftover_score,
 		"lines": lines,
 		"lines_rank": lines_rank,
+		"pieces": pieces,
+		"pieces_rank": pieces_rank,
 		"lost": lost,
 		"score": score,
 		"score_rank": score_rank,
@@ -87,6 +93,8 @@ func from_json_dict(json: Dictionary) -> void:
 	leftover_score = json.get("leftover_score", 0)
 	lines = int(json.get("lines", "0"))
 	lines_rank = float(json.get("lines_rank", "999"))
+	pieces = int(json.get("lines", "0"))
+	pieces_rank = float(json.get("lines_rank", "999"))
 	lost = bool(json.get("lost", true))
 	score = int(json.get("score", "0"))
 	score_rank = float(json.get("score_rank", "999"))

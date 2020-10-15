@@ -31,6 +31,13 @@ signal after_game_ended
 signal speed_index_changed(value)
 
 signal added_line_score(combo_score, box_score)
+
+# emitted on the frame that the player drops and locks a new piece
+signal before_piece_written
+
+# emitted after the piece is written, and all boxes are made, and all lines are cleared
+signal after_piece_written
+
 signal score_changed
 
 signal combo_ended
@@ -253,6 +260,15 @@ func end_result() -> int:
 		return WON
 	else:
 		return FINISHED
+
+
+func before_piece_written() -> void:
+	level_performance.pieces += 1
+	emit_signal("before_piece_written")
+
+
+func after_piece_written() -> void:
+	emit_signal("after_piece_written")
 
 
 func _prepare_game() -> void:

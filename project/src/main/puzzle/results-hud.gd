@@ -85,6 +85,12 @@ func _append_grade_information(rank_result: RankResult, _creature_scores: Array,
 		if not Level.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.speed_rank)
 		text += "\n"
+	elif finish_condition_type == Milestone.PIECES:
+		text += "Pieces: %d" % rank_result.pieces
+		text += topped_out
+		if not Level.settings.rank.unranked:
+			text += " (%s)" % RankCalculator.grade(rank_result.pieces_rank)
+		text += "\n"
 	else:
 		text += "Lines: %d" % rank_result.lines
 		text += topped_out

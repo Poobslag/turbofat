@@ -56,6 +56,7 @@ func calculate_rank() -> RankResult:
 			_populate_rank_fields(lenient_rank_result, true)
 			rank_result.speed_rank = min(rank_result.speed_rank, lenient_rank_result.speed_rank)
 			rank_result.lines_rank = min(rank_result.lines_rank, lenient_rank_result.lines_rank)
+			rank_result.pieces_rank = min(rank_result.pieces_rank, lenient_rank_result.pieces_rank)
 			rank_result.box_score_per_line_rank = \
 					min(rank_result.box_score_per_line_rank, lenient_rank_result.box_score_per_line_rank)
 			rank_result.combo_score_per_line_rank = \
@@ -127,6 +128,9 @@ func _max_lpm() -> float:
 					level_lines = master_customer_combo(Level.settings)
 				Milestone.LINES:
 					level_lines = speed_up.value
+				Milestone.PIECES:
+					# warning-ignore:integer_division
+					level_lines = speed_up.value / 2
 				Milestone.TIME_OVER:
 					level_lines = speed_up.value * 60 / frames_per_line
 				Milestone.SCORE:
@@ -134,6 +138,9 @@ func _max_lpm() -> float:
 							(master_box_score(Level.settings) + master_combo_score(Level.settings) + 1)
 		elif finish_condition.type == Milestone.LINES:
 			level_lines = finish_condition.value
+		elif finish_condition.type == Milestone.PIECES:
+			# warning-ignore:integer_division
+			level_lines = finish_condition.value / 2
 		elif finish_condition.type == Milestone.SCORE:
 			level_lines = finish_condition.value / \
 					(master_box_score(Level.settings) + master_combo_score(Level.settings) + 1)
@@ -163,6 +170,7 @@ func _unranked_result() -> RankResult:
 	rank_result.combo_score = PuzzleScore.level_performance.combo_score
 	rank_result.leftover_score = PuzzleScore.level_performance.leftover_score
 	rank_result.lines = PuzzleScore.level_performance.lines
+	rank_result.pieces = PuzzleScore.level_performance.pieces
 	rank_result.lost = PuzzleScore.level_performance.lost
 	rank_result.success = PuzzleScore.level_performance.success
 	rank_result.score = PuzzleScore.level_performance.score
@@ -204,6 +212,9 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			target_lines = master_customer_combo(Level.settings) * finish_condition.value
 		Milestone.LINES:
 			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
+		Milestone.PIECES:
+			# warning-ignore:integer_division
+			target_lines = finish_condition.value / 2
 		Milestone.SCORE:
 			target_lines = ceil((finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
@@ -214,6 +225,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
 	rank_result.lines_rank = log(rank_result.lines / target_lines) / log(RDF_LINES)
+	rank_result.pieces_rank = log(rank_result.pieces / (target_lines * 2)) / log(RDF_LINES)
 	rank_result.box_score_per_line_rank = log(rank_result.box_score_per_line / target_box_score_per_line) \
 			/ log(RDF_BOX_SCORE_PER_LINE)
 	rank_result.combo_score_per_line_rank = log(rank_result.combo_score_per_line / target_combo_score_per_line) \
@@ -282,6 +294,7 @@ func _apply_top_out_penalty(rank_result: RankResult) -> void:
 		var all_penalty := penalty_count * settings.rank.top_out_penalty
 		rank_result.speed_rank = rank_result.speed_rank + all_penalty
 		rank_result.lines_rank = rank_result.lines_rank + all_penalty
+		rank_result.pieces_rank = rank_result.pieces_rank + all_penalty
 		rank_result.box_score_per_line_rank = rank_result.box_score_per_line_rank + all_penalty
 		rank_result.combo_score_per_line_rank = rank_result.combo_score_per_line_rank + all_penalty
 		rank_result.score_rank = rank_result.score_rank + all_penalty
@@ -298,6 +311,7 @@ func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
 	var max_rank := WORST_RANK
 	rank_result.speed_rank = clamp(rank_result.speed_rank, min_rank, max_rank)
 	rank_result.lines_rank = clamp(rank_result.lines_rank, min_rank, max_rank)
+	rank_result.pieces_rank = clamp(rank_result.pieces_rank, min_rank, max_rank)
 	rank_result.box_score_per_line_rank = clamp(rank_result.box_score_per_line_rank, min_rank, max_rank)
 	rank_result.combo_score_per_line_rank = clamp(rank_result.combo_score_per_line_rank, min_rank, max_rank)
 	rank_result.score_rank = clamp(rank_result.score_rank, min_rank, max_rank)
