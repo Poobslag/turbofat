@@ -34,7 +34,7 @@ func _process(_delta: float) -> void:
 				$TileMap.set_block(block_pos, 0, block_color)
 				bounding_box = bounding_box.expand(next_piece.get_cell_position(UNROTATED, i))
 				bounding_box = bounding_box.expand(next_piece.get_cell_position(UNROTATED, i) + Vector2(1, 1))
-			$TileMap/CornerMap.dirty = true
-			_displayed_piece = next_piece
 			$TileMap.position = $TileMap.cell_size \
 					* (Vector2(1.5, 1.5) - (bounding_box.position + bounding_box.size / 2.0)) / 2.0
+		$TileMap/CornerMap.dirty = true
+		_displayed_piece = next_piece
