@@ -98,7 +98,7 @@ var _suppress_sfx_signal_timer := 0.0
 # forces listeners to update their animation frame
 var _force_orientation_change := false
 
-var _mouth_player
+var mouth_player
 
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
@@ -264,8 +264,8 @@ func feed(food_color: Color) -> void:
 	$Neck0/HeadBobber/Food.modulate = food_color
 	$Neck0/HeadBobber/FoodLaser.modulate = food_color
 	$Animations/EmotePlayer.eat()
-	if _mouth_player:
-		_mouth_player.eat()
+	if mouth_player:
+		mouth_player.eat()
 
 
 """
@@ -277,8 +277,8 @@ func set_dna(new_dna: Dictionary) -> void:
 	if is_inside_tree():
 		CreatureLoader.load_details(dna)
 		# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
-		_unload_dna()
-		_load_dna()
+		$DnaLoader.unload_dna()
+		$DnaLoader.load_dna()
 
 
 """
@@ -422,140 +422,3 @@ func _compute_orientation(direction: Vector2) -> int:
 		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
 		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
 	return new_orientation
-
-
-"""
-Removes a 'dna node', one which swaps out based on the creature's DNA.
-"""
-func _remove_dna_node(path: NodePath) -> void:
-	if not has_node(path):
-		return
-	
-	var node := get_node(path)
-	# These nodes must be immediately removed to avoid name conflicts with the nodes which replace them.
-	node.get_parent().remove_child(node)
-	node.queue_free()
-
-
-"""
-Adds a 'dna node', one which swaps out based on the creature's DNA.
-"""
-func _add_dna_node(node: Node, key_message: String, value_message: String, parent: Node = self) -> void:
-	if not node:
-		push_warning("Invalid %s: %s" % [key_message, value_message])
-		return
-	
-	parent.add_child(node)
-	node.owner = self
-	node.creature_visuals_path = node.get_path_to(self)
-
-
-"""
-Unassigns the sprites and animations for the creature.
-
-Different body parts have different animations and textures. Before changing the creature's appearance, any old
-textures and animations need to be stopped and removed, and any signals disconnected. This method handles all of that.
-"""
-func _unload_dna() -> void:
-	$Animations/EmotePlayer.unemote_immediate()
-	for packed_sprite_obj in [
-		$Bellybutton,
-		$Collar,
-		$FarArm,
-		$FarLeg,
-		$NearArm,
-		$NearLeg,
-		$Sprint,
-		$TailZ0,
-		$TailZ1,
-		$Neck0/HeadBobber/AccessoryZ0,
-		$Neck0/HeadBobber/AccessoryZ1,
-		$Neck0/HeadBobber/AccessoryZ2,
-		$Neck0/HeadBobber/CheekZ0,
-		$Neck0/HeadBobber/CheekZ1,
-		$Neck0/HeadBobber/CheekZ2,
-		$Neck0/HeadBobber/Chin,
-		$Neck0/HeadBobber/EarZ0,
-		$Neck0/HeadBobber/EarZ1,
-		$Neck0/HeadBobber/EarZ2,
-		$Neck0/HeadBobber/EmoteEyeZ0,
-		$Neck0/HeadBobber/EmoteEyeZ1,
-		$Neck0/HeadBobber/EyeZ0,
-		$Neck0/HeadBobber/EyeZ1,
-		$Neck0/HeadBobber/Food,
-		$Neck0/HeadBobber/FoodLaser,
-		$Neck0/HeadBobber/HairZ0,
-		$Neck0/HeadBobber/HairZ1,
-		$Neck0/HeadBobber/HairZ2,
-		$Neck0/HeadBobber/Head,
-		$Neck0/HeadBobber/HornZ0,
-		$Neck0/HeadBobber/HornZ1,
-		$Neck0/HeadBobber/Mouth,
-		$Neck0/HeadBobber/Nose,
-	]:
-		var packed_sprite: PackedSprite = packed_sprite_obj
-		if packed_sprite:
-			packed_sprite.texture = null
-			packed_sprite.frame_data = ""
-			if packed_sprite.material:
-				packed_sprite.material.set_shader_param("red", Color.black)
-				packed_sprite.material.set_shader_param("green", Color.black)
-				packed_sprite.material.set_shader_param("blue", Color.black)
-				packed_sprite.material.set_shader_param("black", Color.black)
-	
-	$Body.rect_position = Vector2(-580, -850)
-	$Neck0/HeadBobber.position = Vector2(0, -100)
-	scale = Vector2(1.00, 1.00)
-	
-	_remove_dna_node("Animations/MouthPlayer")
-	_remove_dna_node("Animations/EarPlayer")
-	_remove_dna_node("Animations/FatSpriteMover")
-	_remove_dna_node("Body/Viewport/Body")
-	_remove_dna_node("BellyColors/Viewport/Body")
-	_remove_dna_node("BodyShadows/Viewport/Body")
-
-
-"""
-Assigns the sprites and animations based on the creature's dna.
-
-This method assumes that any existing animations and connections have been disconnected.
-"""
-func _load_dna() -> void:
-	if dna.has("mouth"):
-		_add_dna_node(CreatureLoader.new_mouth_player(dna.mouth), "mouth", dna.mouth, $Animations)
-	
-	if dna.has("ear"):
-		_add_dna_node(CreatureLoader.new_ear_player(dna.ear), "ear", dna.ear, $Animations)
-	
-	if dna.has("body"):
-		_add_dna_node(CreatureLoader.new_body(dna.body), "body", dna.body, $Body/Viewport)
-		_add_dna_node(CreatureLoader.new_body_colors(dna.body), "body colors", dna.body, $BellyColors/Viewport)
-		_add_dna_node(CreatureLoader.new_body_shadows(dna.body), "body shadows", dna.body, $BodyShadows/Viewport)
-		_add_dna_node(CreatureLoader.new_fat_sprite_mover(dna.body), "fat sprite mover", dna.body, $Animations)
-	
-	if $Animations.has_node("MouthPlayer"):
-		_mouth_player = $Animations.get_node("MouthPlayer")
-	
-	for key in dna.keys():
-		if key.find("property:") == 0:
-			var node_path: String = key.split(":")[1]
-			var property_name: String = key.split(":")[2]
-			var property_value = dna[key]
-			if node_path == "BellyColors/Viewport/Body" and property_name == "belly":
-				# set_belly requires an int, not a string
-				property_value = int(property_value)
-			if has_node(node_path):
-				get_node(node_path).set(property_name, property_value)
-		if key.find("shader:") == 0:
-			var node_path: String = key.split(":")[1]
-			var shader_param: String = key.split(":")[2]
-			var shader_value = dna[key]
-			if has_node(node_path):
-				get_node(node_path).material.set_shader_param(shader_param, shader_value)
-	
-	scale = Vector2(0.60, 0.60) if dna.get("body") == "2" else Vector2(1.00, 1.00)
-	visible = true
-	
-	# initialize creature curves, and reset the mouth/eye frame to avoid a strange transition frame
-	reset_frames()
-	emit_signal("dna_loaded")
