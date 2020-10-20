@@ -19,8 +19,8 @@ grep -R -n "var [^:]* = " --include="*.gd" ./project/src \
   | grep -v "chat-event.gd:74" \
   | grep -v "level-settings.gd:182" \
   | grep -v "level-settings.gd:184" \
-  | grep -v "creature-visuals.gd.*var property_value =" \
-  | grep -v "creature-visuals.gd.*var shader_value ="
+  | grep -v "dna-loader.gd.*var property_value =" \
+  | grep -v "dna-loader.gd.*var shader_value ="
 
 find ./project/src -name "*.TMP"
 find ./project/src -name "*.gd~"
