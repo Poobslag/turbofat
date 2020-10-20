@@ -14,14 +14,18 @@ signal game_prepared
 # emitted after everything's been erased in preparation for a new game.
 signal after_game_prepared
 
+# emitter after the initial countdown finishes, when the player can start playing.
 signal game_started
 
 # emitted during tutorials, when changing from one section of the tutorial to the next
-signal before_level_changed
+signal before_level_changed(new_level_id)
 signal after_level_changed
 
 # emitted when the player survives until the end the level.
 signal finish_triggered
+
+# emitted when the player reaches the end of a tutorial section
+signal tutorial_section_finished
 
 signal game_ended
 
@@ -50,6 +54,10 @@ enum EndResult {
 	FINISHED, # The player survived until the end.
 	LOST, # The player gave up or failed.
 }
+
+const DELAY_NONE := 0.00
+const DELAY_SHORT := 1.60
+const DELAY_LONG := 3.20
 
 const LOST := EndResult.LOST
 const FINISHED := EndResult.FINISHED
@@ -138,11 +146,11 @@ func end_game() -> void:
 	emit_signal("after_game_ended")
 
 
-func change_level(level_id: String, delay_between_levels: bool = true) -> void:
-	emit_signal("before_level_changed")
+func change_level(level_id: String, delay_between_levels: float = DELAY_SHORT) -> void:
+	emit_signal("before_level_changed", level_id)
 	
 	if delay_between_levels:
-		yield(get_tree().create_timer(1.60), "timeout")
+		yield(get_tree().create_timer(delay_between_levels), "timeout")
 	
 	var settings := LevelSettings.new()
 	settings.load_from_resource(level_id)
@@ -158,9 +166,12 @@ help/hurt things like their box rank or combo rank. It's mostly to put on a show
 wasn't wasted, if they built a lot of boxes they didn't clear.
 """
 func trigger_finish() -> void:
-	game_active = false
-	finish_triggered = true
-	emit_signal("finish_triggered")
+	if Level.settings.other.tutorial:
+		emit_signal("tutorial_section_finished")
+	else:
+		game_active = false
+		finish_triggered = true
+		emit_signal("finish_triggered")
 
 
 """
@@ -173,10 +184,6 @@ Parameters:
 	'box_score': Bonus points for any boxes in the line.
 """
 func add_line_score(combo_score: int, box_score: int) -> void:
-	if Level.settings.other.tutorial:
-		# no money earned during tutorial
-		return
-	
 	if game_active:
 		level_performance.combo_score += combo_score
 		level_performance.box_score += box_score
@@ -276,10 +283,10 @@ func _prepare_game() -> void:
 	finish_triggered = false
 	game_ended = false
 	
-	if Level.settings.other.start_level_name:
+	if Level.settings.other.start_level:
 		# Load a different level to start (used for tutorials)
 		var new_settings := LevelSettings.new()
-		new_settings.load_from_resource(Level.settings.other.start_level_name)
+		new_settings.load_from_resource(Level.settings.other.start_level)
 		Level.start_level(new_settings)
 	
 	reset()

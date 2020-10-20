@@ -28,7 +28,7 @@ func _exit_tree() -> void:
 
 func _launch_tutorial() -> void:
 	Global.clear_creature_queue()
-	Level.set_launched_level(Level.BEGINNER_TUTORIAL, "#instructor#")
+	Level.set_launched_level(Level.BEGINNER_TUTORIAL, CreatureLoader.INSTRUCTOR_ID)
 	Level.push_level_trail()
 
 

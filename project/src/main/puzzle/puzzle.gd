@@ -111,20 +111,29 @@ Parameters:
 """
 func _feed_creature(fatness_pct: float, food_color: Color) -> void:
 	var customer: Creature = $RestaurantView.get_customer()
-	var old_fatness: float = customer.get_fatness()
-	var base_score := Creature.fatness_to_score(customer.base_fatness)
-	var target_fatness := Creature.score_to_fatness(base_score + PuzzleScore.get_creature_score())
+	
+	if customer.creature_id == CreatureLoader.INSTRUCTOR_ID:
+		# tutorial instructor doesn't gain weight
+		pass
+	else:
+		var old_fatness: float = customer.get_fatness()
+		var base_score := Creature.fatness_to_score(customer.base_fatness)
+		var target_fatness := Creature.score_to_fatness(base_score + PuzzleScore.get_creature_score())
+		customer.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
 
-	var comfort := 0.0
-	# ate five things; comfortable
-	comfort += clamp(inverse_lerp(5, 15, PuzzleScore.get_creature_line_clears()), 0.0, 1.0)
-	# starting to overeat; less comfortable
-	comfort -= clamp(inverse_lerp(400, 600, PuzzleScore.get_creature_score()), 0.0, 1.0)
-	# overate; uncomfortable
-	comfort -= clamp(inverse_lerp(600, 1200, PuzzleScore.get_creature_score()), 0.0, 1.0)
-
-	customer.set_comfort(comfort)
-	customer.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
+	if customer.creature_id == CreatureLoader.INSTRUCTOR_ID:
+		# tutorial instructor doesn't become comfortable
+		pass
+	else:
+		var comfort := 0.0
+		# ate five things; comfortable
+		comfort += clamp(inverse_lerp(5, 15, PuzzleScore.get_creature_line_clears()), 0.0, 1.0)
+		# starting to overeat; less comfortable
+		comfort -= clamp(inverse_lerp(400, 600, PuzzleScore.get_creature_score()), 0.0, 1.0)
+		# overate; uncomfortable
+		comfort -= clamp(inverse_lerp(600, 1200, PuzzleScore.get_creature_score()), 0.0, 1.0)
+		customer.set_comfort(comfort)
+	
 	customer.feed(food_color)
 
 

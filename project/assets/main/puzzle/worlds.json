@@ -7,6 +7,10 @@
         {
           "id": "tutorial_basics_0",
           "creature_id": "#instructor#"
+        },
+        {
+          "id": "tutorial_squish_0",
+          "creature_id": "#instructor#"
         }
       ]
     },

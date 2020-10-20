@@ -53,8 +53,10 @@ Parameters:
 	'choices': Strings to show the player for each dialog branch.
 	
 	'moods': An array of ChatEvent.Mood instances for each dialog branch
+	
+	'columns': (Optional) The number of columns to organize the chat events into.
 """
-func show_choices(choices: Array, moods: Array) -> void:
+func show_choices(choices: Array, moods: Array, columns: int = 0) -> void:
 	visible = true
 	_choices = choices
 	_moods = moods
@@ -63,10 +65,13 @@ func show_choices(choices: Array, moods: Array) -> void:
 		push_warning("Too many chat choices: %s > %s" % [choices.size(), MAX_LABELS])
 		_choices = choices.slice(0, MAX_LABELS - 1)
 	
-	columns = 1 if _choices.size() <= 3 else 2
+	if columns == 0:
+		columns = 1 if _choices.size() <= 3 else 2
 	_refresh_child_buttons()
 	
 	if choices:
+		# wait for old chat choices to be deleted before grabbing focus
+		yield(get_tree(), "idle_frame")
 		for button in get_tree().get_nodes_in_group("chat_choices"):
 			button.grab_focus()
 			break

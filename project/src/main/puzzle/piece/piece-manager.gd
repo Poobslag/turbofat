@@ -221,6 +221,9 @@ func is_playfield_clearing_lines() -> bool:
 Set the state frames so that the piece spawns immediately.
 """
 func skip_prespawn() -> void:
+	if Level.settings.other.non_interactive:
+		return
+	
 	if $States.get_state() != $States/Prespawn:
 		$States.set_state($States/Prespawn)
 	$States/Prespawn.frames = 3600
@@ -241,6 +244,17 @@ func _update_tile_map() -> void:
 		$TileMap.set_block(piece.pos + block_pos, 0, block_color)
 
 
+"""
+Spawns the first piece of a level.
+"""
+func _start_first_piece() -> void:
+	if Level.settings.other.non_interactive:
+		return
+	
+	$States.set_state($States/Prespawn)
+	skip_prespawn()
+
+
 func _on_States_entered_state(state: State) -> void:
 	if state == $States/Prelock:
 		emit_signal("lock_started")
@@ -251,8 +265,7 @@ func _on_PuzzleScore_game_prepared() -> void:
 
 
 func _on_PuzzleScore_game_started() -> void:
-	$States.set_state($States/Prespawn)
-	skip_prespawn()
+	_start_first_piece()
 
 
 """
@@ -271,12 +284,13 @@ func _on_PuzzleScore_game_ended() -> void:
 	$States.set_state($States/GameEnded)
 
 
-func _on_PuzzleScore_before_level_changed() -> void:
+func _on_PuzzleScore_before_level_changed(_new_level_id: String) -> void:
 	set_physics_process(false)
 
 
 func _on_PuzzleScore_after_level_changed() -> void:
 	set_physics_process(true)
+	_start_first_piece()
 
 
 func _on_Pauser_paused_changed(value: bool) -> void:

@@ -82,9 +82,7 @@ func _advance_level() -> void:
 	else:
 		hud.set_message("Oh! I thought that would be more difficult...")
 		PuzzleScore.change_level("tutorial_basics_4")
-		yield(PuzzleScore, "after_level_changed")
-		MusicPlayer.play_upbeat_bgm()
-		puzzle.start_level_countdown()
+		start_customer_countdown()
 
 
 func _handle_line_clear_message() -> void:
@@ -160,7 +158,29 @@ func _handle_snack_stack_message() -> void:
 		_snack_stacks += 1
 		if _snack_stacks == 1:
 			hud.set_message("Impressive!/ Using squish moves,/" \
-					+ " you can organize boxes in tall vertical stacks and earn a lot of money.")	
+					+ " you can organize boxes in tall vertical stacks and earn a lot of money.")
+
+
+func _prepare_tutorial_level() -> void:
+	match(Level.settings.id):
+		"tutorial_basics_1":
+			hud.skill_tally_item("SnackBox").visible = true
+			hud.skill_tally_item("BoxClear").visible = true
+			hud.set_message("Try making a snack box by arranging two pieces into a square.")
+		"tutorial_basics_2":
+			hud.skill_tally_item("SquishMove").visible = true
+			hud.set_message("Next,/ try holding soft drop to squish pieces through these gaps.")
+		"tutorial_basics_3":
+			hud.skill_tally_item("SnackStack").visible = true
+			hud.set_message("One last lesson!/ Try holding soft drop to squish and complete these boxes.")
+		"tutorial_basics_4":
+			# reset timer, scores
+			PuzzleScore.reset()
+			puzzle.scroll_to_new_creature()
+			
+			hud.set_message("You're a remarkably quick learner." \
+					+ "/ I think I hear some customers!\n\nSee if you can earn ¥100.")
+			hud.enqueue_pop_out()
 
 
 func _on_PieceManager_piece_spawned() -> void:
@@ -224,8 +244,7 @@ func _on_Playfield_after_piece_written() -> void:
 
 func _on_PuzzleScore_game_prepared() -> void:
 	hud.show_skill_tally_items()
-	for skill_tally_item in hud.skill_tally_items():
-		skill_tally_item.visible = true
+	
 	hud.skill_tally_item("SnackBox").visible = false
 	hud.skill_tally_item("BoxClear").visible = false
 	hud.skill_tally_item("SquishMove").visible = false
@@ -236,6 +255,8 @@ func _on_PuzzleScore_game_prepared() -> void:
 	_boxes_built = 0
 	_squish_moves = 0
 	_snack_stacks = 0
+	
+	_prepare_tutorial_level()
 
 
 func _on_PuzzleScore_game_started() -> void:
@@ -248,22 +269,4 @@ func _on_PuzzleScore_game_started() -> void:
 
 
 func _on_PuzzleScore_after_level_changed() -> void:
-	match(Level.settings.id):
-		"tutorial_basics_1":
-			hud.skill_tally_item("SnackBox").visible = true
-			hud.skill_tally_item("BoxClear").visible = true
-			hud.set_message("Try making a snack box by arranging two pieces into a square.")
-		"tutorial_basics_2":
-			hud.skill_tally_item("SquishMove").visible = true
-			hud.set_message("Next,/ try holding soft drop to squish pieces through these gaps.")
-		"tutorial_basics_3":
-			hud.skill_tally_item("SnackStack").visible = true
-			hud.set_message("One last lesson!/ Try holding soft drop to squish and complete these boxes.")
-		"tutorial_basics_4":
-			# reset timer, scores
-			PuzzleScore.reset()
-			puzzle.scroll_to_new_creature()
-			
-			hud.set_message("You're a remarkably quick learner." \
-					+ "/ I think I hear some customers!\n\nSee if you can earn ¥100.")
-			hud.enqueue_pop_out()
+	_prepare_tutorial_level()
