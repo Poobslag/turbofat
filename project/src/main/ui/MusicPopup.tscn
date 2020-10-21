@@ -1,0 +1,102 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButtonFont.tres" type="DynamicFont" id=1]
+[ext_resource path="res://src/main/ui/music-popup-tween.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/music-popup.gd" type="Script" id=3]
+[ext_resource path="res://src/main/outline-material.tres" type="Material" id=4]
+[ext_resource path="res://assets/main/ui/icon-music.png" type="Texture" id=5]
+
+[sub_resource type="StyleBoxFlat" id=1]
+resource_local_to_scene = true
+bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MusicPopup" type="Control" groups=[
+"singletons",
+]]
+pause_mode = 2
+anchor_right = 1.0
+margin_top = -60.0
+margin_bottom = -4.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -229.5
+margin_top = -56.0
+margin_right = 219.5
+size_flags_horizontal = 4
+size_flags_vertical = 4
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -26.0
+margin_bottom = -6.0
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftIcon" type="TextureRect" parent="Panel/HBoxContainer"]
+material = ExtResource( 4 )
+margin_left = 8.0
+margin_right = 28.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/HBoxContainer"]
+margin_left = 32.0
+margin_right = 417.0
+margin_bottom = 20.0
+custom_fonts/font = ExtResource( 1 )
+text = "24/7 Lo-Fi Chill Hip Hop Beats to Eat & Get Fat To"
+align = 1
+valign = 1
+
+[node name="RightIcon" type="TextureRect" parent="Panel/HBoxContainer"]
+material = ExtResource( 4 )
+margin_left = 421.0
+margin_right = 441.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 20, 20 )
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource( 5 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PopupTween" type="Tween" parent="."]
+script = ExtResource( 2 )
+
+[node name="Timer" type="Timer" parent="PopupTween"]
+wait_time = 4.0
+one_shot = true

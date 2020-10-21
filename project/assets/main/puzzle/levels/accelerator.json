@@ -19,12 +19,10 @@
     {"type": "pieces", "value": "52", "speed": "8"},
     {"type": "pieces", "value": "56", "speed": "9"},
 
-    {"type": "pieces", "value": "80", "speed": "A1"},
-    {"type": "pieces", "value": "84", "speed": "A2"},
-    {"type": "pieces", "value": "88", "speed": "A3"},
-    {"type": "pieces", "value": "92", "speed": "A4"},
-    {"type": "pieces", "value": "96", "speed": "A5"},
-
-    {"type": "pieces", "value": "120", "speed": "AA"}
+    {"type": "pieces", "value": "80", "speed": "A3"},
+    {"type": "pieces", "value": "84", "speed": "A4"},
+    {"type": "pieces", "value": "88", "speed": "A6"},
+    {"type": "pieces", "value": "92", "speed": "A8"},
+    {"type": "pieces", "value": "96", "speed": "AA"}
   ]
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=9]
+[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=10]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -152,6 +153,8 @@ quit_on_cancel = false
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
+
+[node name="MusicPopup" parent="." instance=ExtResource( 10 )]
 [connection signal="pressed" from="DropPanel/Play/2d" to="." method="_on_PlayStory_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Practice" to="." method="_on_PlayPractice_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Tutorials" to="." method="_on_Tutorials_pressed"]

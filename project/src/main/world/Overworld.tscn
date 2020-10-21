@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -64,6 +64,7 @@
 [ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=62]
 [ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=63]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectPanel.tscn" type="PackedScene" id=64]
+[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=65]
 
 [sub_resource type="TileSet" id=1]
 0/name = "block-shadow.png 0"
@@ -640,14 +641,16 @@ margin_right = 502.0
 margin_bottom = 100.0
 mouse_filter = 2
 disabled = true
+
+[node name="MusicPopup" parent="Ui/OverworldUi" instance=ExtResource( 65 )]
 [connection signal="timeout" from="World/Obstacles/Bort/MoveTimer" to="World/Obstacles/Bort" method="_on_MoveTimer_timeout"]
 [connection signal="timeout" from="World/Obstacles/Ebe/MoveTimer" to="World/Obstacles/Ebe" method="_on_MoveTimer_timeout"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
-[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_started"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
-[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_started"]
 [connection signal="showed_chat_choices" from="Ui/OverworldUi" to="World/Obstacles/Player" method="_on_OverworldUi_showed_chat_choices"]
 [connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
@@ -656,13 +659,13 @@ disabled = true
 [connection signal="pressed" from="Ui/OverworldUi/Buttons/Northeast/SettingsButton" to="Ui/OverworldUi" method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Ui/OverworldUi/Buttons/Southeast/TalkButton" to="Ui/OverworldUi" method="_on_TalkButton_pressed"]
 [connection signal="cheat_detected" from="Ui/OverworldUi/CheatCodeDetector" to="Ui/OverworldUi/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
 [connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
+[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi" method="_on_SettingsMenu_quit_pressed"]
-[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
 [connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
-[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
+[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
 [connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
-[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
+[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
 [connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
+[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
 [connection signal="pressed" from="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast/BackButton" to="Ui/OverworldUi/CellPhoneMenu" method="_on_BackButton_pressed"]

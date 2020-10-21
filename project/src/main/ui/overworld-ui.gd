@@ -31,8 +31,13 @@ var _next_chat_tree: ChatTree
 var _chat_tree_cache: Dictionary
 
 func _ready() -> void:
+	ResourceCache.substitute_singletons()
 	_update_visible()
 	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
+
+
+func _exit_tree() -> void:
+	ResourceCache.remove_singletons()
 
 
 func start_chat(new_chat_tree: ChatTree, new_chatters: Array) -> void:

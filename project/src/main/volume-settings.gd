@@ -33,6 +33,11 @@ func set_bus_volume_linear(volume_type: int, new_value: float) -> void:
 	AudioServer.set_bus_mute(bus_index, new_value <= 0)
 
 
+func is_bus_mute(volume_type: int) -> bool:
+	var bus_index := _bus_index(volume_type)
+	return AudioServer.is_bus_mute(bus_index)
+
+
 """
 Resets the sound, music and voice volumes to their default values.
 """
