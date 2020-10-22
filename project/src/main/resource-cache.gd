@@ -27,8 +27,17 @@ export (bool) var verbose := false
 export (bool) var minimal_resources := false
 
 # maintains references to all resources to prevent them from being cleaned up
+# key: resource path
+# value: resource
 var _cache := {}
 var _cache_mutex := Mutex.new()
+
+# stores parsed versions of Aseprite json resources to speed up retrieval
+# key: json resource path
+# value: array of Rect2 instances representing regions defined by Aseprite
+var _frame_src_rect_cache := {}
+var _frame_dest_rect_cache := {}
+var _frame_cache_mutex := Mutex.new()
 
 # setting this to 'true' causes the background thread to terminate gracefully
 var _exiting := false
@@ -140,6 +149,24 @@ func get_cached_resource(path: String) -> Resource:
 
 
 """
+Returns Rect2 instances representing sprite sheet regions loaded from an Aseprite JSON file.
+
+The resulting Rect2s are sprite sheet regions where each frame can be read.
+"""
+func get_frame_src_rects(path: String) -> Array:
+	return _frame_src_rect_cache.get(path, [])
+
+
+"""
+Returns Rect2 instances representing screen regions loaded from an Aseprite JSON file.
+
+The resulting Rect2s are screen regions where each frame should be drawn
+"""
+func get_frame_dest_rects(path: String) -> Array:
+	return _frame_dest_rect_cache.get(path, [])
+
+
+"""
 Loads all pngs in the /assets directory and stores the resulting resources in our cache
 
 Parameters:
@@ -160,7 +187,10 @@ func _preload_next_resource() -> void:
 	var path: String = _remaining_resource_paths.pop_front()
 	_remaining_resource_paths_mutex.unlock()
 	
-	_load_resource(path)
+	if path.ends_with(".json"):
+		_load_json_resource(path)
+	else:
+		_load_resource(path)
 	
 	_work_done_mutex.lock()
 	_work_done += 1.0
@@ -203,6 +233,8 @@ func _find_resource_paths() -> Array:
 				_remaining_scene_paths.append("%s/%s" % [dir.get_current_dir(), file.get_file()])
 			elif file.ends_with(".png.import") or file.ends_with(".wav.import"):
 				_remaining_resource_paths.append("%s/%s" % [dir.get_current_dir(), file.get_basename()])
+			elif file.ends_with(".json"):
+				_remaining_resource_paths.append("%s/%s" % [dir.get_current_dir(), file.get_file()])
 		else:
 			if dir:
 				dir.list_dir_end()
@@ -230,6 +262,40 @@ func _find_resource_paths() -> Array:
 
 
 """
+Loads and caches the parsed version of an Aseprite json resource at the specified path.
+
+If the specified json resource is not an Aseprite json resource, we do nothing.
+"""
+func _load_json_resource(json_path: String) -> void:
+	# parse json
+	var json: String = FileUtils.get_file_as_text(json_path)
+	var json_root: Dictionary = parse_json(json)
+	if not json_root.has("frames"):
+		# the specified json resource is not an Aseprite json resource; do nothing
+		return
+	
+	# extract frame data from json
+	var json_frames: Array
+	if json_root["frames"] is Array:
+		json_frames = json_root["frames"]
+	elif json_root["frames"] is Dictionary:
+		json_frames = json_root["frames"].values()
+	else:
+		push_warning("Invalid frame data in file '%s'" % json_path)
+	
+	# store json frame data as Rect2 instances
+	_frame_cache_mutex.lock()
+	var frame_src_rects := []
+	var frame_dest_rects := []
+	for json_frame in json_frames:
+		frame_src_rects.append(_json_to_rect2(json_frame["frame"]))
+		frame_dest_rects.append(_json_to_rect2(json_frame["spriteSourceSize"]))
+	_frame_src_rect_cache[json_path] = frame_src_rects
+	_frame_dest_rect_cache[json_path] = frame_dest_rects
+	_frame_cache_mutex.unlock()
+
+
+"""
 Loads and caches the resource at the specified path.
 
 If the resource is not found, we cache that fact and do not attempt to load it again.
@@ -252,3 +318,10 @@ func _load_resource(resource_path: String) -> void:
 		_cache_mutex.lock()
 		_cache[resource_path] = result
 		_cache_mutex.unlock()
+
+
+"""
+Converts an Aseprite json region to a Rect2.
+"""
+static func _json_to_rect2(json: Dictionary) -> Rect2:
+	return Rect2(json.x, json.y, json.w, json.h)
