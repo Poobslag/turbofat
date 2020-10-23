@@ -43,7 +43,8 @@ Loads the file and recalculates the frame data. Updates our region and offset ba
 """
 func set_frame_data(new_frame_data: String) -> void:
 	frame_data = new_frame_data
-	_load_frame_data()
+	_frame_src_rects = ResourceCache.get_frame_src_rects(frame_data)
+	_frame_dest_rects = ResourceCache.get_frame_dest_rects(frame_data)
 	update()
 
 
@@ -72,38 +73,6 @@ func set_offset(new_offset: Vector2) -> void:
 	update()
 
 
-static func json_to_rect2(json: Dictionary) -> Rect2:
-	return Rect2(json.x, json.y, json.w, json.h)
-
-
-"""
-Loads the Aseprite json file.
-
-Stores the offset and region_rect for each frame.
-"""
-func _load_frame_data() -> void:
-	_frame_src_rects.clear()
-	_frame_dest_rects.clear()
-	if not frame_data:
-		return
-	
-	# read json frame data from resource
-	var json: String = get_file_as_text(frame_data)
-	var json_root: Dictionary = parse_json(json)
-	var json_frames: Array
-	if not json_root.has("frames"):
-		push_warning("Invalid frame data in file '%s'" % frame_data)
-	elif json_root["frames"] is Array:
-		json_frames = json_root["frames"]
-	elif json_root["frames"] is Dictionary:
-		json_frames = json_root["frames"].values()
-	
-	# store json frame data as Rect2 instances
-	for json_frame in json_frames:
-		_frame_src_rects.append(json_to_rect2(json_frame["frame"]))
-		_frame_dest_rects.append(json_to_rect2(json_frame["spriteSourceSize"]))
-
-
 func _draw() -> void:
 	if not _frame_dest_rects:
 		# frame data not loaded
@@ -117,15 +86,3 @@ func _draw() -> void:
 		push_warning("Frame data '%s' does not define a frame #%s" % [frame_data, frame])
 	else:
 		draw_texture_rect_region(texture, rect, _frame_src_rects[frame])
-
-
-static func get_file_as_text(path: String) -> String:
-	var text: String
-	var f := File.new()
-	if not f.file_exists(path):
-		push_error("File not found: %s" % path)
-	else:
-		f.open(path, f.READ)
-		text = f.get_as_text()
-		f.close()
-	return text
