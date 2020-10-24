@@ -55,8 +55,10 @@ var _remaining_resource_paths_mutex := Mutex.new()
 
 var _remaining_scene_paths := []
  
-# the wallpaper singleton, cached to preserve its appearance during scene transitions
-var wallpaper: Node
+# singleton nodes, cached to preserve their appearance during scene transitions
+# key: singleton names
+# value: singleton nodes
+var _singletons: Dictionary
 
 """
 Initializes the resource load.
@@ -97,9 +99,9 @@ func _process(_delta: float) -> void:
 
 
 func _exit_tree() -> void:
-	if wallpaper:
+	for singleton in _singletons.values():
 		# singletons are not freed when their parent scene is removed from the tree, we have to free them manually
-		wallpaper.free()
+		singleton.free()
 	if _load_threads:
 		_exiting = true
 		for thread in _load_threads:
@@ -109,27 +111,32 @@ func _exit_tree() -> void:
 """
 Replaces non-singletons in the scene tree with their singleton counterparts.
 """
-func substitute_singletons(parent: Node) -> void:
-	if wallpaper and parent.has_node("Wallpaper"):
-		# we have a singleton value to substitute; remove the non-singleton value
-		var wallpaper_index := parent.get_children().find(parent.get_node("Wallpaper"))
-		parent.get_node("Wallpaper").queue_free()
-		parent.remove_child(parent.get_node("Wallpaper"))
+func substitute_singletons() -> void:
+	for non_singleton_obj in get_tree().get_nodes_in_group("singletons"):
+		var non_singleton: Node = non_singleton_obj
 		
-		# add the singleton value
-		parent.add_child(wallpaper)
-		parent.move_child(wallpaper, wallpaper_index)
-	else:
-		# we have no singleton value stored; store a new singleton value
-		wallpaper = parent.get_node("Wallpaper")
+		var parent := non_singleton.get_parent()
+		if _singletons.has(non_singleton.name):
+			# we have a singleton value to substitute; remove the non-singleton value
+			var wallpaper_index := parent.get_children().find(non_singleton)
+			non_singleton.queue_free()
+			parent.remove_child(non_singleton)
+			
+			# add the singleton value
+			parent.add_child(_singletons[non_singleton.name])
+			parent.move_child(_singletons[non_singleton.name], wallpaper_index)
+		else:
+			# we have no singleton value stored; store a new singleton value
+			_singletons[non_singleton.name] = non_singleton
 
 
 """
-Removes singletons from the scene tree to prevent them from being freed.
+Removes singletons from their parent nodes to prevent them from being freed.
 """
-func remove_singletons(parent: Node) -> void:
-	if wallpaper and parent.has_node("Wallpaper"):
-		parent.remove_child(wallpaper)
+func remove_singletons() -> void:
+	for singleton_obj in _singletons.values():
+		if singleton_obj.get_parent():
+			singleton_obj.get_parent().remove_child(singleton_obj)
 
 
 func get_progress() -> float:
@@ -288,8 +295,8 @@ func _load_json_resource(json_path: String) -> void:
 	var frame_src_rects := []
 	var frame_dest_rects := []
 	for json_frame in json_frames:
-		frame_src_rects.append(_json_to_rect2(json_frame["frame"]))
-		frame_dest_rects.append(_json_to_rect2(json_frame["spriteSourceSize"]))
+		frame_src_rects.append(Utils.json_to_rect2(json_frame["frame"]))
+		frame_dest_rects.append(Utils.json_to_rect2(json_frame["spriteSourceSize"]))
 	_frame_src_rect_cache[json_path] = frame_src_rects
 	_frame_dest_rect_cache[json_path] = frame_dest_rects
 	_frame_cache_mutex.unlock()
@@ -318,10 +325,3 @@ func _load_resource(resource_path: String) -> void:
 		_cache_mutex.lock()
 		_cache[resource_path] = result
 		_cache_mutex.unlock()
-
-
-"""
-Converts an Aseprite json region to a Rect2.
-"""
-static func _json_to_rect2(json: Dictionary) -> Rect2:
-	return Rect2(json.x, json.y, json.w, json.h)
