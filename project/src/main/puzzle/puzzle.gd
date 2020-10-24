@@ -15,6 +15,7 @@ func _ready() -> void:
 	if not ResourceCache.is_done():
 		# when launched standalone, we don't load creature resources (they're slow)
 		ResourceCache.minimal_resources = true
+	ResourceCache.substitute_singletons()
 	
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
@@ -32,6 +33,10 @@ func _ready() -> void:
 		$PuzzleMusicManager.start_puzzle_music()
 		yield(get_tree().create_timer(0.8), "timeout")
 		_start_puzzle()
+
+
+func _exit_tree() -> void:
+	ResourceCache.remove_singletons()
 
 
 func _input(event: InputEvent) -> void:

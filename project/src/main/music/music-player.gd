@@ -5,6 +5,8 @@ Plays music.
 Ensures only one music track is playing at once. Organizes music by category and fades music in and out.
 """
 
+signal current_bgm_changed(value)
+
 # volume to fade out to; once the music reaches this volume, it's stopped
 const MIN_VOLUME := -40.0
 
@@ -73,6 +75,10 @@ func fade_in() -> void:
 	$MusicTween.fade_in(current_bgm, _max_volume_db_by_bgm[current_bgm.name])
 
 
+func is_fading_in() -> bool:
+	return $MusicTween.fading_state == MusicTween.FADING_IN
+
+
 """
 Fades out the currently playing track.
 """
@@ -98,3 +104,4 @@ func play_music(bgms: Array) -> void:
 			old_bgm.stop()
 		current_bgm.volume_db = _max_volume_db_by_bgm[current_bgm.name]
 		current_bgm.play()
+	emit_signal("current_bgm_changed", current_bgm)

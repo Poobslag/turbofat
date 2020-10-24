@@ -314,6 +314,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/money-label.gd"
 }, {
+"base": "Tween",
+"class": "MusicTween",
+"language": "GDScript",
+"path": "res://src/main/music/music-tween.gd"
+}, {
 "base": "Panel",
 "class": "MutateUi",
 "language": "GDScript",
@@ -656,6 +661,7 @@ _global_script_class_icons={
 "Milestone": "",
 "MilestoneHud": "",
 "MoneyLabel": "",
+"MusicTween": "",
 "MutateUi": "",
 "NameGenerator": "",
 "NameUtils": "",

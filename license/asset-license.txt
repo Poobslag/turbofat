@@ -72,6 +72,7 @@ Graphics
 project/assets/main/editor/creature/edit.png 'Dna' by Freepik
 project/assets/main/editor/creature/locked.png 'Unlock' by Freepik
 project/assets/main/editor/creature/unlocked.png 'Safe' by Freepik
+project/assets/main/ui/icon-music.png 'Musical Notes' by Freepik
 project/assets/main/ui/level-select/cleared.png 'Verification checkmark symbol' by Catalin Fertu
 project/assets/main/ui/level-select/crown.png 'Crown' by Freepik
 project/assets/main/ui/level-select/key.png 'Old Key' by Freepik

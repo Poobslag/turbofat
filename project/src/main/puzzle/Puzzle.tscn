@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://assets/main/puzzle/level-change.wav" type="AudioStream" id=28]
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav" type="AudioStream" id=29]
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=30]
+[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
 [ext_resource path="res://assets/main/ui/go.wav" type="AudioStream" id=38]
 [ext_resource path="res://assets/main/ui/ready.wav" type="AudioStream" id=39]
@@ -372,6 +373,8 @@ puzzle_path = NodePath("../../..")
 [node name="TutorialHud" parent="Hud/HudUi" instance=ExtResource( 2 )]
 visible = false
 puzzle_path = NodePath("../../..")
+
+[node name="MusicPopup" parent="Hud/HudUi" instance=ExtResource( 31 )]
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 
