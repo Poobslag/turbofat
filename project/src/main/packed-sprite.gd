@@ -43,8 +43,11 @@ Loads the file and recalculates the frame data. Updates our region and offset ba
 """
 func set_frame_data(new_frame_data: String) -> void:
 	frame_data = new_frame_data
-	_frame_src_rects = ResourceCache.get_frame_src_rects(frame_data)
-	_frame_dest_rects = ResourceCache.get_frame_dest_rects(frame_data)
+	if Engine.editor_hint:
+		_load_rects_from_json()
+	else:
+		_frame_src_rects = ResourceCache.get_frame_src_rects(frame_data)
+		_frame_dest_rects = ResourceCache.get_frame_dest_rects(frame_data)
 	update()
 
 
@@ -86,3 +89,36 @@ func _draw() -> void:
 		push_warning("Frame data '%s' does not define a frame #%s" % [frame_data, frame])
 	else:
 		draw_texture_rect_region(texture, rect, _frame_src_rects[frame])
+
+
+"""
+Loads sprite sheet regions and screen regions from a json file.
+
+This is slow and should only be used for editor tools where the ResourceCache is inaccessible.
+"""
+func _load_rects_from_json() -> void:
+	if not frame_data:
+		return
+	
+	# parse json
+	var json: String = FileUtils.get_file_as_text(frame_data)
+	var json_root: Dictionary = parse_json(json)
+	if not json_root.has("frames"):
+		# the specified json resource is not an Aseprite json resource; do nothing
+		return
+	
+	# extract frame data from json
+	var json_frames: Array
+	if json_root["frames"] is Array:
+		json_frames = json_root["frames"]
+	elif json_root["frames"] is Dictionary:
+		json_frames = json_root["frames"].values()
+	else:
+		push_warning("Invalid frame data in file '%s'" % frame_data)
+	
+	# store json frame data as Rect2 instances
+	_frame_src_rects.clear()
+	_frame_dest_rects.clear()
+	for json_frame in json_frames:
+		_frame_src_rects.append(Utils.json_to_rect2(json_frame["frame"]))
+		_frame_dest_rects.append(Utils.json_to_rect2(json_frame["spriteSourceSize"]))

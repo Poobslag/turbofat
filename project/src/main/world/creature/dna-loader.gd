@@ -16,7 +16,7 @@ var _pending_shader_keys: Array
 
 onready var _creature_visuals: CreatureVisuals = get_parent()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if _pending_shader_keys:
 		# if there are any pending shader keys, we load a few each frame. Setting shader params is slow and setting
 		# too many at once causes frame drops

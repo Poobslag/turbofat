@@ -1,3 +1,4 @@
+tool
 class_name Utils
 """
 Contains global utilities.
@@ -230,3 +231,10 @@ static func assign_default_dialog_path(dialog: FileDialog, default_resource_path
 		if not Directory.new().dir_exists(current_path):
 			current_path = OS.get_user_data_dir()
 		dialog.current_path = current_path
+
+
+"""
+Converts an Aseprite json region to a Rect2.
+"""
+static func json_to_rect2(json: Dictionary) -> Rect2:
+	return Rect2(json.x, json.y, json.w, json.h)

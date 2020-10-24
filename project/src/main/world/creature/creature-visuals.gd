@@ -19,6 +19,7 @@ unnecessary textures are loaded.
 signal food_eaten
 
 # emitted when a creature's textures and animations are loaded
+# warning-ignore:unused_signal
 signal dna_loaded
 
 # emitted during the 'run' animation when the creature touches the ground

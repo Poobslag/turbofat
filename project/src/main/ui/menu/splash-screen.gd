@@ -4,7 +4,7 @@ A splash screen which precedes the main menu.
 """
 
 func _ready() -> void:
-	ResourceCache.substitute_singletons(self)
+	ResourceCache.substitute_singletons()
 	
 	if not MusicPlayer.is_playing_chill_bgm():
 		MusicPlayer.play_chill_bgm()
@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
-	ResourceCache.remove_singletons(self)
+	ResourceCache.remove_singletons()
 
 
 func _on_Play_pressed() -> void:
