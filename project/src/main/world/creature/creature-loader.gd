@@ -413,10 +413,6 @@ func _load_colors(dna: Dictionary) -> void:
 	_set_krgb(dna, "FarLeg", line_color, body_color)
 	_set_krgb(dna, "NearArm", line_color, body_color)
 	_set_krgb(dna, "NearLeg", line_color, body_color)
-	
-	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ0", line_color, plastic_color, glass_color, Color.white)
-	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ1", line_color, plastic_color, glass_color, Color.white)
-	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ2", line_color, plastic_color, glass_color, Color.white)
 	_set_krgb(dna, "Neck0/HeadBobber/EarZ0", line_color, body_color, hair_color, horn_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EarZ1", line_color, body_color, hair_color, horn_color)
 	_set_krgb(dna, "Neck0/HeadBobber/EarZ2", line_color, body_color, hair_color, horn_color)
@@ -431,6 +427,13 @@ func _load_colors(dna: Dictionary) -> void:
 	_set_krgb(dna, "Neck0/HeadBobber/Head", line_color, body_color, belly_color)
 	_set_krgb(dna, "TailZ0", line_color, body_color, belly_color, hair_color)
 	_set_krgb(dna, "TailZ1", line_color, body_color, belly_color, hair_color)
+	
+	var accessory_plastic_color := plastic_color
+	if dna.get("accessory") in ["4", "5"]:
+		accessory_plastic_color = horn_color
+	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ0", line_color, accessory_plastic_color, glass_color, Color.white)
+	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ1", line_color, accessory_plastic_color, glass_color, Color.white)
+	_set_krgb(dna, "Neck0/HeadBobber/AccessoryZ2", line_color, accessory_plastic_color, glass_color, Color.white)
 	
 	var bellybutton_color := body_color if dna.get("belly") in ["0"] else belly_color
 	_set_krgb(dna, "Bellybutton", line_color, bellybutton_color)

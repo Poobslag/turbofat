@@ -161,6 +161,8 @@ const ALLELE_NAMES := {
 	"accessory-1": "Shades",
 	"accessory-2": "Glasses",
 	"accessory-3": "Headphones",
+	"accessory-4": "Headbones",
+	"accessory-5": "Dead Mouse",
 	
 	"belly-0": "(none)",
 	"belly-1": "Full",
@@ -205,6 +207,7 @@ const ALLELE_NAMES := {
 	"eye-2": "Zen",
 	"eye-3": "Decaf",
 	"eye-4": "Ping Pong",
+	"eye-5": "Multi",
 	
 	"hair-0": "(none)", 
 	"hair-1": "Lion", 
@@ -267,6 +270,13 @@ func _ready() -> void:
 	for nose in ["1", "2", "3"]:
 		# creatures with beak can NEVER have nose
 		_set_allele_combo_adjustment("mouth", "4", "nose", nose, -999)
+	
+	# goblin nose goes behind skull mask in a weird way
+	_set_allele_combo_adjustment("accessory", "4", "nose", "3", -999)
+	
+	# zen eyes don't show through the eyeholes
+	_set_allele_combo_adjustment("accessory", "4", "eye", "2", -2)
+	_set_allele_combo_adjustment("accessory", "5", "eye", "2", -2)
 	
 	_set_allele_weight("accessory", "0", 12.0)
 	
@@ -365,14 +375,14 @@ func unique_allele_values(property: String) -> Array:
 	else:
 		# other properties
 		match property:
-			"accessory": result = ["0", "1", "2", "3"]
+			"accessory": result = ["0", "1", "2", "3", "4", "5"]
 			"belly": result = ["0", "1", "2"]
 			"bellybutton": result = ["0", "1", "2", "3", "4"]
 			"body": result = ["1", "2"]
 			"cheek": result = ["0", "1", "2", "3", "4"]
 			"collar": result = ["0", "1", "2", "3", "4", "5"]
 			"ear": result = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-			"eye": result = ["0", "1", "2", "3", "4"]
+			"eye": result = ["0", "1", "2", "3", "4", "5"]
 			"hair": result = ["0", "1", "2"]
 			"head": result = ["1", "2", "3", "4", "5"]
 			"horn": result = ["0", "1", "2"]
