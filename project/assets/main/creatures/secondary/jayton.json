@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Jayton",
+  "short_name": "Jayton",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "3",
+    "collar": "0",
+    "ear": "4",
+    "eye": "1",
+    "hair": "0",
+    "head": "1",
+    "horn": "2",
+    "mouth": "3",
+    "nose": "0",
+    "tail": "7",
+    "accessory": "0",
+    "line_rgb": "3c0b52",
+    "body_rgb": "5a117b",
+    "belly_rgb": "554652",
+    "cloth_rgb": "cb1b2e",
+    "glass_rgb": "282828",
+    "plastic_rgb": "282828",
+    "hair_rgb": "d98227",
+    "eye_rgb": "192616 21a112",
+    "horn_rgb": "6f6178"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "5a117b"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.1
+}

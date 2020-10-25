@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Gordo",
+  "short_name": "Gordo",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "3",
+    "body": "1",
+    "cheek": "0",
+    "collar": "0",
+    "ear": "4",
+    "eye": "2",
+    "hair": "0",
+    "head": "2",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "2",
+    "tail": "1",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "41a740",
+    "belly_rgb": "e8fa95",
+    "cloth_rgb": "c09a2f",
+    "glass_rgb": "c5d1d1",
+    "plastic_rgb": "785537",
+    "hair_rgb": "f1e398",
+    "eye_rgb": "c09a2f f1e398",
+    "horn_rgb": "d3af43"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "41a740"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

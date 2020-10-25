@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Miteby",
+  "short_name": "Miteby",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "3",
+    "body": "1",
+    "cheek": "1",
+    "collar": "5",
+    "ear": "7",
+    "eye": "5",
+    "hair": "0",
+    "head": "5",
+    "horn": "1",
+    "mouth": "1",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "63426b",
+    "belly_rgb": "848383",
+    "cloth_rgb": "a2a500",
+    "glass_rgb": "640c11",
+    "plastic_rgb": "262726",
+    "hair_rgb": "73b693",
+    "eye_rgb": "a6001e ff9c9c",
+    "horn_rgb": "63426b"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "63426b"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}
