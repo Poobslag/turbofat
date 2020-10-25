@@ -54,9 +54,9 @@ Parameters:
 	
 	'moods': An array of ChatEvent.Mood instances for each dialog branch
 	
-	'columns': (Optional) The number of columns to organize the chat events into.
+	'new_columns': (Optional) The number of columns to organize the chat events into.
 """
-func show_choices(choices: Array, moods: Array, columns: int = 0) -> void:
+func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 	visible = true
 	_choices = choices
 	_moods = moods
@@ -65,7 +65,9 @@ func show_choices(choices: Array, moods: Array, columns: int = 0) -> void:
 		push_warning("Too many chat choices: %s > %s" % [choices.size(), MAX_LABELS])
 		_choices = choices.slice(0, MAX_LABELS - 1)
 	
-	if columns == 0:
+	if new_columns:
+		columns = new_columns
+	else:
 		columns = 1 if _choices.size() <= 3 else 2
 	_refresh_child_buttons()
 	
