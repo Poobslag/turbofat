@@ -229,6 +229,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/hookable-grade-label.gd"
 }, {
+"base": "Reference",
+"class": "InputReplay",
+"language": "GDScript",
+"path": "res://src/main/puzzle/input-replay.gd"
+}, {
 "base": "Sprite",
 "class": "LeafPoof",
 "language": "GDScript",
@@ -644,6 +649,7 @@ _global_script_class_icons={
 "HeadBobber": "",
 "HighScoreTable": "",
 "HookableGradeLabel": "",
+"InputReplay": "",
 "LeafPoof": "",
 "LevelChunk": "",
 "LevelChunkControl": "",

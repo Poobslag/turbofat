@@ -31,13 +31,13 @@ func set_ccw_input_as_handled() -> void: $Ccw.set_input_as_handled()
 func is_left_just_pressed() -> bool: return $Left.is_just_pressed()
 func is_left_pressed() -> bool: return $Left.is_pressed()
 func is_left_das_active() -> bool: return $Left.is_das_active()
-func set_left_das_active() -> void: $Left.frames = 3600
+func set_left_das_active() -> void: $Left.pressed_frames = 3600
 func set_left_input_as_handled() -> void: $Left.set_input_as_handled()
 
 func is_right_just_pressed() -> bool: return $Right.is_just_pressed()
 func is_right_pressed() -> bool: return $Right.is_pressed()
 func is_right_das_active() -> bool: return $Right.is_das_active()
-func set_right_das_active() -> void: $Right.frames = 3600
+func set_right_das_active() -> void: $Right.pressed_frames = 3600
 func set_right_input_as_handled() -> void: $Right.set_input_as_handled()
 
 func is_soft_drop_just_pressed() -> bool: return $SoftDrop.is_just_pressed()

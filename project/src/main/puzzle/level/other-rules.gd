@@ -12,6 +12,9 @@ var non_interactive := false
 # 'true' for levels which follow tutorial levels
 var after_tutorial := false
 
+# 'true' to make the visual combo indicators easier to see
+var enhance_combo_fx := false
+
 # If the player restarts, they restart from this level (used for tutorials)
 var start_level: String
 
@@ -24,6 +27,7 @@ var skip_intro := false
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
 	if rules.has("after_tutorial"): after_tutorial = true
+	if rules.has("enhance_combo_fx"): enhance_combo_fx = true
 	if rules.has("no_clear_on_finish"): clear_on_finish = false
 	if rules.has("start_level"): start_level = rules.string_value()
 	if rules.has("tutorial"): tutorial = true

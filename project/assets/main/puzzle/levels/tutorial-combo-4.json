@@ -1,0 +1,214 @@
+{
+  "version": "19c5",
+  "piece_types": [
+    "ordered_start",
+    "start_piece_l",
+    "start_piece_j",
+    "start_piece_o",
+    "start_piece_l",
+    "piece_j",
+    "piece_l",
+    "piece_o"
+  ],
+  "blocks_start": {
+    "tiles": [
+      {
+        "pos": "0 12",
+        "tile": "1 10 4"
+      },
+      {
+        "pos": "1 12",
+        "tile": "1 14 4"
+      },
+      {
+        "pos": "2 12",
+        "tile": "1 6 4"
+      },
+      {
+        "pos": "0 13",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "1 13",
+        "tile": "1 15 4"
+      },
+      {
+        "pos": "2 13",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "0 14",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "1 14",
+        "tile": "1 15 4"
+      },
+      {
+        "pos": "2 14",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "0 15",
+        "tile": "1 9 4"
+      },
+      {
+        "pos": "1 15",
+        "tile": "1 13 4"
+      },
+      {
+        "pos": "2 15",
+        "tile": "1 5 4"
+      },
+      {
+        "pos": "0 16",
+        "tile": "1 10 4"
+      },
+      {
+        "pos": "1 16",
+        "tile": "1 14 4"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 6 4"
+      },
+      {
+        "pos": "6 16",
+        "tile": "2 14 0"
+      },
+      {
+        "pos": "7 16",
+        "tile": "2 15 3"
+      },
+      {
+        "pos": "8 16",
+        "tile": "2 11 0"
+      },
+      {
+        "pos": "0 17",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 15 4"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "6 17",
+        "tile": "2 17 0"
+      },
+      {
+        "pos": "7 17",
+        "tile": "2 12 3"
+      },
+      {
+        "pos": "8 17",
+        "tile": "2 10 0"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 15 4"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "5 18",
+        "tile": "2 4 0"
+      },
+      {
+        "pos": "6 18",
+        "tile": "2 7 3"
+      },
+      {
+        "pos": "7 18",
+        "tile": "2 10 3"
+      },
+      {
+        "pos": "8 18",
+        "tile": "2 8 2"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 9 4"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 13 4"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 5 4"
+      },
+      {
+        "pos": "5 19",
+        "tile": "2 11 3"
+      },
+      {
+        "pos": "6 19",
+        "tile": "2 16 1"
+      },
+      {
+        "pos": "7 19",
+        "tile": "2 9 3"
+      },
+      {
+        "pos": "8 19",
+        "tile": "2 6 2"
+      }
+    ]
+  },
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "tutorial",
+    "start_level tutorial_combo_0",
+    "enhance_combo_fx"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
+  "input_replay": [
+    "17 +ui_right",
+    "23 -ui_right",
+    "29 +ui_right",
+    "34 -ui_right",
+    "40 +ui_right",
+    "46 -ui_right",
+    "50 +soft_drop",
+    "87 -soft_drop",
+    "155 +rotate_ccw",
+    "162 -rotate_ccw",
+    "187 +rotate_ccw",
+    "192 -rotate_ccw",
+    "204 +soft_drop",
+    "246 -soft_drop",
+    "366 +ui_right",
+    "372 -ui_right",
+    "378 +ui_right",
+    "382 -ui_right",
+    "388 +ui_right",
+    "392 -ui_right",
+    "398 +soft_drop",
+    "432 -soft_drop",
+    "508 +rotate_cw",
+    "517 -rotate_cw",
+    "522 +ui_right",
+    "528 -ui_right",
+    "534 +ui_right",
+    "540 -ui_right",
+    "546 +soft_drop",
+    "638 -soft_drop"
+  ],
+  "start_speed": "T"
+}

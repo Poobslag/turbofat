@@ -1,0 +1,17 @@
+{
+  "version": "19c5",
+  "start_speed": "T",
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "tutorial",
+    "start_level tutorial_combo_0",
+    "non_interactive",
+    "enhance_combo_fx"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ]
+}

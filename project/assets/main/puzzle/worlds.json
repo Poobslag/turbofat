@@ -11,6 +11,10 @@
         {
           "id": "tutorial_squish_0",
           "creature_id": "#instructor#"
+        },
+        {
+          "id": "tutorial_combo_0",
+          "creature_id": "#instructor#"
         }
       ]
     },

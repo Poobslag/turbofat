@@ -20,7 +20,7 @@ var _did_build_cake := false
 var _did_squish_move := false
 
 func _ready() -> void:
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
 	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
 	
@@ -36,20 +36,6 @@ func _ready() -> void:
 		# display a welcome message before the game starts
 		hud.set_message("Welcome to Turbo Fat!//"
 				+ " You seem to already be familiar with this sort of game,/ so let's dive right in.")
-
-
-"""
-Hide all completed skill tally items.
-
-If the player only rotates in one direction or never hard drops a piece, that skill tally item remains visible for the
-entire tutorial. This gives them a small hint that there's other stuff they haven't done yet, but it's not necessary to
-progress.
-"""
-func _hide_completed_skill_tally_items() -> void:
-	for skill_tally_item_obj in hud.skill_tally_items():
-		var skill_tally_item: SkillTallyItem = skill_tally_item_obj
-		if skill_tally_item.value >= skill_tally_item.max_value:
-			skill_tally_item.visible = false
 
 
 """
@@ -69,15 +55,12 @@ func _advance_level() -> void:
 		PuzzleScore.level_performance.lines = 100
 	elif _boxes_built == 0 or _box_clears == 0:
 		hud.set_message("Good job!")
-		_hide_completed_skill_tally_items()
 		PuzzleScore.change_level("tutorial_basics_1")
 	elif _squish_moves == 0:
 		hud.set_message("Nicely done!")
-		_hide_completed_skill_tally_items()
 		PuzzleScore.change_level("tutorial_basics_2")
 	elif _snack_stacks == 0:
 		hud.set_message("Impressive!")
-		_hide_completed_skill_tally_items()
 		PuzzleScore.change_level("tutorial_basics_3")
 	else:
 		hud.set_message("Oh! I thought that would be more difficult...")
@@ -162,6 +145,7 @@ func _handle_snack_stack_message() -> void:
 
 
 func _prepare_tutorial_level() -> void:
+	hide_completed_skill_tally_items()
 	match(Level.settings.id):
 		"tutorial_basics_1":
 			hud.skill_tally_item("SnackBox").visible = true
@@ -242,7 +226,7 @@ func _on_Playfield_after_piece_written() -> void:
 				_advance_level()
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleScore_after_game_prepared() -> void:
 	hud.show_skill_tally_items()
 	
 	hud.skill_tally_item("SnackBox").visible = false

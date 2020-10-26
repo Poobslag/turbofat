@@ -17,7 +17,7 @@ signal after_game_prepared
 # emitter after the initial countdown finishes, when the player can start playing.
 signal game_started
 
-# emitted during tutorials, when changing from one section of the tutorial to the next
+# emitted during tutorials, when changing from one tutorial section to the next
 signal before_level_changed(new_level_id)
 signal after_level_changed
 
@@ -65,6 +65,10 @@ const WON := EndResult.WON
 
 const READY_DURATION := 1.4
 
+# the current input frame for recording/replaying the player's inputs. a value of '-1' indicates that no input should
+# be recorded or replayed yet.
+var input_frame := -1
+
 # Player's performance on the current level
 var level_performance := PuzzlePerformance.new()
 
@@ -93,6 +97,15 @@ var speed_index: int setget set_speed_index
 # This is true if the final customer has been fed and we shouldn't rotate to any other customers. It also gets used
 # for tutorials to prevent the instructor from leaving.
 var no_more_customers: bool
+
+func _physics_process(_delta: float) -> void:
+	if input_frame < 0:
+		# if input_frame is negative, we preserve its value. a negative value indicates that no input should be
+		# recorded or replayed yet.
+		pass
+	else:
+		input_frame += 1
+
 
 """
 Resets all score data, and starts a new game after a brief pause.
@@ -155,6 +168,8 @@ func change_level(level_id: String, delay_between_levels: float = DELAY_SHORT) -
 	var settings := LevelSettings.new()
 	settings.load_from_resource(level_id)
 	Level.switch_level(settings)
+	# initialize input_frame to allow for recording/replaying inputs
+	input_frame = 0
 	emit_signal("after_level_changed")
 
 
@@ -205,7 +220,11 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 Ends the current combo, incrementing the score and resetting the bonus/creature scores to zero.
 """
 func end_combo() -> void:
-	if no_more_customers:
+	if Level.settings.other.tutorial:
+		# during tutorials, reset the combo and line clears
+		creature_scores[creature_scores.size() - 1] = 0
+		creature_line_clears[creature_scores.size() - 1] = 0
+	elif no_more_customers:
 		pass
 	elif get_creature_score() == 0:
 		# don't add $0 creatures. creatures don't pay if they owe $0
@@ -235,6 +254,7 @@ func reset() -> void:
 	level_performance = PuzzlePerformance.new()
 	speed_index = 0
 	no_more_customers = Level.settings.other.tutorial
+	input_frame = -1
 	
 	emit_signal("score_changed")
 	emit_signal("speed_index_changed", 0)
@@ -258,6 +278,10 @@ func get_creature_score() -> int:
 
 func get_creature_line_clears() -> int:
 	return creature_line_clears[creature_line_clears.size() - 1]
+
+
+func set_creature_line_clears(value: int) -> void:
+	creature_line_clears[creature_line_clears.size() - 1] = value
 
 
 func end_result() -> int:
@@ -299,6 +323,8 @@ func _start_game() -> void:
 		return
 	
 	game_active = true
+	# initialize input_frame to allow for recording/replaying inputs
+	input_frame = 0
 	emit_signal("game_started")
 
 
