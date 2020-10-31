@@ -39,7 +39,7 @@ func _on_PuzzleScore_game_started() -> void:
 
 
 func _on_PuzzleScore_before_level_changed(new_level_id: String) -> void:
-	if Level.settings.other.non_interactive:
+	if Level.settings.other.non_interactive or not Level.settings.input_replay.empty():
 		# no sound effect or fanfare for non-interactive levels
 		return
 	

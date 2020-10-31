@@ -23,6 +23,9 @@ var combo_break := ComboBreakRules.new()
 # used for limits such as serving 5 creatures or clearing 10 lines. 
 var finish_condition := Milestone.new()
 
+# Sequence of puzzle inputs to be replayed for things such as tutorials.
+var input_replay := InputReplay.new()
+
 # Array of Milestone objects representing the requirements to speed up. This mostly applies to 'Marathon Mode' where
 # clearing lines makes you speed up.
 var speed_ups := []
@@ -143,6 +146,8 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 		score.from_json_string_array(json["score"])
 	if json.has("success_condition"):
 		success_condition.from_json_dict(json["success_condition"])
+	if json.has("input_replay"):
+		input_replay.from_json_string_array(json["input_replay"])
 
 
 func load_from_resource(new_id: String) -> void:

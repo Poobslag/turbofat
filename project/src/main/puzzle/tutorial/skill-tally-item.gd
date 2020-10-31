@@ -38,7 +38,11 @@ func set_puzzle(new_puzzle: Puzzle) -> void:
 func set_label_text(new_label_text: String) -> void:
 	label_text = new_label_text
 	if is_inside_tree():
-		_update_label()
+		update_label()
+
+
+func is_complete() -> bool:
+	return value >= max_value
 
 
 """
@@ -46,7 +50,7 @@ Resets the skill tally to 0 when starting/restarting a tutorial.
 """
 func reset() -> void:
 	value = 0
-	_update_label()
+	update_label()
 
 
 """
@@ -64,7 +68,7 @@ func increment() -> void:
 			_blink()
 	else:
 		_blink()
-	_update_label()
+	update_label()
 
 
 """
@@ -128,7 +132,7 @@ func _blink(bright: bool = false) -> void:
 	$Tween.start()
 
 
-func _update_label() -> void:
+func update_label() -> void:
 	if show_as_percent:
 		$Label.text = "%s\n%d%%" % [label_text, int(100 * value / max_value)]
 	else:

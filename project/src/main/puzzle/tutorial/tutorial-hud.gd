@@ -35,11 +35,15 @@ Tutorial modules show messages and advance the player through the tutorial as th
 func replace_tutorial_module() -> void:
 	if has_node("TutorialModule"):
 		remove_child(get_node("TutorialModule"))
+	
 	var module_path: String
 	if Level.settings.id.begins_with("tutorial_basics"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialBasicsModule.tscn"
 	elif Level.settings.id.begins_with("tutorial_squish"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialSquishModule.tscn"
+	elif Level.settings.id.begins_with("tutorial_combo"):
+		module_path = "res://src/main/puzzle/tutorial/TutorialComboModule.tscn"
+	
 	if module_path:
 		var tutorial_module_scene: PackedScene = load(module_path)
 		var tutorial_module: Node = tutorial_module_scene.instance()

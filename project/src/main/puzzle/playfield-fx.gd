@@ -49,7 +49,7 @@ const OFF_PATTERN: Array = [
 	".........",
 ]
 
-onready var _combo_tracker: ComboTracker = $"../../ComboTracker"
+export (NodePath) var combo_tracker_path: NodePath
 
 # light pattern being shown.
 var _pattern := OFF_PATTERN
@@ -77,8 +77,12 @@ var _color := Color.transparent
 # tile indexes by food/vegetable color
 var _color_tile_indexes: Dictionary
 
+onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
+
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	_combo_tracker.connect("combo_break_changed", self, "_on_ComboTracker_combo_break_changed")
+	_combo_tracker.connect("combo_changed", self, "_on_ComboTracker_combo_changed")
 	_init_tile_set()
 	_init_color_tile_indexes()
 	reset()
@@ -91,7 +95,7 @@ func _process(delta: float) -> void:
 
 func reset() -> void:
 	_pattern = OFF_PATTERN
-	_color = Color.transparent
+	_color = RAINBOW_LIGHT_COLOR
 	$LightMap.modulate = Color.transparent
 	$GlowMap.modulate = Color.transparent
 	_calculate_brightness(0)
@@ -176,16 +180,21 @@ Calculates the brightness of the lights based on the current combo.
 """
 func _calculate_brightness(combo: int) -> void:
 	_elapsed_beats = 0.0
+	
+	# apply enhance_combo_fx setting for tutorial
+	if Level.settings.other.enhance_combo_fx and combo >= 3:
+		combo += 12
+	
 	if combo >= 12:
 		# 100% opacity flashing lights is hard on the eyes. even at max combo, we dial it back from 100%
 		_brightness = lerp(0.30, 0.60, smoothstep(12, 40, combo))
 		_pulse_amount = lerp(0.10, 0.30, smoothstep(12, 30, combo))
 		_glow_duration = lerp(0.60, 2.40, smoothstep(12, 100, combo))
-	elif combo >= 5:
+	elif combo >= 3:
 		# We quickly ramp from a low brightness to medium brightness. Low brightness has some visual artifacts.
-		_brightness = lerp(0.10, 0.30, smoothstep(5, 12, combo))
-		_pulse_amount = lerp(0.00, 0.00, smoothstep(10, 12, combo))
-		_glow_duration = lerp(0.30, 0.60, smoothstep(5, 12, combo))
+		_brightness = lerp(0.10, 0.30, smoothstep(3, 12, combo))
+		_pulse_amount = 0.0
+		_glow_duration = lerp(0.30, 0.60, smoothstep(3, 12, combo))
 	else:
 		# Combos smaller than 5 do not cause lights to appear.
 		_brightness = 0.0
@@ -200,44 +209,45 @@ Calculates the new light pattern and refreshes the tile maps.
 func _refresh_tile_maps() -> void:
 	$BgStrobe.color = Utils.to_transparent(_color)
 	
+	var old_pattern := _pattern
 	var new_pattern: Array
 	match _combo_tracker.combo_break:
 		0: new_pattern = ON_PATTERN
 		1: new_pattern = HALF_PATTERN
 		_: new_pattern = OFF_PATTERN
-	_pattern = new_pattern
 	
-	for y in range(PuzzleTileMap.ROW_COUNT):
-		for x in range(PuzzleTileMap.COL_COUNT):
-			var s: String = _pattern[(y + _pattern_y) % _pattern.size()]
-			var tile: int = -1
-			if s[x] == '#':
-				if _color == RAINBOW_LIGHT_COLOR:
-					tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
-				elif _color_tile_indexes.has(_color):
-					tile = _color_tile_indexes[_color]
-			$LightMap.set_cell(x, y, tile)
-			$GlowMap.set_cell(x, y, tile)
+	if old_pattern == OFF_PATTERN and new_pattern == OFF_PATTERN:
+		# no need to refresh if all the lights remain off
+		pass
+	else:
+		_pattern = new_pattern
+		for y in range(PuzzleTileMap.ROW_COUNT):
+			for x in range(PuzzleTileMap.COL_COUNT):
+				var s: String = _pattern[(y + _pattern_y) % _pattern.size()]
+				var tile: int = -1
+				if s[x] == '#':
+					if _color == RAINBOW_LIGHT_COLOR:
+						tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
+					elif _color_tile_indexes.has(_color):
+						tile = _color_tile_indexes[_color]
+				$LightMap.set_cell(x, y, tile)
+				$GlowMap.set_cell(x, y, tile)
 
 
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
-	_calculate_brightness(_combo_tracker.combo)
 	_calculate_line_color(box_ints)
 	_pattern_y += 1
-	_start_glow_tween()
 	_refresh_tile_maps()
 
 
-"""
-When the player's combo breaks or resets we update the lights.
-"""
-func _on_ComboTracker_combo_break_changed(value: int) -> void:
-	if value >= 2:
-		if _pattern != OFF_PATTERN:
-			reset()
-			_refresh_tile_maps()
-	else:
-		_refresh_tile_maps()
+func _on_ComboTracker_combo_break_changed(_value: int) -> void:
+	_refresh_tile_maps()
+
+
+func _on_ComboTracker_combo_changed(value: int) -> void:
+	_calculate_brightness(value)
+	_start_glow_tween()
+	_refresh_tile_maps()
 
 
 """

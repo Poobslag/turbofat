@@ -77,9 +77,9 @@ func _fill() -> void:
 Initializes an empty queue with a set of starting pieces.
 """
 func _fill_initial_pieces() -> void:
-	if Level.settings.piece_types.types.empty():
+	if Level.settings.piece_types.types.empty() and Level.settings.piece_types.start_types.empty():
 		"""
-		Default piece selection:
+		Default starting pieces:
 		1. Append three same-size pieces which can't build a cake box; lot, jot, jlt or pqu
 		2. Append a piece which can't build a snack box or a cake box
 		3. Append a piece which can build a snack box, but not a cake box
@@ -112,8 +112,12 @@ func _fill_initial_pieces() -> void:
 				_pieces.push_back(piece)
 		
 		_insert_annoying_piece(3)
-	
-	if Level.settings.piece_types.start_types:
+	elif Level.settings.piece_types.start_types and Level.settings.piece_types.ordered_start:
+		# Fixed starting pieces: Append all of the start pieces in order.
+		for piece in Level.settings.piece_types.start_types:
+			_pieces.append(piece)
+	else:
+		# Shuffled starting pieces: Append all of the start pieces in a random order, skipping duplicates.
 		var pieces_tmp := Level.settings.piece_types.start_types.duplicate()
 		pieces_tmp.shuffle()
 		for piece in pieces_tmp:

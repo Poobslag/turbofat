@@ -27,7 +27,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="TutorialBasicsModule" type="Node"]
+[node name="TutorialSquishModule" type="Node"]
 script = ExtResource( 2 )
 
 [node name="SkillTallyItems" type="Node" parent="."]

@@ -6,16 +6,17 @@ Keeps track of the player's combo.
 Increments the combo when the player does well, breaks the combo when the player messes up.
 """
 
+signal combo_changed(value)
 signal combo_break_changed(value)
 
 # bonus points which are awarded as the player continues a combo
 const COMBO_SCORE_ARR = [0, 0, 5, 5, 10, 10, 15, 15, 20]
 
 # number of lines the player has cleared without dropping their combo
-var combo := 0
+var combo := 0 setget set_combo
 
 # The number of pieces the player has dropped without clearing a line or making a box.
-var combo_break := 0
+var combo_break := 0 setget set_combo_break
 
 # 'true' if the player drops a piece which continues the combo (typically, making a box or clearing a line)
 var piece_continued_combo := false
@@ -27,6 +28,17 @@ var piece_broke_combo := false
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
+	Level.connect("settings_changed", self, "_on_Level_settings_changed")
+
+
+func set_combo(new_combo: int) -> void:
+	combo = new_combo
+	emit_signal("combo_changed", new_combo)
+
+
+func set_combo_break(new_combo_break: int) -> void:
+	combo_break = new_combo_break
+	emit_signal("combo_break_changed", combo_break)
 
 
 func break_combo() -> void:
@@ -37,13 +49,26 @@ func break_combo() -> void:
 	elif combo >= 5:
 		$Fanfare1.play()
 	
-	if PuzzleScore.get_creature_score() > 0:
+	if PuzzleScore.get_creature_line_clears() > 0:
 		PuzzleScore.end_combo()
 	combo = 0
+	emit_signal("combo_changed", combo)
+	emit_signal("combo_break_changed", combo_break)
+
+
+func _reset() -> void:
+	combo = 0
+	combo_break = 0
+	emit_signal("combo_changed", combo)
+	emit_signal("combo_break_changed", combo)
 
 
 func _on_PuzzleScore_game_prepared() -> void:
-	combo = 0
+	_reset()
+
+
+func _on_Level_settings_changed() -> void:
+	_reset()
 
 
 func _on_Playfield_box_built(_rect: Rect2, _color_int: int) -> void:
@@ -67,7 +92,6 @@ func _on_Playfield_after_piece_written() -> void:
 	if piece_broke_combo:
 		combo_break = Level.settings.combo_break.pieces
 		break_combo()
-		emit_signal("combo_break_changed", combo_break)
 	else:
 		if not piece_continued_combo:
 			combo_break += 1
@@ -76,7 +100,8 @@ func _on_Playfield_after_piece_written() -> void:
 		# this is necessary to cover the 'combo_break.pieces = 0' case
 		if combo_break >= Level.settings.combo_break.pieces:
 			break_combo()
-		emit_signal("combo_break_changed", combo_break)
+		else:
+			emit_signal("combo_break_changed", combo_break)
 	
 	piece_broke_combo = false
 	piece_continued_combo = false
@@ -84,7 +109,6 @@ func _on_Playfield_after_piece_written() -> void:
 
 func _on_PuzzleScore_game_ended() -> void:
 	PuzzleScore.end_combo()
-	combo = 0
 
 
 """
@@ -102,3 +126,4 @@ func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_li
 		else:
 			box_score += Level.settings.score.veg_points
 	PuzzleScore.add_line_score(combo_score, box_score)
+	emit_signal("combo_changed", combo)

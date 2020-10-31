@@ -33,3 +33,17 @@ func start_customer_countdown() -> void:
 	yield(PuzzleScore, "after_level_changed")
 	MusicPlayer.play_upbeat_bgm()
 	puzzle.start_level_countdown()
+
+
+"""
+Hide all completed skill tally items.
+
+If the player only rotates in one direction or never hard drops a piece, that skill tally item remains visible for the
+entire tutorial. This gives them a small hint that there's other stuff they haven't done yet, but it's not necessary to
+progress.
+"""
+func hide_completed_skill_tally_items() -> void:
+	for skill_tally_item_obj in hud.skill_tally_items():
+		var skill_tally_item: SkillTallyItem = skill_tally_item_obj
+		if skill_tally_item.is_complete():
+			skill_tally_item.visible = false

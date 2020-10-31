@@ -3,25 +3,13 @@
   "start_speed": "T",
   "finish_condition": {
     "type": "pieces",
-    "value": "4"
+    "value": "5"
   },
   "blocks_start": {
     "tiles": [
       {
-        "pos": "5 10",
-        "tile": "0 10 2"
-      },
-      {
-        "pos": "6 10",
-        "tile": "0 4 2"
-      },
-      {
         "pos": "8 10",
         "tile": "0 2 2"
-      },
-      {
-        "pos": "5 11",
-        "tile": "0 3 2"
       },
       {
         "pos": "7 11",
@@ -46,14 +34,6 @@
       {
         "pos": "3 12",
         "tile": "1 6 4"
-      },
-      {
-        "pos": "5 12",
-        "tile": "0 9 2"
-      },
-      {
-        "pos": "6 12",
-        "tile": "0 4 2"
       },
       {
         "pos": "8 12",
@@ -242,6 +222,7 @@
     ]
   },
   "piece_types": [
+    "start_piece_u",
     "piece_j",
     "piece_l",
     "piece_p",
@@ -262,5 +243,19 @@
   "rank": [
     "skip_results",
     "unranked"
+  ],
+  "input_replay": [
+    "56 +ui_right",
+    "61 -ui_right",
+    "110 +ui_right",
+    "116 -ui_right",
+    "123 +ui_left",
+    "128 +rotate_ccw",
+    "130 -ui_left",
+    "134 -rotate_ccw",
+    "141 +ui_right",
+    "146 -ui_right",
+    "156 +hard_drop",
+    "163 -hard_drop"
   ]
 }

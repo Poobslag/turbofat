@@ -5,7 +5,7 @@ Tutorial module for the 'Basic Techniques' tutorial.
 Shows messages and advances the player through the tutorial as they complete tasks.
 """
 
-# tracks what the player has done during the current section of the tutorial
+# tracks what the player has done during the current tutorial section
 var _squish_moves := 0
 var _boxes_built := 0
 
@@ -24,8 +24,11 @@ var _prepared_levels: Dictionary
 var _squish_diagram_0 := preload("res://assets/main/puzzle/tutorial/squish-diagram-0.png")
 var _squish_diagram_1 := preload("res://assets/main/puzzle/tutorial/squish-diagram-1.png")
 
+# 'true' if the player is retrying a failed tutorial section. We display different messages the second time.
+var _failed_section := false
+
 func _ready() -> void:
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
 	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
 	
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
@@ -35,37 +38,20 @@ func _ready() -> void:
 	hud.get_tutorial_diagram().connect("ok_chosen", self, "_on_TutorialDiagram_ok_chosen")
 	hud.get_tutorial_diagram().connect("help_chosen", self, "_on_TutorialDiagram_help_chosen")
 	
-	if Level.settings.other.skip_intro:
-		puzzle.hide_buttons()
-	else:
-		# display a welcome message before the game starts
-		hud.set_message("Today we'll cover some advanced squish move techniques!"
-				+ "\n\nBut first,/ let's make sure you remember the basics.")
-
-
-"""
-Hide all completed skill tally items.
-
-If the player only rotates in one direction or never hard drops a piece, that skill tally item remains visible for the
-entire tutorial. This gives them a small hint that there's other stuff they haven't done yet, but it's not necessary to
-progress.
-"""
-func _hide_completed_skill_tally_items() -> void:
-	for skill_tally_item_obj in hud.skill_tally_items():
-		var skill_tally_item: SkillTallyItem = skill_tally_item_obj
-		if skill_tally_item.value >= skill_tally_item.max_value:
-			skill_tally_item.visible = false
+	# display a welcome message before the game starts
+	hud.set_message("Today we'll cover some advanced squish move techniques!"
+			+ "\n\nBut first,/ let's make sure you remember the basics.")
 
 
 """
 Advance to the next level in the tutorial.
 """
 func _advance_level() -> void:
-	var failed_section := false
+	_failed_section = false
 	var delay_between_levels := PuzzleScore.DELAY_SHORT
 	match(Level.settings.id):
 		"tutorial_squish_1":
-			# no delay for the non-interactive player where we show the player a diagram
+			# no delay for the non-interactive segment where we show the player a diagram
 			delay_between_levels = PuzzleScore.DELAY_NONE
 		"tutorial_squish_2":
 			hud.set_message("Yes, that's right.")
@@ -78,7 +64,7 @@ func _advance_level() -> void:
 			if PuzzleScore.level_performance.lines >= 3:
 				hud.set_message("Good job!")
 			else:
-				failed_section = true
+				_failed_section = true
 				hud.set_message("Oops!/ ...Let's try that again.")
 		"tutorial_squish_6":
 			if PuzzleScore.level_performance.lines >= 3:
@@ -86,17 +72,16 @@ func _advance_level() -> void:
 				delay_between_levels = PuzzleScore.DELAY_LONG
 				start_customer_countdown()
 			else:
-				failed_section = true
+				_failed_section = true
 				hud.set_message("Oops!/ ...Let's try that again.")
 		_:
 			hud.set_message("Good job!")
-	_hide_completed_skill_tally_items()
 	var level_ids := [
 		"tutorial_squish_0", "tutorial_squish_1", "tutorial_squish_2", "tutorial_squish_3",
 		"tutorial_squish_4", "tutorial_squish_5", "tutorial_squish_6", "tutorial_squish_7"
 	]
 	var new_level_id: String
-	if failed_section:
+	if _failed_section:
 		new_level_id = Level.settings.id
 	else:
 		new_level_id = level_ids[level_ids.find(Level.settings.id) + 1]
@@ -109,20 +94,15 @@ func _handle_squish_move_message() -> void:
 
 
 func _prepare_tutorial_level() -> void:
-	var failed_section := _prepared_levels.has(Level.settings.id)
+	hide_completed_skill_tally_items()
+	_failed_section = _prepared_levels.has(Level.settings.id)
 	
 	match(Level.settings.id):
 		"tutorial_squish_0":
 			hud.skill_tally_item("SquishMove").visible = true
-			if Level.settings.other.skip_intro:
-				hud.set_messages([
-					"Today we'll cover some advanced squish move techniques!"
-							+ "\n\nBut first,/ let's make sure you remember the basics.",
-					"Hold soft drop to squish pieces through this gap."])
-			else:
-				hud.enqueue_message("Hold soft drop to squish pieces through this gap.")
+			hud.set_message("Hold soft drop to squish pieces through this gap.")
 		"tutorial_squish_1":
-			_show_next_squish_diagram()
+			_show_next_diagram()
 		"tutorial_squish_2":
 			hud.skill_tally_item("SnackBox").visible = true
 			hud.set_message("So, which of these snack boxes can be completed with a squish move?")
@@ -137,27 +117,20 @@ func _prepare_tutorial_level() -> void:
 			hud.skill_tally_item("LineClear").reset()
 			PuzzleScore.level_performance.lines = 0
 			PuzzleScore.level_performance.pieces = 0
-			if failed_section:
-				hud.set_message("Can you clean this up using squish moves?\n\nTry to clear three lines.")
+			if _failed_section:
+				hud.set_message("Here,/ let me help you with that.")
 			else:
-				hud.set_messages([
-					"Of course, squish moves aren't always about being very,"
-							+ " very clever. ...Sometimes we make mistakes, too.",
-					"Oops! Look at the mess you made. ...Can you clean this up using squish moves?"
-							+ "\n\nTry to clear three lines."
-				])
+				hud.set_message("Of course, squish moves aren't always about being very,"
+							+ " very clever. ...Sometimes we make mistakes, too.")
 		"tutorial_squish_6":
 			hud.skill_tally_item("LineClear").visible = true
 			hud.skill_tally_item("LineClear").reset()
 			PuzzleScore.level_performance.lines = 0
 			PuzzleScore.level_performance.pieces = 0
-			if failed_section:
-				hud.set_message("Try to clear three lines.\n\nRemember your squish moves!")
+			if _failed_section:
+				hud.set_message("Should I make it worse this time?\n\nNo,/ that would be mean.")
 			else:
-				hud.set_messages([
-					"Oh no!/ Now you've done it.\n\nLook at how clumsy you are!",
-					"That's okay.\n\nI'm sure you'll think of a clever way to clean this up,/ too."
-				])
+				hud.set_message("Hmmm.../ What are you up to this time?")
 		"tutorial_squish_7":
 			# reset timer, scores
 			PuzzleScore.reset()
@@ -174,7 +147,7 @@ func _prepare_tutorial_level() -> void:
 """
 Shows a diagram explaining how squish moves work, with an accompanying instructor message.
 """
-func _show_next_squish_diagram() -> void:
+func _show_next_diagram() -> void:
 	var hud_messages := []
 	if _show_diagram_count == 0:
 		hud_messages.append("For a piece to squish successfully,/"
@@ -218,6 +191,8 @@ func _on_Playfield_box_built(_rect: Rect2, _color: int) -> void:
 
 """
 After a piece is written to the playfield, we check if the player should advance further in the tutorial.
+
+We also sometimes display messages from the instructor.
 """
 func _on_Playfield_after_piece_written() -> void:
 	# print tutorial messages if the player did something noteworthy
@@ -235,16 +210,46 @@ func _on_Playfield_after_piece_written() -> void:
 			else:
 				playfield.tile_map.restore_state()
 		"tutorial_squish_5":
-			if PuzzleScore.level_performance.pieces >= 4 or PuzzleScore.level_performance.lines >= 3:
+			if PuzzleScore.level_performance.pieces == 1:
+				Level.settings.input_replay.clear()
+				if not hud.get_tutorial_messages().is_all_messages_visible():
+					yield(hud.get_tutorial_messages(), "all_messages_shown")
+				yield(get_tree().create_timer(0.5), "timeout")
+				if _failed_section:
+					hud.set_message("Not again!/ ...Can you clean this up using squish moves?"
+								+ "\n\nTry to clear three lines.")
+				else:
+					hud.set_message("Oops!/ Look at the mess you made./ ...Can you clean this up using squish moves?"
+								+ "\n\nTry to clear three lines.")
+			
+			if PuzzleScore.level_performance.pieces >= Level.settings.finish_condition.value \
+					or PuzzleScore.level_performance.lines >= 3:
 				_advance_level()
 		"tutorial_squish_6":
-			if PuzzleScore.level_performance.pieces >= 4 or PuzzleScore.level_performance.lines >= 3:
+			if PuzzleScore.level_performance.pieces == 1:
+				Level.settings.input_replay.clear()
+				if not hud.get_tutorial_messages().is_all_messages_visible():
+					yield(hud.get_tutorial_messages(), "all_messages_shown")
+				yield(get_tree().create_timer(0.5), "timeout")
+				if _failed_section:
+					hud.set_message("Oh no,/ it keeps happening!/ Well, try to clear three lines."
+							+ "\n\nRemember your squish moves!")
+				else:
+					hud.set_messages(["Oh no!/ Now you've done it.\n\nLook at how clumsy you are!",
+						"That's okay.\n\nI'm sure you'll think of a clever way to clean this up,/ too."])
+			
+			if PuzzleScore.level_performance.pieces >= Level.settings.finish_condition.value \
+					or PuzzleScore.level_performance.lines >= 3:
 				_advance_level()
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleScore_after_game_prepared() -> void:
 	hud.show_skill_tally_items()
+	hud.skill_tally_item("SquishMove").visible = false
+	hud.skill_tally_item("SnackBox").visible = false
+	hud.skill_tally_item("LineClear").visible = false
 	
+	_prepared_levels.clear()
 	_squish_moves = 0
 	_boxes_built = 0
 	_show_diagram_count = 0
@@ -261,4 +266,4 @@ func _on_TutorialDiagram_ok_chosen() -> void:
 
 
 func _on_TutorialDiagram_help_chosen() -> void:
-	_show_next_squish_diagram()
+	_show_next_diagram()

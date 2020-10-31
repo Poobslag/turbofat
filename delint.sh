@@ -17,8 +17,8 @@ grep -R -n "^					.\{100,\}$" --include="*.gd" ./project/src
 grep -R -n "var [^:]* = " --include="*.gd" ./project/src \
   | grep -v " = parse_json(" \
   | grep -v "chat-event.gd:74" \
-  | grep -v "level-settings.gd:182" \
-  | grep -v "level-settings.gd:184" \
+  | grep -v "level-settings.gd.*var new_value = old_value" \
+  | grep -v "level-settings.gd.*var old_value = json\[old_key\]" \
   | grep -v "dna-loader.gd.*var property_value =" \
   | grep -v "dna-loader.gd.*var shader_value ="
 
