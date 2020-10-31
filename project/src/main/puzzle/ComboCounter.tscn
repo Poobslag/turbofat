@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/puzzle/combo-accents-packed.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/puzzle/modak-regular.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://src/main/puzzle/combo-counter.gd" type="Script" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+resource_local_to_scene = true
+size = 24
+outline_size = 2
+outline_color = Color( 0.4817, 0.6, 0.054, 1 )
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:velocity")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 1.4, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -30 ), Vector2( 0, -5 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Gradient" id=3]
+resource_local_to_scene = true
+offsets = PoolRealArray( 0, 0.383513 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[node name="ComboCounter" type="Node2D"]
+position = Vector2( 40, 40 )
+script = ExtResource( 4 )
+velocity = Vector2( 0, -5 )
+
+[node name="Accent" type="Node2D" parent="."]
+modulate = Color( 0.483, 0.6, 0.06, 1 )
+position = Vector2( -16, -16 )
+scale = Vector2( 0.5, 0.5 )
+script = ExtResource( 1 )
+texture = ExtResource( 2 )
+frame_data = "res://assets/main/puzzle/combo-accents-packed.json"
+rect_size = Vector2( 64, 64 )
+
+[node name="Label" type="Label" parent="."]
+margin_left = -32.0
+margin_top = -30.0
+margin_right = 32.0
+margin_bottom = 34.0
+custom_fonts/font = SubResource( 1 )
+custom_colors/font_color = Color( 0.846167, 1, 0.29, 1 )
+text = "3x"
+align = 1
+valign = 1
+clip_text = true
+max_lines_visible = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "fade"
+anims/fade = SubResource( 2 )
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 12
+lifetime = 0.8
+one_shot = true
+explosiveness = 1.0
+local_coords = false
+spread = 180.0
+gravity = Vector2( 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 1.0
+scale_amount = 5.0
+color_ramp = SubResource( 3 )
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
