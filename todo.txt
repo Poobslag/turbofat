@@ -1,0 +1,22 @@
+-goblin ears
+ -sketch in csp
+  -front
+  -back
+  -wiggle
+ -export to aseprite
+ -export to game
+ -add to DnaUtils
+  -random creatures get them
+  -appear in creature editor
+  -resolve conflicts
+-skeleton eyes
+ -sketch in csp
+  -front
+  -second version? 'skeleton t'?
+  -animations
+ -export to aseprite
+ -export to game
+ -add to DnaUtils
+  -random creatures get them
+  -appear in creature editor
+  -resolve conflicts
