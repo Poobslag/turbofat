@@ -13,6 +13,7 @@ $$$ TS-808 emulator by Jonathan Murphy (Creative Commons Attribution-Noncommerci
 Fonts:
 $$$ Blogger Sans by Sergiy Tkachenko (https://firstsiteguide.com) (Creative Commons Attribution-NoDerivatives 4.0 International Public License)
 $$ Fredoka One by Milena Brandao
+$$ Modak by Ek Type
 
 Models:
 $$ Nature Kit 2.1 by Kenney (www.kenney.nl) (CC0 1.0 Universal)
@@ -112,6 +113,7 @@ project/assets/main/ui/blogger-sans-bold.otf Blogger Sans by Sergiy Tkachenko
 project/assets/main/ui/blogger-sans-medium.otf Blogger Sans by Sergiy Tkachenko
 project/assets/main/ui/blogger-sans.otf Blogger Sans by Sergiy Tkachenko
 project/assets/main/ui/fredoka-one-regular.ttf Fredoka One by Milena Brandao
+project/assets/main/puzzle/modak-regular.ttf Modak by Ek Type
 
 Other
 --------------------------------------------------------------------------------

@@ -1,0 +1,155 @@
+{ "frames": [
+   {
+    "filename": "icon-01 0.png",
+    "frame": { "x": 152, "y": 261, "w": 49, "h": 52 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 40, "y": 39, "w": 49, "h": 52 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 1.png",
+    "frame": { "x": 371, "y": 221, "w": 48, "h": 54 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 40, "y": 38, "w": 48, "h": 54 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 2.png",
+    "frame": { "x": 372, "y": 96, "w": 47, "h": 59 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 41, "y": 36, "w": 47, "h": 59 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 3.png",
+    "frame": { "x": 372, "y": 160, "w": 47, "h": 56 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 40, "y": 37, "w": 47, "h": 56 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 4.png",
+    "frame": { "x": 180, "y": 185, "w": 70, "h": 71 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 26, "y": 34, "w": 70, "h": 71 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 5.png",
+    "frame": { "x": 0, "y": 193, "w": 69, "h": 69 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 28, "y": 35, "w": 69, "h": 69 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 6.png",
+    "frame": { "x": 294, "y": 184, "w": 72, "h": 74 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 23, "y": 32, "w": 72, "h": 74 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 7.png",
+    "frame": { "x": 78, "y": 192, "w": 69, "h": 70 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 26, "y": 34, "w": 69, "h": 70 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 8.png",
+    "frame": { "x": 213, "y": 92, "w": 76, "h": 88 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 17, "y": 21, "w": 76, "h": 88 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 9.png",
+    "frame": { "x": 294, "y": 96, "w": 73, "h": 83 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 15, "y": 27, "w": 73, "h": 83 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 10.png",
+    "frame": { "x": 0, "y": 108, "w": 73, "h": 80 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 20, "y": 30, "w": 73, "h": 80 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 11.png",
+    "frame": { "x": 105, "y": 103, "w": 70, "h": 84 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 19, "y": 23, "w": 70, "h": 84 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 12.png",
+    "frame": { "x": 327, "y": 0, "w": 101, "h": 91 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 9, "y": 25, "w": 101, "h": 91 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 13.png",
+    "frame": { "x": 105, "y": 0, "w": 103, "h": 98 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 8, "y": 23, "w": 103, "h": 98 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 14.png",
+    "frame": { "x": 0, "y": 0, "w": 100, "h": 103 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 12, "y": 13, "w": 100, "h": 103 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   },
+   {
+    "filename": "icon-01 15.png",
+    "frame": { "x": 213, "y": 0, "w": 109, "h": 87 },
+    "rotated": false,
+    "trimmed": true,
+    "spriteSourceSize": { "x": 5, "y": 23, "w": 109, "h": 87 },
+    "sourceSize": { "w": 128, "h": 128 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.2.25-x64",
+  "image": "combo-accents-packed.png",
+  "format": "RGBA8888",
+  "size": { "w": 428, "h": 313 },
+  "scale": "1"
+ }
+}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -31,6 +31,7 @@
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-fail.wav" type="AudioStream" id=29]
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=30]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=31]
+[ext_resource path="res://src/main/puzzle/combo-counters.gd" type="Script" id=32]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
 [ext_resource path="res://assets/main/ui/go.wav" type="AudioStream" id=38]
 [ext_resource path="res://assets/main/ui/ready.wav" type="AudioStream" id=39]
@@ -243,7 +244,7 @@ __meta__ = {
 }
 
 [node name="FoodItems" type="Node2D" parent="."]
-z_index = 1
+z_index = 3
 script = ExtResource( 20 )
 playfield_path = NodePath("../Playfield")
 
@@ -261,6 +262,13 @@ flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="ComboCounters" type="Node2D" parent="."]
+position = Vector2( 364, 28 )
+z_index = 3
+script = ExtResource( 32 )
+piece_manager_path = NodePath("../PieceManager")
+playfield_path = NodePath("../Playfield")
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
@@ -480,11 +488,12 @@ codes = [ "delays" ]
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
 [connection signal="after_piece_written" from="Playfield" to="." method="_on_Playfield_after_piece_written"]
-[connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
-[connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
 [connection signal="lines_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_lines_deleted"]

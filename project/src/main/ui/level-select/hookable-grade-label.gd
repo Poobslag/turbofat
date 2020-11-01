@@ -113,7 +113,7 @@ func _refresh_grade_text(rank: float) -> void:
 	
 	$GradeLabel.text = RankCalculator.grade(rank)
 	var font: DynamicFont = $GradeLabel.get("custom_fonts/font")
-	var font_color: Color = $GradeLabel.get("custom_colors/font_color")
+	var font_color := Color("4eff49")
 	var outline_darkness := 0.2
 	match($GradeLabel.text):
 		"M":
