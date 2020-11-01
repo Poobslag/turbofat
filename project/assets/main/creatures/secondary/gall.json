@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Gall",
+  "short_name": "Gall",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "3",
+    "collar": "1",
+    "ear": "11",
+    "eye": "1",
+    "hair": "0",
+    "head": "1",
+    "horn": "1",
+    "mouth": "2",
+    "nose": "1",
+    "tail": "2",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "9a7f5d",
+    "belly_rgb": "c9dac6",
+    "cloth_rgb": "25291b",
+    "glass_rgb": "1f201e",
+    "plastic_rgb": "3b3724",
+    "hair_rgb": "40342d",
+    "eye_rgb": "25291b 606060",
+    "horn_rgb": "b9b9b9"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "9a7f5d"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

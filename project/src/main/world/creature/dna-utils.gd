@@ -201,6 +201,8 @@ const ALLELE_NAMES := {
 	"ear-8": "Darklord",
 	"ear-9": "Beastie",
 	"ear-10": "Dragon",
+	"ear-11": "Orc",
+	"ear-12": "Goblin",
 	
 	"eye-0": "(none)",
 	"eye-1": "Giant",
@@ -208,6 +210,8 @@ const ALLELE_NAMES := {
 	"eye-3": "Decaf",
 	"eye-4": "Ping Pong",
 	"eye-5": "Multi",
+	"eye-6": "Hollow",
+	"eye-7": "Skeleton",
 	
 	"hair-0": "(none)", 
 	"hair-1": "Lion", 
@@ -291,6 +295,12 @@ func _ready() -> void:
 	_set_allele_weight("ear", "4", 2.0)
 	
 	_set_allele_weight("eye", "0", 0.1)
+	_set_allele_weight("eye", "1", 3.0)
+	
+	# skeletons are scary! let's not spook people too often
+	_set_allele_weight("eye", "6", 0.4)
+	_set_allele_weight("eye", "7", 0.6)
+	
 	_set_allele_weight("eye", "1", 3.0)
 	_set_allele_weight("hair", "0", 5.0)
 	_set_allele_weight("head", "1", 6.0)
@@ -381,8 +391,8 @@ func unique_allele_values(property: String) -> Array:
 			"body": result = ["1", "2"]
 			"cheek": result = ["0", "1", "2", "3", "4"]
 			"collar": result = ["0", "1", "2", "3", "4", "5"]
-			"ear": result = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"]
-			"eye": result = ["0", "1", "2", "3", "4", "5"]
+			"ear": result = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
+			"eye": result = ["0", "1", "2", "3", "4", "5", "6", "7"]
 			"hair": result = ["0", "1", "2"]
 			"head": result = ["1", "2", "3", "4", "5"]
 			"horn": result = ["0", "1", "2"]

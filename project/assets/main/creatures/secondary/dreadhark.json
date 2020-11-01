@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Dreadhark",
+  "short_name": "Dreadhark",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "11",
+    "eye": "7",
+    "hair": "1",
+    "head": "1",
+    "horn": "0",
+    "mouth": "5",
+    "nose": "3",
+    "tail": "3",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "fa5c2c",
+    "belly_rgb": "fffaff",
+    "cloth_rgb": "fad4cf",
+    "glass_rgb": "232221",
+    "plastic_rgb": "442f1c",
+    "hair_rgb": "2e261f",
+    "eye_rgb": "4e8eee f8ffff",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "fa5c2c"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}
