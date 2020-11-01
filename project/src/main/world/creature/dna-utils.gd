@@ -278,9 +278,13 @@ func _ready() -> void:
 	# goblin nose goes behind skull mask in a weird way
 	_set_allele_combo_adjustment("accessory", "4", "nose", "3", -999)
 	
-	# zen eyes don't show through the eyeholes
+	# zen eyes aren't very visible through masks
 	_set_allele_combo_adjustment("accessory", "4", "eye", "2", -2)
 	_set_allele_combo_adjustment("accessory", "5", "eye", "2", -2)
+	
+	# bird beaks and goblin ears look a little strange together
+	_set_allele_combo_adjustment("mouth", "4", "ear", "11", -2)
+	_set_allele_combo_adjustment("mouth", "4", "ear", "12", -2)
 	
 	_set_allele_weight("accessory", "0", 12.0)
 	
