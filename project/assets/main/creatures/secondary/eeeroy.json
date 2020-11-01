@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Eeeroy",
+  "short_name": "Eeeroy",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "3",
+    "collar": "0",
+    "ear": "9",
+    "eye": "6",
+    "hair": "0",
+    "head": "1",
+    "horn": "1",
+    "mouth": "2",
+    "nose": "2",
+    "tail": "1",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "f5e0c6",
+    "belly_rgb": "6c4331",
+    "cloth_rgb": "326728",
+    "glass_rgb": "d0f29f",
+    "plastic_rgb": "ebedea",
+    "hair_rgb": "ef8a84",
+    "eye_rgb": "87b8f6 ffffff",
+    "horn_rgb": "ffffff"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "f5e0c6"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}
