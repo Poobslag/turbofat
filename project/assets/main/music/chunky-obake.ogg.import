@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chunky-obake.ogg-a5d35a3231f27b41637cee12d0de4057.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/chunky-obake.ogg"
+dest_files=[ "res://.import/chunky-obake.ogg-a5d35a3231f27b41637cee12d0de4057.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

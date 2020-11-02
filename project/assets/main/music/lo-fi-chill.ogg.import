@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/lo-fi-chill.ogg-94a019cc027e0fb058523914b56a5895.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/lo-fi-chill.ogg"
+dest_files=[ "res://.import/lo-fi-chill.ogg-94a019cc027e0fb058523914b56a5895.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

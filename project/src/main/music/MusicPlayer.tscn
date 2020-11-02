@@ -2,19 +2,19 @@
 
 [ext_resource path="res://src/main/music/music-player.gd" type="Script" id=1]
 [ext_resource path="res://src/main/music/CheckpointSong.tscn" type="PackedScene" id=2]
-[ext_resource path="res://assets/main/music/house-01.ogg" type="AudioStream" id=3]
+[ext_resource path="res://assets/main/music/triple-thicc-shake.ogg" type="AudioStream" id=3]
 [ext_resource path="res://src/main/music/music-tween.gd" type="Script" id=4]
-[ext_resource path="res://assets/main/music/breakbeat-01.ogg" type="AudioStream" id=5]
-[ext_resource path="res://assets/main/music/hiphop-04.ogg" type="AudioStream" id=6]
-[ext_resource path="res://assets/main/music/house-04.ogg" type="AudioStream" id=7]
-[ext_resource path="res://assets/main/music/house-06.ogg" type="AudioStream" id=8]
-[ext_resource path="res://assets/main/music/house-08.ogg" type="AudioStream" id=9]
-[ext_resource path="res://assets/main/music/hiphop-08.ogg" type="AudioStream" id=10]
-[ext_resource path="res://assets/main/music/tutorial.ogg" type="AudioStream" id=11]
-[ext_resource path="res://assets/main/music/house-10.ogg" type="AudioStream" id=12]
-[ext_resource path="res://assets/main/music/hiphop-03.ogg" type="AudioStream" id=13]
-[ext_resource path="res://assets/main/music/mellow-01.ogg" type="AudioStream" id=14]
-[ext_resource path="res://assets/main/music/mellow-02.ogg" type="AudioStream" id=15]
+[ext_resource path="res://assets/main/music/juicer-mixer-grinder.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/main/music/lo-fi-chill.ogg" type="AudioStream" id=6]
+[ext_resource path="res://assets/main/music/doo-doo-doo.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/main/music/mystic-muffin.ogg" type="AudioStream" id=8]
+[ext_resource path="res://assets/main/music/sugar-crash.ogg" type="AudioStream" id=9]
+[ext_resource path="res://assets/main/music/hot-funk-sundae.ogg" type="AudioStream" id=10]
+[ext_resource path="res://assets/main/music/my-fatness-pal.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/main/music/pressure-cooker.ogg" type="AudioStream" id=12]
+[ext_resource path="res://assets/main/music/chub-hub.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/main/music/chunky-obake.ogg" type="AudioStream" id=14]
+[ext_resource path="res://assets/main/music/chub-n-bass.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/main/music/harder-butter.ogg" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/music/dessert-course.ogg" type="AudioStream" id=17]
 
@@ -22,26 +22,26 @@
 pause_mode = 2
 script = ExtResource( 1 )
 
-[node name="Breakbeat01" parent="." instance=ExtResource( 2 )]
+[node name="JuicerMixerGrinder" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 5 )
 volume_db = -3.0
 checkpoints = [ 0.0, 12.916, 29.532, 88.61 ]
 song_title = "Juicer Mixer Grinder"
 song_color = Color( 0.909804, 0.439216, 0.435294, 1 )
 
-[node name="HipHop03" parent="." instance=ExtResource( 2 )]
+[node name="ChubHub" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 13 )
 checkpoints = [ 0.0, 12.489, 32.489, 42.489, 142.489, 152.489, 162.489 ]
 song_title = "Chub Hub"
 song_color = Color( 0.352941, 0.666667, 0.301961, 1 )
 
-[node name="HipHop04" parent="." instance=ExtResource( 2 )]
+[node name="LoFiChill" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 6 )
 checkpoints = [ 0.0, 10.646, 21.326, 63.988, 85.33, 213.328 ]
 song_title = "24/7 Lo-Fi Chill Hip Hop Beats to Eat & Get Fat To"
 song_color = Color( 0.360784, 0.427451, 0.847059, 1 )
 
-[node name="HipHop08" parent="." instance=ExtResource( 2 )]
+[node name="HotFunkSundae" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 10 )
 checkpoints = [ 0.0, 8.707, 17.456, 69.826, 165.814 ]
 song_title = "Hot Funk Sundae"
@@ -59,49 +59,49 @@ checkpoints = [ 0.0, 17.454, 34.908, 157.087 ]
 song_title = "Harder, Butter, Fatter, Stronger"
 song_color = Color( 0.678431, 0.678431, 0.678431, 1 )
 
-[node name="House01" parent="." instance=ExtResource( 2 )]
+[node name="TripleThiccShake" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 3 )
 checkpoints = [ 0.0, 7.747, 23.229, 38.696 ]
 song_title = "Triple Thicc Shake"
 song_color = Color( 0.494118, 0.905882, 0.423529, 1 )
 
-[node name="House04" parent="." instance=ExtResource( 2 )]
+[node name="DooDooDoo" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 7 )
 checkpoints = [ 0.0, 15.233, 45.721, 76.196, 106.67, 167.613 ]
 song_title = "Doo Doo Doo"
 song_color = Color( 0.494118, 0.905882, 0.423529, 1 )
 
-[node name="House06" parent="." instance=ExtResource( 2 )]
+[node name="MysticMuffin" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 8 )
 checkpoints = [ 0.0, 15.23, 30.474 ]
 song_title = "Mystic Muffin"
 song_color = Color( 0.709804, 0.486275, 0.917647, 1 )
 
-[node name="House08" parent="." instance=ExtResource( 2 )]
+[node name="SugarCrash" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 9 )
 checkpoints = [ 0.0, 1.951, 204.877 ]
 song_title = "Sugar Crash"
 song_color = Color( 0.321569, 0.686275, 0.890196, 1 )
 
-[node name="House10" parent="." instance=ExtResource( 2 )]
+[node name="PressureCooker" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 12 )
 checkpoints = [ 0.0, 14.989, 29.982, 59.993 ]
 song_title = "Pressure Cooker"
 song_color = Color( 0.980392, 0.709804, 0.419608, 1 )
 
-[node name="Mellow01" parent="." instance=ExtResource( 2 )]
+[node name="ChunkyObake" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 14 )
 checkpoints = [ 0.0, 31.473, 62.95, 94.422, 188.845 ]
 song_title = "Chunky Obake"
 song_color = Color( 0.988235, 0.588235, 0.929412, 1 )
 
-[node name="Mellow02" parent="." instance=ExtResource( 2 )]
+[node name="ChubNBass" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 15 )
 checkpoints = [ 0.0, 22.575, 101.642 ]
 song_title = "Chub 'n Bass"
 song_color = Color( 0.352941, 0.666667, 0.301961, 1 )
 
-[node name="Tutorial" parent="." instance=ExtResource( 2 )]
+[node name="MyFatnessPal" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 11 )
 volume_db = 4.0
 checkpoints = [ 0.0, 25.098, 50.196, 74.681 ]

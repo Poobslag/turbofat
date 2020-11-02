@@ -33,11 +33,11 @@ var unranked: bool = false
 
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
+	if rules.has("box_factor"): box_factor = rules.float_value()
 	if rules.has("combo_factor"): combo_factor = rules.float_value()
 	if rules.has("customer_combo"): customer_combo = rules.int_value()
 	if rules.has("leftover_lines"): leftover_lines = rules.int_value()
-	if rules.has("box_factor"): box_factor = rules.float_value()
+	if rules.has("skip_results"): skip_results = true
 	if rules.has("success_bonus"): success_bonus = rules.float_value()
 	if rules.has("top_out_penalty"): top_out_penalty = rules.int_value()
-	if rules.has("skip_results"): skip_results = true
 	if rules.has("unranked"): unranked = true

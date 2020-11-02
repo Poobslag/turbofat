@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chub-hub.ogg-12f36f4d80e90f2e5980e352879a84d4.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/chub-hub.ogg"
+dest_files=[ "res://.import/chub-hub.ogg-12f36f4d80e90f2e5980e352879a84d4.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

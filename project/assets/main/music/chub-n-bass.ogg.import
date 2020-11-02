@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chub-n-bass.ogg-7b8f84cf6e0cd7e98d2fc83c80a39a35.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/chub-n-bass.ogg"
+dest_files=[ "res://.import/chub-n-bass.ogg-7b8f84cf6e0cd7e98d2fc83c80a39a35.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
