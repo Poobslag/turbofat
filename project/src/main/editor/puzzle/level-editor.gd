@@ -6,7 +6,8 @@ A graphical level editor which lets players create, load and save levels.
 Full instructions are available at https://github.com/Poobslag/turbofat/wiki/level-editor
 """
 
-const DEFAULT_LEVEL := "veggie_patty"
+# default to an empty level; players may be confused if it's not empty
+const DEFAULT_LEVEL := "ultra_normal"
 
 # level scene currently being tested
 var _test_scene: Node
