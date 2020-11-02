@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/pressure-cooker.ogg-b31715b2c34e5f974c80b0e278cf535e.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/pressure-cooker.ogg"
+dest_files=[ "res://.import/pressure-cooker.ogg-b31715b2c34e5f974c80b0e278cf535e.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

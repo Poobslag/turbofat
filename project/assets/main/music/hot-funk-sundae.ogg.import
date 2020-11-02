@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/hot-funk-sundae.ogg-6fe785c6022597a4280f285986fe397a.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/hot-funk-sundae.ogg"
+dest_files=[ "res://.import/hot-funk-sundae.ogg-6fe785c6022597a4280f285986fe397a.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

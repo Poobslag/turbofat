@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/doo-doo-doo.ogg-8e09598cf1b48d26bf9521ca8ede145d.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/doo-doo-doo.ogg"
+dest_files=[ "res://.import/doo-doo-doo.ogg-8e09598cf1b48d26bf9521ca8ede145d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

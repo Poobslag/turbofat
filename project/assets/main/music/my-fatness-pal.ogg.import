@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/my-fatness-pal.ogg-3cb316913e852d74795b0f0c494a8ffd.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/my-fatness-pal.ogg"
+dest_files=[ "res://.import/my-fatness-pal.ogg-3cb316913e852d74795b0f0c494a8ffd.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

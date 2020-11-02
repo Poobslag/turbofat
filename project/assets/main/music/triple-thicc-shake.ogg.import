@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/triple-thicc-shake.ogg-b536a08c4c8e9d35184669d05a340d50.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/triple-thicc-shake.ogg"
+dest_files=[ "res://.import/triple-thicc-shake.ogg-b536a08c4c8e9d35184669d05a340d50.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

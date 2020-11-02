@@ -22,16 +22,16 @@ var current_bgm: CheckpointSong
 # value: desired volume_db for playing music
 var _max_volume_db_by_bgm := {}
 
+var all_bgms
+
 # newest track(s) play twice as often
-onready var _chill_bgms := [$HipHop03, $HipHop04, $HipHop08,
-		$DessertCourse, $DessertCourse, $HarderButter, $HarderButter]
-onready var _upbeat_bgms := [$House01, $House04, $House06, $House08, $House10,
-		$Breakbeat01,
-		$Mellow01, $Mellow02, $Mellow02]
-onready var _tutorial_bgms := [$Tutorial]
-onready var all_bgms := _chill_bgms + _upbeat_bgms + _tutorial_bgms
+onready var _chill_bgms := [$ChubHub, $DessertCourse, $HarderButter, $HotFunkSundae, $LoFiChill]
+onready var _upbeat_bgms := [$ChubNBass, $ChunkyObake, $DooDooDoo, $JuicerMixerGrinder, $MysticMuffin,
+		$PressureCooker, $SugarCrash, $TripleThiccShake]
+onready var _tutorial_bgms := [$MyFatnessPal]
 
 func _ready() -> void:
+	all_bgms = _chill_bgms + _upbeat_bgms + _tutorial_bgms
 	_chill_bgms.shuffle()
 	_upbeat_bgms.shuffle()
 	
