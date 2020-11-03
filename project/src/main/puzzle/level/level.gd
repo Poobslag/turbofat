@@ -82,5 +82,5 @@ func push_level_trail() -> void:
 	start_level(level_settings)
 	if Level.launched_creature_id:
 		var creature_def := CreatureLoader.load_creature_def_by_id(Level.launched_creature_id)
-		Global.creature_queue.push_front(creature_def)
+		PlayerData.creature_queue.primary_queue.push_front(creature_def)
 	Breadcrumb.push_trail(Global.SCENE_PUZZLE)

@@ -30,10 +30,6 @@ const ISO_FACTOR := Vector2(1.0, 0.5)
 # Target number of creature greetings (hello, goodbye) per minute
 const GREETINGS_PER_MINUTE := 3.0
 
-# The creatures who will show up during the next puzzle.
-var creature_queue := []
-var creature_queue_index: int
-
 # Stores all of the benchmarks which have been started
 var _benchmark_start_times := Dictionary()
 
@@ -97,9 +93,3 @@ func should_chat() -> bool:
 	else:
 		should_chat = false
 	return should_chat
-
-
-func clear_creature_queue() -> void:
-	Global.creature_queue = []
-	Global.creature_queue_index = 0
-	CreatureLoader.reset_secondary_creature_queue()

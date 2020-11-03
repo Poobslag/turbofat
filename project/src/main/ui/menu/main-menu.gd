@@ -27,13 +27,13 @@ func _exit_tree() -> void:
 
 
 func _launch_tutorial() -> void:
-	Global.clear_creature_queue()
+	PlayerData.creature_queue.clear()
 	Level.set_launched_level(Level.BEGINNER_TUTORIAL, CreatureLoader.INSTRUCTOR_ID)
 	Level.push_level_trail()
 
 
 func _on_PlayStory_pressed() -> void:
-	Global.clear_creature_queue()
+	PlayerData.creature_queue.clear()
 	Level.clear_launched_level()
 	Breadcrumb.push_trail(Global.SCENE_OVERWORLD)
 

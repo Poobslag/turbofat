@@ -22,8 +22,8 @@ func _ready() -> void:
 	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
-	Global.creature_queue_index = 0
-	CreatureLoader.reset_secondary_creature_queue()
+	PlayerData.creature_queue.primary_index = 0
+	PlayerData.creature_queue.reset_secondary_creature_queue()
 	for i in range(3):
 		$RestaurantView.summon_creature(i)
 	
@@ -88,12 +88,12 @@ func _start_puzzle() -> void:
 	
 	if _start_button_click_count > 1:
 		# restart puzzle; reset customers
-		CreatureLoader.reset_secondary_creature_queue()
-		if Global.creature_queue:
+		PlayerData.creature_queue.reset_secondary_creature_queue()
+		if PlayerData.creature_queue.primary_queue:
 			# Reset fatness. Playing the same puzzle over and over shouldn't
 			# make a creature super fat. Thematically, we're turning back time.
 			PlayerData.creature_library.restore_fatness_state()
-		Global.creature_queue_index = 0
+		PlayerData.creature_queue.primary_index = 0
 		$RestaurantView.start_suppress_sfx_timer()
 		for i in range(3):
 			$RestaurantView.summon_creature(i)
@@ -175,7 +175,7 @@ func _on_Hud_settings_button_pressed() -> void:
 
 
 func _on_Hud_back_button_pressed() -> void:
-	Global.clear_creature_queue()
+	PlayerData.creature_queue.clear()
 	Level.clear_launched_level()
 	Breadcrumb.pop_trail()
 
@@ -245,6 +245,6 @@ func _on_SettingsMenu_quit_pressed() -> void:
 			MusicPlayer.stop()
 			MusicPlayer.play_chill_bgm()
 			MusicPlayer.fade_in()
-		Global.clear_creature_queue()
+		PlayerData.creature_queue.clear()
 		Level.clear_launched_level()
 		Breadcrumb.pop_trail()
