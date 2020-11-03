@@ -269,12 +269,13 @@ func _update_unlockable_levels() -> void:
 
 
 func _update_cleared_tutorials() -> void:
-	# update levels with locks/keys
+	# update cleared tutorials with a checkmark
 	for level_lock_obj in _level_locks.values():
 		var level_lock: LevelLock = level_lock_obj
 		var level_settings: LevelSettings = _level_settings_by_id[level_lock.level_id]
 		
-		if level_lock.status == LevelLock.STATUS_NONE and level_settings.other.tutorial:
+		if level_lock.status == LevelLock.STATUS_NONE and level_settings.other.tutorial \
+				and PlayerData.level_history.finished_levels.has(level_lock.level_id):
 			level_lock.status = LevelLock.STATUS_CLEARED
 	
 	var tutorial_world_lock: WorldLock = _world_locks.get(Level.TUTORIAL_WORLD_ID)
