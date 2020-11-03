@@ -292,7 +292,7 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 	creature_short_name = new_creature_def.creature_short_name
 	set_chat_selectors(new_creature_def.chat_selectors)
 	dialog = new_creature_def.dialog
-	min_fatness = new_creature_def.fatness
+	min_fatness = new_creature_def.min_fatness
 	if PlayerData.creature_library.has_fatness(creature_id):
 		set_fatness(PlayerData.creature_library.get_fatness(creature_id))
 	else:
@@ -311,7 +311,7 @@ func get_creature_def() -> CreatureDef:
 	result.creature_short_name = creature_short_name
 	result.dialog = dialog
 	result.chat_theme_def = chat_theme_def
-	result.fatness = get_fatness()
+	result.min_fatness = min_fatness
 	return result
 
 

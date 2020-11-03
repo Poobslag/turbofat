@@ -28,7 +28,7 @@ var dialog: Dictionary
 var chat_selectors: Array
 
 # how fat the creature's body is; 5.0 = 5x normal size
-var fatness := 1.0
+var min_fatness := 1.0
 
 func from_json_dict(json: Dictionary) -> void:
 	var version: String = json.get("version")
@@ -58,7 +58,7 @@ func from_json_dict(json: Dictionary) -> void:
 	chat_theme_def = json.get("chat_theme_def", {})
 	dialog = json.get("dialog", {})
 	chat_selectors = json.get("chat_selectors", [])
-	fatness = json.get("fatness", 1.0)
+	min_fatness = json.get("fatness", 1.0)
 
 
 func to_json_dict() -> Dictionary:
@@ -71,5 +71,5 @@ func to_json_dict() -> Dictionary:
 		"chat_theme_def": chat_theme_def,
 		"dialog": dialog,
 		"chat_selectors": chat_selectors,
-		"fatness": fatness,
+		"fatness": min_fatness,
 	}
