@@ -86,7 +86,7 @@ func reset() -> void:
 	player_def.creature_name = DEFAULT_NAME
 	player_def.creature_short_name = NameUtils.sanitize_short_name(player_def.creature_name)
 	player_def.dna = DEFAULT_DNA.duplicate()
-	player_def.fatness = 1.0
+	player_def.min_fatness = 1.0
 	player_def.chat_theme_def = DEFAULT_CHAT_THEME_DEF.duplicate()
 
 

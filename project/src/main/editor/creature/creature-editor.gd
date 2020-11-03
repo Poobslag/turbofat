@@ -48,8 +48,6 @@ func _ready() -> void:
 	_name_generator = NameGenerator.new()
 	_name_generator.load_american_animals()
 	
-	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
-	
 	for allele in DnaUtils.BODY_PART_ALLELES:
 		_recent_tweaked_allele_values[allele] = []
 	
@@ -121,6 +119,7 @@ func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary
 			while new_fatnesses.has(creature.get_visual_fatness()):
 				new_fatnesses.erase(creature.get_visual_fatness())
 			var new_fatness: float = Utils.rand_value(new_fatnesses)
+			creature.min_fatness = new_fatness
 			creature.set_fatness(new_fatness)
 			creature.set_visual_fatness(new_fatness)
 		"body_rgb":
@@ -262,6 +261,7 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 			while new_fatnesses.has(creature.get_visual_fatness()):
 				new_fatnesses.erase(creature.get_visual_fatness())
 			var new_fatness: float = Utils.rand_value(new_fatnesses)
+			creature.min_fatness = new_fatness
 			creature.set_fatness(new_fatness)
 			creature.set_visual_fatness(new_fatness)
 		"body_rgb":
@@ -384,11 +384,6 @@ func _random_highlight_color(color: Color) -> Color:
 	new_color.s = color.s + _rng.randfn(-0.50, 0.20)
 	new_color.v = color.v + _rng.randfn(+0.40, 0.10)
 	return new_color
-
-
-func _on_Breadcrumb_trail_popped(_prev_path: String) -> void:
-	if not Breadcrumb.trail:
-		get_tree().change_scene("res://src/main/ui/menu/LoadingScreen.tscn")
 
 
 func _on_Quit_pressed() -> void:

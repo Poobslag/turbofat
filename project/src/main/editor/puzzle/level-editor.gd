@@ -73,10 +73,6 @@ func _on_Breadcrumb_trail_popped(prev_path: String) -> void:
 	if prev_path == "res://src/main/editor/puzzle/LevelEditor.tscn::test":
 		# player exited the level under test; stop the test
 		_stop_test()
-	elif not Breadcrumb.trail:
-		# player exited the level editor when it was launched standalone; exit to loading screen to avoid jitter
-		ResourceCache.minimal_resources = false
-		get_tree().change_scene("res://src/main/ui/menu/LoadingScreen.tscn")
 
 
 func _on_Quit_pressed() -> void:

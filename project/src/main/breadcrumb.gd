@@ -53,3 +53,8 @@ func _change_scene() -> void:
 			get_tree().change_scene_to(ResourceCache.get_cached_resource(trail.front()))
 		else:
 			get_tree().change_scene(trail.front())
+	else:
+		# player popped the top item off the breadcrumb trail (possibly from something like a demo)
+		# exit to loading screen and load all resources
+		ResourceCache.minimal_resources = false
+		get_tree().change_scene("res://src/main/ui/menu/LoadingScreen.tscn")
