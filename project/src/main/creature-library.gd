@@ -13,44 +13,6 @@ const GENERIC_FATNESS_COUNT := 150
 # wasn't me"
 const MAX_FILLER_FATNESS := 2.5
 
-# default chat theme when starting a new game
-const DEFAULT_CHAT_THEME_DEF := {
-	"accent_scale": 1.33,
-	"accent_swapped": true,
-	"accent_texture": 13,
-	"color": "b23823"
-}
-
-# default creature appearance when starting a new game
-const DEFAULT_DNA := {
-	"accessory": "0",
-	"belly": "1",
-	"belly_rgb": "c9442a",
-	"bellybutton": "0",
-	"body": "1",
-	"body_rgb": "b23823",
-	"cheek": "3",
-	"cloth_rgb": "282828",
-	"collar": "0",
-	"ear": "1",
-	"eye": "1",
-	"eye_rgb": "282828 dedede",
-	"glass_rgb": "282828",
-	"hair": "0",
-	"hair_rgb": "f1e398",
-	"head": "1",
-	"horn": "1",
-	"horn_rgb": "f1e398",
-	"line_rgb": "6c4331",
-	"mouth": "2",
-	"nose": "0",
-	"plastic_rgb": "282828",
-	"tail": "0",
-}
-
-# default name when starting a new game
-const DEFAULT_NAME := "Spira"
-
 var player_def: CreatureDef
 
 # fatnesses by creature id
@@ -83,11 +45,11 @@ func next_filler_id() -> String:
 func reset() -> void:
 	# default player appearance and name
 	player_def = CreatureDef.new()
-	player_def.creature_name = DEFAULT_NAME
+	player_def.creature_name = CreatureDef.DEFAULT_NAME
 	player_def.creature_short_name = NameUtils.sanitize_short_name(player_def.creature_name)
-	player_def.dna = DEFAULT_DNA.duplicate()
+	player_def.dna = CreatureDef.DEFAULT_DNA.duplicate()
 	player_def.min_fatness = 1.0
-	player_def.chat_theme_def = DEFAULT_CHAT_THEME_DEF.duplicate()
+	player_def.chat_theme_def = CreatureDef.DEFAULT_CHAT_THEME_DEF.duplicate()
 
 
 """

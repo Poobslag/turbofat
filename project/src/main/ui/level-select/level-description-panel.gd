@@ -56,9 +56,6 @@ func _on_LevelButtons_locked_level_selected(level_lock: LevelLock, settings: Lev
 			var level_count := StringUtils.english_number(level_lock.keys_needed)
 			text += "Clear %s more levels to unlock this. You can do it!" % [level_count]
 			text = text.replace("one more levels", "one more level")
-		LevelLock.STATUS_HARD_LOCK:
-			text += "You can't unlock this level yet."
-			text += "\n\n...Go unlock some other levels first. Patience is key!"
 		_:
 			push_warning("Unexpected lock status: %s" % [level_lock.status])
 	

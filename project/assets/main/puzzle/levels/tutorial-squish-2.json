@@ -188,9 +188,6 @@
   "piece_types": [
     "piece_p"
   ],
-  "combo_break": [
-    "pieces 0"
-  ],
   "lose_condition": [
     "top_out 999999"
   ],

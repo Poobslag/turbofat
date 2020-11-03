@@ -17,6 +17,8 @@ func _ready() -> void:
 	playfield = puzzle.get_playfield()
 	piece_manager = puzzle.get_piece_manager()
 	
+	PuzzleScore.connect("before_level_changed", self, "_on_PuzzleScore_before_level_changed")
+	
 	for skill_tally_item in $SkillTallyItems.get_children():
 		if skill_tally_item is SkillTallyItem:
 			var new_item: SkillTallyItem = skill_tally_item.duplicate()
@@ -47,3 +49,14 @@ func hide_completed_skill_tally_items() -> void:
 		var skill_tally_item: SkillTallyItem = skill_tally_item_obj
 		if skill_tally_item.is_complete():
 			skill_tally_item.visible = false
+
+
+"""
+Reset the player's combo between puzzle sections.
+
+Each tutorial section should have a fresh start; we don't want them to receive a discouraging 'you broke your combo'
+fanfare at the start of a section.
+"""
+func _on_PuzzleScore_before_level_changed(_new_level_id: String) -> void:
+	playfield.set_combo(0)
+	PuzzleScore.set_creature_line_clears(0)

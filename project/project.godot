@@ -154,6 +154,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/demo/world/creature/creature-palette-demo.gd"
 }, {
+"base": "Reference",
+"class": "CreatureQueue",
+"language": "GDScript",
+"path": "res://src/main/creature-queue.gd"
+}, {
 "base": "Node2D",
 "class": "CreatureShadow",
 "language": "GDScript",
@@ -639,6 +644,7 @@ _global_script_class_icons={
 "CreatureLibrary": "",
 "CreaturePackedSprite": "",
 "CreaturePaletteDemo": "",
+"CreatureQueue": "",
 "CreatureShadow": "",
 "CreatureShadows": "",
 "CreatureVisuals": "",

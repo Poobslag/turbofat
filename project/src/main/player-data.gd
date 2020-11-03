@@ -11,6 +11,7 @@ var level_history := LevelHistory.new()
 var chat_history := ChatHistory.new()
 
 var creature_library := CreatureLibrary.new()
+var creature_queue := CreatureQueue.new()
 
 var gameplay_settings := GameplaySettings.new()
 var volume_settings := VolumeSettings.new()

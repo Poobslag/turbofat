@@ -24,8 +24,8 @@ var _instructor_chat_theme: ChatTheme
 var _popped_in: bool
 
 func _ready() -> void:
-	var _instructor_creature_def := CreatureLoader.load_creature_def(CreatureLoader.INSTRUCTOR_PATH)
-	_instructor_chat_theme = ChatTheme.new(_instructor_creature_def.chat_theme_def)
+	var instructor_creature_def := CreatureDef.new().from_json_path(CreatureLoader.INSTRUCTOR_PATH)
+	_instructor_chat_theme = ChatTheme.new(instructor_creature_def.chat_theme_def)
 	_hide_message()
 
 

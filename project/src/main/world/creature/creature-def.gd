@@ -5,6 +5,44 @@ Stores information about a creature such as their name, appearance, and dialog.
 
 const CREATURE_DATA_VERSION := "19dd"
 
+# default chat theme when starting a new game
+const DEFAULT_CHAT_THEME_DEF := {
+	"accent_scale": 1.33,
+	"accent_swapped": true,
+	"accent_texture": 13,
+	"color": "b23823"
+}
+
+# default creature appearance when starting a new game
+const DEFAULT_DNA := {
+	"accessory": "0",
+	"belly": "1",
+	"belly_rgb": "c9442a",
+	"bellybutton": "0",
+	"body": "1",
+	"body_rgb": "b23823",
+	"cheek": "3",
+	"cloth_rgb": "282828",
+	"collar": "0",
+	"ear": "1",
+	"eye": "1",
+	"eye_rgb": "282828 dedede",
+	"glass_rgb": "282828",
+	"hair": "0",
+	"hair_rgb": "f1e398",
+	"head": "1",
+	"horn": "1",
+	"horn_rgb": "f1e398",
+	"line_rgb": "6c4331",
+	"mouth": "2",
+	"nose": "0",
+	"plastic_rgb": "282828",
+	"tail": "0",
+}
+
+# default name when starting a new game
+const DEFAULT_NAME := "Spira"
+
 # creature's id, e.g 'boatricia'
 var creature_id: String
 
@@ -73,3 +111,31 @@ func to_json_dict() -> Dictionary:
 		"chat_selectors": chat_selectors,
 		"fatness": min_fatness,
 	}
+
+
+"""
+Loads creature data from a json path. Substitutes any missing data.
+
+Returns:
+	The newly loaded creature data, or 'null' if there was a problem loading the json data.
+"""
+func from_json_path(path: String) -> CreatureDef:
+	var result := self
+	var creature_def_text: String = FileUtils.get_file_as_text(path)
+	var parsed = parse_json(creature_def_text)
+	if typeof(parsed) == TYPE_DICTIONARY:
+		var json_creature_def: Dictionary = parsed
+		from_json_dict(json_creature_def)
+		
+		# populate default values when importing incomplete json
+		for allele in DnaUtils.ALLELES:
+			Utils.put_if_absent(dna, allele, DEFAULT_DNA[allele])
+		if not creature_name:
+			creature_name = DEFAULT_NAME
+		if not creature_short_name:
+			creature_short_name = DEFAULT_NAME
+		if not chat_theme_def:
+			chat_theme_def = DEFAULT_CHAT_THEME_DEF.duplicate()
+	else:
+		result = null
+	return result

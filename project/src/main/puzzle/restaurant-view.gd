@@ -62,9 +62,8 @@ properties.
 """
 func summon_creature(creature_index: int = -1) -> void:
 	var creature_def := CreatureDef.new()
-	if Global.creature_queue_index < Global.creature_queue.size():
-		creature_def = Global.creature_queue[Global.creature_queue_index]
-		Global.creature_queue_index += 1
+	if PlayerData.creature_queue.has_primary_creature():
+		creature_def = PlayerData.creature_queue.pop_primary_creature()
 	else:
 		creature_def = CreatureLoader.random_def()
 	$RestaurantViewport/Scene.summon_creature(creature_def, creature_index)

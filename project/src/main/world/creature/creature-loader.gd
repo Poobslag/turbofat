@@ -74,27 +74,19 @@ var _fat_sprite_mover_scenes := {
 
 var _name_generator := NameGenerator.new()
 
-# Queue of 'secondary creatures'; recognizable characters who show up now and then,
-# but don't have any dialog or levels
-var _secondary_creature_queue: Array
-var _secondary_creature_queue_index := 0
-
 var _dna_alternatives := DnaAlternatives.new()
 
 func _ready() -> void:
 	_name_generator.load_american_animals()
-	_load_secondary_creatures()
 
 
 """
 Returns a random creature definition.
 """
 func random_def() -> CreatureDef:
-	var result
-	if _secondary_creature_queue_index < _secondary_creature_queue.size() and randf() < 0.2:
-		# don't loop back through the queue; we don't want the same customer showing up twice
-		result = _secondary_creature_queue[_secondary_creature_queue_index]
-		_secondary_creature_queue_index += 1
+	var result: CreatureDef
+	if PlayerData.creature_queue.has_secondary_creature() and randf() < 0.2:
+		result = PlayerData.creature_queue.pop_secondary_creature()
 	else:
 		result = CreatureDef.new()
 		result.dna = DnaUtils.random_creature_palette()
@@ -105,22 +97,6 @@ func random_def() -> CreatureDef:
 		# fatness -- not their fatness after being stuffed
 		result.creature_id = PlayerData.creature_library.next_filler_id()
 	return result
-
-
-"""
-Resets the queue of secondary creatures; recognizable characters who show up now and then, but don't have any dialog or
-levels
-
-This resets the queue_index to 0, and moves the beginning of the queue to the end.
-"""
-func reset_secondary_creature_queue() -> void:
-	if _secondary_creature_queue and _secondary_creature_queue_index > 0:
-		var new_queue := []
-		new_queue += _secondary_creature_queue.slice(
-				_secondary_creature_queue_index, _secondary_creature_queue.size() - 1)
-		new_queue += _secondary_creature_queue.slice(0, _secondary_creature_queue_index - 1)
-		_secondary_creature_queue = new_queue
-		_secondary_creature_queue_index = 0
 
 
 """
@@ -216,44 +192,7 @@ func load_creature_def_by_id(id: String) -> CreatureDef:
 			path = INSTRUCTOR_PATH
 		_:
 			path = "res://assets/main/creatures/primary/%s/creature.json" % id
-	return load_creature_def(path)
-
-
-func load_creature_def(path: String) -> CreatureDef:
-	var creature_def_text: String = FileUtils.get_file_as_text(path)
-	var parsed = parse_json(creature_def_text)
-	var creature_def: CreatureDef
-	if typeof(parsed) == TYPE_DICTIONARY:
-		creature_def = CreatureDef.new()
-		var json_creature_def: Dictionary = parsed
-		creature_def.from_json_dict(json_creature_def)
-		
-		# populate default values when importing incomplete json
-		for allele in DnaUtils.ALLELES:
-			Utils.put_if_absent(creature_def.dna, allele, CreatureLibrary.DEFAULT_DNA[allele])
-		if not creature_def.creature_name:
-			creature_def.creature_name = CreatureLibrary.DEFAULT_NAME
-		if not creature_def.creature_short_name:
-			creature_def.creature_short_name = CreatureLibrary.DEFAULT_NAME
-		if not creature_def.chat_theme_def:
-			creature_def.chat_theme_def = CreatureLibrary.DEFAULT_CHAT_THEME_DEF.duplicate()
-	return creature_def
-
-
-func _load_secondary_creatures() -> void:
-	var dir := Directory.new()
-	dir.open("res://assets/main/creatures/secondary")
-	dir.list_dir_begin(true, true)
-	while true:
-		var file := dir.get_next()
-		if not file:
-			break
-		else:
-			var creature_def := load_creature_def("%s/%s" % [dir.get_current_dir(), file.get_file()])
-			creature_def.creature_id = file.get_file().get_basename()
-			_secondary_creature_queue.append(creature_def)
-	dir.list_dir_end()
-	_secondary_creature_queue.shuffle()
+	return CreatureDef.new().from_json_path(path)
 
 
 """

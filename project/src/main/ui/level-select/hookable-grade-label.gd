@@ -97,10 +97,8 @@ func _refresh_status_icon(lock_status: int) -> void:
 			$StatusIcon.texture = _locked_texture
 			$StatusIcon.modulate = Color("666666")
 			outline_color = Color("808080")
-		LevelLock.STATUS_HARD_LOCK:
-			$StatusIcon.texture = _locked_texture
-			$StatusIcon.modulate = Color("444444")
-			outline_color = Color("808080")
+		_:
+			push_warning("Unexpected lock status: %s" % [lock_status])
 	$StatusIcon.material.set("shader_param/black", outline_color)
 
 

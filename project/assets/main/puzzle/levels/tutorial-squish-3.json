@@ -216,9 +216,6 @@
   "piece_types": [
     "piece_v"
   ],
-  "combo_break": [
-    "pieces 0"
-  ],
   "lose_condition": [
     "top_out 999999"
   ],
