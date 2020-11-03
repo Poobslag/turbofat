@@ -151,13 +151,13 @@ func _show_next_diagram() -> void:
 	var hud_messages := []
 	if _show_diagram_count == 0:
 		hud_messages.append("For a piece to squish successfully,/"
-				+ " one of its blocks needs a clear path to the target.")
+				+ " one part needs a straight gap down to the target.")
 		hud_messages.append("Here are some examples of good and bad squish moves."
 				+ "\n\nDoes this make any sense?/ I know it's a little weird.")
 	else:
 		match _show_diagram_count % 4:
 			0: hud_messages.append("So basically,/ one part of the piece needs a"
-					+ " clear path to the target or it won't squish.")
+					+ " straight gap down to the target or it won't squish.")
 			1: hud_messages.append("These examples on the right don't work,/"
 					+ " because the piece can't \"see\" where it's going.")
 			2: hud_messages.append("You can think of it like././."
