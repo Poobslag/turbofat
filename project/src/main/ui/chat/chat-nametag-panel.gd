@@ -15,9 +15,7 @@ func show_label(chat_theme: ChatTheme, nametag_right: bool) -> void:
 	if nametag_size == ChatTheme.NAMETAG_OFF:
 		return
 	
-	set_bg_color(chat_theme.border_color)
-	set_font_color(chat_theme.nametag_font_color)
-	
+	refresh_chat_theme(chat_theme)
 	rect_position.y = 2 - rect_size.y
 	if nametag_right:
 		rect_position.x = get_parent().rect_size.x - rect_size.x - 12

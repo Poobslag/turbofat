@@ -119,10 +119,6 @@ func break_combo() -> void:
 	$ComboTracker.break_combo()
 
 
-func set_combo(new_combo: int) -> void:
-	$ComboTracker.combo = new_combo
-
-
 """
 Resets the playfield to the level's initial state.
 """

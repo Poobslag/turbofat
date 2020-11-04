@@ -19,7 +19,7 @@ func _ready() -> void:
 	
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
+	PuzzleScore.connect("combo_changed", self, "_on_PuzzleScore_combo_changed")
 	PuzzleScore.connect("topped_out", self, "_on_PuzzleScore_topped_out")
 	PuzzleScore.connect("added_line_score", self, "_on_PuzzleScore_added_line_score")
 	
@@ -92,18 +92,11 @@ func start_suppress_sfx_timer() -> void:
 
 
 func _refresh_customer_name() -> void:
-	_refresh_nametag($CustomerNametag/Panel, get_customer())
+	$CustomerNametag/Panel.refresh_creature(get_customer())
 
 
 func _refresh_player_name() -> void:
-	_refresh_nametag($RestaurantNametag/Panel, get_player())
-
-
-func _refresh_nametag(nametag: NametagPanel, creature: Creature) -> void:
-	nametag.set_nametag_text(creature.creature_name)
-	var chat_theme := ChatTheme.new(creature.chat_theme_def)
-	nametag.set_bg_color(chat_theme.border_color)
-	nametag.set_font_color(chat_theme.nametag_font_color)
+	$RestaurantNametag/Panel.refresh_creature(get_player())
 
 
 func _on_Player_creature_name_changed() -> void:
@@ -118,7 +111,14 @@ func _on_PuzzleScore_game_prepared() -> void:
 		scroll_to_new_creature()
 
 
-func _on_PuzzleScore_combo_ended() -> void:
+"""
+Cycle out the customer when the combo resets to 0.
+"""
+func _on_PuzzleScore_combo_changed(value: int) -> void:
+	if value > 0:
+		# if the combo is not resetting, we ignore the change
+		return
+	
 	if PuzzleScore.no_more_customers:
 		pass
 	elif PuzzleScore.game_active:

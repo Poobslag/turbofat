@@ -6,14 +6,10 @@ Keeps track of the player's combo.
 Increments the combo when the player does well, breaks the combo when the player messes up.
 """
 
-signal combo_changed(value)
 signal combo_break_changed(value)
 
 # bonus points which are awarded as the player continues a combo
 const COMBO_SCORE_ARR = [0, 0, 5, 5, 10, 10, 15, 15, 20]
-
-# number of lines the player has cleared without dropping their combo
-var combo := 0 setget set_combo
 
 # The number of pieces the player has dropped without clearing a line or making a box.
 var combo_break := 0 setget set_combo_break
@@ -31,36 +27,28 @@ func _ready() -> void:
 	Level.connect("settings_changed", self, "_on_Level_settings_changed")
 
 
-func set_combo(new_combo: int) -> void:
-	combo = new_combo
-	emit_signal("combo_changed", new_combo)
-
-
 func set_combo_break(new_combo_break: int) -> void:
 	combo_break = new_combo_break
 	emit_signal("combo_break_changed", combo_break)
 
 
 func break_combo() -> void:
-	if combo >= 20:
+	if PuzzleScore.combo >= 20:
 		$Fanfare3.play()
-	elif combo >= 10:
+	elif PuzzleScore.combo >= 10:
 		$Fanfare2.play()
-	elif combo >= 5:
+	elif PuzzleScore.combo >= 5:
 		$Fanfare1.play()
 	
-	if PuzzleScore.get_creature_line_clears() > 0:
+	if PuzzleScore.combo > 0:
 		PuzzleScore.end_combo()
-	combo = 0
-	emit_signal("combo_changed", combo)
+	PuzzleScore.combo = 0
 	emit_signal("combo_break_changed", combo_break)
 
 
 func _reset() -> void:
-	combo = 0
 	combo_break = 0
-	emit_signal("combo_changed", combo)
-	emit_signal("combo_break_changed", combo)
+	emit_signal("combo_break_changed", combo_break)
 
 
 func _on_PuzzleScore_game_prepared() -> void:
@@ -115,8 +103,7 @@ func _on_PuzzleScore_game_ended() -> void:
 Increments the combo and score for the specified line clear.
 """
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
-	combo += 1
-	var combo_score: int = COMBO_SCORE_ARR[clamp(combo - 1, 0, COMBO_SCORE_ARR.size() - 1)]
+	var combo_score: int = COMBO_SCORE_ARR[clamp(PuzzleScore.combo, 0, COMBO_SCORE_ARR.size() - 1)]
 	var box_score := 0
 	for box_int in box_ints:
 		if PuzzleTileMap.is_snack_box(box_int):
@@ -126,4 +113,3 @@ func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_li
 		else:
 			box_score += Level.settings.score.veg_points
 	PuzzleScore.add_line_score(combo_score, box_score)
-	emit_signal("combo_changed", combo)

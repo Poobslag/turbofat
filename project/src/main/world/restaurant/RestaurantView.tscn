@@ -215,6 +215,6 @@ margin_bottom = 367.0
 margin_left = -60.0
 margin_right = 60.0
 custom_styles/panel = SubResource( 4 )
-[connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="CustomerCameraMover" method="_on_RestaurantScene_current_creature_index_changed"]
 [connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="." method="_on_RestaurantScene_current_creature_index_changed"]
+[connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="CustomerCameraMover" method="_on_RestaurantScene_current_creature_index_changed"]
 [connection signal="food_eaten" from="RestaurantViewport/Scene" to="CustomerCameraMover" method="_on_RestaurantScene_food_eaten"]

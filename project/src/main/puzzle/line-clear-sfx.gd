@@ -49,8 +49,6 @@ onready var _line_erase_sounds := [$LineEraseSound1, $LineEraseSound2, $LineEras
 
 onready var _veg_erase_sounds := [$VegEraseSound1, $VegEraseSound2, $VegEraseSound3]
 
-onready var _combo_tracker: ComboTracker = $"../ComboTracker"
-
 func _play_thump_sound(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	var sound_index := clamp(total_lines - remaining_lines - 1, 0, _line_erase_sounds.size() - 1)
 	var sound: AudioStreamPlayer
@@ -71,13 +69,13 @@ a repeating list where the repetition is concealed using a shepard tone.
 """
 func _play_combo_sound(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	var sound: AudioStream
-	if _combo_tracker.combo <= 0:
+	if PuzzleScore.combo <= 0:
 		# lines were cleared from top out or another unusual case. don't play combo sounds
 		pass
-	elif _combo_tracker.combo < _combo_sounds.size():
-		sound = _combo_sounds[_combo_tracker.combo - 1]
+	elif PuzzleScore.combo < _combo_sounds.size():
+		sound = _combo_sounds[PuzzleScore.combo - 1]
 	else:
-		sound = _combo_endless_sounds[(_combo_tracker.combo - 1 - _combo_sounds.size()) % _combo_endless_sounds.size()]
+		sound = _combo_endless_sounds[(PuzzleScore.combo - 1 - _combo_sounds.size()) % _combo_endless_sounds.size()]
 	if sound:
 		$ComboSound.stream = sound
 		$ComboSound.play()

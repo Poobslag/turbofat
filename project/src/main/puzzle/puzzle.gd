@@ -132,7 +132,7 @@ func _feed_creature(fatness_pct: float, food_color: Color) -> void:
 	else:
 		var comfort := 0.0
 		# ate five things; comfortable
-		comfort += clamp(inverse_lerp(5, 15, PuzzleScore.get_creature_line_clears()), 0.0, 1.0)
+		comfort += clamp(inverse_lerp(5, 15, PuzzleScore.combo), 0.0, 1.0)
 		# starting to overeat; less comfortable
 		comfort -= clamp(inverse_lerp(400, 600, PuzzleScore.get_creature_score()), 0.0, 1.0)
 		# overate; uncomfortable
@@ -194,7 +194,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	
 	# Calculate whether or not the creature should say something positive about the combo.
 	# They say something after clearing [6, 12, 18, 24...] lines.
-	if remaining_lines == 0 and $Playfield/ComboTracker.combo >= 6 and total_lines > $Playfield/ComboTracker.combo % 6:
+	if remaining_lines == 0 and PuzzleScore.combo >= 6 and total_lines > PuzzleScore.combo % 6:
 		yield(get_tree().create_timer(0.5), "timeout")
 		$RestaurantView.get_customer().play_combo_voice()
 

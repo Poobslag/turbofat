@@ -7,6 +7,9 @@ This needs to be separate from the CreatureVisuals node because it must continue
 creature editor will have strange behavior, particularly in its color picker.
 """
 
+# emitted when a creature's textures and animations are loaded
+signal dna_loaded
+
 # The maximum amount of microseconds to spend setting shader params in each frame. This is capped to avoid frame drops.
 const MAX_SHADER_USEC_PER_FRAME := 240
 
@@ -143,7 +146,7 @@ func load_dna() -> void:
 	
 	# initialize creature curves, and reset the mouth/eye frame to avoid a strange transition frame
 	_creature_visuals.reset_frames()
-	_creature_visuals.emit_signal("dna_loaded")
+	emit_signal("dna_loaded")
 
 
 """
