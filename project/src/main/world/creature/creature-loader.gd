@@ -192,7 +192,7 @@ func load_creature_def_by_id(id: String) -> CreatureDef:
 			path = INSTRUCTOR_PATH
 		_:
 			path = "res://assets/main/creatures/primary/%s/creature.json" % id
-	return CreatureDef.new().from_json_path(path)
+	return CreatureDef.new().from_json_path(path) as CreatureDef
 
 
 """
