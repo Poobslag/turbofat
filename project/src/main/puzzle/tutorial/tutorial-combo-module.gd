@@ -28,7 +28,7 @@ var _combo_diagram := preload("res://assets/main/puzzle/tutorial/combo-diagram.p
 func _ready() -> void:
 	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
 	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
-	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
+	PuzzleScore.connect("combo_changed", self, "_on_PuzzleScore_combo_changed")
 	
 	playfield.connect("after_piece_written", self, "_on_Playfield_after_piece_written")
 	playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
@@ -108,13 +108,11 @@ Parameters:
 	'goal': (Optional) The combo needed to complete the tutorial section
 """
 func _set_combo_state(start: int, goal: int = 0) -> void:
+	PuzzleScore.set_combo(start)
 	if goal:
 		hud.skill_tally_item("Combo").value = start
 		hud.skill_tally_item("Combo").max_value = goal
 		hud.skill_tally_item("Combo").update_label()
-	
-	playfield.set_combo(start)
-	PuzzleScore.set_creature_line_clears(start)
 
 
 """
@@ -250,8 +248,9 @@ func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
 		hud.skill_tally_item("CakeBox").increment()
 
 
-func _on_PuzzleScore_combo_ended() -> void:
-	_did_end_combo = true
+func _on_PuzzleScore_combo_changed(value: int) -> void:
+	if value == 0:
+		_did_end_combo = true
 
 
 func _on_PuzzleScore_after_game_prepared() -> void:

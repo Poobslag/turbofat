@@ -19,7 +19,6 @@ unnecessary textures are loaded.
 signal food_eaten
 
 # emitted when a creature's textures and animations are loaded
-# warning-ignore:unused_signal
 signal dna_loaded
 
 # emitted during the 'run' animation when the creature touches the ground
@@ -104,6 +103,7 @@ var mouth_player
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
 	set_orientation(orientation)
+	$DnaLoader.connect("dna_loaded", self, "_on_DnaLoader_dna_loaded")
 
 
 func _process(delta: float) -> void:
@@ -423,3 +423,7 @@ func _compute_orientation(direction: Vector2) -> int:
 		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
 		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)
 	return new_orientation
+
+
+func _on_DnaLoader_dna_loaded() -> void:
+	emit_signal("dna_loaded")

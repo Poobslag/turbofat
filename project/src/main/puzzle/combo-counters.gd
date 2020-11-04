@@ -47,7 +47,7 @@ func _on_PuzzleScore_before_piece_written() -> void:
 When a line is cleared we add a new combo counter.
 """
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
-	if PuzzleScore.get_creature_line_clears() < 3:
+	if PuzzleScore.combo < 3:
 		# no combo counters below 3x
 		return
 	
@@ -75,5 +75,5 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 	combo_counter.position = _playfield.tile_map.map_to_world(target_cell + Vector2(0, -3))
 	combo_counter.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
 	combo_counter.position *= _playfield.tile_map.scale
-	combo_counter.combo = PuzzleScore.get_creature_line_clears()
+	combo_counter.combo = PuzzleScore.combo
 	add_child(combo_counter)

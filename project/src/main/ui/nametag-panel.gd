@@ -18,6 +18,16 @@ onready var _labels := {
 	ChatTheme.NAMETAG_XXL: $ExtraExtraLarge,
 }
 
+func refresh_creature(creature: Creature) -> void:
+	set_nametag_text(creature.creature_name)
+	refresh_chat_theme(ChatTheme.new(creature.chat_theme_def))
+
+
+func refresh_chat_theme(chat_theme: ChatTheme) -> void:
+	set_bg_color(chat_theme.border_color)
+	set_font_color(chat_theme.nametag_font_color)
+
+
 """
 Assigns the name label's text and updates our nametag_size field to the smallest name label which fit.
 """

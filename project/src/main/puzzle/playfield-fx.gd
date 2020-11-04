@@ -82,7 +82,7 @@ onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	_combo_tracker.connect("combo_break_changed", self, "_on_ComboTracker_combo_break_changed")
-	_combo_tracker.connect("combo_changed", self, "_on_ComboTracker_combo_changed")
+	PuzzleScore.connect("combo_changed", self, "_on_PuzzleScore_combo_changed")
 	_init_tile_set()
 	_init_color_tile_indexes()
 	reset()
@@ -244,7 +244,7 @@ func _on_ComboTracker_combo_break_changed(_value: int) -> void:
 	_refresh_tile_maps()
 
 
-func _on_ComboTracker_combo_changed(value: int) -> void:
+func _on_PuzzleScore_combo_changed(value: int) -> void:
 	_calculate_brightness(value)
 	_start_glow_tween()
 	_refresh_tile_maps()

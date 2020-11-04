@@ -44,7 +44,7 @@ signal after_piece_written
 
 signal score_changed
 
-signal combo_ended
+signal combo_changed(value)
 
 # emitted when the current piece can't be placed in the _playfield
 signal topped_out
@@ -75,8 +75,8 @@ var level_performance := PuzzlePerformance.new()
 # The scores for each creature in the current level (bonuses and line clears)
 var creature_scores := [0]
 
-# The number of line clears for each creature in the current level
-var creature_line_clears := [0]
+# The number of lines the player has cleared without dropping their combo
+var combo := 0 setget set_combo
 
 # Bonus points awarded during the current combo. This only includes bonuses
 # and should be a round number like +55 or +130 for visual aesthetics.
@@ -207,8 +207,8 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 		# boxes left on the screen count towards a 'finish_score'
 		level_performance.leftover_score += combo_score + box_score + 1
 	
+	combo += 1
 	_add_creature_score(1 + combo_score + box_score)
-	_add_creature_line_clear()
 	_add_bonus_score(combo_score + box_score)
 	_add_score(1)
 
@@ -223,7 +223,7 @@ func end_combo() -> void:
 	if Level.settings.other.tutorial:
 		# during tutorials, reset the combo and line clears
 		creature_scores[creature_scores.size() - 1] = 0
-		creature_line_clears[creature_scores.size() - 1] = 0
+		combo = 0
 	elif no_more_customers:
 		pass
 	elif get_creature_score() == 0:
@@ -235,13 +235,13 @@ func end_combo() -> void:
 		no_more_customers = true
 	else:
 		creature_scores.append(0)
-		creature_line_clears.append(0)
+		combo = 0
 	
 	_add_score(bonus_score)
 	bonus_score = 0
 		
 	emit_signal("score_changed")
-	emit_signal("combo_ended")
+	emit_signal("combo_changed", combo)
 
 
 """
@@ -249,7 +249,7 @@ Reset all score data, such as when starting a level over.
 """
 func reset() -> void:
 	creature_scores = [0]
-	creature_line_clears = [0]
+	combo = 0
 	bonus_score = 0
 	level_performance = PuzzlePerformance.new()
 	speed_index = 0
@@ -276,12 +276,13 @@ func get_creature_score() -> int:
 	return creature_scores[creature_scores.size() - 1]
 
 
-func get_creature_line_clears() -> int:
-	return creature_line_clears[creature_line_clears.size() - 1]
-
-
-func set_creature_line_clears(value: int) -> void:
-	creature_line_clears[creature_line_clears.size() - 1] = value
+func set_combo(new_combo: int) -> void:
+	if combo == new_combo:
+		# don't emit a signal if the combo doesn't change
+		return
+	
+	combo = new_combo
+	emit_signal("combo_changed", combo)
 
 
 func end_result() -> int:
@@ -342,7 +343,3 @@ func _add_line() -> void:
 
 func _add_creature_score(delta: int) -> void:
 	creature_scores[creature_scores.size() - 1] += delta
-
-
-func _add_creature_line_clear() -> void:
-	creature_line_clears[creature_line_clears.size() - 1] += 1

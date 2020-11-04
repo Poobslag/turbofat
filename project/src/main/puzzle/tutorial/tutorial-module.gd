@@ -58,5 +58,4 @@ Each tutorial section should have a fresh start; we don't want them to receive a
 fanfare at the start of a section.
 """
 func _on_PuzzleScore_before_level_changed(_new_level_id: String) -> void:
-	playfield.set_combo(0)
-	PuzzleScore.set_creature_line_clears(0)
+	PuzzleScore.set_combo(0)
