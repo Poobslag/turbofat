@@ -94,7 +94,8 @@ func _load_secondary_creatures() -> void:
 		if not file:
 			break
 		else:
-			var creature_def := CreatureDef.new().from_json_path("%s/%s" % [dir.get_current_dir(), file.get_file()])
+			var creature_def: CreatureDef = CreatureDef.new()
+			creature_def = creature_def.from_json_path("%s/%s" % [dir.get_current_dir(), file.get_file()])
 			creature_def.creature_id = file.get_file().get_basename()
 			secondary_queue.append(creature_def)
 	dir.list_dir_end()
