@@ -22,9 +22,6 @@ signal lines_deleted(lines)
 
 signal blocks_prepared
 
-# emitted after a piece is written and all boxes are made and all lines are cleared
-signal after_piece_written
-
 # food colors for the food which gets hurled into the creature's mouth
 const VEGETABLE_COLOR := Color("335320")
 const RAINBOW_COLOR := Color.magenta
@@ -111,7 +108,6 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 	if $BoxBuilder.remaining_box_build_frames == 0 and $LineClearer.remaining_line_erase_frames == 0:
 		# If any boxes are being built or lines are being cleared, we emit the
 		# signal later. Otherwise we emit it now.
-		emit_signal("after_piece_written")
 		PuzzleScore.after_piece_written()
 
 
@@ -148,7 +144,6 @@ func _on_BoxBuilder_after_boxes_built() -> void:
 	if $LineClearer.remaining_line_erase_frames > 0:
 		$LineClearer.set_physics_process(true)
 	else:
-		emit_signal("after_piece_written")
 		PuzzleScore.after_piece_written()
 
 
@@ -166,7 +161,6 @@ func _on_LineClearer_line_cleared(y: int, total_lines: int, remaining_lines: int
 
 func _on_LineClearer_lines_deleted(lines: Array) -> void:
 	emit_signal("lines_deleted", lines)
-	emit_signal("after_piece_written")
 	PuzzleScore.after_piece_written()
 
 

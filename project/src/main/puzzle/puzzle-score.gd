@@ -211,15 +211,17 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 	_add_creature_score(1 + combo_score + box_score)
 	_add_bonus_score(combo_score + box_score)
 	_add_score(1)
-
+	
 	emit_signal("added_line_score", combo_score, box_score)
 	emit_signal("score_changed")
+	emit_signal("combo_changed", combo)
 
 
 """
 Ends the current combo, incrementing the score and resetting the bonus/creature scores to zero.
 """
 func end_combo() -> void:
+	var old_combo := combo
 	if Level.settings.other.tutorial:
 		# during tutorials, reset the combo and line clears
 		creature_scores[creature_scores.size() - 1] = 0
@@ -239,9 +241,10 @@ func end_combo() -> void:
 	
 	_add_score(bonus_score)
 	bonus_score = 0
-		
+	
 	emit_signal("score_changed")
-	emit_signal("combo_changed", combo)
+	if old_combo != combo:
+		emit_signal("combo_changed", combo)
 
 
 """
@@ -300,6 +303,8 @@ func before_piece_written() -> void:
 
 
 func after_piece_written() -> void:
+	if finish_triggered and not game_ended:
+		end_game()
 	emit_signal("after_piece_written")
 
 

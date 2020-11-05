@@ -22,10 +22,9 @@ var _did_squish_move := false
 func _ready() -> void:
 	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
-	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
 	
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
-	playfield.connect("after_piece_written", self, "_on_Playfield_after_piece_written")
+	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
 	playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
 	piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
@@ -36,6 +35,29 @@ func _ready() -> void:
 		# display a welcome message before the game starts
 		hud.set_message("Welcome to Turbo Fat!//"
 				+ " You seem to already be familiar with this sort of game,/ so let's dive right in.")
+
+
+func prepare_tutorial_level() -> void:
+	.prepare_tutorial_level()
+	match(Level.settings.id):
+		"tutorial_basics_1":
+			hud.skill_tally_item("SnackBox").visible = true
+			hud.skill_tally_item("BoxClear").visible = true
+			hud.set_message("Try making a snack box by arranging two pieces into a square.")
+		"tutorial_basics_2":
+			hud.skill_tally_item("SquishMove").visible = true
+			hud.set_message("Next,/ try holding soft drop to squish pieces through these gaps.")
+		"tutorial_basics_3":
+			hud.skill_tally_item("SnackStack").visible = true
+			hud.set_message("One last lesson!/ Try holding soft drop to squish and complete these boxes.")
+		"tutorial_basics_4":
+			# reset timer, scores
+			PuzzleScore.reset()
+			puzzle.scroll_to_new_creature()
+			
+			hud.set_message("You're a remarkably quick learner." \
+					+ "/ I think I hear some customers!\n\nSee if you can earn ¥100.")
+			hud.enqueue_pop_out()
 
 
 """
@@ -144,29 +166,6 @@ func _handle_snack_stack_message() -> void:
 					+ " you can organize boxes in tall vertical stacks and earn a lot of money.")
 
 
-func _prepare_tutorial_level() -> void:
-	hide_completed_skill_tally_items()
-	match(Level.settings.id):
-		"tutorial_basics_1":
-			hud.skill_tally_item("SnackBox").visible = true
-			hud.skill_tally_item("BoxClear").visible = true
-			hud.set_message("Try making a snack box by arranging two pieces into a square.")
-		"tutorial_basics_2":
-			hud.skill_tally_item("SquishMove").visible = true
-			hud.set_message("Next,/ try holding soft drop to squish pieces through these gaps.")
-		"tutorial_basics_3":
-			hud.skill_tally_item("SnackStack").visible = true
-			hud.set_message("One last lesson!/ Try holding soft drop to squish and complete these boxes.")
-		"tutorial_basics_4":
-			# reset timer, scores
-			PuzzleScore.reset()
-			puzzle.scroll_to_new_creature()
-			
-			hud.set_message("You're a remarkably quick learner." \
-					+ "/ I think I hear some customers!\n\nSee if you can earn ¥100.")
-			hud.enqueue_pop_out()
-
-
 func _on_PieceManager_piece_spawned() -> void:
 	_did_line_clear = false
 	_did_squish_move = false
@@ -201,7 +200,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 """
 After a piece is written to the playfield, we check if the player should advance further in the tutorial.
 """
-func _on_Playfield_after_piece_written() -> void:
+func _on_PuzzleScore_after_piece_written() -> void:
 	# print tutorial messages if the player did something noteworthy
 	_handle_line_clear_message()
 	_handle_squish_move_message()
@@ -240,7 +239,7 @@ func _on_PuzzleScore_after_game_prepared() -> void:
 	_squish_moves = 0
 	_snack_stacks = 0
 	
-	_prepare_tutorial_level()
+	prepare_tutorial_level()
 
 
 func _on_PuzzleScore_game_started() -> void:
@@ -250,7 +249,3 @@ func _on_PuzzleScore_game_started() -> void:
 					+ "\n\nClear a row by filling it with blocks.")
 	else:
 		hud.set_message("Clear a row by filling it with blocks.")
-
-
-func _on_PuzzleScore_after_level_changed() -> void:
-	_prepare_tutorial_level()

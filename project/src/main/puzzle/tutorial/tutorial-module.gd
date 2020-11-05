@@ -17,7 +17,7 @@ func _ready() -> void:
 	playfield = puzzle.get_playfield()
 	piece_manager = puzzle.get_piece_manager()
 	
-	PuzzleScore.connect("before_level_changed", self, "_on_PuzzleScore_before_level_changed")
+	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
 	
 	for skill_tally_item in $SkillTallyItems.get_children():
 		if skill_tally_item is SkillTallyItem:
@@ -38,24 +38,22 @@ func start_customer_countdown() -> void:
 
 
 """
-Hide all completed skill tally items.
+Prepares the next section of the tutorial.
 
-If the player only rotates in one direction or never hard drops a piece, that skill tally item remains visible for the
-entire tutorial. This gives them a small hint that there's other stuff they haven't done yet, but it's not necessary to
-progress.
+This includes resetting the combo and hiding all completed skill tally items. Subclasses can override this method to
+prepare other aspects of the level as well.
 """
-func hide_completed_skill_tally_items() -> void:
+func prepare_tutorial_level() -> void:
+	# Reset the player's combo between puzzle sections. Each tutorial section should have a fresh start; We don't want
+	# them to receive a discouraging 'you broke your combo' fanfare at the start of a section.
+	PuzzleScore.set_combo(0)
+	
+	# Hide all completed skill tally items.
 	for skill_tally_item_obj in hud.skill_tally_items():
 		var skill_tally_item: SkillTallyItem = skill_tally_item_obj
 		if skill_tally_item.is_complete():
 			skill_tally_item.visible = false
 
 
-"""
-Reset the player's combo between puzzle sections.
-
-Each tutorial section should have a fresh start; we don't want them to receive a discouraging 'you broke your combo'
-fanfare at the start of a section.
-"""
-func _on_PuzzleScore_before_level_changed(_new_level_id: String) -> void:
-	PuzzleScore.set_combo(0)
+func _on_PuzzleScore_after_level_changed() -> void:
+	prepare_tutorial_level()

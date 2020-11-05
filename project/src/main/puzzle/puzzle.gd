@@ -161,11 +161,6 @@ func _calculate_food_color(box_ints: Array) -> void:
 		_food_color = Playfield.FOOD_COLORS[box_ints[1]]
 
 
-func _check_for_game_end() -> void:
-	if PuzzleScore.finish_triggered and not PuzzleScore.game_ended:
-		PuzzleScore.end_game()
-
-
 func _on_Hud_start_button_pressed() -> void:
 	_start_puzzle()
 
@@ -189,18 +184,14 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	
 	# When the player finishes a puzzle, we end the game immediately after the last line clear. We don't wait for the
 	# after_piece_written signal because that signal is emitted after lines are deleted, resulting in an awkward pause.
-	if remaining_lines == 0:
-		_check_for_game_end()
+	if remaining_lines == 0 and PuzzleScore.finish_triggered and not PuzzleScore.game_ended:
+		PuzzleScore.end_game()
 	
 	# Calculate whether or not the creature should say something positive about the combo.
 	# They say something after clearing [6, 12, 18, 24...] lines.
 	if remaining_lines == 0 and PuzzleScore.combo >= 6 and total_lines > PuzzleScore.combo % 6:
 		yield(get_tree().create_timer(0.5), "timeout")
 		$RestaurantView.get_customer().play_combo_voice()
-
-
-func _on_Playfield_after_piece_written() -> void:
-	_check_for_game_end()
 
 
 func _on_PuzzleScore_game_started() -> void:

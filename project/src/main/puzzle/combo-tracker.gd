@@ -23,6 +23,7 @@ var piece_broke_combo := false
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	Level.connect("settings_changed", self, "_on_Level_settings_changed")
 
@@ -42,7 +43,6 @@ func break_combo() -> void:
 	
 	if PuzzleScore.combo > 0:
 		PuzzleScore.end_combo()
-	PuzzleScore.combo = 0
 	emit_signal("combo_break_changed", combo_break)
 
 
@@ -76,7 +76,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 		emit_signal("combo_break_changed", combo_break)
 
 
-func _on_Playfield_after_piece_written() -> void:
+func _on_PuzzleScore_after_piece_written() -> void:
 	if piece_broke_combo:
 		combo_break = Level.settings.combo_break.pieces
 		break_combo()

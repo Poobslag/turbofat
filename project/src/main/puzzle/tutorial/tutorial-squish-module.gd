@@ -29,10 +29,9 @@ var _failed_section := false
 
 func _ready() -> void:
 	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
-	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
+	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
 	
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
-	playfield.connect("after_piece_written", self, "_on_Playfield_after_piece_written")
 	piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
 	hud.get_tutorial_diagram().connect("ok_chosen", self, "_on_TutorialDiagram_ok_chosen")
@@ -41,6 +40,57 @@ func _ready() -> void:
 	# display a welcome message before the game starts
 	hud.set_message("Today we'll cover some advanced squish move techniques!"
 			+ "\n\nBut first,/ let's make sure you remember the basics.")
+
+
+func prepare_tutorial_level() -> void:
+	.prepare_tutorial_level()
+	_failed_section = _prepared_levels.has(Level.settings.id)
+	
+	match(Level.settings.id):
+		"tutorial_squish_0":
+			hud.skill_tally_item("SquishMove").visible = true
+			hud.set_message("Hold soft drop to squish pieces through this gap.")
+		"tutorial_squish_1":
+			_show_next_diagram()
+		"tutorial_squish_2":
+			hud.skill_tally_item("SnackBox").visible = true
+			hud.set_message("So, which of these snack boxes can be completed with a squish move?")
+		"tutorial_squish_3":
+			hud.skill_tally_item("SnackBox").visible = true
+			hud.set_message("How about now,/ can you find a way to squish here?")
+		"tutorial_squish_4":
+			hud.skill_tally_item("SnackBox").visible = true
+			hud.set_message("What do you think about this one?/ Is it possible to make a snack box here?")
+		"tutorial_squish_5":
+			hud.skill_tally_item("LineClear").visible = true
+			hud.skill_tally_item("LineClear").reset()
+			PuzzleScore.level_performance.lines = 0
+			PuzzleScore.level_performance.pieces = 0
+			if _failed_section:
+				hud.set_message("Here,/ let me help you with that.")
+			else:
+				hud.set_message("Of course, squish moves aren't always about being very,"
+							+ " very clever. ...Sometimes we make mistakes, too.")
+		"tutorial_squish_6":
+			hud.skill_tally_item("LineClear").visible = true
+			hud.skill_tally_item("LineClear").reset()
+			PuzzleScore.level_performance.lines = 0
+			PuzzleScore.level_performance.pieces = 0
+			if _failed_section:
+				hud.set_message("Should I make it worse this time?\n\nNo,/ that would be mean.")
+			else:
+				hud.set_message("Hmmm.../ What are you up to this time?")
+		"tutorial_squish_7":
+			# reset timer, scores
+			PuzzleScore.reset()
+			puzzle.scroll_to_new_creature()
+
+			# the sixth tutorial section ends with a long message, so we enqueue these messages
+			hud.enqueue_message("Your training is complete!\n\nBut don't let it go to your head,"
+					+ "/ we still have some customers to take care of.")
+			hud.enqueue_pop_out()
+	
+	_prepared_levels[Level.settings.id] = true
 
 
 """
@@ -93,57 +143,6 @@ func _handle_squish_move_message() -> void:
 		hud.set_message("Good job!\n\nSquish moves help in all sorts of ways.")
 
 
-func _prepare_tutorial_level() -> void:
-	hide_completed_skill_tally_items()
-	_failed_section = _prepared_levels.has(Level.settings.id)
-	
-	match(Level.settings.id):
-		"tutorial_squish_0":
-			hud.skill_tally_item("SquishMove").visible = true
-			hud.set_message("Hold soft drop to squish pieces through this gap.")
-		"tutorial_squish_1":
-			_show_next_diagram()
-		"tutorial_squish_2":
-			hud.skill_tally_item("SnackBox").visible = true
-			hud.set_message("So, which of these snack boxes can be completed with a squish move?")
-		"tutorial_squish_3":
-			hud.skill_tally_item("SnackBox").visible = true
-			hud.set_message("How about now,/ can you find a way to squish here?")
-		"tutorial_squish_4":
-			hud.skill_tally_item("SnackBox").visible = true
-			hud.set_message("What do you think about this one?/ Is it possible to make a snack box here?")
-		"tutorial_squish_5":
-			hud.skill_tally_item("LineClear").visible = true
-			hud.skill_tally_item("LineClear").reset()
-			PuzzleScore.level_performance.lines = 0
-			PuzzleScore.level_performance.pieces = 0
-			if _failed_section:
-				hud.set_message("Here,/ let me help you with that.")
-			else:
-				hud.set_message("Of course, squish moves aren't always about being very,"
-							+ " very clever. ...Sometimes we make mistakes, too.")
-		"tutorial_squish_6":
-			hud.skill_tally_item("LineClear").visible = true
-			hud.skill_tally_item("LineClear").reset()
-			PuzzleScore.level_performance.lines = 0
-			PuzzleScore.level_performance.pieces = 0
-			if _failed_section:
-				hud.set_message("Should I make it worse this time?\n\nNo,/ that would be mean.")
-			else:
-				hud.set_message("Hmmm.../ What are you up to this time?")
-		"tutorial_squish_7":
-			# reset timer, scores
-			PuzzleScore.reset()
-			puzzle.scroll_to_new_creature()
-
-			# the sixth tutorial section ends with a long message, so we enqueue these messages
-			hud.enqueue_message("Your training is complete!\n\nBut don't let it go to your head,"
-					+ "/ we still have some customers to take care of.")
-			hud.enqueue_pop_out()
-	
-	_prepared_levels[Level.settings.id] = true
-
-
 """
 Shows a diagram explaining how squish moves work, with an accompanying instructor message.
 """
@@ -194,7 +193,7 @@ After a piece is written to the playfield, we check if the player should advance
 
 We also sometimes display messages from the instructor.
 """
-func _on_Playfield_after_piece_written() -> void:
+func _on_PuzzleScore_after_piece_written() -> void:
 	# print tutorial messages if the player did something noteworthy
 	_handle_squish_move_message()
 	
@@ -254,11 +253,7 @@ func _on_PuzzleScore_after_game_prepared() -> void:
 	_boxes_built = 0
 	_show_diagram_count = 0
 	
-	_prepare_tutorial_level()
-
-
-func _on_PuzzleScore_after_level_changed() -> void:
-	_prepare_tutorial_level()
+	prepare_tutorial_level()
 
 
 func _on_TutorialDiagram_ok_chosen() -> void:
