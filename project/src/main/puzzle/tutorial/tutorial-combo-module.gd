@@ -27,10 +27,9 @@ var _combo_diagram := preload("res://assets/main/puzzle/tutorial/combo-diagram.p
 
 func _ready() -> void:
 	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
-	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
+	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
 	PuzzleScore.connect("combo_changed", self, "_on_PuzzleScore_combo_changed")
 	
-	playfield.connect("after_piece_written", self, "_on_Playfield_after_piece_written")
 	playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
@@ -41,8 +40,8 @@ func _ready() -> void:
 			+ "\n\nCombos are easy, you might have already done them on accident!")
 
 
-func _prepare_tutorial_level() -> void:
-	hide_completed_skill_tally_items()
+func prepare_tutorial_level() -> void:
+	.prepare_tutorial_level()
 	var failed_section := _prepared_levels.has(Level.settings.id)
 	
 	match(Level.settings.id):
@@ -194,7 +193,7 @@ After a piece is written to the playfield, we check if the player should advance
 
 We also sometimes display messages from the instructor.
 """
-func _on_Playfield_after_piece_written() -> void:
+func _on_PuzzleScore_after_piece_written() -> void:
 	match Level.settings.id:
 		"tutorial_combo_0", "tutorial_combo_2":
 			if hud.skill_tally_item("Combo").is_complete():
@@ -262,11 +261,7 @@ func _on_PuzzleScore_after_game_prepared() -> void:
 	_cakes_built = 0
 	_show_diagram_count = 0
 	
-	_prepare_tutorial_level()
-
-
-func _on_PuzzleScore_after_level_changed() -> void:
-	_prepare_tutorial_level()
+	prepare_tutorial_level()
 
 
 func _on_TutorialDiagram_ok_chosen() -> void:
