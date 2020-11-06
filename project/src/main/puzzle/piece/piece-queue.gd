@@ -146,19 +146,49 @@ func _fill_remaining_pieces() -> void:
 	while _pieces.size() < MIN_SIZE:
 		# fill a bag with one of each piece and one extra; draw them out in a random order
 		var new_pieces := shuffled_piece_types()
-		
-		# avoid having two of the same piece consecutively
-		if new_pieces.size() >= 3:
-			for _i in range(48):
-				if _has_duplicate_pieces(new_pieces):
-					new_pieces.shuffle()
-				elif not _pieces.empty() and _pieces.back() == new_pieces[0]:
-					new_pieces.pop_front()
-					new_pieces.insert(int(rand_range(1, new_pieces.size() + 1)), _pieces.back())
-				else:
-					break
 		_pieces += new_pieces
+		
+		if new_pieces.size() >= 3:
+			# for levels with multiple identical pieces in the bag, we shuffle the bag so that those identical pieces
+			# aren't back to back
+			var min_to_index := _pieces.size() - new_pieces.size()
+			var from_index := min_to_index
+			while from_index < _pieces.size():
+				var to_index := from_index
+				if _pieces[from_index] == _pieces[from_index - 1]:
+					# a piece appears back-to-back; move it to a new position
+					to_index = _move_duplicate_piece(from_index, min_to_index)
+				if to_index <= from_index:
+					# don't advance from_index if it would skip an item in the queue
+					from_index += 1
 		_insert_annoying_piece(new_pieces.size())
+
+
+"""
+Moves a piece which appears back-to-back in the piece queue.
+
+Parameters:
+	'from_index': The index of the piece being moved
+	
+	'min_to_index': The earliest position in the queue the piece can be moved to
+
+Returns:
+	The position the piece was moved to, or 'from_index' if the piece did not move.
+"""
+func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
+	# remove the piece from the queue
+	var duplicate_piece: PieceType = _pieces[from_index]
+	_pieces.remove(from_index)
+	
+	# find a new position for it
+	var to_index := from_index
+	var piece_positions := non_adjacent_indexes(_pieces, duplicate_piece, min_to_index)
+	if piece_positions:
+		to_index = Utils.rand_value(piece_positions)
+	
+	# move the piece to its new place in the queue
+	_pieces.insert(to_index, duplicate_piece)
+	return to_index
 
 
 """
@@ -203,3 +233,26 @@ func _on_Level_settings_changed() -> void:
 
 func _on_PuzzleScore_game_prepared() -> void:
 	clear()
+
+
+"""
+Returns a list of of positions where an item can be inserted without being adjacent to itself.
+
+non_adjacent_indexes(['A', 'B'], 'A')      = [2]
+non_adjacent_indexes(['A', 'B', 'C'], 'C') = [0, 1]
+non_adjacent_indexes([], 'C')              = [0]
+non_adjacent_indexes(['B', 'A', 'B'], 'B') = []
+
+Parameters:
+	'arr': The array to search
+	
+	'value': The value to search for
+	
+	'from_index': The lowest index to return
+"""
+static func non_adjacent_indexes(arr: Array, value, from_index: int = 0) -> Array:
+	var result := []
+	for i in range(from_index, arr.size() + 1):
+		if (i == 0 or value != arr[i - 1]) and (i >= arr.size() or value != arr[i]):
+			result.append(i)
+	return result
