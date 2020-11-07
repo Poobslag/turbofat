@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=2]
+[gd_scene load_steps=41 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=20]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=21]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=22]
+[ext_resource path="res://src/main/puzzle/LeafPoof.tscn" type="PackedScene" id=23]
 [ext_resource path="res://assets/main/puzzle/playfield-bg.png" type="Texture" id=37]
 [ext_resource path="res://src/main/puzzle/combo-tracker.gd" type="Script" id=61]
 [ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=62]
@@ -182,6 +183,7 @@ __meta__ = {
 position = Vector2( 0, -96 )
 z_index = 5
 script = ExtResource( 5 )
+LeafPoofScene = ExtResource( 23 )
 puzzle_tile_map_path = NodePath("../TileMap")
 
 [node name="ShadowTexture" type="TextureRect" parent="."]
@@ -300,8 +302,8 @@ bus = "Sound Bus"
 bus = "Sound Bus"
 [connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="." to="LineClearer" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]

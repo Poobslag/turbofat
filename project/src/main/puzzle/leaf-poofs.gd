@@ -6,7 +6,7 @@ Any occupied cell which isn't used in a box risks spawning a leaf poof. The more
 the chance of a poof.
 """
 
-onready var LeafPoofScene := preload("res://src/main/puzzle/LeafPoof.tscn")
+export (PackedScene) var LeafPoofScene: PackedScene
 
 export (NodePath) var puzzle_tile_map_path: NodePath
 

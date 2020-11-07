@@ -16,8 +16,8 @@ signal hit_next_pieces(glob)
 export (NodePath) var puzzle_tile_map_path: NodePath
 export (NodePath) var playfield_path: NodePath
 export (NodePath) var next_piece_displays_path: NodePath
+export (PackedScene) var FrostingGlobScene: PackedScene
 
-onready var FrostingGlobScene := preload("res://src/main/puzzle/FrostingGlob.tscn")
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 onready var _puzzle_areas: PuzzleAreas
 

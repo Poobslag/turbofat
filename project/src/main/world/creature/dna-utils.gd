@@ -348,24 +348,30 @@ Otherwise, missing values will be left empty, leading to invisible body parts or
 func fill_dna(dna: Dictionary) -> Dictionary:
 	# duplicate the dna so that we don't modify the original
 	var result := dna.duplicate()
-	Utils.put_if_absent(result, "line_rgb", "6c4331")
-	Utils.put_if_absent(result, "body_rgb", "b23823")
-	Utils.put_if_absent(result, "belly_rgb", "ffa86d")
-	Utils.put_if_absent(result, "cloth_rgb", "282828")
-	Utils.put_if_absent(result, "glass_rgb", "282828")
-	Utils.put_if_absent(result, "plastic_rgb", "282828")
-	Utils.put_if_absent(result, "hair_rgb", "f1e398")
-	Utils.put_if_absent(result, "eye_rgb", "282828 dedede")
-	Utils.put_if_absent(result, "horn_rgb", "f1e398")
+	
+	var new_palette: Dictionary = DnaUtils.random_creature_palette()
+	for allele in COLOR_ALLELES:
+		Utils.put_if_absent(result, allele, new_palette[allele])
 	
 	if ResourceCache.minimal_resources:
 		# avoid loading unnecessary resources for things like the level editor
 		pass
 	else:
-		for allele in BODY_PART_ALLELES:
+		var alleles := BODY_PART_ALLELES.duplicate()
+		alleles.shuffle()
+		for allele in alleles:
 			Utils.put_if_absent(result, allele, Utils.weighted_rand_value(allele_weights(result, allele)))
 		Utils.put_if_absent(result, "emote-eye", "0" if result.get("eye", "0") == "0" else "1")
 	return result
+
+
+"""
+Returns a dna dictionary containing sensible random values.
+
+This includes an aesthetically pleasing palette and body parts that look good together.
+"""
+func random_dna() -> Dictionary:
+	return fill_dna({})
 
 
 """

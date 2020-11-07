@@ -5,6 +5,7 @@ Combo indicators which appear when the player clears a line in puzzle mode.
 
 export (NodePath) var piece_manager_path: NodePath
 export (NodePath) var playfield_path: NodePath
+export (PackedScene) var ComboCounterScene: PackedScene
 
 # Stores the x position of the previous combo counter to ensure consecutive counters aren't vertically aligned
 var _previous_cell_x := -1
@@ -14,7 +15,6 @@ var _previous_cell_x := -1
 # value: average x position of the piece's blocks in that row
 var _piece_x_by_y: Dictionary
 
-onready var ComboCounterScene := preload("res://src/main/puzzle/ComboCounter.tscn")
 onready var _piece_manager: PieceManager = get_node(piece_manager_path)
 onready var _playfield: Playfield = get_node(playfield_path)
 

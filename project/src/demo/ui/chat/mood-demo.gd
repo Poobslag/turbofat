@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 			KEY_F: $Creature.creature_visuals.play_idle_animation("idle-ear-wiggle1")
 	else:
 		match(Utils.key_scancode(event)):
-			KEY_BRACELEFT, KEY_BRACERIGHT: $Creature.dna = DnaUtils.fill_dna(DnaUtils.random_creature_palette())
+			KEY_BRACELEFT, KEY_BRACERIGHT: $Creature.dna = DnaUtils.random_dna()
 			KEY_1: $Creature.play_mood(ChatEvent.Mood.DEFAULT)
 			KEY_Q: $Creature.play_mood(ChatEvent.Mood.SMILE0)
 			KEY_W: $Creature.play_mood(ChatEvent.Mood.SMILE1)
