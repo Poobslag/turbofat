@@ -75,6 +75,7 @@ func _advance_level() -> void:
 		
 		# force match to end
 		PuzzleScore.level_performance.lines = 100
+		PuzzleScore.end_game()
 	elif _boxes_built == 0 or _box_clears == 0:
 		hud.set_message("Good job!")
 		PuzzleScore.change_level("tutorial_basics_1")
