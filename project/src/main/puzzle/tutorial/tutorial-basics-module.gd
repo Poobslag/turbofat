@@ -40,17 +40,17 @@ func _ready() -> void:
 func prepare_tutorial_level() -> void:
 	.prepare_tutorial_level()
 	match(Level.settings.id):
-		"tutorial_basics_1":
+		"tutorial/basics_1":
 			hud.skill_tally_item("SnackBox").visible = true
 			hud.skill_tally_item("BoxClear").visible = true
 			hud.set_message("Try making a snack box by arranging two pieces into a square.")
-		"tutorial_basics_2":
+		"tutorial/basics_2":
 			hud.skill_tally_item("SquishMove").visible = true
 			hud.set_message("Next,/ try holding soft drop to squish pieces through these gaps.")
-		"tutorial_basics_3":
+		"tutorial/basics_3":
 			hud.skill_tally_item("SnackStack").visible = true
 			hud.set_message("One last lesson!/ Try holding soft drop to squish and complete these boxes.")
-		"tutorial_basics_4":
+		"tutorial/basics_4":
 			# reset timer, scores
 			PuzzleScore.reset()
 			puzzle.scroll_to_new_creature()
@@ -67,9 +67,9 @@ The level to advance to depends on what the player's accomplished so far. If the
 before they're instructed to, they can skip parts of the tutorial.
 """
 func _advance_level() -> void:
-	if Level.settings.id == "tutorial_basics_0" and _did_build_cake and _did_squish_move:
+	if Level.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
-		PuzzleScore.change_level("oh_my", false)
+		PuzzleScore.change_level("tutorial/oh_my", false)
 		hud.set_big_message("O/H/,/// M/Y/!/!/!")
 		hud.enqueue_pop_out()
 		
@@ -78,16 +78,16 @@ func _advance_level() -> void:
 		PuzzleScore.end_game()
 	elif _boxes_built == 0 or _box_clears == 0:
 		hud.set_message("Good job!")
-		PuzzleScore.change_level("tutorial_basics_1")
+		PuzzleScore.change_level("tutorial/basics_1")
 	elif _squish_moves == 0:
 		hud.set_message("Nicely done!")
-		PuzzleScore.change_level("tutorial_basics_2")
+		PuzzleScore.change_level("tutorial/basics_2")
 	elif _snack_stacks == 0:
 		hud.set_message("Impressive!")
-		PuzzleScore.change_level("tutorial_basics_3")
+		PuzzleScore.change_level("tutorial/basics_3")
 	else:
 		hud.set_message("Oh! I thought that would be more difficult...")
-		PuzzleScore.change_level("tutorial_basics_4")
+		PuzzleScore.change_level("tutorial/basics_4")
 		start_customer_countdown()
 
 
@@ -104,9 +104,9 @@ might forget how to progress in the tutorial. This function displays a 'how to p
 """
 func _add_post_skip_message() -> void:
 	match Level.settings.id:
-		"tutorial_basics_0":
+		"tutorial/basics_0":
 			hud.enqueue_message("Clear a row by filling it with blocks.")
-		"tutorial_basics_1":
+		"tutorial/basics_1":
 			if _boxes_built == 0:
 				hud.enqueue_message("Try making a snack box by arranging two pieces into a square.")
 			elif _box_clears == 0:
@@ -117,12 +117,12 @@ func _handle_box_clear_message() -> void:
 	if _did_box_clear:
 		if _box_clears == 1:
 			match Level.settings.id:
-				"tutorial_basics_0":
+				"tutorial/basics_0":
 					hud.set_message("Well done!\n\nBox clears earn you five times as much money./"
 							+ " Maybe more than that if you're clever.")
 					_add_post_skip_message()
 					hud.skill_tally_item("BoxClear").visible = true
-				"tutorial_basics_1":
+				"tutorial/basics_1":
 					hud.set_message("Well done!\n\nBox clears earn you five times as much money./"
 							+ " Maybe more than that if you're clever.")
 					_add_post_skip_message()
@@ -132,13 +132,13 @@ func _handle_squish_move_message() -> void:
 	if _did_squish_move:
 		if _squish_moves == 1:
 			match Level.settings.id:
-				"tutorial_basics_0", "tutorial_basics_1":
+				"tutorial/basics_0", "tutorial/basics_1":
 					hud.set_message("Oh my,/ you're not supposed to know how to do that!\n\n"
 							+ "...But yes,/ squish moves can help you out of a jam.")
 					_add_post_skip_message()
 					hud.skill_tally_item("SquishMove").visible = true
 					hud.skill_tally_item("SquishMove").increment()
-				"tutorial_basics_2":
+				"tutorial/basics_2":
 					hud.set_message("Well done!\n\nSquish moves can help you out of a jam./"
 							+ " They're also good for certain boxes.")
 
@@ -147,19 +147,19 @@ func _handle_build_box_message() -> void:
 	if _did_build_box:
 		if _boxes_built == 1:
 			match Level.settings.id:
-				"tutorial_basics_0":
+				"tutorial/basics_0":
 					hud.set_message("Oh my,/ you're not supposed to know how to do that!\n\n"
 							+ "...But yes,/ those boxes earn $15 when you clear them.")
 					_add_post_skip_message()
 					hud.skill_tally_item("SnackBox").visible = true
 					hud.skill_tally_item("SnackBox").increment()
-				"tutorial_basics_1":
+				"tutorial/basics_1":
 					hud.set_message("Well done!\n\nThose boxes earn ¥15 when you clear them./"
 					+ " Try clearing a few box lines.")
 
 
 func _handle_snack_stack_message() -> void:
-	if Level.settings.id == "tutorial_basics_3" and _did_build_box and _did_squish_move:
+	if Level.settings.id == "tutorial/basics_3" and _did_build_box and _did_squish_move:
 		hud.skill_tally_item("SnackStack").increment()
 		_snack_stacks += 1
 		if _snack_stacks == 1:
@@ -210,16 +210,16 @@ func _on_PuzzleScore_after_piece_written() -> void:
 	_handle_snack_stack_message()
 	
 	match Level.settings.id:
-		"tutorial_basics_0":
+		"tutorial/basics_0":
 			if _line_clears >= 2: _advance_level()
-		"tutorial_basics_1":
+		"tutorial/basics_1":
 			if _boxes_built >= 2 and _box_clears >= 2: _advance_level()
-		"tutorial_basics_2":
+		"tutorial/basics_2":
 			if not _did_squish_move:
 				playfield.tile_map.restore_state()
 			if _squish_moves >= 2:
 				_advance_level()
-		"tutorial_basics_3":
+		"tutorial/basics_3":
 			if not _did_build_box:
 				playfield.tile_map.restore_state()
 			if _snack_stacks >= 2:

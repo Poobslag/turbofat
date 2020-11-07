@@ -1,6 +1,11 @@
 {
   "version": "19c5",
   "piece_types": [
+    "ordered_start",
+    "start_piece_l",
+    "start_piece_j",
+    "start_piece_o",
+    "start_piece_l",
     "piece_j",
     "piece_l",
     "piece_o"
@@ -166,12 +171,44 @@
   ],
   "other": [
     "tutorial",
-    "start_level tutorial_combo_0",
+    "start_level tutorial/combo_0",
     "enhance_combo_fx"
   ],
   "rank": [
     "skip_results",
     "unranked"
+  ],
+  "input_replay": [
+    "17 +ui_right",
+    "23 -ui_right",
+    "29 +ui_right",
+    "34 -ui_right",
+    "40 +ui_right",
+    "46 -ui_right",
+    "50 +soft_drop",
+    "87 -soft_drop",
+    "155 +rotate_ccw",
+    "162 -rotate_ccw",
+    "187 +rotate_ccw",
+    "192 -rotate_ccw",
+    "204 +soft_drop",
+    "246 -soft_drop",
+    "366 +ui_right",
+    "372 -ui_right",
+    "378 +ui_right",
+    "382 -ui_right",
+    "388 +ui_right",
+    "392 -ui_right",
+    "398 +soft_drop",
+    "432 -soft_drop",
+    "508 +rotate_cw",
+    "517 -rotate_cw",
+    "522 +ui_right",
+    "528 -ui_right",
+    "534 +ui_right",
+    "540 -ui_right",
+    "546 +soft_drop",
+    "638 -soft_drop"
   ],
   "start_speed": "T"
 }

@@ -258,7 +258,7 @@
     "top_out 999999"
   ],
   "other": [
-    "start_level tutorial_squish_0",
+    "start_level tutorial/squish_0",
     "tutorial"
   ],
   "rank": [

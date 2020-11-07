@@ -232,7 +232,7 @@
     "top_out 999999"
   ],
   "other": [
-    "start_level tutorial_basics_0",
+    "start_level tutorial/basics_0",
     "tutorial"
   ],
   "piece_types": [
