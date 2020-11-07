@@ -179,8 +179,8 @@ static func find_closest(values: Array, target: float) -> int:
 """
 If the specified key does not exist, this method associates it with the given value.
 """
-static func put_if_absent(dna: Dictionary, key: String, value) -> void:
-	dna[key] = dna.get(key, value)
+static func put_if_absent(dict: Dictionary, key: String, value) -> void:
+	dict[key] = dict.get(key, value)
 
 
 static func remove_all(values: Array, value) -> Array:

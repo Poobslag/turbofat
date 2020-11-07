@@ -16,12 +16,6 @@ export (float) var avg_pulse_amount := 0.2
 # How many seconds the sprite should take to shrink to minimum/maximum scale
 export (float) var avg_pulse_period := 3.0
 
-# Slightly randomize inputs so each object is slightly unique
-onready var _spin_amount := avg_spin_amount * rand_range(0.8, 1.2)
-onready var _spin_period := avg_spin_period * rand_range(0.8, 1.2)
-onready var _pulse_amount := avg_pulse_amount * rand_range(0.8, 1.2)
-onready var _pulse_period := avg_pulse_period * rand_range(0.8, 1.2)
-
 # The unmodified scale/rotation before pulsing/spinning
 var base_scale := Vector2(1.0, 1.0) setget set_base_scale
 var base_rotation := 0.0 setget set_base_rotation
@@ -31,6 +25,12 @@ var food_type := 0
 
 # Stars/seeds pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
+
+# Slightly randomize inputs so each object is slightly unique
+onready var _spin_amount := avg_spin_amount * rand_range(0.8, 1.2)
+onready var _spin_period := avg_spin_period * rand_range(0.8, 1.2)
+onready var _pulse_amount := avg_pulse_amount * rand_range(0.8, 1.2)
+onready var _pulse_period := avg_pulse_period * rand_range(0.8, 1.2)
 
 func _ready() -> void:
 	frame = randi() % (hframes * vframes)

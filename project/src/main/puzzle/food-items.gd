@@ -4,8 +4,7 @@ Food items which appear when the player clears boxes in puzzle mode.
 """
 
 export (NodePath) var playfield_path: NodePath
-
-onready var FoodScene := preload("res://src/main/puzzle/FoodItem.tscn")
+export (PackedScene) var FoodScene: PackedScene
 
 onready var _playfield: Playfield = get_node(playfield_path)
 onready var _puzzle_tile_map := _playfield.tile_map

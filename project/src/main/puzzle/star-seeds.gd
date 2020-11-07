@@ -46,8 +46,9 @@ export (NodePath) var _puzzle_tile_map_path: NodePath
 # value: Wobbler node contained within that cell
 var _wobblers_by_cell: Dictionary
 
-onready var StarScene := preload("res://src/main/puzzle/Star.tscn")
-onready var SeedScene := preload("res://src/main/puzzle/Seed.tscn")
+export (PackedScene) var StarScene: PackedScene
+export (PackedScene) var SeedScene: PackedScene
+
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
 
 func _ready() -> void:

@@ -10,7 +10,7 @@ export (float) var glob_min_scale := 1.0
 # the maximum smear size for globs which are smeared quickly.
 export (float) var glob_max_scale := 1.0
 
-onready var FrostingGlobScene := preload("res://src/main/puzzle/FrostingGlob.tscn")
+export (PackedScene) var FrostingGlobScene: PackedScene
 
 func _ready() -> void:
 	$Viewport.size = rect_size

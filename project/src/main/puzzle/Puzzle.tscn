@@ -1,4 +1,4 @@
-[gd_scene load_steps=70 format=2]
+[gd_scene load_steps=75 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -32,12 +32,17 @@
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=30]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/puzzle/combo-counters.gd" type="Script" id=32]
+[ext_resource path="res://src/main/puzzle/Seed.tscn" type="PackedScene" id=33]
+[ext_resource path="res://src/main/puzzle/Star.tscn" type="PackedScene" id=34]
+[ext_resource path="res://src/main/puzzle/FrostingGlob.tscn" type="PackedScene" id=35]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
+[ext_resource path="res://src/main/puzzle/FoodItem.tscn" type="PackedScene" id=37]
 [ext_resource path="res://assets/main/ui/go.wav" type="AudioStream" id=38]
 [ext_resource path="res://assets/main/ui/ready.wav" type="AudioStream" id=39]
 [ext_resource path="res://assets/main/puzzle/wood-backdrop.png" type="Texture" id=40]
 [ext_resource path="res://assets/main/puzzle/playfield-walls.png" type="Texture" id=41]
 [ext_resource path="res://assets/main/puzzle/chalkboard.png" type="Texture" id=42]
+[ext_resource path="res://src/main/puzzle/ComboCounter.tscn" type="PackedScene" id=43]
 [ext_resource path="res://assets/main/world/chef/gameover-voice4.wav" type="AudioStream" id=44]
 [ext_resource path="res://assets/main/world/chef/gameover-voice3.wav" type="AudioStream" id=45]
 [ext_resource path="res://assets/main/world/chef/gameover-voice0.wav" type="AudioStream" id=46]
@@ -169,6 +174,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 _puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
+StarScene = ExtResource( 34 )
+SeedScene = ExtResource( 33 )
 
 [node name="PieceManager" parent="." instance=ExtResource( 9 )]
 playfield_path = NodePath("../Playfield")
@@ -188,6 +195,7 @@ margin_bottom = 576.5
 script = ExtResource( 16 )
 glob_min_scale = 1.2
 glob_max_scale = 2.5
+FrostingGlobScene = ExtResource( 35 )
 
 [node name="Walls" type="TextureRect" parent="."]
 material = SubResource( 5 )
@@ -209,6 +217,7 @@ script = ExtResource( 24 )
 puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 playfield_path = NodePath("../Playfield")
 next_piece_displays_path = NodePath("../NextPieceDisplays")
+FrostingGlobScene = ExtResource( 35 )
 
 [node name="GlobViewports" type="Node" parent="FrostingGlobs"]
 
@@ -247,6 +256,7 @@ __meta__ = {
 z_index = 3
 script = ExtResource( 20 )
 playfield_path = NodePath("../Playfield")
+FoodScene = ExtResource( 37 )
 
 [node name="Viewport" type="Viewport" parent="FoodItems"]
 size = Vector2( 1024, 600 )
@@ -269,6 +279,7 @@ z_index = 3
 script = ExtResource( 32 )
 piece_manager_path = NodePath("../PieceManager")
 playfield_path = NodePath("../Playfield")
+ComboCounterScene = ExtResource( 43 )
 
 [node name="Hud" type="CanvasLayer" parent="."]
 
@@ -487,12 +498,12 @@ codes = [ "delays" ]
 
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
-[connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
-[connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
 [connection signal="lines_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_lines_deleted"]
