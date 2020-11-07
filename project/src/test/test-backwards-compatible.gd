@@ -43,12 +43,18 @@ func load_1682_data() -> void:
 	PlayerSave.load_player_data()
 
 
+func load_19c5_data() -> void:
+	var dir := Directory.new()
+	dir.copy("res://assets/test/turbofat-19c5.json", "user://%s" % TEMP_FILENAME)
+	PlayerSave.load_player_data()
+
+
 func test_0517_lost_true() -> void:
 	load_0517_data()
 	
 	# level where the player topped out and lost
-	assert_true(PlayerData.level_history.level_names().has("sprint_normal"))
-	var history_sprint: RankResult = PlayerData.level_history.results("sprint_normal")[0]
+	assert_true(PlayerData.level_history.level_names().has("practice/sprint_normal"))
+	var history_sprint: RankResult = PlayerData.level_history.results("practice/sprint_normal")[0]
 	assert_eq(history_sprint.lost, true)
 	assert_eq(history_sprint.top_out_count, 1)
 
@@ -57,8 +63,8 @@ func test_0517_lost_false() -> void:
 	load_0517_data()
 	
 	# level where the player survived
-	assert_true(PlayerData.level_history.level_names().has("ultra_normal"))
-	var history_ultra: RankResult = PlayerData.level_history.results("ultra_normal")[0]
+	assert_true(PlayerData.level_history.level_names().has("practice/ultra_normal"))
+	var history_ultra: RankResult = PlayerData.level_history.results("practice/ultra_normal")[0]
 	assert_eq(history_ultra.lost, false)
 	assert_eq(history_ultra.top_out_count, 0)
 
@@ -74,8 +80,8 @@ func test_0517_survival_records_preserved() -> void:
 	load_0517_data()
 	
 	# 'survival mode' used to be called 'marathon mode'
-	assert_true(PlayerData.level_history.level_names().has("survival_normal"))
-	var history_survival: RankResult = PlayerData.level_history.results("survival_normal")[0]
+	assert_true(PlayerData.level_history.level_names().has("practice/survival_normal"))
+	var history_survival: RankResult = PlayerData.level_history.results("practice/survival_normal")[0]
 	assert_eq(history_survival.lost, false)
 	assert_eq(history_survival.score, 1335)
 
@@ -83,8 +89,8 @@ func test_0517_survival_records_preserved() -> void:
 func test_0517_timestamp_created() -> void:
 	load_0517_data()
 	
-	assert_true(PlayerData.level_history.level_names().has("ultra_normal"))
-	var history_ultra: RankResult = PlayerData.level_history.results("ultra_normal")[0]
+	assert_true(PlayerData.level_history.level_names().has("practice/ultra_normal"))
+	var history_ultra: RankResult = PlayerData.level_history.results("practice/ultra_normal")[0]
 	
 	# save data doesn't include timestamp, so we make one up
 	assert_true(history_ultra.timestamp.has("year"))
@@ -98,8 +104,8 @@ func test_0517_timestamp_created() -> void:
 func test_0517_compare_seconds() -> void:
 	load_0517_data()
 	
-	assert_true(PlayerData.level_history.level_names().has("ultra_normal"))
-	var results: Array = PlayerData.level_history.results("ultra_normal")
+	assert_true(PlayerData.level_history.level_names().has("practice/ultra_normal"))
+	var results: Array = PlayerData.level_history.results("practice/ultra_normal")
 	assert_eq(results.size(), 3)
 	
 	# ultra records should be compared by lowest seconds. this 'compare' field didn't exist before
@@ -111,8 +117,8 @@ func test_0517_compare_seconds() -> void:
 func test_0517_compare_score() -> void:
 	load_0517_data()
 	
-	assert_true(PlayerData.level_history.level_names().has("sprint_normal"))
-	var history_sprint: RankResult = PlayerData.level_history.results("sprint_normal")[0]
+	assert_true(PlayerData.level_history.level_names().has("practice/sprint_normal"))
+	var history_sprint: RankResult = PlayerData.level_history.results("practice/sprint_normal")[0]
 	
 	# sprint records should be compared by highest score. this 'compare' field didn't exist before
 	assert_eq(history_sprint.compare, "+score")
@@ -129,7 +135,7 @@ func test_0517_volume() -> void:
 func test_15d2_rank_success() -> void:
 	load_15d2_data()
 	
-	var history_rank_7k: RankResult = PlayerData.level_history.results("rank_7k")[0]
+	var history_rank_7k: RankResult = PlayerData.level_history.results("rank/7k")[0]
 	
 	# we didn't used to store 'success', but it should be calculated based on how well they did
 	assert_eq(history_rank_7k.success, true)
@@ -139,9 +145,9 @@ func test_163e_lost_erases_success() -> void:
 	load_163e_data()
 	
 	# rank-6d was a success, and the player didn't lose
-	assert_eq(PlayerData.level_history.results("rank_6d")[0].success, true)
+	assert_eq(PlayerData.level_history.results("rank/6d")[0].success, true)
 	# rank-7d was recorded as a success, but the player lost
-	assert_eq(PlayerData.level_history.results("rank_7d")[0].success, false)
+	assert_eq(PlayerData.level_history.results("rank/7d")[0].success, false)
 
 
 func test_1682_chat_history_preserved() -> void:
@@ -151,9 +157,14 @@ func test_1682_chat_history_preserved() -> void:
 	assert_eq(13, PlayerData.chat_history.get_filler_count("creatures/primary/boatricia"))
 
 
-func test_199c() -> void:
-	assert_eq(PlayerData.level_history.successful_levels.has("survival_normal"), true)
-	assert_eq(PlayerData.level_history.successful_levels.has("rank_7k"), true)
+func test_19c5() -> void:
+	load_19c5_data()
 	
-	assert_eq(PlayerData.level_history.finished_levels.has("boatricia"), true)
-	assert_eq(PlayerData.level_history.finished_levels.has("example"), true)
+	assert_eq(PlayerData.level_history.successful_levels.has("rank/7k"), true)
+	
+	assert_eq(PlayerData.level_history.finished_levels.has("tutorial/basics_0"), true)
+	assert_eq(PlayerData.level_history.finished_levels.has("practice/ultra_normal"), true)
+	
+	assert_eq(PlayerData.level_history.best_result("tutorial/basics_0").score, 158)
+	assert_eq(PlayerData.level_history.best_result("rank/7k").score, 230)
+	assert_almost_eq(PlayerData.level_history.best_result("practice/ultra_normal").seconds, 40.81, 0.1)

@@ -5,15 +5,15 @@
       "name": "Tutorials",
       "levels": [
         {
-          "id": "tutorial_basics_0",
+          "id": "tutorial/basics_0",
           "creature_id": "#instructor#"
         },
         {
-          "id": "tutorial_squish_0",
+          "id": "tutorial/squish_0",
           "creature_id": "#instructor#"
         },
         {
-          "id": "tutorial_combo_0",
+          "id": "tutorial/combo_0",
           "creature_id": "#instructor#"
         }
       ]

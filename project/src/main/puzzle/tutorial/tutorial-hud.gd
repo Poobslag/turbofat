@@ -37,11 +37,11 @@ func replace_tutorial_module() -> void:
 		remove_child(get_node("TutorialModule"))
 	
 	var module_path: String
-	if Level.settings.id.begins_with("tutorial_basics"):
+	if Level.settings.id.begins_with("tutorial/basics"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialBasicsModule.tscn"
-	elif Level.settings.id.begins_with("tutorial_squish"):
+	elif Level.settings.id.begins_with("tutorial/squish"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialSquishModule.tscn"
-	elif Level.settings.id.begins_with("tutorial_combo"):
+	elif Level.settings.id.begins_with("tutorial/combo"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialComboModule.tscn"
 	
 	if module_path:

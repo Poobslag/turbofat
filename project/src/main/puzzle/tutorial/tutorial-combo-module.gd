@@ -45,7 +45,7 @@ func prepare_tutorial_level() -> void:
 	var failed_section := _prepared_levels.has(Level.settings.id)
 	
 	match(Level.settings.id):
-		"tutorial_combo_0":
+		"tutorial/combo_0":
 			_set_combo_state(0, 5)
 			hud.skill_tally_item("Combo").visible = true
 			if failed_section:
@@ -54,9 +54,9 @@ func prepare_tutorial_level() -> void:
 			else:
 				hud.set_message("See if you can clear five lines without stopping."
 						+ "\n\nWell,/ a short break is actually okay too.")
-		"tutorial_combo_1":
+		"tutorial/combo_1":
 			_show_next_diagram()
-		"tutorial_combo_2":
+		"tutorial/combo_2":
 			_set_combo_state(5, 12)
 			hud.skill_tally_item("Combo").visible = true
 			if failed_section:
@@ -65,18 +65,18 @@ func prepare_tutorial_level() -> void:
 			else:
 				hud.set_message("Let's use boxes to extend a combo!"
 						+ "\n\nTry to clear seven more lines without letting your combo break.")
-		"tutorial_combo_3":
+		"tutorial/combo_3":
 			PuzzleScore.level_performance.pieces = 0
 			_set_combo_state(5)
 			hud.set_message("You can make a cake box with three pieces./ Let me show you.")
 			hud.enqueue_message("Unfortunately,/ it's difficult to continue a combo with cake boxes."
 					+ "\n\nThe first two pieces will break the combo.")
-		"tutorial_combo_4":
+		"tutorial/combo_4":
 			PuzzleScore.level_performance.pieces = 0
 			_set_combo_state(5)
 			hud.set_message("With a little foresight,/ you can clear some lines while building a cake box."
 					+ "\n\nThen your combo won't break.")
-		"tutorial_combo_5":
+		"tutorial/combo_5":
 			_set_combo_state(5, 12)
 			_cakes_built = 0
 			hud.skill_tally_item("CakeBox").reset()
@@ -86,7 +86,7 @@ func prepare_tutorial_level() -> void:
 						+ "\n\nClear lines to keep your combo from breaking.")
 			else:
 				hud.set_message("Now see if you can do it.\n\nMake two cake boxes,/ but don't let your combo break.")
-		"tutorial_combo_6":
+		"tutorial/combo_6":
 			# reset timer, scores
 			PuzzleScore.reset()
 			puzzle.scroll_to_new_creature()
@@ -121,20 +121,20 @@ func _advance_level() -> void:
 	var delay_between_levels := PuzzleScore.DELAY_SHORT
 	var failed_section := false
 	match Level.settings.id:
-		"tutorial_combo_0", "tutorial_combo_2":
+		"tutorial/combo_0", "tutorial/combo_2":
 			if hud.skill_tally_item("Combo").is_complete():
 				hud.set_message("Good job!")
 			else:
 				hud.set_message("Oops!/ ...You needed to clear a line with that last piece.")
 				delay_between_levels = PuzzleScore.DELAY_LONG
 				failed_section = true
-		"tutorial_combo_1":
+		"tutorial/combo_1":
 			# no delay for the non-interactive segment where we show the player a diagram
 			delay_between_levels = PuzzleScore.DELAY_NONE
-		"tutorial_combo_3", "tutorial_combo_4":
+		"tutorial/combo_3", "tutorial/combo_4":
 			# no delay for the non-interactive segment where we demo for the player
 			delay_between_levels = PuzzleScore.DELAY_NONE
-		"tutorial_combo_5":
+		"tutorial/combo_5":
 			if hud.skill_tally_item("CakeBox").is_complete():
 				hud.set_message("Impressive!\n\nHmm... Was there anything else?")
 				delay_between_levels = PuzzleScore.DELAY_LONG
@@ -145,8 +145,8 @@ func _advance_level() -> void:
 				failed_section = true
 	
 	var level_ids := [
-		"tutorial_combo_0", "tutorial_combo_1", "tutorial_combo_2", "tutorial_combo_3",
-		"tutorial_combo_4", "tutorial_combo_5", "tutorial_combo_6",
+		"tutorial/combo_0", "tutorial/combo_1", "tutorial/combo_2", "tutorial/combo_3",
+		"tutorial/combo_4", "tutorial/combo_5", "tutorial/combo_6",
 	]
 	var new_level_id: String
 	if failed_section:
@@ -195,12 +195,12 @@ We also sometimes display messages from the instructor.
 """
 func _on_PuzzleScore_after_piece_written() -> void:
 	match Level.settings.id:
-		"tutorial_combo_0", "tutorial_combo_2":
+		"tutorial/combo_0", "tutorial/combo_2":
 			if hud.skill_tally_item("Combo").is_complete():
 				_advance_level()
 			elif _did_end_combo:
 				_advance_level()
-		"tutorial_combo_3":
+		"tutorial/combo_3":
 			if PuzzleScore.level_performance.pieces == 2:
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
@@ -209,19 +209,19 @@ func _on_PuzzleScore_after_piece_written() -> void:
 			if PuzzleScore.level_performance.pieces >= 3:
 				yield(get_tree().create_timer(1.5), "timeout")
 				_advance_level()
-		"tutorial_combo_4":
+		"tutorial/combo_4":
 			if PuzzleScore.level_performance.pieces >= 4:
 				hud.set_message("There,/ I did it!\n\nThat was tricky.")
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(1.5), "timeout")
 				_advance_level()
-		"tutorial_combo_5":
+		"tutorial/combo_5":
 			if hud.skill_tally_item("CakeBox").is_complete():
 				_advance_level()
 			elif _did_end_combo:
 				_advance_level()
-		"tutorial_combo_6":
+		"tutorial/combo_6":
 			if not _showed_end_of_level_message:
 				var first_creature_score: int = PuzzleScore.creature_scores[0]
 				if (_did_end_combo or first_creature_score >= 120):
