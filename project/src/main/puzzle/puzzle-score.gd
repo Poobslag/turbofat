@@ -56,8 +56,8 @@ enum EndResult {
 }
 
 const DELAY_NONE := 0.00
-const DELAY_SHORT := 1.60
-const DELAY_LONG := 3.20
+const DELAY_SHORT := 2.35
+const DELAY_LONG := 4.70
 
 const LOST := EndResult.LOST
 const FINISHED := EndResult.FINISHED

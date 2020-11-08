@@ -213,7 +213,7 @@ func _on_PuzzleScore_after_piece_written() -> void:
 				Level.settings.input_replay.clear()
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
-				yield(get_tree().create_timer(0.5), "timeout")
+				yield(get_tree().create_timer(1.5), "timeout")
 				if _failed_section:
 					hud.set_message("Not again!/ ...Can you clean this up using squish moves?"
 								+ "\n\nTry to clear three lines.")
@@ -229,7 +229,7 @@ func _on_PuzzleScore_after_piece_written() -> void:
 				Level.settings.input_replay.clear()
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
-				yield(get_tree().create_timer(0.5), "timeout")
+				yield(get_tree().create_timer(1.5), "timeout")
 				if _failed_section:
 					hud.set_message("Oh no,/ it keeps happening!/ Well, try to clear three lines."
 							+ "\n\nRemember your squish moves!")
