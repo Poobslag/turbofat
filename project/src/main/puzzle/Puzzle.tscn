@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -21,7 +21,7 @@
 [ext_resource path="res://src/main/puzzle/puzzle-music-manager.gd" type="Script" id=19]
 [ext_resource path="res://src/main/puzzle/food-items.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=21]
-[ext_resource path="res://src/main/viewport-outline-material.tres" type="Material" id=22]
+[ext_resource path="res://src/main/outline.shader" type="Shader" id=22]
 [ext_resource path="res://src/main/puzzle/milestone-hud.gd" type="Script" id=23]
 [ext_resource path="res://src/main/puzzle/frosting-globs.gd" type="Script" id=24]
 [ext_resource path="res://src/main/world/restaurant/RestaurantView.tscn" type="PackedScene" id=25]
@@ -113,6 +113,13 @@ shader_param/noise = SubResource( 9 )
 flags = 5
 viewport_path = NodePath("FrostingGlobs/GlobViewports/RainbowViewport")
 
+[sub_resource type="ShaderMaterial" id=15]
+resource_local_to_scene = true
+shader = ExtResource( 22 )
+shader_param/width = 6.0
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 0.001
+
 [sub_resource type="ViewportTexture" id=12]
 viewport_path = NodePath("FoodItems/Viewport")
 
@@ -195,7 +202,6 @@ margin_bottom = 576.5
 script = ExtResource( 16 )
 glob_min_scale = 1.2
 glob_max_scale = 2.5
-FrostingGlobScene = ExtResource( 35 )
 
 [node name="Walls" type="TextureRect" parent="."]
 material = SubResource( 5 )
@@ -259,14 +265,15 @@ playfield_path = NodePath("../Playfield")
 FoodScene = ExtResource( 37 )
 
 [node name="Viewport" type="Viewport" parent="FoodItems"]
-size = Vector2( 1024, 600 )
+size = Vector2( 2560, 1500 )
 transparent_bg = true
 
 [node name="TextureRect" type="TextureRect" parent="FoodItems"]
-material = ExtResource( 22 )
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 1024, 600 )
+material = SubResource( 15 )
+margin_right = 2560.0
+margin_bottom = 1500.0
+rect_min_size = Vector2( 2560, 1500 )
+rect_scale = Vector2( 0.4, 0.4 )
 texture = SubResource( 12 )
 flip_v = true
 __meta__ = {
@@ -498,12 +505,12 @@ codes = [ "delays" ]
 
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
+[connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
-[connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
 [connection signal="lines_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_lines_deleted"]

@@ -24,9 +24,9 @@ func add_food_item(cell: Vector2, food_type: int) -> void:
 	food_item.frame = food_type
 	food_item.position = _puzzle_tile_map.map_to_world(cell)
 	food_item.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
-	food_item.position *= _puzzle_tile_map.scale
-	food_item.position += _puzzle_tile_map_position
-	food_item.base_scale = _puzzle_tile_map.scale
+	food_item.position *= _puzzle_tile_map.scale / $TextureRect.rect_scale
+	food_item.position += _puzzle_tile_map_position / $TextureRect.rect_scale
+	food_item.base_scale = _puzzle_tile_map.scale / $TextureRect.rect_scale
 	$Viewport.add_child(food_item)
 
 
