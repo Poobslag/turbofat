@@ -3,7 +3,7 @@
 [ext_resource path="res://src/main/ui/blogger-sans-medium-14.tres" type="DynamicFont" id=1]
 
 [sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.423529, 0.262745, 0.192157, 0.862745 )
+bg_color = Color( 0.423529, 0.262745, 0.192157, 0.901961 )
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -14,7 +14,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.62, 0.4681, 0.403, 0.862745 )
+bg_color = Color( 0.619608, 0.466667, 0.403922, 0.901961 )
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4
@@ -25,7 +25,7 @@ corner_radius_bottom_right = 12
 corner_radius_bottom_left = 12
 
 [sub_resource type="StyleBoxFlat" id=3]
-bg_color = Color( 1, 1, 1, 0.862745 )
+bg_color = Color( 1, 1, 1, 0.470588 )
 border_width_left = 4
 border_width_top = 4
 border_width_right = 4

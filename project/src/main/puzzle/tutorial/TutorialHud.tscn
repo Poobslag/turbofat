@@ -49,7 +49,7 @@ panel_padding = Vector2( 40, 40 )
 chat_line_panel_path = NodePath("../Panel")
 
 [node name="QueueTimer" type="Timer" parent="Messages"]
-wait_time = 2.5
+wait_time = 4.0
 one_shot = true
 
 [node name="Tween" parent="Messages" instance=ExtResource( 6 )]
