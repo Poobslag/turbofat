@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Ranpo",
+  "short_name": "Ranpo",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "9",
+    "eye": "4",
+    "hair": "1",
+    "head": "1",
+    "horn": "0",
+    "mouth": "5",
+    "nose": "2",
+    "tail": "7",
+    "accessory": "4",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "eade6d",
+    "belly_rgb": "f7d6d2",
+    "cloth_rgb": "ecdf32",
+    "glass_rgb": "f4ec80",
+    "plastic_rgb": "31302d",
+    "hair_rgb": "28252a",
+    "eye_rgb": "5adf5a e4e4c8",
+    "horn_rgb": "f7ecf1"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "eade6d"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.2
+}

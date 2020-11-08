@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Chelle",
+  "short_name": "Chelle",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "1",
+    "eye": "1",
+    "hair": "0",
+    "head": "5",
+    "horn": "1",
+    "mouth": "3",
+    "nose": "3",
+    "tail": "1",
+    "accessory": "5",
+    "line_rgb": "41281e",
+    "body_rgb": "664437",
+    "belly_rgb": "dbbd9e",
+    "cloth_rgb": "74a27f",
+    "glass_rgb": "d2d1be",
+    "plastic_rgb": "923b3b",
+    "hair_rgb": "c58549",
+    "eye_rgb": "5ba964 a9e0bb",
+    "horn_rgb": "fde9e7"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "664437"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

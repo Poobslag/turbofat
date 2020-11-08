@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Pipedro",
+  "short_name": "Pipedro",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "1",
+    "collar": "0",
+    "ear": "12",
+    "eye": "5",
+    "hair": "0",
+    "head": "1",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "3",
+    "line_rgb": "6c4331",
+    "body_rgb": "f9f7d9",
+    "belly_rgb": "d7c2a4",
+    "cloth_rgb": "91e6ff",
+    "glass_rgb": "728eff",
+    "plastic_rgb": "282828",
+    "hair_rgb": "ffffff",
+    "eye_rgb": "91e6ff ffffff",
+    "horn_rgb": "fdfcec"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "f9f7d9"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.3
+}
