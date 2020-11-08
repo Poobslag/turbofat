@@ -19,7 +19,8 @@ func _ready() -> void:
 	
 	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
 	_viewport = get_tree().current_scene.get_node(texture.viewport_path)
-	rect_size = get_viewport_rect().size
+	_viewport.connect("size_changed", self, "_on_Viewport_size_changed")
+	_refresh_viewport_size()
 
 
 func _process(_delta: float) -> void:
@@ -29,9 +30,13 @@ func _process(_delta: float) -> void:
 	# align ourselves with the upper-left corner of the screen
 	rect_position -= get_global_transform_with_canvas().origin
 	# align the viewport with our new position
-	_viewport.canvas_transform.origin = -rect_position
+	_viewport.canvas_transform.origin = -rect_position / rect_scale
+
+
+func _refresh_viewport_size() -> void:
+	_viewport.size = get_viewport_rect().size / rect_scale
+	rect_size = get_viewport_rect().size / rect_scale
 
 
 func _on_Viewport_size_changed() -> void:
-	_viewport.size = get_viewport_rect().size
-	rect_size = get_viewport_rect().size
+	_refresh_viewport_size()
