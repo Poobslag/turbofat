@@ -53,6 +53,10 @@ func _on_CreateCreatures_pressed() -> void:
 
 
 func _on_System_quit_pressed() -> void:
+	if OS.has_feature("web"):
+		# don't quit from the web; just go back to splash screen
+		return
+	
 	get_tree().quit()
 
 

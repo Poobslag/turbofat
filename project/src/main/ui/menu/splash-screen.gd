@@ -11,6 +11,10 @@ func _ready() -> void:
 	$DropPanel/PlayHolder/Play.grab_focus()
 	if PlayerSave.corrupt_filenames:
 		$BadSaveDataControl.popup()
+	
+	if OS.has_feature("web"):
+		# don't quit from the web. it just blacks out the window, which isn't useful or user friendly
+		$DropPanel/System/Quit.hide()
 
 
 func _exit_tree() -> void:
