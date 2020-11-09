@@ -1,0 +1,279 @@
+{
+  "version": "19c5",
+  "start_speed": "A1",
+  "title": "Goodbye Bones",
+  "description": "Goodbye Bones! ...I'll miss you the most of all!",
+  "difficulty": "5",
+  "finish_condition": {
+    "type": "customers",
+    "value": "1"
+  },
+  "rank": [
+    "customer_combo 9",
+    "leftover_lines 3"
+  ],
+  "piece_types": [
+    "piece_j",
+    "piece_l",
+    "piece_p",
+    "piece_q",
+    "piece_o",
+    "piece_o"
+  ],
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": "1",
+      "speed": "A2"
+    },
+    {
+      "type": "lines",
+      "value": "2",
+      "speed": "A3"
+    },
+    {
+      "type": "lines",
+      "value": "3",
+      "speed": "A4"
+    },
+    {
+      "type": "lines",
+      "value": "4",
+      "speed": "A5"
+    },
+    {
+      "type": "lines",
+      "value": "5",
+      "speed": "A6"
+    },
+    {
+      "type": "lines",
+      "value": "6",
+      "speed": "A7"
+    },
+    {
+      "type": "lines",
+      "value": "7",
+      "speed": "A8"
+    },
+    {
+      "type": "lines",
+      "value": "8",
+      "speed": "A9"
+    },
+    {
+      "type": "lines",
+      "value": "9",
+      "speed": "AA"
+    },
+    {
+      "type": "lines",
+      "value": "10",
+      "speed": "AB"
+    },
+    {
+      "type": "lines",
+      "value": "11",
+      "speed": "AC"
+    },
+    {
+      "type": "lines",
+      "value": "12",
+      "speed": "AD"
+    },
+    {
+      "type": "lines",
+      "value": "13",
+      "speed": "AE"
+    },
+    {
+      "type": "lines",
+      "value": "14",
+      "speed": "AF"
+    }
+  ],
+  "blocks_start": {
+    "tiles": [
+      {
+        "pos": "2 11",
+        "tile": "1 10 4"
+      },
+      {
+        "pos": "3 11",
+        "tile": "1 14 4"
+      },
+      {
+        "pos": "4 11",
+        "tile": "1 6 4"
+      },
+      {
+        "pos": "5 11",
+        "tile": "1 10 4"
+      },
+      {
+        "pos": "6 11",
+        "tile": "1 6 4"
+      },
+      {
+        "pos": "2 12",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "3 12",
+        "tile": "1 15 4"
+      },
+      {
+        "pos": "4 12",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "5 12",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "6 12",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "2 13",
+        "tile": "1 9 4"
+      },
+      {
+        "pos": "3 13",
+        "tile": "1 13 4"
+      },
+      {
+        "pos": "4 13",
+        "tile": "1 5 4"
+      },
+      {
+        "pos": "5 13",
+        "tile": "1 9 4"
+      },
+      {
+        "pos": "6 13",
+        "tile": "1 5 4"
+      },
+      {
+        "pos": "2 14",
+        "tile": "1 10 4"
+      },
+      {
+        "pos": "3 14",
+        "tile": "1 6 4"
+      },
+      {
+        "pos": "4 14",
+        "tile": "1 10 4"
+      },
+      {
+        "pos": "5 14",
+        "tile": "1 14 4"
+      },
+      {
+        "pos": "6 14",
+        "tile": "1 6 4"
+      },
+      {
+        "pos": "2 15",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "3 15",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "4 15",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "5 15",
+        "tile": "1 15 4"
+      },
+      {
+        "pos": "6 15",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 9 4"
+      },
+      {
+        "pos": "3 16",
+        "tile": "1 5 4"
+      },
+      {
+        "pos": "4 16",
+        "tile": "1 9 4"
+      },
+      {
+        "pos": "5 16",
+        "tile": "1 13 4"
+      },
+      {
+        "pos": "6 16",
+        "tile": "1 5 4"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 10 4"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 14 4"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 6 4"
+      },
+      {
+        "pos": "5 17",
+        "tile": "1 10 4"
+      },
+      {
+        "pos": "6 17",
+        "tile": "1 6 4"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 15 4"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 11 4"
+      },
+      {
+        "pos": "6 18",
+        "tile": "1 7 4"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 9 4"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 13 4"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 5 4"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 9 4"
+      },
+      {
+        "pos": "6 19",
+        "tile": "1 5 4"
+      }
+    ]
+  }
+}

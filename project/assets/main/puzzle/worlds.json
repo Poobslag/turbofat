@@ -20,7 +20,77 @@
     },
     {
       "id": "world0",
+      "name": "Merrymellow Marsh",
+      "last_level": "marsh/goodbye_everyone",
+      "levels": [
+        {
+          "id": "marsh/hello_everyone",
+          "groups": "marsh/hello"
+        },
+        {
+          "id": "marsh/hello_bones",
+          "groups": "marsh/hello",
+          "locked_until": "level_finished marsh/hello_everyone"
+        },
+        {
+          "id": "marsh/hello_shirts",
+          "groups": "marsh/hello",
+          "locked_until": "level_finished marsh/hello_everyone"
+        },
+        {
+          "id": "marsh/hello_skins",
+          "groups": "marsh/hello",
+          "locked_until": "level_finished marsh/hello_everyone"
+        },
+        {
+          "id": "marsh/pulling_for_everyone",
+          "groups": "marsh/pulling_for",
+          "locked_until": "group_finished marsh/hello"
+        },
+        {
+          "id": "marsh/pulling_for_bones",
+          "groups": "marsh/pulling_for",
+          "locked_until": "level_finished marsh/pulling_for_everyone"
+        },
+        {
+          "id": "marsh/pulling_for_shirts",
+          "groups": "marsh/pulling_for",
+          "locked_until": "level_finished marsh/pulling_for_everyone"
+        },
+        {
+          "id": "marsh/pulling_for_skins",
+          "groups": "marsh/pulling_for",
+          "locked_until": "level_finished marsh/pulling_for_everyone"
+        },
+        {
+          "id": "marsh/lets_all_get_merry",
+          "locked_until": "group_finished marsh/pulling_for"
+        },
+        {
+          "id": "marsh/goodbye_bones",
+          "groups": "marsh/goodbye",
+          "locked_until": "level_finished marsh/lets_all_get_merry"
+        },
+        {
+          "id": "marsh/goodbye_shirts",
+          "groups": "marsh/goodbye",
+          "locked_until": "level_finished marsh/lets_all_get_merry"
+        },
+        {
+          "id": "marsh/goodbye_skins",
+          "groups": "marsh/goodbye",
+          "locked_until": "level_finished marsh/lets_all_get_merry"
+        },
+        {
+          "id": "marsh/goodbye_everyone",
+          "locked_until": "group_finished marsh/goodbye"
+        }
+      ]
+    },
+    {
+      "id": "world1",
       "name": "Chocolava Canyon",
+      "locked_until": "world_finished world0",
       "last_level": "placeholder10",
       "levels": [
         {
@@ -49,7 +119,7 @@
           "groups": "choco_main"
         },
         {
-          "id": "five-customers-no-vegetables",
+          "id": "five_customers_no_vegetables",
           "creature_id": "ebe",
           "level_num": 1,
           "locked_until": "group_finished choco_intro",
@@ -118,29 +188,26 @@
           "id": "placeholder10",
           "creature_id": "bort",
           "locked_until": "group_finished choco_main 5"
-        }
-      ]
-    },
-    {
-      "id": "world1",
-      "name": "Merrymellow Marsh",
-      "locked_until": "world_finished world0",
-      "levels": [
+        },
         {
           "id": "placeholder13",
-          "creature_id": "wesker"
+          "creature_id": "wesker",
+          "locked_until": "group_finished choco_main 5"
         },
         {
           "id": "placeholder14",
-          "creature_id": "wesker"
+          "creature_id": "wesker",
+          "locked_until": "group_finished choco_main 5"
         },
         {
           "id": "placeholder15",
-          "creature_id": "wesker"
+          "creature_id": "wesker",
+          "locked_until": "group_finished choco_main 5"
         },
         {
           "id": "accelerator",
-          "creature_id": "wesker"
+          "creature_id": "wesker",
+          "locked_until": "group_finished choco_main 5"
         }
       ]
     }

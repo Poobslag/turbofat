@@ -116,3 +116,7 @@ func _on_PuzzleScore_after_piece_written() -> void:
 
 func _on_PuzzleScore_score_changed() -> void:
 	_check_for_speed_up()
+	
+	# most milestones end when the piece is written; but customer milestones (mostly through coincidence) end when the
+	# score changes
+	_check_for_finish()
