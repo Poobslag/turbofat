@@ -302,14 +302,14 @@ bus = "Sound Bus"
 
 [node name="BuildSnackBoxSound" type="AudioStreamPlayer" parent="BuildBoxSfx"]
 bus = "Sound Bus"
-[connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="." to="LineClearer" method="_on_Playfield_blocks_prepared"]
-[connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="." to="LineClearSfx" method="_on_Playfield_line_erased"]
 [connection signal="after_boxes_built" from="BoxBuilder" to="." method="_on_BoxBuilder_after_boxes_built"]

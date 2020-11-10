@@ -9,10 +9,12 @@
  */
 shader_type canvas_item;
 
-// the replacement colors
+// replacement colors for red, green and blue channels
 uniform vec4 red : hint_color;
 uniform vec4 green : hint_color;
 uniform vec4 blue : hint_color;
+
+// replacement color for dark parts of the image (shadows)
 uniform vec4 black : hint_color;
 
 void fragment() {
