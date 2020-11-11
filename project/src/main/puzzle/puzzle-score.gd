@@ -44,7 +44,12 @@ signal after_piece_written
 
 signal score_changed
 
+# emitted when a combo value changes, when building or ending a combo
 signal combo_changed(value)
+
+# emitted when a combo ends -- this will usually coincide with the combo resetting to zero, but at the end of a level
+# it's possible for a combo to end without being reset to zero.
+signal combo_ended
 
 # emitted when the current piece can't be placed in the _playfield
 signal topped_out
@@ -245,6 +250,7 @@ func end_combo() -> void:
 	emit_signal("score_changed")
 	if old_combo != combo:
 		emit_signal("combo_changed", combo)
+	emit_signal("combo_ended")
 
 
 """

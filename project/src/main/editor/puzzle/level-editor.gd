@@ -7,7 +7,7 @@ Full instructions are available at https://github.com/Poobslag/turbofat/wiki/lev
 """
 
 # default to an empty level; players may be confused if it's not empty
-const DEFAULT_LEVEL := "ultra_normal"
+const DEFAULT_LEVEL := "practice/ultra_normal"
 
 export (PackedScene) var PuzzleScene: PackedScene
 
