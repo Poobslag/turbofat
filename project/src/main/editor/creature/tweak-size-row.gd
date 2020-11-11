@@ -15,6 +15,7 @@ func _ready() -> void:
 Update the creature's size.
 """
 func _on_Edit_value_changed(value: float) -> void:
+	_creature_editor.center_creature.min_fatness = value
 	_creature_editor.center_creature.set_fatness(value)
 
 
