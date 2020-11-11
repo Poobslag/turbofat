@@ -12,6 +12,7 @@ func _ready() -> void:
 	PuzzleScore.connect("before_piece_written", self, "_on_PuzzleScore_before_piece_written")
 	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
 	PuzzleScore.connect("score_changed", self, "_on_PuzzleScore_score_changed")
+	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 
 
 func _physics_process(_delta: float) -> void:
@@ -116,7 +117,9 @@ func _on_PuzzleScore_after_piece_written() -> void:
 
 func _on_PuzzleScore_score_changed() -> void:
 	_check_for_speed_up()
-	
-	# most milestones end when the piece is written; but customer milestones (mostly through coincidence) end when the
-	# score changes
-	_check_for_finish()
+
+
+func _on_PuzzleScore_combo_ended() -> void:
+	# most milestones end when the piece is written; but customer milestones end when the combo ends
+	if Level.settings.finish_condition.type == Milestone.CUSTOMERS:
+		_check_for_finish()

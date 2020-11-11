@@ -28,7 +28,7 @@ var _combo_diagram := preload("res://assets/main/puzzle/tutorial/combo-diagram.p
 func _ready() -> void:
 	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
 	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
-	PuzzleScore.connect("combo_changed", self, "_on_PuzzleScore_combo_changed")
+	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
 	
 	playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
@@ -247,9 +247,8 @@ func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
 		hud.skill_tally_item("CakeBox").increment()
 
 
-func _on_PuzzleScore_combo_changed(value: int) -> void:
-	if value == 0:
-		_did_end_combo = true
+func _on_PuzzleScore_combo_ended() -> void:
+	_did_end_combo = true
 
 
 func _on_PuzzleScore_after_game_prepared() -> void:
