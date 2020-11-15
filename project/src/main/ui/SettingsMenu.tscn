@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -12,6 +12,37 @@
 [ext_resource path="res://src/main/ui/settings-touch-scheme.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/settings-touch-fat-finger.gd" type="Script" id=11]
 [ext_resource path="res://src/main/ui/settings-ghost-piece.gd" type="Script" id=12]
+[ext_resource path="res://src/main/ui/menu/theme/h4-font.tres" type="DynamicFont" id=13]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.2, 0.176471, 0.176471, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+expand_margin_bottom = 2.0
+
+[sub_resource type="StyleBoxFlat" id=2]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.2, 0.176471, 0.176471, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [node name="SettingsMenu" type="CanvasLayer"]
 pause_mode = 2
@@ -31,7 +62,6 @@ visible = false
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -49,113 +79,103 @@ __meta__ = {
 [node name="UiArea" type="VBoxContainer" parent="Window"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 20.0
-margin_top = 15.0
-margin_right = -20.0
-margin_bottom = -15.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Center" type="ScrollContainer" parent="Window/UiArea"]
-margin_right = 400.0
-margin_bottom = 286.0
+[node name="TabContainer" type="TabContainer" parent="Window/UiArea"]
+margin_right = 430.0
+margin_bottom = 296.0
 size_flags_vertical = 3
-follow_focus = true
+custom_styles/tab_fg = SubResource( 1 )
+custom_styles/tab_disabled = ExtResource( 2 )
+custom_styles/tab_bg = ExtResource( 2 )
+custom_styles/panel = SubResource( 2 )
+custom_fonts/font = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Settings" type="VBoxContainer" parent="Window/UiArea/Center"]
-margin_right = 400.0
-margin_bottom = 338.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 10
-alignment = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Volume" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 35.0
+margin_right = -5.0
+margin_bottom = -5.0
 
-[node name="Volume" type="Label" parent="Window/UiArea/Center/Settings"]
-margin_right = 400.0
+[node name="Master" parent="Window/UiArea/TabContainer/Volume" instance=ExtResource( 6 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 420.0
 margin_bottom = 20.0
-theme = ExtResource( 1 )
-text = "Volume"
-align = 1
-valign = 1
 
-[node name="Master" parent="Window/UiArea/Center/Settings" instance=ExtResource( 6 )]
+[node name="Music" parent="Window/UiArea/TabContainer/Volume" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 30.0
-margin_right = 400.0
-margin_bottom = 50.0
-
-[node name="Music" parent="Window/UiArea/Center/Settings" instance=ExtResource( 6 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 60.0
-margin_right = 400.0
-margin_bottom = 80.0
+margin_top = 24.0
+margin_right = 420.0
+margin_bottom = 44.0
 volume_type = 1
 
-[node name="Sounds" parent="Window/UiArea/Center/Settings" instance=ExtResource( 6 )]
+[node name="Sounds" parent="Window/UiArea/TabContainer/Volume" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 90.0
-margin_right = 400.0
-margin_bottom = 110.0
+margin_top = 48.0
+margin_right = 420.0
+margin_bottom = 68.0
 volume_type = 2
 
-[node name="Voices" parent="Window/UiArea/Center/Settings" instance=ExtResource( 6 )]
+[node name="Voices" parent="Window/UiArea/TabContainer/Volume" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
-margin_top = 120.0
-margin_right = 400.0
-margin_bottom = 140.0
+margin_top = 72.0
+margin_right = 420.0
+margin_bottom = 92.0
 volume_type = 3
 
-[node name="Gameplay" type="Label" parent="Window/UiArea/Center/Settings"]
-margin_top = 150.0
-margin_right = 400.0
-margin_bottom = 170.0
-theme = ExtResource( 1 )
-text = "Gameplay"
-align = 1
-valign = 1
+[node name="Gameplay" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 35.0
+margin_right = -5.0
+margin_bottom = -5.0
 
-[node name="GhostPiece" type="Control" parent="Window/UiArea/Center/Settings"]
-margin_top = 180.0
-margin_right = 400.0
-margin_bottom = 206.0
+[node name="GhostPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay"]
+margin_right = 420.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
+custom_constants/separation = 20
 script = ExtResource( 12 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="Window/UiArea/Center/Settings/GhostPiece"]
-anchor_bottom = 1.0
-margin_right = 66.0
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
+margin_right = 160.0
+margin_bottom = 28.0
 rect_min_size = Vector2( 120, 28 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.74
 text = "Ghost Piece"
 align = 2
 valign = 1
@@ -163,41 +183,46 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="CheckBox" parent="Window/UiArea/Center/Settings/GhostPiece"]
-margin_left = 133.0
-margin_right = 293.0
+[node name="OptionButton" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
+margin_left = 180.0
+margin_right = 420.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 160, 26 )
-size_flags_horizontal = 0
+size_flags_horizontal = 3
 size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Touch" type="Label" parent="Window/UiArea/Center/Settings"]
-margin_top = 216.0
-margin_right = 400.0
-margin_bottom = 236.0
-theme = ExtResource( 1 )
-text = "Touch"
-align = 1
-valign = 1
+[node name="Touch" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 35.0
+margin_right = -5.0
+margin_bottom = -5.0
 
-[node name="Size" type="Control" parent="Window/UiArea/Center/Settings"]
-margin_top = 246.0
-margin_right = 400.0
-margin_bottom = 266.0
+[node name="Size" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
+margin_right = 420.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 400, 20 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
+custom_constants/separation = 20
 script = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="Window/UiArea/Center/Settings/Size"]
-anchor_bottom = 1.0
-margin_right = 36.0
+[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Touch/Size"]
+margin_right = 20.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/Size"]
+margin_left = 40.0
+margin_right = 160.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.5
@@ -207,11 +232,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control" type="HBoxContainer" parent="Window/UiArea/Center/Settings/Size"]
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = -267.0
+[node name="Control" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/Size"]
+margin_left = 180.0
+margin_right = 379.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 140, 20 )
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 10
@@ -219,12 +244,12 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HSlider" type="HSlider" parent="Window/UiArea/Center/Settings/Size/Control"]
+[node name="HSlider" type="HSlider" parent="Window/UiArea/TabContainer/Touch/Size/Control"]
 margin_top = 2.0
-margin_right = 160.0
+margin_right = 149.0
 margin_bottom = 18.0
-rect_min_size = Vector2( 160, 0 )
-size_flags_horizontal = 0
+rect_min_size = Vector2( 80, 16 )
+size_flags_horizontal = 3
 size_flags_vertical = 4
 max_value = 11.0
 value = 1.0
@@ -233,32 +258,38 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text" type="Label" parent="Window/UiArea/Center/Settings/Size/Control"]
-margin_left = 170.0
-margin_right = 218.0
+[node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/Size/Control"]
+margin_left = 159.0
+margin_right = 219.0
 margin_bottom = 20.0
+rect_min_size = Vector2( 60, 0 )
 theme = ExtResource( 1 )
 text = "1.00x"
 
-[node name="Scheme" type="Control" parent="Window/UiArea/Center/Settings"]
-margin_top = 276.0
-margin_right = 400.0
-margin_bottom = 302.0
+[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Touch/Size"]
+margin_left = 399.0
+margin_right = 420.0
+margin_bottom = 20.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.1
+
+[node name="Scheme" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
+margin_top = 24.0
+margin_right = 420.0
+margin_bottom = 50.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
+custom_constants/separation = 20
 script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="Window/UiArea/Center/Settings/Scheme"]
-anchor_bottom = 1.0
-margin_right = 66.0
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/Scheme"]
+margin_right = 160.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.74
 text = "Scheme"
 align = 2
 valign = 1
@@ -266,37 +297,35 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/Center/Settings/Scheme"]
-margin_left = 133.0
-margin_top = 2.0
-margin_right = 293.0
-margin_bottom = 18.0
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/Scheme"]
+margin_left = 180.0
+margin_right = 340.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
-size_flags_horizontal = 0
+size_flags_horizontal = 2
 size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FatFinger" type="Control" parent="Window/UiArea/Center/Settings"]
-margin_top = 312.0
-margin_right = 400.0
-margin_bottom = 338.0
+[node name="FatFinger" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
+margin_top = 54.0
+margin_right = 420.0
+margin_bottom = 80.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
+custom_constants/separation = 20
 script = ExtResource( 11 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Label" type="Label" parent="Window/UiArea/Center/Settings/FatFinger"]
-anchor_bottom = 1.0
-margin_right = 66.0
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/FatFinger"]
+margin_right = 160.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
 size_flags_vertical = 5
-size_flags_stretch_ratio = 0.5
+size_flags_stretch_ratio = 0.74
 text = "Fat Finger"
 align = 2
 valign = 1
@@ -304,32 +333,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/Center/Settings/FatFinger"]
-margin_left = 133.0
-margin_top = 2.0
-margin_right = 293.0
-margin_bottom = 18.0
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/FatFinger"]
+margin_left = 180.0
+margin_right = 340.0
+margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
-size_flags_horizontal = 0
+size_flags_horizontal = 2
 size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Bottom" type="Control" parent="Window/UiArea"]
-margin_top = 290.0
-margin_right = 400.0
-margin_bottom = 330.0
-rect_min_size = Vector2( 0, 40 )
+margin_top = 300.0
+margin_right = 430.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 0, 50 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Ok" type="Button" parent="Window/UiArea/Bottom"]
-margin_left = 140.0
-margin_top = 4.0
-margin_right = 260.0
-margin_bottom = 44.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -60.0
+margin_top = -20.0
+margin_right = 60.0
+margin_bottom = 20.0
 rect_min_size = Vector2( 120, 40 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -345,10 +378,12 @@ __meta__ = {
 action = "ui_cancel"
 
 [node name="Quit" type="Button" parent="Window/UiArea/Bottom"]
-anchor_top = 1.0
-anchor_bottom = 1.0
-margin_top = -30.0
-margin_right = 80.0
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -15.0
+margin_right = 90.0
+margin_bottom = 15.0
 rect_min_size = Vector2( 80, 30 )
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -358,9 +393,9 @@ text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="toggled" from="Window/UiArea/Center/Settings/GhostPiece/OptionButton" to="Window/UiArea/Center/Settings/GhostPiece" method="_on_OptionButton_toggled"]
-[connection signal="value_changed" from="Window/UiArea/Center/Settings/Size/Control/HSlider" to="Window/UiArea/Center/Settings/Size" method="_on_HSlider_value_changed"]
-[connection signal="item_selected" from="Window/UiArea/Center/Settings/Scheme/OptionButton" to="Window/UiArea/Center/Settings/Scheme" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/Center/Settings/FatFinger/OptionButton" to="Window/UiArea/Center/Settings/FatFinger" method="_on_OptionButton_item_selected"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/OptionButton" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
+[connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/Scheme" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/FatFinger" method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Ok" to="." method="_on_Ok_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Quit" to="." method="_on_Quit_pressed"]
