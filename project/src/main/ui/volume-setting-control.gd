@@ -9,12 +9,15 @@ Updates the player's stored settings, and also updates the audio server.
 export (VolumeSettings.VolumeType) var volume_type: int setget set_volume_type
 
 func _ready() -> void:
+	$HBoxContainer/HSlider.value = PlayerData.volume_settings.get_bus_volume_linear(volume_type)
 	_refresh_setting_label()
 	_refresh_percent_label()
-	$HBoxContainer/HSlider.value = PlayerData.volume_settings.get_bus_volume_linear(volume_type)
 	
 	# don't play sample sounds during initialization
 	$SampleTimer.stop()
+	
+	$HBoxContainer/HSlider.connect("value_changed", self, "_on_HSlider_value_changed")
+	$SampleTimer.connect("timeout", self, "_on_SampleTimer_timeout")
 
 
 func set_volume_type(new_volume_type: int) -> void:

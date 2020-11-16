@@ -1,4 +1,4 @@
-[gd_scene load_steps=77 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -65,8 +65,33 @@
 [ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=63]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectPanel.tscn" type="PackedScene" id=64]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=65]
+[ext_resource path="res://assets/main/world/environment/marsh-block-sheet.png" type="Texture" id=66]
+[ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=67]
 
 [sub_resource type="TileSet" id=1]
+0/name = "marsh-block-sheet.png 0"
+0/texture = ExtResource( 66 )
+0/tex_offset = Vector2( 0, 20 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 740, 848 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 148, 212 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="TileSet" id=2]
 0/name = "block-shadow.png 0"
 0/texture = ExtResource( 19 )
 0/tex_offset = Vector2( 0, 20 )
@@ -82,35 +107,35 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="ViewportTexture" id=2]
+[sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("World/Ground/Shadows/Viewport")
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 28, 14 )
 
-[sub_resource type="InputEventAction" id=4]
+[sub_resource type="InputEventAction" id=5]
 action = "phone"
 
-[sub_resource type="ShortCut" id=5]
-shortcut = SubResource( 4 )
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
 
-[sub_resource type="InputEventAction" id=6]
+[sub_resource type="InputEventAction" id=7]
 action = "ui_cancel"
 
-[sub_resource type="ShortCut" id=7]
-shortcut = SubResource( 6 )
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
 
-[sub_resource type="InputEventAction" id=8]
+[sub_resource type="InputEventAction" id=9]
 action = "interact"
 
-[sub_resource type="ShortCut" id=9]
-shortcut = SubResource( 8 )
+[sub_resource type="ShortCut" id=10]
+shortcut = SubResource( 9 )
 
-[sub_resource type="InputEventAction" id=10]
+[sub_resource type="InputEventAction" id=11]
 action = "ui_cancel"
 
-[sub_resource type="ShortCut" id=11]
-shortcut = SubResource( 10 )
+[sub_resource type="ShortCut" id=12]
+shortcut = SubResource( 11 )
 
 [node name="Overworld" type="Node"]
 
@@ -143,7 +168,16 @@ cell_size = Vector2( 128, 64 )
 cell_tile_origin = 1
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( -327677, 1, 0, -327676, 1, 0, -327675, 1, 0, -327667, 1, 0, -327666, 1, 0, -327665, 1, 0, -262144, 1, 0, -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -262129, 1, 0, -196608, 1, 0, -196607, 0, 0, -196606, 0, 0, -196605, 22, 0, -196604, 22, 0, -196603, 22, 0, -196602, 22, 0, -196601, 22, 0, -196600, 22, 0, -196599, 22, 0, -196598, 22, 0, -196597, 22, 0, -196596, 22, 0, -196595, 0, 0, -196594, 0, 0, -196593, 1, 0, -131072, 1, 0, -131071, 0, 0, -131070, 22, 0, -131069, 22, 0, -131068, 22, 0, -131067, 0, 0, -131066, 22, 0, -131065, 0, 0, -131064, 22, 0, -131063, 0, 0, -131062, 22, 0, -131061, 0, 0, -131060, 22, 0, -131059, 22, 0, -131058, 0, 0, -131057, 1, 0, -65536, 1, 0, -65535, 0, 0, -65534, 22, 0, -65533, 0, 0, -65532, 0, 0, -65531, 0, 0, -65530, 0, 0, -65529, 21, 2, -65528, 0, 0, -65527, 0, 0, -65526, 0, 0, -65525, 0, 0, -65524, 0, 0, -65523, 22, 0, -65522, 0, 0, -65521, 1, 0, 0, 1, 0, 1, 0, 0, 2, 22, 0, 3, 21, 65539, 4, 21, 131073, 5, 21, 131073, 6, 21, 131073, 7, 21, 131075, 8, 0, 0, 9, 0, 0, 10, 0, 0, 11, 0, 0, 12, 0, 0, 13, 22, 0, 14, 0, 0, 15, 1, 0, 65536, 1, 0, 65537, 0, 0, 65538, 22, 0, 65539, 0, 0, 65540, 0, 0, 65541, 0, 0, 65542, 0, 0, 65543, 21, 65540, 65544, 21, 131073, 65545, 21, 131073, 65546, 21, 65538, 65547, 0, 0, 65548, 0, 0, 65549, 22, 0, 65550, 0, 0, 65551, 1, 0, 131072, 1, 0, 131073, 0, 0, 131074, 22, 0, 131075, 0, 0, 131076, 0, 0, 131077, 0, 0, 131078, 0, 0, 131079, 0, 0, 131080, 0, 0, 131081, 0, 0, 131082, 21, 65540, 131083, 21, 65536, 131084, 0, 0, 131085, 22, 0, 131086, 0, 0, 131087, 1, 0, 196608, 1, 0, 196609, 0, 0, 196610, 22, 0, 196611, 22, 0, 196612, 0, 0, 196613, 22, 0, 196614, 21, 0, 196615, 22, 0, 196616, 0, 0, 196617, 22, 0, 196618, 0, 0, 196619, 22, 0, 196620, 22, 0, 196621, 22, 0, 196622, 0, 0, 196623, 1, 0, 262144, 1, 0, 262145, 0, 0, 262146, 0, 0, 262147, 22, 0, 262148, 22, 0, 262149, 22, 0, 262150, 22, 0, 262151, 22, 0, 262152, 22, 0, 262153, 22, 0, 262154, 22, 0, 262155, 22, 0, 262156, 22, 0, 262157, 0, 0, 262158, 0, 0, 262159, 1, 0, 327680, 1, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0, 327695, 1, 0, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393231, 1, 0 )
+tile_data = PoolIntArray( -327677, 1, 0, -327676, 1, 0, -327675, 1, 0, -327667, 1, 0, -327666, 1, 0, -327665, 1, 0, -262144, 1, 0, -262143, 0, 131072, -262142, 0, 131076, -262141, 0, 131074, -262140, 0, 131074, -262139, 0, 131074, -262138, 0, 131074, -262137, 0, 131074, -262136, 0, 131074, -262135, 0, 131074, -262134, 0, 131074, -262133, 0, 131074, -262132, 0, 131074, -262131, 0, 131076, -262130, 0, 65537, -262129, 1, 0, -196608, 1, 0, -196607, 0, 131073, -196606, 0, 65536, -196605, 22, 0, -196604, 22, 0, -196603, 22, 0, -196602, 22, 0, -196601, 22, 0, -196600, 22, 0, -196599, 22, 0, -196598, 22, 0, -196597, 22, 0, -196596, 22, 0, -196595, 0, 65540, -196594, 0, 65538, -196593, 1, 0, -131072, 1, 0, -131071, 0, 3, -131070, 22, 0, -131069, 22, 0, -131068, 22, 0, -131067, 0, 2, -131066, 22, 0, -131065, 0, 0, -131064, 22, 0, -131063, 0, 2, -131062, 22, 0, -131061, 0, 2, -131060, 22, 0, -131059, 22, 0, -131058, 0, 3, -131057, 1, 0, -65536, 1, 0, -65535, 0, 3, -65534, 22, 0, -65533, 0, 65539, -65532, 0, 131074, -65531, 0, 131075, -65530, 0, 4, -65529, 21, 2, -65528, 0, 131072, -65527, 0, 196608, -65526, 0, 131076, -65525, 0, 196608, -65524, 0, 65537, -65523, 22, 0, -65522, 0, 3, -65521, 1, 0, 0, 1, 0, 1, 0, 3, 2, 22, 0, 3, 21, 65539, 4, 21, 131073, 5, 21, 131074, 6, 21, 131073, 7, 21, 131075, 8, 0, 65540, 9, 0, 131075, 10, 0, 131075, 11, 0, 196608, 12, 0, 65538, 13, 22, 0, 14, 0, 3, 15, 1, 0, 65536, 1, 0, 65537, 0, 3, 65538, 22, 0, 65539, 0, 131072, 65540, 0, 131076, 65541, 0, 131076, 65542, 0, 65537, 65543, 21, 65540, 65544, 21, 131074, 65545, 21, 131074, 65546, 21, 65538, 65547, 0, 65540, 65548, 0, 65538, 65549, 22, 0, 65550, 0, 3, 65551, 1, 0, 131072, 1, 0, 131073, 0, 3, 131074, 22, 0, 131075, 0, 65540, 131076, 0, 196608, 131077, 0, 131075, 131078, 0, 131075, 131079, 0, 131074, 131080, 0, 131076, 131081, 0, 4, 131082, 21, 65540, 131083, 21, 65536, 131084, 0, 1, 131085, 22, 0, 131086, 0, 3, 131087, 1, 0, 131091, 0, 2, 196608, 1, 0, 196609, 0, 3, 196610, 22, 0, 196611, 22, 0, 196612, 0, 1, 196613, 22, 0, 196614, 21, 0, 196615, 22, 0, 196616, 0, 1, 196617, 22, 0, 196618, 0, 0, 196619, 22, 0, 196620, 22, 0, 196621, 22, 0, 196622, 0, 3, 196623, 1, 0, 196626, 0, 131072, 196627, 0, 196608, 196628, 0, 65537, 262144, 1, 0, 262145, 0, 131073, 262146, 0, 65537, 262147, 22, 0, 262148, 22, 0, 262149, 22, 0, 262150, 22, 0, 262151, 22, 0, 262152, 22, 0, 262153, 22, 0, 262154, 22, 0, 262155, 22, 0, 262156, 22, 0, 262157, 0, 131072, 262158, 0, 65538, 262159, 1, 0, 262162, 0, 65540, 262163, 0, 196608, 262164, 0, 65536, 327680, 1, 0, 327681, 0, 65540, 327682, 0, 131075, 327683, 0, 131074, 327684, 0, 131074, 327685, 0, 131074, 327686, 0, 131074, 327687, 0, 131074, 327688, 0, 131074, 327689, 0, 131074, 327690, 0, 131074, 327691, 0, 131074, 327692, 0, 131074, 327693, 0, 131075, 327694, 0, 65536, 327695, 1, 0, 327699, 0, 1, 393216, 1, 0, 393217, 1, 0, 393218, 1, 0, 393219, 1, 0, 393220, 1, 0, 393221, 1, 0, 393222, 1, 0, 393223, 1, 0, 393224, 1, 0, 393225, 1, 0, 393226, 1, 0, 393227, 1, 0, 393228, 1, 0, 393231, 1, 0, 458753, 0, 131072, 458754, 0, 131074, 458755, 0, 131076, 458756, 0, 65537, 524289, 0, 3, 524291, 0, 131073, 524292, 0, 65538, 524297, 0, 2, 589825, 0, 3, 589827, 0, 131073, 589828, 0, 196608, 589829, 0, 131076, 589830, 0, 65537, 589833, 0, 131073, 589834, 0, 131076, 589835, 0, 131074, 589836, 0, 4, 655361, 0, 131073, 655362, 0, 131076, 655363, 0, 196608, 655364, 0, 196608, 655365, 0, 196608, 655366, 0, 65538, 655368, 0, 65539, 655369, 0, 131075, 655370, 0, 65538, 720897, 0, 65540, 720898, 0, 196608, 720899, 0, 196608, 720900, 0, 196608, 720901, 0, 196608, 720902, 0, 65538, 720906, 0, 3, 720908, 0, 131072, 720909, 0, 131076, 720910, 0, 65537, 786434, 0, 131073, 786435, 0, 196608, 786436, 0, 196608, 786437, 0, 196608, 786438, 0, 65538, 786442, 0, 1, 786444, 0, 131073, 786445, 0, 196608, 786446, 0, 65538, 851970, 0, 65540, 851971, 0, 131075, 851972, 0, 131075, 851973, 0, 131075, 851974, 0, 65536, 851980, 0, 65540, 851981, 0, 131075, 851982, 0, 65536 )
+
+[node name="CornerMap" type="TileMap" parent="World/Ground/GroundMap"]
+mode = 1
+tile_set = SubResource( 1 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+centered_textures = true
+format = 1
+script = ExtResource( 67 )
 
 [node name="Shadows" type="Node2D" parent="World/Ground"]
 
@@ -154,7 +188,7 @@ transparent_bg = true
 [node name="ObstacleShadows" type="TileMap" parent="World/Ground/Shadows/Viewport"]
 scale = Vector2( 2.5, 2.5 )
 mode = 1
-tile_set = SubResource( 1 )
+tile_set = SubResource( 2 )
 cell_size = Vector2( 128, 64 )
 cell_tile_origin = 1
 centered_textures = true
@@ -172,7 +206,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
 rect_scale = Vector2( 0.4, 0.4 )
-texture = SubResource( 2 )
+texture = SubResource( 3 )
 flip_v = true
 script = ExtResource( 22 )
 __meta__ = {
@@ -189,7 +223,7 @@ cell_tile_origin = 1
 cell_y_sort = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( -262143, 0, 0, -262142, 0, 0, -262141, 0, 0, -262140, 0, 0, -262139, 0, 0, -262138, 0, 0, -262137, 0, 0, -262136, 0, 0, -262135, 0, 0, -262134, 0, 0, -262133, 0, 0, -262132, 0, 0, -262131, 0, 0, -262130, 0, 0, -196607, 0, 0, -196606, 0, 0, -196595, 0, 0, -196594, 0, 0, -131071, 0, 0, -131058, 0, 0, -65535, 0, 0, -65522, 0, 0, 1, 0, 0, 14, 0, 0, 65537, 0, 0, 65542, 0, 0, 65550, 0, 0, 131073, 0, 0, 131086, 0, 0, 196609, 0, 0, 196622, 0, 0, 262145, 0, 0, 262146, 0, 0, 262157, 0, 0, 262158, 0, 0, 327681, 0, 0, 327682, 0, 0, 327683, 0, 0, 327684, 0, 0, 327685, 0, 0, 327686, 0, 0, 327687, 0, 0, 327688, 0, 0, 327689, 0, 0, 327690, 0, 0, 327691, 0, 0, 327692, 0, 0, 327693, 0, 0, 327694, 0, 0 )
+tile_data = PoolIntArray( 65542, 0, 0 )
 
 [node name="GrassTufts" type="YSort" parent="World/Obstacles"]
 script = ExtResource( 16 )
@@ -397,7 +431,7 @@ scale = Vector2( 0.539476, 0.539476 )
 texture = ExtResource( 13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="World/Obstacles/GlowySphere"]
-shape = SubResource( 3 )
+shape = SubResource( 4 )
 
 [node name="ChatIcons" type="Node2D" parent="World"]
 script = ExtResource( 50 )
@@ -528,7 +562,7 @@ margin_left = 292.0
 margin_right = 392.0
 margin_bottom = 100.0
 size_flags_horizontal = 0
-shortcut = SubResource( 5 )
+shortcut = SubResource( 6 )
 icon = ExtResource( 60 )
 expand_icon = true
 normal_icon = ExtResource( 60 )
@@ -540,7 +574,7 @@ anchor_bottom = 0.0
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
-shortcut = SubResource( 7 )
+shortcut = SubResource( 8 )
 icon = ExtResource( 56 )
 expand_icon = true
 normal_icon = ExtResource( 56 )
@@ -568,7 +602,7 @@ anchor_bottom = 0.0
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
-shortcut = SubResource( 9 )
+shortcut = SubResource( 10 )
 icon = ExtResource( 55 )
 expand_icon = true
 normal_icon = ExtResource( 55 )
@@ -627,7 +661,7 @@ margin_left = 292.0
 margin_right = 392.0
 margin_bottom = 100.0
 size_flags_horizontal = 0
-shortcut = SubResource( 11 )
+shortcut = SubResource( 12 )
 icon = ExtResource( 62 )
 expand_icon = true
 normal_icon = ExtResource( 62 )

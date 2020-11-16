@@ -23,6 +23,10 @@ var _old_focus_owner: Control
 func _ready() -> void:
 	# starts invisible
 	hide()
+	
+	if not OS.has_touchscreen_ui_hint():
+		# hide 'touch' settings if touch is not enabled
+		$Window/UiArea/TabContainer/Touch.queue_free()
 
 
 func set_quit_text(new_quit_text: String) -> void:
