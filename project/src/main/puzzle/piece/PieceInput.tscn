@@ -7,12 +7,12 @@
 script = ExtResource( 2 )
 
 [node name="Left" parent="." instance=ExtResource( 1 )]
-action = "ui_left"
-cancel_action = "ui_right"
+action = "move_piece_left"
+cancel_action = "move_piece_right"
 
 [node name="Right" parent="." instance=ExtResource( 1 )]
-action = "ui_right"
-cancel_action = "ui_left"
+action = "move_piece_right"
+cancel_action = "move_piece_left"
 
 [node name="Cw" parent="." instance=ExtResource( 1 )]
 action = "rotate_cw"

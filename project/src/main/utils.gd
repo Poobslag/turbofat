@@ -36,27 +36,27 @@ Returns a vector corresponding to the direction the user is pressing.
 Parameters:
 	'event': (Optional) The input event to be evaluated. If null, this method will evaluate all current inputs.
 """
-static func ui_pressed_dir(event: InputEvent = null) -> Vector2:
-	var ui_dir := Vector2.ZERO
+static func walk_pressed_dir(event: InputEvent = null) -> Vector2:
+	var walk_dir := Vector2.ZERO
 	if event:
-		if event.is_action_pressed("ui_up"):
-			ui_dir += Vector2.UP
-		if event.is_action_pressed("ui_down"):
-			ui_dir += Vector2.DOWN
-		if event.is_action_pressed("ui_left"):
-			ui_dir += Vector2.LEFT
-		if event.is_action_pressed("ui_right"):
-			ui_dir += Vector2.RIGHT
+		if event.is_action_pressed("walk_up"):
+			walk_dir += Vector2.UP
+		if event.is_action_pressed("walk_down"):
+			walk_dir += Vector2.DOWN
+		if event.is_action_pressed("walk_left"):
+			walk_dir += Vector2.LEFT
+		if event.is_action_pressed("walk_right"):
+			walk_dir += Vector2.RIGHT
 	else:
-		if Input.is_action_pressed("ui_up"):
-			ui_dir += Vector2.UP
-		if Input.is_action_pressed("ui_down"):
-			ui_dir += Vector2.DOWN
-		if Input.is_action_pressed("ui_left"):
-			ui_dir += Vector2.LEFT
-		if Input.is_action_pressed("ui_right"):
-			ui_dir += Vector2.RIGHT
-	return ui_dir
+		if Input.is_action_pressed("walk_up"):
+			walk_dir += Vector2.UP
+		if Input.is_action_pressed("walk_down"):
+			walk_dir += Vector2.DOWN
+		if Input.is_action_pressed("walk_left"):
+			walk_dir += Vector2.LEFT
+		if Input.is_action_pressed("walk_right"):
+			walk_dir += Vector2.RIGHT
+	return walk_dir
 
 
 """
@@ -65,27 +65,27 @@ Returns 'true' if the player just released a direction key.
 Parameters:
 	'event': (Optional) The input event to be evaluated. If null, this method will evaluate all current inputs.
 """
-static func ui_released_dir(event: InputEvent = null) -> bool:
-	var ui_dir := Vector2.ZERO
+static func walk_released_dir(event: InputEvent = null) -> bool:
+	var walk_dir := Vector2.ZERO
 	if event:
-		if event.is_action_released("ui_up"):
-			ui_dir += Vector2.UP
-		if event.is_action_released("ui_down"):
-			ui_dir += Vector2.DOWN
-		if event.is_action_released("ui_left"):
-			ui_dir += Vector2.LEFT
-		if event.is_action_released("ui_right"):
-			ui_dir += Vector2.RIGHT
+		if event.is_action_released("walk_up"):
+			walk_dir += Vector2.UP
+		if event.is_action_released("walk_down"):
+			walk_dir += Vector2.DOWN
+		if event.is_action_released("walk_left"):
+			walk_dir += Vector2.LEFT
+		if event.is_action_released("walk_right"):
+			walk_dir += Vector2.RIGHT
 	else:
-		if Input.is_action_just_released("ui_up"):
-			ui_dir += Vector2.UP
-		if Input.is_action_just_released("ui_down"):
-			ui_dir += Vector2.DOWN
-		if Input.is_action_just_released("ui_left"):
-			ui_dir += Vector2.LEFT
-		if Input.is_action_just_released("ui_right"):
-			ui_dir += Vector2.RIGHT
-	return ui_dir.length() > 0
+		if Input.is_action_just_released("walk_up"):
+			walk_dir += Vector2.UP
+		if Input.is_action_just_released("walk_down"):
+			walk_dir += Vector2.DOWN
+		if Input.is_action_just_released("walk_left"):
+			walk_dir += Vector2.LEFT
+		if Input.is_action_just_released("walk_right"):
+			walk_dir += Vector2.RIGHT
+	return walk_dir.length() > 0
 
 
 """
