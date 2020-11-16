@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/keybind/preset-keybind-row.gd" type="Script" id=2]
+
+
+
+[node name="Keybind" type="HBoxContainer"]
+margin_top = 30.0
+margin_right = 420.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 420, 20 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Label" parent="."]
+margin_right = 180.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 120, 20 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.9
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="."]
+margin_left = 200.0
+margin_right = 420.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 160, 20 )
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.1
+custom_colors/font_color = Color( 1, 1, 1, 0.501961 )
+valign = 1
+autowrap = true

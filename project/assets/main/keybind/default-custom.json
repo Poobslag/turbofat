@@ -1,0 +1,202 @@
+{
+  "move_piece_left": [
+    {
+      "type": "key",
+      "scancode": 16777231
+    },
+    {
+    },
+    {
+    }
+  ],
+  "move_piece_right": [
+    {
+      "type": "key",
+      "scancode": 16777233
+    },
+    {
+    },
+    {
+    }
+  ],
+  "soft_drop": [
+    {
+      "type": "key",
+      "scancode": 16777234
+    },
+    {
+    },
+    {
+    }
+  ],
+  "hard_drop": [
+    {
+      "type": "key",
+      "scancode": 32
+    },
+    {
+    },
+    {
+    }
+  ],
+  "rotate_ccw": [
+    {
+      "type": "key",
+      "scancode": 90
+    },
+    {
+    },
+    {
+    }
+  ],
+  "rotate_cw": [
+    {
+      "type": "key",
+      "scancode": 88
+    },
+    {
+    },
+    {
+    }
+  ],
+  "ui_up": [
+    {
+      "type": "key",
+      "scancode": 16777232
+    },
+    {
+    },
+    {
+    }
+  ],
+  "ui_down": [
+    {
+      "type": "key",
+      "scancode": 16777234
+    },
+    {
+    },
+    {
+    }
+  ],
+  "ui_left": [
+    {
+      "type": "key",
+      "scancode": 16777231
+    },
+    {
+    },
+    {
+    }
+  ],
+  "ui_right": [
+    {
+      "type": "key",
+      "scancode": 16777233
+    },
+    {
+    },
+    {
+    }
+  ],
+  "ui_accept": [
+    {
+      "type": "key",
+      "scancode": 32
+    },
+    {
+    },
+    {
+    }
+  ],
+  "ui_cancel": [
+    {
+      "type": "key",
+      "scancode": 16777217
+    },
+    {
+    },
+    {
+    }
+  ],
+  "ui_menu": [
+    {
+      "type": "key",
+      "scancode": 16777217
+    },
+    {
+    },
+    {
+    }
+  ],
+  "walk_up": [
+    {
+      "type": "key",
+      "scancode": 16777232
+    },
+    {
+    },
+    {
+    }
+  ],
+  "walk_down": [
+    {
+      "type": "key",
+      "scancode": 16777234
+    },
+    {
+    },
+    {
+    }
+  ],
+  "walk_left": [
+    {
+      "type": "key",
+      "scancode": 16777231
+    },
+    {
+    },
+    {
+    }
+  ],
+  "walk_right": [
+    {
+      "type": "key",
+      "scancode": 16777233
+    },
+    {
+    },
+    {
+    }
+  ],
+  "interact": [
+    {
+      "type": "key",
+      "scancode": 32
+    },
+    {
+    },
+    {
+    }
+  ],
+  "rewind_text": [
+    {
+      "type": "key",
+      "scancode": 16777237
+    },
+    {
+    },
+    {
+    }
+  ],
+  "phone": [
+    {
+      "type": "key",
+      "scancode": 16777218
+    },
+    {
+    },
+    {
+    }
+  ]
+}

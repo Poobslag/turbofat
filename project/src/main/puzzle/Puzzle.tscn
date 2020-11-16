@@ -113,20 +113,20 @@ shader_param/noise = SubResource( 9 )
 flags = 5
 viewport_path = NodePath("FrostingGlobs/GlobViewports/RainbowViewport")
 
-[sub_resource type="ShaderMaterial" id=15]
+[sub_resource type="ShaderMaterial" id=12]
 resource_local_to_scene = true
 shader = ExtResource( 22 )
 shader_param/width = 6.0
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 shader_param/edge_fix_factor = 0.001
 
-[sub_resource type="ViewportTexture" id=12]
+[sub_resource type="ViewportTexture" id=13]
 viewport_path = NodePath("FoodItems/Viewport")
 
-[sub_resource type="StyleBoxFlat" id=13]
+[sub_resource type="StyleBoxFlat" id=14]
 bg_color = Color( 1, 1, 1, 0.333333 )
 
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=15]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -269,12 +269,12 @@ size = Vector2( 2560, 1500 )
 transparent_bg = true
 
 [node name="TextureRect" type="TextureRect" parent="FoodItems"]
-material = SubResource( 15 )
+material = SubResource( 12 )
 margin_right = 2560.0
 margin_bottom = 1500.0
 rect_min_size = Vector2( 2560, 1500 )
 rect_scale = Vector2( 0.4, 0.4 )
-texture = SubResource( 12 )
+texture = SubResource( 13 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -346,8 +346,8 @@ margin_left = 150.0
 margin_top = 30.0
 margin_right = 250.0
 margin_bottom = 75.0
-custom_styles/fg = SubResource( 13 )
-custom_styles/bg = SubResource( 14 )
+custom_styles/fg = SubResource( 14 )
+custom_styles/bg = SubResource( 15 )
 percent_visible = false
 
 [node name="Desc" type="Label" parent="Hud/HudUi/Chalkboard/MilestoneHud"]

@@ -24,6 +24,7 @@ $$ Gut by Tom "Butch" Wesley (MIT License)
 $ Touch icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
 $ Catalin Fertu Filled icons by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
 $$$ Godot Engine (MIT license)
+$ Godot Toolbox Project by AnJ95 (https://github.com/AnJ95/godot-toolbox-project) (You referenced their code for your 'custom keybinds' logic)
 
 Sounds
 --------------------------------------------------------------------------------

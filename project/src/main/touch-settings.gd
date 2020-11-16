@@ -62,3 +62,4 @@ func from_json_dict(json: Dictionary) -> void:
 	size = json.get("size", 1.00)
 	scheme = json.get("scheme", 0)
 	fat_finger = json.get("fat_finger", 0.00)
+	emit_signal("settings_changed")
