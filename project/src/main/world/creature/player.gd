@@ -10,9 +10,9 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if Utils.ui_pressed_dir(_event) or Utils.ui_released_dir(_event):
+	if Utils.walk_pressed_dir(_event) or Utils.walk_released_dir(_event):
 		# calculate the direction the player wants to move
-		set_non_iso_walk_direction(Utils.ui_pressed_dir())
+		set_non_iso_walk_direction(Utils.walk_pressed_dir())
 		get_tree().set_input_as_handled()
 
 

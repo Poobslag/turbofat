@@ -6,7 +6,7 @@ Manages the touchscreen buttons for puzzle mode.
 # touchscreen control schemes the player can select in the settings menu
 const SCHEMES := {
 	TouchSettings.EASY_CONSOLE: {
-		"sw_actions": ["hard_drop", "soft_drop", "ui_left", "ui_right"],
+		"sw_actions": ["hard_drop", "soft_drop", "move_piece_left", "move_piece_right"],
 		"sw_weights": [1, 1, 1, 1],
 		"se_actions": ["", "rotate_ccw", "", "rotate_cw"],
 		"se_weights": [0, 0, 0, 1],
@@ -14,11 +14,11 @@ const SCHEMES := {
 	TouchSettings.EASY_DESKTOP: {
 		"sw_actions": ["", "rotate_cw", "rotate_ccw", ""],
 		"sw_weights": [0, 0, 1, 0],
-		"se_actions": ["hard_drop", "soft_drop", "ui_left", "ui_right"],
+		"se_actions": ["hard_drop", "soft_drop", "move_piece_left", "move_piece_right"],
 		"se_weights": [1, 1, 1, 1],
 	},
 	TouchSettings.AMBI_CONSOLE: {
-		"sw_actions": ["hard_drop", "soft_drop", "ui_left", "ui_right"],
+		"sw_actions": ["hard_drop", "soft_drop", "move_piece_left", "move_piece_right"],
 		"sw_weights": [1, 1, 1, 1],
 		"se_actions": ["hard_drop", "rotate_ccw", "soft_drop", "rotate_cw"],
 		"se_weights": [1, 0, 0, 1],
@@ -26,11 +26,11 @@ const SCHEMES := {
 	TouchSettings.AMBI_DESKTOP: {
 		"sw_actions": ["hard_drop", "rotate_cw", "rotate_ccw", "soft_drop"],
 		"sw_weights": [0, 1, 1, 0],
-		"se_actions": ["hard_drop", "soft_drop", "ui_left", "ui_right"],
+		"se_actions": ["hard_drop", "soft_drop", "move_piece_left", "move_piece_right"],
 		"se_weights": [1, 1, 1, 1],
 	},
 	TouchSettings.LOCO_CONSOLE: {
-		"sw_actions": ["soft_drop", "ui_right", "ui_left", "hard_drop"],
+		"sw_actions": ["soft_drop", "move_piece_right", "move_piece_left", "hard_drop"],
 		"sw_weights": [0, 1, 0, 0],
 		"se_actions": ["hard_drop", "rotate_ccw", "soft_drop", "rotate_cw"],
 		"se_weights": [1, 0, 0, 1],
@@ -38,7 +38,7 @@ const SCHEMES := {
 	TouchSettings.LOCO_DESKTOP: {
 		"sw_actions": ["soft_drop", "rotate_cw", "rotate_ccw", "hard_drop"],
 		"sw_weights": [0, 1, 1, 0],
-		"se_actions": ["hard_drop", "ui_left", "soft_drop", "ui_right"],
+		"se_actions": ["hard_drop", "move_piece_left", "soft_drop", "move_piece_right"],
 		"se_weights": [1, 0, 0, 0],
 	},
 }

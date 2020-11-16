@@ -242,16 +242,16 @@
     "unranked"
   ],
   "input_replay": [
-    "56 +ui_right",
-    "61 -ui_right",
-    "110 +ui_right",
-    "116 -ui_right",
-    "123 +ui_left",
+    "56 +move_piece_right",
+    "61 -move_piece_right",
+    "110 +move_piece_right",
+    "116 -move_piece_right",
+    "123 +move_piece_left",
     "128 +rotate_ccw",
-    "130 -ui_left",
+    "130 -move_piece_left",
     "134 -rotate_ccw",
-    "141 +ui_right",
-    "146 -ui_right",
+    "141 +move_piece_right",
+    "146 -move_piece_right",
     "156 +hard_drop",
     "163 -hard_drop"
   ]
