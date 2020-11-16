@@ -26,7 +26,7 @@ Pressing and holding the 'soft drop' key lets you move pieces past each other. T
   * <kbd>Left</kbd> or <kbd>Right</kbd> moves your piece.
   * <kbd>Z</kbd> or <kbd>X</kbd> rotates your piece.
   * <kbd>Down</kbd> lowers your piece.
-  * <kbd>Up</kbd> or <kbd>Shift</kbd> drops your piece immediately.
+  * <kbd>Space</kbd>, <kbd>Up</kbd> or <kbd>Shift</kbd> drops your piece immediately.
 ### Walking around
   * <kbd>Up</kbd>, <kbd>Down</kbd>, <kbd>Left</kbd> or <kbd>Right</kbd> moves your character.
   * <kbd>Z</kbd> talks to other characters.
