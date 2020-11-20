@@ -209,7 +209,7 @@ custom_styles/normal = ExtResource( 21 )
 custom_fonts/normal_font = ExtResource( 22 )
 text = "Arrows: Move
 Down: Soft drop
-Up/Space: Hard drop
+Space: Hard drop
 Z, X: Rotate"
 fit_content_height = true
 scroll_active = false
@@ -308,13 +308,13 @@ bus = "Sound Bus"
 [connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="." to="LineClearer" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
-[connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="." to="LineClearSfx" method="_on_Playfield_line_erased"]
 [connection signal="after_boxes_built" from="BoxBuilder" to="." method="_on_BoxBuilder_after_boxes_built"]
-[connection signal="box_built" from="BoxBuilder" to="." method="_on_BoxBuilder_box_built"]
 [connection signal="box_built" from="BoxBuilder" to="LineClearer" method="_on_BoxBuilder_box_built"]
+[connection signal="box_built" from="BoxBuilder" to="." method="_on_BoxBuilder_box_built"]
 [connection signal="before_line_cleared" from="LineClearer" to="." method="_on_LineClearer_before_line_cleared"]
 [connection signal="line_cleared" from="LineClearer" to="." method="_on_LineClearer_line_cleared"]
 [connection signal="line_erased" from="LineClearer" to="." method="_on_LineClearer_line_erased"]
