@@ -16,6 +16,7 @@ var creature_queue := CreatureQueue.new()
 var gameplay_settings := GameplaySettings.new()
 var volume_settings := VolumeSettings.new()
 var touch_settings := TouchSettings.new()
+var keybind_settings := KeybindSettings.new()
 
 var money := 0 setget set_money
 
@@ -30,6 +31,7 @@ func reset() -> void:
 	gameplay_settings.reset()
 	volume_settings.reset()
 	touch_settings.reset()
+	keybind_settings.reset()
 	money = 0
 
 

@@ -119,7 +119,7 @@ func break_combo() -> void:
 Resets the playfield to the level's initial state.
 """
 func _prepare_level_blocks() -> void:
-	$DetailMessageLabel.visible = Level.settings.other.tutorial and not OS.has_touchscreen_ui_hint()
+	$TutorialKeybindsLabel.visible = Level.settings.other.tutorial and not OS.has_touchscreen_ui_hint()
 	
 	tile_map.clear()
 	var blocks_start: BlocksStartRules = Level.settings.blocks_start

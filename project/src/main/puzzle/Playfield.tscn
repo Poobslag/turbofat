@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=21]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=22]
 [ext_resource path="res://src/main/puzzle/LeafPoof.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/main/puzzle/tutorial-keybinds-label.gd" type="Script" id=24]
 [ext_resource path="res://assets/main/puzzle/playfield-bg.png" type="Texture" id=37]
 [ext_resource path="res://src/main/puzzle/combo-tracker.gd" type="Script" id=61]
 [ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=62]
@@ -196,22 +197,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="DetailMessageLabel" type="RichTextLabel" parent="."]
-visible = false
+[node name="TutorialKeybindsLabel" type="RichTextLabel" parent="."]
 modulate = Color( 1, 1, 1, 0.392157 )
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -119.0
 margin_top = 86.0
 margin_right = 119.0
-margin_bottom = 172.0
+margin_bottom = 176.0
 custom_styles/normal = ExtResource( 21 )
 custom_fonts/normal_font = ExtResource( 22 )
 text = "Arrows: Move
-Up/Space: Hard drop
 Down: Soft drop
+Up/Space: Hard drop
 Z, X: Rotate"
+fit_content_height = true
 scroll_active = false
+script = ExtResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -300,14 +302,14 @@ bus = "Sound Bus"
 
 [node name="BuildSnackBoxSound" type="AudioStreamPlayer" parent="BuildBoxSfx"]
 bus = "Sound Bus"
-[connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="." to="TileMapClip/LeafPoofs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="LineClearSfx" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="." to="ComboTracker" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="." to="LineClearer" method="_on_Playfield_blocks_prepared"]
-[connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
-[connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="." to="BuildBoxSfx" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="." to="ComboTracker" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="." to="LineClearSfx" method="_on_Playfield_line_erased"]
 [connection signal="after_boxes_built" from="BoxBuilder" to="." method="_on_BoxBuilder_after_boxes_built"]

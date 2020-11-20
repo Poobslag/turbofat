@@ -24,9 +24,16 @@ func _ready() -> void:
 	# starts invisible
 	hide()
 	
-	if not OS.has_touchscreen_ui_hint():
-		# hide 'touch' settings if touch is not enabled
+	if OS.has_touchscreen_ui_hint():
+		# hide keybinds settings for mobile devices
+		$Window/UiArea/TabContainer/Keybinds.queue_free()
+	else:
+		# hide touch settings if touch is not enabled
 		$Window/UiArea/TabContainer/Touch.queue_free()
+	
+	var custom_keybind_buttons := get_tree().get_nodes_in_group("custom_keybind_buttons")
+	for keybind_button in custom_keybind_buttons:
+		keybind_button.connect("awaiting_changed", self, "_on_CustomKeybindButton_awaiting_changed")
 
 
 func set_quit_text(new_quit_text: String) -> void:
@@ -75,3 +82,9 @@ func _on_Quit_pressed() -> void:
 
 func _on_Settings_pressed() -> void:
 	show()
+
+
+func _on_CustomKeybindButton_awaiting_changed(awaiting: bool) -> void:
+	# when the user is rebinding their keys, we disable the shortcut helper. otherwise trying to rebind something like
+	# 'escape' will close the settings menu
+	$Window/UiArea/Bottom/Ok/ShortcutHelper.set_process_input(!awaiting)

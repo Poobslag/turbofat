@@ -1,0 +1,346 @@
+{
+  "hard_drop": [
+    {
+      "type": "key",
+      "scancode": 16777232
+    },
+    {
+      "type": "key",
+      "scancode": 32
+    },
+    {
+      "type": "key",
+      "scancode": 87
+    },
+    {
+      "type": "key",
+      "scancode": 16777355
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 12
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 3
+    }
+  ],
+  "interact": [
+    {
+      "type": "key",
+      "scancode": 90
+    },
+    {
+      "type": "key",
+      "scancode": 32
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 0
+    }
+  ],
+  "move_piece_left": [
+    {
+      "type": "key",
+      "scancode": 65
+    },
+    {
+      "type": "key",
+      "scancode": 16777354
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 14
+    }
+  ],
+  "move_piece_right": [
+    {
+      "type": "key",
+      "scancode": 68
+    },
+    {
+      "type": "key",
+      "scancode": 16777356
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 15
+    }
+  ],
+  "phone": [
+    {
+      "type": "key",
+      "scancode": 16777218
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 3
+    }
+  ],
+  "rewind_text": [
+    {
+      "type": "key",
+      "scancode": 16777237
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 2
+    }
+  ],
+  "rotate_ccw": [
+    {
+      "type": "key",
+      "scancode": 16777231
+    },
+    {
+      "type": "key",
+      "scancode": 16777357
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 0
+    }
+  ],
+  "rotate_cw": [
+    {
+      "type": "key",
+      "scancode": 16777233
+    },
+    {
+      "type": "key",
+      "scancode": 16777359
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 1
+    }
+  ],
+  "soft_drop": [
+    {
+      "type": "key",
+      "scancode": 16777234
+    },
+    {
+      "type": "key",
+      "scancode": 83
+    },
+    {
+      "type": "key",
+      "scancode": 16777358
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 13
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 2
+    }
+  ],
+  "ui_accept": [
+    {
+      "type": "key",
+      "scancode": 16777221
+    },
+    {
+      "type": "key",
+      "scancode": 16777222
+    },
+    {
+      "type": "key",
+      "scancode": 32
+    },
+    {
+      "type": "key",
+      "scancode": 90
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 0
+    }
+  ],
+  "ui_cancel": [
+    {
+      "type": "key",
+      "scancode": 16777217
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 1
+    }
+  ],
+  "ui_down": [
+    {
+      "type": "key",
+      "scancode": 16777234
+    },
+    {
+      "type": "key",
+      "scancode": 83
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 13
+    }
+  ],
+  "ui_end": [
+    {
+      "type": "key",
+      "scancode": 16777230
+    }
+  ],
+  "ui_focus_next": [
+  ],
+  "ui_focus_prev": [
+  ],
+  "ui_home": [
+    {
+      "type": "key",
+      "scancode": 16777229
+    }
+  ],
+  "ui_left": [
+    {
+      "type": "key",
+      "scancode": 16777231
+    },
+    {
+      "type": "key",
+      "scancode": 65
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 14
+    }
+  ],
+  "ui_menu": [
+    {
+      "type": "key",
+      "scancode": 16777217
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 11
+    }
+  ],
+  "ui_page_down": [
+    {
+      "type": "key",
+      "scancode": 16777236
+    }
+  ],
+  "ui_page_up": [
+    {
+      "type": "key",
+      "scancode": 16777235
+    }
+  ],
+  "ui_right": [
+    {
+      "type": "key",
+      "scancode": 16777233
+    },
+    {
+      "type": "key",
+      "scancode": 68
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 15
+    }
+  ],
+  "ui_select": [
+  ],
+  "ui_up": [
+    {
+      "type": "key",
+      "scancode": 16777232
+    },
+    {
+      "type": "key",
+      "scancode": 87
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 12
+    }
+  ],
+  "walk_down": [
+    {
+      "type": "key",
+      "scancode": 16777234
+    },
+    {
+      "type": "key",
+      "scancode": 83
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 13
+    }
+  ],
+  "walk_left": [
+    {
+      "type": "key",
+      "scancode": 16777231
+    },
+    {
+      "type": "key",
+      "scancode": 65
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 14
+    }
+  ],
+  "walk_right": [
+    {
+      "type": "key",
+      "scancode": 16777233
+    },
+    {
+      "type": "key",
+      "scancode": 68
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 15
+    }
+  ],
+  "walk_up": [
+    {
+      "type": "key",
+      "scancode": 16777232
+    },
+    {
+      "type": "key",
+      "scancode": 87
+    },
+    {
+      "type": "joypad_button",
+      "device": 0,
+      "button_index": 12
+    }
+  ]
+}
