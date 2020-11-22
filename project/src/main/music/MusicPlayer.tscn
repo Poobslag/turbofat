@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/music/music-player.gd" type="Script" id=1]
 [ext_resource path="res://src/main/music/CheckpointSong.tscn" type="PackedScene" id=2]
@@ -17,6 +17,9 @@
 [ext_resource path="res://assets/main/music/chub-n-bass.ogg" type="AudioStream" id=15]
 [ext_resource path="res://assets/main/music/harder-butter.ogg" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/music/dessert-course.ogg" type="AudioStream" id=17]
+[ext_resource path="res://assets/main/music/acid-reflux.ogg" type="AudioStream" id=18]
+[ext_resource path="res://assets/main/music/nomnambulism.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/main/music/extra-sprinkles.ogg" type="AudioStream" id=20]
 
 [node name="MusicPlayer" type="Node"]
 pause_mode = 2
@@ -99,7 +102,7 @@ song_color = Color( 0.988235, 0.588235, 0.929412, 1 )
 stream = ExtResource( 15 )
 checkpoints = [ 0.0, 22.575, 101.642 ]
 song_title = "Chub 'n Bass"
-song_color = Color( 0.352941, 0.666667, 0.301961, 1 )
+song_color = Color( 0.24, 0.75, 0.3675, 1 )
 
 [node name="MyFatnessPal" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 11 )
@@ -107,6 +110,25 @@ volume_db = 4.0
 checkpoints = [ 0.0, 25.098, 50.196, 74.681 ]
 song_title = "My Fatness Pal"
 song_color = Color( 0.709804, 0.486275, 0.917647, 1 )
+
+[node name="Nomnambulism" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 19 )
+checkpoints = [ 0.0, 20.206, 101.058 ]
+song_title = "Nomnambulism"
+song_color = Color( 0.538333, 0.3825, 0.85, 1 )
+
+[node name="AcidReflux" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 18 )
+checkpoints = [ 0.0, 32.912, 65.827, 87.771, 120.686 ]
+song_title = "Acid Reflux"
+song_color = Color( 0.3245, 0.55, 0.22, 1 )
+
+[node name="ExtraSprinkles" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 20 )
+volume_db = -3.0
+checkpoints = [ 0.0 ]
+song_title = "Extra Sprinkles"
+song_color = Color( 1, 0.74902, 0.34902, 1 )
 
 [node name="MusicTween" type="Tween" parent="."]
 script = ExtResource( 4 )
