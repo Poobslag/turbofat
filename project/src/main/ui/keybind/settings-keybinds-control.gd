@@ -28,7 +28,11 @@ func _refresh_keybind_labels() -> void:
 	$PresetScrollContainer.visible = false
 	$CustomScrollContainer.visible = false
 	
-	match PlayerData.keybind_settings.preset:
+	# Workaround for Godot #42224 (https://github.com/godotengine/godot/issues/42224)
+	# The following match statement does not work unless this field is explicitly cast to an int
+	var preset: int = PlayerData.keybind_settings.preset
+	
+	match preset:
 		KeybindSettings.GUIDELINE:
 			$PresetScrollContainer.visible = true
 			$PresetScrollContainer/VBoxContainer/MovePiece.value = "Left, Right, Numpad4/6"
