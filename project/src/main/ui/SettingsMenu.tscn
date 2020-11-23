@@ -17,10 +17,6 @@
 [ext_resource path="res://src/main/ui/keybind/settings-keybinds-control.gd" type="Script" id=15]
 [ext_resource path="res://src/main/ui/keybind/KeybindCustom.tscn" type="PackedScene" id=16]
 
-
-
-
-
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
 content_margin_right = 5.0
@@ -204,7 +200,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Keybinds" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+[node name="Controls" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -214,7 +210,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 script = ExtResource( 15 )
 
-[node name="Presets" type="HBoxContainer" parent="Window/UiArea/TabContainer/Keybinds"]
+[node name="Presets" type="HBoxContainer" parent="Window/UiArea/TabContainer/Controls"]
 margin_right = 510.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 400, 26 )
@@ -223,7 +219,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 alignment = 1
 
-[node name="Guideline" type="Button" parent="Window/UiArea/TabContainer/Keybinds/Presets"]
+[node name="Guideline" type="Button" parent="Window/UiArea/TabContainer/Controls/Presets"]
 margin_left = 85.0
 margin_right = 185.0
 margin_bottom = 26.0
@@ -234,7 +230,7 @@ pressed = true
 group = SubResource( 3 )
 text = "Guideline"
 
-[node name="Wasd" type="Button" parent="Window/UiArea/TabContainer/Keybinds/Presets"]
+[node name="Wasd" type="Button" parent="Window/UiArea/TabContainer/Controls/Presets"]
 margin_left = 205.0
 margin_right = 305.0
 margin_bottom = 26.0
@@ -244,7 +240,7 @@ toggle_mode = true
 group = SubResource( 3 )
 text = "WASD"
 
-[node name="Custom" type="Button" parent="Window/UiArea/TabContainer/Keybinds/Presets"]
+[node name="Custom" type="Button" parent="Window/UiArea/TabContainer/Controls/Presets"]
 margin_left = 325.0
 margin_right = 425.0
 margin_bottom = 26.0
@@ -254,7 +250,7 @@ toggle_mode = true
 group = SubResource( 3 )
 text = "Custom"
 
-[node name="PresetScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Keybinds"]
+[node name="PresetScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Controls"]
 visible = false
 margin_top = 30.0
 margin_right = 510.0
@@ -262,246 +258,246 @@ margin_bottom = 141.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer"]
 margin_right = 420.0
 margin_bottom = 280.0
 rect_min_size = Vector2( 419, 0 )
 custom_constants/separation = 0
 
-[node name="MovePiece" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="MovePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 0.0
 margin_bottom = 20.0
 description = "Move Piece"
 value = "Left, Right"
 
-[node name="SoftDrop" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 20.0
 margin_bottom = 40.0
 description = "Soft Drop"
 value = "Down"
 
-[node name="HardDrop" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 40.0
 margin_bottom = 60.0
 description = "Hard Drop"
 value = "Space, Up, Shift"
 
-[node name="RotatePiece" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="RotatePiece" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 60.0
 margin_bottom = 80.0
 description = "Rotate Piece"
 value = "Z, X"
 
-[node name="Menu" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="Menu" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 80.0
 margin_bottom = 100.0
 description = "Menu"
 value = "Escape"
 
-[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer"]
+[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer"]
 margin_top = 100.0
 margin_right = 420.0
 margin_bottom = 120.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="MoveInMenus" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="MoveInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 120.0
 margin_bottom = 140.0
 description = "Move in Menus"
 value = "Arrows, WASD"
 
-[node name="ConfirmInMenus" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="ConfirmInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 140.0
 margin_bottom = 160.0
 description = "Confirm in Menus"
 value = "Space"
 
-[node name="BackInMenus" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="BackInMenus" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 160.0
 margin_bottom = 180.0
 description = "Back in Menus"
 value = "Escape"
 
-[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer"]
 margin_top = 180.0
 margin_right = 420.0
 margin_bottom = 200.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="Walk" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="Walk" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 200.0
 margin_bottom = 220.0
 description = "Walk"
 value = "Arrows, WASD"
 
-[node name="Interact" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="Interact" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 220.0
 margin_bottom = 240.0
 description = "Interact"
 value = "Space, Z"
 
-[node name="RewindText" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 240.0
 margin_bottom = 260.0
 description = "Rewind Text"
 value = "Shift"
 
-[node name="Phone" parent="Window/UiArea/TabContainer/Keybinds/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
+[node name="Phone" parent="Window/UiArea/TabContainer/Controls/PresetScrollContainer/VBoxContainer" instance=ExtResource( 14 )]
 margin_top = 260.0
 margin_bottom = 280.0
 description = "Phone"
 value = "Tab"
 
-[node name="CustomScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Keybinds"]
+[node name="CustomScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Controls"]
 margin_top = 30.0
 margin_right = 510.0
 margin_bottom = 256.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer"]
 margin_right = 490.0
 margin_bottom = 612.0
 rect_min_size = Vector2( 419, 0 )
 custom_constants/separation = 2
 
-[node name="MovePieceLeft" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MovePieceLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 description = "Move Piece Left"
 action_name = "move_piece_left"
 
-[node name="MovePieceRight" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MovePieceRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 26.0
 margin_bottom = 50.0
 description = "Move Piece Right"
 action_name = "move_piece_right"
 
-[node name="SoftDrop" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="SoftDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 52.0
 margin_bottom = 76.0
 description = "Soft Drop"
 action_name = "soft_drop"
 
-[node name="HardDrop" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="HardDrop" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 78.0
 margin_bottom = 102.0
 description = "Hard Drop"
 action_name = "hard_drop"
 
-[node name="RotateCcw" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="RotateCcw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 104.0
 margin_bottom = 128.0
 description = "Rotate Ccw"
 action_name = "rotate_ccw"
 
-[node name="RotateCw" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="RotateCw" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 130.0
 margin_bottom = 154.0
 description = "Rotate Cw"
 action_name = "rotate_cw"
 
-[node name="Menu" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="Menu" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 156.0
 margin_bottom = 180.0
 description = "Menu"
 action_name = "ui_menu"
 
-[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer"]
+[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
 margin_top = 182.0
 margin_right = 490.0
 margin_bottom = 202.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="MenuUp" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MenuUp" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 204.0
 margin_bottom = 228.0
 description = "Up in Menus"
 action_name = "ui_up"
 
-[node name="MenuDown" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MenuDown" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 230.0
 margin_bottom = 254.0
 description = "Down in Menus"
 action_name = "ui_down"
 
-[node name="MenuLeft" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MenuLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 256.0
 margin_bottom = 280.0
 description = "Left in Menus"
 action_name = "ui_left"
 
-[node name="MenuRight" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="MenuRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 282.0
 margin_bottom = 306.0
 description = "Right in Menus"
 action_name = "ui_right"
 
-[node name="Confirm" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="Confirm" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 308.0
 margin_bottom = 332.0
 description = "Confirm in Menus"
 action_name = "ui_accept"
 
-[node name="Back" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="Back" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 334.0
 margin_bottom = 358.0
 description = "Back in Menus"
 action_name = "ui_cancel"
 
-[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
 margin_top = 360.0
 margin_right = 490.0
 margin_bottom = 380.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="WalkUp" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="WalkUp" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 382.0
 margin_bottom = 406.0
 description = "Walk Up"
 action_name = "walk_up"
 
-[node name="WalkDown" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="WalkDown" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 408.0
 margin_bottom = 432.0
 description = "Walk Down"
 action_name = "walk_down"
 
-[node name="WalkLeft" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="WalkLeft" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 434.0
 margin_bottom = 458.0
 description = "Walk Left"
 action_name = "walk_left"
 
-[node name="WalkRight" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="WalkRight" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 460.0
 margin_bottom = 484.0
 description = "Walk Right"
 action_name = "walk_right"
 
-[node name="Interact" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="Interact" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 486.0
 margin_bottom = 510.0
 description = "Interact"
 action_name = "interact"
 
-[node name="RewindText" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="RewindText" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 512.0
 margin_bottom = 536.0
 description = "Rewind Text"
 action_name = "rewind_text"
 
-[node name="Phone" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
+[node name="Phone" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer" instance=ExtResource( 16 )]
 margin_top = 538.0
 margin_bottom = 562.0
 description = "Phone"
 action_name = "phone"
 
-[node name="Spacer3" type="Control" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer"]
+[node name="Spacer3" type="Control" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
 margin_top = 564.0
 margin_right = 490.0
 margin_bottom = 584.0
 rect_min_size = Vector2( 0, 20 )
 
-[node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/Keybinds/CustomScrollContainer/VBoxContainer"]
+[node name="ResetToDefault" type="Button" parent="Window/UiArea/TabContainer/Controls/CustomScrollContainer/VBoxContainer"]
 margin_left = 175.0
 margin_top = 586.0
 margin_right = 314.0

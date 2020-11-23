@@ -18,7 +18,7 @@
 [ext_resource path="res://assets/main/music/harder-butter.ogg" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/music/dessert-course.ogg" type="AudioStream" id=17]
 [ext_resource path="res://assets/main/music/acid-reflux.ogg" type="AudioStream" id=18]
-[ext_resource path="res://assets/main/music/nomnambulism.ogg" type="AudioStream" id=19]
+[ext_resource path="res://assets/main/music/rainbow-sherbeat.ogg" type="AudioStream" id=19]
 [ext_resource path="res://assets/main/music/extra-sprinkles.ogg" type="AudioStream" id=20]
 
 [node name="MusicPlayer" type="Node"]
@@ -111,10 +111,10 @@ checkpoints = [ 0.0, 25.098, 50.196, 74.681 ]
 song_title = "My Fatness Pal"
 song_color = Color( 0.709804, 0.486275, 0.917647, 1 )
 
-[node name="Nomnambulism" parent="." instance=ExtResource( 2 )]
+[node name="RainbowSherbeat" parent="." instance=ExtResource( 2 )]
 stream = ExtResource( 19 )
 checkpoints = [ 0.0, 20.206, 101.058 ]
-song_title = "Nomnambulism"
+song_title = "Rainbow Sherbeat"
 song_color = Color( 0.538333, 0.3825, 0.85, 1 )
 
 [node name="AcidReflux" parent="." instance=ExtResource( 2 )]

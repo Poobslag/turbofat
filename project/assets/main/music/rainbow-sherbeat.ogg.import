@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/rainbow-sherbeat.ogg-0ca3ec78c1f167f5bc24ff1ac192d466.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/rainbow-sherbeat.ogg"
+dest_files=[ "res://.import/rainbow-sherbeat.ogg-0ca3ec78c1f167f5bc24ff1ac192d466.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

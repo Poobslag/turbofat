@@ -26,7 +26,7 @@ func _ready() -> void:
 	
 	if OS.has_touchscreen_ui_hint():
 		# hide keybinds settings for mobile devices
-		$Window/UiArea/TabContainer/Keybinds.queue_free()
+		$Window/UiArea/TabContainer/Controls.queue_free()
 	else:
 		# hide touch settings if touch is not enabled
 		$Window/UiArea/TabContainer/Touch.queue_free()
