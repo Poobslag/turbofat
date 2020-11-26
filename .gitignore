@@ -6,6 +6,7 @@ project/export
 
 # Godot-specific ignores
 project/.import/
+project/logs/
 
 # Imported translations (automatically generated from CSV files)
 project/*.translation
