@@ -35,7 +35,7 @@ func _process(_delta: float) -> void:
 
 func _refresh_viewport_size() -> void:
 	_viewport.size = get_viewport_rect().size / rect_scale
-	rect_size = get_viewport_rect().size / rect_scale
+	rect_size = _viewport.size
 
 
 func _on_Viewport_size_changed() -> void:

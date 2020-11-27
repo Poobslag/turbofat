@@ -1,6 +1,9 @@
 extends TileMap
 """
-Fine-grained tile map which draws the inner corners of 90-degree angles.
+Tile map which covers the corners of another tilemap.
+
+Without this tile map, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area. This
+tile map fills in the holes.
 """
 
 onready var _parent_map: TileMap = get_parent()
@@ -31,9 +34,19 @@ func _process(_delta: float) -> void:
 		dirty = false
 
 
+"""
+Returns the x component of the parent autotile coordinate (PAC) for the specified cell.
+
+This function has a confusingly short name because it's referenced repetitively in some long lines of code.
+"""
 func _pacx(pos: Vector2) -> int:
 	return int(_parent_map.get_cell_autotile_coord(pos.x, pos.y).x)
 
 
+"""
+Returns the y component of the parent autotile coordinate (PAC) for the specified cell.
+
+This function has a confusingly short name because it's referenced repetitively in some long lines of code.
+"""
 func _pacy(pos: Vector2) -> int:
 	return int(_parent_map.get_cell_autotile_coord(pos.x, pos.y).y)
