@@ -50,7 +50,7 @@ void fragment() {
 	// gradually scroll the texture vertically
 	tex_uv.y += TIME * scroll_distance.y * 0.33;
 	tex_uv /= accent_scale * vec2(textureSize(accent_texture, 0));
-
+	
 	// mix in the middle texture based on the red component of the source image
 	vec4 rgba_out = mix(border_color, center_color, rgba_in.r);
 	// blur and sharpen the texture to keep it crisp when scaled up

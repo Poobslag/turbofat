@@ -20,7 +20,7 @@ uniform sampler2D noise;
 
 // Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc)
 vec3 hsv2rgb_smooth(in vec3 c) {
-    vec3 rgb = clamp(abs(mod(c.x * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
+	vec3 rgb = clamp(abs(mod(c.x * 6.0 + vec3(0.0, 4.0, 2.0), 6.0) - 3.0) - 1.0, 0.0, 1.0);
 	rgb = rgb * rgb * (3.0 - 2.0 * rgb);
 	return c.z * mix(vec3(1.0), rgb, c.y);
 }
@@ -46,16 +46,16 @@ float stepify_hue(in float f_in) {
 
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);
-
+	
 	vec2 uv2 = UV + perlin_noise(0.6 * vec2(UV.x + 38.913 + TIME * 0.010, UV.y + 81.975 + TIME * DISTORTION_SPEED));
 	uv2 = uv2 + vec2(TIME * SCROLL_SPEED, 0.0);
-
+	
 	float f = perlin_noise(2.0 * uv2);
 	f = (f + TIME * CYCLE_SPEED) * 2.0;
 	f = stepify_hue(f);
-
+	
 	color.rgb = hsv2rgb_smooth(vec3(f, 1.0, 1.0));
-
+	
 	color.a = smoothstep(0.76, 0.80, color.a);
 	COLOR = color;
 }

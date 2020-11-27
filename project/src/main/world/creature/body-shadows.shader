@@ -36,7 +36,7 @@ void fragment()
 	// apply the shadow and decoration colors to the red parts of the texture
 	rgba_in.rgb = mix(rgba_in.rgb, color_in.rgb, color_in.a * rgba_in.r);
 	
-
+	
 	// mix black/red/blue/green colors sequentially. if all rgb components are equal, we first mix in 100% of the red
 	// color, then 50% of the green color, then 33% of the blue color.
 	float black_amount = max(0.0, 1.0 - rgba_in.r / rgba_in.a - rgba_in.g / rgba_in.a - rgba_in.b / rgba_in.a);
