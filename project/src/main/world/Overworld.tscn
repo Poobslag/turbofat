@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -10,16 +10,14 @@
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=10]
-[ext_resource path="res://src/main/world/glowy-sphere.gd" type="Script" id=11]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=13]
 [ext_resource path="res://src/main/world/GroundMap.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/environment/GrassTuft.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/grass-tufts.gd" type="Script" id=16]
 [ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=17]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=19]
-[ext_resource path="res://src/main/world/environment/obstacle-shadows.gd" type="Script" id=20]
+[ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=20]
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=21]
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=22]
 [ext_resource path="res://src/main/world/OverworldTouchButtons.tscn" type="PackedScene" id=23]
@@ -69,6 +67,11 @@
 [ext_resource path="res://assets/main/world/rgb_texture.shader" type="Shader" id=67]
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=68]
 [ext_resource path="res://assets/main/world/environment/marsh-block-texture.png" type="Texture" id=69]
+[ext_resource path="res://src/main/world/environment/MarshTree.tscn" type="PackedScene" id=70]
+[ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=71]
+[ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=72]
+[ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=73]
+[ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=75]
 
 [sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 66 )
@@ -83,13 +86,13 @@ viewport_path = NodePath("World/Ground/GoopViewport")
 [sub_resource type="ShaderMaterial" id=3]
 resource_local_to_scene = true
 shader = ExtResource( 67 )
-shader_param/red_texture_scale = Vector2( 1, 1 )
-shader_param/red_texture_offset = Vector2( 0, 0 )
-shader_param/green_texture_scale = Vector2( 1, 1 )
-shader_param/green_texture_offset = Vector2( 0, 0 )
-shader_param/blue_texture_scale = Vector2( 1, 1 )
-shader_param/blue_texture_offset = Vector2( 0, 0 )
 shader_param/black = Color( 0.254902, 0.156863, 0.117647, 1 )
+shader_param/red_texture_scale = Vector2( 1, 1 )
+shader_param/green_texture_scale = Vector2( 1, 1 )
+shader_param/blue_texture_scale = Vector2( 1, 1 )
+shader_param/red_texture_offset = Vector2( 0, 0 )
+shader_param/green_texture_offset = Vector2( 0, 0 )
+shader_param/blue_texture_offset = Vector2( 0, 0 )
 shader_param/red_texture = ExtResource( 69 )
 shader_param/green_texture = SubResource( 2 )
 
@@ -115,32 +118,29 @@ viewport_path = NodePath("World/Ground/Viewport")
 [sub_resource type="ViewportTexture" id=6]
 viewport_path = NodePath("World/Ground/Shadows/Viewport")
 
-[sub_resource type="RectangleShape2D" id=7]
-extents = Vector2( 28, 14 )
-
-[sub_resource type="InputEventAction" id=8]
+[sub_resource type="InputEventAction" id=7]
 action = "phone"
 
-[sub_resource type="ShortCut" id=9]
-shortcut = SubResource( 8 )
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
 
-[sub_resource type="InputEventAction" id=10]
+[sub_resource type="InputEventAction" id=9]
 action = "ui_cancel"
 
-[sub_resource type="ShortCut" id=11]
-shortcut = SubResource( 10 )
+[sub_resource type="ShortCut" id=10]
+shortcut = SubResource( 9 )
 
-[sub_resource type="InputEventAction" id=12]
+[sub_resource type="InputEventAction" id=11]
 action = "interact"
 
-[sub_resource type="ShortCut" id=13]
-shortcut = SubResource( 12 )
+[sub_resource type="ShortCut" id=12]
+shortcut = SubResource( 11 )
 
-[sub_resource type="InputEventAction" id=14]
+[sub_resource type="InputEventAction" id=13]
 action = "ui_cancel"
 
-[sub_resource type="ShortCut" id=15]
-shortcut = SubResource( 14 )
+[sub_resource type="ShortCut" id=14]
+shortcut = SubResource( 13 )
 
 [node name="Overworld" type="Node"]
 
@@ -204,7 +204,7 @@ __meta__ = {
 size = Vector2( 1024, 600 )
 transparent_bg = true
 
-[node name="ObstacleShadows" type="TileMap" parent="World/Ground/Shadows/Viewport"]
+[node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport"]
 scale = Vector2( 2.5, 2.5 )
 mode = 1
 tile_set = SubResource( 5 )
@@ -218,6 +218,11 @@ obstacle_map_path = NodePath("../../../../Obstacles/ObstacleMap")
 
 [node name="CreatureShadows" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
 scale = Vector2( 2.5, 2.5 )
+
+[node name="ShadowCasterShadows" type="Node2D" parent="World/Ground/Shadows/Viewport"]
+scale = Vector2( 2.5, 2.5 )
+script = ExtResource( 72 )
+OvalShadowScene = ExtResource( 73 )
 
 [node name="ScrewportTexrect" type="TextureRect" parent="World/Ground/Shadows"]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -242,7 +247,6 @@ cell_tile_origin = 1
 cell_y_sort = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( 327686, 0, 0, 327687, 0, 0, 327688, 0, 0 )
 script = ExtResource( 68 )
 ground_map_path = NodePath("../../Ground/Viewport/GroundMap")
 
@@ -436,24 +440,16 @@ dna = {
 "tail": "3"
 }
 
-[node name="GlowySphere" type="KinematicBody2D" parent="World/Obstacles" groups=[
-"chattables",
-]]
-modulate = Color( 0.815686, 0.301961, 1, 1 )
-position = Vector2( 731.162, 136.052 )
-script = ExtResource( 11 )
+[node name="MarshTree" parent="World/Obstacles" instance=ExtResource( 70 )]
 
-[node name="ChatIconHook" type="RemoteTransform2D" parent="World/Obstacles/GlowySphere"]
-update_rotation = false
-update_scale = false
+[node name="MarshBush" parent="World/Obstacles" instance=ExtResource( 71 )]
+shadow_scale = 0.75
 
-[node name="Sprite" type="Sprite" parent="World/Obstacles/GlowySphere"]
-position = Vector2( 0, -32 )
-scale = Vector2( 0.539476, 0.539476 )
-texture = ExtResource( 13 )
+[node name="MarshCrystal" parent="World/Obstacles" instance=ExtResource( 75 )]
+position = Vector2( 731, 136 )
+chat_path = "res://assets/main/dialog/marsh-crystal.json"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Obstacles/GlowySphere"]
-shape = SubResource( 7 )
+[node name="ChatIconHook" type="RemoteTransform2D" parent="World/Obstacles/MarshCrystal"]
 
 [node name="ChatIcons" type="Node2D" parent="World"]
 script = ExtResource( 50 )
@@ -584,7 +580,7 @@ margin_left = 292.0
 margin_right = 392.0
 margin_bottom = 100.0
 size_flags_horizontal = 0
-shortcut = SubResource( 9 )
+shortcut = SubResource( 8 )
 icon = ExtResource( 60 )
 expand_icon = true
 normal_icon = ExtResource( 60 )
@@ -596,7 +592,7 @@ anchor_bottom = 0.0
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
-shortcut = SubResource( 11 )
+shortcut = SubResource( 10 )
 icon = ExtResource( 56 )
 expand_icon = true
 normal_icon = ExtResource( 56 )
@@ -624,7 +620,7 @@ anchor_bottom = 0.0
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
-shortcut = SubResource( 13 )
+shortcut = SubResource( 12 )
 icon = ExtResource( 55 )
 expand_icon = true
 normal_icon = ExtResource( 55 )
@@ -683,7 +679,7 @@ margin_left = 292.0
 margin_right = 392.0
 margin_bottom = 100.0
 size_flags_horizontal = 0
-shortcut = SubResource( 15 )
+shortcut = SubResource( 14 )
 icon = ExtResource( 62 )
 expand_icon = true
 normal_icon = ExtResource( 62 )

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/environment/oval-shadow.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/world/shadow-oval-0.png" type="Texture" id=2]
+
+[node name="OvalShadow" type="Sprite"]
+self_modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
+show_behind_parent = true
+light_mask = 2
+scale = Vector2( 0.17, 0.17 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
