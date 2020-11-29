@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/main/outline.shader" type="Shader" id=1]
+[ext_resource path="res://assets/main/world/environment/marsh-tree-sheet.png" type="Texture" id=2]
+[ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+shader = ExtResource( 1 )
+shader_param/width = 1.5
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 1.33333
+loop = true
+step = 0.333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.333333, 0.666667, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 1, 2 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 28, 14 )
+
+[node name="MarshTree" type="KinematicBody2D"]
+position = Vector2( 531.162, 536.052 )
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 1 )
+scale = Vector2( 0.539476, 0.539476 )
+texture = ExtResource( 2 )
+centered = false
+offset = Vector2( -180, -664 )
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/default = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 3 )

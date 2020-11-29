@@ -384,6 +384,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/other-rules.gd"
 }, {
+"base": "Sprite",
+"class": "OvalShadow",
+"language": "GDScript",
+"path": "res://src/main/world/environment/oval-shadow.gd"
+}, {
 "base": "Control",
 "class": "OverworldUi",
 "language": "GDScript",
@@ -695,6 +700,7 @@ _global_script_class_icons={
 "NextPieceDisplays": "",
 "OldSave": "",
 "OtherRules": "",
+"OvalShadow": "",
 "OverworldUi": "",
 "PackedSprite": "",
 "PaletteButton": "",
