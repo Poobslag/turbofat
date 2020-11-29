@@ -67,6 +67,9 @@ Make the chat icon focused, so the player knows they can interact with it.
 This brightens the icon and makes it bounce faster.
 """
 func focus() -> void:
+	if _focused == true:
+		return
+	
 	_tween_modulate(COLOR_FOCUSED, 0.8)
 	_focused = true
 
@@ -108,8 +111,12 @@ func _refresh() -> void:
 Tweens this objects 'modulate' property to a new value.
 """
 func _tween_modulate(new_modulate: Color, duration: float) -> void:
+	if $Sprite.modulate == new_modulate:
+		# don't launch tween if our modulate property is already set appropriately
+		return
+	
 	$FocusTween.remove_all()
-	$FocusTween.interpolate_property($Sprite, "modulate", modulate, new_modulate,
+	$FocusTween.interpolate_property($Sprite, "modulate", $Sprite.modulate, new_modulate,
 			duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	$FocusTween.start()
 
