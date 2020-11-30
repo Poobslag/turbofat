@@ -67,6 +67,6 @@ void fragment() {
 	f = f - floor(f);
 	
 	// stepify the number into a wave_amount; when wave_amount is near 1.0 we mix in the wave_color
-	float wave_amount = min(smoothstep(0.25, 0.26, f), 1.0 - smoothstep(0.45, 0.50, f));
+	float wave_amount = min(smoothstep(0.25, 0.26, f), 1.0 - smoothstep(0.35, 0.38, f));
 	COLOR = mix(base_color, wave_color, wave_amount);
 }
