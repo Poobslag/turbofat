@@ -60,7 +60,7 @@ func set_close_up(new_close_up: bool) -> void:
 	close_up = new_close_up
 	$Tween.remove_all()
 	$Tween.interpolate_property(self, "close_up_pct", close_up_pct, 1.0 if close_up else 0.0,
-			ZOOM_DURATION, Tween.TRANS_QUAD, Tween.EASE_OUT)
+			ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	$Tween.start()
 
 
