@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "richie",
+  "name": "Richie",
+  "short_name": "Richie",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "4",
+    "body": "1",
+    "cheek": "1",
+    "collar": "0",
+    "ear": "10",
+    "eye": "4",
+    "hair": "1",
+    "head": "1",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "1",
+    "tail": "2",
+    "accessory": "1",
+    "line_rgb": "41281e",
+    "body_rgb": "b24b10",
+    "belly_rgb": "d98227",
+    "cloth_rgb": "ffd256",
+    "glass_rgb": "ffd256",
+    "plastic_rgb": "252422",
+    "hair_rgb": "d98227",
+    "eye_rgb": "7c4725 b8ad9f",
+    "horn_rgb": "4c5245"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "b24b10"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.4
+}

@@ -562,10 +562,10 @@ bus = "Sound Bus"
 stream = ExtResource( 5 )
 volume_db = -4.0
 bus = "Sound Bus"
-[connection signal="dna_loaded" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_dna_loaded"]
 [connection signal="dna_loaded" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_dna_loaded"]
-[connection signal="food_eaten" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
+[connection signal="dna_loaded" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_dna_loaded"]
 [connection signal="food_eaten" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_food_eaten"]
+[connection signal="food_eaten" from="CreatureOutline/Viewport/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
 [connection signal="landed" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_landed"]
 [connection signal="movement_mode_changed" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_movement_mode_changed"]
 [connection signal="visual_fatness_changed" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_visual_fatness_changed"]

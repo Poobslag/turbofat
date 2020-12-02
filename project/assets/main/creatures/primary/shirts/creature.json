@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "shirts",
+  "name": "Shirts",
+  "short_name": "Shirts",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "9",
+    "eye": "1",
+    "hair": "0",
+    "head": "4",
+    "horn": "0",
+    "mouth": "1",
+    "nose": "0",
+    "tail": "3",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "3c3a7f",
+    "belly_rgb": "6a6994",
+    "cloth_rgb": "88df41",
+    "glass_rgb": "211536",
+    "plastic_rgb": "0c0b0c",
+    "hair_rgb": "2b2961",
+    "eye_rgb": "131414 617d7c",
+    "horn_rgb": "fecbd3"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "3c3a7f"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}
