@@ -12,6 +12,7 @@ onready var _overworld_ui: OverworldUi = get_node(overworld_ui_path)
 func _ready() -> void:
 	_overworld_ui.connect("chat_started", self, "_on_OverworldUi_chat_started")
 	_overworld_ui.connect("chat_ended", self, "_on_OverworldUi_chat_ended")
+	$MoveTimer.connect("timeout", self, "_on_MoveTimer_timeout")
 
 
 """

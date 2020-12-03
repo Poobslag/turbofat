@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=10]
+[ext_resource path="res://src/main/world/creature/instructor.gd" type="Script" id=11]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/world/GroundMap.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/environment/GrassTuft.tscn" type="PackedScene" id=15]
@@ -24,29 +25,6 @@
 [ext_resource path="res://src/main/world/creature/ebe.gd" type="Script" id=24]
 [ext_resource path="res://src/main/world/overworld-bg.gd" type="Script" id=25]
 [ext_resource path="res://src/main/world/creature/bort.gd" type="Script" id=26]
-[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=27]
-[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=28]
-[ext_resource path="res://assets/main/world/creature/1/neck-blend-packed.png" type="Texture" id=29]
-[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=30]
-[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=31]
-[ext_resource path="res://assets/main/world/creature/1/head-packed.png" type="Texture" id=32]
-[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=33]
-[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=34]
-[ext_resource path="res://assets/main/world/creature/2/cheek-z1-packed.png" type="Texture" id=35]
-[ext_resource path="res://assets/main/world/creature/2/cheek-z0-packed.png" type="Texture" id=36]
-[ext_resource path="res://assets/main/world/creature/2/cheek-z2-packed.png" type="Texture" id=37]
-[ext_resource path="res://assets/main/world/creature/2/collar-packed.png" type="Texture" id=38]
-[ext_resource path="res://assets/main/world/creature/1/mouth-packed.png" type="Texture" id=39]
-[ext_resource path="res://assets/main/world/creature/2/ear-z2-packed.png" type="Texture" id=40]
-[ext_resource path="res://assets/main/world/creature/3/eye-z0-packed.png" type="Texture" id=41]
-[ext_resource path="res://assets/main/world/creature/1/food-laser-packed.png" type="Texture" id=42]
-[ext_resource path="res://assets/main/world/creature/2/ear-z0-packed.png" type="Texture" id=43]
-[ext_resource path="res://assets/main/world/creature/2/ear-z1-packed.png" type="Texture" id=44]
-[ext_resource path="res://assets/main/world/creature/1/food-packed.png" type="Texture" id=45]
-[ext_resource path="res://assets/main/world/creature/3/eye-z1-packed.png" type="Texture" id=46]
-[ext_resource path="res://assets/main/world/creature/2/nose-packed.png" type="Texture" id=47]
-[ext_resource path="res://assets/main/world/creature/3/tail-z1-packed.png" type="Texture" id=48]
-[ext_resource path="res://assets/main/world/creature/3/tail-z0-packed.png" type="Texture" id=49]
 [ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=50]
 [ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=51]
 [ext_resource path="res://src/main/world/phone-menu.gd" type="Script" id=52]
@@ -297,148 +275,15 @@ autostart = true
 ] instance=ExtResource( 1 )]
 position = Vector2( 752.587, 420.111 )
 creature_id = "boatricia"
-dna = {
-"belly": "0",
-"belly_rgb": "eec086",
-"body": "1",
-"body_rgb": "0b45a6",
-"cheek": "2",
-"cloth_rgb": "282828",
-"collar": "2",
-"ear": "2",
-"eye": "3",
-"eye_rgb": "fad541 ffffff",
-"hair": "0",
-"hair_rgb": "f1e398",
-"head": "1",
-"horn": "0",
-"horn_rgb": "282828",
-"line_rgb": "41281e",
-"mouth": "1",
-"nose": "2",
-"property:BellyColors/Viewport/Body:belly": "0",
-"property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
-"property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 29 ),
-"property:Collar:frame_data": "res://assets/main/world/creature/2/collar-packed.json",
-"property:Collar:texture": ExtResource( 38 ),
-"property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
-"property:FarArm:texture": ExtResource( 30 ),
-"property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
-"property:FarLeg:texture": ExtResource( 28 ),
-"property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
-"property:NearArm:texture": ExtResource( 31 ),
-"property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
-"property:NearLeg:texture": ExtResource( 33 ),
-"property:Neck0/HeadBobber/CheekZ0:frame_data": "res://assets/main/world/creature/2/cheek-z0-packed.json",
-"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 36 ),
-"property:Neck0/HeadBobber/CheekZ1:frame_data": "res://assets/main/world/creature/2/cheek-z1-packed.json",
-"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 35 ),
-"property:Neck0/HeadBobber/CheekZ2:frame_data": "res://assets/main/world/creature/2/cheek-z2-packed.json",
-"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 37 ),
-"property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
-"property:Neck0/HeadBobber/Chin:texture": ExtResource( 34 ),
-"property:Neck0/HeadBobber/EarZ0:frame_data": "res://assets/main/world/creature/2/ear-z0-packed.json",
-"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 43 ),
-"property:Neck0/HeadBobber/EarZ1:frame_data": "res://assets/main/world/creature/2/ear-z1-packed.json",
-"property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 44 ),
-"property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/2/ear-z2-packed.json",
-"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 40 ),
-"property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/3/eye-z0-packed.json",
-"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 41 ),
-"property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/3/eye-z1-packed.json",
-"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 46 ),
-"property:Neck0/HeadBobber/Food:frame_data": "res://assets/main/world/creature/1/food-packed.json",
-"property:Neck0/HeadBobber/Food:texture": ExtResource( 45 ),
-"property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/1/food-laser-packed.json",
-"property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 42 ),
-"property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/1/head-packed.json",
-"property:Neck0/HeadBobber/Head:texture": ExtResource( 32 ),
-"property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/1/mouth-packed.json",
-"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 39 ),
-"property:Neck0/HeadBobber/Nose:frame_data": "res://assets/main/world/creature/2/nose-packed.json",
-"property:Neck0/HeadBobber/Nose:texture": ExtResource( 47 ),
-"property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
-"property:Sprint:texture": ExtResource( 27 ),
-"property:TailZ0:frame_data": "res://assets/main/world/creature/3/tail-z0-packed.json",
-"property:TailZ0:texture": ExtResource( 49 ),
-"property:TailZ1:frame_data": "res://assets/main/world/creature/3/tail-z1-packed.json",
-"property:TailZ1:texture": ExtResource( 48 ),
-"shader:Body:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Body:green": Color( 0.933333, 0.752941, 0.52549, 1 ),
-"shader:Body:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Collar:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Collar:green": Color( 0.945098, 0.890196, 0.596078, 1 ),
-"shader:Collar:red": Color( 0.156863, 0.156863, 0.156863, 1 ),
-"shader:EmoteBody:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:FarArm:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:FarArm:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:FarLeg:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:FarLeg:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:NearArm:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:NearArm:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:NearLeg:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:NearLeg:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/CheekZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/CheekZ0:green": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/CheekZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/CheekZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/CheekZ1:green": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/CheekZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/CheekZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/CheekZ2:green": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/CheekZ2:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/Chin:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/Chin:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/EarZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EarZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/EarZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EarZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/EarZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EarZ2:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/EmoteArmZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EmoteArmZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/EmoteArmZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EmoteArmZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/EmoteBrain:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EmoteEyeZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EyeZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EyeZ0:blue": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/EyeZ0:green": Color( 0.980392, 0.835294, 0.254902, 1 ),
-"shader:Neck0/HeadBobber/EyeZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/EyeZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/EyeZ1:blue": Color( 1, 1, 1, 1 ),
-"shader:Neck0/HeadBobber/EyeZ1:green": Color( 0.980392, 0.835294, 0.254902, 1 ),
-"shader:Neck0/HeadBobber/EyeZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/HairZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/HairZ0:red": Color( 0.945098, 0.890196, 0.596078, 1 ),
-"shader:Neck0/HeadBobber/HairZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/HairZ1:red": Color( 0.945098, 0.890196, 0.596078, 1 ),
-"shader:Neck0/HeadBobber/HairZ2:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/HairZ2:red": Color( 0.945098, 0.890196, 0.596078, 1 ),
-"shader:Neck0/HeadBobber/Head:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/Head:green": Color( 0.933333, 0.752941, 0.52549, 1 ),
-"shader:Neck0/HeadBobber/Head:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:green": Color( 0.156863, 0.156863, 0.156863, 1 ),
-"shader:Neck0/HeadBobber/HornZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:green": Color( 0.156863, 0.156863, 0.156863, 1 ),
-"shader:Neck0/HeadBobber/HornZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/Mouth:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/Mouth:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:Neck0/HeadBobber/Nose:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Neck0/HeadBobber/Nose:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:TailZ0:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:TailZ0:blue": Color( 0.945098, 0.890196, 0.596078, 1 ),
-"shader:TailZ0:green": Color( 0.933333, 0.752941, 0.52549, 1 ),
-"shader:TailZ0:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"shader:TailZ1:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:TailZ1:blue": Color( 0.945098, 0.890196, 0.596078, 1 ),
-"shader:TailZ1:green": Color( 0.933333, 0.752941, 0.52549, 1 ),
-"shader:TailZ1:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
-"tail": "3"
-}
+
+[node name="Instructor" parent="World/Obstacles" instance=ExtResource( 1 )]
+position = Vector2( 269, 220 )
+script = ExtResource( 11 )
+player_path = NodePath("../Player")
+
+[node name="MoveTimer" type="Timer" parent="World/Obstacles/Instructor"]
+wait_time = 0.3
+autostart = true
 
 [node name="Richie" parent="World/Obstacles" groups=[
 "chattables",
@@ -740,14 +585,12 @@ mouse_filter = 2
 disabled = true
 
 [node name="MusicPopup" parent="Ui/OverworldUi" instance=ExtResource( 65 )]
-[connection signal="timeout" from="World/Obstacles/Bort/MoveTimer" to="World/Obstacles/Bort" method="_on_MoveTimer_timeout"]
-[connection signal="timeout" from="World/Obstacles/Ebe/MoveTimer" to="World/Obstacles/Ebe" method="_on_MoveTimer_timeout"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
-[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
-[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_started"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_started"]
 [connection signal="showed_chat_choices" from="Ui/OverworldUi" to="World/Obstacles/Player" method="_on_OverworldUi_showed_chat_choices"]
 [connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
@@ -756,13 +599,13 @@ disabled = true
 [connection signal="pressed" from="Ui/OverworldUi/Buttons/Northeast/SettingsButton" to="Ui/OverworldUi" method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Ui/OverworldUi/Buttons/Southeast/TalkButton" to="Ui/OverworldUi" method="_on_TalkButton_pressed"]
 [connection signal="cheat_detected" from="Ui/OverworldUi/CheatCodeDetector" to="Ui/OverworldUi/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
 [connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
+[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi" method="_on_SettingsMenu_quit_pressed"]
-[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
 [connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
-[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
+[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
 [connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
-[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
+[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
 [connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
+[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
 [connection signal="pressed" from="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast/BackButton" to="Ui/OverworldUi/CellPhoneMenu" method="_on_BackButton_pressed"]
