@@ -23,6 +23,9 @@ func _init() -> void:
 	
 	# for some body parts, we remove the upper part of headphones
 	_add_alternative("ear", ["5"], "accessory", "3", "3a")
+	
+	# for a specific horn/hair combination, we slightly change the hairstyle
+	_add_alternative("ear", ["10"], "hair", "1", "1a")
 
 
 """

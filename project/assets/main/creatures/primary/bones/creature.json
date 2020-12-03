@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "bones",
+  "name": "Bones",
+  "short_name": "Bones",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "4",
+    "body": "1",
+    "cheek": "0",
+    "collar": "5",
+    "ear": "3",
+    "eye": "4",
+    "hair": "0",
+    "head": "5",
+    "horn": "1",
+    "mouth": "3",
+    "nose": "2",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "1a1a1e",
+    "belly_rgb": "65412e",
+    "cloth_rgb": "b8260b",
+    "glass_rgb": "2d2b2b",
+    "plastic_rgb": "1f1f1f",
+    "hair_rgb": "1a1a1e",
+    "eye_rgb": "b8260b f45e40",
+    "horn_rgb": "282828"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "1a1a1e"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}

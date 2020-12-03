@@ -440,9 +440,51 @@ dna = {
 "tail": "3"
 }
 
+[node name="Richie" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( 113.439, 444.721 )
+creature_id = "richie"
+dna = {
+
+}
+orientation = 1
+
+[node name="Skins" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( -86.561, 444.721 )
+creature_id = "skins"
+dna = {
+
+}
+orientation = 1
+
+[node name="Bones" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( -176.561, 484.721 )
+creature_id = "bones"
+dna = {
+
+}
+
+[node name="Shirts" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( -56.561, 594.721 )
+creature_id = "shirts"
+dna = {
+
+}
+
 [node name="MarshTree" parent="World/Obstacles" instance=ExtResource( 70 )]
 
-[node name="MarshBush" parent="World/Obstacles" instance=ExtResource( 71 )]
+[node name="MarshBush1" parent="World/Obstacles" instance=ExtResource( 71 )]
+shadow_scale = 0.75
+
+[node name="MarshBush2" parent="World/Obstacles" instance=ExtResource( 71 )]
+position = Vector2( -121.162, 306.052 )
 shadow_scale = 0.75
 
 [node name="MarshCrystal" parent="World/Obstacles" instance=ExtResource( 75 )]
@@ -701,11 +743,11 @@ disabled = true
 [connection signal="timeout" from="World/Obstacles/Bort/MoveTimer" to="World/Obstacles/Bort" method="_on_MoveTimer_timeout"]
 [connection signal="timeout" from="World/Obstacles/Ebe/MoveTimer" to="World/Obstacles/Ebe" method="_on_MoveTimer_timeout"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
-[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
-[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
 [connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
 [connection signal="showed_chat_choices" from="Ui/OverworldUi" to="World/Obstacles/Player" method="_on_OverworldUi_showed_chat_choices"]
 [connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
@@ -714,13 +756,13 @@ disabled = true
 [connection signal="pressed" from="Ui/OverworldUi/Buttons/Northeast/SettingsButton" to="Ui/OverworldUi" method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Ui/OverworldUi/Buttons/Southeast/TalkButton" to="Ui/OverworldUi" method="_on_TalkButton_pressed"]
 [connection signal="cheat_detected" from="Ui/OverworldUi/CheatCodeDetector" to="Ui/OverworldUi/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
 [connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
+[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi" method="_on_SettingsMenu_quit_pressed"]
-[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
 [connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
-[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
+[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
 [connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
-[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
+[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
 [connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
+[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
 [connection signal="pressed" from="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast/BackButton" to="Ui/OverworldUi/CellPhoneMenu" method="_on_BackButton_pressed"]

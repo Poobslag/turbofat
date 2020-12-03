@@ -42,6 +42,8 @@ export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 # how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
 export (int) var elevation: int setget set_elevation
 
+export (CreatureVisuals.Orientation) var orientation: int setget set_orientation
+
 # virtual property; value is only exposed through getters/setters
 var creature_def: CreatureDef setget set_creature_def, get_creature_def
 
@@ -92,6 +94,7 @@ func _ready() -> void:
 		_refresh_creature_id()
 	else:
 		refresh_dna()
+	_refresh_orientation()
 
 
 func _physics_process(delta: float) -> void:
@@ -214,21 +217,14 @@ func orient_toward(target: Node2D) -> void:
 		if direction_dot == 0.0:
 			# if two characters are directly above/below each other, make them face opposite directions
 			direction_dot = direction.normalized().dot(Vector2.DOWN)
-
-	if direction_dot > 0:
-		# the target is to the right; face right
-		creature_visuals.set_orientation(SOUTHEAST)
-	elif direction_dot < 0:
-		# the target is to the left; face left
-		creature_visuals.set_orientation(SOUTHWEST)
+	
+	# orient this creature based on the calculated direction
+	set_orientation(SOUTHEAST if direction_dot > 0 else SOUTHWEST)
 
 
-func set_orientation(orientation: int) -> void:
-	creature_visuals.set_orientation(orientation)
-
-
-func get_orientation() -> int:
-	return creature_visuals.orientation
+func set_orientation(new_orientation: int) -> void:
+	orientation = new_orientation
+	_refresh_orientation()
 
 
 """
@@ -363,6 +359,11 @@ Temporarily suppresses 'hello' sounds.
 """
 func start_suppress_sfx_timer() -> void:
 	$CreatureSfx/SuppressSfxTimer.start(1.0)
+
+
+func _refresh_orientation() -> void:
+	if creature_visuals:
+		creature_visuals.set_orientation(orientation)
 
 
 func _refresh_creature_id() -> void:
