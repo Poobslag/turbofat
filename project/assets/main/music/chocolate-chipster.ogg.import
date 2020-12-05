@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chocolate-chipster.ogg-0839d2b983d77ab42effc124e3601a8d.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/chocolate-chipster.ogg"
+dest_files=[ "res://.import/chocolate-chipster.ogg-0839d2b983d77ab42effc124e3601a8d.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

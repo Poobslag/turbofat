@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://src/main/music/music-player.gd" type="Script" id=1]
 [ext_resource path="res://src/main/music/CheckpointSong.tscn" type="PackedScene" id=2]
@@ -20,6 +20,8 @@
 [ext_resource path="res://assets/main/music/acid-reflux.ogg" type="AudioStream" id=18]
 [ext_resource path="res://assets/main/music/rainbow-sherbeat.ogg" type="AudioStream" id=19]
 [ext_resource path="res://assets/main/music/extra-sprinkles.ogg" type="AudioStream" id=20]
+[ext_resource path="res://assets/main/music/glaze-glaze-glaze.ogg" type="AudioStream" id=21]
+[ext_resource path="res://assets/main/music/chocolate-chipster.ogg" type="AudioStream" id=22]
 
 [node name="MusicPlayer" type="Node"]
 pause_mode = 2
@@ -129,6 +131,18 @@ volume_db = -3.0
 checkpoints = [ 0.0 ]
 song_title = "Extra Sprinkles"
 song_color = Color( 1, 0.74902, 0.34902, 1 )
+
+[node name="ChocolateChipster" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 22 )
+checkpoints = [ 0.0, 15.476, 30.964 ]
+song_title = "Chocolate Chipster"
+song_color = Color( 0.521569, 0.309804, 0.215686, 1 )
+
+[node name="GlazeGlazeGlaze" parent="." instance=ExtResource( 2 )]
+stream = ExtResource( 21 )
+checkpoints = [ 0.0, 15.231, 30.476, 60.949, 137.143, 152.377 ]
+song_title = "Glaze Glaze Glaze"
+song_color = Color( 0.913725, 0.905882, 0.47451, 1 )
 
 [node name="MusicTween" type="Tween" parent="."]
 script = ExtResource( 4 )
