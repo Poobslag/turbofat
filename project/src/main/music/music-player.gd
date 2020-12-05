@@ -24,12 +24,15 @@ var _max_volume_db_by_bgm := {}
 
 var all_bgms
 
-# newest track(s) play twice as often
-onready var _chill_bgms := [$ChubHub, $DessertCourse, $HarderButter, $HotFunkSundae, $LoFiChill,
-		$RainbowSherbeat, $RainbowSherbeat]
-onready var _upbeat_bgms := [$ChubNBass, $ChunkyObake, $DooDooDoo, $JuicerMixerGrinder, $MysticMuffin,
-		$PressureCooker, $SugarCrash, $TripleThiccShake,
-		$AcidReflux, $AcidReflux, $ExtraSprinkles, $ExtraSprinkles]
+onready var _chill_bgms := [
+		$ChubHub, $DessertCourse, $HarderButter,
+		$HotFunkSundae, $LoFiChill, $RainbowSherbeat]
+
+onready var _upbeat_bgms := [
+		$ChubNBass, $ChunkyObake, $DooDooDoo, $JuicerMixerGrinder,
+		$MysticMuffin, $PressureCooker, $SugarCrash, $TripleThiccShake,
+		$AcidReflux, $ExtraSprinkles, $ChocolateChipster, $GlazeGlazeGlaze]
+
 onready var _tutorial_bgms := [$MyFatnessPal]
 
 func _ready() -> void:
