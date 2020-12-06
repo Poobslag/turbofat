@@ -30,7 +30,9 @@ var history_key: String
 # metadata including whether the chat event is 'filler' or 'notable'
 var meta: Dictionary
 
-# tree of chat events
+# tree of chat event objects
+# key: dialog id (String)
+# value: array of sequential ChatEvent objects for a particular dialog sequence
 var events: Dictionary = {}
 
 # current position in this dialog tree

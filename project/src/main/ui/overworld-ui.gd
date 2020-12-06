@@ -13,7 +13,8 @@ signal chat_ended
 # emitted when we present the player with a dialog choice
 signal showed_chat_choices
 
-# Characters we're currently chatting with. We try to keep them all in frame and facing the player.
+# Characters involved in the current conversation. This includes the player, instructor and any other participants. We
+# try to keep them all in frame and facing each other.
 var chatters := []
 
 # If 'true' the overworld is being used to play a cutscene. If 'false' the overworld is allowing free roam.
@@ -40,8 +41,23 @@ func _exit_tree() -> void:
 	ResourceCache.remove_singletons()
 
 
-func start_chat(new_chat_tree: ChatTree, new_chatters: Array) -> void:
+func start_chat(new_chat_tree: ChatTree, target: Node2D) -> void:
 	_current_chat_tree = new_chat_tree
+	
+	var new_chatters := [ChattableManager.player, target]
+	var chatter_names := {}
+	for chat_events_obj in new_chat_tree.events.values():
+		var chat_events: Array = chat_events_obj
+		for chat_event_obj in chat_events:
+			var chat_event: ChatEvent = chat_event_obj
+			chatter_names[chat_event.who] = true
+	
+	for chatter_name_obj in chatter_names:
+		var chatter_name: String = chatter_name_obj
+		var chatter := ChattableManager.get_creature_by_chatter_name(chatter_name)
+		if chatter and not new_chatters.has(chatter):
+			new_chatters.append(chatter)
+	
 	chatters = new_chatters
 	_update_visible()
 	ChattableManager.set_focus_enabled(false)
@@ -66,17 +82,53 @@ func is_show_version() -> bool:
 Turn the the active chat participants towards each other, and make them face the camera.
 """
 func make_chatters_face_eachother() -> void:
-	# make the player face the other characters
-	if chatters.size() >= 1 and not is_drive_by_chat():
-		if ChattableManager.player.get_movement_mode() == Creature.IDLE:
-			# let the player move while chatting, unless she's asked a question
-			ChattableManager.player.orient_toward(chatters[0])
-
-	# make the other characters face the player
+	var center_of_non_player_chatters := get_center_of_chatters(
+			[], [ChattableManager.player, ChattableManager.instructor])
+	
 	for chatter in chatters:
-		if chatter.has_method("orient_toward"):
-			# other characters must orient towards the player to avoid visual glitches when emoting while moving
-			chatter.orient_toward(ChattableManager.player)
+		if chatter == ChattableManager.player:
+			# the player faces the characters they're talking to
+			if chatters.size() == 1 or is_drive_by_chat():
+				# simple one-line chats don't interrupt the player
+				pass
+			elif chatter.get_movement_mode() != Creature.IDLE:
+				# the player isn't interrupted if they're running around
+				pass
+			else:
+				chatter.orient_toward(center_of_non_player_chatters)
+		elif chatter == ChattableManager.instructor:
+			# the instructor faces the characters the player is talking to
+			chatter.orient_toward(center_of_non_player_chatters)
+		elif chatter.has_method("orient_toward"):
+			# other characters orient towards the player
+			chatter.orient_toward(ChattableManager.player.position)
+
+
+"""
+Calculates the center of the characters involved in the current conversation.
+
+Parameters:
+	'include': (Optional) characters in the current conversation will only be included if they are in this list.
+	
+	'exclude': (Optional) Characters in the current conversation will be excluded if they are in this list.
+
+Returns:
+	The center of the smallest rectangle including all characters in the current conversation. If no characters meet
+	this criteria, this returns an zero-size rectangle at (0, 0).
+"""
+func get_center_of_chatters(include: Array = [], exclude: Array = []) -> Vector2:
+	var bounding_box: Rect2
+	
+	for chatter in chatters:
+		if include and not chatter in include:
+			continue
+		if exclude and chatter in exclude:
+			continue
+		if bounding_box:
+			bounding_box = bounding_box.expand(chatter.position)
+		else:
+			bounding_box = Rect2(chatter.position, Vector2.ZERO)
+	return bounding_box.position + bounding_box.size * 0.5
 
 
 """
@@ -162,7 +214,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	make_chatters_face_eachother()
 	
 	# update the chatter's mood
-	var chatter := ChattableManager.get_chatter(chat_event.who)
+	var chatter := ChattableManager.get_creature_by_chatter_name(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
 	if chat_event.meta:
@@ -199,4 +251,4 @@ func _on_SettingsButton_pressed() -> void:
 func _on_TalkButton_pressed() -> void:
 	if ChattableManager.get_focused():
 		get_tree().set_input_as_handled()
-		start_chat(ChattableManager.load_chat_events(), [ChattableManager.get_focused()])
+		start_chat(ChattableManager.load_chat_events(), ChattableManager.get_focused())

@@ -1,3 +1,4 @@
+class_name Instructor
 extends Creature
 """
 Script for manipulating the instructor in the overworld.
@@ -14,12 +15,13 @@ export (NodePath) var player_path: NodePath
 onready var _player: Creature = get_node(player_path)
 
 func _ready() -> void:
-	set_creature_id("#instructor#")
+	set_creature_id(Global.CREATURE_ID_INSTRUCTOR)
 	$MoveTimer.connect("timeout", self, "_on_MoveTimer_timeout")
+	ChattableManager.instructor = self
 
 
 func _on_MoveTimer_timeout() -> void:
-	var player_relative_pos := Global.from_iso(_player.position - position)
+	var player_relative_pos: Vector2 = Global.from_iso(_player.position - position)
 	# the instructor runs at isometric 45 degree angles to mimic the player's inputs
 	var player_angle := stepify(player_relative_pos.normalized().angle(), PI / 4)
 	

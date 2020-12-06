@@ -16,11 +16,28 @@ var _chat_theme_defs: Dictionary
 # The player's sprite
 var player: Player setget set_player
 
+# The instructor's sprite
+var instructor: Instructor setget set_instructor
+
 # The currently focused object
 var _focused: Node2D setget ,get_focused
 
 # 'false' if the player is temporarily disallowed from interacting with nearby objects, such as while chatting
 var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
+
+# Mapping from chatter names to Creature objects. The player and instructor are omitted from this mapping, as the
+# player can set their own name and it could conflict with overworld creatures.
+#
+# key: chatter name as it appears in dialog files
+# value: Creature object corresponding to the chatter name 
+var _creatures_by_chatter_name := {}
+
+func _ready() -> void:
+	for creature_obj in get_tree().get_nodes_in_group("creatures"):
+		var creature: Creature = creature_obj
+		_refresh_creature_name(creature)
+		creature.connect("creature_name_changed", self, "_on_Creature_creature_name_changed", [creature])
+
 
 func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
@@ -56,6 +73,24 @@ func _physics_process(_delta: float) -> void:
 		_focused = new_focus
 		emit_signal("focus_changed")
 
+
+"""
+Returns the Creature object corresponding to the specified chatter name.
+
+A name of CREATURE_ID_INSTRUCTOR or CREATURE_ID_PLAYER will return the instructor or player object. To avoid
+conflicts, the instructor or player cannot be retrieved by their actual name.
+"""
+func get_creature_by_chatter_name(chatter_name: String) -> Creature:
+	var result: Creature
+	match chatter_name:
+		Global.CREATURE_ID_INSTRUCTOR: result = ChattableManager.instructor
+		Global.CREATURE_ID_PLAYER: result = ChattableManager.player
+		_:
+			if _creatures_by_chatter_name.has(chatter_name):
+				result = _creatures_by_chatter_name[chatter_name]
+	return result
+
+
 """
 Loads the chat events for the currently focused chatter.
 
@@ -88,7 +123,14 @@ func clear() -> void:
 
 func set_player(new_player: Player) -> void:
 	player = new_player
+	_remove_from_creatures_by_chatter_name(player)
 	add_chat_theme_def(Global.CREATURE_ID_PLAYER, player.get_meta("chat_theme_def"))
+
+
+func set_instructor(new_instructor: Instructor) -> void:
+	instructor = new_instructor
+	_remove_from_creatures_by_chatter_name(instructor)
+	add_chat_theme_def(Global.CREATURE_ID_INSTRUCTOR, instructor.get_meta("chat_theme_def"))
 
 
 """
@@ -157,7 +199,7 @@ func get_chat_theme_def(chat_name: String) -> Dictionary:
 		for chattable in get_tree().get_nodes_in_group("chattables"):
 			if chattable.has_meta("chat_name") and chattable.has_meta("chat_theme_def"):
 				add_chat_theme_def(chattable.get_meta("chat_name"), chattable.get_meta("chat_theme_def"))
-	
+		
 		if not _chat_theme_defs.has(chat_name):
 			# report a warning and store a stub definition to prevent repeated errors
 			_chat_theme_defs[chat_name] = {}
@@ -181,4 +223,33 @@ func substitute_variables(string: String, full_name: bool = false) -> String:
 		result = result.replace(Global.CREATURE_ID_PLAYER, PlayerData.creature_library.player_def.creature_name)
 	else:
 		result = result.replace(Global.CREATURE_ID_PLAYER, PlayerData.creature_library.player_def.creature_short_name)
+	result = result.replace(Global.CREATURE_ID_INSTRUCTOR,
+			PlayerData.creature_library.instructor_def.creature_short_name)
 	return result
+
+
+"""
+Remove the specified creature from the '_creatures_by_chatter_name' mapping.
+"""
+func _remove_from_creatures_by_chatter_name(creature: Creature) -> void:
+	for key in _creatures_by_chatter_name:
+		if _creatures_by_chatter_name[key] == creature:
+			_creatures_by_chatter_name.erase(key)
+
+
+"""
+Updates a creature's entry in the '_creatures_by_chatter_name' mapping.
+"""
+func _refresh_creature_name(creature: Creature) -> void:
+	if creature == player or creature == instructor:
+		# don't store player or instructor in the 'players by name' table, as it might conflict with other creatures
+		return
+	
+	if creature.creature_name:
+		_creatures_by_chatter_name[creature.creature_name] = creature
+	if creature.creature_short_name:
+		_creatures_by_chatter_name[creature.creature_short_name] = creature
+
+
+func _on_Creature_creature_name_changed(creature: Creature) -> void:
+	_refresh_creature_name(creature)

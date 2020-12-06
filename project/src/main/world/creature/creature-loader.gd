@@ -8,9 +8,6 @@ class converts that information into granular information such as 'her Eye/Sprin
 loads resource files specific to each creature.
 """
 
-# the creature id used for the instructor who leads the tutorials
-const INSTRUCTOR_ID := "#instructor#"
-
 # the creature definition path for the instructor who leads tutorials
 const INSTRUCTOR_PATH := "res://assets/main/creatures/instructor/creature.json"
 
@@ -188,7 +185,7 @@ func load_details(dna: Dictionary) -> void:
 func load_creature_def_by_id(id: String) -> CreatureDef:
 	var path: String
 	match id:
-		INSTRUCTOR_ID:
+		Global.CREATURE_ID_INSTRUCTOR:
 			path = INSTRUCTOR_PATH
 		_:
 			path = "res://assets/main/creatures/primary/%s/creature.json" % id

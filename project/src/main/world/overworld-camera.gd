@@ -34,15 +34,17 @@ onready var _overworld_ui: OverworldUi = get_node(overworld_ui_path)
 
 func _process(_delta: float) -> void:
 	# calculate the position to zoom in to
-	var bounding_box := Rect2(_player.position, Vector2(0, 0))
+	var close_up_position: Vector2
+	
 	if _overworld_ui.chatters:
 		var max_visual_fatness := 1.0
 		for chatter in _overworld_ui.chatters:
-			bounding_box = bounding_box.expand(chatter.position)
 			if chatter is Creature:
 				max_visual_fatness = max(max_visual_fatness, chatter.get_visual_fatness())
 		zoom_close_up = lerp(ZOOM_CLOSE_UP, ZOOM_DEFAULT, inverse_lerp(1.0, 10.0, max_visual_fatness))
-	close_up_position = bounding_box.position + bounding_box.size * 0.5
+		close_up_position = _overworld_ui.get_center_of_chatters()
+	else:
+		close_up_position = _player.position
 	
 	position = lerp(_player.position, close_up_position, close_up_pct)
 	zoom = lerp(ZOOM_DEFAULT, zoom_close_up, close_up_pct)

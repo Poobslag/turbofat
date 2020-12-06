@@ -1,0 +1,68 @@
+{
+  "version": "1922",
+  "" : [
+    {
+      "who": "Richie",
+      "mood": "think0",
+      "text": "I've been reading up on something called the 'Pomodoro Technique' lately!"
+    },
+    {
+      "who": "Richie",
+      "text": "./././'Pomodoro' is a fancy Italian word for sitting on your ass,/ instead of doing any actual work."
+    },
+    {
+      "who": "#instructor#",
+      "mood": "smile0",
+      "text": "Ah,/ I do that already!/ I didn't someone had coined a name for it.",
+      "links": [
+        {"opinion0": "You're both lazy"},
+        {"opinion1": "More like 'Unemployment Technique'"},
+        {"opinion2": "I should study this"},
+        {"opinion3": "I invented that!"}]
+    }
+  ],
+  "opinion0": [
+    {
+      "who": "#player#",
+      "mood": "rage0",
+      "text": "Technique?/ You're both just lazy."
+    },
+    {
+      "who": "#instructor#",
+      "text": "Oh,/ lighten up #player#./ Sounds like someone needs a Pomodoro."
+    }
+  ],
+  "opinion1": [
+    {
+      "who": "#player#",
+      "text": "More like the 'Unemployment Technique'."
+    },
+    {
+      "who": "#instructor#",
+      "text": "Oh, lighten up #player#./ Sounds like someone needs a Pomodoro."
+    }
+  ],
+  "opinion2": [
+    {
+      "who": "#player#",
+      "mood": "think0",
+      "text": "I should study this technique..."
+    },
+    {
+      "who": "#instructor#",
+      "text": "Sure!/ It's good to take a break once in awhile~"
+    }
+  ],
+  "opinion3": [
+    {
+      "who": "#player#",
+      "mood": "laugh0",
+      "text": "I invented that technique!"
+    },
+    {
+      "who": "#instructor#",
+      "mood": "laugh0",
+      "text": "Ha!/ Ha!/ Maybe we can compare notes some time."
+    }
+  ]
+}

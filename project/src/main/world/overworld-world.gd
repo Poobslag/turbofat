@@ -53,7 +53,7 @@ func _process(_delta: float) -> void:
 func _schedule_chat(creature: Creature) -> void:
 	yield(get_tree(), "idle_frame")
 	var chat_tree := ChatLibrary.load_chat_events_for_creature(creature, Level.launched_level_num)
-	_overworld_ui.start_chat(chat_tree, [creature])
+	_overworld_ui.start_chat(chat_tree, creature)
 
 
 """
