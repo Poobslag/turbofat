@@ -45,7 +45,6 @@ func start_chat(new_chat_tree: ChatTree, new_chatters: Array) -> void:
 	chatters = new_chatters
 	_update_visible()
 	ChattableManager.set_focus_enabled(false)
-	make_chatters_face_eachother()
 	# emit 'chat_started' event first to prepare chatters before emoting
 	emit_signal("chat_started")
 	
@@ -68,7 +67,7 @@ Turn the the active chat participants towards each other, and make them face the
 """
 func make_chatters_face_eachother() -> void:
 	# make the player face the other characters
-	if chatters.size() >= 1:
+	if chatters.size() >= 1 and not is_drive_by_chat():
 		if ChattableManager.player.get_movement_mode() == Creature.IDLE:
 			# let the player move while chatting, unless she's asked a question
 			ChattableManager.player.orient_toward(chatters[0])
@@ -78,6 +77,16 @@ func make_chatters_face_eachother() -> void:
 		if chatter.has_method("orient_toward"):
 			# other characters must orient towards the player to avoid visual glitches when emoting while moving
 			chatter.orient_toward(ChattableManager.player)
+
+
+"""
+Returns 'true' if the current chat is a quick one-liner chat.
+
+Quick one-line chats don't interrupt the player or zoom the camera in; the player can just talk to someone and keep
+running. That's why we call them 'drive by chats'.
+"""
+func is_drive_by_chat() -> bool:
+	return _current_chat_tree.events.size() == 1
 
 
 """

@@ -65,7 +65,8 @@ func set_close_up(new_close_up: bool) -> void:
 
 
 func _on_OverworldUi_chat_started() -> void:
-	set_close_up(true)
+	if not _overworld_ui.is_drive_by_chat():
+		set_close_up(true)
 
 
 func _on_OverworldUi_chat_ended() -> void:

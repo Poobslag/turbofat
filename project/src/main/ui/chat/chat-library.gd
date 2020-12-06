@@ -28,8 +28,10 @@ func load_chat_events_for_creature(creature: Creature, level_num: int = -1, chit
 	
 	var chat_tree: ChatTree
 	if chit_chat or level_num != -1 or not creature.get_level_ids():
+		var filler_ids := _filler_ids_for_creature(creature)
+		
 		# returning dialog for the creature
-		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state)
+		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
 		if creature.dialog.has(chosen_dialog):
 			chat_tree = ChatTree.new()
 			chat_tree.from_json_dict(creature.dialog[chosen_dialog])
@@ -57,6 +59,8 @@ func load_chat_events_from_file(path: String) -> ChatTree:
 	var history_key := path
 	history_key = StringUtils.remove_end(history_key, ".json")
 	history_key = StringUtils.remove_start(history_key, "res://assets/main/")
+	history_key = history_key.replace("creatures/primary", "dialog")
+	history_key = history_key.replace("-", "_")
 	chat_tree.history_key = history_key
 	
 	if not FileUtils.file_exists(path):
@@ -69,13 +73,22 @@ func load_chat_events_from_file(path: String) -> ChatTree:
 	return chat_tree
 
 
-func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary) -> String:
-	var result := "filler"
+"""
+Calculates the dialog id for the current conversation.
+
+This method goes through a creature's chat selectors until it finds one suitable for the current game state. If none
+are found, it returns a filler conversation instead.
+"""
+func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary, filler_ids: Array) -> String:
+	var creature_id: String = state.get("creature_id", "")
+	var result: String
+	
+	# search the chat_selectors for a suitable conversation
 	for chat_selector_obj in chat_selectors:
 		var chat_selector: Dictionary = chat_selector_obj
 		
 		var repeat_age: int = chat_selector.get("repeat", 25)
-		var history_key := "dialog/%s/%s" % [state.get("creature_id", ""), chat_selector["dialog"]]
+		var history_key := "dialog/%s/%s" % [creature_id, chat_selector["dialog"]]
 		var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
 		if chat_age != -1 and chat_age < repeat_age:
 			# skip; we've had this conversation too recently
@@ -94,6 +107,21 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary)
 		# success; return the current chat selector's dialog
 		result = chat_selector["dialog"]
 		break
+	
+	if not result:
+		# no suitable conversation was found; find a suitable filler conversation instead
+		var result_chat_age: int
+		
+		for filler_id in filler_ids:
+			var history_key := "dialog/%s/%s" % [creature_id, filler_id]
+			var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
+			if not result or chat_age == -1 or chat_age > result_chat_age:
+				# found an older filler conversation; replace the current result
+				result = filler_id
+				result_chat_age = chat_age
+			
+			if result and result_chat_age == -1:
+				break
 	
 	return result
 
@@ -147,5 +175,23 @@ func _parse_json_tree(json: String) -> Dictionary:
 				json_tree["version"] = item_dict.get("version")
 				item_dict.erase("version")
 	else:
-		push_error("Invalid json type: " % typeof(parsed))
+		push_error("Invalid json type: %s" % typeof(parsed))
 	return json_tree
+
+
+"""
+Returns the dialog filler IDs for the specified creature.
+
+Examines the creature's dialog and resource files, and returns any dialog ids with names like 'filler_014'.
+"""
+func _filler_ids_for_creature(creature: Creature) -> Array:
+	var filler_ids := []
+	for i in range(0, 1000):
+		var filler_id := "filler_%03d" % i
+		var path := "res://assets/main/creatures/primary/%s/%s.json" % \
+				[creature.creature_id, filler_id.replace("_", "-")]
+		if creature.dialog.has(filler_id) or FileUtils.file_exists(path):
+			filler_ids.append(filler_id)
+		else:
+			break
+	return filler_ids
