@@ -117,7 +117,7 @@ Parameters:
 func _feed_creature(fatness_pct: float, food_color: Color) -> void:
 	var customer: Creature = $RestaurantView.get_customer()
 	
-	if customer.creature_id == CreatureLoader.INSTRUCTOR_ID:
+	if customer.creature_id == Global.CREATURE_ID_INSTRUCTOR:
 		# tutorial instructor doesn't gain weight
 		pass
 	else:
@@ -126,7 +126,7 @@ func _feed_creature(fatness_pct: float, food_color: Color) -> void:
 		var target_fatness := Creature.score_to_fatness(base_score + PuzzleScore.get_creature_score())
 		customer.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
 
-	if customer.creature_id == CreatureLoader.INSTRUCTOR_ID:
+	if customer.creature_id == Global.CREATURE_ID_INSTRUCTOR:
 		# tutorial instructor doesn't become comfortable
 		pass
 	else:

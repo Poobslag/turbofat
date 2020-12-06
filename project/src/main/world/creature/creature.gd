@@ -208,9 +208,9 @@ func play_mood(mood: int) -> void:
 """
 Orients this creature so they're facing the specified target.
 """
-func orient_toward(target: Node2D) -> void:
+func orient_toward(target_position: Vector2) -> void:
 	# calculate the relative direction of the object this creature should face
-	var direction: Vector2 = Global.from_iso(position.direction_to(target.position))
+	var direction: Vector2 = Global.from_iso(position.direction_to(target_position))
 	var direction_dot := 0.0
 	if direction:
 		direction_dot = direction.normalized().dot(Vector2.RIGHT)

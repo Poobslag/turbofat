@@ -14,6 +14,7 @@ const GENERIC_FATNESS_COUNT := 150
 const MAX_FILLER_FATNESS := 2.5
 
 var player_def: CreatureDef
+var instructor_def: CreatureDef
 
 # fatnesses by creature id
 var _fatnesses: Dictionary
@@ -50,6 +51,9 @@ func reset() -> void:
 	player_def.dna = CreatureDef.DEFAULT_DNA.duplicate()
 	player_def.min_fatness = 1.0
 	player_def.chat_theme_def = CreatureDef.DEFAULT_CHAT_THEME_DEF.duplicate()
+	
+	if not instructor_def:
+		instructor_def = CreatureLoader.load_creature_def_by_id(Global.CREATURE_ID_INSTRUCTOR)
 
 
 """

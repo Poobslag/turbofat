@@ -22,6 +22,7 @@ const FATNESSES := [
 	1.8, 2.3,
 ]
 
+const CREATURE_ID_INSTRUCTOR := "#instructor#"
 const CREATURE_ID_PLAYER := "#player#"
 
 # The factor to multiply by to convert non-isometric coordinates into isometric coordinates
