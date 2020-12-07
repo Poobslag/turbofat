@@ -149,39 +149,6 @@ func _update_visible() -> void:
 	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
 
 
-"""
-Process a 'select_level_*' event, loading the appropriate level data or conversation to launch.
-"""
-func _process_select_level_meta_item(level_num: int = -1) -> void:
-	var creature_chatters := []
-	for chatter in chatters:
-		if chatter is Creature and chatter != ChattableManager.player:
-			creature_chatters.append(chatter)
-	
-	if creature_chatters.size() >= 2:
-		push_warning("Too many (%s) creature_chatters found for select_level (%s)" \
-				% [creature_chatters.size(), creature_chatters])
-	elif creature_chatters.size() <= 0:
-		push_warning("No creature_chatters found for select_level")
-	else:
-		var creature: Creature = creature_chatters[0]
-		var chit_chat: bool = level_num < 1
-		if not _chat_tree_cache.has(creature) or not chit_chat:
-			_next_chat_tree = ChatLibrary.load_chat_events_for_creature(creature, level_num, chit_chat)
-			if _next_chat_tree.meta.get("filler", false):
-				PlayerData.chat_history.increment_filler_count(creature.creature_id)
-			if _next_chat_tree.meta.get("notable", false):
-				PlayerData.chat_history.reset_filler_count(creature.creature_id)
-			_chat_tree_cache[creature] = _next_chat_tree
-		
-		_next_chat_tree = _chat_tree_cache[creature]
-		
-		if level_num >= 1:
-			var level_ids := creature.get_level_ids()
-			var level_id: String = level_ids[level_num - 1]
-			Level.set_launched_level(level_id, creature.creature_id, level_num)
-
-
 func _on_ChatUi_pop_out_completed() -> void:
 	PlayerData.chat_history.add_history_item(_current_chat_tree.history_key)
 	
@@ -217,14 +184,6 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	var chatter := ChattableManager.get_creature_by_chatter_name(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
-	if chat_event.meta:
-		var meta: Array = chat_event.meta
-		for meta_item_obj in meta:
-			var meta_item: String = meta_item_obj
-			if meta_item.begins_with("select_level_"):
-				_process_select_level_meta_item(int(StringUtils.substring_after(meta_item, "select_level_")))
-			elif meta_item == "chit_chat":
-				_process_select_level_meta_item()
 
 
 func _on_ChatUi_showed_choices() -> void:
@@ -249,6 +208,23 @@ func _on_SettingsButton_pressed() -> void:
 
 
 func _on_TalkButton_pressed() -> void:
-	if ChattableManager.get_focused():
-		get_tree().set_input_as_handled()
-		start_chat(ChattableManager.load_chat_events(), ChattableManager.get_focused())
+	var focused_object := ChattableManager.get_focused()
+	if not focused_object:
+		return
+	
+	get_tree().set_input_as_handled()
+	
+	var chat_tree: ChatTree
+	if _chat_tree_cache.has(focused_object):
+		chat_tree = _chat_tree_cache[focused_object]
+	else:
+		chat_tree = ChattableManager.load_chat_events()
+		if focused_object is Creature:
+			if chat_tree.meta.get("filler", false):
+				PlayerData.chat_history.increment_filler_count(focused_object.creature_id)
+			if chat_tree.meta.get("notable", false):
+				PlayerData.chat_history.reset_filler_count(focused_object.creature_id)
+		_chat_tree_cache[focused_object] = chat_tree
+	chat_tree = _chat_tree_cache[focused_object]
+	
+	start_chat(chat_tree, ChattableManager.get_focused())

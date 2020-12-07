@@ -318,7 +318,7 @@ func get_level_ids() -> Array:
 	var level_ids := []
 	for chat_selector_obj in chat_selectors:
 		var chat_selector: Dictionary = chat_selector_obj
-		if chat_selector.has("level"):
+		if chat_selector.has("level") and not level_ids.has(chat_selector["level"]):
 			level_ids.append(chat_selector["level"])
 	return level_ids
 
