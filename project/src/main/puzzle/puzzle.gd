@@ -210,6 +210,7 @@ func _on_PuzzleScore_game_ended() -> void:
 	var rank_result := RankCalculator.new().calculate_rank()
 	PlayerData.level_history.add(Level.launched_level_id, rank_result)
 	PlayerData.level_history.prune(Level.launched_level_id)
+	PlayerData.emit_signal("level_history_changed")
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, 9999999999999999))
 	
 	match Level.settings.finish_condition.type:

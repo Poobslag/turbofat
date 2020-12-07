@@ -210,7 +210,7 @@ func _get_max_speed_id() -> String:
 	for milestone_obj in speed_ups:
 		var milestone: Milestone = milestone_obj
 		var speed_id: String = milestone.get_meta("speed")
-		var speed_id_index := PieceSpeeds.speed_ids.find(speed_id)
+		var speed_id_index: int = PieceSpeeds.speed_ids.find(speed_id)
 		if speed_id_index > max_speed_id_index:
 			max_speed_id_index = speed_id_index
 			max_speed_id = speed_id

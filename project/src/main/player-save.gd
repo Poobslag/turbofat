@@ -148,6 +148,9 @@ func _load_player_data_from_file(filename: String) -> bool:
 		save_item.from_json_dict(json_save_item_obj)
 		_load_line(save_item.type, save_item.key, save_item.value)
 	
+	# emit a signal indicating the level history was loaded
+	PlayerData.emit_signal("level_history_changed")
+	
 	return true
 
 
