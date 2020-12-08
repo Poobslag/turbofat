@@ -32,13 +32,6 @@ var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
 # value: Creature object corresponding to the chatter name 
 var _creatures_by_chatter_name := {}
 
-func _ready() -> void:
-	for creature_obj in get_tree().get_nodes_in_group("creatures"):
-		var creature: Creature = creature_obj
-		_refresh_creature_name(creature)
-		creature.connect("creature_name_changed", self, "_on_Creature_creature_name_changed", [creature])
-
-
 func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focus: Node2D
@@ -72,6 +65,18 @@ func _physics_process(_delta: float) -> void:
 	if new_focus != _focused:
 		_focused = new_focus
 		emit_signal("focus_changed")
+
+
+"""
+Refreshes our state based on the creatures in the scene, and reconnects some signals.
+"""
+func refresh_creatures() -> void:
+	_creatures_by_chatter_name.clear()
+	for creature_obj in get_tree().get_nodes_in_group("creatures"):
+		var creature: Creature = creature_obj
+		_refresh_creature_name(creature)
+		if not creature.is_connected("creature_name_changed", self, "_on_Creature_creature_name_changed"):
+			creature.connect("creature_name_changed", self, "_on_Creature_creature_name_changed", [creature])
 
 
 """

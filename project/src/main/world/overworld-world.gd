@@ -38,6 +38,7 @@ func _ready() -> void:
 		
 		_schedule_chat(creature)
 	
+	ChattableManager.refresh_creatures()
 	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
 	_refresh_goop_control_size()
 
