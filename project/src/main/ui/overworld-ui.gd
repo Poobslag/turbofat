@@ -165,16 +165,16 @@ func _process_select_level_meta_item(level_num: int = -1) -> void:
 		push_warning("No creature_chatters found for select_level")
 	else:
 		var creature: Creature = creature_chatters[0]
-		if not _chat_tree_cache.has(creature.creature_id):
-			var chit_chat: bool = level_num < 1
+		var chit_chat: bool = level_num < 1
+		if not _chat_tree_cache.has(creature) or not chit_chat:
 			_next_chat_tree = ChatLibrary.load_chat_events_for_creature(creature, level_num, chit_chat)
 			if _next_chat_tree.meta.get("filler", false):
 				PlayerData.chat_history.increment_filler_count(creature.creature_id)
 			if _next_chat_tree.meta.get("notable", false):
 				PlayerData.chat_history.reset_filler_count(creature.creature_id)
-			_chat_tree_cache[creature.creature_id] = _next_chat_tree
+			_chat_tree_cache[creature] = _next_chat_tree
 		
-		_next_chat_tree = _chat_tree_cache[creature.creature_id]
+		_next_chat_tree = _chat_tree_cache[creature]
 		
 		if level_num >= 1:
 			var level_ids := creature.get_level_ids()

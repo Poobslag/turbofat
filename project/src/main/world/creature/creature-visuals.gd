@@ -250,6 +250,11 @@ func set_orientation(new_orientation: int) -> void:
 		# orientation by making it something nonsensical
 		old_orientation = -1
 	
+	if $Animations/MovementPlayer.current_animation == "idle-nw" and new_orientation in [SOUTHEAST, SOUTHWEST]:
+		$Animations/MovementPlayer.play("idle-se")
+	elif $Animations/MovementPlayer.current_animation == "idle-se" and new_orientation in [NORTHEAST, NORTHWEST]:
+		$Animations/MovementPlayer.play("idle-nw")
+	
 	emit_signal("orientation_changed", old_orientation, new_orientation)
 
 

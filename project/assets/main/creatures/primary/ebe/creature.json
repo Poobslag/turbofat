@@ -33,7 +33,8 @@
       "dialog": "no_vegetables",
       "if_conditions": [
         "current_level/1"
-      ]
+      ],
+      "repeat": 0
     }
   ]
 }
