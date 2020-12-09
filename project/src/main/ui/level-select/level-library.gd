@@ -1,18 +1,10 @@
-class_name LevelSelectModel
+extends Node
 """
 Keeps track of which worlds and levels are available to the player and how to unlock them.
 
 This information is used to determine if a player can play a level, and to communicate this information to the player
 with descriptive messages like 'Clear four more levels to unlock this!'
 """
-
-enum LevelsToInclude {
-	ALL_LEVELS, # show both tutorial levels and regular levels
-	TUTORIALS_ONLY, # only show tutorials; hide regular levels
-}
-
-const ALL_LEVELS := LevelsToInclude.ALL_LEVELS
-const TUTORIALS_ONLY := LevelsToInclude.TUTORIALS_ONLY
 
 # Ordered list of all world IDs
 var world_ids: Array
@@ -37,18 +29,20 @@ var _world_locks: Dictionary
 # value: WorldLock containing the specified level
 var _world_locks_by_level_id: Dictionary
 
-# An enum in LevelsToInclude which allows for hiding/showing certain levels
-var _levels_to_include: int
-
 """
 Loads the list of levels from JSON, processing it to determine which levels are locked.
-
-Parameters:
-	'levels_to_include': (Optional) An enum in LevelsToInclude which allows for hiding/showing certain levels.
 """
-func initialize(levels_to_include: int = LevelsToInclude.ALL_LEVELS) -> void:
-	_levels_to_include = levels_to_include
+func _ready() -> void:
 	_load_raw_json_data()
+	refresh_cleared_levels()
+	PlayerData.connect("level_history_changed", self, "_on_PlayerData_level_history_changed")
+
+
+"""
+Recalculates which worlds and levels are available to the player and how to unlock them.
+"""
+func refresh_cleared_levels() -> void:
+	_reset_cleared_worlds_and_levels()
 	_update_locked_worlds()
 	_update_locked_levels()
 	_update_unlockable_levels()
@@ -98,16 +92,9 @@ func _load_raw_json_data() -> void:
 	
 	# calculate included_worlds based on _levels_to_include
 	var worlds_array: Array = worlds_json.get("worlds", [])
-	var included_worlds: Array = []
-	for world_obj in worlds_array:
-		var world: Dictionary = world_obj
-		if _levels_to_include == TUTORIALS_ONLY and world.get("id") != Level.TUTORIAL_WORLD_ID:
-			# tutorials only; skip non-tutorial worlds
-			continue
-		included_worlds.append(world_obj)
 	
 	# populate _world_locks, world_ids
-	for world_obj in included_worlds:
+	for world_obj in worlds_array:
 		var world: Dictionary = world_obj
 		var world_lock := WorldLock.new()
 		world_lock.from_json_dict(world)
@@ -121,7 +108,7 @@ func _load_raw_json_data() -> void:
 			_world_locks_by_level_id[level_id] = world_lock
 	
 	# populate _level_locks, _level_settings_by_id
-	for world_obj in included_worlds:
+	for world_obj in worlds_array:
 		var world: Dictionary = world_obj
 		var levels_array: Array = world.get("levels", [])
 		for level_obj in levels_array:
@@ -140,6 +127,26 @@ func _load_raw_json_data() -> void:
 			level_settings.load_from_resource(level_lock.level_id)
 			_level_settings_by_id[level_lock.level_id] = level_settings
 
+
+"""
+Reset the world/level status to a default state so that it can be recalculated.
+
+When worlds and levels are first loaded from JSON, they're in a clean state. We restore them to this clean state later
+before recalculating the player's current status.
+"""
+func _reset_cleared_worlds_and_levels() -> void:
+	# reset unlocked worlds
+	for world_lock_obj in _world_locks.values():
+		var world_lock: WorldLock = world_lock_obj
+		var unlock_world_ids := world_lock.locked_until_values
+		for unlock_world_id in unlock_world_ids:
+			world_lock.status = WorldLock.STATUS_NONE
+	
+	# reset unlocked levels
+	for level_lock_obj in _level_locks.values():
+		var level_lock: LevelLock = level_lock_obj
+		level_lock.status = LevelLock.STATUS_NONE
+		level_lock.keys_needed = -1
 
 """
 Update the world lock status to 'lock' for locked worlds.
@@ -277,14 +284,7 @@ func _update_cleared_tutorials() -> void:
 		if level_lock.status == LevelLock.STATUS_NONE and level_settings.other.tutorial \
 				and PlayerData.level_history.finished_levels.has(level_lock.level_id):
 			level_lock.status = LevelLock.STATUS_CLEARED
-	
-	var tutorial_world_lock: WorldLock = _world_locks.get(Level.TUTORIAL_WORLD_ID)
-	if tutorial_world_lock:
-		var all_cleared := true
-		for tutorial_level_id in tutorial_world_lock.level_ids:
-			if not PlayerData.level_history.finished_levels.has(tutorial_level_id):
-				all_cleared = false
-				break
-		
-		if all_cleared:
-			tutorial_world_lock.status = LevelLock.STATUS_CLEARED
+
+
+func _on_PlayerData_level_history_changed() -> void:
+	refresh_cleared_levels()

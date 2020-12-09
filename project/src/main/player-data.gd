@@ -7,6 +7,9 @@ This data includes how well they've done on each level and how much money they'v
 
 signal money_changed(value)
 
+# emitted when the player beats a level, or when the level history is reset or reloaded
+signal level_history_changed
+
 var level_history := LevelHistory.new()
 var chat_history := ChatHistory.new()
 
@@ -33,6 +36,8 @@ func reset() -> void:
 	touch_settings.reset()
 	keybind_settings.reset()
 	money = 0
+	
+	emit_signal("level_history_changed")
 
 
 func set_money(new_money: int) -> void:
