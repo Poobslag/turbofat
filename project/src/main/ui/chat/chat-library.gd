@@ -18,36 +18,36 @@ Parameters:
 	'level_num': (Optional) The current level being chosen; '1' being the creature's first level. If specified, this
 			allows the creature to say something about the upcoming level.
 """
-func load_chat_events_for_creature(creature: Creature, level_num: int = -1, chit_chat: bool = false) -> ChatTree:
+func load_chat_events_for_creature(creature: Creature, level_num: int = -1) -> ChatTree:
 	var state := {
 		"creature_id": creature.creature_id,
-		"notable_chat": PlayerData.chat_history.get_filler_count(creature.creature_id) > 0
+		"notable_chat": PlayerData.chat_history.get_filler_count(creature.creature_id) > 0,
+		"level_num": level_num
 	}
-	if level_num != -1:
-		state["level_num"] = level_num
+	
+	if state["level_num"] == -1:
+		state["level_num"] = _first_unfinished_level_num(creature)
+	
+	# returning dialog for the creature
+	var filler_ids := _filler_ids_for_creature(creature)
+	var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
 	
 	var chat_tree: ChatTree
-	if chit_chat or level_num != -1 or not creature.get_level_ids():
-		var filler_ids := _filler_ids_for_creature(creature)
-		
-		# returning dialog for the creature
-		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
-		if creature.dialog.has(chosen_dialog):
-			chat_tree = ChatTree.new()
-			chat_tree.from_json_dict(creature.dialog[chosen_dialog])
-			chat_tree.history_key = "dialog/%s/%s" % [creature.creature_id, chosen_dialog]
-		else:
-			var path := "res://assets/main/creatures/primary/%s/%s.json" % \
-					[creature.creature_id, chosen_dialog.replace("_", "-")]
-			chat_tree = load_chat_events_from_file(path)
+	if creature.dialog.has(chosen_dialog):
+		chat_tree = ChatTree.new()
+		chat_tree.from_json_dict(creature.dialog[chosen_dialog])
+		chat_tree.history_key = "dialog/%s/%s" % [creature.creature_id, chosen_dialog]
 	else:
-		# returning a tree where the player can select creature dialog
+		var path := "res://assets/main/creatures/primary/%s/%s.json" % \
+				[creature.creature_id, chosen_dialog.replace("_", "-")]
+		chat_tree = load_chat_events_from_file(path)
+	
+	if state["level_num"] >= 1:
+		# schedule a level to launch when the dialog completes
 		var level_ids := creature.get_level_ids()
-		match level_ids.size():
-			2: chat_tree = load_chat_events_from_file("res://assets/main/dialog/level-select-2.json")
-			1: chat_tree = load_chat_events_from_file("res://assets/main/dialog/level-select-1.json")
-			_: push_warning("Unexpected level ids count: %s" % level_ids.size())
-		
+		var level_id: String = level_ids[state["level_num"] - 1]
+		Level.set_launched_level(level_id, creature.creature_id, state["level_num"])
+	
 	return chat_tree
 
 
@@ -195,3 +195,23 @@ func _filler_ids_for_creature(creature: Creature) -> Array:
 		else:
 			break
 	return filler_ids
+
+
+"""
+Returns the first available level for this creature which hasn't been finished.
+
+Returns -1 if all levels are locked, or if the player's finished all the available levels.
+"""
+func _first_unfinished_level_num(creature: Creature) -> int:
+	var level_num := -1
+	var level_ids := creature.get_level_ids()
+	for level_id_index in range(0, level_ids.size()):
+		var creature_level: String = level_ids[level_id_index]
+		if LevelLibrary.is_locked(creature_level):
+			continue
+		if PlayerData.level_history.finished_levels.has(creature_level):
+			continue
+		
+		level_num = level_id_index + 1
+		break
+	return level_num
