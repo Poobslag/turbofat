@@ -52,6 +52,30 @@ func load_chat_events_for_creature(creature: Creature, level_num: int = -1) -> C
 
 
 """
+Returns a ChatIcon enum representing the creature's next conversation.
+"""
+func chat_icon_for_creature(creature: Creature) -> int:
+	var result := ChatIcon.NONE
+	if creature == ChattableManager.instructor or creature == ChattableManager.player:
+		# no chat icon for player or instructor
+		pass
+	elif _first_unfinished_level_num(creature) >= 1:
+		# food chat icon if the chat will launch a puzzle
+		result = ChatIcon.FOOD
+	else:
+		# filler/speech icon for normal conversations
+		var state := {
+			"creature_id": creature.creature_id,
+			"notable_chat": PlayerData.chat_history.get_filler_count(creature.creature_id) > 0
+		}
+		var filler_ids := _filler_ids_for_creature(creature)
+		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
+		result = ChatIcon.FILLER if filler_ids.has(chosen_dialog) else ChatIcon.SPEECH
+	
+	return result
+
+
+"""
 Loads the chat events from the specified json file.
 """
 func load_chat_events_from_file(path: String) -> ChatTree:

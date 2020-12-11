@@ -7,8 +7,10 @@ This includes chats, buttons and debug messages.
 """
 
 signal chat_started
-
 signal chat_ended
+
+# emitted when the player talks to a creature for the first time, caching their dialog
+signal chat_cached(chattable)
 
 # emitted when we present the player with a dialog choice
 signal showed_chat_choices
@@ -208,23 +210,24 @@ func _on_SettingsButton_pressed() -> void:
 
 
 func _on_TalkButton_pressed() -> void:
-	var focused_object := ChattableManager.get_focused()
-	if not focused_object:
+	var focused_chattable := ChattableManager.get_focused()
+	if not focused_chattable:
 		return
 	
 	get_tree().set_input_as_handled()
 	
 	var chat_tree: ChatTree
-	if _chat_tree_cache.has(focused_object):
-		chat_tree = _chat_tree_cache[focused_object]
+	if _chat_tree_cache.has(focused_chattable):
+		chat_tree = _chat_tree_cache[focused_chattable]
 	else:
 		chat_tree = ChattableManager.load_chat_events()
-		if focused_object is Creature:
+		if focused_chattable is Creature:
 			if chat_tree.meta.get("filler", false):
-				PlayerData.chat_history.increment_filler_count(focused_object.creature_id)
+				PlayerData.chat_history.increment_filler_count(focused_chattable.creature_id)
 			if chat_tree.meta.get("notable", false):
-				PlayerData.chat_history.reset_filler_count(focused_object.creature_id)
-		_chat_tree_cache[focused_object] = chat_tree
-	chat_tree = _chat_tree_cache[focused_object]
+				PlayerData.chat_history.reset_filler_count(focused_chattable.creature_id)
+		emit_signal("chat_cached", focused_chattable)
+		_chat_tree_cache[focused_chattable] = chat_tree
+	chat_tree = _chat_tree_cache[focused_chattable]
 	
 	start_chat(chat_tree, ChattableManager.get_focused())
