@@ -341,6 +341,7 @@ chat_path = "res://assets/main/dialog/marsh-crystal.json"
 [node name="ChatIcons" type="Node2D" parent="World"]
 script = ExtResource( 50 )
 ChatIconScene = ExtResource( 12 )
+overworld_ui_path = NodePath("../../Ui/OverworldUi")
 
 [node name="Camera" type="Camera2D" parent="World"]
 position = Vector2( 150, 150 )

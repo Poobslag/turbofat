@@ -4,15 +4,22 @@ extends Node2D
 A visual icon which appears next to something the player can interact with.
 """
 
+# emitted when the icon is finished vanishing after a call to 'vanish()'
+signal vanish_finished
+
 enum BubbleType {
 	NONE,
-	SPEECH,
-	THOUGHT
+	SPEECH, # large chat bubble for notable/interesting chats
+	THOUGHT, # thought bubble
+	FILLER, # small chat bubble for one-liner/filler chats
+	FOOD, # food bubble for chats which launch a puzzle
 }
 
 const NONE := BubbleType.NONE
 const SPEECH := BubbleType.SPEECH
 const THOUGHT := BubbleType.THOUGHT
+const FILLER := BubbleType.FILLER
+const FOOD := BubbleType.FOOD
 
 # The chat icons bounce. These constants control how they bounce.
 const BOUNCE_DURATION := 0.7
@@ -22,13 +29,25 @@ const BOUNCE_HEIGHT := 12.0
 const COLOR_FOCUSED := Color(1.0, 1.0, 1.0, 1.00)
 const COLOR_UNFOCUSED := Color(1.0, 1.0, 1.0, 0.25)
 
+# mapping from chat icons to chat bubble sprite frames
+const BUBBLE_TYPE_FRAMES := {
+	NONE: [],
+	SPEECH: [6, 7, 8],
+	THOUGHT: [3, 4, 5],
+	FILLER: [0, 1, 2],
+	FOOD: [9, 10, 11, 12]
+}
+
 var bubble_type: int = BubbleType.SPEECH setget set_bubble_type
+
 var _bounce_phase := 0.0
 var _focused := false
 var _chattable: Node
+var _vanishing := false
 
 func _ready() -> void:
-	$Sprite.modulate = COLOR_UNFOCUSED
+	$FocusTween.connect("tween_completed", self, "_on_FocusTween_tween_completed")
+	$PackedSprite.modulate = COLOR_UNFOCUSED
 	_refresh()
 
 
@@ -38,7 +57,7 @@ func _physics_process(delta: float) -> void:
 		# keep bounce_phase bounded, otherwise a sprite will jitter slightly 3 billion millenia from now
 		_bounce_phase -= 2 / BOUNCE_DURATION
 
-	$Sprite.position.y = -52 - abs(BOUNCE_HEIGHT * sin(_bounce_phase * BOUNCE_DURATION * PI))
+	$PackedSprite.position.y = -57 - abs(BOUNCE_HEIGHT * sin(_bounce_phase * BOUNCE_DURATION * PI))
 
 
 """
@@ -97,7 +116,8 @@ func _refresh() -> void:
 		return
 	
 	visible = bubble_type != BubbleType.NONE
-	$Sprite.frame = randi() % 3 + (3 if bubble_type == BubbleType.THOUGHT else 0)
+	if visible:
+		$PackedSprite.frame = Utils.rand_value(BUBBLE_TYPE_FRAMES[bubble_type])
 	
 	if bubble_type == BubbleType.NONE:
 		if ChattableManager.is_connected("focus_changed", self, "_on_ChattableManager_focus_changed"):
@@ -111,12 +131,12 @@ func _refresh() -> void:
 Tweens this objects 'modulate' property to a new value.
 """
 func _tween_modulate(new_modulate: Color, duration: float) -> void:
-	if $Sprite.modulate == new_modulate:
+	if $PackedSprite.modulate == new_modulate:
 		# don't launch tween if our modulate property is already set appropriately
 		return
 	
 	$FocusTween.remove_all()
-	$FocusTween.interpolate_property($Sprite, "modulate", $Sprite.modulate, new_modulate,
+	$FocusTween.interpolate_property($PackedSprite, "modulate", $PackedSprite.modulate, new_modulate,
 			duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
 	$FocusTween.start()
 
@@ -128,3 +148,8 @@ func _on_ChattableManager_focus_changed() -> void:
 		focus()
 	else:
 		unfocus()
+
+
+func _on_FocusTween_tween_completed(object: Object, key: NodePath) -> void:
+	if object == $PackedSprite and key.get_concatenated_subnames() == "modulate" and $PackedSprite.modulate.a == 0.0:
+		emit_signal("vanish_finished")
