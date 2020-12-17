@@ -31,7 +31,7 @@ onready var _chill_bgms := [
 onready var _upbeat_bgms := [
 		$ChubNBass, $ChunkyObake, $DooDooDoo, $JuicerMixerGrinder,
 		$MysticMuffin, $PressureCooker, $SugarCrash, $TripleThiccShake,
-		$AcidReflux, $ExtraSprinkles, $ChocolateChipster, $GlazeGlazeGlaze]
+		$AcidReflux, $ExtraSprinkles, $ChocolateChip, $GingerbreadHouse]
 
 onready var _tutorial_bgms := [$MyFatnessPal]
 

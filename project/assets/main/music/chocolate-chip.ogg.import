@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/chocolate-chip.ogg-2654c94af2f3fd0a230387b629a4d1b8.oggstr"
+
+[deps]
+
+source_file="res://assets/main/music/chocolate-chip.ogg"
+dest_files=[ "res://.import/chocolate-chip.ogg-2654c94af2f3fd0a230387b629a4d1b8.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
