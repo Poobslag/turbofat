@@ -1,0 +1,540 @@
+[gd_scene load_steps=54 format=2]
+
+[ext_resource path="res://src/main/world/creature/instructor.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=4]
+[ext_resource path="res://src/main/world/restaurant/wall-library.tres" type="TileSet" id=5]
+[ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=6]
+[ext_resource path="res://src/main/world/restaurant/floor-library.tres" type="TileSet" id=7]
+[ext_resource path="res://src/main/world/environment/WoodTable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/main/world/environment/interior-shadow.png" type="Texture" id=9]
+[ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=10]
+[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=11]
+[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=12]
+[ext_resource path="res://src/main/world/environment/Stool.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/world/environment/WoodPillar.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=24]
+[ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=25]
+[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=26]
+[ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=27]
+[ext_resource path="res://src/main/world/OverworldTouchButtons.tscn" type="PackedScene" id=28]
+[ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=29]
+[ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=30]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectPanel.tscn" type="PackedScene" id=31]
+[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=32]
+[ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=33]
+[ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=34]
+[ext_resource path="res://assets/main/ui/touch/interact.png" type="Texture" id=35]
+[ext_resource path="res://assets/main/ui/touch/interact-pressed.png" type="Texture" id=36]
+[ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=38]
+[ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=39]
+[ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=40]
+[ext_resource path="res://src/main/world/overworld-bg.gd" type="Script" id=41]
+[ext_resource path="res://src/main/world/phone-menu.gd" type="Script" id=42]
+[ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=43]
+[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=46]
+[ext_resource path="res://assets/main/ui/touch/phone-pressed.png" type="Texture" id=47]
+[ext_resource path="res://assets/main/ui/touch/phone.png" type="Texture" id=48]
+[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=49]
+
+[sub_resource type="TileSet" id=1]
+0/name = "interior-shadow.png 0"
+0/texture = ExtResource( 9 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 1, 180, 120 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("World/Ground/Shadows/Viewport")
+
+[sub_resource type="InputEventAction" id=3]
+action = "phone"
+
+[sub_resource type="ShortCut" id=4]
+shortcut = SubResource( 3 )
+
+[sub_resource type="InputEventAction" id=5]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=6]
+shortcut = SubResource( 5 )
+
+[sub_resource type="InputEventAction" id=7]
+action = "interact"
+
+[sub_resource type="ShortCut" id=8]
+shortcut = SubResource( 7 )
+
+[sub_resource type="InputEventAction" id=9]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=10]
+shortcut = SubResource( 9 )
+
+[node name="OverworldIndoors" type="Node"]
+
+[node name="Bg" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Bg"]
+margin_right = 1024.0
+margin_bottom = 600.0
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+script = ExtResource( 41 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="World" type="Node" parent="."]
+script = ExtResource( 4 )
+creature_shadows_path = NodePath("Ground/Shadows/Viewport/CreatureShadows")
+chat_icons_path = NodePath("ChatIcons")
+overworld_ui_path = NodePath("../Ui/OverworldUi")
+player_path = NodePath("Obstacles/Player")
+
+[node name="Ground" type="Node2D" parent="World"]
+
+[node name="GroundMap" type="TileMap" parent="World/Ground"]
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 7 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( 0, 2, 0, 1, 2, 0, 2, 2, 0, 3, 2, 0, 4, 2, 0, 5, 2, 0, 6, 2, 0, 7, 2, 0, 8, 2, 0, 9, 2, 0, 10, 2, 0, 11, 2, 0, 12, 2, 0, 13, 2, 0, 14, 2, 0, 15, 2, 0, 16, 2, 0, 17, 2, 0, 18, 2, 0, 19, 2, 0, 20, 2, 0, 21, 2, 0, 22, 2, 0, 23, 1, 0, 24, 1, 0, 25, 1, 0, 26, 1, 0, 27, 1, 0, 28, 1, 0, 29, 1, 0, 30, 1, 0, 65536, 2, 0, 65537, 2, 0, 65538, 2, 0, 65539, 2, 0, 65540, 2, 0, 65541, 2, 0, 65542, 2, 0, 65543, 2, 0, 65544, 2, 0, 65545, 2, 0, 65546, 2, 0, 65547, 2, 0, 65548, 2, 0, 65549, 2, 0, 65550, 2, 0, 65551, 2, 0, 65552, 2, 0, 65553, 2, 0, 65554, 2, 0, 65555, 2, 0, 65556, 2, 0, 65557, 2, 0, 65558, 2, 0, 65559, 1, 0, 65560, 1, 0, 65561, 1, 0, 65562, 1, 0, 65563, 1, 0, 65564, 1, 0, 65565, 1, 0, 65566, 1, 0, 131072, 2, 0, 131073, 2, 0, 131074, 2, 0, 131075, 2, 0, 131076, 2, 0, 131077, 2, 0, 131078, 2, 0, 131079, 2, 0, 131080, 2, 0, 131081, 2, 0, 131082, 2, 0, 131083, 2, 0, 131084, 2, 0, 131085, 2, 0, 131086, 2, 0, 131087, 2, 0, 131088, 2, 0, 131089, 2, 0, 131090, 2, 0, 131091, 2, 0, 131092, 2, 0, 131093, 2, 0, 131094, 2, 0, 131095, 1, 0, 131096, 1, 0, 131097, 1, 0, 131098, 1, 0, 131099, 1, 0, 131100, 1, 0, 131101, 1, 0, 131102, 1, 0, 196608, 2, 0, 196609, 2, 0, 196610, 2, 0, 196611, 2, 0, 196612, 2, 0, 196613, 2, 0, 196614, 2, 0, 196615, 2, 0, 196616, 2, 0, 196617, 2, 0, 196618, 2, 0, 196619, 2, 0, 196620, 2, 0, 196621, 2, 0, 196622, 2, 0, 196623, 2, 0, 196624, 2, 0, 196625, 2, 0, 196626, 2, 0, 196627, 2, 0, 196628, 2, 0, 196629, 2, 0, 196630, 2, 0, 196631, 1, 0, 196632, 1, 0, 196633, 1, 0, 196634, 1, 0, 196635, 1, 0, 196636, 1, 0, 196637, 1, 0, 196638, 1, 0, 262144, 2, 0, 262145, 2, 0, 262146, 2, 0, 262147, 2, 0, 262148, 2, 0, 262149, 2, 0, 262150, 2, 0, 262151, 2, 0, 262152, 2, 0, 262153, 2, 0, 262154, 2, 0, 262155, 2, 0, 262156, 2, 0, 262157, 2, 0, 262158, 2, 0, 262159, 2, 0, 262160, 2, 0, 262161, 2, 0, 262162, 2, 0, 262163, 2, 0, 262164, 2, 0, 262165, 2, 0, 262166, 2, 0, 262167, 1, 0, 262168, 1, 0, 262169, 1, 0, 262170, 1, 0, 262171, 1, 0, 262172, 1, 0, 262173, 1, 0, 262174, 1, 0, 327680, 2, 0, 327681, 2, 0, 327682, 2, 0, 327683, 2, 0, 327684, 2, 0, 327685, 2, 0, 327686, 2, 0, 327687, 2, 0, 327688, 2, 0, 327689, 2, 0, 327690, 2, 0, 327691, 2, 0, 327692, 2, 0, 327693, 2, 0, 327694, 2, 0, 327695, 2, 0, 327696, 2, 0, 327697, 2, 0, 327698, 2, 0, 327699, 2, 0, 327700, 2, 0, 327701, 2, 0, 327702, 2, 0, 327703, 1, 0, 327704, 1, 0, 327705, 1, 0, 327706, 1, 0, 327707, 1, 0, 327708, 1, 0, 327709, 1, 0, 327710, 1, 0, 393216, 2, 0, 393217, 2, 0, 393218, 2, 0, 393219, 2, 0, 393220, 2, 0, 393221, 2, 0, 393222, 2, 0, 393223, 2, 0, 393224, 2, 0, 393225, 2, 0, 393226, 2, 0, 393227, 2, 0, 393228, 2, 0, 393229, 2, 0, 393230, 2, 0, 393231, 2, 0, 393232, 2, 0, 393233, 2, 0, 393234, 2, 0, 393235, 2, 0, 393236, 2, 0, 393237, 2, 0, 393238, 2, 0, 393239, 1, 0, 393240, 1, 0, 393241, 1, 0, 393242, 1, 0, 393243, 1, 0, 393244, 1, 0, 393245, 1, 0, 393246, 1, 0, 458752, 2, 0, 458753, 2, 0, 458754, 2, 0, 458755, 2, 0, 458756, 2, 0, 458757, 2, 0, 458758, 2, 0, 458759, 2, 0, 458760, 2, 0, 458761, 2, 0, 458762, 2, 0, 458763, 2, 0, 458764, 2, 0, 458765, 2, 0, 458766, 2, 0, 458767, 2, 0, 458768, 2, 0, 458769, 2, 0, 458770, 2, 0, 458771, 2, 0, 458772, 2, 0, 458773, 2, 0, 458774, 2, 0, 458775, 1, 0, 458776, 1, 0, 458777, 1, 0, 458778, 1, 0, 458779, 1, 0, 458780, 1, 0, 458781, 1, 0, 458782, 1, 0, 524288, 2, 0, 524289, 2, 0, 524290, 2, 0, 524291, 2, 0, 524292, 2, 0, 524293, 2, 0, 524294, 2, 0, 524295, 2, 0, 524296, 2, 0, 524297, 2, 0, 524298, 2, 0, 524299, 2, 0, 524300, 2, 0, 524301, 2, 0, 524302, 2, 0, 524303, 2, 0, 524304, 2, 0, 524305, 2, 0, 524306, 2, 0, 524307, 2, 0, 524308, 2, 0, 524309, 2, 0, 524310, 2, 0, 524311, 1, 0, 524312, 1, 0, 524313, 1, 0, 524314, 1, 0, 524315, 1, 0, 524316, 1, 0, 524317, 1, 0, 524318, 1, 0, 589824, 2, 0, 589825, 2, 0, 589826, 2, 0, 589827, 2, 0, 589828, 2, 0, 589829, 2, 0, 589830, 2, 0, 589831, 2, 0, 589832, 2, 0, 589833, 2, 0, 589834, 2, 0, 589835, 2, 0, 589836, 2, 0, 589837, 2, 0, 589838, 2, 0, 589839, 2, 0, 589840, 2, 0, 589841, 2, 0, 589842, 2, 0, 589843, 2, 0, 589844, 2, 0, 589845, 2, 0, 589846, 2, 0, 589847, 1, 0, 589848, 1, 0, 589849, 1, 0, 589850, 1, 0, 589851, 1, 0, 589852, 1, 0, 589853, 1, 0, 589854, 1, 0 )
+
+[node name="Shadows" type="Node2D" parent="World/Ground"]
+
+[node name="Viewport" type="Viewport" parent="World/Ground/Shadows"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+
+[node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport"]
+scale = Vector2( 1.25, 1.25 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( -131070, 0, 0, -65536, 0, 0, -65535, 0, 0, 1, 0, 0, 131067, 0, 0, 131072, 0, 0, 196608, 0, 0, 589827, 0, 0, 655360, 0, 0 )
+script = ExtResource( 38 )
+obstacle_map_path = NodePath("../../../../../../OverworldIndoors/World/Obstacles/ObstacleMap")
+cell_shadow_mapping = {
+3: Rect2( -1, 0, 3, 1 ),
+4: Rect2( -1, 0, 3, 1 ),
+5: Rect2( -1, 0, 3, 1 ),
+6: Rect2( -1, 0, 3, 1 ),
+7: Rect2( -1, 0, 3, 1 )
+}
+
+[node name="CreatureShadows" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
+scale = Vector2( 2.5, 2.5 )
+
+[node name="ShadowCasterShadows" type="Node2D" parent="World/Ground/Shadows/Viewport"]
+scale = Vector2( 2.5, 2.5 )
+script = ExtResource( 34 )
+OvalShadowScene = ExtResource( 30 )
+
+[node name="ScrewportTexrect" type="TextureRect" parent="World/Ground/Shadows"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+rect_scale = Vector2( 0.4, 0.4 )
+texture = SubResource( 2 )
+flip_v = true
+script = ExtResource( 40 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Obstacles" type="YSort" parent="World"]
+
+[node name="ObstacleMap" type="TileMap" parent="World/Obstacles"]
+scale = Vector2( 0.5, 0.5 )
+tile_set = ExtResource( 5 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+cell_y_sort = true
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( -65536, 2, 0, -65535, 2, 0, -65533, 4, 0, -65530, 5, 0, -65528, 2, 0, -65526, 3, 0, -65523, 7, 0, -65521, 2, 0, -65519, 6, 0, -65517, 2, 0, -65516, 2, 0, -65515, 2, 0, -65514, 2, 0, -65512, 4, 0, -65510, 2, 0, -65509, 2, 0, -65508, 2, 0, -65507, 2, 0, -65506, 2, 0 )
+script = ExtResource( 33 )
+ground_map_path = NodePath("../../Ground/GroundMap")
+impassable_tile_index = 1
+
+[node name="Player" parent="World/Obstacles" instance=ExtResource( 19 )]
+position = Vector2( 150, 150 )
+script = ExtResource( 2 )
+dna = {
+
+}
+
+[node name="Instructor" parent="World/Obstacles" instance=ExtResource( 19 )]
+position = Vector2( 269, 220 )
+script = ExtResource( 1 )
+player_path = NodePath("../../../../OverworldIndoors/World/Obstacles/Player")
+
+[node name="MoveTimer" type="Timer" parent="World/Obstacles/Instructor"]
+wait_time = 0.3
+autostart = true
+
+[node name="Richie" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 19 )]
+position = Vector2( 1765.38, 207.401 )
+creature_id = "richie"
+dna = {
+
+}
+orientation = 1
+
+[node name="WoodPillar" parent="World/Obstacles" instance=ExtResource( 22 )]
+position = Vector2( 498, 9 )
+
+[node name="WoodPillar3" parent="World/Obstacles" instance=ExtResource( 22 )]
+position = Vector2( 1298, 9 )
+
+[node name="Gordo" parent="World/Obstacles" instance=ExtResource( 19 )]
+position = Vector2( 768, 36 )
+creature_id = "gordo"
+dna = {
+
+}
+elevation = 150
+orientation = 1
+
+[node name="Stool1" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 768, 35 )
+occupied = true
+
+[node name="WoodTable" parent="World/Obstacles" instance=ExtResource( 8 )]
+position = Vector2( 680, 35 )
+
+[node name="Stool2" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 592, 35 )
+
+[node name="Stool7" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 1168, 35 )
+
+[node name="WoodTable4" parent="World/Obstacles" instance=ExtResource( 8 )]
+position = Vector2( 1080, 35 )
+
+[node name="Stool8" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 992, 35 )
+
+[node name="Stool3" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 568, 275 )
+
+[node name="WoodTable2" parent="World/Obstacles" instance=ExtResource( 8 )]
+position = Vector2( 480, 275 )
+
+[node name="Stool4" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 392, 275 )
+
+[node name="Stool5" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 968, 275 )
+
+[node name="WoodTable3" parent="World/Obstacles" instance=ExtResource( 8 )]
+position = Vector2( 880, 275 )
+
+[node name="Stool6" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 792, 275 )
+
+[node name="Stool9" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 1368, 275 )
+
+[node name="Stool10" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 1368, 215 )
+
+[node name="Stool11" parent="World/Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 1368, 155 )
+
+[node name="ChatIcons" type="Node2D" parent="World"]
+script = ExtResource( 10 )
+ChatIconScene = ExtResource( 16 )
+overworld_ui_path = NodePath("../../../OverworldIndoors/Ui/OverworldUi")
+
+[node name="Camera" type="Camera2D" parent="World"]
+position = Vector2( 150, 150 )
+current = true
+smoothing_enabled = true
+script = ExtResource( 39 )
+player_path = NodePath("../../../OverworldIndoors/World/Obstacles/Player")
+overworld_ui_path = NodePath("../../../OverworldIndoors/Ui/OverworldUi")
+
+[node name="Tween" type="Tween" parent="World/Camera"]
+
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="OverworldUi" type="Control" parent="Ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true,
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Labels" type="Control" parent="Ui/OverworldUi"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -512.0
+margin_top = -300.0
+margin_right = 512.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 1024, 600 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SoutheastLabels" type="VBoxContainer" parent="Ui/OverworldUi/Labels"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -502.0
+margin_top = -290.0
+margin_right = -10.0
+margin_bottom = -10.0
+theme = ExtResource( 3 )
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FpsLabel" parent="Ui/OverworldUi/Labels/SoutheastLabels" instance=ExtResource( 24 )]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 236.0
+margin_right = 492.0
+margin_bottom = 256.0
+
+[node name="VersionLabel" parent="Ui/OverworldUi/Labels/SoutheastLabels" instance=ExtResource( 25 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 260.0
+margin_right = 492.0
+margin_bottom = 280.0
+
+[node name="NorthwestLabels" type="VBoxContainer" parent="Ui/OverworldUi/Labels"]
+margin_left = 10.0
+margin_top = 10.0
+margin_right = 512.0
+margin_bottom = 300.0
+theme = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MoneyLabel" parent="Ui/OverworldUi/Labels/NorthwestLabels" instance=ExtResource( 26 )]
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 502.0
+margin_bottom = 32.0
+compact = true
+
+[node name="ChatUi" parent="Ui/OverworldUi" instance=ExtResource( 27 )]
+visible = false
+margin_bottom = 1.99976
+
+[node name="TouchButtons" parent="Ui/OverworldUi" instance=ExtResource( 28 )]
+
+[node name="Buttons" type="Control" parent="Ui/OverworldUi"]
+modulate = Color( 1, 1, 1, 0.627451 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 43 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Northeast" type="HBoxContainer" parent="Ui/OverworldUi/Buttons"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -512.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 100, 100 )
+custom_constants/separation = 10
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PhoneButton" parent="Ui/OverworldUi/Buttons/Northeast" instance=ExtResource( 29 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 292.0
+margin_right = 392.0
+margin_bottom = 100.0
+size_flags_horizontal = 0
+shortcut = SubResource( 4 )
+icon = ExtResource( 48 )
+expand_icon = true
+normal_icon = ExtResource( 48 )
+pressed_icon = ExtResource( 47 )
+
+[node name="SettingsButton" parent="Ui/OverworldUi/Buttons/Northeast" instance=ExtResource( 29 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 402.0
+margin_right = 502.0
+margin_bottom = 100.0
+shortcut = SubResource( 6 )
+icon = ExtResource( 11 )
+expand_icon = true
+normal_icon = ExtResource( 11 )
+pressed_icon = ExtResource( 12 )
+
+[node name="Southeast" type="HBoxContainer" parent="Ui/OverworldUi/Buttons"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -512.0
+margin_top = -160.0
+margin_right = -10.0
+margin_bottom = -60.0
+rect_min_size = Vector2( 100, 100 )
+custom_constants/separation = 10
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TalkButton" parent="Ui/OverworldUi/Buttons/Southeast" instance=ExtResource( 29 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 402.0
+margin_right = 502.0
+margin_bottom = 100.0
+shortcut = SubResource( 8 )
+icon = ExtResource( 35 )
+expand_icon = true
+normal_icon = ExtResource( 35 )
+pressed_icon = ExtResource( 36 )
+
+[node name="CheatCodeDetector" parent="Ui/OverworldUi" instance=ExtResource( 15 )]
+codes = [ "bigfps" ]
+
+[node name="SettingsMenu" parent="Ui/OverworldUi" instance=ExtResource( 17 )]
+quit_text = "Save + Quit"
+
+[node name="CellPhoneMenu" type="CanvasLayer" parent="Ui/OverworldUi"]
+script = ExtResource( 42 )
+
+[node name="Bg" type="ColorRect" parent="Ui/OverworldUi/CellPhoneMenu"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 0.752941 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LevelSelect" parent="Ui/OverworldUi/CellPhoneMenu" instance=ExtResource( 31 )]
+visible = false
+
+[node name="Buttons" type="Control" parent="Ui/OverworldUi/CellPhoneMenu"]
+visible = false
+modulate = Color( 1, 1, 1, 0.627451 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Northeast" type="HBoxContainer" parent="Ui/OverworldUi/CellPhoneMenu/Buttons"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -512.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = 110.0
+rect_min_size = Vector2( 100, 100 )
+mouse_filter = 2
+custom_constants/separation = 10
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="BackButton" parent="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast" instance=ExtResource( 29 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 292.0
+margin_right = 392.0
+margin_bottom = 100.0
+size_flags_horizontal = 0
+shortcut = SubResource( 10 )
+icon = ExtResource( 46 )
+expand_icon = true
+normal_icon = ExtResource( 46 )
+pressed_icon = ExtResource( 49 )
+
+[node name="ShortcutHelper" parent="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast/BackButton" instance=ExtResource( 14 )]
+action = "phone"
+
+[node name="Spacer" parent="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast" instance=ExtResource( 29 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 402.0
+margin_right = 502.0
+margin_bottom = 100.0
+mouse_filter = 2
+disabled = true
+
+[node name="MusicPopup" parent="Ui/OverworldUi" instance=ExtResource( 32 )]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_ended"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_started"]
+[connection signal="chat_started" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_started"]
+[connection signal="showed_chat_choices" from="Ui/OverworldUi" to="World/Obstacles/Player" method="_on_OverworldUi_showed_chat_choices"]
+[connection signal="chat_event_played" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_chat_event_played"]
+[connection signal="pop_out_completed" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_pop_out_completed"]
+[connection signal="showed_choices" from="Ui/OverworldUi/ChatUi" to="Ui/OverworldUi" method="_on_ChatUi_showed_choices"]
+[connection signal="pressed" from="Ui/OverworldUi/Buttons/Northeast/PhoneButton" to="Ui/OverworldUi" method="_on_CellPhoneButton_pressed"]
+[connection signal="pressed" from="Ui/OverworldUi/Buttons/Northeast/SettingsButton" to="Ui/OverworldUi" method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="Ui/OverworldUi/Buttons/Southeast/TalkButton" to="Ui/OverworldUi" method="_on_TalkButton_pressed"]
+[connection signal="cheat_detected" from="Ui/OverworldUi/CheatCodeDetector" to="Ui/OverworldUi/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
+[connection signal="hide" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
+[connection signal="quit_pressed" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi" method="_on_SettingsMenu_quit_pressed"]
+[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
+[connection signal="show" from="Ui/OverworldUi/SettingsMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
+[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_hide"]
+[connection signal="hide" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_hide"]
+[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/TouchButtons" method="_on_Menu_show"]
+[connection signal="show" from="Ui/OverworldUi/CellPhoneMenu" to="Ui/OverworldUi/Buttons" method="_on_Menu_show"]
+[connection signal="pressed" from="Ui/OverworldUi/CellPhoneMenu/Buttons/Northeast/BackButton" to="Ui/OverworldUi/CellPhoneMenu" method="_on_BackButton_pressed"]
