@@ -8,7 +8,7 @@ the edge of the world.
 
 export (NodePath) var ground_map_path: NodePath
 
-# the tile index in this tilemap which should be used to make tiles impassible
+# the tile index in this tilemap which should be used to make tiles impassable
 export (int) var impassable_tile_index := -1
 
 # tilemap containing data on which cells are walkable
