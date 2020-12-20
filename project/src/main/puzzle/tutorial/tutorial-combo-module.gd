@@ -242,7 +242,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 
 
 func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
-	if color == PuzzleTileMap.BoxColorInt.CAKE:
+	if PuzzleTileMap.is_cake_box(color):
 		_cakes_built += 1
 		hud.skill_tally_item("CakeBox").increment()
 

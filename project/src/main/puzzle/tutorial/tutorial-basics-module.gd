@@ -184,7 +184,7 @@ func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
 	_did_build_box = true
 	_boxes_built += 1
 	
-	if color == PuzzleTileMap.BoxColorInt.CAKE:
+	if PuzzleTileMap.is_cake_box(color):
 		_did_build_cake = true
 
 

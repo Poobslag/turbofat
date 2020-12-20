@@ -83,7 +83,7 @@ func _play_combo_sound(_y: int, _total_lines: int, _remaining_lines: int, _box_i
 
 func _play_box_sound(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
 	var sound: AudioStreamPlayer
-	if box_ints.has(PuzzleTileMap.BoxColorInt.CAKE):
+	if PuzzleTileMap.includes_cake_box(box_ints):
 		sound = $ClearCakePieceSound
 	elif not box_ints.empty():
 		sound = $ClearSnackPieceSound

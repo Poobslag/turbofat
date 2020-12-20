@@ -4,12 +4,12 @@
 [ext_resource path="res://assets/main/puzzle/blocks/stars.png" type="Texture" id=2]
 [ext_resource path="res://src/main/puzzle/alpha-multiply.shader" type="Shader" id=3]
 
-[sub_resource type="ShaderMaterial" id=2]
+[sub_resource type="ShaderMaterial" id=1]
 shader = ExtResource( 3 )
-shader_param/mix_color = Color( 0.423529, 0.262745, 0.192157, 0.501961 )
+shader_param/mix_color = Color( 0.423529, 0.262745, 0.192157, 0.627451 )
 
 [node name="Star" type="Sprite"]
-material = SubResource( 2 )
+material = SubResource( 1 )
 texture = ExtResource( 2 )
 vframes = 2
 hframes = 2

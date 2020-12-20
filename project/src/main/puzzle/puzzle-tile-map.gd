@@ -9,7 +9,14 @@ enum BoxColorInt {
 	PINK,
 	BREAD,
 	WHITE,
-	CAKE,
+	CAKE_JJO,
+	CAKE_JLO,
+	CAKE_JTT,
+	CAKE_LLO,
+	CAKE_LTT,
+	CAKE_PQV,
+	CAKE_PUV,
+	CAKE_QUV,
 }
 
 # The highest visible playfield row. Food/wobblers/vfx should not be drawn above this row.
@@ -265,8 +272,17 @@ func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
 
 
 static func is_snack_box(color_int: int) -> bool:
-	return color_int in [BoxColorInt.BROWN, BoxColorInt.PINK, BoxColorInt.BREAD, BoxColorInt.WHITE]
+	return color_int <= BoxColorInt.WHITE
 
 
 static func is_cake_box(color_int: int) -> bool:
-	return color_int == BoxColorInt.CAKE
+	return color_int >= BoxColorInt.CAKE_JJO
+
+
+static func includes_cake_box(color_ints: Array) -> bool:
+	var result := false
+	for color_int in color_ints:
+		if is_cake_box(color_int):
+			result = true
+			break
+	return result
