@@ -17,6 +17,37 @@ var remaining_box_build_frames := 0
 
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 
+"""
+Maps 'ingredient strings' to box colors. This lets us calculate which snack/cake tiles should be used for a box with
+certain pieces.
+
+An ingredient string looks like 's13'. It starts with an 's' for a 3x3 or 4x3 box, and 'l' for a 5x3 box. It ends with
+the box's piece color ints in ascending numerical order (brown=0, pink=1...). For example 's13' is a 4x3 box with pink
+and white pieces, where 'l123' is a 5x3 box with pink, bread and white pieces. 's0' is a 3x3 box with brown pieces.
+
+Key: Ingredient string describing the box's size and color
+Value: BoxColorInt for the resulting snack/cake
+"""
+const BOX_COLOR_INTS_BY_INGREDIENTS := {
+	# 3x3
+	"s0": PuzzleTileMap.BoxColorInt.BROWN,
+	"s1": PuzzleTileMap.BoxColorInt.PINK,
+	"s2": PuzzleTileMap.BoxColorInt.BREAD,
+	"s3": PuzzleTileMap.BoxColorInt.WHITE,
+	
+	# 4x3
+	"s013": PuzzleTileMap.BoxColorInt.CAKE_JLO,
+	"s02": PuzzleTileMap.BoxColorInt.CAKE_LTT,
+	"s03": PuzzleTileMap.BoxColorInt.CAKE_LLO,
+	"s12": PuzzleTileMap.BoxColorInt.CAKE_JTT,
+	"s13": PuzzleTileMap.BoxColorInt.CAKE_LLO,
+	
+	# 5x3
+	"l013": PuzzleTileMap.BoxColorInt.CAKE_PQV,
+	"l023": PuzzleTileMap.BoxColorInt.CAKE_QUV,
+	"l123": PuzzleTileMap.BoxColorInt.CAKE_PUV,
+}
+
 func _ready() -> void:
 	set_physics_process(false)
 
@@ -114,6 +145,28 @@ func process_boxes() -> bool:
 
 
 """
+Calculates an 'ingredient string' for a specific box.
+
+An ingredient string looks like 's13'. It starts with an 's' for a 3x3 or 4x3 box, and 'l' for a 5x3 box. It ends with
+the box's piece color ints in ascending numerical order (brown=0, pink=1...). For example 's13' is a 4x3 box with pink
+and white pieces, where 'l123' is a 5x3 box with pink, bread and white pieces. 's0' is a 3x3 box with brown pieces.
+
+Parameters:
+	'width': The box width
+	
+	'height': The box height
+	
+	'piece_color_ints': An array of ints corresponding to different piece colors (brown=0, pink=1...)
+"""
+func _box_ingredients(width: int, height: int, piece_color_ints: Array) -> String:
+	piece_color_ints.sort()
+	var result := "s" if width <= 4 and height <= 4 else "l"
+	for piece_color_int in piece_color_ints:
+		result += str(piece_color_int)
+	return result
+
+
+"""
 Checks whether the specified rectangle represents an enclosed box. An enclosed box must not connect to any pieces
 outside the box.
 
@@ -134,11 +187,15 @@ func _process_box(end_x: int, end_y: int, width: int, height: int) -> bool:
 		if Connect.is_r(_tile_map.get_cell_autotile_coord(end_x, y).x):
 			return false
 	
-	var color_int: int
-	if width == 3 and height == 3:
-		color_int = _tile_map.get_cell_autotile_coord(start_x, start_y).y
-	else:
-		color_int = PuzzleTileMap.BoxColorInt.CAKE
+	# calculate the ingredient string for the box
+	var piece_color_ints_dict := {}
+	for x in range(start_x, end_x + 1):
+		for y in range(start_y, end_y + 1):
+			piece_color_ints_dict[_tile_map.get_cell_autotile_coord(x, y).y] = true
+	var ingredients := _box_ingredients(width, height, piece_color_ints_dict.keys())
+	
+	var color_int: int = BOX_COLOR_INTS_BY_INGREDIENTS.get(ingredients, PuzzleTileMap.BoxColorInt.BROWN)
+	
 	build_box(Rect2(start_x, start_y, width, height), color_int)
 	
 	return true

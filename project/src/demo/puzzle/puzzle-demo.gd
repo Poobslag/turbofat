@@ -5,12 +5,14 @@ Shows off the visual effects for the puzzle.
 Keys:
 	[Q,W,E]: Build a box at different locations in the playfield
 	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
+	[H]: Change the cake box variation used to make cake boxes
 	[U,I,O]: Clear a line at different locations in the playfield
 	[J]: Generate a food item
 """
 
 var _line_clear_count := 1
 var _color_int := 0
+var _cake_color_int: int = PuzzleTileMap.BoxColorInt.CAKE_JJO
 
 func _ready() -> void:
 	Level.settings.set_start_speed("T")
@@ -24,11 +26,16 @@ func _input(event: InputEvent) -> void:
 		KEY_W: _build_box(9)
 		KEY_E: _build_box(15)
 		
-		KEY_A: _color_int = 0
-		KEY_S: _color_int = 1
-		KEY_D: _color_int = 2
-		KEY_F: _color_int = 3
-		KEY_G: _color_int = 4
+		KEY_A: _color_int = PuzzleTileMap.BoxColorInt.BROWN
+		KEY_S: _color_int = PuzzleTileMap.BoxColorInt.PINK
+		KEY_D: _color_int = PuzzleTileMap.BoxColorInt.BREAD
+		KEY_F: _color_int = PuzzleTileMap.BoxColorInt.WHITE
+		
+		KEY_G: _color_int = _cake_color_int
+		KEY_H:
+			_cake_color_int = wrapi(_cake_color_int + 1,
+					PuzzleTileMap.BoxColorInt.CAKE_JJO, PuzzleTileMap.BoxColorInt.CAKE_QUV)
+			_color_int = _cake_color_int
 		
 		KEY_U: _clear_line(3)
 		KEY_I: _clear_line(9)

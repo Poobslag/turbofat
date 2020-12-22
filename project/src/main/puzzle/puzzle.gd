@@ -149,7 +149,7 @@ func _calculate_food_color(box_ints: Array) -> void:
 	if box_ints.empty():
 		# vegetable
 		_food_color = Playfield.VEGETABLE_COLOR
-	elif box_ints.has(PuzzleTileMap.BoxColorInt.CAKE):
+	elif PuzzleTileMap.includes_cake_box(box_ints):
 		# cake box
 		_food_color = Color.magenta
 		_food_color.h = randf()

@@ -11,8 +11,8 @@ onready var _build_snack_box_sounds := [
 	]
 
 func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
-	match color:
-		0, 1, 2, 3:
-			$BuildSnackBoxSound.stream = _build_snack_box_sounds[color]
-			$BuildSnackBoxSound.play()
-		4: $BuildCakeBoxSound.play()
+	if PuzzleTileMap.is_snack_box(color):
+		$BuildSnackBoxSound.stream = _build_snack_box_sounds[color]
+		$BuildSnackBoxSound.play()
+	elif PuzzleTileMap.is_cake_box(color):
+		$BuildCakeBoxSound.play()
