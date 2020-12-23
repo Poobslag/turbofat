@@ -164,7 +164,7 @@ func _calculate_line_color(box_ints: Array) -> void:
 	if box_ints.empty():
 		# vegetable
 		_color = VEGETABLE_LIGHT_COLOR
-	elif PuzzleTileMap.includes_cake_box(box_ints):
+	elif PuzzleTileMap.has_cake_box(box_ints):
 		# cake box
 		_color = RAINBOW_LIGHT_COLOR
 	elif box_ints.size() == 1 or FOOD_LIGHT_COLORS[box_ints[0]] != _color:

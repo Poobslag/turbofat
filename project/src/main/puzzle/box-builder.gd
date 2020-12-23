@@ -40,7 +40,7 @@ const BOX_COLOR_INTS_BY_INGREDIENTS := {
 	"s02": PuzzleTileMap.BoxColorInt.CAKE_LTT,
 	"s03": PuzzleTileMap.BoxColorInt.CAKE_LLO,
 	"s12": PuzzleTileMap.BoxColorInt.CAKE_JTT,
-	"s13": PuzzleTileMap.BoxColorInt.CAKE_LLO,
+	"s13": PuzzleTileMap.BoxColorInt.CAKE_JJO,
 	
 	# 5x3
 	"l013": PuzzleTileMap.BoxColorInt.CAKE_PQV,
