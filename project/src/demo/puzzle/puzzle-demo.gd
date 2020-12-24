@@ -8,10 +8,12 @@ Keys:
 	[H]: Change the cake box variation used to make cake boxes
 	[U,I,O]: Clear a line at different locations in the playfield
 	[J]: Generate a food item
+	[K]: Cycle to the next food item
 """
 
 var _line_clear_count := 1
 var _color_int := 0
+var _food_item_index := 0
 var _cake_color_int: int = PuzzleTileMap.BoxColorInt.CAKE_JJO
 
 func _ready() -> void:
@@ -41,7 +43,10 @@ func _input(event: InputEvent) -> void:
 		KEY_I: _clear_line(9)
 		KEY_O: _clear_line(15)
 		
-		KEY_J: $Puzzle/FoodItems.add_food_item(Vector2(1, 4), 0)
+		KEY_J: $Puzzle/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
+		KEY_K:
+			_food_item_index = (_food_item_index + 1) % 16
+			$Puzzle/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
 
 
 func _build_box(y: int) -> void:

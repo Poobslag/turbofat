@@ -63,7 +63,7 @@ tracks/1/keys = {
 [node name="FoodItem" type="Node2D"]
 position = Vector2( 0, -5738.04 )
 rotation = 0.14452
-scale = Vector2( 0.6, 0.6 )
+scale = Vector2( 1.05728, 1.08934 )
 script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/food/food-packed.json"

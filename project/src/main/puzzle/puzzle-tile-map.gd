@@ -271,15 +271,30 @@ func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
 	set_block(pos, get_cellv(pos), autotile_coord)
 
 
+"""
+Returns 'true' if the specified color index corresponds to a snack box.
+
+There are four snack box colors; brown, pink, bread and white.
+"""
 static func is_snack_box(color_int: int) -> bool:
 	return color_int <= BoxColorInt.WHITE
 
 
+"""
+Returns 'true' if the specified color index corresponds to a cake box.
+
+There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
+"""
 static func is_cake_box(color_int: int) -> bool:
 	return color_int >= BoxColorInt.CAKE_JJO
 
 
-static func includes_cake_box(color_ints: Array) -> bool:
+"""
+Returns 'true' if the specified array contains a cake box color index.
+
+There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
+"""
+static func has_cake_box(color_ints: Array) -> bool:
 	var result := false
 	for color_int in color_ints:
 		if is_cake_box(color_int):

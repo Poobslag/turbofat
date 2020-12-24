@@ -117,15 +117,14 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 				PuzzleTileMap.BoxColorInt.PINK: wobbler.food_type = 2 + int(cell.y) % 2
 				PuzzleTileMap.BoxColorInt.BREAD: wobbler.food_type = 4 + int(cell.y) % 2
 				PuzzleTileMap.BoxColorInt.WHITE: wobbler.food_type = 6 + int(cell.y) % 2
-				PuzzleTileMap.BoxColorInt.CAKE_JJO, \
-				PuzzleTileMap.BoxColorInt.CAKE_JLO, \
-				PuzzleTileMap.BoxColorInt.CAKE_JTT, \
-				PuzzleTileMap.BoxColorInt.CAKE_LLO, \
-				PuzzleTileMap.BoxColorInt.CAKE_LTT, \
-				PuzzleTileMap.BoxColorInt.CAKE_PQV, \
-				PuzzleTileMap.BoxColorInt.CAKE_PUV, \
-				PuzzleTileMap.BoxColorInt.CAKE_QUV:
-					wobbler.food_type = 8
+				PuzzleTileMap.BoxColorInt.CAKE_JJO: wobbler.food_type = 8
+				PuzzleTileMap.BoxColorInt.CAKE_JLO: wobbler.food_type = 9
+				PuzzleTileMap.BoxColorInt.CAKE_JTT: wobbler.food_type = 10
+				PuzzleTileMap.BoxColorInt.CAKE_LLO: wobbler.food_type = 11
+				PuzzleTileMap.BoxColorInt.CAKE_LTT: wobbler.food_type = 12
+				PuzzleTileMap.BoxColorInt.CAKE_PQV: wobbler.food_type = 13
+				PuzzleTileMap.BoxColorInt.CAKE_PUV: wobbler.food_type = 14
+				PuzzleTileMap.BoxColorInt.CAKE_QUV: wobbler.food_type = 15
 			wobbler.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
 			wobbler.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
 			wobbler.position *= _puzzle_tile_map.scale
