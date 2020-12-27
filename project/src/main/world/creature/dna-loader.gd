@@ -88,7 +88,7 @@ func unload_dna() -> void:
 	
 	_creature_visuals.get_node("Body").rect_position = Vector2(-580, -850)
 	_creature_visuals.get_node("Neck0/HeadBobber").position = Vector2(0, -100)
-	_creature_visuals.scale = Vector2(1.00, 1.00)
+	_creature_visuals.rescale(1.00)
 	
 	_remove_dna_node("Animations/MouthPlayer")
 	_remove_dna_node("Animations/EarPlayer")
@@ -141,7 +141,7 @@ func load_dna() -> void:
 		if key.find("shader:") == 0:
 			_pending_shader_keys.append(key)
 	
-	_creature_visuals.scale = Vector2(0.60, 0.60) if _creature_visuals.dna.get("body") == "2" else Vector2(1.00, 1.00)
+	_creature_visuals.rescale(0.60 if _creature_visuals.dna.get("body") == "2" else 1.00)
 	_creature_visuals.visible = true
 	
 	# initialize creature curves, and reset the mouth/eye frame to avoid a strange transition frame

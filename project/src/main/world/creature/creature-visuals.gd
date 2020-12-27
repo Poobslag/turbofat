@@ -234,15 +234,7 @@ func set_orientation(new_orientation: int) -> void:
 		# when facing north, the head goes behind the body
 		$Neck0.z_index = 0 if orientation in [SOUTHWEST, SOUTHEAST] else -1
 	
-	# sprites are drawn facing southeast/northwest, and are horizontally flipped for other directions
-	scale.x = abs(scale.x) if orientation in [SOUTHEAST, NORTHWEST] else -abs(scale.x)
-	
-	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
-	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
-	if has_node("Body/Viewport/Body"):
-		$Body/Viewport/Body.scale.x = 1 if orientation in [SOUTHEAST, SOUTHWEST] else -1
-	if has_node("BodyShadows/Viewport/Body"):
-		$BodyShadows/Viewport/Body.scale.x = 1 if orientation in [SOUTHEAST, SOUTHWEST] else -1
+	rescale(scale.x)
 	
 	if _force_orientation_change:
 		# some listeners try to distinguish between 'big orientation changes' and 'little orientation changes'. if
@@ -256,6 +248,27 @@ func set_orientation(new_orientation: int) -> void:
 		$Animations/MovementPlayer.play("idle-nw")
 	
 	emit_signal("orientation_changed", old_orientation, new_orientation)
+
+
+"""
+Adjusts the creature's scale, flipping them horizontally based on their orientation.
+
+The sprite resources portray creatures facing southeast/northwest, and need to be horizontally flipped for other
+orientations.
+
+Parameters:
+	'new_scale_x': The new scale.x and scale.y value. Negative values are OK, and will be normalized.
+"""
+func rescale(new_scale_x: float) -> void:
+	scale = Vector2(abs(new_scale_x), abs(new_scale_x))
+	scale.x = abs(scale.x) if orientation in [SOUTHEAST, NORTHWEST] else -abs(scale.x)
+	
+	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
+	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
+	if has_node("Body/Viewport/Body"):
+		$Body/Viewport/Body.scale.x = 1 if orientation in [SOUTHEAST, SOUTHWEST] else -1
+	if has_node("BodyShadows/Viewport/Body"):
+		$BodyShadows/Viewport/Body.scale.x = 1 if orientation in [SOUTHEAST, SOUTHWEST] else -1
 
 
 """

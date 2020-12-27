@@ -15,6 +15,13 @@ onready var _overworld_ui: OverworldUi = get_node(overworld_ui_path)
 onready var _player: Creature = get_node(player_path)
 
 func _ready() -> void:
+	if Global.player_spawn_id:
+		move_creature_to_spawn(ChattableManager.player, Global.player_spawn_id)
+		$Camera.position = ChattableManager.player.position
+	
+	if Global.instructor_spawn_id:
+		move_creature_to_spawn(ChattableManager.instructor, Global.instructor_spawn_id)
+	
 	if Level.launched_level_id:
 		_overworld_ui.cutscene = true
 		
@@ -46,3 +53,19 @@ func _schedule_chat(creature: Creature) -> void:
 	yield(get_tree(), "idle_frame")
 	var chat_tree := ChatLibrary.load_chat_events_for_creature(creature, Level.launched_level_num)
 	_overworld_ui.start_chat(chat_tree, creature)
+
+
+"""
+Relocate a creature to a spawn point.
+"""
+func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
+	var target_spawn: Spawn
+	for spawn_obj in get_tree().get_nodes_in_group("spawns"):
+		var spawn: Spawn = spawn_obj
+		if spawn.id == spawn_id:
+			target_spawn = spawn
+
+	if target_spawn:
+		target_spawn.move_creature(creature)
+	else:
+		push_warning("Could not locate spawn with id '%s'" % [spawn_id])

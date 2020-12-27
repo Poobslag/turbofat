@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/OverworldObstacles.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/main/world/GroundMap.tscn" type="PackedScene" id=2]
+
+[node name="OverworldDemo" type="Node2D"]
+__meta__ = {
+"_editor_description_": "This demo makes it easier to edit "
+}
+
+[node name="GroundMap" parent="." instance=ExtResource( 2 )]
+
+[node name="Obstacles" parent="." instance=ExtResource( 1 )]
+scale = Vector2( 2.5, 2.5 )
