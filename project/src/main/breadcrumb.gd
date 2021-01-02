@@ -45,6 +45,20 @@ func push_trail(path: String) -> void:
 
 
 """
+Stays at the current level in the breadcrumb trail, but replaces the current navigation path.
+
+Parameters:
+	'path': The path to append to the breadcrumb trail. This is usually a scene path such as 'res://MyScene.tscn', but
+		it can also include a '::foo' suffix for navigation paths which do not result in a scene change.
+"""
+func replace_trail(path: String) -> void:
+	trail.pop_front()
+	trail.push_front(path)
+	if not "::" in path:
+		_change_scene()
+
+
+"""
 Changes the running scene to the one at the front of the breadcrumb trail.
 """
 func _change_scene() -> void:

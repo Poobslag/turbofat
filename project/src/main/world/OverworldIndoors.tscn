@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://src/main/world/creature/instructor.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/world/environment/WoodPillar.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=25]
@@ -109,6 +110,7 @@ overworld_ui_path = NodePath("../Ui/OverworldUi")
 player_path = NodePath("Obstacles/Player")
 
 [node name="Ground" type="Node2D" parent="World"]
+z_index = -1
 
 [node name="GroundMap" type="TileMap" parent="World/Ground"]
 scale = Vector2( 0.5, 0.5 )
@@ -179,15 +181,23 @@ script = ExtResource( 33 )
 ground_map_path = NodePath("../../Ground/GroundMap")
 impassable_tile_index = 1
 
+[node name="OverworldExit" parent="World/Obstacles" instance=ExtResource( 20 )]
+position = Vector2( 163.845, 270.718 )
+destination_scene_path = "res://src/main/world/Overworld.tscn"
+exit_direction = 1
+player_spawn_id = "restaurant-player"
+instructor_spawn_id = "restaurant-instructor"
+
 [node name="Player" parent="World/Obstacles" instance=ExtResource( 19 )]
-position = Vector2( 150, 150 )
+position = Vector2( 158.963, 289.758 )
 script = ExtResource( 2 )
 dna = {
 
 }
+orientation = 3
 
 [node name="Instructor" parent="World/Obstacles" instance=ExtResource( 19 )]
-position = Vector2( 269, 220 )
+position = Vector2( 45.1765, 205.713 )
 script = ExtResource( 1 )
 player_path = NodePath("../../../../OverworldIndoors/World/Obstacles/Player")
 

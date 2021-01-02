@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/main/outline.shader" type="Shader" id=1]
+[ext_resource path="res://src/main/world/overworld-exit.gd" type="Script" id=2]
+[ext_resource path="res://assets/main/world/environment/exit-n-sheet.png" type="Texture" id=3]
+
+[sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
+shader = ExtResource( 1 )
+shader_param/width = 1.5
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
+
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 1.33333
+loop = true
+step = 0.166667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.166667, 0.333333, 0.5, 0.666667, 0.833333, 1, 1.16667, 1.33333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7, 0, 1, 2, 3, 4 ]
+}
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 20, 20 )
+
+[node name="OverworldExit" type="Area2D"]
+z_index = -1
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+destination_scene_path = "res://src/main/world/OverworldIndoors.tscn"
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.752941 )
+material = SubResource( 1 )
+scale = Vector2( 0.539476, 0.539476 )
+texture = ExtResource( 3 )
+vframes = 3
+hframes = 3
+frame = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "default"
+anims/default = SubResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -20 )
+shape = SubResource( 3 )
