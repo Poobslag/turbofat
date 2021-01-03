@@ -8,6 +8,8 @@ func _ready() -> void:
 	$Tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 	SceneTransition.connect("fade_in_started", self, "_on_SceneTransition_fade_in_started")
+	
+	_refresh_rect_size()
 	_initialize_fade()
 
 
@@ -33,8 +35,12 @@ func _launch_fade_tween(new_alpha: float, duration: float) -> void:
 	$Tween.start()
 
 
-func _on_Viewport_size_changed() -> void:
+func _refresh_rect_size() -> void:
 	rect_size = get_viewport_rect().size
+
+
+func _on_Viewport_size_changed() -> void:
+	_refresh_rect_size()
 
 
 func _on_SceneTransition_fade_out_started() -> void:
