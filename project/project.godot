@@ -775,17 +775,17 @@ default_bus_layout="res://src/main/ui/default_bus_layout.tres"
 
 [autoload]
 
-LevelLibrary="*res://src/main/ui/level-select/level-library.gd"
 Breadcrumb="*res://src/main/breadcrumb.gd"
 ChatLibrary="*res://src/main/ui/chat/chat-library.gd"
 ChattableManager="*res://src/main/world/chattable-manager.gd"
-KeybindManager="*res://src/main/keybind/keybind-manager.gd"
 CreatureLoader="*res://src/main/world/creature/creature-loader.gd"
 DnaUtils="*res://src/main/world/creature/dna-utils.gd"
 Global="*res://src/main/global.gd"
+KeybindManager="*res://src/main/keybind/keybind-manager.gd"
+Level="*res://src/main/puzzle/level/level.gd"
+LevelLibrary="*res://src/main/ui/level-select/level-library.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
-Level="*res://src/main/puzzle/level/level.gd"
 Pauser="*res://src/main/pauser.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
@@ -793,6 +793,7 @@ PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"
 PuzzleScore="*res://src/main/puzzle/puzzle-score.gd"
 ResourceCache="*res://src/main/ResourceCache.tscn"
+SceneTransition="*res://src/main/ui/scene-transition.gd"
 
 [debug]
 

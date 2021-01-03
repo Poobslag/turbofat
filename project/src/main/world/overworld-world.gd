@@ -17,7 +17,7 @@ onready var _player: Creature = get_node(player_path)
 func _ready() -> void:
 	if Global.player_spawn_id:
 		move_creature_to_spawn(ChattableManager.player, Global.player_spawn_id)
-		$Camera.position = ChattableManager.player.position
+	$Camera.position = ChattableManager.player.position
 	
 	if Global.instructor_spawn_id:
 		move_creature_to_spawn(ChattableManager.instructor, Global.instructor_spawn_id)

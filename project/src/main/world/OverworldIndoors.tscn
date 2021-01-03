@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=2]
+[gd_scene load_steps=56 format=2]
 
 [ext_resource path="res://src/main/world/creature/instructor.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -20,6 +20,7 @@
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/main/ui/SceneTransitionRect.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/world/environment/WoodPillar.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=25]
@@ -524,6 +525,8 @@ mouse_filter = 2
 disabled = true
 
 [node name="MusicPopup" parent="Ui/OverworldUi" instance=ExtResource( 32 )]
+
+[node name="SceneTransitionRect" parent="Ui" instance=ExtResource( 21 )]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="World/Camera" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/TouchButtons" method="_on_OverworldUi_chat_ended"]
 [connection signal="chat_ended" from="Ui/OverworldUi" to="Ui/OverworldUi/Buttons" method="_on_OverworldUi_chat_ended"]
