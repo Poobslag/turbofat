@@ -36,6 +36,7 @@ var _chat_tree_cache: Dictionary
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	_update_visible()
+	_refresh_rect_size()
 	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
 
 
@@ -151,6 +152,10 @@ func _update_visible() -> void:
 	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
 
 
+func _refresh_rect_size() -> void:
+	rect_size = get_viewport_rect().size
+
+
 func _on_ChatUi_pop_out_completed() -> void:
 	PlayerData.chat_history.add_history_item(_current_chat_tree.history_key)
 	
@@ -198,7 +203,7 @@ func _on_SettingsMenu_quit_pressed() -> void:
 
 
 func _on_Viewport_size_changed() -> void:
-	rect_size = get_viewport_rect().size
+	_refresh_rect_size()
 
 
 func _on_CellPhoneButton_pressed() -> void:
