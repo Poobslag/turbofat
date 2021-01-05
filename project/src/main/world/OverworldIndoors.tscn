@@ -1,6 +1,6 @@
 [gd_scene load_steps=56 format=2]
 
-[ext_resource path="res://src/main/world/creature/instructor.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=3]
 [ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=4]
@@ -187,7 +187,7 @@ position = Vector2( 163.845, 270.718 )
 destination_scene_path = "res://src/main/world/Overworld.tscn"
 exit_direction = 1
 player_spawn_id = "restaurant-player"
-instructor_spawn_id = "restaurant-instructor"
+sensei_spawn_id = "restaurant-sensei"
 
 [node name="Player" parent="World/Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 158.963, 289.758 )
@@ -197,12 +197,12 @@ dna = {
 }
 orientation = 3
 
-[node name="Instructor" parent="World/Obstacles" instance=ExtResource( 19 )]
+[node name="Sensei" parent="World/Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 45.1765, 205.713 )
 script = ExtResource( 1 )
 player_path = NodePath("../../../../OverworldIndoors/World/Obstacles/Player")
 
-[node name="MoveTimer" type="Timer" parent="World/Obstacles/Instructor"]
+[node name="MoveTimer" type="Timer" parent="World/Obstacles/Sensei"]
 wait_time = 0.3
 autostart = true
 

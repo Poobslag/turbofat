@@ -21,8 +21,8 @@ export (ExitDirection) var exit_direction := ExitDirection.NORTH setget set_exit
 # the id of the spawn where the player will appear on the overworld after using the exit
 export (String) var player_spawn_id: String
 
-# the id of the spawn where the instructor will appear on the overworld after using the exit
-export (String) var instructor_spawn_id: String
+# the id of the spawn where the sensei will appear on the overworld after using the exit
+export (String) var sensei_spawn_id: String
 
 # 'true' if the player is currently overlapping the exit. this might not make them exit if they're sitting still or
 # moving the wrong way
@@ -94,5 +94,5 @@ func _on_SceneTransition_fade_out_ended() -> void:
 		return
 	
 	Global.player_spawn_id = player_spawn_id
-	Global.instructor_spawn_id = instructor_spawn_id
+	Global.sensei_spawn_id = sensei_spawn_id
 	Breadcrumb.replace_trail(destination_scene_path)

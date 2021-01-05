@@ -16,16 +16,16 @@ var _chat_theme_defs: Dictionary
 # The player's sprite
 var player: Player setget set_player
 
-# The instructor's sprite
-var instructor: Instructor setget set_instructor
+# The sensei's sprite
+var sensei: Sensei setget set_sensei
 
-# The currently focused object
-var _focused: Node2D setget ,get_focused
+# The overworld object which the player will currently interact with if they hit the button
+var focused_chattable: Node2D setget set_focused_chattable
 
 # 'false' if the player is temporarily disallowed from interacting with nearby objects, such as while chatting
 var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
 
-# Mapping from chatter names to Creature objects. The player and instructor are omitted from this mapping, as the
+# Mapping from chatter names to Creature objects. The player and sensei are omitted from this mapping, as the
 # player can set their own name and it could conflict with overworld creatures.
 #
 # key: chatter name as it appears in dialog files
@@ -34,7 +34,7 @@ var _creatures_by_chatter_name := {}
 
 func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
-	var new_focus: Node2D
+	var new_focused_chattable: Node2D
 
 	if _focus_enabled and player:
 		# iterate over all chattables and find the nearest one
@@ -60,11 +60,10 @@ func _physics_process(_delta: float) -> void:
 			var distance: float = Global.from_iso(chattable_pos).distance_to(Global.from_iso(player_pos))
 			if distance <= min_distance:
 				min_distance = distance
-				new_focus = chattable
+				new_focused_chattable = chattable
 	
-	if new_focus != _focused:
-		_focused = new_focus
-		emit_signal("focus_changed")
+	if new_focused_chattable != focused_chattable:
+		set_focused_chattable(new_focused_chattable)
 
 
 """
@@ -82,14 +81,14 @@ func refresh_creatures() -> void:
 """
 Returns the Creature object corresponding to the specified chatter name.
 
-A name of CREATURE_ID_INSTRUCTOR or CREATURE_ID_PLAYER will return the instructor or player object. To avoid
-conflicts, the instructor or player cannot be retrieved by their actual name.
+A name of SENSEI_ID or PLAYER_ID will return the sensei or player object. To avoid
+conflicts, the sensei or player cannot be retrieved by their actual name.
 """
 func get_creature_by_chatter_name(chatter_name: String) -> Creature:
 	var result: Creature
 	match chatter_name:
-		Global.CREATURE_ID_INSTRUCTOR: result = ChattableManager.instructor
-		Global.CREATURE_ID_PLAYER: result = ChattableManager.player
+		Global.SENSEI_ID: result = ChattableManager.sensei
+		Global.PLAYER_ID: result = ChattableManager.player
 		_:
 			if _creatures_by_chatter_name.has(chatter_name):
 				result = _creatures_by_chatter_name[chatter_name]
@@ -97,21 +96,20 @@ func get_creature_by_chatter_name(chatter_name: String) -> Creature:
 
 
 """
-Loads the chat events for the currently focused chatter.
+Loads the chat events for the currently focused chattable.
 
 Returns an array of ChatEvent objects for the dialog sequence which the player should see.
 """
 func load_chat_events() -> ChatTree:
 	var chat_tree: ChatTree
-	var focused: Node = get_focused()
-	if focused is Creature:
-		chat_tree = ChatLibrary.load_chat_events_for_creature(focused)
-	elif focused.has_meta("chat_path"):
-		var chat_path: String = focused.get_meta("chat_path")
+	if focused_chattable is Creature:
+		chat_tree = ChatLibrary.load_chat_events_for_creature(focused_chattable)
+	elif focused_chattable.has_meta("chat_path"):
+		var chat_path: String = focused_chattable.get_meta("chat_path")
 		chat_tree = ChatLibrary.load_chat_events_from_file(chat_path)
 	else:
 		# can't look up chat events without a chat_path; return an empty array
-		push_warning("Chattable %s does not define a 'chat_path' property." % focused)
+		push_warning("Chattable %s does not define a 'chat_path' property." % focused_chattable)
 	return chat_tree
 
 
@@ -123,33 +121,34 @@ possible for an invisible object from a previous scene to receive focus.
 """
 func clear() -> void:
 	player = null
-	_focused = null
+	focused_chattable = null
 
 
 func set_player(new_player: Player) -> void:
 	player = new_player
 	_remove_from_creatures_by_chatter_name(player)
-	add_chat_theme_def(Global.CREATURE_ID_PLAYER, player.get_meta("chat_theme_def"))
+	add_chat_theme_def(Global.PLAYER_ID, player.get_meta("chat_theme_def"))
 
 
-func set_instructor(new_instructor: Instructor) -> void:
-	instructor = new_instructor
-	_remove_from_creatures_by_chatter_name(instructor)
-	add_chat_theme_def(Global.CREATURE_ID_INSTRUCTOR, instructor.get_meta("chat_theme_def"))
+func set_sensei(new_sensei: Sensei) -> void:
+	sensei = new_sensei
+	_remove_from_creatures_by_chatter_name(sensei)
+	add_chat_theme_def(Global.SENSEI_ID, sensei.get_meta("chat_theme_def"))
 
 
-"""
-Returns the overworld object which the player will currently interact with if they hit the button.
-"""
-func get_focused() -> Node2D:
-	return _focused
+func set_focused_chattable(new_focused_chattable: Node2D) -> void:
+	if focused_chattable == new_focused_chattable:
+		return
+	
+	focused_chattable = new_focused_chattable
+	emit_signal("focus_changed")
 
 
 """
 Returns 'true' if the player will currently interact with the specified object if they hit the button.
 """
 func is_focused(chattable: Node2D) -> bool:
-	return chattable == _focused
+	return chattable == focused_chattable
 
 
 """
@@ -163,9 +162,7 @@ func set_focus_enabled(new_focus_enabled: bool) -> void:
 	_focus_enabled = new_focus_enabled
 	
 	if not _focus_enabled:
-		_focused = null
-		# when focus is globally disabled, chat icons vanish. emit a signal to notify listeners
-		emit_signal("focus_changed")
+		set_focused_chattable(null)
 
 
 """
@@ -183,7 +180,7 @@ dialog line. This function facilitates that.
 """
 func get_chatter(chat_name: String) -> Node2D:
 	var chatter: Node2D
-	if chat_name == Global.CREATURE_ID_PLAYER:
+	if chat_name == Global.PLAYER_ID:
 		chatter = player
 	else:
 		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
@@ -225,11 +222,11 @@ Text variables are pound sign delimited: 'Hello #player#'. This matches the synt
 func substitute_variables(string: String, full_name: bool = false) -> String:
 	var result := string
 	if full_name:
-		result = result.replace(Global.CREATURE_ID_PLAYER, PlayerData.creature_library.player_def.creature_name)
+		result = result.replace(Global.PLAYER_ID, PlayerData.creature_library.player_def.creature_name)
 	else:
-		result = result.replace(Global.CREATURE_ID_PLAYER, PlayerData.creature_library.player_def.creature_short_name)
-	result = result.replace(Global.CREATURE_ID_INSTRUCTOR,
-			PlayerData.creature_library.instructor_def.creature_short_name)
+		result = result.replace(Global.PLAYER_ID, PlayerData.creature_library.player_def.creature_short_name)
+	result = result.replace(Global.SENSEI_ID,
+			PlayerData.creature_library.sensei_def.creature_short_name)
 	return result
 
 
@@ -246,8 +243,8 @@ func _remove_from_creatures_by_chatter_name(creature: Creature) -> void:
 Updates a creature's entry in the '_creatures_by_chatter_name' mapping.
 """
 func _refresh_creature_name(creature: Creature) -> void:
-	if creature == player or creature == instructor:
-		# don't store player or instructor in the 'players by name' table, as it might conflict with other creatures
+	if creature == player or creature == sensei:
+		# don't store player or sensei in the 'players by name' table, as it might conflict with other creatures
 		return
 	
 	if creature.creature_name:

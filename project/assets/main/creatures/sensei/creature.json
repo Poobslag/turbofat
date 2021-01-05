@@ -1,9 +1,9 @@
 {
   "version": "187d",
-  "id": "#instructor#",
+  "id": "#sensei#",
   "name": "Turbo",
   "dna": {
-    "instructor": "true",
+    "sensei": "true",
     "belly": "0",
     "body": "1",
     "body_rgb": "a854cb",

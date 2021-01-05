@@ -6,15 +6,15 @@
       "levels": [
         {
           "id": "tutorial/basics_0",
-          "creature_id": "#instructor#"
+          "creature_id": "#sensei#"
         },
         {
           "id": "tutorial/squish_0",
-          "creature_id": "#instructor#"
+          "creature_id": "#sensei#"
         },
         {
           "id": "tutorial/combo_0",
-          "creature_id": "#instructor#"
+          "creature_id": "#sensei#"
         }
       ]
     },

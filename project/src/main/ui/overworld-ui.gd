@@ -15,7 +15,7 @@ signal chat_cached(chattable)
 # emitted when we present the player with a dialog choice
 signal showed_chat_choices
 
-# Characters involved in the current conversation. This includes the player, instructor and any other participants. We
+# Characters involved in the current conversation. This includes the player, sensei and any other participants. We
 # try to keep them all in frame and facing each other.
 var chatters := []
 
@@ -86,7 +86,7 @@ Turn the the active chat participants towards each other, and make them face the
 """
 func make_chatters_face_eachother() -> void:
 	var center_of_non_player_chatters := get_center_of_chatters(
-			[], [ChattableManager.player, ChattableManager.instructor])
+			[], [ChattableManager.player, ChattableManager.sensei])
 	
 	for chatter in chatters:
 		if chatter == ChattableManager.player:
@@ -99,8 +99,8 @@ func make_chatters_face_eachother() -> void:
 				pass
 			else:
 				chatter.orient_toward(center_of_non_player_chatters)
-		elif chatter == ChattableManager.instructor:
-			# the instructor faces the characters the player is talking to
+		elif chatter == ChattableManager.sensei:
+			# the sensei faces the characters the player is talking to
 			chatter.orient_toward(center_of_non_player_chatters)
 		elif chatter.has_method("orient_toward"):
 			# other characters orient towards the player
@@ -215,7 +215,7 @@ func _on_SettingsButton_pressed() -> void:
 
 
 func _on_TalkButton_pressed() -> void:
-	var focused_chattable := ChattableManager.get_focused()
+	var focused_chattable := ChattableManager.focused_chattable
 	if not focused_chattable:
 		return
 	
@@ -235,4 +235,4 @@ func _on_TalkButton_pressed() -> void:
 		_chat_tree_cache[focused_chattable] = chat_tree
 	chat_tree = _chat_tree_cache[focused_chattable]
 	
-	start_chat(chat_tree, ChattableManager.get_focused())
+	start_chat(chat_tree, ChattableManager.focused_chattable)

@@ -1,7 +1,7 @@
 class_name TutorialMessages
 extends Control
 """
-Shows the instructor's dialog during tutorials.
+Shows the sensei's dialog during tutorials.
 """
 
 # emitted after the full dialog chat line is typed out onscreen, and no messages remain in the queue
@@ -13,19 +13,19 @@ var _huge_font := preload("res://src/main/ui/blogger-sans-bold-72.tres")
 # normal font used for regular dialog
 var _normal_font := preload("res://src/main/ui/blogger-sans-medium-30.tres")
 
-# Queue of instructor messages which will be shown one at a time after a delay. This can also include empty strings
+# Queue of sensei messages which will be shown one at a time after a delay. This can also include empty strings
 # which hide the current message.
 var _message_queue := []
 
 # theme which affects the color and texture of chat messages
-var _instructor_chat_theme: ChatTheme
+var _sensei_chat_theme: ChatTheme
 
 # 'true' after pop_in is called, and 'false' after pop_out is called
 var _popped_in: bool
 
 func _ready() -> void:
-	var instructor_creature_def: CreatureDef = CreatureDef.new().from_json_path(CreatureLoader.INSTRUCTOR_PATH)
-	_instructor_chat_theme = ChatTheme.new(instructor_creature_def.chat_theme_def)
+	var sensei_creature_def: CreatureDef = CreatureDef.new().from_json_path(CreatureLoader.SENSEI_PATH)
+	_sensei_chat_theme = ChatTheme.new(sensei_creature_def.chat_theme_def)
 	_hide_message()
 
 
@@ -37,7 +37,7 @@ func is_all_messages_visible() -> bool:
 
 
 """
-Displays a sequence of messages from the tutorial's instructor.
+Displays a sequence of messages from the sensei.
 """
 func set_messages(messages: Array) -> void:
 	set_message(messages[0] if messages else "")
@@ -46,7 +46,7 @@ func set_messages(messages: Array) -> void:
 
 
 """
-Displays a message from the tutorial's instructor.
+Displays a message from the sensei.
 """
 func set_message(message: String) -> void:
 	_clear_message_queue()
@@ -54,7 +54,7 @@ func set_message(message: String) -> void:
 
 
 """
-Displays a BIG message from the tutorial's instructor, for use in easter eggs.
+Displays a BIG message from the sensei, for use in easter eggs.
 """
 func set_big_message(message: String) -> void:
 	_clear_message_queue()
@@ -108,8 +108,8 @@ func _show_message(message: String, font: Font = _normal_font) -> void:
 	$Panel.show()
 	$Label.set("custom_fonts/font", font)
 	var chosen_size_index: int = $Label.show_message(message)
-	$Label.update_appearance(_instructor_chat_theme)
-	$Panel.update_appearance(_instructor_chat_theme, chosen_size_index)
+	$Label.update_appearance(_sensei_chat_theme)
+	$Panel.update_appearance(_sensei_chat_theme, chosen_size_index)
 
 
 """

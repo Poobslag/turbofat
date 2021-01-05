@@ -144,7 +144,7 @@ func _handle_squish_move_message() -> void:
 
 
 """
-Shows a diagram explaining how squish moves work, with an accompanying instructor message.
+Shows a diagram explaining how squish moves work, with an accompanying sensei message.
 """
 func _show_next_diagram() -> void:
 	var hud_messages := []
@@ -191,7 +191,7 @@ func _on_Playfield_box_built(_rect: Rect2, _color: int) -> void:
 """
 After a piece is written to the playfield, we check if the player should advance further in the tutorial.
 
-We also sometimes display messages from the instructor.
+We also sometimes display messages from the sensei.
 """
 func _on_PuzzleScore_after_piece_written() -> void:
 	# print tutorial messages if the player did something noteworthy

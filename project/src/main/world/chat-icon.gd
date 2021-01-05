@@ -9,16 +9,16 @@ signal vanish_finished
 
 enum BubbleType {
 	NONE,
-	SPEECH, # large chat bubble for notable/interesting chats
-	THOUGHT, # thought bubble
 	FILLER, # small chat bubble for one-liner/filler chats
+	THOUGHT, # thought bubble
+	SPEECH, # large chat bubble for notable/interesting chats
 	FOOD, # food bubble for chats which launch a puzzle
 }
 
 const NONE := BubbleType.NONE
-const SPEECH := BubbleType.SPEECH
-const THOUGHT := BubbleType.THOUGHT
 const FILLER := BubbleType.FILLER
+const THOUGHT := BubbleType.THOUGHT
+const SPEECH := BubbleType.SPEECH
 const FOOD := BubbleType.FOOD
 
 # The chat icons bounce. These constants control how they bounce.
@@ -32,9 +32,9 @@ const COLOR_UNFOCUSED := Color(1.0, 1.0, 1.0, 0.25)
 # mapping from chat icons to chat bubble sprite frames
 const BUBBLE_TYPE_FRAMES := {
 	NONE: [],
-	SPEECH: [6, 7, 8],
-	THOUGHT: [3, 4, 5],
 	FILLER: [0, 1, 2],
+	THOUGHT: [3, 4, 5],
+	SPEECH: [6, 7, 8],
 	FOOD: [9, 10, 11, 12]
 }
 

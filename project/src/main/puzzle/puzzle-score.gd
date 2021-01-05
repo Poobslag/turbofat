@@ -100,7 +100,7 @@ var game_ended: bool
 var speed_index: int setget set_speed_index
 
 # This is true if the final customer has been fed and we shouldn't rotate to any other customers. It also gets used
-# for tutorials to prevent the instructor from leaving.
+# for tutorials to prevent the sensei from leaving.
 var no_more_customers: bool
 
 func _physics_process(_delta: float) -> void:
