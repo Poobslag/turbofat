@@ -1,7 +1,7 @@
 [gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/creature/instructor.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=2]
 [ext_resource path="res://src/main/outline.shader" type="Shader" id=3]
 [ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=4]
 [ext_resource path="res://assets/main/world/environment/turbofat-restaurant.png" type="Texture" id=5]
@@ -94,7 +94,7 @@ dna = {
 }
 orientation = 1
 
-[node name="Instructor" parent="." instance=ExtResource( 7 )]
+[node name="Sensei" parent="." instance=ExtResource( 7 )]
 position = Vector2( 269, 220 )
 script = ExtResource( 2 )
 dna = {
@@ -102,7 +102,7 @@ dna = {
 }
 player_path = NodePath("../Player")
 
-[node name="MoveTimer" type="Timer" parent="Instructor"]
+[node name="MoveTimer" type="Timer" parent="Sensei"]
 wait_time = 0.3
 autostart = true
 
@@ -198,4 +198,4 @@ id = "restaurant-player"
 
 [node name="Spawn2" parent="." instance=ExtResource( 16 )]
 position = Vector2( 1192, 676 )
-id = "restaurant-instructor"
+id = "restaurant-sensei"

@@ -19,15 +19,15 @@ func _ready() -> void:
 		move_creature_to_spawn(ChattableManager.player, Global.player_spawn_id)
 	$Camera.position = ChattableManager.player.position
 	
-	if Global.instructor_spawn_id:
-		move_creature_to_spawn(ChattableManager.instructor, Global.instructor_spawn_id)
+	if Global.sensei_spawn_id:
+		move_creature_to_spawn(ChattableManager.sensei, Global.sensei_spawn_id)
 	
 	if Level.launched_level_id:
 		_overworld_ui.cutscene = true
 		
 		# remove all of the creatures from the overworld
 		for node in get_tree().get_nodes_in_group("creatures"):
-			if node != ChattableManager.player and node != ChattableManager.instructor:
+			if node != ChattableManager.player and node != ChattableManager.sensei:
 				node.queue_free()
 		
 		# add the cutscene creatures

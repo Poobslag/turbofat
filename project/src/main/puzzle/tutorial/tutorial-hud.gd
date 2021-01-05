@@ -88,21 +88,21 @@ func add_skill_tally_item(item: SkillTallyItem) -> void:
 
 
 """
-Displays a sequence of messages from the tutorial's instructor.
+Displays a sequence of messages from the sensei.
 """
 func set_messages(messages: Array) -> void:
 	$Messages.set_messages(messages)
 
 
 """
-Displays a message from the tutorial's instructor.
+Displays a message from the sensei.
 """
 func set_message(message: String) -> void:
 	$Messages.set_message(message)
 
 
 """
-Displays a BIG message from the tutorial's instructor, for use in easter eggs.
+Displays a BIG message from the sensei, for use in easter eggs.
 """
 func set_big_message(message: String) -> void:
 	$Messages.set_big_message(message)

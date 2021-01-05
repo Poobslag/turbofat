@@ -157,7 +157,7 @@ func _advance_level() -> void:
 
 
 """
-Shows a diagram explaining how combos moves work, with an accompanying instructor message.
+Shows a diagram explaining how combos moves work, with an accompanying sensei message.
 """
 func _show_next_diagram() -> void:
 	var hud_messages := []
@@ -191,7 +191,7 @@ func _on_PieceManager_piece_spawned() -> void:
 """
 After a piece is written to the playfield, we check if the player should advance further in the tutorial.
 
-We also sometimes display messages from the instructor.
+We also sometimes display messages from the sensei.
 """
 func _on_PuzzleScore_after_piece_written() -> void:
 	match Level.settings.id:

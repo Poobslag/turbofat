@@ -14,7 +14,7 @@ const GENERIC_FATNESS_COUNT := 150
 const MAX_FILLER_FATNESS := 2.5
 
 var player_def: CreatureDef
-var instructor_def: CreatureDef
+var sensei_def: CreatureDef
 
 # fatnesses by creature id
 var _fatnesses: Dictionary
@@ -52,8 +52,8 @@ func reset() -> void:
 	player_def.min_fatness = 1.0
 	player_def.chat_theme_def = CreatureDef.DEFAULT_CHAT_THEME_DEF.duplicate()
 	
-	if not instructor_def:
-		instructor_def = CreatureLoader.load_creature_def_by_id(Global.CREATURE_ID_INSTRUCTOR)
+	if not sensei_def:
+		sensei_def = CreatureLoader.load_creature_def_by_id(Global.SENSEI_ID)
 
 
 """
@@ -98,15 +98,15 @@ func set_fatness(creature_id: String, fatness: float) -> void:
 
 func to_json_dict() -> Dictionary:
 	return {
-		Global.CREATURE_ID_PLAYER: player_def.to_json_dict(),
+		Global.PLAYER_ID: player_def.to_json_dict(),
 		"fatnesses": _fatnesses,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
 	reset()
-	if json.has(Global.CREATURE_ID_PLAYER):
-		player_def.from_json_dict(json.get(Global.CREATURE_ID_PLAYER, {}))
+	if json.has(Global.PLAYER_ID):
+		player_def.from_json_dict(json.get(Global.PLAYER_ID, {}))
 	if json.has("fatnesses"):
 		_fatnesses = json.get("fatnesses")
 		_normalize_filler_fatnesses()

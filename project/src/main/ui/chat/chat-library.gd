@@ -56,8 +56,8 @@ Returns a ChatIcon enum representing the creature's next conversation.
 """
 func chat_icon_for_creature(creature: Creature) -> int:
 	var result := ChatIcon.NONE
-	if creature == ChattableManager.instructor or creature == ChattableManager.player:
-		# no chat icon for player or instructor
+	if creature == ChattableManager.sensei or creature == ChattableManager.player:
+		# no chat icon for player or sensei
 		pass
 	elif _first_unfinished_level_num(creature) >= 1:
 		# food chat icon if the chat will launch a puzzle

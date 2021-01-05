@@ -30,9 +30,6 @@ scale = Vector2( 0.34, 0.34 )
 script = ExtResource( 3 )
 texture = ExtResource( 4 )
 frame_data = "res://assets/main/world/chat-icon-packed.json"
-rect_size = Vector2( 100, 100 )
-frame = 0
-centered = true
 offset = Vector2( 0, -128 )
 
 [node name="PulsePlayer" type="AnimationPlayer" parent="."]

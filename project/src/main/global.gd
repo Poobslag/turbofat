@@ -22,8 +22,9 @@ const FATNESSES := [
 	1.8, 2.3,
 ]
 
-const CREATURE_ID_INSTRUCTOR := "#instructor#"
-const CREATURE_ID_PLAYER := "#player#"
+# unique creature ids
+const SENSEI_ID := "#sensei#"
+const PLAYER_ID := "#player#"
 
 # The factor to multiply by to convert non-isometric coordinates into isometric coordinates
 const ISO_FACTOR := Vector2(1.0, 0.5)
@@ -41,8 +42,8 @@ var greetiness := 0.0
 # the id of the spawn where the player appears on the overworld
 var player_spawn_id: String
 
-# the id of the spawn where the instructor appears on the overworld
-var instructor_spawn_id: String
+# the id of the spawn where the sensei appears on the overworld
+var sensei_spawn_id: String
 
 func _init() -> void:
 	# ensure music, pieces are random
