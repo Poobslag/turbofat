@@ -101,3 +101,8 @@ func should_chat() -> bool:
 	else:
 		should_chat = false
 	return should_chat
+
+
+func get_overworld_ui() -> OverworldUi:
+	var nodes := get_tree().get_nodes_in_group("overworld_ui")
+	return nodes[0]

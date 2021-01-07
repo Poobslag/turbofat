@@ -32,6 +32,10 @@ var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
 # value: Creature object corresponding to the chatter name 
 var _creatures_by_chatter_name := {}
 
+func _ready() -> void:
+	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
+
+
 func _physics_process(_delta: float) -> void:
 	var min_distance := MAX_INTERACT_DISTANCE
 	var new_focused_chattable: Node2D
@@ -111,17 +115,6 @@ func load_chat_events() -> ChatTree:
 		# can't look up chat events without a chat_path; return an empty array
 		push_warning("Chattable %s does not define a 'chat_path' property." % focused_chattable)
 	return chat_tree
-
-
-"""
-Purges all node instances from the manager.
-
-Because ChattableManager is a singleton, node instances must be purged before changing scenes. Otherwise it's
-possible for an invisible object from a previous scene to receive focus.
-"""
-func clear() -> void:
-	player = null
-	focused_chattable = null
 
 
 func set_player(new_player: Player) -> void:
@@ -255,3 +248,15 @@ func _refresh_creature_name(creature: Creature) -> void:
 
 func _on_Creature_creature_name_changed(creature: Creature) -> void:
 	_refresh_creature_name(creature)
+
+
+"""
+Purges all node instances from the manager.
+
+Because ChattableManager is a singleton, node instances must be purged before changing scenes. Otherwise it's
+possible for an invisible object from a previous scene to receive focus.
+"""
+func _on_Breadcrumb_before_scene_changed() -> void:
+	player = null
+	sensei = null
+	focused_chattable = null

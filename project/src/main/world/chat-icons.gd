@@ -5,13 +5,12 @@ Creates and initializes chat icons for all chattables in the scene tree.
 """
 
 export (PackedScene) var ChatIconScene: PackedScene
-export (NodePath) var overworld_ui_path: NodePath
 
 # key: Node2D in the 'chattable' node group
 # value: ChatIcon instance
 var _chat_icon_by_chattable: Dictionary
 
-onready var overworld_ui: OverworldUi = get_node(overworld_ui_path)
+onready var overworld_ui: OverworldUi = Global.get_overworld_ui()
 
 func _ready() -> void:
 	overworld_ui.connect("chat_cached", self, "_on_OverworldUi_chat_cached")

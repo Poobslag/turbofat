@@ -14,6 +14,9 @@ Parameters:
 """
 signal trail_popped(prev_path)
 
+# Emitted before this class changes the running scene.
+signal before_scene_changed
+
 var trail := []
 
 """
@@ -62,6 +65,7 @@ func replace_trail(path: String) -> void:
 Changes the running scene to the one at the front of the breadcrumb trail.
 """
 func _change_scene() -> void:
+	emit_signal("before_scene_changed")
 	if trail:
 		if ResourceCache.has_cached_resource(trail.front()):
 			get_tree().change_scene_to(ResourceCache.get_cached_resource(trail.front()))
