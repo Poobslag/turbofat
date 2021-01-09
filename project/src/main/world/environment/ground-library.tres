@@ -5,7 +5,7 @@
 [resource]
 0/name = "marsh-block"
 0/texture = ExtResource( 1 )
-0/tex_offset = Vector2( 0, 20 )
+0/tex_offset = Vector2( 0, 35 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 675, 750 )
 0/tile_mode = 1
