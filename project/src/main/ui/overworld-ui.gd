@@ -1,5 +1,5 @@
 class_name OverworldUi
-extends Control
+extends CanvasLayer
 """
 UI elements for the overworld.
 
@@ -69,7 +69,7 @@ func start_chat(new_chat_tree: ChatTree, target: Node2D) -> void:
 	
 	# reset state variables
 	_next_chat_tree = null
-	$ChatUi.play_chat_tree(_current_chat_tree)
+	$Control/ChatUi.play_chat_tree(_current_chat_tree)
 
 
 func set_show_version(new_show_version: bool) -> void:
@@ -148,12 +148,12 @@ func is_drive_by_chat() -> bool:
 Updates the different UI components to be visible/invisible based on the UI's current state.
 """
 func _update_visible() -> void:
-	$ChatUi.visible = true if chatters else false
-	$Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
+	$Control/ChatUi.visible = true if chatters else false
+	$Control/Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
 
 
 func _refresh_rect_size() -> void:
-	rect_size = get_viewport_rect().size
+	$Control.rect_size = $Control.get_viewport_rect().size
 
 
 func _on_ChatUi_pop_out_completed() -> void:
@@ -163,7 +163,7 @@ func _on_ChatUi_pop_out_completed() -> void:
 		_current_chat_tree = _next_chat_tree
 		# don't reset launched_level; this is currently set by the first of a series of chat trees
 		_next_chat_tree = null
-		$ChatUi.play_chat_tree(_current_chat_tree)
+		$Control/ChatUi.play_chat_tree(_current_chat_tree)
 	else:
 		# unset mood
 		for chatter in chatters:
@@ -176,7 +176,6 @@ func _on_ChatUi_pop_out_completed() -> void:
 		emit_signal("chat_ended")
 		
 		if Level.launched_level_id:
-			ChattableManager.clear()
 			Level.push_level_trail()
 			
 			if cutscene:
@@ -198,7 +197,6 @@ func _on_ChatUi_showed_choices() -> void:
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
-	ChattableManager.clear()
 	Breadcrumb.pop_trail()
 
 
@@ -207,11 +205,11 @@ func _on_Viewport_size_changed() -> void:
 
 
 func _on_CellPhoneButton_pressed() -> void:
-	$CellPhoneMenu.show()
+	$Control/CellPhoneMenu.show()
 
 
 func _on_SettingsButton_pressed() -> void:
-	$SettingsMenu.show()
+	$Control/SettingsMenu.show()
 
 
 func _on_TalkButton_pressed() -> void:

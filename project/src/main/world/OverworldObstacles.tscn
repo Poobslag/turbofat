@@ -63,7 +63,6 @@ creature_id = "bort"
 dna = {
 
 }
-overworld_ui_path = NodePath("../../../Ui/OverworldUi")
 
 [node name="MoveTimer" type="Timer" parent="Bort"]
 wait_time = 1.6
@@ -78,7 +77,6 @@ creature_id = "ebe"
 dna = {
 
 }
-overworld_ui_path = NodePath("../../../Ui/OverworldUi")
 
 [node name="MoveTimer" type="Timer" parent="Ebe"]
 wait_time = 0.9
@@ -100,7 +98,6 @@ script = ExtResource( 2 )
 dna = {
 
 }
-player_path = NodePath("../Player")
 
 [node name="MoveTimer" type="Timer" parent="Sensei"]
 wait_time = 0.3

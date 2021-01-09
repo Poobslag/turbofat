@@ -14,9 +14,6 @@ const ZOOM_DEFAULT := Vector2(1.0, 1.0)
 # how far from the camera center the player needs to be before the camera zooms out
 const AUTO_ZOOM_OUT_DISTANCE := 100.0
 
-export (NodePath) var player_path: NodePath
-export (NodePath) var overworld_ui_path: NodePath
-
 # 'true' if the camera should currently be zoomed in for a conversation
 var close_up: bool setget set_close_up
 
@@ -29,8 +26,12 @@ var close_up_position: Vector2
 # zoom amount for the current conversation; we don't zoom in as much if the creature is fat
 var zoom_close_up := ZOOM_CLOSE_UP
 
-onready var _player: Player = get_node(player_path)
-onready var _overworld_ui: OverworldUi = get_node(overworld_ui_path)
+onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
+
+func _ready() -> void:
+	_overworld_ui.connect("chat_started", self, "_on_OverworldUi_chat_started")
+	_overworld_ui.connect("chat_ended", self, "_on_OverworldUi_chat_ended")
+
 
 func _process(_delta: float) -> void:
 	# calculate the position to zoom in to
@@ -42,10 +43,10 @@ func _process(_delta: float) -> void:
 		zoom_close_up = lerp(ZOOM_CLOSE_UP, ZOOM_DEFAULT, inverse_lerp(1.0, 10.0, max_visual_fatness))
 		close_up_position = _overworld_ui.get_center_of_chatters()
 	
-	position = lerp(_player.position, close_up_position, close_up_pct)
+	position = lerp(ChattableManager.player.position, close_up_position, close_up_pct)
 	zoom = lerp(ZOOM_DEFAULT, zoom_close_up, close_up_pct)
 	
-	if close_up and _player.position.distance_to(close_up_position) > AUTO_ZOOM_OUT_DISTANCE:
+	if close_up and ChattableManager.player.position.distance_to(close_up_position) > AUTO_ZOOM_OUT_DISTANCE:
 		# player left the chat area; zoom back out
 		set_close_up(false)
 

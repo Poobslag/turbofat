@@ -4,12 +4,10 @@ Covers the screen during scene transitions.
 """
 
 func _ready() -> void:
-	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
 	$Tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 	SceneTransition.connect("fade_in_started", self, "_on_SceneTransition_fade_in_started")
 	
-	_refresh_rect_size()
 	_initialize_fade()
 
 
@@ -33,14 +31,6 @@ func _launch_fade_tween(new_alpha: float, duration: float) -> void:
 	$Tween.remove_all()
 	$Tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate, new_alpha), duration)
 	$Tween.start()
-
-
-func _refresh_rect_size() -> void:
-	rect_size = get_viewport_rect().size
-
-
-func _on_Viewport_size_changed() -> void:
-	_refresh_rect_size()
 
 
 func _on_SceneTransition_fade_out_started() -> void:

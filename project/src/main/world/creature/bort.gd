@@ -5,9 +5,7 @@ Script which controls a character 'Bort' on the overworld.
 Makes him run back and forth.
 """
 
-export (NodePath) var overworld_ui_path: NodePath
-
-onready var _overworld_ui: OverworldUi = get_node(overworld_ui_path)
+onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 
 func _ready() -> void:
 	_overworld_ui.connect("chat_started", self, "_on_OverworldUi_chat_started")
