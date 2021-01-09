@@ -15,18 +15,17 @@ chat selectors until it finds one suitable for the current game state.
 Parameters:
 	'creature': The creature whose conversation should be returned
 	
-	'level_num': (Optional) The current level being chosen; '1' being the creature's first level. If specified, this
-			allows the creature to say something about the upcoming level.
+	'forced_level_num': (Optional) The current level being chosen; '1' being the creature's first level. If omitted,
+		the level_num will be calculated based on the first unfinished unlocked level available.
 """
-func load_chat_events_for_creature(creature: Creature, level_num: int = -1) -> ChatTree:
+func load_chat_events_for_creature(creature: Creature, forced_level_num: int = -1) -> ChatTree:
+	var level_num := _first_unfinished_level_num(creature) if forced_level_num == -1 else forced_level_num
+	
 	var state := {
 		"creature_id": creature.creature_id,
 		"notable_chat": PlayerData.chat_history.get_filler_count(creature.creature_id) > 0,
 		"level_num": level_num
 	}
-	
-	if state["level_num"] == -1:
-		state["level_num"] = _first_unfinished_level_num(creature)
 	
 	# returning dialog for the creature
 	var filler_ids := _filler_ids_for_creature(creature)
@@ -42,11 +41,11 @@ func load_chat_events_for_creature(creature: Creature, level_num: int = -1) -> C
 				[creature.creature_id, chosen_dialog.replace("_", "-")]
 		chat_tree = load_chat_events_from_file(path)
 	
-	if state["level_num"] >= 1:
+	if level_num >= 1:
 		# schedule a level to launch when the dialog completes
 		var level_ids := creature.get_level_ids()
-		var level_id: String = level_ids[state["level_num"] - 1]
-		Level.set_launched_level(level_id, creature.creature_id, state["level_num"])
+		var level_id: String = level_ids[level_num - 1]
+		Level.set_launched_level(level_id, creature.creature_id, level_num)
 	
 	return chat_tree
 

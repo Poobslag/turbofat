@@ -1,8 +1,6 @@
-[gd_resource type="TileSet" load_steps=4 format=2]
+[gd_resource type="TileSet" load_steps=2 format=2]
 
 [ext_resource path="res://assets/main/world/environment/marsh-frosting-sheet.png" type="Texture" id=1]
-[ext_resource path="res://assets/main/world/environment/path-stone-sheet.png" type="Texture" id=2]
-[ext_resource path="res://assets/main/world/environment/cliff-block-rock.png" type="Texture" id=4]
 
 [resource]
 0/name = "marsh-block"
@@ -28,40 +26,3 @@
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
-21/name = "path"
-21/texture = ExtResource( 2 )
-21/tex_offset = Vector2( 0, 20 )
-21/modulate = Color( 1, 1, 1, 1 )
-21/region = Rect2( 0, 0, 740, 848 )
-21/tile_mode = 1
-21/autotile/bitmask_mode = 1
-21/autotile/bitmask_flags = [ Vector2( 0, 1 ), 21299224, Vector2( 0, 2 ), 21299376, Vector2( 0, 3 ), 21823666, Vector2( 1, 0 ), 21299218, Vector2( 1, 1 ), 21299226, Vector2( 1, 2 ), 21299256, Vector2( 1, 3 ), 21430456, Vector2( 2, 0 ), 21299344, Vector2( 2, 1 ), 21299352, Vector2( 2, 2 ), 21299256, Vector2( 3, 0 ), 21299346, Vector2( 3, 1 ), 21299248, Vector2( 3, 2 ), 23396506, Vector2( 4, 0 ), 21299346, Vector2( 4, 1 ), 21299250, Vector2( 4, 2 ), 29687866 ]
-21/autotile/icon_coordinate = Vector2( 0, 0 )
-21/autotile/tile_size = Vector2( 148, 212 )
-21/autotile/spacing = 0
-21/autotile/occluder_map = [  ]
-21/autotile/navpoly_map = [  ]
-21/autotile/priority_map = [  ]
-21/autotile/z_index_map = [  ]
-21/occluder_offset = Vector2( 0, 0 )
-21/navigation_offset = Vector2( 0, 0 )
-21/shape_offset = Vector2( 0, 0 )
-21/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-21/shape_one_way = false
-21/shape_one_way_margin = 0.0
-21/shapes = [  ]
-21/z_index = 0
-22/name = "cliff-block-rock"
-22/texture = ExtResource( 4 )
-22/tex_offset = Vector2( 0, 20 )
-22/modulate = Color( 1, 1, 1, 1 )
-22/region = Rect2( 0, 0, 148, 212 )
-22/tile_mode = 0
-22/occluder_offset = Vector2( 0, 0 )
-22/navigation_offset = Vector2( 0, 0 )
-22/shape_offset = Vector2( 0, 0 )
-22/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-22/shape_one_way = false
-22/shape_one_way_margin = 0.0
-22/shapes = [  ]
-22/z_index = 0

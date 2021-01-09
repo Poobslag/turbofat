@@ -15,9 +15,6 @@ $$$ Blogger Sans by Sergiy Tkachenko (https://firstsiteguide.com) (Creative Comm
 $$ Fredoka One by Milena Brandao
 $$ Modak by Ek Type
 
-Models:
-$$ Nature Kit 2.1 by Kenney (www.kenney.nl) (CC0 1.0 Universal)
-
 Other:
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
 $$ Gut by Tom "Butch" Wesley (MIT License)
@@ -104,9 +101,6 @@ project/assets/main/ui/touch/rotate-ccw-pressed.png 'Empty', 'Circular arrrow' b
 project/assets/main/ui/touch/rotate-ccw.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw-pressed.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw.png 'Empty', 'Circular arrrow' by Freepik
-project/assets/main/world/environment/cliff-block-rock.png Kenney's Nature Kit 2.1
-project/assets/main/world/environment/cliff-block-rockrock.png Kenney's Nature Kit 2.1
-project/assets/main/world/environment/path-stone-sheet.png Kenney's Nature Kit 2.1
 
 Fonts
 --------------------------------------------------------------------------------

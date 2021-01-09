@@ -11,7 +11,7 @@ var _shadow_caster: Node2D
 
 func _ready() -> void:
 	visible = false
-	_refresh_creature_path()
+	_refresh_shadow_caster_path()
 
 
 func _physics_process(_delta: float) -> void:
@@ -22,13 +22,13 @@ func _physics_process(_delta: float) -> void:
 
 func set_shadow_caster_path(new_shadow_caster_path: NodePath) -> void:
 	shadow_caster_path = new_shadow_caster_path
-	_refresh_creature_path()
+	_refresh_shadow_caster_path()
 
 
 """
 Connects the shadow to a new shadow caster and updates its position.
 """
-func _refresh_creature_path() -> void:
+func _refresh_shadow_caster_path() -> void:
 	if not (is_inside_tree() and shadow_caster_path):
 		return
 	
