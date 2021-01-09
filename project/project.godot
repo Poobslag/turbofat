@@ -389,7 +389,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/environment/oval-shadow.gd"
 }, {
-"base": "Reference",
+"base": "CanvasLayer",
 "class": "OverworldUi",
 "language": "GDScript",
 "path": "res://src/main/ui/overworld-ui.gd"

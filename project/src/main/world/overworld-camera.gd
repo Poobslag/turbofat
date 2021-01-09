@@ -34,6 +34,10 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	if not ChattableManager.player:
+		# The overworld camera follows the player. If there is no player, we have nothing to follow
+		return
+	
 	# calculate the position to zoom in to
 	if _overworld_ui.chatters:
 		var max_visual_fatness := 1.0

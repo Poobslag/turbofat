@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=2]
@@ -10,8 +10,6 @@
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/environment/MarshTree.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/main/world/environment/GrassTuft.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/main/world/environment/grass-tufts.gd" type="Script" id=12]
 [ext_resource path="res://src/main/world/creature/ebe.gd" type="Script" id=13]
 [ext_resource path="res://src/main/world/creature/bort.gd" type="Script" id=14]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=15]
@@ -41,11 +39,6 @@ format = 1
 script = ExtResource( 6 )
 ground_map_path = NodePath("../../Ground/Viewport/GroundMap")
 impassable_tile_index = 1
-
-[node name="GrassTufts" type="YSort" parent="."]
-script = ExtResource( 12 )
-ground_map_path = NodePath("../../Ground/Viewport/GroundMap")
-GrassTuftScene = ExtResource( 11 )
 
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 150, 150 )
@@ -181,6 +174,9 @@ shape = SubResource( 2 )
 
 [node name="OverworldExit" parent="." instance=ExtResource( 15 )]
 position = Vector2( 1032, 637 )
+exit_direction = 0
+player_spawn_id = ""
+sensei_spawn_id = ""
 
 [node name="MarshCrystal" parent="." instance=ExtResource( 10 )]
 position = Vector2( 731, 136 )
