@@ -66,13 +66,13 @@ func _prepare_wobblers_for_level() -> void:
 			if cell_contents != PuzzleTileMap.TILE_BOX:
 				continue
 			var autotile_coord := _puzzle_tile_map.get_cell_autotile_coord(x, y)
-			if Connect.is_u(autotile_coord.x) or Connect.is_l(autotile_coord.x):
+			if PuzzleConnect.is_u(autotile_coord.x) or PuzzleConnect.is_l(autotile_coord.x):
 				continue
 			# upper left corner...
 			var rect := Rect2(x, y, 1, 1)
-			while(Connect.is_r(_puzzle_tile_map.get_cell_autotile_coord(rect.end.x - 1, y).x)):
+			while(PuzzleConnect.is_r(_puzzle_tile_map.get_cell_autotile_coord(rect.end.x - 1, y).x)):
 				rect.size.x += 1
-			while(Connect.is_d(_puzzle_tile_map.get_cell_autotile_coord(rect.end.x - 1, rect.end.y - 1).x)):
+			while(PuzzleConnect.is_d(_puzzle_tile_map.get_cell_autotile_coord(rect.end.x - 1, rect.end.y - 1).x)):
 				rect.size.y += 1
 			_add_wobblers_for_box(rect, autotile_coord.y)
 

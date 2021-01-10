@@ -177,14 +177,14 @@ func _process_box(end_x: int, end_y: int, width: int, height: int) -> bool:
 	var start_x := end_x - (width - 1)
 	var start_y := end_y - (height - 1)
 	for x in range(start_x, end_x + 1):
-		if Connect.is_u(_tile_map.get_cell_autotile_coord(x, start_y).x):
+		if PuzzleConnect.is_u(_tile_map.get_cell_autotile_coord(x, start_y).x):
 			return false
-		if Connect.is_d(_tile_map.get_cell_autotile_coord(x, end_y).x):
+		if PuzzleConnect.is_d(_tile_map.get_cell_autotile_coord(x, end_y).x):
 			return false
 	for y in range(start_y, end_y + 1):
-		if Connect.is_l(_tile_map.get_cell_autotile_coord(start_x, y).x):
+		if PuzzleConnect.is_l(_tile_map.get_cell_autotile_coord(start_x, y).x):
 			return false
-		if Connect.is_r(_tile_map.get_cell_autotile_coord(end_x, y).x):
+		if PuzzleConnect.is_r(_tile_map.get_cell_autotile_coord(end_x, y).x):
 			return false
 	
 	# calculate the ingredient string for the box

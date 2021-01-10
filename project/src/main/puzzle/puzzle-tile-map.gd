@@ -94,13 +94,13 @@ func build_box(rect: Rect2, color_int: int) -> void:
 	
 	# top/bottom edge
 	for curr_x in range(rect.position.x, rect.end.x):
-		_disconnect_block(Vector2(curr_x, rect.position.y), Connect.UP)
-		_disconnect_block(Vector2(curr_x, rect.end.y - 1), Connect.DOWN)
+		_disconnect_block(Vector2(curr_x, rect.position.y), PuzzleConnect.UP)
+		_disconnect_block(Vector2(curr_x, rect.end.y - 1), PuzzleConnect.DOWN)
 	
 	# left/right edge
 	for curr_y in range(rect.position.y, rect.end.y):
-		_disconnect_block(Vector2(rect.position.x, curr_y), Connect.LEFT)
-		_disconnect_block(Vector2(rect.end.x - 1, curr_y), Connect.RIGHT)
+		_disconnect_block(Vector2(rect.position.x, curr_y), PuzzleConnect.LEFT)
+		_disconnect_block(Vector2(rect.end.x - 1, curr_y), PuzzleConnect.RIGHT)
 
 
 """
@@ -229,13 +229,13 @@ func _convert_piece_to_veg(pos: Vector2) -> void:
 	set_block(pos, TILE_VEG, Vector2(randi() % 18, vegetable_type))
 	
 	# recurse to neighboring connected cells
-	if get_cellv(pos + Vector2.UP) == 0 and Connect.is_u(old_autotile_coord.x):
+	if get_cellv(pos + Vector2.UP) == 0 and PuzzleConnect.is_u(old_autotile_coord.x):
 		_convert_piece_to_veg(pos + Vector2.UP)
-	if get_cellv(pos + Vector2.DOWN) == 0 and Connect.is_d(old_autotile_coord.x):
+	if get_cellv(pos + Vector2.DOWN) == 0 and PuzzleConnect.is_d(old_autotile_coord.x):
 		_convert_piece_to_veg(pos + Vector2.DOWN)
-	if get_cellv(pos + Vector2.LEFT) == 0 and Connect.is_l(old_autotile_coord.x):
+	if get_cellv(pos + Vector2.LEFT) == 0 and PuzzleConnect.is_l(old_autotile_coord.x):
 		_convert_piece_to_veg(pos + Vector2.LEFT)
-	if get_cellv(pos + Vector2.RIGHT) == 0 and Connect.is_r(old_autotile_coord.x):
+	if get_cellv(pos + Vector2.RIGHT) == 0 and PuzzleConnect.is_r(old_autotile_coord.x):
 		_convert_piece_to_veg(pos + Vector2.RIGHT)
 
 
@@ -251,9 +251,9 @@ bottom of a bread box looks like a delicious frosted snack and the player can te
 """
 func _disconnect_box(pos: Vector2) -> void:
 	if get_cellv(pos + Vector2.UP) == TILE_BOX:
-		_disconnect_block(pos + Vector2.UP, Connect.DOWN)
+		_disconnect_block(pos + Vector2.UP, PuzzleConnect.DOWN)
 	if get_cellv(pos + Vector2.DOWN) == TILE_BOX:
-		_disconnect_block(pos + Vector2.DOWN, Connect.UP)
+		_disconnect_block(pos + Vector2.DOWN, PuzzleConnect.UP)
 
 
 """
@@ -267,7 +267,7 @@ func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
 		# empty cell; nothing to disconnect
 		return
 	var autotile_coord := get_cell_autotile_coord(pos.x, pos.y)
-	autotile_coord.x = Connect.unset_dirs(autotile_coord.x, dir_mask)
+	autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, dir_mask)
 	set_block(pos, get_cellv(pos), autotile_coord)
 
 

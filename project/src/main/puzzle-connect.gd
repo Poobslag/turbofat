@@ -1,9 +1,13 @@
-class_name Connect
+class_name PuzzleConnect
 """
-Map integers such as '14' to autotile coordinates such as 'LEFT | RIGHT | DOWN'
+Map integers such as '14' to puzzle autotile coordinates such as 'LEFT | RIGHT | DOWN'
+
+This is useful for tiles which are arranged so that the X coordinates of the tiles correspond to the directions they're
+connected. This type of tilemap is used for puzzle pieces.
 """
 
-# constants used when drawing tiles which are connected to other tiles
+# Constants used when drawing tiles which are connected to other tiles. These serve a similar purpose to the
+# TileSet.BIND_TOP constants, but with smaller values.
 const UP := 1
 const DOWN := 2
 const LEFT := 4

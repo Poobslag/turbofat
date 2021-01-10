@@ -19,13 +19,10 @@ Parameters:
 		the level_num will be calculated based on the first unfinished unlocked level available.
 """
 func load_chat_events_for_creature(creature: Creature, forced_level_num: int = -1) -> ChatTree:
-	var level_num := _first_unfinished_level_num(creature) if forced_level_num == -1 else forced_level_num
-	
-	var state := {
-		"creature_id": creature.creature_id,
-		"notable_chat": PlayerData.chat_history.get_filler_count(creature.creature_id) > 0,
-		"level_num": level_num
-	}
+	var state := _creature_chat_state(creature)
+	if forced_level_num != -1:
+		state["level_num"] = forced_level_num
+	var level_num: int = state["level_num"]
 	
 	# returning dialog for the creature
 	var filler_ids := _filler_ids_for_creature(creature)
@@ -63,10 +60,7 @@ func chat_icon_for_creature(creature: Creature) -> int:
 		result = ChatIcon.FOOD
 	else:
 		# filler/speech icon for normal conversations
-		var state := {
-			"creature_id": creature.creature_id,
-			"notable_chat": PlayerData.chat_history.get_filler_count(creature.creature_id) > 0
-		}
+		var state := _creature_chat_state(creature)
 		var filler_ids := _filler_ids_for_creature(creature)
 		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
 		result = ChatIcon.FILLER if filler_ids.has(chosen_dialog) else ChatIcon.SPEECH
@@ -113,7 +107,7 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 		var repeat_age: int = chat_selector.get("repeat", 25)
 		var history_key := "dialog/%s/%s" % [creature_id, chat_selector["dialog"]]
 		var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
-		if chat_age != -1 and chat_age < repeat_age:
+		if chat_age < repeat_age:
 			# skip; we've had this conversation too recently
 			continue
 		
@@ -138,7 +132,7 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 		for filler_id in filler_ids:
 			var history_key := "dialog/%s/%s" % [creature_id, filler_id]
 			var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
-			if not result or chat_age == -1 or chat_age > result_chat_age:
+			if not result or chat_age > result_chat_age:
 				# found an older filler conversation; replace the current result
 				result = filler_id
 				result_chat_age = chat_age
@@ -238,3 +232,14 @@ func _first_unfinished_level_num(creature: Creature) -> int:
 		level_num = level_id_index + 1
 		break
 	return level_num
+
+
+"""
+Returns metadata about a creature's recent chats, and whether they're due for an interesting chat.
+"""
+func _creature_chat_state(creature: Creature) -> Dictionary:
+	return {
+		"creature_id": creature.creature_id,
+		"notable_chat": PlayerData.chat_history.get_filler_count(creature.creature_id) > 0,
+		"level_num": _first_unfinished_level_num(creature)
+	}
