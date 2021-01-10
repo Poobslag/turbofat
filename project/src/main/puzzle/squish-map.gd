@@ -34,13 +34,13 @@ func _process(delta: float) -> void:
 				continue
 			var color_x := 0
 			if row > 0 and is_cell_blocked(cell_pos + Vector2.UP):
-				color_x = Connect.set_u(color_x)
+				color_x = PuzzleConnect.set_u(color_x)
 			if row < ROW_COUNT - 1 and is_cell_blocked(cell_pos + Vector2.DOWN):
-				color_x = Connect.set_d(color_x)
+				color_x = PuzzleConnect.set_d(color_x)
 			if col > 0 and is_cell_blocked(cell_pos + Vector2.LEFT):
-				color_x = Connect.set_l(color_x)
+				color_x = PuzzleConnect.set_l(color_x)
 			if col < COL_COUNT - 1 and is_cell_blocked(cell_pos + Vector2.RIGHT):
-				color_x = Connect.set_r(color_x)
+				color_x = PuzzleConnect.set_r(color_x)
 			set_block(cell_pos, 0, Vector2(color_x, _color_y))
 	
 	squish_seconds_remaining -= delta

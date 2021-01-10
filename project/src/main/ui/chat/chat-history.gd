@@ -6,6 +6,13 @@ Keeps track of which conversations the player's had and how long ago they've had
 """
 
 """
+Constant for the age of conversations we've never had. This is a large number so that evaluating 'have we had this
+conversation recently?' will work without requiring a third branch to handle the case where we haven't had a
+conversation before.
+"""
+const CHAT_AGE_NEVER := 99999999
+
+"""
 Tracks which conversations the player has had with each creature. The value is a per-creature index which starts from
 0 and increments with each conversation with that creature.
 
@@ -73,11 +80,10 @@ func get_chat_age(history_key: String) -> int:
 	var chat_prefix := StringUtils.substring_before_last(history_key, "/")
 	
 	var chat_count: int = chat_counts.get(chat_prefix, 0)
-	var chat_time: int = chat_history.get(history_key, -1)
 	
-	var result := -1
-	if chat_count > 0 and chat_time != -1:
-		result = chat_count - chat_time - 1
+	var result := CHAT_AGE_NEVER
+	if chat_count > 0 and chat_history.has(history_key):
+		result = chat_count - chat_history.get(history_key) - 1
 	return result
 
 

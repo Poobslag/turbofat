@@ -114,11 +114,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/combo-tracker.gd"
 }, {
-"base": "Reference",
-"class": "Connect",
-"language": "GDScript",
-"path": "res://src/main/connect.gd"
-}, {
 "base": "KinematicBody2D",
 "class": "Creature",
 "language": "GDScript",
@@ -470,6 +465,11 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/puzzle-areas.gd"
 }, {
 "base": "Reference",
+"class": "PuzzleConnect",
+"language": "GDScript",
+"path": "res://src/main/puzzle-connect.gd"
+}, {
+"base": "Reference",
 "class": "PuzzlePerformance",
 "language": "GDScript",
 "path": "res://src/main/puzzle/puzzle-performance.gd"
@@ -656,7 +656,6 @@ _global_script_class_icons={
 "ComboBreakRules": "",
 "ComboCounter": "",
 "ComboTracker": "",
-"Connect": "",
 "Creature": "",
 "CreatureCurve": "",
 "CreatureDef": "",
@@ -727,6 +726,7 @@ _global_script_class_icons={
 "Playfield": "",
 "Puzzle": "",
 "PuzzleAreas": "",
+"PuzzleConnect": "",
 "PuzzlePerformance": "",
 "PuzzleTileMap": "",
 "RankCalculator": "",

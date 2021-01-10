@@ -4,6 +4,9 @@ Tile map which covers the corners of another tilemap.
 
 Without this tile map, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area. This
 tile map fills in the holes.
+
+This tilemap assumes tiles are arranged so that the X coordinates of the tiles correspond to the directions they're
+connected. This type of tilemap is used for puzzle pieces.
 """
 
 onready var _parent_map: TileMap = get_parent()
@@ -20,16 +23,20 @@ func _process(_delta: float) -> void:
 				# vegetable cell?
 				continue
 			# check for corner connected up and left
-			if Connect.is_u(pacx) and Connect.is_l(pacx) and not Connect.is_u(_pacx(cell + Vector2.LEFT)):
+			if PuzzleConnect.is_u(pacx) and PuzzleConnect.is_l(pacx) \
+					and not PuzzleConnect.is_u(_pacx(cell + Vector2.LEFT)):
 				set_cell(cell.x * 2, cell.y * 2, 0, false, false, false, Vector2(0, pacy * 2))
 			# check for corner connected up and right
-			if Connect.is_u(pacx) and Connect.is_r(pacx) and not Connect.is_u(_pacx(cell + Vector2.RIGHT)):
+			if PuzzleConnect.is_u(pacx) and PuzzleConnect.is_r(pacx) \
+					and not PuzzleConnect.is_u(_pacx(cell + Vector2.RIGHT)):
 				set_cell(cell.x * 2 + 1, cell.y * 2, 0, false, false, false, Vector2(1, pacy * 2))
 			# check for corner connected down and left
-			if Connect.is_d(pacx) and Connect.is_l(pacx) and not Connect.is_d(_pacx(cell + Vector2.LEFT)):
+			if PuzzleConnect.is_d(pacx) and PuzzleConnect.is_l(pacx) \
+					and not PuzzleConnect.is_d(_pacx(cell + Vector2.LEFT)):
 				set_cell(cell.x * 2, cell.y * 2 + 1, 0, false, false, false, Vector2(0, pacy * 2 + 1))
 			# check for corner connected down and right
-			if Connect.is_d(pacx) and Connect.is_r(pacx) and not Connect.is_d(_pacx(cell + Vector2.RIGHT)):
+			if PuzzleConnect.is_d(pacx) and PuzzleConnect.is_r(pacx) \
+					and not PuzzleConnect.is_d(_pacx(cell + Vector2.RIGHT)):
 				set_cell(cell.x * 2 + 1, cell.y * 2 + 1, 0, false, false, false, Vector2(1, pacy * 2 + 1))
 		dirty = false
 
