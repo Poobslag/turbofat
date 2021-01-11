@@ -40,7 +40,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or not ChattableManager.player:
 		# don't try to change scenes in the editor
 		return
 	
