@@ -109,6 +109,10 @@ func _physics_process(delta: float) -> void:
 	_maybe_play_bonk_sound(old_non_iso_velocity)
 
 
+func set_collision_disabled(new_collision_disabled: bool) -> void:
+	$CollisionShape2D.disabled = new_collision_disabled
+
+
 func set_suppress_sfx(new_suppress_sfx: bool) -> void:
 	suppress_sfx = new_suppress_sfx
 	$CreatureSfx.suppress_sfx = new_suppress_sfx
@@ -311,18 +315,6 @@ func get_creature_def() -> CreatureDef:
 	return result
 
 
-"""
-Build a list of level ids from the creature's chat selectors.
-"""
-func get_level_ids() -> Array:
-	var level_ids := []
-	for chat_selector_obj in chat_selectors:
-		var chat_selector: Dictionary = chat_selector_obj
-		if chat_selector.has("level") and not level_ids.has(chat_selector["level"]):
-			level_ids.append(chat_selector["level"])
-	return level_ids
-
-
 func refresh_dna() -> void:
 	if is_inside_tree():
 		if dna:
@@ -367,7 +359,12 @@ func _refresh_orientation() -> void:
 
 
 func _refresh_creature_id() -> void:
-	if is_inside_tree():
+	if creature_id == Global.PLAYER_ID:
+		# player's creature_def is loaded in player.gd
+		pass
+	elif not is_inside_tree():
+		pass
+	else:
 		set_creature_def(CreatureLoader.load_creature_def_by_id(creature_id))
 
 

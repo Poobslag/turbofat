@@ -13,6 +13,9 @@ const GENERIC_FATNESS_COUNT := 150
 # wasn't me"
 const MAX_FILLER_FATNESS := 2.5
 
+# If set, all creatures will have a specific fatness. Used for testing cutscenes.
+var forced_fatness := 0.0
+
 var player_def: CreatureDef
 var sensei_def: CreatureDef
 
@@ -76,6 +79,8 @@ func restore_fatness_state() -> void:
 func has_fatness(creature_id: String) -> bool:
 	if not creature_id:
 		return false
+	if forced_fatness:
+		return true
 	
 	return _fatnesses.has(creature_id)
 
@@ -83,12 +88,17 @@ func has_fatness(creature_id: String) -> bool:
 func get_fatness(creature_id: String) -> float:
 	if not creature_id:
 		return 1.0
+	if forced_fatness:
+		return forced_fatness
 	
 	return _fatnesses[creature_id]
 
 
 func set_fatness(creature_id: String, fatness: float) -> void:
 	if not creature_id:
+		return
+	if forced_fatness:
+		# don't persist the temporary fatness when 'forced_fatness' is set
 		return
 	
 	if creature_id.begins_with("#filler"):

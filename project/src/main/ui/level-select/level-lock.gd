@@ -33,9 +33,8 @@ const STATUS_HARD_LOCK := LockStatus.HARD_LOCK
 
 var level_id: String
 
-# Some levels activate dialog sequences. These two fields specify which character's dialog should activate.
+# Some levels activate dialog sequences. This field specifies which character's dialog should activate.
 var creature_id: String
-var level_num := -1
 
 # the requirements to unlock this level
 var locked_until_type := ALWAYS_UNLOCKED
@@ -60,7 +59,6 @@ var groups := []
 func from_json_dict(json: Dictionary) -> void:
 	level_id = json.get("id", "")
 	creature_id = json.get("creature_id", "")
-	level_num = json.get("level_num", -1)
 	
 	var locked_until_string: String = json.get("locked_until", "")
 	if locked_until_string:
@@ -74,3 +72,7 @@ func from_json_dict(json: Dictionary) -> void:
 	var groups_string: String = json.get("groups", "")
 	if groups_string:
 		groups = groups_string.split(" ")
+
+
+func is_locked() -> bool:
+	return status in [STATUS_SOFT_LOCK, STATUS_HARD_LOCK]

@@ -25,6 +25,7 @@
       "levels": [
         {
           "id": "marsh/hello_everyone",
+          "creature_id": "richie",
           "groups": "marsh/hello"
         },
         {
@@ -107,21 +108,18 @@
         {
           "id": "boatricia1",
           "creature_id": "boatricia",
-          "level_num": 1,
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "boatricia2",
           "creature_id": "boatricia",
-          "level_num": 2,
           "locked_until": "level_finished boatricia1",
           "groups": "choco_main"
         },
         {
           "id": "five_customers_no_vegetables",
           "creature_id": "ebe",
-          "level_num": 1,
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },

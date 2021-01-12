@@ -15,34 +15,55 @@ chat selectors until it finds one suitable for the current game state.
 Parameters:
 	'creature': The creature whose conversation should be returned
 	
-	'forced_level_num': (Optional) The current level being chosen; '1' being the creature's first level. If omitted,
-		the level_num will be calculated based on the first unfinished unlocked level available.
+	'forced_level_id': (Optional) The current level being chosen. If omitted, the level_id will be calculated based on
+			the first unfinished unlocked level available.
 """
-func load_chat_events_for_creature(creature: Creature, forced_level_num: int = -1) -> ChatTree:
-	var state := _creature_chat_state(creature)
-	if forced_level_num != -1:
-		state["level_num"] = forced_level_num
-	var level_num: int = state["level_num"]
+func load_chat_events_for_creature(creature: Creature, forced_level_id: String = "") -> ChatTree:
+	var state := _creature_chat_state(creature.creature_id, forced_level_id)
+	var level_id: String = state["level_id"]
+	var chat_tree := chat_tree_for_creature_def(creature.creature_def, state)
 	
-	# returning dialog for the creature
-	var filler_ids := _filler_ids_for_creature(creature)
-	var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
+	if level_id:
+		# schedule a level to launch when the dialog completes
+		Level.set_launched_level(level_id)
+	
+	return chat_tree
+
+
+"""
+Returns the chat tree for the specified creature.
+"""
+func chat_tree_for_creature_id(creature_id: String, forced_level_id: String = "") -> ChatTree:
+	var creature_def: CreatureDef = CreatureLoader.load_creature_def_by_id(creature_id)
+	var state := _creature_chat_state(creature_id, forced_level_id)
+	
+	return chat_tree_for_creature_def(creature_def, state)
+
+
+"""
+Returns the chat tree for the specified creature.
+"""
+func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) -> ChatTree:
+	var creature_id := creature_def.creature_id
+	var filler_ids := _filler_ids_for_creature(creature_id, creature_def.dialog)
+	var chosen_dialog := choose_dialog_from_chat_selectors(creature_def.chat_selectors, state, filler_ids)
 	
 	var chat_tree: ChatTree
-	if creature.dialog.has(chosen_dialog):
+	var creature_dialog_path := "res://assets/main/creatures/primary/%s/%s.json" % \
+			[creature_id, chosen_dialog.replace("_", "-")]
+	var level_dialog_path := "res://assets/main/puzzle/levels/cutscenes/%s.json" % \
+			[chosen_dialog.replace("_", "-")]
+	if creature_def.dialog.has(chosen_dialog):
 		chat_tree = ChatTree.new()
-		chat_tree.from_json_dict(creature.dialog[chosen_dialog])
-		chat_tree.history_key = "dialog/%s/%s" % [creature.creature_id, chosen_dialog]
+		chat_tree.from_json_dict(creature_def.dialog[chosen_dialog])
+		chat_tree.history_key = "dialog/%s/%s" % [creature_id, chosen_dialog]
+	elif FileUtils.file_exists(creature_dialog_path):
+		chat_tree = load_chat_events_from_file(creature_dialog_path)
+	elif FileUtils.file_exists(level_dialog_path):
+		chat_tree = load_chat_events_from_file(level_dialog_path)
 	else:
-		var path := "res://assets/main/creatures/primary/%s/%s.json" % \
-				[creature.creature_id, chosen_dialog.replace("_", "-")]
-		chat_tree = load_chat_events_from_file(path)
-	
-	if level_num >= 1:
-		# schedule a level to launch when the dialog completes
-		var level_ids := creature.get_level_ids()
-		var level_id: String = level_ids[level_num - 1]
-		Level.set_launched_level(level_id, creature.creature_id, level_num)
+		push_warning("Failed to load chat tree '%s' for creature '%s'.\nCould not find file '%s' or '%s'" % \
+				[chosen_dialog, creature_id, creature_dialog_path, level_dialog_path])
 	
 	return chat_tree
 
@@ -55,13 +76,13 @@ func chat_icon_for_creature(creature: Creature) -> int:
 	if creature == ChattableManager.sensei or creature == ChattableManager.player:
 		# no chat icon for player or sensei
 		pass
-	elif _first_unfinished_level_num(creature) >= 1:
+	elif LevelLibrary.first_unfinished_level_id_for_creature(creature.creature_id):
 		# food chat icon if the chat will launch a puzzle
 		result = ChatIcon.FOOD
 	else:
 		# filler/speech icon for normal conversations
-		var state := _creature_chat_state(creature)
-		var filler_ids := _filler_ids_for_creature(creature)
+		var state := _creature_chat_state(creature.creature_id)
+		var filler_ids := _filler_ids_for_creature(creature.creature_id, creature.dialog)
 		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
 		result = ChatIcon.FILLER if filler_ids.has(chosen_dialog) else ChatIcon.SPEECH
 	
@@ -100,30 +121,37 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 	var creature_id: String = state.get("creature_id", "")
 	var result: String
 	
-	# search the chat_selectors for a suitable conversation
-	for chat_selector_obj in chat_selectors:
-		var chat_selector: Dictionary = chat_selector_obj
-		
-		var repeat_age: int = chat_selector.get("repeat", 25)
-		var history_key := "dialog/%s/%s" % [creature_id, chat_selector["dialog"]]
-		var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
-		if chat_age < repeat_age:
-			# skip; we've had this conversation too recently
-			continue
-		
-		var if_conditions: Array = chat_selector.get("if_conditions", [])
-		var if_conditions_met := true
-		for if_condition in if_conditions:
-			if not _if_condition_met(if_condition, state):
-				if_conditions_met = false
-				break
-		if not if_conditions_met:
-			# skip; one or more if conditions weren't met
-			continue
-		
-		# success; return the current chat selector's dialog
-		result = chat_selector["dialog"]
-		break
+	var level_id: String = state.get("level_id", "")
+	if not level_id:
+		level_id = LevelLibrary.first_unfinished_level_id_for_creature(creature_id)
+	if level_id:
+		result = level_id
+	
+	if not result:
+		# no level available; find a suitable conversation
+		for chat_selector_obj in chat_selectors:
+			var chat_selector: Dictionary = chat_selector_obj
+			
+			var repeat_age: int = chat_selector.get("repeat", 25)
+			var history_key := "dialog/%s/%s" % [creature_id, chat_selector["dialog"]]
+			var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
+			if chat_age < repeat_age:
+				# skip; we've had this conversation too recently
+				continue
+			
+			var if_conditions: Array = chat_selector.get("if_conditions", [])
+			var if_conditions_met := true
+			for if_condition in if_conditions:
+				if not _if_condition_met(if_condition, state):
+					if_conditions_met = false
+					break
+			if not if_conditions_met:
+				# skip; one or more if conditions weren't met
+				continue
+			
+			# success; return the current chat selector's dialog
+			result = chat_selector["dialog"]
+			break
 	
 	if not result:
 		# no suitable conversation was found; find a suitable filler conversation instead
@@ -147,16 +175,7 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 Returns 'true' if the specified if condition is met by the current game state.
 """
 func _if_condition_met(if_condition: String, state: Dictionary) -> bool:
-	var if_split := if_condition.split("/")
-	var if_match := "%s:%s" % [if_split[0], if_split.size()]
-	
-	var result := false
-	match if_match:
-		"current_level:2":
-			result = state.get("level_num", -1) == int(if_split[1])
-		_:
-			result = state.get(if_condition, false)
-	return result
+	return state.get(if_condition, false)
 
 
 """
@@ -201,13 +220,13 @@ Returns the dialog filler IDs for the specified creature.
 
 Examines the creature's dialog and resource files, and returns any dialog ids with names like 'filler_014'.
 """
-func _filler_ids_for_creature(creature: Creature) -> Array:
+func _filler_ids_for_creature(creature_id: String, creature_dialog: Dictionary) -> Array:
 	var filler_ids := []
 	for i in range(0, 1000):
 		var filler_id := "filler_%03d" % i
 		var path := "res://assets/main/creatures/primary/%s/%s.json" % \
-				[creature.creature_id, filler_id.replace("_", "-")]
-		if creature.dialog.has(filler_id) or FileUtils.file_exists(path):
+				[creature_id, filler_id.replace("_", "-")]
+		if creature_dialog.has(filler_id) or FileUtils.file_exists(path):
 			filler_ids.append(filler_id)
 		else:
 			break
@@ -215,31 +234,16 @@ func _filler_ids_for_creature(creature: Creature) -> Array:
 
 
 """
-Returns the first available level for this creature which hasn't been finished.
-
-Returns -1 if all levels are locked, or if the player's finished all the available levels.
-"""
-func _first_unfinished_level_num(creature: Creature) -> int:
-	var level_num := -1
-	var level_ids := creature.get_level_ids()
-	for level_id_index in range(0, level_ids.size()):
-		var creature_level: String = level_ids[level_id_index]
-		if LevelLibrary.is_locked(creature_level):
-			continue
-		if PlayerData.level_history.finished_levels.has(creature_level):
-			continue
-		
-		level_num = level_id_index + 1
-		break
-	return level_num
-
-
-"""
 Returns metadata about a creature's recent chats, and whether they're due for an interesting chat.
 """
-func _creature_chat_state(creature: Creature) -> Dictionary:
-	return {
-		"creature_id": creature.creature_id,
-		"notable_chat": PlayerData.chat_history.get_filler_count(creature.creature_id) > 0,
-		"level_num": _first_unfinished_level_num(creature)
+func _creature_chat_state(creature_id: String, forced_level_id: String = "") -> Dictionary:
+	var result := {
+		"creature_id": creature_id,
+		"notable_chat": PlayerData.chat_history.get_filler_count(creature_id) > 0,
+		"level_id": forced_level_id
 	}
+	
+	if not forced_level_id:
+		result["level_id"] = LevelLibrary.first_unfinished_level_id_for_creature(creature_id)
+	
+	return result

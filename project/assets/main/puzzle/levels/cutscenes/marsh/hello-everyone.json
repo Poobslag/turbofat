@@ -1,0 +1,20 @@
+{
+  "version": "1922",
+  "location": {
+    "location_id": "indoors",
+    "spawn_locations": {
+      "#player#": "kitchen-9",
+      "#sensei#": "kitchen-11",
+      "richie": "kitchen-1",
+      "skins": "kitchen-3",
+      "bones": "kitchen-5",
+      "shirts": "kitchen-7"
+    }
+  },
+  "": [
+    {
+      "who": "Richie",
+      "text": "Okay. Now we can have a cutscene!"
+    }
+  ]
+}

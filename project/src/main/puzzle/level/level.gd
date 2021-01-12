@@ -15,6 +15,12 @@ signal settings_changed
 const BEGINNER_TUTORIAL := "tutorial/basics_0"
 const TUTORIAL_WORLD_ID := "tutorial"
 
+# Scene paths corresponding to different ChatTree.location_id values
+const LOCATION_SCENE_PATHS_BY_ID := {
+	"indoors": "res://src/main/world/OverworldIndoors.tscn",
+	"outdoors": "res://src/main/world/Overworld.tscn"
+}
+
 # The settings for the level currently being launched or played
 var settings := LevelSettings.new() setget switch_level
 
@@ -25,16 +31,13 @@ var launched_level_id: String
 # The creature who launched the level. This creature is always the first customer.
 var launched_creature_id: String
 
-# The number of the creature's launched level, '1' being their first level.
-var launched_level_num: int = -1
-
 """
 Unsets all of the 'launched level' data.
 
 This ensures the overworld will allow free roam and not try to play a cutscene.
 """
 func clear_launched_level() -> void:
-	set_launched_level("", "", -1)
+	set_launched_level("")
 
 
 """
@@ -45,15 +48,13 @@ used on the overworld to track whether or not it should play a cutscene or allow
 
 Parameters:
 	'level_id': The level to launch
-	
-	'creature_id': The creature who shows up in the level or participates in the cutscene.
-	
-	'level_num': The number of the creature's launched level, '1' being their first level.
 """
-func set_launched_level(level_id: String, creature_id: String = "", level_num: int = -1) -> void:
+func set_launched_level(level_id: String) -> void:
 	launched_level_id = level_id
-	launched_creature_id = creature_id
-	launched_level_num = level_num
+	if level_id and LevelLibrary.level_lock(level_id):
+		launched_creature_id = LevelLibrary.level_lock(level_id).creature_id
+	else:
+		launched_creature_id = ""
 
 
 func start_level(new_settings: LevelSettings) -> void:
@@ -65,6 +66,34 @@ func start_level(new_settings: LevelSettings) -> void:
 func switch_level(new_settings: LevelSettings) -> void:
 	settings = new_settings
 	emit_signal("settings_changed")
+
+
+"""
+Launches a cutscene for the previously specified 'launched level' settings.
+
+A 'cutscene' is a set of dialog and actions, which sometimes need to take place at a specific location. By default,
+the cutscene will only be launched if the level's dialog specifies a location_id, because it's otherwise assumed that
+the level's dialog could just take place wherever the player is currently standing. However, the cutscene can be forced
+to activate with the optional 'force' parameter.
+
+Parameters:
+	'force': (Optional) If true, the cutscene will play even if it does not specify a location_id
+
+Returns:
+	'true' if the cutscene was launched, or 'false' if the cutscene was not found or did not specify a location id
+"""
+func push_cutscene_trail(force: bool = false) -> bool:
+	if not launched_creature_id:
+		return false
+	
+	var result := false
+	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_creature_id(launched_creature_id, launched_level_id)
+	if chat_tree.location_id or force:
+		var location_scene_path: String = LOCATION_SCENE_PATHS_BY_ID.get(chat_tree.location_id, Global.SCENE_OVERWORLD)
+		Breadcrumb.push_trail(location_scene_path)
+		result = true
+	
+	return result
 
 
 """

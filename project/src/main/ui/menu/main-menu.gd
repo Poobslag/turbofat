@@ -28,7 +28,7 @@ func _exit_tree() -> void:
 
 func _launch_tutorial() -> void:
 	PlayerData.creature_queue.clear()
-	Level.set_launched_level(Level.BEGINNER_TUTORIAL, Global.SENSEI_ID)
+	Level.set_launched_level(Level.BEGINNER_TUTORIAL)
 	Level.push_level_trail()
 
 

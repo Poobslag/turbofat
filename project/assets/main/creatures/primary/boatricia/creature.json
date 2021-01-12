@@ -28,22 +28,6 @@
   },
   "chat_selectors": [
     {
-      "level": "boatricia1",
-      "dialog": "level_1",
-      "if_conditions": [
-        "current_level/1"
-      ],
-      "repeat": 0
-    },
-    {
-      "level": "boatricia2",
-      "dialog": "level_2",
-      "if_conditions": [
-        "current_level/2"
-      ],
-      "repeat": 0
-    },
-    {
       "dialog": "hi",
       "repeat": 999999
     },
