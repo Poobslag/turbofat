@@ -1,6 +1,6 @@
 {
   "version": "1922",
-  "" : [
+  "": [
     {
       "who": "Richie",
       "mood": "think0",
@@ -15,10 +15,19 @@
       "mood": "smile0",
       "text": "Ah,/ I do that already!/ I didn't someone had coined a name for it.",
       "links": [
-        {"opinion0": "You're both lazy"},
-        {"opinion1": "More like 'Unemployment Technique'"},
-        {"opinion2": "I should study this"},
-        {"opinion3": "I invented that!"}]
+        {
+          "opinion0": "You're both lazy"
+        },
+        {
+          "opinion1": "More like 'Unemployment Technique'"
+        },
+        {
+          "opinion2": "I should study this"
+        },
+        {
+          "opinion3": "I invented that!"
+        }
+      ]
     }
   ],
   "opinion0": [

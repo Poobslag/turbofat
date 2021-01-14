@@ -27,9 +27,9 @@
     "color": "70843a"
   },
   "dialog": {
-    "filler_000" : {
+    "filler_000": {
       "version": "1922",
-      "" : [
+      "": [
         {
           "who": "Bort",
           "text": "Wow!/ ./././You finally did it?/ Does this count as our first conversation!?",
@@ -47,7 +47,7 @@
           ]
         }
       ],
-      "yes" : [
+      "yes": [
         {
           "who": "#player#",
           "text": "Yeah!\nThis is definitely a real conversation./ It has branches and everything!",
@@ -57,10 +57,12 @@
           "who": "Bort",
           "text": "Congratulations!/ Wow!",
           "mood": "smile0",
-          "links": ["nice"]
+          "links": [
+            "nice"
+          ]
         }
       ],
-      "maybe" : [
+      "maybe": [
         {
           "who": "#player#",
           "text": "Maybe?/ I'm not sure!",
@@ -70,10 +72,12 @@
           "who": "Bort",
           "text": "Congratulations!/ Wow!",
           "mood": "smile0",
-          "links": ["nice"]
+          "links": [
+            "nice"
+          ]
         }
       ],
-      "no" : [
+      "no": [
         {
           "who": "#player#",
           "text": "I don't think so. I still have a lot of work to do...",
@@ -83,10 +87,12 @@
           "who": "Bort",
           "text": "Aww, don't be like that! This is looking great.",
           "mood": "smile0",
-          "links": ["nice"]
+          "links": [
+            "nice"
+          ]
         }
       ],
-      "nice" : [
+      "nice": [
         {
           "who": "Bort",
           "text": "./././I can't wait to see what you do next!"
