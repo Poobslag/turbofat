@@ -175,12 +175,15 @@ func _on_ChatUi_pop_out_completed() -> void:
 		_update_visible()
 		emit_signal("chat_ended")
 		
-		if Level.launched_level_id:
-			Level.push_level_trail()
-			
+		if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
+			# don't launch the level; go back to CutsceneDemo after playing the cutscene
+			Breadcrumb.pop_trail()
+		elif Level.launched_level_id:
 			if cutscene:
-				# upon completing a puzzle, return to the level select screen
-				Breadcrumb.trail.erase(Global.SCENE_OVERWORLD)
+				# remove redundant overworld cutscenes from the breadcrumb trail
+				Breadcrumb.trail.remove(0)
+			
+			Level.push_level_trail()
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
@@ -212,18 +215,31 @@ func _on_SettingsButton_pressed() -> void:
 	$Control/SettingsMenu.show()
 
 
-func _on_TalkButton_pressed() -> void:
+"""
+Returns the level id (if any) corresponding to the curently focused chattable.
+
+This is relevant when the player talks to a creature with a food speech bubble.
+"""
+func _focused_chattable_level_id() -> String:
+	var focused_creature: Creature = ChattableManager.focused_chattable
+	if not focused_creature:
+		return ""
+	
+	return LevelLibrary.first_unfinished_level_id_for_creature(focused_creature.creature_id)
+
+
+"""
+Returns the chat tree corresponding to the curently focused chattable.
+
+This is relevant when the player talks to a creature with a non-food speech bubble.
+"""
+func _focused_chattable_chat_tree() -> ChatTree:
 	var focused_chattable := ChattableManager.focused_chattable
 	if not focused_chattable:
-		return
+		return null
 	
-	get_tree().set_input_as_handled()
-	
-	var chat_tree: ChatTree
-	if _chat_tree_cache.has(focused_chattable):
-		chat_tree = _chat_tree_cache[focused_chattable]
-	else:
-		chat_tree = ChattableManager.load_chat_events()
+	if not _chat_tree_cache.has(focused_chattable):
+		var chat_tree := ChattableManager.load_chat_events()
 		if focused_chattable is Creature:
 			if chat_tree.meta.get("filler", false):
 				PlayerData.chat_history.increment_filler_count(focused_chattable.creature_id)
@@ -231,6 +247,28 @@ func _on_TalkButton_pressed() -> void:
 				PlayerData.chat_history.reset_filler_count(focused_chattable.creature_id)
 		emit_signal("chat_cached", focused_chattable)
 		_chat_tree_cache[focused_chattable] = chat_tree
-	chat_tree = _chat_tree_cache[focused_chattable]
+	return _chat_tree_cache[focused_chattable]
+
+
+"""
+When the player hits the 'talk' button we either launch a level or start a chat.
+"""
+func _on_TalkButton_pressed() -> void:
+	var focused_chattable := ChattableManager.focused_chattable
+	if not focused_chattable:
+		return
 	
-	start_chat(chat_tree, ChattableManager.focused_chattable)
+	get_tree().set_input_as_handled()
+	
+	var level_id := _focused_chattable_level_id()
+	var chat_tree := _focused_chattable_chat_tree()
+	var pushed_cutscene_trail := false
+	
+	Level.set_launched_level(level_id)
+	if level_id:
+		# launch a cutscene if necessary
+		pushed_cutscene_trail = Level.push_cutscene_trail()
+	
+	if not pushed_cutscene_trail:
+		# if no cutscene was launched, start a chat
+		start_chat(chat_tree, ChattableManager.focused_chattable)

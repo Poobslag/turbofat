@@ -35,6 +35,14 @@ var meta: Dictionary
 # value: array of sequential ChatEvent objects for a particular dialog sequence
 var events: Dictionary = {}
 
+# a specific location where this conversation takes place, if any
+var location_id: String
+
+# spawn locations for different creatures, if this ChatTree represents a cutscene
+# key: creature id
+# value: spawn id
+var spawn_locations: Dictionary = {}
+
 # current position in this dialog tree
 var _position := Position.new()
 
@@ -94,6 +102,9 @@ func from_json_dict(json: Dictionary) -> void:
 					push_warning("Unrecognized dialog data version: '%s'" % [json[key]])
 			"meta":
 				meta = json[key]
+			"location":
+				location_id = json[key].get("location_id", "")
+				spawn_locations = json[key].get("spawn_locations", {})
 			_:
 				for json_chat_event in json[key]:
 					var event := ChatEvent.new()

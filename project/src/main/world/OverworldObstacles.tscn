@@ -43,6 +43,7 @@ impassable_tile_index = 1
 [node name="Player" parent="." instance=ExtResource( 7 )]
 position = Vector2( 150, 150 )
 script = ExtResource( 1 )
+creature_id = "#player#"
 dna = {
 
 }

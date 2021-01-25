@@ -9,9 +9,6 @@ enum LevelsToInclude {
 	TUTORIALS_ONLY, # only show tutorials; hide regular levels
 }
 
-const ALL_LEVELS := LevelsToInclude.ALL_LEVELS
-const TUTORIALS_ONLY := LevelsToInclude.TUTORIALS_ONLY
-
 # Emitted when the player highlights an unlocked level to show more information.
 signal unlocked_level_selected(level_lock, settings)
 
@@ -20,6 +17,9 @@ signal locked_level_selected(level_lock, settings)
 
 # Emitted when the player highlights the 'overall' button.
 signal overall_selected(world_id, ranks)
+
+const ALL_LEVELS := LevelsToInclude.ALL_LEVELS
+const TUTORIALS_ONLY := LevelsToInclude.TUTORIALS_ONLY
 
 # Levels are arranged into a big rectangle. This is the ratio of the rectangle's width to height.
 const BUTTON_ARRANGEMENT_WIDTH_FACTOR := 1.77778
@@ -194,11 +194,11 @@ func _lowlight_unrelated_buttons(world_id: String) -> void:
 When the player clicks a level button twice, we launch the selected level
 """
 func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
-	var level_lock: LevelLock = LevelLibrary.level_lock(settings.id)
-	Level.set_launched_level(settings.id, level_lock.creature_id, level_lock.level_num)
-	if level_lock.creature_id and level_lock.level_num >= 1:
-		Breadcrumb.push_trail(Global.SCENE_OVERWORLD)
-	else:
+	Level.set_launched_level(settings.id)
+	
+	var pushed_cutscene_trail := Level.push_cutscene_trail(true)
+	
+	if not pushed_cutscene_trail:
 		Level.push_level_trail()
 
 
