@@ -35,6 +35,9 @@ const MAX_RUN_SPEED := 338
 # How fast can the creature accelerate
 const MAX_RUN_ACCELERATION := 2250
 
+const CREATURE_FADE_IN_DURATION := 0.6
+const CREATURE_FADE_OUT_DURATION := 0.3
+
 export (String) var creature_id: String setget set_creature_id
 export (Dictionary) var dna: Dictionary setget set_dna
 export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
@@ -90,6 +93,7 @@ onready var creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visual
 
 func _ready() -> void:
 	$CreatureOutline/TextureRect.rect_scale = Vector2(TEXTURE_SCALE, TEXTURE_SCALE)
+	$FadeTween.connect("tween_all_completed", self, "_on_FadeTween_tween_all_completed")
 	if creature_id:
 		_refresh_creature_id()
 	else:
@@ -354,6 +358,33 @@ func start_suppress_sfx_timer() -> void:
 	$CreatureSfx/SuppressSfxTimer.start(1.0)
 
 
+"""
+Make the creature visible and gradually adjust their alpha up to 1.0.
+"""
+func fade_in() -> void:
+	if not visible:
+		visible = true
+		modulate.a = 0.0
+	
+	_launch_fade_tween(1.0, CREATURE_FADE_IN_DURATION)
+
+
+"""
+Gradually adjust this creature's alpha down to 0.0 and make them invisible.
+"""
+func fade_out() -> void:
+	_launch_fade_tween(0.0, CREATURE_FADE_OUT_DURATION)
+
+
+"""
+Starts a tween which changes this creature's opacity.
+"""
+func _launch_fade_tween(new_alpha: float, duration: float) -> void:
+	$FadeTween.remove_all()
+	$FadeTween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate, new_alpha), duration)
+	$FadeTween.start()
+
+
 func _refresh_orientation() -> void:
 	if creature_visuals:
 		creature_visuals.set_orientation(orientation)
@@ -470,6 +501,11 @@ func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) ->
 		set_elevation(35)
 	else:
 		set_elevation(0)
+
+
+func _on_FadeTween_tween_all_completed() -> void:
+	if modulate.a == 0.0:
+		visible = false
 
 
 """

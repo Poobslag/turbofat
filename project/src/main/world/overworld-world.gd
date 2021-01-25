@@ -69,6 +69,10 @@ func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 		var spawn: Spawn = spawn_obj
 		if spawn.id == spawn_id:
 			target_spawn = spawn
+		elif spawn.id == spawn_id.trim_prefix("!"):
+			# Spawn locations prefixed with a '!' indicate that the creature should spawn invisible.
+			creature.visible = false
+			target_spawn = spawn
 
 	if target_spawn:
 		target_spawn.move_creature(creature)

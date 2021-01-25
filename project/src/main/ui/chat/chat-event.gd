@@ -77,7 +77,7 @@ func _parse_meta(json: Dictionary) -> void:
 	elif typeof(parsed_meta) == TYPE_ARRAY:
 		meta = parsed_meta
 	else:
-		push_error("Invalid json type: " % typeof(parsed_meta))
+		push_error("Invalid json type: %s" % typeof(parsed_meta))
 
 
 """

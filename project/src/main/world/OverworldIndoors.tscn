@@ -165,24 +165,23 @@ position = Vector2( 498, 9 )
 [node name="WoodPillar3" parent="World/Obstacles" instance=ExtResource( 22 )]
 position = Vector2( 1298, 9 )
 
-[node name="Gordo" parent="World/Obstacles" instance=ExtResource( 19 )]
-position = Vector2( 768, 36 )
-creature_id = "gordo"
+[node name="Rhonk" parent="World/Obstacles" instance=ExtResource( 19 )]
+position = Vector2( 592, 36 )
+creature_id = "rhonk"
 dna = {
 
 }
 elevation = 150
-orientation = 1
 
 [node name="Stool1" parent="World/Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 768, 35 )
-occupied = true
 
 [node name="WoodTable" parent="World/Obstacles" instance=ExtResource( 8 )]
 position = Vector2( 680, 35 )
 
 [node name="Stool2" parent="World/Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 592, 35 )
+occupied = true
 
 [node name="Stool7" parent="World/Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 1168, 35 )

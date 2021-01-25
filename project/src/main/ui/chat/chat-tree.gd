@@ -38,7 +38,9 @@ var events: Dictionary = {}
 # a specific location where this conversation takes place, if any
 var location_id: String
 
-# spawn locations for different creatures, if this ChatTree represents a cutscene
+# Spawn locations for different creatures, if this ChatTree represents a cutscene. Spawn locations prefixed with a '!'
+# indicate that the creature should spawn invisible.
+#
 # key: creature id
 # value: spawn id
 var spawn_locations: Dictionary = {}
