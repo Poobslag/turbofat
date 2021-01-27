@@ -105,7 +105,6 @@ __meta__ = {
 }
 
 [node name="Backdrop" parent="Dialogs" instance=ExtResource( 3 )]
-color = Color( 0, 0, 0, 0.752941 )
 
 [node name="OpenFile" type="FileDialog" parent="Dialogs"]
 anchor_left = 0.5

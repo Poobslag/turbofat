@@ -28,5 +28,5 @@ func _on_CheckBox_pressed() -> void:
 	_refresh()
 
 
-func _on_HSlider_value_changed(value) -> void:
+func _on_HSlider_value_changed(_value: float) -> void:
 	_refresh()

@@ -11,7 +11,7 @@ const TOO_CLOSE_THRESHOLD := 140.0
 const TOO_FAR_THRESHOLD := 280.0
 
 func _ready() -> void:
-	set_creature_id(Global.SENSEI_ID)
+	set_creature_id(CreatureLibrary.SENSEI_ID)
 	$MoveTimer.connect("timeout", self, "_on_MoveTimer_timeout")
 	ChattableManager.sensei = self
 

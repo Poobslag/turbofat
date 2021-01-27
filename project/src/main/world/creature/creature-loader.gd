@@ -89,6 +89,7 @@ func random_def() -> CreatureDef:
 		result.dna = DnaUtils.random_dna()
 		result.creature_name = _name_generator.generate_name()
 		result.creature_short_name = NameUtils.sanitize_short_name(result.creature_name)
+		result.creature_id = NameUtils.short_name_to_id(result.creature_short_name)
 		result.chat_theme_def = chat_theme_def(result.dna)
 		# set the filler ID, but not the fatness. the fatness attribute in the CreatureDef is the creature's natural
 		# fatness -- not their fatness after being stuffed
@@ -180,16 +181,6 @@ func load_details(dna: Dictionary) -> void:
 	_load_head(dna)
 	_load_body(dna)
 	_load_colors(dna)
-
-
-func load_creature_def_by_id(id: String) -> CreatureDef:
-	var path: String
-	match id:
-		Global.SENSEI_ID:
-			path = SENSEI_PATH
-		_:
-			path = "res://assets/main/creatures/primary/%s/creature.json" % id
-	return CreatureDef.new().from_json_path(path) as CreatureDef
 
 
 """

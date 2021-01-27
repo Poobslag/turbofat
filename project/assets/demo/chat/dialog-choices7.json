@@ -2,7 +2,7 @@
   "version": "1922",
   "": [
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Lorem ipsum dolor sit amet? How many?",
       "links": ["one", "two", "three", "four", "five", "six", "seven"]
     }
@@ -14,7 +14,7 @@
       "mood": "smile0"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Here is your sed do eiusmod."
     }
   ],
@@ -25,7 +25,7 @@
       "mood": "smile1"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Here are your sed do eiusmods."
     }
   ],
@@ -36,7 +36,7 @@
       "mood": "laugh0"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Here are your sed do eiusmods."
     }
   ],
@@ -46,7 +46,7 @@
       "text": "Four."
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Here are your sed do eiusmods."
     }
   ],
@@ -57,7 +57,7 @@
       "mood": "laugh1"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Here are your sed do eiusmods."
     }
   ],
@@ -68,7 +68,7 @@
       "mood": "think0"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Here are your sed do eiusmods."
     }
   ],
@@ -79,7 +79,7 @@
       "mood": "think1"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Here are your sed do eiusmods."
     }
   ]

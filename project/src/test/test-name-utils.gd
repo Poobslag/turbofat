@@ -48,3 +48,15 @@ func test_sanitize_short_name() -> void:
 	
 	# one huge mess of consonants
 	assert_eq(NameUtils.sanitize_short_name("Crwdmbrrssnsydstncbrshcvr"), "Crwdm")
+
+
+func test_short_name_to_id() -> void:
+	assert_eq(NameUtils.short_name_to_id(""), "")
+	
+	# ids should be snake_case and only include underscores, letters, and numbers
+	assert_eq(NameUtils.short_name_to_id("SPOIL633"), "spoil633")
+	assert_eq(NameUtils.short_name_to_id("spoil-633"), "spoil_633")
+	assert_eq(NameUtils.short_name_to_id("húsbóndi"), "husbondi")
+	assert_eq(NameUtils.short_name_to_id("Dr. Smiles"), "dr_smiles")
+	assert_eq(NameUtils.short_name_to_id("ŽÁLGÕ"), "zalgo")
+	assert_eq(NameUtils.short_name_to_id("_-spoil-_-633-?"), "_spoil_633_")

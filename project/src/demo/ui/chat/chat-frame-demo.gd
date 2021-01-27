@@ -13,7 +13,7 @@ Keys:
 	[P]: Print the json accent definition
 	[R]: Generate a random accent definition
 	[S]: Swap the accent's colors
-	[Shift]: Squish the window to the side
+	[Z]: Squish the window to the side
 """
 
 const TEXTS := [
@@ -32,7 +32,7 @@ const TEXTS := [
 		+ " magna aliqua. Ut enim ad minim",
 ]
 
-const WHOS := [
+const NAMES := [
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore" \
 		+ " magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea" \
 		+ " commodo consequat.",
@@ -62,7 +62,7 @@ const SCALES := [
 ]
 
 # these fields store the results of the user's input
-var _who_index := 4
+var _name_index := 4
 var _text_index := 4
 
 var _color_index := 0
@@ -82,7 +82,7 @@ func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			if Input.is_key_pressed(KEY_SHIFT):
-				_who_index = Utils.key_num(event)
+				_name_index = Utils.key_num(event)
 			else:
 				_text_index = Utils.key_num(event)
 			_play_chat_event()
@@ -129,7 +129,7 @@ func _input(event: InputEvent) -> void:
 			if _scale_index > 0:
 				_scale_index -= 1
 				_play_chat_event()
-		KEY_SHIFT:
+		KEY_Z:
 			_squished = !_squished
 			_play_chat_event()
 
@@ -138,8 +138,12 @@ func _input(event: InputEvent) -> void:
 Configures the chat window's appearance based on the user's input.
 """
 func _play_chat_event() -> void:
+	var creature_def := CreatureDef.new()
+	creature_def.creature_name = NAMES[_name_index]
+	PlayerData.creature_library.set_creature_def("lorum", creature_def)
+	
 	var chat_event := ChatEvent.new()
-	chat_event.who = WHOS[_who_index]
+	chat_event.who = "lorum"
 	chat_event.text = TEXTS[_text_index]
 	chat_event.chat_theme_def = _get_chat_theme_def()
 	$ChatFrame.play_chat_event(chat_event, _nametag_right, _squished)

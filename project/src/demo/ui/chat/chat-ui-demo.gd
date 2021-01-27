@@ -47,7 +47,10 @@ var _text_override := ""
 var _choice_override := ""
 
 func _ready() -> void:
-	ChattableManager.add_chat_theme_def("Lorum", {})
+	var creature_def := CreatureDef.new()
+	creature_def.creature_name = "Lorum"
+	PlayerData.creature_library.set_creature_def("lorum", creature_def)
+
 	_play_chat_tree("dialog-unbranched")
 
 
