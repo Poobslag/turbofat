@@ -307,10 +307,11 @@ func get_creature_def() -> CreatureDef:
 	var result := CreatureDef.new()
 	result.creature_id = creature_id
 	result.dna = DnaUtils.trim_dna(dna)
+	result.chat_theme_def = chat_theme_def
 	result.creature_name = creature_name
 	result.creature_short_name = creature_short_name
+	result.chat_selectors = chat_selectors
 	result.dialog = dialog
-	result.chat_theme_def = chat_theme_def
 	result.min_fatness = min_fatness
 	return result
 
