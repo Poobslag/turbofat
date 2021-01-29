@@ -14,7 +14,7 @@ func _on_StartButton_pressed() -> void:
 	Level.push_cutscene_trail(true)
 
 
-func _on_OpenFileDialog_file_selected(path: String) -> void:
+func _on_OpenFileDialog_file_selected(_path: String) -> void:
 	var full_path: String = $Dialogs/OpenFile.current_path
 	if full_path.begins_with("res://assets/main/puzzle/levels/cutscenes/") and full_path.ends_with(".json"):
 		full_path = full_path.trim_prefix("res://assets/main/puzzle/levels/cutscenes/")

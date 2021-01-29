@@ -150,3 +150,34 @@ static func shorten_name(name: String) -> String:
 		result += suffixes[randi() % suffixes.length()]
 	
 	return result
+
+
+"""
+Converts a short name like 'Dr. Smiles' into a creature ID like 'dr_smiles'.
+
+The creature editor converts creature IDs to snake case and strips any diacritical marks or upper ascii. The game
+should work fine even if the IDs have upper ascii and spaces, they'll just be more annoying to type in.
+"""
+static func short_name_to_id(short_name: String) -> String:
+	var transformer := StringTransformer.new(short_name)
+	
+	# convert to lowercase
+	transformer.transformed = transformer.transformed.to_lower()
+	
+	# convert characters with diacritical marks to undecorated latin letters
+	transformer.sub("[àáâãäå]", "a")
+	transformer.sub("[æ]", "ae")
+	transformer.sub("[ç]", "c")
+	transformer.sub("[èéêë]", "e")
+	transformer.sub("[ìíîï]", "i")
+	transformer.sub("[ðòóôõö]", "o")
+	transformer.sub("[ñ]", "n")
+	transformer.sub("[š]", "s")
+	transformer.sub("[ùúûü]", "u")
+	transformer.sub("[ýÿ]", "y")
+	transformer.sub("[ž]", "z")
+	
+	# strip special characters and punctuation
+	transformer.sub("[^a-zA-Z0-9]+", "_")
+	
+	return transformer.transformed

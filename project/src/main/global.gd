@@ -25,10 +25,6 @@ const FATNESSES := [
 	1.8, 2.3,
 ]
 
-# unique creature ids
-const SENSEI_ID := "#sensei#"
-const PLAYER_ID := "#player#"
-
 # The factor to multiply by to convert non-isometric coordinates into isometric coordinates
 const ISO_FACTOR := Vector2(1.0, 0.5)
 

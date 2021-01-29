@@ -34,7 +34,7 @@ func load_chat_events_for_creature(creature: Creature, forced_level_id: String =
 Returns the chat tree for the specified creature.
 """
 func chat_tree_for_creature_id(creature_id: String, forced_level_id: String = "") -> ChatTree:
-	var creature_def: CreatureDef = CreatureLoader.load_creature_def_by_id(creature_id)
+	var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
 	var state := _creature_chat_state(creature_id, forced_level_id)
 	
 	return chat_tree_for_creature_def(creature_def, state)

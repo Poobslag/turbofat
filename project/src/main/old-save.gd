@@ -9,25 +9,6 @@ consider dropping backwards compatibility for older versions.
 # Filename for v0.0517 data. Can be changed for tests
 var player_data_filename_0517 := "user://turbofat.save"
 
-class StringTransformer:
-	"""
-	Applies a series of regex transformations.
-	"""
-	
-	var _regex := RegEx.new()
-	var transformed: String
-	
-	func _init(s: String) -> void:
-		transformed = s
-	
-	"""
-	Apply a regex transformation.
-	"""
-	func sub(pattern: String, replacement: String) -> void:
-		_regex.compile(pattern)
-		transformed = _regex.sub(transformed, replacement, true)
-
-
 """
 Returns 'true' if the player has an old save file but no new save file.
 

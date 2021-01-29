@@ -2,7 +2,7 @@
   "version": "1922",
   "": [
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Lorem ipsum dolor sit amet? What do you think?",
       "links": [
         {
@@ -21,7 +21,7 @@
       "mood": "smile0"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "I agree! Sed do eiusmod."
     }
   ],
@@ -32,7 +32,7 @@
       "mood": "rage0"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "But... but sed do eiusmod!"
     }
   ]

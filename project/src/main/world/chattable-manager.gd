@@ -10,9 +10,6 @@ signal focus_changed
 # Maximum range for the player to successfully interact with an object
 const MAX_INTERACT_DISTANCE := 240.0
 
-# Chat appearance for different characters
-var _chat_theme_defs: Dictionary
-
 # The player's sprite
 var player: Player setget set_player
 
@@ -25,12 +22,12 @@ var focused_chattable: Node2D setget set_focused_chattable
 # 'false' if the player is temporarily disallowed from interacting with nearby objects, such as while chatting
 var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
 
-# Mapping from chatter names to Creature objects. The player and sensei are omitted from this mapping, as the
-# player can set their own name and it could conflict with overworld creatures.
+# Mapping from creature ids to Creature objects. The player and sensei are omitted from this mapping, as the player
+# can set their own name and it could conflict with overworld creatures.
 #
-# key: chatter name as it appears in dialog files
-# value: Creature object corresponding to the chatter name 
-var _creatures_by_chatter_name := {}
+# key: creature id as it appears in dialog files
+# value: Creature object corresponding to the creature id
+var _creatures_by_id := {}
 
 func _ready() -> void:
 	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
@@ -74,12 +71,10 @@ func _physics_process(_delta: float) -> void:
 Refreshes our state based on the creatures in the scene, and reconnects some signals.
 """
 func refresh_creatures() -> void:
-	_creatures_by_chatter_name.clear()
+	_creatures_by_id.clear()
 	for creature_obj in get_tree().get_nodes_in_group("creatures"):
 		var creature: Creature = creature_obj
-		_refresh_creature_name(creature)
-		if not creature.is_connected("creature_name_changed", self, "_on_Creature_creature_name_changed"):
-			creature.connect("creature_name_changed", self, "_on_Creature_creature_name_changed", [creature])
+		_refresh_creature_id(creature)
 
 
 """
@@ -88,14 +83,14 @@ Returns the Creature object corresponding to the specified chatter name.
 A name of SENSEI_ID or PLAYER_ID will return the sensei or player object. To avoid
 conflicts, the sensei or player cannot be retrieved by their actual name.
 """
-func get_creature_by_chatter_name(chatter_name: String) -> Creature:
+func get_creature_by_id(chat_id: String) -> Creature:
 	var result: Creature
-	match chatter_name:
-		Global.SENSEI_ID: result = ChattableManager.sensei
-		Global.PLAYER_ID: result = ChattableManager.player
+	match chat_id:
+		CreatureLibrary.SENSEI_ID: result = ChattableManager.sensei
+		CreatureLibrary.PLAYER_ID: result = ChattableManager.player
 		_:
-			if _creatures_by_chatter_name.has(chatter_name):
-				result = _creatures_by_chatter_name[chatter_name]
+			if _creatures_by_id.has(chat_id):
+				result = _creatures_by_id[chat_id]
 	return result
 
 
@@ -119,14 +114,12 @@ func load_chat_events() -> ChatTree:
 
 func set_player(new_player: Player) -> void:
 	player = new_player
-	_remove_from_creatures_by_chatter_name(player)
-	add_chat_theme_def(Global.PLAYER_ID, player.get_meta("chat_theme_def"))
+	_remove_from_creatures_by_id(player)
 
 
 func set_sensei(new_sensei: Sensei) -> void:
 	sensei = new_sensei
-	_remove_from_creatures_by_chatter_name(sensei)
-	add_chat_theme_def(Global.SENSEI_ID, sensei.get_meta("chat_theme_def"))
+	_remove_from_creatures_by_id(sensei)
 
 
 func set_focused_chattable(new_focused_chattable: Node2D) -> void:
@@ -171,40 +164,18 @@ Returns the overworld object which has the specified 'chat name'.
 During dialog sequences, we sometimes need to know which overworld object corresponds to the person saying the current
 dialog line. This function facilitates that.
 """
-func get_chatter(chat_name: String) -> Node2D:
+func get_chatter(chat_id: String) -> Node2D:
 	var chatter: Node2D
-	if chat_name == Global.PLAYER_ID:
+	if chat_id == CreatureLibrary.PLAYER_ID:
 		chatter = player
 	else:
 		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
 			var chattable: Node = chattable_obj
-			if chattable.is_class("Node2D") and chattable.has_meta("chat_name") \
-					and chattable.get_meta("chat_name") == chat_name:
+			if chattable.is_class("Node2D") and chattable.has_meta("chat_id") \
+					and chattable.get_meta("chat_id") == chat_id:
 				chatter = chattable
 				break
 	return chatter
-
-
-"""
-Returns the accent definition for the overworld object which has the specified 'chat name'.
-"""
-func get_chat_theme_def(chat_name: String) -> Dictionary:
-	if chat_name and not _chat_theme_defs.has(chat_name):
-		# refresh our cache of accent definitions
-		for chattable in get_tree().get_nodes_in_group("chattables"):
-			if chattable.has_meta("chat_name") and chattable.has_meta("chat_theme_def"):
-				add_chat_theme_def(chattable.get_meta("chat_name"), chattable.get_meta("chat_theme_def"))
-		
-		if not _chat_theme_defs.has(chat_name):
-			# report a warning and store a stub definition to prevent repeated errors
-			_chat_theme_defs[chat_name] = {}
-			push_error("Missing chat_theme_def for chattable '%s'" % chat_name)
-	
-	return _chat_theme_defs.get(chat_name, {})
-
-
-func add_chat_theme_def(chat_name: String, chat_theme_def: Dictionary) -> void:
-	_chat_theme_defs[chat_name] = chat_theme_def
 
 
 """
@@ -215,39 +186,29 @@ Text variables are pound sign delimited: 'Hello #player#'. This matches the synt
 func substitute_variables(string: String, full_name: bool = false) -> String:
 	var result := string
 	if full_name:
-		result = result.replace(Global.PLAYER_ID, PlayerData.creature_library.player_def.creature_name)
+		result = result.replace(CreatureLibrary.PLAYER_ID, PlayerData.creature_library.player_def.creature_name)
 	else:
-		result = result.replace(Global.PLAYER_ID, PlayerData.creature_library.player_def.creature_short_name)
-	result = result.replace(Global.SENSEI_ID,
+		result = result.replace(CreatureLibrary.PLAYER_ID, PlayerData.creature_library.player_def.creature_short_name)
+	result = result.replace(CreatureLibrary.SENSEI_ID,
 			PlayerData.creature_library.sensei_def.creature_short_name)
 	return result
 
 
 """
-Remove the specified creature from the '_creatures_by_chatter_name' mapping.
+Remove the specified creature from the '_creatures_by_id' mapping.
 """
-func _remove_from_creatures_by_chatter_name(creature: Creature) -> void:
-	for key in _creatures_by_chatter_name:
-		if _creatures_by_chatter_name[key] == creature:
-			_creatures_by_chatter_name.erase(key)
+func _remove_from_creatures_by_id(creature: Creature) -> void:
+	for key in _creatures_by_id:
+		if _creatures_by_id[key] == creature:
+			_creatures_by_id.erase(key)
 
 
 """
-Updates a creature's entry in the '_creatures_by_chatter_name' mapping.
+Updates a creature's entry in the '_creatures_by_id' mapping.
 """
-func _refresh_creature_name(creature: Creature) -> void:
-	if creature == player or creature == sensei:
-		# don't store player or sensei in the 'players by name' table, as it might conflict with other creatures
-		return
-	
-	if creature.creature_name:
-		_creatures_by_chatter_name[creature.creature_name] = creature
-	if creature.creature_short_name:
-		_creatures_by_chatter_name[creature.creature_short_name] = creature
-
-
-func _on_Creature_creature_name_changed(creature: Creature) -> void:
-	_refresh_creature_name(creature)
+func _refresh_creature_id(creature: Creature) -> void:
+	if creature.creature_id:
+		_creatures_by_id[creature.creature_id] = creature
 
 
 """

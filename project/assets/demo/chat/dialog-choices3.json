@@ -2,7 +2,7 @@
   "version": "1922",
   "": [
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Lorem ipsum dolor sit amet? How many?",
       "links": [
         {
@@ -24,7 +24,7 @@
       "mood": "sweat0"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Here is your sed do eiusmod."
     }
   ],
@@ -35,7 +35,7 @@
       "mood": "think0"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "Here, two sed do eiusmods."
     }
   ],
@@ -46,7 +46,7 @@
       "mood": "smile1"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "I only have three sed do eiusmods, but I'll get you more later."
     }
   ]

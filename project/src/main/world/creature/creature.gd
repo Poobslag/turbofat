@@ -173,12 +173,12 @@ func set_chat_selectors(new_chat_selectors: Array) -> void:
 
 func set_creature_id(new_creature_id: String) -> void:
 	creature_id = new_creature_id
+	set_meta("chat_id", creature_id)
 	_refresh_creature_id()
 
 
 func set_creature_name(new_creature_name: String) -> void:
 	creature_name = new_creature_name
-	set_meta("chat_name", creature_name)
 	emit_signal("creature_name_changed")
 
 
@@ -360,13 +360,15 @@ func _refresh_orientation() -> void:
 
 
 func _refresh_creature_id() -> void:
-	if creature_id == Global.PLAYER_ID:
+	if creature_id == CreatureLibrary.PLAYER_ID:
 		# player's creature_def is loaded in player.gd
 		pass
 	elif not is_inside_tree():
 		pass
 	else:
-		set_creature_def(CreatureLoader.load_creature_def_by_id(creature_id))
+		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
+		if creature_def:
+			set_creature_def(creature_def)
 
 
 func _apply_friction() -> void:

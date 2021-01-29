@@ -31,7 +31,7 @@
       "version": "1922",
       "": [
         {
-          "who": "Bort",
+          "who": "bort",
           "text": "Wow!/ ./././You finally did it?/ Does this count as our first conversation!?",
           "mood": "think0",
           "links": [
@@ -54,7 +54,7 @@
           "mood": "smile0"
         },
         {
-          "who": "Bort",
+          "who": "bort",
           "text": "Congratulations!/ Wow!",
           "mood": "smile0",
           "links": [
@@ -69,7 +69,7 @@
           "mood": "think0"
         },
         {
-          "who": "Bort",
+          "who": "bort",
           "text": "Congratulations!/ Wow!",
           "mood": "smile0",
           "links": [
@@ -84,7 +84,7 @@
           "mood": "cry0"
         },
         {
-          "who": "Bort",
+          "who": "bort",
           "text": "Aww, don't be like that! This is looking great.",
           "mood": "smile0",
           "links": [
@@ -94,7 +94,7 @@
       ],
       "nice": [
         {
-          "who": "Bort",
+          "who": "bort",
           "text": "./././I can't wait to see what you do next!"
         }
       ]

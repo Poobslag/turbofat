@@ -48,16 +48,16 @@ func start_chat(new_chat_tree: ChatTree, target: Node2D) -> void:
 	_current_chat_tree = new_chat_tree
 	
 	var new_chatters := [ChattableManager.player, target]
-	var chatter_names := {}
+	var chatter_ids := {}
 	for chat_events_obj in new_chat_tree.events.values():
 		var chat_events: Array = chat_events_obj
 		for chat_event_obj in chat_events:
 			var chat_event: ChatEvent = chat_event_obj
-			chatter_names[chat_event.who] = true
+			chatter_ids[chat_event.who] = true
 	
-	for chatter_name_obj in chatter_names:
-		var chatter_name: String = chatter_name_obj
-		var chatter := ChattableManager.get_creature_by_chatter_name(chatter_name)
+	for chatter_id_obj in chatter_ids:
+		var chatter_id: String = chatter_id_obj
+		var chatter := ChattableManager.get_creature_by_id(chatter_id)
 		if chatter and not new_chatters.has(chatter):
 			new_chatters.append(chatter)
 	
@@ -190,7 +190,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	make_chatters_face_eachother()
 	
 	# update the chatter's mood
-	var chatter := ChattableManager.get_creature_by_chatter_name(chat_event.who)
+	var chatter := ChattableManager.get_creature_by_id(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
 

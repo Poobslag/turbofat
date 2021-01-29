@@ -59,12 +59,12 @@ func from_json_dict(json: Dictionary) -> void:
 	_parse_meta(json)
 	
 	if json.has("who"):
-		chat_theme_def = ChattableManager.get_chat_theme_def(who)
+		chat_theme_def = PlayerData.creature_library.get_creature_def(who).chat_theme_def
 	else:
 		# Dialog with no speaker; decorate it as a thought bubble
 		if text:
 			text = "(%s)" % text
-		chat_theme_def = ChattableManager.get_chat_theme_def("#player#")
+		chat_theme_def = PlayerData.creature_library.get_creature_def("#player#").chat_theme_def
 
 
 """

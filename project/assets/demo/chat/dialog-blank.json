@@ -2,7 +2,7 @@
   "version": "1922",
   "": [
     {
-      "who": "Lorum",
+      "who": "lorum",
       "links": [
         {
           "yes": "Yes, that's right."
@@ -19,7 +19,7 @@
       "mood": "smile0"
     },
     {
-      "who": "Lorum",
+      "who": "lorum",
       "text": "I agree! Sed do eiusmod."
     }
   ],
@@ -30,7 +30,7 @@
       "mood": "rage0"
     },
     {
-      "who": "Lorum"
+      "who": "lorum"
     }
   ]
 }
