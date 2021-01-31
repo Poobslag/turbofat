@@ -57,6 +57,7 @@ func _physics_process(_delta: float) -> void:
 		if player.non_iso_walk_direction and target_direction \
 				and player.non_iso_walk_direction.dot(target_direction) >= 0.49:
 			_player_exiting = true
+			player.fade_out()
 			SceneTransition.start_fade_out()
 
 

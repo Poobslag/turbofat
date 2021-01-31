@@ -47,9 +47,9 @@ func _process(_delta: float) -> void:
 		zoom_close_up = lerp(ZOOM_CLOSE_UP, ZOOM_DEFAULT, inverse_lerp(1.0, 10.0, max_visual_fatness))
 		close_up_position = _overworld_ui.get_center_of_chatters()
 	
-	position = lerp(ChattableManager.player.position, close_up_position, close_up_pct)
 	zoom = lerp(ZOOM_DEFAULT, zoom_close_up, close_up_pct)
 	
+	position = lerp(ChattableManager.player.position, close_up_position, close_up_pct)
 	if close_up and ChattableManager.player.position.distance_to(close_up_position) > AUTO_ZOOM_OUT_DISTANCE:
 		# player left the chat area; zoom back out
 		set_close_up(false)

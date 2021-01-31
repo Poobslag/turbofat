@@ -3,9 +3,9 @@
   "location": {
     "location_id": "indoors",
     "spawn_locations": {
-      "#player#": "kitchen-9",
-      "#sensei#": "kitchen-11",
-      "richie": "kitchen-1",
+      "#player#": "!kitchen-9",
+      "#sensei#": "!kitchen-11",
+      "richie": "!kitchen-1",
       "skins": "kitchen-3",
       "bones": "kitchen-5",
       "shirts": "kitchen-7"
@@ -13,8 +13,161 @@
   },
   "": [
     {
+      "who": "#sensei#",
+      "text": "So explain again why my beloved restaurant is very,/ very empty?",
+      "mood": "cry0",
+      "meta": [
+        "creature-enter #player#",
+        "creature-enter #sensei#",
+        "creature-enter richie"
+      ]
+    },
+    {
       "who": "richie",
-      "text": "Okay. Now we can have a cutscene!"
+      "text": "Aw come on now!/ It's not empty,/ we got the two line cooks here...",
+    },
+    {
+      "who": "bones",
+      "text": "Bork!",
+      "mood": "smile0"
+    },
+    {
+      "who": "richie",
+      "text": "And as far as customers,/ we got Chonkers McRhonkers over there!/ What more could you need?",
+      "mood": "smile0"
+    },
+    {
+      "who": "#sensei#",
+      "text": "Hm./ Mhm./././ Well ideally you'd have at least TWO customers...",
+      "mood": "think0"
+    },
+    {
+      "who": "bones",
+      "text": "Oh Chonkers eats plenty!/ Even with just her,/ she's doing a lot to keep us afloat."
+    },
+    {
+      "who": "richie",
+      "text": "I mean,/ afloat might be a strong word./ She's makin' us sink a little slower I guess.",
+      "mood": "think0"
+    },
+    {
+      "who": "richie",
+      "text": "Maybe kind of like a, hmm./././ Like a anchor made of something slightly buoyant.",
+      "mood": "think0"
+    },
+    {
+      "who": "bones",
+      "text": "An anchor made of./././ Boats?",
+      "mood": "think0"
+    },
+    {
+      "who": "richie",
+      "text": "Nope./ Not that buoyant!",
+      "links": [
+        {
+          "walnuts": "Walnuts?"
+        },
+        {
+          "rotting-flesh": "Rotting flesh?"
+        },
+        {
+          "smaller-boats": "Slightly smaller boats?"
+        },
+        {
+          "avenue-of-discussion": "This isn't a helpful avenue of discussion."
+        }
+      ]
+    }
+  ],
+
+  "walnuts" : [
+    {
+      "who": "#player#",
+      "text": "Walnuts?",
+      "mood": "think0"
+    },
+    {
+      "who": "richie",
+      "text": "There you go,/ well put!/ Like a anchor made of walnuts.",
+      "mood": "smile0",
+      "links": [
+        "following-our-recipes"
+      ]
+    }
+  ],
+  "rotting-flesh" : [
+    {
+      "who": "#player#",
+      "text": "Rotting flesh?",
+      "mood": "think0"
+    },
+    {
+      "who": "richie",
+      "text": "There you go,/ well put!/ Like a anchor made of./././ wait what!?",
+      "mood": "sweat0"
+    },
+    {
+      "who": "richie",
+      "text": "./././I mean,/ maybe?/ ./././Hold up,/ are you on some kind of watchlist I should know about?",
+      "mood": "think0",
+      "links": [
+        "following-our-recipes"
+      ]
+    }
+  ],
+  "smaller-boats" : [
+    {
+      "who": "#player#",
+      "text": "Slightly smaller boats?",
+      "mood": "think0"
+    },
+    {
+      "who": "richie",
+      "text": "There you go,/ well put!/ Like a anchor made of slightly smaller boats.",
+      "mood": "smile0",
+      "links": [
+        "following-our-recipes"
+      ]
+    }
+  ],
+  "avenue-of-discussion" : [
+    {
+      "who": "#player#",
+      "text": "This isn't a helpful avenue of discussion."
+    },
+    {
+      "who": "richie",
+      "text": "Oh sure,/ I'm with you./ ./././We'll come back to that one later.",
+      "mood": "think0",
+      "links": [
+        "following-our-recipes"
+      ]
+    }
+  ],
+
+  "following-our-recipes" : [
+    {
+      "who": "#sensei#",
+      "text": "Well, anyway./././ I know you said you were following our recipes to a tee./ But just in case...",
+      "mood": "think0"
+    },
+    {
+      "who": "richie",
+      "text": "You want us to show you, right?"
+    },
+    {
+      "who": "#sensei#",
+      "text": "I mean./././ well..."
+    },
+    {
+      "who": "richie",
+      "text": "Go ahead,/ Skins!/ Why don't you show 'em what you got.",
+      "mood": "smile0"
+    },
+    {
+      "who": "skins",
+      "text": "Can do!/ Mowr!",
+      "mood": "smile0"
     }
   ]
 }

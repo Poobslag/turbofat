@@ -127,6 +127,8 @@ func get_center_of_chatters(include: Array = [], exclude: Array = []) -> Vector2
 			continue
 		if exclude and chatter in exclude:
 			continue
+		if not chatter.visible:
+			continue
 		if bounding_box:
 			bounding_box = bounding_box.expand(chatter.position)
 		else:
@@ -188,6 +190,13 @@ func _on_ChatUi_pop_out_completed() -> void:
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	make_chatters_face_eachother()
+	
+	for meta_item_obj in chat_event.meta:
+		var meta_item: String = meta_item_obj
+		if meta_item.begins_with("creature-enter "):
+			var creature_id := StringUtils.substring_after(meta_item, "creature-enter ")
+			var entering_creature := ChattableManager.get_creature_by_id(creature_id)
+			entering_creature.fade_in()
 	
 	# update the chatter's mood
 	var chatter := ChattableManager.get_creature_by_id(chat_event.who)
