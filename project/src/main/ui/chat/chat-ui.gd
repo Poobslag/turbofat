@@ -94,11 +94,11 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 		$ChatChoices.hide_choices()
 	
 	# reposition the nametags for whether the characters are on the left or right side
-	var chatter := ChattableManager.get_chatter(chat_event["who"])
+	var creature := ChattableManager.get_creature_by_id(chat_event["who"])
 	var nametag_right := false
 	var squished := false
-	if chatter and chatter.has_method("get_orientation"):
-		var orientation: int = chatter.get_orientation()
+	if creature:
+		var orientation: int = creature.orientation
 		if orientation in [Creature.NORTHEAST, Creature.SOUTHEAST]:
 			# If we're facing right, we're on the left side. Put the nametag on the left.
 			nametag_right = false

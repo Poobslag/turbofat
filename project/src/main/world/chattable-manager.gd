@@ -159,26 +159,6 @@ func is_focus_enabled() -> bool:
 
 
 """
-Returns the overworld object which has the specified 'chat name'.
-
-During dialog sequences, we sometimes need to know which overworld object corresponds to the person saying the current
-dialog line. This function facilitates that.
-"""
-func get_chatter(chat_id: String) -> Node2D:
-	var chatter: Node2D
-	if chat_id == CreatureLibrary.PLAYER_ID:
-		chatter = player
-	else:
-		for chattable_obj in get_tree().get_nodes_in_group("chattables"):
-			var chattable: Node = chattable_obj
-			if chattable.is_class("Node2D") and chattable.has_meta("chat_id") \
-					and chattable.get_meta("chat_id") == chat_id:
-				chatter = chattable
-				break
-	return chatter
-
-
-"""
 Substitutes variables in player-visible text.
 
 Text variables are pound sign delimited: 'Hello #player#'. This matches the syntax of Tracery.
