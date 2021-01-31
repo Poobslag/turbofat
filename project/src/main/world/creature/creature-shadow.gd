@@ -46,13 +46,22 @@ func _refresh_creature_path() -> void:
 	position = _creature.position + shadow_offset
 	if _creature.creature_visuals:
 		$Sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y
+		_refresh_creature_shadow_scale()
 
 
-func _on_Creature_visual_fatness_changed() -> void:
+"""
+Recalculates the CreatureShadow scale property based on the creature's fatness.
+"""
+func _refresh_creature_shadow_scale() -> void:
 	$FatPlayer.play("fat")
 	$FatPlayer.advance(_creature.get_visual_fatness())
 	$FatPlayer.stop()
 
 
+func _on_Creature_visual_fatness_changed() -> void:
+	_refresh_creature_shadow_scale()
+
+
 func _on_Creature_dna_loaded() -> void:
 	$Sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y
+	_refresh_creature_shadow_scale()
