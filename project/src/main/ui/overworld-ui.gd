@@ -85,8 +85,9 @@ func is_show_version() -> bool:
 Turn the the active chat participants towards each other, and make them face the camera.
 """
 func make_chatters_face_eachother() -> void:
-	var center_of_non_player_chatters := get_center_of_chatters(
+	var chatter_bounding_box := get_chatter_bounding_box(
 			[], [ChattableManager.player, ChattableManager.sensei])
+	var center_of_non_player_chatters := chatter_bounding_box.position + chatter_bounding_box.size * 0.5
 	
 	for chatter in chatters:
 		if chatter == ChattableManager.player:
@@ -108,7 +109,7 @@ func make_chatters_face_eachother() -> void:
 
 
 """
-Calculates the center of the characters involved in the current conversation.
+Calculates the bounding box of the characters involved in the current conversation.
 
 Parameters:
 	'include': (Optional) characters in the current conversation will only be included if they are in this list.
@@ -116,10 +117,10 @@ Parameters:
 	'exclude': (Optional) Characters in the current conversation will be excluded if they are in this list.
 
 Returns:
-	The center of the smallest rectangle including all characters in the current conversation. If no characters meet
-	this criteria, this returns an zero-size rectangle at (0, 0).
+	The smallest rectangle including all characters in the current conversation. If no characters meet this criteria,
+	this returns an zero-size rectangle at (0, 0).
 """
-func get_center_of_chatters(include: Array = [], exclude: Array = []) -> Vector2:
+func get_chatter_bounding_box(include: Array = [], exclude: Array = []) -> Rect2:
 	var bounding_box: Rect2
 	
 	for chatter in chatters:
@@ -133,7 +134,7 @@ func get_center_of_chatters(include: Array = [], exclude: Array = []) -> Vector2
 			bounding_box = bounding_box.expand(chatter.position)
 		else:
 			bounding_box = Rect2(chatter.position, Vector2.ZERO)
-	return bounding_box.position + bounding_box.size * 0.5
+	return bounding_box
 
 
 """
@@ -143,7 +144,7 @@ Quick one-line chats don't interrupt the player or zoom the camera in; the playe
 running. That's why we call them 'drive by chats'.
 """
 func is_drive_by_chat() -> bool:
-	return _current_chat_tree.events.size() == 1
+	return _current_chat_tree.events.size() <= 1 and _current_chat_tree.events.get("", []).size() <= 1
 
 
 """
