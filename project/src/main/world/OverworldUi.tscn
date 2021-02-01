@@ -161,6 +161,7 @@ margin_bottom = 1.99976
 modulate = Color( 1, 1, 1, 0.627451 )
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -186,12 +187,14 @@ anchor_bottom = 0.0
 margin_left = 292.0
 margin_right = 392.0
 margin_bottom = 100.0
+focus_mode = 0
 size_flags_horizontal = 0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
+enabled_focus_mode = 0
 shortcut = SubResource( 7 )
 icon = ExtResource( 33 )
 expand_icon = true
@@ -204,11 +207,13 @@ anchor_bottom = 0.0
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
+focus_mode = 0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
+enabled_focus_mode = 0
 shortcut = SubResource( 9 )
 icon = ExtResource( 25 )
 expand_icon = true
@@ -237,11 +242,13 @@ anchor_bottom = 0.0
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
+focus_mode = 0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
+enabled_focus_mode = 0
 shortcut = SubResource( 11 )
 icon = ExtResource( 23 )
 expand_icon = true
@@ -327,10 +334,12 @@ custom_styles/normal = SubResource( 5 )
 disabled = true
 
 [node name="MusicPopup" parent="Control" instance=ExtResource( 16 )]
+mouse_filter = 2
 
 [node name="SceneTransitionRect" parent="Control" instance=ExtResource( 15 )]
 anchor_right = 1.0
 anchor_bottom = 1.0
+[connection signal="chat_choice_chosen" from="Control/ChatUi" to="." method="_on_ChatUi_chat_choice_chosen"]
 [connection signal="chat_event_played" from="Control/ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Control/ChatUi" to="." method="_on_ChatUi_pop_out_completed"]
 [connection signal="showed_choices" from="Control/ChatUi" to="." method="_on_ChatUi_showed_choices"]
@@ -338,13 +347,17 @@ anchor_bottom = 1.0
 [connection signal="pressed" from="Control/Buttons/Northeast/SettingsButton" to="." method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Control/Buttons/Southeast/TalkButton" to="." method="_on_TalkButton_pressed"]
 [connection signal="cheat_detected" from="Control/CheatCodeDetector" to="Control/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="hide" from="Control/SettingsMenu" to="." method="_on_SettingsMenu_hide"]
 [connection signal="hide" from="Control/SettingsMenu" to="Control/TouchButtons" method="_on_Menu_hide"]
 [connection signal="hide" from="Control/SettingsMenu" to="Control/Buttons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="Control/SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
+[connection signal="show" from="Control/SettingsMenu" to="." method="_on_SettingsMenu_show"]
 [connection signal="show" from="Control/SettingsMenu" to="Control/TouchButtons" method="_on_Menu_show"]
 [connection signal="show" from="Control/SettingsMenu" to="Control/Buttons" method="_on_Menu_show"]
+[connection signal="hide" from="Control/CellPhoneMenu" to="." method="_on_CellPhoneMenu_hide"]
 [connection signal="hide" from="Control/CellPhoneMenu" to="Control/TouchButtons" method="_on_Menu_hide"]
 [connection signal="hide" from="Control/CellPhoneMenu" to="Control/Buttons" method="_on_Menu_hide"]
+[connection signal="show" from="Control/CellPhoneMenu" to="." method="_on_CellPhoneMenu_show"]
 [connection signal="show" from="Control/CellPhoneMenu" to="Control/TouchButtons" method="_on_Menu_show"]
 [connection signal="show" from="Control/CellPhoneMenu" to="Control/Buttons" method="_on_Menu_show"]
 [connection signal="pressed" from="Control/CellPhoneMenu/Buttons/Northeast/BackButton" to="Control/CellPhoneMenu" method="_on_BackButton_pressed"]

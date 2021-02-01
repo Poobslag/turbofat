@@ -7,6 +7,9 @@ Script for manipulating the player-controlled character in the overworld.
 # If 'true' the player cannot move. Used during cutscenes.
 var input_disabled := false
 
+# if 'true' the ui has focus, and the player shouldn't move.
+var ui_has_focus := false setget set_ui_has_focus
+
 func _ready() -> void:
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 	
@@ -19,13 +22,20 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if input_disabled:
+	if input_disabled or ui_has_focus:
 		return
 	
 	if Utils.walk_pressed_dir(_event) or Utils.walk_released_dir(_event):
 		# calculate the direction the player wants to move
 		set_non_iso_walk_direction(Utils.walk_pressed_dir())
 		get_tree().set_input_as_handled()
+
+
+func set_ui_has_focus(new_ui_has_focus: bool) -> void:
+	ui_has_focus = new_ui_has_focus
+	if ui_has_focus and non_iso_walk_direction:
+		# if the player is moving when something grabs focus, stop their movement
+		set_non_iso_walk_direction(Vector2(0, 0))
 
 
 """

@@ -72,6 +72,9 @@ func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 	_refresh_child_buttons()
 	
 	if choices:
+		# briefly disable input to prevent the player from mashing through chat choices accidentally
+		$EnableInputTimer.start()
+		
 		# wait for old chat choices to be deleted before grabbing focus
 		yield(get_tree(), "idle_frame")
 		for button in get_tree().get_nodes_in_group("chat_choices"):
@@ -166,6 +169,10 @@ Makes all the chat choice buttons disappear and emits a signal with the player's
 The chat choice buttons remain as children of this node so they can be animated away.
 """
 func _on_ChatChoiceButton_pressed() -> void:
+	if not $EnableInputTimer.is_stopped():
+		# don't let the player mash through chat choices accidentally
+		return
+	
 	var old_buttons := get_tree().get_nodes_in_group("chat_choices")
 
 	# determine the currently selected choice

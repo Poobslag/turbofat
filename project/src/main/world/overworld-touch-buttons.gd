@@ -3,8 +3,12 @@ extends Control
 Touchscreen buttons displayed for the overworld.
 """
 
+onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
+
 func _ready() -> void:
 	if OS.has_touchscreen_ui_hint():
+		_overworld_ui.connect("chat_started", self, "_on_OverworldUi_chat_started")
+		_overworld_ui.connect("chat_ended", self, "_on_OverworldUi_chat_ended")
 		PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
 		_refresh_button_positions()
 		show()
