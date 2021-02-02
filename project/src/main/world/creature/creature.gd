@@ -397,9 +397,9 @@ func _refresh_creature_id() -> void:
 	elif not is_inside_tree():
 		pass
 	else:
-		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
-		if creature_def:
-			set_creature_def(creature_def)
+		var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
+		if new_creature_def:
+			set_creature_def(new_creature_def)
 
 
 func _apply_friction() -> void:

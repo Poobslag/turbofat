@@ -8,6 +8,7 @@ signal chat_event_played(chat_event)
 
 # emitted when we present the player with a dialog choice
 signal showed_choices
+signal chat_choice_chosen(choice_index)
 signal pop_out_completed
 
 # how long the player needs to hold the button to skip all dialog
@@ -147,3 +148,7 @@ func _on_ChatFrame_all_text_shown() -> void:
 
 func _on_ChatFrame_pop_out_completed() -> void:
 	emit_signal("pop_out_completed")
+
+
+func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:
+	emit_signal("chat_choice_chosen", choice_index)

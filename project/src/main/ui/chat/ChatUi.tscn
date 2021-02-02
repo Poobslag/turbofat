@@ -49,6 +49,7 @@ __meta__ = {
 [connection signal="all_text_shown" from="ChatFrame" to="." method="_on_ChatFrame_all_text_shown"]
 [connection signal="pop_out_completed" from="ChatFrame" to="." method="_on_ChatFrame_pop_out_completed"]
 [connection signal="chat_choice_chosen" from="ChatChoices" to="ChatAdvancer" method="_on_ChatChoices_chat_choice_chosen"]
+[connection signal="chat_choice_chosen" from="ChatChoices" to="." method="_on_ChatChoices_chat_choice_chosen"]
 [connection signal="chat_choice_chosen" from="ChatChoices" to="TouchTranslator" method="_on_ChatChoices_chat_choice_chosen"]
 [connection signal="chat_event_shown" from="ChatAdvancer" to="." method="_on_ChatAdvancer_chat_event_shown"]
 [connection signal="chat_finished" from="ChatAdvancer" to="ChatFrame" method="_on_ChatAdvancer_chat_finished"]

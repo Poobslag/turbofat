@@ -159,6 +159,41 @@ func _refresh_rect_size() -> void:
 	$Control.rect_size = $Control.get_viewport_rect().size
 
 
+"""
+Returns the level id (if any) corresponding to the curently focused chattable.
+
+This is relevant when the player talks to a creature with a food speech bubble.
+"""
+func _focused_chattable_level_id() -> String:
+	var focused_creature: Creature = ChattableManager.focused_chattable
+	if not focused_creature:
+		return ""
+	
+	return LevelLibrary.first_unfinished_level_id_for_creature(focused_creature.creature_id)
+
+
+"""
+Returns the chat tree corresponding to the curently focused chattable.
+
+This is relevant when the player talks to a creature with a non-food speech bubble.
+"""
+func _focused_chattable_chat_tree() -> ChatTree:
+	var focused_chattable := ChattableManager.focused_chattable
+	if not focused_chattable:
+		return null
+	
+	if not _chat_tree_cache.has(focused_chattable):
+		var chat_tree := ChattableManager.load_chat_events()
+		if focused_chattable is Creature:
+			if chat_tree.meta.get("filler", false):
+				PlayerData.chat_history.increment_filler_count(focused_chattable.creature_id)
+			if chat_tree.meta.get("notable", false):
+				PlayerData.chat_history.reset_filler_count(focused_chattable.creature_id)
+		emit_signal("chat_cached", focused_chattable)
+		_chat_tree_cache[focused_chattable] = chat_tree
+	return _chat_tree_cache[focused_chattable]
+
+
 func _on_ChatUi_pop_out_completed() -> void:
 	PlayerData.chat_history.add_history_item(_current_chat_tree.history_key)
 	
@@ -207,6 +242,11 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 
 func _on_ChatUi_showed_choices() -> void:
 	emit_signal("showed_chat_choices")
+	ChattableManager.player.ui_has_focus = true
+
+
+func _on_ChatUi_chat_choice_chosen(_chat_choice: int) -> void:
+	ChattableManager.player.ui_has_focus = false
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
@@ -223,41 +263,6 @@ func _on_CellPhoneButton_pressed() -> void:
 
 func _on_SettingsButton_pressed() -> void:
 	$Control/SettingsMenu.show()
-
-
-"""
-Returns the level id (if any) corresponding to the curently focused chattable.
-
-This is relevant when the player talks to a creature with a food speech bubble.
-"""
-func _focused_chattable_level_id() -> String:
-	var focused_creature: Creature = ChattableManager.focused_chattable
-	if not focused_creature:
-		return ""
-	
-	return LevelLibrary.first_unfinished_level_id_for_creature(focused_creature.creature_id)
-
-
-"""
-Returns the chat tree corresponding to the curently focused chattable.
-
-This is relevant when the player talks to a creature with a non-food speech bubble.
-"""
-func _focused_chattable_chat_tree() -> ChatTree:
-	var focused_chattable := ChattableManager.focused_chattable
-	if not focused_chattable:
-		return null
-	
-	if not _chat_tree_cache.has(focused_chattable):
-		var chat_tree := ChattableManager.load_chat_events()
-		if focused_chattable is Creature:
-			if chat_tree.meta.get("filler", false):
-				PlayerData.chat_history.increment_filler_count(focused_chattable.creature_id)
-			if chat_tree.meta.get("notable", false):
-				PlayerData.chat_history.reset_filler_count(focused_chattable.creature_id)
-		emit_signal("chat_cached", focused_chattable)
-		_chat_tree_cache[focused_chattable] = chat_tree
-	return _chat_tree_cache[focused_chattable]
 
 
 """
@@ -282,3 +287,19 @@ func _on_TalkButton_pressed() -> void:
 	if not pushed_cutscene_trail:
 		# if no cutscene was launched, start a chat
 		start_chat(chat_tree, ChattableManager.focused_chattable)
+
+
+func _on_CellPhoneMenu_show() -> void:
+	ChattableManager.player.ui_has_focus = true
+
+
+func _on_CellPhoneMenu_hide() -> void:
+	ChattableManager.player.ui_has_focus = false
+
+
+func _on_SettingsMenu_show() -> void:
+	ChattableManager.player.ui_has_focus = true
+
+
+func _on_SettingsMenu_hide() -> void:
+	ChattableManager.player.ui_has_focus = false
