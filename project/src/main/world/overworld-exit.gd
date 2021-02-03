@@ -31,6 +31,8 @@ var _player_overlapping := false
 # 'true' if the player stepped on this exit arrow and is exiting
 var _player_exiting := false
 
+onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
+
 func _ready() -> void:
 	SceneTransition.connect("fade_out_ended", self, "_on_SceneTransition_fade_out_ended")
 	connect("body_entered", self, "_on_body_entered")
@@ -42,6 +44,9 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint() or not ChattableManager.player:
 		# don't try to change scenes in the editor
+		return
+	if _overworld_ui.is_chatting():
+		# don't change scenes while chatting
 		return
 	
 	if _player_overlapping and not SceneTransition.fading:
