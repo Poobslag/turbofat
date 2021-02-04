@@ -6,7 +6,6 @@
 [ext_resource path="res://src/main/outline-material-80.tres" type="Material" id=4]
 [ext_resource path="res://assets/main/ui/icon-music.png" type="Texture" id=5]
 
-
 [sub_resource type="StyleBoxFlat" id=1]
 resource_local_to_scene = true
 bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
@@ -98,6 +97,6 @@ __meta__ = {
 [node name="PopupTween" type="Tween" parent="."]
 script = ExtResource( 2 )
 
-[node name="Timer" type="Timer" parent="PopupTween"]
+[node name="PopOutTimer" type="Timer" parent="PopupTween"]
 wait_time = 4.0
 one_shot = true
