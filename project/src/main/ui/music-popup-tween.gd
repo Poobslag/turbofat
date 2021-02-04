@@ -4,9 +4,10 @@ Makes the music popup appear and disappear.
 """
 
 enum PopupState {
-	NONE,
-	POPPING_IN,
-	POPPING_OUT
+	POPPED_OUT, # off the top of the screen
+	POPPING_IN, # moving onscreen
+	POPPED_IN, # onscreen
+	POPPING_OUT # moving offscreen
 }
 
 # the how long it takes the popup to slide in or out of view
@@ -20,12 +21,13 @@ const POP_IN_Y := 32
 const POP_OUT_Y := 0
 
 # tracks whether the popup is currently popping in or out
-var _popup_state: int = PopupState.NONE
+var _popup_state: int = PopupState.POPPED_OUT
 
 onready var _music_panel := get_node("../Panel")
 
 func _ready() -> void:
 	connect("tween_all_completed", self, "_on_tween_all_completed")
+	$PopOutTimer.connect("timeout", self, "_on_PopOutTimer_timeout")
 
 
 func _enter_tree() -> void:
@@ -44,9 +46,6 @@ func pop_in_and_out(pop_in_delay: float) -> void:
 	if pop_in_delay:
 		yield(get_tree().create_timer(pop_in_delay), "timeout")
 	_pop_in()
-	$Timer.start(POPUP_DURATION)
-	yield($Timer, "timeout")
-	_pop_out()
 
 
 func _pop_in() -> void:
@@ -55,10 +54,14 @@ func _pop_in() -> void:
 	var pop_in_amount := inverse_lerp(POP_OUT_Y, POP_IN_Y, _music_panel.rect_position.y)
 	var tween_duration := TWEEN_DURATION * (1.0 - pop_in_amount)
 	
-	_popup_state = PopupState.POPPING_IN
-	remove_all()
-	interpolate_property(_music_panel, "rect_position:y", _music_panel.rect_position.y, POP_IN_Y, tween_duration)
-	start()
+	if tween_duration:
+		_popup_state = PopupState.POPPING_IN
+		remove_all()
+		interpolate_property(_music_panel, "rect_position:y", _music_panel.rect_position.y, POP_IN_Y, tween_duration)
+		start()
+	else:
+		$PopOutTimer.start(POPUP_DURATION)
+		_popup_state = PopupState.POPPED_IN
 
 
 func _pop_out() -> void:
@@ -67,10 +70,13 @@ func _pop_out() -> void:
 	var pop_in_amount := inverse_lerp(POP_OUT_Y, POP_IN_Y, _music_panel.rect_position.y)
 	var tween_duration := TWEEN_DURATION * pop_in_amount
 	
-	_popup_state = PopupState.POPPING_OUT
-	remove_all()
-	interpolate_property(_music_panel, "rect_position:y", _music_panel.rect_position.y, POP_OUT_Y, tween_duration)
-	start()
+	if tween_duration:
+		_popup_state = PopupState.POPPING_OUT
+		remove_all()
+		interpolate_property(_music_panel, "rect_position:y", _music_panel.rect_position.y, POP_OUT_Y, tween_duration)
+		start()
+	else:
+		_popup_state = PopupState.POPPED_OUT
 
 
 """
@@ -95,17 +101,22 @@ func _restore_tween_and_timer_state() -> void:
 			# Finish popping out.
 			_pop_out()
 		
-		PopupState.NONE:
-			if _music_panel and _music_panel.rect_position.y > POP_OUT_Y:
-				# PopupTween was interrupted while popped in.
-				# Wait a few seconds and then pop out.
-				$Timer.start(POPUP_DURATION)
-				yield($Timer, "timeout")
-				_pop_out()
-			else:
-				# PopupTween was not interrupted.
-				pass
+		PopupState.POPPED_IN:
+			# PopupTween was interrupted while popped in.
+			# Wait for however long was left on the timer, and then pop out.
+			$PopOutTimer.start($PopOutTimer.time_left)
 
 
 func _on_tween_all_completed() -> void:
-	_popup_state = PopupState.NONE
+	match _popup_state:
+		PopupState.POPPING_IN:
+			$PopOutTimer.start(POPUP_DURATION)
+			_popup_state = PopupState.POPPED_IN
+		PopupState.POPPING_OUT:
+			_popup_state = PopupState.POPPED_OUT
+		_:
+			push_warning("Unexpected popup state: %s" % [_popup_state])
+
+
+func _on_PopOutTimer_timeout() -> void:
+	_pop_out()
