@@ -144,7 +144,11 @@ Quick one-line chats don't interrupt the player or zoom the camera in; the playe
 running. That's why we call them 'drive by chats'.
 """
 func is_drive_by_chat() -> bool:
-	return _current_chat_tree.events.size() <= 1 and _current_chat_tree.events.get("", []).size() <= 1
+	return not _current_chat_tree.can_advance()
+
+
+func is_chatting() -> bool:
+	return not chatters.empty()
 
 
 """

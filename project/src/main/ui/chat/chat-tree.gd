@@ -96,6 +96,20 @@ func advance(link_index := -1) -> bool:
 	return did_increment
 
 
+"""
+Returns 'true' if the chat position can be advanced deeper into the tree.
+"""
+func can_advance() -> bool:
+	var can_increment := false
+	if get_event().links and events.has(get_event().links[-1]):
+		# can reset to beginning of a new chat branch
+		can_increment = true
+	elif _position.index + 1 < events[_position.key].size():
+		# can advance through the current chat branch
+		can_increment = true
+	return can_increment
+
+
 func from_json_dict(json: Dictionary) -> void:
 	for key in json.keys():
 		match key:
