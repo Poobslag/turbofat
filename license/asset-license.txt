@@ -12,8 +12,9 @@ $$$ TS-808 emulator by Jonathan Murphy (Creative Commons Attribution-Noncommerci
 
 Fonts:
 $$$ Blogger Sans by Sergiy Tkachenko (https://firstsiteguide.com) (Creative Commons Attribution-NoDerivatives 4.0 International Public License)
-$$ Fredoka One by Milena Brandao
-$$ Modak by Ek Type
+$$ Fredoka One by Milena Brandao (SIL Open Font License, Version 1.1)
+$$ Modak by Ek Type (SIL Open Font License, Version 1.1)
+$$ Nikumaru by Kato Masashi (http://www.fontna.com/freefont/1651/) (No conventional license; 'Can be used for both commercial and non-commercial purposes, so please download with confidence')
 
 Other:
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
@@ -108,6 +109,7 @@ project/assets/main/ui/blogger-sans-bold.otf Blogger Sans by Sergiy Tkachenko
 project/assets/main/ui/blogger-sans-medium.otf Blogger Sans by Sergiy Tkachenko
 project/assets/main/ui/blogger-sans.otf Blogger Sans by Sergiy Tkachenko
 project/assets/main/ui/fredoka-one-regular.ttf Fredoka One by Milena Brandao
+project/assets/main/ui/nikumaru.otf Nikumaru by Kato Masashi
 project/assets/main/puzzle/modak-regular.ttf Modak by Ek Type
 
 Other

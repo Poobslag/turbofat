@@ -9,6 +9,9 @@ This includes chats, buttons and debug messages.
 signal chat_started
 signal chat_ended
 
+# emitted when we launch a creature's talk animation
+signal chatter_talked(chatter)
+
 # emitted when the player talks to a creature for the first time, caching their dialog
 signal chat_cached(chattable)
 
@@ -242,6 +245,9 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	var chatter := ChattableManager.get_creature_by_id(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
+	if StringUtils.has_letter(chat_event.text):
+		chatter.talk()
+		emit_signal("chatter_talked", chatter)
 
 
 func _on_ChatUi_showed_choices() -> void:

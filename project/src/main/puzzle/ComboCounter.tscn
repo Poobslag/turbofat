@@ -46,9 +46,9 @@ offsets = PoolRealArray( 0, 0.383513 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
 [node name="ComboCounter" type="Node2D"]
+modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 40, 40 )
 script = ExtResource( 4 )
-velocity = Vector2( 0, -5 )
 
 [node name="Accent" type="Node2D" parent="."]
 modulate = Color( 0.483, 0.6, 0.06, 1 )
