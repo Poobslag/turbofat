@@ -7,7 +7,9 @@ Keys:
 	[Q, W, E, R]: Smile0 (Happy), Smile1 (Love), Laugh0 (Tickled), Laugh1 (Laughing)
 	[A, S, D, F]: Think0 (Pensive), Think1 (Confused), Cry0 (Disappointed), Cry1 (Distraught)
 	[Z, X, C, V]: Sweat0 (Nervous), Sweat1 (Fidgety), Rage0 (Upset), Rage1 (Rage)
+	[T]: Talk
 	[=]: Make the creature fat
+	[space bar]: Feed
 	[brace keys]: Change the creature's appearance
 	
 	[Shift + Q, W]: Look over shoulder
@@ -43,4 +45,6 @@ func _input(event: InputEvent) -> void:
 			KEY_X: $Creature.play_mood(ChatEvent.Mood.SWEAT1)
 			KEY_C: $Creature.play_mood(ChatEvent.Mood.RAGE0)
 			KEY_V: $Creature.play_mood(ChatEvent.Mood.RAGE1)
+			KEY_T: $Creature.talk()
+			KEY_SPACE: $Creature.feed(Playfield.FOOD_COLORS[0])
 			KEY_EQUAL: $Creature.set_fatness(3)

@@ -130,6 +130,18 @@ static func is_letter(character: String) -> bool:
 
 
 """
+Returns true if the specified string contains at least one letter (a-z, A-Z)
+"""
+static func has_letter(string: String) -> bool:
+	var result := false
+	for c in string:
+		if is_letter(c):
+			result = true
+			break
+	return result
+
+
+"""
 Capitalizes all the whitespace separated words in a String.
 """
 static func capitalize_words(string: String) -> String:

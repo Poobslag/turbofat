@@ -1,4 +1,5 @@
 #tool #uncomment to view creature in editor
+class_name MouthPlayer
 extends AnimationPlayer
 """
 An AnimationPlayer which animates mouths.
@@ -63,6 +64,7 @@ func _refresh_creature_visuals_path() -> void:
 	
 	if _creature_visuals:
 		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+		_creature_visuals.disconnect("talking_changed", self, "_on_CreatureVisuals_talking_changed")
 		_emote_player.disconnect("animation_started", self, "_on_EmotePlayer_animation_started")
 		_creature_visuals.get_idle_timer().disconnect(
 				"idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
@@ -74,6 +76,7 @@ func _refresh_creature_visuals_path() -> void:
 	_emote_player = _creature_visuals.get_emote_player()
 	
 	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
+	_creature_visuals.connect("talking_changed", self, "_on_CreatureVisuals_talking_changed")
 	_emote_player.connect("animation_started", self, "_on_EmotePlayer_animation_started")
 	_creature_visuals.get_idle_timer().connect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
 	_creature_visuals.get_idle_timer().connect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
@@ -85,7 +88,9 @@ Plays an appropriate mouth ambient animation for the creature's orientation and 
 func _play_mouth_ambient_animation() -> void:
 	var mouth_ambient_animation: String
 	if _creature_visuals.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
-		if _emote_player.current_animation in ["", "ambient"] \
+		if has_animation("talk") and _creature_visuals.is_talking():
+			mouth_ambient_animation = "talk"
+		elif _emote_player.current_animation in ["", "ambient"] \
 				and current_animation in ["ambient-se", "ambient-unhappy"]:
 			# keep old mood; otherwise we have one 'happy mouth frame' between two angry moods
 			mouth_ambient_animation = current_animation
@@ -131,3 +136,7 @@ func _on_IdleTimer_idle_animation_stopped() -> void:
 func _on_EmotePlayer_animation_started(_anim_name: String) -> void:
 	if current_animation.begins_with("ambient-"):
 		_play_mouth_ambient_animation()
+
+
+func _on_CreatureVisuals_talking_changed() -> void:
+	_play_mouth_ambient_animation()

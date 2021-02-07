@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://src/main/world/creature/mouth-player.gd" type="Script" id=1]
 
@@ -61,6 +61,24 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=3]
+resource_name = "talk"
+length = 1.5
+loop = true
+step = 0.125
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 12, 1, 12, 1, 11, 1, 12, 11, 1, 11, 1, 11, 12 ]
+}
+
+[sub_resource type="Animation" id=4]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -114,7 +132,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=5]
 length = 0.8
 step = 0.0333333
 tracks/0/type = "value"
@@ -168,7 +186,7 @@ tracks/3/keys = {
 } ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -184,7 +202,7 @@ tracks/0/keys = {
 "values": [ 1, 11, 7, 10, 9, 8, 9, 10, 7, 11, 12, 1, 11, 12, 1, 12, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -204,9 +222,10 @@ tracks/0/keys = {
 root_node = NodePath("../..")
 anims/ambient-nw = SubResource( 1 )
 anims/ambient-se = SubResource( 2 )
-anims/eat = SubResource( 3 )
-anims/eat-again = SubResource( 4 )
-anims/idle-yawn0 = SubResource( 5 )
-anims/idle-yawn1 = SubResource( 6 )
+anims/talk = SubResource( 3 )
+anims/eat = SubResource( 4 )
+anims/eat-again = SubResource( 5 )
+anims/idle-yawn0 = SubResource( 6 )
+anims/idle-yawn1 = SubResource( 7 )
 script = ExtResource( 1 )
 creature_visuals_path = NodePath("../..")

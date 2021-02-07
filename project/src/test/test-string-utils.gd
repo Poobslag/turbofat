@@ -144,3 +144,10 @@ func test_remove_end() -> void:
 	assert_eq(StringUtils.remove_end("www.domain.com", ".com"), "www.domain")
 	assert_eq(StringUtils.remove_end("www.domain", ".com"), "www.domain")
 	assert_eq(StringUtils.remove_end("www.domain.com", "domain"), "www.domain.com")
+
+
+func test_has_letter() -> void:
+	assert_eq(StringUtils.has_letter("roof action"), true)
+	assert_eq(StringUtils.has_letter("ROOF ACTION"), true)
+	assert_eq(StringUtils.has_letter("123"), false)
+	assert_eq(StringUtils.has_letter(""), false)

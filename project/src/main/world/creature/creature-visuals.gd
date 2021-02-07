@@ -30,6 +30,7 @@ signal movement_mode_changed(old_mode, new_mode)
 signal fatness_changed
 signal visual_fatness_changed
 signal comfort_changed
+signal talking_changed
 
 # emitted by FatSpriteMover when it moves the head by making the creature fatter
 # warning-ignore:unused_signal
@@ -92,18 +93,20 @@ var fatness := 1.0 setget set_fatness, get_fatness
 # very uncomfortable, 1.0 is very comfortable
 var comfort := 0.0 setget set_comfort
 
+# MouthPlayer instance which animates mouths
+var mouth_player
+
 # used to temporarily suppress sfx signals. used when skipping to the middle of animations which play sfx
 var _suppress_sfx_signal_timer := 0.0
 
 # forces listeners to update their animation frame
 var _force_orientation_change := false
 
-var mouth_player
-
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
 	set_orientation(orientation)
 	$DnaLoader.connect("dna_loaded", self, "_on_DnaLoader_dna_loaded")
+	$TalkTimer.connect("timeout", self, "_on_TalkTimer_timeout")
 
 
 func _process(delta: float) -> void:
@@ -280,6 +283,10 @@ func feed(food_color: Color) -> void:
 		# sounds. ...Maybe as an easter egg some day, we can make the chef flinging food into empty air. Ha ha.
 		return
 	
+	if not $TalkTimer.is_stopped():
+		$TalkTimer.stop()
+		emit_signal("talking_changed")
+	
 	$Neck0/HeadBobber/Food.modulate = food_color
 	$Neck0/HeadBobber/FoodLaser.modulate = food_color
 	$Animations/EmotePlayer.eat()
@@ -422,6 +429,21 @@ func emit_sfx_signal(signal_name: String) -> void:
 
 
 """
+Launches a talking animation, opening and closes the creature's mouth for a few seconds.
+"""
+func talk() -> void:
+	$TalkTimer.start()
+	emit_signal("talking_changed")
+
+
+"""
+Returns 'true' of the creature's talk animation is playing.
+"""
+func is_talking() -> bool:
+	return not $TalkTimer.is_stopped()
+
+
+"""
 Computes the nearest orientation for the specified direction.
 
 For example, a direction of (0.99, -0.13) is mostly pointing towards the x-axis, so it would result in an orientation
@@ -445,3 +467,7 @@ func _compute_orientation(direction: Vector2) -> int:
 
 func _on_DnaLoader_dna_loaded() -> void:
 	emit_signal("dna_loaded")
+
+
+func _on_TalkTimer_timeout() -> void:
+	emit_signal("talking_changed")

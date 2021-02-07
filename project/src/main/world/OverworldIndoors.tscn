@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://src/main/world/environment/WoodTable.tscn" type="PackedScene" id=8]
 [ext_resource path="res://assets/main/world/environment/interior-shadow.png" type="Texture" id=9]
 [ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=10]
+[ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/world/environment/Stool.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=18]
@@ -146,9 +147,6 @@ sensei_spawn_id = "restaurant-sensei"
 position = Vector2( 158.963, 289.758 )
 script = ExtResource( 2 )
 creature_id = "#player#"
-dna = {
-
-}
 orientation = 3
 
 [node name="Sensei" parent="World/Obstacles" instance=ExtResource( 19 )]
@@ -168,9 +166,6 @@ position = Vector2( 1298, 9 )
 [node name="Rhonk" parent="World/Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 592, 36 )
 creature_id = "rhonk"
-dna = {
-
-}
 elevation = 150
 
 [node name="Stool1" parent="World/Obstacles" instance=ExtResource( 13 )]
@@ -247,6 +242,8 @@ id = "kitchen-9"
 [node name="SpawnKitchen11" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 1631.25, 40.6189 )
 id = "kitchen-11"
+
+[node name="ChatLetters" parent="World" instance=ExtResource( 12 )]
 
 [node name="ChatIcons" type="Node2D" parent="World"]
 script = ExtResource( 10 )

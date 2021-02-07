@@ -249,6 +249,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/leaf-poof.gd"
 }, {
+"base": "Node2D",
+"class": "LetterProjectile",
+"language": "GDScript",
+"path": "res://src/main/world/letter-projectile.gd"
+}, {
 "base": "Control",
 "class": "LevelButtons",
 "language": "GDScript",
@@ -328,6 +333,11 @@ _global_script_classes=[ {
 "class": "MoneyLabel",
 "language": "GDScript",
 "path": "res://src/main/ui/money-label.gd"
+}, {
+"base": "AnimationPlayer",
+"class": "MouthPlayer",
+"language": "GDScript",
+"path": "res://src/main/world/creature/mouth-player.gd"
 }, {
 "base": "Tween",
 "class": "MusicTween",
@@ -688,6 +698,7 @@ _global_script_class_icons={
 "InputReplay": "",
 "KeybindSettings": "",
 "LeafPoof": "",
+"LetterProjectile": "",
 "LevelButtons": "",
 "LevelChunk": "",
 "LevelChunkControl": "",
@@ -704,6 +715,7 @@ _global_script_class_icons={
 "Milestone": "",
 "MilestoneHud": "",
 "MoneyLabel": "",
+"MouthPlayer": "",
 "MusicTween": "",
 "MutateUi": "",
 "NameGenerator": "",

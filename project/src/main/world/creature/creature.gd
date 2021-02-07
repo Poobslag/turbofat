@@ -8,6 +8,7 @@ Script for representing a creature in the 2D overworld.
 signal fatness_changed
 signal visual_fatness_changed
 signal creature_name_changed
+signal talking_changed
 
 signal dna_loaded
 
@@ -45,7 +46,8 @@ export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 # how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
 export (int) var elevation: int setget set_elevation
 
-export (CreatureVisuals.Orientation) var orientation: int setget set_orientation
+# virtual property; value is not kept up-to-date and should only be accessed through getters/setters
+export (CreatureVisuals.Orientation) var orientation: int setget set_orientation, get_orientation
 
 # virtual property; value is only exposed through getters/setters
 var creature_def: CreatureDef setget set_creature_def, get_creature_def
@@ -98,7 +100,7 @@ func _ready() -> void:
 		_refresh_creature_id()
 	else:
 		refresh_dna()
-	_refresh_orientation()
+	creature_visuals.orientation = orientation
 
 
 func _physics_process(delta: float) -> void:
@@ -232,7 +234,12 @@ func orient_toward(target_position: Vector2) -> void:
 
 func set_orientation(new_orientation: int) -> void:
 	orientation = new_orientation
-	_refresh_orientation()
+	if creature_visuals:
+		creature_visuals.orientation = new_orientation
+
+
+func get_orientation() -> int:
+	return creature_visuals.orientation if creature_visuals else orientation
 
 
 """
@@ -370,6 +377,20 @@ func fade_in() -> void:
 
 
 """
+Launches a talking animation, opening and closes the creature's mouth for a few seconds.
+"""
+func talk() -> void:
+	creature_visuals.talk()
+
+
+"""
+Returns 'true' of the creature's talk animation is playing.
+"""
+func is_talking() -> bool:
+	return creature_visuals.is_talking()
+
+
+"""
 Gradually adjust this creature's alpha down to 0.0 and make them invisible.
 """
 func fade_out() -> void:
@@ -383,11 +404,6 @@ func _launch_fade_tween(new_alpha: float, duration: float) -> void:
 	$FadeTween.remove_all()
 	$FadeTween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate, new_alpha), duration)
 	$FadeTween.start()
-
-
-func _refresh_orientation() -> void:
-	if creature_visuals:
-		creature_visuals.set_orientation(orientation)
 
 
 func _refresh_creature_id() -> void:
@@ -520,3 +536,7 @@ Converts a fatness in the range [1.0, 10.0] to a score in the range [0.0, 5000.0
 """
 static func fatness_to_score(in_fatness: float) -> float:
 	return 50 * (pow(in_fatness, 2) - 1)
+
+
+func _on_CreatureVisuals_talking_changed() -> void:
+	emit_signal("talking_changed")

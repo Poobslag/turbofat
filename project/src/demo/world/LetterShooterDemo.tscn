@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/LetterShooter.tscn" type="PackedScene" id=1]
+[ext_resource path="res://src/demo/world/letter-shooter-demo.gd" type="Script" id=4]
+
+[node name="LetterShooterDemo" type="Node"]
+script = ExtResource( 4 )
+
+[node name="LetterShooter" parent="." instance=ExtResource( 1 )]
+letter_position = Vector2( 512, 300 )
