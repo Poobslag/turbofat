@@ -6,6 +6,9 @@ Dialog is stored as a set of json resources. This class parses those json resour
 into the UI.
 """
 
+# Missing chat tree warnings are currently disabled. Many levels don't have cutscenes.
+const WARN_ON_MISSING_CHAT_TREE := false
+
 """
 Loads a conversation for the specified creature.
 
@@ -32,6 +35,8 @@ func load_chat_events_for_creature(creature: Creature, forced_level_id: String =
 
 """
 Returns the chat tree for the specified creature.
+
+Returns null if the chat tree cannot be found.
 """
 func chat_tree_for_creature_id(creature_id: String, forced_level_id: String = "") -> ChatTree:
 	var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
@@ -42,6 +47,8 @@ func chat_tree_for_creature_id(creature_id: String, forced_level_id: String = ""
 
 """
 Returns the chat tree for the specified creature.
+
+Returns null if the chat tree cannot be found.
 """
 func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) -> ChatTree:
 	var creature_id := creature_def.creature_id
@@ -62,7 +69,8 @@ func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) ->
 	elif FileUtils.file_exists(level_dialog_path):
 		chat_tree = load_chat_events_from_file(level_dialog_path)
 	else:
-		push_warning("Failed to load chat tree '%s' for creature '%s'.\nCould not find file '%s' or '%s'" % \
+		if WARN_ON_MISSING_CHAT_TREE:
+			push_warning("Failed to load chat tree '%s' for creature '%s'.\nCould not find file '%s' or '%s'" % \
 				[chosen_dialog, creature_id, creature_dialog_path, level_dialog_path])
 	
 	return chat_tree

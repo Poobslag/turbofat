@@ -131,5 +131,5 @@ func _on_CreatureVisuals_talking_changed() -> void:
 	_update_state(true)
 
 
-func _on_CreatureVisuals_movement_mode_changed(old_mode: int, new_mode: int) -> void:
+func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, _new_mode: int) -> void:
 	_update_state(true)

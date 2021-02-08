@@ -7,6 +7,9 @@
     "type": "time_over",
     "value": "90"
   },
+  "combo_break": [
+    "pieces 999999"
+  ],
   "piece_types": [
     "start_piece_j"
   ],

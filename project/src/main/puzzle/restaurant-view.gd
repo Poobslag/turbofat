@@ -1,6 +1,6 @@
 extends Control
 """
-Showing the player's chef character and active customer in a restaurant scene.
+Showing the chef character and active customer in a restaurant scene.
 
 As the player drops blocks and scores points, the characters animate and react.
 """
@@ -23,10 +23,10 @@ func _ready() -> void:
 	PuzzleScore.connect("topped_out", self, "_on_PuzzleScore_topped_out")
 	PuzzleScore.connect("added_line_score", self, "_on_PuzzleScore_added_line_score")
 	
-	get_player().connect("creature_name_changed", self, "_on_Player_creature_name_changed")
+	get_chef().connect("creature_name_changed", self, "_on_Chef_creature_name_changed")
 	for customer in get_customers():
 		customer.connect("creature_name_changed", self, "_on_Customer_creature_name_changed")
-	_refresh_player_name()
+	_refresh_chef_name()
 	_refresh_customer_name()
 
 
@@ -45,8 +45,8 @@ func get_customer(creature_index: int = -1) -> Creature:
 	return $RestaurantViewport/Scene.get_customer(creature_index)
 
 
-func get_player() -> Creature:
-	return $RestaurantViewport/Scene.get_player()
+func get_chef() -> Creature:
+	return $RestaurantViewport/Scene.get_chef()
 
 
 """
@@ -95,12 +95,12 @@ func _refresh_customer_name() -> void:
 	$CustomerNametag/Panel.refresh_creature(get_customer())
 
 
-func _refresh_player_name() -> void:
-	$RestaurantNametag/Panel.refresh_creature(get_player())
+func _refresh_chef_name() -> void:
+	$RestaurantNametag/Panel.refresh_creature(get_chef())
 
 
-func _on_Player_creature_name_changed() -> void:
-	_refresh_player_name()
+func _on_Chef_creature_name_changed() -> void:
+	_refresh_chef_name()
 
 
 """
@@ -128,11 +128,11 @@ func _on_PuzzleScore_combo_changed(value: int) -> void:
 	# losing your combo doesn't erase the 'recent bonus' value, but decreases it a lot
 	_recent_bonuses = _recent_bonuses.slice(3, _recent_bonuses.size() - 1)
 	if PuzzleScore.game_active:
-		get_player().play_mood(ChatEvent.Mood.DEFAULT)
+		get_chef().play_mood(ChatEvent.Mood.DEFAULT)
 
 
 func _on_PuzzleScore_topped_out() -> void:
-	get_player().play_mood(ChatEvent.Mood.CRY0)
+	get_chef().play_mood(ChatEvent.Mood.CRY0)
 
 
 """
@@ -147,7 +147,7 @@ func _on_PuzzleScore_added_line_score(combo_score: int, box_score: int) -> void:
 		total_bonus += bonus
 	
 	if total_bonus >= 15 * 6:
-		get_player().play_mood(ChatEvent.Mood.SMILE0)
+		get_chef().play_mood(ChatEvent.Mood.SMILE0)
 
 
 """
@@ -164,7 +164,7 @@ func _on_PuzzleScore_game_ended() -> void:
 		PuzzleScore.WON:
 			mood = ChatEvent.Mood.LAUGH1
 	if mood != ChatEvent.Mood.NONE:
-		get_player().play_mood(mood)
+		get_chef().play_mood(mood)
 		_recent_bonuses = []
 
 

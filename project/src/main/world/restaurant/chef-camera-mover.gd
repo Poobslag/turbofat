@@ -12,5 +12,5 @@ onready var _restaurant_scene: RestaurantScene = get_node(restaurant_scene_path)
 
 func _ready() -> void:
 	play("fat-se")
-	advance(_restaurant_scene.get_player().get_visual_fatness())
+	advance(_restaurant_scene.get_chef().get_visual_fatness())
 	stop()

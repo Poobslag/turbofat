@@ -22,7 +22,8 @@ var speed := BASE_SPEED
 """
 Initializes the letter's text, position and angle.
 
-A small amount of noise is applied to the position and angle so that the letters don't move in a perfectly uniform manner.
+A small amount of noise is applied to the position and angle so that the letters don't move in a perfectly uniform
+manner.
 
 Parameters:
 	'init_index': The letter's index. Used to cycle its appearance and behavior.

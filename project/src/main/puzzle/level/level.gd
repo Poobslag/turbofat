@@ -28,8 +28,14 @@ var settings := LevelSettings.new() setget switch_level
 # into other levels, so this keeps track of the original.
 var launched_level_id: String
 
-# The creature who launched the level. This creature is always the first customer.
+# The creature who launched the level.
 var launched_creature_id: String
+
+# The customers to queue up at the start of the level. If absent, random customers will be queued.
+var launched_customer_ids: Array
+
+# The creature who will be the chef for the level. If absent, the player will be the chef.
+var launched_chef_id: String
 
 """
 Unsets all of the 'launched level' data.
@@ -52,7 +58,10 @@ Parameters:
 func set_launched_level(level_id: String) -> void:
 	launched_level_id = level_id
 	if level_id and LevelLibrary.level_lock(level_id):
-		launched_creature_id = LevelLibrary.level_lock(level_id).creature_id
+		var level_lock: LevelLock = LevelLibrary.level_lock(level_id)
+		launched_creature_id = level_lock.creature_id
+		launched_customer_ids = level_lock.customer_ids
+		launched_chef_id = level_lock.chef_id
 	else:
 		launched_creature_id = ""
 
@@ -88,7 +97,7 @@ func push_cutscene_trail(force: bool = false) -> bool:
 	
 	var result := false
 	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_creature_id(launched_creature_id, launched_level_id)
-	if chat_tree.location_id or force:
+	if chat_tree and (chat_tree.location_id or force):
 		var location_scene_path: String = LOCATION_SCENE_PATHS_BY_ID.get(chat_tree.location_id, Global.SCENE_OVERWORLD)
 		Breadcrumb.push_trail(location_scene_path)
 		result = true
@@ -109,7 +118,8 @@ func push_level_trail() -> void:
 		level_settings.other.skip_intro = true
 	
 	start_level(level_settings)
-	if Level.launched_creature_id:
-		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(Level.launched_creature_id)
+	for launched_customer_id_obj in launched_customer_ids:
+		var launched_customer_id: String = launched_customer_id_obj
+		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(launched_customer_id)
 		PlayerData.creature_queue.primary_queue.push_front(creature_def)
 	Breadcrumb.push_trail(Global.SCENE_PUZZLE)
