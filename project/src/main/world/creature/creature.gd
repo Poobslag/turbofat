@@ -77,6 +77,12 @@ var box_feed_count := 0
 # the minimum fatness; some creatures never get very thin
 var min_fatness := 1.0
 
+# how fast the creature should gain weight during a puzzle. 4.0x = four times faster than normal.
+var weight_gain_scale := 1.0
+
+# how fast the creature should lose weight between puzzles. 0.25x = four times slower than normal.
+var metabolism_scale := 1.0
+
 # the base fatness when the creature enters the restaurant
 # player score is added to this to determine their new fatness
 var base_fatness := 1.0
@@ -254,7 +260,10 @@ func store_fatness() -> void:
 	
 	var stored_fatness := get_fatness()
 	# weight decreases by 10% if they ate normally; 25% if they ate only vegetables
-	stored_fatness *= 0.9 if box_feed_count > 0 else 0.75
+	var metabolism := 0.9 if box_feed_count > 0 else 0.75
+	# apply metabolism scale; a value of 4.0x means their weight decays 4x as fast
+	metabolism = pow(metabolism, metabolism_scale)
+	stored_fatness *= metabolism
 	stored_fatness = clamp(stored_fatness, min_fatness, CreatureLoader.MAX_FATNESS)
 	PlayerData.creature_library.set_fatness(creature_id, stored_fatness)
 
@@ -304,6 +313,8 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 	set_chat_selectors(new_creature_def.chat_selectors)
 	dialog = new_creature_def.dialog
 	min_fatness = new_creature_def.min_fatness
+	weight_gain_scale = new_creature_def.weight_gain_scale
+	metabolism_scale = new_creature_def.metabolism_scale
 	if PlayerData.creature_library.has_fatness(creature_id):
 		set_fatness(PlayerData.creature_library.get_fatness(creature_id))
 	else:
@@ -324,6 +335,8 @@ func get_creature_def() -> CreatureDef:
 	result.chat_selectors = chat_selectors
 	result.dialog = dialog
 	result.min_fatness = min_fatness
+	result.weight_gain_scale = weight_gain_scale
+	result.metabolism_scale = metabolism_scale
 	return result
 
 
@@ -527,15 +540,15 @@ func _on_FadeTween_tween_all_completed() -> void:
 """
 Converts a score in the range [0.0, 5000.0] to a fatness in the range [1.0, 10.0]
 """
-static func score_to_fatness(in_score: float) -> float:
-	return sqrt(1 + in_score / 50.0)
+func score_to_fatness(in_score: float) -> float:
+	return sqrt(1 + in_score / (50.0 / weight_gain_scale))
 
 
 """
-Converts a fatness in the range [1.0, 10.0] to a score in the range [0.0, 5000.0]
+Converts the creature's fatness in the range [1.0, 10.0] to a score in the range [0.0, 5000.0]
 """
-static func fatness_to_score(in_fatness: float) -> float:
-	return 50 * (pow(in_fatness, 2) - 1)
+func fatness_to_score(in_fatness: float) -> float:
+	return (50 / weight_gain_scale) * (pow(in_fatness, 2) - 1)
 
 
 func _on_CreatureVisuals_talking_changed() -> void:

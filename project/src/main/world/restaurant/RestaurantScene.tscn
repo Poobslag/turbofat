@@ -723,7 +723,7 @@ elevation = 150
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2380, 585 )
 
-[node name="Player" parent="." instance=ExtResource( 8 )]
+[node name="Chef" parent="." instance=ExtResource( 8 )]
 position = Vector2( 3381.23, 585.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
@@ -894,6 +894,6 @@ autostart = true
 [connection signal="food_eaten" from="Creature2" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="dna_loaded" from="Creature3" to="DoorChime" method="_on_CreatureVisuals_dna_loaded"]
 [connection signal="food_eaten" from="Creature3" to="." method="_on_CreatureVisuals_food_eaten"]
-[connection signal="dna_loaded" from="Player" to="DoorChime" method="_on_CreatureVisuals_dna_loaded"]
-[connection signal="food_eaten" from="Player" to="." method="_on_CreatureVisuals_food_eaten"]
+[connection signal="dna_loaded" from="Chef" to="DoorChime" method="_on_CreatureVisuals_dna_loaded"]
+[connection signal="food_eaten" from="Chef" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="timeout" from="DoorChime/ChimeTimer" to="DoorChime" method="_on_ChimeTimer_timeout"]

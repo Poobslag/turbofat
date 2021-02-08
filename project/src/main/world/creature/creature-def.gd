@@ -68,6 +68,12 @@ var chat_selectors: Array
 # how fat the creature's body is; 5.0 = 5x normal size
 var min_fatness := 1.0
 
+# how fast the creature should gain weight during a puzzle. 4.0x = four times faster than normal.
+var weight_gain_scale := 1.0
+
+# how fast the creature should lose weight between puzzles. 0.25x = four times slower than normal.
+var metabolism_scale := 1.0
+
 func from_json_dict(json: Dictionary) -> void:
 	var version: String = json.get("version")
 	while version != CREATURE_DATA_VERSION:
@@ -97,6 +103,8 @@ func from_json_dict(json: Dictionary) -> void:
 	dialog = json.get("dialog", {})
 	chat_selectors = json.get("chat_selectors", [])
 	min_fatness = json.get("fatness", 1.0)
+	weight_gain_scale = json.get("weight_gain_scale", 1.0)
+	metabolism_scale = json.get("metabolism_scale", 1.0)
 
 
 func to_json_dict() -> Dictionary:
@@ -110,6 +118,8 @@ func to_json_dict() -> Dictionary:
 		"dialog": dialog,
 		"chat_selectors": chat_selectors,
 		"fatness": min_fatness,
+		"weight_gain_scale": weight_gain_scale,
+		"metabolism_scale": metabolism_scale,
 	}
 
 

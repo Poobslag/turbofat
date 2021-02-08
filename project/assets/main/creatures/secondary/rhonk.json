@@ -36,5 +36,7 @@
   "chat_selectors": [
 
   ],
-  "fatness": 1
+  "fatness": 1,
+  "weight_gain_scale": 0.25,
+  "metabolism_scale": 4.0
 }

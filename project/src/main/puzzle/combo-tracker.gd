@@ -86,7 +86,8 @@ func _on_PuzzleScore_after_piece_written() -> void:
 		
 		# check for combo break even if the piece continued the combo.
 		# this is necessary to cover the 'combo_break.pieces = 0' case
-		if combo_break >= Level.settings.combo_break.pieces:
+		if Level.settings.combo_break.pieces != ComboBreakRules.UNLIMITED_PIECES \
+				and combo_break >= Level.settings.combo_break.pieces:
 			break_combo()
 		else:
 			emit_signal("combo_break_changed", combo_break)

@@ -26,6 +26,10 @@
         {
           "id": "marsh/hello_everyone",
           "creature_id": "richie",
+          "chef_id": "skins",
+          "customer_ids": [
+            "rhonk"
+          ],
           "groups": "marsh/hello"
         },
         {
@@ -97,114 +101,174 @@
         {
           "id": "placeholder01",
           "creature_id": "ebe",
+          "customer_ids": [
+            "ebe"
+          ],
           "groups": "choco_intro"
         },
         {
           "id": "placeholder02",
           "creature_id": "bort",
+          "customer_ids": [
+            "bort"
+          ],
           "groups": "choco_intro",
           "locked_until": "level_finished placeholder01"
         },
         {
           "id": "boatricia1",
           "creature_id": "boatricia",
+          "customer_ids": [
+            "boatricia"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "boatricia2",
           "creature_id": "boatricia",
+          "customer_ids": [
+            "boatricia"
+          ],
           "locked_until": "level_finished boatricia1",
           "groups": "choco_main"
         },
         {
           "id": "five_customers_no_vegetables",
           "creature_id": "ebe",
+          "customer_ids": [
+            "ebe"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "placeholder03",
           "creature_id": "bort",
+          "customer_ids": [
+            "bort"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "placeholder04",
           "creature_id": "boatricia",
+          "customer_ids": [
+            "boatricia"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "placeholder05",
           "creature_id": "boatricia",
+          "customer_ids": [
+            "boatricia"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "placeholder06",
           "creature_id": "ebe",
+          "customer_ids": [
+            "ebe"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "placeholder07",
           "creature_id": "ebe",
+          "customer_ids": [
+            "ebe"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "placeholder08",
           "creature_id": "bort",
+          "customer_ids": [
+            "bort"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "placeholder09",
           "creature_id": "bort",
+          "customer_ids": [
+            "bort"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "placeholder11",
           "creature_id": "ebe",
+          "customer_ids": [
+            "ebe"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "placeholder12",
           "creature_id": "boatricia",
+          "customer_ids": [
+            "boatricia"
+          ],
           "locked_until": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
           "id": "veggie_patty",
           "creature_id": "bort",
+          "customer_ids": [
+            "bort"
+          ],
           "locked_until": "group_finished choco_main 5"
         },
         {
           "id": "placeholder10",
           "creature_id": "bort",
+          "customer_ids": [
+            "bort"
+          ],
           "locked_until": "group_finished choco_main 5"
         },
         {
           "id": "placeholder13",
           "creature_id": "wesker",
+          "customer_ids": [
+            "wesker"
+          ],
           "locked_until": "group_finished choco_main 5"
         },
         {
           "id": "placeholder14",
           "creature_id": "wesker",
+          "customer_ids": [
+            "wesker"
+          ],
           "locked_until": "group_finished choco_main 5"
         },
         {
           "id": "placeholder15",
           "creature_id": "wesker",
+          "customer_ids": [
+            "wesker"
+          ],
           "locked_until": "group_finished choco_main 5"
         },
         {
           "id": "accelerator",
           "creature_id": "wesker",
+          "customer_ids": [
+            "wesker"
+          ],
           "locked_until": "group_finished choco_main 5"
         }
       ]
