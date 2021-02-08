@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Kurtles",
+  "short_name": "Kurtles",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "4",
+    "body": "1",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "5",
+    "eye": "7",
+    "hair": "0",
+    "head": "1",
+    "horn": "1",
+    "mouth": "5",
+    "nose": "1",
+    "tail": "1",
+    "accessory": "0",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "171419",
+    "belly_rgb": "b0b4d1",
+    "cloth_rgb": "ad1000",
+    "glass_rgb": "1c1c1d",
+    "plastic_rgb": "abb7f5",
+    "hair_rgb": "b0b4d1",
+    "eye_rgb": "374265 eaf2f4",
+    "horn_rgb": "c4c4c5"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "171419"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.1
+}
