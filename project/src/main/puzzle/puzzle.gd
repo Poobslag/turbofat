@@ -162,8 +162,14 @@ func _calculate_food_color(box_ints: Array) -> void:
 
 
 func _quit_puzzle() -> void:
+	if Level.level_state == Level.LevelState.AFTER and ChatLibrary.chat_tree_for_after_level_cutscene():
+		var chat_tree := ChatLibrary.chat_tree_for_after_level_cutscene()
+		# insert cutscene into breadcrumb trail so it will show up after we pop the trail
+		Breadcrumb.trail.insert(1, chat_tree.cutscene_scene_path())
+	else:
+		Level.clear_launched_level()
+
 	PlayerData.creature_queue.clear()
-	Level.clear_launched_level()
 	Breadcrumb.pop_trail()
 
 

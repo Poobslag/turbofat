@@ -231,6 +231,10 @@ func _on_ChatUi_pop_out_completed() -> void:
 				Breadcrumb.trail.remove(0)
 			
 			Level.push_level_trail()
+		elif Level.level_state == Level.LevelState.AFTER:
+			# ending cutscene finished playing
+			Level.clear_launched_level()
+			Breadcrumb.pop_trail()
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
