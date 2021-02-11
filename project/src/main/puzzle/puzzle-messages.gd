@@ -16,6 +16,7 @@ func _ready() -> void:
 	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
+	Level.connect("level_state_changed", self, "_on_Level_level_state_changed")
 	$MessageLabel.hide()
 	# grab focus so the player can start a new game or navigate with the keyboard
 	$Buttons/Start.grab_focus()
@@ -85,11 +86,13 @@ func _on_PuzzleScore_after_level_changed() -> void:
 func _on_PuzzleScore_game_ended() -> void:
 	var message: String
 	match PuzzleScore.end_result():
-		PuzzleScore.LOST:
+		PuzzleScore.Result.NONE:
+			hide_message()
+		PuzzleScore.Result.LOST:
 			message = "Game over"
-		PuzzleScore.FINISHED:
+		PuzzleScore.Result.FINISHED:
 			message = "Finish!"
-		PuzzleScore.WON:
+		PuzzleScore.Result.WON:
 			message = "You win!"
 	show_message(message)
 
@@ -111,8 +114,35 @@ func _on_PuzzleScore_after_game_ended() -> void:
 			if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_SPLASH:
 				Breadcrumb.trail.insert(1, Global.SCENE_MAIN_MENU)
 	
-	if $Buttons/Start.is_visible_in_tree():
-		# grab focus so the player can retry or navigate with the keyboard
-		$Buttons/Start.grab_focus()
-	elif $Buttons/Back.is_visible_in_tree():
-		$Buttons/Back.grab_focus()
+	# determine the default button to focus
+	var buttons_to_focus := [$Buttons/Back, $Buttons/Start]
+	if Level.keep_retrying:
+		buttons_to_focus.push_front($Buttons/Start)
+	elif Level.level_state != Level.LevelState.AFTER:
+		buttons_to_focus.push_front($Buttons/Start)
+	
+	# the start button changes its label after the player finishes the level
+	match PuzzleScore.end_result():
+		PuzzleScore.Result.NONE:
+			# if they abort the level without playing it, the button doesn't change
+			pass
+		_:
+			$Buttons/Start.text = "Retry"
+	
+	# grab focus so the player can retry or navigate with the keyboard
+	for button_to_focus_obj in buttons_to_focus:
+		var button_to_focus: Button = button_to_focus_obj
+		if button_to_focus.is_visible_in_tree():
+			button_to_focus.grab_focus()
+			break
+
+
+"""
+The back buttons changes its label if the level is cleared.
+"""
+func _on_Level_level_state_changed() -> void:
+	match Level.level_state:
+		Level.LevelState.AFTER:
+			$Buttons/Back.text = "Back" if Level.keep_retrying else "Continue"
+		_:
+			$Buttons/Back.text = "Back"

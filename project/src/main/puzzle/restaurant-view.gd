@@ -156,12 +156,14 @@ When the game ends, the chef smiles/cries/rages based on how they did.
 func _on_PuzzleScore_game_ended() -> void:
 	var mood: int = ChatEvent.Mood.NONE
 	match PuzzleScore.end_result():
-		PuzzleScore.LOST:
+		PuzzleScore.Result.NONE:
+			pass
+		PuzzleScore.Result.LOST:
 			mood = Utils.rand_value([ChatEvent.Mood.RAGE0, ChatEvent.Mood.RAGE1,
 					ChatEvent.Mood.CRY1, ChatEvent.Mood.THINK1])
-		PuzzleScore.FINISHED:
+		PuzzleScore.Result.FINISHED:
 			mood = ChatEvent.Mood.SMILE0
-		PuzzleScore.WON:
+		PuzzleScore.Result.WON:
 			mood = ChatEvent.Mood.LAUGH1
 	if mood != ChatEvent.Mood.NONE:
 		get_chef().play_mood(mood)

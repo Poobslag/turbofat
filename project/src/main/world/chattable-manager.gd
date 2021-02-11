@@ -102,10 +102,10 @@ Returns an array of ChatEvent objects for the dialog sequence which the player s
 func load_chat_events() -> ChatTree:
 	var chat_tree: ChatTree
 	if focused_chattable is Creature:
-		chat_tree = ChatLibrary.load_chat_events_for_creature(focused_chattable)
+		chat_tree = ChatLibrary.chat_tree_for_creature(focused_chattable)
 	elif focused_chattable.has_meta("chat_path"):
 		var chat_path: String = focused_chattable.get_meta("chat_path")
-		chat_tree = ChatLibrary.load_chat_events_from_file(chat_path)
+		chat_tree = ChatLibrary.chat_tree_from_file(chat_path)
 	else:
 		# can't look up chat events without a chat_path; return an empty array
 		push_warning("Chattable %s does not define a 'chat_path' property." % focused_chattable)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/demo/world/cutscene-demo.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/demo/world/cutscene-demo-fatness.gd" type="Script" id=4]
+[ext_resource path="res://src/demo/world/cutscene-demo-long-names.gd" type="Script" id=5]
 
 [node name="CutsceneDemo" type="Control"]
 anchor_right = 1.0
@@ -26,9 +27,17 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Fatness" type="HBoxContainer" parent="VBoxContainer"]
+[node name="LongNames" type="CheckBox" parent="VBoxContainer"]
 margin_right = 400.0
 margin_bottom = 28.0
+theme = ExtResource( 1 )
+text = "Long Names"
+script = ExtResource( 5 )
+
+[node name="Fatness" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 32.0
+margin_right = 400.0
+margin_bottom = 60.0
 script = ExtResource( 4 )
 
 [node name="CheckBox" type="CheckBox" parent="VBoxContainer/Fatness"]
@@ -61,9 +70,9 @@ text = "10.0"
 align = 1
 
 [node name="Open" type="HBoxContainer" parent="VBoxContainer"]
-margin_top = 32.0
+margin_top = 64.0
 margin_right = 400.0
-margin_bottom = 62.0
+margin_bottom = 94.0
 
 [node name="Button" type="Button" parent="VBoxContainer/Open"]
 margin_right = 52.0
@@ -86,9 +95,9 @@ __meta__ = {
 }
 
 [node name="StartButton" type="Button" parent="VBoxContainer"]
-margin_top = 66.0
+margin_top = 98.0
 margin_right = 400.0
-margin_bottom = 92.0
+margin_bottom = 124.0
 theme = ExtResource( 1 )
 text = "Start"
 __meta__ = {
@@ -131,6 +140,7 @@ margin_bottom = 58.0
 popup_exclusive = true
 window_title = "Error"
 dialog_autowrap = true
+[connection signal="toggled" from="VBoxContainer/LongNames" to="VBoxContainer/LongNames" method="_on_toggled"]
 [connection signal="pressed" from="VBoxContainer/Fatness/CheckBox" to="VBoxContainer/Fatness" method="_on_CheckBox_pressed"]
 [connection signal="value_changed" from="VBoxContainer/Fatness/HSlider" to="VBoxContainer/Fatness" method="_on_HSlider_value_changed"]
 [connection signal="pressed" from="VBoxContainer/Open/Button" to="." method="_on_OpenButton_pressed"]

@@ -21,7 +21,7 @@ Parameters:
 	'forced_level_id': (Optional) The current level being chosen. If omitted, the level_id will be calculated based on
 			the first unfinished unlocked level available.
 """
-func load_chat_events_for_creature(creature: Creature, forced_level_id: String = "") -> ChatTree:
+func chat_tree_for_creature(creature: Creature, forced_level_id: String = "") -> ChatTree:
 	var state := _creature_chat_state(creature.creature_id, forced_level_id)
 	var level_id: String = state["level_id"]
 	var chat_tree := chat_tree_for_creature_def(creature.creature_def, state)
@@ -65,13 +65,13 @@ func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) ->
 		chat_tree.from_json_dict(creature_def.dialog[chosen_dialog])
 		chat_tree.history_key = "dialog/%s/%s" % [creature_id, chosen_dialog]
 	elif FileUtils.file_exists(creature_dialog_path):
-		chat_tree = load_chat_events_from_file(creature_dialog_path)
+		chat_tree = chat_tree_from_file(creature_dialog_path)
 	elif FileUtils.file_exists(level_dialog_path):
-		chat_tree = load_chat_events_from_file(level_dialog_path)
+		chat_tree = chat_tree_from_file(level_dialog_path)
 	else:
 		if WARN_ON_MISSING_CHAT_TREE:
 			push_warning("Failed to load chat tree '%s' for creature '%s'.\nCould not find file '%s' or '%s'" % \
-				[chosen_dialog, creature_id, creature_dialog_path, level_dialog_path])
+					[chosen_dialog, creature_id, creature_dialog_path, level_dialog_path])
 	
 	return chat_tree
 
@@ -100,7 +100,7 @@ func chat_icon_for_creature(creature: Creature) -> int:
 """
 Loads the chat events from the specified json file.
 """
-func load_chat_events_from_file(path: String) -> ChatTree:
+func chat_tree_from_file(path: String) -> ChatTree:
 	var chat_tree := ChatTree.new()
 	var history_key := path
 	history_key = StringUtils.remove_end(history_key, ".json")

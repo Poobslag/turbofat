@@ -223,7 +223,9 @@ func _on_ChatUi_pop_out_completed() -> void:
 		if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 			# don't launch the level; go back to CutsceneDemo after playing the cutscene
 			Breadcrumb.pop_trail()
-		elif Level.launched_level_id:
+		elif Level.level_state == Level.LevelState.BEFORE:
+			# pre-level dialog or pre-level cutscene finished playing
+			
 			if cutscene:
 				# remove redundant overworld cutscenes from the breadcrumb trail
 				Breadcrumb.trail.remove(0)

@@ -151,4 +151,6 @@ func _on_Mode_mode_changed() -> void:
 
 func _on_Start_pressed() -> void:
 	Level.set_launched_level(_get_level().id)
+	# upon completion, practice levels default to 'retry'
+	Level.keep_retrying = true
 	Level.push_level_trail()

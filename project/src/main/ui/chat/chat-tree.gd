@@ -24,6 +24,12 @@ class Position:
 # compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
 const DIALOG_DATA_VERSION := "1922"
 
+# Scene paths corresponding to different ChatTree.location_id values
+const LOCATION_SCENE_PATHS_BY_ID := {
+	"indoors": "res://src/main/world/OverworldIndoors.tscn",
+	"outdoors": "res://src/main/world/Overworld.tscn"
+}
+
 # unique key to identify this conversation in the chat history
 var history_key: String
 
@@ -108,6 +114,10 @@ func can_advance() -> bool:
 		# can advance through the current chat branch
 		can_increment = true
 	return can_increment
+
+
+func cutscene_scene_path() -> String:
+	return LOCATION_SCENE_PATHS_BY_ID.get(location_id, Global.SCENE_OVERWORLD)
 
 
 func from_json_dict(json: Dictionary) -> void:
