@@ -58,7 +58,7 @@ func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) ->
 	var chat_tree: ChatTree
 	var creature_dialog_path := "res://assets/main/creatures/primary/%s/%s.json" % \
 			[creature_id, chosen_dialog.replace("_", "-")]
-	var level_dialog_path := "res://assets/main/puzzle/levels/cutscenes/%s.json" % \
+	var level_dialog_path := "res://assets/main/puzzle/levels/cutscenes/%s-000.json" % \
 			[chosen_dialog.replace("_", "-")]
 	if creature_def.dialog.has(chosen_dialog):
 		chat_tree = ChatTree.new()
@@ -73,6 +73,25 @@ func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) ->
 			push_warning("Failed to load chat tree '%s' for creature '%s'.\nCould not find file '%s' or '%s'" % \
 					[chosen_dialog, creature_id, creature_dialog_path, level_dialog_path])
 	
+	return chat_tree
+
+
+"""
+Returns the chat tree for the cutscene which plays after the current level.
+
+Returns null if the chat tree cannot be found.
+"""
+func chat_tree_for_after_level_cutscene() -> ChatTree:
+	var chat_tree: ChatTree
+	var level_dialog_path := "res://assets/main/puzzle/levels/cutscenes/%s-100.json" % \
+			[Level.launched_level_id.replace("_", "-")]
+	if FileUtils.file_exists(level_dialog_path):
+		chat_tree = chat_tree_from_file(level_dialog_path)
+	else:
+		if WARN_ON_MISSING_CHAT_TREE:
+			push_warning("Failed to load chat tree for level '%s'.\nCould not find file '%s'." % \
+					[Level.launched_level_id, level_dialog_path])
+
 	return chat_tree
 
 

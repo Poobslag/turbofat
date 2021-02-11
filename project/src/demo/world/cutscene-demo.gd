@@ -10,8 +10,20 @@ func _ready() -> void:
 
 
 func _on_StartButton_pressed() -> void:
-	Level.set_launched_level($VBoxContainer/Open/LineEdit.text)
-	Level.push_cutscene_trail(true)
+	var cutscene_prefix := StringUtils.substring_before_last($VBoxContainer/Open/LineEdit.text, "_")
+	var cutscene_index := int(StringUtils.substring_after_last($VBoxContainer/Open/LineEdit.text, "_"))
+	Level.set_launched_level(cutscene_prefix)
+	
+	if cutscene_index >= 0 and cutscene_index < 100:
+		# launch 'before level' cutscene
+		Level.push_cutscene_trail(true)
+	elif cutscene_index >= 100 and cutscene_index < 200:
+		# launch 'after level' cutscene
+		Level.level_state = Level.LevelState.AFTER
+		var chat_tree := ChatLibrary.chat_tree_for_after_level_cutscene()
+		Breadcrumb.push_trail(chat_tree.cutscene_scene_path())
+	else:
+		push_warning("Invalid cutscene path: %s" % [$VBoxContainer/Open/LineEdit.text])
 
 
 func _on_OpenFileDialog_file_selected(_path: String) -> void:
