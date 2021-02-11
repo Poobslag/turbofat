@@ -56,10 +56,11 @@ func _on_PuzzleScore_after_level_changed() -> void:
 func _on_PuzzleScore_game_ended() -> void:
 	var sound: AudioStreamPlayer
 	match PuzzleScore.end_result():
-		PuzzleScore.LOST:
+		PuzzleScore.Result.LOST:
 			sound = $GameOverSound
-		PuzzleScore.FINISHED:
+		PuzzleScore.Result.FINISHED:
 			sound = $MatchEndSound
-		PuzzleScore.WON:
+		PuzzleScore.Result.WON:
 			sound = $ExcellentSound
-	sound.play()
+	if sound:
+		sound.play()

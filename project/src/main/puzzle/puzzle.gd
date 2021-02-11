@@ -161,6 +161,12 @@ func _calculate_food_color(box_ints: Array) -> void:
 		_food_color = Playfield.FOOD_COLORS[box_ints[1]]
 
 
+func _quit_puzzle() -> void:
+	PlayerData.creature_queue.clear()
+	Level.clear_launched_level()
+	Breadcrumb.pop_trail()
+
+
 func _on_Hud_start_button_pressed() -> void:
 	_start_puzzle()
 
@@ -170,9 +176,7 @@ func _on_Hud_settings_button_pressed() -> void:
 
 
 func _on_Hud_back_button_pressed() -> void:
-	PlayerData.creature_queue.clear()
-	Level.clear_launched_level()
-	Breadcrumb.pop_trail()
+	_quit_puzzle()
 
 
 """
@@ -218,6 +222,9 @@ func _on_PuzzleScore_game_ended() -> void:
 			if not PuzzleScore.level_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
 		_:
 			if not PuzzleScore.level_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
+	
+	if PuzzleScore.end_result() in [PuzzleScore.Result.FINISHED, PuzzleScore.Result.WON]:
+		Level.level_state = Level.LevelState.AFTER
 
 
 """
@@ -237,6 +244,4 @@ func _on_SettingsMenu_quit_pressed() -> void:
 			MusicPlayer.stop()
 			MusicPlayer.play_chill_bgm()
 			MusicPlayer.fade_in()
-		PlayerData.creature_queue.clear()
-		Level.clear_launched_level()
-		Breadcrumb.pop_trail()
+		_quit_puzzle()

@@ -11,15 +11,22 @@ This class needs to be a node because it provides utility methods which utilize 
 # emitted after the level has customized the puzzle's settings.
 signal settings_changed
 
+# emitted when the 'level_state' field changes, such as when starting or clearing a level.
+signal level_state_changed
+
+enum LevelState {
+	NONE, # the level hasn't been launched
+	BEFORE, # the level has been launched, but the hasn't yet been finished successfully
+	AFTER # the level has been finished successfully. The player didn't lose or give up
+}
+
 # The mandatory tutorial the player must complete before playing the game
 const BEGINNER_TUTORIAL := "tutorial/basics_0"
 const TUTORIAL_WORLD_ID := "tutorial"
 
-# Scene paths corresponding to different ChatTree.location_id values
-const LOCATION_SCENE_PATHS_BY_ID := {
-	"indoors": "res://src/main/world/OverworldIndoors.tscn",
-	"outdoors": "res://src/main/world/Overworld.tscn"
-}
+# If 'true' then the level is one which the player might keep retrying, even after clearing it.
+# This is especially true for practice levels such as the 3 minute sprint level.
+var keep_retrying := false
 
 # The settings for the level currently being launched or played
 var settings := LevelSettings.new() setget switch_level
@@ -36,6 +43,9 @@ var launched_customer_ids: Array
 
 # The creature who will be the chef for the level. If absent, the player will be the chef.
 var launched_chef_id: String
+
+# Tracks whether or not the player has started or cleared the level.
+var level_state: int = LevelState.NONE setget set_level_state
 
 """
 Unsets all of the 'launched level' data.
@@ -57,13 +67,20 @@ Parameters:
 """
 func set_launched_level(level_id: String) -> void:
 	launched_level_id = level_id
-	if level_id and LevelLibrary.level_lock(level_id):
-		var level_lock: LevelLock = LevelLibrary.level_lock(level_id)
+	var level_lock: LevelLock
+	if level_id:
+		level_lock = LevelLibrary.level_lock(level_id)
+	
+	if level_lock:
+		set_level_state(LevelState.BEFORE)
 		launched_creature_id = level_lock.creature_id
 		launched_customer_ids = level_lock.customer_ids
 		launched_chef_id = level_lock.chef_id
 	else:
+		set_level_state(LevelState.NONE)
 		launched_creature_id = ""
+		launched_customer_ids = []
+		launched_chef_id = ""
 
 
 func start_level(new_settings: LevelSettings) -> void:
@@ -98,8 +115,7 @@ func push_cutscene_trail(force: bool = false) -> bool:
 	var result := false
 	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_creature_id(launched_creature_id, launched_level_id)
 	if chat_tree and (chat_tree.location_id or force):
-		var location_scene_path: String = LOCATION_SCENE_PATHS_BY_ID.get(chat_tree.location_id, Global.SCENE_OVERWORLD)
-		Breadcrumb.push_trail(location_scene_path)
+		Breadcrumb.push_trail(chat_tree.cutscene_scene_path())
 		result = true
 	
 	return result
@@ -123,3 +139,8 @@ func push_level_trail() -> void:
 		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(launched_customer_id)
 		PlayerData.creature_queue.primary_queue.push_front(creature_def)
 	Breadcrumb.push_trail(Global.SCENE_PUZZLE)
+
+
+func set_level_state(new_level_state: int) -> void:
+	level_state = new_level_state
+	emit_signal("level_state_changed")
