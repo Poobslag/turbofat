@@ -1,7 +1,7 @@
 { "frames": [
    {
     "filename": "emote-eye-z1-1 0.png",
-    "frame": { "x": 306, "y": 0, "w": 1, "h": 1 },
+    "frame": { "x": 235, "y": 72, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -10,16 +10,16 @@
    },
    {
     "filename": "emote-eye-z1-1 1.png",
-    "frame": { "x": 0, "y": 153, "w": 58, "h": 22 },
+    "frame": { "x": 0, "y": 189, "w": 58, "h": 23 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 229, "y": 258, "w": 58, "h": 22 },
+    "spriteSourceSize": { "x": 229, "y": 263, "w": 58, "h": 23 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 2.png",
-    "frame": { "x": 153, "y": 148, "w": 48, "h": 37 },
+    "frame": { "x": 71, "y": 152, "w": 48, "h": 37 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 232, "y": 251, "w": 48, "h": 37 },
@@ -28,7 +28,7 @@
    },
    {
     "filename": "emote-eye-z1-1 3.png",
-    "frame": { "x": 0, "y": 180, "w": 66, "h": 13 },
+    "frame": { "x": 63, "y": 194, "w": 66, "h": 13 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 222, "y": 274, "w": 66, "h": 13 },
@@ -37,52 +37,52 @@
    },
    {
     "filename": "emote-eye-z1-1 4.png",
-    "frame": { "x": 0, "y": 0, "w": 78, "h": 77 },
+    "frame": { "x": 0, "y": 0, "w": 79, "h": 78 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 217, "y": 226, "w": 78, "h": 77 },
+    "spriteSourceSize": { "x": 217, "y": 226, "w": 79, "h": 78 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 5.png",
-    "frame": { "x": 83, "y": 0, "w": 74, "h": 73 },
+    "frame": { "x": 84, "y": 0, "w": 74, "h": 74 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 222, "y": 232, "w": 74, "h": 73 },
+    "spriteSourceSize": { "x": 222, "y": 232, "w": 74, "h": 74 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 6.png",
-    "frame": { "x": 162, "y": 74, "w": 66, "h": 69 },
+    "frame": { "x": 163, "y": 72, "w": 67, "h": 70 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 227, "y": 231, "w": 66, "h": 69 },
+    "spriteSourceSize": { "x": 227, "y": 231, "w": 67, "h": 70 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 7.png",
-    "frame": { "x": 233, "y": 75, "w": 66, "h": 67 },
+    "frame": { "x": 84, "y": 79, "w": 67, "h": 68 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 226, "y": 235, "w": 66, "h": 67 },
+    "spriteSourceSize": { "x": 226, "y": 235, "w": 67, "h": 68 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 8.png",
-    "frame": { "x": 162, "y": 0, "w": 68, "h": 69 },
+    "frame": { "x": 244, "y": 0, "w": 68, "h": 70 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 224, "y": 230, "w": 68, "h": 69 },
+    "spriteSourceSize": { "x": 224, "y": 230, "w": 68, "h": 70 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 9.png",
-    "frame": { "x": 68, "y": 150, "w": 55, "h": 28 },
+    "frame": { "x": 0, "y": 156, "w": 55, "h": 28 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 231, "y": 264, "w": 55, "h": 28 },
@@ -91,34 +91,34 @@
    },
    {
     "filename": "emote-eye-z1-1 10.png",
-    "frame": { "x": 83, "y": 78, "w": 65, "h": 67 },
+    "frame": { "x": 0, "y": 83, "w": 66, "h": 68 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 226, "y": 234, "w": 65, "h": 67 },
+    "spriteSourceSize": { "x": 226, "y": 234, "w": 66, "h": 68 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 11.png",
-    "frame": { "x": 233, "y": 147, "w": 66, "h": 62 },
+    "frame": { "x": 225, "y": 150, "w": 67, "h": 63 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 228, "y": 237, "w": 66, "h": 62 },
+    "spriteSourceSize": { "x": 228, "y": 237, "w": 67, "h": 63 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 12.png",
-    "frame": { "x": 0, "y": 82, "w": 63, "h": 66 },
+    "frame": { "x": 156, "y": 147, "w": 64, "h": 67 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 229, "y": 231, "w": 63, "h": 66 },
+    "spriteSourceSize": { "x": 229, "y": 231, "w": 64, "h": 67 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 13.png",
-    "frame": { "x": 235, "y": 0, "w": 66, "h": 70 },
+    "frame": { "x": 235, "y": 75, "w": 66, "h": 70 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 223, "y": 233, "w": 66, "h": 70 },
@@ -127,19 +127,19 @@
    },
    {
     "filename": "emote-eye-z1-1 14.png",
-    "frame": { "x": 306, "y": 0, "w": 1, "h": 1 },
+    "frame": { "x": 63, "y": 212, "w": 58, "h": 13 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "spriteSourceSize": { "x": 227, "y": 269, "w": 58, "h": 13 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
     "filename": "emote-eye-z1-1 15.png",
-    "frame": { "x": 306, "y": 0, "w": 1, "h": 1 },
+    "frame": { "x": 163, "y": 0, "w": 76, "h": 67 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
+    "spriteSourceSize": { "x": 215, "y": 232, "w": 76, "h": 67 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    }
@@ -149,7 +149,7 @@
   "version": "1.2.25-x64",
   "image": "emote-eye-z1-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 307, "h": 209 },
+  "size": { "w": 312, "h": 225 },
   "scale": "1"
  }
 }

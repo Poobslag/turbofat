@@ -55,8 +55,11 @@ Sets the frame for the emote arm sprites, resetting the non-emote sprites to a d
 func set_emote_arm_frame(new_emote_arm_frame: int) -> void:
 	if not is_inside_tree():
 		return
-	_creature_visuals.get_node("NearArm").frame = 1 if new_emote_arm_frame in [0, 1] else 0
-	_creature_visuals.get_node("FarArm").frame = 1 if new_emote_arm_frame == 0 else 0
+	
+	# hide the arm sprites, except for certain emotes where that specific arm is still visible
+	_creature_visuals.get_node("NearArm").frame = 1 if new_emote_arm_frame in [0, 1, 4] else 0
+	_creature_visuals.get_node("FarArm").frame = 1 if new_emote_arm_frame in [0, 3] else 0
+	
 	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ0").frame = new_emote_arm_frame
 	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ1").frame = new_emote_arm_frame
 

@@ -7,6 +7,7 @@ Keys:
 	[Control + 0-9]: Changes response length; 1 = short, 9 = long, 0 = longest
 	[Q, W, E]: Shows questions with more and more options.
 	[R]: Shows a dialog tree missing a lot of chat lines.
+	[T]: Shows a dialog tree showing off the different moods.
 	[A]: Shows a dialog line with no choices.
 """
 
@@ -51,7 +52,7 @@ func _ready() -> void:
 	creature_def.creature_name = "Lorum"
 	PlayerData.creature_library.set_creature_def("lorum", creature_def)
 
-	_play_chat_tree("dialog-unbranched")
+	_play_chat_tree("chat-unbranched")
 
 
 func _input(event: InputEvent) -> void:
@@ -64,19 +65,22 @@ func _input(event: InputEvent) -> void:
 			_play_chat_tree()
 		KEY_Q:
 			_text_override = ""
-			_play_chat_tree("dialog-choices2")
+			_play_chat_tree("chat-choices2")
 		KEY_W:
 			_text_override = ""
-			_play_chat_tree("dialog-choices3")
+			_play_chat_tree("chat-choices3")
 		KEY_E:
 			_text_override = ""
-			_play_chat_tree("dialog-choices7")
+			_play_chat_tree("chat-choices7")
 		KEY_R:
 			_text_override = ""
-			_play_chat_tree("dialog-blank")
+			_play_chat_tree("chat-blank")
+		KEY_T:
+			_text_override = ""
+			_play_chat_tree("chat-moods")
 		KEY_A:
 			_text_override = ""
-			_play_chat_tree("dialog-unbranched")
+			_play_chat_tree("chat-unbranched")
 
 
 func _play_chat_tree(filename: String = "") -> void:

@@ -14,7 +14,7 @@
     {
       "who": "#sensei#",
       "text": "So explain again why my beloved restaurant is very,/ very empty?",
-      "mood": "cry0",
+      "mood": "sigh0",
       "meta": [
         "creature-enter #player#",
         "creature-enter #sensei#",
@@ -33,7 +33,7 @@
     {
       "who": "richie",
       "text": "And as far as customers,/ we got Chonkers McRhonkers over there!/ What more could you need?",
-      "mood": "smile0"
+      "mood": "wave0"
     },
     {
       "who": "#sensei#",
@@ -47,12 +47,11 @@
     {
       "who": "richie",
       "text": "I mean,/ afloat might be a strong word./ She's makin' us sink a little slower I guess.",
-      "mood": "think0"
+      "mood": "awkward0"
     },
     {
       "who": "richie",
-      "text": "Maybe kind of like a, hmm./././ Like a anchor made of something slightly buoyant.",
-      "mood": "think0"
+      "text": "Maybe kind of like a, hmm./././ Like a anchor made of something slightly buoyant."
     },
     {
       "who": "bones",
@@ -88,7 +87,7 @@
     {
       "who": "richie",
       "text": "There you go,/ well put!/ Like a anchor made of walnuts.",
-      "mood": "smile0",
+      "mood": "yes1",
       "links": [
         "following-our-recipes"
       ]
@@ -123,7 +122,7 @@
     {
       "who": "richie",
       "text": "There you go,/ well put!/ Like a anchor made of slightly smaller boats.",
-      "mood": "smile0",
+      "mood": "yes1",
       "links": [
         "following-our-recipes"
       ]
@@ -161,7 +160,7 @@
     {
       "who": "richie",
       "text": "Go ahead,/ Skins!/ Why don't you show 'em what you got.",
-      "mood": "smile0"
+      "mood": "wave0"
     },
     {
       "who": "skins",

@@ -1,0 +1,241 @@
+{
+  "version": "1922",
+  "": [
+    {
+      "who": "lorum",
+      "text": "How are you feeling now?",
+      "links": ["default", "awkward0", "awkward1", "cry0", "cry1"]
+    }
+  ],
+  "default": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling default.",
+      "links": ["moods02"]
+    }
+  ],
+  "awkward0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling awkward0.",
+      "mood": "awkward0",
+      "links": ["moods02"]
+    }
+  ],
+  "awkward1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling awkward1.",
+      "mood": "awkward1",
+      "links": ["moods02"]
+    }
+  ],
+  "cry0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling cry0.",
+      "mood": "cry0",
+      "links": ["moods02"]
+    }
+  ],
+  "cry1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling cry1.",
+      "mood": "cry1",
+      "links": ["moods02"]
+    }
+  ],
+  "moods02": [
+    {
+      "who": "lorum",
+      "text": "I see. ...And how about now?",
+      "links": ["laugh0", "laugh1", "love0", "love1", "no0", "no1"]
+    }
+  ],
+  "laugh0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling laugh0.",
+      "mood": "laugh0",
+      "links": ["moods03"]
+    }
+  ],
+  "laugh1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling laugh1.",
+      "mood": "laugh1",
+      "links": ["moods03"]
+    }
+  ],
+  "love0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling love0.",
+      "mood": "love0",
+      "links": ["moods03"]
+    }
+  ],
+  "love1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling love1.",
+      "mood": "love1",
+      "links": ["moods03"]
+    }
+  ],
+  "no0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling no0.",
+      "mood": "no0",
+      "links": ["moods03"]
+    }
+  ],
+  "no1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling no1.",
+      "mood": "no1",
+      "links": ["moods03"]
+    }
+  ],
+  "moods03": [
+    {
+      "who": "lorum",
+      "text": "I see. ...And how about now?",
+      "links": ["rage1", "rage2", "rage0", "sigh0", "sigh1"]
+    }
+  ],
+  "rage1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling rage1.",
+      "mood": "rage1",
+      "links": ["moods04"]
+    }
+  ],
+  "rage2": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling rage2.",
+      "mood": "rage2",
+      "links": ["moods04"]
+    }
+  ],
+  "rage0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling rage0.",
+      "mood": "rage0",
+      "links": ["moods04"]
+    }
+  ],
+  "sigh0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling sigh0.",
+      "mood": "sigh0",
+      "links": ["moods04"]
+    }
+  ],
+  "sigh1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling sigh1.",
+      "mood": "sigh1",
+      "links": ["moods04"]
+    }
+  ],
+  "moods04": [
+    {
+      "who": "lorum",
+      "text": "I see. ...And how about now?",
+      "links": ["smile0", "smile1", "sweat0", "sweat1", "think0", "think1"]
+    }
+  ],
+  "smile0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling smile0.",
+      "mood": "smile0",
+      "links": ["moods05"]
+    }
+  ],
+  "smile1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling smile1.",
+      "mood": "smile1",
+      "links": ["moods05"]
+    }
+  ],
+  "sweat0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling sweat0.",
+      "mood": "sweat0",
+      "links": ["moods05"]
+    }
+  ],
+  "sweat1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling sweat1.",
+      "mood": "sweat1",
+      "links": ["moods05"]
+    }
+  ],
+  "think0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling think0.",
+      "mood": "think0",
+      "links": ["moods05"]
+    }
+  ],
+  "think1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling think1.",
+      "mood": "think1",
+      "links": ["moods05"]
+    }
+  ],
+  "moods05": [
+    {
+      "who": "lorum",
+      "text": "I see. ...And how about now?",
+      "links": ["wave0", "wave1", "yes0", "yes1"]
+    }
+  ],
+  "wave0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling wave0.",
+      "mood": "wave0"
+    }
+  ],
+  "wave1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling wave1.",
+      "mood": "wave1"
+    }
+  ],
+  "yes0": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling yes0.",
+      "mood": "yes0"
+    }
+  ],
+  "yes1": [
+    {
+      "who": "#player#",
+      "text": "I'm feeling yes1.",
+      "mood": "yes1"
+    }
+  ]
+}
