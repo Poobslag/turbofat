@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=2]
+[gd_scene load_steps=77 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -48,6 +48,7 @@
 [ext_resource path="res://assets/main/world/chef/gameover-voice0.wav" type="AudioStream" id=46]
 [ext_resource path="res://assets/main/ui/gameover.wav" type="AudioStream" id=47]
 [ext_resource path="res://assets/main/world/chef/gameover-voice2.wav" type="AudioStream" id=48]
+[ext_resource path="res://src/main/puzzle/PuzzleTimer.tscn" type="PackedScene" id=49]
 [ext_resource path="res://assets/main/ui/excellent.wav" type="AudioStream" id=51]
 [ext_resource path="res://assets/main/ui/matchend.wav" type="AudioStream" id=52]
 [ext_resource path="res://assets/main/world/chef/go-voice0.wav" type="AudioStream" id=53]
@@ -328,7 +329,13 @@ polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.0
 margin_left = 58.0
 margin_top = 25.0
 margin_right = 308.0
-margin_bottom = 85.0
+margin_bottom = 99.0
+
+[node name="PuzzleTimer" parent="Hud/HudUi/Chalkboard" instance=ExtResource( 49 )]
+margin_left = 58.0
+margin_top = 110.0
+margin_right = 308.0
+margin_bottom = 140.0
 
 [node name="MilestoneHud" type="Control" parent="Hud/HudUi/Chalkboard"]
 margin_left = 58.0
@@ -506,8 +513,8 @@ codes = [ "delays" ]
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
 [connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
