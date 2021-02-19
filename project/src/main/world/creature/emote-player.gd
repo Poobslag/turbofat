@@ -8,18 +8,31 @@ signal animation_stopped
 
 # mapping from moods to animation names
 const EMOTE_ANIMS := {
-	ChatEvent.Mood.SMILE0: "smile0",
-	ChatEvent.Mood.SMILE1: "smile1",
-	ChatEvent.Mood.LAUGH0: "laugh0",
-	ChatEvent.Mood.LAUGH1: "laugh1",
-	ChatEvent.Mood.THINK0: "think0",
-	ChatEvent.Mood.THINK1: "think1",
+	ChatEvent.Mood.AWKWARD0: "awkward0",
+	ChatEvent.Mood.AWKWARD1: "awkward1",
 	ChatEvent.Mood.CRY0: "cry0",
 	ChatEvent.Mood.CRY1: "cry1",
-	ChatEvent.Mood.SWEAT0: "sweat0",
-	ChatEvent.Mood.SWEAT1: "sweat1",
+	ChatEvent.Mood.LAUGH0: "laugh0",
+	ChatEvent.Mood.LAUGH1: "laugh1",
+	ChatEvent.Mood.LOVE0: "love0",
+	ChatEvent.Mood.LOVE1: "love1",
+	ChatEvent.Mood.NO0: "no0",
+	ChatEvent.Mood.NO1: "no1",
 	ChatEvent.Mood.RAGE0: "rage0",
 	ChatEvent.Mood.RAGE1: "rage1",
+	ChatEvent.Mood.RAGE2: "rage2",
+	ChatEvent.Mood.SIGH0: "sigh0",
+	ChatEvent.Mood.SIGH1: "sigh1",
+	ChatEvent.Mood.SMILE0: "smile0",
+	ChatEvent.Mood.SMILE1: "smile1",
+	ChatEvent.Mood.SWEAT0: "sweat0",
+	ChatEvent.Mood.SWEAT1: "sweat1",
+	ChatEvent.Mood.THINK0: "think0",
+	ChatEvent.Mood.THINK1: "think1",
+	ChatEvent.Mood.WAVE0: "wave0",
+	ChatEvent.Mood.WAVE1: "wave1",
+	ChatEvent.Mood.YES0: "yes0",
+	ChatEvent.Mood.YES1: "yes1",
 }
 
 # animation names for eating while smiling; referenced for animation transitions
@@ -42,24 +55,51 @@ const EAT_SWEAT_ANIMS := {
 
 # custom transition for cases where the default mood transition looks awkward
 const TRANSITIONS := {
-	[ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE0]: "_transition_noop",
-	[ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE1]: "_transition_noop",
-	[ChatEvent.Mood.SMILE1, ChatEvent.Mood.SMILE1]: "_transition_noop",
-	[ChatEvent.Mood.SMILE1, ChatEvent.Mood.SMILE0]: "_transition_smile1_smile0",
+	[ChatEvent.Mood.AWKWARD0, ChatEvent.Mood.AWKWARD0]: "_transition_noop",
+	[ChatEvent.Mood.AWKWARD0, ChatEvent.Mood.AWKWARD1]: "_transition_noop",
+	[ChatEvent.Mood.AWKWARD1, ChatEvent.Mood.AWKWARD0]: "_transition_awkward1_awkward0",
+	[ChatEvent.Mood.AWKWARD1, ChatEvent.Mood.AWKWARD1]: "_transition_noop",
+	[ChatEvent.Mood.CRY0, ChatEvent.Mood.CRY0]: "_transition_noop",
+	[ChatEvent.Mood.CRY1, ChatEvent.Mood.CRY1]: "_transition_noop",
 	[ChatEvent.Mood.LAUGH0, ChatEvent.Mood.LAUGH0]: "_transition_noop",
 	[ChatEvent.Mood.LAUGH0, ChatEvent.Mood.LAUGH1]: "_transition_noop",
 	[ChatEvent.Mood.LAUGH1, ChatEvent.Mood.LAUGH0]: "_transition_laugh1_laugh0",
 	[ChatEvent.Mood.LAUGH1, ChatEvent.Mood.LAUGH1]: "_transition_noop",
-	[ChatEvent.Mood.THINK0, ChatEvent.Mood.THINK0]: "_transition_noop",
-	[ChatEvent.Mood.THINK1, ChatEvent.Mood.THINK1]: "_transition_noop",
-	[ChatEvent.Mood.CRY0, ChatEvent.Mood.CRY0]: "_transition_noop",
-	[ChatEvent.Mood.CRY1, ChatEvent.Mood.CRY1]: "_transition_noop",
-	[ChatEvent.Mood.SWEAT0, ChatEvent.Mood.SWEAT1]: "_transition_noop",
+	[ChatEvent.Mood.LOVE0, ChatEvent.Mood.LOVE0]: "_transition_noop",
+	[ChatEvent.Mood.LOVE0, ChatEvent.Mood.LOVE1]: "_transition_noop",
+	[ChatEvent.Mood.LOVE1, ChatEvent.Mood.LOVE0]: "_transition_love1_love0",
+	[ChatEvent.Mood.LOVE1, ChatEvent.Mood.LOVE1]: "_transition_noop",
+	[ChatEvent.Mood.NO0, ChatEvent.Mood.NO0]: "_transition_noop",
+	[ChatEvent.Mood.NO0, ChatEvent.Mood.NO1]: "_transition_noop",
+	[ChatEvent.Mood.NO1, ChatEvent.Mood.NO0]: "_transition_noop",
+	[ChatEvent.Mood.NO1, ChatEvent.Mood.NO1]: "_transition_noop",
+	[ChatEvent.Mood.RAGE0, ChatEvent.Mood.RAGE0]: "_transition_noop",
+	[ChatEvent.Mood.RAGE0, ChatEvent.Mood.RAGE1]: "_transition_noop",
+	[ChatEvent.Mood.RAGE1, ChatEvent.Mood.RAGE0]: "_transition_rage1_rage0",
+	[ChatEvent.Mood.RAGE1, ChatEvent.Mood.RAGE1]: "_transition_noop",
+	[ChatEvent.Mood.RAGE2, ChatEvent.Mood.RAGE2]: "_transition_noop",
+	[ChatEvent.Mood.SIGH0, ChatEvent.Mood.SIGH0]: "_transition_noop",
+	[ChatEvent.Mood.SIGH0, ChatEvent.Mood.SIGH1]: "_transition_noop",
+	[ChatEvent.Mood.SIGH1, ChatEvent.Mood.SIGH0]: "_transition_sigh1_sigh0",
+	[ChatEvent.Mood.SIGH1, ChatEvent.Mood.SIGH1]: "_transition_noop",
+	[ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE0]: "_transition_noop",
+	[ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE1]: "_transition_noop",
+	[ChatEvent.Mood.SMILE1, ChatEvent.Mood.SMILE0]: "_transition_smile1_smile0",
+	[ChatEvent.Mood.SMILE1, ChatEvent.Mood.SMILE1]: "_transition_noop",
 	[ChatEvent.Mood.SWEAT0, ChatEvent.Mood.SWEAT0]: "_transition_noop",
+	[ChatEvent.Mood.SWEAT0, ChatEvent.Mood.SWEAT1]: "_transition_noop",
 	[ChatEvent.Mood.SWEAT1, ChatEvent.Mood.SWEAT0]: "_transition_sweat1_sweat0",
 	[ChatEvent.Mood.SWEAT1, ChatEvent.Mood.SWEAT1]: "_transition_noop",
-	[ChatEvent.Mood.RAGE0, ChatEvent.Mood.RAGE0]: "_transition_noop",
-	[ChatEvent.Mood.RAGE1, ChatEvent.Mood.RAGE1]: "_transition_noop",
+	[ChatEvent.Mood.THINK0, ChatEvent.Mood.THINK0]: "_transition_noop",
+	[ChatEvent.Mood.THINK1, ChatEvent.Mood.THINK1]: "_transition_noop",
+	[ChatEvent.Mood.WAVE0, ChatEvent.Mood.WAVE0]: "_transition_noop",
+	[ChatEvent.Mood.WAVE0, ChatEvent.Mood.WAVE1]: "_transition_noop",
+	[ChatEvent.Mood.WAVE1, ChatEvent.Mood.WAVE0]: "_transition_noop",
+	[ChatEvent.Mood.WAVE1, ChatEvent.Mood.WAVE1]: "_transition_noop",
+	[ChatEvent.Mood.YES0, ChatEvent.Mood.YES0]: "_transition_noop",
+	[ChatEvent.Mood.YES0, ChatEvent.Mood.YES1]: "_transition_noop",
+	[ChatEvent.Mood.YES1, ChatEvent.Mood.YES0]: "_transition_noop",
+	[ChatEvent.Mood.YES1, ChatEvent.Mood.YES1]: "_transition_noop",
 }
 
 # Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
@@ -249,12 +289,7 @@ Parameters:
 """
 func unemote(anim_name: String = "") -> void:
 	stop()
-	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ0").frame = 0
-	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ1").frame = 0
-	_creature_visuals.get_node("NearArm").update_orientation(_creature_visuals.orientation)
-	_creature_visuals.get_node("FarArm").update_orientation(_creature_visuals.orientation)
-	_emote_eye_z0.frame = 0
-	_emote_eye_z1.frame = 0
+	_unemote_non_tweened_properties()
 	if anim_name in EAT_SMILE_ANIMS:
 		_creature_visuals.get_node("Neck0/HeadBobber/EyeZ0").frame = 0
 		_creature_visuals.get_node("Neck0/HeadBobber/EyeZ1").frame = 0
@@ -282,18 +317,33 @@ func unemote(anim_name: String = "") -> void:
 
 
 """
+Resets the position and rotation of nodes which shift around during emotes.
+
+This only includes 'non-tweened properties'; properties which snap back to their starting value without being tweened
+into place.
+"""
+func _unemote_non_tweened_properties() -> void:
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ0").frame = 0
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ1").frame = 0
+	_creature_visuals.get_node("NearArm").update_orientation(_creature_visuals.orientation)
+	_creature_visuals.get_node("NearArm").z_index = 0
+	_creature_visuals.get_node("FarArm").update_orientation(_creature_visuals.orientation)
+	_emote_eye_z0.frame = 0
+	_emote_eye_z0.rotation_degrees = 0
+	_emote_eye_z0.position = Vector2(0, 256)
+	_emote_eye_z1.frame = 0
+	_emote_eye_z1.rotation_degrees = 0
+	_emote_eye_z1.position = Vector2(0, 256)
+
+
+"""
 Immediately resets the creature to a default neutral mood.
 
 This takes place immediately, callers do not need to wait for $ResetTween.
 """
 func unemote_immediate() -> void:
 	stop()
-	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ0").frame = 0
-	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ1").frame = 0
-	_creature_visuals.get_node("NearArm").update_orientation(_creature_visuals.orientation)
-	_creature_visuals.get_node("FarArm").update_orientation(_creature_visuals.orientation)
-	_emote_eye_z0.frame = 0
-	_emote_eye_z1.frame = 0
+	_unemote_non_tweened_properties()
 	_creature_visuals.reset_eye_frames()
 	_head_bobber.rotation_degrees = 0
 	for emote_sprite in _emote_sprites:
@@ -351,40 +401,85 @@ func _transition_noop() -> void:
 
 
 """
-Function for transitioning from laugh1 mood to laugh0 mood.
+Transitions from 'awkward1' to 'awkward0', hiding the white sweat circles.
 """
-func _transition_laugh1_laugh0() -> void:
-	_head_bobber.reset_head_bob()
+func _transition_awkward1_awkward0() -> void:
+	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property(_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain"), "modulate",
-			_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain").modulate, Color.transparent, UNEMOTE_DURATION)
+	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteHead"])
 	$ResetTween.start()
 
 
 """
-Function for transitioning from sweat1 mood to sweat0 mood.
+Transitions from 'laugh1' to 'laugh0', hiding the yellow laugh lines.
+"""
+func _transition_laugh1_laugh0() -> void:
+	_head_bobber.reset_head_bob()
+	$ResetTween.remove_all()
+	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain"])
+	$ResetTween.start()
+
+
+"""
+Transitions from 'love1' to 'love0', hiding the hearts and blush.
+"""
+func _transition_love1_love0() -> void:
+	_emote_eye_z0.rotation_degrees = 0
+	_emote_eye_z0.position = Vector2(0, 256)
+	_emote_eye_z1.rotation_degrees = 0
+	_emote_eye_z1.position = Vector2(0, 256)
+	$ResetTween.remove_all()
+	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
+	$ResetTween.start()
+
+
+"""
+Transitions from 'rage1' to 'rage0', hiding the red anger symbols.
+"""
+func _transition_rage1_rage0() -> void:
+	_head_bobber.reset_head_bob()
+	$ResetTween.remove_all()
+	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
+	$ResetTween.start()
+
+
+"""
+Transitions from 'sigh1' to 'sigh0', turning the head forward again
+"""
+func _transition_sigh1_sigh0() -> void:
+	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
+	$ResetTween.remove_all()
+	$ResetTween.interpolate_property(_head_bobber, "rotation_degrees",
+			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
+	$ResetTween.start()
+
+
+"""
+Transitions from 'smile1' to 'smile0', hiding the pink love bubble and blush.
+"""
+func _transition_smile1_smile0() -> void:
+	$ResetTween.remove_all()
+	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
+	$ResetTween.interpolate_property(_head_bobber, "rotation_degrees",
+			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
+	$ResetTween.start()
+
+
+"""
+Transitions from 'sweat1' to 'sweat0', hiding the white sweat circles.
 """
 func _transition_sweat1_sweat0() -> void:
 	_head_bobber.reset_head_bob()
 	_creature_visuals.get_node("NearArm").frame = 1
 	$ResetTween.remove_all()
-	$ResetTween.interpolate_property(_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead"), "modulate",
-			_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead").modulate, Color.transparent, UNEMOTE_DURATION)
+	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteHead"])
 	$ResetTween.start()
 
 
-"""
-Function for transitioning from smile1 mood to smile0 mood.
-"""
-func _transition_smile1_smile0() -> void:
-	$ResetTween.remove_all()
-	$ResetTween.interpolate_property(_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain"), "modulate",
-			_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain").modulate, Color("008c2261"), UNEMOTE_DURATION)
-	$ResetTween.interpolate_property(_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow"), "modulate",
-			_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow").modulate, Color("008c2261"), UNEMOTE_DURATION)
-	$ResetTween.interpolate_property(_head_bobber, "rotation_degrees",
-			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
-	$ResetTween.start()
+func _tween_nodes_to_transparent(paths: Array) -> void:
+	for path in paths:
+		var node: Node2D = _creature_visuals.get_node(path)
+		$ResetTween.interpolate_property(node, "modulate", node.modulate, Color.transparent, UNEMOTE_DURATION)
 
 
 """

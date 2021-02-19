@@ -4,20 +4,33 @@ Contains details for a line of spoken text shown to the player.
 """
 
 enum Mood {
-	NONE, # no particular mood
+	NONE,
 	DEFAULT, # neutral expression, neither positive nor negative
-	SMILE0, # smiling a little
-	SMILE1, # smiling a lot
-	LAUGH0, # laughing a little
-	LAUGH1, # laughing a lot
-	THINK0, # pensive
-	THINK1, # confused
+	AWKWARD0, # apprehensive
+	AWKWARD1, # visibly uncomfortable
 	CRY0, # a little sad
 	CRY1, # crying their eyes out
+	LAUGH0, # laughing a little
+	LAUGH1, # laughing a lot
+	LOVE0, # finding something cute
+	LOVE1, # fawning over something
+	NO0, # shaking their head once
+	NO1, # shaking their head a few times
+	RAGE0, # annoyed
+	RAGE1, # a little upset
+	RAGE2, # infuriated
+	SIGH0, # unamused
+	SIGH1, # exasperated
+	SMILE0, # smiling a little
+	SMILE1, # smiling a lot
 	SWEAT0, # a little nervous
 	SWEAT1, # incredibly anxious
-	RAGE0, # a little upset
-	RAGE1 # infuriated
+	THINK0, # pensive
+	THINK1, # confused
+	WAVE0, # casual greeting (or pointing)
+	WAVE1, # enthusiastic greeting
+	YES0, # nodding once
+	YES1, # nodding a few times
 }
 
 # The name of the person speaking, or blank if nobody is speaking
@@ -106,18 +119,31 @@ func _parse_mood(json: Dictionary) -> void:
 	match json.get("mood", ""):
 		"": mood = Mood.NONE
 		"default": mood = Mood.DEFAULT
-		"smile0": mood = Mood.SMILE0
-		"smile1": mood = Mood.SMILE1
-		"laugh0": mood = Mood.LAUGH0
-		"laugh1": mood = Mood.LAUGH1
-		"think0": mood = Mood.THINK0
-		"think1": mood = Mood.THINK1
+		"awkward0": mood = Mood.AWKWARD0
+		"awkward1": mood = Mood.AWKWARD1
 		"cry0": mood = Mood.CRY0
 		"cry1": mood = Mood.CRY1
-		"sweat0": mood = Mood.SWEAT0
-		"sweat1": mood = Mood.SWEAT1
+		"laugh0": mood = Mood.LAUGH0
+		"laugh1": mood = Mood.LAUGH1
+		"love0": mood = Mood.LOVE0
+		"love1": mood = Mood.LOVE1
+		"no0": mood = Mood.NO0
+		"no1": mood = Mood.NO1
 		"rage0": mood = Mood.RAGE0
 		"rage1": mood = Mood.RAGE1
+		"rage2": mood = Mood.RAGE2
+		"sigh0": mood = Mood.SIGH0
+		"sigh1": mood = Mood.SIGH1
+		"smile0": mood = Mood.SMILE0
+		"smile1": mood = Mood.SMILE1
+		"sweat0": mood = Mood.SWEAT0
+		"sweat1": mood = Mood.SWEAT1
+		"think0": mood = Mood.THINK0
+		"think1": mood = Mood.THINK1
+		"wave0": mood = Mood.WAVE0
+		"wave1": mood = Mood.WAVE1
+		"yes0": mood = Mood.YES0
+		"yes1": mood = Mood.YES1
 		_:
 			push_warning("Unrecognized mood: %s" % json.get("mood", ""))
 			mood = Mood.NONE

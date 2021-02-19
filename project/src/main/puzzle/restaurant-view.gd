@@ -159,7 +159,7 @@ func _on_PuzzleScore_game_ended() -> void:
 		PuzzleScore.Result.NONE:
 			pass
 		PuzzleScore.Result.LOST:
-			mood = Utils.rand_value([ChatEvent.Mood.RAGE0, ChatEvent.Mood.RAGE1,
+			mood = Utils.rand_value([ChatEvent.Mood.RAGE1, ChatEvent.Mood.RAGE2,
 					ChatEvent.Mood.CRY1, ChatEvent.Mood.THINK1])
 		PuzzleScore.Result.FINISHED:
 			mood = ChatEvent.Mood.SMILE0

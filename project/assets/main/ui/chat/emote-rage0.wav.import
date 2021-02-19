@@ -2,12 +2,12 @@
 
 importer="wav"
 type="AudioStreamSample"
-path="res://.import/emote-rage0.wav-0bd33b3aaf7e35b1194ce08db4cc3dbd.sample"
+path="res://.import/emote-rage1.wav-0bd33b3aaf7e35b1194ce08db4cc3dbd.sample"
 
 [deps]
 
-source_file="res://assets/main/ui/chat/emote-rage0.wav"
-dest_files=[ "res://.import/emote-rage0.wav-0bd33b3aaf7e35b1194ce08db4cc3dbd.sample" ]
+source_file="res://assets/main/ui/chat/emote-rage1.wav"
+dest_files=[ "res://.import/emote-rage1.wav-0bd33b3aaf7e35b1194ce08db4cc3dbd.sample" ]
 
 [params]
 

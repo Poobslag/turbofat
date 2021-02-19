@@ -4,10 +4,18 @@ A demo which shows off the creature's range of emotions and idle animations
 
 Keys:
 	[1]: Default mood
-	[Q, W, E, R]: Smile0 (Happy), Smile1 (Love), Laugh0 (Tickled), Laugh1 (Laughing)
-	[A, S, D, F]: Think0 (Pensive), Think1 (Confused), Cry0 (Disappointed), Cry1 (Distraught)
-	[Z, X, C, V]: Sweat0 (Nervous), Sweat1 (Fidgety), Rage0 (Upset), Rage1 (Rage)
-	[T]: Talk
+	
+	[Q, W, E, R]: Awkward0 (Uncomfortable), Awkward1 (Embarrassed), Cry0 (Disappointed), Cry1 (Distraught)
+	[T, Y, U, I]: Laugh0 (Tickled), Laugh1 (Laughing), Love0 (Heart Eyes), Love1 (Dreamy Love)
+	[O, P]: No0 (Head Shake), No1 (More Shakes)
+	
+	[A, S, D, F, G]: Rage0 (Annoyed), Rage1 (Angry), Rage2 (Murderous), Sigh0 (Ugh), Sigh1 (Eyeroll)
+	[H, J, K, L]: Smile0 (Happy), Smile1 (Sweet), Sweat0 (Nervous), Sweat1 (Fidgety)
+	
+	[Z, X, C, V]: Think0 (Pensive), Think1 (Confused), Wave0 (Polite), Wave1 (Friendly)
+	[B, N]: Yes0 (Nod), Yes1 (More Nods)
+	
+	[Shift + T]: Talk
 	[=]: Make the creature fat
 	[space bar]: Feed
 	[brace keys]: Change the creature's appearance
@@ -29,22 +37,36 @@ func _input(event: InputEvent) -> void:
 			KEY_S: $Creature.creature_visuals.play_idle_animation("idle-close-eyes1")
 			KEY_D: $Creature.creature_visuals.play_idle_animation("idle-ear-wiggle0")
 			KEY_F: $Creature.creature_visuals.play_idle_animation("idle-ear-wiggle1")
+			KEY_T: $Creature.talk()
 	else:
 		match(Utils.key_scancode(event)):
 			KEY_BRACELEFT, KEY_BRACERIGHT: $Creature.dna = DnaUtils.random_dna()
+			
 			KEY_1: $Creature.play_mood(ChatEvent.Mood.DEFAULT)
-			KEY_Q: $Creature.play_mood(ChatEvent.Mood.SMILE0)
-			KEY_W: $Creature.play_mood(ChatEvent.Mood.SMILE1)
-			KEY_E: $Creature.play_mood(ChatEvent.Mood.LAUGH0)
-			KEY_R: $Creature.play_mood(ChatEvent.Mood.LAUGH1)
-			KEY_A: $Creature.play_mood(ChatEvent.Mood.THINK0)
-			KEY_S: $Creature.play_mood(ChatEvent.Mood.THINK1)
-			KEY_D: $Creature.play_mood(ChatEvent.Mood.CRY0)
-			KEY_F: $Creature.play_mood(ChatEvent.Mood.CRY1)
-			KEY_Z: $Creature.play_mood(ChatEvent.Mood.SWEAT0)
-			KEY_X: $Creature.play_mood(ChatEvent.Mood.SWEAT1)
-			KEY_C: $Creature.play_mood(ChatEvent.Mood.RAGE0)
-			KEY_V: $Creature.play_mood(ChatEvent.Mood.RAGE1)
-			KEY_T: $Creature.talk()
+			KEY_Q: $Creature.play_mood(ChatEvent.Mood.AWKWARD0)
+			KEY_W: $Creature.play_mood(ChatEvent.Mood.AWKWARD1)
+			KEY_E: $Creature.play_mood(ChatEvent.Mood.CRY0)
+			KEY_R: $Creature.play_mood(ChatEvent.Mood.CRY1)
+			KEY_T: $Creature.play_mood(ChatEvent.Mood.LAUGH0)
+			KEY_Y: $Creature.play_mood(ChatEvent.Mood.LAUGH1)
+			KEY_U: $Creature.play_mood(ChatEvent.Mood.LOVE0)
+			KEY_I: $Creature.play_mood(ChatEvent.Mood.LOVE1)
+			KEY_O: $Creature.play_mood(ChatEvent.Mood.NO0)
+			KEY_P: $Creature.play_mood(ChatEvent.Mood.NO1)
+			KEY_A: $Creature.play_mood(ChatEvent.Mood.RAGE0)
+			KEY_S: $Creature.play_mood(ChatEvent.Mood.RAGE1)
+			KEY_D: $Creature.play_mood(ChatEvent.Mood.RAGE2)
+			KEY_F: $Creature.play_mood(ChatEvent.Mood.SIGH0)
+			KEY_G: $Creature.play_mood(ChatEvent.Mood.SIGH1)
+			KEY_H: $Creature.play_mood(ChatEvent.Mood.SMILE0)
+			KEY_J: $Creature.play_mood(ChatEvent.Mood.SMILE1)
+			KEY_K: $Creature.play_mood(ChatEvent.Mood.SWEAT0)
+			KEY_L: $Creature.play_mood(ChatEvent.Mood.SWEAT1)
+			KEY_Z: $Creature.play_mood(ChatEvent.Mood.THINK0)
+			KEY_X: $Creature.play_mood(ChatEvent.Mood.THINK1)
+			KEY_C: $Creature.play_mood(ChatEvent.Mood.WAVE0)
+			KEY_V: $Creature.play_mood(ChatEvent.Mood.WAVE1)
+			KEY_B: $Creature.play_mood(ChatEvent.Mood.YES0)
+			KEY_N: $Creature.play_mood(ChatEvent.Mood.YES1)
 			KEY_SPACE: $Creature.feed(Playfield.FOOD_COLORS[0])
 			KEY_EQUAL: $Creature.set_fatness(3)
