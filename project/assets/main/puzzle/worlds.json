@@ -44,17 +44,23 @@
         {
           "id": "marsh/hello_bones",
           "groups": "marsh/hello",
-          "locked_until": "level_finished marsh/hello_everyone"
+          "locked_until": "level_finished marsh/hello_everyone",
+          "creature_id": "bones",
+          "chef_id": "bones"
         },
         {
           "id": "marsh/hello_shirts",
           "groups": "marsh/hello",
-          "locked_until": "level_finished marsh/hello_everyone"
+          "locked_until": "level_finished marsh/hello_everyone",
+          "creature_id": "shirts",
+          "chef_id": "shirts"
         },
         {
           "id": "marsh/hello_skins",
           "groups": "marsh/hello",
-          "locked_until": "level_finished marsh/hello_everyone"
+          "locked_until": "level_finished marsh/hello_everyone",
+          "creature_id": "skins",
+          "chef_id": "skins"
         },
         {
           "id": "marsh/pulling_for_everyone",

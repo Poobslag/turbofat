@@ -28,9 +28,11 @@ func _ready() -> void:
 func _launch_cutscene() -> void:
 	_overworld_ui.cutscene = true
 	
-	# remove all of the creatures from the overworld
+	# remove all of the creatures from the overworld except for the player and sensei
 	for node in get_tree().get_nodes_in_group("creatures"):
 		if node != ChattableManager.player and node != ChattableManager.sensei:
+			# remove it immediately so we don't find it in the tree later
+			node.get_parent().remove_child(node)
 			node.queue_free()
 	
 	# add the cutscene creature

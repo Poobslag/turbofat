@@ -191,7 +191,7 @@ func _focused_chattable_chat_tree() -> ChatTree:
 	
 	if not _chat_tree_cache.has(focused_chattable):
 		var chat_tree := ChattableManager.load_chat_events()
-		if focused_chattable is Creature:
+		if chat_tree and focused_chattable is Creature:
 			if chat_tree.meta.get("filler", false):
 				PlayerData.chat_history.increment_filler_count(focused_chattable.creature_id)
 			if chat_tree.meta.get("notable", false):
@@ -246,6 +246,10 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 			var creature_id := StringUtils.substring_after(meta_item, "creature-enter ")
 			var entering_creature := ChattableManager.get_creature_by_id(creature_id)
 			entering_creature.fade_in()
+		if meta_item.begins_with("creature-exit "):
+			var creature_id := StringUtils.substring_after(meta_item, "creature-exit ")
+			var exiting_creature := ChattableManager.get_creature_by_id(creature_id)
+			exiting_creature.fade_out()
 	
 	# update the chatter's mood
 	var chatter := ChattableManager.get_creature_by_id(chat_event.who)
@@ -300,9 +304,13 @@ func _on_TalkButton_pressed() -> void:
 		# launch a cutscene if necessary
 		pushed_cutscene_trail = Level.push_cutscene_trail()
 	
-	if not pushed_cutscene_trail:
+	if chat_tree and not pushed_cutscene_trail:
 		# if no cutscene was launched, start a chat
 		start_chat(chat_tree, ChattableManager.focused_chattable)
+	
+	if not chat_tree and not pushed_cutscene_trail:
+		# if no chat was launched, start a level
+		Level.push_level_trail()
 
 
 func _on_CellPhoneMenu_show() -> void:

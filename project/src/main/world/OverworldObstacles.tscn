@@ -185,11 +185,29 @@ chat_path = "res://assets/main/dialog/marsh-crystal.json"
 
 [node name="ChatIconHook" type="RemoteTransform2D" parent="MarshCrystal"]
 
-[node name="Spawn1" parent="." instance=ExtResource( 16 )]
+[node name="SpawnRestaurant1" parent="." instance=ExtResource( 16 )]
+position = Vector2( 1288.39, 655.857 )
+orientation = 1
+id = "restaurant-1"
+
+[node name="SpawnRestaurant4" parent="." instance=ExtResource( 16 )]
+position = Vector2( 1337.78, 744.532 )
+orientation = 1
+id = "restaurant-4"
+
+[node name="SpawnRestaurant8" parent="." instance=ExtResource( 16 )]
+position = Vector2( 1111.04, 758.001 )
+id = "restaurant-8"
+
+[node name="SpawnRestaurant11" parent="." instance=ExtResource( 16 )]
+position = Vector2( 1146.96, 656.98 )
+id = "restaurant-11"
+
+[node name="SpawnRestaurantPlayer" parent="." instance=ExtResource( 16 )]
 position = Vector2( 1019, 648 )
 orientation = 1
 id = "restaurant-player"
 
-[node name="Spawn2" parent="." instance=ExtResource( 16 )]
+[node name="SpawnRestaurantSensei" parent="." instance=ExtResource( 16 )]
 position = Vector2( 1192, 676 )
 id = "restaurant-sensei"

@@ -1,0 +1,55 @@
+{
+  "version": "1922",
+  "location": {
+    "location_id": "indoors",
+    "spawn_locations": {
+      "#player#": "entrance-10",
+      "#sensei#": "entrance-7",
+      "shirts": "entrance-2"
+    }
+  },
+  "": [
+    {
+      "who": "shirts",
+      "text": "Oh hey what's up./ I heard you guys came the other day when I wasn't here./ So did I miss like anything./././ important?"
+    },
+    {
+      "who": "#sensei#",
+      "text": "Ahh, nothing important./ We're still trying to figure out why this location isn't attracting more customers."
+    },
+    {
+      "who": "#player#",
+      "text": "Yeah,/ Skins and Bones showed us their cooking skills. ./././They seem nice!",
+      "mood": "smile0"
+    },
+    {
+      "who": "shirts",
+      "text": "Hah./ Yeah they DO seem nice.",
+      "mood": "awkward1"
+    },
+    {
+      "who": "#player#",
+      "text": "Yeah!/ ./././Umm,/ wait what?/ ./././I feel like there's something you're not telling me.",
+      "mood": "think0"
+    },
+    {
+      "who": "shirts",
+      "text": "Hah hah./ Yeah that's alright,/ you'll figure it out.",
+      "mood": "sigh0"
+    },
+    {
+      "who": "#player#",
+      "text": "Umm... Alright. Sounds fun. Anywaaay...",
+      "mood": "awkward0"
+    },
+    {
+      "who": "#player#",
+      "text": "Why don't you show us your skills in the kitchen!/ Let's focus on some combos today,/ if you know about those."
+    },
+    {
+      "who": "shirts",
+      "text": "Yeah yeah!/ Combos./ Sure thing.",
+      "mood": "smile0"
+    }
+  ]
+}
