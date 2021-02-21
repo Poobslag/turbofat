@@ -53,17 +53,16 @@ func _process(_delta: float) -> void:
 			if chatter is Creature:
 				max_visual_fatness = max(max_visual_fatness, chatter.get_visual_fatness())
 		
-		var new_close_up_bounding_box := _overworld_ui.get_chatter_bounding_box()
+		var new_close_up_bounding_box := _overworld_ui.get_chatter_bounding_box().grow(CAMERA_BOUNDARY)
 		if new_close_up_bounding_box != close_up_bounding_box:
 			close_up_bounding_box = new_close_up_bounding_box
-			close_up_bounding_box = close_up_bounding_box.grow(CAMERA_BOUNDARY)
 			close_up_position = close_up_bounding_box.position + close_up_bounding_box.size * 0.5
 			
 			zoom_close_up.x = max(close_up_bounding_box.size.x / _project_resolution.x, \
 					close_up_bounding_box.size.y / _project_resolution.y)
 			zoom_close_up.x = clamp(zoom_close_up.x, 0.5, 1.0)
 			zoom_close_up.y = zoom_close_up.x
-	
+
 	zoom = lerp(ZOOM_DEFAULT, zoom_close_up, close_up_pct)
 	position = lerp(ChattableManager.player.position, close_up_position, close_up_pct)
 	

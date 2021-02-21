@@ -77,7 +77,7 @@ func from_json_dict(json: Dictionary) -> void:
 		# Dialog with no speaker; decorate it as a thought bubble
 		if text:
 			text = "(%s)" % text
-		chat_theme_def = PlayerData.creature_library.get_creature_def("#player#").chat_theme_def
+		chat_theme_def = PlayerData.creature_library.get_creature_def(CreatureLibrary.PLAYER_ID).chat_theme_def
 
 
 """

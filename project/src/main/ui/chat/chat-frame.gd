@@ -71,8 +71,11 @@ func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool)
 	
 	# set the text and calculate how big of a frame we need
 	var chat_line_size: int = $ChatLineLabel.show_message(chat_event.text, 0.5)
-	var creature_def := PlayerData.creature_library.get_creature_def(chat_event.who)
-	$ChatLinePanel/NametagPanel.set_nametag_text(creature_def.creature_name)
+	var creature_name := ""
+	if chat_event.who:
+		var creature_def := PlayerData.creature_library.get_creature_def(chat_event.who)
+		creature_name = creature_def.creature_name
+	$ChatLinePanel/NametagPanel.set_nametag_text(creature_name)
 	
 	# update the UI's appearance
 	$ChatLineLabel.update_appearance(chat_theme)
