@@ -42,8 +42,6 @@ func set_level(new_level: LevelSettings) -> void:
 	match get_selected_mode():
 		"Survival":
 			var target_value: int = new_level.finish_condition.value
-			if new_level.finish_condition.has_meta("lenient_value"):
-				target_value = int(new_level.finish_condition.get_meta("lenient_value"))
 			
 			new_description = "Survive as the pieces get faster and faster! Can you clear %s lines?" \
 					% StringUtils.comma_sep(target_value)
