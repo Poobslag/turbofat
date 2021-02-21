@@ -1,0 +1,109 @@
+{
+  "version": "1922",
+  "location": {
+    "location_id": "outdoors",
+    "spawn_locations": {
+      "#player#": "restaurant-1",
+      "#sensei#": "restaurant-4",
+      "bones": "restaurant-8"
+    }
+  },
+  "": [
+    {
+      "who": "#player#",
+      "text": "Well that was./././ good!"
+    },
+    {
+      "who": "bones",
+      "text": "Just good?",
+      "mood": "awkward0"
+    },
+    {
+      "who": "#player#",
+      "text": "I mean the combos aren't working!/ It's./././ I don't think it's your fault,/ don't take it personally.",
+      "mood": "awkward0"
+    },
+    {
+      "who": "#player#",
+      "text": "You're./././ You're doing good./ ./././You're a good boy.",
+      "mood": "smile0"
+    },
+    {
+      "who": "bones",
+      "text": "Groarf.",
+      "mood": "cry0"
+    },
+    {
+      "who": "#player#",
+      "text": "C'mon,/ let's like./././ let's get drinks or something,/ blow off some steam!/ You did./././ good today.",
+      "mood": "laugh0"
+    },
+    {
+      "who": "bones",
+      "text": "Ohhh./ Actually,/ I really gotta work out tonight./ I already missed two nights this week./ I can't miss a third night.",
+      "mood": "think0",
+      "links": [
+        {
+          "you-need-exercise": "Yeah, you're looking a little chunky"
+        },
+        {
+          "yay-exercise": "That's some good discipline!"
+        },
+        {
+          "boo-exercise": "Well, can we hang out tomorrow?"
+        }
+      ]
+    }
+  ],
+  "you-need-exercise": [
+    {
+      "who": "#player#",
+      "text": "Heh yeah,/ I thought you were looking a little chunky around the middle.",
+      "mood": "think0"
+    },
+    {
+      "who": "bones",
+      "text": "W-what!?!",
+      "mood": "sweat1"
+    },
+    {
+      "who": "#player#",
+      "text": "Ha ha,/ go exercise.",
+      "mood": "laugh1"
+    },
+    {
+      "who": "bones",
+      "text": "Y-/yeah,/ bye!",
+      "mood": "sweat0"
+    }
+  ],
+  "yay-exercise": [
+    {
+      "who": "#player#",
+      "text": "Oh good for you,/ that's some good discipline!/ ./././See you around.",
+      "mood": "smile0"
+    },
+    {
+      "who": "bones",
+      "text": "Bye!",
+      "mood": "smile0"
+    }
+  ],
+  "boo-exercise": [
+    {
+      "who": "#player#",
+      "text": "How about tomorrow then?/ ./././Can we hang out tomorrow?",
+      "mood": "sweat0"
+    },
+    {
+      "who": "bones",
+      "text": "Uhhh,/ I gotta go./ See you around!",
+      "meta": "creature-exit bones"
+    },
+    {
+      "who": "#player#",
+      "text": "Oh!/ Goodbye!",
+      "mood": "awkward0"
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "version": "1922",
+  "location": {
+    "location_id": "indoors",
+    "spawn_locations": {
+      "#player#": "kitchen-5",
+      "#sensei#": "kitchen-3",
+      "skins": "kitchen-7"
+    }
+  },
+  "": [
+    {
+      "who": "#sensei#",
+      "text": "Hmm./././ just like before.",
+      "mood": "think0"
+    },
+    {
+      "who": "#player#",
+      "text": "Yeah...",
+      "mood": "awkward0"
+    },
+    {
+      "who": "skins",
+      "text": "Mowr./././ Any tips?",
+      "mood": "sweat0"
+    },
+    {
+      "who": "#player#",
+      "text": "I don't know,/ I'm kind of at a loss on this one./ #sensei#?/ Why isn't it working?"
+    },
+    {
+      "who": "#player#",
+      "text": "Was it their technique or./././ were they too slow?/ They didn't seem slow to me.",
+      "mood": "think0"
+    },
+    {
+      "who": "#sensei#",
+      "text": "Ahh well./ Their cooking skills are improving,/ so./././ Maybe it's just a matter of time."
+    },
+    {
+      "who": "#sensei#",
+      "text": "The customers will come back,/ and next time they'll stay longer! So,/ let's be patient.",
+      "mood": "yes0"
+    }
+  ]
+}

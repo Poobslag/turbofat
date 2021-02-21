@@ -147,8 +147,12 @@ anything.
 func set_focus_enabled(new_focus_enabled: bool) -> void:
 	_focus_enabled = new_focus_enabled
 	
+	var old_focused_chattable := focused_chattable
 	if not _focus_enabled:
 		set_focused_chattable(null)
+	
+	if old_focused_chattable == focused_chattable:
+		emit_signal("focus_changed")
 
 
 """

@@ -216,6 +216,24 @@ position = Vector2( 1368, 155 )
 
 [node name="Spawns" type="Node2D" parent="World"]
 
+[node name="SpawnEntrance2" parent="World/Spawns" instance=ExtResource( 6 )]
+position = Vector2( 342.245, 52.3916 )
+orientation = 1
+id = "entrance-2"
+
+[node name="SpawnEntrance5" parent="World/Spawns" instance=ExtResource( 6 )]
+position = Vector2( 394.38, 152.458 )
+orientation = 1
+id = "entrance-5"
+
+[node name="SpawnEntrance7" parent="World/Spawns" instance=ExtResource( 6 )]
+position = Vector2( 126.975, 170.117 )
+id = "entrance-7"
+
+[node name="SpawnEntrance10" parent="World/Spawns" instance=ExtResource( 6 )]
+position = Vector2( 179.111, 52.3916 )
+id = "entrance-10"
+
 [node name="SpawnKitchen1" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 1814.38, 40.6189 )
 orientation = 1
