@@ -172,7 +172,7 @@ Returns the level id (if any) corresponding to the curently focused chattable.
 This is relevant when the player talks to a creature with a food speech bubble.
 """
 func _focused_chattable_level_id() -> String:
-	var focused_creature: Creature = ChattableManager.focused_chattable
+	var focused_creature: Creature = ChattableManager.focused_chattable as Creature
 	if not focused_creature:
 		return ""
 	
@@ -251,7 +251,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	var chatter := ChattableManager.get_creature_by_id(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
-	if StringUtils.has_letter(chat_event.text):
+	if chatter and StringUtils.has_letter(chat_event.text):
 		chatter.talk()
 		emit_signal("chatter_talked", chatter)
 

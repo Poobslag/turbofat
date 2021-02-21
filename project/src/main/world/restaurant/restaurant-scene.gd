@@ -19,7 +19,7 @@ func _ready() -> void:
 		_get_seat(i).set_creature(_creatures[i])
 		_get_seat(i).refresh()
 	
-	var chef_id := Level.launched_chef_id if Level.launched_chef_id else "#player#"
+	var chef_id := Level.launched_chef_id if Level.launched_chef_id else CreatureLibrary.PLAYER_ID
 	$Chef.set_creature_def(PlayerData.creature_library.get_creature_def(chef_id))
 	$Chef.set_orientation(Creature.SOUTHWEST)
 
