@@ -38,8 +38,8 @@ func _ready() -> void:
 	hud.get_tutorial_diagram().connect("help_chosen", self, "_on_TutorialDiagram_help_chosen")
 	
 	# display a welcome message before the game starts
-	hud.set_message("Today we'll cover some advanced squish move techniques!"
-			+ "\n\nBut first,/ let's make sure you remember the basics.")
+	hud.set_message(tr("Today we'll cover some advanced squish move techniques!"
+			+ "\n\nBut first,/ let's make sure you remember the basics."))
 
 
 func prepare_tutorial_level() -> void:
@@ -49,45 +49,45 @@ func prepare_tutorial_level() -> void:
 	match(Level.settings.id):
 		"tutorial/squish_0":
 			hud.skill_tally_item("SquishMove").visible = true
-			hud.set_message("Hold soft drop to squish pieces through this gap.")
+			hud.set_message(tr("Hold soft drop to squish pieces through this gap."))
 		"tutorial/squish_1":
 			_show_next_diagram()
 		"tutorial/squish_2":
 			hud.skill_tally_item("SnackBox").visible = true
-			hud.set_message("So, which of these snack boxes can be completed with a squish move?")
+			hud.set_message(tr("So, which of these snack boxes can be completed with a squish move?"))
 		"tutorial/squish_3":
 			hud.skill_tally_item("SnackBox").visible = true
-			hud.set_message("How about now,/ can you find a way to squish here?")
+			hud.set_message(tr("How about now,/ can you find a way to squish here?"))
 		"tutorial/squish_4":
 			hud.skill_tally_item("SnackBox").visible = true
-			hud.set_message("What do you think about this one?/ Is it possible to make a snack box here?")
+			hud.set_message(tr("What do you think about this one?/ Is it possible to make a snack box here?"))
 		"tutorial/squish_5":
 			hud.skill_tally_item("LineClear").visible = true
 			hud.skill_tally_item("LineClear").reset()
 			PuzzleScore.level_performance.lines = 0
 			PuzzleScore.level_performance.pieces = 0
 			if _failed_section:
-				hud.set_message("Here,/ let me help you with that.")
+				hud.set_message(tr("Here,/ let me help you with that."))
 			else:
-				hud.set_message("Of course, squish moves aren't always about being very,"
-							+ " very clever. ...Sometimes we make mistakes, too.")
+				hud.set_message(tr("Of course, squish moves aren't always about being very,"
+							+ " very clever. ...Sometimes we make mistakes, too."))
 		"tutorial/squish_6":
 			hud.skill_tally_item("LineClear").visible = true
 			hud.skill_tally_item("LineClear").reset()
 			PuzzleScore.level_performance.lines = 0
 			PuzzleScore.level_performance.pieces = 0
 			if _failed_section:
-				hud.set_message("Should I make it worse this time?\n\nNo,/ that would be mean.")
+				hud.set_message(tr("Should I make it worse this time?\n\nNo,/ that would be mean."))
 			else:
-				hud.set_message("Hmmm.../ What are you up to this time?")
+				hud.set_message(tr("Hmmm.../ What are you up to this time?"))
 		"tutorial/squish_7":
 			# reset timer, scores
 			PuzzleScore.reset()
 			puzzle.scroll_to_new_creature()
 
 			# the sixth tutorial section ends with a long message, so we enqueue these messages
-			hud.enqueue_message("Your training is complete!\n\nBut don't let it go to your head,"
-					+ "/ we still have some customers to take care of.")
+			hud.enqueue_message(tr("Your training is complete!\n\nBut don't let it go to your head,"
+					+ "/ we still have some customers to take care of."))
 			hud.enqueue_pop_out()
 	
 	_prepared_levels[Level.settings.id] = true
@@ -104,28 +104,28 @@ func _advance_level() -> void:
 			# no delay for the non-interactive segment where we show the player a diagram
 			delay_between_levels = PuzzleScore.DELAY_NONE
 		"tutorial/squish_2":
-			hud.set_message("Yes, that's right.")
+			hud.set_message(tr("Yes, that's right."))
 		"tutorial/squish_3":
-			hud.set_message("That's right! Hmm, how about something tricky...")
+			hud.set_message(tr("That's right! Hmm, how about something tricky..."))
 		"tutorial/squish_4":
-			hud.set_message("Wow, okay! ...I need to think of some harder puzzles.")
+			hud.set_message(tr("Wow, okay! ...I need to think of some harder puzzles."))
 			delay_between_levels = PuzzleScore.DELAY_LONG
 		"tutorial/squish_5":
 			if PuzzleScore.level_performance.lines >= 3:
-				hud.set_message("Good job!")
+				hud.set_message(tr("Good job!"))
 			else:
 				_failed_section = true
-				hud.set_message("Oops!/ ...Let's try that again.")
+				hud.set_message(tr("Oops!/ ...Let's try that again."))
 		"tutorial/squish_6":
 			if PuzzleScore.level_performance.lines >= 3:
-				hud.set_message("Wow!/ ...I had a few more of these planned,/ but it looks like you get the idea.")
+				hud.set_message(tr("Wow!/ ...I had a few more of these planned,/ but it looks like you get the idea."))
 				delay_between_levels = PuzzleScore.DELAY_LONG
 				start_customer_countdown()
 			else:
 				_failed_section = true
-				hud.set_message("Oops!/ ...Let's try that again.")
+				hud.set_message(tr("Oops!/ ...Let's try that again."))
 		_:
-			hud.set_message("Good job!")
+			hud.set_message(tr("Good job!"))
 	var level_ids := [
 		"tutorial/squish_0", "tutorial/squish_1", "tutorial/squish_2", "tutorial/squish_3",
 		"tutorial/squish_4", "tutorial/squish_5", "tutorial/squish_6", "tutorial/squish_7"
@@ -140,7 +140,7 @@ func _advance_level() -> void:
 
 func _handle_squish_move_message() -> void:
 	if _did_squish_move and _squish_moves == 1 and Level.settings.id == "tutorial/squish_0":
-		hud.set_message("Good job!\n\nSquish moves help in all sorts of ways.")
+		hud.set_message(tr("Good job!\n\nSquish moves help in all sorts of ways."))
 
 
 """
@@ -149,20 +149,20 @@ Shows a diagram explaining how squish moves work, with an accompanying sensei me
 func _show_next_diagram() -> void:
 	var hud_messages := []
 	if _show_diagram_count == 0:
-		hud_messages.append("For a piece to squish successfully,/"
-				+ " one part needs a straight gap down to the target.")
-		hud_messages.append("Here are some examples of good and bad squish moves."
-				+ "\n\nDoes this make any sense?/ I know it's a little weird.")
+		hud_messages.append(tr("For a piece to squish successfully,/"
+				+ " one part needs a straight gap down to the target."))
+		hud_messages.append(tr("Here are some examples of good and bad squish moves."
+				+ "\n\nDoes this make any sense?/ I know it's a little weird."))
 	else:
 		match _show_diagram_count % 4:
-			0: hud_messages.append("So basically,/ one part of the piece needs a"
-					+ " straight gap down to the target or it won't squish.")
-			1: hud_messages.append("These examples on the right don't work,/"
-					+ " because the piece can't \"see\" where it's going.")
-			2: hud_messages.append("You can think of it like././."
-					+ "\n\nIf the piece were split into tiny chunks,/ would each chunk be blocked?")
-			3: hud_messages.append("These examples on the left work,/"
-					+ " because one tiny chunk of the piece has a clear path.\n\nIt just needs one.")
+			0: hud_messages.append(tr("So basically,/ one part of the piece needs a"
+					+ " straight gap down to the target or it won't squish."))
+			1: hud_messages.append(tr("These examples on the right don't work,/"
+					+ " because the piece can't \"see\" where it's going."))
+			2: hud_messages.append(tr("You can think of it like././."
+					+ "\n\nIf the piece were split into tiny chunks,/ would each chunk be blocked?"))
+			3: hud_messages.append(tr("These examples on the left work,/"
+					+ " because one tiny chunk of the piece has a clear path.\n\nIt just needs one."))
 	hud.set_messages(hud_messages)
 	
 	var hud_diagram: Texture
@@ -215,11 +215,12 @@ func _on_PuzzleScore_after_piece_written() -> void:
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(1.5), "timeout")
 				if _failed_section:
-					hud.set_message("Not again!/ ...Can you clean this up using squish moves?"
-								+ "\n\nTry to clear three lines.")
+					hud.set_message(tr("Not again!/ ...Can you clean this up using squish moves?"
+								+ "\n\nTry to clear three lines."))
 				else:
-					hud.set_message("Oops!/ Look at the mess you made./ ...Can you clean this up using squish moves?"
-								+ "\n\nTry to clear three lines.")
+					hud.set_message(tr("Oops!/ Look at the mess you made./"
+								+ " ...Can you clean this up using squish moves?"
+								+ "\n\nTry to clear three lines."))
 			
 			if PuzzleScore.level_performance.pieces >= Level.settings.finish_condition.value \
 					or PuzzleScore.level_performance.lines >= 3:
@@ -231,11 +232,11 @@ func _on_PuzzleScore_after_piece_written() -> void:
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(1.5), "timeout")
 				if _failed_section:
-					hud.set_message("Oh no,/ it keeps happening!/ Well, try to clear three lines."
-							+ "\n\nRemember your squish moves!")
+					hud.set_message(tr("Oh no,/ it keeps happening!/ Well, try to clear three lines."
+							+ "\n\nRemember your squish moves!"))
 				else:
-					hud.set_messages(["Oh no!/ Now you've done it.\n\nLook at how clumsy you are!",
-						"That's okay.\n\nI'm sure you'll think of a clever way to clean this up,/ too."])
+					hud.set_messages([tr("Oh no!/ Now you've done it.\n\nLook at how clumsy you are!"),
+						tr("That's okay.\n\nI'm sure you'll think of a clever way to clean this up,/ too.")])
 			
 			if PuzzleScore.level_performance.pieces >= Level.settings.finish_condition.value \
 					or PuzzleScore.level_performance.lines >= 3:

@@ -65,7 +65,7 @@ func _on_Back_pressed() -> void:
 
 func _on_PuzzleScore_game_prepared() -> void:
 	hide_buttons()
-	show_message("Ready?")
+	show_message(tr("Ready?"))
 
 
 func _on_PuzzleScore_game_started() -> void:
@@ -74,9 +74,9 @@ func _on_PuzzleScore_game_started() -> void:
 
 func _on_PuzzleScore_before_level_changed(new_level_id: String) -> void:
 	if new_level_id == Level.settings.id:
-		show_message("Regret...")
+		show_message(tr("Regret..."))
 	else:
-		show_message("Good!")
+		show_message(tr("Good!"))
 
 
 func _on_PuzzleScore_after_level_changed() -> void:
@@ -89,11 +89,11 @@ func _on_PuzzleScore_game_ended() -> void:
 		PuzzleScore.Result.NONE:
 			hide_message()
 		PuzzleScore.Result.LOST:
-			message = "Game over"
+			message = tr("Game over")
 		PuzzleScore.Result.FINISHED:
-			message = "Finish!"
+			message = tr("Finish!")
 		PuzzleScore.Result.WON:
-			message = "You win!"
+			message = tr("You win!")
 	show_message(message)
 
 
@@ -127,7 +127,7 @@ func _on_PuzzleScore_after_game_ended() -> void:
 			# if they abort the level without playing it, the button doesn't change
 			pass
 		_:
-			$Buttons/Start.text = "Retry"
+			$Buttons/Start.text = tr("Retry")
 	
 	# grab focus so the player can retry or navigate with the keyboard
 	for button_to_focus_obj in buttons_to_focus:
@@ -143,6 +143,6 @@ The back buttons changes its label if the level is cleared.
 func _on_Level_level_state_changed() -> void:
 	match Level.level_state:
 		Level.LevelState.AFTER:
-			$Buttons/Back.text = "Back" if Level.keep_retrying else "Continue"
+			$Buttons/Back.text = tr("Back") if Level.keep_retrying else tr("Continue")
 		_:
-			$Buttons/Back.text = "Back"
+			$Buttons/Back.text = tr("Back")

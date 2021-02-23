@@ -785,7 +785,7 @@ _global_script_class_icons={
 config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
 config/icon="res://assets/main/ui/icon.png"
-config/version="0.2221"
+config/version="0.2227"
 
 [audio]
 
@@ -1009,6 +1009,14 @@ walk_down={
 , Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":13,"pressure":0.0,"pressed":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":83,"unicode":0,"echo":false,"script":null)
  ]
+}
+
+[locale]
+
+translations=PoolStringArray( "res://assets/main/locale/es.po" )
+locale_filter=[ 1, [ "en", "es" ] ]
+translation_remaps={
+
 }
 
 [rendering]

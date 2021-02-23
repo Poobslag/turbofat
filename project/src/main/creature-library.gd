@@ -48,6 +48,10 @@ func _init() -> void:
 	_normalize_filler_fatnesses()
 
 
+func creature_ids() -> Array:
+	return _creature_defs_by_id.keys()
+
+
 """
 Returns a filler ID.
 

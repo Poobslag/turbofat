@@ -1,0 +1,2082 @@
+# Translations template for PROJECT.
+# Copyright (C) 2021 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# Automatically generated, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2021-02-26 00:00-0500\n"
+"PO-Revision-Date: 2021-02-26 00:00-0500\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.9.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: localizables-extracted.py:1
+msgid "Accelerator"
+msgstr "Acelerador"
+
+#: localizables-extracted.py:2
+msgid "Hurry up and finish before things get out of control!"
+msgstr "¡Date prisa y termina antes de que las cosas se salgan de control!"
+
+#: localizables-extracted.py:3
+msgid "Teensy Taste"
+msgstr "Sabor Teensy"
+
+#: localizables-extracted.py:4
+msgid "Just a quick bite."
+msgstr "Un bocado rápido."
+
+#: localizables-extracted.py:5
+msgid ""
+"Could you maybe just cook me something small? I'm not very hungry today."
+msgstr "¿Podrías cocinarme algo pequeño? Hoy no tengo mucha hambre"
+
+#: localizables-extracted.py:6
+msgid "Okay!"
+msgstr "¡Okey!"
+
+#: localizables-extracted.py:7
+msgid "Real Meal"
+msgstr "Comida real"
+
+#: localizables-extracted.py:8
+msgid "If you're going to indulge, you may as well make it worth it!"
+msgstr "Si te vas a dar un capricho, ¡puedes hacer que valga la pena!"
+
+#: localizables-extracted.py:9
+msgid ""
+"I built up an appetite today! Think you can cook something filling for me "
+"and my friends?"
+msgstr ""
+"¡Hoy tengo apetito! ¿Crees que puedes cocinar algo que me llene a mí y a mis "
+"amigos?"
+
+#: localizables-extracted.py:10
+msgid "Sure, no problem!"
+msgstr "¡Claro, no hay problema!"
+
+#: localizables-extracted.py:11
+msgid "Table for Five"
+msgstr "Mesa para cinco"
+
+#: localizables-extracted.py:12
+msgid "Five of the pickiest customers you'll ever meet!"
+msgstr "¡Cinco de los clientes más exigentes que jamás conocerás!"
+
+#: localizables-extracted.py:13 localizables-extracted.py:211
+msgid "Okay,/ I'll invite my friends too!/ But/ -/-/ no vegetables okay?"
+msgstr ""
+"Está bien, / ¡también invitaré a mis amigos! / Pero / -/-/ no hay verduras "
+"¿de acuerdo?"
+
+#: localizables-extracted.py:14 localizables-extracted.py:212
+msgid "I HATE vegetables!/ ./././I hate them so much..."
+msgstr "¡ODIO las verduras! / ./././ Las odio tanto..."
+
+#: localizables-extracted.py:15
+msgid "Goodbye Bones"
+msgstr ""
+
+#: localizables-extracted.py:16
+msgid "Goodbye Bones! ...I'll miss you the most of all!"
+msgstr ""
+
+#: localizables-extracted.py:17
+msgid "Goodbye Everyone!"
+msgstr ""
+
+#: localizables-extracted.py:18
+msgid ""
+"We have an entire chain of restaurants to run, we can't stay here forever. "
+"We're sorry!"
+msgstr ""
+
+#: localizables-extracted.py:19
+msgid "Goodbye Shirts"
+msgstr ""
+
+#: localizables-extracted.py:20
+msgid "Goodbye Shirts! ...I'll miss you the most of all!"
+msgstr ""
+
+#: localizables-extracted.py:21
+msgid "Goodbye Skins!"
+msgstr ""
+
+#: localizables-extracted.py:22
+msgid "Goodbye Skins! ...I'll miss you the most of all!"
+msgstr ""
+
+#: localizables-extracted.py:23
+msgid "Hello Bones!"
+msgstr ""
+
+#: localizables-extracted.py:24
+msgid "Let's get to know Bones a little better."
+msgstr ""
+
+#: localizables-extracted.py:25
+msgid "Well that was./././ good!"
+msgstr ""
+
+#: localizables-extracted.py:26
+msgid "Just good?"
+msgstr ""
+
+#: localizables-extracted.py:27
+msgid ""
+"I mean the combos aren't working!/ It's./././ I don't think it's your "
+"fault,/ don't take it personally."
+msgstr ""
+
+#: localizables-extracted.py:28
+msgid "You're./././ You're doing good./ ./././You're a good boy."
+msgstr ""
+
+#: localizables-extracted.py:29
+msgid "Groarf."
+msgstr ""
+
+#: localizables-extracted.py:30
+msgid ""
+"C'mon,/ let's like./././ let's get drinks or something,/ blow off some "
+"steam!/ You did./././ good today."
+msgstr ""
+
+#: localizables-extracted.py:31
+msgid ""
+"Ohhh./ Actually,/ I really gotta work out tonight./ I already missed two "
+"nights this week./ I can't miss a third night."
+msgstr ""
+
+#: localizables-extracted.py:32
+msgid "Yeah, you're looking a little chunky"
+msgstr ""
+
+#: localizables-extracted.py:33
+msgid "That's some good discipline!"
+msgstr ""
+
+#: localizables-extracted.py:34
+msgid "Well, can we hang out tomorrow?"
+msgstr ""
+
+#: localizables-extracted.py:35
+msgid ""
+"Heh yeah,/ I thought you were looking a little chunky around the middle."
+msgstr ""
+
+#: localizables-extracted.py:36
+msgid "W-what!?!"
+msgstr ""
+
+#: localizables-extracted.py:37
+msgid "Ha ha,/ go exercise."
+msgstr ""
+
+#: localizables-extracted.py:38
+msgid "Y-/yeah,/ bye!"
+msgstr ""
+
+#: localizables-extracted.py:39
+msgid "Oh good for you,/ that's some good discipline!/ ./././See you around."
+msgstr ""
+
+#: localizables-extracted.py:40
+msgid "Bye!"
+msgstr ""
+
+#: localizables-extracted.py:41
+msgid "How about tomorrow then?/ ./././Can we hang out tomorrow?"
+msgstr ""
+
+#: localizables-extracted.py:42
+msgid "Uhhh,/ I gotta go./ See you around!"
+msgstr ""
+
+#: localizables-extracted.py:43
+msgid "Oh!/ Goodbye!"
+msgstr ""
+
+#: localizables-extracted.py:44
+msgid "Hello Everyone!"
+msgstr ""
+
+#: localizables-extracted.py:45
+msgid "Let's meet the employees of our Merrymellow Marsh location!"
+msgstr ""
+
+#: localizables-extracted.py:46
+msgid "So explain again why my beloved restaurant is very,/ very empty?"
+msgstr ""
+"Entonces,/ explica de nuevo por qué mi querido restaurante está muy,/ muy "
+"vacío."
+
+#: localizables-extracted.py:47
+msgid "Aw come on now!/ It's not empty,/ we got the two line cooks here..."
+msgstr ""
+"¡Oh, vamos! / No está vacío, / tenemos los dos cocineros de línea aquí..."
+
+#: localizables-extracted.py:48
+msgid "Bork!"
+msgstr "¡Bork!"
+
+#: localizables-extracted.py:49
+msgid ""
+"And as far as customers,/ we got Chonkers McRhonkers over there!/ What more "
+"could you need?"
+msgstr ""
+"Y en lo que respecta a los clientes, / ¡tenemos a Chonkers McRhonkers "
+"allí! / ¿Qué más podrías necesitar?"
+
+#: localizables-extracted.py:50
+msgid "Hm./ Mhm./././ Well ideally you'd have at least TWO customers..."
+msgstr "Hm./ Mhm./././ Bueno, idealmente tendrías al menos DOS clientes..."
+
+#: localizables-extracted.py:51
+msgid ""
+"Oh Chonkers eats plenty!/ Even with just her,/ she's doing a lot to keep us "
+"afloat."
+msgstr ""
+"¡Oh, Chonkers come mucho! / Incluso con ella, / está haciendo mucho para "
+"mantenernos a flote."
+
+#: localizables-extracted.py:52
+msgid ""
+"I mean,/ afloat might be a strong word./ She's makin' us sink a little "
+"slower I guess."
+msgstr ""
+"Quiero decir, / a flote podría ser una palabra fuerte / Supongo que nos está "
+"haciendo hundirnos un poco más lento."
+
+#: localizables-extracted.py:53
+msgid ""
+"Maybe kind of like a, hmm./././ Like a anchor made of something slightly "
+"buoyant."
+msgstr ""
+"Quizás como un, hmm./././ Como un ancla hecha de algo ligeramente flotante."
+
+#: localizables-extracted.py:54
+msgid "An anchor made of./././ Boats?"
+msgstr "¿Un ancla hecha de./././ Barcos?"
+
+#: localizables-extracted.py:55
+msgid "Nope./ Not that buoyant!"
+msgstr "No./ ¡No tan optimista!"
+
+#: localizables-extracted.py:56 localizables-extracted.py:60
+msgid "Walnuts?"
+msgstr "¿Nueces?"
+
+#: localizables-extracted.py:57 localizables-extracted.py:62
+msgid "Rotting flesh?"
+msgstr "¿Carne podrida?"
+
+#: localizables-extracted.py:58 localizables-extracted.py:65
+msgid "Slightly smaller boats?"
+msgstr "¿Barcos un poco más pequeños?"
+
+#: localizables-extracted.py:59 localizables-extracted.py:67
+msgid "This isn't a helpful avenue of discussion."
+msgstr "Esta no es una vía de discusión útil."
+
+#: localizables-extracted.py:61
+msgid "There you go,/ well put!/ Like a anchor made of walnuts."
+msgstr "Ahí tienes, / ¡bien dicho! / Como un ancla hecha de nueces."
+
+#: localizables-extracted.py:63
+msgid "There you go,/ well put!/ Like a anchor made of./././ wait what!?"
+msgstr ""
+"Ahí tienes, / ¡bien dicho! / Como un ancla hecha de./././ ¡¿Espera qué?!"
+
+#: localizables-extracted.py:64
+msgid ""
+"./././I mean,/ maybe?/ ./././Hold up,/ are you on some kind of watchlist I "
+"should know about?"
+msgstr ""
+"./././ Quiero decir, / ¿quizás? / ./././ Espera, / ¿estás en algún tipo de "
+"lista de seguimiento que debería conocer?"
+
+#: localizables-extracted.py:66
+msgid "There you go,/ well put!/ Like a anchor made of slightly smaller boats."
+msgstr ""
+"Ahí tienes, / ¡bien puesto! / Como un ancla hecha de barcos un poco más "
+"pequeños."
+
+#: localizables-extracted.py:68
+msgid "Oh sure,/ I'm with you./ ./././We'll come back to that one later."
+msgstr "Oh, claro, / Estoy contigo./ ./././ Volveremos a eso más tarde."
+
+#: localizables-extracted.py:69
+msgid ""
+"Well, anyway./././ I know you said you were following our recipes to a tee./ "
+"But just in case..."
+msgstr ""
+"Bueno, de todos modos./././ Sé que dijiste que estabas siguiendo nuestras "
+"recetas a la perfección./ Pero por si acaso..."
+
+#: localizables-extracted.py:70
+msgid "You want us to show you, right?"
+msgstr "Quieres que te lo mostremos, ¿verdad?"
+
+#: localizables-extracted.py:71
+msgid "I mean./././ well..."
+msgstr "Quiero decir./././ bueno..."
+
+#: localizables-extracted.py:72
+msgid "Go ahead,/ Skins!/ Why don't you show 'em what you got."
+msgstr "¡Adelante, / Skins! / ¿Por qué no les muestra lo que tiene?"
+
+#: localizables-extracted.py:73
+msgid "Can do!/ Mowr!"
+msgstr "¡Puedo hacerlo! / ¡Mowr!"
+
+#: localizables-extracted.py:74
+msgid "So how was that?"
+msgstr ""
+
+#: localizables-extracted.py:75
+msgid "I think you killed it!"
+msgstr ""
+
+#: localizables-extracted.py:76
+msgid "That was pretty good!"
+msgstr ""
+
+#: localizables-extracted.py:77
+msgid "..."
+msgstr ""
+
+#: localizables-extracted.py:78
+msgid "Well... I wouldn't eat it."
+msgstr ""
+
+#: localizables-extracted.py:79
+msgid "Wow,/ I think you killed it!/ You have some real talent."
+msgstr ""
+
+#: localizables-extracted.py:80
+msgid "Whoa, thanks!"
+msgstr ""
+
+#: localizables-extracted.py:81
+msgid ""
+"Hey,/ that was pretty good!/ And y'know,/ with a little more training you'll "
+"get even better."
+msgstr ""
+
+#: localizables-extracted.py:82
+msgid "Oh okay cool!"
+msgstr ""
+
+#: localizables-extracted.py:83 localizables-extracted.py:210
+msgid "./././"
+msgstr ""
+
+#: localizables-extracted.py:84
+msgid "./././?"
+msgstr ""
+
+#: localizables-extracted.py:85
+msgid "./././ ./././"
+msgstr ""
+
+#: localizables-extracted.py:86
+msgid "./././ ./././ ./././"
+msgstr ""
+
+#: localizables-extracted.py:87
+msgid ""
+"Well./././ I wouldn't eat it. Did you have any cooking experience before "
+"this?"
+msgstr ""
+
+#: localizables-extracted.py:88
+msgid ""
+"Uhh I mean like,/ Richie's been helping me figure out the kitchen "
+"stuff./ ./././Did I mess something up?"
+msgstr ""
+
+#: localizables-extracted.py:89
+msgid "Hmm./ Yes!/ Pretty good./ Your rhythm's ahhh./././ a little off though!"
+msgstr ""
+
+#: localizables-extracted.py:90 localizables-extracted.py:94
+msgid "My./././ my rhythm?"
+msgstr ""
+
+#: localizables-extracted.py:91 localizables-extracted.py:95
+msgid ""
+"Yes! That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now "
+"you're more like pappap,// pappa/ pap."
+msgstr ""
+
+#: localizables-extracted.py:92
+msgid ""
+"You don't want to give them any break./ Eating should become an unconscious "
+"reflex to them,/ like blinking!/"
+msgstr ""
+
+#: localizables-extracted.py:93
+msgid ""
+"What I think #player# is trying to say is your rhythm is ahhh./././ a little "
+"off."
+msgstr ""
+
+#: localizables-extracted.py:96
+msgid ""
+"You don't want to give them a break./ Eating should become an unconscious "
+"reflex to them,/ like blinking!"
+msgstr ""
+
+#: localizables-extracted.py:97
+msgid "Oh, hmm./././ okay./ Mowr..."
+msgstr ""
+
+#: localizables-extracted.py:98
+msgid "Hey hey!/ Don't worry,/ we'll work on that./ Good work everybody!"
+msgstr ""
+
+#: localizables-extracted.py:99
+msgid "#sensei#,/ #player# -/-/ see what you can do to drum up more business!"
+msgstr ""
+
+#: localizables-extracted.py:100
+msgid "We'll be here when you feel like training us up again./ No hurry!"
+msgstr ""
+
+#: localizables-extracted.py:101
+msgid "Hello Shirts!"
+msgstr ""
+
+#: localizables-extracted.py:102
+msgid "Let's get to know Shirts a little better."
+msgstr ""
+
+#: localizables-extracted.py:103
+msgid ""
+"Oh hey what's up./ I heard you guys came the other day when I wasn't here./ "
+"So did I miss like anything./././ important?"
+msgstr ""
+
+#: localizables-extracted.py:104
+msgid ""
+"Ahh, nothing important./ We're still trying to figure out why this location "
+"isn't attracting more customers."
+msgstr ""
+
+#: localizables-extracted.py:105
+msgid ""
+"Yeah,/ Skins and Bones showed us their cooking skills. ./././They seem nice!"
+msgstr ""
+
+#: localizables-extracted.py:106
+msgid "Hah./ Yeah they DO seem nice."
+msgstr ""
+
+#: localizables-extracted.py:107
+msgid ""
+"Yeah!/ ./././Umm,/ wait what?/ ./././I feel like there's something you're "
+"not telling me."
+msgstr ""
+
+#: localizables-extracted.py:108
+msgid "Hah hah./ Yeah that's alright,/ you'll figure it out."
+msgstr ""
+
+#: localizables-extracted.py:109
+msgid "Umm... Alright. Sounds fun. Anywaaay..."
+msgstr ""
+
+#: localizables-extracted.py:110
+msgid ""
+"Why don't you show us your skills in the kitchen!/ Let's focus on some "
+"combos today,/ if you know about those."
+msgstr ""
+
+#: localizables-extracted.py:111
+msgid "Yeah yeah!/ Combos./ Sure thing."
+msgstr ""
+
+#: localizables-extracted.py:112
+msgid "Hello Skins!"
+msgstr ""
+
+#: localizables-extracted.py:113
+msgid "Let's get to know Skins a little better."
+msgstr ""
+
+#: localizables-extracted.py:114
+msgid "Hmm./././ just like before."
+msgstr ""
+
+#: localizables-extracted.py:115
+msgid "Yeah..."
+msgstr ""
+
+#: localizables-extracted.py:116
+msgid "Mowr./././ Any tips?"
+msgstr ""
+
+#: localizables-extracted.py:117
+msgid ""
+"I don't know,/ I'm kind of at a loss on this one./ #sensei#?/ Why isn't it "
+"working?"
+msgstr ""
+
+#: localizables-extracted.py:118
+msgid ""
+"Was it their technique or./././ were they too slow?/ They didn't seem slow "
+"to me."
+msgstr ""
+
+#: localizables-extracted.py:119
+msgid ""
+"Ahh well./ Their cooking skills are improving,/ so./././ Maybe it's just a "
+"matter of time."
+msgstr ""
+
+#: localizables-extracted.py:120
+msgid ""
+"The customers will come back,/ and next time they'll stay longer! So,/ let's "
+"be patient."
+msgstr ""
+
+#: localizables-extracted.py:121
+msgid "Let's All Get Merry"
+msgstr ""
+
+#: localizables-extracted.py:122
+msgid "Wow, we did it! It's time to celebrate."
+msgstr ""
+
+#: localizables-extracted.py:123
+msgid "Pulling for Bones"
+msgstr ""
+
+#: localizables-extracted.py:124
+msgid "C'mon Bones, you can do this! We believe in you!"
+msgstr ""
+
+#: localizables-extracted.py:125
+msgid "Pulling for everyone"
+msgstr ""
+
+#: localizables-extracted.py:126
+msgid "C'mon everybody, you can do this! We believe in you!"
+msgstr ""
+
+#: localizables-extracted.py:127
+msgid "Pulling for Shirts"
+msgstr ""
+
+#: localizables-extracted.py:128
+msgid "C'mon Shirts, you can do this! We believe in you!"
+msgstr ""
+
+#: localizables-extracted.py:129
+msgid "Pulling for Skins"
+msgstr ""
+
+#: localizables-extracted.py:130
+msgid "C'mon Skins, you can do this! We believe in you!"
+msgstr ""
+
+#: localizables-extracted.py:131
+msgid "Just Getting Started"
+msgstr ""
+
+#: localizables-extracted.py:132
+msgid "Was someone in the middle of cooking something?"
+msgstr ""
+
+#: localizables-extracted.py:133
+msgid "Unfresh Fruits"
+msgstr ""
+
+#: localizables-extracted.py:134
+msgid "This fruit's going bad soon! Maybe someone will eat it..."
+msgstr ""
+
+#: localizables-extracted.py:135
+msgid "It's Square to be Square"
+msgstr ""
+
+#: localizables-extracted.py:136
+msgid "Can you handle all this sugar, or will you go down swinging?"
+msgstr ""
+
+#: localizables-extracted.py:137
+msgid "Pineapple On Its Side Cake"
+msgstr ""
+
+#: localizables-extracted.py:138
+msgid ""
+"Why is this cake on its side? Whoever left this here was either very smart, "
+"or very stupid..."
+msgstr ""
+
+#: localizables-extracted.py:139
+msgid "Finish Your Veggies"
+msgstr ""
+
+#: localizables-extracted.py:140
+msgid "Yuck! Vegetables! I'm not cleaning that up."
+msgstr ""
+
+#: localizables-extracted.py:141
+msgid "It's Tee Time"
+msgstr ""
+
+#: localizables-extracted.py:142
+msgid "Augh, bread overload! And half the end pieces are missing..."
+msgstr ""
+
+#: localizables-extracted.py:143
+msgid "Muffin Impossible"
+msgstr ""
+
+#: localizables-extracted.py:144
+msgid ""
+"So many awkward mismatched pieces! This is like solving a jigsaw puzzle with "
+"no edges..."
+msgstr ""
+
+#: localizables-extracted.py:145
+msgid "Cleaning Duty"
+msgstr ""
+
+#: localizables-extracted.py:146
+msgid "Who made this mess! ...Do we need to set up a chore board?"
+msgstr ""
+
+#: localizables-extracted.py:147
+msgid "Cakes and Ladders"
+msgstr ""
+
+#: localizables-extracted.py:148
+msgid ""
+"Who prepared all these delicious desserts? ...Isn't that supposed to be your "
+"job?"
+msgstr ""
+
+#: localizables-extracted.py:149
+msgid "Wedding Cake for One"
+msgstr ""
+
+#: localizables-extracted.py:150
+msgid ""
+"One VERY hungry customer and one VERY big cake! ...Are they going eat the "
+"entire thing?"
+msgstr ""
+
+#: localizables-extracted.py:151
+msgid "Leftovers"
+msgstr ""
+
+#: localizables-extracted.py:152
+msgid "Another big mess to clean. Why does this always fall to you?"
+msgstr ""
+
+#: localizables-extracted.py:153
+msgid "Too Fast to Fast"
+msgstr ""
+
+#: localizables-extracted.py:154
+msgid "Can you survive the increasing speeds?"
+msgstr ""
+
+#: localizables-extracted.py:155
+msgid "It's Square to be Square II"
+msgstr ""
+
+#: localizables-extracted.py:156
+msgid "Don't get boxed in!"
+msgstr ""
+
+#: localizables-extracted.py:157
+msgid "Muffin Impossible II"
+msgstr ""
+
+#: localizables-extracted.py:158
+msgid "More awkward mismatched pieces!? When will the pain stop?"
+msgstr ""
+
+#: localizables-extracted.py:159
+msgid "Too Fast to Fast II"
+msgstr ""
+
+#: localizables-extracted.py:160
+msgid "It was already too fast before! This is nonsense..."
+msgstr ""
+
+#: localizables-extracted.py:161
+msgid "Basic Techniques"
+msgstr "Tecnicas basicas"
+
+#: localizables-extracted.py:162
+msgid "Learn to clear lines, to make snack boxes and to squish pieces."
+msgstr ""
+"Aprenda a despejar líneas, a hacer cajas de bocadillos y a aplastar piezas."
+
+#: localizables-extracted.py:163
+msgid "Build Combos"
+msgstr ""
+
+#: localizables-extracted.py:164
+msgid ""
+"Learn how combos work, and learn to make snack boxes and cake boxes during "
+"your combos."
+msgstr ""
+
+#: localizables-extracted.py:165
+msgid "Squish and Recover"
+msgstr ""
+
+#: localizables-extracted.py:166
+msgid "Learn how squish moves work and when to use them."
+msgstr ""
+
+#: localizables-extracted.py:167
+msgid "Veggie Patty"
+msgstr ""
+
+#: localizables-extracted.py:168
+msgid "Twice the pace and half the space? ...This is a recipe for disaster!"
+msgstr ""
+
+#: localizables-extracted.py:169 localizables-extracted.py:237
+msgid "./././I don't have anything to say right now!"
+msgstr ""
+
+#: localizables-extracted.py:170
+msgid ""
+"Oh!/ I remember you from before./ I'm Boatricia,/ I'm sort of new here and "
+"trying to make some friends."
+msgstr ""
+
+#: localizables-extracted.py:171
+msgid "Nice to meet you! People here call me #player#."
+msgstr ""
+
+#: localizables-extracted.py:172
+msgid ""
+"Well!/ ./././If you're trying to make some friends,/ I'll try to cook you "
+"something special okay?/ Then maybe you can be my friend."
+msgstr ""
+
+#: localizables-extracted.py:173
+msgid "Oh! Well aren't you sweet~"
+msgstr ""
+
+#: localizables-extracted.py:174
+msgid "My maid died!"
+msgstr ""
+
+#: localizables-extracted.py:175
+msgid "Oh no!/ ./././That's so sad!"
+msgstr ""
+
+#: localizables-extracted.py:176
+msgid "Life is so short./././"
+msgstr ""
+
+#: localizables-extracted.py:177
+msgid "Hmm,/ yes./././ That's true."
+msgstr ""
+
+#: localizables-extracted.py:178
+msgid "Bork!/ Give me a call if you need anything,/ boss!"
+msgstr ""
+
+#: localizables-extracted.py:179
+msgid ""
+"When I was a kid,/ buying a new video game every week seemed like an "
+"impossible dream!/ ./././But games are actually pretty cheap."
+msgstr ""
+
+#: localizables-extracted.py:180
+msgid ""
+"It's hard forcing yourself into a healthy routine at first,/ bork!/ But "
+"eventually you don't even think about it."
+msgstr ""
+
+#: localizables-extracted.py:181
+msgid ""
+"Wow!/ ./././You finally did it?/ Does this count as our first conversation!?"
+msgstr ""
+
+#: localizables-extracted.py:182
+msgid "Yeah, definitely!"
+msgstr ""
+
+#: localizables-extracted.py:183
+msgid "Maybe? I'm not sure!"
+msgstr ""
+
+#: localizables-extracted.py:184
+msgid "I don't think so..."
+msgstr ""
+
+#: localizables-extracted.py:187 localizables-extracted.py:189
+msgid "Congratulations!/ Wow!"
+msgstr ""
+
+#: localizables-extracted.py:188
+msgid "Maybe?/ I'm not sure!"
+msgstr ""
+
+#: localizables-extracted.py:190
+msgid "I don't think so. I still have a lot of work to do..."
+msgstr ""
+
+#: localizables-extracted.py:191
+msgid "Aww, don't be like that! This is looking great."
+msgstr ""
+
+#: localizables-extracted.py:192
+msgid "./././I can't wait to see what you do next!"
+msgstr ""
+
+#: localizables-extracted.py:193
+msgid "Did you want to get friend zoned?"
+msgstr ""
+
+#: localizables-extracted.py:194
+msgid "Friend zone me!"
+msgstr ""
+
+#: localizables-extracted.py:195
+msgid "Um, I don't think so..."
+msgstr ""
+
+#: localizables-extracted.py:196
+msgid "You tell me you're in love with me,"
+msgstr ""
+
+#: localizables-extracted.py:197
+msgid "...Like you can't take your pretty eyes away from me."
+msgstr ""
+
+#: localizables-extracted.py:198
+msgid "It's not that I don't wanna stay,"
+msgstr ""
+
+#: localizables-extracted.py:199
+msgid "...But every time you come too close I move away."
+msgstr ""
+
+#: localizables-extracted.py:200
+msgid ""
+"I wanna believe in everything that you say,/ 'cause it sounds so good..."
+msgstr ""
+
+#: localizables-extracted.py:201
+msgid "But if you really want me,/ move slow,"
+msgstr ""
+
+#: localizables-extracted.py:202
+msgid "There's things about me you just have to know."
+msgstr ""
+
+#: localizables-extracted.py:203
+msgid "Sometimes I run."
+msgstr ""
+
+#: localizables-extracted.py:204
+msgid "Sometimes I hide."
+msgstr ""
+
+#: localizables-extracted.py:205
+msgid "Sometimes I'm scared of you,"
+msgstr ""
+
+#: localizables-extracted.py:206
+msgid "But all I really want is to hold you tight, treat you right,"
+msgstr ""
+
+#: localizables-extracted.py:207
+msgid "Be with you day and night."
+msgstr ""
+
+#: localizables-extracted.py:208
+msgid "Baby,/ all I need is time."
+msgstr ""
+
+#: localizables-extracted.py:209
+msgid "Um,/ maybe later..."
+msgstr ""
+
+#: localizables-extracted.py:213
+msgid "Hey relax!/ We got everything under control."
+msgstr ""
+
+#: localizables-extracted.py:214
+msgid "You know,/ a liquor license might help us bring in more customers."
+msgstr ""
+
+#: localizables-extracted.py:215
+msgid ""
+"You ever think of shortening the restaurant to just \"Turbo's\"?/ I'm just "
+"sayin'././."
+msgstr ""
+
+#: localizables-extracted.py:216
+msgid ""
+"I've been reading up on something called the 'Pomodoro Technique' lately!"
+msgstr ""
+
+#: localizables-extracted.py:217
+msgid ""
+"./././'Pomodoro' is a fancy Italian word for sitting on your ass,/ instead "
+"of doing any actual work."
+msgstr ""
+
+#: localizables-extracted.py:218
+msgid "Ah,/ I do that already!/ I didn't someone had coined a name for it."
+msgstr ""
+
+#: localizables-extracted.py:219
+msgid "You're both lazy"
+msgstr ""
+
+#: localizables-extracted.py:220
+msgid "More like 'Unemployment Technique'"
+msgstr ""
+
+#: localizables-extracted.py:221
+msgid "I should study this"
+msgstr ""
+
+#: localizables-extracted.py:222
+msgid "I invented that!"
+msgstr ""
+
+#: localizables-extracted.py:223
+msgid "Technique?/ You're both just lazy."
+msgstr ""
+
+#: localizables-extracted.py:224
+msgid "Oh,/ lighten up #player#./ Sounds like someone needs a Pomodoro."
+msgstr ""
+
+#: localizables-extracted.py:225
+msgid "More like the 'Unemployment Technique'."
+msgstr ""
+
+#: localizables-extracted.py:226
+msgid "Oh, lighten up #player#./ Sounds like someone needs a Pomodoro."
+msgstr ""
+
+#: localizables-extracted.py:227
+msgid "I should study this technique..."
+msgstr ""
+
+#: localizables-extracted.py:228
+msgid "Sure!/ It's good to take a break once in awhile~"
+msgstr ""
+
+#: localizables-extracted.py:229
+msgid "I invented that technique!"
+msgstr ""
+
+#: localizables-extracted.py:230
+msgid "Ha!/ Ha!/ Maybe we can compare notes some time."
+msgstr ""
+
+#: localizables-extracted.py:231
+msgid ""
+"./././I usually figure if people don't talk to me it's 'cause they like,/ "
+"don't want to talk./ But don't be afraid to hit me up."
+msgstr ""
+
+#: localizables-extracted.py:232
+msgid ""
+"Online gaming's sorta nice because people just assume I'm a guy./ ./././It's "
+"just annoying when everyone's on voice chat."
+msgstr ""
+
+#: localizables-extracted.py:233
+msgid ""
+"Can you do me a favor and act like we're having a conversation?/ Just for a "
+"few seconds./ ./././A little longer./././ Okay,/ thanks."
+msgstr ""
+
+#: localizables-extracted.py:234
+msgid "I'm always ready for more training!/ Just call me on my cell./ Mowr!"
+msgstr ""
+
+#: localizables-extracted.py:235
+msgid ""
+"You should come mountain biking some time!/ It's not as dangerous as you "
+"think."
+msgstr ""
+
+#: localizables-extracted.py:236
+msgid ""
+"My phone's been acting slow lately/. ./././They do that on purpose so you'll "
+"by a new one./ It's so annoying!"
+msgstr ""
+
+#: translate2.py:1
+msgid "Up"
+msgstr "Hasta"
+
+#: translate2.py:2
+msgid "Down"
+msgstr "Abajo"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:22 translate2.py:3
+msgid "Left"
+msgstr "Izquierda"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:22 translate2.py:4
+msgid "Right"
+msgstr "Derecha"
+
+#: src/main/editor/creature/CreatureEditor.tscn:1358
+#: src/main/editor/puzzle/LevelEditor.tscn:382
+#: src/main/puzzle/PuzzleMessages.tscn:68
+#: src/main/ui/menu/PracticeMenu.tscn:270
+#: src/main/ui/menu/SystemButtons.tscn:30
+msgid "Settings"
+msgstr "Ajustes"
+
+#: src/main/editor/creature/CreatureEditor.tscn:1371
+#: src/main/editor/puzzle/LevelEditor.tscn:393
+#: src/main/ui/CreatureStressTest.tscn:95 src/main/ui/SettingsMenu.tscn:704
+#: src/main/ui/menu/PracticeMenu.tscn:285
+#: src/main/ui/menu/SystemButtons.tscn:46
+msgid "Quit"
+msgstr "Renunciar"
+
+#: src/main/editor/creature/CreatureEditor.tscn:1397
+msgid "Reroll (100%)"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1475
+msgid "All Colors"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1483
+msgid "Main Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1491
+msgid "Line Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1499
+#: src/main/editor/creature/CreatureEditor.tscn:1775
+msgid "Body"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1507
+#: src/main/editor/creature/CreatureEditor.tscn:1781
+msgid "Face"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1515
+#: src/main/editor/creature/CreatureEditor.tscn:1793
+msgid "Eye"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1529
+#: src/main/editor/creature/CreatureEditor.tscn:1807
+msgid "Nose"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1537
+#: src/main/editor/creature/CreatureEditor.tscn:1813
+msgid "Mouth"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1545
+#: src/main/editor/creature/CreatureEditor.tscn:1819
+msgid "Cheek"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1553
+#: src/main/editor/creature/CreatureEditor.tscn:1831
+msgid "Ear"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1561
+msgid "Horn Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1569
+#: src/main/editor/creature/CreatureEditor.tscn:1845
+msgid "Forehead"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1577
+#: src/main/editor/creature/CreatureEditor.tscn:1857
+msgid "Hair"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1585
+msgid "Hair Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1593
+#: src/main/editor/creature/CreatureEditor.tscn:1897
+msgid "Tail"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1601
+#: src/main/editor/creature/CreatureEditor.tscn:1877
+msgid "Belly"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1609
+msgid "Belly Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1617
+msgid "Bellybutton"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1631
+#: src/main/editor/creature/CreatureEditor.tscn:1911
+msgid "Accessory"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1639
+#: src/main/editor/creature/CreatureEditor.tscn:1917
+msgid "Collar"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1647
+msgid "Cloth Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1655
+msgid "Glass Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1663
+msgid "Plastic Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1687
+#: src/main/editor/creature/CreatureEditor.tscn:1967
+msgid "Import"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1699
+#: src/main/editor/creature/CreatureEditor.tscn:1979
+msgid "Export"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1711
+#: src/main/editor/creature/CreatureEditor.tscn:1991
+#: src/main/editor/puzzle/LevelEditor.tscn:341
+msgid "Save"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1759
+msgid "Name"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1769
+msgid "Overall Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1801
+#: src/main/editor/creature/CreatureEditor.tscn:1839
+#: src/main/editor/creature/CreatureEditor.tscn:1865
+#: src/main/editor/creature/CreatureEditor.tscn:1891
+msgid "Color"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1883
+msgid "Button"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1903
+#: src/main/ui/SettingsMenu.tscn:541
+msgid "Size"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1929
+msgid "Cloth"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1935
+msgid "Glass"
+msgstr ""
+
+#: src/main/editor/creature/CreatureEditor.tscn:1943
+msgid "Plastic"
+msgstr ""
+
+#: src/main/editor/creature/MutateAlleleButton.tscn:17
+#: src/main/editor/creature/TweakAlleleRow.tscn:16
+msgid "Allele"
+msgstr ""
+
+#: src/main/editor/creature/TweakAlleleRow.tscn:24
+msgid "Allele:"
+msgstr ""
+
+#: src/main/editor/creature/TweakColorRow.tscn:24
+msgid "Allele Color:"
+msgstr ""
+
+#: src/main/editor/creature/TweakEyeColorRow.tscn:26
+#: src/main/editor/creature/TweakEyeRow.tscn:26
+msgid "Eye Color:"
+msgstr ""
+
+#: src/main/editor/creature/TweakNameRow.tscn:29
+msgid "Name:"
+msgstr ""
+
+#: src/main/editor/creature/TweakSizeRow.tscn:25
+msgid "Size:"
+msgstr ""
+
+#: src/main/editor/puzzle/LevelEditor.tscn:312
+msgid "default"
+msgstr ""
+
+#: src/main/editor/puzzle/LevelEditor.tscn:325
+msgid "Open File"
+msgstr ""
+
+#: src/main/editor/puzzle/LevelEditor.tscn:333
+msgid "Open Resource"
+msgstr ""
+
+#: src/main/editor/puzzle/LevelEditor.tscn:357
+msgid "Test"
+msgstr ""
+
+#: src/main/editor/puzzle/LevelEditor.tscn:368
+msgid "abc"
+msgstr ""
+
+#: src/main/puzzle/ComboCounter.tscn:69
+msgid "3x"
+msgstr ""
+
+#: src/main/puzzle/Puzzle.tscn:364
+msgid "Goal"
+msgstr ""
+
+#: src/main/puzzle/Puzzle.tscn:377
+msgid "10"
+msgstr ""
+
+#: src/main/puzzle/Puzzle.tscn:401
+msgid "abcd"
+msgstr ""
+
+#: src/main/puzzle/PuzzleMessages.tscn:31
+msgid "3"
+msgstr ""
+
+#: src/main/puzzle/PuzzleMessages.tscn:56
+#: src/main/ui/menu/PracticeMenu.tscn:257
+msgid "Start"
+msgstr "Comienzo"
+
+#: src/main/puzzle/PuzzleMessages.tscn:87
+#: src/main/puzzle/puzzle-messages.gd:146
+#: src/main/puzzle/puzzle-messages.gd:148
+msgid "Back"
+msgstr "Atrás"
+
+#: src/main/puzzle/PuzzleTimer.tscn:10
+msgid "0:00"
+msgstr ""
+
+#: src/main/puzzle/Score.tscn:19
+msgid "¥616"
+msgstr ""
+
+#: src/main/puzzle/Score.tscn:32
+msgid "+¥55"
+msgstr ""
+
+#: src/main/puzzle/puzzle-messages.gd:68 src/main/puzzle/puzzle.gd:74
+msgid "Ready?"
+msgstr "¿Lista?"
+
+#: src/main/puzzle/puzzle-messages.gd:77
+msgid "Regret..."
+msgstr "Arrepentirse..."
+
+#: src/main/puzzle/puzzle-messages.gd:79
+msgid "Good!"
+msgstr "¡Buena!"
+
+#: src/main/puzzle/puzzle-messages.gd:92
+msgid "Game over"
+msgstr "Juego terminado"
+
+#: src/main/puzzle/puzzle-messages.gd:94
+msgid "Finish!"
+msgstr "¡Finalizar!"
+
+#: src/main/puzzle/puzzle-messages.gd:96
+msgid "You win!"
+msgstr "¡Tú ganas!"
+
+#: src/main/puzzle/puzzle-messages.gd:130
+msgid "Retry"
+msgstr "Rever"
+
+#: src/main/puzzle/puzzle-messages.gd:146 src/main/ui/menu/MainMenu.tscn:84
+msgid "Continue"
+msgstr "Seguir"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:16
+msgid "Move"
+msgstr "Moverse"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:17
+msgid "Soft Drop"
+msgstr "Gota Suave"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:18
+#, fuzzy
+msgid "Hard Drop"
+msgstr "Caída dura"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:19
+msgid "Rotate"
+msgstr "Girar"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:22
+msgid "Arrows"
+msgstr "Flechas"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:23
+#, fuzzy
+msgid "DPAD Left"
+msgstr "DPAD Izquierda"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:23
+#, fuzzy
+msgid "DPAD Right"
+msgstr "DPAD Derecha"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:23
+msgid "DPAD"
+msgstr "DPAD"
+
+#: src/main/puzzle/tutorial-keybinds-label.gd:27
+msgid ""
+"What have you done!? Click 'Settings' to reconfigure your controls, you "
+"silly goose!"
+msgstr ""
+"¿¡Qué has hecho!? Haz clic en 'Configuración' para reconfigurar tus "
+"controles, ¡tonto!"
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:36
+msgid ""
+"Welcome to Turbo Fat!// You seem to already be familiar with this sort of "
+"game,/ so let's dive right in."
+msgstr ""
+"¡Bienvenido a Turbo Fat!// Parece que ya estás familiarizado con este tipo "
+"de juego,/ así que vamos a sumergirnos de lleno."
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:46
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:111
+msgid "Try making a snack box by arranging two pieces into a square."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:49
+msgid "Next,/ try holding soft drop to squish pieces through these gaps."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:52
+msgid ""
+"One last lesson!/ Try holding soft drop to squish and complete these boxes."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:58
+msgid ""
+"You're a remarkably quick learner./ I think I hear some customers!\n"
+"\n"
+"See if you can earn ¥100."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:80
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:126
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:115
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:128
+msgid "Good job!"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:83
+msgid "Nicely done!"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:86
+msgid "Impressive!"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:89
+msgid "Oh! I thought that would be more difficult..."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:96
+msgid ""
+"Well done!\n"
+"\n"
+"Line clears earn ¥1./ Maybe more if you can build a combo."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:108
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:252
+msgid "Clear a row by filling it with blocks."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:113
+msgid "Try clearing a few box lines."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:121
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:126
+msgid ""
+"Well done!\n"
+"\n"
+"Box clears earn you five times as much money./ Maybe more than that if "
+"you're clever."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:136
+msgid ""
+"Oh my,/ you're not supposed to know how to do that!\n"
+"\n"
+"...But yes,/ squish moves can help you out of a jam."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:142
+msgid ""
+"Well done!\n"
+"\n"
+"Squish moves can help you out of a jam./ They're also good for certain boxes."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:151
+msgid ""
+"Oh my,/ you're not supposed to know how to do that!\n"
+"\n"
+"...But yes,/ those boxes earn $15 when you clear them."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:157
+msgid ""
+"Well done!\n"
+"\n"
+"Those boxes earn ¥15 when you clear them./ Try clearing a few box lines."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:166
+msgid ""
+"Impressive!/ Using squish moves,/ you can organize boxes in tall vertical "
+"stacks and earn a lot of money."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-basics-module.gd:248
+msgid ""
+"Welcome to Turbo Fat!/ You seem to already be familiar with this sort of "
+"game,/ so let's dive right in.\n"
+"\n"
+"Clear a row by filling it with blocks."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:39
+msgid ""
+"Today we'll go over combos.\n"
+"\n"
+"Combos are easy, you might have already done them on accident!"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:52
+msgid ""
+"Try again!/ Try to clear five lines without stopping.\n"
+"\n"
+"Dropping one piece off to the side won't break your combo."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:55
+msgid ""
+"See if you can clear five lines without stopping.\n"
+"\n"
+"Well,/ a short break is actually okay too."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:63
+msgid ""
+"Try again!/ Try to extend this combo by seven lines.\n"
+"\n"
+"Make boxes to keep your combo from breaking."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:66
+msgid ""
+"Let's use boxes to extend a combo!\n"
+"\n"
+"Try to clear seven more lines without letting your combo break."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:71
+msgid "You can make a cake box with three pieces./ Let me show you."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:72
+msgid ""
+"Unfortunately,/ it's difficult to continue a combo with cake boxes.\n"
+"\n"
+"The first two pieces will break the combo."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:77
+msgid ""
+"With a little foresight,/ you can clear some lines while building a cake "
+"box.\n"
+"\n"
+"Then your combo won't break."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:85
+msgid ""
+"Try again!/ Try to make two cake boxes.\n"
+"\n"
+"Clear lines to keep your combo from breaking."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:88
+msgid ""
+"Now see if you can do it.\n"
+"\n"
+"Make two cake boxes,/ but don't let your combo break."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:94
+msgid ""
+"...Oh!/ Customers!/\n"
+"\n"
+"Try to get ¥120 in one big combo.\n"
+"\n"
+"It might help to make some boxes first."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:128
+msgid "Oops!/ ...You needed to clear a line with that last piece."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:139
+msgid ""
+"Impressive!\n"
+"\n"
+"Hmm... Was there anything else?"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:143
+msgid "Oh!/ ...You needed to clear a line that time."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:165
+msgid ""
+"Combos earn you extra money!/ You can build combos by making boxes and "
+"clearing lines.\n"
+"\n"
+"Otherwise,/ dropping two pieces will reset your combo."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:167
+msgid ""
+"In other words,/ you get two chances to make a box or clear a line before "
+"you lose your combo.\n"
+"\n"
+"Does that make sense?"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:172
+msgid ""
+"In other words,/you get two chances to make a box or clear a line before you "
+"lose your combo."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:174
+msgid ""
+"Arranging two or more pieces into a rectangle will make a box.\n"
+"\n"
+"That's one easy way to keep your combo alive!/ Just place two pieces to make "
+"a square."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:176
+msgid ""
+"Clearing a line will also continue your combo./ But,/ you don't have to "
+"clear a line with every piece!\n"
+"\n"
+"You can drop one piece without breaking your combo."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:179
+msgid ""
+"Your combo's only interrupted if you drop two pieces without doing "
+"something.\n"
+"\n"
+"So,/ you're allowed to make one mistake!/ Or,/ to use one piece to plan "
+"ahead."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:208
+msgid "Oops!/ I can still make the cake box,/ but my combo already broke."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:214
+msgid ""
+"There,/ I did it!\n"
+"\n"
+"That was tricky."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:229
+msgid ""
+"Wow,/ I didn't expect that!/ Great job.\n"
+"\n"
+"You're already a combo master!"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:232
+msgid ""
+"Oh no, you broke your combo without reaching ¥120!\n"
+"\n"
+"Well,/ don't worry about that."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-combo-module.gd:235
+msgid "¥120 is just a number I pulled out of my,/ um. ./././Out of thin air."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:41
+msgid ""
+"Today we'll cover some advanced squish move techniques!\n"
+"\n"
+"But first,/ let's make sure you remember the basics."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:52
+msgid "Hold soft drop to squish pieces through this gap."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:57
+msgid "So, which of these snack boxes can be completed with a squish move?"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:60
+msgid "How about now,/ can you find a way to squish here?"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:63
+msgid ""
+"What do you think about this one?/ Is it possible to make a snack box here?"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:70
+msgid "Here,/ let me help you with that."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:72
+msgid ""
+"Of course, squish moves aren't always about being very, very clever. ..."
+"Sometimes we make mistakes, too."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:80
+msgid ""
+"Should I make it worse this time?\n"
+"\n"
+"No,/ that would be mean."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:82
+msgid "Hmmm.../ What are you up to this time?"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:89
+msgid ""
+"Your training is complete!\n"
+"\n"
+"But don't let it go to your head,/ we still have some customers to take care "
+"of."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:107
+msgid "Yes, that's right."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:109
+msgid "That's right! Hmm, how about something tricky..."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:111
+msgid "Wow, okay! ...I need to think of some harder puzzles."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:118
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:126
+msgid "Oops!/ ...Let's try that again."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:121
+msgid ""
+"Wow!/ ...I had a few more of these planned,/ but it looks like you get the "
+"idea."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:143
+msgid ""
+"Good job!\n"
+"\n"
+"Squish moves help in all sorts of ways."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:152
+msgid ""
+"For a piece to squish successfully,/ one part needs a straight gap down to "
+"the target."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:154
+msgid ""
+"Here are some examples of good and bad squish moves.\n"
+"\n"
+"Does this make any sense?/ I know it's a little weird."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:158
+msgid ""
+"So basically,/ one part of the piece needs a straight gap down to the target "
+"or it won't squish."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:160
+msgid ""
+"These examples on the right don't work,/ because the piece can't \"see\" "
+"where it's going."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:162
+msgid ""
+"You can think of it like././.\n"
+"\n"
+"If the piece were split into tiny chunks,/ would each chunk be blocked?"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:164
+msgid ""
+"These examples on the left work,/ because one tiny chunk of the piece has a "
+"clear path.\n"
+"\n"
+"It just needs one."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:218
+msgid ""
+"Not again!/ ...Can you clean this up using squish moves?\n"
+"\n"
+"Try to clear three lines."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:221
+msgid ""
+"Oops!/ Look at the mess you made./ ...Can you clean this up using squish "
+"moves?\n"
+"\n"
+"Try to clear three lines."
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:234
+msgid ""
+"Oh no,/ it keeps happening!/ Well, try to clear three lines.\n"
+"\n"
+"Remember your squish moves!"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:237
+msgid ""
+"Oh no!/ Now you've done it.\n"
+"\n"
+"Look at how clumsy you are!"
+msgstr ""
+
+#: src/main/puzzle/tutorial/tutorial-squish-module.gd:238
+msgid ""
+"That's okay.\n"
+"\n"
+"I'm sure you'll think of a clever way to clean this up,/ too."
+msgstr ""
+
+#: src/main/ui/CreatureStressTest.tscn:41
+msgid "+10"
+msgstr ""
+
+#: src/main/ui/CreatureStressTest.tscn:51
+msgid "+1"
+msgstr ""
+
+#: src/main/ui/CreatureStressTest.tscn:61
+msgid "2"
+msgstr ""
+
+#: src/main/ui/CreatureStressTest.tscn:69
+msgid "-1"
+msgstr ""
+
+#: src/main/ui/CreatureStressTest.tscn:79
+msgid "-10"
+msgstr ""
+
+#: src/main/ui/FpsLabel.tscn:17
+msgid "60.00 fps"
+msgstr ""
+
+#: src/main/ui/HighScoreTable.tscn:20
+msgid "Today's Best"
+msgstr ""
+
+#: src/main/ui/HighScoreTable.tscn:38 src/main/ui/HighScoreTable.tscn:66
+#: src/main/ui/HighScoreTable.tscn:97
+msgid "08:15"
+msgstr ""
+
+#: src/main/ui/HighScoreTable.tscn:45 src/main/ui/HighScoreTable.tscn:74
+#: src/main/ui/HighScoreTable.tscn:105
+msgid "116"
+msgstr ""
+
+#: src/main/ui/HighScoreTable.tscn:52 src/main/ui/HighScoreTable.tscn:82
+#: src/main/ui/HighScoreTable.tscn:113
+msgid "5,231"
+msgstr ""
+
+#: src/main/ui/HighScoreTable.tscn:59 src/main/ui/HighScoreTable.tscn:90
+#: src/main/ui/HighScoreTable.tscn:121
+msgid "(SSS)"
+msgstr ""
+
+#: src/main/ui/MoneyLabel.tscn:38
+msgid "9,999 m"
+msgstr ""
+
+#: src/main/ui/MusicPopup.tscn:79
+msgid "24/7 Lo-Fi Chill Hip Hop Beats to Eat & Get Fat To"
+msgstr ""
+
+#: src/main/ui/NametagPanel.tscn:37 src/main/ui/chat/ChatFrame.tscn:61
+msgid "Lorem ipsu"
+msgstr ""
+
+#: src/main/ui/NametagPanel.tscn:58 src/main/ui/chat/ChatFrame.tscn:82
+msgid "Lorem ipsum dolor s"
+msgstr ""
+
+#: src/main/ui/NametagPanel.tscn:80 src/main/ui/chat/ChatFrame.tscn:104
+msgid "Lorem ipsum dolor sit amet"
+msgstr ""
+
+#: src/main/ui/NametagPanel.tscn:103 src/main/ui/chat/ChatFrame.tscn:127
+msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
+msgstr ""
+
+#: src/main/ui/NametagPanel.tscn:125 src/main/ui/chat/ChatFrame.tscn:149
+#: src/main/world/restaurant/RestaurantNametagPanel.tscn:129
+msgid ""
+"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
+"tempor incidid"
+msgstr ""
+
+#: src/main/ui/SettingsMenu.tscn:185
+msgid "Ghost Piece"
+msgstr ""
+
+#: src/main/ui/SettingsMenu.tscn:232
+msgid "Guideline"
+msgstr ""
+
+#: src/main/ui/SettingsMenu.tscn:242
+msgid "WASD"
+msgstr ""
+
+#: src/main/ui/SettingsMenu.tscn:252
+msgid "Custom"
+msgstr ""
+
+#: src/main/ui/SettingsMenu.tscn:508
+msgid "Reset to Default"
+msgstr ""
+
+#: src/main/ui/SettingsMenu.tscn:579
+msgid "1.00x"
+msgstr ""
+
+#: src/main/ui/SettingsMenu.tscn:605
+msgid "Scheme"
+msgstr ""
+
+#: src/main/ui/SettingsMenu.tscn:641
+msgid "Fat Finger"
+msgstr ""
+
+#: src/main/ui/SettingsMenu.tscn:684
+msgid "Ok"
+msgstr ""
+
+#: src/main/ui/VersionLabel.tscn:16
+msgid "v1.2.3.4"
+msgstr ""
+
+#: src/main/ui/VolumeSetting.tscn:37
+msgid "Music"
+msgstr ""
+
+#: src/main/ui/VolumeSetting.tscn:74
+msgid "100%"
+msgstr ""
+
+#: src/main/ui/chat/ChatChoiceButton.tscn:188
+msgid "Oh bother"
+msgstr ""
+
+#: src/main/ui/chat/ChatLineLabel.tscn:18
+msgid "Hello"
+msgstr ""
+
+#: src/main/ui/keybind/KeybindCustom.tscn:91
+msgid "X"
+msgstr ""
+
+#: src/main/ui/keybind/custom-keybind-button.gd:53
+msgid "<Enter Key>"
+msgstr ""
+
+#: src/main/ui/level-select/HookableGradeLabel.tscn:27
+msgid "S++"
+msgstr ""
+
+#: src/main/ui/level-select/LevelSelectButton.tscn:46
+#: src/main/ui/level-select/WorldSelectButton.tscn:48
+msgid "Just getting started"
+msgstr ""
+
+#: src/main/ui/menu/MainMenu.tscn:49 src/main/ui/menu/SplashScreen.tscn:48
+msgid "turbo fat"
+msgstr ""
+
+#: src/main/ui/menu/MainMenu.tscn:72 src/main/ui/menu/SplashScreen.tscn:68
+msgid "Play"
+msgstr "Tocar"
+
+#: src/main/ui/menu/MainMenu.tscn:95
+msgid "Practice"
+msgstr "Práctica"
+
+#: src/main/ui/menu/MainMenu.tscn:106
+msgid "Tutorials"
+msgstr "Tutoriales"
+
+#: src/main/ui/menu/MainMenu.tscn:125
+msgid "Create"
+msgstr "Crear"
+
+#: src/main/ui/menu/MainMenu.tscn:137
+msgid "Levels"
+msgstr "Niveles"
+
+#: src/main/ui/menu/MainMenu.tscn:148
+msgid "Creatures"
+msgstr "Criaturas"
+
+#: src/main/ui/menu/MainMenu.tscn:174
+msgid "Stress Test"
+msgstr "Prueba de estrés"
+
+#: src/main/ui/menu/PracticeMenu.tscn:67
+msgid "Mode"
+msgstr "Modo"
+
+#: src/main/ui/menu/PracticeMenu.tscn:97
+msgid "Survival"
+msgstr "Supervivencia"
+
+#: src/main/ui/menu/PracticeMenu.tscn:110
+msgid "Ultra"
+msgstr "Ultra"
+
+#: src/main/ui/menu/PracticeMenu.tscn:123
+msgid "Sprint"
+msgstr "Pique"
+
+#: src/main/ui/menu/PracticeMenu.tscn:136
+msgid "Rank"
+msgstr "Rango"
+
+#: src/main/ui/menu/PracticeMenu.tscn:149
+msgid "Sandbox"
+msgstr "Salvadera"
+
+#: src/main/ui/menu/PracticeMenu.tscn:158
+msgid "Score 200 points as quickly as possible!"
+msgstr "¡Obtén 200 puntos lo más rápido posible!"
+
+#: src/main/ui/menu/PracticeMenu.tscn:178
+msgid "Difficulty"
+msgstr "Dificultad"
+
+#: src/main/ui/menu/PracticeMenu.tscn:210
+msgid "Normal"
+msgstr "Normal"
+
+#: src/main/ui/menu/PracticeMenu.tscn:217
+msgid "Hard"
+msgstr "Dura"
+
+#: src/main/ui/menu/PracticeMenu.tscn:225
+msgid "Expert"
+msgstr "Experta"
+
+#: src/main/ui/menu/PracticeMenu.tscn:234
+msgid "Master"
+msgstr "Maestra"
+
+#: src/main/ui/menu/SplashScreen.tscn:145
+msgid "Well, crap"
+msgstr "Bueno, mierda"
+
+#: src/main/world/LetterProjectile.tscn:75
+msgid "O"
+msgstr ""
+
+#: src/main/world/restaurant/RestaurantNametagPanel.tscn:38
+msgid "Bug"
+msgstr ""
+
+#: src/main/world/restaurant/RestaurantNametagPanel.tscn:60
+msgid "Lorem ipsum do"
+msgstr ""
+
+#: src/main/world/restaurant/RestaurantNametagPanel.tscn:83
+msgid "Lorem ipsum dolor sit ame"
+msgstr ""
+
+#: src/main/world/restaurant/RestaurantNametagPanel.tscn:106
+msgid "Lorem ipsum dolor sit amet, consectetur adipisci"
+msgstr ""

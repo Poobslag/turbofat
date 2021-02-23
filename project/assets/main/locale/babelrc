@@ -1,0 +1,8 @@
+[python: project/src/main/**.gd]
+encoding = utf-8
+
+[python: project/assets/main/locale/localizables**.py]
+encoding = utf-8
+
+[godot_scene: project/src/main/**.tscn]
+encoding = utf-8

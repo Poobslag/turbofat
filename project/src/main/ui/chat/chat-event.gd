@@ -66,7 +66,7 @@ var chat_theme_def: Dictionary
 
 func from_json_dict(json: Dictionary) -> void:
 	who = json.get("who", "")
-	text = json.get("text", "")
+	text = tr(json.get("text", ""))
 	_parse_mood(json)
 	_parse_links(json)
 	_parse_meta(json)

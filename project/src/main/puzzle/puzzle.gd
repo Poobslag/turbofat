@@ -71,7 +71,7 @@ Start a countdown when transitioning between levels. Used during tutorials.
 """
 func start_level_countdown() -> void:
 	$PieceManager.set_physics_process(false)
-	$Hud/HudUi/PuzzleMessages.show_message("Ready?")
+	$Hud/HudUi/PuzzleMessages.show_message(tr("Ready?"))
 	$StartEndSfx.play_ready_sound()
 	yield(get_tree().create_timer(PuzzleScore.READY_DURATION), "timeout")
 	$Hud/HudUi/PuzzleMessages.hide_message()

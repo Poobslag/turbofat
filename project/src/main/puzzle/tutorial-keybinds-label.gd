@@ -13,18 +13,18 @@ Refreshes the message based on the current InputMap.
 """
 func _refresh_message() -> void:
 	text = ""
-	_append_keybind_line("Move", ["move_piece_left", "move_piece_right"])
-	_append_keybind_line("Soft Drop", ["soft_drop"])
-	_append_keybind_line("Hard Drop", ["hard_drop"])
-	_append_keybind_line("Rotate", ["rotate_ccw", "rotate_cw"])
+	_append_keybind_line(tr("Move"), ["move_piece_left", "move_piece_right"])
+	_append_keybind_line(tr("Soft Drop"), ["soft_drop"])
+	_append_keybind_line(tr("Hard Drop"), ["hard_drop"])
+	_append_keybind_line(tr("Rotate"), ["rotate_ccw", "rotate_cw"])
 	
 	# replace wordy phrasing like 'DPAD Left, DPAD Right' with succinct phrasing like 'DPAD'
-	text = text.replace("Left, Right", "Arrows")
-	text = text.replace("DPAD Left, DPAD Right", "DPAD")
+	text = text.replace("%s, %s" % [tr("Left"), tr("Right")], tr("Arrows"))
+	text = text.replace("%s, %s" % [tr("DPAD Left"), tr("DPAD Right")], tr("DPAD"))
 	
 	if not text:
 		# If the player unbinds all of their keys, they can't play.
-		text = "What have you done!? Click 'Settings' to reconfigure your controls, you silly goose!"
+		text = tr("What have you done!? Click 'Settings' to reconfigure your controls, you silly goose!")
 	
 	rect_size = Vector2(238, 0)
 
@@ -60,7 +60,7 @@ func _keybind_strings(action_names: Array) -> Array:
 	for action_name in action_names:
 		var input_event_json := _input_event_json(action_name)
 		if input_event_json:
-			result.append(KeybindManager.pretty_string(input_event_json))
+			result.append(tr(KeybindManager.pretty_string(input_event_json)))
 	return result
 
 

@@ -50,7 +50,7 @@ func _start_awaiting() -> void:
 	
 	pressed = true
 	awaiting = true
-	text = "<Enter Key>"
+	text = tr("<Enter Key>")
 	emit_signal("awaiting_changed", awaiting)
 
 
@@ -61,7 +61,7 @@ func _refresh_text() -> void:
 	var new_text := ""
 	var json := PlayerData.keybind_settings.get_custom_keybind(action_name, action_index)
 	if json:
-		new_text = KeybindManager.pretty_string(json)
+		new_text = tr(KeybindManager.pretty_string(json))
 	text = new_text
 
 
