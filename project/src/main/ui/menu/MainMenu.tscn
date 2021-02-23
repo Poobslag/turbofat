@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=2]
@@ -10,6 +10,8 @@
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=9]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=11]
+[ext_resource path="res://src/main/ui/menu/main-menu-debug.gd" type="Script" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -70,7 +72,7 @@ custom_fonts/font = ExtResource( 9 )
 text = "Play"
 align = 1
 
-[node name="2d" type="Button" parent="DropPanel/Play"]
+[node name="Story" type="Button" parent="DropPanel/Play"]
 margin_left = 134.0
 margin_top = 72.0
 margin_right = 327.0
@@ -150,16 +152,41 @@ margin_top = -100.0
 alignment = 1
 quit_on_cancel = false
 
+[node name="Debug" type="VBoxContainer" parent="DropPanel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -136.0
+margin_top = -48.0
+margin_right = -19.9999
+margin_bottom = -20.0
+script = ExtResource( 12 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StressTest" type="Button" parent="DropPanel/Debug"]
+margin_right = 116.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 116, 28 )
+theme = ExtResource( 11 )
+text = "Stress Test"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="VersionLabel" parent="." instance=ExtResource( 7 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
 
 [node name="MusicPopup" parent="." instance=ExtResource( 10 )]
-[connection signal="pressed" from="DropPanel/Play/2d" to="." method="_on_PlayStory_pressed"]
+[connection signal="pressed" from="DropPanel/Play/Story" to="." method="_on_PlayStory_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Practice" to="." method="_on_PlayPractice_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Tutorials" to="." method="_on_Tutorials_pressed"]
 [connection signal="pressed" from="DropPanel/Create/Levels" to="." method="_on_CreateLevels_pressed"]
 [connection signal="pressed" from="DropPanel/Create/Creatures" to="." method="_on_CreateCreatures_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="pressed" from="DropPanel/Debug/StressTest" to="DropPanel/Debug" method="_on_StressTest_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="DropPanel/System" method="_on_Quit_pressed"]
