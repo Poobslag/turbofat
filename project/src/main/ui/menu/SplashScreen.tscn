@@ -22,8 +22,6 @@ font_data = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 rect_min_size = Vector2( 1024, 600 )
-size_flags_horizontal = 0
-size_flags_vertical = 0
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -54,27 +52,18 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayHolder" type="Control" parent="DropPanel"]
+[node name="PlayHolder" type="CenterContainer" parent="DropPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = 150.0
 margin_bottom = -100.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Play" type="Button" parent="DropPanel/PlayHolder"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -160.0
-margin_top = -40.0
-margin_right = 160.0
-margin_bottom = 40.0
+margin_left = 365.0
+margin_top = 92.0
+margin_right = 558.0
+margin_bottom = 157.0
 rect_min_size = Vector2( 193, 47 )
-size_flags_horizontal = 4
-size_flags_vertical = 4
 theme = ExtResource( 7 )
 text = "Play"
 __meta__ = {

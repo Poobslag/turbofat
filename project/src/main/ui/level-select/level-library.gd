@@ -101,6 +101,14 @@ func shown_level_ids(world_id: String) -> Array:
 	return shown_level_ids
 
 
+func all_level_ids() -> Array:
+	var all_level_ids := []
+	for world_id in world_ids:
+		for level_id in world_lock(world_id).level_ids:
+			all_level_ids.append(level_id)
+	return all_level_ids
+
+
 """
 Loads the list of levels from JSON.
 """

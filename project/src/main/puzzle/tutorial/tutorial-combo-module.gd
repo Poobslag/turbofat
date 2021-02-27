@@ -36,8 +36,8 @@ func _ready() -> void:
 	hud.get_tutorial_diagram().connect("ok_chosen", self, "_on_TutorialDiagram_ok_chosen")
 	hud.get_tutorial_diagram().connect("help_chosen", self, "_on_TutorialDiagram_help_chosen")
 	
-	hud.set_message("Today we'll go over combos."
-			+ "\n\nCombos are easy, you might have already done them on accident!")
+	hud.set_message(tr("Today we'll go over combos."
+			+ "\n\nCombos are easy, you might have already done them on accident!"))
 
 
 func prepare_tutorial_level() -> void:
@@ -49,50 +49,51 @@ func prepare_tutorial_level() -> void:
 			_set_combo_state(0, 5)
 			hud.skill_tally_item("Combo").visible = true
 			if failed_section:
-				hud.set_message("Try again!/ Try to clear five lines without stopping."
-						+ "\n\nDropping one piece off to the side won't break your combo.")
+				hud.set_message(tr("Try again!/ Try to clear five lines without stopping."
+						+ "\n\nDropping one piece off to the side won't break your combo."))
 			else:
-				hud.set_message("See if you can clear five lines without stopping."
-						+ "\n\nWell,/ a short break is actually okay too.")
+				hud.set_message(tr("See if you can clear five lines without stopping."
+						+ "\n\nWell,/ a short break is actually okay too."))
 		"tutorial/combo_1":
 			_show_next_diagram()
 		"tutorial/combo_2":
 			_set_combo_state(5, 12)
 			hud.skill_tally_item("Combo").visible = true
 			if failed_section:
-				hud.set_message("Try again!/ Try to extend this combo by seven lines."
-						+ "\n\nMake boxes to keep your combo from breaking.")
+				hud.set_message(tr("Try again!/ Try to extend this combo by seven lines."
+						+ "\n\nMake boxes to keep your combo from breaking."))
 			else:
-				hud.set_message("Let's use boxes to extend a combo!"
-						+ "\n\nTry to clear seven more lines without letting your combo break.")
+				hud.set_message(tr("Let's use boxes to extend a combo!"
+						+ "\n\nTry to clear seven more lines without letting your combo break."))
 		"tutorial/combo_3":
 			PuzzleScore.level_performance.pieces = 0
 			_set_combo_state(5)
-			hud.set_message("You can make a cake box with three pieces./ Let me show you.")
-			hud.enqueue_message("Unfortunately,/ it's difficult to continue a combo with cake boxes."
-					+ "\n\nThe first two pieces will break the combo.")
+			hud.set_message(tr("You can make a cake box with three pieces./ Let me show you."))
+			hud.enqueue_message(tr("Unfortunately,/ it's difficult to continue a combo with cake boxes."
+					+ "\n\nThe first two pieces will break the combo."))
 		"tutorial/combo_4":
 			PuzzleScore.level_performance.pieces = 0
 			_set_combo_state(5)
-			hud.set_message("With a little foresight,/ you can clear some lines while building a cake box."
-					+ "\n\nThen your combo won't break.")
+			hud.set_message(tr("With a little foresight,/ you can clear some lines while building a cake box."
+					+ "\n\nThen your combo won't break."))
 		"tutorial/combo_5":
 			_set_combo_state(5, 12)
 			_cakes_built = 0
 			hud.skill_tally_item("CakeBox").reset()
 			hud.skill_tally_item("CakeBox").visible = true
 			if failed_section:
-				hud.set_message("Try again!/ Try to make two cake boxes."
-						+ "\n\nClear lines to keep your combo from breaking.")
+				hud.set_message(tr("Try again!/ Try to make two cake boxes."
+						+ "\n\nClear lines to keep your combo from breaking."))
 			else:
-				hud.set_message("Now see if you can do it.\n\nMake two cake boxes,/ but don't let your combo break.")
+				hud.set_message(tr("Now see if you can do it."
+						+ "\n\nMake two cake boxes,/ but don't let your combo break."))
 		"tutorial/combo_6":
 			# reset timer, scores
 			PuzzleScore.reset()
 			puzzle.scroll_to_new_creature()
 			
-			hud.set_message("...Oh!/ Customers!/\n\nTry to get ¥120 in one big combo."
-					+ "\n\nIt might help to make some boxes first.")
+			hud.set_message(tr("...Oh!/ Customers!/\n\nTry to get ¥120 in one big combo."
+					+ "\n\nIt might help to make some boxes first."))
 			hud.enqueue_pop_out()
 	
 	_prepared_levels[Level.settings.id] = true
@@ -123,9 +124,9 @@ func _advance_level() -> void:
 	match Level.settings.id:
 		"tutorial/combo_0", "tutorial/combo_2":
 			if hud.skill_tally_item("Combo").is_complete():
-				hud.set_message("Good job!")
+				hud.set_message(tr("Good job!"))
 			else:
-				hud.set_message("Oops!/ ...You needed to clear a line with that last piece.")
+				hud.set_message(tr("Oops!/ ...You needed to clear a line with that last piece."))
 				delay_between_levels = PuzzleScore.DELAY_LONG
 				failed_section = true
 		"tutorial/combo_1":
@@ -136,11 +137,11 @@ func _advance_level() -> void:
 			delay_between_levels = PuzzleScore.DELAY_NONE
 		"tutorial/combo_5":
 			if hud.skill_tally_item("CakeBox").is_complete():
-				hud.set_message("Impressive!\n\nHmm... Was there anything else?")
+				hud.set_message(tr("Impressive!\n\nHmm... Was there anything else?"))
 				delay_between_levels = PuzzleScore.DELAY_LONG
 				start_customer_countdown()
 			else:
-				hud.set_message("Oh!/ ...You needed to clear a line that time.")
+				hud.set_message(tr("Oh!/ ...You needed to clear a line that time."))
 				delay_between_levels = PuzzleScore.DELAY_LONG
 				failed_section = true
 	
@@ -162,22 +163,22 @@ Shows a diagram explaining how combos moves work, with an accompanying sensei me
 func _show_next_diagram() -> void:
 	var hud_messages := []
 	if _show_diagram_count == 0:
-		hud_messages.append("Combos earn you extra money!/ You can build combos by making boxes and clearing lines."
-				+ "\n\nOtherwise,/ dropping two pieces will reset your combo.")
-		hud_messages.append("In other words,"
+		hud_messages.append(tr("Combos earn you extra money!/ You can build combos by making boxes and clearing lines."
+				+ "\n\nOtherwise,/ dropping two pieces will reset your combo."))
+		hud_messages.append(tr("In other words,"
 				+ "/ you get two chances to make a box or clear a line before you lose your combo."
-				+ "\n\nDoes that make sense?")
+				+ "\n\nDoes that make sense?"))
 	else:
 		match _show_diagram_count % 4:
-			0: hud_messages.append("In other words,/"
-					+ "you get two chances to make a box or clear a line before you lose your combo.")
-			1: hud_messages.append("Arranging two or more pieces into a rectangle will make a box."
-					+ "\n\nThat's one easy way to keep your combo alive!/ Just place two pieces to make a square.")
-			2: hud_messages.append("Clearing a line will also continue your combo."
+			0: hud_messages.append(tr("In other words,/"
+					+ "you get two chances to make a box or clear a line before you lose your combo."))
+			1: hud_messages.append(tr("Arranging two or more pieces into a rectangle will make a box."
+					+ "\n\nThat's one easy way to keep your combo alive!/ Just place two pieces to make a square."))
+			2: hud_messages.append(tr("Clearing a line will also continue your combo."
 					+ "/ But,/ you don't have to clear a line with every piece!"
-					+ "\n\nYou can drop one piece without breaking your combo.")
-			3: hud_messages.append("Your combo's only interrupted if you drop two pieces without doing something."
-					+ "\n\nSo,/ you're allowed to make one mistake!/ Or,/ to use one piece to plan ahead.")
+					+ "\n\nYou can drop one piece without breaking your combo."))
+			3: hud_messages.append(tr("Your combo's only interrupted if you drop two pieces without doing something."
+					+ "\n\nSo,/ you're allowed to make one mistake!/ Or,/ to use one piece to plan ahead."))
 	hud.set_messages(hud_messages)
 	
 	hud.get_tutorial_diagram().show_diagram(_combo_diagram)
@@ -205,13 +206,13 @@ func _on_PuzzleScore_after_piece_written() -> void:
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(3.0), "timeout")
-				hud.set_message("Oops!/ I can still make the cake box,/ but my combo already broke.")
+				hud.set_message(tr("Oops!/ I can still make the cake box,/ but my combo already broke."))
 			if PuzzleScore.level_performance.pieces >= 3:
 				yield(get_tree().create_timer(3.0), "timeout")
 				_advance_level()
 		"tutorial/combo_4":
 			if PuzzleScore.level_performance.pieces >= 4:
-				hud.set_message("There,/ I did it!\n\nThat was tricky.")
+				hud.set_message(tr("There,/ I did it!\n\nThat was tricky."))
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(3.0), "timeout")
@@ -226,13 +227,13 @@ func _on_PuzzleScore_after_piece_written() -> void:
 				var first_creature_score: int = PuzzleScore.creature_scores[0]
 				if (_did_end_combo or first_creature_score >= 120):
 					if first_creature_score >= 120:
-						hud.set_message("Wow,/ I didn't expect that!/ Great job.\n\nYou're already a combo master!")
+						hud.set_message(tr("Wow,/ I didn't expect that!/ Great job.\n\nYou're already a combo master!"))
 						hud.enqueue_pop_out()
 					else:
-						hud.set_message("Oh no, you broke your combo without reaching ¥120!"
-								+ "\n\nWell,/ don't worry about that.")
-						hud.enqueue_message("¥120 is just a number I pulled out of my,/ um. ./././Out of thin air."
-								+ ("\n\n¥%s is good too!" % [StringUtils.comma_sep(first_creature_score)]))
+						hud.set_message(tr("Oh no, you broke your combo without reaching ¥120!"
+								+ "\n\nWell,/ don't worry about that."))
+						hud.enqueue_message(tr("¥120 is just a number I pulled out of my,/ um. ./././Out of thin air."
+								+ ("\n\n¥%s is good too!" % [StringUtils.comma_sep(first_creature_score)])))
 						hud.enqueue_pop_out()
 					_showed_end_of_level_message = true
 

@@ -52,26 +52,34 @@ Returns null if the chat tree cannot be found.
 """
 func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) -> ChatTree:
 	var creature_id := creature_def.creature_id
-	var filler_ids := _filler_ids_for_creature(creature_id, creature_def.dialog)
+	var filler_ids := filler_ids_for_creature(creature_id, creature_def.dialog)
 	var chosen_dialog := choose_dialog_from_chat_selectors(creature_def.chat_selectors, state, filler_ids)
 	
+	var chat_tree := chat_tree_for_chat_id(creature_def, chosen_dialog)
+	if not chat_tree and FileUtils.file_exists(before_level_cutscene_path(chosen_dialog)):
+		chat_tree = chat_tree_from_file(before_level_cutscene_path(chosen_dialog))
+	if not chat_tree and WARN_ON_MISSING_CHAT_TREE:
+		push_warning("Failed to load chat tree '%s' for creature '%s'.\nCould not find file '%s' or '%s'" % \
+				[chosen_dialog, creature_id,
+				creature_dialog_path(creature_id, chosen_dialog),
+				before_level_cutscene_path(chosen_dialog)])
+	
+	return chat_tree
+
+
+"""
+Returns the chat tree for the specified creature and chat id.
+
+Returns null if the chat tree cannot be found.
+"""
+func chat_tree_for_chat_id(creature_def: CreatureDef, chat_id: String) -> ChatTree:
 	var chat_tree: ChatTree
-	var creature_dialog_path := "res://assets/main/creatures/primary/%s/%s.json" % \
-			[creature_id, chosen_dialog.replace("_", "-")]
-	var level_dialog_path := "res://assets/main/puzzle/levels/cutscenes/%s-000.json" % \
-			[chosen_dialog.replace("_", "-")]
-	if creature_def.dialog.has(chosen_dialog):
+	if creature_def.dialog.has(chat_id):
 		chat_tree = ChatTree.new()
-		chat_tree.from_json_dict(creature_def.dialog[chosen_dialog])
-		chat_tree.history_key = "dialog/%s/%s" % [creature_id, chosen_dialog]
-	elif FileUtils.file_exists(creature_dialog_path):
-		chat_tree = chat_tree_from_file(creature_dialog_path)
-	elif FileUtils.file_exists(level_dialog_path):
-		chat_tree = chat_tree_from_file(level_dialog_path)
-	else:
-		if WARN_ON_MISSING_CHAT_TREE:
-			push_warning("Failed to load chat tree '%s' for creature '%s'.\nCould not find file '%s' or '%s'" % \
-					[chosen_dialog, creature_id, creature_dialog_path, level_dialog_path])
+		chat_tree.from_json_dict(creature_def.dialog[chat_id])
+		chat_tree.history_key = "dialog/%s/%s" % [creature_def.creature_id, chat_id]
+	elif FileUtils.file_exists(creature_dialog_path(creature_def.creature_id, chat_id)):
+		chat_tree = chat_tree_from_file(creature_dialog_path(creature_def.creature_id, chat_id))
 	
 	return chat_tree
 
@@ -83,16 +91,28 @@ Returns null if the chat tree cannot be found.
 """
 func chat_tree_for_after_level_cutscene() -> ChatTree:
 	var chat_tree: ChatTree
-	var level_dialog_path := "res://assets/main/puzzle/levels/cutscenes/%s-100.json" % \
-			[Level.launched_level_id.replace("_", "-")]
-	if FileUtils.file_exists(level_dialog_path):
-		chat_tree = chat_tree_from_file(level_dialog_path)
+	if FileUtils.file_exists(after_level_cutscene_path(Level.launched_level_id)):
+		chat_tree = chat_tree_from_file(after_level_cutscene_path(Level.launched_level_id))
 	else:
 		if WARN_ON_MISSING_CHAT_TREE:
 			push_warning("Failed to load chat tree for level '%s'.\nCould not find file '%s'." % \
-					[Level.launched_level_id, level_dialog_path])
+					[Level.launched_level_id, after_level_cutscene_path(Level.launched_level_id)])
 
 	return chat_tree
+
+
+func before_level_cutscene_path(level_id: String) -> String:
+	return "res://assets/main/puzzle/levels/cutscenes/%s-000.json" % \
+			[level_id.replace("_", "-")]
+
+
+func after_level_cutscene_path(level_id: String) -> String:
+	return "res://assets/main/puzzle/levels/cutscenes/%s-100.json" % \
+			[level_id.replace("_", "-")]
+
+
+func creature_dialog_path(creature_id: String, chat_id: String) -> String:
+	return "res://assets/main/creatures/primary/%s/%s.json" % [creature_id, chat_id.replace("_", "-")]
 
 
 """
@@ -109,7 +129,7 @@ func chat_icon_for_creature(creature: Creature) -> int:
 	else:
 		# filler/speech icon for normal conversations
 		var state := _creature_chat_state(creature.creature_id)
-		var filler_ids := _filler_ids_for_creature(creature.creature_id, creature.dialog)
+		var filler_ids := filler_ids_for_creature(creature.creature_id, creature.dialog)
 		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
 		result = ChatIcon.FILLER if filler_ids.has(chosen_dialog) else ChatIcon.SPEECH
 	
@@ -199,6 +219,24 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 
 
 """
+Returns the dialog filler IDs for the specified creature.
+
+Examines the creature's dialog and resource files, and returns any dialog ids with names like 'filler_014'.
+"""
+func filler_ids_for_creature(creature_id: String, creature_dialog: Dictionary) -> Array:
+	var filler_ids := []
+	for i in range(0, 1000):
+		var filler_id := "filler_%03d" % i
+		var path := "res://assets/main/creatures/primary/%s/%s.json" % \
+				[creature_id, filler_id.replace("_", "-")]
+		if creature_dialog.has(filler_id) or FileUtils.file_exists(path):
+			filler_ids.append(filler_id)
+		else:
+			break
+	return filler_ids
+
+
+"""
 Returns 'true' if the specified if condition is met by the current game state.
 """
 func _if_condition_met(if_condition: String, state: Dictionary) -> bool:
@@ -240,24 +278,6 @@ func _parse_json_tree(json: String) -> Dictionary:
 	else:
 		push_error("Invalid json type: %s" % typeof(parsed))
 	return json_tree
-
-
-"""
-Returns the dialog filler IDs for the specified creature.
-
-Examines the creature's dialog and resource files, and returns any dialog ids with names like 'filler_014'.
-"""
-func _filler_ids_for_creature(creature_id: String, creature_dialog: Dictionary) -> Array:
-	var filler_ids := []
-	for i in range(0, 1000):
-		var filler_id := "filler_%03d" % i
-		var path := "res://assets/main/creatures/primary/%s/%s.json" % \
-				[creature_id, filler_id.replace("_", "-")]
-		if creature_dialog.has(filler_id) or FileUtils.file_exists(path):
-			filler_ids.append(filler_id)
-		else:
-			break
-	return filler_ids
 
 
 """
