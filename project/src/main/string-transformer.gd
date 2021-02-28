@@ -22,3 +22,11 @@ Apply a regex transformation.
 func sub(pattern: String, replacement: String) -> void:
 	_regex.compile(pattern)
 	transformed = _regex.sub(transformed, replacement, true)
+
+
+"""
+Perform a regex search.
+"""
+func search(pattern: String) -> RegExMatch:
+	_regex.compile(pattern)
+	return _regex.search(transformed)

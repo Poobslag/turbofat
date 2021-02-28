@@ -41,12 +41,12 @@
     },
     {
       "who": "ebe",
-      "text": "I wanna believe in everything that you say,/ 'cause it sounds so good...",
+      "text": "I wanna believe in everything that you say, 'cause it sounds so good...",
       "mood": "think1"
     },
     {
       "who": "ebe",
-      "text": "But if you really want me,/ move slow,",
+      "text": "But if you really want me, move slow,",
       "mood": "think0"
     },
     {
@@ -81,19 +81,19 @@
     },
     {
       "who": "ebe",
-      "text": "Baby,/ all I need is time.",
+      "text": "Baby, all I need is time.",
       "mood": "smile1"
     }
   ],
   "bye": [
     {
       "who": "#player#",
-      "text": "Um,/ maybe later...",
+      "text": "Um, maybe later...",
       "mood": "sweat0"
     },
     {
       "who": "ebe",
-      "text": "./././",
+      "text": "...",
       "mood": "sweat0"
     }
   ]

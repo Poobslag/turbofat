@@ -33,7 +33,7 @@
   "very-good": [
     {
       "who": "#player#",
-      "text": "Wow,/ I think you killed it!/ You have some real talent.",
+      "text": "Wow, I think you killed it! You have some real talent.",
       "mood": "smile1"
     },
     {
@@ -48,7 +48,7 @@
   "good": [
     {
       "who": "#player#",
-      "text": "Hey,/ that was pretty good!/ And y'know,/ with a little more training you'll get even better.",
+      "text": "Hey, that was pretty good! And y'know, with a little more training you'll get even better.",
       "mood": "smile0"
     },
     {
@@ -63,22 +63,22 @@
   "bad": [
     {
       "who": "#player#",
-      "text": "./././",
+      "text": "...",
       "mood": "think0"
     },
     {
       "who": "skins",
-      "text": "./././?",
+      "text": "...?",
       "mood": "sweat0"
     },
     {
       "who": "#player#",
-      "text": "./././ ./././",
+      "text": "... ...",
       "mood": "sweat0"
     },
     {
       "who": "skins",
-      "text": "./././ ./././ ./././",
+      "text": "... ... ...",
       "mood": "sweat1",
       "links": [
         "sensei-answers-insult"
@@ -88,12 +88,12 @@
   "very-bad": [
     {
       "who": "#player#",
-      "text": "Well./././ I wouldn't eat it. Did you have any cooking experience before this?",
+      "text": "Well... I wouldn't eat it. Did you have any cooking experience before this?",
       "mood": "think0"
     },
     {
       "who": "skins",
-      "text": "Uhh I mean like,/ Richie's been helping me figure out the kitchen stuff./ ./././Did I mess something up?",
+      "text": "Uhh I mean like, Richie's been helping me figure out the kitchen stuff. ...Did I mess something up?",
       "mood": "sweat0",
       "links": [
         "sensei-answers-insult"
@@ -103,20 +103,20 @@
   "sensei-answers-praise": [
     {
       "who": "#sensei#",
-      "text": "Hmm./ Yes!/ Pretty good./ Your rhythm's ahhh./././ a little off though!",
+      "text": "Hmm. Yes! Pretty good. Your rhythm's ahhh... a little off though!",
       "mood": "think0"
     },
     {
       "who": "skins",
-      "text": "My./././ my rhythm?"
+      "text": "My... my rhythm?"
     },
     {
       "who": "#sensei#",
-      "text": "Yes! That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap."
+      "text": "Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap."
     },
     {
       "who": "#sensei#",
-      "text": "You don't want to give them any break./ Eating should become an unconscious reflex to them,/ like blinking!/",
+      "text": "You don't want to give them any break. Eating should become an unconscious reflex to them, like blinking!",
       "links": [
         "oh-okay"
       ]
@@ -125,20 +125,20 @@
   "sensei-answers-insult": [
     {
       "who": "#sensei#",
-      "text": "What I think #player# is trying to say is your rhythm is ahhh./././ a little off.",
+      "text": "What I think #player# is trying to say is your rhythm is ahhh... a little off.",
       "mood": "think0"
     },
     {
       "who": "skins",
-      "text": "My./././ my rhythm?"
+      "text": "My... my rhythm?"
     },
     {
       "who": "#sensei#",
-      "text": "Yes! That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap."
+      "text": "Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap."
     },
     {
       "who": "#sensei#",
-      "text": "You don't want to give them a break./ Eating should become an unconscious reflex to them,/ like blinking!",
+      "text": "You don't want to give them a break. Eating should become an unconscious reflex to them, like blinking!",
       "links": [
         "oh-okay"
       ]
@@ -147,22 +147,22 @@
   "oh-okay": [
     {
       "who": "skins",
-      "text": "Oh, hmm./././ okay./ Mowr...",
+      "text": "Oh, hmm... okay. Mowr...",
       "mood": "cry0"
     },
     {
       "who": "richie",
-      "text": "Hey hey!/ Don't worry,/ we'll work on that./ Good work everybody!",
+      "text": "Hey hey! Don't worry, we'll work on that. Good work everybody!",
       "mood": "smile1"
     },
     {
       "who": "richie",
-      "text": "#sensei#,/ #player# -/-/ see what you can do to drum up more business!",
+      "text": "#sensei#, #player# -- see what you can do to drum up more business!",
       "mood": "smile0"
     },
     {
       "who": "richie",
-      "text": "We'll be here when you feel like training us up again./ No hurry!"
+      "text": "We'll be here when you feel like training us up again. No hurry!"
     }
   ]
 }

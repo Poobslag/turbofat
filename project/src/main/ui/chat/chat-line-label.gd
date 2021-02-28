@@ -5,9 +5,6 @@ A label which animates text in a way that mimics speech.
 
 Text appears a letter at a time at a constant rate. Newlines cause a long pause. Slashes cause a shorter pause and are
 hidden from the player. Slashes are referred to 'lull characters' throughout the code.
-
-Dialog authors should use lull characters to mimic patterns of speech:
-	'Despite the promise of info,/ I was unable to determine what,/ if anything,/ a 'butt/ onion'/ is supposed to be.'
 """
 
 # emitted after the full dialog chat line is typed out onscreen

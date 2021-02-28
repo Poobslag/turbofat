@@ -32,7 +32,7 @@
       "": [
         {
           "who": "bort",
-          "text": "Wow!/ ./././You finally did it?/ Does this count as our first conversation!?",
+          "text": "Wow! ...You finally did it? Does this count as our first conversation!?",
           "mood": "think0",
           "links": [
             {
@@ -50,12 +50,12 @@
       "yes": [
         {
           "who": "#player#",
-          "text": "Yeah!\nThis is definitely a real conversation./ It has branches and everything!",
+          "text": "Yeah!\nThis is definitely a real conversation. It has branches and everything!",
           "mood": "smile0"
         },
         {
           "who": "bort",
-          "text": "Congratulations!/ Wow!",
+          "text": "Congratulations! Wow!",
           "mood": "smile0",
           "links": [
             "nice"
@@ -65,12 +65,12 @@
       "maybe": [
         {
           "who": "#player#",
-          "text": "Maybe?/ I'm not sure!",
+          "text": "Maybe? I'm not sure!",
           "mood": "think0"
         },
         {
           "who": "bort",
-          "text": "Congratulations!/ Wow!",
+          "text": "Congratulations! Wow!",
           "mood": "smile0",
           "links": [
             "nice"
@@ -95,7 +95,7 @@
       "nice": [
         {
           "who": "bort",
-          "text": "./././I can't wait to see what you do next!"
+          "text": "...I can't wait to see what you do next!"
         }
       ]
     }

@@ -3,7 +3,7 @@
   "": [
     {
       "who": "boatricia",
-      "text": "Oh!/ I remember you from before./ I'm Boatricia,/ I'm sort of new here and trying to make some friends.",
+      "text": "Oh! I remember you from before. I'm Boatricia, I'm sort of new here and trying to make some friends.",
       "mood": "smile0"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "who": "#player#",
-      "text": "Well!/ ./././If you're trying to make some friends,/ I'll try to cook you something special okay?/ Then maybe you can be my friend.",
+      "text": "Well! ...If you're trying to make some friends, I'll try to cook you something special okay? Then maybe you can be my friend.",
       "mood": "think0"
     },
     {

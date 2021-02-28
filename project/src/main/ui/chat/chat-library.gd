@@ -237,6 +237,58 @@ func filler_ids_for_creature(creature_id: String, creature_dialog: Dictionary) -
 
 
 """
+Add lull characters to the specified string.
+
+Lull characters make the chat UI briefly pause at parts of the dialog. We add these after periods, commas and other
+punctuation.
+"""
+func add_lull_characters(s: String) -> String:
+	if "/" in s:
+		# if the sentence already contains lull characters, we leave it alone
+		return s
+	
+	var transformer := StringTransformer.new(s)
+	
+	# add pauses after certain kinds of punctuation
+	transformer.sub("([!.?,])", "$1/")
+	
+	# add pauses after dashes, but not in hyphenated words
+	transformer.sub("(-)(?=[/!.?,\\- ])", "$1/")
+	
+	# strip pauses from ellipses which conclude a line, unless the entire sentence is an ellipsis
+	if transformer.search("[^/!.?,\\- ]"):
+		for _i in range(0, 10):
+			var old_transformed := transformer.transformed
+			transformer.sub("/([/!.?,\\-]*)$", "$1")
+			if old_transformed == transformer.transformed:
+				break
+	
+	# remove lull character from the end of the line
+	transformer.transformed = transformer.transformed.trim_suffix("/")
+	
+	return transformer.transformed
+
+
+"""
+Add many lull characters to the specified string to make it pause after every character.
+
+This can be used for very short sentences like 'OH, MY!!!'
+"""
+func add_mega_lull_characters(s: String) -> String:
+	var transformer := StringTransformer.new(s)
+	
+	# long pause between words
+	transformer.sub(" ", "// ")
+	
+	# short pause between letters, punctuation
+	transformer.sub("([^/ ])", "$1/")
+	
+	# remove lull character from the end of the line
+	transformer.transformed = transformer.transformed.trim_suffix("/")
+	return transformer.transformed
+
+
+"""
 Returns 'true' if the specified if condition is met by the current game state.
 """
 func _if_condition_met(if_condition: String, state: Dictionary) -> bool:
