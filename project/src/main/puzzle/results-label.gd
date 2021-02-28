@@ -59,7 +59,9 @@ func _process(delta: float) -> void:
 """
 Reveals the label and empties its contents, gradually appending text over time.
 
-The text can include lull characters, '/', which are hidden from the player but result in a brief delay.
+The text can include lull characters, '/', which are hidden from the player but result in a brief delay to mimic
+patterns of speech:
+	'Despite the promise of info,/ I was unable to determine what,/ if anything,/ a 'butt/ onion'/ is supposed to be.'
 """
 func show_text(text_with_lulls: String) -> void:
 	# reset text state before showing new text

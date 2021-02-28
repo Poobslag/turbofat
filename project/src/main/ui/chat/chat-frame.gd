@@ -69,8 +69,11 @@ func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool)
 	
 	var chat_theme := ChatTheme.new(chat_event.chat_theme_def)
 	
+	# add lull characters
+	var text_with_lulls := ChatLibrary.add_lull_characters(chat_event.text)
+	
 	# set the text and calculate how big of a frame we need
-	var chat_line_size: int = $ChatLineLabel.show_message(chat_event.text, 0.5)
+	var chat_line_size: int = $ChatLineLabel.show_message(text_with_lulls, 0.5)
 	var creature_name := ""
 	if chat_event.who:
 		var creature_def := PlayerData.creature_library.get_creature_def(chat_event.who)

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-02-27 07:30-0500\n"
+"POT-Creation-Date: 2021-02-28 09:47-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -68,13 +68,13 @@ msgid "Five of the pickiest customers you'll ever meet!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:14
-#: project/assets/main/locale/localizables-extracted.py:212
-msgid "Okay,/ I'll invite my friends too!/ But/ -/-/ no vegetables okay?"
+#: project/assets/main/locale/localizables-extracted.py:211
+msgid "Okay, I'll invite my friends too! But -- no vegetables okay?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:15
-#: project/assets/main/locale/localizables-extracted.py:213
-msgid "I HATE vegetables!/ ./././I hate them so much..."
+#: project/assets/main/locale/localizables-extracted.py:212
+msgid "I HATE vegetables! ...I hate them so much..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:16
@@ -120,7 +120,7 @@ msgid "Let's get to know Bones a little better."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:26
-msgid "Well that was./././ good!"
+msgid "Well that was... good!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:27
@@ -129,12 +129,12 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:28
 msgid ""
-"I mean the combos aren't working!/ It's./././ I don't think it's your "
-"fault,/ don't take it personally."
+"I mean the combos aren't working! It's... I don't think it's your fault, "
+"don't take it personally."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:29
-msgid "You're./././ You're doing good./ ./././You're a good boy."
+msgid "You're... You're doing good. ...You're a good boy."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:30
@@ -143,14 +143,14 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:31
 msgid ""
-"C'mon,/ let's like./././ let's get drinks or something,/ blow off some "
-"steam!/ You did./././ good today."
+"C'mon, let's like... let's get drinks or something, blow off some steam! "
+"You did... good today."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:32
 msgid ""
-"Ohhh./ Actually,/ I really gotta work out tonight./ I already missed two "
-"nights this week./ I can't miss a third night."
+"Ohhh. Actually, I really gotta work out tonight. I already missed two "
+"nights this week. I can't miss a third night."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:33
@@ -166,7 +166,7 @@ msgid "Well, can we hang out tomorrow?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:36
-msgid "Heh yeah,/ I thought you were looking a little chunky around the middle."
+msgid "Heh yeah, I thought you were looking a little chunky around the middle."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:37
@@ -174,15 +174,15 @@ msgid "W-what!?!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:38
-msgid "Ha ha,/ go exercise."
+msgid "Ha ha, go exercise."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:39
-msgid "Y-/yeah,/ bye!"
+msgid "Y-yeah, bye!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:40
-msgid "Oh good for you,/ that's some good discipline!/ ./././See you around."
+msgid "Oh good for you, that's some good discipline! ...See you around."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:41
@@ -190,15 +190,15 @@ msgid "Bye!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:42
-msgid "How about tomorrow then?/ ./././Can we hang out tomorrow?"
+msgid "How about tomorrow then? ...Can we hang out tomorrow?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:43
-msgid "Uhhh,/ I gotta go./ See you around!"
+msgid "Uhhh, I gotta go. See you around!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:44
-msgid "Oh!/ Goodbye!"
+msgid "Oh! Goodbye!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:45
@@ -210,11 +210,11 @@ msgid "Let's meet the employees of our Merrymellow Marsh location!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:47
-msgid "So explain again why my beloved restaurant is very,/ very empty?"
+msgid "So explain again why my beloved restaurant is very, very empty?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:48
-msgid "Aw come on now!/ It's not empty,/ we got the two line cooks here..."
+msgid "Aw come on now! It's not empty, we got the two line cooks here..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:49
@@ -223,38 +223,38 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:50
 msgid ""
-"And as far as customers,/ we got Chonkers McRhonkers over there!/ What "
-"more could you need?"
+"And as far as customers, we got Chonkers McRhonkers over there! What more"
+" could you need?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:51
-msgid "Hm./ Mhm./././ Well ideally you'd have at least TWO customers..."
+msgid "Hm. Mhm... Well ideally you'd have at least TWO customers..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:52
 msgid ""
-"Oh Chonkers eats plenty!/ Even with just her,/ she's doing a lot to keep "
-"us afloat."
+"Oh Chonkers eats plenty! Even with just her, she's doing a lot to keep us"
+" afloat."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:53
 msgid ""
-"I mean,/ afloat might be a strong word./ She's makin' us sink a little "
+"I mean, afloat might be a strong word. She's makin' us sink a little "
 "slower I guess."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:54
 msgid ""
-"Maybe kind of like a, hmm./././ Like a anchor made of something slightly "
+"Maybe kind of like a, hmm... Like a anchor made of something slightly "
 "buoyant."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:55
-msgid "An anchor made of./././ Boats?"
+msgid "An anchor made of... Boats?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:56
-msgid "Nope./ Not that buoyant!"
+msgid "Nope. Not that buoyant!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:57
@@ -278,31 +278,31 @@ msgid "This isn't a helpful avenue of discussion."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:62
-msgid "There you go,/ well put!/ Like a anchor made of walnuts."
+msgid "There you go, well put! Like a anchor made of walnuts."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:64
-msgid "There you go,/ well put!/ Like a anchor made of./././ wait what!?"
+msgid "There you go, well put! Like a anchor made of... wait what!?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:65
 msgid ""
-"./././I mean,/ maybe?/ ./././Hold up,/ are you on some kind of watchlist "
-"I should know about?"
+"...I mean, maybe? ...Hold up, are you on some kind of watchlist I should "
+"know about?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:67
-msgid "There you go,/ well put!/ Like a anchor made of slightly smaller boats."
+msgid "There you go, well put! Like a anchor made of slightly smaller boats."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:69
-msgid "Oh sure,/ I'm with you./ ./././We'll come back to that one later."
+msgid "Oh sure, I'm with you. ...We'll come back to that one later."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:70
 msgid ""
-"Well, anyway./././ I know you said you were following our recipes to a "
-"tee./ But just in case..."
+"Well, anyway... I know you said you were following our recipes to a tee. "
+"But just in case..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:71
@@ -310,15 +310,15 @@ msgid "You want us to show you, right?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:72
-msgid "I mean./././ well..."
+msgid "I mean... well..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:73
-msgid "Go ahead,/ Skins!/ Why don't you show 'em what you got."
+msgid "Go ahead, Skins! Why don't you show 'em what you got."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:74
-msgid "Can do!/ Mowr!"
+msgid "Can do! Mowr!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:75
@@ -334,6 +334,8 @@ msgid "That was pretty good!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:78
+#: project/assets/main/locale/localizables-extracted.py:84
+#: project/assets/main/locale/localizables-extracted.py:210
 msgid "..."
 msgstr ""
 
@@ -342,7 +344,7 @@ msgid "Well... I wouldn't eat it."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:80
-msgid "Wow,/ I think you killed it!/ You have some real talent."
+msgid "Wow, I think you killed it! You have some real talent."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:81
@@ -351,91 +353,86 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:82
 msgid ""
-"Hey,/ that was pretty good!/ And y'know,/ with a little more training "
-"you'll get even better."
+"Hey, that was pretty good! And y'know, with a little more training you'll"
+" get even better."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:83
 msgid "Oh okay cool!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:84
-#: project/assets/main/locale/localizables-extracted.py:211
-msgid "./././"
-msgstr ""
-
 #: project/assets/main/locale/localizables-extracted.py:85
-msgid "./././?"
+msgid "...?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:86
-msgid "./././ ./././"
+msgid "... ..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:87
-msgid "./././ ./././ ./././"
+msgid "... ... ..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:88
 msgid ""
-"Well./././ I wouldn't eat it. Did you have any cooking experience before "
+"Well... I wouldn't eat it. Did you have any cooking experience before "
 "this?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:89
 msgid ""
-"Uhh I mean like,/ Richie's been helping me figure out the kitchen stuff./"
-" ./././Did I mess something up?"
+"Uhh I mean like, Richie's been helping me figure out the kitchen stuff. "
+"...Did I mess something up?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:90
-msgid "Hmm./ Yes!/ Pretty good./ Your rhythm's ahhh./././ a little off though!"
+msgid "Hmm. Yes! Pretty good. Your rhythm's ahhh... a little off though!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:91
 #: project/assets/main/locale/localizables-extracted.py:95
-msgid "My./././ my rhythm?"
+msgid "My... my rhythm?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:92
 #: project/assets/main/locale/localizables-extracted.py:96
 msgid ""
-"Yes! That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right "
-"now you're more like pappap,// pappa/ pap."
+"Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right"
+" now you're more like pappap,// pappa/ pap."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:93
 msgid ""
-"You don't want to give them any break./ Eating should become an "
-"unconscious reflex to them,/ like blinking!/"
+"You don't want to give them any break. Eating should become an "
+"unconscious reflex to them, like blinking!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:94
 msgid ""
-"What I think #player# is trying to say is your rhythm is ahhh./././ a "
-"little off."
+"What I think #player# is trying to say is your rhythm is ahhh... a little"
+" off."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:97
 msgid ""
-"You don't want to give them a break./ Eating should become an unconscious"
-" reflex to them,/ like blinking!"
+"You don't want to give them a break. Eating should become an unconscious "
+"reflex to them, like blinking!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:98
-msgid "Oh, hmm./././ okay./ Mowr..."
+msgid "Oh, hmm... okay. Mowr..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:99
-msgid "Hey hey!/ Don't worry,/ we'll work on that./ Good work everybody!"
+msgid "Hey hey! Don't worry, we'll work on that. Good work everybody!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:100
-msgid "#sensei#,/ #player# -/-/ see what you can do to drum up more business!"
+msgid "#sensei#, #player# -- see what you can do to drum up more business!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:101
-msgid "We'll be here when you feel like training us up again./ No hurry!"
+msgid "We'll be here when you feel like training us up again. No hurry!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:102
@@ -448,34 +445,32 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:104
 msgid ""
-"Oh hey what's up./ I heard you guys came the other day when I wasn't "
-"here./ So did I miss like anything./././ important?"
+"Oh hey what's up. I heard you guys came the other day when I wasn't here."
+" So did I miss like anything... important?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:105
 msgid ""
-"Ahh, nothing important./ We're still trying to figure out why this "
+"Ahh, nothing important. We're still trying to figure out why this "
 "location isn't attracting more customers."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:106
-msgid ""
-"Yeah,/ Skins and Bones showed us their cooking skills. ./././They seem "
-"nice!"
+msgid "Yeah, Skins and Bones showed us their cooking skills. ...They seem nice!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:107
-msgid "Hah./ Yeah they DO seem nice."
+msgid "Hah. Yeah they DO seem nice."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:108
 msgid ""
-"Yeah!/ ./././Umm,/ wait what?/ ./././I feel like there's something you're"
-" not telling me."
+"Yeah! ...Umm, wait what? ...I feel like there's something you're not "
+"telling me."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:109
-msgid "Hah hah./ Yeah that's alright,/ you'll figure it out."
+msgid "Hah hah. Yeah that's alright, you'll figure it out."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:110
@@ -484,12 +479,12 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:111
 msgid ""
-"Why don't you show us your skills in the kitchen!/ Let's focus on some "
-"combos today,/ if you know about those."
+"Why don't you show us your skills in the kitchen! Let's focus on some "
+"combos today, if you know about those."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:112
-msgid "Yeah yeah!/ Combos./ Sure thing."
+msgid "Yeah yeah! Combos. Sure thing."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:113
@@ -501,7 +496,7 @@ msgid "Let's get to know Skins a little better."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:115
-msgid "Hmm./././ just like before."
+msgid "Hmm... just like before."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:116
@@ -509,30 +504,30 @@ msgid "Yeah..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:117
-msgid "Mowr./././ Any tips?"
+msgid "Mowr... Any tips?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:118
 msgid ""
-"I don't know,/ I'm kind of at a loss on this one./ #sensei#?/ Why isn't "
-"it working?"
+"I don't know, I'm kind of at a loss on this one. #sensei#? Why isn't it "
+"working?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:119
 msgid ""
-"Was it their technique or./././ were they too slow?/ They didn't seem "
-"slow to me."
+"Was it their technique or... were they too slow? They didn't seem slow to"
+" me."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:120
 msgid ""
-"Ahh well./ Their cooking skills are improving,/ so./././ Maybe it's just "
-"a matter of time."
+"Ahh well. Their cooking skills are improving, so... Maybe it's just a "
+"matter of time."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:121
 msgid ""
-"The customers will come back,/ and next time they'll stay longer! So,/ "
+"The customers will come back, and next time they'll stay longer! So, "
 "let's be patient."
 msgstr ""
 
@@ -739,14 +734,14 @@ msgid "Twice the pace and half the space? ...This is a recipe for disaster!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:170
-#: project/assets/main/locale/localizables-extracted.py:238
-msgid "./././I don't have anything to say right now!"
+#: project/assets/main/locale/localizables-extracted.py:237
+msgid "...I don't have anything to say right now!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:171
 msgid ""
-"Oh!/ I remember you from before./ I'm Boatricia,/ I'm sort of new here "
-"and trying to make some friends."
+"Oh! I remember you from before. I'm Boatricia, I'm sort of new here and "
+"trying to make some friends."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:172
@@ -755,8 +750,8 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:173
 msgid ""
-"Well!/ ./././If you're trying to make some friends,/ I'll try to cook you"
-" something special okay?/ Then maybe you can be my friend."
+"Well! ...If you're trying to make some friends, I'll try to cook you "
+"something special okay? Then maybe you can be my friend."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:174
@@ -768,37 +763,35 @@ msgid "My maid died!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:176
-msgid "Oh no!/ ./././That's so sad!"
+msgid "Oh no! ...That's so sad!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:177
-msgid "Life is so short./././"
+msgid "Life is so short..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:178
-msgid "Hmm,/ yes./././ That's true."
+msgid "Hmm, yes... That's true."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:179
-msgid "Bork!/ Give me a call if you need anything,/ boss!"
+msgid "Bork! Give me a call if you need anything, boss!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:180
 msgid ""
-"When I was a kid,/ buying a new video game every week seemed like an "
-"impossible dream!/ ./././But games are actually pretty cheap."
+"When I was a kid, buying a new video game every week seemed like an "
+"impossible dream! ...But games are actually pretty cheap."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:181
 msgid ""
-"It's hard forcing yourself into a healthy routine at first,/ bork!/ But "
+"It's hard forcing yourself into a healthy routine at first, bork! But "
 "eventually you don't even think about it."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:182
-msgid ""
-"Wow!/ ./././You finally did it?/ Does this count as our first "
-"conversation!?"
+msgid "Wow! ...You finally did it? Does this count as our first conversation!?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:183
@@ -806,6 +799,7 @@ msgid "Yeah, definitely!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:184
+#: project/assets/main/locale/localizables-extracted.py:188
 msgid "Maybe? I'm not sure!"
 msgstr ""
 
@@ -813,203 +807,202 @@ msgstr ""
 msgid "I don't think so..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:188
-#: project/assets/main/locale/localizables-extracted.py:190
-msgid "Congratulations!/ Wow!"
+#: project/assets/main/locale/localizables-extracted.py:186
+msgid ""
+"Yeah!\n"
+"This is definitely a real conversation. It has branches and everything!"
 msgstr ""
 
+#: project/assets/main/locale/localizables-extracted.py:187
 #: project/assets/main/locale/localizables-extracted.py:189
-msgid "Maybe?/ I'm not sure!"
+msgid "Congratulations! Wow!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:191
+#: project/assets/main/locale/localizables-extracted.py:190
 msgid "I don't think so. I still have a lot of work to do..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:192
+#: project/assets/main/locale/localizables-extracted.py:191
 msgid "Aww, don't be like that! This is looking great."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:193
-msgid "./././I can't wait to see what you do next!"
+#: project/assets/main/locale/localizables-extracted.py:192
+msgid "...I can't wait to see what you do next!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:194
+#: project/assets/main/locale/localizables-extracted.py:193
 msgid "Did you want to get friend zoned?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:195
+#: project/assets/main/locale/localizables-extracted.py:194
 msgid "Friend zone me!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:196
+#: project/assets/main/locale/localizables-extracted.py:195
 msgid "Um, I don't think so..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:197
+#: project/assets/main/locale/localizables-extracted.py:196
 msgid "You tell me you're in love with me,"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:198
+#: project/assets/main/locale/localizables-extracted.py:197
 msgid "...Like you can't take your pretty eyes away from me."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:199
+#: project/assets/main/locale/localizables-extracted.py:198
 msgid "It's not that I don't wanna stay,"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:200
+#: project/assets/main/locale/localizables-extracted.py:199
 msgid "...But every time you come too close I move away."
 msgstr ""
 
+#: project/assets/main/locale/localizables-extracted.py:200
+msgid "I wanna believe in everything that you say, 'cause it sounds so good..."
+msgstr ""
+
 #: project/assets/main/locale/localizables-extracted.py:201
-msgid "I wanna believe in everything that you say,/ 'cause it sounds so good..."
+msgid "But if you really want me, move slow,"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:202
-msgid "But if you really want me,/ move slow,"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:203
 msgid "There's things about me you just have to know."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:204
+#: project/assets/main/locale/localizables-extracted.py:203
 msgid "Sometimes I run."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:205
+#: project/assets/main/locale/localizables-extracted.py:204
 msgid "Sometimes I hide."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:206
+#: project/assets/main/locale/localizables-extracted.py:205
 msgid "Sometimes I'm scared of you,"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:207
+#: project/assets/main/locale/localizables-extracted.py:206
 msgid "But all I really want is to hold you tight, treat you right,"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:208
+#: project/assets/main/locale/localizables-extracted.py:207
 msgid "Be with you day and night."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:209
-msgid "Baby,/ all I need is time."
+#: project/assets/main/locale/localizables-extracted.py:208
+msgid "Baby, all I need is time."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:210
-msgid "Um,/ maybe later..."
+#: project/assets/main/locale/localizables-extracted.py:209
+msgid "Um, maybe later..."
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:213
+msgid "Hey relax! We got everything under control."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:214
-msgid "Hey relax!/ We got everything under control."
+msgid "You know, a liquor license might help us bring in more customers."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:215
-msgid "You know,/ a liquor license might help us bring in more customers."
+msgid ""
+"You ever think of shortening the restaurant to just \"Turbo's\"? I'm just"
+" sayin'..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:216
-msgid ""
-"You ever think of shortening the restaurant to just \"Turbo's\"?/ I'm "
-"just sayin'././."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:217
 msgid "I've been reading up on something called the 'Pomodoro Technique' lately!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:218
+#: project/assets/main/locale/localizables-extracted.py:217
 msgid ""
-"./././'Pomodoro' is a fancy Italian word for sitting on your ass,/ "
-"instead of doing any actual work."
+"...'Pomodoro' is a fancy Italian word for sitting on your ass, instead of"
+" doing any actual work."
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:218
+msgid "Ah, I do that already! I didn't someone had coined a name for it."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:219
-msgid "Ah,/ I do that already!/ I didn't someone had coined a name for it."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:220
 msgid "You're both lazy"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:221
+#: project/assets/main/locale/localizables-extracted.py:220
 msgid "More like 'Unemployment Technique'"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:222
+#: project/assets/main/locale/localizables-extracted.py:221
 msgid "I should study this"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:223
+#: project/assets/main/locale/localizables-extracted.py:222
 msgid "I invented that!"
 msgstr ""
 
+#: project/assets/main/locale/localizables-extracted.py:223
+msgid "Technique? You're both just lazy."
+msgstr ""
+
 #: project/assets/main/locale/localizables-extracted.py:224
-msgid "Technique?/ You're both just lazy."
+#: project/assets/main/locale/localizables-extracted.py:226
+msgid "Oh, lighten up #player#. Sounds like someone needs a Pomodoro."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:225
-msgid "Oh,/ lighten up #player#./ Sounds like someone needs a Pomodoro."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:226
 msgid "More like the 'Unemployment Technique'."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:227
-msgid "Oh, lighten up #player#./ Sounds like someone needs a Pomodoro."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:228
 msgid "I should study this technique..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:229
-msgid "Sure!/ It's good to take a break once in awhile~"
+#: project/assets/main/locale/localizables-extracted.py:228
+msgid "Sure! It's good to take a break once in awhile~"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:230
+#: project/assets/main/locale/localizables-extracted.py:229
 msgid "I invented that technique!"
 msgstr ""
 
+#: project/assets/main/locale/localizables-extracted.py:230
+msgid "Ha! Ha! Maybe we can compare notes some time."
+msgstr ""
+
 #: project/assets/main/locale/localizables-extracted.py:231
-msgid "Ha!/ Ha!/ Maybe we can compare notes some time."
+msgid ""
+"...I usually figure if people don't talk to me it's 'cause they like, "
+"don't want to talk. But don't be afraid to hit me up."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:232
 msgid ""
-"./././I usually figure if people don't talk to me it's 'cause they like,/"
-" don't want to talk./ But don't be afraid to hit me up."
+"Online gaming's sorta nice because people just assume I'm a guy. ...It's "
+"just annoying when everyone's on voice chat."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:233
 msgid ""
-"Online gaming's sorta nice because people just assume I'm a guy./ "
-"./././It's just annoying when everyone's on voice chat."
+"Can you do me a favor and act like we're having a conversation? Just for "
+"a few seconds. ...A little longer... Okay, thanks."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:234
-msgid ""
-"Can you do me a favor and act like we're having a conversation?/ Just for"
-" a few seconds./ ./././A little longer./././ Okay,/ thanks."
+msgid "I'm always ready for more training! Just call me on my cell. Mowr!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:235
-msgid "I'm always ready for more training!/ Just call me on my cell./ Mowr!"
+msgid ""
+"You should come mountain biking some time! It's not as dangerous as you "
+"think."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:236
 msgid ""
-"You should come mountain biking some time!/ It's not as dangerous as you "
-"think."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:237
-msgid ""
-"My phone's been acting slow lately/. ./././They do that on purpose so "
-"you'll by a new one./ It's so annoying!"
+"My phone's been acting slow lately. ...They do that on purpose so you'll "
+"by a new one. It's so annoying!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-others.py:2
@@ -1371,8 +1364,8 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:36
 msgid ""
-"Welcome to Turbo Fat!// You seem to already be familiar with this sort of"
-" game,/ so let's dive right in."
+"Welcome to Turbo Fat! You seem to already be familiar with this sort of "
+"game, so let's dive right in."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:46
@@ -1381,24 +1374,26 @@ msgid "Try making a snack box by arranging two pieces into a square."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:49
-msgid "Next,/ try holding soft drop to squish pieces through these gaps."
+msgid "Next, try holding soft drop to squish pieces through these gaps."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:52
-msgid ""
-"One last lesson!/ Try holding soft drop to squish and complete these "
-"boxes."
+msgid "One last lesson! Try holding soft drop to squish and complete these boxes."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:58
 msgid ""
-"You're a remarkably quick learner./ I think I hear some customers!\n"
+"You're a remarkably quick learner. I think I hear some customers!\n"
 "\n"
 "See if you can earn ¥100."
 msgstr ""
 
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:73
+msgid "OH, MY!!!"
+msgstr ""
+
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:80
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:126
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:127
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:115
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:128
 msgid "Good job!"
@@ -1420,7 +1415,7 @@ msgstr ""
 msgid ""
 "Well done!\n"
 "\n"
-"Line clears earn ¥1./ Maybe more if you can build a combo."
+"Line clears earn ¥1. Maybe more if you can build a combo."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:108
@@ -1437,49 +1432,49 @@ msgstr ""
 msgid ""
 "Well done!\n"
 "\n"
-"Box clears earn you five times as much money./ Maybe more than that if "
+"Box clears earn you five times as much money. Maybe more than that if "
 "you're clever."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:136
 msgid ""
-"Oh my,/ you're not supposed to know how to do that!\n"
+"Oh my, you're not supposed to know how to do that!\n"
 "\n"
-"...But yes,/ squish moves can help you out of a jam."
+"...But yes, squish moves can help you out of a jam."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:142
 msgid ""
 "Well done!\n"
 "\n"
-"Squish moves can help you out of a jam./ They're also good for certain "
+"Squish moves can help you out of a jam. They're also good for certain "
 "boxes."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:151
 msgid ""
-"Oh my,/ you're not supposed to know how to do that!\n"
+"Oh my, you're not supposed to know how to do that!\n"
 "\n"
-"...But yes,/ those boxes earn $15 when you clear them."
+"...But yes, those boxes earn $15 when you clear them."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:157
 msgid ""
 "Well done!\n"
 "\n"
-"Those boxes earn ¥15 when you clear them./ Try clearing a few box lines."
+"Those boxes earn ¥15 when you clear them. Try clearing a few box lines."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:166
 msgid ""
-"Impressive!/ Using squish moves,/ you can organize boxes in tall vertical"
-" stacks and earn a lot of money."
+"Impressive! Using squish moves, you can organize boxes in tall vertical "
+"stacks and earn a lot of money."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:248
 msgid ""
-"Welcome to Turbo Fat!/ You seem to already be familiar with this sort of "
-"game,/ so let's dive right in.\n"
+"Welcome to Turbo Fat! You seem to already be familiar with this sort of "
+"game, so let's dive right in.\n"
 "\n"
 "Clear a row by filling it with blocks."
 msgstr ""
@@ -1493,7 +1488,7 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:52
 msgid ""
-"Try again!/ Try to clear five lines without stopping.\n"
+"Try again! Try to clear five lines without stopping.\n"
 "\n"
 "Dropping one piece off to the side won't break your combo."
 msgstr ""
@@ -1502,12 +1497,12 @@ msgstr ""
 msgid ""
 "See if you can clear five lines without stopping.\n"
 "\n"
-"Well,/ a short break is actually okay too."
+"Well, a short break is actually okay too."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:63
 msgid ""
-"Try again!/ Try to extend this combo by seven lines.\n"
+"Try again! Try to extend this combo by seven lines.\n"
 "\n"
 "Make boxes to keep your combo from breaking."
 msgstr ""
@@ -1520,19 +1515,19 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:71
-msgid "You can make a cake box with three pieces./ Let me show you."
+msgid "You can make a cake box with three pieces. Let me show you."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:72
 msgid ""
-"Unfortunately,/ it's difficult to continue a combo with cake boxes.\n"
+"Unfortunately, it's difficult to continue a combo with cake boxes.\n"
 "\n"
 "The first two pieces will break the combo."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:77
 msgid ""
-"With a little foresight,/ you can clear some lines while building a cake "
+"With a little foresight, you can clear some lines while building a cake "
 "box.\n"
 "\n"
 "Then your combo won't break."
@@ -1540,7 +1535,7 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:85
 msgid ""
-"Try again!/ Try to make two cake boxes.\n"
+"Try again! Try to make two cake boxes.\n"
 "\n"
 "Clear lines to keep your combo from breaking."
 msgstr ""
@@ -1549,114 +1544,114 @@ msgstr ""
 msgid ""
 "Now see if you can do it.\n"
 "\n"
-"Make two cake boxes,/ but don't let your combo break."
+"Make two cake boxes, but don't let your combo break."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:94
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:95
 msgid ""
-"...Oh!/ Customers!/\n"
+"...Oh! Customers!\n"
 "\n"
 "Try to get ¥120 in one big combo.\n"
 "\n"
 "It might help to make some boxes first."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:128
-msgid "Oops!/ ...You needed to clear a line with that last piece."
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:129
+msgid "Oops! ...You needed to clear a line with that last piece."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:139
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:140
 msgid ""
 "Impressive!\n"
 "\n"
 "Hmm... Was there anything else?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:143
-msgid "Oh!/ ...You needed to clear a line that time."
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:144
+msgid "Oh! ...You needed to clear a line that time."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:165
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:166
 msgid ""
-"Combos earn you extra money!/ You can build combos by making boxes and "
+"Combos earn you extra money! You can build combos by making boxes and "
 "clearing lines.\n"
 "\n"
-"Otherwise,/ dropping two pieces will reset your combo."
+"Otherwise, dropping two pieces will reset your combo."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:167
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:168
 msgid ""
-"In other words,/ you get two chances to make a box or clear a line before"
-" you lose your combo.\n"
+"In other words, you get two chances to make a box or clear a line before "
+"you lose your combo.\n"
 "\n"
 "Does that make sense?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:172
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:173
 msgid ""
-"In other words,/you get two chances to make a box or clear a line before "
+"In other words,you get two chances to make a box or clear a line before "
 "you lose your combo."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:174
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:175
 msgid ""
 "Arranging two or more pieces into a rectangle will make a box.\n"
 "\n"
-"That's one easy way to keep your combo alive!/ Just place two pieces to "
+"That's one easy way to keep your combo alive! Just place two pieces to "
 "make a square."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:176
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:177
 msgid ""
-"Clearing a line will also continue your combo./ But,/ you don't have to "
+"Clearing a line will also continue your combo. But, you don't have to "
 "clear a line with every piece!\n"
 "\n"
 "You can drop one piece without breaking your combo."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:179
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:180
 msgid ""
 "Your combo's only interrupted if you drop two pieces without doing "
 "something.\n"
 "\n"
-"So,/ you're allowed to make one mistake!/ Or,/ to use one piece to plan "
+"So, you're allowed to make one mistake! Or, to use one piece to plan "
 "ahead."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:208
-msgid "Oops!/ I can still make the cake box,/ but my combo already broke."
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:209
+msgid "Oops! I can still make the cake box, but my combo already broke."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:214
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:215
 msgid ""
-"There,/ I did it!\n"
+"There, I did it!\n"
 "\n"
 "That was tricky."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:229
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:230
 msgid ""
-"Wow,/ I didn't expect that!/ Great job.\n"
+"Wow, I didn't expect that! Great job.\n"
 "\n"
 "You're already a combo master!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:232
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:233
 msgid ""
 "Oh no, you broke your combo without reaching ¥120!\n"
 "\n"
-"Well,/ don't worry about that."
+"Well, don't worry about that."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:235
-msgid "¥120 is just a number I pulled out of my,/ um. ./././Out of thin air."
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:236
+msgid "¥120 is just a number I pulled out of my, um. ...Out of thin air."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:41
 msgid ""
 "Today we'll cover some advanced squish move techniques!\n"
 "\n"
-"But first,/ let's make sure you remember the basics."
+"But first, let's make sure you remember the basics."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:52
@@ -1668,17 +1663,15 @@ msgid "So, which of these snack boxes can be completed with a squish move?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:60
-msgid "How about now,/ can you find a way to squish here?"
+msgid "How about now, can you find a way to squish here?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:63
-msgid ""
-"What do you think about this one?/ Is it possible to make a snack box "
-"here?"
+msgid "What do you think about this one? Is it possible to make a snack box here?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:70
-msgid "Here,/ let me help you with that."
+msgid "Here, let me help you with that."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:72
@@ -1691,18 +1684,18 @@ msgstr ""
 msgid ""
 "Should I make it worse this time?\n"
 "\n"
-"No,/ that would be mean."
+"No, that would be mean."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:82
-msgid "Hmmm.../ What are you up to this time?"
+msgid "Hmmm... What are you up to this time?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:89
 msgid ""
 "Your training is complete!\n"
 "\n"
-"But don't let it go to your head,/ we still have some customers to take "
+"But don't let it go to your head, we still have some customers to take "
 "care of."
 msgstr ""
 
@@ -1720,13 +1713,13 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:118
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:126
-msgid "Oops!/ ...Let's try that again."
+msgid "Oops! ...Let's try that again."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:121
 msgid ""
-"Wow!/ ...I had a few more of these planned,/ but it looks like you get "
-"the idea."
+"Wow! ...I had a few more of these planned, but it looks like you get the "
+"idea."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:143
@@ -1738,78 +1731,78 @@ msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:152
 msgid ""
-"For a piece to squish successfully,/ one part needs a straight gap down "
-"to the target."
+"For a piece to squish successfully, one part needs a straight gap down to"
+" the target."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:154
 msgid ""
 "Here are some examples of good and bad squish moves.\n"
 "\n"
-"Does this make any sense?/ I know it's a little weird."
+"Does this make any sense? I know it's a little weird."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:158
 msgid ""
-"So basically,/ one part of the piece needs a straight gap down to the "
+"So basically, one part of the piece needs a straight gap down to the "
 "target or it won't squish."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:160
 msgid ""
-"These examples on the right don't work,/ because the piece can't \"see\" "
+"These examples on the right don't work, because the piece can't \"see\" "
 "where it's going."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:162
 msgid ""
-"You can think of it like././.\n"
+"You can think of it like...\n"
 "\n"
-"If the piece were split into tiny chunks,/ would each chunk be blocked?"
+"If the piece were split into tiny chunks, would each chunk be blocked?"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:164
 msgid ""
-"These examples on the left work,/ because one tiny chunk of the piece has"
-" a clear path.\n"
+"These examples on the left work, because one tiny chunk of the piece has "
+"a clear path.\n"
 "\n"
 "It just needs one."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:218
 msgid ""
-"Not again!/ ...Can you clean this up using squish moves?\n"
+"Not again! ...Can you clean this up using squish moves?\n"
 "\n"
 "Try to clear three lines."
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:221
 msgid ""
-"Oops!/ Look at the mess you made./ ...Can you clean this up using squish "
+"Oops! Look at the mess you made. ...Can you clean this up using squish "
 "moves?\n"
 "\n"
 "Try to clear three lines."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:234
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:235
 msgid ""
-"Oh no,/ it keeps happening!/ Well, try to clear three lines.\n"
+"Oh no, it keeps happening! Well, try to clear three lines.\n"
 "\n"
 "Remember your squish moves!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:237
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:238
 msgid ""
-"Oh no!/ Now you've done it.\n"
+"Oh no! Now you've done it.\n"
 "\n"
 "Look at how clumsy you are!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:238
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:239
 msgid ""
 "That's okay.\n"
 "\n"
-"I'm sure you'll think of a clever way to clean this up,/ too."
+"I'm sure you'll think of a clever way to clean this up, too."
 msgstr ""
 
 #: project/src/main/ui/CreatureStressTest.tscn:41

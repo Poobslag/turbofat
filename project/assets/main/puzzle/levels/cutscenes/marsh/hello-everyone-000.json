@@ -13,7 +13,7 @@
   "": [
     {
       "who": "#sensei#",
-      "text": "So explain again why my beloved restaurant is very,/ very empty?",
+      "text": "So explain again why my beloved restaurant is very, very empty?",
       "mood": "sigh0",
       "meta": [
         "creature-enter #player#",
@@ -23,7 +23,7 @@
     },
     {
       "who": "richie",
-      "text": "Aw come on now!/ It's not empty,/ we got the two line cooks here..."
+      "text": "Aw come on now! It's not empty, we got the two line cooks here..."
     },
     {
       "who": "bones",
@@ -32,35 +32,35 @@
     },
     {
       "who": "richie",
-      "text": "And as far as customers,/ we got Chonkers McRhonkers over there!/ What more could you need?",
+      "text": "And as far as customers, we got Chonkers McRhonkers over there! What more could you need?",
       "mood": "wave0"
     },
     {
       "who": "#sensei#",
-      "text": "Hm./ Mhm./././ Well ideally you'd have at least TWO customers...",
+      "text": "Hm. Mhm... Well ideally you'd have at least TWO customers...",
       "mood": "think0"
     },
     {
       "who": "bones",
-      "text": "Oh Chonkers eats plenty!/ Even with just her,/ she's doing a lot to keep us afloat."
+      "text": "Oh Chonkers eats plenty! Even with just her, she's doing a lot to keep us afloat."
     },
     {
       "who": "richie",
-      "text": "I mean,/ afloat might be a strong word./ She's makin' us sink a little slower I guess.",
+      "text": "I mean, afloat might be a strong word. She's makin' us sink a little slower I guess.",
       "mood": "awkward0"
     },
     {
       "who": "richie",
-      "text": "Maybe kind of like a, hmm./././ Like a anchor made of something slightly buoyant."
+      "text": "Maybe kind of like a, hmm... Like a anchor made of something slightly buoyant."
     },
     {
       "who": "bones",
-      "text": "An anchor made of./././ Boats?",
+      "text": "An anchor made of... Boats?",
       "mood": "think0"
     },
     {
       "who": "richie",
-      "text": "Nope./ Not that buoyant!",
+      "text": "Nope. Not that buoyant!",
       "links": [
         {
           "walnuts": "Walnuts?"
@@ -86,7 +86,7 @@
     },
     {
       "who": "richie",
-      "text": "There you go,/ well put!/ Like a anchor made of walnuts.",
+      "text": "There you go, well put! Like a anchor made of walnuts.",
       "mood": "yes1",
       "links": [
         "following-our-recipes"
@@ -101,12 +101,12 @@
     },
     {
       "who": "richie",
-      "text": "There you go,/ well put!/ Like a anchor made of./././ wait what!?",
+      "text": "There you go, well put! Like a anchor made of... wait what!?",
       "mood": "sweat0"
     },
     {
       "who": "richie",
-      "text": "./././I mean,/ maybe?/ ./././Hold up,/ are you on some kind of watchlist I should know about?",
+      "text": "...I mean, maybe? ...Hold up, are you on some kind of watchlist I should know about?",
       "mood": "think0",
       "links": [
         "following-our-recipes"
@@ -121,7 +121,7 @@
     },
     {
       "who": "richie",
-      "text": "There you go,/ well put!/ Like a anchor made of slightly smaller boats.",
+      "text": "There you go, well put! Like a anchor made of slightly smaller boats.",
       "mood": "yes1",
       "links": [
         "following-our-recipes"
@@ -135,7 +135,7 @@
     },
     {
       "who": "richie",
-      "text": "Oh sure,/ I'm with you./ ./././We'll come back to that one later.",
+      "text": "Oh sure, I'm with you. ...We'll come back to that one later.",
       "mood": "think0",
       "links": [
         "following-our-recipes"
@@ -146,7 +146,7 @@
   "following-our-recipes" : [
     {
       "who": "#sensei#",
-      "text": "Well, anyway./././ I know you said you were following our recipes to a tee./ But just in case...",
+      "text": "Well, anyway... I know you said you were following our recipes to a tee. But just in case...",
       "mood": "think0"
     },
     {
@@ -155,16 +155,16 @@
     },
     {
       "who": "#sensei#",
-      "text": "I mean./././ well..."
+      "text": "I mean... well..."
     },
     {
       "who": "richie",
-      "text": "Go ahead,/ Skins!/ Why don't you show 'em what you got.",
+      "text": "Go ahead, Skins! Why don't you show 'em what you got.",
       "mood": "wave0"
     },
     {
       "who": "skins",
-      "text": "Can do!/ Mowr!",
+      "text": "Can do! Mowr!",
       "mood": "smile0"
     }
   ]

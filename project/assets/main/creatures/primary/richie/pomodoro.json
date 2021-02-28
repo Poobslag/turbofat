@@ -8,12 +8,12 @@
     },
     {
       "who": "richie",
-      "text": "./././'Pomodoro' is a fancy Italian word for sitting on your ass,/ instead of doing any actual work."
+      "text": "...'Pomodoro' is a fancy Italian word for sitting on your ass, instead of doing any actual work."
     },
     {
       "who": "#sensei#",
       "mood": "smile0",
-      "text": "Ah,/ I do that already!/ I didn't someone had coined a name for it.",
+      "text": "Ah, I do that already! I didn't someone had coined a name for it.",
       "links": [
         {
           "opinion0": "You're both lazy"
@@ -34,11 +34,11 @@
     {
       "who": "#player#",
       "mood": "rage1",
-      "text": "Technique?/ You're both just lazy."
+      "text": "Technique? You're both just lazy."
     },
     {
       "who": "#sensei#",
-      "text": "Oh,/ lighten up #player#./ Sounds like someone needs a Pomodoro."
+      "text": "Oh, lighten up #player#. Sounds like someone needs a Pomodoro."
     }
   ],
   "opinion1": [
@@ -48,7 +48,7 @@
     },
     {
       "who": "#sensei#",
-      "text": "Oh, lighten up #player#./ Sounds like someone needs a Pomodoro."
+      "text": "Oh, lighten up #player#. Sounds like someone needs a Pomodoro."
     }
   ],
   "opinion2": [
@@ -59,7 +59,7 @@
     },
     {
       "who": "#sensei#",
-      "text": "Sure!/ It's good to take a break once in awhile~"
+      "text": "Sure! It's good to take a break once in awhile~"
     }
   ],
   "opinion3": [
@@ -71,7 +71,7 @@
     {
       "who": "#sensei#",
       "mood": "laugh0",
-      "text": "Ha!/ Ha!/ Maybe we can compare notes some time."
+      "text": "Ha! Ha! Maybe we can compare notes some time."
     }
   ]
 }

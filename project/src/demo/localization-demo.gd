@@ -105,7 +105,10 @@ func _write_localizables() -> void:
 	f.store_string("# Localizable strings extracted by LocalizationDemo.tscn\n")
 	for localizable_string_obj in _localizables:
 		var localizable_string: String = localizable_string_obj
-		f.store_string("tr(\"%s\")\n" % [localizable_string.replace("\"", "\\\"")])
+		var sanitized_string := localizable_string
+		sanitized_string = sanitized_string.replace("\"", "\\\"")
+		sanitized_string = sanitized_string.replace("\n", "\\n")
+		f.store_string("tr(\"%s\")\n" % [sanitized_string])
 	f.close()
 
 

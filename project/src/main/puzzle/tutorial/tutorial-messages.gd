@@ -107,7 +107,10 @@ func _show_message(message: String, font: Font = _normal_font) -> void:
 	
 	$Panel.show()
 	$Label.set("custom_fonts/font", font)
-	var chosen_size_index: int = $Label.show_message(message)
+	
+	var message_with_lulls := ChatLibrary.add_lull_characters(message)
+	
+	var chosen_size_index: int = $Label.show_message(message_with_lulls)
 	$Label.update_appearance(_sensei_chat_theme)
 	$Panel.update_appearance(_sensei_chat_theme, chosen_size_index)
 

@@ -33,8 +33,8 @@ func _ready() -> void:
 		puzzle.hide_buttons()
 	else:
 		# display a welcome message before the game starts
-		hud.set_message(tr("Welcome to Turbo Fat!//"
-				+ " You seem to already be familiar with this sort of game,/ so let's dive right in."))
+		hud.set_message(tr("Welcome to Turbo Fat!"
+				+ " You seem to already be familiar with this sort of game, so let's dive right in."))
 
 
 func prepare_tutorial_level() -> void:
@@ -46,17 +46,17 @@ func prepare_tutorial_level() -> void:
 			hud.set_message(tr("Try making a snack box by arranging two pieces into a square."))
 		"tutorial/basics_2":
 			hud.skill_tally_item("SquishMove").visible = true
-			hud.set_message(tr("Next,/ try holding soft drop to squish pieces through these gaps."))
+			hud.set_message(tr("Next, try holding soft drop to squish pieces through these gaps."))
 		"tutorial/basics_3":
 			hud.skill_tally_item("SnackStack").visible = true
-			hud.set_message(tr("One last lesson!/ Try holding soft drop to squish and complete these boxes."))
+			hud.set_message(tr("One last lesson! Try holding soft drop to squish and complete these boxes."))
 		"tutorial/basics_4":
 			# reset timer, scores
 			PuzzleScore.reset()
 			puzzle.scroll_to_new_creature()
 			
 			hud.set_message(tr("You're a remarkably quick learner." \
-					+ "/ I think I hear some customers!\n\nSee if you can earn ¥100."))
+					+ " I think I hear some customers!\n\nSee if you can earn ¥100."))
 			hud.enqueue_pop_out()
 
 
@@ -70,7 +70,7 @@ func _advance_level() -> void:
 	if Level.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
 		PuzzleScore.change_level("tutorial/oh_my", false)
-		hud.set_big_message("O/H/,/// M/Y/!/!/!")
+		hud.set_big_message(ChatLibrary.add_mega_pause_charaters(tr("OH, MY!!!")))
 		hud.enqueue_pop_out()
 		
 		# force match to end
@@ -93,7 +93,7 @@ func _advance_level() -> void:
 
 func _handle_line_clear_message() -> void:
 	if _did_line_clear and _line_clears == 1:
-		hud.set_message(tr("Well done!\n\nLine clears earn ¥1./ Maybe more if you can build a combo."))
+		hud.set_message(tr("Well done!\n\nLine clears earn ¥1. Maybe more if you can build a combo."))
 
 
 """
@@ -118,12 +118,12 @@ func _handle_box_clear_message() -> void:
 		if _box_clears == 1:
 			match Level.settings.id:
 				"tutorial/basics_0":
-					hud.set_message(tr("Well done!\n\nBox clears earn you five times as much money./"
+					hud.set_message(tr("Well done!\n\nBox clears earn you five times as much money."
 							+ " Maybe more than that if you're clever."))
 					_add_post_skip_message()
 					hud.skill_tally_item("BoxClear").visible = true
 				"tutorial/basics_1":
-					hud.set_message(tr("Well done!\n\nBox clears earn you five times as much money./"
+					hud.set_message(tr("Well done!\n\nBox clears earn you five times as much money."
 							+ " Maybe more than that if you're clever."))
 					_add_post_skip_message()
 
@@ -133,13 +133,13 @@ func _handle_squish_move_message() -> void:
 		if _squish_moves == 1:
 			match Level.settings.id:
 				"tutorial/basics_0", "tutorial/basics_1":
-					hud.set_message(tr("Oh my,/ you're not supposed to know how to do that!\n\n"
-							+ "...But yes,/ squish moves can help you out of a jam."))
+					hud.set_message(tr("Oh my, you're not supposed to know how to do that!\n\n"
+							+ "...But yes, squish moves can help you out of a jam."))
 					_add_post_skip_message()
 					hud.skill_tally_item("SquishMove").visible = true
 					hud.skill_tally_item("SquishMove").increment()
 				"tutorial/basics_2":
-					hud.set_message(tr("Well done!\n\nSquish moves can help you out of a jam./"
+					hud.set_message(tr("Well done!\n\nSquish moves can help you out of a jam."
 							+ " They're also good for certain boxes."))
 
 
@@ -148,13 +148,13 @@ func _handle_build_box_message() -> void:
 		if _boxes_built == 1:
 			match Level.settings.id:
 				"tutorial/basics_0":
-					hud.set_message(tr("Oh my,/ you're not supposed to know how to do that!\n\n"
-							+ "...But yes,/ those boxes earn $15 when you clear them."))
+					hud.set_message(tr("Oh my, you're not supposed to know how to do that!\n\n"
+							+ "...But yes, those boxes earn $15 when you clear them."))
 					_add_post_skip_message()
 					hud.skill_tally_item("SnackBox").visible = true
 					hud.skill_tally_item("SnackBox").increment()
 				"tutorial/basics_1":
-					hud.set_message(tr("Well done!\n\nThose boxes earn ¥15 when you clear them./"
+					hud.set_message(tr("Well done!\n\nThose boxes earn ¥15 when you clear them."
 					+ " Try clearing a few box lines."))
 
 
@@ -163,7 +163,7 @@ func _handle_snack_stack_message() -> void:
 		hud.skill_tally_item("SnackStack").increment()
 		_snack_stacks += 1
 		if _snack_stacks == 1:
-			hud.set_message(tr("Impressive!/ Using squish moves,/" \
+			hud.set_message(tr("Impressive! Using squish moves," \
 					+ " you can organize boxes in tall vertical stacks and earn a lot of money."))
 
 
@@ -245,8 +245,8 @@ func _on_PuzzleScore_after_game_prepared() -> void:
 
 func _on_PuzzleScore_game_started() -> void:
 	if Level.settings.other.skip_intro:
-		hud.set_message(tr("Welcome to Turbo Fat!/"
-					+ " You seem to already be familiar with this sort of game,/ so let's dive right in."
+		hud.set_message(tr("Welcome to Turbo Fat!"
+					+ " You seem to already be familiar with this sort of game, so let's dive right in."
 					+ "\n\nClear a row by filling it with blocks."))
 	else:
 		hud.set_message(tr("Clear a row by filling it with blocks."))
