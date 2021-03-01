@@ -30,7 +30,7 @@ func _ready() -> void:
 When a creature is renamed, the corresponding nametag changes its text and position.
 """
 func _on_Creature_creature_name_changed(creature: Creature, nametag: Panel) -> void:
-	nametag.set_nametag_text(creature.creature_name if creature.creature_name else "(unnamed)")
+	nametag.set_nametag_text(StringUtils.default_if_empty(creature.creature_name, "(unnamed)"))
 	nametag.rect_scale = Vector2(0.6, 0.6) if creature.has_meta("main_creature") else Vector2(0.4, 0.4)
 	nametag.set_bg_color(NAMETAG_HIGHLIGHT if creature.has_meta("main_creature") else NAMETAG_LOWLIGHT)
 	

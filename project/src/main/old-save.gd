@@ -150,11 +150,11 @@ func _convert_199c(json_save_items: Array) -> Array:
 func _convert_199c_level_id(value: String) -> String:
 	var new_value := value
 	if value.begins_with("tutorial_"):
-		new_value = "tutorial/%s" % [StringUtils.remove_start(value, "tutorial_")]
+		new_value = "tutorial/%s" % [value.trim_prefix("tutorial_")]
 	elif value == "oh_my":
 		new_value = "tutorial/%s" % [value]
 	elif value.begins_with("rank_"):
-		new_value = "rank/%s" % [StringUtils.remove_start(value, "rank_")]
+		new_value = "rank/%s" % [value.trim_prefix("rank_")]
 	elif value.begins_with("sandbox_") \
 			or value.begins_with("sprint_") \
 			or value.begins_with("survival_") \

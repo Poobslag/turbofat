@@ -134,18 +134,6 @@ func test_capitalize() -> void:
 	assert_eq(StringUtils.capitalize_words("HOT DOG"), "Hot Dog")
 
 
-func test_remove_start() -> void:
-	assert_eq(StringUtils.remove_start("www.domain.com", "www."), "domain.com")
-	assert_eq(StringUtils.remove_start("domain.com", "www."), "domain.com")
-	assert_eq(StringUtils.remove_start("www.domain.com", "domain"), "www.domain.com")
-
-
-func test_remove_end() -> void:
-	assert_eq(StringUtils.remove_end("www.domain.com", ".com"), "www.domain")
-	assert_eq(StringUtils.remove_end("www.domain", ".com"), "www.domain")
-	assert_eq(StringUtils.remove_end("www.domain.com", "domain"), "www.domain.com")
-
-
 func test_has_letter() -> void:
 	assert_eq(StringUtils.has_letter("roof action"), true)
 	assert_eq(StringUtils.has_letter("ROOF ACTION"), true)
