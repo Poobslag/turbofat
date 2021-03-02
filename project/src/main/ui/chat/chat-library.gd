@@ -6,8 +6,8 @@ Dialog is stored as a set of json resources. This class parses those json resour
 into the UI.
 """
 
-# Missing chat tree warnings are currently disabled. Many levels don't have cutscenes.
-const WARN_ON_MISSING_CHAT_TREE := false
+const PREROLL_SUFFIX := "000"
+const POSTROLL_SUFFIX := "100"
 
 """
 Loads a conversation for the specified creature.
@@ -17,7 +17,7 @@ chat selectors until it finds one suitable for the current game state.
 
 Parameters:
 	'creature': The creature whose conversation should be returned
-	
+
 	'forced_level_id': (Optional) The current level being chosen. If omitted, the level_id will be calculated based on
 			the first unfinished unlocked level available.
 """
@@ -25,11 +25,11 @@ func chat_tree_for_creature(creature: Creature, forced_level_id: String = "") ->
 	var state := _creature_chat_state(creature.creature_id, forced_level_id)
 	var level_id: String = state["level_id"]
 	var chat_tree := chat_tree_for_creature_def(creature.creature_def, state)
-	
+
 	if level_id:
 		# schedule a level to launch when the dialog completes
 		Level.set_launched_level(level_id)
-	
+
 	return chat_tree
 
 
@@ -41,7 +41,7 @@ Returns null if the chat tree cannot be found.
 func chat_tree_for_creature_id(creature_id: String, forced_level_id: String = "") -> ChatTree:
 	var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
 	var state := _creature_chat_state(creature_id, forced_level_id)
-	
+
 	return chat_tree_for_creature_def(creature_def, state)
 
 
@@ -54,16 +54,16 @@ func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) ->
 	var creature_id := creature_def.creature_id
 	var filler_ids := filler_ids_for_creature(creature_id, creature_def.dialog)
 	var chosen_dialog := choose_dialog_from_chat_selectors(creature_def.chat_selectors, state, filler_ids)
-	
+
 	var chat_tree := chat_tree_for_chat_id(creature_def, chosen_dialog)
-	if not chat_tree and FileUtils.file_exists(before_level_cutscene_path(chosen_dialog)):
-		chat_tree = chat_tree_from_file(before_level_cutscene_path(chosen_dialog))
-	if not chat_tree and WARN_ON_MISSING_CHAT_TREE:
+	if not chat_tree and has_preroll(chosen_dialog):
+		chat_tree = chat_tree_for_preroll(chosen_dialog)
+	if not chat_tree:
 		push_warning("Failed to load chat tree '%s' for creature '%s'.\nCould not find file '%s' or '%s'" % \
 				[chosen_dialog, creature_id,
 				creature_dialog_path(creature_id, chosen_dialog),
-				before_level_cutscene_path(chosen_dialog)])
-	
+				_preroll_path(chosen_dialog)])
+
 	return chat_tree
 
 
@@ -84,31 +84,33 @@ func chat_tree_for_chat_id(creature_def: CreatureDef, chat_id: String) -> ChatTr
 	return chat_tree
 
 
+func chat_tree_for_preroll(level_id: String) -> ChatTree:
+	return chat_tree_for_level_cutscene(level_id, _preroll_path(level_id))
+
+
 """
 Returns the chat tree for the cutscene which plays after the current level.
 
 Returns null if the chat tree cannot be found.
 """
-func chat_tree_for_after_level_cutscene() -> ChatTree:
+func chat_tree_for_postroll(level_id: String) -> ChatTree:
+	return chat_tree_for_level_cutscene(level_id, _postroll_path(level_id))
+
+
+func chat_tree_for_level_cutscene(level_id: String, cutscene_path: String) -> ChatTree:
 	var chat_tree: ChatTree
-	if FileUtils.file_exists(after_level_cutscene_path(Level.launched_level_id)):
-		chat_tree = chat_tree_from_file(after_level_cutscene_path(Level.launched_level_id))
-	else:
-		if WARN_ON_MISSING_CHAT_TREE:
-			push_warning("Failed to load chat tree for level '%s'.\nCould not find file '%s'." % \
-					[Level.launched_level_id, after_level_cutscene_path(Level.launched_level_id)])
+	if FileUtils.file_exists(cutscene_path):
+		chat_tree = chat_tree_from_file(cutscene_path)
 
 	return chat_tree
 
 
-func before_level_cutscene_path(level_id: String) -> String:
-	return "res://assets/main/puzzle/levels/cutscenes/%s-000.json" % \
-			[level_id.replace("_", "-")]
+func has_preroll(level_id: String) -> bool:
+	return FileUtils.file_exists(_preroll_path(level_id))
 
 
-func after_level_cutscene_path(level_id: String) -> String:
-	return "res://assets/main/puzzle/levels/cutscenes/%s-100.json" % \
-			[level_id.replace("_", "-")]
+func has_postroll(level_id: String) -> bool:
+	return FileUtils.file_exists(_postroll_path(level_id))
 
 
 func creature_dialog_path(creature_id: String, chat_id: String) -> String:
@@ -142,8 +144,8 @@ Loads the chat events from the specified json file.
 func chat_tree_from_file(path: String) -> ChatTree:
 	var chat_tree := ChatTree.new()
 	var history_key := path
-	history_key = StringUtils.remove_end(history_key, ".json")
-	history_key = StringUtils.remove_start(history_key, "res://assets/main/")
+	history_key = history_key.trim_suffix(".json")
+	history_key = history_key.trim_prefix("res://assets/main/")
 	history_key = history_key.replace("creatures/primary", "dialog")
 	history_key = history_key.replace("-", "_")
 	chat_tree.history_key = history_key
@@ -173,19 +175,19 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 		level_id = LevelLibrary.first_unfinished_level_id_for_creature(creature_id)
 	if level_id:
 		result = level_id
-	
+
 	if not result:
 		# no level available; find a suitable conversation
 		for chat_selector_obj in chat_selectors:
 			var chat_selector: Dictionary = chat_selector_obj
-			
+
 			var repeat_age: int = chat_selector.get("repeat", 25)
 			var history_key := "dialog/%s/%s" % [creature_id, chat_selector["dialog"]]
 			var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
 			if chat_age < repeat_age:
 				# skip; we've had this conversation too recently
 				continue
-			
+
 			var if_conditions: Array = chat_selector.get("if_conditions", [])
 			var if_conditions_met := true
 			for if_condition in if_conditions:
@@ -195,7 +197,7 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 			if not if_conditions_met:
 				# skip; one or more if conditions weren't met
 				continue
-			
+
 			# success; return the current chat selector's dialog
 			result = chat_selector["dialog"]
 			break
@@ -342,7 +344,14 @@ func _creature_chat_state(creature_id: String, forced_level_id: String = "") -> 
 		"level_id": forced_level_id
 	}
 	
-	if not forced_level_id:
-		result["level_id"] = LevelLibrary.first_unfinished_level_id_for_creature(creature_id)
-	
 	return result
+
+
+func _preroll_path(level_id: String) -> String:
+	return "res://assets/main/puzzle/levels/cutscenes/%s-%s.json" % \
+			[level_id.replace("_", "-"), PREROLL_SUFFIX]
+
+
+func _postroll_path(level_id: String) -> String:
+	return "res://assets/main/puzzle/levels/cutscenes/%s-%s.json" % \
+			[level_id.replace("_", "-"), POSTROLL_SUFFIX]

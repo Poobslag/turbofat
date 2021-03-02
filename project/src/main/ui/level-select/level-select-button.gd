@@ -98,7 +98,7 @@ func _refresh_appearance() -> void:
 		LevelSize.MEDIUM: rect_min_size.y = level_column_width * 0.75 + VERTICAL_SPACING * 0.5
 		LevelSize.LONG: rect_min_size.y = level_column_width + VERTICAL_SPACING
 	
-	$Label.text = level_title if level_title else "-"
+	$Label.text = StringUtils.default_if_empty(level_title, "-")
 	
 	var new_bg_color: Color = get("custom_styles/normal").bg_color
 	match $Label.text.hash() % 5:

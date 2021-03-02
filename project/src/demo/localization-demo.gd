@@ -47,11 +47,11 @@ func _extract_localizables_from_levels() -> void:
 		_localizables.append(level_settings.description)
 		
 		# extract level's cutscene dialog as localizables
-		if FileUtils.file_exists(ChatLibrary.before_level_cutscene_path(level_id)):
-			var chat_tree := ChatLibrary.chat_tree_from_file(ChatLibrary.before_level_cutscene_path(level_id))
+		if ChatLibrary.has_preroll(level_id):
+			var chat_tree := ChatLibrary.chat_tree_for_preroll(level_id)
 			_extract_localizables_from_chat_tree(chat_tree)
-		if FileUtils.file_exists(ChatLibrary.after_level_cutscene_path(level_id)):
-			var chat_tree := ChatLibrary.chat_tree_from_file(ChatLibrary.after_level_cutscene_path(level_id))
+		if ChatLibrary.has_postroll(level_id):
+			var chat_tree := ChatLibrary.chat_tree_for_postroll(level_id)
 			_extract_localizables_from_chat_tree(chat_tree)
 
 

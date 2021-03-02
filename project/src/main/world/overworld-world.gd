@@ -43,9 +43,9 @@ func _launch_cutscene() -> void:
 	var chat_tree: ChatTree
 	match Level.level_state:
 		Level.LevelState.BEFORE:
-			chat_tree = ChatLibrary.chat_tree_for_creature(cutscene_creature, Level.launched_level_id)
+			chat_tree = ChatLibrary.chat_tree_for_preroll(Level.launched_level_id)
 		Level.LevelState.AFTER:
-			chat_tree = ChatLibrary.chat_tree_for_after_level_cutscene()
+			chat_tree = ChatLibrary.chat_tree_for_postroll(Level.launched_level_id)
 		_:
 			push_warning("Unexpected Level.level_state: %s" % [Level.level_state])
 	

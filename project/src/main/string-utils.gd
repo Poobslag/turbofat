@@ -158,20 +158,7 @@ static func capitalize_words(string: String) -> String:
 Removes a substring only if it is at the beginning of a source string, otherwise returns the source string.
 """
 static func remove_start(string: String, remove: String) -> String:
-	var result := string
-	if string.begins_with(remove):
-		result = string.substr(remove.length())
-	return result
-
-
-"""
-Removes a substring only if it is at the end of a source string, otherwise returns the source string.
-"""
-static func remove_end(string: String, remove: String) -> String:
-	var result := string
-	if string.ends_with(remove):
-		result = string.substr(0, string.length() - remove.length())
-	return result
+	return string.trim_prefix(remove)
 
 
 """
@@ -189,3 +176,10 @@ static func english_number(i: int) -> String:
 			"six", "seven", "eight", "nine", "ten", \
 			"eleven", "twelve", "thirteen", "fourteen", "fifteen", \
 			"sixteen", "seventeen", "eighteen", "nineteen", "twenty"][i];
+
+
+"""
+Returns either the passed in String, or if the String is empty or null, the value of 'default'.
+"""
+static func default_if_empty(s: String, default: String) -> String:
+	return s if s else default
