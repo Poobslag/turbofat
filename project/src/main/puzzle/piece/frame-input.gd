@@ -23,7 +23,7 @@ var _buffer: bool
 var _print_inputs := false
 
 func _unhandled_input(event: InputEvent) -> void:
-	if not Level.settings.input_replay.empty():
+	if not CurrentLevel.settings.input_replay.empty():
 		# don't process button presses when replaying prerecorded input
 		return
 	
@@ -55,7 +55,7 @@ func _physics_process(_delta: float) -> void:
 	_just_pressed = false
 	
 	# process the input replay last; this way just_pressed remains true for a frame
-	if not Level.settings.input_replay.empty():
+	if not CurrentLevel.settings.input_replay.empty():
 		_process_input_replay()
 
 
@@ -102,20 +102,20 @@ func is_das_active() -> bool:
 Applies prerecorded puzzle inputs for things such as tutorials.
 """
 func _process_input_replay() -> void:
-	if Level.settings.input_replay.is_action_pressed(action):
+	if CurrentLevel.settings.input_replay.is_action_pressed(action):
 		if _print_inputs: print("\"%s +%s\"," % [PuzzleScore.input_frame, action])
 		_just_pressed = true
 		_pressed = true
-	elif Level.settings.input_replay.is_action_released(action):
+	elif CurrentLevel.settings.input_replay.is_action_released(action):
 		if _print_inputs: print("\"%s -%s\"," % [PuzzleScore.input_frame, action])
 		_pressed = false
 	
 	if cancel_action:
-		if Level.settings.input_replay.is_action_pressed(cancel_action):
+		if CurrentLevel.settings.input_replay.is_action_pressed(cancel_action):
 			_just_pressed = false
 			_pressed = false
-		elif Level.settings.input_replay.is_action_released(cancel_action):
-			if Level.settings.input_replay.is_action_held(action) and not _pressed:
+		elif CurrentLevel.settings.input_replay.is_action_released(cancel_action):
+			if CurrentLevel.settings.input_replay.is_action_held(action) and not _pressed:
 				# player was holding both buttons, but let go of the cancel_button
 				_just_pressed = true
 				_pressed = true

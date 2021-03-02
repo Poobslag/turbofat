@@ -41,7 +41,7 @@ func _ready() -> void:
 		var seconds: float = StringUtils.parse_duration(duration_string)
 		
 		# calculate target lines and score for a fake level which resembles the game's level
-		Level.start_level(_level_settings(data_key, start_speed, seconds))
+		CurrentLevel.start_level(_level_settings(data_key, start_speed, seconds))
 		var target_score := _target_score(target_rank)
 		var target_lines := _target_lines(target_rank)
 		

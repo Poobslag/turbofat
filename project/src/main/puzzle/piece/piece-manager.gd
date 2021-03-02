@@ -221,7 +221,7 @@ func is_playfield_clearing_lines() -> bool:
 Set the state frames so that the piece spawns immediately.
 """
 func skip_prespawn() -> void:
-	if Level.settings.other.non_interactive:
+	if CurrentLevel.settings.other.non_interactive:
 		return
 	
 	if $States.get_state() != $States/Prespawn:
@@ -248,7 +248,7 @@ func _update_tile_map() -> void:
 Spawns the first piece of a level.
 """
 func _start_first_piece() -> void:
-	if Level.settings.other.non_interactive:
+	if CurrentLevel.settings.other.non_interactive:
 		return
 	
 	$States.set_state($States/Prespawn)

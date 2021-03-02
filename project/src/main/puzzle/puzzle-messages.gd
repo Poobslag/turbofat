@@ -16,7 +16,7 @@ func _ready() -> void:
 	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
-	Level.connect("level_state_changed", self, "_on_Level_level_state_changed")
+	CurrentLevel.connect("level_state_changed", self, "_on_Level_level_state_changed")
 	$MessageLabel.hide()
 	# grab focus so the player can start a new game or navigate with the keyboard
 	$Buttons/Start.grab_focus()
@@ -73,7 +73,7 @@ func _on_PuzzleScore_game_started() -> void:
 
 
 func _on_PuzzleScore_before_level_changed(new_level_id: String) -> void:
-	if new_level_id == Level.settings.id:
+	if new_level_id == CurrentLevel.settings.id:
 		show_message(tr("Regret..."))
 	else:
 		show_message(tr("Good!"))
@@ -105,7 +105,7 @@ func _on_PuzzleScore_after_game_ended() -> void:
 	$Buttons/Settings.show()
 	$Buttons/Back.show()
 	$Buttons/Start.show()
-	if Level.settings.other.tutorial or Level.settings.other.after_tutorial:
+	if CurrentLevel.settings.other.tutorial or CurrentLevel.settings.other.after_tutorial:
 		if not PuzzleScore.level_performance.lost:
 			# if they won, make them exit; hide the start button
 			$Buttons/Start.hide()
@@ -116,9 +116,9 @@ func _on_PuzzleScore_after_game_ended() -> void:
 	
 	# determine the default button to focus
 	var buttons_to_focus := [$Buttons/Back, $Buttons/Start]
-	if Level.keep_retrying:
+	if CurrentLevel.keep_retrying:
 		buttons_to_focus.push_front($Buttons/Start)
-	elif Level.level_state != Level.LevelState.AFTER:
+	elif CurrentLevel.level_state != CurrentLevel.LevelState.AFTER:
 		buttons_to_focus.push_front($Buttons/Start)
 	
 	# the start button changes its label after the player finishes the level
@@ -141,8 +141,8 @@ func _on_PuzzleScore_after_game_ended() -> void:
 The back buttons changes its label if the level is cleared.
 """
 func _on_Level_level_state_changed() -> void:
-	match Level.level_state:
-		Level.LevelState.AFTER:
-			$Buttons/Back.text = tr("Back") if Level.keep_retrying else tr("Continue")
+	match CurrentLevel.level_state:
+		CurrentLevel.LevelState.AFTER:
+			$Buttons/Back.text = tr("Back") if CurrentLevel.keep_retrying else tr("Continue")
 		_:
 			$Buttons/Back.text = tr("Back")

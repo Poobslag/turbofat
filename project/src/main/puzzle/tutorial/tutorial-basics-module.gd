@@ -29,7 +29,7 @@ func _ready() -> void:
 	piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
 	
-	if Level.settings.other.skip_intro:
+	if CurrentLevel.settings.other.skip_intro:
 		puzzle.hide_buttons()
 	else:
 		# display a welcome message before the game starts
@@ -39,7 +39,7 @@ func _ready() -> void:
 
 func prepare_tutorial_level() -> void:
 	.prepare_tutorial_level()
-	match(Level.settings.id):
+	match(CurrentLevel.settings.id):
 		"tutorial/basics_1":
 			hud.skill_tally_item("SnackBox").visible = true
 			hud.skill_tally_item("BoxClear").visible = true
@@ -67,7 +67,7 @@ The level to advance to depends on what the player's accomplished so far. If the
 before they're instructed to, they can skip parts of the tutorial.
 """
 func _advance_level() -> void:
-	if Level.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
+	if CurrentLevel.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
 		PuzzleScore.change_level("tutorial/oh_my", false)
 		hud.set_big_message(ChatLibrary.add_mega_pause_charaters(tr("OH, MY!!!")))
@@ -103,7 +103,7 @@ Skipping the tutorial shows a message like 'Wow, you did a squish move!' But if 
 might forget how to progress in the tutorial. This function displays a 'how to progress' message after a delay.
 """
 func _add_post_skip_message() -> void:
-	match Level.settings.id:
+	match CurrentLevel.settings.id:
 		"tutorial/basics_0":
 			hud.enqueue_message(tr("Clear a row by filling it with blocks."))
 		"tutorial/basics_1":
@@ -116,7 +116,7 @@ func _add_post_skip_message() -> void:
 func _handle_box_clear_message() -> void:
 	if _did_box_clear:
 		if _box_clears == 1:
-			match Level.settings.id:
+			match CurrentLevel.settings.id:
 				"tutorial/basics_0":
 					hud.set_message(tr("Well done!\n\nBox clears earn you five times as much money."
 							+ " Maybe more than that if you're clever."))
@@ -131,7 +131,7 @@ func _handle_box_clear_message() -> void:
 func _handle_squish_move_message() -> void:
 	if _did_squish_move:
 		if _squish_moves == 1:
-			match Level.settings.id:
+			match CurrentLevel.settings.id:
 				"tutorial/basics_0", "tutorial/basics_1":
 					hud.set_message(tr("Oh my, you're not supposed to know how to do that!\n\n"
 							+ "...But yes, squish moves can help you out of a jam."))
@@ -146,7 +146,7 @@ func _handle_squish_move_message() -> void:
 func _handle_build_box_message() -> void:
 	if _did_build_box:
 		if _boxes_built == 1:
-			match Level.settings.id:
+			match CurrentLevel.settings.id:
 				"tutorial/basics_0":
 					hud.set_message(tr("Oh my, you're not supposed to know how to do that!\n\n"
 							+ "...But yes, those boxes earn $15 when you clear them."))
@@ -159,7 +159,7 @@ func _handle_build_box_message() -> void:
 
 
 func _handle_snack_stack_message() -> void:
-	if Level.settings.id == "tutorial/basics_3" and _did_build_box and _did_squish_move:
+	if CurrentLevel.settings.id == "tutorial/basics_3" and _did_build_box and _did_squish_move:
 		hud.skill_tally_item("SnackStack").increment()
 		_snack_stacks += 1
 		if _snack_stacks == 1:
@@ -209,7 +209,7 @@ func _on_PuzzleScore_after_piece_written() -> void:
 	_handle_box_clear_message()
 	_handle_snack_stack_message()
 	
-	match Level.settings.id:
+	match CurrentLevel.settings.id:
 		"tutorial/basics_0":
 			if _line_clears >= 2: _advance_level()
 		"tutorial/basics_1":
@@ -244,7 +244,7 @@ func _on_PuzzleScore_after_game_prepared() -> void:
 
 
 func _on_PuzzleScore_game_started() -> void:
-	if Level.settings.other.skip_intro:
+	if CurrentLevel.settings.other.skip_intro:
 		hud.set_message(tr("Welcome to Turbo Fat!"
 					+ " You seem to already be familiar with this sort of game, so let's dive right in."
 					+ "\n\nClear a row by filling it with blocks."))

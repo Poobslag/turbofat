@@ -16,7 +16,7 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if Level.settings.finish_condition.type == Milestone.TIME_OVER:
+	if CurrentLevel.settings.finish_condition.type == Milestone.TIME_OVER:
 		# only check for 'time over' milestones; other milestones only trigger after a piece is finished locking
 		_check_for_finish()
 
@@ -66,7 +66,7 @@ Returns the previously completed milestone.
 This controls the speed at which the pieces move.
 """
 func prev_milestone() -> Milestone:
-	return Level.settings.speed_ups[PuzzleScore.speed_index]
+	return CurrentLevel.settings.speed_ups[PuzzleScore.speed_index]
 
 
 """
@@ -77,10 +77,10 @@ finish condition.
 """
 func next_milestone() -> Milestone:
 	var milestone: Milestone
-	if PuzzleScore.speed_index + 1 < Level.settings.speed_ups.size():
-		milestone = Level.settings.speed_ups[PuzzleScore.speed_index + 1]
+	if PuzzleScore.speed_index + 1 < CurrentLevel.settings.speed_ups.size():
+		milestone = CurrentLevel.settings.speed_ups[PuzzleScore.speed_index + 1]
 	else:
-		milestone = Level.settings.finish_condition
+		milestone = CurrentLevel.settings.finish_condition
 	return milestone
 
 
@@ -90,8 +90,8 @@ If the player reached a milestone, we increase the speed.
 func _check_for_speed_up() -> void:
 	var new_speed_index: int = PuzzleScore.speed_index
 	
-	while new_speed_index + 1 < Level.settings.speed_ups.size() \
-			and milestone_met(Level.settings.speed_ups[new_speed_index + 1]):
+	while new_speed_index + 1 < CurrentLevel.settings.speed_ups.size() \
+			and milestone_met(CurrentLevel.settings.speed_ups[new_speed_index + 1]):
 		new_speed_index += 1
 	
 	if PuzzleScore.speed_index != new_speed_index:
@@ -102,7 +102,7 @@ func _check_for_speed_up() -> void:
 If the player reached the finish milestone, we end the level.
 """
 func _check_for_finish() -> void:
-	if PuzzleScore.game_active and milestone_met(Level.settings.finish_condition):
+	if PuzzleScore.game_active and milestone_met(CurrentLevel.settings.finish_condition):
 		PuzzleScore.trigger_finish()
 
 
@@ -121,5 +121,5 @@ func _on_PuzzleScore_score_changed() -> void:
 
 func _on_PuzzleScore_combo_ended() -> void:
 	# most milestones end when the piece is written; but customer milestones end when the combo ends
-	if Level.settings.finish_condition.type == Milestone.CUSTOMERS:
+	if CurrentLevel.settings.finish_condition.type == Milestone.CUSTOMERS:
 		_check_for_finish()

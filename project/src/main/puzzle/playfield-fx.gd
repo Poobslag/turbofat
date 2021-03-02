@@ -182,7 +182,7 @@ func _calculate_brightness(combo: int) -> void:
 	_elapsed_beats = 0.0
 	
 	# apply enhance_combo_fx setting for tutorial
-	if Level.settings.other.enhance_combo_fx and combo >= 3:
+	if CurrentLevel.settings.other.enhance_combo_fx and combo >= 3:
 		combo += 12
 	
 	if combo >= 12:

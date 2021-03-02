@@ -15,7 +15,7 @@ func _ready() -> void:
 	visible = false
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
-	Level.connect("settings_changed", self, "_on_Level_settings_changed")
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	replace_tutorial_module()
 
 
@@ -37,11 +37,11 @@ func replace_tutorial_module() -> void:
 		remove_child(get_node("TutorialModule"))
 	
 	var module_path: String
-	if Level.settings.id.begins_with("tutorial/basics"):
+	if CurrentLevel.settings.id.begins_with("tutorial/basics"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialBasicsModule.tscn"
-	elif Level.settings.id.begins_with("tutorial/squish"):
+	elif CurrentLevel.settings.id.begins_with("tutorial/squish"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialSquishModule.tscn"
-	elif Level.settings.id.begins_with("tutorial/combo"):
+	elif CurrentLevel.settings.id.begins_with("tutorial/combo"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialComboModule.tscn"
 	
 	if module_path:
@@ -61,7 +61,7 @@ Shows or hides the tutorial hud based on the current level.
 """
 func refresh() -> void:
 	# only visible for tutorial levels
-	visible = Level.settings.other.tutorial or Level.settings.other.after_tutorial
+	visible = CurrentLevel.settings.other.tutorial or CurrentLevel.settings.other.after_tutorial
 	$Diagram.hide()
 	emit_signal("refreshed")
 
@@ -147,7 +147,7 @@ func _flash() -> void:
 
 
 func _on_PuzzleScore_after_level_changed() -> void:
-	$SkillTallyItems.visible = Level.settings.other.tutorial
+	$SkillTallyItems.visible = CurrentLevel.settings.other.tutorial
 	_flash()
 
 

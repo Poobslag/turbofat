@@ -9,7 +9,7 @@ func _ready() -> void:
 
 
 func start_puzzle_music() -> void:
-	if Level.settings.other.tutorial:
+	if CurrentLevel.settings.other.tutorial:
 		MusicPlayer.play_tutorial_bgm()
 	else:
 		MusicPlayer.play_upbeat_bgm()

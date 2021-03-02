@@ -281,7 +281,7 @@ func _schedule_finish_line_clears() -> void:
 
 
 func _on_PuzzleScore_finish_triggered() -> void:
-	if Level.settings.other.clear_on_finish:
+	if CurrentLevel.settings.other.clear_on_finish:
 		_schedule_finish_line_clears()
 	else:
 		PuzzleScore.end_game()

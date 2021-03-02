@@ -15,7 +15,7 @@ func _on_PuzzleScore_topped_out() -> void:
 	if not PuzzleScore.level_performance.lost:
 		var top_out_delay := PieceSpeeds.current_speed.appearance_delay + PieceSpeeds.current_speed.lock_delay
 		_playfield.break_combo()
-		if Level.settings.blocks_during.clear_on_top_out:
+		if CurrentLevel.settings.blocks_during.clear_on_top_out:
 			_playfield.schedule_line_clears(range(0, PuzzleTileMap.ROW_COUNT),
 					top_out_delay, false)
 		else:

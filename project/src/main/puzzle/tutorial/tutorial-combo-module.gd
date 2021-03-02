@@ -42,9 +42,9 @@ func _ready() -> void:
 
 func prepare_tutorial_level() -> void:
 	.prepare_tutorial_level()
-	var failed_section := _prepared_levels.has(Level.settings.id)
+	var failed_section := _prepared_levels.has(CurrentLevel.settings.id)
 	
-	match(Level.settings.id):
+	match(CurrentLevel.settings.id):
 		"tutorial/combo_0":
 			_set_combo_state(0, 5)
 			hud.skill_tally_item("Combo").visible = true
@@ -96,7 +96,7 @@ func prepare_tutorial_level() -> void:
 					+ "\n\nIt might help to make some boxes first."))
 			hud.enqueue_pop_out()
 	
-	_prepared_levels[Level.settings.id] = true
+	_prepared_levels[CurrentLevel.settings.id] = true
 
 
 """
@@ -121,7 +121,7 @@ Advance to the next level in the tutorial.
 func _advance_level() -> void:
 	var delay_between_levels := PuzzleScore.DELAY_SHORT
 	var failed_section := false
-	match Level.settings.id:
+	match CurrentLevel.settings.id:
 		"tutorial/combo_0", "tutorial/combo_2":
 			if hud.skill_tally_item("Combo").is_complete():
 				hud.set_message(tr("Good job!"))
@@ -151,9 +151,9 @@ func _advance_level() -> void:
 	]
 	var new_level_id: String
 	if failed_section:
-		new_level_id = Level.settings.id
+		new_level_id = CurrentLevel.settings.id
 	else:
-		new_level_id = level_ids[level_ids.find(Level.settings.id) + 1]
+		new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
 	PuzzleScore.change_level(new_level_id, delay_between_levels)
 
 
@@ -195,7 +195,7 @@ After a piece is written to the playfield, we check if the player should advance
 We also sometimes display messages from the sensei.
 """
 func _on_PuzzleScore_after_piece_written() -> void:
-	match Level.settings.id:
+	match CurrentLevel.settings.id:
 		"tutorial/combo_0", "tutorial/combo_2":
 			if hud.skill_tally_item("Combo").is_complete():
 				_advance_level()

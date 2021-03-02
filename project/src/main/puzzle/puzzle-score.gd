@@ -115,7 +115,7 @@ Resets all score data, and starts a new game after a brief pause.
 func prepare_and_start_game() -> void:
 	_prepare_game()
 	
-	if Level.settings.other.skip_intro:
+	if CurrentLevel.settings.other.skip_intro:
 		# when skipping the intro, we don't pause between preparing/starting the game
 		pass
 	else:
@@ -136,7 +136,7 @@ func set_speed_index(new_speed_index: int) -> void:
 
 func top_out() -> void:
 	level_performance.top_out_count += 1
-	if level_performance.top_out_count >= Level.settings.lose_condition.top_out:
+	if level_performance.top_out_count >= CurrentLevel.settings.lose_condition.top_out:
 		make_player_lose()
 	emit_signal("topped_out")
 
@@ -144,7 +144,7 @@ func top_out() -> void:
 func make_player_lose() -> void:
 	if not game_active:
 		return
-	if not Level.settings.lose_condition.finish_on_lose:
+	if not CurrentLevel.settings.lose_condition.finish_on_lose:
 		level_performance.lost = true
 	end_game()
 
@@ -155,7 +155,7 @@ func end_game() -> void:
 	
 	end_combo()
 	if not level_performance.lost:
-		level_performance.success = MilestoneManager.milestone_met(Level.settings.success_condition)
+		level_performance.success = MilestoneManager.milestone_met(CurrentLevel.settings.success_condition)
 	emit_signal("game_ended")
 	var yield_duration: float
 	match end_result():
@@ -177,7 +177,7 @@ func change_level(level_id: String, delay_between_levels: float = DELAY_SHORT) -
 	
 	var settings := LevelSettings.new()
 	settings.load_from_resource(level_id)
-	Level.switch_level(settings)
+	CurrentLevel.switch_level(settings)
 	# initialize input_frame to allow for recording/replaying inputs
 	input_frame = 0
 	emit_signal("after_level_changed")
@@ -191,7 +191,7 @@ help/hurt things like their box rank or combo rank. It's mostly to put on a show
 wasn't wasted, if they built a lot of boxes they didn't clear.
 """
 func trigger_finish() -> void:
-	if Level.settings.other.tutorial:
+	if CurrentLevel.settings.other.tutorial:
 		emit_signal("tutorial_section_finished")
 	else:
 		game_active = false
@@ -232,7 +232,7 @@ Ends the current combo, incrementing the score and resetting the bonus/creature 
 """
 func end_combo() -> void:
 	var old_combo := combo
-	if Level.settings.other.tutorial:
+	if CurrentLevel.settings.other.tutorial:
 		# during tutorials, reset the combo and line clears
 		creature_scores[creature_scores.size() - 1] = 0
 		combo = 0
@@ -241,8 +241,8 @@ func end_combo() -> void:
 	elif get_creature_score() == 0:
 		# don't add $0 creatures. creatures don't pay if they owe $0
 		pass
-	elif Level.settings.finish_condition.type == Milestone.CUSTOMERS \
-			and PuzzleScore.creature_scores.size() >= Level.settings.finish_condition.value:
+	elif CurrentLevel.settings.finish_condition.type == Milestone.CUSTOMERS \
+			and PuzzleScore.creature_scores.size() >= CurrentLevel.settings.finish_condition.value:
 		# some levels have a limited number of customers
 		no_more_customers = true
 	else:
@@ -267,7 +267,7 @@ func reset() -> void:
 	bonus_score = 0
 	level_performance = PuzzlePerformance.new()
 	speed_index = 0
-	no_more_customers = Level.settings.other.tutorial
+	no_more_customers = CurrentLevel.settings.other.tutorial
 	input_frame = -1
 	
 	emit_signal("score_changed")
@@ -304,7 +304,7 @@ func end_result() -> int:
 		return Result.NONE
 	elif level_performance.lost:
 		return Result.LOST
-	elif MilestoneManager.milestone_met(Level.settings.success_condition):
+	elif MilestoneManager.milestone_met(CurrentLevel.settings.success_condition):
 		return Result.WON
 	else:
 		return Result.FINISHED
@@ -326,11 +326,11 @@ func _prepare_game() -> void:
 	finish_triggered = false
 	game_ended = false
 	
-	if Level.settings.other.start_level:
+	if CurrentLevel.settings.other.start_level:
 		# Load a different level to start (used for tutorials)
 		var new_settings := LevelSettings.new()
-		new_settings.load_from_resource(Level.settings.other.start_level)
-		Level.start_level(new_settings)
+		new_settings.load_from_resource(CurrentLevel.settings.other.start_level)
+		CurrentLevel.start_level(new_settings)
 	
 	reset()
 	emit_signal("game_prepared")
