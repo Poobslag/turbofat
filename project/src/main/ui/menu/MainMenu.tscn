@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://src/main/ui/menu/main-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=2]
@@ -12,6 +12,8 @@
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=11]
 [ext_resource path="res://src/main/ui/menu/main-menu-debug.gd" type="Script" id=12]
+[ext_resource path="res://src/main/ui/menu/main-menu-play.gd" type="Script" id=13]
+[ext_resource path="res://src/main/ui/menu/main-menu-create.gd" type="Script" id=14]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -60,6 +62,7 @@ margin_top = 150.0
 margin_bottom = -100.0
 custom_constants/separation = 10
 alignment = 1
+script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -113,6 +116,7 @@ margin_top = 150.0
 margin_bottom = -100.0
 custom_constants/separation = 10
 alignment = 1
+script = ExtResource( 14 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -181,11 +185,11 @@ __meta__ = {
 [node name="SettingsMenu" parent="." instance=ExtResource( 8 )]
 
 [node name="MusicPopup" parent="." instance=ExtResource( 10 )]
-[connection signal="pressed" from="DropPanel/Play/Story" to="." method="_on_PlayStory_pressed"]
-[connection signal="pressed" from="DropPanel/Play/Practice" to="." method="_on_PlayPractice_pressed"]
-[connection signal="pressed" from="DropPanel/Play/Tutorials" to="." method="_on_Tutorials_pressed"]
-[connection signal="pressed" from="DropPanel/Create/Levels" to="." method="_on_CreateLevels_pressed"]
-[connection signal="pressed" from="DropPanel/Create/Creatures" to="." method="_on_CreateCreatures_pressed"]
+[connection signal="pressed" from="DropPanel/Play/Story" to="DropPanel/Play" method="_on_Story_pressed"]
+[connection signal="pressed" from="DropPanel/Play/Practice" to="DropPanel/Play" method="_on_Practice_pressed"]
+[connection signal="pressed" from="DropPanel/Play/Tutorials" to="DropPanel/Play" method="_on_Tutorials_pressed"]
+[connection signal="pressed" from="DropPanel/Create/Levels" to="DropPanel/Create" method="_on_Levels_pressed"]
+[connection signal="pressed" from="DropPanel/Create/Creatures" to="DropPanel/Create" method="_on_Creatures_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="DropPanel/Debug/StressTest" to="DropPanel/Debug" method="_on_StressTest_pressed"]

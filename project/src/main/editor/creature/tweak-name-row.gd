@@ -18,10 +18,7 @@ Update the creature's name and short name.
 """
 func _finish_name_edit(text: String) -> void:
 	var new_name: String = NameUtils.sanitize_name(text)
-	var creature: Creature = _creature_editor.center_creature
-	creature.creature_name = new_name
-	creature.creature_short_name = NameUtils.sanitize_short_name(new_name)
-	creature.creature_id = NameUtils.short_name_to_id(creature.creature_short_name)
+	_creature_editor.center_creature.rename(new_name)
 	_refresh_name_ui()
 
 
@@ -57,13 +54,8 @@ We don't update if the user's typed an invalid name (e.g 'Tom ') because otherwi
 appending punctuation/spaces, as the text box is constantly updated.
 """
 func _on_Edit_text_changed(text: String) -> void:
-	var new_name: String = NameUtils.sanitize_name(text)
-	if new_name == text:
-		var creature := _creature_editor.center_creature
-		creature.creature_name = new_name
-		creature.creature_short_name = NameUtils.sanitize_short_name(new_name)
-		creature.creature_id = NameUtils.short_name_to_id(creature.creature_short_name)
-		_refresh_name_ui()
+	if text == NameUtils.sanitize_name(text):
+		_finish_name_edit(text)
 
 
 func _on_Edit_text_entered(text: String) -> void:
@@ -81,12 +73,8 @@ We don't update if the user's typed an invalid name (e.g 'Tom ') because otherwi
 appending punctuation/spaces, as the text box is constantly updated.
 """
 func _on_ShortName_text_changed(text: String) -> void:
-	var new_name: String = NameUtils.sanitize_short_name(text)
-	if new_name == text:
-		var creature := _creature_editor.center_creature
-		creature.creature_short_name = new_name
-		creature.creature_id = NameUtils.short_name_to_id(creature.creature_short_name)
-		_refresh_name_ui()
+	if text == NameUtils.sanitize_short_name(text):
+		_finish_short_name_edit(text)
 
 
 func _on_ShortName_text_entered(text: String) -> void:

@@ -86,8 +86,7 @@ func reset() -> void:
 	
 	# default player appearance and name
 	var new_player_def := CreatureDef.new()
-	new_player_def.creature_name = CreatureDef.DEFAULT_NAME
-	new_player_def.creature_short_name = NameUtils.sanitize_short_name(new_player_def.creature_name)
+	new_player_def.rename(CreatureDef.DEFAULT_NAME)
 	new_player_def.dna = CreatureDef.DEFAULT_DNA.duplicate()
 	new_player_def.min_fatness = 1.0
 	new_player_def.chat_theme_def = CreatureDef.DEFAULT_CHAT_THEME_DEF.duplicate()

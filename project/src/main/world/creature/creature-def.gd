@@ -152,3 +152,15 @@ func from_json_path(path: String) -> Object:
 	else:
 		result = null
 	return result
+
+
+"""
+Changes the creature's name, and derives a new short name and creature id from their new name.
+
+A creature's name shouldn't change during regular gameplay. This is only for the creature editor and for other randomly
+generated creatures.
+"""
+func rename(new_creature_name: String) -> void:
+	creature_name = new_creature_name
+	creature_short_name = NameUtils.sanitize_short_name(creature_name)
+	creature_id = NameUtils.short_name_to_id(creature_short_name)
