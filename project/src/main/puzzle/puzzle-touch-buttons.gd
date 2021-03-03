@@ -78,19 +78,21 @@ Refreshes the buttons based on the emit_actions property.
 Propogates the setting to the EightWay child objects.
 """
 func _refresh_emit_actions() -> void:
-	if is_inside_tree():
-		$ButtonsSw.emit_actions = emit_actions
-		$ButtonsSe.emit_actions = emit_actions
-		if emit_actions:
-			_menu_button.action = "ui_menu"
-			_menu_button.normal = _close
-			_menu_button.pressed = _close_pressed
-		else:
-			# when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying
-			# to quit. (there's an argument that replacing the close button with a duck might confuse them more...)
-			_menu_button.action = ""
-			_menu_button.normal = _duck
-			_menu_button.pressed = _duck_pressed
+	if not is_inside_tree():
+		return
+	
+	$ButtonsSw.emit_actions = emit_actions
+	$ButtonsSe.emit_actions = emit_actions
+	if emit_actions:
+		_menu_button.action = "ui_menu"
+		_menu_button.normal = _close
+		_menu_button.pressed = _close_pressed
+	else:
+		# when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying
+		# to quit. (there's an argument that replacing the close button with a duck might confuse them more...)
+		_menu_button.action = ""
+		_menu_button.normal = _duck
+		_menu_button.pressed = _duck_pressed
 
 
 """

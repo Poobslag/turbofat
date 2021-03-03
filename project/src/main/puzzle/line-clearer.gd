@@ -45,6 +45,7 @@ var _remaining_line_erase_timings := []
 var _rows_to_preserve_at_end := {}
 
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
+onready var _line_fall_sound: AudioStreamPlayer = $LineFallSound
 
 func _ready() -> void:
 	set_physics_process(false)
@@ -190,7 +191,7 @@ func _delete_lines(lines: Array) -> void:
 	_tile_map.delete_rows(lines)
 	
 	if play_sound:
-		$LineFallSound.play()
+		_line_fall_sound.play()
 	
 	if _rows_to_preserve_at_end:
 		# Shift all _rows_to_preserve_at_end entries above the deleted rows

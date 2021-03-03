@@ -19,11 +19,13 @@ func _ready() -> void:
 
 func set_quit_on_cancel(new_quit_on_cancel: bool) -> void:
 	quit_on_cancel = new_quit_on_cancel
-	if is_inside_tree():
-		refresh()
+	refresh()
 
 
 func refresh() -> void:
+	if not is_inside_tree():
+		return
+
 	if quit_on_cancel:
 		$Quit.shortcut = _ui_cancel_shortcut
 		$Settings/ShortcutHelper.overridden_action = "ui_menu"

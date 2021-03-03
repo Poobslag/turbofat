@@ -40,10 +40,10 @@ onready var _right := $VBoxContainer/HBoxContainer/Right
 onready var _buttons := [_up, _down, _left, _right]
 
 func _ready() -> void:
-	_up.action = up_action
-	_down.action = down_action
-	_left.action = left_action
-	_right.action = right_action
+	_refresh_up_action()
+	_refresh_down_action()
+	_refresh_left_action()
+	_refresh_right_action()
 
 
 """
@@ -77,26 +77,22 @@ func set_emit_actions(new_emit_actions: bool) -> void:
 
 func set_up_action(new_up_action: String) -> void:
 	up_action = new_up_action
-	if is_inside_tree():
-		_up.action = new_up_action
+	_refresh_up_action()
 
 
 func set_down_action(new_down_action: String) -> void:
 	down_action = new_down_action
-	if is_inside_tree():
-		_down.action = new_down_action
+	_refresh_down_action()
 
 
 func set_left_action(new_left_action: String) -> void:
 	left_action = new_left_action
-	if is_inside_tree():
-		_left.action = new_left_action
+	_refresh_left_action()
 
 
 func set_right_action(new_right_action: String) -> void:
 	right_action = new_right_action
-	if is_inside_tree():
-		_right.action = new_right_action
+	_refresh_right_action()
 
 
 """
@@ -113,6 +109,26 @@ func hide() -> void:
 	visible = false
 	_touch_index = -1
 	_release_buttons()
+
+
+func _refresh_up_action() -> void:
+	if is_inside_tree():
+		_up.action = up_action
+
+
+func _refresh_down_action() -> void:
+	if is_inside_tree():
+		_down.action = down_action
+
+
+func _refresh_left_action() -> void:
+	if is_inside_tree():
+		_left.action = left_action
+
+
+func _refresh_right_action() -> void:
+	if is_inside_tree():
+		_right.action = right_action
 
 
 """

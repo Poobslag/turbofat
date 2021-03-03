@@ -148,17 +148,17 @@ Calculates the food color for a row in the playfield.
 func _calculate_food_color(box_ints: Array) -> void:
 	if box_ints.empty():
 		# vegetable
-		_food_color = Playfield.VEGETABLE_COLOR
+		_food_color = FoodColors.VEGETABLE
 	elif PuzzleTileMap.has_cake_box(box_ints):
 		# cake box
 		_food_color = Color.magenta
 		_food_color.h = randf()
-	elif box_ints.size() == 1 or Playfield.FOOD_COLORS[box_ints[0]] != _food_color:
+	elif box_ints.size() == 1 or FoodColors.ALL[box_ints[0]] != _food_color:
 		# snack box
-		_food_color = Playfield.FOOD_COLORS[box_ints[0]]
+		_food_color = FoodColors.ALL[box_ints[0]]
 	else:
 		# avoid showing the same color twice if we can help it
-		_food_color = Playfield.FOOD_COLORS[box_ints[1]]
+		_food_color = FoodColors.ALL[box_ints[1]]
 
 
 func _quit_puzzle() -> void:

@@ -48,22 +48,26 @@ func _physics_process(delta: float) -> void:
 
 func set_base_scale(new_base_scale: Vector2) -> void:
 	base_scale = new_base_scale
-	if is_inside_tree():
-		_refresh_scale()
+	_refresh_scale()
 
 
 func set_base_rotation(new_base_rotation: float) -> void:
 	base_rotation = new_base_rotation
-	if is_inside_tree():
-		_refresh_rotation()
+	_refresh_rotation()
 
 
 func _refresh_scale() -> void:
+	if not is_inside_tree():
+		# avoid errors dividing by zero/null before fields are initialized
+		return
 	var _scale_modifier := Vector2(1.0, 1.0) \
 			* (1 - _pulse_amount * (0.5 + 0.5 * sin(_total_time * TAU / _pulse_period)))
 	scale = base_scale * _scale_modifier
 
 
 func _refresh_rotation() -> void:
+	if not is_inside_tree():
+		# avoid errors dividing by zero/null before fields are initialized
+		return
 	var _rotation_modifier := _spin_amount * PI * sin(_total_time * TAU / _spin_period)
 	rotation = base_rotation + _rotation_modifier

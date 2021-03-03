@@ -21,6 +21,8 @@ const LETTER_ANGLES_BY_ORIENTATION := {
 
 onready var overworld_ui: OverworldUi = Global.get_overworld_ui()
 
+onready var _letter_shooter: LetterShooter = $LetterShooter
+
 # the creature currently emitting letters
 var _chatter: Creature
 
@@ -29,12 +31,12 @@ func _ready() -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	if _chatter and not $LetterShooter.is_stopped():
-		$LetterShooter.letter_position = _chatter.position \
+	if _chatter and not _letter_shooter.is_stopped():
+		_letter_shooter.letter_position = _chatter.position \
 				+ _chatter.get_node("ChatIconHook").position \
 				+ HEAD_POSITIONS_BY_ORIENTATION[_chatter.orientation] * _chatter.creature_visuals.scale.y
 		
-		$LetterShooter.letter_angle = LETTER_ANGLES_BY_ORIENTATION[_chatter.orientation]
+		_letter_shooter.letter_angle = LETTER_ANGLES_BY_ORIENTATION[_chatter.orientation]
 
 
 func _on_OverworldUi_chatter_talked(new_chatter: Creature) -> void:
@@ -47,7 +49,7 @@ func _on_OverworldUi_chatter_talked(new_chatter: Creature) -> void:
 	_chatter.connect("talking_changed", self, "_on_Creature_talking_changed")
 	
 	# start emitting letters
-	$LetterShooter.start()
+	_letter_shooter.start()
 
 
 func _on_Creature_talking_changed() -> void:

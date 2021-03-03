@@ -65,7 +65,7 @@ func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	
 	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
-	
+
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	_states.set_state(_states.none)
 	_clear_piece()

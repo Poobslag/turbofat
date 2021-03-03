@@ -25,8 +25,10 @@ func set_action_name(new_action_name: String) -> void:
 
 
 func _refresh_description_label() -> void:
-	if is_inside_tree():
-		$Description.text = description
+	if not is_inside_tree():
+		return
+
+	$Description.text = description
 
 
 func _on_Delete_pressed() -> void:

@@ -154,6 +154,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/creature-queue.gd"
 }, {
+"base": "Node",
+"class": "CreatureSfx",
+"language": "GDScript",
+"path": "res://src/main/world/creature/creature-sfx.gd"
+}, {
 "base": "Node2D",
 "class": "CreatureShadow",
 "language": "GDScript",
@@ -193,6 +198,11 @@ _global_script_classes=[ {
 "class": "FontFitLabel",
 "language": "GDScript",
 "path": "res://src/main/ui/font-fit-label.gd"
+}, {
+"base": "Reference",
+"class": "FoodColors",
+"language": "GDScript",
+"path": "res://src/main/puzzle/food-colors.gd"
 }, {
 "base": "PackedSprite",
 "class": "FoodItem",
@@ -253,6 +263,11 @@ _global_script_classes=[ {
 "class": "LetterProjectile",
 "language": "GDScript",
 "path": "res://src/main/world/letter-projectile.gd"
+}, {
+"base": "Node",
+"class": "LetterShooter",
+"language": "GDScript",
+"path": "res://src/main/world/letter-shooter.gd"
 }, {
 "base": "Control",
 "class": "LevelButtons",
@@ -699,6 +714,7 @@ _global_script_class_icons={
 "CreaturePackedSprite": "",
 "CreaturePaletteDemo": "",
 "CreatureQueue": "",
+"CreatureSfx": "",
 "CreatureShadow": "",
 "CreatureShadows": "",
 "CreatureVisuals": "",
@@ -707,6 +723,7 @@ _global_script_class_icons={
 "EditorPlayfield": "",
 "FileUtils": "",
 "FontFitLabel": "",
+"FoodColors": "",
 "FoodItem": "",
 "FrameInput": "",
 "FrostingGlob": "",
@@ -719,6 +736,7 @@ _global_script_class_icons={
 "KeybindSettings": "",
 "LeafPoof": "",
 "LetterProjectile": "",
+"LetterShooter": "",
 "LevelButtons": "",
 "LevelChunk": "",
 "LevelChunkControl": "",

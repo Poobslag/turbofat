@@ -97,11 +97,25 @@ var _non_iso_velocity := Vector2.ZERO
 # a number from [0.0 - 1.0] based on how fast the creature can move with their current animation
 var _run_anim_speed := 1.0
 
+# handles animations and audio/visual effects for a creature
 onready var creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visuals
 
+# rendering of a creature with an outline shader applied
+onready var _texture_rect: TextureRect = $CreatureOutline/TextureRect
+
+# holder for the outlined creature. also manages the creature's Z coordinate when they're elevated
+onready var _creature_outline: Node2D = $CreatureOutline
+
+onready var _creature_sfx: CreatureSfx = $CreatureSfx
+onready var _collision_shape: CollisionShape2D = $CollisionShape2D
+onready var _fade_tween: Tween = $FadeTween
+
+onready var _bonk_sound: AudioStreamPlayer2D = $BonkSound
+onready var _hop_sound: AudioStreamPlayer2D = $HopSound
+
 func _ready() -> void:
-	$CreatureOutline/TextureRect.rect_scale = Vector2(TEXTURE_SCALE, TEXTURE_SCALE)
-	$FadeTween.connect("tween_all_completed", self, "_on_FadeTween_tween_all_completed")
+	_texture_rect.rect_scale = Vector2(TEXTURE_SCALE, TEXTURE_SCALE)
+	_fade_tween.connect("tween_all_completed", self, "_on_FadeTween_tween_all_completed")
 	if creature_id:
 		_refresh_creature_id()
 	else:
@@ -122,7 +136,7 @@ func _physics_process(delta: float) -> void:
 
 
 func set_collision_disabled(new_collision_disabled: bool) -> void:
-	$CollisionShape2D.disabled = new_collision_disabled
+	_collision_shape.disabled = new_collision_disabled
 
 
 func set_suppress_sfx(new_suppress_sfx: bool) -> void:
@@ -273,7 +287,7 @@ Plays a 'hello!' voice sample, for when a creature enters the restaurant
 """
 func play_hello_voice(force: bool = false) -> void:
 	if not suppress_sfx:
-		$CreatureSfx.play_hello_voice(force)
+		_creature_sfx.play_hello_voice(force)
 
 
 """
@@ -281,7 +295,7 @@ Plays a 'mmm!' voice sample, for when a player builds a big combo.
 """
 func play_combo_voice() -> void:
 	if not suppress_sfx:
-		$CreatureSfx.play_combo_voice()
+		_creature_sfx.play_combo_voice()
 
 
 """
@@ -289,12 +303,12 @@ Plays a 'check please!' voice sample, for when a creature is ready to leave
 """
 func play_goodbye_voice(force: bool = false) -> void:
 	if not suppress_sfx:
-		$CreatureSfx.play_goodbye_voice(force)
+		_creature_sfx.play_goodbye_voice(force)
 
 
 func feed(food_color: Color) -> void:
 	feed_count += 1
-	if food_color != Playfield.VEGETABLE_COLOR:
+	if food_color != FoodColors.VEGETABLE:
 		box_feed_count += 1
 	creature_visuals.feed(food_color)
 	store_fatness()
@@ -353,12 +367,14 @@ func get_creature_def() -> CreatureDef:
 
 
 func refresh_dna() -> void:
-	if is_inside_tree():
-		if dna:
-			dna = DnaUtils.fill_dna(dna)
-		creature_visuals.dna = dna
-		if dna.has("line_rgb"):
-			$CreatureOutline/TextureRect.material.set_shader_param("black", Color(dna.line_rgb))
+	if not is_inside_tree():
+		return
+
+	if dna:
+		dna = DnaUtils.fill_dna(dna)
+	creature_visuals.dna = dna
+	if dna.has("line_rgb"):
+		_texture_rect.material.set_shader_param("black", Color(dna.line_rgb))
 
 
 """
@@ -387,7 +403,7 @@ func get_chat_extents() -> Vector2:
 Temporarily suppresses 'hello' sounds.
 """
 func start_suppress_sfx_timer() -> void:
-	$CreatureSfx/SuppressSfxTimer.start(1.0)
+	_creature_sfx.start_suppress_sfx_timer()
 
 
 """
@@ -426,21 +442,21 @@ func fade_out() -> void:
 Starts a tween which changes this creature's opacity.
 """
 func _launch_fade_tween(new_alpha: float, duration: float) -> void:
-	$FadeTween.remove_all()
-	$FadeTween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate, new_alpha), duration)
-	$FadeTween.start()
+	_fade_tween.remove_all()
+	_fade_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate, new_alpha), duration)
+	_fade_tween.start()
 
 
 func _refresh_creature_id() -> void:
+	if not is_inside_tree():
+		return
 	if creature_id == CreatureLibrary.PLAYER_ID:
 		# player's creature_def is loaded in player.gd
-		pass
-	elif not is_inside_tree():
-		pass
-	else:
-		var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
-		if new_creature_def:
-			set_creature_def(new_creature_def)
+		return
+	
+	var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
+	if new_creature_def:
+		set_creature_def(new_creature_def)
 
 
 func _apply_friction() -> void:
@@ -484,7 +500,7 @@ func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 	var velocity_diff := _non_iso_velocity - old_non_iso_velocity
 	if velocity_diff.length() > MAX_RUN_SPEED * _run_anim_speed * 0.9:
 		if not suppress_sfx:
-			$BonkSound.play()
+			_bonk_sound.play()
 
 
 """
@@ -516,7 +532,7 @@ func _update_animation() -> void:
 
 func _on_CreatureVisuals_landed() -> void:
 	if not suppress_sfx:
-		$HopSound.play()
+		_hop_sound.play()
 
 
 func _on_Creature_fatness_changed() -> void:
