@@ -32,33 +32,9 @@ func _launch_tutorial() -> void:
 	CurrentLevel.push_level_trail()
 
 
-func _on_PlayStory_pressed() -> void:
-	PlayerData.creature_queue.clear()
-	CurrentLevel.clear_launched_level()
-	Breadcrumb.push_trail(Global.SCENE_OVERWORLD)
-
-
-func _on_PlayPractice_pressed() -> void:
-	Breadcrumb.push_trail("res://src/main/ui/menu/PracticeMenu.tscn")
-
-
-func _on_CreateLevels_pressed() -> void:
-	MusicPlayer.stop()
-	Breadcrumb.push_trail("res://src/main/editor/puzzle/LevelEditor.tscn")
-
-
-func _on_CreateCreatures_pressed() -> void:
-	MusicPlayer.stop()
-	Breadcrumb.push_trail("res://src/main/editor/creature/CreatureEditor.tscn")
-
-
 func _on_System_quit_pressed() -> void:
 	if OS.has_feature("web"):
 		# don't quit from the web; just go back to splash screen
 		return
 	
 	get_tree().quit()
-
-
-func _on_Tutorials_pressed() -> void:
-	Breadcrumb.push_trail("res://src/main/ui/menu/TutorialMenu.tscn")
