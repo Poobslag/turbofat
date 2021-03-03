@@ -28,7 +28,7 @@ func chat_tree_for_creature(creature: Creature, forced_level_id: String = "") ->
 
 	if level_id:
 		# schedule a level to launch when the dialog completes
-		Level.set_launched_level(level_id)
+		CurrentLevel.set_launched_level(level_id)
 
 	return chat_tree
 
@@ -41,7 +41,6 @@ Returns null if the chat tree cannot be found.
 func chat_tree_for_creature_id(creature_id: String, forced_level_id: String = "") -> ChatTree:
 	var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
 	var state := _creature_chat_state(creature_id, forced_level_id)
-
 	return chat_tree_for_creature_def(creature_def, state)
 
 
@@ -58,11 +57,6 @@ func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) ->
 	var chat_tree := chat_tree_for_chat_id(creature_def, chosen_dialog)
 	if not chat_tree and has_preroll(chosen_dialog):
 		chat_tree = chat_tree_for_preroll(chosen_dialog)
-	if not chat_tree:
-		push_warning("Failed to load chat tree '%s' for creature '%s'.\nCould not find file '%s' or '%s'" % \
-				[chosen_dialog, creature_id,
-				creature_dialog_path(creature_id, chosen_dialog),
-				_preroll_path(chosen_dialog)])
 
 	return chat_tree
 
@@ -84,31 +78,30 @@ func chat_tree_for_chat_id(creature_def: CreatureDef, chat_id: String) -> ChatTr
 	return chat_tree
 
 
+"""
+Returns the chat tree for the cutscene which plays before the current level.
+"""
 func chat_tree_for_preroll(level_id: String) -> ChatTree:
-	return chat_tree_for_level_cutscene(level_id, _preroll_path(level_id))
+	return chat_tree_from_file(_preroll_path(level_id))
 
 
 """
 Returns the chat tree for the cutscene which plays after the current level.
-
-Returns null if the chat tree cannot be found.
 """
 func chat_tree_for_postroll(level_id: String) -> ChatTree:
-	return chat_tree_for_level_cutscene(level_id, _postroll_path(level_id))
+	return chat_tree_from_file(_postroll_path(level_id))
 
 
-func chat_tree_for_level_cutscene(level_id: String, cutscene_path: String) -> ChatTree:
-	var chat_tree: ChatTree
-	if FileUtils.file_exists(cutscene_path):
-		chat_tree = chat_tree_from_file(cutscene_path)
-
-	return chat_tree
-
-
+"""
+Returns 'true' if the current level is preceded by a cutscene.
+"""
 func has_preroll(level_id: String) -> bool:
 	return FileUtils.file_exists(_preroll_path(level_id))
 
 
+"""
+Returns 'true' if the current level is followed by a cutscene.
+"""
 func has_postroll(level_id: String) -> bool:
 	return FileUtils.file_exists(_postroll_path(level_id))
 

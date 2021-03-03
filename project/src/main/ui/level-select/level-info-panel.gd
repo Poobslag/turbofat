@@ -134,7 +134,7 @@ func _on_LevelButtons_locked_level_selected(_level_lock: LevelLock, _settings: L
 When the 'overall' button is selected, we display statistics for all of the levels.
 """
 func _on_LevelButtons_overall_selected(world_id: String, ranks: Array) -> void:
-	if world_id == Level.TUTORIAL_WORLD_ID:
+	if world_id == LevelLibrary.TUTORIAL_WORLD_ID:
 		_update_tutorial_world_text(ranks)
 	else:
 		_update_world_text(ranks)

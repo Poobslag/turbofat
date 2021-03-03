@@ -71,7 +71,7 @@ func _on_LevelButtons_locked_level_selected(level_lock: LevelLock, settings: Lev
 When the 'overall' button is selected, we summarize the player's progress.
 """
 func _on_LevelButtons_overall_selected(world_id: String, ranks: Array) -> void:
-	if world_id == Level.TUTORIAL_WORLD_ID:
+	if world_id == LevelLibrary.TUTORIAL_WORLD_ID:
 		_update_tutorial_world_text(ranks)
 	else:
 		_update_world_text(ranks)

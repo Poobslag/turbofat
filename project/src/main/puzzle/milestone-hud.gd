@@ -20,8 +20,8 @@ const LEVEL_COLOR_5 := Color("b948b9")
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	Level.connect("settings_changed", self, "_on_Level_settings_changed")
-	match Level.settings.finish_condition.type:
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	match CurrentLevel.settings.finish_condition.type:
 		Milestone.CUSTOMERS:
 			$Desc.text = "Customers"
 		Milestone.LINES:
@@ -57,7 +57,7 @@ func update_milebar_values() -> void:
 Updates the milestone progress bar text.
 """
 func update_milebar_text() -> void:
-	var milestone := Level.settings.finish_condition
+	var milestone := CurrentLevel.settings.finish_condition
 	var remaining: int = max(0, ceil(milestone.value - MilestoneManager.milestone_progress(milestone)))
 	match milestone.type:
 		Milestone.NONE:

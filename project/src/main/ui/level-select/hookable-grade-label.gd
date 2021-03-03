@@ -49,7 +49,7 @@ func _refresh_appearance() -> void:
 		var worst_rank := 0.0
 		for rank in world_button.ranks:
 			worst_rank = max(worst_rank, rank)
-		if world_button.world_id == Level.TUTORIAL_WORLD_ID:
+		if world_button.world_id == LevelLibrary.TUTORIAL_WORLD_ID:
 			# tutorial world does not show a grade; only a check mark
 			_refresh_status_icon(world_button.lock_status)
 		else:

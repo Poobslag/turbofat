@@ -1,10 +1,15 @@
 extends Node
 """
-Keeps track of which worlds and levels are available to the player and how to unlock them.
+Manages data for all levels in the game. This includes their rules, unlock criteria, and whether the player's unlocked
+them yet.
 
-This information is used to determine if a player can play a level, and to communicate this information to the player
-with descriptive messages like 'Clear four more levels to unlock this!'
+Levels are stored as json resources. This class parses those json resources into LevelSettings so they can be used by
+the puzzle code.
 """
+
+# The mandatory tutorial the player must complete before playing the game
+const BEGINNER_TUTORIAL := "tutorial/basics_0"
+const TUTORIAL_WORLD_ID := "tutorial"
 
 # Ordered list of all world IDs
 var world_ids: Array

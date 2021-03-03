@@ -43,7 +43,7 @@ func load_level(path: String) -> void:
 func _start_test() -> void:
 	var settings := LevelSettings.new()
 	settings.load_from_text(level_name.text, _level_json.text)
-	Level.start_level(settings)
+	CurrentLevel.start_level(settings)
 	_test_scene = PuzzleScene.instance()
 	
 	# back button should close level; shouldn't redirect us to a new scene

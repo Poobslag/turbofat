@@ -29,7 +29,7 @@ func _ready() -> void:
 	
 	$RestaurantView.get_customer().play_hello_voice(true)
 	
-	if Level.settings.other.skip_intro:
+	if CurrentLevel.settings.other.skip_intro:
 		$PuzzleMusicManager.start_puzzle_music()
 		yield(get_tree().create_timer(0.8), "timeout")
 		_start_puzzle()
@@ -162,12 +162,12 @@ func _calculate_food_color(box_ints: Array) -> void:
 
 
 func _quit_puzzle() -> void:
-	if Level.level_state == Level.LevelState.AFTER and ChatLibrary.has_postroll(Level.launched_level_id):
-		var chat_tree := ChatLibrary.chat_tree_for_postroll(Level.launched_level_id)
+	if CurrentLevel.level_state == CurrentLevel.LevelState.AFTER and ChatLibrary.has_postroll(CurrentLevel.level_id):
+		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
 		# insert cutscene into breadcrumb trail so it will show up after we pop the trail
 		Breadcrumb.trail.insert(1, chat_tree.cutscene_scene_path())
 	else:
-		Level.clear_launched_level()
+		CurrentLevel.clear_launched_level()
 
 	PlayerData.creature_queue.clear()
 	Breadcrumb.pop_trail()
@@ -212,25 +212,25 @@ func _on_PuzzleScore_game_started() -> void:
 Method invoked when the game ends. Stores the rank result for later.
 """
 func _on_PuzzleScore_game_ended() -> void:
-	if not Level.launched_level_id:
+	if not CurrentLevel.level_id:
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
 	
 	$SettingsMenu.quit_text = SettingsMenu.QUIT
 	var rank_result := RankCalculator.new().calculate_rank()
-	PlayerData.level_history.add(Level.launched_level_id, rank_result)
-	PlayerData.level_history.prune(Level.launched_level_id)
+	PlayerData.level_history.add(CurrentLevel.level_id, rank_result)
+	PlayerData.level_history.prune(CurrentLevel.level_id)
 	PlayerData.emit_signal("level_history_changed")
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, 9999999999999999))
 	
-	match Level.settings.finish_condition.type:
+	match CurrentLevel.settings.finish_condition.type:
 		Milestone.SCORE:
 			if not PuzzleScore.level_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
 		_:
 			if not PuzzleScore.level_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
 	
 	if PuzzleScore.end_result() in [PuzzleScore.Result.FINISHED, PuzzleScore.Result.WON]:
-		Level.level_state = Level.LevelState.AFTER
+		CurrentLevel.level_state = CurrentLevel.LevelState.AFTER
 
 
 """

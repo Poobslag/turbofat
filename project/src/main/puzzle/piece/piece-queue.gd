@@ -19,7 +19,7 @@ var _default_piece_types := PieceTypes.all_types
 var _remaining_piece_count := UNLIMITED_PIECES
 
 func _ready() -> void:
-	Level.connect("settings_changed", self, "_on_Level_settings_changed")
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	_fill()
 
@@ -28,8 +28,8 @@ func _ready() -> void:
 Clears the pieces and refills the piece queues.
 """
 func clear() -> void:
-	if Level.settings.finish_condition.type == Milestone.PIECES:
-		_remaining_piece_count = Level.settings.finish_condition.value
+	if CurrentLevel.settings.finish_condition.type == Milestone.PIECES:
+		_remaining_piece_count = CurrentLevel.settings.finish_condition.value
 	else:
 		_remaining_piece_count = UNLIMITED_PIECES
 	_pieces.clear()
@@ -77,7 +77,7 @@ func _fill() -> void:
 Initializes an empty queue with a set of starting pieces.
 """
 func _fill_initial_pieces() -> void:
-	if Level.settings.piece_types.types.empty() and Level.settings.piece_types.start_types.empty():
+	if CurrentLevel.settings.piece_types.types.empty() and CurrentLevel.settings.piece_types.start_types.empty():
 		"""
 		Default starting pieces:
 		1. Append three same-size pieces which can't build a cake box; lot, jot, jlt or pqu
@@ -112,13 +112,13 @@ func _fill_initial_pieces() -> void:
 				_pieces.push_back(piece)
 		
 		_insert_annoying_piece(3)
-	elif Level.settings.piece_types.start_types and Level.settings.piece_types.ordered_start:
+	elif CurrentLevel.settings.piece_types.start_types and CurrentLevel.settings.piece_types.ordered_start:
 		# Fixed starting pieces: Append all of the start pieces in order.
-		for piece in Level.settings.piece_types.start_types:
+		for piece in CurrentLevel.settings.piece_types.start_types:
 			_pieces.append(piece)
 	else:
 		# Shuffled starting pieces: Append all of the start pieces in a random order, skipping duplicates.
-		var pieces_tmp := Level.settings.piece_types.start_types.duplicate()
+		var pieces_tmp := CurrentLevel.settings.piece_types.start_types.duplicate()
 		pieces_tmp.shuffle()
 		for piece in pieces_tmp:
 			if _pieces.empty() or _pieces[0] != piece:
@@ -127,7 +127,7 @@ func _fill_initial_pieces() -> void:
 
 
 func shuffled_piece_types() -> Array:
-	var result := Level.settings.piece_types.types
+	var result := CurrentLevel.settings.piece_types.types
 	if not result:
 		result = _default_piece_types
 	result = result.duplicate()

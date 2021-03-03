@@ -86,7 +86,7 @@ func _ready() -> void:
 		settings.load_from_resource(level_id)
 		levels["%s %s" % [mode, difficulty]] = settings
 		
-		if level_id == Level.settings.id:
+		if level_id == CurrentLevel.settings.id:
 			# if they've just played a practice mode level, we default to that level
 			current_mode = mode
 			current_difficulty = difficulty
@@ -150,7 +150,7 @@ func _on_Mode_mode_changed() -> void:
 
 
 func _on_Start_pressed() -> void:
-	Level.set_launched_level(_get_level().id)
+	CurrentLevel.set_launched_level(_get_level().id)
 	# upon completion, practice levels default to 'retry'
-	Level.keep_retrying = true
-	Level.push_level_trail()
+	CurrentLevel.keep_retrying = true
+	CurrentLevel.push_level_trail()

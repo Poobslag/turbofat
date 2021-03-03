@@ -44,14 +44,14 @@ the match, and return the better of the two ranks.
 """
 func calculate_rank() -> RankResult:
 	var rank_result := _unranked_result()
-	if Level.settings.rank.unranked:
+	if CurrentLevel.settings.rank.unranked:
 		# automatic master rank for unranked levels
 		rank_result.seconds_rank = WORST_RANK if rank_result.lost else 0.0
 		rank_result.score_rank = WORST_RANK if rank_result.lost else 0.0
 	else:
 		_populate_rank_fields(rank_result, false)
 		
-		if Level.settings.finish_condition.has_meta("lenient_value"):
+		if CurrentLevel.settings.finish_condition.has_meta("lenient_value"):
 			var lenient_rank_result := _unranked_result()
 			_populate_rank_fields(lenient_rank_result, true)
 			rank_result.speed_rank = min(rank_result.speed_rank, lenient_rank_result.speed_rank)
@@ -113,19 +113,19 @@ func _max_lpm() -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
 	
-	for i in range(Level.settings.speed_ups.size()):
-		var milestone: Milestone = Level.settings.speed_ups[i]
+	for i in range(CurrentLevel.settings.speed_ups.size()):
+		var milestone: Milestone = CurrentLevel.settings.speed_ups[i]
 		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("speed"))
 		
 		var frames_per_line := min_frames_per_line(piece_speed)
 		
-		var finish_condition: Milestone = Level.settings.finish_condition
+		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 		var level_lines := 100.0
-		if i + 1 < Level.settings.speed_ups.size():
-			var speed_up: Milestone = Level.settings.speed_ups[i + 1]
+		if i + 1 < CurrentLevel.settings.speed_ups.size():
+			var speed_up: Milestone = CurrentLevel.settings.speed_ups[i + 1]
 			match speed_up.type:
 				Milestone.CUSTOMERS:
-					level_lines = master_customer_combo(Level.settings)
+					level_lines = master_customer_combo(CurrentLevel.settings)
 				Milestone.LINES:
 					level_lines = speed_up.value
 				Milestone.PIECES:
@@ -135,7 +135,7 @@ func _max_lpm() -> float:
 					level_lines = speed_up.value * 60 / frames_per_line
 				Milestone.SCORE:
 					level_lines = speed_up.value / \
-							(master_box_score(Level.settings) + master_combo_score(Level.settings) + 1)
+							(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
 		elif finish_condition.type == Milestone.LINES:
 			level_lines = finish_condition.value
 		elif finish_condition.type == Milestone.PIECES:
@@ -143,7 +143,7 @@ func _max_lpm() -> float:
 			level_lines = finish_condition.value / 2
 		elif finish_condition.type == Milestone.SCORE:
 			level_lines = finish_condition.value / \
-					(master_box_score(Level.settings) + master_combo_score(Level.settings) + 1)
+					(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
 		
 		# avoid divide by zero, and round up to the nearest line clear
 		level_lines = ceil(max(level_lines, 1.0))
@@ -162,7 +162,7 @@ This does not include any rank data, only objective information like lines clear
 func _unranked_result() -> RankResult:
 	var rank_result := RankResult.new()
 	
-	if Level.settings.finish_condition.type == Milestone.SCORE:
+	if CurrentLevel.settings.finish_condition.type == Milestone.SCORE:
 		rank_result.compare = "-seconds"
 
 	# calculate raw player performance statistics
@@ -199,17 +199,17 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var max_lpm := _max_lpm()
 	
 	var target_speed: float = max_lpm
-	var target_box_score_per_line := master_box_score(Level.settings)
-	var target_combo_score_per_line := master_combo_score(Level.settings)
+	var target_box_score_per_line := master_box_score(CurrentLevel.settings)
+	var target_combo_score_per_line := master_combo_score(CurrentLevel.settings)
 	var target_lines: float
-	var leftover_lines := master_leftover_lines(Level.settings)
+	var leftover_lines := master_leftover_lines(CurrentLevel.settings)
 	
-	var finish_condition: Milestone = Level.settings.finish_condition
+	var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 	match finish_condition.type:
 		Milestone.NONE:
 			target_lines = 999999
 		Milestone.CUSTOMERS:
-			target_lines = master_customer_combo(Level.settings) * finish_condition.value
+			target_lines = master_customer_combo(CurrentLevel.settings) * finish_condition.value
 		Milestone.LINES:
 			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
 		Milestone.PIECES:
@@ -268,11 +268,11 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	else:
 		rank_result.score_rank = stepify((overall_rank_max + overall_rank_min) / 2.0, 0.01)
 	
-	if MilestoneManager.milestone_met(Level.settings.success_condition):
+	if MilestoneManager.milestone_met(CurrentLevel.settings.success_condition):
 		if rank_result.compare == "-seconds":
-			rank_result.seconds_rank -= Level.settings.rank.success_bonus
+			rank_result.seconds_rank -= CurrentLevel.settings.rank.success_bonus
 		else:
-			rank_result.score_rank -= Level.settings.rank.success_bonus
+			rank_result.score_rank -= CurrentLevel.settings.rank.success_bonus
 	
 	_apply_top_out_penalty(rank_result)
 	_clamp_result(rank_result, lenient)
@@ -290,7 +290,7 @@ purpose to achieve a good rank.
 func _apply_top_out_penalty(rank_result: RankResult) -> void:
 	if rank_result.topped_out() or rank_result.lost:
 		var penalty_count := max(1, rank_result.top_out_count)
-		var settings: LevelSettings = Level.settings
+		var settings: LevelSettings = CurrentLevel.settings
 		var all_penalty := penalty_count * settings.rank.top_out_penalty
 		rank_result.speed_rank = rank_result.speed_rank + all_penalty
 		rank_result.lines_rank = rank_result.lines_rank + all_penalty

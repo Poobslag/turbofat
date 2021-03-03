@@ -25,7 +25,7 @@ func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
-	Level.connect("settings_changed", self, "_on_Level_settings_changed")
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 
 
 func set_combo_break(new_combo_break: int) -> void:
@@ -67,7 +67,7 @@ func _on_Playfield_box_built(_rect: Rect2, _color_int: int) -> void:
 
 
 func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
-	if Level.settings.combo_break.veg_row:
+	if CurrentLevel.settings.combo_break.veg_row:
 		if box_ints.empty():
 			piece_broke_combo = true
 	piece_continued_combo = true
@@ -78,7 +78,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 
 func _on_PuzzleScore_after_piece_written() -> void:
 	if piece_broke_combo:
-		combo_break = Level.settings.combo_break.pieces
+		combo_break = CurrentLevel.settings.combo_break.pieces
 		break_combo()
 	else:
 		if not piece_continued_combo:
@@ -86,8 +86,8 @@ func _on_PuzzleScore_after_piece_written() -> void:
 		
 		# check for combo break even if the piece continued the combo.
 		# this is necessary to cover the 'combo_break.pieces = 0' case
-		if Level.settings.combo_break.pieces != ComboBreakRules.UNLIMITED_PIECES \
-				and combo_break >= Level.settings.combo_break.pieces:
+		if CurrentLevel.settings.combo_break.pieces != ComboBreakRules.UNLIMITED_PIECES \
+				and combo_break >= CurrentLevel.settings.combo_break.pieces:
 			break_combo()
 		else:
 			emit_signal("combo_break_changed", combo_break)
@@ -108,9 +108,9 @@ func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_li
 	var box_score := 0
 	for box_int in box_ints:
 		if PuzzleTileMap.is_snack_box(box_int):
-			box_score += Level.settings.score.snack_points
+			box_score += CurrentLevel.settings.score.snack_points
 		elif PuzzleTileMap.is_cake_box(box_int):
-			box_score += Level.settings.score.cake_points
+			box_score += CurrentLevel.settings.score.cake_points
 		else:
-			box_score += Level.settings.score.veg_points
+			box_score += CurrentLevel.settings.score.veg_points
 	PuzzleScore.add_line_score(combo_score, box_score)

@@ -29,8 +29,8 @@ onready var _tutorial_messages: TutorialMessages = $Level/Hud/HudUi/TutorialHud/
 
 func _ready() -> void:
 	var level_settings := LevelSettings.new()
-	level_settings.load_from_resource(Level.BEGINNER_TUTORIAL)
-	Level.start_level(level_settings)
+	level_settings.load_from_resource(LevelLibrary.BEGINNER_TUTORIAL)
+	CurrentLevel.start_level(level_settings)
 	
 	_tutorial_hud.replace_tutorial_module()
 

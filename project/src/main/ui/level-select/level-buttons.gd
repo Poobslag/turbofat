@@ -72,8 +72,8 @@ func _add_buttons() -> void:
 		ALL_LEVELS: 
 			included_world_ids = LevelLibrary.world_ids
 		TUTORIALS_ONLY:
-			if LevelLibrary.world_ids.has(Level.TUTORIAL_WORLD_ID):
-				included_world_ids = [Level.TUTORIAL_WORLD_ID]
+			if LevelLibrary.world_ids.has(LevelLibrary.TUTORIAL_WORLD_ID):
+				included_world_ids = [LevelLibrary.TUTORIAL_WORLD_ID]
 			else:
 				included_world_ids = []
 	
@@ -194,12 +194,12 @@ func _lowlight_unrelated_buttons(world_id: String) -> void:
 When the player clicks a level button twice, we launch the selected level
 """
 func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
-	Level.set_launched_level(settings.id)
+	CurrentLevel.set_launched_level(settings.id)
 	
-	var pushed_cutscene_trail := Level.push_cutscene_trail(true)
+	var pushed_cutscene_trail := CurrentLevel.push_cutscene_trail(true)
 	
 	if not pushed_cutscene_trail:
-		Level.push_level_trail()
+		CurrentLevel.push_level_trail()
 
 
 """

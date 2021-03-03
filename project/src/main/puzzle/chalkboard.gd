@@ -4,9 +4,9 @@ Chalkboard which displays the player's score and progress during a puzzle.
 """
 
 func _ready() -> void:
-	Level.connect("settings_changed", self, "_on_Level_settings_changed")
-	visible = !Level.settings.other.tutorial
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	visible = !CurrentLevel.settings.other.tutorial
 
 
 func _on_Level_settings_changed() -> void:
-	visible = !Level.settings.other.tutorial
+	visible = !CurrentLevel.settings.other.tutorial

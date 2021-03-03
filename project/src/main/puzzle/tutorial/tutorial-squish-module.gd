@@ -44,9 +44,9 @@ func _ready() -> void:
 
 func prepare_tutorial_level() -> void:
 	.prepare_tutorial_level()
-	_failed_section = _prepared_levels.has(Level.settings.id)
+	_failed_section = _prepared_levels.has(CurrentLevel.settings.id)
 	
-	match(Level.settings.id):
+	match(CurrentLevel.settings.id):
 		"tutorial/squish_0":
 			hud.skill_tally_item("SquishMove").visible = true
 			hud.set_message(tr("Hold soft drop to squish pieces through this gap."))
@@ -90,7 +90,7 @@ func prepare_tutorial_level() -> void:
 					+ " we still have some customers to take care of."))
 			hud.enqueue_pop_out()
 	
-	_prepared_levels[Level.settings.id] = true
+	_prepared_levels[CurrentLevel.settings.id] = true
 
 
 """
@@ -99,7 +99,7 @@ Advance to the next level in the tutorial.
 func _advance_level() -> void:
 	_failed_section = false
 	var delay_between_levels := PuzzleScore.DELAY_SHORT
-	match(Level.settings.id):
+	match(CurrentLevel.settings.id):
 		"tutorial/squish_1":
 			# no delay for the non-interactive segment where we show the player a diagram
 			delay_between_levels = PuzzleScore.DELAY_NONE
@@ -132,14 +132,14 @@ func _advance_level() -> void:
 	]
 	var new_level_id: String
 	if _failed_section:
-		new_level_id = Level.settings.id
+		new_level_id = CurrentLevel.settings.id
 	else:
-		new_level_id = level_ids[level_ids.find(Level.settings.id) + 1]
+		new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
 	PuzzleScore.change_level(new_level_id, delay_between_levels)
 
 
 func _handle_squish_move_message() -> void:
-	if _did_squish_move and _squish_moves == 1 and Level.settings.id == "tutorial/squish_0":
+	if _did_squish_move and _squish_moves == 1 and CurrentLevel.settings.id == "tutorial/squish_0":
 		hud.set_message(tr("Good job!\n\nSquish moves help in all sorts of ways."))
 
 
@@ -197,7 +197,7 @@ func _on_PuzzleScore_after_piece_written() -> void:
 	# print tutorial messages if the player did something noteworthy
 	_handle_squish_move_message()
 	
-	match Level.settings.id:
+	match CurrentLevel.settings.id:
 		"tutorial/squish_0":
 			if not _did_squish_move:
 				playfield.tile_map.restore_state()
@@ -210,7 +210,7 @@ func _on_PuzzleScore_after_piece_written() -> void:
 				playfield.tile_map.restore_state()
 		"tutorial/squish_5":
 			if PuzzleScore.level_performance.pieces == 1:
-				Level.settings.input_replay.clear()
+				CurrentLevel.settings.input_replay.clear()
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(1.5), "timeout")
@@ -222,12 +222,12 @@ func _on_PuzzleScore_after_piece_written() -> void:
 								+ " ...Can you clean this up using squish moves?"
 								+ "\n\nTry to clear three lines."))
 			
-			if PuzzleScore.level_performance.pieces >= Level.settings.finish_condition.value \
+			if PuzzleScore.level_performance.pieces >= CurrentLevel.settings.finish_condition.value \
 					or PuzzleScore.level_performance.lines >= 3:
 				_advance_level()
 		"tutorial/squish_6":
 			if PuzzleScore.level_performance.pieces == 1:
-				Level.settings.input_replay.clear()
+				CurrentLevel.settings.input_replay.clear()
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(1.5), "timeout")
@@ -238,7 +238,7 @@ func _on_PuzzleScore_after_piece_written() -> void:
 					hud.set_messages([tr("Oh no! Now you've done it.\n\nLook at how clumsy you are!"),
 						tr("That's okay.\n\nI'm sure you'll think of a clever way to clean this up, too.")])
 			
-			if PuzzleScore.level_performance.pieces >= Level.settings.finish_condition.value \
+			if PuzzleScore.level_performance.pieces >= CurrentLevel.settings.finish_condition.value \
 					or PuzzleScore.level_performance.lines >= 3:
 				_advance_level()
 

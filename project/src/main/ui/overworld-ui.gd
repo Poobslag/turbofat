@@ -223,17 +223,17 @@ func _on_ChatUi_pop_out_completed() -> void:
 		if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 			# don't launch the level; go back to CutsceneDemo after playing the cutscene
 			Breadcrumb.pop_trail()
-		elif Level.level_state == Level.LevelState.BEFORE:
+		elif CurrentLevel.level_state == CurrentLevel.LevelState.BEFORE:
 			# pre-level dialog or pre-level cutscene finished playing
 			
 			if cutscene:
 				# remove redundant overworld cutscenes from the breadcrumb trail
 				Breadcrumb.trail.remove(0)
 			
-			Level.push_level_trail()
-		elif Level.level_state == Level.LevelState.AFTER:
+			CurrentLevel.push_level_trail()
+		elif CurrentLevel.level_state == CurrentLevel.LevelState.AFTER:
 			# ending cutscene finished playing
-			Level.clear_launched_level()
+			CurrentLevel.clear_launched_level()
 			Breadcrumb.pop_trail()
 
 
@@ -299,10 +299,10 @@ func _on_TalkButton_pressed() -> void:
 	var chat_tree := _focused_chattable_chat_tree()
 	var pushed_cutscene_trail := false
 	
-	Level.set_launched_level(level_id)
+	CurrentLevel.set_launched_level(level_id)
 	if level_id:
 		# launch a cutscene if necessary
-		pushed_cutscene_trail = Level.push_cutscene_trail()
+		pushed_cutscene_trail = CurrentLevel.push_cutscene_trail()
 	
 	if chat_tree and not pushed_cutscene_trail:
 		# if no cutscene was launched, start a chat
@@ -310,7 +310,7 @@ func _on_TalkButton_pressed() -> void:
 	
 	if not chat_tree and not pushed_cutscene_trail:
 		# if no chat was launched, start a level
-		Level.push_level_trail()
+		CurrentLevel.push_level_trail()
 
 
 func _on_CellPhoneMenu_show() -> void:

@@ -7,7 +7,7 @@ Includes buttons for starting a new game, launching the level editor, and exitin
 """
 
 func _ready() -> void:
-	if not PlayerData.level_history.finished_levels.has(Level.BEGINNER_TUTORIAL):
+	if not PlayerData.level_history.finished_levels.has(LevelLibrary.BEGINNER_TUTORIAL):
 		# if the player fails/quits the first tutorial, they're redirected to the splash screen
 		Breadcrumb.trail = [Global.SCENE_SPLASH]
 		_launch_tutorial()
@@ -28,13 +28,13 @@ func _exit_tree() -> void:
 
 func _launch_tutorial() -> void:
 	PlayerData.creature_queue.clear()
-	Level.set_launched_level(Level.BEGINNER_TUTORIAL)
-	Level.push_level_trail()
+	CurrentLevel.set_launched_level(LevelLibrary.BEGINNER_TUTORIAL)
+	CurrentLevel.push_level_trail()
 
 
 func _on_PlayStory_pressed() -> void:
 	PlayerData.creature_queue.clear()
-	Level.clear_launched_level()
+	CurrentLevel.clear_launched_level()
 	Breadcrumb.push_trail(Global.SCENE_OVERWORLD)
 
 

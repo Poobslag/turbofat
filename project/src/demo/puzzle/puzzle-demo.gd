@@ -17,8 +17,8 @@ var _food_item_index := 0
 var _cake_color_int: int = PuzzleTileMap.BoxColorInt.CAKE_JJO
 
 func _ready() -> void:
-	Level.settings.set_start_speed("T")
-	Level.settings.set_finish_condition(Milestone.NONE, 100)
+	CurrentLevel.settings.set_start_speed("T")
+	CurrentLevel.settings.set_finish_condition(Milestone.NONE, 100)
 	PuzzleScore.prepare_and_start_game()
 
 
