@@ -1,3 +1,4 @@
+class_name PresquishSfx
 extends AudioStreamPlayer
 """
 Plays sound effects when the player starts a squish move.

@@ -1,3 +1,4 @@
+class_name SquishMap
 extends PuzzleTileMap
 """
 This TileMap handles drawing the stretched-out piece during a squish move.

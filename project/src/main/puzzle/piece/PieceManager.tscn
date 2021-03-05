@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=2]
+[gd_scene load_steps=38 format=2]
 
 [ext_resource path="res://src/main/puzzle/piece/squish-fx.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/filled-circle-8.png" type="Texture" id=2]
@@ -18,7 +18,7 @@
 [ext_resource path="res://src/main/puzzle/piece/states/prespawn.gd" type="Script" id=16]
 [ext_resource path="res://src/main/puzzle/piece/states/none.gd" type="Script" id=17]
 [ext_resource path="res://src/main/puzzle/piece/states/move-piece.gd" type="Script" id=18]
-[ext_resource path="res://src/main/state-machine.gd" type="Script" id=19]
+[ext_resource path="res://src/main/puzzle/piece/piece-states.gd" type="Script" id=19]
 [ext_resource path="res://src/main/puzzle/piece/states/wait-for-playfield.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/top-out.gd" type="Script" id=21]
 [ext_resource path="res://src/main/puzzle/piece/sweat-drops.gd" type="Script" id=22]
@@ -29,6 +29,8 @@
 [ext_resource path="res://src/main/puzzle/piece/piece-mover.gd" type="Script" id=27]
 [ext_resource path="res://src/main/puzzle/piece/piece-dropper.gd" type="Script" id=28]
 [ext_resource path="res://src/main/puzzle/piece/piece-squisher.gd" type="Script" id=29]
+[ext_resource path="res://src/main/puzzle/piece/piece-physics.gd" type="Script" id=30]
+[ext_resource path="res://src/main/puzzle/piece/ghost-mover.gd" type="Script" id=31]
 
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
@@ -70,6 +72,10 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="GhostMover" type="Node" parent="."]
+script = ExtResource( 31 )
+tile_map_path = NodePath("../TileMap")
 
 [node name="TileMap" parent="." instance=ExtResource( 9 )]
 material = SubResource( 1 )
@@ -132,6 +138,8 @@ script = ExtResource( 21 )
 script = ExtResource( 14 )
 
 [node name="Physics" type="Node" parent="."]
+script = ExtResource( 30 )
+piece_states_path = NodePath("../States")
 
 [node name="Rotator" type="Node" parent="Physics"]
 script = ExtResource( 26 )
@@ -214,8 +222,9 @@ bus = "Sound Bus"
 [connection signal="initial_das_moved_right" from="Physics/Mover" to="." method="_on_Mover_initial_das_moved_right"]
 [connection signal="moved_left" from="Physics/Mover" to="." method="_on_Mover_moved_left"]
 [connection signal="moved_right" from="Physics/Mover" to="." method="_on_Mover_moved_right"]
+[connection signal="hard_drop_target_pos_changed" from="Physics/Dropper" to="GhostMover" method="_on_Dropper_hard_drop_target_pos_changed"]
 [connection signal="hard_dropped" from="Physics/Dropper" to="." method="_on_Dropper_hard_dropped"]
 [connection signal="soft_dropped" from="Physics/Dropper" to="." method="_on_Dropper_soft_dropped"]
 [connection signal="lock_cancelled" from="Physics/Squisher" to="." method="_on_Squisher_lock_cancelled"]
-[connection signal="squish_moved" from="Physics/Squisher" to="." method="_on_Squisher_squish_moved"]
 [connection signal="squish_moved" from="Physics/Squisher" to="Physics/Dropper" method="_on_Squisher_squish_moved"]
+[connection signal="squish_moved" from="Physics/Squisher" to="." method="_on_Squisher_squish_moved"]

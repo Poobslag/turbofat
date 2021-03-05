@@ -30,12 +30,12 @@ var spawn_delay := 0
 # Piece shape, color, kick information
 var type: PieceType
 
-# Can be enabled to trace detailed information about piece kicks
-var _trace_kicks := false
-
 # A callback function which returns 'true' if a specified cell is blocked,
 # either because it lies outside the playfield or is obstructed by a block
 var cell_blocked_func: FuncRef
+
+# Can be enabled to trace detailed information about piece kicks
+var _trace_kicks := false
 
 """
 Parameters:
@@ -90,6 +90,20 @@ Returns the orientation the piece will be in if it rotates counter-clockwise.
 """
 func get_ccw_orientation() -> int:
 	return wrapi(orientation - 1, 0, type.pos_arr.size())
+
+
+"""
+Returns the position of the piece's used cells, factoring in orientation but not position.
+"""
+func get_pos_arr() -> Array:
+	return type.pos_arr[orientation]
+
+
+"""
+Returns the desired position of the piece's used cells, factoring in orientation but not position.
+"""
+func get_target_pos_arr() -> Array:
+	return type.pos_arr[target_orientation]
 
 
 """

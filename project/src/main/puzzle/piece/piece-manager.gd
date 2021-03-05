@@ -38,17 +38,22 @@ signal tiles_changed(tile_map)
 export (NodePath) var playfield_path: NodePath
 export (NodePath) var next_piece_displays_path: NodePath
 
-onready var _next_piece_displays: NextPieceDisplays = get_node(next_piece_displays_path)
-onready var _playfield: Playfield = get_node(playfield_path)
-onready var tile_map: PuzzleTileMap = $TileMap
-
 # settings and state for the currently active piece.
-onready var piece := ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
+var piece: ActivePiece
 
 # information about the piece previously rendered to the tile map
 var drawn_piece_type: PieceType
 var drawn_piece_pos: Vector2
 var drawn_piece_orientation: int
+
+# TileMap containing the puzzle blocks which make up the active piece
+onready var tile_map: PuzzleTileMap = $TileMap
+
+onready var _input: PieceInput = $Input
+onready var _next_piece_displays: NextPieceDisplays = get_node(next_piece_displays_path)
+onready var _physics: PiecePhysics = $Physics
+onready var _playfield: Playfield = get_node(playfield_path)
+onready var _states: PieceStates = $States
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
@@ -59,25 +64,15 @@ func _ready() -> void:
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	
+	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
+	
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
-	$States.set_state($States/None)
+	_states.set_state(_states.none)
 	_clear_piece()
 
 
-func _process(_delta: float) -> void:
-	if $SquishFx/SquishMap.squish_seconds_remaining > 0:
-		$SquishFx/SquishMap.show()
-		$TileMap.hide()
-		
-		# if the player continues to move the piece, we keep stretching to its new location
-		$SquishFx/SquishMap.stretch_to(piece.type.pos_arr[piece.orientation], piece.pos)
-	else:
-		$SquishFx/SquishMap.hide()
-		$TileMap.show()
-
-
 func _physics_process(_delta: float) -> void:
-	$States.update()
+	_states.update()
 	if drawn_piece_type != piece.type \
 			or drawn_piece_pos != piece.pos \
 			or drawn_piece_orientation != piece.orientation:
@@ -90,7 +85,7 @@ func _physics_process(_delta: float) -> void:
 
 
 func get_state() -> State:
-	return $States.get_state()
+	return _states.get_state()
 
 
 func is_playfield_ready_for_new_piece() -> bool:
@@ -113,7 +108,7 @@ Called when the player tops out, but doesn't lose.
 Enters a state which waits for the _playfield to make room for the current piece.
 """
 func enter_top_out_state(top_out_frames: int) -> void:
-	$States.set_state($States/TopOut)
+	_states.set_state(_states.top_out)
 	piece.spawn_delay = top_out_frames
 
 
@@ -125,80 +120,37 @@ Returns 'true' if the piece was spawned successfully, or 'false' if the player t
 func spawn_piece() -> bool:
 	var piece_type := _next_piece_displays.pop_next_piece()
 	piece = ActivePiece.new(piece_type, funcref(_playfield.tile_map, "is_cell_blocked"))
-	
-	$Physics/Rotator.apply_initial_rotate_input(piece)
-	$Physics/Mover.apply_initial_move_input(piece)
-	
-	# lose?
-	var topped_out: bool = false
-	if not piece.can_move_to_target():
-		PuzzleScore.top_out()
-		topped_out = true
-	
+	var success := _physics.spawn_piece(piece)
 	emit_signal("piece_spawned")
 	emit_signal("piece_changed", piece)
-	if PlayerData.gameplay_settings.ghost_piece:
-		$TileMap.set_ghost_shadow_offset($Physics/Dropper.hard_drop_target_pos - piece.pos)
-	return not topped_out
+	return success
+
+
+func move_piece() -> void:
+	var piece_changed := _physics.move_piece(piece)
+	if piece_changed:
+		emit_signal("piece_changed", piece)
 
 
 """
 Records any inputs to a buffer to be replayed later.
 """
 func buffer_inputs() -> void:
-	$Input.buffer_inputs()
+	_input.buffer_inputs()
 
 
 """
 Replays any inputs which were pressed while buffering.
 """
 func pop_buffered_inputs() -> void:
-	$Input.pop_buffered_inputs()
-
-
-"""
-Moves the piece based on player input and gravity.
-
-If any move/rotate keys were pressed, this method will move the block accordingly. Gravity will then be applied.
-
-Returns 'true' if the piece was interacted with successfully resulting in a movement change, orientation change, or
-	lock reset
-"""
-func move_piece() -> void:
-	var old_piece_pos := piece.pos
-	var old_piece_orientation := piece.orientation
-	
-	if $States.get_state() == $States/MovePiece:
-		$Physics/Rotator.apply_rotate_input(piece)
-		$Physics/Mover.apply_move_input(piece)
-		$Physics/Dropper.apply_hard_drop_input(piece)
-	
-	$Physics/Squisher.attempt_squish(piece)
-	$Physics/Dropper.apply_gravity(piece)
-	
-	if old_piece_pos != piece.pos or old_piece_orientation != piece.orientation:
-		emit_signal("piece_changed", piece)
-		if PlayerData.gameplay_settings.ghost_piece:
-			$TileMap.set_ghost_shadow_offset($Physics/Dropper.hard_drop_target_pos - piece.pos)
-		if piece.lock > 0:
-			if $Physics/Dropper.did_hard_drop:
-				# hard drop doesn't cause lock reset
-				pass
-			elif $Physics/Squisher.did_squish_drop:
-				# don't reset lock if doing a squish drop
-				pass
-			else:
-				piece.perform_lock_reset()
+	_input.pop_buffered_inputs()
 
 
 """
 Returns a number from [0, 1] for how close the piece is to squishing.
 """
 func squish_percent() -> float:
-	if $States.get_state() != $States/MovePiece:
-		return 0.0
-	
-	return $Physics/Squisher.squish_percent(piece)
+	return _physics.squish_percent(piece)
 
 
 """
@@ -224,9 +176,9 @@ func skip_prespawn() -> void:
 	if CurrentLevel.settings.other.non_interactive:
 		return
 	
-	if $States.get_state() != $States/Prespawn:
-		$States.set_state($States/Prespawn)
-	$States/Prespawn.frames = 3600
+	if _states.get_state() != _states.prespawn:
+		_states.set_state(_states.prespawn)
+	_states.prespawn.frames = 3600
 
 
 func _clear_piece() -> void:
@@ -237,11 +189,12 @@ func _clear_piece() -> void:
 Refresh the tile map which displays the piece, based on the current piece's position and orientation.
 """
 func _update_tile_map() -> void:
-	$TileMap.clear()
-	for i in range(piece.type.pos_arr[piece.orientation].size()):
-		var block_pos := piece.type.get_cell_position(piece.orientation, i)
+	tile_map.clear()
+	var pos_arr := piece.get_pos_arr()
+	for i in range(pos_arr.size()):
+		var block_pos: Vector2 = piece.pos + pos_arr[i]
 		var block_color := piece.type.get_cell_color(piece.orientation, i)
-		$TileMap.set_block(piece.pos + block_pos, 0, block_color)
+		tile_map.set_block(block_pos, 0, block_color)
 
 
 """
@@ -251,12 +204,12 @@ func _start_first_piece() -> void:
 	if CurrentLevel.settings.other.non_interactive:
 		return
 	
-	$States.set_state($States/Prespawn)
+	_states.set_state(_states.prespawn)
 	skip_prespawn()
 
 
 func _on_States_entered_state(state: State) -> void:
-	if state == $States/Prelock:
+	if state == _states.prelock:
 		emit_signal("lock_started")
 
 
@@ -274,14 +227,14 @@ not left floating.
 """
 func _on_PuzzleScore_finish_triggered() -> void:
 	_clear_piece()
-	$States.set_state($States/GameEnded)
+	_states.set_state(_states.game_ended)
 
 
 """
 The game ended the game, possibly by a top out. We leave the piece in place so that they can see why they topped out.
 """
 func _on_PuzzleScore_game_ended() -> void:
-	$States.set_state($States/GameEnded)
+	_states.set_state(_states.game_ended)
 
 
 func _on_PuzzleScore_before_level_changed(_new_level_id: String) -> void:
