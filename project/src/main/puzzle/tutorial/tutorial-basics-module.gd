@@ -149,7 +149,7 @@ func _handle_build_box_message() -> void:
 			match CurrentLevel.settings.id:
 				"tutorial/basics_0":
 					hud.set_message(tr("Oh my, you're not supposed to know how to do that!\n\n"
-							+ "...But yes, those boxes earn $15 when you clear them."))
+							+ "...But yes, those boxes earn ¥15 when you clear them."))
 					_add_post_skip_message()
 					hud.skill_tally_item("SnackBox").visible = true
 					hud.skill_tally_item("SnackBox").increment()
