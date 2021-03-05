@@ -102,8 +102,8 @@ func _on_Playfield_box_built(rect: Rect2, color_int: int) -> void:
 When a squish move is performed, we generate frosting globs around the old and new piece position.
 """
 func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
-	for i in range(piece.type.pos_arr[piece.orientation].size()):
-		var pos_arr_item: Vector2 = piece.type.pos_arr[piece.orientation][i]
+	for pos_arr_item_obj in piece.get_pos_arr():
+		var pos_arr_item: Vector2 = pos_arr_item_obj
 		var glob_cell_from := old_pos + pos_arr_item
 		var glob_cell_to := piece.pos + pos_arr_item
 		_spawn_globs(glob_cell_from, piece.type.get_color_int(), 1, 0.8)

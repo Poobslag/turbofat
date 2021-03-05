@@ -3,6 +3,9 @@ extends Node
 Handles gravity, hard drops, and soft drops for the player's active piece.
 """
 
+# Emitted when the hard drop destination for the current piece changes. Used for drawing the ghost piece.
+signal hard_drop_target_pos_changed(piece, hard_drop_target_pos)
+
 signal hard_dropped
 signal soft_dropped
 
@@ -32,6 +35,7 @@ func calculate_hard_drop_target(piece: ActivePiece) -> void:
 	while piece.can_move_to(piece.target_pos + Vector2(0, 1), piece.orientation):
 		piece.target_pos.y += 1
 	hard_drop_target_pos = piece.target_pos
+	emit_signal("hard_drop_target_pos_changed", piece, hard_drop_target_pos)
 
 
 func apply_hard_drop_input(piece: ActivePiece) -> void:

@@ -37,11 +37,10 @@ func apply_initial_rotate_input(piece: ActivePiece) -> void:
 		emit_signal("initial_rotated_left")
 	
 	# relocate rotated piece to the top of the playfield
-	var pos_arr: Array = piece.type.pos_arr[piece.orientation]
 	var highest_pos := 3
-	for pos in pos_arr:
-		if pos.y < highest_pos:
-			highest_pos = pos.y
+	for pos_arr_item in piece.get_pos_arr():
+		if pos_arr_item.y < highest_pos:
+			highest_pos = pos_arr_item.y
 	piece.pos.y -= highest_pos
 
 

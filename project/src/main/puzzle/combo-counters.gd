@@ -30,8 +30,8 @@ This allows combo counters to appear horizontally aligned with the most recent p
 func _on_PuzzleScore_before_piece_written() -> void:
 	var piece_min_x_by_y := {}
 	var piece_max_x_by_y := {}
-	for pos in _piece_manager.piece.type.pos_arr[_piece_manager.piece.orientation]:
-		var target_cell: Vector2 = pos + _piece_manager.piece.pos
+	for pos_arr_item in _piece_manager.piece.get_pos_arr():
+		var target_cell: Vector2 = pos_arr_item + _piece_manager.piece.pos
 		if not piece_min_x_by_y.has(target_cell.y):
 			piece_min_x_by_y[target_cell.y] = target_cell.x
 			piece_max_x_by_y[target_cell.y] = target_cell.x
