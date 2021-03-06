@@ -12,6 +12,9 @@ var _level: LevelSettings setget set_level
 # if true, only performances with today's date are included
 export (bool) var daily := false setget set_daily
 
+onready var _label: Label = $Label
+onready var _grid_container: GridContainer = $GridContainer
+
 func _ready() -> void:
 	_refresh_contents()
 
@@ -36,8 +39,8 @@ func set_level(new_level: LevelSettings) -> void:
 Clears all rows in the grid container.
 """
 func _clear_rows() -> void:
-	$Label.text = "Today's Best" if daily else "All-time Best"
-	for child_obj in $GridContainer.get_children():
+	_label.text = "Today's Best" if daily else "All-time Best"
+	for child_obj in _grid_container.get_children():
 		var child: Node = child_obj
 		child.queue_free()
 
@@ -57,11 +60,9 @@ func _add_rows() -> void:
 Clears and regenerates the cells in the grid container.
 """
 func _refresh_contents() -> void:
-	if not is_inside_tree():
-		return
-	
-	_clear_rows()
-	_add_rows()
+	if is_inside_tree():
+		_clear_rows()
+		_add_rows()
 
 
 """

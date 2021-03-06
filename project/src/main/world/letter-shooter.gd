@@ -1,3 +1,4 @@
+class_name LetterShooter
 extends Node
 """
 Emits letters from a particular position and direction.

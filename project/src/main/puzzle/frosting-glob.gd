@@ -86,7 +86,7 @@ func initialize(new_color_int: int, new_position: Vector2) -> void:
 	if is_rainbow():
 		modulate = Color.white
 	elif PuzzleTileMap.is_snack_box(new_color_int):
-		modulate = Playfield.FOOD_COLORS[new_color_int]
+		modulate = FoodColors.ALL[new_color_int]
 	
 	position = new_position
 	scale = Vector2(1, 1)

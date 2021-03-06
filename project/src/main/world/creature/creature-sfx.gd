@@ -1,3 +1,4 @@
+class_name CreatureSfx
 extends Node
 """
 Plays creature-related sound effects.
@@ -92,6 +93,10 @@ func play_goodbye_voice(force: bool = false) -> void:
 	if Global.should_chat() or force:
 		$Voice.stream = Utils.rand_value(_goodbye_voices)
 		$Voice.play()
+
+
+func start_suppress_sfx_timer() -> void:
+	$SuppressSfxTimer.start(1.0)
 
 
 """

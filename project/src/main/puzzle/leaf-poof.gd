@@ -13,10 +13,17 @@ var leaf_frame: int setget set_leaf_frame
 # leaf_type controls which pair of frames are selected from the sprite sheet
 var leaf_type: int
 
+# turns the leaf invisible
+onready var _tween: Tween = $Tween
+
+# animates and flips the leaf
+onready var _animation_player: AnimationPlayer = $AnimationPlayer
+
 func _ready() -> void:
 	# The leaf is invisible and disabled from processing until initialized
 	visible = false
 	set_physics_process(false)
+	_update_tween_and_animation()
 
 
 """
@@ -32,16 +39,23 @@ func initialize(init_leaf_type: int, init_position: Vector2) -> void:
 	leaf_type = init_leaf_type
 	
 	_refresh_frame()
-	$AnimationPlayer.advance(randf() * 10)
-	$Tween.remove_all()
-	$Tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate),
-			LIFETIME, Tween.TRANS_QUAD, Tween.EASE_IN)
-	$Tween.start()
+	_update_tween_and_animation()
 
 
 func set_leaf_frame(new_leaf_frame: int) -> void:
 	leaf_frame = new_leaf_frame
 	_refresh_frame()
+
+
+func _update_tween_and_animation() -> void:
+	if not is_inside_tree():
+		return
+	
+	_animation_player.advance(randf() * 10)
+	_tween.remove_all()
+	_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate),
+			LIFETIME, Tween.TRANS_QUAD, Tween.EASE_IN)
+	_tween.start()
 
 
 func _refresh_frame() -> void:

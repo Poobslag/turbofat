@@ -45,9 +45,12 @@ var _focused := false
 var _chattable: Node
 var _vanishing := false
 
+onready var _sprite: PackedSprite = $PackedSprite
+onready var _focus_tween: Tween = $FocusTween
+
 func _ready() -> void:
-	$FocusTween.connect("tween_completed", self, "_on_FocusTween_tween_completed")
-	$PackedSprite.modulate = COLOR_UNFOCUSED
+	_focus_tween.connect("tween_completed", self, "_on_FocusTween_tween_completed")
+	_sprite.modulate = COLOR_UNFOCUSED
 	_refresh()
 
 
@@ -57,7 +60,7 @@ func _physics_process(delta: float) -> void:
 		# keep bounce_phase bounded, otherwise a sprite will jitter slightly 3 billion millenia from now
 		_bounce_phase -= 2 / BOUNCE_DURATION
 
-	$PackedSprite.position.y = -57 - abs(BOUNCE_HEIGHT * sin(_bounce_phase * BOUNCE_DURATION * PI))
+	_sprite.position.y = -57 - abs(BOUNCE_HEIGHT * sin(_bounce_phase * BOUNCE_DURATION * PI))
 
 
 """
@@ -117,7 +120,7 @@ func _refresh() -> void:
 	
 	visible = bubble_type != BubbleType.NONE
 	if visible:
-		$PackedSprite.frame = Utils.rand_value(BUBBLE_TYPE_FRAMES[bubble_type])
+		_sprite.frame = Utils.rand_value(BUBBLE_TYPE_FRAMES[bubble_type])
 	
 	if bubble_type == BubbleType.NONE:
 		if ChattableManager.is_connected("focus_changed", self, "_on_ChattableManager_focus_changed"):
@@ -131,14 +134,14 @@ func _refresh() -> void:
 Tweens this objects 'modulate' property to a new value.
 """
 func _tween_modulate(new_modulate: Color, duration: float) -> void:
-	if $PackedSprite.modulate == new_modulate:
+	if _sprite.modulate == new_modulate:
 		# don't launch tween if our modulate property is already set appropriately
 		return
 	
-	$FocusTween.remove_all()
-	$FocusTween.interpolate_property($PackedSprite, "modulate", $PackedSprite.modulate, new_modulate,
+	_focus_tween.remove_all()
+	_focus_tween.interpolate_property(_sprite, "modulate", _sprite.modulate, new_modulate,
 			duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
-	$FocusTween.start()
+	_focus_tween.start()
 
 
 func _on_ChattableManager_focus_changed() -> void:
@@ -151,5 +154,5 @@ func _on_ChattableManager_focus_changed() -> void:
 
 
 func _on_FocusTween_tween_completed(object: Object, key: NodePath) -> void:
-	if object == $PackedSprite and key.get_concatenated_subnames() == "modulate" and $PackedSprite.modulate.a == 0.0:
+	if object == _sprite and key.get_concatenated_subnames() == "modulate" and _sprite.modulate.a == 0.0:
 		emit_signal("vanish_finished")

@@ -17,6 +17,8 @@ export (Vector2) var velocity: Vector2
 # a value of [200, 50] means that the texture will be 200 pixels wide and 50 pixels high.
 export (Vector2) var texture_scale: Vector2 = Vector2(512.0, 512.0) setget set_texture_scale
 
+onready var _texture_rect: TextureRect = $TextureRect
+
 func _ready() -> void:
 	# Bafflingly, removing this mysterious ColorRect makes the TextureRect render incorrectly.
 	var texture_rect_glitch_workaround: ColorRect = ColorRect.new()
@@ -29,8 +31,9 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	$TextureRect.rect_position += delta * velocity
-	$TextureRect.rect_position.x = wrapf($TextureRect.rect_position.x, -TEXTURE_SIZE.x * $TextureRect.rect_scale.x, 0)
+	_texture_rect.rect_position += delta * velocity
+	_texture_rect.rect_position.x = wrapf(_texture_rect.rect_position.x,
+			-TEXTURE_SIZE.x * _texture_rect.rect_scale.x, 0)
 
 
 func set_texture_scale(new_texture_scale: Vector2) -> void:
@@ -42,7 +45,7 @@ func set_texture_scale(new_texture_scale: Vector2) -> void:
 Assigns the two colors used for this border.
 """
 func set_gradient_colors(color_0: Color, color_1: Color) -> void:
-	var shader_material: ShaderMaterial = $TextureRect.material
+	var shader_material: ShaderMaterial = _texture_rect.material
 	var gradient_texture: GradientTexture = shader_material.get("shader_param/gradient")
 	gradient_texture.gradient.colors[0] = color_0
 	gradient_texture.gradient.colors[1] = color_1
@@ -58,9 +61,9 @@ func _recalculate_texture_rect_size() -> void:
 	if not is_inside_tree():
 		return
 	
-	$TextureRect.rect_scale = texture_scale / TEXTURE_SIZE
-	$TextureRect.rect_size.x = (rect_size.x + TEXTURE_SIZE.x) / $TextureRect.rect_scale.x
-	$TextureRect.rect_size.y = TEXTURE_SIZE.y
+	_texture_rect.rect_scale = texture_scale / TEXTURE_SIZE
+	_texture_rect.rect_size.x = (rect_size.x + TEXTURE_SIZE.x) / _texture_rect.rect_scale.x
+	_texture_rect.rect_size.y = TEXTURE_SIZE.y
 
 
 func _on_resized() -> void:

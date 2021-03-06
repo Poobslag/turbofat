@@ -55,6 +55,7 @@ func set_base_rotation(new_base_rotation: float) -> void:
 
 func _refresh_scale() -> void:
 	if not is_inside_tree():
+		# avoid errors dividing by zero/null before fields are initialized
 		return
 	var scale_modifier := _rescale_amount * sin(_total_time * TAU / _rescale_period)
 	scale = base_scale + base_scale * scale_modifier
@@ -62,6 +63,7 @@ func _refresh_scale() -> void:
 
 func _refresh_rotation() -> void:
 	if not is_inside_tree():
+		# avoid errors dividing by zero/null before fields are initialized
 		return
 	var rotation_modifier := _spin_amount * PI * sin(_total_time * TAU / _spin_period)
 	rotation = base_rotation + rotation_modifier

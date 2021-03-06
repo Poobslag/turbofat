@@ -37,8 +37,7 @@ func set_puzzle(new_puzzle: Puzzle) -> void:
 
 func set_label_text(new_label_text: String) -> void:
 	label_text = new_label_text
-	if is_inside_tree():
-		update_label()
+	update_label()
 
 
 func is_complete() -> bool:
@@ -133,6 +132,9 @@ func _blink(bright: bool = false) -> void:
 
 
 func update_label() -> void:
+	if not is_inside_tree():
+		return
+	
 	if show_as_percent:
 		$Label.text = "%s\n%d%%" % [label_text, int(100 * value / max_value)]
 	else:

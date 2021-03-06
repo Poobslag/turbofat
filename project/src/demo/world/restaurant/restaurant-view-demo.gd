@@ -40,7 +40,7 @@ func _ready() -> void:
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_D: $RestaurantView/RestaurantViewport/Scene.get_node("DoorChime").play_door_chime()
-		KEY_F: _customer().feed(Playfield.FOOD_COLORS[0])
+		KEY_F: _customer().feed(FoodColors.BROWN)
 		KEY_I: _customer().creature_visuals.get_node("IdleTimer").start(0.01)
 		KEY_N:
 			_current_name_index = (_current_name_index + 1) % NAMES.size()

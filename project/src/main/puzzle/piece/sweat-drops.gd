@@ -12,7 +12,7 @@ var _sweat_position_index := 0
 """
 Relocates this Particles2D to a random location.
 """
-func relocate_randomly() -> void:
+func _relocate_randomly() -> void:
 	if _sweat_positions:
 		_sweat_position_index = (_sweat_position_index + 1) % _sweat_positions.size()
 		var sweat_position: Vector2 = _sweat_positions[_sweat_position_index]
@@ -29,10 +29,10 @@ func _on_PieceManager_tiles_changed(tile_map: PuzzleTileMap) -> void:
 			for _i in range(2):
 				_sweat_positions.append(tile_map.somewhere_near_cell(used_cell + Vector2(0, -3)))
 		_sweat_positions.shuffle()
-		relocate_randomly()
+		_relocate_randomly()
 	else:
 		emitting = false
 
 
 func _on_RelocateTimer_timeout() -> void:
-	relocate_randomly()
+	_relocate_randomly()

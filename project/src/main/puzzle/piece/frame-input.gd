@@ -22,6 +22,9 @@ var _buffer: bool
 # If 'true' the inputs will be printed to the console. These printed inputs can be converted into an input replay.
 var _print_inputs := false
 
+# If this timer is active, the input was recently pressed and can be popped with pop_buffered_input
+onready var _buffer_timer: Timer = $BufferTimer
+
 func _unhandled_input(event: InputEvent) -> void:
 	if not CurrentLevel.settings.input_replay.empty():
 		# don't process button presses when replaying prerecorded input
@@ -50,7 +53,7 @@ func _physics_process(_delta: float) -> void:
 	pressed_frames = pressed_frames + 1 if _pressed else 0
 	
 	if _buffer and _just_pressed:
-		$Buffer.start()
+		_buffer_timer.start()
 	
 	_just_pressed = false
 	
@@ -79,9 +82,9 @@ Replays any inputs which were pressed while buffering.
 """
 func pop_buffered_input() -> void:
 	_buffer = false
-	if not $Buffer.is_stopped():
+	if not _buffer_timer.is_stopped():
 		_just_pressed = true
-		$Buffer.stop()
+		_buffer_timer.stop()
 
 
 """

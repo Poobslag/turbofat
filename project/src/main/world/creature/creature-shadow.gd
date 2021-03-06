@@ -13,6 +13,12 @@ export (Vector2) var shadow_scale := Vector2(1.0, 1.0)
 # The Creature this shadow is for
 var _creature: Creature
 
+# Oval shadow sprite
+onready var _sprite: Sprite = $Sprite
+
+# Scales the shadow based on the creature's fatness
+onready var _fat_player: AnimationPlayer = $FatPlayer
+
 func _ready() -> void:
 	visible = false
 	_refresh_creature_path()
@@ -45,7 +51,7 @@ func _refresh_creature_path() -> void:
 	
 	position = _creature.position + shadow_offset
 	if _creature.creature_visuals:
-		$Sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y
+		_sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y
 		_refresh_creature_shadow_scale()
 
 
@@ -53,9 +59,9 @@ func _refresh_creature_path() -> void:
 Recalculates the CreatureShadow scale property based on the creature's fatness.
 """
 func _refresh_creature_shadow_scale() -> void:
-	$FatPlayer.play("fat")
-	$FatPlayer.advance(_creature.get_visual_fatness())
-	$FatPlayer.stop()
+	_fat_player.play("fat")
+	_fat_player.advance(_creature.get_visual_fatness())
+	_fat_player.stop()
 
 
 func _on_Creature_visual_fatness_changed() -> void:
@@ -63,5 +69,5 @@ func _on_Creature_visual_fatness_changed() -> void:
 
 
 func _on_Creature_dna_loaded() -> void:
-	$Sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y
+	_sprite.scale = Vector2(0.17, 0.17) * shadow_scale * _creature.creature_visuals.scale.y
 	_refresh_creature_shadow_scale()

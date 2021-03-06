@@ -300,11 +300,13 @@ properties.
 """
 func set_dna(new_dna: Dictionary) -> void:
 	dna = new_dna
-	if is_inside_tree():
-		CreatureLoader.load_details(dna)
-		# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
-		$DnaLoader.unload_dna()
-		$DnaLoader.load_dna()
+	if not is_inside_tree():
+		return
+	
+	CreatureLoader.load_details(dna)
+	# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
+	$DnaLoader.unload_dna()
+	$DnaLoader.load_dna()
 
 
 """

@@ -60,7 +60,7 @@ text = "(SSS)"
 
 [node name="Time2" type="Label" parent="GridContainer"]
 margin_top = 24.0
-margin_right = 49.0
+margin_right = 38.0
 margin_bottom = 44.0
 size_flags_horizontal = 2
 text = "08:15"

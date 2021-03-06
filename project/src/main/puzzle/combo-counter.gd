@@ -23,9 +23,19 @@ var _font_color: Color
 var _accent_color: Color # darker version of the font color
 var _particle_color: Color # lighter version of the font color
 
+# particles which explode from the center of the combo
+onready var _particles: CPUParticles2D = $CPUParticles2D
+
+# text showing the current combo, like '12x'
+onready var _label: Label = $Label
+
+# colorful shape which goes behind the text
+onready var _accent: PackedSprite = $Accent
+
 func _ready() -> void:
 	yield(get_tree(), "idle_frame")
-	$CPUParticles2D.emitting = true
+	_particles.emitting = true
+	_refresh_combo()
 
 
 func _physics_process(delta: float) -> void:
@@ -34,7 +44,13 @@ func _physics_process(delta: float) -> void:
 
 func set_combo(new_combo: int) -> void:
 	combo = new_combo
-	
+	_refresh_combo()
+
+
+func _refresh_combo() -> void:
+	if not is_inside_tree():
+		return
+
 	_calculate_colors()
 	_refresh_label()
 	_refresh_accent()
@@ -68,8 +84,8 @@ func _calculate_colors() -> void:
 
 
 func _refresh_label() -> void:
-	$Label.set("custom_colors/font_color", _font_color)
-	var font: DynamicFont = $Label.get("custom_fonts/font")
+	_label.set("custom_colors/font_color", _font_color)
+	var font: DynamicFont = _label.get("custom_fonts/font")
 	font.outline_color = _accent_color
 	if combo < COMBO_THRESHOLD_0:
 		font.size = 20
@@ -84,45 +100,45 @@ func _refresh_label() -> void:
 	else:
 		font.size = 30
 	if combo > 99:
-		$Label.text = "?!"
+		_label.text = "?!"
 	else:
-		$Label.text = "%s×" % combo
+		_label.text = "%s×" % combo
 
 
 func _refresh_accent() -> void:
 	if combo < COMBO_THRESHOLD_1:
-		$Accent.frame = 0
+		_accent.frame = 0
 	elif combo <= COMBO_THRESHOLD_2:
-		$Accent.frame = 4
+		_accent.frame = 4
 	elif combo <= COMBO_THRESHOLD_4:
-		$Accent.frame = 8
+		_accent.frame = 8
 	else:
-		$Accent.frame = 12
-	$Accent.frame += randi() % 4 # randomly select between four different similar accents
-	$Accent.modulate = _accent_color
+		_accent.frame = 12
+	_accent.frame += randi() % 4 # randomly select between four different similar accents
+	_accent.modulate = _accent_color
 
 
 func _refresh_particles() -> void:
 	if combo < COMBO_THRESHOLD_0:
-		$CPUParticles2D.amount = 6
-		$CPUParticles2D.initial_velocity = 200
+		_particles.amount = 6
+		_particles.initial_velocity = 200
 	elif combo < COMBO_THRESHOLD_1:
-		$CPUParticles2D.amount = 8
-		$CPUParticles2D.initial_velocity = 280
+		_particles.amount = 8
+		_particles.initial_velocity = 280
 	elif combo <= COMBO_THRESHOLD_2:
-		$CPUParticles2D.amount = 10
-		$CPUParticles2D.initial_velocity = 400
+		_particles.amount = 10
+		_particles.initial_velocity = 400
 	elif combo <= COMBO_THRESHOLD_3:
-		$CPUParticles2D.amount = 12
-		$CPUParticles2D.initial_velocity = 600
+		_particles.amount = 12
+		_particles.initial_velocity = 600
 	elif combo <= COMBO_THRESHOLD_4:
-		$CPUParticles2D.amount = 12
-		$CPUParticles2D.initial_velocity = 800
+		_particles.amount = 12
+		_particles.initial_velocity = 800
 	else:
-		$CPUParticles2D.amount = 12
-		$CPUParticles2D.scale_amount = 6
-		$CPUParticles2D.initial_velocity = 1200
-	var gradient: Gradient = $CPUParticles2D.get("color_ramp")
+		_particles.amount = 12
+		_particles.scale_amount = 6
+		_particles.initial_velocity = 1200
+	var gradient: Gradient = _particles.get("color_ramp")
 	gradient.colors[0] = _font_color
 	gradient.colors[1] = Utils.to_transparent(_font_color)
 
