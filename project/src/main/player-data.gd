@@ -20,6 +20,7 @@ var gameplay_settings := GameplaySettings.new()
 var volume_settings := VolumeSettings.new()
 var touch_settings := TouchSettings.new()
 var keybind_settings := KeybindSettings.new()
+var miscellaneous_settings := MiscellaneousSettings.new()
 
 var money := 0 setget set_money
 

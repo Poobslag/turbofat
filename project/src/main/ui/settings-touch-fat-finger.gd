@@ -8,11 +8,11 @@ The fat finger setting decides how easy it is to mash two buttons with one finge
 const VALUES := [0.00, 0.50, 0.66, 0.83, 1.00]
 
 func _ready() -> void:
-	$OptionButton.add_item("Off")
-	$OptionButton.add_item("Slim")
-	$OptionButton.add_item("Plump")
-	$OptionButton.add_item("Pudge")
-	$OptionButton.add_item("Chonk")
+	$OptionButton.add_item(tr("Off"))
+	$OptionButton.add_item(tr("Slim"))
+	$OptionButton.add_item(tr("Plump"))
+	$OptionButton.add_item(tr("Pudge"))
+	$OptionButton.add_item(tr("Chonk"))
 	$OptionButton.selected = Utils.find_closest(VALUES, PlayerData.touch_settings.scheme)
 
 
