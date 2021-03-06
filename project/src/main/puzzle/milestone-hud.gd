@@ -23,15 +23,15 @@ func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	match CurrentLevel.settings.finish_condition.type:
 		Milestone.CUSTOMERS:
-			$Desc.text = "Customers"
+			$Desc.text = tr("Customers")
 		Milestone.LINES:
-			$Desc.text = "Lines"
+			$Desc.text = tr("Lines")
 		Milestone.PIECES:
-			$Desc.text = "Pieces"
+			$Desc.text = tr("Pieces")
 		Milestone.SCORE:
-			$Desc.text = "Money"
+			$Desc.text = tr("Money")
 		Milestone.TIME_OVER:
-			$Desc.text = "Time"
+			$Desc.text = tr("Time")
 	init_milebar()
 
 

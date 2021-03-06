@@ -4,22 +4,22 @@ Results screen shown after the player finishes a level.
 """
 
 # Hints displayed after the player finishes
-const HINTS = [
-	"Build a snack box by arranging a pentomino and a quadromino into a square!",
-	"Build a cake box by arranging 3 pentominos into a rectangle!",
-	"Build a cake box by arranging 3 quadrominos into a rectangle!",
-	"Two different pieces with the same color can always make a square!",
-	"A snack box scores 5 points per line, a cake box scores 10. Make lots of cakes!",
-	"Combos can give you 20 bonus points for completing a line. Make lots of combos!",
-	"Build a big combo by making boxes and clearing lines!",
-	"Making boxes keeps your combo going. You can keep your combo going forever!",
-	"Clear lines to keep your combo going. Combos get you lots of money!",
-	"When a piece locks, hold left or right to quickly move the next piece!",
-	"When a piece locks, hold a rotate key to quickly rotate the next piece!",
-	"When a piece locks, hold both rotate keys to quickly flip the next piece!",
-	"When a piece locks, hold up to quickly hard-drop the next piece!",
-	"After a hard drop, tap 'down' to delay the piece from locking!",
-	"Press 'down' to squish pieces past other pieces!",
+var _hints = [
+	tr("Build a snack box by arranging a pentomino and a quadromino into a square!"),
+	tr("Build a cake box by arranging 3 pentominos into a rectangle!"),
+	tr("Build a cake box by arranging 3 quadrominos into a rectangle!"),
+	tr("Two different pieces with the same color can always make a square!"),
+	tr("A snack box scores 5 points per line, a cake box scores 10. Make lots of cakes!"),
+	tr("Combos can give you 20 bonus points for completing a line. Make lots of combos!"),
+	tr("Build a big combo by making boxes and clearing lines!"),
+	tr("Making boxes keeps your combo going. You can keep your combo going forever!"),
+	tr("Clear lines to keep your combo going. Combos get you lots of money!"),
+	tr("When a piece locks, hold left or right to quickly move the next piece!"),
+	tr("When a piece locks, hold a rotate key to quickly rotate the next piece!"),
+	tr("When a piece locks, hold both rotate keys to quickly flip the next piece!"),
+	tr("When a piece locks, hold up to quickly hard-drop the next piece!"),
+	tr("After a hard drop, tap 'down' to delay the piece from locking!"),
+	tr("Press 'down' to squish pieces past other pieces!"),
 ]
 
 func _ready() -> void:
@@ -44,7 +44,8 @@ func show_results_message(rank_result: RankResult, creature_scores: Array, finis
 	text = _append_creature_scores(rank_result, creature_scores, finish_condition_type, text)
 	text = _append_grade_information(rank_result, creature_scores, finish_condition_type, text)
 	text += "//////////\n"
-	text += "Hint: %s\n" % Utils.rand_value(HINTS)
+	text += tr("Hint: %s") % Utils.rand_value(_hints)
+	text += "\n"
 	
 	$ShowResultsSound.play()
 	$ResultsLabel.show_text(text)
@@ -60,14 +61,15 @@ func _append_creature_scores(rank_result: RankResult, creature_scores: Array, \
 		if creature_score == 0:
 			# last entry in creature_score is always 0; ignore it
 			continue
-		var left := "Customer #%s " % StringUtils.comma_sep(i + 1)
+		var left := tr("Customer #%s") % StringUtils.comma_sep(i + 1)
 		var right := "¥%s/\n" % StringUtils.comma_sep(creature_score)
-		var middle := ""
+		var middle := " "
 		var period_count := 50 - _period_count(left + right)
 		for _p in range(period_count):
 			middle += "."
 		text += left + middle + right
-	text += "Total: ¥%s\n" % StringUtils.comma_sep(rank_result.score)
+	text += tr("Total: ¥%s") % StringUtils.comma_sep(rank_result.score)
+	text += "\n"
 	return text
 
 
@@ -80,38 +82,38 @@ func _append_grade_information(rank_result: RankResult, _creature_scores: Array,
 	
 	text += "/////\n"
 	if finish_condition_type == Milestone.SCORE:
-		text += "Speed: %d" % round(rank_result.speed * 200 / 60)
+		text += tr("Speed: %d") % round(rank_result.speed * 200 / 60)
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.speed_rank)
 		text += "\n"
 	elif finish_condition_type == Milestone.PIECES:
-		text += "Pieces: %d" % rank_result.pieces
+		text += tr("Pieces: %d") % rank_result.pieces
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.pieces_rank)
 		text += "\n"
 	else:
-		text += "Lines: %d" % rank_result.lines
+		text += tr("Lines: %d") % rank_result.lines
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.lines_rank)
 		text += "\n"
 		
-	text += "/////Boxes: %d" % round(rank_result.box_score_per_line * 10)
+	text += "/////" + tr("Boxes: %d") % round(rank_result.box_score_per_line * 10)
 	text += topped_out
 	if not CurrentLevel.settings.rank.unranked:
 		text += " (%s)" % RankCalculator.grade(rank_result.box_score_per_line_rank)
 	text += "\n"
 	
-	text += "/////Combos: %d" % round(rank_result.combo_score_per_line * 10)
+	text += "/////" + tr("Combos: %d") % round(rank_result.combo_score_per_line * 10)
 	text += topped_out
 	if not CurrentLevel.settings.rank.unranked:
 		text += " (%s)" % RankCalculator.grade(rank_result.combo_score_per_line_rank)
 	text += "\n"
 	
 	if not CurrentLevel.settings.rank.unranked:
-		text += "/////\nOverall: "
+		text += "/////\n" + tr("Overall: ")
 		text += "//////////"
 		if finish_condition_type == Milestone.SCORE:
 			var duration := StringUtils.format_duration(rank_result.seconds)
@@ -152,6 +154,6 @@ func _on_PuzzleScore_after_game_ended() -> void:
 
 
 func _on_ResultsLabel_text_shown(new_text: String) -> void:
-	if new_text.begins_with("Customer #"):
+	if new_text.begins_with(tr("Customer #%s") % [""]):
 		var amount := int(StringUtils.substring_after_last(new_text, "¥").replace(",", ""))
 		$MoneyLabel.set_shown_money($MoneyLabel.shown_money + amount)

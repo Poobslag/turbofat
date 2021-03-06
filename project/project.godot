@@ -344,6 +344,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/milestone-hud.gd"
 }, {
+"base": "Reference",
+"class": "MiscellaneousSettings",
+"language": "GDScript",
+"path": "res://src/main/miscellaneous-settings.gd"
+}, {
 "base": "Control",
 "class": "MoneyLabel",
 "language": "GDScript",
@@ -752,6 +757,7 @@ _global_script_class_icons={
 "MarkovModel": "",
 "Milestone": "",
 "MilestoneHud": "",
+"MiscellaneousSettings": "",
 "MoneyLabel": "",
 "MouthPlayer": "",
 "MusicTween": "",
@@ -1055,7 +1061,7 @@ walk_down={
 
 [locale]
 
-translations=PoolStringArray( "res://assets/main/locale/es.po" )
+translations=PoolStringArray( "res://assets/main/locale/en.po", "res://assets/main/locale/es.po" )
 locale_filter=[ 1, [ "en", "es" ] ]
 translation_remaps={
 

@@ -6,12 +6,12 @@ The control scheme decides which buttons appear where.
 """
 
 func _ready() -> void:
-	$OptionButton.add_item("Easy Console")
-	$OptionButton.add_item("Easy Desktop")
-	$OptionButton.add_item("Ambi Console")
-	$OptionButton.add_item("Ambi Desktop")
-	$OptionButton.add_item("Loco Console")
-	$OptionButton.add_item("Loco Desktop")
+	$OptionButton.add_item(tr("Easy Console"))
+	$OptionButton.add_item(tr("Easy Desktop"))
+	$OptionButton.add_item(tr("Ambi Console"))
+	$OptionButton.add_item(tr("Ambi Desktop"))
+	$OptionButton.add_item(tr("Loco Console"))
+	$OptionButton.add_item(tr("Loco Desktop"))
 	$OptionButton.selected = PlayerData.touch_settings.scheme
 
 

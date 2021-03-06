@@ -39,7 +39,7 @@ func set_level(new_level: LevelSettings) -> void:
 Clears all rows in the grid container.
 """
 func _clear_rows() -> void:
-	_label.text = "Today's Best" if daily else "All-time Best"
+	_label.text = tr("Today's Best") if daily else tr("All-time Best")
 	for child_obj in _grid_container.get_children():
 		var child: Node = child_obj
 		child.queue_free()

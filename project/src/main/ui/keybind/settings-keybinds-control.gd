@@ -35,16 +35,16 @@ func _refresh_keybind_labels() -> void:
 	match preset:
 		KeybindSettings.GUIDELINE:
 			$PresetScrollContainer.visible = true
-			$PresetScrollContainer/VBoxContainer/MovePiece.value = "Left, Right, Numpad4/6"
-			$PresetScrollContainer/VBoxContainer/SoftDrop.value = "Down, Numpad2"
-			$PresetScrollContainer/VBoxContainer/HardDrop.value = "Space, Up, Shift, Numpad8"
-			$PresetScrollContainer/VBoxContainer/RotatePiece.value = "Z, X, Numpad7/9"
+			$PresetScrollContainer/VBoxContainer/MovePiece.value = tr("Left, Right, Numpad4/6")
+			$PresetScrollContainer/VBoxContainer/SoftDrop.value = tr("Down, Numpad2")
+			$PresetScrollContainer/VBoxContainer/HardDrop.value = tr("Space, Up, Shift, Numpad8")
+			$PresetScrollContainer/VBoxContainer/RotatePiece.value = tr("Z, X, Numpad7/9")
 		KeybindSettings.WASD:
 			$PresetScrollContainer.visible = true
-			$PresetScrollContainer/VBoxContainer/MovePiece.value = "A, D, Numpad4/6"
-			$PresetScrollContainer/VBoxContainer/SoftDrop.value = "Down, S, Numpad8"
-			$PresetScrollContainer/VBoxContainer/HardDrop.value = "Up, Space, W, Numpad5"
-			$PresetScrollContainer/VBoxContainer/RotatePiece.value = "Left, Right, Numpad7/9"
+			$PresetScrollContainer/VBoxContainer/MovePiece.value = tr("A, D, Numpad4/6")
+			$PresetScrollContainer/VBoxContainer/SoftDrop.value = tr("Down, S, Numpad8")
+			$PresetScrollContainer/VBoxContainer/HardDrop.value = tr("Up, Space, W, Numpad5")
+			$PresetScrollContainer/VBoxContainer/RotatePiece.value = tr("Left, Right, Numpad7/9")
 		KeybindSettings.CUSTOM:
 			$CustomScrollContainer.visible = true
 

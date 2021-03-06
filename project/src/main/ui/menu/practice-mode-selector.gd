@@ -43,25 +43,25 @@ func set_level(new_level: LevelSettings) -> void:
 		"Survival":
 			var target_value: int = new_level.finish_condition.value
 			
-			new_description = "Survive as the pieces get faster and faster! Can you clear %s lines?" \
+			new_description = tr("Survive as the pieces get faster and faster! Can you clear %s lines?") \
 					% StringUtils.comma_sep(target_value)
 		"Ultra":
-			new_description = "Earn ¥%s as quickly as possible!" \
+			new_description = tr("Earn ¥%s as quickly as possible!") \
 					% StringUtils.comma_sep(new_level.finish_condition.value)
 		"Sprint":
-			new_description = "Earn as much money as you can in %s!" \
+			new_description = tr("Earn as much money as you can in %s!") \
 					% StringUtils.format_duration(new_level.finish_condition.value)
 		"Rank":
-			new_description = "An escalating set of challenges."
+			new_description = tr("An escalating set of challenges.")
 			match new_level.success_condition.type:
 				Milestone.SCORE:
-					new_description += " Finish with ¥%s to achieve this rank!" \
+					new_description += " " + tr("Finish with ¥%s to achieve this rank!") \
 							% StringUtils.comma_sep(new_level.success_condition.value)
 				Milestone.TIME_UNDER:
-					new_description += " Finish in %s to achieve this rank!" \
+					new_description += " " + tr("Finish in %s to achieve this rank!") \
 							% StringUtils.format_duration(new_level.success_condition.value)
 		"Sandbox":
-			new_description = "Just relax! There is no way to win or lose this mode."
+			new_description = tr("Just relax! There is no way to win or lose this mode.")
 	$Desc.text = new_description
 
 

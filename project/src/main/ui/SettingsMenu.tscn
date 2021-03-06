@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -16,6 +16,8 @@
 [ext_resource path="res://src/main/ui/keybind/KeybindPreset.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/ui/keybind/settings-keybinds-control.gd" type="Script" id=15]
 [ext_resource path="res://src/main/ui/keybind/KeybindCustom.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/ui/settings-language.gd" type="Script" id=17]
+[ext_resource path="res://src/main/ui/settings-tab-container.gd" type="Script" id=18]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -67,7 +69,6 @@ visible = false
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -102,6 +103,7 @@ custom_styles/tab_disabled = ExtResource( 2 )
 custom_styles/tab_bg = ExtResource( 2 )
 custom_styles/panel = SubResource( 2 )
 custom_fonts/font = ExtResource( 13 )
+script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -167,7 +169,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="GhostPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay"]
-margin_right = 420.0
+margin_right = 510.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -176,7 +178,7 @@ custom_constants/separation = 20
 script = ExtResource( 12 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
-margin_right = 160.0
+margin_right = 178.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 120, 28 )
 size_flags_horizontal = 3
@@ -190,8 +192,8 @@ __meta__ = {
 }
 
 [node name="OptionButton" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
-margin_left = 180.0
-margin_right = 420.0
+margin_left = 198.0
+margin_right = 510.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 160, 26 )
 size_flags_horizontal = 3
@@ -517,7 +519,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="Size" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
-margin_right = 420.0
+margin_right = 510.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 400, 20 )
 size_flags_horizontal = 3
@@ -526,14 +528,14 @@ custom_constants/separation = 20
 script = ExtResource( 8 )
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Touch/Size"]
-margin_right = 20.0
+margin_right = 26.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/Size"]
-margin_left = 40.0
-margin_right = 160.0
+margin_left = 46.0
+margin_right = 178.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -545,8 +547,8 @@ __meta__ = {
 }
 
 [node name="Control" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/Size"]
-margin_left = 180.0
-margin_right = 379.0
+margin_left = 198.0
+margin_right = 463.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 140, 20 )
 size_flags_horizontal = 3
@@ -558,7 +560,7 @@ __meta__ = {
 
 [node name="HSlider" type="HSlider" parent="Window/UiArea/TabContainer/Touch/Size/Control"]
 margin_top = 2.0
-margin_right = 129.0
+margin_right = 195.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 80, 16 )
 size_flags_horizontal = 3
@@ -571,23 +573,23 @@ __meta__ = {
 }
 
 [node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/Size/Control"]
-margin_left = 139.0
-margin_right = 199.0
+margin_left = 205.0
+margin_right = 265.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 60, 0 )
 theme = ExtResource( 1 )
 text = "1.00x"
 
 [node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Touch/Size"]
-margin_left = 399.0
-margin_right = 420.0
+margin_left = 483.0
+margin_right = 510.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="Scheme" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
 margin_top = 24.0
-margin_right = 420.0
+margin_right = 510.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -596,7 +598,7 @@ custom_constants/separation = 20
 script = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/Scheme"]
-margin_right = 160.0
+margin_right = 197.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -610,8 +612,8 @@ __meta__ = {
 }
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/Scheme"]
-margin_left = 180.0
-margin_right = 340.0
+margin_left = 217.0
+margin_right = 377.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -623,7 +625,7 @@ __meta__ = {
 
 [node name="FatFinger" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
 margin_top = 54.0
-margin_right = 420.0
+margin_right = 510.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -632,7 +634,7 @@ custom_constants/separation = 20
 script = ExtResource( 11 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/FatFinger"]
-margin_right = 160.0
+margin_right = 197.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -646,8 +648,52 @@ __meta__ = {
 }
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/FatFinger"]
-margin_left = 180.0
-margin_right = 340.0
+margin_left = 217.0
+margin_right = 377.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Miscellaneous" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 35.0
+margin_right = -5.0
+margin_bottom = -5.0
+
+[node name="Language" type="HBoxContainer" parent="Window/UiArea/TabContainer/Miscellaneous"]
+margin_right = 510.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 17 )
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Miscellaneous/Language"]
+margin_right = 197.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.74
+text = "Language"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Miscellaneous/Language"]
+margin_left = 217.0
+margin_right = 377.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -709,5 +755,6 @@ __meta__ = {
 [connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/Scheme" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/FatFinger" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Miscellaneous/Language/OptionButton" to="Window/UiArea/TabContainer/Miscellaneous/Language" method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Ok" to="." method="_on_Ok_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Quit" to="." method="_on_Quit_pressed"]

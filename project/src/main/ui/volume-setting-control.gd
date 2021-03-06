@@ -44,7 +44,7 @@ func _refresh_percent_label() -> void:
 	if _slider.value > 0:
 		_percent_label.text = "%d%%" % int(_slider.value * 100)
 	else:
-		_percent_label.text = "Mute"
+		_percent_label.text = tr("Mute")
 
 
 func _refresh_setting_label() -> void:
@@ -53,10 +53,10 @@ func _refresh_setting_label() -> void:
 	
 	var label_text: String
 	match volume_type:
-		VolumeSettings.MASTER: label_text = "Master"
-		VolumeSettings.MUSIC: label_text = "Music"
-		VolumeSettings.SOUND: label_text = "Sounds"
-		VolumeSettings.VOICE: label_text = "Voices"
+		VolumeSettings.MASTER: label_text = tr("Master")
+		VolumeSettings.MUSIC: label_text = tr("Music")
+		VolumeSettings.SOUND: label_text = tr("Sounds")
+		VolumeSettings.VOICE: label_text = tr("Voices")
 	_setting_label.text = label_text
 
 
