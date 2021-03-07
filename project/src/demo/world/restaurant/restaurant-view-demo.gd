@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_D: $RestaurantView/RestaurantViewport/Scene.get_node("DoorChime").play_door_chime()
 		KEY_F: _customer().feed(FoodColors.BROWN)
-		KEY_I: _customer().creature_visuals.get_node("IdleTimer").start(0.01)
+		KEY_I: _customer().creature_visuals.get_node("Animations/IdleTimer").start(0.01)
 		KEY_N:
 			_current_name_index = (_current_name_index + 1) % NAMES.size()
 			_customer().creature_name = NAMES[_current_name_index]
@@ -72,13 +72,13 @@ func _input(event: InputEvent) -> void:
 		KEY_BRACELEFT, KEY_BRACERIGHT:
 			$RestaurantView.summon_creature()
 		KEY_RIGHT:
-			$RestaurantView.get_customer().set_orientation(CreatureVisuals.SOUTHEAST)
+			$RestaurantView.get_customer().set_orientation(CreatureOrientation.SOUTHEAST)
 		KEY_DOWN:
-			$RestaurantView.get_customer().set_orientation(CreatureVisuals.SOUTHWEST)
+			$RestaurantView.get_customer().set_orientation(CreatureOrientation.SOUTHWEST)
 		KEY_LEFT:
-			$RestaurantView.get_customer().set_orientation(CreatureVisuals.NORTHWEST)
+			$RestaurantView.get_customer().set_orientation(CreatureOrientation.NORTHWEST)
 		KEY_UP:
-			$RestaurantView.get_customer().set_orientation(CreatureVisuals.NORTHEAST)
+			$RestaurantView.get_customer().set_orientation(CreatureOrientation.NORTHEAST)
 
 
 func _customer() -> Creature:

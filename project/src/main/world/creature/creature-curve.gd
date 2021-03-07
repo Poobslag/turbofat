@@ -77,8 +77,7 @@ func refresh_visible() -> void:
 	if not creature_visuals:
 		return
 	
-	if not visible_when_facing_north \
-			and creature_visuals.orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]:
+	if not visible_when_facing_north and creature_visuals.oriented_north():
 		visible = false
 
 

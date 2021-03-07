@@ -19,10 +19,10 @@ const TEXTURE_SCALE := 0.4
 
 const IDLE = CreatureVisuals.IDLE
 
-const SOUTHEAST = CreatureVisuals.SOUTHEAST
-const SOUTHWEST = CreatureVisuals.SOUTHWEST
-const NORTHWEST = CreatureVisuals.NORTHWEST
-const NORTHEAST = CreatureVisuals.NORTHEAST
+const SOUTHEAST = CreatureOrientation.SOUTHEAST
+const SOUTHWEST = CreatureOrientation.SOUTHWEST
+const NORTHWEST = CreatureOrientation.NORTHWEST
+const NORTHEAST = CreatureOrientation.NORTHEAST
 
 # Number from [0.0, 1.0] which determines how quickly the creature slows down
 const FRICTION := 0.15
@@ -47,7 +47,7 @@ export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 export (int) var elevation: int setget set_elevation
 
 # virtual property; value is not kept up-to-date and should only be accessed through getters/setters
-export (CreatureVisuals.Orientation) var orientation: int setget set_orientation, get_orientation
+export (CreatureOrientation.Orientation) var orientation: int setget set_orientation, get_orientation
 
 # virtual property; value is only exposed through getters/setters
 var creature_def: CreatureDef setget set_creature_def, get_creature_def

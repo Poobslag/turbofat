@@ -119,6 +119,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature.gd"
 }, {
+"base": "Node",
+"class": "CreatureAnimations",
+"language": "GDScript",
+"path": "res://src/main/world/creature/creature-animations.gd"
+}, {
 "base": "SmoothPath",
 "class": "CreatureCurve",
 "language": "GDScript",
@@ -138,6 +143,11 @@ _global_script_classes=[ {
 "class": "CreatureLibrary",
 "language": "GDScript",
 "path": "res://src/main/creature-library.gd"
+}, {
+"base": "Reference",
+"class": "CreatureOrientation",
+"language": "GDScript",
+"path": "res://src/main/world/creature/creature-orientation.gd"
 }, {
 "base": "PackedSprite",
 "class": "CreaturePackedSprite",
@@ -243,6 +253,11 @@ _global_script_classes=[ {
 "class": "HookableGradeLabel",
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/hookable-grade-label.gd"
+}, {
+"base": "Timer",
+"class": "IdleTimer",
+"language": "GDScript",
+"path": "res://src/main/world/creature/idle-timer.gd"
 }, {
 "base": "Reference",
 "class": "InputReplay",
@@ -712,10 +727,12 @@ _global_script_class_icons={
 "ComboCounter": "",
 "ComboTracker": "",
 "Creature": "",
+"CreatureAnimations": "",
 "CreatureCurve": "",
 "CreatureDef": "",
 "CreatureEditor": "",
 "CreatureLibrary": "",
+"CreatureOrientation": "",
 "CreaturePackedSprite": "",
 "CreaturePaletteDemo": "",
 "CreatureQueue": "",
@@ -737,6 +754,7 @@ _global_script_class_icons={
 "HeadBobber": "",
 "HighScoreTable": "",
 "HookableGradeLabel": "",
+"IdleTimer": "",
 "InputReplay": "",
 "KeybindSettings": "",
 "LeafPoof": "",

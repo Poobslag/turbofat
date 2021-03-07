@@ -132,11 +132,11 @@ func _process(_delta: float) -> void:
 		# don't trigger animations in editor
 		return
 	
-	if _creature_visuals.orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
+	if _creature_visuals.oriented_south():
 		if not is_playing():
 			play("ambient")
 			advance(randf() * current_animation_length)
-	if _creature_visuals.orientation in [CreatureVisuals.NORTHWEST, CreatureVisuals.NORTHEAST]:
+	if _creature_visuals.oriented_north():
 		if is_playing():
 			stop()
 			_creature_visuals.reset_eye_frames()
@@ -530,7 +530,7 @@ func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
-	if is_processing() and not new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
+	if is_processing() and not CreatureOrientation.oriented_south(new_orientation):
 		unemote_immediate()
 
 

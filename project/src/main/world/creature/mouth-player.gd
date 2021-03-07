@@ -65,24 +65,29 @@ func _refresh_creature_visuals_path() -> void:
 	if not (is_inside_tree() and creature_visuals_path):
 		return
 	
+	var idle_timer: IdleTimer
+	
 	if _creature_visuals:
 		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 		_creature_visuals.disconnect("talking_changed", self, "_on_CreatureVisuals_talking_changed")
+		
 		_emote_player.disconnect("animation_started", self, "_on_EmotePlayer_animation_started")
-		_creature_visuals.get_idle_timer().disconnect(
-				"idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
-		_creature_visuals.get_idle_timer().disconnect(
-				"idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
+
+		idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
+		idle_timer.disconnect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
+		idle_timer.disconnect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
 	
 	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
-	_emote_player = _creature_visuals.get_emote_player()
-	
 	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 	_creature_visuals.connect("talking_changed", self, "_on_CreatureVisuals_talking_changed")
+	
+	_emote_player = _creature_visuals.get_node("Animations/EmotePlayer")
 	_emote_player.connect("animation_started", self, "_on_EmotePlayer_animation_started")
-	_creature_visuals.get_idle_timer().connect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
-	_creature_visuals.get_idle_timer().connect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
+	
+	idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
+	idle_timer.connect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
+	idle_timer.connect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
 
 
 """
