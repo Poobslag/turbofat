@@ -26,17 +26,19 @@ Keys:
 	[Shift + D, F]: Wiggle ears
 """
 
+onready var _creature_animations: CreatureAnimations = $Creature.creature_visuals.get_node("Animations")
+
 func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_SHIFT):
 		match(Utils.key_scancode(event)):
-			KEY_Q: $Creature.creature_visuals.play_idle_animation("idle-look-over-shoulder0")
-			KEY_W: $Creature.creature_visuals.play_idle_animation("idle-look-over-shoulder1")
-			KEY_E: $Creature.creature_visuals.play_idle_animation("idle-yawn0")
-			KEY_R: $Creature.creature_visuals.play_idle_animation("idle-yawn1")
-			KEY_A: $Creature.creature_visuals.play_idle_animation("idle-close-eyes0")
-			KEY_S: $Creature.creature_visuals.play_idle_animation("idle-close-eyes1")
-			KEY_D: $Creature.creature_visuals.play_idle_animation("idle-ear-wiggle0")
-			KEY_F: $Creature.creature_visuals.play_idle_animation("idle-ear-wiggle1")
+			KEY_Q: _creature_animations.play_idle_animation("idle-look-over-shoulder0")
+			KEY_W: _creature_animations.play_idle_animation("idle-look-over-shoulder1")
+			KEY_E: _creature_animations.play_idle_animation("idle-yawn0")
+			KEY_R: _creature_animations.play_idle_animation("idle-yawn1")
+			KEY_A: _creature_animations.play_idle_animation("idle-close-eyes0")
+			KEY_S: _creature_animations.play_idle_animation("idle-close-eyes1")
+			KEY_D: _creature_animations.play_idle_animation("idle-ear-wiggle0")
+			KEY_F: _creature_animations.play_idle_animation("idle-ear-wiggle1")
 			KEY_T: $Creature.talk()
 	else:
 		match(Utils.key_scancode(event)):

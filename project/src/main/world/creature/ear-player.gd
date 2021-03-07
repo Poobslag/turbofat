@@ -17,8 +17,7 @@ func _process(_delta: float) -> void:
 		# don't trigger animations in editor
 		return
 	
-	if _creature_visuals.orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST] \
-		and not is_playing():
+	if _creature_visuals.oriented_south() and not is_playing():
 			play("ambient")
 			advance(randf() * current_animation_length)
 
@@ -40,23 +39,27 @@ func _refresh_creature_visuals_path() -> void:
 	if not (is_inside_tree() and creature_visuals_path):
 		return
 	
+	var idle_timer: IdleTimer
+	
 	if _creature_visuals:
 		_creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
-		_creature_visuals.get_idle_timer().disconnect(
-				"idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
-		_creature_visuals.get_idle_timer().disconnect(
-				"idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
+		
+		idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
+		idle_timer.disconnect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
+		idle_timer.disconnect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
 	
 	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
 	
 	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
-	_creature_visuals.get_idle_timer().connect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
-	_creature_visuals.get_idle_timer().connect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
+	
+	idle_timer = _creature_visuals.get_node("Animations/IdleTimer")
+	idle_timer.connect("idle_animation_started", self, "_on_IdleTimer_idle_animation_started")
+	idle_timer.connect("idle_animation_stopped", self, "_on_IdleTimer_idle_animation_stopped")
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
-	if not new_orientation in [CreatureVisuals.SOUTHWEST, CreatureVisuals.SOUTHEAST]:
+	if CreatureOrientation.oriented_north(new_orientation):
 		stop()
 
 

@@ -1,10 +1,14 @@
 #tool #uncomment to view creature in editor
+class_name CreatureAnimations
 extends Node
 """
-Exposes properties which make it easier to animate the creature.
+Animates the creature's limbs, facial expressions and movement.
 
-Toggling things like arm and eye emotes involves animating four sprites. It's tedious having four near-identical
-animation tracks, so this class consolidates those four frame properties into one.
+Contains AnimationPlayers to handle things like idle emotes, movement and idle animations.
+
+Exposes properties which manipulate multiple sprites simultaneously. Toggling things like arm and eye emotes involves
+animating four sprites. It's tedious having four near-identical animation tracks, so this class consolidates those four
+frame properties into one.
 """
 
 export (int) var emote_eye_frame: int setget set_emote_eye_frame
@@ -15,14 +19,29 @@ export (NodePath) var creature_visuals_path: NodePath setget set_creature_visual
 
 var _creature_visuals: CreatureVisuals
 
-var _near_arm: PackedSprite
-var _far_arm: PackedSprite
-var _eye_z0: PackedSprite
-var _eye_z1: PackedSprite
-var _emote_eye_z0: PackedSprite
-var _emote_eye_z1: PackedSprite
 var _emote_arm_z0: PackedSprite
 var _emote_arm_z1: PackedSprite
+var _emote_eye_z0: PackedSprite
+var _emote_eye_z1: PackedSprite
+var _eye_z0: PackedSprite
+var _eye_z1: PackedSprite
+var _far_arm: PackedSprite
+var _head_bobber: Sprite
+var _near_arm: PackedSprite
+var _tail_z0: PackedSprite
+var _tail_z1: PackedSprite
+
+# IdleTimer which launches idle animations periodically
+onready var _idle_timer: Timer = $IdleTimer
+
+# recoils the creature's head
+onready var _tween: Tween = $Tween
+
+# EmotePlayer which animates moods: blinking, smiling, sweating, etc.
+onready var _emote_player: AnimationPlayer = $EmotePlayer
+
+# AnimationPlayer which animates movement: running, walking, etc.
+onready var _movement_player: AnimationPlayer = $MovementPlayer
 
 func _ready() -> void:
 	_refresh_creature_visuals_path()
@@ -42,6 +61,64 @@ Sets the frame for the emote eye sprites, resetting the non-emote sprites to a d
 func set_emote_eye_frame(new_emote_eye_frame: int) -> void:
 	emote_eye_frame = new_emote_eye_frame
 	_refresh_emote_eye_frame()
+
+
+func play_idle_animation(idle_anim: String) -> void:
+	_idle_timer.play_idle_animation(idle_anim)
+
+
+func restart_idle_timer() -> void:
+	_idle_timer.restart()
+
+
+func eat() -> void:
+	_emote_player.eat()
+
+
+"""
+Animates the creature's appearance according to the specified mood: happy, angry, etc...
+
+Parameters:
+	'mood': The creature's new mood from ChatEvent.Mood
+"""
+func play_mood(mood: int) -> void:
+	_idle_timer.stop_idle_animation()
+	
+	if mood == ChatEvent.Mood.NONE:
+		pass
+	elif mood == ChatEvent.Mood.DEFAULT:
+		_emote_player.unemote()
+	else:
+		_emote_player.emote(mood)
+
+
+"""
+The 'feed' animation causes a few side-effects. The creature's head recoils and some sounds play. This method controls
+all of those secondary visual effects of the creature being fed.
+"""
+func show_food_effects() -> void:
+	_tween.interpolate_property(_head_bobber, "position:x",
+			clamp(_head_bobber.position.x - 6, -20, 0), 0, 0.5,
+			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
+	_tween.start()
+
+
+func play_movement_animation(animation_prefix: String, animation_name: String) -> void:
+	if _movement_player.current_animation != animation_name:
+		if not _emote_player.current_animation.begins_with("ambient") \
+				and not animation_name.begins_with("idle"):
+			# don't unemote during sitting-still animations; only when changing movement stances
+			_emote_player.unemote_immediate()
+		if _movement_player.current_animation.begins_with(animation_prefix):
+			var old_position: float = _movement_player.current_animation_position
+			_creature_visuals.briefly_suppress_sfx_signal()
+			_movement_player.play(animation_name)
+			_movement_player.advance(old_position)
+		else:
+			_movement_player.play(animation_name)
+		if not animation_name.begins_with("sprint"):
+			_tail_z0.frame = 1 if _creature_visuals.oriented_south() else 2
+			_tail_z1.frame = 1 if _creature_visuals.oriented_south() else 2
 
 
 func _refresh_emote_eye_frame() -> void:
@@ -98,11 +175,21 @@ func _refresh_creature_visuals_path() -> void:
 	
 	_creature_visuals = get_node(creature_visuals_path)
 	
-	_near_arm = _creature_visuals.get_node("NearArm")
-	_far_arm = _creature_visuals.get_node("FarArm")
-	_eye_z0 = _creature_visuals.get_node("Neck0/HeadBobber/EyeZ0")
-	_eye_z1 = _creature_visuals.get_node("Neck0/HeadBobber/EyeZ1")
-	_emote_eye_z0 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ0")
-	_emote_eye_z1 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ1")
 	_emote_arm_z0 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ0")
 	_emote_arm_z1 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ1")
+	_emote_eye_z0 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ0")
+	_emote_eye_z1 = _creature_visuals.get_node("Neck0/HeadBobber/EmoteEyeZ1")
+	_eye_z0 = _creature_visuals.get_node("Neck0/HeadBobber/EyeZ0")
+	_eye_z1 = _creature_visuals.get_node("Neck0/HeadBobber/EyeZ1")
+	_far_arm = _creature_visuals.get_node("FarArm")
+	_head_bobber = _creature_visuals.get_node("Neck0/HeadBobber")
+	_near_arm = _creature_visuals.get_node("NearArm")
+	_tail_z0 = _creature_visuals.get_node("TailZ0")
+	_tail_z1 = _creature_visuals.get_node("TailZ1")
+
+
+func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientation: int) -> void:
+	if _movement_player.current_animation == "idle-nw" and CreatureOrientation.oriented_south(new_orientation):
+		_movement_player.play("idle-se")
+	elif _movement_player.current_animation == "idle-se" and CreatureOrientation.oriented_north(new_orientation):
+		_movement_player.play("idle-nw")

@@ -1,3 +1,4 @@
+class_name IdleTimer
 extends Timer
 """
 Launches idle animations periodically.

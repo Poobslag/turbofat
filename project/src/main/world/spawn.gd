@@ -5,7 +5,7 @@ A spawn point where a creature can appear on the overworld.
 """
 
 # the direction the creature will face
-export (CreatureVisuals.Orientation) var orientation := CreatureVisuals.SOUTHEAST
+export (CreatureOrientation.Orientation) var orientation := CreatureOrientation.SOUTHEAST
 
 # a unique id for this spawn point
 export (String) var id: String

@@ -36,14 +36,6 @@ signal talking_changed
 # warning-ignore:unused_signal
 signal head_moved
 
-# directions the creature can face
-enum Orientation {
-	SOUTHEAST,
-	SOUTHWEST,
-	NORTHWEST,
-	NORTHEAST,
-}
-
 enum MovementMode {
 	IDLE, # not walking/running
 	SPRINT, # quadrapedal run
@@ -57,11 +49,6 @@ const SPRINT := MovementMode.SPRINT
 const RUN := MovementMode.RUN
 const WALK := MovementMode.WALK
 const WIGGLE := MovementMode.WIGGLE
-
-const SOUTHEAST := Orientation.SOUTHEAST
-const SOUTHWEST := Orientation.SOUTHWEST
-const NORTHWEST := Orientation.NORTHWEST
-const NORTHEAST := Orientation.NORTHEAST
 
 # toggle to assign default animation frames based on the creature's orientation
 export (bool) var _reset_frames setget reset_frames
@@ -78,7 +65,7 @@ export (MovementMode) var movement_mode := MovementMode.IDLE setget set_movement
 export (Vector2) var southeast_dir := Vector2(0.70710678118, 0.70710678118)
 
 # the direction the creature is facing
-export (Orientation) var orientation := SOUTHEAST setget set_orientation
+export (CreatureOrientation.Orientation) var orientation := CreatureOrientation.SOUTHEAST setget set_orientation
 
 # describes the colors and textures used to draw the creature
 export (Dictionary) var dna: Dictionary setget set_dna
@@ -101,6 +88,9 @@ var _suppress_sfx_signal_timer := 0.0
 
 # forces listeners to update their animation frame
 var _force_orientation_change := false
+
+# CreatureAnimations instance which animates the creature's limbs, facial expressions and movement.
+onready var _animations: Node = $Animations
 
 func _ready() -> void:
 	# Update creature's appearance based on their behavior and orientation
@@ -163,10 +153,6 @@ func set_fatness(new_fatness: float) -> void:
 	emit_signal("fatness_changed")
 
 
-func play_idle_animation(idle_anim: String) -> void:
-	$Animations/IdleTimer.play_idle_animation(idle_anim)
-
-
 """
 Updates the frame to something appropriate for the creature's orientation.
 
@@ -177,10 +163,10 @@ func reset_frames(value: bool = true) -> void:
 		return
 	
 	reset_eye_frames()
-	$Neck0/HeadBobber/Mouth.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
-	$Neck0/HeadBobber/Chin.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
-	$TailZ0.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
-	$TailZ1.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	$Neck0/HeadBobber/Mouth.frame = 1 if oriented_south() else 2
+	$Neck0/HeadBobber/Chin.frame = 1 if oriented_south() else 2
+	$TailZ0.frame = 1 if oriented_south() else 2
+	$TailZ1.frame = 1 if oriented_south() else 2
 	emit_signal("orientation_changed", -1, orientation)
 
 
@@ -191,8 +177,8 @@ Because the eye frames also become visible/invisible during emotes, they don't r
 changes and are instead reset manually.
 """
 func reset_eye_frames() -> void:
-	$Neck0/HeadBobber/EyeZ0.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
-	$Neck0/HeadBobber/EyeZ1.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	$Neck0/HeadBobber/EyeZ0.frame = 1 if oriented_south() else 2
+	$Neck0/HeadBobber/EyeZ1.frame = 1 if oriented_south() else 2
 
 
 """
@@ -227,7 +213,7 @@ func set_orientation(new_orientation: int) -> void:
 		# avoid 'node not found' errors when tree is null
 		return
 	
-	if (orientation in [SOUTHEAST, SOUTHWEST]) != (old_orientation in [SOUTHEAST, SOUTHWEST]):
+	if oriented_south() != CreatureOrientation.oriented_south(old_orientation):
 		# creature changed from facing north to south or vice versa
 		
 		# update their eyes to a default frame to prevent them from having
@@ -235,7 +221,7 @@ func set_orientation(new_orientation: int) -> void:
 		reset_eye_frames()
 		
 		# when facing north, the head goes behind the body
-		$Neck0.z_index = 0 if orientation in [SOUTHWEST, SOUTHEAST] else -1
+		$Neck0.z_index = 0 if oriented_south() else -1
 	
 	rescale(scale.x)
 	
@@ -244,11 +230,6 @@ func set_orientation(new_orientation: int) -> void:
 		# _force_orientation_change is true, we signal to everyone that they cannot transition from the old
 		# orientation by making it something nonsensical
 		old_orientation = -1
-	
-	if $Animations/MovementPlayer.current_animation == "idle-nw" and new_orientation in [SOUTHEAST, SOUTHWEST]:
-		$Animations/MovementPlayer.play("idle-se")
-	elif $Animations/MovementPlayer.current_animation == "idle-se" and new_orientation in [NORTHEAST, NORTHWEST]:
-		$Animations/MovementPlayer.play("idle-nw")
 	
 	emit_signal("orientation_changed", old_orientation, new_orientation)
 
@@ -264,14 +245,15 @@ Parameters:
 """
 func rescale(new_scale_x: float) -> void:
 	scale = Vector2(abs(new_scale_x), abs(new_scale_x))
-	scale.x = abs(scale.x) if orientation in [SOUTHEAST, NORTHWEST] else -abs(scale.x)
+	scale.x = abs(scale.x) if orientation in [CreatureOrientation.SOUTHEAST, CreatureOrientation.NORTHWEST] \
+			else -abs(scale.x)
 	
 	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
 	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
 	if has_node("Body/Viewport/Body"):
-		$Body/Viewport/Body.scale.x = 1 if orientation in [SOUTHEAST, SOUTHWEST] else -1
+		$Body/Viewport/Body.scale.x = 1 if oriented_south() else -1
 	if has_node("BodyShadows/Viewport/Body"):
-		$BodyShadows/Viewport/Body.scale.x = 1 if orientation in [SOUTHEAST, SOUTHWEST] else -1
+		$BodyShadows/Viewport/Body.scale.x = 1 if oriented_south() else -1
 
 
 """
@@ -289,7 +271,7 @@ func feed(food_color: Color) -> void:
 	
 	$Neck0/HeadBobber/Food.modulate = food_color
 	$Neck0/HeadBobber/FoodLaser.modulate = food_color
-	$Animations/EmotePlayer.eat()
+	_animations.eat()
 	if mouth_player:
 		mouth_player.eat()
 
@@ -314,25 +296,16 @@ The 'feed' animation causes a few side-effects. The creature's head recoils and 
 all of those secondary visual effects of the creature being fed.
 """
 func show_food_effects() -> void:
-	$Animations/Tween.interpolate_property($Neck0/HeadBobber, "position:x",
-			clamp($Neck0/HeadBobber.position.x - 6, -20, 0), 0, 0.5,
-			Tween.TRANS_QUINT, Tween.EASE_IN_OUT)
-	$Animations/Tween.start()
+	_animations.show_food_effects()
 	emit_signal("food_eaten")
 
 
-"""
-Returns an AnimationPlayer which animates moods: blinking, smiling, sweating, etc.
-"""
-func get_emote_player() -> AnimationPlayer:
-	return $Animations/EmotePlayer as AnimationPlayer
+func oriented_south() -> bool:
+	return CreatureOrientation.oriented_south(orientation)
 
 
-"""
-Returns a Timer which launches idle animations periodically.
-"""
-func get_idle_timer() -> Timer:
-	return $Animations/IdleTimer as Timer
+func oriented_north() -> bool:
+	return CreatureOrientation.oriented_north(orientation)
 
 
 """
@@ -351,7 +324,7 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 		var new_orientation := _compute_orientation(movement_direction)
 		if new_orientation != orientation:
 			set_orientation(new_orientation)
-	var suffix := "se" if orientation in [Orientation.SOUTHEAST, Orientation.SOUTHWEST] else "nw"
+	var suffix := "se" if oriented_south() else "nw"
 	var animation_name := "%s-%s" % [animation_prefix, suffix]
 	
 	if animation_prefix == "idle" and movement_mode != IDLE:
@@ -365,21 +338,7 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 	elif animation_prefix == "wiggle" and movement_mode != WIGGLE:
 		set_movement_mode(WIGGLE)
 	
-	if $Animations/MovementPlayer.current_animation != animation_name:
-		if not $Animations/EmotePlayer.current_animation.begins_with("ambient") \
-				and not animation_name.begins_with("idle"):
-			# don't unemote during sitting-still animations; only when changing movement stances
-			$Animations/EmotePlayer.unemote_immediate()
-		if $Animations/MovementPlayer.current_animation.begins_with(animation_prefix):
-			var old_position: float = $Animations/MovementPlayer.current_animation_position
-			_suppress_sfx_signal_timer = 0.000000001
-			$Animations/MovementPlayer.play(animation_name)
-			$Animations/MovementPlayer.advance(old_position)
-		else:
-			$Animations/MovementPlayer.play(animation_name)
-		if not animation_name.begins_with("sprint"):
-			$TailZ0.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
-			$TailZ1.frame = 1 if orientation in [SOUTHWEST, SOUTHEAST] else 2
+	_animations.play_movement_animation(animation_prefix, animation_name)
 
 
 func set_movement_mode(new_mode: int) -> void:
@@ -390,32 +349,17 @@ func set_movement_mode(new_mode: int) -> void:
 
 
 """
-Returns 'true' if the creature isn't doing anything important, and we can rotate their head or turn them around.
-"""
-func is_idle() -> bool:
-	return not $Animations/MovementPlayer.is_playing() \
-			or $Animations/MovementPlayer.current_animation.begins_with("idle")
-
-
-"""
 Animates the creature's appearance according to the specified mood: happy, angry, etc...
 
 Parameters:
 	'mood': The creature's new mood from ChatEvent.Mood
 """
 func play_mood(mood: int) -> void:
-	$Animations/IdleTimer.stop_idle_animation()
-	
-	if mood == ChatEvent.Mood.NONE:
-		pass
-	elif mood == ChatEvent.Mood.DEFAULT:
-		$Animations/EmotePlayer.unemote()
-	else:
-		$Animations/EmotePlayer.emote(mood)
+	_animations.play_mood(mood)
 
 
 func restart_idle_timer() -> void:
-	$Animations/IdleTimer.restart()
+	_animations.restart_idle_timer()
 
 
 """
@@ -443,6 +387,15 @@ Returns 'true' of the creature's talk animation is playing.
 """
 func is_talking() -> bool:
 	return not $TalkTimer.is_stopped()
+
+
+"""
+Temporarily suppresses sfx signals.
+
+Used when skipping to the middle of animations which play sfx.
+"""
+func briefly_suppress_sfx_signal() -> void:
+	_suppress_sfx_signal_timer = 0.000000001
 
 
 """
