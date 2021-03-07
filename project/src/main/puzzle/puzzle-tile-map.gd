@@ -41,6 +41,9 @@ var _saved_used_cells := []
 var _saved_tiles := []
 var _saved_autotile_coords := []
 
+# tilemap which covers the corners of this tilemap
+onready var corner_map: TileMap = $CornerMap
+
 func _ready() -> void:
 	clear()
 
@@ -51,7 +54,7 @@ func set_ghost_shadow_offset(new_ghost_shadow_offset: Vector2) -> void:
 
 func clear() -> void:
 	.clear()
-	$CornerMap.clear()
+	corner_map.clear()
 
 
 func save_state() -> void:
@@ -81,7 +84,7 @@ func restore_state() -> void:
 
 func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
 	set_cell(pos.x, pos.y, tile, false, false, false, autotile_coord)
-	$CornerMap.dirty = true
+	corner_map.dirty = true
 
 
 """
@@ -197,7 +200,7 @@ func set_whiteness(new_whiteness: float) -> void:
 		return
 	whiteness = new_whiteness
 	material.set_shader_param("mix_color", Utils.to_transparent(Color.white, whiteness))
-	$CornerMap.material.set_shader_param("mix_color", Utils.to_transparent(Color.white, whiteness))
+	corner_map.material.set_shader_param("mix_color", Utils.to_transparent(Color.white, whiteness))
 
 
 """

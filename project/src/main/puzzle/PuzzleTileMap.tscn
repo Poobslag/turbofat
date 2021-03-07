@@ -3,7 +3,7 @@
 [ext_resource path="res://assets/main/puzzle/blocks/blocks-corners.png" type="Texture" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileSet.tres" type="TileSet" id=2]
 [ext_resource path="res://src/main/puzzle/piece/PuzzleCornerMap.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/puzzle/piece/shadow-map.gd" type="Script" id=4]
+[ext_resource path="res://src/main/puzzle/piece/puzzle-shadow-map.gd" type="Script" id=4]
 [ext_resource path="res://src/main/puzzle/puzzle-tile-map.gd" type="Script" id=5]
 [ext_resource path="res://assets/main/puzzle/blocks/blocks-boxes-shadows.png" type="Texture" id=6]
 [ext_resource path="res://assets/main/puzzle/blocks/blocks-vegetable-shadows.png" type="Texture" id=7]
@@ -137,3 +137,4 @@ cell_size = Vector2( 72, 64 )
 format = 1
 tile_data = PoolIntArray( 1114113, 0, 2, 1179649, 0, 9, 1179650, 0, 3, 1179651, 0, 4 )
 script = ExtResource( 4 )
+_playfield_tile_map_path = NodePath("../..")

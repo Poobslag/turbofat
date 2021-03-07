@@ -13,10 +13,13 @@ var actions := [
 	"soft_drop", "hard_drop", "rotate_cw", "rotate_ccw",
 ]
 
+onready var _eight_way := $EightWay
+onready var _label := $Label
+
 func _input(event: InputEvent) -> void:
 	match(Utils.key_scancode(event)):
-		KEY_EQUAL: $EightWay.rect_scale *= 1.3
-		KEY_MINUS: $EightWay.rect_scale /= 1.3
+		KEY_EQUAL: _eight_way.rect_scale *= 1.3
+		KEY_MINUS: _eight_way.rect_scale /= 1.3
 
 
 func _process(_delta: float) -> void:
@@ -26,4 +29,4 @@ func _process(_delta: float) -> void:
 			output += "!%s! " % action
 		elif Input.is_action_pressed(action):
 			output += "%s " % action
-	$Label.text = output
+	_label.text = output

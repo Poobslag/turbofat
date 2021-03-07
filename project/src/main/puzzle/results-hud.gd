@@ -4,7 +4,7 @@ Results screen shown after the player finishes a level.
 """
 
 # Hints displayed after the player finishes
-var _hints = [
+var _hints := [
 	tr("Build a snack box by arranging a pentomino and a quadromino into a square!"),
 	tr("Build a cake box by arranging 3 pentominos into a rectangle!"),
 	tr("Build a cake box by arranging 3 quadrominos into a rectangle!"),

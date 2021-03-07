@@ -26,6 +26,9 @@ These two fields are used to track unshown text which is gradually revealed. Ric
 var _unshown_text := ""
 var _unshown_index := 0
 
+# plays a typewriter sound as text appears
+onready var _bebebe_sound: AudioStreamPlayer = $BebebeSound
+
 func _ready() -> void:
 	hide_text()
 
@@ -50,9 +53,9 @@ func _process(delta: float) -> void:
 	
 	if new_text:
 		# play a sound; repeatedly increase the pitch for a 'counting up' sound
-		$BebebeSound.volume_db = rand_range(-7.0, -12.0)
-		$BebebeSound.pitch_scale = lerp($BebebeSound.pitch_scale, 3.0, 0.004)
-		$BebebeSound.play()
+		_bebebe_sound.volume_db = rand_range(-7.0, -12.0)
+		_bebebe_sound.pitch_scale = lerp(_bebebe_sound.pitch_scale, 3.0, 0.004)
+		_bebebe_sound.play()
 		emit_signal("text_shown", new_text)
 
 
@@ -77,7 +80,7 @@ Hides the label and empties its contents.
 func hide_text() -> void:
 	text = ""
 	_unshown_text = ""
-	$BebebeSound.pitch_scale = 0.6
+	_bebebe_sound.pitch_scale = 0.6
 	_unshown_index = 0
 	_pause = 0.0
 	hide()

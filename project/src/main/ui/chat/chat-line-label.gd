@@ -36,6 +36,9 @@ var _text_speed := 2.0
 
 onready var chat_line_panel: ChatLinePanel = get_node(chat_line_panel_path)
 
+# plays a typewriter sound as text appears
+onready var _bebebe_sound: AudioStreamPlayer = $BebebeSound
+
 func _ready() -> void:
 	# Populate the chat line sizes based on the chat line panel sizes.
 	# They're the same except for a little padding on the outside.
@@ -64,9 +67,9 @@ func _process(delta: float) -> void:
 	
 	if newly_visible_characters > 0:
 		# the number of visible letters increased. play a sound effect
-		$BebebeSound.volume_db = rand_range(-22.0, -12.0)
-		$BebebeSound.pitch_scale = rand_range(0.95, 1.05)
-		$BebebeSound.play()
+		_bebebe_sound.volume_db = rand_range(-22.0, -12.0)
+		_bebebe_sound.pitch_scale = rand_range(0.95, 1.05)
+		_bebebe_sound.play()
 		if is_all_text_visible():
 			emit_signal("all_text_shown")
 

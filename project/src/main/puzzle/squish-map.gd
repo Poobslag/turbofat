@@ -73,7 +73,7 @@ func start_squish(squish_frames: int, new_color_y: int) -> void:
 	_color_y = new_color_y
 	
 	clear()
-	$CornerMap.dirty = true
+	corner_map.dirty = true
 	for row in range(ROW_COUNT):
 		for col in range(COL_COUNT):
 			_stretch_pos[row][col] = 0

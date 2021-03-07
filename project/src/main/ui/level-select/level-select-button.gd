@@ -49,6 +49,8 @@ var _focus_just_entered := false
 # 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_started := false
 
+onready var _label := $Label
+
 func _ready() -> void:
 	text = ""
 	_refresh_appearance()
@@ -93,15 +95,18 @@ func set_lowlight(new_lowlight: bool) -> void:
 Updates the button's text, colors, size and icon based on the level and its status.
 """
 func _refresh_appearance() -> void:
+	if not is_inside_tree():
+		return
+	
 	match level_duration:
 		LevelSize.SHORT: rect_min_size.y = level_column_width * 0.5
 		LevelSize.MEDIUM: rect_min_size.y = level_column_width * 0.75 + VERTICAL_SPACING * 0.5
 		LevelSize.LONG: rect_min_size.y = level_column_width + VERTICAL_SPACING
 	
-	$Label.text = StringUtils.default_if_empty(level_title, "-")
+	_label.text = StringUtils.default_if_empty(level_title, "-")
 	
 	var new_bg_color: Color = get("custom_styles/normal").bg_color
-	match $Label.text.hash() % 5:
+	match _label.text.hash() % 5:
 		0: new_bg_color.h = 0.9611 # red
 		1: new_bg_color.h = 0.0389 # orange
 		2: new_bg_color.h = 0.1250 # yellow
@@ -122,12 +127,12 @@ func _on_pressed() -> void:
 
 func _on_focus_entered() -> void:
 	_focus_just_entered = true
-	var font: DynamicFont = $Label.get("custom_fonts/font")
+	var font: DynamicFont = _label.get("custom_fonts/font")
 	font.outline_color = Color("007a99")
 
 
 func _on_focus_exited() -> void:
-	var font: DynamicFont = $Label.get("custom_fonts/font")
+	var font: DynamicFont = _label.get("custom_fonts/font")
 	font.outline_color = Color("6c4331")
 
 

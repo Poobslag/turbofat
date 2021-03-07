@@ -7,22 +7,24 @@ Keys:
 	Arrows: Move the sprite and print its offset.
 """
 
+onready var _packed_sprite: PackedSprite = $PackedSprite
+
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
-		$PackedSprite.frame = wrapi($PackedSprite.frame + 1, 0, $PackedSprite.frame_count)
+		_packed_sprite.frame = wrapi(_packed_sprite.frame + 1, 0, _packed_sprite.frame_count)
 	if Input.is_action_just_pressed("ui_right"):
-		$PackedSprite.offset.x += 1
+		_packed_sprite.offset.x += 1
 		_print_frame_details()
 	if Input.is_action_just_pressed("ui_left"):
-		$PackedSprite.offset.x -= 1
+		_packed_sprite.offset.x -= 1
 		_print_frame_details()
 	if Input.is_action_just_pressed("ui_up"):
-		$PackedSprite.offset.y -= 1
+		_packed_sprite.offset.y -= 1
 		_print_frame_details()
 	if Input.is_action_just_pressed("ui_down"):
-		$PackedSprite.offset.y += 1
+		_packed_sprite.offset.y += 1
 		_print_frame_details()
 
 
 func _print_frame_details() -> void:
-	print("json_frame=%s offset=%s" % [$PackedSprite.frame, $PackedSprite.offset])
+	print("json_frame=%s offset=%s" % [_packed_sprite.frame, _packed_sprite.offset])

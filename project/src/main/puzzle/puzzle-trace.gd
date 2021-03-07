@@ -21,19 +21,19 @@ func _process(_delta: float) -> void:
 		new_text += " %s(%02d)" % [_piece_manager.get_state().name.left(4), min(99, _piece_manager.get_state().frames)]
 		new_text += "\n"
 		
-		new_text += input_char(_piece_manager.get_node("Input/Left"), "l")
-		new_text += input_char(_piece_manager.get_node("Input/Right"), "r")
-		new_text += input_char(_piece_manager.get_node("Input/Cw"), "x")
-		new_text += input_char(_piece_manager.get_node("Input/Ccw"), "z")
-		new_text += input_char(_piece_manager.get_node("Input/SoftDrop"), "d")
-		new_text += input_char(_piece_manager.get_node("Input/HardDrop"), "u")
+		new_text += input_char(_piece_manager.input.left, "l")
+		new_text += input_char(_piece_manager.input.right, "r")
+		new_text += input_char(_piece_manager.input.cw, "x")
+		new_text += input_char(_piece_manager.input.ccw, "z")
+		new_text += input_char(_piece_manager.input.soft_drop, "d")
+		new_text += input_char(_piece_manager.input.hard_drop, "u")
 		var max_input_frames := 0
-		max_input_frames = max(max_input_frames, _piece_manager.get_node("Input/Left").frames)
-		max_input_frames = max(max_input_frames, _piece_manager.get_node("Input/Right").frames)
-		max_input_frames = max(max_input_frames, _piece_manager.get_node("Input/Cw").frames)
-		max_input_frames = max(max_input_frames, _piece_manager.get_node("Input/Ccw").frames)
-		max_input_frames = max(max_input_frames, _piece_manager.get_node("Input/SoftDrop").frames)
-		max_input_frames = max(max_input_frames, _piece_manager.get_node("Input/HardDrop").frames)
+		max_input_frames = max(max_input_frames, _piece_manager.input.left.pressed_frames)
+		max_input_frames = max(max_input_frames, _piece_manager.input.right.pressed_frames)
+		max_input_frames = max(max_input_frames, _piece_manager.input.cw.pressed_frames)
+		max_input_frames = max(max_input_frames, _piece_manager.input.ccw.pressed_frames)
+		max_input_frames = max(max_input_frames, _piece_manager.input.soft_drop.pressed_frames)
+		max_input_frames = max(max_input_frames, _piece_manager.input.hard_drop.pressed_frames)
 		new_text += " %02d" % [min(99, max_input_frames)]
 		text = new_text
 
