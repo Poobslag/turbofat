@@ -36,6 +36,8 @@ onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 onready var _project_resolution := Vector2(ProjectSettings.get_setting("display/window/size/width"), \
 		ProjectSettings.get_setting("display/window/size/height"))
 
+onready var _tween: Tween = $Tween
+
 func _ready() -> void:
 	_overworld_ui.connect("chat_started", self, "_on_OverworldUi_chat_started")
 	_overworld_ui.connect("chat_ended", self, "_on_OverworldUi_chat_ended")
@@ -78,10 +80,10 @@ func set_close_up(new_close_up: bool) -> void:
 		return
 	
 	close_up = new_close_up
-	$Tween.remove_all()
-	$Tween.interpolate_property(self, "close_up_pct", close_up_pct, 1.0 if close_up else 0.0,
+	_tween.remove_all()
+	_tween.interpolate_property(self, "close_up_pct", close_up_pct, 1.0 if close_up else 0.0,
 			ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	$Tween.start()
+	_tween.start()
 
 
 func _on_OverworldUi_chat_started() -> void:

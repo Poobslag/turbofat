@@ -44,6 +44,9 @@ var velocity := Vector2.ZERO
 # time in milliseconds between the engine starting and this node being initialized
 var _creation_time := 0.0
 
+onready var _tween: Tween = $Tween
+onready var _fade_timer: Timer = $FadeTimer
+
 """
 Populates this object from another FrostingGlob instance.
 
@@ -114,10 +117,10 @@ func fall() -> void:
 	falling = true
 	smear_time = min(rand_range(0.0, FALL_DURATION * 0.7), rand_range(0.0, FALL_DURATION * 1.2))
 	
-	$Tween.remove_all()
-	$Tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate), \
+	_tween.remove_all()
+	_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate), \
 			FALL_DURATION * rand_range(0.8, 1.2), Tween.TRANS_CIRC, Tween.EASE_IN)
-	$Tween.start()
+	_tween.start()
 
 
 """
@@ -127,11 +130,11 @@ Called when a frosting glob hits a wall or smears against the background.
 """
 func fade() -> void:
 	falling = false
-	$FadeTimer.start(FADE_DELAY * rand_range(0.8, 1.2))
+	_fade_timer.start(FADE_DELAY * rand_range(0.8, 1.2))
 	
 	# No Tween.start() call; Tween is started once timer finishes
-	$Tween.remove_all()
-	$Tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate), \
+	_tween.remove_all()
+	_tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate), \
 			FADE_DURATION * rand_range(0.8, 1.2), Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 
@@ -162,4 +165,4 @@ func _on_Tween_tween_all_completed() -> void:
 
 
 func _on_FadeTimer_timeout() -> void:
-	$Tween.start()
+	_tween.start()

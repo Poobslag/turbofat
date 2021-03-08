@@ -18,20 +18,24 @@ const LEVEL_COLOR_3 := Color("b95c48")
 const LEVEL_COLOR_4 := Color("b94878")
 const LEVEL_COLOR_5 := Color("b948b9")
 
+onready var _progress_bar: ProgressBar = $ProgressBar
+onready var _desc: Label = $Desc
+onready var _value: FontFitLabel = $Value
+
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	match CurrentLevel.settings.finish_condition.type:
 		Milestone.CUSTOMERS:
-			$Desc.text = tr("Customers")
+			_desc.text = tr("Customers")
 		Milestone.LINES:
-			$Desc.text = tr("Lines")
+			_desc.text = tr("Lines")
 		Milestone.PIECES:
-			$Desc.text = tr("Pieces")
+			_desc.text = tr("Pieces")
 		Milestone.SCORE:
-			$Desc.text = tr("Money")
+			_desc.text = tr("Money")
 		Milestone.TIME_OVER:
-			$Desc.text = tr("Time")
+			_desc.text = tr("Time")
 	init_milebar()
 
 
@@ -43,14 +47,14 @@ func _process(_delta: float) -> void:
 Updates the milestone progress bar's value and boundaries.
 """
 func update_milebar_values() -> void:
-	$ProgressBar.min_value = MilestoneManager.prev_milestone().value
+	_progress_bar.min_value = MilestoneManager.prev_milestone().value
 	var next_milestone := MilestoneManager.next_milestone()
-	if next_milestone.value == $ProgressBar.min_value:
+	if next_milestone.value == _progress_bar.min_value:
 		# avoid 'cannot get ratio' errors in sandbox mode
-		$ProgressBar.max_value = $ProgressBar.min_value + 1.0
+		_progress_bar.max_value = _progress_bar.min_value + 1.0
 	else:
-		$ProgressBar.max_value = next_milestone.value
-	$ProgressBar.value = MilestoneManager.milestone_progress(next_milestone)
+		_progress_bar.max_value = next_milestone.value
+	_progress_bar.value = MilestoneManager.milestone_progress(next_milestone)
 
 
 """
@@ -61,13 +65,13 @@ func update_milebar_text() -> void:
 	var remaining: int = max(0, ceil(milestone.value - MilestoneManager.milestone_progress(milestone)))
 	match milestone.type:
 		Milestone.NONE:
-			$Value.text = "-"
+			_value.text = "-"
 		Milestone.CUSTOMERS, Milestone.LINES, Milestone.PIECES:
-			$Value.text = StringUtils.comma_sep(remaining)
+			_value.text = StringUtils.comma_sep(remaining)
 		Milestone.SCORE:
-			$Value.text = "¥%s" % StringUtils.comma_sep(remaining)
+			_value.text = "¥%s" % StringUtils.comma_sep(remaining)
 		Milestone.TIME_OVER:
-			$Value.text = StringUtils.format_duration(remaining)
+			_value.text = StringUtils.format_duration(remaining)
 
 
 """
@@ -89,7 +93,7 @@ func update_milebar_color() -> void:
 		level_color = LEVEL_COLOR_1
 	else:
 		level_color = LEVEL_COLOR_0
-	$ProgressBar.get("custom_styles/fg").set_bg_color(Utils.to_transparent(level_color, 0.333))
+	_progress_bar.get("custom_styles/fg").set_bg_color(Utils.to_transparent(level_color, 0.333))
 
 
 """
@@ -100,7 +104,7 @@ start of each level when the text should be at its longest value.
 """
 func init_milebar() -> void:
 	update_milebar()
-	$Value.pick_largest_font()
+	_value.pick_largest_font()
 
 
 """

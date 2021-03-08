@@ -4,10 +4,12 @@ Tilemap which draws the shadows behind the blocks on the playfield, as well as t
 piece.
 """
 
+export (NodePath) var _playfield_tile_map_path: NodePath
+
 # Tilemap for the active piece
 var piece_tile_map: TileMap
 
-onready var _parent_tile_map: TileMap = $"../.."
+onready var _playfield_tile_map := get_node(_playfield_tile_map_path)
 
 func _process(_delta: float) -> void:
 	clear()
@@ -22,9 +24,9 @@ func _process(_delta: float) -> void:
 		set_cell(col, PuzzleTileMap.ROW_COUNT, 0, false, false, false, Vector2(15, 0))
 	
 	# draw shadows cast by blocks in the playfield
-	for cell in _parent_tile_map.get_used_cells():
-		var autotile_coord: Vector2 = _parent_tile_map.get_cell_autotile_coord(cell.x, cell.y)
-		set_cell(cell.x, cell.y, _parent_tile_map.get_cellv(cell), false, false, false, autotile_coord)
+	for cell in _playfield_tile_map.get_used_cells():
+		var autotile_coord: Vector2 = _playfield_tile_map.get_cell_autotile_coord(cell.x, cell.y)
+		set_cell(cell.x, cell.y, _playfield_tile_map.get_cellv(cell), false, false, false, autotile_coord)
 
 	# draw shadows cast by the current piece
 	if piece_tile_map:

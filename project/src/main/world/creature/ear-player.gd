@@ -50,7 +50,6 @@ func _refresh_creature_visuals_path() -> void:
 	
 	root_node = creature_visuals_path
 	_creature_visuals = get_node(creature_visuals_path)
-	
 	_creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 	
 	idle_timer = _creature_visuals.get_node("Animations/IdleTimer")

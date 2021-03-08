@@ -48,8 +48,8 @@ var drawn_piece_orientation: int
 
 # TileMap containing the puzzle blocks which make up the active piece
 onready var tile_map: PuzzleTileMap = $TileMap
+onready var input: PieceInput = $Input
 
-onready var _input: PieceInput = $Input
 onready var _next_piece_displays: NextPieceDisplays = get_node(next_piece_displays_path)
 onready var _physics: PiecePhysics = $Physics
 onready var _playfield: Playfield = get_node(playfield_path)
@@ -136,14 +136,14 @@ func move_piece() -> void:
 Records any inputs to a buffer to be replayed later.
 """
 func buffer_inputs() -> void:
-	_input.buffer_inputs()
+	input.buffer_inputs()
 
 
 """
 Replays any inputs which were pressed while buffering.
 """
 func pop_buffered_inputs() -> void:
-	_input.pop_buffered_inputs()
+	input.pop_buffered_inputs()
 
 
 """

@@ -1,3 +1,4 @@
+class_name ChatChoices
 extends GridContainer
 """
 Shows buttons corresponding to dialog branches the player can choose.

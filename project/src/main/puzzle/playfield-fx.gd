@@ -79,6 +79,18 @@ var _color_tile_indexes: Dictionary
 
 onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
 
+# lights which turn on and off
+onready var _light_map: TileMap = $LightMap
+
+# glowy effect around the lights
+onready var _glow_map: TileMap = $GlowMap
+
+# bright flash when the player clears a line
+onready var _bg_strobe: ColorRect = $BgStrobe
+
+# gradually dims the glowiness
+onready var _glow_tween: Tween = $GlowTween
+
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	_combo_tracker.connect("combo_break_changed", self, "_on_ComboTracker_combo_break_changed")
@@ -96,8 +108,8 @@ func _process(delta: float) -> void:
 func reset() -> void:
 	_pattern = OFF_PATTERN
 	_color = RAINBOW_LIGHT_COLOR
-	$LightMap.modulate = Color.transparent
-	$GlowMap.modulate = Color.transparent
+	_light_map.modulate = Color.transparent
+	_glow_map.modulate = Color.transparent
 	_calculate_brightness(0)
 	_refresh_tile_maps()
 
@@ -106,7 +118,7 @@ func reset() -> void:
 Initializes the different colored tiles in LightMap/GlowMap.
 """
 func _init_tile_set() -> void:
-	if len($LightMap.tile_set.get_tiles_ids()) > 1:
+	if len(_light_map.tile_set.get_tiles_ids()) > 1:
 		return
 	
 	for food_light_color in FOOD_LIGHT_COLORS:
@@ -127,13 +139,13 @@ func _init_color_tile_indexes() -> void:
 	if _color_tile_indexes:
 		return
 	
-	for tile_index in $LightMap.tile_set.get_tiles_ids():
-		var color: Color = $LightMap.tile_set.tile_get_modulate(tile_index)
+	for tile_index in _light_map.tile_set.get_tiles_ids():
+		var color: Color = _light_map.tile_set.tile_get_modulate(tile_index)
 		_color_tile_indexes[color] = tile_index
 
 
 func _init_tile(color: Color) -> void:
-	for tile_set in [$LightMap.tile_set, $GlowMap.tile_set]:
+	for tile_set in [_light_map.tile_set, _glow_map.tile_set]:
 		var tile_index := len(tile_set.get_tiles_ids())
 		tile_set.create_tile(tile_index)
 		tile_set.tile_set_texture(tile_index, tile_set.tile_get_texture(0))
@@ -147,14 +159,14 @@ Starts the glow tween, causing the lights to slowly dim.
 """
 func _start_glow_tween() -> void:
 	if _brightness > 0 and _glow_duration > 0.0:
-		$GlowTween.remove_all()
-		$GlowTween.interpolate_property($LightMap, "modulate:a", 1.00, 0.50,
+		_glow_tween.remove_all()
+		_glow_tween.interpolate_property(_light_map, "modulate:a", 1.00, 0.50,
 			_glow_duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
-		$GlowTween.interpolate_property($GlowMap, "modulate:a", 0.75, 0.125,
+		_glow_tween.interpolate_property(_glow_map, "modulate:a", 0.75, 0.125,
 			_glow_duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
-		$GlowTween.interpolate_property($BgStrobe, "color:a", 0.33, 0.00,
+		_glow_tween.interpolate_property(_bg_strobe, "color:a", 0.33, 0.00,
 			_glow_duration, Tween.TRANS_CIRC, Tween.EASE_OUT)
-		$GlowTween.start()
+		_glow_tween.start()
 
 
 """
@@ -207,7 +219,7 @@ func _calculate_brightness(combo: int) -> void:
 Calculates the new light pattern and refreshes the tile maps.
 """
 func _refresh_tile_maps() -> void:
-	$BgStrobe.color = Utils.to_transparent(_color)
+	_bg_strobe.color = Utils.to_transparent(_color)
 	
 	var old_pattern := _pattern
 	var new_pattern: Array
@@ -230,8 +242,8 @@ func _refresh_tile_maps() -> void:
 						tile = 6 + ((x + _pattern_y) % RAINBOW_COLOR_COUNT)
 					elif _color_tile_indexes.has(_color):
 						tile = _color_tile_indexes[_color]
-				$LightMap.set_cell(x, y, tile)
-				$GlowMap.set_cell(x, y, tile)
+				_light_map.set_cell(x, y, tile)
+				_glow_map.set_cell(x, y, tile)
 
 
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
