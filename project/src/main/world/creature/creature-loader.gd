@@ -20,6 +20,8 @@ const GROWTH_SECONDS := 0.12
 # The color inside a creature's mouth
 const PINK_INSIDE_COLOR := Color("f39274")
 
+const SHADOW_ALPHA := 0.25
+
 # AnimationPlayer scenes with animations for each type of mouth
 var _mouth_player_scenes := {
 	"1": preload("res://src/main/world/creature/Mouth1Player.tscn"),
@@ -46,21 +48,29 @@ var _ear_player_scenes := {
 }
 
 # Scenes which draw different bodies
-var _body_scenes := {
-	"1": preload("res://src/main/world/creature/Body1.tscn"),
-	"2": preload("res://src/main/world/creature/Body2.tscn"),
+var _body_shape_scenes := {
+	"1": preload("res://src/main/world/creature/Body1Shape.tscn"),
+	"2": preload("res://src/main/world/creature/Body2Shape.tscn"),
 }
 
 # Scenes which draw belly colors for different bodies
-var _body_colors_scenes := {
-	"1": preload("res://src/main/world/creature/Body1Colors.tscn"),
-	"2": preload("res://src/main/world/creature/Body2Colors.tscn"),
+var _belly_scenes := {
+	"1 1": preload("res://src/main/world/creature/Body1Belly1.tscn"),
+	"1 2": preload("res://src/main/world/creature/Body1Belly2.tscn"),
+	"2 1": preload("res://src/main/world/creature/Body2Belly1.tscn"),
+	"2 2": preload("res://src/main/world/creature/Body2Belly2.tscn"),
 }
 
-# Scenes which draw body shadows for different bodies
-var _body_shadows_scenes := {
+# Scenes which draw shadows for different bodies
+var _shadows_scenes := {
 	"1": preload("res://src/main/world/creature/Body1Shadows.tscn"),
 	"2": preload("res://src/main/world/creature/Body2Shadows.tscn"),
+}
+
+# Scenes which draw 'neck blends' which blend the neck with the back of the head
+var _neck_blend_scenes_new := {
+	"1": preload("res://src/main/world/creature/Body1NeckBlend.tscn"),
+	"2": preload("res://src/main/world/creature/Body2NeckBlend.tscn"),
 }
 
 # AnimationPlayers which rearrange body parts for different bodies
@@ -127,30 +137,41 @@ func new_ear_player(ear_key: String) -> AnimationPlayer:
 """
 Returns a CreatureCurve for drawing a type of body.
 """
-func new_body(body_key: String) -> CreatureCurve:
+func new_body_shape(body_key: String) -> CreatureCurve:
 	var result: CreatureCurve
-	if _body_scenes.has(body_key):
-		result = _body_scenes[body_key].instance()
+	if _body_shape_scenes.has(body_key):
+		result = _body_shape_scenes[body_key].instance()
 	return result
 
 
 """
-Returns a Node2D for drawing belly colors for a type of body.
+Returns a CreatureCurve for drawing belly colors for a type of body.
 """
-func new_body_colors(body_key: String) -> Node2D:
-	var result: Node2D
-	if _body_colors_scenes.has(body_key):
-		result = _body_colors_scenes[body_key].instance()
+func new_belly(body_key: String, body_colors_key: String) -> CreatureCurve:
+	var result: CreatureCurve
+	var key: String = "%s %s" % [body_key, body_colors_key]
+	if _belly_scenes.has(key):
+		result = _belly_scenes[key].instance()
 	return result
 
 
 """
-Returns a Node2D for drawing shadows for a type of body.
+Returns a Node2D containing CreatureCurves for drawing shadows for a type of body.
 """
-func new_body_shadows(body_key: String) -> Node2D:
+func new_shadows(body_key: String) -> Node2D:
 	var result: Node2D
-	if _body_shadows_scenes.has(body_key):
-		result = _body_shadows_scenes[body_key].instance()
+	if _shadows_scenes.has(body_key):
+		result = _shadows_scenes[body_key].instance()
+	return result
+
+
+"""
+Returns a CreatureCurve which blends the neck with the back of the head.
+"""
+func new_neck_blend(body_key: String) -> CreatureCurve:
+	var result: CreatureCurve
+	if _neck_blend_scenes_new.has(body_key):
+		result = _neck_blend_scenes_new[body_key].instance()
 	return result
 
 
@@ -284,7 +305,6 @@ func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "Sprint", "", "sprint-z0-packed")
 	_load_texture(dna, "FarArm", "", "arm-z0-packed")
 	_load_texture(dna, "FarLeg", "", "leg-z0-packed")
-	_load_texture(dna, "Body/Viewport/Body/NeckBlend", "", "neck-blend-packed")
 	_load_texture(dna, "NearLeg", "", "leg-z1-packed")
 	_load_texture(dna, "NearArm", "", "arm-z1-packed")
 	_load_texture(dna, "Neck0/HeadBobber/Chin", "", "chin-packed")
@@ -293,8 +313,6 @@ func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "Bellybutton", "bellybutton", "bellybutton-packed")
 	_load_texture(dna, "TailZ0", "tail", "tail-z0-packed")
 	_load_texture(dna, "TailZ1", "tail", "tail-z1-packed")
-	
-	dna["property:BellyColors/Viewport/Body:belly"] = dna.get("belly", 0)
 
 
 """
@@ -333,7 +351,11 @@ func _load_colors(dna: Dictionary) -> void:
 	if dna.has("plastic_rgb"):
 		plastic_color = Color(dna.plastic_rgb)
 	
-	_set_krgb(dna, "Body", line_color, body_color, belly_color)
+	dna["property:Body:line_color"] = line_color
+	dna["property:Body:body_color"] = body_color
+	dna["property:Body:belly_color"] = belly_color
+	dna["property:Body:shadow_color"] = Utils.to_transparent(line_color, SHADOW_ALPHA)
+	
 	_set_krgb(dna, "Collar", line_color, cloth_color, hair_color)
 	_set_krgb(dna, "EmoteBody", line_color)
 	_set_krgb(dna, "FarArm", line_color, body_color)

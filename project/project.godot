@@ -29,6 +29,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/blocks-start-rules.gd"
 }, {
+"base": "Node2D",
+"class": "Body",
+"language": "GDScript",
+"path": "res://src/main/world/creature/body.gd"
+}, {
 "base": "Node",
 "class": "BoxBuilder",
 "language": "GDScript",
@@ -714,6 +719,7 @@ _global_script_class_icons={
 "ActivePiece": "",
 "BlocksDuringRules": "",
 "BlocksStartRules": "",
+"Body": "",
 "BoxBuilder": "",
 "ChatAdvancer": "",
 "ChatChoiceButton": "",

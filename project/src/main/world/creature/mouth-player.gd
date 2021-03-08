@@ -129,6 +129,7 @@ func _apply_tool_script_workaround() -> void:
 	if not _creature_visuals:
 		_creature_visuals = get_parent()
 
+
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
 	if not Engine.is_editor_hint():
 		_mouth.z_index = 0

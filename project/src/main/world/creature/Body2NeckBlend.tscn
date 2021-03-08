@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/creature/creature-curve.gd" type="Script" id=1]
+
+[sub_resource type="Curve2D" id=1]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( -5.67108, 11.3351, 5.67108, -11.3351, -41.4178, -191.501, -9.59803, -9.03542, 9.59803, 9.03542, -4.60707, -195.984 )
+}
+
+[node name="NeckBlend" type="Path2D"]
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+closed = false
+line_color = Color( 0, 0, 0, 0.501961 )
+editing = false
+curve_defs = [ {
+"curve_def": [ [ Vector2( -39.9452, -116.389 ), Vector2( 0.560941, 12.8436 ), Vector2( -0.560941, -12.8436 ) ], [ Vector2( -11.9135, -121.024 ), Vector2( -5.60014, -13.6205 ), Vector2( 5.60014, 13.6205 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( -51.6229, -131.478 ), Vector2( -6.29914, 12.958 ), Vector2( 6.29914, -12.958 ) ], [ Vector2( -10.3685, -136.696 ), Vector2( -10.8054, -10.287 ), Vector2( 10.8054, 10.287 ) ] ],
+"fatness": 2.0
+}, {
+"curve_def": [ [ Vector2( 30.018, -611.665 ), Vector2( -1.27464, -0.02527 ), Vector2( 1.27464, 0.02527 ) ], [ Vector2( 35.7227, -611.004 ), Vector2( -1.14614, -0.274642 ), Vector2( 1.14614, 0.274642 ) ] ],
+"fatness": 10.0
+} ]
+drawn_when_facing_south = false

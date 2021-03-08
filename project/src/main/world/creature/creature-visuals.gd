@@ -209,7 +209,7 @@ between facing forward or backward, certain sprites play different animations or
 func set_orientation(new_orientation: int) -> void:
 	var old_orientation := orientation
 	orientation = new_orientation
-	if not get_tree():
+	if not is_inside_tree():
 		# avoid 'node not found' errors when tree is null
 		return
 	
@@ -250,10 +250,7 @@ func rescale(new_scale_x: float) -> void:
 	
 	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
 	# its parent object is already flipped in some cases, making the following line of code quite unintuitive.
-	if has_node("Body/Viewport/Body"):
-		$Body/Viewport/Body.scale.x = 1 if oriented_south() else -1
-	if has_node("BodyShadows/Viewport/Body"):
-		$BodyShadows/Viewport/Body.scale.x = 1 if oriented_south() else -1
+	$Body.scale.x = 1 if oriented_south() else -1
 
 
 """

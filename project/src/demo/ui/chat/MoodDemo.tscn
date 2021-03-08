@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://assets/main/world/creature/3/eye-z1-packed.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/world/creature/3/nose-packed.png" type="Texture" id=6]
 [ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=7]
-[ext_resource path="res://assets/main/world/creature/1/neck-blend-packed.png" type="Texture" id=8]
 [ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=9]
 [ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=11]
@@ -67,12 +66,13 @@ dna = {
 "mouth": "1",
 "nose": "3",
 "plastic_rgb": "282828",
-"property:BellyColors/Viewport/Body:belly": "1",
 "property:BellyColors:belly": "1",
 "property:Bellybutton:frame_data": "res://assets/main/world/creature/4/bellybutton-packed.json",
 "property:Bellybutton:texture": ExtResource( 26 ),
-"property:Body/Viewport/Body/NeckBlend:frame_data": "res://assets/main/world/creature/1/neck-blend-packed.json",
-"property:Body/Viewport/Body/NeckBlend:texture": ExtResource( 8 ),
+"property:Body:belly_color": Color( 1, 0.658824, 0.427451, 1 ),
+"property:Body:body_color": Color( 0.0431373, 0.270588, 0.65098, 1 ),
+"property:Body:line_color": Color( 0.254902, 0.156863, 0.117647, 1 ),
+"property:Body:shadow_color": Color( 0.254902, 0.156863, 0.117647, 0.25 ),
 "property:Collar:frame_data": "res://assets/main/world/creature/1/collar-packed.json",
 "property:Collar:texture": ExtResource( 23 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
@@ -123,9 +123,6 @@ dna = {
 "property:TailZ1:texture": ExtResource( 24 ),
 "shader:Bellybutton:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Bellybutton:red": Color( 1, 0.658824, 0.427451, 1 ),
-"shader:Body:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
-"shader:Body:green": Color( 1, 0.658824, 0.427451, 1 ),
-"shader:Body:red": Color( 0.0431373, 0.270588, 0.65098, 1 ),
 "shader:Collar:black": Color( 0.254902, 0.156863, 0.117647, 1 ),
 "shader:Collar:green": Color( 0.945098, 0.890196, 0.596078, 1 ),
 "shader:Collar:red": Color( 0.156863, 0.156863, 0.156863, 1 ),

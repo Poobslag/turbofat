@@ -9,6 +9,9 @@ Godot has no out-of-the-box method for tweening curves, so this class exposes a 
 maintain these curve definitions, as they can't be edited with the usual animation editor.
 """
 
+# Emitted when the curve becomes drawn, becomes non-drawn, or changes its shape
+signal appearance_changed
+
 """
 Setting this to 'true' will prevent the body's current curve from being overwritten by the fatness property.
 """
@@ -20,10 +23,18 @@ export (bool) var _save_curve: bool setget save_curve
 # defines the shadow curve coordinates for each of the creature's levels of fatness.
 export (Array) var curve_defs: Array setget set_curve_defs
 
-# if false, the curve is made invisible when the creature faces away from the camera.
-export (bool) var visible_when_facing_north: bool = true
+# if false, the body will not render this curve when the creature faces away from the camera.
+export (bool) var drawn_when_facing_north: bool = true
+
+# if false, the body will not render this curve when the creature faces toward the camera.
+export (bool) var drawn_when_facing_south: bool = true
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
+
+# If true, the curve is drawn on the creature's body.
+# This is independent of the 'visible' property. When the game is running, these curves will be invisible but still
+# must be drawn. When developers are editing the curve data, these curves must  visible for Godot's Path2D tools.
+var drawn := true setget set_drawn
 
 var creature_visuals: CreatureVisuals
 
@@ -70,15 +81,23 @@ func save_curve(value: bool) -> void:
 
 
 """
-Updates the 'visible' property based on the creature's orientation.
+Updates the 'drawn' property based on the creature's orientation.
 """
-func refresh_visible() -> void:
-	visible = true
-	if not creature_visuals:
+func refresh_drawn() -> void:
+	var new_drawn := true
+	if creature_visuals:
+		if not drawn_when_facing_north and creature_visuals.oriented_north():
+			new_drawn = false
+		if not drawn_when_facing_south and creature_visuals.oriented_south():
+			new_drawn = false
+	set_drawn(new_drawn)
+
+
+func set_drawn(new_drawn: bool) -> void:
+	if drawn == new_drawn:
 		return
-	
-	if not visible_when_facing_north and creature_visuals.oriented_north():
-		visible = false
+	drawn = new_drawn
+	emit_signal("appearance_changed")
 
 
 func set_curve_defs(new_curve_defs: Array) -> void:
@@ -151,6 +170,7 @@ func _refresh_curve() -> void:
 			var point_out: Vector2 = lerp(curve_def_low.curve_def[i][2], curve_def_high.curve_def[i][2], f_pct)
 			curve.add_point(point_pos, point_in, point_out)
 	update()
+	emit_signal("appearance_changed")
 
 
 """
@@ -164,7 +184,7 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orientation: int) -> void:
-	refresh_visible()
+	refresh_drawn()
 
 
 func _on_CreatureVisuals_dna_loaded() -> void:

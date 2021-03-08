@@ -1,31 +1,21 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/world/creature/creature-curve.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/creature/belly-colors.gd" type="Script" id=2]
 
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true
 _data = {
-"points": PoolVector2Array( -0.827609, -19.5058, 0.827609, 19.5058, -16.4229, -16.8725, -14.9663, 1.17112, 14.9663, -1.17112, 18.2874, 11.2822, 0.670203, 16.3499, -0.670203, -16.3499, 49.4005, -24.8763, 15.2832, -1.67112, -15.2832, 1.67112, -4.5647, -123.036, -0.144124, -20.4429, 0.144124, 20.4429, -16.4229, -19.2536 )
+"points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
 }
 
-[node name="Body" type="Node2D"]
-position = Vector2( 580, 850 )
-script = ExtResource( 2 )
-creature_visuals_path = NodePath("../../..")
-belly = 1
-curve_defs_by_belly = {
-1: [ {
-"curve_def": [ [ Vector2( -16.4229, -16.8725 ), Vector2( -0.827609, -19.5058 ), Vector2( 0.827609, 19.5058 ) ], [ Vector2( 18.2874, 11.2822 ), Vector2( -14.9663, 1.17112 ), Vector2( 14.9663, -1.17112 ) ], [ Vector2( 49.4005, -24.8763 ), Vector2( 0.670203, 16.3499 ), Vector2( -0.670203, -16.3499 ) ], [ Vector2( -4.5647, -123.036 ), Vector2( 15.2832, -1.67112 ), Vector2( -15.2832, 1.67112 ) ], [ Vector2( -16.4229, -19.2536 ), Vector2( -0.144124, -20.4429 ), Vector2( 0.144124, 20.4429 ) ] ],
-"fatness": 1.0
-}, {
-"curve_def": [ [ Vector2( -14.0417, -44.652 ), Vector2( -5.07054, -36.988 ), Vector2( 5.07054, 36.988 ) ], [ Vector2( 53.4227, 10.1133 ), Vector2( -31.3813, 2.0557 ), Vector2( 31.3813, -2.0557 ) ], [ Vector2( 100.251, -56.5575 ), Vector2( 6.51624, 31.0115 ), Vector2( -6.51624, -31.0115 ) ], [ Vector2( 2.99481, -139.415 ), Vector2( 31.663, -1.97161 ), Vector2( -31.663, 1.97161 ) ], [ Vector2( -15.6292, -47.8268 ), Vector2( -3.40593, -37.2924 ), Vector2( 3.40593, 37.2924 ) ] ],
-"fatness": 2.0
-}, {
-"curve_def": [ [ Vector2( -92.8664, -265.233 ), Vector2( -39.014, -176.845 ), Vector2( 39.014, 176.845 ) ], [ Vector2( 263.896, 1.14941 ), Vector2( -162.701, 9.13235 ), Vector2( 162.701, -9.13235 ) ], [ Vector2( 487.467, -308.044 ), Vector2( 53.2845, 148.304 ), Vector2( -53.2845, -148.304 ) ], [ Vector2( 121.191, -617.238 ), Vector2( 162.701, -4.37552 ), Vector2( -162.701, 4.37552 ) ], [ Vector2( -92.8664, -274.747 ), Vector2( -29.5004, -172.088 ), Vector2( 29.5004, 172.088 ) ] ],
-"fatness": 10.0
-} ],
-2: [ {
+[node name="Belly" type="Path2D"]
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+fill_color = Color( 1, 0, 0, 1 )
+line_width = 2.0
+editing = false
+curve_defs = [ {
 "curve_def": [ [ Vector2( 19.4769, 22.0837 ), Vector2( -12.6411, 1.01899 ), Vector2( 12.6411, -1.01899 ) ], [ Vector2( 41.1959, -4.93256 ), Vector2( -0.49842, 13.9646 ), Vector2( 0.49842, -13.9646 ) ], [ Vector2( 36.4283, -25.5921 ), Vector2( 3.76837, 1.76346 ), Vector2( -3.76837, -1.76346 ) ], [ Vector2( 28.4823, -28.2407 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 20.0066, -29.83 ), Vector2( 4.58138, 0.641052 ), Vector2( -4.58138, -0.641052 ) ], [ Vector2( 11.0012, -30.3597 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 1.99573, -28.7704 ), Vector2( 5.30145, -1.33283 ), Vector2( -5.30145, 1.33283 ) ], [ Vector2( -7.0097, -25.5921 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( -13.3665, -20.8245 ), Vector2( 3.07046, -2.72488 ), Vector2( -3.07046, 2.72488 ) ], [ Vector2( -16.5449, 1.42426 ), Vector2( -3.00874, -15.751 ), Vector2( 3.00874, 15.751 ) ], [ Vector2( 17.8877, 22.0837 ), Vector2( -13.7799, 0.699882 ), Vector2( 13.7799, -0.699882 ) ] ],
 "fatness": 1.0
 }, {
@@ -41,24 +31,4 @@ curve_defs_by_belly = {
 "curve_def": [ [ Vector2( 351.338, -9.41907 ), Vector2( -127.143, 30.6224 ), Vector2( 168.544, -40.5937 ) ], [ Vector2( 487.725, -300.49 ), Vector2( 40.1355, 128.205 ), Vector2( -31.4327, -100.406 ) ], [ Vector2( 382, -484 ), Vector2( 42.9136, 5.92072 ), Vector2( -43.5736, -6.01178 ) ], [ Vector2( 364, -386 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 257.593, -536.035 ), Vector2( 45.8762, 3.59069 ), Vector2( -42.6172, -3.33561 ) ], [ Vector2( 236, -422 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 125.168, -510.071 ), Vector2( 47.9093, -20.2282 ), Vector2( -39.8701, 16.8339 ) ], [ Vector2( 120, -346 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 33.7709, -421.671 ), Vector2( 34.7119, -10.354 ), Vector2( -34.0173, 10.1468 ) ], [ Vector2( -12.5286, -228.756 ), Vector2( -15.991, -99.3122 ), Vector2( 19.1425, 118.885 ) ], [ Vector2( 344.901, -9.12219 ), Vector2( -226.018, 33.3689 ), Vector2( 125.149, -18.4767 ) ] ],
 "fatness": 10.0
 } ]
-}
-
-[node name="Belly" type="Path2D" parent="."]
-self_modulate = Color( 1, 1, 1, 1 )
-curve = SubResource( 1 )
-script = ExtResource( 1 )
-line_color = Color( 0, 0, 0, 0 )
-fill_color = Color( 0, 1, 0, 1 )
-editing = false
-curve_defs = [ {
-"curve_def": [ [ Vector2( -16.4229, -16.8725 ), Vector2( -0.827609, -19.5058 ), Vector2( 0.827609, 19.5058 ) ], [ Vector2( 18.2874, 11.2822 ), Vector2( -14.9663, 1.17112 ), Vector2( 14.9663, -1.17112 ) ], [ Vector2( 49.4005, -24.8763 ), Vector2( 0.670203, 16.3499 ), Vector2( -0.670203, -16.3499 ) ], [ Vector2( -4.5647, -123.036 ), Vector2( 15.2832, -1.67112 ), Vector2( -15.2832, 1.67112 ) ], [ Vector2( -16.4229, -19.2536 ), Vector2( -0.144124, -20.4429 ), Vector2( 0.144124, 20.4429 ) ] ],
-"fatness": 1.0
-}, {
-"curve_def": [ [ Vector2( -14.0417, -44.652 ), Vector2( -5.07054, -36.988 ), Vector2( 5.07054, 36.988 ) ], [ Vector2( 53.4227, 10.1133 ), Vector2( -31.3813, 2.0557 ), Vector2( 31.3813, -2.0557 ) ], [ Vector2( 100.251, -56.5575 ), Vector2( 6.51624, 31.0115 ), Vector2( -6.51624, -31.0115 ) ], [ Vector2( 2.99481, -139.415 ), Vector2( 31.663, -1.97161 ), Vector2( -31.663, 1.97161 ) ], [ Vector2( -15.6292, -47.8268 ), Vector2( -3.40593, -37.2924 ), Vector2( 3.40593, 37.2924 ) ] ],
-"fatness": 2.0
-}, {
-"curve_def": [ [ Vector2( -92.8664, -265.233 ), Vector2( -39.014, -176.845 ), Vector2( 39.014, 176.845 ) ], [ Vector2( 263.896, 1.14941 ), Vector2( -162.701, 9.13235 ), Vector2( 162.701, -9.13235 ) ], [ Vector2( 487.467, -308.044 ), Vector2( 53.2845, 148.304 ), Vector2( -53.2845, -148.304 ) ], [ Vector2( 121.191, -617.238 ), Vector2( 162.701, -4.37552 ), Vector2( -162.701, 4.37552 ) ], [ Vector2( -92.8664, -274.747 ), Vector2( -29.5004, -172.088 ), Vector2( 29.5004, 172.088 ) ] ],
-"fatness": 10.0
-} ]
-visible_when_facing_north = false
-creature_visuals_path = NodePath("../../../..")
+drawn_when_facing_north = false
