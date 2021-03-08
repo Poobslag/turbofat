@@ -188,7 +188,7 @@ func _refresh_creature_visuals_path() -> void:
 	_tail_z1 = _creature_visuals.get_node("TailZ1")
 
 
-func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientation: int) -> void:
+func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
 	if _movement_player.current_animation == "idle-nw" and CreatureOrientation.oriented_south(new_orientation):
 		_movement_player.play("idle-se")
 	elif _movement_player.current_animation == "idle-se" and CreatureOrientation.oriented_north(new_orientation):

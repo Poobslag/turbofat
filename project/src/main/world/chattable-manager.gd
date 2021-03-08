@@ -31,6 +31,7 @@ var _creatures_by_id := {}
 
 func _ready() -> void:
 	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
+	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 
 
 func _physics_process(_delta: float) -> void:
@@ -205,3 +206,12 @@ func _on_Breadcrumb_before_scene_changed() -> void:
 	player = null
 	sensei = null
 	focused_chattable = null
+	_focus_enabled = true
+	_creatures_by_id.clear()
+
+
+"""
+We prevent the player from interacting with objects during scene transitions.
+"""
+func _on_SceneTransition_fade_out_started() -> void:
+	set_focus_enabled(false)
