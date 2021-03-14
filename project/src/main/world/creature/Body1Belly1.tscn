@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/creature/creature-curve.gd" type="Script" id=1]
+
+[sub_resource type="Curve2D" id=1]
+resource_local_to_scene = true
+_data = {
+"points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
+}
+
+[node name="Belly" type="Path2D"]
+self_modulate = Color( 1, 1, 1, 1 )
+curve = SubResource( 1 )
+script = ExtResource( 1 )
+fill_color = Color( 1, 0, 0, 1 )
+line_width = 2.0
+editing = false
+curve_defs = [ {
+"curve_def": [ [ Vector2( -16.4229, -16.8725 ), Vector2( -0.827609, -19.5058 ), Vector2( 0.827609, 19.5058 ) ], [ Vector2( 18.2874, 11.2822 ), Vector2( -14.9663, 1.17112 ), Vector2( 14.9663, -1.17112 ) ], [ Vector2( 49.4005, -24.8763 ), Vector2( 0.670203, 16.3499 ), Vector2( -0.670203, -16.3499 ) ], [ Vector2( 12.944, -59.7323 ), Vector2( 15.2832, -1.67112 ), Vector2( -15.2832, 1.67112 ) ], [ Vector2( -16.4229, -19.2536 ), Vector2( -0.144124, -20.4429 ), Vector2( 0.144124, 20.4429 ) ] ],
+"fatness": 1.0
+}, {
+"curve_def": [ [ Vector2( -14.0417, -44.652 ), Vector2( -5.07054, -36.988 ), Vector2( 5.07054, 36.988 ) ], [ Vector2( 53.4227, 10.1133 ), Vector2( -31.3813, 2.0557 ), Vector2( 31.3813, -2.0557 ) ], [ Vector2( 100.251, -56.5575 ), Vector2( 6.51624, 31.0115 ), Vector2( -6.51624, -31.0115 ) ], [ Vector2( 30.4055, -119.26 ), Vector2( 31.663, -1.97161 ), Vector2( -31.663, 1.97161 ) ], [ Vector2( -15.6292, -47.8268 ), Vector2( -3.40593, -37.2924 ), Vector2( 3.40593, 37.2924 ) ] ],
+"fatness": 2.0
+}, {
+"curve_def": [ [ Vector2( -92.8664, -265.233 ), Vector2( -39.014, -176.845 ), Vector2( 39.014, 176.845 ) ], [ Vector2( 263.896, 1.14941 ), Vector2( -162.701, 9.13235 ), Vector2( 162.701, -9.13235 ) ], [ Vector2( 487.467, -308.044 ), Vector2( 53.2845, 148.304 ), Vector2( -53.2845, -148.304 ) ], [ Vector2( 121.191, -617.238 ), Vector2( 162.701, -4.37552 ), Vector2( -162.701, 4.37552 ) ], [ Vector2( -92.8664, -274.747 ), Vector2( -29.5004, -172.088 ), Vector2( 29.5004, 172.088 ) ] ],
+"fatness": 10.0
+} ]
+drawn_when_facing_north = false

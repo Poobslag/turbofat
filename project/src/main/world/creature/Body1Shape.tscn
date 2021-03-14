@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/main/world/creature/creature-body.gd" type="Script" id=1]
-[ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=11]
+[ext_resource path="res://src/main/world/creature/creature-curve.gd" type="Script" id=1]
 
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true
@@ -9,12 +8,10 @@ _data = {
 "points": PoolVector2Array( 24.9977, 0.341151, -32.9037, -0.449047, -11.158, -72.0639, -0.631155, -31.5491, 0.500038, 24.995, -62.0516, -16.4455, -27.2528, -0.551655, 30.9852, 0.627207, -13.1955, 28.0658, -0.010441, 25, 0.011404, -27.3082, 37.7671, -13.4088, 27.0964, -1.30105, -24.9712, 1.19901, -11.0971, -72.0781 )
 }
 
-[node name="Body" type="Path2D"]
+[node name="BodyShape" type="Path2D"]
 self_modulate = Color( 1, 1, 1, 1 )
-position = Vector2( 580, 850 )
 curve = SubResource( 1 )
 script = ExtResource( 1 )
-fill_color = Color( 1, 0, 0, 1 )
 line_width = 2.0
 editing = false
 curve_defs = [ {
@@ -36,11 +33,3 @@ curve_defs = [ {
 "curve_def": [ [ Vector2( -1.29367, -658.921 ), Vector2( 24.9962, 0.436254 ), Vector2( -186.573, -3.25622 ) ], [ Vector2( -494.142, -156.333 ), Vector2( -4.48658, -290.76 ), Vector2( 3.44123, 223.014 ) ], [ Vector2( -18.8258, 204.05 ), Vector2( -219.143, -2.18805 ), Vector2( 241.903, 2.4153 ) ], [ Vector2( 497.398, -131.008 ), Vector2( 2.04043, 215.119 ), Vector2( -3.31852, -349.867 ) ], [ Vector2( 0.654327, -658.921 ), Vector2( 194.42, -4.10986 ), Vector2( -24.9945, 0.528361 ) ] ],
 "fatness": 10.0
 } ]
-
-[node name="NeckBlend" type="Node2D" parent="."]
-position = Vector2( -1.11823, -102.515 )
-rotation = 3.13804
-scale = Vector2( 0.836, -0.836 )
-script = ExtResource( 11 )
-rect_size = Vector2( 512, 512 )
-frame = 1

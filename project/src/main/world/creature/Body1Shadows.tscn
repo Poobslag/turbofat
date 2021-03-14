@@ -22,8 +22,7 @@ _data = {
 "points": PoolVector2Array( -6.14105, 120.347, 6.14105, -120.347, -71.2125, 123.297, 0, 0, 0, 0, -67.5195, -45.2749, -53.2356, -1.9201, 53.2356, 1.9201, -3.26202, -13.9503, 0, 0, 0, 0, 50.3065, -45.2051, 3.34171, -88.48, -3.34171, 88.48, 53.3065, 121.814 )
 }
 
-[node name="Body" type="Node2D"]
-position = Vector2( 580, 850 )
+[node name="Shadows" type="Node2D"]
 script = ExtResource( 3 )
 
 [node name="HeadShadow" type="Path2D" parent="."]
@@ -51,9 +50,15 @@ curve_defs = [ {
 self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 2 )
 script = ExtResource( 2 )
+spline_length = 25.0
+_smooth = false
+_straighten = false
+closed = true
 line_color = Color( 0, 0, 0, 0 )
 fill_color = Color( 0, 0, 0, 1 )
+line_width = 8.0
 editing = false
+_save_curve = false
 curve_defs = [ {
 "curve_def": [ [ Vector2( -43.3209, -25.7077 ), Vector2( 0.0132871, -18.8562 ), Vector2( -0.0132871, 18.8562 ) ], [ Vector2( -23.5219, 16.7188 ), Vector2( -12.5204, -0.510676 ), Vector2( 12.5204, 0.510676 ) ], [ Vector2( -3.7229, -27.1219 ), Vector2( 0.429193, 20.722 ), Vector2( -0.429193, -20.722 ) ] ],
 "fatness": 1.0
@@ -73,7 +78,8 @@ curve_defs = [ {
 "curve_def": [ [ Vector2( -132.954, -366.841 ), Vector2( -1.87446, -47.6332 ), Vector2( 1.87446, 47.6332 ) ], [ Vector2( -112.92, -243.024 ), Vector2( -23.8274, -2.39842 ), Vector2( 23.8274, 2.39842 ) ], [ Vector2( -95.9306, -369.504 ), Vector2( 0.513287, 46.9685 ), Vector2( -0.513287, -46.9685 ) ] ],
 "fatness": 10.0
 } ]
-visible_when_facing_north = false
+drawn_when_facing_north = false
+creature_visuals_path = NodePath("")
 
 [node name="BellyShadow" type="Path2D" parent="."]
 self_modulate = Color( 1, 1, 1, 1 )

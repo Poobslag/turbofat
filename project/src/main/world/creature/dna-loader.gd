@@ -29,7 +29,10 @@ func _process(_delta: float) -> void:
 			var node_path: String = key.split(":")[1]
 			var shader_param: String = key.split(":")[2]
 			var shader_value = _creature_visuals.dna[key]
-			if _creature_visuals.has_node(node_path):
+			
+			# Creature data from old versions of the game might try to update shaders on nonexistent nodes or
+			# nonexistent materials. We check for null to avoid a crash.
+			if _creature_visuals.has_node(node_path) and _creature_visuals.get_node(node_path).material:
 				_creature_visuals.get_node(node_path).material.set_shader_param(shader_param, shader_value)
 
 
@@ -86,16 +89,18 @@ func unload_dna() -> void:
 				packed_sprite.material.set_shader_param("blue", Color.black)
 				packed_sprite.material.set_shader_param("black", Color.black)
 	
-	_creature_visuals.get_node("Body").rect_position = Vector2(-580, -850)
 	_creature_visuals.get_node("Neck0/HeadBobber").position = Vector2(0, -100)
 	_creature_visuals.rescale(1.00)
 	
 	_remove_dna_node("Animations/MouthPlayer")
 	_remove_dna_node("Animations/EarPlayer")
 	_remove_dna_node("Animations/FatSpriteMover")
-	_remove_dna_node("Body/Viewport/Body")
-	_remove_dna_node("BellyColors/Viewport/Body")
-	_remove_dna_node("BodyShadows/Viewport/Body")
+	
+	_remove_dna_node("Body/BodyShape")
+	_remove_dna_node("Body/Belly")
+	_remove_dna_node("Body/NeckBlend")
+	_remove_dna_node("Body/Shadows")
+	_creature_visuals.get_node("Body").refresh_children()
 
 
 """
@@ -113,14 +118,20 @@ func load_dna() -> void:
 				_creature_visuals.dna.ear, _creature_visuals.get_node("Animations"))
 	
 	if _creature_visuals.dna.has("body"):
-		_add_dna_node(CreatureLoader.new_body(_creature_visuals.dna.body), "body",
-				_creature_visuals.dna.body, _creature_visuals.get_node("Body/Viewport"))
-		_add_dna_node(CreatureLoader.new_body_colors(_creature_visuals.dna.body), "body colors",
-				_creature_visuals.dna.body, _creature_visuals.get_node("BellyColors/Viewport"))
-		_add_dna_node(CreatureLoader.new_body_shadows(_creature_visuals.dna.body), "body shadows",
-				_creature_visuals.dna.body, _creature_visuals.get_node("BodyShadows/Viewport"))
 		_add_dna_node(CreatureLoader.new_fat_sprite_mover(_creature_visuals.dna.body), "fat sprite mover",
 				_creature_visuals.dna.body, _creature_visuals.get_node("Animations"))
+		
+		var body: Body = _creature_visuals.get_node("Body")
+		_add_dna_node(CreatureLoader.new_body_shape(_creature_visuals.dna.body),
+				"body shape", _creature_visuals.dna.body, body)
+		if _creature_visuals.dna.has("belly") and _creature_visuals.dna.get("belly") != "0":
+			_add_dna_node(CreatureLoader.new_belly(_creature_visuals.dna.body, _creature_visuals.dna.belly),
+					"belly", "%s %s" % [_creature_visuals.dna.body, _creature_visuals.dna.belly], body)
+		_add_dna_node(CreatureLoader.new_neck_blend(_creature_visuals.dna.body),
+				"neck blend", "%s" % [_creature_visuals.dna.body], body)
+		_add_dna_node(CreatureLoader.new_shadows(_creature_visuals.dna.body),
+				"shadows", _creature_visuals.dna.body, body)
+		body.refresh_children()
 	
 	if _creature_visuals.get_node("Animations").has_node("MouthPlayer"):
 		_creature_visuals.mouth_player = _creature_visuals.get_node("Animations").get_node("MouthPlayer")
@@ -130,9 +141,6 @@ func load_dna() -> void:
 			var node_path: String = key.split(":")[1]
 			var property_name: String = key.split(":")[2]
 			var property_value = _creature_visuals.dna[key]
-			if node_path == "BellyColors/Viewport/Body" and property_name == "belly":
-				# set_belly requires an int, not a string
-				property_value = int(property_value)
 			if _creature_visuals.has_node(node_path):
 				_creature_visuals.get_node(node_path).set(property_name, property_value)
 	
@@ -164,6 +172,15 @@ func _remove_dna_node(path: NodePath) -> void:
 
 """
 Adds a 'dna node', one which swaps out based on the creature's DNA.
+
+Parameters:
+	'node': The node to add
+	
+	'key_message': The node description to display in error messages
+	
+	'value_message': The node value to display in error messages
+	
+	'parent': The parent of the new node
 """
 func _add_dna_node(node: Node, key_message: String, value_message: String, parent: Node = self) -> void:
 	if not node:

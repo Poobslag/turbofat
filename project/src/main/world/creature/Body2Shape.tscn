@@ -1,8 +1,6 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://src/main/world/creature/creature-body.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/world/creature/1/neck-blend-packed.png" type="Texture" id=2]
-[ext_resource path="res://src/main/world/creature/creature-packed-sprite.gd" type="Script" id=11]
+[ext_resource path="res://src/main/world/creature/creature-curve.gd" type="Script" id=1]
 
 [sub_resource type="Curve2D" id=1]
 resource_local_to_scene = true
@@ -10,12 +8,10 @@ _data = {
 "points": PoolVector2Array( 27.8583, 0.449047, -27.8583, -0.449047, -26.0098, -127.912, 2.00226, -20.0226, -2.00226, 20.0226, -54.3405, -81.9458, 1.05064, -19.7766, -1.05064, 19.7766, -64.2379, -11.7294, -36.1618, -0.551655, 36.1618, 0.551655, -13.1955, 28.0658, -0.0114043, 19.7401, 0.0114043, -19.7401, 35.8287, -9.20679, 8.96339, 19.3152, -1.01742, -23.5531, 11.7798, -84.9188, 25.7925, 0.380743, -17.8465, -0.380743, -21.772, -128.971 )
 }
 
-[node name="Body" type="Path2D"]
+[node name="BodyShape" type="Path2D"]
 self_modulate = Color( 1, 1, 1, 1 )
-position = Vector2( 580, 850 )
 curve = SubResource( 1 )
 script = ExtResource( 1 )
-fill_color = Color( 1, 0, 0, 1 )
 line_width = 2.0
 editing = false
 curve_defs = [ {
@@ -28,14 +24,3 @@ curve_defs = [ {
 "curve_def": [ [ Vector2( -7.41168, -659.95 ), Vector2( 190.137, -7.43456 ), Vector2( -190.137, 7.43456 ) ], [ Vector2( -374.503, -519.659 ), Vector2( 84.2074, -89.5676 ), Vector2( -84.2074, 89.5676 ) ], [ Vector2( -489.6, -129.887 ), Vector2( -15.2681, -201.419 ), Vector2( 15.2681, 201.419 ) ], [ Vector2( -18.8258, 204.05 ), Vector2( -276.162, -2.01037 ), Vector2( 263.289, 1.91666 ) ], [ Vector2( 483.379, -107.259 ), Vector2( -20.8769, 209.33 ), Vector2( 20.8769, -209.33 ) ], [ Vector2( 351.107, -516.925 ), Vector2( 104.916, 105.466 ), Vector2( -104.916, -105.466 ) ], [ Vector2( -2.07233, -659.95 ), Vector2( 148.881, 4.86983 ), Vector2( -148.881, -4.86983 ) ] ],
 "fatness": 10.0
 } ]
-creature_visuals_path = NodePath("../../..")
-
-[node name="NeckBlend" type="Node2D" parent="."]
-position = Vector2( -10, -154.515 )
-rotation = 3.14159
-scale = Vector2( 0.836, -0.836 )
-script = ExtResource( 11 )
-texture = ExtResource( 2 )
-frame_data = "res://assets/main/world/creature/1/neck-blend-packed.json"
-rect_size = Vector2( 512, 512 )
-frame = 1

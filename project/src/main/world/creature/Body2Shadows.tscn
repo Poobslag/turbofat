@@ -22,24 +22,16 @@ _data = {
 "points": PoolVector2Array( 6.58688, 174.087, -6.58688, -174.087, -174.408, 119.607, 0, 0, 0, 0, -177.907, -85.841, -104.154, -2.86398, 104.154, 2.86398, 0.329075, -36.3247, 0, 0, 0, 0, 151.839, -82.2426, 1.9275, -160.605, -1.9275, 160.605, 149.776, 134.902 )
 }
 
-[node name="Body" type="Node2D"]
-position = Vector2( 580, 850 )
+[node name="Shadows" type="Node2D"]
 script = ExtResource( 3 )
-creature_visuals_path = NodePath("../../..")
 
 [node name="HeadShadow" type="Path2D" parent="."]
 self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 1 )
 script = ExtResource( 1 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
 line_color = Color( 0.254902, 0.156863, 0.117647, 0 )
 fill_color = Color( 0, 0, 0, 1 )
-line_width = 8.0
 editing = false
-_save_curve = false
 curve_defs = [ {
 "curve_def": [ [ Vector2( -88.3842, -133.799 ), Vector2( 0.0132871, -28.7557 ), Vector2( -0.0132871, 28.7557 ) ], [ Vector2( -17.1122, -78.5636 ), Vector2( -35.1478, -0.510676 ), Vector2( 35.1478, 0.510676 ) ], [ Vector2( 57.7233, -137.363 ), Vector2( -1.01159, 23.918 ), Vector2( 1.01159, -23.918 ) ], [ Vector2( -15.3304, -192.599 ), Vector2( 39.4804, 0.0106763 ), Vector2( -39.4804, -0.0106763 ) ], [ Vector2( -88.3842, -135.581 ), Vector2( -0.98502, -37.2608 ), Vector2( 0.98502, 37.2608 ) ] ],
 "fatness": 1.0
@@ -50,22 +42,14 @@ curve_defs = [ {
 "curve_def": [ [ Vector2( 11.8961, -618.539 ), Vector2( 0.0132871, -28.7557 ), Vector2( -0.0132871, 28.7557 ) ], [ Vector2( 82.8089, -570.715 ), Vector2( -35.1478, -0.510676 ), Vector2( 35.1478, 0.510676 ) ], [ Vector2( 152.054, -615.87 ), Vector2( -1.01159, 23.918 ), Vector2( 1.01159, -23.918 ) ], [ Vector2( 81.3077, -674.603 ), Vector2( 39.4804, 0.0106763 ), Vector2( -39.4804, -0.0106763 ) ], [ Vector2( 10.5612, -621.209 ), Vector2( -0.98502, -37.2608 ), Vector2( 0.98502, 37.2608 ) ] ],
 "fatness": 10.0
 } ]
-visible_when_facing_north = true
-creature_visuals_path = NodePath("../../../..")
 
 [node name="ArmShadow" type="Path2D" parent="."]
 self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 2 )
 script = ExtResource( 2 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
 line_color = Color( 0, 0, 0, 0 )
 fill_color = Color( 0, 0, 0, 1 )
-line_width = 8.0
 editing = false
-_save_curve = false
 curve_defs = [ {
 "curve_def": [ [ Vector2( -43.0168, -76.6825 ), Vector2( 0.0132866, -18.8561 ), Vector2( -0.0132866, 18.8561 ) ], [ Vector2( -24.3291, -27.2935 ), Vector2( -16.5249, -0.510677 ), Vector2( 16.5249, 0.510677 ) ], [ Vector2( -5.64136, -76.6825 ), Vector2( 0.429193, 20.722 ), Vector2( -0.429193, -20.722 ) ] ],
 "fatness": 1.0
@@ -76,22 +60,15 @@ curve_defs = [ {
 "curve_def": [ [ Vector2( -132.954, -366.841 ), Vector2( -1.87446, -47.6332 ), Vector2( 1.87446, 47.6332 ) ], [ Vector2( -112.92, -243.024 ), Vector2( -23.8274, -2.39842 ), Vector2( 23.8274, 2.39842 ) ], [ Vector2( -95.9306, -369.504 ), Vector2( 0.513287, 46.9685 ), Vector2( -0.513287, -46.9685 ) ] ],
 "fatness": 10.0
 } ]
-visible_when_facing_north = false
-creature_visuals_path = NodePath("../../../..")
+drawn_when_facing_north = false
 
 [node name="BellyShadow" type="Path2D" parent="."]
 self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 3 )
 script = ExtResource( 1 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
 line_color = Color( 0, 0, 0, 0 )
 fill_color = Color( 0, 0, 0, 1 )
-line_width = 8.0
 editing = false
-_save_curve = false
 curve_defs = [ {
 "curve_def": [ [ Vector2( -71.2125, 123.297 ), Vector2( -6.14105, 120.347 ), Vector2( 6.14105, -120.347 ) ], [ Vector2( -67.5195, -45.2749 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( -3.26202, -13.9503 ), Vector2( -53.2356, -1.9201 ), Vector2( 53.2356, 1.9201 ) ], [ Vector2( 50.3065, -45.2051 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 53.3065, 121.814 ), Vector2( 3.34171, -88.48 ), Vector2( -3.34171, 88.48 ) ] ],
 "fatness": 1.0
@@ -102,5 +79,3 @@ curve_defs = [ {
 "curve_def": [ [ Vector2( -531.709, 275.346 ), Vector2( 19.3148, 227.827 ), Vector2( -19.3148, -227.827 ) ], [ Vector2( -527.472, -279.813 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 2.25995, -101.823 ), Vector2( -326.124, -3.80785 ), Vector2( 326.124, 3.80785 ) ], [ Vector2( 540.467, -275.575 ), Vector2( 0, 0 ), Vector2( 0, 0 ) ], [ Vector2( 540.467, 279.583 ), Vector2( 0.513287, -232.73 ), Vector2( -0.513287, 232.73 ) ] ],
 "fatness": 10.0
 } ]
-visible_when_facing_north = true
-creature_visuals_path = NodePath("../../../..")

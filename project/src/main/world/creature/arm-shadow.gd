@@ -29,13 +29,13 @@ func connect_creature_visuals_listeners() -> void:
 
 
 """
-Updates the 'visible' property based on the arm's current frame.
+Updates the 'drawn' property based on the arm's current frame.
 """
-func refresh_visible() -> void:
-	.refresh_visible()
+func refresh_drawn() -> void:
+	.refresh_drawn()
 	if _near_arm.frame == 0:
-		visible = false
+		set_drawn(false)
 
 
 func _on_NearArm_frame_changed() -> void:
-	refresh_visible()
+	refresh_drawn()
