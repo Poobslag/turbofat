@@ -1,0 +1,46 @@
+{
+  "version": "19dd",
+  "id": "goldfince",
+  "name": "Goldfince",
+  "short_name": "Goldfince",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "2",
+    "collar": "1",
+    "ear": "1",
+    "eye": "4",
+    "hair": "0",
+    "head": "3",
+    "horn": "1",
+    "mouth": "3",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "664437",
+    "belly_rgb": "eaf9c7",
+    "cloth_rgb": "74a27f",
+    "glass_rgb": "d2d1be",
+    "plastic_rgb": "923b3b",
+    "hair_rgb": "c58549",
+    "eye_rgb": "74a27f fffaff",
+    "horn_rgb": "e8a261"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "664437"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.2,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}
