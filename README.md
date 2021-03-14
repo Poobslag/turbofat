@@ -39,6 +39,16 @@ Gamepads are also supported.
 
 For more details about the scoring system and game mechanics, see [How to play](https://github.com/Poobslag/turbofat/wiki/How-to-play) in the Turbo Fat wiki.
 
+# Social Media Links
+
+Turbo Fat is still in development! If you're interested, join the community on Discord, or follow its progress on Twitter, Reddit, itch.io and of course GitHub!
+
+- Discord: https://discord.gg/yU6aurT
+- Twitter: https://twitter.com/poobslag/
+- Reddit: https://www.reddit.com/r/turbofat/
+- itch.io: https://poobslag.itch.io/turbo-fat
+- GitHub: https://github.com/Poobslag/turbofat
+
 # License
 
 Turbo Fat's code and framework are licensed under the MIT licence. Please see the [LICENSE.md](LICENSE.md) file for more information. tl;dr you can do whatever you want as long as you include the original copyright and license notice in any copy of the software/source.
