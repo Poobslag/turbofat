@@ -1,0 +1,20 @@
+[gd_resource type="ShaderMaterial" load_steps=5 format=2]
+
+[ext_resource path="res://assets/main/world/environment/marsh-block-texture.png" type="Texture" id=1]
+[ext_resource path="res://src/main/world/goop-ground.shader" type="Shader" id=2]
+
+[sub_resource type="OpenSimplexNoise" id=1]
+seed = 3
+octaves = 1
+
+[sub_resource type="NoiseTexture" id=2]
+seamless = true
+noise = SubResource( 1 )
+
+[resource]
+shader = ExtResource( 2 )
+shader_param/black = Color( 0.254902, 0.156863, 0.117647, 1 )
+shader_param/base_color = Color( 0.921569, 0.72549, 0.568627, 1 )
+shader_param/wave_color = Color( 0.968627, 0.894118, 0.835294, 1 )
+shader_param/red_texture = ExtResource( 1 )
+shader_param/noise_texture = SubResource( 2 )

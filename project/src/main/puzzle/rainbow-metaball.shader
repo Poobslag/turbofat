@@ -31,7 +31,7 @@ float perlin_noise(in vec2 p) {
 
 // Snaps a hue value to a standard set of hues
 float stepify_hue(in float f_in) {
-	float f = f_in - floor(f_in);
+	float f = fract(f_in);
 	float f_out = 0.02;
 	f_out += 0.08 * smoothstep(0.08, 0.12, f);
 	f_out += 0.08 * smoothstep(0.21, 0.25, f);
