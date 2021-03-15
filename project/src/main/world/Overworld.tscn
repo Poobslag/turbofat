@@ -92,6 +92,7 @@ script = ExtResource( 13 )
 
 [node name="GoopViewport" type="Viewport" parent="World/Ground"]
 size = Vector2( 2560, 1500 )
+usage = 0
 render_target_update_mode = 3
 
 [node name="GoopTextureRect" type="ColorRect" parent="World/Ground/GoopViewport"]
@@ -106,6 +107,7 @@ __meta__ = {
 [node name="Viewport" type="Viewport" parent="World/Ground"]
 size = Vector2( 2560, 1500 )
 transparent_bg = true
+usage = 0
 
 [node name="GroundMap" parent="World/Ground/Viewport" instance=ExtResource( 14 )]
 
@@ -127,6 +129,7 @@ __meta__ = {
 [node name="Viewport" type="Viewport" parent="World/Ground/Shadows"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
+usage = 0
 
 [node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport"]
 scale = Vector2( 2.5, 2.5 )
