@@ -231,10 +231,12 @@ FrostingGlobScene = ExtResource( 35 )
 [node name="Viewport" type="Viewport" parent="FrostingGlobs/GlobViewports"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
+usage = 0
 
 [node name="RainbowViewport" type="Viewport" parent="FrostingGlobs/GlobViewports"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
+usage = 0
 
 [node name="TextureRect" type="TextureRect" parent="FrostingGlobs"]
 modulate = Color( 1, 1, 1, 0.768627 )
@@ -268,6 +270,7 @@ FoodScene = ExtResource( 37 )
 [node name="Viewport" type="Viewport" parent="FoodItems"]
 size = Vector2( 2560, 1500 )
 transparent_bg = true
+usage = 0
 
 [node name="TextureRect" type="TextureRect" parent="FoodItems"]
 material = SubResource( 12 )

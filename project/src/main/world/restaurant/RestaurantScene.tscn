@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://assets/main/world/creature/1/cheek-z2-packed.png" type="Texture" id=1]
 [ext_resource path="res://src/main/world/restaurant/Seat.tscn" type="PackedScene" id=2]
@@ -166,6 +166,7 @@ __meta__ = {
 [node name="Viewport" type="Viewport" parent="Shadows"]
 size = Vector2( 4000, 1000 )
 transparent_bg = true
+usage = 0
 
 [node name="Pillar1" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
@@ -312,16 +313,16 @@ dna = {
 "nose": "1",
 "plastic_rgb": "c49877",
 "property:BellyColors:belly": "2",
+"property:Body:belly_color": Color( 1, 0.658824, 0.427451, 1 ),
+"property:Body:body_color": Color( 0.698039, 0.219608, 0.137255, 1 ),
+"property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
+"property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
 "property:Collar:frame_data": "res://assets/main/world/creature/1/collar-packed.json",
 "property:Collar:texture": ExtResource( 33 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 29 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
 "property:FarLeg:texture": ExtResource( 31 ),
-"property:Body:belly_color": Color( 1, 0.658824, 0.427451, 1 ),
-"property:Body:body_color": Color( 0.698039, 0.219608, 0.137255, 1 ),
-"property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
-"property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
 "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
 "property:NearArm:texture": ExtResource( 30 ),
 "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
@@ -498,14 +499,14 @@ dna = {
 "nose": "2",
 "plastic_rgb": "d5c26a",
 "property:BellyColors:belly": "2",
-"property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
-"property:FarArm:texture": ExtResource( 29 ),
-"property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
-"property:FarLeg:texture": ExtResource( 31 ),
 "property:Body:belly_color": Color( 1, 0.658824, 0.427451, 1 ),
 "property:Body:body_color": Color( 0.698039, 0.219608, 0.137255, 1 ),
 "property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
+"property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
+"property:FarArm:texture": ExtResource( 29 ),
+"property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
+"property:FarLeg:texture": ExtResource( 31 ),
 "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
 "property:NearArm:texture": ExtResource( 30 ),
 "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
@@ -683,16 +684,16 @@ dna = {
 "nose": "1",
 "plastic_rgb": "abb7f5",
 "property:BellyColors:belly": "1",
+"property:Body:belly_color": Color( 1, 0.658824, 0.427451, 1 ),
+"property:Body:body_color": Color( 0.698039, 0.219608, 0.137255, 1 ),
+"property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
+"property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
 "property:Collar:frame_data": "res://assets/main/world/creature/2/collar-packed.json",
 "property:Collar:texture": ExtResource( 59 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
 "property:FarArm:texture": ExtResource( 29 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
 "property:FarLeg:texture": ExtResource( 31 ),
-"property:Body:belly_color": Color( 1, 0.658824, 0.427451, 1 ),
-"property:Body:body_color": Color( 0.698039, 0.219608, 0.137255, 1 ),
-"property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
-"property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
 "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
 "property:NearArm:texture": ExtResource( 30 ),
 "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
@@ -864,14 +865,14 @@ dna = {
 "property:BellyColors:belly": "1",
 "property:Bellybutton:frame_data": "res://assets/main/world/creature/1/bellybutton-packed.json",
 "property:Bellybutton:texture": ExtResource( 65 ),
-"property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
-"property:FarArm:texture": ExtResource( 29 ),
-"property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
-"property:FarLeg:texture": ExtResource( 31 ),
 "property:Body:belly_color": Color( 1, 0.658824, 0.427451, 1 ),
 "property:Body:body_color": Color( 0.698039, 0.219608, 0.137255, 1 ),
 "property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
+"property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
+"property:FarArm:texture": ExtResource( 29 ),
+"property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
+"property:FarLeg:texture": ExtResource( 31 ),
 "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
 "property:NearArm:texture": ExtResource( 30 ),
 "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",

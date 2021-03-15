@@ -165,6 +165,7 @@ restaurant_viewport_path = NodePath("../RestaurantViewport")
 size = Vector2( 37, 35 )
 size_override_stretch = true
 handle_input_locally = false
+usage = 0
 render_target_update_mode = 3
 
 [node name="Camera2D" type="Camera2D" parent="ChefView/Viewport"]
