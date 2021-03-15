@@ -120,6 +120,11 @@ __meta__ = {
 
 [node name="FpsLabel" parent="Control/Labels/SoutheastLabels" instance=ExtResource( 19 )]
 visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
 margin_top = 236.0
 margin_right = 492.0
 margin_bottom = 256.0
