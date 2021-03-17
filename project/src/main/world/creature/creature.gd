@@ -110,8 +110,8 @@ onready var _creature_sfx: CreatureSfx = $CreatureSfx
 onready var _collision_shape: CollisionShape2D = $CollisionShape2D
 onready var _fade_tween: Tween = $FadeTween
 
-onready var _bonk_sound: AudioStreamPlayer2D = $BonkSound
-onready var _hop_sound: AudioStreamPlayer2D = $HopSound
+onready var _bonk_sound: AudioStreamPlayer2D = $CreatureSfx/BonkSound
+onready var _hop_sound: AudioStreamPlayer2D = $CreatureSfx/HopSound
 
 func _ready() -> void:
 	_texture_rect.rect_scale = Vector2(TEXTURE_SCALE, TEXTURE_SCALE)
