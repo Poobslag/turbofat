@@ -606,7 +606,6 @@ __meta__ = {
 }
 
 [node name="CreatureSfx" type="Node2D" parent="."]
-position = Vector2( 512, 912 )
 script = ExtResource( 23 )
 
 [node name="Munch" type="AudioStreamPlayer" parent="CreatureSfx"]
@@ -615,6 +614,18 @@ bus = "Voice Bus"
 [node name="Voice" type="AudioStreamPlayer" parent="CreatureSfx"]
 volume_db = 6.0
 bus = "Voice Bus"
+
+[node name="HopSound" type="AudioStreamPlayer2D" parent="CreatureSfx"]
+position = Vector2( -512, -912 )
+stream = ExtResource( 7 )
+volume_db = -4.0
+bus = "Sound Bus"
+
+[node name="BonkSound" type="AudioStreamPlayer2D" parent="CreatureSfx"]
+position = Vector2( -512, -912 )
+stream = ExtResource( 5 )
+volume_db = -4.0
+bus = "Sound Bus"
 
 [node name="HelloTimer" type="Timer" parent="CreatureSfx"]
 one_shot = true
@@ -627,16 +638,6 @@ autostart = true
 shape = SubResource( 2 )
 script = ExtResource( 8 )
 creature_visuals_path = NodePath("../CreatureOutline/Viewport/Visuals")
-
-[node name="HopSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 7 )
-volume_db = -4.0
-bus = "Sound Bus"
-
-[node name="BonkSound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 5 )
-volume_db = -4.0
-bus = "Sound Bus"
 
 [node name="FadeTween" type="Tween" parent="."]
 [connection signal="dna_loaded" from="CreatureOutline/Viewport/Visuals" to="." method="_on_CreatureVisuals_dna_loaded"]

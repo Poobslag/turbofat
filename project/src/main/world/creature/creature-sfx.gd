@@ -1,5 +1,5 @@
 class_name CreatureSfx
-extends Node
+extends Node2D
 """
 Plays creature-related sound effects.
 """

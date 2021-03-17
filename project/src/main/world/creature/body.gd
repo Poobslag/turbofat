@@ -227,7 +227,7 @@ func _draw_body_polygon(points: PoolVector2Array, color: Color) -> void:
 		return
 	
 	var _poly_colors := PoolColorArray([color])
-	draw_polygon(points, _poly_colors, PoolVector2Array(), null, null, true)
+	draw_polygon(points, _poly_colors, PoolVector2Array())
 
 
 """
@@ -240,7 +240,7 @@ func _draw_body_polyline(points: PoolVector2Array, color: Color, line_width: flo
 	
 	if closed:
 		points.append(points[0])
-	draw_polyline(points, color, line_width, true)
+	draw_polyline(points, color, line_width)
 
 
 func _on_CreatureCurve_appearance_changed() -> void:
