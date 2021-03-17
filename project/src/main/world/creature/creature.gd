@@ -98,13 +98,13 @@ var _non_iso_velocity := Vector2.ZERO
 var _run_anim_speed := 1.0
 
 # handles animations and audio/visual effects for a creature
-onready var creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visuals
+onready var creature_visuals: CreatureVisuals = $Visuals
 
 # rendering of a creature with an outline shader applied
-onready var _texture_rect: TextureRect = $CreatureOutline/TextureRect
+#onready var _texture_rect: TextureRect = $CreatureOutline/TextureRect
 
 # holder for the outlined creature. also manages the creature's Z coordinate when they're elevated
-onready var _creature_outline: Node2D = $CreatureOutline
+#onready var _creature_outline: Node2D = $CreatureOutline
 
 onready var _creature_sfx: CreatureSfx = $CreatureSfx
 onready var _collision_shape: CollisionShape2D = $CollisionShape2D
@@ -114,7 +114,7 @@ onready var _bonk_sound: AudioStreamPlayer2D = $CreatureSfx/BonkSound
 onready var _hop_sound: AudioStreamPlayer2D = $CreatureSfx/HopSound
 
 func _ready() -> void:
-	_texture_rect.rect_scale = Vector2(TEXTURE_SCALE, TEXTURE_SCALE)
+#	_texture_rect.rect_scale = Vector2(TEXTURE_SCALE, TEXTURE_SCALE)
 	_fade_tween.connect("tween_all_completed", self, "_on_FadeTween_tween_all_completed")
 	if creature_id:
 		_refresh_creature_id()
@@ -146,7 +146,7 @@ func set_suppress_sfx(new_suppress_sfx: bool) -> void:
 
 func set_elevation(new_elevation: int) -> void:
 	elevation = new_elevation
-	$CreatureOutline.position.y = -new_elevation * $CreatureOutline/TextureRect.rect_scale.y
+#	$CreatureOutline.position.y = -new_elevation * $CreatureOutline/TextureRect.rect_scale.y
 
 
 func set_comfort(new_comfort: float) -> void:
@@ -373,8 +373,8 @@ func refresh_dna() -> void:
 	if dna:
 		dna = DnaUtils.fill_dna(dna)
 	creature_visuals.dna = dna
-	if dna.has("line_rgb"):
-		_texture_rect.material.set_shader_param("black", Color(dna.line_rgb))
+#	if dna.has("line_rgb"):
+#		_texture_rect.material.set_shader_param("black", Color(dna.line_rgb))
 
 
 """
