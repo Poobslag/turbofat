@@ -12,7 +12,7 @@ uniform vec4 black: hint_color;
 uniform float edge_fix_factor = 1.0;
 
 void fragment() {
-	vec2 size = vec2(width) / vec2(textureSize(TEXTURE, 0));
+	vec2 size = TEXTURE_PIXEL_SIZE * width;
 	
 	vec4 sprite_color = texture(TEXTURE, UV);
 	
