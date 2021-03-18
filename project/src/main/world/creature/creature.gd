@@ -98,7 +98,7 @@ var _non_iso_velocity := Vector2.ZERO
 var _run_anim_speed := 1.0
 
 # handles animations and audio/visual effects for a creature
-onready var creature_visuals: CreatureVisuals = $Visuals
+onready var creature_visuals: CreatureVisuals = $BackBufferCopy/Visuals
 
 # rendering of a creature with an outline shader applied
 #onready var _texture_rect: TextureRect = $CreatureOutline/TextureRect

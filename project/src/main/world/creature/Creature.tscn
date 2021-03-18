@@ -1,10 +1,11 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=46 format=2]
 
 [ext_resource path="res://src/main/world/creature/CreatureVisuals.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/main/world/creature/3/cheek-z1-packed.png" type="Texture" id=2]
 [ext_resource path="res://src/main/world/creature/creature.gd" type="Script" id=3]
 [ext_resource path="res://assets/main/world/creature/1/eye-z0-packed.png" type="Texture" id=4]
 [ext_resource path="res://assets/main/world/creature/move-bonk.wav" type="AudioStream" id=5]
+[ext_resource path="res://assets/main/puzzle/blocks/stars.png" type="Texture" id=6]
 [ext_resource path="res://assets/main/world/creature/move-hop.wav" type="AudioStream" id=7]
 [ext_resource path="res://src/main/world/creature/creature-collision-shape.gd" type="Script" id=8]
 [ext_resource path="res://assets/main/world/creature/3/cheek-z2-packed.png" type="Texture" id=9]
@@ -41,6 +42,31 @@
 [ext_resource path="res://assets/main/world/creature/2/cheek-z2-packed.png" type="Texture" id=41]
 [ext_resource path="res://assets/main/world/creature/8/ear-z0-packed.png" type="Texture" id=42]
 [ext_resource path="res://assets/main/world/creature/4/eye-z1-packed.png" type="Texture" id=43]
+
+[sub_resource type="Shader" id=2]
+code = "/*
+ * Draws an outline around a sprite. Adapted from outline.shader obtained from GDQuest's godot-demos, 2020-04-01
+ *
+ * https://github.com/GDQuest/godot-demos/blob/master/2018/09-20-shaders/shaders/outline.shader
+ */
+shader_type canvas_item;
+
+const vec4 black = vec4(0.0, 0.0, 0.0, 1.0);
+
+void fragment() {
+//	vec4 sprite_color = texture(TEXTURE, UV);
+//	COLOR = texture(SCREEN_TEXTURE, SCREEN_UV + vec2(5.0, 0) * SCREEN_PIXEL_SIZE, 0.0);
+//	COLOR = texture(SCREEN_TEXTURE, SCREEN_UV);
+	COLOR.rgb = COLOR.rgb = textureLod(SCREEN_TEXTURE, SCREEN_UV, 5.0).rgb;
+//	COLOR += vec4(1.0, 0.0, 0.0, 1.0);
+//	vec3 final_color = mix(black.rgb, sprite_color.rgb / max(sprite_color.a, 1.0), sprite_color.a);
+//	COLOR = vec4(final_color, alpha);
+//	COLOR = vec4(1.0, 0.0, 0.0, 1.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
 
 [sub_resource type="RectangleShape2D" id=1]
 resource_local_to_scene = true
@@ -405,9 +431,13 @@ update_scale = false
 update_rotation = false
 update_scale = false
 script = ExtResource( 31 )
-creature_visuals_path = NodePath("../Visuals")
+creature_visuals_path = NodePath("../BackBufferCopy/Visuals")
 
-[node name="Visuals" parent="." instance=ExtResource( 1 )]
+[node name="BackBufferCopy" type="BackBufferCopy" parent="."]
+copy_mode = 0
+rect = Rect2( -100, -100, 2000, 2000 )
+
+[node name="Visuals" parent="BackBufferCopy" instance=ExtResource( 1 )]
 position = Vector2( 0, 0 )
 dna = {
 "accessory": "0",
@@ -575,6 +605,25 @@ dna = {
 "tail": "0"
 }
 
+[node name="TextureRect" type="TextureRect" parent="BackBufferCopy"]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TextureRect2" type="TextureRect" parent="BackBufferCopy"]
+material = SubResource( 3 )
+margin_left = -200.0
+margin_top = -200.0
+margin_right = 424.0
+margin_bottom = 400.0
+texture = ExtResource( 6 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CreatureSfx" type="Node2D" parent="."]
 script = ExtResource( 23 )
 
@@ -607,15 +656,15 @@ autostart = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
 script = ExtResource( 8 )
-creature_visuals_path = NodePath("../Visuals")
+creature_visuals_path = NodePath("../BackBufferCopy/Visuals")
 
 [node name="FadeTween" type="Tween" parent="."]
-[connection signal="dna_loaded" from="Visuals" to="." method="_on_CreatureVisuals_dna_loaded"]
-[connection signal="dna_loaded" from="Visuals" to="CreatureSfx" method="_on_CreatureVisuals_dna_loaded"]
-[connection signal="food_eaten" from="Visuals" to="." method="_on_CreatureVisuals_food_eaten"]
-[connection signal="food_eaten" from="Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
-[connection signal="landed" from="Visuals" to="." method="_on_CreatureVisuals_landed"]
-[connection signal="movement_mode_changed" from="Visuals" to="." method="_on_CreatureVisuals_movement_mode_changed"]
-[connection signal="talking_changed" from="Visuals" to="." method="_on_CreatureVisuals_talking_changed"]
-[connection signal="visual_fatness_changed" from="Visuals" to="." method="_on_CreatureVisuals_visual_fatness_changed"]
+[connection signal="dna_loaded" from="BackBufferCopy/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_dna_loaded"]
+[connection signal="dna_loaded" from="BackBufferCopy/Visuals" to="." method="_on_CreatureVisuals_dna_loaded"]
+[connection signal="food_eaten" from="BackBufferCopy/Visuals" to="CreatureSfx" method="_on_CreatureVisuals_food_eaten"]
+[connection signal="food_eaten" from="BackBufferCopy/Visuals" to="." method="_on_CreatureVisuals_food_eaten"]
+[connection signal="landed" from="BackBufferCopy/Visuals" to="." method="_on_CreatureVisuals_landed"]
+[connection signal="movement_mode_changed" from="BackBufferCopy/Visuals" to="." method="_on_CreatureVisuals_movement_mode_changed"]
+[connection signal="talking_changed" from="BackBufferCopy/Visuals" to="." method="_on_CreatureVisuals_talking_changed"]
+[connection signal="visual_fatness_changed" from="BackBufferCopy/Visuals" to="." method="_on_CreatureVisuals_visual_fatness_changed"]
 [connection signal="timeout" from="CreatureSfx/HelloTimer" to="CreatureSfx" method="_on_HelloTimer_timeout"]
