@@ -45,22 +45,18 @@ var _creature_visuals: CreatureVisuals
 func _ready() -> void:
 	_refresh_creature_visuals_path()
 	refresh_children()
-	_refresh_polygons()
 
 
-func _refresh_polygons() -> void:
-	for n in $Polygons.get_children():
-		n.queue_free()
-	
+func _draw() -> void:
 	if _creature_visuals.movement_mode == CreatureVisuals.SPRINT:
 		# don't draw creature while sprinting
-		pass
-	else:
-		_fill_body_shape()
-		_fill_belly()
-		_fill_shadows()
-		_outline_body_shape()
-		_draw_neck_blend()
+		return
+	
+	_fill_body_shape()
+	_fill_belly()
+	_fill_shadows()
+	_outline_body_shape()
+	_draw_neck_blend()
 
 
 func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
@@ -90,7 +86,7 @@ func refresh_children() -> void:
 	if shadows:
 		_connect_curve_signals(shadows.get_children())
 	
-	_refresh_polygons()
+	update()
 
 
 """
@@ -170,9 +166,6 @@ The shadow shapes overrun the body shape and overlap each other. We perform some
 overlapping shadows and to avoid drawing outside the body shape.
 """
 func _fill_shadows() -> void:
-	if not shadows:
-		return
-	
 	# Collect all of the polygon point data in a big list
 	var all_polypoints := []
 	for shadow_obj in shadows.get_children():
@@ -233,10 +226,8 @@ func _draw_body_polygon(points: PoolVector2Array, color: Color) -> void:
 		# don't waste cycles filling invisible polygons
 		return
 	
-	var polygon := Polygon2D.new()
-	polygon.color = color
-	polygon.polygon = points
-	$Polygons.add_child(polygon)
+	var _poly_colors := PoolColorArray([color])
+	draw_polygon(points, _poly_colors, PoolVector2Array(), null, null, true)
 
 
 """
@@ -249,16 +240,12 @@ func _draw_body_polyline(points: PoolVector2Array, color: Color, line_width: flo
 	
 	if closed:
 		points.append(points[0])
-	
-	var line := Line2D.new()
-	line.default_color = color
-	line.points = points
-	line.width = line_width
-	$Polygons.add_child(line)
+	draw_polyline(points, color, line_width, true)
 
 
 func _on_CreatureCurve_appearance_changed() -> void:
-	_refresh_polygons()
+	update()
+
 
 func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, _new_mode: int) -> void:
-	_refresh_polygons()
+	update()
