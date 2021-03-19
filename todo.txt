@@ -1,0 +1,10 @@
+-'low detail' mode works OK
+ -stools work OK
+ -can move around on overworld
+ -creatures look OK
+-can toggle 'low detail' mode in options menu
+ -makes bodies invisible
+ -removes viewports
+-improve body appearance in low-detail mode
+ -prerendered sprites for each body type
+ -sprites grow
