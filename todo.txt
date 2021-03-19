@@ -1,4 +1,5 @@
 -'low detail' mode works OK
+ -heads clip in a strange way
  -stools work OK
  -can move around on overworld
  -creatures look OK
