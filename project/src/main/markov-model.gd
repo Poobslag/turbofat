@@ -87,7 +87,7 @@ Returns:
 func _get_cluster(cluster_in: String, may_end: bool) -> String:
 	# calculate the total number of connections
 	var total := 0
-	var int_order := floor(order) if randf() > order - floor(order) else ceil(order)
+	var int_order := floor(order) if randf() > fmod(order, 1.0) else ceil(order)
 	var prefix := cluster_in.substr(max(cluster_in.length() - int_order, 0))
 	for cluster in connections.get(prefix):
 		if cluster.ends_with("\n") and not may_end:

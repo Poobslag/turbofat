@@ -166,6 +166,9 @@ The shadow shapes overrun the body shape and overlap each other. We perform some
 overlapping shadows and to avoid drawing outside the body shape.
 """
 func _fill_shadows() -> void:
+	if not shadows:
+		return
+	
 	# Collect all of the polygon point data in a big list
 	var all_polypoints := []
 	for shadow_obj in shadows.get_children():

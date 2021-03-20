@@ -1,11 +1,13 @@
-[gd_resource type="TileSet" load_steps=2 format=2]
+[gd_resource type="TileSet" load_steps=3 format=2]
 
 [ext_resource path="res://assets/main/world/environment/marsh-frosting-sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/main/world/environment/goop-ground.tres" type="Material" id=2]
 
 [resource]
 0/name = "marsh-block"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 35 )
+0/material = ExtResource( 2 )
 0/modulate = Color( 1, 1, 1, 1 )
 0/region = Rect2( 0, 0, 675, 750 )
 0/tile_mode = 1

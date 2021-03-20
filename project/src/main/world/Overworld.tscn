@@ -1,53 +1,36 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
-[ext_resource path="res://src/main/world/OverworldObstacles.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/outline.shader" type="Shader" id=4]
+[ext_resource path="res://src/main/world/creature/ebe.gd" type="Script" id=5]
+[ext_resource path="res://src/main/world/creature/bort.gd" type="Script" id=6]
+[ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=7]
+[ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=8]
+[ext_resource path="res://assets/main/world/environment/turbofat-restaurant.png" type="Texture" id=9]
+[ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=10]
+[ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=11]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/main/world/goop-ground.gd" type="Script" id=13]
 [ext_resource path="res://src/main/world/GroundMap.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/OverworldUi.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=16]
+[ext_resource path="res://src/main/world/Spawn.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=18]
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=19]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=20]
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=21]
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=22]
+[ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/overworld-bg.gd" type="Script" id=25]
+[ext_resource path="res://src/main/world/environment/MarshTree.tscn" type="PackedScene" id=26]
 [ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=50]
 [ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=51]
-[ext_resource path="res://src/main/world/environment/isometric-goo.shader" type="Shader" id=66]
-[ext_resource path="res://assets/main/world/rgb-texture.shader" type="Shader" id=67]
-[ext_resource path="res://assets/main/world/environment/marsh-block-texture.png" type="Texture" id=69]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=72]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=73]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 66 )
-shader_param/base_color = Color( 0.921569, 0.72549, 0.568627, 1 )
-shader_param/wave_color = Color( 0.968627, 0.894118, 0.835294, 1 )
-shader_param/offset = Vector2( 0, 0 )
-shader_param/squash_factor = Vector2( 1, 1 )
-
-[sub_resource type="ViewportTexture" id=2]
-viewport_path = NodePath("World/Ground/GoopViewport")
-
-[sub_resource type="ShaderMaterial" id=3]
-resource_local_to_scene = true
-shader = ExtResource( 67 )
-shader_param/black = Color( 0.254902, 0.156863, 0.117647, 1 )
-shader_param/red_texture_scale = Vector2( 1, 1 )
-shader_param/green_texture_scale = Vector2( 1, 1 )
-shader_param/blue_texture_scale = Vector2( 1, 1 )
-shader_param/red_texture_offset = Vector2( 0, 0 )
-shader_param/green_texture_offset = Vector2( 0, 0 )
-shader_param/blue_texture_offset = Vector2( 0, 0 )
-shader_param/red_texture = ExtResource( 69 )
-shader_param/green_texture = SubResource( 2 )
-
-[sub_resource type="ViewportTexture" id=4]
-viewport_path = NodePath("World/Ground/Viewport")
-
-[sub_resource type="TileSet" id=5]
+[sub_resource type="TileSet" id=1]
 0/name = "block-shadow.png 0"
 0/texture = ExtResource( 19 )
 0/tex_offset = Vector2( 0, 20 )
@@ -63,8 +46,18 @@ viewport_path = NodePath("World/Ground/Viewport")
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="ViewportTexture" id=6]
+[sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("World/Ground/Shadows/Viewport")
+
+[sub_resource type="ShaderMaterial" id=3]
+resource_local_to_scene = true
+shader = ExtResource( 4 )
+shader_param/width = 1.5
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 1.0
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 325.999, 97.2622 )
 
 [node name="Overworld" type="Node"]
 
@@ -88,41 +81,10 @@ CreaturePackedScene = ExtResource( 1 )
 
 [node name="Ground" type="Node2D" parent="World"]
 z_index = -1
-script = ExtResource( 13 )
 
-[node name="GoopViewport" type="Viewport" parent="World/Ground"]
-size = Vector2( 1024, 600 )
-usage = 0
-render_target_update_mode = 3
-
-[node name="GoopTextureRect" type="ColorRect" parent="World/Ground/GoopViewport"]
-material = SubResource( 1 )
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_bottom = 0.00012207
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Viewport" type="Viewport" parent="World/Ground"]
-size = Vector2( 1024, 600 )
-transparent_bg = true
-usage = 0
-
-[node name="GroundMap" parent="World/Ground/Viewport" instance=ExtResource( 14 )]
+[node name="GroundMap" parent="World/Ground" instance=ExtResource( 14 )]
 scale = Vector2( 1, 1 )
-
-[node name="ScrewportTexrect" type="TextureRect" parent="World/Ground"]
-material = SubResource( 3 )
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 1024, 600 )
-texture = SubResource( 4 )
-flip_v = true
-script = ExtResource( 22 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+tile_data = PoolIntArray( 262161, 0, 131072, 262162, 0, 131076, 262163, 0, 131076, 262164, 0, 131076, 262165, 0, 131076, 262166, 0, 131076, 262167, 0, 131076, 262168, 0, 131076, 262169, 0, 131076, 262170, 0, 131076, 262171, 0, 65537, 327697, 0, 131073, 327698, 0, 196608, 327699, 0, 196608, 327700, 0, 196608, 327701, 0, 196608, 327702, 0, 196608, 327703, 0, 196608, 327704, 0, 196608, 327705, 0, 196608, 327706, 0, 196608, 327707, 0, 196612, 393233, 0, 131073, 393234, 0, 196608, 393235, 0, 196608, 393236, 0, 196608, 393237, 0, 196608, 393238, 0, 196608, 393239, 0, 196608, 393240, 0, 196608, 393241, 0, 196608, 393242, 0, 196608, 393243, 0, 196611, 458758, 0, 131072, 458759, 0, 131076, 458760, 0, 131076, 458761, 0, 131076, 458762, 0, 131076, 458763, 0, 131076, 458764, 0, 131076, 458765, 0, 131076, 458766, 0, 131076, 458767, 0, 131076, 458768, 0, 131076, 458769, 0, 196608, 458770, 0, 196608, 458771, 0, 196608, 458772, 0, 196608, 458773, 0, 196608, 458774, 0, 196608, 458775, 0, 196608, 458776, 0, 196608, 458777, 0, 196608, 458778, 0, 196608, 458779, 0, 196608, 458780, 0, 131076, 458781, 0, 131076, 458782, 0, 131076, 458783, 0, 65537, 524293, 0, 131072, 524294, 0, 196608, 524295, 0, 196608, 524296, 0, 262145, 524297, 0, 262144, 524298, 0, 262146, 524299, 0, 196608, 524300, 0, 196608, 524301, 0, 196608, 524302, 0, 196608, 524303, 0, 196608, 524304, 0, 196608, 524305, 0, 196608, 524306, 0, 196608, 524307, 0, 196608, 524308, 0, 196608, 524309, 0, 196608, 524310, 0, 196608, 524311, 0, 196608, 524312, 0, 196608, 524313, 0, 196608, 524314, 0, 196608, 524315, 0, 196608, 524316, 0, 196608, 524317, 0, 196608, 524318, 0, 196608, 524319, 0, 65538, 589829, 0, 131073, 589830, 0, 196608, 589831, 0, 65536, 589835, 0, 131073, 589836, 0, 196608, 589837, 0, 196608, 589838, 0, 196608, 589839, 0, 196608, 589840, 0, 196608, 589841, 0, 196608, 589842, 0, 196608, 589843, 0, 196608, 589844, 0, 196608, 589845, 0, 196608, 589846, 0, 196608, 589847, 0, 196608, 589848, 0, 196608, 589849, 0, 196608, 589850, 0, 196608, 589851, 0, 196608, 589852, 0, 196608, 589853, 0, 196608, 589854, 0, 196608, 589855, 0, 196612, 655365, 0, 131073, 655366, 0, 196611, 655371, 0, 131073, 655372, 0, 196608, 655373, 0, 196608, 655374, 0, 196608, 655375, 0, 196608, 655376, 0, 196608, 655377, 0, 196608, 655378, 0, 196608, 655379, 0, 196608, 655380, 0, 196608, 655381, 0, 196608, 655382, 0, 196608, 655383, 0, 196608, 655384, 0, 196608, 655385, 0, 196608, 655386, 0, 196608, 655387, 0, 196608, 655388, 0, 196608, 655389, 0, 196608, 655390, 0, 196608, 655391, 0, 196611, 720901, 0, 131073, 720902, 0, 196612, 720906, 0, 131072, 720907, 0, 196608, 720908, 0, 196608, 720909, 0, 196608, 720910, 0, 196608, 720911, 0, 196608, 720912, 0, 196608, 720913, 0, 196608, 720914, 0, 196608, 720915, 0, 196608, 720916, 0, 196608, 720917, 0, 196608, 720918, 0, 196608, 720919, 0, 196608, 720920, 0, 196608, 720921, 0, 196608, 720922, 0, 196608, 720923, 0, 196608, 720924, 0, 196608, 720925, 0, 196608, 720926, 0, 196608, 720927, 0, 196610, 786437, 0, 131073, 786438, 0, 196608, 786439, 0, 131076, 786440, 0, 131076, 786441, 0, 131076, 786442, 0, 196608, 786443, 0, 196608, 786444, 0, 196608, 786445, 0, 196608, 786446, 0, 196608, 786447, 0, 196608, 786448, 0, 196608, 786449, 0, 196608, 786450, 0, 196608, 786451, 0, 196608, 786452, 0, 196608, 786453, 0, 196608, 786454, 0, 196608, 786455, 0, 196608, 786456, 0, 196608, 786457, 0, 196608, 786458, 0, 196608, 786459, 0, 196608, 786460, 0, 196608, 786461, 0, 196608, 786462, 0, 196608, 786463, 0, 196612, 851973, 0, 131073, 851974, 0, 196608, 851975, 0, 196608, 851976, 0, 196608, 851977, 0, 196608, 851978, 0, 196608, 851979, 0, 196608, 851980, 0, 196608, 851981, 0, 196608, 851982, 0, 196608, 851983, 0, 196608, 851984, 0, 196608, 851985, 0, 196608, 851986, 0, 196608, 851987, 0, 196608, 851988, 0, 196608, 851989, 0, 196608, 851990, 0, 196608, 851991, 0, 196608, 851992, 0, 196608, 851993, 0, 196608, 851994, 0, 196608, 851995, 0, 196608, 851996, 0, 196608, 851997, 0, 196608, 851998, 0, 196608, 851999, 0, 196611, 917509, 0, 65540, 917510, 0, 196608, 917511, 0, 196608, 917512, 0, 196608, 917513, 0, 196608, 917514, 0, 196608, 917515, 0, 196608, 917516, 0, 196608, 917517, 0, 196608, 917518, 0, 196608, 917519, 0, 196608, 917520, 0, 196608, 917521, 0, 196608, 917522, 0, 196608, 917523, 0, 196608, 917524, 0, 196608, 917525, 0, 196608, 917526, 0, 196608, 917527, 0, 196608, 917528, 0, 196608, 917529, 0, 196608, 917530, 0, 196608, 917531, 0, 196608, 917532, 0, 196608, 917533, 0, 196608, 917534, 0, 196608, 917535, 0, 196612, 983046, 0, 65540, 983047, 0, 196608, 983048, 0, 196608, 983049, 0, 196608, 983050, 0, 196608, 983051, 0, 196608, 983052, 0, 196608, 983053, 0, 196608, 983054, 0, 196608, 983055, 0, 196608, 983056, 0, 196608, 983057, 0, 196608, 983058, 0, 196608, 983059, 0, 196608, 983060, 0, 196608, 983061, 0, 196608, 983062, 0, 196608, 983063, 0, 196608, 983064, 0, 196608, 983065, 0, 196608, 983066, 0, 196608, 983067, 0, 196608, 983068, 0, 196608, 983069, 0, 196608, 983070, 0, 196608, 983071, 0, 65538, 1048583, 0, 131073, 1048584, 0, 196608, 1048585, 0, 196608, 1048586, 0, 196608, 1048587, 0, 196608, 1048588, 0, 196608, 1048589, 0, 196608, 1048590, 0, 196608, 1048591, 0, 196608, 1048592, 0, 196608, 1048593, 0, 196608, 1048594, 0, 196608, 1048595, 0, 196608, 1048596, 0, 196608, 1048597, 0, 196608, 1048598, 0, 196608, 1048599, 0, 196608, 1048600, 0, 196608, 1048601, 0, 196608, 1048602, 0, 196608, 1048603, 0, 196608, 1048604, 0, 196608, 1048605, 0, 262145, 1048606, 0, 262145, 1048607, 0, 65536, 1114119, 0, 131073, 1114120, 0, 196608, 1114121, 0, 196608, 1114122, 0, 196608, 1114123, 0, 196608, 1114124, 0, 196608, 1114125, 0, 196608, 1114126, 0, 196608, 1114127, 0, 196608, 1114128, 0, 196608, 1114129, 0, 196608, 1114130, 0, 262146, 1114131, 0, 262146, 1114132, 0, 196608, 1114133, 0, 196608, 1114134, 0, 196608, 1114135, 0, 196608, 1114136, 0, 196608, 1114137, 0, 196608, 1114138, 0, 196608, 1114139, 0, 196608, 1114140, 0, 65538, 1179655, 0, 131073, 1179656, 0, 196608, 1179657, 0, 196608, 1179658, 0, 196608, 1179659, 0, 196608, 1179660, 0, 196608, 1179661, 0, 196608, 1179662, 0, 196608, 1179663, 0, 196608, 1179664, 0, 196608, 1179665, 0, 196611, 1179668, 0, 131073, 1179669, 0, 196608, 1179670, 0, 196608, 1179671, 0, 196608, 1179672, 0, 196608, 1179673, 0, 196608, 1179674, 0, 196608, 1179675, 0, 196608, 1179676, 0, 196610, 1245191, 0, 65540, 1245192, 0, 262145, 1245193, 0, 196608, 1245194, 0, 196608, 1245195, 0, 196608, 1245196, 0, 196608, 1245197, 0, 196608, 1245198, 0, 196608, 1245199, 0, 196608, 1245200, 0, 196608, 1245201, 0, 65538, 1245204, 0, 65540, 1245205, 0, 131075, 1245206, 0, 196608, 1245207, 0, 196608, 1245208, 0, 196608, 1245209, 0, 196608, 1245210, 0, 196608, 1245211, 0, 196608, 1245212, 0, 65538, 1310729, 0, 131073, 1310730, 0, 196608, 1310731, 0, 196608, 1310732, 0, 196608, 1310733, 0, 196608, 1310734, 0, 196608, 1310735, 0, 196608, 1310736, 0, 196608, 1310737, 0, 196610, 1310742, 0, 131073, 1310743, 0, 196608, 1310744, 0, 196608, 1310745, 0, 196608, 1310746, 0, 196608, 1310747, 0, 196608, 1310748, 0, 196611, 1376265, 0, 131073, 1376266, 0, 196608, 1376267, 0, 196608, 1376268, 0, 196608, 1376269, 0, 196608, 1376270, 0, 196608, 1376271, 0, 196608, 1376272, 0, 196608, 1376273, 0, 196612, 1376278, 0, 65540, 1376279, 0, 262144, 1376280, 0, 262145, 1376281, 0, 131075, 1376282, 0, 262146, 1376283, 0, 262146, 1376284, 0, 65536, 1441801, 0, 131073, 1441802, 0, 196608, 1441803, 0, 196608, 1441804, 0, 196608, 1441805, 0, 196608, 1441806, 0, 196608, 1441807, 0, 196608, 1441808, 0, 196608, 1441809, 0, 65536, 1507337, 0, 65540, 1507338, 0, 131075, 1507339, 0, 262146, 1507340, 0, 262146, 1507341, 0, 262146, 1507342, 0, 131075, 1507343, 0, 131075, 1507344, 0, 65536 )
 
 [node name="Shadows" type="Node2D" parent="World/Ground"]
 
@@ -134,7 +96,7 @@ usage = 0
 [node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport"]
 scale = Vector2( 2.5, 2.5 )
 mode = 1
-tile_set = SubResource( 5 )
+tile_set = SubResource( 1 )
 cell_size = Vector2( 128, 64 )
 cell_tile_origin = 1
 centered_textures = true
@@ -160,14 +122,204 @@ margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
 rect_scale = Vector2( 0.4, 0.4 )
-texture = SubResource( 6 )
+texture = SubResource( 2 )
 flip_v = true
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Obstacles" parent="World" instance=ExtResource( 2 )]
+[node name="Timer" type="Timer" parent="World/Ground"]
+one_shot = true
+autostart = true
+
+[node name="Obstacles" type="YSort" parent="World"]
+
+[node name="ObstacleMap" type="TileMap" parent="World/Obstacles"]
+mode = 1
+tile_set = ExtResource( 16 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+cell_y_sort = true
+centered_textures = true
+format = 1
+script = ExtResource( 11 )
+ground_map_path = NodePath("../../Ground/GroundMap")
+impassable_tile_index = 1
+
+[node name="Player" parent="World/Obstacles" instance=ExtResource( 1 )]
+position = Vector2( -182, 714 )
+script = ExtResource( 8 )
+creature_id = "#player#"
+dna = {
+
+}
+
+[node name="Bort" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( -18.561, 908.721 )
+script = ExtResource( 6 )
+creature_id = "bort"
+dna = {
+
+}
+
+[node name="MoveTimer" type="Timer" parent="World/Obstacles/Bort"]
+wait_time = 1.6
+autostart = true
+
+[node name="Ebe" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( 312.163, 843.951 )
+script = ExtResource( 5 )
+creature_id = "ebe"
+dna = {
+
+}
+
+[node name="MoveTimer" type="Timer" parent="World/Obstacles/Ebe"]
+wait_time = 0.9
+autostart = true
+
+[node name="Boatricia" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( 420.587, 984.111 )
+creature_id = "boatricia"
+dna = {
+
+}
+orientation = 1
+
+[node name="Sensei" parent="World/Obstacles" instance=ExtResource( 1 )]
+position = Vector2( -63, 784 )
+script = ExtResource( 7 )
+dna = {
+
+}
+
+[node name="MoveTimer" type="Timer" parent="World/Obstacles/Sensei"]
+wait_time = 0.3
+autostart = true
+
+[node name="Richie" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( 608.032, 1394.04 )
+creature_id = "richie"
+dna = {
+
+}
+orientation = 1
+
+[node name="Skins" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( 932.59, 1426 )
+creature_id = "skins"
+dna = {
+
+}
+orientation = 1
+
+[node name="Bones" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( 493.439, 1280.35 )
+creature_id = "bones"
+dna = {
+
+}
+
+[node name="Shirts" parent="World/Obstacles" groups=[
+"chattables",
+] instance=ExtResource( 1 )]
+position = Vector2( 744.66, 1301.27 )
+creature_id = "shirts"
+dna = {
+
+}
+orientation = 1
+
+[node name="MarshTree1" parent="World/Obstacles" instance=ExtResource( 26 )]
+position = Vector2( 199.162, 1100.05 )
+
+[node name="MarshTree2" parent="World/Obstacles" instance=ExtResource( 26 )]
+position = Vector2( 316.761, 1402.96 )
+
+[node name="MarshBush1" parent="World/Obstacles" instance=ExtResource( 10 )]
+position = Vector2( -30.838, 1070.05 )
+shadow_scale = 0.75
+
+[node name="MarshBush2" parent="World/Obstacles" instance=ExtResource( 10 )]
+position = Vector2( -453.162, 870.052 )
+shadow_scale = 0.75
+
+[node name="MarshBush3" parent="World/Obstacles" instance=ExtResource( 10 )]
+position = Vector2( -522.614, 1148.45 )
+shadow_scale = 0.75
+
+[node name="MarshBush4" parent="World/Obstacles" instance=ExtResource( 10 )]
+position = Vector2( 1170.09, 1301.69 )
+shadow_scale = 0.75
+
+[node name="TurboFatRestaurant" type="KinematicBody2D" parent="World/Obstacles"]
+position = Vector2( 903.99, 1070.05 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+shadow_scale = 5.5
+
+[node name="Sprite" type="Sprite" parent="World/Obstacles/TurboFatRestaurant"]
+material = SubResource( 3 )
+scale = Vector2( 0.539476, 0.539476 )
+texture = ExtResource( 9 )
+offset = Vector2( 0, -300 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="World/Obstacles/TurboFatRestaurant"]
+shape = SubResource( 4 )
+
+[node name="OverworldExit" parent="World/Obstacles" instance=ExtResource( 24 )]
+position = Vector2( 700, 1201 )
+exit_direction = 0
+player_spawn_id = ""
+sensei_spawn_id = ""
+
+[node name="MarshCrystal" parent="World/Obstacles" instance=ExtResource( 23 )]
+position = Vector2( 399, 700 )
+chat_path = "res://assets/main/dialog/marsh-crystal.json"
+
+[node name="ChatIconHook" type="RemoteTransform2D" parent="World/Obstacles/MarshCrystal"]
+
+[node name="SpawnRestaurant1" parent="World/Obstacles" instance=ExtResource( 17 )]
+position = Vector2( 956.39, 1219.86 )
+orientation = 1
+id = "restaurant-1"
+
+[node name="SpawnRestaurant4" parent="World/Obstacles" instance=ExtResource( 17 )]
+position = Vector2( 1005.78, 1308.53 )
+orientation = 1
+id = "restaurant-4"
+
+[node name="SpawnRestaurant8" parent="World/Obstacles" instance=ExtResource( 17 )]
+position = Vector2( 779.04, 1322 )
+id = "restaurant-8"
+
+[node name="SpawnRestaurant11" parent="World/Obstacles" instance=ExtResource( 17 )]
+position = Vector2( 814.96, 1220.98 )
+id = "restaurant-11"
+
+[node name="SpawnRestaurantPlayer" parent="World/Obstacles" instance=ExtResource( 17 )]
+position = Vector2( 687, 1212 )
+orientation = 1
+id = "restaurant-player"
+
+[node name="SpawnRestaurantSensei" parent="World/Obstacles" instance=ExtResource( 17 )]
+position = Vector2( 860, 1240 )
+id = "restaurant-sensei"
 
 [node name="ChatLetters" parent="World" instance=ExtResource( 3 )]
 
