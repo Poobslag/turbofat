@@ -54,7 +54,8 @@ func set_ghost_shadow_offset(new_ghost_shadow_offset: Vector2) -> void:
 
 func clear() -> void:
 	.clear()
-	corner_map.clear()
+	if is_inside_tree():
+		corner_map.clear()
 
 
 func save_state() -> void:
@@ -84,7 +85,8 @@ func restore_state() -> void:
 
 func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
 	set_cell(pos.x, pos.y, tile, false, false, false, autotile_coord)
-	corner_map.dirty = true
+	if is_inside_tree():
+		corner_map.dirty = true
 
 
 """
