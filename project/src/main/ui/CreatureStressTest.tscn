@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/creature-stress-test.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=4]
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=5]
+[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=6]
 
 [node name="CreatureStressTest" type="Node"]
 script = ExtResource( 2 )
@@ -98,6 +99,8 @@ text = "Quit"
 margin_top = -30.0
 margin_right = -10.0002
 margin_bottom = 0.0
+
+[node name="SceneTransitionCover" parent="." instance=ExtResource( 6 )]
 [connection signal="pressed" from="Ui/Control/PlusTen" to="." method="_on_CreatureButton_pressed" binds= [ 10 ]]
 [connection signal="pressed" from="Ui/Control/PlusOne" to="." method="_on_CreatureButton_pressed" binds= [ 1 ]]
 [connection signal="pressed" from="Ui/Control/MinusOne" to="." method="_on_CreatureButton_pressed" binds= [ -1 ]]

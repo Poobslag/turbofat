@@ -3,12 +3,12 @@
 [ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
 [ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=3]
+[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectPanel.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/OverworldTouchButtons.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/ui/SettingsMenu.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/main/ui/SceneTransitionRect.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=18]
@@ -341,9 +341,7 @@ disabled = true
 [node name="MusicPopup" parent="Control" instance=ExtResource( 16 )]
 mouse_filter = 2
 
-[node name="SceneTransitionRect" parent="Control" instance=ExtResource( 15 )]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="SceneTransitionCover" parent="Control" instance=ExtResource( 4 )]
 [connection signal="chat_choice_chosen" from="Control/ChatUi" to="." method="_on_ChatUi_chat_choice_chosen"]
 [connection signal="chat_event_played" from="Control/ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Control/ChatUi" to="." method="_on_ChatUi_pop_out_completed"]

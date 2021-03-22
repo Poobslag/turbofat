@@ -36,7 +36,7 @@ func refresh() -> void:
 
 func _on_Quit_pressed() -> void:
 	emit_signal("quit_pressed")
-	Breadcrumb.pop_trail()
+	SceneTransition.pop_trail(true)
 
 
 func _on_Settings_pressed() -> void:

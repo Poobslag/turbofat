@@ -106,7 +106,7 @@ func push_cutscene_trail(force: bool = false) -> bool:
 	var result := false
 	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_creature_id(creature_id, level_id)
 	if chat_tree and (chat_tree.location_id or force):
-		Breadcrumb.push_trail(chat_tree.cutscene_scene_path())
+		SceneTransition.push_trail(chat_tree.cutscene_scene_path())
 		result = true
 	
 	return result
@@ -129,7 +129,7 @@ func push_level_trail() -> void:
 		var launched_customer_id: String = launched_customer_id_obj
 		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(launched_customer_id)
 		PlayerData.creature_queue.primary_queue.push_front(creature_def)
-	Breadcrumb.push_trail(Global.SCENE_PUZZLE)
+	SceneTransition.push_trail(Global.SCENE_PUZZLE)
 
 
 func set_level_state(new_level_state: int) -> void:

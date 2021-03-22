@@ -47,7 +47,7 @@ func _start_test() -> void:
 	_test_scene = PuzzleScene.instance()
 	
 	# back button should close level; shouldn't redirect us to a new scene
-	Breadcrumb.push_trail("res://src/main/editor/puzzle/LevelEditor.tscn::test")
+	SceneTransition.push_trail("res://src/main/editor/puzzle/LevelEditor.tscn::test", true)
 	add_child(_test_scene)
 	
 	# hide the level controls while testing a level, otherwise hitting 'esc' will do two things
@@ -76,4 +76,8 @@ func _on_Breadcrumb_trail_popped(prev_path: String) -> void:
 
 
 func _on_Quit_pressed() -> void:
-	Breadcrumb.pop_trail()
+	var skip_transition := false
+	if Breadcrumb.trail.back() == "res://src/main/editor/puzzle/LevelEditor.tscn::test":
+		# player exited the level under test; no scene transition
+		skip_transition = true
+	SceneTransition.pop_trail(skip_transition)

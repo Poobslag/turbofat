@@ -385,7 +385,7 @@ func _random_highlight_color(color: Color) -> Color:
 
 
 func _on_Quit_pressed() -> void:
-	Breadcrumb.pop_trail()
+	SceneTransition.pop_trail()
 
 
 func _on_Reroll_pressed() -> void:

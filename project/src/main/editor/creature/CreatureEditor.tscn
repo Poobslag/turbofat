@@ -28,6 +28,7 @@
 [ext_resource path="res://assets/main/world/creature/1/nose-packed.png" type="Texture" id=26]
 [ext_resource path="res://assets/main/world/creature/1/eye-z1-packed.png" type="Texture" id=27]
 [ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=28]
+[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=29]
 [ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=30]
 [ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=31]
 [ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=32]
@@ -2021,6 +2022,8 @@ window_title = "Error"
 dialog_autowrap = true
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 13 )]
+
+[node name="SceneTransitionCover" parent="." instance=ExtResource( 29 )]
 [connection signal="creature_clicked" from="Ui/CreatureSelector" to="." method="_on_CreatureSelector_creature_clicked"]
 [connection signal="hovered_creature_changed" from="Ui/CreatureSelector" to="Ui/Nametags" method="_on_CreatureSelector_hovered_creature_changed"]
 [connection signal="mouse_exited" from="Ui/CreatureSelector" to="Ui/CreatureSelector" method="_on_mouse_exited"]

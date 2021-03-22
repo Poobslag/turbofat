@@ -49,7 +49,7 @@ Plays a 'chill' song; something suitable for background music when the player's 
 overworld.
 """
 func play_chill_bgm() -> void:
-	play_music(_chill_bgms)
+	_play_random_bgm(_chill_bgms)
 
 
 func is_playing_chill_bgm() -> bool:
@@ -60,14 +60,14 @@ func is_playing_chill_bgm() -> bool:
 Plays an 'upbeat' song; something suitable when the player's playing a puzzle level.
 """
 func play_upbeat_bgm() -> void:
-	play_music(_upbeat_bgms)
+	_play_random_bgm(_upbeat_bgms)
 
 
 """
 Plays a 'tutorial song'; something suitable when the player is following a puzzle tutorial.
 """
 func play_tutorial_bgm() -> void:
-	play_music(_tutorial_bgms)
+	_play_random_bgm(_tutorial_bgms)
 
 
 """
@@ -75,9 +75,9 @@ Gradually fades a track in.
 
 Usually it's OK for a track to start abrubtly, but sometimes we want to fade music in more gradually.
 """
-func fade_in() -> void:
+func fade_in(duration: float = MusicTween.FADE_IN_DURATION) -> void:
 	current_bgm.volume_db = MIN_VOLUME
-	$MusicTween.fade_in(current_bgm, _max_volume_db_by_bgm[current_bgm.name])
+	$MusicTween.fade_in(current_bgm, _max_volume_db_by_bgm[current_bgm.name], duration)
 
 
 func is_fading_in() -> bool:
@@ -87,12 +87,34 @@ func is_fading_in() -> bool:
 """
 Fades out the currently playing track.
 """
-func stop() -> void:
+func stop(duration: float = MusicTween.FADE_OUT_DURATION) -> void:
 	if current_bgm == null:
 		return
 	
-	$MusicTween.fade_out(current_bgm, MIN_VOLUME)
+	$MusicTween.fade_out(current_bgm, MIN_VOLUME, duration)
 	current_bgm = null
+
+
+"""
+Plays the specified song.
+
+Any currently playing song is abruptly stopped.
+
+Parameters:
+	'from_position': If 0 or greater, the song will begin playing from the specified position. If unspecified or
+		negative, the song will start somewhere in the middle based on an algorithm.
+"""
+func play_bgm(new_bgm: CheckpointSong, from_position: float = -1.0) -> void:
+	var old_bgm := current_bgm
+	if old_bgm == new_bgm:
+		return
+	
+	current_bgm = new_bgm
+	if old_bgm:
+		old_bgm.stop()
+	current_bgm.volume_db = _max_volume_db_by_bgm[current_bgm.name]
+	current_bgm.play(from_position)
+	emit_signal("current_bgm_changed", current_bgm)
 
 
 """
@@ -100,13 +122,7 @@ Plays the first song from the specified list, and reorders the songs.
 
 Any currently playing song is abruptly stopped.
 """
-func play_music(bgms: Array) -> void:
-	var old_bgm := current_bgm
-	current_bgm = bgms.pop_front()
-	bgms.push_back(current_bgm)
-	if current_bgm != old_bgm:
-		if old_bgm:
-			old_bgm.stop()
-		current_bgm.volume_db = _max_volume_db_by_bgm[current_bgm.name]
-		current_bgm.play()
-	emit_signal("current_bgm_changed", current_bgm)
+func _play_random_bgm(bgms: Array) -> void:
+	var new_bgm: CheckpointSong = bgms.pop_front()
+	bgms.push_back(new_bgm)
+	play_bgm(new_bgm)

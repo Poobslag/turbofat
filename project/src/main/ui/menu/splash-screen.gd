@@ -22,7 +22,7 @@ func _exit_tree() -> void:
 
 
 func _on_Play_pressed() -> void:
-	Breadcrumb.push_trail(Global.SCENE_MAIN_MENU)
+	SceneTransition.push_trail(Global.SCENE_MAIN_MENU, true)
 
 
 func _on_System_quit_pressed() -> void:

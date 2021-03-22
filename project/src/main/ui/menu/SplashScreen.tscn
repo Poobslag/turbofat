@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://src/main/ui/menu/splash-screen.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=9]
 [ext_resource path="res://src/main/ui/menu/bad-save-data-control.gd" type="Script" id=10]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 72
@@ -143,6 +144,8 @@ rect_min_size = Vector2( 150, 40 )
 size_flags_horizontal = 4
 theme = ExtResource( 8 )
 text = "Well, crap"
+
+[node name="SceneTransitionCover" parent="." instance=ExtResource( 12 )]
 [connection signal="pressed" from="DropPanel/PlayHolder/Play" to="." method="_on_Play_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]

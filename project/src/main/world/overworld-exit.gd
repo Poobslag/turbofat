@@ -34,7 +34,6 @@ var _player_exiting := false
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 
 func _ready() -> void:
-	SceneTransition.connect("fade_out_ended", self, "_on_SceneTransition_fade_out_ended")
 	connect("body_entered", self, "_on_body_entered")
 	connect("body_exited", self, "_on_body_exited")
 	
@@ -62,8 +61,11 @@ func _physics_process(_delta: float) -> void:
 		if player.non_iso_walk_direction and target_direction \
 				and player.non_iso_walk_direction.dot(target_direction) >= 0.49:
 			_player_exiting = true
+			
+			Global.player_spawn_id = player_spawn_id
+			Global.sensei_spawn_id = sensei_spawn_id
 			player.fade_out()
-			SceneTransition.start_fade_out()
+			SceneTransition.replace_trail(destination_scene_path)
 
 
 func set_exit_direction(new_exit_direction: int) -> void:
@@ -92,13 +94,3 @@ func _on_body_entered(body: Node) -> void:
 func _on_body_exited(body: Node) -> void:
 	if body == ChattableManager.player:
 		_player_overlapping = false
-
-
-func _on_SceneTransition_fade_out_ended() -> void:
-	if not _player_exiting:
-		# ignore the event unless the player stepped on this specific exit arrow
-		return
-	
-	Global.player_spawn_id = player_spawn_id
-	Global.sensei_spawn_id = sensei_spawn_id
-	Breadcrumb.replace_trail(destination_scene_path)

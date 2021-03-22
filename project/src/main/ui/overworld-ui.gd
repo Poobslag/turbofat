@@ -222,7 +222,7 @@ func _on_ChatUi_pop_out_completed() -> void:
 		
 		if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 			# don't launch the level; go back to CutsceneDemo after playing the cutscene
-			Breadcrumb.pop_trail()
+			SceneTransition.pop_trail()
 		elif CurrentLevel.level_state == CurrentLevel.LevelState.BEFORE:
 			# pre-level dialog or pre-level cutscene finished playing
 			
@@ -234,7 +234,7 @@ func _on_ChatUi_pop_out_completed() -> void:
 		elif CurrentLevel.level_state == CurrentLevel.LevelState.AFTER:
 			# ending cutscene finished playing
 			CurrentLevel.clear_launched_level()
-			Breadcrumb.pop_trail()
+			SceneTransition.pop_trail()
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
@@ -270,7 +270,7 @@ func _on_ChatUi_chat_choice_chosen(_chat_choice: int) -> void:
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
-	Breadcrumb.pop_trail()
+	SceneTransition.pop_trail()
 
 
 func _on_Viewport_size_changed() -> void:
