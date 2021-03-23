@@ -70,7 +70,7 @@ func _advance_level() -> void:
 	if CurrentLevel.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
 		PuzzleScore.change_level("tutorial/oh_my", false)
-		hud.set_big_message(ChatLibrary.add_mega_pause_charaters(tr("OH, MY!!!")))
+		hud.set_big_message(ChatLibrary.add_mega_lull_characters(tr("OH, MY!!!")))
 		hud.enqueue_pop_out()
 		
 		# force match to end
