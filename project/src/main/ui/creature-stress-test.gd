@@ -91,4 +91,4 @@ func _on_CreatureButton_pressed(creature_delta: int) -> void:
 func _on_QuitButton_pressed() -> void:
 	# Restore 'forced_fatness' to its original value
 	PlayerData.creature_library.forced_fatness = 0.0
-	Breadcrumb.pop_trail()
+	SceneTransition.pop_trail()

@@ -1,13 +1,20 @@
-extends ColorRect
+extends CanvasLayer
 """
 Covers the screen during scene transitions.
+
+This must be a CanvasLayer and not simply a Control because it needs to cover everything, including other CanvasLayers.
 """
 
+onready var _tween: Tween = $Tween
+onready var _color_rect: ColorRect = $ColorRect
+
 func _ready() -> void:
-	$Tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
+	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
+	_tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 	SceneTransition.connect("fade_in_started", self, "_on_SceneTransition_fade_in_started")
 	
+	_refresh_rect_size()
 	_initialize_fade()
 
 
@@ -16,21 +23,29 @@ Makes our alpha component opaque or translucent based on the transition state. A
 necessary.
 """
 func _initialize_fade() -> void:
-	modulate.a = 1.0 if SceneTransition.fading else 0.0
+	_color_rect.modulate.a = 1.0 if SceneTransition.fading else 0.0
 	if SceneTransition.fading:
+		_color_rect.color = SceneTransition.fade_color
 		# Schedule the 'fade in' event for later. It would be problematic to start fading in before other nodes have
 		# had a chance to initialize.
 		yield(get_tree(), "idle_frame")
-		SceneTransition.start_fade_in()
+		SceneTransition.fade_in()
 
 
 """
 Starts a tween which changes this node's opacity.
 """
 func _launch_fade_tween(new_alpha: float, duration: float) -> void:
-	$Tween.remove_all()
-	$Tween.interpolate_property(self, "modulate", modulate, Utils.to_transparent(modulate, new_alpha), duration)
-	$Tween.start()
+	_color_rect.color = SceneTransition.fade_color
+	
+	_tween.remove_all()
+	_tween.interpolate_property(_color_rect, "modulate", _color_rect.modulate,
+			Utils.to_transparent(_color_rect.modulate, new_alpha), duration)
+	_tween.start()
+
+
+func _refresh_rect_size() -> void:
+	_color_rect.rect_size = _color_rect.get_viewport_rect().size
 
 
 func _on_SceneTransition_fade_out_started() -> void:
@@ -42,9 +57,13 @@ func _on_SceneTransition_fade_in_started() -> void:
 
 
 func _on_Tween_tween_all_completed() -> void:
-	if modulate.a == 1.0:
+	if _color_rect.modulate.a == 1.0:
 		SceneTransition.end_fade_out()
-	elif modulate.a == 0.0:
+	elif _color_rect.modulate.a == 0.0:
 		SceneTransition.end_fade_in()
 	else:
-		push_warning("Unexpected SceneTransitionRect.modulate.a: %s" % [modulate.a])
+		push_warning("Unexpected SceneTransitionCover.ColorRect.modulate.a: %s" % [_color_rect.modulate.a])
+
+
+func _on_Viewport_size_changed() -> void:
+	_refresh_rect_size()

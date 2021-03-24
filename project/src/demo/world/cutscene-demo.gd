@@ -21,7 +21,7 @@ func _on_StartButton_pressed() -> void:
 		# launch 'after level' cutscene
 		CurrentLevel.level_state = CurrentLevel.LevelState.AFTER
 		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
-		Breadcrumb.push_trail(chat_tree.cutscene_scene_path())
+		SceneTransition.push_trail(chat_tree.cutscene_scene_path())
 	else:
 		push_warning("Invalid cutscene path: %s" % [$VBoxContainer/Open/LineEdit.text])
 

@@ -170,7 +170,7 @@ func _quit_puzzle() -> void:
 		CurrentLevel.clear_launched_level()
 
 	PlayerData.creature_queue.clear()
-	Breadcrumb.pop_trail()
+	SceneTransition.pop_trail()
 
 
 func _on_Hud_start_button_pressed() -> void:

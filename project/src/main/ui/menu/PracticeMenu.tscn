@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main/ui/menu/practice-menu.gd" type="Script" id=1]
 [ext_resource path="res://src/main/ui/menu/practice-difficulty-selector.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://src/main/ui/menu/practice-mode-selector.gd" type="Script" id=15]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=17]
+[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=18]
 
 [node name="PracticeMenu" type="Control"]
 anchor_right = 1.0
@@ -323,6 +324,8 @@ margin_bottom = 94.0
 [node name="SettingsMenu" parent="." instance=ExtResource( 4 )]
 
 [node name="MusicPopup" parent="." instance=ExtResource( 16 )]
+
+[node name="SceneTransitionCover" parent="." instance=ExtResource( 18 )]
 [connection signal="mode_changed" from="VBoxContainer/Mode" to="." method="_on_Mode_mode_changed"]
 [connection signal="pressed" from="VBoxContainer/Mode/Buttons/Survival" to="VBoxContainer/Mode" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Mode/Buttons/Ultra" to="VBoxContainer/Mode" method="_on_Button_pressed"]

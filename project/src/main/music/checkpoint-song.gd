@@ -34,9 +34,9 @@ func _ready() -> void:
 """
 Plays this song from the specified position, or somewhere in the middle.
 
-If from_position is 0 or greater, the song will begin playing from the specified position.
-
-If from_position is unspecified, the song will start somewhere the middle based on an algorithm.
+Parameters:
+	'from_position': If 0 or greater, the song will begin playing from the specified position. If unspecified or
+		negative, the song will start somewhere in the middle based on an algorithm.
 """
 func play(from_position: float = -1.0) -> void:
 	if from_position < 0:

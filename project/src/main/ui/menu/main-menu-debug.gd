@@ -11,4 +11,4 @@ func _ready() -> void:
 
 
 func _on_StressTest_pressed() -> void:
-	Breadcrumb.push_trail("res://src/main/ui/CreatureStressTest.tscn")
+	SceneTransition.push_trail("res://src/main/ui/CreatureStressTest.tscn")

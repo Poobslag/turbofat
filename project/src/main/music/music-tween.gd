@@ -23,22 +23,22 @@ var fading_state: int = FADING_NONE
 """
 Gradually silences a music track.
 """
-func fade_out(player: AudioStreamPlayer, min_volume: float) -> void:
+func fade_out(player: AudioStreamPlayer, min_volume: float, duration: float = FADE_OUT_DURATION) -> void:
 	fading_state = FADING_OUT
 	stop(player, "volume_db")
 	remove(player, "volume_db")
-	interpolate_property(player, "volume_db", player.volume_db, min_volume, FADE_OUT_DURATION)
+	interpolate_property(player, "volume_db", player.volume_db, min_volume, duration)
 	start()
 
 
 """
 Gradually raises a music track to full volume.
 """
-func fade_in(player: AudioStreamPlayer, max_volume: float) -> void:
+func fade_in(player: AudioStreamPlayer, max_volume: float, duration: float = FADE_IN_DURATION) -> void:
 	fading_state = FADING_IN
 	stop(player, "volume_db")
 	remove(player, "volume_db")
-	interpolate_property(player, "volume_db", player.volume_db, max_volume, FADE_IN_DURATION)
+	interpolate_property(player, "volume_db", player.volume_db, max_volume, duration)
 	start()
 
 

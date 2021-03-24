@@ -12,4 +12,4 @@ func _exit_tree() -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	Breadcrumb.pop_trail()
+	SceneTransition.pop_trail()

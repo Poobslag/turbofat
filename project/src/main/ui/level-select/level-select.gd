@@ -21,4 +21,4 @@ func get_levels_to_include() -> int:
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
-	Breadcrumb.pop_trail()
+	SceneTransition.pop_trail()
