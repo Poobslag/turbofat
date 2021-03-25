@@ -30,9 +30,9 @@ func show_diagram(texture: Texture) -> void:
 		yield(_hud.get_tutorial_messages(), "all_messages_shown")
 	var choices: Array
 	match _show_diagram_count % 3:
-		0: choices = ["Okay, I get it!", "...Can you go into more detail?"]
-		1: choices = ["Yes, I see!", "What do you mean by that?"]
-		2: choices = ["Oh! That's easy.", "Hmm, maybe one more time?"]
+		0: choices = [tr("Okay, I get it!"), tr("...Can you go into more detail?")]
+		1: choices = [tr("Yes, I see!"), tr("What do you mean by that?")]
+		2: choices = [tr("Oh! That's easy."), tr("Hmm, maybe one more time?")]
 	_show_diagram_count += 1
 	var moods := [ChatEvent.Mood.SMILE0, ChatEvent.Mood.THINK0]
 	$VBoxContainer/ChatChoices.show_choices(choices, moods, 2)

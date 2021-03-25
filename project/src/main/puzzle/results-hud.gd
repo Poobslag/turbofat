@@ -5,9 +5,9 @@ Results screen shown after the player finishes a level.
 
 # Hints displayed after the player finishes
 var _hints := [
-	tr("Build a snack box by arranging a pentomino and a quadromino into a square!"),
+	tr("Build a snack box by arranging a pentomino and a tetromino into a square!"),
 	tr("Build a cake box by arranging 3 pentominos into a rectangle!"),
-	tr("Build a cake box by arranging 3 quadrominos into a rectangle!"),
+	tr("Build a cake box by arranging 3 tetrominos into a rectangle!"),
 	tr("Two different pieces with the same color can always make a square!"),
 	tr("A snack box scores 5 points per line, a cake box scores 10. Make lots of cakes!"),
 	tr("Combos can give you 20 bonus points for completing a line. Make lots of combos!"),

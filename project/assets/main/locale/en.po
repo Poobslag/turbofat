@@ -1515,17 +1515,17 @@ msgstr "Continue"
 
 #: project/src/main/puzzle/results-hud.gd:8
 msgid ""
-"Build a snack box by arranging a pentomino and a quadromino into a square!"
+"Build a snack box by arranging a pentomino and a tetromino into a square!"
 msgstr ""
-"Build a snack box by arranging a pentomino and a quadromino into a square!"
+"Build a snack box by arranging a pentomino and a tetromino into a square!"
 
 #: project/src/main/puzzle/results-hud.gd:9
 msgid "Build a cake box by arranging 3 pentominos into a rectangle!"
 msgstr "Build a cake box by arranging 3 pentominos into a rectangle!"
 
 #: project/src/main/puzzle/results-hud.gd:10
-msgid "Build a cake box by arranging 3 quadrominos into a rectangle!"
-msgstr "Build a cake box by arranging 3 quadrominos into a rectangle!"
+msgid "Build a cake box by arranging 3 tetrominos into a rectangle!"
+msgstr "Build a cake box by arranging 3 tetrominos into a rectangle!"
 
 #: project/src/main/puzzle/results-hud.gd:11
 msgid "Two different pieces with the same color can always make a square!"

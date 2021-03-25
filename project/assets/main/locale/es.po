@@ -2,13 +2,13 @@
 # Copyright (C) 2021 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
 # Automatically generated, 2021.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-06 13:15-0500\n"
-"PO-Revision-Date: 2021-03-05 22:58-0300\n"
+"POT-Creation-Date: 2021-03-25 17:22-0400\n"
+"PO-Revision-Date: 2021-03-25 16:25-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
 "Language: es\n"
@@ -1070,7 +1070,7 @@ msgid ""
 "few seconds. ...A little longer... Okay, thanks."
 msgstr ""
 "¿Podrías hacerme un favor y actuar como si estuviéramos teniendo una "
-"conversación? Solo por unos segundos . ...Un poco más... Okay ,gracias."
+"conversación? Solo por unos segundos . ...Un poco más... Gracias."
 
 #: project/assets/main/locale/localizables-extracted.py:234
 msgid "I'm always ready for more training! Just call me on my cell. Mowr!"
@@ -1112,181 +1112,181 @@ msgstr "Izquierda"
 msgid "Right"
 msgstr "Derecha"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1358
-#: project/src/main/editor/puzzle/LevelEditor.tscn:382
+#: project/src/main/editor/creature/CreatureEditor.tscn:1316
+#: project/src/main/editor/puzzle/LevelEditor.tscn:383
 #: project/src/main/puzzle/PuzzleMessages.tscn:68
-#: project/src/main/ui/menu/PracticeMenu.tscn:270
+#: project/src/main/ui/menu/PracticeMenu.tscn:271
 #: project/src/main/ui/menu/SystemButtons.tscn:30
 msgid "Settings"
 msgstr "Configuración"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1371
-#: project/src/main/editor/puzzle/LevelEditor.tscn:393
-#: project/src/main/ui/CreatureStressTest.tscn:95
+#: project/src/main/editor/creature/CreatureEditor.tscn:1329
+#: project/src/main/editor/puzzle/LevelEditor.tscn:394
+#: project/src/main/ui/CreatureStressTest.tscn:96
 #: project/src/main/ui/SettingsMenu.tscn:750
-#: project/src/main/ui/menu/PracticeMenu.tscn:285
+#: project/src/main/ui/menu/PracticeMenu.tscn:286
 #: project/src/main/ui/menu/SystemButtons.tscn:46
 msgid "Quit"
 msgstr "Salir"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1397
+#: project/src/main/editor/creature/CreatureEditor.tscn:1355
 msgid "Reroll (100%)"
 msgstr "Aleatorio (100%)"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1475
+#: project/src/main/editor/creature/CreatureEditor.tscn:1433
 msgid "All Colors"
 msgstr "Todos los Colores"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1483
+#: project/src/main/editor/creature/CreatureEditor.tscn:1441
 msgid "Main Color"
 msgstr "Color Principal"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1491
+#: project/src/main/editor/creature/CreatureEditor.tscn:1449
 msgid "Line Color"
 msgstr "Color de Línea"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1499
-#: project/src/main/editor/creature/CreatureEditor.tscn:1775
+#: project/src/main/editor/creature/CreatureEditor.tscn:1457
+#: project/src/main/editor/creature/CreatureEditor.tscn:1733
 msgid "Body"
 msgstr "Cuerpo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1507
-#: project/src/main/editor/creature/CreatureEditor.tscn:1781
+#: project/src/main/editor/creature/CreatureEditor.tscn:1465
+#: project/src/main/editor/creature/CreatureEditor.tscn:1739
 msgid "Face"
 msgstr "Cara"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1515
-#: project/src/main/editor/creature/CreatureEditor.tscn:1793
+#: project/src/main/editor/creature/CreatureEditor.tscn:1473
+#: project/src/main/editor/creature/CreatureEditor.tscn:1751
 msgid "Eye"
 msgstr "Ojos"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1529
-#: project/src/main/editor/creature/CreatureEditor.tscn:1807
+#: project/src/main/editor/creature/CreatureEditor.tscn:1487
+#: project/src/main/editor/creature/CreatureEditor.tscn:1765
 msgid "Nose"
 msgstr "Nariz"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1537
-#: project/src/main/editor/creature/CreatureEditor.tscn:1813
+#: project/src/main/editor/creature/CreatureEditor.tscn:1495
+#: project/src/main/editor/creature/CreatureEditor.tscn:1771
 msgid "Mouth"
 msgstr "Boca"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1545
-#: project/src/main/editor/creature/CreatureEditor.tscn:1819
+#: project/src/main/editor/creature/CreatureEditor.tscn:1503
+#: project/src/main/editor/creature/CreatureEditor.tscn:1777
 msgid "Cheek"
 msgstr "Mejillas"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1553
-#: project/src/main/editor/creature/CreatureEditor.tscn:1831
+#: project/src/main/editor/creature/CreatureEditor.tscn:1511
+#: project/src/main/editor/creature/CreatureEditor.tscn:1789
 msgid "Ear"
 msgstr "Orejas"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1561
+#: project/src/main/editor/creature/CreatureEditor.tscn:1519
 msgid "Horn Color"
 msgstr "Color de Cuerno"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1569
-#: project/src/main/editor/creature/CreatureEditor.tscn:1845
+#: project/src/main/editor/creature/CreatureEditor.tscn:1527
+#: project/src/main/editor/creature/CreatureEditor.tscn:1803
 msgid "Forehead"
 msgstr "Frente"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1577
-#: project/src/main/editor/creature/CreatureEditor.tscn:1857
+#: project/src/main/editor/creature/CreatureEditor.tscn:1535
+#: project/src/main/editor/creature/CreatureEditor.tscn:1815
 msgid "Hair"
 msgstr "Pelo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1585
+#: project/src/main/editor/creature/CreatureEditor.tscn:1543
 msgid "Hair Color"
 msgstr "Color de Pelo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1593
-#: project/src/main/editor/creature/CreatureEditor.tscn:1897
+#: project/src/main/editor/creature/CreatureEditor.tscn:1551
+#: project/src/main/editor/creature/CreatureEditor.tscn:1855
 msgid "Tail"
 msgstr "Cola"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1601
-#: project/src/main/editor/creature/CreatureEditor.tscn:1877
+#: project/src/main/editor/creature/CreatureEditor.tscn:1559
+#: project/src/main/editor/creature/CreatureEditor.tscn:1835
 msgid "Belly"
 msgstr "Panza"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1609
+#: project/src/main/editor/creature/CreatureEditor.tscn:1567
 msgid "Belly Color"
 msgstr "Color de Panza"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1617
+#: project/src/main/editor/creature/CreatureEditor.tscn:1575
 msgid "Bellybutton"
 msgstr "Ombligo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1631
-#: project/src/main/editor/creature/CreatureEditor.tscn:1911
+#: project/src/main/editor/creature/CreatureEditor.tscn:1589
+#: project/src/main/editor/creature/CreatureEditor.tscn:1869
 msgid "Accessory"
 msgstr "Accesorio"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1639
-#: project/src/main/editor/creature/CreatureEditor.tscn:1917
+#: project/src/main/editor/creature/CreatureEditor.tscn:1597
+#: project/src/main/editor/creature/CreatureEditor.tscn:1875
 msgid "Collar"
 msgstr "Collar"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1647
+#: project/src/main/editor/creature/CreatureEditor.tscn:1605
 msgid "Cloth Color"
 msgstr "Color de Tela"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1655
+#: project/src/main/editor/creature/CreatureEditor.tscn:1613
 msgid "Glass Color"
 msgstr "Color de Vidrio"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1663
+#: project/src/main/editor/creature/CreatureEditor.tscn:1621
 msgid "Plastic Color"
 msgstr "Color de Plástico"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1687
-#: project/src/main/editor/creature/CreatureEditor.tscn:1967
+#: project/src/main/editor/creature/CreatureEditor.tscn:1645
+#: project/src/main/editor/creature/CreatureEditor.tscn:1925
 msgid "Import"
 msgstr "Importar"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1699
-#: project/src/main/editor/creature/CreatureEditor.tscn:1979
+#: project/src/main/editor/creature/CreatureEditor.tscn:1657
+#: project/src/main/editor/creature/CreatureEditor.tscn:1937
 msgid "Export"
 msgstr "Exportar"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1711
-#: project/src/main/editor/creature/CreatureEditor.tscn:1991
-#: project/src/main/editor/puzzle/LevelEditor.tscn:341
+#: project/src/main/editor/creature/CreatureEditor.tscn:1669
+#: project/src/main/editor/creature/CreatureEditor.tscn:1949
+#: project/src/main/editor/puzzle/LevelEditor.tscn:342
 msgid "Save"
 msgstr "Guardar"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1759
+#: project/src/main/editor/creature/CreatureEditor.tscn:1717
 msgid "Name"
 msgstr "Nombre"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1769
+#: project/src/main/editor/creature/CreatureEditor.tscn:1727
 msgid "Overall Color"
 msgstr "Color General"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1801
-#: project/src/main/editor/creature/CreatureEditor.tscn:1839
-#: project/src/main/editor/creature/CreatureEditor.tscn:1865
-#: project/src/main/editor/creature/CreatureEditor.tscn:1891
+#: project/src/main/editor/creature/CreatureEditor.tscn:1759
+#: project/src/main/editor/creature/CreatureEditor.tscn:1797
+#: project/src/main/editor/creature/CreatureEditor.tscn:1823
+#: project/src/main/editor/creature/CreatureEditor.tscn:1849
 msgid "Color"
 msgstr "Color"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1883
+#: project/src/main/editor/creature/CreatureEditor.tscn:1841
 msgid "Button"
 msgstr "Ombligo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1903
+#: project/src/main/editor/creature/CreatureEditor.tscn:1861
 #: project/src/main/ui/SettingsMenu.tscn:543
 msgid "Size"
 msgstr "Tamaño"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1929
+#: project/src/main/editor/creature/CreatureEditor.tscn:1887
 msgid "Cloth"
 msgstr "Tela"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1935
+#: project/src/main/editor/creature/CreatureEditor.tscn:1893
 msgid "Glass"
 msgstr "Vidrio"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1943
+#: project/src/main/editor/creature/CreatureEditor.tscn:1901
 msgid "Plastic"
 msgstr "Plástico"
 
@@ -1316,33 +1316,33 @@ msgstr "Nombre:"
 msgid "Size:"
 msgstr "Tamaño:"
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:312
+#: project/src/main/editor/puzzle/LevelEditor.tscn:313
 msgid "default"
 msgstr "Por defecto"
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:325
+#: project/src/main/editor/puzzle/LevelEditor.tscn:326
 msgid "Open File"
 msgstr "Abrir Archivo"
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:333
+#: project/src/main/editor/puzzle/LevelEditor.tscn:334
 msgid "Open Resource"
 msgstr "Abrir Recurso"
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:357
+#: project/src/main/editor/puzzle/LevelEditor.tscn:358
 msgid "Test"
 msgstr "Prueba"
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:368
+#: project/src/main/editor/puzzle/LevelEditor.tscn:369
 msgid "abc"
 msgstr "abc"
 
 #: project/src/main/music/MusicPlayer.tscn:34
 msgid "Juicer Mixer Grinder"
-msgstr ""
+msgstr "Juicer Mixer Grinder"
 
 #: project/src/main/music/MusicPlayer.tscn:40
 msgid "Chub Hub"
-msgstr ""
+msgstr "Chub Hub"
 
 #: project/src/main/music/MusicPlayer.tscn:46
 #: project/src/main/ui/MusicPopup.tscn:79
@@ -1351,81 +1351,81 @@ msgstr "24/7 Lo-Fi Chill Hip Hop Beats to Eat & Get Fat To"
 
 #: project/src/main/music/MusicPlayer.tscn:52
 msgid "Hot Funk Sundae"
-msgstr ""
+msgstr "Hot Funk Sundae"
 
 #: project/src/main/music/MusicPlayer.tscn:58
 msgid "Dessert Course (With No Name)"
-msgstr ""
+msgstr "Dessert Course (With No Name)"
 
 #: project/src/main/music/MusicPlayer.tscn:64
 msgid "Harder, Butter, Fatter, Stronger"
-msgstr ""
+msgstr "Harder, Butter, Fatter, Stronger"
 
 #: project/src/main/music/MusicPlayer.tscn:70
 msgid "Triple Thicc Shake"
-msgstr ""
+msgstr "Triple Thicc Shake"
 
 #: project/src/main/music/MusicPlayer.tscn:76
 msgid "Doo Doo Doo"
-msgstr ""
+msgstr "Doo Doo Doo"
 
 #: project/src/main/music/MusicPlayer.tscn:82
 msgid "Mystic Muffin"
-msgstr ""
+msgstr "Mystic Muffin"
 
 #: project/src/main/music/MusicPlayer.tscn:88
 msgid "Sugar Crash"
-msgstr ""
+msgstr "Sugar Crash"
 
 #: project/src/main/music/MusicPlayer.tscn:94
 msgid "Pressure Cooker"
-msgstr ""
+msgstr "Pressure Cooker"
 
 #: project/src/main/music/MusicPlayer.tscn:100
 msgid "Chunky Obake"
-msgstr ""
+msgstr "Chunky Obake"
 
 #: project/src/main/music/MusicPlayer.tscn:106
 msgid "Chub 'n Bass"
-msgstr ""
+msgstr "Chub 'n Bass"
 
 #: project/src/main/music/MusicPlayer.tscn:113
 msgid "My Fatness Pal"
-msgstr ""
+msgstr "My Fatness Pal"
 
 #: project/src/main/music/MusicPlayer.tscn:119
 msgid "Rainbow Sherbeat"
-msgstr ""
+msgstr "Rainbow Sherbeat"
 
 #: project/src/main/music/MusicPlayer.tscn:125
 msgid "Acid Reflux"
-msgstr ""
+msgstr "Acid Reflux"
 
 #: project/src/main/music/MusicPlayer.tscn:132
 msgid "Extra Sprinkles"
-msgstr ""
+msgstr "Extra Sprinkles"
 
 #: project/src/main/music/MusicPlayer.tscn:138
 msgid "Chocolate Chip Hipster"
-msgstr ""
+msgstr "Chocolate Chip Hipster"
 
 #: project/src/main/music/MusicPlayer.tscn:144
 msgid "Gingerbread House"
-msgstr ""
+msgstr "Gingerbread House"
 
 #: project/src/main/puzzle/ComboCounter.tscn:69
 msgid "3x"
 msgstr "3x"
 
-#: project/src/main/puzzle/Puzzle.tscn:364
+#: project/src/main/puzzle/Puzzle.tscn:368
 msgid "Goal"
 msgstr "Meta"
 
-#: project/src/main/puzzle/Puzzle.tscn:377
+#: project/src/main/puzzle/Puzzle.tscn:381
 msgid "10"
 msgstr "10"
 
-#: project/src/main/puzzle/Puzzle.tscn:401
+#: project/src/main/puzzle/Puzzle.tscn:405
 msgid "abcd"
 msgstr "abcd"
 
@@ -1434,9 +1434,9 @@ msgid "3"
 msgstr "3"
 
 #: project/src/main/puzzle/PuzzleMessages.tscn:56
-#: project/src/main/ui/menu/PracticeMenu.tscn:257
+#: project/src/main/ui/menu/PracticeMenu.tscn:258
 msgid "Start"
-msgstr "Comenzar"
+msgstr "Empezar"
 
 #: project/src/main/puzzle/PuzzleMessages.tscn:87
 #: project/src/main/puzzle/puzzle-messages.gd:146
@@ -1456,25 +1456,25 @@ msgstr "¥616"
 msgid "+¥55"
 msgstr "+¥55"
 
-#: project/src/main/puzzle/milestone-hud.gd:26
-msgid "Customers"
-msgstr ""
-
-#: project/src/main/puzzle/milestone-hud.gd:28
-msgid "Lines"
-msgstr ""
-
 #: project/src/main/puzzle/milestone-hud.gd:30
-msgid "Pieces"
-msgstr ""
+msgid "Customers"
+msgstr "Clientes"
 
 #: project/src/main/puzzle/milestone-hud.gd:32
-msgid "Money"
-msgstr ""
+msgid "Lines"
+msgstr "Líneas"
 
 #: project/src/main/puzzle/milestone-hud.gd:34
+msgid "Pieces"
+msgstr "Piezas"
+
+#: project/src/main/puzzle/milestone-hud.gd:36
+msgid "Money"
+msgstr "Dinero"
+
+#: project/src/main/puzzle/milestone-hud.gd:38
 msgid "Time"
-msgstr ""
+msgstr "Tiempo"
 
 #: project/src/main/puzzle/puzzle-messages.gd:68
 #: project/src/main/puzzle/puzzle.gd:74
@@ -1483,7 +1483,7 @@ msgstr "¿Listo?"
 
 #: project/src/main/puzzle/puzzle-messages.gd:77
 msgid "Regret..."
-msgstr "Arrepentimiento..."
+msgstr "Que pena..."
 
 #: project/src/main/puzzle/puzzle-messages.gd:79
 msgid "Good!"
@@ -1491,7 +1491,7 @@ msgstr "¡Bien!"
 
 #: project/src/main/puzzle/puzzle-messages.gd:92
 msgid "Game over"
-msgstr "Juego terminado"
+msgstr "Fin Del Juego"
 
 #: project/src/main/puzzle/puzzle-messages.gd:94
 msgid "Finish!"
@@ -1506,121 +1506,137 @@ msgid "Retry"
 msgstr "Reintentar"
 
 #: project/src/main/puzzle/puzzle-messages.gd:146
-#: project/src/main/ui/menu/MainMenu.tscn:87
+#: project/src/main/ui/menu/MainMenu.tscn:88
 msgid "Continue"
 msgstr "Continuar"
 
 #: project/src/main/puzzle/results-hud.gd:8
 msgid ""
-"Build a snack box by arranging a pentomino and a quadromino into a square!"
+"Build a snack box by arranging a pentomino and a tetromino into a square!"
 msgstr ""
+"¡Haz una caja de snacks haciendo un cuadrado con un pentominó y un tetrominó!"
 
 #: project/src/main/puzzle/results-hud.gd:9
 msgid "Build a cake box by arranging 3 pentominos into a rectangle!"
-msgstr ""
+msgstr "¡Haz una caja de tarta haciendo un rectángulo con 3 pentominós!"
 
 #: project/src/main/puzzle/results-hud.gd:10
-msgid "Build a cake box by arranging 3 quadrominos into a rectangle!"
-msgstr ""
+msgid "Build a cake box by arranging 3 tetrominos into a rectangle!"
+msgstr "¡Haz una caja de tarta haciendo un rectángulo con 3 tetrominós!"
 
 #: project/src/main/puzzle/results-hud.gd:11
 msgid "Two different pieces with the same color can always make a square!"
 msgstr ""
+"¡Dos piezas diferentes del mismo color pueden siempre hacer un cuadrado!"
 
 #: project/src/main/puzzle/results-hud.gd:12
 msgid ""
 "A snack box scores 5 points per line, a cake box scores 10. Make lots of "
 "cakes!"
 msgstr ""
+"Una caja de snacks son 5 puntos por línea, una caja de tarta son 10. ¡Haz "
+"muchas tartas!"
 
 #: project/src/main/puzzle/results-hud.gd:13
 msgid ""
 "Combos can give you 20 bonus points for completing a line. Make lots of "
 "combos!"
 msgstr ""
+"Los combos pueden darte 20 puntos extra por completar una línea. ¡Haz muchos "
+"combos!"
 
 #: project/src/main/puzzle/results-hud.gd:14
 msgid "Build a big combo by making boxes and clearing lines!"
-msgstr ""
+msgstr "¡Haz un combo grande haciendo cajas y limpiando líneas!"
 
 #: project/src/main/puzzle/results-hud.gd:15
 msgid ""
 "Making boxes keeps your combo going. You can keep your combo going forever!"
-msgstr ""
+msgstr "Hacer cajas aumentan tu combo. ¡Puedes extender tu combo para siempre!"
 
 #: project/src/main/puzzle/results-hud.gd:16
 msgid "Clear lines to keep your combo going. Combos get you lots of money!"
-msgstr ""
+msgstr "Limpiar líneas aumentan tu combo. ¡Los combos te dan mucho dinero!"
 
 #: project/src/main/puzzle/results-hud.gd:17
 msgid "When a piece locks, hold left or right to quickly move the next piece!"
 msgstr ""
+"Cuando una pieza se asegure, ¡mantén izquierda o derecha para mover rápido "
+"la siguiente pieza!"
 
 #: project/src/main/puzzle/results-hud.gd:18
 msgid "When a piece locks, hold a rotate key to quickly rotate the next piece!"
 msgstr ""
+"Cuando una pieza se asegure, ¡mantén el botón rotar para rotar rápido la "
+"siguiente pieza!"
 
 #: project/src/main/puzzle/results-hud.gd:19
 msgid ""
 "When a piece locks, hold both rotate keys to quickly flip the next piece!"
 msgstr ""
+"Cuando una pieza se asegure, ¡mantén ambos botones de rotar para girar la "
+"siguiente pieza!"
 
 #: project/src/main/puzzle/results-hud.gd:20
 msgid "When a piece locks, hold up to quickly hard-drop the next piece!"
 msgstr ""
+"Cuando una pieza se asegure, ¡mantén arriba para hacer una caída fuerte con "
+"la siguiente pieza!"
 
 #: project/src/main/puzzle/results-hud.gd:21
 msgid "After a hard drop, tap 'down' to delay the piece from locking!"
 msgstr ""
+"¡Después de una caída fuerte, toca \"abajo\" para que la pieza tarde en "
+"asegurarse!"
 
 #: project/src/main/puzzle/results-hud.gd:22
 msgid "Press 'down' to squish pieces past other pieces!"
-msgstr ""
+msgstr "¡Presiona \"abajo\" para aplastar piezas por otras piezas!"
 
 #: project/src/main/puzzle/results-hud.gd:47
 #, python-format
 msgid "Hint: %s"
-msgstr ""
+msgstr "Pista: %s"
 
 #: project/src/main/puzzle/results-hud.gd:64
 #: project/src/main/puzzle/results-hud.gd:157
 #, python-format
 msgid "Customer #%s"
-msgstr ""
+msgstr "Cliente: #%s"
 
 #: project/src/main/puzzle/results-hud.gd:71
 #, python-format
 msgid "Total: ¥%s"
-msgstr ""
+msgstr "Total: ¥%s"
 
 #: project/src/main/puzzle/results-hud.gd:85
 #, python-format
 msgid "Speed: %d"
-msgstr ""
+msgstr "Velocidad: %d"
 
 #: project/src/main/puzzle/results-hud.gd:91
 #, python-format
 msgid "Pieces: %d"
-msgstr ""
+msgstr "Piezas: %d"
 
 #: project/src/main/puzzle/results-hud.gd:97
 #, python-format
 msgid "Lines: %d"
-msgstr ""
+msgstr "Líneas: %d"
 
 #: project/src/main/puzzle/results-hud.gd:103
 #, python-format
 msgid "Boxes: %d"
-msgstr ""
+msgstr "Cajas: %d"
 
 #: project/src/main/puzzle/results-hud.gd:109
 #, python-format
 msgid "Combos: %d"
-msgstr ""
+msgstr "Combos: %d"
 
 #: project/src/main/puzzle/results-hud.gd:116
 msgid "Overall: "
-msgstr ""
+msgstr "General:"
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:16
 msgid "Move"
@@ -2043,6 +2059,30 @@ msgstr ""
 msgid "¥120 is just a number I pulled out of my, um. ...Out of thin air."
 msgstr "¥120 es solo un número que saqué de, um. ...Del aire."
 
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:33
+msgid "Okay, I get it!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:33
+msgid "...Can you go into more detail?"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:34
+msgid "Yes, I see!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:34
+msgid "What do you mean by that?"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:35
+msgid "Oh! That's easy."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:35
+msgid "Hmm, maybe one more time?"
+msgstr ""
+
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:41
 msgid ""
 "Today we'll cover some advanced squish move techniques!\n"
@@ -2250,23 +2290,23 @@ msgstr ""
 "\n"
 "Estoy seguro que también vas a pensar una forma inteligente de limpiar esto."
 
-#: project/src/main/ui/CreatureStressTest.tscn:41
+#: project/src/main/ui/CreatureStressTest.tscn:42
 msgid "+10"
 msgstr "+10"
 
-#: project/src/main/ui/CreatureStressTest.tscn:51
+#: project/src/main/ui/CreatureStressTest.tscn:52
 msgid "+1"
 msgstr "+1"
 
-#: project/src/main/ui/CreatureStressTest.tscn:61
+#: project/src/main/ui/CreatureStressTest.tscn:62
 msgid "2"
 msgstr "2"
 
-#: project/src/main/ui/CreatureStressTest.tscn:69
+#: project/src/main/ui/CreatureStressTest.tscn:70
 msgid "-1"
 msgstr "-1"
 
-#: project/src/main/ui/CreatureStressTest.tscn:79
+#: project/src/main/ui/CreatureStressTest.tscn:80
 msgid "-10"
 msgstr "-10"
 
@@ -2355,97 +2395,97 @@ msgstr "Personalizar"
 
 #: project/src/main/ui/SettingsMenu.tscn:273
 msgid "Move Piece"
-msgstr ""
+msgstr "Mover Pieza"
 
 #: project/src/main/ui/SettingsMenu.tscn:291
 msgid "Rotate Piece"
-msgstr ""
+msgstr "Rotar Pieza"
 
 #: project/src/main/ui/SettingsMenu.tscn:297
 #: project/src/main/ui/SettingsMenu.tscn:404
 msgid "Menu"
-msgstr ""
+msgstr "Menú"
 
 #: project/src/main/ui/SettingsMenu.tscn:309
 msgid "Move in Menus"
-msgstr ""
+msgstr "Mover en Menús"
 
 #: project/src/main/ui/SettingsMenu.tscn:315
 #: project/src/main/ui/SettingsMenu.tscn:440
 msgid "Confirm in Menus"
-msgstr ""
+msgstr "Confirmar en Menús"
 
 #: project/src/main/ui/SettingsMenu.tscn:321
 #: project/src/main/ui/SettingsMenu.tscn:446
 msgid "Back in Menus"
-msgstr ""
+msgstr "Volver en Menús"
 
 #: project/src/main/ui/SettingsMenu.tscn:333
 msgid "Walk"
-msgstr ""
+msgstr "Caminar"
 
 #: project/src/main/ui/SettingsMenu.tscn:339
 #: project/src/main/ui/SettingsMenu.tscn:482
 msgid "Interact"
-msgstr ""
+msgstr "Interactuar"
 
 #: project/src/main/ui/SettingsMenu.tscn:345
 #: project/src/main/ui/SettingsMenu.tscn:488
 msgid "Rewind Text"
-msgstr ""
+msgstr "Rebobinar Texto"
 
 #: project/src/main/ui/SettingsMenu.tscn:351
 #: project/src/main/ui/SettingsMenu.tscn:494
 msgid "Phone"
-msgstr ""
+msgstr "Teléfono"
 
 #: project/src/main/ui/SettingsMenu.tscn:368
 msgid "Move Piece Left"
-msgstr ""
+msgstr "Mover Pieza a la Izquierda"
 
 #: project/src/main/ui/SettingsMenu.tscn:374
 msgid "Move Piece Right"
-msgstr ""
+msgstr "Mover Pieza a la Derecha"
 
 #: project/src/main/ui/SettingsMenu.tscn:392
 msgid "Rotate Ccw"
-msgstr ""
+msgstr "Rotar a Contrarreloj"
 
 #: project/src/main/ui/SettingsMenu.tscn:398
 msgid "Rotate Cw"
-msgstr ""
+msgstr "Rotar a Reloj"
 
 #: project/src/main/ui/SettingsMenu.tscn:416
 msgid "Up in Menus"
-msgstr ""
+msgstr "Arriba en Menú"
 
 #: project/src/main/ui/SettingsMenu.tscn:422
 msgid "Down in Menus"
-msgstr ""
+msgstr "Abajo en Menú"
 
 #: project/src/main/ui/SettingsMenu.tscn:428
 msgid "Left in Menus"
-msgstr ""
+msgstr "Izquierda en Menú"
 
 #: project/src/main/ui/SettingsMenu.tscn:434
 msgid "Right in Menus"
-msgstr ""
+msgstr "Derecha en Menú"
 
 #: project/src/main/ui/SettingsMenu.tscn:458
 msgid "Walk Up"
-msgstr ""
+msgstr "Caminar Arriba"
 
 #: project/src/main/ui/SettingsMenu.tscn:464
 msgid "Walk Down"
-msgstr ""
+msgstr "Caminar Abajo"
 
 #: project/src/main/ui/SettingsMenu.tscn:470
 msgid "Walk Left"
-msgstr ""
+msgstr "Caminar Izquierda"
 
 #: project/src/main/ui/SettingsMenu.tscn:476
 msgid "Walk Right"
-msgstr ""
+msgstr "Caminar Derecha"
 
 #: project/src/main/ui/SettingsMenu.tscn:510
 msgid "Reset to Default"
@@ -2465,7 +2505,7 @@ msgstr "Dedo Gordo"
 
 #: project/src/main/ui/SettingsMenu.tscn:687
 msgid "Language"
-msgstr ""
+msgstr "Lenguaje"
 
 #: project/src/main/ui/SettingsMenu.tscn:730
 msgid "Ok"
@@ -2486,88 +2526,88 @@ msgstr "100%"
 
 #: project/src/main/ui/high-score-table.gd:42
 msgid "All-time Best"
-msgstr ""
-
-#: project/src/main/ui/settings-tab-container.gd:10
-msgid "Volume"
-msgstr ""
-
-#: project/src/main/ui/settings-tab-container.gd:11
-msgid "Gameplay"
-msgstr ""
-
-#: project/src/main/ui/settings-tab-container.gd:12
-msgid "Controls"
-msgstr ""
+msgstr "Mejor de Todos"
 
 #: project/src/main/ui/settings-tab-container.gd:13
-msgid "Touch"
-msgstr ""
+msgid "Volume"
+msgstr "Volumen"
 
 #: project/src/main/ui/settings-tab-container.gd:14
+msgid "Gameplay"
+msgstr "Jugabilidad"
+
+#: project/src/main/ui/settings-tab-container.gd:15
+msgid "Controls"
+msgstr "Controles"
+
+#: project/src/main/ui/settings-tab-container.gd:16
+msgid "Touch"
+msgstr "Tocar"
+
+#: project/src/main/ui/settings-tab-container.gd:17
 msgid "Miscellaneous"
-msgstr ""
+msgstr "Miscelaneo"
 
 #: project/src/main/ui/settings-touch-fat-finger.gd:11
 msgid "Off"
-msgstr ""
+msgstr "Apagado"
 
 #: project/src/main/ui/settings-touch-fat-finger.gd:12
 msgid "Slim"
-msgstr ""
+msgstr "Delgado"
 
 #: project/src/main/ui/settings-touch-fat-finger.gd:13
 msgid "Plump"
-msgstr ""
+msgstr "Regordete"
 
 #: project/src/main/ui/settings-touch-fat-finger.gd:14
 msgid "Pudge"
-msgstr ""
+msgstr "Rechoncho"
 
 #: project/src/main/ui/settings-touch-fat-finger.gd:15
 msgid "Chonk"
-msgstr ""
+msgstr "Gordo"
 
 #: project/src/main/ui/settings-touch-scheme.gd:9
 msgid "Easy Console"
-msgstr ""
+msgstr "Easy Console"
 
 #: project/src/main/ui/settings-touch-scheme.gd:10
 msgid "Easy Desktop"
-msgstr ""
+msgstr "Easy Desktop"
 
 #: project/src/main/ui/settings-touch-scheme.gd:11
 msgid "Ambi Console"
-msgstr ""
+msgstr "Ambi Console"
 
 #: project/src/main/ui/settings-touch-scheme.gd:12
 msgid "Ambi Desktop"
-msgstr ""
+msgstr "Ambi Desktop"
 
 #: project/src/main/ui/settings-touch-scheme.gd:13
 msgid "Loco Console"
-msgstr ""
+msgstr "Loco Console"
 
 #: project/src/main/ui/settings-touch-scheme.gd:14
 msgid "Loco Desktop"
-msgstr ""
+msgstr "Loco Desktop"
 
 #: project/src/main/ui/volume-setting-control.gd:47
 msgid "Mute"
-msgstr ""
+msgstr "Mudo"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:234
+#: project/src/main/ui/menu/PracticeMenu.tscn:235
 #: project/src/main/ui/volume-setting-control.gd:56
 msgid "Master"
 msgstr "Maestro"
 
 #: project/src/main/ui/volume-setting-control.gd:58
 msgid "Sounds"
-msgstr ""
+msgstr "Sonidos"
 
 #: project/src/main/ui/volume-setting-control.gd:59
 msgid "Voices"
-msgstr ""
+msgstr "Voces"
 
 #: project/src/main/ui/chat/ChatChoiceButton.tscn:188
 msgid "Oh bother"
@@ -2583,39 +2623,39 @@ msgstr "X"
 
 #: project/src/main/ui/keybind/custom-keybind-button.gd:53
 msgid "<Enter Key>"
-msgstr "<Ingrese Tecla>"
+msgstr "<Tecla>"
 
 #: project/src/main/ui/keybind/settings-keybinds-control.gd:38
 msgid "Left, Right, Numpad4/6"
-msgstr ""
+msgstr "Izquierda, Derecha, Numpad4/6"
 
 #: project/src/main/ui/keybind/settings-keybinds-control.gd:39
 msgid "Down, Numpad2"
-msgstr ""
+msgstr "Abajo, Numpad2"
 
 #: project/src/main/ui/keybind/settings-keybinds-control.gd:40
 msgid "Space, Up, Shift, Numpad8"
-msgstr ""
+msgstr "Espacio, arriba, Shift, Numpad8"
 
 #: project/src/main/ui/keybind/settings-keybinds-control.gd:41
 msgid "Z, X, Numpad7/9"
-msgstr ""
+msgstr "Z, X, Numpad7/9"
 
 #: project/src/main/ui/keybind/settings-keybinds-control.gd:44
 msgid "A, D, Numpad4/6"
-msgstr ""
+msgstr "A, D, Numpad4/6"
 
 #: project/src/main/ui/keybind/settings-keybinds-control.gd:45
 msgid "Down, S, Numpad8"
-msgstr ""
+msgstr "Abajo, S, Numpad8"
 
 #: project/src/main/ui/keybind/settings-keybinds-control.gd:46
 msgid "Up, Space, W, Numpad5"
-msgstr ""
+msgstr "Arriba, Espacio, W, Numpad5"
 
 #: project/src/main/ui/keybind/settings-keybinds-control.gd:47
 msgid "Left, Right, Numpad7/9"
-msgstr ""
+msgstr "Izquierda, Derecha, Numpad7/9"
 
 #: project/src/main/ui/level-select/HookableGradeLabel.tscn:27
 msgid "S++"
@@ -2626,85 +2666,85 @@ msgstr "S++"
 msgid "Just getting started"
 msgstr "Acabamos de comenzar"
 
-#: project/src/main/ui/menu/MainMenu.tscn:51
-#: project/src/main/ui/menu/SplashScreen.tscn:48
+#: project/src/main/ui/menu/MainMenu.tscn:52
+#: project/src/main/ui/menu/SplashScreen.tscn:49
 msgid "turbo fat"
 msgstr "turbo fat"
 
-#: project/src/main/ui/menu/MainMenu.tscn:75
-#: project/src/main/ui/menu/SplashScreen.tscn:68
+#: project/src/main/ui/menu/MainMenu.tscn:76
+#: project/src/main/ui/menu/SplashScreen.tscn:69
 msgid "Play"
 msgstr "Jugar"
 
-#: project/src/main/ui/menu/MainMenu.tscn:98
+#: project/src/main/ui/menu/MainMenu.tscn:99
 msgid "Practice"
 msgstr "Práctica"
 
-#: project/src/main/ui/menu/MainMenu.tscn:109
+#: project/src/main/ui/menu/MainMenu.tscn:110
 msgid "Tutorials"
 msgstr "Tutoriales"
 
-#: project/src/main/ui/menu/MainMenu.tscn:129
+#: project/src/main/ui/menu/MainMenu.tscn:130
 msgid "Create"
 msgstr "Crear"
 
-#: project/src/main/ui/menu/MainMenu.tscn:141
+#: project/src/main/ui/menu/MainMenu.tscn:142
 msgid "Levels"
 msgstr "Niveles"
 
-#: project/src/main/ui/menu/MainMenu.tscn:152
+#: project/src/main/ui/menu/MainMenu.tscn:153
 msgid "Creatures"
 msgstr "Criaturas"
 
-#: project/src/main/ui/menu/MainMenu.tscn:178
+#: project/src/main/ui/menu/MainMenu.tscn:179
 msgid "Stress Test"
 msgstr "Prueba de Estrés"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:67
+#: project/src/main/ui/menu/PracticeMenu.tscn:68
 msgid "Mode"
 msgstr "Modo"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:97
+#: project/src/main/ui/menu/PracticeMenu.tscn:98
 msgid "Survival"
 msgstr "Supervivencia"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:110
+#: project/src/main/ui/menu/PracticeMenu.tscn:111
 msgid "Ultra"
 msgstr "Ultra"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:123
+#: project/src/main/ui/menu/PracticeMenu.tscn:124
 msgid "Sprint"
 msgstr "Carrera"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:136
+#: project/src/main/ui/menu/PracticeMenu.tscn:137
 msgid "Rank"
 msgstr "Rango"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:149
+#: project/src/main/ui/menu/PracticeMenu.tscn:150
 msgid "Sandbox"
 msgstr "Juego Libre"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:158
+#: project/src/main/ui/menu/PracticeMenu.tscn:159
 msgid "Score 200 points as quickly as possible!"
 msgstr "¡Obtén 200 puntos lo más rápido posible!"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:178
+#: project/src/main/ui/menu/PracticeMenu.tscn:179
 msgid "Difficulty"
 msgstr "Dificultad"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:210
+#: project/src/main/ui/menu/PracticeMenu.tscn:211
 msgid "Normal"
 msgstr "Normal"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:217
+#: project/src/main/ui/menu/PracticeMenu.tscn:218
 msgid "Hard"
 msgstr "Difícil"
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:225
+#: project/src/main/ui/menu/PracticeMenu.tscn:226
 msgid "Expert"
 msgstr "Experto"
 
-#: project/src/main/ui/menu/SplashScreen.tscn:145
+#: project/src/main/ui/menu/SplashScreen.tscn:146
 msgid "Well, crap"
 msgstr "Bueno, mierda"
 
@@ -2712,34 +2752,36 @@ msgstr "Bueno, mierda"
 #, python-format
 msgid "Survive as the pieces get faster and faster! Can you clear %s lines?"
 msgstr ""
+"¡Sobrevive mientras las piezas caen cada vez más rápidas! ¿Puedes limpiar %s "
+"líneas?"
 
 #: project/src/main/ui/menu/practice-mode-selector.gd:49
 #, python-format
 msgid "Earn ¥%s as quickly as possible!"
-msgstr ""
+msgstr "¡Consigue ¥%s lo más rápido posible!"
 
 #: project/src/main/ui/menu/practice-mode-selector.gd:52
 #, python-format
 msgid "Earn as much money as you can in %s!"
-msgstr ""
+msgstr "¡Consigue tanto dinero como puedas en %s!"
 
 #: project/src/main/ui/menu/practice-mode-selector.gd:55
 msgid "An escalating set of challenges."
-msgstr ""
+msgstr "Un set de desafíos cada vez más difíciles."
 
 #: project/src/main/ui/menu/practice-mode-selector.gd:58
 #, python-format
 msgid "Finish with ¥%s to achieve this rank!"
-msgstr ""
+msgstr "¡Termina con ¥%s para lograr este rango!"
 
 #: project/src/main/ui/menu/practice-mode-selector.gd:61
 #, python-format
 msgid "Finish in %s to achieve this rank!"
-msgstr ""
+msgstr "¡Termina en %s para lograr este rango!"
 
 #: project/src/main/ui/menu/practice-mode-selector.gd:64
 msgid "Just relax! There is no way to win or lose this mode."
-msgstr ""
+msgstr "¡Solo relájate! No hay manera de ganar o perder en este modo."
 
 #: project/src/main/world/LetterProjectile.tscn:75
 msgid "O"
