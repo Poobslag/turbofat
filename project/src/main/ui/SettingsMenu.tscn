@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -18,6 +18,9 @@
 [ext_resource path="res://src/main/ui/keybind/KeybindCustom.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/ui/settings-language.gd" type="Script" id=17]
 [ext_resource path="res://src/main/ui/settings-tab-container.gd" type="Script" id=18]
+[ext_resource path="res://src/main/ui/settings-creature-graphics.gd" type="Script" id=19]
+[ext_resource path="res://src/main/ui/menu/theme/h5.theme" type="Theme" id=20]
+[ext_resource path="res://src/main/ui/settings-warning.gd" type="Script" id=21]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -73,9 +76,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -265.0
+margin_left = -290.0
 margin_top = -180.0
-margin_right = 265.0
+margin_right = 290.0
 margin_bottom = 180.0
 rect_min_size = Vector2( 530, 360 )
 custom_styles/panel = ExtResource( 2 )
@@ -95,7 +98,7 @@ __meta__ = {
 }
 
 [node name="TabContainer" type="TabContainer" parent="Window/UiArea"]
-margin_right = 520.0
+margin_right = 570.0
 margin_bottom = 296.0
 size_flags_vertical = 3
 custom_styles/tab_fg = SubResource( 1 )
@@ -108,7 +111,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Volume" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+[node name="Sound + Graphics" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 5.0
@@ -116,48 +119,104 @@ margin_top = 35.0
 margin_right = -5.0
 margin_bottom = -5.0
 
-[node name="Master" parent="Window/UiArea/TabContainer/Volume" instance=ExtResource( 6 )]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 0.0
-margin_top = 0.0
-margin_right = 510.0
+[node name="Volume" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+margin_right = 560.0
 margin_bottom = 20.0
+theme = ExtResource( 1 )
+text = "Sound + Music"
+align = 1
 
-[node name="Music" parent="Window/UiArea/TabContainer/Volume" instance=ExtResource( 6 )]
+[node name="Master" parent="Window/UiArea/TabContainer/Sound + Graphics" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 24.0
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 44.0
-volume_type = 1
 
-[node name="Sounds" parent="Window/UiArea/TabContainer/Volume" instance=ExtResource( 6 )]
+[node name="Music" parent="Window/UiArea/TabContainer/Sound + Graphics" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 48.0
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 68.0
-volume_type = 2
+volume_type = 1
 
-[node name="Voices" parent="Window/UiArea/TabContainer/Volume" instance=ExtResource( 6 )]
+[node name="Sounds" parent="Window/UiArea/TabContainer/Sound + Graphics" instance=ExtResource( 6 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 0.0
 margin_top = 72.0
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 92.0
+volume_type = 2
+
+[node name="Voices" parent="Window/UiArea/TabContainer/Sound + Graphics" instance=ExtResource( 6 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 96.0
+margin_right = 560.0
+margin_bottom = 116.0
 volume_type = 3
+
+[node name="HSeparator" type="HSeparator" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+margin_top = 120.0
+margin_right = 560.0
+margin_bottom = 124.0
+
+[node name="Graphics" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+margin_top = 128.0
+margin_right = 560.0
+margin_bottom = 148.0
+theme = ExtResource( 1 )
+text = "Graphics"
+align = 1
+
+[node name="Creature Graphics" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+margin_top = 152.0
+margin_right = 560.0
+margin_bottom = 178.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 19 )
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics"]
+margin_right = 217.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.74
+text = "Creature detail"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics"]
+margin_left = 237.0
+margin_right = 397.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Gameplay" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
 visible = false
@@ -191,7 +250,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
+[node name="CheckboxButton" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
 margin_left = 198.0
 margin_right = 510.0
 margin_bottom = 28.0
@@ -705,7 +764,7 @@ __meta__ = {
 
 [node name="Bottom" type="Control" parent="Window/UiArea"]
 margin_top = 300.0
-margin_right = 520.0
+margin_right = 570.0
 margin_bottom = 350.0
 rect_min_size = Vector2( 0, 50 )
 __meta__ = {
@@ -751,7 +810,27 @@ text = "Quit"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/OptionButton" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
+
+[node name="SettingsWarning" type="Label" parent="Window/UiArea/Bottom"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -200.0
+margin_top = -19.0
+margin_right = -20.0
+margin_bottom = 20.0
+theme = ExtResource( 20 )
+text = "* Your settings will take effect in the next scene."
+align = 2
+valign = 1
+autowrap = true
+script = ExtResource( 21 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics" method="_on_OptionButton_item_selected"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/CheckboxButton" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
 [connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/Scheme" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/FatFinger" method="_on_OptionButton_item_selected"]

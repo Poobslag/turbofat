@@ -10,7 +10,7 @@ By default, Godot uses node names for tab titles. Node names don't get extracted
 with gettext. Explicitly setting the tab titles addresses both of these problems.
 """
 func _ready() -> void:
-	set_tab_title(0, tr("Volume"))
+	set_tab_title(0, tr("Sound + Graphics"))
 	set_tab_title(1, tr("Gameplay"))
 	set_tab_title(2, tr("Controls"))
 	set_tab_title(3, tr("Touch"))

@@ -18,6 +18,9 @@ const SCENE_PUZZLE := "res://src/main/puzzle/Puzzle.tscn"
 # cutscene demo; only used during development
 const SCENE_CUTSCENE_DEMO := "res://src/demo/world/CutsceneDemo.tscn"
 
+# The scale of the TextureRect the creature is rendered to
+const CREATURE_SCALE := 0.4
+
 # weighted distribution of 'fatnesses' in the range [1.0, 10.0]. most creatures are skinny.
 const FATNESSES := [
 	1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0,
