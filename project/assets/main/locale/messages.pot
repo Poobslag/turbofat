@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-06 13:15-0500\n"
+"POT-Creation-Date: 2021-03-25 17:22-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1023,181 +1023,181 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1358
-#: project/src/main/editor/puzzle/LevelEditor.tscn:382
+#: project/src/main/editor/creature/CreatureEditor.tscn:1316
+#: project/src/main/editor/puzzle/LevelEditor.tscn:383
 #: project/src/main/puzzle/PuzzleMessages.tscn:68
-#: project/src/main/ui/menu/PracticeMenu.tscn:270
+#: project/src/main/ui/menu/PracticeMenu.tscn:271
 #: project/src/main/ui/menu/SystemButtons.tscn:30
 msgid "Settings"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1371
-#: project/src/main/editor/puzzle/LevelEditor.tscn:393
-#: project/src/main/ui/CreatureStressTest.tscn:95
+#: project/src/main/editor/creature/CreatureEditor.tscn:1329
+#: project/src/main/editor/puzzle/LevelEditor.tscn:394
+#: project/src/main/ui/CreatureStressTest.tscn:96
 #: project/src/main/ui/SettingsMenu.tscn:750
-#: project/src/main/ui/menu/PracticeMenu.tscn:285
+#: project/src/main/ui/menu/PracticeMenu.tscn:286
 #: project/src/main/ui/menu/SystemButtons.tscn:46
 msgid "Quit"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1397
+#: project/src/main/editor/creature/CreatureEditor.tscn:1355
 msgid "Reroll (100%)"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1475
+#: project/src/main/editor/creature/CreatureEditor.tscn:1433
 msgid "All Colors"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1483
+#: project/src/main/editor/creature/CreatureEditor.tscn:1441
 msgid "Main Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1491
+#: project/src/main/editor/creature/CreatureEditor.tscn:1449
 msgid "Line Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1499
-#: project/src/main/editor/creature/CreatureEditor.tscn:1775
+#: project/src/main/editor/creature/CreatureEditor.tscn:1457
+#: project/src/main/editor/creature/CreatureEditor.tscn:1733
 msgid "Body"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1507
-#: project/src/main/editor/creature/CreatureEditor.tscn:1781
+#: project/src/main/editor/creature/CreatureEditor.tscn:1465
+#: project/src/main/editor/creature/CreatureEditor.tscn:1739
 msgid "Face"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1515
-#: project/src/main/editor/creature/CreatureEditor.tscn:1793
+#: project/src/main/editor/creature/CreatureEditor.tscn:1473
+#: project/src/main/editor/creature/CreatureEditor.tscn:1751
 msgid "Eye"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1529
-#: project/src/main/editor/creature/CreatureEditor.tscn:1807
+#: project/src/main/editor/creature/CreatureEditor.tscn:1487
+#: project/src/main/editor/creature/CreatureEditor.tscn:1765
 msgid "Nose"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1537
-#: project/src/main/editor/creature/CreatureEditor.tscn:1813
+#: project/src/main/editor/creature/CreatureEditor.tscn:1495
+#: project/src/main/editor/creature/CreatureEditor.tscn:1771
 msgid "Mouth"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1545
-#: project/src/main/editor/creature/CreatureEditor.tscn:1819
+#: project/src/main/editor/creature/CreatureEditor.tscn:1503
+#: project/src/main/editor/creature/CreatureEditor.tscn:1777
 msgid "Cheek"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1553
-#: project/src/main/editor/creature/CreatureEditor.tscn:1831
+#: project/src/main/editor/creature/CreatureEditor.tscn:1511
+#: project/src/main/editor/creature/CreatureEditor.tscn:1789
 msgid "Ear"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1561
+#: project/src/main/editor/creature/CreatureEditor.tscn:1519
 msgid "Horn Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1569
-#: project/src/main/editor/creature/CreatureEditor.tscn:1845
+#: project/src/main/editor/creature/CreatureEditor.tscn:1527
+#: project/src/main/editor/creature/CreatureEditor.tscn:1803
 msgid "Forehead"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1577
-#: project/src/main/editor/creature/CreatureEditor.tscn:1857
+#: project/src/main/editor/creature/CreatureEditor.tscn:1535
+#: project/src/main/editor/creature/CreatureEditor.tscn:1815
 msgid "Hair"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1585
+#: project/src/main/editor/creature/CreatureEditor.tscn:1543
 msgid "Hair Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1593
-#: project/src/main/editor/creature/CreatureEditor.tscn:1897
+#: project/src/main/editor/creature/CreatureEditor.tscn:1551
+#: project/src/main/editor/creature/CreatureEditor.tscn:1855
 msgid "Tail"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1601
-#: project/src/main/editor/creature/CreatureEditor.tscn:1877
+#: project/src/main/editor/creature/CreatureEditor.tscn:1559
+#: project/src/main/editor/creature/CreatureEditor.tscn:1835
 msgid "Belly"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1609
+#: project/src/main/editor/creature/CreatureEditor.tscn:1567
 msgid "Belly Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1617
+#: project/src/main/editor/creature/CreatureEditor.tscn:1575
 msgid "Bellybutton"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1631
-#: project/src/main/editor/creature/CreatureEditor.tscn:1911
+#: project/src/main/editor/creature/CreatureEditor.tscn:1589
+#: project/src/main/editor/creature/CreatureEditor.tscn:1869
 msgid "Accessory"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1639
-#: project/src/main/editor/creature/CreatureEditor.tscn:1917
+#: project/src/main/editor/creature/CreatureEditor.tscn:1597
+#: project/src/main/editor/creature/CreatureEditor.tscn:1875
 msgid "Collar"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1647
+#: project/src/main/editor/creature/CreatureEditor.tscn:1605
 msgid "Cloth Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1655
+#: project/src/main/editor/creature/CreatureEditor.tscn:1613
 msgid "Glass Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1663
+#: project/src/main/editor/creature/CreatureEditor.tscn:1621
 msgid "Plastic Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1687
-#: project/src/main/editor/creature/CreatureEditor.tscn:1967
+#: project/src/main/editor/creature/CreatureEditor.tscn:1645
+#: project/src/main/editor/creature/CreatureEditor.tscn:1925
 msgid "Import"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1699
-#: project/src/main/editor/creature/CreatureEditor.tscn:1979
+#: project/src/main/editor/creature/CreatureEditor.tscn:1657
+#: project/src/main/editor/creature/CreatureEditor.tscn:1937
 msgid "Export"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1711
-#: project/src/main/editor/creature/CreatureEditor.tscn:1991
-#: project/src/main/editor/puzzle/LevelEditor.tscn:341
+#: project/src/main/editor/creature/CreatureEditor.tscn:1669
+#: project/src/main/editor/creature/CreatureEditor.tscn:1949
+#: project/src/main/editor/puzzle/LevelEditor.tscn:342
 msgid "Save"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1759
+#: project/src/main/editor/creature/CreatureEditor.tscn:1717
 msgid "Name"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1769
+#: project/src/main/editor/creature/CreatureEditor.tscn:1727
 msgid "Overall Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1801
-#: project/src/main/editor/creature/CreatureEditor.tscn:1839
-#: project/src/main/editor/creature/CreatureEditor.tscn:1865
-#: project/src/main/editor/creature/CreatureEditor.tscn:1891
+#: project/src/main/editor/creature/CreatureEditor.tscn:1759
+#: project/src/main/editor/creature/CreatureEditor.tscn:1797
+#: project/src/main/editor/creature/CreatureEditor.tscn:1823
+#: project/src/main/editor/creature/CreatureEditor.tscn:1849
 msgid "Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1883
+#: project/src/main/editor/creature/CreatureEditor.tscn:1841
 msgid "Button"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1903
+#: project/src/main/editor/creature/CreatureEditor.tscn:1861
 #: project/src/main/ui/SettingsMenu.tscn:543
 msgid "Size"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1929
+#: project/src/main/editor/creature/CreatureEditor.tscn:1887
 msgid "Cloth"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1935
+#: project/src/main/editor/creature/CreatureEditor.tscn:1893
 msgid "Glass"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1943
+#: project/src/main/editor/creature/CreatureEditor.tscn:1901
 msgid "Plastic"
 msgstr ""
 
@@ -1227,23 +1227,23 @@ msgstr ""
 msgid "Size:"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:312
+#: project/src/main/editor/puzzle/LevelEditor.tscn:313
 msgid "default"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:325
+#: project/src/main/editor/puzzle/LevelEditor.tscn:326
 msgid "Open File"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:333
+#: project/src/main/editor/puzzle/LevelEditor.tscn:334
 msgid "Open Resource"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:357
+#: project/src/main/editor/puzzle/LevelEditor.tscn:358
 msgid "Test"
 msgstr ""
 
-#: project/src/main/editor/puzzle/LevelEditor.tscn:368
+#: project/src/main/editor/puzzle/LevelEditor.tscn:369
 msgid "abc"
 msgstr ""
 
@@ -1328,15 +1328,15 @@ msgstr ""
 msgid "3x"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:364
+#: project/src/main/puzzle/Puzzle.tscn:368
 msgid "Goal"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:377
+#: project/src/main/puzzle/Puzzle.tscn:381
 msgid "10"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:401
+#: project/src/main/puzzle/Puzzle.tscn:405
 msgid "abcd"
 msgstr ""
 
@@ -1345,7 +1345,7 @@ msgid "3"
 msgstr ""
 
 #: project/src/main/puzzle/PuzzleMessages.tscn:56
-#: project/src/main/ui/menu/PracticeMenu.tscn:257
+#: project/src/main/ui/menu/PracticeMenu.tscn:258
 msgid "Start"
 msgstr ""
 
@@ -1367,23 +1367,23 @@ msgstr ""
 msgid "+¥55"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:26
+#: project/src/main/puzzle/milestone-hud.gd:30
 msgid "Customers"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:28
+#: project/src/main/puzzle/milestone-hud.gd:32
 msgid "Lines"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:30
+#: project/src/main/puzzle/milestone-hud.gd:34
 msgid "Pieces"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:32
+#: project/src/main/puzzle/milestone-hud.gd:36
 msgid "Money"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:34
+#: project/src/main/puzzle/milestone-hud.gd:38
 msgid "Time"
 msgstr ""
 
@@ -1417,12 +1417,12 @@ msgid "Retry"
 msgstr ""
 
 #: project/src/main/puzzle/puzzle-messages.gd:146
-#: project/src/main/ui/menu/MainMenu.tscn:87
+#: project/src/main/ui/menu/MainMenu.tscn:88
 msgid "Continue"
 msgstr ""
 
 #: project/src/main/puzzle/results-hud.gd:8
-msgid "Build a snack box by arranging a pentomino and a quadromino into a square!"
+msgid "Build a snack box by arranging a pentomino and a tetromino into a square!"
 msgstr ""
 
 #: project/src/main/puzzle/results-hud.gd:9
@@ -1430,7 +1430,7 @@ msgid "Build a cake box by arranging 3 pentominos into a rectangle!"
 msgstr ""
 
 #: project/src/main/puzzle/results-hud.gd:10
-msgid "Build a cake box by arranging 3 quadrominos into a rectangle!"
+msgid "Build a cake box by arranging 3 tetrominos into a rectangle!"
 msgstr ""
 
 #: project/src/main/puzzle/results-hud.gd:11
@@ -1859,6 +1859,30 @@ msgstr ""
 msgid "¥120 is just a number I pulled out of my, um. ...Out of thin air."
 msgstr ""
 
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:33
+msgid "Okay, I get it!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:33
+msgid "...Can you go into more detail?"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:34
+msgid "Yes, I see!"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:34
+msgid "What do you mean by that?"
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:35
+msgid "Oh! That's easy."
+msgstr ""
+
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:35
+msgid "Hmm, maybe one more time?"
+msgstr ""
+
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:41
 msgid ""
 "Today we'll cover some advanced squish move techniques!\n"
@@ -2017,23 +2041,23 @@ msgid ""
 "I'm sure you'll think of a clever way to clean this up, too."
 msgstr ""
 
-#: project/src/main/ui/CreatureStressTest.tscn:41
+#: project/src/main/ui/CreatureStressTest.tscn:42
 msgid "+10"
 msgstr ""
 
-#: project/src/main/ui/CreatureStressTest.tscn:51
+#: project/src/main/ui/CreatureStressTest.tscn:52
 msgid "+1"
 msgstr ""
 
-#: project/src/main/ui/CreatureStressTest.tscn:61
+#: project/src/main/ui/CreatureStressTest.tscn:62
 msgid "2"
 msgstr ""
 
-#: project/src/main/ui/CreatureStressTest.tscn:69
+#: project/src/main/ui/CreatureStressTest.tscn:70
 msgid "-1"
 msgstr ""
 
-#: project/src/main/ui/CreatureStressTest.tscn:79
+#: project/src/main/ui/CreatureStressTest.tscn:80
 msgid "-10"
 msgstr ""
 
@@ -2253,23 +2277,23 @@ msgstr ""
 msgid "All-time Best"
 msgstr ""
 
-#: project/src/main/ui/settings-tab-container.gd:10
+#: project/src/main/ui/settings-tab-container.gd:13
 msgid "Volume"
 msgstr ""
 
-#: project/src/main/ui/settings-tab-container.gd:11
+#: project/src/main/ui/settings-tab-container.gd:14
 msgid "Gameplay"
 msgstr ""
 
-#: project/src/main/ui/settings-tab-container.gd:12
+#: project/src/main/ui/settings-tab-container.gd:15
 msgid "Controls"
 msgstr ""
 
-#: project/src/main/ui/settings-tab-container.gd:13
+#: project/src/main/ui/settings-tab-container.gd:16
 msgid "Touch"
 msgstr ""
 
-#: project/src/main/ui/settings-tab-container.gd:14
+#: project/src/main/ui/settings-tab-container.gd:17
 msgid "Miscellaneous"
 msgstr ""
 
@@ -2321,7 +2345,7 @@ msgstr ""
 msgid "Mute"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:234
+#: project/src/main/ui/menu/PracticeMenu.tscn:235
 #: project/src/main/ui/volume-setting-control.gd:56
 msgid "Master"
 msgstr ""
@@ -2391,85 +2415,85 @@ msgstr ""
 msgid "Just getting started"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:51
-#: project/src/main/ui/menu/SplashScreen.tscn:48
+#: project/src/main/ui/menu/MainMenu.tscn:52
+#: project/src/main/ui/menu/SplashScreen.tscn:49
 msgid "turbo fat"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:75
-#: project/src/main/ui/menu/SplashScreen.tscn:68
+#: project/src/main/ui/menu/MainMenu.tscn:76
+#: project/src/main/ui/menu/SplashScreen.tscn:69
 msgid "Play"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:98
+#: project/src/main/ui/menu/MainMenu.tscn:99
 msgid "Practice"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:109
+#: project/src/main/ui/menu/MainMenu.tscn:110
 msgid "Tutorials"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:129
+#: project/src/main/ui/menu/MainMenu.tscn:130
 msgid "Create"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:141
+#: project/src/main/ui/menu/MainMenu.tscn:142
 msgid "Levels"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:152
+#: project/src/main/ui/menu/MainMenu.tscn:153
 msgid "Creatures"
 msgstr ""
 
-#: project/src/main/ui/menu/MainMenu.tscn:178
+#: project/src/main/ui/menu/MainMenu.tscn:179
 msgid "Stress Test"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:67
+#: project/src/main/ui/menu/PracticeMenu.tscn:68
 msgid "Mode"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:97
+#: project/src/main/ui/menu/PracticeMenu.tscn:98
 msgid "Survival"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:110
+#: project/src/main/ui/menu/PracticeMenu.tscn:111
 msgid "Ultra"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:123
+#: project/src/main/ui/menu/PracticeMenu.tscn:124
 msgid "Sprint"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:136
+#: project/src/main/ui/menu/PracticeMenu.tscn:137
 msgid "Rank"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:149
+#: project/src/main/ui/menu/PracticeMenu.tscn:150
 msgid "Sandbox"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:158
+#: project/src/main/ui/menu/PracticeMenu.tscn:159
 msgid "Score 200 points as quickly as possible!"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:178
+#: project/src/main/ui/menu/PracticeMenu.tscn:179
 msgid "Difficulty"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:210
+#: project/src/main/ui/menu/PracticeMenu.tscn:211
 msgid "Normal"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:217
+#: project/src/main/ui/menu/PracticeMenu.tscn:218
 msgid "Hard"
 msgstr ""
 
-#: project/src/main/ui/menu/PracticeMenu.tscn:225
+#: project/src/main/ui/menu/PracticeMenu.tscn:226
 msgid "Expert"
 msgstr ""
 
-#: project/src/main/ui/menu/SplashScreen.tscn:145
+#: project/src/main/ui/menu/SplashScreen.tscn:146
 msgid "Well, crap"
 msgstr ""
 
