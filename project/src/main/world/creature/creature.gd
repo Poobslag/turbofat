@@ -43,6 +43,10 @@ export (String) var creature_id: String setget set_creature_id
 export (Dictionary) var dna: Dictionary setget set_dna
 export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 
+# if 'true' the creature will only use the fatness in the creature definition,
+# ignoring any accrued fatness from puzzles
+export (bool) var suppress_fatness: bool = false
+
 # how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
 export (int) var elevation: int setget set_elevation
 
@@ -341,7 +345,7 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 	min_fatness = new_creature_def.min_fatness
 	weight_gain_scale = new_creature_def.weight_gain_scale
 	metabolism_scale = new_creature_def.metabolism_scale
-	if PlayerData.creature_library.has_fatness(creature_id):
+	if PlayerData.creature_library.has_fatness(creature_id) and not suppress_fatness:
 		set_fatness(PlayerData.creature_library.get_fatness(creature_id))
 	else:
 		set_fatness(min_fatness)
