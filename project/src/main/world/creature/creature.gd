@@ -14,9 +14,6 @@ signal dna_loaded
 
 signal food_eaten
 
-# The scale of the TextureRect the creature is rendered to
-const TEXTURE_SCALE := 0.4
-
 const IDLE = CreatureVisuals.IDLE
 
 const SOUTHEAST = CreatureOrientation.SOUTHEAST
@@ -91,6 +88,8 @@ var metabolism_scale := 1.0
 # player score is added to this to determine their new fatness
 var base_fatness := 1.0
 
+var creature_visuals: CreatureVisuals
+
 # 'true' if the creature is being slowed by friction while stopping or turning
 var _friction := false
 
@@ -102,13 +101,7 @@ var _non_iso_velocity := Vector2.ZERO
 var _run_anim_speed := 1.0
 
 # handles animations and audio/visual effects for a creature
-onready var creature_visuals: CreatureVisuals = $CreatureOutline/Viewport/Visuals
-
-# rendering of a creature with an outline shader applied
-onready var _texture_rect: TextureRect = $CreatureOutline/TextureRect
-
-# holder for the outlined creature. also manages the creature's Z coordinate when they're elevated
-onready var _creature_outline: Node2D = $CreatureOutline
+var _creature_outline: CreatureOutline
 
 onready var _creature_sfx: CreatureSfx = $CreatureSfx
 onready var _collision_shape: CollisionShape2D = $CollisionShape2D
@@ -118,13 +111,30 @@ onready var _bonk_sound: AudioStreamPlayer2D = $CreatureSfx/BonkSound
 onready var _hop_sound: AudioStreamPlayer2D = $CreatureSfx/HopSound
 
 func _ready() -> void:
-	_texture_rect.rect_scale = Vector2(TEXTURE_SCALE, TEXTURE_SCALE)
+	var creature_outline_scene_path := "res://src/main/world/creature/ViewportCreatureOutline.tscn"
+	if PlayerData.graphics_settings.creature_detail == GraphicsSettings.CreatureDetail.LOW:
+		creature_outline_scene_path = "res://src/main/world/creature/FastCreatureOutline.tscn"
+	var creature_outline_scene: PackedScene = load(creature_outline_scene_path)
+	_creature_outline = creature_outline_scene.instance()
+	add_child(_creature_outline)
+	
+	creature_visuals = $CreatureOutline.creature_visuals
+	creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
+	creature_visuals.connect("dna_loaded", _creature_sfx, "_on_CreatureVisuals_dna_loaded")
+	creature_visuals.connect("food_eaten", self, "_on_CreatureVisuals_food_eaten")
+	creature_visuals.connect("food_eaten", _creature_sfx, "_on_CreatureVisuals_food_eaten")
+	creature_visuals.connect("landed", self, "_on_CreatureVisuals_landed")
+	creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
+	creature_visuals.connect("talking_changed", self, "_on_CreatureVisuals_talking_changed")
+	creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
+	
 	_fade_tween.connect("tween_all_completed", self, "_on_FadeTween_tween_all_completed")
 	if creature_id:
 		_refresh_creature_id()
 	else:
 		refresh_dna()
 	creature_visuals.orientation = orientation
+	_refresh_elevation()
 
 
 func _physics_process(delta: float) -> void:
@@ -150,7 +160,7 @@ func set_suppress_sfx(new_suppress_sfx: bool) -> void:
 
 func set_elevation(new_elevation: int) -> void:
 	elevation = new_elevation
-	$CreatureOutline.position.y = -new_elevation * $CreatureOutline/TextureRect.rect_scale.y
+	_refresh_elevation()
 
 
 func set_comfort(new_comfort: float) -> void:
@@ -377,8 +387,6 @@ func refresh_dna() -> void:
 	if dna:
 		dna = DnaUtils.fill_dna(dna)
 	creature_visuals.dna = dna
-	if dna.has("line_rgb"):
-		_texture_rect.material.set_shader_param("black", Color(dna.line_rgb))
 
 
 """
@@ -461,6 +469,12 @@ func _refresh_creature_id() -> void:
 	var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
 	if new_creature_def:
 		set_creature_def(new_creature_def)
+
+
+func _refresh_elevation() -> void:
+	if not is_inside_tree():
+		return
+	_creature_outline.set_elevation(elevation)
 
 
 func _apply_friction() -> void:

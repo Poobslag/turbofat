@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func create_shadow(creature: Creature) -> void:
 	var creature_shadow: CreatureShadow = CreatureShadowScene.instance()
-	creature_shadow.shadow_scale = creature.scale * Creature.TEXTURE_SCALE
+	creature_shadow.shadow_scale = creature.scale * Global.CREATURE_SCALE
 	add_child(creature_shadow)
 	creature_shadow.creature_path = creature_shadow.get_path_to(creature)
 	creature.connect("tree_exited", self, "_on_Creature_tree_exited", [creature_shadow])

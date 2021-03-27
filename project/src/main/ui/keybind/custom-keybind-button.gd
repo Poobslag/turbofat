@@ -6,8 +6,8 @@ A button which shows the player's custom keybind, and lets them rebind a key.
 # emitted when the player starts or stops rebinding a key
 signal awaiting_changed(awaiting)
 
-export (String) var action_name
-export (int) var action_index
+export (String) var action_name: String
+export (int) var action_index: int
 
 # 'true' if this button is waiting for the player to press a key
 var awaiting := false
@@ -59,7 +59,7 @@ Updates the button's text based on the player's current keybinds.
 """
 func _refresh_text() -> void:
 	var new_text := ""
-	var json := PlayerData.keybind_settings.get_custom_keybind(action_name, action_index)
+	var json: Dictionary = PlayerData.keybind_settings.get_custom_keybind(action_name, action_index)
 	if json:
 		new_text = tr(KeybindManager.pretty_string(json))
 	text = new_text

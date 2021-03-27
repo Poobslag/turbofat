@@ -159,6 +159,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-orientation.gd"
 }, {
+"base": "Node2D",
+"class": "CreatureOutline",
+"language": "GDScript",
+"path": "res://src/main/world/creature/creature-outline.gd"
+}, {
 "base": "PackedSprite",
 "class": "CreaturePackedSprite",
 "language": "GDScript",
@@ -248,6 +253,11 @@ _global_script_classes=[ {
 "class": "GameplaySettings",
 "language": "GDScript",
 "path": "res://src/main/gameplay-settings.gd"
+}, {
+"base": "Reference",
+"class": "GraphicsSettings",
+"language": "GDScript",
+"path": "res://src/main/graphics-settings.gd"
 }, {
 "base": "Sprite",
 "class": "HeadBobber",
@@ -745,6 +755,7 @@ _global_script_class_icons={
 "CreatureEditor": "",
 "CreatureLibrary": "",
 "CreatureOrientation": "",
+"CreatureOutline": "",
 "CreaturePackedSprite": "",
 "CreaturePaletteDemo": "",
 "CreatureQueue": "",
@@ -763,6 +774,7 @@ _global_script_class_icons={
 "FrostingGlob": "",
 "FrostingViewports": "",
 "GameplaySettings": "",
+"GraphicsSettings": "",
 "HeadBobber": "",
 "HighScoreTable": "",
 "HookableGradeLabel": "",

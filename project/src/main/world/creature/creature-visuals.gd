@@ -21,6 +21,9 @@ signal food_eaten
 # emitted when a creature's textures and animations are loaded
 signal dna_loaded
 
+# emitted when a creature is assigned new set of dna
+signal dna_changed(dna)
+
 # emitted during the 'run' animation when the creature touches the ground
 # warning-ignore:unused_signal
 signal landed
@@ -286,6 +289,7 @@ func set_dna(new_dna: Dictionary) -> void:
 	# any AnimationPlayers are stopped, otherwise old players will continue controlling the sprites
 	$DnaLoader.unload_dna()
 	$DnaLoader.load_dna()
+	emit_signal("dna_changed", dna)
 
 
 """

@@ -83,6 +83,7 @@ func save_player_data() -> void:
 	save_json.append(generic_data("version", PLAYER_DATA_VERSION).to_json_dict())
 	save_json.append(generic_data("player_info", {"money": PlayerData.money}).to_json_dict())
 	save_json.append(generic_data("gameplay_settings", PlayerData.gameplay_settings.to_json_dict()).to_json_dict())
+	save_json.append(generic_data("graphics_settings", PlayerData.graphics_settings.to_json_dict()).to_json_dict())
 	save_json.append(generic_data("volume_settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
 	save_json.append(generic_data("touch_settings", PlayerData.touch_settings.to_json_dict()).to_json_dict())
 	save_json.append(generic_data("keybind_settings", PlayerData.keybind_settings.to_json_dict()).to_json_dict())
@@ -197,6 +198,9 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"gameplay_settings":
 			var value: Dictionary = json_value
 			PlayerData.gameplay_settings.from_json_dict(value)
+		"graphics_settings":
+			var value: Dictionary = json_value
+			PlayerData.graphics_settings.from_json_dict(value)
 		"volume_settings":
 			var value: Dictionary = json_value
 			PlayerData.volume_settings.from_json_dict(value)

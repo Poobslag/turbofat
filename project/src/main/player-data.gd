@@ -17,6 +17,7 @@ var creature_library := CreatureLibrary.new()
 var creature_queue := CreatureQueue.new()
 
 var gameplay_settings := GameplaySettings.new()
+var graphics_settings := GraphicsSettings.new()
 var volume_settings := VolumeSettings.new()
 var touch_settings := TouchSettings.new()
 var keybind_settings := KeybindSettings.new()

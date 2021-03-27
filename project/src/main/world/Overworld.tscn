@@ -154,6 +154,9 @@ creature_id = "#player#"
 dna = {
 
 }
+suppress_sfx = false
+elevation = 0
+orientation = 0
 
 [node name="Bort" parent="World/Obstacles" groups=[
 "chattables",
@@ -284,6 +287,9 @@ shape = SubResource( 4 )
 
 [node name="OverworldExit" parent="World/Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 700, 1201 )
+exit_direction = 0
+player_spawn_id = ""
+sensei_spawn_id = ""
 
 [node name="MarshCrystal" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 399, 700 )
