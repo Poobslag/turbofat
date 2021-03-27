@@ -258,6 +258,7 @@ dna = {
 "tail": "1"
 }
 suppress_sfx = true
+suppress_fatness = true
 
 [node name="NeCreature" parent="World/Creatures" instance=ExtResource( 1 )]
 position = Vector2( 384, 244 )
@@ -426,6 +427,7 @@ dna = {
 "tail": "1"
 }
 suppress_sfx = true
+suppress_fatness = true
 
 [node name="ECreature" parent="World/Creatures" instance=ExtResource( 1 )]
 position = Vector2( 464, 384 )
@@ -598,6 +600,7 @@ dna = {
 "tail": "1"
 }
 suppress_sfx = true
+suppress_fatness = true
 
 [node name="WCreature" parent="World/Creatures" instance=ExtResource( 1 )]
 position = Vector2( 84, 384 )
@@ -768,6 +771,7 @@ dna = {
 "tail": "1"
 }
 suppress_sfx = true
+suppress_fatness = true
 
 [node name="CenterCreature" parent="World/Creatures" instance=ExtResource( 1 )]
 position = Vector2( 260, 400 )
@@ -944,6 +948,7 @@ dna = {
 "tail": "1"
 }
 suppress_sfx = true
+suppress_fatness = true
 
 [node name="SwCreature" parent="World/Creatures" instance=ExtResource( 1 )]
 position = Vector2( 164, 524 )
@@ -1112,6 +1117,7 @@ dna = {
 "tail": "1"
 }
 suppress_sfx = true
+suppress_fatness = true
 
 [node name="SeCreature" parent="World/Creatures" instance=ExtResource( 1 )]
 position = Vector2( 384, 524 )
@@ -1280,6 +1286,7 @@ dna = {
 "tail": "1"
 }
 suppress_sfx = true
+suppress_fatness = true
 
 [node name="Ui" type="CanvasLayer" parent="."]
 
