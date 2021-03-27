@@ -31,6 +31,9 @@ Parameters:
 """
 func push_trail(path: String, skip_transition: bool = false) -> void:
 	if skip_transition or not get_tree().get_nodes_in_group("scene_transition_covers"):
+		# explicitly assign fading to false in case the user clicks a button while still fading in
+		fading = false
+		
 		Breadcrumb.push_trail(path)
 	else:
 		_fade_out("push_trail", [path])
