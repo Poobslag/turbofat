@@ -60,6 +60,9 @@ func _on_Settings_pressed() -> void:
 
 
 func _on_Back_pressed() -> void:
+	# disconnect signal to prevent the back button from changing its label
+	CurrentLevel.disconnect("level_state_changed", self, "_on_Level_level_state_changed")
+	
 	emit_signal("back_button_pressed")
 
 

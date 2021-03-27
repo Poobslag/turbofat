@@ -7,11 +7,6 @@ Includes buttons for starting a new game, launching the level editor, and exitin
 """
 
 func _ready() -> void:
-	if not PlayerData.level_history.finished_levels.has(LevelLibrary.BEGINNER_TUTORIAL):
-		# if the player fails/quits the first tutorial, they're redirected to the splash screen
-		Breadcrumb.trail = [Global.SCENE_SPLASH]
-		_launch_tutorial()
-	
 	ResourceCache.substitute_singletons()
 	
 	# Fade in music when redirected from a scene with no music, such as the level editor
@@ -24,12 +19,6 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	ResourceCache.remove_singletons()
-
-
-func _launch_tutorial() -> void:
-	PlayerData.creature_queue.clear()
-	CurrentLevel.set_launched_level(LevelLibrary.BEGINNER_TUTORIAL)
-	CurrentLevel.push_level_trail()
 
 
 func _on_System_quit_pressed() -> void:
