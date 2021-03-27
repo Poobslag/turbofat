@@ -3,8 +3,17 @@ class_name GameplaySettings
 Manages settings which control the gameplay.
 """
 
+signal ghost_piece_changed(value)
+
 # 'true' if a ghost piece should be shown during the puzzle sections.
-var ghost_piece := true
+var ghost_piece := true setget set_ghost_piece
+
+func set_ghost_piece(new_ghost_piece: bool) -> void:
+	if ghost_piece == new_ghost_piece:
+		return
+	ghost_piece = new_ghost_piece
+	emit_signal("ghost_piece_changed", new_ghost_piece)
+
 
 """
 Resets the gameplay settings to their default values.
