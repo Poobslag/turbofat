@@ -29,4 +29,4 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	ghost_piece = json.get("ghost_piece", true)
+	set_ghost_piece(json.get("ghost_piece", true))
