@@ -60,22 +60,30 @@ func get_frame_count() -> int:
 
 
 func set_rect_size(new_rect_size: Vector2) -> void:
+	if rect_size == new_rect_size:
+		return
 	rect_size = new_rect_size
 	update()
 
 
 func set_frame(new_frame: int) -> void:
+	if frame == new_frame:
+		return
 	frame = new_frame
 	update()
 	emit_signal("frame_changed")
 
 
 func set_centered(new_centered: bool) -> void:
+	if centered == new_centered:
+		return
 	centered = new_centered
 	update()
 
 
 func set_offset(new_offset: Vector2) -> void:
+	if offset == new_offset:
+		return
 	offset = new_offset
 	update()
 
