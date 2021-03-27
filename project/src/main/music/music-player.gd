@@ -22,7 +22,7 @@ var current_bgm: CheckpointSong
 # value: desired volume_db for playing music
 var _max_volume_db_by_bgm := {}
 
-var all_bgms
+var all_bgms: Array
 
 onready var _chill_bgms := [
 		$ChubHub, $DessertCourse, $HarderButter,
@@ -109,9 +109,9 @@ func play_bgm(new_bgm: CheckpointSong, from_position: float = -1.0) -> void:
 	if old_bgm == new_bgm:
 		return
 	
+	if current_bgm:
+		stop()
 	current_bgm = new_bgm
-	if old_bgm:
-		old_bgm.stop()
 	current_bgm.volume_db = _max_volume_db_by_bgm[current_bgm.name]
 	current_bgm.play(from_position)
 	emit_signal("current_bgm_changed", current_bgm)
