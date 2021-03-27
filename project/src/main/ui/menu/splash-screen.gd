@@ -21,8 +21,17 @@ func _exit_tree() -> void:
 	ResourceCache.remove_singletons()
 
 
+func _launch_tutorial() -> void:
+	PlayerData.creature_queue.clear()
+	CurrentLevel.set_launched_level(LevelLibrary.BEGINNER_TUTORIAL)
+	CurrentLevel.push_level_trail()
+
+
 func _on_Play_pressed() -> void:
-	SceneTransition.push_trail(Global.SCENE_MAIN_MENU, true)
+	if not PlayerData.level_history.finished_levels.has(LevelLibrary.BEGINNER_TUTORIAL):
+		_launch_tutorial()
+	else:
+		SceneTransition.push_trail(Global.SCENE_MAIN_MENU, true)
 
 
 func _on_System_quit_pressed() -> void:
