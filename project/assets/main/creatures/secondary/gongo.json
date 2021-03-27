@@ -1,0 +1,44 @@
+{
+  "version": "19dd",
+  "id": "",
+  "name": "Gongo",
+  "short_name": "Gongo",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "12",
+    "eye": "4",
+    "hair": "0",
+    "head": "2",
+    "horn": "2",
+    "mouth": "3",
+    "nose": "3",
+    "tail": "3",
+    "accessory": "0",
+    "line_rgb": "41281e",
+    "body_rgb": "3b494f",
+    "belly_rgb": "7b8780",
+    "cloth_rgb": "ad1000",
+    "glass_rgb": "690a00",
+    "plastic_rgb": "252423",
+    "hair_rgb": "1f1e1e",
+    "eye_rgb": "ad1000 b73a36",
+    "horn_rgb": "282727"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "3b494f"
+  },
+  "dialog": {
+
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1
+}
