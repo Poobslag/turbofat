@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=2]
+[gd_scene load_steps=79 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -55,6 +55,7 @@
 [ext_resource path="res://assets/main/world/chef/go-voice0.wav" type="AudioStream" id=53]
 [ext_resource path="res://assets/main/world/chef/go-voice1.wav" type="AudioStream" id=54]
 [ext_resource path="res://assets/main/world/chef/go-voice2.wav" type="AudioStream" id=55]
+[ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=56]
 [ext_resource path="res://assets/main/world/chef/gameover-voice1.wav" type="AudioStream" id=57]
 [ext_resource path="res://src/main/puzzle/Score.tscn" type="PackedScene" id=61]
 [ext_resource path="res://src/main/puzzle/PuzzleMessages.tscn" type="PackedScene" id=62]
@@ -415,6 +416,9 @@ puzzle_path = NodePath("../../..")
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 
+[node name="FpsLabel" parent="Hud" instance=ExtResource( 56 )]
+visible = false
+
 [node name="SettingsMenu" parent="." instance=ExtResource( 26 )]
 
 [node name="TopOutTracker" type="Node" parent="."]
@@ -519,8 +523,8 @@ script = ExtResource( 19 )
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 50 )]
 [connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
@@ -541,3 +545,4 @@ script = ExtResource( 19 )
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
