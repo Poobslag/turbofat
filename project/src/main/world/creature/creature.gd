@@ -105,6 +105,7 @@ var _creature_outline: CreatureOutline
 
 onready var _creature_sfx: CreatureSfx = $CreatureSfx
 onready var _collision_shape: CollisionShape2D = $CollisionShape2D
+onready var _chat_icon_hook: RemoteTransform2D = $ChatIconHook
 onready var _fade_tween: Tween = $FadeTween
 
 onready var _bonk_sound: AudioStreamPlayer2D = $CreatureSfx/BonkSound
@@ -119,6 +120,8 @@ func _ready() -> void:
 	add_child(_creature_outline)
 	
 	creature_visuals = $CreatureOutline.creature_visuals
+	_chat_icon_hook.creature_visuals_path = _chat_icon_hook.get_path_to(creature_visuals)
+	_collision_shape.creature_visuals_path = _collision_shape.get_path_to(creature_visuals)
 	creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
 	creature_visuals.connect("dna_loaded", _creature_sfx, "_on_CreatureVisuals_dna_loaded")
 	creature_visuals.connect("food_eaten", self, "_on_CreatureVisuals_food_eaten")
