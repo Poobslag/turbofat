@@ -83,7 +83,7 @@ __meta__ = {
 
 [node name="World" type="Node" parent="."]
 script = ExtResource( 4 )
-creature_shadows_path = NodePath("Ground/Shadows/Viewport/CreatureShadows")
+creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
 chat_icons_path = NodePath("ChatIcons")
 CreaturePackedScene = ExtResource( 19 )
 
@@ -106,8 +106,9 @@ size = Vector2( 1024, 600 )
 transparent_bg = true
 usage = 0
 
-[node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport"]
-scale = Vector2( 1.25, 1.25 )
+[node name="ViewportRoot" type="Node2D" parent="World/Ground/Shadows/Viewport"]
+
+[node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport/ViewportRoot"]
 tile_set = SubResource( 1 )
 cell_size = Vector2( 128, 64 )
 cell_tile_origin = 1
@@ -115,7 +116,7 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( -131070, 0, 0, -65536, 0, 0, -65535, 0, 0, 1, 0, 0, 131067, 0, 0, 131072, 0, 0, 196608, 0, 0, 589827, 0, 0, 655360, 0, 0 )
 script = ExtResource( 38 )
-obstacle_map_path = NodePath("../../../../../../OverworldIndoors/World/Obstacles/ObstacleMap")
+obstacle_map_path = NodePath("../../../../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
 3: Rect2( -1, 0, 3, 1 ),
 4: Rect2( -1, 0, 3, 1 ),
@@ -124,11 +125,9 @@ cell_shadow_mapping = {
 7: Rect2( -1, 0, 3, 1 )
 }
 
-[node name="CreatureShadows" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-scale = Vector2( 2.5, 2.5 )
+[node name="CreatureShadows" parent="World/Ground/Shadows/Viewport/ViewportRoot" instance=ExtResource( 18 )]
 
-[node name="ShadowCasterShadows" type="Node2D" parent="World/Ground/Shadows/Viewport"]
-scale = Vector2( 2.5, 2.5 )
+[node name="ShadowCasterShadows" type="Node2D" parent="World/Ground/Shadows/Viewport/ViewportRoot"]
 script = ExtResource( 34 )
 OvalShadowScene = ExtResource( 30 )
 
