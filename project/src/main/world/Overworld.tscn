@@ -75,7 +75,7 @@ __meta__ = {
 
 [node name="World" type="Node" parent="."]
 script = ExtResource( 51 )
-creature_shadows_path = NodePath("Ground/Shadows/Viewport/CreatureShadows")
+creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
 chat_icons_path = NodePath("ChatIcons")
 CreaturePackedScene = ExtResource( 1 )
 
@@ -93,8 +93,9 @@ size = Vector2( 1024, 600 )
 transparent_bg = true
 usage = 0
 
-[node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport"]
-scale = Vector2( 2.5, 2.5 )
+[node name="ViewportRoot" type="Node2D" parent="World/Ground/Shadows/Viewport"]
+
+[node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport/ViewportRoot"]
 mode = 1
 tile_set = SubResource( 1 )
 cell_size = Vector2( 128, 64 )
@@ -103,16 +104,14 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( -131070, 0, 0, -65534, 0, 0, 2, 0, 0, 65538, 0, 0, 131074, 0, 0, 196610, 0, 0 )
 script = ExtResource( 20 )
-obstacle_map_path = NodePath("../../../../Obstacles/ObstacleMap")
+obstacle_map_path = NodePath("../../../../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
 2: Rect2( -5, -2, 11, 5 )
 }
 
-[node name="CreatureShadows" parent="World/Ground/Shadows/Viewport" instance=ExtResource( 18 )]
-scale = Vector2( 2.5, 2.5 )
+[node name="CreatureShadows" parent="World/Ground/Shadows/Viewport/ViewportRoot" instance=ExtResource( 18 )]
 
-[node name="ShadowCasterShadows" type="Node2D" parent="World/Ground/Shadows/Viewport"]
-scale = Vector2( 2.5, 2.5 )
+[node name="ShadowCasterShadows" type="Node2D" parent="World/Ground/Shadows/Viewport/ViewportRoot"]
 script = ExtResource( 72 )
 OvalShadowScene = ExtResource( 73 )
 
@@ -121,17 +120,12 @@ modulate = Color( 1, 1, 1, 0.501961 )
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
-rect_scale = Vector2( 0.4, 0.4 )
 texture = SubResource( 2 )
 flip_v = true
 script = ExtResource( 22 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Timer" type="Timer" parent="World/Ground"]
-one_shot = true
-autostart = true
 
 [node name="Obstacles" type="YSort" parent="World"]
 
@@ -154,9 +148,6 @@ creature_id = "#player#"
 dna = {
 
 }
-suppress_sfx = false
-elevation = 0
-orientation = 0
 
 [node name="Bort" parent="World/Obstacles" groups=[
 "chattables",
