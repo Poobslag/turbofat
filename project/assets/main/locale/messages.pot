@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-03-25 17:22-0400\n"
+"POT-Creation-Date: 2021-03-28 20:35-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -1023,7 +1023,7 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1316
+#: project/src/main/editor/creature/CreatureEditor.tscn:1323
 #: project/src/main/editor/puzzle/LevelEditor.tscn:383
 #: project/src/main/puzzle/PuzzleMessages.tscn:68
 #: project/src/main/ui/menu/PracticeMenu.tscn:271
@@ -1031,173 +1031,173 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1329
+#: project/src/main/editor/creature/CreatureEditor.tscn:1336
 #: project/src/main/editor/puzzle/LevelEditor.tscn:394
 #: project/src/main/ui/CreatureStressTest.tscn:96
-#: project/src/main/ui/SettingsMenu.tscn:750
+#: project/src/main/ui/SettingsMenu.tscn:809
 #: project/src/main/ui/menu/PracticeMenu.tscn:286
 #: project/src/main/ui/menu/SystemButtons.tscn:46
 msgid "Quit"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1355
+#: project/src/main/editor/creature/CreatureEditor.tscn:1362
 msgid "Reroll (100%)"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1433
+#: project/src/main/editor/creature/CreatureEditor.tscn:1440
 msgid "All Colors"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1441
+#: project/src/main/editor/creature/CreatureEditor.tscn:1448
 msgid "Main Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1449
+#: project/src/main/editor/creature/CreatureEditor.tscn:1456
 msgid "Line Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1457
-#: project/src/main/editor/creature/CreatureEditor.tscn:1733
+#: project/src/main/editor/creature/CreatureEditor.tscn:1464
+#: project/src/main/editor/creature/CreatureEditor.tscn:1740
 msgid "Body"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1465
-#: project/src/main/editor/creature/CreatureEditor.tscn:1739
+#: project/src/main/editor/creature/CreatureEditor.tscn:1472
+#: project/src/main/editor/creature/CreatureEditor.tscn:1746
 msgid "Face"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1473
-#: project/src/main/editor/creature/CreatureEditor.tscn:1751
+#: project/src/main/editor/creature/CreatureEditor.tscn:1480
+#: project/src/main/editor/creature/CreatureEditor.tscn:1758
 msgid "Eye"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1487
-#: project/src/main/editor/creature/CreatureEditor.tscn:1765
+#: project/src/main/editor/creature/CreatureEditor.tscn:1494
+#: project/src/main/editor/creature/CreatureEditor.tscn:1772
 msgid "Nose"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1495
-#: project/src/main/editor/creature/CreatureEditor.tscn:1771
+#: project/src/main/editor/creature/CreatureEditor.tscn:1502
+#: project/src/main/editor/creature/CreatureEditor.tscn:1778
 msgid "Mouth"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1503
-#: project/src/main/editor/creature/CreatureEditor.tscn:1777
+#: project/src/main/editor/creature/CreatureEditor.tscn:1510
+#: project/src/main/editor/creature/CreatureEditor.tscn:1784
 msgid "Cheek"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1511
-#: project/src/main/editor/creature/CreatureEditor.tscn:1789
+#: project/src/main/editor/creature/CreatureEditor.tscn:1518
+#: project/src/main/editor/creature/CreatureEditor.tscn:1796
 msgid "Ear"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1519
+#: project/src/main/editor/creature/CreatureEditor.tscn:1526
 msgid "Horn Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1527
-#: project/src/main/editor/creature/CreatureEditor.tscn:1803
+#: project/src/main/editor/creature/CreatureEditor.tscn:1534
+#: project/src/main/editor/creature/CreatureEditor.tscn:1810
 msgid "Forehead"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1535
-#: project/src/main/editor/creature/CreatureEditor.tscn:1815
+#: project/src/main/editor/creature/CreatureEditor.tscn:1542
+#: project/src/main/editor/creature/CreatureEditor.tscn:1822
 msgid "Hair"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1543
+#: project/src/main/editor/creature/CreatureEditor.tscn:1550
 msgid "Hair Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1551
-#: project/src/main/editor/creature/CreatureEditor.tscn:1855
+#: project/src/main/editor/creature/CreatureEditor.tscn:1558
+#: project/src/main/editor/creature/CreatureEditor.tscn:1862
 msgid "Tail"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1559
-#: project/src/main/editor/creature/CreatureEditor.tscn:1835
+#: project/src/main/editor/creature/CreatureEditor.tscn:1566
+#: project/src/main/editor/creature/CreatureEditor.tscn:1842
 msgid "Belly"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1567
+#: project/src/main/editor/creature/CreatureEditor.tscn:1574
 msgid "Belly Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1575
+#: project/src/main/editor/creature/CreatureEditor.tscn:1582
 msgid "Bellybutton"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1589
-#: project/src/main/editor/creature/CreatureEditor.tscn:1869
+#: project/src/main/editor/creature/CreatureEditor.tscn:1596
+#: project/src/main/editor/creature/CreatureEditor.tscn:1876
 msgid "Accessory"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1597
-#: project/src/main/editor/creature/CreatureEditor.tscn:1875
+#: project/src/main/editor/creature/CreatureEditor.tscn:1604
+#: project/src/main/editor/creature/CreatureEditor.tscn:1882
 msgid "Collar"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1605
+#: project/src/main/editor/creature/CreatureEditor.tscn:1612
 msgid "Cloth Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1613
+#: project/src/main/editor/creature/CreatureEditor.tscn:1620
 msgid "Glass Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1621
+#: project/src/main/editor/creature/CreatureEditor.tscn:1628
 msgid "Plastic Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1645
-#: project/src/main/editor/creature/CreatureEditor.tscn:1925
+#: project/src/main/editor/creature/CreatureEditor.tscn:1652
+#: project/src/main/editor/creature/CreatureEditor.tscn:1932
 msgid "Import"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1657
-#: project/src/main/editor/creature/CreatureEditor.tscn:1937
+#: project/src/main/editor/creature/CreatureEditor.tscn:1664
+#: project/src/main/editor/creature/CreatureEditor.tscn:1944
 msgid "Export"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1669
-#: project/src/main/editor/creature/CreatureEditor.tscn:1949
+#: project/src/main/editor/creature/CreatureEditor.tscn:1676
+#: project/src/main/editor/creature/CreatureEditor.tscn:1956
 #: project/src/main/editor/puzzle/LevelEditor.tscn:342
 msgid "Save"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1717
+#: project/src/main/editor/creature/CreatureEditor.tscn:1724
 msgid "Name"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1727
+#: project/src/main/editor/creature/CreatureEditor.tscn:1734
 msgid "Overall Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1759
-#: project/src/main/editor/creature/CreatureEditor.tscn:1797
-#: project/src/main/editor/creature/CreatureEditor.tscn:1823
-#: project/src/main/editor/creature/CreatureEditor.tscn:1849
+#: project/src/main/editor/creature/CreatureEditor.tscn:1766
+#: project/src/main/editor/creature/CreatureEditor.tscn:1804
+#: project/src/main/editor/creature/CreatureEditor.tscn:1830
+#: project/src/main/editor/creature/CreatureEditor.tscn:1856
 msgid "Color"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1841
+#: project/src/main/editor/creature/CreatureEditor.tscn:1848
 msgid "Button"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1861
-#: project/src/main/ui/SettingsMenu.tscn:543
+#: project/src/main/editor/creature/CreatureEditor.tscn:1868
+#: project/src/main/ui/SettingsMenu.tscn:602
 msgid "Size"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1887
+#: project/src/main/editor/creature/CreatureEditor.tscn:1894
 msgid "Cloth"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1893
+#: project/src/main/editor/creature/CreatureEditor.tscn:1900
 msgid "Glass"
 msgstr ""
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1901
+#: project/src/main/editor/creature/CreatureEditor.tscn:1908
 msgid "Plastic"
 msgstr ""
 
@@ -1324,19 +1324,19 @@ msgstr ""
 msgid "Gingerbread House"
 msgstr ""
 
-#: project/src/main/puzzle/ComboCounter.tscn:69
+#: project/src/main/puzzle/ComboCounter.tscn:85
 msgid "3x"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:368
+#: project/src/main/puzzle/Puzzle.tscn:427
 msgid "Goal"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:381
+#: project/src/main/puzzle/Puzzle.tscn:440
 msgid "10"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:405
+#: project/src/main/puzzle/Puzzle.tscn:505
 msgid "abcd"
 msgstr ""
 
@@ -1350,8 +1350,8 @@ msgid "Start"
 msgstr ""
 
 #: project/src/main/puzzle/PuzzleMessages.tscn:87
-#: project/src/main/puzzle/puzzle-messages.gd:146
-#: project/src/main/puzzle/puzzle-messages.gd:148
+#: project/src/main/puzzle/puzzle-messages.gd:149
+#: project/src/main/puzzle/puzzle-messages.gd:151
 msgid "Back"
 msgstr ""
 
@@ -1367,56 +1367,56 @@ msgstr ""
 msgid "+¥55"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:30
+#: project/src/main/puzzle/milestone-hud.gd:32
 msgid "Customers"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:32
+#: project/src/main/puzzle/milestone-hud.gd:34
 msgid "Lines"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:34
+#: project/src/main/puzzle/milestone-hud.gd:36
 msgid "Pieces"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:36
+#: project/src/main/puzzle/milestone-hud.gd:38
 msgid "Money"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:38
+#: project/src/main/puzzle/milestone-hud.gd:40
 msgid "Time"
 msgstr ""
 
-#: project/src/main/puzzle/puzzle-messages.gd:68
+#: project/src/main/puzzle/puzzle-messages.gd:71
 #: project/src/main/puzzle/puzzle.gd:74
 msgid "Ready?"
 msgstr ""
 
-#: project/src/main/puzzle/puzzle-messages.gd:77
+#: project/src/main/puzzle/puzzle-messages.gd:80
 msgid "Regret..."
 msgstr ""
 
-#: project/src/main/puzzle/puzzle-messages.gd:79
+#: project/src/main/puzzle/puzzle-messages.gd:82
 msgid "Good!"
 msgstr ""
 
-#: project/src/main/puzzle/puzzle-messages.gd:92
+#: project/src/main/puzzle/puzzle-messages.gd:95
 msgid "Game over"
 msgstr ""
 
-#: project/src/main/puzzle/puzzle-messages.gd:94
+#: project/src/main/puzzle/puzzle-messages.gd:97
 msgid "Finish!"
 msgstr ""
 
-#: project/src/main/puzzle/puzzle-messages.gd:96
+#: project/src/main/puzzle/puzzle-messages.gd:99
 msgid "You win!"
 msgstr ""
 
-#: project/src/main/puzzle/puzzle-messages.gd:130
+#: project/src/main/puzzle/puzzle-messages.gd:133
 msgid "Retry"
 msgstr ""
 
-#: project/src/main/puzzle/puzzle-messages.gd:146
+#: project/src/main/puzzle/puzzle-messages.gd:149
 #: project/src/main/ui/menu/MainMenu.tscn:88
 msgid "Continue"
 msgstr ""
@@ -1537,14 +1537,14 @@ msgid "Move"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:17
-#: project/src/main/ui/SettingsMenu.tscn:279
-#: project/src/main/ui/SettingsMenu.tscn:380
+#: project/src/main/ui/SettingsMenu.tscn:338
+#: project/src/main/ui/SettingsMenu.tscn:439
 msgid "Soft Drop"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:18
-#: project/src/main/ui/SettingsMenu.tscn:285
-#: project/src/main/ui/SettingsMenu.tscn:386
+#: project/src/main/ui/SettingsMenu.tscn:344
+#: project/src/main/ui/SettingsMenu.tscn:445
 msgid "Hard Drop"
 msgstr ""
 
@@ -2126,138 +2126,154 @@ msgid ""
 "tempor incidid"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:187
+#: project/src/main/ui/SettingsMenu.tscn:126
+msgid "Sound + Music"
+msgstr ""
+
+#: project/src/main/ui/SettingsMenu.tscn:182
+msgid "Graphics"
+msgstr ""
+
+#: project/src/main/ui/SettingsMenu.tscn:202
+msgid "Creature detail"
+msgstr ""
+
+#: project/src/main/ui/SettingsMenu.tscn:246
 msgid "Ghost Piece"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:234
+#: project/src/main/ui/SettingsMenu.tscn:293
 msgid "Guideline"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:244
+#: project/src/main/ui/SettingsMenu.tscn:303
 msgid "WASD"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:254
+#: project/src/main/ui/SettingsMenu.tscn:313
 msgid "Custom"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:273
+#: project/src/main/ui/SettingsMenu.tscn:332
 msgid "Move Piece"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:291
+#: project/src/main/ui/SettingsMenu.tscn:350
 msgid "Rotate Piece"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:297
-#: project/src/main/ui/SettingsMenu.tscn:404
+#: project/src/main/ui/SettingsMenu.tscn:356
+#: project/src/main/ui/SettingsMenu.tscn:463
 msgid "Menu"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:309
+#: project/src/main/ui/SettingsMenu.tscn:368
 msgid "Move in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:315
-#: project/src/main/ui/SettingsMenu.tscn:440
+#: project/src/main/ui/SettingsMenu.tscn:374
+#: project/src/main/ui/SettingsMenu.tscn:499
 msgid "Confirm in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:321
-#: project/src/main/ui/SettingsMenu.tscn:446
+#: project/src/main/ui/SettingsMenu.tscn:380
+#: project/src/main/ui/SettingsMenu.tscn:505
 msgid "Back in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:333
+#: project/src/main/ui/SettingsMenu.tscn:392
 msgid "Walk"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:339
-#: project/src/main/ui/SettingsMenu.tscn:482
+#: project/src/main/ui/SettingsMenu.tscn:398
+#: project/src/main/ui/SettingsMenu.tscn:541
 msgid "Interact"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:345
-#: project/src/main/ui/SettingsMenu.tscn:488
+#: project/src/main/ui/SettingsMenu.tscn:404
+#: project/src/main/ui/SettingsMenu.tscn:547
 msgid "Rewind Text"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:351
-#: project/src/main/ui/SettingsMenu.tscn:494
+#: project/src/main/ui/SettingsMenu.tscn:410
+#: project/src/main/ui/SettingsMenu.tscn:553
 msgid "Phone"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:368
+#: project/src/main/ui/SettingsMenu.tscn:427
 msgid "Move Piece Left"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:374
+#: project/src/main/ui/SettingsMenu.tscn:433
 msgid "Move Piece Right"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:392
+#: project/src/main/ui/SettingsMenu.tscn:451
 msgid "Rotate Ccw"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:398
+#: project/src/main/ui/SettingsMenu.tscn:457
 msgid "Rotate Cw"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:416
+#: project/src/main/ui/SettingsMenu.tscn:475
 msgid "Up in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:422
+#: project/src/main/ui/SettingsMenu.tscn:481
 msgid "Down in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:428
+#: project/src/main/ui/SettingsMenu.tscn:487
 msgid "Left in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:434
+#: project/src/main/ui/SettingsMenu.tscn:493
 msgid "Right in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:458
+#: project/src/main/ui/SettingsMenu.tscn:517
 msgid "Walk Up"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:464
+#: project/src/main/ui/SettingsMenu.tscn:523
 msgid "Walk Down"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:470
+#: project/src/main/ui/SettingsMenu.tscn:529
 msgid "Walk Left"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:476
+#: project/src/main/ui/SettingsMenu.tscn:535
 msgid "Walk Right"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:510
+#: project/src/main/ui/SettingsMenu.tscn:569
 msgid "Reset to Default"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:581
+#: project/src/main/ui/SettingsMenu.tscn:640
 msgid "1.00x"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:607
+#: project/src/main/ui/SettingsMenu.tscn:666
 msgid "Scheme"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:643
+#: project/src/main/ui/SettingsMenu.tscn:702
 msgid "Fat Finger"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:687
+#: project/src/main/ui/SettingsMenu.tscn:746
 msgid "Language"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:730
+#: project/src/main/ui/SettingsMenu.tscn:789
 msgid "Ok"
+msgstr ""
+
+#: project/src/main/ui/SettingsMenu.tscn:824
+msgid "* Your settings will take effect in the next scene."
 msgstr ""
 
 #: project/src/main/ui/VersionLabel.tscn:16
@@ -2277,8 +2293,16 @@ msgstr ""
 msgid "All-time Best"
 msgstr ""
 
+#: project/src/main/ui/settings-creature-graphics.gd:9
+msgid "Low"
+msgstr ""
+
+#: project/src/main/ui/settings-creature-graphics.gd:10
+msgid "High"
+msgstr ""
+
 #: project/src/main/ui/settings-tab-container.gd:13
-msgid "Volume"
+msgid "Sound + Graphics"
 msgstr ""
 
 #: project/src/main/ui/settings-tab-container.gd:14
