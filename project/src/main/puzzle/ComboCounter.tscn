@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/main/packed-sprite.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/puzzle/combo-accents-packed.png" type="Texture" id=2]
@@ -41,14 +41,27 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Gradient" id=3]
-resource_local_to_scene = true
-offsets = PoolRealArray( 0, 0.383513 )
+offsets = PoolRealArray( 0, 0.43913 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 600.0
+initial_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 5.0
+color_ramp = SubResource( 4 )
+
 [node name="ComboCounter" type="Node2D"]
-modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 40, 40 )
 script = ExtResource( 4 )
+velocity = Vector2( 0, -30 )
 
 [node name="Accent" type="Node2D" parent="."]
 modulate = Color( 0.483, 0.6, 0.06, 1 )
@@ -58,6 +71,9 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/combo-accents-packed.json"
 rect_size = Vector2( 64, 64 )
+frame = 0
+centered = true
+offset = Vector2( 0, 0 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -32.0
@@ -79,17 +95,11 @@ __meta__ = {
 autoplay = "fade"
 anims/fade = SubResource( 2 )
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+[node name="Particles2D" type="Particles2D" parent="."]
 emitting = false
 amount = 12
 lifetime = 0.8
 one_shot = true
 explosiveness = 1.0
-local_coords = false
-spread = 180.0
-gravity = Vector2( 0, 0 )
-initial_velocity = 600.0
-initial_velocity_random = 1.0
-scale_amount = 5.0
-color_ramp = SubResource( 3 )
+process_material = SubResource( 5 )
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
