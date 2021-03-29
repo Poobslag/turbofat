@@ -24,7 +24,8 @@ var _accent_color: Color # darker version of the font color
 var _particle_color: Color # lighter version of the font color
 
 # particles which explode from the center of the combo
-onready var _particles: CPUParticles2D = $CPUParticles2D
+onready var _particles: Particles2D = $Particles2D
+onready var _particles_material: ParticlesMaterial = $Particles2D.process_material
 
 # text showing the current combo, like '12x'
 onready var _label: Label = $Label
@@ -119,28 +120,28 @@ func _refresh_accent() -> void:
 
 
 func _refresh_particles() -> void:
+	_particles_material.scale = 5
 	if combo < COMBO_THRESHOLD_0:
 		_particles.amount = 6
-		_particles.initial_velocity = 200
+		_particles_material.initial_velocity = 200
 	elif combo < COMBO_THRESHOLD_1:
 		_particles.amount = 8
-		_particles.initial_velocity = 280
+		_particles_material.initial_velocity = 280
 	elif combo <= COMBO_THRESHOLD_2:
 		_particles.amount = 10
-		_particles.initial_velocity = 400
+		_particles_material.initial_velocity = 400
 	elif combo <= COMBO_THRESHOLD_3:
 		_particles.amount = 12
-		_particles.initial_velocity = 600
+		_particles_material.initial_velocity = 600
 	elif combo <= COMBO_THRESHOLD_4:
 		_particles.amount = 12
-		_particles.initial_velocity = 800
+		_particles_material.initial_velocity = 800
 	else:
 		_particles.amount = 12
-		_particles.scale_amount = 6
-		_particles.initial_velocity = 1200
-	var gradient: Gradient = _particles.get("color_ramp")
-	gradient.colors[0] = _font_color
-	gradient.colors[1] = Utils.to_transparent(_font_color)
+		_particles_material.scale = 6
+		_particles_material.initial_velocity = 1200
+	_particles_material.color_ramp.gradient.colors[0] = _font_color
+	_particles_material.color_ramp.gradient.colors[1] = Utils.to_transparent(_font_color)
 
 
 func _on_AnimationPlayer_animation_finished(_anim_name: String) -> void:

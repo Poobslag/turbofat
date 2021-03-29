@@ -9,6 +9,7 @@ Keys:
 	[U,I,O]: Clear a line at different locations in the playfield
 	[J]: Generate a food item
 	[K]: Cycle to the next food item
+	[L]: Level up
 """
 
 var _line_clear_count := 1
@@ -18,6 +19,15 @@ var _cake_color_int: int = PuzzleTileMap.BoxColorInt.CAKE_JJO
 
 func _ready() -> void:
 	CurrentLevel.settings.set_start_speed("T")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 10, "1")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 20, "2")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 30, "3")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 40, "4")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 50, "5")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 60, "6")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 70, "7")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 80, "8")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 90, "9")
 	CurrentLevel.settings.set_finish_condition(Milestone.NONE, 100)
 	PuzzleScore.prepare_and_start_game()
 
@@ -47,6 +57,9 @@ func _input(event: InputEvent) -> void:
 		KEY_K:
 			_food_item_index = (_food_item_index + 1) % 16
 			$Puzzle/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
+		
+		KEY_L:
+			PuzzleScore.set_speed_index((PuzzleScore.speed_index + 1) % CurrentLevel.settings.speed_ups.size())
 
 
 func _build_box(y: int) -> void:

@@ -21,9 +21,11 @@ const LEVEL_COLOR_5 := Color("b948b9")
 onready var _progress_bar: ProgressBar = $ProgressBar
 onready var _desc: Label = $Desc
 onready var _value: FontFitLabel = $Value
+onready var _progress_bar_particles: Control = $ProgressBarParticles
 
 func _ready() -> void:
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleScore.connect("speed_index_changed", self, "_on_PuzzleScore_speed_index_changed")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	match CurrentLevel.settings.finish_condition.type:
 		Milestone.CUSTOMERS:
@@ -116,8 +118,44 @@ func update_milebar() -> void:
 	update_milebar_color()
 
 
+"""
+Update the particle colors to match the progress bar.
+
+All of the Particles2D share the same GradientTexture so we only need to modify one.
+"""
+func _update_particle_colors() -> void:
+	var particles_material: ParticlesMaterial = _progress_bar_particles.get_child(0).process_material
+	var progress_bar_color: Color = _progress_bar.get("custom_styles/fg").bg_color
+	particles_material.color_ramp.gradient.colors[0] = Utils.to_transparent(progress_bar_color, 1.0)
+	particles_material.color_ramp.gradient.colors[1] = Utils.to_transparent(progress_bar_color, 0.0)
+
+
+"""
+Emit particles from the progress bar.
+"""
+func _emit_particles() -> void:
+	for particles_2d_node in _progress_bar_particles.get_children():
+		var particles_2d: Particles2D = particles_2d_node
+		particles_2d.restart()
+		particles_2d.emitting = true
+
+
 func _on_PuzzleScore_game_prepared() -> void:
 	init_milebar()
+
+
+"""
+Emits particles when the player levels up.
+
+This provides visual feedback for people playing without sound.
+"""
+func _on_PuzzleScore_speed_index_changed(value: int) -> void:
+	if value == 0:
+		# initializing the level; don't emit any particles
+		return
+	
+	_update_particle_colors()
+	_emit_particles()
 
 
 func _on_Level_settings_changed() -> void:
