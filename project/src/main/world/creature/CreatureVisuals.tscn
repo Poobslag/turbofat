@@ -399,7 +399,6 @@ frame = 1
 offset = Vector2( 0, -119 )
 
 [node name="Collar" type="Node2D" parent="."]
-visible = false
 light_mask = 2
 material = SubResource( 9 )
 position = Vector2( 0, -100 )
