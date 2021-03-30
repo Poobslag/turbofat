@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -57,6 +57,8 @@
 [ext_resource path="res://assets/main/world/chef/go-voice2.wav" type="AudioStream" id=55]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=56]
 [ext_resource path="res://assets/main/world/chef/gameover-voice1.wav" type="AudioStream" id=57]
+[ext_resource path="res://src/main/puzzle/pan/FryingPansUi.tscn" type="PackedScene" id=58]
+[ext_resource path="res://src/main/puzzle/pan/puzzle-frying-pans-ui.gd" type="Script" id=59]
 [ext_resource path="res://src/main/puzzle/Score.tscn" type="PackedScene" id=61]
 [ext_resource path="res://src/main/puzzle/PuzzleMessages.tscn" type="PackedScene" id=62]
 [ext_resource path="res://src/main/puzzle/piece/NextPieceDisplays.tscn" type="PackedScene" id=64]
@@ -168,7 +170,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 17 )
 
-[sub_resource type="ParticlesMaterial" id=22]
+[sub_resource type="ParticlesMaterial" id=20]
 flag_disable_z = true
 direction = Vector3( -100, 40, 0 )
 spread = 15.0
@@ -180,7 +182,7 @@ orbit_velocity_random = 0.0
 scale = 5.0
 color_ramp = SubResource( 17 )
 
-[sub_resource type="ParticlesMaterial" id=20]
+[sub_resource type="ParticlesMaterial" id=21]
 flag_disable_z = true
 direction = Vector3( 100, 40, 0 )
 spread = 15.0
@@ -349,6 +351,13 @@ piece_manager_path = NodePath("../PieceManager")
 playfield_path = NodePath("../Playfield")
 ComboCounterScene = ExtResource( 43 )
 
+[node name="FryingPansUi" parent="." instance=ExtResource( 58 )]
+margin_left = 771.0
+margin_top = 314.0
+margin_right = 1011.0
+margin_bottom = 434.0
+script = ExtResource( 59 )
+
 [node name="Hud" type="CanvasLayer" parent="."]
 
 [node name="HudUi" type="Control" parent="Hud"]
@@ -479,7 +488,7 @@ emitting = false
 amount = 3
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 22 )
+process_material = SubResource( 20 )
 
 [node name="Se" type="Particles2D" parent="Hud/HudUi/Chalkboard/MilestoneHud/ProgressBarParticles"]
 position = Vector2( 50, 22.5 )
@@ -487,7 +496,7 @@ emitting = false
 amount = 3
 one_shot = true
 explosiveness = 1.0
-process_material = SubResource( 20 )
+process_material = SubResource( 21 )
 
 [node name="TutorialHud" parent="Hud/HudUi" instance=ExtResource( 2 )]
 visible = false
@@ -621,8 +630,8 @@ codes = [ "delays", "bigfps" ]
 script = ExtResource( 19 )
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 50 )]
-[connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
@@ -643,5 +652,5 @@ script = ExtResource( 19 )
 [connection signal="hide" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
