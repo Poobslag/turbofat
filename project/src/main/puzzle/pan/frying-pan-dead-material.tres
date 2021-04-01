@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[ext_resource path="res://src/main/puzzle/pan/frying-pan.shader" type="Shader" id=1]
+
+[resource]
+shader = ExtResource( 1 )
+shader_param/width = 30.0
+shader_param/white = Color( 1, 0.2, 0.2, 1 )
+shader_param/black = Color( 0.254902, 0.156863, 0.117647, 1 )
+shader_param/sample_count = 24

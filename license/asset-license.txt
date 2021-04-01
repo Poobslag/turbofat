@@ -19,7 +19,9 @@ $$ Nikumaru by Kato Masashi (http://www.fontna.com/freefont/1651/) (No conventio
 Other:
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
 $$ Gut by Tom "Butch" Wesley (MIT License)
-$ Touch icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
+$ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
+$ Various icons by Creative Stall Premium (https://www.flaticon.com/authors/creative-stall-premium) (Unlimited use without attribution)
+$ Various icons by Dinosoft Labs (https://www.flaticon.com/authors/dinosoftlabs) (Unlimited use without attribution)
 $ Catalin Fertu Filled icons by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
 $$$ Godot Engine (MIT license)
 $ Godot Toolbox Project by AnJ95 (https://github.com/AnJ95/godot-toolbox-project) (You referenced their code for your 'custom keybinds' logic)
@@ -102,6 +104,9 @@ project/assets/main/ui/touch/rotate-ccw-pressed.png 'Empty', 'Circular arrrow' b
 project/assets/main/ui/touch/rotate-ccw.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw-pressed.png 'Empty', 'Circular arrrow' by Freepik
 project/assets/main/ui/touch/rotate-cw.png 'Empty', 'Circular arrrow' by Freepik
+project/assets/main/puzzle/pan/frying-pan.png 'Frying pan' by Creative Stall Premium
+project/assets/main/puzzle/pan/frying-pan-dead.png 'Frying pan' by Creative Stall Premium
+project/assets/main/puzzle/pan/frying-pan-gold.png 'Frying pan' by Creative Stall Premium, 'Reload' by DinosoftLabs
 
 Fonts
 --------------------------------------------------------------------------------

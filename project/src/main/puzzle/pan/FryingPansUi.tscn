@@ -1,0 +1,73 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/main/puzzle/pan/frying-pan-gold-material.tres" type="Material" id=1]
+[ext_resource path="res://assets/main/puzzle/pan/frying-pan.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/puzzle/pan/frying-pan-dead.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/puzzle/pan/frying-pan-gold.png" type="Texture" id=4]
+[ext_resource path="res://src/main/puzzle/pan/frying-pans-ui.gd" type="Script" id=5]
+[ext_resource path="res://src/main/puzzle/pan/frying-pan-dead-material.tres" type="Material" id=6]
+[ext_resource path="res://src/main/puzzle/pan/frying-pan-material.tres" type="Material" id=7]
+[ext_resource path="res://src/main/puzzle/pan/FryingPanGhost.tscn" type="PackedScene" id=8]
+
+[sub_resource type="TileSet" id=1]
+0/name = "frying-pan.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( -18, -18 )
+0/material = ExtResource( 7 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 256, 256 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+1/name = "frying-pan-gold.png 1"
+1/texture = ExtResource( 4 )
+1/tex_offset = Vector2( -18, -18 )
+1/material = ExtResource( 1 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 0, 256, 256 )
+1/tile_mode = 0
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
+2/name = "frying-pan-dead.png 2"
+2/texture = ExtResource( 3 )
+2/tex_offset = Vector2( -18, -18 )
+2/material = ExtResource( 6 )
+2/modulate = Color( 1, 1, 1, 1 )
+2/region = Rect2( 0, 0, 256, 256 )
+2/tile_mode = 0
+2/occluder_offset = Vector2( 0, 0 )
+2/navigation_offset = Vector2( 0, 0 )
+2/shape_offset = Vector2( 0, 0 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+2/shape_one_way = false
+2/shape_one_way_margin = 0.0
+2/shapes = [  ]
+2/z_index = 0
+
+[node name="FryingPans" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+FryingPanGhostScene = ExtResource( 8 )
+
+[node name="TileMap" type="TileMap" parent="."]
+scale = Vector2( 0.3, 0.3 )
+tile_set = SubResource( 1 )
+cell_size = Vector2( 110, 220 )
+format = 1
+tile_data = PoolIntArray( 0, 0, 0, 2, 0, 0, 4, 0, 0, 6, 0, 0, 8, 0, 0, 10, 0, 0, 65537, 1, 0, 65539, 1, 0, 65541, 1, 0, 65543, 2, 0, 65545, 2, 0 )
