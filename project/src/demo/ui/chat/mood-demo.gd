@@ -19,6 +19,7 @@ Keys:
 	[=]: Make the creature fat
 	[space bar]: Feed
 	[brace keys]: Change the creature's appearance
+	[Shift + /]: Print DNA
 	
 	[Shift + Q, W]: Look over shoulder
 	[Shift + E, R]: Yawn
@@ -40,6 +41,7 @@ func _input(event: InputEvent) -> void:
 			KEY_D: _creature_animations.play_idle_animation("idle-ear-wiggle0")
 			KEY_F: _creature_animations.play_idle_animation("idle-ear-wiggle1")
 			KEY_T: $Creature.talk()
+			KEY_SLASH: print(to_json($Creature.dna))
 	else:
 		match(Utils.key_scancode(event)):
 			KEY_BRACELEFT, KEY_BRACERIGHT: $Creature.dna = DnaUtils.random_dna()

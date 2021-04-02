@@ -6,6 +6,9 @@ Clears lines in a tilemap as new pieces are placed.
 Lines are cleared when the player completes rows, tops out or completes a level.
 """
 
+# emitted shortly before a set of lines are cleared
+signal line_clears_scheduled(ys)
+
 # emitted before a 'line clear' where a line is erased and the player is rewarded
 signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
 
@@ -154,6 +157,9 @@ func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_po
 	for i in range(lines_being_erased.size()):
 		_remaining_line_erase_timings[i] = remaining_line_erase_frames \
 			- _remaining_line_erase_timings[i] * per_line_frame_delay
+	
+	if lines_being_cleared:
+		emit_signal("line_clears_scheduled", lines_being_cleared)
 
 
 func _per_line_frame_delay() -> float:

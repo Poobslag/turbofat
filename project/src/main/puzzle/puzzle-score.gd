@@ -236,7 +236,7 @@ func end_combo() -> void:
 		# during tutorials, reset the combo and line clears
 		creature_scores[creature_scores.size() - 1] = 0
 		combo = 0
-	elif no_more_customers:
+	elif no_more_customers or game_ended:
 		pass
 	elif get_creature_score() == 0:
 		# don't add $0 creatures. creatures don't pay if they owe $0

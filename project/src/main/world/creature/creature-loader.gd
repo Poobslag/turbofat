@@ -285,8 +285,6 @@ func _load_head(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/HornZ1", "horn", "horn-z1-packed")
 	
 	_load_texture(dna, "Neck0/HeadBobber/Mouth", "mouth", "mouth-packed")
-	_load_texture(dna, "Neck0/HeadBobber/Food", "mouth", "food-packed")
-	_load_texture(dna, "Neck0/HeadBobber/FoodLaser", "mouth", "food-laser-packed")
 	
 	_load_texture(dna, "Neck0/HeadBobber/Nose", "nose", "nose-packed")
 	

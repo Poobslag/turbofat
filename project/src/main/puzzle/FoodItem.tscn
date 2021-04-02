@@ -4,32 +4,20 @@
 [ext_resource path="res://assets/main/puzzle/food/food-packed.png" type="Texture" id=2]
 
 [sub_resource type="Animation" id=1]
-resource_name = "jiggle-and-fade"
-length = 1.5
-step = 0.0333333
+resource_name = "jiggle"
+length = 0.2
+step = 0.0166667
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:self_modulate")
-tracks/0/interp = 1
+tracks/0/path = NodePath(".:scale_modifier")
+tracks/0/interp = 2
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1.2, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:scale_modifier")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.666667, 1.2, 1.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.9, 1.5 ), Vector2( 1.5, 0.9 ), Vector2( 1.06, 1.06 ), Vector2( 0.94, 0.94 ), Vector2( 1.06, 1.1 ), Vector2( 0.6, 0.6 ) ]
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.9, 1.5 ), Vector2( 1.5, 0.9 ), Vector2( 1.06, 1.06 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -61,18 +49,17 @@ tracks/1/keys = {
 }
 
 [node name="FoodItem" type="Node2D"]
-position = Vector2( 0, -5738.04 )
 rotation = 0.14452
-scale = Vector2( 1.05728, 1.08934 )
+scale = Vector2( 1.06, 1.06 )
 script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/food/food-packed.json"
 rect_size = Vector2( 128, 128 )
-scale_modifier = Vector2( 1.05728, 1.08934 )
+frame = 1
+scale_modifier = Vector2( 1.06, 1.06 )
 rotation_modifier = 0.14452
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "jiggle-and-fade"
-anims/jiggle-and-fade = SubResource( 1 )
+autoplay = "jiggle"
+anims/jiggle = SubResource( 1 )
 anims/reset = SubResource( 2 )
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

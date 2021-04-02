@@ -7,8 +7,15 @@ export (NodePath) var creature_visuals_path: NodePath setget set_creature_visual
 
 var _creature_visuals: CreatureVisuals
 
+var elevation: int setget set_elevation
+
 func _ready() -> void:
 	_refresh_creature_visuals_path()
+	_refresh_target_position()
+
+
+func set_elevation(new_elevation: int) -> void:
+	elevation = new_elevation
 	_refresh_target_position()
 
 
@@ -36,7 +43,8 @@ func _refresh_target_position() -> void:
 	if not _creature_visuals:
 		return
 	
-	position = _creature_visuals.get_node("Neck0").position * _creature_visuals.scale.y * 0.4
+	position = _creature_visuals.get_node("Neck0").position * _creature_visuals.scale.y * 0.4 \
+			- Vector2(0, elevation) * 0.4
 
 
 func _on_CreatureVisuals_head_moved() -> void:

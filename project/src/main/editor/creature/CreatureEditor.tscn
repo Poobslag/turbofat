@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=76 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
@@ -38,8 +38,6 @@
 [ext_resource path="res://assets/main/world/creature/2/ear-z1-packed.png" type="Texture" id=36]
 [ext_resource path="res://assets/main/world/creature/2/ear-z2-packed.png" type="Texture" id=37]
 [ext_resource path="res://assets/main/world/creature/3/mouth-packed.png" type="Texture" id=38]
-[ext_resource path="res://assets/main/world/creature/3/food-packed.png" type="Texture" id=39]
-[ext_resource path="res://assets/main/world/creature/3/food-laser-packed.png" type="Texture" id=40]
 [ext_resource path="res://assets/main/world/creature/2/horn-z0-packed.png" type="Texture" id=41]
 [ext_resource path="res://assets/main/world/creature/1/eye-z0-packed.png" type="Texture" id=42]
 [ext_resource path="res://assets/main/world/creature/2/collar-packed.png" type="Texture" id=43]
@@ -56,8 +54,6 @@
 [ext_resource path="res://assets/main/world/creature/2/eye-z0-packed.png" type="Texture" id=54]
 [ext_resource path="res://assets/main/world/creature/3/ear-z2-packed.png" type="Texture" id=55]
 [ext_resource path="res://assets/main/world/creature/2/cheek-z2-packed.png" type="Texture" id=56]
-[ext_resource path="res://assets/main/world/creature/2/food-laser-packed.png" type="Texture" id=57]
-[ext_resource path="res://assets/main/world/creature/2/food-packed.png" type="Texture" id=58]
 [ext_resource path="res://assets/main/world/creature/3/collar-packed.png" type="Texture" id=59]
 [ext_resource path="res://assets/main/world/creature/3/ear-z1-packed.png" type="Texture" id=60]
 [ext_resource path="res://assets/main/world/creature/1/ear-z0-packed.png" type="Texture" id=61]
@@ -70,8 +66,6 @@
 [ext_resource path="res://assets/main/world/creature/1/ear-z1-packed.png" type="Texture" id=68]
 [ext_resource path="res://assets/main/world/creature/1/ear-z2-packed.png" type="Texture" id=69]
 [ext_resource path="res://assets/main/world/creature/1/mouth-packed.png" type="Texture" id=70]
-[ext_resource path="res://assets/main/world/creature/1/food-packed.png" type="Texture" id=71]
-[ext_resource path="res://assets/main/world/creature/1/food-laser-packed.png" type="Texture" id=72]
 [ext_resource path="res://assets/main/world/creature/3/bellybutton-packed.png" type="Texture" id=73]
 [ext_resource path="res://assets/main/world/creature/2/accessory-z0-packed.png" type="Texture" id=74]
 [ext_resource path="res://assets/main/world/creature/1/emote-eye-z1-packed.png" type="Texture" id=75]
@@ -151,10 +145,6 @@ dna = {
 "property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 62 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/3/eye-z1-packed.json",
 "property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 63 ),
-"property:Neck0/HeadBobber/Food:frame_data": "res://assets/main/world/creature/1/food-packed.json",
-"property:Neck0/HeadBobber/Food:texture": ExtResource( 71 ),
-"property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/1/food-laser-packed.json",
-"property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 72 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/4/head-packed.json",
 "property:Neck0/HeadBobber/Head:texture": ExtResource( 33 ),
 "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/1/mouth-packed.json",
@@ -316,10 +306,6 @@ dna = {
 "property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 54 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/2/eye-z1-packed.json",
 "property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 48 ),
-"property:Neck0/HeadBobber/Food:frame_data": "res://assets/main/world/creature/3/food-packed.json",
-"property:Neck0/HeadBobber/Food:texture": ExtResource( 39 ),
-"property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/3/food-laser-packed.json",
-"property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 40 ),
 "property:Neck0/HeadBobber/HairZ0:frame_data": "res://assets/main/world/creature/1/hair-z0-packed.json",
 "property:Neck0/HeadBobber/HairZ0:texture": ExtResource( 64 ),
 "property:Neck0/HeadBobber/HairZ1:frame_data": "res://assets/main/world/creature/1/hair-z1-packed.json",
@@ -491,10 +477,6 @@ dna = {
 "property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 62 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/3/eye-z1-packed.json",
 "property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 63 ),
-"property:Neck0/HeadBobber/Food:frame_data": "res://assets/main/world/creature/3/food-packed.json",
-"property:Neck0/HeadBobber/Food:texture": ExtResource( 39 ),
-"property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/3/food-laser-packed.json",
-"property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 40 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/4/head-packed.json",
 "property:Neck0/HeadBobber/Head:texture": ExtResource( 33 ),
 "property:Neck0/HeadBobber/HornZ1:frame_data": "res://assets/main/world/creature/1/horn-z1-packed.json",
@@ -662,10 +644,6 @@ dna = {
 "property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 62 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/3/eye-z1-packed.json",
 "property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 63 ),
-"property:Neck0/HeadBobber/Food:frame_data": "res://assets/main/world/creature/3/food-packed.json",
-"property:Neck0/HeadBobber/Food:texture": ExtResource( 39 ),
-"property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/3/food-laser-packed.json",
-"property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 40 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/4/head-packed.json",
 "property:Neck0/HeadBobber/Head:texture": ExtResource( 33 ),
 "property:Neck0/HeadBobber/HornZ1:frame_data": "res://assets/main/world/creature/1/horn-z1-packed.json",
@@ -837,10 +815,6 @@ dna = {
 "property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 54 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/2/eye-z1-packed.json",
 "property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 48 ),
-"property:Neck0/HeadBobber/Food:frame_data": "res://assets/main/world/creature/2/food-packed.json",
-"property:Neck0/HeadBobber/Food:texture": ExtResource( 58 ),
-"property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/2/food-laser-packed.json",
-"property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 57 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/4/head-packed.json",
 "property:Neck0/HeadBobber/Head:texture": ExtResource( 33 ),
 "property:Neck0/HeadBobber/HornZ0:frame_data": "res://assets/main/world/creature/2/horn-z0-packed.json",
@@ -1010,10 +984,6 @@ dna = {
 "property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 42 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/1/eye-z1-packed.json",
 "property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 27 ),
-"property:Neck0/HeadBobber/Food:frame_data": "res://assets/main/world/creature/3/food-packed.json",
-"property:Neck0/HeadBobber/Food:texture": ExtResource( 39 ),
-"property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/3/food-laser-packed.json",
-"property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 40 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/4/head-packed.json",
 "property:Neck0/HeadBobber/Head:texture": ExtResource( 33 ),
 "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/3/mouth-packed.json",
@@ -1181,10 +1151,6 @@ dna = {
 "property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 42 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/1/eye-z1-packed.json",
 "property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 27 ),
-"property:Neck0/HeadBobber/Food:frame_data": "res://assets/main/world/creature/2/food-packed.json",
-"property:Neck0/HeadBobber/Food:texture": ExtResource( 58 ),
-"property:Neck0/HeadBobber/FoodLaser:frame_data": "res://assets/main/world/creature/2/food-laser-packed.json",
-"property:Neck0/HeadBobber/FoodLaser:texture": ExtResource( 57 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/4/head-packed.json",
 "property:Neck0/HeadBobber/Head:texture": ExtResource( 33 ),
 "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/2/mouth-packed.json",

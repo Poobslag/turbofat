@@ -113,7 +113,8 @@ onready var _hop_sound: AudioStreamPlayer2D = $CreatureSfx/HopSound
 
 func _ready() -> void:
 	var creature_outline_scene_path := "res://src/main/world/creature/ViewportCreatureOutline.tscn"
-	if PlayerData.graphics_settings.creature_detail == GraphicsSettings.CreatureDetail.LOW:
+	if not Engine.is_editor_hint() \
+			and PlayerData.graphics_settings.creature_detail == GraphicsSettings.CreatureDetail.LOW:
 		creature_outline_scene_path = "res://src/main/world/creature/FastCreatureOutline.tscn"
 	var creature_outline_scene: PackedScene = load(creature_outline_scene_path)
 	_creature_outline = creature_outline_scene.instance()
@@ -283,13 +284,16 @@ func get_orientation() -> int:
 Stores this creature's fatness in the CreatureLibrary.
 
 This allows the creature to maintain their fatness if we see them again. They lose a little weight in between.
+
+Parameters:
+	'stored_fatness': The fatness to save in the creature library. This can be higher than the creature's current
+			fatness if they're still eating.
 """
-func store_fatness() -> void:
+func save_fatness(stored_fatness: float) -> void:
 	if not creature_id:
 		# randomly-generated creatures have no creature id; their fatness isn't stored
 		return
 	
-	var stored_fatness := get_fatness()
 	# weight decreases by 10% if they ate normally; 25% if they ate only vegetables
 	var metabolism := 0.9 if box_feed_count > 0 else 0.75
 	# apply metabolism scale; a value of 4.0x means their weight decays 4x as fast
@@ -327,8 +331,7 @@ func feed(food_color: Color) -> void:
 	feed_count += 1
 	if food_color != FoodColors.VEGETABLE:
 		box_feed_count += 1
-	creature_visuals.feed(food_color)
-	store_fatness()
+	creature_visuals.feed()
 
 
 """
@@ -454,6 +457,13 @@ func fade_out() -> void:
 
 
 """
+Returns the number of seconds between the beginning of the eating animation and the 'chomp' noise.
+"""
+func get_eating_delay() -> float:
+	return creature_visuals.get_eating_delay()
+
+
+"""
 Starts a tween which changes this creature's opacity.
 """
 func _launch_fade_tween(new_alpha: float, duration: float) -> void:
@@ -478,6 +488,7 @@ func _refresh_elevation() -> void:
 	if not is_inside_tree():
 		return
 	_creature_outline.set_elevation(elevation)
+	_chat_icon_hook.set_elevation(elevation)
 
 
 func _apply_friction() -> void:

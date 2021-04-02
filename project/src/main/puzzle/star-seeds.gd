@@ -5,7 +5,17 @@ Draws shadowy stars and seeds inside snack boxes and cake boxes.
 These star and seed sprites are referred to as 'wobblers'.
 """
 
-signal food_spawned(cell, food_type)
+"""
+Emitted when a star seed is eliminated, and a new piece of food should be spawned.
+
+Parameters:
+	'cell': A Vector2 corresponding to the tilemap cell where the food should appear
+	
+	'remaining_food': The number of remaining food items for the current set of line clears
+	
+	'food_type': A BoxColorInt value corresponding to the food which should appear
+"""
+signal food_spawned(cell, remaining_food, food_type)
 
 # Aesthetically pleasing wobbler arrangements. It looks nice if they're balanced on the left and right sides.
 const WOBBLER_POSITIONS_BY_SIZE := {
@@ -45,6 +55,9 @@ export (NodePath) var _puzzle_tile_map_path: NodePath
 # key: Vector2 playfield cell positions
 # value: Wobbler node contained within that cell
 var _wobblers_by_cell: Dictionary
+
+# the number of remaining food items to spawn for the current sequence of line clears
+var _remaining_food_for_line_clears := 0
 
 export (PackedScene) var StarScene: PackedScene
 export (PackedScene) var SeedScene: PackedScene
@@ -240,10 +253,21 @@ func _on_Playfield_blocks_prepared() -> void:
 	_prepare_wobblers_for_level()
 
 
+func _on_Playfield_line_clears_scheduled(ys: Array) -> void:
+	_remaining_food_for_line_clears = 0
+	for y in ys:
+		for x in range(PuzzleTileMap.COL_COUNT):
+			if _wobblers_by_cell.has(Vector2(x, y)):
+				_remaining_food_for_line_clears += 1
+
+
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
 		if _wobblers_by_cell.has(Vector2(x, y)):
-			emit_signal("food_spawned", Vector2(x, y), _wobblers_by_cell[Vector2(x, y)].food_type)
+			_remaining_food_for_line_clears -= 1
+			
+			emit_signal("food_spawned", Vector2(x, y), _remaining_food_for_line_clears,
+					_wobblers_by_cell[Vector2(x, y)].food_type)
 
 
 func _on_Pauser_paused_changed(value: bool) -> void:

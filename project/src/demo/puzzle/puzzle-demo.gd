@@ -19,16 +19,16 @@ var _cake_color_int: int = PuzzleTileMap.BoxColorInt.CAKE_JJO
 
 func _ready() -> void:
 	CurrentLevel.settings.set_start_speed("T")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 10, "1")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 20, "2")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 30, "3")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 40, "4")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 50, "5")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 60, "6")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 70, "7")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 80, "8")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 90, "9")
-	CurrentLevel.settings.set_finish_condition(Milestone.NONE, 100)
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 100, "1")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 110, "2")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 120, "3")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 130, "4")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 140, "5")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 150, "6")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 160, "7")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 170, "8")
+	CurrentLevel.settings.add_speed_up(Milestone.LINES, 180, "9")
+	CurrentLevel.settings.set_finish_condition(Milestone.NONE, 300)
 	PuzzleScore.prepare_and_start_game()
 
 

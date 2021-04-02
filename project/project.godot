@@ -584,6 +584,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/restaurant/restaurant-scene.gd"
 }, {
+"base": "Control",
+"class": "RestaurantView",
+"language": "GDScript",
+"path": "res://src/main/puzzle/restaurant-view.gd"
+}, {
 "base": "Reference",
 "class": "RollingBackups",
 "language": "GDScript",
@@ -840,6 +845,7 @@ _global_script_class_icons={
 "RankRules": "",
 "RectFitLabel": "",
 "RestaurantScene": "",
+"RestaurantView": "",
 "RollingBackups": "",
 "RuleParser": "",
 "SaveItem": "",

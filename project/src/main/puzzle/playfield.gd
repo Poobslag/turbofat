@@ -8,6 +8,9 @@ or whether a box was built, pausing and playing sound effects
 # emitted when a new box is built
 signal box_built(rect, color_int)
 
+# emitted shortly before a set of lines are cleared
+signal line_clears_scheduled(ys)
+
 # emitted before a 'line clear' where a line is erased and the player is rewarded
 signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
 
@@ -140,6 +143,10 @@ func _on_BoxBuilder_after_boxes_built() -> void:
 		_line_clearer.set_physics_process(true)
 	else:
 		PuzzleScore.after_piece_written()
+
+
+func _on_LineClearer_line_clears_scheduled(ys: Array) -> void:
+	emit_signal("line_clears_scheduled", ys)
 
 
 func _on_LineClearer_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
