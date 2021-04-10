@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -59,8 +59,10 @@
 [ext_resource path="res://assets/main/world/chef/gameover-voice1.wav" type="AudioStream" id=57]
 [ext_resource path="res://src/main/puzzle/pan/FryingPansUi.tscn" type="PackedScene" id=58]
 [ext_resource path="res://src/main/puzzle/pan/puzzle-frying-pans-ui.gd" type="Script" id=59]
+[ext_resource path="res://src/main/puzzle/CrumbCluster.tscn" type="PackedScene" id=60]
 [ext_resource path="res://src/main/puzzle/Score.tscn" type="PackedScene" id=61]
 [ext_resource path="res://src/main/puzzle/PuzzleMessages.tscn" type="PackedScene" id=62]
+[ext_resource path="res://src/main/puzzle/food-crumbs.gd" type="Script" id=63]
 [ext_resource path="res://src/main/puzzle/piece/NextPieceDisplays.tscn" type="PackedScene" id=64]
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=65]
 [ext_resource path="res://src/main/puzzle/chalkboard.gd" type="Script" id=66]
@@ -158,40 +160,40 @@ shader_param/noise = SubResource( 11 )
 shader_param/frosting_texture = SubResource( 9 )
 shader_param/rainbow_texture = SubResource( 12 )
 
-[sub_resource type="ShaderMaterial" id=16]
+[sub_resource type="ShaderMaterial" id=14]
 shader = ExtResource( 4 )
 
-[sub_resource type="ViewportTexture" id=17]
+[sub_resource type="ViewportTexture" id=15]
 flags = 5
 viewport_path = NodePath("FrostingGlobs/GlobViewports/Viewport")
 
-[sub_resource type="OpenSimplexNoise" id=18]
+[sub_resource type="OpenSimplexNoise" id=16]
 resource_local_to_scene = true
 seed = -165480819
 octaves = 1
 
-[sub_resource type="NoiseTexture" id=19]
+[sub_resource type="NoiseTexture" id=17]
 width = 1024
 height = 1024
 seamless = true
-noise = SubResource( 18 )
+noise = SubResource( 16 )
 
-[sub_resource type="ShaderMaterial" id=20]
+[sub_resource type="ShaderMaterial" id=18]
 shader = ExtResource( 7 )
-shader_param/noise = SubResource( 19 )
+shader_param/noise = SubResource( 17 )
 
-[sub_resource type="ViewportTexture" id=21]
+[sub_resource type="ViewportTexture" id=19]
 flags = 5
 viewport_path = NodePath("FrostingGlobs/GlobViewports/RainbowViewport")
 
-[sub_resource type="ShaderMaterial" id=22]
+[sub_resource type="ShaderMaterial" id=20]
 resource_local_to_scene = true
 shader = ExtResource( 22 )
 shader_param/width = 6.0
 shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
 shader_param/edge_fix_factor = 0.001
 
-[sub_resource type="ViewportTexture" id=23]
+[sub_resource type="ViewportTexture" id=21]
 viewport_path = NodePath("FoodItems/Viewport")
 
 [node name="Puzzle" type="Control"]
@@ -423,26 +425,31 @@ usage = 0
 
 [node name="TextureRect" type="TextureRect" parent="FrostingGlobs"]
 modulate = Color( 1, 1, 1, 0.768627 )
-material = SubResource( 16 )
+material = SubResource( 14 )
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
-texture = SubResource( 17 )
+texture = SubResource( 15 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RainbowTextureRect" type="TextureRect" parent="FrostingGlobs"]
-material = SubResource( 20 )
+material = SubResource( 18 )
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
-texture = SubResource( 21 )
+texture = SubResource( 19 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FoodCrumbs" type="Node2D" parent="."]
+script = ExtResource( 63 )
+restaurant_view_path = NodePath("../RestaurantView")
+CrumbClusterScene = ExtResource( 60 )
 
 [node name="FoodItems" type="Node2D" parent="."]
 z_index = 3
@@ -457,12 +464,12 @@ transparent_bg = true
 usage = 0
 
 [node name="TextureRect" type="TextureRect" parent="FoodItems"]
-material = SubResource( 22 )
+material = SubResource( 20 )
 margin_right = 2560.0
 margin_bottom = 1500.0
 rect_min_size = Vector2( 2560, 1500 )
 rect_scale = Vector2( 0.4, 0.4 )
-texture = SubResource( 23 )
+texture = SubResource( 21 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -653,10 +660,10 @@ script = ExtResource( 19 )
 [connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="customer_changed" from="RestaurantView" to="FoodItems" method="_on_RestaurantView_customer_changed"]
 [connection signal="hit_next_pieces" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
-[connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
-[connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
 [connection signal="timeout" from="FoodItems/FoodFlightTimer" to="FoodItems" method="_on_FoodFlightTimer_timeout"]
 [connection signal="back_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_back_button_pressed"]
 [connection signal="settings_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_settings_button_pressed"]
@@ -664,5 +671,5 @@ script = ExtResource( 19 )
 [connection signal="hide" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]

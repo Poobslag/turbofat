@@ -3,13 +3,6 @@ extends Node2D
 Food items which appear when the player clears boxes in puzzle mode.
 """
 
-const MOUTH_POSITIONS_BY_ORIENTATION := {
-	Creature.SOUTHEAST: Vector2(18, -22),
-	Creature.SOUTHWEST: Vector2(-11, -22),
-	Creature.NORTHWEST: Vector2(-3, -26),
-	Creature.NORTHEAST: Vector2(28, -26),
-}
-
 export (NodePath) var puzzle_path: NodePath
 export (NodePath) var restaurant_view_path: NodePath
 export (PackedScene) var FoodScene: PackedScene
@@ -31,6 +24,9 @@ var _food_float_duration := 1.0
 # Duration in seconds that food should fly into a customer's mouth.
 var _food_flight_duration := 1.0
 
+# Maximum time in seconds between eaten food
+var _max_food_repeat_delay := 1.0
+
 onready var _puzzle: Puzzle = get_node(puzzle_path)
 onready var _puzzle_tile_map: PuzzleTileMap = _puzzle.get_playfield().tile_map
 
@@ -39,8 +35,6 @@ onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_tra
 		- get_global_transform().origin
 
 onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)
-onready var _customer_view: ViewportContainer = _restaurant_view.customer_view
-onready var _customer_view_viewport: Viewport = _restaurant_view.customer_view_viewport
 
 # Food items are rendered in a Viewport and TextureRect so that they can use an outline shader.
 onready var _viewport := $Viewport
@@ -88,7 +82,7 @@ func add_food_item(cell: Vector2, food_type: int) -> void:
 	
 	if _customer_index == original_customer_index:
 		# ensure the customer hasn't been replaced before fattening them
-		_puzzle.feed_creature(customer, Color.white)
+		_puzzle.feed_creature(customer, food_type)
 		
 		if customer.creature_id == CreatureLibrary.SENSEI_ID:
 			# tutorial sensei doesn't gain weight
@@ -102,14 +96,7 @@ func add_food_item(cell: Vector2, food_type: int) -> void:
 Callback function which returns the coordinate of the customer's mouth relative to the FoodItems viewport.
 """
 func get_target_pos(customer: Creature) -> Vector2:
-	var target_pos: Vector2
-	# calculate the position within the restaurant scene
-	target_pos = customer.get_node("ChatIconHook").get_global_transform_with_canvas() \
-			.xform(MOUTH_POSITIONS_BY_ORIENTATION[customer.get_orientation()] * customer.creature_visuals.scale.y)
-	# calculate the position within the customer viewport
-	target_pos = _customer_view_viewport.canvas_transform.xform(target_pos)
-	# calculate the position within the customer viewport texture
-	target_pos = _customer_view.get_global_transform_with_canvas().xform(target_pos / _customer_view.stretch_shrink)
+	var target_pos: Vector2 = _restaurant_view.get_customer_mouth_position(customer)
 	
 	# if the target customer goes offscreen the food targets a point on the screen's edge, not a point far outside the
 	# boundaries of the screen.
@@ -143,7 +130,8 @@ func _update_food_speed() -> void:
 	# update the food timings based on the speed factor
 	_food_float_duration = lerp(0.2, 1.3, speed_factor)
 	_food_flight_duration = lerp(0.4, 1.0, speed_factor)
-	_food_flight_timer.wait_time = lerp(0.08, 0.24, speed_factor)
+	_max_food_repeat_delay = lerp(0.16, 0.48, speed_factor)
+	_food_flight_timer.wait_time = _max_food_repeat_delay * randf()
 
 
 """
@@ -170,6 +158,7 @@ func _on_FoodFlightTimer_timeout() -> void:
 	if not _food_waiting_to_fly:
 		return
 	
+	_food_flight_timer.start(_max_food_repeat_delay * randf())
 	var food_item: FoodItem = _food_waiting_to_fly.pop_front()
 	food_item.emit_signal("ready_to_fly")
 

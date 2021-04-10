@@ -105,7 +105,7 @@ Use a different AudioStreamPlayer for munch sounds, to avoid interrupting speech
 Of course in real life you can't talk with your mouth full -- but combo sounds are positive feedback, so it's nice to
 avoid interrupting them.
 """
-func _on_CreatureVisuals_food_eaten() -> void:
+func _on_CreatureVisuals_food_eaten(_food_type: int) -> void:
 	if suppress_sfx:
 		return
 	
