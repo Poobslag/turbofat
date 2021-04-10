@@ -5,7 +5,7 @@ Emits letters when creatures talk.
 This helps the player tell which creature is currently talking, especially for creatures with unconventional mouths.
 """
 
-const HEAD_POSITIONS_BY_ORIENTATION := {
+const VOICE_POSITIONS_BY_ORIENTATION := {
 	Creature.SOUTHEAST: Vector2(36, -15),
 	Creature.SOUTHWEST: Vector2(-36, -15),
 	Creature.NORTHWEST: Vector2(-36, -21),
@@ -34,7 +34,7 @@ func _physics_process(_delta: float) -> void:
 	if _chatter and not _letter_shooter.is_stopped():
 		_letter_shooter.letter_position = _chatter.position \
 				+ _chatter.get_node("ChatIconHook").position \
-				+ HEAD_POSITIONS_BY_ORIENTATION[_chatter.orientation] * _chatter.creature_visuals.scale.y
+				+ VOICE_POSITIONS_BY_ORIENTATION[_chatter.orientation] * _chatter.creature_visuals.scale.y
 		
 		_letter_shooter.letter_angle = LETTER_ANGLES_BY_ORIENTATION[_chatter.orientation]
 

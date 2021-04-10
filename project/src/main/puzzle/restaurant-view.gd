@@ -6,6 +6,13 @@ Showing the chef character and active customer in a restaurant scene.
 As the player drops blocks and scores points, the characters animate and react.
 """
 
+const MOUTH_POSITIONS_BY_ORIENTATION := {
+	Creature.SOUTHEAST: Vector2(18, -22),
+	Creature.SOUTHWEST: Vector2(-11, -22),
+	Creature.NORTHWEST: Vector2(-3, -26),
+	Creature.NORTHEAST: Vector2(28, -26),
+}
+
 # emitted when the customer changes, either because of a broken combo or because the level restarts
 signal customer_changed
 
@@ -62,6 +69,22 @@ Returns an array of Creature objects representing customers in the scene.
 """
 func get_customers() -> Array:
 	return $RestaurantViewport/Scene.get_customers()
+
+
+"""
+Returns the position of a customer's mouth within the customer viewport texture.
+"""
+func get_customer_mouth_position(customer: Creature) -> Vector2:
+	var target_pos: Vector2
+	# calculate the position within the restaurant scene
+	var mouth_position: Vector2 = MOUTH_POSITIONS_BY_ORIENTATION[customer.get_orientation()]
+	target_pos = customer.get_node("ChatIconHook").get_global_transform_with_canvas() \
+			.xform(mouth_position * customer.creature_visuals.scale.y)
+	# calculate the position within the customer viewport
+	target_pos = customer_view_viewport.canvas_transform.xform(target_pos)
+	# calculate the position within the customer viewport texture
+	target_pos = customer_view.get_global_transform_with_canvas().xform(target_pos / customer_view.stretch_shrink)
+	return target_pos
 
 
 """

@@ -15,8 +15,8 @@ Do not leave the tool scripts enabled. Doing so causes errors in the Godot conso
 unnecessary textures are loaded.
 """
 
-# emitted on the frame when the food is launched into the creature's mouth
-signal food_eaten
+# emitted on the frame when creature bites into some food
+signal food_eaten(food_type)
 
 # emitted when a creature's textures and animations are loaded
 signal dna_loaded
@@ -91,6 +91,9 @@ var _suppress_sfx_signal_timer := 0.0
 
 # forces listeners to update their animation frame
 var _force_orientation_change := false
+
+# the food type the creature is eating
+var _food_type: int
 
 # CreatureAnimations instance which animates the creature's limbs, facial expressions and movement.
 onready var _animations: Node = $Animations
@@ -259,7 +262,7 @@ func rescale(new_scale_x: float) -> void:
 """
 Launches the 'feed' animation. The creature makes a biting motion and plays a munch sound.
 """
-func feed() -> void:
+func feed(food_type: int) -> void:
 	if not visible:
 		# If no creature is visible, it could mean their resources haven't loaded yet. Don't play any animations or
 		# sounds. ...Maybe as an easter egg some day, we can make the chef flinging food into empty air. Ha ha.
@@ -268,6 +271,7 @@ func feed() -> void:
 	if not $TalkTimer.is_stopped():
 		$TalkTimer.stop()
 		emit_signal("talking_changed")
+	_food_type = food_type
 	_animations.eat()
 	if mouth_player:
 		mouth_player.eat()
@@ -295,7 +299,7 @@ all of those secondary visual effects of the creature being fed.
 """
 func show_food_effects() -> void:
 	_animations.show_food_effects()
-	emit_signal("food_eaten")
+	emit_signal("food_eaten", _food_type)
 
 
 func oriented_south() -> bool:

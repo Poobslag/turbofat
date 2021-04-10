@@ -4,7 +4,8 @@ extends Node2D
 Handles animations and audio/visual effects for the restaurant and its creatures.
 """
 
-signal food_eaten
+# emitted on the frame when creature bites into some food
+signal food_eaten(food_type)
 signal current_creature_index_changed(value)
 
 # the creature which food is currently being served to
@@ -84,5 +85,5 @@ func _get_seat(seat_index: int = -1) -> Control:
 	return _seats[current_creature_index] if seat_index == -1 else _seats[seat_index]
 
 
-func _on_CreatureVisuals_food_eaten() -> void:
-	emit_signal("food_eaten")
+func _on_CreatureVisuals_food_eaten(food_type: int) -> void:
+	emit_signal("food_eaten", food_type)

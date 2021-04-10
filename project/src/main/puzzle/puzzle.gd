@@ -4,17 +4,11 @@ extends Control
 A puzzle scene where a player drops pieces into a playfield of blocks.
 """
 
-# the previously launched food color. stored to avoid showing the same color twice consecutively
-var _food_color: Color
-
 # The number of times the start button has been pressed. Certain cleanup steps
 # are only necessary when starting a puzzle for the second time.
 var _start_button_click_count := 0
 
 func _ready() -> void:
-	if not ResourceCache.is_done():
-		# when launched standalone, we don't load creature resources (they're slow)
-		ResourceCache.minimal_resources = true
 	ResourceCache.substitute_singletons()
 	
 	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
@@ -92,7 +86,7 @@ should increase by 40% of the amount needed to reach that target.
 This 'fatness_pct' parameter is needed for the level where the player eliminates three lines at once. We don't
 want the creature to suddenly grow full size. We want it to take 3 bites.
 """
-func feed_creature(customer: Creature, food_color: Color) -> void:
+func feed_creature(customer: Creature, food_type: int) -> void:
 	if customer.creature_id == CreatureLibrary.SENSEI_ID:
 		# tutorial sensei doesn't become comfortable
 		pass
@@ -106,7 +100,7 @@ func feed_creature(customer: Creature, food_color: Color) -> void:
 		comfort -= clamp(inverse_lerp(600, 1200, PuzzleScore.get_creature_score()), 0.0, 1.0)
 		customer.set_comfort(comfort)
 	
-	customer.feed(food_color)
+	customer.feed(food_type)
 
 
 """
@@ -130,25 +124,6 @@ func _start_puzzle() -> void:
 	
 	PlayerData.creature_library.save_fatness_state()
 	PuzzleScore.prepare_and_start_game()
-
-
-"""
-Calculates the food color for a row in the playfield.
-"""
-func _calculate_food_color(box_ints: Array) -> void:
-	if box_ints.empty():
-		# vegetable
-		_food_color = FoodColors.VEGETABLE
-	elif PuzzleTileMap.has_cake_box(box_ints):
-		# cake box
-		_food_color = Color.magenta
-		_food_color.h = randf()
-	elif box_ints.size() == 1 or FoodColors.ALL[box_ints[0]] != _food_color:
-		# snack box
-		_food_color = FoodColors.ALL[box_ints[0]]
-	else:
-		# avoid showing the same color twice if we can help it
-		_food_color = FoodColors.ALL[box_ints[1]]
 
 
 func _quit_puzzle() -> void:
@@ -178,8 +153,7 @@ func _on_Hud_back_button_pressed() -> void:
 """
 Triggers the 'creature feeding' animation.
 """
-func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
-	_calculate_food_color(box_ints)
+func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int, _box_ints: Array) -> void:
 	var customer: Creature = get_customer()
 	
 	# Save the appropriate fatness in the CreatureLibrary

@@ -12,6 +12,7 @@ signal talking_changed
 
 signal dna_loaded
 
+# emitted on the frame when creature bites into some food
 signal food_eaten
 
 const IDLE = CreatureVisuals.IDLE
@@ -327,11 +328,10 @@ func play_goodbye_voice(force: bool = false) -> void:
 		_creature_sfx.play_goodbye_voice(force)
 
 
-func feed(food_color: Color) -> void:
+func feed(food_type: int) -> void:
 	feed_count += 1
-	if food_color != FoodColors.VEGETABLE:
-		box_feed_count += 1
-	creature_visuals.feed()
+	box_feed_count += 1
+	creature_visuals.feed(food_type)
 
 
 """
@@ -576,8 +576,8 @@ func _on_CreatureVisuals_dna_loaded() -> void:
 	emit_signal("dna_loaded")
 
 
-func _on_CreatureVisuals_food_eaten() -> void:
-	emit_signal("food_eaten")
+func _on_CreatureVisuals_food_eaten(food_type: int) -> void:
+	emit_signal("food_eaten", food_type)
 
 
 func _on_CreatureVisuals_visual_fatness_changed() -> void:
