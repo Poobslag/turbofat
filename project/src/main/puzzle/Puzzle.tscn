@@ -66,72 +66,10 @@
 [ext_resource path="res://src/main/puzzle/chalkboard.gd" type="Script" id=66]
 [ext_resource path="res://src/main/puzzle/start-end-sfx.gd" type="Script" id=67]
 
-[sub_resource type="ViewportTexture" id=1]
-viewport_path = NodePath("WallGlobViewports/Viewport")
-
-[sub_resource type="OpenSimplexNoise" id=2]
-resource_local_to_scene = true
-seed = -529000524
-octaves = 1
-
-[sub_resource type="NoiseTexture" id=3]
-width = 1024
-height = 1024
-seamless = true
-noise = SubResource( 2 )
-
-[sub_resource type="ViewportTexture" id=4]
-viewport_path = NodePath("WallGlobViewports/RainbowViewport")
-
-[sub_resource type="ShaderMaterial" id=5]
-resource_local_to_scene = true
-shader = ExtResource( 15 )
-shader_param/frosting_texture_offset = Vector2( 356, -10 )
-shader_param/frosting_alpha = 0.6
-shader_param/noise = SubResource( 3 )
-shader_param/frosting_texture = SubResource( 1 )
-shader_param/rainbow_texture = SubResource( 4 )
-
-[sub_resource type="ShaderMaterial" id=6]
-shader = ExtResource( 4 )
-
-[sub_resource type="ViewportTexture" id=7]
-flags = 5
-viewport_path = NodePath("FrostingGlobs/GlobViewports/Viewport")
-
-[sub_resource type="OpenSimplexNoise" id=8]
-resource_local_to_scene = true
-seed = -165480819
-octaves = 1
-
-[sub_resource type="NoiseTexture" id=9]
-width = 1024
-height = 1024
-seamless = true
-noise = SubResource( 8 )
-
-[sub_resource type="ShaderMaterial" id=10]
-shader = ExtResource( 7 )
-shader_param/noise = SubResource( 9 )
-
-[sub_resource type="ViewportTexture" id=11]
-flags = 5
-viewport_path = NodePath("FrostingGlobs/GlobViewports/RainbowViewport")
-
-[sub_resource type="ShaderMaterial" id=12]
-resource_local_to_scene = true
-shader = ExtResource( 22 )
-shader_param/width = 6.0
-shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
-shader_param/edge_fix_factor = 0.001
-
-[sub_resource type="ViewportTexture" id=13]
-viewport_path = NodePath("FoodItems/Viewport")
-
-[sub_resource type="StyleBoxFlat" id=14]
+[sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
 
-[sub_resource type="StyleBoxFlat" id=15]
+[sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 1 )
 border_width_left = 2
 border_width_top = 2
@@ -139,14 +77,14 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color( 1, 1, 1, 1 )
 
-[sub_resource type="Gradient" id=16]
+[sub_resource type="Gradient" id=3]
 offsets = PoolRealArray( 0, 0.695652 )
 colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
 
-[sub_resource type="GradientTexture" id=17]
-gradient = SubResource( 16 )
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
 
-[sub_resource type="ParticlesMaterial" id=18]
+[sub_resource type="ParticlesMaterial" id=5]
 flag_disable_z = true
 direction = Vector3( -100, -40, 0 )
 spread = 15.0
@@ -156,9 +94,9 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-color_ramp = SubResource( 17 )
+color_ramp = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=19]
+[sub_resource type="ParticlesMaterial" id=6]
 flag_disable_z = true
 direction = Vector3( 100, -40, 0 )
 spread = 15.0
@@ -168,9 +106,9 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-color_ramp = SubResource( 17 )
+color_ramp = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=20]
+[sub_resource type="ParticlesMaterial" id=7]
 flag_disable_z = true
 direction = Vector3( -100, 40, 0 )
 spread = 15.0
@@ -180,9 +118,9 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-color_ramp = SubResource( 17 )
+color_ramp = SubResource( 4 )
 
-[sub_resource type="ParticlesMaterial" id=21]
+[sub_resource type="ParticlesMaterial" id=8]
 flag_disable_z = true
 direction = Vector3( 100, 40, 0 )
 spread = 15.0
@@ -192,7 +130,69 @@ initial_velocity_random = 0.5
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 5.0
-color_ramp = SubResource( 17 )
+color_ramp = SubResource( 4 )
+
+[sub_resource type="ViewportTexture" id=9]
+viewport_path = NodePath("WallGlobViewports/Viewport")
+
+[sub_resource type="OpenSimplexNoise" id=10]
+resource_local_to_scene = true
+seed = -529000524
+octaves = 1
+
+[sub_resource type="NoiseTexture" id=11]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 10 )
+
+[sub_resource type="ViewportTexture" id=12]
+viewport_path = NodePath("WallGlobViewports/RainbowViewport")
+
+[sub_resource type="ShaderMaterial" id=13]
+resource_local_to_scene = true
+shader = ExtResource( 15 )
+shader_param/frosting_texture_offset = Vector2( 356, -10 )
+shader_param/frosting_alpha = 0.6
+shader_param/noise = SubResource( 11 )
+shader_param/frosting_texture = SubResource( 9 )
+shader_param/rainbow_texture = SubResource( 12 )
+
+[sub_resource type="ShaderMaterial" id=16]
+shader = ExtResource( 4 )
+
+[sub_resource type="ViewportTexture" id=17]
+flags = 5
+viewport_path = NodePath("FrostingGlobs/GlobViewports/Viewport")
+
+[sub_resource type="OpenSimplexNoise" id=18]
+resource_local_to_scene = true
+seed = -165480819
+octaves = 1
+
+[sub_resource type="NoiseTexture" id=19]
+width = 1024
+height = 1024
+seamless = true
+noise = SubResource( 18 )
+
+[sub_resource type="ShaderMaterial" id=20]
+shader = ExtResource( 7 )
+shader_param/noise = SubResource( 19 )
+
+[sub_resource type="ViewportTexture" id=21]
+flags = 5
+viewport_path = NodePath("FrostingGlobs/GlobViewports/RainbowViewport")
+
+[sub_resource type="ShaderMaterial" id=22]
+resource_local_to_scene = true
+shader = ExtResource( 22 )
+shader_param/width = 6.0
+shader_param/black = Color( 0.423529, 0.262745, 0.192157, 1 )
+shader_param/edge_fix_factor = 0.001
+
+[sub_resource type="ViewportTexture" id=23]
+viewport_path = NodePath("FoodItems/Viewport")
 
 [node name="Puzzle" type="Control"]
 anchor_left = 0.5
@@ -218,6 +218,130 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Chalkboard" type="TextureRect" parent="."]
+margin_left = -58.0
+margin_top = 27.0
+margin_right = 284.0
+margin_bottom = 292.0
+texture = ExtResource( 42 )
+expand = true
+script = ExtResource( 66 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Chalkboard Shadow" type="Polygon2D" parent="Chalkboard"]
+show_behind_parent = true
+position = Vector2( 57.4473, -143.371 )
+scale = Vector2( 0.444724, 0.444458 )
+color = Color( 0.345098, 0.14902, 0.0705882, 1 )
+antialiased = true
+polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
+
+[node name="Score" parent="Chalkboard" instance=ExtResource( 61 )]
+margin_left = 58.0
+margin_top = 25.0
+margin_right = 308.0
+margin_bottom = 99.0
+
+[node name="PuzzleTimer" parent="Chalkboard" instance=ExtResource( 49 )]
+margin_left = 58.0
+margin_top = 110.0
+margin_right = 308.0
+margin_bottom = 140.0
+
+[node name="MilestoneHud" type="Control" parent="Chalkboard"]
+margin_left = 58.0
+margin_top = 153.0
+margin_right = 308.0
+margin_bottom = 233.0
+rect_min_size = Vector2( 250, 40 )
+script = ExtResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ProgressBar" type="ProgressBar" parent="Chalkboard/MilestoneHud"]
+margin_left = 150.0
+margin_top = 30.0
+margin_right = 250.0
+margin_bottom = 75.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+percent_visible = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Desc" type="Label" parent="Chalkboard/MilestoneHud"]
+anchor_right = 1.0
+margin_bottom = 30.0
+theme = ExtResource( 1 )
+text = "Goal"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Value" type="Label" parent="Chalkboard/MilestoneHud"]
+margin_left = 150.0
+margin_top = 30.0
+margin_right = 250.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 100, 45 )
+custom_fonts/font = ExtResource( 14 )
+text = "10"
+align = 1
+valign = 1
+autowrap = true
+max_lines_visible = 1
+script = ExtResource( 36 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
+
+[node name="ProgressBarParticles" type="Control" parent="Chalkboard/MilestoneHud"]
+margin_left = 150.0
+margin_top = 30.0
+margin_right = 250.0
+margin_bottom = 75.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Nw" type="Particles2D" parent="Chalkboard/MilestoneHud/ProgressBarParticles"]
+position = Vector2( 50, 22.5 )
+emitting = false
+amount = 3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 5 )
+
+[node name="Ne" type="Particles2D" parent="Chalkboard/MilestoneHud/ProgressBarParticles"]
+position = Vector2( 50, 22.5 )
+emitting = false
+amount = 3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 6 )
+
+[node name="Sw" type="Particles2D" parent="Chalkboard/MilestoneHud/ProgressBarParticles"]
+position = Vector2( 50, 22.5 )
+emitting = false
+amount = 3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 7 )
+
+[node name="Se" type="Particles2D" parent="Chalkboard/MilestoneHud/ProgressBarParticles"]
+position = Vector2( 50, 22.5 )
+emitting = false
+amount = 3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource( 8 )
 
 [node name="Playfield Shadow" type="Polygon2D" parent="."]
 position = Vector2( 678.385, -289.115 )
@@ -264,7 +388,7 @@ glob_min_scale = 1.2
 glob_max_scale = 2.5
 
 [node name="Walls" type="TextureRect" parent="."]
-material = SubResource( 5 )
+material = SubResource( 13 )
 margin_left = 356.5
 margin_top = 20.5
 margin_right = 758.5
@@ -299,22 +423,22 @@ usage = 0
 
 [node name="TextureRect" type="TextureRect" parent="FrostingGlobs"]
 modulate = Color( 1, 1, 1, 0.768627 )
-material = SubResource( 6 )
+material = SubResource( 16 )
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
-texture = SubResource( 7 )
+texture = SubResource( 17 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="RainbowTextureRect" type="TextureRect" parent="FrostingGlobs"]
-material = SubResource( 10 )
+material = SubResource( 20 )
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
-texture = SubResource( 11 )
+texture = SubResource( 21 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -323,7 +447,8 @@ __meta__ = {
 [node name="FoodItems" type="Node2D" parent="."]
 z_index = 3
 script = ExtResource( 20 )
-playfield_path = NodePath("../Playfield")
+puzzle_path = NodePath("..")
+restaurant_view_path = NodePath("../RestaurantView")
 FoodScene = ExtResource( 37 )
 
 [node name="Viewport" type="Viewport" parent="FoodItems"]
@@ -332,16 +457,24 @@ transparent_bg = true
 usage = 0
 
 [node name="TextureRect" type="TextureRect" parent="FoodItems"]
-material = SubResource( 12 )
+material = SubResource( 22 )
 margin_right = 2560.0
 margin_bottom = 1500.0
 rect_min_size = Vector2( 2560, 1500 )
 rect_scale = Vector2( 0.4, 0.4 )
-texture = SubResource( 13 )
+texture = SubResource( 23 )
 flip_v = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="FoodFlightTimer" type="Timer" parent="FoodItems"]
+wait_time = 0.08
+autostart = true
+
+[node name="CustomerChangeTimer" type="Timer" parent="FoodItems"]
+wait_time = 0.5
+one_shot = true
 
 [node name="ComboCounters" type="Node2D" parent="."]
 position = Vector2( 364, 28 )
@@ -373,130 +506,6 @@ rect_min_size = Vector2( 1024, 600 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Chalkboard" type="TextureRect" parent="Hud/HudUi"]
-margin_left = -58.0
-margin_top = 27.0
-margin_right = 284.0
-margin_bottom = 292.0
-texture = ExtResource( 42 )
-expand = true
-script = ExtResource( 66 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Chalkboard Shadow" type="Polygon2D" parent="Hud/HudUi/Chalkboard"]
-show_behind_parent = true
-position = Vector2( 57.4473, -143.371 )
-scale = Vector2( 0.444724, 0.444458 )
-color = Color( 0.345098, 0.14902, 0.0705882, 1 )
-antialiased = true
-polygon = PoolVector2Array( -129.116, 322.644, -115.686, 309.085, 653.374, 309.084, 653.35, 905.357, 639.906, 918.809, -129.063, 918.761 )
-
-[node name="Score" parent="Hud/HudUi/Chalkboard" instance=ExtResource( 61 )]
-margin_left = 58.0
-margin_top = 25.0
-margin_right = 308.0
-margin_bottom = 99.0
-
-[node name="PuzzleTimer" parent="Hud/HudUi/Chalkboard" instance=ExtResource( 49 )]
-margin_left = 58.0
-margin_top = 110.0
-margin_right = 308.0
-margin_bottom = 140.0
-
-[node name="MilestoneHud" type="Control" parent="Hud/HudUi/Chalkboard"]
-margin_left = 58.0
-margin_top = 153.0
-margin_right = 308.0
-margin_bottom = 233.0
-rect_min_size = Vector2( 250, 40 )
-script = ExtResource( 23 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ProgressBar" type="ProgressBar" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
-margin_left = 150.0
-margin_top = 30.0
-margin_right = 250.0
-margin_bottom = 75.0
-custom_styles/fg = SubResource( 14 )
-custom_styles/bg = SubResource( 15 )
-percent_visible = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Desc" type="Label" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
-anchor_right = 1.0
-margin_bottom = 30.0
-theme = ExtResource( 1 )
-text = "Goal"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Value" type="Label" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
-margin_left = 150.0
-margin_top = 30.0
-margin_right = 250.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 100, 45 )
-custom_fonts/font = ExtResource( 14 )
-text = "10"
-align = 1
-valign = 1
-autowrap = true
-max_lines_visible = 1
-script = ExtResource( 36 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-fonts = [ ExtResource( 13 ), ExtResource( 3 ), ExtResource( 14 ) ]
-
-[node name="ProgressBarParticles" type="Control" parent="Hud/HudUi/Chalkboard/MilestoneHud"]
-margin_left = 150.0
-margin_top = 30.0
-margin_right = 250.0
-margin_bottom = 75.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Nw" type="Particles2D" parent="Hud/HudUi/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
-emitting = false
-amount = 3
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 18 )
-
-[node name="Ne" type="Particles2D" parent="Hud/HudUi/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
-emitting = false
-amount = 3
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 19 )
-
-[node name="Sw" type="Particles2D" parent="Hud/HudUi/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
-emitting = false
-amount = 3
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 20 )
-
-[node name="Se" type="Particles2D" parent="Hud/HudUi/Chalkboard/MilestoneHud/ProgressBarParticles"]
-position = Vector2( 50, 22.5 )
-emitting = false
-amount = 3
-one_shot = true
-explosiveness = 1.0
-process_material = SubResource( 21 )
 
 [node name="TutorialHud" parent="Hud/HudUi" instance=ExtResource( 2 )]
 visible = false
@@ -630,22 +639,25 @@ codes = [ "delays", "bigfps" ]
 script = ExtResource( 19 )
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 50 )]
-[connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
+[connection signal="line_clears_scheduled" from="Playfield" to="StarSeeds" method="_on_Playfield_line_clears_scheduled"]
 [connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
 [connection signal="lines_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_lines_deleted"]
 [connection signal="food_spawned" from="StarSeeds" to="FoodItems" method="_on_StarSeeds_food_spawned"]
 [connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
+[connection signal="customer_changed" from="RestaurantView" to="FoodItems" method="_on_RestaurantView_customer_changed"]
 [connection signal="hit_next_pieces" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
-[connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
-[connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="timeout" from="FoodItems/FoodFlightTimer" to="FoodItems" method="_on_FoodFlightTimer_timeout"]
 [connection signal="back_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_back_button_pressed"]
 [connection signal="settings_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_settings_button_pressed"]
 [connection signal="start_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]

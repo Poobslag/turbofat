@@ -257,9 +257,9 @@ func rescale(new_scale_x: float) -> void:
 
 
 """
-Launches the 'feed' animation, hurling a piece of food at the creature and having them catch it.
+Launches the 'feed' animation. The creature makes a biting motion and plays a munch sound.
 """
-func feed(food_color: Color) -> void:
+func feed() -> void:
 	if not visible:
 		# If no creature is visible, it could mean their resources haven't loaded yet. Don't play any animations or
 		# sounds. ...Maybe as an easter egg some day, we can make the chef flinging food into empty air. Ha ha.
@@ -268,9 +268,6 @@ func feed(food_color: Color) -> void:
 	if not $TalkTimer.is_stopped():
 		$TalkTimer.stop()
 		emit_signal("talking_changed")
-	
-	$Neck0/HeadBobber/Food.modulate = food_color
-	$Neck0/HeadBobber/FoodLaser.modulate = food_color
 	_animations.eat()
 	if mouth_player:
 		mouth_player.eat()
@@ -397,6 +394,13 @@ Used when skipping to the middle of animations which play sfx.
 """
 func briefly_suppress_sfx_signal() -> void:
 	_suppress_sfx_signal_timer = 0.000000001
+
+
+"""
+Returns the number of seconds between the beginning of the eating animation and the 'chomp' noise.
+"""
+func get_eating_delay() -> float:
+	return 0.033
 
 
 """

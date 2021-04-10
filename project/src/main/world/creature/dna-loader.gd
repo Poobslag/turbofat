@@ -68,8 +68,6 @@ func unload_dna() -> void:
 		"Neck0/HeadBobber/EmoteEyeZ1",
 		"Neck0/HeadBobber/EyeZ0",
 		"Neck0/HeadBobber/EyeZ1",
-		"Neck0/HeadBobber/Food",
-		"Neck0/HeadBobber/FoodLaser",
 		"Neck0/HeadBobber/HairZ0",
 		"Neck0/HeadBobber/HairZ1",
 		"Neck0/HeadBobber/HairZ2",

@@ -1,3 +1,4 @@
+class_name RestaurantView
 extends Control
 """
 Showing the chef character and active customer in a restaurant scene.
@@ -5,16 +6,22 @@ Showing the chef character and active customer in a restaurant scene.
 As the player drops blocks and scores points, the characters animate and react.
 """
 
+# emitted when the customer changes, either because of a broken combo or because the level restarts
+signal customer_changed
+
 # virtual property; value is only exposed through getters/setters
 var current_creature_index: int setget set_current_creature_index, get_current_creature_index
 
 # bonus points scored for recent lines; used for determining when the chef should smile
 var _recent_bonuses := []
 
+onready var customer_view_viewport := $CustomerView/Viewport
+onready var customer_view := $CustomerView
+
 func _ready() -> void:
 	# Godot doesn't like when ViewportContainers have a different size from their Viewport, so we can't set
 	# these values in the editor. Otherwise it keeps changing the values back.
-	$CustomerView/Viewport.size = $CustomerView.rect_size * 4
+	customer_view_viewport.size = customer_view.rect_size * 4
 	$ChefView/Viewport.size = $ChefView.rect_size * 4
 	
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
@@ -35,6 +42,7 @@ Pans the camera to a new creature. This also changes which creature will be fed.
 """
 func set_current_creature_index(new_index: int) -> void:
 	$RestaurantViewport/Scene.current_creature_index = new_index
+	emit_signal("customer_changed")
 
 
 func get_current_creature_index() -> int:
@@ -67,6 +75,8 @@ func summon_creature(creature_index: int = -1) -> void:
 	else:
 		creature_def = CreatureLoader.random_def()
 	$RestaurantViewport/Scene.summon_creature(creature_def, creature_index)
+	if creature_index == -1 or creature_index == current_creature_index:
+		emit_signal("customer_changed")
 
 
 """

@@ -242,6 +242,9 @@ func eat() -> void:
 	play(emote_anim_name)
 	if emote_advance_amount > 0:
 		advance(emote_advance_amount)
+	elif emote_anim_name.begins_with("eat-again"):
+		# immediately update the animation to ensure the creature's eyes stay closed
+		advance(0.00001)
 
 
 """

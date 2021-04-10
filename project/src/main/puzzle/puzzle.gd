@@ -27,7 +27,7 @@ func _ready() -> void:
 	for i in range(3):
 		$RestaurantView.summon_creature(i)
 	
-	$RestaurantView.get_customer().play_hello_voice(true)
+	get_customer().play_hello_voice(true)
 	
 	if CurrentLevel.settings.other.skip_intro:
 		$PuzzleMusicManager.start_puzzle_music()
@@ -80,6 +80,35 @@ func start_level_countdown() -> void:
 	$StartEndSfx.play_go_sound()
 
 
+func get_customer() -> Creature:
+	return $RestaurantView.get_customer()
+
+
+"""
+Triggers the eating animation and makes the creature fatter. Accepts a 'fatness_pct' parameter which defines how
+much fatter the creature should get. We can calculate how fat they should be, and a value of 0.4 means the creature
+should increase by 40% of the amount needed to reach that target.
+
+This 'fatness_pct' parameter is needed for the level where the player eliminates three lines at once. We don't
+want the creature to suddenly grow full size. We want it to take 3 bites.
+"""
+func feed_creature(customer: Creature, food_color: Color) -> void:
+	if customer.creature_id == CreatureLibrary.SENSEI_ID:
+		# tutorial sensei doesn't become comfortable
+		pass
+	else:
+		var comfort := 0.0
+		# ate five things; comfortable
+		comfort += clamp(inverse_lerp(5, 15, PuzzleScore.combo), 0.0, 1.0)
+		# starting to overeat; less comfortable
+		comfort -= clamp(inverse_lerp(400, 600, PuzzleScore.get_creature_score()), 0.0, 1.0)
+		# overate; uncomfortable
+		comfort -= clamp(inverse_lerp(600, 1200, PuzzleScore.get_creature_score()), 0.0, 1.0)
+		customer.set_comfort(comfort)
+	
+	customer.feed(food_color)
+
+
 """
 Starts or restarts the puzzle, loading new customers and preparing the level.
 """
@@ -101,45 +130,6 @@ func _start_puzzle() -> void:
 	
 	PlayerData.creature_library.save_fatness_state()
 	PuzzleScore.prepare_and_start_game()
-
-
-"""
-Triggers the eating animation and makes the creature fatter. Accepts a 'fatness_pct' parameter which defines how
-much fatter the creature should get. We can calculate how fat they should be, and a value of 0.4 means the creature
-should increase by 40% of the amount needed to reach that target.
-
-This 'fatness_pct' parameter is needed for the level where the player eliminates three lines at once. We don't
-want the creature to suddenly grow full size. We want it to take 3 bites.
-
-Parameters:
-	'fatness_pct' A percent from [0.0-1.0] of how much fatter the creature should get from this bite of food.
-"""
-func _feed_creature(fatness_pct: float, food_color: Color) -> void:
-	var customer: Creature = $RestaurantView.get_customer()
-	
-	if customer.creature_id == CreatureLibrary.SENSEI_ID:
-		# tutorial sensei doesn't gain weight
-		pass
-	else:
-		var old_fatness: float = customer.get_fatness()
-		var base_score := customer.fatness_to_score(customer.base_fatness)
-		var target_fatness := customer.score_to_fatness(base_score + PuzzleScore.get_creature_score())
-		customer.set_fatness(lerp(old_fatness, target_fatness, fatness_pct))
-
-	if customer.creature_id == CreatureLibrary.SENSEI_ID:
-		# tutorial sensei doesn't become comfortable
-		pass
-	else:
-		var comfort := 0.0
-		# ate five things; comfortable
-		comfort += clamp(inverse_lerp(5, 15, PuzzleScore.combo), 0.0, 1.0)
-		# starting to overeat; less comfortable
-		comfort -= clamp(inverse_lerp(400, 600, PuzzleScore.get_creature_score()), 0.0, 1.0)
-		# overate; uncomfortable
-		comfort -= clamp(inverse_lerp(600, 1200, PuzzleScore.get_creature_score()), 0.0, 1.0)
-		customer.set_comfort(comfort)
-	
-	customer.feed(food_color)
 
 
 """
@@ -190,7 +180,12 @@ Triggers the 'creature feeding' animation.
 """
 func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	_calculate_food_color(box_ints)
-	_feed_creature(1.0 / (remaining_lines + 1), _food_color)
+	var customer: Creature = get_customer()
+	
+	# Save the appropriate fatness in the CreatureLibrary
+	var base_score := customer.fatness_to_score(customer.base_fatness)
+	var new_fatness := customer.score_to_fatness(base_score + PuzzleScore.get_bonus_score())
+	customer.save_fatness(new_fatness)
 	
 	# When the player finishes a puzzle, we end the game immediately after the last line clear. We don't wait for the
 	# after_piece_written signal because that signal is emitted after lines are deleted, resulting in an awkward pause.
@@ -201,7 +196,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	# They say something after clearing [6, 12, 18, 24...] lines.
 	if remaining_lines == 0 and PuzzleScore.combo >= 6 and total_lines > PuzzleScore.combo % 6:
 		yield(get_tree().create_timer(0.5), "timeout")
-		$RestaurantView.get_customer().play_combo_voice()
+		customer.play_combo_voice()
 
 
 func _on_PuzzleScore_game_started() -> void:
