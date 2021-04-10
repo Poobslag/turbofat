@@ -121,6 +121,8 @@ func get_target_pos(customer: Creature) -> Vector2:
 			target_pos.x = lerp(_window_width, target_pos.x,
 					_customer_change_timer.time_left / _customer_change_timer.wait_time)
 	
+	# calculate the position within the global viewport
+	target_pos = get_global_transform_with_canvas().xform_inv(target_pos)
 	# calculate the position within the FoodItems viewport texture
 	target_pos = target_pos / _texture_rect.rect_scale
 	
