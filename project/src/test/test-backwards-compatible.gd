@@ -49,6 +49,12 @@ func load_19c5_data() -> void:
 	PlayerSave.load_player_data()
 
 
+func load_1b3c_data() -> void:
+	var dir := Directory.new()
+	dir.copy("res://assets/test/turbofat-1b3c.json", "user://%s" % TEMP_FILENAME)
+	PlayerSave.load_player_data()
+
+
 func test_0517_lost_true() -> void:
 	load_0517_data()
 	
@@ -76,14 +82,14 @@ func test_0517_money_preserved() -> void:
 	assert_eq(PlayerData.money, 202)
 
 
-func test_0517_survival_records_preserved() -> void:
+func test_0517_marathon_records_preserved() -> void:
 	load_0517_data()
 	
-	# 'survival mode' used to be called 'marathon mode'
-	assert_true(PlayerData.level_history.level_names().has("practice/survival_normal"))
-	var history_survival: RankResult = PlayerData.level_history.results("practice/survival_normal")[0]
-	assert_eq(history_survival.lost, false)
-	assert_eq(history_survival.score, 1335)
+	# 'marathon mode' was renamed to 'survival mode' and back to 'marathon mode'
+	assert_true(PlayerData.level_history.level_names().has("practice/marathon_normal"))
+	var history_marathon: RankResult = PlayerData.level_history.results("practice/marathon_normal")[0]
+	assert_eq(history_marathon.lost, false)
+	assert_eq(history_marathon.score, 1335)
 
 
 func test_0517_timestamp_created() -> void:
@@ -168,3 +174,13 @@ func test_19c5() -> void:
 	assert_eq(PlayerData.level_history.best_result("tutorial/basics_0").score, 158)
 	assert_eq(PlayerData.level_history.best_result("rank/7k").score, 230)
 	assert_almost_eq(PlayerData.level_history.best_result("practice/ultra_normal").seconds, 40.81, 0.1)
+
+
+func test_1b3c() -> void:
+	load_1b3c_data()
+	
+	# 'survival mode' was renamed to 'marathon mode'
+	assert_true(PlayerData.level_history.level_names().has("practice/marathon_hard"))
+	var history_marathon: RankResult = PlayerData.level_history.results("practice/marathon_hard")[0]
+	assert_eq(history_marathon.lost, false)
+	assert_eq(history_marathon.score, 5115)

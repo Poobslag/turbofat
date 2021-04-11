@@ -147,6 +147,6 @@ func _compare_by_low_seconds(a: RankResult, b: RankResult) -> bool:
 
 func _compare_by_high_score(a: RankResult, b: RankResult) -> bool:
 	if a.success != b.success:
-		# succeeding is more important than getting a high score, especially for survival challenges.
+		# succeeding is more important than getting a high score, especially for marathon challenges.
 		return a.success
 	return a.score > b.score

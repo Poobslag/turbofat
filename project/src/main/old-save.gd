@@ -69,7 +69,7 @@ func is_old_save_items(json_save_items: Array) -> bool:
 	match version_string:
 		PlayerSave.PLAYER_DATA_VERSION:
 			is_old = false
-		"19c5", "199c", "1922", "1682", "163e", "15d2":
+		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2":
 			is_old = true
 		_:
 			push_warning("Unrecognized save data version: '%s'" % version_string)
@@ -96,6 +96,8 @@ Transforms the specified json save items to the latest format.
 func transform_old_save_items(json_save_items: Array) -> Array:
 	var version_string := get_version_string(json_save_items)
 	match version_string:
+		"1b3c":
+			json_save_items = _convert_1b3c(json_save_items)
 		"19c5":
 			json_save_items = _convert_19c5(json_save_items)
 		"199c":
@@ -109,6 +111,35 @@ func transform_old_save_items(json_save_items: Array) -> Array:
 		"15d2":
 			json_save_items = _convert_15d2(json_save_items)
 	return json_save_items
+
+
+func _convert_1b3c(json_save_items: Array) -> Array:
+	var new_save_items := []
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		match save_item.type:
+			"version":
+				save_item["value"] = "245b"
+			"level_history":
+				save_item.key = _convert_1b3c_level_id(save_item.key)
+			"successful_levels", "finished_levels":
+				var new_levels := {}
+				var levels: Dictionary = save_item.value
+				for level_id in levels:
+					var new_level_id := _convert_1b3c_level_id(level_id)
+					new_levels[new_level_id] = levels[level_id]
+				save_item.value = new_levels
+		
+		new_save_items.append(save_item.to_json_dict())
+	return new_save_items
+
+
+func _convert_1b3c_level_id(value: String) -> String:
+	var new_value := value
+	if value.begins_with("practice/survival_"):
+		new_value = "practice/marathon_%s" % [value.trim_prefix("practice/survival_")]
+	return new_value
 
 
 func _convert_19c5(json_save_items: Array) -> Array:

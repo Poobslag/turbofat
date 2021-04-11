@@ -1,0 +1,512 @@
+[
+  {
+    "type": "version",
+    "value": "1b3c"
+  },
+  {
+    "type": "player_info",
+    "value": {
+      "money": 5568322
+    }
+  },
+  {
+    "type": "gameplay_settings",
+    "value": {
+      "ghost_piece": false
+    }
+  },
+  {
+    "type": "graphics_settings",
+    "value": {
+      "creature_detail": 1
+    }
+  },
+  {
+    "type": "volume_settings",
+    "value": {
+      "master": 0.69,
+      "music": 0,
+      "sound": 0.7,
+      "voice": 0.69
+    }
+  },
+  {
+    "type": "touch_settings",
+    "value": {
+      "size": 1,
+      "scheme": 4,
+      "fat_finger": 1
+    }
+  },
+  {
+    "type": "keybind_settings",
+    "value": {
+      "preset": 0,
+      "custom_keybinds": {
+        "move_piece_left": [
+          {
+            "type": "key",
+            "scancode": 16777231
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "move_piece_right": [
+          {
+            "type": "key",
+            "scancode": 16777233
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "soft_drop": [
+          {
+            "type": "key",
+            "scancode": 16777234
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "hard_drop": [
+          {
+            "type": "key",
+            "scancode": 32
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "rotate_ccw": [
+          {
+            "type": "key",
+            "scancode": 90
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "rotate_cw": [
+          {
+            "type": "key",
+            "scancode": 88
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_up": [
+          {
+            "type": "key",
+            "scancode": 16777232
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_down": [
+          {
+            "type": "key",
+            "scancode": 16777234
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_left": [
+          {
+            "type": "key",
+            "scancode": 16777231
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_right": [
+          {
+            "type": "key",
+            "scancode": 16777233
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_accept": [
+          {
+            "type": "key",
+            "scancode": 32
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_cancel": [
+          {
+            "type": "key",
+            "scancode": 16777217
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "ui_menu": [
+          {
+            "type": "key",
+            "scancode": 16777217
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "walk_up": [
+          {
+            "type": "key",
+            "scancode": 16777232
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "walk_down": [
+          {
+            "type": "key",
+            "scancode": 16777234
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "walk_left": [
+          {
+            "type": "key",
+            "scancode": 16777231
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "walk_right": [
+          {
+            "type": "key",
+            "scancode": 16777233
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "interact": [
+          {
+            "type": "key",
+            "scancode": 32
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "rewind_text": [
+          {
+            "type": "key",
+            "scancode": 16777237
+          },
+          {
+
+          },
+          {
+
+          }
+        ],
+        "phone": [
+          {
+            "type": "key",
+            "scancode": 16777218
+          },
+          {
+
+          },
+          {
+
+          }
+        ]
+      }
+    }
+  },
+  {
+    "type": "miscellaneous_settings",
+    "value": {
+      "locale": "en"
+    }
+  },
+  {
+    "type": "level_history",
+    "key": "tutorial/beginner_0",
+    "value": [
+      {
+        "box_score": 100,
+        "box_score_per_line": 20,
+        "box_score_per_line_rank": 0,
+        "combo_score": 5,
+        "combo_score_per_line": 5,
+        "combo_score_per_line_rank": 41.269608,
+        "compare": "-seconds",
+        "leftover_score": 426,
+        "lines": 5,
+        "lines_rank": 8.242425,
+        "pieces": 5,
+        "pieces_rank": 8.242425,
+        "lost": false,
+        "score": 536,
+        "score_rank": 999,
+        "seconds": 28.566668,
+        "seconds_rank": 12.61,
+        "speed": 10.50175,
+        "speed_rank": 26.333189,
+        "success": false,
+        "timestamp": {
+          "year": 2020,
+          "month": 10,
+          "day": 10,
+          "weekday": 6,
+          "dst": false,
+          "hour": 8,
+          "minute": 24,
+          "second": 34
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "level_history",
+    "key": "practice/survival_hard",
+    "value": [
+      {
+        "box_score": 2505,
+        "box_score_per_line": 12.525,
+        "box_score_per_line_rank": 4.807151,
+        "combo_score": 2000,
+        "combo_score_per_line": 10.25641,
+        "combo_score_per_line_rank": 17.681829,
+        "compare": "+score",
+        "leftover_score": 410,
+        "lines": 200,
+        "lines_rank": -0,
+        "pieces": 200,
+        "pieces_rank": -0,
+        "lost": false,
+        "score": 5115,
+        "score_rank": 1,
+        "seconds": 373.983353,
+        "seconds_rank": 999,
+        "speed": 32.086988,
+        "speed_rank": 2.575033,
+        "success": true,
+        "timestamp": {
+          "year": 2020,
+          "month": 10,
+          "day": 1,
+          "weekday": 4,
+          "dst": false,
+          "hour": 18,
+          "minute": 53,
+          "second": 36
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "chat_history",
+    "value": {
+      "history_items": {
+        "dialog/level_select": 10,
+        "dialog/level_select_2": 66,
+        "dialog/bones/filler_002": 3,
+        "dialog/richie/filler_002": 5
+      },
+      "counts": {
+        "dialog": 77,
+        "creatures/primary/boatricia": 58,
+        "creatures/primary/ebe": 40,
+        "creatures/primary/bort": 2,
+        "dialog/bort": 19,
+        "creatures/primary/shirts": 2,
+        "creatures/primary/skins": 1,
+        "creatures/primary/bones": 2,
+        "creatures/primary/richie": 5,
+        "dialog/richie": 6,
+        "dialog/boatricia": 8,
+        "dialog/shirts": 2,
+        "dialog/bones": 4,
+        "dialog/skins": 1,
+        "dialog/ebe": 13,
+        "puzzle/levels/cutscenes/marsh": 23,
+        "puzzle/levels/cutscenes": 1
+      },
+      "filler_counts": {
+        "dialog": 77,
+        "creatures/primary/boatricia": 58,
+        "creatures/primary/ebe": 40,
+        "creatures/primary/bort": 2,
+        "dialog/bort": 19,
+        "creatures/primary/shirts": 2,
+        "creatures/primary/skins": 1,
+        "creatures/primary/bones": 2,
+        "creatures/primary/richie": 5,
+        "dialog/richie": 6,
+        "dialog/boatricia": 8,
+        "dialog/shirts": 2,
+        "dialog/bones": 4,
+        "dialog/skins": 1,
+        "dialog/ebe": 13,
+        "puzzle/levels/cutscenes/marsh": 23,
+        "puzzle/levels/cutscenes": 1
+      }
+    }
+  },
+  {
+    "type": "creature_library",
+    "value": {
+      "#player#": {
+        "version": "19dd",
+        "id": "nifery",
+        "name": "Nifery",
+        "short_name": "Nifery",
+        "dna": {
+          "belly": "0",
+          "bellybutton": "0",
+          "body": "1",
+          "cheek": "0",
+          "collar": "0",
+          "ear": "2",
+          "eye": "2",
+          "hair": "0",
+          "head": "2",
+          "horn": "0",
+          "mouth": "5",
+          "nose": "2",
+          "tail": "7",
+          "accessory": "0",
+          "line_rgb": "6c4331",
+          "body_rgb": "f57e7d",
+          "belly_rgb": "fde8c9",
+          "cloth_rgb": "7ac252",
+          "glass_rgb": "d96079",
+          "plastic_rgb": "6f6168",
+          "hair_rgb": "f57e7d",
+          "eye_rgb": "7ac252 e9f4dc",
+          "horn_rgb": "f1e398"
+        },
+        "chat_theme_def": {
+          "accent_scale": 1.33,
+          "accent_swapped": true,
+          "accent_texture": 13,
+          "color": "f57e7d"
+        },
+        "dialog": {
+
+        },
+        "chat_selectors": [
+
+        ],
+        "fatness": 1,
+        "weight_gain_scale": 1,
+        "metabolism_scale": 1
+      },
+      "fatnesses": {
+        "ebe": 2.835597,
+        "boatricia": 2.924401,
+        "mewow": 1.759852,
+        "#sensei#": 1,
+        "minimax": 2.952493,
+        "goldfince": 1.803759,
+        "gongo": 1.972937
+      }
+    }
+  },
+  {
+    "type": "successful_levels",
+    "value": {
+      "practice/survival_hard": {
+        "year": 2020,
+        "month": 9,
+        "day": 24,
+        "weekday": 4,
+        "dst": false,
+        "hour": 19,
+        "minute": 49,
+        "second": 36
+      }
+    }
+  },
+  {
+    "type": "finished_levels",
+    "value": {
+      "tutorial/beginner_0": {
+        "year": 2020,
+        "month": 10,
+        "day": 10,
+        "weekday": 6,
+        "dst": false,
+        "hour": 8,
+        "minute": 24,
+        "second": 34
+      }
+    }
+  }
+]

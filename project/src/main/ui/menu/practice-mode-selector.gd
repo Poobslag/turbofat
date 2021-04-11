@@ -8,7 +8,7 @@ Also displays a description of the mode, 'Score 200 points as quickly as possibl
 signal mode_changed
 
 # group which ensures only one mode button is pressed
-onready var button_group: ButtonGroup = $Buttons/Survival.group
+onready var button_group: ButtonGroup = $Buttons/Marathon.group
 
 """
 Returns the currently selected mode string such as 'Normal' or 'Expert'
@@ -18,12 +18,12 @@ func get_selected_mode() -> String:
 
 
 """
-Sets the currently selected mode string such as 'Survival' or 'Sprint'
+Sets the currently selected mode string such as 'Marathon' or 'Sprint'
 """
 func set_selected_mode(new_selected_mode: String) -> void:
 	match new_selected_mode:
-		"Survival":
-			$Buttons/Survival.pressed = true
+		"Marathon":
+			$Buttons/Marathon.pressed = true
 		"Ultra":
 			$Buttons/Ultra.pressed = true
 		"Sprint":
@@ -40,7 +40,7 @@ Sets the currently selected level, used for generating a description.
 func set_level(new_level: LevelSettings) -> void:
 	var new_description := ""
 	match get_selected_mode():
-		"Survival":
+		"Marathon":
 			var target_value: int = new_level.finish_condition.value
 			
 			new_description = tr("Survive as the pieces get faster and faster! Can you clear %s lines?") \
