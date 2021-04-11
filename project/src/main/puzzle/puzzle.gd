@@ -174,7 +174,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 
 
 func _on_PuzzleScore_game_started() -> void:
-	$SettingsMenu.quit_text = SettingsMenu.GIVE_UP
+	$SettingsMenu.quit_type = SettingsMenu.GIVE_UP
 
 
 """
@@ -185,7 +185,7 @@ func _on_PuzzleScore_game_ended() -> void:
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
 	
-	$SettingsMenu.quit_text = SettingsMenu.QUIT
+	$SettingsMenu.quit_type = SettingsMenu.QUIT
 	var rank_result := RankCalculator.new().calculate_rank()
 	PlayerData.level_history.add(CurrentLevel.level_id, rank_result)
 	PlayerData.level_history.prune(CurrentLevel.level_id)
@@ -212,7 +212,7 @@ func _on_PuzzleScore_after_game_ended() -> void:
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
-	if $SettingsMenu.quit_text == SettingsMenu.GIVE_UP:
+	if $SettingsMenu.quit_type == SettingsMenu.GIVE_UP:
 		PuzzleScore.make_player_lose()
 	else:
 		if not MusicPlayer.is_playing_chill_bgm():

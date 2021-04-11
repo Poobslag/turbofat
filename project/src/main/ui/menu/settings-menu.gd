@@ -10,12 +10,16 @@ signal show
 signal hide
 signal quit_pressed
 
-const QUIT := "Quit"
-const SAVE_AND_QUIT := "Save + Quit"
-const GIVE_UP := "Give Up"
+enum QuitType {
+	QUIT, SAVE_AND_QUIT, GIVE_UP
+}
+
+const QUIT := QuitType.QUIT
+const SAVE_AND_QUIT := QuitType.SAVE_AND_QUIT
+const GIVE_UP := QuitType.GIVE_UP
 
 # The text on the menu's quit button
-export (String, "Quit", "Save + Quit", "Give Up") var quit_text: String setget set_quit_text
+export (QuitType) var quit_type: int setget set_quit_type
 
 # the UI control which was focused before this settings menu popped up
 var _old_focus_owner: Control
@@ -34,12 +38,12 @@ func _ready() -> void:
 	var custom_keybind_buttons := get_tree().get_nodes_in_group("custom_keybind_buttons")
 	for keybind_button in custom_keybind_buttons:
 		keybind_button.connect("awaiting_changed", self, "_on_CustomKeybindButton_awaiting_changed")
+	_refresh_quit_type()
 
 
-func set_quit_text(new_quit_text: String) -> void:
-	quit_text = new_quit_text
-	if is_inside_tree():
-		$Window/UiArea/Bottom/Quit.text = quit_text
+func set_quit_type(new_quit_type: int) -> void:
+	quit_type = new_quit_type
+	_refresh_quit_type()
 
 
 """
@@ -67,6 +71,19 @@ func hide() -> void:
 		_old_focus_owner.grab_focus()
 		_old_focus_owner = null
 	emit_signal("hide")
+
+
+func _refresh_quit_type() -> void:
+	if not is_inside_tree():
+		return
+	
+	var quit_text := ""
+	match (quit_type):
+		QUIT: quit_text = tr("Quit")
+		SAVE_AND_QUIT: quit_text = tr("Save + Quit")
+		GIVE_UP: quit_text = tr("Give Up")
+	
+	$Window/UiArea/Bottom/Quit.text = quit_text
 
 
 func _on_Ok_pressed() -> void:

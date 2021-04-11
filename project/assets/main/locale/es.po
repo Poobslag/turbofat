@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-04 20:01-0400\n"
+"POT-Creation-Date: 2021-04-11 12:19-0400\n"
 "PO-Revision-Date: 2021-03-25 16:25-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -1094,25 +1094,776 @@ msgstr ""
 "Mi teléfono está muy lento últimamente. ...Hacen esto a propósito para que "
 "compres uno nuevo. ¡Es muy molesto!"
 
-#: project/assets/main/locale/localizables-others.py:2
-msgid "Up"
-msgstr "Arriba"
+#: project/assets/main/locale/localizables-scancodes.py:2
+#: project/src/main/ui/SettingsMenu.tscn:376
+msgid "Space"
+msgstr ""
 
-#: project/assets/main/locale/localizables-others.py:3
-msgid "Down"
-msgstr "Abajo"
+#: project/assets/main/locale/localizables-scancodes.py:3
+msgid "Exclam"
+msgstr ""
 
-#: project/assets/main/locale/localizables-others.py:4
+#: project/assets/main/locale/localizables-scancodes.py:4
+msgid "QuoteDbl"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:5
+msgid "NumberSign"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:6
+msgid "Dollar"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:7
+msgid "Percent"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:8
+msgid "Ampersand"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:9
+msgid "Apostrophe"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:10
+msgid "ParenLeft"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:11
+msgid "ParenRight"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:12
+msgid "Asterisk"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:13
+msgid "Plus"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:14
+msgid "Comma"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:15
+msgid "Minus"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:16
+msgid "Period"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:17
+msgid "Slash"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:18
+msgid "Colon"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:19
+msgid "Semicolon"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:20
+msgid "Less"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:21
+msgid "Equal"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:22
+msgid "Greater"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:23
+msgid "Question"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:24
+msgid "At"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:25
+msgid "BracketLeft"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:26
+msgid "BackSlash"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:27
+msgid "BracketRight"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:28
+msgid "AsciiCircum"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:29
+msgid "UnderScore"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:30
+msgid "QuoteLeft"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:31
+msgid "BraceLeft"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:32
+msgid "Bar"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:33
+msgid "BraceRight"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:34
+msgid "AsciiTilde"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:35
+msgid "NoBreakSpace"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:36
+msgid "ExclamDown"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:37
+msgid "Cent"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:38
+msgid "Sterling"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:39
+msgid "Currency"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:40
+msgid "Yen"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:41
+msgid "BrokenBar"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:42
+msgid "Section"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:43
+msgid "Diaeresis"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:44
+msgid "Copyright"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:45
+msgid "Ordfeminine"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:46
+msgid "GuillemotLeft"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:47
+msgid "NotSign"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:48
+msgid "Hyphen"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:49
+msgid "Registered"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:50
+msgid "Macron"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:51
+msgid "Degree"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:52
+msgid "PlusMinus"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:53
+msgid "TwoSuperior"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:54
+msgid "ThreeSuperior"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:55
+msgid "Acute"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:56
+msgid "Mu"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:57
+msgid "Paragraph"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:58
+msgid "PeriodCentered"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:59
+msgid "Cedilla"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:60
+msgid "OneSuperior"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:61
+msgid "Masculine"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:62
+msgid "GuillemotRight"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:63
+msgid "OneQuarter"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:64
+msgid "OneHalf"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:65
+msgid "ThreeQuarters"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:66
+msgid "QuestionDown"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:67
+msgid "Agrave"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:68
+msgid "Aacute"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:69
+msgid "AcircumFlex"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:70
+msgid "Atilde"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:71
+msgid "Adiaeresis"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:72
+msgid "Aring"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:73
+msgid "Ae"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:74
+msgid "Ccedilla"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:75
+msgid "Egrave"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:76
+msgid "Eacute"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:77
+msgid "Ecircumflex"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:78
+msgid "Ediaeresis"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:79
+msgid "Igrave"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:80
+msgid "Iacute"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:81
+msgid "Icircumflex"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:82
+msgid "Idiaeresis"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:83
+msgid "Eth"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:84
+msgid "Ntilde"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:85
+msgid "Ograve"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:86
+msgid "Oacute"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:87
+msgid "Ocircumflex"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:88
+msgid "Otilde"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:89
+msgid "Odiaeresis"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:90
+msgid "Multiply"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:91
+msgid "Ooblique"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:92
+msgid "Ugrave"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:93
+msgid "Uacute"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:94
+msgid "Ucircumflex"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:95
+msgid "Udiaeresis"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:96
+msgid "Yacute"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:97
+msgid "Thorn"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:98
+msgid "Ssharp"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:99
+msgid "Division"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:100
+msgid "Ydiaeresis"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:101
+#: project/src/main/ui/SettingsMenu.tscn:358
+#: project/src/main/ui/SettingsMenu.tscn:382
+msgid "Escape"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:102
+#: project/src/main/ui/SettingsMenu.tscn:412
+msgid "Tab"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:103
+msgid "BackTab"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:104
+msgid "BackSpace"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:105
+msgid "Enter"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:106
+msgid "Kp Enter"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:107
+msgid "Insert"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:108
+msgid "Delete"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:109
+msgid "Pause"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:110
+msgid "Print"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:111
+msgid "SysReq"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:112
+msgid "Clear"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:113
+msgid "Home"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:114
+msgid "End"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:115
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:22
 msgid "Left"
 msgstr "Izquierda"
 
-#: project/assets/main/locale/localizables-others.py:5
+#: project/assets/main/locale/localizables-scancodes.py:116
+msgid "Up"
+msgstr "Arriba"
+
+#: project/assets/main/locale/localizables-scancodes.py:117
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:22
 msgid "Right"
 msgstr "Derecha"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1323
+#: project/assets/main/locale/localizables-scancodes.py:118
+#: project/src/main/ui/SettingsMenu.tscn:340
+msgid "Down"
+msgstr "Abajo"
+
+#: project/assets/main/locale/localizables-scancodes.py:119
+msgid "PageUp"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:120
+msgid "PageDown"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:121
+#: project/src/main/ui/SettingsMenu.tscn:406
+msgid "Shift"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:122
+msgid "Control"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:123
+msgid "Meta"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:124
+msgid "Alt"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:125
+msgid "CapsLock"
+msgstr "BloqMayús"
+
+#: project/assets/main/locale/localizables-scancodes.py:126
+msgid "NumLock"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:127
+msgid "ScrollLock"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:128
+msgid "F1"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:129
+msgid "F2"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:130
+msgid "F3"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:131
+msgid "F4"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:132
+msgid "F5"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:133
+msgid "F6"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:134
+msgid "F7"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:135
+msgid "F8"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:136
+msgid "F9"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:137
+msgid "F10"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:138
+msgid "F11"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:139
+msgid "F12"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:140
+msgid "F13"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:141
+msgid "F14"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:142
+msgid "F15"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:143
+msgid "F16"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:144
+msgid "Super L"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:145
+msgid "Super R"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:146
+#: project/src/main/ui/SettingsMenu.tscn:357
+#: project/src/main/ui/SettingsMenu.tscn:464
+msgid "Menu"
+msgstr "Menú"
+
+#: project/assets/main/locale/localizables-scancodes.py:147
+msgid "Hyper L"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:148
+msgid "Hyper R"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:149
+msgid "Help"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:150
+msgid "Direction L"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:151
+msgid "Direction R"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:152
+#: project/src/main/puzzle/PuzzleMessages.tscn:87
+#: project/src/main/puzzle/puzzle-messages.gd:149
+#: project/src/main/puzzle/puzzle-messages.gd:151
+msgid "Back"
+msgstr "Atrás"
+
+#: project/assets/main/locale/localizables-scancodes.py:153
+msgid "Forward"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:154
+msgid "Stop"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:155
+msgid "Refresh"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:156
+msgid "VolumeDown"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:157
+msgid "VolumeMute"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:158
+msgid "VolumeUp"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:159
+msgid "BassBoost"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:160
+msgid "BassUp"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:161
+msgid "BassDown"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:162
+msgid "TrebleUp"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:163
+msgid "TrebleDown"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:164
+msgid "MediaPlay"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:165
+msgid "MediaStop"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:166
+msgid "MediaPrevious"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:167
+msgid "MediaNext"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:168
+msgid "MediaRecord"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:169
+msgid "HomePage"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:170
+msgid "Favorites"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:171
+msgid "Search"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:172
+msgid "StandBy"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:173
+msgid "LaunchMail"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:174
+msgid "LaunchMedia"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:175
+msgid "Launch0"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:176
+msgid "Launch1"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:177
+msgid "Launch2"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:178
+msgid "Launch3"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:179
+msgid "Launch4"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:180
+msgid "Launch5"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:181
+msgid "Launch6"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:182
+msgid "Launch7"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:183
+msgid "Launch8"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:184
+msgid "Launch9"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:185
+msgid "LaunchA"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:186
+msgid "LaunchB"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:187
+msgid "LaunchC"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:188
+msgid "LaunchD"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:189
+msgid "LaunchE"
+msgstr ""
+
+#: project/assets/main/locale/localizables-scancodes.py:190
+msgid "LaunchF"
+msgstr ""
+
+#: project/src/main/editor/creature/CreatureEditor.tscn:1289
 #: project/src/main/editor/puzzle/LevelEditor.tscn:383
 #: project/src/main/puzzle/PuzzleMessages.tscn:68
 #: project/src/main/ui/menu/PracticeMenu.tscn:271
@@ -1120,173 +1871,174 @@ msgstr "Derecha"
 msgid "Settings"
 msgstr "Configuración"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1336
+#: project/src/main/editor/creature/CreatureEditor.tscn:1302
 #: project/src/main/editor/puzzle/LevelEditor.tscn:394
 #: project/src/main/ui/CreatureStressTest.tscn:96
 #: project/src/main/ui/SettingsMenu.tscn:810
 #: project/src/main/ui/menu/PracticeMenu.tscn:286
 #: project/src/main/ui/menu/SystemButtons.tscn:46
+#: project/src/main/ui/menu/settings-menu.gd:82
 msgid "Quit"
 msgstr "Salir"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1362
+#: project/src/main/editor/creature/CreatureEditor.tscn:1328
 msgid "Reroll (100%)"
 msgstr "Aleatorio (100%)"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1440
+#: project/src/main/editor/creature/CreatureEditor.tscn:1406
 msgid "All Colors"
 msgstr "Todos los Colores"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1448
+#: project/src/main/editor/creature/CreatureEditor.tscn:1414
 msgid "Main Color"
 msgstr "Color Principal"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1456
+#: project/src/main/editor/creature/CreatureEditor.tscn:1422
 msgid "Line Color"
 msgstr "Color de Línea"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1464
-#: project/src/main/editor/creature/CreatureEditor.tscn:1740
+#: project/src/main/editor/creature/CreatureEditor.tscn:1430
+#: project/src/main/editor/creature/CreatureEditor.tscn:1706
 msgid "Body"
 msgstr "Cuerpo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1472
-#: project/src/main/editor/creature/CreatureEditor.tscn:1746
+#: project/src/main/editor/creature/CreatureEditor.tscn:1438
+#: project/src/main/editor/creature/CreatureEditor.tscn:1712
 msgid "Face"
 msgstr "Cara"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1480
-#: project/src/main/editor/creature/CreatureEditor.tscn:1758
+#: project/src/main/editor/creature/CreatureEditor.tscn:1446
+#: project/src/main/editor/creature/CreatureEditor.tscn:1724
 msgid "Eye"
 msgstr "Ojos"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1494
-#: project/src/main/editor/creature/CreatureEditor.tscn:1772
+#: project/src/main/editor/creature/CreatureEditor.tscn:1460
+#: project/src/main/editor/creature/CreatureEditor.tscn:1738
 msgid "Nose"
 msgstr "Nariz"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1502
-#: project/src/main/editor/creature/CreatureEditor.tscn:1778
+#: project/src/main/editor/creature/CreatureEditor.tscn:1468
+#: project/src/main/editor/creature/CreatureEditor.tscn:1744
 msgid "Mouth"
 msgstr "Boca"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1510
-#: project/src/main/editor/creature/CreatureEditor.tscn:1784
+#: project/src/main/editor/creature/CreatureEditor.tscn:1476
+#: project/src/main/editor/creature/CreatureEditor.tscn:1750
 msgid "Cheek"
 msgstr "Mejillas"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1518
-#: project/src/main/editor/creature/CreatureEditor.tscn:1796
+#: project/src/main/editor/creature/CreatureEditor.tscn:1484
+#: project/src/main/editor/creature/CreatureEditor.tscn:1762
 msgid "Ear"
 msgstr "Orejas"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1526
+#: project/src/main/editor/creature/CreatureEditor.tscn:1492
 msgid "Horn Color"
 msgstr "Color de Cuerno"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1534
-#: project/src/main/editor/creature/CreatureEditor.tscn:1810
+#: project/src/main/editor/creature/CreatureEditor.tscn:1500
+#: project/src/main/editor/creature/CreatureEditor.tscn:1776
 msgid "Forehead"
 msgstr "Frente"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1542
-#: project/src/main/editor/creature/CreatureEditor.tscn:1822
+#: project/src/main/editor/creature/CreatureEditor.tscn:1508
+#: project/src/main/editor/creature/CreatureEditor.tscn:1788
 msgid "Hair"
 msgstr "Pelo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1550
+#: project/src/main/editor/creature/CreatureEditor.tscn:1516
 msgid "Hair Color"
 msgstr "Color de Pelo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1558
-#: project/src/main/editor/creature/CreatureEditor.tscn:1862
+#: project/src/main/editor/creature/CreatureEditor.tscn:1524
+#: project/src/main/editor/creature/CreatureEditor.tscn:1828
 msgid "Tail"
 msgstr "Cola"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1566
-#: project/src/main/editor/creature/CreatureEditor.tscn:1842
+#: project/src/main/editor/creature/CreatureEditor.tscn:1532
+#: project/src/main/editor/creature/CreatureEditor.tscn:1808
 msgid "Belly"
 msgstr "Panza"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1574
+#: project/src/main/editor/creature/CreatureEditor.tscn:1540
 msgid "Belly Color"
 msgstr "Color de Panza"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1582
+#: project/src/main/editor/creature/CreatureEditor.tscn:1548
 msgid "Bellybutton"
 msgstr "Ombligo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1596
-#: project/src/main/editor/creature/CreatureEditor.tscn:1876
+#: project/src/main/editor/creature/CreatureEditor.tscn:1562
+#: project/src/main/editor/creature/CreatureEditor.tscn:1842
 msgid "Accessory"
 msgstr "Accesorio"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1604
-#: project/src/main/editor/creature/CreatureEditor.tscn:1882
+#: project/src/main/editor/creature/CreatureEditor.tscn:1570
+#: project/src/main/editor/creature/CreatureEditor.tscn:1848
 msgid "Collar"
 msgstr "Collar"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1612
+#: project/src/main/editor/creature/CreatureEditor.tscn:1578
 msgid "Cloth Color"
 msgstr "Color de Tela"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1620
+#: project/src/main/editor/creature/CreatureEditor.tscn:1586
 msgid "Glass Color"
 msgstr "Color de Vidrio"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1628
+#: project/src/main/editor/creature/CreatureEditor.tscn:1594
 msgid "Plastic Color"
 msgstr "Color de Plástico"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1652
-#: project/src/main/editor/creature/CreatureEditor.tscn:1932
+#: project/src/main/editor/creature/CreatureEditor.tscn:1618
+#: project/src/main/editor/creature/CreatureEditor.tscn:1898
 msgid "Import"
 msgstr "Importar"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1664
-#: project/src/main/editor/creature/CreatureEditor.tscn:1944
+#: project/src/main/editor/creature/CreatureEditor.tscn:1630
+#: project/src/main/editor/creature/CreatureEditor.tscn:1910
 msgid "Export"
 msgstr "Exportar"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1676
-#: project/src/main/editor/creature/CreatureEditor.tscn:1956
+#: project/src/main/editor/creature/CreatureEditor.tscn:1642
+#: project/src/main/editor/creature/CreatureEditor.tscn:1922
 #: project/src/main/editor/puzzle/LevelEditor.tscn:342
 msgid "Save"
 msgstr "Guardar"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1724
+#: project/src/main/editor/creature/CreatureEditor.tscn:1690
 msgid "Name"
 msgstr "Nombre"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1734
+#: project/src/main/editor/creature/CreatureEditor.tscn:1700
 msgid "Overall Color"
 msgstr "Color General"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1766
-#: project/src/main/editor/creature/CreatureEditor.tscn:1804
-#: project/src/main/editor/creature/CreatureEditor.tscn:1830
-#: project/src/main/editor/creature/CreatureEditor.tscn:1856
+#: project/src/main/editor/creature/CreatureEditor.tscn:1732
+#: project/src/main/editor/creature/CreatureEditor.tscn:1770
+#: project/src/main/editor/creature/CreatureEditor.tscn:1796
+#: project/src/main/editor/creature/CreatureEditor.tscn:1822
 msgid "Color"
 msgstr "Color"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1848
+#: project/src/main/editor/creature/CreatureEditor.tscn:1814
 msgid "Button"
 msgstr "Ombligo"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1868
+#: project/src/main/editor/creature/CreatureEditor.tscn:1834
 #: project/src/main/ui/SettingsMenu.tscn:603
 msgid "Size"
 msgstr "Tamaño"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1894
+#: project/src/main/editor/creature/CreatureEditor.tscn:1860
 msgid "Cloth"
 msgstr "Tela"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1900
+#: project/src/main/editor/creature/CreatureEditor.tscn:1866
 msgid "Glass"
 msgstr "Vidrio"
 
-#: project/src/main/editor/creature/CreatureEditor.tscn:1908
+#: project/src/main/editor/creature/CreatureEditor.tscn:1874
 msgid "Plastic"
 msgstr "Plástico"
 
@@ -1417,15 +2169,15 @@ msgstr "Gingerbread House"
 msgid "3x"
 msgstr "3x"
 
-#: project/src/main/puzzle/Puzzle.tscn:436
+#: project/src/main/puzzle/Puzzle.tscn:283
 msgid "Goal"
 msgstr "Meta"
 
-#: project/src/main/puzzle/Puzzle.tscn:449
+#: project/src/main/puzzle/Puzzle.tscn:296
 msgid "10"
 msgstr "10"
 
-#: project/src/main/puzzle/Puzzle.tscn:514
+#: project/src/main/puzzle/Puzzle.tscn:530
 msgid "abcd"
 msgstr "abcd"
 
@@ -1437,12 +2189,6 @@ msgstr "3"
 #: project/src/main/ui/menu/PracticeMenu.tscn:258
 msgid "Start"
 msgstr "Empezar"
-
-#: project/src/main/puzzle/PuzzleMessages.tscn:87
-#: project/src/main/puzzle/puzzle-messages.gd:149
-#: project/src/main/puzzle/puzzle-messages.gd:151
-msgid "Back"
-msgstr "Atrás"
 
 #: project/src/main/puzzle/PuzzleTimer.tscn:10
 msgid "0:00"
@@ -1477,7 +2223,7 @@ msgid "Time"
 msgstr "Tiempo"
 
 #: project/src/main/puzzle/puzzle-messages.gd:71
-#: project/src/main/puzzle/puzzle.gd:74
+#: project/src/main/puzzle/puzzle.gd:68
 msgid "Ready?"
 msgstr "¿Listo?"
 
@@ -2409,18 +3155,30 @@ msgstr "Personalizar"
 msgid "Move Piece"
 msgstr "Mover Pieza"
 
+#: project/src/main/ui/SettingsMenu.tscn:334
+msgid "Left, Right"
+msgstr ""
+
+#: project/src/main/ui/SettingsMenu.tscn:346
+msgid "Space, Up, Shift"
+msgstr ""
+
 #: project/src/main/ui/SettingsMenu.tscn:351
 msgid "Rotate Piece"
 msgstr "Rotar Pieza"
 
-#: project/src/main/ui/SettingsMenu.tscn:357
-#: project/src/main/ui/SettingsMenu.tscn:464
-msgid "Menu"
-msgstr "Menú"
+#: project/src/main/ui/SettingsMenu.tscn:352
+msgid "Z, X"
+msgstr ""
 
 #: project/src/main/ui/SettingsMenu.tscn:369
 msgid "Move in Menus"
 msgstr "Mover en Menús"
+
+#: project/src/main/ui/SettingsMenu.tscn:370
+#: project/src/main/ui/SettingsMenu.tscn:394
+msgid "Arrows, WASD"
+msgstr "Flechas, WASD"
 
 #: project/src/main/ui/SettingsMenu.tscn:375
 #: project/src/main/ui/SettingsMenu.tscn:500
@@ -2440,6 +3198,10 @@ msgstr "Caminar"
 #: project/src/main/ui/SettingsMenu.tscn:542
 msgid "Interact"
 msgstr "Interactuar"
+
+#: project/src/main/ui/SettingsMenu.tscn:400
+msgid "Space, Z"
+msgstr ""
 
 #: project/src/main/ui/SettingsMenu.tscn:405
 #: project/src/main/ui/SettingsMenu.tscn:548
@@ -2734,6 +3496,7 @@ msgstr "Supervivencia"
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:111
 msgid "Ultra"
+
 msgstr "Ultra"
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:124
@@ -2807,6 +3570,14 @@ msgstr "¡Termina en %s para lograr este rango!"
 msgid "Just relax! There is no way to win or lose this mode."
 msgstr "¡Solo relájate! No hay manera de ganar o perder en este modo."
 
+#: project/src/main/ui/menu/settings-menu.gd:83
+msgid "Save + Quit"
+msgstr "Guardar + Salir"
+
+#: project/src/main/ui/menu/settings-menu.gd:84
+msgid "Give Up"
+msgstr "Renunciar"
+
 #: project/src/main/world/LetterProjectile.tscn:75
 msgid "O"
 msgstr "O"
@@ -2826,6 +3597,3 @@ msgstr "Lorem ipsum dolor sit ame"
 #: project/src/main/world/restaurant/RestaurantNametagPanel.tscn:106
 msgid "Lorem ipsum dolor sit amet, consectetur adipisci"
 msgstr "Lorem ipsum dolor sit amet, consectetur adipisci"
-
-#~ msgid "Volume"
-#~ msgstr "Volumen"

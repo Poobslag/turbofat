@@ -9,9 +9,13 @@ and exports any localizable strings into a format accessible by pybabel.
 
 # the file where we write the localizable strings
 const OUTPUT_PATH := "res://assets/main/locale/localizables-extracted.py"
+const SCANCODE_OUTPUT_PATH := "res://assets/main/locale/localizables-scancodes.py"
 
 # localizable strings extracted from levels and dialogs
 var _localizables := []
+
+# localizable strings extracted from scancodes (input keys)
+var _scancode_localizables := []
 
 """
 Extracts localizable strings from levels and dialog and writes them to a file.
@@ -25,12 +29,14 @@ func _extract_and_write_localizables() -> void:
 	
 	_extract_localizables_from_levels()
 	_extract_localizables_from_creatures()
-	_write_localizables()
+	_extract_localizables_from_scancode_strings()
+	_write_localizables(OUTPUT_PATH, _localizables)
+	_write_localizables(SCANCODE_OUTPUT_PATH, _scancode_localizables)
 	
 	TranslationServer.set_locale(old_locale)
-	$VBoxContainer/Label.text = "Wrote %s strings to %s" % [
-			StringUtils.comma_sep(_localizables.size()),
-			OUTPUT_PATH]
+	$VBoxContainer/Label.text = "Wrote %s strings to %s, %s." % [
+			StringUtils.comma_sep(_localizables.size() + _scancode_localizables.size()),
+			OUTPUT_PATH, SCANCODE_OUTPUT_PATH]
 
 
 """
@@ -97,13 +103,33 @@ func _extract_localizables_from_chat_tree(chat_tree: ChatTree) -> void:
 
 
 """
+Extract localizables from OS.get_scancode_string()
+
+This is a workaround for Godot #4140 (https://github.com/godotengine/godot/issues/4140). Because Godot does not offer
+a way to localize scancode strings, we must extract and localize them ourselves.
+"""
+func _extract_localizables_from_scancode_strings() -> void:
+	# ascii printable characters: space, comma, period, slash...
+	for i in range(0, 256):
+		var scancode_string := OS.get_scancode_string(i)
+		if scancode_string.length() > 1:
+			_scancode_localizables.append(scancode_string)
+	
+	# non-ascii printable characters: F1, left, caps lock...
+	for i in range(16777217, 16777319):
+		var scancode_string := OS.get_scancode_string(i)
+		if scancode_string.length() > 1:
+			_scancode_localizables.append(scancode_string)
+
+
+"""
 Writes the in-memory list of localizables to a file, in a format accessible by pybabel.
 """
-func _write_localizables() -> void:
+func _write_localizables(output_path: String, localizables: Array) -> void:
 	var f := File.new()
-	f.open(OUTPUT_PATH, f.WRITE)
+	f.open(output_path, f.WRITE)
 	f.store_string("# Localizable strings extracted by LocalizationDemo.tscn\n")
-	for localizable_string_obj in _localizables:
+	for localizable_string_obj in localizables:
 		var localizable_string: String = localizable_string_obj
 		var sanitized_string := localizable_string
 		sanitized_string = sanitized_string.replace("\"", "\\\"")
