@@ -84,7 +84,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Survival" type="Button" parent="VBoxContainer/Mode/Buttons"]
+[node name="Marathon" type="Button" parent="VBoxContainer/Mode/Buttons"]
 margin_right = 120.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
@@ -95,7 +95,7 @@ toggle_mode = true
 shortcut_in_tooltip = false
 pressed = true
 group = ExtResource( 14 )
-text = "Survival"
+text = "Marathon"
 
 [node name="Ultra" type="Button" parent="VBoxContainer/Mode/Buttons"]
 margin_left = 170.0
@@ -327,7 +327,7 @@ margin_bottom = 94.0
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 18 )]
 [connection signal="mode_changed" from="VBoxContainer/Mode" to="." method="_on_Mode_mode_changed"]
-[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Survival" to="VBoxContainer/Mode" method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Marathon" to="VBoxContainer/Mode" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Mode/Buttons/Ultra" to="VBoxContainer/Mode" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Mode/Buttons/Sprint" to="VBoxContainer/Mode" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/Mode/Buttons/Rank" to="VBoxContainer/Mode" method="_on_Button_pressed"]

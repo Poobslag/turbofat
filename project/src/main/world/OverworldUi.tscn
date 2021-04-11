@@ -264,7 +264,7 @@ pressed_icon = ExtResource( 22 )
 codes = [ "bigfps" ]
 
 [node name="SettingsMenu" parent="Control" instance=ExtResource( 14 )]
-quit_text = "Save + Quit"
+quit_type = 1
 
 [node name="CellPhoneMenu" type="CanvasLayer" parent="Control"]
 script = ExtResource( 28 )

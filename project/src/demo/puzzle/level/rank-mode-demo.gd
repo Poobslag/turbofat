@@ -50,11 +50,11 @@ func _ready() -> void:
 		text += " (%s lines, %01d bpm, %01d ppl)\n" \
 				% [target_lines, (2 * target_lines) / (seconds / 60.0), target_score / target_lines]
 		
-		# for survival levels, also print a diminished score which is more realistic to reach under pressure
+		# for marathon levels, also print a diminished score which is more realistic to reach under pressure
 		match(data_key):
 			"1k", "7d", "M":
-				var survival_points := (target_score - target_lines) * 0.6 + target_lines
-				text += "  (%s survival: %s points)\n" % [data_key, survival_points]
+				var marathon_points := (target_score - target_lines) * 0.6 + target_lines
+				text += "  (%s marathon: %s points)\n" % [data_key, marathon_points]
 
 
 """

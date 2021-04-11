@@ -3240,7 +3240,7 @@ msgid "Mode"
 msgstr ""
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:98
-msgid "Survival"
+msgid "Marathon"
 msgstr ""
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:111

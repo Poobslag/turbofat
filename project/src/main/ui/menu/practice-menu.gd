@@ -15,10 +15,10 @@ Array of level categories used to initialize the scene.
 [2]: Level name, used to load the level definitions
 """
 const LEVEL_CATEGORIES := [
-	["Survival", "Normal", "practice/survival_normal"],
-	["Survival", "Hard", "practice/survival_hard"],
-	["Survival", "Expert", "practice/survival_expert"],
-	["Survival", "Master", "practice/survival_master"],
+	["Marathon", "Normal", "practice/marathon_normal"],
+	["Marathon", "Hard", "practice/marathon_hard"],
+	["Marathon", "Expert", "practice/marathon_expert"],
+	["Marathon", "Master", "practice/marathon_master"],
 	
 	["Ultra", "Normal", "practice/ultra_normal"],
 	["Ultra", "Hard", "practice/ultra_hard"],
@@ -53,14 +53,14 @@ const LEVEL_CATEGORIES := [
 ]
 
 """
-Key: Mode names, 'Survival', 'Ultra'
+Key: Mode names, 'Marathon', 'Ultra'
 Value: Difficulty names, 'Normal', 'Hard'
 """
 var mode_difficulties: Dictionary
 
 """
-Key: Mode/Difficulty names separated with a space, 'Survival Normal', 'Ultra Hard'
-Value: Level names, 'survival_normal', 'ultra_hard'
+Key: Mode/Difficulty names separated with a space, 'Marathon Normal', 'Ultra Hard'
+Value: Level names, 'marathon_normal', 'ultra_hard'
 """
 var levels: Dictionary
 
