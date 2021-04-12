@@ -284,7 +284,7 @@ sensei_spawn_id = ""
 
 [node name="MarshCrystal" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 399, 700 )
-chat_path = "res://assets/main/dialog/marsh-crystal.json"
+chat_path = "res://assets/main/dialog/marsh-crystal.chat"
 
 [node name="ChatIconHook" type="RemoteTransform2D" parent="World/Obstacles/MarshCrystal"]
 

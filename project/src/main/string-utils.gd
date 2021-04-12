@@ -60,10 +60,33 @@ static func comma_sep(n: int) -> String:
 
 
 """
+Gets the substring before the first occurrence of a separator.
+"""
+static func substring_before(s: String, sep: String) -> String:
+	return s.substr(0, s.find(sep))
+
+
+"""
 Gets the substring after the first occurrence of a separator.
 """
 static func substring_after(s: String, sep: String) -> String:
 	return s.substr(s.find(sep) + sep.length())
+
+
+"""
+Gets the String that is nested in between two Strings. Only the first match is returned.
+"""
+static func substring_between(s: String, open: String, close: String) -> String:
+	if not s or not open or not close:
+		return ""
+	
+	var result := ""
+	var start := s.find(open)
+	if start != -1:
+		var end := s.find(close, start + open.length())
+		if end != -1:
+			result = s.substr(start + open.length(), end - start - open.length())
+	return result
 
 
 """

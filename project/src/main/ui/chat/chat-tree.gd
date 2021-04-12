@@ -17,8 +17,13 @@ class Position:
 	# How far we are along the dialog branch.
 	var index := 0
 	
-	func _to_string():
+	func _to_string() -> String:
 		return ("(%s:%s)" % [key, index]) if key else ("(%s)" % index)
+	
+	
+	func reset() -> void:
+		key = ""
+		index = 0
 
 # Current version for saved dialog data. Should be updated if and only if the dialog format breaks backwards
 # compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
@@ -120,19 +125,10 @@ func cutscene_scene_path() -> String:
 	return LOCATION_SCENE_PATHS_BY_ID.get(location_id, Global.SCENE_OVERWORLD)
 
 
-func from_json_dict(json: Dictionary) -> void:
-	for key in json.keys():
-		match key:
-			"version":
-				if json[key] != DIALOG_DATA_VERSION:
-					push_warning("Unrecognized dialog data version: '%s'" % [json[key]])
-			"meta":
-				meta = json[key]
-			"location":
-				location_id = json[key].get("location_id", "")
-				spawn_locations = json[key].get("spawn_locations", {})
-			_:
-				for json_chat_event in json[key]:
-					var event := ChatEvent.new()
-					event.from_json_dict(json_chat_event)
-					append(key, event)
+func reset() -> void:
+	history_key = ""
+	meta = {}
+	events = {}
+	location_id = ""
+	spawn_locations = {}
+	_position.reset()

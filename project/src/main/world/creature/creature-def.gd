@@ -58,10 +58,6 @@ var dna: Dictionary
 # defines the chat window's appearance, such as 'blue', 'soccer balls' and 'giant'.
 var chat_theme_def: Dictionary
 
-# key: dialog key
-# value: chat tree json
-var dialog: Dictionary
-
 # dictionaries containing metadata for which dialog sequences should be launched in which order
 var chat_selectors: Array
 
@@ -100,7 +96,6 @@ func from_json_dict(json: Dictionary) -> void:
 	creature_short_name = json.get("short_name", NameUtils.sanitize_short_name(creature_name))
 	dna = json.get("dna", {})
 	chat_theme_def = json.get("chat_theme_def", {})
-	dialog = json.get("dialog", {})
 	chat_selectors = json.get("chat_selectors", [])
 	min_fatness = json.get("fatness", 1.0)
 	weight_gain_scale = json.get("weight_gain_scale", 1.0)
@@ -115,7 +110,6 @@ func to_json_dict() -> Dictionary:
 		"short_name": creature_short_name,
 		"dna": dna,
 		"chat_theme_def": chat_theme_def,
-		"dialog": dialog,
 		"chat_selectors": chat_selectors,
 		"fatness": min_fatness,
 		"weight_gain_scale": weight_gain_scale,

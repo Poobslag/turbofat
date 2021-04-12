@@ -57,12 +57,6 @@ var creature_def: CreatureDef setget set_creature_def, get_creature_def
 # dictionaries containing metadata for which dialog sequences should be launched in which order
 var chat_selectors: Array setget set_chat_selectors
 
-# creature conversations which were embedded in the creature definition
-#
-# key: chat tree id (string)
-# value: chat tree json for a conversation the creature can have
-var dialog: Dictionary
-
 var creature_name: String setget set_creature_name
 var creature_short_name: String
 var chat_theme_def: Dictionary setget set_chat_theme_def
@@ -357,7 +351,6 @@ func set_creature_def(new_creature_def: CreatureDef) -> void:
 	set_creature_name(new_creature_def.creature_name)
 	creature_short_name = new_creature_def.creature_short_name
 	set_chat_selectors(new_creature_def.chat_selectors)
-	dialog = new_creature_def.dialog
 	min_fatness = new_creature_def.min_fatness
 	weight_gain_scale = new_creature_def.weight_gain_scale
 	metabolism_scale = new_creature_def.metabolism_scale
@@ -379,7 +372,6 @@ func get_creature_def() -> CreatureDef:
 	result.creature_name = creature_name
 	result.creature_short_name = creature_short_name
 	result.chat_selectors = chat_selectors
-	result.dialog = dialog
 	result.min_fatness = min_fatness
 	result.weight_gain_scale = weight_gain_scale
 	result.metabolism_scale = metabolism_scale
