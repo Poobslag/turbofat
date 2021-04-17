@@ -23,6 +23,7 @@ class AbstractState:
 	func line(_line: String) -> String:
 		return ""
 
+# -----------------------------------------------------------------------------
 
 """
 Default parser state for parsing headers and metadata.
