@@ -2,9 +2,11 @@ extends Node
 """
 Loads dialog from files.
 
-Dialog is stored as a set of json resources. This class parses those json resources into ChatEvents so they can be fed
-into the UI.
+Dialog is stored as a set of chatscript resources. This class loads those resources into ChatTree instances so they can
+be fed into the UI.
 """
+
+const CHAT_EXTENSION := ".chat"
 
 const PREROLL_SUFFIX := "000"
 const POSTROLL_SUFFIX := "100"
@@ -51,7 +53,7 @@ Returns null if the chat tree cannot be found.
 """
 func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) -> ChatTree:
 	var creature_id := creature_def.creature_id
-	var filler_ids := filler_ids_for_creature(creature_id, creature_def.dialog)
+	var filler_ids := filler_ids_for_creature(creature_id)
 	var chosen_dialog := choose_dialog_from_chat_selectors(creature_def.chat_selectors, state, filler_ids)
 
 	var chat_tree := chat_tree_for_chat_id(creature_def, chosen_dialog)
@@ -68,13 +70,8 @@ Returns null if the chat tree cannot be found.
 """
 func chat_tree_for_chat_id(creature_def: CreatureDef, chat_id: String) -> ChatTree:
 	var chat_tree: ChatTree
-	if creature_def.dialog.has(chat_id):
-		chat_tree = ChatTree.new()
-		chat_tree.from_json_dict(creature_def.dialog[chat_id])
-		chat_tree.history_key = "dialog/%s/%s" % [creature_def.creature_id, chat_id]
-	elif FileUtils.file_exists(creature_dialog_path(creature_def.creature_id, chat_id)):
-		chat_tree = chat_tree_from_file(creature_dialog_path(creature_def.creature_id, chat_id))
-	
+	if FileUtils.file_exists(_creature_dialog_path(creature_def.creature_id, chat_id)):
+		chat_tree = chat_tree_from_file(_creature_dialog_path(creature_def.creature_id, chat_id))
 	return chat_tree
 
 
@@ -106,10 +103,6 @@ func has_postroll(level_id: String) -> bool:
 	return FileUtils.file_exists(_postroll_path(level_id))
 
 
-func creature_dialog_path(creature_id: String, chat_id: String) -> String:
-	return "res://assets/main/creatures/primary/%s/%s.json" % [creature_id, chat_id.replace("_", "-")]
-
-
 """
 Returns a ChatIcon enum representing the creature's next conversation.
 """
@@ -124,7 +117,7 @@ func chat_icon_for_creature(creature: Creature) -> int:
 	else:
 		# filler/speech icon for normal conversations
 		var state := _creature_chat_state(creature.creature_id)
-		var filler_ids := filler_ids_for_creature(creature.creature_id, creature.dialog)
+		var filler_ids := filler_ids_for_creature(creature.creature_id)
 		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
 		result = ChatIcon.FILLER if filler_ids.has(chosen_dialog) else ChatIcon.SPEECH
 	
@@ -132,25 +125,15 @@ func chat_icon_for_creature(creature: Creature) -> int:
 
 
 """
-Loads the chat events from the specified json file.
+Loads the chat events from the specified file.
 """
 func chat_tree_from_file(path: String) -> ChatTree:
-	var chat_tree := ChatTree.new()
-	var history_key := path
-	history_key = history_key.trim_suffix(".json")
-	history_key = history_key.trim_prefix("res://assets/main/")
-	history_key = history_key.replace("creatures/primary", "dialog")
-	history_key = history_key.replace("-", "_")
-	chat_tree.history_key = history_key
-	
-	if not FileUtils.file_exists(path):
-		push_error("File not found: %s" % path)
+	var result: ChatTree
+	if path.ends_with(CHAT_EXTENSION):
+		result = _chat_tree_from_chatscript_file(path)
 	else:
-		var tree_text: String = FileUtils.get_file_as_text(path)
-		var json_tree := _parse_json_tree(tree_text)
-		chat_tree.from_json_dict(json_tree)
-	
-	return chat_tree
+		push_error("Unrecognized cutscene suffix: %s" % [path])
+	return result
 
 
 """
@@ -218,13 +201,13 @@ Returns the dialog filler IDs for the specified creature.
 
 Examines the creature's dialog and resource files, and returns any dialog ids with names like 'filler_014'.
 """
-func filler_ids_for_creature(creature_id: String, creature_dialog: Dictionary) -> Array:
+func filler_ids_for_creature(creature_id: String) -> Array:
 	var filler_ids := []
 	for i in range(0, 1000):
 		var filler_id := "filler_%03d" % i
-		var path := "res://assets/main/creatures/primary/%s/%s.json" % \
-				[creature_id, filler_id.replace("_", "-")]
-		if creature_dialog.has(filler_id) or FileUtils.file_exists(path):
+		var chat_path := "res://assets/main/creatures/primary/%s/%s%s" % \
+				[creature_id, filler_id.replace("_", "-"), CHAT_EXTENSION]
+		if FileUtils.file_exists(chat_path):
 			filler_ids.append(filler_id)
 		else:
 			break
@@ -283,48 +266,37 @@ func add_mega_lull_characters(s: String) -> String:
 	return transformer.transformed
 
 
+func _creature_dialog_path(creature_id: String, chat_id: String) -> String:
+	return "res://assets/main/creatures/primary/%s/%s%s" % [creature_id, chat_id.replace("_", "-"), CHAT_EXTENSION]
+
+
+"""
+Loads the chat events from the specified chatscript file.
+"""
+func _chat_tree_from_chatscript_file(path: String) -> ChatTree:
+	var chat_tree: ChatTree
+	if not FileUtils.file_exists(path):
+		push_error("File not found: %s" % path)
+		chat_tree = ChatTree.new()
+	else:
+		var parser := ChatscriptParser.new()
+		chat_tree = parser.chat_tree_from_file(path)
+	
+	var history_key := path
+	history_key = history_key.trim_suffix(".chat")
+	history_key = history_key.trim_prefix("res://assets/main/")
+	history_key = history_key.replace("creatures/primary", "dialog")
+	history_key = history_key.replace("-", "_")
+	chat_tree.history_key = history_key
+	
+	return chat_tree
+
+
 """
 Returns 'true' if the specified if condition is met by the current game state.
 """
 func _if_condition_met(if_condition: String, state: Dictionary) -> bool:
 	return state.get(if_condition, false)
-
-
-"""
-Parses a json dialog tree from the specified json string.
-
-Our dialog parser needs a dictionary wrapped in an array wrapped in a dictionary. We parse simpler json structures by
-wrapping the parsed objects ourselves. This prevents trivial dialog sequences such as 'Tweet!' from requiring
-two extra json wrapper objects.
-"""
-func _parse_json_tree(json: String) -> Dictionary:
-	var json_tree: Dictionary
-	var parsed = parse_json(json)
-	if typeof(parsed) == TYPE_DICTIONARY and parsed.has(""):
-		json_tree = parsed
-	elif typeof(parsed) == TYPE_DICTIONARY:
-		# We were given a dictionary corresponding to a dialog line. Wrap it into a tree.
-		var parsed_dict: Dictionary = parsed
-		json_tree = {"" : [parsed]}
-		
-		# move the version to the root
-		if parsed_dict.has("version"):
-			json_tree["version"] = parsed_dict.get("version")
-			parsed_dict.erase("version")
-	elif typeof(parsed) == TYPE_ARRAY:
-		var parsed_array: Array = parsed
-		# We were given an array corresponding to a dialog branch. Wrap it into a tree.
-		json_tree = {"" : parsed}
-		
-		# move the version to the root
-		for item_obj in parsed_array:
-			var item_dict: Dictionary = item_obj
-			if item_dict.has("version"):
-				json_tree["version"] = item_dict.get("version")
-				item_dict.erase("version")
-	else:
-		push_error("Invalid json type: %s" % typeof(parsed))
-	return json_tree
 
 
 """
@@ -341,10 +313,10 @@ func _creature_chat_state(creature_id: String, forced_level_id: String = "") -> 
 
 
 func _preroll_path(level_id: String) -> String:
-	return "res://assets/main/puzzle/levels/cutscenes/%s-%s.json" % \
-			[level_id.replace("_", "-"), PREROLL_SUFFIX]
+	return "res://assets/main/puzzle/levels/cutscenes/%s-%s%s" % \
+			[level_id.replace("_", "-"), PREROLL_SUFFIX, CHAT_EXTENSION]
 
 
 func _postroll_path(level_id: String) -> String:
-	return "res://assets/main/puzzle/levels/cutscenes/%s-%s.json" % \
-			[level_id.replace("_", "-"), POSTROLL_SUFFIX]
+	return "res://assets/main/puzzle/levels/cutscenes/%s-%s%s" % \
+			[level_id.replace("_", "-"), POSTROLL_SUFFIX, CHAT_EXTENSION]

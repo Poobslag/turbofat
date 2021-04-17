@@ -28,9 +28,10 @@ func _on_StartButton_pressed() -> void:
 
 func _on_OpenFileDialog_file_selected(_path: String) -> void:
 	var full_path: String = $Dialogs/OpenFile.current_path
-	if full_path.begins_with("res://assets/main/puzzle/levels/cutscenes/") and full_path.ends_with(".json"):
+	if full_path.begins_with("res://assets/main/puzzle/levels/cutscenes/") \
+			and full_path.ends_with(ChatLibrary.CHAT_EXTENSION):
 		full_path = full_path.trim_prefix("res://assets/main/puzzle/levels/cutscenes/")
-		full_path = full_path.trim_suffix(".json").replace("-", "_")
+		full_path = full_path.trim_suffix(".chat").replace("-", "_")
 		$VBoxContainer/Open/LineEdit.text = full_path
 	else:
 		$Dialogs/Error.dialog_text = "%s doesn't seem like the path to a cutscene file." % [full_path]

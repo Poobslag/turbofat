@@ -71,7 +71,7 @@ func _extract_localizables_from_creatures() -> void:
 		var creature_def := PlayerData.creature_library.get_creature_def(creature_id)
 		
 		# extract the creature's filler dialog as localizables
-		for filler_id in ChatLibrary.filler_ids_for_creature(creature_id, creature_def.dialog):
+		for filler_id in ChatLibrary.filler_ids_for_creature(creature_id):
 			var chat_tree := ChatLibrary.chat_tree_for_chat_id(creature_def, filler_id)
 			_extract_localizables_from_chat_tree(chat_tree)
 		

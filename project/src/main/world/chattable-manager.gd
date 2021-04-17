@@ -96,11 +96,11 @@ func get_creature_by_id(chat_id: String) -> Creature:
 
 
 """
-Loads the chat events for the currently focused chattable.
+Loads the chat tree for the currently focused chattable.
 
-Returns an array of ChatEvent objects for the dialog sequence which the player should see.
+Returns a chat tree for the dialog sequence which the player should see.
 """
-func load_chat_events() -> ChatTree:
+func load_chat_tree() -> ChatTree:
 	var chat_tree: ChatTree
 	if focused_chattable is Creature:
 		chat_tree = ChatLibrary.chat_tree_for_creature(focused_chattable)

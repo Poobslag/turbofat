@@ -1,0 +1,55 @@
+{"version": "2476"}
+
+[location]
+indoors
+
+[characters]
+player, p1, !kitchen-9
+sensei, s1, !kitchen-11
+richie, r, !kitchen-1
+skins, s, kitchen-3
+bones, b, kitchen-5
+
+s1: -_- So explain again why my beloved restaurant is very, very empty?
+ (player enters, sensei enters, richie enters)
+r: Aw come on now! It's not empty, we got the two line cooks here...
+b: ^_^ Bork!
+r: ^_^/ And as far as customers, we got Chonkers McRhonkers over there! What more could you need?
+s1: /._. Hm. Mhm... Well ideally you'd have at least TWO customers...
+b: Oh Chonkers eats plenty! Even with just her, she's doing a lot to keep us afloat.
+r: <_< I mean, afloat might be a strong word. She's makin' us sink a little slower I guess.
+r: Maybe kind of like a, hmm... Like a anchor made of something slightly buoyant.
+b: /._. An anchor made of... Boats?
+r: Nope. Not that buoyant!
+[walnuts] Walnuts?
+[rotting-flesh] Rotting flesh?
+[smaller-boats] Slightly smaller boats?
+[avenue-of-discussion] This isn't a helpful avenue of discussion.
+
+[walnuts]
+p1: /._. Walnuts?
+r: ^Y^ There you go, well put! Like a anchor made of walnuts.
+[following-our-recipes]
+
+[rotting-flesh]
+p1: /._. Rotting flesh?
+r: ._.; There you go, well put! Like a anchor made of... wait what!?
+r: /._. ...I mean, maybe? ...Hold up, are you on some kind of watchlist I should know about?
+[following-our-recipes]
+
+[smaller-boats]
+p1: /._. Slightly smaller boats?
+r: ^Y^ There you go, well put! Like a anchor made of slightly smaller boats.
+[following-our-recipes]
+
+[avenue-of-discussion]
+p1: This isn't a helpful avenue of discussion.
+r: /._. Oh sure, I'm with you. ...We'll come back to that one later.
+[following-our-recipes]
+
+[following-our-recipes]
+s1: /._. Well, anyway... I know you said you were following our recipes to a tee. But just in case...
+r: You want us to show you, right?
+s1: I mean... well...
+r: ^_^/ Go ahead, Skins! Why don't you show 'em what you got.
+s: ^_^ Can do! Mowr!

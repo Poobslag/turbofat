@@ -139,3 +139,12 @@ func test_has_letter() -> void:
 	assert_eq(StringUtils.has_letter("ROOF ACTION"), true)
 	assert_eq(StringUtils.has_letter("123"), false)
 	assert_eq(StringUtils.has_letter(""), false)
+
+
+func test_substring_between() -> void:
+	assert_eq(StringUtils.substring_between("wx[b]yz", "[", "]"), "b")
+	assert_eq(StringUtils.substring_between("", "[", "]"), "")
+	assert_eq(StringUtils.substring_between("wx[b]yz", "", "]"), "")
+	assert_eq(StringUtils.substring_between("wx[b]yz", "[", ""), "")
+	assert_eq(StringUtils.substring_between("yabcz", "y", "z"), "abc")
+	assert_eq(StringUtils.substring_between("yabczyabcz", "y", "z"), "abc")

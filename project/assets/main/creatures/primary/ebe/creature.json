@@ -26,15 +26,5 @@
     "accent_swapped": true,
     "accent_texture": 15,
     "color": "feceef"
-  },
-  "chat_selectors": [
-    {
-      "level": "five_customers_no_vegetables",
-      "dialog": "no_vegetables",
-      "if_conditions": [
-        "current_level/1"
-      ],
-      "repeat": 0
-    }
-  ]
+  }
 }

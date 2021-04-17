@@ -1,0 +1,17 @@
+{"version": "2476"}
+
+[location]
+indoors
+
+[characters]
+player, p1, kitchen-5
+sensei, s1, kitchen-3
+skins, s, kitchen-7
+
+s1: /._. Hmm... just like before.
+p1: <_< Yeah...
+s: ._.; Mowr... Any tips?
+p1: I don't know, I'm kind of at a loss on this one. #sensei#? Why isn't it working?
+p1: /._. Was it their technique or... were they too slow? They didn't seem slow to me.
+s1: Ahh well. Their cooking skills are improving, so... Maybe it's just a matter of time.
+s1: ^y^ The customers will come back, and next time they'll stay longer! So, let's be patient.

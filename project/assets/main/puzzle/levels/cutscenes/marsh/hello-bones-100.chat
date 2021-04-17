@@ -1,0 +1,36 @@
+{"version": "2476"}
+
+[location]
+outdoors
+
+[characters]
+player, p1, restaurant-1
+sensei, s1, restaurant-4
+bones, b, restaurant-8
+
+p1: Well that was... good!
+b: <_< Just good?
+p1: <_< I mean the combos aren't working! It's... I don't think it's your fault, don't take it personally.
+p1: ^_^ You're... You're doing good. ...You're a good boy.
+b: u_u Groarf.
+p1: ^o^ C'mon, let's like... let's get drinks or something, blow off some steam! You did... good today.
+b: /._. Ohhh. Actually, I really gotta work out tonight. I already missed two nights this week. I can't miss a third night.
+[you-need-exercise] Yeah, you're looking a little chunky
+[yay-exercise] That's some good discipline!
+[boo-exercise] Well, can we hang out tomorrow?
+
+[you-need-exercise]
+p1: /._. Heh yeah, I thought you were looking a little chunky around the middle.
+b: .__.; W-what!?!
+p1: ^o^ Ha ha, go exercise.
+b: ._.; Y-yeah, bye!
+
+[yay-exercise]
+p1: ^_^ Oh good for you, that's some good discipline! ...See you around.
+b: ^_^ Bye!
+
+[boo-exercise]
+p1: ._.; How about tomorrow then? ...Can we hang out tomorrow?
+b: Uhhh, I gotta go. See you around!
+ (bones exits)
+p1: <_< Oh! Goodbye!

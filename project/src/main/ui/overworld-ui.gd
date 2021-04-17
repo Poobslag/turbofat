@@ -190,7 +190,7 @@ func _focused_chattable_chat_tree() -> ChatTree:
 		return null
 	
 	if not _chat_tree_cache.has(focused_chattable):
-		var chat_tree := ChattableManager.load_chat_events()
+		var chat_tree := ChattableManager.load_chat_tree()
 		if chat_tree and focused_chattable is Creature:
 			if chat_tree.meta.get("filler", false):
 				PlayerData.chat_history.increment_filler_count(focused_chattable.creature_id)

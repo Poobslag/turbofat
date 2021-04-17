@@ -1,0 +1,403 @@
+class_name ChatscriptParser
+"""
+Parsers a chatscript (.chat) file containing cutscene or dialog data.
+
+This class is stateful and intended to be used once and thrown away. If it is reused, the previously parsed chat_tree
+will be erased.
+"""
+
+"""
+Tracks the state for the parser.
+
+The ChatscriptParser has different states based on whether it's parsing dialog, characters, locations, or something
+else.
+"""
+class AbstractState:
+	
+	var chat_tree: ChatTree
+	
+	func _init(init_chat_tree: ChatTree) -> void:
+		chat_tree = init_chat_tree
+	
+	
+	func line(_line: String) -> String:
+		return ""
+
+
+"""
+Default parser state for parsing headers and metadata.
+
+Mostly contains logic for transitioning into other states.
+"""
+class DefaultState extends AbstractState:
+	
+	var dialog_state: AbstractState
+	
+	func _init(init_chat_tree: ChatTree).(init_chat_tree) -> void:
+		pass
+	
+	
+	func line(line: String) -> String:
+		var result := ""
+		if not line:
+			pass
+		elif line.begins_with("{") and line.ends_with("}"):
+			# json dictionary; set metadata
+			var parsed = parse_json(line)
+			if typeof(parsed) == TYPE_DICTIONARY:
+				chat_tree.meta = parse_json(line)
+				if "version" in chat_tree.meta:
+					chat_tree.meta.erase("version")
+			else:
+				push_warning("Malformed chatscript JSON: %s" % [line])
+		elif line.begins_with("[") and line.ends_with("]"):
+			# state name; update state
+			result = line.trim_prefix("[").trim_suffix("]")
+		else:
+			# unrecognized text; parse as dialog and change state
+			result = dialog_state.line(line)
+			result = StringUtils.default_if_empty(result, DIALOG)
+		return result
+
+# -----------------------------------------------------------------------------
+
+"""
+Parser state for parsing location data (where a conversation takes place).
+"""
+class LocationState extends AbstractState:
+	
+	func _init(init_chat_tree: ChatTree).(init_chat_tree) -> void:
+			pass
+	
+	
+	"""
+	Syntax:
+		[location]
+		indoors
+	"""
+	func line(line: String) -> String:
+		var result := ""
+		if line:
+			chat_tree.location_id = line
+		else:
+			result = DEFAULT
+		return result
+
+# -----------------------------------------------------------------------------
+
+"""
+Parser state for parsing character data (participants in a conversation).
+"""
+class CharactersState extends AbstractState:
+	
+	# Creature aliases used in chatscript dialog. DialogState references this dictionary when parsing dialog.
+	#
+	# key: creature id
+	# value: alias used in chatscript dialog
+	var _character_aliases: Dictionary
+	
+	func _init(init_chat_tree: ChatTree, init_dialog_aliases: Dictionary).(init_chat_tree) -> void:
+		_character_aliases = init_dialog_aliases
+	
+	
+	func line(line: String) -> String:
+		var result := ""
+		if line:
+			_parse_character_name(line)
+		else:
+			result = DEFAULT
+		return result
+	
+	
+	"""
+	Syntax:
+		skins, s, kitchen-9        - a character named 'skins' with an alias 's' spawns at kitchen-9
+		skins, s                   - a character named 'skins' with an alias 's'
+		skins                      - a character named 'skins'
+	"""
+	func _parse_character_name(line: String) -> void:
+		var line_parts := line.split(",")
+		var character_name := "" if line_parts.size() < 1 else line_parts[0].strip_edges()
+		if character_name in ["player", "sensei"]:
+			character_name = "#%s#" % [character_name]
+		var character_alias := "" if line_parts.size() < 2 else line_parts[1].strip_edges()
+		var character_location := "" if line_parts.size() < 3 else line_parts[2].strip_edges()
+		
+		if character_name and character_location:
+			chat_tree.spawn_locations[character_name] = character_location
+		if character_name and character_alias:
+			_character_aliases[character_alias] = character_name
+
+# -----------------------------------------------------------------------------
+
+"""
+Parser state for parsing dialog data (chat events and branches)
+"""
+class DialogState extends AbstractState:
+	
+	# Creature aliases used in chatscript dialog. CharactersState populates this dictionary when parsing characters.
+	#
+	# key: creature id
+	# value: alias used in chatscript dialog
+	var _character_aliases: Dictionary
+	
+	# The current chat event being parsed. Any parsed metadata and links will be attached to this event.
+	var _event: ChatEvent
+	
+	# The current branch key being parsed. Any additional chat events will be attached to this branch.
+	var _branch_key := ""
+	
+	func _init(init_chat_tree: ChatTree, init_dialog_aliases: Dictionary).(init_chat_tree) -> void:
+		_character_aliases = init_dialog_aliases
+	
+	
+	"""
+	Syntax:
+		s: /._. Are you sure?
+		[yes] Okay, fine.
+		[no]
+		
+		[yes]
+		p1: ^_^ Okay fine, I could use some exercise.
+		s: ^__^ Great!
+		
+		[no]
+		p1: Never mind, I don't want to.
+		s: u_u Oh...
+	"""
+	func line(line: String) -> String:
+		var result := ""
+		if line:
+			if line.begins_with("["):
+				if _event:
+					_parse_dialog_link(line)
+				else:
+					_parse_branch_key(line)
+			elif line.begins_with("("):
+				_parse_thought(line)
+			elif line.begins_with(" ("):
+				_parse_meta(line)
+			else:
+				_parse_dialog_line(line)
+		else:
+			_event = null
+		return result
+	
+	
+	"""
+	Syntax:
+		s: ^_^ Oh okay cool!
+	"""
+	func _parse_dialog_line(line: String) -> void:
+		if not ": " in line:
+			push_warning("Malformed dialog line: %s" % [line])
+			return
+		
+		_event = ChatEvent.new()
+		
+		var who := StringUtils.substring_before(line, ": ")
+		who = _unalias(who)
+		if _character_aliases:
+			if not who in _character_aliases and not who in _character_aliases.values():
+				push_error("Unrecognized character name: %s" % [who])
+		_event.who = who
+		
+		_event.text = StringUtils.substring_after(line, ": ")
+		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(_event.who)
+		if creature_def:
+			_event.chat_theme_def = creature_def.chat_theme_def
+		var mood_prefix := StringUtils.substring_before(_event.text, " ")
+		if mood_prefix in MOOD_PREFIXES:
+			_event.mood = MOOD_PREFIXES[mood_prefix]
+			_event.text = _event.text.trim_prefix(mood_prefix).strip_edges()
+		chat_tree.append(_branch_key, _event)
+	
+	
+	"""
+	Syntax:
+		[very-good] I think you killed it!
+	"""
+	func _parse_dialog_link(line: String) -> void:
+		# add branch to _event
+		if not line.begins_with("[") or not "]" in line:
+			push_warning("Malformed dialog link: %s" % [line])
+			return
+		
+		var branch_name := StringUtils.substring_between(line, "[", "]").strip_edges()
+		var branch_text := StringUtils.substring_after(line, "]").strip_edges()
+		_event.links.append(branch_name)
+		_event.link_texts.append(branch_text)
+	
+	
+	"""
+	Syntax:
+		[very-good]
+	"""
+	func _parse_branch_key(line: String) -> void:
+		if not line.begins_with("[") or not line.ends_with("]"):
+			push_warning("Malformed dialog branch: %s" % [line])
+			return
+		
+		_branch_key = line.trim_prefix("[").trim_suffix("]")
+	
+	
+	"""
+	Syntax:
+		(I'm not sure if they heard me.)
+	"""
+	func _parse_thought(line: String) -> void:
+		if not line.begins_with("(") or not line.ends_with(")"):
+			push_warning("Malformed thought: %s" % [line])
+			return
+		
+		_event = ChatEvent.new()
+		_event.text = line
+		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(CreatureLibrary.PLAYER_ID)
+		if creature_def:
+			_event.chat_theme_def = creature_def.chat_theme_def
+		chat_tree.append(_branch_key, _event)
+	
+	
+	"""
+	Syntax:
+		' (spira enters)'  <-- with a leading space
+	"""
+	func _parse_meta(line: String) -> void:
+		if not line.begins_with(" (") or not line.ends_with(")"):
+			push_warning("Malformed meta: %s" % [line])
+			return
+		
+		var meta_array_string := line.trim_prefix(" (").trim_suffix(")").strip_edges()
+		var meta := meta_array_string.split(",")
+		for i in range(0, meta.size()):
+			meta[i] = meta[i].strip_edges()
+			meta[i] = _translate_meta_item(meta[i])
+		_event.meta = meta
+	
+	
+	"""
+	Translates human-readable phrases like 'spira enters' into metadata like 'creature-enter spira'
+	"""
+	func _translate_meta_item(item: String) -> String:
+		var result := item
+		if item.ends_with(" enters"):
+			var name := item.trim_suffix(" enters")
+			result = "creature-enter %s" % [_unalias(name)]
+		elif item.ends_with(" exits"):
+			var name := item.trim_suffix(" exits")
+			result = "creature-exit %s" % [_unalias(name)]
+		return result
+	
+	
+	"""
+	Wraps 'player' and 'sensei' in pound signs so their names will be translated.
+	"""
+	func _unalias(name: String) -> String:
+		var result := name
+		result = _character_aliases.get(result, result)
+		if result in ["player", "sensei"]:
+			result = "#%s#" % [result]
+		return result
+
+# -----------------------------------------------------------------------------
+
+# Current version for saved chatscript data. Should be updated if and only if the dialog format breaks backwards
+# compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
+const CHATSCRIPT_VERSION := "2476"
+
+# Emoticons which can appear at the start of a dialog line to define its mood
+const MOOD_PREFIXES := {
+	"._.": ChatEvent.Mood.DEFAULT,
+	"<_<": ChatEvent.Mood.AWKWARD0,
+	">_>": ChatEvent.Mood.AWKWARD0,
+	"<__<": ChatEvent.Mood.AWKWARD1,
+	">__>": ChatEvent.Mood.AWKWARD1,
+	"u_u": ChatEvent.Mood.CRY0,
+	"T_T": ChatEvent.Mood.CRY0,
+	"Q_Q": ChatEvent.Mood.CRY0,
+	"u__u": ChatEvent.Mood.CRY1,
+	"T__T": ChatEvent.Mood.CRY1,
+	"Q__Q": ChatEvent.Mood.CRY1,
+	"^o^": ChatEvent.Mood.LAUGH0,
+	"^O^": ChatEvent.Mood.LAUGH1,
+	"owo": ChatEvent.Mood.LOVE0,
+	"OwO": ChatEvent.Mood.LOVE1,
+	"^n^": ChatEvent.Mood.NO0,
+	"^N^": ChatEvent.Mood.NO1,
+	">_<": ChatEvent.Mood.RAGE0,
+	">__<": ChatEvent.Mood.RAGE1,
+	">___<": ChatEvent.Mood.RAGE2,
+	"-_-": ChatEvent.Mood.SIGH0,
+	"-__-": ChatEvent.Mood.SIGH1,
+	"^_^": ChatEvent.Mood.SMILE0,
+	"^__^": ChatEvent.Mood.SMILE1,
+	"._.;": ChatEvent.Mood.SWEAT0,
+	".__.;": ChatEvent.Mood.SWEAT1,
+	"-_-;": ChatEvent.Mood.SWEAT0,
+	"-__-;": ChatEvent.Mood.SWEAT1,
+	"/._.": ChatEvent.Mood.THINK0,
+	"@_@": ChatEvent.Mood.THINK1,
+	"^_^/": ChatEvent.Mood.WAVE0,
+	"^__^/": ChatEvent.Mood.WAVE1,
+	"^y^": ChatEvent.Mood.YES0,
+	"^Y^": ChatEvent.Mood.YES1,
+}
+
+# parser headers which appear in square braces in the chatscript file
+const DEFAULT := "default"
+const LOCATION := "location"
+const CHARACTERS := "characters"
+const DIALOG := "dialog"
+
+# key: parser state name such as 'default', 'location', 'characters', 'dialog'
+# value: AbstractState
+var _states_by_name: Dictionary
+
+# the chat tree being parsed
+var _chat_tree := ChatTree.new()
+var _state: AbstractState
+
+# key: creature id
+# value: alias used in chatscript dialog
+var _character_aliases := {}
+
+func _init() -> void:
+	_states_by_name = {
+		DEFAULT: DefaultState.new(_chat_tree),
+		CHARACTERS: CharactersState.new(_chat_tree, _character_aliases),
+		LOCATION: LocationState.new(_chat_tree),
+		DIALOG: DialogState.new(_chat_tree, _character_aliases),
+	}
+	_states_by_name[DEFAULT].dialog_state = _states_by_name[DIALOG]
+	_state = _states_by_name[DEFAULT]
+
+
+"""
+Parses a ChatTree from the specified chatscript resource.
+
+This class is stateful and intended to be used once and thrown away. If chat_tree_from_file is invoked more than once,
+the previously parsed chat_tree will be erased.
+"""
+func chat_tree_from_file(path: String) -> ChatTree:
+	_chat_tree.reset()
+	_character_aliases.clear()
+	
+	var f := File.new()
+	f.open(path, File.READ)
+	
+	while not f.eof_reached():
+		# strip any whitespace at the end of the line
+		var line := f.get_line().strip_edges(false)
+		if line.begins_with("#"):
+			# comment; ignore line
+			continue
+		var new_state_name := _state.line(line)
+		if new_state_name:
+			if not _states_by_name.has(new_state_name):
+				push_warning("Invalid header line: %s" % [line])
+				continue
+			_state = _states_by_name[new_state_name]
+	
+	f.close()
+	
+	return _chat_tree
