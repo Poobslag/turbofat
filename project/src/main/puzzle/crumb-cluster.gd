@@ -41,7 +41,8 @@ func _refresh_food_type() -> void:
 	
 	for i in range(0, _particles.size()):
 		var particles: Particles2D = _particles[i]
-		particles.amount = rand_range(1, crumb_definition.max_crumb_count / 3)
+		# if max_crumb_count is 9.0, rand_range(1, 4) returns a float from 1.00 to 3.999
+		particles.amount = rand_range(1, 1 + crumb_definition.max_crumb_count / 3.0)
 		particles.modulate = crumb_colors[i % crumb_colors.size()]
 
 

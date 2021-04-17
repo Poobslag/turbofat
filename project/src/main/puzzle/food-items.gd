@@ -58,38 +58,20 @@ func add_food_item(cell: Vector2, food_type: int) -> void:
 		return
 	
 	var food_item: FoodItem = FoodScene.instance()
-	food_item.frame = food_type
+	food_item.food_type = food_type
 	food_item.position = _puzzle_tile_map.map_to_world(cell)
 	food_item.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
 	food_item.position *= _puzzle_tile_map.scale / _texture_rect.rect_scale
 	food_item.position += _puzzle_tile_map_position / _texture_rect.rect_scale
 	food_item.base_scale = _puzzle_tile_map.scale / _texture_rect.rect_scale
+	food_item.customer = _puzzle.get_customer()
+	food_item.customer_index = _customer_index
+	food_item.connect("ready_to_fly", self, "_on_FoodItem_ready_to_fly", [food_item])
 	_viewport.add_child(food_item)
 	
-	var customer := _puzzle.get_customer()
-	var original_customer_index := _customer_index
-	
 	# float for a moment
-	yield(get_tree().create_timer(_food_float_duration), "timeout")
-	_food_waiting_to_fly.append(food_item)
-	
-	# wait for our turn to fly to the creature's mouth
-	yield(food_item, "ready_to_fly")
-	food_item.fly_to_target(self, "get_target_pos", [customer], _food_flight_duration)
-	
-	# wait until we arrive at the creature's mouth
-	yield(get_tree().create_timer(_food_flight_duration - customer.get_eating_delay()), "timeout")
-	
-	if _customer_index == original_customer_index:
-		# ensure the customer hasn't been replaced before fattening them
-		_puzzle.feed_creature(customer, food_type)
-		
-		if customer.creature_id == CreatureLibrary.SENSEI_ID:
-			# tutorial sensei doesn't gain weight
-			pass
-		else:
-			var new_fatness: float = _pending_food_fatness.pop_front()
-			customer.set_fatness(new_fatness)
+	# we use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
+	get_tree().create_timer(_food_float_duration).connect("timeout", self, "_on_FoodItem_float_done", [food_item])
 
 
 """
@@ -132,6 +114,27 @@ func _update_food_speed() -> void:
 	_food_flight_duration = lerp(0.4, 1.0, speed_factor)
 	_max_food_repeat_delay = lerp(0.16, 0.48, speed_factor)
 	_food_flight_timer.wait_time = _max_food_repeat_delay * randf()
+
+
+func _on_FoodItem_float_done(food_item: FoodItem) -> void:
+	_food_waiting_to_fly.append(food_item)
+
+
+func _on_FoodItem_ready_to_fly(food_item: FoodItem) -> void:
+	food_item.fly_to_target(self, "get_target_pos", [food_item.customer], _food_flight_duration)
+	
+	# trigger the eating animation just before we arrive at the creature's mouth
+	var adjusted_flight_duration := _food_flight_duration - food_item.customer.get_eating_delay()
+	get_tree().create_timer(adjusted_flight_duration).connect("timeout", self, "_on_FoodItem_flight_done", [food_item])
+
+
+func _on_FoodItem_flight_done(food_item: FoodItem) -> void:
+	if _customer_index == food_item.customer_index:
+		# ensure the customer hasn't been replaced before fattening them
+		_puzzle.feed_creature(food_item.customer, food_item.food_type)
+		
+		var new_fatness: float = _pending_food_fatness.pop_front()
+		food_item.customer.set_fatness(new_fatness)
 
 
 """

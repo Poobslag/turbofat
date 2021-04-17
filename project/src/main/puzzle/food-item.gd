@@ -42,6 +42,12 @@ var velocity := Vector2(0, -25)
 # The creature who this food will fly towards
 var customer: Creature
 
+# Incremented as the customer changes to track the intended recipient of each food item.
+var customer_index: int
+
+# An enum from FoodType corresponding to the food to show
+var food_type: int setget set_food_type
+
 # Food items pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
 
@@ -93,6 +99,11 @@ func _physics_process(delta: float) -> void:
 	
 	_refresh_scale()
 	_refresh_rotation()
+
+
+func set_food_type(new_food_type: int) -> void:
+	food_type = new_food_type
+	set_frame(new_food_type)
 
 
 func set_base_scale(new_base_scale: Vector2) -> void:

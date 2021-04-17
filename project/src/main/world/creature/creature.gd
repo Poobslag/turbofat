@@ -601,7 +601,13 @@ func _on_FadeTween_tween_all_completed() -> void:
 Converts a score in the range [0.0, 5000.0] to a fatness in the range [1.0, 10.0]
 """
 func score_to_fatness(in_score: float) -> float:
-	return sqrt(1 + in_score / (50.0 / weight_gain_scale))
+	var result: float
+	if creature_id == CreatureLibrary.SENSEI_ID:
+		# tutorial sensei doesn't gain weight
+		result = base_fatness
+	else:
+		result = sqrt(1 + in_score / (50.0 / weight_gain_scale))
+	return result
 
 
 """
