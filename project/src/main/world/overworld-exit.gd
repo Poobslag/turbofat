@@ -31,7 +31,8 @@ var _player_overlapping := false
 # 'true' if the player stepped on this exit arrow and is exiting
 var _player_exiting := false
 
-onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
+# We embed the get_overworld_ui() call in a conditional to avoid errors in the editor
+onready var _overworld_ui: OverworldUi = null if Engine.editor_hint else Global.get_overworld_ui()
 
 func _ready() -> void:
 	connect("body_entered", self, "_on_body_entered")
