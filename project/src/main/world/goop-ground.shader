@@ -36,14 +36,16 @@ uniform vec4 base_color : hint_color;
 // the wave color for the goop. the goop has thin strips of this color
 uniform vec4 wave_color : hint_color;
 
+uniform mat4 view_to_local;
+
 varying vec2 local;
 
 // workaround for Godot #14904; builtin variables are not usable in shader functions
 varying float time;
 
 void vertex() {
-    local = VERTEX;
-    time = TIME;
+	local = (view_to_local * WORLD_MATRIX * vec4(VERTEX, 0.0, 1.0)).xy;
+	time = TIME;
 }
 
 // returns a number evenly distributed in the range [0.0, 1.0) based on simplex noise
