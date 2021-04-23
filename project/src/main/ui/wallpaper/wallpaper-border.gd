@@ -20,12 +20,6 @@ export (Vector2) var texture_scale: Vector2 = Vector2(512.0, 512.0) setget set_t
 onready var _texture_rect: TextureRect = $TextureRect
 
 func _ready() -> void:
-	# Bafflingly, removing this mysterious ColorRect makes the TextureRect render incorrectly.
-	var texture_rect_glitch_workaround: ColorRect = ColorRect.new()
-	texture_rect_glitch_workaround.name = "WorkaroundForSomeCrazyGodotBug"
-	texture_rect_glitch_workaround.color = Color.transparent
-	add_child(texture_rect_glitch_workaround)
-	
 	connect("resized", self, "_on_resized")
 	_recalculate_texture_rect_size()
 
