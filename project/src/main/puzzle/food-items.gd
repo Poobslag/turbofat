@@ -129,6 +129,10 @@ func _on_FoodItem_ready_to_fly(food_item: FoodItem) -> void:
 
 
 func _on_FoodItem_flight_done(food_item: FoodItem) -> void:
+	if not food_item:
+		# food items might be garbage collected before this function is called
+		return
+	
 	if _customer_index == food_item.customer_index:
 		# ensure the customer hasn't been replaced before fattening them
 		_puzzle.feed_creature(food_item.customer, food_item.food_type)
