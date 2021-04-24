@@ -79,6 +79,7 @@
         },
         {
           "id": "marsh/pulling_for_skins",
+          "chef_id": "skins",
           "groups": "marsh/pulling_for",
           "locked_until": "level_finished marsh/pulling_for_everyone"
         },
@@ -98,6 +99,7 @@
         },
         {
           "id": "marsh/goodbye_skins",
+          "chef_id": "skins",
           "groups": "marsh/goodbye",
           "locked_until": "level_finished marsh/lets_all_get_merry"
         },

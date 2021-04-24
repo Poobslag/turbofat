@@ -1,0 +1,201 @@
+[
+  {
+    "type": "version",
+    "value": "245b"
+  },
+  {
+    "type": "level_history",
+    "key": "marsh/hello_everyone",
+    "value": [
+      {
+        "box_score": 285,
+        "box_score_per_line": 8.636364,
+        "box_score_per_line_rank": 17.011836,
+        "combo_score": 560,
+        "combo_score_per_line": 20,
+        "combo_score_per_line_rank": 0,
+        "compare": "+score",
+        "leftover_score": 216,
+        "lines": 33,
+        "lines_rank": 8.217941,
+        "pieces": 33,
+        "pieces_rank": 8.217941,
+        "lost": false,
+        "score": 1094,
+        "score_rank": 3.49,
+        "seconds": 90.000005,
+        "seconds_rank": 999,
+        "speed": 21.999999,
+        "speed_rank": 8.217942,
+        "success": false,
+        "timestamp": {
+          "year": 2021,
+          "month": 4,
+          "day": 23,
+          "weekday": 5,
+          "dst": false,
+          "hour": 8,
+          "minute": 54,
+          "second": 44
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "level_history",
+    "key": "marsh/hello_skins",
+    "value": [
+      {
+        "box_score": 0,
+        "box_score_per_line": 0,
+        "box_score_per_line_rank": 999,
+        "combo_score": 0,
+        "combo_score_per_line": 0,
+        "combo_score_per_line_rank": 999,
+        "compare": "-seconds",
+        "leftover_score": 0,
+        "lines": 0,
+        "lines_rank": 999,
+        "pieces": 0,
+        "pieces_rank": 999,
+        "lost": true,
+        "score": 0,
+        "score_rank": 999,
+        "seconds": 7.9,
+        "seconds_rank": 999,
+        "speed": 0,
+        "speed_rank": 999,
+        "success": false,
+        "timestamp": {
+          "year": 2021,
+          "month": 4,
+          "day": 25,
+          "weekday": 0,
+          "dst": false,
+          "hour": 10,
+          "minute": 25,
+          "second": 14
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "level_history",
+    "key": "marsh/pulling_for_everyone",
+    "value": [
+      {
+        "box_score": 265,
+        "box_score_per_line": 15.588235,
+        "box_score_per_line_rank": 0,
+        "combo_score": 145,
+        "combo_score_per_line": 12.083333,
+        "combo_score_per_line_rank": 12.300069,
+        "compare": "-seconds",
+        "leftover_score": 139,
+        "lines": 17,
+        "lines_rank": 0,
+        "pieces": 17,
+        "pieces_rank": 0,
+        "lost": false,
+        "score": 566,
+        "score_rank": 999,
+        "seconds": 33.083335,
+        "seconds_rank": 1.64,
+        "speed": 30.831232,
+        "speed_rank": 0,
+        "success": false,
+        "timestamp": {
+          "year": 2020,
+          "month": 11,
+          "day": 9,
+          "weekday": 1,
+          "dst": false,
+          "hour": 17,
+          "minute": 29,
+          "second": 14
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "level_history",
+    "key": "marsh/pulling_for_skins",
+    "value": [
+      {
+        "box_score": 70,
+        "box_score_per_line": 10,
+        "box_score_per_line_rank": 0,
+        "combo_score": 30,
+        "combo_score_per_line": 13.333333,
+        "combo_score_per_line_rank": 0,
+        "compare": "+score",
+        "leftover_score": 0,
+        "lines": 7,
+        "lines_rank": 62.715793,
+        "pieces": 7,
+        "pieces_rank": 62.715793,
+        "lost": true,
+        "score": 107,
+        "score_rank": 30.99,
+        "seconds": 25.633335,
+        "seconds_rank": 999,
+        "speed": 16.384915,
+        "speed_rank": 19.436632,
+        "success": false,
+        "timestamp": {
+          "year": 2021,
+          "month": 4,
+          "day": 25,
+          "weekday": 0,
+          "dst": false,
+          "hour": 11,
+          "minute": 19,
+          "second": 50
+        },
+        "top_out_count": 0
+      }
+    ]
+  },
+  {
+    "type": "level_history",
+    "key": "marsh/goodbye_skins",
+    "value": [
+      {
+        "box_score": 595,
+        "box_score_per_line": 12.142857,
+        "box_score_per_line_rank": 5.82443,
+        "combo_score": 480,
+        "combo_score_per_line": 10.909091,
+        "combo_score_per_line_rank": 15.656382,
+        "compare": "+score",
+        "leftover_score": 223,
+        "lines": 49,
+        "lines_rank": 0,
+        "pieces": 49,
+        "pieces_rank": 0,
+        "lost": false,
+        "score": 1347,
+        "score_rank": 0.76,
+        "seconds": 90.000005,
+        "seconds_rank": 999,
+        "speed": 32.666664,
+        "speed_rank": 0,
+        "success": false,
+        "timestamp": {
+          "year": 2020,
+          "month": 11,
+          "day": 9,
+          "weekday": 1,
+          "dst": false,
+          "hour": 17,
+          "minute": 42,
+          "second": 30
+        },
+        "top_out_count": 0
+      }
+    ]
+  }
+]

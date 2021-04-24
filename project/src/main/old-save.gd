@@ -69,7 +69,7 @@ func is_old_save_items(json_save_items: Array) -> bool:
 	match version_string:
 		PlayerSave.PLAYER_DATA_VERSION:
 			is_old = false
-		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2":
+		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2", "245b":
 			is_old = true
 		_:
 			push_warning("Unrecognized save data version: '%s'" % version_string)
@@ -96,6 +96,8 @@ Transforms the specified json save items to the latest format.
 func transform_old_save_items(json_save_items: Array) -> Array:
 	var version_string := get_version_string(json_save_items)
 	match version_string:
+		"245b":
+			json_save_items = _convert_245b(json_save_items)
 		"1b3c":
 			json_save_items = _convert_1b3c(json_save_items)
 		"19c5":
@@ -111,6 +113,28 @@ func transform_old_save_items(json_save_items: Array) -> Array:
 		"15d2":
 			json_save_items = _convert_15d2(json_save_items)
 	return json_save_items
+
+
+func _convert_245b(json_save_items: Array) -> Array:
+	var new_save_items := []
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		match save_item.type:
+			"version":
+				save_item["value"] = "24cc"
+			"level_history":
+				if save_item.key in [
+						"marsh/hello_everyone",
+						"marsh/hello_skins",
+						"marsh/pulling_for_skins",
+						"marsh/goodbye_skins"]:
+					# some levels were made much harder/different, and their scores should not be carried forward
+					save_item = null
+		
+		if save_item:
+			new_save_items.append(save_item.to_json_dict())
+	return new_save_items
 
 
 func _convert_1b3c(json_save_items: Array) -> Array:

@@ -1,148 +1,134 @@
 {
   "version": "19c5",
-  "start_speed": "4",
+  "start_speed": "1",
   "title": "Hello Skins!",
-  "description": "Let's get to know Skins a little better.",
+  "description": "Skins, you really shouldn't rotate the upcoming pieces! It hurts my head a little.",
   "finish_condition": {
-    "type": "score",
-    "value": "400"
+    "type": "time_over",
+    "value": "120"
   },
-  "piece_types": [
-    "start_piece_p"
+  "lose_condition": [
+    "top_out 9"
+  ],
+  "rank": [
+    "extra_seconds_per_piece", "0.4"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "rotated_right",
+        "initial_rotated_right"
+      ],
+      "effect": "rotate_next_pieces right"
+    },
+    {
+      "phases": [
+        "rotated_left",
+        "initial_rotated_left"
+      ],
+      "effect": "rotate_next_pieces left"
+    },
+    {
+      "phases": [
+        "rotated_twice",
+        "initial_rotated_twice"
+      ],
+      "effect": "rotate_next_pieces twice"
+    }
+  ],
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": "30",
+      "speed": "3"
+    },
+    {
+      "type": "time_over",
+      "value": "60",
+      "speed": "5"
+    }
   ],
   "blocks_start": {
     "tiles": [
       {
-        "pos": "6 11",
-        "tile": "0 8 3"
+        "pos": "2 16",
+        "tile": "2 5 2"
       },
       {
-        "pos": "7 11",
-        "tile": "0 12 3"
+        "pos": "3 16",
+        "tile": "1 10 5"
       },
       {
-        "pos": "8 11",
-        "tile": "0 6 3"
-      },
-      {
-        "pos": "8 12",
-        "tile": "0 3 3"
-      },
-      {
-        "pos": "8 13",
-        "tile": "0 1 3"
-      },
-      {
-        "pos": "6 14",
-        "tile": "0 8 3"
-      },
-      {
-        "pos": "7 14",
-        "tile": "0 12 3"
-      },
-      {
-        "pos": "8 14",
-        "tile": "0 6 3"
-      },
-      {
-        "pos": "6 15",
-        "tile": "0 10 0"
-      },
-      {
-        "pos": "7 15",
-        "tile": "0 6 0"
-      },
-      {
-        "pos": "8 15",
-        "tile": "0 3 3"
+        "pos": "4 16",
+        "tile": "1 14 5"
       },
       {
         "pos": "5 16",
-        "tile": "0 8 0"
+        "tile": "1 6 5"
       },
       {
         "pos": "6 16",
-        "tile": "0 13 0"
+        "tile": "2 16 3"
       },
       {
-        "pos": "7 16",
-        "tile": "0 5 0"
-      },
-      {
-        "pos": "8 16",
-        "tile": "0 1 3"
+        "pos": "3 17",
+        "tile": "1 11 5"
       },
       {
         "pos": "4 17",
-        "tile": "1 10 4"
+        "tile": "1 15 5"
       },
       {
         "pos": "5 17",
-        "tile": "1 14 4"
+        "tile": "1 7 5"
       },
       {
         "pos": "6 17",
-        "tile": "1 14 4"
+        "tile": "2 0 3"
       },
       {
         "pos": "7 17",
-        "tile": "1 14 4"
+        "tile": "2 3 1"
       },
       {
-        "pos": "8 17",
-        "tile": "1 6 4"
-      },
-      {
-        "pos": "0 18",
-        "tile": "2 13 2"
-      },
-      {
-        "pos": "4 18",
-        "tile": "1 11 4"
-      },
-      {
-        "pos": "5 18",
-        "tile": "1 15 4"
-      },
-      {
-        "pos": "6 18",
-        "tile": "1 15 4"
-      },
-      {
-        "pos": "7 18",
-        "tile": "1 15 4"
-      },
-      {
-        "pos": "8 18",
-        "tile": "1 7 4"
-      },
-      {
-        "pos": "0 19",
-        "tile": "2 15 2"
-      },
-      {
-        "pos": "2 19",
+        "pos": "1 18",
         "tile": "2 6 3"
       },
       {
+        "pos": "2 18",
+        "tile": "2 12 3"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 11 5"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 15 5"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 7 5"
+      },
+      {
+        "pos": "2 19",
+        "tile": "2 5 0"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 9 5"
+      },
+      {
         "pos": "4 19",
-        "tile": "1 9 4"
+        "tile": "1 13 5"
       },
       {
         "pos": "5 19",
-        "tile": "1 13 4"
+        "tile": "1 5 5"
       },
       {
         "pos": "6 19",
-        "tile": "1 13 4"
-      },
-      {
-        "pos": "7 19",
-        "tile": "1 13 4"
-      },
-      {
-        "pos": "8 19",
-        "tile": "1 5 4"
+        "tile": "2 15 3"
       }
     ]
   }

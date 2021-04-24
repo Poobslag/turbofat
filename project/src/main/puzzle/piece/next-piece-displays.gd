@@ -19,18 +19,11 @@ func _ready() -> void:
 
 
 """
-Pops the next piece off the queue.
-"""
-func pop_next_piece() -> PieceType:
-	return $PieceQueue.pop_next_piece()
-
-
-"""
 Adds a new next piece display.
 """
 func _add_display(piece_index: int, x: float, y: float, scale: float) -> void:
 	var new_display: NextPieceDisplay = NextPieceDisplayScene.instance()
-	new_display.initialize($PieceQueue, piece_index)
+	new_display.initialize(piece_index)
 	new_display.scale = Vector2(scale, scale)
 	new_display.position = Vector2(x, y)
 	new_display.hide()

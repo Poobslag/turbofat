@@ -1,4 +1,3 @@
-class_name PieceQueue
 extends Node
 """
 Queue of upcoming randomized pieces.
@@ -11,7 +10,8 @@ const MIN_SIZE := 50
 
 const UNLIMITED_PIECES := 999999
 
-var _pieces := []
+# queue of upcoming NextPiece instances
+var pieces := []
 
 # default pieces to pull from if none are provided by the level
 var _default_piece_types := PieceTypes.all_types
@@ -32,15 +32,15 @@ func clear() -> void:
 		_remaining_piece_count = CurrentLevel.settings.finish_condition.value
 	else:
 		_remaining_piece_count = UNLIMITED_PIECES
-	_pieces.clear()
+	pieces.clear()
 	_fill()
 
 
 """
 Pops the next piece off the queue.
 """
-func pop_next_piece() -> PieceType:
-	var next_piece_type: PieceType = _pieces.pop_front()
+func pop_next_piece() -> NextPiece:
+	var next_piece_type: NextPiece = pieces.pop_front()
 	if _remaining_piece_count != UNLIMITED_PIECES:
 		_remaining_piece_count -= 1
 	_fill()
@@ -50,14 +50,14 @@ func pop_next_piece() -> PieceType:
 """
 Returns a specific piece in the queue.
 """
-func get_next_piece(index: int) -> PieceType:
-	return _pieces[index]
+func get_next_piece(index: int) -> NextPiece:
+	return pieces[index]
 
 
 func _apply_piece_limit() -> void:
-	if _remaining_piece_count < _pieces.size():
-		for i in range(_remaining_piece_count, _pieces.size()):
-			_pieces[i] = PieceTypes.piece_null
+	if _remaining_piece_count < pieces.size():
+		for i in range(_remaining_piece_count, pieces.size()):
+			pieces[i] = _new_next_piece(PieceTypes.piece_null)
 
 
 """
@@ -67,7 +67,7 @@ The first pieces have some constraints to limit players from having especially l
 have fewer constraints, but still use a bagging algorithm to ensure fairness.
 """
 func _fill() -> void:
-	if _pieces.empty():
+	if pieces.empty():
 		_fill_initial_pieces()
 	_fill_remaining_pieces()
 	_apply_piece_limit()
@@ -85,6 +85,9 @@ func _fill_initial_pieces() -> void:
 		3. Append a piece which can build a snack box, but not a cake box
 		4. Append the remaining three pieces
 		5. Insert an extra piece in the last 3 positions
+		
+		These are called 'bad starts' since they avoid giving player ideal openings of 'lojpqvut' or 'lqpjutov' where
+		each piece fits with the previous piece.
 		"""
 		var all_bad_starts := [
 			[PieceTypes.piece_l, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_p, PieceTypes.piece_q],
@@ -103,31 +106,50 @@ func _fill_initial_pieces() -> void:
 			[PieceTypes.piece_p, PieceTypes.piece_q, PieceTypes.piece_u, PieceTypes.piece_o, PieceTypes.piece_l],
 			[PieceTypes.piece_p, PieceTypes.piece_q, PieceTypes.piece_u, PieceTypes.piece_o, PieceTypes.piece_t],
 		]
-		_pieces += Utils.rand_value(all_bad_starts)
-		_pieces.shuffle()
+		var bad_start: Array = Utils.rand_value(all_bad_starts)
+		for piece_type in bad_start:
+			pieces.append(_new_next_piece(piece_type))
+		pieces.shuffle()
 		
-		var _other_pieces := shuffled_piece_types()
-		for piece in _other_pieces:
-			if not _pieces.has(piece):
-				_pieces.push_back(piece)
+		var _other_piece_types := shuffled_piece_types()
+		for piece_type in _other_piece_types:
+			var duplicate_piece := false
+			for piece in pieces:
+				if piece.type == piece_type:
+					duplicate_piece = true
+					break
+			if not duplicate_piece:
+				pieces.push_back(_new_next_piece(piece_type))
 		
 		_insert_annoying_piece(3)
 	elif CurrentLevel.settings.piece_types.start_types and CurrentLevel.settings.piece_types.ordered_start:
 		# Fixed starting pieces: Append all of the start pieces in order.
-		for piece in CurrentLevel.settings.piece_types.start_types:
-			_pieces.append(piece)
+		for piece_type in CurrentLevel.settings.piece_types.start_types:
+			pieces.append(_new_next_piece(piece_type))
 	else:
 		# Shuffled starting pieces: Append all of the start pieces in a random order, skipping duplicates.
-		var pieces_tmp := CurrentLevel.settings.piece_types.start_types.duplicate()
+		var pieces_tmp: Array = CurrentLevel.settings.piece_types.start_types.duplicate()
 		pieces_tmp.shuffle()
-		for piece in pieces_tmp:
-			if _pieces.empty() or _pieces[0] != piece:
+		for piece_type in pieces_tmp:
+			if pieces.empty() or pieces[0].type != piece_type:
 				# avoid prepending duplicate pieces
-				_pieces.push_front(piece)
+				pieces.push_front(_new_next_piece(piece_type))
+
+
+"""
+Creates a new next piece with the specified type.
+"""
+func _new_next_piece(type: PieceType) -> NextPiece:
+	var next_piece := NextPiece.new()
+	next_piece.type = type
+	if pieces:
+		# if the last piece in the queue has been rotated, we match its orientation.
+		next_piece.orientation = pieces.back().orientation
+	return next_piece
 
 
 func shuffled_piece_types() -> Array:
-	var result := CurrentLevel.settings.piece_types.types
+	var result: Array = CurrentLevel.settings.piece_types.types
 	if not result:
 		result = _default_piece_types
 	result = result.duplicate()
@@ -143,25 +165,26 @@ avoids pulling the same piece back to back. With this algorithm you're always ab
 extra piece acts as an helpful tool for 3x4 boxes and 3x5 boxes, or an annoying deterrent for 3x3 boxes.
 """
 func _fill_remaining_pieces() -> void:
-	while _pieces.size() < MIN_SIZE:
+	while pieces.size() < MIN_SIZE:
 		# fill a bag with one of each piece and one extra; draw them out in a random order
-		var new_pieces := shuffled_piece_types()
-		_pieces += new_pieces
+		var new_piece_types := shuffled_piece_types()
+		for piece_type in new_piece_types:
+			pieces.append(_new_next_piece(piece_type))
 		
-		if new_pieces.size() >= 3:
+		if new_piece_types.size() >= 3:
 			# for levels with multiple identical pieces in the bag, we shuffle the bag so that those identical pieces
 			# aren't back to back
-			var min_to_index := _pieces.size() - new_pieces.size()
+			var min_to_index := pieces.size() - new_piece_types.size()
 			var from_index := min_to_index
-			while from_index < _pieces.size():
+			while from_index < pieces.size():
 				var to_index := from_index
-				if _pieces[from_index] == _pieces[from_index - 1]:
+				if pieces[from_index].type == pieces[from_index - 1].type:
 					# a piece appears back-to-back; move it to a new position
 					to_index = _move_duplicate_piece(from_index, min_to_index)
 				if to_index <= from_index:
 					# don't advance from_index if it would skip an item in the queue
 					from_index += 1
-		_insert_annoying_piece(new_pieces.size())
+		_insert_annoying_piece(new_piece_types.size())
 
 
 """
@@ -177,17 +200,17 @@ Returns:
 """
 func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 	# remove the piece from the queue
-	var duplicate_piece: PieceType = _pieces[from_index]
-	_pieces.remove(from_index)
+	var duplicate_piece: NextPiece = pieces[from_index]
+	pieces.remove(from_index)
 	
 	# find a new position for it
 	var to_index := from_index
-	var piece_positions := non_adjacent_indexes(_pieces, duplicate_piece, min_to_index)
+	var piece_positions := non_adjacent_indexes(pieces, duplicate_piece.type, min_to_index)
 	if piece_positions:
 		to_index = Utils.rand_value(piece_positions)
 	
 	# move the piece to its new place in the queue
-	_pieces.insert(to_index, duplicate_piece)
+	pieces.insert(to_index, duplicate_piece)
 	return to_index
 
 
@@ -197,7 +220,7 @@ Returns 'true' if the specified array has the same piece back-to-back.
 func _has_duplicate_pieces(pieces: Array) -> bool:
 	var result := false
 	for i in range(pieces.size() - 1):
-		if pieces[i] == pieces[i+1]:
+		if pieces[i].type == pieces[i + 1].type:
 			result = true
 			break
 	return result
@@ -214,17 +237,17 @@ Parameters:
 			will be appended to the end of the queue, '8' means it will be mixed in with the last eight pieces.
 """
 func _insert_annoying_piece(max_pieces_to_right: int) -> void:
-	var new_piece_index := int(rand_range(_pieces.size() - max_pieces_to_right + 1, _pieces.size() + 1))
+	var new_piece_index := int(rand_range(pieces.size() - max_pieces_to_right + 1, pieces.size() + 1))
 	var extra_piece_types: Array = shuffled_piece_types()
 	if extra_piece_types.size() >= 3:
 		# check the neighboring pieces, and remove those from the pieces we're picking from
-		Utils.remove_all(extra_piece_types, _pieces[new_piece_index - 1])
-		if new_piece_index < _pieces.size():
-			Utils.remove_all(extra_piece_types, _pieces[new_piece_index])
+		Utils.remove_all(extra_piece_types, pieces[new_piece_index - 1].type)
+		if new_piece_index < pieces.size():
+			Utils.remove_all(extra_piece_types, pieces[new_piece_index].type)
 	if extra_piece_types[0] == PieceTypes.piece_o:
 		# the o piece is awful, so it comes 10% less often
 		extra_piece_types.shuffle()
-	_pieces.insert(new_piece_index, extra_piece_types[0])
+	pieces.insert(new_piece_index, _new_next_piece(extra_piece_types[0]))
 
 
 func _on_Level_settings_changed() -> void:
@@ -236,23 +259,23 @@ func _on_PuzzleScore_game_prepared() -> void:
 
 
 """
-Returns a list of of positions where an item can be inserted without being adjacent to itself.
+Returns a list of of positions where a piece can be inserted without being adjacent to another piece of the same type.
 
-non_adjacent_indexes(['A', 'B'], 'A')      = [2]
-non_adjacent_indexes(['A', 'B', 'C'], 'C') = [0, 1]
-non_adjacent_indexes([], 'C')              = [0]
-non_adjacent_indexes(['B', 'A', 'B'], 'B') = []
+non_adjacent_indexes(['j', 'o'], 'j')      = [2]
+non_adjacent_indexes(['j', 'o', 't'], 't') = [0, 1]
+non_adjacent_indexes([], 't')              = [0]
+non_adjacent_indexes(['o', 'j', 'o'], 'o') = []
 
 Parameters:
-	'arr': The array to search
+	'pieces': An array of NextPiece instances representing pieces in a queue.
 	
-	'value': The value to search for
+	'piece_type': The type of the piece being inserted.
 	
-	'from_index': The lowest index to return
+	'from_index': The lowest position to check in the piece queue.
 """
-static func non_adjacent_indexes(arr: Array, value, from_index: int = 0) -> Array:
+static func non_adjacent_indexes(pieces: Array, piece_type: PieceType, from_index: int = 0) -> Array:
 	var result := []
-	for i in range(from_index, arr.size() + 1):
-		if (i == 0 or value != arr[i - 1]) and (i >= arr.size() or value != arr[i]):
+	for i in range(from_index, pieces.size() + 1):
+		if (i == 0 or piece_type != pieces[i - 1].type) and (i >= pieces.size() or piece_type != pieces[i].type):
 			result.append(i)
 	return result

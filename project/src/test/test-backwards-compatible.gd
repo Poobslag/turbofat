@@ -55,6 +55,12 @@ func load_1b3c_data() -> void:
 	PlayerSave.load_player_data()
 
 
+func load_245b_data() -> void:
+	var dir := Directory.new()
+	dir.copy("res://assets/test/turbofat-245b.json", "user://%s" % TEMP_FILENAME)
+	PlayerSave.load_player_data()
+
+
 func test_0517_lost_true() -> void:
 	load_0517_data()
 	
@@ -184,3 +190,14 @@ func test_1b3c() -> void:
 	var history_marathon: RankResult = PlayerData.level_history.results("practice/marathon_hard")[0]
 	assert_eq(history_marathon.lost, false)
 	assert_eq(history_marathon.score, 5115)
+
+
+func test_245b() -> void:
+	load_245b_data()
+	
+	# some levels were made much harder/different, and their scores should be invalidated
+	assert_true(PlayerData.level_history.level_names().has("marsh/pulling_for_everyone"))
+	assert_false(PlayerData.level_history.level_names().has("marsh/hello_everyone"))
+	assert_false(PlayerData.level_history.level_names().has("marsh/hello_skins"))
+	assert_false(PlayerData.level_history.level_names().has("marsh/pulling_for_skins"))
+	assert_false(PlayerData.level_history.level_names().has("marsh/goodbye_skins"))

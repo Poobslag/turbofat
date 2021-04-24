@@ -82,8 +82,8 @@ func _max_combo_score(lines: int) -> int:
 """
 Calculates the minimum theoretical frames per line for a given piece speed.
 
-This assumes a skilled player who is making many boxes, clearing lines one at a time, and moving pieces very
-efficiently.
+This assumes a perfect player who is making many boxes, clearing lines one at a time, and moving pieces with TAS level
+efficiency.
 """
 static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 	var movement_frames := 1 + MASTER_MVMT_FRAMES
@@ -107,9 +107,9 @@ static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 
 
 """
-Calculates the maximum theoretical lines per minute.
+Calculates the lines per minute for a master player.
 """
-func _max_lpm() -> float:
+func _master_lpm() -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
 	
@@ -117,7 +117,9 @@ func _max_lpm() -> float:
 		var milestone: Milestone = CurrentLevel.settings.speed_ups[i]
 		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("speed"))
 		
-		var frames_per_line := min_frames_per_line(piece_speed)
+		var min_frames_per_line := min_frames_per_line(piece_speed)
+		var master_seconds_per_line := min_frames_per_line / 60 \
+				+ 2 * CurrentLevel.settings.rank.extra_seconds_per_piece
 		
 		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 		var level_lines := 100.0
@@ -132,7 +134,7 @@ func _max_lpm() -> float:
 					# warning-ignore:integer_division
 					level_lines = speed_up.value / 2
 				Milestone.TIME_OVER:
-					level_lines = speed_up.value * 60 / frames_per_line
+					level_lines = speed_up.value / master_seconds_per_line
 				Milestone.SCORE:
 					level_lines = speed_up.value / \
 							(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
@@ -146,9 +148,9 @@ func _max_lpm() -> float:
 					(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
 		
 		# avoid divide by zero, and round up to the nearest line clear
-		level_lines = ceil(max(level_lines, 1.0))
+		level_lines = ceil(max(level_lines, 1))
 		
-		total_frames += frames_per_line * level_lines
+		total_frames += master_seconds_per_line * level_lines * 60
 		total_lines += level_lines
 	
 	return 60 * 60 * float(total_lines) / total_frames
@@ -196,9 +198,9 @@ Parameters:
 		lines in Marathon mode.
 """
 func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
-	var max_lpm := _max_lpm()
+	var master_lpm := _master_lpm()
 	
-	var target_speed: float = max_lpm
+	var target_speed: float = master_lpm
 	var target_box_score_per_line := master_box_score(CurrentLevel.settings)
 	var target_combo_score_per_line := master_combo_score(CurrentLevel.settings)
 	var target_lines: float
@@ -220,7 +222,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
 			leftover_lines = 0
 		Milestone.TIME_OVER:
-			target_lines = max_lpm * finish_condition.value / 60.0
+			target_lines = master_lpm * finish_condition.value / 60.0
 			leftover_lines = 0
 	
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
