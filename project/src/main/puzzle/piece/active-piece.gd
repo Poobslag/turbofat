@@ -134,6 +134,9 @@ func can_move_to_target() -> bool:
 	return can_move_to(target_pos, target_orientation)
 
 
+"""
+Move and orient the piece to its target position and orientation.
+"""
 func move_to_target() -> void:
 	pos = target_pos
 	orientation = target_orientation

@@ -60,7 +60,7 @@ func start_chat(new_chat_tree: ChatTree, target: Node2D) -> void:
 	
 	for chatter_id_obj in chatter_ids:
 		var chatter_id: String = chatter_id_obj
-		var chatter := ChattableManager.get_creature_by_id(chatter_id)
+		var chatter: Creature = ChattableManager.get_creature_by_id(chatter_id)
 		if chatter and not new_chatters.has(chatter):
 			new_chatters.append(chatter)
 	
@@ -185,12 +185,12 @@ Returns the chat tree corresponding to the curently focused chattable.
 This is relevant when the player talks to a creature with a non-food speech bubble.
 """
 func _focused_chattable_chat_tree() -> ChatTree:
-	var focused_chattable := ChattableManager.focused_chattable
+	var focused_chattable: Node2D = ChattableManager.focused_chattable
 	if not focused_chattable:
 		return null
 	
 	if not _chat_tree_cache.has(focused_chattable):
-		var chat_tree := ChattableManager.load_chat_tree()
+		var chat_tree: ChatTree = ChattableManager.load_chat_tree()
 		if chat_tree and focused_chattable is Creature:
 			if chat_tree.meta.get("filler", false):
 				PlayerData.chat_history.increment_filler_count(focused_chattable.creature_id)
@@ -244,15 +244,15 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 		var meta_item: String = meta_item_obj
 		if meta_item.begins_with("creature-enter "):
 			var creature_id := StringUtils.substring_after(meta_item, "creature-enter ")
-			var entering_creature := ChattableManager.get_creature_by_id(creature_id)
+			var entering_creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			entering_creature.fade_in()
 		if meta_item.begins_with("creature-exit "):
 			var creature_id := StringUtils.substring_after(meta_item, "creature-exit ")
-			var exiting_creature := ChattableManager.get_creature_by_id(creature_id)
+			var exiting_creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			exiting_creature.fade_out()
 	
 	# update the chatter's mood
-	var chatter := ChattableManager.get_creature_by_id(chat_event.who)
+	var chatter: Creature = ChattableManager.get_creature_by_id(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
 	if chatter and StringUtils.has_letter(chat_event.text):
@@ -289,7 +289,7 @@ func _on_SettingsButton_pressed() -> void:
 When the player hits the 'talk' button we either launch a level or start a chat.
 """
 func _on_TalkButton_pressed() -> void:
-	var focused_chattable := ChattableManager.focused_chattable
+	var focused_chattable: Node2D = ChattableManager.focused_chattable
 	if not focused_chattable:
 		return
 	

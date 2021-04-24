@@ -18,10 +18,6 @@ onready var level_name := $HBoxContainer/SideButtons/LevelName
 onready var _level_json := $HBoxContainer/SideButtons/Json
 
 func _ready() -> void:
-	if not ResourceCache.is_done():
-		# when launched standalone, we don't load creature resources (they're slow)
-		ResourceCache.minimal_resources = true
-	
 	var level_text := FileUtils.get_file_as_text(LevelSettings.level_path(DEFAULT_LEVEL))
 	_level_json.text = level_text
 	_level_json.refresh_tile_map()

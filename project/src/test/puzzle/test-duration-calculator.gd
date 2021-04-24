@@ -18,39 +18,39 @@ func test_endless_level() -> void:
 func test_score() -> void:
 	_settings.finish_condition.set_milestone(Milestone.SCORE, 200)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 177, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 177.0, 10.0)
 
 
 func test_score_high_value() -> void:
 	_settings.finish_condition.set_milestone(Milestone.SCORE, 1000)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 889, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 889.0, 10.0)
 
 
 func test_score_high_difficulty() -> void:
 	_settings.set_start_speed("AA")
 	_settings.finish_condition.set_milestone(Milestone.SCORE, 200)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 23, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 23.0, 10.0)
 
 
 func test_lines() -> void:
 	_settings.finish_condition.set_milestone(Milestone.LINES, 20)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 150, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 150.0, 10.0)
 
 
 func test_lines_high_value() -> void:
 	_settings.finish_condition.set_milestone(Milestone.LINES, 100)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 750, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 750.0, 10.0)
 
 
 func test_lines_high_difficulty() -> void:
 	_settings.set_start_speed("AA")
 	_settings.finish_condition.set_milestone(Milestone.LINES, 20)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 55, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 55.0, 10.0)
 
 
 func test_time_over() -> void:
@@ -75,17 +75,17 @@ func test_time_over_high_difficulty() -> void:
 func test_customers() -> void:
 	_settings.finish_condition.set_milestone(Milestone.CUSTOMERS, 5)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 116, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 116.0, 10.0)
 
 
 func test_customers_high_value() -> void:
 	_settings.finish_condition.set_milestone(Milestone.CUSTOMERS, 25)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 562.5, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 562.5, 10.0)
 
 
 func test_customers_high_difficulty() -> void:
 	_settings.set_start_speed("AA")
 	_settings.finish_condition.set_milestone(Milestone.CUSTOMERS, 5)
 	
-	assert_almost_eq(_duration_calculator.duration(_settings), 185, 10)
+	assert_almost_eq(_duration_calculator.duration(_settings), 185.0, 10.0)
