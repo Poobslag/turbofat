@@ -349,6 +349,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/level-settings.gd"
 }, {
+"base": "Reference",
+"class": "LevelTrigger",
+"language": "GDScript",
+"path": "res://src/main/puzzle/level/level-trigger.gd"
+}, {
+"base": "Reference",
+"class": "LevelTriggerEffect",
+"language": "GDScript",
+"path": "res://src/main/puzzle/level/level-trigger-effect.gd"
+}, {
+"base": "Reference",
+"class": "LevelTriggers",
+"language": "GDScript",
+"path": "res://src/main/puzzle/level/level-triggers.gd"
+}, {
 "base": "Node",
 "class": "LineClearer",
 "language": "GDScript",
@@ -429,6 +444,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/nearest-sorter.gd"
 }, {
+"base": "Reference",
+"class": "NextPiece",
+"language": "GDScript",
+"path": "res://src/main/puzzle/piece/next-piece.gd"
+}, {
 "base": "Node2D",
 "class": "NextPieceDisplay",
 "language": "GDScript",
@@ -493,11 +513,6 @@ _global_script_classes=[ {
 "class": "PiecePhysics",
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/piece-physics.gd"
-}, {
-"base": "Node",
-"class": "PieceQueue",
-"language": "GDScript",
-"path": "res://src/main/puzzle/piece/piece-queue.gd"
 }, {
 "base": "Reference",
 "class": "PieceSpeed",
@@ -803,6 +818,9 @@ _global_script_class_icons={
 "LevelLock": "",
 "LevelSelectButton": "",
 "LevelSettings": "",
+"LevelTrigger": "",
+"LevelTriggerEffect": "",
+"LevelTriggers": "",
 "LineClearer": "",
 "LockAlleleButton": "",
 "LoseConditionRules": "",
@@ -819,6 +837,7 @@ _global_script_class_icons={
 "NameUtils": "",
 "NametagPanel": "",
 "NearestSorter": "",
+"NextPiece": "",
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",
 "OldSave": "",
@@ -832,7 +851,6 @@ _global_script_class_icons={
 "PieceManager": "",
 "PieceMover": "",
 "PiecePhysics": "",
-"PieceQueue": "",
 "PieceSpeed": "",
 "PieceSquisher": "",
 "PieceStates": "",
@@ -896,6 +914,7 @@ default_bus_layout="res://src/main/ui/default_bus_layout.tres"
 [autoload]
 
 Global="*res://src/main/global.gd"
+LevelTriggerEffects="*res://src/main/puzzle/level/level-trigger-effects.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 Breadcrumb="*res://src/main/breadcrumb.gd"
@@ -911,6 +930,7 @@ MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
 MusicTransition="*res://src/main/music/music-transition.gd"
 Pauser="*res://src/main/pauser.gd"
+PieceQueue="*res://src/main/puzzle/piece/piece-queue.gd"
 PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"
 PuzzleScore="*res://src/main/puzzle/puzzle-score.gd"

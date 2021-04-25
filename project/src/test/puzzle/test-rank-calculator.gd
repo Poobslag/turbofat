@@ -17,35 +17,35 @@ func before_each() -> void:
 	PuzzleScore.level_performance = PuzzlePerformance.new()
 
 
-func test_max_lpm_slow_marathon() -> void:
+func test_master_lpm_slow_marathon() -> void:
 	CurrentLevel.settings.set_start_speed("0")
-	assert_almost_eq(_rank_calculator._max_lpm(), 30.77, 0.1)
+	assert_almost_eq(_rank_calculator._master_lpm(), 30.77, 0.1)
 
 
-func test_max_lpm_medium_marathon() -> void:
+func test_master_lpm_medium_marathon() -> void:
 	CurrentLevel.settings.set_start_speed("A0")
-	assert_almost_eq(_rank_calculator._max_lpm(), 35.64, 0.1)
+	assert_almost_eq(_rank_calculator._master_lpm(), 35.64, 0.1)
 
 
-func test_max_lpm_fast_marathon() -> void:
+func test_master_lpm_fast_marathon() -> void:
 	CurrentLevel.settings.set_start_speed("F0")
-	assert_almost_eq(_rank_calculator._max_lpm(), 68.90, 0.1)
+	assert_almost_eq(_rank_calculator._master_lpm(), 68.90, 0.1)
 
 
-func test_max_lpm_mixed_marathon() -> void:
+func test_master_lpm_mixed_marathon() -> void:
 	CurrentLevel.settings.set_start_speed("0")
 	CurrentLevel.settings.add_speed_up(Milestone.LINES, 30, "A0")
 	CurrentLevel.settings.add_speed_up(Milestone.LINES, 60, "F0")
 	CurrentLevel.settings.set_finish_condition(Milestone.LINES, 100)
-	assert_almost_eq(_rank_calculator._max_lpm(), 46.23, 0.1)
+	assert_almost_eq(_rank_calculator._master_lpm(), 46.23, 0.1)
 
 
-func test_max_lpm_mixed_sprint() -> void:
+func test_master_lpm_mixed_sprint() -> void:
 	CurrentLevel.settings.set_start_speed("0")
 	CurrentLevel.settings.add_speed_up(Milestone.TIME_OVER, 30, "A0")
 	CurrentLevel.settings.add_speed_up(Milestone.TIME_OVER, 60, "F0")
 	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 90)
-	assert_almost_eq(_rank_calculator._max_lpm(), 50.98, 0.1)
+	assert_almost_eq(_rank_calculator._master_lpm(), 50.98, 0.1)
 
 
 func test_calculate_rank_marathon_300_master() -> void:
@@ -356,3 +356,19 @@ func test_unranked_loss() -> void:
 	var rank := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank.seconds_rank), "-")
 	assert_eq(RankCalculator.grade(rank.score_rank), "-")
+
+
+func test_extra_seconds_per_piece() -> void:
+	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 180)
+	PuzzleScore.level_performance.seconds = 180
+	PuzzleScore.level_performance.lines = 60
+	PuzzleScore.level_performance.score = 1160
+	var rank1 := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank1.speed_rank), "S+")
+	assert_eq(RankCalculator.grade(rank1.score_rank), "S+")
+	
+	# with the 'extra_seconds_per_piece' setting enabled, the player gets a better grade
+	CurrentLevel.settings.rank.extra_seconds_per_piece = 1.2
+	var rank2 = _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank2.speed_rank), "M")
+	assert_eq(RankCalculator.grade(rank2.score_rank), "SSS")

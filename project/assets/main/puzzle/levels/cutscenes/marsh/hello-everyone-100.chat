@@ -14,7 +14,7 @@ s: So how was that?
 [very-good] I think you killed it!
 [good] That was pretty good!
 [bad] ...
-[very-bad] Well... I wouldn't eat it.
+[very-bad] That was terrible! Are you kidding me?
 
 [very-good]
 p1: ^__^ Wow, I think you killed it! You have some real talent.
@@ -34,22 +34,28 @@ s: .__.; ... ... ...
 [sensei-answers-insult]
 
 [very-bad]
-p1: /._. Well... I wouldn't eat it. Did you have any cooking experience before this?
+p1: >__< That was terrible! Are you kidding me? ...Did you have any cooking experience before this?
 s: ._.; Uhh I mean like, Richie's been helping me figure out the kitchen stuff. ...Did I mess something up?
 [sensei-answers-insult]
 
 [sensei-answers-praise]
-s1: /._. Hmm. Yes! Pretty good. Your rhythm's ahhh... a little off though!
-s: My... my rhythm?
-s1: Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap.
-s1: You don't want to give them any break. Eating should become an unconscious reflex to them, like blinking!
+s1: /._. Hmm. Yes! Pretty good. Your technique is ahhh... a little off though!
+s: My... my technique?
+s1: You should focus on the piece of food you're cooking. You don't need to flip all those other pieces beforehand.
+s: @_@ But I have to keep them flipped the same way! Otherwise it makes my head all muddy.
+s1: Well, flipping them slows you down.
+s1: That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap.
+s1: You don't want to give your customers any break. Eating should become an unconscious reflex to them, like blinking!
 [oh-okay]
 
 [sensei-answers-insult]
-s1: /._. What I think #player# is trying to say is your rhythm is ahhh... a little off.
-s: My... my rhythm?
-s1: Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap.
-s1: You don't want to give them any break. Eating should become an unconscious reflex to them, like blinking!
+s1: /._. What I think #player# is trying to say is your technique is ahhh... a little strange.
+s: My... my technique?
+s1: You should focus on the piece of food you're cooking. You don't need to flip all those other pieces beforehand.
+s: @_@ But I have to keep them flipped the same way! Otherwise it makes my head all muddy.
+s1: Well, flipping them slows you down.
+s1: That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap.
+s1: You don't want to give your customers any break. Eating should become an unconscious reflex to them, like blinking!
 [oh-okay]
 
 [oh-okay]

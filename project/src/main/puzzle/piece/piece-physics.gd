@@ -24,6 +24,14 @@ Returns 'true' if the piece was spawned successfully, or 'false' if the player t
 """
 func spawn_piece(piece: ActivePiece) -> bool:
 	rotator.apply_initial_rotate_input(piece)
+	
+	# relocate piece to the top of the playfield
+	var highest_pos := 3
+	for pos_arr_item in piece.get_pos_arr():
+		if pos_arr_item.y < highest_pos:
+			highest_pos = pos_arr_item.y
+	piece.pos.y -= highest_pos
+	
 	mover.apply_initial_move_input(piece)
 	
 	var success := true

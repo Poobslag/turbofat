@@ -2,7 +2,7 @@
   "version": "19c5",
   "start_speed": "1",
   "title": "Hello Everyone!",
-  "description": "Let's meet the employees of our Merrymellow Marsh location!",
+  "description": "Let's meet our Merrymellow Marsh area employees! Surely they won't rotate pieces incompetently.",
   "finish_condition": {
     "type": "time_over",
     "value": "90"
@@ -12,6 +12,26 @@
   ],
   "piece_types": [
     "start_piece_j"
+  ],
+  "lose_condition": [
+    "top_out 9"
+  ],
+  "rank": [
+    "extra_seconds_per_piece", "0.4"
+  ],
+  "triggers": [
+    {
+      "phases": ["rotated_right", "initial_rotated_right"],
+      "effect": "rotate_next_pieces right"
+    },
+    {
+      "phases": ["rotated_left", "initial_rotated_left"],
+      "effect": "rotate_next_pieces left"
+    },
+    {
+      "phases": ["rotated_twice", "initial_rotated_twice"],
+      "effect": "rotate_next_pieces twice"
+    }
   ],
   "blocks_start": {
     "tiles": [

@@ -63,11 +63,13 @@ Returns the estimated time to clear the specified number of lines.
 """
 func _duration_for_lines(settings: LevelSettings, lines: float) -> float:
 	var min_frames_per_line := RankCalculator.min_frames_per_line(PieceSpeeds.speed(settings.difficulty))
-	var lines_per_minute := 60 * 60 / min_frames_per_line
-	lines_per_minute *= pow(RankCalculator.RDF_SPEED, _rank(settings))
+	var min_lines_per_frame := 1 / min_frames_per_line
+	var master_lines_per_second := 60 * min_lines_per_frame + 2 * settings.rank.extra_seconds_per_piece
+	var master_lines_per_minute := 60 * master_lines_per_second
+	master_lines_per_minute *= pow(RankCalculator.RDF_SPEED, _rank(settings))
 	# minimum 8.0 lines per minute; novices don't play THAT slowly
-	lines_per_minute = max(MIN_LINES_PER_MINUTE, lines_per_minute)
-	return 60 * lines / lines_per_minute
+	master_lines_per_minute = max(MIN_LINES_PER_MINUTE, master_lines_per_minute)
+	return 60 * lines / master_lines_per_minute
 
 
 """

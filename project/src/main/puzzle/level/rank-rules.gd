@@ -11,6 +11,9 @@ var box_factor := 1.0
 # needs 3x the usual combo points per line to get a good rank
 var combo_factor := 1.0
 
+# extra time it takes an expert to move the piece where it belongs
+var extra_seconds_per_piece := 0.0
+
 # expected combo per customer
 var customer_combo := 0
 
@@ -41,3 +44,4 @@ func from_json_string_array(json: Array) -> void:
 	if rules.has("success_bonus"): success_bonus = rules.float_value()
 	if rules.has("top_out_penalty"): top_out_penalty = rules.int_value()
 	if rules.has("unranked"): unranked = true
+	if rules.has("extra_seconds_per_piece"): extra_seconds_per_piece = rules.float_value()
