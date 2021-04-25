@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-18 18:58-0400\n"
+"POT-Creation-Date: 2021-04-25 17:47-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -106,7 +106,7 @@ msgid "Goodbye Skins!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:23
-msgid "Goodbye Skins! ...I'll miss you the most of all!"
+msgid "Well, I guess Skins gave up rotating entirely. ...Or did he?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:24
@@ -204,7 +204,9 @@ msgid "Hello Everyone!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:46
-msgid "Let's meet the employees of our Merrymellow Marsh location!"
+msgid ""
+"Let's meet our Merrymellow Marsh area employees! Surely they won't rotate"
+" pieces incompetently."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:47
@@ -333,12 +335,13 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:78
 #: project/assets/main/locale/localizables-extracted.py:84
-#: project/assets/main/locale/localizables-extracted.py:210
+#: project/assets/main/locale/localizables-extracted.py:122
+#: project/assets/main/locale/localizables-extracted.py:218
 msgid "..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:79
-msgid "Well... I wouldn't eat it."
+msgid "That was terrible! Are you kidding me?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:80
@@ -373,8 +376,8 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:88
 msgid ""
-"Well... I wouldn't eat it. Did you have any cooking experience before "
-"this?"
+"That was terrible! Are you kidding me? ...Did you have any cooking "
+"experience before this?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:89
@@ -384,615 +387,632 @@ msgid ""
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:90
-msgid "Hmm. Yes! Pretty good. Your rhythm's ahhh... a little off though!"
+msgid "Hmm. Yes! Pretty good. Your technique is ahhh... a little off though!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:91
-#: project/assets/main/locale/localizables-extracted.py:95
-msgid "My... my rhythm?"
+#: project/assets/main/locale/localizables-extracted.py:98
+msgid "My... my technique?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:92
-#: project/assets/main/locale/localizables-extracted.py:96
+#: project/assets/main/locale/localizables-extracted.py:99
 msgid ""
-"Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right"
-" now you're more like pappap,// pappa/ pap."
+"You should focus on the piece of food you're cooking. You don't need to "
+"flip all those other pieces beforehand."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:93
-#: project/assets/main/locale/localizables-extracted.py:97
+#: project/assets/main/locale/localizables-extracted.py:100
 msgid ""
-"You don't want to give them any break. Eating should become an "
-"unconscious reflex to them, like blinking!"
+"But I have to keep them flipped the same way! Otherwise it makes my head "
+"all muddy."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:94
-msgid ""
-"What I think #player# is trying to say is your rhythm is ahhh... a little"
-" off."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:98
-msgid "Oh, hmm... okay. Mowr..."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:99
-msgid "Hey hey! Don't worry, we'll work on that. Good work everybody!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:100
-msgid "#sensei#, #player# -- see what you can do to drum up more business!"
-msgstr ""
-
 #: project/assets/main/locale/localizables-extracted.py:101
-msgid "We'll be here when you feel like training us up again. No hurry!"
+msgid "Well, flipping them slows you down."
 msgstr ""
 
+#: project/assets/main/locale/localizables-extracted.py:95
 #: project/assets/main/locale/localizables-extracted.py:102
-msgid "Hello Shirts!"
+msgid ""
+"That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now "
+"you're more like pappap,// pappa/ pap."
 msgstr ""
 
+#: project/assets/main/locale/localizables-extracted.py:96
 #: project/assets/main/locale/localizables-extracted.py:103
-msgid "Let's get to know Shirts a little better."
+msgid ""
+"You don't want to give your customers any break. Eating should become an "
+"unconscious reflex to them, like blinking!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:97
+msgid ""
+"What I think #player# is trying to say is your technique is ahhh... a "
+"little strange."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:104
+msgid "Oh, hmm... okay. Mowr..."
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:105
+msgid "Hey hey! Don't worry, we'll work on that. Good work everybody!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:106
+msgid "#sensei#, #player# -- see what you can do to drum up more business!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:107
+msgid "We'll be here when you feel like training us up again. No hurry!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:108
+msgid "Hello Shirts!"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:109
+msgid "Let's get to know Shirts a little better."
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:110
 msgid ""
 "Oh hey what's up. I heard you guys came the other day when I wasn't here."
 " So did I miss like anything... important?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:105
+#: project/assets/main/locale/localizables-extracted.py:111
 msgid ""
 "Ahh, nothing important. We're still trying to figure out why this "
 "location isn't attracting more customers."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:106
+#: project/assets/main/locale/localizables-extracted.py:112
 msgid "Yeah, Skins and Bones showed us their cooking skills. ...They seem nice!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:107
+#: project/assets/main/locale/localizables-extracted.py:113
 msgid "Hah. Yeah they DO seem nice."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:108
+#: project/assets/main/locale/localizables-extracted.py:114
 msgid ""
 "Yeah! ...Umm, wait what? ...I feel like there's something you're not "
 "telling me."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:109
+#: project/assets/main/locale/localizables-extracted.py:115
 msgid "Hah hah. Yeah that's alright, you'll figure it out."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:110
+#: project/assets/main/locale/localizables-extracted.py:116
 msgid "Umm... Alright. Sounds fun. Anywaaay..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:111
+#: project/assets/main/locale/localizables-extracted.py:117
 msgid ""
 "Why don't you show us your skills in the kitchen! Let's focus on some "
 "combos today, if you know about those."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:112
+#: project/assets/main/locale/localizables-extracted.py:118
 msgid "Yeah yeah! Combos. Sure thing."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:113
-msgid "Hello Skins!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:114
-msgid "Let's get to know Skins a little better."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:115
-msgid "Hmm... just like before."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:116
-msgid "Yeah..."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:117
-msgid "Mowr... Any tips?"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:118
-msgid ""
-"I don't know, I'm kind of at a loss on this one. #sensei#? Why isn't it "
-"working?"
-msgstr ""
-
 #: project/assets/main/locale/localizables-extracted.py:119
-msgid ""
-"Was it their technique or... were they too slow? They didn't seem slow to"
-" me."
+msgid "Hello Skins!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:120
 msgid ""
-"Ahh well. Their cooking skills are improving, so... Maybe it's just a "
-"matter of time."
+"Skins, you really shouldn't rotate the upcoming pieces! It hurts my head "
+"a little."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:121
-msgid ""
-"The customers will come back, and next time they'll stay longer! So, "
-"let's be patient."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:122
-msgid "Let's All Get Merry"
+msgid "Hmm... so, do you remember that thing I said not to do?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:123
-msgid "Wow, we did it! It's time to celebrate."
+msgid "That thing that you're still doing?"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:124
-msgid "Pulling for Bones"
+msgid "Mawr..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:125
-msgid "C'mon Bones, you can do this! We believe in you!"
+msgid "You're still doing that thing."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:126
-msgid "Pulling for everyone"
+msgid "I know, I know! I'm trying, I really am! ...I'll practice more, I promise."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:127
-msgid "C'mon everybody, you can do this! We believe in you!"
+msgid "It's okay, we're not angry. We're just, umm..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:128
-msgid "Pulling for Shirts"
+msgid "...Just, just keep practicing. You'll get there."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:129
-msgid "C'mon Shirts, you can do this! We believe in you!"
+msgid "Thanks, mowwr..."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:130
-msgid "Pulling for Skins"
+msgid "Let's All Get Merry"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:131
-msgid "C'mon Skins, you can do this! We believe in you!"
+msgid "Wow, we did it! It's time to celebrate."
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:132
-msgid "Just Getting Started"
+msgid "Pulling for Bones"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:133
-msgid "Was someone in the middle of cooking something?"
+msgid "C'mon Bones, you can do this! We believe in you!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:134
-msgid "Unfresh Fruits"
+msgid "Pulling for everyone"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:135
-msgid "This fruit's going bad soon! Maybe someone will eat it..."
+msgid "C'mon everybody, you can do this! We believe in you!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:136
-msgid "It's Square to be Square"
+msgid "Pulling for Shirts"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:137
-msgid "Can you handle all this sugar, or will you go down swinging?"
+msgid "C'mon Shirts, you can do this! We believe in you!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:138
-msgid "Pineapple On Its Side Cake"
+msgid "Pulling for Skins"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:139
+msgid "Skins doesn't rotate as many of the upcoming pieces. ...This is progress?"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:140
+msgid "Just Getting Started"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:141
+msgid "Was someone in the middle of cooking something?"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:142
+msgid "Unfresh Fruits"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:143
+msgid "This fruit's going bad soon! Maybe someone will eat it..."
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:144
+msgid "It's Square to be Square"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:145
+msgid "Can you handle all this sugar, or will you go down swinging?"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:146
+msgid "Pineapple On Its Side Cake"
+msgstr ""
+
+#: project/assets/main/locale/localizables-extracted.py:147
 msgid ""
 "Why is this cake on its side? Whoever left this here was either very "
 "smart, or very stupid..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:140
+#: project/assets/main/locale/localizables-extracted.py:148
 msgid "Finish Your Veggies"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:141
+#: project/assets/main/locale/localizables-extracted.py:149
 msgid "Yuck! Vegetables! I'm not cleaning that up."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:142
+#: project/assets/main/locale/localizables-extracted.py:150
 msgid "It's Tee Time"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:143
+#: project/assets/main/locale/localizables-extracted.py:151
 msgid "Augh, bread overload! And half the end pieces are missing..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:144
+#: project/assets/main/locale/localizables-extracted.py:152
 msgid "Muffin Impossible"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:145
+#: project/assets/main/locale/localizables-extracted.py:153
 msgid ""
 "So many awkward mismatched pieces! This is like solving a jigsaw puzzle "
 "with no edges..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:146
+#: project/assets/main/locale/localizables-extracted.py:154
 msgid "Cleaning Duty"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:147
+#: project/assets/main/locale/localizables-extracted.py:155
 msgid "Who made this mess! ...Do we need to set up a chore board?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:148
+#: project/assets/main/locale/localizables-extracted.py:156
 msgid "Cakes and Ladders"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:149
+#: project/assets/main/locale/localizables-extracted.py:157
 msgid ""
 "Who prepared all these delicious desserts? ...Isn't that supposed to be "
 "your job?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:150
+#: project/assets/main/locale/localizables-extracted.py:158
 msgid "Wedding Cake for One"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:151
+#: project/assets/main/locale/localizables-extracted.py:159
 msgid ""
 "One VERY hungry customer and one VERY big cake! ...Are they going eat the"
 " entire thing?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:152
+#: project/assets/main/locale/localizables-extracted.py:160
 msgid "Leftovers"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:153
+#: project/assets/main/locale/localizables-extracted.py:161
 msgid "Another big mess to clean. Why does this always fall to you?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:154
+#: project/assets/main/locale/localizables-extracted.py:162
 msgid "Too Fast to Fast"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:155
+#: project/assets/main/locale/localizables-extracted.py:163
 msgid "Can you survive the increasing speeds?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:156
+#: project/assets/main/locale/localizables-extracted.py:164
 msgid "It's Square to be Square II"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:157
+#: project/assets/main/locale/localizables-extracted.py:165
 msgid "Don't get boxed in!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:158
+#: project/assets/main/locale/localizables-extracted.py:166
 msgid "Muffin Impossible II"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:159
+#: project/assets/main/locale/localizables-extracted.py:167
 msgid "More awkward mismatched pieces!? When will the pain stop?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:160
+#: project/assets/main/locale/localizables-extracted.py:168
 msgid "Too Fast to Fast II"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:161
+#: project/assets/main/locale/localizables-extracted.py:169
 msgid "It was already too fast before! This is nonsense..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:162
+#: project/assets/main/locale/localizables-extracted.py:170
 msgid "Basic Techniques"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:163
+#: project/assets/main/locale/localizables-extracted.py:171
 msgid "Learn to clear lines, to make snack boxes and to squish pieces."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:164
+#: project/assets/main/locale/localizables-extracted.py:172
 msgid "Build Combos"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:165
+#: project/assets/main/locale/localizables-extracted.py:173
 msgid ""
 "Learn how combos work, and learn to make snack boxes and cake boxes "
 "during your combos."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:166
+#: project/assets/main/locale/localizables-extracted.py:174
 msgid "Squish and Recover"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:167
+#: project/assets/main/locale/localizables-extracted.py:175
 msgid "Learn how squish moves work and when to use them."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:168
+#: project/assets/main/locale/localizables-extracted.py:176
 msgid "Veggie Patty"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:169
+#: project/assets/main/locale/localizables-extracted.py:177
 msgid "Twice the pace and half the space? ...This is a recipe for disaster!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:170
-#: project/assets/main/locale/localizables-extracted.py:235
+#: project/assets/main/locale/localizables-extracted.py:178
+#: project/assets/main/locale/localizables-extracted.py:243
 msgid "...I don't have anything to say right now!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:171
+#: project/assets/main/locale/localizables-extracted.py:179
 msgid ""
 "Oh! I remember you from before. I'm Boatricia, I'm sort of new here and "
 "trying to make some friends."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:172
+#: project/assets/main/locale/localizables-extracted.py:180
 msgid "Nice to meet you! People here call me #player#."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:173
+#: project/assets/main/locale/localizables-extracted.py:181
 msgid ""
 "Well! ...If you're trying to make some friends, I'll try to cook you "
 "something special okay? Then maybe you can be my friend."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:174
+#: project/assets/main/locale/localizables-extracted.py:182
 msgid "Oh! Well aren't you sweet~"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:175
+#: project/assets/main/locale/localizables-extracted.py:183
 msgid "My maid died!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:176
+#: project/assets/main/locale/localizables-extracted.py:184
 msgid "Oh no! ...That's so sad!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:177
+#: project/assets/main/locale/localizables-extracted.py:185
 msgid "Life is so short..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:178
+#: project/assets/main/locale/localizables-extracted.py:186
 msgid "Hmm, yes... That's true."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:179
+#: project/assets/main/locale/localizables-extracted.py:187
 msgid "Bork! Give me a call if you need anything, boss!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:180
+#: project/assets/main/locale/localizables-extracted.py:188
 msgid ""
 "When I was a kid, buying a new video game every week seemed like an "
 "impossible dream! ...But games are actually pretty cheap."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:181
+#: project/assets/main/locale/localizables-extracted.py:189
 msgid ""
 "It's hard forcing yourself into a healthy routine at first, bork! But "
 "eventually you don't even think about it."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:182
+#: project/assets/main/locale/localizables-extracted.py:190
 msgid "Wow! ...You finally did it? Does this count as our first conversation!?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:183
+#: project/assets/main/locale/localizables-extracted.py:191
 msgid "Yeah, definitely!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:184
-#: project/assets/main/locale/localizables-extracted.py:188
+#: project/assets/main/locale/localizables-extracted.py:192
+#: project/assets/main/locale/localizables-extracted.py:196
 msgid "Maybe? I'm not sure!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:185
+#: project/assets/main/locale/localizables-extracted.py:193
 msgid "I don't think so..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:186
+#: project/assets/main/locale/localizables-extracted.py:194
 msgid ""
 "Yeah!\n"
 "This is definitely a real conversation. It has branches and everything!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:187
-#: project/assets/main/locale/localizables-extracted.py:189
+#: project/assets/main/locale/localizables-extracted.py:195
+#: project/assets/main/locale/localizables-extracted.py:197
 msgid "Congratulations! Wow!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:190
+#: project/assets/main/locale/localizables-extracted.py:198
 msgid "I don't think so. I still have a lot of work to do..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:191
+#: project/assets/main/locale/localizables-extracted.py:199
 msgid "Aww, don't be like that! This is looking great."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:192
+#: project/assets/main/locale/localizables-extracted.py:200
 msgid "...I can't wait to see what you do next!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:193
+#: project/assets/main/locale/localizables-extracted.py:201
 msgid "Did you want to get friend zoned?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:194
+#: project/assets/main/locale/localizables-extracted.py:202
 msgid "Friend zone me!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:195
+#: project/assets/main/locale/localizables-extracted.py:203
 msgid "Um, I don't think so..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:196
+#: project/assets/main/locale/localizables-extracted.py:204
 msgid "You tell me you're in love with me,"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:197
+#: project/assets/main/locale/localizables-extracted.py:205
 msgid "...Like you can't take your pretty eyes away from me."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:198
+#: project/assets/main/locale/localizables-extracted.py:206
 msgid "It's not that I don't wanna stay,"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:199
+#: project/assets/main/locale/localizables-extracted.py:207
 msgid "...But every time you come too close I move away."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:200
+#: project/assets/main/locale/localizables-extracted.py:208
 msgid "I wanna believe in everything that you say, 'cause it sounds so good..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:201
+#: project/assets/main/locale/localizables-extracted.py:209
 msgid "But if you really want me, move slow,"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:202
+#: project/assets/main/locale/localizables-extracted.py:210
 msgid "There's things about me you just have to know."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:203
+#: project/assets/main/locale/localizables-extracted.py:211
 msgid "Sometimes I run."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:204
+#: project/assets/main/locale/localizables-extracted.py:212
 msgid "Sometimes I hide."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:205
+#: project/assets/main/locale/localizables-extracted.py:213
 msgid "Sometimes I'm scared of you,"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:206
+#: project/assets/main/locale/localizables-extracted.py:214
 msgid "But all I really want is to hold you tight, treat you right,"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:207
+#: project/assets/main/locale/localizables-extracted.py:215
 msgid "Be with you day and night."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:208
+#: project/assets/main/locale/localizables-extracted.py:216
 msgid "Baby, all I need is time."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:209
+#: project/assets/main/locale/localizables-extracted.py:217
 msgid "Um, maybe later..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:211
+#: project/assets/main/locale/localizables-extracted.py:219
 msgid "Hey relax! We got everything under control."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:212
+#: project/assets/main/locale/localizables-extracted.py:220
 msgid "You know, a liquor license might help us bring in more customers."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:213
+#: project/assets/main/locale/localizables-extracted.py:221
 msgid ""
 "You ever think of shortening the restaurant to just \"Turbo's\"? I'm just"
 " sayin'..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:214
+#: project/assets/main/locale/localizables-extracted.py:222
 msgid "I've been reading up on something called the 'Pomodoro Technique' lately!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:215
+#: project/assets/main/locale/localizables-extracted.py:223
 msgid ""
 "...'Pomodoro' is a fancy Italian word for sitting on your ass, instead of"
 " doing any actual work."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:216
+#: project/assets/main/locale/localizables-extracted.py:224
 msgid "Ah, I do that already! I didn't someone had coined a name for it."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:217
+#: project/assets/main/locale/localizables-extracted.py:225
 msgid "You're both lazy"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:218
+#: project/assets/main/locale/localizables-extracted.py:226
 msgid "More like 'Unemployment Technique'"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:219
+#: project/assets/main/locale/localizables-extracted.py:227
 msgid "I should study this"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:220
+#: project/assets/main/locale/localizables-extracted.py:228
 msgid "I invented that!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:221
+#: project/assets/main/locale/localizables-extracted.py:229
 msgid "Technique? You're both just lazy."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:222
-#: project/assets/main/locale/localizables-extracted.py:224
+#: project/assets/main/locale/localizables-extracted.py:230
+#: project/assets/main/locale/localizables-extracted.py:232
 msgid "Oh, lighten up #player#. Sounds like someone needs a Pomodoro."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:223
+#: project/assets/main/locale/localizables-extracted.py:231
 msgid "More like the 'Unemployment Technique'."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:225
+#: project/assets/main/locale/localizables-extracted.py:233
 msgid "I should study this technique..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:226
+#: project/assets/main/locale/localizables-extracted.py:234
 msgid "Sure! It's good to take a break once in awhile~"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:227
+#: project/assets/main/locale/localizables-extracted.py:235
 msgid "I invented that technique!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:228
+#: project/assets/main/locale/localizables-extracted.py:236
 msgid "Ha! Ha! Maybe we can compare notes some time."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:229
+#: project/assets/main/locale/localizables-extracted.py:237
 msgid ""
 "...I usually figure if people don't talk to me it's 'cause they like, "
 "don't want to talk. But don't be afraid to hit me up."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:230
+#: project/assets/main/locale/localizables-extracted.py:238
 msgid ""
 "Online gaming's sorta nice because people just assume I'm a guy. ...It's "
 "just annoying when everyone's on voice chat."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:231
+#: project/assets/main/locale/localizables-extracted.py:239
 msgid ""
 "Can you do me a favor and act like we're having a conversation? Just for "
 "a few seconds. ...A little longer... Okay, thanks."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:232
+#: project/assets/main/locale/localizables-extracted.py:240
 msgid "I'm always ready for more training! Just call me on my cell. Mowr!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:233
+#: project/assets/main/locale/localizables-extracted.py:241
 msgid ""
 "You should come mountain biking some time! It's not as dangerous as you "
 "think."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:234
+#: project/assets/main/locale/localizables-extracted.py:242
 msgid ""
 "My phone's been acting slow lately. ...They do that on purpose so you'll "
 "by a new one. It's so annoying!"
@@ -2081,7 +2101,7 @@ msgstr ""
 msgid "10"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:530
+#: project/src/main/puzzle/Puzzle.tscn:529
 msgid "abcd"
 msgstr ""
 

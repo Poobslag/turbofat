@@ -46,4 +46,5 @@ margin_bottom = 262.0
 theme = ExtResource( 3 )
 align = 1
 autowrap = true
+
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_Button_pressed"]
