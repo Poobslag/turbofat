@@ -1,0 +1,43 @@
+{
+  "version": "19dd",
+  "id": "sergia",
+  "name": "Sergia",
+  "short_name": "Sergia",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "4",
+    "body": "1",
+    "cheek": "4",
+    "collar": "1",
+    "ear": "1",
+    "eye": "1",
+    "hair": "1",
+    "head": "3",
+    "horn": "1",
+    "mouth": "3",
+    "nose": "1",
+    "tail": "5",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "ffbfcb",
+    "belly_rgb": "fde8c9",
+    "cloth_rgb": "ff5c6f",
+    "glass_rgb": "d96079",
+    "plastic_rgb": "6f6168",
+    "hair_rgb": "ffffff",
+    "eye_rgb": "7ac252 e9f4dc",
+    "horn_rgb": "bdc6c5"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "ffbfcb"
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}

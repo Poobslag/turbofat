@@ -1,0 +1,43 @@
+{
+  "version": "19dd",
+  "id": "sidger",
+  "name": "Sidger",
+  "short_name": "Sidger",
+  "dna": {
+    "belly": "2",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "0",
+    "collar": "5",
+    "ear": "8",
+    "eye": "7",
+    "hair": "1",
+    "head": "1",
+    "horn": "0",
+    "mouth": "2",
+    "nose": "2",
+    "tail": "3",
+    "accessory": "1",
+    "line_rgb": "41281e",
+    "body_rgb": "48366e",
+    "belly_rgb": "8b70a1",
+    "cloth_rgb": "121011",
+    "glass_rgb": "331d4b",
+    "plastic_rgb": "121011",
+    "hair_rgb": "3e2d62",
+    "eye_rgb": "121011 4d6c6a",
+    "horn_rgb": "828863"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "48366e"
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 2,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}
