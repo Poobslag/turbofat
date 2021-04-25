@@ -53,7 +53,8 @@ func reset_filler_count(creature_name: String) -> void:
 
 
 func get_filler_count(creature_name: String) -> int:
-	return filler_counts.get(creature_name, 0)
+	# explicitly cast to an int to avoid warnings. numbers are loaded from json as floats
+	return filler_counts.get(creature_name, 0) as int
 
 
 func add_history_item(history_key: String) -> void:

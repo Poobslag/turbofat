@@ -17,7 +17,7 @@ func _ready() -> void:
 	_refresh_view_to_local()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	_refresh_view_to_local()
 
 

@@ -159,8 +159,8 @@ func test_163e_lost_erases_success() -> void:
 func test_1682_chat_history_preserved() -> void:
 	load_1682_data()
 	
-	assert_eq(5, PlayerData.chat_history.get_chat_age("creatures/primary/boatricia/my_maid_died"))
-	assert_eq(13, PlayerData.chat_history.get_filler_count("creatures/primary/boatricia"))
+	assert_eq(PlayerData.chat_history.get_chat_age("creatures/primary/boatricia/my_maid_died"), 5)
+	assert_eq(PlayerData.chat_history.get_filler_count("creatures/primary/boatricia"), 13)
 
 
 func test_19c5() -> void:

@@ -46,7 +46,9 @@ Parameters:
 	'skip_transition': If 'true', the scene changes immediately without fading.
 """
 func pop_trail(skip_transition: bool = false) -> void:
-	if skip_transition or not get_tree().get_nodes_in_group("scene_transition_covers"):
+	if skip_transition \
+			or not get_tree().get_nodes_in_group("scene_transition_covers") \
+			or (Breadcrumb.trail and "::" in Breadcrumb.trail.front()):
 		Breadcrumb.pop_trail()
 	else:
 		_fade_out("pop_trail")
@@ -62,7 +64,9 @@ Parameters:
 	'skip_transition': If 'true', the scene changes immediately without fading.
 """
 func replace_trail(path: String, skip_transition: bool = false) -> void:
-	if skip_transition or not get_tree().get_nodes_in_group("scene_transition_covers"):
+	if skip_transition \
+	        or not get_tree().get_nodes_in_group("scene_transition_covers") \
+	        or "::" in path:
 		Breadcrumb.replace_trail(path)
 	else:
 		_fade_out("replace_trail", [path])
