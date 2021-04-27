@@ -1,0 +1,43 @@
+{
+  "version": "19dd",
+  "id": "redo",
+  "name": "Redo",
+  "short_name": "Redo",
+  "dna": {
+    "belly": "0",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "3",
+    "collar": "5",
+    "ear": "12",
+    "eye": "1",
+    "hair": "0",
+    "head": "2",
+    "horn": "0",
+    "mouth": "7",
+    "nose": "4",
+    "tail": "7",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "68af25",
+    "belly_rgb": "8fff54",
+    "cloth_rgb": "ce4224",
+    "glass_rgb": "e65738",
+    "plastic_rgb": "37302e",
+    "hair_rgb": "587f44",
+    "eye_rgb": "fad541 ffffff",
+    "horn_rgb": "49663a"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "68af25"
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}

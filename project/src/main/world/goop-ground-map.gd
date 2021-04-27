@@ -7,6 +7,9 @@ The view_to_local shader parameter changes whenever the tilemap moves visually i
 it whenever the camera moves.
 """
 
+# Applies autotiling rules to all cells in the tile map
+export var _reapply_autotiles: bool setget set_reapply_autotiles
+
 var _goop_material: ShaderMaterial = tile_set.tile_get_material(0)
 
 # The shader's view_to_local shader parameter. We cache this so that we don't need to set a shader parameter every
@@ -32,3 +35,11 @@ func _refresh_view_to_local() -> void:
 	if new_view_to_local != _view_to_local:
 		_view_to_local = new_view_to_local
 		_goop_material.set_shader_param("view_to_local", _view_to_local)
+
+
+func set_reapply_autotiles(value: bool) -> void:
+	if not value:
+		return
+	
+	for used_cell in get_used_cells():
+		update_bitmask_area(used_cell)
