@@ -85,6 +85,11 @@ should increase by 40% of the amount needed to reach that target.
 
 This 'fatness_pct' parameter is needed for the level where the player eliminates three lines at once. We don't
 want the creature to suddenly grow full size. We want it to take 3 bites.
+
+Parameters:
+	'customer': The creature to feed
+	
+	'food_type': An enum from FoodType corresponding to the food to show
 """
 func feed_creature(customer: Creature, food_type: int) -> void:
 	if customer.creature_id == CreatureLibrary.SENSEI_ID:

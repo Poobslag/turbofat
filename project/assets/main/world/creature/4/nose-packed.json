@@ -1,7 +1,7 @@
 { "frames": [
    {
-    "filename": "accessory-z2-1 0.png",
-    "frame": { "x": 157, "y": 0, "w": 1, "h": 1 },
+    "filename": "nose1 0.png",
+    "frame": { "x": 17, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -9,17 +9,17 @@
     "duration": 100
    },
    {
-    "filename": "accessory-z2-1 1.png",
-    "frame": { "x": 0, "y": 0, "w": 152, "h": 127 },
+    "filename": "nose1 1.png",
+    "frame": { "x": 0, "y": 0, "w": 12, "h": 6 },
     "rotated": false,
     "trimmed": true,
-    "spriteSourceSize": { "x": 199, "y": 195, "w": 152, "h": 127 },
+    "spriteSourceSize": { "x": 296, "y": 286, "w": 12, "h": 6 },
     "sourceSize": { "w": 512, "h": 512 },
     "duration": 100
    },
    {
-    "filename": "accessory-z2-1 2.png",
-    "frame": { "x": 157, "y": 0, "w": 1, "h": 1 },
+    "filename": "nose1 2.png",
+    "frame": { "x": 17, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -30,9 +30,9 @@
  "meta": {
   "app": "http://www.aseprite.org/",
   "version": "1.2.27-x64",
-  "image": "accessory-z2-packed.png",
+  "image": "nose-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 158, "h": 127 },
+  "size": { "w": 18, "h": 6 },
   "scale": "1"
  }
 }

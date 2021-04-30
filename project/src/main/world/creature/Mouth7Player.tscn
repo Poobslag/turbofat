@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/world/creature/mouth-player.gd" type="Script" id=1]
 
-[sub_resource type="Animation" id=33]
+[sub_resource type="Animation" id=30]
 length = 4.0
 loop = true
 step = 0.166667
@@ -31,7 +31,7 @@ tracks/1/keys = {
 "values": [ 2, 2 ]
 }
 
-[sub_resource type="Animation" id=34]
+[sub_resource type="Animation" id=31]
 length = 4.0
 loop = true
 step = 0.166667
@@ -60,7 +60,7 @@ tracks/1/keys = {
 "values": [ 1, 1 ]
 }
 
-[sub_resource type="Animation" id=35]
+[sub_resource type="Animation" id=32]
 length = 4.0
 loop = true
 step = 0.166667
@@ -89,7 +89,7 @@ tracks/1/keys = {
 "values": [ 1, 1 ]
 }
 
-[sub_resource type="Animation" id=36]
+[sub_resource type="Animation" id=33]
 length = 0.5
 step = 0.0333333
 tracks/0/type = "value"
@@ -99,10 +99,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.366666, 0.433333, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 5, 8, 9, 10, 11, 8, 12, 5, 5 ]
+"values": [ 1, 5, 6, 7, 8, 9, 5, 10, 11, 1, 12, 13, 1 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -125,13 +125,13 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.2, 0.233333, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.133333, 0.166667, 0.2, 0.233333, 0.266666, 0.3, 0.366666, 0.433333, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1, 5, 7, 6, 5, 4, 3, 0, 0 ]
+"values": [ 1, 5, 8, 7, 7, 6, 5, 4, 3, 1, 3, 3, 1 ]
 }
 
-[sub_resource type="Animation" id=37]
+[sub_resource type="Animation" id=34]
 length = 0.5
 step = 0.0333333
 tracks/0/type = "value"
@@ -141,10 +141,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.033, 0.066, 0.099, 0.132, 0.165, 0.198, 0.231, 0.297, 0.363, 0.429, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 9, 10, 11, 8, 12, 5, 5 ]
+"values": [ 6, 7, 8, 9, 5, 10, 11, 1, 12, 13, 1, 1 ]
 }
 tracks/1/type = "method"
 tracks/1/path = NodePath(".")
@@ -167,13 +167,13 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666667, 0.1, 0.133333, 0.166667, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.033, 0.066, 0.099, 0.132, 0.165, 0.198, 0.231, 0.297, 0.363, 0.429, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 7, 6, 5, 4, 3, 0, 0 ]
+"values": [ 8, 7, 7, 6, 5, 4, 3, 1, 3, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=38]
+[sub_resource type="Animation" id=35]
 length = 4.0
 step = 0.0333333
 tracks/0/type = "value"
@@ -183,53 +183,53 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.133333, 0.233333, 0.366666, 0.966667, 1.03333, 1.36667, 1.43333, 2.2, 2.26667, 2.6, 2.73333, 2.86667, 3, 3.13333, 4 ),
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266667, 0.633333, 0.7, 0.766667, 0.833333, 1.5, 1.63333, 2.46666, 2.53333, 2.6, 2.66666, 2.73333, 2.8, 2.86666, 2.9, 2.93333, 2.96667, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 11, 9, 8, 7, 6, 7, 8, 7, 6, 7, 6, 7, 8, 9, 5, 10, 11, 12, 14, 13, 1, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266666, 0.633333, 0.699999, 0.766666, 0.833333, 1.5, 1.63333, 2.46666, 2.53333, 2.6, 2.66666, 2.73333, 2.8, 2.86666, 2.9, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 4, 6, 7, 7, 8, 7, 7, 7, 8, 7, 8, 7, 7, 6, 5, 5, 4, 3, 1, 1 ]
+}
+
+[sub_resource type="Animation" id=36]
+length = 4.0
+step = 0.0333333
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266667, 0.833333, 0.966667, 1.1, 1.73333, 1.8, 1.86667, 1.93333, 2, 2.06667, 2.13333, 2.16667, 2.2, 2.23333, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 3, 11, 9, 8, 7, 6, 7, 8, 7, 7, 8, 9, 5, 10, 11, 12, 14, 13, 1, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.0999999, 0.166667, 0.266666, 0.833333, 0.966667, 1.1, 1.73333, 1.8, 1.86667, 1.93333, 2, 2.06667, 2.13333, 2.16667, 4 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 7, 12, 8, 11, 10, 9, 9, 10, 10, 9, 9, 10, 10, 11, 8, 12, 1, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.133333, 0.233333, 0.366666, 0.966666, 1.03333, 1.36667, 1.43333, 2.2, 2.26666, 2.73333, 2.86666, 3, 3.13333, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 3, 5, 5, 6, 7, 7, 6, 6, 7, 7, 6, 6, 5, 3, 0, 0 ]
+"values": [ 1, 4, 6, 7, 7, 8, 7, 7, 7, 7, 7, 6, 5, 5, 4, 3, 1, 1 ]
 }
 
-[sub_resource type="Animation" id=39]
-length = 4.0
-step = 0.0333333
-tracks/0/type = "value"
-tracks/0/path = NodePath("Neck0/HeadBobber/Mouth:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.133333, 0.233333, 0.366666, 1.1, 1.16667, 1.7, 1.83333, 1.96667, 2.1, 2.23333, 2.86667, 3, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 7, 12, 8, 11, 10, 9, 9, 10, 10, 11, 8, 12, 7, 7, 1, 1 ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 0, 0.0333333, 0.0666666, 0.133333, 0.233333, 0.366666, 1.1, 1.16667, 1.7, 1.83333, 1.96666, 2.1, 2.23333, 4 ),
-"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 0, 3, 5, 5, 6, 7, 7, 6, 6, 5, 5, 3, 0, 0 ]
-}
-
-[sub_resource type="Animation" id=40]
+[sub_resource type="Animation" id=37]
 length = 1.5
 loop = true
 step = 0.125
@@ -243,7 +243,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 5, 12, 8, 12, 5, 8, 5, 12, 8, 12, 5, 8, 5 ]
+"values": [ 5, 14, 11, 5, 11, 5, 14, 5, 14, 11, 14, 11, 5 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Neck0/HeadBobber/Chin:frame")
@@ -255,18 +255,18 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875, 1, 1.125, 1.25, 1.375, 1.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0, 3, 4, 3, 0, 4, 0, 3, 4, 3, 0, 4, 0 ]
+"values": [ 5, 1, 4, 5, 4, 5, 1, 5, 1, 4, 1, 4, 5 ]
 }
 
 [node name="MouthPlayer" type="AnimationPlayer"]
 root_node = NodePath("../..")
-anims/ambient-nw = SubResource( 33 )
-anims/ambient-se = SubResource( 34 )
-anims/ambient-unhappy = SubResource( 35 )
-anims/eat = SubResource( 36 )
-anims/eat-again = SubResource( 37 )
-anims/idle-yawn0 = SubResource( 38 )
-anims/idle-yawn1 = SubResource( 39 )
-anims/talk = SubResource( 40 )
+anims/ambient-nw = SubResource( 30 )
+anims/ambient-se = SubResource( 31 )
+anims/ambient-unhappy = SubResource( 32 )
+anims/eat = SubResource( 33 )
+anims/eat-again = SubResource( 34 )
+anims/idle-yawn0 = SubResource( 35 )
+anims/idle-yawn1 = SubResource( 36 )
+anims/talk = SubResource( 37 )
 script = ExtResource( 1 )
 creature_visuals_path = NodePath("../..")
