@@ -111,7 +111,7 @@ func load_dna() -> void:
 		_add_dna_node(CreatureLoader.new_mouth_player(_creature_visuals.dna.mouth), "mouth",
 				_creature_visuals.dna.mouth, _creature_visuals.get_node("Animations"))
 	
-	if _creature_visuals.dna.has("ear"):
+	if _creature_visuals.dna.has("ear") and _creature_visuals.dna.ear != "0":
 		_add_dna_node(CreatureLoader.new_ear_player(_creature_visuals.dna.ear), "ear",
 				_creature_visuals.dna.ear, _creature_visuals.get_node("Animations"))
 	

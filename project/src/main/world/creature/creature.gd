@@ -322,6 +322,10 @@ func play_goodbye_voice(force: bool = false) -> void:
 		_creature_sfx.play_goodbye_voice(force)
 
 
+"""
+Parameters:
+	'food_type': An enum from FoodType corresponding to the food to show
+"""
 func feed(food_type: int) -> void:
 	feed_count += 1
 	box_feed_count += 1

@@ -29,6 +29,8 @@ var _mouth_player_scenes := {
 	"3": preload("res://src/main/world/creature/Mouth3Player.tscn"),
 	"4": preload("res://src/main/world/creature/Mouth4Player.tscn"),
 	"5": preload("res://src/main/world/creature/Mouth5Player.tscn"),
+	"6": preload("res://src/main/world/creature/Mouth6Player.tscn"),
+	"7": preload("res://src/main/world/creature/Mouth7Player.tscn"),
 }
 
 # AnimationPlayer scenes with animations for each type of ear
@@ -45,6 +47,9 @@ var _ear_player_scenes := {
 	"10": preload("res://src/main/world/creature/EarPlayerDefault.tscn"),
 	"11": preload("res://src/main/world/creature/Ear11Player.tscn"),
 	"12": preload("res://src/main/world/creature/Ear12Player.tscn"),
+	"13": preload("res://src/main/world/creature/Ear13Player.tscn"),
+	"14": preload("res://src/main/world/creature/Ear14Player.tscn"),
+	"15": preload("res://src/main/world/creature/Ear15Player.tscn"),
 }
 
 # Scenes which draw different bodies

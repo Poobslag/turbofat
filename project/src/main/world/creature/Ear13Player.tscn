@@ -1,0 +1,96 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/world/creature/ear-player.gd" type="Script" id=1]
+
+[sub_resource type="Animation" id=52]
+length = 6.0
+loop = true
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/EarZ1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 1.4, 2.73333, 3.06667, 4.06667, 4.4, 5.6, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 3, 4, 5, 1, 3, 4, 5, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/HeadBobber/EarZ2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.13333, 1.53333, 2.6, 2.93333, 4.2, 4.53333, 5.46667, 5.86667, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 3, 4, 5, 1, 3, 4, 5, 1, 1 ]
+}
+
+[sub_resource type="Animation" id=53]
+length = 2.0
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/EarZ1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2, 0.266667, 0.466667, 0.533333, 0.6, 0.666667, 0.866667, 0.933333, 1, 1.06667, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 3, 4, 5, 1, 5, 4, 3, 1, 3, 4, 5, 1, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/HeadBobber/EarZ2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.266667, 0.333333, 0.4, 0.466667, 0.666667, 0.733333, 0.8, 0.866667, 1.06667, 1.13333, 1.2, 1.26667, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 3, 4, 5, 1, 5, 4, 3, 1, 3, 4, 5, 1, 1 ]
+}
+
+[sub_resource type="Animation" id=54]
+length = 4.0
+step = 0.0625
+tracks/0/type = "value"
+tracks/0/path = NodePath("Neck0/HeadBobber/EarZ1:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5, 0.875, 0.9375, 1, 1.4375, 1.5, 1.875, 1.9375, 2, 2.4375, 2.5, 2.875, 2.9375, 3, 3.4375, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 1, 1, 3, 4, 5, 1, 1, 3, 4, 5, 1, 1, 3, 4, 5, 1, 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Neck0/HeadBobber/EarZ2:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.375, 0.4375, 0.5, 0.9375, 1, 1.375, 1.4375, 1.5, 1.9375, 2, 2.375, 2.4375, 2.5, 2.9375, 3, 3.375, 3.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 1, 3, 4, 5, 1, 1, 3, 4, 5, 1, 1, 3, 4, 5, 1, 1, 1, 1 ]
+}
+
+[node name="EarPlayer" type="AnimationPlayer"]
+root_node = NodePath("../..")
+anims/ambient = SubResource( 52 )
+anims/idle-ear-wiggle0 = SubResource( 53 )
+anims/idle-ear-wiggle1 = SubResource( 54 )
+script = ExtResource( 1 )
+creature_visuals_path = NodePath("../..")

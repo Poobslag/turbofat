@@ -261,6 +261,9 @@ func rescale(new_scale_x: float) -> void:
 
 """
 Launches the 'feed' animation. The creature makes a biting motion and plays a munch sound.
+
+Parameters:
+	'food_type': An enum from FoodType corresponding to the food to show
 """
 func feed(food_type: int) -> void:
 	if not visible:

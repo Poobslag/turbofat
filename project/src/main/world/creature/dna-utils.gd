@@ -203,6 +203,9 @@ const ALLELE_NAMES := {
 	"ear-10": "Dragon",
 	"ear-11": "Orc",
 	"ear-12": "Goblin",
+	"ear-13": "Short Hare",
+	"ear-14": "Long Hare",
+	"ear-15": "Long Long Hare",
 	
 	"eye-0": "(none)",
 	"eye-1": "Giant",
@@ -212,6 +215,7 @@ const ALLELE_NAMES := {
 	"eye-5": "Multi",
 	"eye-6": "Hollow",
 	"eye-7": "Skeleton",
+	"eye-8": "Plug",
 	
 	"hair-0": "(none)", 
 	"hair-1": "Lion", 
@@ -233,11 +237,14 @@ const ALLELE_NAMES := {
 	"mouth-3": "Imp",
 	"mouth-4": "Crow",
 	"mouth-5": "Shark",
+	"mouth-6": "Grumpy Cat",
+	"mouth-7": "Turtle",
 	
 	"nose-0": "(none)",
 	"nose-1": "Nub",
 	"nose-2": "Speck",
 	"nose-3": "Goblin",
+	"nose-4": "Iguana",
 	
 	"tail-0": "(none)",
 	"tail-1": "Kind Cat",
@@ -286,6 +293,10 @@ func _ready() -> void:
 	_set_allele_combo_adjustment("mouth", "4", "ear", "11", -2)
 	_set_allele_combo_adjustment("mouth", "4", "ear", "12", -2)
 	
+	# birds and turtles often don't have ears
+	_set_allele_combo_adjustment("mouth", "4", "ear", "0", 2)
+	_set_allele_combo_adjustment("mouth", "7", "ear", "0", 2)
+	
 	_set_allele_weight("accessory", "0", 12.0)
 	
 	_set_allele_weight("belly", "0", 2.0)
@@ -295,6 +306,7 @@ func _ready() -> void:
 	_set_allele_weight("body", "1", 6.0)
 	_set_allele_weight("collar", "0", 8.0)
 	_set_allele_weight("collar", "1", 2.0)
+	_set_allele_weight("ear", "0", 0.2)
 	_set_allele_weight("ear", "1", 3.0)
 	_set_allele_weight("ear", "4", 2.0)
 	
@@ -401,13 +413,13 @@ func unique_allele_values(property: String) -> Array:
 			"body": result = ["1", "2"]
 			"cheek": result = ["0", "1", "2", "3", "4"]
 			"collar": result = ["0", "1", "2", "3", "4", "5"]
-			"ear": result = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"]
-			"eye": result = ["0", "1", "2", "3", "4", "5", "6", "7"]
+			"ear": result = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"]
+			"eye": result = ["0", "1", "2", "3", "4", "5", "6", "7", "8"]
 			"hair": result = ["0", "1", "2"]
 			"head": result = ["1", "2", "3", "4", "5"]
 			"horn": result = ["0", "1", "2"]
-			"mouth": result = ["1", "2", "3", "4", "5"]
-			"nose": result = ["0", "1", "2", "3"]
+			"mouth": result = ["1", "2", "3", "4", "5", "6", "7"]
+			"nose": result = ["0", "1", "2", "3", "4"]
 			"tail": result = ["0", "1", "2", "3", "4", "5", "6", "7"]
 	
 	return result

@@ -369,6 +369,6 @@ func test_extra_seconds_per_piece() -> void:
 	
 	# with the 'extra_seconds_per_piece' setting enabled, the player gets a better grade
 	CurrentLevel.settings.rank.extra_seconds_per_piece = 1.2
-	var rank2 = _rank_calculator.calculate_rank()
+	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.speed_rank), "M")
 	assert_eq(RankCalculator.grade(rank2.score_rank), "SSS")
