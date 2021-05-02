@@ -362,13 +362,11 @@ volume_db = 6.0
 bus = "Voice Bus"
 
 [node name="HopSound" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( -512, -912 )
 stream = ExtResource( 7 )
 volume_db = -4.0
 bus = "Sound Bus"
 
 [node name="BonkSound" type="AudioStreamPlayer2D" parent="CreatureSfx"]
-position = Vector2( -512, -912 )
 stream = ExtResource( 5 )
 volume_db = -4.0
 bus = "Sound Bus"
@@ -385,4 +383,5 @@ shape = SubResource( 1 )
 script = ExtResource( 8 )
 
 [node name="FadeTween" type="Tween" parent="."]
+
 [connection signal="timeout" from="CreatureSfx/HelloTimer" to="CreatureSfx" method="_on_HelloTimer_timeout"]
