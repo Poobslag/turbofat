@@ -199,7 +199,6 @@ custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-enabled_focus_mode = 0
 shortcut = SubResource( 7 )
 icon = ExtResource( 33 )
 expand_icon = true
@@ -218,7 +217,6 @@ custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-enabled_focus_mode = 0
 shortcut = SubResource( 9 )
 icon = ExtResource( 25 )
 expand_icon = true
@@ -253,7 +251,6 @@ custom_styles/pressed = SubResource( 2 )
 custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
-enabled_focus_mode = 0
 shortcut = SubResource( 11 )
 icon = ExtResource( 23 )
 expand_icon = true
@@ -342,6 +339,7 @@ disabled = true
 mouse_filter = 2
 
 [node name="SceneTransitionCover" parent="Control" instance=ExtResource( 4 )]
+
 [connection signal="chat_choice_chosen" from="Control/ChatUi" to="." method="_on_ChatUi_chat_choice_chosen"]
 [connection signal="chat_event_played" from="Control/ChatUi" to="." method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="Control/ChatUi" to="." method="_on_ChatUi_pop_out_completed"]

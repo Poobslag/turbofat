@@ -1,7 +1,7 @@
 { "frames": [
    {
     "filename": "ear-z1-1 0.png",
-    "frame": { "x": 191, "y": 5, "w": 1, "h": 1 },
+    "frame": { "x": 201, "y": 0, "w": 1, "h": 1 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 0, "y": 0, "w": 1, "h": 1 },
@@ -10,7 +10,7 @@
    },
    {
     "filename": "ear-z1-1 1.png",
-    "frame": { "x": 186, "y": 149, "w": 57, "h": 144 },
+    "frame": { "x": 0, "y": 290, "w": 57, "h": 144 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 266, "y": 78, "w": 57, "h": 144 },
@@ -19,7 +19,7 @@
    },
    {
     "filename": "ear-z1-1 2.png",
-    "frame": { "x": 5, "y": 285, "w": 58, "h": 139 },
+    "frame": { "x": 62, "y": 292, "w": 58, "h": 139 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 259, "y": 82, "w": 58, "h": 139 },
@@ -28,7 +28,7 @@
    },
    {
     "filename": "ear-z1-1 3.png",
-    "frame": { "x": 128, "y": 149, "w": 58, "h": 144 },
+    "frame": { "x": 133, "y": 149, "w": 58, "h": 144 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 265, "y": 78, "w": 58, "h": 144 },
@@ -37,7 +37,7 @@
    },
    {
     "filename": "ear-z1-1 4.png",
-    "frame": { "x": 131, "y": 5, "w": 60, "h": 144 },
+    "frame": { "x": 136, "y": 0, "w": 60, "h": 144 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 263, "y": 78, "w": 60, "h": 144 },
@@ -55,7 +55,7 @@
    },
    {
     "filename": "ear-z1-1 6.png",
-    "frame": { "x": 5, "y": 145, "w": 61, "h": 140 },
+    "frame": { "x": 0, "y": 145, "w": 61, "h": 140 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 258, "y": 81, "w": 61, "h": 140 },
@@ -64,7 +64,7 @@
    },
    {
     "filename": "ear-z1-1 7.png",
-    "frame": { "x": 68, "y": 5, "w": 63, "h": 139 },
+    "frame": { "x": 68, "y": 0, "w": 63, "h": 139 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 257, "y": 81, "w": 63, "h": 139 },
@@ -73,7 +73,7 @@
    },
    {
     "filename": "ear-z1-1 8.png",
-    "frame": { "x": 5, "y": 5, "w": 63, "h": 140 },
+    "frame": { "x": 0, "y": 0, "w": 63, "h": 140 },
     "rotated": false,
     "trimmed": true,
     "spriteSourceSize": { "x": 257, "y": 81, "w": 63, "h": 140 },
@@ -86,7 +86,7 @@
   "version": "1.2.27-x64",
   "image": "ear-z1-packed.png",
   "format": "RGBA8888",
-  "size": { "w": 243, "h": 424 },
+  "size": { "w": 202, "h": 434 },
   "scale": "1"
  }
 }

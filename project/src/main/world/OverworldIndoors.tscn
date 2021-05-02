@@ -335,6 +335,7 @@ dna = {
 "shader:TailZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
 "tail": "5"
 }
+suppress_fatness = true
 orientation = 3
 
 [node name="Sensei" parent="World/Obstacles" instance=ExtResource( 19 )]
@@ -507,6 +508,7 @@ dna = {
 "shader:TailZ1:red": Color( 0.560784, 0.105882, 0.129412, 1 ),
 "tail": "5"
 }
+suppress_fatness = true
 
 [node name="MoveTimer" type="Timer" parent="World/Obstacles/Sensei"]
 wait_time = 0.3
