@@ -77,4 +77,8 @@ func _reset() -> void:
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "bigfps":
 		visible = !visible
+		if visible:
+			_visual_frame_drops = 0
+			_physics_step_drops = 0
+			_refresh_text()
 		detector.play_cheat_sound(visible)
