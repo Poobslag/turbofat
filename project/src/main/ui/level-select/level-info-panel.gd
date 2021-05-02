@@ -29,17 +29,18 @@ func _update_tutorial_level_text(settings: LevelSettings) -> void:
 
 func _update_level_text(settings: LevelSettings) -> void:
 	var text := ""
-	var difficulty_string := "Unknown"
+	var difficulty_string := tr("Unknown")
 	match settings.get_difficulty():
-		"T", "0", "1", "2": difficulty_string = "Very Easy"
-		"3", "4", "5", "6": difficulty_string = "Easy"
-		"7", "8", "9", "A0", "A1": difficulty_string = "Normal"
-		"A2", "A3", "A4": difficulty_string = "Hard"
-		"A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD": difficulty_string = "Very Hard"
-		"AE", "AF", "F0", "F1": difficulty_string = "Expert"
-		"FA", "FB", "FC": difficulty_string = "Very Expert"
-		"FD", "FE", "FF", "FFF": difficulty_string = "Master"
-	text += "Difficulty: %s\n" % [difficulty_string]
+		"T", "0", "1", "2": difficulty_string = tr("Very Easy")
+		"3", "4", "5", "6": difficulty_string = tr("Easy")
+		"7", "8", "9", "A0", "A1": difficulty_string = tr("Normal")
+		"A2", "A3", "A4": difficulty_string = tr("Hard")
+		"A5", "A6", "A7", "A8", "A9", "AA", "AB", "AC", "AD": difficulty_string = tr("Very Hard")
+		"AE", "AF", "F0", "F1": difficulty_string = tr("Expert")
+		"FA", "FB", "FC": difficulty_string = tr("Very Expert")
+		"FD", "FE", "FF", "FFF": difficulty_string = tr("Master")
+	text += tr("Difficulty: %s") % [difficulty_string]
+	text += "\n"
 	
 	var duration_string: String
 	var duration: int
@@ -51,16 +52,16 @@ func _update_level_text(settings: LevelSettings) -> void:
 	
 	duration_string = StringUtils.format_duration(duration)
 	
-	text += "Duration: %s\n" % [duration_string]
+	text += tr("Duration: %s") % [duration_string]
+	text += "\n"
 	
 	var prev_result := PlayerData.level_history.prev_result(settings.id)
 	if prev_result:
-		text += "New: %s\n" % [PoolStringArray(HighScoreTable.rank_result_row(prev_result)).join("   ")]
-	else:
-		text += "\n"
+		text += tr("New: %s") % [PoolStringArray(HighScoreTable.rank_result_row(prev_result)).join("   ")]
+	text += "\n"
 	var best_result := PlayerData.level_history.best_result(settings.id)
 	if best_result:
-		text += "Top: %s" % [PoolStringArray(HighScoreTable.rank_result_row(best_result)).join("   ")]
+		text += tr("Top: %s") % [PoolStringArray(HighScoreTable.rank_result_row(best_result)).join("   ")]
 	$MarginContainer/Label.text = text
 
 

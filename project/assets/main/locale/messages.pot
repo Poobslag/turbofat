@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-04-25 17:47-0400\n"
+"POT-Creation-Date: 2021-05-02 19:58-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2093,15 +2093,15 @@ msgstr ""
 msgid "3x"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:283
+#: project/src/main/puzzle/Puzzle.tscn:285
 msgid "Goal"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:296
+#: project/src/main/puzzle/Puzzle.tscn:298
 msgid "10"
 msgstr ""
 
-#: project/src/main/puzzle/Puzzle.tscn:529
+#: project/src/main/puzzle/Puzzle.tscn:531
 msgid "abcd"
 msgstr ""
 
@@ -2124,6 +2124,16 @@ msgstr ""
 
 #: project/src/main/puzzle/Score.tscn:32
 msgid "+¥55"
+msgstr ""
+
+#: project/src/main/puzzle/frame-drops-label.gd:63
+#, python-format
+msgid "%s frame drops"
+msgstr ""
+
+#: project/src/main/puzzle/frame-drops-label.gd:64
+#, python-format
+msgid "%s step drops"
 msgstr ""
 
 #: project/src/main/puzzle/milestone-hud.gd:32
@@ -3144,6 +3154,7 @@ msgstr ""
 msgid "Mute"
 msgstr ""
 
+#: project/src/main/ui/level-select/level-info-panel.gd:41
 #: project/src/main/ui/menu/PracticeMenu.tscn:235
 #: project/src/main/ui/volume-setting-control.gd:56
 msgid "Master"
@@ -3214,6 +3225,61 @@ msgstr ""
 msgid "Just getting started"
 msgstr ""
 
+#: project/src/main/ui/level-select/level-info-panel.gd:32
+msgid "Unknown"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:34
+msgid "Very Easy"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:35
+msgid "Easy"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:36
+#: project/src/main/ui/menu/PracticeMenu.tscn:211
+msgid "Normal"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:37
+#: project/src/main/ui/menu/PracticeMenu.tscn:218
+msgid "Hard"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:38
+msgid "Very Hard"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:39
+#: project/src/main/ui/menu/PracticeMenu.tscn:226
+msgid "Expert"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:40
+msgid "Very Expert"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:42
+#, python-format
+msgid "Difficulty: %s"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:55
+#, python-format
+msgid "Duration: %s"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:60
+#, python-format
+msgid "New: %s"
+msgstr ""
+
+#: project/src/main/ui/level-select/level-info-panel.gd:64
+#, python-format
+msgid "Top: %s"
+msgstr ""
+
 #: project/src/main/ui/menu/MainMenu.tscn:52
 #: project/src/main/ui/menu/SplashScreen.tscn:49
 msgid "turbo fat"
@@ -3278,18 +3344,6 @@ msgstr ""
 
 #: project/src/main/ui/menu/PracticeMenu.tscn:179
 msgid "Difficulty"
-msgstr ""
-
-#: project/src/main/ui/menu/PracticeMenu.tscn:211
-msgid "Normal"
-msgstr ""
-
-#: project/src/main/ui/menu/PracticeMenu.tscn:218
-msgid "Hard"
-msgstr ""
-
-#: project/src/main/ui/menu/PracticeMenu.tscn:226
-msgid "Expert"
 msgstr ""
 
 #: project/src/main/ui/menu/SplashScreen.tscn:146

@@ -561,7 +561,8 @@ margin_top = 226.0
 margin_right = 482.0
 margin_bottom = 246.0
 theme = ExtResource( 68 )
-text = "6 frame drops"
+text = "0 frame drops
+0 step drops"
 align = 2
 script = ExtResource( 69 )
 __meta__ = {
@@ -708,6 +709,6 @@ script = ExtResource( 19 )
 [connection signal="hide" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
