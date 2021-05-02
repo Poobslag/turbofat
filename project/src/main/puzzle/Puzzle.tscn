@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=2]
+[gd_scene load_steps=91 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -67,6 +67,8 @@
 [ext_resource path="res://src/main/puzzle/Playfield.tscn" type="PackedScene" id=65]
 [ext_resource path="res://src/main/puzzle/chalkboard.gd" type="Script" id=66]
 [ext_resource path="res://src/main/puzzle/start-end-sfx.gd" type="Script" id=67]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=68]
+[ext_resource path="res://src/main/puzzle/frame-drops-label.gd" type="Script" id=69]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -539,8 +541,43 @@ puzzle_path = NodePath("../../..")
 
 [node name="TouchButtons" parent="Hud" instance=ExtResource( 10 )]
 
-[node name="FpsLabel" parent="Hud" instance=ExtResource( 56 )]
+[node name="VBoxContainer" type="VBoxContainer" parent="Hud"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -492.0
+margin_top = -280.0
+margin_right = -10.0
+margin_bottom = -10.0
+alignment = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FrameDropsLabel" type="Label" parent="Hud/VBoxContainer"]
 visible = false
+margin_top = 226.0
+margin_right = 482.0
+margin_bottom = 246.0
+theme = ExtResource( 68 )
+text = "6 frame drops"
+align = 2
+script = ExtResource( 69 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FpsLabel" parent="Hud/VBoxContainer" instance=ExtResource( 56 )]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
+margin_top = 250.0
+margin_right = 482.0
+margin_bottom = 270.0
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 26 )]
 
@@ -647,8 +684,8 @@ script = ExtResource( 19 )
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 50 )]
 
 [connection signal="before_line_cleared" from="Playfield" to="StarSeeds" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
@@ -671,5 +708,6 @@ script = ExtResource( 19 )
 [connection signal="hide" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
