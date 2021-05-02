@@ -149,6 +149,7 @@ script = ExtResource( 8 )
 creature_id = "#player#"
 dna = {
 }
+suppress_fatness = true
 
 [node name="Bort" parent="World/Obstacles" groups=[
 "chattables",
@@ -190,6 +191,7 @@ position = Vector2( -63, 784 )
 script = ExtResource( 7 )
 dna = {
 }
+suppress_fatness = true
 
 [node name="MoveTimer" type="Timer" parent="World/Obstacles/Sensei"]
 wait_time = 0.3
