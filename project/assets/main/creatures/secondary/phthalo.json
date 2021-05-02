@@ -1,0 +1,43 @@
+{
+  "version": "19dd",
+  "id": "phthalo",
+  "name": "Phthalo",
+  "short_name": "Phthalo",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "1",
+    "body": "1",
+    "cheek": "1",
+    "collar": "0",
+    "ear": "9",
+    "eye": "8",
+    "hair": "1",
+    "head": "1",
+    "horn": "0",
+    "mouth": "7",
+    "nose": "4",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "3d95f3",
+    "belly_rgb": "ffd461",
+    "cloth_rgb": "395e7b",
+    "glass_rgb": "b8d229",
+    "plastic_rgb": "585c5c",
+    "hair_rgb": "283b4b",
+    "eye_rgb": "473b76 aba4ce",
+    "horn_rgb": "fbc8cf"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "3d95f3"
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1.2,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}

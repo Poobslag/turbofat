@@ -9,7 +9,35 @@ Stepping on this exit results transitions to a new scene.
 # The direction the exit is facing. Also the direction the player needs to move to use the exit.
 enum ExitDirection {
 	NORTH,
-	SOUTH
+	NORTHEAST,
+	EAST,
+	SOUTHEAST,
+	SOUTH,
+	SOUTHWEST,
+	WEST,
+	NORTHWEST
+}
+
+const NORTH = ExitDirection.NORTH
+const NORTHEAST = ExitDirection.NORTHEAST
+const EAST = ExitDirection.EAST
+const SOUTHEAST = ExitDirection.SOUTHEAST
+const SOUTH = ExitDirection.SOUTH
+const SOUTHWEST = ExitDirection.SOUTHWEST
+const WEST = ExitDirection.WEST
+const NORTHWEST = ExitDirection.NORTHWEST
+
+# key: an enum from ExitDirection
+# value: a non-isometric unit vector in the direction the exit is facing
+const VECTOR_BY_EXIT_DIRECTION := {
+	NORTH: Vector2.UP,
+	NORTHEAST: Vector2(sqrt(2), -sqrt(2)),
+	EAST: Vector2.RIGHT,
+	SOUTHEAST: Vector2(sqrt(2), sqrt(2)),
+	SOUTH: Vector2.DOWN,
+	SOUTHWEST: Vector2(-sqrt(2), sqrt(2)),
+	WEST: Vector2.LEFT,
+	NORTHWEST: Vector2(-sqrt(2), -sqrt(2))
 }
 
 # the path of the scene to transition to when the player uses the exit
@@ -23,6 +51,15 @@ export (String) var player_spawn_id: String
 
 # the id of the spawn where the sensei will appear on the overworld after using the exit
 export (String) var sensei_spawn_id: String
+
+# sprite sheet for when the exit faces east or west
+var _exit_e_sheet := preload("res://assets/main/world/environment/exit-e-sheet.png")
+
+# sprite sheet for when the exit faces north or south
+var _exit_n_sheet := preload("res://assets/main/world/environment/exit-n-sheet.png")
+
+# sprite sheet for when the exit faces northeast, southeast, southwest or northwest
+var _exit_ne_sheet := preload("res://assets/main/world/environment/exit-ne-sheet.png")
 
 # 'true' if the player is currently overlapping the exit. this might not make them exit if they're sitting still or
 # moving the wrong way
@@ -52,11 +89,7 @@ func _physics_process(_delta: float) -> void:
 	if _player_overlapping and not SceneTransition.fading:
 		var player: Player = ChattableManager.player
 		
-		var target_direction: Vector2
-		match exit_direction:
-			ExitDirection.NORTH: target_direction = Vector2.UP
-			ExitDirection.SOUTH: target_direction = Vector2.DOWN
-			_: target_direction = Vector2.ZERO
+		var target_direction: Vector2 = VECTOR_BY_EXIT_DIRECTION.get(exit_direction, Vector2.ZERO)
 		
 		# if the player is overlapping the exit and facing the exit direction, we transition to a new scene
 		if player.non_iso_walk_direction and target_direction \
@@ -79,12 +112,15 @@ func set_exit_direction(new_exit_direction: int) -> void:
 Updates the appearance and collision shape based on the new exit direction.
 """
 func _refresh_exit_direction() -> void:
-	if exit_direction == ExitDirection.NORTH:
-		$Sprite.scale.y = abs($Sprite.scale.y)
-		$CollisionShape2D.position.y = -20.0
-	elif exit_direction == ExitDirection.SOUTH:
-		$Sprite.scale.y = -abs($Sprite.scale.y)
-		$CollisionShape2D.position.y = 20.0
+	$CollisionShape2D.position = VECTOR_BY_EXIT_DIRECTION.get(exit_direction) * 20
+	
+	$Sprite.scale.x = abs($Sprite.scale.x) * (-1 if exit_direction in [SOUTHWEST, WEST, NORTHWEST] else 1)
+	$Sprite.scale.y = abs($Sprite.scale.y) * (-1 if exit_direction in [SOUTHWEST, SOUTH, SOUTHEAST] else 1)
+	
+	match exit_direction:
+		NORTH, SOUTH: $Sprite.texture = _exit_n_sheet
+		NORTHEAST, SOUTHEAST, NORTHWEST, SOUTHWEST: $Sprite.texture = _exit_ne_sheet
+		EAST, WEST: $Sprite.texture = _exit_e_sheet
 
 
 func _on_body_entered(body: Node) -> void:

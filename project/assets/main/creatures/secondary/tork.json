@@ -1,0 +1,43 @@
+{
+  "version": "19dd",
+  "id": "tork",
+  "name": "Tork",
+  "short_name": "Tork",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "2",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "14",
+    "eye": "1",
+    "hair": "0",
+    "head": "3",
+    "horn": "2",
+    "mouth": "2",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "3c3c3d",
+    "body_rgb": "725e96",
+    "belly_rgb": "b0b4d1",
+    "cloth_rgb": "f5f0d1",
+    "glass_rgb": "690a00",
+    "plastic_rgb": "1e1e1e",
+    "hair_rgb": "282828",
+    "eye_rgb": "f5f0d1 ffffff",
+    "horn_rgb": "282828"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "725e96"
+  },
+  "chat_selectors": [
+
+  ],
+  "fatness": 1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}
