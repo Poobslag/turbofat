@@ -59,7 +59,10 @@ func _physics_process(delta: float) -> void:
 
 
 func _refresh_text() -> void:
-	text = "%s frame drops\n%s step drops" % [_visual_frame_drops, _physics_step_drops]
+	var new_text := ""
+	new_text += (tr("%s frame drops") % [_visual_frame_drops]) + "\n"
+	new_text += tr("%s step drops") % [_physics_step_drops]
+	text = new_text
 
 
 func _reset() -> void:
