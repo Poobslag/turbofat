@@ -121,7 +121,7 @@ func rolling_filename(backup: int) -> String:
 	var suffix := StringUtils.substring_after_last(current_filename, ".")
 	var middle := "."
 	var prefix := StringUtils.substring_before_last(current_filename, ".")
-	match(backup):
+	match backup:
 		Backup.THIS_HOUR: middle += "this-hour."
 		Backup.PREV_HOUR: middle += "prev-hour."
 		Backup.THIS_DAY: middle += "this-day."

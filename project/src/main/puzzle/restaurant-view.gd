@@ -22,14 +22,16 @@ var current_creature_index: int setget set_current_creature_index, get_current_c
 # bonus points scored for recent lines; used for determining when the chef should smile
 var _recent_bonuses := []
 
-onready var customer_view_viewport := $CustomerView/Viewport
-onready var customer_view := $CustomerView
+onready var _customer_nametag_panel := $CustomerNametag/Panel
+onready var _customer_view_viewport := $CustomerView/Viewport
+onready var _customer_view := $CustomerView
+onready var _restaurant_nametag_panel := $RestaurantNametag/Panel
+onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
 
 func _ready() -> void:
 	# Godot doesn't like when ViewportContainers have a different size from their Viewport, so we can't set
 	# these values in the editor. Otherwise it keeps changing the values back.
-	customer_view_viewport.size = customer_view.rect_size * 4
-	$ChefView/Viewport.size = $ChefView.rect_size * 4
+	_customer_view_viewport.size = _customer_view.rect_size * 4
 	
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
 	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
@@ -48,27 +50,27 @@ func _ready() -> void:
 Pans the camera to a new creature. This also changes which creature will be fed.
 """
 func set_current_creature_index(new_index: int) -> void:
-	$RestaurantViewport/Scene.current_creature_index = new_index
+	_restaurant_viewport_scene.current_creature_index = new_index
 	emit_signal("customer_changed")
 
 
 func get_current_creature_index() -> int:
-	return $RestaurantViewport/Scene.current_creature_index
+	return _restaurant_viewport_scene.current_creature_index
 
 
 func get_customer(creature_index: int = -1) -> Creature:
-	return $RestaurantViewport/Scene.get_customer(creature_index)
+	return _restaurant_viewport_scene.get_customer(creature_index)
 
 
 func get_chef() -> Creature:
-	return $RestaurantViewport/Scene.get_chef()
+	return _restaurant_viewport_scene.get_chef()
 
 
 """
 Returns an array of Creature objects representing customers in the scene.
 """
 func get_customers() -> Array:
-	return $RestaurantViewport/Scene.get_customers()
+	return _restaurant_viewport_scene.get_customers()
 
 
 """
@@ -81,9 +83,9 @@ func get_customer_mouth_position(customer: Creature) -> Vector2:
 	target_pos = customer.get_node("ChatIconHook").get_global_transform_with_canvas() \
 			.xform(mouth_position * customer.creature_visuals.scale.y)
 	# calculate the position within the customer viewport
-	target_pos = customer_view_viewport.canvas_transform.xform(target_pos)
+	target_pos = _customer_view_viewport.canvas_transform.xform(target_pos)
 	# calculate the position within the customer viewport texture
-	target_pos = customer_view.get_global_transform_with_canvas().xform(target_pos / customer_view.stretch_shrink)
+	target_pos = _customer_view.get_global_transform_with_canvas().xform(target_pos / _customer_view.stretch_shrink)
 	return target_pos
 
 
@@ -97,7 +99,7 @@ func summon_creature(creature_index: int = -1) -> void:
 		creature_def = PlayerData.creature_queue.pop_primary_creature()
 	else:
 		creature_def = CreatureLoader.random_def()
-	$RestaurantViewport/Scene.summon_creature(creature_def, creature_index)
+	_restaurant_viewport_scene.summon_creature(creature_def, creature_index)
 	if creature_index == -1 or creature_index == current_creature_index:
 		emit_signal("customer_changed")
 
@@ -110,7 +112,7 @@ func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 	if new_creature_index == -1:
 		new_creature_index = (old_creature_index + randi() % 2 + 1) % 3
 	set_current_creature_index(new_creature_index)
-	$RestaurantViewport/Scene.get_customer().restart_idle_timer()
+	_restaurant_viewport_scene.get_customer().restart_idle_timer()
 	yield(get_tree().create_timer(0.5), "timeout")
 	summon_creature(old_creature_index)
 
@@ -121,15 +123,15 @@ Temporarily suppresses 'hello' and 'door chime' sounds.
 func start_suppress_sfx_timer() -> void:
 	for customer in get_customers():
 		customer.start_suppress_sfx_timer()
-	$RestaurantViewport/Scene.start_suppress_sfx_timer()
+	_restaurant_viewport_scene.start_suppress_sfx_timer()
 
 
 func _refresh_customer_name() -> void:
-	$CustomerNametag/Panel.refresh_creature(get_customer())
+	_customer_nametag_panel.refresh_creature(get_customer())
 
 
 func _refresh_chef_name() -> void:
-	$RestaurantNametag/Panel.refresh_creature(get_chef())
+	_restaurant_nametag_panel.refresh_creature(get_chef())
 
 
 func _on_Chef_creature_name_changed() -> void:

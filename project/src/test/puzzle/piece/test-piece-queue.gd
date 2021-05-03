@@ -3,17 +3,6 @@ extends "res://addons/gut/test.gd"
 Unit test for the queue of upcoming pieces.
 """
 
-var _piece_dict := {
-	"j": PieceTypes.piece_j,
-	"l": PieceTypes.piece_l,
-	"o": PieceTypes.piece_o,
-	"p": PieceTypes.piece_p,
-	"q": PieceTypes.piece_q,
-	"t": PieceTypes.piece_t,
-	"u": PieceTypes.piece_u,
-	"v": PieceTypes.piece_v
-}
-
 func test_empty() -> void:
 	assert_eq([0], non_adjacent_indexes([], "p"))
 
@@ -49,7 +38,7 @@ func non_adjacent_indexes(piece_strings: Array, piece_type_string: String, from_
 	var pieces := []
 	for piece_string in piece_strings:
 		var next_piece := NextPiece.new()
-		next_piece.type = _piece_dict.get(piece_string)
+		next_piece.type = PieceTypes.pieces_by_string.get(piece_string)
 		pieces.append(next_piece)
-	var piece_type: PieceType = _piece_dict.get(piece_type_string)
+	var piece_type: PieceType = PieceTypes.pieces_by_string.get(piece_type_string)
 	return PieceQueue.non_adjacent_indexes(pieces, piece_type, from_index)

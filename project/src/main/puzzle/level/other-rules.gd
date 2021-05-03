@@ -43,12 +43,12 @@ func from_json_string_array(json: Array) -> void:
 	if rules.has("no_clear_on_finish"): clear_on_finish = false
 	if rules.has("non_interactive"): non_interactive = true
 	if rules.has("suppress_piece_rotation"):
-		match(rules.string_value()):
+		match rules.string_value():
 			# rules.string_value() returns '1' if there are no parameters specified
 			"1", "rotation": suppress_piece_rotation = SuppressPieceRotation.ROTATION
 			"rotation_and_signals": suppress_piece_rotation = SuppressPieceRotation.ROTATION_AND_SIGNALS
 	if rules.has("suppress_piece_initial_rotation"):
-		match(rules.string_value()):
+		match rules.string_value():
 			# rules.string_value() returns '1' if there are no parameters specified
 			"1", "rotation": suppress_piece_initial_rotation = SuppressPieceRotation.ROTATION
 			"rotation_and_signals": suppress_piece_initial_rotation = SuppressPieceRotation.ROTATION_AND_SIGNALS

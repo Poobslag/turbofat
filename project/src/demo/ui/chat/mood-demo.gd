@@ -31,7 +31,7 @@ onready var _creature_animations: CreatureAnimations = $Creature.creature_visual
 
 func _input(event: InputEvent) -> void:
 	if Input.is_key_pressed(KEY_SHIFT):
-		match(Utils.key_scancode(event)):
+		match Utils.key_scancode(event):
 			KEY_Q: _creature_animations.play_idle_animation("idle-look-over-shoulder0")
 			KEY_W: _creature_animations.play_idle_animation("idle-look-over-shoulder1")
 			KEY_E: _creature_animations.play_idle_animation("idle-yawn0")
@@ -43,7 +43,7 @@ func _input(event: InputEvent) -> void:
 			KEY_T: $Creature.talk()
 			KEY_SLASH: print(to_json($Creature.dna))
 	else:
-		match(Utils.key_scancode(event)):
+		match Utils.key_scancode(event):
 			KEY_BRACELEFT, KEY_BRACERIGHT: $Creature.dna = DnaUtils.random_dna()
 			
 			KEY_1: $Creature.play_mood(ChatEvent.Mood.DEFAULT)

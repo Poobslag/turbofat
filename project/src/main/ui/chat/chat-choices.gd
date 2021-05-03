@@ -35,7 +35,7 @@ Parameters:
 	'chat_line_size': An enum from ChatTheme.ChatLineSize corresponding to the amount of dialog displayed.
 """
 func reposition(chat_line_size: int) -> void:
-	match(chat_line_size):
+	match chat_line_size:
 		ChatTheme.LINE_SMALL:
 			rect_position = Vector2(659, 355)
 			rect_size = Vector2(325, 240)

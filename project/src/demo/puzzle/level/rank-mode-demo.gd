@@ -51,7 +51,7 @@ func _ready() -> void:
 				% [target_lines, (2 * target_lines) / (seconds / 60.0), target_score / target_lines]
 		
 		# for marathon levels, also print a diminished score which is more realistic to reach under pressure
-		match(data_key):
+		match data_key:
 			"1k", "7d", "M":
 				var marathon_points := (target_score - target_lines) * 0.6 + target_lines
 				text += "  (%s marathon: %s points)\n" % [data_key, marathon_points]
@@ -69,7 +69,7 @@ func _level_settings(data_key: String, start_speed: String, seconds: float) -> L
 	settings.set_start_speed(start_speed)
 	settings.set_finish_condition(Milestone.TIME_OVER, seconds)
 	
-	match(data_key):
+	match data_key:
 		"1k":
 			settings.set_start_speed("0")
 			settings.add_speed_up(Milestone.LINES, 10, "1")

@@ -83,9 +83,9 @@ func _prepare_wobblers_for_level() -> void:
 				continue
 			# upper left corner...
 			var rect := Rect2(x, y, 1, 1)
-			while(PuzzleConnect.is_r(_puzzle_tile_map.get_cell_autotile_coord(rect.end.x - 1, y).x)):
+			while PuzzleConnect.is_r(_puzzle_tile_map.get_cell_autotile_coord(rect.end.x - 1, y).x):
 				rect.size.x += 1
-			while(PuzzleConnect.is_d(_puzzle_tile_map.get_cell_autotile_coord(rect.end.x - 1, rect.end.y - 1).x)):
+			while PuzzleConnect.is_d(_puzzle_tile_map.get_cell_autotile_coord(rect.end.x - 1, rect.end.y - 1).x):
 				rect.size.y += 1
 			_add_wobblers_for_box(rect, autotile_coord.y)
 
@@ -130,7 +130,7 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 			var cell := rect.position + Vector2(wobbler_x, wobbler_y)
 			if cell.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
 				wobbler.visible = false
-			match(color_int):
+			match color_int:
 				PuzzleTileMap.BoxColorInt.BROWN: wobbler.food_type = \
 						FoodItem.FoodType.BROWN_0 if int(cell.y) % 2 == 0 else FoodItem.FoodType.BROWN_1
 				PuzzleTileMap.BoxColorInt.PINK: wobbler.food_type = \

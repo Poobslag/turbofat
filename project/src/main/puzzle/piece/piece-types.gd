@@ -206,3 +206,14 @@ var piece_v := PieceType.new("v",
 
 var piece_null := PieceType.new("_", [[]], [[]], KICKS_NONE, [])
 var all_types := [piece_j, piece_l, piece_o, piece_p, piece_q, piece_t, piece_u, piece_v];
+
+var pieces_by_string := {
+	"j": piece_j,
+	"l": piece_l,
+	"o": piece_o,
+	"p": piece_p,
+	"q": piece_q,
+	"t": piece_t,
+	"u": piece_u,
+	"v": piece_v
+}

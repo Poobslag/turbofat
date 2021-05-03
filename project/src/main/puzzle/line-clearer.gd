@@ -232,7 +232,7 @@ func _box_ints(y: int) -> Array:
 		var right_autotile_coord := _tile_map.get_cell_autotile_coord(x + 1, y)
 		if _tile_map.get_cell(x, y) == 1:
 			var should_count: bool = false
-			if (PuzzleConnect.is_l(autotile_coord.x) and PuzzleConnect.is_r(autotile_coord.x)):
+			if PuzzleConnect.is_l(autotile_coord.x) and PuzzleConnect.is_r(autotile_coord.x):
 				# wide boxes count multiple times to reward difficult horizontal builds
 				should_count = true
 			elif not PuzzleConnect.is_l(autotile_coord.x) and \

@@ -33,7 +33,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	match(Utils.key_scancode(event)):
+	match Utils.key_scancode(event):
 		KEY_Q: _build_box(3)
 		KEY_W: _build_box(9)
 		KEY_E: _build_box(15)
