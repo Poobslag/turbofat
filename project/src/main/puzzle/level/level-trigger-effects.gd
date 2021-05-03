@@ -35,7 +35,7 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 	"""
 	func set_config(new_config: Array = []) -> void:
 		if new_config.size() >= 1:
-			match(new_config[0]):
+			match new_config[0]:
 				"none": rotate_dir = Rotation.NONE
 				"cw": rotate_dir = Rotation.CW
 				"ccw": rotate_dir = Rotation.CCW

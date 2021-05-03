@@ -17,7 +17,7 @@ onready var _eight_way := $EightWay
 onready var _label := $Label
 
 func _input(event: InputEvent) -> void:
-	match(Utils.key_scancode(event)):
+	match Utils.key_scancode(event):
 		KEY_EQUAL: _eight_way.rect_scale *= 1.3
 		KEY_MINUS: _eight_way.rect_scale /= 1.3
 

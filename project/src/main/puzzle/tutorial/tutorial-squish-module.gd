@@ -46,7 +46,7 @@ func prepare_tutorial_level() -> void:
 	.prepare_tutorial_level()
 	_failed_section = _prepared_levels.has(CurrentLevel.settings.id)
 	
-	match(CurrentLevel.settings.id):
+	match CurrentLevel.settings.id:
 		"tutorial/squish_0":
 			hud.skill_tally_item("SquishMove").visible = true
 			hud.set_message(tr("Hold soft drop to squish pieces through this gap."))
@@ -99,7 +99,7 @@ Advance to the next level in the tutorial.
 func _advance_level() -> void:
 	_failed_section = false
 	var delay_between_levels := PuzzleScore.DELAY_SHORT
-	match(CurrentLevel.settings.id):
+	match CurrentLevel.settings.id:
 		"tutorial/squish_1":
 			# no delay for the non-interactive segment where we show the player a diagram
 			delay_between_levels = PuzzleScore.DELAY_NONE

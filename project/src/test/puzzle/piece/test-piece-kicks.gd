@@ -10,17 +10,6 @@ const FAILED_KICK := Vector2(-99, -99)
 var from_grid := []
 var to_grid := []
 
-var _piece_dict := {
-	"j": PieceTypes.piece_j,
-	"l": PieceTypes.piece_l,
-	"o": PieceTypes.piece_o,
-	"p": PieceTypes.piece_p,
-	"q": PieceTypes.piece_q,
-	"t": PieceTypes.piece_t,
-	"u": PieceTypes.piece_u,
-	"v": PieceTypes.piece_v
-}
-
 var _from_piece: ActivePiece
 var _to_piece: ActivePiece
 
@@ -156,9 +145,9 @@ func _determine_piece_type(ascii_grid: Array) -> PieceType:
 	for row_index in range(ascii_grid.size()):
 		var row_string: String = ascii_grid[row_index]
 		# can we determine the piece type from this row?
-		for piece_string in _piece_dict.keys():
+		for piece_string in PieceTypes.pieces_by_string.keys():
 			if row_string.find(piece_string) != -1:
-				piece_type = _piece_dict[piece_string]
+				piece_type = PieceTypes.pieces_by_string[piece_string]
 		if piece_type:
 			break
 	return piece_type

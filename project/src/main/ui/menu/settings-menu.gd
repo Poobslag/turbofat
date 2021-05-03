@@ -78,7 +78,7 @@ func _refresh_quit_type() -> void:
 		return
 	
 	var quit_text := ""
-	match (quit_type):
+	match quit_type:
 		QUIT: quit_text = tr("Quit")
 		SAVE_AND_QUIT: quit_text = tr("Save + Quit")
 		GIVE_UP: quit_text = tr("Give Up")

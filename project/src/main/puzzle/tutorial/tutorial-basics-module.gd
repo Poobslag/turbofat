@@ -39,7 +39,7 @@ func _ready() -> void:
 
 func prepare_tutorial_level() -> void:
 	.prepare_tutorial_level()
-	match(CurrentLevel.settings.id):
+	match CurrentLevel.settings.id:
 		"tutorial/basics_1":
 			hud.skill_tally_item("SnackBox").visible = true
 			hud.skill_tally_item("BoxClear").visible = true

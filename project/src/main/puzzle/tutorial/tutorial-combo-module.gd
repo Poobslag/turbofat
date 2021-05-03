@@ -44,7 +44,7 @@ func prepare_tutorial_level() -> void:
 	.prepare_tutorial_level()
 	var failed_section := _prepared_levels.has(CurrentLevel.settings.id)
 	
-	match(CurrentLevel.settings.id):
+	match CurrentLevel.settings.id:
 		"tutorial/combo_0":
 			_set_combo_state(0, 5)
 			hud.skill_tally_item("Combo").visible = true
@@ -225,7 +225,7 @@ func _on_PuzzleScore_after_piece_written() -> void:
 		"tutorial/combo_6":
 			if not _showed_end_of_level_message:
 				var first_creature_score: int = PuzzleScore.creature_scores[0]
-				if (_did_end_combo or first_creature_score >= 120):
+				if _did_end_combo or first_creature_score >= 120:
 					if first_creature_score >= 120:
 						hud.set_message(tr("Wow, I didn't expect that! Great job.\n\nYou're already a combo master!"))
 						hud.enqueue_pop_out()
