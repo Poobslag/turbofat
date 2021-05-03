@@ -46,7 +46,7 @@ export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 export (bool) var suppress_fatness: bool = false
 
 # how high the creature's torso is from the floor, such as when they're sitting on a stool or standing up
-export (int) var elevation: int setget set_elevation
+export (float) var elevation: float setget set_elevation
 
 # virtual property; value is not kept up-to-date and should only be accessed through getters/setters
 export (CreatureOrientation.Orientation) var orientation: int setget set_orientation, get_orientation
@@ -157,7 +157,7 @@ func set_suppress_sfx(new_suppress_sfx: bool) -> void:
 	$CreatureSfx.suppress_sfx = new_suppress_sfx
 
 
-func set_elevation(new_elevation: int) -> void:
+func set_elevation(new_elevation: float) -> void:
 	elevation = new_elevation
 	_refresh_elevation()
 

@@ -16,24 +16,24 @@
   "triggers": [
     {
       "phases": [
-        "rotated_right",
-        "initial_rotated_right"
+        "rotated_cw",
+        "initial_rotated_cw"
       ],
-      "effect": "rotate_next_pieces right"
+      "effect": "rotate_next_pieces cw"
     },
     {
       "phases": [
-        "rotated_left",
-        "initial_rotated_left"
+        "rotated_ccw",
+        "initial_rotated_ccw"
       ],
-      "effect": "rotate_next_pieces left"
+      "effect": "rotate_next_pieces ccw"
     },
     {
       "phases": [
-        "rotated_twice",
-        "initial_rotated_twice"
+        "rotated_180",
+        "initial_rotated_180"
       ],
-      "effect": "rotate_next_pieces twice"
+      "effect": "rotate_next_pieces 180"
     }
   ],
   "speed_ups": [

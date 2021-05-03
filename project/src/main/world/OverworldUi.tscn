@@ -112,6 +112,7 @@ margin_left = -502.0
 margin_top = -290.0
 margin_right = -10.0
 margin_bottom = -10.0
+mouse_filter = 2
 theme = ExtResource( 2 )
 alignment = 2
 __meta__ = {
@@ -144,6 +145,7 @@ margin_left = 10.0
 margin_top = 10.0
 margin_right = 512.0
 margin_bottom = 300.0
+mouse_filter = 2
 theme = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -180,6 +182,7 @@ margin_top = 10.0
 margin_right = -10.0
 margin_bottom = 110.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 2
 custom_constants/separation = 10
 alignment = 2
 __meta__ = {
@@ -233,6 +236,7 @@ margin_top = -160.0
 margin_right = -10.0
 margin_bottom = -60.0
 rect_min_size = Vector2( 100, 100 )
+mouse_filter = 2
 custom_constants/separation = 10
 alignment = 2
 __meta__ = {
@@ -349,16 +353,16 @@ mouse_filter = 2
 [connection signal="pressed" from="Control/Buttons/Southeast/TalkButton" to="." method="_on_TalkButton_pressed"]
 [connection signal="cheat_detected" from="Control/CheatCodeDetector" to="Control/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="hide" from="Control/SettingsMenu" to="." method="_on_SettingsMenu_hide"]
-[connection signal="hide" from="Control/SettingsMenu" to="Control/TouchButtons" method="_on_Menu_hide"]
 [connection signal="hide" from="Control/SettingsMenu" to="Control/Buttons" method="_on_Menu_hide"]
+[connection signal="hide" from="Control/SettingsMenu" to="Control/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="Control/SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="Control/SettingsMenu" to="." method="_on_SettingsMenu_show"]
-[connection signal="show" from="Control/SettingsMenu" to="Control/TouchButtons" method="_on_Menu_show"]
 [connection signal="show" from="Control/SettingsMenu" to="Control/Buttons" method="_on_Menu_show"]
+[connection signal="show" from="Control/SettingsMenu" to="Control/TouchButtons" method="_on_Menu_show"]
 [connection signal="hide" from="Control/CellPhoneMenu" to="." method="_on_CellPhoneMenu_hide"]
-[connection signal="hide" from="Control/CellPhoneMenu" to="Control/TouchButtons" method="_on_Menu_hide"]
 [connection signal="hide" from="Control/CellPhoneMenu" to="Control/Buttons" method="_on_Menu_hide"]
+[connection signal="hide" from="Control/CellPhoneMenu" to="Control/TouchButtons" method="_on_Menu_hide"]
 [connection signal="show" from="Control/CellPhoneMenu" to="." method="_on_CellPhoneMenu_show"]
-[connection signal="show" from="Control/CellPhoneMenu" to="Control/TouchButtons" method="_on_Menu_show"]
 [connection signal="show" from="Control/CellPhoneMenu" to="Control/Buttons" method="_on_Menu_show"]
+[connection signal="show" from="Control/CellPhoneMenu" to="Control/TouchButtons" method="_on_Menu_show"]
 [connection signal="pressed" from="Control/CellPhoneMenu/Buttons/Northeast/BackButton" to="Control/CellPhoneMenu" method="_on_BackButton_pressed"]

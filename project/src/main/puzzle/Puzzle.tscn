@@ -550,6 +550,7 @@ margin_left = -492.0
 margin_top = -280.0
 margin_right = -10.0
 margin_bottom = -10.0
+mouse_filter = 2
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -557,9 +558,9 @@ __meta__ = {
 
 [node name="FrameDropsLabel" type="Label" parent="Hud/VBoxContainer"]
 visible = false
-margin_top = 226.0
+margin_top = 227.0
 margin_right = 482.0
-margin_bottom = 246.0
+margin_bottom = 270.0
 theme = ExtResource( 68 )
 text = "0 frame drops
 0 step drops"
@@ -698,10 +699,10 @@ script = ExtResource( 19 )
 [connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="customer_changed" from="RestaurantView" to="FoodItems" method="_on_RestaurantView_customer_changed"]
 [connection signal="hit_next_pieces" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
-[connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_playfield" from="FrostingGlobs" to="Playfield" method="_on_FrostingGlobs_hit_playfield"]
-[connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_playfield" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_wall" from="FrostingGlobs" to="WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
+[connection signal="hit_wall" from="FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
 [connection signal="timeout" from="FoodItems/FoodFlightTimer" to="FoodItems" method="_on_FoodFlightTimer_timeout"]
 [connection signal="back_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_back_button_pressed"]
 [connection signal="settings_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_settings_button_pressed"]
@@ -709,6 +710,6 @@ script = ExtResource( 19 )
 [connection signal="hide" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]

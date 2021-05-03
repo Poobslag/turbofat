@@ -87,7 +87,7 @@ func test_chat_dialog() -> void:
 	
 	assert_eq(event.who, "boatricia")
 	assert_eq(event.text, "Oh! I remember you from before. I'm Boatricia, I'm sort of new here and trying to make" \
-			 + " some friends.")
+			+ " some friends.")
 
 
 func test_chat_thought() -> void:

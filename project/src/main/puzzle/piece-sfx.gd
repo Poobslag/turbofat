@@ -55,27 +55,27 @@ func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> vo
 
 # Rotation events ----------------------------------------------------------------
 
-func _on_PieceManager_initial_rotated_left() -> void:
+func _on_PieceManager_initial_rotated_ccw() -> void:
 	$Rotate0Sound.play()
 
 
-func _on_PieceManager_initial_rotated_right() -> void:
+func _on_PieceManager_initial_rotated_cw() -> void:
 	$Rotate1Sound.play()
 
 
-func _on_PieceManager_initial_rotated_twice() -> void:
+func _on_PieceManager_initial_rotated_180() -> void:
 	$Rotate0Sound.play()
 
 
-func _on_PieceManager_rotated_left() -> void:
+func _on_PieceManager_rotated_ccw() -> void:
 	$Rotate0Sound.play()
 
 
-func _on_PieceManager_rotated_right() -> void:
+func _on_PieceManager_rotated_cw() -> void:
 	$Rotate1Sound.play()
 
 
-func _on_PieceManager_rotated_twice() -> void:
+func _on_PieceManager_rotated_180() -> void:
 	$Rotate0Sound.play()
 
 # Other events -------------------------------------------------------------------

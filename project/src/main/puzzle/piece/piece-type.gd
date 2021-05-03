@@ -4,13 +4,6 @@ Stores information on a piece shape. This includes information on its appearance
 when it's blocked from rotating.
 """
 
-enum Orientation {
-	UNROTATED, # '0', unrotated
-	CLOCKWISE, # 'R', rotated right
-	FLIPPED, # '2', rotated twice
-	COUNTERCLOCKWISE # 'L', rotated left
-}
-
 # string representation when debugging; 'j', 'l', etc...
 var string: String
 

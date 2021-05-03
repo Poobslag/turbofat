@@ -19,9 +19,9 @@ var _actual_physics_msec := 0.0
 # increments when the system clock falls behind the expected value
 var _physics_step_drops := 0
 
- # expected system clock for the previous _process() call
+# expected system clock for the previous _process() call
 var _expected_visual_msec := 0.0
- # actual system clock for the previous _process() call
+# actual system clock for the previous _process() call
 var _actual_visual_msec := 0.0
 # increments when the system clock falls behind the expected value
 var _visual_frame_drops := 0
@@ -75,13 +75,16 @@ func _reset() -> void:
 	_expected_visual_msec = system_time_msec
 	_actual_visual_msec = system_time_msec
 	_visual_frame_drops = 0
+	
+	# disable processing if invisible
+	set_process(visible)
+	set_physics_process(visible)
 
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "bigfps":
 		visible = !visible
+		_reset()
 		if visible:
-			_visual_frame_drops = 0
-			_physics_step_drops = 0
 			_refresh_text()
 		detector.play_cheat_sound(visible)

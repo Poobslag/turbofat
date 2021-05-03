@@ -70,7 +70,7 @@ func _process(_delta: float) -> void:
 	
 	if not _overworld_ui.cutscene and close_up \
 			and ChattableManager.player.position.distance_to(close_up_position) > AUTO_ZOOM_OUT_DISTANCE:
-		 # player left the chat area; zoom back out
+		# player left the chat area; zoom back out
 		set_close_up(false)
 
 

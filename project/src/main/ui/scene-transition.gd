@@ -65,8 +65,8 @@ Parameters:
 """
 func replace_trail(path: String, skip_transition: bool = false) -> void:
 	if skip_transition \
-	        or not get_tree().get_nodes_in_group("scene_transition_covers") \
-	        or "::" in path:
+			or not get_tree().get_nodes_in_group("scene_transition_covers") \
+			or "::" in path:
 		Breadcrumb.replace_trail(path)
 	else:
 		_fade_out("replace_trail", [path])

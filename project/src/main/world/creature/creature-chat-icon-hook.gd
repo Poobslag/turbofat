@@ -7,14 +7,14 @@ export (NodePath) var creature_visuals_path: NodePath setget set_creature_visual
 
 var _creature_visuals: CreatureVisuals
 
-var elevation: int setget set_elevation
+var elevation: float setget set_elevation
 
 func _ready() -> void:
 	_refresh_creature_visuals_path()
 	_refresh_target_position()
 
 
-func set_elevation(new_elevation: int) -> void:
+func set_elevation(new_elevation: float) -> void:
 	elevation = new_elevation
 	_refresh_target_position()
 
