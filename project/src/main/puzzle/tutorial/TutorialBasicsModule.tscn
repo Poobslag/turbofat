@@ -66,7 +66,7 @@ custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 3.0
 label_text = "Rotate Left"
-signal_names = [ "rotated_left", "initial_rotated_left" ]
+signal_names = [ "rotated_ccw", "initial_rotated_ccw" ]
 
 [node name="RotateRight" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false
@@ -78,7 +78,7 @@ custom_styles/fg = SubResource( 1 )
 custom_styles/bg = SubResource( 2 )
 max_value = 3.0
 label_text = "Rotate Right"
-signal_names = [ "rotated_right", "initial_rotated_right" ]
+signal_names = [ "rotated_cw", "initial_rotated_cw" ]
 
 [node name="SoftDrop" parent="SkillTallyItems" instance=ExtResource( 1 )]
 visible = false

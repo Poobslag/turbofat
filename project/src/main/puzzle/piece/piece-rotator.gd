@@ -4,18 +4,18 @@ Handles horizontal movement for the player's active piece.
 """
 
 # warning-ignore:unused_signal
-signal initial_rotated_left
+signal initial_rotated_ccw
 # warning-ignore:unused_signal
-signal initial_rotated_right
+signal initial_rotated_cw
 # warning-ignore:unused_signal
-signal initial_rotated_twice
+signal initial_rotated_180
 
 # warning-ignore:unused_signal
-signal rotated_left
+signal rotated_ccw
 # warning-ignore:unused_signal
-signal rotated_right
+signal rotated_cw
 # warning-ignore:unused_signal
-signal rotated_twice
+signal rotated_180
 
 export (NodePath) var input_path: NodePath
 
@@ -28,20 +28,20 @@ func apply_initial_rotate_input(piece: ActivePiece) -> void:
 	var rotation_signal: String
 	
 	if input.is_cw_pressed() and input.is_ccw_pressed():
-		rotation_signal = "initial_rotated_twice"
+		rotation_signal = "initial_rotated_180"
 	elif input.is_cw_pressed():
-		rotation_signal = "initial_rotated_right"
+		rotation_signal = "initial_rotated_cw"
 	elif input.is_ccw_pressed():
-		rotation_signal = "initial_rotated_left"
+		rotation_signal = "initial_rotated_ccw"
 	
 	match rotation_signal:
-		"initial_rotated_left":
+		"initial_rotated_ccw":
 			input.set_ccw_input_as_handled()
 			piece.target_orientation = piece.get_ccw_orientation()
-		"initial_rotated_right":
+		"initial_rotated_cw":
 			input.set_cw_input_as_handled()
 			piece.target_orientation = piece.get_cw_orientation()
-		"initial_rotated_twice":
+		"initial_rotated_180":
 			input.set_cw_input_as_handled()
 			input.set_ccw_input_as_handled()
 			piece.target_orientation = piece.get_flip_orientation()
@@ -60,9 +60,9 @@ func apply_initial_rotate_input(piece: ActivePiece) -> void:
 				emit_signal(rotation_signal)
 	
 	match rotation_signal:
-		"initial_rotated_left": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_LEFT)
-		"initial_rotated_right": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_RIGHT)
-		"initial_rotated_twice": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_TWICE)
+		"initial_rotated_ccw": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_CCW)
+		"initial_rotated_cw": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_CW)
+		"initial_rotated_180": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.INITIAL_ROTATED_180)
 
 
 func apply_rotate_input(piece: ActivePiece) -> void:
@@ -74,17 +74,17 @@ func apply_rotate_input(piece: ActivePiece) -> void:
 	if piece.target_orientation != piece.orientation:
 		var rotation_signal: String
 		if piece.target_orientation == piece.get_cw_orientation():
-			rotation_signal = "rotated_right"
+			rotation_signal = "rotated_cw"
 		elif piece.target_orientation == piece.get_ccw_orientation():
-			rotation_signal = "rotated_left"
+			rotation_signal = "rotated_ccw"
 		elif piece.target_orientation == piece.get_flip_orientation():
-			rotation_signal = "rotated_twice"
+			rotation_signal = "rotated_180"
 		
 		var old_piece_y := piece.pos.y
 		if not piece.can_move_to_target():
 			piece.kick_piece()
 		if not piece.can_move_to_target() and input.is_cw_pressed() and input.is_ccw_pressed():
-			rotation_signal = "rotated_twice"
+			rotation_signal = "rotated_180"
 			piece.target_orientation = piece.get_flip_orientation()
 			if not piece.can_move_to_target():
 				piece.target_pos = piece.get_flip_position()
@@ -112,9 +112,9 @@ func apply_rotate_input(piece: ActivePiece) -> void:
 			piece.floor_kicks += 1
 		
 		match rotation_signal:
-			"rotated_left": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.ROTATED_LEFT)
-			"rotated_right": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.ROTATED_RIGHT)
-			"rotated_twice": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.ROTATED_TWICE)
+			"rotated_ccw": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.ROTATED_CCW)
+			"rotated_cw": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.ROTATED_CW)
+			"rotated_180": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.ROTATED_180)
 
 
 """

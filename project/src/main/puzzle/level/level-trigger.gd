@@ -9,30 +9,30 @@ every time the player places a piece.
 
 # phases when a level trigger can fire
 enum LevelTriggerPhase {
-	ROTATED_RIGHT,
-	ROTATED_LEFT,
-	ROTATED_TWICE,
-	INITIAL_ROTATED_RIGHT,
-	INITIAL_ROTATED_LEFT,
-	INITIAL_ROTATED_TWICE,
+	ROTATED_CW,
+	ROTATED_CCW,
+	ROTATED_180,
+	INITIAL_ROTATED_CW,
+	INITIAL_ROTATED_CCW,
+	INITIAL_ROTATED_180,
 }
 
-const ROTATED_RIGHT := LevelTriggerPhase.ROTATED_RIGHT
-const ROTATED_LEFT := LevelTriggerPhase.ROTATED_LEFT
-const ROTATED_TWICE := LevelTriggerPhase.ROTATED_TWICE
-const INITIAL_ROTATED_RIGHT := LevelTriggerPhase.INITIAL_ROTATED_RIGHT
-const INITIAL_ROTATED_LEFT := LevelTriggerPhase.INITIAL_ROTATED_LEFT
-const INITIAL_ROTATED_TWICE := LevelTriggerPhase.INITIAL_ROTATED_TWICE
+const ROTATED_CW := LevelTriggerPhase.ROTATED_CW
+const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
+const ROTATED_180 := LevelTriggerPhase.ROTATED_180
+const INITIAL_ROTATED_CW := LevelTriggerPhase.INITIAL_ROTATED_CW
+const INITIAL_ROTATED_CCW := LevelTriggerPhase.INITIAL_ROTATED_CCW
+const INITIAL_ROTATED_180 := LevelTriggerPhase.INITIAL_ROTATED_180
 
 # key: json string corresponding to a phase
 # value: an enum from LevelTriggerPhase
 const PHASE_INTS_BY_STRING := {
-	"rotated_right": ROTATED_RIGHT,
-	"rotated_left": ROTATED_LEFT,
-	"rotated_twice": ROTATED_TWICE,
-	"initial_rotated_right": INITIAL_ROTATED_RIGHT,
-	"initial_rotated_left": INITIAL_ROTATED_LEFT,
-	"initial_rotated_twice": INITIAL_ROTATED_TWICE,
+	"rotated_cw": ROTATED_CW,
+	"rotated_ccw": ROTATED_CCW,
+	"rotated_180": ROTATED_180,
+	"initial_rotated_cw": INITIAL_ROTATED_CW,
+	"initial_rotated_ccw": INITIAL_ROTATED_CCW,
+	"initial_rotated_180": INITIAL_ROTATED_180,
 }
 
 # key: an enum from LevelTriggerPhase

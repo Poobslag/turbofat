@@ -11,9 +11,9 @@ signal piece_spawned
 signal piece_changed(piece)
 
 # emitted when the player rotates a piece
-signal initial_rotated_right
-signal initial_rotated_left
-signal initial_rotated_twice
+signal initial_rotated_cw
+signal initial_rotated_ccw
+signal initial_rotated_180
 
 # emitted when the player moves a piece
 signal initial_das_moved_left
@@ -22,9 +22,9 @@ signal das_moved_left
 signal das_moved_right
 signal moved_left
 signal moved_right
-signal rotated_left
-signal rotated_right
-signal rotated_twice
+signal rotated_ccw
+signal rotated_cw
+signal rotated_180
 signal soft_dropped
 signal hard_dropped
 signal squish_moved(piece, old_pos)
@@ -263,9 +263,9 @@ func _on_Mover_das_moved_right() -> void: emit_signal("das_moved_right")
 func _on_Mover_moved_left() -> void: emit_signal("moved_left")
 func _on_Mover_moved_right() -> void: emit_signal("moved_right")
 
-func _on_Rotator_rotated_left() -> void: emit_signal("rotated_left")
-func _on_Rotator_rotated_right() -> void: emit_signal("rotated_right")
-func _on_Rotator_rotated_twice() -> void: emit_signal("rotated_twice")
-func _on_Rotator_initial_rotated_left() -> void: emit_signal("initial_rotated_left")
-func _on_Rotator_initial_rotated_right() -> void: emit_signal("initial_rotated_right")
-func _on_Rotator_initial_rotated_twice() -> void: emit_signal("initial_rotated_twice")
+func _on_Rotator_rotated_ccw() -> void: emit_signal("rotated_ccw")
+func _on_Rotator_rotated_cw() -> void: emit_signal("rotated_cw")
+func _on_Rotator_rotated_180() -> void: emit_signal("rotated_180")
+func _on_Rotator_initial_rotated_ccw() -> void: emit_signal("initial_rotated_ccw")
+func _on_Rotator_initial_rotated_cw() -> void: emit_signal("initial_rotated_cw")
+func _on_Rotator_initial_rotated_180() -> void: emit_signal("initial_rotated_180")

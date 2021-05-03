@@ -13,6 +13,10 @@ grep -R -n "^			.\{108,\}$" --include="*.gd" ./project/src
 grep -R -n "^				.\{104,\}$" --include="*.gd" ./project/src
 grep -R -n "^					.\{100,\}$" --include="*.gd" ./project/src
 
+# whitespace at the start of a line
+grep -R -n "^\s* [^\s]" --include="*.gd" ./project/src \
+  | grep -v "test-piece-kicks-t.gd.*doesn't it look like a rose?"
+
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
 grep -R -n "var [^:]* = " --include="*.gd" ./project/src \
   | grep -v " = parse_json(" \
