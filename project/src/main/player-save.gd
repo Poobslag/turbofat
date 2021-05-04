@@ -108,9 +108,6 @@ func save_player_data() -> void:
 Populates the player's in-memory data based on their save files.
 """
 func load_player_data() -> void:
-	if old_save.only_has_old_save():
-		old_save.transform_old_save()
-	
 	rolling_backups.load_newest_save(self, "_load_player_data_from_file")
 
 
