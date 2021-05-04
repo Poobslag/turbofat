@@ -6,60 +6,6 @@ This class's size will worsen with each change to our save system. Once it gets 
 consider dropping backwards compatibility for older versions.
 """
 
-# Filename for v0.0517 data. Can be changed for tests
-var player_data_filename_0517 := "user://turbofat.save"
-
-"""
-Returns 'true' if the player has an old save file but no new save file.
-
-This indicates we should convert their old save file to the new format.
-"""
-func only_has_old_save() -> bool:
-	return has_old_save() and not has_new_save()
-
-
-"""
-Returns 'true' if the player has a save file in the current format.
-"""
-func has_new_save() -> bool:
-	return FileUtils.file_exists(PlayerSave.current_player_data_filename)
-
-
-"""
-Returns 'true' if the player has a save file in an old format.
-"""
-func has_old_save() -> bool:
-	return FileUtils.file_exists(player_data_filename_0517)
-
-
-"""
-Converts the player's old save file to the new format.
-"""
-func transform_old_save() -> void:
-	if has_new_save():
-		push_error("Won't overwrite new save with old save")
-		return
-	if not has_old_save():
-		push_error("No old save to restore")
-		return
-	
-	# transform 0.0517 data to current format
-	var save_json_text := FileUtils.get_file_as_text(player_data_filename_0517)
-	var transformer := StringTransformer.new(save_json_text)
-	transformer.transformed += "\n{\"type\":\"version\",\"value\":\"15d2\"}"
-	transformer.sub("plyr({.*})", "{\"type\":\"player-info\",\"value\":$1},")
-	transformer.sub("\"marathon-", "\"survival-")
-	transformer.sub("scenario_name", "key")
-	transformer.sub("scen{\"scenario_history\":(\\[.*\\])(.*)}", "{\"type\":\"scenario-history\",\"value\":$1$2},")
-	transformer.sub("\"died\":false", "\"top_out_count\":0,\"lost\":false")
-	transformer.sub("\"died\":true", "\"top_out_count\":1,\"lost\":true")
-	transformer.transformed = "[%s]" % transformer.transformed
-	transformer.transformed = _append_compare_flag_for_0517(transformer.transformed)
-	save_json_text = transformer.transformed
-	
-	FileUtils.write_file(PlayerSave.current_player_data_filename, save_json_text)
-
-
 """
 Returns 'true' if the specified json save items don't match the latest version.
 """
@@ -342,20 +288,3 @@ func _append_time_success_for_15d2(save_item: SaveItem, target_time: float) -> v
 		var rank_result_dict: Dictionary = rank_result_obj
 		rank_result_dict["success"] = not rank_result_dict.get("lost", true) \
 				and rank_result_dict.get("seconds", 0.0) <= target_time
-
-
-"""
-Appends a 'compare' flag to the ultra records.
-
-This method temporarily converts the save file into json. I couldn't figure out a regular expression to accomplish
-this.
-"""
-func _append_compare_flag_for_0517(save_json_text: String) -> String:
-	var json_save_items: Array = parse_json(save_json_text)
-	for json_save_item_obj in json_save_items:
-		var save_item: Dictionary = json_save_item_obj
-		if save_item.get("type") == "scenario-history" and save_item.get("key").begins_with("ultra-"):
-			for value_obj in save_item.get("value"):
-				var value: Dictionary = value_obj
-				value["compare"] = "-seconds"
-	return Utils.print_json(json_save_items)
