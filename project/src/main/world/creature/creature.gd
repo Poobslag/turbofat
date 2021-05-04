@@ -103,9 +103,6 @@ onready var _collision_shape: CollisionShape2D = $CollisionShape2D
 onready var _chat_icon_hook: RemoteTransform2D = $ChatIconHook
 onready var _fade_tween: Tween = $FadeTween
 
-onready var _bonk_sound: AudioStreamPlayer2D = $CreatureSfx/BonkSound
-onready var _hop_sound: AudioStreamPlayer2D = $CreatureSfx/HopSound
-
 func _ready() -> void:
 	var creature_outline_scene_path := "res://src/main/world/creature/ViewportCreatureOutline.tscn"
 	if not Engine.is_editor_hint() \
@@ -116,13 +113,12 @@ func _ready() -> void:
 	add_child(_creature_outline)
 	
 	creature_visuals = $CreatureOutline.creature_visuals
-	_chat_icon_hook.creature_visuals_path = _chat_icon_hook.get_path_to(creature_visuals)
-	_collision_shape.creature_visuals_path = _collision_shape.get_path_to(creature_visuals)
+	if not Engine.is_editor_hint():
+		_chat_icon_hook.creature_visuals = creature_visuals
+		_collision_shape.creature_visuals = creature_visuals
+		_creature_sfx.creature_visuals = creature_visuals
 	creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
-	creature_visuals.connect("dna_loaded", _creature_sfx, "_on_CreatureVisuals_dna_loaded")
 	creature_visuals.connect("food_eaten", self, "_on_CreatureVisuals_food_eaten")
-	creature_visuals.connect("food_eaten", _creature_sfx, "_on_CreatureVisuals_food_eaten")
-	creature_visuals.connect("landed", self, "_on_CreatureVisuals_landed")
 	creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
 	creature_visuals.connect("talking_changed", self, "_on_CreatureVisuals_talking_changed")
 	creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
@@ -527,8 +523,7 @@ Plays a bonk sound if a creature bumps into a wall.
 func _maybe_play_bonk_sound(old_non_iso_velocity: Vector2) -> void:
 	var velocity_diff := _non_iso_velocity - old_non_iso_velocity
 	if velocity_diff.length() > MAX_RUN_SPEED * _run_anim_speed * 0.9:
-		if not suppress_sfx:
-			_bonk_sound.play()
+		_creature_sfx.play_bonk_sound()
 
 
 """
@@ -556,11 +551,6 @@ func _update_animation() -> void:
 		play_movement_animation(animation_prefix, non_iso_walk_direction)
 	elif creature_visuals.movement_mode != CreatureVisuals.IDLE:
 		play_movement_animation("idle", _non_iso_velocity)
-
-
-func _on_CreatureVisuals_landed() -> void:
-	if not suppress_sfx:
-		_hop_sound.play()
 
 
 func _on_Creature_fatness_changed() -> void:

@@ -354,11 +354,11 @@ script = ExtResource( 31 )
 [node name="CreatureSfx" type="Node2D" parent="."]
 script = ExtResource( 23 )
 
-[node name="Munch" type="AudioStreamPlayer" parent="CreatureSfx"]
+[node name="VoicePlayer" type="AudioStreamPlayer" parent="CreatureSfx"]
+volume_db = 6.0
 bus = "Voice Bus"
 
-[node name="Voice" type="AudioStreamPlayer" parent="CreatureSfx"]
-volume_db = 6.0
+[node name="MunchSound" type="AudioStreamPlayer" parent="CreatureSfx"]
 bus = "Voice Bus"
 
 [node name="HopSound" type="AudioStreamPlayer2D" parent="CreatureSfx"]

@@ -59,6 +59,32 @@ var _combo_voice_index := 0
 # 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
 var suppress_sfx := false
 
+var creature_visuals: CreatureVisuals setget set_creature_visuals
+
+# AudioStreamPlayer which plays all of the creature's voices. We reuse the same player so that they can't say two
+# things at once.
+onready var _voice_player := $VoicePlayer
+
+onready var _munch_sound := $MunchSound
+onready var _hop_sound := $HopSound
+onready var _bonk_sound := $BonkSound
+
+onready var _hello_timer := $HelloTimer
+onready var _suppress_sfx_timer := $SuppressSfxTimer
+
+func _ready() -> void:
+	_connect_creature_visuals_listeners()
+
+
+func set_creature_visuals(new_creature_visuals: CreatureVisuals) -> void:
+	if creature_visuals:
+		creature_visuals.disconnect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
+		creature_visuals.disconnect("food_eaten", self, "_on_CreatureVisuals_food_eaten")
+		creature_visuals.disconnect("landed", self, "_on_CreatureVisuals_landed")
+	creature_visuals = new_creature_visuals
+	_connect_creature_visuals_listeners()
+
+
 """
 Plays a 'mmm!' voice sample, for when a player builds a big combo.
 """
@@ -67,8 +93,8 @@ func play_combo_voice() -> void:
 		return
 	
 	_combo_voice_index = (_combo_voice_index + 1 + randi() % (_combo_voices.size() - 1)) % _combo_voices.size()
-	$Voice.stream = _combo_voices[_combo_voice_index]
-	$Voice.play()
+	_voice_player.stream = _combo_voices[_combo_voice_index]
+	_voice_player.play()
 
 
 """
@@ -79,8 +105,8 @@ func play_hello_voice(force: bool = false) -> void:
 		return
 	
 	if Global.should_chat() or force:
-		$Voice.stream = Utils.rand_value(hello_voices)
-		$Voice.play()
+		_voice_player.stream = Utils.rand_value(hello_voices)
+		_voice_player.play()
 
 
 """
@@ -91,12 +117,35 @@ func play_goodbye_voice(force: bool = false) -> void:
 		return
 	
 	if Global.should_chat() or force:
-		$Voice.stream = Utils.rand_value(_goodbye_voices)
-		$Voice.play()
+		_voice_player.stream = Utils.rand_value(_goodbye_voices)
+		_voice_player.play()
+
+
+func play_bonk_sound() -> void:
+	if suppress_sfx:
+		return
+	
+	_bonk_sound.play()
+
+
+func play_hop_sound() -> void:
+	if suppress_sfx:
+		return
+	
+	_hop_sound.play()
 
 
 func start_suppress_sfx_timer() -> void:
-	$SuppressSfxTimer.start(1.0)
+	_suppress_sfx_timer.start(1.0)
+
+
+func _connect_creature_visuals_listeners() -> void:
+	if not creature_visuals:
+		return
+	
+	creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
+	creature_visuals.connect("food_eaten", self, "_on_CreatureVisuals_food_eaten")
+	creature_visuals.connect("landed", self, "_on_CreatureVisuals_landed")
 
 
 """
@@ -109,23 +158,27 @@ func _on_CreatureVisuals_food_eaten(_food_type: int) -> void:
 	if suppress_sfx:
 		return
 	
-	$Munch.stream = Utils.rand_value(_munch_sounds)
-	$Munch.pitch_scale = rand_range(0.96, 1.04)
-	$Munch.play()
+	_munch_sound.stream = Utils.rand_value(_munch_sounds)
+	_munch_sound.pitch_scale = rand_range(0.96, 1.04)
+	_munch_sound.play()
 
 
 func _on_CreatureVisuals_dna_loaded() -> void:
 	if Engine.is_editor_hint():
 		# Skip the sound effects if we're using this as an editor tool
 		return
-	if not $SuppressSfxTimer.is_stopped():
+	if not _suppress_sfx_timer.is_stopped():
 		# suppress greeting for first few seconds of a level
 		return
 	if suppress_sfx:
 		return
 	
-	$HelloTimer.start()
+	_hello_timer.start()
 
 
 func _on_HelloTimer_timeout() -> void:
 	play_hello_voice()
+
+
+func _on_CreatureVisuals_landed() -> void:
+	play_hop_sound()
