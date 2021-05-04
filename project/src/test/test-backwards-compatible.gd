@@ -25,39 +25,9 @@ func load_0517_data() -> void:
 	PlayerSave.load_player_data()
 
 
-func load_15d2_data() -> void:
+func load_player_data(filename: String) -> void:
 	var dir := Directory.new()
-	dir.copy("res://assets/test/turbofat-15d2.json", "user://%s" % TEMP_FILENAME)
-	PlayerSave.load_player_data()
-
-
-func load_163e_data() -> void:
-	var dir := Directory.new()
-	dir.copy("res://assets/test/turbofat-163e.json", "user://%s" % TEMP_FILENAME)
-	PlayerSave.load_player_data()
-
-
-func load_1682_data() -> void:
-	var dir := Directory.new()
-	dir.copy("res://assets/test/turbofat-1682.json", "user://%s" % TEMP_FILENAME)
-	PlayerSave.load_player_data()
-
-
-func load_19c5_data() -> void:
-	var dir := Directory.new()
-	dir.copy("res://assets/test/turbofat-19c5.json", "user://%s" % TEMP_FILENAME)
-	PlayerSave.load_player_data()
-
-
-func load_1b3c_data() -> void:
-	var dir := Directory.new()
-	dir.copy("res://assets/test/turbofat-1b3c.json", "user://%s" % TEMP_FILENAME)
-	PlayerSave.load_player_data()
-
-
-func load_245b_data() -> void:
-	var dir := Directory.new()
-	dir.copy("res://assets/test/turbofat-245b.json", "user://%s" % TEMP_FILENAME)
+	dir.copy("res://assets/test/%s" % filename, "user://%s" % TEMP_FILENAME)
 	PlayerSave.load_player_data()
 
 
@@ -145,7 +115,7 @@ func test_0517_volume() -> void:
 
 
 func test_15d2_rank_success() -> void:
-	load_15d2_data()
+	load_player_data("turbofat-15d2.json")
 	
 	var history_rank_7k: RankResult = PlayerData.level_history.results("rank/7k")[0]
 	
@@ -154,7 +124,7 @@ func test_15d2_rank_success() -> void:
 
 
 func test_163e_lost_erases_success() -> void:
-	load_163e_data()
+	load_player_data("turbofat-163e.json")
 	
 	# rank-6d was a success, and the player didn't lose
 	assert_eq(PlayerData.level_history.results("rank/6d")[0].success, true)
@@ -163,14 +133,14 @@ func test_163e_lost_erases_success() -> void:
 
 
 func test_1682_chat_history_preserved() -> void:
-	load_1682_data()
+	load_player_data("turbofat-1682.json")
 	
 	assert_eq(PlayerData.chat_history.get_chat_age("creatures/primary/boatricia/my_maid_died"), 5)
 	assert_eq(PlayerData.chat_history.get_filler_count("creatures/primary/boatricia"), 13)
 
 
 func test_19c5() -> void:
-	load_19c5_data()
+	load_player_data("turbofat-19c5.json")
 	
 	assert_eq(PlayerData.level_history.successful_levels.has("rank/7k"), true)
 	
@@ -183,7 +153,7 @@ func test_19c5() -> void:
 
 
 func test_1b3c() -> void:
-	load_1b3c_data()
+	load_player_data("turbofat-1b3c.json")
 	
 	# 'survival mode' was renamed to 'marathon mode'
 	assert_true(PlayerData.level_history.level_names().has("practice/marathon_hard"))
@@ -193,7 +163,7 @@ func test_1b3c() -> void:
 
 
 func test_245b() -> void:
-	load_245b_data()
+	load_player_data("turbofat-245b.json")
 	
 	# some levels were made much harder/different, and their scores should be invalidated
 	assert_true(PlayerData.level_history.level_names().has("marsh/pulling_for_everyone"))
