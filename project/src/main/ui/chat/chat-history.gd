@@ -92,7 +92,7 @@ func to_json_dict() -> Dictionary:
 	return {
 		"history_items": chat_history,
 		"counts": chat_counts,
-		"filler_counts": chat_counts,
+		"filler_counts": filler_counts,
 	}
 
 
