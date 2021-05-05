@@ -1,7 +1,7 @@
 class_name ChatFrame
 extends Control
 """
-Window which displays a line of dialog.
+Window which displays a chat line.
 
 The chat window is decorated with objects in the background called 'accents'. These accents can be injected with the
 set_chat_theme_def function to configure the chat window's appearance.
@@ -9,7 +9,7 @@ set_chat_theme_def function to configure the chat window's appearance.
 
 signal pop_out_completed
 
-# emitted after the full dialog chat line is typed out onscreen
+# emitted after the full chat line is typed out onscreen
 signal all_text_shown
 
 # 'true' after pop_in is called, and 'false' after pop_out is called

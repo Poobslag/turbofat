@@ -25,7 +25,7 @@ var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
 # Mapping from creature ids to Creature objects. The player and sensei are omitted from this mapping, as the player
 # can set their own name and it could conflict with overworld creatures.
 #
-# key: creature id as it appears in dialog files
+# key: creature id as it appears in chat files
 # value: Creature object corresponding to the creature id
 var _creatures_by_id := {}
 
@@ -98,7 +98,7 @@ func get_creature_by_id(chat_id: String) -> Creature:
 """
 Loads the chat tree for the currently focused chattable.
 
-Returns a chat tree for the dialog sequence which the player should see.
+Returns a chat tree for the chat sequence which the player should see.
 """
 func load_chat_tree() -> ChatTree:
 	var chat_tree: ChatTree

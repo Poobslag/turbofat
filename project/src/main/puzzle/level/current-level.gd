@@ -88,10 +88,10 @@ func switch_level(new_settings: LevelSettings) -> void:
 """
 Launches a cutscene for the previously specified 'launched level' settings.
 
-A 'cutscene' is a set of dialog and actions, which sometimes need to take place at a specific location. By default,
-the cutscene will only be launched if the level's dialog specifies a location_id, because it's otherwise assumed that
-the level's dialog could just take place wherever the player is currently standing. However, the cutscene can be forced
-to activate with the optional 'force' parameter.
+A 'cutscene' is a set of chat lines and actions, which sometimes need to take place at a specific location. By default,
+the cutscene will only be launched if the level's cutscene specifies a location_id, because it's otherwise assumed that
+the level's cutscene could just take place wherever the player is currently standing. However, the cutscene can be
+forced to activate with the optional 'force' parameter.
 
 Parameters:
 	'force': (Optional) If true, the cutscene will play even if it does not specify a location_id

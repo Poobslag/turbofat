@@ -33,7 +33,7 @@ const STATUS_HARD_LOCK := LockStatus.HARD_LOCK
 
 var level_id: String
 
-# Some levels activate dialog sequences. This field specifies which character's dialog should activate.
+# Some levels activate chat sequences. This field specifies which character's chat should activate.
 var creature_id: String
 
 # Some levels involve specific customers or a specific chef.

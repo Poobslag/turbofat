@@ -18,7 +18,7 @@ extents = Vector2( 24, 12 )
 position = Vector2( 399, 700 )
 script = ExtResource( 1 )
 shadow_scale = 0.4
-chat_path = "res://assets/main/dialog/marsh-crystal.chat"
+chat_path = "res://assets/main/chat/marsh-crystal.chat"
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )

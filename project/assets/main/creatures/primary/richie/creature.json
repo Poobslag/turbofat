@@ -36,7 +36,7 @@
   },
   "chat_selectors": [
     {
-      "dialog": "pomodoro"
+      "chat": "pomodoro"
     }
   ],
   "fatness": 1.4

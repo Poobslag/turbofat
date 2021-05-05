@@ -79,3 +79,14 @@ func test_245b() -> void:
 	assert_false(PlayerData.level_history.level_names().has("marsh/hello_skins"))
 	assert_false(PlayerData.level_history.level_names().has("marsh/pulling_for_skins"))
 	assert_false(PlayerData.level_history.level_names().has("marsh/goodbye_skins"))
+
+
+func test_24cc() -> void:
+	load_player_data("turbofat-24cc.json")
+	
+	assert_eq(PlayerData.chat_history.chat_history.get("chat/level_select"), 10)
+	assert_eq(PlayerData.chat_history.chat_history.get("chat/bort/filler"), 6)
+	assert_eq(PlayerData.chat_history.chat_counts.get("chat"), 77)
+	assert_eq(PlayerData.chat_history.chat_counts.get("chat/bort"), 24)
+	assert_eq(PlayerData.chat_history.filler_counts.get("chat/richie"), 6)
+	assert_eq(PlayerData.chat_history.filler_counts.get("chat/boatricia"), 9)

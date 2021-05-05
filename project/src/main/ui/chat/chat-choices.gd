@@ -1,7 +1,7 @@
 class_name ChatChoices
 extends GridContainer
 """
-Shows buttons corresponding to dialog branches the player can choose.
+Shows buttons corresponding to chat branches the player can choose.
 """
 
 signal chat_choice_chosen(choice_index)
@@ -14,10 +14,10 @@ const TOTAL_POP_IN_DELAY := 0.3
 
 export (PackedScene) var ChatChoiceButtonScene
 
-# Strings to show the player for each dialog branch.
+# Strings to show the player for each chat branch.
 var _choices := []
 
-# Moods corresponding to each dialog branch; -1 for branches with no mood.
+# Moods corresponding to each chat branch; -1 for branches with no mood.
 var _moods := []
 
 func _ready() -> void:
@@ -26,13 +26,13 @@ func _ready() -> void:
 
 
 """
-Repositions the buttons based on the amount of dialog shown.
+Repositions the buttons based on the amount of chat text shown.
 
-If a lot of dialog is displayed, the buttons are flush against the right side of the window and narrow. If less dialog
+If a lot of chat text is displayed, the buttons are flush against the right side of the window and narrow. If less chat
 is displayed, the buttons are closer to the center and wider.
 
 Parameters:
-	'chat_line_size': An enum from ChatTheme.ChatLineSize corresponding to the amount of dialog displayed.
+	'chat_line_size': An enum from ChatTheme.ChatLineSize corresponding to the amount of chat text displayed.
 """
 func reposition(chat_line_size: int) -> void:
 	match chat_line_size:
@@ -48,12 +48,12 @@ func reposition(chat_line_size: int) -> void:
 
 
 """
-Displays a set of buttons corresponding to dialog choices.
+Displays a set of buttons corresponding to chat choices.
 
 Parameters:
-	'choices': Strings to show the player for each dialog branch.
+	'choices': Strings to show the player for each chat branch.
 	
-	'moods': An array of ChatEvent.Mood instances for each dialog branch
+	'moods': An array of ChatEvent.Mood instances for each chat branch
 	
 	'new_columns': (Optional) The number of columns to organize the chat events into.
 """
@@ -160,7 +160,7 @@ func _on_ChatChoiceButton_focus_entered() -> void:
 
 
 func _on_ChatChoiceButton_gui_input(_event: InputEvent) -> void:
-	# swallow input; player shouldn't move when answering dialog prompts
+	# swallow input; player shouldn't move when answering chat prompts
 	get_tree().set_input_as_handled()
 
 

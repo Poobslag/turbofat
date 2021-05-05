@@ -1,16 +1,16 @@
 class_name TutorialMessages
 extends Control
 """
-Shows the sensei's dialog during tutorials.
+Shows the sensei's chat during tutorials.
 """
 
-# emitted after the full dialog chat line is typed out onscreen, and no messages remain in the queue
+# emitted after the full chat line is typed out onscreen, and no messages remain in the queue
 signal all_messages_shown
 
 # huge font used for easter eggs
 var _huge_font := preload("res://src/main/ui/blogger-sans-bold-72.tres")
 
-# normal font used for regular dialog
+# normal font used for regular chat
 var _normal_font := preload("res://src/main/ui/blogger-sans-medium-30.tres")
 
 # Queue of sensei messages which will be shown one at a time after a delay. This can also include empty strings
@@ -30,7 +30,7 @@ func _ready() -> void:
 
 
 """
-Returns 'true' if the full dialog chat line is typed out onscreen, and no messages remain in the queue
+Returns 'true' if the full chat line is typed out onscreen, and no messages remain in the queue
 """
 func is_all_messages_visible() -> bool:
 	return _message_queue.empty() and $Label.is_all_text_visible()

@@ -54,7 +54,7 @@ export (CreatureOrientation.Orientation) var orientation: int setget set_orienta
 # virtual property; value is only exposed through getters/setters
 var creature_def: CreatureDef setget set_creature_def, get_creature_def
 
-# dictionaries containing metadata for which dialog sequences should be launched in which order
+# dictionaries containing metadata for which chat sequences should be launched in which order
 var chat_selectors: Array setget set_chat_selectors
 
 var creature_name: String setget set_creature_name

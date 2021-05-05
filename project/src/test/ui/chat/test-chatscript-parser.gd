@@ -35,7 +35,7 @@ func test_cutscene_spawn_locations() -> void:
 	assert_has(chat_tree.spawn_locations, "bones", "kitchen-7")
 
 
-func test_cutscene_dialog() -> void:
+func test_cutscene_chat() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	var event := chat_tree.get_event()
 	
@@ -72,7 +72,7 @@ func test_cutscene_metadata() -> void:
 	assert_eq(event.meta, ["creature-enter john", "creature-enter jane"])
 
 
-func test_cutscene_self_dialog() -> void:
+func test_cutscene_self_chat() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_META)
 	chat_tree.advance()
 	var event := chat_tree.get_event()
@@ -81,7 +81,7 @@ func test_cutscene_self_dialog() -> void:
 	assert_eq(event.text, "(John isn't wearing a hat. You're not sure what to say.)")
 
 
-func test_chat_dialog() -> void:
+func test_chat_chat() -> void:
 	var chat_tree := _chat_tree_from_file(CHAT_FULL)
 	var event := chat_tree.get_event()
 	

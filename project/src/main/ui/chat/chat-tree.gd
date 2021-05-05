@@ -3,18 +3,18 @@ class_name ChatTree
 Tree of chat events the player can page through.
 
 The tree includes a root node with one or more branches, each of which is associated with a key. Branches can redirect
-to each other by referencing these keys. Dialog starts on the '' (empty string) branch.
+to each other by referencing these keys. Chat lines start on the '' (empty string) branch.
 """
 
 class Position:
 	"""
-	Current position in a dialog tree.
+	Current position in a chat tree.
 	"""
 	
-	# The key of the dialog branch being navigated.
+	# The key of the chat branch being navigated.
 	var key := ""
 	
-	# How far we are along the dialog branch.
+	# How far we are along the chat branch.
 	var index := 0
 	
 	func _to_string() -> String:
@@ -25,9 +25,9 @@ class Position:
 		key = ""
 		index = 0
 
-# Current version for saved dialog data. Should be updated if and only if the dialog format breaks backwards
+# Current version for saved chat data. Should be updated if and only if the chat format breaks backwards
 # compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const DIALOG_DATA_VERSION := "1922"
+const CHAT_DATA_VERSION := "1922"
 
 # Scene paths corresponding to different ChatTree.location_id values
 const LOCATION_SCENE_PATHS_BY_ID := {
@@ -42,8 +42,8 @@ var history_key: String
 var meta: Dictionary
 
 # tree of chat event objects
-# key: dialog id (String)
-# value: array of sequential ChatEvent objects for a particular dialog sequence
+# key: chat id (String)
+# value: array of sequential ChatEvent objects for a particular chat sequence
 var events: Dictionary = {}
 
 # a specific location where this conversation takes place, if any
@@ -56,14 +56,14 @@ var location_id: String
 # value: spawn id
 var spawn_locations: Dictionary = {}
 
-# current position in this dialog tree
+# current position in this chat tree
 var _position := Position.new()
 
 """
-Adds a chat event to a new dialog branch, or appends it to an existing branch.
+Adds a chat event to a new chat branch, or appends it to an existing branch.
 
 Parameters:
-	'key': The key of the dialog branch to append to.
+	'key': The key of the chat branch to append to.
 	
 	'event': The chat event to append.
 """
@@ -87,11 +87,11 @@ This can either involve navigating further down the current branch, or navigatin
 available.
 
 Returns 'true' if the position was advanced successfully, or 'false' if we hit a dead end. A dead end can indicate
-that the dialog cannot be advanced any further and the window should close.
+that the chat tree cannot be advanced any further and the window should close.
 
 Parameters:
-	'link_index': Which dialog branch to follow. This parameter is optional, and is ignored if the dialog does not
-			branch.
+	'link_index': Which chat branch to follow. This parameter is optional, and is ignored if the chat tree does not
+		branch.
 """
 func advance(link_index := -1) -> bool:
 	var did_increment := false

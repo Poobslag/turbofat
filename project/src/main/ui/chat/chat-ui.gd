@@ -1,17 +1,17 @@
 extends Control
 """
-Displays UI elements for a dialog sequence.
+Displays UI elements for a chat sequence.
 """
 
 signal popped_in
 signal chat_event_played(chat_event)
 
-# emitted when we present the player with a dialog choice
+# emitted when we present the player with a chat choice
 signal showed_choices
 signal chat_choice_chosen(choice_index)
 signal pop_out_completed
 
-# how long the player needs to hold the button to skip all dialog
+# how long the player needs to hold the button to skip all chat lines
 const HOLD_TO_SKIP_DURATION := 0.6
 
 # how long the player has been holding the 'interact' button
@@ -69,7 +69,7 @@ func _handle_rewind_action(event: InputEvent) -> void:
 """
 Process the result of the player pressing the 'advance' button.
 
-The player can tap the advance button to make dialog appear faster or advance to the next line. They can hold the
+The player can tap the advance button to make chat lines appear faster or advance to the next line. They can hold the
 advance button to continuously advance the text.
 """
 func _handle_advance_action(event: InputEvent) -> void:
@@ -95,7 +95,7 @@ Displays the current chat event to the player.
 """
 func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 	if _chat_advancer.rewinding_text or _chat_choices.is_showing_choices():
-		# if we're asked to rewind or play more dialog without picking a choice, hide the choices
+		# if we're asked to rewind or play more chat lines without picking a choice, hide the choices
 		_chat_choices.hide_choices()
 	
 	# reposition the nametags for whether the characters are on the left or right side

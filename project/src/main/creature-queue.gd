@@ -67,7 +67,7 @@ func clear() -> void:
 
 
 """
-Resets the queue of secondary creatures; recognizable characters who show up now and then, but don't have any dialog or
+Resets the queue of secondary creatures; recognizable characters who show up now and then, but don't have any chats or
 levels
 
 This resets the queue_index to 0, and moves the beginning of the queue to the end.

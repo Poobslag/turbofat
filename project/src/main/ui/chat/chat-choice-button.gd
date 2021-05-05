@@ -1,7 +1,7 @@
 class_name ChatChoiceButton
 extends Button
 """
-Shows a button corresponding to a dialog branch the player can choose.
+Shows a button corresponding to a chat branch the player can choose.
 """
 
 # emitted after pop_choose() is invoked and the animation completes
@@ -18,7 +18,7 @@ func _ready() -> void:
 
 
 """
-Sets the text corresponding to the dialog branch.
+Sets the text corresponding to the chat branch.
 
 This is distinct from the button's 'text' property. We don't use the button's 'text' property because button text
 cannot wrap.
