@@ -2,7 +2,7 @@ extends CheckBox
 """
 UI control for toggling whether or not the protagonists have very long names.
 
-This is useful for preventing bugs where a player with a long name causes text to overrun the dialog box.
+This is useful for preventing bugs where a player with a long name causes text to overrun the chat window.
 """
 
 # long name to substitute for the creature_name field

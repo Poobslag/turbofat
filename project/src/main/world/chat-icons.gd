@@ -40,7 +40,7 @@ func _on_Chattable_tree_exited(chat_icon: ChatIcon) -> void:
 """
 After the player talks to a creature we change their speech bubble.
 
-Repeat dialog is treated as a 'drive by chat' so it's given the drive by speech bubble.
+A repeat chat is treated as a 'drive by chat' so it's given the drive by speech bubble.
 """
 func _on_OverworldUi_chat_cached(focused_chattable: Node2D) -> void:
 	var chat_icon: ChatIcon = _chat_icon_by_chattable.get(focused_chattable, null)

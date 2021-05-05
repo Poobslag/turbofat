@@ -1,6 +1,6 @@
 class_name ChatscriptParser
 """
-Parsers a chatscript (.chat) file containing cutscene or dialog data.
+Parsers a chatscript (.chat) file containing a cutscene or lines of chat.
 
 This class is stateful and intended to be used once and thrown away. If it is reused, the previously parsed chat_tree
 will be erased.
@@ -9,7 +9,7 @@ will be erased.
 """
 Tracks the state for the parser.
 
-The ChatscriptParser has different states based on whether it's parsing dialog, characters, locations, or something
+The ChatscriptParser has different states based on whether it's parsing chat, characters, locations, or something
 else.
 """
 class AbstractState:
@@ -32,7 +32,7 @@ Mostly contains logic for transitioning into other states.
 """
 class DefaultState extends AbstractState:
 	
-	var dialog_state: AbstractState
+	var chat_state: AbstractState
 	
 	func _init(init_chat_tree: ChatTree).(init_chat_tree) -> void:
 		pass
@@ -55,9 +55,9 @@ class DefaultState extends AbstractState:
 			# state name; update state
 			result = line.trim_prefix("[").trim_suffix("]")
 		else:
-			# unrecognized text; parse as dialog and change state
-			result = dialog_state.line(line)
-			result = StringUtils.default_if_empty(result, DIALOG)
+			# unrecognized text; parse as chat lines and change state
+			result = chat_state.line(line)
+			result = StringUtils.default_if_empty(result, CHAT)
 		return result
 
 # -----------------------------------------------------------------------------
@@ -91,14 +91,14 @@ Parser state for parsing character data (participants in a conversation).
 """
 class CharactersState extends AbstractState:
 	
-	# Creature aliases used in chatscript dialog. DialogState references this dictionary when parsing dialog.
+	# Creature aliases used in chatscript chat lines. ChatState references this dictionary when parsing chat lines.
 	#
 	# key: creature id
-	# value: alias used in chatscript dialog
+	# value: alias used in chatscript chat lines
 	var _character_aliases: Dictionary
 	
-	func _init(init_chat_tree: ChatTree, init_dialog_aliases: Dictionary).(init_chat_tree) -> void:
-		_character_aliases = init_dialog_aliases
+	func _init(init_chat_tree: ChatTree, init_chat_aliases: Dictionary).(init_chat_tree) -> void:
+		_character_aliases = init_chat_aliases
 	
 	
 	func line(line: String) -> String:
@@ -132,14 +132,15 @@ class CharactersState extends AbstractState:
 # -----------------------------------------------------------------------------
 
 """
-Parser state for parsing dialog data (chat events and branches)
+Parser state for parsing chat lines (chat events and branches)
 """
-class DialogState extends AbstractState:
+class ChatState extends AbstractState:
 	
-	# Creature aliases used in chatscript dialog. CharactersState populates this dictionary when parsing characters.
+	# Creature aliases used in chatscript chat lines. CharactersState populates this dictionary when parsing
+	# characters.
 	#
 	# key: creature id
-	# value: alias used in chatscript dialog
+	# value: alias used in chatscript chat lines
 	var _character_aliases: Dictionary
 	
 	# The current chat event being parsed. Any parsed metadata and links will be attached to this event.
@@ -148,8 +149,8 @@ class DialogState extends AbstractState:
 	# The current branch key being parsed. Any additional chat events will be attached to this branch.
 	var _branch_key := ""
 	
-	func _init(init_chat_tree: ChatTree, init_dialog_aliases: Dictionary).(init_chat_tree) -> void:
-		_character_aliases = init_dialog_aliases
+	func _init(init_chat_tree: ChatTree, init_chat_aliases: Dictionary).(init_chat_tree) -> void:
+		_character_aliases = init_chat_aliases
 	
 	
 	"""
@@ -171,7 +172,7 @@ class DialogState extends AbstractState:
 		if line:
 			if line.begins_with("["):
 				if _event:
-					_parse_dialog_link(line)
+					_parse_chat_link(line)
 				else:
 					_parse_branch_key(line)
 			elif line.begins_with("("):
@@ -179,7 +180,7 @@ class DialogState extends AbstractState:
 			elif line.begins_with(" ("):
 				_parse_meta(line)
 			else:
-				_parse_dialog_line(line)
+				_parse_chat_line(line)
 		else:
 			_event = null
 		return result
@@ -189,9 +190,9 @@ class DialogState extends AbstractState:
 	Syntax:
 		s: ^_^ Oh okay cool!
 	"""
-	func _parse_dialog_line(line: String) -> void:
+	func _parse_chat_line(line: String) -> void:
 		if not ": " in line:
-			push_warning("Malformed dialog line: %s" % [line])
+			push_warning("Malformed chat line: %s" % [line])
 			return
 		
 		_event = ChatEvent.new()
@@ -218,10 +219,10 @@ class DialogState extends AbstractState:
 	Syntax:
 		[very-good] I think you killed it!
 	"""
-	func _parse_dialog_link(line: String) -> void:
+	func _parse_chat_link(line: String) -> void:
 		# add branch to _event
 		if not line.begins_with("[") or not "]" in line:
-			push_warning("Malformed dialog link: %s" % [line])
+			push_warning("Malformed chat link: %s" % [line])
 			return
 		
 		var branch_name := StringUtils.substring_between(line, "[", "]").strip_edges()
@@ -236,7 +237,7 @@ class DialogState extends AbstractState:
 	"""
 	func _parse_branch_key(line: String) -> void:
 		if not line.begins_with("[") or not line.ends_with("]"):
-			push_warning("Malformed dialog branch: %s" % [line])
+			push_warning("Malformed chat branch: %s" % [line])
 			return
 		
 		_branch_key = line.trim_prefix("[").trim_suffix("]")
@@ -302,11 +303,11 @@ class DialogState extends AbstractState:
 
 # -----------------------------------------------------------------------------
 
-# Current version for saved chatscript data. Should be updated if and only if the dialog format breaks backwards
+# Current version for saved chatscript data. Should be updated if and only if the chat format breaks backwards
 # compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
 const CHATSCRIPT_VERSION := "2476"
 
-# Emoticons which can appear at the start of a dialog line to define its mood
+# Emoticons which can appear at the start of a chat line to define its mood
 const MOOD_PREFIXES := {
 	"._.": ChatEvent.Mood.DEFAULT,
 	"<_<": ChatEvent.Mood.AWKWARD0,
@@ -348,9 +349,9 @@ const MOOD_PREFIXES := {
 const DEFAULT := "default"
 const LOCATION := "location"
 const CHARACTERS := "characters"
-const DIALOG := "dialog"
+const CHAT := "chat"
 
-# key: parser state name such as 'default', 'location', 'characters', 'dialog'
+# key: parser state name such as 'default', 'location', 'characters', 'chat'
 # value: AbstractState
 var _states_by_name: Dictionary
 
@@ -359,7 +360,7 @@ var _chat_tree := ChatTree.new()
 var _state: AbstractState
 
 # key: creature id
-# value: alias used in chatscript dialog
+# value: alias used in chatscript chat lines
 var _character_aliases := {}
 
 func _init() -> void:
@@ -367,9 +368,9 @@ func _init() -> void:
 		DEFAULT: DefaultState.new(_chat_tree),
 		CHARACTERS: CharactersState.new(_chat_tree, _character_aliases),
 		LOCATION: LocationState.new(_chat_tree),
-		DIALOG: DialogState.new(_chat_tree, _character_aliases),
+		CHAT: ChatState.new(_chat_tree, _character_aliases),
 	}
-	_states_by_name[DEFAULT].dialog_state = _states_by_name[DIALOG]
+	_states_by_name[DEFAULT].chat_state = _states_by_name[CHAT]
 	_state = _states_by_name[DEFAULT]
 
 

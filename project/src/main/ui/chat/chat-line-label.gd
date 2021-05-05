@@ -7,7 +7,7 @@ Text appears a letter at a time at a constant rate. Newlines cause a long pause.
 hidden from the player. Slashes are referred to 'lull characters' throughout the code.
 """
 
-# emitted after the full dialog chat line is typed out onscreen
+# emitted after the full chat line is typed out onscreen
 signal all_text_shown
 
 # How many seconds to delay when displaying a character.

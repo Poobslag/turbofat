@@ -34,9 +34,6 @@
     "accent_texture": 13,
     "color": "ffbfcb"
   },
-  "chat_selectors": [
-
-  ],
   "fatness": 1.1,
   "weight_gain_scale": 1,
   "metabolism_scale": 1

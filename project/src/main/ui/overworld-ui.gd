@@ -12,10 +12,10 @@ signal chat_ended
 # emitted when we launch a creature's talk animation
 signal chatter_talked(chatter)
 
-# emitted when the player talks to a creature for the first time, caching their dialog
+# emitted when the player talks to a creature for the first time, caching their chat
 signal chat_cached(chattable)
 
-# emitted when we present the player with a dialog choice
+# emitted when we present the player with a chat choice
 signal showed_chat_choices
 
 # Characters involved in the current conversation. This includes the player, sensei and any other participants. We
@@ -27,13 +27,13 @@ var cutscene := false
 
 var _show_version := true setget set_show_version, is_show_version
 
-# These two fields store details for the upcoming level. We store the level details during the dialog sequence
-# and launch the level when the dialog window closes.
+# These two fields store details for the upcoming level. We store the level details during the chat sequence
+# and launch the level when the chat window closes.
 var _current_chat_tree: ChatTree
 var _next_chat_tree: ChatTree
 
-# A cache of ChatTree objects representing dialog the player's seen since this scene was loaded. This prevents the
-# player from cycling through the dialog over and over if you talk to a creature multiple times repetitively.
+# A cache of ChatTree objects representing chat the player's seen since this scene was loaded. This prevents the
+# player from cycling through the chat over and over if you talk to a creature multiple times repetitively.
 var _chat_tree_cache: Dictionary
 
 func _ready() -> void:
@@ -224,7 +224,7 @@ func _on_ChatUi_pop_out_completed() -> void:
 			# don't launch the level; go back to CutsceneDemo after playing the cutscene
 			SceneTransition.pop_trail()
 		elif CurrentLevel.level_state == CurrentLevel.LevelState.BEFORE:
-			# pre-level dialog or pre-level cutscene finished playing
+			# pre-level chat or pre-level cutscene finished playing
 			
 			if cutscene:
 				# remove redundant overworld cutscenes from the breadcrumb trail

@@ -178,13 +178,6 @@ static func capitalize_words(string: String) -> String:
 
 
 """
-Removes a substring only if it is at the beginning of a source string, otherwise returns the source string.
-"""
-static func remove_start(string: String, remove: String) -> String:
-	return string.trim_prefix(remove)
-
-
-"""
 Returns an english representation of a number suitable for a message.
 
 This is useful for messages like 'You need to beat three more levels' or 'You need 3,125 more points.' We don't want to

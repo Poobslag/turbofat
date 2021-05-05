@@ -27,7 +27,7 @@ func play_chat_tree(new_chat_tree: ChatTree) -> void:
 
 
 """
-Rewind to a previously shown dialog line.
+Rewind to a previously shown chat line.
 """
 func rewind() -> void:
 	var did_decrement := false
@@ -49,10 +49,10 @@ func rewind() -> void:
 
 
 """
-Advance to the next dialog line.
+Advance to the next chat line.
 
-This is most likely the next spoken dialog line if the player is advancing dialog normally. However, it can also be a
-historical dialog line if the player was rewinding dialog.
+This is most likely the next spoken chat line if the player is advancing chat normally. However, it can also be a
+historical chat line if the player was rewinding chat.
 """
 func advance() -> void:
 	var did_increment := false
@@ -62,7 +62,7 @@ func advance() -> void:
 			_prev_chat_event_index += 1
 			did_increment = true
 		else:
-			# done rewinding; back to current dialog
+			# done rewinding; back to current chat
 			rewinding_text = false
 	
 	if not rewinding_text:
@@ -89,7 +89,7 @@ func current_chat_event() -> ChatEvent:
 
 
 """
-Returns 'true' if we're at a dialog branch and should prompt the player.
+Returns 'true' if we're at a chat branch and should prompt the player.
 """
 func should_prompt() -> bool:
 	var result := true
@@ -116,11 +116,11 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 
 func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:
 	if rewinding_text:
-		# The player rewound, advanced to a dialog prompt and chose an answer. Remove them from the rewind state.
+		# The player rewound, advanced to a chat choice and chose a response. Remove them from the rewind state.
 		rewinding_text = false
 	var did_increment := chat_tree.advance(choice_index)
 	if did_increment:
-		# show the next dialog line to the player
+		# show the next chat line to the player
 		emit_signal("chat_event_shown", current_chat_event())
 	else:
 		emit_signal("chat_finished")

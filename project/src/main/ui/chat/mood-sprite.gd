@@ -3,7 +3,7 @@ extends Control
 Shows a little 'happy face' icon next to each chat choice.
 """
 
-# the location of the mood icon; the right or left side of the dialog window
+# the location of the mood icon; the right or left side of the chat window
 export (bool) var mood_right: bool setget set_mood_right
 
 var textures := {

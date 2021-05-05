@@ -1,6 +1,6 @@
 class_name CreatureDef
 """
-Stores information about a creature such as their name, appearance, and dialog.
+Stores information about a creature such as their name, appearance, and chat lines.
 """
 
 const CREATURE_DATA_VERSION := "19dd"
@@ -58,7 +58,7 @@ var dna: Dictionary
 # defines the chat window's appearance, such as 'blue', 'soccer balls' and 'giant'.
 var chat_theme_def: Dictionary
 
-# dictionaries containing metadata for which dialog sequences should be launched in which order
+# dictionaries containing metadata for which chat sequences should be launched in which order
 var chat_selectors: Array
 
 # how fat the creature's body is; 5.0 = 5x normal size
@@ -85,7 +85,7 @@ func from_json_dict(json: Dictionary) -> void:
 			"170e":
 				# old save data might have an empty array; we need to overwrite this with an empty dictionary to avoid
 				# type issues
-				json["dialog"] = {}
+				json["chat"] = {}
 				version = "187d"
 			_:
 				push_warning("Unrecognized creature data version: '%s'" % json.get("version"))
@@ -103,7 +103,7 @@ func from_json_dict(json: Dictionary) -> void:
 
 
 func to_json_dict() -> Dictionary:
-	return {
+	var result := {
 		"version": CREATURE_DATA_VERSION,
 		"id": creature_id,
 		"name": creature_name,
@@ -115,6 +115,10 @@ func to_json_dict() -> Dictionary:
 		"weight_gain_scale": weight_gain_scale,
 		"metabolism_scale": metabolism_scale,
 	}
+	if not result.get("chat_selectors"):
+		# avoid exporting empty chat_selectors dictionary
+		result.erase("chat_selectors")
+	return result
 
 
 """

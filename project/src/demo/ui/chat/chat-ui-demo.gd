@@ -1,14 +1,14 @@
 extends Control
 """
-A demo which lets you test the chat UI by flipping through pages of dialog.
+A demo which lets you test the chat UI by flipping through pages of a chat.
 
 Keys:
 	[0-9]: Changes chat line length; 1 = short, 9 = long, 0 = longest
 	[Control + 0-9]: Changes response length; 1 = short, 9 = long, 0 = longest
 	[Q, W, E]: Shows questions with more and more options.
-	[R]: Shows a dialog tree missing a lot of chat lines.
-	[T]: Shows a dialog tree showing off the different moods.
-	[A]: Shows a dialog line with no choices.
+	[R]: Shows a chat tree missing a lot of chat lines.
+	[T]: Shows a chat tree showing off the different moods.
+	[A]: Shows a chat line with no choices.
 """
 
 const FRUITS := [

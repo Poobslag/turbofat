@@ -1,9 +1,9 @@
 extends Node
 """
-Loads dialog from files.
+Loads chat lines from files.
 
-Dialog is stored as a set of chatscript resources. This class loads those resources into ChatTree instances so they can
-be fed into the UI.
+Chat lines are stored as a set of chatscript resources. This class loads those resources into ChatTree instances so
+they can be fed into the UI.
 """
 
 const CHAT_EXTENSION := ".chat"
@@ -29,7 +29,7 @@ func chat_tree_for_creature(creature: Creature, forced_level_id: String = "") ->
 	var chat_tree := chat_tree_for_creature_def(creature.creature_def, state)
 
 	if level_id:
-		# schedule a level to launch when the dialog completes
+		# schedule a level to launch when the chat completes
 		CurrentLevel.set_launched_level(level_id)
 
 	return chat_tree
@@ -54,11 +54,11 @@ Returns null if the chat tree cannot be found.
 func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) -> ChatTree:
 	var creature_id := creature_def.creature_id
 	var filler_ids := filler_ids_for_creature(creature_id)
-	var chosen_dialog := choose_dialog_from_chat_selectors(creature_def.chat_selectors, state, filler_ids)
+	var chosen_chat := select_from_chat_selectors(creature_def.chat_selectors, state, filler_ids)
 
-	var chat_tree := chat_tree_for_chat_id(creature_def, chosen_dialog)
-	if not chat_tree and has_preroll(chosen_dialog):
-		chat_tree = chat_tree_for_preroll(chosen_dialog)
+	var chat_tree := chat_tree_for_chat_id(creature_def, chosen_chat)
+	if not chat_tree and has_preroll(chosen_chat):
+		chat_tree = chat_tree_for_preroll(chosen_chat)
 
 	return chat_tree
 
@@ -70,8 +70,8 @@ Returns null if the chat tree cannot be found.
 """
 func chat_tree_for_chat_id(creature_def: CreatureDef, chat_id: String) -> ChatTree:
 	var chat_tree: ChatTree
-	if FileUtils.file_exists(_creature_dialog_path(creature_def.creature_id, chat_id)):
-		chat_tree = chat_tree_from_file(_creature_dialog_path(creature_def.creature_id, chat_id))
+	if FileUtils.file_exists(_creature_chat_path(creature_def.creature_id, chat_id)):
+		chat_tree = chat_tree_from_file(_creature_chat_path(creature_def.creature_id, chat_id))
 	return chat_tree
 
 
@@ -118,8 +118,8 @@ func chat_icon_for_creature(creature: Creature) -> int:
 		# filler/speech icon for normal conversations
 		var state := _creature_chat_state(creature.creature_id)
 		var filler_ids := filler_ids_for_creature(creature.creature_id)
-		var chosen_dialog := choose_dialog_from_chat_selectors(creature.chat_selectors, state, filler_ids)
-		result = ChatIcon.FILLER if filler_ids.has(chosen_dialog) else ChatIcon.SPEECH
+		var chosen_chat := select_from_chat_selectors(creature.chat_selectors, state, filler_ids)
+		result = ChatIcon.FILLER if filler_ids.has(chosen_chat) else ChatIcon.SPEECH
 	
 	return result
 
@@ -137,12 +137,12 @@ func chat_tree_from_file(path: String) -> ChatTree:
 
 
 """
-Calculates the dialog id for the current conversation.
+Calculates the chat id for the current conversation.
 
 This method goes through a creature's chat selectors until it finds one suitable for the current game state. If none
 are found, it returns a filler conversation instead.
 """
-func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary, filler_ids: Array) -> String:
+func select_from_chat_selectors(chat_selectors: Array, state: Dictionary, filler_ids: Array) -> String:
 	var creature_id: String = state.get("creature_id", "")
 	var result: String
 	
@@ -158,7 +158,7 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 			var chat_selector: Dictionary = chat_selector_obj
 
 			var repeat_age: int = chat_selector.get("repeat", 25)
-			var history_key := "dialog/%s/%s" % [creature_id, chat_selector["dialog"]]
+			var history_key := "chat/%s/%s" % [creature_id, chat_selector["chat"]]
 			var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
 			if chat_age < repeat_age:
 				# skip; we've had this conversation too recently
@@ -174,8 +174,8 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 				# skip; one or more if conditions weren't met
 				continue
 
-			# success; return the current chat selector's dialog
-			result = chat_selector["dialog"]
+			# success; return the current chat selector's chat
+			result = chat_selector["chat"]
 			break
 	
 	if not result:
@@ -183,7 +183,7 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 		var result_chat_age: int
 		
 		for filler_id in filler_ids:
-			var history_key := "dialog/%s/%s" % [creature_id, filler_id]
+			var history_key := "chat/%s/%s" % [creature_id, filler_id]
 			var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
 			if not result or chat_age > result_chat_age:
 				# found an older filler conversation; replace the current result
@@ -197,9 +197,9 @@ func choose_dialog_from_chat_selectors(chat_selectors: Array, state: Dictionary,
 
 
 """
-Returns the dialog filler IDs for the specified creature.
+Returns the chat filler IDs for the specified creature.
 
-Examines the creature's dialog and resource files, and returns any dialog ids with names like 'filler_014'.
+Examines the creature's chat and resource files, and returns any chat ids with names like 'filler_014'.
 """
 func filler_ids_for_creature(creature_id: String) -> Array:
 	var filler_ids := []
@@ -217,7 +217,7 @@ func filler_ids_for_creature(creature_id: String) -> Array:
 """
 Add lull characters to the specified string.
 
-Lull characters make the chat UI briefly pause at parts of the dialog. We add these after periods, commas and other
+Lull characters make the chat UI briefly pause at parts of the chat line. We add these after periods, commas and other
 punctuation.
 """
 func add_lull_characters(s: String) -> String:
@@ -266,7 +266,7 @@ func add_mega_lull_characters(s: String) -> String:
 	return transformer.transformed
 
 
-func _creature_dialog_path(creature_id: String, chat_id: String) -> String:
+func _creature_chat_path(creature_id: String, chat_id: String) -> String:
 	return "res://assets/main/creatures/primary/%s/%s%s" % [creature_id, chat_id.replace("_", "-"), CHAT_EXTENSION]
 
 
@@ -285,7 +285,7 @@ func _chat_tree_from_chatscript_file(path: String) -> ChatTree:
 	var history_key := path
 	history_key = history_key.trim_suffix(".chat")
 	history_key = history_key.trim_prefix("res://assets/main/")
-	history_key = history_key.replace("creatures/primary", "dialog")
+	history_key = history_key.replace("creatures/primary", "chat")
 	history_key = history_key.replace("-", "_")
 	chat_tree.history_key = history_key
 	

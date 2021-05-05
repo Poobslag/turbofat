@@ -28,18 +28,18 @@
   },
   "chat_selectors": [
     {
-      "dialog": "hi",
+      "chat": "hi",
       "repeat": 999999
     },
     {
-      "dialog": "my_maid_died",
+      "chat": "my_maid_died",
       "if_conditions": [
         "notable_chat"
       ],
       "repeat": 999999
     },
     {
-      "dialog": "life_is_so_short",
+      "chat": "life_is_so_short",
       "if_conditions": [
         "notable_chat"
       ],

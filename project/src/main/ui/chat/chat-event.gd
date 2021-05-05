@@ -36,7 +36,7 @@ enum Mood {
 # The name of the person speaking, or blank if nobody is speaking
 var who := ""
 
-# The line of dialog
+# The chat line
 var text: String
 
 # The behavior the chatter should perform while saying the text (laughing, sweating, etc)
@@ -48,7 +48,7 @@ var meta: Array
 # List of string keys corresponding to branches off of this chat event.
 var links: Array
 
-# List of dialog strings corresponding to branches off of this chat event.
+# List of chat strings corresponding to branches off of this chat event.
 var link_texts: Array
 
 """
