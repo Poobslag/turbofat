@@ -92,19 +92,8 @@ Parameters:
 	'food_type': An enum from FoodType corresponding to the food to show
 """
 func feed_creature(customer: Creature, food_type: int) -> void:
-	if customer.creature_id == CreatureLibrary.SENSEI_ID:
-		# tutorial sensei doesn't become comfortable
-		pass
-	else:
-		var comfort := 0.0
-		# ate five things; comfortable
-		comfort += clamp(inverse_lerp(5, 15, PuzzleScore.combo), 0.0, 1.0)
-		# starting to overeat; less comfortable
-		comfort -= clamp(inverse_lerp(400, 600, PuzzleScore.get_creature_score()), 0.0, 1.0)
-		# overate; uncomfortable
-		comfort -= clamp(inverse_lerp(600, 1200, PuzzleScore.get_creature_score()), 0.0, 1.0)
-		customer.set_comfort(comfort)
-	
+	var new_comfort := customer.score_to_comfort(PuzzleScore.combo, PuzzleScore.get_creature_score())
+	customer.set_comfort(new_comfort)
 	customer.feed(food_type)
 
 

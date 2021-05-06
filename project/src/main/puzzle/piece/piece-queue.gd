@@ -217,10 +217,10 @@ func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 """
 Returns 'true' if the specified array has the same piece back-to-back.
 """
-func _has_duplicate_pieces(pieces: Array) -> bool:
+func _has_duplicate_pieces(in_pieces: Array) -> bool:
 	var result := false
-	for i in range(pieces.size() - 1):
-		if pieces[i].type == pieces[i + 1].type:
+	for i in range(in_pieces.size() - 1):
+		if in_pieces[i].type == in_pieces[i + 1].type:
 			result = true
 			break
 	return result
@@ -273,9 +273,10 @@ Parameters:
 	
 	'from_index': The lowest position to check in the piece queue.
 """
-static func non_adjacent_indexes(pieces: Array, piece_type: PieceType, from_index: int = 0) -> Array:
+static func non_adjacent_indexes(in_pieces: Array, piece_type: PieceType, from_index: int = 0) -> Array:
 	var result := []
-	for i in range(from_index, pieces.size() + 1):
-		if (i == 0 or piece_type != pieces[i - 1].type) and (i >= pieces.size() or piece_type != pieces[i].type):
+	for i in range(from_index, in_pieces.size() + 1):
+		if (i == 0 or piece_type != in_pieces[i - 1].type) \
+				and (i >= in_pieces.size() or piece_type != in_pieces[i].type):
 			result.append(i)
 	return result

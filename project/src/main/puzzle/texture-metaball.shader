@@ -39,7 +39,7 @@ vec3 hsv2rgb_smooth(in vec3 c) {
 	return c.z * mix(vec3(1.0), rgb, c.y);
 }
 
-float perlin_noise(in vec2 p) {
+float get_noise_2d(in vec2 p) {
 	return textureLod(noise, p * 0.125, 2.0).x;
 }
 
@@ -72,9 +72,9 @@ void fragment() {
 	frosting_color.a = smoothstep(0.76, 0.80, frosting_color.a);
 	
 	// calculate rainbow metaball color
-	vec2 uv2 = UV + perlin_noise(0.6 * vec2(UV.x + 38.913 + TIME * 0.010, UV.y + 81.975 + TIME * DISTORTION_SPEED));
+	vec2 uv2 = UV + get_noise_2d(0.6 * vec2(UV.x + 38.913 + TIME * 0.010, UV.y + 81.975 + TIME * DISTORTION_SPEED));
 	uv2 = uv2 + vec2(TIME * SCROLL_SPEED, 0.0);
-	float f = perlin_noise(2.0 * uv2);
+	float f = get_noise_2d(2.0 * uv2);
 	f = (f + TIME * CYCLE_SPEED) * 2.0;
 	f = stepify_hue(f);
 	rainbow_color.rgb = hsv2rgb_smooth(vec3(f, 1.0, 1.0));

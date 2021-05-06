@@ -49,17 +49,17 @@ void vertex() {
 }
 
 // returns a number evenly distributed in the range [0.0, 1.0) based on simplex noise
-float noise(vec2 p) {
+float get_noise_2d(vec2 p) {
 	return textureLod(noise_texture, p, 2.0).r;
 }
 
 vec4 goop_color() {
 	vec2 uv0 = local * SQUASH_FACTOR / vec2(textureSize(noise_texture, 0));
 	vec2 uv1 = uv0 + vec2(38.913, 81.975) + time * SCROLL_SPEED;
-	vec2 uv2 = uv0 * vec2(4.0, 4.0) + noise(1.2 * uv1) + vec2(time * DISTORTION_SPEED, 0.0);
+	vec2 uv2 = uv0 * vec2(4.0, 4.0) + get_noise_2d(1.2 * uv1) + vec2(time * DISTORTION_SPEED, 0.0);
 
 	// calculate a number evenly distributed in the range [0.0, 1.0) based on noise
-	float f = noise(0.3 * uv2 / vec2(8.0, 8.0));
+	float f = get_noise_2d(0.3 * uv2 / vec2(8.0, 8.0));
 	f = fract((f + time * CYCLE_SPEED) * 8.0);
 
 	// stepify the number into a wave_amount; when wave_amount is near 1.0 we mix in the wave_color
