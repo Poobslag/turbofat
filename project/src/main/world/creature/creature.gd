@@ -74,6 +74,7 @@ var box_feed_count := 0
 var min_fatness := 1.0
 
 # how fast the creature should gain weight during a puzzle. 4.0x = four times faster than normal.
+# 0.0 = creature does not gain weight
 var weight_gain_scale := 1.0
 
 # how fast the creature should lose weight between puzzles. 0.25x = four times slower than normal.
@@ -122,6 +123,8 @@ func _ready() -> void:
 	creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
 	creature_visuals.connect("talking_changed", self, "_on_CreatureVisuals_talking_changed")
 	creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
+	
+	SceneTransition.connect("fade_in_started", self, "_on_SceneTransition_fade_in_started")
 	
 	_fade_tween.connect("tween_all_completed", self, "_on_FadeTween_tween_all_completed")
 	if creature_id:
@@ -588,20 +591,43 @@ Converts a score in the range [0.0, 5000.0] to a fatness in the range [1.0, 10.0
 """
 func score_to_fatness(in_score: float) -> float:
 	var result: float
-	if creature_id == CreatureLibrary.SENSEI_ID:
+	if weight_gain_scale == 0.0:
 		# tutorial sensei doesn't gain weight
 		result = base_fatness
 	else:
-		result = sqrt(1 + in_score / (50.0 / weight_gain_scale))
+		result = sqrt(1 + in_score * weight_gain_scale / 50.0)
 	return result
+
+
+func score_to_comfort(combo: float, creature_score: float) -> float:
+	var comfort := 0.0
+	if weight_gain_scale == 0.0:
+		# tutorial sensei doesn't become comfortable
+		pass
+	else:
+		# ate five things; comfortable
+		comfort += clamp(inverse_lerp(5, 15, combo), 0.0, 1.0)
+		# starting to overeat; less comfortable
+		comfort -= clamp(inverse_lerp(400, 600, creature_score * weight_gain_scale), 0.0, 1.0)
+		# overate; uncomfortable
+		comfort -= clamp(inverse_lerp(600, 1200, creature_score * weight_gain_scale), 0.0, 1.0)
+	return comfort
 
 
 """
 Converts the creature's fatness in the range [1.0, 10.0] to a score in the range [0.0, 5000.0]
 """
 func fatness_to_score(in_fatness: float) -> float:
-	return (50 / weight_gain_scale) * (pow(in_fatness, 2) - 1)
+	return (50 / max(weight_gain_scale, 0.01)) * (pow(in_fatness, 2) - 1)
 
 
 func _on_CreatureVisuals_talking_changed() -> void:
 	emit_signal("talking_changed")
+
+
+"""
+When a new scene is loaded, creatures fade in. This conceals visual glitches as their body parts load.
+"""
+func _on_SceneTransition_fade_in_started() -> void:
+	visible = false
+	fade_in()
