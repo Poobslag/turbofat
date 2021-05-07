@@ -206,7 +206,7 @@ func filler_ids_for_creature(creature_id: String) -> Array:
 	for i in range(0, 1000):
 		var filler_id := "filler_%03d" % i
 		var chat_path := "res://assets/main/creatures/primary/%s/%s%s" % \
-				[creature_id, filler_id.replace("_", "-"), CHAT_EXTENSION]
+				[creature_id, StringUtils.underscores_to_hyphens(filler_id), CHAT_EXTENSION]
 		if FileUtils.file_exists(chat_path):
 			filler_ids.append(filler_id)
 		else:
@@ -267,7 +267,8 @@ func add_mega_lull_characters(s: String) -> String:
 
 
 func _creature_chat_path(creature_id: String, chat_id: String) -> String:
-	return "res://assets/main/creatures/primary/%s/%s%s" % [creature_id, chat_id.replace("_", "-"), CHAT_EXTENSION]
+	return "res://assets/main/creatures/primary/%s/%s%s" % \
+			[creature_id, StringUtils.underscores_to_hyphens(chat_id), CHAT_EXTENSION]
 
 
 """
@@ -286,7 +287,7 @@ func _chat_tree_from_chatscript_file(path: String) -> ChatTree:
 	history_key = history_key.trim_suffix(".chat")
 	history_key = history_key.trim_prefix("res://assets/main/")
 	history_key = history_key.replace("creatures/primary", "chat")
-	history_key = history_key.replace("-", "_")
+	history_key = StringUtils.hyphens_to_underscores(history_key)
 	chat_tree.history_key = history_key
 	
 	return chat_tree
@@ -314,9 +315,9 @@ func _creature_chat_state(creature_id: String, forced_level_id: String = "") -> 
 
 func _preroll_path(level_id: String) -> String:
 	return "res://assets/main/puzzle/levels/cutscenes/%s-%s%s" % \
-			[level_id.replace("_", "-"), PREROLL_SUFFIX, CHAT_EXTENSION]
+			[StringUtils.underscores_to_hyphens(level_id), PREROLL_SUFFIX, CHAT_EXTENSION]
 
 
 func _postroll_path(level_id: String) -> String:
 	return "res://assets/main/puzzle/levels/cutscenes/%s-%s%s" % \
-			[level_id.replace("_", "-"), POSTROLL_SUFFIX, CHAT_EXTENSION]
+			[StringUtils.underscores_to_hyphens(level_id), POSTROLL_SUFFIX, CHAT_EXTENSION]

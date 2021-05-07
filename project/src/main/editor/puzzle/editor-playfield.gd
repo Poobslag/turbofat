@@ -6,7 +6,7 @@ Playfield for use in the level editor.
 This script provides drag/drop logic and other things specific to the level editor.
 """
 
-# emitted when the player changes the tile map's contents. This signal is not emitted when set_cell is called, to
+# emitted when the player changes the tilemap's contents. This signal is not emitted when set_cell is called, to
 # prevent infinite recursion when populated by editor-json.gd.
 signal tile_map_changed
 var dragging_right_mouse := false

@@ -1,9 +1,9 @@
 extends TileMap
 """
-Tile map which covers the corners of the overworld tilemap.
+Tilemap which covers the corners of the overworld tilemap.
 
-Without this tile map, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area. This
-tile map fills in the holes.
+Without this tilemap, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area. This
+tilemap fills in the holes.
 """
 
 onready var _parent_map: TileMap = get_parent()

@@ -24,7 +24,7 @@ func _process(_delta: float) -> void:
 		if next_piece != PieceTypes.piece_null:
 			var bounding_box := Rect2( \
 					next_piece.type.get_cell_position(next_piece.orientation, 0), Vector2(1.0, 1.0))
-			# update the tile map with the new piece type
+			# update the tilemap with the new piece type
 			for i in range(next_piece.type.pos_arr[0].size()):
 				var block_pos := next_piece.type.get_cell_position(next_piece.orientation, i)
 				var block_color := next_piece.type.get_cell_color(next_piece.orientation, i)

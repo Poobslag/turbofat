@@ -197,8 +197,8 @@ func _convert_1922(json_save_items: Array) -> Array:
 	for json_save_item_obj in json_save_items:
 		var save_item: SaveItem = SaveItem.new()
 		save_item.from_json_dict(json_save_item_obj)
-		save_item.type = save_item.type.replace("-", "_")
-		save_item.key = save_item.key.replace("-", "_")
+		save_item.type = StringUtils.hyphens_to_underscores(save_item.type)
+		save_item.key = StringUtils.hyphens_to_underscores(save_item.key)
 		if typeof(save_item.value) == TYPE_DICTIONARY:
 			_replace_key_hyphens_with_underscores(save_item.value)
 		
@@ -228,8 +228,8 @@ func _convert_1682(json_save_items: Array) -> Array:
 	for json_save_item_obj in json_save_items:
 		var save_item: SaveItem = SaveItem.new()
 		save_item.from_json_dict(json_save_item_obj)
-		save_item.type = save_item.type.replace("-", "_")
-		save_item.key = save_item.key.replace("-", "_")
+		save_item.type = StringUtils.hyphens_to_underscores(save_item.type)
+		save_item.key = StringUtils.hyphens_to_underscores(save_item.key)
 		if typeof(save_item.value) == TYPE_DICTIONARY:
 			_replace_key_hyphens_with_underscores(save_item.value)
 		
@@ -246,7 +246,7 @@ func _convert_1682(json_save_items: Array) -> Array:
 func _replace_key_hyphens_with_underscores(dict: Dictionary) -> void:
 	for key in dict.keys():
 		if key.find("-") != -1:
-			dict[key.replace("-", "_")] = dict[key]
+			dict[StringUtils.hyphens_to_underscores(key)] = dict[key]
 			dict.erase(key)
 
 

@@ -17,7 +17,7 @@ var fading: bool
 var fade_color: Color = ProjectSettings.get_setting("rendering/environment/default_clear_color")
 
 # The method and parameters to call on the Breadcrumb node after fading out.
-var breadcrumb_method: String
+var breadcrumb_method: FuncRef
 var breadcrumb_arg_array: Array
 
 """
@@ -36,7 +36,7 @@ func push_trail(path: String, skip_transition: bool = false) -> void:
 		
 		Breadcrumb.push_trail(path)
 	else:
-		_fade_out("push_trail", [path])
+		_fade_out(funcref(Breadcrumb, "push_trail"), [path])
 
 
 """
@@ -51,7 +51,7 @@ func pop_trail(skip_transition: bool = false) -> void:
 			or (Breadcrumb.trail and "::" in Breadcrumb.trail.front()):
 		Breadcrumb.pop_trail()
 	else:
-		_fade_out("pop_trail")
+		_fade_out(funcref(Breadcrumb, "pop_trail"))
 
 
 """
@@ -69,7 +69,7 @@ func replace_trail(path: String, skip_transition: bool = false) -> void:
 			or "::" in path:
 		Breadcrumb.replace_trail(path)
 	else:
-		_fade_out("replace_trail", [path])
+		_fade_out(funcref(Breadcrumb, "replace_trail"), [path])
 
 
 """
@@ -77,7 +77,7 @@ Called when the 'fade out' visual transition ends, triggering a scene transition
 """
 func end_fade_out() -> void:
 	if breadcrumb_method:
-		Breadcrumb.callv(breadcrumb_method, breadcrumb_arg_array)
+		breadcrumb_method.call_funcv(breadcrumb_arg_array)
 
 
 """
@@ -97,7 +97,7 @@ func end_fade_in() -> void:
 """
 Launches the 'fade out' visual transition.
 """
-func _fade_out(new_breadcrumb_method: String, new_breadcrumb_arg_array: Array = []) -> void:
+func _fade_out(new_breadcrumb_method: FuncRef, new_breadcrumb_arg_array: Array = []) -> void:
 	breadcrumb_method = new_breadcrumb_method
 	breadcrumb_arg_array = new_breadcrumb_arg_array
 	fading = true
