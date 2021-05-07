@@ -31,7 +31,8 @@ func _on_OpenFileDialog_file_selected(_path: String) -> void:
 	if full_path.begins_with("res://assets/main/puzzle/levels/cutscenes/") \
 			and full_path.ends_with(ChatLibrary.CHAT_EXTENSION):
 		full_path = full_path.trim_prefix("res://assets/main/puzzle/levels/cutscenes/")
-		full_path = full_path.trim_suffix(".chat").replace("-", "_")
+		full_path = full_path.trim_suffix(".chat")
+		full_path = StringUtils.hyphens_to_underscores(full_path)
 		$VBoxContainer/Open/LineEdit.text = full_path
 	else:
 		$Dialogs/Error.dialog_text = "%s doesn't seem like the path to a cutscene file." % [full_path]

@@ -1,9 +1,9 @@
 extends TileMap
 """
-Tile map which covers the corners of another tilemap.
+Tilemap which covers the corners of another tilemap.
 
-Without this tile map, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area. This
-tile map fills in the holes.
+Without this tilemap, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area. This
+tilemap fills in the holes.
 
 This tilemap assumes tiles are arranged so that the X coordinates of the tiles correspond to the directions they're
 connected. This type of tilemap is used for puzzle pieces.

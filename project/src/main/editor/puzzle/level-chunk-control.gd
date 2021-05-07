@@ -20,7 +20,7 @@ func get_drag_data(_pos: Vector2) -> Object:
 
 
 """
-Calculates the extents of the tile map's used cells.
+Calculates the extents of the tilemap's used cells.
 """
 func _tile_map_extents() -> Rect2:
 	var extents := Rect2(Vector2.ZERO, Vector2.ZERO)
@@ -32,14 +32,14 @@ func _tile_map_extents() -> Rect2:
 
 
 """
-Overridden by child classes, which use this method to populate the contents of the tile map.
+Overridden by child classes, which use this method to populate the contents of the tilemap.
 """
 func _refresh_tile_map() -> void:
 	pass
 
 
 """
-Refreshes the scale to ensure the contents of the tile map fit inside an item in the palette.
+Refreshes the scale to ensure the contents of the tilemap fit inside an item in the palette.
 """
 func _refresh_scale() -> void:
 	var extents := _tile_map_extents()

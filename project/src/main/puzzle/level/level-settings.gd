@@ -209,12 +209,19 @@ func _get_max_speed_id() -> String:
 
 
 static func level_path(level_name: String) -> String:
-	return "res://assets/main/puzzle/levels/%s.json" % (level_name.replace("_", "-"))
+	var level_path := StringUtils.underscores_to_hyphens(level_name)
+	level_path = "res://assets/main/puzzle/levels/%s.json" % level_path
+	return level_path
 
 
 static func level_name(path: String) -> String:
-	return path.get_file().trim_suffix(".json").replace("_", "-")
+	var level_name := path.get_file()
+	level_name = level_name.trim_suffix(".json")
+	level_name = StringUtils.underscores_to_hyphens(level_name)
+	return level_name
 
 
 static func level_filename(level_name: String) -> String:
-	return "%s.json" % level_name.replace("_", "-")
+	var level_filename := StringUtils.underscores_to_hyphens(level_name)
+	level_filename = "%s.json" % level_filename
+	return level_filename

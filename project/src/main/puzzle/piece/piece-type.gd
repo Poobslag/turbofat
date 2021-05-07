@@ -19,7 +19,7 @@ var cw_kicks: Array
 # array of piece kicks to try when rotating counterclockwise
 var ccw_kicks: Array
 
-# position the piece should kick to when flipping in place
+# a piece kick to attempt for each orientation when rotating 180
 var flips: Array
 
 # maximum number of 'floor kicks', kicks which move the piece upward
@@ -74,3 +74,24 @@ func get_color_int() -> int:
 
 func _to_string() -> String:
 	return string
+
+
+"""
+Returns the orientation the piece will be in if it rotates clockwise.
+"""
+func get_cw_orientation(orientation: int) -> int:
+	return (orientation + 1) % pos_arr.size()
+
+
+"""
+Returns the orientation the piece will be in if it rotates counter-clockwise.
+"""
+func get_ccw_orientation(orientation: int) -> int:
+	return wrapi(orientation - 1, 0, pos_arr.size())
+
+
+"""
+Returns the orientation the piece will be in if it rotates 180 degrees.
+"""
+func get_flip_orientation(orientation: int) -> int:
+	return (orientation + 2) % pos_arr.size()

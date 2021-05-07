@@ -30,13 +30,13 @@ const TILE_VEG := 2 # vegetable created from line clears
 const ROW_COUNT = 20
 const COL_COUNT = 9
 
-# a number in the range [0, 1] which can be set to make the tile map flash or blink.
+# a number in the range [0, 1] which can be set to make the tilemap flash or blink.
 var whiteness := 0.0 setget set_whiteness
 
 # offset used for drawing the 'ghost piece'
 var ghost_shadow_offset: Vector2
 
-# fields used to roll the tile map back to a previous state
+# fields used to roll the tilemap back to a previous state
 var _saved_used_cells := []
 var _saved_tiles := []
 var _saved_autotile_coords := []
@@ -70,7 +70,7 @@ func save_state() -> void:
 
 
 """
-Rolls back the piece previously written to the tile map.
+Rolls back the piece previously written to the tilemap.
 
 Also undoes any boxes that were built and lines that were cleared.
 """
@@ -83,6 +83,16 @@ func restore_state() -> void:
 		set_block(cell, tile, autotile_coord)
 
 
+"""
+Assigns a block to a tilemap cell.
+
+Parameters:
+	'pos': Position of the cell
+	
+	'tile': Tile index of the cell
+	
+	'autotile_coord': Coordinate of the autotile variation in the tileset
+"""
 func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
 	set_cell(pos.x, pos.y, tile, false, false, false, autotile_coord)
 	if is_inside_tree():
@@ -109,7 +119,7 @@ func build_box(rect: Rect2, color_int: int) -> void:
 
 
 """
-Deletes the specified row in the tile map, dropping all higher rows down to fill the gap.
+Deletes the specified row in the tilemap, dropping all higher rows down to fill the gap.
 """
 func delete_row(y: int) -> void:
 	# First, erase and store all the old cells which are dropping
@@ -133,7 +143,7 @@ func delete_row(y: int) -> void:
 
 
 """
-Deletes the specified row in the tile map, dropping all higher rows down to fill the gap.
+Deletes the specified row in the tilemap, dropping all higher rows down to fill the gap.
 """
 func delete_rows(rows: Array) -> void:
 	# sort to avoid edge cases with row indexes changing during deletion
@@ -195,7 +205,7 @@ func erase_playfield_row(y: int) -> void:
 
 
 """
-Sets the whiteness property to make the tile map flash or blink.
+Sets the whiteness property to make the tilemap flash or blink.
 """
 func set_whiteness(new_whiteness: float) -> void:
 	if whiteness == new_whiteness:
@@ -211,7 +221,7 @@ Returns a position randomly near a cell.
 This is useful when we want visual effects to appear somewhere within the cell at (3, 6) with random variation.
 
 Parameters:
-	'cell_pos': Grid-based coordinates of a cell in the tile map.
+	'cell_pos': Grid-based coordinates of a cell in the tilemap.
 	
 	'cell_offset': (Optional) Grid-based coordinates of the random offset to apply. If unspecified, the coordinate
 		will be randomly offset by a value in the range [(0, 0), (1, 1)]

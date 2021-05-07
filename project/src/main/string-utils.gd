@@ -199,3 +199,21 @@ Returns either the passed in String, or if the String is empty or null, the valu
 """
 static func default_if_empty(s: String, default: String) -> String:
 	return s if s else default
+
+
+"""
+Replaces hyphens with underscores in a string.
+
+JSON keys and values use underscores to separate words, for consistency with Python conventions.
+"""
+static func hyphens_to_underscores(s: String) -> String:
+	return s.replace("-", "_")
+
+
+"""
+Replaces underscores with hyphens in a string.
+
+Filenames use kebab-case.
+"""
+static func underscores_to_hyphens(s: String) -> String:
+	return s.replace("_", "-")

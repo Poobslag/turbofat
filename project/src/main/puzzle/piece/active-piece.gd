@@ -68,14 +68,21 @@ func reset_target() -> void:
 Returns the orientation the piece will be in if it rotates clockwise.
 """
 func get_cw_orientation() -> int:
-	return wrapi(orientation + 1, 0, type.pos_arr.size())
+	return type.get_cw_orientation(orientation)
+
+
+"""
+Returns the orientation the piece will be in if it rotates counter-clockwise.
+"""
+func get_ccw_orientation() -> int:
+	return type.get_ccw_orientation(orientation)
 
 
 """
 Returns the orientation the piece will be in if it rotates 180 degrees.
 """
 func get_flip_orientation() -> int:
-	return wrapi(orientation + 2, 0, type.pos_arr.size())
+	return type.get_flip_orientation(orientation)
 
 
 """
@@ -83,13 +90,6 @@ Returns the position the piece will be in if it rotates 180 degrees.
 """
 func get_flip_position() -> Vector2:
 	return pos + type.flips[orientation]
-
-
-"""
-Returns the orientation the piece will be in if it rotates counter-clockwise.
-"""
-func get_ccw_orientation() -> int:
-	return wrapi(orientation - 1, 0, type.pos_arr.size())
 
 
 """

@@ -40,7 +40,7 @@ export (NodePath) var playfield_path: NodePath
 # settings and state for the currently active piece.
 var piece: ActivePiece
 
-# information about the piece previously rendered to the tile map
+# information about the piece previously rendered to the tilemap
 var drawn_piece_type: PieceType
 var drawn_piece_pos: Vector2
 var drawn_piece_orientation: int
@@ -185,7 +185,7 @@ func _clear_piece() -> void:
 
 
 """
-Refresh the tile map which displays the piece, based on the current piece's position and orientation.
+Refresh the tilemap which displays the piece, based on the current piece's position and orientation.
 """
 func _update_tile_map() -> void:
 	tile_map.clear()

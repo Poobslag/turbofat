@@ -1,6 +1,6 @@
 extends TileMap
 """
-Draws shadows under tiles from an obstacle tile map.
+Draws shadows under tiles from an obstacle tilemap.
 """
 
 export (NodePath) var obstacle_map_path: NodePath

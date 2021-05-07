@@ -27,7 +27,7 @@ var sensei_def: CreatureDef setget set_sensei_def,get_sensei_def
 # fatnesses by creature id
 var _fatnesses: Dictionary
 
-# fatnesses saved to roll the tile map back to a previous state
+# fatnesses saved to roll the tilemap back to a previous state
 var _saved_fatnesses: Dictionary
 
 # In addition to storing known fatness attributes like "Ebe's weight is 2.5", we store fatnesses for randomly
