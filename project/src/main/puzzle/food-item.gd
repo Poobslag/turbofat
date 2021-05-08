@@ -54,9 +54,8 @@ var _total_time := 0.0
 # Tweens the food's position to fly into the customer's mouth.
 var _flying_tween: Tween
 
-# This object, method and arg_array correspond to a callback which return the position of the customer's mouth.
-var _target_pos_object: Object
-var _target_pos_method: String
+# This func ref and array correspond to a callback which return the position of the customer's mouth.
+var _get_target_pos: FuncRef
 var _target_pos_arg_array: Array
 
 # The position the food is flying from
@@ -87,9 +86,9 @@ func _physics_process(delta: float) -> void:
 	
 	_total_time += delta
 	
-	if _target_pos_object and _flight_percent > 0.0:
+	if _get_target_pos and _flight_percent > 0.0:
 		_source_pos += velocity * delta
-		_target_pos = _target_pos_object.callv(_target_pos_method, _target_pos_arg_array)
+		_target_pos = _get_target_pos.call_funcv(_target_pos_arg_array)
 		
 		# The y coordinate changes at a constant rate while the x coordinate follows a parabolic path
 		position.y = lerp(_source_pos.y, _target_pos.y, _flight_percent)
@@ -123,16 +122,13 @@ The object, method and arg_array parameters correspond to a callback which retur
 mouth.
 
 Parameters:
-	'target_pos_object': The target of the callback function which returns the position of the customer's mouth.
-	
-	'target_pos_method': The name of the callback function which returns the position of the customer's mouth.
+	'new_get_target_pos': The callback function which returns the position of the customer's mouth.
 	
 	'target_pos_arg_array': The parameters of the callback function which returns the position of the customer's mouth.
 """
-func fly_to_target(target_pos_object: Object, target_pos_method: String, target_pos_arg_array: Array,
+func fly_to_target(new_get_target_pos: FuncRef, target_pos_arg_array: Array,
 			duration: float) -> void:
-	_target_pos_object = target_pos_object
-	_target_pos_method = target_pos_method
+	_get_target_pos = new_get_target_pos
 	_target_pos_arg_array = target_pos_arg_array
 	
 	velocity = Vector2(0.0, 0.0)

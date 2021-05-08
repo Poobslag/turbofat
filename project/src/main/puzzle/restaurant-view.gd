@@ -34,7 +34,6 @@ func _ready() -> void:
 	_customer_view_viewport.size = _customer_view.rect_size * 4
 	
 	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
 	PuzzleScore.connect("combo_changed", self, "_on_PuzzleScore_combo_changed")
 	PuzzleScore.connect("topped_out", self, "_on_PuzzleScore_topped_out")
 	PuzzleScore.connect("added_line_score", self, "_on_PuzzleScore_added_line_score")
@@ -90,6 +89,24 @@ func get_customer_mouth_position(customer: Creature) -> Vector2:
 
 
 """
+Returns the creature index for the specified creature id.
+
+This is useful for determining if a creature is seated at a table, and if so, which table they're seated at. Returns
+-1 if the specified creature is not a customer in the restaurant.
+"""
+func find_creature_index_with_id(creature_id: String) -> int:
+	var creature_index := -1
+	var customers := get_customers()
+	
+	for i in range(customers.size()):
+		if customers[i].creature_def.creature_id == creature_id:
+			creature_index = i
+			break
+	
+	return creature_index
+
+
+"""
 Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
 properties.
 """
@@ -110,11 +127,18 @@ Scroll to a new creature and replace the old creature.
 func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 	var old_creature_index: int = get_current_creature_index()
 	if new_creature_index == -1:
-		new_creature_index = (old_creature_index + randi() % 2 + 1) % 3
+		new_creature_index = next_creature_index()
 	set_current_creature_index(new_creature_index)
 	_restaurant_viewport_scene.get_customer().restart_idle_timer()
 	yield(get_tree().create_timer(0.5), "timeout")
 	summon_creature(old_creature_index)
+
+
+"""
+Returns a random creature index different from the current creature index.
+"""
+func next_creature_index() -> int:
+	return (get_current_creature_index() + randi() % 2 + 1) % 3
 
 
 """
@@ -136,14 +160,6 @@ func _refresh_chef_name() -> void:
 
 func _on_Chef_creature_name_changed() -> void:
 	_refresh_chef_name()
-
-
-"""
-If they ended the previous game while serving a creature, we scroll to a new one
-"""
-func _on_PuzzleScore_game_prepared() -> void:
-	if get_customer().feed_count > 0:
-		scroll_to_new_creature()
 
 
 """

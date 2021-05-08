@@ -4,9 +4,9 @@ extends Control
 A puzzle scene where a player drops pieces into a playfield of blocks.
 """
 
-# The number of times the start button has been pressed. Certain cleanup steps
-# are only necessary when starting a puzzle for the second time.
-var _start_button_click_count := 0
+onready var _restaurant_view: RestaurantView = $RestaurantView
+
+onready var _settings_menu: SettingsMenu = $SettingsMenu
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
@@ -16,10 +16,12 @@ func _ready() -> void:
 	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
+	# set a baseline fatness state
+	PlayerData.creature_library.save_fatness_state()
 	PlayerData.creature_queue.primary_index = 0
 	PlayerData.creature_queue.reset_secondary_creature_queue()
 	for i in range(3):
-		$RestaurantView.summon_creature(i)
+		_restaurant_view.summon_creature(i)
 	
 	get_customer().play_hello_voice(true)
 	
@@ -36,7 +38,7 @@ func _exit_tree() -> void:
 func _input(event: InputEvent) -> void:
 	if event.is_action_pressed("ui_menu") and not $Hud/HudUi/PuzzleMessages.is_settings_button_visible():
 		# if the player presses the 'menu' button during a puzzle, we pop open the settings panel
-		$SettingsMenu.show()
+		_settings_menu.show()
 		get_tree().set_input_as_handled()
 
 
@@ -57,7 +59,7 @@ func show_buttons() -> void:
 
 
 func scroll_to_new_creature() -> void:
-	$RestaurantView.scroll_to_new_creature()
+	_restaurant_view.scroll_to_new_creature()
 
 
 """
@@ -75,7 +77,7 @@ func start_level_countdown() -> void:
 
 
 func get_customer() -> Creature:
-	return $RestaurantView.get_customer()
+	return _restaurant_view.get_customer()
 
 
 """
@@ -101,22 +103,50 @@ func feed_creature(customer: Creature, food_type: int) -> void:
 Starts or restarts the puzzle, loading new customers and preparing the level.
 """
 func _start_puzzle() -> void:
-	_start_button_click_count += 1
+	PlayerData.creature_queue.reset_secondary_creature_queue()
 	
-	if _start_button_click_count > 1:
-		# restart puzzle; reset customers
-		PlayerData.creature_queue.reset_secondary_creature_queue()
-		if PlayerData.creature_queue.primary_queue:
-			# Reset fatness. Playing the same puzzle over and over shouldn't
-			# make a creature super fat. Thematically, we're turning back time.
-			PlayerData.creature_library.restore_fatness_state()
-		PlayerData.creature_queue.primary_index = 0
-		$RestaurantView.start_suppress_sfx_timer()
+	if not CurrentLevel.keep_retrying:
+		# Reset everyone's fatness. Replaying a puzzle in story mode shouldn't
+		# make a creature super fat. Thematically we're turning back time.
+		PlayerData.creature_library.restore_fatness_state()
+	
+	PlayerData.creature_queue.primary_index = 0
+	_restaurant_view.start_suppress_sfx_timer()
+	
+	if PlayerData.creature_queue.primary_queue:
+		var starting_creature_id: String = PlayerData.creature_queue.primary_queue[0].creature_id
+		var starting_creature_index: int = _restaurant_view.find_creature_index_with_id(starting_creature_id)
+		if starting_creature_index == -1:
+			# starting creature isn't found; load them to a different index and advance the primary queue
+			starting_creature_index = _restaurant_view.next_creature_index()
+			_restaurant_view.summon_creature(starting_creature_index)
+		else:
+			# starting creature is found; advance the primary creature queue so we don't see them twice
+			PlayerData.creature_queue.pop_primary_creature()
+			
+			# restore their fatness so they start skinny again when replaying a puzzle
+			var fatness := PlayerData.creature_library.get_fatness(starting_creature_id)
+			_restaurant_view.get_customer(starting_creature_index).set_fatness(fatness)
+		
+		# summon the other creatures
 		for i in range(3):
-			$RestaurantView.summon_creature(i)
-		$RestaurantView.set_current_creature_index(0)
+			if i != starting_creature_index:
+				_restaurant_view.summon_creature(i)
+		
+		# scroll to the starting creature
+		_restaurant_view.current_creature_index = starting_creature_index
+	else:
+		var current_creature_feed_count: int = _restaurant_view.get_customer().feed_count
+		
+		# fill the seats if the creatures ate
+		for i in range(3):
+			if _restaurant_view.get_customer(i).feed_count:
+				_restaurant_view.summon_creature(i)
+		
+		# calculate the starting creature; stay on the same creature if they didn't eat
+		if current_creature_feed_count > 0:
+			_restaurant_view.current_creature_index = _restaurant_view.next_creature_index()
 	
-	PlayerData.creature_library.save_fatness_state()
 	PuzzleScore.prepare_and_start_game()
 
 
@@ -137,7 +167,7 @@ func _on_Hud_start_button_pressed() -> void:
 
 
 func _on_Hud_settings_button_pressed() -> void:
-	$SettingsMenu.show()
+	_settings_menu.show()
 
 
 func _on_Hud_back_button_pressed() -> void:
@@ -168,7 +198,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 
 
 func _on_PuzzleScore_game_started() -> void:
-	$SettingsMenu.quit_type = SettingsMenu.GIVE_UP
+	_settings_menu.quit_type = SettingsMenu.GIVE_UP
 
 
 """
@@ -179,7 +209,7 @@ func _on_PuzzleScore_game_ended() -> void:
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
 	
-	$SettingsMenu.quit_type = SettingsMenu.QUIT
+	_settings_menu.quit_type = SettingsMenu.QUIT
 	var rank_result := RankCalculator.new().calculate_rank()
 	PlayerData.level_history.add(CurrentLevel.level_id, rank_result)
 	PlayerData.level_history.prune(CurrentLevel.level_id)
@@ -206,7 +236,7 @@ func _on_PuzzleScore_after_game_ended() -> void:
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
-	if $SettingsMenu.quit_type == SettingsMenu.GIVE_UP:
+	if _settings_menu.quit_type == SettingsMenu.GIVE_UP:
 		PuzzleScore.make_player_lose()
 	else:
 		if not MusicPlayer.is_playing_chill_bgm():
