@@ -13,6 +13,11 @@ func _chat_tree_from_file(path: String) -> ChatTree:
 	return parser.chat_tree_from_file(path)
 
 
+func _history_key_from_path(path: String) -> String:
+	var parser := ChatscriptParser.new()
+	return parser.history_key_from_path(path)
+
+
 func test_cutscene_location() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	
@@ -97,3 +102,12 @@ func test_chat_thought() -> void:
 	assert_eq(event.who, "")
 	assert_eq(event.text, "(A crystalline marshmallow has sprouted from the soil. The five-second rule precludes" \
 			+ " me from eating it.)")
+
+
+func test_history_key_from_path() -> void:
+	assert_eq(_history_key_from_path("res://assets/main/creatures/primary/bones/filler-001.chat"),
+			"chat/bones/filler_001")
+	assert_eq(_history_key_from_path("res://assets/main/puzzle/levels/cutscenes/marsh/hello-everyone-000.chat"),
+			"puzzle/levels/cutscenes/marsh/hello_everyone_000")
+	assert_eq(_history_key_from_path("res://assets/main/chat/marsh-crystal.chat"),
+			"chat/marsh_crystal")

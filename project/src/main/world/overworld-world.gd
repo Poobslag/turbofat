@@ -18,7 +18,7 @@ func _ready() -> void:
 	if Global.sensei_spawn_id:
 		move_creature_to_spawn(ChattableManager.sensei, Global.sensei_spawn_id)
 	
-	if CurrentLevel.level_state != CurrentLevel.LevelState.NONE:
+	if CurrentLevel.cutscene_state != CurrentLevel.CutsceneState.NONE:
 		_launch_cutscene()
 	
 	$Camera.position = ChattableManager.player.position
@@ -41,13 +41,13 @@ func _launch_cutscene() -> void:
 	
 	# get the location, spawn location data
 	var chat_tree: ChatTree
-	match CurrentLevel.level_state:
-		CurrentLevel.LevelState.BEFORE:
+	match CurrentLevel.cutscene_state:
+		CurrentLevel.CutsceneState.BEFORE:
 			chat_tree = ChatLibrary.chat_tree_for_preroll(CurrentLevel.level_id)
-		CurrentLevel.LevelState.AFTER:
+		CurrentLevel.CutsceneState.AFTER:
 			chat_tree = ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
 		_:
-			push_warning("Unexpected CurrentLevel.level_state: %s" % [CurrentLevel.level_state])
+			push_warning("Unexpected CurrentLevel.cutscene_state: %s" % [CurrentLevel.cutscene_state])
 	
 	if not chat_tree.spawn_locations:
 		# apply a default position to the cutscene creature

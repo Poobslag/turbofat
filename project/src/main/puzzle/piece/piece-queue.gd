@@ -20,7 +20,7 @@ var _remaining_piece_count := UNLIMITED_PIECES
 
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	_fill()
 
 
@@ -254,7 +254,7 @@ func _on_Level_settings_changed() -> void:
 	clear()
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	clear()
 
 

@@ -75,7 +75,7 @@ var input_frame := -1
 var level_performance := PuzzlePerformance.new()
 
 # The scores for each creature in the current level (bonuses and line clears)
-var creature_scores := [0]
+var customer_scores := [0]
 
 # The number of lines the player has cleared without dropping their combo
 var combo := 0 setget set_combo
@@ -218,7 +218,7 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 		level_performance.leftover_score += combo_score + box_score + 1
 	
 	combo += 1
-	_add_creature_score(1 + combo_score + box_score)
+	_add_customer_score(1 + combo_score + box_score)
 	_add_bonus_score(combo_score + box_score)
 	_add_score(1)
 	
@@ -234,19 +234,19 @@ func end_combo() -> void:
 	var old_combo := combo
 	if CurrentLevel.settings.other.tutorial:
 		# during tutorials, reset the combo and line clears
-		creature_scores[creature_scores.size() - 1] = 0
+		customer_scores[customer_scores.size() - 1] = 0
 		combo = 0
 	elif no_more_customers or game_ended:
 		pass
-	elif get_creature_score() == 0:
+	elif get_customer_score() == 0:
 		# don't add $0 creatures. creatures don't pay if they owe $0
 		pass
 	elif CurrentLevel.settings.finish_condition.type == Milestone.CUSTOMERS \
-			and PuzzleScore.creature_scores.size() >= CurrentLevel.settings.finish_condition.value:
+			and PuzzleState.customer_scores.size() >= CurrentLevel.settings.finish_condition.value:
 		# some levels have a limited number of customers
 		no_more_customers = true
 	else:
-		creature_scores.append(0)
+		customer_scores.append(0)
 		combo = 0
 	
 	_add_score(bonus_score)
@@ -262,7 +262,7 @@ func end_combo() -> void:
 Reset all score data, such as when starting a level over.
 """
 func reset() -> void:
-	creature_scores = [0]
+	customer_scores = [0]
 	combo = 0
 	bonus_score = 0
 	level_performance = PuzzlePerformance.new()
@@ -286,8 +286,8 @@ func get_bonus_score() -> int:
 	return bonus_score
 
 
-func get_creature_score() -> int:
-	return creature_scores[creature_scores.size() - 1]
+func get_customer_score() -> int:
+	return customer_scores[customer_scores.size() - 1]
 
 
 func set_combo(new_combo: int) -> void:
@@ -359,5 +359,5 @@ func _add_line() -> void:
 	level_performance.lines += 1
 
 
-func _add_creature_score(delta: int) -> void:
-	creature_scores[creature_scores.size() - 1] += delta
+func _add_customer_score(delta: int) -> void:
+	customer_scores[customer_scores.size() - 1] += delta

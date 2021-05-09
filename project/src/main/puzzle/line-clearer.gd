@@ -52,7 +52,7 @@ onready var _line_fall_sound: AudioStreamPlayer = $LineFallSound
 
 func _ready() -> void:
 	set_physics_process(false)
-	PuzzleScore.connect("finish_triggered", self, "_on_PuzzleScore_finish_triggered")
+	PuzzleState.connect("finish_triggered", self, "_on_PuzzleState_finish_triggered")
 
 
 func _physics_process(_delta: float) -> void:
@@ -287,11 +287,11 @@ func _schedule_finish_line_clears() -> void:
 	remaining_line_erase_frames = max(1, remaining_line_erase_frames)
 
 
-func _on_PuzzleScore_finish_triggered() -> void:
+func _on_PuzzleState_finish_triggered() -> void:
 	if CurrentLevel.settings.other.clear_on_finish:
 		_schedule_finish_line_clears()
 	else:
-		PuzzleScore.end_game()
+		PuzzleState.end_game()
 
 
 """

@@ -27,7 +27,7 @@ var _bright_tween_active: bool
 
 func _ready() -> void:
 	reset()
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 
 
 func set_puzzle(new_puzzle: Puzzle) -> void:
@@ -141,7 +141,7 @@ func update_label() -> void:
 		$Label.text = "%s\n(%d/%d)" % [label_text, value, max_value]
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	reset()
 
 

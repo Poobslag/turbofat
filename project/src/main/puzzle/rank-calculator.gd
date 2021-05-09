@@ -168,16 +168,16 @@ func _unranked_result() -> RankResult:
 		rank_result.compare = "-seconds"
 
 	# calculate raw player performance statistics
-	rank_result.box_score = PuzzleScore.level_performance.box_score
-	rank_result.combo_score = PuzzleScore.level_performance.combo_score
-	rank_result.leftover_score = PuzzleScore.level_performance.leftover_score
-	rank_result.lines = PuzzleScore.level_performance.lines
-	rank_result.pieces = PuzzleScore.level_performance.pieces
-	rank_result.lost = PuzzleScore.level_performance.lost
-	rank_result.success = PuzzleScore.level_performance.success
-	rank_result.score = PuzzleScore.level_performance.score
-	rank_result.seconds = PuzzleScore.level_performance.seconds
-	rank_result.top_out_count = PuzzleScore.level_performance.top_out_count
+	rank_result.box_score = PuzzleState.level_performance.box_score
+	rank_result.combo_score = PuzzleState.level_performance.combo_score
+	rank_result.leftover_score = PuzzleState.level_performance.leftover_score
+	rank_result.lines = PuzzleState.level_performance.lines
+	rank_result.pieces = PuzzleState.level_performance.pieces
+	rank_result.lost = PuzzleState.level_performance.lost
+	rank_result.success = PuzzleState.level_performance.success
+	rank_result.score = PuzzleState.level_performance.score
+	rank_result.seconds = PuzzleState.level_performance.seconds
+	rank_result.top_out_count = PuzzleState.level_performance.top_out_count
 	
 	rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 1)
 	rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \

@@ -20,11 +20,11 @@ var _did_build_cake := false
 var _did_squish_move := false
 
 func _ready() -> void:
-	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
-	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
+	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
+	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
-	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
+	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
 	playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
 	piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
@@ -52,7 +52,7 @@ func prepare_tutorial_level() -> void:
 			hud.set_message(tr("One last lesson! Try holding soft drop to squish and complete these boxes."))
 		"tutorial/basics_4":
 			# reset timer, scores
-			PuzzleScore.reset()
+			PuzzleState.reset()
 			puzzle.scroll_to_new_creature()
 			
 			hud.set_message(tr("You're a remarkably quick learner." \
@@ -69,25 +69,25 @@ before they're instructed to, they can skip parts of the tutorial.
 func _advance_level() -> void:
 	if CurrentLevel.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
-		PuzzleScore.change_level("tutorial/oh_my", false)
+		PuzzleState.change_level("tutorial/oh_my", false)
 		hud.set_big_message(ChatLibrary.add_mega_lull_characters(tr("OH, MY!!!")))
 		hud.enqueue_pop_out()
 		
 		# force match to end
-		PuzzleScore.level_performance.lines = 100
-		PuzzleScore.end_game()
+		PuzzleState.level_performance.lines = 100
+		PuzzleState.end_game()
 	elif _boxes_built == 0 or _box_clears == 0:
 		hud.set_message(tr("Good job!"))
-		PuzzleScore.change_level("tutorial/basics_1")
+		PuzzleState.change_level("tutorial/basics_1")
 	elif _squish_moves == 0:
 		hud.set_message(tr("Nicely done!"))
-		PuzzleScore.change_level("tutorial/basics_2")
+		PuzzleState.change_level("tutorial/basics_2")
 	elif _snack_stacks == 0:
 		hud.set_message(tr("Impressive!"))
-		PuzzleScore.change_level("tutorial/basics_3")
+		PuzzleState.change_level("tutorial/basics_3")
 	else:
 		hud.set_message(tr("Oh! I thought that would be more difficult..."))
-		PuzzleScore.change_level("tutorial/basics_4")
+		PuzzleState.change_level("tutorial/basics_4")
 		start_customer_countdown()
 
 
@@ -201,7 +201,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 """
 After a piece is written to the playfield, we check if the player should advance further in the tutorial.
 """
-func _on_PuzzleScore_after_piece_written() -> void:
+func _on_PuzzleState_after_piece_written() -> void:
 	# print tutorial messages if the player did something noteworthy
 	_handle_line_clear_message()
 	_handle_squish_move_message()
@@ -226,7 +226,7 @@ func _on_PuzzleScore_after_piece_written() -> void:
 				_advance_level()
 
 
-func _on_PuzzleScore_after_game_prepared() -> void:
+func _on_PuzzleState_after_game_prepared() -> void:
 	hud.show_skill_tally_items()
 	
 	hud.skill_tally_item("SnackBox").visible = false
@@ -243,7 +243,7 @@ func _on_PuzzleScore_after_game_prepared() -> void:
 	prepare_tutorial_level()
 
 
-func _on_PuzzleScore_game_started() -> void:
+func _on_PuzzleState_game_started() -> void:
 	if CurrentLevel.settings.other.skip_intro:
 		hud.set_message(tr("Welcome to Turbo Fat!"
 					+ " You seem to already be familiar with this sort of game, so let's dive right in."

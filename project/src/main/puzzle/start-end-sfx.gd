@@ -6,11 +6,11 @@ Plays sound effects at the start and end of a puzzle.
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 
 func _ready() -> void:
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
-	PuzzleScore.connect("before_level_changed", self, "_on_PuzzleScore_before_level_changed")
-	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
-	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
+	PuzzleState.connect("before_level_changed", self, "_on_PuzzleState_before_level_changed")
+	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
+	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 
 
 func play_ready_sound() -> void:
@@ -22,7 +22,7 @@ func play_go_sound() -> void:
 	Utils.rand_value(_go_voices).play()
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	if CurrentLevel.settings.other.skip_intro:
 		# when skipping the intro, we don't play startup sounds
 		return
@@ -30,7 +30,7 @@ func _on_PuzzleScore_game_prepared() -> void:
 	play_ready_sound()
 
 
-func _on_PuzzleScore_game_started() -> void:
+func _on_PuzzleState_game_started() -> void:
 	if CurrentLevel.settings.other.skip_intro:
 		# when skipping the intro, we don't play startup sounds
 		return
@@ -38,7 +38,7 @@ func _on_PuzzleScore_game_started() -> void:
 	play_go_sound()
 
 
-func _on_PuzzleScore_before_level_changed(new_level_id: String) -> void:
+func _on_PuzzleState_before_level_changed(new_level_id: String) -> void:
 	if CurrentLevel.settings.other.non_interactive or not CurrentLevel.settings.input_replay.empty():
 		# no sound effect or fanfare for non-interactive levels
 		return
@@ -49,18 +49,18 @@ func _on_PuzzleScore_before_level_changed(new_level_id: String) -> void:
 		$SectionCompleteSound.play()
 
 
-func _on_PuzzleScore_after_level_changed() -> void:
+func _on_PuzzleState_after_level_changed() -> void:
 	$LevelChangeSound.play()
 
 
-func _on_PuzzleScore_game_ended() -> void:
+func _on_PuzzleState_game_ended() -> void:
 	var sound: AudioStreamPlayer
-	match PuzzleScore.end_result():
-		PuzzleScore.Result.LOST:
+	match PuzzleState.end_result():
+		PuzzleState.Result.LOST:
 			sound = $GameOverSound
-		PuzzleScore.Result.FINISHED:
+		PuzzleState.Result.FINISHED:
 			sound = $MatchEndSound
-		PuzzleScore.Result.WON:
+		PuzzleState.Result.WON:
 			sound = $ExcellentSound
 	if sound:
 		sound.play()

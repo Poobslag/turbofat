@@ -29,7 +29,7 @@ func _ready() -> void:
 	CurrentLevel.settings.add_speed_up(Milestone.LINES, 170, "8")
 	CurrentLevel.settings.add_speed_up(Milestone.LINES, 180, "9")
 	CurrentLevel.settings.set_finish_condition(Milestone.NONE, 300)
-	PuzzleScore.prepare_and_start_game()
+	PuzzleState.prepare_and_start_game()
 
 
 func _input(event: InputEvent) -> void:
@@ -59,7 +59,7 @@ func _input(event: InputEvent) -> void:
 			$Puzzle/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
 		
 		KEY_L:
-			PuzzleScore.set_speed_index((PuzzleScore.speed_index + 1) % CurrentLevel.settings.speed_ups.size())
+			PuzzleState.set_speed_index((PuzzleState.speed_index + 1) % CurrentLevel.settings.speed_ups.size())
 
 
 func _build_box(y: int) -> void:

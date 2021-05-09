@@ -6,10 +6,10 @@ Stores information about the current level.
 # emitted after the level has customized the puzzle's settings.
 signal settings_changed
 
-# emitted when the 'level_state' field changes, such as when starting or clearing a level.
-signal level_state_changed
+# emitted when the 'cutscene_state' field changes, such as when starting or clearing a level.
+signal cutscene_state_changed
 
-enum LevelState {
+enum CutsceneState {
 	NONE, # the level hasn't been launched
 	BEFORE, # the level has been launched, but the hasn't yet been finished successfully
 	AFTER # the level has been finished successfully. The player didn't lose or give up
@@ -36,7 +36,7 @@ var customer_ids: Array
 var chef_id: String
 
 # Tracks whether or not the player has started or cleared the level.
-var level_state: int = LevelState.NONE setget set_level_state
+var cutscene_state: int = CutsceneState.NONE setget set_cutscene_state
 
 """
 Unsets all of the 'launched level' data.
@@ -63,12 +63,12 @@ func set_launched_level(new_level_id: String) -> void:
 		level_lock = LevelLibrary.level_lock(level_id)
 	
 	if level_lock:
-		set_level_state(LevelState.BEFORE)
+		set_cutscene_state(CutsceneState.BEFORE)
 		creature_id = level_lock.creature_id
 		customer_ids = level_lock.customer_ids
 		chef_id = level_lock.chef_id
 	else:
-		set_level_state(LevelState.NONE)
+		set_cutscene_state(CutsceneState.NONE)
 		creature_id = ""
 		customer_ids = []
 		chef_id = ""
@@ -76,7 +76,7 @@ func set_launched_level(new_level_id: String) -> void:
 
 func start_level(new_settings: LevelSettings) -> void:
 	level_id = new_settings.id
-	PuzzleScore.reset()
+	PuzzleState.reset()
 	switch_level(new_settings)
 
 
@@ -132,6 +132,6 @@ func push_level_trail() -> void:
 	SceneTransition.push_trail(Global.SCENE_PUZZLE)
 
 
-func set_level_state(new_level_state: int) -> void:
-	level_state = new_level_state
-	emit_signal("level_state_changed")
+func set_cutscene_state(new_cutscene_state: int) -> void:
+	cutscene_state = new_cutscene_state
+	emit_signal("cutscene_state_changed")

@@ -54,12 +54,12 @@ onready var _playfield: Playfield = get_node(playfield_path)
 onready var _states: PieceStates = $States
 
 func _ready() -> void:
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
-	PuzzleScore.connect("before_level_changed", self, "_on_PuzzleScore_before_level_changed")
-	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
-	PuzzleScore.connect("finish_triggered", self, "_on_PuzzleScore_finish_triggered")
-	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
+	PuzzleState.connect("before_level_changed", self, "_on_PuzzleState_before_level_changed")
+	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
+	PuzzleState.connect("finish_triggered", self, "_on_PuzzleState_finish_triggered")
+	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	
 	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
@@ -212,11 +212,11 @@ func _on_States_entered_state(state: State) -> void:
 		emit_signal("lock_started")
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	_clear_piece()
 
 
-func _on_PuzzleScore_game_started() -> void:
+func _on_PuzzleState_game_started() -> void:
 	_start_first_piece()
 
 
@@ -224,7 +224,7 @@ func _on_PuzzleScore_game_started() -> void:
 The player finished the level, possibly while they were still moving a piece around. We clear their piece so that it's
 not left floating.
 """
-func _on_PuzzleScore_finish_triggered() -> void:
+func _on_PuzzleState_finish_triggered() -> void:
 	_clear_piece()
 	_states.set_state(_states.game_ended)
 
@@ -232,15 +232,15 @@ func _on_PuzzleScore_finish_triggered() -> void:
 """
 The game ended the game, possibly by a top out. We leave the piece in place so that they can see why they topped out.
 """
-func _on_PuzzleScore_game_ended() -> void:
+func _on_PuzzleState_game_ended() -> void:
 	_states.set_state(_states.game_ended)
 
 
-func _on_PuzzleScore_before_level_changed(_new_level_id: String) -> void:
+func _on_PuzzleState_before_level_changed(_new_level_id: String) -> void:
 	set_physics_process(false)
 
 
-func _on_PuzzleScore_after_level_changed() -> void:
+func _on_PuzzleState_after_level_changed() -> void:
 	set_physics_process(true)
 	_start_first_piece()
 

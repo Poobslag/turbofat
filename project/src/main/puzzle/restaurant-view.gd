@@ -33,10 +33,10 @@ func _ready() -> void:
 	# these values in the editor. Otherwise it keeps changing the values back.
 	_customer_view_viewport.size = _customer_view.rect_size * 4
 	
-	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
-	PuzzleScore.connect("combo_changed", self, "_on_PuzzleScore_combo_changed")
-	PuzzleScore.connect("topped_out", self, "_on_PuzzleScore_topped_out")
-	PuzzleScore.connect("added_line_score", self, "_on_PuzzleScore_added_line_score")
+	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	PuzzleState.connect("combo_changed", self, "_on_PuzzleState_combo_changed")
+	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
+	PuzzleState.connect("added_line_score", self, "_on_PuzzleState_added_line_score")
 	
 	get_chef().connect("creature_name_changed", self, "_on_Chef_creature_name_changed")
 	for customer in get_customers():
@@ -165,31 +165,31 @@ func _on_Chef_creature_name_changed() -> void:
 """
 Cycle out the customer when the combo resets to 0.
 """
-func _on_PuzzleScore_combo_changed(value: int) -> void:
+func _on_PuzzleState_combo_changed(value: int) -> void:
 	if value > 0:
 		# if the combo is not resetting, we ignore the change
 		return
 	
-	if PuzzleScore.no_more_customers:
+	if PuzzleState.no_more_customers:
 		pass
-	elif PuzzleScore.game_active:
+	elif PuzzleState.game_active:
 		get_customer().play_goodbye_voice()
 		scroll_to_new_creature()
 	
 	# losing your combo doesn't erase the 'recent bonus' value, but decreases it a lot
 	_recent_bonuses = _recent_bonuses.slice(3, _recent_bonuses.size() - 1)
-	if PuzzleScore.game_active:
+	if PuzzleState.game_active:
 		get_chef().play_mood(ChatEvent.Mood.DEFAULT)
 
 
-func _on_PuzzleScore_topped_out() -> void:
+func _on_PuzzleState_topped_out() -> void:
 	get_chef().play_mood(ChatEvent.Mood.CRY0)
 
 
 """
 When clearing lines, the chef smiles if they're scoring a lot of bonuses.
 """
-func _on_PuzzleScore_added_line_score(combo_score: int, box_score: int) -> void:
+func _on_PuzzleState_added_line_score(combo_score: int, box_score: int) -> void:
 	_recent_bonuses.append(combo_score + box_score)
 	if _recent_bonuses.size() >= 6:
 		_recent_bonuses = _recent_bonuses.slice(_recent_bonuses.size() - 6, _recent_bonuses.size() - 1)
@@ -204,17 +204,17 @@ func _on_PuzzleScore_added_line_score(combo_score: int, box_score: int) -> void:
 """
 When the game ends, the chef smiles/cries/rages based on how they did.
 """
-func _on_PuzzleScore_game_ended() -> void:
+func _on_PuzzleState_game_ended() -> void:
 	var mood: int = ChatEvent.Mood.NONE
-	match PuzzleScore.end_result():
-		PuzzleScore.Result.NONE:
+	match PuzzleState.end_result():
+		PuzzleState.Result.NONE:
 			pass
-		PuzzleScore.Result.LOST:
+		PuzzleState.Result.LOST:
 			mood = Utils.rand_value([ChatEvent.Mood.RAGE1, ChatEvent.Mood.RAGE2,
 					ChatEvent.Mood.CRY1, ChatEvent.Mood.THINK1])
-		PuzzleScore.Result.FINISHED:
+		PuzzleState.Result.FINISHED:
 			mood = ChatEvent.Mood.SMILE0
-		PuzzleScore.Result.WON:
+		PuzzleState.Result.WON:
 			mood = ChatEvent.Mood.LAUGH1
 	if mood != ChatEvent.Mood.NONE:
 		get_chef().play_mood(mood)

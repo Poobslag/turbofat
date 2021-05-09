@@ -150,14 +150,14 @@ func _target_score(target_rank: float) -> float:
 	var max_score := 50000
 	var rank_result: RankResult
 	for _i in range(20):
-		PuzzleScore.level_performance.score = (min_score + max_score) / 2.0
+		PuzzleState.level_performance.score = (min_score + max_score) / 2.0
 		rank_result = _rank_calculator.calculate_rank()
 		if rank_result.score_rank > target_rank:
 			# graded poorly; we need to score more points
-			min_score = PuzzleScore.level_performance.score
+			min_score = PuzzleState.level_performance.score
 		else:
 			# graded well; we need to score fewer points
-			max_score = PuzzleScore.level_performance.score
+			max_score = PuzzleState.level_performance.score
 	return (min_score + max_score) / 2.0
 
 
@@ -171,12 +171,12 @@ func _target_lines(target_rank: int) -> float:
 	var max_target_lines := 5000
 	var rank_result: RankResult
 	for _i in range(20):
-		PuzzleScore.level_performance.lines = ceil((min_target_lines + max_target_lines) / 2.0)
+		PuzzleState.level_performance.lines = ceil((min_target_lines + max_target_lines) / 2.0)
 		rank_result = _rank_calculator.calculate_rank()
 		if rank_result.lines_rank > target_rank:
 			# graded poorly; we need to clear more lines than that
-			min_target_lines = PuzzleScore.level_performance.lines
+			min_target_lines = PuzzleState.level_performance.lines
 		else:
 			# graded well; we need to clear fewer lines than that
-			max_target_lines = PuzzleScore.level_performance.lines
+			max_target_lines = PuzzleState.level_performance.lines
 	return (max_target_lines + min_target_lines) / 2.0

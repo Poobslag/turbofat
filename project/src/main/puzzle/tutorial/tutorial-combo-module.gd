@@ -26,9 +26,9 @@ var _prepared_levels: Dictionary
 var _combo_diagram := preload("res://assets/main/puzzle/tutorial/combo-diagram.png")
 
 func _ready() -> void:
-	PuzzleScore.connect("after_game_prepared", self, "_on_PuzzleScore_after_game_prepared")
-	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
-	PuzzleScore.connect("combo_ended", self, "_on_PuzzleScore_combo_ended")
+	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
+	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
+	PuzzleState.connect("combo_ended", self, "_on_PuzzleState_combo_ended")
 	
 	playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
@@ -66,13 +66,13 @@ func prepare_tutorial_level() -> void:
 				hud.set_message(tr("Let's use boxes to extend a combo!"
 						+ "\n\nTry to clear seven more lines without letting your combo break."))
 		"tutorial/combo_3":
-			PuzzleScore.level_performance.pieces = 0
+			PuzzleState.level_performance.pieces = 0
 			_set_combo_state(5)
 			hud.set_message(tr("You can make a cake box with three pieces. Let me show you."))
 			hud.enqueue_message(tr("Unfortunately, it's difficult to continue a combo with cake boxes."
 					+ "\n\nThe first two pieces will break the combo."))
 		"tutorial/combo_4":
-			PuzzleScore.level_performance.pieces = 0
+			PuzzleState.level_performance.pieces = 0
 			_set_combo_state(5)
 			hud.set_message(tr("With a little foresight, you can clear some lines while building a cake box."
 					+ "\n\nThen your combo won't break."))
@@ -89,7 +89,7 @@ func prepare_tutorial_level() -> void:
 						+ "\n\nMake two cake boxes, but don't let your combo break."))
 		"tutorial/combo_6":
 			# reset timer, scores
-			PuzzleScore.reset()
+			PuzzleState.reset()
 			puzzle.scroll_to_new_creature()
 			
 			hud.set_message(tr("...Oh! Customers!\n\nTry to get ¥120 in one big combo."
@@ -108,7 +108,7 @@ Parameters:
 	'goal': (Optional) The combo needed to complete the tutorial section
 """
 func _set_combo_state(start: int, goal: int = 0) -> void:
-	PuzzleScore.set_combo(start)
+	PuzzleState.set_combo(start)
 	if goal:
 		hud.skill_tally_item("Combo").value = start
 		hud.skill_tally_item("Combo").max_value = goal
@@ -119,7 +119,7 @@ func _set_combo_state(start: int, goal: int = 0) -> void:
 Advance to the next level in the tutorial.
 """
 func _advance_level() -> void:
-	var delay_between_levels := PuzzleScore.DELAY_SHORT
+	var delay_between_levels := PuzzleState.DELAY_SHORT
 	var failed_section := false
 	match CurrentLevel.settings.id:
 		"tutorial/combo_0", "tutorial/combo_2":
@@ -127,22 +127,22 @@ func _advance_level() -> void:
 				hud.set_message(tr("Good job!"))
 			else:
 				hud.set_message(tr("Oops! ...You needed to clear a line with that last piece."))
-				delay_between_levels = PuzzleScore.DELAY_LONG
+				delay_between_levels = PuzzleState.DELAY_LONG
 				failed_section = true
 		"tutorial/combo_1":
 			# no delay for the non-interactive segment where we show the player a diagram
-			delay_between_levels = PuzzleScore.DELAY_NONE
+			delay_between_levels = PuzzleState.DELAY_NONE
 		"tutorial/combo_3", "tutorial/combo_4":
 			# no delay for the non-interactive segment where we demo for the player
-			delay_between_levels = PuzzleScore.DELAY_NONE
+			delay_between_levels = PuzzleState.DELAY_NONE
 		"tutorial/combo_5":
 			if hud.skill_tally_item("CakeBox").is_complete():
 				hud.set_message(tr("Impressive!\n\nHmm... Was there anything else?"))
-				delay_between_levels = PuzzleScore.DELAY_LONG
+				delay_between_levels = PuzzleState.DELAY_LONG
 				start_customer_countdown()
 			else:
 				hud.set_message(tr("Oh! ...You needed to clear a line that time."))
-				delay_between_levels = PuzzleScore.DELAY_LONG
+				delay_between_levels = PuzzleState.DELAY_LONG
 				failed_section = true
 	
 	var level_ids := [
@@ -154,7 +154,7 @@ func _advance_level() -> void:
 		new_level_id = CurrentLevel.settings.id
 	else:
 		new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
-	PuzzleScore.change_level(new_level_id, delay_between_levels)
+	PuzzleState.change_level(new_level_id, delay_between_levels)
 
 
 """
@@ -194,7 +194,7 @@ After a piece is written to the playfield, we check if the player should advance
 
 We also sometimes display messages from the sensei.
 """
-func _on_PuzzleScore_after_piece_written() -> void:
+func _on_PuzzleState_after_piece_written() -> void:
 	match CurrentLevel.settings.id:
 		"tutorial/combo_0", "tutorial/combo_2":
 			if hud.skill_tally_item("Combo").is_complete():
@@ -202,16 +202,16 @@ func _on_PuzzleScore_after_piece_written() -> void:
 			elif _did_end_combo:
 				_advance_level()
 		"tutorial/combo_3":
-			if PuzzleScore.level_performance.pieces == 2:
+			if PuzzleState.level_performance.pieces == 2:
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(3.0), "timeout")
 				hud.set_message(tr("Oops! I can still make the cake box, but my combo already broke."))
-			if PuzzleScore.level_performance.pieces >= 3:
+			if PuzzleState.level_performance.pieces >= 3:
 				yield(get_tree().create_timer(3.0), "timeout")
 				_advance_level()
 		"tutorial/combo_4":
-			if PuzzleScore.level_performance.pieces >= 4:
+			if PuzzleState.level_performance.pieces >= 4:
 				hud.set_message(tr("There, I did it!\n\nThat was tricky."))
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
@@ -224,16 +224,16 @@ func _on_PuzzleScore_after_piece_written() -> void:
 				_advance_level()
 		"tutorial/combo_6":
 			if not _showed_end_of_level_message:
-				var first_creature_score: int = PuzzleScore.creature_scores[0]
-				if _did_end_combo or first_creature_score >= 120:
-					if first_creature_score >= 120:
+				var first_customer_score: int = PuzzleState.customer_scores[0]
+				if _did_end_combo or first_customer_score >= 120:
+					if first_customer_score >= 120:
 						hud.set_message(tr("Wow, I didn't expect that! Great job.\n\nYou're already a combo master!"))
 						hud.enqueue_pop_out()
 					else:
 						hud.set_message(tr("Oh no, you broke your combo without reaching ¥120!"
 								+ "\n\nWell, don't worry about that."))
 						hud.enqueue_message(tr("¥120 is just a number I pulled out of my, um. ...Out of thin air."
-								+ ("\n\n¥%s is good too!" % [StringUtils.comma_sep(first_creature_score)])))
+								+ ("\n\n¥%s is good too!" % [StringUtils.comma_sep(first_customer_score)])))
 						hud.enqueue_pop_out()
 					_showed_end_of_level_message = true
 
@@ -248,11 +248,11 @@ func _on_Playfield_box_built(_rect: Rect2, color: int) -> void:
 		hud.skill_tally_item("CakeBox").increment()
 
 
-func _on_PuzzleScore_combo_ended() -> void:
+func _on_PuzzleState_combo_ended() -> void:
 	_did_end_combo = true
 
 
-func _on_PuzzleScore_after_game_prepared() -> void:
+func _on_PuzzleState_after_game_prepared() -> void:
 	hud.show_skill_tally_items()
 	hud.skill_tally_item("Combo").visible = false
 	hud.skill_tally_item("CakeBox").visible = false

@@ -36,15 +36,15 @@ onready var _combo_tracker: ComboTracker = $ComboTracker
 onready var _line_clearer: LineClearer = $LineClearer
 
 func _ready() -> void:
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	_prepare_level_blocks()
 
 
 func _physics_process(delta: float) -> void:
-	if PuzzleScore.game_active:
-		PuzzleScore.level_performance.seconds += delta
+	if PuzzleState.game_active:
+		PuzzleState.level_performance.seconds += delta
 	
 	if _box_builder.remaining_box_build_frames > 0:
 		if not _box_builder.is_physics_processing():
@@ -101,12 +101,12 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 		_box_builder.process_boxes()
 		_line_clearer.schedule_full_row_line_clears()
 	
-	PuzzleScore.before_piece_written()
+	PuzzleState.before_piece_written()
 	
 	if _box_builder.remaining_box_build_frames == 0 and _line_clearer.remaining_line_erase_frames == 0:
 		# If any boxes are being built or lines are being cleared, we emit the
 		# signal later. Otherwise we emit it now.
-		PuzzleScore.after_piece_written()
+		PuzzleState.after_piece_written()
 
 
 func break_combo() -> void:
@@ -126,7 +126,7 @@ func _prepare_level_blocks() -> void:
 	emit_signal("blocks_prepared")
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	_prepare_level_blocks()
 
 
@@ -142,7 +142,7 @@ func _on_BoxBuilder_after_boxes_built() -> void:
 	if _line_clearer.remaining_line_erase_frames > 0:
 		_line_clearer.set_physics_process(true)
 	else:
-		PuzzleScore.after_piece_written()
+		PuzzleState.after_piece_written()
 
 
 func _on_LineClearer_line_clears_scheduled(ys: Array) -> void:
@@ -163,7 +163,7 @@ func _on_LineClearer_line_cleared(y: int, total_lines: int, remaining_lines: int
 
 func _on_LineClearer_lines_deleted(lines: Array) -> void:
 	emit_signal("lines_deleted", lines)
-	PuzzleScore.after_piece_written()
+	PuzzleState.after_piece_written()
 
 
 func _on_FrostingGlobs_hit_playfield(glob: Node) -> void:

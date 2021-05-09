@@ -92,9 +92,9 @@ onready var _bg_strobe: ColorRect = $BgStrobe
 onready var _glow_tween: Tween = $GlowTween
 
 func _ready() -> void:
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	_combo_tracker.connect("combo_break_changed", self, "_on_ComboTracker_combo_break_changed")
-	PuzzleScore.connect("combo_changed", self, "_on_PuzzleScore_combo_changed")
+	PuzzleState.connect("combo_changed", self, "_on_PuzzleState_combo_changed")
 	_init_tile_set()
 	_init_color_tile_indexes()
 	reset()
@@ -256,7 +256,7 @@ func _on_ComboTracker_combo_break_changed(_value: int) -> void:
 	_refresh_tile_maps()
 
 
-func _on_PuzzleScore_combo_changed(value: int) -> void:
+func _on_PuzzleState_combo_changed(value: int) -> void:
 	_calculate_brightness(value)
 	_start_glow_tween()
 	_refresh_tile_maps()
@@ -270,5 +270,5 @@ func _on_Playfield_box_built(_rect: Rect2, _color_int: int) -> void:
 	_start_glow_tween()
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	reset()
