@@ -18,8 +18,6 @@ var did_hard_drop: bool
 # The hard drop destination for the current piece. Used for drawing the ghost piece.
 var hard_drop_target_pos: Vector2
 
-var _gravity_pause_frames := 0
-
 onready var input: PieceInput = get_node(input_path)
 onready var piece_mover: PieceMover = get_node(piece_mover_path)
 
@@ -56,8 +54,8 @@ func apply_hard_drop_input(piece: ActivePiece) -> void:
 Increments the piece's gravity. A piece will fall once its accumulated gravity exceeds a certain threshold.
 """
 func apply_gravity(piece: ActivePiece) -> void:
-	if _gravity_pause_frames > 0:
-		_gravity_pause_frames -= 1
+	if piece.remaining_post_squish_frames > 0:
+		piece.remaining_post_squish_frames -= 1
 	else:
 		if input.is_soft_drop_pressed():
 			# soft drop
@@ -84,7 +82,7 @@ Squish moving pauses gravity for a moment.
 This allows players to squish and slide a piece before it drops, even at 20G.
 """
 func _on_Squisher_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
-	_gravity_pause_frames = PieceSpeeds.SQUISH_FRAMES
+	_piece.remaining_post_squish_frames = PieceSpeeds.POST_SQUISH_FRAMES
 
 
 func _on_PieceManager_piece_changed(piece: ActivePiece) -> void:

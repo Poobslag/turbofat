@@ -1,3 +1,4 @@
+class_name CrumbCluster
 extends Node2D
 """
 A cluster of crumbs which appears when the customer eats.

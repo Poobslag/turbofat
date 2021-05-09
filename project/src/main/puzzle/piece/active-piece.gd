@@ -15,6 +15,10 @@ var target_orientation := 0
 # Amount of accumulated gravity for this piece. When this number reaches 256, the piece will move down one row
 var gravity := 0
 
+# Number of frames until gravity affects this piece again. After the player does a 'squish move' the piece is
+# unaffected by gravity for a few frames.
+var remaining_post_squish_frames := 0
+
 # Number of frames this piece has been locked into the playfield, or '0' if the piece is not locked
 var lock := 0
 

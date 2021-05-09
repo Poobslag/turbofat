@@ -65,8 +65,8 @@ func stretch_to(piece_pos_arr: Array, offset: Vector2) -> void:
 """
 Starts a new squish move, which will make the piece appear vertically stretched for a few frames.
 """
-func start_squish(squish_frames: int, new_color_y: int) -> void:
-	squish_seconds_total = squish_frames / 60.0
+func start_squish(post_squish_frames: int, new_color_y: int) -> void:
+	squish_seconds_total = post_squish_frames / 60.0
 	squish_seconds_remaining = squish_seconds_total
 	set_process(true)
 	_max_distance = 0
