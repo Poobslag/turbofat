@@ -50,7 +50,7 @@ onready var _food_flight_timer := $FoodFlightTimer
 onready var _customer_change_timer := $CustomerChangeTimer
 
 func _ready() -> void:
-	PuzzleScore.connect("speed_index_changed", self, "_on_PuzzleScore_speed_index_changed")
+	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
 
 
 func _physics_process(_delta: float) -> void:
@@ -162,7 +162,7 @@ func _on_StarSeeds_food_spawned(cell: Vector2, remaining_food: int, food_type: i
 	var customer := _puzzle.get_customer()
 	var old_fatness: float = _pending_food_fatness.back() if _pending_food_fatness else customer.get_fatness()
 	var base_score := customer.fatness_to_score(customer.base_fatness)
-	var target_fatness := customer.score_to_fatness(base_score + PuzzleScore.get_bonus_score())
+	var target_fatness := customer.score_to_fatness(base_score + PuzzleState.get_bonus_score())
 	
 	var fatness_pct: float = 1.0 / (remaining_food + 1)
 	_pending_food_fatness.append(lerp(old_fatness, target_fatness, fatness_pct))
@@ -194,5 +194,5 @@ func _on_RestaurantView_customer_changed() -> void:
 	_pending_food_fatness.clear()
 
 
-func _on_PuzzleScore_speed_index_changed(_value: int) -> void:
+func _on_PuzzleState_speed_index_changed(_value: int) -> void:
 	_update_food_speed()

@@ -283,13 +283,6 @@ func _chat_tree_from_chatscript_file(path: String) -> ChatTree:
 		var parser := ChatscriptParser.new()
 		chat_tree = parser.chat_tree_from_file(path)
 	
-	var history_key := path
-	history_key = history_key.trim_suffix(".chat")
-	history_key = history_key.trim_prefix("res://assets/main/")
-	history_key = history_key.replace("creatures/primary", "chat")
-	history_key = StringUtils.hyphens_to_underscores(history_key)
-	chat_tree.history_key = history_key
-	
 	return chat_tree
 
 

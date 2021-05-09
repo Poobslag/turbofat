@@ -34,7 +34,7 @@ Returns 'true' if the replay data specifies that the action was pressed on the c
 This only true for the exact frame when the press is first triggered.
 """
 func is_action_pressed(action: String) -> bool:
-	var action_frame_key := "%s +%s" % [PuzzleScore.input_frame, action]
+	var action_frame_key := "%s +%s" % [PuzzleState.input_frame, action]
 	var pressed := _action_timings.has(action_frame_key)
 	if pressed:
 		_pressed_actions[action] = true
@@ -47,7 +47,7 @@ Returns 'true' if the replay data specifies that the action was released on the 
 This only true for the exact frame when the release is first triggered.
 """
 func is_action_released(action: String) -> bool:
-	var action_frame_key := "%s -%s" % [PuzzleScore.input_frame, action]
+	var action_frame_key := "%s -%s" % [PuzzleState.input_frame, action]
 	var released := _action_timings.has(action_frame_key)
 	if released:
 		_pressed_actions[action] = false

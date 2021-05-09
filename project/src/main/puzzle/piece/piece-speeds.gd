@@ -77,8 +77,8 @@ func _ready() -> void:
 	_add_speed(PieceSpeed.new("FFF", 20*G,  2, 2, 7,  8, 12, 3, 3))
 	
 	current_speed = PieceSpeeds.speed("0")
-	PuzzleScore.connect("speed_index_changed", self, "_on_PuzzleScore_speed_index_changed")
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
+	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 
 
 func speed(string: String) -> PieceSpeed:
@@ -94,9 +94,9 @@ func _update_current_speed() -> void:
 	PieceSpeeds.current_speed = PieceSpeeds.speed(MilestoneManager.prev_milestone().get_meta("speed"))
 
 
-func _on_PuzzleScore_speed_index_changed(_value: int) -> void:
+func _on_PuzzleState_speed_index_changed(_value: int) -> void:
 	_update_current_speed()
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	_update_current_speed()

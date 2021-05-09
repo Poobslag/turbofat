@@ -22,9 +22,9 @@ var piece_continued_combo := false
 var piece_broke_combo := false
 
 func _ready() -> void:
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	PuzzleScore.connect("after_piece_written", self, "_on_PuzzleScore_after_piece_written")
-	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
+	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 
 
@@ -34,15 +34,15 @@ func set_combo_break(new_combo_break: int) -> void:
 
 
 func break_combo() -> void:
-	if PuzzleScore.combo >= 20:
+	if PuzzleState.combo >= 20:
 		$Fanfare3.play()
-	elif PuzzleScore.combo >= 10:
+	elif PuzzleState.combo >= 10:
 		$Fanfare2.play()
-	elif PuzzleScore.combo >= 5:
+	elif PuzzleState.combo >= 5:
 		$Fanfare1.play()
 	
-	if PuzzleScore.combo > 0:
-		PuzzleScore.end_combo()
+	if PuzzleState.combo > 0:
+		PuzzleState.end_combo()
 	emit_signal("combo_break_changed", combo_break)
 
 
@@ -51,7 +51,7 @@ func _reset() -> void:
 	emit_signal("combo_break_changed", combo_break)
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	_reset()
 
 
@@ -76,7 +76,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 		emit_signal("combo_break_changed", combo_break)
 
 
-func _on_PuzzleScore_after_piece_written() -> void:
+func _on_PuzzleState_after_piece_written() -> void:
 	if piece_broke_combo:
 		combo_break = CurrentLevel.settings.combo_break.pieces
 		break_combo()
@@ -96,15 +96,15 @@ func _on_PuzzleScore_after_piece_written() -> void:
 	piece_continued_combo = false
 
 
-func _on_PuzzleScore_game_ended() -> void:
-	PuzzleScore.end_combo()
+func _on_PuzzleState_game_ended() -> void:
+	PuzzleState.end_combo()
 
 
 """
 Increments the combo and score for the specified line clear.
 """
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
-	var combo_score: int = COMBO_SCORE_ARR[clamp(PuzzleScore.combo, 0, COMBO_SCORE_ARR.size() - 1)]
+	var combo_score: int = COMBO_SCORE_ARR[clamp(PuzzleState.combo, 0, COMBO_SCORE_ARR.size() - 1)]
 	var box_score := 0
 	for box_int in box_ints:
 		if PuzzleTileMap.is_snack_box(box_int):
@@ -113,4 +113,4 @@ func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_li
 			box_score += CurrentLevel.settings.score.cake_points
 		else:
 			box_score += CurrentLevel.settings.score.veg_points
-	PuzzleScore.add_line_score(combo_score, box_score)
+	PuzzleState.add_line_score(combo_score, box_score)

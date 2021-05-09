@@ -10,13 +10,13 @@ signal settings_button_pressed
 signal back_button_pressed
 
 func _ready() -> void:
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
-	PuzzleScore.connect("before_level_changed", self, "_on_PuzzleScore_before_level_changed")
-	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
-	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
-	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
-	CurrentLevel.connect("level_state_changed", self, "_on_Level_level_state_changed")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
+	PuzzleState.connect("before_level_changed", self, "_on_PuzzleState_before_level_changed")
+	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
+	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
+	CurrentLevel.connect("cutscene_state_changed", self, "_on_Level_cutscene_state_changed")
 	$MessageLabel.hide()
 	# grab focus so the player can start a new game or navigate with the keyboard
 	$Buttons/Start.grab_focus()
@@ -61,41 +61,41 @@ func _on_Settings_pressed() -> void:
 
 func _on_Back_pressed() -> void:
 	# disconnect signal to prevent the back button from changing its label
-	CurrentLevel.disconnect("level_state_changed", self, "_on_Level_level_state_changed")
+	CurrentLevel.disconnect("cutscene_state_changed", self, "_on_Level_cutscene_state_changed")
 	
 	emit_signal("back_button_pressed")
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	hide_buttons()
 	show_message(tr("Ready?"))
 
 
-func _on_PuzzleScore_game_started() -> void:
+func _on_PuzzleState_game_started() -> void:
 	hide_message()
 
 
-func _on_PuzzleScore_before_level_changed(new_level_id: String) -> void:
+func _on_PuzzleState_before_level_changed(new_level_id: String) -> void:
 	if new_level_id == CurrentLevel.settings.id:
 		show_message(tr("Regret..."))
 	else:
 		show_message(tr("Good!"))
 
 
-func _on_PuzzleScore_after_level_changed() -> void:
+func _on_PuzzleState_after_level_changed() -> void:
 	hide_message()
 
 
-func _on_PuzzleScore_game_ended() -> void:
+func _on_PuzzleState_game_ended() -> void:
 	var message: String
-	match PuzzleScore.end_result():
-		PuzzleScore.Result.NONE:
+	match PuzzleState.end_result():
+		PuzzleState.Result.NONE:
 			hide_message()
-		PuzzleScore.Result.LOST:
+		PuzzleState.Result.LOST:
 			message = tr("Game over")
-		PuzzleScore.Result.FINISHED:
+		PuzzleState.Result.FINISHED:
 			message = tr("Finish!")
-		PuzzleScore.Result.WON:
+		PuzzleState.Result.WON:
 			message = tr("You win!")
 	show_message(message)
 
@@ -103,13 +103,13 @@ func _on_PuzzleScore_game_ended() -> void:
 """
 Restores the HUD elements after the player wins or loses.
 """
-func _on_PuzzleScore_after_game_ended() -> void:
+func _on_PuzzleState_after_game_ended() -> void:
 	$MessageLabel.hide()
 	$Buttons/Settings.show()
 	$Buttons/Back.show()
 	$Buttons/Start.show()
 	if CurrentLevel.settings.other.tutorial or CurrentLevel.settings.other.after_tutorial:
-		if not PuzzleScore.level_performance.lost:
+		if not PuzzleState.level_performance.lost:
 			# if they won, make them exit; hide the start button
 			$Buttons/Start.hide()
 			
@@ -121,12 +121,12 @@ func _on_PuzzleScore_after_game_ended() -> void:
 	var buttons_to_focus := [$Buttons/Back, $Buttons/Start]
 	if CurrentLevel.keep_retrying:
 		buttons_to_focus.push_front($Buttons/Start)
-	elif CurrentLevel.level_state != CurrentLevel.LevelState.AFTER:
+	elif CurrentLevel.cutscene_state != CurrentLevel.CutsceneState.AFTER:
 		buttons_to_focus.push_front($Buttons/Start)
 	
 	# the start button changes its label after the player finishes the level
-	match PuzzleScore.end_result():
-		PuzzleScore.Result.NONE:
+	match PuzzleState.end_result():
+		PuzzleState.Result.NONE:
 			# if they abort the level without playing it, the button doesn't change
 			pass
 		_:
@@ -143,9 +143,9 @@ func _on_PuzzleScore_after_game_ended() -> void:
 """
 The back buttons changes its label if the level is cleared.
 """
-func _on_Level_level_state_changed() -> void:
-	match CurrentLevel.level_state:
-		CurrentLevel.LevelState.AFTER:
+func _on_Level_cutscene_state_changed() -> void:
+	match CurrentLevel.cutscene_state:
+		CurrentLevel.CutsceneState.AFTER:
 			$Buttons/Back.text = tr("Back") if CurrentLevel.keep_retrying else tr("Continue")
 		_:
 			$Buttons/Back.text = tr("Back")

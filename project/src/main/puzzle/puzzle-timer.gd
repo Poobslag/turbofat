@@ -20,4 +20,4 @@ func _process(_delta: float) -> void:
 Updates the label to show the number of seconds the player has spent on the current puzzle.
 """
 func _refresh_text() -> void:
-	text = StringUtils.format_duration(int(ceil(PuzzleScore.level_performance.seconds)))
+	text = StringUtils.format_duration(int(ceil(PuzzleState.level_performance.seconds)))

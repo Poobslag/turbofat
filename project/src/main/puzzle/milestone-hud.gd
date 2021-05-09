@@ -24,8 +24,8 @@ onready var _value: FontFitLabel = $Value
 onready var _progress_bar_particles: Control = $ProgressBarParticles
 
 func _ready() -> void:
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	PuzzleScore.connect("speed_index_changed", self, "_on_PuzzleScore_speed_index_changed")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	match CurrentLevel.settings.finish_condition.type:
 		Milestone.CUSTOMERS:
@@ -140,7 +140,7 @@ func _emit_particles() -> void:
 		particles_2d.emitting = true
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	init_milebar()
 
 
@@ -149,7 +149,7 @@ Emits particles when the player levels up.
 
 This provides visual feedback for people playing without sound.
 """
-func _on_PuzzleScore_speed_index_changed(value: int) -> void:
+func _on_PuzzleState_speed_index_changed(value: int) -> void:
 	if value == 0:
 		# initializing the level; don't emit any particles
 		return

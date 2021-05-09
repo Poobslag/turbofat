@@ -599,7 +599,7 @@ func score_to_fatness(in_score: float) -> float:
 	return result
 
 
-func score_to_comfort(combo: float, creature_score: float) -> float:
+func score_to_comfort(combo: float, customer_score: float) -> float:
 	var comfort := 0.0
 	if weight_gain_scale == 0.0:
 		# tutorial sensei doesn't become comfortable
@@ -608,9 +608,9 @@ func score_to_comfort(combo: float, creature_score: float) -> float:
 		# ate five things; comfortable
 		comfort += clamp(inverse_lerp(5, 15, combo), 0.0, 1.0)
 		# starting to overeat; less comfortable
-		comfort -= clamp(inverse_lerp(400, 600, creature_score * weight_gain_scale), 0.0, 1.0)
+		comfort -= clamp(inverse_lerp(400, 600, customer_score * weight_gain_scale), 0.0, 1.0)
 		# overate; uncomfortable
-		comfort -= clamp(inverse_lerp(600, 1200, creature_score * weight_gain_scale), 0.0, 1.0)
+		comfort -= clamp(inverse_lerp(600, 1200, customer_score * weight_gain_scale), 0.0, 1.0)
 	return comfort
 
 

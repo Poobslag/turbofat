@@ -402,4 +402,22 @@ func chat_tree_from_file(path: String) -> ChatTree:
 	
 	f.close()
 	
+	_chat_tree.history_key = history_key_from_path(path)
+	
 	return _chat_tree
+
+
+"""
+Converts a path like 'res://assets/main/creatures/primary/bones/filler-001.chat' into a history key like
+'chat/bones/filler_001'.
+
+Using these clean short history keys has many benefits. Most notably they aren't invalidated if we move files or
+change extensions.
+"""
+func history_key_from_path(path: String) -> String:
+	var history_key := path
+	history_key = history_key.trim_suffix(".chat")
+	history_key = history_key.trim_prefix("res://assets/main/")
+	history_key = history_key.replace("creatures/primary", "chat")
+	history_key = StringUtils.hyphens_to_underscores(history_key)
+	return history_key

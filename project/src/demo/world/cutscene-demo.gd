@@ -19,7 +19,7 @@ func _on_StartButton_pressed() -> void:
 		CurrentLevel.push_cutscene_trail(true)
 	elif cutscene_index >= 100 and cutscene_index < 200:
 		# launch 'after level' cutscene
-		CurrentLevel.level_state = CurrentLevel.LevelState.AFTER
+		CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.AFTER
 		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
 		SceneTransition.push_trail(chat_tree.cutscene_scene_path())
 	else:

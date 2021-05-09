@@ -69,13 +69,13 @@ a repeating list where the repetition is concealed using a shepard tone.
 """
 func _play_combo_sound(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	var sound: AudioStream
-	if PuzzleScore.combo <= 0:
+	if PuzzleState.combo <= 0:
 		# lines were cleared from top out or another unusual case. don't play combo sounds
 		pass
-	elif PuzzleScore.combo < _combo_sounds.size():
-		sound = _combo_sounds[PuzzleScore.combo - 1]
+	elif PuzzleState.combo < _combo_sounds.size():
+		sound = _combo_sounds[PuzzleState.combo - 1]
 	else:
-		sound = _combo_endless_sounds[(PuzzleScore.combo - 1 - _combo_sounds.size()) % _combo_endless_sounds.size()]
+		sound = _combo_endless_sounds[(PuzzleState.combo - 1 - _combo_sounds.size()) % _combo_endless_sounds.size()]
 	if sound:
 		$ComboSound.stream = sound
 		$ComboSound.play()

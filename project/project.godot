@@ -939,7 +939,7 @@ Pauser="*res://src/main/pauser.gd"
 PieceQueue="*res://src/main/puzzle/piece/piece-queue.gd"
 PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"
-PuzzleScore="*res://src/main/puzzle/puzzle-score.gd"
+PuzzleState="*res://src/main/puzzle/puzzle-state.gd"
 ResourceCache="*res://src/main/ResourceCache.tscn"
 SceneTransition="*res://src/main/ui/scene-transition.gd"
 

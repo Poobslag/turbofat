@@ -13,8 +13,8 @@ onready var puzzle: Puzzle = get_node(puzzle_path)
 
 func _ready() -> void:
 	visible = false
-	PuzzleScore.connect("game_prepared", self, "_on_PuzzleScore_game_prepared")
-	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	replace_tutorial_module()
 
@@ -146,12 +146,12 @@ func _flash() -> void:
 	$Tween.start()
 
 
-func _on_PuzzleScore_after_level_changed() -> void:
+func _on_PuzzleState_after_level_changed() -> void:
 	$SkillTallyItems.visible = CurrentLevel.settings.other.tutorial
 	_flash()
 
 
-func _on_PuzzleScore_game_prepared() -> void:
+func _on_PuzzleState_game_prepared() -> void:
 	refresh()
 
 

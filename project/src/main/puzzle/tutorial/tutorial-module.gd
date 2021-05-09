@@ -17,7 +17,7 @@ func _ready() -> void:
 	playfield = puzzle.get_playfield()
 	piece_manager = puzzle.get_piece_manager()
 	
-	PuzzleScore.connect("after_level_changed", self, "_on_PuzzleScore_after_level_changed")
+	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	
 	for skill_tally_item in $SkillTallyItems.get_children():
 		if skill_tally_item is SkillTallyItem:
@@ -32,7 +32,7 @@ Starts a countdown and switches from tutorial music to regular music.
 This is used at the end of each tutorial when customers come in.
 """
 func start_customer_countdown() -> void:
-	yield(PuzzleScore, "after_level_changed")
+	yield(PuzzleState, "after_level_changed")
 	MusicPlayer.play_upbeat_bgm()
 	puzzle.start_level_countdown()
 
@@ -46,7 +46,7 @@ prepare other aspects of the level as well.
 func prepare_tutorial_level() -> void:
 	# Reset the player's combo between puzzle sections. Each tutorial section should have a fresh start; We don't want
 	# them to receive a discouraging 'you broke your combo' fanfare at the start of a section.
-	PuzzleScore.set_combo(0)
+	PuzzleState.set_combo(0)
 	
 	# Hide all completed skill tally items.
 	for skill_tally_item_obj in hud.skill_tally_items():
@@ -55,5 +55,5 @@ func prepare_tutorial_level() -> void:
 			skill_tally_item.visible = false
 
 
-func _on_PuzzleScore_after_level_changed() -> void:
+func _on_PuzzleState_after_level_changed() -> void:
 	prepare_tutorial_level()

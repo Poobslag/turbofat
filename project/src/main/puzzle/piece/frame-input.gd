@@ -31,11 +31,11 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	
 	if event.is_action_pressed(action):
-		if _print_inputs: print("\"%s +%s\"," % [PuzzleScore.input_frame, action])
+		if _print_inputs: print("\"%s +%s\"," % [PuzzleState.input_frame, action])
 		_just_pressed = true
 		_pressed = true
 	elif event.is_action_released(action):
-		if _print_inputs: print("\"%s -%s\"," % [PuzzleScore.input_frame, action])
+		if _print_inputs: print("\"%s -%s\"," % [PuzzleState.input_frame, action])
 		_pressed = false
 	
 	if cancel_action:
@@ -106,11 +106,11 @@ Applies prerecorded puzzle inputs for things such as tutorials.
 """
 func _process_input_replay() -> void:
 	if CurrentLevel.settings.input_replay.is_action_pressed(action):
-		if _print_inputs: print("\"%s +%s\"," % [PuzzleScore.input_frame, action])
+		if _print_inputs: print("\"%s +%s\"," % [PuzzleState.input_frame, action])
 		_just_pressed = true
 		_pressed = true
 	elif CurrentLevel.settings.input_replay.is_action_released(action):
-		if _print_inputs: print("\"%s -%s\"," % [PuzzleScore.input_frame, action])
+		if _print_inputs: print("\"%s -%s\"," % [PuzzleState.input_frame, action])
 		_pressed = false
 	
 	if cancel_action:

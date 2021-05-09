@@ -11,9 +11,9 @@ onready var _settings_menu: SettingsMenu = $SettingsMenu
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	
-	PuzzleScore.connect("game_started", self, "_on_PuzzleScore_game_started")
-	PuzzleScore.connect("game_ended", self, "_on_PuzzleScore_game_ended")
-	PuzzleScore.connect("after_game_ended", self, "_on_PuzzleScore_after_game_ended")
+	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
+	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
 	
 	# set a baseline fatness state
@@ -69,7 +69,7 @@ func start_level_countdown() -> void:
 	$PieceManager.set_physics_process(false)
 	$Hud/HudUi/PuzzleMessages.show_message(tr("Ready?"))
 	$StartEndSfx.play_ready_sound()
-	yield(get_tree().create_timer(PuzzleScore.READY_DURATION), "timeout")
+	yield(get_tree().create_timer(PuzzleState.READY_DURATION), "timeout")
 	$Hud/HudUi/PuzzleMessages.hide_message()
 	$PieceManager.set_physics_process(true)
 	$PieceManager.skip_prespawn()
@@ -94,7 +94,7 @@ Parameters:
 	'food_type': An enum from FoodType corresponding to the food to show
 """
 func feed_creature(customer: Creature, food_type: int) -> void:
-	var new_comfort := customer.score_to_comfort(PuzzleScore.combo, PuzzleScore.get_creature_score())
+	var new_comfort := customer.score_to_comfort(PuzzleState.combo, PuzzleState.get_customer_score())
 	customer.set_comfort(new_comfort)
 	customer.feed(food_type)
 
@@ -147,11 +147,12 @@ func _start_puzzle() -> void:
 		if current_creature_feed_count > 0:
 			_restaurant_view.current_creature_index = _restaurant_view.next_creature_index()
 	
-	PuzzleScore.prepare_and_start_game()
+	PuzzleState.prepare_and_start_game()
 
 
 func _quit_puzzle() -> void:
-	if CurrentLevel.level_state == CurrentLevel.LevelState.AFTER and ChatLibrary.has_postroll(CurrentLevel.level_id):
+	if CurrentLevel.cutscene_state == CurrentLevel.CutsceneState.AFTER \
+			and ChatLibrary.has_postroll(CurrentLevel.level_id):
 		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
 		# insert cutscene into breadcrumb trail so it will show up after we pop the trail
 		Breadcrumb.trail.insert(1, chat_tree.cutscene_scene_path())
@@ -182,29 +183,29 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	
 	# Save the appropriate fatness in the CreatureLibrary
 	var base_score := customer.fatness_to_score(customer.base_fatness)
-	var new_fatness := customer.score_to_fatness(base_score + PuzzleScore.get_bonus_score())
+	var new_fatness := customer.score_to_fatness(base_score + PuzzleState.get_bonus_score())
 	customer.save_fatness(new_fatness)
 	
 	# When the player finishes a puzzle, we end the game immediately after the last line clear. We don't wait for the
 	# after_piece_written signal because that signal is emitted after lines are deleted, resulting in an awkward pause.
-	if remaining_lines == 0 and PuzzleScore.finish_triggered and not PuzzleScore.game_ended:
-		PuzzleScore.end_game()
+	if remaining_lines == 0 and PuzzleState.finish_triggered and not PuzzleState.game_ended:
+		PuzzleState.end_game()
 	
 	# Calculate whether or not the creature should say something positive about the combo.
 	# They say something after clearing [6, 12, 18, 24...] lines.
-	if remaining_lines == 0 and PuzzleScore.combo >= 6 and total_lines > PuzzleScore.combo % 6:
+	if remaining_lines == 0 and PuzzleState.combo >= 6 and total_lines > PuzzleState.combo % 6:
 		yield(get_tree().create_timer(0.5), "timeout")
 		customer.play_combo_voice()
 
 
-func _on_PuzzleScore_game_started() -> void:
+func _on_PuzzleState_game_started() -> void:
 	_settings_menu.quit_type = SettingsMenu.GIVE_UP
 
 
 """
 Method invoked when the game ends. Stores the rank result for later.
 """
-func _on_PuzzleScore_game_ended() -> void:
+func _on_PuzzleState_game_ended() -> void:
 	if not CurrentLevel.level_id:
 		# null check to avoid errors when launching Puzzle.tscn standalone
 		return
@@ -218,12 +219,12 @@ func _on_PuzzleScore_game_ended() -> void:
 	
 	match CurrentLevel.settings.finish_condition.type:
 		Milestone.SCORE:
-			if not PuzzleScore.level_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
+			if not PuzzleState.level_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
 		_:
-			if not PuzzleScore.level_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
+			if not PuzzleState.level_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
 	
-	if PuzzleScore.end_result() in [PuzzleScore.Result.FINISHED, PuzzleScore.Result.WON]:
-		CurrentLevel.level_state = CurrentLevel.LevelState.AFTER
+	if PuzzleState.end_result() in [PuzzleState.Result.FINISHED, PuzzleState.Result.WON]:
+		CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.AFTER
 
 
 """
@@ -231,13 +232,13 @@ Wait until after the game ends to save the player's data.
 
 This makes the stutter from writing to disk less noticable.
 """
-func _on_PuzzleScore_after_game_ended() -> void:
+func _on_PuzzleState_after_game_ended() -> void:
 	PlayerSave.save_player_data()
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
 	if _settings_menu.quit_type == SettingsMenu.GIVE_UP:
-		PuzzleScore.make_player_lose()
+		PuzzleState.make_player_lose()
 	else:
 		if not MusicPlayer.is_playing_chill_bgm():
 			MusicPlayer.stop()

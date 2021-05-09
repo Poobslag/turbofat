@@ -36,7 +36,7 @@ func spawn_piece(piece: ActivePiece) -> bool:
 	
 	var success := true
 	if not piece.can_move_to_target():
-		PuzzleScore.top_out()
+		PuzzleState.top_out()
 		success = false
 	return success
 
