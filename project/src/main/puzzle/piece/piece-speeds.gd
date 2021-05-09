@@ -18,8 +18,8 @@ const MAX_LOCK_RESETS := 15
 # The gravity constant used when the player soft-drops a piece.
 const DROP_G := 128
 
-# When the player does a 'squish move' the piece is unaffected by gravity for this many frames.
-const SQUISH_FRAMES := 4
+# After the player does a 'squish move' the piece is unaffected by gravity for this many frames.
+const POST_SQUISH_FRAMES := 4
 
 # How fast the pieces are moving right now
 var current_speed: PieceSpeed

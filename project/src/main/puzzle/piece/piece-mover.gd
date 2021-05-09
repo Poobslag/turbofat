@@ -115,6 +115,13 @@ func apply_move_input(piece: ActivePiece) -> void:
 		input.set_left_das_active()
 	if input.is_right_pressed() and not piece.can_move_to(piece.pos + Vector2.RIGHT, piece.orientation):
 		input.set_right_das_active()
+	
+	# To prevent pieces from slipping past nooks after a squish move, we automatically trigger DAS if a movement key
+	# is pressed after a squish move.
+	if input.is_left_pressed() and piece.remaining_post_squish_frames > 0:
+		input.set_left_das_active()
+	if input.is_right_pressed() and piece.remaining_post_squish_frames > 0:
+		input.set_right_das_active()
 
 
 """

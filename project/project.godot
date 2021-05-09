@@ -204,6 +204,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-visuals.gd"
 }, {
+"base": "Node2D",
+"class": "CrumbCluster",
+"language": "GDScript",
+"path": "res://src/main/puzzle/crumb-cluster.gd"
+}, {
 "base": "Reference",
 "class": "DnaAlternatives",
 "language": "GDScript",
@@ -794,6 +799,7 @@ _global_script_class_icons={
 "CreatureShadow": "",
 "CreatureShadows": "",
 "CreatureVisuals": "",
+"CrumbCluster": "",
 "DnaAlternatives": "",
 "DurationCalculator": "",
 "EditorPlayfield": "",

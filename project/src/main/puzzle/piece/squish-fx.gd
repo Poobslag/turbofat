@@ -91,7 +91,7 @@ Initialize the squish animation for long squish moves
 func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
 	if piece.pos.y - old_pos.y >= 3:
 		var unblocked_blocks: Array = piece.type.pos_arr[piece.orientation].duplicate()
-		_squish_map.start_squish(PieceSpeeds.SQUISH_FRAMES, piece.type.color_arr[piece.orientation][0].y)
+		_squish_map.start_squish(PieceSpeeds.POST_SQUISH_FRAMES, piece.type.color_arr[piece.orientation][0].y)
 		for dy in range(piece.pos.y - old_pos.y):
 			var i := 0
 			while i < unblocked_blocks.size():
