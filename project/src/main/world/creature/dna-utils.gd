@@ -285,6 +285,9 @@ func _ready() -> void:
 	# goblin nose goes behind skull mask in a weird way
 	_set_allele_combo_adjustment("accessory", "4", "nose", "3", -999)
 	
+	# fat whisker goes behind orc ear in a weird way
+	_set_allele_combo_adjustment("cheek", "4", "ear", "11", -999)
+	
 	# zen eyes aren't very visible through masks
 	_set_allele_combo_adjustment("accessory", "4", "eye", "2", -2)
 	_set_allele_combo_adjustment("accessory", "5", "eye", "2", -2)
