@@ -4,3 +4,4 @@
 
 [node name="ResourceCache" type="Node"]
 script = ExtResource( 1 )
+skipped_resource_paths = [ "res://assets/main/world/environment", "res://src/main/world/environment", "res://src/main/world/Overworld.tscn" ]

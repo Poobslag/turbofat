@@ -26,6 +26,9 @@ export (bool) var verbose := false
 # reduces the number of textures loaded throughout the game
 export (bool) var minimal_resources := false
 
+# resources which shouldn't be cached. we shouldn't cache large resources unless it's necessary
+export (Array, String) var skipped_resource_paths: Array
+
 # maintains references to all resources to prevent them from being cleaned up
 # key: resource path
 # value: resource
@@ -234,14 +237,21 @@ func _find_resource_paths() -> Array:
 	var file: String
 	while true:
 		if file:
-			if dir.current_is_dir():
-				dir_queue.append("%s/%s" % [dir.get_current_dir(), file])
+			var resource_path: String
+			if file.ends_with(".import"):
+				resource_path = "%s/%s" % [dir.get_current_dir(), file.get_basename()]
+			else:
+				resource_path = "%s/%s" % [dir.get_current_dir(), file.get_file()]
+			if resource_path in skipped_resource_paths:
+				if verbose: print("resource skipped: %s" % [resource_path])
+			elif dir.current_is_dir():
+				dir_queue.append(resource_path)
 			elif file.ends_with(".tscn"):
-				_remaining_scene_paths.append("%s/%s" % [dir.get_current_dir(), file.get_file()])
+				_remaining_scene_paths.append(resource_path)
 			elif file.ends_with(".png.import") or file.ends_with(".wav.import"):
-				_remaining_resource_paths.append("%s/%s" % [dir.get_current_dir(), file.get_basename()])
+				_remaining_resource_paths.append(resource_path)
 			elif file.ends_with(".json"):
-				_remaining_resource_paths.append("%s/%s" % [dir.get_current_dir(), file.get_file()])
+				_remaining_resource_paths.append(resource_path)
 		else:
 			if dir:
 				dir.list_dir_end()
