@@ -9,12 +9,12 @@
 0/tex_offset = Vector2( 0, 35 )
 0/material = ExtResource( 2 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 675, 750 )
+0/region = Rect2( 0, 0, 675, 825 )
 0/tile_mode = 1
 0/autotile/bitmask_mode = 1
 0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 21299216, Vector2( 0, 1 ), 21299226, Vector2( 0, 2 ), 21299376, Vector2( 0, 3 ), 21299386, Vector2( 0, 4 ), 21299258, Vector2( 1, 0 ), 21299218, Vector2( 1, 1 ), 21299352, Vector2( 1, 2 ), 21299378, Vector2( 1, 4 ), 21299258, Vector2( 2, 0 ), 21299344, Vector2( 2, 1 ), 21299354, Vector2( 2, 2 ), 21299256, Vector2( 2, 3 ), 21299354, Vector2( 2, 4 ), 21299258, Vector2( 3, 0 ), 21299346, Vector2( 3, 1 ), 21299248, Vector2( 3, 2 ), 21299258, Vector2( 3, 3 ), 21299354, Vector2( 4, 0 ), 21299224, Vector2( 4, 1 ), 21299250, Vector2( 4, 2 ), 21299384, Vector2( 4, 3 ), 21299354 ]
 0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 135, 150 )
+0/autotile/tile_size = Vector2( 135, 165 )
 0/autotile/spacing = 0
 0/autotile/occluder_map = [  ]
 0/autotile/navpoly_map = [  ]

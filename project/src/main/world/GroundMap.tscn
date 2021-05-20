@@ -11,10 +11,10 @@
 0/tex_offset = Vector2( 0, 35 )
 0/material = ExtResource( 4 )
 0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 675, 750 )
+0/region = Rect2( 0, 0, 675, 825 )
 0/tile_mode = 2
 0/autotile/icon_coordinate = Vector2( 0, 0 )
-0/autotile/tile_size = Vector2( 135, 150 )
+0/autotile/tile_size = Vector2( 135, 165 )
 0/autotile/spacing = 0
 0/autotile/occluder_map = [  ]
 0/autotile/navpoly_map = [  ]
@@ -50,3 +50,6 @@ cell_tile_origin = 1
 centered_textures = true
 format = 1
 script = ExtResource( 1 )
+cornerable_tiles = {
+0: Vector2( 1, 3 )
+}

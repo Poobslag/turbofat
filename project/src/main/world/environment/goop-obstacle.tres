@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/world/goop-ground.shader" type="Shader" id=2]
 
 [sub_resource type="OpenSimplexNoise" id=1]
-seed = 609303
+seed = 582024
 octaves = 1
 
 [sub_resource type="NoiseTexture" id=2]
@@ -14,8 +14,8 @@ noise = SubResource( 1 )
 [resource]
 shader = ExtResource( 2 )
 shader_param/black = Color( 0.254902, 0.156863, 0.117647, 1 )
-shader_param/base_color = Color( 0.921569, 0.72549, 0.568627, 1 )
+shader_param/base_color = Color( 0.92, 0.77832, 0.6624, 1 )
 shader_param/wave_color = Color( 0.968627, 0.894118, 0.835294, 1 )
-shader_param/view_to_local = Transform2D( 2.11893, 0, 0, 2.11893, -1820.83, 371.503 )
+shader_param/view_to_local = Transform2D( 2.24493, 0, 0, 2.24493, -2137.4, 684.76 )
 shader_param/red_texture = ExtResource( 1 )
 shader_param/noise_texture = SubResource( 2 )
