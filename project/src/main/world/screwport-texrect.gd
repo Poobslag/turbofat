@@ -32,7 +32,8 @@ func _process(_delta: float) -> void:
 	if not _viewport:
 		return
 	
-	_reposition_viewport()
+	# wait until the viewport updates to reposition the texture
+	call_deferred("_reposition_viewport")
 
 
 """

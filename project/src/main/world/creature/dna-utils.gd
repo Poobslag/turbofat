@@ -278,7 +278,7 @@ func _ready() -> void:
 		_set_allele_combo_adjustment("mouth", mouth, "collar", "2", -2)
 		_set_allele_combo_adjustment("mouth", mouth, "collar", "3", -2)
 	
-	for nose in ["1", "2", "3"]:
+	for nose in ["1", "2", "3", "4"]:
 		# creatures with beak can NEVER have nose
 		_set_allele_combo_adjustment("mouth", "4", "nose", nose, -999)
 	
