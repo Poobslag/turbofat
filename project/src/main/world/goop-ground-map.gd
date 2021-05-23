@@ -21,7 +21,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
-	_refresh_view_to_local()
+	# wait until the viewport updates to update the shader parameters
+	call_deferred('_refresh_view_to_local')
 
 
 """
