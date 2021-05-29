@@ -1,9 +1,16 @@
+tool
 extends "res://src/main/world/environment/overworld-obstacle.gd"
 """
 A stool which appears on the overworld.
 
 The stool can toggle to an 'occupied' state when it's sat upon. This affects its collisions and appearance.
 """
+
+# the texture to use when the stool has a creature sitting on it
+export (Texture) var occupied_texture: Texture
+
+# the texture to use when the stool does not have a creature sitting on it
+export (Texture) var unoccupied_texture: Texture
 
 # 'true' if the stool has a creature sitting on it
 export (bool) var occupied := false setget set_occupied
@@ -20,12 +27,12 @@ func _refresh_occupied() -> void:
 		# enable the shadow and disable collision. this allows a creature to overlap the stool
 		collision_layer = 0
 		collision_mask = 0
-		$Sprite.texture = preload("res://assets/main/world/restaurant/stool-occupied.png")
+		$Sprite.texture = occupied_texture
 	else:
 		# disable the shadow and enable collision
 		collision_layer = 1
 		collision_mask = 1
-		$Sprite.texture = preload("res://assets/main/world/restaurant/stool.png")
+		$Sprite.texture = unoccupied_texture
 
 
 func set_occupied(new_occupied: bool) -> void:
