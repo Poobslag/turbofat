@@ -606,6 +606,7 @@ ChatIconScene = ExtResource( 12 )
 position = Vector2( 150, 150 )
 current = true
 smoothing_enabled = true
+smoothing_speed = 12.5
 script = ExtResource( 21 )
 
 [node name="Tween" type="Tween" parent="World/Camera"]
