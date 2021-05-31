@@ -26,7 +26,7 @@ var _emote_eye_z1: PackedSprite
 var _eye_z0: PackedSprite
 var _eye_z1: PackedSprite
 var _far_arm: PackedSprite
-var _head_bobber: Sprite
+var _head_bobber: HeadBobber
 var _near_arm: PackedSprite
 var _tail_z0: PackedSprite
 var _tail_z1: PackedSprite
