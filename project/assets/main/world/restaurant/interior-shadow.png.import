@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/interior-shadow.png-17e16d140f72ca73d023c33722674aab.stex"
+path="res://.import/interior-shadow.png-3537e74a77160705a1b5f27a14a287af.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/interior-shadow.png"
-dest_files=[ "res://.import/interior-shadow.png-17e16d140f72ca73d023c33722674aab.stex" ]
+source_file="res://assets/main/world/restaurant/interior-shadow.png"
+dest_files=[ "res://.import/interior-shadow.png-3537e74a77160705a1b5f27a14a287af.stex" ]
 
 [params]
 
