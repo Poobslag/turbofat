@@ -26,11 +26,11 @@
 [ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=24]
 [ext_resource path="res://assets/main/world/creature/3/cheek-z2-packed.png" type="Texture" id=25]
 [ext_resource path="res://assets/main/world/creature/4/mouth-packed.png" type="Texture" id=26]
+[ext_resource path="res://src/main/world/obstacle-map-indoors.gd" type="Script" id=27]
 [ext_resource path="res://assets/main/world/creature/4/accessory-z2-packed.png" type="Texture" id=29]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=30]
 [ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=31]
 [ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=32]
-[ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=33]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=34]
 [ext_resource path="res://assets/main/world/creature/4/accessory-z0-packed.png" type="Texture" id=35]
 [ext_resource path="res://assets/main/world/creature/1/emote-eye-z0-packed.png" type="Texture" id=36]
@@ -109,6 +109,7 @@ usage = 0
 [node name="ViewportRoot" type="Node2D" parent="World/Ground/Shadows/Viewport"]
 
 [node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport/ViewportRoot"]
+scale = Vector2( 0.5, 0.5 )
 mode = 2
 tile_set = SubResource( 1 )
 cell_size = Vector2( 128, 64 )
@@ -155,10 +156,11 @@ cell_size = Vector2( 128, 64 )
 cell_custom_transform = Transform2D( 128, 0, -96, 128, 0, 0 )
 cell_tile_origin = 1
 cell_y_sort = true
+show_collision = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( -65536, 2, 0, -65535, 2, 0, -65533, 4, 0, -65530, 5, 0, -65528, 2, 0, -65526, 3, 0, -65523, 7, 0, -65521, 2, 0, -65519, 6, 0, -65517, 2, 0, -65516, 2, 0, -65515, 2, 0, -65514, 2, 0, -65512, 4, 0, -65510, 2, 0, -65509, 2, 0, -65508, 2, 0, -65507, 2, 0, -65506, 2, 0 )
-script = ExtResource( 33 )
+tile_data = PoolIntArray( -1, 1, 0, -65536, 2, 0, -65535, 2, 0, -65534, 1, 0, -65533, 4, 0, -65532, 1, 0, -65531, 1, 0, -65530, 5, 0, -65529, 1, 0, -65528, 2, 0, -65527, 1, 0, -65526, 3, 0, -65525, 1, 0, -65524, 1, 0, -65523, 7, 0, -65522, 1, 0, -65521, 2, 0, -65520, 1, 0, -65519, 6, 0, -65518, 1, 0, -65517, 2, 0, -65516, 2, 0, -65515, 2, 0, -65514, 2, 0, -65513, 1, 0, -65512, 4, 0, -65511, 1, 0, -65510, 2, 0, -65509, 2, 0, -65508, 2, 0, -65507, 2, 0, -65506, 2, 0, -65505, 1, 0, 65535, 1, 0, 31, 1, 0, 131071, 1, 0, 65559, 8, 131073, 65560, 8, 131074, 65561, 8, 131074, 65562, 8, 131074, 65563, 8, 65536, 65567, 1, 0, 196607, 1, 0, 131095, 8, 3, 131103, 1, 0, 262143, 1, 0, 196631, 8, 3, 196639, 1, 0, 327679, 1, 0, 262167, 8, 1, 262175, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 327691, 1, 0, 327692, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327696, 1, 0, 327697, 1, 0, 327698, 1, 0, 327699, 1, 0, 327700, 1, 0, 327701, 1, 0, 327702, 1, 0, 327703, 1, 0, 327704, 1, 0, 327705, 1, 0, 327706, 1, 0, 327707, 1, 0, 327708, 1, 0, 327709, 1, 0, 327710, 1, 0, 327711, 1, 0 )
+script = ExtResource( 27 )
 ground_map_path = NodePath("../../Ground/GroundMap")
 impassable_tile_index = 1
 
