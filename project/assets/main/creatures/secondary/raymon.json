@@ -1,0 +1,40 @@
+{
+  "version": "19dd",
+  "id": "raymon",
+  "name": "Raymon",
+  "short_name": "Raymon",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "0",
+    "collar": "4",
+    "ear": "15",
+    "eye": "1",
+    "hair": "0",
+    "head": "1",
+    "horn": "2",
+    "mouth": "5",
+    "nose": "4",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "411c17",
+    "belly_rgb": "e29b6e",
+    "cloth_rgb": "cb1b2e",
+    "glass_rgb": "e7bb76",
+    "plastic_rgb": "3f2a1f",
+    "hair_rgb": "e7b658",
+    "eye_rgb": "a58900 e3d48e",
+    "horn_rgb": "c9d9bd"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "411c17"
+  },
+  "fatness": 1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}
