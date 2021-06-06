@@ -1,3 +1,5 @@
+tool
+class_name ObstacleMap
 extends TileMap
 """
 Maintains a tilemap for overworld obstacles.
