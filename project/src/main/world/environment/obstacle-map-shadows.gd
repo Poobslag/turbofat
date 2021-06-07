@@ -24,11 +24,11 @@ func _ready() -> void:
 		var cell: Vector2 = cell_obj
 		var cell_id := _obstacle_map.get_cell(cell.x, cell.y)
 		
-		set_cell(cell.x, cell.y, 0)
-		
 		if cell_shadow_mapping.has(cell_id):
 			# block the surrounding cells for objects which are larger than the cell extents
 			var cell_rect: Rect2 = cell_shadow_mapping[cell_id]
 			for x in range(cell_rect.position.x + cell.x, cell_rect.end.x + cell.x):
 				for y in range(cell_rect.position.y + cell.y, cell_rect.end.y + cell.y):
 					set_cell(x, y, 0)
+		else:
+			set_cell(cell.x, cell.y, 0)

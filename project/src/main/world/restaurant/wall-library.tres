@@ -10,13 +10,13 @@
 [ext_resource path="res://assets/main/world/restaurant/countertop-sheet.png" type="Texture" id=8]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 96, 0, 0, 128, 128, 128, 224, 0 )
+points = PoolVector2Array( 78, 0, 0, 104, 128, 104, 206, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 96, 0, 0, 128, 128, 128, 224, 0 )
+points = PoolVector2Array( 78, 0, 0, 104, 128, 104, 206, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=3]
-points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
+points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 
 [resource]
 1/name = "Impassable"
@@ -27,8 +27,8 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 1/tile_mode = 0
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 48, 32 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 48, 32 )
+1/shape_offset = Vector2( 48, 12 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 48, 12 )
 1/shape = SubResource( 1 )
 1/shape_one_way = false
 1/shape_one_way_margin = 1.0
@@ -37,19 +37,19 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 48, 32 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 48, 12 )
 } ]
 1/z_index = 0
 2/name = "wall-metal-tile-1.png 2"
 2/texture = ExtResource( 1 )
-2/tex_offset = Vector2( 0, -256 )
+2/tex_offset = Vector2( 0, -300 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 128, 800 )
 2/tile_mode = 0
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 368 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 368 )
+2/shape_offset = Vector2( 0, 348 )
+2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
 2/shape = SubResource( 2 )
 2/shape_one_way = false
 2/shape_one_way_margin = 1.0
@@ -58,19 +58,19 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 368 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 2/z_index = 0
 3/name = "wall-metal-tile-2.png 3"
 3/texture = ExtResource( 3 )
-3/tex_offset = Vector2( 0, -256 )
+3/tex_offset = Vector2( 0, -300 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 0, 384, 800 )
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 368 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 368 )
+3/shape_offset = Vector2( 0, 348 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
 3/shape = SubResource( 3 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
@@ -79,19 +79,19 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 368 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 3/z_index = 0
 4/name = "wall-metal-tile-3.png 4"
 4/texture = ExtResource( 5 )
-4/tex_offset = Vector2( 0, -256 )
+4/tex_offset = Vector2( 0, -300 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 0, 384, 800 )
 4/tile_mode = 0
 4/occluder_offset = Vector2( 0, 0 )
 4/navigation_offset = Vector2( 0, 0 )
-4/shape_offset = Vector2( 0, 368 )
-4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 368 )
+4/shape_offset = Vector2( 0, 348 )
+4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
 4/shape = SubResource( 3 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
@@ -100,19 +100,19 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 368 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 4/z_index = 0
 5/name = "wall-metal-tile-4.png 5"
 5/texture = ExtResource( 6 )
-5/tex_offset = Vector2( 0, -256 )
+5/tex_offset = Vector2( 0, -300 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 0, 384, 800 )
 5/tile_mode = 0
 5/occluder_offset = Vector2( 0, 0 )
 5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 0, 368 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 368 )
+5/shape_offset = Vector2( 0, 348 )
+5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
 5/shape = SubResource( 3 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
@@ -121,19 +121,19 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 368 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 5/z_index = 0
 6/name = "wall-metal-tile-5.png 6"
 6/texture = ExtResource( 4 )
-6/tex_offset = Vector2( 0, -256 )
+6/tex_offset = Vector2( 0, -300 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 0, 384, 800 )
 6/tile_mode = 0
 6/occluder_offset = Vector2( 0, 0 )
 6/navigation_offset = Vector2( 0, 0 )
-6/shape_offset = Vector2( 0, 368 )
-6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 368 )
+6/shape_offset = Vector2( 0, 348 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
 6/shape = SubResource( 3 )
 6/shape_one_way = false
 6/shape_one_way_margin = 1.0
@@ -142,19 +142,19 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 368 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 6/z_index = 0
 7/name = "wall-metal-tile-6.png 7"
 7/texture = ExtResource( 7 )
-7/tex_offset = Vector2( 0, -256 )
+7/tex_offset = Vector2( 0, -300 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 0, 0, 384, 800 )
 7/tile_mode = 0
 7/occluder_offset = Vector2( 0, 0 )
 7/navigation_offset = Vector2( 0, 0 )
-7/shape_offset = Vector2( 0, 368 )
-7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 368 )
+7/shape_offset = Vector2( 0, 348 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
 7/shape = SubResource( 3 )
 7/shape_one_way = false
 7/shape_one_way_margin = 1.0
@@ -163,19 +163,19 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 3 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 368 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 7/z_index = 0
 8/name = "countertop-sheet.png 10"
 8/texture = ExtResource( 8 )
-8/tex_offset = Vector2( 44, 0 )
+8/tex_offset = Vector2( 46, -38 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 0, 0, 1000, 660 )
 8/tile_mode = 1
 8/autotile/bitmask_mode = 1
 8/autotile/bitmask_flags = [ Vector2( 0, 0 ), 21299216, Vector2( 0, 1 ), 21299224, Vector2( 0, 2 ), 21299250, Vector2( 1, 0 ), 21299218, Vector2( 1, 1 ), 21299226, Vector2( 1, 2 ), 21299376, Vector2( 2, 0 ), 21299344, Vector2( 2, 1 ), 21299352, Vector2( 2, 2 ), 21299256, Vector2( 3, 0 ), 21299346, Vector2( 3, 1 ), 21299248 ]
 8/autotile/icon_coordinate = Vector2( 0, 0 )
-8/autotile/tile_size = Vector2( 250, 220 )
+8/autotile/tile_size = Vector2( 250, 200 )
 8/autotile/spacing = 0
 8/autotile/occluder_map = [  ]
 8/autotile/navpoly_map = [  ]
@@ -183,8 +183,8 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 8/autotile/z_index_map = [  ]
 8/occluder_offset = Vector2( 0, 0 )
 8/navigation_offset = Vector2( 0, 0 )
-8/shape_offset = Vector2( 58, 80 )
-8/shape_transform = Transform2D( 1, 0, 0, 1, 58, 80 )
+8/shape_offset = Vector2( 61, 48 )
+8/shape_transform = Transform2D( 1, 0, 0, 1, 61, 48 )
 8/shape = SubResource( 1 )
 8/shape_one_way = false
 8/shape_one_way_margin = 1.0
@@ -193,66 +193,66 @@ points = PoolVector2Array( 96, 0, 0, 128, 384, 128, 480, 0 )
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 1, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 2, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 3, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 0, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 1, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 2, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 3, 1 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 0, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 1, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 }, {
 "autotile_coord": Vector2( 2, 2 ),
 "one_way": false,
 "one_way_margin": 1.0,
 "shape": SubResource( 1 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 58, 80 )
+"shape_transform": Transform2D( 1, 0, 0, 1, 61, 48 )
 } ]
 8/z_index = 0
