@@ -22,6 +22,7 @@ const RIGHT := 8
 const BARE_COUNTERTOP_TILE_INDEX := 8
 const GRILL_TILE_INDEX := 9
 const SINK_TILE_INDEX := 10
+const COUNTERTOP_PLATES_TILE_INDEX := 11
 
 # key: union of TileSet bindings for adjacent cells containing countertops
 # value: countertop autotile coordinate
@@ -34,9 +35,26 @@ var COUNTERTOP_AUTOTILE_COORDS_BY_BINDING := {
 	BIND_TOP | BIND_LEFT: Vector2(1, 1),
 	BIND_BOTTOM | BIND_LEFT: Vector2(2, 1),
 	BIND_RIGHT: Vector2(3, 1),
-	BIND_TOP| BIND_RIGHT: Vector2(0, 2),
-	BIND_BOTTOM| BIND_RIGHT: Vector2(1, 2),
-	BIND_LEFT| BIND_RIGHT: Vector2(2, 2),
+	BIND_TOP | BIND_RIGHT: Vector2(0, 2),
+	BIND_BOTTOM | BIND_RIGHT: Vector2(1, 2),
+	BIND_LEFT | BIND_RIGHT: Vector2(2, 2),
+}
+
+# key: union of TileSet bindings for adjacent cells containing countertops
+# value: array of possible countertop-plates autotile coordinates
+var COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING := {
+	0: [Vector2(0, 0), Vector2(1, 0)],
+	BIND_TOP: [Vector2(2, 0), Vector2(3, 0)],
+	BIND_BOTTOM: [Vector2(4, 0), Vector2(5, 0)],
+	BIND_TOP | BIND_BOTTOM: [Vector2(0, 1), Vector2(1, 1), Vector2(2, 1), Vector2(3, 1)],
+	BIND_LEFT: [Vector2(4, 1), Vector2(5, 1)],
+	BIND_TOP | BIND_LEFT: [Vector2(0, 2), Vector2(1, 2)],
+	
+	BIND_BOTTOM | BIND_LEFT: [Vector2(2, 2), Vector2(3, 2)],
+	BIND_RIGHT: [Vector2(4, 2), Vector2(5, 2)],
+	BIND_TOP | BIND_RIGHT: [Vector2(0, 3), Vector2(1, 3)],
+	BIND_BOTTOM | BIND_RIGHT: [Vector2(2, 3), Vector2(3, 3)],
+	BIND_LEFT | BIND_RIGHT: [Vector2(4, 3), Vector2(5, 3), Vector2(0, 4), Vector2(1, 4)],
 }
 
 # key: countertop autotile coordinate
@@ -221,6 +239,7 @@ func autotile_countertops(_value: bool) -> void:
 			BARE_COUNTERTOP_TILE_INDEX: _autotile_bare_countertop(cell)
 			GRILL_TILE_INDEX: _autotile_grill(cell)
 			SINK_TILE_INDEX: _autotile_sink(cell)
+			COUNTERTOP_PLATES_TILE_INDEX: _autotile_countertop_plates(cell)
 
 
 """
@@ -230,11 +249,28 @@ Parameters:
 	'cell': The TileMap coordinates of the cell to be autotiled.
 """
 func _autotile_bare_countertop(cell: Vector2) -> void:
-	var adjacent_countertops := _adjacencies(cell, [BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX])
+	var adjacent_countertops := _adjacencies(cell,
+			[BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX, COUNTERTOP_PLATES_TILE_INDEX])
 	
 	# update the autotile if a matching countertop cell exists
 	if COUNTERTOP_AUTOTILE_COORDS_BY_BINDING.has(adjacent_countertops):
 		_set_cell_autotile_coord(cell, COUNTERTOP_AUTOTILE_COORDS_BY_BINDING[adjacent_countertops])
+
+
+"""
+Autotiles a tile containing a countertop with plates on it.
+
+Parameters:
+	'cell': The TileMap coordinates of the cell to be autotiled.
+"""
+func _autotile_countertop_plates(cell: Vector2) -> void:
+	var adjacent_countertops := _adjacencies(cell,
+			[BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX, COUNTERTOP_PLATES_TILE_INDEX])
+	
+	# update the autotile if a matching countertop cell exists
+	if COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING.has(adjacent_countertops):
+		var bindings: Array = COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING[adjacent_countertops]
+		_set_cell_autotile_coord(cell, Utils.rand_value(bindings))
 
 
 """
@@ -264,7 +300,8 @@ func _autotile_grill(cell: Vector2) -> void:
 	var grill_orientation: int = GRILL_ORIENTATION_BY_CELL.get(get_cell_autotile_coord(cell.x, cell.y))
 	
 	var adjacent_grills := _adjacencies(cell, [GRILL_TILE_INDEX])
-	var adjacent_countertops := _adjacencies(cell, [BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX])
+	var adjacent_countertops := _adjacencies(cell,
+			[BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX, COUNTERTOP_PLATES_TILE_INDEX])
 	
 	# Calculate which countertop cell matches the specified grill key. If the key is not found, we reorient the grill
 	# to force a match.
