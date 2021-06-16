@@ -1,24 +1,25 @@
-[gd_resource type="TileSet" load_steps=15 format=2]
+[gd_resource type="TileSet" load_steps=18 format=2]
 
-[ext_resource path="res://assets/main/world/restaurant/wall-metal-tile-1.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-3.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/empty-8.png" type="Texture" id=2]
-[ext_resource path="res://assets/main/world/restaurant/wall-metal-tile-2.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/world/restaurant/wall-metal-tile-5.png" type="Texture" id=4]
-[ext_resource path="res://assets/main/world/restaurant/wall-metal-tile-3.png" type="Texture" id=5]
-[ext_resource path="res://assets/main/world/restaurant/wall-metal-tile-4.png" type="Texture" id=6]
-[ext_resource path="res://assets/main/world/restaurant/wall-metal-tile-6.png" type="Texture" id=7]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-wide-1.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-wide-4.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-wide-2.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-wide-3.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-wide-5.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/world/restaurant/countertop-sheet.png" type="Texture" id=8]
 [ext_resource path="res://assets/main/world/restaurant/grill-sheet.png" type="Texture" id=9]
 [ext_resource path="res://assets/main/world/restaurant/sink-sheet.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/world/restaurant/countertop-plates-sheet.png" type="Texture" id=11]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-1.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-2.png" type="Texture" id=14]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-5.png" type="Texture" id=15]
+[ext_resource path="res://assets/main/world/restaurant/red-wall-4.png" type="Texture" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 78, 0, 0, 104, 128, 104, 206, 0 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
-points = PoolVector2Array( 78, 0, 0, 104, 128, 104, 206, 0 )
-
-[sub_resource type="ConvexPolygonShape2D" id=3]
 points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 
 [resource]
@@ -43,28 +44,7 @@ points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 48, 12 )
 } ]
 1/z_index = 0
-2/name = "wall-metal-tile-1.png 2"
-2/texture = ExtResource( 1 )
-2/tex_offset = Vector2( 0, -300 )
-2/modulate = Color( 1, 1, 1, 1 )
-2/region = Rect2( 0, 0, 128, 800 )
-2/tile_mode = 0
-2/occluder_offset = Vector2( 0, 0 )
-2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 348 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
-2/shape = SubResource( 2 )
-2/shape_one_way = false
-2/shape_one_way_margin = 1.0
-2/shapes = [ {
-"autotile_coord": Vector2( 0, 0 ),
-"one_way": false,
-"one_way_margin": 1.0,
-"shape": SubResource( 2 ),
-"shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
-} ]
-2/z_index = 0
-3/name = "wall-metal-tile-2.png 3"
+3/name = "red-wall-wide-1.png 3"
 3/texture = ExtResource( 3 )
 3/tex_offset = Vector2( 0, -300 )
 3/modulate = Color( 1, 1, 1, 1 )
@@ -74,18 +54,18 @@ points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 3/navigation_offset = Vector2( 0, 0 )
 3/shape_offset = Vector2( 0, 348 )
 3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
-3/shape = SubResource( 3 )
+3/shape = SubResource( 2 )
 3/shape_one_way = false
 3/shape_one_way_margin = 1.0
 3/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 3/z_index = 0
-4/name = "wall-metal-tile-3.png 4"
+4/name = "red-wall-wide-2.png 4"
 4/texture = ExtResource( 5 )
 4/tex_offset = Vector2( 0, -300 )
 4/modulate = Color( 1, 1, 1, 1 )
@@ -95,18 +75,18 @@ points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 4/navigation_offset = Vector2( 0, 0 )
 4/shape_offset = Vector2( 0, 348 )
 4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
-4/shape = SubResource( 3 )
+4/shape = SubResource( 2 )
 4/shape_one_way = false
 4/shape_one_way_margin = 1.0
 4/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 4/z_index = 0
-5/name = "wall-metal-tile-4.png 5"
+5/name = "red-wall-wide-3.png 5"
 5/texture = ExtResource( 6 )
 5/tex_offset = Vector2( 0, -300 )
 5/modulate = Color( 1, 1, 1, 1 )
@@ -116,18 +96,18 @@ points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 5/navigation_offset = Vector2( 0, 0 )
 5/shape_offset = Vector2( 0, 348 )
 5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
-5/shape = SubResource( 3 )
+5/shape = SubResource( 2 )
 5/shape_one_way = false
 5/shape_one_way_margin = 1.0
 5/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 5/z_index = 0
-6/name = "wall-metal-tile-5.png 6"
+6/name = "red-wall-wide-4.png 6"
 6/texture = ExtResource( 4 )
 6/tex_offset = Vector2( 0, -300 )
 6/modulate = Color( 1, 1, 1, 1 )
@@ -137,18 +117,18 @@ points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 6/navigation_offset = Vector2( 0, 0 )
 6/shape_offset = Vector2( 0, 348 )
 6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
-6/shape = SubResource( 3 )
+6/shape = SubResource( 2 )
 6/shape_one_way = false
 6/shape_one_way_margin = 1.0
 6/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 6/z_index = 0
-7/name = "wall-metal-tile-6.png 7"
+7/name = "red-wall-wide-5.png 7"
 7/texture = ExtResource( 7 )
 7/tex_offset = Vector2( 0, -300 )
 7/modulate = Color( 1, 1, 1, 1 )
@@ -158,14 +138,14 @@ points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 7/navigation_offset = Vector2( 0, 0 )
 7/shape_offset = Vector2( 0, 348 )
 7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 348 )
-7/shape = SubResource( 3 )
+7/shape = SubResource( 2 )
 7/shape_one_way = false
 7/shape_one_way_margin = 1.0
 7/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 348 )
 } ]
 7/z_index = 0
@@ -743,3 +723,108 @@ points = PoolVector2Array( 78, 0, 0, 104, 384, 104, 462, 0 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 61, 73 )
 } ]
 11/z_index = 0
+13/name = "red-wall-1.png 13"
+13/texture = ExtResource( 13 )
+13/tex_offset = Vector2( 0, -300 )
+13/modulate = Color( 1, 1, 1, 1 )
+13/region = Rect2( 0, 0, 128, 726 )
+13/tile_mode = 0
+13/occluder_offset = Vector2( 0, 0 )
+13/navigation_offset = Vector2( 0, 0 )
+13/shape_offset = Vector2( 0, 311 )
+13/shape_transform = Transform2D( 1, 0, 0, 1, 0, 311 )
+13/shape = SubResource( 1 )
+13/shape_one_way = false
+13/shape_one_way_margin = 1.0
+13/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 311 )
+} ]
+13/z_index = 0
+14/name = "red-wall-2.png 14"
+14/texture = ExtResource( 14 )
+14/tex_offset = Vector2( 105, -360 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 0, 0, 86, 829 )
+14/tile_mode = 0
+14/occluder_offset = Vector2( 0, 0 )
+14/navigation_offset = Vector2( 0, 0 )
+14/shape_offset = Vector2( -21, 362 )
+14/shape_transform = Transform2D( 1, 0, 0, 1, -21, 362 )
+14/shape = SubResource( 1 )
+14/shape_one_way = false
+14/shape_one_way_margin = 1.0
+14/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -21, 362 )
+} ]
+14/z_index = 0
+15/name = "red-wall-3.png 15"
+15/texture = ExtResource( 1 )
+15/tex_offset = Vector2( 42, -356 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 0, 0, 213, 838 )
+15/tile_mode = 0
+15/occluder_offset = Vector2( 0, 0 )
+15/navigation_offset = Vector2( 0, 0 )
+15/shape_offset = Vector2( 42, 367 )
+15/shape_transform = Transform2D( 1, 0, 0, 1, 42, 367 )
+15/shape = SubResource( 1 )
+15/shape_one_way = false
+15/shape_one_way_margin = 1.0
+15/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 42, 367 )
+} ]
+15/z_index = 0
+16/name = "red-wall-4.png 16"
+16/texture = ExtResource( 16 )
+16/tex_offset = Vector2( 109, -356 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 0, 0, 92, 820 )
+16/tile_mode = 0
+16/occluder_offset = Vector2( 0, 0 )
+16/navigation_offset = Vector2( 0, 0 )
+16/shape_offset = Vector2( -18, 358 )
+16/shape_transform = Transform2D( 1, 0, 0, 1, -18, 358 )
+16/shape = SubResource( 1 )
+16/shape_one_way = false
+16/shape_one_way_margin = 1.0
+16/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, -18, 358 )
+} ]
+16/z_index = 0
+17/name = "red-wall-5.png 17"
+17/texture = ExtResource( 15 )
+17/tex_offset = Vector2( 45, -352 )
+17/modulate = Color( 1, 1, 1, 1 )
+17/region = Rect2( 0, 0, 219, 830 )
+17/tile_mode = 0
+17/occluder_offset = Vector2( 0, 0 )
+17/navigation_offset = Vector2( 0, 0 )
+17/shape_offset = Vector2( 45, 363 )
+17/shape_transform = Transform2D( 1, 0, 0, 1, 45, 363 )
+17/shape = SubResource( 1 )
+17/shape_one_way = false
+17/shape_one_way_margin = 1.0
+17/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 1 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 45, 363 )
+} ]
+17/z_index = 0
