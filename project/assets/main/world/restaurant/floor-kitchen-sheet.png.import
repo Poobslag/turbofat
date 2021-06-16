@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/floor-kitchen.png-8b090018001fcaaf1a27c5c283ece534.stex"
+path="res://.import/floor-kitchen-sheet.png-3b4f2b5475603f3bc12191d99e2a8f8c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/restaurant/floor-kitchen.png"
-dest_files=[ "res://.import/floor-kitchen.png-8b090018001fcaaf1a27c5c283ece534.stex" ]
+source_file="res://assets/main/world/restaurant/floor-kitchen-sheet.png"
+dest_files=[ "res://.import/floor-kitchen-sheet.png-3b4f2b5475603f3bc12191d99e2a8f8c.stex" ]
 
 [params]
 

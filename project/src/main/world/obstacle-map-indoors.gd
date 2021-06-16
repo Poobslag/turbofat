@@ -19,6 +19,7 @@ const DOWN := 2
 const LEFT := 4
 const RIGHT := 8
 
+# the index of specific tiles in the tilemap's tileset
 const BARE_COUNTERTOP_TILE_INDEX := 8
 const GRILL_TILE_INDEX := 9
 const SINK_TILE_INDEX := 10
@@ -180,7 +181,7 @@ export (bool) var _xsort: bool setget xsort
 #
 # Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 # https://github.com/godotengine/godot/issues/11855
-export (bool) var _autotile_countertops: bool setget autotile_countertops
+export (bool) var _autotile: bool setget autotile
 
 func _ready() -> void:
 	xsort(true)
@@ -233,7 +234,7 @@ The kitchen countertop autotiling involves multiple cell types and cannot be han
 Instead of configuring the autotiling behavior with the TileSet's autotile bitmask, it is configured with several
 dictionary constants defined in this script.
 """
-func autotile_countertops(_value: bool) -> void:
+func autotile(_value: bool) -> void:
 	for cell in get_used_cells():
 		match get_cellv(cell):
 			BARE_COUNTERTOP_TILE_INDEX: _autotile_bare_countertop(cell)
