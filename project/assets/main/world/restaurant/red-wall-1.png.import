@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wall-metal-tile-3.png-af2137fa8a50fa0c44d2c8babdfc291a.stex"
+path="res://.import/red-wall-1.png-26564688042cfad323bfa222bcfd65e6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/restaurant/wall-metal-tile-3.png"
-dest_files=[ "res://.import/wall-metal-tile-3.png-af2137fa8a50fa0c44d2c8babdfc291a.stex" ]
+source_file="res://assets/main/world/restaurant/red-wall-1.png"
+dest_files=[ "res://.import/red-wall-1.png-26564688042cfad323bfa222bcfd65e6.stex" ]
 
 [params]
 
