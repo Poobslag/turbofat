@@ -28,7 +28,7 @@ func _launch_tutorial() -> void:
 
 
 func _on_Play_pressed() -> void:
-	if not PlayerData.level_history.finished_levels.has(LevelLibrary.BEGINNER_TUTORIAL):
+	if not PlayerData.level_history.is_level_finished(LevelLibrary.BEGINNER_TUTORIAL):
 		_launch_tutorial()
 	else:
 		SceneTransition.push_trail(Global.SCENE_MAIN_MENU, true)

@@ -121,7 +121,7 @@ func push_level_trail() -> void:
 	
 	# When the player first launches the game and does the tutorial, we skip the typical puzzle intro.
 	if level_id == LevelLibrary.BEGINNER_TUTORIAL \
-			and not PlayerData.level_history.finished_levels.has(LevelLibrary.BEGINNER_TUTORIAL):
+			and not PlayerData.level_history.is_level_finished(LevelLibrary.BEGINNER_TUTORIAL):
 		level_settings.other.skip_intro = true
 	
 	start_level(level_settings)

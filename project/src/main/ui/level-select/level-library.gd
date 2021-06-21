@@ -86,7 +86,7 @@ func first_unfinished_level_id_for_creature(creature_id: String) -> String:
 		for level_id in world_lock.level_ids:
 			var level_lock: LevelLock = _level_locks[level_id]
 			if level_lock.creature_id == creature_id and not level_lock.is_locked() \
-					and not PlayerData.level_history.finished_levels.has(level_lock.level_id):
+					and not PlayerData.level_history.is_level_finished(level_lock.level_id):
 				return level_lock.level_id
 	
 	return ""
@@ -191,7 +191,7 @@ func _update_locked_worlds() -> void:
 		var unlock_world_ids := world_lock.locked_until_values
 		for unlock_world_id in unlock_world_ids:
 			var other_world_lock: WorldLock = _world_locks[unlock_world_id]
-			if not PlayerData.level_history.finished_levels.has(other_world_lock.last_level):
+			if not PlayerData.level_history.is_level_finished(other_world_lock.last_level):
 				world_lock.status = WorldLock.STATUS_LOCK
 
 
@@ -217,7 +217,7 @@ func _update_locked_levels() -> void:
 		var allowed_skips := _allowed_skips(level_lock)
 		var skip_count := 0
 		for unlock_level_id in unlock_level_ids:
-			if not PlayerData.level_history.finished_levels.has(unlock_level_id):
+			if not PlayerData.level_history.is_level_finished(unlock_level_id):
 				skip_count += 1
 		if skip_count > allowed_skips:
 			level_lock.status = LevelLock.STATUS_HARD_LOCK
@@ -273,7 +273,7 @@ func _update_unlockable_levels() -> void:
 		var unlock_level_ids := _unlock_level_ids(level_lock)
 		for unlock_level_id in unlock_level_ids:
 			var other_level_lock: LevelLock = _level_locks[unlock_level_id]
-			if PlayerData.level_history.finished_levels.has(other_level_lock.level_id):
+			if PlayerData.level_history.is_level_finished(other_level_lock.level_id):
 				# key already collected
 				continue
 			if is_locked(unlock_level_id):
@@ -297,7 +297,7 @@ func _update_unlockable_levels() -> void:
 		if not world_lock.last_level:
 			# world doesn't have a last level
 			continue
-		if PlayerData.level_history.finished_levels.has(world_lock.last_level):
+		if PlayerData.level_history.is_level_finished(world_lock.last_level):
 			# crown already collected
 			continue
 		if is_locked(world_lock.last_level):
@@ -313,7 +313,7 @@ func _update_cleared_tutorials() -> void:
 		var level_settings: LevelSettings = _level_settings_by_id[level_lock.level_id]
 		
 		if level_lock.status == LevelLock.STATUS_NONE and level_settings.other.tutorial \
-				and PlayerData.level_history.finished_levels.has(level_lock.level_id):
+				and PlayerData.level_history.is_level_finished(level_lock.level_id):
 			level_lock.status = LevelLock.STATUS_CLEARED
 
 

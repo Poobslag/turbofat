@@ -88,6 +88,10 @@ func get_chat_age(history_key: String) -> int:
 	return result
 
 
+func is_chat_finished(history_key: String) -> bool:
+	return get_chat_age(history_key) != CHAT_AGE_NEVER
+
+
 func to_json_dict() -> Dictionary:
 	return {
 		"history_items": chat_history,

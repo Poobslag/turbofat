@@ -167,19 +167,6 @@ func _refresh_rect_size() -> void:
 
 
 """
-Returns the level id (if any) corresponding to the curently focused chattable.
-
-This is relevant when the player talks to a creature with a food speech bubble.
-"""
-func _focused_chattable_level_id() -> String:
-	var focused_creature: Creature = ChattableManager.focused_chattable as Creature
-	if not focused_creature:
-		return ""
-	
-	return LevelLibrary.first_unfinished_level_id_for_creature(focused_creature.creature_id)
-
-
-"""
 Returns the chat tree corresponding to the curently focused chattable.
 
 This is relevant when the player talks to a creature with a non-food speech bubble.
@@ -191,11 +178,11 @@ func _focused_chattable_chat_tree() -> ChatTree:
 	
 	if not _chat_tree_cache.has(focused_chattable):
 		var chat_tree: ChatTree = ChattableManager.load_chat_tree()
-		if chat_tree and focused_chattable is Creature:
+		if chat_tree and ChattableManager.focused_chattable is Creature:
 			if chat_tree.meta.get("filler", false):
-				PlayerData.chat_history.increment_filler_count(focused_chattable.creature_id)
+				PlayerData.chat_history.increment_filler_count(ChattableManager.focused_chattable_creature_id())
 			if chat_tree.meta.get("notable", false):
-				PlayerData.chat_history.reset_filler_count(focused_chattable.creature_id)
+				PlayerData.chat_history.reset_filler_count(ChattableManager.focused_chattable_creature_id())
 		emit_signal("chat_cached", focused_chattable)
 		_chat_tree_cache[focused_chattable] = chat_tree
 	return _chat_tree_cache[focused_chattable]
@@ -295,22 +282,22 @@ func _on_TalkButton_pressed() -> void:
 	
 	get_tree().set_input_as_handled()
 	
-	var level_id := _focused_chattable_level_id()
+	var level_id: String = ChattableManager.focused_chattable_level_id()
 	var chat_tree := _focused_chattable_chat_tree()
-	var pushed_cutscene_trail := false
 	
-	CurrentLevel.set_launched_level(level_id)
 	if level_id:
-		# launch a cutscene if necessary
-		pushed_cutscene_trail = CurrentLevel.push_cutscene_trail()
-	
-	if chat_tree and not pushed_cutscene_trail:
+		CurrentLevel.set_launched_level(level_id)
+		if ChatLibrary.is_chat_skipped(chat_tree):
+			# if there is no cutscene/chat, or if the cutscene should be skipped, skip to the level
+			CurrentLevel.push_level_trail()
+		else:
+			# launch a cutscene if a location change is necessary
+			if not CurrentLevel.push_cutscene_trail():
+				# if no cutscene was launched, start a chat
+				start_chat(chat_tree, ChattableManager.focused_chattable)
+	else:
 		# if no cutscene was launched, start a chat
 		start_chat(chat_tree, ChattableManager.focused_chattable)
-	
-	if not chat_tree and not pushed_cutscene_trail:
-		# if no chat was launched, start a level
-		CurrentLevel.push_level_trail()
 
 
 func _on_CellPhoneMenu_show() -> void:

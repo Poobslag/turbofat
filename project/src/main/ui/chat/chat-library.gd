@@ -163,15 +163,13 @@ func select_from_chat_selectors(chat_selectors: Array, state: Dictionary, filler
 			if chat_age < repeat_age:
 				# skip; we've had this conversation too recently
 				continue
-
-			var if_conditions: Array = chat_selector.get("if_conditions", [])
-			var if_conditions_met := true
-			for if_condition in if_conditions:
-				if not _if_condition_met(if_condition, state):
-					if_conditions_met = false
-					break
-			if not if_conditions_met:
-				# skip; one or more if conditions weren't met
+			
+			var if_condition_met := true
+			if chat_selector.has("if_condition"):
+				var if_condition: String = chat_selector["if_condition"]
+				if_condition_met = ChatBoolEvaluator.evaluate(if_condition, creature_id)
+			if not if_condition_met:
+				# skip; if condition wasn't met
 				continue
 
 			# success; return the current chat selector's chat
@@ -266,6 +264,18 @@ func add_mega_lull_characters(s: String) -> String:
 	return transformer.transformed
 
 
+"""
+Returns 'true' if the specified chat tree should be skipped, either because it is null or because its 'skip_if'
+condition is met.
+"""
+func is_chat_skipped(chat_tree: ChatTree) -> bool:
+	if chat_tree == null:
+		return true
+	if not chat_tree.meta or not chat_tree.meta.get("skip_if"):
+		return false
+	return ChatBoolEvaluator.evaluate(chat_tree.meta.get("skip_if"))
+
+
 func _creature_chat_path(creature_id: String, chat_id: String) -> String:
 	return "res://assets/main/creatures/primary/%s/%s%s" % \
 			[creature_id, StringUtils.underscores_to_hyphens(chat_id), CHAT_EXTENSION]
@@ -287,19 +297,11 @@ func _chat_tree_from_chatscript_file(path: String) -> ChatTree:
 
 
 """
-Returns 'true' if the specified if condition is met by the current game state.
-"""
-func _if_condition_met(if_condition: String, state: Dictionary) -> bool:
-	return state.get(if_condition, false)
-
-
-"""
 Returns metadata about a creature's recent chats, and whether they're due for an interesting chat.
 """
 func _creature_chat_state(creature_id: String, forced_level_id: String = "") -> Dictionary:
 	var result := {
 		"creature_id": creature_id,
-		"notable_chat": PlayerData.chat_history.get_filler_count(creature_id) > 0,
 		"level_id": forced_level_id
 	}
 	

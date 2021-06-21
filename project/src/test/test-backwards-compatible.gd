@@ -52,8 +52,8 @@ func test_19c5() -> void:
 	
 	assert_eq(PlayerData.level_history.successful_levels.has("rank/7k"), true)
 	
-	assert_eq(PlayerData.level_history.finished_levels.has("tutorial/basics_0"), true)
-	assert_eq(PlayerData.level_history.finished_levels.has("practice/ultra_normal"), true)
+	assert_eq(PlayerData.level_history.is_level_finished("tutorial/basics_0"), true)
+	assert_eq(PlayerData.level_history.is_level_finished("practice/ultra_normal"), true)
 	
 	assert_eq(PlayerData.level_history.best_result("tutorial/basics_0").score, 158)
 	assert_eq(PlayerData.level_history.best_result("rank/7k").score, 230)

@@ -10,16 +10,12 @@ var _chat_selectors := [
 	},
 	{
 		"chat": "notable_001",
-		"if_conditions": [
-			"notable_chat"
-		],
+		"if_condition": "notable",
 		"repeat": 999999
 	},
 	{
 		"chat": "notable_002",
-		"if_conditions": [
-			"notable_chat"
-		],
+		"if_condition": "notable",
 		"repeat": 999999
 	}
 ]
@@ -33,13 +29,14 @@ func before_each() -> void:
 	
 	_state["creature_id"] = "gurus750"
 	_state["level_num"] = 1
-	_state["notable_chat"] = true
 	
 	PlayerData.chat_history.add_history_item("chat/gurus750/level_001")
 	PlayerData.chat_history.add_history_item("chat/gurus750/level_002")
 	PlayerData.chat_history.add_history_item("chat/gurus750/greeting_001")
 	PlayerData.chat_history.add_history_item("chat/gurus750/notable_001")
 	PlayerData.chat_history.add_history_item("chat/gurus750/notable_002")
+	
+	PlayerData.chat_history.increment_filler_count("gurus750")
 
 
 func test_greeting() -> void:
@@ -70,7 +67,9 @@ func test_chat_avoid_repeat_filler() -> void:
 
 
 func test_chat_non_notable() -> void:
-	_state["notable_chat"] = false
+	# creature is not ready for a notable chat
+	PlayerData.chat_history.filler_counts["gurus750"] = 0
+	
 	PlayerData.chat_history.delete_history_item("chat/gurus750/notable_001")
 	PlayerData.chat_history.delete_history_item("chat/gurus750/notable_002")
 	

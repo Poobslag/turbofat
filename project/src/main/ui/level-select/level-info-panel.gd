@@ -15,7 +15,7 @@ var _duration_calculator := DurationCalculator.new()
 
 func _update_tutorial_level_text(settings: LevelSettings) -> void:
 	var text := ""
-	if PlayerData.level_history.finished_levels.has(settings.id):
+	if PlayerData.level_history.is_level_finished(settings.id):
 		var result := PlayerData.level_history.best_result(settings.id)
 		text += "Completed: %04d-%02d-%02d" % [
 				result.timestamp["year"],
