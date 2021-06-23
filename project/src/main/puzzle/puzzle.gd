@@ -124,9 +124,10 @@ func _start_puzzle() -> void:
 			# starting creature is found; advance the primary creature queue so we don't see them twice
 			PlayerData.creature_queue.pop_primary_creature()
 			
-			# restore their fatness so they start skinny again when replaying a puzzle
-			var fatness := PlayerData.creature_library.get_fatness(starting_creature_id)
-			_restaurant_view.get_customer(starting_creature_index).set_fatness(fatness)
+			if PlayerData.creature_library.has_fatness(starting_creature_id):
+				# restore their fatness so they start skinny again when replaying a puzzle
+				var fatness := PlayerData.creature_library.get_fatness(starting_creature_id)
+				_restaurant_view.get_customer(starting_creature_index).set_fatness(fatness)
 		
 		# summon the other creatures
 		for i in range(3):
