@@ -10,12 +10,12 @@ var _chat_selectors := [
 	},
 	{
 		"chat": "notable_001",
-		"if_condition": "notable",
+		"available_if": "notable",
 		"repeat": 999999
 	},
 	{
 		"chat": "notable_002",
-		"if_condition": "notable",
+		"available_if": "notable",
 		"repeat": 999999
 	}
 ]

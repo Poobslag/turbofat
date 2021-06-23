@@ -85,9 +85,13 @@ func first_unfinished_level_id_for_creature(creature_id: String) -> String:
 		var world_lock: WorldLock = world_lock_obj
 		for level_id in world_lock.level_ids:
 			var level_lock: LevelLock = _level_locks[level_id]
-			if level_lock.creature_id == creature_id and not level_lock.is_locked() \
-					and not PlayerData.level_history.is_level_finished(level_lock.level_id):
-				return level_lock.level_id
+			if level_lock.creature_id != creature_id:
+				continue
+			if level_lock.is_locked():
+				continue
+			if PlayerData.level_history.is_level_finished(level_lock.level_id):
+				continue
+			return level_lock.level_id
 	
 	return ""
 

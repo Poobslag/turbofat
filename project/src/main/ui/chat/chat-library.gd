@@ -164,11 +164,10 @@ func select_from_chat_selectors(chat_selectors: Array, state: Dictionary, filler
 				# skip; we've had this conversation too recently
 				continue
 			
-			var if_condition_met := true
-			if chat_selector.has("if_condition"):
-				var if_condition: String = chat_selector["if_condition"]
-				if_condition_met = ChatBoolEvaluator.evaluate(if_condition, creature_id)
-			if not if_condition_met:
+			var available_if_met := true
+			if chat_selector.has("available_if"):
+				available_if_met = ChatBoolEvaluator.evaluate(chat_selector["available_if"], creature_id)
+			if not available_if_met:
 				# skip; if condition wasn't met
 				continue
 
