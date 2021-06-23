@@ -1,6 +1,6 @@
-class_name ChatBoolParser
+class_name BoolExpressionParser
 """
-Parses a string boolean expression into a tree of ChatExpressions.
+Parses a string boolean expression into a tree of BoolExpressions.
 """
 
 """
@@ -111,12 +111,12 @@ var _string: String
 var _subject
 
 """
-Initializes the parser, parsing the specified string into a list of ChatTokens.
+Initializes the parser, parsing the specified string into a list of BoolTokens.
 
 Parameters:
-	'string': The boolean expression to evaluate.
+	'string': The boolean expression to parse.
 	
-	'subject': The subject the specified boolean expression should be applied to.
+	'subject': The subject the specified boolean expression should be applied to, such as a level or creature
 """
 func _init(string: String, subject = null) -> void:
 	_string = string
@@ -132,10 +132,10 @@ func _init(string: String, subject = null) -> void:
 
 
 """
-Parses a list of ChatTokens into a tree of ChatExpressions which can be evaluated.
+Parses a list of BoolTokens into a tree of BoolExpressions which can be evaluated.
 
 Returns:
-	The root of a ChatExpression tree representing the parsed boolean string.
+	The root of a BoolExpression tree representing the parsed boolean string.
 """
 func parse() -> BoolExpression:
 	var expression := _parse_or()

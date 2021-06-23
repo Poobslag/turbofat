@@ -3,9 +3,9 @@ extends "res://addons/gut/test.gd"
 Tests that boolean expressions can be parsed correctly.
 """
 
-var parser: ChatBoolParser
+var parser: BoolExpressionParser
 
-func assert_token(token: ChatBoolParser.BoolToken, string: String, start: int = -1, end: int = -1) -> void:
+func assert_token(token: BoolExpressionParser.BoolToken, string: String, start: int = -1, end: int = -1) -> void:
 	assert_not_null(token)
 	assert_eq(token.string, string)
 	if start != -1:
@@ -14,7 +14,7 @@ func assert_token(token: ChatBoolParser.BoolToken, string: String, start: int = 
 		assert_eq(token.end, end)
 
 
-func assert_expression(expression: ChatBoolParser.BoolExpression, token: String, args: Array) -> void:
+func assert_expression(expression: BoolExpressionParser.BoolExpression, token: String, args: Array) -> void:
 	assert_token(expression.token, token)
 	assert_eq(expression.args.size(), args.size())
 	for i in range(0, args.size()):
@@ -22,12 +22,12 @@ func assert_expression(expression: ChatBoolParser.BoolExpression, token: String,
 
 
 func parse_tokens(string: String) -> Array:
-	parser = ChatBoolParser.new(string)
+	parser = BoolExpressionParser.new(string)
 	return parser._tokens
 
 
-func parse_expression(string: String) -> ChatBoolParser.BoolExpression:
-	parser = ChatBoolParser.new(string)
+func parse_expression(string: String) -> BoolExpressionParser.BoolExpression:
+	parser = BoolExpressionParser.new(string)
 	return parser.parse()
 
 

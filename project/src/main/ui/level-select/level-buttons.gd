@@ -210,7 +210,7 @@ When the player clicks a level button once, we emit a signal to show more inform
 func _on_LevelSelectButton_focus_entered(settings: LevelSettings) -> void:
 	var world_lock: WorldLock = LevelLibrary.world_lock_for_level(settings.id)
 	_lowlight_unrelated_buttons(world_lock.world_id)
-	if LevelLibrary.is_locked(settings.id):
+	if LevelLibrary.is_level_locked(settings.id):
 		emit_signal("locked_level_selected", LevelLibrary.level_lock(settings.id), settings)
 	else:
 		emit_signal("unlocked_level_selected", LevelLibrary.level_lock(settings.id), settings)

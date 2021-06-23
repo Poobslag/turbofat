@@ -25,7 +25,7 @@ func add_level_history_item(level_id: String, cleared: bool) -> void:
 
 
 func assert_evaluate(expected: bool, string: String, subject = null) -> void:
-	var actual := ChatBoolEvaluator.evaluate(string, subject)
+	var actual := BoolExpressionEvaluator.evaluate(string, subject)
 	assert_true(expected == actual,
 			"\"%s\" expected [%s] but was [%s]" % [string, expected, actual])
 
