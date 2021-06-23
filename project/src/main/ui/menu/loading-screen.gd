@@ -5,7 +5,6 @@ Shows a progress bar while resources are loading.
 
 onready var _progress_bar: ProgressBar = $ProgressBar
 
-
 func _ready() -> void:
 	ResourceCache.connect("finished_loading", self, "_on_ResourceCache_finished_loading")
 	ResourceCache.start_load()

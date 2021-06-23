@@ -17,7 +17,17 @@ var _chat_selectors := [
 		"chat": "notable_002",
 		"available_if": "notable",
 		"repeat": 999999
-	}
+	},
+	{
+		"chat": "priority_001",
+		"available_if": "chat_finished chat/gurus750/trigger_001",
+		"prioritized_if": "chat_finished chat/gurus750/trigger_002"
+	},
+	{
+		"chat": "priority_002",
+		"available_if": "chat_finished chat/gurus750/trigger_002",
+		"prioritized_if": "chat_finished chat/gurus750/trigger_002"
+	},
 ]
 
 var _state := {}
@@ -74,6 +84,16 @@ func test_chat_non_notable() -> void:
 	PlayerData.chat_history.delete_history_item("chat/gurus750/notable_002")
 	
 	assert_eq(ChatLibrary.select_from_chat_selectors(_chat_selectors, _state, _filler_ids), "filler_000")
+
+
+func test_chat_prioritized() -> void:
+	# priority_001 is skipped because its 'available_if' condition is not met
+	PlayerData.chat_history.add_history_item("chat/gurus750/trigger_002")
+	assert_eq(ChatLibrary.select_from_chat_selectors(_chat_selectors, _state, _filler_ids), "priority_002")
+	
+	# priority_001 and priority_002 are both available, so the earlier chat is prioritized
+	PlayerData.chat_history.add_history_item("chat/gurus750/trigger_001")
+	assert_eq(ChatLibrary.select_from_chat_selectors(_chat_selectors, _state, _filler_ids), "priority_001")
 
 
 func test_add_lull_characters_no_effect() -> void:

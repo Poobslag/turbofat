@@ -20,6 +20,10 @@ func before_each() -> void:
 	LevelLibrary.refresh_cleared_levels()
 
 
+func after_each() -> void:
+	LevelLibrary.worlds_path = LevelLibrary.DEFAULT_WORLDS_PATH
+
+
 func add_level_history_item(level_id: String, cleared: bool = true) -> void:
 	var result := RankResult.new()
 	result.lost = not cleared
@@ -155,4 +159,11 @@ func test_next_creature_level() -> void:
 	# once the creature's level is cleared, it skips to the next in line
 	add_level_history_item("marsh/hello_bones")
 	LevelLibrary.refresh_cleared_levels()
+	assert_eq(LevelLibrary.next_creature_level("bones"), "marsh/pulling_for_bones")
+
+
+func test_next_creature_level_prioritized() -> void:
+	LevelLibrary.worlds_path = "res://assets/test/ui/level-select/worlds-priority.json"
+
+	# if any levels are prioritized, the next prioritized level is selected
 	assert_eq(LevelLibrary.next_creature_level("bones"), "marsh/pulling_for_bones")

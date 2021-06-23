@@ -51,6 +51,9 @@ For UNTIL_GROUP_FINISHED locks, this is a group ID and (optionally) a number of 
 """
 var locked_until_values := []
 
+# the condition required to make this level high priority
+var prioritized_if: String
+
 # the status whether or not this level is locked/unlocked
 var status := STATUS_NONE
 
@@ -74,6 +77,8 @@ func from_json_dict(json: Dictionary) -> void:
 			"group_finished": locked_until_type = UNTIL_GROUP_FINISHED
 			_: push_warning("Unrecognized locked_until: %s" % [locked_until_string])
 		locked_until_values = locked_until_array.slice(1, locked_until_array.size() - 1)
+	
+	prioritized_if = json.get("prioritized_if", "")
 	
 	var groups_string: String = json.get("groups", "")
 	if groups_string:
