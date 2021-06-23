@@ -196,10 +196,12 @@ When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 	CurrentLevel.set_launched_level(settings.id)
 	
-	var pushed_cutscene_trail := CurrentLevel.push_cutscene_trail(true)
-	
-	if not pushed_cutscene_trail:
+	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_creature_id(CurrentLevel.creature_id, settings.id)
+	if ChatLibrary.is_chat_skipped(chat_tree):
 		CurrentLevel.push_level_trail()
+	else:
+		if not CurrentLevel.push_cutscene_trail(true):
+			CurrentLevel.push_level_trail()
 
 
 """

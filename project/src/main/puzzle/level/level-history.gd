@@ -28,6 +28,8 @@ Resets the level history to its default empty state.
 """
 func reset() -> void:
 	rank_results.clear()
+	successful_levels.clear()
+	finished_levels.clear()
 
 
 """
@@ -131,6 +133,10 @@ func prune(level_id: String) -> void:
 		best[result] = ""
 	best.erase(rank_results[level_id][0])
 	rank_results[level_id] = [rank_results[level_id][0]] + best.keys()
+
+
+func is_level_finished(level_id: String) -> bool:
+	return finished_levels.has(level_id)
 
 
 func _compare_by_low_seconds(a: RankResult, b: RankResult) -> bool:

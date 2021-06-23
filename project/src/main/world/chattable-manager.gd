@@ -180,6 +180,27 @@ func substitute_variables(string: String, full_name: bool = false) -> String:
 
 
 """
+Returns the level id (if any) corresponding to the curently focused chattable.
+
+This is relevant when the player talks to a creature with a food speech bubble.
+"""
+func focused_chattable_level_id() -> String:
+	var focused_creature: Creature = ChattableManager.focused_chattable as Creature
+	if not focused_creature:
+		return ""
+	
+	return LevelLibrary.first_unfinished_level_id_for_creature(focused_creature.creature_id)
+
+
+func focused_chattable_creature_id() -> String:
+	var focused_creature: Creature = ChattableManager.focused_chattable as Creature
+	if not focused_creature:
+		return ""
+	
+	return focused_creature.creature_id
+
+
+"""
 Remove the specified creature from the '_creatures_by_id' mapping.
 """
 func _remove_from_creatures_by_id(creature: Creature) -> void:
