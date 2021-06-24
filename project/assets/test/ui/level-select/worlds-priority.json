@@ -1,0 +1,24 @@
+{
+  "worlds": [
+    {
+      "id": "world0",
+      "name": "Merrymellow Marsh",
+      "levels": [
+        {
+          "id": "marsh/hello_bones",
+          "creature_id": "bones"
+        },
+        {
+          "id": "marsh/pulling_for_bones",
+          "prioritized_if": "not level_finished marsh/pulling_for_bones",
+          "creature_id": "bones"
+        },
+        {
+          "id": "marsh/goodbye_bones",
+          "prioritized_if": "not level_finished marsh/goodbye_bones",
+          "creature_id": "bones"
+        }
+      ]
+    }
+  ]
+}

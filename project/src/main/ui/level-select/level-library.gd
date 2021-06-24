@@ -11,6 +11,12 @@ the puzzle code.
 const BEGINNER_TUTORIAL := "tutorial/basics_0"
 const TUTORIAL_WORLD_ID := "tutorial"
 
+# Path to the json file with the list of levels. Can be changed for tests.
+const DEFAULT_WORLDS_PATH := "res://assets/main/puzzle/worlds.json"
+
+# Path to the json file with the list of levels. Can be changed for tests.
+var worlds_path := DEFAULT_WORLDS_PATH setget set_worlds_path
+
 # Ordered list of all world IDs
 var world_ids: Array
 
@@ -81,6 +87,9 @@ This is the level which will be played if the player talks to them on the overwo
 through the cell phone. Locked levels cannot be played; they must be unlocked first.
 """
 func next_creature_level(creature_id: String) -> String:
+	var priority_result := ""
+	var result := ""
+
 	for world_lock_obj in _world_locks.values():
 		var world_lock: WorldLock = world_lock_obj
 		for level_id in world_lock.level_ids:
@@ -91,9 +100,25 @@ func next_creature_level(creature_id: String) -> String:
 				continue
 			if PlayerData.level_history.is_level_finished(level_lock.level_id):
 				continue
-			return level_lock.level_id
+
+			# store the priority level_id if the prioritized_if condition is met
+			if not priority_result:
+				if level_lock.prioritized_if and BoolExpressionEvaluator.evaluate(level_lock.prioritized_if):
+					priority_result = level_lock.level_id
+
+			# only store the first level_id found
+			if not result:
+				result = level_lock.level_id
+
+			# if a prioritized level was found, stop searching for further levels
+			if priority_result:
+				break
+
+		# if a prioritized level was found, stop searching for further levels
+		if priority_result:
+			break
 	
-	return ""
+	return priority_result if priority_result else result
 
 
 """
@@ -118,11 +143,17 @@ func all_level_ids() -> Array:
 	return all_level_ids
 
 
+func set_worlds_path(new_worlds_path: String) -> void:
+	worlds_path = new_worlds_path
+	_load_raw_json_data()
+	refresh_cleared_levels()
+
+
 """
 Loads the list of levels from JSON.
 """
 func _load_raw_json_data() -> void:
-	var worlds_text := FileUtils.get_file_as_text("res://assets/main/puzzle/worlds.json")
+	var worlds_text := FileUtils.get_file_as_text(worlds_path)
 	var worlds_json: Dictionary = parse_json(worlds_text)
 	
 	# calculate included_worlds based on _levels_to_include

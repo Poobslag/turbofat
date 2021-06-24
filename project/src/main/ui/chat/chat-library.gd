@@ -170,10 +170,19 @@ func select_from_chat_selectors(chat_selectors: Array, state: Dictionary, filler
 			if not available_if_met:
 				# skip; if condition wasn't met
 				continue
-
-			# success; return the current chat selector's chat
-			result = chat_selector["chat"]
-			break
+			
+			var prioritized_if_met := false
+			if chat_selector.has("prioritized_if"):
+				prioritized_if_met = BoolExpressionEvaluator.evaluate(chat_selector["prioritized_if"], creature_id)
+			
+			# if we find a prioritized result, we overwrite any other result and stop searching
+			if prioritized_if_met:
+				result = chat_selector["chat"]
+				break
+			
+			# if we find a non-prioritized result, the first one found 'wins' and is not overwritten
+			if not result:
+				result = chat_selector["chat"]
 	
 	if not result:
 		# no suitable conversation was found; find a suitable filler conversation instead
