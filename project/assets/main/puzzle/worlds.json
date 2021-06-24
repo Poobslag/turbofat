@@ -96,6 +96,7 @@
           "id": "marsh/goodbye_bones",
           "creature_id": "bones",
           "groups": "marsh/goodbye",
+          "locked_until": "level_finished marsh/lets_all_get_merry",
           "chef_id": "bones"
         },
         {

@@ -54,16 +54,16 @@ func refresh_cleared_levels() -> void:
 	_update_cleared_tutorials()
 
 
-func is_locked(level_id: String) -> bool:
-	return _level_locks.get(level_id).is_locked() if _level_locks.has(level_id) else false
-
-
 func world_lock(world_id: String) -> WorldLock:
 	return _world_locks.get(world_id)
 
 
 func world_lock_for_level(level_id: String) -> WorldLock:
 	return _world_locks_by_level_id.get(level_id)
+
+
+func is_level_locked(level_id: String) -> bool:
+	return level_lock(level_id).is_locked() if _level_locks.has(level_id) else false
 
 
 func level_lock(level_id: String) -> LevelLock:
@@ -80,7 +80,7 @@ Returns the first unfinished, unlocked level id for a creature.
 This is the level which will be played if the player talks to them on the overworld. Finished levels can be played
 through the cell phone. Locked levels cannot be played; they must be unlocked first.
 """
-func first_unfinished_level_id_for_creature(creature_id: String) -> String:
+func next_creature_level(creature_id: String) -> String:
 	for world_lock_obj in _world_locks.values():
 		var world_lock: WorldLock = world_lock_obj
 		for level_id in world_lock.level_ids:
@@ -280,7 +280,7 @@ func _update_unlockable_levels() -> void:
 			if PlayerData.level_history.is_level_finished(other_level_lock.level_id):
 				# key already collected
 				continue
-			if is_locked(unlock_level_id):
+			if is_level_locked(unlock_level_id):
 				# level is locked
 				continue
 			available_key_ids.append(unlock_level_id)
@@ -304,7 +304,7 @@ func _update_unlockable_levels() -> void:
 		if PlayerData.level_history.is_level_finished(world_lock.last_level):
 			# crown already collected
 			continue
-		if is_locked(world_lock.last_level):
+		if is_level_locked(world_lock.last_level):
 			# level is locked
 			continue
 		_level_locks[world_lock.last_level].status = LevelLock.STATUS_CROWN

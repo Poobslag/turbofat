@@ -189,7 +189,7 @@ func focused_chattable_level_id() -> String:
 	if not focused_creature:
 		return ""
 	
-	return LevelLibrary.first_unfinished_level_id_for_creature(focused_creature.creature_id)
+	return LevelLibrary.next_creature_level(focused_creature.creature_id)
 
 
 func focused_chattable_creature_id() -> String:

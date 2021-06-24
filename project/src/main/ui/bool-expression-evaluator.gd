@@ -1,4 +1,4 @@
-class_name ChatBoolEvaluator
+class_name BoolExpressionEvaluator
 """
 Evaluates boolean expressions.
 
@@ -17,6 +17,6 @@ Returns:
 	'true' if the specified boolean expression is met by the current game state.
 """
 static func evaluate(string: String, subject = null) -> bool:
-	var parser: ChatBoolParser = ChatBoolParser.new(string, subject)
-	var expression: ChatBoolParser.BoolExpression = parser.parse()
+	var parser: BoolExpressionParser = BoolExpressionParser.new(string, subject)
+	var expression: BoolExpressionParser.BoolExpression = parser.parse()
 	return expression.evaluate()

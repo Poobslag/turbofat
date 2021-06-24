@@ -111,7 +111,7 @@ func chat_icon_for_creature(creature: Creature) -> int:
 	if creature == ChattableManager.sensei or creature == ChattableManager.player:
 		# no chat icon for player or sensei
 		pass
-	elif LevelLibrary.first_unfinished_level_id_for_creature(creature.creature_id):
+	elif LevelLibrary.next_creature_level(creature.creature_id):
 		# food chat icon if the chat will launch a puzzle
 		result = ChatIcon.FOOD
 	else:
@@ -148,7 +148,7 @@ func select_from_chat_selectors(chat_selectors: Array, state: Dictionary, filler
 	
 	var level_id: String = state.get("level_id", "")
 	if not level_id:
-		level_id = LevelLibrary.first_unfinished_level_id_for_creature(creature_id)
+		level_id = LevelLibrary.next_creature_level(creature_id)
 	if level_id:
 		result = level_id
 
@@ -166,7 +166,7 @@ func select_from_chat_selectors(chat_selectors: Array, state: Dictionary, filler
 			
 			var available_if_met := true
 			if chat_selector.has("available_if"):
-				available_if_met = ChatBoolEvaluator.evaluate(chat_selector["available_if"], creature_id)
+				available_if_met = BoolExpressionEvaluator.evaluate(chat_selector["available_if"], creature_id)
 			if not available_if_met:
 				# skip; if condition wasn't met
 				continue
@@ -272,7 +272,7 @@ func is_chat_skipped(chat_tree: ChatTree) -> bool:
 		return true
 	if not chat_tree.meta or not chat_tree.meta.get("skip_if"):
 		return false
-	return ChatBoolEvaluator.evaluate(chat_tree.meta.get("skip_if"))
+	return BoolExpressionEvaluator.evaluate(chat_tree.meta.get("skip_if"))
 
 
 func _creature_chat_path(creature_id: String, chat_id: String) -> String:
