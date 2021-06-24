@@ -14,6 +14,7 @@ enum Mood {
 	LAUGH1, # laughing a lot
 	LOVE0, # finding something cute
 	LOVE1, # fawning over something
+	LOVE1_FOREVER, # fawning over something forever
 	NO0, # shaking their head once
 	NO1, # shaking their head a few times
 	RAGE0, # annoyed

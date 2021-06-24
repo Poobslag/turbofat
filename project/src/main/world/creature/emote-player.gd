@@ -16,6 +16,7 @@ const EMOTE_ANIMS := {
 	ChatEvent.Mood.LAUGH1: "laugh1",
 	ChatEvent.Mood.LOVE0: "love0",
 	ChatEvent.Mood.LOVE1: "love1",
+	ChatEvent.Mood.LOVE1_FOREVER: "love1...",
 	ChatEvent.Mood.NO0: "no0",
 	ChatEvent.Mood.NO1: "no1",
 	ChatEvent.Mood.RAGE0: "rage0",
@@ -67,8 +68,13 @@ const TRANSITIONS := {
 	[ChatEvent.Mood.LAUGH1, ChatEvent.Mood.LAUGH1]: "_transition_noop",
 	[ChatEvent.Mood.LOVE0, ChatEvent.Mood.LOVE0]: "_transition_noop",
 	[ChatEvent.Mood.LOVE0, ChatEvent.Mood.LOVE1]: "_transition_noop",
+	[ChatEvent.Mood.LOVE0, ChatEvent.Mood.LOVE1_FOREVER]: "_transition_noop",
 	[ChatEvent.Mood.LOVE1, ChatEvent.Mood.LOVE0]: "_transition_love1_love0",
 	[ChatEvent.Mood.LOVE1, ChatEvent.Mood.LOVE1]: "_transition_noop",
+	[ChatEvent.Mood.LOVE1, ChatEvent.Mood.LOVE1_FOREVER]: "_transition_noop",
+	[ChatEvent.Mood.LOVE1_FOREVER, ChatEvent.Mood.LOVE0]: "_transition_love1_love0",
+	[ChatEvent.Mood.LOVE1_FOREVER, ChatEvent.Mood.LOVE1]: "_transition_noop",
+	[ChatEvent.Mood.LOVE1_FOREVER, ChatEvent.Mood.LOVE1_FOREVER]: "_transition_noop",
 	[ChatEvent.Mood.NO0, ChatEvent.Mood.NO0]: "_transition_noop",
 	[ChatEvent.Mood.NO0, ChatEvent.Mood.NO1]: "_transition_noop",
 	[ChatEvent.Mood.NO1, ChatEvent.Mood.NO0]: "_transition_noop",
@@ -520,7 +526,10 @@ func _refresh_creature_visuals_path() -> void:
 	]
 
 func _on_animation_finished(anim_name: String) -> void:
-	if _prev_mood in EMOTE_ANIMS or anim_name in EAT_SMILE_ANIMS or anim_name in EAT_SWEAT_ANIMS:
+	if anim_name.ends_with("..."):
+		# endless animation; merge it into the looping version
+		play("...%s..." % [anim_name.trim_suffix("...")])
+	elif _prev_mood in EMOTE_ANIMS or anim_name in EAT_SMILE_ANIMS or anim_name in EAT_SWEAT_ANIMS:
 		unemote(anim_name)
 		yield($ResetTween, "tween_all_completed")
 		_post_unemote()

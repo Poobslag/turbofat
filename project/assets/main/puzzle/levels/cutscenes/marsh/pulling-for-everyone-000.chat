@@ -1,0 +1,23 @@
+{"version": "2476"}
+
+[location]
+indoors
+
+[characters]
+player, p1, kitchen-9
+sensei, s1, kitchen-5
+richie, r, kitchen-1
+skins, s, kitchen-3
+bones, b, kitchen-7
+
+p1: Well! I guess this is our last day here.
+r: Yeah! Thanks for all your help. We’re putting out better food now, and business is starting to pick up a little.
+r: ^_^/ Check it out! Three customers!
+p1: ^o^ Yeah! Ha ha.
+s1: /._. I wish we could figure out why the customers are leaving so fast. There's definitely something.
+s1: I checked your recipes and you’re using all the same ingredients, but something’s just... different here.
+p1: /._. Something IS different here! But not in a bad way. Even without the customers I just feel... ...nice, you know?
+p1: ^__^ Maybe it’s just being around you guys! I don’t really want to leave.
+s1: Well! There’s nothing saying we can’t stay another week.
+s1: ^_^ Let’s step up our game and win over a few more customers. What do you say, Bones?
+b: ^_^ Bork! Leave it to me!

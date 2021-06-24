@@ -336,6 +336,7 @@ const MOOD_PREFIXES := {
 	"^O^": ChatEvent.Mood.LAUGH1,
 	"owo": ChatEvent.Mood.LOVE0,
 	"OwO": ChatEvent.Mood.LOVE1,
+	"OwO...": ChatEvent.Mood.LOVE1_FOREVER,
 	"^n^": ChatEvent.Mood.NO0,
 	"^N^": ChatEvent.Mood.NO1,
 	">_<": ChatEvent.Mood.RAGE0,
