@@ -27,6 +27,8 @@ func _ready() -> void:
 
 func _launch_cutscene() -> void:
 	_overworld_ui.cutscene = true
+	ChattableManager.player.input_disabled = true
+	ChattableManager.sensei.movement_disabled = true
 	
 	# remove all of the creatures from the overworld except for the player and sensei
 	for node in get_tree().get_nodes_in_group("creatures"):
@@ -35,9 +37,10 @@ func _launch_cutscene() -> void:
 			node.get_parent().remove_child(node)
 			node.queue_free()
 	
-	# add the cutscene creature
-	var cutscene_creature: Creature = _add_creature(CurrentLevel.creature_id)
-	ChattableManager.player.input_disabled = true
+	var cutscene_creature: Creature
+	if CurrentLevel.creature_id:
+		# add the cutscene creature
+		cutscene_creature = _add_creature(CurrentLevel.creature_id)
 	
 	# get the location, spawn location data
 	var chat_tree: ChatTree
@@ -49,7 +52,7 @@ func _launch_cutscene() -> void:
 		_:
 			push_warning("Unexpected CurrentLevel.cutscene_state: %s" % [CurrentLevel.cutscene_state])
 	
-	if not chat_tree.spawn_locations:
+	if not chat_tree.spawn_locations and cutscene_creature:
 		# apply a default position to the cutscene creature
 		cutscene_creature.position = ChattableManager.player.position
 		cutscene_creature.position += Vector2(cutscene_creature.chat_extents.x, 0)

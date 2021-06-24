@@ -10,6 +10,9 @@ The sensei follows the player around.
 const TOO_CLOSE_THRESHOLD := 140.0
 const TOO_FAR_THRESHOLD := 280.0
 
+# If 'true' the sensei cannot move. Used during cutscenes.
+var movement_disabled := false
+
 func _ready() -> void:
 	set_creature_id(CreatureLibrary.SENSEI_ID)
 	$MoveTimer.connect("timeout", self, "_on_MoveTimer_timeout")
@@ -17,6 +20,9 @@ func _ready() -> void:
 
 
 func _on_MoveTimer_timeout() -> void:
+	if movement_disabled:
+		return
+	
 	var player_relative_pos: Vector2 = Global.from_iso(ChattableManager.player.position - position)
 	# the sensei runs at isometric 45 degree angles to mimic the player's inputs
 	var player_angle := stepify(player_relative_pos.normalized().angle(), PI / 4)
