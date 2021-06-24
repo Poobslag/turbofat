@@ -1,0 +1,10 @@
+{"version": "2476"}
+
+boatricia: Hello, nice to meet you!
+ (say_if not chat_finished chat/boatricia/hi)
+boatricia: Oh, I remember you!
+ (say_if chat_finished chat/boatricia/hi)
+player: Nice to meet you, too!
+ (say_if not chat_finished chat/boatricia/hi)
+player: I remember you too!
+ (say_if chat_finished chat/boatricia/hi)

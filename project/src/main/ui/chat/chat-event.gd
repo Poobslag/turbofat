@@ -51,6 +51,9 @@ var links: Array
 # List of chat strings corresponding to branches off of this chat event.
 var link_texts: Array
 
+# List of chat moods corresponding to branches off of this chat event.
+var link_moods: Array
+
 """
 The chat window changes its appearance based on who's talking. For example, one character's speech might be blue with
 a black background, and giant blue soccer balls in the background. The 'chat_theme_def' property defines the chat
@@ -64,9 +67,10 @@ window's appearance, such as 'blue', 'soccer balls' and 'giant'.
 """
 var chat_theme_def: Dictionary
 
-func add_link(link: String, link_text: String) -> void:
+func add_link(link: String, link_text: String, link_mood: int) -> void:
 	links.append(link)
 	link_texts.append(link_text)
+	link_moods.append(link_mood)
 
 
 func _to_string() -> String:

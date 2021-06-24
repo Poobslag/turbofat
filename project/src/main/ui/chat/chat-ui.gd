@@ -137,14 +137,21 @@ func _on_ChatFrame_all_text_shown() -> void:
 	if _chat_advancer.should_prompt():
 		var chat_event: ChatEvent = _chat_advancer.current_chat_event()
 		var moods: Array = []
-		for link in chat_event.links:
-			if _chat_advancer.chat_tree.events.has(link):
+		for i in range(0, chat_event.links.size()):
+			var link: String = chat_event.links[i]
+			var mood := -1
+			if chat_event.link_moods[i] != -1:
+				# use the mood from the chat link
+				mood = chat_event.link_moods[i]
+			elif _chat_advancer.chat_tree.events.has(link):
+				# chat link did not specify a mood; use the mood from the branch's first event
 				var first_event: ChatEvent = _chat_advancer.chat_tree.events[link][0]
 				if first_event and first_event.mood:
-					moods.append(first_event.mood)
-				else: moods.append(-1)
+					mood = first_event.mood
 			else:
-				moods.append(-1)
+				# branch's first event did not specify a mood; mood remains unset
+				pass
+			moods.append(mood)
 		_chat_choices.reposition(_chat_frame.get_chat_line_size())
 		_chat_choices.show_choices(chat_event.link_texts, moods)
 		emit_signal("showed_choices")

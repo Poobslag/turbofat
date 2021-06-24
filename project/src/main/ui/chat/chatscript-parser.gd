@@ -1,6 +1,6 @@
 class_name ChatscriptParser
 """
-Parsers a chatscript (.chat) file containing a cutscene or lines of chat.
+Parses a chatscript (.chat) file containing a cutscene or lines of chat.
 
 This class is stateful and intended to be used once and thrown away. If it is reused, the previously parsed chat_tree
 will be erased.
@@ -218,6 +218,7 @@ class ChatState extends AbstractState:
 	"""
 	Syntax:
 		[very-good] I think you killed it!
+		[just-okay] <_< I think it was just okay...
 	"""
 	func _parse_chat_link(line: String) -> void:
 		# add branch to _event
@@ -227,8 +228,12 @@ class ChatState extends AbstractState:
 		
 		var branch_name := StringUtils.substring_between(line, "[", "]").strip_edges()
 		var branch_text := StringUtils.substring_after(line, "]").strip_edges()
-		_event.links.append(branch_name)
-		_event.link_texts.append(branch_text)
+		var branch_mood := -1
+		var mood_prefix := StringUtils.substring_before(branch_text, " ")
+		if mood_prefix in MOOD_PREFIXES:
+			branch_mood = MOOD_PREFIXES[mood_prefix]
+			branch_text = branch_text.trim_prefix(mood_prefix).strip_edges()
+		_event.add_link(branch_name, branch_text, branch_mood)
 	
 	
 	"""
@@ -274,7 +279,7 @@ class ChatState extends AbstractState:
 		for i in range(0, meta.size()):
 			meta[i] = meta[i].strip_edges()
 			meta[i] = _translate_meta_item(meta[i])
-		_event.meta = meta
+		_event.meta.append_array(meta)
 	
 	
 	"""
@@ -283,11 +288,18 @@ class ChatState extends AbstractState:
 	func _translate_meta_item(item: String) -> String:
 		var result := item
 		if item.ends_with(" enters"):
+			# spira enters -> creature-enter spira
 			var name := item.trim_suffix(" enters")
 			result = "creature-enter %s" % [_unalias(name)]
 		elif item.ends_with(" exits"):
+			# spira exits -> creature-exit spira
 			var name := item.trim_suffix(" exits")
 			result = "creature-exit %s" % [_unalias(name)]
+		elif " mood " in item:
+			# spira mood ^_^ -> creature-mood spira 7
+			var name := StringUtils.substring_before(item, " mood ")
+			var mood := StringUtils.substring_after(item, " mood ")
+			result = "creature-mood %s %s" % [name, MOOD_PREFIXES[mood]]
 		return result
 	
 	

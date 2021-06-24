@@ -23,6 +23,7 @@ signal chat_finished
 func play_chat_tree(new_chat_tree: ChatTree) -> void:
 	rewinding_text = false
 	chat_tree = new_chat_tree
+	chat_tree.skip_unmet_conditions()
 	emit_signal("chat_event_shown", current_chat_event())
 
 
