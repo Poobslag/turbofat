@@ -46,6 +46,7 @@
           "creature_id": "bones",
           "groups": "marsh/hello",
           "locked_until": "level_finished marsh/hello_everyone",
+          "prioritized_if": "not level_finished marsh/pulling_for_everyone",
           "chef_id": "bones"
         },
         {
@@ -53,6 +54,7 @@
           "creature_id": "shirts",
           "groups": "marsh/hello",
           "locked_until": "level_finished marsh/hello_everyone",
+          "prioritized_if": "not level_finished marsh/pulling_for_everyone",
           "chef_id": "shirts"
         },
         {
@@ -60,18 +62,22 @@
           "creature_id": "skins",
           "groups": "marsh/hello",
           "locked_until": "level_finished marsh/hello_everyone",
+          "prioritized_if": "not level_finished marsh/pulling_for_everyone",
           "chef_id": "skins"
         },
         {
           "id": "marsh/pulling_for_everyone",
+          "creature_id": "richie",
           "groups": "marsh/pulling_for",
-          "locked_until": "group_finished marsh/hello"
+          "locked_until": "group_finished marsh/hello 1",
+          "chef_id": "bones"
         },
         {
           "id": "marsh/pulling_for_bones",
           "creature_id": "bones",
           "groups": "marsh/pulling_for",
           "locked_until": "level_finished marsh/pulling_for_everyone",
+          "prioritized_if": "not level_finished marsh/lets_all_get_merry",
           "chef_id": "bones"
         },
         {
@@ -79,6 +85,7 @@
           "creature_id": "shirts",
           "groups": "marsh/pulling_for",
           "locked_until": "level_finished marsh/pulling_for_everyone",
+          "prioritized_if": "not level_finished marsh/lets_all_get_merry",
           "chef_id": "shirts"
         },
         {
@@ -86,17 +93,21 @@
           "creature_id": "skins",
           "groups": "marsh/pulling_for",
           "locked_until": "level_finished marsh/pulling_for_everyone",
+          "prioritized_if": "not level_finished marsh/lets_all_get_merry",
           "chef_id": "skins"
         },
         {
           "id": "marsh/lets_all_get_merry",
-          "locked_until": "group_finished marsh/pulling_for"
+          "creature_id": "richie",
+          "groups": "marsh/goodbye",
+          "locked_until": "group_finished marsh/pulling_for 1"
         },
         {
           "id": "marsh/goodbye_bones",
           "creature_id": "bones",
           "groups": "marsh/goodbye",
           "locked_until": "level_finished marsh/lets_all_get_merry",
+          "prioritized_if": "not level_finished marsh/goodbye_everyone",
           "chef_id": "bones"
         },
         {
@@ -104,6 +115,7 @@
           "creature_id": "shirts",
           "groups": "marsh/goodbye",
           "locked_until": "level_finished marsh/lets_all_get_merry",
+          "prioritized_if": "not level_finished marsh/goodbye_everyone",
           "chef_id": "shirts"
         },
         {
@@ -111,11 +123,13 @@
           "creature_id": "skins",
           "groups": "marsh/goodbye",
           "locked_until": "level_finished marsh/lets_all_get_merry",
+          "prioritized_if": "not level_finished marsh/goodbye_everyone",
           "chef_id": "skins"
         },
         {
           "id": "marsh/goodbye_everyone",
-          "locked_until": "group_finished marsh/goodbye"
+          "creature_id": "richie",
+          "locked_until": "group_finished marsh/goodbye 1"
         }
       ]
     },

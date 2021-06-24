@@ -1,4 +1,4 @@
-{"version": "2476"}
+{"version": "2476", "skip_if": "level_finished marsh/pulling_for_everyone"}
 
 [location]
 outdoors

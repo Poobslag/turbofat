@@ -53,22 +53,21 @@ func test_level_lock_group_finished() -> void:
 	add_level_history_item("marsh/hello_everyone")
 	LevelLibrary.refresh_cleared_levels()
 	assert_level_lock_status(level_id, LEVEL_SOFT_LOCK)
-	assert_eq(LevelLibrary.level_lock(level_id).keys_needed, 3)
+	assert_eq(LevelLibrary.level_lock(level_id).keys_needed, 2)
 	
 	# these three levels are required to unlock it
 	assert_level_lock_status("marsh/hello_bones", LEVEL_KEY)
 	assert_level_lock_status("marsh/hello_shirts", LEVEL_KEY)
 	assert_level_lock_status("marsh/hello_skins", LEVEL_KEY)
 	
-	# if only two levels are cleared, the level remains locked
+	# if only one level is cleared, the level remains locked
 	add_level_history_item("marsh/hello_bones")
-	add_level_history_item("marsh/hello_shirts")
 	LevelLibrary.refresh_cleared_levels()
 	assert_level_lock_status(level_id, LEVEL_SOFT_LOCK)
 	assert_eq(LevelLibrary.level_lock(level_id).keys_needed, 1)
 	
 	# once the last required level is cleared, the level unlocks
-	add_level_history_item("marsh/hello_skins")
+	add_level_history_item("marsh/hello_shirts")
 	LevelLibrary.refresh_cleared_levels()
 	assert_level_lock_status(level_id, LEVEL_KEY)
 
@@ -151,12 +150,8 @@ func test_next_creature_level() -> void:
 	LevelLibrary.refresh_cleared_levels()
 	assert_eq(LevelLibrary.next_creature_level("bones"), "marsh/hello_bones")
 	
-	# if multiple levels are available, the earliest level is returned
+	# if multiple levels are available, the earliest prioritized level is returned
 	add_level_history_item("marsh/pulling_for_everyone")
-	LevelLibrary.refresh_cleared_levels()
-	assert_eq(LevelLibrary.next_creature_level("bones"), "marsh/hello_bones")
-	
-	# once the creature's level is cleared, it skips to the next in line
 	add_level_history_item("marsh/hello_bones")
 	LevelLibrary.refresh_cleared_levels()
 	assert_eq(LevelLibrary.next_creature_level("bones"), "marsh/pulling_for_bones")
