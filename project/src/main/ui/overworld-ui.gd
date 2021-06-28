@@ -237,6 +237,11 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 			var creature_id := StringUtils.substring_after(meta_item, "creature-exit ")
 			var exiting_creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			exiting_creature.fade_out()
+		if meta_item.begins_with("creature-mood "):
+			var meta_item_split: Array = meta_item.split(" ")
+			var creature_id: String = meta_item_split[1]
+			var mood: int = int(meta_item_split[2])
+			ChattableManager.get_creature_by_id(creature_id).play_mood(mood)
 	
 	# update the chatter's mood
 	var chatter: Creature = ChattableManager.get_creature_by_id(chat_event.who)

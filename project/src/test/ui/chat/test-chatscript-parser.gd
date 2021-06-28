@@ -5,12 +5,16 @@ Test for the chatscript parser.
 
 const CUTSCENE_FULL := "res://assets/test/ui/chat/cutscene-full.chat"
 const CUTSCENE_META := "res://assets/test/ui/chat/cutscene-meta.chat"
+const CHAT_CONDITION := "res://assets/test/ui/chat/chat-condition.chat"
 const CHAT_FULL := "res://assets/test/ui/chat/chat-full.chat"
+const CHAT_LINK_MOOD := "res://assets/test/ui/chat/chat-link-mood.chat"
 const CHAT_THOUGHT := "res://assets/test/ui/chat/chat-thought.chat"
 
 func _chat_tree_from_file(path: String) -> ChatTree:
 	var parser := ChatscriptParser.new()
-	return parser.chat_tree_from_file(path)
+	var chat_tree := parser.chat_tree_from_file(path)
+	chat_tree.skip_unmet_conditions()
+	return chat_tree
 
 
 func _history_key_from_path(path: String) -> String:
@@ -72,9 +76,14 @@ func test_cutscene_mood_smile0() -> void:
 
 func test_cutscene_metadata() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_META)
-	var event := chat_tree.get_event()
 	
-	assert_eq(event.meta, ["creature-enter john", "creature-enter jane"])
+	# multiple metadata events on one line
+	assert_eq(chat_tree.get_event().meta, ["creature-enter john", "creature-enter jane"])
+	
+	# multiple metadata events on different lines
+	chat_tree.advance()
+	chat_tree.advance()
+	assert_eq(chat_tree.get_event().meta, ["creature-exit john", "creature-exit jane"])
 
 
 func test_cutscene_self_chat() -> void:
@@ -111,3 +120,30 @@ func test_history_key_from_path() -> void:
 			"puzzle/levels/cutscenes/marsh/hello_everyone_000")
 	assert_eq(_history_key_from_path("res://assets/main/chat/marsh-crystal.chat"),
 			"chat/marsh_crystal")
+
+
+func test_chat_choice_mood() -> void:
+	var chat_tree := _chat_tree_from_file(CHAT_LINK_MOOD)
+	var event := chat_tree.get_event()
+	
+	assert_eq(event.link_moods[0], ChatEvent.Mood.SMILE0)
+	assert_eq(event.link_moods[1], ChatEvent.Mood.RAGE0)
+	assert_eq(event.link_moods[2], ChatEvent.Mood.AWKWARD0)
+
+
+func test_chat_condition() -> void:
+	PlayerData.chat_history.reset()
+	
+	var chat_tree: ChatTree
+	
+	chat_tree = _chat_tree_from_file(CHAT_CONDITION)
+	assert_eq(chat_tree.get_event().text, "Hello, nice to meet you!")
+	chat_tree.advance()
+	assert_eq(chat_tree.get_event().text, "Nice to meet you, too!")
+	
+	PlayerData.chat_history.add_history_item("chat/boatricia/hi")
+	
+	chat_tree = _chat_tree_from_file(CHAT_CONDITION)
+	assert_eq(chat_tree.get_event().text, "Oh, I remember you!")
+	chat_tree.advance()
+	assert_eq(chat_tree.get_event().text, "I remember you too!")

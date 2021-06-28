@@ -104,7 +104,31 @@ func advance(link_index := -1) -> bool:
 		# advance through the current chat branch
 		_position.index += 1
 		did_increment = true
+	skip_unmet_conditions()
 	return did_increment
+
+
+"""
+Skip any dialog lines whose 'say_if' conditions are unmet.
+
+This is automatically called when dialog is advanced, but should manually be called before the first get_event() call
+as well.
+"""
+func skip_unmet_conditions() -> void:
+	var did_increment := true
+	while did_increment:
+		did_increment = false
+		var chat_condition: String
+		for meta_item in get_event().meta:
+			if meta_item.begins_with("say_if "):
+				chat_condition = meta_item.trim_prefix("say_if ")
+				break
+		if chat_condition \
+				and not BoolExpressionEvaluator.evaluate(chat_condition) \
+				and _position.index + 1 < events[_position.key].size():
+			# advance through the current chat branch
+			_position.index += 1
+			did_increment = true
 
 
 """
