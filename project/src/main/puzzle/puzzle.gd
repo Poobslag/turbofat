@@ -155,7 +155,9 @@ func _quit_puzzle() -> void:
 	if CurrentLevel.cutscene_state == CurrentLevel.CutsceneState.AFTER \
 			and ChatLibrary.has_postroll(CurrentLevel.level_id):
 		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
-		if not ChatLibrary.is_chat_skipped(chat_tree):
+		if ChatLibrary.is_chat_skipped(chat_tree):
+			CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.NONE
+		else:
 			# insert cutscene into breadcrumb trail so it will show up after we pop the trail
 			Breadcrumb.trail.insert(1, chat_tree.cutscene_scene_path())
 	else:

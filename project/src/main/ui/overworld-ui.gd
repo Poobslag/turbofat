@@ -50,7 +50,11 @@ func _exit_tree() -> void:
 func start_chat(new_chat_tree: ChatTree, target: Node2D) -> void:
 	_current_chat_tree = new_chat_tree
 	
-	var new_chatters := [ChattableManager.player, target]
+	var new_chatters := []
+	if ChattableManager.player:
+		new_chatters.append(ChattableManager.player)
+	if target:
+		new_chatters.append(target)
 	var chatter_ids := {}
 	for chat_events_obj in new_chat_tree.events.values():
 		var chat_events: Array = chat_events_obj
@@ -88,8 +92,16 @@ func is_show_version() -> bool:
 Turn the the active chat participants towards each other, and make them face the camera.
 """
 func make_chatters_face_eachother() -> void:
-	var chatter_bounding_box := get_chatter_bounding_box(
-			[], [ChattableManager.player, ChattableManager.sensei])
+	if cutscene:
+		# don't automatically orient characters during cutscenes
+		return
+	
+	var chatter_bounding_box: Rect2
+	chatter_bounding_box = get_chatter_bounding_box([], [ChattableManager.player, ChattableManager.sensei])
+	if not chatter_bounding_box:
+		# for conversations between the player and the sensei, the sensei faces their midpoint
+		chatter_bounding_box = get_chatter_bounding_box([], [])
+		
 	var center_of_non_player_chatters := chatter_bounding_box.position + chatter_bounding_box.size * 0.5
 	
 	for chatter in chatters:

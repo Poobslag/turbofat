@@ -59,6 +59,8 @@ func _process(_delta: float) -> void:
 		if new_close_up_bounding_box != close_up_bounding_box:
 			close_up_bounding_box = new_close_up_bounding_box
 			close_up_position = close_up_bounding_box.position + close_up_bounding_box.size * 0.5
+			# Move cutscene camera lower so that dialog bubbles don't hide the creatures
+			close_up_position.y += close_up_bounding_box.size.y * 0.1
 			
 			zoom_close_up.x = max(close_up_bounding_box.size.x / _project_resolution.x, \
 					close_up_bounding_box.size.y / _project_resolution.y)
