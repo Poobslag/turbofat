@@ -140,6 +140,9 @@ func test_chat_condition() -> void:
 	assert_eq(chat_tree.get_event().text, "Hello, nice to meet you!")
 	chat_tree.advance()
 	assert_eq(chat_tree.get_event().text, "Nice to meet you, too!")
+	chat_tree.advance()
+	assert_eq(chat_tree.get_event().links, ["first-time", "not-first-time", "other"])
+	assert_eq(chat_tree.get_event().enabled_link_indexes(), [0, 2])
 	
 	PlayerData.chat_history.add_history_item("chat/boatricia/hi")
 	
@@ -147,3 +150,6 @@ func test_chat_condition() -> void:
 	assert_eq(chat_tree.get_event().text, "Oh, I remember you!")
 	chat_tree.advance()
 	assert_eq(chat_tree.get_event().text, "I remember you too!")
+	chat_tree.advance()
+	assert_eq(chat_tree.get_event().links, ["first-time", "not-first-time", "other"])
+	assert_eq(chat_tree.get_event().enabled_link_indexes(), [1, 2])

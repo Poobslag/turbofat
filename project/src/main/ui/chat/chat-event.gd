@@ -49,11 +49,14 @@ var meta: Array
 # List of string keys corresponding to branches off of this chat event.
 var links: Array
 
-# List of chat strings corresponding to branches off of this chat event.
+# List of string chat texts corresponding to branches off of this chat event.
 var link_texts: Array
 
-# List of chat moods corresponding to branches off of this chat event.
+# List of int chat moods corresponding to branches off of this chat event.
 var link_moods: Array
+
+# List of Array metadatas about the links, such as which conditions should enable it
+var link_metas: Array
 
 """
 The chat window changes its appearance based on who's talking. For example, one character's speech might be blue with
@@ -72,6 +75,21 @@ func add_link(link: String, link_text: String, link_mood: int) -> void:
 	links.append(link)
 	link_texts.append(link_text)
 	link_moods.append(link_mood)
+	link_metas.append([])
+
+
+func enabled_link_indexes() -> Array:
+	var enabled_link_indexes := []
+	for i in range(0, links.size()):
+		var link_condition: String
+		for meta_item in link_metas[i]:
+			if meta_item.begins_with("link_if "):
+				link_condition = meta_item.trim_prefix("link_if ")
+				break
+		
+		if not link_condition or BoolExpressionEvaluator.evaluate(link_condition):
+			enabled_link_indexes.append(i)
+	return enabled_link_indexes
 
 
 func _to_string() -> String:

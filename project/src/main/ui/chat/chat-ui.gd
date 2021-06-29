@@ -136,25 +136,57 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 func _on_ChatFrame_all_text_shown() -> void:
 	if _chat_advancer.should_prompt():
 		var chat_event: ChatEvent = _chat_advancer.current_chat_event()
-		var moods: Array = []
-		for i in range(0, chat_event.links.size()):
-			var link: String = chat_event.links[i]
-			var mood := -1
-			if chat_event.link_moods[i] != -1:
-				# use the mood from the chat link
-				mood = chat_event.link_moods[i]
-			elif _chat_advancer.chat_tree.events.has(link):
-				# chat link did not specify a mood; use the mood from the branch's first event
-				var first_event: ChatEvent = _chat_advancer.chat_tree.events[link][0]
-				if first_event and first_event.mood:
-					mood = first_event.mood
-			else:
-				# branch's first event did not specify a mood; mood remains unset
-				pass
-			moods.append(mood)
+		
 		_chat_choices.reposition(_chat_frame.get_chat_line_size())
-		_chat_choices.show_choices(chat_event.link_texts, moods)
+		
+		var texts := _enabled_link_texts(chat_event)
+		var moods := _enabled_link_moods(chat_event)
+		_chat_choices.show_choices(texts, moods)
+		
 		emit_signal("showed_choices")
+
+
+"""
+Extracts the moods for each available choice of a chat event.
+
+The resulting array excludes any choices whose link_if conditions are unmet.
+
+Returns:
+	An array of ChatEvent.Mood instances for each chat branch
+"""
+func _enabled_link_moods(var chat_event: ChatEvent) -> Array:
+	var moods := []
+	for i in chat_event.enabled_link_indexes():
+		var link: String = chat_event.links[i]
+		var mood := -1
+		if chat_event.link_moods[i] != -1:
+			# use the mood from the chat link
+			mood = chat_event.link_moods[i]
+		elif _chat_advancer.chat_tree.events.has(link):
+			# chat link did not specify a mood; use the mood from the branch's first event
+			var first_event: ChatEvent = _chat_advancer.chat_tree.events[link][0]
+			if first_event and first_event.mood:
+				mood = first_event.mood
+		else:
+			# branch's first event did not specify a mood; mood remains unset
+			pass
+		moods.append(mood)
+	return moods
+
+
+"""
+Extracts the strings to show the player for each available choice of a chat event.
+
+The resulting array excludes any choices whose link_if conditions are unmet.
+
+Returns:
+	An array of string choices for each chat branch
+"""
+func _enabled_link_texts(var chat_event: ChatEvent) -> Array:
+	var texts := []
+	for i in chat_event.enabled_link_indexes():
+		texts.append(chat_event.link_texts[i])
+	return texts
 
 
 func _on_ChatFrame_pop_out_completed() -> void:

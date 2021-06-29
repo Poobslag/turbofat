@@ -280,6 +280,8 @@ class ChatState extends AbstractState:
 			meta[i] = meta[i].strip_edges()
 			meta[i] = _translate_meta_item(meta[i])
 		_event.meta.append_array(meta)
+		if _event.links:
+			_event.link_metas.back().append_array(meta)
 	
 	
 	"""

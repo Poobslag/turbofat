@@ -100,7 +100,7 @@ func should_prompt() -> bool:
 	if rewinding_text and _prev_chat_event_index < _prev_chat_events.size() - 1:
 		# don't prompt for questions the player has already answered
 		result = false
-	elif chat_event.links.size() < 2:
+	elif chat_event.enabled_link_indexes().size() < 2:
 		# one or zero links, the player has no choice to make
 		result = false
 	return result
@@ -119,7 +119,8 @@ func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:
 	if rewinding_text:
 		# The player rewound, advanced to a chat choice and chose a response. Remove them from the rewind state.
 		rewinding_text = false
-	var did_increment := chat_tree.advance(choice_index)
+	var link_index: int = chat_tree.get_event().enabled_link_indexes()[choice_index]
+	var did_increment := chat_tree.advance(link_index)
 	if did_increment:
 		# show the next chat line to the player
 		emit_signal("chat_event_shown", current_chat_event())
