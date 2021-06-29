@@ -6,7 +6,7 @@ Keys:
 	[1]: Default mood
 	
 	[Q, W, E, R]: Awkward0 (Uncomfortable), Awkward1 (Embarrassed), Cry0 (Disappointed), Cry1 (Distraught)
-	[T, Y, U, I]: Laugh0 (Tickled), Laugh1 (Laughing), Love0 (Heart Eyes), Love1 (Dreamy Love)
+	[T, Y, U, I, 8]: Laugh0 (Tickled), Laugh1 (Laughing), Love0 (Heart Eyes), Love1 (Dreamy Love), Love1 Forever
 	[O, P]: No0 (Head Shake), No1 (More Shakes)
 	
 	[A, S, D, F, G]: Rage0 (Annoyed), Rage1 (Angry), Rage2 (Murderous), Sigh0 (Ugh), Sigh1 (Eyeroll)
@@ -55,6 +55,7 @@ func _input(event: InputEvent) -> void:
 			KEY_Y: $Creature.play_mood(ChatEvent.Mood.LAUGH1)
 			KEY_U: $Creature.play_mood(ChatEvent.Mood.LOVE0)
 			KEY_I: $Creature.play_mood(ChatEvent.Mood.LOVE1)
+			KEY_8: $Creature.play_mood(ChatEvent.Mood.LOVE1_FOREVER)
 			KEY_O: $Creature.play_mood(ChatEvent.Mood.NO0)
 			KEY_P: $Creature.play_mood(ChatEvent.Mood.NO1)
 			KEY_A: $Creature.play_mood(ChatEvent.Mood.RAGE0)

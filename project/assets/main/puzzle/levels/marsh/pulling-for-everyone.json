@@ -1,8 +1,8 @@
 {
   "version": "19c5",
   "start_speed": "5",
-  "title": "Pulling for everyone",
-  "description": "C'mon everybody, you can do this! We believe in you!",
+  "title": "It's Kind Of Time To Leave",
+  "description": "We'll miss you! ...Can't we stay just a little longer?",
   "finish_condition": {
     "type": "score",
     "value": "400"

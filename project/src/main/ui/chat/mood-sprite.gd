@@ -16,6 +16,7 @@ var textures := {
 	ChatEvent.Mood.LAUGH1: preload("res://assets/main/ui/chat/choice-mood-laugh1.png"),
 	ChatEvent.Mood.LOVE0: preload("res://assets/main/ui/chat/choice-mood-love0.png"),
 	ChatEvent.Mood.LOVE1: preload("res://assets/main/ui/chat/choice-mood-love1.png"),
+	ChatEvent.Mood.LOVE1_FOREVER: preload("res://assets/main/ui/chat/choice-mood-love1.png"),
 	ChatEvent.Mood.NO0: preload("res://assets/main/ui/chat/choice-mood-no.png"),
 	ChatEvent.Mood.NO1: preload("res://assets/main/ui/chat/choice-mood-no.png"),
 	ChatEvent.Mood.RAGE0: preload("res://assets/main/ui/chat/choice-mood-rage0.png"),

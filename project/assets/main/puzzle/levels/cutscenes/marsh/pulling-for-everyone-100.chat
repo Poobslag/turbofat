@@ -1,0 +1,25 @@
+{"version": "2476"}
+
+[location]
+indoors
+
+[characters]
+player, p1, kitchen-9
+sensei, s1, kitchen-5
+richie, r, kitchen-1
+skins, s, kitchen-3
+bones, b, kitchen-7
+
+p1: /._. So one thing I noticed, Skins, is when you switch from one dish to the next-
+b: <_< ...My name is Bones...
+p1: ._.; Oh! Sorry, I’m really awful with names.
+r: Hey names are tough! You just need a mnemonic to help you keep things straight.
+r: ^_^/ Like take Skins here, he’s sorta like a cat, right? So just remember, "there’s more than one way to skin a cat!"
+s: .__.; Augh! That’s rather graphic!
+r: And Bones here, he’s sorta like a dog? You can remember that like-
+p1: ^__^ I get it! 'There’s more than one way to bone a dog!'
+r: W-what? ...That's not... ...Well, whatever helps you remember.
+ (bones mood OwO...)
+ (skins mood OwO...)
+p1: ^_^ Anyway I know it's been sort of a shaky start, but Fat Sensei and I will teach you everything we can! ...We’re pulling for you!
+b: You’re... Pulling for me?

@@ -1,8 +1,8 @@
 {
   "version": "19c5",
   "start_speed": "3",
-  "title": "Let's All Get Merry",
-  "description": "Wow, we did it! It's time to celebrate.",
+  "title": "It's Really Time To Leave",
+  "description": "Can't we stay forever?",
   "finish_condition": {
     "type": "lines",
     "value": "50"
