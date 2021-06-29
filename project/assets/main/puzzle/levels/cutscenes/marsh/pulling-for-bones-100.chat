@@ -7,7 +7,7 @@ outdoors
 player, p1, restaurant-1
 bones, b, restaurant-11
 
-b: ^O^ Hey, remember a few days ago when you said there’s more than one way to bone a dog! Ha ha!
+b: ^O^ Hey, remember a few days ago when you said there's more than one way to bone a dog! Ha ha!
 p1: ^_^ Ha ha! Yeah. Wait, what's so funny about that?
  (say_if not chat_finished puzzle/levels/cutscenes/marsh/pulling_for_skins_100)
 p1: <__< Why does everyone keep asking me that!?
@@ -26,8 +26,8 @@ p1: <_< Umm... I guess that's alright.
 [yes]
 
 [no-1]
-p1: /._. N-no, that’s okay. I’m not really in the mood for jokes right now.
-b: Okay! Well, let’s just get married then.
+p1: /._. N-no, that's okay. I'm not really in the mood for jokes right now.
+b: Okay! Well, let's just get married then.
 [no-2] Umm... I can't
 [yes-why-not] I don't see why not
 [yes-no-problem] No problem at all
@@ -42,7 +42,7 @@ p1: No problem, sounds good.
 
 [no-2]
 p1: <_< Umm, I think I have other plans.
-b: Let’s just marry before your plans! Just a quick marry.
+b: Let's just marry before your plans! Just a quick marry.
 [yes-no-reason] No reason not to
 [yes-okay] Umm... Okay
 [no-3] ._. I don't want to
@@ -56,7 +56,7 @@ p1: <_< Umm... Okay, whatever.
 [yes]
 
 [no-3]
-p1: ._. ...I don’t want to marry you. Let’s be friends.
+p1: ._. ...I don't want to marry you. Let's be friends.
 b: Marry~
 p1: ._.; ...Friends.
 b: Maaarrrryyyy~~
