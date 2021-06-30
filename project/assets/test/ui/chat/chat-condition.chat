@@ -8,3 +8,18 @@ player: Nice to meet you, too!
  (say_if not chat_finished chat/boatricia/hi)
 player: I remember you too!
  (say_if chat_finished chat/boatricia/hi)
+player: I'd also like to say...
+[first-time]
+ (link_if not chat_finished chat/boatricia/hi)
+[not-first-time]
+ (link_if chat_finished chat/boatricia/hi)
+[other]
+
+[first-time]
+player: It's a shame we've never spoken before!
+
+[not-first-time]
+player: I'm glad to speak with you again!
+
+[other]
+player: Something poignant, I suppose!

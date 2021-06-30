@@ -1,0 +1,69 @@
+{"version": "2476", "skip_if": "level_finished marsh/goodbye_everyone"}
+
+[location]
+outdoors
+
+[characters]
+player, p1, restaurant-11
+skins, s, restaurant-1
+
+p1: <_< Sorry, this is hard to say but we were only supposed to be here for one week. And that was like... several weeks ago.
+p1: Fat Sensei and I need to leave.
+s: .__.; Wahhhh! What about us?
+[plan-you-stay] I could stay
+[plan-i-go] You could come
+[plan-no-following] Long distance relationship?
+[plan-superman] We should break up
+
+[plan-you-stay]
+p1: ^__^ I guess I could stay here!
+s: @_@ Wh-what!?! ...But you said you were leaving!
+p1: /._. Oh, you're right! I forgot.
+s: ._.; Well, well ummm... We could do the long distance thing, right?
+s: Like maybe a relationship where we never talk, and we never see each other, and we can date other people...
+s: /._. ...But we're still in a relationship and we still think about each other. What about that?
+[thats-your-plan]
+
+[plan-i-go]
+p1: ^_^ You could come with me!
+s: ._.; ...Come with you? That's a big step. Couldn't we start with a long-distance relationship?
+p1: <__< Ohh... I don't think that will work out.
+s: What about a long-distance relationship where we never talk, and we never see each other, and we can date other people...
+s: /._. ...But we're still in a relationship and we still think about each other. What about that?
+[thats-your-plan]
+
+[plan-no-following]
+p1: /._. I guess we could... try the long distance thing.
+s: Long distance? Hmm... So maybe, a relationship where we never talk, and we never see each other, and we can date other people...
+s: /._. ...But we're still in a relationship and we still think about each other. Something like that?
+[thats-your-plan]
+
+[plan-superman]
+p1: u_u I guess we need to... break up.
+s: ._.; Well what about a long-distance relationship?
+p1: <__< Ohh... I don't think that will work out.
+s: What about a long-distance relationship where we never talk, and we never see each other, and we can date other people...
+s: /._. ...But we're still in a relationship and we still think about each other. What about that?
+[thats-your-plan]
+
+[thats-your-plan]
+p1: ._.; I... what?
+s: ... ...
+[must-break-up] Or we break up
+[disapprove] That sounds awful
+[approve] That sounds fine
+
+[approve]
+p1: ^y^ That... sounds fine.
+s: ^__^ Mowr!
+(You are no longer in a relationship with Skins.)
+
+[must-break-up]
+p1: ._.; Or we can just break up.
+s: ^__^ Don't worry! I'll just long distance you. ...You don't have to long distance me back. Mowr!
+(You are no longer in a relationship with Skins.)
+
+[disapprove]
+p1: >__< No, that sounds awful.
+s: ^__^ Don't worry! I'll just long distance you. ...You don't have to long distance me back. Mowr!
+(You are no longer in a relationship with Skins.)

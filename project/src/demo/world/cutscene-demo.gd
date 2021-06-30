@@ -7,6 +7,7 @@ The user can select and launch any cutscene, and change how fat the creatures ar
 
 func _ready() -> void:
 	Breadcrumb.trail = ["res://src/demo/world/CutsceneDemo.tscn"]
+	$VBoxContainer/StartButton.grab_focus()
 
 
 func _on_StartButton_pressed() -> void:
