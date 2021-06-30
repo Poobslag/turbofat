@@ -7,25 +7,25 @@ outdoors
 player, p1, restaurant-1
 skins, s, restaurant-11
 
-s: ^O^ Remember when you said, like, there’s more than one way to bone a dog? Ha ha! That was really funny~
+s: ^O^ Remember when you said, like, there's more than one way to bone a dog? Ha ha! That was really funny~
 p1: ^_^ Ha ha! Yeah. Wait, what's so funny about that?
  (say_if not chat_finished puzzle/levels/cutscenes/marsh/pulling_for_bones_100)
 p1: <__< Why does everyone keep asking me that!?
  (say_if chat_finished puzzle/levels/cutscenes/marsh/pulling_for_bones_100)
-s: /._. Umm! I don’t know. I don’t remember now! ...So what are you doing later? Did you want to see a movie together?
+s: /._. Umm! I don't know. I don't remember now! ...So what are you doing later? Did you want to see a movie together?
 [yes] OwO It's a date!
 [no-movie-0] No, I've seen it
 [no-movie-1] No, I'm busy
 
 [no-movie-0]
-p1: <_< No, that’s okay. I think I've already seen that movie...
+p1: <_< No, that's okay. I think I've already seen that movie...
 s: ^_^ You did? Well um... maybe we could watch some dinner instead?
 [yes] It's a date!
 [no-dinner-0a] No, I've seen it
 [no-dinner-0b] No, I'm not hungry
 
 [no-movie-1]
-p1: ^n^ Oh, That’s okay. I think I already have plans tonight...
+p1: ^n^ Oh, That's okay. I think I already have plans tonight...
 s: ^_^ You did? Well um... maybe we could get dinner later this week?
 [yes] It's a date!
 [no-dinner-1a] I'll be busy
@@ -36,7 +36,7 @@ p1: <__< Actually, I think I've already seen that dinner, too...
 [ending]
 
 [no-dinner-0b]
-p1: ^N^ Oh I’m not hungry, I just ate lunch...
+p1: ^N^ Oh I'm not hungry, I just ate lunch...
 [ending]
 
 [no-dinner-1a]

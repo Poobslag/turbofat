@@ -10,21 +10,21 @@ richie, r, kitchen-11
 skins, s, kitchen-9
 bones, b, kitchen-3
 
-s1: <_< Well... I’m sorry we still couldn’t figure out what’s wrong with the food here.
-r: ^_^/ Hey, it ain’t your fault! Maybe things are just different here for some reason.
-p1: ^__^ Something IS different here! But not in a bad way. I don’t really want to leave.
-s1: /._. Well! There’s nothing saying we can’t stay another month.
+s1: <_< Well... I'm sorry we still couldn't figure out what's wrong with the food here.
+r: ^_^/ Hey, it ain't your fault! Maybe things are just different here for some reason.
+p1: ^__^ Something IS different here! But not in a bad way. I don't really want to leave.
+s1: /._. Well! There's nothing saying we can't stay another month.
 b: OwO... Yeah. Stay forever!
 s: OwO... You can just move here!
 p1: ^o^ Yeah! Another month sounds great.
-s1: ^N^ Wait... No. No, I’m sorry. Can we talk in private for a moment?
-r: <_< Ehh yeah! Yeah sure. C’mon guys, lets’s take five.
+s1: ^N^ Wait... No. No, I'm sorry. Can we talk in private for a moment?
+r: <_< Ehh yeah! Yeah sure. C'mon guys, lets's take five.
  (richie exits, bones exits, skins exits)
-s1: u_u ...#player#, we can’t do this to ourselves. They can do this to themselves, but we can’t.
+s1: u_u ...#player#, we can't do this to ourselves. They can do this to themselves, but we can't.
 p1: /._. ...?
-s1: Don’t you see? We have an entire franchise to run.
+s1: Don't you see? We have an entire franchise to run.
 s1: It was fun running just one restaurant. A small problem with small solutions.
-s1: ^N^ And those problems are comfortable because we’ve solved them before. But that’s not the life we chose.
+s1: ^N^ And those problems are comfortable because we've solved them before. But that's not the life we chose.
 s1: Once our business grew beyond two or three restaurants... Well, sometimes we have to trust other people to solve the fun problems.
 p1: ...
 s1: -_- We have to leave Merrymellow Marsh.
@@ -37,6 +37,6 @@ s1: -_- We have to leave Merrymellow Marsh.
 
 [but]
 p1: u_u But-
-s1: >_< -I know you don’t want to! I don’t want to either.
-s1: ^y^ But, we have to find new challenges. It’ll be better for us in the long run.
+s1: >_< -I know you don't want to! I don't want to either.
+s1: ^y^ But, we have to find new challenges. It'll be better for us in the long run.
 p1: Okay...
