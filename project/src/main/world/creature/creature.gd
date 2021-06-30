@@ -15,6 +15,10 @@ signal dna_loaded
 # emitted on the frame when creature bites into some food
 signal food_eaten
 
+# emitted after a creature finishes fading in/out and their visible/modulate values are finalized
+signal fade_in_finished
+signal fade_out_finished
+
 const IDLE = CreatureVisuals.IDLE
 
 const SOUTHEAST = CreatureOrientation.SOUTHEAST
@@ -584,6 +588,9 @@ func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) ->
 func _on_FadeTween_tween_all_completed() -> void:
 	if modulate.a == 0.0:
 		visible = false
+		emit_signal("fade_out_finished")
+	else:
+		emit_signal("fade_in_finished")
 
 
 """

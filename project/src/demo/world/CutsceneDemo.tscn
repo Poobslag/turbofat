@@ -143,6 +143,7 @@ window_title = "Error"
 dialog_autowrap = true
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 6 )]
+
 [connection signal="toggled" from="VBoxContainer/LongNames" to="VBoxContainer/LongNames" method="_on_toggled"]
 [connection signal="pressed" from="VBoxContainer/Fatness/CheckBox" to="VBoxContainer/Fatness" method="_on_CheckBox_pressed"]
 [connection signal="value_changed" from="VBoxContainer/Fatness/HSlider" to="VBoxContainer/Fatness" method="_on_HSlider_value_changed"]
