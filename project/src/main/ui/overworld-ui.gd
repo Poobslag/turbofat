@@ -213,16 +213,6 @@ func _on_ChatUi_pop_out_completed() -> void:
 		_next_chat_tree = null
 		$Control/ChatUi.play_chat_tree(_current_chat_tree)
 	else:
-		# unset mood
-		for chatter in chatters:
-			if chatter and chatter.has_method("play_mood"):
-				chatter.call("play_mood", ChatEvent.Mood.DEFAULT)
-		
-		chatters = []
-		ChattableManager.set_focus_enabled(true)
-		_update_visible()
-		emit_signal("chat_ended")
-		
 		if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 			# don't launch the level; go back to CutsceneDemo after playing the cutscene
 			SceneTransition.pop_trail()
@@ -238,6 +228,13 @@ func _on_ChatUi_pop_out_completed() -> void:
 			# ending cutscene finished playing
 			CurrentLevel.clear_launched_level()
 			SceneTransition.pop_trail()
+		else:
+			# if we're in a regular overworld conversation and not a cutscene,
+			# restore the ui so the player can interact again
+			chatters = []
+			emit_signal("chat_ended")
+			ChattableManager.set_focus_enabled(true)
+			_update_visible()
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
@@ -270,7 +267,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 		emit_signal("chatter_talked", chatter)
 
 
-func _on_Creature_fade_out_finished(creature: Creature) -> void:
+func _on_Creature_fade_out_finished(_creature: Creature) -> void:
 	emit_signal("visible_chatters_changed")
 
 

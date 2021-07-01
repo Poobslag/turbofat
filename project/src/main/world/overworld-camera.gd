@@ -134,10 +134,19 @@ func _tween_camera_to_chatters() -> void:
 	_tween.remove_all()
 	var new_zoom := _calculate_zoom()
 	var new_position := _calculate_position()
+	
 	_tween.interpolate_property(self, "zoom", zoom, new_zoom,
 			ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
-	_tween.interpolate_property(self, "position", position, new_position,
-			ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	
+	if not close_up:
+		# camera will follow the player; the tween should track the player's position
+		_tween.follow_property(self, "position", position,
+				ChattableManager.player, "position",
+				ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
+	else:
+		_tween.interpolate_property(self, "position", position,
+				new_position,
+				ZOOM_DURATION, Tween.TRANS_SINE, Tween.EASE_IN_OUT)
 	_tween.start()
 
 
