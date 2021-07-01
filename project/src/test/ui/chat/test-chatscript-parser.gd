@@ -8,6 +8,7 @@ const CUTSCENE_META := "res://assets/test/ui/chat/cutscene-meta.chat"
 const CHAT_CONDITION := "res://assets/test/ui/chat/chat-condition.chat"
 const CHAT_FULL := "res://assets/test/ui/chat/chat-full.chat"
 const CHAT_LINK_MOOD := "res://assets/test/ui/chat/chat-link-mood.chat"
+const CHAT_NEWLINES := "res://assets/test/ui/chat/chat-newlines.chat"
 const CHAT_THOUGHT := "res://assets/test/ui/chat/chat-thought.chat"
 
 func _chat_tree_from_file(path: String) -> ChatTree:
@@ -153,3 +154,12 @@ func test_chat_condition() -> void:
 	chat_tree.advance()
 	assert_eq(chat_tree.get_event().links, ["first-time", "not-first-time", "other"])
 	assert_eq(chat_tree.get_event().enabled_link_indexes(), [1, 2])
+
+
+func test_newlines() -> void:
+	var chat_tree := _chat_tree_from_file(CHAT_NEWLINES)
+	chat_tree.advance()
+	assert_eq(chat_tree.get_event().text, "(Hmm...\nYou're not sure.)")
+	chat_tree.advance()
+	assert_eq(chat_tree.get_event().text, "Anyway!\nUmm, it's nice to meet you.")
+	assert_eq(chat_tree.get_event().link_texts[0], "Oh!\nHi!")
