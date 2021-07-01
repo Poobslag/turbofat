@@ -15,6 +15,9 @@ signal chatter_talked(chatter)
 # emitted when the player talks to a creature for the first time, caching their chat
 signal chat_cached(chattable)
 
+# emitted when creatures enter or exit a conversation
+signal visible_chatters_changed()
+
 # emitted when we present the player with a chat choice
 signal showed_chat_choices
 
@@ -146,7 +149,8 @@ func get_chatter_bounding_box(include: Array = [], exclude: Array = []) -> Rect2
 		if not chatter.visible:
 			continue
 		if bounding_box:
-			bounding_box = bounding_box.expand(chatter.position)
+			var chatter_box := Rect2(chatter.position - chatter.chat_extents / 2, chatter.chat_extents)
+			bounding_box = bounding_box.merge(chatter_box)
 		else:
 			bounding_box = Rect2(chatter.position, Vector2.ZERO)
 	return bounding_box
@@ -245,10 +249,12 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 			var creature_id := StringUtils.substring_after(meta_item, "creature-enter ")
 			var entering_creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			entering_creature.fade_in()
+			emit_signal("visible_chatters_changed")
 		if meta_item.begins_with("creature-exit "):
 			var creature_id := StringUtils.substring_after(meta_item, "creature-exit ")
 			var exiting_creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			exiting_creature.fade_out()
+			exiting_creature.connect("fade_out_finished", self, "_on_Creature_fade_out_finished", [exiting_creature])
 		if meta_item.begins_with("creature-mood "):
 			var meta_item_split: Array = meta_item.split(" ")
 			var creature_id: String = meta_item_split[1]
@@ -262,6 +268,10 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	if chatter and StringUtils.has_letter(chat_event.text):
 		chatter.talk()
 		emit_signal("chatter_talked", chatter)
+
+
+func _on_Creature_fade_out_finished(creature: Creature) -> void:
+	emit_signal("visible_chatters_changed")
 
 
 func _on_ChatUi_showed_choices() -> void:

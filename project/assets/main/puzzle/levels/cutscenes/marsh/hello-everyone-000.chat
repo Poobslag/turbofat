@@ -4,14 +4,13 @@
 indoors
 
 [characters]
-player, p1, !kitchen-9
-sensei, s1, !kitchen-11
-richie, r, !kitchen-1
+player, p1, kitchen-9
+sensei, s1, kitchen-11
+richie, r, kitchen-1
 skins, s, kitchen-3
 bones, b, kitchen-5
 
 s1: -_- So explain again why my beloved restaurant is very, very empty?
- (player enters, sensei enters, richie enters)
 r: Aw come on now! It's not empty, we got the two line cooks here...
 b: ^_^ Bork!
 r: ^_^/ And as far as customers, we got Chonkers McRhonkers over there! What more could you need?
