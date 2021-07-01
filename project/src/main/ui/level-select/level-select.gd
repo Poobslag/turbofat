@@ -13,11 +13,11 @@ Parameters:
 			showing certain levels.
 """
 func set_levels_to_include(new_levels_to_include: int) -> void:
-	$VBoxContainer/ScrollContainer/MarginContainer/LevelButtons.levels_to_include = new_levels_to_include
+	$VBoxContainer/Top/ScrollContainer/MarginContainer/LevelButtons.levels_to_include = new_levels_to_include
 
 
 func get_levels_to_include() -> int:
-	return $VBoxContainer/ScrollContainer/MarginContainer/LevelButtons.levels_to_include
+	return $VBoxContainer/Top/ScrollContainer/MarginContainer/LevelButtons.levels_to_include
 
 
 func _on_SettingsMenu_quit_pressed() -> void:

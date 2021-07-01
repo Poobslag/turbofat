@@ -195,13 +195,29 @@ When the player clicks a level button twice, we launch the selected level
 """
 func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 	CurrentLevel.set_launched_level(settings.id)
+	CurrentLevel.cutscene_force = PlayerData.miscellaneous_settings.cutscene_force
 	
-	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_creature_id(CurrentLevel.creature_id, settings.id)
-	if ChatLibrary.is_chat_skipped(chat_tree):
-		CurrentLevel.push_level_trail()
+	var chat_tree: ChatTree
+	if ChatLibrary.has_preroll(settings.id):
+		chat_tree = ChatLibrary.chat_tree_for_preroll(settings.id)
+	
+	# determine whether the cutscene should be played
+	var play_cutscene := true
+	if CurrentLevel.cutscene_force == CurrentLevel.CutsceneForce.SKIP:
+		# player wants to skip this cutscene
+		play_cutscene = false
+	elif chat_tree and CurrentLevel.cutscene_force == CurrentLevel.CutsceneForce.PLAY:
+		# player wants to play this cutscene
+		play_cutscene = true
 	else:
+		# default behavior. skip repeat cutscenes, verify the skip_if condition
+		play_cutscene = ChatLibrary.should_play_cutscene(chat_tree)
+	
+	if play_cutscene:
 		if not CurrentLevel.push_cutscene_trail(true):
 			CurrentLevel.push_level_trail()
+	else:
+		CurrentLevel.push_level_trail()
 
 
 """

@@ -830,6 +830,7 @@ script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics" method="_on_OptionButton_item_selected"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/CheckboxButton" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
 [connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]

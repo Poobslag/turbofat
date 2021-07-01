@@ -299,6 +299,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/creature/idle-timer.gd"
 }, {
+"base": "Button",
+"class": "ImageButton",
+"language": "GDScript",
+"path": "res://src/main/ui/image-button.gd"
+}, {
 "base": "Reference",
 "class": "InputReplay",
 "language": "GDScript",
@@ -838,6 +843,7 @@ _global_script_class_icons={
 "HighScoreTable": "",
 "HookableGradeLabel": "",
 "IdleTimer": "",
+"ImageButton": "",
 "InputReplay": "",
 "KeybindSettings": "",
 "LeafPoof": "",

@@ -87,13 +87,15 @@ func _refresh_quit_type() -> void:
 
 
 func _on_Ok_pressed() -> void:
-	# save the player's settings
+	# when the player confirms, we save the player's new settings
 	PlayerSave.save_player_data()
 	hide()
 
 
 func _on_Quit_pressed() -> void:
 	hide()
+	if quit_type == SAVE_AND_QUIT:
+		PlayerSave.save_player_data()
 	emit_signal("quit_pressed")
 
 

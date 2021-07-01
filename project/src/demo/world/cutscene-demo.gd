@@ -14,6 +14,7 @@ func _on_StartButton_pressed() -> void:
 	var cutscene_prefix := StringUtils.substring_before_last($VBoxContainer/Open/LineEdit.text, "_")
 	var cutscene_index := int(StringUtils.substring_after_last($VBoxContainer/Open/LineEdit.text, "_"))
 	CurrentLevel.set_launched_level(cutscene_prefix)
+	CurrentLevel.cutscene_force = true
 	
 	if cutscene_index >= 0 and cutscene_index < 100:
 		# launch 'before level' cutscene
