@@ -1,3 +1,4 @@
+class_name ImageButton
 extends Button
 """
 A button represented by a pair of icons.
@@ -6,13 +7,27 @@ Pressing the button toggles between the normal and pressed icon. The button's si
 settings.
 """
 
-export (Texture) var normal_icon: Texture
-export (Texture) var pressed_icon: Texture
+export (Texture) var normal_icon: Texture setget set_normal_icon
+export (Texture) var pressed_icon: Texture setget set_pressed_icon
 
 func _ready() -> void:
 	icon = normal_icon
 	PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
 	_refresh_touch_settings()
+
+
+func set_normal_icon(new_normal_icon: Texture) -> void:
+	normal_icon = new_normal_icon
+	
+	if not pressed:
+		icon = normal_icon
+
+
+func set_pressed_icon(new_pressed_icon: Texture) -> void:
+	pressed_icon = new_pressed_icon
+	
+	if pressed:
+		icon = pressed_icon
 
 
 func _refresh_touch_settings() -> void:

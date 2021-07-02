@@ -311,14 +311,14 @@ func _on_TalkButton_pressed() -> void:
 	
 	if level_id:
 		CurrentLevel.set_launched_level(level_id)
-		if ChatLibrary.is_chat_skipped(chat_tree):
-			# if there is no cutscene/chat, or if the cutscene should be skipped, skip to the level
-			CurrentLevel.push_level_trail()
-		else:
+		if ChatLibrary.should_play_cutscene(chat_tree):
 			# launch a cutscene if a location change is necessary
 			if not CurrentLevel.push_cutscene_trail():
 				# if no cutscene was launched, start a chat
 				start_chat(chat_tree, ChattableManager.focused_chattable)
+		else:
+			# if there is no cutscene/chat, or if the cutscene should be skipped, skip to the level
+			CurrentLevel.push_level_trail()
 	else:
 		# if no cutscene was launched, start a chat
 		start_chat(chat_tree, ChattableManager.focused_chattable)

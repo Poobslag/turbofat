@@ -152,15 +152,30 @@ func _start_puzzle() -> void:
 
 
 func _quit_puzzle() -> void:
-	if CurrentLevel.cutscene_state == CurrentLevel.CutsceneState.AFTER \
-			and ChatLibrary.has_postroll(CurrentLevel.level_id):
-		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
-		if ChatLibrary.is_chat_skipped(chat_tree):
-			CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.NONE
-		else:
-			# insert cutscene into breadcrumb trail so it will show up after we pop the trail
-			Breadcrumb.trail.insert(1, chat_tree.cutscene_scene_path())
+	var chat_tree: ChatTree
+	if ChatLibrary.has_postroll(CurrentLevel.level_id):
+		chat_tree = ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
+	
+	# determine whether the cutscene should be played
+	var play_cutscene := true
+	if CurrentLevel.cutscene_state != CurrentLevel.CutsceneState.AFTER:
+		# player didn't clear the level
+		play_cutscene = false
+	elif CurrentLevel.cutscene_force == CurrentLevel.CutsceneForce.SKIP:
+		# player wants to skip this cutscene
+		play_cutscene = false
+	elif chat_tree and CurrentLevel.cutscene_force == CurrentLevel.CutsceneForce.PLAY:
+		# player wants to play this cutscene
+		play_cutscene = true
 	else:
+		# default behavior. skip repeat cutscenes, verify the skip_if condition
+		play_cutscene = ChatLibrary.should_play_cutscene(chat_tree)
+	
+	if play_cutscene:
+		# insert cutscene into breadcrumb trail so it will show up after we pop the trail
+		Breadcrumb.trail.insert(1, chat_tree.cutscene_scene_path())
+	else:
+		CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.NONE
 		CurrentLevel.clear_launched_level()
 
 	PlayerData.creature_queue.clear()

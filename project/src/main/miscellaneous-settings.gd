@@ -3,6 +3,9 @@ class_name MiscellaneousSettings
 Manages miscellaneous settings such as language.
 """
 
+# Whether cutscenes should play by default.
+var cutscene_force: int = CurrentLevel.CutsceneForce.NONE
+
 """
 Resets the miscellaneous settings to their default values.
 """
@@ -13,10 +16,13 @@ func reset() -> void:
 func to_json_dict() -> Dictionary:
 	return {
 		"locale": TranslationServer.get_locale(),
+		"cutscene_force": cutscene_force,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
+	cutscene_force = json.get("cutscene_force", CurrentLevel.CutsceneForce.NONE)
+	
 	if json.has("locale"):
 		TranslationServer.set_locale(json.get("locale"))
 	else:

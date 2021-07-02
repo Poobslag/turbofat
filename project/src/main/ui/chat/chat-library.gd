@@ -273,15 +273,26 @@ func add_mega_lull_characters(s: String) -> String:
 
 
 """
-Returns 'true' if the specified chat tree should be skipped, either because it is null or because its 'skip_if'
-condition is met.
+Returns 'true' if the specified cutscene should be played.
+
+We skip cutscenes if the player's seen them already, or if its 'skip_if' method is met.
+
+This result can be overridden elsewhere by player settings. This method itself does not incorporate any player
+settings, if the player has decided to skip or play all cutscenes.
 """
-func is_chat_skipped(chat_tree: ChatTree) -> bool:
-	if chat_tree == null:
-		return true
-	if not chat_tree.meta or not chat_tree.meta.get("skip_if"):
-		return false
-	return BoolExpressionEvaluator.evaluate(chat_tree.meta.get("skip_if"))
+func should_play_cutscene(chat_tree: ChatTree) -> bool:
+	var result := true
+	if not chat_tree:
+		# return 'false' to account for levels without cutscenes
+		result = false
+	elif PlayerData.chat_history.is_chat_finished(chat_tree.history_key):
+		# skip repeated cutscenes
+		result = false
+	elif chat_tree.meta and chat_tree.meta.get("skip_if") \
+			and BoolExpressionEvaluator.evaluate(chat_tree.meta.get("skip_if")):
+		# skip cutscenes if their 'skip_if' condition is met
+		result = false
+	return result
 
 
 func _creature_chat_path(creature_id: String, chat_id: String) -> String:

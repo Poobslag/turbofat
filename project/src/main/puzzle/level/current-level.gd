@@ -12,7 +12,13 @@ signal cutscene_state_changed
 enum CutsceneState {
 	NONE, # the level hasn't been launched
 	BEFORE, # the level has been launched, but the hasn't yet been finished successfully
-	AFTER # the level has been finished successfully. The player didn't lose or give up
+	AFTER, # the level has been finished successfully. The player didn't lose or give up
+}
+
+enum CutsceneForce {
+	NONE, # do not force the cutscene to play or skip
+	PLAY, # force the cutscene to play, even if it is a repeat
+	SKIP, # force the cutscene to skip, even if it has never been seen
 }
 
 # If 'true' then the level is one which the player might keep retrying, even after clearing it.
@@ -37,6 +43,9 @@ var chef_id: String
 
 # Tracks whether or not the player has started or cleared the level.
 var cutscene_state: int = CutsceneState.NONE setget set_cutscene_state
+
+# Tracks whether or not the player wants to play/skip this level's cutscene.
+var cutscene_force: int = CutsceneForce.NONE
 
 """
 Unsets all of the 'launched level' data.
@@ -64,11 +73,13 @@ func set_launched_level(new_level_id: String) -> void:
 	
 	if level_lock:
 		set_cutscene_state(CutsceneState.BEFORE)
+		cutscene_force = CutsceneForce.NONE
 		creature_id = level_lock.creature_id
 		customer_ids = level_lock.customer_ids
 		chef_id = level_lock.chef_id
 	else:
 		set_cutscene_state(CutsceneState.NONE)
+		cutscene_force = CutsceneForce.NONE
 		creature_id = ""
 		customer_ids = []
 		chef_id = ""
