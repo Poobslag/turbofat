@@ -21,7 +21,7 @@ func _process(_delta: float) -> void:
 	var next_piece: NextPiece = PieceQueue.get_next_piece(_piece_index)
 	if next_piece.type != _displayed_type or next_piece.orientation != _displayed_orientation:
 		_tile_map.clear()
-		if next_piece != PieceTypes.piece_null:
+		if next_piece.type != PieceTypes.piece_null:
 			var bounding_box := Rect2( \
 					next_piece.type.get_cell_position(next_piece.orientation, 0), Vector2(1.0, 1.0))
 			# update the tilemap with the new piece type

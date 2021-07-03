@@ -1,0 +1,40 @@
+{
+  "version": "19dd",
+  "id": "tunathy",
+  "name": "Tunathy",
+  "short_name": "Tunathy",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "0",
+    "body": "1",
+    "cheek": "2",
+    "collar": "0",
+    "ear": "1",
+    "eye": "8",
+    "hair": "0",
+    "head": "5",
+    "horn": "0",
+    "mouth": "6",
+    "nose": "2",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "6c4331",
+    "body_rgb": "b23823",
+    "belly_rgb": "ffd461",
+    "cloth_rgb": "a7b958",
+    "glass_rgb": "72d2eb",
+    "plastic_rgb": "292828",
+    "hair_rgb": "af845c",
+    "eye_rgb": "a7b958 ecf1bf",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "b23823"
+  },
+  "fatness": 1.2,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}
