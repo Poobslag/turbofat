@@ -476,6 +476,7 @@ dialog_autowrap = true
 [node name="SettingsMenu" parent="." instance=ExtResource( 9 )]
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 18 )]
+
 [connection signal="tile_map_changed" from="HBoxContainer/TabContainer/Playfield/CenterPanel/Playfield" to="HBoxContainer/SideButtons/Json" method="_on_Playfield_tile_map_changed"]
 [connection signal="pressed" from="HBoxContainer/SideButtons/OpenFile" to="Dialogs" method="_on_OpenFile_pressed"]
 [connection signal="pressed" from="HBoxContainer/SideButtons/OpenResource" to="Dialogs" method="_on_OpenResource_pressed"]
