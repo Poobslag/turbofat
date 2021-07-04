@@ -76,11 +76,11 @@ fi
 git diff master | grep print\(
 
 # non-ascii characters in chat files
-grep -R -n "[…’”]" --include="*.chat" project/assets
+grep -R -n "[…’“”]" --include="*.chat" project/assets
 if [ "$CLEAN" ]
 then
   # replace non-ascii characters with ascii replacements
   find project/assets -name "*.chat" -exec sed -i "s/[…]/.../g" {} +
   find project/assets -name "*.chat" -exec sed -i "s/[’]/\'/g" {} +
-  find project/assets -name "*.chat" -exec sed -i "s/[”]/\"/g" {} +
+  find project/assets -name "*.chat" -exec sed -i "s/[“”]/\"/g" {} +
 fi
