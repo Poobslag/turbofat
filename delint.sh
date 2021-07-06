@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 ################################################################################
 # Analyzes code and assets for stylistic errors, correcting them or printing
 # them to the console
@@ -83,4 +83,25 @@ then
   find project/assets -name "*.chat" -exec sed -i "s/[…]/.../g" {} +
   find project/assets -name "*.chat" -exec sed -i "s/[’]/\'/g" {} +
   find project/assets -name "*.chat" -exec sed -i "s/[“”]/\"/g" {} +
+fi
+
+# sort signal connections
+if [ "$CLEAN" ]
+then
+  while read -r IN_FILE
+  do
+    echo "Sorting signal connections in $IN_FILE..."
+    OUT_FILE="$IN_FILE"~
+
+    FIRST_LINE=$(awk '/^\[connection signal/{print NR; exit}' "$IN_FILE")
+    LINE_COUNT=$(grep -c "^\[connection signal" "$IN_FILE")
+
+    (head -n $(("$FIRST_LINE" - 1)); head -n "$LINE_COUNT" | sort; cat ) < "$IN_FILE" 1<> "$OUT_FILE"~
+    mv -f "$OUT_FILE"~ "$IN_FILE"
+  done < <(git diff master --name-only | grep "\.tscn$")
+
+  # The preceding command sorts only modified files. Sorting all files takes longer but can be done by replacing the
+  # preceding loop condition:
+  #
+  # done < <(find project/src -type f -name '*.tscn' -print)
 fi

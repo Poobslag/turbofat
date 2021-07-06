@@ -394,12 +394,26 @@ green.
 """
 func _post_unemote() -> void:
 	for emote_sprite in _emote_sprites:
-		emote_sprite.scale = Vector2(2.0, 2.0)
-		emote_sprite.rotation_degrees = 0.0
+		emote_sprite.frame = 0
 		emote_sprite.modulate = Color.transparent
+		emote_sprite.rotation_degrees = 0.0
+		emote_sprite.scale = Vector2(2.0, 2.0)
+		emote_sprite.position = Vector2(0, 0)
+		if emote_sprite.material:
+			if emote_sprite.material.get("blend_mode"):
+				emote_sprite.material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
+			if emote_sprite.material.has_method("set_shader_param") and Engine.is_editor_hint():
+				# In the editor, we reset shader parameters to known values to avoid unnecessary churn in our scene
+				# files. At runtime, this behavior would be destructive since some of these values are only
+				# initialized when the creature is first loaded.
+				emote_sprite.material.set_shader_param("red", Color.black)
+				emote_sprite.material.set_shader_param("green", Color.black)
+				emote_sprite.material.set_shader_param("blue", Color.black)
+				emote_sprite.material.set_shader_param("black", Color.black)
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteBrain").material.set_shader_param("red", Color.white)
 	_creature_visuals.get_node("EmoteBody").scale = Vector2(0.836, 0.836)
+	_creature_visuals.get_node("Neck0/HeadBobber/EmoteHead").position = Vector2( 0, 256 )
 	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
-	_creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow").material.blend_mode = SpatialMaterial.BLEND_MODE_MIX
 
 
 """
