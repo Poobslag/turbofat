@@ -54,6 +54,7 @@ func unload_dna() -> void:
 		"Sprint",
 		"TailZ0",
 		"TailZ1",
+		"Neck0/HeadBobber",
 		"Neck0/HeadBobber/AccessoryZ0",
 		"Neck0/HeadBobber/AccessoryZ1",
 		"Neck0/HeadBobber/AccessoryZ2",
@@ -78,14 +79,16 @@ func unload_dna() -> void:
 		"Neck0/HeadBobber/Nose",
 	]:
 		if _creature_visuals.has_node(node_path):
-			var packed_sprite: PackedSprite = _creature_visuals.get_node(node_path)
-			packed_sprite.texture = null
-			packed_sprite.frame_data = ""
-			if packed_sprite.material:
-				packed_sprite.material.set_shader_param("red", Color.black)
-				packed_sprite.material.set_shader_param("green", Color.black)
-				packed_sprite.material.set_shader_param("blue", Color.black)
-				packed_sprite.material.set_shader_param("black", Color.black)
+			var node: Node2D = _creature_visuals.get_node(node_path)
+			if node is PackedSprite:
+				var packed_sprite: PackedSprite = node as PackedSprite
+				packed_sprite.texture = null
+				packed_sprite.frame_data = ""
+			if node.get("material"):
+				node.material.set_shader_param("red", Color.black)
+				node.material.set_shader_param("green", Color.black)
+				node.material.set_shader_param("blue", Color.black)
+				node.material.set_shader_param("black", Color.black)
 	
 	_creature_visuals.get_node("Neck0/HeadBobber").position = Vector2(0, -100)
 	_creature_visuals.rescale(1.00)
@@ -99,6 +102,7 @@ func unload_dna() -> void:
 	_remove_dna_node("Body/NeckBlend")
 	_remove_dna_node("Body/Shadows")
 	_creature_visuals.get_node("Body").refresh_children()
+	_creature_visuals.get_node("Animations").reset()
 
 
 """

@@ -63,6 +63,18 @@ func set_emote_eye_frame(new_emote_eye_frame: int) -> void:
 	_refresh_emote_eye_frame()
 
 
+"""
+Resets the eye/arm frames to default values.
+
+This is used during development to ensure the .tscn file doesn't include unnecessary changes when we play animations
+in the Godot editor. It is not used during the game.
+"""
+func reset() -> void:
+	set_emote_eye_frame(0)
+	set_eye_frame(0)
+	set_emote_arm_frame(0)
+
+
 func play_idle_animation(idle_anim: String) -> void:
 	_idle_timer.play_idle_animation(idle_anim)
 
@@ -189,6 +201,9 @@ func _refresh_creature_visuals_path() -> void:
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
+	if not _movement_player:
+		return
+	
 	if _movement_player.current_animation == "idle-nw" and CreatureOrientation.oriented_south(new_orientation):
 		_movement_player.play("idle-se")
 	elif _movement_player.current_animation == "idle-se" and CreatureOrientation.oriented_north(new_orientation):
