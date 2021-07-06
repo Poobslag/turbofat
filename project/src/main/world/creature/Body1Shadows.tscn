@@ -50,15 +50,9 @@ curve_defs = [ {
 self_modulate = Color( 1, 1, 1, 1 )
 curve = SubResource( 2 )
 script = ExtResource( 2 )
-spline_length = 25.0
-_smooth = false
-_straighten = false
-closed = true
 line_color = Color( 0, 0, 0, 0 )
 fill_color = Color( 0, 0, 0, 1 )
-line_width = 8.0
 editing = false
-_save_curve = false
 curve_defs = [ {
 "curve_def": [ [ Vector2( -43.3209, -25.7077 ), Vector2( 0.0132871, -18.8562 ), Vector2( -0.0132871, 18.8562 ) ], [ Vector2( -23.5219, 16.7188 ), Vector2( -12.5204, -0.510676 ), Vector2( 12.5204, 0.510676 ) ], [ Vector2( -3.7229, -27.1219 ), Vector2( 0.429193, 20.722 ), Vector2( -0.429193, -20.722 ) ] ],
 "fatness": 1.0
@@ -79,7 +73,6 @@ curve_defs = [ {
 "fatness": 10.0
 } ]
 drawn_when_facing_north = false
-creature_visuals_path = NodePath("")
 
 [node name="BellyShadow" type="Path2D" parent="."]
 self_modulate = Color( 1, 1, 1, 1 )

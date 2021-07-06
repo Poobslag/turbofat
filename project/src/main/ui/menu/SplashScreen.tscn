@@ -146,8 +146,9 @@ theme = ExtResource( 8 )
 text = "Well, crap"
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 12 )]
+
+[connection signal="pressed" from="BadSaveDataControl/Popup/VBoxContainer/Button" to="BadSaveDataControl" method="_on_Button_pressed"]
 [connection signal="pressed" from="DropPanel/PlayHolder/Play" to="." method="_on_Play_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
 [connection signal="settings_pressed" from="DropPanel/System" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="DropPanel/System" method="_on_Quit_pressed"]
-[connection signal="pressed" from="BadSaveDataControl/Popup/VBoxContainer/Button" to="BadSaveDataControl" method="_on_Button_pressed"]

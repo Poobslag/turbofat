@@ -120,6 +120,7 @@ text = "Gold"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="value_changed" from="Remaining/HBoxContainer/SpinBox" to="." method="_on_RemainingSpinBox_value_changed"]
-[connection signal="value_changed" from="Max/HBoxContainer/SpinBox" to="." method="_on_TotalSpinBox_value_changed"]
+
 [connection signal="toggled" from="Gold" to="." method="_on_Gold_toggled"]
+[connection signal="value_changed" from="Max/HBoxContainer/SpinBox" to="." method="_on_TotalSpinBox_value_changed"]
+[connection signal="value_changed" from="Remaining/HBoxContainer/SpinBox" to="." method="_on_RemainingSpinBox_value_changed"]

@@ -43,14 +43,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 chat_frame_path = NodePath("../ChatFrame")
+
 [connection signal="chat_event_played" from="." to="ChatAdvancer" method="_on_ChatUi_chat_event_played"]
 [connection signal="pop_out_completed" from="." to="TouchTranslator" method="_on_ChatUi_pop_out_completed"]
 [connection signal="popped_in" from="." to="TouchTranslator" method="_on_ChatUi_popped_in"]
 [connection signal="showed_choices" from="." to="TouchTranslator" method="_on_ChatUi_showed_choices"]
-[connection signal="all_text_shown" from="ChatFrame" to="." method="_on_ChatFrame_all_text_shown"]
-[connection signal="pop_out_completed" from="ChatFrame" to="." method="_on_ChatFrame_pop_out_completed"]
-[connection signal="chat_choice_chosen" from="ChatChoices" to="TouchTranslator" method="_on_ChatChoices_chat_choice_chosen"]
-[connection signal="chat_choice_chosen" from="ChatChoices" to="." method="_on_ChatChoices_chat_choice_chosen"]
-[connection signal="chat_choice_chosen" from="ChatChoices" to="ChatAdvancer" method="_on_ChatChoices_chat_choice_chosen"]
 [connection signal="chat_event_shown" from="ChatAdvancer" to="." method="_on_ChatAdvancer_chat_event_shown"]
 [connection signal="chat_finished" from="ChatAdvancer" to="ChatFrame" method="_on_ChatAdvancer_chat_finished"]
+[connection signal="chat_choice_chosen" from="ChatChoices" to="." method="_on_ChatChoices_chat_choice_chosen"]
+[connection signal="chat_choice_chosen" from="ChatChoices" to="ChatAdvancer" method="_on_ChatChoices_chat_choice_chosen"]
+[connection signal="chat_choice_chosen" from="ChatChoices" to="TouchTranslator" method="_on_ChatChoices_chat_choice_chosen"]
+[connection signal="all_text_shown" from="ChatFrame" to="." method="_on_ChatFrame_all_text_shown"]
+[connection signal="pop_out_completed" from="ChatFrame" to="." method="_on_ChatFrame_pop_out_completed"]

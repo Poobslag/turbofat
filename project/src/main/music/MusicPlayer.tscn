@@ -146,4 +146,5 @@ song_color = Color( 0.913725, 0.905882, 0.47451, 1 )
 
 [node name="MusicTween" type="Tween" parent="."]
 script = ExtResource( 4 )
+
 [connection signal="tween_completed" from="MusicTween" to="MusicTween" method="_on_tween_completed"]

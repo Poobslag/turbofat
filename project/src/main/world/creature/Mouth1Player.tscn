@@ -60,7 +60,7 @@ tracks/1/keys = {
 "values": [ 1, 1 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=3]
 length = 0.6
 step = 0.0333333
 tracks/0/type = "value"
@@ -233,7 +233,7 @@ tracks/1/keys = {
 root_node = NodePath("")
 anims/ambient-nw = SubResource( 1 )
 anims/ambient-se = SubResource( 2 )
-anims/eat = SubResource( 8 )
+anims/eat = SubResource( 3 )
 anims/eat-again = SubResource( 4 )
 anims/idle-yawn0 = SubResource( 5 )
 anims/idle-yawn1 = SubResource( 6 )

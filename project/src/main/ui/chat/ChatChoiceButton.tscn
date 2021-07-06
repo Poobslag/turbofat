@@ -233,6 +233,7 @@ script = ExtResource( 6 )
 
 [node name="PopAnimation" type="AnimationPlayer" parent="."]
 anims/choose = SubResource( 4 )
+
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="resized" from="." to="." method="_on_resized"]

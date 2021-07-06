@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/main/ui/cheat-enable.wav" type="AudioStream" id=2]
 [ext_resource path="res://src/main/ui/cheat-code-detector.gd" type="Script" id=3]
 
-
 [node name="CheatCodeDetector" type="Node"]
 script = ExtResource( 3 )
 

@@ -41,4 +41,5 @@ velocity = Vector2( 200, -200 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fade"
 anims/fade = SubResource( 1 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

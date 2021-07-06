@@ -44,5 +44,6 @@ size_flags_vertical = 4
 shortcut_in_tooltip = false
 shortcut = ExtResource( 4 )
 text = "Quit"
-[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]
+
 [connection signal="pressed" from="Quit" to="." method="_on_Quit_pressed"]
+[connection signal="pressed" from="Settings" to="." method="_on_Settings_pressed"]

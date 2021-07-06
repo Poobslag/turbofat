@@ -456,7 +456,6 @@ dna = {
 "shader:TailZ1:red": Color( 0.698039, 0.219608, 0.137255, 1 ),
 "tail": "0"
 }
-elevation = 150
 
 [node name="Seat1" parent="." instance=ExtResource( 2 )]
 
@@ -636,7 +635,6 @@ dna = {
 "shader:TailZ1:red": Color( 0.698039, 0.219608, 0.137255, 1 ),
 "tail": "0"
 }
-elevation = 150
 
 [node name="Seat2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1380, 585 )
@@ -811,7 +809,6 @@ dna = {
 "shader:TailZ1:red": Color( 0.698039, 0.219608, 0.137255, 1 ),
 "tail": "0"
 }
-elevation = 150
 
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2380, 585 )
@@ -1010,12 +1007,13 @@ one_shot = true
 [node name="SuppressSfxTimer" type="Timer" parent="DoorChime"]
 one_shot = true
 autostart = true
+
+[connection signal="dna_loaded" from="Chef" to="DoorChime" method="_on_CreatureVisuals_dna_loaded"]
+[connection signal="food_eaten" from="Chef" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="dna_loaded" from="Creature1" to="DoorChime" method="_on_CreatureVisuals_dna_loaded"]
 [connection signal="food_eaten" from="Creature1" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="dna_loaded" from="Creature2" to="DoorChime" method="_on_CreatureVisuals_dna_loaded"]
 [connection signal="food_eaten" from="Creature2" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="dna_loaded" from="Creature3" to="DoorChime" method="_on_CreatureVisuals_dna_loaded"]
 [connection signal="food_eaten" from="Creature3" to="." method="_on_CreatureVisuals_food_eaten"]
-[connection signal="dna_loaded" from="Chef" to="DoorChime" method="_on_CreatureVisuals_dna_loaded"]
-[connection signal="food_eaten" from="Chef" to="." method="_on_CreatureVisuals_food_eaten"]
 [connection signal="timeout" from="DoorChime/ChimeTimer" to="DoorChime" method="_on_ChimeTimer_timeout"]

@@ -73,9 +73,9 @@ __meta__ = {
 }
 
 [node name="Buttons" type="HBoxContainer" parent="VBoxContainer/Mode"]
-margin_left = 92.0
+margin_left = 88.0
 margin_top = 49.0
-margin_right = 892.0
+margin_right = 895.0
 margin_bottom = 85.0
 size_flags_horizontal = 4
 size_flags_vertical = 3
@@ -85,7 +85,7 @@ __meta__ = {
 }
 
 [node name="Marathon" type="Button" parent="VBoxContainer/Mode/Buttons"]
-margin_right = 120.0
+margin_right = 127.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -98,8 +98,8 @@ group = ExtResource( 14 )
 text = "Marathon"
 
 [node name="Ultra" type="Button" parent="VBoxContainer/Mode/Buttons"]
-margin_left = 170.0
-margin_right = 290.0
+margin_left = 177.0
+margin_right = 297.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -111,8 +111,8 @@ group = ExtResource( 14 )
 text = "Ultra"
 
 [node name="Sprint" type="Button" parent="VBoxContainer/Mode/Buttons"]
-margin_left = 340.0
-margin_right = 460.0
+margin_left = 347.0
+margin_right = 467.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -124,8 +124,8 @@ group = ExtResource( 14 )
 text = "Sprint"
 
 [node name="Rank" type="Button" parent="VBoxContainer/Mode/Buttons"]
-margin_left = 510.0
-margin_right = 630.0
+margin_left = 517.0
+margin_right = 637.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -137,8 +137,8 @@ group = ExtResource( 14 )
 text = "Rank"
 
 [node name="Sandbox" type="Button" parent="VBoxContainer/Mode/Buttons"]
-margin_left = 680.0
-margin_right = 800.0
+margin_left = 687.0
+margin_right = 807.0
 margin_bottom = 36.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -326,15 +326,16 @@ margin_bottom = 94.0
 [node name="MusicPopup" parent="." instance=ExtResource( 16 )]
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 18 )]
-[connection signal="mode_changed" from="VBoxContainer/Mode" to="." method="_on_Mode_mode_changed"]
-[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Marathon" to="VBoxContainer/Mode" method="_on_Button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Ultra" to="VBoxContainer/Mode" method="_on_Button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Sprint" to="VBoxContainer/Mode" method="_on_Button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Rank" to="VBoxContainer/Mode" method="_on_Button_pressed"]
-[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Sandbox" to="VBoxContainer/Mode" method="_on_Button_pressed"]
+
+[connection signal="quit_pressed" from="SettingsMenu" to="VBoxContainer/System" method="_on_Quit_pressed"]
 [connection signal="difficulty_changed" from="VBoxContainer/Difficulty" to="." method="_on_Difficulty_difficulty_changed"]
 [connection signal="value_changed" from="VBoxContainer/Difficulty/Slider" to="VBoxContainer/Difficulty" method="_on_Slider_value_changed"]
-[connection signal="pressed" from="VBoxContainer/System/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="VBoxContainer/System/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="mode_changed" from="VBoxContainer/Mode" to="." method="_on_Mode_mode_changed"]
+[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Marathon" to="VBoxContainer/Mode" method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Rank" to="VBoxContainer/Mode" method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Sandbox" to="VBoxContainer/Mode" method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Sprint" to="VBoxContainer/Mode" method="_on_Button_pressed"]
+[connection signal="pressed" from="VBoxContainer/Mode/Buttons/Ultra" to="VBoxContainer/Mode" method="_on_Button_pressed"]
 [connection signal="pressed" from="VBoxContainer/System/Quit" to="VBoxContainer/System" method="_on_Quit_pressed"]
-[connection signal="quit_pressed" from="SettingsMenu" to="VBoxContainer/System" method="_on_Quit_pressed"]
+[connection signal="pressed" from="VBoxContainer/System/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
+[connection signal="pressed" from="VBoxContainer/System/Start" to="." method="_on_Start_pressed"]

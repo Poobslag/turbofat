@@ -46,5 +46,6 @@ margin_bottom = 26.0
 size_flags_horizontal = 3
 theme = ExtResource( 5 )
 text = "Print all"
+
 [connection signal="pressed" from="HBoxContainer/Add" to="." method="_on_Add_pressed"]
 [connection signal="pressed" from="HBoxContainer/Print" to="." method="_on_Print_pressed"]
