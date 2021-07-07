@@ -171,5 +171,5 @@ func _on_FrostingGlobs_hit_playfield(glob: Node) -> void:
 
 
 func _on_Pauser_paused_changed(value: bool) -> void:
-	$TileMapClip.visible = !value
-	$ShadowTexture.visible = !value
+	$TileMapClip.visible = not value
+	$ShadowTexture.visible = not value

@@ -246,7 +246,7 @@ func _on_PuzzleState_after_level_changed() -> void:
 
 
 func _on_Pauser_paused_changed(value: bool) -> void:
-	visible = !value
+	visible = not value
 
 
 func _on_Dropper_hard_dropped() -> void: emit_signal("hard_dropped")

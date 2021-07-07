@@ -106,4 +106,4 @@ func _on_Settings_pressed() -> void:
 func _on_CustomKeybindButton_awaiting_changed(awaiting: bool) -> void:
 	# when the user is rebinding their keys, we disable the shortcut helper. otherwise trying to rebind something like
 	# 'escape' will close the settings menu
-	$Window/UiArea/Bottom/Ok/ShortcutHelper.set_process_input(!awaiting)
+	$Window/UiArea/Bottom/Ok/ShortcutHelper.set_process_input(not awaiting)

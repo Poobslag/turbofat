@@ -307,20 +307,23 @@ func _on_TalkButton_pressed() -> void:
 	get_tree().set_input_as_handled()
 	
 	var level_id: String = ChattableManager.focused_chattable_level_id()
-	var chat_tree := _focused_chattable_chat_tree()
 	
+	var chat_tree: ChatTree
 	if level_id:
 		CurrentLevel.set_launched_level(level_id)
+		if ChatLibrary.has_preroll(level_id):
+			chat_tree = ChatLibrary.chat_tree_for_preroll(level_id)
 		if ChatLibrary.should_play_cutscene(chat_tree):
 			# launch a cutscene if a location change is necessary
-			if not CurrentLevel.push_cutscene_trail():
+			if not CurrentLevel.push_preroll_trail():
 				# if no cutscene was launched, start a chat
 				start_chat(chat_tree, ChattableManager.focused_chattable)
 		else:
 			# if there is no cutscene/chat, or if the cutscene should be skipped, skip to the level
 			CurrentLevel.push_level_trail()
 	else:
-		# if no cutscene was launched, start a chat
+		# load the conversation and start a chat
+		chat_tree = _focused_chattable_chat_tree()
 		start_chat(chat_tree, ChattableManager.focused_chattable)
 
 

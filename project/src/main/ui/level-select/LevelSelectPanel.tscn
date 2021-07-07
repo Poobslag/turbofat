@@ -45,6 +45,7 @@ script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+level_buttons_path = NodePath("VBoxContainer/Top/ScrollContainer/MarginContainer/LevelButtons")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 anchor_right = 1.0

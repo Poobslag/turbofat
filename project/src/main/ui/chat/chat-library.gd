@@ -12,10 +12,12 @@ const PREROLL_SUFFIX := "000"
 const POSTROLL_SUFFIX := "100"
 
 """
-Loads a conversation for the specified creature.
+Returns the chat tree for the specified creature.
 
 Each creature has a sequence of conversations defined by their 'chat selectors'. This method goes through a creature's
 chat selectors until it finds one suitable for the current game state.
+
+Returns null if the chat tree cannot be found.
 
 Parameters:
 	'creature': The creature whose conversation should be returned
@@ -23,40 +25,11 @@ Parameters:
 	'forced_level_id': (Optional) The current level being chosen. If omitted, the level_id will be calculated based on
 			the first unfinished unlocked level available.
 """
-func chat_tree_for_creature(creature: Creature, forced_level_id: String = "") -> ChatTree:
-	var state := _creature_chat_state(creature.creature_id, forced_level_id)
-	var level_id: String = state["level_id"]
-	var chat_tree := chat_tree_for_creature_def(creature.creature_def, state)
+func chat_tree_for_creature(creature: Creature) -> ChatTree:
+	var filler_ids := filler_ids_for_creature(creature.creature_id)
+	var chosen_chat := select_from_chat_selectors(creature.chat_selectors, creature.creature_id, filler_ids)
 
-	if level_id:
-		# schedule a level to launch when the chat completes
-		CurrentLevel.set_launched_level(level_id)
-
-	return chat_tree
-
-
-"""
-Returns the chat tree for the specified creature.
-
-Returns null if the chat tree cannot be found.
-"""
-func chat_tree_for_creature_id(creature_id: String, forced_level_id: String = "") -> ChatTree:
-	var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
-	var state := _creature_chat_state(creature_id, forced_level_id)
-	return chat_tree_for_creature_def(creature_def, state)
-
-
-"""
-Returns the chat tree for the specified creature.
-
-Returns null if the chat tree cannot be found.
-"""
-func chat_tree_for_creature_def(creature_def: CreatureDef, state: Dictionary) -> ChatTree:
-	var creature_id := creature_def.creature_id
-	var filler_ids := filler_ids_for_creature(creature_id)
-	var chosen_chat := select_from_chat_selectors(creature_def.chat_selectors, state, filler_ids)
-
-	var chat_tree := chat_tree_for_chat_id(creature_def, chosen_chat)
+	var chat_tree := chat_tree_for_chat_id(creature.creature_def, chosen_chat)
 	if not chat_tree and has_preroll(chosen_chat):
 		chat_tree = chat_tree_for_preroll(chosen_chat)
 
@@ -116,9 +89,8 @@ func chat_icon_for_creature(creature: Creature) -> int:
 		result = ChatIcon.FOOD
 	else:
 		# filler/speech icon for normal conversations
-		var state := _creature_chat_state(creature.creature_id)
 		var filler_ids := filler_ids_for_creature(creature.creature_id)
-		var chosen_chat := select_from_chat_selectors(creature.chat_selectors, state, filler_ids)
+		var chosen_chat := select_from_chat_selectors(creature.chat_selectors, creature.creature_id, filler_ids)
 		result = ChatIcon.FILLER if filler_ids.has(chosen_chat) else ChatIcon.SPEECH
 	
 	return result
@@ -142,50 +114,42 @@ Calculates the chat id for the current conversation.
 This method goes through a creature's chat selectors until it finds one suitable for the current game state. If none
 are found, it returns a filler conversation instead.
 """
-func select_from_chat_selectors(chat_selectors: Array, state: Dictionary, filler_ids: Array) -> String:
-	var creature_id: String = state.get("creature_id", "")
+func select_from_chat_selectors(chat_selectors: Array, creature_id: String, filler_ids: Array) -> String:
 	var result: String
 	
-	var level_id: String = state.get("level_id", "")
-	if not level_id:
-		level_id = LevelLibrary.next_creature_level(creature_id)
-	if level_id:
-		result = level_id
+	# check the chat selectors for a notable conversation
+	for chat_selector_obj in chat_selectors:
+		var chat_selector: Dictionary = chat_selector_obj
 
-	if not result:
-		# no level available; find a suitable conversation
-		for chat_selector_obj in chat_selectors:
-			var chat_selector: Dictionary = chat_selector_obj
-
-			var repeat_age: int = chat_selector.get("repeat", 25)
-			var history_key := "chat/%s/%s" % [creature_id, chat_selector["chat"]]
-			var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
-			if chat_age < repeat_age:
-				# skip; we've had this conversation too recently
-				continue
-			
-			var available_if_met := true
-			if chat_selector.has("available_if"):
-				available_if_met = BoolExpressionEvaluator.evaluate(chat_selector["available_if"], creature_id)
-			if not available_if_met:
-				# skip; if condition wasn't met
-				continue
-			
-			var prioritized_if_met := false
-			if chat_selector.has("prioritized_if"):
-				prioritized_if_met = BoolExpressionEvaluator.evaluate(chat_selector["prioritized_if"], creature_id)
-			
-			# if we find a prioritized result, we overwrite any other result and stop searching
-			if prioritized_if_met:
-				result = chat_selector["chat"]
-				break
-			
-			# if we find a non-prioritized result, the first one found 'wins' and is not overwritten
-			if not result:
-				result = chat_selector["chat"]
+		var repeat_age: int = chat_selector.get("repeat", 25)
+		var history_key := "chat/%s/%s" % [creature_id, chat_selector["chat"]]
+		var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
+		if chat_age < repeat_age:
+			# skip; we've had this conversation too recently
+			continue
+		
+		var available_if_met := true
+		if chat_selector.has("available_if"):
+			available_if_met = BoolExpressionEvaluator.evaluate(chat_selector["available_if"], creature_id)
+		if not available_if_met:
+			# skip; if condition wasn't met
+			continue
+		
+		var prioritized_if_met := false
+		if chat_selector.has("prioritized_if"):
+			prioritized_if_met = BoolExpressionEvaluator.evaluate(chat_selector["prioritized_if"], creature_id)
+		
+		# if we find a prioritized result, we overwrite any other result and stop searching
+		if prioritized_if_met:
+			result = chat_selector["chat"]
+			break
+		
+		# if we find a non-prioritized result, the first one found 'wins' and is not overwritten
+		if not result:
+			result = chat_selector["chat"]
 	
 	if not result:
-		# no suitable conversation was found; find a suitable filler conversation instead
+		# no notable conversation was found; find a filler conversation instead
 		var result_chat_age: int
 		
 		for filler_id in filler_ids:
@@ -313,18 +277,6 @@ func _chat_tree_from_chatscript_file(path: String) -> ChatTree:
 		chat_tree = parser.chat_tree_from_file(path)
 	
 	return chat_tree
-
-
-"""
-Returns metadata about a creature's recent chats, and whether they're due for an interesting chat.
-"""
-func _creature_chat_state(creature_id: String, forced_level_id: String = "") -> Dictionary:
-	var result := {
-		"creature_id": creature_id,
-		"level_id": forced_level_id
-	}
-	
-	return result
 
 
 func _preroll_path(level_id: String) -> String:

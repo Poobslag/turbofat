@@ -103,7 +103,7 @@ Parameters:
 	'input_events': the InputEvents to bind
 """
 func _bind_keys(action_name: String, input_events: Array) -> void:
-	if !InputMap.has_action(action_name):
+	if not InputMap.has_action(action_name):
 		InputMap.add_action(action_name)
 	InputMap.action_erase_events(action_name)
 	for input_event in input_events:

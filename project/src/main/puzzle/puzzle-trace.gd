@@ -52,5 +52,5 @@ func input_char(frame_input: FrameInput, character: String) -> String:
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "delays":
-		visible = !visible
+		visible = not visible
 		detector.play_cheat_sound(visible)

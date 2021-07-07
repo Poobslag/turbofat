@@ -9,5 +9,5 @@ func _process(_delta: float) -> void:
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "bigfps":
-		visible = !visible
+		visible = not visible
 		detector.play_cheat_sound(visible)

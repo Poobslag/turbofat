@@ -110,12 +110,13 @@ Parameters:
 Returns:
 	'true' if the cutscene was launched, or 'false' if the cutscene was not found or did not specify a location id
 """
-func push_cutscene_trail(force: bool = false) -> bool:
-	if not creature_id:
-		return false
-	
+func push_preroll_trail(force: bool = false) -> bool:
 	var result := false
-	var chat_tree: ChatTree = ChatLibrary.chat_tree_for_creature_id(creature_id, level_id)
+	
+	var chat_tree: ChatTree
+	if level_id and ChatLibrary.has_preroll(level_id):
+		chat_tree = ChatLibrary.chat_tree_for_preroll(level_id)
+
 	if chat_tree and (chat_tree.location_id or force):
 		SceneTransition.push_trail(chat_tree.cutscene_scene_path())
 		result = true

@@ -37,7 +37,7 @@ export (PackedScene) var LevelSelectButtonScene: PackedScene
 export (PackedScene) var WorldSelectButtonScene: PackedScene
 
 # Allows for hiding/showing certain levels
-export (LevelsToInclude) var levels_to_include := ALL_LEVELS
+export (LevelsToInclude) var levels_to_include := ALL_LEVELS setget set_levels_to_include
 
 # VBoxContainer instances containing columns of level buttons
 var _max_row_count
@@ -49,6 +49,15 @@ var _column_width := COLUMN_WIDTH_SMALL
 var _duration_calculator := DurationCalculator.new()
 
 func _ready() -> void:
+	_clear_contents()
+	_add_buttons()
+
+
+func set_levels_to_include(new_levels_to_include: int) -> void:
+	if levels_to_include == new_levels_to_include:
+		return
+	
+	levels_to_include = new_levels_to_include
 	_clear_contents()
 	_add_buttons()
 
@@ -214,7 +223,7 @@ func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 		play_cutscene = ChatLibrary.should_play_cutscene(chat_tree)
 	
 	if play_cutscene:
-		if not CurrentLevel.push_cutscene_trail(true):
+		if not CurrentLevel.push_preroll_trail(true):
 			CurrentLevel.push_level_trail()
 	else:
 		CurrentLevel.push_level_trail()
