@@ -101,8 +101,9 @@ margin_right = -10.0002
 margin_bottom = 0.0
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 6 )]
-[connection signal="pressed" from="Ui/Control/PlusTen" to="." method="_on_CreatureButton_pressed" binds= [ 10 ]]
-[connection signal="pressed" from="Ui/Control/PlusOne" to="." method="_on_CreatureButton_pressed" binds= [ 1 ]]
+
 [connection signal="pressed" from="Ui/Control/MinusOne" to="." method="_on_CreatureButton_pressed" binds= [ -1 ]]
 [connection signal="pressed" from="Ui/Control/MinusTen" to="." method="_on_CreatureButton_pressed" binds= [ -10 ]]
+[connection signal="pressed" from="Ui/Control/PlusOne" to="." method="_on_CreatureButton_pressed" binds= [ 1 ]]
+[connection signal="pressed" from="Ui/Control/PlusTen" to="." method="_on_CreatureButton_pressed" binds= [ 10 ]]
 [connection signal="pressed" from="Ui/Control/QuitButton" to="." method="_on_QuitButton_pressed"]

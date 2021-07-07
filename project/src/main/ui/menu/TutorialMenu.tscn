@@ -92,4 +92,5 @@ margin_right = 502.0
 margin_bottom = 100.0
 mouse_filter = 2
 disabled = true
+
 [connection signal="pressed" from="Buttons/Northeast/BackButton" to="." method="_on_BackButton_pressed"]

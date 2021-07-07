@@ -50,4 +50,5 @@ bus = "Sound Bus"
 stream = ExtResource( 8 )
 volume_db = -8.0
 bus = "Sound Bus"
+
 [connection signal="text_shown" from="ResultsLabel" to="." method="_on_ResultsLabel_text_shown"]

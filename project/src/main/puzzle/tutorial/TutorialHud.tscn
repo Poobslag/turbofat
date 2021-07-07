@@ -164,7 +164,8 @@ __meta__ = {
 }
 
 [node name="Tween" type="Tween" parent="."]
+
+[connection signal="chat_choice_chosen" from="Diagram/VBoxContainer/ChatChoices" to="Diagram" method="_on_ChatChoices_chat_choice_chosen"]
 [connection signal="all_text_shown" from="Messages/Label" to="Messages" method="_on_Label_all_text_shown"]
 [connection signal="timeout" from="Messages/QueueTimer" to="Messages" method="_on_QueueTimer_timeout"]
 [connection signal="pop_out_completed" from="Messages/Tween" to="Messages" method="_on_Tween_pop_out_completed"]
-[connection signal="chat_choice_chosen" from="Diagram/VBoxContainer/ChatChoices" to="Diagram" method="_on_ChatChoices_chat_choice_chosen"]

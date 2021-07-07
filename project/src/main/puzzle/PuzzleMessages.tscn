@@ -88,6 +88,7 @@ text = "Back"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Buttons/Start" to="." method="_on_Start_pressed"]
-[connection signal="pressed" from="Buttons/Settings" to="." method="_on_Settings_pressed"]
+
 [connection signal="pressed" from="Buttons/Back" to="." method="_on_Back_pressed"]
+[connection signal="pressed" from="Buttons/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Buttons/Start" to="." method="_on_Start_pressed"]

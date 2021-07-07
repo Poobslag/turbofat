@@ -71,9 +71,6 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/combo-accents-packed.json"
 rect_size = Vector2( 64, 64 )
-frame = 0
-centered = true
-offset = Vector2( 0, 0 )
 
 [node name="Label" type="Label" parent="."]
 margin_left = -32.0
@@ -102,4 +99,5 @@ lifetime = 0.8
 one_shot = true
 explosiveness = 1.0
 process_material = SubResource( 5 )
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

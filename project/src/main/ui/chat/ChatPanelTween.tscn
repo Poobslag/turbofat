@@ -4,4 +4,5 @@
 
 [node name="Tween" type="Tween"]
 script = ExtResource( 1 )
+
 [connection signal="tween_completed" from="." to="." method="_on_tween_completed"]

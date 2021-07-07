@@ -169,5 +169,6 @@ bus = "Sound Bus"
 stream = ExtResource( 14 )
 volume_db = -14.0
 bus = "Sound Bus"
-[connection signal="pop_out_completed" from="Tween" to="." method="_on_Tween_pop_out_completed"]
+
 [connection signal="all_text_shown" from="ChatLineLabel" to="." method="_on_ChatLineLabel_all_text_shown"]
+[connection signal="pop_out_completed" from="Tween" to="." method="_on_Tween_pop_out_completed"]
