@@ -130,7 +130,7 @@ func _input(event: InputEvent) -> void:
 				_scale_index -= 1
 				_play_chat_event()
 		KEY_Z:
-			_squished = !_squished
+			_squished = not _squished
 			_play_chat_event()
 
 

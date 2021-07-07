@@ -33,12 +33,12 @@
     },
     {
       "chat": "my_maid_died",
-      "if_condition": "notable",
+      "available_if": "notable",
       "repeat": 999999
     },
     {
       "chat": "life_is_so_short",
-      "if_condition": "notable",
+      "available_if": "notable",
       "repeat": 999999
     }
   ]

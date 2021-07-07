@@ -41,4 +41,4 @@ func _on_PuzzleState_game_prepared() -> void:
 
 func _on_Pauser_paused_changed(value: bool) -> void:
 	for display in _next_piece_displays:
-		display.visible = !value
+		display.visible = not value

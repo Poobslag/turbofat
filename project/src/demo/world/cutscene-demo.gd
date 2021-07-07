@@ -18,7 +18,7 @@ func _on_StartButton_pressed() -> void:
 	
 	if cutscene_index >= 0 and cutscene_index < 100:
 		# launch 'before level' cutscene
-		CurrentLevel.push_cutscene_trail(true)
+		CurrentLevel.push_preroll_trail(true)
 	elif cutscene_index >= 100 and cutscene_index < 200:
 		# launch 'after level' cutscene
 		CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.AFTER
