@@ -124,7 +124,7 @@ func _refresh_child_buttons() -> void:
 	for child in get_tree().get_nodes_in_group("chat_choices"):
 		child.queue_free()
 	
-	var new_buttons: Array = []
+	var new_buttons := []
 	
 	for i in range(_choices.size()):
 		var button: ChatChoiceButton = ChatChoiceButtonScene.instance()

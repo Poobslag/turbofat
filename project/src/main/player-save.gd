@@ -79,7 +79,7 @@ func named_data(type: String, key: String, value) -> SaveItem:
 Writes the player's in-memory data to a save file.
 """
 func save_player_data() -> void:
-	var save_json: Array = []
+	var save_json := []
 	save_json.append(generic_data("version", PLAYER_DATA_VERSION).to_json_dict())
 	save_json.append(generic_data("player_info", {"money": PlayerData.money}).to_json_dict())
 	save_json.append(generic_data("gameplay_settings", PlayerData.gameplay_settings.to_json_dict()).to_json_dict())

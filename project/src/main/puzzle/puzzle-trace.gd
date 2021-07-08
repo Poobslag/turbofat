@@ -12,7 +12,7 @@ onready var _piece_manager:PieceManager= _puzzle.get_piece_manager()
 
 func _process(_delta: float) -> void:
 	if visible:
-		var new_text: String = ""
+		var new_text := ""
 		
 		new_text += "%1d" % [min(9, _combo_tracker.combo_break)]
 		new_text += "l" if _playfield.get_remaining_line_erase_frames() > 0 else "-"

@@ -31,10 +31,10 @@ export (Vector2) var offset: Vector2 setget set_offset
 var frame_count setget ,get_frame_count
 
 # Rect2 instances representing sprite sheet regions where each frame can be read
-var _frame_src_rects: Array = []
+var _frame_src_rects := []
 
 # Rect2 instances representing screen regions where each frame should be drawn
-var _frame_dest_rects: Array = []
+var _frame_dest_rects := []
 
 """
 Sets the path of the Aseprite json file.

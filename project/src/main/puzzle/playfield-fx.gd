@@ -10,7 +10,7 @@ const RAINBOW_COLOR_COUNT := 7
 
 # Lights change color based on the lines the player clears.
 const VEGETABLE_LIGHT_COLOR := Color("6074a320")
-const FOOD_LIGHT_COLORS: Array = [
+const FOOD_LIGHT_COLORS := [
 	Color("c0f47700"), # brown
 	Color("b0ff5d68"), # pink
 	Color("c0ffc357"), # bread
@@ -21,7 +21,7 @@ const FOOD_LIGHT_COLORS: Array = [
 const RAINBOW_LIGHT_COLOR := Color("50ffffff")
 
 # Light pattern shown when the player clears a line or continues their combo.
-const ON_PATTERN: Array = [
+const ON_PATTERN := [
 	"....#....",
 	"...###...",
 	"..#####..",
@@ -33,7 +33,7 @@ const ON_PATTERN: Array = [
 ]
 
 # Light pattern shown when the player's combo is about to end.
-const HALF_PATTERN: Array = [
+const HALF_PATTERN := [
 	"....#....",
 	"...#.#...",
 	"..#.#.#..",
@@ -45,7 +45,7 @@ const HALF_PATTERN: Array = [
 ]
 
 # Light pattern shown when the player has no combo.
-const OFF_PATTERN: Array = [
+const OFF_PATTERN := [
 	".........",
 ]
 

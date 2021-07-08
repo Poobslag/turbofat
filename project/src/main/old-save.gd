@@ -216,8 +216,8 @@ func _replace_dialog_with_creatures_primary(dict: Dictionary) -> void:
 	for sub_dict in dict.values():
 		for key in sub_dict.keys():
 			for creature_id in ["boatricia", "ebe", "bort"]:
-				var search_string: String = "dialog/%s" % creature_id
-				var replacement: String = "creatures/primary/%s" % creature_id
+				var search_string := "dialog/%s" % [creature_id]
+				var replacement := "creatures/primary/%s" % [creature_id]
 				if key.find(search_string) != -1:
 					sub_dict[key.replace(search_string, replacement)] = sub_dict[key]
 					sub_dict.erase(key)
