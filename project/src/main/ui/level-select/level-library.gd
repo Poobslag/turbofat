@@ -204,7 +204,7 @@ func _reset_cleared_worlds_and_levels() -> void:
 	# reset unlocked worlds
 	for world_lock_obj in _world_locks.values():
 		var world_lock: WorldLock = world_lock_obj
-		var unlock_world_ids := world_lock.locked_until_values
+		var unlock_world_ids := world_lock.unlocked_if_values
 		for unlock_world_id in unlock_world_ids:
 			world_lock.status = WorldLock.STATUS_NONE
 	
@@ -220,10 +220,10 @@ Update the world lock status to 'lock' for locked worlds.
 func _update_locked_worlds() -> void:
 	for world_lock_obj in _world_locks.values():
 		var world_lock: WorldLock = world_lock_obj
-		if world_lock.locked_until_type == WorldLock.ALWAYS_UNLOCKED:
+		if world_lock.unlocked_if_type == WorldLock.ALWAYS_UNLOCKED:
 			continue
 		
-		var unlock_world_ids := world_lock.locked_until_values
+		var unlock_world_ids := world_lock.unlocked_if_values
 		for unlock_world_id in unlock_world_ids:
 			var other_world_lock: WorldLock = _world_locks[unlock_world_id]
 			if not PlayerData.level_history.is_level_finished(other_world_lock.last_level):
@@ -244,7 +244,7 @@ func _update_locked_levels() -> void:
 			continue
 		
 		# if the level's always unlocked, set the level status to 'unlocked'
-		if level_lock.locked_until_type == LevelLock.ALWAYS_UNLOCKED:
+		if level_lock.unlocked_if_type == LevelLock.ALWAYS_UNLOCKED:
 			continue
 		
 		# set the level status to 'hard lock' if the required levels aren't cleared
@@ -264,10 +264,10 @@ Returns the list of level IDs which contribute to unlocking this level.
 """
 func _unlock_level_ids(level_lock: LevelLock) -> Array:
 	var unlock_level_ids := []
-	if level_lock.locked_until_type == LevelLock.UNTIL_LEVEL_FINISHED:
-		unlock_level_ids = level_lock.locked_until_values
-	elif level_lock.locked_until_type == LevelLock.UNTIL_GROUP_FINISHED:
-		var group_id: String = level_lock.locked_until_values[0]
+	if level_lock.unlocked_if_type == LevelLock.IF_LEVEL_FINISHED:
+		unlock_level_ids = level_lock.unlocked_if_values
+	elif level_lock.unlocked_if_type == LevelLock.IF_GROUP_FINISHED:
+		var group_id: String = level_lock.unlocked_if_values[0]
 		unlock_level_ids = _level_groups.get(group_id, {}).keys()
 	return unlock_level_ids
 
@@ -280,9 +280,9 @@ represented as allowing 'five skips'.
 """
 func _allowed_skips(level_lock: LevelLock) -> int:
 	var allowed_skips := 0
-	if level_lock.locked_until_type == LevelLock.UNTIL_GROUP_FINISHED:
-		if level_lock.locked_until_values.size() >= 2:
-			allowed_skips = int(level_lock.locked_until_values[1])
+	if level_lock.unlocked_if_type == LevelLock.IF_GROUP_FINISHED:
+		if level_lock.unlocked_if_values.size() >= 2:
+			allowed_skips = int(level_lock.unlocked_if_values[1])
 	return allowed_skips
 
 

@@ -4,9 +4,9 @@ Keeps track of whether a world is unlocked, and the requirements to unlock it.
 """
 
 # the requirements to unlock a world
-enum LockedUntil {
+enum UnlockedIf {
 	ALWAYS_UNLOCKED, # never locked
-	UNTIL_WORLD_FINISHED, # locked until the player finishes a specific world(s)
+	IF_WORLD_FINISHED, # unlocked if the player finishes a specific world(s)
 }
 
 # the status whether or not a world is locked/unlocked
@@ -15,8 +15,8 @@ enum LockStatus {
 	LOCK, # locked
 }
 
-const ALWAYS_UNLOCKED := LockedUntil.ALWAYS_UNLOCKED
-const UNTIL_WORLD_FINISHED := LockedUntil.UNTIL_WORLD_FINISHED
+const ALWAYS_UNLOCKED := UnlockedIf.ALWAYS_UNLOCKED
+const IF_WORLD_FINISHED := UnlockedIf.IF_WORLD_FINISHED
 
 const STATUS_NONE := LockStatus.NONE
 const STATUS_LOCK := LockStatus.LOCK
@@ -25,7 +25,7 @@ var world_id: String
 var world_name: String
 
 # the requirements to unlock this level
-var locked_until_type := ALWAYS_UNLOCKED
+var unlocked_if_type := ALWAYS_UNLOCKED
 
 # The final level in the world. Finishing this level counts as finishing the entire world.
 var last_level: String
@@ -33,9 +33,9 @@ var last_level: String
 """
 An array of strings representing unlock criteria.
 
-For UNTIL_WORLD_FINISHED locks, this is an array of world IDs.
+For IF_WORLD_FINISHED locks, this is an array of world IDs.
 """
-var locked_until_values := []
+var unlocked_if_values := []
 
 var level_ids: Array
 
@@ -53,10 +53,10 @@ func from_json_dict(json: Dictionary) -> void:
 			var level: Dictionary = level_obj
 			level_ids.append(level["id"])
 	
-	var locked_until_string: String = json.get("locked_until", "")
-	if locked_until_string:
-		var locked_until_array: Array = locked_until_string.split(" ")
-		match locked_until_array[0]:
-			"world_finished": locked_until_type = UNTIL_WORLD_FINISHED
-			_: push_warning("Unrecognized locked_until: %s" % [locked_until_string])
-		locked_until_values = locked_until_array.slice(1, locked_until_array.size() - 1)
+	var unlocked_if_string: String = json.get("unlocked_if", "")
+	if unlocked_if_string:
+		var unlocked_if_array: Array = unlocked_if_string.split(" ")
+		match unlocked_if_array[0]:
+			"world_finished": unlocked_if_type = IF_WORLD_FINISHED
+			_: push_warning("Unrecognized unlocked_if: %s" % [unlocked_if_string])
+		unlocked_if_values = unlocked_if_array.slice(1, unlocked_if_array.size() - 1)

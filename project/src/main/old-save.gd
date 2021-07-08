@@ -15,7 +15,7 @@ func is_old_save_items(json_save_items: Array) -> bool:
 	match version_string:
 		PlayerSave.PLAYER_DATA_VERSION:
 			is_old = false
-		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2", "245b", "24cc":
+		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2", "245b", "24cc", "252a":
 			is_old = true
 		_:
 			push_warning("Unrecognized save data version: '%s'" % version_string)
@@ -42,6 +42,8 @@ Transforms the specified json save items to the latest format.
 func transform_old_save_items(json_save_items: Array) -> Array:
 	var version_string := get_version_string(json_save_items)
 	match version_string:
+		"252a":
+			json_save_items = _convert_252a(json_save_items)
 		"24cc":
 			json_save_items = _convert_24cc(json_save_items)
 		"245b":
@@ -63,6 +65,20 @@ func transform_old_save_items(json_save_items: Array) -> Array:
 	return json_save_items
 
 
+func _convert_252a(json_save_items: Array) -> Array:
+	var new_save_items := []
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		match save_item.type:
+			"version":
+				save_item["value"] = "2743"
+			"miscellaneous_settings":
+				save_item.type = "misc_settings"
+		new_save_items.append(save_item.to_json_dict())
+	return new_save_items
+
+
 func _convert_24cc(json_save_items: Array) -> Array:
 	var new_save_items := []
 	for json_save_item_obj in json_save_items:
@@ -75,9 +91,7 @@ func _convert_24cc(json_save_items: Array) -> Array:
 				_replace_dialog_with_chat(save_item.value.get("history_items", {}))
 				_replace_dialog_with_chat(save_item.value.get("counts", {}))
 				_replace_dialog_with_chat(save_item.value.get("filler_counts", {}))
-		
-		if save_item:
-			new_save_items.append(save_item.to_json_dict())
+		new_save_items.append(save_item.to_json_dict())
 	return new_save_items
 
 

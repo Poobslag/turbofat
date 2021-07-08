@@ -1,4 +1,4 @@
-class_name MiscellaneousSettings
+class_name MiscSettings
 """
 Manages miscellaneous settings such as language.
 """

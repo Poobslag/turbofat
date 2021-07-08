@@ -719,7 +719,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Miscellaneous" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
+[node name="Misc" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -728,7 +728,7 @@ margin_top = 35.0
 margin_right = -5.0
 margin_bottom = -5.0
 
-[node name="Language" type="HBoxContainer" parent="Window/UiArea/TabContainer/Miscellaneous"]
+[node name="Language" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
 margin_right = 510.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 400, 26 )
@@ -737,7 +737,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 17 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Miscellaneous/Language"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/Language"]
 margin_right = 197.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -751,7 +751,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Miscellaneous/Language"]
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/Language"]
 margin_left = 217.0
 margin_right = 377.0
 margin_bottom = 26.0
@@ -836,6 +836,6 @@ __meta__ = {
 [connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/Scheme" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/FatFinger" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Miscellaneous/Language/OptionButton" to="Window/UiArea/TabContainer/Miscellaneous/Language" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/Language" method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Ok" to="." method="_on_Ok_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Quit" to="." method="_on_Quit_pressed"]
