@@ -5,13 +5,11 @@ Tests that boolean expressions can be parsed correctly.
 
 var parser: BoolExpressionParser
 
-func assert_token(token: BoolExpressionParser.BoolToken, string: String, start: int = -1, end: int = -1) -> void:
+func assert_token(token: BoolExpressionParser.BoolToken, string: String, position: int = -1) -> void:
 	assert_not_null(token)
 	assert_eq(token.string, string)
-	if start != -1:
-		assert_eq(token.start, start)
-	if end != -1:
-		assert_eq(token.end, end)
+	if position != -1:
+		assert_eq(token.position, position)
 
 
 func assert_expression(expression: BoolExpressionParser.BoolExpression, token: String, args: Array) -> void:
@@ -41,21 +39,21 @@ func test_parse_tokens_many() -> void:
 	var tokens := parse_tokens("chat_finished abc")
 	
 	assert_eq(tokens.size(), 2)
-	assert_token(tokens[0], "chat_finished", 0, 13)
-	assert_token(tokens[1], "abc", 14, 17)
+	assert_token(tokens[0], "chat_finished", 0)
+	assert_token(tokens[1], "abc", 14)
 
 
 func test_parse_tokens_parens() -> void:
 	var tokens := parse_tokens("(not (chat_finished abc))")
 	
 	assert_eq(tokens.size(), 7)
-	assert_token(tokens[0], "(", 0, 1)
-	assert_token(tokens[1], "not", 1, 4)
-	assert_token(tokens[2], "(", 5, 6)
-	assert_token(tokens[3], "chat_finished", 6, 19)
-	assert_token(tokens[4], "abc", 20, 23)
-	assert_token(tokens[5], ")", 23, 24)
-	assert_token(tokens[6], ")", 24, 25)
+	assert_token(tokens[0], "(", 0)
+	assert_token(tokens[1], "not", 1)
+	assert_token(tokens[2], "(", 5)
+	assert_token(tokens[3], "chat_finished", 6)
+	assert_token(tokens[4], "abc", 20)
+	assert_token(tokens[5], ")", 23)
+	assert_token(tokens[6], ")", 24)
 
 
 func test_parse_expression() -> void:

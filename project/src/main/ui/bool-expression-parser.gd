@@ -1,6 +1,8 @@
 class_name BoolExpressionParser
 """
 Parses a string boolean expression into a tree of BoolExpressions.
+
+This is a recursive descent parser.
 """
 
 """
@@ -9,9 +11,12 @@ A lexical token which occurs in a boolean expression.
 This token represents a single word, and includes data about the occurrence of the word in the original statement.
 """
 class BoolToken:
-	var start: int
-	var end: int
+	var position: int
 	var string: String
+	
+	func _init(init_position: int, init_string: String) -> void:
+		position = init_position
+		string = init_string
 	
 	func string_value() -> String:
 		return string
@@ -124,10 +129,7 @@ func _init(string: String, subject = null) -> void:
 	var regex := RegEx.new()
 	regex.compile("[^() ]+|[()]")
 	for result in regex.search_all(string):
-		var chat_token := BoolToken.new()
-		chat_token.start = result.get_start()
-		chat_token.end = result.get_end()
-		chat_token.string = result.get_string()
+		var chat_token := BoolToken.new(result.get_start(), result.get_string())
 		_tokens.append(chat_token)
 
 
@@ -140,7 +142,7 @@ Returns:
 func parse() -> BoolExpression:
 	var expression := _parse_or()
 	if _token_index < _tokens.size():
-		_report_error(_tokens[_token_index].start, "Unexpected token '%s'" % [_tokens[_token_index].string])
+		_report_error(_tokens[_token_index].position, "Unexpected token '%s'" % [_tokens[_token_index].string])
 	return expression
 
 
@@ -204,7 +206,7 @@ func _parse_function() -> BoolExpression:
 			if _subject is String:
 				expression = NotableExpression.new(_get_next_token(), _subject)
 			else:
-				_report_error(_get_next_token().start, "Keyword %s cannot be applied to type '%s'" \
+				_report_error(_get_next_token().position, "Keyword %s cannot be applied to type '%s'" \
 						% [_subject, null if _subject == null else _subject.get_class()])
 		_:
 			expression = _parse_atom()
@@ -226,7 +228,7 @@ func _parse_atom() -> BoolExpression:
 		expression = _parse_or()
 		_expect_token(")")
 	else:
-		_report_error(token.start, "Unexpected token '%s'" % [token.string])
+		_report_error(token.position, "Unexpected token '%s'" % [token.string])
 	
 	return expression
 
@@ -240,7 +242,7 @@ func _expect_token(token_string: String) -> void:
 		_report_error(_string.length(), "Expected '%s'" % [token_string])
 		return
 	elif next_token.string != token_string:
-		_report_error(next_token.start, "Expected '%s' but found '%s'" % [token_string, next_token.string])
+		_report_error(next_token.position, "Expected '%s' but found '%s'" % [token_string, next_token.string])
 		return
 	
 	_get_next_token()
