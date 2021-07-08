@@ -456,6 +456,7 @@ dna = {
 "shader:TailZ1:red": Color( 0.698039, 0.219608, 0.137255, 1 ),
 "tail": "0"
 }
+elevation = 150.0
 
 [node name="Seat1" parent="." instance=ExtResource( 2 )]
 
@@ -635,6 +636,7 @@ dna = {
 "shader:TailZ1:red": Color( 0.698039, 0.219608, 0.137255, 1 ),
 "tail": "0"
 }
+elevation = 150.0
 
 [node name="Seat2" parent="." instance=ExtResource( 2 )]
 position = Vector2( 1380, 585 )
@@ -809,6 +811,7 @@ dna = {
 "shader:TailZ1:red": Color( 0.698039, 0.219608, 0.137255, 1 ),
 "tail": "0"
 }
+elevation = 150.0
 
 [node name="Seat3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 2380, 585 )
