@@ -5,14 +5,42 @@ Demonstrates cutscenes.
 The user can select and launch any cutscene, and change how fat the creatures are.
 """
 
+# property keys to use when saving/loading data
+const SAVE_KEY_FLAGS := "cutscene-demo.flags"
+const SAVE_KEY_OPEN := "cutscene-demo.open"
+
+onready var _demo_save := $DemoSave
+onready var _flags_input := $Input/Flags
+onready var _open_input := $Input/Open
+onready var _start_button := $Input/StartButton
+onready var _error_dialog := $Dialogs/Error
+onready var _open_dialog := $Dialogs/OpenFile
+
 func _ready() -> void:
+	_load_demo_data()
 	Breadcrumb.trail = ["res://src/demo/world/CutsceneDemo.tscn"]
-	$VBoxContainer/StartButton.grab_focus()
+	_start_button.grab_focus()
+
+
+func _load_demo_data() -> void:
+	if _demo_save.demo_data.has(SAVE_KEY_FLAGS):
+		_flags_input.value = _demo_save.demo_data[SAVE_KEY_FLAGS]
+	if _demo_save.demo_data.has(SAVE_KEY_OPEN):
+		_open_input.value = _demo_save.demo_data[SAVE_KEY_OPEN]
+
+
+func _save_demo_data() -> void:
+	_demo_save.demo_data[SAVE_KEY_FLAGS] = _flags_input.value
+	_demo_save.demo_data[SAVE_KEY_OPEN] = _open_input.value
+	_demo_save.save_demo_data()
 
 
 func _on_StartButton_pressed() -> void:
-	var cutscene_prefix := StringUtils.substring_before_last($VBoxContainer/Open/LineEdit.text, "_")
-	var cutscene_index := int(StringUtils.substring_after_last($VBoxContainer/Open/LineEdit.text, "_"))
+	_save_demo_data()
+	_flags_input.apply_flags()
+	
+	var cutscene_prefix := StringUtils.substring_before_last(_open_input.value, "_")
+	var cutscene_index := int(StringUtils.substring_after_last(_open_input.value, "_"))
 	CurrentLevel.set_launched_level(cutscene_prefix)
 	CurrentLevel.cutscene_force = true
 	
@@ -25,21 +53,21 @@ func _on_StartButton_pressed() -> void:
 		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
 		SceneTransition.push_trail(chat_tree.cutscene_scene_path())
 	else:
-		push_warning("Invalid cutscene path: %s" % [$VBoxContainer/Open/LineEdit.text])
+		push_warning("Invalid cutscene path: %s" % [_open_input.value])
 
 
 func _on_OpenFileDialog_file_selected(_path: String) -> void:
-	var full_path: String = $Dialogs/OpenFile.current_path
+	var full_path: String = _open_dialog.current_path
 	if full_path.begins_with("res://assets/main/puzzle/levels/cutscenes/") \
 			and full_path.ends_with(ChatLibrary.CHAT_EXTENSION):
 		full_path = full_path.trim_prefix("res://assets/main/puzzle/levels/cutscenes/")
 		full_path = full_path.trim_suffix(".chat")
 		full_path = StringUtils.hyphens_to_underscores(full_path)
-		$VBoxContainer/Open/LineEdit.text = full_path
+		_open_input.value = full_path
 	else:
-		$Dialogs/Error.dialog_text = "%s doesn't seem like the path to a cutscene file." % [full_path]
-		$Dialogs/Error.popup_centered()
+		_error_dialog.dialog_text = "%s doesn't seem like the path to a cutscene file." % [full_path]
+		_error_dialog.popup_centered()
 
 
 func _on_OpenButton_pressed() -> void:
-	$Dialogs/OpenFile.popup_centered()
+	_open_dialog.popup_centered()
