@@ -45,7 +45,7 @@
           "id": "marsh/hello_bones",
           "creature_id": "bones",
           "groups": "marsh/hello",
-          "locked_until": "level_finished marsh/hello_everyone",
+          "unlocked_if": "level_finished marsh/hello_everyone",
           "prioritized_if": "not level_finished marsh/pulling_for_everyone",
           "chef_id": "bones"
         },
@@ -53,7 +53,7 @@
           "id": "marsh/hello_shirts",
           "creature_id": "shirts",
           "groups": "marsh/hello",
-          "locked_until": "level_finished marsh/hello_everyone",
+          "unlocked_if": "level_finished marsh/hello_everyone",
           "prioritized_if": "not level_finished marsh/pulling_for_everyone",
           "chef_id": "shirts"
         },
@@ -61,7 +61,7 @@
           "id": "marsh/hello_skins",
           "creature_id": "skins",
           "groups": "marsh/hello",
-          "locked_until": "level_finished marsh/hello_everyone",
+          "unlocked_if": "level_finished marsh/hello_everyone",
           "prioritized_if": "not level_finished marsh/pulling_for_everyone",
           "chef_id": "skins"
         },
@@ -69,14 +69,14 @@
           "id": "marsh/pulling_for_everyone",
           "creature_id": "richie",
           "groups": "marsh/pulling_for",
-          "locked_until": "group_finished marsh/hello 1",
+          "unlocked_if": "group_finished marsh/hello 1",
           "chef_id": "bones"
         },
         {
           "id": "marsh/pulling_for_bones",
           "creature_id": "bones",
           "groups": "marsh/pulling_for",
-          "locked_until": "level_finished marsh/pulling_for_everyone",
+          "unlocked_if": "level_finished marsh/pulling_for_everyone",
           "prioritized_if": "not level_finished marsh/lets_all_get_merry",
           "chef_id": "bones"
         },
@@ -84,7 +84,7 @@
           "id": "marsh/pulling_for_shirts",
           "creature_id": "shirts",
           "groups": "marsh/pulling_for",
-          "locked_until": "level_finished marsh/pulling_for_everyone",
+          "unlocked_if": "level_finished marsh/pulling_for_everyone",
           "prioritized_if": "not level_finished marsh/lets_all_get_merry",
           "chef_id": "shirts"
         },
@@ -92,7 +92,7 @@
           "id": "marsh/pulling_for_skins",
           "creature_id": "skins",
           "groups": "marsh/pulling_for",
-          "locked_until": "level_finished marsh/pulling_for_everyone",
+          "unlocked_if": "level_finished marsh/pulling_for_everyone",
           "prioritized_if": "not level_finished marsh/lets_all_get_merry",
           "chef_id": "skins"
         },
@@ -100,13 +100,13 @@
           "id": "marsh/lets_all_get_merry",
           "creature_id": "richie",
           "groups": "marsh/goodbye",
-          "locked_until": "group_finished marsh/pulling_for 1"
+          "unlocked_if": "group_finished marsh/pulling_for 1"
         },
         {
           "id": "marsh/goodbye_bones",
           "creature_id": "bones",
           "groups": "marsh/goodbye",
-          "locked_until": "level_finished marsh/lets_all_get_merry",
+          "unlocked_if": "level_finished marsh/lets_all_get_merry",
           "prioritized_if": "not level_finished marsh/goodbye_everyone",
           "chef_id": "bones"
         },
@@ -114,7 +114,7 @@
           "id": "marsh/goodbye_shirts",
           "creature_id": "shirts",
           "groups": "marsh/goodbye",
-          "locked_until": "level_finished marsh/lets_all_get_merry",
+          "unlocked_if": "level_finished marsh/lets_all_get_merry",
           "prioritized_if": "not level_finished marsh/goodbye_everyone",
           "chef_id": "shirts"
         },
@@ -122,21 +122,21 @@
           "id": "marsh/goodbye_skins",
           "creature_id": "skins",
           "groups": "marsh/goodbye",
-          "locked_until": "level_finished marsh/lets_all_get_merry",
+          "unlocked_if": "level_finished marsh/lets_all_get_merry",
           "prioritized_if": "not level_finished marsh/goodbye_everyone",
           "chef_id": "skins"
         },
         {
           "id": "marsh/goodbye_everyone",
           "creature_id": "richie",
-          "locked_until": "group_finished marsh/goodbye 1"
+          "unlocked_if": "group_finished marsh/goodbye 1"
         }
       ]
     },
     {
       "id": "world1",
       "name": "Chocolava Canyon",
-      "locked_until": "world_finished world0",
+      "unlocked_if": "world_finished world0",
       "last_level": "placeholder10",
       "levels": [
         {
@@ -154,7 +154,7 @@
             "bort"
           ],
           "groups": "choco_intro",
-          "locked_until": "level_finished placeholder01"
+          "unlocked_if": "level_finished placeholder01"
         },
         {
           "id": "boatricia1",
@@ -162,7 +162,7 @@
           "customer_ids": [
             "boatricia"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -171,7 +171,7 @@
           "customer_ids": [
             "boatricia"
           ],
-          "locked_until": "level_finished boatricia1",
+          "unlocked_if": "level_finished boatricia1",
           "groups": "choco_main"
         },
         {
@@ -180,7 +180,7 @@
           "customer_ids": [
             "ebe"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -189,7 +189,7 @@
           "customer_ids": [
             "bort"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -198,7 +198,7 @@
           "customer_ids": [
             "boatricia"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -207,7 +207,7 @@
           "customer_ids": [
             "boatricia"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -216,7 +216,7 @@
           "customer_ids": [
             "ebe"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -225,7 +225,7 @@
           "customer_ids": [
             "ebe"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -234,7 +234,7 @@
           "customer_ids": [
             "bort"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -243,7 +243,7 @@
           "customer_ids": [
             "bort"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -252,7 +252,7 @@
           "customer_ids": [
             "ebe"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -261,7 +261,7 @@
           "customer_ids": [
             "boatricia"
           ],
-          "locked_until": "group_finished choco_intro",
+          "unlocked_if": "group_finished choco_intro",
           "groups": "choco_main"
         },
         {
@@ -270,7 +270,7 @@
           "customer_ids": [
             "bort"
           ],
-          "locked_until": "group_finished choco_main 5"
+          "unlocked_if": "group_finished choco_main 5"
         },
         {
           "id": "placeholder10",
@@ -278,7 +278,7 @@
           "customer_ids": [
             "bort"
           ],
-          "locked_until": "group_finished choco_main 5"
+          "unlocked_if": "group_finished choco_main 5"
         },
         {
           "id": "placeholder13",
@@ -286,7 +286,7 @@
           "customer_ids": [
             "wesker"
           ],
-          "locked_until": "group_finished choco_main 5"
+          "unlocked_if": "group_finished choco_main 5"
         },
         {
           "id": "placeholder14",
@@ -294,7 +294,7 @@
           "customer_ids": [
             "wesker"
           ],
-          "locked_until": "group_finished choco_main 5"
+          "unlocked_if": "group_finished choco_main 5"
         },
         {
           "id": "placeholder15",
@@ -302,7 +302,7 @@
           "customer_ids": [
             "wesker"
           ],
-          "locked_until": "group_finished choco_main 5"
+          "unlocked_if": "group_finished choco_main 5"
         },
         {
           "id": "accelerator",
@@ -310,7 +310,7 @@
           "customer_ids": [
             "wesker"
           ],
-          "locked_until": "group_finished choco_main 5"
+          "unlocked_if": "group_finished choco_main 5"
         }
       ]
     }

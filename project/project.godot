@@ -420,9 +420,9 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/milestone-hud.gd"
 }, {
 "base": "Reference",
-"class": "MiscellaneousSettings",
+"class": "MiscSettings",
 "language": "GDScript",
-"path": "res://src/main/miscellaneous-settings.gd"
+"path": "res://src/main/misc-settings.gd"
 }, {
 "base": "Control",
 "class": "MoneyLabel",
@@ -867,7 +867,7 @@ _global_script_class_icons={
 "MarkovModel": "",
 "Milestone": "",
 "MilestoneHud": "",
-"MiscellaneousSettings": "",
+"MiscSettings": "",
 "MoneyLabel": "",
 "MouthPlayer": "",
 "MusicTween": "",

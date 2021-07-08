@@ -4,10 +4,10 @@ Keeps track of whether a level is unlocked, and the requirements to unlock it.
 """
 
 # the requirements to unlock a level
-enum LockedUntil {
+enum UnlockedIf {
 	ALWAYS_UNLOCKED, # never locked
-	UNTIL_LEVEL_FINISHED, # locked until the player finishes a specific level(s)
-	UNTIL_GROUP_FINISHED, # locked until the player finishes some levels in a group
+	IF_LEVEL_FINISHED, # unlocked if the player finishes a specific level(s)
+	IF_GROUP_FINISHED, # unlocked if the player finishes some levels in a group
 }
 
 # the status whether or not a level is locked/unlocked
@@ -20,9 +20,9 @@ enum LockStatus {
 	HARD_LOCK, # locked, and the required levels to unlock it are themselves locked
 }
 
-const ALWAYS_UNLOCKED := LockedUntil.ALWAYS_UNLOCKED
-const UNTIL_LEVEL_FINISHED := LockedUntil.UNTIL_LEVEL_FINISHED
-const UNTIL_GROUP_FINISHED := LockedUntil.UNTIL_GROUP_FINISHED
+const ALWAYS_UNLOCKED := UnlockedIf.ALWAYS_UNLOCKED
+const IF_LEVEL_FINISHED := UnlockedIf.IF_LEVEL_FINISHED
+const IF_GROUP_FINISHED := UnlockedIf.IF_GROUP_FINISHED
 
 const STATUS_NONE := LockStatus.NONE
 const STATUS_KEY := LockStatus.KEY
@@ -41,15 +41,15 @@ var customer_ids: Array
 var chef_id: String
 
 # the requirements to unlock this level
-var locked_until_type := ALWAYS_UNLOCKED
+var unlocked_if_type := ALWAYS_UNLOCKED
 
 """
 An array of strings representing unlock criteria.
 
-For UNTIL_LEVEL_FINISHED locks, this is an array of level IDs.
-For UNTIL_GROUP_FINISHED locks, this is a group ID and (optionally) a number of levels which can be skipped.
+For IF_LEVEL_FINISHED locks, this is an array of level IDs.
+For IF_GROUP_FINISHED locks, this is a group ID and (optionally) a number of levels which can be skipped.
 """
-var locked_until_values := []
+var unlocked_if_values := []
 
 # the condition required to make this level high priority
 var prioritized_if: String
@@ -69,14 +69,14 @@ func from_json_dict(json: Dictionary) -> void:
 	chef_id = json.get("chef_id", "")
 	customer_ids = json.get("customer_ids", [])
 	
-	var locked_until_string: String = json.get("locked_until", "")
-	if locked_until_string:
-		var locked_until_array: Array = locked_until_string.split(" ")
-		match locked_until_array[0]:
-			"level_finished": locked_until_type = UNTIL_LEVEL_FINISHED
-			"group_finished": locked_until_type = UNTIL_GROUP_FINISHED
-			_: push_warning("Unrecognized locked_until: %s" % [locked_until_string])
-		locked_until_values = locked_until_array.slice(1, locked_until_array.size() - 1)
+	var unlocked_if_string: String = json.get("unlocked_if", "")
+	if unlocked_if_string:
+		var unlocked_if_array: Array = unlocked_if_string.split(" ")
+		match unlocked_if_array[0]:
+			"level_finished": unlocked_if_type = IF_LEVEL_FINISHED
+			"group_finished": unlocked_if_type = IF_GROUP_FINISHED
+			_: push_warning("Unrecognized unlocked_if: %s" % [unlocked_if_string])
+		unlocked_if_values = unlocked_if_array.slice(1, unlocked_if_array.size() - 1)
 	
 	prioritized_if = json.get("prioritized_if", "")
 	

@@ -68,6 +68,9 @@ func test_1b3c() -> void:
 	var history_marathon: RankResult = PlayerData.level_history.results("practice/marathon_hard")[0]
 	assert_eq(history_marathon.lost, false)
 	assert_eq(history_marathon.score, 5115)
+	
+	# 'miscellaneous settings' were renamed to 'misc settings'
+	assert_eq(TranslationServer.get_locale(), "es")
 
 
 func test_245b() -> void:
