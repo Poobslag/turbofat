@@ -101,7 +101,7 @@ func _mix_seed_lists() -> Array:
 	for word_list in _seed_word_lists:
 		word_count = min(word_count, word_list.size())
 	for word_list in _seed_word_lists:
-		var new_words: Array = []
+		var new_words := []
 		for word in word_list:
 			new_words.append(word)
 		new_words.shuffle()

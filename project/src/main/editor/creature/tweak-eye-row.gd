@@ -6,7 +6,7 @@ The eye uses two different colors, and requires a specialized tool.
 """
 
 # An allele property used internally when updating the creature. Not shown to the player
-var _allele: String = "eye_rgb"
+var _allele := "eye_rgb"
 
 export (NodePath) var creature_editor_path: NodePath
 

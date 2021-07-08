@@ -70,8 +70,8 @@ func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	
 	# default mode/difficulty if the player hasn't played a level recently
-	var current_mode: String = "Ultra"
-	var current_difficulty: String = "Normal"
+	var current_mode := "Ultra"
+	var current_difficulty := "Normal"
 	
 	for category_obj in LEVEL_CATEGORIES:
 		var category: Array = category_obj

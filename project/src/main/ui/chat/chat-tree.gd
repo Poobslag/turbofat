@@ -44,7 +44,7 @@ var meta: Dictionary
 # tree of chat event objects
 # key: chat id (String)
 # value: array of sequential ChatEvent objects for a particular chat sequence
-var events: Dictionary = {}
+var events := {}
 
 # a specific location where this conversation takes place, if any
 var location_id: String
@@ -54,7 +54,7 @@ var location_id: String
 #
 # key: creature id
 # value: spawn id
-var spawn_locations: Dictionary = {}
+var spawn_locations := {}
 
 # current position in this chat tree
 var _position := Position.new()

@@ -226,7 +226,7 @@ A horizontal box results in multiple duplicate box ints being added. This is by 
 bonuses for horizontal boxes, as they're less efficient.
 """
 func _box_ints(y: int) -> Array:
-	var box_ints: Array = []
+	var box_ints := []
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var autotile_coord := _tile_map.get_cell_autotile_coord(x, y)
 		var right_autotile_coord := _tile_map.get_cell_autotile_coord(x + 1, y)

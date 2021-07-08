@@ -64,7 +64,7 @@ func save_curve(value: bool) -> void:
 				> stepify(float(curve_defs[fatness_index].fatness), 0.01):
 		fatness_index += 1
 	
-	var new_entry: Dictionary = {
+	var new_entry := {
 		"fatness": creature_visuals.visual_fatness,
 		"curve_def": []
 	}

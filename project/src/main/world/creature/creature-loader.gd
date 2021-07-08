@@ -154,7 +154,7 @@ Returns a CreatureCurve for drawing belly colors for a type of body.
 """
 func new_belly(body_key: String, body_colors_key: String) -> CreatureCurve:
 	var result: CreatureCurve
-	var key: String = "%s %s" % [body_key, body_colors_key]
+	var key := "%s %s" % [body_key, body_colors_key]
 	if _belly_scenes.has(key):
 		result = _belly_scenes[key].instance()
 	return result

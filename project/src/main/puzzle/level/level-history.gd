@@ -128,7 +128,7 @@ func prune(level_id: String) -> void:
 		return
 	
 	# collect the best scores, but reinsert the newest score at index 0 for prev_result()
-	var best: Dictionary = {}
+	var best := {}
 	for result in best_results(level_id, false) + best_results(level_id, true):
 		best[result] = ""
 	best.erase(rank_results[level_id][0])

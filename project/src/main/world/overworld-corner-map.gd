@@ -11,7 +11,7 @@ tilemap fills in the holes.
 # 
 # key: (int) tile index which should be covered with a corner cover
 # value: (Vector2) autotile coordinate of the corner cover
-export (Dictionary) var cornerable_tiles: Dictionary = {}
+export (Dictionary) var cornerable_tiles := {}
 
 onready var _parent_map: TileMap = get_parent()
 

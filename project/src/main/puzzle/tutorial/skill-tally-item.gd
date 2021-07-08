@@ -98,7 +98,7 @@ func _refresh_puzzle() -> void:
 Returns the signal names for a node.
 """
 static func _get_signal_names(object: Object) -> Dictionary:
-	var result: Dictionary = {}
+	var result := {}
 	for signal_dict in object.get_signal_list():
 		result[signal_dict.name] = signal_dict.name
 	return result

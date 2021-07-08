@@ -7,13 +7,13 @@ Pieces the player is given.
 var ordered_start: bool = false
 
 # pieces to prepend to the piece queue before a game begins. these pieces are shuffled
-var start_types: Array = []
+var start_types := []
 
 # piece types to choose from. if empty, reverts to the default 8 types (jlopqtuv)
-var types: Array = []
+var types := []
 
 func from_json_string_array(json: Array) -> void:
-	var types_by_json_string: Dictionary = {
+	var types_by_json_string := {
 		"piece_j": PieceTypes.piece_j,
 		"piece_l": PieceTypes.piece_l,
 		"piece_o": PieceTypes.piece_o,

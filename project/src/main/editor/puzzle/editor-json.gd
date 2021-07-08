@@ -47,11 +47,11 @@ Refreshes our json text based on the tilemap.
 """
 func refresh_json() -> void:
 	if can_parse_json():
-		var new_json_tiles: Array = []
+		var new_json_tiles := []
 		for used_cell in _tile_map.get_used_cells():
 			var autotile_coord: Vector2 = _tile_map.get_cell_autotile_coord(used_cell.x, used_cell.y)
 			var tile_index: int = _tile_map.get_cellv(used_cell)
-			var json_tile: Dictionary = {
+			var json_tile := {
 				"pos": "%s %s" % [used_cell.x, used_cell.y],
 				"tile": "%s %s %s" % [tile_index, autotile_coord.x, autotile_coord.y]
 			}
