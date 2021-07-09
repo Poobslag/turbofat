@@ -87,7 +87,7 @@ func test_cutscene_metadata() -> void:
 	assert_eq(chat_tree.get_event().meta, ["creature-exit john", "creature-exit jane"])
 
 
-func test_cutscene_self_chat() -> void:
+func test_cutscene_thought() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_META)
 	chat_tree.advance()
 	var event := chat_tree.get_event()
