@@ -17,72 +17,137 @@ then
 fi
 
 # functions missing return type
-grep -R -n "^func.*):$" --include="*.gd" project/src
+RESULT=$(grep -R -n "^func.*):$" --include="*.gd" project/src)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Functions missing return type:"
+  echo "$RESULT"
+fi
 
 # long lines
-grep -R -n "^.\{120,\}$" --include="*.gd" project/src
-grep -R -n "^	.\{116,\}$" --include="*.gd" project/src
-grep -R -n "^		.\{112,\}$" --include="*.gd" project/src
-grep -R -n "^			.\{108,\}$" --include="*.gd" project/src
-grep -R -n "^				.\{104,\}$" --include="*.gd" project/src
-grep -R -n "^					.\{100,\}$" --include="*.gd" project/src
+RESULT=""
+# cannot split a string literal across multiple lines in bash; must use a variable
+REGEX="\(^.\{120,\}$"
+REGEX+="\|^"$'\t'"{1}.\{116,\}$"
+REGEX+="\|^"$'\t'"{2}.\{112,\}$"
+REGEX+="\|^"$'\t'"{3}.\{108,\}$"
+REGEX+="\|^"$'\t'"{4}.\{104,\}$"
+REGEX+="\|^"$'\t'"{5}.\{100,\}$\)"
+RESULT="${RESULT}$(grep -R -n "$REGEX" --include="dna-utils.gd" project/src)"
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Long lines:"
+  echo "$RESULT"
+fi
 
 # whitespace at the start of a line. includes a list of whitelisted places where leading whitespace is acceptable
-grep -R -n "^\s* [^\s]" --include="*.gd" project/src \
-  | grep -v "test-piece-kicks-t.gd.*doesn't it look like a rose?"
+RESULT=$(grep -R -n "^\s* [^\s]" --include="*.gd" project/src \
+  | grep -v "test-piece-kicks-t.gd.*doesn't it look like a rose?")
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Whitespace at the start of a line:"
+  echo "$RESULT"
+fi
 
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
-grep -R -n "var [^:]* = " --include="*.gd" project/src \
+RESULT=$(grep -R -n "var [^:]* = " --include="*.gd" project/src \
   | grep -v " = parse_json(" \
   | grep -v "chat-event.gd.*var parsed_meta = json\.get.*" \
   | grep -v "level-settings.gd.*var new_value = old_value" \
   | grep -v "level-settings.gd.*var old_value = json\[old_key\]" \
   | grep -v "dna-loader.gd.*var property_value =" \
-  | grep -v "dna-loader.gd.*var shader_value ="
-
-# temporary files
-find project/src -name "*.TMP"
-find project/src -name "*.gd~"
-if [ "$CLEAN" ]
+  | grep -v "dna-loader.gd.*var shader_value =")
+if [ -n "$RESULT" ]
 then
-  # remove temporary files
-  find project/src -name "*.TMP" -exec rm {} +
-  find project/src -name "*.gd~" -exec rm {} +
+  echo ""
+  echo "Fields/variables missing type hint:"
+  echo "$RESULT"
 fi
 
-# files with incorrect capitalization
-find project/src -name "[A-Z]*.gd"
-find project/src -name "[a-z]*.tscn"
+# temporary files
+RESULT=$(find project/src -name "*.TMP" -o -name "*.gd~")
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Temporary files:"
+  echo "$RESULT"
+  if [ "$CLEAN" ]
+  then
+    # remove temporary files
+    find project/src \( -name "*.TMP" -o -name "*.gd~" \) -exec rm {} +
+    echo "...Temporary files deleted."
+  fi
+fi
+
+# filenames with bad capitalization
+RESULT=$(find project/src -name "[A-Z]*.gd" -o -name "[a-z]*.tscn")
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Filenames with bad capitalization:"
+  echo "$RESULT"
+fi
 
 # project settings which are enabled temporarily, but shouldn't be pushed
-grep "emulate_touch_from_mouse=true" project/project.godot 
-grep "window/vsync/use_vsync=false" project/project.godot
-if [ "$CLEAN" ]
+RESULT=
+RESULT=${RESULT}$(grep "emulate_touch_from_mouse=true" project/project.godot)
+RESULT=${RESULT}$(grep "window/vsync/use_vsync=false" project/project.godot)
+if [ -n "$RESULT" ]
 then
-  # unset project settings
-  sed -i "/emulate_touch_from_mouse=true/d" project/project.godot
-  sed -i "/window\/vsync\/use_vsync=false/d" project/project.godot
+  echo ""
+  echo "Temporary project settings:"
+  echo "$RESULT"
+  if [ "$CLEAN" ]
+  then
+    # unset project settings
+    sed -i "/emulate_touch_from_mouse=true/d" project/project.godot
+    sed -i "/window\/vsync\/use_vsync=false/d" project/project.godot
+    echo "...Temporary settings reverted."
+  fi
 fi
 
 # enabled creature tool scripts; these should be disabled before merging
-grep -lR "^tool #uncomment to view creature in editor" project/src/main/world/creature
-if [ "$CLEAN" ]
+RESULT=$(grep -lR "^tool #uncomment to view creature in editor" project/src/main/world/creature)
+if [ -n "$RESULT" ]
 then
-  # disable creature tool scripts
-  ./edit-creature.sh off
+  echo ""
+  echo "Enabled creature tool scripts:"
+  echo "$RESULT"
+  if [ "$CLEAN" ]
+  then
+    # disable creature tool scripts
+    ./edit-creature.sh off
+    echo "...Scripts disabled."
+  fi
 fi
 
 # print statements that got left in by mistake
-git diff master | grep print\(
+RESULT=$(git diff master | grep print\()
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Print statements:"
+  echo "$RESULT"
+fi
 
 # non-ascii characters in chat files
-grep -R -n "[…’“”]" --include="*.chat" project/assets
-if [ "$CLEAN" ]
+RESULT=$(grep -R -n "[…’“”]" --include="*.chat" project/assets)
+if [ -n "$RESULT" ]
 then
-  # replace non-ascii characters with ascii replacements
-  find project/assets -name "*.chat" -exec sed -i "s/[…]/.../g" {} +
-  find project/assets -name "*.chat" -exec sed -i "s/[’]/\'/g" {} +
-  find project/assets -name "*.chat" -exec sed -i "s/[“”]/\"/g" {} +
+  echo ""
+  echo "Non-ascii characters in chat files:"
+  echo "$RESULT"
+  if [ "$CLEAN" ]
+  then
+    # replace non-ascii characters with ascii replacements
+    find project/assets -name "*.chat" -exec sed -i "s/[…]/.../g" {} +
+    find project/assets -name "*.chat" -exec sed -i "s/[’]/\'/g" {} +
+    find project/assets -name "*.chat" -exec sed -i "s/[“”]/\"/g" {} +
+    echo "...Non-ascii characters replaced."
+  fi
 fi
 
 # sort signal connections. Workaround for Godot #35084
@@ -91,6 +156,7 @@ if [ "$CLEAN" ]
 then
   while read -r IN_FILE
   do
+    echo ""
     echo "Sorting signal connections in $IN_FILE..."
     OUT_FILE="$IN_FILE"~
 
