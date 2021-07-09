@@ -42,11 +42,11 @@ func _on_StartButton_pressed() -> void:
 	var cutscene_prefix := StringUtils.substring_before_last(_open_input.value, "_")
 	var cutscene_index := int(StringUtils.substring_after_last(_open_input.value, "_"))
 	CurrentLevel.set_launched_level(cutscene_prefix)
-	CurrentLevel.cutscene_force = true
+	CurrentLevel.cutscene_force = CurrentLevel.CutsceneForce.PLAY
 	
 	if cutscene_index >= 0 and cutscene_index < 100:
 		# launch 'before level' cutscene
-		CurrentLevel.push_preroll_trail(true)
+		CurrentLevel.push_preroll_trail()
 	elif cutscene_index >= 100 and cutscene_index < 200:
 		# launch 'after level' cutscene
 		CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.AFTER

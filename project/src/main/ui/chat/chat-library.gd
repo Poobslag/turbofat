@@ -50,15 +50,25 @@ func chat_tree_for_chat_id(creature_def: CreatureDef, chat_id: String) -> ChatTr
 
 """
 Returns the chat tree for the cutscene which plays before the current level.
+
+Returns null if the current level does not have a preroll cutscene.
 """
 func chat_tree_for_preroll(level_id: String) -> ChatTree:
+	if not has_preroll(level_id):
+		return null
+	
 	return chat_tree_from_file(_preroll_path(level_id))
 
 
 """
 Returns the chat tree for the cutscene which plays after the current level.
+
+Returns null if the current level does not have a postroll cutscene.
 """
 func chat_tree_for_postroll(level_id: String) -> ChatTree:
+	if not has_postroll(level_id):
+		return null
+	
 	return chat_tree_from_file(_postroll_path(level_id))
 
 
@@ -234,29 +244,6 @@ func add_mega_lull_characters(s: String) -> String:
 	# remove lull character from the end of the line
 	transformer.transformed = transformer.transformed.trim_suffix("/")
 	return transformer.transformed
-
-
-"""
-Returns 'true' if the specified cutscene should be played.
-
-We skip cutscenes if the player's seen them already, or if its 'skip_if' method is met.
-
-This result can be overridden elsewhere by player settings. This method itself does not incorporate any player
-settings, if the player has decided to skip or play all cutscenes.
-"""
-func should_play_cutscene(chat_tree: ChatTree) -> bool:
-	var result := true
-	if not chat_tree:
-		# return 'false' to account for levels without cutscenes
-		result = false
-	elif PlayerData.chat_history.is_chat_finished(chat_tree.history_key):
-		# skip repeated cutscenes
-		result = false
-	elif chat_tree.meta and chat_tree.meta.get("skip_if") \
-			and BoolExpressionEvaluator.evaluate(chat_tree.meta.get("skip_if")):
-		# skip cutscenes if their 'skip_if' condition is met
-		result = false
-	return result
 
 
 func _creature_chat_path(creature_id: String, chat_id: String) -> String:

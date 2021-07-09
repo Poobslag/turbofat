@@ -85,7 +85,7 @@ func _will_play_preroll(settings: LevelSettings) -> bool:
 	if not ChatLibrary.has_preroll(settings.id):
 		return false
 	
-	return ChatLibrary.should_play_cutscene(ChatLibrary.chat_tree_for_preroll(settings.id))
+	return CurrentLevel.should_play_cutscene(ChatLibrary.chat_tree_for_preroll(settings.id), true)
 
 
 """
@@ -95,7 +95,7 @@ func _will_play_postroll(settings: LevelSettings) -> bool:
 	if not ChatLibrary.has_postroll(settings.id):
 		return false
 	
-	return ChatLibrary.should_play_cutscene(ChatLibrary.chat_tree_for_postroll(settings.id))
+	return CurrentLevel.should_play_cutscene(ChatLibrary.chat_tree_for_postroll(settings.id), true)
 
 
 func _on_pressed() -> void:
