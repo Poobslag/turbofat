@@ -154,9 +154,9 @@ fi
 # https://github.com/godotengine/godot/issues/35084
 if [ "$CLEAN" ]
 then
+  echo ""
   while read -r IN_FILE
   do
-    echo ""
     echo "Sorting signal connections in $IN_FILE..."
     OUT_FILE="$IN_FILE"~
 
