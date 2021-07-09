@@ -96,32 +96,46 @@ func switch_level(new_settings: LevelSettings) -> void:
 	emit_signal("settings_changed")
 
 
-"""
-Launches a cutscene for the previously specified 'launched level' settings.
 
-A 'cutscene' is a set of chat lines and actions, which sometimes need to take place at a specific location. By default,
-the cutscene will only be launched if the level's cutscene specifies a location_id, because it's otherwise assumed that
-the level's cutscene could just take place wherever the player is currently standing. However, the cutscene can be
-forced to activate with the optional 'force' parameter.
+"""
+Returns 'true' if the specified cutscene should be played.
+
+We skip cutscenes if the player's seen them already, or if its 'skip_if' condition is met. This can be overridden with
+the 'cutscene_force' field which the player can configure on the level select screen.
 
 Parameters:
-	'force': (Optional) If true, the cutscene will play even if it does not specify a location_id
-
-Returns:
-	'true' if the cutscene was launched, or 'false' if the cutscene was not found or did not specify a location id
+	'chat_tree': The cutscene to evaluate.
+	
+	'ignore_player_preferences': If 'true', the player's preferences will be ignored, and the method will only
+		check whether the player's seen the cutscene and whether its 'skip_if' condition is met.
 """
-func push_preroll_trail(force: bool = false) -> bool:
-	var result := false
-	
-	var chat_tree: ChatTree
-	if level_id and ChatLibrary.has_preroll(level_id):
-		chat_tree = ChatLibrary.chat_tree_for_preroll(level_id)
-
-	if chat_tree and (chat_tree.location_id or force):
-		SceneTransition.push_trail(chat_tree.cutscene_scene_path())
+func should_play_cutscene(chat_tree: ChatTree, ignore_player_preferences = false) -> bool:
+	var result := true
+	if not chat_tree:
+		# return 'false' to account for levels without cutscenes
+		result = false
+	elif not ignore_player_preferences and cutscene_force == CutsceneForce.SKIP:
+		# player wants to skip this cutscene
+		result = false
+	elif not ignore_player_preferences and cutscene_force == CutsceneForce.PLAY:
+		# player wants to play this cutscene
 		result = true
-	
+	elif PlayerData.chat_history.is_chat_finished(chat_tree.history_key):
+		# skip repeated cutscenes
+		result = false
+	elif chat_tree.meta and chat_tree.meta.get("skip_if") \
+			and BoolExpressionEvaluator.evaluate(chat_tree.meta.get("skip_if")):
+		# skip cutscenes if their 'skip_if' condition is met
+		result = false
 	return result
+
+
+"""
+Launches a cutscene for the previously specified 'launched level' settings.
+"""
+func push_preroll_trail() -> void:
+	var chat_tree := ChatLibrary.chat_tree_for_preroll(level_id)
+	SceneTransition.push_trail(chat_tree.cutscene_scene_path())
 
 
 """
