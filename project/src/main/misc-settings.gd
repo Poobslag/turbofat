@@ -4,7 +4,7 @@ Manages miscellaneous settings such as language.
 """
 
 # Whether cutscenes should play by default.
-var cutscene_force: int = CurrentLevel.CutsceneForce.NONE
+var cutscene_force: int = Levels.CutsceneForce.NONE
 
 """
 Resets the miscellaneous settings to their default values.
@@ -21,7 +21,7 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	cutscene_force = json.get("cutscene_force", CurrentLevel.CutsceneForce.NONE)
+	cutscene_force = json.get("cutscene_force", Levels.CutsceneForce.NONE)
 	
 	if json.has("locale"):
 		TranslationServer.set_locale(json.get("locale"))

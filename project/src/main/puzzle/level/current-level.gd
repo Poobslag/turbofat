@@ -15,12 +15,6 @@ enum CutsceneState {
 	AFTER, # the level has been finished successfully. The player didn't lose or give up
 }
 
-enum CutsceneForce {
-	NONE, # do not force the cutscene to play or skip
-	PLAY, # force the cutscene to play, even if it is a repeat
-	SKIP, # force the cutscene to skip, even if it has never been seen
-}
-
 # If 'true' then the level is one which the player might keep retrying, even after clearing it.
 # This is especially true for practice levels such as the 3 minute sprint level.
 var keep_retrying := false
@@ -45,7 +39,7 @@ var chef_id: String
 var cutscene_state: int = CutsceneState.NONE setget set_cutscene_state
 
 # Tracks whether or not the player wants to play/skip this level's cutscene.
-var cutscene_force: int = CutsceneForce.NONE
+var cutscene_force: int = Levels.CutsceneForce.NONE
 
 """
 Unsets all of the 'launched level' data.
@@ -71,15 +65,14 @@ func set_launched_level(new_level_id: String) -> void:
 	if level_id:
 		level_lock = LevelLibrary.level_lock(level_id)
 	
+	set_cutscene_state(CutsceneState.BEFORE if level_lock else CutsceneState.NONE)
+	cutscene_force = Levels.CutsceneForce.NONE
+	
 	if level_lock:
-		set_cutscene_state(CutsceneState.BEFORE)
-		cutscene_force = CutsceneForce.NONE
 		creature_id = level_lock.creature_id
 		customer_ids = level_lock.customer_ids
 		chef_id = level_lock.chef_id
 	else:
-		set_cutscene_state(CutsceneState.NONE)
-		cutscene_force = CutsceneForce.NONE
 		creature_id = ""
 		customer_ids = []
 		chef_id = ""
@@ -94,7 +87,6 @@ func start_level(new_settings: LevelSettings) -> void:
 func switch_level(new_settings: LevelSettings) -> void:
 	settings = new_settings
 	emit_signal("settings_changed")
-
 
 
 """
@@ -114,10 +106,10 @@ func should_play_cutscene(chat_tree: ChatTree, ignore_player_preferences = false
 	if not chat_tree:
 		# return 'false' to account for levels without cutscenes
 		result = false
-	elif not ignore_player_preferences and cutscene_force == CutsceneForce.SKIP:
+	elif not ignore_player_preferences and cutscene_force == Levels.CutsceneForce.SKIP:
 		# player wants to skip this cutscene
 		result = false
-	elif not ignore_player_preferences and cutscene_force == CutsceneForce.PLAY:
+	elif not ignore_player_preferences and cutscene_force == Levels.CutsceneForce.PLAY:
 		# player wants to play this cutscene
 		result = true
 	elif PlayerData.chat_history.is_chat_finished(chat_tree.history_key):

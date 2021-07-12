@@ -42,7 +42,7 @@ func _on_StartButton_pressed() -> void:
 	var cutscene_prefix := StringUtils.substring_before_last(_open_input.value, "_")
 	var cutscene_index := int(StringUtils.substring_after_last(_open_input.value, "_"))
 	CurrentLevel.set_launched_level(cutscene_prefix)
-	CurrentLevel.cutscene_force = CurrentLevel.CutsceneForce.PLAY
+	CurrentLevel.cutscene_force = Levels.CutsceneForce.PLAY
 	
 	if cutscene_index >= 0 and cutscene_index < 100:
 		# launch 'before level' cutscene

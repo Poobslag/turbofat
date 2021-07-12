@@ -54,13 +54,6 @@ signal combo_ended
 # emitted when the current piece can't be placed in the _playfield
 signal topped_out
 
-enum Result {
-	NONE, # The player didn't place any pieces.
-	WON, # The player was successful.
-	FINISHED, # The player survived until the end.
-	LOST, # The player gave up or failed.
-}
-
 const DELAY_NONE := 0.00
 const DELAY_SHORT := 2.35
 const DELAY_LONG := 4.70
@@ -159,11 +152,11 @@ func end_game() -> void:
 	emit_signal("game_ended")
 	var yield_duration: float
 	match end_result():
-		Result.FINISHED, Result.LOST:
+		Levels.Result.FINISHED, Levels.Result.LOST:
 			yield_duration = 2.2
-		Result.WON:
+		Levels.Result.WON:
 			yield_duration = 4.2
-		Result.NONE:
+		Levels.Result.NONE:
 			yield_duration = 0.0
 	yield(get_tree().create_timer(yield_duration), "timeout")
 	emit_signal("after_game_ended")
@@ -301,13 +294,13 @@ func set_combo(new_combo: int) -> void:
 
 func end_result() -> int:
 	if level_performance.pieces == 0:
-		return Result.NONE
+		return Levels.Result.NONE
 	elif level_performance.lost:
-		return Result.LOST
+		return Levels.Result.LOST
 	elif MilestoneManager.milestone_met(CurrentLevel.settings.success_condition):
-		return Result.WON
+		return Levels.Result.WON
 	else:
-		return Result.FINISHED
+		return Levels.Result.FINISHED
 
 
 func before_piece_written() -> void:

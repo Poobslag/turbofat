@@ -384,6 +384,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/level-triggers.gd"
 }, {
+"base": "Reference",
+"class": "Levels",
+"language": "GDScript",
+"path": "res://src/main/puzzle/level/levels.gd"
+}, {
 "base": "Node",
 "class": "LineClearer",
 "language": "GDScript",
@@ -860,6 +865,7 @@ _global_script_class_icons={
 "LevelTrigger": "",
 "LevelTriggerEffect": "",
 "LevelTriggers": "",
+"Levels": "",
 "LineClearer": "",
 "LockAlleleButton": "",
 "LoseConditionRules": "",
