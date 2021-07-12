@@ -498,6 +498,7 @@ position = Vector2( 2946.34, 823.922 )
 shadow_scale = 1.2
 
 [node name="ButtercupSign" parent="World/Obstacles" instance=ExtResource( 48 )]
+position = Vector2( 2171, 809 )
 
 [node name="MarshHouse1" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 4634.93, 1161.59 )
@@ -556,6 +557,7 @@ player_spawn_id = "nw-player"
 sensei_spawn_id = "nw-sensei"
 
 [node name="MarshCrystal" parent="World/Obstacles" instance=ExtResource( 23 )]
+position = Vector2( 399, 700 )
 
 [node name="MarshCrystal2" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( -1469.98, 1670.85 )

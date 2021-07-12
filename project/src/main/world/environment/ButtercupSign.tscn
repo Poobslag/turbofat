@@ -15,7 +15,6 @@ shader_param/edge_fix_factor = 1.0
 extents = Vector2( 105, 10 )
 
 [node name="ButtercupSign" type="KinematicBody2D"]
-position = Vector2( 2171.2, 808.832 )
 script = ExtResource( 1 )
 shadow_scale = 1.1
 

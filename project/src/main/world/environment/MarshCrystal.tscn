@@ -15,7 +15,6 @@ shader_param/edge_fix_factor = 1.0
 extents = Vector2( 24, 12 )
 
 [node name="MarshCrystal" type="KinematicBody2D"]
-position = Vector2( 399, 700 )
 script = ExtResource( 1 )
 shadow_scale = 0.4
 chat_path = "res://assets/main/chat/marsh-crystal.chat"
