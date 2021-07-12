@@ -82,6 +82,17 @@ func test_chatevent_meta() -> void:
 	assert_eq(chat_tree.get_event().meta, ["creature-exit john", "creature-exit jane"])
 
 
+func test_chatevent_meta_orientation() -> void:
+	var chat_tree := _chat_tree_from_file(CUTSCENE_META)
+	chat_tree.advance()
+	chat_tree.advance()
+	chat_tree.advance()
+	var event := chat_tree.get_event()
+	
+	assert_eq(event.text, "Oh? Is someone there?")
+	assert_eq(event.meta, ["creature-orientation john 1"])
+
+
 func test_cutscene_thought() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_META)
 	chat_tree.advance()

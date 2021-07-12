@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/main/world/environment/overworld-obstacle.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/buttercup-sign.gd" type="Script" id=1]
 [ext_resource path="res://src/main/outline.shader" type="Shader" id=2]
 [ext_resource path="res://assets/main/world/environment/buttercup-sign.png" type="Texture" id=3]
 
@@ -14,7 +14,9 @@ shader_param/edge_fix_factor = 1.0
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 105, 10 )
 
-[node name="ButtercupSign" type="KinematicBody2D"]
+[node name="ButtercupSign" type="KinematicBody2D" groups=[
+"chattables",
+]]
 script = ExtResource( 1 )
 shadow_scale = 1.1
 
@@ -27,3 +29,6 @@ offset = Vector2( -275, -240 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
+
+[node name="ChatIconHook" type="RemoteTransform2D" parent="."]
+position = Vector2( 80, 0 )
