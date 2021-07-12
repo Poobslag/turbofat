@@ -1,3 +1,4 @@
+class_name OverworldObstacle
 extends KinematicBody2D
 """
 Something which blocks the player on the overworld, such as a tree or bush.

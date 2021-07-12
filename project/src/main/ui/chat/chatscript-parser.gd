@@ -113,6 +113,7 @@ class CharactersState extends AbstractState:
 	"""
 	Syntax:
 		skins, s, kitchen-9        - a character named 'skins' with an alias 's' spawns at kitchen-9
+		skins, s, !kitchen-9        - a character named 'skins' with an alias 's' spawns invisible at kitchen-9
 		skins, s                   - a character named 'skins' with an alias 's'
 		skins                      - a character named 'skins'
 	"""
@@ -304,6 +305,7 @@ class ChatState extends AbstractState:
 		elif " mood " in item:
 			# spira mood ^_^ -> creature-mood spira 7
 			var name := StringUtils.substring_before(item, " mood ")
+			name = _unalias(name)
 			var mood := StringUtils.substring_after(item, " mood ")
 			result = "creature-mood %s %s" % [name, MOOD_PREFIXES[mood]]
 		return result
@@ -326,6 +328,8 @@ class ChatState extends AbstractState:
 const CHATSCRIPT_VERSION := "2476"
 
 # Emoticons which can appear at the start of a chat line to define its mood
+# key: String emoji representing a chatscript mood
+# value: int corresponding to an entry in ChatEvent.Mood
 const MOOD_PREFIXES := {
 	"._.": ChatEvent.Mood.DEFAULT,
 	"<_<": ChatEvent.Mood.AWKWARD0,
@@ -434,9 +438,4 @@ Using these clean short history keys has many benefits. Most notably they aren't
 change extensions.
 """
 func history_key_from_path(path: String) -> String:
-	var history_key := path
-	history_key = history_key.trim_suffix(".chat")
-	history_key = history_key.trim_prefix("res://assets/main/")
-	history_key = history_key.replace("creatures/primary", "chat")
-	history_key = StringUtils.hyphens_to_underscores(history_key)
-	return history_key
+	return ChatHistory.history_key_from_path(path)
