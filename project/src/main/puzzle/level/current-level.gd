@@ -6,14 +6,8 @@ Stores information about the current level.
 # emitted after the level has customized the puzzle's settings.
 signal settings_changed
 
-# emitted when the 'cutscene_state' field changes, such as when starting or clearing a level.
-signal cutscene_state_changed
-
-enum CutsceneState {
-	NONE, # the level hasn't been launched
-	BEFORE, # the level has been launched, but the hasn't yet been finished successfully
-	AFTER, # the level has been finished successfully. The player didn't lose or give up
-}
+# emitted when the 'best_result' field changes, such as when starting or clearing a level.
+signal best_result_changed
 
 # If 'true' then the level is one which the player might keep retrying, even after clearing it.
 # This is especially true for practice levels such as the 3 minute sprint level.
@@ -35,8 +29,8 @@ var customer_ids: Array
 # The creature who will be the chef for the level. If absent, the player will be the chef.
 var chef_id: String
 
-# Tracks whether or not the player has started or cleared the level.
-var cutscene_state: int = CutsceneState.NONE setget set_cutscene_state
+# Tracks when the player finishes a level.
+var best_result: int = Levels.Result.NONE setget set_best_result
 
 # Tracks whether or not the player wants to play/skip this level's cutscene.
 var cutscene_force: int = Levels.CutsceneForce.NONE
@@ -65,7 +59,7 @@ func set_launched_level(new_level_id: String) -> void:
 	if level_id:
 		level_lock = LevelLibrary.level_lock(level_id)
 	
-	set_cutscene_state(CutsceneState.BEFORE if level_lock else CutsceneState.NONE)
+	set_best_result(Levels.Result.NONE)
 	cutscene_force = Levels.CutsceneForce.NONE
 	
 	if level_lock:
@@ -123,14 +117,6 @@ func should_play_cutscene(chat_tree: ChatTree, ignore_player_preferences = false
 
 
 """
-Launches a cutscene for the previously specified 'launched level' settings.
-"""
-func push_preroll_trail() -> void:
-	var chat_tree := ChatLibrary.chat_tree_for_preroll(level_id)
-	SceneTransition.push_trail(chat_tree.cutscene_scene_path())
-
-
-"""
 Launches a puzzle scene with the previously specified 'launched level' settings.
 """
 func push_level_trail() -> void:
@@ -150,6 +136,6 @@ func push_level_trail() -> void:
 	SceneTransition.push_trail(Global.SCENE_PUZZLE)
 
 
-func set_cutscene_state(new_cutscene_state: int) -> void:
-	cutscene_state = new_cutscene_state
-	emit_signal("cutscene_state_changed")
+func set_best_result(new_best_result: int) -> void:
+	best_result = new_best_result
+	emit_signal("best_result_changed")

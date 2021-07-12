@@ -16,7 +16,7 @@ func _ready() -> void:
 	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
-	CurrentLevel.connect("cutscene_state_changed", self, "_on_Level_cutscene_state_changed")
+	CurrentLevel.connect("best_result_changed", self, "_on_Level_best_result_changed")
 	$MessageLabel.hide()
 	# grab focus so the player can start a new game or navigate with the keyboard
 	$Buttons/Start.grab_focus()
@@ -61,7 +61,7 @@ func _on_Settings_pressed() -> void:
 
 func _on_Back_pressed() -> void:
 	# disconnect signal to prevent the back button from changing its label
-	CurrentLevel.disconnect("cutscene_state_changed", self, "_on_Level_cutscene_state_changed")
+	CurrentLevel.disconnect("best_result_changed", self, "_on_Level_best_result_changed")
 	
 	emit_signal("back_button_pressed")
 
@@ -121,7 +121,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 	var buttons_to_focus := [$Buttons/Back, $Buttons/Start]
 	if CurrentLevel.keep_retrying:
 		buttons_to_focus.push_front($Buttons/Start)
-	elif CurrentLevel.cutscene_state != CurrentLevel.CutsceneState.AFTER:
+	elif not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
 		buttons_to_focus.push_front($Buttons/Start)
 	
 	# the start button changes its label after the player finishes the level
@@ -143,9 +143,9 @@ func _on_PuzzleState_after_game_ended() -> void:
 """
 The back buttons changes its label if the level is cleared.
 """
-func _on_Level_cutscene_state_changed() -> void:
-	match CurrentLevel.cutscene_state:
-		CurrentLevel.CutsceneState.AFTER:
+func _on_Level_best_result_changed() -> void:
+	match CurrentLevel.best_result:
+		Levels.Result.FINISHED, Levels.Result.WON:
 			$Buttons/Back.text = tr("Back") if CurrentLevel.keep_retrying else tr("Continue")
 		_:
 			$Buttons/Back.text = tr("Back")
