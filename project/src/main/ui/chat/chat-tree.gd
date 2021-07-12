@@ -38,7 +38,7 @@ const LOCATION_SCENE_PATHS_BY_ID := {
 # unique key to identify this conversation in the chat history
 var history_key: String
 
-# metadata including whether the chat event is 'filler' or 'notable'
+# metadata including whether the chat event is 'filler', 'notable' or 'inplace'
 var meta: Dictionary
 
 # tree of chat event objects

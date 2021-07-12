@@ -42,8 +42,7 @@ func _on_StartButton_pressed() -> void:
 	_flags_input.apply_flags()
 	
 	var cutscene_prefix := StringUtils.substring_before_last(_open_input.value, "_")
-	var path := "res://assets/main/%s.chat" \
-			% [StringUtils.underscores_to_hyphens(_open_input.value)]
+	var path := ChatHistory.path_from_history_key(_open_input.value)
 	var chat_tree := ChatLibrary.chat_tree_from_file(path)
 	CurrentLevel.set_launched_level(cutscene_prefix)
 	

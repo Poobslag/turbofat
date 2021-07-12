@@ -1,0 +1,45 @@
+{"version": "2476", "inplace": true}
+
+[location]
+outdoors
+
+[characters]
+player, p1, buttercup-10
+sensei, s1, buttercup-8
+diota, d, buttercup-2
+
+d: -_- Oh hello. Did you need something?
+[butts-up] Butt's up with you
+[you-fixed-your-sign] You fixed your sign?
+[are-you-out-of-business] Are you out of business yet
+
+[butts-up]
+p1: ^O^ Hello! Butt's up with you?
+d: /._. Butt's... Butt's up? What?
+p1: <__< Oh! You fixed your ‘butt up cafe' sign. Now my joke doesn't work. Anyway, how's business?
+d: Right, we fixed that like a WEEK ago! ...But yeah, things have been weird!
+d: A bunch of our customers just... like... stopped showing up all of a sudden?
+[end]
+
+[you-fixed-your-sign]
+p1: /._. Oh, you fixed your sign!
+d: <_< Right, we fixed that like a WEEK ago! ...But yeah, things have been weird!
+d: A bunch of our customers just... like... stopped showing up all of a sudden?
+[end]
+
+[are-you-out-of-business]
+p1: >_< So are you out of business yet?
+d: <_< Ugh well. We fixed our sign last week, so at least the 'butt cafe' jokes have stopped.
+d: But a bunch of our customers just... like... stopped showing up all of a sudden?
+[end]
+
+[end]
+d: ._.; No idea why! And it's not like we have any of their contact info. So... yeah.
+s1: /._. Ah. That's just the worst. I wonder where they could have gone?
+d: /._. ...Yeah. Well. ...How about you, any new customers?
+s1: ^N^ No, no, don't worry. We're not stealing your customers.
+d: ^O^ Ha ha ha, Stealing our customers! ...No, ha ha!
+d: ^n^ No, um. I wasn't worried about that. I was just being polite.
+s1: <__< Oh! ...Well thank you.
+d: ^o^ Sorry. That probably shouldn't be as funny as it is. Ha ha ha.
+s1: <_< ...Your sign looks nice.

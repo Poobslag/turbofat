@@ -21,6 +21,10 @@ signal visible_chatters_changed()
 # emitted when we present the player with a chat choice
 signal showed_chat_choices
 
+# when starting an inplace conversation, all participants must be within this
+# radius. Otherwise a separate cutscene will launch.
+const MAX_INPLACE_CHAT_DISTANCE := 600
+
 # Characters involved in the current conversation. This includes the player, sensei and any other participants. We
 # try to keep them all in frame and facing each other.
 var chatters := []
@@ -231,6 +235,17 @@ func _apply_chat_event_meta(meta_item: String) -> void:
 			creature.set_orientation(orientation)
 
 
+func _start_cutscene(chat_tree: ChatTree) -> void:
+	CutsceneManager.enqueue_chat_tree(chat_tree)
+	
+	if cutscene:
+		# if we're already in a cutscene, we replace the current scene
+		CutsceneManager.replace_cutscene_trail()
+	else:
+		# if we're not in a cutscene, we push the cutscene on top of the overworld scene
+		CutsceneManager.push_cutscene_trail()
+
+
 func _on_ChatUi_pop_out_completed() -> void:
 	PlayerData.chat_history.add_history_item(_current_chat_tree.history_key)
 	
@@ -365,16 +380,33 @@ func _on_TalkButton_pressed() -> void:
 		if not chat_tree.location_id:
 			# if no location change is necessary, start a chat
 			start_chat(chat_tree, ChattableManager.focused_chattable)
-		else:
-			# if a location change is necessary, replace the current breadcrumb trail
-			CutsceneManager.enqueue_chat_tree(chat_tree)
+		elif chat_tree.location_id and chat_tree.meta.get("inplace", false):
+			# 'inplace' chats do not require a scene change as long as all participants are nearby
 			
-			if cutscene:
-				# if we're already in a cutscene, we replace the current scene
-				CutsceneManager.replace_cutscene_trail()
+			# verify the characters involved in the chat tree
+			var creature_ids := chat_tree.spawn_locations.keys()
+			var max_distance := 0
+			
+			# verify the distance of the characters in the chat tree
+			for creature_id in creature_ids:
+				var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
+				var distance: float
+				if not creature:
+					distance = 999999
+				else:
+					distance = Global.from_iso(ChattableManager.player.position) \
+							.distance_to(Global.from_iso(creature.position))
+				max_distance = max(distance, max_distance)
+			
+			if max_distance < MAX_INPLACE_CHAT_DISTANCE:
+				# if all chat participants are nearby, start a chat
+				start_chat(chat_tree, ChattableManager.focused_chattable)
 			else:
-				# if we're not in a cutscene, we push the cutscene on top of the overworld scene
-				CutsceneManager.push_cutscene_trail()
+				# if some chat participants are far away or absent, launch a cutscene
+				_start_cutscene(chat_tree)
+		else:
+			# if a location change is necessary, launch a cutscene
+			_start_cutscene(chat_tree)
 
 
 func _on_CellPhoneMenu_show() -> void:
