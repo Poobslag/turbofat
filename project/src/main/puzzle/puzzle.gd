@@ -233,7 +233,7 @@ func _on_PuzzleState_game_ended() -> void:
 		_:
 			if not PuzzleState.level_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
 	
-	if PuzzleState.end_result() in [PuzzleState.Result.FINISHED, PuzzleState.Result.WON]:
+	if PuzzleState.end_result() in [Levels.Result.FINISHED, Levels.Result.WON]:
 		CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.AFTER
 
 

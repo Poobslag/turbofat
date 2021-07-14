@@ -89,13 +89,13 @@ func _on_PuzzleState_after_level_changed() -> void:
 func _on_PuzzleState_game_ended() -> void:
 	var message: String
 	match PuzzleState.end_result():
-		PuzzleState.Result.NONE:
+		Levels.Result.NONE:
 			hide_message()
-		PuzzleState.Result.LOST:
+		Levels.Result.LOST:
 			message = tr("Game over")
-		PuzzleState.Result.FINISHED:
+		Levels.Result.FINISHED:
 			message = tr("Finish!")
-		PuzzleState.Result.WON:
+		Levels.Result.WON:
 			message = tr("You win!")
 	show_message(message)
 
@@ -126,7 +126,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 	
 	# the start button changes its label after the player finishes the level
 	match PuzzleState.end_result():
-		PuzzleState.Result.NONE:
+		Levels.Result.NONE:
 			# if they abort the level without playing it, the button doesn't change
 			pass
 		_:

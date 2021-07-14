@@ -34,9 +34,9 @@ func _ready() -> void:
 	connect("pressed", self, "_on_pressed")
 	_level_buttons.connect("unlocked_level_selected", self, "_on_LevelButtons_unlocked_level_selected")
 	match PlayerData.misc_settings.cutscene_force:
-		CurrentLevel.CutsceneForce.NONE: _cutscene_force = IMPLICIT_PLAY
-		CurrentLevel.CutsceneForce.PLAY: _cutscene_force = FORCE_PLAY
-		CurrentLevel.CutsceneForce.SKIP: _cutscene_force = FORCE_SKIP
+		Levels.CutsceneForce.NONE: _cutscene_force = IMPLICIT_PLAY
+		Levels.CutsceneForce.PLAY: _cutscene_force = FORCE_PLAY
+		Levels.CutsceneForce.SKIP: _cutscene_force = FORCE_SKIP
 	_refresh_cutscene_force()
 
 
@@ -71,11 +71,11 @@ func _refresh_cutscene_force() -> void:
 	# update the global cutscene_force setting
 	match _cutscene_force:
 		IMPLICIT_PLAY, IMPLICIT_SKIP:
-			PlayerData.misc_settings.cutscene_force = CurrentLevel.CutsceneForce.NONE
+			PlayerData.misc_settings.cutscene_force = Levels.CutsceneForce.NONE
 		FORCE_PLAY:
-			PlayerData.misc_settings.cutscene_force = CurrentLevel.CutsceneForce.PLAY
+			PlayerData.misc_settings.cutscene_force = Levels.CutsceneForce.PLAY
 		FORCE_SKIP:
-			PlayerData.misc_settings.cutscene_force = CurrentLevel.CutsceneForce.SKIP
+			PlayerData.misc_settings.cutscene_force = Levels.CutsceneForce.SKIP
 
 
 """
