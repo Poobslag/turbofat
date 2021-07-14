@@ -12,14 +12,14 @@ onready var _chat_icons: ChatIcons = get_node(chat_icons_path)
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 
 func _ready() -> void:
-	if Global.player_spawn_id:
-		move_creature_to_spawn(ChattableManager.player, Global.player_spawn_id)
-	
-	if Global.sensei_spawn_id:
-		move_creature_to_spawn(ChattableManager.sensei, Global.sensei_spawn_id)
-	
-	if CurrentLevel.cutscene_state != CurrentLevel.CutsceneState.NONE:
+	if CutsceneManager.is_front_chat_tree():
 		_launch_cutscene()
+	else:
+		if Global.player_spawn_id:
+			move_creature_to_spawn(ChattableManager.player, Global.player_spawn_id)
+		
+		if Global.sensei_spawn_id:
+			move_creature_to_spawn(ChattableManager.sensei, Global.sensei_spawn_id)
 	
 	$Camera.position = ChattableManager.player.position
 	ChattableManager.refresh_creatures()
@@ -43,14 +43,7 @@ func _launch_cutscene() -> void:
 		cutscene_creature = _add_creature(CurrentLevel.creature_id)
 	
 	# get the location, spawn location data
-	var chat_tree: ChatTree
-	match CurrentLevel.cutscene_state:
-		CurrentLevel.CutsceneState.BEFORE:
-			chat_tree = ChatLibrary.chat_tree_for_preroll(CurrentLevel.level_id)
-		CurrentLevel.CutsceneState.AFTER:
-			chat_tree = ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
-		_:
-			push_warning("Unexpected CurrentLevel.cutscene_state: %s" % [CurrentLevel.cutscene_state])
+	var chat_tree := CutsceneManager.pop_chat_tree()
 	
 	if not chat_tree.spawn_locations and cutscene_creature:
 		# apply a default position to the cutscene creature

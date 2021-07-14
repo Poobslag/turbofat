@@ -212,18 +212,33 @@ func _on_ChatUi_pop_out_completed() -> void:
 		if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 			# don't launch the level; go back to CutsceneDemo after playing the cutscene
 			SceneTransition.pop_trail()
-		elif CurrentLevel.cutscene_state == CurrentLevel.CutsceneState.BEFORE:
-			# pre-level chat or pre-level cutscene finished playing
+		elif cutscene:
+			# modify the overworld path and spawn IDs to preserve the player's position from the cutscene
+			Breadcrumb.trail[1] = _current_chat_tree.cutscene_scene_path()
+			CutsceneManager.assign_player_spawn_ids(_current_chat_tree)
 			
-			if cutscene:
-				# remove redundant overworld cutscenes from the breadcrumb trail
+			if CutsceneManager.is_front_level_id():
+				# continue to a level (preroll cutscene finished playing)
+				
+				# [menu > overworld_1 > cutscene] -> [menu > overworld_2 > puzzle]
 				Breadcrumb.trail.remove(0)
+				CurrentLevel.level_id = CutsceneManager.pop_level_id()
+				CurrentLevel.push_level_trail()
+			elif CutsceneManager.is_front_chat_tree():
+				# continue to another cutscene (first of multiple cutscenes finished playing)
+				
+				# [menu > overworld > cutscene_1] -> [menu > overworld > cutscene_2]
+				CutsceneManager.replace_cutscene_trail()
+			else:
+				# return to the overworld (postroll/misc cutscene finished playing)
+				
+				# [menu > overworld_1 > cutscene] -> [menu > overworld_2]
+				SceneTransition.pop_trail()
+		elif CurrentLevel.level_id:
+			# continue to a level (non-cutscene pre-level dialog finished playing)
 			
+				# [menu > overworld_1] -> [menu > overworld_2 > puzzle]
 			CurrentLevel.push_level_trail()
-		elif CurrentLevel.cutscene_state == CurrentLevel.CutsceneState.AFTER:
-			# ending cutscene finished playing
-			CurrentLevel.clear_launched_level()
-			SceneTransition.pop_trail()
 		else:
 			# if we're in a regular overworld conversation and not a cutscene,
 			# restore the ui so the player can interact again
@@ -319,11 +334,30 @@ func _on_TalkButton_pressed() -> void:
 			start_chat(chat_tree, ChattableManager.focused_chattable)
 		else:
 			# if a location change is necessary, launch a cutscene
-			CurrentLevel.push_preroll_trail()
+			CutsceneManager.enqueue_chat_tree(chat_tree)
+			CutsceneManager.enqueue_level(level_id)
+			
+			if cutscene:
+				# if we're already in a cutscene, we replace the current scene
+				CutsceneManager.replace_cutscene_trail()
+			else:
+				# if we're not in a cutscene, we push the cutscene on top of the overworld scene
+				CutsceneManager.push_cutscene_trail()
 	else:
-		# load the conversation and start a chat
 		var chat_tree := _focused_chattable_chat_tree()
-		start_chat(chat_tree, ChattableManager.focused_chattable)
+		if not chat_tree.location_id:
+			# if no location change is necessary, start a chat
+			start_chat(chat_tree, ChattableManager.focused_chattable)
+		else:
+			# if a location change is necessary, replace the current breadcrumb trail
+			CutsceneManager.enqueue_chat_tree(chat_tree)
+			
+			if cutscene:
+				# if we're already in a cutscene, we replace the current scene
+				CutsceneManager.replace_cutscene_trail()
+			else:
+				# if we're not in a cutscene, we push the cutscene on top of the overworld scene
+				CutsceneManager.push_cutscene_trail()
 
 
 func _on_CellPhoneMenu_show() -> void:

@@ -208,8 +208,13 @@ func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 	
 	var chat_tree := ChatLibrary.chat_tree_for_preroll(CurrentLevel.level_id)
 	if CurrentLevel.should_play_cutscene(chat_tree):
-		CurrentLevel.push_preroll_trail()
+		# [menu > overworld] -> [menu > overworld > cutscene]
+		
+		CutsceneManager.enqueue_chat_tree(chat_tree)
+		CutsceneManager.enqueue_level(settings.id)
+		CutsceneManager.push_cutscene_trail()
 	else:
+		# [menu > overworld] -> [menu > overworld > level]
 		CurrentLevel.push_level_trail()
 
 

@@ -40,17 +40,13 @@ func _on_StartButton_pressed() -> void:
 	_flags_input.apply_flags()
 	
 	var cutscene_prefix := StringUtils.substring_before_last(_open_input.value, "_")
-	var cutscene_index := int(StringUtils.substring_after_last(_open_input.value, "_"))
+	var path := "res://assets/main/puzzle/levels/cutscenes/%s.chat" \
+			% [StringUtils.underscores_to_hyphens(_open_input.value)]
+	var chat_tree := ChatLibrary.chat_tree_from_file(path)
 	CurrentLevel.set_launched_level(cutscene_prefix)
-	CurrentLevel.cutscene_force = Levels.CutsceneForce.PLAY
 	
-	if cutscene_index >= 0 and cutscene_index < 100:
-		# launch 'before level' cutscene
-		CurrentLevel.push_preroll_trail()
-	elif cutscene_index >= 100 and cutscene_index < 200:
-		# launch 'after level' cutscene
-		CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.AFTER
-		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
+	if chat_tree:
+		CutsceneManager.enqueue_chat_tree(chat_tree)
 		SceneTransition.push_trail(chat_tree.cutscene_scene_path())
 	else:
 		push_warning("Invalid cutscene path: %s" % [_open_input.value])

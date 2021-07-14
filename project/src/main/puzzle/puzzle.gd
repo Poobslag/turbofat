@@ -156,7 +156,7 @@ func _quit_puzzle() -> void:
 	
 	# determine whether the cutscene should be played
 	var play_cutscene := true
-	if CurrentLevel.cutscene_state != CurrentLevel.CutsceneState.AFTER:
+	if not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
 		# player didn't clear the level
 		play_cutscene = false
 	else:
@@ -164,11 +164,10 @@ func _quit_puzzle() -> void:
 	
 	if play_cutscene:
 		# insert cutscene into breadcrumb trail so it will show up after we pop the trail
+		CutsceneManager.enqueue_chat_tree(chat_tree)
 		Breadcrumb.trail.insert(1, chat_tree.cutscene_scene_path())
-	else:
-		CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.NONE
-		CurrentLevel.clear_launched_level()
-
+	
+	CurrentLevel.clear_launched_level()
 	PlayerData.creature_queue.clear()
 	SceneTransition.pop_trail()
 
@@ -233,8 +232,7 @@ func _on_PuzzleState_game_ended() -> void:
 		_:
 			if not PuzzleState.level_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
 	
-	if PuzzleState.end_result() in [Levels.Result.FINISHED, Levels.Result.WON]:
-		CurrentLevel.cutscene_state = CurrentLevel.CutsceneState.AFTER
+	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
 
 
 """
