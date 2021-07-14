@@ -170,7 +170,7 @@ func select_from_chat_selectors(chat_selectors: Array, creature_id: String, fill
 				result = filler_id
 				result_chat_age = chat_age
 			
-			if result and result_chat_age == -1:
+			if result and result_chat_age == ChatHistory.CHAT_AGE_NEVER:
 				break
 	
 	return result

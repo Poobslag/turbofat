@@ -70,6 +70,9 @@ func _launch_cutscene() -> void:
 	
 	yield(get_tree(), "idle_frame")
 	_overworld_ui.start_chat(chat_tree, cutscene_creature)
+	
+	if not chat_tree.spawn_locations and cutscene_creature:
+		_overworld_ui.make_chatters_face_eachother()
 
 
 """

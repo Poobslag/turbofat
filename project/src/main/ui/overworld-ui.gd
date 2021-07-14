@@ -95,10 +95,6 @@ func is_show_version() -> bool:
 Turn the the active chat participants towards each other, and make them face the camera.
 """
 func make_chatters_face_eachother() -> void:
-	if cutscene:
-		# don't automatically orient characters during cutscenes
-		return
-	
 	var chatter_bounding_box: Rect2
 	chatter_bounding_box = get_chatter_bounding_box([], [ChattableManager.player, ChattableManager.sensei])
 	if not chatter_bounding_box:
@@ -238,7 +234,11 @@ func _on_ChatUi_pop_out_completed() -> void:
 
 
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
-	make_chatters_face_eachother()
+	if cutscene:
+		# don't automatically orient characters during cutscenes
+		pass
+	else:
+		make_chatters_face_eachother()
 	
 	for meta_item_obj in chat_event.meta:
 		var meta_item: String = meta_item_obj
