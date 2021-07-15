@@ -20,6 +20,16 @@ signal before_scene_changed
 var trail := []
 
 """
+Initializes the trail to be empty except for the current scene.
+
+This is useful for demos and development where having an empty breadcrumb trail causes bugs. During regular play the
+breadcrumb trail should be initialized conventionally in the splash screen or menus.
+"""
+func initialize_trail() -> void:
+	trail = [get_tree().current_scene.filename]
+
+
+"""
 Navigates back one level in the breadcrumb trail.
 
 Pops the front path off of the breadcrumb trail. Emits a signal and changes the current scene.

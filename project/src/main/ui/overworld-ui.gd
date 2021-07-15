@@ -200,6 +200,32 @@ func _focused_chattable_chat_tree() -> ChatTree:
 	return _chat_tree_cache[focused_chattable]
 
 
+"""
+Applies the specified ChatEvent metadata to the scene.
+
+ChatEvents can include metadata making creatures appear, disappear, laugh or turn around. This method locates the
+creature referenced by the metadata and performs the appropriate action.
+"""
+func _apply_chat_event_meta(meta_item: String) -> void:
+	var meta_item_split := meta_item.split(" ")
+	match(meta_item_split[0]):
+		"creature-enter":
+			var creature_id := meta_item_split[1]
+			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
+			creature.fade_in()
+			emit_signal("visible_chatters_changed")
+		"creature-exit":
+			var creature_id := meta_item_split[1]
+			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
+			creature.fade_out()
+			creature.connect("fade_out_finished", self, "_on_Creature_fade_out_finished", [creature])
+		"creature-mood":
+			var creature_id: String = meta_item_split[1]
+			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
+			var mood: int = int(meta_item_split[2])
+			creature.play_mood(mood)
+
+
 func _on_ChatUi_pop_out_completed() -> void:
 	PlayerData.chat_history.add_history_item(_current_chat_tree.history_key)
 	
@@ -255,23 +281,9 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	else:
 		make_chatters_face_eachother()
 	
-	for meta_item_obj in chat_event.meta:
-		var meta_item: String = meta_item_obj
-		if meta_item.begins_with("creature-enter "):
-			var creature_id := StringUtils.substring_after(meta_item, "creature-enter ")
-			var entering_creature: Creature = ChattableManager.get_creature_by_id(creature_id)
-			entering_creature.fade_in()
-			emit_signal("visible_chatters_changed")
-		if meta_item.begins_with("creature-exit "):
-			var creature_id := StringUtils.substring_after(meta_item, "creature-exit ")
-			var exiting_creature: Creature = ChattableManager.get_creature_by_id(creature_id)
-			exiting_creature.fade_out()
-			exiting_creature.connect("fade_out_finished", self, "_on_Creature_fade_out_finished", [exiting_creature])
-		if meta_item.begins_with("creature-mood "):
-			var meta_item_split: Array = meta_item.split(" ")
-			var creature_id: String = meta_item_split[1]
-			var mood: int = int(meta_item_split[2])
-			ChattableManager.get_creature_by_id(creature_id).play_mood(mood)
+	for meta_item in chat_event.meta:
+		# Apply the chat event's metadata. This can make creatures appear, disappear, laugh or turn around
+		_apply_chat_event_meta(meta_item)
 	
 	# update the chatter's mood
 	var chatter: Creature = ChattableManager.get_creature_by_id(chat_event.who)

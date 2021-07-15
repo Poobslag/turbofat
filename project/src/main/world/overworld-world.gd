@@ -12,6 +12,11 @@ onready var _chat_icons: ChatIcons = get_node(chat_icons_path)
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 
 func _ready() -> void:
+	if not Breadcrumb.trail:
+		# For developers accessing the Overworld scene directly, we initialize a default Breadcrumb trail.
+		# For regular players the Breadcrumb trail will already be initialized by the menus.
+		Breadcrumb.initialize_trail()
+	
 	if CutsceneManager.is_front_chat_tree():
 		_launch_cutscene()
 	else:

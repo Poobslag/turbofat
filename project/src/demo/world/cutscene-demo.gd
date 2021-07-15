@@ -17,8 +17,10 @@ onready var _error_dialog := $Dialogs/Error
 onready var _open_dialog := $Dialogs/OpenFile
 
 func _ready() -> void:
+	# Initialize the Breadcrumb trail so that cutscenes will return to this demo after they finish.
+	Breadcrumb.initialize_trail()
+	
 	_load_demo_data()
-	Breadcrumb.trail = ["res://src/demo/world/CutsceneDemo.tscn"]
 	_start_button.grab_focus()
 
 

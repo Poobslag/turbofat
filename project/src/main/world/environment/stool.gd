@@ -1,5 +1,5 @@
 tool
-extends "res://src/main/world/environment/overworld-obstacle.gd"
+extends OverworldObstacle
 """
 A stool which appears on the overworld.
 
