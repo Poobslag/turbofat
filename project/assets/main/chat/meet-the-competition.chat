@@ -1,0 +1,59 @@
+{"version": "2476"}
+
+[location]
+outdoors
+
+[characters]
+player, p1, buttercup-10
+sensei, s1, buttercup-8
+richie, r, buttercup-6
+diota, d, !buttercup-2
+
+s1: Hmm, another restaurant this close!? I wonder if this is a part of the problem.
+ (player faces left)
+r: ^O^ What, this place? All they serve is that weird macrobiotic vegan stuff. You don't gotta worry about them.
+p1: /._. We... don't?
+r: I mean, I'm just thinking long term here.
+r: Bottom line is when people gotta pick between healthy food and garbage food, the garbage food always wins.
+s1: >__< ...
+r: <__< Y'know I mean. ...No offense.
+ (diota enters)
+d: ^_^/ Hello, can I um... Oh! ...Wait I've seen you around. You just opened that new "Turbo Fat" gym a few doors down, right?
+ (player faces right)
+r: /._. Yeah it's, actually it's a restaurant!
+ (richie faces right)
+d: /._. Turbo Fat... restaurant? ... ... ...Did you name it that on purpose?
+s1: >__< Well it's a better name than "Butt Up Cafe".
+ (richie mood ^o^)
+d: -__- Augh I KNOW! It's obviously "Buttercup Cafe" but... This crystal weed is out of control.
+d: It springs up everywhere, we're calling a landscape company to come clear it up.
+s1: ^_^ Ahh, haha. Well. Best of luck.
+d: /._. Yeah! So um, anyways nice meeting you, and just let us know if you ever need any, um...
+p1: /._. ???
+d: <_< Sorry! This is awkward but, I realized mid-sentence that I didn't want to... help you.
+d: Like, that makes sense, right? I'm not being selfish?
+[rude] Wow! Rude
+[umm] ...
+[okay] That makes sense
+[fine] We won't help you either
+
+
+[umm]
+p1: <_< ...
+d: Sorry. Bye!
+ (diota exits)
+
+[okay]
+p1: ^y^ Yeah, that makes sense.
+d: Sorry. Bye!
+ (diota exits)
+
+[fine]
+p1: >_< So that's how it is? ...Fine, we don't want to help you either.
+d: Sorry. Bye!
+ (diota exits)
+
+[rude]
+p1: ._.; Wow! ...That's a little rude...
+d: Sorry. Bye!
+ (diota exits)

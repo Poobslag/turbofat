@@ -42,7 +42,7 @@ func _on_StartButton_pressed() -> void:
 	_flags_input.apply_flags()
 	
 	var cutscene_prefix := StringUtils.substring_before_last(_open_input.value, "_")
-	var path := "res://assets/main/puzzle/levels/cutscenes/%s.chat" \
+	var path := "res://assets/main/%s.chat" \
 			% [StringUtils.underscores_to_hyphens(_open_input.value)]
 	var chat_tree := ChatLibrary.chat_tree_from_file(path)
 	CurrentLevel.set_launched_level(cutscene_prefix)
@@ -56,12 +56,9 @@ func _on_StartButton_pressed() -> void:
 
 func _on_OpenFileDialog_file_selected(_path: String) -> void:
 	var full_path: String = _open_dialog.current_path
-	if full_path.begins_with("res://assets/main/puzzle/levels/cutscenes/") \
+	if full_path.begins_with("res://assets/main/") \
 			and full_path.ends_with(ChatLibrary.CHAT_EXTENSION):
-		full_path = full_path.trim_prefix("res://assets/main/puzzle/levels/cutscenes/")
-		full_path = full_path.trim_suffix(".chat")
-		full_path = StringUtils.hyphens_to_underscores(full_path)
-		_open_input.value = full_path
+		_open_input.value = ChatHistory.history_key_from_path(full_path)
 	else:
 		_error_dialog.dialog_text = "%s doesn't seem like the path to a cutscene file." % [full_path]
 		_error_dialog.popup_centered()

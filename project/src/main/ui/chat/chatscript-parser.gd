@@ -308,6 +308,12 @@ class ChatState extends AbstractState:
 			name = _unalias(name)
 			var mood := StringUtils.substring_after(item, " mood ")
 			result = "creature-mood %s %s" % [name, MOOD_PREFIXES[mood]]
+		elif " faces " in item:
+			# spira faces left -> creature-orientation spira 1
+			var name := StringUtils.substring_before(item, " faces ")
+			name = _unalias(name)
+			var orientation := StringUtils.substring_after(item, " faces ")
+			result = "creature-orientation %s %s" % [name, ORIENTATION_STRINGS[orientation]]
 		return result
 	
 	
@@ -366,6 +372,18 @@ const MOOD_PREFIXES := {
 	"^__^/": ChatEvent.Mood.WAVE1,
 	"^y^": ChatEvent.Mood.YES0,
 	"^Y^": ChatEvent.Mood.YES1,
+}
+
+# Different directions a creature can face
+# key: String representing a direction a creature can face
+# value: int corresponding to an entry in CreatureOrientation
+const ORIENTATION_STRINGS := {
+	"left": CreatureOrientation.SOUTHWEST,
+	"right": CreatureOrientation.SOUTHEAST,
+	"se": CreatureOrientation.SOUTHEAST,
+	"sw": CreatureOrientation.SOUTHWEST,
+	"nw": CreatureOrientation.NORTHWEST,
+	"ne": CreatureOrientation.NORTHEAST,
 }
 
 # parser headers which appear in square braces in the chatscript file

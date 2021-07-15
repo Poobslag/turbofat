@@ -224,6 +224,11 @@ func _apply_chat_event_meta(meta_item: String) -> void:
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			var mood: int = int(meta_item_split[2])
 			creature.play_mood(mood)
+		"creature-orientation":
+			var creature_id: String = meta_item_split[1]
+			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
+			var orientation: int = int(meta_item_split[2])
+			creature.set_orientation(orientation)
 
 
 func _on_ChatUi_pop_out_completed() -> void:

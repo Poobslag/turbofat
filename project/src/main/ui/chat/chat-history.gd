@@ -120,3 +120,25 @@ static func history_key_from_path(path: String) -> String:
 	history_key = history_key.replace("creatures/primary", "chat")
 	history_key = StringUtils.hyphens_to_underscores(history_key)
 	return history_key
+
+
+"""
+Converts a history key like 'chat/bones/filler_001' into a path like
+'res://assets/main/creatures/primary/bones/filler-001.chat'
+
+Parameters:
+	'history_key': The history key to translate
+	
+	'creature_key': (Optional) If 'true', the resulting resource path will be in the 'assets/main/creatures/primary'
+		subdirectory. Otherwise it will be in the higher-level 'assets/main' directory.
+
+Returns:
+	A resource path of a '.chat' file corresponding to the specified history key.
+"""
+static func path_from_history_key(history_key: String, creature_key: bool = false) -> String:
+	var path := history_key
+	path = StringUtils.underscores_to_hyphens(history_key)
+	if creature_key:
+		path = path.replace("chat", "creatures/primary")
+	path = "res://assets/main/%s.chat" % [path]
+	return path
