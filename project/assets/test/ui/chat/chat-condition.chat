@@ -1,18 +1,18 @@
 {"version": "2476"}
 
 boatricia: Hello, nice to meet you!
- (say_if not chat_finished chat/boatricia/hi)
+ (say_if not chat_finished creature/boatricia/hi)
 boatricia: Oh, I remember you!
- (say_if chat_finished chat/boatricia/hi)
+ (say_if chat_finished creature/boatricia/hi)
 player: Nice to meet you, too!
- (say_if not chat_finished chat/boatricia/hi)
+ (say_if not chat_finished creature/boatricia/hi)
 player: I remember you too!
- (say_if chat_finished chat/boatricia/hi)
+ (say_if chat_finished creature/boatricia/hi)
 player: I'd also like to say...
 [first-time]
- (link_if not chat_finished chat/boatricia/hi)
+ (link_if not chat_finished creature/boatricia/hi)
 [not-first-time]
- (link_if chat_finished chat/boatricia/hi)
+ (link_if chat_finished creature/boatricia/hi)
 [other]
 
 [first-time]

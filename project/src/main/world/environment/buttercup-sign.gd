@@ -9,5 +9,5 @@ func _ready() -> void:
 		set_chat_path(ChatHistory.path_from_history_key("chat/butt_up_sign"))
 	else:
 		# if the player hasn't seen the 'meet the competition' cutscene, we play a cutscene
-		set_chat_path(ChatHistory.path_from_history_key("chat/meet-the-competition"))
+		set_chat_path(ChatHistory.path_from_history_key("chat/meet_the_competition"))
 		set_meta("chat_bubble_type", ChatIcon.BubbleType.SPEECH)

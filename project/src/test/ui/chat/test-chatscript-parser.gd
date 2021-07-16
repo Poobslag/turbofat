@@ -142,7 +142,7 @@ func test_chat_condition() -> void:
 	assert_eq(chat_tree.get_event().links, ["first-time", "not-first-time", "other"])
 	assert_eq(chat_tree.get_event().enabled_link_indexes(), [0, 2])
 	
-	PlayerData.chat_history.add_history_item("chat/boatricia/hi")
+	PlayerData.chat_history.add_history_item("creature/boatricia/hi")
 	
 	chat_tree = _chat_tree_from_file(CHAT_CONDITION)
 	assert_eq(chat_tree.get_event().text, "Oh, I remember you!")

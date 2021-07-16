@@ -20,13 +20,13 @@ var _chat_selectors := [
 	},
 	{
 		"chat": "priority_001",
-		"available_if": "chat_finished chat/gurus750/trigger_001",
-		"prioritized_if": "chat_finished chat/gurus750/trigger_002"
+		"available_if": "chat_finished creature/gurus750/trigger_001",
+		"prioritized_if": "chat_finished creature/gurus750/trigger_002"
 	},
 	{
 		"chat": "priority_002",
-		"available_if": "chat_finished chat/gurus750/trigger_002",
-		"prioritized_if": "chat_finished chat/gurus750/trigger_002"
+		"available_if": "chat_finished creature/gurus750/trigger_002",
+		"prioritized_if": "chat_finished creature/gurus750/trigger_002"
 	},
 ]
 
@@ -37,11 +37,11 @@ var _filler_ids := ["filler_000", "filler_001"]
 func before_each() -> void:
 	PlayerData.chat_history.reset()
 	
-	PlayerData.chat_history.add_history_item("chat/gurus750/level_001")
-	PlayerData.chat_history.add_history_item("chat/gurus750/level_002")
-	PlayerData.chat_history.add_history_item("chat/gurus750/greeting_001")
-	PlayerData.chat_history.add_history_item("chat/gurus750/notable_001")
-	PlayerData.chat_history.add_history_item("chat/gurus750/notable_002")
+	PlayerData.chat_history.add_history_item("creature/gurus750/level_001")
+	PlayerData.chat_history.add_history_item("creature/gurus750/level_002")
+	PlayerData.chat_history.add_history_item("creature/gurus750/greeting_001")
+	PlayerData.chat_history.add_history_item("creature/gurus750/notable_001")
+	PlayerData.chat_history.add_history_item("creature/gurus750/notable_002")
 	
 	PlayerData.chat_history.increment_filler_count(_creature_id)
 
@@ -51,19 +51,19 @@ func _select_from_chat_selectors() -> String:
 
 
 func test_greeting() -> void:
-	PlayerData.chat_history.delete_history_item("chat/gurus750/greeting_001")
+	PlayerData.chat_history.delete_history_item("creature/gurus750/greeting_001")
 	
 	assert_eq(_select_from_chat_selectors(), "greeting_001")
 
 
 func test_chat_1() -> void:
-	PlayerData.chat_history.delete_history_item("chat/gurus750/notable_001")
+	PlayerData.chat_history.delete_history_item("creature/gurus750/notable_001")
 	
 	assert_eq(_select_from_chat_selectors(), "notable_001")
 
 
 func test_chat_2() -> void:
-	PlayerData.chat_history.delete_history_item("chat/gurus750/notable_002")
+	PlayerData.chat_history.delete_history_item("creature/gurus750/notable_002")
 	
 	assert_eq(_select_from_chat_selectors(), "notable_002")
 
@@ -73,7 +73,7 @@ func test_chat_no_notable_chats_remaining() -> void:
 
 
 func test_chat_avoid_repeat_filler() -> void:
-	PlayerData.chat_history.add_history_item("chat/gurus750/filler_000")
+	PlayerData.chat_history.add_history_item("creature/gurus750/filler_000")
 	assert_eq(_select_from_chat_selectors(), "filler_001")
 
 
@@ -81,19 +81,19 @@ func test_chat_non_notable() -> void:
 	# creature is not ready for a notable chat
 	PlayerData.chat_history.filler_counts["gurus750"] = 0
 	
-	PlayerData.chat_history.delete_history_item("chat/gurus750/notable_001")
-	PlayerData.chat_history.delete_history_item("chat/gurus750/notable_002")
+	PlayerData.chat_history.delete_history_item("creature/gurus750/notable_001")
+	PlayerData.chat_history.delete_history_item("creature/gurus750/notable_002")
 	
 	assert_eq(_select_from_chat_selectors(), "filler_000")
 
 
 func test_chat_prioritized() -> void:
 	# priority_001 is skipped because its 'available_if' condition is not met
-	PlayerData.chat_history.add_history_item("chat/gurus750/trigger_002")
+	PlayerData.chat_history.add_history_item("creature/gurus750/trigger_002")
 	assert_eq(_select_from_chat_selectors(), "priority_002")
 	
 	# priority_001 and priority_002 are both available, so the earlier chat is prioritized
-	PlayerData.chat_history.add_history_item("chat/gurus750/trigger_001")
+	PlayerData.chat_history.add_history_item("creature/gurus750/trigger_001")
 	assert_eq(_select_from_chat_selectors(), "priority_001")
 
 

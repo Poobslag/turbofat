@@ -6,6 +6,21 @@ This class's size will worsen with each change to our save system. Once it gets 
 consider dropping backwards compatibility for older versions.
 """
 
+# chat history prefixes to replace when upgrading from version 2743
+# key: old string prefix to be replaced
+# value: new string prefix
+const PREFIX_REPLACEMENTS_2743 := {
+	"chat/bones": "creature/bones",
+	"chat/skins": "creature/skins",
+	"chat/shirts": "creature/shirts",
+	"chat/richie": "creature/richie",
+	"chat/bort": "creature/bort",
+	"chat/boatricia": "creature/boatricia",
+	"chat/ebe": "creature/ebe",
+	"creatures/primary/": "creature/",
+	"puzzle/levels/cutscenes/": "level/",
+}
+
 """
 Returns 'true' if the specified json save items don't match the latest version.
 """
@@ -15,7 +30,7 @@ func is_old_save_items(json_save_items: Array) -> bool:
 	match version_string:
 		PlayerSave.PLAYER_DATA_VERSION:
 			is_old = false
-		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2", "245b", "24cc", "252a":
+		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2", "245b", "24cc", "252a", "2743":
 			is_old = true
 		_:
 			push_warning("Unrecognized save data version: '%s'" % version_string)
@@ -42,6 +57,8 @@ Transforms the specified json save items to the latest format.
 func transform_old_save_items(json_save_items: Array) -> Array:
 	var version_string := get_version_string(json_save_items)
 	match version_string:
+		"2743":
+			json_save_items = _convert_2743(json_save_items)
 		"252a":
 			json_save_items = _convert_252a(json_save_items)
 		"24cc":
@@ -63,6 +80,57 @@ func transform_old_save_items(json_save_items: Array) -> Array:
 		"15d2":
 			json_save_items = _convert_15d2(json_save_items)
 	return json_save_items
+
+
+func _convert_2743(json_save_items: Array) -> Array:
+	var new_save_items := []
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		match save_item.type:
+			"version":
+				save_item["value"] = "2783"
+			"chat_history":
+				_replace_chat_history_prefixes_for_2743(save_item["value"])
+			"creature_library":
+				_replace_fatness_keys_for_2743(save_item["value"].get("fatnesses", {}))
+		
+		new_save_items.append(save_item.to_json_dict())
+	return new_save_items
+
+
+"""
+Replace chat history keys like 'chat/richie/filler_000' with 'creature/richie/filler_000'
+"""
+func _replace_chat_history_prefixes_for_2743(dict: Dictionary) -> void:
+	for sub_dict in dict.values():
+		for key in sub_dict.keys():
+			var new_key: String = key
+			if "-" in new_key:
+				# some older keys have hyphens, perhaps due to bugs
+				new_key = StringUtils.hyphens_to_underscores(new_key)
+			for prefix in PREFIX_REPLACEMENTS_2743:
+				if new_key.begins_with(prefix):
+					new_key = PREFIX_REPLACEMENTS_2743[prefix] + new_key.trim_prefix(prefix)
+			if key != new_key:
+				# if two keys conflict, take the higher value of the two
+				sub_dict[new_key] = max(sub_dict[key], sub_dict.get(new_key, 0))
+				sub_dict.erase(key)
+
+
+"""
+Replace hyphens with underscores in fatness keys like '#filler-033#'
+"""
+func _replace_fatness_keys_for_2743(dict: Dictionary) -> void:
+	for key in dict.keys():
+		var new_key: String = key
+		if "-" in new_key:
+			# some older keys have hyphens
+			new_key = StringUtils.hyphens_to_underscores(new_key)
+			
+			# if two keys conflict, take the higher value of the two
+			dict[new_key] = max(dict[key], dict.get(new_key, 0))
+			dict.erase(key)
 
 
 func _convert_252a(json_save_items: Array) -> Array:
@@ -233,7 +301,8 @@ func _replace_dialog_with_creatures_primary(dict: Dictionary) -> void:
 				var search_string := "dialog/%s" % [creature_id]
 				var replacement := "creatures/primary/%s" % [creature_id]
 				if key.find(search_string) != -1:
-					sub_dict[key.replace(search_string, replacement)] = sub_dict[key]
+					var new_key: String = key.replace(search_string, replacement)
+					sub_dict[new_key] = sub_dict[key]
 					sub_dict.erase(key)
 
 
