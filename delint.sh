@@ -34,7 +34,7 @@ REGEX+="\|^"$'\t'"{2}.\{112,\}$"
 REGEX+="\|^"$'\t'"{3}.\{108,\}$"
 REGEX+="\|^"$'\t'"{4}.\{104,\}$"
 REGEX+="\|^"$'\t'"{5}.\{100,\}$\)"
-RESULT="${RESULT}$(grep -R -n "$REGEX" --include="dna-utils.gd" project/src)"
+RESULT="${RESULT}$(grep -R -n "$REGEX" --include="*.gd" project/src)"
 if [ -n "$RESULT" ]
 then
   echo ""

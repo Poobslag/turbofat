@@ -28,11 +28,22 @@ const SENSEI_SPAWN_IDS_BY_PLAYER_LOCATION := {
 # Queue of ChatTree and String instances. ChatTrees represent cutscenes, and strings represent level IDs.
 var _queue := []
 
+func reset() -> void:
+	_queue.clear()
+
+
 """
 Adds a cutscene to the back of the queue.
 """
 func enqueue_chat_tree(chat_tree: ChatTree) -> void:
 	_queue.push_back(chat_tree)
+
+
+"""
+Inserts a cutscene in the given position in the queue.
+"""
+func insert_chat_tree(position: int, chat_tree: ChatTree) -> void:
+	_queue.insert(position, chat_tree)
 
 
 """

@@ -151,6 +151,17 @@ func _physics_process(delta: float) -> void:
 	_maybe_play_bonk_sound(old_non_iso_velocity)
 
 
+"""
+Increases the collision shape size for fatter creatures.
+
+This is not done on all creatures, because having fatter creatures collide with chairs/tables differently as they gain
+weight introduces problems. It's easier to leave their collision shapes consistent and just have a few visual bugs here
+and there.
+"""
+func refresh_collision_extents() -> void:
+	_collision_shape.refresh_extents()
+
+
 func set_collision_disabled(new_collision_disabled: bool) -> void:
 	_collision_shape.disabled = new_collision_disabled
 

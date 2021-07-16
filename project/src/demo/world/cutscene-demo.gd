@@ -47,6 +47,10 @@ func _on_StartButton_pressed() -> void:
 	CurrentLevel.set_launched_level(cutscene_prefix)
 	
 	if chat_tree:
+		# Empty the cutscene queue. It's unlikely to be non-empty, but strange
+		# bugs can result if we play a mismatched scene/cutscene combo
+		CutsceneManager.reset()
+		
 		CutsceneManager.enqueue_chat_tree(chat_tree)
 		SceneTransition.push_trail(chat_tree.cutscene_scene_path())
 	else:
