@@ -1,14 +1,27 @@
 class_name Spawn
 extends Node2D
 """
-A spawn point where a creature can appear on the overworld.
+A point where a creature can appear on the overworld.
 """
 
 # the direction the creature will face
 export (CreatureOrientation.Orientation) var orientation := CreatureOrientation.SOUTHEAST
 
+# (optional) path to a stool the spawned creature sits on
+export (NodePath) var stool_path: NodePath
+
 # a unique id for this spawn point
 export (String) var id: String
+
+export (float) var elevation: float
+
+# stool the creature sits on, if any
+var _stool: Stool
+
+func _ready() -> void:
+	if stool_path:
+		_stool = get_node(stool_path)
+
 
 """
 Relocates the specified creature to this spawn point.
@@ -16,3 +29,7 @@ Relocates the specified creature to this spawn point.
 func move_creature(creature: Creature) -> void:
 	creature.position = position
 	creature.orientation = orientation
+	creature.elevation = elevation
+	
+	if _stool:
+		_stool.occupied = true

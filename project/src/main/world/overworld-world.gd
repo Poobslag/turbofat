@@ -1,12 +1,15 @@
+class_name OverworldWorld
 extends Node
 """
 Populates/unpopulates the creatures and obstacles on the overworld.
 """
 
+export (NodePath) var shadow_caster_shadows_path: NodePath
 export (NodePath) var creature_shadows_path: NodePath
 export (NodePath) var chat_icons_path: NodePath
 export (PackedScene) var CreaturePackedScene: PackedScene
 
+onready var _shadow_caster_shadows: ShadowCasterShadows = get_node(shadow_caster_shadows_path)
 onready var _creature_shadows: CreatureShadows = get_node(creature_shadows_path)
 onready var _chat_icons: ChatIcons = get_node(chat_icons_path)
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
@@ -42,10 +45,14 @@ func _launch_cutscene() -> void:
 			node.get_parent().remove_child(node)
 			node.queue_free()
 	
+	for node in get_tree().get_nodes_in_group("creature_spawners"):
+		node.get_parent().remove_child(node)
+		node.queue_free()
+	
 	var cutscene_creature: Creature
 	if CurrentLevel.creature_id:
 		# add the cutscene creature
-		cutscene_creature = _add_creature(CurrentLevel.creature_id)
+		cutscene_creature = add_creature(CurrentLevel.creature_id)
 	
 	# get the location, spawn location data
 	var chat_tree := CutsceneManager.pop_chat_tree()
@@ -60,7 +67,7 @@ func _launch_cutscene() -> void:
 		for creature_id in chat_tree.spawn_locations:
 			var creature := _find_creature(creature_id)
 			if not creature:
-				creature = _add_creature(creature_id)
+				creature = add_creature(creature_id)
 			creature.set_collision_disabled(true)
 			
 			# move the creature to its spawn location
@@ -96,14 +103,28 @@ func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 """
 Creates a new creature with the specified creature_id and adds it to the scene.
 """
-func _add_creature(creature_id: String) -> Creature:
+func add_creature(creature_id: String, chattable: bool = true) -> Creature:
 	var creature: Creature = CreaturePackedScene.instance()
 	creature.creature_id = creature_id
-	creature.add_to_group("chattables")
 	$Obstacles.add_child(creature)
-	_chat_icons.create_icon(creature)
-	_creature_shadows.create_shadow(creature)
+	if chattable:
+		creature.add_to_group("chattables")
+		var chat_bubble_type := ChatLibrary.chat_icon_for_creature(creature)
+		creature.set_meta("chat_bubble_type", chat_bubble_type)
+	process_new_obstacle(creature)
 	return creature
+
+
+func process_new_obstacle(obstacle: Node2D) -> void:
+	# create chat icon
+	if obstacle.is_in_group("chattables"):
+		_chat_icons.create_icon(obstacle)
+	
+	# create shadow
+	if obstacle is Creature:
+		_creature_shadows.create_shadow(obstacle)
+	else:
+		_shadow_caster_shadows.create_shadow(obstacle)
 
 
 """

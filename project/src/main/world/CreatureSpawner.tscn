@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/world/creature-spawner.gd" type="Script" id=1]
+
+[node name="CreatureSpawner" type="Node2D" groups=[
+"creature_spawners",
+]]
+script = ExtResource( 1 )
+target_properties = {
+"creature_id": "",
+"elevation": 0.0,
+"orientation": 0
+}

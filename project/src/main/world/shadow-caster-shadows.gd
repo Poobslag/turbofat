@@ -1,3 +1,4 @@
+class_name ShadowCasterShadows
 extends Node2D
 """
 Manages shadows for all 'shadow casters' in a scene.

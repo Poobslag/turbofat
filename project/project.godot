@@ -519,6 +519,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/overworld-ui.gd"
 }, {
+"base": "Node",
+"class": "OverworldWorld",
+"language": "GDScript",
+"path": "res://src/main/world/overworld-world.gd"
+}, {
 "base": "Node2D",
 "class": "PackedSprite",
 "language": "GDScript",
@@ -684,6 +689,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/menu/settings-menu.gd"
 }, {
+"base": "Node2D",
+"class": "ShadowCasterShadows",
+"language": "GDScript",
+"path": "res://src/main/world/shadow-caster-shadows.gd"
+}, {
 "base": "ProgressBar",
 "class": "SkillTallyItem",
 "language": "GDScript",
@@ -723,6 +733,11 @@ _global_script_classes=[ {
 "class": "StickerRow",
 "language": "GDScript",
 "path": "res://src/main/ui/wallpaper/sticker-row.gd"
+}, {
+"base": "OverworldObstacle",
+"class": "Stool",
+"language": "GDScript",
+"path": "res://src/main/world/environment/stool.gd"
 }, {
 "base": "Reference",
 "class": "StringTransformer",
@@ -897,6 +912,7 @@ _global_script_class_icons={
 "OvalShadow": "",
 "OverworldObstacle": "",
 "OverworldUi": "",
+"OverworldWorld": "",
 "PackedSprite": "",
 "PaletteButton": "",
 "PaletteEditorTab": "",
@@ -930,6 +946,7 @@ _global_script_class_icons={
 "ScoreRules": "",
 "Sensei": "",
 "SettingsMenu": "",
+"ShadowCasterShadows": "",
 "SkillTallyItem": "",
 "SmoothPath": "",
 "Spawn": "",
@@ -938,6 +955,7 @@ _global_script_class_icons={
 "StateMachine": "",
 "Sticker": "",
 "StickerRow": "",
+"Stool": "",
 "StringTransformer": "",
 "StringUtils": "",
 "SwipeContainer": "",

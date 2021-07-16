@@ -48,9 +48,9 @@
 [ext_resource path="res://assets/main/world/environment/buttercup-stool-green-occupied.png" type="Texture" id=46]
 [ext_resource path="res://assets/main/world/environment/buttercup-stool-white-occupied.png" type="Texture" id=47]
 [ext_resource path="res://src/main/world/environment/ButtercupSign.tscn" type="PackedScene" id=48]
-[ext_resource path="res://src/main/world/environment/MarshCrystalForSign.tscn" type="PackedScene" id=49]
 [ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=50]
 [ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=51]
+[ext_resource path="res://src/main/world/obstacle-spawner.gd" type="Script" id=53]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=72]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=73]
 
@@ -121,6 +121,7 @@ __meta__ = {
 
 [node name="World" type="Node" parent="."]
 script = ExtResource( 51 )
+shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
 creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
 chat_icons_path = NodePath("ChatIcons")
 CreaturePackedScene = ExtResource( 1 )
@@ -227,6 +228,17 @@ dna = {
 }
 suppress_fatness = true
 
+[node name="Sensei" parent="World/Obstacles" instance=ExtResource( 1 )]
+position = Vector2( -63, 784 )
+script = ExtResource( 7 )
+dna = {
+}
+suppress_fatness = true
+
+[node name="MoveTimer" type="Timer" parent="World/Obstacles/Sensei"]
+wait_time = 0.3
+autostart = true
+
 [node name="Bort" parent="World/Obstacles" groups=[
 "chattables",
 ] instance=ExtResource( 1 )]
@@ -261,17 +273,6 @@ creature_id = "boatricia"
 dna = {
 }
 orientation = 1
-
-[node name="Sensei" parent="World/Obstacles" instance=ExtResource( 1 )]
-position = Vector2( -63, 784 )
-script = ExtResource( 7 )
-dna = {
-}
-suppress_fatness = true
-
-[node name="MoveTimer" type="Timer" parent="World/Obstacles/Sensei"]
-wait_time = 0.3
-autostart = true
 
 [node name="Richie" parent="World/Obstacles" groups=[
 "chattables",
@@ -562,7 +563,7 @@ exit_direction = 3
 player_spawn_id = "nw-player"
 sensei_spawn_id = "nw-sensei"
 
-[node name="MarshCrystal" parent="World/Obstacles" instance=ExtResource( 23 )]
+[node name="MarshCrystal1" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 399, 700 )
 
 [node name="MarshCrystal2" parent="World/Obstacles" instance=ExtResource( 23 )]
@@ -583,8 +584,15 @@ position = Vector2( -4407.77, 920.238 )
 [node name="MarshCrystal7" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 4231.21, 1567.3 )
 
-[node name="MarshCrystalForSign" parent="World/Obstacles" instance=ExtResource( 49 )]
+[node name="ButtercupCrystalSign" type="Node2D" parent="World/Obstacles"]
 position = Vector2( 2158, 813 )
+script = ExtResource( 53 )
+overworld_world_path = NodePath("../..")
+TargetPackedScene = ExtResource( 23 )
+target_properties = {
+"chat_path": ""
+}
+spawn_if = "not level_finished marsh/pulling_for_everyone"
 
 [node name="MarshCrystal9" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 4053.02, 1334.73 )

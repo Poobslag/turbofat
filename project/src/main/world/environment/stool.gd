@@ -1,4 +1,5 @@
 tool
+class_name Stool
 extends OverworldObstacle
 """
 A stool which appears on the overworld.
