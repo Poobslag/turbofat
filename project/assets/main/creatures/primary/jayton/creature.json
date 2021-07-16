@@ -18,21 +18,29 @@
     "nose": "0",
     "tail": "7",
     "accessory": "0",
-    "line_rgb": "3c0b52",
-    "body_rgb": "5a117b",
-    "belly_rgb": "554652",
+    "line_rgb": "4f1d65",
+    "body_rgb": "762c97",
+    "belly_rgb": "816d7d",
     "cloth_rgb": "cb1b2e",
     "glass_rgb": "282828",
     "plastic_rgb": "282828",
     "hair_rgb": "d98227",
-    "eye_rgb": "192616 21a112",
-    "horn_rgb": "6f6178"
+    "eye_rgb": "276127 97ad89",
+    "horn_rgb": "9787a2"
   },
   "chat_theme_def": {
     "accent_scale": 1.33,
     "accent_swapped": true,
     "accent_texture": 13,
-    "color": "5a117b"
+    "color": "762c97"
   },
-  "fatness": 1.1
+  "fatness": 1.1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1,
+  "chat_selectors": [
+    {
+      "chat": "soliciting_buttercup_customers",
+      "repeat": 999999
+    }
+  ]
 }

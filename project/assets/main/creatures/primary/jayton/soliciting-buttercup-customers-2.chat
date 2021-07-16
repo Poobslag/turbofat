@@ -1,0 +1,12 @@
+{"version": "2476"}
+
+[location]
+outdoors
+
+[characters]
+player, p1, buttercup-fence-3
+sensei, s1, buttercup-fence-12
+jayton, j, buttercup-seat
+
+p1: ._.; ...In hindsight we probably should not have done that.
+s1: -_- ...

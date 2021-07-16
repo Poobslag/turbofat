@@ -40,7 +40,12 @@
   "chat_selectors": [
     {
       "chat": "hard_times",
-      "available_if": "level_finished marsh/pulling_for_everyone",
+      "available_if": "level_finished marsh/pulling_for_everyone and not level_finished marsh/lets_all_get_merry",
+      "repeat": 999999
+    },
+    {
+      "chat": "having_trouble",
+      "available_if": "level_finished marsh/lets_all_get_merry and not level_finished marsh/goodbye_everyone",
       "repeat": 999999
     }
   ]
