@@ -17,6 +17,7 @@ func _ready() -> void:
 	if PlayerData.creature_library.forced_fatness:
 		set_fatness(PlayerData.creature_library.forced_fatness)
 		set_visual_fatness(PlayerData.creature_library.forced_fatness)
+	refresh_collision_extents()
 	creature_id = CreatureLibrary.PLAYER_ID
 	ChattableManager.player = self
 
