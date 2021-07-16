@@ -43,8 +43,8 @@ func test_163e_lost_erases_success() -> void:
 func test_1682_chat_history_preserved() -> void:
 	load_player_data("turbofat-1682.json")
 	
-	assert_eq(PlayerData.chat_history.get_chat_age("creatures/primary/boatricia/my_maid_died"), 5)
-	assert_eq(PlayerData.chat_history.get_filler_count("creatures/primary/boatricia"), 13)
+	assert_eq(PlayerData.chat_history.get_chat_age("creature/boatricia/my_maid_died"), 5)
+	assert_eq(PlayerData.chat_history.get_filler_count("creature/boatricia"), 13)
 
 
 func test_19c5() -> void:
@@ -88,8 +88,32 @@ func test_24cc() -> void:
 	load_player_data("turbofat-24cc.json")
 	
 	assert_eq(PlayerData.chat_history.chat_history.get("chat/level_select"), 10)
-	assert_eq(PlayerData.chat_history.chat_history.get("chat/bort/filler"), 6)
+	assert_eq(PlayerData.chat_history.chat_history.get("creature/bort/filler"), 6)
 	assert_eq(PlayerData.chat_history.chat_counts.get("chat"), 77)
-	assert_eq(PlayerData.chat_history.chat_counts.get("chat/bort"), 24)
-	assert_eq(PlayerData.chat_history.filler_counts.get("chat/richie"), 6)
-	assert_eq(PlayerData.chat_history.filler_counts.get("chat/boatricia"), 9)
+	assert_eq(PlayerData.chat_history.chat_counts.get("creature/bort"), 24)
+	assert_eq(PlayerData.chat_history.filler_counts.get("creature/richie"), 6)
+	assert_eq(PlayerData.chat_history.filler_counts.get("creature/boatricia"), 58)
+
+
+func test_2743() -> void:
+	load_player_data("turbofat-2743.json")
+	
+	# chat history should use underscores, and new prefixes
+	assert_eq(PlayerData.chat_history.chat_history.get("creature/boatricia/hi"), 57)
+	assert_eq(PlayerData.chat_history.chat_history.get("creature/richie/filler_000"), 4)
+	assert_eq(PlayerData.chat_history.chat_history.get("level/five_customers_no_vegetables_000"), 4)
+	assert_eq(PlayerData.chat_history.chat_history.get("level/marsh/hello_everyone_000"), 55)
+	assert_eq(PlayerData.chat_history.chat_history.get("level/marsh/hello_shirts_000"), 57)
+	assert_eq(PlayerData.chat_history.chat_history.get("chat/meet_the_competition"), 78)
+	
+	# chat counts should use underscores, and new prefixes
+	assert_eq(PlayerData.chat_history.chat_counts.get("creature/richie"), 6)
+	assert_eq(PlayerData.chat_history.chat_counts.get("creature/shirts"), 2)
+	
+	# filler counts should use underscores, and new prefixes
+	assert_eq(PlayerData.chat_history.filler_counts.get("creature/richie"), 6)
+	assert_eq(PlayerData.chat_history.filler_counts.get("creature/shirts"), 2)
+	
+	assert_almost_eq(PlayerData.creature_library.get_fatness("#filler_000#"), 1.03, 0.01)
+	assert_almost_eq(PlayerData.creature_library.get_fatness("#filler_100#"), 1.68, 0.01)
+	assert_almost_eq(PlayerData.creature_library.get_fatness("i_n_cognito"), 1.30, 0.01)

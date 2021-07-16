@@ -9,9 +9,9 @@ bones, b, restaurant-11
 
 b: ^O^ Hey, remember a few days ago when you said there's more than one way to bone a dog! Ha ha!
 p1: ^_^ Ha ha! Yeah. Wait, what's so funny about that?
- (say_if not chat_finished puzzle/levels/cutscenes/marsh/pulling_for_skins_100)
+ (say_if not chat_finished level/marsh/pulling_for_skins_100)
 p1: <__< Why does everyone keep asking me that!?
- (say_if chat_finished puzzle/levels/cutscenes/marsh/pulling_for_skins_100)
+ (say_if chat_finished level/marsh/pulling_for_skins_100)
 b: OwO... I was thinking maybe if you come over to my place, you can tell me more jokes and then we can get married.
 [yes-id-love-to] Yes, I'd love to
 [no-1] No that's okay

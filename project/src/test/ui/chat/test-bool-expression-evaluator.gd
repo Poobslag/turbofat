@@ -7,8 +7,8 @@ func before_each() -> void:
 	PlayerData.chat_history.reset()
 	PlayerData.level_history.reset()
 	
-	PlayerData.chat_history.add_history_item("chat/gurus750/chat_200")
-	PlayerData.chat_history.add_history_item("chat/gurus750/chat_201")
+	PlayerData.chat_history.add_history_item("creature/gurus750/chat_200")
+	PlayerData.chat_history.add_history_item("creature/gurus750/chat_201")
 	
 	# the player cleared level_200 and level_201, but failed level_400
 	add_level_history_item("level_200", true)
@@ -31,8 +31,8 @@ func assert_evaluate(expected: bool, string: String, subject = null) -> void:
 
 
 func test_chat_finished() -> void:
-	assert_evaluate(true, "chat_finished chat/gurus750/chat_200")
-	assert_evaluate(false, "chat_finished chat/gurus750/chat_404")
+	assert_evaluate(true, "chat_finished creature/gurus750/chat_200")
+	assert_evaluate(false, "chat_finished creature/gurus750/chat_404")
 
 
 func test_level_finished() -> void:
@@ -42,27 +42,27 @@ func test_level_finished() -> void:
 
 
 func test_and_expression() -> void:
-	assert_evaluate(true, "chat_finished chat/gurus750/chat_200 and level_finished level_200")
-	assert_evaluate(false, "chat_finished chat/gurus750/chat_200 and level_finished level_404")
-	assert_evaluate(false, "chat_finished chat/gurus750/chat_404 and level_finished level_200")
+	assert_evaluate(true, "chat_finished creature/gurus750/chat_200 and level_finished level_200")
+	assert_evaluate(false, "chat_finished creature/gurus750/chat_200 and level_finished level_404")
+	assert_evaluate(false, "chat_finished creature/gurus750/chat_404 and level_finished level_200")
 
 
 func test_or_expression() -> void:
-	assert_evaluate(true, "chat_finished chat/gurus750/chat_200 or level_finished level_404")
-	assert_evaluate(true, "chat_finished chat/gurus750/chat_404 or level_finished level_200")
-	assert_evaluate(false, "chat_finished chat/gurus750/chat_404 or level_finished level_404")
+	assert_evaluate(true, "chat_finished creature/gurus750/chat_200 or level_finished level_404")
+	assert_evaluate(true, "chat_finished creature/gurus750/chat_404 or level_finished level_200")
+	assert_evaluate(false, "chat_finished creature/gurus750/chat_404 or level_finished level_404")
 
 
 func test_not_expression() -> void:
-	assert_evaluate(false, "not chat_finished chat/gurus750/chat_200")
-	assert_evaluate(true, "not chat_finished chat/gurus750/chat_404")
+	assert_evaluate(false, "not chat_finished creature/gurus750/chat_200")
+	assert_evaluate(true, "not chat_finished creature/gurus750/chat_404")
 
 
 func test_complex_expression() -> void:
-	assert_evaluate(false, "not (chat_finished chat/gurus750/chat_200 or level_finished level_200)")
-	assert_evaluate(false, "not (chat_finished chat/gurus750/chat_200 or level_finished level_404)")
-	assert_evaluate(false, "not (chat_finished chat/gurus750/chat_404 or level_finished level_200)")
-	assert_evaluate(true, "not (chat_finished chat/gurus750/chat_404 or level_finished level_404)")
+	assert_evaluate(false, "not (chat_finished creature/gurus750/chat_200 or level_finished level_200)")
+	assert_evaluate(false, "not (chat_finished creature/gurus750/chat_200 or level_finished level_404)")
+	assert_evaluate(false, "not (chat_finished creature/gurus750/chat_404 or level_finished level_200)")
+	assert_evaluate(true, "not (chat_finished creature/gurus750/chat_404 or level_finished level_404)")
 
 
 func test_notable_expression() -> void:

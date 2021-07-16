@@ -83,6 +83,7 @@ func get_sensei_def() -> CreatureDef:
 
 func reset() -> void:
 	_creature_defs_by_id.clear()
+	_fatnesses.clear()
 	
 	# default player appearance and name
 	var new_player_def := CreatureDef.new()
@@ -186,7 +187,7 @@ Populates the fatness for randomly generated filler creatures.
 """
 func _normalize_filler_fatnesses() -> void:
 	for i in range(GENERIC_FATNESS_COUNT):
-		var filler_id := "#filler-%03d#" % i
+		var filler_id := "#filler_%03d#" % i
 		_filler_ids.append(filler_id)
 		if not _fatnesses.has(filler_id):
 			# The initial creature generation is biased toward the thin side of things. That way the progression is

@@ -9,9 +9,9 @@ skins, s, restaurant-11
 
 s: ^O^ Remember when you said, like, there's more than one way to bone a dog? Ha ha! That was really funny~
 p1: ^_^ Ha ha! Yeah. Wait, what's so funny about that?
- (say_if not chat_finished puzzle/levels/cutscenes/marsh/pulling_for_bones_100)
+ (say_if not chat_finished level/marsh/pulling_for_bones_100)
 p1: <__< Why does everyone keep asking me that!?
- (say_if chat_finished puzzle/levels/cutscenes/marsh/pulling_for_bones_100)
+ (say_if chat_finished level/marsh/pulling_for_bones_100)
 s: /._. Umm! I don't know. I don't remember now! ...So what are you doing later? Did you want to see a movie together?
 [yes] OwO It's a date!
 [no-movie-0] No, I've seen it

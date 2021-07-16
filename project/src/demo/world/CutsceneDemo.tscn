@@ -50,7 +50,7 @@ margin_right = 400.0
 margin_bottom = 124.0
 rect_min_size = Vector2( 0, 100 )
 theme = ExtResource( 7 )
-text = "chat_finished puzzle/levels/cutscenes/marsh/pulling_for_skins_100"
+text = "chat_finished level/marsh/pulling_for_skins_100"
 
 [node name="LongNames" type="CheckBox" parent="Input"]
 margin_top = 128.0

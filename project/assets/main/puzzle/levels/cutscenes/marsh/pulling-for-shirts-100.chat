@@ -9,9 +9,9 @@ shirts, s, restaurant-11
 
 s: /._. So are they driving you crazy yet?
 [bones-drives-me-crazy] Bones is clingy
- (link_if chat_finished puzzle/levels/cutscenes/marsh/pulling_for_bones_100)
+ (link_if chat_finished level/marsh/pulling_for_bones_100)
 [skins-drives-me-crazy] Skins is a bit much
- (link_if chat_finished puzzle/levels/cutscenes/marsh/pulling_for_skins_100)
+ (link_if chat_finished level/marsh/pulling_for_skins_100)
 [who-drives-me-crazy] Who do you mean?
 
 [skins-drives-me-crazy]
