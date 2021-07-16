@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/environment/MarshHouse2.tscn" type="PackedScene" id=2]
@@ -48,6 +48,7 @@
 [ext_resource path="res://assets/main/world/environment/buttercup-stool-green-occupied.png" type="Texture" id=46]
 [ext_resource path="res://assets/main/world/environment/buttercup-stool-white-occupied.png" type="Texture" id=47]
 [ext_resource path="res://src/main/world/environment/ButtercupSign.tscn" type="PackedScene" id=48]
+[ext_resource path="res://src/main/world/environment/MarshCrystalForSign.tscn" type="PackedScene" id=49]
 [ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=50]
 [ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=51]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=72]
@@ -582,9 +583,8 @@ position = Vector2( -4407.77, 920.238 )
 [node name="MarshCrystal7" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 4231.21, 1567.3 )
 
-[node name="MarshCrystal8" parent="World/Obstacles" instance=ExtResource( 23 )]
-position = Vector2( 2158.46, 813.65 )
-chat_path = ""
+[node name="MarshCrystalForSign" parent="World/Obstacles" instance=ExtResource( 49 )]
+position = Vector2( 2158, 813 )
 
 [node name="MarshCrystal9" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 4053.02, 1334.73 )

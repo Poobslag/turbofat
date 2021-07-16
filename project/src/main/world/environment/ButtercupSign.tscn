@@ -19,6 +19,7 @@ extents = Vector2( 105, 10 )
 ]]
 script = ExtResource( 1 )
 shadow_scale = 1.1
+chat_path = "res://assets/main/chat/meet-the-competition.chat"
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )
