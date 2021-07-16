@@ -163,6 +163,9 @@ centered_textures = true
 format = 1
 script = ExtResource( 20 )
 obstacle_map_path = NodePath("../../../../../Obstacles/ObstacleMap")
+cell_shadow_mapping = {
+1: Rect2( 0, 0, 0, 0 )
+}
 
 [node name="CreatureShadows" parent="World/Ground/Shadows/Viewport/ViewportRoot" instance=ExtResource( 18 )]
 
