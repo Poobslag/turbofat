@@ -100,7 +100,8 @@
           "id": "marsh/lets_all_get_merry",
           "creature_id": "richie",
           "groups": "marsh/goodbye",
-          "unlocked_if": "group_finished marsh/pulling_for 1"
+          "unlocked_if": "group_finished marsh/pulling_for 1",
+          "chef_id": "shirts"
         },
         {
           "id": "marsh/goodbye_bones",

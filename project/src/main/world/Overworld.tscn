@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/environment/MarshHouse2.tscn" type="PackedScene" id=2]
@@ -12,7 +12,7 @@
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=11]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/main/world/environment/ButtercupTable.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/world/environment/ForLeaseSign.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/GroundMap.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/OverworldUi.tscn" type="PackedScene" id=15]
 [ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=16]
@@ -42,7 +42,7 @@
 [ext_resource path="res://src/main/world/goop-material-mover.gd" type="Script" id=40]
 [ext_resource path="res://src/main/outline.shader" type="Shader" id=41]
 [ext_resource path="res://src/main/world/environment/ButtercupRestaurant.tscn" type="PackedScene" id=42]
-[ext_resource path="res://src/main/world/environment/ButtercupStool.tscn" type="PackedScene" id=43]
+[ext_resource path="res://src/main/world/environment/ButtercupTableSpawner.tscn" type="PackedScene" id=43]
 [ext_resource path="res://assets/main/world/environment/buttercup-stool-white.png" type="Texture" id=44]
 [ext_resource path="res://assets/main/world/environment/buttercup-stool-green.png" type="Texture" id=45]
 [ext_resource path="res://assets/main/world/environment/buttercup-stool-green-occupied.png" type="Texture" id=46]
@@ -51,7 +51,11 @@
 [ext_resource path="res://src/main/world/CreatureSpawner.tscn" type="PackedScene" id=49]
 [ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=50]
 [ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=51]
-[ext_resource path="res://src/main/world/environment/MarshCrystalSpawner.tscn" type="PackedScene" id=52]
+[ext_resource path="res://src/main/world/environment/ButtercupStoolSpawnerW.tscn" type="PackedScene" id=52]
+[ext_resource path="res://src/main/world/environment/MarshCrystalSpawner.tscn" type="PackedScene" id=53]
+[ext_resource path="res://src/main/world/environment/ButtercupStoolSpawnerG.tscn" type="PackedScene" id=54]
+[ext_resource path="res://src/main/world/ObstacleSpawner.tscn" type="PackedScene" id=55]
+[ext_resource path="res://assets/main/world/environment/for-lease-sign.png" type="Texture" id=56]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=72]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=73]
 
@@ -310,14 +314,17 @@ dna = {
 }
 orientation = 1
 
-[node name="Diota" parent="World/Obstacles" groups=[
-"chattables",
-] instance=ExtResource( 1 )]
+[node name="Diota" parent="World/Obstacles" instance=ExtResource( 49 )]
 position = Vector2( 2548.72, 843.115 )
-creature_id = "diota"
-dna = {
+flip_h = true
+overworld_world_path = NodePath("../..")
+target_properties = {
+"creature_id": "diota",
+"elevation": 0.0,
+"orientation": 1
 }
-orientation = 1
+target_groups = [ "chattables" ]
+spawn_if = "not level_finished marsh/goodbye_everyone"
 
 [node name="Redo" parent="World/Obstacles" instance=ExtResource( 1 )]
 position = Vector2( -1075.1, 1102.47 )
@@ -486,40 +493,69 @@ shadow_scale = 4.0
 [node name="Sprite" parent="World/Obstacles/ButtercupRestaurant" index="0"]
 material = SubResource( 4 )
 
-[node name="ButtercupStool1" parent="World/Obstacles" instance=ExtResource( 43 )]
+[node name="ButtercupStool1" parent="World/Obstacles" instance=ExtResource( 52 )]
 position = Vector2( 2493, 928 )
-shadow_scale = 0.6
-occupied_texture = ExtResource( 47 )
-unoccupied_texture = ExtResource( 44 )
+overworld_world_path = NodePath("../..")
+target_properties = {
+"occupied_texture": ExtResource( 47 ),
+"unoccupied_texture": ExtResource( 44 )
+}
+spawn_if = "not level_finished marsh/goodbye_everyone"
 
-[node name="ButtercupStool4" parent="World/Obstacles" instance=ExtResource( 43 )]
-position = Vector2( 3050.06, 765.483 )
-shadow_scale = 0.6
-occupied_texture = ExtResource( 47 )
-unoccupied_texture = ExtResource( 44 )
+[node name="ButtercupStool4" parent="World/Obstacles" instance=ExtResource( 52 )]
+position = Vector2( 3050, 765 )
+overworld_world_path = NodePath("../..")
+target_properties = {
+"occupied_texture": ExtResource( 47 ),
+"unoccupied_texture": ExtResource( 44 )
+}
+spawn_if = "not level_finished marsh/goodbye_everyone"
 
-[node name="ButtercupStool2" parent="World/Obstacles" instance=ExtResource( 43 )]
-position = Vector2( 2714.92, 927.829 )
-shadow_scale = 0.6
-occupied_texture = ExtResource( 46 )
-unoccupied_texture = ExtResource( 45 )
+[node name="ButtercupStool2" parent="World/Obstacles" instance=ExtResource( 54 )]
+position = Vector2( 2715, 928 )
+overworld_world_path = NodePath("../..")
+target_properties = {
+"occupied_texture": ExtResource( 46 ),
+"unoccupied_texture": ExtResource( 45 )
+}
+spawn_if = "not level_finished marsh/goodbye_everyone"
 
-[node name="ButtercupStool3" parent="World/Obstacles" instance=ExtResource( 43 )]
-position = Vector2( 2837.62, 771.146 )
-shadow_scale = 0.6
-occupied_texture = ExtResource( 46 )
-unoccupied_texture = ExtResource( 45 )
+[node name="ButtercupStool3" parent="World/Obstacles" instance=ExtResource( 54 )]
+position = Vector2( 2838, 771 )
+overworld_world_path = NodePath("../..")
+target_properties = {
+"occupied_texture": ExtResource( 46 ),
+"unoccupied_texture": ExtResource( 45 )
+}
+spawn_if = "not level_finished marsh/goodbye_everyone"
 
-[node name="ButtercupTable1" parent="World/Obstacles" instance=ExtResource( 13 )]
+[node name="ButtercupTable1" parent="World/Obstacles" instance=ExtResource( 43 )]
 position = Vector2( 2603.08, 980.722 )
-shadow_scale = 1.2
+overworld_world_path = NodePath("../..")
+target_properties = {
+}
+spawn_if = "not level_finished marsh/goodbye_everyone"
 
-[node name="ButtercupTable2" parent="World/Obstacles" instance=ExtResource( 13 )]
+[node name="ButtercupTable2" parent="World/Obstacles" instance=ExtResource( 43 )]
 position = Vector2( 2946.34, 823.922 )
-shadow_scale = 1.2
+overworld_world_path = NodePath("../..")
+target_properties = {
+}
+spawn_if = "not level_finished marsh/goodbye_everyone"
 
 [node name="ButtercupSign" parent="World/Obstacles" instance=ExtResource( 48 )]
 position = Vector2( 2171, 809 )
+
+[node name="ForLeaseSign" parent="World/Obstacles" instance=ExtResource( 55 )]
+position = Vector2( 2173.67, 839.291 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 56 )
+offset = Vector2( 0, -80 )
+overworld_world_path = NodePath("../..")
+TargetPackedScene = ExtResource( 13 )
+target_properties = {
+}
+spawn_if = "level_finished marsh/goodbye_everyone"
 
 [node name="MarshHouse1" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 4634.93, 1161.59 )
@@ -598,7 +634,7 @@ position = Vector2( -4407.77, 920.238 )
 [node name="MarshCrystal7" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 4231.21, 1567.3 )
 
-[node name="ButtercupCrystalSign" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="ButtercupCrystalSign" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 2158, 813 )
 overworld_world_path = NodePath("../..")
 target_properties = {
@@ -606,49 +642,49 @@ target_properties = {
 }
 spawn_if = "not level_finished marsh/pulling_for_everyone"
 
-[node name="ButtercupCrystal1" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="ButtercupCrystal1" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 1992, 868 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "not level_finished marsh/pulling_for_everyone"
 
-[node name="ButtercupCrystal2" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="ButtercupCrystal2" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 1967, 689 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "not level_finished marsh/pulling_for_everyone"
 
-[node name="ButtercupCrystal3" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="ButtercupCrystal3" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 2362, 1051 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "not level_finished marsh/pulling_for_everyone"
 
-[node name="ButtercupCrystal4" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="ButtercupCrystal4" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 2158, 692 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "not level_finished marsh/pulling_for_everyone"
 
-[node name="ButtercupCrystal5" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="ButtercupCrystal5" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 2669, 1081 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "not level_finished marsh/pulling_for_everyone"
 
-[node name="ButtercupCrystal6" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="ButtercupCrystal6" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 2651, 669 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "not level_finished marsh/pulling_for_everyone"
 
-[node name="ButtercupCrystal7" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="ButtercupCrystal7" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 2374, 794 )
 overworld_world_path = NodePath("../..")
 target_properties = {
@@ -685,56 +721,56 @@ position = Vector2( 7694.18, 1029.78 )
 [node name="MarshCrystal22" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 265.131, 1114.5 )
 
-[node name="TurboFatCrystal1" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="TurboFatCrystal1" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 1266.09, 1072.31 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "level_finished marsh/pulling_for_shirts"
 
-[node name="TurboFatCrystal2" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="TurboFatCrystal2" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 1117.76, 1193.67 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "level_finished marsh/pulling_for_bones"
 
-[node name="TurboFatCrystal3" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="TurboFatCrystal3" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 1047.14, 1233.58 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "level_finished marsh/goodbye_shirts"
 
-[node name="TurboFatCrystal4" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="TurboFatCrystal4" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 326.12, 1420.6 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "level_finished marsh/pulling_for_everyone"
 
-[node name="TurboFatCrystal5" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="TurboFatCrystal5" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 232.558, 1045.53 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "level_finished marsh/goodbye_bones"
 
-[node name="TurboFatCrystal6" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="TurboFatCrystal6" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 497.239, 880.374 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "level_finished marsh/pulling_for_skins"
 
-[node name="TurboFatCrystal7" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="TurboFatCrystal7" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 789.982, 1489.9 )
 overworld_world_path = NodePath("../..")
 target_properties = {
 }
 spawn_if = "level_finished marsh/lets_get_merry"
 
-[node name="TurboFatCrystal8" parent="World/Obstacles" instance=ExtResource( 52 )]
+[node name="TurboFatCrystal8" parent="World/Obstacles" instance=ExtResource( 53 )]
 position = Vector2( 529.225, 1118.78 )
 overworld_world_path = NodePath("../..")
 target_properties = {
@@ -788,7 +824,6 @@ id = "buttercup_2"
 
 [node name="SpawnButtercupSeat" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 2493, 929 )
-stool_path = NodePath("../ButtercupStool1")
 id = "buttercup_seat"
 elevation = 80.0
 
