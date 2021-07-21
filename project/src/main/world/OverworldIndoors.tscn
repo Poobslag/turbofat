@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -32,6 +32,7 @@
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=30]
 [ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=31]
 [ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=32]
+[ext_resource path="res://src/main/world/CreatureSpawner.tscn" type="PackedScene" id=33]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=34]
 [ext_resource path="res://assets/main/world/creature/4/accessory-z0-packed.png" type="Texture" id=35]
 [ext_resource path="res://assets/main/world/creature/1/emote-eye-z0-packed.png" type="Texture" id=36]
@@ -525,12 +526,6 @@ suppress_fatness = true
 wait_time = 0.3
 autostart = true
 
-[node name="WoodPillar" parent="World/Obstacles" instance=ExtResource( 22 )]
-position = Vector2( 498, 9 )
-
-[node name="WoodPillar3" parent="World/Obstacles" instance=ExtResource( 22 )]
-position = Vector2( 1873.73, -148.773 )
-
 [node name="Rhonk" parent="World/Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 592, 36 )
 creature_id = "rhonk"
@@ -703,6 +698,60 @@ dna = {
 }
 elevation = 150.0
 
+[node name="Terpion" parent="World/Obstacles" instance=ExtResource( 33 )]
+position = Vector2( 349, 323 )
+overworld_world_path = NodePath("../..")
+stool_path = NodePath("../Stool4")
+target_properties = {
+"creature_id": "terpion",
+"elevation": 150.0,
+"orientation": 0
+}
+spawn_if = "level_finished marsh/pulling_for_everyone"
+max_fatness = 4.0
+
+[node name="Pandon" parent="World/Obstacles" instance=ExtResource( 33 )]
+position = Vector2( 525, 323 )
+overworld_world_path = NodePath("../..")
+stool_path = NodePath("../Stool3")
+target_properties = {
+"creature_id": "pandon",
+"elevation": 150.0,
+"orientation": 1
+}
+spawn_if = "level_finished marsh/pulling_for_everyone"
+max_fatness = 4.0
+
+[node name="Nictor" parent="World/Obstacles" instance=ExtResource( 33 )]
+position = Vector2( 1313.39, 220 )
+overworld_world_path = NodePath("../..")
+stool_path = NodePath("../Stool10")
+target_properties = {
+"creature_id": "nictor",
+"elevation": 150.0,
+"orientation": 0
+}
+spawn_if = "level_finished marsh/lets_all_get_merry"
+max_fatness = 3.0
+
+[node name="Beats" parent="World/Obstacles" instance=ExtResource( 33 )]
+position = Vector2( 768, 36 )
+overworld_world_path = NodePath("../..")
+stool_path = NodePath("../Stool1")
+target_properties = {
+"creature_id": "beats",
+"elevation": 150.0,
+"orientation": 1
+}
+spawn_if = "level_finished marsh/goodbye_everyone"
+max_fatness = 4.0
+
+[node name="WoodPillar" parent="World/Obstacles" instance=ExtResource( 22 )]
+position = Vector2( 498, 9 )
+
+[node name="WoodPillar3" parent="World/Obstacles" instance=ExtResource( 22 )]
+position = Vector2( 1873.73, -148.773 )
+
 [node name="Stool1" parent="World/Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 768, 35 )
 
@@ -725,13 +774,13 @@ position = Vector2( 1080, 35 )
 position = Vector2( 992, 35 )
 
 [node name="Stool3" parent="World/Obstacles" instance=ExtResource( 13 )]
-position = Vector2( 525.285, 321.719 )
+position = Vector2( 525, 322 )
 
 [node name="WoodTable2" parent="World/Obstacles" instance=ExtResource( 8 )]
 position = Vector2( 437.285, 321.719 )
 
 [node name="Stool4" parent="World/Obstacles" instance=ExtResource( 13 )]
-position = Vector2( 349.285, 321.719 )
+position = Vector2( 349, 322 )
 
 [node name="Stool5" parent="World/Obstacles" instance=ExtResource( 13 )]
 position = Vector2( 925.285, 321.719 )
@@ -743,13 +792,13 @@ position = Vector2( 837.285, 321.719 )
 position = Vector2( 749.285, 321.719 )
 
 [node name="Stool9" parent="World/Obstacles" instance=ExtResource( 13 )]
-position = Vector2( 1228.71, 319.05 )
+position = Vector2( 1240.04, 320.938 )
 
 [node name="Stool10" parent="World/Obstacles" instance=ExtResource( 13 )]
-position = Vector2( 1303.41, 217.334 )
+position = Vector2( 1313.39, 219 )
 
 [node name="Stool11" parent="World/Obstacles" instance=ExtResource( 13 )]
-position = Vector2( 1372.43, 121.964 )
+position = Vector2( 1383.76, 123.852 )
 
 [node name="Spawns" type="Node2D" parent="World"]
 
