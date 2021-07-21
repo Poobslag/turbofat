@@ -4,57 +4,57 @@
 outdoors
 
 [characters]
-player, p1, restaurant-1
-shirts, s, restaurant-11
+player, p1, restaurant_1
+shirts, s, restaurant_11
 
 s: /._. So are they driving you crazy yet?
-[bones-drives-me-crazy] Bones is clingy
+[bones_drives_me_crazy] Bones is clingy
  (link_if chat_finished level/marsh/pulling_for_bones_100)
-[skins-drives-me-crazy] Skins is a bit much
+[skins_drives_me_crazy] Skins is a bit much
  (link_if chat_finished level/marsh/pulling_for_skins_100)
-[who-drives-me-crazy] Who do you mean?
+[who_drives_me_crazy] Who do you mean?
 
-[skins-drives-me-crazy]
+[skins_drives_me_crazy]
 p1: ._.; Skins is... a bit much. They can't seem to take a hint.
 s: ^y^ Yeah, that sounds about right. I think I was here for what... two weeks at most when it started.
-[shirts-explains]
+[shirts_explains]
 
-[bones-drives-me-crazy]
+[bones_drives_me_crazy]
 p1: ._.; Bones became pretty clingy all of a sudden. They can't seem to take a hint.
 s: ^y^ Yeah, that sounds about right. I think I was here for what... two weeks at most when it started.
-[shirts-explains]
+[shirts_explains]
 
-[who-drives-me-crazy]
+[who_drives_me_crazy]
 p1: /._. Is who driving me crazy? I've met a bunch of new people here.
 s: Oh. Really? No one comes to mind, huh? Well that's nice.
 s: ^y^ It sounds like they're taking it easy on you so far. For me, it started like two weeks in.
-[shirts-explains]
+[shirts_explains]
 
-[shirts-explains]
+[shirts_explains]
 s: I dunno if it's flirting, it's just -- the more you treat them like a human being, the less they treat you like one.
 s: >_< Every conversation feels like a contest. They squeeze in these awkward compliments whenever they talk to you.
 s: And they stop farting around you.... And they're always watching you to see what you laugh at, so they can laugh too.
 s: -__- It's just... (sigh) Whatever. It could be worse.
-[ill-fart] I'll fart around you
-[thats-horrible] That's horrible
-[awkward-compliment] You're so smart
-[ive-been-there] I've been there
+[ill_fart] I'll fart around you
+[thats_horrible] That's horrible
+[awkward_compliment] You're so smart
+[ive_been_there] I've been there
 [hmm] Hmm
 
-[ill-fart]
+[ill_fart]
 p1: ^_^ I'll fart around you!
 s: ^o^ Ha ha. Thanks. I think.
 
-[thats-horrible]
+[thats_horrible]
 p1: u_u Ugh, that sounds horrible.
 s: Ahh it's not so bad, just gotta keep those shields up. I'm sure you know the drill.
 [violence]
 
-[awkward-compliment]
+[awkward_compliment]
 p1: ^__^ Wow, what an insightful monologue. You're so smart! And so beautiful.
 s: ^o^ Ha ha. Thanks. I think.
 
-[ive-been-there]
+[ive_been_there]
 p1: >_< Yeah... I've been there before.
 s: Ahh it's not so bad, just gotta keep those shields up. I'm sure you know the drill.
 [violence]

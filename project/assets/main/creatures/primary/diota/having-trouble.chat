@@ -4,9 +4,9 @@
 outdoors
 
 [characters]
-player, p1, buttercup-10
-sensei, s1, buttercup-8
-diota, d, buttercup-2
+player, p1, buttercup_10
+sensei, s1, buttercup_8
+diota, d, buttercup_2
 
 p1: /._. Any news?
 d: u_u So yeah, I mean... We're trying a few promotions to get people back, but I don't know.
@@ -14,11 +14,11 @@ d: I HATE marketing, and I always sort of hoped word of mouth would be enough fo
 d: @_@ And I mean for a while things were going great! ... ...I don't really get what changed....
 p1: Well, maybe people don't like the new name. ...Have you thought about changing it again?
 d: /._. ....Wait, what?
-[butt-up-cafe] ^o^ Switch it back to Butt Up Cafe!
-[butt-cafe] ^O^ Shorten it to Butt Cafe!
+[butt_up_cafe] ^o^ Switch it back to Butt Up Cafe!
+[butt_cafe] ^O^ Shorten it to Butt Cafe!
 [nevermind] Oh, nevermind
 
-[butt-up-cafe]
+[butt_up_cafe]
 p1: ^o^ You know, maybe people miss the old Butt Up cafe!
  (s1 mood ^O^)
 d: ...
@@ -26,7 +26,7 @@ d: <__< S-sorry. What? I can't tell if that's a joke or if you're actually makin
 d: I'm not really in the right headspace to parse that right now.
 p1: Ha ha. You'll figure it out.
 
-[butt-cafe]
+[butt_cafe]
 p1: ^o^ Maybe just call it The Butt Cafe this time! You know, shorter! Punchier!
  (s1 mood ^O^)
 d: ...

@@ -4,8 +4,8 @@
 outdoors
 
 [characters]
-player, p1, restaurant-1
-bones, b, restaurant-11
+player, p1, restaurant_1
+bones, b, restaurant_11
 
 b: ^O^ Hey, remember a few days ago when you said there's more than one way to bone a dog! Ha ha!
 p1: ^_^ Ha ha! Yeah. Wait, what's so funny about that?
@@ -13,49 +13,49 @@ p1: ^_^ Ha ha! Yeah. Wait, what's so funny about that?
 p1: <__< Why does everyone keep asking me that!?
  (say_if chat_finished level/marsh/pulling_for_skins_100)
 b: OwO... I was thinking maybe if you come over to my place, you can tell me more jokes and then we can get married.
-[yes-id-love-to] Yes, I'd love to
-[no-1] No that's okay
-[yes-i-guess] Umm... I guess
+[yes_id_love_to] Yes, I'd love to
+[no_1] No that's okay
+[yes_i_guess] Umm... I guess
 
-[yes-id-love-to]
+[yes_id_love_to]
 p1: OwO Yes, yes! Oh, I'd love to marry you, Bones!
 [yes]
 
-[yes-i-guess]
+[yes_i_guess]
 p1: <_< Umm... I guess that's alright.
 [yes]
 
-[no-1]
+[no_1]
 p1: /._. N-no, that's okay. I'm not really in the mood for jokes right now.
 b: Okay! Well, let's just get married then.
-[no-2] Umm... I can't
-[yes-why-not] I don't see why not
-[yes-no-problem] No problem at all
+[no_2] Umm... I can't
+[yes_why_not] I don't see why not
+[yes_no_problem] No problem at all
 
-[yes-why-not]
+[yes_why_not]
 p1: /._. Well, I don't see why not.
 [yes]
 
-[yes-no-problem]
+[yes_no_problem]
 p1: No problem, sounds good.
 [yes]
 
-[no-2]
+[no_2]
 p1: <_< Umm, I think I have other plans.
 b: Let's just marry before your plans! Just a quick marry.
-[yes-no-reason] No reason not to
-[yes-okay] Umm... Okay
-[no-3] ._. I don't want to
+[yes_no_reason] No reason not to
+[yes_okay] Umm... Okay
+[no_3] ._. I don't want to
 
-[yes-no-reason]
+[yes_no_reason]
 p1: /._. Well, I don't see any reason not to.
 [yes]
 
-[yes-okay]
+[yes_okay]
 p1: <_< Umm... Okay, whatever.
 [yes]
 
-[no-3]
+[no_3]
 p1: ._. ...I don't want to marry you. Let's be friends.
 b: Marry~
 p1: ._.; ...Friends.
@@ -68,20 +68,20 @@ b: ^O^ Oh boy! Oh boy oh boy oh boy. That is... You're just...
 b: ^_^ My mother always warned me not to settle for the first person I fell in love with. And here you are!
 b: ^__^ And now I get to call them, and tell them that I have a boyfriend or girlfriend.
 b: /._. ...Actually, I probably should have asked you about that. But, I didn't want to be rude.
-[yes-2] ._. I'm a boy
-[yes-2] ._. I'm a girl
-[yes-totally-2] OwO I love you
-[yes-2] >_< I didn't mean to click that
+[yes_2] ._. I'm a boy
+[yes_2] ._. I'm a girl
+[yes_totally_2] OwO I love you
+[yes_2] >_< I didn't mean to click that
 
-[yes-totally-2]
+[yes_totally_2]
 p1: OwO... I-
-[yes-continuation-2]
+[yes_continuation_2]
 
-[yes-2]
+[yes_2]
 p1: I-
-[yes-continuation-2]
+[yes_continuation_2]
 
-[yes-continuation-2]
+[yes_continuation_2]
 b: ^_^ No, no, don't tell me yet! I can just find out on our honeymoon.
 b: OwO... I love surprises~
 (You are now in a relationship with Bones.)

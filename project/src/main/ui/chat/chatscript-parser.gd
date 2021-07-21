@@ -112,8 +112,8 @@ class CharactersState extends AbstractState:
 	
 	"""
 	Syntax:
-		skins, s, kitchen-9        - a character named 'skins' with an alias 's' spawns at kitchen-9
-		skins, s, !kitchen-9        - a character named 'skins' with an alias 's' spawns invisible at kitchen-9
+		skins, s, kitchen_9        - a character named 'skins' with an alias 's' spawns at kitchen_9
+		skins, s, !kitchen_9        - a character named 'skins' with an alias 's' spawns invisible at kitchen_9
 		skins, s                   - a character named 'skins' with an alias 's'
 		skins                      - a character named 'skins'
 	"""
@@ -290,34 +290,30 @@ class ChatState extends AbstractState:
 	
 	
 	"""
-	Translates human-readable phrases like 'spira enters' into metadata like 'creature-enter spira'
+	Translates human-readable phrases like 'spira enters' into metadata like 'creature_enter spira'
 	"""
 	func _translate_meta_item(item: String) -> String:
 		var result := item
-		if item.begins_with("next scene "):
-			# next scene creature/john/hello -> next-scene creature/john/hello
-			var path := item.trim_prefix("next scene ")
-			result = "next-scene %s" % [path]
-		elif item.ends_with(" enters"):
-			# spira enters -> creature-enter spira
+		if item.ends_with(" enters"):
+			# spira enters -> creature_enter spira
 			var name := item.trim_suffix(" enters")
-			result = "creature-enter %s" % [_unalias(name)]
+			result = "creature_enter %s" % [_unalias(name)]
 		elif item.ends_with(" exits"):
-			# spira exits -> creature-exit spira
+			# spira exits -> creature_exit spira
 			var name := item.trim_suffix(" exits")
-			result = "creature-exit %s" % [_unalias(name)]
+			result = "creature_exit %s" % [_unalias(name)]
 		elif " mood " in item:
-			# spira mood ^_^ -> creature-mood spira 7
+			# spira mood ^_^ -> creature_mood spira 7
 			var name := StringUtils.substring_before(item, " mood ")
 			name = _unalias(name)
 			var mood := StringUtils.substring_after(item, " mood ")
-			result = "creature-mood %s %s" % [name, MOOD_PREFIXES[mood]]
+			result = "creature_mood %s %s" % [name, MOOD_PREFIXES[mood]]
 		elif " faces " in item:
-			# spira faces left -> creature-orientation spira 1
+			# spira faces left -> creature_orientation spira 1
 			var name := StringUtils.substring_before(item, " faces ")
 			name = _unalias(name)
 			var orientation := StringUtils.substring_after(item, " faces ")
-			result = "creature-orientation %s %s" % [name, ORIENTATION_STRINGS[orientation]]
+			result = "creature_orientation %s %s" % [name, ORIENTATION_STRINGS[orientation]]
 		return result
 	
 	

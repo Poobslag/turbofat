@@ -4,55 +4,55 @@
 indoors
 
 [characters]
-player, p1, kitchen-3
-sensei, s1, kitchen-5
-richie, r, kitchen-11
-skins, s, kitchen-9
-bones, b, kitchen-7
+player, p1, kitchen_3
+sensei, s1, kitchen_5
+richie, r, kitchen_11
+skins, s, kitchen_9
+bones, b, kitchen_7
 
 s: So how was that?
-[very-good] I think you killed it!
+[very_good] I think you killed it!
 [good] That was pretty good!
 [bad] ...
-[very-bad] Well... I wouldn't eat it.
+[very_bad] Well... I wouldn't eat it.
 
-[very-good]
+[very_good]
 p1: ^__^ Wow, I think you killed it! You have some real talent.
 s: ^__^ Whoa, thanks!
-[sensei-answers-praise]
+[sensei_answers_praise]
 
 [good]
 p1: ^_^ Hey, that was pretty good! And y'know, with a little more training you'll get even better.
 s: ^_^ Oh okay cool!
-[sensei-answers-praise]
+[sensei_answers_praise]
 
 [bad]
 p1: /._. ...
 s: ._.; ...?
 p1: ._.; ... ...
 s: .__.; ... ... ...
-[sensei-answers-insult]
+[sensei_answers_insult]
 
-[very-bad]
+[very_bad]
 p1: /._. Well... I wouldn't eat it. Did you have any cooking experience before this?
 s: ._.; Uhh I mean like, Richie's been helping me figure out the kitchen stuff. ...Did I mess something up?
-[sensei-answers-insult]
+[sensei_answers_insult]
 
-[sensei-answers-praise]
+[sensei_answers_praise]
 s1: /._. Hmm. Yes! Pretty good. Your rhythm's ahhh... a little off though!
 s: My... my rhythm?
 s1: Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap.
 s1: You don't want to give them any break. Eating should become an unconscious reflex to them, like blinking!
-[oh-okay]
+[oh_okay]
 
-[sensei-answers-insult]
+[sensei_answers_insult]
 s1: /._. What I think #player# is trying to say is your rhythm is ahhh... a little off.
 s: My... my rhythm?
 s1: Yes!/ That food should be coming out like pap-/pap-/pap-/pap-/pap!/ Right now you're more like pappap,// pappa/ pap.
 s1: You don't want to give them any break. Eating should become an unconscious reflex to them, like blinking!
-[oh-okay]
+[oh_okay]
 
-[oh-okay]
+[oh_okay]
 s: u_u Oh, hmm... okay. Mowr...
 r: ^__^ Hey hey! Don't worry, we'll work on that. Good work everybody!
 r: ^_^ #sensei#, #player# -- see what you can do to drum up more business!
