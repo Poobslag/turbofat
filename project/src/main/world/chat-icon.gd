@@ -76,6 +76,8 @@ func initialize(chattable: Node) -> void:
 	var hook: RemoteTransform2D = _chattable.get_node("ChatIconHook")
 	hook.remote_path = hook.get_path_to(self)
 	global_position = hook.global_position
+	# flip the chat icon if the hook is flipped
+	scale = hook.scale
 
 
 func set_bubble_type(new_bubble_type: int) -> void:

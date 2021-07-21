@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/world/obstacle-spawner.gd" type="Script" id=2]
+
+[node name="ObstacleSpawner" type="Sprite"]
+script = ExtResource( 2 )
+target_properties = {
+}
