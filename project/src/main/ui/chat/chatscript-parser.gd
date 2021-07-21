@@ -294,7 +294,11 @@ class ChatState extends AbstractState:
 	"""
 	func _translate_meta_item(item: String) -> String:
 		var result := item
-		if item.ends_with(" enters"):
+		if item.begins_with("next scene "):
+			# next scene creature/john/hello -> next-scene creature/john/hello
+			var path := item.trim_prefix("next scene ")
+			result = "next-scene %s" % [path]
+		elif item.ends_with(" enters"):
 			# spira enters -> creature-enter spira
 			var name := item.trim_suffix(" enters")
 			result = "creature-enter %s" % [_unalias(name)]

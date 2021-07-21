@@ -213,6 +213,13 @@ creature referenced by the metadata and performs the appropriate action.
 func _apply_chat_event_meta(meta_item: String) -> void:
 	var meta_item_split := meta_item.split(" ")
 	match(meta_item_split[0]):
+		"next-scene":
+			# schedule another cutscene to happen after this cutscene
+			var next_scene_key := meta_item_split[1]
+			var next_scene_path := ChatHistory.path_from_history_key(next_scene_key)
+			var next_scene_chat_tree: ChatTree = ChatLibrary.chat_tree_from_file(next_scene_path)
+			# insert the chat tree to ensure it happens before any enqueued levels
+			CutsceneManager.insert_chat_tree(0, next_scene_chat_tree)
 		"creature-enter":
 			var creature_id := meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
@@ -255,13 +262,18 @@ func _on_ChatUi_pop_out_completed() -> void:
 		_next_chat_tree = null
 		$Control/ChatUi.play_chat_tree(_current_chat_tree)
 	else:
-		if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
+		if not CutsceneManager.is_front_chat_tree() \
+				and Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 			# don't launch the level; go back to CutsceneDemo after playing the cutscene
 			SceneTransition.pop_trail()
 		elif cutscene:
-			# modify the overworld path and spawn IDs to preserve the player's position from the cutscene
-			Breadcrumb.trail[1] = _current_chat_tree.cutscene_scene_path()
-			CutsceneManager.assign_player_spawn_ids(_current_chat_tree)
+			if Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
+				# don't modify the breadcrumb path; we're not returning to the overworld after
+				pass
+			else:
+				# modify the overworld path and spawn IDs to preserve the player's position from the cutscene
+				Breadcrumb.trail[1] = _current_chat_tree.cutscene_scene_path()
+				CutsceneManager.assign_player_spawn_ids(_current_chat_tree)
 			
 			if CutsceneManager.is_front_level_id():
 				# continue to a level (preroll cutscene finished playing)
@@ -297,6 +309,9 @@ func _on_ChatUi_pop_out_completed() -> void:
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	if cutscene:
 		# don't automatically orient characters during cutscenes
+		pass
+	elif chat_event.is_thought():
+		# don't automatically orient characters in response to the player's thoughts
 		pass
 	else:
 		make_chatters_face_eachother()

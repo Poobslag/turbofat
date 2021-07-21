@@ -92,5 +92,12 @@ func enabled_link_indexes() -> Array:
 	return enabled_link_indexes
 
 
+"""
+Returns 'true' if this chat event represents something the player is thinking.
+"""
+func is_thought() -> bool:
+	return text.begins_with("(") and text.ends_with(")") and not who
+
+
 func _to_string() -> String:
 	return ("%s:%s" % [who, text]) if who else text
