@@ -4,11 +4,11 @@
 indoors
 
 [characters]
-player, p1, kitchen-9
-sensei, s1, kitchen-11
-richie, r, kitchen-1
-skins, s, kitchen-3
-bones, b, kitchen-5
+player, p1, kitchen_9
+sensei, s1, kitchen_11
+richie, r, kitchen_1
+skins, s, kitchen_3
+bones, b, kitchen_5
 
 s1: -_- So explain again why my beloved restaurant is very, very empty?
 r: Aw come on now! It's not empty, we got the two line cooks here...
@@ -21,32 +21,32 @@ r: Maybe kind of like a, hmm... Like a anchor made of something slightly buoyant
 b: /._. An anchor made of... Boats?
 r: Nope. Not that buoyant!
 [walnuts] Walnuts?
-[rotting-flesh] Rotting flesh?
-[smaller-boats] Slightly smaller boats?
-[avenue-of-discussion] This isn't a helpful avenue of discussion.
+[rotting_flesh] Rotting flesh?
+[smaller_boats] Slightly smaller boats?
+[avenue_of_discussion] This isn't a helpful avenue of discussion.
 
 [walnuts]
 p1: /._. Walnuts?
 r: ^Y^ There you go, well put! Like a anchor made of walnuts.
-[following-our-recipes]
+[following_our_recipes]
 
-[rotting-flesh]
+[rotting_flesh]
 p1: /._. Rotting flesh?
 r: ._.; There you go, well put! Like a anchor made of... wait what!?
 r: /._. ...I mean, maybe? ...Hold up, are you on some kind of watchlist I should know about?
-[following-our-recipes]
+[following_our_recipes]
 
-[smaller-boats]
+[smaller_boats]
 p1: /._. Slightly smaller boats?
 r: ^Y^ There you go, well put! Like a anchor made of slightly smaller boats.
-[following-our-recipes]
+[following_our_recipes]
 
-[avenue-of-discussion]
+[avenue_of_discussion]
 p1: This isn't a helpful avenue of discussion.
 r: /._. Oh sure, I'm with you. ...We'll come back to that one later.
-[following-our-recipes]
+[following_our_recipes]
 
-[following-our-recipes]
+[following_our_recipes]
 s1: /._. Well, anyway... I know you said you were following our recipes to a tee. But just in case...
 r: You want us to show you, right?
 s1: I mean... well...

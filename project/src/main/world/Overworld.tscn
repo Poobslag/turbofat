@@ -566,15 +566,15 @@ position = Vector2( 700, 1201 )
 position = Vector2( -1021.27, -156.99 )
 destination_scene_path = "res://src/main/world/Overworld.tscn"
 exit_direction = 7
-player_spawn_id = "se-player"
-sensei_spawn_id = "se-sensei"
+player_spawn_id = "se_player"
+sensei_spawn_id = "se_sensei"
 
 [node name="SeExit" parent="World/Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 3406.39, 2245.14 )
 destination_scene_path = "res://src/main/world/Overworld.tscn"
 exit_direction = 3
-player_spawn_id = "nw-player"
-sensei_spawn_id = "nw-sensei"
+player_spawn_id = "nw_player"
+sensei_spawn_id = "nw_sensei"
 
 [node name="MarshCrystal1" parent="World/Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 399, 700 )
@@ -775,114 +775,114 @@ spawn_if = "level_finished marsh/goodbye_skins"
 [node name="SpawnRestaurant1" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 956.39, 1219.86 )
 orientation = 1
-id = "restaurant-1"
+id = "restaurant_1"
 
 [node name="SpawnRestaurant4" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 1005.78, 1308.53 )
 orientation = 1
-id = "restaurant-4"
+id = "restaurant_4"
 
 [node name="SpawnRestaurant8" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 779.04, 1322 )
-id = "restaurant-8"
+id = "restaurant_8"
 
 [node name="SpawnRestaurant11" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 814.96, 1220.98 )
-id = "restaurant-11"
+id = "restaurant_11"
 
 [node name="SpawnRestaurantPlayer" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 687, 1212 )
 orientation = 1
-id = "restaurant-player"
+id = "restaurant_player"
 
 [node name="SpawnRestaurantSensei" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 860, 1240 )
-id = "restaurant-sensei"
+id = "restaurant_sensei"
 
 [node name="SpawnButtercup10" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 2249.48, 843.851 )
-id = "buttercup-10"
+id = "buttercup_10"
 
 [node name="SpawnButtercup8" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 2105.85, 898.027 )
-id = "buttercup-8"
+id = "buttercup_8"
 
 [node name="SpawnButtercup6" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 2318.78, 918.186 )
 orientation = 1
-id = "buttercup-6"
+id = "buttercup_6"
 
 [node name="SpawnButtercup2" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 2501.47, 822.432 )
 orientation = 1
-id = "buttercup-2"
+id = "buttercup_2"
 
 [node name="SpawnButtercupSeat" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 2493, 929 )
 stool_path = NodePath("../ButtercupStool1")
-id = "buttercup-seat"
+id = "buttercup_seat"
 elevation = 80.0
 
 [node name="SpawnButtercupFence" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 2217.94, 1070.42 )
 orientation = 1
-id = "buttercup-fence-3"
+id = "buttercup_fence_3"
 
 [node name="SpawnButtercupFence2" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 2091.36, 1018.8 )
-id = "buttercup-fence-12"
+id = "buttercup_fence_12"
 
 [node name="SpawnSePlayer" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 3251.73, 2165.58 )
 orientation = 2
-id = "se-player"
+id = "se_player"
 
 [node name="SpawnSeSensei" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 3403.09, 2222.76 )
 orientation = 2
-id = "se-sensei"
+id = "se_sensei"
 
 [node name="EExit" parent="World/Obstacles" instance=ExtResource( 24 )]
 position = Vector2( 8332.17, 874.941 )
 destination_scene_path = "res://src/main/world/Overworld.tscn"
 exit_direction = 1
-player_spawn_id = "w-player"
-sensei_spawn_id = "w-sensei"
+player_spawn_id = "w_player"
+sensei_spawn_id = "w_sensei"
 
 [node name="SpawnEPlayer" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 8198.28, 936.019 )
 orientation = 1
-id = "e-player"
+id = "e_player"
 
 [node name="SpawnESensei" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 8360.02, 845.01 )
 orientation = 1
-id = "e-sensei"
+id = "e_sensei"
 
 [node name="WExit" parent="World/Obstacles" instance=ExtResource( 24 )]
 position = Vector2( -3635.54, 1987.22 )
 destination_scene_path = "res://src/main/world/Overworld.tscn"
 exit_direction = 5
-player_spawn_id = "e-player"
-sensei_spawn_id = "e-sensei"
+player_spawn_id = "e_player"
+sensei_spawn_id = "e_sensei"
 
 [node name="SpawnWPlayer" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( -3511.97, 1915.56 )
 orientation = 3
-id = "w-player"
+id = "w_player"
 
 [node name="SpawnWSensei" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( -3468.71, 1900.27 )
 orientation = 3
-id = "w-sensei"
+id = "w_sensei"
 
 [node name="SpawnNwPlayer" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( -848.458, -81.4955 )
-id = "nw-player"
+id = "nw_player"
 
 [node name="SpawnNwPlayer2" parent="World/Obstacles" instance=ExtResource( 17 )]
 position = Vector2( -954.411, -160.54 )
-id = "nw-sensei"
+id = "nw_sensei"
 
 [node name="ChatLetters" parent="World" instance=ExtResource( 3 )]
 

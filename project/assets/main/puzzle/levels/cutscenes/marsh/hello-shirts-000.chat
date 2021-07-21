@@ -4,9 +4,9 @@
 indoors
 
 [characters]
-player, p1, entrance-10
-sensei, s1, entrance-7
-shirts, s, entrance-2
+player, p1, entrance_10
+sensei, s1, entrance_7
+shirts, s, entrance_2
 
 s: Oh hey what's up. I heard you guys came the other day when I wasn't here. So did I miss like anything... important?
 s1: Ahh, nothing important. We're still trying to figure out why this location isn't attracting more customers.

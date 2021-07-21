@@ -33,11 +33,11 @@ func test_overall_meta() -> void:
 func test_cutscene_spawn_locations() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	
-	assert_has(chat_tree.spawn_locations, "#player#", "kitchen-3")
-	assert_has(chat_tree.spawn_locations, "#sensei#", "kitchen-5")
-	assert_has(chat_tree.spawn_locations, "richie", "kitchen-11")
-	assert_has(chat_tree.spawn_locations, "skins", "kitchen-9")
-	assert_has(chat_tree.spawn_locations, "bones", "kitchen-7")
+	assert_has(chat_tree.spawn_locations, "#player#", "kitchen_3")
+	assert_has(chat_tree.spawn_locations, "#sensei#", "kitchen_5")
+	assert_has(chat_tree.spawn_locations, "richie", "kitchen_11")
+	assert_has(chat_tree.spawn_locations, "skins", "kitchen_9")
+	assert_has(chat_tree.spawn_locations, "bones", "kitchen_7")
 
 
 func test_cutscene_chat() -> void:
@@ -47,7 +47,7 @@ func test_cutscene_chat() -> void:
 	assert_eq(event.who, "skins")
 	assert_eq(event.text, "So how was that?")
 	assert_eq(event.mood, ChatEvent.Mood.NONE)
-	assert_eq(event.links, ["very-good", "good", "bad", "very-bad"])
+	assert_eq(event.links, ["very_good", "good", "bad", "very_bad"])
 	assert_eq(event.link_texts, ["I think you killed it!", "That was pretty good!", "...",
 			"Well... I wouldn't eat it."])
 
@@ -74,12 +74,12 @@ func test_chatevent_meta() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_META)
 	
 	# multiple metadata events on one line
-	assert_eq(chat_tree.get_event().meta, ["creature-enter john", "creature-enter jane"])
+	assert_eq(chat_tree.get_event().meta, ["creature_enter john", "creature_enter jane"])
 	
 	# multiple metadata events on different lines
 	chat_tree.advance()
 	chat_tree.advance()
-	assert_eq(chat_tree.get_event().meta, ["creature-exit john", "creature-exit jane"])
+	assert_eq(chat_tree.get_event().meta, ["creature_exit john", "creature_exit jane"])
 
 
 func test_chatevent_meta_orientation() -> void:
@@ -90,7 +90,7 @@ func test_chatevent_meta_orientation() -> void:
 	var event := chat_tree.get_event()
 	
 	assert_eq(event.text, "Oh? Is someone there?")
-	assert_eq(event.meta, ["creature-orientation john 1"])
+	assert_eq(event.meta, ["creature_orientation john 1"])
 
 
 func test_cutscene_thought() -> void:
@@ -139,7 +139,7 @@ func test_chat_condition() -> void:
 	chat_tree.advance()
 	assert_eq(chat_tree.get_event().text, "Nice to meet you, too!")
 	chat_tree.advance()
-	assert_eq(chat_tree.get_event().links, ["first-time", "not-first-time", "other"])
+	assert_eq(chat_tree.get_event().links, ["first_time", "not_first_time", "other"])
 	assert_eq(chat_tree.get_event().enabled_link_indexes(), [0, 2])
 	
 	PlayerData.chat_history.add_history_item("creature/boatricia/hi")
@@ -149,7 +149,7 @@ func test_chat_condition() -> void:
 	chat_tree.advance()
 	assert_eq(chat_tree.get_event().text, "I remember you too!")
 	chat_tree.advance()
-	assert_eq(chat_tree.get_event().links, ["first-time", "not-first-time", "other"])
+	assert_eq(chat_tree.get_event().links, ["first_time", "not_first_time", "other"])
 	assert_eq(chat_tree.get_event().enabled_link_indexes(), [1, 2])
 
 

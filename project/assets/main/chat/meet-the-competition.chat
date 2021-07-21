@@ -4,10 +4,10 @@
 outdoors
 
 [characters]
-player, p1, buttercup-10
-sensei, s1, buttercup-8
-richie, r, buttercup-6
-diota, d, !buttercup-2
+player, p1, buttercup_10
+sensei, s1, buttercup_8
+richie, r, buttercup_6
+diota, d, !buttercup_2
 
 s1: Hmm, another restaurant this close!? I wonder if this is a part of the problem.
  (player faces left)

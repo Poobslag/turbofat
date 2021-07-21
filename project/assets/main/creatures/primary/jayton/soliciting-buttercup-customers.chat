@@ -4,30 +4,30 @@
 outdoors
 
 [characters]
-player, p1, buttercup-6
-sensei, s1, buttercup-10
-diota, d, !buttercup-2
-jayton, j, buttercup-seat
+player, p1, buttercup_6
+sensei, s1, buttercup_10
+diota, d, !buttercup_2
+jayton, j, buttercup_seat
 
 p1: ^_^/ Hello! We run the Turbo Fat restaurant down the street, and if you're ever-
  (player faces right)
 j: -Eh? Hello! So... you work at a different restaurant?
  (jayton faces left)
 p1: Yeah! It's a restaurant with hmm...
-[better-food] Way better food
-[better-service] Better service
-[not-healthy] None of this healthy crap
+[better_food] Way better food
+[better_service] Better service
+[not_healthy] None of this healthy crap
 [oops] ...I shouldn't do this
 
-[better-food]
+[better_food]
 p1: ^_^ It's a restaurant with way better food than this place! Even if you're vegetarian, we-
 [end]
 
-[better-service]
+[better_service]
 p1: ^o^ It's a restaurant with way better service than this place! And don't worry if you're vegetarian, we-
 [end]
 
-[not-healthy]
+[not_healthy]
 p1: ^O^ It's a restaurant with none of this healthy crap! All our food is-
 [end]
 
@@ -42,4 +42,4 @@ d: >__< You just thought you could randomly come to my restaurant and pitch to m
  (player mood ._.;)
 p1: <__< ...Well!
 d: >___< Go away! Just... get out of here, seriously!
- (next scene creature/jayton/soliciting-buttercup-customers-2)
+ (next_scene creature/jayton/soliciting-buttercup-customers-2)

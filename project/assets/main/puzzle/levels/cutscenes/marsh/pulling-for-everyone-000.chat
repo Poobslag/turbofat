@@ -4,11 +4,11 @@
 indoors
 
 [characters]
-player, p1, kitchen-9
-sensei, s1, kitchen-5
-richie, r, kitchen-1
-skins, s, kitchen-3
-bones, b, kitchen-7
+player, p1, kitchen_9
+sensei, s1, kitchen_5
+richie, r, kitchen_1
+skins, s, kitchen_3
+bones, b, kitchen_7
 
 p1: Well! I guess this is our last day here.
 r: Yeah! Thanks for all your help. We're putting out better food now, and business is starting to pick up a little.

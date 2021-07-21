@@ -4,36 +4,36 @@
 outdoors
 
 [characters]
-player, p1, restaurant-4
-sensei, s1, restaurant-1
-shirts, s, restaurant-8
+player, p1, restaurant_4
+sensei, s1, restaurant_1
+shirts, s, restaurant_8
 
 p1: <_< So I don't know if you've heard, but -- Fat Sensei and I are leaving MerryMellow Marsh.
 s: /._. Oh. Yeah, it was only supposed to be a week, right? ...Well, sorry to see you go. This place will suck a little more without you.
-[maybe-manager] Want to be manager?
-[maybe-leave] You could leave
-[not-so-bad] It's not so bad
-[pretty-bad] It's pretty bad
+[maybe_manager] Want to be manager?
+[maybe_leave] You could leave
+[not_so_bad] It's not so bad
+[pretty_bad] It's pretty bad
 
-[maybe-manager]
+[maybe_manager]
 p1: /._. Do you want us to make you a manager? You could hire new staff or fix the culture here.
 s: ^O^ Wow! Managing. ...I mean even if I hate it here, I don't know if I give enough of a crap to actually try and improve things. Ha ha.
 s: Yeah, I don't know. I'll probably just let it suck for awhile, see how that goes.
 [monologue]
 
-[maybe-leave]
+[maybe_leave]
 p1: ._.; You could find a new job if things are that bad here. I'm sure you'll land on your feet.
 s: ^O^ Yeah, I don't know. Even if I hate it, I'm more the type to stick it out rather than lifting a finger to help myself. Ha ha.
 s: I'll probably just let it suck for awhile, see how that goes.
 [monologue]
 
-[pretty-bad]
+[pretty_bad]
 p1: u_u Yeah, sorry, it seems pretty bad. Do you think you'll keep working here?
 s: ^O^ Yeah, I don't know. Even if I hate it, I'm more the type to stick it out rather than lifting a finger to help myself. Ha ha.
 s: I'll probably just let it suck for awhile, see how that goes.
 [monologue]
 
-[not-so-bad]
+[not_so_bad]
 p1: ^__^/ It doesn't seem so bad! I'm sure you'll get by.
 s: ^O^ Yeah, I don't know. Even if I hate it, I'm more the type to stick it out rather than lifting a finger to help myself. Ha ha.
 s: I'll probably just let it suck for awhile, see how that goes.

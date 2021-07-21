@@ -4,9 +4,9 @@
 outdoors
 
 [characters]
-player, p1, buttercup-fence-3
-sensei, s1, buttercup-fence-12
-jayton, j, buttercup-seat
+player, p1, buttercup_fence_3
+sensei, s1, buttercup_fence_12
+jayton, j, buttercup_seat
 
 p1: ._.; ...In hindsight we probably should not have done that.
 s1: -_- ...

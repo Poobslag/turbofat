@@ -4,16 +4,16 @@
 outdoors
 
 [characters]
-player, p1, buttercup-10
-sensei, s1, buttercup-8
-diota, d, buttercup-2
+player, p1, buttercup_10
+sensei, s1, buttercup_8
+diota, d, buttercup_2
 
 d: -_- Oh hello. Did you need something?
-[butts-up] Butt's up with you
-[you-fixed-your-sign] You fixed your sign?
-[are-you-out-of-business] Are you out of business yet
+[butts_up] Butt's up with you
+[you_fixed_your_sign] You fixed your sign?
+[are_you_out_of_business] Are you out of business yet
 
-[butts-up]
+[butts_up]
 p1: ^O^ Hello! Butt's up with you?
 d: /._. Butt's... Butt's up? What?
 p1: <__< Oh! You fixed your ‘butt up cafe' sign. Now my joke doesn't work. Anyway, how's business?
@@ -21,13 +21,13 @@ d: Right, we fixed that like a WEEK ago! ...But yeah, things have been weird!
 d: A bunch of our customers just... like... stopped showing up all of a sudden?
 [end]
 
-[you-fixed-your-sign]
+[you_fixed_your_sign]
 p1: /._. Oh, you fixed your sign!
 d: <_< Right, we fixed that like a WEEK ago! ...But yeah, things have been weird!
 d: A bunch of our customers just... like... stopped showing up all of a sudden?
 [end]
 
-[are-you-out-of-business]
+[are_you_out_of_business]
 p1: >_< So are you out of business yet?
 d: <_< Ugh well. We fixed our sign last week, so at least the 'butt cafe' jokes have stopped.
 d: But a bunch of our customers just... like... stopped showing up all of a sudden?

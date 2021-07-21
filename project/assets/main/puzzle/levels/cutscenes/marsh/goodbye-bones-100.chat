@@ -4,8 +4,8 @@
 outdoors
 
 [characters]
-player, p1, restaurant-11
-bones, b, restaurant-1
+player, p1, restaurant_11
+bones, b, restaurant_1
 
 p1: <_< Sorry, I should probably tell you - Fat Sensei and I are planning to leave MerryMellow marsh.
 b: .__.; You're leaving!? ...Well, when?
@@ -19,7 +19,7 @@ p1: Sorry, Bones. You're a special dog. And you'll always have a special place..
 [thoughts] In my thoughts
 [butt] In my butt
 [registry] On a registry
-[heart-and-thoughts] In my heart and thoughts
+[heart_and_thoughts] In my heart and thoughts
 
 [heart]
 p1: ^_^ You'll always have a special place in my heart.
@@ -31,7 +31,7 @@ p1: ^_^ You'll always have a special place in my thoughts.
 b: ^Y^ Well... Thanks. I'm glad I'll always be close to your thoughts.
 (You are no longer in a relationship with Bones.)
 
-[heart-and-thoughts]
+[heart_and_thoughts]
 p1: ^_^/ You'll always have a special place in my heart, and in my thoughts.
 b: u_u But... I want you to stay! I don't want hearts and thoughts. Hearts and thoughts, they fade. Fade away.
 b: ...

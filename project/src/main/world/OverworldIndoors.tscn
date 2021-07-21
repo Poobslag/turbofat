@@ -173,8 +173,8 @@ impassable_tile_index = 1
 position = Vector2( 130.547, 315.908 )
 destination_scene_path = "res://src/main/world/Overworld.tscn"
 exit_direction = 4
-player_spawn_id = "restaurant-player"
-sensei_spawn_id = "restaurant-sensei"
+player_spawn_id = "restaurant_player"
+sensei_spawn_id = "restaurant_sensei"
 
 [node name="Player" parent="World/Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 154.174, 285.058 )
@@ -805,47 +805,47 @@ position = Vector2( 1383.76, 123.852 )
 [node name="SpawnEntrance2" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 342.245, 52.3916 )
 orientation = 1
-id = "entrance-2"
+id = "entrance_2"
 
 [node name="SpawnEntrance5" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 394.38, 152.458 )
 orientation = 1
-id = "entrance-5"
+id = "entrance_5"
 
 [node name="SpawnEntrance7" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 126.975, 170.117 )
-id = "entrance-7"
+id = "entrance_7"
 
 [node name="SpawnEntrance10" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 179.111, 52.3916 )
-id = "entrance-10"
+id = "entrance_10"
 
 [node name="SpawnKitchen1" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 1863.6, 75.8002 )
 orientation = 1
-id = "kitchen-1"
+id = "kitchen_1"
 
 [node name="SpawnKitchen3" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 1910.61, 182.605 )
 orientation = 1
-id = "kitchen-3"
+id = "kitchen_3"
 
 [node name="SpawnKitchen5" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 1955.82, 282.207 )
 orientation = 1
-id = "kitchen-5"
+id = "kitchen_5"
 
 [node name="SpawnKitchen7" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 1596.46, 279.091 )
-id = "kitchen-7"
+id = "kitchen_7"
 
 [node name="SpawnKitchen9" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 1667.9, 173.54 )
-id = "kitchen-9"
+id = "kitchen_9"
 
 [node name="SpawnKitchen11" parent="World/Spawns" instance=ExtResource( 6 )]
 position = Vector2( 1740.68, 77.2144 )
-id = "kitchen-11"
+id = "kitchen_11"
 
 [node name="ChatLetters" parent="World" instance=ExtResource( 12 )]
 

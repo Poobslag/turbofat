@@ -9,16 +9,16 @@ player: Nice to meet you, too!
 player: I remember you too!
  (say_if chat_finished creature/boatricia/hi)
 player: I'd also like to say...
-[first-time]
+[first_time]
  (link_if not chat_finished creature/boatricia/hi)
-[not-first-time]
+[not_first_time]
  (link_if chat_finished creature/boatricia/hi)
 [other]
 
-[first-time]
+[first_time]
 player: It's a shame we've never spoken before!
 
-[not-first-time]
+[not_first_time]
 player: I'm glad to speak with you again!
 
 [other]

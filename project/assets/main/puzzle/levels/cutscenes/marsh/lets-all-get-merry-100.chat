@@ -4,11 +4,11 @@
 indoors
 
 [characters]
-player, p1, kitchen-7
-sensei, s1, kitchen-5
-richie, r, kitchen-11
-skins, s, kitchen-9
-bones, b, kitchen-3
+player, p1, kitchen_7
+sensei, s1, kitchen_5
+richie, r, kitchen_11
+skins, s, kitchen_9
+bones, b, kitchen_3
 
 s1: <_< Well... I'm sorry we still couldn't figure out what's wrong with the food here.
 r: ^_^/ Hey, it ain't your fault! Maybe things are just different here for some reason.

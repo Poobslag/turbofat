@@ -213,29 +213,29 @@ creature referenced by the metadata and performs the appropriate action.
 func _apply_chat_event_meta(meta_item: String) -> void:
 	var meta_item_split := meta_item.split(" ")
 	match(meta_item_split[0]):
-		"next-scene":
+		"next_scene":
 			# schedule another cutscene to happen after this cutscene
 			var next_scene_key := meta_item_split[1]
 			var next_scene_path := ChatHistory.path_from_history_key(next_scene_key)
 			var next_scene_chat_tree: ChatTree = ChatLibrary.chat_tree_from_file(next_scene_path)
 			# insert the chat tree to ensure it happens before any enqueued levels
 			CutsceneManager.insert_chat_tree(0, next_scene_chat_tree)
-		"creature-enter":
+		"creature_enter":
 			var creature_id := meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			creature.fade_in()
 			emit_signal("visible_chatters_changed")
-		"creature-exit":
+		"creature_exit":
 			var creature_id := meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			creature.fade_out()
 			creature.connect("fade_out_finished", self, "_on_Creature_fade_out_finished", [creature])
-		"creature-mood":
+		"creature_mood":
 			var creature_id: String = meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			var mood: int = int(meta_item_split[2])
 			creature.play_mood(mood)
-		"creature-orientation":
+		"creature_orientation":
 			var creature_id: String = meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
 			var orientation: int = int(meta_item_split[2])

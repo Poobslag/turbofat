@@ -12,17 +12,17 @@ overworld scene. This script maintains a queue of the pending cutscenes and leve
 # was absent, we spawn them near the player. This dictionary contains a list of those spawn locations keyed by the
 # player's location in the cutscene, in the format '<location_id>/<spawn_id>'
 const SENSEI_SPAWN_IDS_BY_PLAYER_LOCATION := {
-	"outdoors/restaurant-1": "restaurant-11",
-	"outdoors/restaurant-4": "restaurant-11",
-	"outdoors/restaurant-8": "restaurant-1",
-	"outdoors/restaurant-11": "restaurant-1",
+	"outdoors/restaurant_1": "restaurant_11",
+	"outdoors/restaurant_4": "restaurant_11",
+	"outdoors/restaurant_8": "restaurant_1",
+	"outdoors/restaurant_11": "restaurant_1",
 	
-	"indoors/kitchen-1": "kitchen-7",
-	"indoors/kitchen-3": "kitchen-7",
-	"indoors/kitchen-5": "kitchen-7",
-	"indoors/kitchen-7": "kitchen-5",
-	"indoors/kitchen-9": "kitchen-5",
-	"indoors/kitchen-11": "kitchen-5",
+	"indoors/kitchen_1": "kitchen_7",
+	"indoors/kitchen_3": "kitchen_7",
+	"indoors/kitchen_5": "kitchen_7",
+	"indoors/kitchen_7": "kitchen_5",
+	"indoors/kitchen_9": "kitchen_5",
+	"indoors/kitchen_11": "kitchen_5",
 }
 
 # Queue of ChatTree and String instances. ChatTrees represent cutscenes, and strings represent level IDs.
