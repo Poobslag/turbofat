@@ -6,7 +6,10 @@ Tests backwards compatibility with older save formats.
 const TEMP_FILENAME := "test-ground-lucky.save"
 
 func before_each() -> void:
-	PlayerSave.current_player_data_filename = "user://%s" % TEMP_FILENAME
+	PlayerSave.data_filename = "user://%s" % TEMP_FILENAME
+	
+	# don't increment playtime during this test or it ruins our assertions
+	PlayerData.seconds_played_timer.stop()
 	PlayerData.reset()
 
 
@@ -47,6 +50,16 @@ func test_1682_chat_history_preserved() -> void:
 	assert_eq(PlayerData.chat_history.get_filler_count("creature/boatricia"), 13)
 
 
+func test_199c() -> void:
+	load_player_data("turbofat-199c.json")
+	
+	assert_eq(PlayerData.level_history.successful_levels.has("practice/marathon_normal"), true)
+	assert_eq(PlayerData.level_history.successful_levels.has("rank/7k"), true)
+	
+	assert_eq(PlayerData.level_history.finished_levels.has("boatricia"), true)
+	assert_eq(PlayerData.level_history.finished_levels.has("example"), true)
+
+
 func test_19c5() -> void:
 	load_player_data("turbofat-19c5.json")
 	
@@ -68,9 +81,6 @@ func test_1b3c() -> void:
 	var history_marathon: RankResult = PlayerData.level_history.results("practice/marathon_hard")[0]
 	assert_eq(history_marathon.lost, false)
 	assert_eq(history_marathon.score, 5115)
-	
-	# 'miscellaneous settings' were renamed to 'misc settings'
-	assert_eq(TranslationServer.get_locale(), "es")
 
 
 func test_245b() -> void:
@@ -117,3 +127,10 @@ func test_2743() -> void:
 	assert_almost_eq(PlayerData.creature_library.get_fatness("#filler_000#"), 1.03, 0.01)
 	assert_almost_eq(PlayerData.creature_library.get_fatness("#filler_100#"), 1.68, 0.01)
 	assert_almost_eq(PlayerData.creature_library.get_fatness("i_n_cognito"), 1.30, 0.01)
+
+
+func test_2783() -> void:
+	load_player_data("turbofat-2783.json")
+	
+	# We did not measure playtime in 2783, but we can approximate it based on the player's money.
+	assert_almost_eq(PlayerData.seconds_played, 1181359, 0.1)

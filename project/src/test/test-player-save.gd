@@ -10,7 +10,7 @@ const TEMP_FILENAME := "test936.save"
 var _rank_result: RankResult
 
 func before_each() -> void:
-	PlayerSave.current_player_data_filename = "user://%s" % TEMP_FILENAME
+	PlayerSave.data_filename = "user://%s" % TEMP_FILENAME
 	PlayerData.reset()
 	
 	_rank_result = RankResult.new()
@@ -23,13 +23,12 @@ func before_each() -> void:
 
 func after_each() -> void:
 	var dir := Directory.new()
-	dir.remove(PlayerSave.rolling_backups.rolling_filename(RollingBackups.CURRENT))
-	dir.remove(PlayerSave.rolling_backups.rolling_filename(RollingBackups.THIS_HOUR))
-	dir.remove(PlayerSave.rolling_backups.rolling_filename(RollingBackups.PREV_HOUR))
-	dir.remove(PlayerSave.rolling_backups.rolling_filename(RollingBackups.THIS_DAY))
-	dir.remove(PlayerSave.rolling_backups.rolling_filename(RollingBackups.PREV_DAY))
-	dir.remove(PlayerSave.rolling_backups.rolling_filename(RollingBackups.THIS_WEEK))
-	dir.remove(PlayerSave.rolling_backups.rolling_filename(RollingBackups.PREV_WEEK))
+	for backup in [
+			RollingBackups.CURRENT,
+			RollingBackups.THIS_HOUR, RollingBackups.PREV_HOUR,
+			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
+			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK]:
+		dir.remove(PlayerSave.rolling_backups.rolling_filename(backup))
 
 
 func test_save_and_load() -> void:
@@ -45,7 +44,7 @@ func test_one_bad_file() -> void:
 	PlayerData.level_history.add("level_895", _rank_result)
 	PlayerSave.save_player_data()
 	PlayerData.reset()
-	FileUtils.write_file(PlayerSave.current_player_data_filename, "invalid-772")
+	FileUtils.write_file(PlayerSave.data_filename, "invalid-772")
 	PlayerSave.load_player_data()
 	assert_true(PlayerData.level_history.has("level_895"))
 	assert_eq(PlayerData.level_history.results("level_895")[0].score, 7890)
