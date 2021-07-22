@@ -19,16 +19,18 @@ var loaded_backup: int setget ,get_loaded_backup
 # Virtual property; value is only exposed through getters/setters
 var corrupt_filenames: Array setget ,get_corrupt_filenames
 
-# Filename to use when saving/loading player data. Can be changed for tests
-var data_filename := "user://turbofat0.save" setget set_data_filename
+# Filename for saving/loading player data. Can be changed for tests
+var data_filename := "user://saveslot0.json" setget set_data_filename
+
+# Filename for loading data older than July 2021. Can be changed for tests
+var legacy_filename := "user://turbofat0.save" setget set_legacy_filename
 
 # Provides backwards compatibility with older save formats
 var old_save := OldPlayerSave.new()
 
 func _ready() -> void:
-	PlayerData.reset()
 	rolling_backups.data_filename = data_filename
-	load_player_data()
+	rolling_backups.legacy_filename = legacy_filename
 
 
 func get_corrupt_filenames() -> Array:
@@ -44,6 +46,11 @@ func set_data_filename(new_data_filename: String) -> void:
 	rolling_backups.data_filename = data_filename
 
 
+func set_legacy_filename(new_legacy_filename: String) -> void:
+	legacy_filename = new_legacy_filename
+	rolling_backups.legacy_filename = legacy_filename
+
+
 """
 Writes the player's in-memory data to a save file.
 """
@@ -54,13 +61,6 @@ func save_player_data() -> void:
 	player_info["money"] = PlayerData.money
 	player_info["seconds_played"] = PlayerData.seconds_played
 	save_json.append(_save_item("player_info", player_info).to_json_dict())
-	save_json.append(_save_item("gameplay_settings", PlayerData.gameplay_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("graphics_settings", PlayerData.graphics_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("volume_settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("touch_settings", PlayerData.touch_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("keybind_settings", PlayerData.keybind_settings.to_json_dict()).to_json_dict())
-	save_json.append(_save_item("misc_settings", \
-			PlayerData.misc_settings.to_json_dict()).to_json_dict())
 	for level_name in PlayerData.level_history.level_names():
 		var rank_results_json := []
 		for rank_result in PlayerData.level_history.results(level_name):
@@ -82,6 +82,43 @@ Populates the player's in-memory data based on their save files.
 func load_player_data() -> void:
 	PlayerData.reset()
 	rolling_backups.load_newest_save(self, "_load_player_data_from_file")
+
+
+"""
+Returns the playtime in seconds from the specified save file.
+"""
+func get_save_slot_playtime(filename: String) -> float:
+	var json_save_items := _save_items_from_file(filename)
+	var seconds_played := 0.0
+	
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		match save_item.type:
+			"player_info":
+				var value: Dictionary = save_item.value
+				seconds_played = value.get("seconds_played", 0.0)
+	
+	return seconds_played
+
+
+"""
+Returns the player's short name from the specified save file.
+"""
+func get_save_slot_player_short_name(filename: String) -> String:
+	var json_save_items := _save_items_from_file(filename)
+	var player_short_name := ""
+	
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		match save_item.type:
+			"creature_library":
+				var value: Dictionary = save_item.value
+				var player_creature_data: Dictionary = value.get("#player#", {})
+				player_short_name = player_creature_data.get("short_name", "")
+	
+	return player_short_name
 
 
 """
@@ -192,23 +229,5 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"successful_levels":
 			var value: Dictionary = json_value
 			PlayerData.level_history.successful_levels = value
-		"gameplay_settings":
-			var value: Dictionary = json_value
-			PlayerData.gameplay_settings.from_json_dict(value)
-		"graphics_settings":
-			var value: Dictionary = json_value
-			PlayerData.graphics_settings.from_json_dict(value)
-		"volume_settings":
-			var value: Dictionary = json_value
-			PlayerData.volume_settings.from_json_dict(value)
-		"touch_settings":
-			var value: Dictionary = json_value
-			PlayerData.touch_settings.from_json_dict(value)
-		"keybind_settings":
-			var value: Dictionary = json_value
-			PlayerData.keybind_settings.from_json_dict(value)
-		"misc_settings":
-			var value: Dictionary = json_value
-			PlayerData.misc_settings.from_json_dict(value)
 		_:
 			push_warning("Unrecognized save data type: '%s'" % type)

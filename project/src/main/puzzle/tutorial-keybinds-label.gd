@@ -4,7 +4,7 @@ A label for tutorials which shows the keybinds.
 """
 
 func _ready() -> void:
-	PlayerData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
+	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
 	_refresh_message()
 
 

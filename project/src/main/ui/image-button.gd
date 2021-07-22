@@ -12,7 +12,7 @@ export (Texture) var pressed_icon: Texture setget set_pressed_icon
 
 func _ready() -> void:
 	icon = normal_icon
-	PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
+	SystemData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
 	_refresh_touch_settings()
 
 
@@ -31,7 +31,7 @@ func set_pressed_icon(new_pressed_icon: Texture) -> void:
 
 
 func _refresh_touch_settings() -> void:
-	rect_min_size = Vector2(96, 96) * PlayerData.touch_settings.size
+	rect_min_size = Vector2(96, 96) * SystemData.touch_settings.size
 	rect_size = Vector2(0, 0)
 
 

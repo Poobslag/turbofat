@@ -60,6 +60,25 @@ static func comma_sep(n: int) -> String:
 
 
 """
+Formats a float with commas like '1,234,567.89'.
+
+Parameters:
+	'n': The number to format
+	
+	'precision': The number of decimal places to show. Rounding is used.
+"""
+static func comma_sep_float(n: float, precision: int) -> String:
+	var result := str(stepify(abs(n) - int(abs(n)), pow(0.1, precision))).substr(1)
+	var i: int = abs(n)
+	
+	while i > 999:
+		result = ",%03d%s" % [i % 1000, result]
+		i /= 1000
+	
+	return "%s%s%s" % ["-" if n < 0 else "", i, result]
+
+
+"""
 Gets the substring before the first occurrence of a separator.
 """
 static func substring_before(s: String, sep: String) -> String:

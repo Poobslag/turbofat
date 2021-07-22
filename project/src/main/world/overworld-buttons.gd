@@ -19,8 +19,8 @@ func _ready() -> void:
 Resizes a button container based on the player's touch settings.
 """
 func _resize_container(container: Control) -> void:
-	if container.rect_min_size.y != 96 * PlayerData.touch_settings.size:
-		container.rect_min_size.y = 96 * PlayerData.touch_settings.size
+	if container.rect_min_size.y != 96 * SystemData.touch_settings.size:
+		container.rect_min_size.y = 96 * SystemData.touch_settings.size
 	container.rect_size.y = 0
 	if container == $Southeast:
 		container.rect_position.y = 600 - 60 - container.rect_size.y

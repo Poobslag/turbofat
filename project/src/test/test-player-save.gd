@@ -27,7 +27,8 @@ func after_each() -> void:
 			RollingBackups.CURRENT,
 			RollingBackups.THIS_HOUR, RollingBackups.PREV_HOUR,
 			RollingBackups.THIS_DAY, RollingBackups.PREV_DAY,
-			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK]:
+			RollingBackups.THIS_WEEK, RollingBackups.PREV_WEEK,
+			RollingBackups.LEGACY]:
 		dir.remove(PlayerSave.rolling_backups.rolling_filename(backup))
 
 

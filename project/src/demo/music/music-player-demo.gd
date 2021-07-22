@@ -15,7 +15,7 @@ Keys:
 """
 
 func _ready() -> void:
-	PlayerData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.5)
+	SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.5)
 
 
 func _input(event: InputEvent) -> void:

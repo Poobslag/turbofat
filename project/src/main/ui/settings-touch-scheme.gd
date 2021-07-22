@@ -12,8 +12,8 @@ func _ready() -> void:
 	$OptionButton.add_item(tr("Ambi Desktop"))
 	$OptionButton.add_item(tr("Loco Console"))
 	$OptionButton.add_item(tr("Loco Desktop"))
-	$OptionButton.selected = PlayerData.touch_settings.scheme
+	$OptionButton.selected = SystemData.touch_settings.scheme
 
 
 func _on_OptionButton_item_selected(id: int) -> void:
-	PlayerData.touch_settings.scheme = id
+	SystemData.touch_settings.scheme = id

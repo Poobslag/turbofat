@@ -13,8 +13,8 @@ func _ready() -> void:
 	$OptionButton.add_item(tr("Plump"))
 	$OptionButton.add_item(tr("Pudge"))
 	$OptionButton.add_item(tr("Chonk"))
-	$OptionButton.selected = Utils.find_closest(VALUES, PlayerData.touch_settings.scheme)
+	$OptionButton.selected = Utils.find_closest(VALUES, SystemData.touch_settings.scheme)
 
 
 func _on_OptionButton_item_selected(id: int) -> void:
-	PlayerData.touch_settings.fat_finger = VALUES[id]
+	SystemData.touch_settings.fat_finger = VALUES[id]

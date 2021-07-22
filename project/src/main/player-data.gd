@@ -1,8 +1,10 @@
 extends Node
 """
-Stores data about the player's progress in memory.
+Stores data about the player's progress.
 
 This data includes how well they've done on each level and how much money they've earned.
+
+Configuration data like the graphics and keybindings is stored in the SystemData class, not here.
 """
 
 signal money_changed(value)
@@ -18,13 +20,6 @@ var chat_history := ChatHistory.new()
 
 var creature_library := CreatureLibrary.new()
 var creature_queue := CreatureQueue.new()
-
-var gameplay_settings := GameplaySettings.new()
-var graphics_settings := GraphicsSettings.new()
-var volume_settings := VolumeSettings.new()
-var touch_settings := TouchSettings.new()
-var keybind_settings := KeybindSettings.new()
-var misc_settings := MiscSettings.new()
 
 var money := 0 setget set_money
 
@@ -49,11 +44,6 @@ func reset() -> void:
 	level_history.reset()
 	chat_history.reset()
 	creature_library.reset()
-	
-	gameplay_settings.reset()
-	volume_settings.reset()
-	touch_settings.reset()
-	keybind_settings.reset()
 	money = 0
 	seconds_played = 0.0
 	

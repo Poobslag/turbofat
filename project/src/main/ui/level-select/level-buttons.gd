@@ -204,7 +204,7 @@ When the player clicks a level button twice, we launch the selected level
 """
 func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 	CurrentLevel.set_launched_level(settings.id)
-	CurrentLevel.cutscene_force = PlayerData.misc_settings.cutscene_force
+	CurrentLevel.cutscene_force = SystemData.misc_settings.cutscene_force
 	
 	var chat_tree := ChatLibrary.chat_tree_for_preroll(CurrentLevel.level_id)
 	if CurrentLevel.should_play_cutscene(chat_tree):

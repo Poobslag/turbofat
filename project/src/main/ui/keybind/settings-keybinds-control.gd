@@ -9,7 +9,7 @@ func _ready() -> void:
 	$Presets/Custom.connect("pressed", self, "_on_Custom_pressed")
 	$CustomScrollContainer/VBoxContainer/ResetToDefault.connect("pressed", self, "_on_ResetToDefault_pressed")
 	
-	match PlayerData.keybind_settings.preset:
+	match SystemData.keybind_settings.preset:
 		KeybindSettings.GUIDELINE: $Presets/Guideline.pressed = true
 		KeybindSettings.WASD: $Presets/Wasd.pressed = true
 		KeybindSettings.CUSTOM: $Presets/Custom.pressed = true
@@ -30,7 +30,7 @@ func _refresh_keybind_labels() -> void:
 	
 	# Workaround for Godot #42224 (https://github.com/godotengine/godot/issues/42224)
 	# The following match statement does not work unless this field is explicitly cast to an int
-	var preset: int = PlayerData.keybind_settings.preset
+	var preset: int = SystemData.keybind_settings.preset
 	
 	match preset:
 		KeybindSettings.GUIDELINE:
@@ -50,19 +50,19 @@ func _refresh_keybind_labels() -> void:
 
 
 func _on_Guideline_pressed() -> void:
-	PlayerData.keybind_settings.preset = KeybindSettings.GUIDELINE
+	SystemData.keybind_settings.preset = KeybindSettings.GUIDELINE
 	_refresh_keybind_labels()
 
 
 func _on_Wasd_pressed() -> void:
-	PlayerData.keybind_settings.preset = KeybindSettings.WASD
+	SystemData.keybind_settings.preset = KeybindSettings.WASD
 	_refresh_keybind_labels()
 
 
 func _on_Custom_pressed() -> void:
-	PlayerData.keybind_settings.preset = KeybindSettings.CUSTOM
+	SystemData.keybind_settings.preset = KeybindSettings.CUSTOM
 	_refresh_keybind_labels()
 
 
 func _on_ResetToDefault_pressed() -> void:
-	PlayerData.keybind_settings.restore_default_custom_keybinds()
+	SystemData.keybind_settings.restore_default_custom_keybinds()

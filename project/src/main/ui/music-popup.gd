@@ -29,8 +29,8 @@ func _refresh_panel(value: CheckpointSong) -> void:
 		return
 	
 	# if no music is audible, don't show a music popup
-	if PlayerData.volume_settings.is_bus_mute(VolumeSettings.MUSIC) \
-			or PlayerData.volume_settings.is_bus_mute(VolumeSettings.MASTER):
+	if SystemData.volume_settings.is_bus_mute(VolumeSettings.MUSIC) \
+			or SystemData.volume_settings.is_bus_mute(VolumeSettings.MASTER):
 		_shown_bgm = null
 	else:
 		_shown_bgm = value

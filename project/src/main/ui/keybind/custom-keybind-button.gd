@@ -14,7 +14,7 @@ var awaiting := false
 
 func _ready() -> void:
 	connect("pressed", self, "_on_pressed")
-	PlayerData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
+	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
 	_refresh_text()
 
 
@@ -23,7 +23,7 @@ func _input(event: InputEvent) -> void:
 		var input_json: Dictionary = KeybindManager.input_event_to_json(event)
 		if input_json:
 			accept_event()
-			PlayerData.keybind_settings.set_custom_keybind(action_name, action_index, input_json)
+			SystemData.keybind_settings.set_custom_keybind(action_name, action_index, input_json)
 			end_awaiting()
 
 
@@ -59,7 +59,7 @@ Updates the button's text based on the player's current keybinds.
 """
 func _refresh_text() -> void:
 	var new_text := ""
-	var json: Dictionary = PlayerData.keybind_settings.get_custom_keybind(action_name, action_index)
+	var json: Dictionary = SystemData.keybind_settings.get_custom_keybind(action_name, action_index)
 	if json:
 		new_text = tr(KeybindManager.pretty_string(json))
 	text = new_text

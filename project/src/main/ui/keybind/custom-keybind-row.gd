@@ -33,7 +33,7 @@ func _refresh_description_label() -> void:
 
 func _on_Delete_pressed() -> void:
 	for action_index in range(0, 3):
-		PlayerData.keybind_settings.set_custom_keybind(action_name, action_index, {})
+		SystemData.keybind_settings.set_custom_keybind(action_name, action_index, {})
 	
 	var custom_keybind_buttons := get_tree().get_nodes_in_group("custom_keybind_buttons")
 	for keybind_button in custom_keybind_buttons:

@@ -5,7 +5,7 @@ Shows a warning if the player changes settings which can't be changed immediatel
 
 func _ready() -> void:
 	visible = false
-	PlayerData.graphics_settings.connect(
+	SystemData.graphics_settings.connect(
 			"creature_detail_changed", self, "_on_GraphicsSettings_creature_detail_changed")
 
 
