@@ -28,15 +28,18 @@ export (float) var max_fatness := 10.0
 
 var CreaturePackedScene: PackedScene = load("res://src/main/world/creature/Creature.tscn")
 
-# stool the spawned creature sits on, if any
-var _stool: Stool
+# a Stool or ObstacleSpawner instance for the stool the spawned creature sits on, if any
+var _stool: Node2D
+
+# the spawned creature, or 'null' if the creature has not yet spawned
+var _target_creature: Creature
 
 onready var _overworld_world: OverworldWorld = get_node(overworld_world_path)
 
 func _ready() -> void:
 	if stool_path:
 		_stool = get_node(stool_path)
-		_stool.occupied = false
+		_update_stool_occupied()
 	
 	if spawn_if and BoolExpressionEvaluator.evaluate(spawn_if):
 		# Spawn the creature and remove the spawner from the scene tree.
@@ -45,6 +48,17 @@ func _ready() -> void:
 	else:
 		# Don't spawn the creature. Remove the spawner from the scene tree.
 		queue_free()
+
+
+"""
+Updates the spawned creature's stool to be occupied or unoccupied.
+"""
+func _update_stool_occupied() -> void:
+	var occupied := _target_creature != null
+	if _stool is ObstacleSpawner:
+		_stool.set_target_property("occupied", occupied)
+	else:
+		_stool.occupied = occupied
 
 
 """
@@ -62,23 +76,24 @@ func _spawn_target() -> void:
 	
 	# create the creature, add it to the scene tree and assign its properties
 	var creature_id: String = target_properties["creature_id"]
-	var target_object: Creature = _overworld_world.add_creature(creature_id, target_groups.has("chattables"))
-	target_object.name = old_name
-	target_object.position = position
+	_target_creature = _overworld_world.add_creature(creature_id, target_groups.has("chattables"))
+	_target_creature.name = old_name
+	_target_creature.position = position
 	for key in target_properties:
-		target_object.set(key, target_properties[key])
-	if target_object.get_fatness() > max_fatness:
-		target_object.set_fatness(max_fatness)
-		target_object.set_visual_fatness(max_fatness)
-		target_object.save_fatness(max_fatness)
+		_target_creature.set(key, target_properties[key])
+	if _target_creature.get_fatness() > max_fatness:
+		_target_creature.set_fatness(max_fatness)
+		_target_creature.set_visual_fatness(max_fatness)
+		_target_creature.save_fatness(max_fatness)
 	for group in target_groups:
 		if group == "chattables":
 			continue
 		else:
-			target_object.add_to_group(group)
+			_target_creature.add_to_group(group)
 	
 	if _stool:
-		_stool.occupied = true
+		# mark the creature's stool as occupied
+		_update_stool_occupied()
 	
 	# remove the spawner from the scene tree
 	queue_free()

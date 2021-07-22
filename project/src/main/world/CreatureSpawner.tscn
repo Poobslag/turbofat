@@ -1,10 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://src/main/world/creature-spawner.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/creatures/creature-editor-preview.png" type="Texture" id=2]
 
-[node name="CreatureSpawner" type="Node2D" groups=[
+[node name="CreatureSpawner" type="Sprite" groups=[
 "creature_spawners",
 ]]
+position = Vector2( 0, -28 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 2 )
 script = ExtResource( 1 )
 target_properties = {
 "creature_id": "",

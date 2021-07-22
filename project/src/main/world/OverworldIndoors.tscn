@@ -700,6 +700,7 @@ elevation = 150.0
 
 [node name="Terpion" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 349, 323 )
+offset = Vector2( 0, -140 )
 overworld_world_path = NodePath("../..")
 stool_path = NodePath("../Stool4")
 target_properties = {
@@ -712,6 +713,8 @@ max_fatness = 4.0
 
 [node name="Pandon" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 525, 323 )
+offset = Vector2( 0, -140 )
+flip_h = true
 overworld_world_path = NodePath("../..")
 stool_path = NodePath("../Stool3")
 target_properties = {
@@ -724,6 +727,7 @@ max_fatness = 4.0
 
 [node name="Nictor" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 1313.39, 220 )
+offset = Vector2( 0, -140 )
 overworld_world_path = NodePath("../..")
 stool_path = NodePath("../Stool10")
 target_properties = {
@@ -736,6 +740,8 @@ max_fatness = 3.0
 
 [node name="Beats" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 768, 36 )
+offset = Vector2( 0, -140 )
+flip_h = true
 overworld_world_path = NodePath("../..")
 stool_path = NodePath("../Stool1")
 target_properties = {
