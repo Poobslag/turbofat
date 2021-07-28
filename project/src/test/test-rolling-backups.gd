@@ -8,7 +8,7 @@ const TEMP_FILENAME := "test837.save"
 var _backups := RollingBackups.new()
 
 func before_each() -> void:
-	_backups.current_filename = "user://%s" % TEMP_FILENAME
+	_backups.data_filename = "user://%s" % TEMP_FILENAME
 
 
 func after_each() -> void:
@@ -42,7 +42,7 @@ func test_corrupt_filename() -> void:
 
 
 func test_rotate_backups_none_exist() -> void:
-	FileUtils.write_file(_backups.current_filename, "")
+	FileUtils.write_file(_backups.data_filename, "")
 	_backups.rotate_backups()
 	var file := File.new()
 	
@@ -64,7 +64,7 @@ func test_rotate_backups_none_exist() -> void:
 Don't overwrite the 'this_xxx' backups if they already exist
 """
 func test_rotate_backups_dont_overwrite_thisxxx() -> void:
-	FileUtils.write_file(_backups.current_filename, "new-920")
+	FileUtils.write_file(_backups.data_filename, "new-920")
 	FileUtils.write_file(_backups.rolling_filename(RollingBackups.THIS_HOUR), "old-920")
 	_backups.rotate_backups()
 	

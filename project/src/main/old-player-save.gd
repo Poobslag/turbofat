@@ -1,9 +1,9 @@
-class_name OldSave
+class_name OldPlayerSave
 """
-Provides backwards compatibility with older save formats.
+Provides backwards compatibility with older player save formats.
 
-This class's size will worsen with each change to our save system. Once it gets too large (600 lines or so) we should
-consider dropping backwards compatibility for older versions.
+This class will grow with each change to our save system. Once it gets too large (600 lines or so) we should drop
+backwards compatibility for older versions.
 """
 
 # chat history prefixes to replace when upgrading from version 2743
@@ -22,7 +22,7 @@ const PREFIX_REPLACEMENTS_2743 := {
 }
 
 """
-Returns 'true' if the specified json save items don't match the latest version.
+Returns 'true' if the specified json save items are from an older version of the game.
 """
 func is_old_save_items(json_save_items: Array) -> bool:
 	var is_old: bool = false
@@ -30,7 +30,7 @@ func is_old_save_items(json_save_items: Array) -> bool:
 	match version_string:
 		PlayerSave.PLAYER_DATA_VERSION:
 			is_old = false
-		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2", "245b", "24cc", "252a", "2743":
+		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2", "245b", "24cc", "252a", "2743", "2783":
 			is_old = true
 		_:
 			push_warning("Unrecognized save data version: '%s'" % version_string)
@@ -57,6 +57,8 @@ Transforms the specified json save items to the latest format.
 func transform_old_save_items(json_save_items: Array) -> Array:
 	var version_string := get_version_string(json_save_items)
 	match version_string:
+		"2783":
+			json_save_items = _convert_2783(json_save_items)
 		"2743":
 			json_save_items = _convert_2743(json_save_items)
 		"252a":
@@ -82,6 +84,26 @@ func transform_old_save_items(json_save_items: Array) -> Array:
 	return json_save_items
 
 
+func _convert_2783(json_save_items: Array) -> Array:
+	var new_save_items := []
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		match save_item.type:
+			"version":
+				save_item["value"] = "27bb"
+			"player_info":
+				var money: int = save_item["value"].get("money", 0)
+				
+				# Old versions didn't measure playtime. We approximate their playtime by guessing that a typical
+				# player earns ¥300 per minute. This may be too high but we want a big playtime number when we warn
+				# them about accidentally deleting their main save file.
+				# warning-ignore:integer_division
+				save_item["value"]["seconds_played"] = money / 5
+		if save_item:
+			new_save_items.append(save_item.to_json_dict())
+	return new_save_items
+
 func _convert_2743(json_save_items: Array) -> Array:
 	var new_save_items := []
 	for json_save_item_obj in json_save_items:
@@ -94,7 +116,6 @@ func _convert_2743(json_save_items: Array) -> Array:
 				_replace_chat_history_prefixes_for_2743(save_item["value"])
 			"creature_library":
 				_replace_fatness_keys_for_2743(save_item["value"].get("fatnesses", {}))
-		
 		new_save_items.append(save_item.to_json_dict())
 	return new_save_items
 
@@ -254,6 +275,10 @@ func _convert_199c(json_save_items: Array) -> Array:
 				save_item["value"] = "19c5"
 			"scenario_history":
 				save_item.type = "level_history"
+			"successful_scenarios":
+				save_item.type = "successful_levels"
+			"finished_scenarios":
+				save_item.type = "finished_levels"
 		new_save_items.append(save_item.to_json_dict())
 	return new_save_items
 

@@ -7,7 +7,7 @@ This data includes how well they've done on each level and how much money they'v
 
 # Current version for saved player data. Should be updated if and only if the player format changes.
 # This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const PLAYER_DATA_VERSION := "2783"
+const PLAYER_DATA_VERSION := "27bb"
 
 var rolling_backups := RollingBackups.new()
 
@@ -20,14 +20,14 @@ var loaded_backup: int setget ,get_loaded_backup
 var corrupt_filenames: Array setget ,get_corrupt_filenames
 
 # Filename to use when saving/loading player data. Can be changed for tests
-var current_player_data_filename := "user://turbofat0.save" setget set_current_player_data_filename
+var data_filename := "user://turbofat0.save" setget set_data_filename
 
 # Provides backwards compatibility with older save formats
-var old_save := OldSave.new()
+var old_save := OldPlayerSave.new()
 
 func _ready() -> void:
 	PlayerData.reset()
-	rolling_backups.current_filename = current_player_data_filename
+	rolling_backups.data_filename = data_filename
 	load_player_data()
 
 
@@ -39,35 +39,58 @@ func get_loaded_backup() -> int:
 	return rolling_backups.loaded_backup
 
 
-func set_current_player_data_filename(new_current_player_data_filename: String) -> void:
-	current_player_data_filename = new_current_player_data_filename
-	rolling_backups.current_filename = current_player_data_filename
+func set_data_filename(new_data_filename: String) -> void:
+	data_filename = new_data_filename
+	rolling_backups.data_filename = data_filename
 
 
 """
-Creates a 'generic' save item, something the player has only one of.
+Writes the player's in-memory data to a save file.
+"""
+func save_player_data() -> void:
+	var save_json := []
+	save_json.append(_save_item("version", PLAYER_DATA_VERSION).to_json_dict())
+	var player_info := {}
+	player_info["money"] = PlayerData.money
+	player_info["seconds_played"] = PlayerData.seconds_played
+	save_json.append(_save_item("player_info", player_info).to_json_dict())
+	save_json.append(_save_item("gameplay_settings", PlayerData.gameplay_settings.to_json_dict()).to_json_dict())
+	save_json.append(_save_item("graphics_settings", PlayerData.graphics_settings.to_json_dict()).to_json_dict())
+	save_json.append(_save_item("volume_settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
+	save_json.append(_save_item("touch_settings", PlayerData.touch_settings.to_json_dict()).to_json_dict())
+	save_json.append(_save_item("keybind_settings", PlayerData.keybind_settings.to_json_dict()).to_json_dict())
+	save_json.append(_save_item("misc_settings", \
+			PlayerData.misc_settings.to_json_dict()).to_json_dict())
+	for level_name in PlayerData.level_history.level_names():
+		var rank_results_json := []
+		for rank_result in PlayerData.level_history.results(level_name):
+			rank_results_json.append(rank_result.to_json_dict())
+		save_json.append(_save_item("level_history", rank_results_json, level_name).to_json_dict())
+	save_json.append(_save_item("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
+	save_json.append(_save_item("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
+	save_json.append(_save_item("successful_levels",
+			PlayerData.level_history.successful_levels).to_json_dict())
+	save_json.append(_save_item("finished_levels",
+			PlayerData.level_history.finished_levels).to_json_dict())
+	FileUtils.write_file(data_filename, Utils.print_json(save_json))
+	rolling_backups.rotate_backups()
 
-This could be an attribute like their name, money, or how many levels they've beaten.
+
+"""
+Populates the player's in-memory data based on their save files.
+"""
+func load_player_data() -> void:
+	PlayerData.reset()
+	rolling_backups.load_newest_save(self, "_load_player_data_from_file")
+
+
+"""
+Creates a granular save item. The player's save data includes many of these.
 
 Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
 due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
 """
-func generic_data(type: String, value) -> SaveItem:
-	var save_item := SaveItem.new()
-	save_item.type = type
-	save_item.value = value
-	return save_item
-
-
-"""
-Creates a 'named' save item, something the player has many of.
-
-This could be attributes like items they're carrying, or their high score for each level.
-
-Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
-due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
-"""
-func named_data(type: String, key: String, value) -> SaveItem:
+func _save_item(type: String, value, key: String = "") -> SaveItem:
 	var save_item := SaveItem.new()
 	save_item.type = type
 	save_item.key = key
@@ -76,64 +99,48 @@ func named_data(type: String, key: String, value) -> SaveItem:
 
 
 """
-Writes the player's in-memory data to a save file.
-"""
-func save_player_data() -> void:
-	var save_json := []
-	save_json.append(generic_data("version", PLAYER_DATA_VERSION).to_json_dict())
-	save_json.append(generic_data("player_info", {"money": PlayerData.money}).to_json_dict())
-	save_json.append(generic_data("gameplay_settings", PlayerData.gameplay_settings.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("graphics_settings", PlayerData.graphics_settings.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("volume_settings", PlayerData.volume_settings.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("touch_settings", PlayerData.touch_settings.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("keybind_settings", PlayerData.keybind_settings.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("misc_settings", \
-			PlayerData.misc_settings.to_json_dict()).to_json_dict())
-	for level_name in PlayerData.level_history.level_names():
-		var rank_results_json := []
-		for rank_result in PlayerData.level_history.results(level_name):
-			rank_results_json.append(rank_result.to_json_dict())
-		save_json.append(named_data("level_history", level_name, rank_results_json).to_json_dict())
-	save_json.append(generic_data("chat_history", PlayerData.chat_history.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("creature_library", PlayerData.creature_library.to_json_dict()).to_json_dict())
-	save_json.append(generic_data("successful_levels",
-			PlayerData.level_history.successful_levels).to_json_dict())
-	save_json.append(generic_data("finished_levels",
-			PlayerData.level_history.finished_levels).to_json_dict())
-	FileUtils.write_file(current_player_data_filename, Utils.print_json(save_json))
-	rolling_backups.rotate_backups()
-
-
-"""
-Populates the player's in-memory data based on their save files.
-"""
-func load_player_data() -> void:
-	rolling_backups.load_newest_save(self, "_load_player_data_from_file")
-
-
-"""
 Populates the player's in-memory data based on a save file.
 
 Returns 'true' if the data is loaded successfully.
 """
 func _load_player_data_from_file(filename: String) -> bool:
+	var json_save_items := _save_items_from_file(filename)
+	if not json_save_items:
+		return false
+	
+	for json_save_item_obj in json_save_items:
+		var save_item: SaveItem = SaveItem.new()
+		save_item.from_json_dict(json_save_item_obj)
+		_load_line(save_item.type, save_item.key, save_item.value)
+	
+	# emit a signal indicating the level history was loaded
+	PlayerData.emit_signal("level_history_changed")
+	return true
+
+
+"""
+Loads a list of SaveItems from the specified save file.
+
+Returns:
+	A list of SaveItem instances from the specified save file. Returns an empty array if there is an error reading the
+	file.
+"""
+func _save_items_from_file(filename: String) -> Array:
 	var file := File.new()
 	var open_result := file.open(filename, File.READ)
 	if open_result != OK:
 		# validation failed; couldn't open file
 		push_warning("Couldn't open file '%s' for reading: %s" % [filename, open_result])
-		return false
+		return []
 	
 	var save_json_text := FileUtils.get_file_as_text(filename)
-	
 	var validate_json_result := validate_json(save_json_text)
 	if validate_json_result != "":
 		# validation failed; invalid json
 		push_warning("Invalid json in file '%s': %s" % [filename, validate_json_result])
-		return false
+		return []
 	
 	var json_save_items: Array = parse_json(save_json_text)
-	
 	while old_save.is_old_save_items(json_save_items):
 		# convert the old save file to a new format
 		var old_version := old_save.get_version_string(json_save_items)
@@ -143,15 +150,7 @@ func _load_player_data_from_file(filename: String) -> bool:
 			push_warning("Couldn't convert old save data version '%s'" % old_version)
 			break
 	
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		_load_line(save_item.type, save_item.key, save_item.value)
-	
-	# emit a signal indicating the level history was loaded
-	PlayerData.emit_signal("level_history_changed")
-	
-	return true
+	return json_save_items
 
 
 """
@@ -171,6 +170,7 @@ func _load_line(type: String, key: String, json_value) -> void:
 		"player_info":
 			var value: Dictionary = json_value
 			PlayerData.money = value.get("money", 0)
+			PlayerData.seconds_played = value.get("seconds_played", 0.0)
 		"level_history":
 			var value: Array = json_value
 			# load the values from oldest to newest; that way the newest one is at the front

@@ -500,9 +500,9 @@ _global_script_classes=[ {
 "path": "res://src/main/world/obstacle-spawner.gd"
 }, {
 "base": "Reference",
-"class": "OldSave",
+"class": "OldPlayerSave",
 "language": "GDScript",
-"path": "res://src/main/old-save.gd"
+"path": "res://src/main/old-player-save.gd"
 }, {
 "base": "Reference",
 "class": "OtherRules",
@@ -913,7 +913,7 @@ _global_script_class_icons={
 "ObstacleMap": "",
 "ObstacleMapIndoors": "",
 "ObstacleSpawner": "",
-"OldSave": "",
+"OldPlayerSave": "",
 "OtherRules": "",
 "OvalShadow": "",
 "OverworldObstacle": "",

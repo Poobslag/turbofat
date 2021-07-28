@@ -39,7 +39,7 @@ const SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE
 const SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR
 
 # Filename for the current save. Backup filenames are derived based on this filename
-var current_filename: String
+var data_filename: String
 
 # Enum value for the backup was successfully loaded, 'Backup.CURRENT' if the current file worked.
 var loaded_backup := -1
@@ -92,7 +92,7 @@ func load_newest_save(target: Object, method: String) -> void:
 		
 		if load_successful:
 			# copy the good file back to 'foo.save'
-			dir.copy(rolling_filename(loaded_backup), current_filename)
+			dir.copy(rolling_filename(loaded_backup), data_filename)
 
 
 """
@@ -118,9 +118,9 @@ Parameters:
 	'backup': A constant from the Backup enum for to the filename to return.
 """
 func rolling_filename(backup: int) -> String:
-	var suffix := StringUtils.substring_after_last(current_filename, ".")
+	var suffix := StringUtils.substring_after_last(data_filename, ".")
 	var middle := "."
-	var prefix := StringUtils.substring_before_last(current_filename, ".")
+	var prefix := StringUtils.substring_before_last(data_filename, ".")
 	match backup:
 		Backup.THIS_HOUR: middle += "this-hour."
 		Backup.PREV_HOUR: middle += "prev-hour."
@@ -142,7 +142,7 @@ file.
 Afterwards, if the 'this-xxx' backup file does not exist or was just rotated, it's replaced with the current save file.
 """
 func _rotate_backup(this_save: int, prev_save: int, rotate_millis: int) -> void:
-	if not FileUtils.file_exists(current_filename):
+	if not FileUtils.file_exists(data_filename):
 		return
 	
 	var dir := Directory.new()
@@ -160,4 +160,4 @@ func _rotate_backup(this_save: int, prev_save: int, rotate_millis: int) -> void:
 	
 	if not dir.file_exists(this_filename):
 		# populate the 'this-xxx' backup from the current save
-		dir.copy(current_filename, this_filename)
+		dir.copy(data_filename, this_filename)
