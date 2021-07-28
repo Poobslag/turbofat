@@ -21,7 +21,7 @@ onready var _sample_sound: AudioStreamPlayer = $SampleSound
 onready var _sample_voice: AudioStreamPlayer = $SampleVoice
 
 func _ready() -> void:
-	_slider.value = PlayerData.volume_settings.get_bus_volume_linear(volume_type)
+	_slider.value = SystemData.volume_settings.get_bus_volume_linear(volume_type)
 	_refresh_setting_label()
 	_refresh_percent_label()
 	
@@ -62,7 +62,7 @@ func _refresh_setting_label() -> void:
 
 func _on_HSlider_value_changed(value: float) -> void:
 	_refresh_percent_label()
-	PlayerData.volume_settings.set_bus_volume_linear(volume_type, value)
+	SystemData.volume_settings.set_bus_volume_linear(volume_type, value)
 	_sample_timer.start()
 
 

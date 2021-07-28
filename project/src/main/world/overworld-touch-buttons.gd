@@ -9,7 +9,7 @@ func _ready() -> void:
 	if OS.has_touchscreen_ui_hint():
 		_overworld_ui.connect("chat_started", self, "_on_OverworldUi_chat_started")
 		_overworld_ui.connect("chat_ended", self, "_on_OverworldUi_chat_ended")
-		PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
+		SystemData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
 		_refresh_button_positions()
 		show()
 	else:
@@ -40,7 +40,7 @@ Updates the buttons based on the player's settings.
 This updates their location and size.
 """
 func _refresh_button_positions() -> void:
-	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
+	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * SystemData.touch_settings.size
 	$ButtonsSw.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
 
 

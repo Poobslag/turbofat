@@ -58,7 +58,7 @@ onready var _menu_button := $MenuButtonHolder/MenuButton
 
 func _ready() -> void:
 	if OS.has_touchscreen_ui_hint():
-		PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
+		SystemData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
 		_refresh_emit_actions()
 		_refresh_settings()
 		show()
@@ -101,14 +101,14 @@ Updates the buttons based on the player's settings.
 This updates their location and size.
 """
 func _refresh_button_positions() -> void:
-	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
+	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * SystemData.touch_settings.size
 	$ButtonsSw.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
 	
-	$ButtonsSe.rect_scale = Vector2(1.0, 1.0) * PlayerData.touch_settings.size
+	$ButtonsSe.rect_scale = Vector2(1.0, 1.0) * SystemData.touch_settings.size
 	$ButtonsSe.rect_position.x = rect_size.x - 10 - $ButtonsSw.rect_size.x * $ButtonsSw.rect_scale.x
 	$ButtonsSe.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
 	
-	_menu_button.scale = Vector2(0.375, 0.375) * PlayerData.touch_settings.size
+	_menu_button.scale = Vector2(0.375, 0.375) * SystemData.touch_settings.size
 	$MenuButtonHolder.rect_position.x = rect_size.x - 20 - _menu_button.pressed.get_size().x * _menu_button.scale.x
 
 
@@ -122,7 +122,7 @@ func _refresh_settings() -> void:
 	_refresh_button_positions()
 	
 	# update actions
-	var scheme_dict: Dictionary = SCHEMES.get(PlayerData.touch_settings.scheme, TouchSettings.EASY_CONSOLE)
+	var scheme_dict: Dictionary = SCHEMES.get(SystemData.touch_settings.scheme, TouchSettings.EASY_CONSOLE)
 	$ButtonsSw.up_action = scheme_dict["sw_actions"][0]
 	$ButtonsSw.down_action = scheme_dict["sw_actions"][1]
 	$ButtonsSw.left_action = scheme_dict["sw_actions"][2]
@@ -133,14 +133,14 @@ func _refresh_settings() -> void:
 	$ButtonsSe.right_action = scheme_dict["se_actions"][3]
 	
 	# update diagonal sensitivity
-	$ButtonsSw.up_left_weight = scheme_dict["sw_weights"][0] * PlayerData.touch_settings.fat_finger
-	$ButtonsSw.up_right_weight = scheme_dict["sw_weights"][1] * PlayerData.touch_settings.fat_finger
-	$ButtonsSw.down_left_weight = scheme_dict["sw_weights"][2] * PlayerData.touch_settings.fat_finger
-	$ButtonsSw.down_right_weight = scheme_dict["sw_weights"][3] * PlayerData.touch_settings.fat_finger
-	$ButtonsSe.up_left_weight = scheme_dict["se_weights"][0] * PlayerData.touch_settings.fat_finger
-	$ButtonsSe.up_right_weight = scheme_dict["se_weights"][1] * PlayerData.touch_settings.fat_finger
-	$ButtonsSe.down_left_weight = scheme_dict["se_weights"][2] * PlayerData.touch_settings.fat_finger
-	$ButtonsSe.down_right_weight = scheme_dict["se_weights"][3] * PlayerData.touch_settings.fat_finger
+	$ButtonsSw.up_left_weight = scheme_dict["sw_weights"][0] * SystemData.touch_settings.fat_finger
+	$ButtonsSw.up_right_weight = scheme_dict["sw_weights"][1] * SystemData.touch_settings.fat_finger
+	$ButtonsSw.down_left_weight = scheme_dict["sw_weights"][2] * SystemData.touch_settings.fat_finger
+	$ButtonsSw.down_right_weight = scheme_dict["sw_weights"][3] * SystemData.touch_settings.fat_finger
+	$ButtonsSe.up_left_weight = scheme_dict["se_weights"][0] * SystemData.touch_settings.fat_finger
+	$ButtonsSe.up_right_weight = scheme_dict["se_weights"][1] * SystemData.touch_settings.fat_finger
+	$ButtonsSe.down_left_weight = scheme_dict["se_weights"][2] * SystemData.touch_settings.fat_finger
+	$ButtonsSe.down_right_weight = scheme_dict["se_weights"][3] * SystemData.touch_settings.fat_finger
 
 
 func _on_TouchSettings_settings_changed() -> void:

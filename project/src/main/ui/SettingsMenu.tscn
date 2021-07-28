@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -21,6 +21,9 @@
 [ext_resource path="res://src/main/ui/settings-creature-graphics.gd" type="Script" id=19]
 [ext_resource path="res://src/main/ui/menu/theme/h5.theme" type="Theme" id=20]
 [ext_resource path="res://src/main/ui/settings-warning.gd" type="Script" id=21]
+[ext_resource path="res://src/main/ui/settings-save-slot.gd" type="Script" id=22]
+[ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/main/ui/settings-dialogs.gd" type="Script" id=24]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -72,7 +75,6 @@ visible = false
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -229,7 +231,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="GhostPiece" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay"]
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -238,7 +240,7 @@ custom_constants/separation = 20
 script = ExtResource( 12 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
-margin_right = 178.0
+margin_right = 196.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 120, 28 )
 size_flags_horizontal = 3
@@ -252,8 +254,8 @@ __meta__ = {
 }
 
 [node name="CheckboxButton" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
-margin_left = 198.0
-margin_right = 510.0
+margin_left = 216.0
+margin_right = 560.0
 margin_bottom = 28.0
 rect_min_size = Vector2( 160, 26 )
 size_flags_horizontal = 3
@@ -274,7 +276,7 @@ margin_bottom = -5.0
 script = ExtResource( 15 )
 
 [node name="Presets" type="HBoxContainer" parent="Window/UiArea/TabContainer/Controls"]
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -283,8 +285,8 @@ custom_constants/separation = 20
 alignment = 1
 
 [node name="Guideline" type="Button" parent="Window/UiArea/TabContainer/Controls/Presets"]
-margin_left = 85.0
-margin_right = 185.0
+margin_left = 110.0
+margin_right = 210.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 0 )
 theme = ExtResource( 1 )
@@ -294,8 +296,8 @@ group = SubResource( 3 )
 text = "Guideline"
 
 [node name="Wasd" type="Button" parent="Window/UiArea/TabContainer/Controls/Presets"]
-margin_left = 205.0
-margin_right = 305.0
+margin_left = 230.0
+margin_right = 330.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 0 )
 theme = ExtResource( 1 )
@@ -304,8 +306,8 @@ group = SubResource( 3 )
 text = "WASD"
 
 [node name="Custom" type="Button" parent="Window/UiArea/TabContainer/Controls/Presets"]
-margin_left = 325.0
-margin_right = 425.0
+margin_left = 350.0
+margin_right = 450.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 100, 0 )
 theme = ExtResource( 1 )
@@ -413,7 +415,7 @@ keybind_value = "Tab"
 
 [node name="CustomScrollContainer" type="ScrollContainer" parent="Window/UiArea/TabContainer/Controls"]
 margin_top = 30.0
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 256.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -579,7 +581,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="Size" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 400, 20 )
 size_flags_horizontal = 3
@@ -588,14 +590,14 @@ custom_constants/separation = 20
 script = ExtResource( 8 )
 
 [node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Touch/Size"]
-margin_right = 26.0
+margin_right = 29.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/Size"]
-margin_left = 46.0
-margin_right = 178.0
+margin_left = 49.0
+margin_right = 196.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -607,8 +609,8 @@ __meta__ = {
 }
 
 [node name="Control" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch/Size"]
-margin_left = 198.0
-margin_right = 463.0
+margin_left = 216.0
+margin_right = 510.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 140, 20 )
 size_flags_horizontal = 3
@@ -620,7 +622,7 @@ __meta__ = {
 
 [node name="HSlider" type="HSlider" parent="Window/UiArea/TabContainer/Touch/Size/Control"]
 margin_top = 2.0
-margin_right = 195.0
+margin_right = 224.0
 margin_bottom = 18.0
 rect_min_size = Vector2( 80, 16 )
 size_flags_horizontal = 3
@@ -633,23 +635,23 @@ __meta__ = {
 }
 
 [node name="Text" type="Label" parent="Window/UiArea/TabContainer/Touch/Size/Control"]
-margin_left = 205.0
-margin_right = 265.0
+margin_left = 234.0
+margin_right = 294.0
 margin_bottom = 20.0
 rect_min_size = Vector2( 60, 0 )
 theme = ExtResource( 1 )
 text = "1.00x"
 
 [node name="Spacer2" type="Control" parent="Window/UiArea/TabContainer/Touch/Size"]
-margin_left = 483.0
-margin_right = 510.0
+margin_left = 530.0
+margin_right = 560.0
 margin_bottom = 20.0
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.1
 
 [node name="Scheme" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
 margin_top = 24.0
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 50.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -658,7 +660,7 @@ custom_constants/separation = 20
 script = ExtResource( 10 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/Scheme"]
-margin_right = 197.0
+margin_right = 217.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -672,8 +674,8 @@ __meta__ = {
 }
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/Scheme"]
-margin_left = 217.0
-margin_right = 377.0
+margin_left = 237.0
+margin_right = 397.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -685,7 +687,7 @@ __meta__ = {
 
 [node name="FatFinger" type="HBoxContainer" parent="Window/UiArea/TabContainer/Touch"]
 margin_top = 54.0
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -694,7 +696,7 @@ custom_constants/separation = 20
 script = ExtResource( 11 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Touch/FatFinger"]
-margin_right = 197.0
+margin_right = 217.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -708,8 +710,8 @@ __meta__ = {
 }
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Touch/FatFinger"]
-margin_left = 217.0
-margin_right = 377.0
+margin_left = 237.0
+margin_right = 397.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -729,7 +731,7 @@ margin_right = -5.0
 margin_bottom = -5.0
 
 [node name="Language" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
-margin_right = 510.0
+margin_right = 560.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 400, 26 )
 size_flags_horizontal = 3
@@ -738,7 +740,7 @@ custom_constants/separation = 20
 script = ExtResource( 17 )
 
 [node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/Language"]
-margin_right = 197.0
+margin_right = 217.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
 size_flags_horizontal = 3
@@ -752,8 +754,8 @@ __meta__ = {
 }
 
 [node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/Language"]
-margin_left = 217.0
-margin_right = 377.0
+margin_left = 237.0
+margin_right = 397.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 160, 0 )
 size_flags_horizontal = 2
@@ -762,6 +764,72 @@ size_flags_stretch_ratio = 1.1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Spacer1" type="Control" parent="Window/UiArea/TabContainer/Misc"]
+margin_top = 30.0
+margin_right = 560.0
+margin_bottom = 50.0
+rect_min_size = Vector2( 0, 20 )
+
+[node name="SaveSlot" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc"]
+margin_top = 54.0
+margin_right = 560.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 22 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Misc/SaveSlot"]
+margin_right = 217.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.74
+text = "Save Slot"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Window/UiArea/TabContainer/Misc/SaveSlot"]
+margin_left = 237.0
+margin_right = 441.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 160, 0 )
+focus_mode = 2
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+custom_constants/separation = 20
+__meta__ = {
+"_editor_description_": ""
+}
+
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Misc/SaveSlot/HBoxContainer"]
+margin_right = 160.0
+margin_bottom = 26.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+text = "Slot A"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Delete" type="Button" parent="Window/UiArea/TabContainer/Misc/SaveSlot/HBoxContainer"]
+margin_left = 180.0
+margin_right = 204.0
+margin_bottom = 26.0
+size_flags_vertical = 4
+text = "X"
 
 [node name="Bottom" type="Control" parent="Window/UiArea"]
 margin_top = 300.0
@@ -831,11 +899,92 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics" method="_on_OptionButton_item_selected"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/CheckboxButton" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
-[connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/Scheme" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/FatFinger" method="_on_OptionButton_item_selected"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/Language" method="_on_OptionButton_item_selected"]
+[node name="Dialogs" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+_save_slot_control_path = NodePath("../Window/UiArea/TabContainer/Misc/SaveSlot")
+
+[node name="Backdrop" parent="Dialogs" instance=ExtResource( 23 )]
+
+[node name="ChangeSaveConfirmation" type="ConfirmationDialog" parent="Dialogs"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -35.0
+margin_right = 100.0
+margin_bottom = 35.0
+theme = ExtResource( 20 )
+popup_exclusive = true
+window_title = "Confirm"
+dialog_text = "Change save slot?"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeleteConfirmation1" type="ConfirmationDialog" parent="Dialogs"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -35.0
+margin_right = 100.0
+margin_bottom = 35.0
+theme = ExtResource( 20 )
+popup_exclusive = true
+window_title = "Confirm"
+dialog_text = "Delete save slot?
+Slot A (34.2 hours)"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DeleteConfirmation2" type="ConfirmationDialog" parent="Dialogs"]
+visible = true
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -100.0
+margin_top = -35.0
+margin_right = 100.0
+margin_bottom = 35.0
+theme = ExtResource( 20 )
+popup_exclusive = true
+window_title = "Confirm"
+dialog_text = "Are you sure?
+Slot A (34.2 hours)"
+dialog_autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="change_save_cancelled" from="Dialogs" to="." method="_on_Dialogs_change_save_cancelled"]
+[connection signal="change_save_confirmed" from="Dialogs" to="." method="_on_Dialogs_change_save_confirmed"]
+[connection signal="delete_confirmed" from="Dialogs" to="." method="_on_Dialogs_delete_confirmed"]
+[connection signal="about_to_show" from="Dialogs/ChangeSaveConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/ChangeSaveConfirmation" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Ok" to="." method="_on_Ok_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Quit" to="." method="_on_Quit_pressed"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/CheckboxButton" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/Language" method="_on_OptionButton_item_selected"]
+[connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/SaveSlot" method="_on_Delete_pressed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/FatFinger" method="_on_OptionButton_item_selected"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/Scheme" method="_on_OptionButton_item_selected"]
+[connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]

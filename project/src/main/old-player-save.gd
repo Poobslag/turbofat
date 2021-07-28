@@ -59,10 +59,8 @@ func transform_old_save_items(json_save_items: Array) -> Array:
 	match version_string:
 		"2783":
 			json_save_items = _convert_2783(json_save_items)
-		"2743":
+		"2743", "252a":
 			json_save_items = _convert_2743(json_save_items)
-		"252a":
-			json_save_items = _convert_252a(json_save_items)
 		"24cc":
 			json_save_items = _convert_24cc(json_save_items)
 		"245b":
@@ -100,6 +98,9 @@ func _convert_2783(json_save_items: Array) -> Array:
 				# them about accidentally deleting their main save file.
 				# warning-ignore:integer_division
 				save_item["value"]["seconds_played"] = money / 5
+			"gameplay_settings", "graphics_settings", "keybind_settings", \
+			"misc_settings", "miscellaneous_settings", "touch_settings", "volume_settings":
+				save_item = null
 		if save_item:
 			new_save_items.append(save_item.to_json_dict())
 	return new_save_items
@@ -152,20 +153,6 @@ func _replace_fatness_keys_for_2743(dict: Dictionary) -> void:
 			# if two keys conflict, take the higher value of the two
 			dict[new_key] = max(dict[key], dict.get(new_key, 0))
 			dict.erase(key)
-
-
-func _convert_252a(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"version":
-				save_item["value"] = "2743"
-			"miscellaneous_settings":
-				save_item.type = "misc_settings"
-		new_save_items.append(save_item.to_json_dict())
-	return new_save_items
 
 
 func _convert_24cc(json_save_items: Array) -> Array:

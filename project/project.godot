@@ -505,6 +505,11 @@ _global_script_classes=[ {
 "path": "res://src/main/old-player-save.gd"
 }, {
 "base": "Reference",
+"class": "OldSystemSave",
+"language": "GDScript",
+"path": "res://src/main/old-system-save.gd"
+}, {
+"base": "Reference",
 "class": "OtherRules",
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/other-rules.gd"
@@ -678,6 +683,11 @@ _global_script_classes=[ {
 "class": "SaveItem",
 "language": "GDScript",
 "path": "res://src/main/save-item.gd"
+}, {
+"base": "HBoxContainer",
+"class": "SaveSlotControl",
+"language": "GDScript",
+"path": "res://src/main/ui/settings-save-slot.gd"
 }, {
 "base": "Reference",
 "class": "ScoreRules",
@@ -914,6 +924,7 @@ _global_script_class_icons={
 "ObstacleMapIndoors": "",
 "ObstacleSpawner": "",
 "OldPlayerSave": "",
+"OldSystemSave": "",
 "OtherRules": "",
 "OvalShadow": "",
 "OverworldObstacle": "",
@@ -949,6 +960,7 @@ _global_script_class_icons={
 "RollingBackups": "",
 "RuleParser": "",
 "SaveItem": "",
+"SaveSlotControl": "",
 "ScoreRules": "",
 "Sensei": "",
 "SettingsMenu": "",
@@ -1015,6 +1027,8 @@ PlayerSave="*res://src/main/player-save.gd"
 PuzzleState="*res://src/main/puzzle/puzzle-state.gd"
 ResourceCache="*res://src/main/ResourceCache.tscn"
 SceneTransition="*res://src/main/ui/scene-transition.gd"
+SystemData="*res://src/main/system-data.gd"
+SystemSave="*res://src/main/system-save.gd"
 
 [debug]
 

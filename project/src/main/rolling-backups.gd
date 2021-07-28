@@ -24,6 +24,7 @@ enum Backup {
 	PREV_DAY, # a backup which is 1-2 days old
 	THIS_WEEK, # a temporary file which will eventually become the weekly backup
 	PREV_WEEK, # a backup which is 1-2 weeks old
+	LEGACY, # old save data from before July 2021
 }
 
 const CURRENT := Backup.CURRENT
@@ -33,6 +34,7 @@ const THIS_DAY := Backup.THIS_DAY
 const PREV_DAY := Backup.PREV_DAY
 const THIS_WEEK := Backup.THIS_WEEK
 const PREV_WEEK := Backup.PREV_WEEK
+const LEGACY := Backup.LEGACY
 
 const SECONDS_PER_MINUTE = 60
 const SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE
@@ -40,6 +42,9 @@ const SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR
 
 # Filename for the current save. Backup filenames are derived based on this filename
 var data_filename: String
+
+# Filename for save data older than July 2021
+var legacy_filename: String
 
 # Enum value for the backup was successfully loaded, 'Backup.CURRENT' if the current file worked.
 var loaded_backup := -1
@@ -63,7 +68,7 @@ func load_newest_save(target: Object, method: String) -> void:
 	var bad_filenames := [] # save filenames which couldn't be loaded
 	
 	var load_successful := false
-	for backup in [CURRENT, THIS_HOUR, PREV_HOUR, THIS_DAY, PREV_DAY, THIS_WEEK, PREV_WEEK]:
+	for backup in [CURRENT, THIS_HOUR, PREV_HOUR, THIS_DAY, PREV_DAY, THIS_WEEK, PREV_WEEK, LEGACY]:
 		var rolling_filename := rolling_filename(backup)
 		if not FileUtils.file_exists(rolling_filename):
 			# file not found; try next file
@@ -118,6 +123,9 @@ Parameters:
 	'backup': A constant from the Backup enum for to the filename to return.
 """
 func rolling_filename(backup: int) -> String:
+	if backup == Backup.LEGACY:
+		return legacy_filename
+	
 	var suffix := StringUtils.substring_after_last(data_filename, ".")
 	var middle := "."
 	var prefix := StringUtils.substring_before_last(data_filename, ".")

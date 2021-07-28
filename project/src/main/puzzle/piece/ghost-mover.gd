@@ -14,12 +14,12 @@ var _ghost_shadow_offset := Vector2.ZERO
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 
 func _ready() -> void:
-	PlayerData.gameplay_settings.connect("ghost_piece_changed", self, "_on_GameplaySettings_ghost_piece_changed")
+	SystemData.gameplay_settings.connect("ghost_piece_changed", self, "_on_GameplaySettings_ghost_piece_changed")
 	_refresh_ghost_piece()
 
 
 func _refresh_ghost_piece() -> void:
-	if PlayerData.gameplay_settings.ghost_piece:
+	if SystemData.gameplay_settings.ghost_piece:
 		_tile_map.set_ghost_shadow_offset(_ghost_shadow_offset)
 	else:
 		_tile_map.set_ghost_shadow_offset(Vector2.ZERO)

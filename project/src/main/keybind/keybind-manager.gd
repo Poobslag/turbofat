@@ -4,7 +4,7 @@ Binds the player's input settings to the input map.
 """
 
 func _ready() -> void:
-	PlayerData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
+	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
 
 
 """
@@ -114,12 +114,12 @@ func _bind_keys(action_name: String, input_events: Array) -> void:
 Updates the InputMap when the player's keybind settings change
 """
 func _on_KeybindSettings_settings_changed() -> void:
-	match PlayerData.keybind_settings.preset:
+	match SystemData.keybind_settings.preset:
 		KeybindSettings.GUIDELINE:
 			_bind_keys_from_file("res://assets/main/keybind/guideline.json")
 		KeybindSettings.WASD:
 			_bind_keys_from_file("res://assets/main/keybind/wasd.json")
 		KeybindSettings.CUSTOM:
-			_bind_keys_from_json_dict(PlayerData.keybind_settings.custom_keybinds)
+			_bind_keys_from_json_dict(SystemData.keybind_settings.custom_keybinds)
 		_:
-			push_warning("Unrecognized keybind settings preset: %s" % PlayerData.keybind_settings.preset)
+			push_warning("Unrecognized keybind settings preset: %s" % SystemData.keybind_settings.preset)

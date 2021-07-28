@@ -111,7 +111,7 @@ onready var _fade_tween: Tween = $FadeTween
 func _ready() -> void:
 	var creature_outline_scene_path := "res://src/main/world/creature/ViewportCreatureOutline.tscn"
 	if not Engine.is_editor_hint() \
-			and PlayerData.graphics_settings.creature_detail == GraphicsSettings.CreatureDetail.LOW:
+			and SystemData.graphics_settings.creature_detail == GraphicsSettings.CreatureDetail.LOW:
 		creature_outline_scene_path = "res://src/main/world/creature/FastCreatureOutline.tscn"
 	var creature_outline_scene: PackedScene = load(creature_outline_scene_path)
 	_creature_outline = creature_outline_scene.instance()

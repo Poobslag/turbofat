@@ -7,7 +7,7 @@ signal show
 signal hide
 
 func _ready() -> void:
-	PlayerData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
+	SystemData.touch_settings.connect("settings_changed", self, "_on_TouchSettings_settings_changed")
 	for button in [$Buttons/Northeast/BackButton, $Buttons/Northeast/Spacer]:
 		button.connect("resized", self, "_on_Button_resized", [button])
 	yield(get_tree(), "idle_frame")
@@ -38,8 +38,8 @@ func hide() -> void:
 Resizes a button container based on the player's touch settings.
 """
 func _resize_container(container: Control) -> void:
-	if container.rect_min_size.y != 96 * PlayerData.touch_settings.size:
-		container.rect_min_size.y = 96 * PlayerData.touch_settings.size
+	if container.rect_min_size.y != 96 * SystemData.touch_settings.size:
+		container.rect_min_size.y = 96 * SystemData.touch_settings.size
 	container.rect_size.y = 0
 
 
