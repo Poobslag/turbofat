@@ -14,7 +14,7 @@ const CHAT_THOUGHT := "res://assets/test/ui/chat/chat-thought.chat"
 func _chat_tree_from_file(path: String) -> ChatTree:
 	var parser := ChatscriptParser.new()
 	var chat_tree := parser.chat_tree_from_file(path)
-	chat_tree.skip_unmet_conditions()
+	chat_tree.prepare_first_chat_event()
 	return chat_tree
 
 
@@ -129,18 +129,14 @@ func test_chat_choice_mood() -> void:
 	assert_eq(event.link_moods[2], ChatEvent.Mood.AWKWARD0)
 
 
-func test_chat_condition() -> void:
+func test_chat_say_if() -> void:
 	PlayerData.chat_history.reset()
-	
 	var chat_tree: ChatTree
 	
 	chat_tree = _chat_tree_from_file(CHAT_CONDITION)
 	assert_eq(chat_tree.get_event().text, "Hello, nice to meet you!")
 	chat_tree.advance()
 	assert_eq(chat_tree.get_event().text, "Nice to meet you, too!")
-	chat_tree.advance()
-	assert_eq(chat_tree.get_event().links, ["first_time", "not_first_time", "other"])
-	assert_eq(chat_tree.get_event().enabled_link_indexes(), [0, 2])
 	
 	PlayerData.chat_history.add_history_item("creature/boatricia/hi")
 	
@@ -148,9 +144,38 @@ func test_chat_condition() -> void:
 	assert_eq(chat_tree.get_event().text, "Oh, I remember you!")
 	chat_tree.advance()
 	assert_eq(chat_tree.get_event().text, "I remember you too!")
+
+
+func test_chat_link_if() -> void:
+	PlayerData.chat_history.reset()
+	var chat_tree: ChatTree
+	
+	chat_tree = _chat_tree_from_file(CHAT_CONDITION)
+	chat_tree.advance()
+	chat_tree.advance()
+	assert_eq(chat_tree.get_event().links, ["first_time", "not_first_time", "other"])
+	assert_eq(chat_tree.get_event().enabled_link_indexes(), [0, 2])
+	
+	PlayerData.chat_history.add_history_item("creature/boatricia/hi")
+	
+	chat_tree = _chat_tree_from_file(CHAT_CONDITION)
+	chat_tree.advance()
 	chat_tree.advance()
 	assert_eq(chat_tree.get_event().links, ["first_time", "not_first_time", "other"])
 	assert_eq(chat_tree.get_event().enabled_link_indexes(), [1, 2])
+
+
+func test_chat_start_if() -> void:
+	PlayerData.chat_history.reset()
+	var chat_tree: ChatTree
+	
+	chat_tree = _chat_tree_from_file(CHAT_CONDITION)
+	assert_eq(chat_tree.get_event().text, "Hello, nice to meet you!")
+	
+	PlayerData.chat_history.add_history_item("creature/boatricia/fire")
+	
+	chat_tree = _chat_tree_from_file(CHAT_CONDITION)
+	assert_eq(chat_tree.get_event().text, "My kitchen is on fire!")
 
 
 func test_newlines() -> void:

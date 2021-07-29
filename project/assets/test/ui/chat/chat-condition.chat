@@ -23,3 +23,7 @@ player: I'm glad to speak with you again!
 
 [other]
 player: Something poignant, I suppose!
+
+[alternate_start]
+boatricia: My kitchen is on fire!
+ (start_if chat_finished creature/boatricia/fire)

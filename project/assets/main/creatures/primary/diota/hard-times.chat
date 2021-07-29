@@ -13,6 +13,15 @@ d: -_- Oh hello. Did you need something?
 [you_fixed_your_sign] You fixed your sign?
 [are_you_out_of_business] Are you out of business yet
 
+[we_havent_met]
+d: ^_^ Oh hello! Did you need something?
+ (start_if not chat_finished chat/meet_the_competition and not chat_finished creature/jayton/soliciting_buttercup_customers)
+s1: /._. Hmm, Buttercup Cafe? Ah! I heard about this place from Richie. ...How's business?
+d: <_< Ugh well. We fixed our sign last week, so at least the 'butt cafe' jokes have stopped.
+d: But a bunch of our customers just... like... stopped showing up all of a sudden?
+[end]
+
+
 [butts_up]
 p1: ^O^ Hello! Butt's up with you?
 d: /._. Butt's... Butt's up? What?

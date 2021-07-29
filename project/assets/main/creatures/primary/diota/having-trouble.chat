@@ -8,7 +8,28 @@ player, p1, buttercup_10
 sensei, s1, buttercup_8
 diota, d, buttercup_2
 
+s1: /._. Hmm, Buttercup Cafe? Ah! I heard about this place from Richie.
+s1: ...But weren't you called 'The Butt Cafe' before? Did you change your name?
+d: <__< S-sorry. What? I can't tell if that's a joke or if you're actually making a dig at me.
+d: I'm not really in the right headspace to talk about this right now. Can you just leave?
+s1: <_< Sorry. Umm, I was just expressing solidarity in both of our restaurants with dumb names.
+d: u_u ...
+s1: We'll go.
+ (sensei exits)
+
+[friendship-1]
+s1: /._. Ah, you fixed your sign! ...How's business?
+ (start_if (chat_finished chat/meet_the_competition or chat_finished creature/jayton/soliciting_buttercup_customers) and not chat_finished creature/diota/hard_times)
+d: Right, we fixed that like a WEEK ago! ...But yeah, things have been weird!
+d: A bunch of our customers just... like... stopped showing up all of a sudden?
+[trying-a-few-promotions]
+
+[friendship-2]
 p1: /._. Any news?
+ (start_if chat_finished creature/diota/hard_times)
+[trying-a-few-promotions]
+
+[trying-a-few-promotions]
 d: u_u So yeah, I mean... We're trying a few promotions to get people back, but I don't know.
 d: I HATE marketing, and I always sort of hoped word of mouth would be enough for a place like this?
 d: @_@ And I mean for a while things were going great! ... ...I don't really get what changed....

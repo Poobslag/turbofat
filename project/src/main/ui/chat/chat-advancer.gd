@@ -23,7 +23,7 @@ signal chat_finished
 func play_chat_tree(new_chat_tree: ChatTree) -> void:
 	rewinding_text = false
 	chat_tree = new_chat_tree
-	chat_tree.skip_unmet_conditions()
+	chat_tree.prepare_first_chat_event()
 	emit_signal("chat_event_shown", current_chat_event())
 
 
@@ -67,7 +67,12 @@ func advance() -> void:
 			rewinding_text = false
 	
 	if not rewinding_text:
-		did_increment = chat_tree.advance(0)
+		var link_index := -1
+		var enabled_link_indexes := chat_tree.get_event().enabled_link_indexes()
+		if enabled_link_indexes:
+			# select the earliest unlocked link index
+			link_index = enabled_link_indexes[0]
+		did_increment = chat_tree.advance(link_index)
 	
 	if did_increment:
 		emit_signal("chat_event_shown", current_chat_event())
