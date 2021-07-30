@@ -10,6 +10,11 @@ skins, s, restaurant_1
 p1: <_< Sorry, this is hard to say but we were only supposed to be here for one week. And that was like... several weeks ago.
 p1: Fat Sensei and I need to leave.
 s: .__.; Wahhhh! What about us?
+ (say_if chat_finished level/marsh/pulling_for_skins_100)
+s: .__.; Wahhhh! What about our relationship?
+ (say_if not chat_finished level/marsh/pulling_for_skins_100)
+p1: /._. What? We have a... relationship?
+s: ...
 [plan_you_stay] I could stay
 [plan_i_go] You could come
 [plan_no_following] Long distance relationship?

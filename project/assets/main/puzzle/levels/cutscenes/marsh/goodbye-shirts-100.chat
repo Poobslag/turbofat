@@ -11,9 +11,15 @@ shirts, s, restaurant_8
 p1: <_< So I don't know if you've heard, but -- Fat Sensei and I are leaving MerryMellow Marsh.
 s: /._. Oh. Yeah, it was only supposed to be a week, right? ...Well, sorry to see you go. This place will suck a little more without you.
 [maybe_manager] Want to be manager?
+ (link_if chat_finished level/marsh/pulling_for_shirts_100)
 [maybe_leave] You could leave
+ (link_if chat_finished level/marsh/pulling_for_shirts_100)
 [not_so_bad] It's not so bad
+ (link_if chat_finished level/marsh/pulling_for_shirts_100)
 [pretty_bad] It's pretty bad
+ (link_if chat_finished level/marsh/pulling_for_shirts_100)
+[why_it_sucks] Why would it suck?
+ (link_if not chat_finished level/marsh/pulling_for_shirts_100)
 
 [maybe_manager]
 p1: /._. Do you want us to make you a manager? You could hire new staff or fix the culture here.
@@ -68,3 +74,73 @@ p1: ^_^ See you around!
 [bye2]
 p1: ^_^ You too!
  (shirts exits)
+
+[why_it_sucks]
+p1: Oh c'mon! This seems like a nice place. ...Why would it suck?
+s: /._. You really don't have a clue, huh? ...Nobody here gets on your nerves at all?
+[bones_drives_me_crazy] Bones is clingy
+ (link_if chat_finished level/marsh/pulling_for_bones_100)
+[skins_drives_me_crazy] Skins is a bit much
+ (link_if chat_finished level/marsh/pulling_for_skins_100)
+[who_drives_me_crazy] Who do you mean?
+
+[skins_drives_me_crazy]
+p1: ._.; Skins is... a bit much. They can't seem to take a hint.
+s: ^y^ Yeah, that sounds about right. I think I was here for what... two weeks at most when it started.
+[shirts_explains]
+
+[bones_drives_me_crazy]
+p1: ._.; Bones became pretty clingy all of a sudden. They can't seem to take a hint.
+s: ^y^ Yeah, that sounds about right. I think I was here for what... two weeks at most when it started.
+[shirts_explains]
+
+[who_drives_me_crazy]
+p1: /._. Who would get on my nerves? I've met a bunch of new people here.
+s: Oh. Really? No one comes to mind, huh? Well that's nice.
+s: ^y^ It sounds like they're taking it easy on you so far. For me, it started like two weeks in.
+[shirts_explains]
+
+[shirts_explains]
+s: I dunno if it's flirting, it's just -- the more you treat them like a human being, the less they treat you like one.
+s: >_< Every conversation feels like a contest. They squeeze in these awkward compliments whenever they talk to you.
+s: And they stop farting around you.... And they're always watching you to see what you laugh at, so they can laugh too.
+s: -__- It's just... (sigh) Whatever. It could be worse.
+[ill_fart] I'll fart around you
+[thats_horrible] That's horrible
+[awkward_compliment] You're so smart
+[ive_been_there] I've been there
+[hmm] Hmm
+
+[ill_fart]
+p1: ^_^ I'll fart around you!
+s: ^o^ Ha ha. Thanks. I think.
+s: Well anyway, maybe it won't suck as much anymore, I don't know.
+[shields-up]
+
+[thats_horrible]
+p1: u_u Ugh, that sounds horrible.
+s: Ahh maybe it won't suck as much anymore, I don't know.
+[shields-up]
+
+[awkward_compliment]
+p1: ^__^ Wow, what an insightful monologue. You're so smart! And so beautiful.
+s: ^o^ Ha ha. Thanks. I think.
+s: Well anyway, maybe it won't suck as much anymore, I don't know.
+[shields-up]
+
+[ive_been_there]
+p1: >_< Yeah... I've been there before.
+s: Ahh maybe it won't suck as much anymore, I don't know.
+[shields-up]
+
+[hmm]
+p1: /._. Hmm...
+s: Well anyway, maybe it won't suck as much anymore, I don't know.
+[shields-up]
+
+[shields-up]
+s: Just gotta keep those shields up. I'm sure you know the drill.
+s: <__< Anyway, I hate long goodbyes and this one's kind of run its course. Take care of yourself.
+[bye2] You too
+[bye1] See you around
+[bye0] Stay in touch

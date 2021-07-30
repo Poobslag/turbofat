@@ -78,10 +78,10 @@ Returns how long ago the player had the specified chat.
 Used to avoid repeating conversations too frequently.
 """
 func get_chat_age(history_key: String) -> int:
+	# We subtract the index assigned to the chat history from the total number
+	# of chats for that creature to calculate the entry's age.
 	var chat_prefix := StringUtils.substring_before_last(history_key, "/")
-	
 	var chat_count: int = chat_counts.get(chat_prefix, 0)
-	
 	var result := CHAT_AGE_NEVER
 	if chat_count > 0 and chat_history.has(history_key):
 		result = chat_count - chat_history.get(history_key) - 1
@@ -89,7 +89,7 @@ func get_chat_age(history_key: String) -> int:
 
 
 func is_chat_finished(history_key: String) -> bool:
-	return get_chat_age(history_key) != CHAT_AGE_NEVER
+	return chat_history.has(history_key)
 
 
 func to_json_dict() -> Dictionary:

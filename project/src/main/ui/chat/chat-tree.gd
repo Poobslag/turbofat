@@ -59,6 +59,9 @@ var spawn_locations := {}
 # current position in this chat tree
 var _position := Position.new()
 
+# 'true' if _position has already been initialized to the first event in the chat tree
+var _did_prepare := false
+
 """
 Adds a chat event to a new chat branch, or appends it to an existing branch.
 
@@ -104,31 +107,24 @@ func advance(link_index := -1) -> bool:
 		# advance through the current chat branch
 		_position.index += 1
 		did_increment = true
-	skip_unmet_conditions()
+	_apply_say_if_conditions()
 	return did_increment
 
 
 """
-Skip any dialog lines whose 'say_if' conditions are unmet.
+Relocates the position within the chat tree to start a new chat.
 
-This is automatically called when dialog is advanced, but should manually be called before the first get_event() call
-as well.
+The first time this is called, the position is relocated. The second and subsequent times, this has no effect. This
+allows subsequent overworld conversations with the same person to repeat the last line of dialog instead of repeating
+the entire dialog sequence.
 """
-func skip_unmet_conditions() -> void:
-	var did_increment := true
-	while did_increment:
-		did_increment = false
-		var chat_condition: String
-		for meta_item in get_event().meta:
-			if meta_item.begins_with("say_if "):
-				chat_condition = meta_item.trim_prefix("say_if ")
-				break
-		if chat_condition \
-				and not BoolExpressionEvaluator.evaluate(chat_condition) \
-				and _position.index + 1 < events[_position.key].size():
-			# advance through the current chat branch
-			_position.index += 1
-			did_increment = true
+func prepare_first_chat_event() -> void:
+	if _did_prepare:
+		return
+	
+	_apply_start_if_conditions()
+	_apply_say_if_conditions()
+	_did_prepare = true
 
 
 """
@@ -156,3 +152,50 @@ func reset() -> void:
 	location_id = ""
 	spawn_locations = {}
 	_position.reset()
+
+
+"""
+Jump to any chat sequences whose 'start_if' conditions are met.
+"""
+func _apply_start_if_conditions() -> void:
+	# look for 'start_if' conditions...
+	var start_keys := []
+	for key in events:
+		var chat_event: ChatEvent = events[key][0]
+		var start_condition := ""
+		for meta_item_obj in chat_event.meta:
+			var meta_item: String = meta_item_obj
+			if meta_item.begins_with("start_if "):
+				start_condition = meta_item.trim_prefix("start_if ")
+				break
+		if start_condition and BoolExpressionEvaluator.evaluate(start_condition):
+			start_keys.push_back(key)
+	
+	if start_keys:
+		# if a 'start_if' condition is met, move to that chat branch
+		_position.key = start_keys[0]
+		_position.index = 0
+	
+	if start_keys.size() >= 2:
+		# if two or more 'start_if' conditions are met, report a warning
+		push_warning("Multiple start_if conditions were met: %s" % [[start_keys]])
+
+
+"""
+Skip any dialog lines whose 'say_if' conditions are unmet.
+"""
+func _apply_say_if_conditions() -> void:
+	var did_increment := true
+	while did_increment:
+		did_increment = false
+		var chat_condition: String
+		for meta_item in get_event().meta:
+			if meta_item.begins_with("say_if "):
+				chat_condition = meta_item.trim_prefix("say_if ")
+				break
+		if chat_condition \
+				and not BoolExpressionEvaluator.evaluate(chat_condition) \
+				and _position.index + 1 < events[_position.key].size():
+			# advance through the current chat branch
+			_position.index += 1
+			did_increment = true

@@ -292,6 +292,10 @@ func _on_ChatUi_pop_out_completed() -> void:
 				
 				# [menu > overworld_1 > cutscene] -> [menu > overworld_2]
 				SceneTransition.pop_trail()
+				
+				# immediately save the player data. the player might quit from the overworld, but we want to save
+				# their progress
+				PlayerSave.save_player_data()
 		elif CurrentLevel.level_id:
 			# continue to a level (non-cutscene pre-level dialog finished playing)
 			
