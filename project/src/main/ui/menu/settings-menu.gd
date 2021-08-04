@@ -150,6 +150,7 @@ func _on_CustomKeybindButton_awaiting_changed(awaiting: bool) -> void:
 
 
 func _on_Dialogs_change_save_cancelled() -> void:
+	_save_slot_control.revert_save_slot()
 	SystemSave.save_system_data()
 	callv(_post_save_method, _post_save_args_array)
 
