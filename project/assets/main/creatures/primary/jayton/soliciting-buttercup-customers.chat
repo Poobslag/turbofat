@@ -4,15 +4,14 @@
 outdoors
 
 [characters]
-player, p1, buttercup_6
-sensei, s1, buttercup_10
-diota, d, !buttercup_2
+player, p1, buttercup_7
+sensei, s1, buttercup_6
+diota, d, !buttercup_9
 jayton, j, buttercup_seat
 
 p1: ^_^/ Hello! We run the Turbo Fat restaurant down the street, and if you're ever-
- (player faces right)
+ (player faces left)
 j: -Eh? Hello! So... you work at a different restaurant?
- (jayton faces left)
 p1: Yeah! It's a restaurant with hmm...
 [better_food] Way better food
 [better_service] Better service
