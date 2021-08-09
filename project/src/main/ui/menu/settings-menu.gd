@@ -67,6 +67,7 @@ Shows the menu and pauses the scene tree.
 func show() -> void:
 	_bg.show()
 	_touch_buttons.visible = true
+	_dialogs.visible = true
 	_window.show()
 	get_tree().paused = true
 	_old_focus_owner = $Window/UiArea/Bottom/Ok.get_focus_owner()
@@ -80,6 +81,7 @@ Hides the menu and unpauses the scene tree.
 func hide() -> void:
 	_bg.hide()
 	_touch_buttons.visible = false
+	_dialogs.visible = false
 	_window.hide()
 	get_tree().paused = false
 	if _old_focus_owner:
