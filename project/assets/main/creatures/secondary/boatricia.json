@@ -25,21 +25,5 @@
     "accent_texture": 1,
     "color": "0b45a6",
     "dark": true
-  },
-  "chat_selectors": [
-    {
-      "chat": "hi",
-      "repeat": 999999
-    },
-    {
-      "chat": "my_maid_died",
-      "available_if": "notable",
-      "repeat": 999999
-    },
-    {
-      "chat": "life_is_so_short",
-      "available_if": "notable",
-      "repeat": 999999
-    }
-  ]
+  }
 }
