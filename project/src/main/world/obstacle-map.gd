@@ -28,9 +28,9 @@ a patch of ground.
 """
 func _refresh_invisible_obstacles() -> void:
 	# remove all invisible obstacles
-	for cell_obj in get_used_cells_by_id(1):
+	for cell_obj in get_used_cells_by_id(impassable_tile_index):
 		var cell: Vector2 = cell_obj
-		set_cell(cell.x, cell.y, impassable_tile_index)
+		set_cell(cell.x, cell.y, -1)
 	
 	# calculate empty unwalkable cells which are adjacent to walkable cells
 	var unwalkable_cells := {}

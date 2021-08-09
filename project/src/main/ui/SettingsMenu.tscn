@@ -75,6 +75,7 @@ visible = false
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
+visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -900,6 +901,7 @@ __meta__ = {
 }
 
 [node name="Dialogs" type="Control" parent="."]
+visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
