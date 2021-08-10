@@ -140,7 +140,8 @@ func get_chatter_bounding_box(include: Array = [], exclude: Array = []) -> Rect2
 		if not chatter.visible:
 			continue
 		if bounding_box:
-			var chatter_box := Rect2(chatter.position - chatter.chat_extents / 2, chatter.chat_extents)
+			var chat_extents: Vector2 = chatter.chat_extents if "chat_extents" in chatter else Vector2.ZERO
+			var chatter_box := Rect2(chatter.position - chat_extents / 2, chat_extents)
 			bounding_box = bounding_box.merge(chatter_box)
 		else:
 			bounding_box = Rect2(chatter.position, Vector2.ZERO)
