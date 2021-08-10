@@ -57,25 +57,16 @@ func _exit_tree() -> void:
 func start_chat(new_chat_tree: ChatTree, target: Node2D) -> void:
 	_current_chat_tree = new_chat_tree
 	
-	var new_chatters := []
+	chatters = _find_creatures_in_chat_tree(new_chat_tree)
+	
+	# We always add the player and target to the list of chatters. The player might talk to someone who says a
+	# one-liner, but the camera should still include the player. The player might also 'talk' to an inanimate object
+	# which doesn't talk back, but the camera should still include the object.
 	if ChattableManager.player:
-		new_chatters.append(ChattableManager.player)
+		chatters.append(ChattableManager.player)
 	if target:
-		new_chatters.append(target)
-	var chatter_ids := {}
-	for chat_events_obj in new_chat_tree.events.values():
-		var chat_events: Array = chat_events_obj
-		for chat_event_obj in chat_events:
-			var chat_event: ChatEvent = chat_event_obj
-			chatter_ids[chat_event.who] = true
+		chatters.append(target)
 	
-	for chatter_id_obj in chatter_ids:
-		var chatter_id: String = chatter_id_obj
-		var chatter: Creature = ChattableManager.get_creature_by_id(chatter_id)
-		if chatter and not new_chatters.has(chatter):
-			new_chatters.append(chatter)
-	
-	chatters = new_chatters
 	_update_visible()
 	ChattableManager.set_focus_enabled(false)
 	# emit 'chat_started' event first to prepare chatters before emoting
@@ -170,6 +161,25 @@ func is_chatting() -> bool:
 	return not chatters.empty()
 
 
+func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
+	var creatures := []
+	# calculate which creature ids are involved in this chat
+	var chatter_ids := {}
+	for chat_events_obj in chat_tree.events.values():
+		var chat_events: Array = chat_events_obj
+		for chat_event_obj in chat_events:
+			var chat_event: ChatEvent = chat_event_obj
+			chatter_ids[chat_event.who] = true
+	
+	# find the creatures associated with the creature ids
+	for chatter_id in chatter_ids:
+		var chatter: Creature = ChattableManager.get_creature_by_id(chatter_id)
+		if chatter and not creatures.has(chatter):
+			creatures.append(chatter)
+	
+	return creatures
+
+
 """
 Updates the different UI components to be visible/invisible based on the UI's current state.
 """
@@ -209,6 +219,9 @@ Applies the specified ChatEvent metadata to the scene.
 
 ChatEvents can include metadata making creatures appear, disappear, laugh or turn around. This method locates the
 creature referenced by the metadata and performs the appropriate action.
+
+Parameters:
+	'meta_item': The metadata item to apply.
 """
 func _apply_chat_event_meta(meta_item: String) -> void:
 	var meta_item_split := meta_item.split(" ")
@@ -253,7 +266,7 @@ func _start_cutscene(chat_tree: ChatTree) -> void:
 		CutsceneManager.push_cutscene_trail()
 
 
-func _on_ChatUi_pop_out_completed() -> void:
+func _on_ChatUi_chat_finished() -> void:
 	PlayerData.chat_history.add_history_item(_current_chat_tree.history_key)
 	
 	if _next_chat_tree:
@@ -272,7 +285,7 @@ func _on_ChatUi_pop_out_completed() -> void:
 				pass
 			else:
 				# modify the overworld path and spawn IDs to preserve the player's position from the cutscene
-				Breadcrumb.trail[1] = _current_chat_tree.cutscene_scene_path()
+				Breadcrumb.trail[1] = _current_chat_tree.chat_scene_path()
 				CutsceneManager.assign_player_spawn_ids(_current_chat_tree)
 			
 			if CutsceneManager.is_front_level_id():
@@ -299,7 +312,7 @@ func _on_ChatUi_pop_out_completed() -> void:
 		elif CurrentLevel.level_id:
 			# continue to a level (non-cutscene pre-level dialog finished playing)
 			
-				# [menu > overworld_1] -> [menu > overworld_2 > puzzle]
+			# [menu > overworld_1] -> [menu > overworld_2 > puzzle]
 			CurrentLevel.push_level_trail()
 		else:
 			# if we're in a regular overworld conversation and not a cutscene,

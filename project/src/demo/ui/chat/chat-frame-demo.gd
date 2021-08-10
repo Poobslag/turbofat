@@ -87,7 +87,7 @@ func _input(event: InputEvent) -> void:
 				_text_index = Utils.key_num(event)
 			_play_chat_event()
 		KEY_A:
-			if $ChatFrame.chat_window_showing():
+			if $ChatFrame.is_chat_window_showing():
 				$ChatFrame.pop_out()
 			else:
 				_play_chat_event()

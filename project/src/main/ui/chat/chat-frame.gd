@@ -86,7 +86,7 @@ func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool)
 	$ChatLinePanel/NametagPanel.show_label(chat_theme, nametag_right)
 
 
-func chat_window_showing() -> bool:
+func is_chat_window_showing() -> bool:
 	return $ChatLineLabel.visible
 
 

@@ -22,7 +22,7 @@ var forced_fatness := 0.0
 
 # Virtual properties; values are only exposed through getters/setters
 var player_def: CreatureDef setget set_player_def, get_player_def
-var sensei_def: CreatureDef setget set_sensei_def,get_sensei_def
+var sensei_def: CreatureDef setget set_sensei_def, get_sensei_def
 
 # fatnesses by creature id
 var _fatnesses: Dictionary
