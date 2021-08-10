@@ -35,5 +35,4 @@ func _on_MoveTimer_timeout() -> void:
 		# if the sensei is too close to the player, they run away
 		move_dir = -Vector2.RIGHT.rotated(player_angle)
 	
-	move_dir = Global.to_iso(move_dir)
 	set_non_iso_walk_direction(move_dir)
