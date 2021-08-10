@@ -464,6 +464,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/nametag-panel.gd"
 }, {
+"base": "Control",
+"class": "NarrationFrame",
+"language": "GDScript",
+"path": "res://src/main/ui/chat/narration-frame.gd"
+}, {
+"base": "Panel",
+"class": "NarrationLinePanel",
+"language": "GDScript",
+"path": "res://src/main/ui/chat/narration-line-panel.gd"
+}, {
 "base": "Reference",
 "class": "NearestSorter",
 "language": "GDScript",
@@ -916,6 +926,8 @@ _global_script_class_icons={
 "NameGenerator": "",
 "NameUtils": "",
 "NametagPanel": "",
+"NarrationFrame": "",
+"NarrationLinePanel": "",
 "NearestSorter": "",
 "NextPiece": "",
 "NextPieceDisplay": "",

@@ -31,7 +31,7 @@ func pop_in() -> void:
 	_popped_in = true
 	$ChatLineLabel.hide_message()
 	$ChatLinePanel/NametagPanel.hide_labels()
-	$Tween.pop_in()
+	$PopTween.pop_in()
 	$PopInSound.play()
 
 
@@ -43,7 +43,7 @@ func pop_out() -> void:
 		# chat window is already popped out
 		return
 	_popped_in = false
-	$Tween.pop_out()
+	$PopTween.pop_out()
 	$PopOutSound.play()
 
 
@@ -61,10 +61,10 @@ func play_chat_event(chat_event: ChatEvent, squished: bool) -> void:
 	if squished != _squished:
 		if squished:
 			# Squish the chat window to the side
-			$Tween.squish()
+			$SquishTween.squish()
 		else:
 			# Unsquish the chat window
-			$Tween.unsquish()
+			$SquishTween.unsquish()
 		_squished = squished
 	
 	var chat_theme := ChatTheme.new(chat_event.chat_theme_def)
