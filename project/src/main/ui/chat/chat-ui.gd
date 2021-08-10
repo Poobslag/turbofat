@@ -185,7 +185,16 @@ Returns:
 func _enabled_link_texts(var chat_event: ChatEvent) -> Array:
 	var texts := []
 	for i in chat_event.enabled_link_indexes():
-		texts.append(chat_event.link_texts[i])
+		var link: String = chat_event.links[i]
+		var text: String
+		if chat_event.link_texts[i]:
+			# use the text from the chat link
+			text = chat_event.link_texts[i]
+		else:
+			# chat link did not specify text; use the text from the branch's first event
+			var first_event: ChatEvent = _chat_advancer.chat_tree.events[link][0]
+			text = first_event.text
+		texts.append(text)
 	return texts
 
 

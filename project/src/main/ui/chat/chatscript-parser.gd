@@ -431,7 +431,7 @@ func chat_tree_from_file(path: String) -> ChatTree:
 	while not f.eof_reached():
 		# strip any whitespace at the end of the line
 		var line := f.get_line().strip_edges(false)
-		if line.begins_with("#"):
+		if line.begins_with("//"):
 			# comment; ignore line
 			continue
 		var new_state_name := _state.line(line)

@@ -1,0 +1,141 @@
+{"version": "2476"}
+
+lorum: How are you feeling now?
+[default]
+[awkward0]
+[awkward1]
+[cry0]
+[cry1]
+
+[default]
+#player#: I'm feeling default.
+[moods02]
+
+[awkward0]
+#player#: <_< I'm feeling awkward0.
+[moods02]
+
+[awkward1]
+#player#: <__< I'm feeling awkward1.
+[moods02]
+
+[cry0]
+#player#: u_u I'm feeling cry0.
+[moods02]
+
+[cry1]
+#player#: u_u I'm feeling cry1.
+[moods02]
+
+[moods02]
+lorum: I see. ...And how about now?
+[laugh0]
+[laugh1]
+[love0]
+[love1]
+[no0]
+[no1]
+
+[laugh0]
+#player#: ^o^ I'm feeling laugh0.
+[moods03]
+
+[laugh1]
+#player#: ^O^ I'm feeling laugh1.
+[moods03]
+
+[love0]
+#player#: owo I'm feeling love0.
+[moods03]
+
+[love1]
+#player#: OwO I'm feeling love1.
+[moods03]
+
+[no0]
+#player#: ^n^ I'm feeling no0.
+[moods03]
+
+[no1]
+#player#: ^N^ I'm feeling no1.
+[moods03]
+
+[moods03]
+lorum: I see. ...And how about now?
+[rage0]
+[rage1]
+[rage2]
+[sigh0]
+[sigh1]
+
+[rage0]
+#player#: >_< I'm feeling rage0.
+[moods04]
+
+[rage1]
+#player#: >__< I'm feeling rage1.
+[moods04]
+
+[rage2]
+#player#: >___< I'm feeling rage2.
+[moods04]
+
+[sigh0]
+#player#: -_- I'm feeling sigh0.
+[moods04]
+
+[sigh1]
+#player#: -__- I'm feeling sigh1.
+[moods04]
+
+[moods04]
+lorum: I see. ...And how about now?
+[smile0]
+[smile1]
+[sweat0]
+[sweat1]
+[think0]
+[think1]
+
+[smile0]
+#player#: ^_^ I'm feeling smile0.
+[moods05]
+
+[smile1]
+#player#: ^__^ I'm feeling smile1.
+[moods05]
+
+[sweat0]
+#player#: ._.; I'm feeling sweat0.
+[moods05]
+
+[sweat1]
+#player#: .__.; I'm feeling sweat1.
+[moods05]
+
+[think0]
+#player#: /._. I'm feeling think0.
+[moods05]
+
+[think1]
+#player#: @_@ I'm feeling think1.
+[moods05]
+
+[moods05]
+lorum: I see. ...And how about now?
+[wave0]
+[wave1]
+[yes0]
+[yes1]
+
+[wave0]
+#player#: ^_^/ I'm feeling wave0.
+
+[wave1]
+#player#: ^__^/ I'm feeling wave1.
+
+[yes0]
+#player#: ^y^ I'm feeling yes0.
+
+[yes1]
+#player#: ^Y^ I'm feeling yes1.
