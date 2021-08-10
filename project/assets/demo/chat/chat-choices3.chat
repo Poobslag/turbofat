@@ -1,0 +1,18 @@
+{"version": "2476"}
+
+lorum: Lorem ipsum dolor sit amet? How many?
+[one] Just one, please
+[two] Two should be enough.
+[three] As many as you can give me!
+
+[one]
+#player#: ._.; Just one adipiscing elit, please.
+lorum: Here is your sed do eiusmod.
+
+[two]
+#player#: /._. Two adipiscing elit should be enough.
+lorum: Here, two sed do eiusmods.
+
+[three]
+#player#: ^__^ As many adipiscing elit as you can give me!
+lorum: I only have three sed do eiusmods, but I'll get you more later.

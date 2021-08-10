@@ -1,0 +1,13 @@
+{"version": "2476"}
+
+lorum: Lorem ipsum dolor sit amet? What do you think?
+[yes] Yes, that's right.
+[no] No, that's wrong.
+
+[yes]
+#player#: ^_^ Yes! Yes adipiscing elit.
+lorum: I agree! Sed do eiusmod.
+
+[no]
+#player#: >__< No... No adipiscing elit.
+lorum: But... but sed do eiusmod!
