@@ -698,6 +698,18 @@ dna = {
 }
 elevation = 150.0
 
+[node name="Richie" parent="World/Obstacles" instance=ExtResource( 33 )]
+position = Vector2( 490.501, 119.061 )
+flip_h = true
+overworld_world_path = NodePath("../..")
+target_properties = {
+"creature_id": "richie",
+"elevation": 0.0,
+"orientation": 1
+}
+target_groups = [ "chattables" ]
+spawn_if = "not level_finished marsh/hello_everyone"
+
 [node name="Terpion" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 349, 323 )
 offset = Vector2( 0, -140 )

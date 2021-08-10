@@ -87,6 +87,30 @@ class LocationState extends AbstractState:
 # -----------------------------------------------------------------------------
 
 """
+Parser state for parsing destination data (where the player goes after a conversation).
+"""
+class DestinationState extends AbstractState:
+	
+	func _init(init_chat_tree: ChatTree).(init_chat_tree) -> void:
+			pass
+	
+	
+	"""
+	Syntax:
+		[destination]
+		indoors
+	"""
+	func line(line: String) -> String:
+		var result := ""
+		if line:
+			chat_tree.destination_id = line
+		else:
+			result = DEFAULT
+		return result
+
+# -----------------------------------------------------------------------------
+
+"""
 Parser state for parsing character data (participants in a conversation).
 """
 class CharactersState extends AbstractState:
@@ -120,7 +144,7 @@ class CharactersState extends AbstractState:
 	func _parse_character_name(line: String) -> void:
 		var line_parts := line.split(",")
 		var character_name := "" if line_parts.size() < 1 else line_parts[0].strip_edges()
-		if character_name in ["player", "sensei"]:
+		if character_name in ["player", "sensei", "narrator"]:
 			character_name = "#%s#" % [character_name]
 		var character_alias := "" if line_parts.size() < 2 else line_parts[1].strip_edges()
 		var character_location := "" if line_parts.size() < 3 else line_parts[2].strip_edges()
@@ -389,6 +413,7 @@ const ORIENTATION_STRINGS := {
 # parser headers which appear in square braces in the chatscript file
 const DEFAULT := "default"
 const LOCATION := "location"
+const DESTINATION := "destination"
 const CHARACTERS := "characters"
 const CHAT := "chat"
 
@@ -407,8 +432,9 @@ var _character_aliases := {}
 func _init() -> void:
 	_states_by_name = {
 		DEFAULT: DefaultState.new(_chat_tree),
-		CHARACTERS: CharactersState.new(_chat_tree, _character_aliases),
 		LOCATION: LocationState.new(_chat_tree),
+		DESTINATION: DestinationState.new(_chat_tree),
+		CHARACTERS: CharactersState.new(_chat_tree, _character_aliases),
 		CHAT: ChatState.new(_chat_tree, _character_aliases),
 	}
 	_states_by_name[DEFAULT].chat_state = _states_by_name[CHAT]

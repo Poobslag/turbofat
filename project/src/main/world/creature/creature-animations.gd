@@ -173,6 +173,10 @@ func _refresh_emote_arm_frame() -> void:
 	if not is_inside_tree():
 		return
 	
+	if _movement_player.current_animation and not _movement_player.current_animation.begins_with("idle"):
+		# if the creature is walking, they can't emote with their arms
+		return
+	
 	# hide the arm sprites, except for certain emotes where that specific arm is still visible
 	_near_arm.frame = 1 if emote_arm_frame in [0, 1, 4] else 0
 	_far_arm.frame = 1 if emote_arm_frame in [0, 3] else 0

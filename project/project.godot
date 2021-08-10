@@ -814,6 +814,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/volume-settings.gd"
 }, {
+"base": "Creature",
+"class": "WalkingBuddy",
+"language": "GDScript",
+"path": "res://src/main/world/creature/walking-buddy.gd"
+}, {
 "base": "Control",
 "class": "WallpaperBorder",
 "language": "GDScript",
@@ -996,6 +1001,7 @@ _global_script_class_icons={
 "TutorialModule": "",
 "Utils": "",
 "VolumeSettings": "",
+"WalkingBuddy": "",
 "WallpaperBorder": "",
 "Wobbler": "",
 "WorldLock": "",

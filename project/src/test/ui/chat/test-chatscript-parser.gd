@@ -21,7 +21,8 @@ func _chat_tree_from_file(path: String) -> ChatTree:
 func test_cutscene_location() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	
-	assert_eq(chat_tree.location_id, "indoors")
+	assert_eq(chat_tree.location_id, "outdoors_walk")
+	assert_eq(chat_tree.destination_id, "outdoors")
 
 
 func test_overall_meta() -> void:

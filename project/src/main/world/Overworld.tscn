@@ -204,7 +204,7 @@ script = ExtResource( 40 )
 goop_material_index = 2
 
 [node name="Player" parent="World/Obstacles" instance=ExtResource( 1 )]
-position = Vector2( 1009.5, 1057.47 )
+position = Vector2( 1164.04, 990.608 )
 script = ExtResource( 8 )
 creature_id = "#player#"
 dna = {
@@ -212,7 +212,7 @@ dna = {
 suppress_fatness = true
 
 [node name="Sensei" parent="World/Obstacles" instance=ExtResource( 1 )]
-position = Vector2( 828.235, 981.553 )
+position = Vector2( 1103.2, 846.378 )
 script = ExtResource( 7 )
 dna = {
 }

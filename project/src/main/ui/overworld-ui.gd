@@ -251,9 +251,12 @@ ChatEvents can include metadata making creatures appear, disappear, laugh or tur
 creature referenced by the metadata and performs the appropriate action.
 
 Parameters:
+	'chat_event': (Unused) The chat event whose metadata should be applied. This is unused by OverworldUi but can be
+		utilized by subclasses who extend this method.
+	
 	'meta_item': The metadata item to apply.
 """
-func _apply_chat_event_meta(meta_item: String) -> void:
+func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 	var meta_item_split := meta_item.split(" ")
 	match(meta_item_split[0]):
 		"next_scene":
@@ -315,8 +318,12 @@ func _on_ChatUi_chat_finished() -> void:
 				pass
 			else:
 				# modify the overworld path and spawn IDs to preserve the player's position from the cutscene
-				Breadcrumb.trail[1] = _current_chat_tree.chat_scene_path()
-				CutsceneManager.assign_player_spawn_ids(_current_chat_tree)
+				var new_scene_path := _current_chat_tree.destination_scene_path()
+				Breadcrumb.trail[1] = new_scene_path
+				
+				if _current_chat_tree.destination_scene_path() == _current_chat_tree.chat_scene_path():
+					# preserve spawn ids from cutscene
+					CutsceneManager.assign_player_spawn_ids(_current_chat_tree)
 			
 			if CutsceneManager.is_front_level_id():
 				# continue to a level (preroll cutscene finished playing)
@@ -365,7 +372,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	
 	for meta_item in chat_event.meta:
 		# Apply the chat event's metadata. This can make creatures appear, disappear, laugh or turn around
-		_apply_chat_event_meta(meta_item)
+		_apply_chat_event_meta(chat_event, meta_item)
 	
 	# update the chatter's mood
 	var chatter: Creature = ChattableManager.get_creature_by_id(chat_event.who)
@@ -472,16 +479,20 @@ func _on_TalkButton_pressed() -> void:
 
 
 func _on_CellPhoneMenu_show() -> void:
-	ChattableManager.player.ui_has_focus = true
+	if ChattableManager.player is Player:
+		ChattableManager.player.ui_has_focus = true
 
 
 func _on_CellPhoneMenu_hide() -> void:
-	ChattableManager.player.ui_has_focus = false
+	if ChattableManager.player is Player:
+		ChattableManager.player.ui_has_focus = false
 
 
 func _on_SettingsMenu_show() -> void:
-	ChattableManager.player.ui_has_focus = true
+	if ChattableManager.player is Player:
+		ChattableManager.player.ui_has_focus = true
 
 
 func _on_SettingsMenu_hide() -> void:
-	ChattableManager.player.ui_has_focus = false
+	if ChattableManager.player is Player:
+		ChattableManager.player.ui_has_focus = false

@@ -32,7 +32,8 @@ const CHAT_DATA_VERSION := "1922"
 # Scene paths corresponding to different ChatTree.location_id values
 const LOCATION_SCENE_PATHS_BY_ID := {
 	"indoors": "res://src/main/world/OverworldIndoors.tscn",
-	"outdoors": "res://src/main/world/Overworld.tscn"
+	"outdoors": "res://src/main/world/Overworld.tscn",
+	"outdoors_walk": "res://src/main/world/OverworldWalk.tscn",
 }
 
 # unique key to identify this conversation in the chat history
@@ -48,6 +49,9 @@ var events := {}
 
 # a specific location where this conversation takes place, if any
 var location_id: String
+
+# a specific location where the player ends up after this conversation, if any
+var destination_id: String
 
 # Spawn locations for different creatures, if this ChatTree represents a cutscene. Spawn locations prefixed with a '!'
 # indicate that the creature should spawn invisible.
@@ -148,11 +152,26 @@ func chat_scene_path() -> String:
 	return LOCATION_SCENE_PATHS_BY_ID.get(location_id, Global.SCENE_OVERWORLD)
 
 
+"""
+Returns the scene path which should be loaded after this cutscene.
+
+If no destination scene path is defined, this returns the chat scene path.
+"""
+func destination_scene_path() -> String:
+	var result: String
+	if destination_id:
+		result = LOCATION_SCENE_PATHS_BY_ID.get(destination_id, Global.SCENE_OVERWORLD)
+	else:
+		result = chat_scene_path()
+	return result
+
+
 func reset() -> void:
 	history_key = ""
 	meta = {}
 	events = {}
 	location_id = ""
+	destination_id = ""
 	spawn_locations = {}
 	_position.reset()
 
