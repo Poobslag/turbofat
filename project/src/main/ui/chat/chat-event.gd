@@ -34,8 +34,17 @@ enum Mood {
 	YES1, # nodding a few times
 }
 
+enum NametagSide {
+	NO_PREFERENCE,
+	LEFT,
+	RIGHT,
+}
+
 # The name of the person speaking, or blank if nobody is speaking
 var who := ""
+
+# whether the chatter's nametag should be drawn on the right/left side of the frame
+var nametag_side: int = NametagSide.NO_PREFERENCE
 
 # The chat line
 var text: String

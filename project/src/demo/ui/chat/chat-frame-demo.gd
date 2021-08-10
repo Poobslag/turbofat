@@ -146,7 +146,7 @@ func _play_chat_event() -> void:
 	chat_event.who = "lorum"
 	chat_event.text = TEXTS[_text_index]
 	chat_event.chat_theme_def = _get_chat_theme_def()
-	$ChatFrame.play_chat_event(chat_event, _nametag_right, _squished)
+	$ChatFrame.play_chat_event(chat_event, _squished)
 
 
 """

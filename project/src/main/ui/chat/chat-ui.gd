@@ -100,24 +100,12 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 		# if we're asked to rewind or play more chat lines without picking a choice, hide the choices
 		_chat_choices.hide_choices()
 	
-	# reposition the nametags for whether the characters are on the left or right side
-	var creature := ChattableManager.get_creature_by_id(chat_event["who"])
-	var nametag_right := false
 	var squished := false
-	if creature:
-		var orientation: int = creature.orientation
-		if orientation in [Creature.NORTHEAST, Creature.SOUTHEAST]:
-			# If we're facing right, we're on the left side. Put the nametag on the left.
-			nametag_right = false
-		elif orientation in [Creature.NORTHWEST, Creature.SOUTHWEST]:
-			# If we're facing left, we're on the right side. Put the nametag on the right.
-			nametag_right = true
-	
 	if _chat_advancer.should_prompt():
 		# we're going to prompt the player for a response; squish the chat frame to the side
 		squished = true
 	
-	_chat_frame.play_chat_event(chat_event, nametag_right, squished)
+	_chat_frame.play_chat_event(chat_event, squished)
 	
 	if _chat_advancer.rewinding_text:
 		# immediately make all text visible when rewinding, so the player can rewind faster
