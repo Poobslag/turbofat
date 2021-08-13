@@ -8,6 +8,7 @@ This includes their appearance, name and weight.
 # unique creature ids
 const SENSEI_ID := "#sensei#"
 const PLAYER_ID := "#player#"
+const NARRATOR_ID := "#narrator#"
 
 # How many randomly generated filler creatures have their fatness tracked
 const GENERIC_FATNESS_COUNT := 150

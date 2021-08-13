@@ -25,6 +25,10 @@ var _rewind_action_duration := 0.0
 onready var _chat_advancer: ChatAdvancer = $ChatAdvancer
 onready var _chat_choices: ChatChoices = $ChatChoices
 onready var _chat_frame: ChatFrame = $ChatFrame
+onready var _narration_frame: NarrationFrame = $NarrationFrame
+
+# true if the player has advanced past the last line in the chat tree
+var _chat_finished := false
 
 func _process(delta: float) -> void:
 	_rewind_action_duration = _rewind_action_duration + delta if Input.is_action_pressed("rewind_text") else 0.0
@@ -32,7 +36,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not _chat_frame.is_chat_window_showing():
+	if not _chat_frame.is_chat_window_showing() and not _narration_frame.is_narration_window_showing():
 		return
 	
 	if event.is_action_pressed("rewind_text", true):
@@ -45,6 +49,7 @@ func _input(event: InputEvent) -> void:
 
 
 func play_chat_tree(chat_tree: ChatTree) -> void:
+	_chat_finished = false
 	_chat_advancer.play_chat_tree(chat_tree)
 	emit_signal("popped_in")
 
@@ -85,9 +90,12 @@ func _handle_advance_action(event: InputEvent) -> void:
 	
 	if advance_action:
 		get_tree().set_input_as_handled()
-		if not _chat_frame.is_all_text_visible():
+		if _chat_frame.is_chat_window_showing() and not _chat_frame.is_all_text_visible():
 			# text is still being slowly typed out, make it all visible
 			_chat_frame.make_all_text_visible()
+		elif _narration_frame.is_narration_window_showing() and not _narration_frame.is_all_text_visible():
+			# text is still being slowly typed out, make it all visible
+			_narration_frame.make_all_text_visible()
 		else:
 			_chat_advancer.advance()
 
@@ -100,18 +108,35 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 		# if we're asked to rewind or play more chat lines without picking a choice, hide the choices
 		_chat_choices.hide_choices()
 	
-	var squished := false
-	if _chat_advancer.should_prompt():
-		# we're going to prompt the player for a response; squish the chat frame to the side
-		squished = true
-	
-	_chat_frame.play_chat_event(chat_event, squished)
+	if chat_event["who"] == CreatureLibrary.NARRATOR_ID:
+		_narration_frame.play_chat_event(chat_event)
+	else:
+		var squished := false
+		
+		if _chat_advancer.should_prompt():
+			# we're going to prompt the player for a response; squish the chat frame to the side
+			squished = true
+		
+		_chat_frame.play_chat_event(chat_event, squished)
 	
 	if _chat_advancer.rewinding_text:
 		# immediately make all text visible when rewinding, so the player can rewind faster
-		_chat_frame.make_all_text_visible()
+		if _chat_frame.is_chat_window_showing():
+			_chat_frame.make_all_text_visible()
+		elif _narration_frame.is_narration_window_showing():
+			_narration_frame.make_all_text_visible()
 	else:
 		emit_signal("chat_event_played", chat_event)
+	
+	if chat_event.who == CreatureLibrary.NARRATOR_ID and _chat_frame.is_chat_window_showing():
+		_chat_frame.pop_out()
+	if chat_event.who != CreatureLibrary.NARRATOR_ID and _narration_frame.is_narration_window_showing():
+		_narration_frame.pop_out()
+	
+	if _chat_frame.is_chat_window_showing():
+		_chat_frame.visible = true if chat_event.text else false
+	elif _narration_frame.is_narration_window_showing():
+		_narration_frame.visible = true if chat_event.text else false
 	
 	if not chat_event.text:
 		# emitting the 'all_text_shown' signal while other nodes are still receiving the current 'chat_event_shown'
@@ -188,8 +213,18 @@ func _on_ChatFrame_all_text_shown() -> void:
 
 
 func _on_ChatFrame_pop_out_completed() -> void:
-	emit_signal("chat_finished")
+	if _chat_finished:
+		emit_signal("chat_finished")
+
+
+func _on_NarrationFrame_pop_out_completed() -> void:
+	if _chat_finished:
+		emit_signal("chat_finished")
 
 
 func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:
 	emit_signal("chat_choice_chosen", choice_index)
+
+
+func _on_ChatAdvancer_chat_finished() -> void:
+	_chat_finished = true

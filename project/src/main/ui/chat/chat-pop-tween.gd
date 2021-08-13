@@ -32,22 +32,6 @@ func pop_out() -> void:
 
 
 """
-Squishes the chat window aside to prompt the player.
-"""
-func squish() -> void:
-	_interpolate_squish(true)
-	start()
-
-
-"""
-Moves the chat window back to the center after prompting the player.
-"""
-func unsquish() -> void:
-	_interpolate_squish(false)
-	start()
-
-
-"""
 Presets the chat window to a known invisible state.
 
 This doesn't use a tween. It's meant for setup/teardown steps the player should never see.
@@ -56,15 +40,6 @@ func _reset_chat_frame() -> void:
 	remove_all()
 	_chat_frame.modulate = Color.transparent
 	_chat_frame.rect_scale = POP_OUT_SCALE
-
-
-"""
-Squishes/unsquishes the chat window when prompting the player.
-"""
-func _interpolate_squish(squished: bool) -> void:
-	remove(_chat_frame, "rect_position:x")
-	interpolate_property(_chat_frame, "rect_position:x", _chat_frame.rect_position.x,
-			-100 if squished else 0, 0.2, Tween.TRANS_CIRC, Tween.EASE_OUT)
 
 
 """

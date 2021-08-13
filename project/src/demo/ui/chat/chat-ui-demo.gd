@@ -72,6 +72,9 @@ func _input(event: InputEvent) -> void:
 		KEY_E:
 			_text_override = ""
 			_play_chat_tree("chat-choices7")
+		KEY_R:
+			_text_override = ""
+			_play_chat_tree("chat-narrator")
 		KEY_T:
 			_text_override = ""
 			_play_chat_tree("chat-moods")
