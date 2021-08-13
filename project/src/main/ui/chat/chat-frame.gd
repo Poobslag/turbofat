@@ -53,7 +53,7 @@ Animates the chat UI to gradually reveal the specified text, mimicking speech.
 Also updates the chat UI's appearance based on the amount of text being displayed and the specified color and
 background texture.
 """
-func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool) -> void:
+func play_chat_event(chat_event: ChatEvent, squished: bool) -> void:
 	if not $ChatLineLabel.visible:
 		# Ensure the chat window is showing before we start changing its text and playing sounds
 		pop_in()
@@ -83,6 +83,7 @@ func play_chat_event(chat_event: ChatEvent, nametag_right: bool, squished: bool)
 	# update the UI's appearance
 	$ChatLineLabel.update_appearance(chat_theme)
 	$ChatLinePanel.update_appearance(chat_theme, chat_line_size)
+	var nametag_right: bool = chat_event.nametag_side == ChatEvent.NametagSide.RIGHT
 	$ChatLinePanel/NametagPanel.show_label(chat_theme, nametag_right)
 
 

@@ -11,10 +11,10 @@ signal focus_changed
 const MAX_INTERACT_DISTANCE := 240.0
 
 # The player's sprite
-var player: Player setget set_player
+var player: Creature setget set_player
 
 # The sensei's sprite
-var sensei: Sensei setget set_sensei
+var sensei: Creature setget set_sensei
 
 # The overworld object which the player will currently interact with if they hit the button
 var focused_chattable: Node2D setget set_focused_chattable
@@ -113,12 +113,12 @@ func load_chat_tree() -> ChatTree:
 	return chat_tree
 
 
-func set_player(new_player: Player) -> void:
+func set_player(new_player: Creature) -> void:
 	player = new_player
 	unregister_creature(player)
 
 
-func set_sensei(new_sensei: Sensei) -> void:
+func set_sensei(new_sensei: Creature) -> void:
 	sensei = new_sensei
 	unregister_creature(sensei)
 
