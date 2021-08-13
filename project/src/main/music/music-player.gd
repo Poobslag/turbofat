@@ -56,6 +56,10 @@ func is_playing_chill_bgm() -> bool:
 	return current_bgm in _chill_bgms
 
 
+func is_playing_tutorial_bgm() -> bool:
+	return current_bgm in _tutorial_bgms
+
+
 """
 Plays an 'upbeat' song; something suitable when the player's playing a puzzle level.
 """

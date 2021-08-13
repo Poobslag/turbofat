@@ -1,7 +1,10 @@
 {"version": "2476"}
 
 [location]
-indoors
+outdoors_walk
+
+[destination]
+outdoors
 
 [characters]
 player, p1, kitchen_3
