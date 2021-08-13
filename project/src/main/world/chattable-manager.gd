@@ -75,7 +75,7 @@ func refresh_creatures() -> void:
 	_creatures_by_id.clear()
 	for creature_obj in get_tree().get_nodes_in_group("creatures"):
 		var creature: Creature = creature_obj
-		_refresh_creature_id(creature)
+		register_creature(creature)
 
 
 """
@@ -115,12 +115,12 @@ func load_chat_tree() -> ChatTree:
 
 func set_player(new_player: Player) -> void:
 	player = new_player
-	_remove_from_creatures_by_id(player)
+	unregister_creature(player)
 
 
 func set_sensei(new_sensei: Sensei) -> void:
 	sensei = new_sensei
-	_remove_from_creatures_by_id(sensei)
+	unregister_creature(sensei)
 
 
 func set_focused_chattable(new_focused_chattable: Node2D) -> void:
@@ -201,20 +201,20 @@ func focused_chattable_creature_id() -> String:
 
 
 """
-Remove the specified creature from the '_creatures_by_id' mapping.
+Adds the specified creature to the '_creatures_by_id' mapping.
 """
-func _remove_from_creatures_by_id(creature: Creature) -> void:
+func register_creature(creature: Creature) -> void:
+	if creature.creature_id:
+		_creatures_by_id[creature.creature_id] = creature
+
+
+"""
+Removes the specified creature from the '_creatures_by_id' mapping.
+"""
+func unregister_creature(creature: Creature) -> void:
 	for key in _creatures_by_id:
 		if _creatures_by_id[key] == creature:
 			_creatures_by_id.erase(key)
-
-
-"""
-Updates a creature's entry in the '_creatures_by_id' mapping.
-"""
-func _refresh_creature_id(creature: Creature) -> void:
-	if creature.creature_id:
-		_creatures_by_id[creature.creature_id] = creature
 
 
 """
