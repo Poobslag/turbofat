@@ -72,13 +72,13 @@ func _extract_localizables_from_creatures() -> void:
 		
 		# extract the creature's filler chat as localizables
 		for filler_id in ChatLibrary.filler_ids_for_creature(creature_id):
-			var chat_tree := ChatLibrary.chat_tree_for_chat_id(creature_def, filler_id)
+			var chat_tree := ChatLibrary.chat_tree_for_creature_chat_id(creature_def, filler_id)
 			_extract_localizables_from_chat_tree(chat_tree)
 		
 		# extract the creature's level/story chat as localizables
 		for chat_selector_obj in creature_def.chat_selectors:
 			var chat_selector: Dictionary = chat_selector_obj
-			var chat_tree := ChatLibrary.chat_tree_for_chat_id(creature_def, chat_selector.get("chat"))
+			var chat_tree := ChatLibrary.chat_tree_for_creature_chat_id(creature_def, chat_selector.get("chat"))
 			_extract_localizables_from_chat_tree(chat_tree)
 
 

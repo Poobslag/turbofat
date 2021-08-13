@@ -25,7 +25,7 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not _chat_frame.chat_window_showing() or not is_processing():
+	if not _chat_frame.is_chat_window_showing() or not is_processing():
 		return
 	
 	if event is InputEventScreenTouch:
@@ -92,5 +92,5 @@ func _on_ChatChoices_chat_choice_chosen(_choice_index: int) -> void:
 	_enable_translation()
 
 
-func _on_ChatUi_pop_out_completed() -> void:
+func _on_ChatUi_chat_finished() -> void:
 	_disable_translation()

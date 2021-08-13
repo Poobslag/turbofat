@@ -42,8 +42,7 @@ func _on_StartButton_pressed() -> void:
 	_flags_input.apply_flags()
 	
 	var cutscene_prefix := StringUtils.substring_before_last(_open_input.value, "_")
-	var path := ChatHistory.path_from_history_key(_open_input.value)
-	var chat_tree := ChatLibrary.chat_tree_from_file(path)
+	var chat_tree := ChatLibrary.chat_tree_for_key(_open_input.value)
 	CurrentLevel.set_launched_level(cutscene_prefix)
 	
 	if chat_tree:
@@ -52,7 +51,7 @@ func _on_StartButton_pressed() -> void:
 		CutsceneManager.reset()
 		
 		CutsceneManager.enqueue_chat_tree(chat_tree)
-		SceneTransition.push_trail(chat_tree.cutscene_scene_path())
+		SceneTransition.push_trail(chat_tree.chat_scene_path())
 	else:
 		push_warning("Invalid cutscene path: %s" % [_open_input.value])
 

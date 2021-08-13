@@ -349,7 +349,7 @@ mouse_filter = 2
 [connection signal="pressed" from="Control/CellPhoneMenu/Buttons/Northeast/BackButton" to="Control/CellPhoneMenu" method="_on_BackButton_pressed"]
 [connection signal="chat_choice_chosen" from="Control/ChatUi" to="." method="_on_ChatUi_chat_choice_chosen"]
 [connection signal="chat_event_played" from="Control/ChatUi" to="." method="_on_ChatUi_chat_event_played"]
-[connection signal="pop_out_completed" from="Control/ChatUi" to="." method="_on_ChatUi_pop_out_completed"]
+[connection signal="chat_finished" from="Control/ChatUi" to="." method="_on_ChatUi_chat_finished"]
 [connection signal="showed_choices" from="Control/ChatUi" to="." method="_on_ChatUi_showed_choices"]
 [connection signal="cheat_detected" from="Control/CheatCodeDetector" to="Control/Labels/SoutheastLabels/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="hide" from="Control/SettingsMenu" to="." method="_on_SettingsMenu_hide"]

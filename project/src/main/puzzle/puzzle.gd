@@ -165,7 +165,7 @@ func _quit_puzzle() -> void:
 	if play_cutscene:
 		# insert cutscene into breadcrumb trail so it will show up after we pop the trail
 		CutsceneManager.enqueue_chat_tree(chat_tree)
-		Breadcrumb.trail.insert(1, chat_tree.cutscene_scene_path())
+		Breadcrumb.trail.insert(1, chat_tree.chat_scene_path())
 	
 	CurrentLevel.clear_launched_level()
 	PlayerData.creature_queue.clear()

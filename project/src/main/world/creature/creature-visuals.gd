@@ -52,6 +52,7 @@ const SPRINT := MovementMode.SPRINT
 const RUN := MovementMode.RUN
 const WALK := MovementMode.WALK
 const WIGGLE := MovementMode.WIGGLE
+const SOUTHEAST_DIR := Vector2(0.70710678118, 0.70710678118)
 
 # toggle to assign default animation frames based on the creature's orientation
 export (bool) var _reset_frames setget reset_frames
@@ -64,8 +65,6 @@ export (bool) var _random_creature setget random_creature
 
 # the state of whether the creature is walking, running or idle
 export (MovementMode) var movement_mode := MovementMode.IDLE setget set_movement_mode
-
-export (Vector2) var southeast_dir := Vector2(0.70710678118, 0.70710678118)
 
 # the direction the creature is facing
 export (CreatureOrientation.Orientation) var orientation := CreatureOrientation.SOUTHEAST setget set_orientation
@@ -425,7 +424,7 @@ func _compute_orientation(direction: Vector2) -> int:
 	# when our direction puts us between two orientations.
 	var new_orientation: int = orientation
 	# unrounded orientation is a float in the range [-2.0, 2.0]
-	var unrounded_orientation := -2 * direction.angle_to(southeast_dir) / PI
+	var unrounded_orientation := -2 * direction.angle_to(SOUTHEAST_DIR) / PI
 	if abs(unrounded_orientation - orientation) >= 0.6 and abs(unrounded_orientation + 4 - orientation) >= 0.6:
 		# convert the float orientation [-2.0, 2.0] to an int orientation [0, 3]
 		new_orientation = wrapi(int(round(unrounded_orientation)), 0, 4)

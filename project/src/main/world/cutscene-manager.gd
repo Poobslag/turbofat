@@ -90,7 +90,7 @@ func replace_cutscene_trail() -> void:
 		return
 	
 	var chat_tree: ChatTree = _queue.front()
-	SceneTransition.replace_trail(chat_tree.cutscene_scene_path())
+	SceneTransition.replace_trail(chat_tree.chat_scene_path())
 
 
 """
@@ -102,7 +102,7 @@ func push_cutscene_trail() -> void:
 		return
 	
 	var chat_tree: ChatTree = _queue.front()
-	SceneTransition.push_trail(chat_tree.cutscene_scene_path())
+	SceneTransition.push_trail(chat_tree.chat_scene_path())
 
 
 """

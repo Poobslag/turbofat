@@ -29,7 +29,7 @@ func chat_tree_for_creature(creature: Creature) -> ChatTree:
 	var filler_ids := filler_ids_for_creature(creature.creature_id)
 	var chosen_chat := select_from_chat_selectors(creature.chat_selectors, creature.creature_id, filler_ids)
 
-	var chat_tree := chat_tree_for_chat_id(creature.creature_def, chosen_chat)
+	var chat_tree := chat_tree_for_creature_chat_id(creature.creature_def, chosen_chat)
 	if not chat_tree and has_preroll(chosen_chat):
 		chat_tree = chat_tree_for_preroll(chosen_chat)
 
@@ -41,11 +41,19 @@ Returns the chat tree for the specified creature and chat id.
 
 Returns null if the chat tree cannot be found.
 """
-func chat_tree_for_chat_id(creature_def: CreatureDef, chat_id: String) -> ChatTree:
+func chat_tree_for_creature_chat_id(creature_def: CreatureDef, chat_id: String) -> ChatTree:
 	var chat_tree: ChatTree
 	if FileUtils.file_exists(_creature_chat_path(creature_def.creature_id, chat_id)):
 		chat_tree = chat_tree_from_file(_creature_chat_path(creature_def.creature_id, chat_id))
 	return chat_tree
+
+
+"""
+Returns the chat tree for the specified chat key, such as 'chat/marsh_prologue'.
+"""
+func chat_tree_for_key(chat_key: String) -> ChatTree:
+	var path := ChatHistory.path_from_history_key(chat_key)
+	return chat_tree_from_file(path)
 
 
 """

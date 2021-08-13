@@ -9,7 +9,9 @@ signal chat_event_played(chat_event)
 # emitted when we present the player with a chat choice
 signal showed_choices
 signal chat_choice_chosen(choice_index)
-signal pop_out_completed
+
+# emitted when the chat window pops out after a finished chat
+signal chat_finished
 
 # how long the player needs to hold the button to skip all chat lines
 const HOLD_TO_SKIP_DURATION := 0.6
@@ -30,7 +32,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not _chat_frame.chat_window_showing():
+	if not _chat_frame.is_chat_window_showing():
 		return
 	
 	if event.is_action_pressed("rewind_text", true):
@@ -123,7 +125,6 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 	else:
 		emit_signal("chat_event_played", chat_event)
 	
-	_chat_frame.visible = true if chat_event.text else false
 	if not chat_event.text:
 		# emitting the 'all_text_shown' signal while other nodes are still receiving the current 'chat_event_shown'
 		# signal introduces complications, so we wait until the next frame
@@ -131,19 +132,6 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 		_chat_frame.emit_signal("all_text_shown")
 		if not _chat_advancer.should_prompt():
 			_chat_advancer.advance()
-
-
-func _on_ChatFrame_all_text_shown() -> void:
-	if _chat_advancer.should_prompt():
-		var chat_event: ChatEvent = _chat_advancer.current_chat_event()
-		
-		_chat_choices.reposition(_chat_frame.get_chat_line_size())
-		
-		var texts := _enabled_link_texts(chat_event)
-		var moods := _enabled_link_moods(chat_event)
-		_chat_choices.show_choices(texts, moods)
-		
-		emit_signal("showed_choices")
 
 
 """
@@ -198,8 +186,21 @@ func _enabled_link_texts(var chat_event: ChatEvent) -> Array:
 	return texts
 
 
+func _on_ChatFrame_all_text_shown() -> void:
+	if _chat_advancer.should_prompt():
+		var chat_event: ChatEvent = _chat_advancer.current_chat_event()
+		
+		_chat_choices.reposition(_chat_frame.get_chat_line_size())
+		
+		var texts := _enabled_link_texts(chat_event)
+		var moods := _enabled_link_moods(chat_event)
+		_chat_choices.show_choices(texts, moods)
+		
+		emit_signal("showed_choices")
+
+
 func _on_ChatFrame_pop_out_completed() -> void:
-	emit_signal("pop_out_completed")
+	emit_signal("chat_finished")
 
 
 func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:

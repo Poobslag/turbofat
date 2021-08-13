@@ -1,6 +1,8 @@
 class_name ChatLinePanel
 extends Panel
 """
+Displays an empty frame around spoken dialog.
+
 Note: ChatLinePanel does not contain its own chat line labels to avoid the labels being distorted as the panel
 	stretches and shrinks. It would make the text annoying to read.
 """

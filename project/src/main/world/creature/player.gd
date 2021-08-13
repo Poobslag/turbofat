@@ -14,11 +14,11 @@ func _ready() -> void:
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 	
 	set_creature_def(PlayerData.creature_library.player_def)
+	creature_id = CreatureLibrary.PLAYER_ID
 	if PlayerData.creature_library.forced_fatness:
 		set_fatness(PlayerData.creature_library.forced_fatness)
 		set_visual_fatness(PlayerData.creature_library.forced_fatness)
 	refresh_collision_extents()
-	creature_id = CreatureLibrary.PLAYER_ID
 	ChattableManager.player = self
 
 

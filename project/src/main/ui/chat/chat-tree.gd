@@ -141,7 +141,10 @@ func can_advance() -> bool:
 	return can_increment
 
 
-func cutscene_scene_path() -> String:
+"""
+Returns the scene path where this chat takes place.
+"""
+func chat_scene_path() -> String:
 	return LOCATION_SCENE_PATHS_BY_ID.get(location_id, Global.SCENE_OVERWORLD)
 
 
