@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-08-04 10:36-0400\n"
+"POT-Creation-Date: 2021-08-13 15:47-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -180,10 +180,9 @@ msgstr ""
 #: project/assets/main/locale/localizables-extracted.py:267
 #: project/assets/main/locale/localizables-extracted.py:305
 #: project/assets/main/locale/localizables-extracted.py:330
+#: project/assets/main/locale/localizables-extracted.py:549
+#: project/assets/main/locale/localizables-extracted.py:564
 #: project/assets/main/locale/localizables-extracted.py:569
-#: project/assets/main/locale/localizables-extracted.py:584
-#: project/assets/main/locale/localizables-extracted.py:589
-#: project/assets/main/locale/localizables-extracted.py:613
 msgid "..."
 msgstr ""
 
@@ -2016,607 +2015,462 @@ msgid "Twice the pace and half the space? ...This is a recipe for disaster!"
 msgstr ""
 
 #: project/assets/main/locale/localizables-extracted.py:508
-#: project/assets/main/locale/localizables-extracted.py:655
-msgid "...I don't have anything to say right now!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:509
-msgid ""
-"Oh! I remember you from before. I'm Boatricia, I'm sort of new here and "
-"trying to make some friends."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:510
-msgid "Nice to meet you! People here call me #player#."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:511
-msgid ""
-"Well! ...If you're trying to make some friends, I'll try to cook you "
-"something special okay? Then maybe you can be my friend."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:512
-msgid "Oh! Well aren't you sweet~"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:513
-msgid "My maid died!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:514
-msgid "Oh no! ...That's so sad!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:515
-msgid "Life is so short..."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:516
-msgid "Hmm, yes... That's true."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:517
 msgid "Bork! Give me a call if you need anything, boss!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:518
+#: project/assets/main/locale/localizables-extracted.py:509
 msgid ""
 "When I was a kid, buying a new video game every week seemed like an "
 "impossible dream! ...But games are actually pretty cheap."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:519
+#: project/assets/main/locale/localizables-extracted.py:510
 msgid ""
 "It's hard forcing yourself into a healthy routine at first, bork! But "
 "eventually you don't even think about it."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:520
-msgid "Wow! ...You finally did it? Does this count as our first conversation!?"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:521
-msgid "Yeah, definitely!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:522
-#: project/assets/main/locale/localizables-extracted.py:526
-msgid "Maybe? I'm not sure!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:523
-msgid "I don't think so..."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:524
-msgid ""
-"Yeah!\n"
-"This is definitely a real conversation. It has branches and everything!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:525
-#: project/assets/main/locale/localizables-extracted.py:527
-msgid "Congratulations! Wow!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:528
-msgid "I don't think so. I still have a lot of work to do..."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:529
-msgid "Aww, don't be like that! This is looking great."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:530
-msgid "...I can't wait to see what you do next!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:531
+#: project/assets/main/locale/localizables-extracted.py:511
 msgid "Are you going to order something?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:532
+#: project/assets/main/locale/localizables-extracted.py:512
 msgid "Oh hey! You're here again. ...Yep. Bye!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:533
+#: project/assets/main/locale/localizables-extracted.py:513
 msgid "Gee, you just can't get enough of our awkward... nonversations, can you."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:534
+#: project/assets/main/locale/localizables-extracted.py:514
 msgid ""
 "Is it alright if you... like... stop coming here? It sort of makes me "
 "nervous."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:535
+#: project/assets/main/locale/localizables-extracted.py:515
 msgid "Oh hey, it's you again. Obviously."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:536
+#: project/assets/main/locale/localizables-extracted.py:516
 msgid "Oh hello. Did you need something?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:537
+#: project/assets/main/locale/localizables-extracted.py:517
 msgid "Butt's up with you"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:538
+#: project/assets/main/locale/localizables-extracted.py:518
 msgid "You fixed your sign?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:539
+#: project/assets/main/locale/localizables-extracted.py:519
 msgid "Are you out of business yet"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:540
+#: project/assets/main/locale/localizables-extracted.py:520
 msgid "Oh hello! Did you need something?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:541
+#: project/assets/main/locale/localizables-extracted.py:521
 msgid ""
 "Hmm, Buttercup Cafe? Ah! I heard about this place from Richie. ...How's "
 "business?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:542
-#: project/assets/main/locale/localizables-extracted.py:553
+#: project/assets/main/locale/localizables-extracted.py:522
+#: project/assets/main/locale/localizables-extracted.py:533
 msgid ""
 "Ugh well. We fixed our sign last week, so at least the 'butt cafe' jokes "
 "have stopped."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:543
-#: project/assets/main/locale/localizables-extracted.py:554
+#: project/assets/main/locale/localizables-extracted.py:523
+#: project/assets/main/locale/localizables-extracted.py:534
 msgid ""
 "But a bunch of our customers just... like... stopped showing up all of a "
 "sudden?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:544
+#: project/assets/main/locale/localizables-extracted.py:524
 msgid "Hello! Butt's up with you?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:545
+#: project/assets/main/locale/localizables-extracted.py:525
 msgid "Butt's... Butt's up? What?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:546
+#: project/assets/main/locale/localizables-extracted.py:526
 msgid ""
 "Oh! You fixed your ‘butt up cafe' sign. Now my joke doesn't work. Anyway,"
 " how's business?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:547
-#: project/assets/main/locale/localizables-extracted.py:550
-#: project/assets/main/locale/localizables-extracted.py:572
+#: project/assets/main/locale/localizables-extracted.py:527
+#: project/assets/main/locale/localizables-extracted.py:530
+#: project/assets/main/locale/localizables-extracted.py:552
 msgid "Right, we fixed that like a WEEK ago! ...But yeah, things have been weird!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:548
-#: project/assets/main/locale/localizables-extracted.py:551
-#: project/assets/main/locale/localizables-extracted.py:573
+#: project/assets/main/locale/localizables-extracted.py:528
+#: project/assets/main/locale/localizables-extracted.py:531
+#: project/assets/main/locale/localizables-extracted.py:553
 msgid ""
 "A bunch of our customers just... like... stopped showing up all of a "
 "sudden?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:549
+#: project/assets/main/locale/localizables-extracted.py:529
 msgid "Oh, you fixed your sign!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:552
+#: project/assets/main/locale/localizables-extracted.py:532
 msgid "So are you out of business yet?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:555
+#: project/assets/main/locale/localizables-extracted.py:535
 msgid ""
 "No idea why! And it's not like we have any of their contact info. So... "
 "yeah."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:556
+#: project/assets/main/locale/localizables-extracted.py:536
 msgid "Ah. That's just the worst. I wonder where they could have gone?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:557
+#: project/assets/main/locale/localizables-extracted.py:537
 msgid "...Yeah. Well. ...How about you, any new customers?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:558
+#: project/assets/main/locale/localizables-extracted.py:538
 msgid "No, no, don't worry. We're not stealing your customers."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:559
+#: project/assets/main/locale/localizables-extracted.py:539
 msgid "Ha ha ha, Stealing our customers! ...No, ha ha!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:560
+#: project/assets/main/locale/localizables-extracted.py:540
 msgid "No, um. I wasn't worried about that. I was just being polite."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:561
+#: project/assets/main/locale/localizables-extracted.py:541
 msgid "Oh! ...Well thank you."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:562
+#: project/assets/main/locale/localizables-extracted.py:542
 msgid "Sorry. That probably shouldn't be as funny as it is. Ha ha ha."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:563
+#: project/assets/main/locale/localizables-extracted.py:543
 msgid "...Your sign looks nice."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:564
+#: project/assets/main/locale/localizables-extracted.py:544
 msgid "Hmm, Buttercup Cafe? Ah! I heard about this place from Richie."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:565
+#: project/assets/main/locale/localizables-extracted.py:545
 msgid ""
 "...But weren't you called 'The Butt Cafe' before? Did you change your "
 "name?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:566
-#: project/assets/main/locale/localizables-extracted.py:585
-#: project/assets/main/locale/localizables-extracted.py:590
+#: project/assets/main/locale/localizables-extracted.py:546
+#: project/assets/main/locale/localizables-extracted.py:565
+#: project/assets/main/locale/localizables-extracted.py:570
 msgid ""
 "S-sorry. What? I can't tell if that's a joke or if you're actually making"
 " a dig at me."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:567
+#: project/assets/main/locale/localizables-extracted.py:547
 msgid ""
 "I'm not really in the right headspace to talk about this right now. Can "
 "you just leave?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:568
+#: project/assets/main/locale/localizables-extracted.py:548
 msgid ""
 "Sorry. Umm, I was just expressing solidarity in both of our restaurants "
 "with dumb names."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:570
+#: project/assets/main/locale/localizables-extracted.py:550
 msgid "We'll go."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:571
+#: project/assets/main/locale/localizables-extracted.py:551
 msgid "Ah, you fixed your sign! ...How's business?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:574
+#: project/assets/main/locale/localizables-extracted.py:554
 msgid "Any news?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:575
+#: project/assets/main/locale/localizables-extracted.py:555
 msgid ""
 "So yeah, I mean... We're trying a few promotions to get people back, but "
 "I don't know."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:576
+#: project/assets/main/locale/localizables-extracted.py:556
 msgid ""
 "I HATE marketing, and I always sort of hoped word of mouth would be "
 "enough for a place like this?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:577
+#: project/assets/main/locale/localizables-extracted.py:557
 msgid ""
 "And I mean for a while things were going great! ... ...I don't really get"
 " what changed...."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:578
+#: project/assets/main/locale/localizables-extracted.py:558
 msgid ""
 "Well, maybe people don't like the new name. ...Have you thought about "
 "changing it again?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:579
+#: project/assets/main/locale/localizables-extracted.py:559
 msgid "....Wait, what?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:580
+#: project/assets/main/locale/localizables-extracted.py:560
 msgid "Switch it back to Butt Up Cafe!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:581
+#: project/assets/main/locale/localizables-extracted.py:561
 msgid "Shorten it to Butt Cafe!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:582
+#: project/assets/main/locale/localizables-extracted.py:562
 msgid "Oh, nevermind"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:583
+#: project/assets/main/locale/localizables-extracted.py:563
 msgid "You know, maybe people miss the old Butt Up cafe!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:586
-#: project/assets/main/locale/localizables-extracted.py:591
+#: project/assets/main/locale/localizables-extracted.py:566
+#: project/assets/main/locale/localizables-extracted.py:571
 msgid "I'm not really in the right headspace to parse that right now."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:587
-#: project/assets/main/locale/localizables-extracted.py:592
+#: project/assets/main/locale/localizables-extracted.py:567
+#: project/assets/main/locale/localizables-extracted.py:572
 msgid "Ha ha. You'll figure it out."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:588
+#: project/assets/main/locale/localizables-extracted.py:568
 msgid "Maybe just call it The Butt Cafe this time! You know, shorter! Punchier!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:593
+#: project/assets/main/locale/localizables-extracted.py:573
 msgid "Oh... nevermind."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:594
+#: project/assets/main/locale/localizables-extracted.py:574
 msgid ""
 "I had an inappropriate joke, but somehow inappropriate jokes seem "
 "inappropriate right now."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:595
+#: project/assets/main/locale/localizables-extracted.py:575
 msgid "Heh, thanks. ...Hey, keep in touch, okay?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:596
-msgid "Did you want to get friend zoned?"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:597
-msgid "Friend zone me!"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:598
-msgid "Um, I don't think so..."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:599
-msgid "You tell me you're in love with me,"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:600
-msgid "...Like you can't take your pretty eyes away from me."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:601
-msgid "It's not that I don't wanna stay,"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:602
-msgid "...But every time you come too close I move away."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:603
-msgid "I wanna believe in everything that you say, 'cause it sounds so good..."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:604
-msgid "But if you really want me, move slow,"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:605
-msgid "There's things about me you just have to know."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:606
-msgid "Sometimes I run."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:607
-msgid "Sometimes I hide."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:608
-msgid "Sometimes I'm scared of you,"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:609
-msgid "But all I really want is to hold you tight, treat you right,"
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:610
-msgid "Be with you day and night."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:611
-msgid "Baby, all I need is time."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:612
-msgid "Um, maybe later..."
-msgstr ""
-
-#: project/assets/main/locale/localizables-extracted.py:614
+#: project/assets/main/locale/localizables-extracted.py:576
 msgid ""
 "(A customer is waiting for their meal. It would be impolite to disturb "
 "them.)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:615
+#: project/assets/main/locale/localizables-extracted.py:577
 msgid "(One of Diota's customers. ...I think I'll leave them alone.)"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:616
+#: project/assets/main/locale/localizables-extracted.py:578
 msgid ""
 "Hello! We run the Turbo Fat restaurant down the street, and if you're "
 "ever-"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:617
+#: project/assets/main/locale/localizables-extracted.py:579
 msgid "-Eh? Hello! So... you work at a different restaurant?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:618
+#: project/assets/main/locale/localizables-extracted.py:580
 msgid "Yeah! It's a restaurant with hmm..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:619
+#: project/assets/main/locale/localizables-extracted.py:581
 msgid "Way better food"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:620
+#: project/assets/main/locale/localizables-extracted.py:582
 msgid "Better service"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:621
+#: project/assets/main/locale/localizables-extracted.py:583
 msgid "None of this healthy crap"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:622
+#: project/assets/main/locale/localizables-extracted.py:584
 msgid "...I shouldn't do this"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:623
+#: project/assets/main/locale/localizables-extracted.py:585
 msgid ""
 "It's a restaurant with way better food than this place! Even if you're "
 "vegetarian, we-"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:624
+#: project/assets/main/locale/localizables-extracted.py:586
 msgid ""
 "It's a restaurant with way better service than this place! And don't "
 "worry if you're vegetarian, we-"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:625
+#: project/assets/main/locale/localizables-extracted.py:587
 msgid "It's a restaurant with none of this healthy crap! All our food is-"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:626
+#: project/assets/main/locale/localizables-extracted.py:588
 msgid "...I'm suddenly realizing this isn't the most appropriate place to-"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:627
+#: project/assets/main/locale/localizables-extracted.py:589
 msgid "What the hell?"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:628
+#: project/assets/main/locale/localizables-extracted.py:590
 msgid ""
 "You just thought you could randomly come to my restaurant and pitch to my"
 " customers!? What planet are you from!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:629
+#: project/assets/main/locale/localizables-extracted.py:591
 msgid "...Well!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:630
+#: project/assets/main/locale/localizables-extracted.py:592
 msgid "Go away! Just... get out of here, seriously!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:631
+#: project/assets/main/locale/localizables-extracted.py:593
 msgid "Hey relax! We got everything under control."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:632
+#: project/assets/main/locale/localizables-extracted.py:594
 msgid "You know, a liquor license might help us bring in more customers."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:633
+#: project/assets/main/locale/localizables-extracted.py:595
 msgid ""
 "You ever think of shortening the restaurant to just \"Turbo's\"? I'm just"
 " sayin'..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:634
+#: project/assets/main/locale/localizables-extracted.py:596
 msgid "I've been reading up on something called the 'Pomodoro Technique' lately!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:635
+#: project/assets/main/locale/localizables-extracted.py:597
 msgid ""
 "...'Pomodoro' is a fancy Italian word for sitting on your ass, instead of"
 " doing any actual work."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:636
+#: project/assets/main/locale/localizables-extracted.py:598
 msgid "Ah, I do that already! I didn't someone had coined a name for it."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:637
+#: project/assets/main/locale/localizables-extracted.py:599
 msgid "You're both lazy"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:638
+#: project/assets/main/locale/localizables-extracted.py:600
 msgid "More like 'Unemployment Technique'"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:639
+#: project/assets/main/locale/localizables-extracted.py:601
 msgid "I should study this"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:640
+#: project/assets/main/locale/localizables-extracted.py:602
 msgid "I invented that!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:641
+#: project/assets/main/locale/localizables-extracted.py:603
 msgid "Technique? You're both just lazy."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:642
-#: project/assets/main/locale/localizables-extracted.py:644
+#: project/assets/main/locale/localizables-extracted.py:604
+#: project/assets/main/locale/localizables-extracted.py:606
 msgid "Oh, lighten up #player#. Sounds like someone needs a Pomodoro."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:643
+#: project/assets/main/locale/localizables-extracted.py:605
 msgid "More like the 'Unemployment Technique'."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:645
+#: project/assets/main/locale/localizables-extracted.py:607
 msgid "I should study this technique..."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:646
+#: project/assets/main/locale/localizables-extracted.py:608
 msgid "Sure! It's good to take a break once in awhile~"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:647
+#: project/assets/main/locale/localizables-extracted.py:609
 msgid "I invented that technique!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:648
+#: project/assets/main/locale/localizables-extracted.py:610
 msgid "Ha! Ha! Maybe we can compare notes some time."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:649
+#: project/assets/main/locale/localizables-extracted.py:611
 msgid ""
 "...I usually figure if people don't talk to me it's 'cause they like, "
 "don't want to talk. But don't be afraid to hit me up."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:650
+#: project/assets/main/locale/localizables-extracted.py:612
 msgid ""
 "Online gaming's sorta nice because people just assume I'm a guy. ...It's "
 "just annoying when everyone's on voice chat."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:651
+#: project/assets/main/locale/localizables-extracted.py:613
 msgid ""
 "Can you do me a favor and act like we're having a conversation? Just for "
 "a few seconds. ...A little longer... Okay, thanks."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:652
+#: project/assets/main/locale/localizables-extracted.py:614
 msgid "I'm always ready for more training! Just call me on my cell. Mowr!"
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:653
+#: project/assets/main/locale/localizables-extracted.py:615
 msgid ""
 "You should come mountain biking some time! It's not as dangerous as you "
 "think."
 msgstr ""
 
-#: project/assets/main/locale/localizables-extracted.py:654
+#: project/assets/main/locale/localizables-extracted.py:616
 msgid ""
 "My phone's been acting slow lately. ...They do that on purpose so you'll "
 "by a new one. It's so annoying!"
 msgstr ""
 
+#: project/assets/main/locale/localizables-extracted.py:617
+msgid "...I don't have anything to say right now!"
+msgstr ""
+
 #: project/assets/main/locale/localizables-scancodes.py:2
-#: project/src/main/ui/SettingsMenu.tscn:378
+#: project/src/main/ui/SettingsMenu.tscn:379
 msgid "Space"
 msgstr ""
 
@@ -3013,13 +2867,13 @@ msgid "Ydiaeresis"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:101
-#: project/src/main/ui/SettingsMenu.tscn:360
-#: project/src/main/ui/SettingsMenu.tscn:384
+#: project/src/main/ui/SettingsMenu.tscn:361
+#: project/src/main/ui/SettingsMenu.tscn:385
 msgid "Escape"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:102
-#: project/src/main/ui/SettingsMenu.tscn:414
+#: project/src/main/ui/SettingsMenu.tscn:415
 msgid "Tab"
 msgstr ""
 
@@ -3086,7 +2940,7 @@ msgid "Right"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:118
-#: project/src/main/ui/SettingsMenu.tscn:342
+#: project/src/main/ui/SettingsMenu.tscn:343
 msgid "Down"
 msgstr ""
 
@@ -3099,7 +2953,7 @@ msgid "PageDown"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:121
-#: project/src/main/ui/SettingsMenu.tscn:408
+#: project/src/main/ui/SettingsMenu.tscn:409
 msgid "Shift"
 msgstr ""
 
@@ -3200,8 +3054,8 @@ msgid "Super R"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:146
-#: project/src/main/ui/SettingsMenu.tscn:359
-#: project/src/main/ui/SettingsMenu.tscn:466
+#: project/src/main/ui/SettingsMenu.tscn:360
+#: project/src/main/ui/SettingsMenu.tscn:467
 msgid "Menu"
 msgstr ""
 
@@ -3395,10 +3249,10 @@ msgstr ""
 #: project/src/main/editor/creature/CreatureEditor.tscn:1302
 #: project/src/main/editor/puzzle/LevelEditor.tscn:394
 #: project/src/main/ui/CreatureStressTest.tscn:96
-#: project/src/main/ui/SettingsMenu.tscn:878
+#: project/src/main/ui/SettingsMenu.tscn:879
 #: project/src/main/ui/menu/PracticeMenu.tscn:286
 #: project/src/main/ui/menu/SystemButtons.tscn:46
-#: project/src/main/ui/menu/settings-menu.gd:122
+#: project/src/main/ui/menu/settings-menu.gd:124
 msgid "Quit"
 msgstr ""
 
@@ -3547,7 +3401,7 @@ msgid "Button"
 msgstr ""
 
 #: project/src/main/editor/creature/CreatureEditor.tscn:1834
-#: project/src/main/ui/SettingsMenu.tscn:605
+#: project/src/main/ui/SettingsMenu.tscn:606
 msgid "Size"
 msgstr ""
 
@@ -3903,14 +3757,14 @@ msgid "Move"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:17
-#: project/src/main/ui/SettingsMenu.tscn:341
-#: project/src/main/ui/SettingsMenu.tscn:442
+#: project/src/main/ui/SettingsMenu.tscn:342
+#: project/src/main/ui/SettingsMenu.tscn:443
 msgid "Soft Drop"
 msgstr ""
 
 #: project/src/main/puzzle/tutorial-keybinds-label.gd:18
-#: project/src/main/ui/SettingsMenu.tscn:347
-#: project/src/main/ui/SettingsMenu.tscn:448
+#: project/src/main/ui/SettingsMenu.tscn:348
+#: project/src/main/ui/SettingsMenu.tscn:449
 msgid "Hard Drop"
 msgstr ""
 
@@ -4465,209 +4319,209 @@ msgid "9,999 m"
 msgstr ""
 
 #: project/src/main/ui/NametagPanel.tscn:37
-#: project/src/main/ui/chat/ChatFrame.tscn:61
+#: project/src/main/ui/chat/ChatFrame.tscn:65
 msgid "Lorem ipsu"
 msgstr ""
 
 #: project/src/main/ui/NametagPanel.tscn:58
-#: project/src/main/ui/chat/ChatFrame.tscn:82
+#: project/src/main/ui/chat/ChatFrame.tscn:86
 msgid "Lorem ipsum dolor s"
 msgstr ""
 
 #: project/src/main/ui/NametagPanel.tscn:80
-#: project/src/main/ui/chat/ChatFrame.tscn:104
+#: project/src/main/ui/chat/ChatFrame.tscn:108
 msgid "Lorem ipsum dolor sit amet"
 msgstr ""
 
 #: project/src/main/ui/NametagPanel.tscn:103
-#: project/src/main/ui/chat/ChatFrame.tscn:127
+#: project/src/main/ui/chat/ChatFrame.tscn:131
 msgid "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed"
 msgstr ""
 
 #: project/src/main/ui/NametagPanel.tscn:125
-#: project/src/main/ui/chat/ChatFrame.tscn:149
+#: project/src/main/ui/chat/ChatFrame.tscn:153
 #: project/src/main/world/restaurant/RestaurantNametagPanel.tscn:129
 msgid ""
 "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod "
 "tempor incidid"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:129
+#: project/src/main/ui/SettingsMenu.tscn:130
 msgid "Sound + Music"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:185
+#: project/src/main/ui/SettingsMenu.tscn:186
 msgid "Graphics"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:205
+#: project/src/main/ui/SettingsMenu.tscn:206
 msgid "Creature detail"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:249
+#: project/src/main/ui/SettingsMenu.tscn:250
 msgid "Ghost Piece"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:296
+#: project/src/main/ui/SettingsMenu.tscn:297
 msgid "Guideline"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:306
+#: project/src/main/ui/SettingsMenu.tscn:307
 msgid "WASD"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:316
+#: project/src/main/ui/SettingsMenu.tscn:317
 msgid "Custom"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:335
+#: project/src/main/ui/SettingsMenu.tscn:336
 msgid "Move Piece"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:336
+#: project/src/main/ui/SettingsMenu.tscn:337
 msgid "Left, Right"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:348
+#: project/src/main/ui/SettingsMenu.tscn:349
 msgid "Space, Up, Shift"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:353
+#: project/src/main/ui/SettingsMenu.tscn:354
 msgid "Rotate Piece"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:354
+#: project/src/main/ui/SettingsMenu.tscn:355
 msgid "Z, X"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:371
+#: project/src/main/ui/SettingsMenu.tscn:372
 msgid "Move in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:372
-#: project/src/main/ui/SettingsMenu.tscn:396
+#: project/src/main/ui/SettingsMenu.tscn:373
+#: project/src/main/ui/SettingsMenu.tscn:397
 msgid "Arrows, WASD"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:377
-#: project/src/main/ui/SettingsMenu.tscn:502
+#: project/src/main/ui/SettingsMenu.tscn:378
+#: project/src/main/ui/SettingsMenu.tscn:503
 msgid "Confirm in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:383
-#: project/src/main/ui/SettingsMenu.tscn:508
+#: project/src/main/ui/SettingsMenu.tscn:384
+#: project/src/main/ui/SettingsMenu.tscn:509
 msgid "Back in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:395
+#: project/src/main/ui/SettingsMenu.tscn:396
 msgid "Walk"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:401
-#: project/src/main/ui/SettingsMenu.tscn:544
+#: project/src/main/ui/SettingsMenu.tscn:402
+#: project/src/main/ui/SettingsMenu.tscn:545
 msgid "Interact"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:402
+#: project/src/main/ui/SettingsMenu.tscn:403
 msgid "Space, Z"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:407
-#: project/src/main/ui/SettingsMenu.tscn:550
+#: project/src/main/ui/SettingsMenu.tscn:408
+#: project/src/main/ui/SettingsMenu.tscn:551
 msgid "Rewind Text"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:413
-#: project/src/main/ui/SettingsMenu.tscn:556
+#: project/src/main/ui/SettingsMenu.tscn:414
+#: project/src/main/ui/SettingsMenu.tscn:557
 msgid "Phone"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:430
+#: project/src/main/ui/SettingsMenu.tscn:431
 msgid "Move Piece Left"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:436
+#: project/src/main/ui/SettingsMenu.tscn:437
 msgid "Move Piece Right"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:454
+#: project/src/main/ui/SettingsMenu.tscn:455
 msgid "Rotate Ccw"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:460
+#: project/src/main/ui/SettingsMenu.tscn:461
 msgid "Rotate Cw"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:478
+#: project/src/main/ui/SettingsMenu.tscn:479
 msgid "Up in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:484
+#: project/src/main/ui/SettingsMenu.tscn:485
 msgid "Down in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:490
+#: project/src/main/ui/SettingsMenu.tscn:491
 msgid "Left in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:496
+#: project/src/main/ui/SettingsMenu.tscn:497
 msgid "Right in Menus"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:520
+#: project/src/main/ui/SettingsMenu.tscn:521
 msgid "Walk Up"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:526
+#: project/src/main/ui/SettingsMenu.tscn:527
 msgid "Walk Down"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:532
+#: project/src/main/ui/SettingsMenu.tscn:533
 msgid "Walk Left"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:538
+#: project/src/main/ui/SettingsMenu.tscn:539
 msgid "Walk Right"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:572
+#: project/src/main/ui/SettingsMenu.tscn:573
 msgid "Reset to Default"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:643
+#: project/src/main/ui/SettingsMenu.tscn:644
 msgid "1.00x"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:669
+#: project/src/main/ui/SettingsMenu.tscn:670
 msgid "Scheme"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:705
+#: project/src/main/ui/SettingsMenu.tscn:706
 msgid "Fat Finger"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:749
+#: project/src/main/ui/SettingsMenu.tscn:750
 msgid "Language"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:794
+#: project/src/main/ui/SettingsMenu.tscn:795
 msgid "Save Slot"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:822
+#: project/src/main/ui/SettingsMenu.tscn:823
 msgid "Slot A"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:832
+#: project/src/main/ui/SettingsMenu.tscn:833
 #: project/src/main/ui/keybind/KeybindCustom.tscn:91
 msgid "X"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:858
+#: project/src/main/ui/SettingsMenu.tscn:859
 msgid "Ok"
 msgstr ""
 
-#: project/src/main/ui/SettingsMenu.tscn:893
+#: project/src/main/ui/SettingsMenu.tscn:894
 msgid "* Your settings will take effect in the next scene."
 msgstr ""
 
@@ -4809,6 +4663,14 @@ msgstr ""
 
 #: project/src/main/ui/chat/ChatLineLabel.tscn:18
 msgid "Hello"
+msgstr ""
+
+#: project/src/main/ui/chat/NarrationFrame.tscn:45
+msgid ""
+"Most of the Turbo Fat locations gradually developed a loyal following of "
+"hungry customers, except for the Merrymellow Marsh location where "
+"business was unusually slow. Fat Sensei and Spira were on their way to "
+"get to the bottom of this mystery."
 msgstr ""
 
 #: project/src/main/ui/keybind/custom-keybind-button.gd:53
@@ -5014,11 +4876,11 @@ msgstr ""
 msgid "Just relax! There is no way to win or lose this mode."
 msgstr ""
 
-#: project/src/main/ui/menu/settings-menu.gd:123
+#: project/src/main/ui/menu/settings-menu.gd:125
 msgid "Save + Quit"
 msgstr ""
 
-#: project/src/main/ui/menu/settings-menu.gd:124
+#: project/src/main/ui/menu/settings-menu.gd:126
 msgid "Give Up"
 msgstr ""
 
