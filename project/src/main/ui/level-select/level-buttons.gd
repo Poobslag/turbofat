@@ -78,7 +78,7 @@ func _add_buttons() -> void:
 	# calculate which worlds should be shown
 	var included_world_ids: Array
 	match levels_to_include:
-		ALL_LEVELS: 
+		ALL_LEVELS:
 			included_world_ids = LevelLibrary.world_ids
 		TUTORIALS_ONLY:
 			if LevelLibrary.world_ids.has(LevelLibrary.TUTORIAL_WORLD_ID):

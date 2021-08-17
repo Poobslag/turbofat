@@ -89,7 +89,7 @@ func _process(_delta: float) -> void:
 		if OS.has_feature("web"):
 			var start_usec := OS.get_ticks_usec()
 			# Web targets do not support background threads, so we load a few resources every frame
-			while _remaining_resource_paths and OS.get_ticks_usec() < start_usec + 1000000 * CHUNK_SECONDS: 
+			while _remaining_resource_paths and OS.get_ticks_usec() < start_usec + 1000000 * CHUNK_SECONDS:
 				_preload_next_resource()
 	elif _remaining_scene_paths:
 		var start_usec := OS.get_ticks_usec()

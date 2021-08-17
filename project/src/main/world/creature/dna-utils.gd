@@ -217,8 +217,8 @@ const ALLELE_NAMES := {
 	"eye-7": "Skeleton",
 	"eye-8": "Plug",
 	
-	"hair-0": "(none)", 
-	"hair-1": "Lion", 
+	"hair-0": "(none)",
+	"hair-1": "Lion",
 	"hair-2": "Shaggy",
 	
 	"head-1": "(none)",
