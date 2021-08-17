@@ -389,11 +389,13 @@ func _on_Creature_fade_out_finished(_creature: Creature) -> void:
 
 func _on_ChatUi_showed_choices() -> void:
 	emit_signal("showed_chat_choices")
-	ChattableManager.player.ui_has_focus = true
+	if ChattableManager.player is Player:
+		ChattableManager.player.ui_has_focus = true
 
 
 func _on_ChatUi_chat_choice_chosen(_chat_choice: int) -> void:
-	ChattableManager.player.ui_has_focus = false
+	if ChattableManager.player is Player:
+		ChattableManager.player.ui_has_focus = false
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
