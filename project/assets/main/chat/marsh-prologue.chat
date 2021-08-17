@@ -18,9 +18,32 @@ p1: .__.; ...Fat Sensei, I don't know anything about that stuff!
 s1: ^y^ Oh don't worry, it's probably just something simple they messed up.
 s1: Maybe they're not following our recipes, or they're treating their customers poorly.
  (start_walking)
+[skunk_cemetery] ...Or a skunk cemetery?
+[cooking_bad_on_purpose] ...Or they're faking it?
+[hate_sweets] ...Or they hate sweets?
+
+[skunk_cemetery]
 p1: ^_^ Or maybe they built the restaurant on a desecrated skunk burial ground!
+p1: An unscrupulous realtor sold them the property sight unseen! And... smell unsmelt!
 s1: -_- Umm... it's probably not that.
 p1: ^o^ Once we get there, you smell around for skunks! And I'll look for ghosts.
+[ill_take_the_lead]
+
+[cooking_bad_on_purpose]
+p1: ^_^ Or maybe they're cooking poorly on purpose. 
+p1: Oh, they're ruining their food for the insurance money! Frightening away customers so they can walk away millionaires.
+s1: -_- Umm... it's probably not that.
+p1: ^o^ And they'd have gotten away with it if not for us meddling kids!
+[ill_take_the_lead]
+
+[hate_sweets]
+p1: ^_^ Or maybe all the townspeople there hate sweets.
+p1: Oh! Maybe they're fructose intolerant! The merest thought of sugar makes their stomach turn and ruins their poos.
+s1: -_- Umm... it's probably not that.
+p1: ^o^ I'll design a new healthy menu! Instead of fudge brownies and cheesecake... Pita wedges! And barley bites! 
+[ill_take_the_lead]
+
+[ill_take_the_lead]
 s1: -__- You know what, I think I'll take the lead on this one.
 p1: /._. What? ...Why?
  (stop_walking)
