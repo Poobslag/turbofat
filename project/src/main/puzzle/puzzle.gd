@@ -152,24 +152,77 @@ func _start_puzzle() -> void:
 
 
 func _quit_puzzle() -> void:
-	var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
+	if _should_play_postroll():
+		# enqueue the postroll cutscene
+		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
+		_enqueue_cutscene(chat_tree)
 	
-	# determine whether the cutscene should be played
-	var play_cutscene := true
-	if not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
-		# player didn't clear the level
-		play_cutscene = false
-	else:
-		play_cutscene = CurrentLevel.should_play_cutscene(chat_tree)
-	
-	if play_cutscene:
-		# insert cutscene into breadcrumb trail so it will show up after we pop the trail
-		CutsceneManager.enqueue_chat_tree(chat_tree)
-		Breadcrumb.trail.insert(1, chat_tree.chat_scene_path())
+	if _should_play_epilogue():
+		# enqueue the epilogue cutscene (after any postroll cutscene)
+		var world_lock := LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
+		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.epilogue_chat_key)
+		_enqueue_cutscene(chat_tree)
 	
 	CurrentLevel.clear_launched_level()
 	PlayerData.creature_queue.clear()
 	SceneTransition.pop_trail()
+
+
+"""
+Returns 'true' if we should play a postroll cutscene after this level.
+
+We play a postroll cutscene if the player clears the level, although we forcibly skip the cutscene in other
+circumstances as well.
+"""
+func _should_play_postroll() -> bool:
+	var result := true
+	var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
+	if not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
+		# player didn't clear the level; don't play the cutscene
+		result = false
+	elif not CurrentLevel.should_play_cutscene(chat_tree):
+		# the player's seen it already, or its 'skip_if' condition is met; don't play the cutscene
+		result = false
+	else:
+		# play the postroll cutscene
+		result = true
+	return result
+
+
+"""
+Returns 'true' if we should play an epilogue after this level and its postroll cutscenes.
+
+We play an epilogue if the player's beaten the last level in the current world, and if the player hasn't seen this
+world's epilogue scene yet.
+"""
+func _should_play_epilogue() -> bool:
+	var result := false
+	var world_lock := LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
+	if not LevelLibrary.is_world_finished(world_lock.world_id):
+		# player hasn't beaten the world yet; don't play the epilogue
+		result = false
+	elif not world_lock.epilogue_chat_key:
+		# the world has no epilogue assigned; don't play the epilogue
+		result = false
+	elif PlayerData.chat_history.is_chat_finished(world_lock.epilogue_chat_key):
+		# the player's already seen the epilogue; don't play the epilogue
+		result = false
+	else:
+		# play the epilogue
+		result = true
+	return result
+
+
+"""
+Enqueues a cutscene to play after this level.
+
+The specified cutscene is played after any other cutscenes.
+"""
+func _enqueue_cutscene(chat_tree: ChatTree) -> void:
+	if not CutsceneManager.is_front_chat_tree():
+		# Insert the cutscene into the breadcrumb trail, so it shows up when the puzzle scene is popped
+		Breadcrumb.trail.insert(1, chat_tree.chat_scene_path())
+	CutsceneManager.enqueue_chat_tree(chat_tree)
 
 
 func _on_Hud_start_button_pressed() -> void:

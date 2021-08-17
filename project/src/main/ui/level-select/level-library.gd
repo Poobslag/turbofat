@@ -149,6 +149,11 @@ func set_worlds_path(new_worlds_path: String) -> void:
 	refresh_cleared_levels()
 
 
+func is_world_finished(world_id: String) -> bool:
+	var world_lock: WorldLock = world_lock(world_id)
+	return world_lock and world_lock.last_level and PlayerData.level_history.is_level_finished(world_lock.last_level)
+
+
 """
 Loads the list of levels from JSON.
 """
@@ -226,7 +231,7 @@ func _update_locked_worlds() -> void:
 		var unlock_world_ids := world_lock.unlocked_if_values
 		for unlock_world_id in unlock_world_ids:
 			var other_world_lock: WorldLock = _world_locks[unlock_world_id]
-			if not PlayerData.level_history.is_level_finished(other_world_lock.last_level):
+			if not is_world_finished(other_world_lock.world_id):
 				world_lock.status = WorldLock.STATUS_LOCK
 
 
@@ -332,7 +337,7 @@ func _update_unlockable_levels() -> void:
 		if not world_lock.last_level:
 			# world doesn't have a last level
 			continue
-		if PlayerData.level_history.is_level_finished(world_lock.last_level):
+		if is_world_finished(world_lock.world_id):
 			# crown already collected
 			continue
 		if is_level_locked(world_lock.last_level):

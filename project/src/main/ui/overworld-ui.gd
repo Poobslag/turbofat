@@ -324,6 +324,11 @@ func _on_ChatUi_chat_finished() -> void:
 				if _current_chat_tree.destination_scene_path() == _current_chat_tree.chat_scene_path():
 					# preserve spawn ids from cutscene
 					CutsceneManager.assign_player_spawn_ids(_current_chat_tree)
+				else:
+					# erase spawn IDs to avoid 'could not locate spawn' warnings when playing multiple cutscenes
+					# consecutively
+					Global.player_spawn_id = ""
+					Global.sensei_spawn_id = ""
 			
 			if CutsceneManager.is_front_level_id():
 				# continue to a level (preroll cutscene finished playing)
