@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/ui/chat/ChatLineLabel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/chat/ChatLinePanel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/ui/chat/chat-frame.gd" type="Script" id=4]
-[ext_resource path="res://src/main/ui/chat/ChatPanelTween.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/ui/chat/ChatPopTween.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/chat/chat-squish-tween.gd" type="Script" id=6]
 [ext_resource path="res://src/main/ui/blogger-sans-bold-36.tres" type="DynamicFont" id=8]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-in.wav" type="AudioStream" id=12]
@@ -31,7 +31,7 @@ __meta__ = {
 
 [node name="PopTween" parent="." instance=ExtResource( 5 )]
 
-[node name="SquishTween" parent="." instance=ExtResource( 5 )]
+[node name="SquishTween" type="Tween" parent="."]
 script = ExtResource( 6 )
 
 [node name="ChatLinePanel" parent="." instance=ExtResource( 3 )]
