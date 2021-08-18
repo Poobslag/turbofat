@@ -23,6 +23,8 @@ const STATUS_LOCK := LockStatus.LOCK
 
 var world_id: String
 var world_name: String
+var prologue_chat_key: String
+var epilogue_chat_key: String
 
 # the requirements to unlock this level
 var unlocked_if_type := ALWAYS_UNLOCKED
@@ -46,6 +48,8 @@ func from_json_dict(json: Dictionary) -> void:
 	world_id = json.get("id", "")
 	world_name = json.get("name", "")
 	last_level = json.get("last_level", "")
+	prologue_chat_key = json.get("prologue_chat_key", "")
+	epilogue_chat_key = json.get("epilogue_chat_key", "")
 	
 	var levels: Array = json.get("levels", [])
 	if levels:

@@ -31,6 +31,8 @@
       "id": "world0",
       "name": "Merrymellow Marsh",
       "last_level": "marsh/goodbye_everyone",
+      "prologue_chat_key": "chat/marsh_prologue",
+      "epilogue_chat_key": "chat/marsh_epilogue",
       "levels": [
         {
           "id": "marsh/hello_everyone",

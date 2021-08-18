@@ -4,8 +4,8 @@
 indoors
 
 [characters]
-player, p1, kitchen_9
-sensei, s1, kitchen_5
+player, p1, kitchen_5
+sensei, s1, kitchen_9
 richie, r, kitchen_1
 skins, s, kitchen_3
 bones, b, kitchen_7
@@ -14,9 +14,9 @@ p1: /._. So one thing I noticed, Skins, is when you switch from one dish to the 
 b: <_< ...My name is Bones...
 p1: ._.; Oh! Sorry, I'm really awful with names.
 r: Hey names are tough! You just need a mnemonic to help you keep things straight.
-r: ^_^/ Like take Skins here, he's sorta like a cat, right? So just remember, "there's more than one way to skin a cat!"
+r: ^_^/ Like take Skins here, they're sorta like a cat, right? So just remember, "there's more than one way to skin a cat!"
 s: .__.; Augh! That's rather graphic!
-r: And Bones here, he's sorta like a dog? You can remember that like-
+r: And Bones here, they're sorta like a dog? You can remember that like-
 p1: ^__^ I get it! 'There's more than one way to bone a dog!'
 r: W-what? ...That's not... ...Well, whatever helps you remember.
  (bones mood OwO...)
