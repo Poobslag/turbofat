@@ -20,7 +20,7 @@ var blocks_during := BlocksDuringRules.new()
 var combo_break := ComboBreakRules.new()
 
 # How the player finishes. When the player finishes, they can't play anymore, and the level just ends. It should be
-# used for limits such as serving 5 creatures or clearing 10 lines. 
+# used for limits such as serving 5 creatures or clearing 10 lines.
 var finish_condition := Milestone.new()
 
 # Sequence of puzzle inputs to be replayed for things such as tutorials.

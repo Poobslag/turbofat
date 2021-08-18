@@ -8,7 +8,7 @@ tilemap fills in the holes.
 
 # Defines which tiles should be covered by a corner cover. Corner covers are given the same tile index as the source
 # tile, but their autotile index is defined by this mapping.
-# 
+#
 # key: (int) tile index which should be covered with a corner cover
 # value: (Vector2) autotile coordinate of the corner cover
 export (Dictionary) var cornerable_tiles := {}

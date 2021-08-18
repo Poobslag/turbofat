@@ -52,6 +52,21 @@ then
   echo "$RESULT"
 fi
 
+# whitespace at the end of a line
+RESULT=$(grep -R -n "\S\s\s*$" --include="*.gd" --include="*.chat" project/src project/assets)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Whitespace at the end of a line:"
+  echo "$RESULT"
+  if [ "$CLEAN" ]
+  then
+    # remove whitespace at the end of lines
+    find project/src project/assets \( -name "*.gd" -o -name "*.chat" \) -exec sed -i "s/\(\S\)\s\s*$/\1/g" {} +
+    echo "...Whitespace removed."
+  fi
+fi
+
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
 RESULT=$(grep -R -n "var [^:]* = " --include="*.gd" project/src \
   | grep -v " = parse_json(" \
@@ -134,7 +149,7 @@ then
 fi
 
 # non-ascii characters in chat files
-RESULT=$(grep -R -n "[…’“”]" --include="*.chat" project/assets)
+RESULT=$(grep -R -n "[…‘’“”]" --include="*.chat" project/assets)
 if [ -n "$RESULT" ]
 then
   echo ""
@@ -144,7 +159,7 @@ then
   then
     # replace non-ascii characters with ascii replacements
     find project/assets -name "*.chat" -exec sed -i "s/[…]/.../g" {} +
-    find project/assets -name "*.chat" -exec sed -i "s/[’]/\'/g" {} +
+    find project/assets -name "*.chat" -exec sed -i "s/[‘’]/\'/g" {} +
     find project/assets -name "*.chat" -exec sed -i "s/[“”]/\"/g" {} +
     echo "...Non-ascii characters replaced."
   fi

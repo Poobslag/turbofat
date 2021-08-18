@@ -39,7 +39,7 @@ func _process(_delta: float) -> void:
 	_actual_visual_msec = OS.get_system_time_msecs()
 	
 	var disparity := (_actual_visual_msec - _expected_visual_msec) / 1000.0
-	if disparity > _seconds_per_frame: 
+	if disparity > _seconds_per_frame:
 		var newly_dropped_frames: int = floor(disparity / _seconds_per_frame)
 		_visual_frame_drops += newly_dropped_frames
 		_expected_visual_msec += _seconds_per_frame * newly_dropped_frames * 1000
@@ -51,7 +51,7 @@ func _physics_process(_delta: float) -> void:
 	_actual_physics_msec = OS.get_system_time_msecs()
 	
 	var disparity := (_actual_physics_msec - _expected_physics_msec) / 1000.0
-	if disparity > _seconds_per_frame: 
+	if disparity > _seconds_per_frame:
 		var newly_dropped_frames: int = floor(disparity / _seconds_per_frame)
 		_physics_step_drops += newly_dropped_frames
 		_expected_physics_msec += _seconds_per_frame * newly_dropped_frames * 1000

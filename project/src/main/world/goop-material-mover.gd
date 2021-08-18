@@ -1,6 +1,6 @@
 extends Node
 """
-Updates spatial parameters for the overworld goop shader. 
+Updates spatial parameters for the overworld goop shader.
 
 The goop shader defines a 'view_to_local' shader parameter which needs to be updated as the viewport's extents change,
 so this node is responsible for updating it.

@@ -18,7 +18,7 @@ func set_elevation(new_elevation: float) -> void:
 
 
 func set_creature_visuals(new_creature_visuals: CreatureVisuals) -> void:
-	if creature_visuals: 
+	if creature_visuals:
 		creature_visuals.disconnect("head_moved", self, "_on_CreatureVisuals_head_moved")
 	creature_visuals = new_creature_visuals
 	_connect_creature_visuals_listeners()
