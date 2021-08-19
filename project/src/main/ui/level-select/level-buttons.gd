@@ -18,6 +18,9 @@ signal locked_level_selected(level_lock, settings)
 # Emitted when the player highlights the 'overall' button.
 signal overall_selected(world_id, ranks)
 
+# Emitted when a new level select button or world select button is added.
+signal button_added(button)
+
 const ALL_LEVELS := LevelsToInclude.ALL_LEVELS
 const TUTORIALS_ONLY := LevelsToInclude.TUTORIALS_ONLY
 
@@ -108,12 +111,12 @@ func _add_buttons() -> void:
 			if level_lock.status == LevelLock.STATUS_HARD_LOCK:
 				# 'hard lock' levels are hidden from the player
 				continue
-			_add_node_to_column(_level_select_button(world_id, level_id))
+			_add_button_to_column(_level_select_button(world_id, level_id))
 			
 			# warning-ignore:integer_division
 			if i == (shown_level_ids.size() - 1) / 2:
 				last_world_button = _world_button(world_id)
-				_add_node_to_column(last_world_button)
+				_add_button_to_column(last_world_button)
 	
 	if last_world_button:
 		last_world_button.grab_focus()
@@ -122,7 +125,7 @@ func _add_buttons() -> void:
 """
 Adds a node to the rightmost column, or creates a new column if the column is full
 """
-func _add_node_to_column(node: Node) -> void:
+func _add_button_to_column(button: LevelSelectButton) -> void:
 	if not _columns or _columns[_columns.size() - 1].get_child_count() >= _max_row_count:
 		# create a new column
 		var column := VBoxContainer.new()
@@ -132,8 +135,9 @@ func _add_node_to_column(node: Node) -> void:
 		_columns.append(column)
 		add_child(column)
 	
-	# add the node to the rightmost column
-	_columns[_columns.size() - 1].add_child(node)
+	# add the button to the rightmost column
+	_columns[_columns.size() - 1].add_child(button)
+	emit_signal("button_added", button)
 
 
 """
