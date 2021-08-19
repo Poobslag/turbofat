@@ -128,6 +128,15 @@ func _refresh_quit_type() -> void:
 	_quit_button.text = quit_text
 
 
+"""
+Loads the current save slot's data and returns the player to the splash screen.
+"""
+func _load_player_data() -> void:
+	PlayerSave.load_player_data()
+	Breadcrumb.trail = []
+	SceneTransition.push_trail(Global.SCENE_SPLASH)
+
+
 func _on_Ok_pressed() -> void:
 	# when the player confirms, we save the player's new settings
 	_confirm_and_save("hide", [])
@@ -158,14 +167,18 @@ func _on_Dialogs_change_save_cancelled() -> void:
 
 
 func _on_Dialogs_change_save_confirmed() -> void:
+	# update and save the player's save slot choice in SystemData
 	SystemData.misc_settings.save_slot = _save_slot_control.get_selected_save_slot()
 	SystemSave.save_system_data()
 	
-	# load the save slot's data and return to the splash screen
-	PlayerSave.load_player_data()
-	Breadcrumb.trail = []
-	SceneTransition.push_trail(Global.SCENE_SPLASH)
+	# load the save slot contents and return the player to the splash screen
+	_load_player_data()
 
 
 func _on_Dialogs_delete_confirmed() -> void:
-	SystemSave.delete_save_slot(_save_slot_control.get_selected_save_slot())
+	var deleted_save_slot: int = _save_slot_control.get_selected_save_slot()
+	SystemSave.delete_save_slot(deleted_save_slot)
+	
+	if SystemData.misc_settings.save_slot == deleted_save_slot:
+		# if the player deletes the current save slot contents we return them to the splash screen
+		_load_player_data()
