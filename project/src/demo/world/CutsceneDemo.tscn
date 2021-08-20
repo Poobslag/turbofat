@@ -116,7 +116,7 @@ margin_right = 400.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
-text = "marsh/pulling_for_bones_100"
+text = "level/marsh/pulling_for_skins_100"
 __meta__ = {
 "_edit_use_anchors_": false
 }

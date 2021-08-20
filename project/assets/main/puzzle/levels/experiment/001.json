@@ -1,0 +1,83 @@
+{
+  "version": "19c5",
+  "start_speed": "T",
+  "title": "Zero Gravity",
+  "description": "In space, nobody can hear you scream.",
+  "difficulty": "6",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "90"
+  },
+  "rank": [
+    "extra_seconds_per_piece 1.2",
+    "combo_factor 0.30"
+  ],
+  "blocks_during": [
+    "clear_on_top_out",
+    "line_clear_type float"
+  ],
+  "blocks_start": {
+    "tiles": [
+      {
+        "pos": "0 16",
+        "tile": "1 8 7"
+      },
+      {
+        "pos": "1 16",
+        "tile": "1 12 7"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 12 7"
+      },
+      {
+        "pos": "3 16",
+        "tile": "1 12 7"
+      },
+      {
+        "pos": "4 16",
+        "tile": "1 12 7"
+      },
+      {
+        "pos": "5 16",
+        "tile": "1 4 7"
+      },
+      {
+        "pos": "0 17",
+        "tile": "1 10 8"
+      },
+      {
+        "pos": "1 17",
+        "tile": "1 14 8"
+      },
+      {
+        "pos": "2 17",
+        "tile": "1 6 8"
+      },
+      {
+        "pos": "0 18",
+        "tile": "1 11 8"
+      },
+      {
+        "pos": "1 18",
+        "tile": "1 15 8"
+      },
+      {
+        "pos": "2 18",
+        "tile": "1 7 8"
+      },
+      {
+        "pos": "0 19",
+        "tile": "1 9 8"
+      },
+      {
+        "pos": "1 19",
+        "tile": "1 13 8"
+      },
+      {
+        "pos": "2 19",
+        "tile": "1 5 8"
+      }
+    ]
+  }
+}
