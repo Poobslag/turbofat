@@ -19,17 +19,17 @@ func before_each() -> void:
 
 func test_master_lpm_slow_marathon() -> void:
 	CurrentLevel.settings.set_start_speed("0")
-	assert_almost_eq(_rank_calculator._master_lpm(), 30.77, 0.1)
+	assert_almost_eq(_rank_calculator.master_lpm(), 30.77, 0.1)
 
 
 func test_master_lpm_medium_marathon() -> void:
 	CurrentLevel.settings.set_start_speed("A0")
-	assert_almost_eq(_rank_calculator._master_lpm(), 35.64, 0.1)
+	assert_almost_eq(_rank_calculator.master_lpm(), 35.64, 0.1)
 
 
 func test_master_lpm_fast_marathon() -> void:
 	CurrentLevel.settings.set_start_speed("F0")
-	assert_almost_eq(_rank_calculator._master_lpm(), 68.90, 0.1)
+	assert_almost_eq(_rank_calculator.master_lpm(), 68.90, 0.1)
 
 
 func test_master_lpm_mixed_marathon() -> void:
@@ -37,7 +37,7 @@ func test_master_lpm_mixed_marathon() -> void:
 	CurrentLevel.settings.add_speed_up(Milestone.LINES, 30, "A0")
 	CurrentLevel.settings.add_speed_up(Milestone.LINES, 60, "F0")
 	CurrentLevel.settings.set_finish_condition(Milestone.LINES, 100)
-	assert_almost_eq(_rank_calculator._master_lpm(), 46.23, 0.1)
+	assert_almost_eq(_rank_calculator.master_lpm(), 46.23, 0.1)
 
 
 func test_master_lpm_mixed_sprint() -> void:
@@ -45,7 +45,7 @@ func test_master_lpm_mixed_sprint() -> void:
 	CurrentLevel.settings.add_speed_up(Milestone.TIME_OVER, 30, "A0")
 	CurrentLevel.settings.add_speed_up(Milestone.TIME_OVER, 60, "F0")
 	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 90)
-	assert_almost_eq(_rank_calculator._master_lpm(), 50.98, 0.1)
+	assert_almost_eq(_rank_calculator.master_lpm(), 50.98, 0.1)
 
 
 func test_calculate_rank_marathon_300_master() -> void:

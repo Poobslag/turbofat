@@ -11,7 +11,7 @@
     "top_out 9"
   ],
   "rank": [
-    "extra_seconds_per_piece", "0.4"
+    "extra_seconds_per_piece 0.4"
   ],
   "triggers": [
     {

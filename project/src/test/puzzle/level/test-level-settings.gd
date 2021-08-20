@@ -18,3 +18,17 @@ func test_load_1922_data() -> void:
 	assert_eq(settings.speed_ups[0].get_meta("speed"), "2")
 	assert_eq(settings.speed_ups[1].get_meta("speed"), "3")
 	assert_eq(settings.speed_ups[2].get_meta("speed"), "4")
+
+
+func test_path_from_level_key() -> void:
+	assert_eq(LevelSettings.path_from_level_key("boatricia1"),
+			"res://assets/main/puzzle/levels/boatricia1.json")
+	assert_eq(LevelSettings.path_from_level_key("marsh/goodbye_bones"),
+			"res://assets/main/puzzle/levels/marsh/goodbye-bones.json")
+
+
+func test_level_key_from_path() -> void:
+	assert_eq(LevelSettings.level_key_from_path("res://assets/main/puzzle/levels/boatricia1.json"),
+			"boatricia1")
+	assert_eq(LevelSettings.level_key_from_path("res://assets/main/puzzle/levels/marsh/goodbye_bones.json"),
+			"marsh/goodbye_bones")

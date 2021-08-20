@@ -6,9 +6,9 @@ the best possible rank and 999 is the worst.
 
 const WORST_RANK := RankResult.WORST_RANK
 
-# These constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99 means the ranks are really
-# narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like 0.96 means the ranks are
-# more forgiving.
+# These RDF (rank difference factor) constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99
+# means the ranks are really narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like
+# 0.96 means the ranks are more forgiving.
 const RDF_SPEED := 0.960
 const RDF_LINES := 0.960
 const RDF_BOX_SCORE_PER_LINE := 0.970
@@ -33,6 +33,29 @@ const NO_GRADE := "-"
 
 # highest attainable grade; useful for logic which checks if the player's grade can increase
 const HIGHEST_GRADE := "M"
+
+# grades with their corresponding rank requirement
+const GRADE_RANKS := [
+	["M", 0],
+	["SSS", 4],
+	["SS+", 7],
+	["SS", 10], # 4 stars (medium gap)
+	["S+", 16],
+	["S", 20],
+	["S-", 24], # 1 star (big gap)
+	
+	["AA+", 32],
+	["AA", 36],
+	["A+", 40],
+	["A", 44],
+	["A-", 48], # 1 triangle (big gap)
+	
+	["B+", 56],
+	["B", 60],
+	["B-", 64], # 1 dot (big gap)
+	
+	[NO_GRADE, WORST_RANK],
+]
 
 """
 Calculates the player's rank.
@@ -109,7 +132,7 @@ static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 """
 Calculates the lines per minute for a master player.
 """
-func _master_lpm() -> float:
+func master_lpm() -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
 	
@@ -198,7 +221,7 @@ Parameters:
 		lines in Marathon mode.
 """
 func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
-	var master_lpm := _master_lpm()
+	var master_lpm := master_lpm()
 	
 	var target_speed: float = master_lpm
 	var target_box_score_per_line := master_box_score(CurrentLevel.settings)
@@ -326,25 +349,29 @@ Converts a numeric grade such as '12.6' into a grade string such as 'S+'.
 static func grade(rank: float) -> String:
 	var grade := NO_GRADE
 	
-	if rank <= 0: grade = "M"
+	for grade_ranks_entry in GRADE_RANKS:
+		if rank <= grade_ranks_entry[1]:
+			grade = grade_ranks_entry[0]
+			break
 	
-	elif rank <= 4: grade = "SSS"
-	elif rank <= 7: grade = "SS+"
-	elif rank <= 10: grade = "SS" # 4 stars (medium gap)
-	elif rank <= 16: grade = "S+"
-	elif rank <= 20: grade = "S"
-	elif rank <= 24: grade = "S-" # 1 star (big gap)
-	
-	elif rank <= 32: grade = "AA+"
-	elif rank <= 36: grade = "AA"
-	elif rank <= 40: grade = "A+"
-	elif rank <= 44: grade = "A"
-	elif rank <= 48: grade = "A-" # 1 triangle (big gap)
-	
-	elif rank <= 56: grade = "B+"
-	elif rank <= 60: grade = "B"
-	elif rank <= 64: grade = "B-" # 1 dot (big gap)
 	return grade
+
+
+"""
+Converts a letter grade such as 'S+' into a numeric rating such as '12.6'.
+
+The resulting rating is an average rating for that grade -- not a minimum cutoff.
+"""
+static func rank(grade: String) -> float:
+	var rank_lo := WORST_RANK
+	var rank_hi := WORST_RANK
+	
+	for i in range(GRADE_RANKS.size() - 1):
+		if grade == GRADE_RANKS[i][0]:
+			rank_lo = GRADE_RANKS[max(0, i - 1)][1]
+			rank_hi = GRADE_RANKS[i][1]
+	
+	return 0.5 * (rank_lo + rank_hi)
 
 
 """

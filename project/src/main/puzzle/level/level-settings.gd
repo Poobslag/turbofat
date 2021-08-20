@@ -156,7 +156,7 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 
 
 func load_from_resource(new_id: String) -> void:
-	load_from_text(new_id, FileUtils.get_file_as_text(level_path(new_id)))
+	load_from_text(new_id, FileUtils.get_file_as_text(path_from_level_key(new_id)))
 
 
 func load_from_text(new_id: String, text: String) -> void:
@@ -208,20 +208,13 @@ func _get_max_speed_id() -> String:
 	return max_speed_id
 
 
-static func level_path(level_name: String) -> String:
-	var level_path := StringUtils.underscores_to_hyphens(level_name)
-	level_path = "res://assets/main/puzzle/levels/%s.json" % level_path
-	return level_path
+static func path_from_level_key(level_key: String) -> String:
+	var level_path := StringUtils.underscores_to_hyphens(level_key)
+	return "res://assets/main/puzzle/levels/%s.json" % level_path
 
 
-static func level_name(path: String) -> String:
-	var level_name := path.get_file()
-	level_name = level_name.trim_suffix(".json")
-	level_name = StringUtils.underscores_to_hyphens(level_name)
-	return level_name
-
-
-static func level_filename(level_name: String) -> String:
-	var level_filename := StringUtils.underscores_to_hyphens(level_name)
-	level_filename = "%s.json" % level_filename
-	return level_filename
+static func level_key_from_path(level_path: String) -> String:
+	var level_key := StringUtils.hyphens_to_underscores(level_path)
+	level_key = level_key.trim_prefix("res://assets/main/puzzle/levels/")
+	level_key = level_key.trim_suffix(".json")
+	return level_key
