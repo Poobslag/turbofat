@@ -26,6 +26,8 @@ var finish_condition := Milestone.new()
 # Sequence of puzzle inputs to be replayed for things such as tutorials.
 var input_replay := InputReplay.new()
 
+var timers := LevelTimers.new()
+
 # Triggers which cause strange things to happen during a level.
 var triggers := LevelTriggers.new()
 
@@ -151,6 +153,8 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 		success_condition.from_json_dict(json["success_condition"])
 	if json.has("input_replay"):
 		input_replay.from_json_string_array(json["input_replay"])
+	if json.has("timers"):
+		timers.from_json_array(json["timers"])
 	if json.has("triggers"):
 		triggers.from_json_array(json["triggers"])
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -69,6 +69,7 @@
 [ext_resource path="res://src/main/puzzle/start-end-sfx.gd" type="Script" id=67]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=68]
 [ext_resource path="res://src/main/puzzle/frame-drops-label.gd" type="Script" id=69]
+[ext_resource path="res://src/main/puzzle/level-timer-manager.gd" type="Script" id=70]
 [ext_resource path="res://src/main/puzzle/piece/piece-queue.gd" type="Script" id=71]
 
 [sub_resource type="StyleBoxFlat" id=1]
@@ -504,6 +505,9 @@ script = ExtResource( 59 )
 
 [node name="PieceQueue" type="Node" parent="."]
 script = ExtResource( 71 )
+
+[node name="LevelTimerManager" type="Node" parent="."]
+script = ExtResource( 70 )
 
 [node name="Hud" type="CanvasLayer" parent="."]
 

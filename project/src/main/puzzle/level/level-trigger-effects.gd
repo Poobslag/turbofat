@@ -63,6 +63,15 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 				Rotation.FLIP: next_piece.orientation = next_piece.get_flip_orientation()
 
 
+"""
+Inserts a new line at the bottom of the playfield.
+"""
+class InsertLineEffect extends LevelTriggerEffect:
+	func run(_params: Array = []) -> void:
+		CurrentLevel.puzzle.get_playfield().line_inserter.insert_line()
+
+
 var effects_by_string := {
 	"rotate_next_pieces": RotateNextPiecesEffect,
+	"insert_line": InsertLineEffect,
 }
