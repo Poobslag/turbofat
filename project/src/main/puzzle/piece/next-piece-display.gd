@@ -5,6 +5,8 @@ Contains logic for a single 'next piece display'. A single display might only di
 pieces from now. Several displays are shown at once.
 """
 
+var _piece_queue: PieceQueue
+
 # how far into the future this display should look; 0 = show the next piece, 10 = show the 11th piece
 var _piece_index := 0
 
@@ -13,12 +15,13 @@ var _displayed_orientation: int
 
 onready var _tile_map: PuzzleTileMap = $TileMap
 
-func initialize(piece_index: int) -> void:
+func initialize(piece_queue: PieceQueue, piece_index: int) -> void:
+	_piece_queue = piece_queue
 	_piece_index = piece_index
 
 
 func _process(_delta: float) -> void:
-	var next_piece: NextPiece = PieceQueue.get_next_piece(_piece_index)
+	var next_piece: NextPiece = _piece_queue.get_next_piece(_piece_index)
 	if next_piece.type != _displayed_type or next_piece.orientation != _displayed_orientation:
 		_tile_map.clear()
 		if next_piece.type != PieceTypes.piece_null:

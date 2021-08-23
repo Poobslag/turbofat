@@ -15,6 +15,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
+	CurrentLevel.puzzle = self
 	
 	# set a baseline fatness state
 	PlayerData.creature_library.save_fatness_state()
@@ -48,6 +49,10 @@ func get_playfield() -> Playfield:
 
 func get_piece_manager() -> PieceManager:
 	return $PieceManager as PieceManager
+
+
+func get_piece_queue() -> PieceQueue:
+	return $PieceQueue as PieceQueue
 
 
 func hide_buttons() -> void:
@@ -126,7 +131,7 @@ func _start_puzzle() -> void:
 			
 			if PlayerData.creature_library.has_fatness(starting_creature_id):
 				# restore their fatness so they start skinny again when replaying a puzzle
-				var fatness := PlayerData.creature_library.get_fatness(starting_creature_id)
+				var fatness: float = PlayerData.creature_library.get_fatness(starting_creature_id)
 				_restaurant_view.get_customer(starting_creature_index).set_fatness(fatness)
 		
 		# summon the other creatures
@@ -159,7 +164,7 @@ func _quit_puzzle() -> void:
 	
 	if _should_play_epilogue():
 		# enqueue the epilogue cutscene (after any postroll cutscene)
-		var world_lock := LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
+		var world_lock: WorldLock = LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
 		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.epilogue_chat_key)
 		_enqueue_cutscene(chat_tree)
 	
@@ -197,7 +202,7 @@ world's epilogue scene yet.
 """
 func _should_play_epilogue() -> bool:
 	var result := false
-	var world_lock := LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
+	var world_lock: WorldLock = LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
 	if not world_lock:
 		result = false
 	elif not LevelLibrary.is_world_finished(world_lock.world_id):

@@ -16,6 +16,9 @@ var keep_retrying := false
 # The settings for the level currently being launched or played
 var settings := LevelSettings.new() setget switch_level
 
+# The puzzle scene
+var puzzle: Puzzle
+
 # The level which was originally launched. Some tutorial levels transition
 # into other levels, so this keeps track of the original.
 var level_id: String
@@ -34,6 +37,10 @@ var best_result: int = Levels.Result.NONE setget set_best_result
 
 # Tracks whether or not the player wants to play/skip this level's cutscene.
 var cutscene_force: int = Levels.CutsceneForce.NONE
+
+func _ready() -> void:
+	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
+
 
 """
 Unsets all of the 'launched level' data.
@@ -139,3 +146,13 @@ func push_level_trail() -> void:
 func set_best_result(new_best_result: int) -> void:
 	best_result = new_best_result
 	emit_signal("best_result_changed")
+
+
+"""
+Purges all node instances from the singleton.
+
+Because CurrentLevel is a singleton, node instances should be purged before changing scenes. Otherwise they'll
+continue consuming resources and could cause side effects.
+"""
+func _on_Breadcrumb_before_scene_changed() -> void:
+	puzzle = null

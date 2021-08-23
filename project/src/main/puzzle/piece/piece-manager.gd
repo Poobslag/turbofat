@@ -36,6 +36,7 @@ signal lock_started
 signal tiles_changed(tile_map)
 
 export (NodePath) var playfield_path: NodePath
+export (NodePath) var piece_queue_path: NodePath
 
 # settings and state for the currently active piece.
 var piece: ActivePiece
@@ -51,6 +52,7 @@ onready var input: PieceInput = $Input
 
 onready var _physics: PiecePhysics = $Physics
 onready var _playfield: Playfield = get_node(playfield_path)
+onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
 onready var _states: PieceStates = $States
 
 func _ready() -> void:
@@ -116,7 +118,7 @@ Spawns a new piece at the top of the _playfield.
 Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
 """
 func spawn_piece() -> bool:
-	var next_piece := PieceQueue.pop_next_piece()
+	var next_piece := _piece_queue.pop_next_piece()
 	piece = ActivePiece.new(next_piece.type, funcref(_playfield.tile_map, "is_cell_blocked"))
 	piece.orientation = next_piece.orientation
 	var success := _physics.spawn_piece(piece)

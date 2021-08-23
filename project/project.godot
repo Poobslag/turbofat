@@ -579,6 +579,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/piece-physics.gd"
 }, {
+"base": "Node",
+"class": "PieceQueue",
+"language": "GDScript",
+"path": "res://src/main/puzzle/piece/piece-queue.gd"
+}, {
 "base": "Reference",
 "class": "PieceSpeed",
 "language": "GDScript",
@@ -954,6 +959,7 @@ _global_script_class_icons={
 "PieceManager": "",
 "PieceMover": "",
 "PiecePhysics": "",
+"PieceQueue": "",
 "PieceSpeed": "",
 "PieceSquisher": "",
 "PieceStates": "",
@@ -1039,7 +1045,6 @@ MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
 MusicTransition="*res://src/main/music/music-transition.gd"
 Pauser="*res://src/main/pauser.gd"
-PieceQueue="*res://src/main/puzzle/piece/piece-queue.gd"
 PlayerData="*res://src/main/player-data.gd"
 PlayerSave="*res://src/main/player-save.gd"
 PuzzleState="*res://src/main/puzzle/puzzle-state.gd"

@@ -6,10 +6,13 @@ Displays upcoming pieces to the player and manages the next piece displays.
 
 const DISPLAY_COUNT := 9
 
+export (NodePath) var piece_queue_path: NodePath
 export (PackedScene) var NextPieceDisplayScene
 
-# The "next piece displays" which are shown to the user
+# array of NextPieceDisplays which are shown to the user
 var _next_piece_displays := []
+
+onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
@@ -23,7 +26,7 @@ Adds a new next piece display.
 """
 func _add_display(piece_index: int, x: float, y: float, scale: float) -> void:
 	var new_display: NextPieceDisplay = NextPieceDisplayScene.instance()
-	new_display.initialize(piece_index)
+	new_display.initialize(_piece_queue, piece_index)
 	new_display.scale = Vector2(scale, scale)
 	new_display.position = Vector2(x, y)
 	new_display.hide()
