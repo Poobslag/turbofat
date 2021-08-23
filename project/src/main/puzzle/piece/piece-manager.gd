@@ -5,6 +5,10 @@ Contains logic for spawning new pieces, moving/rotating pieces, handling player 
 _playfield.
 """
 
+# Emitted when the playfield changes in a way which might move the current piece or alter its behavior. For example,
+# inserting a row might bump the piece up, or erasing a row might shift the ghost piece down.
+signal piece_disturbed(piece)
+
 signal piece_spawned
 
 # emitted when the current piece changes in some way (moved, replaced, reoriented)
@@ -249,6 +253,20 @@ func _on_PuzzleState_after_level_changed() -> void:
 
 func _on_Pauser_paused_changed(value: bool) -> void:
 	visible = not value
+
+
+"""
+When a line is inserted which intersects with the active piece, we shift it up.
+"""
+func _on_Playfield_lines_inserted(_lines: Array) -> void:
+	piece.reset_target()
+	while piece.target_pos.y > 0 and not piece.can_move_to_target():
+		piece.target_pos.y -= 1
+	piece.move_to_target()
+	
+	# regardless of whether the piece shifted, we emit the 'piece_disturbed'
+	# signal so other piece scripts can react to the playfield shifting.
+	emit_signal("piece_disturbed", piece)
 
 
 func _on_Dropper_hard_dropped() -> void: emit_signal("hard_dropped")

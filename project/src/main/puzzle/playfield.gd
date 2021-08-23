@@ -23,12 +23,15 @@ signal line_erased(y, total_lines, remaining_lines, box_ints)
 # emitted when erased lines are deleted, causing the rows above them to drop down
 signal lines_deleted(lines)
 
+signal lines_inserted(lines)
+
 signal blocks_prepared
 
 # remaining frames to delay for something besides making boxes/clearing lines
 var _remaining_misc_delay_frames := 0
 
 onready var tile_map := $TileMapClip/TileMap
+onready var line_inserter := $LineInserter
 
 onready var _bg_glob_viewports: FrostingViewports = $BgGlobViewports
 onready var _box_builder: BoxBuilder = $BoxBuilder
@@ -173,3 +176,7 @@ func _on_FrostingGlobs_hit_playfield(glob: Node) -> void:
 func _on_Pauser_paused_changed(value: bool) -> void:
 	$TileMapClip.visible = not value
 	$ShadowTexture.visible = not value
+
+
+func _on_LineInserter_lines_inserted(lines: Array) -> void:
+	emit_signal("lines_inserted", lines)

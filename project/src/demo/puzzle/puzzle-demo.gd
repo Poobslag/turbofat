@@ -4,6 +4,7 @@ Shows off the visual effects for the puzzle.
 
 Keys:
 	[Q,W,E]: Build a box at different locations in the playfield
+	[T,Y]: Insert a line at different locations in the playfield
 	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
 	[H]: Change the cake box variation used to make cake boxes
 	[U,I,O]: Clear a line at different locations in the playfield
@@ -38,6 +39,9 @@ func _input(event: InputEvent) -> void:
 		KEY_W: _build_box(9)
 		KEY_E: _build_box(15)
 		
+		KEY_T: _insert_line(PuzzleTileMap.ROW_COUNT - 1)
+		KEY_Y: _insert_line(PuzzleTileMap.ROW_COUNT - 2)
+		
 		KEY_A: _color_int = PuzzleTileMap.BoxColorInt.BROWN
 		KEY_S: _color_int = PuzzleTileMap.BoxColorInt.PINK
 		KEY_D: _color_int = PuzzleTileMap.BoxColorInt.BREAD
@@ -64,6 +68,10 @@ func _input(event: InputEvent) -> void:
 
 func _build_box(y: int) -> void:
 	$Puzzle/Playfield/BoxBuilder.build_box(Rect2(6, y, 3, 3), _color_int)
+
+
+func _insert_line(y: int) -> void:
+	CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(y)
 
 
 func _clear_line(cleared_line: int) -> void:

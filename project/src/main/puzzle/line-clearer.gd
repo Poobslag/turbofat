@@ -1,7 +1,7 @@
 class_name LineClearer
 extends Node
 """
-Clears lines in a tilemap as new pieces are placed.
+Clears lines in a puzzle tilemap as new pieces are placed.
 
 Lines are cleared when the player completes rows, tops out or completes a level.
 """
@@ -328,3 +328,21 @@ func _on_BoxBuilder_box_built(rect: Rect2, _color_int: int) -> void:
 	if _rows_to_preserve_at_end:
 		for y in range(rect.position.y, rect.end.y):
 			_rows_to_preserve_at_end.erase(y)
+
+
+"""
+When lines are inserted, we adjust the lines being cleared/erased/deleted.
+
+Without these adjustments, strange behavior happens when lines are inserted and deleted simultaneously.
+"""
+func _on_Playfield_lines_inserted(lines: Array) -> void:
+	for inserted_line in lines:
+		for i in range(0, lines_being_cleared.size()):
+			if lines_being_cleared[i] <= inserted_line:
+				lines_being_cleared[i] -= 1
+		for i in range(0, lines_being_erased.size()):
+			if lines_being_erased[i] <= inserted_line:
+				lines_being_erased[i] -= 1
+		for i in range(0, lines_being_deleted.size()):
+			if lines_being_deleted[i] <= inserted_line:
+				lines_being_deleted[i] -= 1

@@ -221,23 +221,28 @@ func _erase_row(y: int) -> void:
 
 
 """
-Removes all wobblers from the specified playfield row, dropping all higher wobblers down to fill the gap.
+Shifts a group of wobblers up or down.
+
+Parameters:
+	'bottom_row': The lowest row to shift. All wobblers at or above this row will be shifted.
+	
+	'direction': The direction to shift the wobblers, such as Vector2.UP or Vector2.DOWN.
 """
-func _delete_row(y: int) -> void:
+func _shift_rows(bottom_row: int, direction: Vector2) -> void:
+	# First, erase and store all the old wobblers which are shifting
 	var shifted := {}
 	for cell in _wobblers_by_cell.keys():
-		if cell.y > y:
-			# wobblers below the deleted row are left alone
+		if cell.y > bottom_row:
+			# wobblers below the specified bottom row are left alone
 			continue
-		if cell.y < y:
-			# wobblers above the deleted row are shifted
-			_wobblers_by_cell[cell].position += \
-					Vector2(0, _puzzle_tile_map.cell_size.y) * _puzzle_tile_map.scale
-			if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
-				_wobblers_by_cell[cell].visible = true
-			shifted[cell + Vector2.DOWN] = _wobblers_by_cell[cell]
+		# wobblers above the specified bottom row are shifted
+		_wobblers_by_cell[cell].position += direction * _puzzle_tile_map.cell_size * _puzzle_tile_map.scale
+		if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
+			_wobblers_by_cell[cell].visible = true
+		shifted[cell + direction] = _wobblers_by_cell[cell]
 		_wobblers_by_cell.erase(cell)
 	
+	# Next, write the old wobblers in their new locations
 	for cell in shifted.keys():
 		_wobblers_by_cell[cell] = shifted[cell]
 
@@ -255,7 +260,8 @@ func _on_Playfield_lines_deleted(lines: Array) -> void:
 		# some levels might have rows which are deleted, but not erased. erase any wobblers
 		_erase_row(y)
 		
-		_delete_row(y)
+		# drop all wobblers above the specified row to fill the gap
+		_shift_rows(y - 1, Vector2.DOWN)
 
 
 func _on_Playfield_blocks_prepared() -> void:
@@ -284,3 +290,9 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 
 func _on_Pauser_paused_changed(value: bool) -> void:
 	visible = not value
+
+
+func _on_Playfield_lines_inserted(lines: Array) -> void:
+	for y in lines:
+		# raise all wobblers at or above the specified row
+		_shift_rows(y, Vector2.UP)
