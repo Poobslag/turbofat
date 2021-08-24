@@ -141,7 +141,7 @@ func master_lpm() -> float:
 		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("speed"))
 		
 		var min_frames_per_line := min_frames_per_line(piece_speed)
-		var master_seconds_per_line := min_frames_per_line / 60 \
+		var master_seconds_per_line: float = min_frames_per_line / 60 \
 				+ 2 * CurrentLevel.settings.rank.extra_seconds_per_piece
 		
 		var finish_condition: Milestone = CurrentLevel.settings.finish_condition

@@ -1,3 +1,4 @@
+class_name PieceQueue
 extends Node
 """
 Queue of upcoming randomized pieces.

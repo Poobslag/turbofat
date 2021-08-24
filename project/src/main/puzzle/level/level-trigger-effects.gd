@@ -52,10 +52,11 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 	Rotates one or more pieces in the piece queue.
 	"""
 	func run(_params: Array = []) -> void:
+		var pieces: Array = CurrentLevel.puzzle.get_piece_queue().pieces
 		for i in range(next_piece_from_index, next_piece_to_index + 1):
-			if i >= PieceQueue.pieces.size():
+			if i >= pieces.size():
 				break
-			var next_piece: NextPiece = PieceQueue.pieces[i]
+			var next_piece: NextPiece = pieces[i]
 			match rotate_dir:
 				Rotation.CW: next_piece.orientation = next_piece.get_cw_orientation()
 				Rotation.CCW: next_piece.orientation = next_piece.get_ccw_orientation()
