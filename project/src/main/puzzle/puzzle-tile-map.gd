@@ -119,27 +119,17 @@ func build_box(rect: Rect2, color_int: int) -> void:
 
 
 """
-Deletes the specified row in the tilemap, dropping all higher rows down to fill the gap.
+Deletes the row at the specified location, lowering all higher rows to fill the gap.
 """
 func delete_row(y: int) -> void:
-	# First, erase and store all the old cells which are dropping
-	var piece_colors_to_set := {}
-	var autotile_coords_to_set := {}
-	for cell in get_used_cells():
-		if cell.y > y:
-			# cells below the deleted row are left alone
-			continue
-		if cell.y < y:
-			# cells above the deleted row are shifted
-			var piece_color: int = get_cellv(cell)
-			var autotile_coord: Vector2 = get_cell_autotile_coord(cell.x, cell.y)
-			piece_colors_to_set[cell + Vector2.DOWN] = piece_color
-			autotile_coords_to_set[cell + Vector2.DOWN] = autotile_coord
-		set_block(cell, -1)
-	
-	# Next, write the old cells in their new locations
-	for cell in piece_colors_to_set:
-		set_block(cell, piece_colors_to_set[cell], autotile_coords_to_set[cell])
+	_shift_rows(y - 1, Vector2.DOWN)
+
+
+"""
+Inserts a blank row at the specified location, raising all higher rows to make room.
+"""
+func insert_row(y: int) -> void:
+	_shift_rows(y, Vector2.UP)
 
 
 """
@@ -284,6 +274,34 @@ func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
 	var autotile_coord := get_cell_autotile_coord(pos.x, pos.y)
 	autotile_coord.x = PuzzleConnect.unset_dirs(autotile_coord.x, dir_mask)
 	set_block(pos, get_cellv(pos), autotile_coord)
+
+
+"""
+Shifts a group of rows up or down.
+
+Parameters:
+	'bottom_row': The lowest row to shift. All rows at or above this row will be shifted.
+	
+	'direction': The direction to shift the rows, such as Vector2.UP or Vector2.DOWN.
+"""
+func _shift_rows(bottom_row: int, direction: Vector2) -> void:
+	# First, erase and store all the old cells which are shifting
+	var piece_colors_to_set := {}
+	var autotile_coords_to_set := {}
+	for cell in get_used_cells():
+		if cell.y > bottom_row:
+			# cells below the specified bottom row are left alone
+			continue
+		# cells at or above the specified bottom row are shifted
+		var piece_color: int = get_cellv(cell)
+		var autotile_coord: Vector2 = get_cell_autotile_coord(cell.x, cell.y)
+		piece_colors_to_set[cell + direction] = piece_color
+		autotile_coords_to_set[cell + direction] = autotile_coord
+		set_block(cell, -1)
+	
+	# Next, write the old cells in their new locations
+	for cell in piece_colors_to_set:
+		set_block(cell, piece_colors_to_set[cell], autotile_coords_to_set[cell])
 
 
 """

@@ -136,3 +136,7 @@ func _squish_target(piece: ActivePiece, reset_target: bool = true) -> Vector2:
 
 func _on_PieceManager_piece_changed(_piece: ActivePiece) -> void:
 	squish_state = UNKNOWN
+
+
+func _on_PieceManager_piece_disturbed(_piece: ActivePiece) -> void:
+	squish_state = UNKNOWN

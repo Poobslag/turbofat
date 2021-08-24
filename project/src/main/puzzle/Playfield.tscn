@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=43 format=2]
 
 [ext_resource path="res://src/main/puzzle/playfield.gd" type="Script" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleTileMap.tscn" type="PackedScene" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=22]
 [ext_resource path="res://src/main/puzzle/LeafPoof.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/puzzle/tutorial-keybinds-label.gd" type="Script" id=24]
+[ext_resource path="res://src/main/puzzle/line-inserter.gd" type="Script" id=25]
 [ext_resource path="res://assets/main/puzzle/playfield-bg.png" type="Texture" id=37]
 [ext_resource path="res://src/main/puzzle/combo-tracker.gd" type="Script" id=61]
 [ext_resource path="res://assets/main/fuzzy-circle-128.png" type="Texture" id=62]
@@ -293,6 +294,14 @@ bus = "Sound Bus"
 stream = ExtResource( 14 )
 bus = "Sound Bus"
 
+[node name="LineInserter" type="Node" parent="."]
+script = ExtResource( 25 )
+tile_map_path = NodePath("../TileMapClip/TileMap")
+
+[node name="LineInsertSound" type="AudioStreamPlayer" parent="LineInserter"]
+stream = ExtResource( 6 )
+bus = "Sound Bus"
+
 [node name="BuildBoxSfx" type="Node" parent="."]
 script = ExtResource( 8 )
 
@@ -313,6 +322,7 @@ bus = "Sound Bus"
 [connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="." to="LineClearSfx" method="_on_Playfield_line_erased"]
+[connection signal="lines_inserted" from="." to="LineClearer" method="_on_Playfield_lines_inserted"]
 [connection signal="after_boxes_built" from="BoxBuilder" to="." method="_on_BoxBuilder_after_boxes_built"]
 [connection signal="box_built" from="BoxBuilder" to="." method="_on_BoxBuilder_box_built"]
 [connection signal="box_built" from="BoxBuilder" to="LineClearer" method="_on_BoxBuilder_box_built"]
@@ -321,3 +331,4 @@ bus = "Sound Bus"
 [connection signal="line_clears_scheduled" from="LineClearer" to="." method="_on_LineClearer_line_clears_scheduled"]
 [connection signal="line_erased" from="LineClearer" to="." method="_on_LineClearer_line_erased"]
 [connection signal="lines_deleted" from="LineClearer" to="." method="_on_LineClearer_lines_deleted"]
+[connection signal="lines_inserted" from="LineInserter" to="." method="_on_LineInserter_lines_inserted"]
