@@ -9,12 +9,13 @@ every time the player places a piece.
 
 # phases when a level trigger can fire
 enum LevelTriggerPhase {
-	ROTATED_CW,
-	ROTATED_CCW,
-	ROTATED_180,
-	INITIAL_ROTATED_CW,
-	INITIAL_ROTATED_CCW,
-	INITIAL_ROTATED_180,
+	ROTATED_CW, # when the piece is rotated clockwise
+	ROTATED_CCW, # when the piece is rotated counterclockwise
+	ROTATED_180, # when the piece is flipped
+	INITIAL_ROTATED_CW, # when the piece is rotated clockwise using initial DAS
+	INITIAL_ROTATED_CCW, # when the piece is rotated counterclockwise using initial DAS
+	INITIAL_ROTATED_180, # when the piece is flipped using initial DAS
+	TIMER_0, # when timer 0 times out
 }
 
 const ROTATED_CW := LevelTriggerPhase.ROTATED_CW
@@ -23,6 +24,7 @@ const ROTATED_180 := LevelTriggerPhase.ROTATED_180
 const INITIAL_ROTATED_CW := LevelTriggerPhase.INITIAL_ROTATED_CW
 const INITIAL_ROTATED_CCW := LevelTriggerPhase.INITIAL_ROTATED_CCW
 const INITIAL_ROTATED_180 := LevelTriggerPhase.INITIAL_ROTATED_180
+const TIMER_0 := LevelTriggerPhase.TIMER_0
 
 # key: json string corresponding to a phase
 # value: an enum from LevelTriggerPhase
@@ -33,6 +35,7 @@ const PHASE_INTS_BY_STRING := {
 	"initial_rotated_cw": INITIAL_ROTATED_CW,
 	"initial_rotated_ccw": INITIAL_ROTATED_CCW,
 	"initial_rotated_180": INITIAL_ROTATED_180,
+	"timer_0": TIMER_0,
 }
 
 # key: an enum from LevelTriggerPhase
