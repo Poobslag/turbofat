@@ -16,13 +16,16 @@ Runs all triggers for the specified phase.
 
 Parameters:
 	'phase': An enum from LevelTrigger.LevelTriggerPhase corresponding to the triggers to run.
+	
+	'event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
 """
-func run_triggers(phase: int) -> void:
+func run_triggers(phase: int, event_params: Dictionary = {}) -> void:
 	if not _triggers.has(phase):
 		return
 	
 	for trigger in _triggers.get(phase, []):
-		trigger.run()
+		if trigger.should_run(phase, event_params):
+			trigger.run()
 
 
 func from_json_array(json: Array) -> void:

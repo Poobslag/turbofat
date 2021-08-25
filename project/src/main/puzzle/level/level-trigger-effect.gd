@@ -7,12 +7,8 @@ A LevelTriggerEffect might subtract points from the player's score, rotate a pie
 
 """
 Executes this level trigger effect.
-
-Parameters:
-	'params': Parameters specific to this level trigger's phase. For example, a phase which involves clearing lines
-		could pass in parameters specifying which lines were cleared.
 """
-func run(_params: Array = []) -> void:
+func run() -> void:
 	pass
 
 

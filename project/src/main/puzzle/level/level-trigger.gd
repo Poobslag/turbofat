@@ -9,77 +9,128 @@ every time the player places a piece.
 
 # phases when a level trigger can fire
 enum LevelTriggerPhase {
-	ROTATED_CW, # when the piece is rotated clockwise
-	ROTATED_CCW, # when the piece is rotated counterclockwise
-	ROTATED_180, # when the piece is flipped
+	AFTER_LINE_CLEARED,
 	INITIAL_ROTATED_CW, # when the piece is rotated clockwise using initial DAS
 	INITIAL_ROTATED_CCW, # when the piece is rotated counterclockwise using initial DAS
 	INITIAL_ROTATED_180, # when the piece is flipped using initial DAS
+	ROTATED_CW, # when the piece is rotated clockwise
+	ROTATED_CCW, # when the piece is rotated counterclockwise
+	ROTATED_180, # when the piece is flipped
 	TIMER_0, # when timer 0 times out
 }
 
-const ROTATED_CW := LevelTriggerPhase.ROTATED_CW
-const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
-const ROTATED_180 := LevelTriggerPhase.ROTATED_180
+const AFTER_LINE_CLEARED := LevelTriggerPhase.AFTER_LINE_CLEARED
 const INITIAL_ROTATED_CW := LevelTriggerPhase.INITIAL_ROTATED_CW
 const INITIAL_ROTATED_CCW := LevelTriggerPhase.INITIAL_ROTATED_CCW
 const INITIAL_ROTATED_180 := LevelTriggerPhase.INITIAL_ROTATED_180
+const ROTATED_CW := LevelTriggerPhase.ROTATED_CW
+const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
+const ROTATED_180 := LevelTriggerPhase.ROTATED_180
 const TIMER_0 := LevelTriggerPhase.TIMER_0
 
 # key: json string corresponding to a phase
 # value: an enum from LevelTriggerPhase
 const PHASE_INTS_BY_STRING := {
-	"rotated_cw": ROTATED_CW,
-	"rotated_ccw": ROTATED_CCW,
-	"rotated_180": ROTATED_180,
+	"after_line_cleared": AFTER_LINE_CLEARED,
 	"initial_rotated_cw": INITIAL_ROTATED_CW,
 	"initial_rotated_ccw": INITIAL_ROTATED_CCW,
 	"initial_rotated_180": INITIAL_ROTATED_180,
+	"rotated_cw": ROTATED_CW,
+	"rotated_ccw": ROTATED_CCW,
+	"rotated_180": ROTATED_180,
 	"timer_0": TIMER_0,
 }
 
 # key: an enum from LevelTriggerPhase
-# value: 'true' if this trigger should fire during that phase
+# value: array of PhaseCondition instances defining whether the trigger should fire
 var phases := {}
 
 # the effect caused by this level trigger
 var effect: LevelTriggerEffect
 
 """
-Enables this trigger for the specified phase.
+Returns 'true' if this trigger should run during the specified phase.
 
 Parameters:
-	'phase': an enum from LevelTriggerPhase corresponding to the new phase.
+	'phase': An enum from LevelTriggerPhase
+	
+	'event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
 """
-func add_phase(phase: int) -> void:
-	phases[phase] = true
+func should_run(phase: int, event_params: Dictionary = {}) -> bool:
+	var result := true
+	var phase_conditions: Array = phases.get(phase, [])
+	if not phase_conditions:
+		result = false
+	else:
+		for phase_condition_obj in phase_conditions:
+			var phase_condition: PhaseCondition = phase_condition_obj
+			if not phase_condition.should_run(event_params):
+				result = false
+				break
+	return result
 
 
 """
 Executes this level trigger's effect.
-
-Parameters:
-	'params': Parameters specific to this level trigger's phase. For example, a phase which involves clearing lines
-		could pass in parameters specifying which lines were cleared.
 """
-func run(params: Array = []) -> void:
-	effect.run(params)
+func run() -> void:
+	effect.run()
 
 
 func from_json_dict(json: Dictionary) -> void:
-	for phase_string in json.get("phases", []):
-		if not PHASE_INTS_BY_STRING.has(phase_string):
-			push_warning("Unrecognized phase: %s" % [phase_string])
-			continue
-		
-		add_phase(PHASE_INTS_BY_STRING.get(phase_string))
+	for phase_expression in json.get("phases", []):
+		var phase_expression_split: Array = phase_expression.split(" ")
+		var phase_string: String = phase_expression_split[0]
+		var phase_config: Dictionary = phase_config(
+				phase_expression_split.slice(1, phase_expression_split.size()))
+		_add_phase(phase_string, phase_config)
 	
 	var effect_string: String = json.get("effect")
 	var effect_key: String = StringUtils.substring_before(effect_string, " ")
 	var effect_config: Array = StringUtils.substring_after(effect_string, " ").split(" ")
-	if not LevelTriggerEffects.effects_by_string.has(effect_key):
-		push_warning("Unrecognized effect: %s" % [effect_key])
-	var effect_script: GDScript = LevelTriggerEffects.effects_by_string.get(effect_key)
-	effect = effect_script.new()
-	if effect_config:
-		effect.set_config(effect_config)
+	effect = LevelTriggerEffects.create(effect_key, effect_config)
+
+
+"""
+Enables this trigger for the specified phase.
+
+Parameters:
+	'phase_key': A string key corresponding to the phase, such as 'after_line_cleared'.
+	
+	'phase_config': An array of strings defining any special conditions for the phase.
+"""
+func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
+	if not PHASE_INTS_BY_STRING.has(phase_key):
+		push_warning("Unrecognized phase: %s" % [phase_key])
+	var phase_condition: PhaseCondition = PhaseConditions.create(phase_key, phase_config)
+	var phase: int = PHASE_INTS_BY_STRING[phase_key]
+	if not phases.has(phase):
+		phases[phase] = []
+	phases[phase].append(phase_condition)
+
+
+"""
+Parses an array of phase configuration strings into a set of key/value pairs.
+
+Keyed values like "foo=bar" are added to the resulting dictionary as {"foo": "bar"}
+
+Unkeyed values like "foo" and "bar" are added to the dictionary as {"0": "foo", "1": "bar"}
+
+Parameters:
+	'param_array': An array of phase configuration strings defining criteria for a phase condition.
+
+Returns:
+	A set of phase configuration strings organized into key/value pairs.
+"""
+static func phase_config(param_array: Array) -> Dictionary:
+	var result := {}
+	var param_index := 0
+	for param in param_array:
+		if "=" in param:
+			# add a keyed entry like {"foo": "bar"}
+			result[StringUtils.substring_before(param, "=")] = StringUtils.substring_after(param, "=")
+		else:
+			# add an unkeyed entry like {"0": "foo"}
+			result[str(param_index)] = param
+			param_index += 1
+	return result
