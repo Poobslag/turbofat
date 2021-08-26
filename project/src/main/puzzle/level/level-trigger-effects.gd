@@ -51,7 +51,7 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 	"""
 	Rotates one or more pieces in the piece queue.
 	"""
-	func run(_params: Array = []) -> void:
+	func run() -> void:
 		var pieces: Array = CurrentLevel.puzzle.get_piece_queue().pieces
 		for i in range(next_piece_from_index, next_piece_to_index + 1):
 			if i >= pieces.size():
@@ -67,7 +67,7 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 Inserts a new line at the bottom of the playfield.
 """
 class InsertLineEffect extends LevelTriggerEffect:
-	func run(_params: Array = []) -> void:
+	func run() -> void:
 		CurrentLevel.puzzle.get_playfield().line_inserter.insert_line()
 
 
@@ -75,3 +75,20 @@ var effects_by_string := {
 	"rotate_next_pieces": RotateNextPiecesEffect,
 	"insert_line": InsertLineEffect,
 }
+
+"""
+Creates a new LevelTriggerEffect instance.
+
+Parameters:
+	'effect_key': A string key corresponding to the level trigger effect, such as 'insert_line'.
+	
+	'effect_config': (Optional) An array of strings defining the effect's behavior.
+"""
+func create(effect_key: String, effect_config: Array = []) -> LevelTriggerEffect:
+	if not effects_by_string.has(effect_key):
+		push_warning("Unrecognized effect: %s" % [effect_key])
+	var effect_script: GDScript = effects_by_string.get(effect_key)
+	var effect: LevelTriggerEffect = effect_script.new()
+	if effect_config:
+		effect.set_config(effect_config)
+	return effect

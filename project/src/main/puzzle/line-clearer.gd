@@ -78,13 +78,17 @@ func _physics_process(_delta: float) -> void:
 	if remaining_line_erase_frames <= 0:
 		# Disable processing and reset our state. We need to do this before deleting lines, because deleting lines can
 		# potentially trigger the end of the level which in turn schedules more line clears.
+		var old_lines_being_cleared := lines_being_cleared
+		var old_lines_being_erased := lines_being_erased
 		var old_lines_being_deleted := lines_being_deleted
+		
 		set_physics_process(false)
+		
 		lines_being_cleared = []
 		lines_being_erased = []
 		lines_being_deleted = []
 		
-		_delete_lines(old_lines_being_deleted)
+		_delete_lines(old_lines_being_cleared, old_lines_being_erased, old_lines_being_deleted)
 
 
 """
@@ -184,34 +188,35 @@ func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 """
 Deletes rows from the playfield, dropping all rows above them.
 """
-func _delete_lines(lines: Array) -> void:
+func _delete_lines(old_lines_being_cleared: Array, old_lines_being_erased: Array, \
+		old_lines_being_deleted: Array) -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false
 	
 	if CurrentLevel.settings.blocks_during.line_clear_type == BlocksDuringRules.LineClearType.FLOAT_FALL:
 		# instead of deleting the filled lines, delete the bottom lines
-		for i in range(lines.size()):
-			lines[i] = PuzzleTileMap.ROW_COUNT - i - 1
+		for i in range(old_lines_being_deleted.size()):
+			old_lines_being_deleted[i] = PuzzleTileMap.ROW_COUNT - i - 1
 	elif CurrentLevel.settings.blocks_during.line_clear_type == BlocksDuringRules.LineClearType.FLOAT:
 		# don't delete the filled lines
-		lines = []
+		old_lines_being_deleted = []
 	
-	lines.sort()
-	var max_line: int = lines.back() if lines else -1
+	old_lines_being_deleted.sort()
+	var max_line: int = old_lines_being_deleted.back() if old_lines_being_deleted else -1
 	for y in range(0, max_line):
-		if not _tile_map.playfield_row_is_empty(y) and not lines.has(y):
+		if not _tile_map.playfield_row_is_empty(y) and not old_lines_being_deleted.has(y):
 			play_sound = true
 			break
 	
-	if lines:
-		_tile_map.delete_rows(lines)
+	if old_lines_being_deleted:
+		_tile_map.delete_rows(old_lines_being_deleted)
 	
 	if play_sound:
 		_line_fall_sound.play()
 	
 	if _rows_to_preserve_at_end:
 		# Shift all _rows_to_preserve_at_end entries above the deleted rows
-		for line_being_deleted in lines:
+		for line_being_deleted in old_lines_being_deleted:
 			var _new_rows_to_preserve_at_end := {}
 			for key in _rows_to_preserve_at_end:
 				var new_key: int = key
@@ -220,9 +225,13 @@ func _delete_lines(lines: Array) -> void:
 				_new_rows_to_preserve_at_end[new_key] = true
 			_rows_to_preserve_at_end = _new_rows_to_preserve_at_end
 	
+	if old_lines_being_cleared:
+		for line in old_lines_being_cleared:
+			CurrentLevel.settings.triggers.run_triggers(LevelTrigger.AFTER_LINE_CLEARED, {"y": line})
+	
 	# we even emit the signal if zero lines are deleted.
 	# the 'lines_deleted' signal triggers other important events
-	emit_signal("lines_deleted", lines)
+	emit_signal("lines_deleted", old_lines_being_deleted)
 
 
 """
