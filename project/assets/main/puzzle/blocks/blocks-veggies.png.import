@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blocks-vegetable-shadows.png-d7fda34f13342a6c88921a9ce1ac2e15.stex"
+path="res://.import/blocks-veggies.png-9a5be2f40a66239fb9a94a30a48af53b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/puzzle/blocks/blocks-vegetable-shadows.png"
-dest_files=[ "res://.import/blocks-vegetable-shadows.png-d7fda34f13342a6c88921a9ce1ac2e15.stex" ]
+source_file="res://assets/main/puzzle/blocks/blocks-veggies.png"
+dest_files=[ "res://.import/blocks-veggies.png-9a5be2f40a66239fb9a94a30a48af53b.stex" ]
 
 [params]
 

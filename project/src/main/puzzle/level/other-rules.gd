@@ -33,6 +33,9 @@ var skip_intro := false
 # If the player restarts, they restart from this level (used for tutorials)
 var start_level: String
 
+# an enum from PuzzleTileMap.TileSetType which affects the blocks' appearance (and sometimes behavior)
+var tile_set: int = PuzzleTileMap.TileSetType.DEFAULT
+
 # 'true' for tutorial levels which are led by Turbo
 var tutorial := false
 
@@ -47,10 +50,17 @@ func from_json_string_array(json: Array) -> void:
 			# rules.string_value() returns '1' if there are no parameters specified
 			"1", "rotation": suppress_piece_rotation = SuppressPieceRotation.ROTATION
 			"rotation_and_signals": suppress_piece_rotation = SuppressPieceRotation.ROTATION_AND_SIGNALS
+			_: push_warning("Unrecognized suppress_piece_rotation: %s" % [rules.string_value()])
 	if rules.has("suppress_piece_initial_rotation"):
 		match rules.string_value():
 			# rules.string_value() returns '1' if there are no parameters specified
 			"1", "rotation": suppress_piece_initial_rotation = SuppressPieceRotation.ROTATION
 			"rotation_and_signals": suppress_piece_initial_rotation = SuppressPieceRotation.ROTATION_AND_SIGNALS
+			_: push_warning("Unrecognized suppress_piece_initial_rotation: %s" % [rules.string_value()])
 	if rules.has("start_level"): start_level = rules.string_value()
+	if rules.has("tile_set"):
+		match rules.string_value():
+			"default": tile_set = PuzzleTileMap.TileSetType.DEFAULT
+			"veggie": tile_set = PuzzleTileMap.TileSetType.VEGGIE
+			_: push_warning("Unrecognized tile_set: %s" % [rules.string_value()])
 	if rules.has("tutorial"): tutorial = true

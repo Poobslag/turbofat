@@ -19,6 +19,11 @@ onready var _sweat_drops: Particles2D = $SweatDrops
 onready var _presquish_sfx: PresquishSfx = $PresquishSfx
 onready var _squish_map: SquishMap = $SquishMap
 
+func _ready() -> void:
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	_prepare_tileset()
+
+
 func _process(_delta: float) -> void:
 	if _squish_map.squish_seconds_remaining > 0:
 		_squish_map.show()
@@ -39,6 +44,10 @@ func _physics_process(delta: float) -> void:
 	_handle_flash()
 	_handle_sweat()
 	_handle_sfx()
+
+
+func _prepare_tileset() -> void:
+	_squish_map.puzzle_tile_set_type = CurrentLevel.settings.other.tile_set
 
 
 """
@@ -101,3 +110,7 @@ func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void
 				else:
 					i += 1
 			_squish_map.stretch_to(unblocked_blocks, old_pos + Vector2(0, dy))
+
+
+func _on_Level_settings_changed() -> void:
+	_prepare_tileset()

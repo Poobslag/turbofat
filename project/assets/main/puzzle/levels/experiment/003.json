@@ -1,12 +1,19 @@
 {
   "version": "19c5",
   "start_speed": "4",
-  "title": "Swiss Cheese",
+  "title": "Veggies and Cheese",
   "description": "Don't get too excited. ...It is the bad kind of cheese.",
   "finish_condition": {
     "type": "lines",
     "value": "40"
   },
+  "other": [
+    "tile_set veggie"
+  ],
+  "rank": [
+    "box_factor 0.0",
+    "combo_factor 0.6"
+  ],
   "timers": [
     {
       "interval": 12

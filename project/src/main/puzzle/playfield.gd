@@ -42,6 +42,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+	_prepare_tileset()
 	_prepare_level_blocks()
 
 
@@ -116,6 +117,10 @@ func break_combo() -> void:
 	_combo_tracker.break_combo()
 
 
+func _prepare_tileset() -> void:
+	tile_map.puzzle_tile_set_type = CurrentLevel.settings.other.tile_set
+
+
 """
 Resets the playfield to the level's initial state.
 """
@@ -134,6 +139,7 @@ func _on_PuzzleState_game_prepared() -> void:
 
 
 func _on_Level_settings_changed() -> void:
+	_prepare_tileset()
 	_prepare_level_blocks()
 
 

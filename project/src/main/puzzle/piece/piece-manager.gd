@@ -60,6 +60,7 @@ onready var _piece_queue: PieceQueue = get_node(piece_queue_path)
 onready var _states: PieceStates = $States
 
 func _ready() -> void:
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("before_level_changed", self, "_on_PuzzleState_before_level_changed")
@@ -73,6 +74,7 @@ func _ready() -> void:
 	PieceSpeeds.current_speed = PieceSpeeds.speed("0")
 	_states.set_state(_states.none)
 	_clear_piece()
+	_prepare_tileset()
 
 
 func _physics_process(_delta: float) -> void:
@@ -186,6 +188,10 @@ func skip_prespawn() -> void:
 	_states.prespawn.frames = 3600
 
 
+func _prepare_tileset() -> void:
+	tile_map.puzzle_tile_set_type = CurrentLevel.settings.other.tile_set
+
+
 func _clear_piece() -> void:
 	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
 
@@ -211,6 +217,10 @@ func _start_first_piece() -> void:
 	
 	_states.set_state(_states.prespawn)
 	skip_prespawn()
+
+
+func _on_Level_settings_changed() -> void:
+	_prepare_tileset()
 
 
 func _on_States_entered_state(state: State) -> void:
