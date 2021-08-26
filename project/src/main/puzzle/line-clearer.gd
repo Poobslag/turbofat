@@ -188,7 +188,7 @@ func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 """
 Deletes rows from the playfield, dropping all rows above them.
 """
-func _delete_lines(old_lines_being_cleared: Array, old_lines_being_erased: Array, \
+func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Array, \
 		old_lines_being_deleted: Array) -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
 	var play_sound := false

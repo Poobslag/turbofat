@@ -25,20 +25,32 @@ func _process(_delta: float) -> void:
 			# check for corner connected up and left
 			if PuzzleConnect.is_u(pacx) and PuzzleConnect.is_l(pacx) \
 					and not PuzzleConnect.is_u(_pacx(cell + Vector2.LEFT)):
-				set_cell(cell.x * 2, cell.y * 2, 0, false, false, false, Vector2(0, pacy * 2))
+				_set_corner_cell(Vector2(cell.x * 2, cell.y * 2), Vector2(0, pacy * 2))
 			# check for corner connected up and right
 			if PuzzleConnect.is_u(pacx) and PuzzleConnect.is_r(pacx) \
 					and not PuzzleConnect.is_u(_pacx(cell + Vector2.RIGHT)):
-				set_cell(cell.x * 2 + 1, cell.y * 2, 0, false, false, false, Vector2(1, pacy * 2))
+				_set_corner_cell(Vector2(cell.x * 2 + 1, cell.y * 2), Vector2(1, pacy * 2))
 			# check for corner connected down and left
 			if PuzzleConnect.is_d(pacx) and PuzzleConnect.is_l(pacx) \
 					and not PuzzleConnect.is_d(_pacx(cell + Vector2.LEFT)):
-				set_cell(cell.x * 2, cell.y * 2 + 1, 0, false, false, false, Vector2(0, pacy * 2 + 1))
+				_set_corner_cell(Vector2(cell.x * 2, cell.y * 2 + 1), Vector2(0, pacy * 2 + 1))
 			# check for corner connected down and right
 			if PuzzleConnect.is_d(pacx) and PuzzleConnect.is_r(pacx) \
 					and not PuzzleConnect.is_d(_pacx(cell + Vector2.RIGHT)):
-				set_cell(cell.x * 2 + 1, cell.y * 2 + 1, 0, false, false, false, Vector2(1, pacy * 2 + 1))
+				_set_corner_cell(Vector2(cell.x * 2 + 1, cell.y * 2 + 1), Vector2(1, pacy * 2 + 1))
 		dirty = false
+
+
+"""
+Sets the specified cell with the specified tile from the corner atlas tileset.
+
+Parameters:
+	'pos': Position of the cell
+	
+	'autotile_coord': Coordinate of the autotile variation in the corner atlas tileset
+"""
+func _set_corner_cell(pos: Vector2, autotile_coord: Vector2) -> void:
+	set_cell(pos.x, pos.y, PuzzleTileMap.TILE_CORNER, false, false, false, autotile_coord);
 
 
 """
