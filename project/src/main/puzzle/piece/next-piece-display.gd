@@ -20,6 +20,11 @@ func initialize(piece_queue: PieceQueue, piece_index: int) -> void:
 	_piece_index = piece_index
 
 
+func _ready() -> void:
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
+	_prepare_tileset()
+
+
 func _process(_delta: float) -> void:
 	var next_piece: NextPiece = _piece_queue.get_next_piece(_piece_index)
 	if next_piece.type != _displayed_type or next_piece.orientation != _displayed_orientation:
@@ -41,3 +46,11 @@ func _process(_delta: float) -> void:
 		_tile_map.corner_map.dirty = true
 		_displayed_type = next_piece.type
 		_displayed_orientation = next_piece.orientation
+
+
+func _prepare_tileset() -> void:
+	_tile_map.puzzle_tile_set_type = CurrentLevel.settings.other.tile_set
+
+
+func _on_Level_settings_changed() -> void:
+	_prepare_tileset()

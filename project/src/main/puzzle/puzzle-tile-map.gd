@@ -4,6 +4,11 @@ extends TileMap
 TileMap containing puzzle blocks such as pieces, boxes and vegetables.
 """
 
+enum TileSetType {
+	DEFAULT,
+	VEGGIE,
+}
+
 enum BoxColorInt {
 	BROWN,
 	PINK,
@@ -37,6 +42,9 @@ var whiteness := 0.0 setget set_whiteness
 # offset used to draw the 'ghost piece'
 var ghost_shadow_offset: Vector2
 
+# an enum from TileSetType referencing the tileset used to render blocks
+var puzzle_tile_set_type: int = TileSetType.DEFAULT setget set_puzzle_tile_set_type
+
 # fields used to roll the tilemap back to a previous state
 var _saved_used_cells := []
 var _saved_tiles := []
@@ -44,6 +52,12 @@ var _saved_autotile_coords := []
 
 # tilemap which covers the corners of this tilemap
 onready var corner_map: TileMap = $CornerMap
+
+var _puzzle_tile_sets_by_enum := {
+	TileSetType.DEFAULT: load("res://src/main/puzzle/puzzle-tile-set.tres"),
+	TileSetType.VEGGIE: load("res://src/main/puzzle/puzzle-tile-set-veggies.tres"),
+}
+
 
 func _ready() -> void:
 	clear()
@@ -221,6 +235,18 @@ func somewhere_near_cell(cell_pos: Vector2, cell_offset: Vector2 = Vector2.ZERO)
 	if not cell_offset:
 		cell_offset = Vector2(randf(), randf())
 	return (cell_pos + cell_offset) * cell_size * scale
+
+
+"""
+Updates our tile set and the tileset of the corner map.
+
+Parameters:
+	'new_puzzle_tile_set_type': an enum from TileSetType referencing the tileset used to render blocks
+"""
+func set_puzzle_tile_set_type(new_puzzle_tile_set_type: int) -> void:
+	puzzle_tile_set_type = new_puzzle_tile_set_type
+	tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
+	corner_map.tile_set = _puzzle_tile_sets_by_enum[new_puzzle_tile_set_type]
 
 
 """

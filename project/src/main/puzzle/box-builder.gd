@@ -128,6 +128,10 @@ func _filled_columns() -> Array:
 Builds any possible 3x3, 3x4 or 3x5 'boxes' in the playfield, returning 'true' if a box was built.
 """
 func process_boxes() -> bool:
+	if CurrentLevel.settings.other.tile_set == PuzzleTileMap.TileSetType.VEGGIE:
+		# veggie blocks cannot make boxes
+		return false
+	
 	# Calculate the possible locations for a (w x h) rectangle in the playfield
 	var db := _filled_columns()
 	var dt3 := _filled_rectangles(db, 3)

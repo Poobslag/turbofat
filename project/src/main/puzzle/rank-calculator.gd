@@ -251,10 +251,20 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
 	rank_result.lines_rank = log(rank_result.lines / target_lines) / log(RDF_LINES)
 	rank_result.pieces_rank = log(rank_result.pieces / (target_lines * 2)) / log(RDF_LINES)
-	rank_result.box_score_per_line_rank = log(rank_result.box_score_per_line / target_box_score_per_line) \
-			/ log(RDF_BOX_SCORE_PER_LINE)
-	rank_result.combo_score_per_line_rank = log(rank_result.combo_score_per_line / target_combo_score_per_line) \
-			/ log(RDF_COMBO_SCORE_PER_LINE)
+	
+	if target_box_score_per_line == 0:
+		# award the player master rank if it's impossible to score any box points on a level
+		rank_result.box_score_per_line_rank = 0.0
+	else:
+		rank_result.box_score_per_line_rank = log(rank_result.box_score_per_line / target_box_score_per_line) \
+				/ log(RDF_BOX_SCORE_PER_LINE)
+	
+	if target_combo_score_per_line == 0:
+		# award the player master rank if it's impossible to score any combo points on a level
+		rank_result.combo_score_per_line_rank = 0.0
+	else:
+		rank_result.combo_score_per_line_rank = log(rank_result.combo_score_per_line / target_combo_score_per_line) \
+				/ log(RDF_COMBO_SCORE_PER_LINE)
 	
 	# Binary search for the player's score rank. Score is a function of several criteria, the rank doesn't deteriorate
 	# in a predictable way like the other ranks

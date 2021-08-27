@@ -372,3 +372,25 @@ func test_extra_seconds_per_piece() -> void:
 	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.speed_rank), "M")
 	assert_eq(RankCalculator.grade(rank2.score_rank), "SSS")
+
+
+func test_box_factor_zero() -> void:
+	PuzzleState.level_performance.lines = 100
+	PuzzleState.level_performance.box_score = 440
+	var rank1 :=  _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank1.box_score_per_line_rank), "A+")
+	
+	CurrentLevel.settings.rank.box_factor = 0.0
+	var rank2 :=  _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank2.box_score_per_line_rank), "M")
+
+
+func test_combo_factor_zero() -> void:
+	PuzzleState.level_performance.lines = 100
+	PuzzleState.level_performance.combo_score = 550
+	var rank1 :=  _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank1.combo_score_per_line_rank), "A+")
+	
+	CurrentLevel.settings.rank.combo_factor = 0.0
+	var rank2 :=  _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank2.combo_score_per_line_rank), "M")

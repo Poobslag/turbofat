@@ -102,6 +102,10 @@ func _on_Playfield_box_built(rect: Rect2, color_int: int) -> void:
 When a squish move is performed, we generate frosting globs around the old and new piece position.
 """
 func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
+	if CurrentLevel.settings.other.tile_set == PuzzleTileMap.TileSetType.VEGGIE:
+		# veggie pieces don't spawn frosting
+		return
+	
 	for pos_arr_item_obj in piece.get_pos_arr():
 		var pos_arr_item: Vector2 = pos_arr_item_obj
 		var glob_cell_from := old_pos + pos_arr_item
