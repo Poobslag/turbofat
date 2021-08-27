@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=4 format=2]
+[gd_resource type="TileSet" load_steps=5 format=2]
 
 [ext_resource path="res://assets/main/puzzle/blocks/blocks-boxes.png" type="Texture" id=1]
-[ext_resource path="res://assets/main/puzzle/blocks/blocks-vegetable.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/puzzle/blocks/blocks-veggie-cubes.png" type="Texture" id=2]
 [ext_resource path="res://assets/main/puzzle/blocks/blocks.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/puzzle/blocks/blocks-corners.png" type="Texture" id=4]
 
 [resource]
 0/name = "blocks.png"
@@ -47,7 +48,7 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "blocks-vegetable.png"
+2/name = "blocks-veggie-cubes.png"
 2/texture = ExtResource( 2 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
@@ -68,3 +69,24 @@
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
+3/name = "blocks-corners.png 2"
+3/texture = ExtResource( 4 )
+3/tex_offset = Vector2( 0, 0 )
+3/modulate = Color( 1, 1, 1, 1 )
+3/region = Rect2( 2, 2, 76, 284 )
+3/tile_mode = 2
+3/autotile/icon_coordinate = Vector2( 0, 0 )
+3/autotile/tile_size = Vector2( 36, 32 )
+3/autotile/spacing = 4
+3/autotile/occluder_map = [  ]
+3/autotile/navpoly_map = [  ]
+3/autotile/priority_map = [  ]
+3/autotile/z_index_map = [  ]
+3/occluder_offset = Vector2( 0, 0 )
+3/navigation_offset = Vector2( 0, 0 )
+3/shape_offset = Vector2( 0, 0 )
+3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+3/shape_one_way = false
+3/shape_one_way_margin = 0.0
+3/shapes = [  ]
+3/z_index = 0

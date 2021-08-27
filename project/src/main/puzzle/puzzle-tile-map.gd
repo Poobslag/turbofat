@@ -25,6 +25,7 @@ const FIRST_VISIBLE_ROW := 3
 const TILE_PIECE := 0 # part of an intact piece
 const TILE_BOX := 1 # part of a snack/cake box
 const TILE_VEG := 2 # vegetable created from line clears
+const TILE_CORNER := 3 # inner corner of a piece for CornerMap
 
 # playfield dimensions. the playfield extends a few rows higher than what the player can see
 const ROW_COUNT = 20
@@ -33,7 +34,7 @@ const COL_COUNT = 9
 # a number in the range [0, 1] which can be set to make the tilemap flash or blink.
 var whiteness := 0.0 setget set_whiteness
 
-# offset used for drawing the 'ghost piece'
+# offset used to draw the 'ghost piece'
 var ghost_shadow_offset: Vector2
 
 # fields used to roll the tilemap back to a previous state
