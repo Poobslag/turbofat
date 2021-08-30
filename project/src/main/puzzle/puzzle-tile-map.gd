@@ -137,6 +137,7 @@ func build_box(rect: Rect2, color_int: int) -> void:
 Deletes the row at the specified location, lowering all higher rows to fill the gap.
 """
 func delete_row(y: int) -> void:
+	erase_playfield_row(y)
 	_shift_rows(y - 1, Vector2.DOWN)
 
 
