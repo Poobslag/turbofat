@@ -21,104 +21,50 @@ const PREFIX_REPLACEMENTS_2743 := {
 	"puzzle/levels/cutscenes/": "level/",
 }
 
-"""
-Returns 'true' if the specified json save items are from an older version of the game.
-"""
-func is_old_save_items(json_save_items: Array) -> bool:
-	var is_old: bool = false
-	var version_string := get_version_string(json_save_items)
-	match version_string:
-		PlayerSave.PLAYER_DATA_VERSION:
-			is_old = false
-		"1b3c", "19c5", "199c", "1922", "1682", "163e", "15d2", "245b", "24cc", "252a", "2743", "2783":
-			is_old = true
-		_:
-			push_warning("Unrecognized save data version: '%s'" % version_string)
-	return is_old
-
 
 """
-Extracts a version string from the specified json save items.
+Creates and configures a SaveConverter capable of converting older player save formats.
 """
-func get_version_string(json_save_items: Array) -> String:
-	var version: SaveItem
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		if save_item.type == "version":
-			version = save_item
-			break
-	return version.value if version else ""
+func new_save_converter() -> SaveConverter:
+	var _save_converter := SaveConverter.new()
+	_save_converter.add_method(self, "_convert_2783", "2783", "27bb")
+	_save_converter.add_method(self, "_convert_2743", "2743", "2783")
+	_save_converter.add_method(self, "_convert_2743", "252a", "2783")
+	_save_converter.add_method(self, "_convert_24cc", "24cc", "252a")
+	_save_converter.add_method(self, "_convert_245b", "245b", "24cc")
+	_save_converter.add_method(self, "_convert_1b3c", "1b3c", "245b")
+	_save_converter.add_method(self, "_convert_19c5", "19c5", "1b3c")
+	_save_converter.add_method(self, "_convert_199c", "199c", "19c5")
+	_save_converter.add_method(self, "_convert_1922", "1922", "199c")
+	_save_converter.add_method(self, "_convert_1682", "1682", "1922")
+	_save_converter.add_method(self, "_convert_163e", "163e", "1682")
+	_save_converter.add_method(self, "_convert_15d2", "15d2", "163e")
+	return _save_converter
 
 
-"""
-Transforms the specified json save items to the latest format.
-"""
-func transform_old_save_items(json_save_items: Array) -> Array:
-	var version_string := get_version_string(json_save_items)
-	match version_string:
-		"2783":
-			json_save_items = _convert_2783(json_save_items)
-		"2743", "252a":
-			json_save_items = _convert_2743(json_save_items)
-		"24cc":
-			json_save_items = _convert_24cc(json_save_items)
-		"245b":
-			json_save_items = _convert_245b(json_save_items)
-		"1b3c":
-			json_save_items = _convert_1b3c(json_save_items)
-		"19c5":
-			json_save_items = _convert_19c5(json_save_items)
-		"199c":
-			json_save_items = _convert_199c(json_save_items)
-		"1922":
-			json_save_items = _convert_1922(json_save_items)
-		"1682":
-			json_save_items = _convert_1682(json_save_items)
-		"163e":
-			json_save_items = _convert_163e(json_save_items)
-		"15d2":
-			json_save_items = _convert_15d2(json_save_items)
-	return json_save_items
+func _convert_2783(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"player_info":
+			var money: int = save_item.value.get("money", 0)
+			
+			# Old versions didn't measure playtime. We approximate their playtime by guessing that a typical
+			# player earns ¥300 per minute. This may be too high but we want a big playtime number when we warn
+			# them about accidentally deleting their main save file.
+			# warning-ignore:integer_division
+			save_item.value["seconds_played"] = money / 5
+		"gameplay_settings", "graphics_settings", "keybind_settings", \
+		"misc_settings", "miscellaneous_settings", "touch_settings", "volume_settings":
+			save_item = null
+	return save_item
 
 
-func _convert_2783(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"version":
-				save_item["value"] = "27bb"
-			"player_info":
-				var money: int = save_item["value"].get("money", 0)
-				
-				# Old versions didn't measure playtime. We approximate their playtime by guessing that a typical
-				# player earns ¥300 per minute. This may be too high but we want a big playtime number when we warn
-				# them about accidentally deleting their main save file.
-				# warning-ignore:integer_division
-				save_item["value"]["seconds_played"] = money / 5
-			"gameplay_settings", "graphics_settings", "keybind_settings", \
-			"misc_settings", "miscellaneous_settings", "touch_settings", "volume_settings":
-				save_item = null
-		if save_item:
-			new_save_items.append(save_item.to_json_dict())
-	return new_save_items
-
-func _convert_2743(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"version":
-				save_item["value"] = "2783"
-			"chat_history":
-				_replace_chat_history_prefixes_for_2743(save_item["value"])
-			"creature_library":
-				_replace_fatness_keys_for_2743(save_item["value"].get("fatnesses", {}))
-		new_save_items.append(save_item.to_json_dict())
-	return new_save_items
+func _convert_2743(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"chat_history":
+			_replace_chat_history_prefixes_for_2743(save_item.value)
+		"creature_library":
+			_replace_fatness_keys_for_2743(save_item.value.get("fatnesses", {}))
+	return save_item
 
 
 """
@@ -155,20 +101,13 @@ func _replace_fatness_keys_for_2743(dict: Dictionary) -> void:
 			dict.erase(key)
 
 
-func _convert_24cc(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"version":
-				save_item["value"] = "252a"
-			"chat_history":
-				_replace_dialog_with_chat(save_item.value.get("history_items", {}))
-				_replace_dialog_with_chat(save_item.value.get("counts", {}))
-				_replace_dialog_with_chat(save_item.value.get("filler_counts", {}))
-		new_save_items.append(save_item.to_json_dict())
-	return new_save_items
+func _convert_24cc(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"chat_history":
+			_replace_dialog_with_chat(save_item.value.get("history_items", {}))
+			_replace_dialog_with_chat(save_item.value.get("counts", {}))
+			_replace_dialog_with_chat(save_item.value.get("filler_counts", {}))
+	return save_item
 
 
 func _replace_dialog_with_chat(dict: Dictionary) -> void:
@@ -179,48 +118,31 @@ func _replace_dialog_with_chat(dict: Dictionary) -> void:
 			dict.erase(key)
 
 
-func _convert_245b(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"version":
-				save_item["value"] = "24cc"
-			"level_history":
-				if save_item.key in [
-						"marsh/hello_everyone",
-						"marsh/hello_skins",
-						"marsh/pulling_for_skins",
-						"marsh/goodbye_skins"]:
-					# some levels were made much harder/different, and their scores should not be carried forward
-					save_item = null
-		
-		if save_item:
-			new_save_items.append(save_item.to_json_dict())
-	return new_save_items
+func _convert_245b(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"level_history":
+			if save_item.key in [
+					"marsh/hello_everyone",
+					"marsh/hello_skins",
+					"marsh/pulling_for_skins",
+					"marsh/goodbye_skins"]:
+				# some levels were made much harder/different, and their scores should not be carried forward
+				save_item = null
+	return save_item
 
 
-func _convert_1b3c(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"version":
-				save_item["value"] = "245b"
-			"level_history":
-				save_item.key = _convert_1b3c_level_id(save_item.key)
-			"successful_levels", "finished_levels":
-				var new_levels := {}
-				var levels: Dictionary = save_item.value
-				for level_id in levels:
-					var new_level_id := _convert_1b3c_level_id(level_id)
-					new_levels[new_level_id] = levels[level_id]
-				save_item.value = new_levels
-		
-		new_save_items.append(save_item.to_json_dict())
-	return new_save_items
+func _convert_1b3c(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"level_history":
+			save_item.key = _convert_1b3c_level_id(save_item.key)
+		"successful_levels", "finished_levels":
+			var new_levels := {}
+			var levels: Dictionary = save_item.value
+			for level_id in levels:
+				var new_level_id := _convert_1b3c_level_id(level_id)
+				new_levels[new_level_id] = levels[level_id]
+			save_item.value = new_levels
+	return save_item
 
 
 func _convert_1b3c_level_id(value: String) -> String:
@@ -230,44 +152,29 @@ func _convert_1b3c_level_id(value: String) -> String:
 	return new_value
 
 
-func _convert_19c5(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"version":
-				save_item["value"] = "1b3c"
-			"level_history":
-				save_item.key = _convert_199c_level_id(save_item.key)
-			"successful_levels", "finished_levels":
-				var new_levels := {}
-				var levels: Dictionary = save_item.value
-				for level_id in levels:
-					var new_level_id := _convert_199c_level_id(level_id)
-					new_levels[new_level_id] = levels[level_id]
-				save_item.value = new_levels
-		
-		new_save_items.append(save_item.to_json_dict())
-	return new_save_items
+func _convert_19c5(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"level_history":
+			save_item.key = _convert_199c_level_id(save_item.key)
+		"successful_levels", "finished_levels":
+			var new_levels := {}
+			var levels: Dictionary = save_item.value
+			for level_id in levels:
+				var new_level_id := _convert_199c_level_id(level_id)
+				new_levels[new_level_id] = levels[level_id]
+			save_item.value = new_levels
+	return save_item
 
 
-func _convert_199c(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"version":
-				save_item["value"] = "19c5"
-			"scenario_history":
-				save_item.type = "level_history"
-			"successful_scenarios":
-				save_item.type = "successful_levels"
-			"finished_scenarios":
-				save_item.type = "finished_levels"
-		new_save_items.append(save_item.to_json_dict())
-	return new_save_items
+func _convert_199c(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"scenario_history":
+			save_item.type = "level_history"
+		"successful_scenarios":
+			save_item.type = "successful_levels"
+		"finished_scenarios":
+			save_item.type = "finished_levels"
+	return save_item
 
 
 func _convert_199c_level_id(value: String) -> String:
@@ -286,24 +193,11 @@ func _convert_199c_level_id(value: String) -> String:
 	return new_value
 
 
-func _convert_1922(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		save_item.type = StringUtils.hyphens_to_underscores(save_item.type)
-		save_item.key = StringUtils.hyphens_to_underscores(save_item.key)
-		if typeof(save_item.value) == TYPE_DICTIONARY:
-			_replace_key_hyphens_with_underscores(save_item.value)
-		
-		match save_item.type:
-			"version":
-				save_item["value"] = "199c"
-			"chat_history":
-				_replace_dialog_with_creatures_primary(save_item["value"])
-		
-		new_save_items.append(save_item.to_json_dict())
-	return new_save_items
+func _convert_1922(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"chat_history":
+			_replace_dialog_with_creatures_primary(save_item.value)
+	return save_item
 
 
 func _replace_dialog_with_creatures_primary(dict: Dictionary) -> void:
@@ -318,24 +212,20 @@ func _replace_dialog_with_creatures_primary(dict: Dictionary) -> void:
 					sub_dict.erase(key)
 
 
-func _convert_1682(json_save_items: Array) -> Array:
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		save_item.type = StringUtils.hyphens_to_underscores(save_item.type)
-		save_item.key = StringUtils.hyphens_to_underscores(save_item.key)
-		if typeof(save_item.value) == TYPE_DICTIONARY:
-			_replace_key_hyphens_with_underscores(save_item.value)
-		
-		match save_item.type:
-			"version":
-				save_item["value"] = "1922"
-			"chat_history":
-				_replace_key_hyphens_with_underscores(save_item["value"]["history_items"])
-		
-		new_save_items.append(save_item.to_json_dict())
-	return new_save_items
+func _convert_1682(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"chat-history":
+			save_item.type = StringUtils.hyphens_to_underscores(save_item.type)
+			save_item.key = StringUtils.hyphens_to_underscores(save_item.key)
+			if typeof(save_item.value) == TYPE_DICTIONARY:
+				_replace_key_hyphens_with_underscores(save_item.value)
+			_replace_key_hyphens_with_underscores(save_item.value["history_items"])
+		_:
+			save_item.type = StringUtils.hyphens_to_underscores(save_item.type)
+			save_item.key = StringUtils.hyphens_to_underscores(save_item.key)
+			if typeof(save_item.value) == TYPE_DICTIONARY:
+				_replace_key_hyphens_with_underscores(save_item.value)
+	return save_item
 
 
 func _replace_key_hyphens_with_underscores(dict: Dictionary) -> void:
@@ -345,48 +235,38 @@ func _replace_key_hyphens_with_underscores(dict: Dictionary) -> void:
 			dict.erase(key)
 
 
-func _convert_163e(json_save_items: Array) -> Array:
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"scenario-history":
-				for rank_result_obj in save_item.value:
-					var rank_result_dict: Dictionary = rank_result_obj
-					if rank_result_dict.get("lost", true):
-						rank_result_dict["success"] = false
-			"version":
-				json_save_item_obj["value"] = "1682"
-	return json_save_items
+func _convert_163e(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"scenario-history":
+			for rank_result_obj in save_item.value:
+				var rank_result_dict: Dictionary = rank_result_obj
+				if rank_result_dict.get("lost", true):
+					rank_result_dict["success"] = false
+	return save_item
 
 
-func _convert_15d2(json_save_items: Array) -> Array:
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"scenario-history":
-				match save_item.key:
-					"rank-7k": _append_score_success_for_15d2(save_item, 200)
-					"rank-6k": _append_score_success_for_15d2(save_item, 200)
-					"rank-5k": _append_score_success_for_15d2(save_item, 750)
-					"rank-4k": _append_score_success_for_15d2(save_item, 300)
-					"rank-3k": _append_score_success_for_15d2(save_item, 999)
-					"rank-2k": _append_time_success_for_15d2(save_item, 180)
-					"rank-1k": _append_score_success_for_15d2(save_item, 1000)
-					"rank-1d": _append_score_success_for_15d2(save_item, 1200)
-					"rank-2d": _append_time_success_for_15d2(save_item, 300)
-					"rank-3d": _append_score_success_for_15d2(save_item, 750)
-					"rank-4d": _append_score_success_for_15d2(save_item, 2000)
-					"rank-5d": _append_score_success_for_15d2(save_item, 2500)
-					"rank-6d": _append_time_success_for_15d2(save_item, 180)
-					"rank-7d": _append_score_success_for_15d2(save_item, 4000)
-					"rank-8d": _append_score_success_for_15d2(save_item, 4000)
-					"rank-9d": _append_score_success_for_15d2(save_item, 6000)
-					"rank-10d": _append_score_success_for_15d2(save_item, 15000)
-			"version":
-				json_save_item_obj["value"] = "163e"
-	return json_save_items
+func _convert_15d2(save_item: SaveItem) -> SaveItem:
+	match save_item.type:
+		"scenario-history":
+			match save_item.key:
+				"rank-7k": _append_score_success_for_15d2(save_item, 200)
+				"rank-6k": _append_score_success_for_15d2(save_item, 200)
+				"rank-5k": _append_score_success_for_15d2(save_item, 750)
+				"rank-4k": _append_score_success_for_15d2(save_item, 300)
+				"rank-3k": _append_score_success_for_15d2(save_item, 999)
+				"rank-2k": _append_time_success_for_15d2(save_item, 180)
+				"rank-1k": _append_score_success_for_15d2(save_item, 1000)
+				"rank-1d": _append_score_success_for_15d2(save_item, 1200)
+				"rank-2d": _append_time_success_for_15d2(save_item, 300)
+				"rank-3d": _append_score_success_for_15d2(save_item, 750)
+				"rank-4d": _append_score_success_for_15d2(save_item, 2000)
+				"rank-5d": _append_score_success_for_15d2(save_item, 2500)
+				"rank-6d": _append_time_success_for_15d2(save_item, 180)
+				"rank-7d": _append_score_success_for_15d2(save_item, 4000)
+				"rank-8d": _append_score_success_for_15d2(save_item, 4000)
+				"rank-9d": _append_score_success_for_15d2(save_item, 6000)
+				"rank-10d": _append_score_success_for_15d2(save_item, 15000)
+	return save_item
 
 
 """

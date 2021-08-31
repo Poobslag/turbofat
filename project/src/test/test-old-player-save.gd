@@ -31,6 +31,7 @@ func load_legacy_player_data(filename: String) -> void:
 func test_15d2_rank_success() -> void:
 	load_legacy_player_data("turbofat-15d2.json")
 	
+	assert_true(PlayerData.level_history.results("rank/7k").size() >= 1)
 	var history_rank_7k: RankResult = PlayerData.level_history.results("rank/7k")[0]
 	
 	# we didn't used to store 'success', but it should be calculated based on how well they did
@@ -41,8 +42,10 @@ func test_163e_lost_erases_success() -> void:
 	load_legacy_player_data("turbofat-163e.json")
 	
 	# rank-6d was a success, and the player didn't lose
+	assert_true(PlayerData.level_history.results("rank/6d").size() >= 1)
 	assert_eq(PlayerData.level_history.results("rank/6d")[0].success, true)
 	# rank-7d was recorded as a success, but the player lost
+	assert_true(PlayerData.level_history.results("rank/7d").size() >= 1)
 	assert_eq(PlayerData.level_history.results("rank/7d")[0].success, false)
 
 
