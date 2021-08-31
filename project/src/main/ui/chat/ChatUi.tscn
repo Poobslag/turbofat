@@ -46,6 +46,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 chat_frame_path = NodePath("../ChatFrame")
+narration_frame_path = NodePath("../NarrationFrame")
 
 [connection signal="chat_event_played" from="." to="ChatAdvancer" method="_on_ChatUi_chat_event_played"]
 [connection signal="chat_finished" from="." to="TouchTranslator" method="_on_ChatUi_chat_finished"]
