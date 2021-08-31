@@ -4,6 +4,7 @@ Converts touch events into ui_accept events which can be handled by the ChatUi.
 """
 
 export (NodePath) var chat_frame_path: NodePath
+export (NodePath) var narration_frame_path: NodePath
 
 # index of the current touch event, or -1 if there is none
 var _touch_index := -1
@@ -12,7 +13,8 @@ var _touch_index := -1
 # echo events cannot be emitted without an InputEventKey instance which requires a scancode
 var _ui_accept_scancode: int
 
-onready var _chat_frame := get_node(chat_frame_path)
+onready var _chat_frame: ChatFrame = get_node(chat_frame_path)
+onready var _narration_frame: NarrationFrame = get_node(narration_frame_path)
 
 func _ready() -> void:
 	# calculate a scancode which triggers a ui_accept action
@@ -25,7 +27,10 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not _chat_frame.is_chat_window_showing() or not is_processing():
+	if not is_processing():
+		return
+	
+	if not _chat_frame.is_chat_window_showing() and not _narration_frame.is_narration_window_showing():
 		return
 	
 	if event is InputEventScreenTouch:
