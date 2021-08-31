@@ -34,7 +34,7 @@ var data_filename := "user://config.json"
 var legacy_filename := "user://turbofat0.save"
 
 # Provides backwards compatibility with older save formats
-var old_save := OldSystemSave.new()
+var old_save := OldSystemSave.new().new_save_converter()
 
 func _ready() -> void:
 	load_system_data()
@@ -107,9 +107,9 @@ func load_system_data() -> bool:
 	
 	while old_save.is_old_save_items(json_save_items):
 		# convert the old save file to a new format
-		var old_version := old_save.get_version_string(json_save_items)
+		var old_version := SaveConverter.get_version_string(json_save_items)
 		json_save_items = old_save.transform_old_save_items(json_save_items)
-		if old_save.get_version_string(json_save_items) == old_version:
+		if SaveConverter.get_version_string(json_save_items) == old_version:
 			# failed to convert, but the data might still load
 			push_warning("Couldn't convert old save data version '%s'" % old_version)
 			break
