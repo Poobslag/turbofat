@@ -272,12 +272,12 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "GameplaySettings",
 "language": "GDScript",
-"path": "res://src/main/gameplay-settings.gd"
+"path": "res://src/main/settings/gameplay-settings.gd"
 }, {
 "base": "Reference",
 "class": "GraphicsSettings",
 "language": "GDScript",
-"path": "res://src/main/graphics-settings.gd"
+"path": "res://src/main/settings/graphics-settings.gd"
 }, {
 "base": "Sprite",
 "class": "HeadBobber",
@@ -312,7 +312,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "KeybindSettings",
 "language": "GDScript",
-"path": "res://src/main/keybind/keybind-settings.gd"
+"path": "res://src/main/settings/keybind-settings.gd"
 }, {
 "base": "Sprite",
 "class": "LeafPoof",
@@ -432,7 +432,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "MiscSettings",
 "language": "GDScript",
-"path": "res://src/main/misc-settings.gd"
+"path": "res://src/main/settings/misc-settings.gd"
 }, {
 "base": "Control",
 "class": "MoneyLabel",
@@ -714,10 +714,10 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/save-item.gd"
 }, {
-"base": "HBoxContainer",
+"base": "Reference",
 "class": "SaveSlotControl",
 "language": "GDScript",
-"path": "res://src/main/ui/settings-save-slot.gd"
+"path": "res://src/main/ui/settings/settings-save-slot.gd"
 }, {
 "base": "Reference",
 "class": "ScoreRules",
@@ -732,7 +732,7 @@ _global_script_classes=[ {
 "base": "CanvasLayer",
 "class": "SettingsMenu",
 "language": "GDScript",
-"path": "res://src/main/ui/menu/settings-menu.gd"
+"path": "res://src/main/ui/settings/settings-menu.gd"
 }, {
 "base": "Node2D",
 "class": "ShadowCasterShadows",
@@ -802,7 +802,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "TouchSettings",
 "language": "GDScript",
-"path": "res://src/main/touch-settings.gd"
+"path": "res://src/main/settings/touch-settings.gd"
 }, {
 "base": "Control",
 "class": "TutorialDiagram",
@@ -832,7 +832,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "VolumeSettings",
 "language": "GDScript",
-"path": "res://src/main/volume-settings.gd"
+"path": "res://src/main/settings/volume-settings.gd"
 }, {
 "base": "Creature",
 "class": "WalkingBuddy",
@@ -1057,7 +1057,7 @@ CrumbDefinitions="*res://src/main/puzzle/crumb-definitions.gd"
 CurrentLevel="*res://src/main/puzzle/level/current-level.gd"
 CutsceneManager="*res://src/main/world/cutscene-manager.gd"
 DnaUtils="*res://src/main/world/creature/dna-utils.gd"
-KeybindManager="*res://src/main/keybind/keybind-manager.gd"
+KeybindManager="*res://src/main/settings/keybind-manager.gd"
 LevelLibrary="*res://src/main/ui/level-select/level-library.gd"
 MilestoneManager="*res://src/main/puzzle/milestone-manager.gd"
 MusicPlayer="*res://src/main/music/MusicPlayer.tscn"
