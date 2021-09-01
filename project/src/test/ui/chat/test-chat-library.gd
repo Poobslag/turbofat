@@ -129,3 +129,22 @@ func test_add_mega_lull_characters() -> void:
 	assert_eq(ChatLibrary.add_mega_lull_characters("OH, MY!!!"), "O/H/,/// M/Y/!/!/!")
 	assert_eq(ChatLibrary.add_mega_lull_characters("¡¡¡OH, MI!!!"), "¡/¡/¡/O/H/,/// M/I/!/!/!")
 	assert_eq(ChatLibrary.add_mega_lull_characters("О, МОЙ!"), "О/,/// М/О/Й/!")
+
+
+func test_chat_key_from_path() -> void:
+	assert_eq(ChatLibrary.chat_key_from_path("res://assets/main/creatures/primary/bones/filler-001.chat"),
+			"creature/bones/filler_001")
+	assert_eq(ChatLibrary.chat_key_from_path(
+				"res://assets/main/puzzle/levels/cutscenes/marsh/hello-everyone-000.chat"),
+			"level/marsh/hello_everyone_000")
+	assert_eq(ChatLibrary.chat_key_from_path("res://assets/main/chat/marsh-crystal.chat"),
+			"chat/marsh_crystal")
+
+
+func test_path_from_chat_key() -> void:
+	assert_eq(ChatLibrary.path_from_chat_key("creature/bones/filler_001"),
+			"res://assets/main/creatures/primary/bones/filler-001.chat")
+	assert_eq(ChatLibrary.path_from_chat_key("level/marsh/hello_everyone_000"),
+			"res://assets/main/puzzle/levels/cutscenes/marsh/hello-everyone-000.chat")
+	assert_eq(ChatLibrary.path_from_chat_key("chat/marsh_crystal"),
+			"res://assets/main/chat/marsh-crystal.chat")

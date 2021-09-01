@@ -401,7 +401,7 @@ position = Vector2( 974.527, 916.947 )
 position = Vector2( 583.168, 1297.78 )
 overworld_world_path = NodePath("../..")
 target_properties = {
-"chat_path": ""
+"chat_key": ""
 }
 spawn_if = "not level_finished marsh/pulling_for_everyone"
 

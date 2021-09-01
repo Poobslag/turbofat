@@ -57,19 +57,19 @@ func get_filler_count(creature_name: String) -> int:
 	return filler_counts.get(creature_name, 0) as int
 
 
-func add_history_item(history_key: String) -> void:
-	var chat_prefix := StringUtils.substring_before_last(history_key, "/")
+func add_history_item(chat_key: String) -> void:
+	var chat_prefix := StringUtils.substring_before_last(chat_key, "/")
 	
 	if not chat_counts.has(chat_prefix):
 		chat_counts[chat_prefix] = 0
 	var chat_count: int = chat_counts[chat_prefix]
 	chat_counts[chat_prefix] += 1
 	
-	chat_history[history_key] = chat_count
+	chat_history[chat_key] = chat_count
 
 
-func delete_history_item(history_key: String) -> void:
-	chat_history.erase(history_key)
+func delete_history_item(chat_key: String) -> void:
+	chat_history.erase(chat_key)
 
 
 """
@@ -77,19 +77,19 @@ Returns how long ago the player had the specified chat.
 
 Used to avoid repeating conversations too frequently.
 """
-func get_chat_age(history_key: String) -> int:
+func get_chat_age(chat_key: String) -> int:
 	# We subtract the index assigned to the chat history from the total number
 	# of chats for that creature to calculate the entry's age.
-	var chat_prefix := StringUtils.substring_before_last(history_key, "/")
+	var chat_prefix := StringUtils.substring_before_last(chat_key, "/")
 	var chat_count: int = chat_counts.get(chat_prefix, 0)
 	var result := CHAT_AGE_NEVER
-	if chat_count > 0 and chat_history.has(history_key):
-		result = chat_count - chat_history.get(history_key) - 1
+	if chat_count > 0 and chat_history.has(chat_key):
+		result = chat_count - chat_history.get(chat_key) - 1
 	return result
 
 
-func is_chat_finished(history_key: String) -> bool:
-	return chat_history.has(history_key)
+func is_chat_finished(chat_key: String) -> bool:
+	return chat_history.has(chat_key)
 
 
 func to_json_dict() -> Dictionary:
@@ -121,37 +121,3 @@ func _convert_float_values_to_ints(dict: Dictionary) -> void:
 	for key in dict:
 		if dict[key] is float:
 			dict[key] = int(dict[key])
-
-
-"""
-Converts a path like 'res://assets/main/creatures/primary/bones/filler-001.chat' into a history key like
-'chat/bones/filler_001'.
-
-Using these clean short history keys has many benefits. Most notably they aren't invalidated if we move files or
-change extensions.
-"""
-static func history_key_from_path(path: String) -> String:
-	var history_key := path
-	history_key = history_key.trim_suffix(".chat")
-	history_key = history_key.trim_prefix("res://assets/main/")
-	if history_key.begins_with("creatures/primary/"):
-		history_key = "creature/" + history_key.trim_prefix("creatures/primary/")
-	elif history_key.begins_with("puzzle/levels/cutscenes"):
-		history_key = "level/" + history_key.trim_prefix("puzzle/levels/cutscenes/")
-	history_key = StringUtils.hyphens_to_underscores(history_key)
-	return history_key
-
-
-"""
-Converts a history key like 'creature/bones/filler_001' into a path like
-'res://assets/main/creatures/primary/bones/filler-001.chat'
-"""
-static func path_from_history_key(history_key: String) -> String:
-	var path := history_key
-	path = StringUtils.underscores_to_hyphens(history_key)
-	if history_key.begins_with("creature/"):
-		path = path.replace("creature/", "creatures/primary/")
-	elif history_key.begins_with("level/"):
-		path = path.replace("level/", "puzzle/levels/cutscenes/")
-	path = "res://assets/main/%s.chat" % [path]
-	return path

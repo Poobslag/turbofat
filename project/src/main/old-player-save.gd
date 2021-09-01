@@ -68,7 +68,7 @@ func _convert_2743(save_item: SaveItem) -> SaveItem:
 
 
 """
-Replace chat history keys like 'chat/richie/filler_000' with 'creature/richie/filler_000'
+Replace chat keys like 'chat/richie/filler_000' with 'creature/richie/filler_000'
 """
 func _replace_chat_history_prefixes_for_2743(dict: Dictionary) -> void:
 	for sub_dict in dict.values():

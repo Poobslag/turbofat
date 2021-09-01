@@ -19,7 +19,7 @@ extents = Vector2( 25, 10 )
 ]]
 script = ExtResource( 1 )
 shadow_scale = 0.5
-chat_path = "res://assets/main/chat/for-lease-sign.chat"
+chat_key = "chat/for-lease-sign"
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 1 )

@@ -24,11 +24,11 @@ func apply_flags() -> void:
 		if not line:
 			pass
 		elif line.begins_with("chat_finished "):
-			var history_key := StringUtils.substring_after(line, "chat_finished ")
-			PlayerData.chat_history.add_history_item(history_key)
+			var chat_key := StringUtils.substring_after(line, "chat_finished ")
+			PlayerData.chat_history.add_history_item(chat_key)
 		elif line.begins_with("not chat_finished "):
-			var history_key := StringUtils.substring_after(line, "chat_finished ")
-			PlayerData.chat_history.delete_history_item(history_key)
+			var chat_key := StringUtils.substring_after(line, "chat_finished ")
+			PlayerData.chat_history.delete_history_item(chat_key)
 		elif line.begins_with("level_finished "):
 			var level_key := StringUtils.substring_after(line, "level_finished ")
 			PlayerData.level_history.finished_levels[level_key] = OS.get_datetime()
