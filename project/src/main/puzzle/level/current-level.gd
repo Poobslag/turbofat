@@ -113,7 +113,7 @@ func should_play_cutscene(chat_tree: ChatTree, ignore_player_preferences = false
 	elif not ignore_player_preferences and cutscene_force == Levels.CutsceneForce.PLAY:
 		# player wants to play this cutscene
 		result = true
-	elif PlayerData.chat_history.is_chat_finished(chat_tree.history_key):
+	elif PlayerData.chat_history.is_chat_finished(chat_tree.chat_key):
 		# skip repeated cutscenes
 		result = false
 	elif chat_tree.meta and chat_tree.meta.get("skip_if") \

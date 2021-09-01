@@ -4,6 +4,7 @@ Contains rank information for a playthrough. This includes raw statistics such a
 cleared, as well as derived statistics such as the computed lines-per-minute rank.
 """
 
+const BEST_RANK := 0.0
 const WORST_RANK := 999.0
 
 var timestamp := OS.get_datetime()

@@ -50,9 +50,12 @@ func chat_tree_for_creature_chat_id(creature_def: CreatureDef, chat_id: String) 
 
 """
 Returns the chat tree for the specified chat key, such as 'chat/marsh_prologue'.
+
+Parameters:
+	'chat_key': A key such as 'chat/marsh_prologue' identifying a chat resource
 """
 func chat_tree_for_key(chat_key: String) -> ChatTree:
-	var path := ChatHistory.path_from_history_key(chat_key)
+	var path := path_from_chat_key(chat_key)
 	return chat_tree_from_file(path)
 
 
@@ -140,8 +143,8 @@ func select_from_chat_selectors(chat_selectors: Array, creature_id: String, fill
 		var chat_selector: Dictionary = chat_selector_obj
 
 		var repeat_age: int = chat_selector.get("repeat", 25)
-		var history_key := "creature/%s/%s" % [creature_id, chat_selector["chat"]]
-		var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
+		var chat_key := "creature/%s/%s" % [creature_id, chat_selector["chat"]]
+		var chat_age: int = PlayerData.chat_history.get_chat_age(chat_key)
 		if chat_age < repeat_age:
 			# skip; we've had this conversation too recently
 			continue
@@ -171,8 +174,8 @@ func select_from_chat_selectors(chat_selectors: Array, creature_id: String, fill
 		var result_chat_age: int
 		
 		for filler_id in filler_ids:
-			var history_key := "creature/%s/%s" % [creature_id, filler_id]
-			var chat_age: int = PlayerData.chat_history.get_chat_age(history_key)
+			var chat_key := "creature/%s/%s" % [creature_id, filler_id]
+			var chat_age: int = PlayerData.chat_history.get_chat_age(chat_key)
 			if not result or chat_age > result_chat_age:
 				# found an older filler conversation; replace the current result
 				result = filler_id
@@ -282,3 +285,48 @@ func _preroll_path(level_id: String) -> String:
 func _postroll_path(level_id: String) -> String:
 	return "res://assets/main/puzzle/levels/cutscenes/%s-%s%s" % \
 			[StringUtils.underscores_to_hyphens(level_id), POSTROLL_SUFFIX, CHAT_EXTENSION]
+
+
+"""
+Converts a path like 'res://assets/main/creatures/primary/bones/filler-001.chat' into a chat key like
+'chat/bones/filler_001'.
+
+Using these chat keys has many benefits. Most notably they aren't invalidated if we move files or change extensions.
+
+Parameters:
+	'path': The path of a chat resource.
+
+Returns:
+	A key such as 'chat/marsh_prologue' corresponding to the specified chat resource
+"""
+static func chat_key_from_path(path: String) -> String:
+	var chat_key := path
+	chat_key = chat_key.trim_suffix(".chat")
+	chat_key = chat_key.trim_prefix("res://assets/main/")
+	if chat_key.begins_with("creatures/primary/"):
+		chat_key = "creature/" + chat_key.trim_prefix("creatures/primary/")
+	elif chat_key.begins_with("puzzle/levels/cutscenes"):
+		chat_key = "level/" + chat_key.trim_prefix("puzzle/levels/cutscenes/")
+	chat_key = StringUtils.hyphens_to_underscores(chat_key)
+	return chat_key
+
+
+"""
+Converts a chat key like 'creature/bones/filler_001' into a path like
+'res://assets/main/creatures/primary/bones/filler-001.chat'
+
+Parameters:
+	'chat_key': A chat key such as 'chat/marsh_prologue'
+
+Returns:
+	The path of the resource identified by the specified chat key.
+"""
+static func path_from_chat_key(chat_key: String) -> String:
+	var path := chat_key
+	path = StringUtils.underscores_to_hyphens(chat_key)
+	if chat_key.begins_with("creature/"):
+		path = path.replace("creature/", "creatures/primary/")
+	elif chat_key.begins_with("level/"):
+		path = path.replace("level/", "puzzle/levels/cutscenes/")
+	path = "res://assets/main/%s.chat" % [path]
+	return path

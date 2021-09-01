@@ -62,12 +62,12 @@ func _on_StartButton_pressed() -> void:
 func _on_OpenFileDialog_file_selected(path: String) -> void:
 	if path.begins_with("res://assets/main/") \
 			and path.ends_with(ChatLibrary.CHAT_EXTENSION):
-		_open_input.value = ChatHistory.history_key_from_path(path)
+		_open_input.value = ChatLibrary.chat_key_from_path(path)
 	else:
 		_error_dialog.dialog_text = "%s doesn't seem like the path to a cutscene file." % [path]
 		_error_dialog.popup_centered()
 
 
 func _on_OpenButton_pressed() -> void:
-	_open_dialog.current_path = ChatHistory.path_from_history_key(_open_input.value)
+	_open_dialog.current_path = ChatLibrary.path_from_chat_key(_open_input.value)
 	_open_dialog.popup_centered()

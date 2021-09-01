@@ -37,7 +37,7 @@ const LOCATION_SCENE_PATHS_BY_ID := {
 }
 
 # unique key to identify this conversation in the chat history
-var history_key: String
+var chat_key: String
 
 # metadata including whether the chat event is 'filler', 'notable' or 'inplace'
 var meta: Dictionary
@@ -167,7 +167,7 @@ func destination_scene_path() -> String:
 
 
 func reset() -> void:
-	history_key = ""
+	chat_key = ""
 	meta = {}
 	events = {}
 	location_id = ""

@@ -104,12 +104,12 @@ func load_chat_tree() -> ChatTree:
 	var chat_tree: ChatTree
 	if focused_chattable is Creature:
 		chat_tree = ChatLibrary.chat_tree_for_creature(focused_chattable)
-	elif focused_chattable.has_meta("chat_path"):
-		var chat_path: String = focused_chattable.get_meta("chat_path")
-		chat_tree = ChatLibrary.chat_tree_from_file(chat_path)
+	elif focused_chattable.has_meta("chat_key"):
+		var chat_key: String = focused_chattable.get_meta("chat_key")
+		chat_tree = ChatLibrary.chat_tree_for_key(chat_key)
 	else:
-		# can't look up chat events without a chat_path; return an empty array
-		push_warning("Chattable %s does not define a 'chat_path' property." % focused_chattable)
+		# can't look up chat events without a chat_key; return an empty array
+		push_warning("Chattable %s does not define a 'chat_key' property." % focused_chattable)
 	return chat_tree
 
 
