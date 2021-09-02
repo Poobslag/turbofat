@@ -5,6 +5,7 @@ Scene which lets the player launch tutorials.
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
+	MusicPlayer.play_chill_bgm()
 
 
 func _exit_tree() -> void:

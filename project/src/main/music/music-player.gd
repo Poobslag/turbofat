@@ -34,6 +34,7 @@ onready var _upbeat_bgms := [
 		$AcidReflux, $ExtraSprinkles, $ChocolateChip, $GingerbreadHouse]
 
 onready var _tutorial_bgms := [$MyFatnessPal]
+onready var _music_tween := $MusicTween
 
 func _ready() -> void:
 	all_bgms = _chill_bgms + _upbeat_bgms + _tutorial_bgms
@@ -47,31 +48,29 @@ func _ready() -> void:
 """
 Plays a 'chill' song; something suitable for background music when the player's navigating menus or wandering the
 overworld.
+
+If a chill song is already playing, this method has no effect.
 """
-func play_chill_bgm() -> void:
-	_play_random_bgm(_chill_bgms)
-
-
-func is_playing_chill_bgm() -> bool:
-	return current_bgm in _chill_bgms
-
-
-func is_playing_tutorial_bgm() -> bool:
-	return current_bgm in _tutorial_bgms
+func play_chill_bgm(fade_in: bool = true) -> void:
+	_play_next_bgm(_chill_bgms, fade_in)
 
 
 """
 Plays an 'upbeat' song; something suitable when the player's playing a puzzle level.
+
+If an upbeat song is already playing, this method has no effect.
 """
-func play_upbeat_bgm() -> void:
-	_play_random_bgm(_upbeat_bgms)
+func play_upbeat_bgm(fade_in: bool = true) -> void:
+	_play_next_bgm(_upbeat_bgms, fade_in)
 
 
 """
 Plays a 'tutorial song'; something suitable when the player is following a puzzle tutorial.
+
+If a tutorial song is already playing, this method has no effect.
 """
-func play_tutorial_bgm() -> void:
-	_play_random_bgm(_tutorial_bgms)
+func play_tutorial_bgm(fade_in: bool = true) -> void:
+	_play_next_bgm(_tutorial_bgms, fade_in)
 
 
 """
@@ -81,11 +80,11 @@ Usually it's OK for a track to start abrubtly, but sometimes we want to fade mus
 """
 func fade_in(duration: float = MusicTween.FADE_IN_DURATION) -> void:
 	current_bgm.volume_db = MIN_VOLUME
-	$MusicTween.fade_in(current_bgm, _max_volume_db_by_bgm[current_bgm.name], duration)
+	_music_tween.fade_in(current_bgm, _max_volume_db_by_bgm[current_bgm.name], duration)
 
 
 func is_fading_in() -> bool:
-	return $MusicTween.fading_state == MusicTween.FADING_IN
+	return _music_tween.fading_state == MusicTween.FADING_IN
 
 
 """
@@ -95,14 +94,14 @@ func stop(duration: float = MusicTween.FADE_OUT_DURATION) -> void:
 	if current_bgm == null:
 		return
 	
-	$MusicTween.fade_out(current_bgm, MIN_VOLUME, duration)
+	_music_tween.fade_out(current_bgm, MIN_VOLUME, duration)
 	current_bgm = null
 
 
 """
 Plays the specified song.
 
-Any currently playing song is abruptly stopped.
+Any currently playing song is faded out.
 
 Parameters:
 	'from_position': If 0 or greater, the song will begin playing from the specified position. If unspecified or
@@ -124,9 +123,21 @@ func play_bgm(new_bgm: CheckpointSong, from_position: float = -1.0) -> void:
 """
 Plays the first song from the specified list, and reorders the songs.
 
-Any currently playing song is abruptly stopped.
+If a song from the specified list is already playing, this method has no effect. Otherwise, any currently playing song
+is faded out.
+
+Parameters:
+	'bgms': Array of CheckpointSong instances to play
+	
+	'fade_in': 'true' if the music should fade in
 """
-func _play_random_bgm(bgms: Array) -> void:
+func _play_next_bgm(bgms: Array, fade_in: bool) -> void:
+	if current_bgm in bgms:
+		# a song from the specified list is already playing; don't interrupt it
+		return
+	
 	var new_bgm: CheckpointSong = bgms.pop_front()
 	bgms.push_back(new_bgm)
 	play_bgm(new_bgm)
+	if fade_in:
+		fade_in()

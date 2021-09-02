@@ -20,8 +20,7 @@ func _ready() -> void:
 		# For regular players the Breadcrumb trail will already be initialized by the menus.
 		Breadcrumb.initialize_trail()
 	
-	if not MusicPlayer.is_playing_chill_bgm() and not MusicTransition.is_fading_in_bgm():
-		MusicPlayer.play_chill_bgm()
+	MusicPlayer.play_chill_bgm()
 	
 	if CutsceneManager.is_front_chat_tree():
 		_launch_cutscene()

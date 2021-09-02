@@ -13,10 +13,6 @@ func _ready() -> void:
 	SceneTransition.connect("fade_in_started", self, "_on_SceneTransition_fade_in_started")
 
 
-func is_fading_in_bgm() -> bool:
-	return true if _faded_bgm else false
-
-
 """
 When the scene fades back in, we un-fade any music we previously faded out.
 """

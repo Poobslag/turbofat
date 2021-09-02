@@ -68,6 +68,7 @@ var _rank_lowlights := []
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
+	MusicPlayer.play_chill_bgm()
 	
 	# default mode/difficulty if the player hasn't played a level recently
 	var current_mode := "Ultra"

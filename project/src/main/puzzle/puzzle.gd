@@ -10,6 +10,7 @@ onready var _settings_menu: SettingsMenu = $SettingsMenu
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
+	MusicPlayer.play_chill_bgm()
 	
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
@@ -308,8 +309,4 @@ func _on_SettingsMenu_quit_pressed() -> void:
 	if _settings_menu.quit_type == SettingsMenu.GIVE_UP:
 		PuzzleState.make_player_lose()
 	else:
-		if not MusicPlayer.is_playing_chill_bgm():
-			MusicPlayer.stop()
-			MusicPlayer.play_chill_bgm()
-			MusicPlayer.fade_in()
 		_quit_puzzle()

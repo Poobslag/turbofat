@@ -33,7 +33,7 @@ This is used at the end of each tutorial when customers come in.
 """
 func start_customer_countdown() -> void:
 	yield(PuzzleState, "after_level_changed")
-	MusicPlayer.play_upbeat_bgm()
+	MusicPlayer.play_upbeat_bgm(false)
 	puzzle.start_level_countdown()
 
 
