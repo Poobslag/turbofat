@@ -7,7 +7,7 @@ Populates/unpopulates the creatures and obstacles on the overworld.
 export (NodePath) var shadow_caster_shadows_path: NodePath
 export (NodePath) var creature_shadows_path: NodePath
 export (NodePath) var chat_icons_path: NodePath
-export (PackedScene) var CreaturePackedScene: PackedScene
+export (PackedScene) var CreatureScene: PackedScene
 
 onready var _shadow_caster_shadows: ShadowCasterShadows = get_node(shadow_caster_shadows_path)
 onready var _creature_shadows: CreatureShadows = get_node(creature_shadows_path)
@@ -107,7 +107,7 @@ func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 Creates a new creature with the specified creature_id and adds it to the scene.
 """
 func add_creature(creature_id: String, chattable: bool = true) -> Creature:
-	var creature: Creature = CreaturePackedScene.instance()
+	var creature: Creature = CreatureScene.instance()
 	creature.creature_id = creature_id
 	$Obstacles.add_child(creature)
 	if chattable:

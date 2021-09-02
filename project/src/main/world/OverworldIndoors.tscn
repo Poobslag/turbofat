@@ -86,7 +86,7 @@ script = ExtResource( 4 )
 shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
 creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
 chat_icons_path = NodePath("ChatIcons")
-CreaturePackedScene = ExtResource( 19 )
+CreatureScene = ExtResource( 19 )
 
 [node name="Ground" type="Node2D" parent="World"]
 z_index = -1

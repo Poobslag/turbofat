@@ -15,7 +15,7 @@ const CREATURE_IDS := [
 	"rhinosaur", "snorz", "squawkapus", "stunker", "terpion", "vile",
 ]
 
-export (PackedScene) var CreaturePackedScene: PackedScene
+export (PackedScene) var CreatureScene: PackedScene
 
 func _ready() -> void:
 	# We use a predictable fatness value so that the player's performance in the game will not impact the results
@@ -35,7 +35,7 @@ Parameters:
 """
 func _add_creatures(count: int) -> void:
 	for _i in range(0, count):
-		var creature: Creature = CreaturePackedScene.instance()
+		var creature: Creature = CreatureScene.instance()
 		
 		var creature_index := $Creatures.get_child_count()
 		creature.creature_id = CREATURE_IDS[creature_index % CREATURE_IDS.size()]

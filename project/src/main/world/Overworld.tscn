@@ -107,7 +107,7 @@ script = ExtResource( 51 )
 shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
 creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
 chat_icons_path = NodePath("ChatIcons")
-CreaturePackedScene = ExtResource( 1 )
+CreatureScene = ExtResource( 1 )
 
 [node name="Ground" type="Node2D" parent="World"]
 z_index = -1
@@ -357,7 +357,7 @@ scale = Vector2( 0.4, 0.4 )
 texture = ExtResource( 56 )
 offset = Vector2( 0, -80 )
 overworld_world_path = NodePath("../..")
-TargetPackedScene = ExtResource( 13 )
+TargetScene = ExtResource( 13 )
 target_properties = {
 }
 spawn_if = "level_finished marsh/goodbye_everyone"

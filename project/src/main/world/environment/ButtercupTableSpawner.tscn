@@ -10,6 +10,6 @@ texture = ExtResource( 1 )
 centered = false
 offset = Vector2( -125, -200 )
 script = ExtResource( 2 )
-TargetPackedScene = ExtResource( 3 )
+TargetScene = ExtResource( 3 )
 target_properties = {
 }
