@@ -9,7 +9,7 @@ The obstacle's properties and groups (the 'chattables' group in particular) can 
 target_groups fields.
 """
 
-export (NodePath) var overworld_world_path: NodePath
+export (NodePath) var overworld_world_path: NodePath = NodePath("../..")
 
 # the PackedScene of the spawned obstacle
 export (PackedScene) var TargetScene: PackedScene

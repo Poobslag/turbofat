@@ -6,8 +6,7 @@ Prepares the the overworld walking scene.
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 
 func _ready() -> void:
-	if not MusicPlayer.is_playing_tutorial_bgm() and not MusicTransition.is_fading_in_bgm():
-		MusicPlayer.play_tutorial_bgm()
+	MusicPlayer.play_tutorial_bgm()
 	
 	$Camera.position = ChattableManager.player.position
 	ChattableManager.refresh_creatures()

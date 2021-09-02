@@ -10,9 +10,9 @@ func _ready() -> void:
 
 func start_puzzle_music() -> void:
 	if CurrentLevel.settings.other.tutorial:
-		MusicPlayer.play_tutorial_bgm()
+		MusicPlayer.play_tutorial_bgm(false)
 	else:
-		MusicPlayer.play_upbeat_bgm()
+		MusicPlayer.play_upbeat_bgm(false)
 
 
 func _on_PuzzleState_game_prepared() -> void:
@@ -21,4 +21,3 @@ func _on_PuzzleState_game_prepared() -> void:
 
 func _on_PuzzleState_game_ended() -> void:
 	MusicPlayer.play_chill_bgm()
-	MusicPlayer.fade_in()

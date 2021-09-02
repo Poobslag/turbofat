@@ -701,7 +701,6 @@ elevation = 150.0
 [node name="Richie" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 490.501, 119.061 )
 flip_h = true
-overworld_world_path = NodePath("../..")
 target_properties = {
 "creature_id": "richie",
 "elevation": 0.0,
@@ -713,7 +712,6 @@ spawn_if = "not level_finished marsh/hello_everyone"
 [node name="Terpion" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 349, 323 )
 offset = Vector2( 0, -140 )
-overworld_world_path = NodePath("../..")
 stool_path = NodePath("../Stool4")
 target_properties = {
 "creature_id": "terpion",
@@ -727,7 +725,6 @@ max_fatness = 4.0
 position = Vector2( 525, 323 )
 offset = Vector2( 0, -140 )
 flip_h = true
-overworld_world_path = NodePath("../..")
 stool_path = NodePath("../Stool3")
 target_properties = {
 "creature_id": "pandon",
@@ -740,7 +737,6 @@ max_fatness = 4.0
 [node name="Nictor" parent="World/Obstacles" instance=ExtResource( 33 )]
 position = Vector2( 1313.39, 220 )
 offset = Vector2( 0, -140 )
-overworld_world_path = NodePath("../..")
 stool_path = NodePath("../Stool10")
 target_properties = {
 "creature_id": "nictor",
@@ -754,7 +750,6 @@ max_fatness = 3.0
 position = Vector2( 768, 36 )
 offset = Vector2( 0, -140 )
 flip_h = true
-overworld_world_path = NodePath("../..")
 stool_path = NodePath("../Stool1")
 target_properties = {
 "creature_id": "beats",

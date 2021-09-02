@@ -20,10 +20,10 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_C: MusicPlayer.play_chill_bgm()
+		KEY_C: MusicPlayer.play_chill_bgm(false)
 		KEY_EQUAL: MusicPlayer.fade_in()
-		KEY_U: MusicPlayer.play_upbeat_bgm()
-		KEY_T: MusicPlayer.play_tutorial_bgm()
+		KEY_U: MusicPlayer.play_upbeat_bgm(false)
+		KEY_T: MusicPlayer.play_tutorial_bgm(false)
 		KEY_MINUS: MusicPlayer.stop()
 		KEY_BRACERIGHT: next_checkpoint()
 

@@ -5,9 +5,8 @@ A splash screen which precedes the main menu.
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
+	MusicPlayer.play_chill_bgm(false)
 	
-	if not MusicPlayer.is_playing_chill_bgm() and not MusicTransition.is_fading_in_bgm():
-		MusicPlayer.play_chill_bgm()
 	$DropPanel/PlayHolder/Play.grab_focus()
 	if PlayerSave.corrupt_filenames:
 		$BadSaveDataControl.popup()

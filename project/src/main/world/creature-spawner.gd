@@ -8,7 +8,7 @@ The creature's creature_id, properties and groups (the 'chattables' group in par
 target_properties and target_groups fields.
 """
 
-export (NodePath) var overworld_world_path: NodePath
+export (NodePath) var overworld_world_path: NodePath = NodePath("../..")
 
 # (optional) path to a stool the spawned creature sits on
 export (NodePath) var stool_path: NodePath

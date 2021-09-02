@@ -6,7 +6,6 @@
 [node name="CreatureSpawner" type="Sprite" groups=[
 "creature_spawners",
 ]]
-position = Vector2( 0, -28 )
 scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 2 )
 script = ExtResource( 1 )

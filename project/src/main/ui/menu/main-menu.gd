@@ -8,11 +8,7 @@ Includes buttons for starting a new game, launching the level editor, and exitin
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
-	
-	# Fade in music when redirected from a scene with no music, such as the level editor
-	if not MusicPlayer.is_playing_chill_bgm() and not MusicTransition.is_fading_in_bgm():
-		MusicPlayer.play_chill_bgm()
-		MusicPlayer.fade_in()
+	MusicPlayer.play_chill_bgm()
 	
 	$DropPanel/Play/Practice.grab_focus()
 
