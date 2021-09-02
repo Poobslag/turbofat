@@ -26,7 +26,7 @@ export (String) var spawn_if: String
 # If a fatter creature spawns here, they will spontaneously and permanently slim down.
 export (float) var max_fatness := 10.0
 
-var CreaturePackedScene: PackedScene = load("res://src/main/world/creature/Creature.tscn")
+var CreatureScene: PackedScene = load("res://src/main/world/creature/Creature.tscn")
 
 # a Stool or ObstacleSpawner instance for the stool the spawned creature sits on, if any
 var _stool: Node2D

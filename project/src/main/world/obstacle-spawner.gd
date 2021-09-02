@@ -12,7 +12,7 @@ target_groups fields.
 export (NodePath) var overworld_world_path: NodePath
 
 # the PackedScene of the spawned obstacle
-export (PackedScene) var TargetPackedScene: PackedScene
+export (PackedScene) var TargetScene: PackedScene
 
 # the properties of the spawned obstacle
 export (Dictionary) var target_properties: Dictionary
@@ -61,7 +61,7 @@ func _spawn_target() -> void:
 	name = "ObstacleSpawner"
 	
 	# create the object and assign its properties
-	_spawned_object = TargetPackedScene.instance()
+	_spawned_object = TargetScene.instance()
 	_spawned_object.name = old_name
 	_spawned_object.position = position
 	for key in target_properties:
