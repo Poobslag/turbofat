@@ -27,8 +27,17 @@ func test_path_from_level_key() -> void:
 			"res://assets/main/puzzle/levels/marsh/goodbye-bones.json")
 
 
-func test_level_key_from_path() -> void:
+func test_level_key_from_path_resources() -> void:
 	assert_eq(LevelSettings.level_key_from_path("res://assets/main/puzzle/levels/boatricia1.json"),
 			"boatricia1")
 	assert_eq(LevelSettings.level_key_from_path("res://assets/main/puzzle/levels/marsh/goodbye_bones.json"),
 			"marsh/goodbye_bones")
+
+
+func test_level_key_from_path_files() -> void:
+	assert_eq(LevelSettings.level_key_from_path("d:/level_894.json"),
+			"level_894")
+	assert_eq(LevelSettings.level_key_from_path("/usr/local/bin/level_894.json"),
+			"level_894")
+	assert_eq(LevelSettings.level_key_from_path("~/.local/share/godot/level_894.json"),
+			"level_894")

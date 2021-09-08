@@ -7,42 +7,39 @@ Full instructions are available at https://github.com/Poobslag/turbofat/wiki/lev
 """
 
 # default to an empty level; players may be confused if it's not empty
-const DEFAULT_LEVEL := "practice/ultra_normal"
+const DEFAULT_LEVEL_ID := "practice/ultra_normal"
 
 export (PackedScene) var PuzzleScene: PackedScene
 
 # level scene currently being tested
 var _test_scene: Node
 
-onready var level_name := $HBoxContainer/SideButtons/LevelName
+onready var level_id_label := $HBoxContainer/SideButtons/LevelId
 onready var _level_json := $HBoxContainer/SideButtons/Json
 
 func _ready() -> void:
-	var level_text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(DEFAULT_LEVEL))
+	var level_text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(DEFAULT_LEVEL_ID))
 	_level_json.text = level_text
 	_level_json.refresh_tile_map()
-	level_name.text = DEFAULT_LEVEL
+	level_id_label.text = DEFAULT_LEVEL_ID
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 
 
 func save_level(path: String) -> void:
 	FileUtils.write_file(path, _level_json.text)
+	level_id_label.text = LevelSettings.level_key_from_path(path)
 
 
 func load_level(path: String) -> void:
 	var level_text := FileUtils.get_file_as_text(path)
 	_level_json.text = level_text
 	_level_json.refresh_tile_map()
-	
-	var new_level_name := path.get_file()
-	new_level_name = new_level_name.trim_suffix(".json")
-	new_level_name = StringUtils.hyphens_to_underscores(new_level_name)
-	level_name.text = new_level_name
+	level_id_label.text = LevelSettings.level_key_from_path(path)
 
 
 func _start_test() -> void:
 	var settings := LevelSettings.new()
-	settings.load_from_text(level_name.text, _level_json.text)
+	settings.load_from_text(level_id_label.text, _level_json.text)
 	CurrentLevel.start_level(settings)
 	_test_scene = PuzzleScene.instance()
 	
@@ -76,8 +73,4 @@ func _on_Breadcrumb_trail_popped(prev_path: String) -> void:
 
 
 func _on_Quit_pressed() -> void:
-	var skip_transition := false
-	if Breadcrumb.trail.back() == "res://src/main/editor/puzzle/LevelEditor.tscn::test":
-		# player exited the level under test; no scene transition
-		skip_transition = true
-	SceneTransition.pop_trail(skip_transition)
+	SceneTransition.pop_trail()

@@ -219,6 +219,11 @@ static func path_from_level_key(level_key: String) -> String:
 
 static func level_key_from_path(level_path: String) -> String:
 	var level_key := StringUtils.hyphens_to_underscores(level_path)
-	level_key = level_key.trim_prefix("res://assets/main/puzzle/levels/")
 	level_key = level_key.trim_suffix(".json")
+	if level_key.begins_with("res://"):
+		# preserve part of the path, resulting in 'foo/bar/level_183'
+		level_key = level_key.trim_prefix("res://assets/main/puzzle/levels/")
+	else:
+		# strip the entire path, resulting in 'level_183'
+		level_key = StringUtils.substring_after_last(level_key, "/")
 	return level_key

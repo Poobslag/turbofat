@@ -6,10 +6,20 @@ Shows popup dialogs for the creature editor.
 export (NodePath) var creature_editor_path: NodePath
 
 onready var _creature_editor: CreatureEditor = get_node(creature_editor_path)
+onready var _error_dialog := $Error
+onready var _import_dialog := $Import
+onready var _export_dialog := $Export
+onready var _save_confirmation := $SaveConfirmation
 
 func _show_import_export_not_supported_error() -> void:
-	$Error.dialog_text = "Import/export isn't supported over the web. Sorry!"
-	$Error.popup_centered()
+	_error_dialog.dialog_text = "Import/export isn't supported over the web. Sorry!"
+	_error_dialog.popup_centered()
+
+
+func _preserve_file_dialog_paths(dialog: FileDialog) -> void:
+	for other_dialog in [_import_dialog, _export_dialog]:
+		other_dialog.current_file = dialog.current_file
+		other_dialog.current_path = dialog.current_path
 
 
 func _on_ImportButton_pressed() -> void:
@@ -17,8 +27,8 @@ func _on_ImportButton_pressed() -> void:
 		_show_import_export_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path($Import, "res://assets/main/creatures/secondary/")
-	$Import.popup_centered()
+	Utils.assign_default_dialog_path(_import_dialog, "res://assets/main/creatures/secondary/")
+	_import_dialog.popup_centered()
 
 
 """
@@ -30,8 +40,9 @@ func _on_ImportDialog_file_selected(path: String) -> void:
 		_creature_editor.set_center_creature_def(loaded_def)
 		_creature_editor.mutate_all_creatures()
 	else:
-		$Error.dialog_text = "Error importing creature."
-		$Error.popup_centered()
+		_error_dialog.dialog_text = "Error importing creature."
+		_error_dialog.popup_centered()
+	_preserve_file_dialog_paths(_import_dialog)
 
 
 func _on_ExportButton_pressed() -> void:
@@ -39,11 +50,11 @@ func _on_ExportButton_pressed() -> void:
 		_show_import_export_not_supported_error()
 		return
 	
-	Utils.assign_default_dialog_path($Export, "res://assets/main/creatures/secondary/")
+	Utils.assign_default_dialog_path(_export_dialog, "res://assets/main/creatures/secondary/")
 	var exported_creature: Creature = _creature_editor.center_creature
 	var sanitized_creature_name := StringUtils.sanitize_file_root(exported_creature.creature_short_name)
-	$Export.current_file = "%s.json" % sanitized_creature_name
-	$Export.popup_centered()
+	_export_dialog.current_file = "%s.json" % sanitized_creature_name
+	_export_dialog.popup_centered()
 
 
 """
@@ -53,10 +64,11 @@ func _on_ExportDialog_file_selected(path: String) -> void:
 	var exported_creature: Creature = _creature_editor.center_creature
 	var exported_json := exported_creature.creature_def.to_json_dict()
 	FileUtils.write_file(path, Utils.print_json(exported_json))
+	_preserve_file_dialog_paths(_export_dialog)
 
 
 func _on_SaveButton_pressed() -> void:
-	$SaveConfirmation.popup_centered()
+	_save_confirmation.popup_centered()
 
 
 """
