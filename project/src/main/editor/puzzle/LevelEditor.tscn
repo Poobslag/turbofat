@@ -305,12 +305,13 @@ margin_right = 1014.0
 margin_bottom = 590.0
 rect_min_size = Vector2( 180, 0 )
 
-[node name="LevelName" type="LineEdit" parent="HBoxContainer/SideButtons"]
+[node name="LevelId" type="LineEdit" parent="HBoxContainer/SideButtons"]
 margin_right = 180.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 20 )
 theme = ExtResource( 11 )
 text = "default"
+editable = false
 
 [node name="HSeparator1" type="HSeparator" parent="HBoxContainer/SideButtons"]
 margin_top = 34.0
@@ -459,6 +460,7 @@ margin_right = 792.0
 margin_bottom = 480.0
 popup_exclusive = true
 access = 2
+filters = PoolStringArray( "*.json" )
 current_dir = "/"
 current_file = "509e7c82-9399-425a-9f15-9370c2b3de8b"
 current_path = "/509e7c82-9399-425a-9f15-9370c2b3de8b"
