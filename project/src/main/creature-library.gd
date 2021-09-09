@@ -169,6 +169,7 @@ func from_json_dict(json: Dictionary) -> void:
 	if json.has(PLAYER_ID):
 		var new_player_def := CreatureDef.new()
 		new_player_def.from_json_dict(json.get(PLAYER_ID, {}))
+		new_player_def.creature_id = PLAYER_ID
 		set_player_def(new_player_def)
 	if json.has("fatnesses"):
 		_fatnesses = json.get("fatnesses")

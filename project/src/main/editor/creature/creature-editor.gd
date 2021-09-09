@@ -56,7 +56,10 @@ func _ready() -> void:
 	$World/Creatures/ECreature.set_meta("nametag_right", true)
 	$World/Creatures/SeCreature.set_meta("nametag_right", true)
 	
-	set_center_creature_def(PlayerData.creature_library.player_def)
+	var new_center_creature_def := PlayerData.creature_library.player_def
+	# the player's id will always be '#player#'. we change it so that exported creatures will have normal IDs
+	new_center_creature_def.creature_id = NameUtils.short_name_to_id(new_center_creature_def.creature_short_name)
+	set_center_creature_def(new_center_creature_def)
 	mutate_all_creatures()
 
 

@@ -12,12 +12,7 @@ var ui_has_focus := false setget set_ui_has_focus
 
 func _ready() -> void:
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
-	
-	set_creature_def(PlayerData.creature_library.player_def)
-	creature_id = CreatureLibrary.PLAYER_ID
-	if PlayerData.creature_library.forced_fatness:
-		set_fatness(PlayerData.creature_library.forced_fatness)
-		set_visual_fatness(PlayerData.creature_library.forced_fatness)
+	set_creature_id(CreatureLibrary.PLAYER_ID)
 	refresh_collision_extents()
 	ChattableManager.player = self
 
