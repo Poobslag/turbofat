@@ -22,7 +22,7 @@ func _ready() -> void:
 	
 	var chef_id := StringUtils.default_if_empty(CurrentLevel.chef_id, CreatureLibrary.PLAYER_ID)
 	$Chef.set_creature_def(PlayerData.creature_library.get_creature_def(chef_id))
-	$Chef.set_orientation(Creature.SOUTHWEST)
+	$Chef.set_orientation(Creatures.SOUTHWEST)
 
 
 func set_current_creature_index(new_index: int) -> void:

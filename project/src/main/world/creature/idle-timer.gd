@@ -88,7 +88,7 @@ func _update_state(start: bool = false) -> void:
 	elif _creature_visuals.is_talking():
 		# no idle animations when talking
 		paused = true
-	elif _creature_visuals.movement_mode != CreatureVisuals.IDLE:
+	elif _creature_visuals.movement_mode != Creatures.IDLE:
 		# no idle animations when running/walking
 		paused = true
 	else:

@@ -96,7 +96,7 @@ func reset() -> void:
 	
 	var creature_def_paths := []
 	# append sensei path
-	creature_def_paths.append(CreatureLoader.SENSEI_PATH)
+	creature_def_paths.append(Creatures.SENSEI_PATH)
 	
 	# append primary paths
 	creature_def_paths += _file_paths("res://assets/main/creatures/primary", "/creature.json")

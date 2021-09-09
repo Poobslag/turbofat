@@ -39,7 +39,7 @@ func _add_creatures(count: int) -> void:
 		
 		var creature_index := $Creatures.get_child_count()
 		creature.creature_id = CREATURE_IDS[creature_index % CREATURE_IDS.size()]
-		creature.orientation = Utils.rand_value([CreatureOrientation.SOUTHWEST, CreatureOrientation.SOUTHEAST])
+		creature.orientation = Utils.rand_value([Creatures.SOUTHWEST, Creatures.SOUTHEAST])
 		
 		var target_rect := Rect2(0, 0, 1024, 768).grow(-100)
 		creature.position.x = rand_range(target_rect.position.x, target_rect.end.x)

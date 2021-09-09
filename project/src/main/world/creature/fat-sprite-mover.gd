@@ -41,7 +41,7 @@ func _refresh_sprite_positions() -> void:
 	if not is_inside_tree():
 		return
 	
-	play("fat-se" if _creature_visuals.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST] else "fat-nw")
+	play("fat-se" if _creature_visuals.orientation in [Creatures.SOUTHWEST, Creatures.SOUTHEAST] else "fat-nw")
 	advance(_creature_visuals.visual_fatness)
 	stop()
 	_creature_visuals.emit_signal("head_moved")
@@ -56,5 +56,5 @@ func _on_CreatureVisuals_orientation_changed(_old_orientation: int, _new_orienta
 
 
 func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
-	if new_mode != CreatureVisuals.SPRINT:
+	if new_mode != Creatures.SPRINT:
 		_refresh_sprite_positions()

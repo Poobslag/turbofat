@@ -140,7 +140,7 @@ then
 fi
 
 # print statements that got left in by mistake
-RESULT=$(git diff master | grep print\()
+RESULT=$(git diff main | grep print\()
 if [ -n "$RESULT" ]
 then
   echo ""
@@ -188,7 +188,7 @@ then
 
     # move the 'signal=' attribute back where it was
     sed -i "s/^\\(\\[connection\\)\\( from=\"[^\"]*\"\\)\\( signal=\"[^\"]*\"\\)\\(.*\\)/\\1\\3\\2\\4/g" "$IN_FILE"
-  done < <(git diff master --name-only | grep "\.tscn$")
+  done < <(git diff main --name-only | grep "\.tscn$")
 
   # The preceding command sorts only modified files. Sorting all files takes longer but can be done by replacing the
   # preceding loop condition:

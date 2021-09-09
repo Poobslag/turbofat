@@ -39,19 +39,6 @@ signal talking_changed
 # warning-ignore:unused_signal
 signal head_moved
 
-enum MovementMode {
-	IDLE, # not walking/running
-	SPRINT, # quadrapedal run
-	RUN, # bipedal run
-	WALK, # bipedal walk
-	WIGGLE, # flailing their arms and legs helplessly
-}
-
-const IDLE := MovementMode.IDLE
-const SPRINT := MovementMode.SPRINT
-const RUN := MovementMode.RUN
-const WALK := MovementMode.WALK
-const WIGGLE := MovementMode.WIGGLE
 const SOUTHEAST_DIR := Vector2(0.70710678118, 0.70710678118)
 
 # toggle to assign default animation frames based on the creature's orientation
@@ -64,10 +51,10 @@ export (bool) var _reset_creature setget reset_creature
 export (bool) var _random_creature setget random_creature
 
 # the state of whether the creature is walking, running or idle
-export (MovementMode) var movement_mode := MovementMode.IDLE setget set_movement_mode
+export (Creatures.MovementMode) var movement_mode := Creatures.IDLE setget set_movement_mode
 
 # the direction the creature is facing
-export (CreatureOrientation.Orientation) var orientation := CreatureOrientation.SOUTHEAST setget set_orientation
+export (Creatures.Orientation) var orientation := Creatures.SOUTHEAST setget set_orientation
 
 # describes the colors and textures used to draw the creature
 export (Dictionary) var dna: Dictionary setget set_dna
@@ -218,7 +205,7 @@ func set_orientation(new_orientation: int) -> void:
 		# avoid 'node not found' errors when tree is null
 		return
 	
-	if oriented_south() != CreatureOrientation.oriented_south(old_orientation):
+	if oriented_south() != Creatures.oriented_south(old_orientation):
 		# creature changed from facing north to south or vice versa
 		
 		# update their eyes to a default frame to prevent them from having
@@ -250,7 +237,7 @@ Parameters:
 """
 func rescale(new_scale_x: float) -> void:
 	scale = Vector2(abs(new_scale_x), abs(new_scale_x))
-	scale.x = abs(scale.x) if orientation in [CreatureOrientation.SOUTHEAST, CreatureOrientation.NORTHWEST] \
+	scale.x = abs(scale.x) if orientation in [Creatures.SOUTHEAST, Creatures.NORTHWEST] \
 			else -abs(scale.x)
 	
 	# Body is rendered facing southeast/northeast, and is horizontally flipped for other directions. Unfortunately
@@ -305,11 +292,11 @@ func show_food_effects() -> void:
 
 
 func oriented_south() -> bool:
-	return CreatureOrientation.oriented_south(orientation)
+	return Creatures.oriented_south(orientation)
 
 
 func oriented_north() -> bool:
-	return CreatureOrientation.oriented_north(orientation)
+	return Creatures.oriented_north(orientation)
 
 
 """
@@ -331,16 +318,16 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 	var suffix := "se" if oriented_south() else "nw"
 	var animation_name := "%s-%s" % [animation_prefix, suffix]
 	
-	if animation_prefix == "idle" and movement_mode != IDLE:
-		set_movement_mode(IDLE)
-	elif animation_prefix == "sprint" and movement_mode != SPRINT:
-		set_movement_mode(SPRINT)
-	elif animation_prefix == "run" and movement_mode != RUN:
-		set_movement_mode(RUN)
-	elif animation_prefix == "walk" and movement_mode != WALK:
-		set_movement_mode(WALK)
-	elif animation_prefix == "wiggle" and movement_mode != WIGGLE:
-		set_movement_mode(WIGGLE)
+	if animation_prefix == "idle" and movement_mode != Creatures.IDLE:
+		set_movement_mode(Creatures.IDLE)
+	elif animation_prefix == "sprint" and movement_mode != Creatures.SPRINT:
+		set_movement_mode(Creatures.SPRINT)
+	elif animation_prefix == "run" and movement_mode != Creatures.RUN:
+		set_movement_mode(Creatures.RUN)
+	elif animation_prefix == "walk" and movement_mode != Creatures.WALK:
+		set_movement_mode(Creatures.WALK)
+	elif animation_prefix == "wiggle" and movement_mode != Creatures.WIGGLE:
+		set_movement_mode(Creatures.WIGGLE)
 	
 	_animations.play_movement_animation(animation_prefix, animation_name)
 

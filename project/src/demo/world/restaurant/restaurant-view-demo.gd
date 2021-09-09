@@ -72,13 +72,13 @@ func _input(event: InputEvent) -> void:
 		KEY_BRACELEFT, KEY_BRACERIGHT:
 			$RestaurantView.summon_creature()
 		KEY_RIGHT:
-			$RestaurantView.get_customer().set_orientation(CreatureOrientation.SOUTHEAST)
+			$RestaurantView.get_customer().set_orientation(Creatures.SOUTHEAST)
 		KEY_DOWN:
-			$RestaurantView.get_customer().set_orientation(CreatureOrientation.SOUTHWEST)
+			$RestaurantView.get_customer().set_orientation(Creatures.SOUTHWEST)
 		KEY_LEFT:
-			$RestaurantView.get_customer().set_orientation(CreatureOrientation.NORTHWEST)
+			$RestaurantView.get_customer().set_orientation(Creatures.NORTHWEST)
 		KEY_UP:
-			$RestaurantView.get_customer().set_orientation(CreatureOrientation.NORTHEAST)
+			$RestaurantView.get_customer().set_orientation(Creatures.NORTHEAST)
 
 
 func _customer() -> Creature:

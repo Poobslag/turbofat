@@ -8,15 +8,6 @@ class converts that information into granular information such as 'her Eye/Sprin
 loads resource files specific to each creature.
 """
 
-# the creature definition path for the sensei who leads tutorials
-const SENSEI_PATH := "res://assets/main/creatures/sensei/creature.json"
-
-# How large creatures can grow; 5.0 = 5x normal size
-const MAX_FATNESS := 10.0
-
-# How long it takes a creature to grow to a new size
-const GROWTH_SECONDS := 0.12
-
 # The color inside a creature's mouth
 const PINK_INSIDE_COLOR := Color("f39274")
 

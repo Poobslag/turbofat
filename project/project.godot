@@ -169,11 +169,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/creature-library.gd"
 }, {
-"base": "Reference",
-"class": "CreatureOrientation",
-"language": "GDScript",
-"path": "res://src/main/world/creature/creature-orientation.gd"
-}, {
 "base": "Node2D",
 "class": "CreatureOutline",
 "language": "GDScript",
@@ -213,6 +208,11 @@ _global_script_classes=[ {
 "class": "CreatureVisuals",
 "language": "GDScript",
 "path": "res://src/main/world/creature/creature-visuals.gd"
+}, {
+"base": "Reference",
+"class": "Creatures",
+"language": "GDScript",
+"path": "res://src/main/world/creature/creatures.gd"
 }, {
 "base": "Node2D",
 "class": "CrumbCluster",
@@ -892,7 +892,6 @@ _global_script_class_icons={
 "CreatureDef": "",
 "CreatureEditor": "",
 "CreatureLibrary": "",
-"CreatureOrientation": "",
 "CreatureOutline": "",
 "CreaturePackedSprite": "",
 "CreaturePaletteDemo": "",
@@ -901,6 +900,7 @@ _global_script_class_icons={
 "CreatureShadow": "",
 "CreatureShadows": "",
 "CreatureVisuals": "",
+"Creatures": "",
 "CrumbCluster": "",
 "DnaAlternatives": "",
 "DurationCalculator": "",

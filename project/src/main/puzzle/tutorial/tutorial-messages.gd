@@ -24,7 +24,7 @@ var _sensei_chat_theme: ChatTheme
 var _popped_in: bool
 
 func _ready() -> void:
-	var sensei_creature_def: CreatureDef = CreatureDef.new().from_json_path(CreatureLoader.SENSEI_PATH)
+	var sensei_creature_def: CreatureDef = CreatureDef.new().from_json_path(Creatures.SENSEI_PATH)
 	_sensei_chat_theme = ChatTheme.new(sensei_creature_def.chat_theme_def)
 	_hide_message()
 

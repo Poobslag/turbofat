@@ -19,12 +19,7 @@ signal food_eaten
 signal fade_in_finished
 signal fade_out_finished
 
-const IDLE = CreatureVisuals.IDLE
-
-const SOUTHEAST = CreatureOrientation.SOUTHEAST
-const SOUTHWEST = CreatureOrientation.SOUTHWEST
-const NORTHWEST = CreatureOrientation.NORTHWEST
-const NORTHEAST = CreatureOrientation.NORTHEAST
+const IDLE = Creatures.IDLE
 
 # Number from [0.0, 1.0] which determines how quickly the creature slows down
 const FRICTION := 0.15
@@ -53,7 +48,7 @@ export (bool) var suppress_fatness: bool = false
 export (float) var elevation: float setget set_elevation
 
 # virtual property; value is not kept up-to-date and should only be accessed through getters/setters
-export (CreatureOrientation.Orientation) var orientation: int setget set_orientation, get_orientation
+export (Creatures.Orientation) var orientation: int setget set_orientation, get_orientation
 
 # virtual property; value is only exposed through getters/setters
 var creature_def: CreatureDef setget set_creature_def, get_creature_def
@@ -276,7 +271,7 @@ func orient_toward(target_position: Vector2) -> void:
 			direction_dot = direction.normalized().dot(Vector2.DOWN)
 	
 	# orient this creature based on the calculated direction
-	set_orientation(SOUTHEAST if direction_dot > 0 else SOUTHWEST)
+	set_orientation(Creatures.SOUTHEAST if direction_dot > 0 else Creatures.SOUTHWEST)
 
 
 func set_orientation(new_orientation: int) -> void:
@@ -308,7 +303,7 @@ func save_fatness(stored_fatness: float) -> void:
 	# apply metabolism scale; a value of 4.0x means their weight decays 4x as fast
 	metabolism = pow(metabolism, metabolism_scale)
 	stored_fatness *= metabolism
-	stored_fatness = clamp(stored_fatness, min_fatness, CreatureLoader.MAX_FATNESS)
+	stored_fatness = clamp(stored_fatness, min_fatness, Creatures.MAX_FATNESS)
 	PlayerData.creature_library.set_fatness(creature_id, stored_fatness)
 
 
@@ -567,7 +562,7 @@ func _update_animation() -> void:
 			_run_anim_speed *= 1.000
 		
 		play_movement_animation(animation_prefix, non_iso_walk_direction)
-	elif creature_visuals.movement_mode != CreatureVisuals.IDLE:
+	elif creature_visuals.movement_mode != Creatures.IDLE:
 		play_movement_animation("idle", _non_iso_velocity)
 
 
@@ -589,7 +584,7 @@ func _on_CreatureVisuals_visual_fatness_changed() -> void:
 
 
 func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
-	if new_mode in [CreatureVisuals.WALK, CreatureVisuals.RUN]:
+	if new_mode in [Creatures.WALK, Creatures.RUN]:
 		# when on two legs, the body is a little higher off the ground
 		set_elevation(35)
 	else:
