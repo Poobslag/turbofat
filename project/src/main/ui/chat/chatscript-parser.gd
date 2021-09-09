@@ -288,7 +288,7 @@ class ChatState extends AbstractState:
 		_event = ChatEvent.new()
 		_event.text = line
 		_event.text = _event.text.c_unescape() # turn '\n' characters into newlines
-		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(CreatureLibrary.PLAYER_ID)
+		var creature_def: CreatureDef = PlayerData.creature_library.get_player_def()
 		if creature_def:
 			_event.chat_theme_def = creature_def.chat_theme_def
 		chat_tree.append(_branch_key, _event)

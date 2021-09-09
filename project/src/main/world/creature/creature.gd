@@ -480,9 +480,6 @@ func _launch_fade_tween(new_alpha: float, duration: float) -> void:
 func _refresh_creature_id() -> void:
 	if not is_inside_tree():
 		return
-	if creature_id == CreatureLibrary.PLAYER_ID:
-		# player's creature_def is loaded in player.gd
-		return
 	
 	var new_creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(creature_id)
 	if new_creature_def:
