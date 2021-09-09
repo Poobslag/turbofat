@@ -7,10 +7,10 @@ As the player drops blocks and scores points, the characters animate and react.
 """
 
 const MOUTH_POSITIONS_BY_ORIENTATION := {
-	Creature.SOUTHEAST: Vector2(18, -22),
-	Creature.SOUTHWEST: Vector2(-11, -22),
-	Creature.NORTHWEST: Vector2(-3, -26),
-	Creature.NORTHEAST: Vector2(28, -26),
+	Creatures.SOUTHEAST: Vector2(18, -22),
+	Creatures.SOUTHWEST: Vector2(-11, -22),
+	Creatures.NORTHWEST: Vector2(-3, -26),
+	Creatures.NORTHEAST: Vector2(28, -26),
 }
 
 # emitted when the customer changes, either because of a broken combo or because the level restarts

@@ -5,7 +5,7 @@ A point where a creature can appear on the overworld.
 """
 
 # the direction the creature will face
-export (CreatureOrientation.Orientation) var orientation := CreatureOrientation.SOUTHEAST
+export (Creatures.Orientation) var orientation := Creatures.SOUTHEAST
 
 # (optional) path to a stool the spawned creature sits on
 export (NodePath) var stool_path: NodePath

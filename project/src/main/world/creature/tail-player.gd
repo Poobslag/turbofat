@@ -30,7 +30,7 @@ Plays an appropriate tail ambient animation for the creature's orientation and m
 """
 func _play_tail_ambient_animation() -> void:
 	var tail_ambient_animation: String
-	if _creature_visuals.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
+	if _creature_visuals.orientation in [Creatures.SOUTHWEST, Creatures.SOUTHEAST]:
 		tail_ambient_animation = "ambient-se"
 	else:
 		tail_ambient_animation = "ambient-nw"

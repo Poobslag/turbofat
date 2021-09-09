@@ -104,7 +104,7 @@ func make_chatters_face_eachother() -> void:
 			if chatters.size() == 1 or is_drive_by_chat():
 				# simple one-line chats don't interrupt the player
 				pass
-			elif chatter.get_movement_mode() != Creature.IDLE:
+			elif chatter.get_movement_mode() != Creatures.IDLE:
 				# the player isn't interrupted if they're running around
 				pass
 			else:

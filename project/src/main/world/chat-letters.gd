@@ -6,17 +6,17 @@ This helps the player tell which creature is currently talking, especially for c
 """
 
 const VOICE_POSITIONS_BY_ORIENTATION := {
-	Creature.SOUTHEAST: Vector2(36, -15),
-	Creature.SOUTHWEST: Vector2(-36, -15),
-	Creature.NORTHWEST: Vector2(-36, -21),
-	Creature.NORTHEAST: Vector2(36, -21),
+	Creatures.SOUTHEAST: Vector2(36, -15),
+	Creatures.SOUTHWEST: Vector2(-36, -15),
+	Creatures.NORTHWEST: Vector2(-36, -21),
+	Creatures.NORTHEAST: Vector2(36, -21),
 }
 
 const LETTER_ANGLES_BY_ORIENTATION := {
-	Creature.SOUTHEAST: 0.16667 * PI,
-	Creature.SOUTHWEST: 0.83333 * PI,
-	Creature.NORTHWEST: -0.83333 * PI,
-	Creature.NORTHEAST: -0.16667 * PI,
+	Creatures.SOUTHEAST: 0.16667 * PI,
+	Creatures.SOUTHWEST: 0.83333 * PI,
+	Creatures.NORTHWEST: -0.83333 * PI,
+	Creatures.NORTHEAST: -0.16667 * PI,
 }
 
 onready var overworld_ui: OverworldUi = Global.get_overworld_ui()

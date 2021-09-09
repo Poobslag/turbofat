@@ -101,7 +101,7 @@ Plays an appropriate mouth ambient animation for the creature's orientation and 
 """
 func _play_mouth_ambient_animation() -> void:
 	var mouth_ambient_animation: String
-	if _creature_visuals.orientation in [Creature.SOUTHWEST, Creature.SOUTHEAST]:
+	if _creature_visuals.orientation in [Creatures.SOUTHWEST, Creatures.SOUTHEAST]:
 		if has_animation("talk") and _creature_visuals.is_talking():
 			mouth_ambient_animation = "talk"
 		elif _emote_player.current_animation in ["", "ambient"] \

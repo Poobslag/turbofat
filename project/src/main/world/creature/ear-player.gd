@@ -58,7 +58,7 @@ func _refresh_creature_visuals_path() -> void:
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
-	if CreatureOrientation.oriented_north(new_orientation):
+	if Creatures.oriented_north(new_orientation):
 		stop()
 
 

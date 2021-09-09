@@ -48,7 +48,7 @@ func _ready() -> void:
 
 
 func _draw() -> void:
-	if _creature_visuals.movement_mode == CreatureVisuals.SPRINT:
+	if _creature_visuals.movement_mode == Creatures.SPRINT:
 		# don't draw creature while sprinting
 		return
 	

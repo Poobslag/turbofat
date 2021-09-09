@@ -556,7 +556,7 @@ func _on_IdleTimer_idle_animation_started(anim_name: String) -> void:
 
 
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
-	if is_processing() and not CreatureOrientation.oriented_south(new_orientation):
+	if is_processing() and not Creatures.oriented_south(new_orientation):
 		unemote_immediate()
 
 

@@ -400,14 +400,14 @@ const MOOD_PREFIXES := {
 
 # Different directions a creature can face
 # key: String representing a direction a creature can face
-# value: int corresponding to an entry in CreatureOrientation
+# value: int corresponding to an entry in Creatures.Orientation
 const ORIENTATION_STRINGS := {
-	"left": CreatureOrientation.SOUTHWEST,
-	"right": CreatureOrientation.SOUTHEAST,
-	"se": CreatureOrientation.SOUTHEAST,
-	"sw": CreatureOrientation.SOUTHWEST,
-	"nw": CreatureOrientation.NORTHWEST,
-	"ne": CreatureOrientation.NORTHEAST,
+	"left": Creatures.SOUTHWEST,
+	"right": Creatures.SOUTHEAST,
+	"se": Creatures.SOUTHEAST,
+	"sw": Creatures.SOUTHWEST,
+	"nw": Creatures.NORTHWEST,
+	"ne": Creatures.NORTHEAST,
 }
 
 # parser headers which appear in square braces in the chatscript file

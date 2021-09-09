@@ -208,7 +208,7 @@ func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientat
 	if not _movement_player:
 		return
 	
-	if _movement_player.current_animation == "idle-nw" and CreatureOrientation.oriented_south(new_orientation):
+	if _movement_player.current_animation == "idle-nw" and Creatures.oriented_south(new_orientation):
 		_movement_player.play("idle-se")
-	elif _movement_player.current_animation == "idle-se" and CreatureOrientation.oriented_north(new_orientation):
+	elif _movement_player.current_animation == "idle-se" and Creatures.oriented_north(new_orientation):
 		_movement_player.play("idle-nw")

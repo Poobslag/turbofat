@@ -8,7 +8,7 @@ Sprites which toggles between a single 'toward the camera' and 'away from the ca
 export (bool) var invisible_while_sprinting := false
 
 func update_orientation(orientation: int) -> void:
-	if CreatureOrientation.oriented_south(orientation):
+	if Creatures.oriented_south(orientation):
 		# facing south; initialize textures to forward-facing frame
 		set_frame(1)
 	else:
@@ -17,10 +17,10 @@ func update_orientation(orientation: int) -> void:
 
 
 func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientation: int) -> void:
-	if CreatureOrientation.oriented_south(new_orientation) and CreatureOrientation.oriented_south(old_orientation):
+	if Creatures.oriented_south(new_orientation) and Creatures.oriented_south(old_orientation):
 			# still facing south, just like before
 			pass
-	elif CreatureOrientation.oriented_north(new_orientation) and CreatureOrientation.oriented_north(old_orientation):
+	elif Creatures.oriented_north(new_orientation) and Creatures.oriented_north(old_orientation):
 			# still facing north, just like before
 			pass
 	else:
@@ -29,4 +29,4 @@ func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientati
 
 func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
 	if invisible_while_sprinting:
-		visible = new_mode != CreatureVisuals.SPRINT
+		visible = new_mode != Creatures.SPRINT
