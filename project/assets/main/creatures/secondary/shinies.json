@@ -1,0 +1,40 @@
+{
+  "version": "19dd",
+  "id": "shinies",
+  "name": "Shinies",
+  "short_name": "Shinies",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "2",
+    "body": "2",
+    "cheek": "1",
+    "collar": "1",
+    "ear": "9",
+    "eye": "1",
+    "hair": "0",
+    "head": "1",
+    "horn": "1",
+    "mouth": "5",
+    "nose": "0",
+    "tail": "0",
+    "accessory": "0",
+    "line_rgb": "584295",
+    "body_rgb": "7f55b9",
+    "belly_rgb": "de3021",
+    "cloth_rgb": "00e3d8",
+    "glass_rgb": "282828",
+    "plastic_rgb": "282828",
+    "hair_rgb": "f1e398",
+    "eye_rgb": "9cc6ef dedede",
+    "horn_rgb": "f1e398"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "b23823"
+  },
+  "fatness": 1,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}
