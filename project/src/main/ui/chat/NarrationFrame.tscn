@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://src/main/ui/chat/narration-style.tres" type="StyleBox" id=1]
+[ext_resource path="res://src/main/ui/chat/label-typer.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-out.wav" type="AudioStream" id=3]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-in.wav" type="AudioStream" id=4]
 [ext_resource path="res://src/main/ui/menu/theme/h3-font.tres" type="DynamicFont" id=5]
@@ -51,7 +52,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BebebeSound" type="AudioStreamPlayer" parent="NarrationPanel"]
+[node name="LabelTyper" type="Node" parent="NarrationPanel/NarrationLabel"]
+script = ExtResource( 2 )
+
+[node name="BebebeSound" type="AudioStreamPlayer" parent="NarrationPanel/NarrationLabel/LabelTyper"]
 stream = ExtResource( 8 )
 volume_db = -12.0
 bus = "Sound Bus"
@@ -67,4 +71,5 @@ volume_db = -14.0
 bus = "Sound Bus"
 
 [connection signal="all_text_shown" from="NarrationPanel" to="." method="_on_NarrationPanel_all_text_shown"]
+[connection signal="all_text_shown" from="NarrationPanel/NarrationLabel/LabelTyper" to="NarrationPanel" method="_on_LabelTyper_all_text_shown"]
 [connection signal="pop_out_completed" from="PopTween" to="." method="_on_Tween_pop_out_completed"]

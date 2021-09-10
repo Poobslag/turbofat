@@ -13,6 +13,7 @@ onready var _chat_frame: Control = get_parent()
 func _ready() -> void:
 	_reset_chat_frame()
 
+
 """
 Makes the chat window appear.
 

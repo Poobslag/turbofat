@@ -314,6 +314,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/settings/keybind-settings.gd"
 }, {
+"base": "Node",
+"class": "LabelTyper",
+"language": "GDScript",
+"path": "res://src/main/ui/chat/label-typer.gd"
+}, {
 "base": "Sprite",
 "class": "LeafPoof",
 "language": "GDScript",
@@ -921,6 +926,7 @@ _global_script_class_icons={
 "ImageButton": "",
 "InputReplay": "",
 "KeybindSettings": "",
+"LabelTyper": "",
 "LeafPoof": "",
 "LetterProjectile": "",
 "LetterShooter": "",
