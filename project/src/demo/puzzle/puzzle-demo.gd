@@ -16,7 +16,7 @@ Keys:
 var _line_clear_count := 1
 var _color_int := 0
 var _food_item_index := 0
-var _cake_color_int: int = PuzzleTileMap.BoxColorInt.CAKE_JJO
+var _cake_color_int: int = Foods.BoxColorInt.CAKE_JJO
 
 func _ready() -> void:
 	CurrentLevel.settings.set_start_speed("T")
@@ -42,15 +42,15 @@ func _input(event: InputEvent) -> void:
 		KEY_T: _insert_line(PuzzleTileMap.ROW_COUNT - 1)
 		KEY_Y: _insert_line(PuzzleTileMap.ROW_COUNT - 2)
 		
-		KEY_A: _color_int = PuzzleTileMap.BoxColorInt.BROWN
-		KEY_S: _color_int = PuzzleTileMap.BoxColorInt.PINK
-		KEY_D: _color_int = PuzzleTileMap.BoxColorInt.BREAD
-		KEY_F: _color_int = PuzzleTileMap.BoxColorInt.WHITE
+		KEY_A: _color_int = Foods.BoxColorInt.BROWN
+		KEY_S: _color_int = Foods.BoxColorInt.PINK
+		KEY_D: _color_int = Foods.BoxColorInt.BREAD
+		KEY_F: _color_int = Foods.BoxColorInt.WHITE
 		
 		KEY_G: _color_int = _cake_color_int
 		KEY_H:
 			_cake_color_int = wrapi(_cake_color_int + 1,
-					PuzzleTileMap.BoxColorInt.CAKE_JJO, PuzzleTileMap.BoxColorInt.CAKE_QUV)
+					Foods.BoxColorInt.CAKE_JJO, Foods.BoxColorInt.CAKE_QUV)
 			_color_int = _cake_color_int
 		
 		KEY_U: _clear_line(3)

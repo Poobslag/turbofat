@@ -107,9 +107,9 @@ func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_li
 	var combo_score: int = COMBO_SCORE_ARR[clamp(PuzzleState.combo, 0, COMBO_SCORE_ARR.size() - 1)]
 	var box_score := 0
 	for box_int in box_ints:
-		if PuzzleTileMap.is_snack_box(box_int):
+		if Foods.is_snack_box(box_int):
 			box_score += CurrentLevel.settings.score.snack_points
-		elif PuzzleTileMap.is_cake_box(box_int):
+		elif Foods.is_cake_box(box_int):
 			box_score += CurrentLevel.settings.score.cake_points
 		else:
 			box_score += CurrentLevel.settings.score.veg_points

@@ -17,33 +17,24 @@ class CrumbDefinition:
 		max_crumb_count = init_max_crumb_count
 		crumb_colors = init_crumb_colors
 
-# key: an enum from FoodItem.FoodType defining the food being eaten
+# key: an enum from Foods.FoodType defining the food being eaten
 # value: CrumbDefinition defining the color and density of crumbs
 var crumb_definitions := {
-	FoodItem.FoodType.BROWN_0: CrumbDefinition.new(6, [FoodColors.BROWN]),
-	FoodItem.FoodType.BROWN_1: CrumbDefinition.new(6, [FoodColors.BROWN]),
-	FoodItem.FoodType.PINK_0: CrumbDefinition.new(6, [FoodColors.PINK]),
-	FoodItem.FoodType.PINK_1: CrumbDefinition.new(6, [FoodColors.PINK]),
-	FoodItem.FoodType.BREAD_0: CrumbDefinition.new(6, [FoodColors.BREAD]),
-	FoodItem.FoodType.BREAD_1: CrumbDefinition.new(6, [FoodColors.BREAD]),
-	FoodItem.FoodType.WHITE_0: CrumbDefinition.new(6, [FoodColors.WHITE]),
-	FoodItem.FoodType.WHITE_1: CrumbDefinition.new(6, [FoodColors.WHITE]),
-	
-	FoodItem.FoodType.CAKE_JJO: CrumbDefinition.new(9, [FoodColors.PINK, FoodColors.PINK, FoodColors.WHITE]),
-	FoodItem.FoodType.CAKE_JLO: CrumbDefinition.new(9, [FoodColors.PINK, FoodColors.BROWN, FoodColors.WHITE]),
-	FoodItem.FoodType.CAKE_JTT: CrumbDefinition.new(9, [FoodColors.PINK, FoodColors.BREAD, FoodColors.BREAD]),
-	FoodItem.FoodType.CAKE_LLO: CrumbDefinition.new(9, [FoodColors.BROWN, FoodColors.BROWN, FoodColors.WHITE]),
-	FoodItem.FoodType.CAKE_LTT: CrumbDefinition.new(9, [FoodColors.BROWN, FoodColors.BREAD, FoodColors.BREAD]),
-	FoodItem.FoodType.CAKE_PQV: CrumbDefinition.new(9, [FoodColors.PINK, FoodColors.BROWN, FoodColors.WHITE]),
-	FoodItem.FoodType.CAKE_PUV: CrumbDefinition.new(9, [FoodColors.PINK, FoodColors.BREAD, FoodColors.WHITE]),
-	FoodItem.FoodType.CAKE_QUV: CrumbDefinition.new(9, [FoodColors.BROWN, FoodColors.BREAD, FoodColors.WHITE]),
 }
+
+func _ready() -> void:
+	# initialize crumb definitions
+	for food_type in Foods.COLORS_BY_FOOD_TYPE:
+		var max_crumb_count := 9 if Foods.is_cake_food(food_type) else 6
+		var colors: Array = Foods.COLORS_BY_FOOD_TYPE[food_type]
+		crumb_definitions[food_type] = CrumbDefinition.new(max_crumb_count, colors)
+
 
 """
 Returns a crumb definition for the specified food type.
 
 Parameters:
-	'food_type': An enum from FoodItem.FoodType defining the food being eaten
+	'food_type': An enum from Foods.FoodType defining the food being eaten
 
 Returns:
 	A CrumbDefinition instance defining the color and density of crumbs when the specified food is eaten.
