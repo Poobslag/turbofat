@@ -17,7 +17,7 @@ export (float) var avg_pulse_amount := 0.2
 export (float) var avg_pulse_period := 3.0
 
 # The unmodified scale/rotation before pulsing/spinning
-var base_scale := Vector2(1.0, 1.0) setget set_base_scale
+export (Vector2) var base_scale := Vector2(1.0, 1.0) setget set_base_scale
 var base_rotation := 0.0 setget set_base_rotation
 
 # The food type represented by this wobbler
@@ -60,7 +60,7 @@ func _refresh_scale() -> void:
 	if not is_inside_tree():
 		# avoid errors dividing by zero/null before fields are initialized
 		return
-	var _scale_modifier := Vector2(1.0, 1.0) \
+	var _scale_modifier := Vector2(0.5, 0.5) \
 			* (1 - _pulse_amount * (0.5 + 0.5 * sin(_total_time * TAU / _pulse_period)))
 	scale = base_scale * _scale_modifier
 

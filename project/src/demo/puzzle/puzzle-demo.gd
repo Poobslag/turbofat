@@ -8,6 +8,7 @@ Keys:
 	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
 	[H]: Change the cake box variation used to make cake boxes
 	[U,I,O]: Clear a line at different locations in the playfield
+	[P]: Add pickups
 	[J]: Generate a food item
 	[K]: Cycle to the next food item
 	[L]: Level up
@@ -57,6 +58,8 @@ func _input(event: InputEvent) -> void:
 		KEY_I: _clear_line(9)
 		KEY_O: _clear_line(15)
 		
+		KEY_P: _add_pickups()
+		
 		KEY_J: $Puzzle/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
 		KEY_K:
 			_food_item_index = (_food_item_index + 1) % 16
@@ -77,3 +80,21 @@ func _insert_line(y: int) -> void:
 func _clear_line(cleared_line: int) -> void:
 	$Puzzle/Playfield/LineClearer.lines_being_cleared = range(cleared_line, cleared_line + _line_clear_count)
 	$Puzzle/Playfield/LineClearer.clear_line(cleared_line, 1, 0)
+
+
+func _add_pickups() -> void:
+	var cells := []
+	for y in range(PuzzleTileMap.ROW_COUNT - 5, PuzzleTileMap.ROW_COUNT):
+		for x in range(PuzzleTileMap.COL_COUNT):
+			cells.append(Vector2(x, y))
+	
+	for cell in cells:
+		var box_type: int = [
+			Foods.BoxType.BROWN,
+			Foods.BoxType.PINK,
+			Foods.BoxType.BREAD,
+			Foods.BoxType.WHITE,
+			Foods.BoxType.CAKE_JLO,
+		][int(cell.y) % 5]
+		if $Puzzle/Playfield.tile_map.is_cell_empty(cell):
+			$Puzzle/Pickups.add_pickup(cell, box_type)

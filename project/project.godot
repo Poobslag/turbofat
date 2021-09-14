@@ -574,6 +574,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/phase-condition.gd"
 }, {
+"base": "Node2D",
+"class": "Pickup",
+"language": "GDScript",
+"path": "res://src/main/puzzle/pickup.gd"
+}, {
 "base": "Node",
 "class": "PieceInput",
 "language": "GDScript",
@@ -978,6 +983,7 @@ _global_script_class_icons={
 "PaletteButton": "",
 "PaletteEditorTab": "",
 "PhaseCondition": "",
+"Pickup": "",
 "PieceInput": "",
 "PieceManager": "",
 "PieceMover": "",

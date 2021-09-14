@@ -42,6 +42,9 @@ func _on_PuzzleState_game_prepared() -> void:
 		next_piece_display.show()
 
 
+"""
+When the player pauses, we hide the playfield so they can't cheat.
+"""
 func _on_Pauser_paused_changed(value: bool) -> void:
 	for display in _next_piece_displays:
 		display.visible = not value

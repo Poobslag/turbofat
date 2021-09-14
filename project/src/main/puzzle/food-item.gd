@@ -48,6 +48,9 @@ var _target_pos: Vector2
 # A number in the range [0.0, 1.0] corresponding to where the food is positioned between its source and target
 var _flight_percent := 0.0
 
+# 'true' of the food item has been collected and should slowly float upward
+var _floating_upward := false
+
 # How far the sprite should rotate; 1.0 = one full circle forward and backward
 onready var _spin_amount := 0.08 * rand_range(0.8, 1.2)
 
@@ -67,18 +70,39 @@ func _physics_process(delta: float) -> void:
 	
 	_total_time += delta
 	
-	if _get_target_pos and _flight_percent > 0.0:
-		_source_pos += velocity * delta
-		_target_pos = _get_target_pos.call_funcv(_target_pos_arg_array)
-		
-		# The y coordinate changes at a constant rate while the x coordinate follows a parabolic path
-		position.y = lerp(_source_pos.y, _target_pos.y, _flight_percent)
-		position.x = lerp(_source_pos.x, _target_pos.x, 2.1 * pow(_flight_percent, 1.6) - 1.1 * _flight_percent)
-	else:
-		position += velocity * delta
+	if _floating_upward:
+		if _get_target_pos and _flight_percent > 0.0:
+			_source_pos += velocity * delta
+			_target_pos = _get_target_pos.call_funcv(_target_pos_arg_array)
+			
+			# The y coordinate changes at a constant rate while the x coordinate follows a parabolic path
+			position.y = lerp(_source_pos.y, _target_pos.y, _flight_percent)
+			position.x = lerp(_source_pos.x, _target_pos.x, 2.1 * pow(_flight_percent, 1.6) - 1.1 * _flight_percent)
+		else:
+			position += velocity * delta
 	
 	_refresh_scale()
 	_refresh_rotation()
+
+
+"""
+Makes the food jiggle briefly.
+"""
+func jiggle() -> void:
+	# restart the jiggle animation if the item was already jiggling
+	$AnimationPlayer.stop()
+	# vary the jiggle animation so that items don't stay in sync when jiggling simultaneously
+	$AnimationPlayer.play("jiggle", -1, rand_range(0.5, 1.5))
+
+
+"""
+Launches the 'food was collected' animation.
+
+This makes the food jiggle and float upward.
+"""
+func collect() -> void:
+	_floating_upward = true
+	jiggle()
 
 
 func set_food_type(new_food_type: int) -> void:

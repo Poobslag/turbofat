@@ -14,10 +14,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.0666667, 0.133333, 0.2 ),
+"times": PoolRealArray( 0, 0.051, 0.133333, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.9, 1.5 ), Vector2( 1.5, 0.9 ), Vector2( 1.06, 1.06 ) ]
+"values": [ Vector2( 0.6, 0.6 ), Vector2( 0.9, 1.5 ), Vector2( 1.5, 0.9 ), Vector2( 1, 1 ) ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -50,16 +50,13 @@ tracks/1/keys = {
 
 [node name="FoodItem" type="Node2D"]
 rotation = 0.14452
-scale = Vector2( 1.06, 1.06 )
 script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/food/food-packed.json"
 rect_size = Vector2( 128, 128 )
 frame = 1
-scale_modifier = Vector2( 1.06, 1.06 )
 rotation_modifier = 0.14452
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "jiggle"
 anims/jiggle = SubResource( 1 )
 anims/reset = SubResource( 2 )

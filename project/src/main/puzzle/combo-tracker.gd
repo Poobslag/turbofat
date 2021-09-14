@@ -25,6 +25,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
+	PuzzleState.connect("added_pickup_score", self, "_on_PuzzleState_added_pickup_score")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 
 
@@ -114,3 +115,9 @@ func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_li
 		else:
 			box_score += CurrentLevel.settings.score.veg_points
 	PuzzleState.add_line_score(combo_score, box_score)
+
+
+func _on_PuzzleState_added_pickup_score(_pickup_score: int) -> void:
+	piece_continued_combo = true
+	combo_break = 0
+	emit_signal("combo_break_changed", combo_break)

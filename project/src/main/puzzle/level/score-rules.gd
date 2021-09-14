@@ -9,6 +9,12 @@ var cake_points := 10
 # box points for clearing a row of a snack box.
 var snack_points := 5
 
+# box points for collecting a cake pickup.
+var cake_pickup_points := 10
+
+# box points for collecting a snack pickup.
+var snack_pickup_points := 5
+
 # box points awarded for clearing a row with no boxes, a vegetable row.
 var veg_points := 0
 

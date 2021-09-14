@@ -14,6 +14,7 @@ const RDF_SPEED := 0.960
 const RDF_LINES := 0.960
 const RDF_BOX_SCORE_PER_LINE := 0.970
 const RDF_COMBO_SCORE_PER_LINE := 0.970
+const RDF_PICKUP_SCORE_PER_LINE := 0.970
 
 # Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
 # boxes, and easier to build boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
@@ -85,6 +86,8 @@ func calculate_rank() -> RankResult:
 					min(rank_result.box_score_per_line_rank, lenient_rank_result.box_score_per_line_rank)
 			rank_result.combo_score_per_line_rank = \
 					min(rank_result.combo_score_per_line_rank, lenient_rank_result.combo_score_per_line_rank)
+			rank_result.pickup_score_per_line_rank = \
+					min(rank_result.pickup_score_per_line_rank, lenient_rank_result.pickup_score_per_line_rank)
 			rank_result.score_rank = min(rank_result.score_rank, lenient_rank_result.score_rank)
 	return rank_result
 
@@ -206,6 +209,7 @@ func _unranked_result() -> RankResult:
 	rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 1)
 	rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \
 			/ _max_combo_score(max(rank_result.lines, 1))
+	rank_result.pickup_score_per_line = float(rank_result.pickup_score) / max(rank_result.lines, 1)
 	rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 1)
 	return rank_result
 
@@ -227,6 +231,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var target_speed: float = master_lpm
 	var target_box_score_per_line := master_box_score(CurrentLevel.settings)
 	var target_combo_score_per_line := master_combo_score(CurrentLevel.settings)
+	var target_pickup_score_per_line := master_pickup_score(CurrentLevel.settings)
 	var target_lines: float
 	var leftover_lines := master_leftover_lines(CurrentLevel.settings)
 	
@@ -267,6 +272,13 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		rank_result.combo_score_per_line_rank = log(rank_result.combo_score_per_line / target_combo_score_per_line) \
 				/ log(RDF_COMBO_SCORE_PER_LINE)
 	
+	if target_pickup_score_per_line == 0:
+		# award the player master rank if it's impossible to score any pickup points on a level
+		rank_result.pickup_score_per_line_rank = 0.0
+	else:
+		rank_result.pickup_score_per_line_rank = log(rank_result.pickup_score_per_line / target_pickup_score_per_line) \
+				/ log(RDF_PICKUP_SCORE_PER_LINE)
+	
 	# Binary search for the player's score rank. Score is a function of several criteria, the rank doesn't deteriorate
 	# in a predictable way like the other ranks
 	var overall_rank_max := WORST_RANK
@@ -277,6 +289,8 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 				* pow(RDF_BOX_SCORE_PER_LINE, tmp_overall_rank)
 		var tmp_combo_score_per_line := target_combo_score_per_line \
 				* pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
+		var tmp_pickup_score_per_line := target_pickup_score_per_line \
+				* pow(RDF_PICKUP_SCORE_PER_LINE, tmp_overall_rank)
 		if rank_result.compare == "-seconds":
 			var tmp_speed := target_speed * pow(RDF_SPEED, tmp_overall_rank)
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
@@ -290,7 +304,8 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			var tmp_box_score := tmp_box_score_per_line * tmp_lines
 			var tmp_combo_score := tmp_combo_score_per_line * tmp_lines
 			tmp_combo_score = max(0, tmp_combo_score - COMBO_DEFICIT[min(ceil(tmp_lines), COMBO_DEFICIT.size() - 1)])
-			var tmp_score := tmp_lines + tmp_box_score + tmp_combo_score
+			var tmp_pickup_score := tmp_pickup_score_per_line * tmp_lines
+			var tmp_score := tmp_lines + tmp_box_score + tmp_combo_score + tmp_pickup_score
 			if tmp_score > rank_result.score:
 				overall_rank_min = tmp_overall_rank
 			else:
@@ -333,6 +348,7 @@ func _apply_top_out_penalty(rank_result: RankResult) -> void:
 		rank_result.pieces_rank = rank_result.pieces_rank + all_penalty
 		rank_result.box_score_per_line_rank = rank_result.box_score_per_line_rank + all_penalty
 		rank_result.combo_score_per_line_rank = rank_result.combo_score_per_line_rank + all_penalty
+		rank_result.pickup_score_per_line_rank = rank_result.pickup_score_per_line_rank + all_penalty
 		rank_result.score_rank = rank_result.score_rank + all_penalty
 		rank_result.seconds_rank = rank_result.seconds_rank + all_penalty
 
@@ -397,6 +413,13 @@ Returns the maximum combo score per line for the specified level.
 """
 static func master_combo_score(settings: LevelSettings) -> float:
 	return settings.rank.combo_factor * MASTER_COMBO_SCORE
+
+
+"""
+Returns the maximum pickup score per line for the specified level.
+"""
+static func master_pickup_score(settings: LevelSettings) -> float:
+	return settings.rank.master_pickup_points_per_line
 
 
 """

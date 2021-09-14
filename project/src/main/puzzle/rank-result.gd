@@ -39,6 +39,11 @@ var combo_score := 0
 var combo_score_per_line := 0.0
 var combo_score_per_line_rank := WORST_RANK
 
+# bonus points awarded for pickups
+var pickup_score := 0
+var pickup_score_per_line := 0.0
+var pickup_score_per_line_rank := WORST_RANK
+
 # number of seconds until the player won or lost
 var seconds := 0.0
 var seconds_rank := WORST_RANK
@@ -64,6 +69,9 @@ func to_json_dict() -> Dictionary:
 		"combo_score": combo_score,
 		"combo_score_per_line": combo_score_per_line,
 		"combo_score_per_line_rank": combo_score_per_line_rank,
+		"pickup_score": pickup_score,
+		"pickup_score_per_line": pickup_score,
+		"pickup_score_per_piece_rank": pickup_score,
 		"compare": compare,
 		"leftover_score": leftover_score,
 		"lines": lines,
@@ -90,6 +98,9 @@ func from_json_dict(json: Dictionary) -> void:
 	combo_score = int(json.get("combo_score", "0"))
 	combo_score_per_line = float(json.get("combo_score_per_line", "0"))
 	combo_score_per_line_rank = float(json.get("combo_score_per_line_rank", "999"))
+	pickup_score = int(json.get("pickup_score", "0"))
+	pickup_score_per_line = float(json.get("pickup_score_per_line", "0"))
+	pickup_score_per_line_rank = float(json.get("pickup_score_per_line_rank", "999"))
 	compare = json.get("compare", "+score")
 	leftover_score = json.get("leftover_score", 0)
 	lines = int(json.get("lines", "0"))

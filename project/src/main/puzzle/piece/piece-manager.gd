@@ -261,6 +261,9 @@ func _on_PuzzleState_after_level_changed() -> void:
 	_start_first_piece()
 
 
+"""
+When the player pauses, we hide the playfield so they can't cheat.
+"""
 func _on_Pauser_paused_changed(value: bool) -> void:
 	visible = not value
 
