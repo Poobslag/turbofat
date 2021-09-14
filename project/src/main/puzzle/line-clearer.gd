@@ -333,7 +333,7 @@ When a box is made, we remove those rows from the rows to preserve at the end.
 Any prebuilt level boxes aren't cleared at the end of the level, but if the player makes additional boxes next to
 them, then they're cleared.
 """
-func _on_BoxBuilder_box_built(rect: Rect2, _color_int: int) -> void:
+func _on_BoxBuilder_box_built(rect: Rect2, _box_type: int) -> void:
 	if _rows_to_preserve_at_end:
 		for y in range(rect.position.y, rect.end.y):
 			_rows_to_preserve_at_end.erase(y)

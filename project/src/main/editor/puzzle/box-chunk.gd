@@ -3,7 +3,7 @@ extends LevelChunkControl
 A level editor chunk which contains a snack/cake box.
 """
 
-export (Foods.BoxColorInt) var box_type: int setget set_box_type
+export (Foods.BoxType) var box_type: int setget set_box_type
 
 export (Vector2) var box_size: Vector2 = Vector2(3, 3) setget set_box_size
 
@@ -34,4 +34,4 @@ func _on_RotateButton_pressed() -> void:
 
 
 func _on_ChangeButton_pressed() -> void:
-	set_box_type((box_type + 1) % Foods.BoxColorInt.size())
+	set_box_type((box_type + 1) % Foods.BoxType.size())

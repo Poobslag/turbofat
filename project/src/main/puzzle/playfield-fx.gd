@@ -265,7 +265,7 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 """
 When the player builds a box we brighten the combo lights again.
 """
-func _on_Playfield_box_built(_rect: Rect2, _color_int: int) -> void:
+func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
 	_refresh_tile_maps()
 	_start_glow_tween()
 

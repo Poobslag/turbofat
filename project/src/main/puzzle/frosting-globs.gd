@@ -37,13 +37,13 @@ Launches new frosting globs from the specified tile.
 
 Parameters:
 	'cell_pos': An (x, y) position in the TileMap containing the playfield blocks
-	'color_int': An enum from Foods.BoxColorInt defining the glob's color
+	'box_type': An enum from Foods.BoxType defining the glob's color
 	'glob_count': The number of frosting globs to launch
 	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
 """
-func _spawn_globs(cell_pos: Vector2, color_int: int, glob_count: int, glob_alpha: float = 1.0) -> void:
+func _spawn_globs(cell_pos: Vector2, box_type: int, glob_count: int, glob_alpha: float = 1.0) -> void:
 	var viewport: Viewport
-	if Foods.is_cake_box(color_int):
+	if Foods.is_cake_box(box_type):
 		viewport = $GlobViewports/RainbowViewport
 	else:
 		viewport = $GlobViewports/Viewport
@@ -51,7 +51,7 @@ func _spawn_globs(cell_pos: Vector2, color_int: int, glob_count: int, glob_alpha
 	for _i in range(glob_count):
 		var glob: FrostingGlob = _instance_glob(viewport)
 		var glob_position := _puzzle_tile_map.somewhere_near_cell(cell_pos) + _puzzle_tile_map_position
-		glob.initialize(color_int, glob_position)
+		glob.initialize(box_type, glob_position)
 		glob.modulate.a = glob_alpha
 		glob.fall()
 
@@ -73,29 +73,29 @@ This must be called before the line is cleared so that we can evaluate the food 
 """
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
-		var color_int: int
+		var box_type: int
 		var glob_count: int
 		if _puzzle_tile_map.get_cell(x, y) == PuzzleTileMap.TILE_BOX:
-			color_int = _puzzle_tile_map.get_cell_autotile_coord(x, y).y
-			if Foods.is_snack_box(color_int):
+			box_type = _puzzle_tile_map.get_cell_autotile_coord(x, y).y
+			if Foods.is_snack_box(box_type):
 				glob_count = 2
-			elif Foods.is_cake_box(color_int):
+			elif Foods.is_cake_box(box_type):
 				glob_count = 4
-		_spawn_globs(Vector2(x, y), color_int, glob_count)
+		_spawn_globs(Vector2(x, y), box_type, glob_count)
 
 
 """
 When a box is built, we generate frosting globs on the inside of the box.
 """
-func _on_Playfield_box_built(rect: Rect2, color_int: int) -> void:
+func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
 	for y in range(rect.position.y, rect.end.y):
 		for x in range(rect.position.x, rect.end.x):
 			var glob_count: int
-			if Foods.is_snack_box(color_int):
+			if Foods.is_snack_box(box_type):
 				glob_count = 1
-			elif Foods.is_cake_box(color_int):
+			elif Foods.is_cake_box(box_type):
 				glob_count = 2
-			_spawn_globs(Vector2(x, y), color_int, glob_count)
+			_spawn_globs(Vector2(x, y), box_type, glob_count)
 
 
 """
@@ -110,8 +110,8 @@ func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void
 		var pos_arr_item: Vector2 = pos_arr_item_obj
 		var glob_cell_from := old_pos + pos_arr_item
 		var glob_cell_to := piece.pos + pos_arr_item
-		_spawn_globs(glob_cell_from, piece.type.get_color_int(), 1, 0.8)
-		_spawn_globs(glob_cell_to, piece.type.get_color_int(), 1, 0.8)
+		_spawn_globs(glob_cell_from, piece.type.get_box_type(), 1, 0.8)
+		_spawn_globs(glob_cell_to, piece.type.get_box_type(), 1, 0.8)
 
 
 func _on_FrostingGlob_hit_wall(glob: FrostingGlob) -> void:
