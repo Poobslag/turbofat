@@ -96,9 +96,9 @@ Adds wobblers for a snack box or cake box.
 Parameters:
 	'rect': Cell coordinates defining the box's position and dimensions
 	
-	'color_int': An enum from Foods.BoxColorInt defining the box's color
+	'box_type': An enum from Foods.BoxType defining the box's color
 """
-func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
+func _add_wobblers_for_box(rect: Rect2, box_type: int) -> void:
 	for x in range(rect.position.x, rect.end.x):
 		for y in range(rect.position.y, rect.end.y):
 			_remove_wobbler(Vector2(x, y))
@@ -122,7 +122,7 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 	for wobbler_y in range(rect.size.y):
 		for wobbler_x in _wobbler_x_array(wobbler_positions[wobbler_y]):
 			var wobbler: Wobbler
-			if Foods.is_cake_box(color_int):
+			if Foods.is_cake_box(box_type):
 				wobbler = StarScene.instance()
 			else:
 				wobbler = SeedScene.instance()
@@ -131,14 +131,14 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 			if cell.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
 				wobbler.visible = false
 			
-			var food_types: Array = Foods.FOOD_TYPES_BY_BOX_COLOR_INTS[color_int]
+			var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
 			# alternate snack foods in a horizontal stripe pattern
 			wobbler.food_type = food_types[int(cell.y) % food_types.size()]
 			
 			wobbler.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
 			wobbler.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
 			wobbler.position *= _puzzle_tile_map.scale
-			wobbler.base_scale = _puzzle_tile_map.scale * Vector2(0.5, 0.5)
+			wobbler.base_scale = _puzzle_tile_map.scale
 			wobbler.z_index = 2
 			_add_wobbler(cell, wobbler)
 
@@ -235,8 +235,8 @@ func _shift_rows(bottom_row: int, direction: Vector2) -> void:
 		_wobblers_by_cell[cell] = shifted[cell]
 
 
-func _on_Playfield_box_built(rect: Rect2, color_int: int) -> void:
-	_add_wobblers_for_box(rect, color_int)
+func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
+	_add_wobblers_for_box(rect, box_type)
 
 
 func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:

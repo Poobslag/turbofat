@@ -31,7 +31,7 @@ const MAX_AGE := 7.0
 var puzzle_areas: PuzzleAreas
 
 # the PuzzleTileMap food color index for this glob (brown, pink, bread, white, cake)
-var color_int := -1
+var box_type := -1
 
 # remaining time in seconds before this glob will smear against the background
 var smear_time := 0.0
@@ -57,7 +57,7 @@ Parameters:
 	'glob': The FrostingGlob instance to copy from.
 """
 func copy_from(glob: Node) -> void:
-	initialize(glob.color_int, glob.position)
+	initialize(glob.box_type, glob.position)
 	puzzle_areas = glob.puzzle_areas
 	falling = glob.falling
 	velocity = glob.velocity
@@ -73,23 +73,23 @@ func get_age() -> float:
 
 
 func is_rainbow() -> bool:
-	return Foods.is_cake_box(color_int)
+	return Foods.is_cake_box(box_type)
 
 
 """
 Resets this frosting glob's state, including its color and position.
 """
-func initialize(new_color_int: int, new_position: Vector2) -> void:
+func initialize(new_box_type: int, new_position: Vector2) -> void:
 	_creation_time = OS.get_ticks_msec()
-	color_int = new_color_int
+	box_type = new_box_type
 	falling = true
 	set_process(true)
 	
 	# calculate color, launch opacity tween
 	if is_rainbow():
 		modulate = Color.white
-	elif Foods.is_snack_box(new_color_int):
-		modulate = Foods.COLORS_ALL[new_color_int]
+	elif Foods.is_snack_box(new_box_type):
+		modulate = Foods.COLORS_ALL[new_box_type]
 	
 	position = new_position
 	scale = Vector2(1, 1)

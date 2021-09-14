@@ -102,10 +102,10 @@ func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) 
 """
 Creates a snack box or cake box.
 """
-func build_box(rect: Rect2, color_int: int) -> void:
+func build_box(rect: Rect2, box_type: int) -> void:
 	for curr_x in range(rect.position.x, rect.end.x):
 		for curr_y in range (rect.position.y, rect.end.y):
-			set_block(Vector2(curr_x, curr_y), TILE_BOX, Vector2(15, color_int))
+			set_block(Vector2(curr_x, curr_y), TILE_BOX, Vector2(15, box_type))
 	
 	# top/bottom edge
 	for curr_x in range(rect.position.x, rect.end.x):
@@ -318,14 +318,14 @@ func _shift_rows(bottom_row: int, direction: Vector2) -> void:
 
 
 """
-Returns 'true' if the specified array contains a cake color int.
+Returns 'true' if the specified array contains a cake box type.
 
 There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
 """
-static func has_cake_box(color_ints: Array) -> bool:
+static func has_cake_box(box_types: Array) -> bool:
 	var result := false
-	for color_int in color_ints:
-		if Foods.is_cake_box(color_int):
+	for box_type in box_types:
+		if Foods.is_cake_box(box_type):
 			result = true
 			break
 	return result

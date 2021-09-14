@@ -6,7 +6,7 @@ or whether a box was built, pausing and playing sound effects
 """
 
 # emitted when a new box is built
-signal box_built(rect, color_int)
+signal box_built(rect, box_type)
 
 # emitted shortly before a set of lines are cleared
 signal line_clears_scheduled(ys)
@@ -143,8 +143,8 @@ func _on_Level_settings_changed() -> void:
 	_prepare_level_blocks()
 
 
-func _on_BoxBuilder_box_built(rect: Rect2, color_int: int) -> void:
-	emit_signal("box_built", rect, color_int)
+func _on_BoxBuilder_box_built(rect: Rect2, box_type: int) -> void:
+	emit_signal("box_built", rect, box_type)
 
 
 func _on_BoxBuilder_after_boxes_built() -> void:

@@ -8,7 +8,7 @@ Builds boxes in a tilemap as new pieces are placed.
 signal after_boxes_built
 
 # emitted when a new box is built
-signal box_built(rect, color_int)
+signal box_built(rect, box_type)
 
 export (NodePath) var tile_map_path: NodePath
 
@@ -26,26 +26,26 @@ the box's piece color ints in ascending numerical order (brown=0, pink=1...). Fo
 and white pieces, where 'l123' is a 5x3 box with pink, bread and white pieces. 's0' is a 3x3 box with brown pieces.
 
 Key: Ingredient string describing the box's size and color
-Value: BoxColorInt for the resulting snack/cake
+Value: BoxType for the resulting snack/cake
 """
-const BOX_COLOR_INTS_BY_INGREDIENTS := {
+const BOX_TYPES_BY_INGREDIENTS := {
 	# 3x3
-	"s0": Foods.BoxColorInt.BROWN,
-	"s1": Foods.BoxColorInt.PINK,
-	"s2": Foods.BoxColorInt.BREAD,
-	"s3": Foods.BoxColorInt.WHITE,
+	"s0": Foods.BoxType.BROWN,
+	"s1": Foods.BoxType.PINK,
+	"s2": Foods.BoxType.BREAD,
+	"s3": Foods.BoxType.WHITE,
 	
 	# 4x3
-	"s013": Foods.BoxColorInt.CAKE_JLO,
-	"s02": Foods.BoxColorInt.CAKE_LTT,
-	"s03": Foods.BoxColorInt.CAKE_LLO,
-	"s12": Foods.BoxColorInt.CAKE_JTT,
-	"s13": Foods.BoxColorInt.CAKE_JJO,
+	"s013": Foods.BoxType.CAKE_JLO,
+	"s02": Foods.BoxType.CAKE_LTT,
+	"s03": Foods.BoxType.CAKE_LLO,
+	"s12": Foods.BoxType.CAKE_JTT,
+	"s13": Foods.BoxType.CAKE_JJO,
 	
 	# 5x3
-	"l013": Foods.BoxColorInt.CAKE_PQV,
-	"l023": Foods.BoxColorInt.CAKE_QUV,
-	"l123": Foods.BoxColorInt.CAKE_PUV,
+	"l013": Foods.BoxType.CAKE_PQV,
+	"l023": Foods.BoxType.CAKE_QUV,
+	"l123": Foods.BoxType.CAKE_PUV,
 }
 
 func _ready() -> void:
@@ -65,11 +65,11 @@ Builds a box with the specified location and size.
 
 Boxes are built when the player forms a 3x3, 3x4, 3x5 rectangle from intact pieces.
 """
-func build_box(rect: Rect2, color_int: int) -> void:
+func build_box(rect: Rect2, box_type: int) -> void:
 	# set at least 1 box build frame; processing occurs when the frame goes from 1 -> 0
 	remaining_box_build_frames = max(1, PieceSpeeds.current_speed.box_delay)
-	_tile_map.build_box(rect, color_int)
-	emit_signal("box_built", rect, color_int)
+	_tile_map.build_box(rect, box_type)
+	emit_signal("box_built", rect, box_type)
 
 
 """
@@ -160,13 +160,13 @@ Parameters:
 	
 	'height': The box height
 	
-	'piece_color_ints': An array of ints corresponding to different piece colors (brown=0, pink=1...)
+	'piece_box_types': An array of ints corresponding to different piece colors (brown=0, pink=1...)
 """
-func _box_ingredients(width: int, height: int, piece_color_ints: Array) -> String:
-	piece_color_ints.sort()
+func _box_ingredients(width: int, height: int, piece_box_types: Array) -> String:
+	piece_box_types.sort()
 	var result := "s" if width <= 4 and height <= 4 else "l"
-	for piece_color_int in piece_color_ints:
-		result += str(piece_color_int)
+	for piece_box_type in piece_box_types:
+		result += str(piece_box_type)
 	return result
 
 
@@ -192,14 +192,14 @@ func _process_box(end_x: int, end_y: int, width: int, height: int) -> bool:
 			return false
 	
 	# calculate the ingredient string for the box
-	var piece_color_ints_dict := {}
+	var piece_box_types_dict := {}
 	for x in range(start_x, end_x + 1):
 		for y in range(start_y, end_y + 1):
-			piece_color_ints_dict[_tile_map.get_cell_autotile_coord(x, y).y] = true
-	var ingredients := _box_ingredients(width, height, piece_color_ints_dict.keys())
+			piece_box_types_dict[_tile_map.get_cell_autotile_coord(x, y).y] = true
+	var ingredients := _box_ingredients(width, height, piece_box_types_dict.keys())
 	
-	var color_int: int = BOX_COLOR_INTS_BY_INGREDIENTS.get(ingredients, Foods.BoxColorInt.BROWN)
+	var box_type: int = BOX_TYPES_BY_INGREDIENTS.get(ingredients, Foods.BoxType.BROWN)
 	
-	build_box(Rect2(start_x, start_y, width, height), color_int)
+	build_box(Rect2(start_x, start_y, width, height), box_type)
 	
 	return true

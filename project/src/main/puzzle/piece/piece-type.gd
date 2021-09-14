@@ -68,7 +68,7 @@ func get_cell_color(orientation: int, cell_index: int) -> Vector2:
 """
 Returns PuzzleTileMap's food color index for this piece (brown, pink, bread, white)
 """
-func get_color_int() -> int:
+func get_box_type() -> int:
 	return color_arr[0][0][1]
 
 

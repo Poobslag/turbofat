@@ -14,9 +14,9 @@ Keys:
 """
 
 var _line_clear_count := 1
-var _color_int := 0
+var _box_type := 0
 var _food_item_index := 0
-var _cake_color_int: int = Foods.BoxColorInt.CAKE_JJO
+var _cake_box_type: int = Foods.BoxType.CAKE_JJO
 
 func _ready() -> void:
 	CurrentLevel.settings.set_start_speed("T")
@@ -42,16 +42,16 @@ func _input(event: InputEvent) -> void:
 		KEY_T: _insert_line(PuzzleTileMap.ROW_COUNT - 1)
 		KEY_Y: _insert_line(PuzzleTileMap.ROW_COUNT - 2)
 		
-		KEY_A: _color_int = Foods.BoxColorInt.BROWN
-		KEY_S: _color_int = Foods.BoxColorInt.PINK
-		KEY_D: _color_int = Foods.BoxColorInt.BREAD
-		KEY_F: _color_int = Foods.BoxColorInt.WHITE
+		KEY_A: _box_type = Foods.BoxType.BROWN
+		KEY_S: _box_type = Foods.BoxType.PINK
+		KEY_D: _box_type = Foods.BoxType.BREAD
+		KEY_F: _box_type = Foods.BoxType.WHITE
 		
-		KEY_G: _color_int = _cake_color_int
+		KEY_G: _box_type = _cake_box_type
 		KEY_H:
-			_cake_color_int = wrapi(_cake_color_int + 1,
-					Foods.BoxColorInt.CAKE_JJO, Foods.BoxColorInt.CAKE_QUV)
-			_color_int = _cake_color_int
+			_cake_box_type = wrapi(_cake_box_type + 1,
+					Foods.BoxType.CAKE_JJO, Foods.BoxType.CAKE_QUV)
+			_box_type = _cake_box_type
 		
 		KEY_U: _clear_line(3)
 		KEY_I: _clear_line(9)
@@ -67,7 +67,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _build_box(y: int) -> void:
-	$Puzzle/Playfield/BoxBuilder.build_box(Rect2(6, y, 3, 3), _color_int)
+	$Puzzle/Playfield/BoxBuilder.build_box(Rect2(6, y, 3, 3), _box_type)
 
 
 func _insert_line(y: int) -> void:

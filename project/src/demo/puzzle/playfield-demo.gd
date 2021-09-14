@@ -10,7 +10,7 @@ Keys:
 """
 
 var _line_clear_count := 1
-var _color_int := 0
+var _box_type := 0
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
@@ -22,11 +22,11 @@ func _input(event: InputEvent) -> void:
 		KEY_R: _build_box(12)
 		KEY_T: _build_box(15)
 		
-		KEY_A: _color_int = 0
-		KEY_S: _color_int = 1
-		KEY_D: _color_int = 2
-		KEY_F: _color_int = 3
-		KEY_G: _color_int = 4
+		KEY_A: _box_type = 0
+		KEY_S: _box_type = 1
+		KEY_D: _box_type = 2
+		KEY_F: _box_type = 3
+		KEY_G: _box_type = 4
 		
 		KEY_Z: _clear_line(3)
 		KEY_X: _clear_line(6)
@@ -38,7 +38,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _build_box(y: int) -> void:
-	$Playfield/BoxBuilder.build_box(0, y, 3, 3, _color_int)
+	$Playfield/BoxBuilder.build_box(0, y, 3, 3, _box_type)
 
 
 func _clear_line(cleared_line: int) -> void:
