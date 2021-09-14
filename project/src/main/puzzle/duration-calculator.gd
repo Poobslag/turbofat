@@ -92,4 +92,7 @@ func _score_per_line(settings: LevelSettings) -> float:
 	var box_score_per_line := RankCalculator.master_box_score(settings)
 	box_score_per_line *= pow(RankCalculator.RDF_BOX_SCORE_PER_LINE, _rank(settings))
 	
-	return box_score_per_line + combo_score_per_line + 1
+	var pickup_score_per_line := RankCalculator.master_pickup_score(settings)
+	pickup_score_per_line *= pow(RankCalculator.RDF_PICKUP_SCORE_PER_LINE, _rank(settings))
+	
+	return box_score_per_line + combo_score_per_line + pickup_score_per_line + 1

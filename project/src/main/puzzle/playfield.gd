@@ -179,6 +179,9 @@ func _on_FrostingGlobs_hit_playfield(glob: Node) -> void:
 	_bg_glob_viewports.add_smear(glob)
 
 
+"""
+When the player pauses, we hide the playfield so they can't cheat.
+"""
 func _on_Pauser_paused_changed(value: bool) -> void:
 	$TileMapClip.visible = not value
 	$ShadowTexture.visible = not value

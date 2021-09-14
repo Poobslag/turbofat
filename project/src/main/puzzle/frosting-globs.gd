@@ -2,8 +2,7 @@ extends Node2D
 """
 Creates frosting globs on the playfield when the player does well.
 
-These frosting globs are pulled from a pool, reset to a specific color and position, and launched in a random
-direction.
+These frosting globs are initialized to a specific color and position and launched in a random direction.
 """
 
 # emitted when a frosting glob hits a wall

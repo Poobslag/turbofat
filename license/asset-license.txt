@@ -42,6 +42,7 @@ project/assets/main/puzzle/lock.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_
 project/assets/main/puzzle/make-cake-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_03.wav" "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_C_02.wav" "\sfx-packs\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - PICKUPS - (109)\SUCCESS PICKUP Collect Beep 06.wav"
 project/assets/main/puzzle/make-snack-box.wav "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_B_03.wav" "\sfx-packs\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Goop_C_02.wav" "\2000_Game_SFX_Collection\GameBurp - 2000 Game Sound FX Collection (WAV)\SUCCESS - PICKUPS - (109)\SUCCESS PICKUP Collect Beep 03.wav"
 project/assets/main/puzzle/move.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_04.wav"
+project/assets/main/puzzle/pickup.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_04.wav"
 project/assets/main/puzzle/presquish.wav "Foley Rubber Glove 1" by Epidemic Sound
 project/assets/main/puzzle/rotate0.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"
 project/assets/main/puzzle/rotate1.wav "\Cooking_Game_16bit\Cooking_Game_16bit\Ingredient_Pickup\Cooking_Game_Ingredient_Pickup_Water_03.wav"

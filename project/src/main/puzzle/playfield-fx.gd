@@ -95,6 +95,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	_combo_tracker.connect("combo_break_changed", self, "_on_ComboTracker_combo_break_changed")
 	PuzzleState.connect("combo_changed", self, "_on_PuzzleState_combo_changed")
+	PuzzleState.connect("added_pickup_score", self, "_on_PuzzleState_added_pickup_score")
 	_init_tile_set()
 	_init_color_tile_indexes()
 	reset()
@@ -258,14 +259,19 @@ func _on_ComboTracker_combo_break_changed(_value: int) -> void:
 
 func _on_PuzzleState_combo_changed(value: int) -> void:
 	_calculate_brightness(value)
-	_start_glow_tween()
 	_refresh_tile_maps()
+	_start_glow_tween()
 
 
 """
 When the player builds a box we brighten the combo lights again.
 """
 func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
+	_refresh_tile_maps()
+	_start_glow_tween()
+
+
+func _on_PuzzleState_added_pickup_score(_pickup_score: int) -> void:
 	_refresh_tile_maps()
 	_start_glow_tween()
 

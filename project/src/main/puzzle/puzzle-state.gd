@@ -35,6 +35,7 @@ signal after_game_ended
 signal speed_index_changed(value)
 
 signal added_line_score(combo_score, box_score)
+signal added_pickup_score(pickup_score)
 
 # emitted on the frame that the player drops and locks a new piece
 signal before_piece_written
@@ -218,6 +219,22 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 	emit_signal("added_line_score", combo_score, box_score)
 	emit_signal("score_changed")
 	emit_signal("combo_changed", combo)
+
+
+"""
+Adds points for collecting one or more pickups.
+
+Increments persistent data for the current level and transient data displayed on the screen.
+"""
+func add_pickup_score(pickup_score: int) -> void:
+	if game_active:
+		level_performance.pickup_score += pickup_score
+	
+	_add_customer_score(pickup_score)
+	_add_bonus_score(pickup_score)
+	
+	emit_signal("added_pickup_score", pickup_score)
+	emit_signal("score_changed")
 
 
 """

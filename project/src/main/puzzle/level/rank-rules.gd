@@ -11,6 +11,9 @@ var box_factor := 1.0
 # needs 3x the usual combo points per line to get a good rank
 var combo_factor := 1.0
 
+# expected bonus points per line awarded for pickups
+var master_pickup_points_per_line := 0.0
+
 # extra time it takes an expert to move the piece where it belongs
 var extra_seconds_per_piece := 0.0
 

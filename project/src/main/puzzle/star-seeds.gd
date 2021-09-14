@@ -276,6 +276,9 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 					_wobblers_by_cell[Vector2(x, y)].food_type)
 
 
+"""
+When the player pauses, we hide the playfield so they can't cheat.
+"""
 func _on_Pauser_paused_changed(value: bool) -> void:
 	visible = not value
 

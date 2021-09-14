@@ -115,7 +115,7 @@ const FOOD_TYPES_BY_BOX_TYPES := {
 """
 Returns 'true' if the specified box type corresponds to a snack box.
 
-There are four snack box types; brown, pink, bread and white.
+There are four snack box colors; brown, pink, bread and white.
 """
 static func is_snack_box(box_type: int) -> bool:
 	return box_type <= BoxType.WHITE
@@ -124,7 +124,7 @@ static func is_snack_box(box_type: int) -> bool:
 """
 Returns 'true' if the specified box type corresponds to a cake box.
 
-There are eight cake box types; one for each combination of three pieces which forms a rectangle.
+There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
 """
 static func is_cake_box(box_type: int) -> bool:
 	return box_type >= BoxType.CAKE_JJO

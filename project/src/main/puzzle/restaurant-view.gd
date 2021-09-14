@@ -37,6 +37,7 @@ func _ready() -> void:
 	PuzzleState.connect("combo_changed", self, "_on_PuzzleState_combo_changed")
 	PuzzleState.connect("topped_out", self, "_on_PuzzleState_topped_out")
 	PuzzleState.connect("added_line_score", self, "_on_PuzzleState_added_line_score")
+	PuzzleState.connect("added_pickup_score", self, "_on_PuzzleState_added_pickup_score")
 	
 	get_chef().connect("creature_name_changed", self, "_on_Chef_creature_name_changed")
 	for customer in get_customers():
@@ -158,6 +159,20 @@ func _refresh_chef_name() -> void:
 	_restaurant_nametag_panel.refresh_creature(get_chef())
 
 
+"""
+Update the chef's mood based on the current bonus score.
+
+If you get a lot of bonus points, the chef gets happy.
+"""
+func _react_to_total_bonus() -> void:
+	var total_bonus := 0
+	for bonus in _recent_bonuses:
+		total_bonus += bonus
+	
+	if total_bonus >= 15 * 6:
+		get_chef().play_mood(ChatEvent.Mood.SMILE0)
+
+
 func _on_Chef_creature_name_changed() -> void:
 	_refresh_chef_name()
 
@@ -187,18 +202,23 @@ func _on_PuzzleState_topped_out() -> void:
 
 
 """
-When clearing lines, the chef smiles if they're scoring a lot of bonuses.
+When clearing lines, the chef smiles if they're scoring a lot of bonus points.
 """
 func _on_PuzzleState_added_line_score(combo_score: int, box_score: int) -> void:
 	_recent_bonuses.append(combo_score + box_score)
 	if _recent_bonuses.size() >= 6:
 		_recent_bonuses = _recent_bonuses.slice(_recent_bonuses.size() - 6, _recent_bonuses.size() - 1)
-	var total_bonus := 0
-	for bonus in _recent_bonuses:
-		total_bonus += bonus
-	
-	if total_bonus >= 15 * 6:
-		get_chef().play_mood(ChatEvent.Mood.SMILE0)
+	_react_to_total_bonus()
+
+
+"""
+When collecting pickups, the chef smiles if they're scoring a lot of bonus points.
+"""
+func _on_PuzzleState_added_pickup_score(pickup_score: int) -> void:
+	if not _recent_bonuses:
+		_recent_bonuses.append(0)
+	_recent_bonuses[_recent_bonuses.size() - 1] += pickup_score
+	_react_to_total_bonus()
 
 
 """
