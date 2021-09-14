@@ -30,22 +30,22 @@ Value: BoxColorInt for the resulting snack/cake
 """
 const BOX_COLOR_INTS_BY_INGREDIENTS := {
 	# 3x3
-	"s0": PuzzleTileMap.BoxColorInt.BROWN,
-	"s1": PuzzleTileMap.BoxColorInt.PINK,
-	"s2": PuzzleTileMap.BoxColorInt.BREAD,
-	"s3": PuzzleTileMap.BoxColorInt.WHITE,
+	"s0": Foods.BoxColorInt.BROWN,
+	"s1": Foods.BoxColorInt.PINK,
+	"s2": Foods.BoxColorInt.BREAD,
+	"s3": Foods.BoxColorInt.WHITE,
 	
 	# 4x3
-	"s013": PuzzleTileMap.BoxColorInt.CAKE_JLO,
-	"s02": PuzzleTileMap.BoxColorInt.CAKE_LTT,
-	"s03": PuzzleTileMap.BoxColorInt.CAKE_LLO,
-	"s12": PuzzleTileMap.BoxColorInt.CAKE_JTT,
-	"s13": PuzzleTileMap.BoxColorInt.CAKE_JJO,
+	"s013": Foods.BoxColorInt.CAKE_JLO,
+	"s02": Foods.BoxColorInt.CAKE_LTT,
+	"s03": Foods.BoxColorInt.CAKE_LLO,
+	"s12": Foods.BoxColorInt.CAKE_JTT,
+	"s13": Foods.BoxColorInt.CAKE_JJO,
 	
 	# 5x3
-	"l013": PuzzleTileMap.BoxColorInt.CAKE_PQV,
-	"l023": PuzzleTileMap.BoxColorInt.CAKE_QUV,
-	"l123": PuzzleTileMap.BoxColorInt.CAKE_PUV,
+	"l013": Foods.BoxColorInt.CAKE_PQV,
+	"l023": Foods.BoxColorInt.CAKE_QUV,
+	"l123": Foods.BoxColorInt.CAKE_PUV,
 }
 
 func _ready() -> void:
@@ -198,7 +198,7 @@ func _process_box(end_x: int, end_y: int, width: int, height: int) -> bool:
 			piece_color_ints_dict[_tile_map.get_cell_autotile_coord(x, y).y] = true
 	var ingredients := _box_ingredients(width, height, piece_color_ints_dict.keys())
 	
-	var color_int: int = BOX_COLOR_INTS_BY_INGREDIENTS.get(ingredients, PuzzleTileMap.BoxColorInt.BROWN)
+	var color_int: int = BOX_COLOR_INTS_BY_INGREDIENTS.get(ingredients, Foods.BoxColorInt.BROWN)
 	
 	build_box(Rect2(start_x, start_y, width, height), color_int)
 	

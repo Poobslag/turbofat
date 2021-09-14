@@ -73,7 +73,7 @@ func get_age() -> float:
 
 
 func is_rainbow() -> bool:
-	return PuzzleTileMap.is_cake_box(color_int)
+	return Foods.is_cake_box(color_int)
 
 
 """
@@ -88,8 +88,8 @@ func initialize(new_color_int: int, new_position: Vector2) -> void:
 	# calculate color, launch opacity tween
 	if is_rainbow():
 		modulate = Color.white
-	elif PuzzleTileMap.is_snack_box(new_color_int):
-		modulate = FoodColors.ALL[new_color_int]
+	elif Foods.is_snack_box(new_color_int):
+		modulate = Foods.COLORS_ALL[new_color_int]
 	
 	position = new_position
 	scale = Vector2(1, 1)

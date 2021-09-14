@@ -13,7 +13,7 @@ Parameters:
 	
 	'remaining_food': The number of remaining food items for the current set of line clears
 	
-	'food_type': An enum from FoodItem.FoodType corresponding to the food to spawn
+	'food_type': An enum from Foods.FoodType corresponding to the food to spawn
 """
 signal food_spawned(cell, remaining_food, food_type)
 
@@ -96,7 +96,7 @@ Adds wobblers for a snack box or cake box.
 Parameters:
 	'rect': Cell coordinates defining the box's position and dimensions
 	
-	'color_int': An enum from PuzzleTileMap.BoxColorInt defining the box's color
+	'color_int': An enum from Foods.BoxColorInt defining the box's color
 """
 func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 	for x in range(rect.position.x, rect.end.x):
@@ -122,7 +122,7 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 	for wobbler_y in range(rect.size.y):
 		for wobbler_x in _wobbler_x_array(wobbler_positions[wobbler_y]):
 			var wobbler: Wobbler
-			if PuzzleTileMap.is_cake_box(color_int):
+			if Foods.is_cake_box(color_int):
 				wobbler = StarScene.instance()
 			else:
 				wobbler = SeedScene.instance()
@@ -130,23 +130,11 @@ func _add_wobblers_for_box(rect: Rect2, color_int: int) -> void:
 			var cell := rect.position + Vector2(wobbler_x, wobbler_y)
 			if cell.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
 				wobbler.visible = false
-			match color_int:
-				PuzzleTileMap.BoxColorInt.BROWN: wobbler.food_type = \
-						FoodItem.FoodType.BROWN_0 if int(cell.y) % 2 == 0 else FoodItem.FoodType.BROWN_1
-				PuzzleTileMap.BoxColorInt.PINK: wobbler.food_type = \
-						FoodItem.FoodType.PINK_0 if int(cell.y) % 2 == 0 else FoodItem.FoodType.PINK_1
-				PuzzleTileMap.BoxColorInt.BREAD: wobbler.food_type = \
-						FoodItem.FoodType.BREAD_0 if int(cell.y) % 2 == 0 else FoodItem.FoodType.BREAD_1
-				PuzzleTileMap.BoxColorInt.WHITE: wobbler.food_type = \
-						FoodItem.FoodType.WHITE_0 if int(cell.y) % 2 == 0 else FoodItem.FoodType.WHITE_1
-				PuzzleTileMap.BoxColorInt.CAKE_JJO: wobbler.food_type = FoodItem.FoodType.CAKE_JJO
-				PuzzleTileMap.BoxColorInt.CAKE_JLO: wobbler.food_type = FoodItem.FoodType.CAKE_JLO
-				PuzzleTileMap.BoxColorInt.CAKE_JTT: wobbler.food_type = FoodItem.FoodType.CAKE_JTT
-				PuzzleTileMap.BoxColorInt.CAKE_LLO: wobbler.food_type = FoodItem.FoodType.CAKE_LLO
-				PuzzleTileMap.BoxColorInt.CAKE_LTT: wobbler.food_type = FoodItem.FoodType.CAKE_LTT
-				PuzzleTileMap.BoxColorInt.CAKE_PQV: wobbler.food_type = FoodItem.FoodType.CAKE_PQV
-				PuzzleTileMap.BoxColorInt.CAKE_PUV: wobbler.food_type = FoodItem.FoodType.CAKE_PUV
-				PuzzleTileMap.BoxColorInt.CAKE_QUV: wobbler.food_type = FoodItem.FoodType.CAKE_QUV
+			
+			var food_types: Array = Foods.FOOD_TYPES_BY_BOX_COLOR_INTS[color_int]
+			# alternate snack foods in a horizontal stripe pattern
+			wobbler.food_type = food_types[int(cell.y) % food_types.size()]
+			
 			wobbler.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
 			wobbler.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
 			wobbler.position *= _puzzle_tile_map.scale

@@ -5,25 +5,6 @@ extends PackedSprite
 A food item which appears when the player clears a box in puzzle mode.
 """
 
-enum FoodType {
-	BROWN_0,
-	BROWN_1,
-	PINK_0,
-	PINK_1,
-	BREAD_0,
-	BREAD_1,
-	WHITE_0,
-	WHITE_1,
-	CAKE_JJO,
-	CAKE_JLO,
-	CAKE_JTT,
-	CAKE_LLO,
-	CAKE_LTT,
-	CAKE_PQV,
-	CAKE_PUV,
-	CAKE_QUV,
-}
-
 # warning-ignore:unused_signal
 # Emitted when the food item has floated for long enough and fly_to_target can be called. Emitted by food-items.gd
 signal ready_to_fly

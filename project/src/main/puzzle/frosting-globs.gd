@@ -37,13 +37,13 @@ Launches new frosting globs from the specified tile.
 
 Parameters:
 	'cell_pos': An (x, y) position in the TileMap containing the playfield blocks
-	'color_int': One of PuzzleTileMap's food color indexes (brown, pink, bread, white, cake)
+	'color_int': An enum from Foods.BoxColorInt defining the glob's color
 	'glob_count': The number of frosting globs to launch
 	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
 """
 func _spawn_globs(cell_pos: Vector2, color_int: int, glob_count: int, glob_alpha: float = 1.0) -> void:
 	var viewport: Viewport
-	if PuzzleTileMap.is_cake_box(color_int):
+	if Foods.is_cake_box(color_int):
 		viewport = $GlobViewports/RainbowViewport
 	else:
 		viewport = $GlobViewports/Viewport
@@ -77,9 +77,9 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 		var glob_count: int
 		if _puzzle_tile_map.get_cell(x, y) == PuzzleTileMap.TILE_BOX:
 			color_int = _puzzle_tile_map.get_cell_autotile_coord(x, y).y
-			if PuzzleTileMap.is_snack_box(color_int):
+			if Foods.is_snack_box(color_int):
 				glob_count = 2
-			elif PuzzleTileMap.is_cake_box(color_int):
+			elif Foods.is_cake_box(color_int):
 				glob_count = 4
 		_spawn_globs(Vector2(x, y), color_int, glob_count)
 
@@ -91,9 +91,9 @@ func _on_Playfield_box_built(rect: Rect2, color_int: int) -> void:
 	for y in range(rect.position.y, rect.end.y):
 		for x in range(rect.position.x, rect.end.x):
 			var glob_count: int
-			if PuzzleTileMap.is_snack_box(color_int):
+			if Foods.is_snack_box(color_int):
 				glob_count = 1
-			elif PuzzleTileMap.is_cake_box(color_int):
+			elif Foods.is_cake_box(color_int):
 				glob_count = 2
 			_spawn_globs(Vector2(x, y), color_int, glob_count)
 

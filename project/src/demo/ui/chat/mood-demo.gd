@@ -73,5 +73,5 @@ func _input(event: InputEvent) -> void:
 			KEY_V: $Creature.play_mood(ChatEvent.Mood.WAVE1)
 			KEY_B: $Creature.play_mood(ChatEvent.Mood.YES0)
 			KEY_N: $Creature.play_mood(ChatEvent.Mood.YES1)
-			KEY_SPACE: $Creature.feed(FoodItem.FoodType.BROWN_0)
+			KEY_SPACE: $Creature.feed(Foods.FoodType.BROWN_0)
 			KEY_EQUAL: $Creature.set_fatness(3)

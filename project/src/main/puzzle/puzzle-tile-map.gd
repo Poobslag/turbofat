@@ -9,21 +9,6 @@ enum TileSetType {
 	VEGGIE,
 }
 
-enum BoxColorInt {
-	BROWN,
-	PINK,
-	BREAD,
-	WHITE,
-	CAKE_JJO,
-	CAKE_JLO,
-	CAKE_JTT,
-	CAKE_LLO,
-	CAKE_LTT,
-	CAKE_PQV,
-	CAKE_PUV,
-	CAKE_QUV,
-}
-
 # The highest visible playfield row. Food/wobblers/vfx should not be drawn above this row.
 const FIRST_VISIBLE_ROW := 3
 
@@ -333,32 +318,14 @@ func _shift_rows(bottom_row: int, direction: Vector2) -> void:
 
 
 """
-Returns 'true' if the specified color index corresponds to a snack box.
-
-There are four snack box colors; brown, pink, bread and white.
-"""
-static func is_snack_box(color_int: int) -> bool:
-	return color_int <= BoxColorInt.WHITE
-
-
-"""
-Returns 'true' if the specified color index corresponds to a cake box.
-
-There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
-"""
-static func is_cake_box(color_int: int) -> bool:
-	return color_int >= BoxColorInt.CAKE_JJO
-
-
-"""
-Returns 'true' if the specified array contains a cake box color index.
+Returns 'true' if the specified array contains a cake color int.
 
 There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
 """
 static func has_cake_box(color_ints: Array) -> bool:
 	var result := false
 	for color_int in color_ints:
-		if is_cake_box(color_int):
+		if Foods.is_cake_box(color_int):
 			result = true
 			break
 	return result
