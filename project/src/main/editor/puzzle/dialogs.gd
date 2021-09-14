@@ -17,7 +17,15 @@ func _show_save_load_not_supported_error() -> void:
 func _preserve_file_dialog_path(dialog: FileDialog) -> void:
 	for other_dialog in [_open_file_dialog, _open_resource_dialog, _save_dialog]:
 		other_dialog.current_file = dialog.current_file
-		other_dialog.current_path = dialog.current_path
+		
+		if other_dialog.access == FileDialog.ACCESS_RESOURCES and dialog.access == FileDialog.ACCESS_FILESYSTEM:
+			# localize the path when switching from file to resource dialogs
+			other_dialog.current_path = ProjectSettings.localize_path(dialog.current_path)
+		elif other_dialog.access == FileDialog.ACCESS_FILESYSTEM and dialog.access == FileDialog.ACCESS_RESOURCES:
+			# globalize the path when switching from resource to file dialogs
+			other_dialog.current_path = ProjectSettings.globalize_path(dialog.current_path)
+		else:
+			other_dialog.current_path = dialog.current_path
 
 
 func _on_OpenResource_file_selected(path: String) -> void:
