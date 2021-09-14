@@ -37,8 +37,8 @@ func _input(event: InputEvent) -> void:
 		KEY_W: _build_box(9)
 		KEY_E: _build_box(15)
 		
-		KEY_T: _insert_line(PuzzleTileMap.ROW_COUNT - 1)
-		KEY_Y: _insert_line(PuzzleTileMap.ROW_COUNT - 2)
+		KEY_T: _insert_line("", PuzzleTileMap.ROW_COUNT - 1)
+		KEY_Y: _insert_line("", PuzzleTileMap.ROW_COUNT - 2)
 		
 		KEY_A: _box_type = Foods.BoxType.BROWN
 		KEY_S: _box_type = Foods.BoxType.PINK
@@ -70,8 +70,8 @@ func _build_box(y: int) -> void:
 	$Puzzle/Playfield/BoxBuilder.build_box(Rect2(6, y, 3, 3), _box_type)
 
 
-func _insert_line(y: int) -> void:
-	CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(y)
+func _insert_line(tiles_key: String, y: int) -> void:
+	CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_key, y)
 
 
 func _clear_line(cleared_line: int) -> void:

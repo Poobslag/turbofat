@@ -128,7 +128,7 @@ func _prepare_level_blocks() -> void:
 	$TutorialKeybindsLabel.visible = CurrentLevel.settings.other.tutorial and not OS.has_touchscreen_ui_hint()
 	
 	tile_map.clear()
-	var blocks_start: BlocksStartRules = CurrentLevel.settings.blocks_start
+	var blocks_start: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.blocks_start()
 	for cell in blocks_start.used_cells:
 		tile_map.set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
 	emit_signal("blocks_prepared")

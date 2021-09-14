@@ -33,19 +33,19 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 	
 	Example: ["cw", "0", "0"]
 	"""
-	func set_config(new_config: Array = []) -> void:
-		if new_config.size() >= 1:
-			match new_config[0]:
+	func set_config(new_config: Dictionary = {}) -> void:
+		if new_config.has("0"):
+			match new_config["0"]:
 				"none": rotate_dir = Rotation.NONE
 				"cw": rotate_dir = Rotation.CW
 				"ccw": rotate_dir = Rotation.CCW
 				"180": rotate_dir = Rotation.FLIP
 		
-		if new_config.size() >= 2:
-			next_piece_from_index = new_config[1].to_int()
+		if new_config.has("1"):
+			next_piece_from_index = new_config["1"].to_int()
 		
-		if new_config.size() >= 3:
-			next_piece_to_index = new_config[2].to_int()
+		if new_config.has("2"):
+			next_piece_to_index = new_config["2"].to_int()
 	
 	
 	"""
@@ -67,8 +67,27 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 Inserts a new line at the bottom of the playfield.
 """
 class InsertLineEffect extends LevelTriggerEffect:
+	# (Optional) a key corresponding to a set of tiles in LevelTiles for the tiles to insert
+	var tiles_key: String
+	
+	"""
+	Updates the effect's configuration.
+	
+	This effect's configuration accepts the following parameters:
+	
+	[tiles_key]: (Optional) A key corresponding to a set of tiles in LevelTiles for the tiles to insert.
+	
+	Example: ["tiles_key=0"]
+	"""
+	func set_config(new_config: Dictionary = {}) -> void:
+		tiles_key = new_config.get("tiles_key", "")
+	
+	
+	"""
+	Inserts a new line at the bottom of the playfield.
+	"""
 	func run() -> void:
-		CurrentLevel.puzzle.get_playfield().line_inserter.insert_line()
+		CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_key)
 
 
 var effects_by_string := {
@@ -84,7 +103,7 @@ Parameters:
 	
 	'effect_config': (Optional) An array of strings defining the effect's behavior.
 """
-func create(effect_key: String, effect_config: Array = []) -> LevelTriggerEffect:
+func create(effect_key: String, effect_config: Dictionary = {}) -> LevelTriggerEffect:
 	if not effects_by_string.has(effect_key):
 		push_warning("Unrecognized effect: %s" % [effect_key])
 	var effect_script: GDScript = effects_by_string.get(effect_key)

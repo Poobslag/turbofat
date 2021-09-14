@@ -8,10 +8,10 @@ time limit, and any other special rules.
 
 # Current version for saved level data. Should be updated if and only if the level format changes.
 # This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const LEVEL_DATA_VERSION := "19c5"
+const LEVEL_DATA_VERSION := "297a"
 
-# Blocks/boxes which begin on the playfield.
-var blocks_start := BlocksStartRules.new()
+# Sets of blocks which are shown initially, or appear during the game
+var tiles := LevelTiles.new()
 
 # Blocks/boxes which appear or disappear while the game is going on.
 var blocks_during := BlocksDuringRules.new()
@@ -116,6 +116,8 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 	match json.get("version"):
 		LEVEL_DATA_VERSION:
 			pass
+		"19c5":
+			json = _convert_19c5(json)
 		"1922":
 			json = _convert_1922(json)
 		_:
@@ -126,8 +128,6 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 	difficulty = json.get("difficulty", "")
 	set_start_speed(json.get("start_speed", "0"))
 
-	if json.has("blocks_start"):
-		blocks_start.from_json_dict(json["blocks_start"])
 	if json.has("blocks_during"):
 		blocks_during.from_json_string_array(json["blocks_during"])
 	if json.has("combo_break"):
@@ -153,6 +153,8 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 		success_condition.from_json_dict(json["success_condition"])
 	if json.has("input_replay"):
 		input_replay.from_json_string_array(json["input_replay"])
+	if json.has("tiles"):
+		tiles.from_json_dict(json["tiles"])
 	if json.has("timers"):
 		timers.from_json_array(json["timers"])
 	if json.has("triggers"):
@@ -174,6 +176,22 @@ func get_difficulty() -> String:
 	else:
 		result = _get_max_speed_id()
 	return result
+
+
+func _convert_19c5(json: Dictionary) -> Dictionary:
+	var new_json := {}
+	for old_key in json.keys():
+		var old_value = json[old_key]
+		var new_key: String = old_key
+		var new_value = old_value
+		match old_key:
+			"version":
+				new_value = "297a"
+			"blocks_start":
+				new_key = "tiles"
+				new_value = {"start": old_value.get("tiles", [])}
+		new_json[new_key] = new_value
+	return new_json
 
 
 func _convert_1922(json: Dictionary) -> Dictionary:
