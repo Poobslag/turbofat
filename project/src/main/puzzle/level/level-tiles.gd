@@ -9,15 +9,22 @@ class BlockBunch:
 	"""
 	
 	# Vector2 array with the positions of all cells containing a tile
-	var used_cells := []
+	var block_cells := []
 
 	# key: (Vector2) positions of cells containing a tile
 	# value: (int) tile indexes of each cell
-	var tiles := {}
+	var block_tiles := {}
 
 	# key: (Vector2) positions of cells containing a tile
 	# value: (Vector2) coordinate of the autotile variation in the tileset
-	var autotile_coords := {}
+	var block_autotile_coords := {}
+	
+	# Vector2 array with the positions of all cells containing a pickup
+	var pickup_cells := []
+	
+	# key: (Vector2) positions of cells containing a pickup
+	# value: (int) an enum from Foods.BoxType defining the pickup's color
+	var pickups := {}
 
 	"""
 	Defines a block which will appear on the playfield.
@@ -30,9 +37,22 @@ class BlockBunch:
 		'autotile_coord': Coordinate of the autotile variation in the tileset
 	"""
 	func set_block(pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
-		used_cells.append(pos)
-		tiles[pos] = tile
-		autotile_coords[pos] = autotile_coord
+		block_cells.append(pos)
+		block_tiles[pos] = tile
+		block_autotile_coords[pos] = autotile_coord
+	
+	
+	"""
+	Defines a pickup which will appear on the playfield.
+	
+	Parameters:
+		'pos': Position of the cell
+		
+		'box_type': An enum from Foods.BoxType defining the pickup's color
+	"""
+	func set_pickup(pos: Vector2, box_type: int) -> void:
+		pickup_cells.append(pos)
+		pickups[pos] = box_type
 
 # key: a tiles key for tiles referenced by level rules, or the string 'start' for the initial set of tiles
 # value: a BlockBunch instance
@@ -41,7 +61,7 @@ var bunches: Dictionary = {}
 func from_json_dict(json: Dictionary) -> void:
 	for tiles_key in json.keys():
 		var bunch := BlockBunch.new()
-		PuzzleTileMapReader.read(json[tiles_key], funcref(bunch, "set_block"))
+		PuzzleTileMapReader.read(json[tiles_key], funcref(bunch, "set_block"), funcref(bunch, "set_pickup"))
 		bunches[tiles_key] = bunch
 
 

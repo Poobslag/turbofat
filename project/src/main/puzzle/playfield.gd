@@ -23,7 +23,8 @@ signal line_erased(y, total_lines, remaining_lines, box_ints)
 # emitted when erased lines are deleted, causing the rows above them to drop down
 signal lines_deleted(lines)
 
-signal lines_inserted(lines)
+# emitted when lines are inserted. some levels insert lines, but most do not
+signal line_inserted(y, tiles_key, src_y)
 
 signal blocks_prepared
 
@@ -129,8 +130,8 @@ func _prepare_level_blocks() -> void:
 	
 	tile_map.clear()
 	var blocks_start: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.blocks_start()
-	for cell in blocks_start.used_cells:
-		tile_map.set_block(cell, blocks_start.tiles[cell], blocks_start.autotile_coords[cell])
+	for cell in blocks_start.block_cells:
+		tile_map.set_block(cell, blocks_start.block_tiles[cell], blocks_start.block_autotile_coords[cell])
 	emit_signal("blocks_prepared")
 
 
@@ -187,5 +188,5 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 	$ShadowTexture.visible = not value
 
 
-func _on_LineInserter_lines_inserted(lines: Array) -> void:
-	emit_signal("lines_inserted", lines)
+func _on_LineInserter_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
+	emit_signal("line_inserted", y, tiles_key, src_y)

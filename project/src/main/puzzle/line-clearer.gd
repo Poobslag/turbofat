@@ -32,6 +32,10 @@ var lines_being_cleared := []
 var lines_being_erased := []
 var lines_being_deleted := []
 
+# Lines currently being deleted in preparation for firing a trigger. Clearing a line can cause new lines to be
+# inserted, which needs to then adjust the lines emitted by the signal.
+var lines_being_deleted_during_trigger := []
+
 # remaining frames to wait for erasing the current lines
 var remaining_line_erase_frames := 0
 
@@ -225,13 +229,17 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 				_new_rows_to_preserve_at_end[new_key] = true
 			_rows_to_preserve_at_end = _new_rows_to_preserve_at_end
 	
+	# Cache the lines being deleted. Clearing a line can cause new lines to be inserted, which needs to then adjust
+	# the lines emitted by the signal. Otherwise we have bugs where pickups get misaligned.
+	lines_being_deleted_during_trigger = old_lines_being_deleted
+	
 	if old_lines_being_cleared:
 		for line in old_lines_being_cleared:
 			CurrentLevel.settings.triggers.run_triggers(LevelTrigger.AFTER_LINE_CLEARED, {"y": line})
 	
 	# we even emit the signal if zero lines are deleted.
 	# the 'lines_deleted' signal triggers other important events
-	emit_signal("lines_deleted", old_lines_being_deleted)
+	emit_signal("lines_deleted", lines_being_deleted_during_trigger)
 
 
 """
@@ -344,14 +352,16 @@ When lines are inserted, we adjust the lines being cleared/erased/deleted.
 
 Without these adjustments, strange behavior happens when lines are inserted and deleted simultaneously.
 """
-func _on_Playfield_lines_inserted(lines: Array) -> void:
-	for inserted_line in lines:
-		for i in range(0, lines_being_cleared.size()):
-			if lines_being_cleared[i] <= inserted_line:
-				lines_being_cleared[i] -= 1
-		for i in range(0, lines_being_erased.size()):
-			if lines_being_erased[i] <= inserted_line:
-				lines_being_erased[i] -= 1
-		for i in range(0, lines_being_deleted.size()):
-			if lines_being_deleted[i] <= inserted_line:
-				lines_being_deleted[i] -= 1
+func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
+	for i in range(0, lines_being_cleared.size()):
+		if lines_being_cleared[i] <= y:
+			lines_being_cleared[i] -= 1
+	for i in range(0, lines_being_erased.size()):
+		if lines_being_erased[i] <= y:
+			lines_being_erased[i] -= 1
+	for i in range(0, lines_being_deleted.size()):
+		if lines_being_deleted[i] <= y:
+			lines_being_deleted[i] -= 1
+	for i in range(0, lines_being_deleted_during_trigger.size()):
+		if lines_being_deleted_during_trigger[i] <= y:
+			lines_being_deleted_during_trigger[i] -= 1
