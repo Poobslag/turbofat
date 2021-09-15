@@ -19,19 +19,16 @@ var _box_type := 0
 var _food_item_index := 0
 var _cake_box_type: int = Foods.BoxType.CAKE_JJO
 
+# a local path to a json level resource to demo
+export (String, FILE, "*.json") var level_path: String
+
 func _ready() -> void:
-	CurrentLevel.settings.set_start_speed("T")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 100, "1")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 110, "2")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 120, "3")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 130, "4")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 140, "5")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 150, "6")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 160, "7")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 170, "8")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 180, "9")
-	CurrentLevel.settings.set_finish_condition(Milestone.NONE, 300)
-	PuzzleState.prepare_and_start_game()
+	var settings: LevelSettings = LevelSettings.new()
+	if level_path:
+		var json_text := FileUtils.get_file_as_text(level_path)
+		var json_dict: Dictionary = parse_json(json_text)
+		settings.from_json_dict("test_5952", json_dict)
+	CurrentLevel.start_level(settings)
 
 
 func _input(event: InputEvent) -> void:
