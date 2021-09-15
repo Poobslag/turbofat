@@ -1,0 +1,30 @@
+{
+  "version": "297a",
+  "start_speed": "0",
+  "finish_condition": {
+    "type": "score",
+    "value": "200"
+  },
+  "triggers": [
+    {
+      "phases": [
+        "after_line_cleared y=0-5"
+      ],
+      "effect": "insert_line tiles_key=0"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "1 16",
+        "tile": "2 9 1"
+      }
+    ],
+    "0": [
+      {
+        "pos": "3 2",
+        "tile": "2 6 3"
+      }
+    ]
+  }
+}

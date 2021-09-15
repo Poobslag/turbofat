@@ -80,14 +80,13 @@ func run() -> void:
 func from_json_dict(json: Dictionary) -> void:
 	for phase_expression in json.get("phases", []):
 		var phase_expression_split: Array = phase_expression.split(" ")
-		var phase_string: String = phase_expression_split[0]
-		var phase_config: Dictionary = phase_config(
-				phase_expression_split.slice(1, phase_expression_split.size()))
-		_add_phase(phase_string, phase_config)
+		var phase_key: String = phase_expression_split[0]
+		var phase_config: Dictionary = dict_config(phase_expression_split.slice(1, phase_expression_split.size()))
+		_add_phase(phase_key, phase_config)
 	
-	var effect_string: String = json.get("effect")
-	var effect_key: String = StringUtils.substring_before(effect_string, " ")
-	var effect_config: Array = StringUtils.substring_after(effect_string, " ").split(" ")
+	var effect_split: Array = json.get("effect").split(" ")
+	var effect_key: String = effect_split[0]
+	var effect_config: Dictionary = dict_config(effect_split.slice(1, effect_split.size()))
 	effect = LevelTriggerEffects.create(effect_key, effect_config)
 
 
@@ -110,19 +109,19 @@ func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
 
 
 """
-Parses an array of phase configuration strings into a set of key/value pairs.
+Parses an array of configuration strings into a set of key/value pairs.
 
 Keyed values like "foo=bar" are added to the resulting dictionary as {"foo": "bar"}
 
 Unkeyed values like "foo" and "bar" are added to the dictionary as {"0": "foo", "1": "bar"}
 
 Parameters:
-	'param_array': An array of phase configuration strings defining criteria for a phase condition.
+	'param_array': An array of configuration strings.
 
 Returns:
-	A set of phase configuration strings organized into key/value pairs.
+	A dictionary of configuration strings organized into key/value pairs.
 """
-static func phase_config(param_array: Array) -> Dictionary:
+static func dict_config(param_array: Array) -> Dictionary:
 	var result := {}
 	var param_index := 0
 	for param in param_array:
