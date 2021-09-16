@@ -271,7 +271,7 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 """
 When a line is inserted which intersects with the active piece, we shift it up.
 """
-func _on_Playfield_lines_inserted(_lines: Array) -> void:
+func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> void:
 	piece.reset_target()
 	while piece.target_pos.y > 0 and not piece.can_move_to_target():
 		piece.target_pos.y -= 1

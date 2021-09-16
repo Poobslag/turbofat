@@ -283,7 +283,6 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 	visible = not value
 
 
-func _on_Playfield_lines_inserted(lines: Array) -> void:
-	for y in lines:
-		# raise all wobblers at or above the specified row
-		_shift_rows(y, Vector2.UP)
+func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
+	# raise all wobblers at or above the specified row
+	_shift_rows(y, Vector2.UP)

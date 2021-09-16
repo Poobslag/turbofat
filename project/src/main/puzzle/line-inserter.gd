@@ -5,8 +5,8 @@ Inserts lines in a puzzle tilemap.
 Most levels don't insert lines, but this script handles it for the levels that do.
 """
 
-# emitted after one or more lines are inserted
-signal lines_inserted(lines)
+# emitted after a line is inserted
+signal line_inserted(y, tiles_key, src_y)
 
 export (NodePath) var tile_map_path: NodePath
 
@@ -32,38 +32,39 @@ Inserts a line into the puzzle tilemap.
 Parameters:
 	'tiles_key': (Optional) a key for the LevelTiles entry for the tiles to insert
 	
-	'new_line_y': (Optional) The y coordinate of the line to insert. If omitted, the line will be inserted at the
+	'dest_y': (Optional) The y coordinate of the line to insert. If omitted, the line will be inserted at the
 		bottom of the puzzle tilemap.
 """
-func insert_line(tiles_key: String = "", new_line_y: int = PuzzleTileMap.ROW_COUNT - 1) -> void:
+func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT - 1) -> void:
 	# shift playfield up
-	_tile_map.insert_row(new_line_y)
+	_tile_map.insert_row(dest_y)
+	
+	var src_y := -1
 	
 	# fill bottom row
 	if tiles_key:
+		# fill bottom row with blocks from LevelTiles
 		var tiles: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.get_tiles(tiles_key)
-		
-		var tiles_row_index: int = row_index_by_tiles_key.get(tiles_key, 0)
+		src_y = row_index_by_tiles_key.get(tiles_key, 0)
 		
 		# get the tiles for this row
 		for x in range(PuzzleTileMap.COL_COUNT):
-			var pos := Vector2(x, tiles_row_index)
-			var block: int = tiles.tiles.get(pos, -1)
-			var autotile_coord: Vector2 = tiles.autotile_coords.get(pos, Vector2(0, 0))
-			_tile_map.set_block(Vector2(x, new_line_y), block, autotile_coord)
+			var src_pos := Vector2(x, src_y)
+			var tile: int = tiles.block_tiles.get(src_pos, -1)
+			var autotile_coord: Vector2 = tiles.block_autotile_coords.get(src_pos, Vector2(0, 0))
+			_tile_map.set_block(Vector2(x, dest_y), tile, autotile_coord)
 		
 		# increment the row index to the next non-empty row
-		row_index_by_tiles_key[tiles_key] = (tiles_row_index + 1) % (row_count_by_tiles_key.get(tiles_key, 1))
+		row_index_by_tiles_key[tiles_key] = (src_y + 1) % (row_count_by_tiles_key.get(tiles_key, 1))
 	else:
-		# fill with random stuff
+		# fill bottom row with random veggie garbage
 		_line_insert_sound.play()
 		for x in range(0, PuzzleTileMap.COL_COUNT):
-			var pos := Vector2(x, new_line_y)
 			var veg_autotile_coord := Vector2(randi() % 18, randi() % 4)
-			_tile_map.set_block(pos, PuzzleTileMap.TILE_VEG, veg_autotile_coord)
-		_tile_map.set_block(Vector2(randi() % PuzzleTileMap.COL_COUNT, new_line_y), -1)
+			_tile_map.set_block(Vector2(x, dest_y), PuzzleTileMap.TILE_VEG, veg_autotile_coord)
+		_tile_map.set_block(Vector2(randi() % PuzzleTileMap.COL_COUNT, dest_y), -1)
 	
-	emit_signal("lines_inserted", [new_line_y])
+	emit_signal("line_inserted", dest_y, tiles_key, src_y)
 
 
 func _reset() -> void:
@@ -73,7 +74,7 @@ func _reset() -> void:
 	# initialize row_count_by_tiles_key
 	for tiles_key in CurrentLevel.settings.tiles.bunches:
 		var max_y := 0
-		for cell in CurrentLevel.settings.tiles.bunches[tiles_key].used_cells:
+		for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_cells:
 			max_y = max(max_y, cell.y)
 		row_count_by_tiles_key[tiles_key] = max_y + 1
 

@@ -45,6 +45,10 @@ Spawns any pickups necessary for starting the current level.
 """
 func _prepare_pickups_for_level() -> void:
 	_clear_pickups()
+	
+	var block_bunch := CurrentLevel.settings.tiles.blocks_start()
+	for cell in block_bunch.pickup_cells:
+		add_pickup(cell, block_bunch.pickups[cell])
 
 
 """
@@ -225,10 +229,18 @@ func _on_Playfield_lines_deleted(lines: Array) -> void:
 		_shift_rows(y - 1, Vector2.DOWN)
 
 
-func _on_Playfield_lines_inserted(lines: Array) -> void:
-	for y in lines:
-		# raise all pickups at or above the specified row
-		_shift_rows(y, Vector2.UP)
+func _on_Playfield_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
+	# raise all pickups at or above the specified row
+	_shift_rows(y, Vector2.UP)
+	
+	# fill in the new gaps with pickups
+	var block_bunch := CurrentLevel.settings.tiles.get_tiles(tiles_key)
+	for x in range(PuzzleTileMap.COL_COUNT):
+		var src_pos := Vector2(x, src_y)
+		if not block_bunch.pickups.has(src_pos):
+			continue
+		var box_type: int = block_bunch.pickups[src_pos]
+		add_pickup(Vector2(x, y), box_type)
 
 
 func _on_PickupSfxTimer_timeout() -> void:
