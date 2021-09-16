@@ -639,6 +639,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/playfield.gd"
 }, {
+"base": "HBoxContainer",
+"class": "PlayfieldEditorControl",
+"language": "GDScript",
+"path": "res://src/main/editor/puzzle/playfield-editor-control.gd"
+}, {
+"base": "VBoxContainer",
+"class": "PlayfieldNav",
+"language": "GDScript",
+"path": "res://src/main/editor/puzzle/editor-playfield-nav.gd"
+}, {
 "base": "AudioStreamPlayer",
 "class": "PresquishSfx",
 "language": "GDScript",
@@ -996,6 +1006,8 @@ _global_script_class_icons={
 "PieceTypeRules": "",
 "Player": "",
 "Playfield": "",
+"PlayfieldEditorControl": "",
+"PlayfieldNav": "",
 "PresquishSfx": "",
 "Puzzle": "",
 "PuzzleAreas": "",
