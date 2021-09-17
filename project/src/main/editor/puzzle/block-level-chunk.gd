@@ -1,6 +1,6 @@
 class_name BlockLevelChunk
 """
-Draggable chunk of level editor data.
+Draggable chunk of level editor data made up of playfield blocks.
 """
 
 var used_cells := []

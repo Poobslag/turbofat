@@ -10,7 +10,15 @@ var _json_tree: Dictionary
 
 export (NodePath) var playfield_editor_path: NodePath
 
+var _tile_map: PuzzleTileMap
+var _pickups: EditorPickups
+
 onready var _playfield_editor: PlayfieldEditorControl = get_node(playfield_editor_path)
+
+func _ready() -> void:
+	_tile_map = _playfield_editor.get_tile_map()
+	_pickups = _playfield_editor.get_pickups()
+
 
 """
 Parses our text as json, storing the results in the various _json properties.
@@ -34,10 +42,10 @@ func refresh_playfield_editor() -> void:
 	var new_tiles_keys: Array = _json_tree.get("tiles", {}).keys()
 	_playfield_editor.tiles_keys = new_tiles_keys
 	
-	var tile_map := _playfield_editor.get_tile_map()
 	var json_tiles_set: Array = _json_tree.get("tiles", {}).get(_playfield_editor.tiles_key, [])
-	tile_map.clear()
-	PuzzleTileMapReader.read(json_tiles_set, funcref(tile_map, "set_block"))
+	_tile_map.clear()
+	_pickups.clear()
+	PuzzleTileMapReader.read(json_tiles_set, funcref(_tile_map, "set_block"), funcref(_pickups, "set_pickup"))
 
 
 """
@@ -86,17 +94,22 @@ func _refresh_json_tile_map() -> void:
 	if not can_parse_json():
 		return
 	
-	var tile_map := _playfield_editor.get_tile_map()
+	# calculate the json representation of the current playfield tiles set
 	var new_json_tiles_set := []
-	for used_cell in tile_map.get_used_cells():
-		var autotile_coord: Vector2 = tile_map.get_cell_autotile_coord(used_cell.x, used_cell.y)
-		var tile_index: int = tile_map.get_cellv(used_cell)
+	var used_cells := _playfield_editor_used_cells()
+	for used_cell in used_cells:
 		var json_tile := {
-			"pos": "%s %s" % [used_cell.x, used_cell.y],
-			"tile": "%s %s %s" % [tile_index, autotile_coord.x, autotile_coord.y]
+			"pos": "%s %s" % [used_cell.x, used_cell.y]
 		}
+		if _tile_map.get_cellv(used_cell) != -1:
+			var autotile_coord: Vector2 = _tile_map.get_cell_autotile_coord(used_cell.x, used_cell.y)
+			var tile_index: int = _tile_map.get_cellv(used_cell)
+			json_tile["tile"] = "%s %s %s" % [tile_index, autotile_coord.x, autotile_coord.y]
+		if _pickups.get_food_type(used_cell) != -1:
+			json_tile["pickup"] = "%s" % [_pickups.get_food_type(used_cell)]
 		new_json_tiles_set.append(json_tile)
 	
+	# store the new json tiles set in the json tree
 	if _playfield_editor.tiles_key == "start" and new_json_tiles_set.empty():
 		# clear 'start' tiles
 		_json_tree.get("tiles", {}).erase("start")
@@ -109,6 +122,31 @@ func _refresh_json_tile_map() -> void:
 		_json_tree["tiles"][_playfield_editor.tiles_key] = new_json_tiles_set
 	
 	text = Utils.print_json(_json_tree)
+
+
+"""
+Returns a sorted list of used cells in the playfield editor.
+
+This includes cells containing blocks and powerups. The result is sorted first by Y ascending, then by X ascending.
+"""
+func _playfield_editor_used_cells() -> Array:
+	var used_cells := {
+	}
+	for used_cell in _tile_map.get_used_cells():
+		used_cells[used_cell] = true
+	for used_cell in _pickups.get_used_cells():
+		used_cells[used_cell] = true
+	var sorted_used_cells := used_cells.keys()
+	sorted_used_cells.sort_custom(self, "_compare_by_y")
+	return sorted_used_cells
+
+
+func _compare_by_y(a: Vector2, b: Vector2) -> bool:
+	if b.y > a.y:
+		return true
+	if b.y < a.y:
+		return false
+	return b.x > a.x
 
 
 func _on_PlayfieldEditor_tiles_keys_changed(_tiles_keys: Array, _tiles_key: String) -> void:
@@ -125,3 +163,8 @@ func _on_PlayfieldEditor_tile_map_changed() -> void:
 
 func _on_text_changed() -> void:
 	refresh_playfield_editor()
+
+
+func _on_PlayfieldEditor_pickups_changed() -> void:
+	# when the player changes the pickups, we update our json.
+	_refresh_json_tile_map()

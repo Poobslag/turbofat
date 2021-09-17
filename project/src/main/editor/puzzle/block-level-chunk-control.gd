@@ -1,7 +1,7 @@
 class_name BlockLevelChunkControl
 extends Control
 """
-UI component for a draggable chunk of level editor data.
+UI component for a draggable chunk of level editor data made up of playfield blocks.
 """
 
 func _ready() -> void:
