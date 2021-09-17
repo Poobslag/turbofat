@@ -28,8 +28,8 @@ func test_load_19c5_data() -> void:
 	load_level("level-19c5")
 	
 	var blocks_start := settings.tiles.blocks_start()
-	assert_eq(Vector2(1, 10) in blocks_start.block_cells, true, "start.block_cells[(1, 10)]")
-	assert_eq(blocks_start.block_tiles.get(Vector2(1, 10)), 1, "start.tiles[(1, 10)]")
+	assert_eq(Vector2(1, 10) in blocks_start.block_tiles, true, "start.block_tiles[(1, 10)]")
+	assert_eq(blocks_start.block_tiles.get(Vector2(1, 10)), 1, "start.block_tiles[(1, 10)]")
 	assert_eq(blocks_start.block_autotile_coords.get(Vector2(1, 10)), Vector2(14, 1), "start.autotile_coords[(1, 10)]")
 
 
@@ -37,16 +37,16 @@ func test_load_tiles() -> void:
 	load_level("level-tiles")
 	
 	var blocks_start := settings.tiles.blocks_start()
-	assert_eq(Vector2(1, 16) in blocks_start.block_cells, true, "start.block_cells[(1, 16)]")
-	assert_eq(blocks_start.block_tiles.get(Vector2(1, 16)), 2, "start.tiles[(1, 16)]")
+	assert_eq(Vector2(1, 16) in blocks_start.block_tiles, true, "start.block_tiles[(1, 16)]")
+	assert_eq(blocks_start.block_tiles.get(Vector2(1, 16)), 2, "start.block_tiles[(1, 16)]")
 	assert_eq(blocks_start.block_autotile_coords.get(Vector2(1, 16)), Vector2(9, 1), "start.autotile_coords[(1, 16)]")
 	
 	var blocks_0 := settings.tiles.get_tiles("0")
-	assert_eq(Vector2(3, 2) in blocks_0.block_cells, true)
-	assert_eq(blocks_0.block_tiles.get(Vector2(3, 2)), 2)
-	assert_eq(blocks_0.block_autotile_coords.get(Vector2(3, 2)), Vector2(6, 3))
-	assert_eq(Vector2(4, 2) in blocks_0.pickup_cells, true)
-	assert_eq(blocks_0.pickups.get(Vector2(4, 2)), 4)
+	assert_eq(Vector2(3, 2) in blocks_0.block_tiles, true, "0.block_tiles[(3, 2)]")
+	assert_eq(blocks_0.block_tiles.get(Vector2(3, 2)), 2, "0.block_tiles[(3, 2)]")
+	assert_eq(blocks_0.block_autotile_coords.get(Vector2(3, 2)), Vector2(6, 3), "0.block_autotile_coords[(3, 2)]")
+	assert_eq(Vector2(4, 2) in blocks_0.pickups, true, "0.pickups[(4, 2)]")
+	assert_eq(blocks_0.pickups.get(Vector2(4, 2)), 4, "0.pickups[(4, 2)]")
 
 
 func test_path_from_level_key() -> void:

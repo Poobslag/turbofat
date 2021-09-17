@@ -37,6 +37,8 @@ onready var _pickup_sfx_players := [$PickupSfx0, $PickupSfx1, $PickupSfx2, $Pick
 
 func _ready() -> void:
 	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
+	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 
 
@@ -44,11 +46,32 @@ func _ready() -> void:
 Spawns any pickups necessary for starting the current level.
 """
 func _prepare_pickups_for_level() -> void:
-	_clear_pickups()
+	var src_pickups := CurrentLevel.settings.tiles.blocks_start().pickups
 	
-	var block_bunch := CurrentLevel.settings.tiles.blocks_start()
-	for cell in block_bunch.pickup_cells:
-		add_pickup(cell, block_bunch.pickups[cell])
+	var pickups_to_add := []
+	var pickups_to_remove := []
+	
+	# calculate pickups to add/replace
+	for src_pickup_cell in src_pickups:
+		if not _pickups_by_cell.has(src_pickup_cell):
+			# pickup doesn't exist. need to add it
+			pickups_to_add.append(src_pickup_cell)
+		elif _pickups_by_cell[src_pickup_cell].food_type \
+				!= _food_type_for_cell(src_pickups[src_pickup_cell], src_pickup_cell):
+			# pickup is the wrong type. need to replace it
+			pickups_to_add.append(src_pickup_cell)
+	
+	# calculate pickups to remove
+	for dest_pickup_cell in _pickups_by_cell:
+		if not src_pickups.has(dest_pickup_cell):
+			# pickup shouldn't exist. need to remove it
+			pickups_to_remove.append(dest_pickup_cell)
+	
+	# remove/replace/add pickups
+	for cell in pickups_to_remove:
+		_remove_pickup(cell)
+	for cell in pickups_to_add:
+		add_pickup(cell, src_pickups[cell])
 
 
 """
@@ -58,9 +81,7 @@ func add_pickup(cell: Vector2, box_type: int) -> void:
 	_remove_pickup(cell)
 	
 	var pickup: Pickup = SeedPickupScene.instance()
-	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
-	# alternate snack foods in a checkerboard pattern
-	pickup.food_type = food_types[(int(cell.x + cell.y) % food_types.size())]
+	pickup.food_type = _food_type_for_cell(box_type, cell)
 
 	pickup.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
 	pickup.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
@@ -70,6 +91,16 @@ func add_pickup(cell: Vector2, box_type: int) -> void:
 	
 	_pickups_by_cell[cell] = pickup
 	_visuals.add_child(pickup)
+
+
+"""
+Return the food type for the specified cell.
+
+The food type corresponds to the box type, although we alternate identical snack box pickups in a checkerboard pattern.
+"""
+func _food_type_for_cell(box_type: int, cell: Vector2) -> int:
+	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
+	return food_types[(int(cell.x + cell.y) % food_types.size())]
 
 
 """
@@ -169,6 +200,14 @@ func _play_collect_sfx() -> void:
 	_pickup_sfx_index += 1
 	if _remaining_pickup_sfx > 0:
 		_pickup_sfx_timer.start()
+
+
+func _on_PuzzleState_game_prepared() -> void:
+	_prepare_pickups_for_level()
+
+
+func _on_Level_settings_changed() -> void:
+	_prepare_pickups_for_level()
 
 
 func _on_Playfield_blocks_prepared() -> void:

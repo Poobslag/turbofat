@@ -130,7 +130,7 @@ func _prepare_level_blocks() -> void:
 	
 	tile_map.clear()
 	var blocks_start: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.blocks_start()
-	for cell in blocks_start.block_cells:
+	for cell in blocks_start.block_tiles:
 		tile_map.set_block(cell, blocks_start.block_tiles[cell], blocks_start.block_autotile_coords[cell])
 	emit_signal("blocks_prepared")
 

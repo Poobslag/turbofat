@@ -7,9 +7,6 @@ class BlockBunch:
 	"""
 	A set of blocks which is shown initially, or appears during the game
 	"""
-	
-	# Vector2 array with the positions of all cells containing a tile
-	var block_cells := []
 
 	# key: (Vector2) positions of cells containing a tile
 	# value: (int) tile indexes of each cell
@@ -18,9 +15,6 @@ class BlockBunch:
 	# key: (Vector2) positions of cells containing a tile
 	# value: (Vector2) coordinate of the autotile variation in the tileset
 	var block_autotile_coords := {}
-	
-	# Vector2 array with the positions of all cells containing a pickup
-	var pickup_cells := []
 	
 	# key: (Vector2) positions of cells containing a pickup
 	# value: (int) an enum from Foods.BoxType defining the pickup's color
@@ -37,7 +31,6 @@ class BlockBunch:
 		'autotile_coord': Coordinate of the autotile variation in the tileset
 	"""
 	func set_block(pos: Vector2, tile: int, autotile_coord: Vector2) -> void:
-		block_cells.append(pos)
 		block_tiles[pos] = tile
 		block_autotile_coords[pos] = autotile_coord
 	
@@ -51,7 +44,6 @@ class BlockBunch:
 		'box_type': An enum from Foods.BoxType defining the pickup's color
 	"""
 	func set_pickup(pos: Vector2, box_type: int) -> void:
-		pickup_cells.append(pos)
 		pickups[pos] = box_type
 
 # key: a tiles key for tiles referenced by level rules, or the string 'start' for the initial set of tiles
