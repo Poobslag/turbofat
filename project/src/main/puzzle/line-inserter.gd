@@ -74,7 +74,7 @@ func _reset() -> void:
 	# initialize row_count_by_tiles_key
 	for tiles_key in CurrentLevel.settings.tiles.bunches:
 		var max_y := 0
-		for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_cells:
+		for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_tiles:
 			max_y = max(max_y, cell.y)
 		row_count_by_tiles_key[tiles_key] = max_y + 1
 
