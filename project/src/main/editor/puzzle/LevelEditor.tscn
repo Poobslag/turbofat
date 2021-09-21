@@ -152,7 +152,9 @@ __meta__ = {
 "_editor_description_": ""
 }
 
-[node name="Dialogs" type="Control" parent="."]
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="Dialogs" type="Control" parent="Ui"]
 pause_mode = 2
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -161,10 +163,11 @@ script = ExtResource( 16 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+_level_editor_path = NodePath("../..")
 
-[node name="Backdrop" parent="Dialogs" instance=ExtResource( 15 )]
+[node name="Backdrop" parent="Ui/Dialogs" instance=ExtResource( 15 )]
 
-[node name="OpenFile" type="FileDialog" parent="Dialogs"]
+[node name="OpenFile" type="FileDialog" parent="Ui/Dialogs"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -185,7 +188,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OpenResource" type="FileDialog" parent="Dialogs"]
+[node name="OpenResource" type="FileDialog" parent="Ui/Dialogs"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -204,7 +207,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Save" type="FileDialog" parent="Dialogs"]
+[node name="Save" type="FileDialog" parent="Ui/Dialogs"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -223,7 +226,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Error" type="AcceptDialog" parent="Dialogs"]
+[node name="Error" type="AcceptDialog" parent="Ui/Dialogs"]
 margin_right = 250.0
 margin_bottom = 58.0
 popup_exclusive = true
@@ -234,24 +237,24 @@ dialog_autowrap = true
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 18 )]
 
-[connection signal="about_to_show" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="popup_hide" from="Dialogs/Error" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="about_to_show" from="Dialogs/OpenFile" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="file_selected" from="Dialogs/OpenFile" to="Dialogs" method="_on_OpenFile_file_selected"]
-[connection signal="popup_hide" from="Dialogs/OpenFile" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="about_to_show" from="Dialogs/OpenResource" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="file_selected" from="Dialogs/OpenResource" to="Dialogs" method="_on_OpenResource_file_selected"]
-[connection signal="popup_hide" from="Dialogs/OpenResource" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="about_to_show" from="Dialogs/Save" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
-[connection signal="file_selected" from="Dialogs/Save" to="Dialogs" method="_on_Save_file_selected"]
-[connection signal="popup_hide" from="Dialogs/Save" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="text_changed" from="HBoxContainer/SideButtons/Json" to="HBoxContainer/SideButtons/Json" method="_on_text_changed"]
-[connection signal="pressed" from="HBoxContainer/SideButtons/OpenFile" to="Dialogs" method="_on_OpenFile_pressed"]
-[connection signal="pressed" from="HBoxContainer/SideButtons/OpenResource" to="Dialogs" method="_on_OpenResource_pressed"]
+[connection signal="pressed" from="HBoxContainer/SideButtons/OpenFile" to="Ui/Dialogs" method="_on_OpenFile_pressed"]
+[connection signal="pressed" from="HBoxContainer/SideButtons/OpenResource" to="Ui/Dialogs" method="_on_OpenResource_pressed"]
 [connection signal="pressed" from="HBoxContainer/SideButtons/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="HBoxContainer/SideButtons/Save" to="Dialogs" method="_on_Save_pressed"]
+[connection signal="pressed" from="HBoxContainer/SideButtons/Save" to="Ui/Dialogs" method="_on_Save_pressed"]
 [connection signal="pressed" from="HBoxContainer/SideButtons/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="HBoxContainer/SideButtons/Test" to="." method="_on_Test_pressed"]
 [connection signal="tile_map_changed" from="HBoxContainer/TabContainer/Playfield" to="HBoxContainer/SideButtons/Json" method="_on_PlayfieldEditor_tile_map_changed"]
 [connection signal="tiles_keys_changed" from="HBoxContainer/TabContainer/Playfield" to="HBoxContainer/SideButtons/Json" method="_on_PlayfieldEditor_tiles_keys_changed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]
+[connection signal="about_to_show" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="popup_hide" from="Ui/Dialogs/Error" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/OpenFile" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="file_selected" from="Ui/Dialogs/OpenFile" to="Ui/Dialogs" method="_on_OpenFile_file_selected"]
+[connection signal="popup_hide" from="Ui/Dialogs/OpenFile" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/OpenResource" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="file_selected" from="Ui/Dialogs/OpenResource" to="Ui/Dialogs" method="_on_OpenResource_file_selected"]
+[connection signal="popup_hide" from="Ui/Dialogs/OpenResource" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
+[connection signal="about_to_show" from="Ui/Dialogs/Save" to="Ui/Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
+[connection signal="file_selected" from="Ui/Dialogs/Save" to="Ui/Dialogs" method="_on_Save_file_selected"]
+[connection signal="popup_hide" from="Ui/Dialogs/Save" to="Ui/Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
