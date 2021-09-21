@@ -374,7 +374,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 _puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
-SeedPickupScene = ExtResource( 73 )
+PickupScene = ExtResource( 73 )
 
 [node name="Visuals" type="Control" parent="Pickups"]
 anchor_right = 1.0

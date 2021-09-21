@@ -7,7 +7,7 @@ This stripped down class excludes gameplay code for sound effects and scoring. I
 level editor.
 """
 
-export (PackedScene) var SeedPickupScene: PackedScene
+export (PackedScene) var PickupScene: PackedScene
 export (NodePath) var _puzzle_tile_map_path: NodePath
 
 # key: Vector2 playfield cell positions
@@ -23,7 +23,7 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 	remove_pickup(cell)
 	
 	if box_type != -1:
-		var pickup: Pickup = SeedPickupScene.instance()
+		var pickup: Pickup = PickupScene.instance()
 		pickup.food_type = _food_type_for_cell(box_type, cell)
 	
 		pickup.position = _puzzle_tile_map.map_to_world(cell)
