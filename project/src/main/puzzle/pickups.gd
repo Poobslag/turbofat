@@ -40,6 +40,47 @@ func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+	_prepare_pickups_for_level()
+
+
+"""
+Adds or replaces a pickup in a playfield cell.
+"""
+func set_pickup(cell: Vector2, box_type: int) -> void:
+	remove_pickup(cell)
+	
+	if box_type != -1:
+		var pickup: Pickup = SeedPickupScene.instance()
+		pickup.food_type = _food_type_for_box_type(box_type, cell)
+
+		pickup.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
+		pickup.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
+		pickup.position *= _puzzle_tile_map.scale
+		pickup.scale = _puzzle_tile_map.scale
+		pickup.z_index = 4 # in front of the active piece
+		
+		_pickups_by_cell[cell] = pickup
+		_visuals.add_child(pickup)
+
+
+"""
+Removes a pickup from a playfield cell.
+"""
+func remove_pickup(cell: Vector2) -> void:
+	if not _pickups_by_cell.has(cell):
+		return
+	
+	_pickups_by_cell[cell].queue_free()
+	_pickups_by_cell.erase(cell)
+
+
+"""
+Removes all pickups from all playfield cells.
+"""
+func clear() -> void:
+	for pickup in _visuals.get_children():
+		pickup.queue_free()
+	_pickups_by_cell.clear()
 
 
 """
@@ -57,7 +98,7 @@ func _prepare_pickups_for_level() -> void:
 			# pickup doesn't exist. need to add it
 			pickups_to_add.append(src_pickup_cell)
 		elif _pickups_by_cell[src_pickup_cell].food_type \
-				!= _food_type_for_cell(src_pickups[src_pickup_cell], src_pickup_cell):
+				!= _food_type_for_box_type(src_pickups[src_pickup_cell], src_pickup_cell):
 			# pickup is the wrong type. need to replace it
 			pickups_to_add.append(src_pickup_cell)
 	
@@ -69,49 +110,19 @@ func _prepare_pickups_for_level() -> void:
 	
 	# remove/replace/add pickups
 	for cell in pickups_to_remove:
-		_remove_pickup(cell)
+		remove_pickup(cell)
 	for cell in pickups_to_add:
-		add_pickup(cell, src_pickups[cell])
+		set_pickup(cell, src_pickups[cell])
 
 
 """
-Adds a pickup to a playfield cell.
-"""
-func add_pickup(cell: Vector2, box_type: int) -> void:
-	_remove_pickup(cell)
-	
-	var pickup: Pickup = SeedPickupScene.instance()
-	pickup.food_type = _food_type_for_cell(box_type, cell)
-
-	pickup.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
-	pickup.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
-	pickup.position *= _puzzle_tile_map.scale
-	pickup.scale = _puzzle_tile_map.scale
-	pickup.z_index = 4 # in front of the active piece
-	
-	_pickups_by_cell[cell] = pickup
-	_visuals.add_child(pickup)
-
-
-"""
-Return the food type for the specified cell.
+Return the food type which belongs in the specified cell.
 
 The food type corresponds to the box type, although we alternate identical snack box pickups in a checkerboard pattern.
 """
-func _food_type_for_cell(box_type: int, cell: Vector2) -> int:
+func _food_type_for_box_type(box_type: int, cell: Vector2) -> int:
 	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
 	return food_types[(int(cell.x + cell.y) % food_types.size())]
-
-
-"""
-Removes a pickup from a playfield cell.
-"""
-func _remove_pickup(cell: Vector2) -> void:
-	if not _pickups_by_cell.has(cell):
-		return
-	
-	_pickups_by_cell[cell].queue_free()
-	_pickups_by_cell.erase(cell)
 
 
 """
@@ -143,20 +154,11 @@ func _refresh_pickup_state(piece: ActivePiece) -> void:
 
 
 """
-Removes all pickups from all playfield cells.
-"""
-func _clear_pickups() -> void:
-	for pickup in _visuals.get_children():
-		pickup.queue_free()
-	_pickups_by_cell.clear()
-
-
-"""
 Removes all pickups from a playfield row.
 """
 func _erase_row(y: int) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
-		_remove_pickup(Vector2(x, y))
+		remove_pickup(Vector2(x, y))
 
 
 """
@@ -246,7 +248,7 @@ func _on_PuzzleState_before_piece_written() -> void:
 			else:
 				pickup_score += CurrentLevel.settings.score.snack_pickup_points
 			emit_signal("food_spawned", pickup_cell, remaining_food_for_line_clears, pickup.food_type)
-			_remove_pickup(pickup_cell)
+			remove_pickup(pickup_cell)
 	
 	if pickup_score:
 		PuzzleState.add_pickup_score(pickup_score)
@@ -279,7 +281,7 @@ func _on_Playfield_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
 		if not block_bunch.pickups.has(src_pos):
 			continue
 		var box_type: int = block_bunch.pickups[src_pos]
-		add_pickup(Vector2(x, y), box_type)
+		set_pickup(Vector2(x, y), box_type)
 
 
 func _on_PickupSfxTimer_timeout() -> void:
