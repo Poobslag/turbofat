@@ -11,6 +11,10 @@ signal food_spawned(cell, remaining_food, food_type)
 # sound effect volume when the piece overlaps a pickup, temporarily turning it into a food
 const OVERLAP_VOLUME_DB := -6.0
 
+const PICKUP_DEFAULT: int = BlocksDuringRules.PickupType.DEFAULT
+const PICKUP_FLOAT: int = BlocksDuringRules.PickupType.FLOAT
+const PICKUP_FLOAT_REGEN: int = BlocksDuringRules.PickupType.FLOAT_REGEN
+
 export (NodePath) var _puzzle_tile_map_path: NodePath
 export (PackedScene) var PickupScene: PackedScene
 
@@ -38,6 +42,7 @@ onready var _pickup_sfx_players := [$PickupSfx0, $PickupSfx1, $PickupSfx2, $Pick
 func _ready() -> void:
 	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
+	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 	_prepare_pickups_for_level()
@@ -241,14 +246,23 @@ func _on_PuzzleState_before_piece_written() -> void:
 	# We iterate over a copy of the key set to avoid bugs when keys are removed.
 	for pickup_cell in _pickups_by_cell.keys():
 		var pickup: Pickup = _pickups_by_cell[pickup_cell]
-		if pickup.food_shown:
-			remaining_food_for_line_clears -= 1
-			if pickup.is_cake():
-				pickup_score += CurrentLevel.settings.score.cake_pickup_points
-			else:
-				pickup_score += CurrentLevel.settings.score.snack_pickup_points
-			emit_signal("food_spawned", pickup_cell, remaining_food_for_line_clears, pickup.food_type)
+		if not pickup.food_shown:
+			# pickup is not currently being collected
+			continue
+		
+		if pickup.is_cake():
+			pickup_score += CurrentLevel.settings.score.cake_pickup_points
+		else:
+			pickup_score += CurrentLevel.settings.score.snack_pickup_points
+		
+		if _pickup_type() == PICKUP_FLOAT_REGEN:
+			# temporarily hide the pickup until after the piece is written
+			pickup.visible = false
+		else:
 			remove_pickup(pickup_cell)
+		
+		remaining_food_for_line_clears -= 1
+		emit_signal("food_spawned", pickup_cell, remaining_food_for_line_clears, pickup.food_type)
 	
 	if pickup_score:
 		PuzzleState.add_pickup_score(pickup_score)
@@ -257,31 +271,45 @@ func _on_PuzzleState_before_piece_written() -> void:
 		_play_collect_sfx()
 
 
-func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
-	_erase_row(y)
+func _on_PuzzleState_after_piece_written() -> void:
+	if _pickup_type() == PICKUP_FLOAT_REGEN:
+		for pickup in _visuals.get_children():
+			# restore the pickup to its default uncollected state
+			if not pickup.visible:
+				pickup.food_shown = false
+				pickup.visible = true
 
 
 func _on_Playfield_lines_deleted(lines: Array) -> void:
-	for y in lines:
-		# some levels might have rows which are deleted, but not erased. erase any pickups
-		_erase_row(y)
-		
-		# drop all pickups above the specified row to fill the gap
-		_shift_rows(y - 1, Vector2.DOWN)
+	if _pickup_type() in [PICKUP_FLOAT, PICKUP_FLOAT_REGEN]:
+		# pickups do not move
+		pass
+	else:
+		# drop all pickups above the deleted lines to fill the gap
+		for y in lines:
+			_shift_rows(y - 1, Vector2.DOWN)
 
 
 func _on_Playfield_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
-	# raise all pickups at or above the specified row
-	_shift_rows(y, Vector2.UP)
-	
-	# fill in the new gaps with pickups
-	var block_bunch := CurrentLevel.settings.tiles.get_tiles(tiles_key)
-	for x in range(PuzzleTileMap.COL_COUNT):
-		var src_pos := Vector2(x, src_y)
-		if not block_bunch.pickups.has(src_pos):
-			continue
-		var box_type: int = block_bunch.pickups[src_pos]
-		set_pickup(Vector2(x, y), box_type)
+	if _pickup_type() in [PICKUP_FLOAT, PICKUP_FLOAT_REGEN]:
+		# pickups do not move
+		pass
+	else:
+		# raise all pickups at or above the specified row
+		_shift_rows(y, Vector2.UP)
+		
+		# fill in the new gaps with pickups
+		var block_bunch := CurrentLevel.settings.tiles.get_tiles(tiles_key)
+		for x in range(PuzzleTileMap.COL_COUNT):
+			var src_pos := Vector2(x, src_y)
+			if not block_bunch.pickups.has(src_pos):
+				continue
+			var box_type: int = block_bunch.pickups[src_pos]
+			set_pickup(Vector2(x, y), box_type)
+
+
+func _pickup_type() -> int:
+	return CurrentLevel.settings.blocks_during.pickup_type
 
 
 func _on_PickupSfxTimer_timeout() -> void:
