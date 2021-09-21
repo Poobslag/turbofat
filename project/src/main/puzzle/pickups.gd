@@ -12,7 +12,7 @@ signal food_spawned(cell, remaining_food, food_type)
 const OVERLAP_VOLUME_DB := -6.0
 
 export (NodePath) var _puzzle_tile_map_path: NodePath
-export (PackedScene) var SeedPickupScene: PackedScene
+export (PackedScene) var PickupScene: PackedScene
 
 # key: Vector2 playfield cell positions
 # value: Pickup node contained within that cell
@@ -50,7 +50,7 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 	remove_pickup(cell)
 	
 	if box_type != -1:
-		var pickup: Pickup = SeedPickupScene.instance()
+		var pickup: Pickup = PickupScene.instance()
 		pickup.food_type = _food_type_for_box_type(box_type, cell)
 
 		pickup.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))

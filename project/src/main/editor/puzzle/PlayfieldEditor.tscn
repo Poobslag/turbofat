@@ -342,7 +342,7 @@ script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-SeedPickupScene = ExtResource( 6 )
+PickupScene = ExtResource( 6 )
 _puzzle_tile_map_path = NodePath("../TileMap")
 
 [node name="PickupsDropPreview" type="Control" parent="CenterPanel/Playfield/Bg"]
@@ -354,7 +354,7 @@ script = ExtResource( 15 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
-SeedPickupScene = ExtResource( 6 )
+PickupScene = ExtResource( 6 )
 _puzzle_tile_map_path = NodePath("../TileMap")
 
 [connection signal="tiles_keys_changed" from="." to="PlayfieldNav" method="_on_Playfield_tiles_keys_changed"]
