@@ -40,7 +40,10 @@ func duration(settings: LevelSettings) -> float:
 	
 	match settings.finish_condition.type:
 		Milestone.SCORE:
-			var lines := settings.finish_condition.value / _score_per_line(settings)
+			# assume the player collects all the one-time pickups
+			var lines := (settings.finish_condition.value - settings.rank.master_pickup_score) \
+					/ _score_per_line(settings)
+			lines = clamp(lines, 1, 10000)
 			result = _duration_for_lines(settings, lines)
 		Milestone.LINES:
 			result = _duration_for_lines(settings, settings.finish_condition.value)
@@ -92,7 +95,7 @@ func _score_per_line(settings: LevelSettings) -> float:
 	var box_score_per_line := RankCalculator.master_box_score(settings)
 	box_score_per_line *= pow(RankCalculator.RDF_BOX_SCORE_PER_LINE, _rank(settings))
 	
-	var pickup_score_per_line := RankCalculator.master_pickup_score(settings)
+	var pickup_score_per_line := RankCalculator.master_pickup_score_per_line(settings)
 	pickup_score_per_line *= pow(RankCalculator.RDF_PICKUP_SCORE_PER_LINE, _rank(settings))
 	
 	return box_score_per_line + combo_score_per_line + pickup_score_per_line + 1

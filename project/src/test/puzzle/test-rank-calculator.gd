@@ -394,3 +394,26 @@ func test_combo_factor_zero() -> void:
 	CurrentLevel.settings.rank.combo_factor = 0.0
 	var rank2 :=  _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.combo_score_per_line_rank), "M")
+
+
+func test_master_pickup_score() -> void:
+	PuzzleState.level_performance.pickup_score = 100
+	CurrentLevel.settings.rank.master_pickup_score = 100
+	var rank1 :=  _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank1.pickup_score_rank), "M")
+
+	CurrentLevel.settings.rank.master_pickup_score = 200
+	var rank2 :=  _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank2.pickup_score_rank), "AA")
+
+
+func test_master_pickup_score_per_line() -> void:
+	PuzzleState.level_performance.lines = 100
+	PuzzleState.level_performance.pickup_score = 1000
+	CurrentLevel.settings.rank.master_pickup_score_per_line = 10
+	var rank1 :=  _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank1.pickup_score_rank), "M")
+
+	CurrentLevel.settings.rank.master_pickup_score_per_line = 20
+	var rank2 :=  _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank2.pickup_score_rank), "S-")

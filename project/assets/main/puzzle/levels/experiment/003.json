@@ -12,7 +12,8 @@
   ],
   "rank": [
     "box_factor 0.0",
-    "combo_factor 0.6"
+    "combo_factor 0.6",
+    "hide_boxes_rank"
   ],
   "timers": [
     {

@@ -10,6 +10,10 @@
   "blocks_during": [
     "pickup_type float_regen"
   ],
+  "rank": [
+    "master_pickup_score_per_line 3.4",
+    "show_pickups_rank"
+  ],
   "tiles": {
     "start": [
       {
