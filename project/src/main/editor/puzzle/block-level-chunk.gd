@@ -1,4 +1,4 @@
-class_name LevelChunk
+class_name BlockLevelChunk
 """
 Draggable chunk of level editor data.
 """

@@ -1,4 +1,4 @@
-extends LevelChunkControl
+extends BlockLevelChunkControl
 """
 A level editor chunk which contains a snack/cake box.
 """

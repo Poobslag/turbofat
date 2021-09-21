@@ -31,7 +31,7 @@ func _gui_input(event: InputEvent) -> void:
 			emit_signal("tile_map_changed")
 
 
-func can_drop_data(pos: Vector2, data: LevelChunk) -> bool:
+func can_drop_data(pos: Vector2, data: BlockLevelChunk) -> bool:
 	var can_drop := Rect2(Vector2(0, 0), rect_size).has_point(pos)
 	if can_drop:
 		# update drop preview
@@ -43,7 +43,7 @@ func can_drop_data(pos: Vector2, data: LevelChunk) -> bool:
 	return can_drop
 
 
-func drop_data(pos: Vector2, data: LevelChunk) -> void:
+func drop_data(pos: Vector2, data: BlockLevelChunk) -> void:
 	_clear_previews()
 	for cell in data.used_cells:
 		var target_pos: Vector2 = _cell_pos(pos) + cell
