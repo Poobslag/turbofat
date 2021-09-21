@@ -16,6 +16,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
 	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
+	$PieceManager.connect("piece_changed", $Playfield.pickups, "_on_PieceManager_piece_changed")
 	CurrentLevel.puzzle = self
 	
 	# set a baseline fatness state

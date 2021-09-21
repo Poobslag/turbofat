@@ -323,17 +323,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TileMap" parent="CenterPanel/Playfield/Bg" instance=ExtResource( 4 )]
-material = SubResource( 1 )
-scale = Vector2( 0.43, 0.43 )
-tile_data = PoolIntArray( 196608, 1, 0, 196616, 1, 0, 1245184, 1, 0, 1245192, 1, 0 )
-
-[node name="TileMapDropPreview" parent="CenterPanel/Playfield/Bg" instance=ExtResource( 4 )]
-modulate = Color( 1, 1, 1, 0.25098 )
-material = SubResource( 2 )
-scale = Vector2( 0.43, 0.43 )
-tile_data = PoolIntArray( 196608, 1, 0, 196616, 1, 0, 327681, 2, 0, 327683, 2, 0, 393218, 2, 0, 393220, 2, 0, 1245184, 1, 0, 1245192, 1, 0 )
-
 [node name="Pickups" type="Control" parent="CenterPanel/Playfield/Bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -356,6 +345,19 @@ __meta__ = {
 }
 PickupScene = ExtResource( 6 )
 _puzzle_tile_map_path = NodePath("../TileMap")
+
+[node name="TileMap" parent="CenterPanel/Playfield/Bg" instance=ExtResource( 4 )]
+material = SubResource( 1 )
+scale = Vector2( 0.43, 0.43 )
+z_index = 4
+tile_data = PoolIntArray( 196608, 1, 0, 196616, 1, 0, 1245184, 1, 0, 1245192, 1, 0 )
+
+[node name="TileMapDropPreview" parent="CenterPanel/Playfield/Bg" instance=ExtResource( 4 )]
+modulate = Color( 1, 1, 1, 0.25098 )
+material = SubResource( 2 )
+scale = Vector2( 0.43, 0.43 )
+z_index = 4
+tile_data = PoolIntArray( 196608, 1, 0, 196616, 1, 0, 327681, 2, 0, 327683, 2, 0, 393218, 2, 0, 393220, 2, 0, 1245184, 1, 0, 1245192, 1, 0 )
 
 [connection signal="tiles_keys_changed" from="." to="PlayfieldNav" method="_on_Playfield_tiles_keys_changed"]
 [connection signal="mouse_exited" from="CenterPanel/Playfield" to="CenterPanel/Playfield" method="_on_mouse_exited"]

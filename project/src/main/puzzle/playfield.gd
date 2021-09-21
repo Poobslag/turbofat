@@ -26,12 +26,16 @@ signal lines_deleted(lines)
 # emitted when lines are inserted. some levels insert lines, but most do not
 signal line_inserted(y, tiles_key, src_y)
 
+# emitted when a food item should be spawned because the player collects a pickup
+signal food_spawned(cell, remaining_food, food_type)
+
 signal blocks_prepared
 
 # remaining frames to delay for something besides making boxes/clearing lines
 var _remaining_misc_delay_frames := 0
 
 onready var tile_map := $TileMapClip/TileMap
+onready var pickups := $TileMapClip/Pickups
 onready var line_inserter := $LineInserter
 
 onready var _bg_glob_viewports: FrostingViewports = $BgGlobViewports
@@ -190,3 +194,7 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 
 func _on_LineInserter_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
 	emit_signal("line_inserted", y, tiles_key, src_y)
+
+
+func _on_Pickups_food_spawned(cell: Vector2, remaining_food: int, food_type: int) -> void:
+	emit_signal("food_spawned", cell, remaining_food, food_type)
