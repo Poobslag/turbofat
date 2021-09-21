@@ -323,6 +323,7 @@ scale = Vector2( 0.43, 0.43 )
 tile_data = PoolIntArray( 196608, 1, 0, 196616, 1, 0, 327681, 2, 0, 327683, 2, 0, 393218, 2, 0, 393220, 2, 0, 1245184, 1, 0, 1245192, 1, 0 )
 
 [connection signal="tiles_keys_changed" from="." to="PlayfieldNav" method="_on_Playfield_tiles_keys_changed"]
+[connection signal="mouse_exited" from="CenterPanel/Playfield" to="CenterPanel/Playfield" method="_on_mouse_exited"]
 [connection signal="tile_map_changed" from="CenterPanel/Playfield" to="." method="_on_Playfield_tile_map_changed"]
 [connection signal="add_tiles_key_pressed" from="PlayfieldNav" to="." method="_on_PlayfieldNav_add_tiles_key_pressed"]
 [connection signal="next_tiles_key_pressed" from="PlayfieldNav" to="." method="_on_PlayfieldNav_next_tiles_key_pressed"]
