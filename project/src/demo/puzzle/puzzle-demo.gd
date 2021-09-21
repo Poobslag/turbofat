@@ -94,4 +94,4 @@ func _add_pickups() -> void:
 			Foods.BoxType.CAKE_JLO,
 		][int(cell.y) % 5]
 		if $Puzzle/Playfield.tile_map.is_cell_empty(cell):
-			$Puzzle/Pickups.add_pickup(cell, box_type)
+			$Puzzle/Pickups.set_pickup(cell, box_type)
