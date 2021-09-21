@@ -11,6 +11,8 @@ of level tiles.
 signal tiles_keys_changed(tiles_keys, tiles_key)
 # emitted when the playfield's contents change, such as when blocks are added or removed
 signal tile_map_changed
+# emitted when the playfield's pickups change
+signal pickups_changed
 
 # tiles keys which can be selected. 'start' is always the first item in this array
 var tiles_keys := ["start"] setget set_tiles_keys
@@ -37,6 +39,10 @@ func get_tile_map() -> TileMap:
 	return $CenterPanel/Playfield.get_tile_map()
 
 
+func get_pickups() -> EditorPickups:
+	return $CenterPanel/Playfield.get_pickups()
+
+
 """
 Ensure the tiles keys are sorted, and that they always include a 'start' key.
 """
@@ -51,6 +57,10 @@ func _normalize_tiles_keys(keys: Array) -> Array:
 
 func _on_Playfield_tile_map_changed() -> void:
 	emit_signal("tile_map_changed")
+
+
+func _on_Playfield_pickups_changed() -> void:
+	emit_signal("pickups_changed")
 
 
 """

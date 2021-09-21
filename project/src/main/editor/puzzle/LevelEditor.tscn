@@ -244,6 +244,7 @@ dialog_autowrap = true
 [connection signal="pressed" from="HBoxContainer/SideButtons/Save" to="Ui/Dialogs" method="_on_Save_pressed"]
 [connection signal="pressed" from="HBoxContainer/SideButtons/Settings" to="SettingsMenu" method="_on_Settings_pressed"]
 [connection signal="pressed" from="HBoxContainer/SideButtons/Test" to="." method="_on_Test_pressed"]
+[connection signal="pickups_changed" from="HBoxContainer/TabContainer/Playfield" to="HBoxContainer/SideButtons/Json" method="_on_PlayfieldEditor_pickups_changed"]
 [connection signal="tile_map_changed" from="HBoxContainer/TabContainer/Playfield" to="HBoxContainer/SideButtons/Json" method="_on_PlayfieldEditor_tile_map_changed"]
 [connection signal="tiles_keys_changed" from="HBoxContainer/TabContainer/Playfield" to="HBoxContainer/SideButtons/Json" method="_on_PlayfieldEditor_tiles_keys_changed"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_Quit_pressed"]
