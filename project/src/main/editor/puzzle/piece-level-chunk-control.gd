@@ -1,4 +1,4 @@
-extends LevelChunkControl
+extends BlockLevelChunkControl
 """
 A level editor chunk which contains several blocks which make up a single piece, such as a t-piece.
 """

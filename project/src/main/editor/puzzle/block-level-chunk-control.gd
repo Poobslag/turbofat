@@ -1,4 +1,4 @@
-class_name LevelChunkControl
+class_name BlockLevelChunkControl
 extends Control
 """
 UI component for a draggable chunk of level editor data.
@@ -10,7 +10,7 @@ func _ready() -> void:
 
 
 func get_drag_data(_pos: Vector2) -> Object:
-	var data: LevelChunk = LevelChunk.new()
+	var data: BlockLevelChunk = BlockLevelChunk.new()
 	for cell in $TileMap.get_used_cells():
 		var tile: int = $TileMap.get_cellv(cell)
 		var autotile_coord: Vector2 = $TileMap.get_cell_autotile_coord(cell.x, cell.y)
