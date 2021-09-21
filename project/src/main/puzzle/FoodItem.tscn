@@ -47,15 +47,25 @@ tracks/1/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ), Vector2( 1, 1 ) ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:rotation_modifier")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.999999 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0 ]
+}
 
 [node name="FoodItem" type="Node2D"]
-rotation = 0.14452
 script = ExtResource( 1 )
 texture = ExtResource( 2 )
 frame_data = "res://assets/main/puzzle/food/food-packed.json"
 rect_size = Vector2( 128, 128 )
 frame = 1
-rotation_modifier = 0.14452
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/jiggle = SubResource( 1 )

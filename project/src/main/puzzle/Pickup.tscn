@@ -26,8 +26,6 @@ material = null
 
 [node name="FoodItem" parent="." instance=ExtResource( 1 )]
 visible = false
-rotation = 0.228921
-rotation_modifier = 0.228921
 
 [node name="StarColorTween" type="Tween" parent="."]
 

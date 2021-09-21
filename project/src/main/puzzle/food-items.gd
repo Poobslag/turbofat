@@ -165,7 +165,7 @@ func _on_StarSeeds_food_spawned(cell: Vector2, remaining_food: int, food_type: i
 	add_food_item(cell, food_type, remaining_food)
 
 
-func _on_Pickups_food_spawned(cell, remaining_food, food_type) -> void:
+func _on_Playfield_food_spawned(cell, remaining_food, food_type) -> void:
 	add_food_item(cell, food_type, remaining_food)
 
 

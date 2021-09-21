@@ -1,4 +1,4 @@
-[gd_scene load_steps=96 format=2]
+[gd_scene load_steps=93 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -71,9 +71,6 @@
 [ext_resource path="res://src/main/puzzle/frame-drops-label.gd" type="Script" id=69]
 [ext_resource path="res://src/main/puzzle/level-timer-manager.gd" type="Script" id=70]
 [ext_resource path="res://src/main/puzzle/piece/piece-queue.gd" type="Script" id=71]
-[ext_resource path="res://src/main/puzzle/pickups.gd" type="Script" id=72]
-[ext_resource path="res://src/main/puzzle/Pickup.tscn" type="PackedScene" id=73]
-[ext_resource path="res://assets/main/puzzle/pickup.wav" type="AudioStream" id=74]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -364,53 +361,6 @@ margin_top = 28.0
 margin_right = 688.0
 margin_bottom = 572.0
 
-[node name="Pickups" type="Control" parent="."]
-margin_left = 364.0
-margin_top = 28.0
-margin_right = 688.0
-margin_bottom = 572.0
-script = ExtResource( 72 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-_puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
-PickupScene = ExtResource( 73 )
-
-[node name="Visuals" type="Control" parent="Pickups"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="PickupSfx0" type="AudioStreamPlayer" parent="Pickups"]
-stream = ExtResource( 74 )
-pitch_scale = 0.5
-
-[node name="PickupSfx1" type="AudioStreamPlayer" parent="Pickups"]
-stream = ExtResource( 74 )
-pitch_scale = 0.54
-
-[node name="PickupSfx2" type="AudioStreamPlayer" parent="Pickups"]
-stream = ExtResource( 74 )
-pitch_scale = 0.58
-
-[node name="PickupSfx3" type="AudioStreamPlayer" parent="Pickups"]
-stream = ExtResource( 74 )
-pitch_scale = 0.62
-
-[node name="PickupSfx4" type="AudioStreamPlayer" parent="Pickups"]
-stream = ExtResource( 74 )
-pitch_scale = 0.66
-
-[node name="PickupSfx5" type="AudioStreamPlayer" parent="Pickups"]
-stream = ExtResource( 74 )
-pitch_scale = 0.7
-
-[node name="CollectSfxTimer" type="Timer" parent="Pickups"]
-wait_time = 0.04
-one_shot = true
-
 [node name="StarSeeds" type="Control" parent="."]
 margin_left = 364.0
 margin_top = 28.0
@@ -459,7 +409,7 @@ __meta__ = {
 [node name="RestaurantView" parent="." instance=ExtResource( 25 )]
 
 [node name="FrostingGlobs" type="Node2D" parent="."]
-z_index = 1
+z_index = 4
 script = ExtResource( 24 )
 puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 playfield_path = NodePath("../Playfield")
@@ -507,7 +457,7 @@ restaurant_view_path = NodePath("../RestaurantView")
 CrumbClusterScene = ExtResource( 60 )
 
 [node name="FoodItems" type="Node2D" parent="."]
-z_index = 3
+z_index = 6
 script = ExtResource( 20 )
 puzzle_path = NodePath("..")
 restaurant_view_path = NodePath("../RestaurantView")
@@ -540,7 +490,7 @@ one_shot = true
 
 [node name="ComboCounters" type="Node2D" parent="."]
 position = Vector2( 364, 28 )
-z_index = 3
+z_index = 6
 script = ExtResource( 32 )
 piece_manager_path = NodePath("../PieceManager")
 playfield_path = NodePath("../Playfield")
@@ -757,9 +707,6 @@ script = ExtResource( 19 )
 [connection signal="back_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_back_button_pressed"]
 [connection signal="settings_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_settings_button_pressed"]
 [connection signal="start_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
-[connection signal="food_spawned" from="Pickups" to="FoodItems" method="_on_Pickups_food_spawned"]
-[connection signal="timeout" from="Pickups/CollectSfxTimer" to="Pickups" method="_on_PickupSfxTimer_timeout"]
-[connection signal="piece_changed" from="PieceManager" to="Pickups" method="_on_PieceManager_piece_changed"]
 [connection signal="squish_moved" from="PieceManager" to="FrostingGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="before_line_cleared" from="Playfield" to="ComboCounters" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Playfield" to="FrostingGlobs" method="_on_Playfield_before_line_cleared"]
@@ -767,14 +714,12 @@ script = ExtResource( 19 )
 [connection signal="blocks_prepared" from="Playfield" to="StarSeeds" method="_on_Playfield_blocks_prepared"]
 [connection signal="box_built" from="Playfield" to="FrostingGlobs" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
+[connection signal="food_spawned" from="Playfield" to="FoodItems" method="_on_Playfield_food_spawned"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
 [connection signal="line_clears_scheduled" from="Playfield" to="StarSeeds" method="_on_Playfield_line_clears_scheduled"]
-[connection signal="line_erased" from="Playfield" to="Pickups" method="_on_Playfield_line_erased"]
 [connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
-[connection signal="line_inserted" from="Playfield" to="Pickups" method="_on_Playfield_line_inserted"]
 [connection signal="line_inserted" from="Playfield" to="PieceManager" method="_on_Playfield_line_inserted"]
 [connection signal="line_inserted" from="Playfield" to="StarSeeds" method="_on_Playfield_line_inserted"]
-[connection signal="lines_deleted" from="Playfield" to="Pickups" method="_on_Playfield_lines_deleted"]
 [connection signal="lines_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_lines_deleted"]
 [connection signal="customer_changed" from="RestaurantView" to="FoodItems" method="_on_RestaurantView_customer_changed"]
 [connection signal="hide" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hide"]
