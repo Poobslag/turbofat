@@ -9,11 +9,17 @@ This script includes logic for populating the json model from the level editor, 
 var _json_tree: Dictionary
 
 export (NodePath) var playfield_editor_path: NodePath
+export (NodePath) var properties_editor_path: NodePath
 
 var _tile_map: PuzzleTileMap
 var _pickups: EditorPickups
 
+# cached values used for calculating pickup properties
+var _score_rules := ScoreRules.new()
+var _calculated_pickup_score := 0
+
 onready var _playfield_editor: PlayfieldEditorControl = get_node(playfield_editor_path)
+onready var _properties_editor: PropertiesEditorControl = get_node(properties_editor_path)
 
 func _ready() -> void:
 	_tile_map = _playfield_editor.get_tile_map()
@@ -46,6 +52,19 @@ func refresh_playfield_editor() -> void:
 	_tile_map.clear()
 	_pickups.clear()
 	PuzzleTileMapReader.read(json_tiles_set, funcref(_tile_map, "set_block"), funcref(_pickups, "set_pickup"))
+
+
+"""
+Refreshes the properties editor based on our json text.
+"""
+func refresh_properties_editor() -> void:
+	if not can_parse_json():
+		return
+	
+	if _json_tree.has("rank"):
+		var rank_rules := RankRules.new()
+		rank_rules.from_json_string_array(_json_tree["rank"])
+		_properties_editor.set_master_pickup_score(rank_rules.master_pickup_score)
 
 
 """
@@ -82,7 +101,7 @@ func _refresh_json_tiles_keys() -> void:
 	if _json_tree.has("tiles") and _json_tree["tiles"].empty():
 		_json_tree.erase("tiles")
 	
-	text = Utils.print_json(_json_tree)
+	_refresh_text_from_json_tree()
 
 
 """
@@ -121,13 +140,74 @@ func _refresh_json_tile_map() -> void:
 			_json_tree["tiles"] = {}
 		_json_tree["tiles"][_playfield_editor.tiles_key] = new_json_tiles_set
 	
+	_refresh_text_from_json_tree()
+
+
+func _refresh_text_from_json_tree() -> void:
 	text = Utils.print_json(_json_tree)
+
+
+"""
+Refreshes our json tree based on the data from the properties editor.
+"""
+func _refresh_json_tree_from_properties() -> void:
+	if not can_parse_json():
+		return
+	
+	var new_master_pickup_score: float = _properties_editor.get_master_pickup_score()
+	
+	if new_master_pickup_score != 0.0:
+		# add a 'rank' node if necessary, and populate it with the new master pickup score
+		if not _json_tree.has("rank"):
+			_json_tree["rank"] = []
+		
+		var master_pickup_score_index: int = _json_tree["rank"].size()
+		for i in range(_json_tree["rank"].size()):
+			var string: String = _json_tree["rank"][i]
+			if string.begins_with("master_pickup_score "):
+				master_pickup_score_index = i
+				_json_tree["rank"].remove(i)
+				break
+		
+		_json_tree["rank"].insert(master_pickup_score_index, "master_pickup_score %d" % [new_master_pickup_score])
+	else:
+		# remove the master pickup score, and remove the 'rank' node if no longer necessary
+		if _json_tree.has("rank"):
+			for i in range(_json_tree["rank"].size()):
+				var string: String = _json_tree["rank"][i]
+				if string.begins_with("master_pickup_score "):
+					_json_tree["rank"].remove(i)
+					break
+			
+			if _json_tree["rank"].empty():
+				_json_tree.erase("rank")
+	
+	_refresh_text_from_json_tree()
+
+
+"""
+Recalculates the master pickup score and updates the properties editor.
+"""
+func _update_properties_master_pickup_score_with_calculated_value() -> void:
+	# reset previously parsed json data
+	_calculated_pickup_score = 0
+	
+	if _json_tree.has("score"):
+		_score_rules = ScoreRules.new()
+		_score_rules.from_json_string_array(_json_tree["score"])
+	
+	# parse json data
+	var json_tiles_set: Array = _json_tree.get("tiles", {}).get("start", [])
+	PuzzleTileMapReader.read(json_tiles_set, null, funcref(self, "_increment_calculated_pickup_score"))
+	
+	# update UI
+	_properties_editor.set_master_pickup_score(_calculated_pickup_score)
 
 
 """
 Returns a sorted list of used cells in the playfield editor.
 
-This includes cells containing blocks and powerups. The result is sorted first by Y ascending, then by X ascending.
+This includes cells containing blocks and pickups. The result is sorted first by Y ascending, then by X ascending.
 """
 func _playfield_editor_used_cells() -> Array:
 	var used_cells := {
@@ -149,6 +229,16 @@ func _compare_by_y(a: Vector2, b: Vector2) -> bool:
 	return b.x > a.x
 
 
+"""
+Callback function which increments the pickup score for each playfield pickup.
+"""
+func _increment_calculated_pickup_score(_pos: Vector2, box_type: int) -> void:
+	if Foods.is_snack_box(box_type):
+		_calculated_pickup_score += _score_rules.snack_pickup_points
+	else:
+		_calculated_pickup_score += _score_rules.cake_pickup_points
+
+
 func _on_PlayfieldEditor_tiles_keys_changed(_tiles_keys: Array, _tiles_key: String) -> void:
 	# when tiles keys are added/removed, we update our json.
 	_refresh_json_tiles_keys()
@@ -163,8 +253,18 @@ func _on_PlayfieldEditor_tile_map_changed() -> void:
 
 func _on_text_changed() -> void:
 	refresh_playfield_editor()
+	refresh_properties_editor()
 
 
 func _on_PlayfieldEditor_pickups_changed() -> void:
 	# when the player changes the pickups, we update our json.
 	_refresh_json_tile_map()
+
+
+func _on_PropertiesEditor_properties_changed() -> void:
+	_refresh_json_tree_from_properties()
+
+
+func _on_PropertiesPickupsButton_pressed() -> void:
+	_update_properties_master_pickup_score_with_calculated_value()
+	_refresh_json_tree_from_properties()

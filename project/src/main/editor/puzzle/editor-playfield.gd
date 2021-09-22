@@ -14,13 +14,16 @@ signal tile_map_changed
 # prevent infinite recursion when populated by editor-json.gd.
 signal pickups_changed
 
-var dragging_right_mouse := false
+var _dragging_right_mouse := false
 
 # The 'pos' parameter for the previous call to 'can_drop_data'
-var prev_can_drop_pos: Vector2
+var _prev_can_drop_pos: Vector2
 
 # The 'data' parameter for the previous call to 'can_drop_data'
-var prev_can_drop_data: Object
+var _prev_can_drop_data: Object
+
+# The data previously dropped on this panel. New drag events originating from this panel reuse the dropped data.
+var _prev_dropped_data: Object
 
 onready var _tile_map := $Bg/TileMap
 onready var _tile_map_drop_preview := $Bg/TileMapDropPreview
@@ -36,11 +39,11 @@ func _ready() -> void:
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
-		dragging_right_mouse = event.button_mask & BUTTON_RIGHT
+		_dragging_right_mouse = event.button_mask & BUTTON_RIGHT
 	
 	if event is InputEventMouseMotion or event is InputEventMouseButton:
 		# click/drag the right mouse to erase parts of the tilemap
-		if dragging_right_mouse:
+		if _dragging_right_mouse:
 			var cell_pos := _cell_pos(event.position)
 			# only emit signals if the underlying data changed to avoid generating json too frequently
 			var should_update_tilemap := true if _tile_map.get_cellv(cell_pos) != -1 else false
@@ -63,17 +66,17 @@ func can_drop_data(pos: Vector2, data: Object) -> bool:
 			_clear_previews()
 			_store_block_level_chunk(_tile_map_drop_preview, pos, data)
 		if data is PickupLevelChunk:
-			if _cell_pos(pos) == _cell_pos(prev_can_drop_pos) \
-					and prev_can_drop_data is PickupLevelChunk \
-					and data.box_type == prev_can_drop_data.box_type:
+			if _cell_pos(pos) == _cell_pos(_prev_can_drop_pos) \
+					and _prev_can_drop_data is PickupLevelChunk \
+					and data.box_type == _prev_can_drop_data.box_type:
 				# ignore update; otherwise the pickup preview flickers wildly
 				pass
 			else:
 				# update drop preview for pickup level chunk
 				_clear_previews()
 				_store_pickup_level_chunk(_pickups_drop_preview, pos, data)
-	prev_can_drop_pos = pos
-	prev_can_drop_data = data
+	_prev_can_drop_pos = pos
+	_prev_can_drop_data = data
 	return can_drop
 
 
@@ -86,6 +89,23 @@ func drop_data(pos: Vector2, data: Object) -> void:
 		_clear_previews()
 		_store_pickup_level_chunk(_pickups, pos, data)
 		emit_signal("pickups_changed")
+	
+	# store the dropped data so it can be reused for later drag events
+	_prev_dropped_data = data
+	if _prev_dropped_data is BlockLevelChunk:
+		# change vegetable data avoid repeating the same vegetables
+		for cell in _prev_dropped_data.used_cells:
+			if _prev_dropped_data.tiles[cell] == PuzzleTileMap.TILE_VEG:
+				_prev_dropped_data.autotile_coords[cell] = Vector2(randi() % 18, randi() % 4)
+
+
+"""
+If the user clicks and drags on the playfield, we reuse the previously dropped data.
+
+This makes it easier to populate a playfield with lots of vegetables or pickups.
+"""
+func get_drag_data(_pos: Vector2) -> Object:
+	return _prev_dropped_data
 
 
 """
@@ -128,8 +148,8 @@ cleared following a successful drop, or if the mouse exits the control.
 func _clear_previews() -> void:
 	_tile_map_drop_preview.clear()
 	_pickups_drop_preview.clear()
-	prev_can_drop_pos = Vector2(-808, -949)
-	prev_can_drop_data = null
+	_prev_can_drop_pos = Vector2(-808, -949)
+	_prev_can_drop_data = null
 
 
 func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
