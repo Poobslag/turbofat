@@ -14,6 +14,7 @@ const RDF_SPEED := 0.960
 const RDF_LINES := 0.960
 const RDF_BOX_SCORE_PER_LINE := 0.970
 const RDF_COMBO_SCORE_PER_LINE := 0.970
+const RDF_PICKUP_SCORE := 0.980
 const RDF_PICKUP_SCORE_PER_LINE := 0.970
 
 # Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
@@ -86,8 +87,8 @@ func calculate_rank() -> RankResult:
 					min(rank_result.box_score_per_line_rank, lenient_rank_result.box_score_per_line_rank)
 			rank_result.combo_score_per_line_rank = \
 					min(rank_result.combo_score_per_line_rank, lenient_rank_result.combo_score_per_line_rank)
-			rank_result.pickup_score_per_line_rank = \
-					min(rank_result.pickup_score_per_line_rank, lenient_rank_result.pickup_score_per_line_rank)
+			rank_result.pickup_score_rank = \
+					min(rank_result.pickup_score_rank, lenient_rank_result.pickup_score_rank)
 			rank_result.score_rank = min(rank_result.score_rank, lenient_rank_result.score_rank)
 	return rank_result
 
@@ -197,6 +198,7 @@ func _unranked_result() -> RankResult:
 	# calculate raw player performance statistics
 	rank_result.box_score = PuzzleState.level_performance.box_score
 	rank_result.combo_score = PuzzleState.level_performance.combo_score
+	rank_result.pickup_score = PuzzleState.level_performance.pickup_score
 	rank_result.leftover_score = PuzzleState.level_performance.leftover_score
 	rank_result.lines = PuzzleState.level_performance.lines
 	rank_result.pieces = PuzzleState.level_performance.pieces
@@ -231,7 +233,8 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var target_speed: float = master_lpm
 	var target_box_score_per_line := master_box_score(CurrentLevel.settings)
 	var target_combo_score_per_line := master_combo_score(CurrentLevel.settings)
-	var target_pickup_score_per_line := master_pickup_score(CurrentLevel.settings)
+	var target_pickup_score_per_line := master_pickup_score_per_line(CurrentLevel.settings)
+	var target_pickup_score := master_pickup_score(CurrentLevel.settings)
 	var target_lines: float
 	var leftover_lines := master_leftover_lines(CurrentLevel.settings)
 	
@@ -272,12 +275,15 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		rank_result.combo_score_per_line_rank = log(rank_result.combo_score_per_line / target_combo_score_per_line) \
 				/ log(RDF_COMBO_SCORE_PER_LINE)
 	
-	if target_pickup_score_per_line == 0:
-		# award the player master rank if it's impossible to score any pickup points on a level
-		rank_result.pickup_score_per_line_rank = 0.0
-	else:
-		rank_result.pickup_score_per_line_rank = log(rank_result.pickup_score_per_line / target_pickup_score_per_line) \
+	if target_pickup_score > 0:
+		rank_result.pickup_score_rank = log(rank_result.pickup_score / target_pickup_score) \
+				/ log(RDF_PICKUP_SCORE)
+	elif target_pickup_score_per_line > 0:
+		rank_result.pickup_score_rank = log(rank_result.pickup_score_per_line / target_pickup_score_per_line) \
 				/ log(RDF_PICKUP_SCORE_PER_LINE)
+	else:
+		# award the player master rank if it's impossible to score any pickup points on a level
+		rank_result.pickup_score_rank = 0.0
 	
 	# Binary search for the player's score rank. Score is a function of several criteria, the rank doesn't deteriorate
 	# in a predictable way like the other ranks
@@ -348,7 +354,7 @@ func _apply_top_out_penalty(rank_result: RankResult) -> void:
 		rank_result.pieces_rank = rank_result.pieces_rank + all_penalty
 		rank_result.box_score_per_line_rank = rank_result.box_score_per_line_rank + all_penalty
 		rank_result.combo_score_per_line_rank = rank_result.combo_score_per_line_rank + all_penalty
-		rank_result.pickup_score_per_line_rank = rank_result.pickup_score_per_line_rank + all_penalty
+		rank_result.pickup_score_rank = rank_result.pickup_score_rank + all_penalty
 		rank_result.score_rank = rank_result.score_rank + all_penalty
 		rank_result.seconds_rank = rank_result.seconds_rank + all_penalty
 
@@ -418,8 +424,15 @@ static func master_combo_score(settings: LevelSettings) -> float:
 """
 Returns the maximum pickup score per line for the specified level.
 """
+static func master_pickup_score_per_line(settings: LevelSettings) -> float:
+	return settings.rank.master_pickup_score_per_line
+
+
+"""
+Returns the maximum overall pickup score for the specified level.
+"""
 static func master_pickup_score(settings: LevelSettings) -> float:
-	return settings.rank.master_pickup_points_per_line
+	return settings.rank.master_pickup_score
 
 
 """

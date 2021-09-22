@@ -80,37 +80,57 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 	if rank_result.topped_out() and CurrentLevel.settings.rank.top_out_penalty > 0:
 		topped_out = "?"
 	
-	text += "/////\n"
-	if finish_condition_type == Milestone.SCORE:
-		text += tr("Speed: %d") % round(rank_result.speed * 200 / 60)
+	text += "\n"
+	
+	if _speed_shown(finish_condition_type):
+		text += "/////" + tr("Speed: %d") % round(rank_result.speed * 200 / 60)
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.speed_rank)
 		text += "\n"
-	elif finish_condition_type == Milestone.PIECES:
-		text += tr("Pieces: %d") % rank_result.pieces
+	
+	if _pieces_shown(finish_condition_type):
+		text += "/////" + tr("Pieces: %d") % rank_result.pieces
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.pieces_rank)
 		text += "\n"
-	else:
-		text += tr("Lines: %d") % rank_result.lines
+	
+	if _lines_shown(finish_condition_type):
+		text += "/////" + tr("Lines: %d") % rank_result.lines
 		text += topped_out
 		if not CurrentLevel.settings.rank.unranked:
 			text += " (%s)" % RankCalculator.grade(rank_result.lines_rank)
 		text += "\n"
-		
-	text += "/////" + tr("Boxes: %d") % round(rank_result.box_score_per_line * 10)
-	text += topped_out
-	if not CurrentLevel.settings.rank.unranked:
-		text += " (%s)" % RankCalculator.grade(rank_result.box_score_per_line_rank)
-	text += "\n"
 	
-	text += "/////" + tr("Combos: %d") % round(rank_result.combo_score_per_line * 10)
-	text += topped_out
-	if not CurrentLevel.settings.rank.unranked:
-		text += " (%s)" % RankCalculator.grade(rank_result.combo_score_per_line_rank)
-	text += "\n"
+	if _boxes_shown():
+		text += "/////" + tr("Boxes: %d") % round(rank_result.box_score_per_line * 10)
+		text += topped_out
+		if not CurrentLevel.settings.rank.unranked:
+			text += " (%s)" % RankCalculator.grade(rank_result.box_score_per_line_rank)
+		text += "\n"
+	
+	if _combos_shown():
+		text += "/////" + tr("Combos: %d") % round(rank_result.combo_score_per_line * 10)
+		text += topped_out
+		if not CurrentLevel.settings.rank.unranked:
+			text += " (%s)" % RankCalculator.grade(rank_result.combo_score_per_line_rank)
+		text += "\n"
+	
+	if _pickups_shown():
+		var shown_pickup_score: float
+		if CurrentLevel.settings.rank.master_pickup_score_per_line:
+			# show the 'per line' pickup score
+			shown_pickup_score = round(rank_result.pickup_score_per_line * 10)
+		else:
+			# show the 'total' pickup score
+			shown_pickup_score = float(rank_result.pickup_score)
+		
+		text += "/////" + tr("Pickups: %d") % shown_pickup_score
+		text += topped_out
+		if not CurrentLevel.settings.rank.unranked:
+			text += " (%s)" % RankCalculator.grade(rank_result.pickup_score_rank)
+		text += "\n"
 	
 	if not CurrentLevel.settings.rank.unranked:
 		text += "/////\n" + tr("Overall: ")
@@ -121,6 +141,45 @@ func _append_grade_information(rank_result: RankResult, _customer_scores: Array,
 		else:
 			text += "(%s)\n" % RankCalculator.grade(rank_result.score_rank)
 	return text
+
+
+func _speed_shown(finish_condition_type: int) -> bool:
+	var result: bool
+	match CurrentLevel.settings.rank.show_speed_rank:
+		RankRules.ShowRank.SHOW: result = true
+		RankRules.ShowRank.HIDE: result = false
+		_: result = true if finish_condition_type == Milestone.SCORE else false
+	return result
+
+
+func _pieces_shown(finish_condition_type: int) -> bool:
+	var result: bool
+	match CurrentLevel.settings.rank.show_pieces_rank:
+		RankRules.ShowRank.SHOW: result = true
+		RankRules.ShowRank.HIDE: result = false
+		_: result = true if finish_condition_type == Milestone.PIECES else false
+	return result
+
+
+func _lines_shown(finish_condition_type: int) -> bool:
+	var result: bool
+	match CurrentLevel.settings.rank.show_lines_rank:
+		RankRules.ShowRank.SHOW: result = true
+		RankRules.ShowRank.HIDE: result = false
+		_: result = false if finish_condition_type in [Milestone.PIECES, Milestone.SCORE] else true
+	return result
+
+
+func _boxes_shown() -> bool:
+	return CurrentLevel.settings.rank.show_boxes_rank in [RankRules.ShowRank.SHOW, RankRules.ShowRank.DEFAULT]
+
+
+func _combos_shown() -> bool:
+	return CurrentLevel.settings.rank.show_combos_rank in [RankRules.ShowRank.SHOW, RankRules.ShowRank.DEFAULT]
+
+
+func _pickups_shown() -> bool:
+	return CurrentLevel.settings.rank.show_pickups_rank in [RankRules.ShowRank.SHOW]
 
 
 """

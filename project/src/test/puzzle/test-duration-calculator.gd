@@ -89,3 +89,19 @@ func test_customers_high_difficulty() -> void:
 	_settings.finish_condition.set_milestone(Milestone.CUSTOMERS, 5)
 	
 	assert_almost_eq(_duration_calculator.duration(_settings), 185.0, 10.0)
+
+
+func test_master_pickup_score() -> void:
+	_settings.finish_condition.set_milestone(Milestone.SCORE, 1000)
+	assert_almost_eq(_duration_calculator.duration(_settings), 889.0, 10.0)
+	
+	_settings.rank.master_pickup_score = 800
+	assert_almost_eq(_duration_calculator.duration(_settings), 177.0, 10.0)
+
+
+func test_master_pickup_score_per_line() -> void:
+	_settings.finish_condition.set_milestone(Milestone.SCORE, 1000)
+	assert_almost_eq(_duration_calculator.duration(_settings), 889.0, 10.0)
+	
+	_settings.rank.master_pickup_score_per_line = 20
+	assert_almost_eq(_duration_calculator.duration(_settings), 574.0, 10.0)
