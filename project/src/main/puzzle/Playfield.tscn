@@ -377,6 +377,7 @@ bus = "Sound Bus"
 [connection signal="box_built" from="." to="TileMapClip/PlayfieldFx" method="_on_Playfield_box_built"]
 [connection signal="line_cleared" from="." to="ComboTracker" method="_on_Playfield_line_cleared"]
 [connection signal="line_erased" from="." to="LineClearSfx" method="_on_Playfield_line_erased"]
+[connection signal="line_erased" from="." to="TileMapClip/Pickups" method="_on_Playfield_line_erased"]
 [connection signal="line_inserted" from="." to="LineClearer" method="_on_Playfield_line_inserted"]
 [connection signal="line_inserted" from="." to="TileMapClip/Pickups" method="_on_Playfield_line_inserted"]
 [connection signal="lines_deleted" from="." to="TileMapClip/Pickups" method="_on_Playfield_lines_deleted"]
