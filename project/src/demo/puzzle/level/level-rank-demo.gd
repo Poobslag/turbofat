@@ -118,18 +118,9 @@ func _calculate_master_pickup_score_per_line() -> void:
 	var target_rank := _target_rank()
 	var best_result := _best_result()
 	
-	var master_pickup_score_per_line_min := 0.0
-	var master_pickup_score_per_line_max := 100.0
-	for _i in range(20):
-		CurrentLevel.settings.rank.master_pickup_score_per_line = \
-				0.5 * (master_pickup_score_per_line_min + master_pickup_score_per_line_max)
-		var master_pickup_score_per_line_for_grade := CurrentLevel.settings.rank.master_pickup_score_per_line \
-				* CurrentLevel.settings.rank.master_pickup_score_per_line \
-				* pow(RankCalculator.RDF_PICKUP_SCORE_PER_LINE, target_rank)
-		if master_pickup_score_per_line_for_grade >= best_result.pickup_score_per_line:
-			master_pickup_score_per_line_max = CurrentLevel.settings.rank.master_pickup_score_per_line
-		else:
-			master_pickup_score_per_line_min = CurrentLevel.settings.rank.master_pickup_score_per_line
+	CurrentLevel.settings.rank.master_pickup_score_per_line = \
+			best_result.pickup_score_per_line \
+			/ pow(RankCalculator.RDF_PICKUP_SCORE_PER_LINE, target_rank)
 	
 	_text_edit.text += "master_pickup_score_per_line=%.2f\n" % [CurrentLevel.settings.rank.master_pickup_score_per_line]
 

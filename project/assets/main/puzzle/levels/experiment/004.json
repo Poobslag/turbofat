@@ -8,9 +8,9 @@
     "value": "150"
   },
   "rank": [
-    "box_factor 0.3",
-    "combo_factor 0.4",
-    "master_pickup_score_per_line 2.0",
+    "box_factor 0.16",
+    "combo_factor 0.62",
+    "master_pickup_score_per_line 15.29",
     "show_pickups_rank"
   ],
   "triggers": [
