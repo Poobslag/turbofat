@@ -11,8 +11,11 @@
     "pickup_type float_regen"
   ],
   "rank": [
-    "master_pickup_score_per_line 3.4",
-    "show_pickups_rank"
+    "box_factor 0.90",
+    "combo_factor 0.90",
+    "master_pickup_score_per_line 18.16",
+    "show_pickups_rank",
+    "master_pickup_score 55"
   ],
   "tiles": {
     "start": [

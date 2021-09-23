@@ -12,7 +12,9 @@
     "piece_v"
   ],
   "rank": [
-    "master_pickup_score 70"
+    "box_factor 0.61",
+    "combo_factor 0.56",
+    "master_pickup_score 140"
   ],
   "tiles": {
     "start": [
