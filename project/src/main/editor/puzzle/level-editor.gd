@@ -21,6 +21,7 @@ func _ready() -> void:
 	var level_text := FileUtils.get_file_as_text(LevelSettings.path_from_level_key(DEFAULT_LEVEL_ID))
 	_level_json.text = level_text
 	_level_json.refresh_playfield_editor()
+	_level_json.refresh_properties_editor()
 	level_id_label.text = DEFAULT_LEVEL_ID
 	Breadcrumb.connect("trail_popped", self, "_on_Breadcrumb_trail_popped")
 
@@ -34,6 +35,7 @@ func load_level(path: String) -> void:
 	var level_text := FileUtils.get_file_as_text(path)
 	_level_json.text = level_text
 	_level_json.refresh_playfield_editor()
+	_level_json.refresh_properties_editor()
 	level_id_label.text = LevelSettings.level_key_from_path(path)
 
 
