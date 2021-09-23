@@ -280,13 +280,25 @@ func _on_PuzzleState_after_piece_written() -> void:
 				pickup.visible = true
 
 
+func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
+	if _pickup_type() in [PICKUP_FLOAT_REGEN]:
+		# pickups are not erased
+		pass
+	else:
+		# erase pickups; this is especially important when the player tops out
+		_erase_row(y)
+
+
 func _on_Playfield_lines_deleted(lines: Array) -> void:
 	if _pickup_type() in [PICKUP_FLOAT, PICKUP_FLOAT_REGEN]:
 		# pickups do not move
 		pass
 	else:
-		# drop all pickups above the deleted lines to fill the gap
 		for y in lines:
+			# some levels might have rows which are deleted, but not erased. erase any pickups
+			_erase_row(y)
+			
+			# drop all pickups above the deleted lines to fill the gap
 			_shift_rows(y - 1, Vector2.DOWN)
 
 
