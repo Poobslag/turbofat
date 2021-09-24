@@ -139,7 +139,7 @@ func _add_wobblers_for_box(rect: Rect2, box_type: int) -> void:
 			wobbler.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
 			wobbler.position *= _puzzle_tile_map.scale
 			wobbler.base_scale = _puzzle_tile_map.scale
-			wobbler.z_index = 2
+			wobbler.z_index = 4
 			_add_wobbler(cell, wobbler)
 
 
