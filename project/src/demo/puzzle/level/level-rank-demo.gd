@@ -64,7 +64,7 @@ func _calculate_extra_seconds_per_piece() -> void:
 		else:
 			extra_seconds_per_piece_max = CurrentLevel.settings.rank.extra_seconds_per_piece
 	
-	_text_edit.text += "extra_seconds_per_piece=%.2f\n" % [CurrentLevel.settings.rank.extra_seconds_per_piece]
+	_text_edit.text += "\"extra_seconds_per_piece %.2f\",\n" % [CurrentLevel.settings.rank.extra_seconds_per_piece]
 
 
 """
@@ -86,7 +86,7 @@ func _calculate_box_factor() -> void:
 		else:
 			box_factor_min = CurrentLevel.settings.rank.box_factor
 	
-	_text_edit.text += "box_factor=%.2f\n" % [CurrentLevel.settings.rank.box_factor]
+	_text_edit.text += "\"box_factor %.2f\",\n" % [CurrentLevel.settings.rank.box_factor]
 
 
 """
@@ -108,7 +108,7 @@ func _calculate_combo_factor() -> void:
 		else:
 			combo_factor_min = CurrentLevel.settings.rank.combo_factor
 	
-	_text_edit.text += "combo_factor=%.2f\n" % [CurrentLevel.settings.rank.combo_factor]
+	_text_edit.text += "\"combo_factor %.2f\",\n" % [CurrentLevel.settings.rank.combo_factor]
 
 
 """
@@ -122,7 +122,8 @@ func _calculate_master_pickup_score_per_line() -> void:
 			best_result.pickup_score_per_line \
 			/ pow(RankCalculator.RDF_PICKUP_SCORE_PER_LINE, target_rank)
 	
-	_text_edit.text += "master_pickup_score_per_line=%.2f\n" % [CurrentLevel.settings.rank.master_pickup_score_per_line]
+	_text_edit.text += "\"master_pickup_score_per_line %.2f\",\n" \
+			% [CurrentLevel.settings.rank.master_pickup_score_per_line]
 
 
 """

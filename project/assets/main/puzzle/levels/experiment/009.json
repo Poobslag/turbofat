@@ -1,0 +1,234 @@
+{
+  "version": "297a",
+  "start_speed": "3",
+  "speed_ups": [
+    {
+      "type": "lines",
+      "value": "10",
+      "speed": "4"
+    },
+    {
+      "type": "lines",
+      "value": "20",
+      "speed": "5"
+    },
+    {
+      "type": "lines",
+      "value": "30",
+      "speed": "6"
+    },
+    {
+      "type": "lines",
+      "value": "40",
+      "speed": "7"
+    }
+  ],
+  "title": "Tempting Jellies",
+  "description": "Throw caution to the wind this once!",
+  "blocks_during": [
+    "pickup_type float_regen"
+  ],
+  "finish_condition": {
+    "type": "lines",
+    "value": "50"
+  },
+  "lose_condition": [
+    "top_out 1"
+  ],
+  "rank": [
+    "box_factor 0.25",
+    "combo_factor 1.08",
+    "master_pickup_score_per_line 17.78",
+    "show_pickups_rank"
+  ],
+  "score": [
+    "snack_all 0"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "3 0",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 0",
+        "pickup": "5"
+      },
+      {
+        "pos": "5 0",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 1",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 1",
+        "pickup": "5"
+      },
+      {
+        "pos": "5 1",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 2",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 2",
+        "pickup": "5"
+      },
+      {
+        "pos": "5 2",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 3",
+        "pickup": "5"
+      },
+      {
+        "pos": "4 3",
+        "pickup": "3"
+      },
+      {
+        "pos": "5 3",
+        "pickup": "5"
+      },
+      {
+        "pos": "3 4",
+        "pickup": "3"
+      },
+      {
+        "pos": "4 4",
+        "pickup": "5"
+      },
+      {
+        "pos": "5 4",
+        "pickup": "3"
+      },
+      {
+        "pos": "4 5",
+        "pickup": "3"
+      },
+      {
+        "pos": "4 7",
+        "pickup": "1"
+      },
+      {
+        "pos": "4 9",
+        "pickup": "0"
+      },
+      {
+        "pos": "3 11",
+        "tile": "1 10 3"
+      },
+      {
+        "pos": "4 11",
+        "tile": "1 14 3"
+      },
+      {
+        "pos": "5 11",
+        "tile": "1 6 3"
+      },
+      {
+        "pos": "3 12",
+        "tile": "1 11 3"
+      },
+      {
+        "pos": "4 12",
+        "tile": "1 15 3"
+      },
+      {
+        "pos": "5 12",
+        "tile": "1 7 3"
+      },
+      {
+        "pos": "3 13",
+        "tile": "1 9 3"
+      },
+      {
+        "pos": "4 13",
+        "tile": "1 13 3"
+      },
+      {
+        "pos": "5 13",
+        "tile": "1 5 3"
+      },
+      {
+        "pos": "3 14",
+        "tile": "1 10 1"
+      },
+      {
+        "pos": "4 14",
+        "tile": "1 14 1"
+      },
+      {
+        "pos": "5 14",
+        "tile": "1 6 1"
+      },
+      {
+        "pos": "3 15",
+        "tile": "1 11 1"
+      },
+      {
+        "pos": "4 15",
+        "tile": "1 15 1"
+      },
+      {
+        "pos": "5 15",
+        "tile": "1 7 1"
+      },
+      {
+        "pos": "3 16",
+        "tile": "1 9 1"
+      },
+      {
+        "pos": "4 16",
+        "tile": "1 13 1"
+      },
+      {
+        "pos": "5 16",
+        "tile": "1 5 1"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 10 0"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 14 0"
+      },
+      {
+        "pos": "5 17",
+        "tile": "1 6 0"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 11 0"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 15 0"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 7 0"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 9 0"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 13 0"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 5 0"
+      }
+    ],
+    "0": [
+
+    ]
+  }
+}
