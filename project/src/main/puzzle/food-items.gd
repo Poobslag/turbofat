@@ -93,29 +93,37 @@ func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> vo
 """
 Callback function which returns the coordinate of the customer's mouth relative to the FoodItems viewport.
 
+Returns Vector2.INF if the customer is replaced, and food should no longer fly towards their mouth.
+
 This is an expensive calculation which is needed once per frame per food item, so we employ a cache.
 """
-func get_target_pos(customer: Creature) -> Vector2:
-	if not _target_pos_cache.has(customer):
-		var target_pos: Vector2 = _restaurant_view.get_customer_mouth_position(customer)
+func get_target_pos(target_customer: Creature, target_customer_index: int) -> Vector2:
+	if not _target_pos_cache.has(target_customer):
+		var target_pos: Vector2 = _restaurant_view.get_customer_mouth_position(target_customer)
 		
-		# if the target customer goes offscreen the food targets a point on the
-		# screen's edge, not a point far outside the boundaries of the screen.
-		if customer != _puzzle.get_customer():
-			if customer.position.x < _puzzle.get_customer().position.x:
-				target_pos.x = lerp(0, target_pos.x,
-						_customer_change_timer.time_left / _customer_change_timer.wait_time)
-			else:
-				target_pos.x = lerp(_window_width, target_pos.x,
-						_customer_change_timer.time_left / _customer_change_timer.wait_time)
+		if target_customer == _puzzle.get_customer() and target_customer_index != _customer_index:
+			# if the target customer leaves and a new customer replaces them, we return 'Vector2.INF' to notify
+			# callers that the food should not fly to them anymore.
+			target_pos = Vector2.INF
+		else:
+			# if the target customer goes offscreen the food targets a point on the
+			# screen's edge, not a point far outside the boundaries of the screen.
+			if target_customer != _puzzle.get_customer():
+				if target_customer.position.x < _puzzle.get_customer().position.x:
+					target_pos.x = lerp(0, target_pos.x,
+							_customer_change_timer.time_left / _customer_change_timer.wait_time)
+				else:
+					target_pos.x = lerp(_window_width, target_pos.x,
+							_customer_change_timer.time_left / _customer_change_timer.wait_time)
+			
+			# calculate the position within the global viewport
+			target_pos = get_global_transform_with_canvas().xform_inv(target_pos)
+			# calculate the position within the FoodItems viewport texture
+			target_pos = target_pos / _texture_rect.rect_scale
 		
-		# calculate the position within the global viewport
-		target_pos = get_global_transform_with_canvas().xform_inv(target_pos)
-		# calculate the position within the FoodItems viewport texture
-		target_pos = target_pos / _texture_rect.rect_scale
-		_target_pos_cache[customer] = target_pos
+		_target_pos_cache[target_customer] = target_pos
 	
-	return _target_pos_cache[customer]
+	return _target_pos_cache[target_customer]
 
 
 """
@@ -141,7 +149,8 @@ func _on_FoodItem_float_done(food_item: FoodItem) -> void:
 
 
 func _on_FoodItem_ready_to_fly(food_item: FoodItem) -> void:
-	food_item.fly_to_target(funcref(self, "get_target_pos"), [food_item.customer], _food_flight_duration)
+	food_item.fly_to_target(funcref(self, "get_target_pos"), \
+			[food_item.customer, food_item.customer_index], _food_flight_duration)
 	
 	# trigger the eating animation just before we arrive at the creature's mouth
 	var adjusted_flight_duration := _food_flight_duration - food_item.customer.get_eating_delay()
