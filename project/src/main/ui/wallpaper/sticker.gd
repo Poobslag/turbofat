@@ -29,7 +29,7 @@ func _ready() -> void:
 		_spin_period += 0.5
 	
 	# randomly increment the total time so items don't spin/pulse in sync
-	_total_time += rand_range(_spin_period)
+	_total_time += rand_range(0, _spin_period)
 	_refresh_scale()
 	_refresh_rotation()
 
