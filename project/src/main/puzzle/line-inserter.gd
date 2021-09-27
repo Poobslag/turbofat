@@ -12,11 +12,11 @@ export (NodePath) var tile_map_path: NodePath
 
 # key: a tiles key for tiles referenced by level rules
 # value: the next row to insert from the referenced tiles
-var row_index_by_tiles_key := {}
+var _row_index_by_tiles_key := {}
 
 # key: a tiles key for tiles referenced by level rules
 # value: the total number of rows in the referenced tiles
-var row_count_by_tiles_key := {}
+var _row_count_by_tiles_key := {}
 
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
 onready var _line_insert_sound := $LineInsertSound
@@ -45,7 +45,7 @@ func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT -
 	if tiles_key:
 		# fill bottom row with blocks from LevelTiles
 		var tiles: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.get_tiles(tiles_key)
-		src_y = row_index_by_tiles_key.get(tiles_key, 0)
+		src_y = _row_index_by_tiles_key.get(tiles_key, 0)
 		
 		# get the tiles for this row
 		for x in range(PuzzleTileMap.COL_COUNT):
@@ -55,7 +55,7 @@ func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT -
 			_tile_map.set_block(Vector2(x, dest_y), tile, autotile_coord)
 		
 		# increment the row index to the next non-empty row
-		row_index_by_tiles_key[tiles_key] = (src_y + 1) % (row_count_by_tiles_key.get(tiles_key, 1))
+		_row_index_by_tiles_key[tiles_key] = (src_y + 1) % (_row_count_by_tiles_key.get(tiles_key, 1))
 	else:
 		# fill bottom row with random veggie garbage
 		_line_insert_sound.play()
@@ -68,15 +68,20 @@ func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT -
 
 
 func _reset() -> void:
-	row_index_by_tiles_key.clear()
-	row_count_by_tiles_key.clear()
+	_row_index_by_tiles_key.clear()
+	_row_count_by_tiles_key.clear()
 	
-	# initialize row_count_by_tiles_key
+	# initialize _row_count_by_tiles_key
 	for tiles_key in CurrentLevel.settings.tiles.bunches:
 		var max_y := 0
 		for cell in CurrentLevel.settings.tiles.bunches[tiles_key].block_tiles:
 			max_y = max(max_y, cell.y)
-		row_count_by_tiles_key[tiles_key] = max_y + 1
+		_row_count_by_tiles_key[tiles_key] = max_y + 1
+	
+	# initialize _row_index_by_tiles_key
+	if CurrentLevel.settings.blocks_during.random_tiles_start:
+		for tiles_key in CurrentLevel.settings.tiles.bunches:
+			_row_index_by_tiles_key[tiles_key] = randi() % _row_count_by_tiles_key[tiles_key]
 
 
 func _on_PuzzleState_game_prepared() -> void:

@@ -365,3 +365,9 @@ func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> voi
 	for i in range(lines_being_deleted_during_trigger.size()):
 		if lines_being_deleted_during_trigger[i] <= y:
 			lines_being_deleted_during_trigger[i] -= 1
+	
+	for i in _rows_to_preserve_at_end.keys():
+		if i <= y:
+			_rows_to_preserve_at_end.erase(i)
+			_rows_to_preserve_at_end[i-1] = true
+	_rows_to_preserve_at_end[y] = true

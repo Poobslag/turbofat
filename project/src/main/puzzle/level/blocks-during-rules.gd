@@ -40,6 +40,9 @@ var line_clear_type: int = LineClearType.DEFAULT
 # whether pickups move with the playfield blocks
 var pickup_type: int = PickupType.DEFAULT
 
+# whether inserted rows should start from a random row in the source tiles instead of starting from the top 
+var random_tiles_start: bool = false
+
 func from_json_string_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
 	if rules.has("clear_on_top_out"): clear_on_top_out = true
@@ -53,3 +56,4 @@ func from_json_string_array(json: Array) -> void:
 			push_warning("Unrecognized pickup_type: %s" % [rules.string_value()])
 		else:
 			pickup_type = PICKUP_TYPES_BY_NAME[rules.string_value()]
+	if rules.has("random_tiles_start"): random_tiles_start = true
