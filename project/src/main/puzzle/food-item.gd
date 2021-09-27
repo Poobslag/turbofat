@@ -79,9 +79,13 @@ func _physics_process(delta: float) -> void:
 			_source_pos += velocity * delta
 			_target_pos = _get_target_pos.call_funcv(_target_pos_arg_array)
 			
-			# The y coordinate changes at a constant rate while the x coordinate follows a parabolic path
-			position.y = lerp(_source_pos.y, _target_pos.y, _flight_percent)
-			position.x = lerp(_source_pos.x, _target_pos.x, 2.1 * pow(_flight_percent, 1.6) - 1.1 * _flight_percent)
+			if _target_pos == Vector2.INF:
+				# get_target_pos returns Vector2.INF if the food should be removed
+				queue_free()
+			else:
+				# The y coordinate changes at a constant rate while the x coordinate follows a parabolic path
+				position.y = lerp(_source_pos.y, _target_pos.y, _flight_percent)
+				position.x = lerp(_source_pos.x, _target_pos.x, 2.1 * pow(_flight_percent, 1.6) - 1.1 * _flight_percent)
 		else:
 			position += velocity * delta
 	
@@ -128,7 +132,7 @@ func set_base_rotation(new_base_rotation: float) -> void:
 Makes the food item start flying towards the customer's mouth.
 
 The object, method and arg_array parameters correspond to a callback which returns the position of the customer's
-mouth.
+mouth. The callback function can also return Vector2.INF if the customer is no longer present.
 
 Parameters:
 	'new_get_target_pos': The callback function which returns the position of the customer's mouth.
