@@ -40,7 +40,7 @@ var line_clear_type: int = LineClearType.DEFAULT
 # whether pickups move with the playfield blocks
 var pickup_type: int = PickupType.DEFAULT
 
-# whether inserted rows should start from a random row in the source tiles instead of starting from the top 
+# whether inserted rows should start from a random row in the source tiles instead of starting from the top
 var random_tiles_start: bool = false
 
 func from_json_string_array(json: Array) -> void:
