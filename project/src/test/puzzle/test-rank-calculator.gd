@@ -417,3 +417,18 @@ func test_master_pickup_score_per_line() -> void:
 	CurrentLevel.settings.rank.master_pickup_score_per_line = 20
 	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.pickup_score_rank), "S-")
+
+
+func test_avoid_infinite_ranks() -> void:
+	PuzzleState.level_performance.lines = 0
+	PuzzleState.level_performance.pickup_score = 0
+	
+	CurrentLevel.settings.rank.master_pickup_score_per_line = 0
+	CurrentLevel.settings.rank.master_pickup_score = 10
+	var rank1 := _rank_calculator.calculate_rank()
+	assert_eq(rank1.pickup_score_rank, 999.0)
+	
+	CurrentLevel.settings.rank.master_pickup_score = 0
+	CurrentLevel.settings.rank.master_pickup_score_per_line = 10
+	var rank2 := _rank_calculator.calculate_rank()
+	assert_eq(rank2.pickup_score_rank, 999.0)

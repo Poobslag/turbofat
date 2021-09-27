@@ -231,6 +231,27 @@ func test_j_vee_kick0() -> void:
 	assert_kick()
 
 
+"""
+It would be nice if this kick worked, but it conflicts with the wall kicks and snack kicks.
+"""
+func test_j_vee_kick0_failed() -> void:
+	from_grid = [
+		"   ::",
+		"   : ",
+		"  j: ",
+		"  jjj",
+		"   ::",
+	]
+	to_grid = [
+		"   ::",
+		"   : ",
+		"  j: ",
+		"  j  ",
+		" jj::",
+	]
+	assert_kick()
+
+
 func test_j_vee_kick1() -> void:
 	from_grid = [
 		"     ",
@@ -291,6 +312,27 @@ func test_l_vee_kick_cw0() -> void:
 		"l:   ",
 		"l:   ",
 		"ll   ",
+	]
+	assert_kick()
+
+
+"""
+It would be nice if this kick worked, but it conflicts with the wall kicks and snack kicks.
+"""
+func test_l_vee_kick_cw0_failed() -> void:
+	from_grid = [
+		"::   ",
+		" :   ",
+		" :l  ",
+		"lll  ",
+		"::   ",
+	]
+	to_grid = [
+		"::   ",
+		" :   ",
+		" :l  ",
+		"  l  ",
+		"::ll ",
 	]
 	assert_kick()
 
@@ -491,7 +533,7 @@ func test_l_gold_kick3() -> void:
 
 
 """
-A 'gold kick' is when a J/L piece hooks its short end into a small gap from far away.
+A 'golder kick' is when a J/L piece hooks its short end into a small gap from far away.
 """
 func test_j_golder_kick() -> void:
 	from_grid = [
