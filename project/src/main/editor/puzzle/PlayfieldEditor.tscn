@@ -91,7 +91,7 @@ expand_icon = true
 margin_left = 81.0
 margin_top = 68.0
 margin_right = 381.0
-margin_bottom = 336.0
+margin_bottom = 404.0
 size_flags_horizontal = 4
 columns = 4
 __meta__ = {
@@ -169,49 +169,72 @@ margin_bottom = 200.0
 script = ExtResource( 8 )
 editor_piece = 7
 
-[node name="Box3x1" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+[node name="Box1x1" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_left = 152.0
 margin_top = 136.0
 margin_right = 224.0
 margin_bottom = 200.0
 script = ExtResource( 11 )
-box_size = Vector2( 3, 1 )
+box_size = Vector2( 1, 1 )
 
-[node name="Box3x2" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+[node name="Box1x2" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_left = 228.0
 margin_top = 136.0
 margin_right = 300.0
 margin_bottom = 200.0
 script = ExtResource( 11 )
-box_size = Vector2( 3, 2 )
+box_size = Vector2( 1, 2 )
 
-[node name="Box3x3" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+[node name="Box2x1" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_top = 204.0
 margin_right = 72.0
 margin_bottom = 268.0
 script = ExtResource( 11 )
+box_size = Vector2( 2, 1 )
 
-[node name="Box3x4" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+[node name="Box3x1" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_left = 76.0
 margin_top = 204.0
 margin_right = 148.0
 margin_bottom = 268.0
 script = ExtResource( 11 )
-box_size = Vector2( 3, 4 )
+box_size = Vector2( 3, 1 )
 
-[node name="Box3x5" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+[node name="Box3x2" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_left = 152.0
 margin_top = 204.0
 margin_right = 224.0
 margin_bottom = 268.0
 script = ExtResource( 11 )
-box_size = Vector2( 3, 5 )
+box_size = Vector2( 3, 2 )
 
-[node name="Pickup" type="Control" parent="Palette/VBoxContainer/LevelChunks"]
+[node name="Box3x3" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
 margin_left = 228.0
 margin_top = 204.0
 margin_right = 300.0
 margin_bottom = 268.0
+script = ExtResource( 11 )
+
+[node name="Box3x4" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_top = 272.0
+margin_right = 72.0
+margin_bottom = 336.0
+script = ExtResource( 11 )
+box_size = Vector2( 3, 4 )
+
+[node name="Box3x5" parent="Palette/VBoxContainer/LevelChunks" instance=ExtResource( 5 )]
+margin_left = 76.0
+margin_top = 272.0
+margin_right = 148.0
+margin_bottom = 336.0
+script = ExtResource( 11 )
+box_size = Vector2( 3, 5 )
+
+[node name="Pickup" type="Control" parent="Palette/VBoxContainer/LevelChunks"]
+margin_left = 152.0
+margin_top = 272.0
+margin_right = 224.0
+margin_bottom = 336.0
 script = ExtResource( 1 )
 
 [node name="Pickup" parent="Palette/VBoxContainer/LevelChunks/Pickup" instance=ExtResource( 6 )]

@@ -67,6 +67,12 @@ func refresh_properties_editor() -> void:
 		_properties_editor.set_master_pickup_score(rank_rules.master_pickup_score)
 
 
+func reset_editors() -> void:
+	_playfield_editor.set_tiles_key("start")
+	refresh_playfield_editor()
+	refresh_properties_editor()
+
+
 """
 Refreshes our json text based on the tiles keys.
 

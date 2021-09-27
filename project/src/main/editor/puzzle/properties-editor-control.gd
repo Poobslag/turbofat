@@ -18,5 +18,5 @@ func set_master_pickup_score(new_master_pickup_score: int) -> void:
 	_line_edit.text = str(new_master_pickup_score)
 
 
-func _on_PickupsLineEdit_text_entered(new_text: String) -> void:
+func _on_PickupsLineEdit_text_entered(_new_text: String) -> void:
 	emit_signal("properties_changed")

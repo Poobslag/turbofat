@@ -17,7 +17,7 @@ signal pickups_changed
 # tiles keys which can be selected. 'start' is always the first item in this array
 var tiles_keys := ["start"] setget set_tiles_keys
 # the currently selected tiles key
-var tiles_key := "start"
+var tiles_key := "start" setget set_tiles_key
 
 onready var _playfield_nav := $PlayfieldNav
 
@@ -32,6 +32,14 @@ func set_tiles_keys(new_tiles_keys: Array) -> void:
 		return
 	
 	tiles_keys = new_normalized_tile_keys
+	emit_signal("tiles_keys_changed", tiles_keys, tiles_key)
+
+
+func set_tiles_key(new_tiles_key: String) -> void:
+	if tiles_key == new_tiles_key:
+		return
+	
+	tiles_key = new_tiles_key
 	emit_signal("tiles_keys_changed", tiles_keys, tiles_key)
 
 
@@ -115,8 +123,7 @@ func _on_PlayfieldNav_next_tiles_key_pressed() -> void:
 		push_error("Can't navigate to next tiles key (%s > %s)" % [new_tiles_key_index, tiles_keys.size() - 1])
 		return
 	
-	tiles_key = tiles_keys[new_tiles_key_index]
-	emit_signal("tiles_keys_changed", tiles_keys, tiles_key)
+	set_tiles_key(tiles_keys[new_tiles_key_index])
 
 
 """
@@ -130,5 +137,4 @@ func _on_PlayfieldNav_prev_tiles_key_pressed() -> void:
 		push_error("Can't navigate to previous tiles key (%s < 0)" % [new_tiles_key_index])
 		return
 	
-	tiles_key = tiles_keys[new_tiles_key_index]
-	emit_signal("tiles_keys_changed", tiles_keys, tiles_key)
+	set_tiles_key(tiles_keys[new_tiles_key_index])
