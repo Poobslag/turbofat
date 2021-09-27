@@ -34,7 +34,7 @@ Parameters:
 	'count': The number of creatures to add.
 """
 func _add_creatures(count: int) -> void:
-	for _i in range(0, count):
+	for _i in range(count):
 		var creature: Creature = CreatureScene.instance()
 		
 		var creature_index := $Creatures.get_child_count()
@@ -58,7 +58,7 @@ Parameters:
 	'count': The number of creatures to add.
 """
 func _remove_creatures(count: int) -> void:
-	for _i in range(0, count):
+	for _i in range(count):
 		if $Creatures.get_child_count() == 0:
 			break
 		

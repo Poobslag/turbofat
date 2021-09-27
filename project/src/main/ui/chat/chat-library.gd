@@ -194,7 +194,7 @@ Examines the creature's chat and resource files, and returns any chat ids with n
 """
 func filler_ids_for_creature(creature_id: String) -> Array:
 	var filler_ids := []
-	for i in range(0, 1000):
+	for i in range(1000):
 		var filler_id := "filler_%03d" % i
 		var chat_path := "res://assets/main/creatures/primary/%s/%s%s" % \
 				[creature_id, StringUtils.underscores_to_hyphens(filler_id), CHAT_EXTENSION]
@@ -226,7 +226,7 @@ func add_lull_characters(s: String) -> String:
 	
 	# strip pauses from ellipses which conclude a line, unless the entire sentence is an ellipsis
 	if transformer.search("[^/!.?,\\- ]"):
-		for _i in range(0, 10):
+		for _i in range(10):
 			var old_transformed := transformer.transformed
 			transformer.sub("/([/!.?,\\-]*)$", "$1")
 			if old_transformed == transformer.transformed:

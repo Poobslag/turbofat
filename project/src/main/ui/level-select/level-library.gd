@@ -129,7 +129,7 @@ Many levels are hidden from the player at the beginning of the game. They become
 func shown_level_ids(world_id: String) -> Array:
 	var shown_level_ids := []
 	for level_id in world_lock(world_id).level_ids:
-		var level_lock: LevelLock =  _level_locks[level_id]
+		var level_lock: LevelLock = _level_locks[level_id]
 		if level_lock.status != LevelLock.STATUS_HARD_LOCK:
 			shown_level_ids.append(level_id)
 	return shown_level_ids

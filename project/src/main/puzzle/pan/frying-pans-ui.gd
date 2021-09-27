@@ -96,7 +96,7 @@ func _calculate_pan_cells() -> Array:
 	
 	# calculate the positions of pans within each row
 	var cell_pos := Vector2(0, 0)
-	for _i in range(0, min(pans_max, 50)):
+	for _i in range(min(pans_max, 50)):
 		pan_cells.push_back(cell_pos)
 		cell_pos.x += 2
 		if cell_pos.x >= 2 * pans_per_row:
@@ -116,7 +116,7 @@ Parameters:
 	'pan_cells': An array of Vector2 coordinates in the tilemap which should contain frying pans.
 """
 func _add_pans_to_tilemap(pan_cells: Array) -> void:
-	for i in range(0, pan_cells.size()):
+	for i in range(pan_cells.size()):
 		var pan_cell: Vector2 = pan_cells[i]
 		var tile: int
 		if i >= pans_remaining:

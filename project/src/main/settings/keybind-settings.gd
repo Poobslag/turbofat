@@ -144,7 +144,7 @@ func _unbind_conflicting_actions(action_name: String, json: Dictionary) -> void:
 	for other_action_name in _conflicting_action_names(action_name):
 		if not custom_keybinds.has(other_action_name):
 			continue
-		for other_index in range(0, custom_keybinds[other_action_name].size()):
+		for other_index in range(custom_keybinds[other_action_name].size()):
 			var other_json: Dictionary = custom_keybinds[other_action_name][other_index]
 			if _shallow_equal_dicts(json, other_json):
 				custom_keybinds[other_action_name][other_index] = {}

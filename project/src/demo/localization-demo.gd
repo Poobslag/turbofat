@@ -110,7 +110,7 @@ a way to localize scancode strings, we must extract and localize them ourselves.
 """
 func _extract_localizables_from_scancode_strings() -> void:
 	# ascii printable characters: space, comma, period, slash...
-	for i in range(0, 256):
+	for i in range(256):
 		var scancode_string := OS.get_scancode_string(i)
 		if scancode_string.length() > 1:
 			_scancode_localizables.append(scancode_string)

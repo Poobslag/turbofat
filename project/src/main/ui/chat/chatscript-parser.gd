@@ -305,7 +305,7 @@ class ChatState extends AbstractState:
 		
 		var meta_array_string := line.trim_prefix(" (").trim_suffix(")").strip_edges()
 		var meta := meta_array_string.split(",")
-		for i in range(0, meta.size()):
+		for i in range(meta.size()):
 			meta[i] = meta[i].strip_edges()
 			meta[i] = _translate_meta_item(meta[i])
 		_event.meta.append_array(meta)

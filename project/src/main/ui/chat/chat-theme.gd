@@ -8,10 +8,10 @@ This includes the position, color and texture of the main chat window and nameta
 enum NametagSize {
 	OFF, # 0 characters
 	SMALL, # 1-10 characters, approximately
-	MEDIUM,  # 11-20 characters, approximately
-	LARGE,  # 21-30 characters, approximately
-	XL,  # 31-60 characters, approximately
-	XXL  # 61-90 characters, approximately
+	MEDIUM, # 11-20 characters, approximately
+	LARGE, # 21-30 characters, approximately
+	XL, # 31-60 characters, approximately
+	XXL, # 61-90 characters, approximately
 }
 
 enum ChatLineSize {
