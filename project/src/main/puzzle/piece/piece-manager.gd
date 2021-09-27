@@ -39,6 +39,12 @@ signal lock_started
 
 signal tiles_changed(tile_map)
 
+# the z index the piece manager's tilemap defaults to
+const TILE_MAP_DEFAULT_Z_INDEX := 3
+
+# the z index the piece manager's tilemap switches to temporarily when topping out
+const TILE_MAP_TOP_OUT_Z_INDEX := 4
+
 export (NodePath) var playfield_path: NodePath
 export (NodePath) var piece_queue_path: NodePath
 
@@ -223,7 +229,13 @@ func _on_Level_settings_changed() -> void:
 	_prepare_tileset()
 
 
-func _on_States_entered_state(state: State) -> void:
+func _on_States_entered_state(prev_state: State, state: State) -> void:
+	# when topping out, the piece temporarily moves in front of other playfield elements
+	if state in [_states.top_out, _states.game_ended]:
+		tile_map.z_index = TILE_MAP_TOP_OUT_Z_INDEX
+	elif prev_state in [_states.top_out, _states.game_ended]:
+		tile_map.z_index = TILE_MAP_DEFAULT_Z_INDEX
+	
 	if state == _states.prelock:
 		emit_signal("lock_started")
 

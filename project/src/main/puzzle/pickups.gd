@@ -118,6 +118,8 @@ func _prepare_pickups_for_level() -> void:
 		remove_pickup(cell)
 	for cell in pickups_to_add:
 		set_pickup(cell, src_pickups[cell])
+	for cell in _pickups_by_cell:
+		_pickups_by_cell[cell].food_shown = false
 
 
 """
@@ -207,6 +209,10 @@ func _play_collect_sfx() -> void:
 	_pickup_sfx_index += 1
 	if _remaining_pickup_sfx > 0:
 		_pickup_sfx_timer.start()
+
+
+func _pickup_type() -> int:
+	return CurrentLevel.settings.blocks_during.pickup_type
 
 
 func _on_PuzzleState_game_prepared() -> void:
@@ -318,10 +324,6 @@ func _on_Playfield_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
 				continue
 			var box_type: int = block_bunch.pickups[src_pos]
 			set_pickup(Vector2(x, y), box_type)
-
-
-func _pickup_type() -> int:
-	return CurrentLevel.settings.blocks_during.pickup_type
 
 
 func _on_PickupSfxTimer_timeout() -> void:

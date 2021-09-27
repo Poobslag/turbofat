@@ -8,7 +8,7 @@ invoking their methods, and emitting signals.
 """
 
 # emitted once when a state is entered
-signal entered_state(state)
+signal entered_state(prev_state, state)
 
 # the currently active state
 var _state: State
@@ -38,11 +38,12 @@ Transitions to a new state.
 Resets the state's internal variables and notifies any listeners.
 """
 func set_state(new_state: State) -> void:
+	var prev_state := _state
 	var prev_state_name := "" if _state == null else _state.name
 	_state = new_state
 	_state.frames = 0
 	_state.enter(_host, prev_state_name)
-	emit_signal("entered_state", _state)
+	emit_signal("entered_state", prev_state, _state)
 
 
 func get_state() -> State:
