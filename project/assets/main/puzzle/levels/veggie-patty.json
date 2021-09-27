@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "4",
   "title": "Veggie Patty",
   "description": "Twice the pace and half the space? ...This is a recipe for disaster!",
@@ -10,8 +10,8 @@
   "lose_condition": [
     "top_out 1"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 11",
         "tile": "2 2 2"

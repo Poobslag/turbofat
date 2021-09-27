@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "2",
   "title": "Goodbye Shirts",
   "description": "Goodbye Shirts! ...I'll miss you the most of all!",
@@ -11,8 +11,8 @@
     "box_factor 0.8",
     "combo_factor 0.5"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 9",
         "tile": "2 15 3"

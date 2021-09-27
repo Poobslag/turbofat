@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "2",
   "title": "Unfresh Fruits",
   "description": "This fruit's going bad soon! Maybe someone will eat it...",
@@ -10,8 +10,8 @@
   "piece_types": [
     "start_piece_j"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "8 11",
         "tile": "0 2 1"

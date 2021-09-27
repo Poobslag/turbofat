@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "5",
   "title": "Too Fast to Fast",
   "description": "Can you survive the increasing speeds?",
@@ -25,8 +25,8 @@
       "speed": "9"
     }
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 14",
         "tile": "1 10 3"

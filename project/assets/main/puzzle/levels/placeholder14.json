@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "8",
   "title": "Muffin Impossible II",
   "description": "More awkward mismatched pieces!? When will the pain stop?",
@@ -17,8 +17,8 @@
     "piece_v",
     "piece_v"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "3 12",
         "tile": "1 10 4"

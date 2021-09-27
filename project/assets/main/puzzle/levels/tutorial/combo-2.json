@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "piece_types": [
     "start_piece_q",
     "piece_j",
@@ -7,8 +7,8 @@
     "piece_p",
     "piece_q"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 17",
         "tile": "0 2 0"

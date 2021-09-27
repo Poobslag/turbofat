@@ -1,7 +1,7 @@
 {
-  "version": "19c5",
-  "blocks_start": {
-    "tiles": [
+  "version": "297a",
+  "tiles": {
+    "start": [
       {
         "pos": "0 17",
         "tile": "1 10 3"
@@ -104,7 +104,8 @@
     "after_tutorial"
   ],
   "piece_types": [
-    "start_piece_q", "start_piece_l"
+    "start_piece_q",
+    "start_piece_l"
   ],
   "rank": [
     "skip_results",

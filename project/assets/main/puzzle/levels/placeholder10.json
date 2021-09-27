@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "A1",
   "title": "Wedding Cake for One",
   "description": "One VERY hungry customer and one VERY big cake! ...Are they going eat the entire thing?",
@@ -92,8 +92,8 @@
       "speed": "AF"
     }
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "2 11",
         "tile": "1 10 4"

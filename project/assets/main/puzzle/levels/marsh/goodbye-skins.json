@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "3",
   "title": "Goodbye Skins!",
   "description": "Well, I guess Skins gave up rotating entirely. ...Or did he?",
@@ -19,8 +19,8 @@
   "other": [
     "suppress_piece_rotation rotation_and_signals"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "6 11",
         "tile": "0 8 3"

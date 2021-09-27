@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "6",
   "title": "It's Tee Time",
   "description": "Augh, bread overload! And half the end pieces are missing...",
@@ -17,8 +17,8 @@
     "piece_t",
     "piece_u"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 14",
         "tile": "0 10 2"

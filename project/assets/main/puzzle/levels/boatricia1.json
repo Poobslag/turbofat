@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "0",
   "title": "Teensy Taste",
   "description": "Just a quick bite.",
@@ -10,8 +10,8 @@
   "piece_types": [
     "start_piece_u"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "1 14",
         "tile": "0 2 2"

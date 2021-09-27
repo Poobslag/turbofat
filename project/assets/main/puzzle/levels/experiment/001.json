@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "T",
   "title": "Zero Gravity",
   "description": "In space, nobody can hear you scream.",
@@ -16,8 +16,8 @@
     "clear_on_top_out",
     "line_clear_type float"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 16",
         "tile": "1 8 7"

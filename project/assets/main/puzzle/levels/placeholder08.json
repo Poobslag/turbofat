@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "3",
   "title": "Cleaning Duty",
   "description": "Who made this mess! ...Do we need to set up a chore board?",
@@ -14,8 +14,8 @@
   "lose_condition": [
     "top_out 1"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 10",
         "tile": "1 10 1"

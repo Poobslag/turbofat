@@ -1,9 +1,9 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "title": "Basic Techniques",
   "description": "Learn to clear lines, to make snack boxes and to squish pieces.",
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "8 11",
         "tile": "2 5 3"

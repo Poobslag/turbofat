@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "3",
   "title": "Cakes and Ladders",
   "description": "Who prepared all these delicious desserts? ...Isn't that supposed to be your job?",
@@ -24,8 +24,8 @@
       "speed": "6"
     }
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 9",
         "tile": "1 10 2"
