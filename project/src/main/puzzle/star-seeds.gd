@@ -50,6 +50,35 @@ const WOBBLER_POSITIONS_BY_SIZE := {
 		],
 }
 
+# Aesthetically pleasing wobbler arrangements for levels with double snacks, double cakes.
+const WOBBLER_POSITIONS_BY_SIZE_DOUBLE := {
+	Vector2(3, 3): [
+			[12, 13, 23], [12, 23, 13],
+			[13, 12, 23], [13, 23, 12],
+			[23, 12, 13], [23, 13, 12],
+		],
+	Vector2(3, 4):
+		[
+			[12, 13, 23, 12], [12, 23, 13, 12],
+			[13, 12, 23, 13], [13, 23, 12, 13],
+			[23, 12, 13, 23], [23, 13, 12, 23],
+		],
+	Vector2(3, 5):
+		[
+			[12, 13, 23, 12, 13], [12, 23, 13, 12, 23],
+			[13, 12, 23, 13, 12], [13, 23, 12, 13, 23],
+			[23, 12, 13, 23, 12], [23, 13, 12, 23, 13],
+		],
+	Vector2(4, 3):
+		[
+			[1234, 1234, 1234],
+		],
+	Vector2(5, 3):
+		[
+			[12345, 12345, 12345],
+		],
+}
+
 export (NodePath) var _puzzle_tile_map_path: NodePath
 
 # key: Vector2 playfield cell positions
@@ -99,26 +128,97 @@ Parameters:
 	'box_type': An enum from Foods.BoxType defining the box's color
 """
 func _add_wobblers_for_box(rect: Rect2, box_type: int) -> void:
+	_remove_wobblers_for_box(rect)
+	var wobbler_positions := _wobbler_positions(rect, box_type)
+	_spawn_wobblers(rect, box_type, wobbler_positions)
+
+
+"""
+Clears wobblers to make room for a new snack box or cake box.
+
+Parameters:
+	'rect': Cell coordinates defining the box's position and dimensions
+"""
+func _remove_wobblers_for_box(rect: Rect2) -> void:
 	for x in range(rect.position.x, rect.end.x):
 		for y in range(rect.position.y, rect.end.y):
 			_remove_wobbler(Vector2(x, y))
+
+
+"""
+Calculates relative positions for wobblers within a snack box or cake box.
+
+Returns an array of ints representing concatenated columns within the box. For example if wobblers should be in the
+first and third column of the box the array will contain the number '13', the concatenation of the values 1 and 3.
+
+Parameters:
+	'rect': Cell coordinates defining the box's position and dimensions
 	
+	'box_type': An enum from Foods.BoxType defining the box's color
+
+Returns:
+	An array of ints representing concatenated columns within the box.
+"""
+func _wobbler_positions(rect: Rect2, box_type: int) -> Array:
+	var wobbler_multiplier := _wobbler_multiplier(box_type)
 	var wobbler_positions: Array
-	if WOBBLER_POSITIONS_BY_SIZE.has(rect.size):
-		# load one of the random aesthetically pleasing wobbler arrangements
+	if wobbler_multiplier == 0:
+		# no wobblers
+		wobbler_positions = []
+		for _i in range(rect.size.y):
+			wobbler_positions.append(0)
+	elif wobbler_multiplier == 1 and WOBBLER_POSITIONS_BY_SIZE.has(rect.size):
+		# regular wobblers; load a random aesthetically pleasing wobbler arrangement
 		wobbler_positions = Utils.rand_value(WOBBLER_POSITIONS_BY_SIZE[rect.size])
+	elif wobbler_multiplier == 2 and WOBBLER_POSITIONS_BY_SIZE_DOUBLE.has(rect.size):
+		# double wobblers; load a random aesthetically pleasing wobbler arrangement
+		wobbler_positions = Utils.rand_value(WOBBLER_POSITIONS_BY_SIZE_DOUBLE[rect.size])
 	else:
 		# create a random arrangement
 		wobbler_positions = []
+		var wobbler_count := min(wobbler_multiplier * max(1, rect.size.x - 2), rect.size.x)
 		for _y in range(rect.size.y):
 			# calculate a random set of wobbler positions. the number of wobblers is two less than the width of the
 			# box -- but every box will always have at least one.
 			var new_positions := range(rect.size.x)
 			new_positions.shuffle()
-			new_positions = new_positions.slice(min(2, new_positions.size() - 1), new_positions.size())
-			
+			new_positions = new_positions.slice(new_positions.size() - wobbler_count, new_positions.size())
 			wobbler_positions.append(_wobbler_x_int(new_positions))
+	return wobbler_positions
+
+
+"""
+Calculates and returns a multiplier for boxes which should have unusual numbers of wobblers.
+
+For most boxes this multiplier will be 1, but it could be 0 for boxes with no wobblers, or 2 for boxes with extra
+wobblers.
+
+Parameters:
+	'box_type': An enum from Foods.BoxType defining the box's color
+
+Returns:
+	An int multiplier in the range [0, 2] representing how many wobblers the box should have
+"""
+func _wobbler_multiplier(box_type: int) -> int:
+	var multiplier: float
+	if Foods.is_cake_box(box_type):
+		multiplier = CurrentLevel.settings.score.cake_points / float(ScoreRules.DEFAULT_CAKE_POINTS)
+	else:
+		multiplier = CurrentLevel.settings.score.snack_points / float(ScoreRules.DEFAULT_SNACK_POINTS)
+	return int(clamp(multiplier, 0, 2))
+
+
+"""
+Spawns wobblers within a snack box or cake box.
+
+Parameters:
+	'rect': Cell coordinates defining the box's position and dimensions
 	
+	'box_type': An enum from Foods.BoxType defining the box's color
+	
+	'wobbler_positions': An array of ints representing concatenated columns within the box.
+"""
+func _spawn_wobblers(rect: Rect2, box_type: int, wobbler_positions: Array) -> void:
 	for wobbler_y in range(rect.size.y):
 		for wobbler_x in _wobbler_x_array(wobbler_positions[wobbler_y]):
 			var wobbler: Wobbler

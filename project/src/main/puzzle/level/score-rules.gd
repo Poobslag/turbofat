@@ -3,11 +3,14 @@ class_name ScoreRules
 Rules for scoring points.
 """
 
+const DEFAULT_CAKE_POINTS := 10
+const DEFAULT_SNACK_POINTS := 5
+
 # box points for clearing a row of a cake box.
-var cake_points := 10
+var cake_points := DEFAULT_CAKE_POINTS
 
 # box points for clearing a row of a snack box.
-var snack_points := 5
+var snack_points := DEFAULT_SNACK_POINTS
 
 # box points for collecting a cake pickup.
 var cake_pickup_points := 20
