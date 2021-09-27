@@ -20,7 +20,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	
 	# create placeholder timers. different levels might start some, all or none of these timers
-	for i in range(0, MAX_TIMER_COUNT):
+	for i in range(MAX_TIMER_COUNT):
 		var timer := Timer.new()
 		timer.connect("timeout", self, "_on_Timer_timeout", [i])
 		add_child(timer)
@@ -30,7 +30,7 @@ func _ready() -> void:
 Starts any timers needed for the current level.
 """
 func _on_PuzzleState_game_started() -> void:
-	for timer_index in range(0, CurrentLevel.settings.timers.get_timer_count()):
+	for timer_index in range(CurrentLevel.settings.timers.get_timer_count()):
 		var timer: Timer = get_child(timer_index)
 		timer.start(CurrentLevel.settings.timers.get_timer_interval(timer_index))
 
@@ -39,7 +39,7 @@ func _on_PuzzleState_game_started() -> void:
 Stops any timers needed for the current level.
 """
 func _on_PuzzleState_game_ended() -> void:
-	for i in range(0, MAX_TIMER_COUNT):
+	for i in range(MAX_TIMER_COUNT):
 		var timer: Timer = get_child(i)
 		timer.stop()
 

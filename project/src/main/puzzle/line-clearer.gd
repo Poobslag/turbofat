@@ -207,7 +207,7 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 	
 	old_lines_being_deleted.sort()
 	var max_line: int = old_lines_being_deleted.back() if old_lines_being_deleted else -1
-	for y in range(0, max_line):
+	for y in range(max_line):
 		if not _tile_map.playfield_row_is_empty(y) and not old_lines_being_deleted.has(y):
 			play_sound = true
 			break
@@ -353,15 +353,15 @@ When lines are inserted, we adjust the lines being cleared/erased/deleted.
 Without these adjustments, strange behavior happens when lines are inserted and deleted simultaneously.
 """
 func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
-	for i in range(0, lines_being_cleared.size()):
+	for i in range(lines_being_cleared.size()):
 		if lines_being_cleared[i] <= y:
 			lines_being_cleared[i] -= 1
-	for i in range(0, lines_being_erased.size()):
+	for i in range(lines_being_erased.size()):
 		if lines_being_erased[i] <= y:
 			lines_being_erased[i] -= 1
-	for i in range(0, lines_being_deleted.size()):
+	for i in range(lines_being_deleted.size()):
 		if lines_being_deleted[i] <= y:
 			lines_being_deleted[i] -= 1
-	for i in range(0, lines_being_deleted_during_trigger.size()):
+	for i in range(lines_being_deleted_during_trigger.size()):
 		if lines_being_deleted_during_trigger[i] <= y:
 			lines_being_deleted_during_trigger[i] -= 1

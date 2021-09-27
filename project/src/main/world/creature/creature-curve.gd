@@ -33,7 +33,7 @@ export (NodePath) var creature_visuals_path: NodePath setget set_creature_visual
 
 # If true, the curve is drawn on the creature's body.
 # This is independent of the 'visible' property. When the game is running, these curves will be invisible but still
-# must be drawn. When developers are editing the curve data, these curves must  visible for Godot's Path2D tools.
+# must be drawn. When developers are editing the curve data, these curves must be visible for Godot's Path2D tools.
 var drawn := true setget set_drawn
 
 var creature_visuals: CreatureVisuals

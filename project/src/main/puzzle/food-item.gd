@@ -59,7 +59,7 @@ onready var _spin_period := 2.50 * rand_range(0.8, 1.2)
 
 func _ready() -> void:
 	# randomly increment the total time so items don't spin/pulse in sync
-	_total_time += rand_range(0, _spin_period)
+	_total_time += rand_range(_spin_period)
 	
 	if not Engine.is_editor_hint():
 		# preserve default position/rotation/scale in the editor

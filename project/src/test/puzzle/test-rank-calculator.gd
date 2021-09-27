@@ -55,7 +55,7 @@ func test_calculate_rank_marathon_300_master() -> void:
 	PuzzleState.level_performance.box_score = 4400
 	PuzzleState.level_performance.combo_score = 5300
 	PuzzleState.level_performance.score = 10400
-	var rank :=  _rank_calculator.calculate_rank()
+	var rank := _rank_calculator.calculate_rank()
 	assert_eq(rank.speed_rank, 0.0)
 	assert_eq(rank.lines_rank, 0.0)
 	assert_eq(rank.box_score_per_line_rank, 0.0)
@@ -377,33 +377,33 @@ func test_extra_seconds_per_piece() -> void:
 func test_box_factor_zero() -> void:
 	PuzzleState.level_performance.lines = 100
 	PuzzleState.level_performance.box_score = 440
-	var rank1 :=  _rank_calculator.calculate_rank()
+	var rank1 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank1.box_score_per_line_rank), "A+")
 	
 	CurrentLevel.settings.rank.box_factor = 0.0
-	var rank2 :=  _rank_calculator.calculate_rank()
+	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.box_score_per_line_rank), "M")
 
 
 func test_combo_factor_zero() -> void:
 	PuzzleState.level_performance.lines = 100
 	PuzzleState.level_performance.combo_score = 550
-	var rank1 :=  _rank_calculator.calculate_rank()
+	var rank1 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank1.combo_score_per_line_rank), "A+")
 	
 	CurrentLevel.settings.rank.combo_factor = 0.0
-	var rank2 :=  _rank_calculator.calculate_rank()
+	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.combo_score_per_line_rank), "M")
 
 
 func test_master_pickup_score() -> void:
 	PuzzleState.level_performance.pickup_score = 100
 	CurrentLevel.settings.rank.master_pickup_score = 100
-	var rank1 :=  _rank_calculator.calculate_rank()
+	var rank1 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank1.pickup_score_rank), "M")
 
 	CurrentLevel.settings.rank.master_pickup_score = 200
-	var rank2 :=  _rank_calculator.calculate_rank()
+	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.pickup_score_rank), "AA")
 
 
@@ -411,9 +411,9 @@ func test_master_pickup_score_per_line() -> void:
 	PuzzleState.level_performance.lines = 100
 	PuzzleState.level_performance.pickup_score = 1000
 	CurrentLevel.settings.rank.master_pickup_score_per_line = 10
-	var rank1 :=  _rank_calculator.calculate_rank()
+	var rank1 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank1.pickup_score_rank), "M")
 
 	CurrentLevel.settings.rank.master_pickup_score_per_line = 20
-	var rank2 :=  _rank_calculator.calculate_rank()
+	var rank2 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank2.pickup_score_rank), "S-")

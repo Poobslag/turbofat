@@ -82,7 +82,7 @@ func _freshest_start() -> float:
 	var staleness: int = 0
 	# warning-ignore:integer_division
 	var r: int = _staleness_record.size() / 2
-	for l in range(0, _staleness_record.size()):
+	for l in range(_staleness_record.size()):
 		# advance the 'freshness window'
 		r = (r + 1) % _staleness_record.size()
 		

@@ -87,7 +87,7 @@ func update_milebar_color() -> void:
 		level_color = LEVEL_COLOR_5
 	elif PieceSpeeds.current_speed.gravity >= 20 * PieceSpeeds.G:
 		level_color = LEVEL_COLOR_4
-	elif PieceSpeeds.current_speed.gravity >=  1 * PieceSpeeds.G:
+	elif PieceSpeeds.current_speed.gravity >= 1 * PieceSpeeds.G:
 		level_color = LEVEL_COLOR_3
 	elif PieceSpeeds.current_speed.gravity >= 128:
 		level_color = LEVEL_COLOR_2

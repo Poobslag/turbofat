@@ -15,7 +15,7 @@ func assert_token(token: BoolExpressionParser.BoolToken, string: String, positio
 func assert_expression(expression: BoolExpressionParser.BoolExpression, token: String, args: Array) -> void:
 	assert_token(expression.token, token)
 	assert_eq(expression.args.size(), args.size())
-	for i in range(0, args.size()):
+	for i in range(args.size()):
 		assert_eq(expression.args[i].string, args[i])
 
 

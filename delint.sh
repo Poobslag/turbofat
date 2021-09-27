@@ -165,6 +165,15 @@ then
   fi
 fi
 
+# redundant 'range(0, x)' call
+RESULT=$(grep -R -n "range(0," --include="*.gd" project/src)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Redundant 'range(0, x)':"
+  echo "$RESULT"
+fi
+
 # sort signal connections. Workaround for Godot #35084
 # https://github.com/godotengine/godot/issues/35084
 if [ "$CLEAN" ]

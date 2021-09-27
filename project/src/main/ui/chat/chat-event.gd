@@ -89,7 +89,7 @@ func add_link(link: String, link_text: String, link_mood: int) -> void:
 
 func enabled_link_indexes() -> Array:
 	var enabled_link_indexes := []
-	for i in range(0, links.size()):
+	for i in range(links.size()):
 		var link_condition: String
 		for meta_item in link_metas[i]:
 			if meta_item.begins_with("link_if "):

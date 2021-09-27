@@ -11,7 +11,7 @@ export (float) var shadow_scale: float = 1.0 setget set_shadow_scale
 
 # The key identifying the chat resource for this object. If set, the object will have a thought bubble and the player
 # will be able to inspect it.
-export (String) var chat_key: String  setget set_chat_key
+export (String) var chat_key: String setget set_chat_key
 
 func _init() -> void:
 	add_to_group("shadow_casters")

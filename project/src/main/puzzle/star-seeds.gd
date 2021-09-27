@@ -113,7 +113,7 @@ func _add_wobblers_for_box(rect: Rect2, box_type: int) -> void:
 		for _y in range(rect.size.y):
 			# calculate a random set of wobbler positions. the number of wobblers is two less than the width of the
 			# box -- but every box will always have at least one.
-			var new_positions := range(0, rect.size.x)
+			var new_positions := range(rect.size.x)
 			new_positions.shuffle()
 			new_positions = new_positions.slice(min(2, new_positions.size() - 1), new_positions.size())
 			

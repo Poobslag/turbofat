@@ -141,7 +141,7 @@ func fade() -> void:
 """
 Applies gravity and checks for collisions.
 """
-func _process(delta: float)  -> void:
+func _process(delta: float) -> void:
 	if not falling:
 		return
 	
