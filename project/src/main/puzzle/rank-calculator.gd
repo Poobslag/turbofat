@@ -362,6 +362,9 @@ func _apply_top_out_penalty(rank_result: RankResult) -> void:
 """
 Clamps the player's ranks within [0, 999] to avoid edge cases.
 
+Most importantly, this patches up cases where we've previously divided by zero or calculated the natural log of zero.
+Serializing an infinite/undefined float into JSON corrupts the player's save file.
+
 The player cannot achieve a master rank if the lenient flag is set.
 """
 func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
@@ -374,6 +377,7 @@ func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
 	rank_result.combo_score_per_line_rank = clamp(rank_result.combo_score_per_line_rank, min_rank, max_rank)
 	rank_result.score_rank = clamp(rank_result.score_rank, min_rank, max_rank)
 	rank_result.seconds_rank = clamp(rank_result.seconds_rank, min_rank, max_rank)
+	rank_result.pickup_score_rank = clamp(rank_result.pickup_score_rank, min_rank, max_rank)
 
 
 """
