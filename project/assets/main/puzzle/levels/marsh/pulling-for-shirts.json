@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "5",
   "title": "Pulling for Shirts",
   "description": "C'mon Shirts, you can do this! We believe in you!",
@@ -19,8 +19,8 @@
     "piece_v",
     "piece_v"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "7 13",
         "tile": "0 2 1"

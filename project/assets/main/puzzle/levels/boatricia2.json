@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "0",
   "title": "Real Meal",
   "description": "If you're going to indulge, you may as well make it worth it!",
@@ -10,8 +10,8 @@
   "piece_types": [
     "start_piece_j"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 13",
         "tile": "0 10 1"

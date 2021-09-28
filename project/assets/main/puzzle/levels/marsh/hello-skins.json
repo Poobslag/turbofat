@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "1",
   "title": "Hello Skins!",
   "description": "Skins, you really shouldn't rotate the upcoming pieces! It hurts my head a little.",
@@ -48,8 +48,8 @@
       "speed": "5"
     }
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "2 16",
         "tile": "2 5 2"

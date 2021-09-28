@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "5",
   "title": "Finish Your Veggies",
   "description": "Yuck! Vegetables! I'm not cleaning that up.",
@@ -11,8 +11,8 @@
     "start_piece_q",
     "start_piece_p"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 11",
         "tile": "2 11 3"

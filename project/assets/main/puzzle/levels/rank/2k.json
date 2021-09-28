@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "success_condition": {
     "type": "time_under",
     "value": "180"

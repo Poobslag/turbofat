@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "FA",
   "speed_ups": [
     {
@@ -30,7 +30,7 @@
   ],
   "success_condition": {
     "type": "lines",
-    "value": "500",
+    "value": "500"
   },
   "finish_condition": {
     "type": "lines",

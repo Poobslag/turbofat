@@ -1,9 +1,9 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "title": "Build Combos",
   "description": "Learn how combos work, and learn to make snack boxes and cake boxes during your combos.",
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 12",
         "tile": "2 1 3"

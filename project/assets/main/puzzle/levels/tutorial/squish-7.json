@@ -1,12 +1,12 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "0",
   "finish_condition": {
     "type": "score",
     "value": "150"
   },
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "1 11",
         "tile": "0 10 3"

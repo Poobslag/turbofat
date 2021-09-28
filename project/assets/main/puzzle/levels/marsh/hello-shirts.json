@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "2",
   "title": "Hello Shirts!",
   "description": "Let's get to know Shirts a little better.",
@@ -14,8 +14,8 @@
     "piece_o",
     "piece_v"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 17",
         "tile": "1 10 4"

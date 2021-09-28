@@ -1,7 +1,7 @@
 {
-  "version": "19c5",
-  "blocks_start": {
-    "tiles": [
+  "version": "297a",
+  "tiles": {
+    "start": [
       {
         "pos": "0 10",
         "tile": "2 9 2"

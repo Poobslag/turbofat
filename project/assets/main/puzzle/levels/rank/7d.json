@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "success_condition": {
     "type": "score",
     "value": "4000"
@@ -31,7 +31,6 @@
       "value": "100",
       "speed": "A5"
     },
-
     {
       "type": "lines",
       "value": "140",
@@ -47,7 +46,6 @@
       "value": "180",
       "speed": "AF"
     },
-
     {
       "type": "lines",
       "value": "220",

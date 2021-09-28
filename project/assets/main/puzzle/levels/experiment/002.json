@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "1",
   "title": "A Little Garbage",
   "description": "Nothing to worry about.",
@@ -9,12 +9,14 @@
   },
   "timers": [
     {
-      "interval": 5.0
+      "interval": 5
     }
   ],
   "triggers": [
     {
-      "phases": ["timer_0"],
+      "phases": [
+        "timer_0"
+      ],
       "effect": "insert_line"
     }
   ]

@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "start_speed": "3",
   "title": "Pulling for Skins",
   "description": "Skins doesn't rotate as many of the upcoming pieces. ...This is progress?",
@@ -44,8 +44,8 @@
     "suppress_piece_rotation",
     "suppress_piece_initial_rotation"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "7 18",
         "tile": "0 10 3"

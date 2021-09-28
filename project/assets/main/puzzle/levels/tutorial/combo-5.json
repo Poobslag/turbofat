@@ -1,12 +1,12 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "piece_types": [
     "piece_j",
     "piece_l",
     "piece_o"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 12",
         "tile": "1 10 4"

@@ -1,5 +1,5 @@
 {
-  "version": "19c5",
+  "version": "297a",
   "title": "Squish and Recover",
   "description": "Learn how squish moves work and when to use them.",
   "start_speed": "T",
@@ -8,8 +8,8 @@
     "piece_q",
     "piece_v"
   ],
-  "blocks_start": {
-    "tiles": [
+  "tiles": {
+    "start": [
       {
         "pos": "0 9",
         "tile": "2 0 1"
