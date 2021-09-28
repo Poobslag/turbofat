@@ -11,13 +11,13 @@ var _pressed_actions: Dictionary
 # set of frames when different actions are pressed/released
 # key: action key containing the frame number and action, '46 +ui_right'
 # value: true
-var _action_timings: Dictionary
+var action_timings: Dictionary
 
 """
 Returns true if there is no replay data.
 """
 func empty() -> bool:
-	return _action_timings.empty()
+	return action_timings.empty()
 
 
 """
@@ -25,7 +25,7 @@ Clears the replay data, removing all action timings.
 """
 func clear() -> void:
 	_pressed_actions.clear()
-	_action_timings.clear()
+	action_timings.clear()
 
 
 """
@@ -35,7 +35,7 @@ This only true for the exact frame when the press is first triggered.
 """
 func is_action_pressed(action: String) -> bool:
 	var action_frame_key := "%s +%s" % [PuzzleState.input_frame, action]
-	var pressed := _action_timings.has(action_frame_key)
+	var pressed := action_timings.has(action_frame_key)
 	if pressed:
 		_pressed_actions[action] = true
 	return pressed
@@ -48,7 +48,7 @@ This only true for the exact frame when the release is first triggered.
 """
 func is_action_released(action: String) -> bool:
 	var action_frame_key := "%s -%s" % [PuzzleState.input_frame, action]
-	var released := _action_timings.has(action_frame_key)
+	var released := action_timings.has(action_frame_key)
 	if released:
 		_pressed_actions[action] = false
 	return released
@@ -67,4 +67,17 @@ func is_action_held(action: String) -> bool:
 
 func from_json_array(json: Array) -> void:
 	for json_obj in json:
-		_action_timings[json_obj] = true
+		action_timings[json_obj] = true
+
+
+func to_json_array() -> Array:
+	return action_timings.keys()
+
+
+"""
+Returns 'true' if the input replay is empty. Empty replays are omitted from our json output.
+
+Note: This method is called 'is_default' for consistency with other similar methods related to LevelSettings.
+"""
+func is_default() -> bool:
+	return action_timings.empty()

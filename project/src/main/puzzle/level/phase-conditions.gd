@@ -52,6 +52,39 @@ class AfterLinesClearedPhaseCondition extends PhaseCondition:
 	"""
 	func should_run(event_params: Dictionary) -> bool:
 		return which_lines.has(event_params["y"])
+	
+	
+	"""
+	Extracts a set of phase configuration strings from this phase condition.
+	
+	Reverse-engineers a 'y' expression like {"y": "0,4-6"} based on the `which_lines` property.
+	
+	Returns:
+		A set of phase configuration strings defining criteria for this phase condition.
+	"""
+	func get_phase_config() -> Dictionary:
+		var y_expression: String = ""
+		
+		var range_start := -1
+		for y in range(PuzzleTileMap.ROW_COUNT + 1):
+			var include_prev := which_lines.has(PuzzleTileMap.ROW_COUNT - y)
+			var include_curr := which_lines.has(PuzzleTileMap.ROW_COUNT - y - 1)
+			if include_curr and not include_prev:
+				# start a new range
+				range_start = y
+			if not include_curr and include_prev:
+				# end the range and append it to the y_expression
+				var range_end := y - 1
+				if y_expression:
+					y_expression += ","
+				if range_start == range_end:
+					# isolated lines are output as "1,3,5"
+					y_expression += str(range_start)
+				else:
+					# adjacent lines are hyphenated as "1-3,5-9"
+					y_expression += "%s-%s" % [range_start, range_end]
+		
+		return {"y": y_expression}
 
 var phase_conditions_by_string := {
 	"after_line_cleared": AfterLinesClearedPhaseCondition,

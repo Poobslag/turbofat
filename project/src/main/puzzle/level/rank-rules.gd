@@ -3,6 +3,37 @@ class_name RankRules
 Tweaks to rank calculation.
 """
 
+"""
+Parses a json string like 'hide_combos_rank' into an enum like 'ShowRank.HIDE'
+"""
+class ShowRankPropertyParser extends RuleParser.PropertyParser:
+	var _hide_string: String
+	
+	func _init(init_target: Object, init_name: String).(init_target, init_name) -> void:
+		default = []
+		_hide_string = "hide%s" % [init_name.trim_prefix("show")]
+		keys.append(_hide_string)
+	
+	
+	func to_json_strings() -> Array:
+		var result := []
+		match target.get(name):
+			ShowRank.SHOW: result.append(name)
+			ShowRank.HIDE: result.append(_hide_string)
+		return result
+	
+	
+	func from_json_string(json: String) -> void:
+		match json:
+			name: target.set(name, ShowRank.SHOW)
+			_hide_string: target.set(name, ShowRank.HIDE)
+			_: push_warning("Unrecognized: %s" % [json])
+	
+	
+	func is_default() -> bool:
+		return target.get(name) == ShowRank.DEFAULT
+
+
 enum ShowRank {
 	DEFAULT, # rank should be automatically shown/hidden based on the finish condition
 	SHOW, # rank should be shown
@@ -53,49 +84,36 @@ var top_out_penalty := 4
 # If 'true' the player is not given a rank for this level.
 var unranked := false
 
+var _rule_parser: RuleParser
+
+func _init() -> void:
+	_rule_parser = RuleParser.new(self)
+	_rule_parser.add_float("box_factor").default(1.0)
+	_rule_parser.add_float("combo_factor").default(1.0)
+	_rule_parser.add_int("customer_combo")
+	_rule_parser.add_float("extra_seconds_per_piece")
+	_rule_parser.add_int("leftover_lines")
+	_rule_parser.add_float("master_pickup_score")
+	_rule_parser.add_float("master_pickup_score_per_line")
+	_rule_parser.add(ShowRankPropertyParser.new(self, "show_boxes_rank"))
+	_rule_parser.add(ShowRankPropertyParser.new(self, "show_combos_rank"))
+	_rule_parser.add(ShowRankPropertyParser.new(self, "show_lines_rank"))
+	_rule_parser.add(ShowRankPropertyParser.new(self, "show_pickups_rank"))
+	_rule_parser.add(ShowRankPropertyParser.new(self, "show_pieces_rank"))
+	_rule_parser.add(ShowRankPropertyParser.new(self, "show_speed_rank"))
+	_rule_parser.add_bool("skip_results")
+	_rule_parser.add_float("success_bonus")
+	_rule_parser.add_int("top_out_penalty").default(4)
+	_rule_parser.add_bool("unranked")
+
+
 func from_json_array(json: Array) -> void:
-	var rules := RuleParser.new(json)
-	if rules.has("box_factor"): box_factor = rules.float_value()
-	if rules.has("combo_factor"): combo_factor = rules.float_value()
-	if rules.has("customer_combo"): customer_combo = rules.int_value()
-	if rules.has("extra_seconds_per_piece"): extra_seconds_per_piece = rules.float_value()
-	if rules.has("leftover_lines"): leftover_lines = rules.int_value()
-	if rules.has("master_pickup_score"): master_pickup_score = rules.float_value()
-	if rules.has("master_pickup_score_per_line"): master_pickup_score_per_line = rules.float_value()
-	
-	_assign_show_rank(rules, "boxes")
-	_assign_show_rank(rules, "combos")
-	_assign_show_rank(rules, "lines")
-	_assign_show_rank(rules, "pickups")
-	_assign_show_rank(rules, "pieces")
-	_assign_show_rank(rules, "speed")
-	
-	if rules.has("skip_results"): skip_results = true
-	if rules.has("success_bonus"): success_bonus = rules.float_value()
-	if rules.has("top_out_penalty"): top_out_penalty = rules.int_value()
-	if rules.has("unranked"): unranked = true
+	_rule_parser.from_json_array(json)
 
 
-"""
-Populates one of our 'show_rank' fields based on the specified rule.
+func to_json_array() -> Array:
+	return _rule_parser.to_json_array()
 
-A value of 'hide_foo_rank' sets the show_foo_rank field to ShowRank.HIDE. A value of 'show_foo_rank' sets the
-show_foo_rank field to ShowRank.SHOW.
 
-Parameters:
-	'rules': The rule parser containing 'hide_foo_rank' and 'show_foo_rank' rules.
-	
-	'rank_string': A string such as 'boxes' or 'pieces' indicating which rule should be parsed and assigned.
-"""
-func _assign_show_rank(rules: RuleParser, rank_string: String) -> void:
-	var hide_string := "hide_%s_rank" % [rank_string]
-	var show_string := "show_%s_rank" % [rank_string]
-	if rules.has(hide_string) != rules.has(show_string):
-		# one of hide_rank and show_rank is present; assign it
-		set("show_%s_rank" % [rank_string], ShowRank.SHOW if rules.has(show_string) else ShowRank.HIDE)
-	elif rules.has(hide_string) and rules.has(show_string):
-		# both hide_rank and show_rank are present; report an error
-		push_warning("'%s' conflicts with '%s'" % [hide_string, show_string])
-	else:
-		# neither hide_rank nor show_rank are present; ignore it
-		pass
+func is_default() -> bool:
+	return _rule_parser.is_default()

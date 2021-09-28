@@ -61,6 +61,23 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 				Rotation.CW: next_piece.orientation = next_piece.get_cw_orientation()
 				Rotation.CCW: next_piece.orientation = next_piece.get_ccw_orientation()
 				Rotation.FLIP: next_piece.orientation = next_piece.get_flip_orientation()
+	
+	
+	func get_config() -> Dictionary:
+		var result := {}
+		match rotate_dir:
+			Rotation.NONE: result["0"] = "none"
+			Rotation.CW: result["0"] = "cw"
+			Rotation.CCW: result["0"] = "ccw"
+			Rotation.FLIP: result["0"] = "180"
+		if next_piece_from_index != 0:
+			result["1"] = str(next_piece_from_index)
+		if next_piece_to_index != 999999:
+			# we also populate result["1"] if it wasn't already populated
+			result["1"] = str(next_piece_from_index)
+			result["2"] = str(next_piece_to_index)
+		
+		return result
 
 
 """
@@ -88,6 +105,13 @@ class InsertLineEffect extends LevelTriggerEffect:
 	"""
 	func run() -> void:
 		CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_key)
+	
+	
+	func get_config() -> Dictionary:
+		var result := {}
+		if tiles_key:
+			result["tiles_key"] = tiles_key
+		return result
 
 
 var effects_by_string := {
@@ -111,3 +135,7 @@ func create(effect_key: String, effect_config: Dictionary = {}) -> LevelTriggerE
 	if effect_config:
 		effect.set_config(effect_config)
 	return effect
+
+
+func effect_key(effect: LevelTriggerEffect) -> String:
+	return effects_by_string.keys()[effects_by_string.values().find(effect.get_script())]

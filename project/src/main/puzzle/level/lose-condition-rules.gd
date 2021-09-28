@@ -10,7 +10,21 @@ var finish_on_lose := false
 # by default, the player loses if they top out three times
 var top_out := 3
 
+var _rule_parser: RuleParser
+
+func _init() -> void:
+	_rule_parser = RuleParser.new(self)
+	_rule_parser.add_bool("finish_on_lose")
+	_rule_parser.add_int("top_out").default(3)
+
+
 func from_json_array(json: Array) -> void:
-	var rules := RuleParser.new(json)
-	if rules.has("finish_on_lose"): finish_on_lose = true
-	if rules.has("top_out"): top_out = rules.int_value()
+	_rule_parser.from_json_array(json)
+
+
+func to_json_array() -> Array:
+	return _rule_parser.to_json_array()
+
+
+func is_default() -> bool:
+	return _rule_parser.is_default()

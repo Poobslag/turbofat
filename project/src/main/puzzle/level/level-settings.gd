@@ -161,6 +161,36 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 		triggers.from_json_array(json["triggers"])
 
 
+func to_json_dict() -> Dictionary:
+	var result := {}
+	if title: result["title"] = title
+	if description: result["description"] = description
+	if difficulty: result["difficulty"] = difficulty
+	if speed_ups:
+		var json_speed_ups := []
+		for speed_up_obj in speed_ups:
+			var speed_up: Milestone = speed_up_obj
+			if not result.has("start_speed") and speed_up.type == Milestone.LINES and speed_up.value == 0:
+				result["start_speed"] = speed_up.get_meta("speed")
+			else:
+				json_speed_ups.append(speed_up.to_json_dict())
+		if json_speed_ups: result["speed_ups"] = json_speed_ups
+	if not blocks_during.is_default(): result["blocks_during"] = blocks_during.to_json_array()
+	if not combo_break.is_default(): result["combo_break"] = combo_break.to_json_array()
+	if not finish_condition.is_default(): result["finish_condition"] = finish_condition.to_json_dict()
+	if not input_replay.is_default(): result["input_replay"] = input_replay.to_json_array()
+	if not lose_condition.is_default(): result["lose_condition"] = lose_condition.to_json_array()
+	if not other.is_default(): result["other"] = other.to_json_array()
+	if not piece_types.is_default(): result["piece_types"] = piece_types.to_json_array()
+	if not rank.is_default(): result["rank"] = rank.to_json_array()
+	if not score.is_default(): result["score"] = score.to_json_array()
+	if not success_condition.is_default(): result["success_condition"] = success_condition.to_json_dict()
+	if not tiles.is_default(): result["tiles"] = tiles.to_json_dict()
+	if not timers.is_default(): result["timers"] = timers.to_json_array()
+	if not triggers.is_default(): result["triggers"] = triggers.to_json_array()
+	return result
+
+
 func load_from_resource(new_id: String) -> void:
 	load_from_text(new_id, FileUtils.get_file_as_text(path_from_level_key(new_id)))
 
