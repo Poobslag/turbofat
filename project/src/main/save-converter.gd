@@ -65,7 +65,7 @@ func is_old_save_items(json_save_items: Array) -> bool:
 
 
 """
-Transforms the specified json save items to the latest format.
+Transforms the specified json save items to the newest format.
 """
 func transform_old_save_items(json_save_items: Array) -> Array:
 	var old_version := get_version_string(json_save_items)

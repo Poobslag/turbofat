@@ -375,6 +375,11 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/level/level-settings.gd"
 }, {
 "base": "Reference",
+"class": "LevelSettingsUpgrader",
+"language": "GDScript",
+"path": "res://src/main/puzzle/level/level-settings-upgrader.gd"
+}, {
+"base": "Reference",
 "class": "LevelTiles",
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/level-tiles.gd"
@@ -973,6 +978,7 @@ _global_script_class_icons={
 "LevelLock": "",
 "LevelSelectButton": "",
 "LevelSettings": "",
+"LevelSettingsUpgrader": "",
 "LevelTiles": "",
 "LevelTimers": "",
 "LevelTrigger": "",

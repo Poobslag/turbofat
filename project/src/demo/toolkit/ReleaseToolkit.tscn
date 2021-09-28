@@ -1,0 +1,73 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/demo/toolkit/upgrade-levels-button.gd" type="Script" id=1]
+[ext_resource path="res://src/demo/toolkit/extract-localizables-button.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=4]
+
+[node name="ReleaseToolkit" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -384.0
+margin_top = -225.0
+margin_right = 384.0
+margin_bottom = 225.0
+rect_min_size = Vector2( 768, 450 )
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExtractLocalizables" type="Button" parent="VBoxContainer"]
+margin_left = 199.0
+margin_top = 116.0
+margin_right = 569.0
+margin_bottom = 167.0
+size_flags_horizontal = 4
+theme = ExtResource( 3 )
+text = "Extract Localizables"
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+output_label_path = NodePath("../Output")
+
+[node name="UpgradeLevels" type="Button" parent="VBoxContainer"]
+margin_left = 241.0
+margin_top = 171.0
+margin_right = 526.0
+margin_bottom = 222.0
+size_flags_horizontal = 4
+theme = ExtResource( 3 )
+text = "Upgrade Levels"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+output_label_path = NodePath("../Output")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+margin_top = 226.0
+margin_right = 768.0
+margin_bottom = 230.0
+
+[node name="Output" type="Label" parent="VBoxContainer"]
+margin_top = 234.0
+margin_right = 768.0
+margin_bottom = 334.0
+rect_min_size = Vector2( 0, 100 )
+theme = ExtResource( 4 )
+align = 1
+autowrap = true
+
+[connection signal="pressed" from="VBoxContainer/ExtractLocalizables" to="VBoxContainer/ExtractLocalizables" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/UpgradeLevels" to="VBoxContainer/UpgradeLevels" method="_on_pressed"]
