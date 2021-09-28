@@ -26,7 +26,7 @@ func _upgrade_levels() -> void:
 	
 	var level_paths := _find_level_paths()
 	for level_path in level_paths:
-		_convert_settings(level_path)
+		_upgrade_settings(level_path)
 	
 	if _converted:
 		_output_label.text = "Upgraded %d levels to settings version %s." % [_converted.size(), Levels.LEVEL_DATA_VERSION]
@@ -38,9 +38,9 @@ func _upgrade_levels() -> void:
 Upgrades a level to the newest version.
 
 Parameters:
-	'path': Path to a json resource containing level data to convert.
+	'path': Path to a json resource containing level data to upgrade.
 """
-func _convert_settings(path: String) -> void:
+func _upgrade_settings(path: String) -> void:
 	var old_text := FileUtils.get_file_as_text(path)
 	var old_json: Dictionary = parse_json(old_text)
 	if _upgrader.needs_upgrade(old_json):
@@ -51,10 +51,10 @@ func _convert_settings(path: String) -> void:
 
 
 """
-Recursively searches for levels to convert.
+Recursively searches for levels to upgrade.
 
 Returns:
-	List of string paths to json resources containing level data to convert.
+	List of string paths to json resources containing level data to upgrade.
 """
 func _find_level_paths() -> Array:
 	var result := []

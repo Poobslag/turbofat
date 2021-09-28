@@ -26,7 +26,7 @@ var data_filename := "user://saveslot0.json" setget set_data_filename
 var legacy_filename := "user://turbofat0.save" setget set_legacy_filename
 
 # Provides backwards compatibility with older save formats
-var old_save_converter := OldPlayerSave.new().new_save_converter()
+var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
 
 func _ready() -> void:
 	rolling_backups.data_filename = data_filename
@@ -178,13 +178,13 @@ func _save_items_from_file(filename: String) -> Array:
 		return []
 	
 	var json_save_items: Array = parse_json(save_json_text)
-	while old_save_converter.is_old_save_items(json_save_items):
+	while _upgrader.needs_upgrade(json_save_items):
 		# convert the old save file to a new format
-		var old_version := SaveConverter.get_version_string(json_save_items)
-		json_save_items = old_save_converter.transform_old_save_items(json_save_items)
-		if SaveConverter.get_version_string(json_save_items) == old_version:
+		var old_version := SaveItemUpgrader.get_version_string(json_save_items)
+		json_save_items = _upgrader.upgrade(json_save_items)
+		if SaveItemUpgrader.get_version_string(json_save_items) == old_version:
 			# failed to convert, but the data might still load
-			push_warning("Couldn't convert old save data version '%s'" % old_version)
+			push_warning("Couldn't upgrade old save data version '%s'" % old_version)
 			break
 	
 	return json_save_items

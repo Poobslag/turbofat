@@ -49,20 +49,19 @@ func upgrade(json_settings: Dictionary) -> Dictionary:
 	return new_json
 
 
-
 """
 Returns 'true' if the specified json settings are from an older version of the game.
 """
 func needs_upgrade(json_settings: Dictionary) -> bool:
-	var is_old: bool = false
+	var result: bool = false
 	var version := get_version_string(json_settings)
 	if version == Levels.LEVEL_DATA_VERSION:
-		is_old = false
+		result = false
 	elif _upgrade_methods.has(version):
-		is_old = true
+		result = true
 	else:
 		push_warning("Unrecognized settings version: '%s'" % version)
-	return is_old
+	return result
 
 
 """

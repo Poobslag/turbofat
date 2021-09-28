@@ -1,4 +1,4 @@
-class_name OldPlayerSave
+class_name PlayerSaveUpgrader
 """
 Provides backwards compatibility with older player save formats.
 
@@ -23,26 +23,26 @@ const PREFIX_REPLACEMENTS_2743 := {
 
 
 """
-Creates and configures a SaveConverter capable of converting older player save formats.
+Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 """
-func new_save_converter() -> SaveConverter:
-	var _save_converter := SaveConverter.new()
-	_save_converter.add_method(self, "_convert_2783", "2783", "27bb")
-	_save_converter.add_method(self, "_convert_2743", "2743", "2783")
-	_save_converter.add_method(self, "_convert_2743", "252a", "2783")
-	_save_converter.add_method(self, "_convert_24cc", "24cc", "252a")
-	_save_converter.add_method(self, "_convert_245b", "245b", "24cc")
-	_save_converter.add_method(self, "_convert_1b3c", "1b3c", "245b")
-	_save_converter.add_method(self, "_convert_19c5", "19c5", "1b3c")
-	_save_converter.add_method(self, "_convert_199c", "199c", "19c5")
-	_save_converter.add_method(self, "_convert_1922", "1922", "199c")
-	_save_converter.add_method(self, "_convert_1682", "1682", "1922")
-	_save_converter.add_method(self, "_convert_163e", "163e", "1682")
-	_save_converter.add_method(self, "_convert_15d2", "15d2", "163e")
-	return _save_converter
+func new_save_item_upgrader() -> SaveItemUpgrader:
+	var upgrader := SaveItemUpgrader.new()
+	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")
+	upgrader.add_upgrade_method(self, "_upgrade_2743", "2743", "2783")
+	upgrader.add_upgrade_method(self, "_upgrade_2743", "252a", "2783")
+	upgrader.add_upgrade_method(self, "_upgrade_24cc", "24cc", "252a")
+	upgrader.add_upgrade_method(self, "_upgrade_245b", "245b", "24cc")
+	upgrader.add_upgrade_method(self, "_upgrade_1b3c", "1b3c", "245b")
+	upgrader.add_upgrade_method(self, "_upgrade_19c5", "19c5", "1b3c")
+	upgrader.add_upgrade_method(self, "_upgrade_199c", "199c", "19c5")
+	upgrader.add_upgrade_method(self, "_upgrade_1922", "1922", "199c")
+	upgrader.add_upgrade_method(self, "_upgrade_1682", "1682", "1922")
+	upgrader.add_upgrade_method(self, "_upgrade_163e", "163e", "1682")
+	upgrader.add_upgrade_method(self, "_upgrade_15d2", "15d2", "163e")
+	return upgrader
 
 
-func _convert_2783(save_item: SaveItem) -> SaveItem:
+func _upgrade_2783(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"player_info":
 			var money: int = save_item.value.get("money", 0)
@@ -58,7 +58,7 @@ func _convert_2783(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _convert_2743(save_item: SaveItem) -> SaveItem:
+func _upgrade_2743(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"chat_history":
 			_replace_chat_history_prefixes_for_2743(save_item.value)
@@ -101,7 +101,7 @@ func _replace_fatness_keys_for_2743(dict: Dictionary) -> void:
 			dict.erase(key)
 
 
-func _convert_24cc(save_item: SaveItem) -> SaveItem:
+func _upgrade_24cc(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"chat_history":
 			_replace_dialog_with_chat(save_item.value.get("history_items", {}))
@@ -118,7 +118,7 @@ func _replace_dialog_with_chat(dict: Dictionary) -> void:
 			dict.erase(key)
 
 
-func _convert_245b(save_item: SaveItem) -> SaveItem:
+func _upgrade_245b(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"level_history":
 			if save_item.key in [
@@ -131,42 +131,42 @@ func _convert_245b(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _convert_1b3c(save_item: SaveItem) -> SaveItem:
+func _upgrade_1b3c(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"level_history":
-			save_item.key = _convert_1b3c_level_id(save_item.key)
+			save_item.key = _upgrade_1b3c_level_id(save_item.key)
 		"successful_levels", "finished_levels":
 			var new_levels := {}
 			var levels: Dictionary = save_item.value
 			for level_id in levels:
-				var new_level_id := _convert_1b3c_level_id(level_id)
+				var new_level_id := _upgrade_1b3c_level_id(level_id)
 				new_levels[new_level_id] = levels[level_id]
 			save_item.value = new_levels
 	return save_item
 
 
-func _convert_1b3c_level_id(value: String) -> String:
+func _upgrade_1b3c_level_id(value: String) -> String:
 	var new_value := value
 	if value.begins_with("practice/survival_"):
 		new_value = "practice/marathon_%s" % [value.trim_prefix("practice/survival_")]
 	return new_value
 
 
-func _convert_19c5(save_item: SaveItem) -> SaveItem:
+func _upgrade_19c5(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"level_history":
-			save_item.key = _convert_199c_level_id(save_item.key)
+			save_item.key = _upgrade_199c_level_id(save_item.key)
 		"successful_levels", "finished_levels":
 			var new_levels := {}
 			var levels: Dictionary = save_item.value
 			for level_id in levels:
-				var new_level_id := _convert_199c_level_id(level_id)
+				var new_level_id := _upgrade_199c_level_id(level_id)
 				new_levels[new_level_id] = levels[level_id]
 			save_item.value = new_levels
 	return save_item
 
 
-func _convert_199c(save_item: SaveItem) -> SaveItem:
+func _upgrade_199c(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"scenario_history":
 			save_item.type = "level_history"
@@ -177,7 +177,7 @@ func _convert_199c(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _convert_199c_level_id(value: String) -> String:
+func _upgrade_199c_level_id(value: String) -> String:
 	var new_value := value
 	if value.begins_with("tutorial_"):
 		new_value = "tutorial/%s" % [value.trim_prefix("tutorial_")]
@@ -193,7 +193,7 @@ func _convert_199c_level_id(value: String) -> String:
 	return new_value
 
 
-func _convert_1922(save_item: SaveItem) -> SaveItem:
+func _upgrade_1922(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"chat_history":
 			_replace_dialog_with_creatures_primary(save_item.value)
@@ -212,7 +212,7 @@ func _replace_dialog_with_creatures_primary(dict: Dictionary) -> void:
 					sub_dict.erase(key)
 
 
-func _convert_1682(save_item: SaveItem) -> SaveItem:
+func _upgrade_1682(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"chat-history":
 			save_item.type = StringUtils.hyphens_to_underscores(save_item.type)
@@ -235,7 +235,7 @@ func _replace_key_hyphens_with_underscores(dict: Dictionary) -> void:
 			dict.erase(key)
 
 
-func _convert_163e(save_item: SaveItem) -> SaveItem:
+func _upgrade_163e(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"scenario-history":
 			for rank_result_obj in save_item.value:
@@ -245,7 +245,7 @@ func _convert_163e(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-func _convert_15d2(save_item: SaveItem) -> SaveItem:
+func _upgrade_15d2(save_item: SaveItem) -> SaveItem:
 	match save_item.type:
 		"scenario-history":
 			match save_item.key:
