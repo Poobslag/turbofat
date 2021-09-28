@@ -6,10 +6,6 @@ This includes information about how the player loses/wins, what kind of pieces t
 time limit, and any other special rules.
 """
 
-# Current version for saved level data. Should be updated if and only if the level format changes.
-# This version number follows a 'ymdh' hex date format which is documented in issue #234.
-const LEVEL_DATA_VERSION := "297a"
-
 # Sets of blocks which are shown initially, or appear during the game
 var tiles := LevelTiles.new()
 
@@ -67,6 +63,8 @@ var score := ScoreRules.new()
 # accomplishments such as surviving 10 minutes or getting 1,000 points.
 var success_condition := Milestone.new()
 
+var _upgrader := LevelSettingsUpgrader.new()
+
 func _init() -> void:
 	# avoid edge cases caused by absence of a piece speed
 	set_start_speed("0")
@@ -113,15 +111,9 @@ Parameters:
 """
 func from_json_dict(new_id: String, json: Dictionary) -> void:
 	id = new_id
-	match json.get("version"):
-		LEVEL_DATA_VERSION:
-			pass
-		"19c5":
-			json = _convert_19c5(json)
-		"1922":
-			json = _convert_1922(json)
-		_:
-			push_warning("Unrecognized save data version: '%s'" % json.get("version"))
+	
+	if _upgrader.needs_upgrade(json):
+		json = _upgrader.upgrade(json)
 	
 	title = json.get("title", "")
 	description = json.get("description", "")
@@ -176,45 +168,6 @@ func get_difficulty() -> String:
 	else:
 		result = _get_max_speed_id()
 	return result
-
-
-func _convert_19c5(json: Dictionary) -> Dictionary:
-	var new_json := {}
-	for old_key in json.keys():
-		var old_value = json[old_key]
-		var new_key: String = old_key
-		var new_value = old_value
-		match old_key:
-			"version":
-				new_value = "297a"
-			"blocks_start":
-				new_key = "tiles"
-				new_value = {"start": old_value.get("tiles", [])}
-		new_json[new_key] = new_value
-	return new_json
-
-
-func _convert_1922(json: Dictionary) -> Dictionary:
-	var new_json := {}
-	for old_key in json.keys():
-		var old_value = json[old_key]
-		var new_key: String = old_key
-		var new_value = old_value
-		match old_key:
-			"version":
-				new_value = "19c5"
-			"start_level":
-				new_key = "start_speed"
-			"level_ups":
-				new_key = "speed_ups"
-				new_value = []
-				for old_level_up in old_value:
-					var new_level_up: Dictionary = old_level_up.duplicate()
-					new_level_up["speed"] = new_level_up.get("level")
-					new_level_up.erase("level")
-					new_value.append(new_level_up)
-		new_json[new_key] = new_value
-	return new_json
 
 
 func _get_max_speed_id() -> String:

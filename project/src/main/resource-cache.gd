@@ -18,7 +18,11 @@ const THREAD_COUNT := 4
 # loading scenes is slower than loading regular resources; this constant estimates how much slower
 const WORK_PER_SCENE := 8.0
 
+# in non-threaded environments, this is how long we're willing to block a thread to cache resources
 const CHUNK_SECONDS := 0.1
+
+# directories containing resources which should be preloaded
+const RESOURCE_DIRS := ["res://assets/main", "res://src/main"]
 
 # enables logging paths and durations for loaded resources
 export (bool) var verbose := false
@@ -231,7 +235,7 @@ func _find_resource_paths() -> Array:
 	_remaining_resource_paths.clear()
 	
 	# directories remaining to be traversed
-	var dir_queue := ["res://assets/main", "res://src/main"]
+	var dir_queue := RESOURCE_DIRS.duplicate()
 	
 	var dir: Directory
 	var file: String

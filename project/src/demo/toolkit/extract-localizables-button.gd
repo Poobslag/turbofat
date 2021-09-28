@@ -1,4 +1,4 @@
-extends Control
+extends Button
 """
 Extracts localizable strings from levels and chats as a part of the localization process.
 
@@ -11,17 +11,23 @@ and exports any localizable strings into a format accessible by pybabel.
 const OUTPUT_PATH := "res://assets/main/locale/localizables-extracted.py"
 const SCANCODE_OUTPUT_PATH := "res://assets/main/locale/localizables-scancodes.py"
 
+export (NodePath) var output_label_path: NodePath
+
 # localizable strings extracted from levels and chats
 var _localizables := []
 
 # localizable strings extracted from scancodes (input keys)
 var _scancode_localizables := []
 
+# label for outputting messages to the user
+onready var _output_label := get_node(output_label_path)
+
 """
 Extracts localizable strings from levels and chats and writes them to a file.
 """
 func _extract_and_write_localizables() -> void:
-	_localizables = []
+	_localizables.clear()
+	_scancode_localizables.clear()
 	
 	# Temporarily set the locale to 'en' to ensure we extract english keys
 	var old_locale := TranslationServer.get_locale()
@@ -34,7 +40,7 @@ func _extract_and_write_localizables() -> void:
 	_write_localizables(SCANCODE_OUTPUT_PATH, _scancode_localizables)
 	
 	TranslationServer.set_locale(old_locale)
-	$VBoxContainer/Label.text = "Wrote %s strings to %s, %s." % [
+	_output_label.text = "Wrote %s strings to %s, %s." % [
 			StringUtils.comma_sep(_localizables.size() + _scancode_localizables.size()),
 			OUTPUT_PATH, SCANCODE_OUTPUT_PATH]
 
@@ -138,5 +144,5 @@ func _write_localizables(output_path: String, localizables: Array) -> void:
 	f.close()
 
 
-func _on_Button_pressed() -> void:
+func _on_pressed() -> void:
 	_extract_and_write_localizables()
