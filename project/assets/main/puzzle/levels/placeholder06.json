@@ -8,7 +8,7 @@
     "value": "120"
   },
   "piece_types": [
-    "piece_start_t",
+    "start_piece_t",
     "piece_j",
     "piece_l",
     "piece_o",

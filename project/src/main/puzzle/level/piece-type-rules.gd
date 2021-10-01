@@ -33,3 +33,5 @@ func from_json_string_array(json: Array) -> void:
 		elif json_string.begins_with("start_") \
 				and types_by_json_string.has(json_string.trim_prefix("start_")):
 			start_types.append(types_by_json_string[json_string.trim_prefix("start_")])
+		else:
+			push_warning("Unrecognized: %s" % [json_string])
