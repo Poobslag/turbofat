@@ -3,6 +3,12 @@ extends "res://addons/gut/test.gd"
 Unit test for utils functions.
 """
 
+enum MoldyFlap {
+	BIT_PUNY,
+	ROB_RECEIPT,
+	MEATY_FALSE,
+}
+
 func test_weighted_rand_value() -> void:
 	# item #575 should be picked 99.9% of the time
 	var weights_map := {}
@@ -36,3 +42,17 @@ func test_remove_all_not_found() -> void:
 
 func test_remove_all_empty() -> void:
 	assert_eq([], Utils.remove_all([], 2))
+
+
+func test_enum_to_snake_case() -> void:
+	assert_eq(Utils.enum_to_snake_case(MoldyFlap, MoldyFlap.ROB_RECEIPT, "meaty_false"), "rob_receipt")
+	assert_eq(Utils.enum_to_snake_case(MoldyFlap, MoldyFlap.ROB_RECEIPT), "rob_receipt")
+	assert_eq(Utils.enum_to_snake_case(MoldyFlap, 13, "meaty_false"), "meaty_false")
+	assert_eq(Utils.enum_to_snake_case(MoldyFlap, 13), "bit_puny")
+
+
+func test_enum_from_snake_case() -> void:
+	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "rob_receipt", MoldyFlap.MEATY_FALSE), MoldyFlap.ROB_RECEIPT)
+	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "rob_receipt"), MoldyFlap.ROB_RECEIPT)
+	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "bogus_610", MoldyFlap.MEATY_FALSE), MoldyFlap.MEATY_FALSE)
+	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "bogus_610"), MoldyFlap.BIT_PUNY)

@@ -238,3 +238,65 @@ Converts an Aseprite json region to a Rect2.
 """
 static func json_to_rect2(json: Dictionary) -> Rect2:
 	return Rect2(json.x, json.y, json.w, json.h)
+
+
+"""
+Converts an enum value like 'LevelTriggerPhase.ROTATED_CW' to a snake case string like 'rotated_cw'.
+
+Parameters:
+	'enum_dict': An enum type such as 'PuzzleTileMap.TileSetType'
+	
+	'from': The enum value to convert
+	
+	'default': Default value to assume if the specified enum value is invalid
+"""
+static func enum_to_snake_case(
+		enum_dict: Dictionary, from: int, default: String = "e3343934-8d10-46f8-b19d-da50eb47d0d8") -> String:
+	var result: String
+	if from >= 0 and from < enum_dict.size():
+		# 'from' is a valid enum, return the snake case key
+		result = enum_dict.keys()[from].to_lower()
+	elif default != "e3343934-8d10-46f8-b19d-da50eb47d0d8":
+		# 'from' is an invalid enum, return the specified default
+		result = default
+	elif not enum_dict.empty():
+		# 'from' is an invalid enum and no default was specified, use the first key
+		result = enum_dict.keys()[0].to_lower()
+	else:
+		# 'from' is an invalid enum and no defaults are available, return an empty string
+		result = ""
+	return result
+
+
+"""
+Converts a snake case string like 'rotated_cw' to an enum value like 'LevelTriggerPhase.ROTATED_CW'.
+
+Parameters:
+	'enum_dict': An enum type such as 'PuzzleTileMap.TileSetType'
+	
+	'from': The snake case string to convert
+	
+	'default': Default value to assume if the specified snake case string is invalid
+"""
+static func enum_from_snake_case(enum_dict: Dictionary, from: String, default: int = 0) -> int:
+	return enum_dict.get(from.to_upper(), default)
+
+
+"""
+Converts a string to a bool, treating values like 'False', and 'false' as false values.
+
+This is a workaround for Godot #27529 (https://github.com/godotengine/godot/issues/27529). When converting a bool to a
+String, the String is set to "True" and "False" for the appropriate boolean values. However, when converting a String
+to a bool, the bool is set to true if the string is non-empty, regardless of the contents.
+
+This code is adapted from Andrettin's suggested fix. Per his suggestion, the result is true if the String is "True",
+"TRUE", "true" or "1", and false if the String is "False", "FALSE", "false" or "0". If the string is set to anything
+else, then it is true if non-empty, and false otherwise.
+"""
+static func to_bool(s: String) -> bool:
+	var result: bool
+	match s:
+		"True", "TRUE", "true", "1": result = true
+		"False", "FALSE", "false", "0": result = false
+		_: result = false if s.empty() else true
+	return result
