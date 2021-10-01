@@ -78,15 +78,17 @@ func run() -> void:
 
 
 func from_json_dict(json: Dictionary) -> void:
+	# parse the phases from json
 	for phase_expression in json.get("phases", []):
 		var phase_expression_split: Array = phase_expression.split(" ")
 		var phase_key: String = phase_expression_split[0]
-		var phase_config: Dictionary = dict_config(phase_expression_split.slice(1, phase_expression_split.size()))
+		var phase_config: Dictionary = dict_config_from_array(phase_expression_split.slice(1, phase_expression_split.size()))
 		_add_phase(phase_key, phase_config)
 	
+	# parse the effect from json
 	var effect_split: Array = json.get("effect").split(" ")
 	var effect_key: String = effect_split[0]
-	var effect_config: Dictionary = dict_config(effect_split.slice(1, effect_split.size()))
+	var effect_config: Dictionary = dict_config_from_array(effect_split.slice(1, effect_split.size()))
 	effect = LevelTriggerEffects.create(effect_key, effect_config)
 
 
@@ -96,10 +98,10 @@ Enables this trigger for the specified phase.
 Parameters:
 	'phase_key': A string key corresponding to the phase, such as 'after_line_cleared'.
 	
-	'phase_config': An array of strings defining any special conditions for the phase.
+	'phase_config': A dictionary of strings defining any special conditions for the phase.
 """
 func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
-	if not PHASE_INTS_BY_STRING.has(phase_key):
+	if not LevelTriggerPhase.has(phase_key.to_upper()):
 		push_warning("Unrecognized phase: %s" % [phase_key])
 	var phase_condition: PhaseCondition = PhaseConditions.create(phase_key, phase_config)
 	var phase: int = PHASE_INTS_BY_STRING[phase_key]
@@ -119,9 +121,9 @@ Parameters:
 	'param_array': An array of configuration strings.
 
 Returns:
-	A dictionary of configuration strings organized into key/value pairs.
+	A dictionary of configuration strings organized as key/value pairs.
 """
-static func dict_config(param_array: Array) -> Dictionary:
+static func dict_config_from_array(param_array: Array) -> Dictionary:
 	var result := {}
 	var param_index := 0
 	for param in param_array:

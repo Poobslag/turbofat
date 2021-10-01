@@ -21,6 +21,19 @@ func _init(_phase_config: Dictionary) -> void:
 
 
 """
+Extracts a set of phase configuration strings from this phase condition.
+
+This performs the inverse of the configuration part of the _init() function, extracting values from the phase
+condition's properties and using them to populate a dictionary.
+
+Returns:
+	A set of phase configuration strings defining criteria for this phase condition.
+"""
+func get_phase_config() -> Dictionary:
+	return {}
+
+
+"""
 Can be overridden to return 'true' if a trigger should run during this phase.
 
 The default implementation always returns true, but subclasses can override this behavior.

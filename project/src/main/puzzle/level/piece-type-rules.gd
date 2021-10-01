@@ -4,7 +4,7 @@ Pieces the player is given.
 """
 
 # if 'true', the start pieces always appear in the same order instead of being shuffled.
-var ordered_start: bool = false
+var ordered_start := false
 
 # pieces to prepend to the piece queue before a game begins. these pieces are shuffled
 var start_types := []
@@ -12,7 +12,7 @@ var start_types := []
 # piece types to choose from. if empty, reverts to the default 8 types (jlopqtuv)
 var types := []
 
-func from_json_string_array(json: Array) -> void:
+func from_json_array(json: Array) -> void:
 	var types_by_json_string := {
 		"piece_j": PieceTypes.piece_j,
 		"piece_l": PieceTypes.piece_l,

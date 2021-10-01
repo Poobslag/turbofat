@@ -43,7 +43,7 @@ var pickup_type: int = PickupType.DEFAULT
 # whether inserted rows should start from a random row in the source tiles instead of starting from the top
 var random_tiles_start: bool = false
 
-func from_json_string_array(json: Array) -> void:
+func from_json_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
 	if rules.has("clear_on_top_out"): clear_on_top_out = true
 	if rules.has("line_clear_type"):
