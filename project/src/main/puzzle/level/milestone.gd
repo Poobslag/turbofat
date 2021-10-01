@@ -24,17 +24,6 @@ const SCORE := MilestoneType.SCORE
 const TIME_OVER := MilestoneType.TIME_OVER
 const TIME_UNDER := MilestoneType.TIME_UNDER
 
-# converts json strings into milestone types
-const JSON_MILESTONE_TYPES := {
-	"none": MilestoneType.NONE,
-	"customers": MilestoneType.CUSTOMERS,
-	"lines": MilestoneType.LINES,
-	"pieces": MilestoneType.PIECES,
-	"score": MilestoneType.SCORE,
-	"time_over": MilestoneType.TIME_OVER,
-	"time_under": MilestoneType.TIME_UNDER,
-}
-
 # an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
 var type: int = MilestoneType.NONE
 
@@ -55,7 +44,7 @@ func set_milestone(new_type: int, new_value: int) -> void:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	type = JSON_MILESTONE_TYPES.get(json.get("type"), MilestoneType.NONE)
+	type = Utils.enum_from_snake_case(MilestoneType, json.get("type"))
 	value = int(json.get("value", "0"))
 	for key in json.keys():
 		if not key in ["type", "value"]:

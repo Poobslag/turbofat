@@ -28,19 +28,6 @@ const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
 const ROTATED_180 := LevelTriggerPhase.ROTATED_180
 const TIMER_0 := LevelTriggerPhase.TIMER_0
 
-# key: json string corresponding to a phase
-# value: an enum from LevelTriggerPhase
-const PHASE_INTS_BY_STRING := {
-	"after_line_cleared": AFTER_LINE_CLEARED,
-	"initial_rotated_cw": INITIAL_ROTATED_CW,
-	"initial_rotated_ccw": INITIAL_ROTATED_CCW,
-	"initial_rotated_180": INITIAL_ROTATED_180,
-	"rotated_cw": ROTATED_CW,
-	"rotated_ccw": ROTATED_CCW,
-	"rotated_180": ROTATED_180,
-	"timer_0": TIMER_0,
-}
-
 # key: an enum from LevelTriggerPhase
 # value: array of PhaseCondition instances defining whether the trigger should fire
 var phases := {}
@@ -104,7 +91,7 @@ func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
 	if not LevelTriggerPhase.has(phase_key.to_upper()):
 		push_warning("Unrecognized phase: %s" % [phase_key])
 	var phase_condition: PhaseCondition = PhaseConditions.create(phase_key, phase_config)
-	var phase: int = PHASE_INTS_BY_STRING[phase_key]
+	var phase: int = Utils.enum_from_snake_case(LevelTriggerPhase, phase_key)
 	if not phases.has(phase):
 		phases[phase] = []
 	phases[phase].append(phase_condition)
