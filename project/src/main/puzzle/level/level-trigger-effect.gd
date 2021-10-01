@@ -16,7 +16,7 @@ func run() -> void:
 Populates this level trigger with the specified string parameters.
 
 Parameters:
-	'new_config': An dictionary of string parameters parsed from json. For example, a level trigger effect which
+	'new_config': A dictionary of string parameters parsed from json. For example, a level trigger effect which
 		rotates the piece could pass in parameters specifying the direction to rotate.
 """
 func set_config(_new_config: Dictionary = {}) -> void:

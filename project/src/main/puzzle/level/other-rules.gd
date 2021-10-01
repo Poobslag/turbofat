@@ -39,7 +39,7 @@ var tile_set: int = PuzzleTileMap.TileSetType.DEFAULT
 # 'true' for tutorial levels which are led by Turbo
 var tutorial := false
 
-func from_json_string_array(json: Array) -> void:
+func from_json_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
 	if rules.has("after_tutorial"): after_tutorial = true
 	if rules.has("enhance_combo_fx"): enhance_combo_fx = true

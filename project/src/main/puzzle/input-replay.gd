@@ -65,6 +65,6 @@ func is_action_held(action: String) -> bool:
 	return _pressed_actions.get(action, false)
 
 
-func from_json_string_array(json: Array) -> void:
+func from_json_array(json: Array) -> void:
 	for json_obj in json:
 		_action_timings[json_obj] = true

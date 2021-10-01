@@ -63,7 +63,7 @@ func refresh_properties_editor() -> void:
 	
 	if _json_tree.has("rank"):
 		var rank_rules := RankRules.new()
-		rank_rules.from_json_string_array(_json_tree["rank"])
+		rank_rules.from_json_array(_json_tree["rank"])
 		_properties_editor.set_master_pickup_score(rank_rules.master_pickup_score)
 
 
@@ -200,7 +200,7 @@ func _update_properties_master_pickup_score_with_calculated_value() -> void:
 	
 	if _json_tree.has("score"):
 		_score_rules = ScoreRules.new()
-		_score_rules.from_json_string_array(_json_tree["score"])
+		_score_rules.from_json_array(_json_tree["score"])
 	
 	# parse json data
 	var json_tiles_set: Array = _json_tree.get("tiles", {}).get("start", [])

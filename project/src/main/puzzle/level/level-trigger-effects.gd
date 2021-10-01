@@ -14,7 +14,7 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 	}
 	
 	# an enum in Rotation corresponding to the direction to rotate
-	var rotate_dir: int
+	var rotate_dir: int = Rotation.NONE
 	
 	# The first piece index in the queue to rotate, inclusive
 	var next_piece_from_index: int = 0

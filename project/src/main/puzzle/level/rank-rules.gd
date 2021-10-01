@@ -40,7 +40,7 @@ var show_pieces_rank: int = ShowRank.DEFAULT
 var show_speed_rank: int = ShowRank.DEFAULT
 
 # 'true' if the results screen should be skipped. Used for tutorials.
-var skip_results: bool
+var skip_results := false
 
 # Bonus rank given if the player achieves the level's success condition. Useful when designing levels where
 # achieving a target score of 1,000 is an A grade, but failing with a score of 999 is also an A grade. This property
@@ -51,9 +51,9 @@ var success_bonus := 0.0
 var top_out_penalty := 4
 
 # If 'true' the player is not given a rank for this level.
-var unranked: bool = false
+var unranked := false
 
-func from_json_string_array(json: Array) -> void:
+func from_json_array(json: Array) -> void:
 	var rules := RuleParser.new(json)
 	if rules.has("box_factor"): box_factor = rules.float_value()
 	if rules.has("combo_factor"): combo_factor = rules.float_value()

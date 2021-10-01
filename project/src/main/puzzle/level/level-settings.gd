@@ -6,8 +6,21 @@ This includes information about how the player loses/wins, what kind of pieces t
 time limit, and any other special rules.
 """
 
-# Sets of blocks which are shown initially, or appear during the game
-var tiles := LevelTiles.new()
+# The level id used for saving/loading data.
+var id := ""
+
+# The level title shown in menus.
+var title := ""
+
+# The level description shown when selecting a level.
+var description := ""
+
+# (optional) The level difficulty shown when selecting a level.
+var difficulty := "" setget ,get_difficulty
+
+# Array of Milestone objects representing the requirements to speed up. This mostly applies to 'Marathon Mode' where
+# clearing lines makes you speed up.
+var speed_ups := []
 
 # Blocks/boxes which appear or disappear while the game is going on.
 var blocks_during := BlocksDuringRules.new()
@@ -22,30 +35,9 @@ var finish_condition := Milestone.new()
 # Sequence of puzzle inputs to be replayed for things such as tutorials.
 var input_replay := InputReplay.new()
 
-var timers := LevelTimers.new()
-
-# Triggers which cause strange things to happen during a level.
-var triggers := LevelTriggers.new()
-
-# Array of Milestone objects representing the requirements to speed up. This mostly applies to 'Marathon Mode' where
-# clearing lines makes you speed up.
-var speed_ups := []
-
 # How the player loses. The player usually loses if they top out a certain number of times, but some levels might
 # have different rules.
 var lose_condition := LoseConditionRules.new()
-
-# The level id used for saving/loading data.
-var id := ""
-
-# The level title shown in menus.
-var title := ""
-
-# The level description shown when selecting a level.
-var description := ""
-
-# (optional) The level difficulty shown when selecting a level.
-var difficulty := "" setget ,get_difficulty
 
 # Rules which are unique enough that it doesn't make sense to put them in their own groups.
 var other := OtherRules.new()
@@ -63,6 +55,15 @@ var score := ScoreRules.new()
 # accomplishments such as surviving 10 minutes or getting 1,000 points.
 var success_condition := Milestone.new()
 
+# Sets of blocks which are shown initially, or appear during the game.
+var tiles := LevelTiles.new()
+
+# Timers which cause strange things to happen during a level.
+var timers := LevelTimers.new()
+
+# Triggers which cause strange things to happen during a level.
+var triggers := LevelTriggers.new()
+
 var _upgrader := LevelSettingsUpgrader.new()
 
 func _init() -> void:
@@ -72,6 +73,13 @@ func _init() -> void:
 
 """
 Adds criteria for speeding up, such as a time, score, or line limit.
+
+Parameters:
+	'type': an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
+	
+	'value': an value describing the milestone criteria (number of lines, points, seconds)
+	
+	'speed_id': a string from PieceSpeeds defining the new speed
 """
 func add_speed_up(type: int, value: int, speed_id: String) -> void:
 	var speed_up := Milestone.new()
@@ -119,32 +127,32 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 	description = json.get("description", "")
 	difficulty = json.get("difficulty", "")
 	set_start_speed(json.get("start_speed", "0"))
-
-	if json.has("blocks_during"):
-		blocks_during.from_json_string_array(json["blocks_during"])
-	if json.has("combo_break"):
-		combo_break.from_json_string_array(json["combo_break"])
-	if json.has("finish_condition"):
-		finish_condition.from_json_dict(json["finish_condition"])
 	if json.has("speed_ups"):
 		for json_speed_up in json["speed_ups"]:
 			var speed_up := Milestone.new()
 			speed_up.from_json_dict(json_speed_up)
 			speed_ups.append(speed_up)
+	
+	if json.has("blocks_during"):
+		blocks_during.from_json_array(json["blocks_during"])
+	if json.has("combo_break"):
+		combo_break.from_json_array(json["combo_break"])
+	if json.has("finish_condition"):
+		finish_condition.from_json_dict(json["finish_condition"])
+	if json.has("input_replay"):
+		input_replay.from_json_array(json["input_replay"])
 	if json.has("lose_condition"):
-		lose_condition.from_json_string_array(json["lose_condition"])
+		lose_condition.from_json_array(json["lose_condition"])
 	if json.has("other"):
-		other.from_json_string_array(json["other"])
+		other.from_json_array(json["other"])
 	if json.has("piece_types"):
-		piece_types.from_json_string_array(json["piece_types"])
+		piece_types.from_json_array(json["piece_types"])
 	if json.has("rank"):
-		rank.from_json_string_array(json["rank"])
+		rank.from_json_array(json["rank"])
 	if json.has("score"):
-		score.from_json_string_array(json["score"])
+		score.from_json_array(json["score"])
 	if json.has("success_condition"):
 		success_condition.from_json_dict(json["success_condition"])
-	if json.has("input_replay"):
-		input_replay.from_json_string_array(json["input_replay"])
 	if json.has("tiles"):
 		tiles.from_json_dict(json["tiles"])
 	if json.has("timers"):
