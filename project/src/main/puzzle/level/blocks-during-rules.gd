@@ -43,17 +43,23 @@ var pickup_type: int = PickupType.DEFAULT
 # whether inserted rows should start from a random row in the source tiles instead of starting from the top
 var random_tiles_start: bool = false
 
+var _rule_parser: RuleParser
+
+func _init() -> void:
+	_rule_parser = RuleParser.new(self)
+	_rule_parser.add_bool("clear_on_top_out")
+	_rule_parser.add_enum("line_clear_type", LineClearType)
+	_rule_parser.add_enum("pickup_type", PickupType)
+	_rule_parser.add_bool("random_tiles_start")
+
+
 func from_json_array(json: Array) -> void:
-	var rules := RuleParser.new(json)
-	if rules.has("clear_on_top_out"): clear_on_top_out = true
-	if rules.has("line_clear_type"):
-		if not LINE_CLEAR_TYPES_BY_NAME.has(rules.string_value()):
-			push_warning("Unrecognized line_clear_type: %s" % [rules.string_value()])
-		else:
-			line_clear_type = LINE_CLEAR_TYPES_BY_NAME[rules.string_value()]
-	if rules.has("pickup_type"):
-		if not PICKUP_TYPES_BY_NAME.has(rules.string_value()):
-			push_warning("Unrecognized pickup_type: %s" % [rules.string_value()])
-		else:
-			pickup_type = PICKUP_TYPES_BY_NAME[rules.string_value()]
-	if rules.has("random_tiles_start"): random_tiles_start = true
+	_rule_parser.from_json_array(json)
+
+
+func to_json_array() -> Array:
+	return _rule_parser.to_json_array()
+
+
+func is_default() -> bool:
+	return _rule_parser.is_default()

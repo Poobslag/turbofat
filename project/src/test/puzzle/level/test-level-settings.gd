@@ -70,3 +70,82 @@ func test_level_key_from_path_files() -> void:
 			"level_894")
 	assert_eq(LevelSettings.level_key_from_path("~/.local/share/godot/level_894.json"),
 			"level_894")
+
+
+func _convert_to_json_and_back() -> void:
+	var json_dict := settings.to_json_dict()
+	settings = LevelSettings.new()
+	settings.from_json_dict("id_873", json_dict)
+
+
+func test_to_json_basic_properties() -> void:
+	settings.title = "title 215"
+	settings.description = "description 356"
+	settings.difficulty = "FD"
+	_convert_to_json_and_back()
+	
+	assert_eq(settings.title, "title 215")
+	assert_eq(settings.description, "description 356")
+	assert_eq(settings.difficulty, "FD")
+
+
+func test_to_json_speed_ups() -> void:
+	settings.set_start_speed("FC")
+	settings.add_speed_up(Milestone.LINES, 10, "FD")
+	settings.add_speed_up(Milestone.LINES, 20, "FE")
+	settings.speed_ups[2].set_meta("meta_719", "value_719")
+	_convert_to_json_and_back()
+	
+	assert_eq(settings.speed_ups.size(), 3)
+	assert_eq(settings.speed_ups[0].type, Milestone.LINES)
+	assert_eq(settings.speed_ups[0].value, 0)
+	assert_eq(settings.speed_ups[0].get_meta("speed"), "FC")
+	assert_eq(settings.speed_ups[1].type, Milestone.LINES)
+	assert_eq(settings.speed_ups[1].value, 10)
+	assert_eq(settings.speed_ups[1].get_meta("speed"), "FD")
+	assert_eq(settings.speed_ups[2].type, Milestone.LINES)
+	assert_eq(settings.speed_ups[2].value, 20)
+	assert_eq(settings.speed_ups[2].get_meta("speed"), "FE")
+	assert_eq(settings.speed_ups[2].get_meta("meta_719"), "value_719")
+
+
+func test_to_json_milestones_and_tiles() -> void:
+	settings.finish_condition.set_milestone(Milestone.TIME_OVER, 180)
+	settings.success_condition.set_milestone(Milestone.LINES, 100)
+	settings.tiles.bunches["start"] = LevelTiles.BlockBunch.new()
+	settings.tiles.bunches["start"].set_block(Vector2(1, 2), 3, Vector2(4, 5))
+	_convert_to_json_and_back()
+	
+	assert_eq(settings.finish_condition.type, Milestone.TIME_OVER)
+	assert_eq(settings.finish_condition.value, 180)
+	assert_eq(settings.success_condition.type, Milestone.LINES)
+	assert_eq(settings.success_condition.value, 100)
+	assert_eq(settings.tiles.bunches.keys(), ["start"])
+	assert_eq(settings.tiles.bunches["start"].block_tiles[Vector2(1, 2)], 3)
+	assert_eq(settings.tiles.bunches["start"].block_autotile_coords[Vector2(1, 2)], Vector2(4, 5))
+
+
+func test_to_json_rules() -> void:
+	settings.blocks_during.clear_on_top_out = true
+	settings.combo_break.pieces = 3
+	settings.input_replay.action_timings = {"25 +rotate_cw": true, "33 -rotate_cw": true}
+	settings.lose_condition.finish_on_lose = true
+	settings.other.after_tutorial = true
+	settings.piece_types.start_types = [PieceTypes.piece_j, PieceTypes.piece_l]
+	settings.rank.box_factor = 2.0
+	settings.score.cake_points = 30
+	settings.timers.timers = [{"interval": 5}]
+	settings.triggers.from_json_array(
+			[{"phases": ["after_line_cleared y=0-5"], "effect": "insert_line tiles_key=0"}])
+	_convert_to_json_and_back()
+	
+	assert_eq(settings.blocks_during.clear_on_top_out, true)
+	assert_eq(settings.combo_break.pieces, 3)
+	assert_eq(settings.input_replay.action_timings.keys(), ["25 +rotate_cw", "33 -rotate_cw"])
+	assert_eq(settings.lose_condition.finish_on_lose, true)
+	assert_eq(settings.other.after_tutorial, true)
+	assert_eq(settings.piece_types.start_types, [PieceTypes.piece_j, PieceTypes.piece_l])
+	assert_eq(settings.rank.box_factor, 2.0)
+	assert_eq(settings.score.cake_points, 30)
+	assert_eq_deep(settings.timers.timers, [{"interval": 5}])
+	assert_eq(settings.triggers.triggers.keys(), [LevelTrigger.AFTER_LINE_CLEARED])

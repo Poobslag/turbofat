@@ -79,6 +79,37 @@ func from_json_dict(json: Dictionary) -> void:
 	effect = LevelTriggerEffects.create(effect_key, effect_config)
 
 
+func to_json_dict() -> Dictionary:
+	var result := {
+		"phases": []
+	}
+	
+	# serialize the phases as json
+	for phase in phases:
+		for phase_condition in phases[phase]:
+			var phase_key := Utils.enum_to_snake_case(LevelTriggerPhase, phase)
+			var phase_config_dict: Dictionary = phase_condition.get_phase_config()
+			var phase_string: String
+			if phase_config_dict:
+				var phase_config_array := dict_config_to_array(phase_config_dict)
+				var phase_config_string := PoolStringArray(phase_config_array).join(" ")
+				phase_string = "%s %s" % [phase_key, phase_config_string]
+			else:
+				phase_string = phase_key
+			result["phases"].append(phase_string)
+	
+	# serialize the effect as json
+	var dict_config := effect.get_config()
+	var effect_key := LevelTriggerEffects.effect_key(effect)
+	if dict_config:
+		var string_config := PoolStringArray(dict_config_to_array(dict_config)).join(" ")
+		result["effect"] = "%s %s" % [effect_key, string_config]
+	else:
+		result["effect"] = effect_key
+	
+	return result
+
+
 """
 Enables this trigger for the specified phase.
 
@@ -121,4 +152,32 @@ static func dict_config_from_array(param_array: Array) -> Dictionary:
 			# add an unkeyed entry like {"0": "foo"}
 			result[str(param_index)] = param
 			param_index += 1
+	return result
+
+
+"""
+Converts a set of key/value pairs into an array of configuration strings.
+
+Keyed entries like {"foo": "bar"} are added to the resulting array as ["foo=bar"]
+
+Unkeyed entries like {"0": "foo", "1": "bar"} are added to the array as ["foo", "bar"]
+
+Parameters:
+	'param_array': A dictionary of configuration strings organized as key/value pairs.
+
+Returns:
+	An array of configuration strings.
+"""
+static func dict_config_to_array(dict_config: Dictionary) -> Array:
+	var result := []
+	var remaining_config := dict_config.duplicate()
+	var next_numeric_key := "0"
+	for key in remaining_config:
+		if key == next_numeric_key:
+			# add an unkeyed entry like ["foo"]
+			result.append(remaining_config[key])
+			next_numeric_key = str(int(next_numeric_key) + 1)
+		else:
+			# add a keyed entry like ["foo=bar"]
+			result.append("%s=%s" % [key, remaining_config[key]])
 	return result

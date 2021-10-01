@@ -49,3 +49,26 @@ func from_json_dict(json: Dictionary) -> void:
 	for key in json.keys():
 		if not key in ["type", "value"]:
 			set_meta(key, json.get(key))
+
+
+func to_json_dict() -> Dictionary:
+	var result := {
+		"type": Utils.enum_to_snake_case(MilestoneType, type),
+		"value": value,
+	}
+	for meta_key in get_meta_list():
+		result[meta_key] = get_meta(meta_key)
+	return result
+
+
+"""
+Returns 'true' if all of the milestone's properties are currently set to their default values.
+
+Milestones whose properties are set to their default values are omitted from our json output.
+"""
+func is_default() -> bool:
+	var result := true
+	result = result && (type == MilestoneType.NONE)
+	result = result && (value == 0)
+	result = result && (get_meta_list().empty())
+	return result

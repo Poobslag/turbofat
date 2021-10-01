@@ -26,3 +26,11 @@ func get_timer_count() -> int:
 
 func from_json_array(timers_json: Array) -> void:
 	timers = timers_json
+
+
+func to_json_array() -> Array:
+	return timers
+
+
+func is_default() -> bool:
+	return timers.empty()
