@@ -17,7 +17,7 @@ class ShowRankPropertyParser extends RuleParser.PropertyParser:
 	
 	func to_json_strings() -> Array:
 		var result := []
-		match target.get(name):
+		match target().get(name):
 			ShowRank.SHOW: result.append(name)
 			ShowRank.HIDE: result.append(_hide_string)
 		return result
@@ -25,13 +25,13 @@ class ShowRankPropertyParser extends RuleParser.PropertyParser:
 	
 	func from_json_string(json: String) -> void:
 		match json:
-			name: target.set(name, ShowRank.SHOW)
-			_hide_string: target.set(name, ShowRank.HIDE)
+			name: target().set(name, ShowRank.SHOW)
+			_hide_string: target().set(name, ShowRank.HIDE)
 			_: push_warning("Unrecognized: %s" % [json])
 	
 	
 	func is_default() -> bool:
-		return target.get(name) == ShowRank.DEFAULT
+		return target().get(name) == ShowRank.DEFAULT
 
 
 enum ShowRank {

@@ -22,9 +22,9 @@ class PieceTypesPropertyParser extends RuleParser.PropertyParser:
 	
 	func to_json_strings() -> Array:
 		var result := []
-		for type in target.get(name):
+		for type in target().get(name):
 			result.append("piece_%s" % [type.string])
-		for type in target.get(start_name):
+		for type in target().get(start_name):
 			result.append("start_piece_%s" % [type.string])
 		return result
 	
@@ -32,16 +32,16 @@ class PieceTypesPropertyParser extends RuleParser.PropertyParser:
 	func from_json_string(json: String) -> void:
 		if json.begins_with("piece_") \
 				and PieceTypes.pieces_by_string.has(json.trim_prefix("piece_")):
-			target.get(name).append(PieceTypes.pieces_by_string[json.trim_prefix("piece_")])
+			target().get(name).append(PieceTypes.pieces_by_string[json.trim_prefix("piece_")])
 		elif json.begins_with("start_piece_") \
 				and PieceTypes.pieces_by_string.has(json.trim_prefix("start_piece_")):
-			target.get(start_name).append(PieceTypes.pieces_by_string[json.trim_prefix("start_piece_")])
+			target().get(start_name).append(PieceTypes.pieces_by_string[json.trim_prefix("start_piece_")])
 		else:
 			push_warning("Unrecognized: %s" % [json])
 	
 	
 	func is_default() -> bool:
-		return target.get(name).empty() and target.get(start_name).empty()
+		return target().get(name).empty() and target().get(start_name).empty()
 
 # if 'true', the start pieces always appear in the same order instead of being shuffled.
 var ordered_start: bool = false

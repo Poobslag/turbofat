@@ -14,7 +14,8 @@ corresponds to a single property, although some parsers can populate many proper
 """
 class PropertyParser:
 	# The rules class which contains one or more properties to parse.
-	var target: Object
+	# This must be a weak reference to avoid 'ObjectDB instances leaked at exit' warnings.
+	var _target: WeakRef
 	
 	# The name of the property and json key to parse. This is useful for the most common scenario where a single json
 	# key maps to a single property. Subclasses can ignore this property if they are doing something unusual.
@@ -38,9 +39,19 @@ class PropertyParser:
 		'init_name': The name of the property and json key to parse.
 	"""
 	func _init(init_target: Object, init_name: String) -> void:
-		target = init_target
+		_target = weakref(init_target)
 		name = init_name
 		keys = [name]
+	
+	
+	"""
+	Returns the rules class which contains one or more properties to parse.
+	
+	Note: This must be a stored as weak reference and exposed with a function to avoid 'ObjectDB instances leaked at
+	exit' warnings.
+	"""
+	func target() -> Object:
+		return _target.get_ref()
 	
 	
 	"""
@@ -58,10 +69,10 @@ class PropertyParser:
 	"""
 	func to_json_strings() -> Array:
 		var result: String
-		if target.get(name) == implied:
+		if target().get(name) == implied:
 			result = name
 		else:
-			result = "%s %s" % [name, target.get(name)]
+			result = "%s %s" % [name, target().get(name)]
 		return [result]
 	
 	
@@ -77,9 +88,9 @@ class PropertyParser:
 		var split := json.split(" ")
 		match split.size():
 			1:
-				target.set(name, implied)
+				target().set(name, implied)
 			2:
-				target.set(name, json.split(" ")[1])
+				target().set(name, json.split(" ")[1])
 	
 	
 	"""
@@ -88,7 +99,7 @@ class PropertyParser:
 	Properties currently set to the default value are omitted from our json output.
 	"""
 	func is_default() -> bool:
-		return default == target.get(name)
+		return default == target().get(name)
 
 
 """
@@ -139,20 +150,20 @@ class BoolPropertyParser extends PropertyParser:
 				match split[0]:
 					name:
 						# parse positive string like 'clear_on_finish'
-						target.set(name, true)
+						target().set(name, true)
 					_false_string:
 						# parse negative string like 'no_clear_on_finish'
-						target.set(name, false)
+						target().set(name, false)
 					_:
 						push_warning("Unrecognized: %s" % [split[0]])
 			2:
 				match split[0]:
 					name:
 						# parse compound string like 'clear_on_finish true'
-						target.set(name, true if Utils.to_bool(split[1]) else false)
+						target().set(name, true if Utils.to_bool(split[1]) else false)
 					_false_string:
 						# parse negative compound string like 'no_clear_on_finish false' (why...)
-						target.set(name, false if Utils.to_bool(split[1]) else true)
+						target().set(name, false if Utils.to_bool(split[1]) else true)
 					_:
 						push_warning("Unrecognized: %s" % [split[0]])
 	
@@ -168,7 +179,7 @@ class BoolPropertyParser extends PropertyParser:
 	"""
 	func to_json_strings() -> Array:
 		var result: String
-		if target.get(name) == true:
+		if target().get(name) == true:
 			# return positive string like 'clear_on_finish'
 			result = name
 		elif _false_string:
@@ -176,7 +187,7 @@ class BoolPropertyParser extends PropertyParser:
 			result = _false_string
 		else:
 			# return compound string like 'clear_on_finish false'
-			result = "%s %s" % [name, target.get(name)]
+			result = "%s %s" % [name, target().get(name)]
 		return [result]
 
 
@@ -192,13 +203,13 @@ class FloatPropertyParser extends PropertyParser:
 		var split := json.split(" ")
 		match split.size():
 			1:
-				target.set(name, implied)
+				target().set(name, implied)
 			2:
-				target.set(name, float(json.split(" ")[1]))
+				target().set(name, float(json.split(" ")[1]))
 	
 	
 	func is_default() -> bool:
-		return is_equal_approx(default, target.get(name))
+		return is_equal_approx(default, target().get(name))
 
 
 """
@@ -213,9 +224,9 @@ class IntPropertyParser extends PropertyParser:
 		var split := json.split(" ")
 		match split.size():
 			1:
-				target.set(name, implied)
+				target().set(name, implied)
 			2:
-				target.set(name, int(json.split(" ")[1]))
+				target().set(name, int(json.split(" ")[1]))
 
 
 """
@@ -255,21 +266,21 @@ class EnumPropertyParser extends PropertyParser:
 		var split := json.split(" ")
 		match split.size():
 			1:
-				target.set(name, implied)
+				target().set(name, implied)
 			2:
 				var snake_case_enum: String = json.split(" ")[1]
 				if not _enum_dict.has(snake_case_enum.to_upper()):
 					push_warning("Unrecognized %s: %s" % [json.split(" ")[0], json.split(" ")[1]])
 				else:
-					target.set(name, Utils.enum_from_snake_case(_enum_dict, snake_case_enum))
+					target().set(name, Utils.enum_from_snake_case(_enum_dict, snake_case_enum))
 	
 	
 	func to_json_strings() -> Array:
 		var result: String
-		if target.get(name) == implied:
+		if target().get(name) == implied:
 			result = name
 		else:
-			result = "%s %s" % [name, Utils.enum_to_snake_case(_enum_dict, target.get(name))]
+			result = "%s %s" % [name, Utils.enum_to_snake_case(_enum_dict, target().get(name))]
 		return [result]
 
 
@@ -303,7 +314,8 @@ class OngoingPropertyDefinition:
 		_property_parser.implied = new_implied
 
 # The rules class which contains one or more properties to parse.
-var _target: Object
+# This must be a weak reference to avoid 'ObjectDB instances leaked at exit' warnings.
+var _target: WeakRef
 
 # List of PropertyParser instances for serializing and deserializing json. This array's order dictates the order the
 # properties will be written to the json file.
@@ -314,7 +326,7 @@ var _property_parsers := []
 var _property_parsers_by_key := {}
 
 func _init(init_target: Object) -> void:
-	_target = init_target
+	_target = weakref(init_target)
 
 
 """
@@ -326,7 +338,7 @@ Parameters:
 	'false_string': (Optional) A json string corresponding to a value of 'false', such as 'no_clear_on_finish'
 """
 func add_bool(name: String, false_string: String = "") -> OngoingPropertyDefinition:
-	return add(BoolPropertyParser.new(_target, name, false_string))
+	return add(BoolPropertyParser.new(_target.get_ref(), name, false_string))
 
 
 """
@@ -338,7 +350,7 @@ Parameters:
 	'enum_dict': The property's enum type, such as 'PuzzleTileMap.TileSetType'
 """
 func add_enum(name: String, enum_dict: Dictionary) -> OngoingPropertyDefinition:
-	return add(EnumPropertyParser.new(_target, name, enum_dict))
+	return add(EnumPropertyParser.new(_target.get_ref(), name, enum_dict))
 
 
 """
@@ -348,7 +360,7 @@ Parameters:
 	'name': The name of the property and json key to parse.
 """
 func add_float(name: String) -> OngoingPropertyDefinition:
-	return add(FloatPropertyParser.new(_target, name))
+	return add(FloatPropertyParser.new(_target.get_ref(), name))
 
 
 """
@@ -358,7 +370,7 @@ Parameters:
 	'name': The name of the property and json key to parse.
 """
 func add_int(name: String) -> OngoingPropertyDefinition:
-	return add(IntPropertyParser.new(_target, name))
+	return add(IntPropertyParser.new(_target.get_ref(), name))
 
 
 """
@@ -368,7 +380,7 @@ Parameters:
 	'name': The name of the property and json key to parse.
 """
 func add_string(name: String) -> OngoingPropertyDefinition:
-	return add(StringPropertyParser.new(_target, name))
+	return add(StringPropertyParser.new(_target.get_ref(), name))
 
 
 """
