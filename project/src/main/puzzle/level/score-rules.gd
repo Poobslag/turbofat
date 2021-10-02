@@ -19,11 +19,11 @@ class PointsPropertyParser extends RuleParser.PropertyParser:
 	
 	
 	func to_json_strings() -> Array:
-		return ["%s %s" % [_all_string, target.get(name)]]
+		return ["%s %s" % [_all_string, target().get(name)]]
 	
 	
 	func from_json_string(json: String) -> void:
-		target.set(name, int(json.split(" ")[1]))
+		target().set(name, int(json.split(" ")[1]))
 
 
 const DEFAULT_CAKE_POINTS := 10
