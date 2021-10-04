@@ -76,6 +76,4 @@ Updates the player character and writes it to their save file.
 """
 func _on_SaveConfirmation_confirmed() -> void:
 	PlayerData.creature_library.player_def = _creature_editor.center_creature.creature_def
-	# most creatures have ambiguous human-readable IDs but the player's ID must remain unique
-	PlayerData.creature_library.player_def.creature_id = CreatureLibrary.PLAYER_ID
 	PlayerSave.save_player_data()

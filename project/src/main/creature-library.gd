@@ -67,7 +67,8 @@ func next_filler_id() -> String:
 
 
 func set_player_def(new_player_def: CreatureDef) -> void:
-	_creature_defs_by_id[PLAYER_ID] = new_player_def
+	new_player_def.creature_id = PLAYER_ID
+	_creature_defs_by_id[new_player_def.creature_id] = new_player_def
 
 
 func get_player_def() -> CreatureDef:
@@ -89,7 +90,6 @@ func reset() -> void:
 	# default player appearance and name
 	var new_player_def := CreatureDef.new()
 	new_player_def.rename(CreatureDef.DEFAULT_NAME)
-	new_player_def.creature_id = PLAYER_ID
 	new_player_def.dna = CreatureDef.DEFAULT_DNA.duplicate()
 	new_player_def.min_fatness = 1.0
 	new_player_def.chat_theme_def = CreatureDef.DEFAULT_CHAT_THEME_DEF.duplicate()
@@ -170,7 +170,6 @@ func from_json_dict(json: Dictionary) -> void:
 	if json.has(PLAYER_ID):
 		var new_player_def := CreatureDef.new()
 		new_player_def.from_json_dict(json.get(PLAYER_ID, {}))
-		new_player_def.creature_id = PLAYER_ID
 		set_player_def(new_player_def)
 	if json.has("fatnesses"):
 		_fatnesses = json.get("fatnesses")
