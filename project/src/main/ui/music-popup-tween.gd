@@ -44,8 +44,10 @@ Parameters:
 """
 func pop_in_and_out(pop_in_delay: float) -> void:
 	if pop_in_delay:
-		yield(get_tree().create_timer(pop_in_delay), "timeout")
-	_pop_in()
+		# we use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
+		get_tree().create_timer(pop_in_delay).connect("timeout", self, "_pop_in")
+	else:
+		_pop_in()
 
 
 func _pop_in() -> void:
