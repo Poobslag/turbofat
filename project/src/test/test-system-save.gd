@@ -20,6 +20,7 @@ func before_each() -> void:
 
 func after_each() -> void:
 	var dir := Directory.new()
+	dir.open("user://")
 	dir.remove(TEMP_SYSTEM_FILENAME)
 	dir.remove(TEMP_LEGACY_FILENAME)
 	for backup in [
