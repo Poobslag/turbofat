@@ -8,9 +8,8 @@ onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 func _ready() -> void:
 	MusicPlayer.play_tutorial_bgm()
 	
-	$Camera.position = ChattableManager.player.position
 	ChattableManager.refresh_creatures()
-	
+	$Camera.position = ChattableManager.player.position
 	if CutsceneManager.is_front_chat_tree():
 		_launch_cutscene()
 

@@ -22,6 +22,7 @@ func _ready() -> void:
 	
 	MusicPlayer.play_chill_bgm()
 	
+	ChattableManager.refresh_creatures()
 	if CutsceneManager.is_front_chat_tree():
 		_launch_cutscene()
 	else:
@@ -32,7 +33,6 @@ func _ready() -> void:
 			move_creature_to_spawn(ChattableManager.sensei, Global.sensei_spawn_id)
 	
 	$Camera.position = ChattableManager.player.position
-	ChattableManager.refresh_creatures()
 
 
 func _launch_cutscene() -> void:

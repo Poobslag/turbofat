@@ -75,7 +75,12 @@ func refresh_creatures() -> void:
 	_creatures_by_id.clear()
 	for creature_obj in get_tree().get_nodes_in_group("creatures"):
 		var creature: Creature = creature_obj
-		register_creature(creature)
+		if creature.creature_id == CreatureLibrary.PLAYER_ID:
+			set_player(creature)
+		elif creature.creature_id == CreatureLibrary.SENSEI_ID:
+			set_sensei(creature)
+		else:
+			register_creature(creature)
 
 
 """
