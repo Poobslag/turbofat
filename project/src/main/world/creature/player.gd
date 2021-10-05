@@ -14,7 +14,6 @@ func _ready() -> void:
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 	set_creature_id(CreatureLibrary.PLAYER_ID)
 	refresh_collision_extents()
-	ChattableManager.player = self
 
 
 func _unhandled_input(_event: InputEvent) -> void:

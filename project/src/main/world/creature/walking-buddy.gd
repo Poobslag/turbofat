@@ -50,13 +50,11 @@ onready var destination: Node2D = get_node(destination_path)
 # the creature reevaluates whether they should continue walking when this timer times out
 onready var _move_timer: Timer = $MoveTimer
 
+"""
+Note: Some superclass method calls are implicit in gdscript for notifications. This is planned to require explicit
+super() calls in Godot 4.0
+"""
 func _ready() -> void:
-	if creature_id == CreatureLibrary.PLAYER_ID:
-		ChattableManager.player = self
-		set_creature_def(PlayerData.creature_library.player_def)
-		creature_id = CreatureLibrary.PLAYER_ID
-	if creature_id == CreatureLibrary.SENSEI_ID:
-		ChattableManager.sensei = self
 	_move_timer.connect("timeout", self, "_on_MoveTimer_timeout")
 	set_non_iso_walk_direction(WALK_DIR)
 

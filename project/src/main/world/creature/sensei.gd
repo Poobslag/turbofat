@@ -16,7 +16,6 @@ var movement_disabled := false
 func _ready() -> void:
 	set_creature_id(CreatureLibrary.SENSEI_ID)
 	$MoveTimer.connect("timeout", self, "_on_MoveTimer_timeout")
-	ChattableManager.sensei = self
 
 
 func _on_MoveTimer_timeout() -> void:
