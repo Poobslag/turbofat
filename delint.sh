@@ -109,7 +109,6 @@ fi
 # project settings which are enabled temporarily, but shouldn't be pushed
 RESULT=
 RESULT=${RESULT}$(grep "emulate_touch_from_mouse=true" project/project.godot)
-RESULT=${RESULT}$(grep "window/vsync/use_vsync=false" project/project.godot)
 if [ -n "$RESULT" ]
 then
   echo ""
@@ -119,7 +118,6 @@ then
   then
     # unset project settings
     sed -i "/emulate_touch_from_mouse=true/d" project/project.godot
-    sed -i "/window\/vsync\/use_vsync=false/d" project/project.godot
     echo "...Temporary settings reverted."
   fi
 fi
