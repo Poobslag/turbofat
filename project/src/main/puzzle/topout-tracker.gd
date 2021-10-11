@@ -1,5 +1,7 @@
 extends Node
 
+const LINES_CLEARED_ON_TOP_OUT := 10
+
 onready var _game_over_voices := [$GameOverVoice0, $GameOverVoice1, $GameOverVoice2, $GameOverVoice3, $GameOverVoice4]
 onready var _puzzle: Puzzle = $".."
 onready var _playfield: Playfield = _puzzle.get_playfield()
@@ -19,6 +21,6 @@ func _on_PuzzleState_topped_out() -> void:
 			_playfield.schedule_line_clears(range(PuzzleTileMap.ROW_COUNT),
 					top_out_delay, false)
 		else:
-			_playfield.schedule_line_clears(range(PuzzleTileMap.ROW_COUNT - 6, PuzzleTileMap.ROW_COUNT),
+			_playfield.schedule_line_clears(range(PuzzleTileMap.ROW_COUNT - LINES_CLEARED_ON_TOP_OUT, PuzzleTileMap.ROW_COUNT),
 					top_out_delay, false)
 		_piece_manager.enter_top_out_state(top_out_delay)
