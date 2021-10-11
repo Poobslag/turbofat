@@ -58,9 +58,9 @@ const KICKS_V := [
 				Vector2( 0, -2)], # R -> 0
 		
 		# these kicks should be symmetrical over the x-axis
-		[Vector2( 1,  0), Vector2(-1,  0), Vector2( 0, -1), Vector2(-1, -1), Vector2(-1,  1),
+		[Vector2( 0, -1), Vector2(-1,  0), Vector2( 1,  0), Vector2(-1, -1), Vector2(-1,  1),
 				Vector2(-1, -2), Vector2(-2,  0)], # R -> 2
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2( 0, -1), Vector2( 1, -1), Vector2( 1,  1),
+		[Vector2( 0, -1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 1, -1), Vector2( 1,  1),
 				Vector2( 1, -2), Vector2( 2,  0)], # 2 -> R
 
 		# these kicks should be symmetrical over the y-axis
@@ -70,9 +70,9 @@ const KICKS_V := [
 				Vector2( 0,  2)], # L -> 2
 		
 		# these kicks should be symmetrical over the x-axis
-		[Vector2(-1,  0), Vector2( 1,  0), Vector2( 0,  1), Vector2( 1,  1), Vector2( 1, -1),
+		[Vector2( 0,  1), Vector2( 1,  0), Vector2(-1,  0), Vector2( 1,  1), Vector2( 1, -1),
 				Vector2( 1,  2), Vector2( 2,  0)], # L -> 0
-		[Vector2( 1,  0), Vector2(-1,  0), Vector2( 0,  1), Vector2(-1,  1), Vector2(-1, -1),
+		[Vector2( 0,  1), Vector2(-1,  0), Vector2( 1,  0), Vector2(-1,  1), Vector2(-1, -1),
 				Vector2(-1,  2), Vector2(-2,  0)], # 0 -> L
 	]
 
