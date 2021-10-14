@@ -56,6 +56,7 @@ Increments the piece's gravity. A piece will fall once its accumulated gravity e
 func apply_gravity(piece: ActivePiece) -> void:
 	if piece.remaining_post_squish_frames > 0:
 		piece.remaining_post_squish_frames -= 1
+		piece_mover.attempt_mid_drop_movement(piece)
 	else:
 		if input.is_soft_drop_pressed():
 			# soft drop
