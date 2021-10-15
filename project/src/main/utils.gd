@@ -300,3 +300,19 @@ static func to_bool(s: String) -> bool:
 		"False", "FALSE", "false", "0": result = false
 		_: result = false if s.empty() else true
 	return result
+
+
+"""
+Returns the local position of the center of the cell corresponding to the given tilemap (grid-based) coordinates.
+
+One might expect this could be implemented trivially by passing in something like 'map_to_world(2.5, 2.5)' to
+get the center of the cell at (2, 2). But, map_to_world does not work that way.
+
+One might also expect this could be implemented by doing something like "Get the top left corner, and shift it by half
+the cell size." But, this returns incorrect results for isometric tilemaps.
+
+For now, the nuance and complexity required in correctly implementing this trivial functionality warrants a utility
+function.
+"""
+static func map_to_world_centered(tile_map: TileMap, cell: Vector2) -> Vector2:
+	return (tile_map.map_to_world(cell) + tile_map.map_to_world(cell + Vector2(1, 1))) * 0.5
