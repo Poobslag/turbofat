@@ -72,8 +72,7 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 	_previous_cell_x = target_cell.x
 	
 	var combo_counter: ComboCounter = ComboCounterScene.instance()
-	combo_counter.position = _playfield.tile_map.map_to_world(target_cell + Vector2(0, -3))
-	combo_counter.position += _playfield.tile_map.cell_size * Vector2(0.5, 0.5)
+	combo_counter.position = Utils.map_to_world_centered(_playfield.tile_map, target_cell + Vector2(0, -3))
 	combo_counter.position *= _playfield.tile_map.scale
 	combo_counter.combo = PuzzleState.combo
 	add_child(combo_counter)

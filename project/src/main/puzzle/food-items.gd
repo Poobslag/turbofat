@@ -75,8 +75,7 @@ func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> vo
 	var food_item: FoodItem = FoodScene.instance()
 	food_item.collect()
 	food_item.food_type = food_type
-	food_item.position = _puzzle_tile_map.map_to_world(cell)
-	food_item.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
+	food_item.position = Utils.map_to_world_centered(_puzzle_tile_map, cell)
 	food_item.position *= _puzzle_tile_map.scale / _texture_rect.rect_scale
 	food_item.position += _puzzle_tile_map_position / _texture_rect.rect_scale
 	food_item.base_scale = _puzzle_tile_map.scale / _texture_rect.rect_scale

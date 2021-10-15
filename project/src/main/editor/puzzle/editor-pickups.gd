@@ -26,8 +26,7 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 		var pickup: Pickup = PickupScene.instance()
 		pickup.food_type = _food_type_for_cell(box_type, cell)
 	
-		pickup.position = _puzzle_tile_map.map_to_world(cell)
-		pickup.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
+		pickup.position = Utils.map_to_world_centered(_puzzle_tile_map, cell)
 		pickup.position *= _puzzle_tile_map.scale
 		pickup.scale = _puzzle_tile_map.scale
 		pickup.z_index = 4 # in front of the active piece
