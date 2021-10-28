@@ -76,13 +76,12 @@ Changes the running scene to the one at the front of the breadcrumb trail.
 """
 func _change_scene() -> void:
 	emit_signal("before_scene_changed")
+	var scene_path: String
 	if trail:
-		if ResourceCache.has_cached_resource(trail.front()):
-			get_tree().change_scene_to(ResourceCache.get_cached_resource(trail.front()))
-		else:
-			get_tree().change_scene(trail.front())
+		scene_path = trail.front()
 	else:
 		# player popped the top item off the breadcrumb trail (possibly from something like a demo)
 		# exit to loading screen and load all resources
 		ResourceCache.minimal_resources = false
-		get_tree().change_scene("res://src/main/ui/menu/LoadingScreen.tscn")
+		scene_path = "res://src/main/ui/menu/LoadingScreen.tscn"
+	get_tree().change_scene_to(ResourceCache.get_resource(scene_path))

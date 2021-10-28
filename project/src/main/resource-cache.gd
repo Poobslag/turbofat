@@ -158,8 +158,18 @@ func has_cached_resource(path: String) -> bool:
 	return _cache.has(path)
 
 
-func get_cached_resource(path: String) -> Resource:
-	return _cache.get(path)
+"""
+Returns the resource at the specified path, possibly from the cache.
+
+Most items will be retrieved from the cache, but especially large scenes will be loaded each time.
+"""
+func get_resource(path: String) -> Resource:
+	var result: Resource
+	if _cache.has(path):
+		result = _cache.get(path)
+	else:
+		result = load(path)
+	return result
 
 
 """

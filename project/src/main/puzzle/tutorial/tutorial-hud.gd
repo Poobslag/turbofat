@@ -45,7 +45,7 @@ func replace_tutorial_module() -> void:
 		module_path = "res://src/main/puzzle/tutorial/TutorialComboModule.tscn"
 	
 	if module_path:
-		var tutorial_module_scene: PackedScene = load(module_path)
+		var tutorial_module_scene: PackedScene = ResourceCache.get_resource(module_path)
 		var tutorial_module: Node = tutorial_module_scene.instance()
 		tutorial_module.hud = self
 		tutorial_module.name = "TutorialModule"
