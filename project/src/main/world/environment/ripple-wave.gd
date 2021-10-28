@@ -111,10 +111,7 @@ Refreshes all ripple's states and appearance based on the tilemap.
 """
 func _refresh_ripple_sprites() -> void:
 	var cell_forward_vector: Vector2 = Ripples.TILEMAP_VECTOR_BY_RIPPLE_DIRECTION[_direction]
-	var cell_right_vector: Vector2 = cell_forward_vector.rotated(PI / 2)
-	if _direction in [Ripples.RippleDirection.NORTHEAST, Ripples.RippleDirection.SOUTHWEST]:
-		# when sprites are flipped, the 'cell right vector' must be flipped as well
-		cell_right_vector *= Vector2(-1, -1)
+	var cell_right_vector: Vector2 = _round_vector2(cell_forward_vector.rotated(PI / 2))
 	
 	for ripple_sprite in get_children():
 		if not ripple_sprite is RippleSprite:
@@ -148,3 +145,12 @@ func _refresh_ripple_sprites() -> void:
 			ripple_sprite.ripple_state = Ripples.RippleState.CONNECTED_LEFT
 		else:
 			ripple_sprite.ripple_state = Ripples.RippleState.CONNECTED_NONE
+
+
+"""
+Rounds floating point vectors to avoid bugs when interacting with the TileMap class.
+
+Workaround for Godot #18324 (https://github.com/godotengine/godot/issues/18324).
+"""
+static func _round_vector2(v: Vector2) -> Vector2:
+	return Vector2(round(v.x), round(v.y))

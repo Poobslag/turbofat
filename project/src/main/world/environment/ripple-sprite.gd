@@ -43,12 +43,12 @@ func _refresh_ripple_state() -> void:
 		_fade_tween.interpolate_property(self, "modulate", modulate, new_modulate, FADE_DURATION)
 		_fade_tween.start()
 	
-	# determine the animation to play
+	# determine the animation to play. we change the animation if the sprite is flipped
 	var new_anim := ""
 	match ripple_state:
 		Ripples.RippleState.CONNECTED_NONE: new_anim = "connected_none"
-		Ripples.RippleState.CONNECTED_LEFT: new_anim = "connected_left"
-		Ripples.RippleState.CONNECTED_RIGHT: new_anim = "connected_right"
+		Ripples.RippleState.CONNECTED_LEFT: new_anim = "connected_left" if flip_h == flip_v else "connected_right"
+		Ripples.RippleState.CONNECTED_RIGHT: new_anim = "connected_right" if flip_h == flip_v else "connected_left"
 		Ripples.RippleState.CONNECTED_BOTH: new_anim = "connected_both"
 	
 	# play the new animation
