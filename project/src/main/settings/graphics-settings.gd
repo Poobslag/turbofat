@@ -13,11 +13,18 @@ enum CreatureDetail {
 # CreatureDetail enum describing how detailed the creatures should look
 var creature_detail: int = _default_creature_detail() setget set_creature_detail
 
+var use_vsync: bool = _default_use_vsync() setget set_use_vsync
+
 func set_creature_detail(new_creature_detail: int) -> void:
 	if creature_detail == new_creature_detail:
 		return
 	creature_detail = new_creature_detail
 	emit_signal("creature_detail_changed", new_creature_detail)
+
+
+func set_use_vsync(new_use_vsync: bool) -> void:
+	use_vsync = new_use_vsync
+	OS.set_use_vsync(new_use_vsync)
 
 
 """
@@ -30,11 +37,13 @@ func reset() -> void:
 func to_json_dict() -> Dictionary:
 	return {
 		"creature_detail": creature_detail,
+		"use_vsync": use_vsync,
 	}
 
 
 func from_json_dict(json: Dictionary) -> void:
 	set_creature_detail(json.get("creature_detail", _default_creature_detail()))
+	set_use_vsync(json.get("use_vsync", _default_use_vsync()))
 
 
 """
@@ -48,3 +57,13 @@ Viewport texture utilized by creatures offers poor performance on mobile and web
 """
 func _default_creature_detail() -> int:
 	return CreatureDetail.LOW if OS.has_feature("web") or OS.has_feature("mobile") else CreatureDetail.HIGH
+
+
+"""
+Returns the default 'use vsync' value.
+
+Many platforms enforce vsync regardless of this value (such as mobile platforms and HTML5), so we default it to 'true'
+on those platforms. However, it makes stuttering more noticable during puzzles.
+"""
+func _default_use_vsync() -> bool:
+	return true if OS.has_feature("web") or OS.has_feature("mobile") else false
