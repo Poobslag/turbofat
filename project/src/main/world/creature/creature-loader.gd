@@ -233,7 +233,7 @@ func _load_texture(dna: Dictionary, node_path: String, key: String, filename: St
 			# but also throws an error.
 			pass
 		else:
-			resource = load(resource_path)
+			resource = ResourceCache.get_resource(resource_path)
 	
 	if resource:
 		dna["property:%s:texture" % node_path] = resource

@@ -108,7 +108,7 @@ func _ready() -> void:
 	if not Engine.is_editor_hint() \
 			and SystemData.graphics_settings.creature_detail == GraphicsSettings.CreatureDetail.LOW:
 		creature_outline_scene_path = "res://src/main/world/creature/FastCreatureOutline.tscn"
-	var creature_outline_scene: PackedScene = load(creature_outline_scene_path)
+	var creature_outline_scene: PackedScene = ResourceCache.get_resource(creature_outline_scene_path)
 	_creature_outline = creature_outline_scene.instance()
 	add_child(_creature_outline)
 	
