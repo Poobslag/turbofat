@@ -1,0 +1,40 @@
+{
+  "version": "19dd",
+  "id": "dusty",
+  "name": "Dusty",
+  "short_name": "Dusty",
+  "dna": {
+    "belly": "1",
+    "bellybutton": "3",
+    "body": "2",
+    "cheek": "3",
+    "collar": "4",
+    "ear": "9",
+    "eye": "5",
+    "hair": "1",
+    "head": "5",
+    "horn": "0",
+    "mouth": "3",
+    "nose": "1",
+    "tail": "0",
+    "accessory": "3",
+    "line_rgb": "6c4331",
+    "body_rgb": "a854cb",
+    "belly_rgb": "bb73dd",
+    "cloth_rgb": "25291b",
+    "glass_rgb": "4e50a9",
+    "plastic_rgb": "292828",
+    "hair_rgb": "40342d",
+    "eye_rgb": "25291b 606060",
+    "horn_rgb": "e38a61"
+  },
+  "chat_theme_def": {
+    "accent_scale": 1.33,
+    "accent_swapped": true,
+    "accent_texture": 13,
+    "color": "a854cb"
+  },
+  "fatness": 1.3,
+  "weight_gain_scale": 1,
+  "metabolism_scale": 1
+}
