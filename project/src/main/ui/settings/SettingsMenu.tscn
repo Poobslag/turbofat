@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -24,6 +24,7 @@
 [ext_resource path="res://src/main/ui/settings/settings-save-slot.gd" type="Script" id=22]
 [ext_resource path="res://src/main/ui/DialogBackdrop.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/ui/settings/settings-dialogs.gd" type="Script" id=24]
+[ext_resource path="res://src/main/ui/settings/settings-use-vsync.gd" type="Script" id=25]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -221,6 +222,39 @@ size_flags_stretch_ratio = 1.1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Use Vsync" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+margin_top = 182.0
+margin_right = 560.0
+margin_bottom = 210.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 25 )
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync"]
+margin_right = 217.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 0 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.74
+text = "Use Vsync"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckboxButton" type="CheckBox" parent="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync"]
+margin_left = 237.0
+margin_right = 397.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 160, 0 )
+size_flags_horizontal = 2
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
 
 [node name="Gameplay" type="VBoxContainer" parent="Window/UiArea/TabContainer"]
 visible = false
@@ -987,6 +1021,7 @@ __meta__ = {
 [connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/SaveSlot" method="_on_Delete_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync/CheckboxButton" to="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync" method="_on_CheckboxButton_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/FatFinger" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/Scheme" method="_on_OptionButton_item_selected"]
 [connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]
