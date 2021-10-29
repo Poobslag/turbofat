@@ -1,8 +1,13 @@
 #!/bin/sh
 ################################################################################
 # This script generates our export_presets.cfg and project.godot files. It
-# updates version numbers and sensitive properties which cannot be kept in
-# version control.
+# updates the version number and inserts sensitive properties which cannot be
+# kept in version control.
+#
+# Before exporting the project, this script should be run to ensure the
+# export_presets.cfg file is present and up to date with the latest project
+# changes. Before releasing the project, this script should be run to update
+# the version number.
 #
 # Usage:
 #   generate-export-presets.sh: Update the export presets with a generated
