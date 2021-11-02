@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test demonstrating the reading/writing/pruning of history data.
-"""
 
 var _level_history := LevelHistory.new()
 

@@ -1,13 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test demonstrating the rank calculator. If a player scores a lot of points, the game should give them a higher
-rank. Short levels with slower pieces require lower scores, because even a perfect player couldn't score very many
-points.
-
-There are a lot of variables and edge cases involved in the rank calculations, and it's easy to introduce obscure bugs
-where it's impossible to get a master rank, or the rank system is too forgiving, which is why unit tests are
-particularly important for this code.
-"""
 
 var _rank_calculator := RankCalculator.new()
 

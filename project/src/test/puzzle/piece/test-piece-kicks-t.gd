@@ -1,8 +1,7 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
 """
-Tests the u piece's kick behavior.
+Tests the t piece's kick behavior.
 """
-
 
 """
 A rose kick is when the t piece pivots around the middle of its three extrusions.

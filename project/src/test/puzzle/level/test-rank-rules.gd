@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests for tweaks to rank calculation.
-"""
 
 var rules: RankRules
 

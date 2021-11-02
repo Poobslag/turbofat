@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests rules for blocks/boxes which appear or disappear while the game is going on.
-"""
 
 var rules: BlocksDuringRules
 

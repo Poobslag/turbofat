@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests library of level trigger effects.
-"""
 
 func test_rotate_next_pieces_to_json_string() -> void:
 	var effect: LevelTriggerEffects.RotateNextPiecesEffect

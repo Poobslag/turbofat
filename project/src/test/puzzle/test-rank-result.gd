@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests for rank information for a playthrough.
-"""
 
 var result: RankResult
 

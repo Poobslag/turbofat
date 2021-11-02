@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests rules for scoring points.
-"""
 
 var rules: ScoreRules
 

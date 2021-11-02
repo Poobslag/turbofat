@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test for string utils functions.
-"""
 
 func test_compact_negative() -> void:
 	assert_eq(StringUtils.compact(-1), "-1")

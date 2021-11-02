@@ -8,7 +8,6 @@ AutotileFixer node makes it easier.
 
 Instructions: Attach this node to a TileMap and toggle this node's 'autotile' property. This will apply autotiling
 rules to all tiles in the TileMap.
-
 """
 
 # An editor toggle which manually applies autotiling.

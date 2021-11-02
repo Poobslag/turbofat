@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests settings for levels.
-"""
 
 var settings: LevelSettings
 

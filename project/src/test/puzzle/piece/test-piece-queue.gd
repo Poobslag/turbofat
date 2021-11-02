@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test for the queue of upcoming pieces.
-"""
 
 func test_empty() -> void:
 	assert_eq([0], non_adjacent_indexes([], "p"))

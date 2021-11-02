@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test for the chat library.
-"""
 
 var _chat_selectors := [
 	{

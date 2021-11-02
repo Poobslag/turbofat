@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test for name utils functions.
-"""
 
 func test_sanitize_name_length() -> void:
 	# 31 character limit

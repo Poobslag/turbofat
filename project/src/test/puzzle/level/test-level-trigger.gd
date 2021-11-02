@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests triggers which causes strange things to happen during a level.
-"""
 
 func test_after_line_cleared_012345() -> void:
 	var json_dict := {

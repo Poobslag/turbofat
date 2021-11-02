@@ -1,8 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests for how the player loses. The player usually loses if they top out a certain number of times, but some levels
-might have different rules.
-"""
 
 var rules: LoseConditionRules
 

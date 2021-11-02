@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests for sets of blocks which are shown initially, or appear during the game
-"""
 
 var tiles: LevelTiles
 

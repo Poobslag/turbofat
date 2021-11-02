@@ -229,7 +229,7 @@ func _on_Playfield_blocks_prepared() -> void:
 	_prepare_pickups_for_level()
 
 
-func _on_PieceManager_piece_changed(piece: ActivePiece) -> void:
+func _on_PieceManager_piece_disturbed(piece: ActivePiece) -> void:
 	_refresh_pickup_state(piece)
 
 

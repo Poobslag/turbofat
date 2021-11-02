@@ -1,9 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test for the level library.
-
-Verifies that levels are loaded, locked and unlocked appropriately.
-"""
 
 const LEVEL_NONE := LevelLock.STATUS_NONE
 const LEVEL_KEY := LevelLock.STATUS_KEY

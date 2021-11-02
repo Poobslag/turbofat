@@ -86,11 +86,11 @@ func _on_Squisher_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
 	_piece.remaining_post_squish_frames = PieceSpeeds.POST_SQUISH_FRAMES
 
 
-func _on_PieceManager_piece_changed(piece: ActivePiece) -> void:
+func _on_PieceManager_piece_disturbed(piece: ActivePiece) -> void:
 	# recalculate hard drop target to draw ghost piece
 	calculate_hard_drop_target(piece)
 
 
-func _on_PieceManager_piece_disturbed(piece: ActivePiece) -> void:
+func _on_PieceManager_playfield_disturbed(piece: ActivePiece) -> void:
 	# recalculate hard drop target to draw ghost piece
 	calculate_hard_drop_target(piece)
