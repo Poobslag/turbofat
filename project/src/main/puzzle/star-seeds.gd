@@ -343,13 +343,12 @@ func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int,
 	_erase_row(y)
 
 
-func _on_Playfield_lines_deleted(lines: Array) -> void:
-	for y in lines:
-		# some levels might have rows which are deleted, but not erased. erase any wobblers
-		_erase_row(y)
-		
-		# drop all wobblers above the specified row to fill the gap
-		_shift_rows(y - 1, Vector2.DOWN)
+func _on_Playfield_line_deleted(y: int) -> void:
+	# some levels might have rows which are deleted, but not erased. erase any wobblers
+	_erase_row(y)
+	
+	# drop all wobblers above the specified row to fill the gap
+	_shift_rows(y - 1, Vector2.DOWN)
 
 
 func _on_Playfield_blocks_prepared() -> void:

@@ -20,8 +20,8 @@ signal line_cleared(y, total_lines, remaining_lines, box_ints)
 # emitted when a line is erased. this includes line clears but also top outs and non-scoring end game rows.
 signal line_erased(y, total_lines, remaining_lines, box_ints)
 
-# emitted when erased lines are deleted, causing the rows above them to drop down
-signal lines_deleted(lines)
+# emitted when an erased line is deleted, causing the rows above it to drop down
+signal line_deleted(y)
 
 # emitted when lines are inserted. some levels insert lines, but most do not
 signal line_inserted(y, tiles_key, src_y)
@@ -175,8 +175,11 @@ func _on_LineClearer_line_cleared(y: int, total_lines: int, remaining_lines: int
 	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
 
 
-func _on_LineClearer_lines_deleted(lines: Array) -> void:
-	emit_signal("lines_deleted", lines)
+func _on_LineClearer_line_deleted(y: int) -> void:
+	emit_signal("line_deleted", y)
+
+
+func _on_LineClearer_after_lines_deleted() -> void:
 	PuzzleState.after_piece_written()
 
 

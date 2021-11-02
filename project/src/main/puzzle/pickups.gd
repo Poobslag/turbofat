@@ -277,52 +277,54 @@ func _on_PuzzleState_before_piece_written() -> void:
 
 
 func _on_PuzzleState_after_piece_written() -> void:
-	if _pickup_type() == PICKUP_FLOAT_REGEN:
-		for pickup in _visuals.get_children():
-			# restore the pickup to its default uncollected state
-			if not pickup.visible:
-				pickup.food_shown = false
-				pickup.visible = true
+	if not _pickup_type() in [PICKUP_FLOAT_REGEN]:
+		# pickups do not regenerate
+		return
+	
+	# restore the pickups to their default uncollected state
+	for pickup in _visuals.get_children():
+		if not pickup.visible:
+			pickup.food_shown = false
+			pickup.visible = true
 
 
 func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	if _pickup_type() in [PICKUP_FLOAT_REGEN]:
 		# pickups are not erased
-		pass
-	else:
-		# erase pickups; this is especially important when the player tops out
-		_erase_row(y)
+		return
+	
+	# erase pickups; this is especially important when the player tops out
+	_erase_row(y)
 
 
-func _on_Playfield_lines_deleted(lines: Array) -> void:
+func _on_Playfield_line_deleted(y: int) -> void:
 	if _pickup_type() in [PICKUP_FLOAT, PICKUP_FLOAT_REGEN]:
 		# pickups do not move
-		pass
-	else:
-		for y in lines:
-			# some levels might have rows which are deleted, but not erased. erase any pickups
-			_erase_row(y)
-			
-			# drop all pickups above the deleted lines to fill the gap
-			_shift_rows(y - 1, Vector2.DOWN)
+		return
+	
+	# some levels have rows which are deleted, but not erased. erase any pickups
+	_erase_row(y)
+	
+	# drop all pickups above the deleted lines to fill the gap
+	_shift_rows(y - 1, Vector2.DOWN)
 
 
 func _on_Playfield_line_inserted(y: int, tiles_key: String, src_y: int) -> void:
 	if _pickup_type() in [PICKUP_FLOAT, PICKUP_FLOAT_REGEN]:
 		# pickups do not move
-		pass
-	else:
-		# raise all pickups at or above the specified row
-		_shift_rows(y, Vector2.UP)
-		
-		# fill in the new gaps with pickups
-		var block_bunch := CurrentLevel.settings.tiles.get_tiles(tiles_key)
-		for x in range(PuzzleTileMap.COL_COUNT):
-			var src_pos := Vector2(x, src_y)
-			if not block_bunch.pickups.has(src_pos):
-				continue
-			var box_type: int = block_bunch.pickups[src_pos]
-			set_pickup(Vector2(x, y), box_type)
+		return
+	
+	# raise all pickups at or above the specified row
+	_shift_rows(y, Vector2.UP)
+	
+	# fill in the new gaps with pickups
+	var block_bunch := CurrentLevel.settings.tiles.get_tiles(tiles_key)
+	for x in range(PuzzleTileMap.COL_COUNT):
+		var src_pos := Vector2(x, src_y)
+		if not block_bunch.pickups.has(src_pos):
+			continue
+		var box_type: int = block_bunch.pickups[src_pos]
+		set_pickup(Vector2(x, y), box_type)
 
 
 func _on_PickupSfxTimer_timeout() -> void:

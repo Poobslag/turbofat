@@ -18,8 +18,10 @@ signal line_cleared(y, total_lines, remaining_lines, box_ints)
 # emitted when a line is erased. this includes line clears but also top outs and non-scoring end game rows.
 signal line_erased(y, total_lines, remaining_lines, box_ints)
 
-# emitted when erased lines are deleted, causing the rows above them to drop down
-signal lines_deleted(lines)
+# emitted when an erased line is deleted, causing the rows above it to drop down
+signal line_deleted(y)
+
+signal after_lines_deleted
 
 # percent of the line clear delay which should be spent erasing lines.
 # 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
@@ -237,9 +239,10 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 		for line in old_lines_being_cleared:
 			CurrentLevel.settings.triggers.run_triggers(LevelTrigger.AFTER_LINE_CLEARED, {"y": line})
 	
-	# we even emit the signal if zero lines are deleted.
-	# the 'lines_deleted' signal triggers other important events
-	emit_signal("lines_deleted", lines_being_deleted_during_trigger)
+	for i in range(lines_being_deleted_during_trigger.size()):
+		emit_signal("line_deleted", lines_being_deleted_during_trigger[i])
+	
+	emit_signal("after_lines_deleted")
 
 
 """
