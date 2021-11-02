@@ -18,10 +18,10 @@ func load_level(filename: String) -> void:
 func test_load_1922_data() -> void:
 	load_level("level-1922")
 	
-	assert_eq(settings.speed_ups.size(), 3)
-	assert_eq(settings.speed_ups[0].get_meta("speed"), "2")
-	assert_eq(settings.speed_ups[1].get_meta("speed"), "3")
-	assert_eq(settings.speed_ups[2].get_meta("speed"), "4")
+	assert_eq(settings.speed.speed_ups.size(), 3)
+	assert_eq(settings.speed.speed_ups[0].get_meta("speed"), "2")
+	assert_eq(settings.speed.speed_ups[1].get_meta("speed"), "3")
+	assert_eq(settings.speed.speed_ups[2].get_meta("speed"), "4")
 
 
 func test_load_19c5_data() -> void:
@@ -89,26 +89,6 @@ func test_to_json_basic_properties() -> void:
 	assert_eq(settings.difficulty, "FD")
 
 
-func test_to_json_speed_ups() -> void:
-	settings.set_start_speed("FC")
-	settings.add_speed_up(Milestone.LINES, 10, "FD")
-	settings.add_speed_up(Milestone.LINES, 20, "FE")
-	settings.speed_ups[2].set_meta("meta_719", "value_719")
-	_convert_to_json_and_back()
-	
-	assert_eq(settings.speed_ups.size(), 3)
-	assert_eq(settings.speed_ups[0].type, Milestone.LINES)
-	assert_eq(settings.speed_ups[0].value, 0)
-	assert_eq(settings.speed_ups[0].get_meta("speed"), "FC")
-	assert_eq(settings.speed_ups[1].type, Milestone.LINES)
-	assert_eq(settings.speed_ups[1].value, 10)
-	assert_eq(settings.speed_ups[1].get_meta("speed"), "FD")
-	assert_eq(settings.speed_ups[2].type, Milestone.LINES)
-	assert_eq(settings.speed_ups[2].value, 20)
-	assert_eq(settings.speed_ups[2].get_meta("speed"), "FE")
-	assert_eq(settings.speed_ups[2].get_meta("meta_719"), "value_719")
-
-
 func test_to_json_milestones_and_tiles() -> void:
 	settings.finish_condition.set_milestone(Milestone.TIME_OVER, 180)
 	settings.success_condition.set_milestone(Milestone.LINES, 100)
@@ -134,6 +114,7 @@ func test_to_json_rules() -> void:
 	settings.piece_types.start_types = [PieceTypes.piece_j, PieceTypes.piece_l]
 	settings.rank.box_factor = 2.0
 	settings.score.cake_points = 30
+	settings.speed.set_start_speed("6")
 	settings.timers.timers = [{"interval": 5}]
 	settings.triggers.from_json_array(
 			[{"phases": ["after_line_cleared y=0-5"], "effect": "insert_line tiles_key=0"}])
@@ -147,5 +128,6 @@ func test_to_json_rules() -> void:
 	assert_eq(settings.piece_types.start_types, [PieceTypes.piece_j, PieceTypes.piece_l])
 	assert_eq(settings.rank.box_factor, 2.0)
 	assert_eq(settings.score.cake_points, 30)
+	assert_eq(settings.speed.speed_ups[0].get_meta("speed"), "6")
 	assert_eq_deep(settings.timers.timers, [{"interval": 5}])
 	assert_eq(settings.triggers.triggers.keys(), [LevelTrigger.AFTER_LINE_CLEARED])

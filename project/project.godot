@@ -809,6 +809,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/spawn.gd"
 }, {
+"base": "Reference",
+"class": "SpeedRules",
+"language": "GDScript",
+"path": "res://src/main/puzzle/level/speed-rules.gd"
+}, {
 "base": "PuzzleTileMap",
 "class": "SquishMap",
 "language": "GDScript",
@@ -1080,6 +1085,7 @@ _global_script_class_icons={
 "SkillTallyItem": "",
 "SmoothPath": "",
 "Spawn": "",
+"SpeedRules": "",
 "SquishMap": "",
 "State": "",
 "StateMachine": "",

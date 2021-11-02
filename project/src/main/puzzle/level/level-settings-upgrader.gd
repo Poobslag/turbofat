@@ -67,7 +67,7 @@ func needs_upgrade(json_settings: Dictionary) -> bool:
 """
 Adds a new internally defined method which provides version-specific updates.
 
-Conversion methods include three parameters:
+Upgrade methods include three parameters:
 	'old_json': (Dictionary) Old parsed level settings from which data should be upgraded
 	
 	'old_key': (String) A key corresponding to a key/value pair in the old_json dictionary which should be upgraded
