@@ -1,6 +1,6 @@
 class_name BlocksDuringRules
 """
-Blocks/boxes which appear or disappear while the game is going on.
+Blocks/boxes/pickups which appear or disappear while the game is going on.
 """
 
 enum LineClearType {
