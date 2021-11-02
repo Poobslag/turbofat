@@ -75,7 +75,7 @@ Sets the start time for a benchmark. Calling 'benchmark_start(foo)' and 'benchma
 like 'foo took 123 milliseconds'.
 """
 func benchmark_start(key: String = "") -> void:
-	_benchmark_start_times[key] = OS.get_ticks_usec()
+	_benchmark_start_times[key] = OS.get_ticks_msec()
 
 
 """
@@ -86,7 +86,7 @@ func benchmark_end(key: String = "") -> void:
 	if not _benchmark_start_times.has(key):
 		print("Invalid benchmark: %s" % key)
 		return
-	print("benchmark %s: %.3f msec" % [key, (OS.get_ticks_usec() - _benchmark_start_times[key]) / 1000.0])
+	print("benchmark %s: %.3f msec" % [key, (OS.get_ticks_msec() - _benchmark_start_times[key])])
 
 
 """
