@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests rules for how fast pieces should move.
-"""
 
 var rules: SpeedRules
 

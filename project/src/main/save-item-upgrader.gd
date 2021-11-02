@@ -54,7 +54,7 @@ Returns 'true' if the specified json save items are from an older version of the
 """
 func needs_upgrade(json_save_items: Array) -> bool:
 	var result: bool = false
-	var version := get_version_string(json_save_items)
+	var version := _get_version_string(json_save_items)
 	if version == PlayerSave.PLAYER_DATA_VERSION:
 		result = false
 	elif _upgrade_methods.has(version):
@@ -68,31 +68,42 @@ func needs_upgrade(json_save_items: Array) -> bool:
 Transforms the specified json save items to the newest format.
 """
 func upgrade(json_save_items: Array) -> Array:
-	var old_version := get_version_string(json_save_items)
-	if not _upgrade_methods.has(old_version):
-		push_warning("Couldn't upgrade old save data version '%s'" % old_version)
-		return json_save_items
-	
-	var upgrade_method: UpgradeMethod = _upgrade_methods[old_version]
-	var new_save_items := []
-	for json_save_item_obj in json_save_items:
-		var save_item: SaveItem = SaveItem.new()
-		save_item.from_json_dict(json_save_item_obj)
-		match save_item.type:
-			"version":
-				save_item.value = upgrade_method.new_version
-			_:
-				save_item = upgrade_method.object.call(upgrade_method.method, save_item)
+	var new_save_items := json_save_items
+	while needs_upgrade(new_save_items):
+		# upgrade the old save file to a new format
+		var old_version := _get_version_string(new_save_items)
 		
-		if save_item:
-			new_save_items.append(save_item.to_json_dict())
+		if not _upgrade_methods.has(old_version):
+			push_warning("Couldn't upgrade old save data version '%s'" % old_version)
+			break
+		
+		var upgrade_method: UpgradeMethod = _upgrade_methods[old_version]
+		var old_save_items := new_save_items
+		new_save_items = []
+		for json_save_item_obj in old_save_items:
+			var save_item: SaveItem = SaveItem.new()
+			save_item.from_json_dict(json_save_item_obj)
+			match save_item.type:
+				"version":
+					save_item.value = upgrade_method.new_version
+				_:
+					save_item = upgrade_method.object.call(upgrade_method.method, save_item)
+			
+			if save_item:
+				new_save_items.append(save_item.to_json_dict())
+		
+		if _get_version_string(new_save_items) == old_version:
+			# failed to upgrade, but the data might still load
+			push_warning("Couldn't upgrade old save data version '%s'" % old_version)
+			break
+	
 	return new_save_items
 
 
 """
 Extracts a version string from the specified json save items.
 """
-static func get_version_string(json_save_items: Array) -> String:
+static func _get_version_string(json_save_items: Array) -> String:
 	var version: SaveItem
 	for json_save_item_obj in json_save_items:
 		var save_item: SaveItem = SaveItem.new()

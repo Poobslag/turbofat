@@ -1,9 +1,6 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test for markov chains.
-"""
 
-var _model
+var _model: MarkovModel
 
 func before_each() -> void:
 	_model = MarkovModel.new()

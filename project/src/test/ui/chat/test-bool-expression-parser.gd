@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests that boolean expressions can be parsed correctly.
-"""
 
 var parser: BoolExpressionParser
 

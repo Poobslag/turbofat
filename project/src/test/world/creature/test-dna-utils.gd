@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test for utilities for manipulating DNA definitions.
-"""
 
 func test_allele_weights_hair_and_ant_mouth() -> void:
 	var dna := {"mouth": "1"}

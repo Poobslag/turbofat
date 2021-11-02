@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test for utils functions.
-"""
 
 enum MoldyFlap {
 	BIT_PUNY,

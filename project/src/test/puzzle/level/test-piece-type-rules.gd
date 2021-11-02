@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests the pieces the player is given.
-"""
 
 var rules: PieceTypeRules
 

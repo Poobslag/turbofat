@@ -22,10 +22,10 @@ func _init() -> void:
 Upgrades the specified json settings to the newest format.
 """
 func upgrade(json_settings: Dictionary) -> Dictionary:
-	var new_json: Dictionary = json_settings
+	var new_json := json_settings
 	while needs_upgrade(new_json):
 		# upgrade the old save file to a new format
-		var old_version := get_version_string(new_json)
+		var old_version := _get_version_string(new_json)
 		
 		if not _upgrade_methods.has(old_version):
 			push_warning("Couldn't upgrade old settings version '%s'" % old_version)
@@ -41,7 +41,7 @@ func upgrade(json_settings: Dictionary) -> Dictionary:
 				_:
 					call(upgrade_method.method, old_json, old_key, new_json)
 		
-		if get_version_string(new_json) == old_version:
+		if _get_version_string(new_json) == old_version:
 			# failed to upgrade, but the data might still load
 			push_warning("Couldn't upgrade old settings '%s'" % old_version)
 			break
@@ -54,7 +54,7 @@ Returns 'true' if the specified json settings are from an older version of the g
 """
 func needs_upgrade(json_settings: Dictionary) -> bool:
 	var result: bool = false
-	var version := get_version_string(json_settings)
+	var version := _get_version_string(json_settings)
 	if version == Levels.LEVEL_DATA_VERSION:
 		result = false
 	elif _upgrade_methods.has(version):
@@ -118,5 +118,5 @@ func _upgrade_1922(old_json: Dictionary, old_key: String, new_json: Dictionary) 
 """
 Extracts a version string from the specified json settings.
 """
-static func get_version_string(json_settings: Dictionary) -> String:
+static func _get_version_string(json_settings: Dictionary) -> String:
 	return json_settings.get("version")

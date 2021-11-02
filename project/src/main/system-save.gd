@@ -105,14 +105,8 @@ func load_system_data() -> bool:
 	
 	var json_save_items: Array = parse_json(save_json_text)
 	
-	while _upgrader.needs_upgrade(json_save_items):
-		# convert the old save file to a new format
-		var old_version := SaveItemUpgrader.get_version_string(json_save_items)
+	if _upgrader.needs_upgrade(json_save_items):
 		json_save_items = _upgrader.upgrade(json_save_items)
-		if SaveItemUpgrader.get_version_string(json_save_items) == old_version:
-			# failed to convert, but the data might still load
-			push_warning("Couldn't upgrade old save data version '%s'" % old_version)
-			break
 	
 	for json_save_item_obj in json_save_items:
 		var save_item: SaveItem = SaveItem.new()

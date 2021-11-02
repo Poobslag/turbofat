@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests library of phase conditions for level triggers.
-"""
 
 func test_after_lines_cleared_phase_config() -> void:
 	var condition: PhaseConditions.AfterLinesClearedPhaseCondition

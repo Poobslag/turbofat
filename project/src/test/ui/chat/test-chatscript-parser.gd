@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Test for the chatscript parser.
-"""
 
 const CUTSCENE_FULL := "res://assets/test/ui/chat/cutscene-full.chat"
 const CUTSCENE_META := "res://assets/test/ui/chat/cutscene-meta.chat"

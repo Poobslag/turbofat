@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests that boolean expressions can be parsed and evaluated correctly.
-"""
 
 func before_each() -> void:
 	PlayerData.chat_history.reset()

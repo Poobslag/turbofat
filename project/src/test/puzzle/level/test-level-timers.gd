@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests for timers which cause strange things to happen during a level.
-"""
 
 var timers: LevelTimers
 

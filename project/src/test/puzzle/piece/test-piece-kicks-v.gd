@@ -3,7 +3,6 @@ extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
 Tests the v piece's kick behavior.
 """
 
-
 func test_climb_r0_0() -> void:
 	from_grid = [
 		"    ",

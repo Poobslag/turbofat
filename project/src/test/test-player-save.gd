@@ -1,9 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test demonstrating the save functionality. It's easy to introduce bugs related to saving or loading the
-configuration into JSON, since something trivial like renaming a variable or changing its type might change how it's
-saved or loaded. That's why unit tests are particularly important for this code.
-"""
 
 const TEMP_FILENAME := "test936.save"
 

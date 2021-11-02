@@ -13,7 +13,6 @@ var to_grid := []
 var _from_piece: ActivePiece
 var _to_piece: ActivePiece
 
-
 """
 A test which demonstrates the test framework itself is functioning properly.
 """

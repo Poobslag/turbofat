@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests backwards compatibility with older save formats.
-"""
 
 const TEMP_FILENAME := "test-ripe-bucket.json"
 const TEMP_LEGACY_FILENAME := "test-oven-bucket.save"

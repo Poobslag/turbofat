@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests for rules which are unique enough that it doesn't make sense to put them in their own groups.
-"""
 
 var rules: OtherRules
 

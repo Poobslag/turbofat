@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test demonstrating the rolling backup behavior.
-"""
 
 const TEMP_FILENAME := "test837.save"
 

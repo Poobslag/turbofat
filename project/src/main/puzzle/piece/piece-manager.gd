@@ -7,12 +7,12 @@ _playfield.
 
 # Emitted when the playfield changes in a way which might move the current piece or alter its behavior. For example,
 # inserting a row might bump the piece up, or erasing a row might shift the ghost piece down.
-signal piece_disturbed(piece)
+signal playfield_disturbed(piece)
 
 signal piece_spawned
 
 # emitted when the current piece changes in some way (moved, replaced, reoriented)
-signal piece_changed(piece)
+signal piece_disturbed(piece)
 
 # emitted when the player rotates a piece
 signal initial_rotated_cw
@@ -135,14 +135,14 @@ func spawn_piece() -> bool:
 	piece.orientation = next_piece.orientation
 	var success := _physics.spawn_piece(piece)
 	emit_signal("piece_spawned")
-	emit_signal("piece_changed", piece)
+	emit_signal("piece_disturbed", piece)
 	return success
 
 
 func move_piece() -> void:
-	var piece_changed := _physics.move_piece(piece)
-	if piece_changed:
-		emit_signal("piece_changed", piece)
+	var piece_disturbed := _physics.move_piece(piece)
+	if piece_disturbed:
+		emit_signal("piece_disturbed", piece)
 
 
 """
@@ -289,9 +289,9 @@ func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> vo
 		piece.target_pos.y -= 1
 	piece.move_to_target()
 	
-	# regardless of whether the piece shifted, we emit the 'piece_disturbed'
+	# regardless of whether the piece shifted, we emit the 'playfield_disturbed'
 	# signal so other piece scripts can react to the playfield shifting.
-	emit_signal("piece_disturbed", piece)
+	emit_signal("playfield_disturbed", piece)
 
 
 func _on_Dropper_hard_dropped() -> void: emit_signal("hard_dropped")

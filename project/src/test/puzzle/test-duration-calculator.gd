@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test demonstrating duration calculation logic.
-"""
 
 var _duration_calculator := DurationCalculator.new()
 var _settings: LevelSettings

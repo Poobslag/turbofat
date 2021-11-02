@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Tests sequences of puzzle inputs to be replayed for things such as tutorials.
-"""
 
 var replay: InputReplay
 

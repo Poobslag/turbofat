@@ -1,7 +1,4 @@
 extends "res://addons/gut/test.gd"
-"""
-Unit test demonstrating goals/milestones for puzzles.
-"""
 
 var milestone: Milestone
 
