@@ -63,7 +63,7 @@ func _input(event: InputEvent) -> void:
 			$Puzzle/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
 		
 		KEY_L:
-			PuzzleState.set_speed_index((PuzzleState.speed_index + 1) % CurrentLevel.settings.speed_ups.size())
+			PuzzleState.set_speed_index((PuzzleState.speed_index + 1) % CurrentLevel.settings.speed.speed_ups.size())
 
 
 func _build_box(y: int) -> void:

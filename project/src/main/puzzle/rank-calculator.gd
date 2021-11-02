@@ -141,8 +141,8 @@ func master_lpm() -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
 	
-	for i in range(CurrentLevel.settings.speed_ups.size()):
-		var milestone: Milestone = CurrentLevel.settings.speed_ups[i]
+	for i in range(CurrentLevel.settings.speed.speed_ups.size()):
+		var milestone: Milestone = CurrentLevel.settings.speed.speed_ups[i]
 		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("speed"))
 		
 		var min_frames_per_line := min_frames_per_line(piece_speed)
@@ -151,8 +151,8 @@ func master_lpm() -> float:
 		
 		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 		var level_lines := 100.0
-		if i + 1 < CurrentLevel.settings.speed_ups.size():
-			var speed_up: Milestone = CurrentLevel.settings.speed_ups[i + 1]
+		if i + 1 < CurrentLevel.settings.speed.speed_ups.size():
+			var speed_up: Milestone = CurrentLevel.settings.speed.speed_ups[i + 1]
 			match speed_up.type:
 				Milestone.CUSTOMERS:
 					level_lines = master_customer_combo(CurrentLevel.settings)

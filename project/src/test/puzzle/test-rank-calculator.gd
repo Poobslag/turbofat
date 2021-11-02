@@ -13,37 +13,36 @@ var _rank_calculator := RankCalculator.new()
 
 func before_each() -> void:
 	CurrentLevel.settings = LevelSettings.new()
-	CurrentLevel.settings.set_start_speed("0")
 	PuzzleState.level_performance = PuzzlePerformance.new()
 
 
 func test_master_lpm_slow_marathon() -> void:
-	CurrentLevel.settings.set_start_speed("0")
+	CurrentLevel.settings.speed.set_start_speed("0")
 	assert_almost_eq(_rank_calculator.master_lpm(), 30.77, 0.1)
 
 
 func test_master_lpm_medium_marathon() -> void:
-	CurrentLevel.settings.set_start_speed("A0")
+	CurrentLevel.settings.speed.set_start_speed("A0")
 	assert_almost_eq(_rank_calculator.master_lpm(), 35.64, 0.1)
 
 
 func test_master_lpm_fast_marathon() -> void:
-	CurrentLevel.settings.set_start_speed("F0")
+	CurrentLevel.settings.speed.set_start_speed("F0")
 	assert_almost_eq(_rank_calculator.master_lpm(), 68.90, 0.1)
 
 
 func test_master_lpm_mixed_marathon() -> void:
-	CurrentLevel.settings.set_start_speed("0")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 30, "A0")
-	CurrentLevel.settings.add_speed_up(Milestone.LINES, 60, "F0")
+	CurrentLevel.settings.speed.set_start_speed("0")
+	CurrentLevel.settings.speed.add_speed_up(Milestone.LINES, 30, "A0")
+	CurrentLevel.settings.speed.add_speed_up(Milestone.LINES, 60, "F0")
 	CurrentLevel.settings.set_finish_condition(Milestone.LINES, 100)
 	assert_almost_eq(_rank_calculator.master_lpm(), 46.23, 0.1)
 
 
 func test_master_lpm_mixed_sprint() -> void:
-	CurrentLevel.settings.set_start_speed("0")
-	CurrentLevel.settings.add_speed_up(Milestone.TIME_OVER, 30, "A0")
-	CurrentLevel.settings.add_speed_up(Milestone.TIME_OVER, 60, "F0")
+	CurrentLevel.settings.speed.set_start_speed("0")
+	CurrentLevel.settings.speed.add_speed_up(Milestone.TIME_OVER, 30, "A0")
+	CurrentLevel.settings.speed.add_speed_up(Milestone.TIME_OVER, 60, "F0")
 	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 90)
 	assert_almost_eq(_rank_calculator.master_lpm(), 50.98, 0.1)
 
@@ -116,7 +115,7 @@ func test_calculate_pieces_rank() -> void:
 
 
 func test_calculate_rank_sprint_120() -> void:
-	CurrentLevel.settings.set_start_speed("A0")
+	CurrentLevel.settings.speed.set_start_speed("A0")
 	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 120)
 	PuzzleState.level_performance.seconds = 120
 	PuzzleState.level_performance.lines = 47
@@ -132,7 +131,7 @@ func test_calculate_rank_sprint_120() -> void:
 
 
 func test_calculate_rank_top_out_once() -> void:
-	CurrentLevel.settings.set_start_speed("A0")
+	CurrentLevel.settings.speed.set_start_speed("A0")
 	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 120)
 	PuzzleState.level_performance.seconds = 120
 	PuzzleState.level_performance.lines = 47
@@ -149,7 +148,7 @@ func test_calculate_rank_top_out_once() -> void:
 
 
 func test_calculate_rank_top_out_twice() -> void:
-	CurrentLevel.settings.set_start_speed("A0")
+	CurrentLevel.settings.speed.set_start_speed("A0")
 	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 120)
 	PuzzleState.level_performance.seconds = 120
 	PuzzleState.level_performance.lines = 47
@@ -226,7 +225,7 @@ func test_calculate_rank_ultra_1() -> void:
 
 func test_calculate_rank_five_creatures_good() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.CUSTOMERS, 5)
-	CurrentLevel.settings.set_start_speed("4")
+	CurrentLevel.settings.speed.set_start_speed("4")
 	PuzzleState.level_performance.lines = 100
 	PuzzleState.level_performance.box_score = 1025
 	PuzzleState.level_performance.combo_score = 915
@@ -240,7 +239,7 @@ func test_calculate_rank_five_creatures_good() -> void:
 
 func test_calculate_rank_five_creatures_bad() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.CUSTOMERS, 5)
-	CurrentLevel.settings.set_start_speed("4")
+	CurrentLevel.settings.speed.set_start_speed("4")
 	PuzzleState.level_performance.lines = 18
 	PuzzleState.level_performance.box_score = 90
 	PuzzleState.level_performance.combo_score = 60
@@ -256,7 +255,7 @@ func test_calculate_rank_five_creatures_bad() -> void:
 These two times are pretty far apart; they shouldn't yield the same rank
 """
 func test_two_rank_s() -> void:
-	CurrentLevel.settings.set_start_speed("A0")
+	CurrentLevel.settings.speed.set_start_speed("A0")
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 1000)
 	PuzzleState.level_performance.seconds = 88.55
 	var rank1 := _rank_calculator.calculate_rank()

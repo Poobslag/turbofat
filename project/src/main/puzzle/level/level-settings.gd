@@ -6,21 +6,11 @@ This includes information about how the player loses/wins, what kind of pieces t
 time limit, and any other special rules.
 """
 
-# The level id used for saving/loading data.
-var id := ""
-
-# The level title shown in menus.
-var title := ""
-
 # The level description shown when selecting a level.
 var description := ""
 
 # (optional) The level difficulty shown when selecting a level.
 var difficulty := "" setget ,get_difficulty
-
-# Array of Milestone objects representing the requirements to speed up. This mostly applies to 'Marathon Mode' where
-# clearing lines makes you speed up.
-var speed_ups := []
 
 # Blocks/boxes which appear or disappear while the game is going on.
 var blocks_during := BlocksDuringRules.new()
@@ -31,6 +21,9 @@ var combo_break := ComboBreakRules.new()
 # How the player finishes. When the player finishes, they can't play anymore, and the level just ends. It should be
 # used for limits such as serving 5 creatures or clearing 10 lines.
 var finish_condition := Milestone.new()
+
+# The level id used for saving/loading data.
+var id := ""
 
 # Sequence of puzzle inputs to be replayed for things such as tutorials.
 var input_replay := InputReplay.new()
@@ -51,6 +44,8 @@ var rank := RankRules.new()
 # Rules for scoring points.
 var score := ScoreRules.new()
 
+var speed := SpeedRules.new()
+
 # How the player succeeds. When the player succeeds, there's a big fanfare and celebration, it should be used for
 # accomplishments such as surviving 10 minutes or getting 1,000 points.
 var success_condition := Milestone.new()
@@ -61,36 +56,13 @@ var tiles := LevelTiles.new()
 # Timers which cause strange things to happen during a level.
 var timers := LevelTimers.new()
 
+# The level title shown in menus.
+var title := ""
+
 # Triggers which cause strange things to happen during a level.
 var triggers := LevelTriggers.new()
 
 var _upgrader := LevelSettingsUpgrader.new()
-
-func _init() -> void:
-	# avoid edge cases caused by absence of a piece speed
-	set_start_speed("0")
-
-
-"""
-Adds criteria for speeding up, such as a time, score, or line limit.
-
-Parameters:
-	'type': an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
-	
-	'value': an value describing the milestone criteria (number of lines, points, seconds)
-	
-	'speed_id': a string from PieceSpeeds defining the new speed
-"""
-func add_speed_up(type: int, value: int, speed_id: String) -> void:
-	var speed_up := Milestone.new()
-	speed_up.set_milestone(type, value)
-	speed_up.set_meta("speed", speed_id)
-	speed_ups.append(speed_up)
-
-
-func set_start_speed(new_start_speed: String) -> void:
-	speed_ups.clear()
-	add_speed_up(Milestone.LINES, 0, new_start_speed)
 
 
 """
@@ -123,20 +95,14 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 	if _upgrader.needs_upgrade(json):
 		json = _upgrader.upgrade(json)
 	
-	title = json.get("title", "")
-	description = json.get("description", "")
-	difficulty = json.get("difficulty", "")
-	set_start_speed(json.get("start_speed", "0"))
-	if json.has("speed_ups"):
-		for json_speed_up in json["speed_ups"]:
-			var speed_up := Milestone.new()
-			speed_up.from_json_dict(json_speed_up)
-			speed_ups.append(speed_up)
-	
 	if json.has("blocks_during"):
 		blocks_during.from_json_array(json["blocks_during"])
 	if json.has("combo_break"):
 		combo_break.from_json_array(json["combo_break"])
+	if json.has("description"):
+		description = json["description"]
+	if json.has("difficulty"):
+		difficulty = json["difficulty"]
 	if json.has("finish_condition"):
 		finish_condition.from_json_dict(json["finish_condition"])
 	if json.has("input_replay"):
@@ -151,10 +117,16 @@ func from_json_dict(new_id: String, json: Dictionary) -> void:
 		rank.from_json_array(json["rank"])
 	if json.has("score"):
 		score.from_json_array(json["score"])
+	if json.has("speed_ups"):
+		speed.speed_ups_from_json_array(json["speed_ups"])
+	if json.has("start_speed"):
+		speed.start_speed_from_json_string(json["start_speed"])
 	if json.has("success_condition"):
 		success_condition.from_json_dict(json["success_condition"])
 	if json.has("tiles"):
 		tiles.from_json_dict(json["tiles"])
+	if json.has("title"):
+		title = json["title"]
 	if json.has("timers"):
 		timers.from_json_array(json["timers"])
 	if json.has("triggers"):
@@ -166,15 +138,8 @@ func to_json_dict() -> Dictionary:
 	if title: result["title"] = title
 	if description: result["description"] = description
 	if difficulty: result["difficulty"] = difficulty
-	if speed_ups:
-		var json_speed_ups := []
-		for speed_up_obj in speed_ups:
-			var speed_up: Milestone = speed_up_obj
-			if not result.has("start_speed") and speed_up.type == Milestone.LINES and speed_up.value == 0:
-				result["start_speed"] = speed_up.get_meta("speed")
-			else:
-				json_speed_ups.append(speed_up.to_json_dict())
-		if json_speed_ups: result["speed_ups"] = json_speed_ups
+	if not speed.start_speed_is_default(): result["start_speed"] = speed.start_speed_to_json_string()
+	if not speed.speed_ups_is_default(): result["speed_ups"] = speed.speed_ups_to_json_array()
 	if not blocks_during.is_default(): result["blocks_during"] = blocks_during.to_json_array()
 	if not combo_break.is_default(): result["combo_break"] = combo_break.to_json_array()
 	if not finish_condition.is_default(): result["finish_condition"] = finish_condition.to_json_dict()
@@ -211,7 +176,7 @@ func get_difficulty() -> String:
 func _get_max_speed_id() -> String:
 	var max_speed_id_index := 0
 	var max_speed_id: String = PieceSpeeds.speed_ids[0]
-	for milestone_obj in speed_ups:
+	for milestone_obj in speed.speed_ups:
 		var milestone: Milestone = milestone_obj
 		var speed_id: String = milestone.get_meta("speed")
 		var speed_id_index: int = PieceSpeeds.speed_ids.find(speed_id)

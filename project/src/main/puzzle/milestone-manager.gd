@@ -66,7 +66,7 @@ Returns the previously completed milestone.
 This controls the speed at which the pieces move.
 """
 func prev_milestone() -> Milestone:
-	return CurrentLevel.settings.speed_ups[PuzzleState.speed_index]
+	return CurrentLevel.settings.speed.speed_ups[PuzzleState.speed_index]
 
 
 """
@@ -77,8 +77,8 @@ finish condition.
 """
 func next_milestone() -> Milestone:
 	var milestone: Milestone
-	if PuzzleState.speed_index + 1 < CurrentLevel.settings.speed_ups.size():
-		milestone = CurrentLevel.settings.speed_ups[PuzzleState.speed_index + 1]
+	if PuzzleState.speed_index + 1 < CurrentLevel.settings.speed.speed_ups.size():
+		milestone = CurrentLevel.settings.speed.speed_ups[PuzzleState.speed_index + 1]
 	else:
 		milestone = CurrentLevel.settings.finish_condition
 	return milestone
@@ -90,8 +90,8 @@ If the player reached a milestone, we increase the speed.
 func _check_for_speed_up() -> void:
 	var new_speed_index: int = PuzzleState.speed_index
 	
-	while new_speed_index + 1 < CurrentLevel.settings.speed_ups.size() \
-			and milestone_met(CurrentLevel.settings.speed_ups[new_speed_index + 1]):
+	while new_speed_index + 1 < CurrentLevel.settings.speed.speed_ups.size() \
+			and milestone_met(CurrentLevel.settings.speed.speed_ups[new_speed_index + 1]):
 		new_speed_index += 1
 	
 	if PuzzleState.speed_index != new_speed_index:
