@@ -91,14 +91,14 @@ func start_load() -> void:
 func _process(_delta: float) -> void:
 	if _remaining_resource_paths:
 		if OS.has_feature("web"):
-			var start_usec := OS.get_ticks_usec()
+			var start_msec := OS.get_ticks_msec()
 			# Web targets do not support background threads, so we load a few resources every frame
-			while _remaining_resource_paths and OS.get_ticks_usec() < start_usec + 1000000 * CHUNK_SECONDS:
+			while _remaining_resource_paths and OS.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
 				_preload_next_resource()
 	elif _remaining_scene_paths:
-		var start_usec := OS.get_ticks_usec()
+		var start_msec := OS.get_ticks_msec()
 		# Loading scenes in threads causes 'another resource is loaded' errors, so we don't thread this
-		while _remaining_scene_paths and OS.get_ticks_usec() < start_usec + 1000000 * CHUNK_SECONDS:
+		while _remaining_scene_paths and OS.get_ticks_msec() < start_msec + 1000 * CHUNK_SECONDS:
 			_preload_next_scene()
 	else:
 		set_process(false)

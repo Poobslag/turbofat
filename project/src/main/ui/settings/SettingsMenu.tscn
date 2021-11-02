@@ -18,7 +18,7 @@
 [ext_resource path="res://src/main/ui/settings/keybind/KeybindCustom.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/ui/settings/settings-language.gd" type="Script" id=17]
 [ext_resource path="res://src/main/ui/settings/settings-tab-container.gd" type="Script" id=18]
-[ext_resource path="res://src/main/ui/settings/settings-creature-graphics.gd" type="Script" id=19]
+[ext_resource path="res://src/main/ui/settings/settings-creature-detail.gd" type="Script" id=19]
 [ext_resource path="res://src/main/ui/menu/theme/h5.theme" type="Theme" id=20]
 [ext_resource path="res://src/main/ui/settings/settings-warning.gd" type="Script" id=21]
 [ext_resource path="res://src/main/ui/settings/settings-save-slot.gd" type="Script" id=22]
@@ -189,7 +189,7 @@ theme = ExtResource( 1 )
 text = "Graphics"
 align = 1
 
-[node name="Creature Graphics" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics"]
+[node name="Creature Detail" type="HBoxContainer" parent="Window/UiArea/TabContainer/Sound + Graphics"]
 margin_top = 152.0
 margin_right = 560.0
 margin_bottom = 178.0
@@ -199,7 +199,7 @@ theme = ExtResource( 1 )
 custom_constants/separation = 20
 script = ExtResource( 19 )
 
-[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics"]
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Sound + Graphics/Creature Detail"]
 margin_right = 217.0
 margin_bottom = 26.0
 rect_min_size = Vector2( 120, 0 )
@@ -213,7 +213,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics"]
+[node name="OptionButton" type="OptionButton" parent="Window/UiArea/TabContainer/Sound + Graphics/Creature Detail"]
 margin_left = 237.0
 margin_right = 397.0
 margin_bottom = 26.0
@@ -249,7 +249,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckboxButton" type="CheckBox" parent="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync"]
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync"]
 margin_left = 237.0
 margin_right = 397.0
 margin_bottom = 28.0
@@ -290,7 +290,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CheckboxButton" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
 margin_left = 216.0
 margin_right = 560.0
 margin_bottom = 28.0
@@ -1094,14 +1094,14 @@ __meta__ = {
 [connection signal="popup_hide" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Ok" to="." method="_on_Ok_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Quit" to="." method="_on_Quit_pressed"]
-[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/CheckboxButton" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/CopySaveData/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/CopySaveData" method="_on_Button_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/Language" method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/Open User Folder/Button" to="Window/UiArea/TabContainer/Misc/Open User Folder" method="_on_Button_pressed"]
 [connection signal="delete_pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot" to="Dialogs" method="_on_SaveSlot_delete_pressed"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/SaveSlot/HBoxContainer/Delete" to="Window/UiArea/TabContainer/Misc/SaveSlot" method="_on_Delete_pressed"]
-[connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/Creature Graphics" method="_on_OptionButton_item_selected"]
-[connection signal="pressed" from="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync/CheckboxButton" to="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync" method="_on_CheckboxButton_pressed"]
+[connection signal="item_selected" from="Window/UiArea/TabContainer/Sound + Graphics/Creature Detail/OptionButton" to="Window/UiArea/TabContainer/Sound + Graphics/Creature Detail" method="_on_OptionButton_item_selected"]
+[connection signal="pressed" from="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync/CheckBox" to="Window/UiArea/TabContainer/Sound + Graphics/Use Vsync" method="_on_CheckBox_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/FatFinger/OptionButton" to="Window/UiArea/TabContainer/Touch/FatFinger" method="_on_OptionButton_item_selected"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Touch/Scheme/OptionButton" to="Window/UiArea/TabContainer/Touch/Scheme" method="_on_OptionButton_item_selected"]
 [connection signal="value_changed" from="Window/UiArea/TabContainer/Touch/Size/Control/HSlider" to="Window/UiArea/TabContainer/Touch/Size" method="_on_HSlider_value_changed"]

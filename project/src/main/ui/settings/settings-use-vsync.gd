@@ -3,11 +3,11 @@ extends HBoxContainer
 UI control for toggling vertical synchronization.
 """
 
-onready var _checkbox_button: CheckBox = $CheckboxButton
+onready var _check_box: CheckBox = $CheckBox
 
 func _ready() -> void:
-	_checkbox_button.pressed = SystemData.graphics_settings.use_vsync
+	_check_box.pressed = SystemData.graphics_settings.use_vsync
 
 
-func _on_CheckboxButton_pressed() -> void:
-	SystemData.graphics_settings.use_vsync = _checkbox_button.pressed
+func _on_CheckBox_pressed() -> void:
+	SystemData.graphics_settings.use_vsync = _check_box.pressed

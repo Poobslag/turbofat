@@ -11,7 +11,7 @@ creature editor will have strange behavior, particularly in its color picker.
 signal dna_loaded
 
 # The maximum amount of microseconds to spend setting shader params in each frame. This is capped to avoid frame drops.
-const MAX_SHADER_USEC_PER_FRAME := 240
+const MAX_SHADER_USEC_PER_FRAME := 120
 
 # Array of string shader keys from the dna which haven't yet been loaded. Instead of loading these up front, we load
 # these gradually over time. Setting shader params is slow and setting too many at once causes frame drops.
