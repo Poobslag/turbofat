@@ -2,7 +2,7 @@ extends Control
 """
 Draws shadowy stars and seeds inside snack boxes and cake boxes.
 
-These star and seed sprites are referred to as 'wobblers'.
+These star and seed sprites are referred to as 'star seeds'.
 """
 
 """
@@ -17,8 +17,8 @@ Parameters:
 """
 signal food_spawned(cell, remaining_food, food_type)
 
-# Aesthetically pleasing wobbler arrangements. It looks nice if they're balanced on the left and right sides.
-const WOBBLER_POSITIONS_BY_SIZE := {
+# Aesthetically pleasing star seed arrangements. It looks nice if they're balanced on the left and right sides.
+const STAR_SEED_POSITIONS_BY_SIZE := {
 	Vector2(3, 3): [
 			[1, 2, 3], [1, 3, 2],
 			[2, 1, 3], [2, 3, 1],
@@ -50,8 +50,8 @@ const WOBBLER_POSITIONS_BY_SIZE := {
 		],
 }
 
-# Aesthetically pleasing wobbler arrangements for levels with double snacks, double cakes.
-const WOBBLER_POSITIONS_BY_SIZE_DOUBLE := {
+# Aesthetically pleasing star seed arrangements for levels with double snacks, double cakes.
+const STAR_SEED_POSITIONS_BY_SIZE_DOUBLE := {
 	Vector2(3, 3): [
 			[12, 13, 23], [12, 23, 13],
 			[13, 12, 23], [13, 23, 12],
@@ -82,14 +82,13 @@ const WOBBLER_POSITIONS_BY_SIZE_DOUBLE := {
 export (NodePath) var _puzzle_tile_map_path: NodePath
 
 # key: Vector2 playfield cell positions
-# value: Wobbler node contained within that cell
-var _wobblers_by_cell: Dictionary
+# value: StarSeed node contained within that cell
+var _star_seeds_by_cell: Dictionary
 
 # the number of remaining food items to spawn for the current sequence of line clears
 var _remaining_food_for_line_clears := 0
 
-export (PackedScene) var StarScene: PackedScene
-export (PackedScene) var SeedScene: PackedScene
+export (PackedScene) var StarSeedScene: PackedScene
 
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
 
@@ -98,10 +97,10 @@ func _ready() -> void:
 
 
 """
-Detects boxes in the playfield, and places wobblers in them.
+Detects boxes in the playfield, and places star_seeds in them.
 """
-func _prepare_wobblers_for_level() -> void:
-	_clear_wobblers()
+func _prepare_star_seeds_for_level() -> void:
+	_clear_star_seeds()
 	for x in range(PuzzleTileMap.COL_COUNT):
 		for y in range(PuzzleTileMap.ROW_COUNT):
 			var cell_contents := _puzzle_tile_map.get_cellv(Vector2(x, y))
@@ -116,39 +115,39 @@ func _prepare_wobblers_for_level() -> void:
 				rect.size.x += 1
 			while PuzzleConnect.is_d(_puzzle_tile_map.get_cell_autotile_coord(rect.end.x - 1, rect.end.y - 1).x):
 				rect.size.y += 1
-			_add_wobblers_for_box(rect, autotile_coord.y)
+			_add_star_seeds_for_box(rect, autotile_coord.y)
 
 
 """
-Adds wobblers for a snack box or cake box.
+Adds star seeds for a snack box or cake box.
 
 Parameters:
 	'rect': Cell coordinates defining the box's position and dimensions
 	
 	'box_type': An enum from Foods.BoxType defining the box's color
 """
-func _add_wobblers_for_box(rect: Rect2, box_type: int) -> void:
-	_remove_wobblers_for_box(rect)
-	var wobbler_positions := _wobbler_positions(rect, box_type)
-	_spawn_wobblers(rect, box_type, wobbler_positions)
+func _add_star_seeds_for_box(rect: Rect2, box_type: int) -> void:
+	_remove_star_seeds_for_box(rect)
+	var star_seed_positions := _star_seed_positions(rect, box_type)
+	_spawn_star_seeds(rect, box_type, star_seed_positions)
 
 
 """
-Clears wobblers to make room for a new snack box or cake box.
+Clears star seeds to make room for a new snack box or cake box.
 
 Parameters:
 	'rect': Cell coordinates defining the box's position and dimensions
 """
-func _remove_wobblers_for_box(rect: Rect2) -> void:
+func _remove_star_seeds_for_box(rect: Rect2) -> void:
 	for x in range(rect.position.x, rect.end.x):
 		for y in range(rect.position.y, rect.end.y):
-			_remove_wobbler(Vector2(x, y))
+			_remove_star_seed(Vector2(x, y))
 
 
 """
-Calculates relative positions for wobblers within a snack box or cake box.
+Calculates relative positions for star seeds within a snack box or cake box.
 
-Returns an array of ints representing concatenated columns within the box. For example if wobblers should be in the
+Returns an array of ints representing concatenated columns within the box. For example if star seeds should be in the
 first and third column of the box the array will contain the number '13', the concatenation of the values 1 and 3.
 
 Parameters:
@@ -159,47 +158,47 @@ Parameters:
 Returns:
 	An array of ints representing concatenated columns within the box.
 """
-func _wobbler_positions(rect: Rect2, box_type: int) -> Array:
-	var wobbler_multiplier := _wobbler_multiplier(box_type)
-	var wobbler_positions: Array
-	if wobbler_multiplier == 0:
-		# no wobblers
-		wobbler_positions = []
+func _star_seed_positions(rect: Rect2, box_type: int) -> Array:
+	var star_seed_multiplier := _star_seed_multiplier(box_type)
+	var star_seed_positions: Array
+	if star_seed_multiplier == 0:
+		# no star_seeds
+		star_seed_positions = []
 		for _i in range(rect.size.y):
-			wobbler_positions.append(0)
-	elif wobbler_multiplier == 1 and WOBBLER_POSITIONS_BY_SIZE.has(rect.size):
-		# regular wobblers; load a random aesthetically pleasing wobbler arrangement
-		wobbler_positions = Utils.rand_value(WOBBLER_POSITIONS_BY_SIZE[rect.size])
-	elif wobbler_multiplier == 2 and WOBBLER_POSITIONS_BY_SIZE_DOUBLE.has(rect.size):
-		# double wobblers; load a random aesthetically pleasing wobbler arrangement
-		wobbler_positions = Utils.rand_value(WOBBLER_POSITIONS_BY_SIZE_DOUBLE[rect.size])
+			star_seed_positions.append(0)
+	elif star_seed_multiplier == 1 and STAR_SEED_POSITIONS_BY_SIZE.has(rect.size):
+		# regular star seeds; load a random aesthetically pleasing star seed arrangement
+		star_seed_positions = Utils.rand_value(STAR_SEED_POSITIONS_BY_SIZE[rect.size])
+	elif star_seed_multiplier == 2 and STAR_SEED_POSITIONS_BY_SIZE_DOUBLE.has(rect.size):
+		# double star seeds; load a random aesthetically pleasing star seed arrangement
+		star_seed_positions = Utils.rand_value(STAR_SEED_POSITIONS_BY_SIZE_DOUBLE[rect.size])
 	else:
 		# create a random arrangement
-		wobbler_positions = []
-		var wobbler_count := min(wobbler_multiplier * max(1, rect.size.x - 2), rect.size.x)
+		star_seed_positions = []
+		var star_seed_count := min(star_seed_multiplier * max(1, rect.size.x - 2), rect.size.x)
 		for _y in range(rect.size.y):
-			# calculate a random set of wobbler positions. the number of wobblers is two less than the width of the
+			# calculate a random set of star seed positions. the number of star seeds is two less than the width of the
 			# box -- but every box will always have at least one.
 			var new_positions := range(rect.size.x)
 			new_positions.shuffle()
-			new_positions = new_positions.slice(new_positions.size() - wobbler_count, new_positions.size())
-			wobbler_positions.append(_wobbler_x_int(new_positions))
-	return wobbler_positions
+			new_positions = new_positions.slice(new_positions.size() - star_seed_count, new_positions.size())
+			star_seed_positions.append(_star_seed_x_int(new_positions))
+	return star_seed_positions
 
 
 """
-Calculates and returns a multiplier for boxes which should have unusual numbers of wobblers.
+Calculates and returns a multiplier for boxes which should have unusual numbers of star seeds.
 
-For most boxes this multiplier will be 1, but it could be 0 for boxes with no wobblers, or 2 for boxes with extra
-wobblers.
+For most boxes this multiplier will be 1, but it could be 0 for boxes with no star seeds, or 2 for boxes with extra
+star seeds.
 
 Parameters:
 	'box_type': An enum from Foods.BoxType defining the box's color
 
 Returns:
-	An int multiplier in the range [0, 2] representing how many wobblers the box should have
+	An int multiplier in the range [0, 2] representing how many star seeds the box should have
 """
-func _wobbler_multiplier(box_type: int) -> int:
+func _star_seed_multiplier(box_type: int) -> int:
 	var multiplier: float
 	if Foods.is_cake_box(box_type):
 		multiplier = CurrentLevel.settings.score.cake_points / float(ScoreRules.DEFAULT_CAKE_POINTS)
@@ -209,47 +208,45 @@ func _wobbler_multiplier(box_type: int) -> int:
 
 
 """
-Spawns wobblers within a snack box or cake box.
+Spawns star seeds within a snack box or cake box.
 
 Parameters:
 	'rect': Cell coordinates defining the box's position and dimensions
 	
 	'box_type': An enum from Foods.BoxType defining the box's color
 	
-	'wobbler_positions': An array of ints representing concatenated columns within the box.
+	'star_seed_positions': An array of ints representing concatenated columns within the box.
 """
-func _spawn_wobblers(rect: Rect2, box_type: int, wobbler_positions: Array) -> void:
-	for wobbler_y in range(rect.size.y):
-		for wobbler_x in _wobbler_x_array(wobbler_positions[wobbler_y]):
-			var wobbler: Wobbler
-			if Foods.is_cake_box(box_type):
-				wobbler = StarScene.instance()
-			else:
-				wobbler = SeedScene.instance()
+func _spawn_star_seeds(rect: Rect2, box_type: int, star_seed_positions: Array) -> void:
+	for star_seed_y in range(rect.size.y):
+		for star_seed_x in _star_seed_x_array(star_seed_positions[star_seed_y]):
+			var star_seed: StarSeed = StarSeedScene.instance()
 			
-			var cell := rect.position + Vector2(wobbler_x, wobbler_y)
+			var cell := rect.position + Vector2(star_seed_x, star_seed_y)
 			if cell.y < PuzzleTileMap.FIRST_VISIBLE_ROW:
-				wobbler.visible = false
+				star_seed.visible = false
 			
 			var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
-			# alternate snack foods in a horizontal stripe pattern
-			wobbler.food_type = food_types[int(cell.y) % food_types.size()]
 			
-			wobbler.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
-			wobbler.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
-			wobbler.position *= _puzzle_tile_map.scale
-			wobbler.base_scale = _puzzle_tile_map.scale
-			wobbler.z_index = 4
-			_add_wobbler(cell, wobbler)
+			# alternate snack foods in a horizontal stripe pattern
+			star_seed.food_type = food_types[int(cell.y) % food_types.size()]
+			
+			star_seed.position = _puzzle_tile_map.map_to_world(cell + Vector2(0, -3))
+			star_seed.position += _puzzle_tile_map.cell_size * Vector2(0.5, 0.5)
+			star_seed.position *= _puzzle_tile_map.scale
+			star_seed.scale = _puzzle_tile_map.scale
+			star_seed.z_index = 4
+			
+			_add_star_seed(cell, star_seed)
 
 
 """
-Converts a wobbler position array into a number.
+Converts a star seed position array into a number.
 
-Wobbler positions are stored as numbers like '235' representing the second, third and fifth horizontal position in a
+StarSeed positions are stored as numbers like '235' representing the second, third and fifth horizontal position in a
 box. This method creates that kind of number from a position array like [1, 3, 4]
 """
-func _wobbler_x_array(x_int: int) -> Array:
+func _star_seed_x_array(x_int: int) -> Array:
 	var x_array := []
 	var x_int_tmp := x_int
 	while x_int_tmp > 0:
@@ -259,84 +256,84 @@ func _wobbler_x_array(x_int: int) -> Array:
 
 
 """
-Converts a wobbler position number into an array of x coordinates.
+Converts a star seed position number into an array of x coordinates.
 
-Wobbler positions are stored as numbers like '235' representing the second, third and fifth horizontal position in a
+Star seed positions are stored as numbers like '235' representing the second, third and fifth horizontal position in a
 box. This method converts those ints into a position array like [1, 3, 4].
 """
-func _wobbler_x_int(x_array: Array) -> int:
+func _star_seed_x_int(x_array: Array) -> int:
 	var x_int := 0
-	for wobbler_x in x_array:
-		x_int = x_int * 10 + wobbler_x + 1
+	for star_seed_x in x_array:
+		x_int = x_int * 10 + star_seed_x + 1
 	return x_int
 
 
 """
-Removes a wobbler from a playfield cell.
+Removes a star seed from a playfield cell.
 """
-func _remove_wobbler(cell: Vector2) -> void:
-	if not _wobblers_by_cell.has(cell):
+func _remove_star_seed(cell: Vector2) -> void:
+	if not _star_seeds_by_cell.has(cell):
 		return
 	
-	_wobblers_by_cell[cell].queue_free()
-	_wobblers_by_cell.erase(cell)
+	_star_seeds_by_cell[cell].queue_free()
+	_star_seeds_by_cell.erase(cell)
 
 
 """
-Adds a wobbler to a playfield cell.
+Adds a star seed to a playfield cell.
 """
-func _add_wobbler(cell: Vector2, wobbler: Wobbler) -> void:
-	_remove_wobbler(cell)
-	_wobblers_by_cell[cell] = wobbler
-	add_child(wobbler)
+func _add_star_seed(cell: Vector2, star_seed: StarSeed) -> void:
+	_remove_star_seed(cell)
+	_star_seeds_by_cell[cell] = star_seed
+	add_child(star_seed)
 
 
 """
-Removes all wobblers from all playfield cells.
+Removes all star seeds from all playfield cells.
 """
-func _clear_wobblers() -> void:
-	for wobbler in get_children():
-		wobbler.queue_free()
-	_wobblers_by_cell.clear()
+func _clear_star_seeds() -> void:
+	for star_seed in get_children():
+		star_seed.queue_free()
+	_star_seeds_by_cell.clear()
 
 
 """
-Removes all wobblers from a playfield row.
+Removes all star seeds from a playfield row.
 """
 func _erase_row(y: int) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
-		_remove_wobbler(Vector2(x, y))
+		_remove_star_seed(Vector2(x, y))
 
 
 """
-Shifts a group of wobblers up or down.
+Shifts a group of star seeds up or down.
 
 Parameters:
-	'bottom_row': The lowest row to shift. All wobblers at or above this row will be shifted.
+	'bottom_row': The lowest row to shift. All star seeds at or above this row will be shifted.
 	
-	'direction': The direction to shift the wobblers, such as Vector2.UP or Vector2.DOWN.
+	'direction': The direction to shift the star seeds, such as Vector2.UP or Vector2.DOWN.
 """
 func _shift_rows(bottom_row: int, direction: Vector2) -> void:
-	# First, erase and store all the old wobblers which are shifting
+	# First, erase and store all the old star_seeds which are shifting
 	var shifted := {}
-	for cell in _wobblers_by_cell.keys():
+	for cell in _star_seeds_by_cell.keys():
 		if cell.y > bottom_row:
-			# wobblers below the specified bottom row are left alone
+			# star_seeds below the specified bottom row are left alone
 			continue
-		# wobblers above the specified bottom row are shifted
-		_wobblers_by_cell[cell].position += direction * _puzzle_tile_map.cell_size * _puzzle_tile_map.scale
+		# star_seeds above the specified bottom row are shifted
+		_star_seeds_by_cell[cell].position += direction * _puzzle_tile_map.cell_size * _puzzle_tile_map.scale
 		if cell.y == PuzzleTileMap.FIRST_VISIBLE_ROW - 1:
-			_wobblers_by_cell[cell].visible = true
-		shifted[cell + direction] = _wobblers_by_cell[cell]
-		_wobblers_by_cell.erase(cell)
+			_star_seeds_by_cell[cell].visible = true
+		shifted[cell + direction] = _star_seeds_by_cell[cell]
+		_star_seeds_by_cell.erase(cell)
 	
-	# Next, write the old wobblers in their new locations
+	# Next, write the old star_seeds in their new locations
 	for cell in shifted.keys():
-		_wobblers_by_cell[cell] = shifted[cell]
+		_star_seeds_by_cell[cell] = shifted[cell]
 
 
 func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
-	_add_wobblers_for_box(rect, box_type)
+	_add_star_seeds_for_box(rect, box_type)
 
 
 func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
@@ -344,10 +341,10 @@ func _on_Playfield_line_erased(y: int, _total_lines: int, _remaining_lines: int,
 
 
 func _on_Playfield_line_deleted(y: int) -> void:
-	# some levels might have rows which are deleted, but not erased. erase any wobblers
+	# some levels might have rows which are deleted, but not erased. erase any star_seeds
 	_erase_row(y)
 	
-	# drop all wobblers above the specified row to fill the gap
+	# drop all star seeds above the specified row to fill the gap
 	_shift_rows(y - 1, Vector2.DOWN)
 
 
@@ -355,24 +352,24 @@ func _on_Playfield_blocks_prepared() -> void:
 	if not _puzzle_tile_map:
 		# _ready() has not yet been called
 		return
-	_prepare_wobblers_for_level()
+	_prepare_star_seeds_for_level()
 
 
 func _on_Playfield_line_clears_scheduled(ys: Array) -> void:
 	_remaining_food_for_line_clears = 0
 	for y in ys:
 		for x in range(PuzzleTileMap.COL_COUNT):
-			if _wobblers_by_cell.has(Vector2(x, y)):
+			if _star_seeds_by_cell.has(Vector2(x, y)):
 				_remaining_food_for_line_clears += 1
 
 
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
-		if _wobblers_by_cell.has(Vector2(x, y)):
+		if _star_seeds_by_cell.has(Vector2(x, y)):
 			_remaining_food_for_line_clears -= 1
 			
 			emit_signal("food_spawned", Vector2(x, y), _remaining_food_for_line_clears,
-					_wobblers_by_cell[Vector2(x, y)].food_type)
+					_star_seeds_by_cell[Vector2(x, y)].food_type)
 
 
 """
@@ -383,5 +380,5 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 
 
 func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
-	# raise all wobblers at or above the specified row
+	# raise all star seeds at or above the specified row
 	_shift_rows(y, Vector2.UP)

@@ -7,7 +7,6 @@ A pickup which spawns a food item when collected by the player.
 # the duration in seconds between star color changes
 const STAR_COLOR_CHANGE_DURATION := 0.8
 
-# The food type represented by this wobbler
 var food_type := 0 setget set_food_type
 
 # 'true' if the food item should be shown, 'false' if the star or seed should be shown
