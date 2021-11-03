@@ -17,7 +17,7 @@ func _ready() -> void:
 	if TranslationServer.get_loaded_locales().has(_current_loaded_locale()):
 		_option_button.selected = TranslationServer.get_loaded_locales().find(_current_loaded_locale())
 	else:
-		push_error("Locale '%s' was not in the list of loaded locales" % [current_loaded_locale])
+		push_warning("Locale '%s' was not in the list of loaded locales" % [current_loaded_locale])
 
 
 """

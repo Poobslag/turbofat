@@ -15,22 +15,6 @@ enum PickupType {
 	FLOAT_REGEN, # pickups float in place and regenerate if collected
 }
 
-# key: (string) line clear type which appears in level definitions
-# value: (int) an enum from LineClearType
-const LINE_CLEAR_TYPES_BY_NAME := {
-	"default": LineClearType.DEFAULT,
-	"float": LineClearType.FLOAT,
-	"float_fall": LineClearType.FLOAT_FALL,
-}
-
-# key: (string) pickup type which appears in level definitions
-# value: (int) an enum from PickupType
-const PICKUP_TYPES_BY_NAME := {
-	"default": PickupType.DEFAULT,
-	"float": PickupType.FLOAT,
-	"float_regen": PickupType.FLOAT_REGEN,
-}
-
 # if true, the entire playfield is cleared when the player tops out
 var clear_on_top_out := false
 

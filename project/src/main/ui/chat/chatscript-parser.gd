@@ -226,7 +226,7 @@ class ChatState extends AbstractState:
 		who = _unalias(who)
 		if _character_aliases:
 			if not who in _character_aliases and not who in _character_aliases.values():
-				push_error("Unrecognized character name: %s" % [who])
+				push_warning("Unrecognized character name: %s" % [who])
 		_event.who = who
 		
 		_event.text = StringUtils.substring_after(line, ": ")

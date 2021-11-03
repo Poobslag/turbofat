@@ -32,7 +32,7 @@ func test_convert_to_json_and_back() -> void:
 	rules.show_speed_rank = RankRules.ShowRank.HIDE
 	rules.skip_results = true
 	rules.success_bonus = 9.0
-	rules.top_out_penalty = 10
+	rules.top_out_penalty = 10.0
 	rules.unranked = true
 	_convert_to_json_and_back()
 	
@@ -51,7 +51,7 @@ func test_convert_to_json_and_back() -> void:
 	assert_eq(rules.show_speed_rank, RankRules.ShowRank.HIDE)
 	assert_eq(rules.skip_results, true)
 	assert_eq(rules.success_bonus, 9.0)
-	assert_eq(rules.top_out_penalty, 10)
+	assert_eq(rules.top_out_penalty, 10.0)
 	assert_eq(rules.unranked, true)
 
 
