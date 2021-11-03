@@ -83,15 +83,15 @@ func _refresh_puzzle() -> void:
 		if not signal_name:
 			pass
 		elif signal_name == "line_cleared":
-			_playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
+			_playfield.connect(signal_name, self, "_on_Playfield_line_cleared")
 		elif signal_name == "box_built":
-			_playfield.connect("box_built", self, "_on_Playfield_box_built")
+			_playfield.connect(signal_name, self, "_on_Playfield_box_built")
 		elif signal_name == "squish_moved":
-			_piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
+			_piece_manager.connect(signal_name, self, "_on_PieceManager_squish_moved")
 		elif signal_name in _get_signal_names(_piece_manager):
 			_piece_manager.connect(signal_name, self, "_on_skill_performed")
 		else:
-			push_error("Could not find sender for signal '%s'" % signal_name)
+			push_warning("Could not find sender for signal '%s'" % signal_name)
 
 
 """

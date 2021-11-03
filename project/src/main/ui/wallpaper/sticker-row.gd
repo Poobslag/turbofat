@@ -40,9 +40,9 @@ func _physics_process(delta: float) -> void:
 	
 	# add stickers if we need more
 	if rect_size.y == 0:
-		push_warning("illegal sticker row rect size (%s)" % [rect_size])
+		push_warning("Illegal sticker row rect size (%s)" % [rect_size])
 	elif velocity.x == 0:
-		push_warning("illegal velocity (%s)" % [velocity])
+		push_warning("Illegal velocity (%s)" % [velocity])
 	else:
 		if velocity.x > 0:
 			while not _back_sticker or _back_sticker.position.x > 0:
