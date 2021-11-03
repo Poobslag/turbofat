@@ -1,4 +1,4 @@
-[gd_scene load_steps=93 format=2]
+[gd_scene load_steps=92 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -32,8 +32,6 @@
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=30]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/puzzle/combo-counters.gd" type="Script" id=32]
-[ext_resource path="res://src/main/puzzle/Seed.tscn" type="PackedScene" id=33]
-[ext_resource path="res://src/main/puzzle/Star.tscn" type="PackedScene" id=34]
 [ext_resource path="res://src/main/puzzle/FrostingGlob.tscn" type="PackedScene" id=35]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
 [ext_resource path="res://src/main/puzzle/FoodItem.tscn" type="PackedScene" id=37]
@@ -71,6 +69,7 @@
 [ext_resource path="res://src/main/puzzle/frame-drops-label.gd" type="Script" id=69]
 [ext_resource path="res://src/main/puzzle/level-timer-manager.gd" type="Script" id=70]
 [ext_resource path="res://src/main/puzzle/piece/piece-queue.gd" type="Script" id=71]
+[ext_resource path="res://src/main/puzzle/StarSeed.tscn" type="PackedScene" id=72]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -371,8 +370,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 _puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
-StarScene = ExtResource( 34 )
-SeedScene = ExtResource( 33 )
+StarSeedScene = ExtResource( 72 )
 
 [node name="PieceManager" parent="." instance=ExtResource( 9 )]
 playfield_path = NodePath("../Playfield")

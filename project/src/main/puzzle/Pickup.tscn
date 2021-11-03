@@ -4,7 +4,7 @@
 [ext_resource path="res://assets/main/puzzle/blocks/seeds.png" type="Texture" id=2]
 [ext_resource path="res://src/main/puzzle/wobbler.gd" type="Script" id=3]
 [ext_resource path="res://src/main/puzzle/pickup.gd" type="Script" id=4]
-[ext_resource path="res://src/main/puzzle/Star.tscn" type="PackedScene" id=5]
+[ext_resource path="res://assets/main/puzzle/blocks/stars.png" type="Texture" id=5]
 
 [node name="Pickup" type="Node2D"]
 script = ExtResource( 4 )
@@ -20,9 +20,16 @@ avg_spin_period = 6.28
 avg_pulse_amount = 0.18
 avg_pulse_period = 3.14
 
-[node name="Star" parent="." instance=ExtResource( 5 )]
+[node name="Star" type="Sprite" parent="."]
 visible = false
-material = null
+texture = ExtResource( 5 )
+hframes = 2
+vframes = 2
+script = ExtResource( 3 )
+avg_spin_amount = 0.6
+avg_spin_period = 6.28
+avg_pulse_amount = 0.18
+avg_pulse_period = 4.28
 
 [node name="FoodItem" parent="." instance=ExtResource( 1 )]
 visible = false
