@@ -2,12 +2,12 @@
   "version": "297a",
   "success_condition": {
     "type": "time_under",
-    "value": "300"
+    "value": "360"
   },
   "start_speed": "FC",
   "finish_condition": {
     "type": "score",
-    "value": "10000"
+    "value": "7500"
   },
   "lose_condition": [
     "top_out 1"

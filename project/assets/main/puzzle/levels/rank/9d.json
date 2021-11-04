@@ -2,7 +2,7 @@
   "version": "297a",
   "success_condition": {
     "type": "score",
-    "value": "6000"
+    "value": "5000"
   },
   "start_speed": "FB",
   "finish_condition": {

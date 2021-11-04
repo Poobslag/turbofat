@@ -10,8 +10,8 @@ const BEST_RANK := RankResult.BEST_RANK
 # These RDF (rank difference factor) constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99
 # means the ranks are really narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like
 # 0.96 means the ranks are more forgiving.
-const RDF_SPEED := 0.960
-const RDF_LINES := 0.960
+const RDF_SPEED := 0.940 # 'speed' measures how fast the player can place pieces
+const RDF_ENDURANCE := 0.960 # 'endurance' measures how long the player can sustain
 const RDF_BOX_SCORE_PER_LINE := 0.970
 const RDF_COMBO_SCORE_PER_LINE := 0.970
 const RDF_PICKUP_SCORE := 0.980
@@ -24,6 +24,13 @@ const MASTER_BOX_SCORE := 14.5
 const MASTER_COMBO_SCORE := 17.575
 const MASTER_CUSTOMER_COMBO := 22
 const MASTER_LEFTOVER_LINES := 12
+
+# The fastest LPM for a human player at the highest piece speeds. Theoretically this could be as high as 180 based on
+# similar records in other games.
+#
+# The current value of 65 is a conservative estimate extrapolated based on my own personal best of 52 lines per
+# minute.
+const MASTER_LINES_PER_MINUTE := 65
 
 # The number of extra unnecessary frames a perfect player will spend moving their piece.
 const MASTER_MVMT_FRAMES := 6
@@ -135,19 +142,31 @@ static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 
 
 """
-Calculates the lines per minute for a master player.
+Calculates the lines per minute for a specific rank.
+
+The lines per minute (lpm) and seconds per line (spl) are limited based on current level's speeds, such as its line
+clear delay and lock delay. It is also limited based on the player's expected skill level.
 """
-func master_lpm() -> float:
+func rank_lpm(rank: float) -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
 	
+	# calculate the player's lpm/spl based on the master lpm
+	var player_lpm_limit := MASTER_LINES_PER_MINUTE * pow(RDF_SPEED, rank)
+	var player_spl_limit := 60.0 / player_lpm_limit
+	
 	for i in range(CurrentLevel.settings.speed.speed_ups.size()):
+		# calculate the maximum lpm/spl based on the piece speed
 		var milestone: Milestone = CurrentLevel.settings.speed.speed_ups[i]
 		var piece_speed: PieceSpeed = PieceSpeeds.speed(milestone.get_meta("speed"))
-		
 		var min_frames_per_line := min_frames_per_line(piece_speed)
-		var master_seconds_per_line: float = min_frames_per_line / 60 \
+		var mechanical_spl_limit: float = min_frames_per_line / 60 \
 				+ 2 * CurrentLevel.settings.rank.extra_seconds_per_piece
+		var mechanical_lpm_limit := 60.0 / mechanical_spl_limit
+		
+		# calculate the lpm/spl based on which is slower: the mechanical limit, or the player's limit
+		var lines_per_minute := min(mechanical_lpm_limit, player_lpm_limit)
+		var seconds_per_line := max(mechanical_spl_limit, player_spl_limit)
 		
 		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 		var level_lines := 100.0
@@ -162,7 +181,7 @@ func master_lpm() -> float:
 					# warning-ignore:integer_division
 					level_lines = speed_up.value / 2
 				Milestone.TIME_OVER:
-					level_lines = speed_up.value / master_seconds_per_line
+					level_lines = speed_up.value / seconds_per_line
 				Milestone.SCORE:
 					level_lines = speed_up.value / \
 							(master_box_score(CurrentLevel.settings) + master_combo_score(CurrentLevel.settings) + 1)
@@ -178,7 +197,7 @@ func master_lpm() -> float:
 		# avoid divide by zero, and round up to the nearest line clear
 		level_lines = ceil(max(level_lines, 1))
 		
-		total_frames += master_seconds_per_line * level_lines * 60
+		total_frames += seconds_per_line * level_lines * 60
 		total_lines += level_lines
 	
 	return 60 * 60 * float(total_lines) / total_frames
@@ -228,9 +247,7 @@ Parameters:
 		lines in Marathon mode.
 """
 func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
-	var master_lpm := master_lpm()
-	
-	var target_speed: float = master_lpm
+	var target_speed: float = rank_lpm(BEST_RANK)
 	var target_box_score_per_line := master_box_score(CurrentLevel.settings)
 	var target_combo_score_per_line := master_combo_score(CurrentLevel.settings)
 	var target_pickup_score_per_line := master_pickup_score_per_line(CurrentLevel.settings)
@@ -254,12 +271,18 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
 			leftover_lines = 0
 		Milestone.TIME_OVER:
-			target_lines = master_lpm * finish_condition.value / 60.0
+			target_lines = target_speed * finish_condition.value / 60.0
 			leftover_lines = 0
 	
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
-	rank_result.lines_rank = log(rank_result.lines / target_lines) / log(RDF_LINES)
-	rank_result.pieces_rank = log(rank_result.pieces / (target_lines * 2)) / log(RDF_LINES)
+	if rank_result.compare == "-seconds" or finish_condition.type == Milestone.TIME_OVER:
+		# for modes like 'ultra' and 'sprint' where time matters, line/piece rank scales with speed
+		rank_result.lines_rank = log(rank_result.lines / target_lines) / log(RDF_SPEED)
+		rank_result.pieces_rank = log(rank_result.pieces / (target_lines * 2)) / log(RDF_SPEED)
+	else:
+		# for modes like 'marathon' where time matters, line/piece rank scales with endurance
+		rank_result.lines_rank = log(rank_result.lines / target_lines) / log(RDF_ENDURANCE)
+		rank_result.pieces_rank = log(rank_result.pieces / (target_lines * 2)) / log(RDF_ENDURANCE)
 	
 	if target_box_score_per_line == 0:
 		# award the player master rank if it's impossible to score any box points on a level
@@ -285,8 +308,8 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		# award the player master rank if it's impossible to score any pickup points on a level
 		rank_result.pickup_score_rank = 0.0
 	
-	# Binary search for the player's score rank. Score is a function of several criteria, the rank doesn't deteriorate
-	# in a predictable way like the other ranks
+	# Binary search for the player's overall rank. Overall rank is a function of several criteria, the rank doesn't
+	# deteriorate in a predictable way like the other ranks
 	var overall_rank_max := WORST_RANK
 	var overall_rank_min := BEST_RANK
 	for _i in range(20):
@@ -297,8 +320,10 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 				* pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
 		var tmp_pickup_score_per_line := target_pickup_score_per_line \
 				* pow(RDF_PICKUP_SCORE_PER_LINE, tmp_overall_rank)
+		
 		if rank_result.compare == "-seconds":
-			var tmp_speed := target_speed * pow(RDF_SPEED, tmp_overall_rank)
+			# for modes like 'ultra' where you race to a score, rank scales with speed
+			var tmp_speed := rank_lpm(tmp_overall_rank)
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
 			if (finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) / points_per_second \
 					< rank_result.seconds:
@@ -306,7 +331,15 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			else:
 				overall_rank_max = tmp_overall_rank
 		else:
-			var tmp_lines := target_lines * pow(RDF_LINES, tmp_overall_rank) + leftover_lines
+			var tmp_lines: float
+			if finish_condition.type == Milestone.TIME_OVER:
+				# for modes like 'sprint' where you go for a high score in a time limit, rank scales with speed
+				var tmp_speed := rank_lpm(tmp_overall_rank)
+				tmp_lines = tmp_speed * finish_condition.value / 60.0
+			else:
+				# for modes like 'marathon' where you aim for a number of lines, rank scales with endurance
+				tmp_lines = target_lines * pow(RDF_ENDURANCE, tmp_overall_rank) + leftover_lines
+			
 			var tmp_box_score := tmp_box_score_per_line * tmp_lines
 			var tmp_combo_score := tmp_combo_score_per_line * tmp_lines
 			tmp_combo_score = max(0, tmp_combo_score - COMBO_DEFICIT[min(ceil(tmp_lines), COMBO_DEFICIT.size() - 1)])

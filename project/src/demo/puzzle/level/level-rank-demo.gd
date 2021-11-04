@@ -58,7 +58,7 @@ func _calculate_extra_seconds_per_piece() -> void:
 	for _i in range(20):
 		CurrentLevel.settings.rank.extra_seconds_per_piece = \
 				0.5 * (extra_seconds_per_piece_min + extra_seconds_per_piece_max)
-		var lpm_for_grade := _rank_calculator.master_lpm() * pow(RankCalculator.RDF_SPEED, target_rank)
+		var lpm_for_grade := _rank_calculator.rank_lpm(target_rank)
 		if lpm_for_grade >= best_result.speed:
 			extra_seconds_per_piece_min = CurrentLevel.settings.rank.extra_seconds_per_piece
 		else:
