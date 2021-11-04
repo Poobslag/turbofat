@@ -24,9 +24,9 @@ var _data_per_rank := {
 	"5d": ["16", "AA", "6:00"],
 	"6d": ["10", "AE", "3:00"],
 	"7d": ["10", "A0", "10:00"],
-	"8d": ["7", "FA", "3:00"],
-	"9d": ["7", "FB", "4:00"],
-	"10d": ["4", "FC", "5:00"],
+	"8d": ["10", "FA", "4:00"], # 'FA' requires much faster play than 'AA'
+	"9d": ["8", "FB", "5:00"],
+	"10d": ["6", "FC", "6:00"],
 	"M": ["4", "FA", "10:00"],
 }
 
@@ -47,7 +47,7 @@ func _ready() -> void:
 		
 		# print the resulting lines and score
 		text += "Rank %s: %s points in %s" % [data_key, target_score, duration_string]
-		text += " (%s lines, %01d bpm, %01d ppl)\n" \
+		text += " (%s lines, %01d ppm, %01d ppl)\n" \
 				% [target_lines, (2 * target_lines) / (seconds / 60.0), target_score / target_lines]
 		
 		# for marathon levels, also print a diminished score which is more realistic to reach under pressure

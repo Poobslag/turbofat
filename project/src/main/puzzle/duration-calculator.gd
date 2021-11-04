@@ -54,7 +54,7 @@ func duration(settings: LevelSettings) -> float:
 		Milestone.CUSTOMERS:
 			var rank: float = RANKS_BY_DIFFICULTY[settings.get_difficulty()]
 			var lines_per_customer := RankCalculator.master_customer_combo(settings)
-			lines_per_customer *= pow(RankCalculator.RDF_LINES, rank)
+			lines_per_customer *= pow(RankCalculator.RDF_ENDURANCE, rank)
 			var lines := lines_per_customer * settings.finish_condition.value
 			result = _duration_for_lines(settings, lines)
 	
