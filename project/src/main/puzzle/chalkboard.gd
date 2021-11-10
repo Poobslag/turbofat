@@ -1,7 +1,5 @@
 extends TextureRect
-"""
-Chalkboard which displays the player's score and progress during a puzzle.
-"""
+## Chalkboard which displays the player's score and progress during a puzzle.
 
 func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")

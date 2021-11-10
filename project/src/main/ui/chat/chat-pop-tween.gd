@@ -1,11 +1,9 @@
 extends Tween
-"""
-Squishes the chat frame when the chat pops in or out.
-"""
+## Squishes the chat frame when the chat pops in or out.
 
 signal pop_out_completed
 
-# the size the chat shrinks to when it disappears
+## the size the chat shrinks to when it disappears
 const POP_OUT_SCALE := Vector2(0.5, 0.5)
 
 onready var _chat_frame: Control = get_parent()
@@ -14,38 +12,30 @@ func _ready() -> void:
 	_reset_chat_frame()
 
 
-"""
-Makes the chat window appear.
-
-Enlarges the chat frame in a bouncy way and makes it opaque.
-"""
+## Makes the chat window appear.
+##
+## Enlarges the chat frame in a bouncy way and makes it opaque.
 func pop_in() -> void:
 	_interpolate_pop(true)
 
 
-"""
-Makes the chat window disappear.
-
-Shrinks the chat frame in a bouncy way and makes it transparent.
-"""
+## Makes the chat window disappear.
+##
+## Shrinks the chat frame in a bouncy way and makes it transparent.
 func pop_out() -> void:
 	_interpolate_pop(false)
 
 
-"""
-Presets the chat window to a known invisible state.
-
-This doesn't use a tween. It's meant for setup/teardown steps the player should never see.
-"""
+## Presets the chat window to a known invisible state.
+##
+## This doesn't use a tween. It's meant for setup/teardown steps the player should never see.
 func _reset_chat_frame() -> void:
 	remove_all()
 	_chat_frame.modulate = Color.transparent
 	_chat_frame.rect_scale = POP_OUT_SCALE
 
 
-"""
-Pops the chat window in/out.
-"""
+## Pops the chat window in/out.
 func _interpolate_pop(popping_in: bool) -> void:
 	remove(_chat_frame, "modulate")
 	remove(_chat_frame, "rect_scale:x")

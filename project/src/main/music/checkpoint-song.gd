@@ -1,26 +1,25 @@
 class_name CheckpointSong
 extends AudioStreamPlayer
-"""
-Plays a music track from different checkpoints to avoid playing the beginning of the song too much.
+## Plays a music track from different checkpoints to avoid playing the beginning of the song too much.
+##
+## If looped songs always played from the start, players would hear the beginning more than the ending. This class
+## tracks which parts of the song have been played so the MusicPlayer can skip to the parts which have been played the
+## least.
 
-If looped songs always played from the start, players would hear the beginning more than the ending. This class tracks
-which parts of the song have been played so the MusicPlayer can skip to the parts which have been played the least.
-"""
-
-# we measure which 'chunks' of music have been _played the least, this defines the chunk size
+## we measure which 'chunks' of music have been _played the least, this defines the chunk size
 const CHUNK_SIZE := 6.0
 
-# array of floats corresponding to good start positions in each song
+## array of floats corresponding to good start positions in each song
 export (Array, float) var checkpoints: Array = []
 
-# the song title and color shown in the toaster popup
+## the song title and color shown in the toaster popup
 export var song_title: String
 export var song_color: Color
 
-# array of ints corresponding to how much each 'chunk' of music has been _played
+## array of ints corresponding to how much each 'chunk' of music has been _played
 var _staleness_record: Array
 
-# value: 'true' if the BGM node has been _played
+## value: 'true' if the BGM node has been _played
 var _played: bool
 
 func _ready() -> void:
@@ -31,13 +30,11 @@ func _ready() -> void:
 		push_warning("CheckpointSong %s checkpoints=%s" % [name, checkpoints])
 
 
-"""
-Plays this song from the specified position, or somewhere in the middle.
-
-Parameters:
-	'from_position': If 0 or greater, the song will begin playing from the specified position. If unspecified or
-		negative, the song will start somewhere in the middle based on an algorithm.
-"""
+## Plays this song from the specified position, or somewhere in the middle.
+##
+## Parameters:
+## 	'from_position': If 0 or greater, the song will begin playing from the specified position. If unspecified or
+## 		negative, the song will start somewhere in the middle based on an algorithm.
 func play(from_position: float = -1.0) -> void:
 	if from_position < 0:
 		# calculate the start position based on an algorithm
@@ -60,22 +57,18 @@ func get_nearest_checkpoint(start: float) -> float:
 	return result
 
 
-"""
-Increases the staleness of the part of the song currently playing.
-"""
+## Increases the staleness of the part of the song currently playing.
 func _increase_staleness() -> void:
 	if playing:
 		_played = true
 		_staleness_record[int(get_playback_position() / CHUNK_SIZE)] += 1
 
 
-"""
-Calculates the ideal position to start playing the specified song.
-
-The algorithm we follow is to create a window with the left half of the 'freshness record'. We gradually advance it
-through the entire song, and figure out which half of the song has been played the least. We return the position of
-the song at the start of that half.
-"""
+## Calculates the ideal position to start playing the specified song.
+##
+## The algorithm we follow is to create a window with the left half of the 'freshness record'. We gradually advance it
+## through the entire song, and figure out which half of the song has been played the least. We return the position of
+## the song at the start of that half.
 func _freshest_start() -> float:
 	var freshest_start_index := 0
 	var min_staleness: int = 0

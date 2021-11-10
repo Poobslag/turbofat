@@ -1,14 +1,12 @@
 class_name RectFitLabel
 extends Label
-"""
-This label changes its size dynamically based on the amount of text it needs to display. It chooses the smallest size
-where the text does not overrun its boundaries.
-"""
+## This label changes its size dynamically based on the amount of text it needs to display. It chooses the smallest
+## size where the text does not overrun its boundaries.
 
-# When calculating how much text we can accommodate, there is a 3 pixel gap between each row.
+## When calculating how much text we can accommodate, there is a 3 pixel gap between each row.
 const FONT_GAP := 3
 
-# Different label sizes to try, ordered from smallest to largest.
+## Different label sizes to try, ordered from smallest to largest.
 export(Array, Vector2) var sizes := [] setget set_sizes
 
 var chosen_size_index := -1 setget set_chosen_size_index
@@ -21,12 +19,10 @@ func _ready() -> void:
 	max_lines_visible = max(1, max_lines_visible)
 
 
-"""
-Sets the label's size to the smallest size which will accommodate its text.
-
-If the label's text is modified this should be called manually. This class cannot respond to text changes or override
-set_text because of Godot #29390 (https://github.com/godotengine/godot/issues/29390)
-"""
+## Sets the label's size to the smallest size which will accommodate its text.
+##
+## If the label's text is modified this should be called manually. This class cannot respond to text changes or
+## override set_text because of Godot #29390 (https://github.com/godotengine/godot/issues/29390)
 func pick_smallest_size() -> void:
 	for i in range(sizes.size()):
 		# start with the smallest size, and try larger and larger sizes

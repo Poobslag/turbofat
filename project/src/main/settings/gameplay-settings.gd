@@ -1,11 +1,9 @@
 class_name GameplaySettings
-"""
-Manages settings which control the gameplay.
-"""
+## Manages settings which control the gameplay.
 
 signal ghost_piece_changed(value)
 
-# 'true' if a ghost piece should be shown during the puzzle sections.
+## 'true' if a ghost piece should be shown during the puzzle sections.
 var ghost_piece := true setget set_ghost_piece
 
 func set_ghost_piece(new_ghost_piece: bool) -> void:
@@ -15,9 +13,7 @@ func set_ghost_piece(new_ghost_piece: bool) -> void:
 	emit_signal("ghost_piece_changed", new_ghost_piece)
 
 
-"""
-Resets the gameplay settings to their default values.
-"""
+## Resets the gameplay settings to their default values.
 func reset() -> void:
 	from_json_dict({})
 

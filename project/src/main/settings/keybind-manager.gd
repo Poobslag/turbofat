@@ -1,17 +1,13 @@
 extends Node
-"""
-Binds the player's input settings to the input map.
-"""
+## Binds the player's input settings to the input map.
 
 func _ready() -> void:
 	SystemData.keybind_settings.connect("settings_changed", self, "_on_KeybindSettings_settings_changed")
 
 
-"""
-Converts a json dictionary to an InputEvent instance.
-
-This supports InputEventKey and InputEventJoypadButton events. It does not support joystick, mouse or touch events.
-"""
+## Converts a json dictionary to an InputEvent instance.
+##
+## This supports InputEventKey and InputEventJoypadButton events. It does not support joystick, mouse or touch events.
 func input_event_from_json(json: Dictionary) -> InputEvent:
 	if not json:
 		return null
@@ -32,11 +28,9 @@ func input_event_from_json(json: Dictionary) -> InputEvent:
 	return input_event
 
 
-"""
-Converts an InputEvent to a json dictionary.
-
-This supports InputEventKey and InputEventJoypadButton events. It does not support joystick, mouse or touch events.
-"""
+## Converts an InputEvent to a json dictionary.
+##
+## This supports InputEventKey and InputEventJoypadButton events. It does not support joystick, mouse or touch events.
 func input_event_to_json(input_event: InputEvent) -> Dictionary:
 	var json := {}
 	if input_event is InputEventKey:
@@ -49,15 +43,13 @@ func input_event_to_json(input_event: InputEvent) -> Dictionary:
 	return json
 
 
-"""
-Returns a string representation of an input, suitable for showing to the player.
-
-Parameters:
-	'input_json': A json representation of a keyboard or joypad input
-
-Returns:
-	A short human-readable string like 'DPAD Left' or 'Escape'
-"""
+## Returns a string representation of an input, suitable for showing to the player.
+##
+## Parameters:
+## 	'input_json': A json representation of a keyboard or joypad input
+##
+## Returns:
+## 	A short human-readable string like 'DPAD Left' or 'Escape'
 func pretty_string(input_json: Dictionary) -> String:
 	var result: String
 	match input_json["type"]:
@@ -69,18 +61,14 @@ func pretty_string(input_json: Dictionary) -> String:
 	return result
 
 
-"""
-Updates the InputMap with the bindings in the specified json file
-"""
+## Updates the InputMap with the bindings in the specified json file
 func _bind_keys_from_file(path: String) -> void:
 	var json_text := FileUtils.get_file_as_text(path)
 	var json_dict: Dictionary = parse_json(json_text)
 	_bind_keys_from_json_dict(json_dict)
 
 
-"""
-Updates the InputMap with the bindings in the specified json
-"""
+## Updates the InputMap with the bindings in the specified json
 func _bind_keys_from_json_dict(json: Dictionary) -> void:
 	for action_name in json:
 		var input_events := []
@@ -92,16 +80,14 @@ func _bind_keys_from_json_dict(json: Dictionary) -> void:
 		_bind_keys(action_name, input_events)
 
 
-"""
-Updates a single InputMap action with the specified bindings
-
-This replaces all bindings for the specified action with a new set of bindings.
-
-Parameters:
-	'action_name': the action to rebind
-	
-	'input_events': the InputEvents to bind
-"""
+## Updates a single InputMap action with the specified bindings
+##
+## This replaces all bindings for the specified action with a new set of bindings.
+##
+## Parameters:
+## 	'action_name': the action to rebind
+##
+## 	'input_events': the InputEvents to bind
 func _bind_keys(action_name: String, input_events: Array) -> void:
 	if not InputMap.has_action(action_name):
 		InputMap.add_action(action_name)
@@ -110,9 +96,7 @@ func _bind_keys(action_name: String, input_events: Array) -> void:
 		InputMap.action_add_event(action_name, input_event)
 
 
-"""
-Updates the InputMap when the player's keybind settings change
-"""
+## Updates the InputMap when the player's keybind settings change
 func _on_KeybindSettings_settings_changed() -> void:
 	match SystemData.keybind_settings.preset:
 		KeybindSettings.GUIDELINE:

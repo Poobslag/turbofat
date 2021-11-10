@@ -1,33 +1,29 @@
 class_name NameGenerator
-"""
-Markov chain name generation algorithm.
-
-Accepts as input a list of words like 'banana' and 'anabelle', and mixes them into new words like 'banabelle'.
-"""
+## Markov chain name generation algorithm.
+##
+## Accepts as input a list of words like 'banana' and 'anabelle', and mixes them into new words like 'banabelle'.
 
 var markov_model := MarkovModel.new()
 var min_length: int setget set_min_length
 var max_length: int setget set_max_length
 var order: float setget set_order
 
-# Key: Word from the source material
-# Value: true
+## Key: Word from the source material
+## Value: true
 var _seed_words := {}
 
-# cached list of generated names; we generate many names at once at cache them
+## cached list of generated names; we generate many names at once at cache them
 var _generated_names := []
 
-# resource paths containing input names (one word per line)
+## resource paths containing input names (one word per line)
 var _seed_paths := []
 
-# seed names loaded from the resource files
+## seed names loaded from the resource files
 var _seed_word_lists := []
 
-"""
-Configures the name generator with 'American given names' and 'animals'.
-
-This generates names like 'Boala', 'Badgehog' and 'Coyce'.
-"""
+## Configures the name generator with 'American given names' and 'animals'.
+##
+## This generates names like 'Boala', 'Badgehog' and 'Coyce'.
 func load_american_animals() -> void:
 	add_seed_resource("res://assets/main/editor/creature/animals.txt")
 	add_seed_resource("res://assets/main/editor/creature/american-male-given-names.txt")
@@ -56,9 +52,7 @@ func set_order(new_order: float) -> void:
 	markov_model.order = new_order
 
 
-"""
-Add a resource file to load words from.
-"""
+## Add a resource file to load words from.
 func add_seed_resource(path: String) -> void:
 	var words: Array = FileUtils.get_file_as_text(path).split("\n")
 	_seed_word_lists.append(words)
@@ -67,12 +61,10 @@ func add_seed_resource(path: String) -> void:
 	_seed_paths.append(path)
 
 
-"""
-Generates a name based on the seed resources.
-
-This method regenerates the markov chain connection data and generates several names all at once. It then returns
-those cached names each time it's called until the cache is exhausted.
-"""
+## Generates a name based on the seed resources.
+##
+## This method regenerates the markov chain connection data and generates several names all at once. It then returns
+## those cached names each time it's called until the cache is exhausted.
 func generate_name() -> String:
 	if not _generated_names:
 		# repopulate the list of generated words
@@ -89,12 +81,10 @@ func generate_name() -> String:
 	return _generated_names.pop_front()
 
 
-"""
-Mixes a few seed word lists into a single list of words.
-
-This takes the same amount of words from each list, so a list of 100 words won't get drowned out by a list of 500
-words.
-"""
+## Mixes a few seed word lists into a single list of words.
+##
+## This takes the same amount of words from each list, so a list of 100 words won't get drowned out by a list of 500
+## words.
 func _mix_seed_lists() -> Array:
 	var words := []
 	var word_count: int = _seed_word_lists[0].size()

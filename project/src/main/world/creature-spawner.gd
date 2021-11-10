@@ -1,37 +1,35 @@
 extends Node2D
-"""
-Conditionally spawns a creature on the overworld.
-
-The decision to spawn the creature is controlled by the 'spawn_if' property.
-
-The creature's creature_id, properties and groups (the 'chattables' group in particular) can be managed by the
-target_properties and target_groups fields.
-"""
+## Conditionally spawns a creature on the overworld.
+##
+## The decision to spawn the creature is controlled by the 'spawn_if' property.
+##
+## The creature's creature_id, properties and groups (the 'chattables' group in particular) can be managed by the
+## target_properties and target_groups fields.
 
 export (NodePath) var overworld_world_path: NodePath = NodePath("../..")
 
-# (optional) path to a stool the spawned creature sits on
+## (optional) path to a stool the spawned creature sits on
 export (NodePath) var stool_path: NodePath
 
-# the properties of the spawned creature
+## the properties of the spawned creature
 export (Dictionary) var target_properties: Dictionary
 
-# the groups of the spawned creature
+## the groups of the spawned creature
 export (Array) var target_groups: Array
 
-# a boolean expression which, if evaluated to 'true', will result in the creature being spawned
+## a boolean expression which, if evaluated to 'true', will result in the creature being spawned
 export (String) var spawn_if: String
 
-# Maximum fatness for a spawned creature.
-# If a fatter creature spawns here, they will spontaneously and permanently slim down.
+## Maximum fatness for a spawned creature.
+## If a fatter creature spawns here, they will spontaneously and permanently slim down.
 export (float) var max_fatness := 10.0
 
 export (PackedScene) var CreatureScene: PackedScene
 
-# a Stool or ObstacleSpawner instance for the stool the spawned creature sits on, if any
+## a Stool or ObstacleSpawner instance for the stool the spawned creature sits on, if any
 var _stool: Node2D
 
-# the spawned creature, or 'null' if the creature has not yet spawned
+## the spawned creature, or 'null' if the creature has not yet spawned
 var _target_creature: Creature
 
 onready var _overworld_world: OverworldWorld = get_node(overworld_world_path)
@@ -50,9 +48,7 @@ func _ready() -> void:
 		queue_free()
 
 
-"""
-Updates the spawned creature's stool to be occupied or unoccupied.
-"""
+## Updates the spawned creature's stool to be occupied or unoccupied.
 func _update_stool_occupied() -> void:
 	var occupied := _target_creature != null
 	if _stool is ObstacleSpawner:
@@ -61,9 +57,7 @@ func _update_stool_occupied() -> void:
 		_stool.occupied = occupied
 
 
-"""
-Spawns the creature and removes the spawner from the scene tree.
-"""
+## Spawns the creature and removes the spawner from the scene tree.
 func _spawn_target() -> void:
 	if not is_inside_tree():
 		# If the spawner was already removed from the scene tree, don't spawn the creature.

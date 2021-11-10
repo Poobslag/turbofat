@@ -1,10 +1,8 @@
 extends Node2D
-"""
-Spawns leaf poofs when the player clears a row containing vegetables.
-
-Any occupied cell which isn't used in a box risks spawning a leaf poof. The more unused cells there are, the greater
-the chance of a poof.
-"""
+## Spawns leaf poofs when the player clears a row containing vegetables.
+##
+## Any occupied cell which isn't used in a box risks spawning a leaf poof. The more unused cells there are, the greater
+## the chance of a poof.
 
 export (PackedScene) var LeafPoofScene: PackedScene
 
@@ -12,9 +10,7 @@ export (NodePath) var puzzle_tile_map_path: NodePath
 
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 
-"""
-Spawns a single leaf poof near the specified cell.
-"""
+## Spawns a single leaf poof near the specified cell.
 func _spawn_poof(type: int, cell_x: int, cell_y: int) -> void:
 	# poof can appear half-way into horizontally adjacent cells, or in the cell above this one
 	var cell_offset := Vector2(rand_range(-0.5, 1.5), rand_range(-1.0, 1.0))
@@ -24,9 +20,7 @@ func _spawn_poof(type: int, cell_x: int, cell_y: int) -> void:
 	poof.initialize(type, poof_position)
 
 
-"""
-Spawns multiple leaf poofs near vegetable cells in the specified row.
-"""
+## Spawns multiple leaf poofs near vegetable cells in the specified row.
 func _spawn_poofs(y: int, veg_columns: Array, poof_count: int) -> void:
 	if poof_count <= 0:
 		return
@@ -59,9 +53,7 @@ func _poof_count(veg_cell_count: int) -> int:
 	return poof_count
 
 
-"""
-If the specified row includes enough vegetable cells, we spawn leaf poofs nearby.
-"""
+## If the specified row includes enough vegetable cells, we spawn leaf poofs nearby.
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	var veg_columns := []
 	for x in range(PuzzleTileMap.COL_COUNT):

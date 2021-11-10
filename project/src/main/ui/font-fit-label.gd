@@ -1,14 +1,12 @@
 class_name FontFitLabel
 extends Label
-"""
-This label changes its font dynamically based on the amount of text it needs to display. It chooses the largest font
-which will not overrun its boundaries.
-"""
+## This label changes its font dynamically based on the amount of text it needs to display. It chooses the largest font
+## which will not overrun its boundaries.
 
-# When calculating how much text we can accommodate, there is a 3 pixel gap between each row.
+## When calculating how much text we can accommodate, there is a 3 pixel gap between each row.
 const FONT_GAP := 3
 
-# Different fonts to try. Should be ordered from largest to smallest.
+## Different fonts to try. Should be ordered from largest to smallest.
 export(Array, Font) var fonts := [] setget set_fonts
 
 var chosen_font_index := -1 setget set_chosen_font_index
@@ -22,12 +20,10 @@ func _ready() -> void:
 	max_lines_visible = max(1, max_lines_visible)
 
 
-"""
-Sets the label's font to the largest font which will accommodate its text.
-
-If the label's text is modified this should be called manually. This class cannot respond to text changes or override
-set_text because of Godot #29390 (https://github.com/godotengine/godot/issues/29390)
-"""
+## Sets the label's font to the largest font which will accommodate its text.
+##
+## If the label's text is modified this should be called manually. This class cannot respond to text changes or
+## override set_text because of Godot #29390 (https://github.com/godotengine/godot/issues/29390)
 func pick_largest_font() -> void:
 	for i in range(fonts.size()):
 		# start with the largest font, and try smaller and smaller fonts

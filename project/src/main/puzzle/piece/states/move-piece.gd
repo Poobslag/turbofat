@@ -1,7 +1,5 @@
 extends State
-"""
-State: The player is moving the piece around the playfield.
-"""
+## State: The player is moving the piece around the playfield.
 
 func enter(piece_manager: PieceManager, prev_state_name: String) -> void:
 	if prev_state_name == "Prespawn":

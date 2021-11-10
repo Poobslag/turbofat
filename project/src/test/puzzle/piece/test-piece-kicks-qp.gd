@@ -1,7 +1,5 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
-"""
-Tests the p/q piece's kick behavior.
-"""
+## Tests the p/q piece's kick behavior.
 
 func test_p_floorkick_cw() -> void:
 	from_grid = [
@@ -167,9 +165,7 @@ func test_q_lwallkick_r0() -> void:
 	assert_kick()
 
 
-"""
-A 'pump kick' is when the nub of a p/q piece swings into a gap, while the other 4 blocks remain in place
-"""
+## A 'pump kick' is when the nub of a p/q piece swings into a gap, while the other 4 blocks remain in place
 func test_p_pump_kick0() -> void:
 	from_grid = [
 		"    ",
@@ -296,9 +292,7 @@ func test_q_pump_kick3() -> void:
 	assert_kick()
 
 
-"""
-A 'murky kick' is when the nub of a p/q piece swings into a faraway gap, pulling the piece with it
-"""
+## A 'murky kick' is when the nub of a p/q piece swings into a faraway gap, pulling the piece with it
 func test_p_murky_kick0() -> void:
 	# there's enough space above the piece to do a (0, -2) kick, which would be bad
 	from_grid = [
@@ -465,9 +459,7 @@ func test_q_climb_l0() -> void:
 	assert_kick()
 
 
-"""
-A 'bump kick' is when the bulky part of a p/q piece bumps into a block and gets nudged out of the way
-"""
+## A 'bump kick' is when the bulky part of a p/q piece bumps into a block and gets nudged out of the way
 func test_p_bump_kick_0r() -> void:
 	from_grid = [
 		"  :::",

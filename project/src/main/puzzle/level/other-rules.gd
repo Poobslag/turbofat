@@ -1,7 +1,5 @@
 class_name OtherRules
-"""
-Rules which are unique enough that it doesn't make sense to put them in their own groups.
-"""
+## Rules which are unique enough that it doesn't make sense to put them in their own groups.
 
 enum SuppressPieceRotation {
 	NONE, # piece rotation is not suppressed
@@ -9,34 +7,34 @@ enum SuppressPieceRotation {
 	ROTATION_AND_SIGNALS # piece rotation is suppressed, no rotation signals fire for things like sfx
 }
 
-# 'true' for levels which follow tutorial levels
+## 'true' for levels which follow tutorial levels
 var after_tutorial := false
 
-# When the player finishes the level, all lines are cleared
+## When the player finishes the level, all lines are cleared
 var clear_on_finish := true
 
-# 'true' to make the visual combo indicators easier to see
+## 'true' to make the visual combo indicators easier to see
 var enhance_combo_fx := false
 
-# 'true' for non-interactive tutorial levels which don't let the player do anything
+## 'true' for non-interactive tutorial levels which don't let the player do anything
 var non_interactive := false
 
-# an enum from SuppressPieceRotation for whether pieces can rotate
+## an enum from SuppressPieceRotation for whether pieces can rotate
 var suppress_piece_rotation: int = SuppressPieceRotation.NONE
 
-# an enum from SuppressPieceRotation for whether pieces can be initially rotated by holding a rotate key
+## an enum from SuppressPieceRotation for whether pieces can be initially rotated by holding a rotate key
 var suppress_piece_initial_rotation: int = SuppressPieceRotation.NONE
 
-# When the player first launches the game and does the tutorial, we skip the start button and countdown.
+## When the player first launches the game and does the tutorial, we skip the start button and countdown.
 var skip_intro := false
 
-# If the player restarts, they restart from this level (used for tutorials)
+## If the player restarts, they restart from this level (used for tutorials)
 var start_level: String
 
-# an enum from PuzzleTileMap.TileSetType which affects the blocks' appearance (and sometimes behavior)
+## an enum from PuzzleTileMap.TileSetType which affects the blocks' appearance (and sometimes behavior)
 var tile_set: int = PuzzleTileMap.TileSetType.DEFAULT
 
-# 'true' for tutorial levels which are led by Turbo
+## 'true' for tutorial levels which are led by Turbo
 var tutorial := false
 
 var _rule_parser: RuleParser

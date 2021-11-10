@@ -1,17 +1,13 @@
 class_name ChatscriptParser
-"""
-Parses a chatscript (.chat) file containing a cutscene or lines of chat.
+## Parses a chatscript (.chat) file containing a cutscene or lines of chat.
+##
+## This class is stateful and intended to be used once and thrown away. If it is reused, the previously parsed
+## chat tree will be erased.
 
-This class is stateful and intended to be used once and thrown away. If it is reused, the previously parsed chat_tree
-will be erased.
-"""
-
-"""
-Tracks the state for the parser.
-
-The ChatscriptParser has different states based on whether it's parsing chat, characters, locations, or something
-else.
-"""
+## Tracks the state for the parser.
+##
+## The ChatscriptParser has different states based on whether it's parsing chat, characters, locations, or something
+## else.
 class AbstractState:
 	
 	var chat_tree: ChatTree
@@ -25,11 +21,9 @@ class AbstractState:
 
 # -----------------------------------------------------------------------------
 
-"""
-Default parser state for parsing headers and metadata.
-
-Mostly contains logic for transitioning into other states.
-"""
+## Default parser state for parsing headers and metadata.
+##
+## Mostly contains logic for transitioning into other states.
 class DefaultState extends AbstractState:
 	
 	var chat_state: AbstractState
@@ -62,20 +56,16 @@ class DefaultState extends AbstractState:
 
 # -----------------------------------------------------------------------------
 
-"""
-Parser state for parsing location data (where a conversation takes place).
-"""
+## Parser state for parsing location data (where a conversation takes place).
 class LocationState extends AbstractState:
 	
 	func _init(init_chat_tree: ChatTree).(init_chat_tree) -> void:
 			pass
 	
 	
-	"""
-	Syntax:
-		[location]
-		indoors
-	"""
+	## Syntax:
+	## 	[location]
+	## 	indoors
 	func line(line: String) -> String:
 		var result := ""
 		if line:
@@ -86,20 +76,16 @@ class LocationState extends AbstractState:
 
 # -----------------------------------------------------------------------------
 
-"""
-Parser state for parsing destination data (where the player goes after a conversation).
-"""
+## Parser state for parsing destination data (where the player goes after a conversation).
 class DestinationState extends AbstractState:
 	
 	func _init(init_chat_tree: ChatTree).(init_chat_tree) -> void:
 			pass
 	
 	
-	"""
-	Syntax:
-		[destination]
-		indoors
-	"""
+	## Syntax:
+	## 	[destination]
+	## 	indoors
 	func line(line: String) -> String:
 		var result := ""
 		if line:
@@ -110,15 +96,13 @@ class DestinationState extends AbstractState:
 
 # -----------------------------------------------------------------------------
 
-"""
-Parser state for parsing character data (participants in a conversation).
-"""
+## Parser state for parsing character data (participants in a conversation).
 class CharactersState extends AbstractState:
 	
-	# Creature aliases used in chatscript chat lines. ChatState references this dictionary when parsing chat lines.
-	#
-	# key: creature id
-	# value: alias used in chatscript chat lines
+	## Creature aliases used in chatscript chat lines. ChatState references this dictionary when parsing chat lines.
+	##
+	## key: creature id
+	## value: alias used in chatscript chat lines
 	var _character_aliases: Dictionary
 	
 	func _init(init_chat_tree: ChatTree, init_chat_aliases: Dictionary).(init_chat_tree) -> void:
@@ -134,13 +118,11 @@ class CharactersState extends AbstractState:
 		return result
 	
 	
-	"""
-	Syntax:
-		skins, s, kitchen_9        - a character named 'skins' with an alias 's' spawns at kitchen_9
-		skins, s, !kitchen_9        - a character named 'skins' with an alias 's' spawns invisible at kitchen_9
-		skins, s                   - a character named 'skins' with an alias 's'
-		skins                      - a character named 'skins'
-	"""
+	## Syntax:
+	## 	skins, s, kitchen_9        - a character named 'skins' with an alias 's' spawns at kitchen_9
+	## 	skins, s, !kitchen_9        - a character named 'skins' with an alias 's' spawns invisible at kitchen_9
+	## 	skins, s                   - a character named 'skins' with an alias 's'
+	## 	skins                      - a character named 'skins'
 	func _parse_character_name(line: String) -> void:
 		var line_parts := line.split(",")
 		var character_name := "" if line_parts.size() < 1 else line_parts[0].strip_edges()
@@ -156,42 +138,38 @@ class CharactersState extends AbstractState:
 
 # -----------------------------------------------------------------------------
 
-"""
-Parser state for parsing chat lines (chat events and branches)
-"""
+## Parser state for parsing chat lines (chat events and branches)
 class ChatState extends AbstractState:
 	
-	# Creature aliases used in chatscript chat lines. CharactersState populates this dictionary when parsing
-	# characters.
-	#
-	# key: creature id
-	# value: alias used in chatscript chat lines
+	## Creature aliases used in chatscript chat lines. CharactersState populates this dictionary when parsing
+	## characters.
+	##
+	## key: creature id
+	## value: alias used in chatscript chat lines
 	var _character_aliases: Dictionary
 	
-	# The current chat event being parsed. Any parsed metadata and links will be attached to this event.
+	## The current chat event being parsed. Any parsed metadata and links will be attached to this event.
 	var _event: ChatEvent
 	
-	# The current branch key being parsed. Any additional chat events will be attached to this branch.
+	## The current branch key being parsed. Any additional chat events will be attached to this branch.
 	var _branch_key := ""
 	
 	func _init(init_chat_tree: ChatTree, init_chat_aliases: Dictionary).(init_chat_tree) -> void:
 		_character_aliases = init_chat_aliases
 	
 	
-	"""
-	Syntax:
-		s: /._. Are you sure?
-		[yes] Okay, fine.
-		[no]
-		
-		[yes]
-		p1: ^_^ Okay fine, I could use some exercise.
-		s: ^__^ Great!
-		
-		[no]
-		p1: Never mind, I don't want to.
-		s: u_u Oh...
-	"""
+	## Syntax:
+	## 	s: /._. Are you sure?
+	## 	[yes] Okay, fine.
+	## 	[no]
+	##
+	## 	[yes]
+	## 	p1: ^_^ Okay fine, I could use some exercise.
+	## 	s: ^__^ Great!
+	##
+	## 	[no]
+	## 	p1: Never mind, I don't want to.
+	## 	s: u_u Oh...
 	func line(line: String) -> String:
 		var result := ""
 		if line:
@@ -211,10 +189,8 @@ class ChatState extends AbstractState:
 		return result
 	
 	
-	"""
-	Syntax:
-		s: ^_^ Oh okay cool!
-	"""
+	## Syntax:
+	## 	s: ^_^ Oh okay cool!
 	func _parse_chat_line(line: String) -> void:
 		if not ": " in line:
 			push_warning("Malformed chat line: %s" % [line])
@@ -241,11 +217,9 @@ class ChatState extends AbstractState:
 		chat_tree.append(_branch_key, _event)
 	
 	
-	"""
-	Syntax:
-		[very-good] I think you killed it!
-		[just-okay] <_< I think it was just okay...
-	"""
+	## Syntax:
+	## 	[very-good] I think you killed it!
+	## 	[just-okay] <_< I think it was just okay...
 	func _parse_chat_link(line: String) -> void:
 		# add branch to _event
 		if not line.begins_with("[") or not "]" in line:
@@ -264,10 +238,8 @@ class ChatState extends AbstractState:
 		_event.add_link(branch_name, branch_text, branch_mood)
 	
 	
-	"""
-	Syntax:
-		[very-good]
-	"""
+	## Syntax:
+	## 	[very-good]
 	func _parse_branch_key(line: String) -> void:
 		if not line.begins_with("[") or not line.ends_with("]"):
 			push_warning("Malformed chat branch: %s" % [line])
@@ -276,10 +248,8 @@ class ChatState extends AbstractState:
 		_branch_key = line.trim_prefix("[").trim_suffix("]")
 	
 	
-	"""
-	Syntax:
-		(I'm not sure if they heard me.)
-	"""
+	## Syntax:
+	## 	(I'm not sure if they heard me.)
 	func _parse_thought(line: String) -> void:
 		if not line.begins_with("(") or not line.ends_with(")"):
 			push_warning("Malformed thought: %s" % [line])
@@ -294,10 +264,8 @@ class ChatState extends AbstractState:
 		chat_tree.append(_branch_key, _event)
 	
 	
-	"""
-	Syntax:
-		' (spira enters)'  <-- with a leading space
-	"""
+	## Syntax:
+	## 	' (spira enters)'  <-- with a leading space
 	func _parse_meta(line: String) -> void:
 		if not line.begins_with(" (") or not line.ends_with(")"):
 			push_warning("Malformed meta: %s" % [line])
@@ -313,9 +281,7 @@ class ChatState extends AbstractState:
 			_event.link_metas.back().append_array(meta)
 	
 	
-	"""
-	Translates human-readable phrases like 'spira enters' into metadata like 'creature_enter spira'
-	"""
+	## Translates human-readable phrases like 'spira enters' into metadata like 'creature_enter spira'
 	func _translate_meta_item(item: String) -> String:
 		var result := item
 		if item.ends_with(" enters"):
@@ -341,9 +307,7 @@ class ChatState extends AbstractState:
 		return result
 	
 	
-	"""
-	Wraps 'player' and 'sensei' in pound signs so their names will be translated.
-	"""
+	## Wraps 'player' and 'sensei' in pound signs so their names will be translated.
 	func _unalias(name: String) -> String:
 		var result := name
 		result = _character_aliases.get(result, result)
@@ -353,13 +317,13 @@ class ChatState extends AbstractState:
 
 # -----------------------------------------------------------------------------
 
-# Current version for saved chatscript data. Should be updated if and only if the chat format breaks backwards
-# compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
+## Current version for saved chatscript data. Should be updated if and only if the chat format breaks backwards
+## compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
 const CHATSCRIPT_VERSION := "2476"
 
-# Emoticons which can appear at the start of a chat line to define its mood
-# key: String emoji representing a chatscript mood
-# value: int corresponding to an entry in ChatEvent.Mood
+## Emoticons which can appear at the start of a chat line to define its mood
+## key: String emoji representing a chatscript mood
+## value: int corresponding to an entry in ChatEvent.Mood
 const MOOD_PREFIXES := {
 	"._.": ChatEvent.Mood.DEFAULT,
 	"<_<": ChatEvent.Mood.AWKWARD0,
@@ -398,9 +362,9 @@ const MOOD_PREFIXES := {
 	"^Y^": ChatEvent.Mood.YES1,
 }
 
-# Different directions a creature can face
-# key: String representing a direction a creature can face
-# value: int corresponding to an entry in Creatures.Orientation
+## Different directions a creature can face
+## key: String representing a direction a creature can face
+## value: int corresponding to an entry in Creatures.Orientation
 const ORIENTATION_STRINGS := {
 	"left": Creatures.SOUTHWEST,
 	"right": Creatures.SOUTHEAST,
@@ -410,23 +374,23 @@ const ORIENTATION_STRINGS := {
 	"ne": Creatures.NORTHEAST,
 }
 
-# parser headers which appear in square braces in the chatscript file
+## parser headers which appear in square braces in the chatscript file
 const DEFAULT := "default"
 const LOCATION := "location"
 const DESTINATION := "destination"
 const CHARACTERS := "characters"
 const CHAT := "chat"
 
-# key: parser state name such as 'default', 'location', 'characters', 'chat'
-# value: AbstractState
+## key: parser state name such as 'default', 'location', 'characters', 'chat'
+## value: AbstractState
 var _states_by_name: Dictionary
 
-# the chat tree being parsed
+## the chat tree being parsed
 var _chat_tree := ChatTree.new()
 var _state: AbstractState
 
-# key: creature id
-# value: alias used in chatscript chat lines
+## key: creature id
+## value: alias used in chatscript chat lines
 var _character_aliases := {}
 
 func _init() -> void:
@@ -441,12 +405,10 @@ func _init() -> void:
 	_state = _states_by_name[DEFAULT]
 
 
-"""
-Parses a ChatTree from the specified chatscript resource.
-
-This class is stateful and intended to be used once and thrown away. If chat_tree_from_file is invoked more than once,
-the previously parsed chat_tree will be erased.
-"""
+## Parses a ChatTree from the specified chatscript resource.
+##
+## This class is stateful and intended to be used once and thrown away. If chat_tree_from_file is invoked more than
+## once, the previously parsed chat_tree will be erased.
 func chat_tree_from_file(path: String) -> ChatTree:
 	_chat_tree.reset()
 	_character_aliases.clear()

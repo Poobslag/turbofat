@@ -1,13 +1,11 @@
 extends Control
-"""
-Shows off the visual effects for the playfield.
-
-Keys:
-	[Q,W,E,R,T]: Build a box at different locations in the playfield
-	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
-	[Z,X,C,V,B]: Clear a line at different locations in the playfield
-	[.]: Place a piece without continuing the combo
-"""
+## Shows off the visual effects for the playfield.
+##
+## Keys:
+## 	[Q,W,E,R,T]: Build a box at different locations in the playfield
+## 	[A,S,D,F,G]: Change the box color to brown, pink, bread, white, cake
+## 	[Z,X,C,V,B]: Clear a line at different locations in the playfield
+## 	[.]: Place a piece without continuing the combo
 
 var _line_clear_count := 1
 var _box_type := 0

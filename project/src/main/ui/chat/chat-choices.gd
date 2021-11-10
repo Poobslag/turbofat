@@ -1,23 +1,21 @@
 class_name ChatChoices
 extends GridContainer
-"""
-Shows buttons corresponding to chat branches the player can choose.
-"""
+## Shows buttons corresponding to chat branches the player can choose.
 
 signal chat_choice_chosen(choice_index)
 
-# The most branches we can display at once. Branches beyond this will not be displayed.
+## The most branches we can display at once. Branches beyond this will not be displayed.
 const MAX_LABELS := 6
 
-# Time in seconds for all of the chat choices to pop up.
+## Time in seconds for all of the chat choices to pop up.
 const TOTAL_POP_IN_DELAY := 0.3
 
 export (PackedScene) var ChatChoiceButtonScene
 
-# Strings to show the player for each chat branch.
+## Strings to show the player for each chat branch.
 var _choices := []
 
-# Moods corresponding to each chat branch; -1 for branches with no mood.
+## Moods corresponding to each chat branch; -1 for branches with no mood.
 var _moods := []
 
 func _ready() -> void:
@@ -25,15 +23,13 @@ func _ready() -> void:
 	_refresh_child_buttons()
 
 
-"""
-Repositions the buttons based on the amount of chat text shown.
-
-If a lot of chat text is displayed, the buttons are flush against the right side of the window and narrow. If less chat
-is displayed, the buttons are closer to the center and wider.
-
-Parameters:
-	'chat_line_size': An enum from ChatTheme.ChatLineSize corresponding to the amount of chat text displayed.
-"""
+## Repositions the buttons based on the amount of chat text shown.
+##
+## If a lot of chat text is displayed, the buttons are flush against the right side of the window and narrow. If less
+## chat is displayed, the buttons are closer to the center and wider.
+##
+## Parameters:
+## 	'chat_line_size': An enum from ChatTheme.ChatLineSize corresponding to the amount of chat text displayed.
 func reposition(chat_line_size: int) -> void:
 	match chat_line_size:
 		ChatTheme.LINE_SMALL:
@@ -47,16 +43,14 @@ func reposition(chat_line_size: int) -> void:
 			rect_size = Vector2(200, 240)
 
 
-"""
-Displays a set of buttons corresponding to chat choices.
-
-Parameters:
-	'choices': Strings to show the player for each chat branch.
-	
-	'moods': An array of ChatEvent.Mood instances for each chat branch
-	
-	'new_columns': (Optional) The number of columns to organize the chat events into.
-"""
+## Displays a set of buttons corresponding to chat choices.
+##
+## Parameters:
+## 	'choices': Strings to show the player for each chat branch.
+##
+## 	'moods': An array of ChatEvent.Mood instances for each chat branch
+##
+## 	'new_columns': (Optional) The number of columns to organize the chat events into.
 func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:
 	visible = true
 	_choices = choices
@@ -87,11 +81,9 @@ func is_showing_choices() -> bool:
 	return not _choices.empty()
 
 
-"""
-Makes all the chat choice buttons disappear.
-
-The chat choice buttons are immediately deleted without any sort of animation.
-"""
+## Makes all the chat choice buttons disappear.
+##
+## The chat choice buttons are immediately deleted without any sort of animation.
 func hide_choices() -> void:
 	visible = false
 	_choices = []
@@ -117,9 +109,7 @@ func _button(node: Node) -> ChatChoiceButton:
 	return result
 
 
-"""
-Removes and recreates all chat choice buttons.
-"""
+## Removes and recreates all chat choice buttons.
 func _refresh_child_buttons() -> void:
 	for child in get_tree().get_nodes_in_group("chat_choices"):
 		child.queue_free()
@@ -164,11 +154,9 @@ func _on_ChatChoiceButton_gui_input(_event: InputEvent) -> void:
 	get_tree().set_input_as_handled()
 
 
-"""
-Makes all the chat choice buttons disappear and emits a signal with the player's selected choice.
-
-The chat choice buttons remain as children of this node so they can be animated away.
-"""
+## Makes all the chat choice buttons disappear and emits a signal with the player's selected choice.
+##
+## The chat choice buttons remain as children of this node so they can be animated away.
 func _on_ChatChoiceButton_pressed() -> void:
 	if not $EnableInputTimer.is_stopped():
 		# don't let the player mash through chat choices accidentally

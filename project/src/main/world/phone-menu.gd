@@ -1,7 +1,5 @@
 extends CanvasLayer
-"""
-Level select menu which appears when the player clicks the 'phone' button.
-"""
+## Level select menu which appears when the player clicks the 'phone' button.
 
 signal show
 signal hide
@@ -14,9 +12,7 @@ func _ready() -> void:
 	_resize_container($Buttons/Northeast)
 
 
-"""
-Shows the menu and pauses the scene tree.
-"""
+## Shows the menu and pauses the scene tree.
 func show() -> void:
 	$Bg.show()
 	$LevelSelect.show()
@@ -24,9 +20,7 @@ func show() -> void:
 	emit_signal("show")
 
 
-"""
-Hides the menu and unpauses the scene tree.
-"""
+## Hides the menu and unpauses the scene tree.
 func hide() -> void:
 	$Bg.hide()
 	$LevelSelect.hide()
@@ -34,9 +28,7 @@ func hide() -> void:
 	emit_signal("hide")
 
 
-"""
-Resizes a button container based on the player's touch settings.
-"""
+## Resizes a button container based on the player's touch settings.
 func _resize_container(container: Control) -> void:
 	if container.rect_min_size.y != 96 * SystemData.touch_settings.size:
 		container.rect_min_size.y = 96 * SystemData.touch_settings.size

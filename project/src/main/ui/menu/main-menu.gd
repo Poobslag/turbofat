@@ -1,10 +1,8 @@
 class_name MainMenu
 extends Control
-"""
-The menu the user sees after starting the game.
-
-Includes buttons for starting a new game, launching the level editor, and exiting the game.
-"""
+## The menu the user sees after starting the game.
+##
+## Includes buttons for starting a new game, launching the level editor, and exiting the game.
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()

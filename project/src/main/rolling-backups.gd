@@ -1,21 +1,19 @@
 class_name RollingBackups
-"""
-Manages a set of rolling backups.
+## Manages a set of rolling backups.
+##
+## Save data is first copied into an hourly, daily, and weekly temporary file which are never overwritten. Once those
+## files reach a certain age, the corresponding rolling backup file is deleted and replaced with the temporary file.
+##
+## In other words, here is the lifecycle of the hourly backup file:
+##
+## 1. 'file.sav' is written, and copied to 'file.this-hour.sav.bak'
+## 2. 'file.sav' is written again, but nothing happens until 'file.this-hour.sav.bak' is an hour old
+## 3. 'file.sav' is written again. If 'file.this-hour.sav.bak' is an hour old...
+## 	3a. 'file.prev-hour.sav.bak' is deleted (if it exists)
+## 	3b. 'file.this-hour.sav.bak' is renamed to 'file.prev-hour.sav.bak'
+## 	3c. 'file.sav' is copied to 'file.this-hour.sav.bak'
 
-Save data is first copied into an hourly, daily, and weekly temporary file which are never overwritten. Once those
-files reach a certain age, the corresponding rolling backup file is deleted and replaced with the temporary file.
-
-In other words, here is the lifecycle of the hourly backup file:
-
-1. 'file.sav' is written, and copied to 'file.this-hour.sav.bak'
-2. 'file.sav' is written again, but nothing happens until 'file.this-hour.sav.bak' is an hour old
-3. 'file.sav' is written again. If 'file.this-hour.sav.bak' is an hour old...
-	3a. 'file.prev-hour.sav.bak' is deleted (if it exists)
-	3b. 'file.this-hour.sav.bak' is renamed to 'file.prev-hour.sav.bak'
-	3c. 'file.sav' is copied to 'file.this-hour.sav.bak'
-"""
-
-# Categories of rolling backups for save data.
+## Categories of rolling backups for save data.
 enum Backup {
 	CURRENT, # the current save data
 	THIS_HOUR, # a temporary file which will eventually become the hourly backup
@@ -40,28 +38,27 @@ const SECONDS_PER_MINUTE = 60
 const SECONDS_PER_HOUR = 60 * SECONDS_PER_MINUTE
 const SECONDS_PER_DAY = 24 * SECONDS_PER_HOUR
 
-# Filename for the current save. Backup filenames are derived based on this filename
+## Filename for the current save. Backup filenames are derived based on this filename
 var data_filename: String
 
-# Filename for save data older than July 2021
+## Filename for save data older than July 2021
 var legacy_filename: String
 
-# Enum value for the backup was successfully loaded, 'Backup.CURRENT' if the current file worked.
+## Enum value for the backup was successfully loaded, 'Backup.CURRENT' if the current file worked.
 var loaded_backup := -1
 
-# Newly renamed save files which couldn't be loaded
+## Newly renamed save files which couldn't be loaded
 var corrupt_filenames: Array
 
-"""
-Attempts to load the newest save file, falling back to older and older backups if necessary.
-
-Loading is handled by a callback method. This callback accepts a filename parameter and returns 'true' if successful.
-
-Parameters:
-	'target': the object containing the callback method responsible for loading.
-	
-	'method': the callback method responsible for loading.
-"""
+## Attempts to load the newest save file, falling back to older and older backups if necessary.
+##
+## Loading is handled by a callback method. This callback accepts a filename parameter and returns 'true' if
+## successful.
+##
+## Parameters:
+## 	'target': the object containing the callback method responsible for loading.
+##
+## 	'method': the callback method responsible for loading.
 func load_newest_save(target: Object, method: String) -> void:
 	loaded_backup = -1
 	corrupt_filenames = []
@@ -100,28 +97,22 @@ func load_newest_save(target: Object, method: String) -> void:
 			dir.copy(rolling_filename(loaded_backup), data_filename)
 
 
-"""
-Deletes any old backup saves, replacing it with newer data.
-"""
+## Deletes any old backup saves, replacing it with newer data.
 func rotate_backups() -> void:
 	_rotate_backup(THIS_HOUR, PREV_HOUR, SECONDS_PER_HOUR)
 	_rotate_backup(THIS_DAY, PREV_DAY, SECONDS_PER_DAY)
 	_rotate_backup(THIS_WEEK, PREV_WEEK, 7 * SECONDS_PER_DAY)
 
 
-"""
-Returns a filename with a '.corrupt' suffix to flag saves which couldn't be loaded.
-"""
+## Returns a filename with a '.corrupt' suffix to flag saves which couldn't be loaded.
 func corrupt_filename(in_filename: String) -> String:
 	return StringUtils.substring_before_last(in_filename, ".save") + ".save.corrupt"
 
 
-"""
-Returns filename with a '.save' or '.bak' suffix to differentiate backup saves.
-
-Parameters:
-	'backup': A constant from the Backup enum for to the filename to return.
-"""
+## Returns filename with a '.save' or '.bak' suffix to differentiate backup saves.
+##
+## Parameters:
+## 	'backup': A constant from the Backup enum for to the filename to return.
 func rolling_filename(backup: int) -> String:
 	if backup == Backup.LEGACY:
 		return legacy_filename
@@ -141,14 +132,13 @@ func rolling_filename(backup: int) -> String:
 	return prefix + middle + suffix
 
 
-"""
-Deletes an old backup file, replacing it with a newer save file.
-
-If the newer 'this-xxx' backup file is older than the specified rotation time, it replaces the older 'prev-xxx' backup
-file.
-
-Afterwards, if the 'this-xxx' backup file does not exist or was just rotated, it's replaced with the current save file.
-"""
+## Deletes an old backup file, replacing it with a newer save file.
+##
+## If the newer 'this-xxx' backup file is older than the specified rotation time, it replaces the older 'prev-xxx'
+## backup file.
+##
+## Afterwards, if the 'this-xxx' backup file does not exist or was just rotated, it's replaced with the current save
+## file.
 func _rotate_backup(this_save: int, prev_save: int, rotate_millis: int) -> void:
 	if not FileUtils.file_exists(data_filename):
 		return

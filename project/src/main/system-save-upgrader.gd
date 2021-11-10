@@ -1,14 +1,10 @@
 class_name SystemSaveUpgrader
-"""
-Provides backwards compatibility with older system save formats.
+## Provides backwards compatibility with older system save formats.
+##
+## This class will grow with each change to our save system. Once it gets too large (600 lines or so) we should drop
+## backwards compatibility for older versions.
 
-This class will grow with each change to our save system. Once it gets too large (600 lines or so) we should drop
-backwards compatibility for older versions.
-"""
-
-"""
-Creates and configures a SaveItemUpgrader capable of upgrading older system save formats.
-"""
+## Creates and configures a SaveItemUpgrader capable of upgrading older system save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
 	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")

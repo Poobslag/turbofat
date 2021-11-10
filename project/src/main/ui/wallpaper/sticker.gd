@@ -1,26 +1,24 @@
 class_name Sticker
 extends Sprite
-"""
-An image which scrolls by on the wallpaper.
-"""
+## An image which scrolls by on the wallpaper.
 
-# The unmodified scale/rotation before pulsing/spinning
+## The unmodified scale/rotation before pulsing/spinning
 var base_scale := Vector2(1.0, 1.0) setget set_base_scale
 var base_rotation := 0.0 setget set_base_rotation
 
-# Stickers pulse and rotate. This field is used to calculate the pulse/rotation amount
+## Stickers pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
 
-# How much the sticker should grow and shrink; 1.0 = grow from 0% to 200%
+## How much the sticker should grow and shrink; 1.0 = grow from 0% to 200%
 onready var _rescale_amount := 0.04 * rand_range(0.8, 1.2)
 
-# How many seconds the sticker should take to grow and shrink once
+## How many seconds the sticker should take to grow and shrink once
 onready var _rescale_period := 4.50 * rand_range(0.8, 1.2)
 
-# How far the sticker should rotate; 1.0 = one full circle forward and backward
+## How far the sticker should rotate; 1.0 = one full circle forward and backward
 onready var _spin_amount := 0.04 * rand_range(0.8, 1.2)
 
-# How many seconds the sticker should take to rotate back and forth once
+## How many seconds the sticker should take to rotate back and forth once
 onready var _spin_period := 4.50 * rand_range(0.8, 1.2)
 
 func _ready() -> void:

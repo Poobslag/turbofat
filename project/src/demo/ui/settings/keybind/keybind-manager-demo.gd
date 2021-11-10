@@ -1,9 +1,7 @@
 extends Node
-"""
-Non-interactive demo which prints the currently bound keys in JSON format.
-
-Useful for saving a new keybind preset from the current InputMap.
-"""
+## Non-interactive demo which prints the currently bound keys in JSON format.
+##
+## Useful for saving a new keybind preset from the current InputMap.
 
 func _ready() -> void:
 	var json_dict := {}

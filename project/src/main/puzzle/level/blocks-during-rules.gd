@@ -1,7 +1,5 @@
 class_name BlocksDuringRules
-"""
-Blocks/boxes/pickups which appear or disappear while the game is going on.
-"""
+## Blocks/boxes/pickups which appear or disappear while the game is going on.
 
 enum LineClearType {
 	DEFAULT, # lines drop normally following line clears
@@ -15,16 +13,16 @@ enum PickupType {
 	FLOAT_REGEN, # pickups float in place and regenerate if collected
 }
 
-# if true, the entire playfield is cleared when the player tops out
+## if true, the entire playfield is cleared when the player tops out
 var clear_on_top_out := false
 
-# whether blocks drop following a line clear
+## whether blocks drop following a line clear
 var line_clear_type: int = LineClearType.DEFAULT
 
-# whether pickups move with the playfield blocks
+## whether pickups move with the playfield blocks
 var pickup_type: int = PickupType.DEFAULT
 
-# whether inserted rows should start from a random row in the source tiles instead of starting from the top
+## whether inserted rows should start from a random row in the source tiles instead of starting from the top
 var random_tiles_start: bool = false
 
 var _rule_parser: RuleParser

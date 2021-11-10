@@ -1,73 +1,69 @@
 class_name LevelSettings
-"""
-Contains settings for a level.
+## Contains settings for a level.
+##
+## This includes information about how the player loses/wins, what kind of pieces they're given, whether they're given
+## a time limit, and any other special rules.
 
-This includes information about how the player loses/wins, what kind of pieces they're given, whether they're given a
-time limit, and any other special rules.
-"""
-
-# The level description shown when selecting a level.
+## The level description shown when selecting a level.
 var description := ""
 
-# (optional) The level difficulty shown when selecting a level.
+## (optional) The level difficulty shown when selecting a level.
 var difficulty := "" setget ,get_difficulty
 
-# Blocks/boxes which appear or disappear while the game is going on.
+## Blocks/boxes which appear or disappear while the game is going on.
 var blocks_during := BlocksDuringRules.new()
 
-# Things that disrupt the player's combo.
+## Things that disrupt the player's combo.
 var combo_break := ComboBreakRules.new()
 
-# How the player finishes. When the player finishes, they can't play anymore, and the level just ends. It should be
-# used for limits such as serving 5 creatures or clearing 10 lines.
+## How the player finishes. When the player finishes, they can't play anymore, and the level just ends. It should be
+## used for limits such as serving 5 creatures or clearing 10 lines.
 var finish_condition := Milestone.new()
 
-# The level id used for saving/loading data.
+## The level id used for saving/loading data.
 var id := ""
 
-# Sequence of puzzle inputs to be replayed for things such as tutorials.
+## Sequence of puzzle inputs to be replayed for things such as tutorials.
 var input_replay := InputReplay.new()
 
-# How the player loses. The player usually loses if they top out a certain number of times, but some levels might
-# have different rules.
+## How the player loses. The player usually loses if they top out a certain number of times, but some levels might
+## have different rules.
 var lose_condition := LoseConditionRules.new()
 
-# Rules which are unique enough that it doesn't make sense to put them in their own groups.
+## Rules which are unique enough that it doesn't make sense to put them in their own groups.
 var other := OtherRules.new()
 
-# The selection of pieces provided to the player.
+## The selection of pieces provided to the player.
 var piece_types := PieceTypeRules.new()
 
-# Tweaks to rank calculation.
+## Tweaks to rank calculation.
 var rank := RankRules.new()
 
-# Rules for scoring points.
+## Rules for scoring points.
 var score := ScoreRules.new()
 
 var speed := SpeedRules.new()
 
-# How the player succeeds. When the player succeeds, there's a big fanfare and celebration, it should be used for
-# accomplishments such as surviving 10 minutes or getting 1,000 points.
+## How the player succeeds. When the player succeeds, there's a big fanfare and celebration, it should be used for
+## accomplishments such as surviving 10 minutes or getting 1,000 points.
 var success_condition := Milestone.new()
 
-# Sets of blocks which are shown initially, or appear during the game.
+## Sets of blocks which are shown initially, or appear during the game.
 var tiles := LevelTiles.new()
 
-# Timers which cause strange things to happen during a level.
+## Timers which cause strange things to happen during a level.
 var timers := LevelTimers.new()
 
-# The level title shown in menus.
+## The level title shown in menus.
 var title := ""
 
-# Triggers which cause strange things to happen during a level.
+## Triggers which cause strange things to happen during a level.
 var triggers := LevelTriggers.new()
 
 var _upgrader := LevelSettingsUpgrader.new()
 
 
-"""
-Sets the criteria for finishing the level, such as a time, score, or line goal.
-"""
+## Sets the criteria for finishing the level, such as a time, score, or line goal.
 func set_finish_condition(type: int, value: int, lenient_value: int = -1) -> void:
 	finish_condition = Milestone.new()
 	finish_condition.set_milestone(type, value)
@@ -75,20 +71,16 @@ func set_finish_condition(type: int, value: int, lenient_value: int = -1) -> voi
 		finish_condition.set_meta("lenient_value", lenient_value)
 
 
-"""
-Sets the criteria for succeeding, such as a time or score goal.
-"""
+## Sets the criteria for succeeding, such as a time or score goal.
 func set_success_condition(type: int, value: int) -> void:
 	success_condition = Milestone.new()
 	success_condition.set_milestone(type, value)
 
 
-"""
-Populates this object with json data.
-
-Parameters:
-	'new_id': The level id used for saving statistics.
-"""
+## Populates this object with json data.
+##
+## Parameters:
+## 	'new_id': The level id used for saving statistics.
 func from_json_dict(new_id: String, json: Dictionary) -> void:
 	id = new_id
 	

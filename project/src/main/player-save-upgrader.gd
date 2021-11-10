@@ -1,14 +1,12 @@
 class_name PlayerSaveUpgrader
-"""
-Provides backwards compatibility with older player save formats.
+## Provides backwards compatibility with older player save formats.
+##
+## This class will grow with each change to our save system. Once it gets too large (600 lines or so) we should drop
+## backwards compatibility for older versions.
 
-This class will grow with each change to our save system. Once it gets too large (600 lines or so) we should drop
-backwards compatibility for older versions.
-"""
-
-# chat history prefixes to replace when upgrading from version 2743
-# key: old string prefix to be replaced
-# value: new string prefix
+## chat history prefixes to replace when upgrading from version 2743
+## key: old string prefix to be replaced
+## value: new string prefix
 const PREFIX_REPLACEMENTS_2743 := {
 	"chat/bones": "creature/bones",
 	"chat/skins": "creature/skins",
@@ -22,9 +20,7 @@ const PREFIX_REPLACEMENTS_2743 := {
 }
 
 
-"""
-Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
-"""
+## Creates and configures a SaveItemUpgrader capable of upgrading older player save formats.
 func new_save_item_upgrader() -> SaveItemUpgrader:
 	var upgrader := SaveItemUpgrader.new()
 	upgrader.add_upgrade_method(self, "_upgrade_2783", "2783", "27bb")
@@ -67,9 +63,7 @@ func _upgrade_2743(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-"""
-Replace chat keys like 'chat/richie/filler_000' with 'creature/richie/filler_000'
-"""
+## Replace chat keys like 'chat/richie/filler_000' with 'creature/richie/filler_000'
 func _replace_chat_history_prefixes_for_2743(dict: Dictionary) -> void:
 	for sub_dict in dict.values():
 		for key in sub_dict.keys():
@@ -86,9 +80,7 @@ func _replace_chat_history_prefixes_for_2743(dict: Dictionary) -> void:
 				sub_dict.erase(key)
 
 
-"""
-Replace hyphens with underscores in fatness keys like '#filler-033#'
-"""
+## Replace hyphens with underscores in fatness keys like '#filler-033#'
 func _replace_fatness_keys_for_2743(dict: Dictionary) -> void:
 	for key in dict.keys():
 		var new_key: String = key
@@ -269,11 +261,9 @@ func _upgrade_15d2(save_item: SaveItem) -> SaveItem:
 	return save_item
 
 
-"""
-Adds a 'success' key for a RankResult if the player met a target score and didn't lose.
-
-Provides backwards compatibility with 15d2, which did not include 'success' keys in rank results.
-"""
+## Adds a 'success' key for a RankResult if the player met a target score and didn't lose.
+##
+## Provides backwards compatibility with 15d2, which did not include 'success' keys in rank results.
 func _append_score_success_for_15d2(save_item: SaveItem, target_score: int) -> void:
 	for rank_result_obj in save_item.value:
 		var rank_result_dict: Dictionary = rank_result_obj
@@ -281,11 +271,9 @@ func _append_score_success_for_15d2(save_item: SaveItem, target_score: int) -> v
 				and rank_result_dict.get("score", 0) >= target_score
 
 
-"""
-Adds a 'success' key for a RankResult if the player met a target time and didn't lose
-
-Provides backwards compatibility with 15d2, which did not include 'success' keys in rank results.
-"""
+## Adds a 'success' key for a RankResult if the player met a target time and didn't lose
+##
+## Provides backwards compatibility with 15d2, which did not include 'success' keys in rank results.
 func _append_time_success_for_15d2(save_item: SaveItem, target_time: float) -> void:
 	for rank_result_obj in save_item.value:
 		var rank_result_dict: Dictionary = rank_result_obj

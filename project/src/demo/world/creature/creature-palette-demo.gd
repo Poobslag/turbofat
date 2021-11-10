@@ -1,11 +1,9 @@
 class_name CreaturePaletteDemo
 extends Control
-"""
-Demonstrates the creature palettes, and lets you view/edit them.
-
-This adds a third 'palette' tab to the creature editor. Clicking the themes in that tab recolors the creature. There
-are also buttons for adding themes and printing them to the console.
-"""
+## Demonstrates the creature palettes, and lets you view/edit them.
+##
+## This adds a third 'palette' tab to the creature editor. Clicking the themes in that tab recolors the creature. There
+## are also buttons for adding themes and printing them to the console.
 
 export (PackedScene) var PaletteEditorTabScene: PackedScene
 

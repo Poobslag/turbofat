@@ -1,17 +1,15 @@
 extends Control
-"""
-Emits signals as the player interacts with creatures in the creature editor.
-"""
+## Emits signals as the player interacts with creatures in the creature editor.
 
-# how far away you can click and still trigger an event
+## how far away you can click and still trigger an event
 const MAX_MOUSE_DISTANCE := 120
 
-# emitted when the player moves their mouse over a new creature
+## emitted when the player moves their mouse over a new creature
 signal hovered_creature_changed(value)
 
 signal creature_clicked(value)
 
-# cache the list of creatures; we don't want to call `get_nodes_in_group` every frame for mouseover events
+## cache the list of creatures; we don't want to call `get_nodes_in_group` every frame for mouseover events
 onready var creatures: Array = get_tree().get_nodes_in_group("creatures")
 
 var hovered_creature: Creature setget set_hovered_creature
@@ -36,9 +34,7 @@ func _input(event: InputEvent) -> void:
 			set_hovered_creature(closest_creature)
 
 
-"""
-Changes the hovered creature (the creature beneath the mouse)
-"""
+## Changes the hovered creature (the creature beneath the mouse)
 func set_hovered_creature(new_hovered_creature: Creature) -> void:
 	hovered_creature = new_hovered_creature
 	if hovered_creature:
@@ -50,9 +46,7 @@ func set_hovered_creature(new_hovered_creature: Creature) -> void:
 	emit_signal("hovered_creature_changed", hovered_creature)
 
 
-"""
-Finds the creature closest to the mouse.
-"""
+## Finds the creature closest to the mouse.
 func _find_closest_creature(mouse_event_position: Vector2) -> Creature:
 	var closest_creature: Creature
 	var closest_distance := MAX_MOUSE_DISTANCE

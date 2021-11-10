@@ -1,11 +1,7 @@
 class_name Foods
-"""
-Enums, constants and utilities for the food which gets fed to the customers.
-"""
+## Enums, constants and utilities for the food which gets fed to the customers.
 
-"""
-Different box varieties. Boxes have different graphics based on their ingredients.
-"""
+## Different box varieties. Boxes have different graphics based on their ingredients.
 enum BoxType {
 	BROWN,
 	PINK,
@@ -21,11 +17,9 @@ enum BoxType {
 	CAKE_QUV,
 }
 
-"""
-Different food varieties.
-
-There are more food types than box types, because snack boxes of one color produce two different foods.
-"""
+## Different food varieties.
+##
+## There are more food types than box types, because snack boxes of one color produce two different foods.
 enum FoodType {
 	BROWN_0,
 	BROWN_1,
@@ -45,9 +39,7 @@ enum FoodType {
 	CAKE_QUV,
 }
 
-"""
-Food colors for the food which gets hurled into the creature's mouth.
-"""
+## Food colors for the food which gets hurled into the creature's mouth.
 const COLOR_VEGETABLE := Color("335320")
 const COLOR_BROWN := Color("a4470b")
 const COLOR_PINK := Color("ff5d68")
@@ -55,8 +47,8 @@ const COLOR_BREAD := Color("ffa357")
 const COLOR_WHITE := Color("fff6eb")
 const COLORS_ALL := [COLOR_BROWN, COLOR_PINK, COLOR_BREAD, COLOR_WHITE ]
 
-# key: an enum from FoodType
-# value: an enum from BoxType for the corresponding box
+## key: an enum from FoodType
+## value: an enum from BoxType for the corresponding box
 const BOX_TYPE_BY_FOOD_TYPE := {
 	FoodType.BROWN_0: BoxType.BROWN,
 	FoodType.BROWN_1: BoxType.BROWN,
@@ -95,8 +87,8 @@ const COLORS_BY_FOOD_TYPE := {
 	FoodType.CAKE_QUV: [COLOR_BROWN, COLOR_BREAD, COLOR_WHITE],
 }
 
-# key: an enum from BoxType
-# value: array of enums from FoodType for the corresponding food items
+## key: an enum from BoxType
+## value: array of enums from FoodType for the corresponding food items
 const FOOD_TYPES_BY_BOX_TYPES := {
 	BoxType.BROWN: [FoodType.BROWN_0, FoodType.BROWN_1],
 	BoxType.PINK: [FoodType.PINK_0, FoodType.PINK_1],
@@ -112,37 +104,29 @@ const FOOD_TYPES_BY_BOX_TYPES := {
 	BoxType.CAKE_QUV: [FoodType.CAKE_QUV],
 }
 
-"""
-Returns 'true' if the specified box type corresponds to a snack box.
-
-There are four snack box colors; brown, pink, bread and white.
-"""
+## Returns 'true' if the specified box type corresponds to a snack box.
+##
+## There are four snack box colors; brown, pink, bread and white.
 static func is_snack_box(box_type: int) -> bool:
 	return box_type <= BoxType.WHITE
 
 
-"""
-Returns 'true' if the specified box type corresponds to a cake box.
-
-There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
-"""
+## Returns 'true' if the specified box type corresponds to a cake box.
+##
+## There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
 static func is_cake_box(box_type: int) -> bool:
 	return box_type >= BoxType.CAKE_JJO
 
 
-"""
-Returns 'true' if the specified food type corresponds to a snack food.
-
-There are eight snack food types; two each of brown, pink, bread and white.
-"""
+## Returns 'true' if the specified food type corresponds to a snack food.
+##
+## There are eight snack food types; two each of brown, pink, bread and white.
 static func is_snack_food(food_type: int) -> bool:
 	return food_type <= FoodType.WHITE
 
 
-"""
-Returns 'true' if the specified food type corresponds to a cake food.
-
-There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
-"""
+## Returns 'true' if the specified food type corresponds to a cake food.
+##
+## There are eight cake box colors; one for each combination of three pieces which forms a rectangle.
 static func is_cake_food(food_type: int) -> bool:
 	return food_type >= FoodType.CAKE_JJO

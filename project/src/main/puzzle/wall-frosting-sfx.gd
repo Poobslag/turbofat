@@ -1,12 +1,10 @@
 extends Node
-"""
-Plays sound effects when metaballs bounce off of the environment.
+## Plays sound effects when metaballs bounce off of the environment.
+##
+## Plays loud sound effects when metaballs hit the wall, and quieter sound effects when they smear against the
+## background.
 
-Plays loud sound effects when metaballs hit the wall, and quieter sound effects when they smear against the
-background.
-"""
-
-# index of the next AudioStreamPlayer to use
+## index of the next AudioStreamPlayer to use
 var _splat_player_index := 0
 
 onready var _splat_sfx := [
@@ -18,18 +16,16 @@ onready var _splat_sfx := [
 	preload("res://assets/main/puzzle/frosting-splat5.wav"),
 ]
 
-# AudioStreamPlayers to use. We cycle between multiple players to handle concurrent sound effects
+## AudioStreamPlayers to use. We cycle between multiple players to handle concurrent sound effects
 onready var _splat_players := [
 	$SplatPlayer0,
 	$SplatPlayer1,
 	$SplatPlayer2,
 ]
 
-"""
-Play sound effects for a collision.
-
-Globs with a higher alpha component appear larger, and play louder sounds.
-"""
+## Play sound effects for a collision.
+##
+## Globs with a higher alpha component appear larger, and play louder sounds.
 func _play_sfx(glob_alpha: float, max_volume: float) -> void:
 	var player: AudioStreamPlayer = _splat_players[_splat_player_index]
 	player.stream = Utils.rand_value(_splat_sfx)

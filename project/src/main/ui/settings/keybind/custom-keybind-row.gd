@@ -1,8 +1,6 @@
 tool
 extends HBoxContainer
-"""
-A row which lets the player define keybinds for a specific action, such as 'Move Piece Left'.
-"""
+## A row which lets the player define keybinds for a specific action, such as 'Move Piece Left'.
 
 export (String) var description: String setget set_description
 export (String) var action_name setget set_action_name

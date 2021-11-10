@@ -1,15 +1,13 @@
 #tool #uncomment to view creature in editor
 extends Node
-"""
-Provides utilities for manipulating DNA definitions.
+## Provides utilities for manipulating DNA definitions.
+##
+## DNA is defined using dictionaries. The keys or 'alleles' include things like eye color or mouth shape.
 
-DNA is defined using dictionaries. The keys or 'alleles' include things like eye color or mouth shape.
-"""
-
-# Colors used for creature's outlines
+## Colors used for creature's outlines
 const LINE_COLORS := ["6c4331", "41281e", "3c3c3d"]
 
-# Palettes used for recoloring creatures
+## Palettes used for recoloring creatures
 const CREATURE_PALETTES := [
 	{"line_rgb": "6c4331", "body_rgb": "b23823", "belly_rgb": "c9442a",
 		"hair_rgb": "af845c", "eye_rgb": "282828 dedede", "horn_rgb": "f1e398",
@@ -140,22 +138,22 @@ const CREATURE_PALETTES := [
 			"cloth_rgb": "f2c12a", "glass_rgb": "fad669", "plastic_rgb": "f28c2a"}, # magma orange
 ]
 
-# alleles corresponding to creature body parts
+## alleles corresponding to creature body parts
 const BODY_PART_ALLELES := [
 	"belly", "bellybutton", "body", "cheek", "collar", "ear", "eye", "hair",
 	"head", "horn", "mouth", "nose", "tail", "accessory"
 ]
 
-# alleles corresponding to creature colors
+## alleles corresponding to creature colors
 const COLOR_ALLELES := [
 	"line_rgb", "body_rgb", "belly_rgb", "cloth_rgb", "glass_rgb", "plastic_rgb",
 	"hair_rgb", "eye_rgb", "horn_rgb",
 ]
 
-# all alleles, including body parts and colors
+## all alleles, including body parts and colors
 const ALLELES := BODY_PART_ALLELES + COLOR_ALLELES
 
-# body part names shown to the player
+## body part names shown to the player
 const ALLELE_NAMES := {
 	"accessory-0": "(none)",
 	"accessory-1": "Shades",
@@ -256,12 +254,12 @@ const ALLELE_NAMES := {
 	"tail-7": "Lizard",
 }
 
-# key: alleles
-# value: positive numeric weights [0.0-100.0]. high values for common alleles
+## key: alleles
+## value: positive numeric weights [0.0-100.0]. high values for common alleles
 var _allele_weights := {}
 
-# key: allele combo key, such as 'mouth-1-nose-2'
-# value: positive/negative adjustments [-100, 100]. positive for good combos, negative for bad combos
+## key: allele combo key, such as 'mouth-1-nose-2'
+## value: positive/negative adjustments [-100, 100]. positive for good combos, negative for bad combos
 var _allele_combo_adjustments := {}
 
 func _ready() -> void:
@@ -327,11 +325,9 @@ func _ready() -> void:
 	_set_allele_weight("tail", "0", 5.0)
 
 
-"""
-Returns unique list of line colors for the specified dna.
-
-This includes some fixed brownish/greyish colors, as well as a darker version of the body color.
-"""
+## Returns unique list of line colors for the specified dna.
+##
+## This includes some fixed brownish/greyish colors, as well as a darker version of the body color.
 func line_colors(dna: Dictionary) -> Array:
 	var result := LINE_COLORS.duplicate()
 	if dna.has("body_rgb"):
@@ -341,12 +337,10 @@ func line_colors(dna: Dictionary) -> Array:
 	return result
 
 
-"""
-Return a minimal copy of the specified dna.
-
-CreatureLoader populates the dna dictionary with redundant properties such as textures and shader properties. This
-returns a version of the dna with that extra stuff stripped out so it doesn't clutter our save files.
-"""
+## Return a minimal copy of the specified dna.
+##
+## CreatureLoader populates the dna dictionary with redundant properties such as textures and shader properties. This
+## returns a version of the dna with that extra stuff stripped out so it doesn't clutter our save files.
 func trim_dna(dna: Dictionary) -> Dictionary:
 	var result := {}
 	for allele in ALLELES:
@@ -355,11 +349,9 @@ func trim_dna(dna: Dictionary) -> Dictionary:
 	return result
 
 
-"""
-Fill in the creature's missing traits with random values.
-
-Otherwise, missing values will be left empty, leading to invisible body parts or strange colors.
-"""
+## Fill in the creature's missing traits with random values.
+##
+## Otherwise, missing values will be left empty, leading to invisible body parts or strange colors.
 func fill_dna(dna: Dictionary) -> Dictionary:
 	# duplicate the dna so that we don't modify the original
 	var result := dna.duplicate()
@@ -380,26 +372,20 @@ func fill_dna(dna: Dictionary) -> Dictionary:
 	return result
 
 
-"""
-Returns a dna dictionary containing sensible random values.
-
-This includes an aesthetically pleasing palette and body parts that look good together.
-"""
+## Returns a dna dictionary containing sensible random values.
+##
+## This includes an aesthetically pleasing palette and body parts that look good together.
 func random_dna() -> Dictionary:
 	return fill_dna({})
 
 
-"""
-Returns a human-readable allele name for use in the editor.
-"""
+## Returns a human-readable allele name for use in the editor.
 func allele_name(key: String, value: String) -> String:
 	var combo_key := "%s-%s" % [key, value]
 	return ALLELE_NAMES.get(combo_key, combo_key)
 
 
-"""
-Returns a unique list of values for the specified allele.
-"""
+## Returns a unique list of values for the specified allele.
 func unique_allele_values(property: String) -> Array:
 	var result := []
 	
@@ -428,9 +414,7 @@ func unique_allele_values(property: String) -> Array:
 	return result
 
 
-"""
-Returns a random palette from a list of preset palettes.
-"""
+## Returns a random palette from a list of preset palettes.
 func random_creature_palette() -> Dictionary:
 	return Utils.rand_value(CREATURE_PALETTES).duplicate()
 
@@ -447,11 +431,9 @@ func invalid_allele_value(dna: Dictionary, property: String, value: String) -> S
 	return invalid_property
 
 
-"""
-Returns a dictionary with weights for the specified allele.
-
-Some values are more common than others, and some combinations are more common as well.
-"""
+## Returns a dictionary with weights for the specified allele.
+##
+## Some values are more common than others, and some combinations are more common as well.
 func allele_weights(dna: Dictionary, property: String) -> Dictionary:
 	var result := {}
 	
@@ -501,12 +483,10 @@ func _get_allele_combo_adjustment(key1: String, value1: String, key2: String, va
 	return _allele_combo_adjustments.get(combo_key, 0)
 
 
-"""
-A key corresponding to an allele combination, such as 'bird beak with tiny eyes'.
-
-A combination such as 'bird beak with tiny eyes' gets turned into a string key such as 'mouth-4-eye-2' which is
-compatible with dictionaries.
-"""
+## A key corresponding to an allele combination, such as 'bird beak with tiny eyes'.
+##
+## A combination such as 'bird beak with tiny eyes' gets turned into a string key such as 'mouth-4-eye-2' which is
+## compatible with dictionaries.
 func _allele_combo_key(key1: String, value1: String, key2: String, value2: String) -> String:
 	var combo_key: String
 	if key1 <= key2:

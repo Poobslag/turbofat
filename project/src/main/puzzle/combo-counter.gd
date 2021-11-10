@@ -1,12 +1,10 @@
 class_name ComboCounter
 extends Node2D
-"""
-A combo indicator which appears when the player clears a line in puzzle mode.
+## A combo indicator which appears when the player clears a line in puzzle mode.
+##
+## The indicator includes some colorful stylized text with an accent shape behind it.
 
-The indicator includes some colorful stylized text with an accent shape behind it.
-"""
-
-# When the combo exceeds these values, the indicator changes its appearance
+## When the combo exceeds these values, the indicator changes its appearance
 const COMBO_THRESHOLD_0 := 5
 const COMBO_THRESHOLD_1 := 10
 const COMBO_THRESHOLD_2 := 20
@@ -15,22 +13,22 @@ const COMBO_THRESHOLD_4 := 50
 
 export (Vector2) var velocity: Vector2
 
-# The combo to display. This controls our text, color and particle properties.
+## The combo to display. This controls our text, color and particle properties.
 var combo: int setget set_combo
 
-# Colors to use; these are automatically assigned based on the combo value
+## Colors to use; these are automatically assigned based on the combo value
 var _font_color: Color
 var _accent_color: Color # darker version of the font color
 var _particle_color: Color # lighter version of the font color
 
-# particles which explode from the center of the combo
+## particles which explode from the center of the combo
 onready var _particles: Particles2D = $Particles2D
 onready var _particles_material: ParticlesMaterial = $Particles2D.process_material
 
-# text showing the current combo, like '12x'
+## text showing the current combo, like '12x'
 onready var _label: Label = $Label
 
-# colorful shape which goes behind the text
+## colorful shape which goes behind the text
 onready var _accent: PackedSprite = $Accent
 
 func _ready() -> void:

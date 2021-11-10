@@ -1,10 +1,8 @@
 class_name RestaurantView
 extends Control
-"""
-Showing the chef character and active customer in a restaurant scene.
-
-As the player drops blocks and scores points, the characters animate and react.
-"""
+## Showing the chef character and active customer in a restaurant scene.
+##
+## As the player drops blocks and scores points, the characters animate and react.
 
 const MOUTH_POSITIONS_BY_ORIENTATION := {
 	Creatures.SOUTHEAST: Vector2(18, -22),
@@ -13,13 +11,13 @@ const MOUTH_POSITIONS_BY_ORIENTATION := {
 	Creatures.NORTHEAST: Vector2(28, -26),
 }
 
-# emitted when the customer changes, either because of a broken combo or because the level restarts
+## emitted when the customer changes, either because of a broken combo or because the level restarts
 signal customer_changed
 
-# virtual property; value is only exposed through getters/setters
+## virtual property; value is only exposed through getters/setters
 var current_creature_index: int setget set_current_creature_index, get_current_creature_index
 
-# bonus points scored for recent lines; used for determining when the chef should smile
+## bonus points scored for recent lines; used for determining when the chef should smile
 var _recent_bonuses := []
 
 onready var _customer_nametag_panel := $CustomerNametag/Panel
@@ -46,9 +44,7 @@ func _ready() -> void:
 	_refresh_customer_name()
 
 
-"""
-Pans the camera to a new creature. This also changes which creature will be fed.
-"""
+## Pans the camera to a new creature. This also changes which creature will be fed.
 func set_current_creature_index(new_index: int) -> void:
 	_restaurant_viewport_scene.current_creature_index = new_index
 	emit_signal("customer_changed")
@@ -66,16 +62,12 @@ func get_chef() -> Creature:
 	return _restaurant_viewport_scene.get_chef()
 
 
-"""
-Returns an array of Creature objects representing customers in the scene.
-"""
+## Returns an array of Creature objects representing customers in the scene.
 func get_customers() -> Array:
 	return _restaurant_viewport_scene.get_customers()
 
 
-"""
-Returns the position of a customer's mouth within the customer viewport texture.
-"""
+## Returns the position of a customer's mouth within the customer viewport texture.
 func get_customer_mouth_position(customer: Creature) -> Vector2:
 	var target_pos: Vector2
 	# calculate the position within the restaurant scene
@@ -89,12 +81,6 @@ func get_customer_mouth_position(customer: Creature) -> Vector2:
 	return target_pos
 
 
-"""
-Returns the creature index for the specified creature id.
-
-This is useful for determining if a creature is seated at a table, and if so, which table they're seated at. Returns
--1 if the specified creature is not a customer in the restaurant.
-"""
 func find_creature_index_with_id(creature_id: String) -> int:
 	var creature_index := -1
 	var customers := get_customers()
@@ -107,10 +93,8 @@ func find_creature_index_with_id(creature_id: String) -> int:
 	return creature_index
 
 
-"""
-Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
-properties.
-"""
+## Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
+## properties.
 func summon_creature(creature_index: int = -1) -> void:
 	var creature_def := CreatureDef.new()
 	if PlayerData.creature_queue.has_primary_creature():
@@ -122,9 +106,7 @@ func summon_creature(creature_index: int = -1) -> void:
 		emit_signal("customer_changed")
 
 
-"""
-Scroll to a new creature and replace the old creature.
-"""
+## Scroll to a new creature and replace the old creature.
 func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 	var old_creature_index: int = get_current_creature_index()
 	if new_creature_index == -1:
@@ -135,16 +117,12 @@ func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 	summon_creature(old_creature_index)
 
 
-"""
-Returns a random creature index different from the current creature index.
-"""
+## Returns a random creature index different from the current creature index.
 func next_creature_index() -> int:
 	return (get_current_creature_index() + randi() % 2 + 1) % 3
 
 
-"""
-Temporarily suppresses 'hello' and 'door chime' sounds.
-"""
+## Temporarily suppresses 'hello' and 'door chime' sounds.
 func start_suppress_sfx_timer() -> void:
 	for customer in get_customers():
 		customer.start_suppress_sfx_timer()
@@ -159,11 +137,9 @@ func _refresh_chef_name() -> void:
 	_restaurant_nametag_panel.refresh_creature(get_chef())
 
 
-"""
-Update the chef's mood based on the current bonus score.
-
-If you get a lot of bonus points, the chef gets happy.
-"""
+## Update the chef's mood based on the current bonus score.
+##
+## If you get a lot of bonus points, the chef gets happy.
 func _react_to_total_bonus() -> void:
 	var total_bonus := 0
 	for bonus in _recent_bonuses:
@@ -177,9 +153,7 @@ func _on_Chef_creature_name_changed() -> void:
 	_refresh_chef_name()
 
 
-"""
-Cycle out the customer when the combo resets to 0.
-"""
+## Cycle out the customer when the combo resets to 0.
 func _on_PuzzleState_combo_changed(value: int) -> void:
 	if value > 0:
 		# if the combo is not resetting, we ignore the change
@@ -201,9 +175,7 @@ func _on_PuzzleState_topped_out() -> void:
 	get_chef().play_mood(ChatEvent.Mood.CRY0)
 
 
-"""
-When clearing lines, the chef smiles if they're scoring a lot of bonus points.
-"""
+## When clearing lines, the chef smiles if they're scoring a lot of bonus points.
 func _on_PuzzleState_added_line_score(combo_score: int, box_score: int) -> void:
 	_recent_bonuses.append(combo_score + box_score)
 	if _recent_bonuses.size() >= 6:
@@ -211,9 +183,7 @@ func _on_PuzzleState_added_line_score(combo_score: int, box_score: int) -> void:
 	_react_to_total_bonus()
 
 
-"""
-When collecting pickups, the chef smiles if they're scoring a lot of bonus points.
-"""
+## When collecting pickups, the chef smiles if they're scoring a lot of bonus points.
 func _on_PuzzleState_added_pickup_score(pickup_score: int) -> void:
 	if not _recent_bonuses:
 		_recent_bonuses.append(0)
@@ -221,9 +191,7 @@ func _on_PuzzleState_added_pickup_score(pickup_score: int) -> void:
 	_react_to_total_bonus()
 
 
-"""
-When the game ends, the chef smiles/cries/rages based on how they did.
-"""
+## When the game ends, the chef smiles/cries/rages based on how they did.
 func _on_PuzzleState_game_ended() -> void:
 	var mood: int = ChatEvent.Mood.NONE
 	match PuzzleState.end_result():

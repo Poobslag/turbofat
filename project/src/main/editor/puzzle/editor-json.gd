@@ -1,11 +1,9 @@
 extends TextEdit
-"""
-A text editor window which shows the current level's json representation.
+## A text editor window which shows the current level's json representation.
+##
+## This script includes logic for populating the json model from the level editor, and vice-versa.
 
-This script includes logic for populating the json model from the level editor, and vice-versa.
-"""
-
-# these fields store different parts of the parsed json
+## these fields store different parts of the parsed json
 var _json_tree: Dictionary
 
 export (NodePath) var playfield_editor_path: NodePath
@@ -14,7 +12,7 @@ export (NodePath) var properties_editor_path: NodePath
 var _tile_map: PuzzleTileMap
 var _pickups: EditorPickups
 
-# cached values used for calculating pickup properties
+## cached values used for calculating pickup properties
 var _score_rules := ScoreRules.new()
 var _calculated_pickup_score := 0
 
@@ -26,20 +24,16 @@ func _ready() -> void:
 	_pickups = _playfield_editor.get_pickups()
 
 
-"""
-Parses our text as json, storing the results in the various _json properties.
-
-Returns 'false' if the json cannot be parsed.
-"""
+## Parses our text as json, storing the results in the various _json properties.
+##
+## Returns 'false' if the json cannot be parsed.
 func can_parse_json() -> bool:
 	var parsed = parse_json(text)
 	_json_tree = parsed if typeof(parsed) == TYPE_DICTIONARY else {}
 	return not _json_tree.empty()
 
 
-"""
-Refreshes the playfield editor based on our json text.
-"""
+## Refreshes the playfield editor based on our json text.
 func refresh_playfield_editor() -> void:
 	if not can_parse_json():
 		return
@@ -54,9 +48,7 @@ func refresh_playfield_editor() -> void:
 	PuzzleTileMapReader.read(json_tiles_set, funcref(_tile_map, "set_block"), funcref(_pickups, "set_pickup"))
 
 
-"""
-Refreshes the properties editor based on our json text.
-"""
+## Refreshes the properties editor based on our json text.
 func refresh_properties_editor() -> void:
 	if not can_parse_json():
 		return
@@ -73,11 +65,9 @@ func reset_editors() -> void:
 	refresh_properties_editor()
 
 
-"""
-Refreshes our json text based on the tiles keys.
-
-This occurs when new tiles keys are added or removed.
-"""
+## Refreshes our json text based on the tiles keys.
+##
+## This occurs when new tiles keys are added or removed.
 func _refresh_json_tiles_keys() -> void:
 	if not can_parse_json():
 		return
@@ -110,11 +100,9 @@ func _refresh_json_tiles_keys() -> void:
 	_refresh_text_from_json_tree()
 
 
-"""
-Refreshes our json text based on the tilemap.
-
-This occurs when new blocks are added or removed from the tilemap.
-"""
+## Refreshes our json text based on the tilemap.
+##
+## This occurs when new blocks are added or removed from the tilemap.
 func _refresh_json_tile_map() -> void:
 	if not can_parse_json():
 		return
@@ -153,9 +141,7 @@ func _refresh_text_from_json_tree() -> void:
 	text = Utils.print_json(_json_tree)
 
 
-"""
-Refreshes our json tree based on the data from the properties editor.
-"""
+## Refreshes our json tree based on the data from the properties editor.
 func _refresh_json_tree_from_properties() -> void:
 	if not can_parse_json():
 		return
@@ -191,9 +177,7 @@ func _refresh_json_tree_from_properties() -> void:
 	_refresh_text_from_json_tree()
 
 
-"""
-Recalculates the master pickup score and updates the properties editor.
-"""
+## Recalculates the master pickup score and updates the properties editor.
 func _update_properties_master_pickup_score_with_calculated_value() -> void:
 	# reset previously parsed json data
 	_calculated_pickup_score = 0
@@ -210,11 +194,9 @@ func _update_properties_master_pickup_score_with_calculated_value() -> void:
 	_properties_editor.set_master_pickup_score(_calculated_pickup_score)
 
 
-"""
-Returns a sorted list of used cells in the playfield editor.
-
-This includes cells containing blocks and pickups. The result is sorted first by Y ascending, then by X ascending.
-"""
+## Returns a sorted list of used cells in the playfield editor.
+##
+## This includes cells containing blocks and pickups. The result is sorted first by Y ascending, then by X ascending.
 func _playfield_editor_used_cells() -> Array:
 	var used_cells := {
 	}
@@ -235,9 +217,7 @@ func _compare_by_y(a: Vector2, b: Vector2) -> bool:
 	return b.x > a.x
 
 
-"""
-Callback function which increments the pickup score for each playfield pickup.
-"""
+## Callback function which increments the pickup score for each playfield pickup.
 func _increment_calculated_pickup_score(_pos: Vector2, box_type: int) -> void:
 	if Foods.is_snack_box(box_type):
 		_calculated_pickup_score += _score_rules.snack_pickup_points

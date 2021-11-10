@@ -1,11 +1,9 @@
 class_name ShadowCasterShadows
 extends Node2D
-"""
-Manages shadows for all 'shadow casters' in a scene.
-
-Shadow casters are objects which cast shadows. This doesn't include environment tiles and creatures, which have special
-shadow casting logic.
-"""
+## Manages shadows for all 'shadow casters' in a scene.
+##
+## Shadow casters are objects which cast shadows. This doesn't include environment tiles and creatures, which have
+## special shadow casting logic.
 
 export (PackedScene) var OvalShadowScene: PackedScene
 

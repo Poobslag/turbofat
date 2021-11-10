@@ -1,14 +1,12 @@
 extends Node2D
-"""
-Generates visual lighting effects for the playfield.
+## Generates visual lighting effects for the playfield.
+##
+## These effects are pretty to look at, but also provide feedback if the player's combo is about to end.
 
-These effects are pretty to look at, but also provide feedback if the player's combo is about to end.
-"""
-
-# Number of hues present when displaying a rainbow
+## Number of hues present when displaying a rainbow
 const RAINBOW_COLOR_COUNT := 7
 
-# Lights change color based on the lines the player clears.
+## Lights change color based on the lines the player clears.
 const VEGETABLE_LIGHT_COLOR := Color("6074a320")
 const FOOD_LIGHT_COLORS := [
 	Color("c0f47700"), # brown
@@ -17,10 +15,10 @@ const FOOD_LIGHT_COLORS := [
 	Color("a0fff69b"), # white
 ]
 
-# Rainbows are modulated white, because the tiles themselves have a color to them.
+## Rainbows are modulated white, because the tiles themselves have a color to them.
 const RAINBOW_LIGHT_COLOR := Color("50ffffff")
 
-# Light pattern shown when the player clears a line or continues their combo.
+## Light pattern shown when the player clears a line or continues their combo.
 const ON_PATTERN := [
 	"....#....",
 	"...###...",
@@ -32,7 +30,7 @@ const ON_PATTERN := [
 	"#.......#",
 ]
 
-# Light pattern shown when the player's combo is about to end.
+## Light pattern shown when the player's combo is about to end.
 const HALF_PATTERN := [
 	"....#....",
 	"...#.#...",
@@ -44,51 +42,51 @@ const HALF_PATTERN := [
 	".........",
 ]
 
-# Light pattern shown when the player has no combo.
+## Light pattern shown when the player has no combo.
 const OFF_PATTERN := [
 	".........",
 ]
 
 export (NodePath) var combo_tracker_path: NodePath
 
-# light pattern being shown.
+## light pattern being shown.
 var _pattern := OFF_PATTERN
 
-# offset used for displaying the light pattern, as well as for rainbow colors
+## offset used for displaying the light pattern, as well as for rainbow colors
 var _pattern_y := 0
 
-# number of 'elapsed beats' used for pulsing the lights. The length of a beat varies based on the piece speed, one
-# beat is the amount of time an expert player would take to clear a line.
+## number of 'elapsed beats' used for pulsing the lights. The length of a beat varies based on the piece speed, one
+## beat is the amount of time an expert player would take to clear a line.
 var _elapsed_beats := 0.0
 
-# brightness of the background lights
+## brightness of the background lights
 var _brightness := 0.0
 
-# how much the background lights dim when pulsing.
-# 1.0 = pulsing completely on and off, 0.0 = not pulsing at all
+## how much the background lights dim when pulsing.
+## 1.0 = pulsing completely on and off, 0.0 = not pulsing at all
 var _pulse_amount := 0.0
 
-# how long the lights remain on after a line clear
+## how long the lights remain on after a line clear
 var _glow_duration := 0.0
 
-# the current background light color
+## the current background light color
 var _color := Color.transparent
 
-# tile indexes by food/vegetable color
+## tile indexes by food/vegetable color
 var _color_tile_indexes: Dictionary
 
 onready var _combo_tracker: ComboTracker = get_node(combo_tracker_path)
 
-# lights which turn on and off
+## lights which turn on and off
 onready var _light_map: TileMap = $LightMap
 
-# glowy effect around the lights
+## glowy effect around the lights
 onready var _glow_map: TileMap = $GlowMap
 
-# bright flash when the player clears a line
+## bright flash when the player clears a line
 onready var _bg_strobe: ColorRect = $BgStrobe
 
-# gradually dims the glowiness
+## gradually dims the glowiness
 onready var _glow_tween: Tween = $GlowTween
 
 func _ready() -> void:
@@ -115,9 +113,7 @@ func reset() -> void:
 	_refresh_tile_maps()
 
 
-"""
-Initializes the different colored tiles in LightMap/GlowMap.
-"""
+## Initializes the different colored tiles in LightMap/GlowMap.
 func _init_tile_set() -> void:
 	if len(_light_map.tile_set.get_tiles_ids()) > 1:
 		return
@@ -133,9 +129,7 @@ func _init_tile_set() -> void:
 		_init_tile(rainbow_color)
 
 
-"""
-Initializes the mapping of tile indexes by food/vegetable color.
-"""
+## Initializes the mapping of tile indexes by food/vegetable color.
 func _init_color_tile_indexes() -> void:
 	if _color_tile_indexes:
 		return
@@ -155,9 +149,7 @@ func _init_tile(color: Color) -> void:
 		tile_set.tile_set_texture_offset(tile_index, tile_set.tile_get_texture_offset(0))
 
 
-"""
-Starts the glow tween, causing the lights to slowly dim.
-"""
+## Starts the glow tween, causing the lights to slowly dim.
 func _start_glow_tween() -> void:
 	if _brightness > 0 and _glow_duration > 0.0:
 		_glow_tween.remove_all()
@@ -170,9 +162,7 @@ func _start_glow_tween() -> void:
 		_glow_tween.start()
 
 
-"""
-Calculates the light color for a row in the playfield.
-"""
+## Calculates the light color for a row in the playfield.
 func _calculate_line_color(box_ints: Array) -> void:
 	if box_ints.empty():
 		# vegetable
@@ -188,9 +178,7 @@ func _calculate_line_color(box_ints: Array) -> void:
 		_color = FOOD_LIGHT_COLORS[box_ints[1]]
 
 
-"""
-Calculates the brightness of the lights based on the current combo.
-"""
+## Calculates the brightness of the lights based on the current combo.
 func _calculate_brightness(combo: int) -> void:
 	_elapsed_beats = 0.0
 	
@@ -216,9 +204,7 @@ func _calculate_brightness(combo: int) -> void:
 	modulate.a = _brightness
 
 
-"""
-Calculates the new light pattern and refreshes the tile maps.
-"""
+## Calculates the new light pattern and refreshes the tile maps.
 func _refresh_tile_maps() -> void:
 	_bg_strobe.color = Utils.to_transparent(_color)
 	
@@ -263,9 +249,7 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 	_start_glow_tween()
 
 
-"""
-When the player builds a box we brighten the combo lights again.
-"""
+## When the player builds a box we brighten the combo lights again.
 func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
 	_refresh_tile_maps()
 	_start_glow_tween()

@@ -1,17 +1,13 @@
 extends ColorRect
-"""
-A popup window which is shown if there is a problem loading the save data.
-"""
+## A popup window which is shown if there is a problem loading the save data.
 
 func _ready() -> void:
 	hide()
 
 
-"""
-Displays a popup window describing the problem loading the save data.
-
-The popup window is populated based on PlayerSave's current state.
-"""
+## Displays a popup window describing the problem loading the save data.
+##
+## The popup window is populated based on PlayerSave's current state.
 func popup() -> void:
 	show()
 	$Popup.popup()

@@ -1,12 +1,10 @@
 class_name RippleSprite
 extends AnimatedSprite
-"""
-Renders an animated goop ripple.
+## Renders an animated goop ripple.
+##
+## Each ripple is only one tile in size. A goop wave is made up of many ripples in a line.
 
-Each ripple is only one tile in size. A goop wave is made up of many ripples in a line.
-"""
-
-# duration for goop ripples to fade in and out when they hit the edge of the map
+## duration for goop ripples to fade in and out when they hit the edge of the map
 const FADE_DURATION := 0.3
 
 export (Ripples.RippleState) var ripple_state := Ripples.RippleState.OFF setget set_ripple_state
@@ -18,9 +16,7 @@ func _ready() -> void:
 	_refresh_ripple_state()
 
 
-"""
-Sets the ripple state and updates the ripple's appearance.
-"""
+## Sets the ripple state and updates the ripple's appearance.
 func set_ripple_state(new_ripple_state: int) -> void:
 	if ripple_state == new_ripple_state:
 		return
@@ -29,13 +25,11 @@ func set_ripple_state(new_ripple_state: int) -> void:
 	_refresh_ripple_state()
 
 
-"""
-Updates the ripple appearance based on the ripple state.
-
-If the ripple state is 'left', 'right', 'both' or 'none', this makes the sprite visible and plays an animation.
-
-If the ripple state is 'off', this makes the sprite invisible.
-"""
+## Updates the ripple appearance based on the ripple state.
+##
+## If the ripple state is 'left', 'right', 'both' or 'none', this makes the sprite visible and plays an animation.
+##
+## If the ripple state is 'off', this makes the sprite invisible.
 func _refresh_ripple_state() -> void:
 	# fade the sprite in or out
 	var new_modulate := Color.transparent if ripple_state == Ripples.RippleState.OFF else Color.white

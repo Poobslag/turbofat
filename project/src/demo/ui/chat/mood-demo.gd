@@ -1,31 +1,29 @@
 extends Node
-"""
-A demo which shows off the creature's range of emotions and idle animations
-
-Keys:
-	[1]: Default mood
-	
-	[Q, W, E, R]: Awkward0 (Uncomfortable), Awkward1 (Embarrassed), Cry0 (Disappointed), Cry1 (Distraught)
-	[T, Y, U, I, 8]: Laugh0 (Tickled), Laugh1 (Laughing), Love0 (Heart Eyes), Love1 (Dreamy Love), Love1 Forever
-	[O, P]: No0 (Head Shake), No1 (More Shakes)
-	
-	[A, S, D, F, G]: Rage0 (Annoyed), Rage1 (Angry), Rage2 (Murderous), Sigh0 (Ugh), Sigh1 (Eyeroll)
-	[H, J, K, L]: Smile0 (Happy), Smile1 (Sweet), Sweat0 (Nervous), Sweat1 (Fidgety)
-	
-	[Z, X, C, V]: Think0 (Pensive), Think1 (Confused), Wave0 (Polite), Wave1 (Friendly)
-	[B, N]: Yes0 (Nod), Yes1 (More Nods)
-	
-	[Shift + T]: Talk
-	[=]: Make the creature fat
-	[space bar]: Feed
-	[brace keys]: Change the creature's appearance
-	[Shift + /]: Print DNA
-	
-	[Shift + Q, W]: Look over shoulder
-	[Shift + E, R]: Yawn
-	[Shift + A, S]: Close eyes
-	[Shift + D, F]: Wiggle ears
-"""
+## A demo which shows off the creature's range of emotions and idle animations
+##
+## Keys:
+## 	[1]: Default mood
+##
+## 	[Q, W, E, R]: Awkward0 (Uncomfortable), Awkward1 (Embarrassed), Cry0 (Disappointed), Cry1 (Distraught)
+## 	[T, Y, U, I, 8]: Laugh0 (Tickled), Laugh1 (Laughing), Love0 (Heart Eyes), Love1 (Dreamy Love), Love1 Forever
+## 	[O, P]: No0 (Head Shake), No1 (More Shakes)
+##
+## 	[A, S, D, F, G]: Rage0 (Annoyed), Rage1 (Angry), Rage2 (Murderous), Sigh0 (Ugh), Sigh1 (Eyeroll)
+## 	[H, J, K, L]: Smile0 (Happy), Smile1 (Sweet), Sweat0 (Nervous), Sweat1 (Fidgety)
+##
+## 	[Z, X, C, V]: Think0 (Pensive), Think1 (Confused), Wave0 (Polite), Wave1 (Friendly)
+## 	[B, N]: Yes0 (Nod), Yes1 (More Nods)
+##
+## 	[Shift + T]: Talk
+## 	[=]: Make the creature fat
+## 	[space bar]: Feed
+## 	[brace keys]: Change the creature's appearance
+## 	[Shift + /]: Print DNA
+##
+## 	[Shift + Q, W]: Look over shoulder
+## 	[Shift + E, R]: Yawn
+## 	[Shift + A, S]: Close eyes
+## 	[Shift + D, F]: Wiggle ears
 
 onready var _creature_animations: CreatureAnimations = $Creature.creature_visuals.get_node("Animations")
 

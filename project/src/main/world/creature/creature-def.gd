@@ -1,11 +1,9 @@
 class_name CreatureDef
-"""
-Stores information about a creature such as their name, appearance, and chat lines.
-"""
+## Stores information about a creature such as their name, appearance, and chat lines.
 
 const CREATURE_DATA_VERSION := "19dd"
 
-# default chat theme when starting a new game
+## default chat theme when starting a new game
 const DEFAULT_CHAT_THEME_DEF := {
 	"accent_scale": 1.33,
 	"accent_swapped": true,
@@ -13,7 +11,7 @@ const DEFAULT_CHAT_THEME_DEF := {
 	"color": "b23823"
 }
 
-# default creature appearance when starting a new game
+## default creature appearance when starting a new game
 const DEFAULT_DNA := {
 	"accessory": "0",
 	"belly": "1",
@@ -40,34 +38,34 @@ const DEFAULT_DNA := {
 	"tail": "0",
 }
 
-# default name when starting a new game
+## default name when starting a new game
 const DEFAULT_NAME := "Spira"
 
-# creature's id, e.g 'boatricia'
+## creature's id, e.g 'boatricia'
 var creature_id: String
 
-# creature's name, e.g 'Boatricia'
+## creature's name, e.g 'Boatricia'
 var creature_name: String
 
-# a shortened version of the creature's name, for use in conversation
+## a shortened version of the creature's name, for use in conversation
 var creature_short_name: String
 
-# defines the creature's appearance such as eye color and mouth shape
+## defines the creature's appearance such as eye color and mouth shape
 var dna: Dictionary
 
-# defines the chat window's appearance, such as 'blue', 'soccer balls' and 'giant'.
+## defines the chat window's appearance, such as 'blue', 'soccer balls' and 'giant'.
 var chat_theme_def: Dictionary
 
-# dictionaries containing metadata for which chat sequences should be launched in which order
+## dictionaries containing metadata for which chat sequences should be launched in which order
 var chat_selectors: Array
 
-# how fat the creature's body is; 5.0 = 5x normal size
+## how fat the creature's body is; 5.0 = 5x normal size
 var min_fatness := 1.0
 
-# how fast the creature should gain weight during a puzzle. 4.0x = four times faster than normal.
+## how fast the creature should gain weight during a puzzle. 4.0x = four times faster than normal.
 var weight_gain_scale := 1.0
 
-# how fast the creature should lose weight between puzzles. 0.25x = four times slower than normal.
+## how fast the creature should lose weight between puzzles. 0.25x = four times slower than normal.
 var metabolism_scale := 1.0
 
 func from_json_dict(json: Dictionary) -> void:
@@ -121,15 +119,13 @@ func to_json_dict() -> Dictionary:
 	return result
 
 
-"""
-Loads creature data from a json path. Substitutes any missing data.
-
-Note: This method signature should specify a return type of 'CreatureDef', but that causes console errors due to Godot
-#30668 (https://github.com/godotengine/godot/issues/30668).
-
-Returns:
-	The newly loaded creature data, or 'null' if there was a problem loading the json data.
-"""
+## Loads creature data from a json path. Substitutes any missing data.
+##
+## Note: This method signature should specify a return type of 'CreatureDef', but that causes console errors due to
+## Godot #30668 (https://github.com/godotengine/godot/issues/30668).
+##
+## Returns:
+## 	The newly loaded creature data, or 'null' if there was a problem loading the json data.
 func from_json_path(path: String) -> Object:
 	var result := self
 	var creature_def_text: String = FileUtils.get_file_as_text(path)
@@ -152,12 +148,10 @@ func from_json_path(path: String) -> Object:
 	return result
 
 
-"""
-Changes the creature's name, and derives a new short name and creature id from their new name.
-
-A creature's name shouldn't change during regular gameplay. This is only for the creature editor and for other randomly
-generated creatures.
-"""
+## Changes the creature's name, and derives a new short name and creature id from their new name.
+##
+## A creature's name shouldn't change during regular gameplay. This is only for the creature editor and for other
+## randomly generated creatures.
 func rename(new_creature_name: String) -> void:
 	creature_name = new_creature_name
 	creature_short_name = NameUtils.sanitize_short_name(creature_name)

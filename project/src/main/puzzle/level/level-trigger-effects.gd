@@ -1,38 +1,32 @@
 extends Node
-"""
-A library of level trigger effects.
+## A library of level trigger effects.
+##
+## These effects are each mapped to a unique string so that they can be referenced from json.
 
-These effects are each mapped to a unique string so that they can be referenced from json.
-"""
-
-"""
-Rotates one or more pieces in the piece queue.
-"""
+## Rotates one or more pieces in the piece queue.
 class RotateNextPiecesEffect extends LevelTriggerEffect:
 	enum Rotation {
 		NONE, CW, CCW, FLIP
 	}
 	
-	# an enum in Rotation corresponding to the direction to rotate
+	## an enum in Rotation corresponding to the direction to rotate
 	var rotate_dir: int = Rotation.NONE
 	
-	# The first piece index in the queue to rotate, inclusive
+	## The first piece index in the queue to rotate, inclusive
 	var next_piece_from_index: int = 0
 	
-	# The last piece index in the queue to rotate, inclusive
+	## The last piece index in the queue to rotate, inclusive
 	var next_piece_to_index: int = 999999
 	
-	"""
-	Updates the effect's configuration.
-	
-	This effect's configuration accepts the following parameters:
-	
-	[0]: (Optional) The direction to rotate, 'cw', 'ccw', '180' or 'none'. Defaults to 'none'.
-	[1]: (Optional) The first piece index in the queue to rotate. Defaults to 0.
-	[2]: (Optional) The last piece index in the queue to rotate. Defaults to 999999.
-	
-	Example: ["cw", "0", "0"]
-	"""
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [0]: (Optional) The direction to rotate, 'cw', 'ccw', '180' or 'none'. Defaults to 'none'.
+	## [1]: (Optional) The first piece index in the queue to rotate. Defaults to 0.
+	## [2]: (Optional) The last piece index in the queue to rotate. Defaults to 999999.
+	##
+	## Example: ["cw", "0", "0"]
 	func set_config(new_config: Dictionary = {}) -> void:
 		if new_config.has("0"):
 			match new_config["0"]:
@@ -48,9 +42,7 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 			next_piece_to_index = new_config["2"].to_int()
 	
 	
-	"""
-	Rotates one or more pieces in the piece queue.
-	"""
+	## Rotates one or more pieces in the piece queue.
 	func run() -> void:
 		var pieces: Array = CurrentLevel.puzzle.get_piece_queue().pieces
 		for i in range(next_piece_from_index, next_piece_to_index + 1):
@@ -80,29 +72,23 @@ class RotateNextPiecesEffect extends LevelTriggerEffect:
 		return result
 
 
-"""
-Inserts a new line at the bottom of the playfield.
-"""
+## Inserts a new line at the bottom of the playfield.
 class InsertLineEffect extends LevelTriggerEffect:
-	# (Optional) a key corresponding to a set of tiles in LevelTiles for the tiles to insert
+	## (Optional) a key corresponding to a set of tiles in LevelTiles for the tiles to insert
 	var tiles_key: String
 	
-	"""
-	Updates the effect's configuration.
-	
-	This effect's configuration accepts the following parameters:
-	
-	[tiles_key]: (Optional) A key corresponding to a set of tiles in LevelTiles for the tiles to insert.
-	
-	Example: ["tiles_key=0"]
-	"""
+	## Updates the effect's configuration.
+	##
+	## This effect's configuration accepts the following parameters:
+	##
+	## [tiles_key]: (Optional) A key corresponding to a set of tiles in LevelTiles for the tiles to insert.
+	##
+	## Example: ["tiles_key=0"]
 	func set_config(new_config: Dictionary = {}) -> void:
 		tiles_key = new_config.get("tiles_key", "")
 	
 	
-	"""
-	Inserts a new line at the bottom of the playfield.
-	"""
+	## Inserts a new line at the bottom of the playfield.
 	func run() -> void:
 		CurrentLevel.puzzle.get_playfield().line_inserter.insert_line(tiles_key)
 	
@@ -119,14 +105,12 @@ var effects_by_string := {
 	"insert_line": InsertLineEffect,
 }
 
-"""
-Creates a new LevelTriggerEffect instance.
-
-Parameters:
-	'effect_key': A string key corresponding to the level trigger effect, such as 'insert_line'.
-	
-	'effect_config': (Optional) An array of strings defining the effect's behavior.
-"""
+## Creates a new LevelTriggerEffect instance.
+##
+## Parameters:
+## 	'effect_key': A string key corresponding to the level trigger effect, such as 'insert_line'.
+##
+## 	'effect_config': (Optional) An array of strings defining the effect's behavior.
 func create(effect_key: String, effect_config: Dictionary = {}) -> LevelTriggerEffect:
 	if not effects_by_string.has(effect_key):
 		push_warning("Unrecognized effect: %s" % [effect_key])

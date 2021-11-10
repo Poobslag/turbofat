@@ -1,39 +1,35 @@
 #tool #uncomment to view creature in editor
 class_name CreatureCurve
 extends SmoothPath
-"""
-Draws a big blobby shape defining a part of the creature's shadow.
+## Draws a big blobby shape defining a part of the creature's shadow.
+##
+## Godot has no out-of-the-box method for tweening curves, so this class exposes a 'fatness' property which can be from
+## 0.0 to 10.0 to tween between a few different torso curves. It also provides some utility methods for developers to
+## maintain these curve definitions, as they can't be edited with the usual animation editor.
 
-Godot has no out-of-the-box method for tweening curves, so this class exposes a 'fatness' property which can be from
-0.0 to 10.0 to tween between a few different torso curves. It also provides some utility methods for developers to
-maintain these curve definitions, as they can't be edited with the usual animation editor.
-"""
-
-# Emitted when the curve becomes drawn, becomes non-drawn, or changes its shape
+## Emitted when the curve becomes drawn, becomes non-drawn, or changes its shape
 signal appearance_changed
 
-"""
-Setting this to 'true' will prevent the body's current curve from being overwritten by the fatness property.
-"""
+## Setting this to 'true' will prevent the body's current curve from being overwritten by the fatness property.
 export (bool) var editing := true
 
-# toggle to save the currently edited curve in this node's 'curve_defs'
+## toggle to save the currently edited curve in this node's 'curve_defs'
 export (bool) var _save_curve: bool setget save_curve
 
-# defines the shadow curve coordinates for each of the creature's levels of fatness.
+## defines the shadow curve coordinates for each of the creature's levels of fatness.
 export (Array) var curve_defs: Array setget set_curve_defs
 
-# if false, the body will not render this curve when the creature faces away from the camera.
+## if false, the body will not render this curve when the creature faces away from the camera.
 export (bool) var drawn_when_facing_north: bool = true
 
-# if false, the body will not render this curve when the creature faces toward the camera.
+## if false, the body will not render this curve when the creature faces toward the camera.
 export (bool) var drawn_when_facing_south: bool = true
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
-# If true, the curve is drawn on the creature's body.
-# This is independent of the 'visible' property. When the game is running, these curves will be invisible but still
-# must be drawn. When developers are editing the curve data, these curves must be visible for Godot's Path2D tools.
+## If true, the curve is drawn on the creature's body.
+## This is independent of the 'visible' property. When the game is running, these curves will be invisible but still
+## must be drawn. When developers are editing the curve data, these curves must be visible for Godot's Path2D tools.
 var drawn := true setget set_drawn
 
 var creature_visuals: CreatureVisuals
@@ -48,9 +44,7 @@ func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
 	_refresh_creature_visuals_path()
 
 
-"""
-Saves the currently edited curve in this node's 'curve_defs'.
-"""
+## Saves the currently edited curve in this node's 'curve_defs'.
 func save_curve(value: bool) -> void:
 	if not value:
 		return
@@ -80,9 +74,7 @@ func save_curve(value: bool) -> void:
 		curve_defs.insert(fatness_index, new_entry)
 
 
-"""
-Updates the 'drawn' property based on the creature's orientation.
-"""
+## Updates the 'drawn' property based on the creature's orientation.
 func refresh_drawn() -> void:
 	var new_drawn := true
 	if creature_visuals:
@@ -105,22 +97,18 @@ func set_curve_defs(new_curve_defs: Array) -> void:
 	_refresh_curve()
 
 
-"""
-Disconnects creature visuals listeners specific to arm shadows.
-
-Can be overridden to disconnect additional listeners.
-"""
+## Disconnects creature visuals listeners specific to arm shadows.
+##
+## Can be overridden to disconnect additional listeners.
 func disconnect_creature_visuals_listeners() -> void:
 	creature_visuals.disconnect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
 	creature_visuals.disconnect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
 	creature_visuals.disconnect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
 
 
-"""
-Connects creature visuals listeners specific to arm shadows.
-
-Can be overridden to connect additional listeners.
-"""
+## Connects creature visuals listeners specific to arm shadows.
+##
+## Can be overridden to connect additional listeners.
 func connect_creature_visuals_listeners() -> void:
 	creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
 	creature_visuals.connect("orientation_changed", self, "_on_CreatureVisuals_orientation_changed")
@@ -173,12 +161,10 @@ func _refresh_curve() -> void:
 	emit_signal("appearance_changed")
 
 
-"""
-Recalculates the curve coordinates based on how fat the creature is.
-
-Parameters:
-	'fatness': How fat the creature's body is; 5.0 = 5x normal size
-"""
+## Recalculates the curve coordinates based on how fat the creature is.
+##
+## Parameters:
+## 	'fatness': How fat the creature's body is; 5.0 = 5x normal size
 func _on_CreatureVisuals_visual_fatness_changed() -> void:
 	_refresh_curve()
 

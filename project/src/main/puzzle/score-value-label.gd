@@ -1,7 +1,5 @@
 extends Label
-"""
-Displays the player's score.
-"""
+## Displays the player's score.
 
 func _ready() -> void:
 	PuzzleState.connect("score_changed", self, "_on_PuzzleState_score_changed")

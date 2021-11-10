@@ -1,15 +1,13 @@
 class_name HighScoreTable
 extends VBoxContainer
-"""
-A table which displays the player's high scores in practice mode.
+## A table which displays the player's high scores in practice mode.
+##
+## Scores are separated by mode and difficulty. We also keep daily scores separate.
 
-Scores are separated by mode and difficulty. We also keep daily scores separate.
-"""
-
-# level to display high scores for
+## level to display high scores for
 var _level: LevelSettings setget set_level
 
-# if true, only performances with today's date are included
+## if true, only performances with today's date are included
 export (bool) var daily := false setget set_daily
 
 onready var _label: Label = $Label
@@ -19,25 +17,19 @@ func _ready() -> void:
 	_refresh_contents()
 
 
-"""
-Toggles this high score table between 'Today's Best' and 'All-time Best'
-"""
+## Toggles this high score table between 'Today's Best' and 'All-time Best'
 func set_daily(new_daily: bool) -> void:
 	daily = new_daily
 	_refresh_contents()
 
 
-"""
-Sets the level to display high scores for.
-"""
+## Sets the level to display high scores for.
 func set_level(new_level: LevelSettings) -> void:
 	_level = new_level
 	_refresh_contents()
 
 
-"""
-Clears all rows in the grid container.
-"""
+## Clears all rows in the grid container.
 func _clear_rows() -> void:
 	_label.text = tr("Today's Best") if daily else tr("All-time Best")
 	for child_obj in _grid_container.get_children():
@@ -45,9 +37,7 @@ func _clear_rows() -> void:
 		child.queue_free()
 
 
-"""
-Adds new rows to the grid container.
-"""
+## Adds new rows to the grid container.
 func _add_rows() -> void:
 	if not _level:
 		return
@@ -56,18 +46,14 @@ func _add_rows() -> void:
 		_add_row(rank_result_row(best_result, daily))
 
 
-"""
-Clears and regenerates the cells in the grid container.
-"""
+## Clears and regenerates the cells in the grid container.
 func _refresh_contents() -> void:
 	if is_inside_tree():
 		_clear_rows()
 		_add_rows()
 
 
-"""
-Adds a new row to the grid container.
-"""
+## Adds a new row to the grid container.
 func _add_row(items: Array) -> void:
 	for item_obj in items:
 		var item: String = item_obj
@@ -77,11 +63,9 @@ func _add_row(items: Array) -> void:
 		$GridContainer.add_child(item_label)
 
 
-"""
-Returns a table row for the specified rank result.
-
-This table row includes a timestamp, number of line clears, score/time, and grade.
-"""
+## Returns a table row for the specified rank result.
+##
+## This table row includes a timestamp, number of line clears, score/time, and grade.
 static func rank_result_row(result: RankResult, daily_result: bool = false) -> Array:
 	var row := []
 

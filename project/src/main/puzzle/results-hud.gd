@@ -1,9 +1,7 @@
 extends Control
-"""
-Results screen shown after the player finishes a level.
-"""
+## Results screen shown after the player finishes a level.
 
-# Hints displayed after the player finishes
+## Hints displayed after the player finishes
 var _hints := [
 	tr("Build a snack box by arranging a pentomino and a tetromino into a square!"),
 	tr("Build a cake box by arranging 3 pentominos into a rectangle!"),
@@ -32,12 +30,10 @@ func hide_results_message() -> void:
 	$MoneyLabelTween.hide_money()
 
 
-"""
-Prepares a game over message to show to the player.
-
-The message is littered with lull characters, '/', which are hidden from the player but result in a brief pause when
-displayed.
-"""
+## Prepares a game over message to show to the player.
+##
+## The message is littered with lull characters, '/', which are hidden from the player but result in a brief pause when
+## displayed.
 func show_results_message(rank_result: RankResult, customer_scores: Array, finish_condition_type: int) -> void:
 	# Generate post-game message with stats, grades, and a gameplay hint
 	var text := "//////////"
@@ -182,11 +178,9 @@ func _pickups_shown() -> bool:
 	return CurrentLevel.settings.rank.show_pickups_rank in [RankRules.ShowRank.SHOW]
 
 
-"""
-Returns the string width as measured by period characters.
-
-We use this when right-justifying the dollar amounts.
-"""
+## Returns the string width as measured by period characters.
+##
+## We use this when right-justifying the dollar amounts.
 func _period_count(s: String) -> int:
 	var result := 0
 	for c in s:

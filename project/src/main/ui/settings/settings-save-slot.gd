@@ -1,8 +1,6 @@
 class_name SaveSlotControl
 extends HBoxContainer
-"""
-UI component for a changing the current save slot or deleting save slots
-"""
+## UI component for a changing the current save slot or deleting save slots
 
 signal delete_pressed
 

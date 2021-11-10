@@ -1,7 +1,5 @@
 extends Label
-"""
-Renders the current frames-per-second to the screen, '60.00 fps'
-"""
+## Renders the current frames-per-second to the screen, '60.00 fps'
 
 func _process(_delta: float) -> void:
 	text = "%d fps" % Engine.get_frames_per_second()

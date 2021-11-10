@@ -1,11 +1,9 @@
 tool
 extends CreatureOutline
-"""
-An implementation of CreatureOutline which is optimized for performance, specifically on web and mobile targets.
-
-This implementation avoids using any ViewportTextures. The ViewportTexture utilized by ViewportCreatureOutline offers
-poor performance on mobile and web targets.
-"""
+## An implementation of CreatureOutline which is optimized for performance, specifically on web and mobile targets.
+##
+## This implementation avoids using any ViewportTextures. The ViewportTexture utilized by ViewportCreatureOutline
+## offers poor performance on mobile and web targets.
 
 func _ready() -> void:
 	creature_visuals = $Holder/Visuals

@@ -1,20 +1,16 @@
 class_name NarrationFrame
 extends Control
-"""
-Window which displays a narration line.
-"""
+## Window which displays a narration line.
 
 signal pop_out_completed
 
-# emitted after the full chat line is typed out onscreen
+## emitted after the full chat line is typed out onscreen
 signal all_text_shown
 
-# 'true' after pop_in is called, and 'false' after pop_out is called
+## 'true' after pop_in is called, and 'false' after pop_out is called
 var _popped_in := false
 
-"""
-Makes the chat window appear.
-"""
+## Makes the chat window appear.
 func pop_in() -> void:
 	if _popped_in:
 		# chat window is already popped in
@@ -24,9 +20,7 @@ func pop_in() -> void:
 	$PopInSound.play()
 
 
-"""
-Makes the chat window disappear.
-"""
+## Makes the chat window disappear.
 func pop_out() -> void:
 	if not _popped_in:
 		# chat window is already popped out
@@ -36,9 +30,7 @@ func pop_out() -> void:
 	$PopOutSound.play()
 
 
-"""
-Animates the narration UI to gradually reveal the specified text, mimicking speech.
-"""
+## Animates the narration UI to gradually reveal the specified text, mimicking speech.
 func play_chat_event(chat_event: ChatEvent) -> void:
 	if not $NarrationPanel.visible:
 		# Ensure the chat window is showing before we start changing its text and playing sounds

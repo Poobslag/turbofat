@@ -1,64 +1,62 @@
 class_name RankResult
-"""
-Contains rank information for a playthrough. This includes raw statistics such as how many lines-per-minute the player
-cleared, as well as derived statistics such as the computed lines-per-minute rank.
-"""
+## Contains rank information for a playthrough. This includes raw statistics such as how many lines-per-minute the
+## player cleared, as well as derived statistics such as the computed lines-per-minute rank.
 
 const BEST_RANK := 0.0
 const WORST_RANK := 999.0
 
 var timestamp := OS.get_datetime()
 
-# how this rank result should be compared:
-# '-seconds': lowest seconds is best
-# '+score': highest score is best (default)
+## how this rank result should be compared:
+## '-seconds': lowest seconds is best
+## '+score': highest score is best (default)
 var compare := "+score"
 
-# player's speed in lines per minute.
+## player's speed in lines per minute.
 var speed := 0.0
 var speed_rank := WORST_RANK
 
-# raw number of cleared lines, not including bonus points
+## raw number of cleared lines, not including bonus points
 var lines := 0
 var lines_rank := WORST_RANK
 
-# number of pieces placed
+## number of pieces placed
 var pieces := 0
 var pieces_rank := WORST_RANK
 
-# points awarded for lines left over at the end
+## points awarded for lines left over at the end
 var leftover_score := 0
 
-# bonus points awarded for clearing boxes
+## bonus points awarded for clearing boxes
 var box_score := 0
 var box_score_per_line := 0.0
 var box_score_per_line_rank := WORST_RANK
 
-# bonus points awarded for combos
+## bonus points awarded for combos
 var combo_score := 0
 var combo_score_per_line := 0.0
 var combo_score_per_line_rank := WORST_RANK
 
-# bonus points awarded for pickups
+## bonus points awarded for pickups
 var pickup_score := 0
 var pickup_score_per_line := 0.0
 var pickup_score_rank := WORST_RANK
 
-# number of seconds until the player won or lost
+## number of seconds until the player won or lost
 var seconds := 0.0
 var seconds_rank := WORST_RANK
 
-# overall score
+## overall score
 var score := 0
 var score_rank := WORST_RANK
 
-# how many times did the player top out?
+## how many times did the player top out?
 var top_out_count := 0
 
-# did the player lose?
+## did the player lose?
 var lost := false
 
-# did the player succeed?
+## did the player succeed?
 var success := false
 
 func to_json_dict() -> Dictionary:

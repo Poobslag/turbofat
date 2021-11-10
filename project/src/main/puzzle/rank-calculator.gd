@@ -1,15 +1,13 @@
 class_name RankCalculator
-"""
-Contains logic for calculating the player's performance. This performance is stored as a series of 'ranks', where 0 is
-the best possible rank and 999 is the worst.
-"""
+## Contains logic for calculating the player's performance. This performance is stored as a series of 'ranks', where 0
+## is the best possible rank and 999 is the worst.
 
 const WORST_RANK := RankResult.WORST_RANK
 const BEST_RANK := RankResult.BEST_RANK
 
-# These RDF (rank difference factor) constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99
-# means the ranks are really narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like
-# 0.96 means the ranks are more forgiving.
+## These RDF (rank difference factor) constants from (0.0 - 1.0) affect how far apart the ranks are. A number like 0.99
+## means the ranks are really narrow, and you can fall from rank 10 to rank 20 with only a minor mistake. A number like
+## 0.96 means the ranks are more forgiving.
 const RDF_SPEED := 0.940 # 'speed' measures how fast the player can place pieces
 const RDF_ENDURANCE := 0.960 # 'endurance' measures how long the player can sustain
 const RDF_BOX_SCORE_PER_LINE := 0.970
@@ -17,34 +15,34 @@ const RDF_COMBO_SCORE_PER_LINE := 0.970
 const RDF_PICKUP_SCORE := 0.980
 const RDF_PICKUP_SCORE_PER_LINE := 0.970
 
-# Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
-# boxes, and easier to build boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
-# theoretical player to meet all three statistics simultaneously.
+## Performance statistics for a perfect player. These statistics interact, as it's easier to play fast without making
+## boxes, and easier to build boxes while ignoring combos. Before increasing any of these, ensure it's feasible for a
+## theoretical player to meet all three statistics simultaneously.
 const MASTER_BOX_SCORE := 14.5
 const MASTER_COMBO_SCORE := 17.575
 const MASTER_CUSTOMER_COMBO := 22
 const MASTER_LEFTOVER_LINES := 12
 
-# The fastest LPM for a human player at the highest piece speeds. Theoretically this could be as high as 180 based on
-# similar records in other games.
+## The fastest LPM for a human player at the highest piece speeds. Theoretically this could be as high as 180 based on
+## similar records in other games.
 #
-# The current value of 65 is a conservative estimate extrapolated based on my own personal best of 52 lines per
-# minute.
+## The current value of 65 is a conservative estimate extrapolated based on my own personal best of 52 lines per
+## minute.
 const MASTER_LINES_PER_MINUTE := 65
 
-# The number of extra unnecessary frames a perfect player will spend moving their piece.
+## The number of extra unnecessary frames a perfect player will spend moving their piece.
 const MASTER_MVMT_FRAMES := 6
 
-# amount of points lost while starting a combo
+## amount of points lost while starting a combo
 const COMBO_DEFICIT := [0, 20, 40, 55, 70, 80, 90, 95, 100]
 
-# String to display if the player scored worse than the lowest grade
+## String to display if the player scored worse than the lowest grade
 const NO_GRADE := "-"
 
-# highest attainable grade; useful for logic which checks if the player's grade can increase
+## highest attainable grade; useful for logic which checks if the player's grade can increase
 const HIGHEST_GRADE := "M"
 
-# grades with their corresponding rank requirement
+## grades with their corresponding rank requirement
 const GRADE_RANKS := [
 	["M", 0],
 	["SSS", 4],
@@ -67,14 +65,12 @@ const GRADE_RANKS := [
 	[NO_GRADE, WORST_RANK],
 ]
 
-"""
-Calculates the player's rank.
-
-This is calculated in two steps: First, we calculate the rank for a theoretical M-rank player who plays as fast as
-possible and never dies. However, some modes such as 'marathon mode' are designed with the understanding that a
-player is not expected to actually finish them. So we also simulate a second S++ rank player who dies in the middle of
-the match, and return the better of the two ranks.
-"""
+## Calculates the player's rank.
+##
+## This is calculated in two steps: First, we calculate the rank for a theoretical M-rank player who plays as fast as
+## possible and never dies. However, some modes such as 'marathon mode' are designed with the understanding that a
+## player is not expected to actually finish them. So we also simulate a second S++ rank player who dies in the middle
+## of the match, and return the better of the two ranks.
 func calculate_rank() -> RankResult:
 	var rank_result := _unranked_result()
 	if CurrentLevel.settings.rank.unranked:
@@ -100,13 +96,11 @@ func calculate_rank() -> RankResult:
 	return rank_result
 
 
-"""
-Calculates the maximum combo score for the specified number of lines.
-
-If it only takes 3 lines to clear a stage, the most combo points you can get is 5 (0 + 0 + 5). On the surface, 5 combo
-points for 3 lines seems like a bad score, but it's actually the maximum. We calculate the maximum when figuring out
-the player's performance.
-"""
+## Calculates the maximum combo score for the specified number of lines.
+##
+## If it only takes 3 lines to clear a stage, the most combo points you can get is 5 (0 + 0 + 5). On the surface, 5
+## combo points for 3 lines seems like a bad score, but it's actually the maximum. We calculate the maximum when
+## figuring out the player's performance.
 func _max_combo_score(lines: int) -> int:
 	var result := lines * 20
 	result -= COMBO_DEFICIT[min(lines, COMBO_DEFICIT.size() - 1)]
@@ -114,12 +108,10 @@ func _max_combo_score(lines: int) -> int:
 	return result
 
 
-"""
-Calculates the minimum theoretical frames per line for a given piece speed.
-
-This assumes a perfect player who is making many boxes, clearing lines one at a time, and moving pieces with TAS level
-efficiency.
-"""
+## Calculates the minimum theoretical frames per line for a given piece speed.
+##
+## This assumes a perfect player who is making many boxes, clearing lines one at a time, and moving pieces with TAS
+## level efficiency.
 static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 	var movement_frames := 1 + MASTER_MVMT_FRAMES
 	var frames_per_line := 0.0
@@ -141,12 +133,10 @@ static func min_frames_per_line(piece_speed: PieceSpeed) -> float:
 	return frames_per_line
 
 
-"""
-Calculates the lines per minute for a specific rank.
-
-The lines per minute (lpm) and seconds per line (spl) are limited based on current level's speeds, such as its line
-clear delay and lock delay. It is also limited based on the player's expected skill level.
-"""
+## Calculates the lines per minute for a specific rank.
+##
+## The lines per minute (lpm) and seconds per line (spl) are limited based on current level's speeds, such as its line
+## clear delay and lock delay. It is also limited based on the player's expected skill level.
 func rank_lpm(rank: float) -> float:
 	var total_frames := 0.0
 	var total_lines := 0.0
@@ -203,11 +193,9 @@ func rank_lpm(rank: float) -> float:
 	return 60 * 60 * float(total_lines) / total_frames
 
 
-"""
-Populates a new RankResult object with raw statistics.
-
-This does not include any rank data, only objective information like lines cleared and time taken.
-"""
+## Populates a new RankResult object with raw statistics.
+##
+## This does not include any rank data, only objective information like lines cleared and time taken.
 func _unranked_result() -> RankResult:
 	var rank_result := RankResult.new()
 	
@@ -235,17 +223,15 @@ func _unranked_result() -> RankResult:
 	return rank_result
 
 
-"""
-Calculates the player's rank.
-
-We calculate the player's rank in various areas by comparing them to a perfect player, and diminishing the perfect
-player's abilities until they match the actual player's performance.
-
-Parameters:
-	'lenient': If false, we compare the player to a perfect M-rank player. If true, we compare the player to a very
-		good S++ rank player. This is mostly done to avoid giving the player a C+ because they 'only' survived for 150
-		lines in Marathon mode.
-"""
+## Calculates the player's rank.
+##
+## We calculate the player's rank in various areas by comparing them to a perfect player, and diminishing the perfect
+## player's abilities until they match the actual player's performance.
+##
+## Parameters:
+## 	'lenient': If false, we compare the player to a perfect M-rank player. If true, we compare the player to a very
+## 		good S++ rank player. This is mostly done to avoid giving the player a C+ because they 'only' survived for 150
+## 		lines in Marathon mode.
 func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var target_speed: float = rank_lpm(BEST_RANK)
 	var target_box_score_per_line := master_box_score(CurrentLevel.settings)
@@ -389,15 +375,13 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	_clamp_result(rank_result, lenient)
 
 
-"""
-Reduces the player's ranks if they topped out.
-
-Each time the player tops out, all of their ranks are reduced by a certain amount.
-
-It's also possible for the player to lose without topping out, if they either met a special lose condition or hit
-'esc' to give up on the level. In this case, we still apply one top out penalty. This prevents people from losing on
-purpose to achieve a good rank.
-"""
+## Reduces the player's ranks if they topped out.
+##
+## Each time the player tops out, all of their ranks are reduced by a certain amount.
+##
+## It's also possible for the player to lose without topping out, if they either met a special lose condition or hit
+## 'esc' to give up on the level. In this case, we still apply one top out penalty. This prevents people from losing on
+## purpose to achieve a good rank.
 func _apply_top_out_penalty(rank_result: RankResult) -> void:
 	if rank_result.topped_out() or rank_result.lost:
 		var penalty_count := max(1, rank_result.top_out_count)
@@ -413,14 +397,12 @@ func _apply_top_out_penalty(rank_result: RankResult) -> void:
 		rank_result.seconds_rank = rank_result.seconds_rank + all_penalty
 
 
-"""
-Clamps the player's ranks within [0, 999] to avoid edge cases.
-
-Most importantly, this patches up cases where we've previously divided by zero or calculated the natural log of zero.
-Serializing an infinite/undefined float into JSON corrupts the player's save file.
-
-The player cannot achieve a master rank if the lenient flag is set.
-"""
+## Clamps the player's ranks within [0, 999] to avoid edge cases.
+##
+## Most importantly, this patches up cases where we've previously divided by zero or calculated the natural log of
+## zero. Serializing an infinite/undefined float into JSON corrupts the player's save file.
+##
+## The player cannot achieve a master rank if the lenient flag is set.
 func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
 	var min_rank := 1.0 if lenient else BEST_RANK
 	var max_rank := WORST_RANK
@@ -434,9 +416,7 @@ func _clamp_result(rank_result: RankResult, lenient: bool) -> void:
 	rank_result.pickup_score_rank = clamp(rank_result.pickup_score_rank, min_rank, max_rank)
 
 
-"""
-Converts a numeric grade such as '12.6' into a grade string such as 'S+'.
-"""
+## Converts a numeric grade such as '12.6' into a grade string such as 'S+'.
 static func grade(rank: float) -> String:
 	var grade := NO_GRADE
 	
@@ -448,11 +428,9 @@ static func grade(rank: float) -> String:
 	return grade
 
 
-"""
-Converts a letter grade such as 'S+' into a numeric rating such as '12.6'.
-
-The resulting rating is an average rating for that grade -- not a minimum cutoff.
-"""
+## Converts a letter grade such as 'S+' into a numeric rating such as '12.6'.
+##
+## The resulting rating is an average rating for that grade -- not a minimum cutoff.
 static func rank(grade: String) -> float:
 	var rank_lo := WORST_RANK
 	var rank_hi := WORST_RANK
@@ -465,43 +443,31 @@ static func rank(grade: String) -> float:
 	return 0.5 * (rank_lo + rank_hi)
 
 
-"""
-Returns the maximum box score per line for the specified level.
-"""
+## Returns the maximum box score per line for the specified level.
 static func master_box_score(settings: LevelSettings) -> float:
 	return settings.rank.box_factor * MASTER_BOX_SCORE
 
 
-"""
-Returns the maximum combo score per line for the specified level.
-"""
+## Returns the maximum combo score per line for the specified level.
 static func master_combo_score(settings: LevelSettings) -> float:
 	return settings.rank.combo_factor * MASTER_COMBO_SCORE
 
 
-"""
-Returns the maximum pickup score per line for the specified level.
-"""
+## Returns the maximum pickup score per line for the specified level.
 static func master_pickup_score_per_line(settings: LevelSettings) -> float:
 	return settings.rank.master_pickup_score_per_line
 
 
-"""
-Returns the maximum overall pickup score for the specified level.
-"""
+## Returns the maximum overall pickup score for the specified level.
 static func master_pickup_score(settings: LevelSettings) -> float:
 	return settings.rank.master_pickup_score
 
 
-"""
-Returns the maximum combo expected for a single customer for the specified level.
-"""
+## Returns the maximum combo expected for a single customer for the specified level.
 static func master_customer_combo(settings: LevelSettings) -> int:
 	return settings.rank.customer_combo if settings.rank.customer_combo else MASTER_CUSTOMER_COMBO
 
 
-"""
-Returns the maximum number of leftover lines expected for the specified level.
-"""
+## Returns the maximum number of leftover lines expected for the specified level.
 static func master_leftover_lines(settings: LevelSettings) -> int:
 	return settings.rank.leftover_lines if settings.rank.leftover_lines else MASTER_LEFTOVER_LINES

@@ -1,10 +1,7 @@
 class_name FileUtils
-"""
-Utility class for file operations.
-
-Many of these were adopted from the Gut library.
-"""
-
+## Utility class for file operations.
+##
+## Many of these were adopted from the Gut library.
 
 static func file_exists(path: String) -> bool:
 	var f := File.new()

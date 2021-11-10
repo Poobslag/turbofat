@@ -1,12 +1,10 @@
 class_name WalkingBuddy
 extends Creature
-"""
-A creature who walks in a straight line alongside another creature.
-
-The creature can be designated a 'leader' or a 'follower' which alters their walking behavior. The leader continues
-walking as long as they're not too far from the follower. The follower continues walking until they get too close to
-the leader.
-"""
+## A creature who walks in a straight line alongside another creature.
+##
+## The creature can be designated a 'leader' or a 'follower' which alters their walking behavior. The leader continues
+## walking as long as they're not too far from the follower. The follower continues walking until they get too close to
+## the leader.
 
 enum LeaderOrFollower {
 	NONE,
@@ -21,49 +19,45 @@ enum WalkState {
 	ABOUT_TO_WALK, # preparing to walk
 }
 
-# creatures try to keep a respectable distance from one another
+## creatures try to keep a respectable distance from one another
 const TOO_CLOSE_THRESHOLD := 200.0
 const TOO_FAR_THRESHOLD := 600.0
 
-# the direction the creatures walk, when they're walking
+## the direction the creatures walk, when they're walking
 const WALK_DIR := Vector2(0.70710678118, 0.70710678118)
 
-# the path to the other creature whom this creature is walking with
+## the path to the other creature whom this creature is walking with
 export (NodePath) var buddy_path: NodePath
 
-# the path to the destination. the leader stops walking if they reach this destination
+## the path to the destination. the leader stops walking if they reach this destination
 export (NodePath) var destination_path: NodePath
 
-# designates this creature as either a leader or follower
+## designates this creature as either a leader or follower
 export (LeaderOrFollower) var leader_or_follower: int
 
-# the creature's walking state. they start out in the WALKING state, but might change to the SITTING state if they
-# reach their destination or if the cutscene specifies to stop.
+## the creature's walking state. they start out in the WALKING state, but might change to the SITTING state if they
+## reach their destination or if the cutscene specifies to stop.
 var _walk_state: int = WalkState.WALKING
 
-# the other creature whom this creature is walking with
+## the other creature whom this creature is walking with
 onready var buddy: Creature = get_node(buddy_path)
 
-# the leader stops walking if they reach this destination
+## the leader stops walking if they reach this destination
 onready var destination: Node2D = get_node(destination_path)
 
-# the creature reevaluates whether they should continue walking when this timer times out
+## the creature reevaluates whether they should continue walking when this timer times out
 onready var _move_timer: Timer = $MoveTimer
 
-"""
-Note: Some superclass method calls are implicit in gdscript for notifications. This is planned to require explicit
-super() calls in Godot 4.0
-"""
+## Note: Some superclass method calls are implicit in gdscript for notifications. This is planned to require explicit
+## super() calls in Godot 4.0
 func _ready() -> void:
 	_move_timer.connect("timeout", self, "_on_MoveTimer_timeout")
 	set_non_iso_walk_direction(WALK_DIR)
 
 
-"""
-Makes the creature stop walking and sit down.
-
-They will only continue walking if the 'start_walking' method is called.
-"""
+## Makes the creature stop walking and sit down.
+##
+## They will only continue walking if the 'start_walking' method is called.
 func stop_walking(delay: float = 0.0) -> void:
 	if delay == 0:
 		# sit immediately so that we can emote with our hands
@@ -74,32 +68,26 @@ func stop_walking(delay: float = 0.0) -> void:
 		_start_move_timer(delay)
 
 
-"""
-Makes the creature resume walking.
-"""
+## Makes the creature resume walking.
 func start_walking(delay: float = 0.0) -> void:
 	_walk_state = WalkState.ABOUT_TO_WALK
 	_start_move_timer(delay)
 
 
-"""
-Starts the move timer, but preserves the default wait time.
-
-This allows the move timer to have a longer one-time delay without changing its permanent behavior.
-"""
+## Starts the move timer, but preserves the default wait time.
+##
+## This allows the move timer to have a longer one-time delay without changing its permanent behavior.
 func _start_move_timer(delay: float) -> void:
 	var old_wait_time := _move_timer.wait_time
 	_move_timer.start(delay)
 	_move_timer.wait_time = old_wait_time
 
 
-"""
-Updates the creature's walk direction. This usually causes them to walk, but they might pause too.
-
-Creatures will pause if they get too far apart or too close together. This is to allow for situations where one
-creature moves faster than the other. As long as they're an appropriate distance apart, this method will make them
-walk towards their destination.
-"""
+## Updates the creature's walk direction. This usually causes them to walk, but they might pause too.
+##
+## Creatures will pause if they get too far apart or too close together. This is to allow for situations where one
+## creature moves faster than the other. As long as they're an appropriate distance apart, this method will make them
+## walk towards their destination.
 func _walk() -> void:
 	var buddy_relative_pos: Vector2 = Global.from_iso(buddy.position - position)
 	
@@ -128,9 +116,7 @@ func _walk() -> void:
 		set_non_iso_walk_direction(new_non_iso_walk_direction)
 
 
-"""
-Makes the creature stop walking, sit, and face towards their friend.
-"""
+## Makes the creature stop walking, sit, and face towards their friend.
 func _sit_and_reorient() -> void:
 	set_non_iso_walk_direction(Vector2.ZERO)
 	# If we don't zero out the creature's velocity, CreatureVisuals overwrites our assigned orientation
@@ -138,9 +124,7 @@ func _sit_and_reorient() -> void:
 	orient_toward(buddy.position)
 
 
-"""
-When the move timer times out, we evaluate our walk state and change the creature's behavior.
-"""
+## When the move timer times out, we evaluate our walk state and change the creature's behavior.
 func _on_MoveTimer_timeout() -> void:
 	match _walk_state:
 		WalkState.ABOUT_TO_SIT:

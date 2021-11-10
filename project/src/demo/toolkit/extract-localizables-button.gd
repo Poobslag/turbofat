@@ -1,30 +1,26 @@
 extends Button
-"""
-Extracts localizable strings from levels and chats as a part of the localization process.
+## Extracts localizable strings from levels and chats as a part of the localization process.
+##
+## The pybabel tool creates a PO template file from our script and scene files. However, level and chat data is stored
+## in a proprietary JSON format which pybabel doesn't understand. This demo looks at all levels and chat in the game
+## and exports any localizable strings into a format accessible by pybabel.
 
-The pybabel tool creates a PO template file from our script and scene files. However, level and chat data is stored
-in a proprietary JSON format which pybabel doesn't understand. This demo looks at all levels and chat in the game
-and exports any localizable strings into a format accessible by pybabel.
-"""
-
-# the file where we write the localizable strings
+## the file where we write the localizable strings
 const OUTPUT_PATH := "res://assets/main/locale/localizables-extracted.py"
 const SCANCODE_OUTPUT_PATH := "res://assets/main/locale/localizables-scancodes.py"
 
 export (NodePath) var output_label_path: NodePath
 
-# localizable strings extracted from levels and chats
+## localizable strings extracted from levels and chats
 var _localizables := []
 
-# localizable strings extracted from scancodes (input keys)
+## localizable strings extracted from scancodes (input keys)
 var _scancode_localizables := []
 
-# label for outputting messages to the user
+## label for outputting messages to the user
 onready var _output_label := get_node(output_label_path)
 
-"""
-Extracts localizable strings from levels and chats and writes them to a file.
-"""
+## Extracts localizable strings from levels and chats and writes them to a file.
 func _extract_and_write_localizables() -> void:
 	_localizables.clear()
 	_scancode_localizables.clear()
@@ -45,9 +41,7 @@ func _extract_and_write_localizables() -> void:
 			OUTPUT_PATH, SCANCODE_OUTPUT_PATH]
 
 
-"""
-Extracts localizable strings from levels and adds them to the in-memory list of localizables.
-"""
+## Extracts localizable strings from levels and adds them to the in-memory list of localizables.
 func _extract_localizables_from_levels() -> void:
 	var level_ids := LevelLibrary.all_level_ids()
 	level_ids.sort()
@@ -67,9 +61,7 @@ func _extract_localizables_from_levels() -> void:
 			_extract_localizables_from_chat_tree(chat_tree)
 
 
-"""
-Extracts localizable strings from creature chats and adds them to the in-memory list of localizables.
-"""
+## Extracts localizable strings from creature chats and adds them to the in-memory list of localizables.
 func _extract_localizables_from_creatures() -> void:
 	var creature_ids := PlayerData.creature_library.creature_ids()
 	creature_ids.sort()
@@ -88,9 +80,7 @@ func _extract_localizables_from_creatures() -> void:
 			_extract_localizables_from_chat_tree(chat_tree)
 
 
-"""
-Extracts localizable strings from a chat tree and adds them to the in-memory list of localizables.
-"""
+## Extracts localizable strings from a chat tree and adds them to the in-memory list of localizables.
 func _extract_localizables_from_chat_tree(chat_tree: ChatTree) -> void:
 	for event_sequence in chat_tree.events.values():
 		for event_obj in event_sequence:
@@ -108,12 +98,10 @@ func _extract_localizables_from_chat_tree(chat_tree: ChatTree) -> void:
 					_localizables.append(link_text)
 
 
-"""
-Extract localizables from OS.get_scancode_string()
-
-This is a workaround for Godot #4140 (https://github.com/godotengine/godot/issues/4140). Because Godot does not offer
-a way to localize scancode strings, we must extract and localize them ourselves.
-"""
+## Extract localizables from OS.get_scancode_string()
+##
+## This is a workaround for Godot #4140 (https://github.com/godotengine/godot/issues/4140). Because Godot does not
+## offer a way to localize scancode strings, we must extract and localize them ourselves.
 func _extract_localizables_from_scancode_strings() -> void:
 	# ascii printable characters: space, comma, period, slash...
 	for i in range(256):
@@ -128,9 +116,7 @@ func _extract_localizables_from_scancode_strings() -> void:
 			_scancode_localizables.append(scancode_string)
 
 
-"""
-Writes the in-memory list of localizables to a file, in a format accessible by pybabel.
-"""
+## Writes the in-memory list of localizables to a file, in a format accessible by pybabel.
 func _write_localizables(output_path: String, localizables: Array) -> void:
 	var f := File.new()
 	f.open(output_path, f.WRITE)

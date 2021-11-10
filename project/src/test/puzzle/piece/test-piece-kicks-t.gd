@@ -1,14 +1,10 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
-"""
-Tests the t piece's kick behavior.
-"""
+## Tests the t piece's kick behavior.
 
-"""
-A rose kick is when the t piece pivots around the middle of its three extrusions.
-
- T  <--- it rotates around this part. doesn't it look like a rose?
-ttt
-"""
+## A rose kick is when the t piece pivots around the middle of its three extrusions.
+##
+##  T  <--- it rotates around this part. doesn't it look like a rose?
+## ttt
 func test_rose_kick_left() -> void:
 	from_grid = [
 		":: ",
@@ -73,11 +69,9 @@ func test_rose_kick_right() -> void:
 	assert_kick()
 
 
-"""
-A duck kick is when the T-piece tries to rotate an extrusion towards its flat side, and gets shoved away.
-
-This does not replace the usual floor kick, but acts as a replacement if the floor kick fails.
-"""
+## A duck kick is when the T-piece tries to rotate an extrusion towards its flat side, and gets shoved away.
+##
+## This does not replace the usual floor kick, but acts as a replacement if the floor kick fails.
 func test_duck_kick_down0() -> void:
 	from_grid = [
 		"::  ",

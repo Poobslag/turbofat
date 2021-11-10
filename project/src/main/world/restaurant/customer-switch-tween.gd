@@ -1,9 +1,7 @@
 extends Tween
-"""
-Pans the camera from one creature to another.
-"""
+## Pans the camera from one creature to another.
 
-# the amount of time spent panning the camera to a new creature
+## the amount of time spent panning the camera to a new creature
 const PAN_DURATION_SECONDS := 0.4
 
 export (NodePath) var customer_camera_path: NodePath

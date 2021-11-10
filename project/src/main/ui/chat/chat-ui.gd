@@ -1,25 +1,23 @@
 extends Control
-"""
-Displays UI elements for a chat sequence.
-"""
+## Displays UI elements for a chat sequence.
 
 signal popped_in
 signal chat_event_played(chat_event)
 
-# emitted when we present the player with a chat choice
+## emitted when we present the player with a chat choice
 signal showed_choices
 signal chat_choice_chosen(choice_index)
 
-# emitted when the chat window pops out after a finished chat
+## emitted when the chat window pops out after a finished chat
 signal chat_finished
 
-# how long the player needs to hold the button to skip all chat lines
+## how long the player needs to hold the button to skip all chat lines
 const HOLD_TO_SKIP_DURATION := 0.6
 
-# how long the player has been holding the 'interact' button
+## how long the player has been holding the 'interact' button
 var _accept_action_duration := 0.0
 
-# how long the player has been holding the 'rewind' button
+## how long the player has been holding the 'rewind' button
 var _rewind_action_duration := 0.0
 
 onready var _chat_advancer: ChatAdvancer = $ChatAdvancer
@@ -27,7 +25,7 @@ onready var _chat_choices: ChatChoices = $ChatChoices
 onready var _chat_frame: ChatFrame = $ChatFrame
 onready var _narration_frame: NarrationFrame = $NarrationFrame
 
-# true if the player has advanced past the last line in the chat tree
+## true if the player has advanced past the last line in the chat tree
 var _chat_finished := false
 
 func _process(delta: float) -> void:
@@ -54,11 +52,9 @@ func play_chat_tree(chat_tree: ChatTree) -> void:
 	emit_signal("popped_in")
 
 
-"""
-Process the result of the player pressing the 'rewind' button.
-
-The player can tap the rewind button to view the previous line, or hold the button to rewind continuously.
-"""
+## Process the result of the player pressing the 'rewind' button.
+##
+## The player can tap the rewind button to view the previous line, or hold the button to rewind continuously.
 func _handle_rewind_action(event: InputEvent) -> void:
 	var rewind_action := false
 	if event.is_action_pressed("rewind_text"):
@@ -73,12 +69,10 @@ func _handle_rewind_action(event: InputEvent) -> void:
 		_chat_advancer.rewind()
 
 
-"""
-Process the result of the player pressing the 'advance' button.
-
-The player can tap the advance button to make chat lines appear faster or advance to the next line. They can hold the
-advance button to continuously advance the text.
-"""
+## Process the result of the player pressing the 'advance' button.
+##
+## The player can tap the advance button to make chat lines appear faster or advance to the next line. They can hold
+## the advance button to continuously advance the text.
 func _handle_advance_action(event: InputEvent) -> void:
 	var advance_action := false
 	if event.is_action_pressed("ui_accept"):
@@ -100,9 +94,7 @@ func _handle_advance_action(event: InputEvent) -> void:
 			_chat_advancer.advance()
 
 
-"""
-Displays the current chat event to the player.
-"""
+## Displays the current chat event to the player.
 func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 	if _chat_advancer.rewinding_text or _chat_choices.is_showing_choices():
 		# if we're asked to rewind or play more chat lines without picking a choice, hide the choices
@@ -147,14 +139,12 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 			_chat_advancer.advance()
 
 
-"""
-Extracts the moods for each available choice of a chat event.
-
-The resulting array excludes any choices whose link_if conditions are unmet.
-
-Returns:
-	An array of ChatEvent.Mood instances for each chat branch
-"""
+## Extracts the moods for each available choice of a chat event.
+##
+## The resulting array excludes any choices whose link_if conditions are unmet.
+##
+## Returns:
+## 	An array of ChatEvent.Mood instances for each chat branch
 func _enabled_link_moods(var chat_event: ChatEvent) -> Array:
 	var moods := []
 	for i in chat_event.enabled_link_indexes():
@@ -175,14 +165,12 @@ func _enabled_link_moods(var chat_event: ChatEvent) -> Array:
 	return moods
 
 
-"""
-Extracts the strings to show the player for each available choice of a chat event.
-
-The resulting array excludes any choices whose link_if conditions are unmet.
-
-Returns:
-	An array of string choices for each chat branch
-"""
+## Extracts the strings to show the player for each available choice of a chat event.
+##
+## The resulting array excludes any choices whose link_if conditions are unmet.
+##
+## Returns:
+## 	An array of string choices for each chat branch
 func _enabled_link_texts(var chat_event: ChatEvent) -> Array:
 	var texts := []
 	for i in chat_event.enabled_link_indexes():

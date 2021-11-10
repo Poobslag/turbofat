@@ -1,7 +1,5 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
-"""
-Tests the u piece's kick behavior.
-"""
+## Tests the u piece's kick behavior.
 
 func test_floorkick_2l() -> void:
 	from_grid = [
@@ -179,9 +177,7 @@ func test_lwallkick_l2() -> void:
 	assert_kick()
 
 
-"""
-A spire kick is when a u piece rotates while a block is in its gap.
-"""
+## A spire kick is when a u piece rotates while a block is in its gap.
 func test_spire_kick_0r() -> void:
 	from_grid = [
 		"     ",
@@ -286,9 +282,7 @@ func test_spire_kick_r0() -> void:
 	assert_kick()
 
 
-"""
-a 'diagonalnw kick' is when the u piece is boxed in by the nw/se corners
-"""
+## a 'diagonalnw kick' is when the u piece is boxed in by the nw/se corners
 func test_diagonalnw_kick_2l() -> void:
 	from_grid = [
 		"::   ",
@@ -357,9 +351,7 @@ func test_diagonalnw_kick_r2() -> void:
 	assert_kick()
 
 
-"""
-a 'diagonalne kick' is when the u piece is boxed in by the ne/sw corners
-"""
+## a 'diagonalne kick' is when the u piece is boxed in by the ne/sw corners
 func test_diagonalne_kick_2l() -> void:
 	from_grid = [
 		"   ::",
@@ -428,9 +420,7 @@ func test_diagonalne_kick_r2() -> void:
 	assert_kick()
 
 
-"""
-a 'shaft kick' is when the u piece rotates after being dropped down a narrow shaft
-"""
+## a 'shaft kick' is when the u piece rotates after being dropped down a narrow shaft
 func test_shaft_kick_r2_0() -> void:
 	from_grid = [
 		"  ::",
@@ -590,9 +580,7 @@ func test_climb_kick_r0() -> void:
 	assert_kick()
 
 
-"""
-A 'ledge kick' is when the piece is teetering on a ledge and shouldn't drop off.
-"""
+## A 'ledge kick' is when the piece is teetering on a ledge and shouldn't drop off.
 func test_ledge_kick_right_0r() -> void:
 	from_grid = [
 		"    ",

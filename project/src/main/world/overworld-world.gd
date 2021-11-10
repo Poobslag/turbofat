@@ -1,8 +1,6 @@
 class_name OverworldWorld
 extends Node
-"""
-Populates/unpopulates the creatures and obstacles on the overworld.
-"""
+## Populates/unpopulates the creatures and obstacles on the overworld.
 
 export (NodePath) var shadow_caster_shadows_path: NodePath
 export (NodePath) var creature_shadows_path: NodePath
@@ -82,9 +80,7 @@ func _launch_cutscene() -> void:
 		_overworld_ui.make_chatters_face_eachother()
 
 
-"""
-Relocate a creature to a spawn point.
-"""
+## Relocate a creature to a spawn point.
 func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 	var target_spawn: Spawn
 	for spawn_obj in get_tree().get_nodes_in_group("spawns"):
@@ -102,9 +98,7 @@ func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 		push_warning("Could not locate spawn with id '%s'" % [spawn_id])
 
 
-"""
-Creates a new creature with the specified creature_id and adds it to the scene.
-"""
+## Creates a new creature with the specified creature_id and adds it to the scene.
 func add_creature(creature_id: String, chattable: bool = true) -> Creature:
 	var creature: Creature = CreatureScene.instance()
 	creature.creature_id = creature_id
@@ -130,9 +124,7 @@ func process_new_obstacle(obstacle: Node2D) -> void:
 		_shadow_caster_shadows.create_shadow(obstacle)
 
 
-"""
-Locates the creature with the specified creature_id.
-"""
+## Locates the creature with the specified creature_id.
 func _find_creature(creature_id: String) -> Creature:
 	var creature: Creature
 	

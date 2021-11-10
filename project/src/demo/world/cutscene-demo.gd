@@ -1,11 +1,9 @@
 extends Control
-"""
-Demonstrates cutscenes.
+## Demonstrates cutscenes.
+##
+## The user can select and launch any cutscene, and change how fat the creatures are.
 
-The user can select and launch any cutscene, and change how fat the creatures are.
-"""
-
-# property keys to use when saving/loading data
+## property keys to use when saving/loading data
 const SAVE_KEY_FLAGS := "cutscene-demo.flags"
 const SAVE_KEY_OPEN := "cutscene-demo.open"
 

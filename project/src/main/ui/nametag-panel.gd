@@ -1,15 +1,13 @@
 class_name NametagPanel
 extends Panel
-"""
-Resizes and shows nametag labels.
-"""
+## Resizes and shows nametag labels.
 
 export (Array, Vector2) var panel_sizes: Array
 
-# size of the nametag needed to display the name text
+## size of the nametag needed to display the name text
 var nametag_size: int
 
-# The name is copied into multiple labels. We display the smallest label which fits.
+## The name is copied into multiple labels. We display the smallest label which fits.
 onready var _labels := {
 	ChatTheme.NAMETAG_SMALL: $Small,
 	ChatTheme.NAMETAG_MEDIUM: $Medium,
@@ -28,9 +26,7 @@ func refresh_chat_theme(chat_theme: ChatTheme) -> void:
 	set_font_color(chat_theme.nametag_font_color)
 
 
-"""
-Assigns the name label's text and updates our nametag_size field to the smallest name label which fit.
-"""
+## Assigns the name label's text and updates our nametag_size field to the smallest name label which fit.
 func set_nametag_text(new_text: String) -> void:
 	new_text = ChattableManager.substitute_variables(new_text, true)
 	
@@ -53,9 +49,7 @@ func set_nametag_text(new_text: String) -> void:
 		rect_size = panel_sizes[nametag_size - 1]
 
 
-"""
-Hides all labels. Labels are eventually shown when show_label() is invoked.
-"""
+## Hides all labels. Labels are eventually shown when show_label() is invoked.
 func hide_labels() -> void:
 	for label in _labels.values():
 		label.visible = false

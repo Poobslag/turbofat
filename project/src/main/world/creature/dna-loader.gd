@@ -1,20 +1,19 @@
 #tool #uncomment to view creature in editor
 extends Node
-"""
-Assigns and unassigns textures and animations based on a creature's dna.
+## Assigns and unassigns textures and animations based on a creature's dna.
+##
+## This needs to be separate from the CreatureVisuals node because it must continue running while paused. Otherwise the
+## creature editor will have strange behavior, particularly in its color picker.
 
-This needs to be separate from the CreatureVisuals node because it must continue running while paused. Otherwise the
-creature editor will have strange behavior, particularly in its color picker.
-"""
-
-# emitted when a creature's textures and animations are loaded
+## emitted when a creature's textures and animations are loaded
 signal dna_loaded
 
-# The maximum amount of microseconds to spend setting shader params in each frame. This is capped to avoid frame drops.
+## The maximum amount of microseconds to spend setting shader params in each frame. This is capped to avoid frame
+## drops.
 const MAX_SHADER_USEC_PER_FRAME := 120
 
-# Array of string shader keys from the dna which haven't yet been loaded. Instead of loading these up front, we load
-# these gradually over time. Setting shader params is slow and setting too many at once causes frame drops.
+## Array of string shader keys from the dna which haven't yet been loaded. Instead of loading these up front, we load
+## these gradually over time. Setting shader params is slow and setting too many at once causes frame drops.
 var _pending_shader_keys: Array
 
 onready var _creature_visuals: CreatureVisuals = get_parent()
@@ -36,12 +35,11 @@ func _process(_delta: float) -> void:
 				_creature_visuals.get_node(node_path).material.set_shader_param(shader_param, shader_value)
 
 
-"""
-Unassigns the textures and animations for the creature.
-
-Different body parts have different animations and textures. Before changing the creature's appearance, any old
-textures and animations need to be stopped and removed, and any signals disconnected. This method handles all of that.
-"""
+## Unassigns the textures and animations for the creature.
+##
+## Different body parts have different animations and textures. Before changing the creature's appearance, any old
+## textures and animations need to be stopped and removed, and any signals disconnected. This method handles all of
+## that.
 func unload_dna() -> void:
 	_creature_visuals.get_node("Animations/EmotePlayer").unemote_immediate()
 	for node_path in [
@@ -105,11 +103,9 @@ func unload_dna() -> void:
 	_creature_visuals.get_node("Animations").reset()
 
 
-"""
-Assigns the textures and animations based on the creature's dna.
-
-This method assumes that any existing animations and connections have been disconnected.
-"""
+## Assigns the textures and animations based on the creature's dna.
+##
+## This method assumes that any existing animations and connections have been disconnected.
 func load_dna() -> void:
 	if _creature_visuals.dna.has("mouth"):
 		_add_dna_node(CreatureLoader.new_mouth_player(_creature_visuals.dna.mouth), "mouth",
@@ -159,9 +155,7 @@ func load_dna() -> void:
 	emit_signal("dna_loaded")
 
 
-"""
-Removes a 'dna node', one which swaps out based on the creature's DNA.
-"""
+## Removes a 'dna node', one which swaps out based on the creature's DNA.
 func _remove_dna_node(path: NodePath) -> void:
 	if not _creature_visuals.has_node(path):
 		return
@@ -172,18 +166,16 @@ func _remove_dna_node(path: NodePath) -> void:
 	node.queue_free()
 
 
-"""
-Adds a 'dna node', one which swaps out based on the creature's DNA.
-
-Parameters:
-	'node': The node to add
-	
-	'key_message': The node description to display in error messages
-	
-	'value_message': The node value to display in error messages
-	
-	'parent': The parent of the new node
-"""
+## Adds a 'dna node', one which swaps out based on the creature's DNA.
+##
+## Parameters:
+## 	'node': The node to add
+##
+## 	'key_message': The node description to display in error messages
+##
+## 	'value_message': The node value to display in error messages
+##
+## 	'parent': The parent of the new node
 func _add_dna_node(node: Node, key_message: String, value_message: String, parent: Node = self) -> void:
 	if not node:
 		push_warning("Invalid %s: %s" % [key_message, value_message])

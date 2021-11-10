@@ -1,31 +1,27 @@
 class_name PlayfieldEditorControl
 extends HBoxContainer
-"""
-UI control for editing the playfield.
+## UI control for editing the playfield.
+##
+## This includes adding/removing blocks to the playfield. It also includes adding, removing and selecting different
+## groups of level tiles.
 
-This includes adding/removing blocks to the playfield. It also includes adding, removing and selecting different groups
-of level tiles.
-"""
-
-# emitted when a group of level tiles is added, removed, or selected
+## emitted when a group of level tiles is added, removed, or selected
 signal tiles_keys_changed(tiles_keys, tiles_key)
-# emitted when the playfield's contents change, such as when blocks are added or removed
+## emitted when the playfield's contents change, such as when blocks are added or removed
 signal tile_map_changed
-# emitted when the playfield's pickups change
+## emitted when the playfield's pickups change
 signal pickups_changed
 
-# tiles keys which can be selected. 'start' is always the first item in this array
+## tiles keys which can be selected. 'start' is always the first item in this array
 var tiles_keys := ["start"] setget set_tiles_keys
-# the currently selected tiles key
+## the currently selected tiles key
 var tiles_key := "start" setget set_tiles_key
 
 onready var _playfield_nav := $PlayfieldNav
 
-"""
-Updates the list of selectable tiles keys.
-
-The incoming tiles keys are sanitized to ensure they are sorted, and that they always include a 'start' key.
-"""
+## Updates the list of selectable tiles keys.
+##
+## The incoming tiles keys are sanitized to ensure they are sorted, and that they always include a 'start' key.
 func set_tiles_keys(new_tiles_keys: Array) -> void:
 	var new_normalized_tile_keys := _normalize_tiles_keys(new_tiles_keys)
 	if tiles_keys == new_normalized_tile_keys:
@@ -51,9 +47,7 @@ func get_pickups() -> EditorPickups:
 	return $CenterPanel/Playfield.get_pickups()
 
 
-"""
-Ensure the tiles keys are sorted, and that they always include a 'start' key.
-"""
+## Ensure the tiles keys are sorted, and that they always include a 'start' key.
 func _normalize_tiles_keys(keys: Array) -> Array:
 	var new_keys := keys.duplicate()
 	new_keys.sort()
@@ -71,9 +65,7 @@ func _on_Playfield_pickups_changed() -> void:
 	emit_signal("pickups_changed")
 
 
-"""
-When the player presses the 'add tiles' button, we append and select a new tiles key.
-"""
+## When the player presses the 'add tiles' button, we append and select a new tiles key.
 func _on_PlayfieldNav_add_tiles_key_pressed() -> void:
 	var new_key: String
 	for potential_new_key in ["0", "1"]:
@@ -92,9 +84,7 @@ func _on_PlayfieldNav_add_tiles_key_pressed() -> void:
 	emit_signal("tiles_keys_changed", tiles_keys, tiles_key)
 
 
-"""
-When the player presses the 'remove tiles' button, we remove the current tiles key and select the previous one.
-"""
+## When the player presses the 'remove tiles' button, we remove the current tiles key and select the previous one.
 func _on_PlayfieldNav_remove_tiles_key_pressed() -> void:
 	var old_tiles_key_index := tiles_keys.find(tiles_key)
 	
@@ -113,9 +103,7 @@ func _on_PlayfieldNav_remove_tiles_key_pressed() -> void:
 	emit_signal("tiles_keys_changed", tiles_keys, tiles_key)
 
 
-"""
-When the player presses the 'next tiles' button, we select the next tiles key.
-"""
+## When the player presses the 'next tiles' button, we select the next tiles key.
 func _on_PlayfieldNav_next_tiles_key_pressed() -> void:
 	var new_tiles_key_index := tiles_keys.find(tiles_key) + 1
 	
@@ -126,9 +114,7 @@ func _on_PlayfieldNav_next_tiles_key_pressed() -> void:
 	set_tiles_key(tiles_keys[new_tiles_key_index])
 
 
-"""
-When the player presses the 'previous tiles' button, we select the previous tiles key.
-"""
+## When the player presses the 'previous tiles' button, we select the previous tiles key.
 func _on_PlayfieldNav_prev_tiles_key_pressed() -> void:
 	var old_tiles_key_index := tiles_keys.find(tiles_key)
 	var new_tiles_key_index := old_tiles_key_index - 1 if old_tiles_key_index != -1 else tiles_keys.size()

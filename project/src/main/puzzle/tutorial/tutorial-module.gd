@@ -1,12 +1,10 @@
 class_name TutorialModule
 extends Node
-"""
-Generic tutorial module for all tutorials.
+## Generic tutorial module for all tutorials.
+##
+## Subclasses can show messages and advances the player through the tutorial as they complete tasks.
 
-Subclasses can show messages and advances the player through the tutorial as they complete tasks.
-"""
-
-# generic nodes used by tutorial module subclasses
+## generic nodes used by tutorial module subclasses
 var hud: TutorialHud
 var puzzle: Puzzle
 var playfield: Playfield
@@ -26,23 +24,19 @@ func _ready() -> void:
 			hud.add_skill_tally_item(new_item)
 
 
-"""
-Starts a countdown and switches from tutorial music to regular music.
-
-This is used at the end of each tutorial when customers come in.
-"""
+## Starts a countdown and switches from tutorial music to regular music.
+##
+## This is used at the end of each tutorial when customers come in.
 func start_customer_countdown() -> void:
 	yield(PuzzleState, "after_level_changed")
 	MusicPlayer.play_upbeat_bgm(false)
 	puzzle.start_level_countdown()
 
 
-"""
-Prepares the next section of the tutorial.
-
-This includes resetting the combo and hiding all completed skill tally items. Subclasses can override this method to
-prepare other aspects of the level as well.
-"""
+## Prepares the next section of the tutorial.
+##
+## This includes resetting the combo and hiding all completed skill tally items. Subclasses can override this method to
+## prepare other aspects of the level as well.
 func prepare_tutorial_level() -> void:
 	# Reset the player's combo between puzzle sections. Each tutorial section should have a fresh start; We don't want
 	# them to receive a discouraging 'you broke your combo' fanfare at the start of a section.

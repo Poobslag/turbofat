@@ -1,8 +1,6 @@
 class_name PieceMover
 extends Node
-"""
-Handles horizontal movement for the player's active piece.
-"""
+## Handles horizontal movement for the player's active piece.
 
 signal initial_das_moved_left
 signal initial_das_moved_right
@@ -17,7 +15,7 @@ signal moved_right
 
 export (NodePath) var input_path: NodePath
 
-# how many times the piece has moved horizontally this frame
+## how many times the piece has moved horizontally this frame
 var _horizontal_movement_count := 0
 
 onready var input: PieceInput = get_node(input_path)
@@ -25,20 +23,20 @@ onready var input: PieceInput = get_node(input_path)
 func _physics_process(_delta: float) -> void:
 	_horizontal_movement_count = 0
 
-# locations the piece will spawn if the player holds left
+## locations the piece will spawn if the player holds left
 const SPAWN_LEFT := [
 		Vector2(-4, 0), Vector2(-4, -1), Vector2(-3, 0), Vector2(-3, -1),
 		Vector2(-2, 0), Vector2(-2, -1), Vector2(-1, 0), Vector2(-1, -1),
 		Vector2(0, 0), Vector2(0, -1), Vector2(1, 0), Vector2(1, -1),
 	]
 
-# locations the piece will spawn if the player does not hold left or right
+## locations the piece will spawn if the player does not hold left or right
 const SPAWN_CENTER := [
 		Vector2(0, 0), Vector2(0, -1), Vector2(-1, 0),
 		Vector2(-1, -1), Vector2(1, 0), Vector2(1, -1),
 	]
 
-# locations the piece will spawn if the player holds right
+## locations the piece will spawn if the player holds right
 const SPAWN_RIGHT := [
 		Vector2(4, 0), Vector2(4, -1), Vector2(3, 0), Vector2(3, -1),
 		Vector2(2, 0), Vector2(2, -1), Vector2(1, 0), Vector2(1, -1),
@@ -117,9 +115,7 @@ func apply_move_input(piece: ActivePiece) -> void:
 		input.set_right_das_active()
 
 
-"""
-Move piece once per frame to allow pieces to slide into nooks during 20G.
-"""
+## Move piece once per frame to allow pieces to slide into nooks during 20G.
 func attempt_mid_drop_movement(piece: ActivePiece) -> void:
 	if _horizontal_movement_count == 0:
 		apply_move_input(piece)

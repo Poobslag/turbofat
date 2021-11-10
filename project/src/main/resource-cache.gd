@@ -1,58 +1,56 @@
 extends Node
-"""
-Preloads resources to speed up scene transitions.
-
-By default, Godot loads the resources it needs for each scene and caches them until they're not needed anymore. This
-allows the game to start up quickly, but results in long wait times when transitioning from one scene to another.
-
-By preloading resources used throughout the game, we have a slower startup time in exchange for faster load times
-during the game.
-"""
+## Preloads resources to speed up scene transitions.
+##
+## By default, Godot loads the resources it needs for each scene and caches them until they're not needed anymore. This
+## allows the game to start up quickly, but results in long wait times when transitioning from one scene to another.
+##
+## By preloading resources used throughout the game, we have a slower startup time in exchange for faster load times
+## during the game.
 
 # warning-ignore:unused_signal
 signal finished_loading
 
-# number of threads to launch; 1 is slower, but more than 4 doesn't seem to help
+## number of threads to launch; 1 is slower, but more than 4 doesn't seem to help
 const THREAD_COUNT := 4
 
-# loading scenes is slower than loading regular resources; this constant estimates how much slower
+## loading scenes is slower than loading regular resources; this constant estimates how much slower
 const WORK_PER_SCENE := 8.0
 
-# in non-threaded environments, this is how long we're willing to block a thread to cache resources
+## in non-threaded environments, this is how long we're willing to block a thread to cache resources
 const CHUNK_SECONDS := 0.1
 
-# directories containing resources which should be preloaded
+## directories containing resources which should be preloaded
 const RESOURCE_DIRS := ["res://assets/main", "res://src/main"]
 
-# enables logging paths and durations for loaded resources
+## enables logging paths and durations for loaded resources
 export (bool) var verbose := false
 
-# reduces the number of textures loaded throughout the game
+## reduces the number of textures loaded throughout the game
 export (bool) var minimal_resources := false
 
-# resources which shouldn't be cached. we shouldn't cache large resources unless it's necessary
+## resources which shouldn't be cached. we shouldn't cache large resources unless it's necessary
 export (Array, String) var skipped_resource_paths: Array
 
-# maintains references to all resources to prevent them from being cleaned up
-# key: resource path
-# value: resource
+## maintains references to all resources to prevent them from being cleaned up
+## key: resource path
+## value: resource
 var _cache := {}
 var _cache_mutex := Mutex.new()
 
-# stores parsed versions of Aseprite json resources to speed up retrieval
-# key: json resource path
-# value: array of Rect2 instances representing regions defined by Aseprite
+## stores parsed versions of Aseprite json resources to speed up retrieval
+## key: json resource path
+## value: array of Rect2 instances representing regions defined by Aseprite
 var _frame_src_rect_cache := {}
 var _frame_dest_rect_cache := {}
 var _frame_cache_mutex := Mutex.new()
 
-# setting this to 'true' causes the background thread to terminate gracefully
+## setting this to 'true' causes the background thread to terminate gracefully
 var _exiting := false
 
-# background threads for loading resources
+## background threads for loading resources
 var _load_threads := []
 
-# properties used for the get_progress calculation
+## properties used for the get_progress calculation
 var _work_done := 0.0
 var _work_done_mutex := Mutex.new()
 var _work_total := 3.0
@@ -62,19 +60,17 @@ var _remaining_resource_paths_mutex := Mutex.new()
 
 var _remaining_scene_paths := []
  
-# singleton nodes, cached to preserve their appearance during scene transitions
-# key: singleton names
-# value: singleton nodes
+## singleton nodes, cached to preserve their appearance during scene transitions
+## key: singleton names
+## value: singleton nodes
 var _singletons: Dictionary
 
-"""
-Initializes the resource load.
-
-For desktop/mobile targets, this involves launching a background thread.
-
-Web targets do not support background threads (Godot issue #12699) so we initialize the list of PNG paths, and load
-them one at a time in the _process function.
-"""
+## Initializes the resource load.
+##
+## For desktop/mobile targets, this involves launching a background thread.
+##
+## Web targets do not support background threads (Godot issue #12699) so we initialize the list of PNG paths, and load
+## them one at a time in the _process function.
 func start_load() -> void:
 	set_process(true)
 	_find_resource_paths()
@@ -115,9 +111,7 @@ func _exit_tree() -> void:
 			thread.wait_to_finish()
 
 
-"""
-Replaces non-singletons in the scene tree with their singleton counterparts.
-"""
+## Replaces non-singletons in the scene tree with their singleton counterparts.
 func substitute_singletons() -> void:
 	for non_singleton_obj in get_tree().get_nodes_in_group("singletons"):
 		var non_singleton: Node = non_singleton_obj
@@ -137,9 +131,7 @@ func substitute_singletons() -> void:
 			_singletons[non_singleton.name] = non_singleton
 
 
-"""
-Removes singletons from their parent nodes to prevent them from being freed.
-"""
+## Removes singletons from their parent nodes to prevent them from being freed.
 func remove_singletons() -> void:
 	for singleton_obj in _singletons.values():
 		if singleton_obj.get_parent():
@@ -158,11 +150,9 @@ func has_cached_resource(path: String) -> bool:
 	return _cache.has(path)
 
 
-"""
-Returns the resource at the specified path, possibly from the cache.
-
-Most items will be retrieved from the cache, but especially large scenes will be loaded each time.
-"""
+## Returns the resource at the specified path, possibly from the cache.
+##
+## Most items will be retrieved from the cache, but especially large scenes will be loaded each time.
 func get_resource(path: String) -> Resource:
 	var result: Resource
 	if _cache.has(path):
@@ -172,40 +162,32 @@ func get_resource(path: String) -> Resource:
 	return result
 
 
-"""
-Returns Rect2 instances representing sprite sheet regions loaded from an Aseprite JSON file.
-
-The resulting Rect2s are sprite sheet regions where each frame can be read.
-"""
+## Returns Rect2 instances representing sprite sheet regions loaded from an Aseprite JSON file.
+##
+## The resulting Rect2s are sprite sheet regions where each frame can be read.
 func get_frame_src_rects(path: String) -> Array:
 	return _frame_src_rect_cache.get(path, [])
 
 
-"""
-Returns Rect2 instances representing screen regions loaded from an Aseprite JSON file.
-
-The resulting Rect2s are screen regions where each frame should be drawn
-"""
+## Returns Rect2 instances representing screen regions loaded from an Aseprite JSON file.
+##
+## The resulting Rect2s are screen regions where each frame should be drawn
 func get_frame_dest_rects(path: String) -> Array:
 	return _frame_dest_rect_cache.get(path, [])
 
 
-"""
-Loads all pngs in the /assets directory and stores the resulting resources in our cache
-
-Parameters:
-	'_userdata': Unused; needed for threads
-"""
+## Loads all pngs in the /assets directory and stores the resulting resources in our cache
+##
+## Parameters:
+## 	'_userdata': Unused; needed for threads
 func _preload_all_resources(_userdata: Object) -> void:
 	while _remaining_resource_paths and not _exiting:
 		_preload_next_resource()
 
 
-"""
-Loads a single resource and stores the resulting resource in our cache.
-
-Thread safe.
-"""
+## Loads a single resource and stores the resulting resource in our cache.
+##
+## Thread safe.
 func _preload_next_resource() -> void:
 	_remaining_resource_paths_mutex.lock()
 	var path: String = _remaining_resource_paths.pop_front()
@@ -221,26 +203,22 @@ func _preload_next_resource() -> void:
 	_work_done_mutex.unlock()
 
 
-"""
-Loads a single scene and stores the resulting resource in our cache.
-
-Loading scenes in threads causes 'another resource is loaded' errors, so this is not threaded.
-"""
+## Loads a single scene and stores the resulting resource in our cache.
+##
+## Loading scenes in threads causes 'another resource is loaded' errors, so this is not threaded.
 func _preload_next_scene() -> void:
 	var path: String = _remaining_scene_paths.pop_front()
 	_load_resource(path)
 	_work_done += WORK_PER_SCENE
 
 
-"""
-Returns a list of all png files in the /assets directory.
-
-Recursively traverses the assets directory searching for pngs. Any additional directories it discovers are appended to
-a queue for later traversal.
-
-Note: We search for '.png.import' files instead of searching for png files directly. This is because png files
-	disappear when the project is exported.
-"""
+## Returns a list of all png files in the /assets directory.
+##
+## Recursively traverses the assets directory searching for pngs. Any additional directories it discovers are appended
+## to a queue for later traversal.
+##
+## Note: We search for '.png.import' files instead of searching for png files directly. This is because png files
+## 	disappear when the project is exported.
 func _find_resource_paths() -> Array:
 	_remaining_resource_paths.clear()
 	
@@ -292,11 +270,9 @@ func _find_resource_paths() -> Array:
 	return _remaining_resource_paths
 
 
-"""
-Loads and caches the parsed version of an Aseprite json resource at the specified path.
-
-If the specified json resource is not an Aseprite json resource, we do nothing.
-"""
+## Loads and caches the parsed version of an Aseprite json resource at the specified path.
+##
+## If the specified json resource is not an Aseprite json resource, we do nothing.
 func _load_json_resource(json_path: String) -> void:
 	# parse json
 	var json: String = FileUtils.get_file_as_text(json_path)
@@ -326,11 +302,9 @@ func _load_json_resource(json_path: String) -> void:
 	_frame_cache_mutex.unlock()
 
 
-"""
-Loads and caches the resource at the specified path.
-
-If the resource is not found, we cache that fact and do not attempt to load it again.
-"""
+## Loads and caches the resource at the specified path.
+##
+## If the resource is not found, we cache that fact and do not attempt to load it again.
 func _load_resource(resource_path: String) -> void:
 	if _cache.has(resource_path):
 		# resource already cached

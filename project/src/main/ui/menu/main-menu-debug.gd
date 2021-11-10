@@ -1,9 +1,7 @@
 extends VBoxContainer
-"""
-A panel shown on the main menu containing developer tools.
-
-The panel only appears in debug builds of the game.
-"""
+## A panel shown on the main menu containing developer tools.
+##
+## The panel only appears in debug builds of the game.
 
 func _ready() -> void:
 	# only show debug panel for debug builds

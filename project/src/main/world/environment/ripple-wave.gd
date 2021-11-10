@@ -1,27 +1,25 @@
 class_name RippleWave
 extends Node2D
-"""
-Renders an animated goop wave.
+## Renders an animated goop wave.
+##
+## A goop wave is made up of many RippleSprite instances in a line.
 
-A goop wave is made up of many RippleSprite instances in a line.
-"""
-
-# controls how frequently waves speed up and slow down, in seconds
+## controls how frequently waves speed up and slow down, in seconds
 const SPEED_PERIOD := 6.0
 
 export (float) var speed: float = 100.0
 export (PackedScene) var RippleSpriteScene: PackedScene
 
-# The tilemap where waves should appear. Ripples appear and disappear based on the occupied cells of this tilemap.
+## The tilemap where waves should appear. Ripples appear and disappear based on the occupied cells of this tilemap.
 var _tile_map: TileMap
 
-# an enum from Ripples.RippleDirection for this wave's movement
+## an enum from Ripples.RippleDirection for this wave's movement
 var _direction: int = Ripples.RippleDirection.SOUTHEAST
 
-# the current position in the speed adjustment curve
+## the current position in the speed adjustment curve
 var _speed_phase := rand_range(0, SPEED_PERIOD)
 
-# controls how frequently this wave speeds up and slows down, in seconds
+## controls how frequently this wave speeds up and slows down, in seconds
 var _speed_period := rand_range(SPEED_PERIOD * 0.5, SPEED_PERIOD * 1.5)
 
 func _ready() -> void:
@@ -52,21 +50,17 @@ func _process(delta: float) -> void:
 		queue_free()
 
 
-"""
-Called after instance() to set the wave's initial values.
-"""
+## Called after instance() to set the wave's initial values.
 func initialize(init_tile_map: TileMap, init_direction: int, init_position: Vector2) -> void:
 	_tile_map = init_tile_map
 	_direction = init_direction
 	position = init_position
 
 
-"""
-Adds all ripple sprites corresponding to this wave.
-
-Ripples are never added after the wave is initially spawned. Instead, they are turned visible/invisible as the
-underlying terrain changes.
-"""
+## Adds all ripple sprites corresponding to this wave.
+##
+## Ripples are never added after the wave is initially spawned. Instead, they are turned visible/invisible as the
+## underlying terrain changes.
 func _add_ripple_sprites() -> void:
 	# calculate which cells are on the edge of the tilemap
 	# all cells get a ripplesprite. unoccupied cells get a ripplesprite which starts invisible
@@ -81,9 +75,7 @@ func _add_ripple_sprites() -> void:
 				_add_ripple_sprite(Vector2(cell_position.x, y))
 
 
-"""
-Adds a ripple sprite overlaying the specified position in the tilemap.
-"""
+## Adds a ripple sprite overlaying the specified position in the tilemap.
 func _add_ripple_sprite(cell_pos: Vector2) -> void:
 	var ripple_sprite: RippleSprite = RippleSpriteScene.instance()
 	
@@ -106,9 +98,7 @@ func _add_ripple_sprite(cell_pos: Vector2) -> void:
 	add_child(ripple_sprite)
 
 
-"""
-Refreshes all ripple's states and appearance based on the tilemap.
-"""
+## Refreshes all ripple's states and appearance based on the tilemap.
 func _refresh_ripple_sprites() -> void:
 	var cell_forward_vector: Vector2 = Ripples.TILEMAP_VECTOR_BY_RIPPLE_DIRECTION[_direction]
 	var cell_right_vector: Vector2 = _round_vector2(cell_forward_vector.rotated(PI / 2))
@@ -147,10 +137,8 @@ func _refresh_ripple_sprites() -> void:
 			ripple_sprite.ripple_state = Ripples.RippleState.CONNECTED_NONE
 
 
-"""
-Rounds floating point vectors to avoid bugs when interacting with the TileMap class.
-
-Workaround for Godot #18324 (https://github.com/godotengine/godot/issues/18324).
-"""
+## Rounds floating point vectors to avoid bugs when interacting with the TileMap class.
+##
+## Workaround for Godot #18324 (https://github.com/godotengine/godot/issues/18324).
 static func _round_vector2(v: Vector2) -> Vector2:
 	return Vector2(round(v.x), round(v.y))

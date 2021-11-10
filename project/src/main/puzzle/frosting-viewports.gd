@@ -1,13 +1,11 @@
 class_name FrostingViewports
 extends Control
-"""
-Maintains viewports for drawing smeared snack/cake frosting globs.
-"""
+## Maintains viewports for drawing smeared snack/cake frosting globs.
 
-# the minimum smear size for globs which are smeared slowly.
+## the minimum smear size for globs which are smeared slowly.
 export (float) var glob_min_scale := 1.0
 
-# the maximum smear size for globs which are smeared quickly.
+## the maximum smear size for globs which are smeared quickly.
 export (float) var glob_max_scale := 1.0
 
 export (PackedScene) var FrostingGlobScene: PackedScene
@@ -17,11 +15,9 @@ func _ready() -> void:
 	$RainbowViewport.size = rect_size
 
 
-"""
-Adds a frosting smear.
-
-The glob is added to the appropriate viewport and stretched in the direction of its movement.
-"""
+## Adds a frosting smear.
+##
+## The glob is added to the appropriate viewport and stretched in the direction of its movement.
 func add_smear(glob: FrostingGlob) -> void:
 	var new_glob: FrostingGlob = FrostingGlobScene.instance()
 	new_glob.copy_from(glob)

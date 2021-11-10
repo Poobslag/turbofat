@@ -1,9 +1,7 @@
 extends Control
-"""
-A toaster popup which shows the current song title.
-"""
+## A toaster popup which shows the current song title.
 
-# the bgm which was last shown in this popup
+## the bgm which was last shown in this popup
 var _shown_bgm: CheckpointSong
 
 onready var _music_label := $Panel/HBoxContainer/Label
@@ -16,14 +14,12 @@ func _ready() -> void:
 	_music_label.connect("item_rect_changed", self, "_on_Label_item_rect_changed")
 
 
-"""
-Update the popup's appearance based on the current song, and maybe show it.
-
-The popup is only shown if the song changes, and if the song is audible.
-
-Parameters:
-	'value': The song to show in the popup
-"""
+## Update the popup's appearance based on the current song, and maybe show it.
+##
+## The popup is only shown if the song changes, and if the song is audible.
+##
+## Parameters:
+## 	'value': The song to show in the popup
 func _refresh_panel(value: CheckpointSong) -> void:
 	if _shown_bgm == value or not is_inside_tree():
 		return

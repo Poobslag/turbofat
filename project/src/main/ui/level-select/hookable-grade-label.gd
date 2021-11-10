@@ -1,13 +1,11 @@
 class_name HookableGradeLabel
 extends Node2D
-"""
-Shows a grade label for a specific level.
+## Shows a grade label for a specific level.
+##
+## This can be something like 'S' or 'B+' if a level has been cleared, or something like a lock/key icon for levels
+## which haven't yet been cleared.
 
-This can be something like 'S' or 'B+' if a level has been cleared, or something like a lock/key icon for levels
-which haven't yet been cleared.
-"""
-
-# the level button this grade label applies to
+## the level button this grade label applies to
 var button: LevelSelectButton setget set_button
 
 var _cleared_texture: Texture = preload("res://assets/main/ui/level-select/cleared.png")
@@ -15,9 +13,7 @@ var _crown_texture: Texture = preload("res://assets/main/ui/level-select/crown.p
 var _key_texture: Texture = preload("res://assets/main/ui/level-select/key.png")
 var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked.png")
 
-"""
-Assigns this label's button, and updates the label's appearance.
-"""
+## Assigns this label's button, and updates the label's appearance.
 func set_button(new_button: LevelSelectButton) -> void:
 	if button == new_button:
 		# skip the unnecessary overhead in hooking/unhooking signals and refreshing our appearance
@@ -37,12 +33,10 @@ func set_button(new_button: LevelSelectButton) -> void:
 	_refresh_appearance()
 
 
-"""
-Updates the text/icon based on the level's status.
-
-If the level has been cleared, we display text corresponding to the player's grade. If the level hasn't been cleared,
-we show a lock/key/crown icon corresponding to the level's lock status.
-"""
+## Updates the text/icon based on the level's status.
+##
+## If the level has been cleared, we display text corresponding to the player's grade. If the level hasn't been
+## cleared, we show a lock/key/crown icon corresponding to the level's lock status.
 func _refresh_appearance() -> void:
 	if button.is_class("WorldSelectButton"):
 		var world_button: WorldSelectButton = button
@@ -70,11 +64,9 @@ func _refresh_appearance() -> void:
 	visible = false if button.lowlight else true
 
 
-"""
-Updates the icon based on the level's status.
-
-We show a lock/key/crown icon corresponding to the level's lock status.
-"""
+## Updates the icon based on the level's status.
+##
+## We show a lock/key/crown icon corresponding to the level's lock status.
 func _refresh_status_icon(lock_status: int) -> void:
 	$GradeLabel.visible = false
 	$StatusIcon.visible = true
@@ -102,9 +94,7 @@ func _refresh_status_icon(lock_status: int) -> void:
 	$StatusIcon.material.set("shader_param/black", outline_color)
 
 
-"""
-Updates the text based on the player's grade on a level.
-"""
+## Updates the text based on the player's grade on a level.
 func _refresh_grade_text(rank: float) -> void:
 	$GradeLabel.visible = true
 	$StatusIcon.visible = false

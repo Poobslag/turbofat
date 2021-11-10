@@ -1,22 +1,20 @@
 class_name LeafPoof
 extends Sprite
-"""
-A leaf poof spawned when the player clears a row containing vegetables.
-"""
+## A leaf poof spawned when the player clears a row containing vegetables.
 
-# the duration the leaf poof remains visible.
+## the duration the leaf poof remains visible.
 const LIFETIME := 1.5
 
-# leaf animations alternate between two frames; leaf_frame is always 0 or 1
+## leaf animations alternate between two frames; leaf_frame is always 0 or 1
 var leaf_frame: int setget set_leaf_frame
 
-# leaf_type controls which pair of frames are selected from the sprite sheet
+## leaf_type controls which pair of frames are selected from the sprite sheet
 var leaf_type: int
 
-# turns the leaf invisible
+## turns the leaf invisible
 onready var _tween: Tween = $Tween
 
-# animates and flips the leaf
+## animates and flips the leaf
 onready var _animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready() -> void:
@@ -26,11 +24,9 @@ func _ready() -> void:
 	_update_tween_and_animation()
 
 
-"""
-Makes the leaf poof visible and enables its physics processing.
-
-The leaf poof appears at the specified location, falls and sways back and forth, fades out and disables itself.
-"""
+## Makes the leaf poof visible and enables its physics processing.
+##
+## The leaf poof appears at the specified location, falls and sways back and forth, fades out and disables itself.
 func initialize(init_leaf_type: int, init_position: Vector2) -> void:
 	visible = true
 	modulate = Color.white

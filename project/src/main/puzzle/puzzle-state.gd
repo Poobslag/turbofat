@@ -1,35 +1,33 @@
 extends Node
-"""
-Stores the player's score for the current puzzle.
+## Stores the player's score for the current puzzle.
+##
+## This includes persistent data such as how long they survived, how many lines they cleared, and their score. This
+## data is written eventually to the save file.
+##
+## This also includes transient data such as the current creature/bonus score. This is used visually, but never saved.
 
-This includes persistent data such as how long they survived, how many lines they cleared, and their score. This data
-is written eventually to the save file.
-
-This also includes transient data such as the current creature/bonus score. This is used visually, but never saved.
-"""
-
-# emitted when the game will start soon. Everything should be erased and reset to zero.
+## emitted when the game will start soon. Everything should be erased and reset to zero.
 signal game_prepared
 
-# emitted after everything's been erased in preparation for a new game.
+## emitted after everything's been erased in preparation for a new game.
 signal after_game_prepared
 
-# emitter after the initial countdown finishes, when the player can start playing.
+## emitter after the initial countdown finishes, when the player can start playing.
 signal game_started
 
-# emitted during tutorials, when changing from one tutorial section to the next
+## emitted during tutorials, when changing from one tutorial section to the next
 signal before_level_changed(new_level_id)
 signal after_level_changed
 
-# emitted when the player survives until the end the level.
+## emitted when the player survives until the end the level.
 signal finish_triggered
 
-# emitted when the player reaches the end of a tutorial section
+## emitted when the player reaches the end of a tutorial section
 signal tutorial_section_finished
 
 signal game_ended
 
-# emitted several seconds after the game ends
+## emitted several seconds after the game ends
 signal after_game_ended
 
 signal speed_index_changed(value)
@@ -37,22 +35,22 @@ signal speed_index_changed(value)
 signal added_line_score(combo_score, box_score)
 signal added_pickup_score(pickup_score)
 
-# emitted on the frame that the player drops and locks a new piece
+## emitted on the frame that the player drops and locks a new piece
 signal before_piece_written
 
-# emitted after the piece is written, and all boxes are made, and all lines are cleared
+## emitted after the piece is written, and all boxes are made, and all lines are cleared
 signal after_piece_written
 
 signal score_changed
 
-# emitted when a combo value changes, when building or ending a combo
+## emitted when a combo value changes, when building or ending a combo
 signal combo_changed(value)
 
-# emitted when a combo ends -- this will usually coincide with the combo resetting to zero, but at the end of a level
-# it's possible for a combo to end without being reset to zero.
+## emitted when a combo ends -- this will usually coincide with the combo resetting to zero, but at the end of a level
+## it's possible for a combo to end without being reset to zero.
 signal combo_ended
 
-# emitted when the current piece can't be placed in the _playfield
+## emitted when the current piece can't be placed in the _playfield
 signal topped_out
 
 const DELAY_NONE := 0.00
@@ -61,37 +59,37 @@ const DELAY_LONG := 4.70
 
 const READY_DURATION := 1.4
 
-# the current input frame for recording/replaying the player's inputs. a value of '-1' indicates that no input should
-# be recorded or replayed yet.
+## the current input frame for recording/replaying the player's inputs. a value of '-1' indicates that no input should
+## be recorded or replayed yet.
 var input_frame := -1
 
-# Player's performance on the current level
+## Player's performance on the current level
 var level_performance := PuzzlePerformance.new()
 
-# The scores for each creature in the current level (bonuses and line clears)
+## The scores for each creature in the current level (bonuses and line clears)
 var customer_scores := [0]
 
-# The number of lines the player has cleared without dropping their combo
+## The number of lines the player has cleared without dropping their combo
 var combo := 0 setget set_combo
 
-# Bonus points awarded during the current combo. This only includes bonuses
-# and should be a round number like +55 or +130 for visual aesthetics.
+## Bonus points awarded during the current combo. This only includes bonuses
+## and should be a round number like +55 or +130 for visual aesthetics.
 var bonus_score := 0
 
-# 'true' if the player has started a game which is still running.
+## 'true' if the player has started a game which is still running.
 var game_active: bool
 
-# 'true' if the player survived until the end the level.
+## 'true' if the player survived until the end the level.
 var finish_triggered: bool
 
-# 'true' if the end has been triggered by dying or meeting a finish condition
+## 'true' if the end has been triggered by dying or meeting a finish condition
 var game_ended: bool
 
-# the speed the player is currently on, if the level has different speeds.
+## the speed the player is currently on, if the level has different speeds.
 var speed_index: int setget set_speed_index
 
-# This is true if the final customer has been fed and we shouldn't rotate to any other customers. It also gets used
-# for tutorials to prevent the sensei from leaving.
+## This is true if the final customer has been fed and we shouldn't rotate to any other customers. It also gets used
+## for tutorials to prevent the sensei from leaving.
 var no_more_customers: bool
 
 func _physics_process(_delta: float) -> void:
@@ -103,9 +101,7 @@ func _physics_process(_delta: float) -> void:
 		input_frame += 1
 
 
-"""
-Resets all score data, and starts a new game after a brief pause.
-"""
+## Resets all score data, and starts a new game after a brief pause.
 func prepare_and_start_game() -> void:
 	_prepare_game()
 	
@@ -177,13 +173,11 @@ func change_level(level_id: String, delay_between_levels: float = DELAY_SHORT) -
 	emit_signal("after_level_changed")
 
 
-"""
-Triggers the 'finish' phase of the game when the player clears the level.
-
-Remaining lines are cleared and the player's awarded points. These points count towards their score, but don't
-help/hurt things like their box rank or combo rank. It's mostly to put on a show and help them feel like their work
-wasn't wasted, if they built a lot of boxes they didn't clear.
-"""
+## Triggers the 'finish' phase of the game when the player clears the level.
+##
+## Remaining lines are cleared and the player's awarded points. These points count towards their score, but don't
+## help/hurt things like their box rank or combo rank. It's mostly to put on a show and help them feel like their work
+## wasn't wasted, if they built a lot of boxes they didn't clear.
 func trigger_finish() -> void:
 	if CurrentLevel.settings.other.tutorial:
 		emit_signal("tutorial_section_finished")
@@ -193,15 +187,13 @@ func trigger_finish() -> void:
 		emit_signal("finish_triggered")
 
 
-"""
-Adds points for clearing a line.
-
-Increments persistent data for the current level and transient data displayed on the screen.
-
-Parameters:
-	'combo_score': Bonus points for the current combo.
-	'box_score': Bonus points for any boxes in the line.
-"""
+## Adds points for clearing a line.
+##
+## Increments persistent data for the current level and transient data displayed on the screen.
+##
+## Parameters:
+## 	'combo_score': Bonus points for the current combo.
+## 	'box_score': Bonus points for any boxes in the line.
 func add_line_score(combo_score: int, box_score: int) -> void:
 	if game_active:
 		level_performance.combo_score += combo_score
@@ -221,11 +213,9 @@ func add_line_score(combo_score: int, box_score: int) -> void:
 	emit_signal("combo_changed", combo)
 
 
-"""
-Adds points for collecting one or more pickups.
-
-Increments persistent data for the current level and transient data displayed on the screen.
-"""
+## Adds points for collecting one or more pickups.
+##
+## Increments persistent data for the current level and transient data displayed on the screen.
 func add_pickup_score(pickup_score: int) -> void:
 	if game_active:
 		level_performance.pickup_score += pickup_score
@@ -237,9 +227,7 @@ func add_pickup_score(pickup_score: int) -> void:
 	emit_signal("score_changed")
 
 
-"""
-Ends the current combo, incrementing the score and resetting the bonus/creature scores to zero.
-"""
+## Ends the current combo, incrementing the score and resetting the bonus/creature scores to zero.
 func end_combo() -> void:
 	var old_combo := combo
 	if CurrentLevel.settings.other.tutorial:
@@ -268,9 +256,7 @@ func end_combo() -> void:
 	emit_signal("combo_ended")
 
 
-"""
-Reset all score data, such as when starting a level over.
-"""
+## Reset all score data, such as when starting a level over.
 func reset() -> void:
 	customer_scores = [0]
 	combo = 0

@@ -1,23 +1,19 @@
 extends VBoxContainer
-"""
-UI input for specifying flags to assign or unassign during cutscenes.
-"""
+## UI input for specifying flags to assign or unassign during cutscenes.
 
-# Describes flags to assign or unassign during cutscenes
-# Virtual property; value is only exposed through getters/setters
+## Describes flags to assign or unassign during cutscenes
+## Virtual property; value is only exposed through getters/setters
 var value: String setget set_value, get_value
 
-"""
-Applies the text contents to the player's data.
-
-This involves assigning and unassigning conversations they've had and levels they've played based on the input. The
-input field supports the following flags:
-	
-	'chat_finished foo'
-	'not chat_finished foo'
-	'level_finished foo'
-	'not level_finished foo'
-"""
+## Applies the text contents to the player's data.
+##
+## This involves assigning and unassigning conversations they've had and levels they've played based on the input. The
+## input field supports the following flags:
+##
+## 	'chat_finished foo'
+## 	'not chat_finished foo'
+## 	'level_finished foo'
+## 	'not level_finished foo'
 func apply_flags() -> void:
 	for line_obj in $TextEdit.text.split("\n"):
 		var line: String = line_obj

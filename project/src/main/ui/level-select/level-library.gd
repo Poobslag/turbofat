@@ -1,57 +1,51 @@
 extends Node
-"""
-Manages data for all levels in the game. This includes their rules, unlock criteria, and whether the player's unlocked
-them yet.
+## Manages data for all levels in the game. This includes their rules, unlock criteria, and whether the player's
+## unlocked them yet.
+##
+## Levels are stored as json resources. This class parses those json resources into LevelSettings so they can be used
+## by the puzzle code.
 
-Levels are stored as json resources. This class parses those json resources into LevelSettings so they can be used by
-the puzzle code.
-"""
-
-# The mandatory tutorial the player must complete before playing the game
+## The mandatory tutorial the player must complete before playing the game
 const BEGINNER_TUTORIAL := "tutorial/basics_0"
 const TUTORIAL_WORLD_ID := "tutorial"
 
-# Path to the json file with the list of levels. Can be changed for tests.
+## Path to the json file with the list of levels. Can be changed for tests.
 const DEFAULT_WORLDS_PATH := "res://assets/main/puzzle/worlds.json"
 
-# Path to the json file with the list of levels. Can be changed for tests.
+## Path to the json file with the list of levels. Can be changed for tests.
 var worlds_path := DEFAULT_WORLDS_PATH setget set_worlds_path
 
-# Ordered list of all world IDs
+## Ordered list of all world IDs
 var world_ids: Array
 
-# key: group id
-# value: level IDs belonging to the group
+## key: group id
+## value: level IDs belonging to the group
 var _level_groups: Dictionary
 
-# key: level id
-# value: LevelLock with the specified id
+## key: level id
+## value: LevelLock with the specified id
 var _level_locks: Dictionary
 
-# ley: level id
-# value: LevelSettings for the specified level
+## ley: level id
+## value: LevelSettings for the specified level
 var _level_settings_by_id: Dictionary
 
-# key: world id
-# value: WorldLock with the specified id
+## key: world id
+## value: WorldLock with the specified id
 var _world_locks: Dictionary
 
-# key: level id
-# value: WorldLock containing the specified level
+## key: level id
+## value: WorldLock containing the specified level
 var _world_locks_by_level_id: Dictionary
 
-"""
-Loads the list of levels from JSON, processing it to determine which levels are locked.
-"""
+## Loads the list of levels from JSON, processing it to determine which levels are locked.
 func _ready() -> void:
 	_load_raw_json_data()
 	refresh_cleared_levels()
 	PlayerData.connect("level_history_changed", self, "_on_PlayerData_level_history_changed")
 
 
-"""
-Recalculates which worlds and levels are available to the player and how to unlock them.
-"""
+## Recalculates which worlds and levels are available to the player and how to unlock them.
 func refresh_cleared_levels() -> void:
 	_reset_cleared_worlds_and_levels()
 	_update_locked_worlds()
@@ -80,12 +74,10 @@ func level_settings(level_id: String) -> LevelSettings:
 	return _level_settings_by_id.get(level_id)
 
 
-"""
-Returns the first unfinished, unlocked level id for a creature.
-
-This is the level which will be played if the player talks to them on the overworld. Finished levels can be played
-through the cell phone. Locked levels cannot be played; they must be unlocked first.
-"""
+## Returns the first unfinished, unlocked level id for a creature.
+##
+## This is the level which will be played if the player talks to them on the overworld. Finished levels can be played
+## through the cell phone. Locked levels cannot be played; they must be unlocked first.
 func next_creature_level(creature_id: String) -> String:
 	var priority_result := ""
 	var result := ""
@@ -121,11 +113,9 @@ func next_creature_level(creature_id: String) -> String:
 	return priority_result if priority_result else result
 
 
-"""
-Returns a list of IDs for levels shown to the player.
-
-Many levels are hidden from the player at the beginning of the game. They become visible as the player progresses.
-"""
+## Returns a list of IDs for levels shown to the player.
+##
+## Many levels are hidden from the player at the beginning of the game. They become visible as the player progresses.
 func shown_level_ids(world_id: String) -> Array:
 	var shown_level_ids := []
 	for level_id in world_lock(world_id).level_ids:
@@ -154,9 +144,7 @@ func is_world_finished(world_id: String) -> bool:
 	return world_lock and world_lock.last_level and PlayerData.level_history.is_level_finished(world_lock.last_level)
 
 
-"""
-Loads the list of levels from JSON.
-"""
+## Loads the list of levels from JSON.
 func _load_raw_json_data() -> void:
 	var worlds_text := FileUtils.get_file_as_text(worlds_path)
 	var worlds_json: Dictionary = parse_json(worlds_text)
@@ -199,12 +187,10 @@ func _load_raw_json_data() -> void:
 			_level_settings_by_id[level_lock.level_id] = level_settings
 
 
-"""
-Reset the world/level status to a default state so that it can be recalculated.
-
-When worlds and levels are first loaded from JSON, they're in a clean state. We restore them to this clean state later
-before recalculating the player's current status.
-"""
+## Reset the world/level status to a default state so that it can be recalculated.
+##
+## When worlds and levels are first loaded from JSON, they're in a clean state. We restore them to this clean state
+## later before recalculating the player's current status.
 func _reset_cleared_worlds_and_levels() -> void:
 	# reset unlocked worlds
 	for world_lock_obj in _world_locks.values():
@@ -219,9 +205,7 @@ func _reset_cleared_worlds_and_levels() -> void:
 		level_lock.status = LevelLock.STATUS_NONE
 		level_lock.keys_needed = -1
 
-"""
-Update the world lock status to 'lock' for locked worlds.
-"""
+## Update the world lock status to 'lock' for locked worlds.
 func _update_locked_worlds() -> void:
 	for world_lock_obj in _world_locks.values():
 		var world_lock: WorldLock = world_lock_obj
@@ -235,9 +219,7 @@ func _update_locked_worlds() -> void:
 				world_lock.status = WorldLock.STATUS_LOCK
 
 
-"""
-Update the level lock status to 'hard lock' for locked levels.
-"""
+## Update the level lock status to 'hard lock' for locked levels.
 func _update_locked_levels() -> void:
 	for level_lock_obj in _level_locks.values():
 		var level_lock: LevelLock = level_lock_obj
@@ -264,9 +246,7 @@ func _update_locked_levels() -> void:
 			level_lock.keys_needed = skip_count - allowed_skips
 
 
-"""
-Returns the list of level IDs which contribute to unlocking this level.
-"""
+## Returns the list of level IDs which contribute to unlocking this level.
 func _unlock_level_ids(level_lock: LevelLock) -> Array:
 	var unlock_level_ids := []
 	if level_lock.unlocked_if_type == LevelLock.IF_LEVEL_FINISHED:
@@ -277,12 +257,10 @@ func _unlock_level_ids(level_lock: LevelLock) -> Array:
 	return unlock_level_ids
 
 
-"""
-Returns the number of skips which are allowed when unlocking this level.
-
-A level may have fifteen levels which unlock it, but the player only needs to clear ten of them. This would be
-represented as allowing 'five skips'.
-"""
+## Returns the number of skips which are allowed when unlocking this level.
+##
+## A level may have fifteen levels which unlock it, but the player only needs to clear ten of them. This would be
+## represented as allowing 'five skips'.
 func _allowed_skips(level_lock: LevelLock) -> int:
 	var allowed_skips := 0
 	if level_lock.unlocked_if_type == LevelLock.IF_GROUP_FINISHED:
@@ -291,9 +269,7 @@ func _allowed_skips(level_lock: LevelLock) -> int:
 	return allowed_skips
 
 
-"""
-Update the lock status to 'soft lock' for unlockable levels
-"""
+## Update the lock status to 'soft lock' for unlockable levels
 func _update_unlockable_levels() -> void:
 	# update levels with locks/keys
 	for level_lock_obj in _level_locks.values():

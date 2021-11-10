@@ -1,31 +1,29 @@
 extends Node
-"""
-Reads and writes data about the player's progress from a file.
+## Reads and writes data about the player's progress from a file.
+##
+## This data includes how well they've done on each level and how much money they've earned.
 
-This data includes how well they've done on each level and how much money they've earned.
-"""
-
-# Current version for saved player data. Should be updated if and only if the player format changes.
-# This version number follows a 'ymdh' hex date format which is documented in issue #234.
+## Current version for saved player data. Should be updated if and only if the player format changes.
+## This version number follows a 'ymdh' hex date format which is documented in issue #234.
 const PLAYER_DATA_VERSION := "27bb"
 
 var rolling_backups := RollingBackups.new()
 
-# Enum value for the backup was successfully loaded. 'RollingBackups.CURRENT' if the current file worked.
-# Virtual property; value is only exposed through getters/setters
+## Enum value for the backup was successfully loaded. 'RollingBackups.CURRENT' if the current file worked.
+## Virtual property; value is only exposed through getters/setters
 var loaded_backup: int setget ,get_loaded_backup
 
-# Newly renamed save files which couldn't be loaded
-# Virtual property; value is only exposed through getters/setters
+## Newly renamed save files which couldn't be loaded
+## Virtual property; value is only exposed through getters/setters
 var corrupt_filenames: Array setget ,get_corrupt_filenames
 
-# Filename for saving/loading player data. Can be changed for tests
+## Filename for saving/loading player data. Can be changed for tests
 var data_filename := "user://saveslot0.json" setget set_data_filename
 
-# Filename for loading data older than July 2021. Can be changed for tests
+## Filename for loading data older than July 2021. Can be changed for tests
 var legacy_filename := "user://turbofat0.save" setget set_legacy_filename
 
-# Provides backwards compatibility with older save formats
+## Provides backwards compatibility with older save formats
 var _upgrader := PlayerSaveUpgrader.new().new_save_item_upgrader()
 
 func _ready() -> void:
@@ -51,9 +49,7 @@ func set_legacy_filename(new_legacy_filename: String) -> void:
 	rolling_backups.legacy_filename = legacy_filename
 
 
-"""
-Writes the player's in-memory data to a save file.
-"""
+## Writes the player's in-memory data to a save file.
 func save_player_data() -> void:
 	var save_json := []
 	save_json.append(_save_item("version", PLAYER_DATA_VERSION).to_json_dict())
@@ -76,17 +72,13 @@ func save_player_data() -> void:
 	rolling_backups.rotate_backups()
 
 
-"""
-Populates the player's in-memory data based on their save files.
-"""
+## Populates the player's in-memory data based on their save files.
 func load_player_data() -> void:
 	PlayerData.reset()
 	rolling_backups.load_newest_save(self, "_load_player_data_from_file")
 
 
-"""
-Returns the playtime in seconds from the specified save file.
-"""
+## Returns the playtime in seconds from the specified save file.
 func get_save_slot_playtime(filename: String) -> float:
 	var json_save_items := _save_items_from_file(filename)
 	var seconds_played := 0.0
@@ -102,9 +94,7 @@ func get_save_slot_playtime(filename: String) -> float:
 	return seconds_played
 
 
-"""
-Returns the player's short name from the specified save file.
-"""
+## Returns the player's short name from the specified save file.
 func get_save_slot_player_short_name(filename: String) -> String:
 	var json_save_items := _save_items_from_file(filename)
 	var player_short_name := ""
@@ -121,12 +111,10 @@ func get_save_slot_player_short_name(filename: String) -> String:
 	return player_short_name
 
 
-"""
-Creates a granular save item. The player's save data includes many of these.
-
-Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
-due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
-"""
+## Creates a granular save item. The player's save data includes many of these.
+##
+## Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
+## due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
 func _save_item(type: String, value, key: String = "") -> SaveItem:
 	var save_item := SaveItem.new()
 	save_item.type = type
@@ -135,11 +123,9 @@ func _save_item(type: String, value, key: String = "") -> SaveItem:
 	return save_item
 
 
-"""
-Populates the player's in-memory data based on a save file.
-
-Returns 'true' if the data is loaded successfully.
-"""
+## Populates the player's in-memory data based on a save file.
+##
+## Returns 'true' if the data is loaded successfully.
 func _load_player_data_from_file(filename: String) -> bool:
 	var json_save_items := _save_items_from_file(filename)
 	if not json_save_items:
@@ -155,13 +141,11 @@ func _load_player_data_from_file(filename: String) -> bool:
 	return true
 
 
-"""
-Loads a list of SaveItems from the specified save file.
-
-Returns:
-	A list of SaveItem instances from the specified save file. Returns an empty array if there is an error reading the
-	file.
-"""
+## Loads a list of SaveItems from the specified save file.
+##
+## Returns:
+## 	A list of SaveItem instances from the specified save file. Returns an empty array if there is an error reading the
+## 	file.
 func _save_items_from_file(filename: String) -> Array:
 	var file := File.new()
 	var open_result := file.open(filename, File.READ)
@@ -185,14 +169,12 @@ func _save_items_from_file(filename: String) -> Array:
 	return json_save_items
 
 
-"""
-Populates the player's in-memory data based on a single line from their save file.
-
-Parameters:
-	'type': A string unique to each type of data (level-data, player-data)
-	'key': A string identifying a specific data item (sophie, marathon-normal)
-	'json_value': The value object (array, dictionary, string) containing the data
-"""
+## Populates the player's in-memory data based on a single line from their save file.
+##
+## Parameters:
+## 	'type': A string unique to each type of data (level-data, player-data)
+## 	'key': A string identifying a specific data item (sophie, marathon-normal)
+## 	'json_value': The value object (array, dictionary, string) containing the data
 func _load_line(type: String, key: String, json_value) -> void:
 	match type:
 		"version":

@@ -1,11 +1,9 @@
 #tool #uncomment to view creature in editor
 class_name MouthPlayer
 extends AnimationPlayer
-"""
-An AnimationPlayer which animates mouths.
-"""
+## An AnimationPlayer which animates mouths.
 
-# emote animations which should result in a frown, if the mouth is capable of frowning
+## emote animations which should result in a frown, if the mouth is capable of frowning
 const FROWN_ANIMS = {
 	"ambient-sweat": "",
 	"cry0": "",
@@ -52,9 +50,7 @@ func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
 	_refresh_creature_visuals_path()
 
 
-"""
-Plays an eating animation.
-"""
+## Plays an eating animation.
 func eat() -> void:
 	if current_animation.begins_with("eat"):
 		stop()
@@ -96,9 +92,7 @@ func _refresh_creature_visuals_path() -> void:
 	_emote_glow = _creature_visuals.get_node("Neck0/HeadBobber/EmoteGlow")
 
 
-"""
-Plays an appropriate mouth ambient animation for the creature's orientation and mood.
-"""
+## Plays an appropriate mouth ambient animation for the creature's orientation and mood.
 func _play_mouth_ambient_animation() -> void:
 	var mouth_ambient_animation: String
 	if _creature_visuals.orientation in [Creatures.SOUTHWEST, Creatures.SOUTHEAST]:
@@ -117,14 +111,12 @@ func _play_mouth_ambient_animation() -> void:
 	play(mouth_ambient_animation)
 
 
-"""
-This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
-workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
-
-Tool scripts do not call _ready on reload, which means all onready fields will be null. This breaks this script's
-functionality and throws errors when it is used as a tool. This function manually assigns those fields to avoid those
-problems.
-"""
+## This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
+## workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
+##
+## Tool scripts do not call _ready on reload, which means all onready fields will be null. This breaks this script's
+## functionality and throws errors when it is used as a tool. This function manually assigns those fields to avoid
+## those problems.
 func _apply_tool_script_workaround() -> void:
 	if not _creature_visuals:
 		_creature_visuals = get_parent()

@@ -1,18 +1,16 @@
 extends AnimationPlayer
-"""
-Moves the restaurant scene's camera as customers get fatter.
-
-While this is an AnimationPlayer, the animation is only used to calculate the camera position. It shouldn't ever be
-played as an animation.
-"""
+## Moves the restaurant scene's camera as customers get fatter.
+##
+## While this is an AnimationPlayer, the animation is only used to calculate the camera position. It shouldn't ever be
+## played as an animation.
 
 export (NodePath) var restaurant_scene_path: NodePath
 export (NodePath) var customer_camera_path: NodePath
 
-# the position that the restaurant scene's camera lerps to
+## the position that the restaurant scene's camera lerps to
 export (Vector2) var target_camera_position: Vector2
 
-# fields which control the screen shake effect
+## fields which control the screen shake effect
 var _shake_total_seconds := 0.0
 var _shake_remaining_seconds := 0.0
 var _shake_magnitude := 8.0

@@ -1,14 +1,10 @@
 class_name PieceTypeRules
-"""
-Pieces the player is given.
-"""
+## Pieces the player is given.
 
-"""
-Parses json strings like 'piece_j' into enums like PieceTypes.piece_j.
-
-Unlike most property parsers which only populate a single property, this parser populates both the 'types' and
-'start_types' fields.
-"""
+## Parses json strings like 'piece_j' into enums like PieceTypes.piece_j.
+##
+## Unlike most property parsers which only populate a single property, this parser populates both the 'types' and
+## 'start_types' fields.
 class PieceTypesPropertyParser extends RuleParser.PropertyParser:
 	var start_name: String = "start_types"
 	
@@ -43,13 +39,13 @@ class PieceTypesPropertyParser extends RuleParser.PropertyParser:
 	func is_default() -> bool:
 		return target().get(name).empty() and target().get(start_name).empty()
 
-# if 'true', the start pieces always appear in the same order instead of being shuffled.
+## if 'true', the start pieces always appear in the same order instead of being shuffled.
 var ordered_start: bool = false
 
-# list of PieceTypes to prepend to the piece queue before a game begins. these pieces are shuffled
+## list of PieceTypes to prepend to the piece queue before a game begins. these pieces are shuffled
 var start_types := []
 
-# list of PieceTypes to choose from. if empty, defaults to the basic 8 types (jlopqtuv)
+## list of PieceTypes to choose from. if empty, defaults to the basic 8 types (jlopqtuv)
 var types := []
 
 var _rule_parser: RuleParser

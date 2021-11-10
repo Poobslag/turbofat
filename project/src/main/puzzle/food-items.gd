@@ -1,52 +1,50 @@
 extends Node2D
-"""
-Food items which appear when the player clears boxes in puzzle mode.
-"""
+## Food items which appear when the player clears boxes in puzzle mode.
 
 export (NodePath) var puzzle_path: NodePath
 export (NodePath) var restaurant_view_path: NodePath
 export (PackedScene) var FoodScene: PackedScene
 
-# Array of floats corresponding to how fat the creature should become after eating each upcoming food item.
+## Array of floats corresponding to how fat the creature should become after eating each upcoming food item.
 var _pending_food_fatness := []
 
-# Increments as the customer changes to track the intended recipient of each food item.
+## Increments as the customer changes to track the intended recipient of each food item.
 var _customer_index := 0
 
-# Queue of FoodItem objects which have floated awhile, and can now fly into a customer's mouth.
+## Queue of FoodItem objects which have floated awhile, and can now fly into a customer's mouth.
 var _food_waiting_to_fly := []
 
 var _window_width: float = ProjectSettings.get_setting("display/window/size/width")
 
-# Minimum duration in seconds that food should float before flying into a customer's mouth.
+## Minimum duration in seconds that food should float before flying into a customer's mouth.
 var _food_float_duration := 1.0
 
-# Duration in seconds that food should fly into a customer's mouth.
+## Duration in seconds that food should fly into a customer's mouth.
 var _food_flight_duration := 1.0
 
-# Maximum time in seconds between eaten food
+## Maximum time in seconds between eaten food
 var _max_food_repeat_delay := 1.0
 
-# Caches the coordinate of the customer's mouth relative to the FoodItems viewport
+## Caches the coordinate of the customer's mouth relative to the FoodItems viewport
 var _target_pos_cache := {}
 
 onready var _puzzle: Puzzle = get_node(puzzle_path)
 onready var _puzzle_tile_map: PuzzleTileMap = _puzzle.get_playfield().tile_map
 
-# relative position of the PuzzleTileMap, used for positioning food
+## relative position of the PuzzleTileMap, used for positioning food
 onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
 		- get_global_transform().origin
 
 onready var _restaurant_view: RestaurantView = get_node(restaurant_view_path)
 
-# Food items are rendered in a Viewport and TextureRect so that they can use an outline shader.
+## Food items are rendered in a Viewport and TextureRect so that they can use an outline shader.
 onready var _viewport := $Viewport
 onready var _texture_rect := $TextureRect
 
-# Timer which causes food items to be repeatedly launched.
+## Timer which causes food items to be repeatedly launched.
 onready var _food_flight_timer := $FoodFlightTimer
 
-# Timer which starts decrementing after a customer change.
+## Timer which starts decrementing after a customer change.
 onready var _customer_change_timer := $CustomerChangeTimer
 
 func _ready() -> void:
@@ -59,9 +57,7 @@ func _physics_process(_delta: float) -> void:
 		_target_pos_cache.clear()
 
 
-"""
-Adds a food item in the specified cell.
-"""
+## Adds a food item in the specified cell.
 func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> void:
 	# calculate and store 'food fatness' for customer; how fat the customer will be after eating each item
 	var customer := _puzzle.get_customer()
@@ -89,13 +85,11 @@ func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> vo
 	get_tree().create_timer(_food_float_duration).connect("timeout", self, "_on_FoodItem_float_done", [food_item])
 
 
-"""
-Callback function which returns the coordinate of the customer's mouth relative to the FoodItems viewport.
-
-Returns Vector2.INF if the customer is replaced, and food should no longer fly towards their mouth.
-
-This is an expensive calculation which is needed once per frame per food item, so we employ a cache.
-"""
+## Callback function which returns the coordinate of the customer's mouth relative to the FoodItems viewport.
+##
+## Returns Vector2.INF if the customer is replaced, and food should no longer fly towards their mouth.
+##
+## This is an expensive calculation which is needed once per frame per food item, so we employ a cache.
 func get_target_pos(target_customer: Creature, target_customer_index: int) -> Vector2:
 	if not _target_pos_cache.has(target_customer):
 		var target_pos: Vector2 = _restaurant_view.get_customer_mouth_position(target_customer)
@@ -125,11 +119,9 @@ func get_target_pos(target_customer: Creature, target_customer_index: int) -> Ve
 	return _target_pos_cache[target_customer]
 
 
-"""
-Recalculates the food speed fields based on the speed of the current level.
-
-Faster levels cause the foods to fly around faster.
-"""
+## Recalculates the food speed fields based on the speed of the current level.
+##
+## Faster levels cause the foods to fly around faster.
 func _update_food_speed() -> void:
 	# calculate the 'speed factor': a number from 0.0 to 1.0 corresponding to
 	# how quickly the player can drop pieces
@@ -177,10 +169,8 @@ func _on_Playfield_food_spawned(cell, remaining_food, food_type) -> void:
 	add_food_item(cell, food_type, remaining_food)
 
 
-"""
-When the FoodFlightTimer times out, we check the queue for the next food item which should fly into the customer's
-mouth.
-"""
+## When the FoodFlightTimer times out, we check the queue for the next food item which should fly into the customer's
+## mouth.
 func _on_FoodFlightTimer_timeout() -> void:
 	if not _food_waiting_to_fly:
 		return
@@ -190,10 +180,8 @@ func _on_FoodFlightTimer_timeout() -> void:
 	food_item.emit_signal("ready_to_fly")
 
 
-"""
-We track when the customer changes to ensure food goes to the proper place, and that it doesn't get eaten by the wrong
-customer.
-"""
+## We track when the customer changes to ensure food goes to the proper place, and that it doesn't get eaten by the
+## wrong customer.
 func _on_RestaurantView_customer_changed() -> void:
 	_customer_change_timer.start()
 	# increment the customer index; wrap it to avoid an overflow error

@@ -1,7 +1,5 @@
 extends Control
-"""
-Shows a progress bar while resources are loading.
-"""
+## Shows a progress bar while resources are loading.
 
 onready var _progress_bar: ProgressBar = $ProgressBar
 

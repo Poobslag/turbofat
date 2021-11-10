@@ -1,8 +1,6 @@
 class_name BlockLevelChunkControl
 extends Control
-"""
-UI component for a draggable chunk of level editor data made up of playfield blocks.
-"""
+## UI component for a draggable chunk of level editor data made up of playfield blocks.
 
 func _ready() -> void:
 	_refresh_tile_map()
@@ -19,9 +17,7 @@ func get_drag_data(_pos: Vector2) -> Object:
 	return data
 
 
-"""
-Calculates the extents of the tilemap's used cells.
-"""
+## Calculates the extents of the tilemap's used cells.
 func _tile_map_extents() -> Rect2:
 	var extents := Rect2(Vector2.ZERO, Vector2.ZERO)
 	if $TileMap.get_used_cells():
@@ -31,16 +27,12 @@ func _tile_map_extents() -> Rect2:
 	return extents
 
 
-"""
-Overridden by child classes, which use this method to populate the contents of the tilemap.
-"""
+## Overridden by child classes, which use this method to populate the contents of the tilemap.
 func _refresh_tile_map() -> void:
 	pass
 
 
-"""
-Refreshes the scale to ensure the contents of the tilemap fit inside an item in the palette.
-"""
+## Refreshes the scale to ensure the contents of the tilemap fit inside an item in the palette.
 func _refresh_scale() -> void:
 	var extents := _tile_map_extents()
 	$TileMap.scale.x = 1.00 / (1 + max(extents.end.x, extents.end.y))

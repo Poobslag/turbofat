@@ -1,9 +1,7 @@
 extends BlockLevelChunkControl
-"""
-A level editor chunk which contains a vegetable block.
-"""
+## A level editor chunk which contains a vegetable block.
 
-# Increasing this size allows you to draw vegetable blocks as a cluster, instead of one at a time.
+## Increasing this size allows you to draw vegetable blocks as a cluster, instead of one at a time.
 export (Vector2) var veg_size: Vector2 = Vector2(1, 1) setget set_veg_size
 
 func _ready() -> void:

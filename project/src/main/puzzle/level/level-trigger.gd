@@ -1,13 +1,11 @@
 class_name LevelTrigger
-"""
-A trigger which causes strange things to happen during a level.
+## A trigger which causes strange things to happen during a level.
+##
+## A level can contain any number of triggers, and each trigger makes something happen at a specific time. For example,
+## a trigger might rotate the pieces in the piece queue every 2 seconds, or a trigger might toggle the playfield
+## invisible every time the player places a piece.
 
-A level can contain any number of triggers, and each trigger makes something happen at a specific time. For example, a
-trigger might rotate the pieces in the piece queue every 2 seconds, or a trigger might toggle the playfield invisible
-every time the player places a piece.
-"""
-
-# phases when a level trigger can fire
+## phases when a level trigger can fire
 enum LevelTriggerPhase {
 	AFTER_LINE_CLEARED,
 	INITIAL_ROTATED_CW, # when the piece is rotated clockwise using initial DAS
@@ -28,21 +26,19 @@ const ROTATED_CCW := LevelTriggerPhase.ROTATED_CCW
 const ROTATED_180 := LevelTriggerPhase.ROTATED_180
 const TIMER_0 := LevelTriggerPhase.TIMER_0
 
-# key: an enum from LevelTriggerPhase
-# value: array of PhaseCondition instances defining whether the trigger should fire
+## key: an enum from LevelTriggerPhase
+## value: array of PhaseCondition instances defining whether the trigger should fire
 var phases := {}
 
-# the effect caused by this level trigger
+## the effect caused by this level trigger
 var effect: LevelTriggerEffect
 
-"""
-Returns 'true' if this trigger should run during the specified phase.
-
-Parameters:
-	'phase': An enum from LevelTriggerPhase
-	
-	'event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
-"""
+## Returns 'true' if this trigger should run during the specified phase.
+##
+## Parameters:
+## 	'phase': An enum from LevelTriggerPhase
+##
+## 	'event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
 func should_run(phase: int, event_params: Dictionary = {}) -> bool:
 	var result := true
 	var phase_conditions: Array = phases.get(phase, [])
@@ -57,9 +53,7 @@ func should_run(phase: int, event_params: Dictionary = {}) -> bool:
 	return result
 
 
-"""
-Executes this level trigger's effect.
-"""
+## Executes this level trigger's effect.
 func run() -> void:
 	effect.run()
 
@@ -110,14 +104,12 @@ func to_json_dict() -> Dictionary:
 	return result
 
 
-"""
-Enables this trigger for the specified phase.
-
-Parameters:
-	'phase_key': A string key corresponding to the phase, such as 'after_line_cleared'.
-	
-	'phase_config': A dictionary of strings defining any special conditions for the phase.
-"""
+## Enables this trigger for the specified phase.
+##
+## Parameters:
+## 	'phase_key': A string key corresponding to the phase, such as 'after_line_cleared'.
+##
+## 	'phase_config': A dictionary of strings defining any special conditions for the phase.
 func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
 	if not LevelTriggerPhase.has(phase_key.to_upper()):
 		push_warning("Unrecognized phase: %s" % [phase_key])
@@ -128,19 +120,17 @@ func _add_phase(phase_key: String, phase_config: Dictionary) -> void:
 	phases[phase].append(phase_condition)
 
 
-"""
-Parses an array of configuration strings into a set of key/value pairs.
-
-Keyed values like "foo=bar" are added to the resulting dictionary as {"foo": "bar"}
-
-Unkeyed values like "foo" and "bar" are added to the dictionary as {"0": "foo", "1": "bar"}
-
-Parameters:
-	'param_array': An array of configuration strings.
-
-Returns:
-	A dictionary of configuration strings organized as key/value pairs.
-"""
+## Parses an array of configuration strings into a set of key/value pairs.
+##
+## Keyed values like "foo=bar" are added to the resulting dictionary as {"foo": "bar"}
+##
+## Unkeyed values like "foo" and "bar" are added to the dictionary as {"0": "foo", "1": "bar"}
+##
+## Parameters:
+## 	'param_array': An array of configuration strings.
+##
+## Returns:
+## 	A dictionary of configuration strings organized as key/value pairs.
 static func dict_config_from_array(param_array: Array) -> Dictionary:
 	var result := {}
 	var param_index := 0
@@ -155,19 +145,17 @@ static func dict_config_from_array(param_array: Array) -> Dictionary:
 	return result
 
 
-"""
-Converts a set of key/value pairs into an array of configuration strings.
-
-Keyed entries like {"foo": "bar"} are added to the resulting array as ["foo=bar"]
-
-Unkeyed entries like {"0": "foo", "1": "bar"} are added to the array as ["foo", "bar"]
-
-Parameters:
-	'param_array': A dictionary of configuration strings organized as key/value pairs.
-
-Returns:
-	An array of configuration strings.
-"""
+## Converts a set of key/value pairs into an array of configuration strings.
+##
+## Keyed entries like {"foo": "bar"} are added to the resulting array as ["foo=bar"]
+##
+## Unkeyed entries like {"0": "foo", "1": "bar"} are added to the array as ["foo", "bar"]
+##
+## Parameters:
+## 	'param_array': A dictionary of configuration strings organized as key/value pairs.
+##
+## Returns:
+## 	An array of configuration strings.
 static func dict_config_to_array(dict_config: Dictionary) -> Array:
 	var result := []
 	var remaining_config := dict_config.duplicate()

@@ -1,16 +1,14 @@
 class_name FrameInput
 extends Node
-"""
-Tracks the state of an input action over time.
+## Tracks the state of an input action over time.
+##
+## Also provides support for buffered inputs. The buffer duration is dictated by the child timer.
 
-Also provides support for buffered inputs. The buffer duration is dictated by the child timer.
-"""
-
-# The action to track
+## The action to track
 export (String) var action: String
 
-# An action which negates this one if pressed. For example if the player holds move_piece_left and presses
-# move_piece_right, move_piece_left no longer gets triggered.
+## An action which negates this one if pressed. For example if the player holds move_piece_left and presses
+## move_piece_right, move_piece_left no longer gets triggered.
 export (String) var cancel_action: String
 
 var pressed_frames: int
@@ -19,10 +17,10 @@ var _just_pressed: bool
 var _pressed: bool
 var _buffer: bool
 
-# If 'true' the inputs will be printed to the console. These printed inputs can be converted into an input replay.
+## If 'true' the inputs will be printed to the console. These printed inputs can be converted into an input replay.
 var _print_inputs := false
 
-# If this timer is active, the input was recently pressed and can be popped with pop_buffered_input
+## If this timer is active, the input was recently pressed and can be popped with pop_buffered_input
 onready var _buffer_timer: Timer = $BufferTimer
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -70,16 +68,12 @@ func is_just_pressed() -> bool:
 	return _just_pressed
 
 
-"""
-Records any inputs to a buffer to be replayed later.
-"""
+## Records any inputs to a buffer to be replayed later.
 func buffer_input() -> void:
 	_buffer = true
 
 
-"""
-Replays any inputs which were pressed while buffering.
-"""
+## Replays any inputs which were pressed while buffering.
 func pop_buffered_input() -> void:
 	_buffer = false
 	if not _buffer_timer.is_stopped():
@@ -87,23 +81,17 @@ func pop_buffered_input() -> void:
 		_buffer_timer.stop()
 
 
-"""
-Marks the 'just pressed' event as handled, to avoid a buffered input from triggering two events.
-"""
+## Marks the 'just pressed' event as handled, to avoid a buffered input from triggering two events.
 func set_input_as_handled() -> void:
 	_just_pressed = false
 
 
-"""
-Returns true if the player held the input long enough to trigger DAS.
-"""
+## Returns true if the player held the input long enough to trigger DAS.
 func is_das_active() -> bool:
 	return _pressed and pressed_frames >= PieceSpeeds.current_speed.delayed_auto_shift_delay
 
 
-"""
-Applies prerecorded puzzle inputs for things such as tutorials.
-"""
+## Applies prerecorded puzzle inputs for things such as tutorials.
 func _process_input_replay() -> void:
 	if CurrentLevel.settings.input_replay.is_action_pressed(action):
 		if _print_inputs: print("\"%s +%s\"," % [PuzzleState.input_frame, action])

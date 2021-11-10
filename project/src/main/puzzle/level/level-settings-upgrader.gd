@@ -1,16 +1,19 @@
 class_name LevelSettingsUpgrader
 
-"""
-An externally defined method which provides version-specific updates.
-"""
+## An externally defined method which provides version-specific updates.
 class UpgradeMethod:
-	var method: String # The name of the method which performs the upgrade
-	var old_version: String # The old save data version which the method upgrades from
-	var new_version: String # The new save data version which the method upgrades to
+	## The name of the method which performs the upgrade
+	var method: String
+	
+	## The old save data version which the method upgrades from
+	var old_version: String
+	
+	## The new save data version which the method upgrades to
+	var new_version: String
 
-# Internally defined methods which provide version-specific updates.
-# key: old save data version from which the method upgrades
-# value: a UpgradeMethod corresponding to the method to call
+## Internally defined methods which provide version-specific updates.
+## key: old save data version from which the method upgrades
+## value: a UpgradeMethod corresponding to the method to call
 var _upgrade_methods := {}
 
 func _init() -> void:
@@ -18,9 +21,7 @@ func _init() -> void:
 	_add_upgrade_method("_upgrade_1922", "1922", "19c5")
 
 
-"""
-Upgrades the specified json settings to the newest format.
-"""
+## Upgrades the specified json settings to the newest format.
 func upgrade(json_settings: Dictionary) -> Dictionary:
 	var new_json := json_settings
 	while needs_upgrade(new_json):
@@ -49,9 +50,7 @@ func upgrade(json_settings: Dictionary) -> Dictionary:
 	return new_json
 
 
-"""
-Returns 'true' if the specified json settings are from an older version of the game.
-"""
+## Returns 'true' if the specified json settings are from an older version of the game.
 func needs_upgrade(json_settings: Dictionary) -> bool:
 	var result: bool = false
 	var version := _get_version_string(json_settings)
@@ -64,23 +63,21 @@ func needs_upgrade(json_settings: Dictionary) -> bool:
 	return result
 
 
-"""
-Adds a new internally defined method which provides version-specific updates.
-
-Upgrade methods include three parameters:
-	'old_json': (Dictionary) Old parsed level settings from which data should be upgraded
-	
-	'old_key': (String) A key corresponding to a key/value pair in the old_json dictionary which should be upgraded
-	
-	'new_json': (Dictionary) Destination dictionary to which upgraded data should be written
-
-Parameters:
-	'method': The name of the method which performs the upgrade.
-	
-	'old_version': The old settings version which the method upgrades from
-	
-	'new_version': The new settings version which the method upgrades to
-"""
+## Adds a new internally defined method which provides version-specific updates.
+##
+## Upgrade methods include three parameters:
+## 	'old_json': (Dictionary) Old parsed level settings from which data should be upgraded
+##
+## 	'old_key': (String) A key corresponding to a key/value pair in the old_json dictionary which should be upgraded
+##
+## 	'new_json': (Dictionary) Destination dictionary to which upgraded data should be written
+##
+## Parameters:
+## 	'method': The name of the method which performs the upgrade.
+##
+## 	'old_version': The old settings version which the method upgrades from
+##
+## 	'new_version': The new settings version which the method upgrades to
 func _add_upgrade_method(method: String, old_version: String, new_version: String) -> void:
 	var upgrade_method: UpgradeMethod = UpgradeMethod.new()
 	upgrade_method.method = method
@@ -115,8 +112,6 @@ func _upgrade_1922(old_json: Dictionary, old_key: String, new_json: Dictionary) 
 	return new_json
 
 
-"""
-Extracts a version string from the specified json settings.
-"""
+## Extracts a version string from the specified json settings.
 static func _get_version_string(json_settings: Dictionary) -> String:
 	return json_settings.get("version")

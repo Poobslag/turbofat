@@ -1,9 +1,7 @@
 extends Control
-"""
-Contains labels and buttons which overlay the puzzle screen.
-
-This includes the countdown timer, the ending message, the controls, and the 'start' and 'exit' buttons.
-"""
+## Contains labels and buttons which overlay the puzzle screen.
+##
+## This includes the countdown timer, the ending message, the controls, and the 'start' and 'exit' buttons.
 
 signal start_button_pressed
 signal settings_button_pressed
@@ -26,9 +24,7 @@ func is_settings_button_visible() -> bool:
 	return $Buttons/Settings.is_visible_in_tree()
 
 
-"""
-Shows a succinct single-line message, like 'Game Over'
-"""
+## Shows a succinct single-line message, like 'Game Over'
 func show_message(text: String) -> void:
 	$MessageLabel.show()
 	$MessageLabel.text = text
@@ -100,9 +96,7 @@ func _on_PuzzleState_game_ended() -> void:
 	show_message(message)
 
 
-"""
-Restores the HUD elements after the player wins or loses.
-"""
+## Restores the HUD elements after the player wins or loses.
 func _on_PuzzleState_after_game_ended() -> void:
 	$MessageLabel.hide()
 	$Buttons/Settings.show()
@@ -140,9 +134,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 			break
 
 
-"""
-The back buttons changes its label if the level is cleared.
-"""
+## The back buttons changes its label if the level is cleared.
 func _on_Level_best_result_changed() -> void:
 	match CurrentLevel.best_result:
 		Levels.Result.FINISHED, Levels.Result.WON:

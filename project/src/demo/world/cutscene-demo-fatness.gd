@@ -1,7 +1,5 @@
 extends HBoxContainer
-"""
-UI control for editing the global 'forced_fatness' field.
-"""
+## UI control for editing the global 'forced_fatness' field.
 
 func _ready() -> void:
 	if PlayerData.creature_library.forced_fatness:
@@ -14,9 +12,7 @@ func _ready() -> void:
 	_refresh()
 
 
-"""
-Updates the UI controls and the global 'forced_fatness' field.
-"""
+## Updates the UI controls and the global 'forced_fatness' field.
 func _refresh() -> void:
 	$HSlider.editable = $CheckBox.pressed
 	$Value.text = "%.1f" % [$HSlider.value] if $HSlider.editable else "-"

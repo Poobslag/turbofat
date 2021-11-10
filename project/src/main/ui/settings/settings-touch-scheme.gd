@@ -1,9 +1,7 @@
 extends Control
-"""
-UI control for adjusting the touchscreen control scheme.
-
-The control scheme decides which buttons appear where.
-"""
+## UI control for adjusting the touchscreen control scheme.
+##
+## The control scheme decides which buttons appear where.
 
 func _ready() -> void:
 	$OptionButton.add_item(tr("Easy Console"))

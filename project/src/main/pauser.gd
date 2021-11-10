@@ -1,9 +1,7 @@
 extends Node
-"""
-Emits signals when the scene tree is paused or unpaused.
-"""
+## Emits signals when the scene tree is paused or unpaused.
 
-# emitted when the scene tree is paused or unpaused
+## emitted when the scene tree is paused or unpaused
 signal paused_changed(value)
 
 var _paused: bool

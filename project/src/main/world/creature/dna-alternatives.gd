@@ -1,20 +1,16 @@
 #tool #uncomment to view creature in editor
 class_name DnaAlternatives
-"""
-Provides alternatives for alleles which conflict.
+## Provides alternatives for alleles which conflict.
+##
+## Certain glasses might overlap a creature's nose in a weird way. We have a 'ban list' elsewhere for combos which
+## don't work outright, but this class provides alternatives so that we can give the glasses a slightly different
+## design, or remove parts of the eyeglass frames or things like that.
 
-Certain glasses might overlap a creature's nose in a weird way. We have a 'ban list' elsewhere for combos which don't
-work outright, but this class provides alternatives so that we can give the glasses a slightly different design, or
-remove parts of the eyeglass frames or things like that.
-"""
-
-"""
-key: allele value key like 'accessory-2', for an allele which can vary
-value: array of three items
-	value[0]: conflicting allele key, such as 'nose'
-	value[1]: array of conflicting allele values
-	value[2]: alternative allele value to replace the allele with
-"""
+## key: allele value key like 'accessory-2', for an allele which can vary
+## value: array of three items
+## 	value[0]: conflicting allele key, such as 'nose'
+## 	value[1]: array of conflicting allele values
+## 	value[2]: alternative allele value to replace the allele with
 var _alternatives: Dictionary
 
 func _init() -> void:
@@ -31,18 +27,16 @@ func _init() -> void:
 	_add_alternative("ear", ["10"], "hair", "1", "1a")
 
 
-"""
-Returns an alternative for the specified allele value if a conflict is detected.
-
-Returns an empty string if there is no conflict.
-
-Parameters:
-	'dna': The dictionary of key/value pairs defining a set of textures to load.
-	
-	'key': Allele key which can vary, such as 'accessory'
-	
-	'value': Allele value which can vary, such as '2' which might sometimes switch to '2a'
-"""
+## Returns an alternative for the specified allele value if a conflict is detected.
+##
+## Returns an empty string if there is no conflict.
+##
+## Parameters:
+## 	'dna': The dictionary of key/value pairs defining a set of textures to load.
+##
+## 	'key': Allele key which can vary, such as 'accessory'
+##
+## 	'value': Allele value which can vary, such as '2' which might sometimes switch to '2a'
 func alternative(dna: Dictionary, key: String, value: String) -> String:
 	var result := ""
 	var allele_value_key := _allele_value_key(key, value)
@@ -54,20 +48,18 @@ func alternative(dna: Dictionary, key: String, value: String) -> String:
 	return result
 
 
-"""
-Adds an alternative for an allele value which can vary if a conflict is detected.
-
-Parameters:
-	'conflicting_allele': Conflicting allele key, such as 'nose'
-	
-	'conflicting_values': Array of conflicting allele values, such as '2'
-	
-	'allele': Allele key which can vary if s conflict is detected, such as 'accessory'
-	
-	'allele_value': Allele value which can vary if a conflict is detected, such as '3'
-	
-	'alternative_value': The allele value it should switch to if a conflict is detected
-"""
+## Adds an alternative for an allele value which can vary if a conflict is detected.
+##
+## Parameters:
+## 	'conflicting_allele': Conflicting allele key, such as 'nose'
+##
+## 	'conflicting_values': Array of conflicting allele values, such as '2'
+##
+## 	'allele': Allele key which can vary if s conflict is detected, such as 'accessory'
+##
+## 	'allele_value': Allele value which can vary if a conflict is detected, such as '3'
+##
+## 	'alternative_value': The allele value it should switch to if a conflict is detected
 func _add_alternative(conflicting_allele: String, conflicting_values: Array,
 		allele: String, allele_value: String, alternative_value: String) -> void:
 	var allele_value_key := _allele_value_key(allele, allele_value)

@@ -1,9 +1,7 @@
 class_name ChatTheme
-"""
-Stores metadata about the chat window's appearance.
-
-This includes the position, color and texture of the main chat window and nametag.
-"""
+## Stores metadata about the chat window's appearance.
+##
+## This includes the position, color and texture of the main chat window and nametag.
 
 enum NametagSize {
 	OFF, # 0 characters
@@ -39,14 +37,12 @@ var accent_swapped: bool
 var accent_texture_index: int
 var border_color: Color
 var dark: bool
-# virtual property; value is only exposed through getters/setters
+## virtual property; value is only exposed through getters/setters
 var nametag_font_color setget ,get_nametag_font_color
 
-"""
-Parses an chat_theme_def into properties used by the chat UI.
-
-See ChatEvent.chat_theme_def for a full description of the chat_theme_def properties.
-"""
+## Parses an chat_theme_def into properties used by the chat UI.
+##
+## See ChatEvent.chat_theme_def for a full description of the chat_theme_def properties.
 func _init(chat_theme_def: Dictionary) -> void:
 	accent_color = chat_theme_def.get("color", Color.gray)
 	accent_scale = chat_theme_def.get("accent_scale", 8.0)

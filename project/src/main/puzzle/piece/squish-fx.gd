@@ -1,17 +1,15 @@
 extends Control
-"""
-Generates visual and audio effects for a squish move.
+## Generates visual and audio effects for a squish move.
+##
+## Makes the piece shake, sweat, turn white, and plays a sound effect.
 
-Makes the piece shake, sweat, turn white, and plays a sound effect.
-"""
-
-# Squished pieces blink over time. This field is used to calculate the blink amount
+## Squished pieces blink over time. This field is used to calculate the blink amount
 var _total_time: float
 
-# How much the piece should flash and shake as it's squished
+## How much the piece should flash and shake as it's squished
 var _squish_amount: float
 
-# Calculates how much the piece should flash and shake as it's squished
+## Calculates how much the piece should flash and shake as it's squished
 export (Curve) var squish_curve: Curve
 
 onready var _piece_manager: PieceManager = get_parent()
@@ -50,9 +48,7 @@ func _prepare_tileset() -> void:
 	_squish_map.puzzle_tile_set_type = CurrentLevel.settings.other.tile_set
 
 
-"""
-Makes the piece shake left and right if a squish move is in progress.
-"""
+## Makes the piece shake left and right if a squish move is in progress.
 func _handle_shake() -> void:
 	if _squish_amount > 0:
 		_piece_manager.tile_map.position.x = _squish_amount * 4 * sin(16 * _total_time * TAU)
@@ -60,9 +56,7 @@ func _handle_shake() -> void:
 		_piece_manager.tile_map.position.x = 0
 
 
-"""
-Makes the piece turn white and blink if a squish move is in progress.
-"""
+## Makes the piece turn white and blink if a squish move is in progress.
 func _handle_flash() -> void:
 	if _squish_amount > 0:
 		_piece_manager.tile_map.whiteness = lerp(0.0, 0.64 + 0.16 * sin(4 * _total_time * TAU), _squish_amount)
@@ -70,9 +64,7 @@ func _handle_flash() -> void:
 		_piece_manager.tile_map.whiteness = 0
 
 
-"""
-Makes the piece emit sweat particles if a squish move is in progress.
-"""
+## Makes the piece emit sweat particles if a squish move is in progress.
 func _handle_sweat() -> void:
 	if _squish_amount > 0.1:
 		# gradually increase speed of sweat drops
@@ -82,9 +74,7 @@ func _handle_sweat() -> void:
 		_sweat_drops.emitting = false
 
 
-"""
-Plays a sound effect if a squish move is in progress.
-"""
+## Plays a sound effect if a squish move is in progress.
 func _handle_sfx() -> void:
 	if _squish_amount > 0.1:
 		if not _presquish_sfx.sfx_started:
@@ -94,9 +84,7 @@ func _handle_sfx() -> void:
 			_presquish_sfx.stop_presquish_sfx()
 
 
-"""
-Initialize the squish animation for long squish moves
-"""
+## Initialize the squish animation for long squish moves
 func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
 	if piece.pos.y - old_pos.y >= 3:
 		var unblocked_blocks: Array = piece.type.pos_arr[piece.orientation].duplicate()

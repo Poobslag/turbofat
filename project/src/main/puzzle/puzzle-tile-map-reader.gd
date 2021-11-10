@@ -1,22 +1,20 @@
 class_name PuzzleTileMapReader
 
-"""
-Parses a json fragment listing tiles in a puzzle tilemap.
-
-Instead of directly populating a puzzle tilemap, we invoke a callback function for greater flexibility.
-
-Parameters:
-	'json_tiles': A json fragment listing tiles in a puzzle tilemap.
-	
-	'set_block': A reference to a function which accepts three parameters:
-		'pos' (Vector2): Position of the cell
-		'tile' (int): Tile index of the cell
-		'autotile_coord' (Vector2): Coordinate of the autotile variation in the tileset
-	
-	'set_pickup': (Optional) A reference to a function which accepts two parameters:
-		'pos' (Vector2): Position of the cell
-		'box_type' (int): An enum from Foods.BoxType defining the pickup's color
-"""
+## Parses a json fragment listing tiles in a puzzle tilemap.
+##
+## Instead of directly populating a puzzle tilemap, we invoke a callback function for greater flexibility.
+##
+## Parameters:
+## 	'json_tiles': A json fragment listing tiles in a puzzle tilemap.
+##
+## 	'set_block': A reference to a function which accepts three parameters:
+## 		'pos' (Vector2): Position of the cell
+## 		'tile' (int): Tile index of the cell
+## 		'autotile_coord' (Vector2): Coordinate of the autotile variation in the tileset
+##
+## 	'set_pickup': (Optional) A reference to a function which accepts two parameters:
+## 		'pos' (Vector2): Position of the cell
+## 		'box_type' (int): An enum from Foods.BoxType defining the pickup's color
 static func read(json_tiles: Array, set_block: FuncRef, set_pickup: FuncRef = null) -> void:
 	for json_tile in json_tiles:
 		var json_pos_arr: PoolStringArray = json_tile.get("pos", "").split(" ")

@@ -1,25 +1,23 @@
 extends Node2D
-"""
-Renders animated goop waves.
-"""
+## Renders animated goop waves.
 
 const MAX_WAVE_COUNT := 50
 
-# the path to the underlying tilemap which controls where waves can spawn
+## the path to the underlying tilemap which controls where waves can spawn
 export (NodePath) var tile_map_path: NodePath
 
-# wave movement direction
+## wave movement direction
 export (Ripples.RippleDirection) var direction := Ripples.RippleDirection.NORTHEAST
 
 export (PackedScene) var RippleWaveScene: PackedScene
 
-# wave movement speed
+## wave movement speed
 export (float) var speed: float = 100.0
 
-# duration between waves
+## duration between waves
 export (float) var wait_time: float = 6.0
 
-# the path underlying tilemap which controls where waves can spawn
+## the path underlying tilemap which controls where waves can spawn
 onready var _tile_map: TileMap = get_node(tile_map_path)
 
 onready var _wave_spawn_timer := $WaveSpawnTimer
@@ -40,11 +38,9 @@ func _ready() -> void:
 		_spawn_wave(wave_position)
 
 
-"""
-Calculates the position of the specified wave.
-
-When spawning the initial waves, waves are offset based on the wave frequency and movement speed.
-"""
+## Calculates the position of the specified wave.
+##
+## When spawning the initial waves, waves are offset based on the wave frequency and movement speed.
 func _wave_position(wave_index: int = 0) -> Vector2:
 	# calculate where the first wave should spawn
 	var wave_cell_position := Vector2(0, 0)
@@ -71,9 +67,7 @@ func _wave_position(wave_index: int = 0) -> Vector2:
 	return zero_wave_position + wave_index * offset_per_wave
 
 
-"""
-Spawns a wave at the specified position.
-"""
+## Spawns a wave at the specified position.
 func _spawn_wave(wave_position: Vector2) -> void:
 	var ripple_wave_scene: RippleWave = RippleWaveScene.instance()
 	ripple_wave_scene.initialize(_tile_map, direction, wave_position)

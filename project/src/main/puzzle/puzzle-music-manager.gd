@@ -1,7 +1,5 @@
 extends Node
-"""
-Starts and stops music during the puzzle mode.
-"""
+## Starts and stops music during the puzzle mode.
 
 func _ready() -> void:
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")

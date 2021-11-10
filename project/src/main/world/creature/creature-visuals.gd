@@ -1,30 +1,28 @@
 #tool #uncomment to view creature in editor
 class_name CreatureVisuals
 extends Node2D
-"""
-Handles animations and audio/visual effects for a creature.
+## Handles animations and audio/visual effects for a creature.
+##
+## To edit creatures in the Godot editor:
+## 	1. Run the 'edit-creature.sh on' shell command to enable the necessary tool scripts
+## 	2. Toggle the CreatureVisuals.random_creature property in the Godot editor
+## 	3. Make your changes
+## 	4. When you're finished, toggle the CreatureVisuals.reset_creature property in the Godot editor
+## 	5. Lastly, run the 'edit-creature.sh off' shell command to disable the necessary tool scripts
+##
+## Do not leave the tool scripts enabled. Doing so causes errors in the Godot console and impacts performance as
+## unnecessary textures are loaded.
 
-To edit creatures in the Godot editor:
-	1. Run the 'edit-creature.sh on' shell command to enable the necessary tool scripts
-	2. Toggle the CreatureVisuals.random_creature property in the Godot editor
-	3. Make your changes
-	4. When you're finished, toggle the CreatureVisuals.reset_creature property in the Godot editor
-	5. Lastly, run the 'edit-creature.sh off' shell command to disable the necessary tool scripts
-
-Do not leave the tool scripts enabled. Doing so causes errors in the Godot console and impacts performance as
-unnecessary textures are loaded.
-"""
-
-# emitted on the frame when creature bites into some food
+## emitted on the frame when creature bites into some food
 signal food_eaten(food_type)
 
-# emitted when a creature's textures and animations are loaded
+## emitted when a creature's textures and animations are loaded
 signal dna_loaded
 
-# emitted when a creature is assigned new set of dna
+## emitted when a creature is assigned new set of dna
 signal dna_changed(dna)
 
-# emitted during the 'run' animation when the creature touches the ground
+## emitted during the 'run' animation when the creature touches the ground
 # warning-ignore:unused_signal
 signal landed
 
@@ -35,53 +33,53 @@ signal visual_fatness_changed
 signal comfort_changed
 signal talking_changed
 
-# emitted by FatSpriteMover when it moves the head by making the creature fatter
+## emitted by FatSpriteMover when it moves the head by making the creature fatter
 # warning-ignore:unused_signal
 signal head_moved
 
 const SOUTHEAST_DIR := Vector2(0.70710678118, 0.70710678118)
 
-# toggle to assign default animation frames based on the creature's orientation
+## toggle to assign default animation frames based on the creature's orientation
 export (bool) var _reset_frames setget reset_frames
 
-# toggle to remove the creature's textures
+## toggle to remove the creature's textures
 export (bool) var _reset_creature setget reset_creature
 
-# toggle to generate a creature with a random appearance
+## toggle to generate a creature with a random appearance
 export (bool) var _random_creature setget random_creature
 
-# the state of whether the creature is walking, running or idle
+## the state of whether the creature is walking, running or idle
 export (Creatures.MovementMode) var movement_mode := Creatures.IDLE setget set_movement_mode
 
-# the direction the creature is facing
+## the direction the creature is facing
 export (Creatures.Orientation) var orientation := Creatures.SOUTHEAST setget set_orientation
 
-# describes the colors and textures used to draw the creature
+## describes the colors and textures used to draw the creature
 export (Dictionary) var dna: Dictionary setget set_dna
 
-# how fat the creature looks right now; gradually approaches the 'fatness' property
+## how fat the creature looks right now; gradually approaches the 'fatness' property
 export (float) var visual_fatness := 1.0 setget set_visual_fatness
 
-# how fat the creature will become eventually; visual_fatness gradually approaches this value
+## how fat the creature will become eventually; visual_fatness gradually approaches this value
 var fatness := 1.0 setget set_fatness, get_fatness
 
-# comfort improves as the creature eats, and degrades as they overeat. comfort is a number from [-1.0, 1.0]. -1.0 is
-# very uncomfortable, 1.0 is very comfortable
+## comfort improves as the creature eats, and degrades as they overeat. comfort is a number from [-1.0, 1.0]. -1.0 is
+## very uncomfortable, 1.0 is very comfortable
 var comfort := 0.0 setget set_comfort
 
-# MouthPlayer instance which animates mouths
+## MouthPlayer instance which animates mouths
 var mouth_player
 
-# used to temporarily suppress sfx signals. used when skipping to the middle of animations which play sfx
+## used to temporarily suppress sfx signals. used when skipping to the middle of animations which play sfx
 var _suppress_sfx_signal_timer := 0.0
 
-# forces listeners to update their animation frame
+## forces listeners to update their animation frame
 var _force_orientation_change := false
 
-# the food type the creature is eating
+## the food type the creature is eating
 var _food_type: int
 
-# CreatureAnimations instance which animates the creature's limbs, facial expressions and movement.
+## CreatureAnimations instance which animates the creature's limbs, facial expressions and movement.
 onready var _animations: Node = $Animations
 
 func _ready() -> void:
@@ -120,36 +118,30 @@ func set_visual_fatness(new_visual_fatness: float) -> void:
 	emit_signal("visual_fatness_changed")
 
 
-"""
-Returns the creature's fatness, a float which determines how fat the creature
-should be; 5.0 = 5x normal size
-
-Parameters:
-	'creature_index': (Optional) The creature to ask about. Defaults to the current creature.
-"""
+## Returns the creature's fatness, a float which determines how fat the creature
+## should be; 5.0 = 5x normal size
+##
+## Parameters:
+## 	'creature_index': (Optional) The creature to ask about. Defaults to the current creature.
 func get_fatness() -> float:
 	return fatness
 
 
-"""
-Increases/decreases the creature's fatness, a float which determines how fat
-the creature should be; 5.0 = 5x normal size
-
-Parameters:
-	'fatness_percent': Controls how fat the creature should be; 5.0 = 5x normal size
-	
-	'creature_index': (Optional) The creature to be altered. Defaults to the current creature.
-"""
+## Increases/decreases the creature's fatness, a float which determines how fat
+## the creature should be; 5.0 = 5x normal size
+##
+## Parameters:
+## 	'fatness_percent': Controls how fat the creature should be; 5.0 = 5x normal size
+##
+## 	'creature_index': (Optional) The creature to be altered. Defaults to the current creature.
 func set_fatness(new_fatness: float) -> void:
 	fatness = new_fatness
 	emit_signal("fatness_changed")
 
 
-"""
-Updates the frame to something appropriate for the creature's orientation.
-
-Usually the frame is controlled by an animation. But when it's not, this ensures it still looks reasonable.
-"""
+## Updates the frame to something appropriate for the creature's orientation.
+##
+## Usually the frame is controlled by an animation. But when it's not, this ensures it still looks reasonable.
 func reset_frames(value: bool = true) -> void:
 	if not value:
 		return
@@ -162,29 +154,23 @@ func reset_frames(value: bool = true) -> void:
 	emit_signal("orientation_changed", -1, orientation)
 
 
-"""
-Resets the eyes to a forward/backward facing frame.
-
-Because the eye frames also become visible/invisible during emotes, they don't react to normal orientation/movement
-changes and are instead reset manually.
-"""
+## Resets the eyes to a forward/backward facing frame.
+##
+## Because the eye frames also become visible/invisible during emotes, they don't react to normal orientation/movement
+## changes and are instead reset manually.
 func reset_eye_frames() -> void:
 	$Neck0/HeadBobber/EyeZ0.frame = 1 if oriented_south() else 2
 	$Neck0/HeadBobber/EyeZ1.frame = 1 if oriented_south() else 2
 
 
-"""
-Remove the creature's textures.
-"""
+## Remove the creature's textures.
 func reset_creature(value: bool = true) -> void:
 	if not value:
 		return
 	set_dna({})
 
 
-"""
-Generates a creature with a random appearance.
-"""
+## Generates a creature with a random appearance.
 func random_creature(value: bool = true) -> void:
 	if not value:
 		return
@@ -192,12 +178,10 @@ func random_creature(value: bool = true) -> void:
 	set_dna(new_dna)
 
 
-"""
-Sets the creature's orientation, and alters their appearance appropriately.
-
-If the creature swaps between facing left or right, certain sprites are flipped horizontally. If the creature swaps
-between facing forward or backward, certain sprites play different animations or toggle between different frames.
-"""
+## Sets the creature's orientation, and alters their appearance appropriately.
+##
+## If the creature swaps between facing left or right, certain sprites are flipped horizontally. If the creature swaps
+## between facing forward or backward, certain sprites play different animations or toggle between different frames.
 func set_orientation(new_orientation: int) -> void:
 	var old_orientation := orientation
 	orientation = new_orientation
@@ -226,15 +210,13 @@ func set_orientation(new_orientation: int) -> void:
 	emit_signal("orientation_changed", old_orientation, new_orientation)
 
 
-"""
-Adjusts the creature's scale, flipping them horizontally based on their orientation.
-
-The sprite resources portray creatures facing southeast/northwest, and need to be horizontally flipped for other
-orientations.
-
-Parameters:
-	'new_scale_x': The new scale.x and scale.y value. Negative values are OK, and will be normalized.
-"""
+## Adjusts the creature's scale, flipping them horizontally based on their orientation.
+##
+## The sprite resources portray creatures facing southeast/northwest, and need to be horizontally flipped for other
+## orientations.
+##
+## Parameters:
+## 	'new_scale_x': The new scale.x and scale.y value. Negative values are OK, and will be normalized.
 func rescale(new_scale_x: float) -> void:
 	scale = Vector2(abs(new_scale_x), abs(new_scale_x))
 	scale.x = abs(scale.x) if orientation in [Creatures.SOUTHEAST, Creatures.NORTHWEST] \
@@ -245,12 +227,10 @@ func rescale(new_scale_x: float) -> void:
 	$Body.scale.x = 1 if oriented_south() else -1
 
 
-"""
-Launches the 'feed' animation. The creature makes a biting motion and plays a munch sound.
-
-Parameters:
-	'food_type': An enum from FoodType corresponding to the food to show
-"""
+## Launches the 'feed' animation. The creature makes a biting motion and plays a munch sound.
+##
+## Parameters:
+## 	'food_type': An enum from FoodType corresponding to the food to show
 func feed(food_type: int) -> void:
 	if not visible:
 		# If no creature is visible, it could mean their resources haven't loaded yet. Don't play any animations or
@@ -266,10 +246,8 @@ func feed(food_type: int) -> void:
 		mouth_player.eat()
 
 
-"""
-Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
-properties.
-"""
+## Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
+## properties.
 func set_dna(new_dna: Dictionary) -> void:
 	dna = new_dna
 	if not is_inside_tree():
@@ -282,10 +260,8 @@ func set_dna(new_dna: Dictionary) -> void:
 	emit_signal("dna_changed", dna)
 
 
-"""
-The 'feed' animation causes a few side-effects. The creature's head recoils and some sounds play. This method controls
-all of those secondary visual effects of the creature being fed.
-"""
+## The 'feed' animation causes a few side-effects. The creature's head recoils and some sounds play. This method
+## controls all of those secondary visual effects of the creature being fed.
 func show_food_effects() -> void:
 	_animations.show_food_effects()
 	emit_signal("food_eaten", _food_type)
@@ -299,15 +275,13 @@ func oriented_north() -> bool:
 	return Creatures.oriented_north(orientation)
 
 
-"""
-Plays a movement animation with the specified prefix and direction, such as a 'run' animation going left.
-
-Parameters:
-	'animation_prefix': A partial name of an animation on $Creature/Animations/MovementPlayer, omitting the directional
-			suffix
-	
-	'movement_direction': A vector in the (X, Y) direction the creature is moving.
-"""
+## Plays a movement animation with the specified prefix and direction, such as a 'run' animation going left.
+##
+## Parameters:
+## 	'animation_prefix': A partial name of an animation on $Creature/Animations/MovementPlayer, omitting the directional
+## 			suffix
+##
+## 	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:
 	if movement_direction.length() > 0.1:
 		# tiny movement vectors are often the result of a collision. we ignore these to avoid constantly flipping
@@ -339,12 +313,10 @@ func set_movement_mode(new_mode: int) -> void:
 		emit_signal("movement_mode_changed", old_mode, new_mode)
 
 
-"""
-Animates the creature's appearance according to the specified mood: happy, angry, etc...
-
-Parameters:
-	'mood': The creature's new mood from ChatEvent.Mood
-"""
+## Animates the creature's appearance according to the specified mood: happy, angry, etc...
+##
+## Parameters:
+## 	'mood': The creature's new mood from ChatEvent.Mood
 func play_mood(mood: int) -> void:
 	_animations.play_mood(mood)
 
@@ -353,11 +325,9 @@ func restart_idle_timer() -> void:
 	_animations.restart_idle_timer()
 
 
-"""
-Emits a signal to play a sound effect.
-
-We temporarily suppress sound effect signals when skipping forward in an animation which plays sound effects.
-"""
+## Emits a signal to play a sound effect.
+##
+## We temporarily suppress sound effect signals when skipping forward in an animation which plays sound effects.
 func emit_sfx_signal(signal_name: String) -> void:
 	if _suppress_sfx_signal_timer > 0.0:
 		pass
@@ -365,43 +335,33 @@ func emit_sfx_signal(signal_name: String) -> void:
 		emit_signal(signal_name)
 
 
-"""
-Launches a talking animation, opening and closes the creature's mouth for a few seconds.
-"""
+## Launches a talking animation, opening and closes the creature's mouth for a few seconds.
 func talk() -> void:
 	$TalkTimer.start()
 	emit_signal("talking_changed")
 
 
-"""
-Returns 'true' of the creature's talk animation is playing.
-"""
+## Returns 'true' of the creature's talk animation is playing.
 func is_talking() -> bool:
 	return not $TalkTimer.is_stopped()
 
 
-"""
-Temporarily suppresses sfx signals.
-
-Used when skipping to the middle of animations which play sfx.
-"""
+## Temporarily suppresses sfx signals.
+##
+## Used when skipping to the middle of animations which play sfx.
 func briefly_suppress_sfx_signal() -> void:
 	_suppress_sfx_signal_timer = 0.000000001
 
 
-"""
-Returns the number of seconds between the beginning of the eating animation and the 'chomp' noise.
-"""
+## Returns the number of seconds between the beginning of the eating animation and the 'chomp' noise.
 func get_eating_delay() -> float:
 	return 0.033
 
 
-"""
-Computes the nearest orientation for the specified direction.
-
-For example, a direction of (0.99, -0.13) is mostly pointing towards the x-axis, so it would result in an orientation
-of 'southeast'.
-"""
+## Computes the nearest orientation for the specified direction.
+##
+## For example, a direction of (0.99, -0.13) is mostly pointing towards the x-axis, so it would result in an
+## orientation of 'southeast'.
 func _compute_orientation(direction: Vector2) -> int:
 	if direction.length() == 0:
 		# we default to the current orientation if given a zero-length vector

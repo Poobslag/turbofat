@@ -1,18 +1,16 @@
 class_name ChatFrame
 extends Control
-"""
-Window which displays a chat line.
-
-The chat window is decorated with objects in the background called 'accents'. These accents can be injected with the
-set_chat_theme_def function to configure the chat window's appearance.
-"""
+## Window which displays a chat line.
+##
+## The chat window is decorated with objects in the background called 'accents'. These accents can be injected with the
+## set_chat_theme_def function to configure the chat window's appearance.
 
 signal pop_out_completed
 
-# emitted after the full chat line is typed out onscreen
+## emitted after the full chat line is typed out onscreen
 signal all_text_shown
 
-# 'true' after pop_in is called, and 'false' after pop_out is called
+## 'true' after pop_in is called, and 'false' after pop_out is called
 var _popped_in := false
 var _squished := false
 
@@ -21,9 +19,7 @@ func _ready() -> void:
 	$ChatLinePanel/NametagPanel.hide_labels()
 
 
-"""
-Makes the chat window appear.
-"""
+## Makes the chat window appear.
 func pop_in() -> void:
 	if _popped_in:
 		# chat window is already popped in
@@ -35,9 +31,7 @@ func pop_in() -> void:
 	$PopInSound.play()
 
 
-"""
-Makes the chat window disappear.
-"""
+## Makes the chat window disappear.
 func pop_out() -> void:
 	if not _popped_in:
 		# chat window is already popped out
@@ -47,12 +41,10 @@ func pop_out() -> void:
 	$PopOutSound.play()
 
 
-"""
-Animates the chat UI to gradually reveal the specified text, mimicking speech.
-
-Also updates the chat UI's appearance based on the amount of text being displayed and the specified color and
-background texture.
-"""
+## Animates the chat UI to gradually reveal the specified text, mimicking speech.
+##
+## Also updates the chat UI's appearance based on the amount of text being displayed and the specified color and
+## background texture.
 func play_chat_event(chat_event: ChatEvent, squished: bool) -> void:
 	if not $ChatLineLabel.visible:
 		# Ensure the chat window is showing before we start changing its text and playing sounds
@@ -99,9 +91,7 @@ func make_all_text_visible() -> void:
 	$ChatLineLabel.make_all_text_visible()
 
 
-"""
-Returns the size of the chat line window needed to display the chat line text.
-"""
+## Returns the size of the chat line window needed to display the chat line text.
 func get_chat_line_size() -> int:
 	return $ChatLineLabel.chosen_size_index
 

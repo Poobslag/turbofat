@@ -1,7 +1,5 @@
 extends State
-"""
-State: The piece will spawn soon.
-"""
+## State: The piece will spawn soon.
 
 func update(piece_manager: PieceManager) -> String:
 	var new_state_name := ""

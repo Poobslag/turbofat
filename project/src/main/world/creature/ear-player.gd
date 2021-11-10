@@ -1,8 +1,6 @@
 #tool #uncomment to view creature in editor
 extends AnimationPlayer
-"""
-An AnimationPlayer which animates ears.
-"""
+## An AnimationPlayer which animates ears.
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
@@ -27,10 +25,8 @@ func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
 	_refresh_creature_visuals_path()
 
 
-"""
-Randomly advances the current animation up to 1.0 seconds. Used to ensure all creatures don't wiggle their ears
-synchronously.
-"""
+## Randomly advances the current animation up to 1.0 seconds. Used to ensure all creatures don't wiggle their ears
+## synchronously.
 func advance_animation_randomly() -> void:
 	advance(min(randf(), randf()))
 

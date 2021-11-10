@@ -1,7 +1,5 @@
 extends Control
-"""
-Scene which lets the player launch tutorials.
-"""
+## Scene which lets the player launch tutorials.
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()

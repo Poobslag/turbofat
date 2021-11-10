@@ -1,32 +1,28 @@
 extends RichTextLabel
-"""
-A results label which reveals its contents line by line.
-"""
+## A results label which reveals its contents line by line.
 
-# emitted when new characters appear in the window. newlines are stripped from the signal
+## emitted when new characters appear in the window. newlines are stripped from the signal
 signal text_shown(new_text)
 
-# unshown character which causes the output to pause for 0.2 beats
+## unshown character which causes the output to pause for 0.2 beats
 const LULL_CHARACTER := '/'
 
-# The delay in seconds before displaying the next character
+## The delay in seconds before displaying the next character
 var _pause := 0.0
 
-# timing at which messages appear. defaults to 136 bpm
+## timing at which messages appear. defaults to 136 bpm
 var _beat_duration := 60 / 136.0
 
-# 1.0 = normal, 2.0 = fastest, 6.0 = fastestestest, 1000000.0 = fastestest
+## 1.0 = normal, 2.0 = fastest, 6.0 = fastestestest, 1000000.0 = fastestest
 var _text_speed := 1.0
 
-"""
-These two fields are used to track unshown text which is gradually revealed. RichTextLabel defines a
-'visible_characters' field which supports this capability, but it does not mesh well with the scroll bar or the
-'scroll_following' property. So we reimplement the concept of invisible characters our own way.
-"""
+## These two fields are used to track unshown text which is gradually revealed. RichTextLabel defines a
+## 'visible_characters' field which supports this capability, but it does not mesh well with the scroll bar or the
+## 'scroll_following' property. So we reimplement the concept of invisible characters our own way.
 var _unshown_text := ""
 var _unshown_index := 0
 
-# plays a typewriter sound as text appears
+## plays a typewriter sound as text appears
 onready var _bebebe_sound: AudioStreamPlayer = $BebebeSound
 
 func _ready() -> void:
@@ -59,13 +55,11 @@ func _process(delta: float) -> void:
 		emit_signal("text_shown", new_text)
 
 
-"""
-Reveals the label and empties its contents, gradually appending text over time.
-
-The text can include lull characters, '/', which are hidden from the player but result in a brief delay to mimic
-patterns of speech:
-	'Despite the promise of info,/ I was unable to determine what,/ if anything,/ a 'butt/ onion'/ is supposed to be.'
-"""
+## Reveals the label and empties its contents, gradually appending text over time.
+##
+## The text can include lull characters, '/', which are hidden from the player but result in a brief delay to mimic
+## patterns of speech:
+## 	'Despite the promise of info,/ I was unable to determine what,/ if anything,/ a 'butt/ onion'/ is supposed to be.'
 func show_text(text_with_lulls: String) -> void:
 	# reset text state before showing new text
 	hide_text()
@@ -74,9 +68,7 @@ func show_text(text_with_lulls: String) -> void:
 	show()
 
 
-"""
-Hides the label and empties its contents.
-"""
+## Hides the label and empties its contents.
 func hide_text() -> void:
 	text = ""
 	_unshown_text = ""

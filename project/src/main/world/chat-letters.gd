@@ -1,9 +1,7 @@
 extends Node
-"""
-Emits letters when creatures talk.
-
-This helps the player tell which creature is currently talking, especially for creatures with unconventional mouths.
-"""
+## Emits letters when creatures talk.
+##
+## This helps the player tell which creature is currently talking, especially for creatures with unconventional mouths.
 
 const VOICE_POSITIONS_BY_ORIENTATION := {
 	Creatures.SOUTHEAST: Vector2(36, -15),
@@ -23,7 +21,7 @@ onready var overworld_ui: OverworldUi = Global.get_overworld_ui()
 
 onready var _letter_shooter: LetterShooter = $LetterShooter
 
-# the creature currently emitting letters
+## the creature currently emitting letters
 var _chatter: Creature
 
 func _ready() -> void:

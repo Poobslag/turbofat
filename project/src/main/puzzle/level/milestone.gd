@@ -1,10 +1,8 @@
 class_name Milestone
-"""
-Defines a goal or milestone for a puzzle, such as reaching a certain score, clearing a certain
-number of lines or surviving a certain number of seconds.
-
-Additional details are stored in the 'meta' property.
-"""
+## Defines a goal or milestone for a puzzle, such as reaching a certain score, clearing a certain
+## number of lines or surviving a certain number of seconds.
+##
+## Additional details are stored in the 'meta' property.
 
 enum MilestoneType {
 	NONE,
@@ -24,20 +22,18 @@ const SCORE := MilestoneType.SCORE
 const TIME_OVER := MilestoneType.TIME_OVER
 const TIME_UNDER := MilestoneType.TIME_UNDER
 
-# an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
+## an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
 var type: int = MilestoneType.NONE
 
-# an value describing the milestone criteria (number of lines, points, seconds)
+## an value describing the milestone criteria (number of lines, points, seconds)
 var value := 0
 
-"""
-Initializes the milestone with a MilestoneType and value to reach, such as scoring 50 points or clearing 10 lines.
-
-Parameters:
-	'new_type': an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
-	
-	'new_value': an value describing the milestone criteria (number of lines, points, seconds)
-"""
+## Initializes the milestone with a MilestoneType and value to reach, such as scoring 50 points or clearing 10 lines.
+##
+## Parameters:
+## 	'new_type': an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
+##
+## 	'new_value': an value describing the milestone criteria (number of lines, points, seconds)
 func set_milestone(new_type: int, new_value: int) -> void:
 	type = new_type
 	value = new_value
@@ -61,11 +57,9 @@ func to_json_dict() -> Dictionary:
 	return result
 
 
-"""
-Returns 'true' if all of the milestone's properties are currently set to their default values.
-
-Milestones whose properties are set to their default values are omitted from our json output.
-"""
+## Returns 'true' if all of the milestone's properties are currently set to their default values.
+##
+## Milestones whose properties are set to their default values are omitted from our json output.
 func is_default() -> bool:
 	var result := true
 	result = result && (type == MilestoneType.NONE)

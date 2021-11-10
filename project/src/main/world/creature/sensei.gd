@@ -1,16 +1,14 @@
 class_name Sensei
 extends Creature
-"""
-Script for manipulating the sensei in the overworld.
+## Script for manipulating the sensei in the overworld.
+##
+## The sensei follows the player around.
 
-The sensei follows the player around.
-"""
-
-# the sensei tries to keep a respectable distance from the player
+## the sensei tries to keep a respectable distance from the player
 const TOO_CLOSE_THRESHOLD := 140.0
 const TOO_FAR_THRESHOLD := 280.0
 
-# If 'true' the sensei cannot move. Used during cutscenes.
+## If 'true' the sensei cannot move. Used during cutscenes.
 var movement_disabled := false
 
 func _ready() -> void:

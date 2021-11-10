@@ -1,32 +1,30 @@
 tool
 class_name ObstacleMapIndoors
 extends ObstacleMap
-"""
-Maintains a tilemap for indoor obstacles.
-
-The indoor tilemap is an isometric tilemap which must be drawn from left to right. This tilemap includes functionality
-for sorting tiles by their x coordinate.
-"""
+## Maintains a tilemap for indoor obstacles.
+##
+## The indoor tilemap is an isometric tilemap which must be drawn from left to right. This tilemap includes
+## functionality for sorting tiles by their x coordinate.
 
 const BIND_TOP := TileSet.BIND_TOP
 const BIND_BOTTOM := TileSet.BIND_BOTTOM
 const BIND_LEFT := TileSet.BIND_LEFT
 const BIND_RIGHT := TileSet.BIND_RIGHT
 
-# constants representing the orientation of certain tiles, which direction objects are facing
+## constants representing the orientation of certain tiles, which direction objects are facing
 const UP := 1
 const DOWN := 2
 const LEFT := 4
 const RIGHT := 8
 
-# the index of specific tiles in the tilemap's tileset
+## the index of specific tiles in the tilemap's tileset
 const BARE_COUNTERTOP_TILE_INDEX := 8
 const GRILL_TILE_INDEX := 9
 const SINK_TILE_INDEX := 10
 const COUNTERTOP_PLATES_TILE_INDEX := 11
 
-# key: union of TileSet bindings for adjacent cells containing countertops
-# value: countertop autotile coordinate
+## key: union of TileSet bindings for adjacent cells containing countertops
+## value: countertop autotile coordinate
 var COUNTERTOP_AUTOTILE_COORDS_BY_BINDING := {
 	0: Vector2(0, 0),
 	BIND_TOP: Vector2(1, 0),
@@ -41,8 +39,8 @@ var COUNTERTOP_AUTOTILE_COORDS_BY_BINDING := {
 	BIND_LEFT | BIND_RIGHT: Vector2(2, 2),
 }
 
-# key: union of TileSet bindings for adjacent cells containing countertops
-# value: array of possible countertop-plates autotile coordinates
+## key: union of TileSet bindings for adjacent cells containing countertops
+## value: array of possible countertop-plates autotile coordinates
 var COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING := {
 	0: [Vector2(0, 0), Vector2(1, 0)],
 	BIND_TOP: [Vector2(2, 0), Vector2(3, 0)],
@@ -58,8 +56,8 @@ var COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING := {
 	BIND_LEFT | BIND_RIGHT: [Vector2(4, 3), Vector2(5, 3), Vector2(0, 4), Vector2(1, 4)],
 }
 
-# key: countertop autotile coordinate
-# value: direction which the grill is facing on that tile (UP, DOWN, LEFT, RIGHT)
+## key: countertop autotile coordinate
+## value: direction which the grill is facing on that tile (UP, DOWN, LEFT, RIGHT)
 var GRILL_ORIENTATION_BY_CELL := {
 	Vector2(0, 0): UP,
 	Vector2(1, 0): UP,
@@ -95,11 +93,11 @@ var GRILL_ORIENTATION_BY_CELL := {
 	Vector2(3, 7): RIGHT,
 }
 
-# key: array containing 3 elements representing TileSet bindings and metadata:
-#    key[0] = direction which the grill is currently facing (UP, DOWN, LEFT, RIGHT)
-#    key[1] = union of TileSet bindings for adjacent cells containing grills
-#    key[2] = union of TileSet bindings for adjacent cells containing grills and countertops
-# value: grill autotile coordinate
+## key: array containing 3 elements representing TileSet bindings and metadata:
+##    key[0] = direction which the grill is currently facing (UP, DOWN, LEFT, RIGHT)
+##    key[1] = union of TileSet bindings for adjacent cells containing grills
+##    key[2] = union of TileSet bindings for adjacent cells containing grills and countertops
+## value: grill autotile coordinate
 const GRILL_AUTOTILE_COORDS_BY_BINDING := {
 	[UP, 0, 0]: Vector2(0, 0),
 	[UP, 0, BIND_LEFT]: Vector2(1, 0),
@@ -135,8 +133,8 @@ const GRILL_AUTOTILE_COORDS_BY_BINDING := {
 	[RIGHT, BIND_BOTTOM, BIND_TOP | BIND_BOTTOM]: Vector2(3, 7),
 }
 
-# key: sink autotile coordinate
-# value: direction which the sink is facing on that tile (UP, DOWN, LEFT, RIGHT)
+## key: sink autotile coordinate
+## value: direction which the sink is facing on that tile (UP, DOWN, LEFT, RIGHT)
 const SINK_ORIENTATION_BY_CELL := {
 	Vector2(0, 0): UP,
 	Vector2(1, 0): UP,
@@ -152,10 +150,10 @@ const SINK_ORIENTATION_BY_CELL := {
 	Vector2(2, 3): RIGHT,
 }
 
-# key: array containing 3 elements representing TileSet bindings and metadata:
-#    key[0] = direction which the sink is currently facing (UP, DOWN, LEFT, RIGHT)
-#    key[1] = union of TileSet bindings for adjacent cells containing sinks
-# value: sink autotile coordinate
+## key: array containing 3 elements representing TileSet bindings and metadata:
+##    key[0] = direction which the sink is currently facing (UP, DOWN, LEFT, RIGHT)
+##    key[1] = union of TileSet bindings for adjacent cells containing sinks
+## value: sink autotile coordinate
 const SINK_AUTOTILE_COORDS_BY_BINDING := {
 	[UP, 0]: Vector2(0, 0),
 	[UP, BIND_LEFT]: Vector2(1, 0),
@@ -171,20 +169,18 @@ const SINK_AUTOTILE_COORDS_BY_BINDING := {
 	[RIGHT, BIND_BOTTOM]: Vector2(2, 3),
 }
 
-# An editor toggle which manually applies autotiling.
+## An editor toggle which manually applies autotiling.
 #
-# Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
-# https://github.com/godotengine/godot/issues/11855
+## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
+## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
 
 
-"""
-Autotiles tiles with kitchen countertops.
-
-The kitchen countertop autotiling involves multiple cell types and cannot be handled by Godot's built-in autotiling.
-Instead of configuring the autotiling behavior with the TileSet's autotile bitmask, it is configured with several
-dictionary constants defined in this script.
-"""
+## Autotiles tiles with kitchen countertops.
+##
+## The kitchen countertop autotiling involves multiple cell types and cannot be handled by Godot's built-in autotiling.
+## Instead of configuring the autotiling behavior with the TileSet's autotile bitmask, it is configured with several
+## dictionary constants defined in this script.
 func autotile(_value: bool) -> void:
 	for cell in get_used_cells():
 		match get_cellv(cell):
@@ -194,12 +190,10 @@ func autotile(_value: bool) -> void:
 			COUNTERTOP_PLATES_TILE_INDEX: _autotile_countertop_plates(cell)
 
 
-"""
-Autotiles a tile containing a bare countertop.
-
-Parameters:
-	'cell': The TileMap coordinates of the cell to be autotiled.
-"""
+## Autotiles a tile containing a bare countertop.
+##
+## Parameters:
+## 	'cell': The TileMap coordinates of the cell to be autotiled.
 func _autotile_bare_countertop(cell: Vector2) -> void:
 	var adjacent_countertops := _adjacencies(cell,
 			[BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX, COUNTERTOP_PLATES_TILE_INDEX])
@@ -209,12 +203,10 @@ func _autotile_bare_countertop(cell: Vector2) -> void:
 		_set_cell_autotile_coord(cell, COUNTERTOP_AUTOTILE_COORDS_BY_BINDING[adjacent_countertops])
 
 
-"""
-Autotiles a tile containing a countertop with plates on it.
-
-Parameters:
-	'cell': The TileMap coordinates of the cell to be autotiled.
-"""
+## Autotiles a tile containing a countertop with plates on it.
+##
+## Parameters:
+## 	'cell': The TileMap coordinates of the cell to be autotiled.
 func _autotile_countertop_plates(cell: Vector2) -> void:
 	var adjacent_countertops := _adjacencies(cell,
 			[BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX, COUNTERTOP_PLATES_TILE_INDEX])
@@ -225,14 +217,12 @@ func _autotile_countertop_plates(cell: Vector2) -> void:
 		_set_cell_autotile_coord(cell, Utils.rand_value(bindings))
 
 
-"""
-Updates the autotile coordinate for a TileMap cell.
-
-Parameters:
-	'cell': The TileMap coordinates of the cell to be updated.
-	
-	'autotile_coord': The autotile coordinates to assign.
-"""
+## Updates the autotile coordinate for a TileMap cell.
+##
+## Parameters:
+## 	'cell': The TileMap coordinates of the cell to be updated.
+##
+## 	'autotile_coord': The autotile coordinates to assign.
 func _set_cell_autotile_coord(cell: Vector2, autotile_coord: Vector2) -> void:
 	var tile: int = get_cell(cell.x, cell.y)
 	var flip_x: bool = is_cell_x_flipped(cell.x, cell.y)
@@ -241,12 +231,10 @@ func _set_cell_autotile_coord(cell: Vector2, autotile_coord: Vector2) -> void:
 	set_cell(cell.x, cell.y, tile, flip_x, flip_y, transpose, autotile_coord)
 
 
-"""
-Autotiles a tile containing a grill.
-
-Parameters:
-	'cell': The TileMap coordinates of the cell to be autotiled.
-"""
+## Autotiles a tile containing a grill.
+##
+## Parameters:
+## 	'cell': The TileMap coordinates of the cell to be autotiled.
 func _autotile_grill(cell: Vector2) -> void:
 	# calculate the grill's current orientation
 	var grill_orientation: int = GRILL_ORIENTATION_BY_CELL.get(get_cell_autotile_coord(cell.x, cell.y))
@@ -268,12 +256,10 @@ func _autotile_grill(cell: Vector2) -> void:
 		_set_cell_autotile_coord(cell, GRILL_AUTOTILE_COORDS_BY_BINDING.get(grill_key))
 
 
-"""
-Autotiles a cell containing a sink.
-
-Parameters:
-	'cell': The TileMap coordinates of the cell to be autotiled.
-"""
+## Autotiles a cell containing a sink.
+##
+## Parameters:
+## 	'cell': The TileMap coordinates of the cell to be autotiled.
 func _autotile_sink(cell: Vector2) -> void:
 	var orientation: int = SINK_ORIENTATION_BY_CELL.get(get_cell_autotile_coord(cell.x, cell.y))
 	
@@ -291,19 +277,16 @@ func _autotile_sink(cell: Vector2) -> void:
 	if SINK_AUTOTILE_COORDS_BY_BINDING.has(sink_key):
 		_set_cell_autotile_coord(cell, SINK_AUTOTILE_COORDS_BY_BINDING.get(sink_key))
 
-
-"""
-Calculates which adjacent cells match the specified tile indexes.
-
-
-Parameters:
-	'cell': The TileMap coordinates of the cell to be analyzed.
-	
-	'tile_indexes': The tile indexes to check for in adjacent cells
-
-Returns:
-	An int bitmask of matching cell directions (UP, DOWN, LEFT, RIGHT)
-"""
+## Calculates which adjacent cells match the specified tile indexes.
+##
+##
+## Parameters:
+## 	'cell': The TileMap coordinates of the cell to be analyzed.
+##
+## 	'tile_indexes': The tile indexes to check for in adjacent cells
+##
+## Returns:
+## 	An int bitmask of matching cell directions (UP, DOWN, LEFT, RIGHT)
 func _adjacencies(cell: Vector2, tile_indexes: Array) -> int:
 	var binding := 0
 	binding |= BIND_TOP if get_cellv(cell + Vector2.UP) in tile_indexes else 0

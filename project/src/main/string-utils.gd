@@ -1,16 +1,14 @@
 class_name StringUtils
-"""
-Utility class for string operations.
+## Utility class for string operations.
+##
+## Where possible, these functions mimic the style of org.apache.commons.lang3.StringUtils.
 
-Where possible, these functions mimic the style of org.apache.commons.lang3.StringUtils.
-"""
-
-# Numeric suffixes used to represent thousands, millions, billions
+## Numeric suffixes used to represent thousands, millions, billions
 const NUM_SUFFIXES := ["", " k", " m", " b", " t"]
 
 const MAX_FILE_ROOT_LENGTH := 31
 
-# Characters to omit from the first part of a filename
+## Characters to omit from the first part of a filename
 const BAD_FILE_ROOT_CHARS := {
 	" ": true,
 	
@@ -25,11 +23,9 @@ const BAD_FILE_ROOT_CHARS := {
 	"_": true, "`": true, "{": true, "|": true, "}": true, "~": true,
 }
 
-"""
-Formats a potentially large number into a compact form like '5,982 k'.
-
-The resulting string is always seven or fewer characters, allowing for a compact UI.
-"""
+## Formats a potentially large number into a compact form like '5,982 k'.
+##
+## The resulting string is always seven or fewer characters, allowing for a compact UI.
 static func compact(n: int) -> String:
 	var suffix_index := 0
 	var i: int = n
@@ -45,9 +41,7 @@ static func compact(n: int) -> String:
 	return "%s%s" % [comma_sep(i), NUM_SUFFIXES[suffix_index]]
 
 
-"""
-Formats a number with commas like '1,234,567'.
-"""
+## Formats a number with commas like '1,234,567'.
 static func comma_sep(n: int) -> String:
 	var result := ""
 	var i: int = abs(n)
@@ -59,14 +53,12 @@ static func comma_sep(n: int) -> String:
 	return "%s%s%s" % ["-" if n < 0 else "", i, result]
 
 
-"""
-Formats a float with commas like '1,234,567.89'.
-
-Parameters:
-	'n': The number to format
-	
-	'precision': The number of decimal places to show. Rounding is used.
-"""
+## Formats a float with commas like '1,234,567.89'.
+##
+## Parameters:
+## 	'n': The number to format
+##
+## 	'precision': The number of decimal places to show. Rounding is used.
 static func comma_sep_float(n: float, precision: int) -> String:
 	var result := str(stepify(abs(n) - int(abs(n)), pow(0.1, precision))).substr(1)
 	var i: int = abs(n)
@@ -78,23 +70,17 @@ static func comma_sep_float(n: float, precision: int) -> String:
 	return "%s%s%s" % ["-" if n < 0 else "", i, result]
 
 
-"""
-Gets the substring before the first occurrence of a separator.
-"""
+## Gets the substring before the first occurrence of a separator.
 static func substring_before(s: String, sep: String) -> String:
 	return s.substr(0, s.find(sep))
 
 
-"""
-Gets the substring after the first occurrence of a separator.
-"""
+## Gets the substring after the first occurrence of a separator.
 static func substring_after(s: String, sep: String) -> String:
 	return s.substr(s.find(sep) + sep.length())
 
 
-"""
-Gets the String that is nested in between two Strings. Only the first match is returned.
-"""
+## Gets the String that is nested in between two Strings. Only the first match is returned.
 static func substring_between(s: String, open: String, close: String) -> String:
 	if not s or not open or not close:
 		return ""
@@ -108,42 +94,32 @@ static func substring_between(s: String, open: String, close: String) -> String:
 	return result
 
 
-"""
-Gets the substring after the last occurrence of a separator.
-"""
+## Gets the substring after the last occurrence of a separator.
 static func substring_after_last(s: String, sep: String) -> String:
 	return s.substr(s.find_last(sep) + sep.length())
 
 
-"""
-Gets the substring before the last occurrence of a separator.
-"""
+## Gets the substring before the last occurrence of a separator.
 static func substring_before_last(s: String, sep: String) -> String:
 	return s.substr(0, s.find_last(sep))
 
 
-"""
-Formats a duration like 63.159 into '1:03'
-"""
+## Formats a duration like 63.159 into '1:03'
 static func format_duration(seconds: float) -> String:
 	# warning-ignore:integer_division
 	return "%01d:%02d" % [int(ceil(seconds)) / 60, int(ceil(seconds)) % 60]
 
 
-"""
-Parses a duration like 1:03.159 into '63.159'
-"""
+## Parses a duration like 1:03.159 into '63.159'
 static func parse_duration(s: String) -> float:
 	var split: Array = s.split(":")
 	return int(split[0]) * 60 + float(split[1])
 
 
-"""
-Sanitizes the 'file root' to avoid creating files with unusual filenames.
-
-The file root is the part of a filename preceding the file extension. To limit bugs and user error we sanitize file
-roots to ensure they're short, lower-case, and don't include unusual characters.
-"""
+## Sanitizes the 'file root' to avoid creating files with unusual filenames.
+##
+## The file root is the part of a filename preceding the file extension. To limit bugs and user error we sanitize file
+## roots to ensure they're short, lower-case, and don't include unusual characters.
 static func sanitize_file_root(file_root: String) -> String:
 	var result := ""
 	var utf8 := file_root.to_lower().to_utf8()
@@ -164,16 +140,12 @@ static func sanitize_file_root(file_root: String) -> String:
 	return result.substr(0, MAX_FILE_ROOT_LENGTH)
 
 
-"""
-Returns true if the specified character is a letter (a-z, A-Z)
-"""
+## Returns true if the specified character is a letter (a-z, A-Z)
 static func is_letter(character: String) -> bool:
 	return character >= "A" and character <= "Z" or character >= "a" and character <= "z"
 
 
-"""
-Returns true if the specified string contains at least one letter (a-z, A-Z)
-"""
+## Returns true if the specified string contains at least one letter (a-z, A-Z)
 static func has_letter(string: String) -> bool:
 	var result := false
 	for c in string:
@@ -183,9 +155,7 @@ static func has_letter(string: String) -> bool:
 	return result
 
 
-"""
-Capitalizes all the whitespace separated words in a String.
-"""
+## Capitalizes all the whitespace separated words in a String.
 static func capitalize_words(string: String) -> String:
 	var result := string[0].to_upper()
 	for i in range(1, string.length()):
@@ -196,13 +166,11 @@ static func capitalize_words(string: String) -> String:
 	return result
 
 
-"""
-Returns an english representation of a number suitable for a message.
-
-This is useful for messages like 'You need to beat three more levels' or 'You need 3,125 more points.' We don't want to
-display messages like 'You need three thousand one hundred and twenty-five more points', so we leave larger numbers
-alone.
-"""
+## Returns an english representation of a number suitable for a message.
+##
+## This is useful for messages like 'You need to beat three more levels' or 'You need 3,125 more points.' We don't want
+## to display messages like 'You need three thousand one hundred and twenty-five more points', so we leave larger
+## numbers alone.
 static func english_number(i: int) -> String:
 	if i < 0 or i > 20:
 		return comma_sep(i)
@@ -213,26 +181,20 @@ static func english_number(i: int) -> String:
 			"sixteen", "seventeen", "eighteen", "nineteen", "twenty"][i];
 
 
-"""
-Returns either the passed in String, or if the String is empty or null, the value of 'default'.
-"""
+## Returns either the passed in String, or if the String is empty or null, the value of 'default'.
 static func default_if_empty(s: String, default: String) -> String:
 	return s if s else default
 
 
-"""
-Replaces hyphens with underscores in a string.
-
-JSON keys and values use underscores to separate words, for consistency with Python conventions.
-"""
+## Replaces hyphens with underscores in a string.
+##
+## JSON keys and values use underscores to separate words, for consistency with Python conventions.
 static func hyphens_to_underscores(s: String) -> String:
 	return s.replace("-", "_")
 
 
-"""
-Replaces underscores with hyphens in a string.
-
-Filenames use kebab-case.
-"""
+## Replaces underscores with hyphens in a string.
+##
+## Filenames use kebab-case.
 static func underscores_to_hyphens(s: String) -> String:
 	return s.replace("_", "-")

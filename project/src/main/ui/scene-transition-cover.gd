@@ -1,9 +1,8 @@
 extends CanvasLayer
-"""
-Covers the screen during scene transitions.
-
-This must be a CanvasLayer and not simply a Control because it needs to cover everything, including other CanvasLayers.
-"""
+## Covers the screen during scene transitions.
+##
+## This must be a CanvasLayer and not simply a Control because it needs to cover everything, including other
+## CanvasLayers.
 
 onready var _tween: Tween = $Tween
 onready var _color_rect: ColorRect = $ColorRect
@@ -18,10 +17,8 @@ func _ready() -> void:
 	_initialize_fade()
 
 
-"""
-Makes our alpha component opaque or translucent based on the transition state. Also schedules the 'fade in' event if
-necessary.
-"""
+## Makes our alpha component opaque or translucent based on the transition state. Also schedules the 'fade in' event if
+## necessary.
 func _initialize_fade() -> void:
 	_color_rect.modulate.a = 1.0 if SceneTransition.fading else 0.0
 	if SceneTransition.fading:
@@ -32,9 +29,7 @@ func _initialize_fade() -> void:
 		SceneTransition.fade_in()
 
 
-"""
-Starts a tween which changes this node's opacity.
-"""
+## Starts a tween which changes this node's opacity.
 func _launch_fade_tween(new_alpha: float, duration: float) -> void:
 	_color_rect.color = SceneTransition.fade_color
 	

@@ -1,18 +1,14 @@
 extends TileMap
-"""
-Draws shadows under tiles from an obstacle tilemap.
-"""
+## Draws shadows under tiles from an obstacle tilemap.
 
 export (NodePath) var obstacle_map_path: NodePath
 
-"""
-Maps tile indexes to their grid size. This allows us to generate larger shadows for tiles which span multiple cells.
-
-This mapping is optional. Tile indexes which are absent will be given a 1x1 cell shadow.
-
-key: tile index corresponding to a tile in the obstacle map
-value: a rectangle which measures tile's grid size, in cells
-"""
+## Maps tile indexes to their grid size. This allows us to generate larger shadows for tiles which span multiple cells.
+##
+## This mapping is optional. Tile indexes which are absent will be given a 1x1 cell shadow.
+##
+## key: tile index corresponding to a tile in the obstacle map
+## value: a rectangle which measures tile's grid size, in cells
 export (Dictionary) var cell_shadow_mapping
 
 onready var _obstacle_map: TileMap = get_node(obstacle_map_path)

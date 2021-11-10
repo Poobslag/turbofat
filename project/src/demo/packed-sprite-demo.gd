@@ -1,11 +1,9 @@
 extends Node
-"""
-Demonstrates loading and animating a packed sprite.
-
-Keys:
-	[Z]: Cycle to the next frame
-	Arrows: Move the sprite and print its offset.
-"""
+## Demonstrates loading and animating a packed sprite.
+##
+## Keys:
+## 	[Z]: Cycle to the next frame
+## 	Arrows: Move the sprite and print its offset.
 
 onready var _packed_sprite: PackedSprite = $PackedSprite
 

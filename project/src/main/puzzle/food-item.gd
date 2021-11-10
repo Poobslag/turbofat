@@ -1,60 +1,58 @@
 tool
 class_name FoodItem
 extends PackedSprite
-"""
-A food item which appears when the player clears a box in puzzle mode.
-"""
+## A food item which appears when the player clears a box in puzzle mode.
 
 # warning-ignore:unused_signal
-# Emitted when the food item has floated for long enough and fly_to_target can be called. Emitted by food-items.gd
+## Emitted when the food item has floated for long enough and fly_to_target can be called. Emitted by food-items.gd
 signal ready_to_fly
 
-# Scale/rotation modifiers applied by our animation
+## Scale/rotation modifiers applied by our animation
 export (Vector2) var scale_modifier := Vector2(1.0, 1.0)
 export (float) var rotation_modifier := 0.0
 
-# The unmodified scale/rotation before pulsing/spinning
+## The unmodified scale/rotation before pulsing/spinning
 var base_scale := Vector2(1.0, 1.0) setget set_base_scale
 var base_rotation := 0.0 setget set_base_rotation
 
-# The velocity applied to the food when in the 'floating' state
+## The velocity applied to the food when in the 'floating' state
 var velocity := Vector2(0, -25)
 
-# The creature who this food will fly towards
+## The creature who this food will fly towards
 var customer: Creature
 
-# Incremented as the customer changes to track the intended recipient of each food item.
+## Incremented as the customer changes to track the intended recipient of each food item.
 var customer_index: int
 
-# An enum from FoodType corresponding to the food to show
+## An enum from FoodType corresponding to the food to show
 var food_type: int setget set_food_type
 
-# Food items pulse and rotate. This field is used to calculate the pulse/rotation amount
+## Food items pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
 
-# Tweens the food's position to fly into the customer's mouth.
+## Tweens the food's position to fly into the customer's mouth.
 var _flying_tween: Tween
 
-# This func ref and array correspond to a callback which return the position of the customer's mouth.
+## This func ref and array correspond to a callback which return the position of the customer's mouth.
 var _get_target_pos: FuncRef
 var _target_pos_arg_array: Array
 
-# The position the food is flying from
+## The position the food is flying from
 var _source_pos: Vector2
 
-# The position the food is flying toward
+## The position the food is flying toward
 var _target_pos: Vector2
 
-# A number in the range [0.0, 1.0] corresponding to where the food is positioned between its source and target
+## A number in the range [0.0, 1.0] corresponding to where the food is positioned between its source and target
 var _flight_percent := 0.0
 
-# 'true' of the food item has been collected and should slowly float upward
+## 'true' of the food item has been collected and should slowly float upward
 var _floating_upward := false
 
-# How far the sprite should rotate; 1.0 = one full circle forward and backward
+## How far the sprite should rotate; 1.0 = one full circle forward and backward
 onready var _spin_amount := 0.08 * rand_range(0.8, 1.2)
 
-# How many seconds the sprite should take to rotate back and forth once
+## How many seconds the sprite should take to rotate back and forth once
 onready var _spin_period := 2.50 * rand_range(0.8, 1.2)
 
 func _ready() -> void:
@@ -92,10 +90,7 @@ func _physics_process(delta: float) -> void:
 	_refresh_scale()
 	_refresh_rotation()
 
-
-"""
-Makes the food jiggle briefly.
-"""
+## Makes the food jiggle briefly.
 func jiggle() -> void:
 	# restart the jiggle animation if the item was already jiggling
 	$AnimationPlayer.stop()
@@ -103,11 +98,9 @@ func jiggle() -> void:
 	$AnimationPlayer.play("jiggle", -1, rand_range(0.5, 1.5))
 
 
-"""
-Launches the 'food was collected' animation.
-
-This makes the food jiggle and float upward.
-"""
+## Launches the 'food was collected' animation.
+##
+## This makes the food jiggle and float upward.
 func collect() -> void:
 	_floating_upward = true
 	jiggle()
@@ -128,17 +121,15 @@ func set_base_rotation(new_base_rotation: float) -> void:
 	_refresh_rotation()
 
 
-"""
-Makes the food item start flying towards the customer's mouth.
-
-The object, method and arg_array parameters correspond to a callback which returns the position of the customer's
-mouth. The callback function can also return Vector2.INF if the customer is no longer present.
-
-Parameters:
-	'new_get_target_pos': The callback function which returns the position of the customer's mouth.
-	
-	'target_pos_arg_array': The parameters of the callback function which returns the position of the customer's mouth.
-"""
+## Makes the food item start flying towards the customer's mouth.
+##
+## The object, method and arg_array parameters correspond to a callback which returns the position of the customer's
+## mouth. The callback function can also return Vector2.INF if the customer is no longer present.
+##
+## Parameters:
+## 	'new_get_target_pos': The callback function which returns the position of the customer's mouth.
+##
+## 	'target_pos_arg_array': The parameters of the callback function which returns the position of the customer's mouth.
 func fly_to_target(new_get_target_pos: FuncRef, target_pos_arg_array: Array,
 			duration: float) -> void:
 	_get_target_pos = new_get_target_pos

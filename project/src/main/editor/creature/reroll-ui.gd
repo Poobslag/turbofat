@@ -1,15 +1,13 @@
 extends Control
-"""
-UI control for rerolling and controlling the mutagen level.
+## UI control for rerolling and controlling the mutagen level.
+##
+## A higher mutagen level means more alleles will be mutated.
 
-A higher mutagen level means more alleles will be mutated.
-"""
-
-# default mutagen level when launching the scene
+## default mutagen level when launching the scene
 const DEFAULT_MUTAGEN := 1.00
 
-# A higher mutagen level means more alleles will be mutated.
-# Virtual property; value is only exposed through getters/setters
+## A higher mutagen level means more alleles will be mutated.
+## Virtual property; value is only exposed through getters/setters
 var mutagen: float setget set_mutagen, get_mutagen
 
 func _ready() -> void:

@@ -1,48 +1,46 @@
 class_name CreatureLibrary
-"""
-Manages data for all creatures in the world, including the player.
+## Manages data for all creatures in the world, including the player.
+##
+## This includes their appearance, name and weight.
 
-This includes their appearance, name and weight.
-"""
-
-# unique creature ids
+## unique creature ids
 const SENSEI_ID := "#sensei#"
 const PLAYER_ID := "#player#"
 const NARRATOR_ID := "#narrator#"
 
-# How many randomly generated filler creatures have their fatness tracked
+## How many randomly generated filler creatures have their fatness tracked
 const GENERIC_FATNESS_COUNT := 150
 
-# The maximum fatness we'll save for a randomly generated filler creature. We don't want a random creature the player
-# has never seen who weighs 10,000 pounds; it would sort of break immersion as they'd wonder "who fed this person!? it
-# wasn't me"
+## The maximum fatness we'll save for a randomly generated filler creature. We don't want a random creature the player
+## has never seen who weighs 10,000 pounds; it would sort of break immersion as they'd wonder "who fed this person!? it
+## wasn't me"
 const MAX_FILLER_FATNESS := 2.5
 
-# If set, all creatures will have a specific fatness. Used for testing cutscenes.
+## If set, all creatures will have a specific fatness. Used for testing cutscenes.
 var forced_fatness := 0.0
 
-# Virtual properties; values are only exposed through getters/setters
+## Virtual properties; values are only exposed through getters/setters
 var player_def: CreatureDef setget set_player_def, get_player_def
 var sensei_def: CreatureDef setget set_sensei_def, get_sensei_def
 
-# fatnesses by creature id
+## fatnesses by creature id
 var _fatnesses: Dictionary
 
-# fatnesses saved to roll the tilemap back to a previous state
+## fatnesses saved to roll the tilemap back to a previous state
 var _saved_fatnesses: Dictionary
 
-# In addition to storing known fatness attributes like "Ebe's weight is 2.5", we store fatnesses for randomly
-# generated filler creatures. We rotate their IDs to avoid edge cases where two creatures have the same ID.
+## In addition to storing known fatness attributes like "Ebe's weight is 2.5", we store fatnesses for randomly
+## generated filler creatures. We rotate their IDs to avoid edge cases where two creatures have the same ID.
 var _filler_ids: Array
 
-# Cached creature definitions. This includes all primary and creature json definitions loaded from static json files,
-# as well as the player and sensei's definitions.
+## Cached creature definitions. This includes all primary and creature json definitions loaded from static json files,
+## as well as the player and sensei's definitions.
 #
-# This is a transient field which is populated on startup, but is not saved anywhere. As its contents not written to
-# disk, it should not be modified with the intent of permanently changing a creature's appearance.
+## This is a transient field which is populated on startup, but is not saved anywhere. As its contents not written to
+## disk, it should not be modified with the intent of permanently changing a creature's appearance.
 #
-# key: creature_id
-# value: CreatureDef instance with the specified id
+## key: creature_id
+## value: CreatureDef instance with the specified id
 var _creature_defs_by_id: Dictionary
 
 func _init() -> void:
@@ -53,12 +51,10 @@ func creature_ids() -> Array:
 	return _creature_defs_by_id.keys()
 
 
-"""
-Returns a filler ID.
-
-Pushes the filler ID somewhere toward the back of the queue. The position is slightly randomized to prevent cycles
-from emerging.
-"""
+## Returns a filler ID.
+##
+## Pushes the filler ID somewhere toward the back of the queue. The position is slightly randomized to prevent cycles
+## from emerging.
 func next_filler_id() -> String:
 	var filler_id: String = _filler_ids.pop_front()
 	# warning-ignore:integer_division
@@ -111,19 +107,15 @@ func reset() -> void:
 		_creature_defs_by_id[creature_def.creature_id] = creature_def
 
 
-"""
-Saves the current fatness state so that we can roll back later.
-"""
+## Saves the current fatness state so that we can roll back later.
 func save_fatness_state() -> void:
 	_saved_fatnesses = _fatnesses.duplicate()
 
 
-"""
-Restores the previously saved fatness state.
-
-This prevents a creature from gaining weight when retrying a level over and over.
-Thematically, we're turning back time.
-"""
+## Restores the previously saved fatness state.
+##
+## This prevents a creature from gaining weight when retrying a level over and over.
+## Thematically, we're turning back time.
 func restore_fatness_state() -> void:
 	_fatnesses = _saved_fatnesses.duplicate()
 
@@ -184,9 +176,7 @@ func set_creature_def(creature_id: String, creature_def: CreatureDef) -> void:
 	_creature_defs_by_id[creature_id] = creature_def
 
 
-"""
-Populates the fatness for randomly generated filler creatures.
-"""
+## Populates the fatness for randomly generated filler creatures.
 func _normalize_filler_fatnesses() -> void:
 	for i in range(GENERIC_FATNESS_COUNT):
 		var filler_id := "#filler_%03d#" % i
@@ -199,16 +189,14 @@ func _normalize_filler_fatnesses() -> void:
 	_filler_ids.shuffle()
 
 
-"""
-Returns a list of file paths in the specified directory.
-
-This only returns the directory's immediate children, and does not perform a tree traversal.
-
-Parameters:
-	'dir_path': The path of the directory to scan
-	
-	'file_suffix': (Optional) A suffix to append to each returned file path.
-"""
+## Returns a list of file paths in the specified directory.
+##
+## This only returns the directory's immediate children, and does not perform a tree traversal.
+##
+## Parameters:
+## 	'dir_path': The path of the directory to scan
+##
+## 	'file_suffix': (Optional) A suffix to append to each returned file path.
 func _file_paths(dir_path: String, file_suffix: String = "") -> Array:
 	var result := []
 	var dir := Directory.new()

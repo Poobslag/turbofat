@@ -1,7 +1,5 @@
 class_name VolumeSettings
-"""
-Manages settings which control the game audio volume.
-"""
+## Manages settings which control the game audio volume.
 
 enum VolumeType { MASTER, MUSIC, SOUND, VOICE }
 
@@ -10,9 +8,7 @@ const MUSIC := VolumeType.MUSIC
 const SOUND := VolumeType.SOUND
 const VOICE := VolumeType.VOICE
 
-"""
-Returns the volume of the specified bus as a linear energy value.
-"""
+## Returns the volume of the specified bus as a linear energy value.
 func get_bus_volume_linear(volume_type: int) -> float:
 	var volume_linear: float
 	var bus_index := _bus_index(volume_type)
@@ -24,9 +20,7 @@ func get_bus_volume_linear(volume_type: int) -> float:
 	return volume_linear
 
 
-"""
-Sets the volume of the specified bus with a linear energy value.
-"""
+## Sets the volume of the specified bus with a linear energy value.
 func set_bus_volume_linear(volume_type: int, new_value: float) -> void:
 	var bus_index := _bus_index(volume_type)
 	AudioServer.set_bus_volume_db(bus_index, linear2db(new_value))
@@ -38,9 +32,7 @@ func is_bus_mute(volume_type: int) -> bool:
 	return AudioServer.is_bus_mute(bus_index)
 
 
-"""
-Resets the sound, music and voice volumes to their default values.
-"""
+## Resets the sound, music and voice volumes to their default values.
 func reset() -> void:
 	from_json_dict({})
 

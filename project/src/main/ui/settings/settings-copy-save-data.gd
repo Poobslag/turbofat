@@ -1,11 +1,9 @@
 extends HBoxContainer
-"""
-UI component for a copying the selected save data to the clipboard
-"""
+## UI component for a copying the selected save data to the clipboard
 
 export var _save_slot_control_path: NodePath
 
-# UI component for a changing the current save slot or deleting save slots
+## UI component for a changing the current save slot or deleting save slots
 onready var _save_slot_control: SaveSlotControl = get_node(_save_slot_control_path)
 
 onready var _copied_label: Label = $HBoxContainer/Copied

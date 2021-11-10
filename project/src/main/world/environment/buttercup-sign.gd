@@ -1,9 +1,7 @@
 extends OverworldObstacle
-"""
-The 'Buttercup Cafe' sign which appears on the overworld.
-"""
+## The 'Buttercup Cafe' sign which appears on the overworld.
 
-# Defining chat extents makes this sign easier to interact with when obstructed
+## Defining chat extents makes this sign easier to interact with when obstructed
 onready var chat_extents: Vector2 = $CollisionShape2D.shape.extents
 
 func _ready() -> void:

@@ -1,30 +1,28 @@
 extends Node
-"""
-Stores data about the different 'piece speeds' such as how fast pieces should drop, how long it takes them to lock
-into the playfield, and how long to pause when clearing lines.
+## Stores data about the different 'piece speeds' such as how fast pieces should drop, how long it takes them to lock
+## into the playfield, and how long to pause when clearing lines.
+##
+## Much of this speed data was derived from wikis for other piece-dropping games which have the concept of a 'hold
+## piece' so it's likely it will change over time to become more lenient.
 
-Much of this speed data was derived from wikis for other piece-dropping games which have the concept of a 'hold piece'
-so it's likely it will change over time to become more lenient.
-"""
-
-# All gravity constants are integers like '16', which actually correspond to fractions like '16/256' which means the
-# piece takes 16 frames to drop one row. G is the denominator of that fraction.
+## All gravity constants are integers like '16', which actually correspond to fractions like '16/256' which means the
+## piece takes 16 frames to drop one row. G is the denominator of that fraction.
 const G := 256
 
-# The maximum number of 'lock resets' the player is allotted for a single piece. A lock reset occurs when a piece is at
-# the bottom of the screen but the player moves or rotates it to prevent from locking.
+## The maximum number of 'lock resets' the player is allotted for a single piece. A lock reset occurs when a piece is
+## at the bottom of the screen but the player moves or rotates it to prevent from locking.
 const MAX_LOCK_RESETS := 15
 
-# The gravity constant used when the player soft-drops a piece.
+## The gravity constant used when the player soft-drops a piece.
 const DROP_G := 128
 
-# After the player does a 'squish move' the piece is unaffected by gravity for this many frames.
+## After the player does a 'squish move' the piece is unaffected by gravity for this many frames.
 const POST_SQUISH_FRAMES := 4
 
-# How fast the pieces are moving right now
+## How fast the pieces are moving right now
 var current_speed: PieceSpeed
 
-# Array of speed ids in ascending order
+## Array of speed ids in ascending order
 var speed_ids := []
 
 var _speeds := {}

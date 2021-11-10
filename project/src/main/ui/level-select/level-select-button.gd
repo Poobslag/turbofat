@@ -1,15 +1,13 @@
 class_name LevelSelectButton
 extends Button
-"""
-A button on the level select screen which launches a level.
-"""
+## A button on the level select screen which launches a level.
 
-# emitted when a level is launched.
+## emitted when a level is launched.
 signal level_started
 
 signal lowlight_changed
 
-# short levels have smaller buttons; long levels have larger buttons
+## short levels have smaller buttons; long levels have larger buttons
 enum LevelSize {
 	SHORT,
 	MEDIUM,
@@ -25,28 +23,28 @@ const VERTICAL_SPACING := 6
 var world_id: String
 var level_id: String
 
-# the duration of the level; this affects the button size
+## the duration of the level; this affects the button size
 var level_duration: int = LevelSize.MEDIUM setget set_level_duration
 
-# the width of the column this button is in
+## the width of the column this button is in
 var level_column_width: int = 120
 
-# the status whether or not this level is locked/unlocked
+## the status whether or not this level is locked/unlocked
 var lock_status: int = LevelLock.STATUS_NONE setget set_lock_status
 
-# the number of remaining levels the player needs to play to unlock this level
+## the number of remaining levels the player needs to play to unlock this level
 var keys_needed := -1 setget set_keys_needed
 
 var level_title: String setget set_level_title
 
-# 'true' if this button should be darkened so that it doesn't draw the player's attention.
+## 'true' if this button should be darkened so that it doesn't draw the player's attention.
 var lowlight: bool setget set_lowlight
 
-# 'true' if this button just received focus this frame. a mouse click which grants focus doesn't emit a 'level
-# started' event
+## 'true' if this button just received focus this frame. a mouse click which grants focus doesn't emit a 'level
+## started' event
 var _focus_just_entered := false
 
-# 'true' if the 'level started' signal should be emitted in response to a button click.
+## 'true' if the 'level started' signal should be emitted in response to a button click.
 var _emit_level_started := false
 
 onready var _label := $Label
@@ -91,9 +89,7 @@ func set_lowlight(new_lowlight: bool) -> void:
 	emit_signal("lowlight_changed")
 
 
-"""
-Updates the button's text, colors, size and icon based on the level and its status.
-"""
+## Updates the button's text, colors, size and icon based on the level and its status.
 func _refresh_appearance() -> void:
 	if not is_inside_tree():
 		return

@@ -1,7 +1,5 @@
 extends VBoxContainer
-"""
-A UI control which lets the player view and update the game's keybinds.
-"""
+## A UI control which lets the player view and update the game's keybinds.
 
 func _ready() -> void:
 	$Presets/Guideline.connect("pressed", self, "_on_Guideline_pressed")
@@ -17,13 +15,11 @@ func _ready() -> void:
 	_refresh_keybind_labels()
 
 
-"""
-Updates the UI controls to reflect the currently selected preset.
-
-The 'WASD' and 'Guideline' presets reuse the same UI controls and change the label contents.
-
-The 'Custom' preset swaps in different UI controls because it's interactive.
-"""
+## Updates the UI controls to reflect the currently selected preset.
+##
+## The 'WASD' and 'Guideline' presets reuse the same UI controls and change the label contents.
+##
+## The 'Custom' preset swaps in different UI controls because it's interactive.
 func _refresh_keybind_labels() -> void:
 	$PresetScrollContainer.visible = false
 	$CustomScrollContainer.visible = false

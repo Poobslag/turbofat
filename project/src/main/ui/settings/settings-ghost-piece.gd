@@ -1,7 +1,5 @@
 extends Control
-"""
-UI control for toggling the ghost piece.
-"""
+## UI control for toggling the ghost piece.
 
 onready var _check_box := $CheckBox
 

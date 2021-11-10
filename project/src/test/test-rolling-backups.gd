@@ -57,9 +57,7 @@ func test_rotate_backups_none_exist() -> void:
 	assert_false(file.file_exists(_backups.rolling_filename(RollingBackups.PREV_WEEK)), "RollingBackups.PREV_WEEK")
 
 
-"""
-Don't overwrite the 'this_xxx' backups if they already exist
-"""
+## Don't overwrite the 'this_xxx' backups if they already exist
 func test_rotate_backups_dont_overwrite_thisxxx() -> void:
 	FileUtils.write_file(_backups.data_filename, "new-920")
 	FileUtils.write_file(_backups.rolling_filename(RollingBackups.THIS_HOUR), "old-920")
@@ -68,9 +66,7 @@ func test_rotate_backups_dont_overwrite_thisxxx() -> void:
 	assert_eq(FileUtils.get_file_as_text(_backups.rolling_filename(RollingBackups.THIS_HOUR)), "old-920")
 
 
-"""
-Move the 'this_xxx' backups out of the way if they're old
-"""
+## Move the 'this_xxx' backups out of the way if they're old
 func test_move_backups() -> void:
 	FileUtils.write_file(_backups.rolling_filename(RollingBackups.THIS_HOUR), "")
 	var file: File = File.new()

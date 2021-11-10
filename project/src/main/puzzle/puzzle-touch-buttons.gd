@@ -1,9 +1,7 @@
 extends Control
-"""
-Manages the touchscreen buttons for puzzle mode.
-"""
+## Manages the touchscreen buttons for puzzle mode.
 
-# touchscreen control schemes the player can select in the settings menu
+## touchscreen control schemes the player can select in the settings menu
 const SCHEMES := {
 	TouchSettings.EASY_CONSOLE: {
 		"sw_actions": ["hard_drop", "soft_drop", "move_piece_left", "move_piece_right"],
@@ -43,14 +41,14 @@ const SCHEMES := {
 	},
 }
 
-# if false, pressing the buttons won't emit any actions.
+## if false, pressing the buttons won't emit any actions.
 export (bool) var emit_actions := true setget set_emit_actions
 
 onready var _close := preload("res://assets/main/ui/touch/menu.png")
 onready var _close_pressed := preload("res://assets/main/ui/touch/menu-pressed.png")
 
-# when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying to quit
-# (although... there's an argument that replacing the close button with a duck might confuse them more...)
+## when the player is testing buttons, we replace the icon so we don't confuse users trying who are trying to quit
+## (although... there's an argument that replacing the close button with a duck might confuse them more...)
 onready var _duck := preload("res://assets/main/ui/touch/duck.png")
 onready var _duck_pressed := preload("res://assets/main/ui/touch/duck-pressed.png")
 
@@ -72,11 +70,9 @@ func set_emit_actions(new_emit_actions: bool) -> void:
 	_refresh_emit_actions()
 
 
-"""
-Refreshes the buttons based on the emit_actions property.
-
-Propogates the setting to the EightWay child objects.
-"""
+## Refreshes the buttons based on the emit_actions property.
+##
+## Propogates the setting to the EightWay child objects.
 func _refresh_emit_actions() -> void:
 	if not is_inside_tree():
 		return
@@ -95,11 +91,9 @@ func _refresh_emit_actions() -> void:
 		_menu_button.pressed = _duck_pressed
 
 
-"""
-Updates the buttons based on the player's settings.
-
-This updates their location and size.
-"""
+## Updates the buttons based on the player's settings.
+##
+## This updates their location and size.
 func _refresh_button_positions() -> void:
 	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * SystemData.touch_settings.size
 	$ButtonsSw.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y
@@ -112,11 +106,9 @@ func _refresh_button_positions() -> void:
 	$MenuButtonHolder.rect_position.x = rect_size.x - 20 - _menu_button.pressed.get_size().x * _menu_button.scale.x
 
 
-"""
-Updates the buttons based on the player's settings.
-
-This updates their location, size, how they're arranged and their sensitivity.
-"""
+## Updates the buttons based on the player's settings.
+##
+## This updates their location, size, how they're arranged and their sensitivity.
 func _refresh_settings() -> void:
 	# update scale/position
 	_refresh_button_positions()
@@ -147,17 +139,13 @@ func _on_TouchSettings_settings_changed() -> void:
 	_refresh_settings()
 
 
-"""
-Plays sounds when testing out controls in the 'settings' menu.
-"""
+## Plays sounds when testing out controls in the 'settings' menu.
 func _on_MenuButton_pressed() -> void:
 	if not emit_actions:
 		$DuckSound.play()
 
 
-"""
-Plays sounds when testing out controls in the 'settings' menu.
-"""
+## Plays sounds when testing out controls in the 'settings' menu.
 func _on_EightWay_pressed() -> void:
 	if not emit_actions:
 		$ButtonSound.play()

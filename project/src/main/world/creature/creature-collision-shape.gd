@@ -1,13 +1,9 @@
 extends CollisionShape2D
-"""
-Collision shape for creatures on the overworld.
-"""
+## Collision shape for creatures on the overworld.
 
 var creature_visuals: CreatureVisuals
 
-"""
-Increases the collision shape size for fatter creatures.
-"""
+## Increases the collision shape size for fatter creatures.
 func refresh_extents() -> void:
 	if not creature_visuals:
 		return

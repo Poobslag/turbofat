@@ -1,18 +1,16 @@
 extends Node2D
-"""
-Combo indicators which appear when the player clears a line in puzzle mode.
-"""
+## Combo indicators which appear when the player clears a line in puzzle mode.
 
 export (NodePath) var piece_manager_path: NodePath
 export (NodePath) var playfield_path: NodePath
 export (PackedScene) var ComboCounterScene: PackedScene
 
-# Stores the x position of the previous combo counter to ensure consecutive counters aren't vertically aligned
+## Stores the x position of the previous combo counter to ensure consecutive counters aren't vertically aligned
 var _previous_cell_x := -1
 
-# Tracke the most x position of the most recent piece placed in each row
-# key: y value of a recently dropped piece
-# value: average x position of the piece's blocks in that row
+## Tracke the most x position of the most recent piece placed in each row
+## key: y value of a recently dropped piece
+## value: average x position of the piece's blocks in that row
 var _piece_x_by_y: Dictionary
 
 onready var _piece_manager: PieceManager = get_node(piece_manager_path)
@@ -22,11 +20,9 @@ func _ready() -> void:
 	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
 
 
-"""
-When the player places a piece, we store the piece's position in _piece_x_by_y
-
-This allows combo counters to appear horizontally aligned with the most recent piece.
-"""
+## When the player places a piece, we store the piece's position in _piece_x_by_y
+##
+## This allows combo counters to appear horizontally aligned with the most recent piece.
 func _on_PuzzleState_before_piece_written() -> void:
 	var piece_min_x_by_y := {}
 	var piece_max_x_by_y := {}
@@ -43,9 +39,7 @@ func _on_PuzzleState_before_piece_written() -> void:
 		_piece_x_by_y[int(y)] = (piece_min_x_by_y[y] + piece_max_x_by_y[y]) / 2
 
 
-"""
-When a line is cleared we add a new combo counter.
-"""
+## When a line is cleared we add a new combo counter.
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	if PuzzleState.combo < 3:
 		# no combo counters below 3x

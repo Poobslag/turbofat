@@ -1,14 +1,12 @@
 extends Node2D
-"""
-Creates frosting globs on the playfield when the player does well.
+## Creates frosting globs on the playfield when the player does well.
+##
+## These frosting globs are initialized to a specific color and position and launched in a random direction.
 
-These frosting globs are initialized to a specific color and position and launched in a random direction.
-"""
-
-# emitted when a frosting glob hits a wall
+## emitted when a frosting glob hits a wall
 signal hit_wall(glob)
 
-# emitted when a frosting glob smears against the playfield or next piece area
+## emitted when a frosting glob smears against the playfield or next piece area
 signal hit_playfield(glob)
 signal hit_next_pieces(glob)
 
@@ -20,7 +18,7 @@ export (PackedScene) var FrostingGlobScene: PackedScene
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 onready var _puzzle_areas: PuzzleAreas
 
-# relative position of the PuzzleTileMap, used for positioning frosting
+## relative position of the PuzzleTileMap, used for positioning frosting
 onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
 		- get_global_transform().origin
 
@@ -31,15 +29,13 @@ func _ready() -> void:
 	_puzzle_areas.walled_area = _puzzle_areas.playfield_area.merge(_puzzle_areas.next_pieces_area)
 
 
-"""
-Launches new frosting globs from the specified tile.
-
-Parameters:
-	'cell_pos': An (x, y) position in the TileMap containing the playfield blocks
-	'box_type': An enum from Foods.BoxType defining the glob's color
-	'glob_count': The number of frosting globs to launch
-	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
-"""
+## Launches new frosting globs from the specified tile.
+##
+## Parameters:
+## 	'cell_pos': An (x, y) position in the TileMap containing the playfield blocks
+## 	'box_type': An enum from Foods.BoxType defining the glob's color
+## 	'glob_count': The number of frosting globs to launch
+## 	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
 func _spawn_globs(cell_pos: Vector2, box_type: int, glob_count: int, glob_alpha: float = 1.0) -> void:
 	var viewport: Viewport
 	if Foods.is_cake_box(box_type):
@@ -65,11 +61,9 @@ func _instance_glob(new_parent: Node = null) -> FrostingGlob:
 	return glob
 
 
-"""
-When a line is cleared, we generate frosting globs for any boxes involved in the line clear.
-
-This must be called before the line is cleared so that we can evaluate the food blocks before they're erased.
-"""
+## When a line is cleared, we generate frosting globs for any boxes involved in the line clear.
+##
+## This must be called before the line is cleared so that we can evaluate the food blocks before they're erased.
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
 		var box_type: int
@@ -83,9 +77,7 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 		_spawn_globs(Vector2(x, y), box_type, glob_count)
 
 
-"""
-When a box is built, we generate frosting globs on the inside of the box.
-"""
+## When a box is built, we generate frosting globs on the inside of the box.
 func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
 	for y in range(rect.position.y, rect.end.y):
 		for x in range(rect.position.x, rect.end.x):
@@ -97,9 +89,7 @@ func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
 			_spawn_globs(Vector2(x, y), box_type, glob_count)
 
 
-"""
-When a squish move is performed, we generate frosting globs around the old and new piece position.
-"""
+## When a squish move is performed, we generate frosting globs around the old and new piece position.
 func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
 	if CurrentLevel.settings.other.tile_set == PuzzleTileMap.TileSetType.VEGGIE:
 		# veggie pieces don't spawn frosting

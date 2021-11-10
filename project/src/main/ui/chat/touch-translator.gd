@@ -1,16 +1,14 @@
 extends Control
-"""
-Converts touch events into ui_accept events which can be handled by the ChatUi.
-"""
+## Converts touch events into ui_accept events which can be handled by the ChatUi.
 
 export (NodePath) var chat_frame_path: NodePath
 export (NodePath) var narration_frame_path: NodePath
 
-# index of the current touch event, or -1 if there is none
+## index of the current touch event, or -1 if there is none
 var _touch_index := -1
 
-# a scancode which triggers a ui_accept action.
-# echo events cannot be emitted without an InputEventKey instance which requires a scancode
+## a scancode which triggers a ui_accept action.
+## echo events cannot be emitted without an InputEventKey instance which requires a scancode
 var _ui_accept_scancode: int
 
 onready var _chat_frame: ChatFrame = get_node(chat_frame_path)
@@ -52,9 +50,7 @@ func _process(_delta: float) -> void:
 		_emit_ui_accept_event(true, true)
 
 
-"""
-Translates the current touch event into a ui_accept event.
-"""
+## Translates the current touch event into a ui_accept event.
 func _emit_ui_accept_event(pressed: bool, echo: bool) -> void:
 	var ev := InputEventKey.new()
 	ev.scancode = _ui_accept_scancode
@@ -63,11 +59,9 @@ func _emit_ui_accept_event(pressed: bool, echo: bool) -> void:
 	Input.parse_input_event(ev)
 
 
-"""
-Temporarily disables touch translation.
-
-This is done when showing chat choices, or when the chat window is not being shown.
-"""
+## Temporarily disables touch translation.
+##
+## This is done when showing chat choices, or when the chat window is not being shown.
 func _disable_translation() -> void:
 	if _touch_index != -1:
 		_emit_ui_accept_event(false, false)
@@ -75,12 +69,10 @@ func _disable_translation() -> void:
 	set_process(false)
 
 
-"""
-Reenables touch translation.
-
-Touch translation is reenabled during a brief delay to prevent a bug where a touch event is immediately processed,
-causing all text to appear.
-"""
+## Reenables touch translation.
+##
+## Touch translation is reenabled during a brief delay to prevent a bug where a touch event is immediately processed,
+## causing all text to appear.
 func _enable_translation() -> void:
 	call_deferred("set_process", true)
 

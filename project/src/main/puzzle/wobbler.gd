@@ -1,25 +1,23 @@
 class_name Wobbler
 extends Sprite
-"""
-Sprite which wobbles and pulses.
-"""
+## Sprite which wobbles and pulses.
 
-# How far the sprite should rotate; 1.0 = one full circle forward and backward
+## How far the sprite should rotate; 1.0 = one full circle forward and backward
 export (float) var avg_spin_amount := 0.5
 
-# How many seconds the sprite should take to rotate back and forth once
+## How many seconds the sprite should take to rotate back and forth once
 export (float) var avg_spin_period := 3.0
 
-# How far the sprite should shrink; 0.21 = shrink down to 79% scale
+## How far the sprite should shrink; 0.21 = shrink down to 79% scale
 export (float) var avg_pulse_amount := 0.2
 
-# How many seconds the sprite should take to shrink to minimum/maximum scale
+## How many seconds the sprite should take to shrink to minimum/maximum scale
 export (float) var avg_pulse_period := 3.0
 
-# Stars/seeds pulse and rotate. This field is used to calculate the pulse/rotation amount
+## Stars/seeds pulse and rotate. This field is used to calculate the pulse/rotation amount
 var _total_time := 0.0
 
-# Slightly randomize inputs so each object is slightly unique
+## Slightly randomize inputs so each object is slightly unique
 onready var _spin_amount := avg_spin_amount * rand_range(0.8, 1.2)
 onready var _spin_period := avg_spin_period * rand_range(0.8, 1.2)
 onready var _pulse_amount := avg_pulse_amount * rand_range(0.8, 1.2)

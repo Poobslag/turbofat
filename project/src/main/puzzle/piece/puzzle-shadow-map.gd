@@ -1,12 +1,10 @@
 extends TileMap
-"""
-Tilemap which draws the shadows behind the blocks on the playfield, as well as the shadow behind the currently active
-piece.
-"""
+## Tilemap which draws the shadows behind the blocks on the playfield, as well as the shadow behind the currently
+## active piece.
 
 export (NodePath) var _playfield_tile_map_path: NodePath
 
-# Tilemap for the active piece
+## Tilemap for the active piece
 var piece_tile_map: TileMap
 
 onready var _playfield_tile_map := get_node(_playfield_tile_map_path)

@@ -1,11 +1,9 @@
 extends Control
-"""
-Demonstrates the end of level results message.
-
-Keys:
-	[S]: Show message
-	[H]: Hide message
-"""
+## Demonstrates the end of level results message.
+##
+## Keys:
+## 	[S]: Show message
+## 	[H]: Hide message
 
 var _rank_result: RankResult = RankResult.new()
 var _customer_scores := [

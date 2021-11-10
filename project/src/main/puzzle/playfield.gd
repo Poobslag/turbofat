@@ -1,37 +1,35 @@
 class_name Playfield
 extends Control
-"""
-Stores information about the game playfield: writing pieces to the playfield, calculating whether a line was cleared
-or whether a box was built, pausing and playing sound effects
-"""
+## Stores information about the game playfield: writing pieces to the playfield, calculating whether a line was cleared
+## or whether a box was built, pausing and playing sound effects
 
-# emitted when a new box is built
+## emitted when a new box is built
 signal box_built(rect, box_type)
 
-# emitted shortly before a set of lines are cleared
+## emitted shortly before a set of lines are cleared
 signal line_clears_scheduled(ys)
 
-# emitted before a 'line clear' where a line is erased and the player is rewarded
+## emitted before a 'line clear' where a line is erased and the player is rewarded
 signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
 
-# emitted after a 'line clear' where a line is erased and the player is rewarded
+## emitted after a 'line clear' where a line is erased and the player is rewarded
 signal line_cleared(y, total_lines, remaining_lines, box_ints)
 
-# emitted when a line is erased. this includes line clears but also top outs and non-scoring end game rows.
+## emitted when a line is erased. this includes line clears but also top outs and non-scoring end game rows.
 signal line_erased(y, total_lines, remaining_lines, box_ints)
 
-# emitted when an erased line is deleted, causing the rows above it to drop down
+## emitted when an erased line is deleted, causing the rows above it to drop down
 signal line_deleted(y)
 
-# emitted when lines are inserted. some levels insert lines, but most do not
+## emitted when lines are inserted. some levels insert lines, but most do not
 signal line_inserted(y, tiles_key, src_y)
 
-# emitted when a food item should be spawned because the player collects a pickup
+## emitted when a food item should be spawned because the player collects a pickup
 signal food_spawned(cell, remaining_food, food_type)
 
 signal blocks_prepared
 
-# remaining frames to delay for something besides making boxes/clearing lines
+## remaining frames to delay for something besides making boxes/clearing lines
 var _remaining_misc_delay_frames := 0
 
 onready var tile_map := $TileMapClip/TileMap
@@ -81,20 +79,16 @@ func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_po
 	_line_clearer.schedule_line_clears(lines_to_clear, line_clear_delay, award_points)
 
 
-"""
-Returns false the playfield is paused for an of animation or delay which should prevent a new piece from appearing.
-"""
+## Returns false the playfield is paused for an of animation or delay which should prevent a new piece from appearing.
 func ready_for_new_piece() -> bool:
 	return _box_builder.remaining_box_build_frames <= 0 \
 			and _line_clearer.remaining_line_erase_frames <= 0 \
 			and _remaining_misc_delay_frames <= 0
 
 
-"""
-Writes a piece to the playfield, checking whether it builds any boxes or clears any lines.
-
-Returns true if the written piece results in a line clear.
-"""
+## Writes a piece to the playfield, checking whether it builds any boxes or clears any lines.
+##
+## Returns true if the written piece results in a line clear.
 func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece := false) -> void:
 	_box_builder.remaining_box_build_frames = 0
 	_line_clearer.remaining_line_erase_frames = 0
@@ -126,9 +120,7 @@ func _prepare_tileset() -> void:
 	tile_map.puzzle_tile_set_type = CurrentLevel.settings.other.tile_set
 
 
-"""
-Resets the playfield to the level's initial state.
-"""
+## Resets the playfield to the level's initial state.
 func _prepare_level_blocks() -> void:
 	$TutorialKeybindsLabel.visible = CurrentLevel.settings.other.tutorial and not OS.has_touchscreen_ui_hint()
 	
@@ -187,9 +179,7 @@ func _on_FrostingGlobs_hit_playfield(glob: Node) -> void:
 	_bg_glob_viewports.add_smear(glob)
 
 
-"""
-When the player pauses, we hide the playfield so they can't cheat.
-"""
+## When the player pauses, we hide the playfield so they can't cheat.
 func _on_Pauser_paused_changed(value: bool) -> void:
 	$TileMapClip.visible = not value
 	$ShadowTexture.visible = not value

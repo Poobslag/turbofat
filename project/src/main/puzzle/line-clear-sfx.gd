@@ -1,7 +1,5 @@
 extends Node
-"""
-Plays sound effects when lines are cleared.
-"""
+## Plays sound effects when lines are cleared.
 
 onready var _combo_sounds := [null, null, # no combo sfx for the first two lines
 		preload("res://assets/main/puzzle/combo-00.wav"),
@@ -61,12 +59,10 @@ func _play_thump_sound(_y: int, total_lines: int, remaining_lines: int, box_ints
 		sound.play()
 
 
-"""
-Plays an escalating sound for the current combo.
-
-For smaller combos this goes through a list of sound effects with higher pitches. For larger combos this loops through
-a repeating list where the repetition is concealed using a shepard tone.
-"""
+## Plays an escalating sound for the current combo.
+##
+## For smaller combos this goes through a list of sound effects with higher pitches. For larger combos this loops
+## through a repeating list where the repetition is concealed using a shepard tone.
 func _play_combo_sound(_y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
 	var sound: AudioStream
 	if PuzzleState.combo <= 0:
@@ -90,12 +86,10 @@ func _play_box_sound(_y: int, _total_lines: int, _remaining_lines: int, box_ints
 	if sound: sound.play()
 
 
-"""
-Clearing a line results in three overlapping sounds:
-	1. A 'thump' sound
-	2. A 'ding' sound for continuing a combo
-	3. A 'glorp' sound when clearing a snack/cake box
-"""
+## Clearing a line results in three overlapping sounds:
+## 	1. A 'thump' sound
+## 	2. A 'ding' sound for continuing a combo
+## 	3. A 'glorp' sound when clearing a snack/cake box
 func _on_Playfield_before_line_cleared(y: int, total_lines: int, remaining_lines: int, box_ints: Array) -> void:
 	_play_combo_sound(y, total_lines, remaining_lines, box_ints)
 	_play_box_sound(y, total_lines, remaining_lines, box_ints)

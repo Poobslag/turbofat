@@ -1,29 +1,27 @@
 extends Label
-"""
-Renders to screen debug information about dropped frames or dropped physics steps.
+## Renders to screen debug information about dropped frames or dropped physics steps.
+##
+## A 'dropped frame' occurs when the _process() function isn't called 60 times per second. This coincides with a visual
+## hiccup in the game where the graphics don't update for a few frames.
+##
+## A 'dropped physics step' occurs when the _physics_process() function isn't called 60 times per second. This
+## coincides in a gameplay hiccup where the game ignores the player's input for a few frames.
 
-A 'dropped frame' occurs when the _process() function isn't called 60 times per second. This coincides with a visual
-hiccup in the game where the graphics don't update for a few frames.
-
-A 'dropped physics step' occurs when the _physics_process() function isn't called 60 times per second. This coincides
-in a gameplay hiccup where the game ignores the player's input for a few frames.
-"""
-
-# expected seconds per frame; 0.01667 if physics_fps is set to 60 FPS
+## expected seconds per frame; 0.01667 if physics_fps is set to 60 FPS
 var _seconds_per_frame: float
 
-# expected system clock for the previous _physics_process() call
+## expected system clock for the previous _physics_process() call
 var _expected_physics_msec := 0.0
-# actual system clock for the previous _physics_process() call
+## actual system clock for the previous _physics_process() call
 var _actual_physics_msec := 0.0
-# increments when the system clock falls behind the expected value
+## increments when the system clock falls behind the expected value
 var _physics_step_drops := 0
 
-# expected system clock for the previous _process() call
+## expected system clock for the previous _process() call
 var _expected_visual_msec := 0.0
-# actual system clock for the previous _process() call
+## actual system clock for the previous _process() call
 var _actual_visual_msec := 0.0
-# increments when the system clock falls behind the expected value
+## increments when the system clock falls behind the expected value
 var _visual_frame_drops := 0
 
 func _ready() -> void:

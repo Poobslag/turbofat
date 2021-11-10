@@ -1,28 +1,26 @@
 class_name EditorPlayfield
 extends Control
-"""
-Playfield for use in the level editor.
+## Playfield for use in the level editor.
+##
+## This script provides drag/drop logic and other things specific to the level editor.
 
-This script provides drag/drop logic and other things specific to the level editor.
-"""
-
-# emitted when the player changes the tilemap's contents. This signal is not emitted when set_cell is called to
-# prevent infinite recursion when populated by editor-json.gd.
+## emitted when the player changes the tilemap's contents. This signal is not emitted when set_cell is called to
+## prevent infinite recursion when populated by editor-json.gd.
 signal tile_map_changed
 
-# emitted when the player changes the pickups. This signal is not emitted set_pickup is called to
-# prevent infinite recursion when populated by editor-json.gd.
+## emitted when the player changes the pickups. This signal is not emitted set_pickup is called to
+## prevent infinite recursion when populated by editor-json.gd.
 signal pickups_changed
 
 var _dragging_right_mouse := false
 
-# The 'pos' parameter for the previous call to 'can_drop_data'
+## The 'pos' parameter for the previous call to 'can_drop_data'
 var _prev_can_drop_pos: Vector2
 
-# The 'data' parameter for the previous call to 'can_drop_data'
+## The 'data' parameter for the previous call to 'can_drop_data'
 var _prev_can_drop_data: Object
 
-# The data previously dropped on this panel. New drag events originating from this panel reuse the dropped data.
+## The data previously dropped on this panel. New drag events originating from this panel reuse the dropped data.
 var _prev_dropped_data: Object
 
 onready var _tile_map := $Bg/TileMap
@@ -99,52 +97,44 @@ func drop_data(pos: Vector2, data: Object) -> void:
 				_prev_dropped_data.autotile_coords[cell] = Vector2(randi() % 18, randi() % 4)
 
 
-"""
-If the user clicks and drags on the playfield, we reuse the previously dropped data.
-
-This makes it easier to populate a playfield with lots of vegetables or pickups.
-"""
+## If the user clicks and drags on the playfield, we reuse the previously dropped data.
+##
+## This makes it easier to populate a playfield with lots of vegetables or pickups.
 func get_drag_data(_pos: Vector2) -> Object:
 	return _prev_dropped_data
 
 
-"""
-Adds a dragged chunk of blocks to a tile map.
-
-Parameters:
-	'target_tile_map': The tile map to modify
-	
-	'pos': An x/y control coordinate like '58, 132'
-	
-	'data': The data to apply to the tile map
-"""
+## Adds a dragged chunk of blocks to a tile map.
+##
+## Parameters:
+## 	'target_tile_map': The tile map to modify
+##
+## 	'pos': An x/y control coordinate like '58, 132'
+##
+## 	'data': The data to apply to the tile map
 func _store_block_level_chunk(target_tile_map: PuzzleTileMap, pos: Vector2, data: BlockLevelChunk) -> void:
 	for cell in data.used_cells:
 		var target_pos: Vector2 = _cell_pos(pos) + cell
 		_set_tile_map_block(target_tile_map, target_pos, data.tiles[cell], data.autotile_coords[cell])
 
 
-"""
-Adds a dragged pickup to a set of pickups.
-
-Parameters:
-	'target_pickups': The set of pickups to modify
-	
-	'pos': An x/y control coordinate like '58, 132'
-	
-	'data': The pickup to add to the set of pickups
-"""
+## Adds a dragged pickup to a set of pickups.
+##
+## Parameters:
+## 	'target_pickups': The set of pickups to modify
+##
+## 	'pos': An x/y control coordinate like '58, 132'
+##
+## 	'data': The pickup to add to the set of pickups
 func _store_pickup_level_chunk(target_pickups: EditorPickups, pos: Vector2, data: PickupLevelChunk) -> void:
 	var target_pos: Vector2 = _cell_pos(pos)
 	target_pickups.set_pickup(target_pos, data.box_type)
 
 
-"""
-Clears all of the drop previews.
-
-When dragging/dropping items in the editor, we show translucent previews where the items will drop. These previews are
-cleared following a successful drop, or if the mouse exits the control.
-"""
+## Clears all of the drop previews.
+##
+## When dragging/dropping items in the editor, we show translucent previews where the items will drop. These previews
+## are cleared following a successful drop, or if the mouse exits the control.
 func _clear_previews() -> void:
 	_tile_map_drop_preview.clear()
 	_pickups_drop_preview.clear()
@@ -168,9 +158,7 @@ func get_pickups() -> EditorPickups:
 	return $Bg/Pickups as EditorPickups
 
 
-"""
-Converts an x/y control coordinate like '58, 132' into a tile_map coordinate like '3, 2'
-"""
+## Converts an x/y control coordinate like '58, 132' into a tile_map coordinate like '3, 2'
 func _cell_pos(pos: Vector2) -> Vector2:
 	var result := pos * Vector2(PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT) / rect_size
 	return result.floor()

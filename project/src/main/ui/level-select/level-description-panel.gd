@@ -1,7 +1,5 @@
 extends Panel
-"""
-A panel on the level select screen which shows level descriptions.
-"""
+## A panel on the level select screen which shows level descriptions.
 
 func _update_tutorial_world_text(ranks: Array) -> void:
 	var text := ""
@@ -39,16 +37,12 @@ func _update_world_text(ranks: Array) -> void:
 	$MarginContainer/Label.text = text
 
 
-"""
-When an unlocked level is selected, we display the level's description.
-"""
+## When an unlocked level is selected, we display the level's description.
 func _on_LevelButtons_unlocked_level_selected(_level_lock: LevelLock, settings: LevelSettings) -> void:
 	$MarginContainer/Label.text = settings.description
 
 
-"""
-When a locked level is selected, we tell the player how to unlock it.
-"""
+## When a locked level is selected, we tell the player how to unlock it.
 func _on_LevelButtons_locked_level_selected(level_lock: LevelLock, settings: LevelSettings) -> void:
 	var text := ""
 	match level_lock.status:
@@ -67,9 +61,7 @@ func _on_LevelButtons_locked_level_selected(level_lock: LevelLock, settings: Lev
 	$MarginContainer/Label.text = text
 
 
-"""
-When the 'overall' button is selected, we summarize the player's progress.
-"""
+## When the 'overall' button is selected, we summarize the player's progress.
 func _on_LevelButtons_overall_selected(world_id: String, ranks: Array) -> void:
 	if world_id == LevelLibrary.TUTORIAL_WORLD_ID:
 		_update_tutorial_world_text(ranks)

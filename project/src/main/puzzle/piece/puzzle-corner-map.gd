@@ -1,13 +1,11 @@
 extends TileMap
-"""
-Tilemap which covers the corners of another tilemap.
-
-Without this tilemap, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area. This
-tilemap fills in the holes.
-
-This tilemap assumes tiles are arranged so that the X coordinates of the tiles correspond to the directions they're
-connected. This type of tilemap is used for puzzle pieces.
-"""
+## Tilemap which covers the corners of another tilemap.
+##
+## Without this tilemap, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area.
+## This tilemap fills in the holes.
+##
+## This tilemap assumes tiles are arranged so that the X coordinates of the tiles correspond to the directions they're
+## connected. This type of tilemap is used for puzzle pieces.
 
 onready var _parent_map: TileMap = get_parent()
 
@@ -41,31 +39,25 @@ func _process(_delta: float) -> void:
 		dirty = false
 
 
-"""
-Sets the specified cell with the specified tile from the corner atlas tileset.
-
-Parameters:
-	'pos': Position of the cell
-	
-	'autotile_coord': Coordinate of the autotile variation in the corner atlas tileset
-"""
+## Sets the specified cell with the specified tile from the corner atlas tileset.
+##
+## Parameters:
+## 	'pos': Position of the cell
+##
+## 	'autotile_coord': Coordinate of the autotile variation in the corner atlas tileset
 func _set_corner_cell(pos: Vector2, autotile_coord: Vector2) -> void:
 	set_cell(pos.x, pos.y, PuzzleTileMap.TILE_CORNER, false, false, false, autotile_coord);
 
 
-"""
-Returns the x component of the parent autotile coordinate (PAC) for the specified cell.
-
-This function has a confusingly short name because it's referenced repetitively in some long lines of code.
-"""
+## Returns the x component of the parent autotile coordinate (PAC) for the specified cell.
+##
+## This function has a confusingly short name because it's referenced repetitively in some long lines of code.
 func _pacx(pos: Vector2) -> int:
 	return int(_parent_map.get_cell_autotile_coord(pos.x, pos.y).x)
 
 
-"""
-Returns the y component of the parent autotile coordinate (PAC) for the specified cell.
-
-This function has a confusingly short name because it's referenced repetitively in some long lines of code.
-"""
+## Returns the y component of the parent autotile coordinate (PAC) for the specified cell.
+##
+## This function has a confusingly short name because it's referenced repetitively in some long lines of code.
 func _pacy(pos: Vector2) -> int:
 	return int(_parent_map.get_cell_autotile_coord(pos.x, pos.y).y)

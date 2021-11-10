@@ -1,7 +1,5 @@
 extends Control
-"""
-Shows popup dialogs for the level editor.
-"""
+## Shows popup dialogs for the level editor.
 
 export (NodePath) var _level_editor_path: NodePath
 

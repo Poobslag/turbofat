@@ -1,12 +1,9 @@
 class_name PiecePhysics
 extends Node
-"""
-Handles rules for when the piece moves, rotates and locks into the place.
-
-Some of this logic is pushed out into child nodes such as Rotator and Mover. This class only contains reusable code
-and code requiring coordination from different child nodes.
-"""
-
+## Handles rules for when the piece moves, rotates and locks into the place.
+##
+## Some of this logic is pushed out into child nodes such as Rotator and Mover. This class only contains reusable code
+## and code requiring coordination from different child nodes.
 
 export (NodePath) var piece_states_path: NodePath
 
@@ -17,11 +14,9 @@ onready var squisher := $Squisher
 
 onready var _states: PieceStates = get_node(piece_states_path)
 
-"""
-Spawns a new piece at the top of the _playfield.
-
-Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
-"""
+## Spawns a new piece at the top of the _playfield.
+##
+## Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
 func spawn_piece(piece: ActivePiece) -> bool:
 	rotator.apply_initial_rotate_input(piece)
 	
@@ -41,14 +36,12 @@ func spawn_piece(piece: ActivePiece) -> bool:
 	return success
 
 
-"""
-Moves the piece based on player input and gravity.
-
-If any move/rotate keys were pressed, this method will move the block accordingly. Gravity will then be applied.
-
-Returns 'true' if the piece was interacted with successfully resulting in a movement change, orientation change, or
-	lock reset
-"""
+## Moves the piece based on player input and gravity.
+##
+## If any move/rotate keys were pressed, this method will move the block accordingly. Gravity will then be applied.
+##
+## Returns 'true' if the piece was interacted with successfully resulting in a movement change, orientation change, or
+## 	lock reset
 func move_piece(piece: ActivePiece) -> bool:
 	var old_piece_pos := piece.pos
 	var old_piece_orientation := piece.orientation

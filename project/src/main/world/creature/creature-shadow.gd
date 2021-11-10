@@ -1,22 +1,20 @@
 class_name CreatureShadow
 extends Node2D
-"""
-Script which updates the size and position of a shadow beneath a creature.
-"""
+## Script which updates the size and position of a shadow beneath a creature.
 
-# The direction of this shadow relative to the creature. Used for creatures sitting on restaurant stools.
+## The direction of this shadow relative to the creature. Used for creatures sitting on restaurant stools.
 export (Vector2) var shadow_offset: Vector2
 
 export (NodePath) var creature_path: NodePath setget set_creature_path
 export (Vector2) var shadow_scale := Vector2(1.0, 1.0)
 
-# The Creature this shadow is for
+## The Creature this shadow is for
 var _creature: Creature
 
-# Oval shadow sprite
+## Oval shadow sprite
 onready var _sprite: Sprite = $Sprite
 
-# Scales the shadow based on the creature's fatness
+## Scales the shadow based on the creature's fatness
 onready var _fat_player: AnimationPlayer = $FatPlayer
 
 func _ready() -> void:
@@ -35,9 +33,7 @@ func set_creature_path(new_creature_path: NodePath) -> void:
 	_refresh_creature_path()
 
 
-"""
-Connects the shadow to a new creature and updates its position.
-"""
+## Connects the shadow to a new creature and updates its position.
 func _refresh_creature_path() -> void:
 	if not (is_inside_tree() and creature_path):
 		return
@@ -55,9 +51,7 @@ func _refresh_creature_path() -> void:
 		_refresh_creature_shadow_scale()
 
 
-"""
-Recalculates the CreatureShadow scale property based on the creature's fatness.
-"""
+## Recalculates the CreatureShadow scale property based on the creature's fatness.
 func _refresh_creature_shadow_scale() -> void:
 	_fat_player.play("fat")
 	_fat_player.advance(_creature.get_visual_fatness())

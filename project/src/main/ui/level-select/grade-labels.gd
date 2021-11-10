@@ -1,19 +1,15 @@
 extends Control
-"""
-Manages grade labels which overlay level select buttons.
-
-These grade labels appear in the corner and show the player's performance.
-"""
+## Manages grade labels which overlay level select buttons.
+##
+## These grade labels appear in the corner and show the player's performance.
 
 export (PackedScene) var GradeLabelScene: PackedScene
 
-# key: LevelSelectButton instance
-# value: HookableGradeLabel for the specified button
+## key: LevelSelectButton instance
+## value: HookableGradeLabel for the specified button
 var _labels_by_button: Dictionary
 
-"""
-Add a grade label for the specified button.
-"""
+## Add a grade label for the specified button.
 func _add_label(button: LevelSelectButton) -> void:
 	if _labels_by_button.has(button):
 		# avoid adding two labels for the same button

@@ -1,11 +1,9 @@
 class_name MiscSettings
-"""
-Manages miscellaneous settings such as language.
-"""
+## Manages miscellaneous settings such as language.
 
 signal save_slot_changed
 
-# Different save slots where the player can save/load their progress
+## Different save slots where the player can save/load their progress
 enum SaveSlot {
 	SLOT_A,
 	SLOT_B,
@@ -13,7 +11,7 @@ enum SaveSlot {
 	SLOT_D,
 }
 
-# Human-readable prefixes for the save slots. These are shown to the user in menus
+## Human-readable prefixes for the save slots. These are shown to the user in menus
 const SAVE_SLOT_PREFIXES := {
 	SaveSlot.SLOT_A: "A",
 	SaveSlot.SLOT_B: "B",
@@ -21,15 +19,13 @@ const SAVE_SLOT_PREFIXES := {
 	SaveSlot.SLOT_D: "D",
 }
 
-# The current save slot for saving/loading progress
+## The current save slot for saving/loading progress
 var save_slot: int = SaveSlot.SLOT_A setget set_save_slot
 
-# Whether cutscenes should play by default.
+## Whether cutscenes should play by default.
 var cutscene_force: int = Levels.CutsceneForce.NONE
 
-"""
-Resets the miscellaneous settings to their default values.
-"""
+## Resets the miscellaneous settings to their default values.
 func reset() -> void:
 	from_json_dict({})
 

@@ -1,37 +1,29 @@
 extends VBoxContainer
-"""
-UI control for selecting difficulty in practice mode.
-"""
+## UI control for selecting difficulty in practice mode.
 
 signal difficulty_changed
 
-# difficulties which appear as tick mark labels
+## difficulties which appear as tick mark labels
 var _difficulty_names: Array setget set_difficulty_names
 
 func _on_Slider_value_changed(_value: float) -> void:
 	emit_signal("difficulty_changed")
 
-"""
-Returns the currently selected difficulty string such as 'Normal' or 'Expert'
-"""
+## Returns the currently selected difficulty string such as 'Normal' or 'Expert'
 func get_selected_difficulty() -> String:
 	if not is_inside_tree():
 		return "Normal"
 	return _difficulty_names[$Slider.value]
 
 
-"""
-Sets the currently selected difficulty string such as 'Normal' or 'Expert'
-"""
+## Sets the currently selected difficulty string such as 'Normal' or 'Expert'
 func set_selected_difficulty(new_difficulty: String) -> void:
 	$Slider.value = _difficulty_names.find(new_difficulty)
 
 
-"""
-Lowlights difficulty labels, turning them black.
-
-In rank mode, this lets the player see which ranks haven't yet completed.
-"""
+## Lowlights difficulty labels, turning them black.
+##
+## In rank mode, this lets the player see which ranks haven't yet completed.
 func set_difficulty_lowlights(new_lowlights: Array) -> void:
 	for i in range($Labels.get_child_count()):
 		var label: Label = $Labels.get_child(i)
@@ -39,9 +31,7 @@ func set_difficulty_lowlights(new_lowlights: Array) -> void:
 		label.set("custom_colors/font_color", Color.black if lowlighted else Color.white)
 
 
-"""
-Sets the difficulty names which appear as tick mark labels.
-"""
+## Sets the difficulty names which appear as tick mark labels.
 func set_difficulty_names(new_names: Array) -> void:
 	_difficulty_names = new_names
 	

@@ -1,21 +1,19 @@
 extends Node
-"""
-Inserts lines in a puzzle tilemap.
+## Inserts lines in a puzzle tilemap.
+##
+## Most levels don't insert lines, but this script handles it for the levels that do.
 
-Most levels don't insert lines, but this script handles it for the levels that do.
-"""
-
-# emitted after a line is inserted
+## emitted after a line is inserted
 signal line_inserted(y, tiles_key, src_y)
 
 export (NodePath) var tile_map_path: NodePath
 
-# key: a tiles key for tiles referenced by level rules
-# value: the next row to insert from the referenced tiles
+## key: a tiles key for tiles referenced by level rules
+## value: the next row to insert from the referenced tiles
 var _row_index_by_tiles_key := {}
 
-# key: a tiles key for tiles referenced by level rules
-# value: the total number of rows in the referenced tiles
+## key: a tiles key for tiles referenced by level rules
+## value: the total number of rows in the referenced tiles
 var _row_count_by_tiles_key := {}
 
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
@@ -26,15 +24,13 @@ func _ready() -> void:
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 
 
-"""
-Inserts a line into the puzzle tilemap.
-
-Parameters:
-	'tiles_key': (Optional) a key for the LevelTiles entry for the tiles to insert
-	
-	'dest_y': (Optional) The y coordinate of the line to insert. If omitted, the line will be inserted at the
-		bottom of the puzzle tilemap.
-"""
+## Inserts a line into the puzzle tilemap.
+##
+## Parameters:
+## 	'tiles_key': (Optional) a key for the LevelTiles entry for the tiles to insert
+##
+## 	'dest_y': (Optional) The y coordinate of the line to insert. If omitted, the line will be inserted at the
+## 		bottom of the puzzle tilemap.
 func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT - 1) -> void:
 	# shift playfield up
 	_tile_map.insert_row(dest_y)

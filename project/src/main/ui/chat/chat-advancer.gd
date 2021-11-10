@@ -1,23 +1,21 @@
 class_name ChatAdvancer
 extends Node
-"""
-Allows the player to advance through a chat tree, and rewind through past chat events.
-"""
+## Allows the player to advance through a chat tree, and rewind through past chat events.
 
-# tree of chat events the player can page through
+## tree of chat events the player can page through
 var chat_tree: ChatTree
 
-# historical array of ChatEvents the player can rewind through
+## historical array of ChatEvents the player can rewind through
 var _prev_chat_events := []
 var _prev_chat_event_index := 0
 
-# 'true' if the player is currently rewinding through the chat history
+## 'true' if the player is currently rewinding through the chat history
 var rewinding_text := false
 
-# emitted when a chat event (new or historical) is shown to the player
+## emitted when a chat event (new or historical) is shown to the player
 signal chat_event_shown(chat_event)
 
-# emitted when the chat sequence ends, and the window should close
+## emitted when the chat sequence ends, and the window should close
 signal chat_finished
 
 func play_chat_tree(new_chat_tree: ChatTree) -> void:
@@ -27,9 +25,7 @@ func play_chat_tree(new_chat_tree: ChatTree) -> void:
 	emit_signal("chat_event_shown", current_chat_event())
 
 
-"""
-Rewind to a previously shown chat line.
-"""
+## Rewind to a previously shown chat line.
 func rewind() -> void:
 	var did_decrement := false
 	if _prev_chat_events.size() < 2:
@@ -49,12 +45,10 @@ func rewind() -> void:
 		emit_signal("chat_event_shown", current_chat_event())
 
 
-"""
-Advance to the next chat line.
-
-This is most likely the next spoken chat line if the player is advancing chat normally. However, it can also be a
-historical chat line if the player was rewinding chat.
-"""
+## Advance to the next chat line.
+##
+## This is most likely the next spoken chat line if the player is advancing chat normally. However, it can also be a
+## historical chat line if the player was rewinding chat.
 func advance() -> void:
 	var did_increment := false
 	if rewinding_text:
@@ -80,11 +74,9 @@ func advance() -> void:
 		emit_signal("chat_finished")
 
 
-"""
-The current chat event being shown to the player.
-
-This could either be the newest chat event, or a historical one they're rewinding through.
-"""
+## The current chat event being shown to the player.
+##
+## This could either be the newest chat event, or a historical one they're rewinding through.
 func current_chat_event() -> ChatEvent:
 	var chat_event: ChatEvent
 	if rewinding_text:
@@ -94,9 +86,7 @@ func current_chat_event() -> ChatEvent:
 	return chat_event
 
 
-"""
-Returns 'true' if we're at a chat branch and should prompt the player.
-"""
+## Returns 'true' if we're at a chat branch and should prompt the player.
 func should_prompt() -> bool:
 	var result := true
 	var chat_event:ChatEvent = current_chat_event()
@@ -111,9 +101,7 @@ func should_prompt() -> bool:
 	return result
 
 
-"""
-Record the last 100 chat events so the player can review them later.
-"""
+## Record the last 100 chat events so the player can review them later.
 func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	_prev_chat_events.append(chat_event)
 	while _prev_chat_events.size() > 100:

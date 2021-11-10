@@ -1,13 +1,11 @@
 class_name LoseConditionRules
-"""
-How the player loses. The player usually loses if they top out a certain number of times, but some levels might
-have different rules.
-"""
+## How the player loses. The player usually loses if they top out a certain number of times, but some levels might
+## have different rules.
 
-# if 'true', the finish screen is shown when the player loses
+## if 'true', the finish screen is shown when the player loses
 var finish_on_lose := false
 
-# by default, the player loses if they top out three times
+## by default, the player loses if they top out three times
 var top_out := 3
 
 var _rule_parser: RuleParser

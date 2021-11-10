@@ -1,19 +1,17 @@
 class_name PlayfieldNav
 extends VBoxContainer
-"""
-UI control for adding, removing and selecting different groups of level tiles.
-"""
+## UI control for adding, removing and selecting different groups of level tiles.
 
-# emitted when the 'prev tiles key' button is pressed
+## emitted when the 'prev tiles key' button is pressed
 signal prev_tiles_key_pressed
 
-# emitted when the 'next tiles key' button is pressed
+## emitted when the 'next tiles key' button is pressed
 signal next_tiles_key_pressed
 
-# emitted when the 'remove tiles key' button is pressed
+## emitted when the 'remove tiles key' button is pressed
 signal remove_tiles_key_pressed
 
-# emitted when the 'add tiles key' button is pressed
+## emitted when the 'add tiles key' button is pressed
 signal add_tiles_key_pressed
 
 onready var next_button := $NextPrev/Next
@@ -26,9 +24,7 @@ func _ready() -> void:
 	_refresh_buttons(["start"], "start")
 
 
-"""
-Enables/disables the buttons based on the available groups of tiles.
-"""
+## Enables/disables the buttons based on the available groups of tiles.
 func _refresh_buttons(tiles_keys: Array, current_tiles_key: String) -> void:
 	# add button: enabled if there are fewer than 3 tiles keys
 	add_button.disabled = tiles_keys.size() >= 3

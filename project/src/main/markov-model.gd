@@ -1,23 +1,21 @@
 class_name MarkovModel
-"""
-A model for markov chains.
-
-Maintains a list of letter sequences and letters which can follow them.
-"""
+## A model for markov chains.
+##
+## Maintains a list of letter sequences and letters which can follow them.
 
 var min_length := 3
 var max_length := 15
 
-# The smallest cluster of letters which are guaranteed to stay together. A fractional value will randomly alternate
-# between the lower and higher values while generating words.
+## The smallest cluster of letters which are guaranteed to stay together. A fractional value will randomly alternate
+## between the lower and higher values while generating words.
 var order := 2.5
 
-# Key: Letter cluster, newline-terminated for the word's end
-# Value: Number of times the cluster appeared in the input data
+## key: Letter cluster, newline-terminated for the word's end
+## value: Number of times the cluster appeared in the input data
 var frequency := {}
 
-# Key: Letter cluster
-# Value: Dictionary of continuation clusters
+## key: Letter cluster
+## value: Dictionary of continuation clusters
 var connections := {}
 
 func clear() -> void:
@@ -25,9 +23,7 @@ func clear() -> void:
 	connections.clear()
 
 
-"""
-Adds an input word to use when generating new words.
-"""
+## Adds an input word to use when generating new words.
 func add_word(word: String) -> void:
 	if word.length() <= 1:
 		return
@@ -44,15 +40,13 @@ func add_word(word: String) -> void:
 			_add_cluster(cluster)
 
 
-"""
-Generates a new word similar to the input words.
-
-Generation can fail for a few reasons, such as if the generated word is too long, too short, or if the model is
-flawed. In those cases this method will return an empty string.
-
-Returns:
-	A generated word, or an empty string if generation fails.
-"""
+## Generates a new word similar to the input words.
+##
+## Generation can fail for a few reasons, such as if the generated word is too long, too short, or if the model is
+## flawed. In those cases this method will return an empty string.
+##
+## Returns:
+## 	A generated word, or an empty string if generation fails.
 func generate_word() -> String:
 	var word := ""
 	while true:
@@ -73,17 +67,15 @@ func generate_word() -> String:
 	return word
 
 
-"""
-Appends a new letter to a letter cluster, returning the result.
-
-Parameters:
-	'cluster_in': A cluster of letters.
-	
-	'may_end': True if this method is allowed to end the word.
-
-Returns:
-	The input letter cluster with a new letter added at the end.
-"""
+## Appends a new letter to a letter cluster, returning the result.
+##
+## Parameters:
+## 	'cluster_in': A cluster of letters.
+##
+## 	'may_end': True if this method is allowed to end the word.
+##
+## Returns:
+## 	The input letter cluster with a new letter added at the end.
 func _get_cluster(cluster_in: String, may_end: bool) -> String:
 	# calculate the total number of connections
 	var total := 0
@@ -108,9 +100,7 @@ func _get_cluster(cluster_in: String, may_end: bool) -> String:
 	return result
 
 
-"""
-Adds a cluster to the markov model.
-"""
+## Adds a cluster to the markov model.
 func _add_cluster(cluster: String) -> void:
 	if not frequency.has(cluster):
 		frequency[cluster] = 0

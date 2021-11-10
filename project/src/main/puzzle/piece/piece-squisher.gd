@@ -1,13 +1,11 @@
 class_name PieceSquisher
 extends Node
-"""
-Handles squish moves for the player's active piece.
-"""
+## Handles squish moves for the player's active piece.
 
 signal lock_cancelled
 signal squish_moved(piece, old_pos)
 
-# state of the current squish move
+## state of the current squish move
 enum SquishState {
 	UNKNOWN, # unknown; we haven't checked yet
 	INVALID, # invalid; there's no empty space beneath the piece
@@ -20,10 +18,10 @@ const VALID = SquishState.VALID
 
 export (NodePath) var input_path: NodePath
 
-# 'true' if the player did a squish drop this frame
+## 'true' if the player did a squish drop this frame
 var did_squish_drop: bool
 
-# potential source/target for the current squish move
+## potential source/target for the current squish move
 var squish_state: int = SquishState.UNKNOWN
 var _squish_target_pos: Vector2
 
@@ -69,9 +67,7 @@ func attempt_squish(piece: ActivePiece) -> void:
 			_squish_to(piece, _squish_target_pos)
 
 
-"""
-Returns a number from [0, 1] for how close the piece is to squishing.
-"""
+## Returns a number from [0, 1] for how close the piece is to squishing.
 func squish_percent(piece: ActivePiece) -> float:
 	var result := 0.0
 	if input.is_soft_drop_pressed() and squish_state == VALID:
@@ -79,9 +75,7 @@ func squish_percent(piece: ActivePiece) -> float:
 	return result
 
 
-"""
-Squishes a piece through other blocks towards the target.
-"""
+## Squishes a piece through other blocks towards the target.
 func _squish_to(piece: ActivePiece, target_pos: Vector2) -> void:
 	var old_pos := piece.pos
 	piece.target_pos = target_pos
@@ -90,20 +84,18 @@ func _squish_to(piece: ActivePiece, target_pos: Vector2) -> void:
 	emit_signal("squish_moved", piece, old_pos)
 
 
-"""
-Calculates the position a piece can 'squish' to. This squish will be successful if there's a location below the
-piece's current location where the piece can fit, and if at least one of the piece's blocks remains unobstructed
-along its path to the target location.
-
-If a squish is possible, the piece.target_pos field will be updated. If unsuccessful, the target_pos field will be
-reset to the piece's current position.
-
-Parameters:
-	'piece': The piece to squish
-	
-	'reset_target': If true, the piece's target will be reset to its current position before starting the squish. If
-		false, the piece will be squished from its current target.
-"""
+## Calculates the position a piece can 'squish' to. This squish will be successful if there's a location below the
+## piece's current location where the piece can fit, and if at least one of the piece's blocks remains unobstructed
+## along its path to the target location.
+##
+## If a squish is possible, the piece.target_pos field will be updated. If unsuccessful, the target_pos field will be
+## reset to the piece's current position.
+##
+## Parameters:
+## 	'piece': The piece to squish
+##
+## 	'reset_target': If true, the piece's target will be reset to its current position before starting the squish. If
+## 		false, the piece will be squished from its current target.
 func _squish_target(piece: ActivePiece, reset_target: bool = true) -> Vector2:
 	if reset_target:
 		piece.reset_target()

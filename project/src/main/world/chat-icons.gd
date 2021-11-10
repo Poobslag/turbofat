@@ -1,13 +1,11 @@
 class_name ChatIcons
 extends Node2D
-"""
-Creates and initializes chat icons for all chattables in the scene tree.
-"""
+## Creates and initializes chat icons for all chattables in the scene tree.
 
 export (PackedScene) var ChatIconScene: PackedScene
 
-# key: Node2D in the 'chattable' node group
-# value: ChatIcon instance
+## key: Node2D in the 'chattable' node group
+## value: ChatIcon instance
 var _chat_icon_by_chattable: Dictionary
 
 onready var overworld_ui: OverworldUi = Global.get_overworld_ui()
@@ -37,11 +35,9 @@ func _on_Chattable_tree_exited(chat_icon: ChatIcon) -> void:
 	chat_icon.queue_free()
 
 
-"""
-After the player talks to a creature we change their speech bubble.
-
-A repeat chat is treated as a 'drive by chat' so it's given the drive by speech bubble.
-"""
+## After the player talks to a creature we change their speech bubble.
+##
+## A repeat chat is treated as a 'drive by chat' so it's given the drive by speech bubble.
 func _on_OverworldUi_chat_cached(focused_chattable: Node2D) -> void:
 	var chat_icon: ChatIcon = _chat_icon_by_chattable.get(focused_chattable, null)
 	if chat_icon and chat_icon.bubble_type == ChatIcon.SPEECH:

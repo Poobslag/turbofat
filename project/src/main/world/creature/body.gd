@@ -1,43 +1,41 @@
 class_name Body
 #tool #uncomment to view creature in editor
 extends Node2D
-"""
-Draws the creature's torso. This includes the body shape, a belly, shadows and an outline.
-
-Because the creature can grow, the torso is drawn dynamically and is not represented by a sprite. The shape of the
-torso and its various parts are stored in CreatureCurve instances which are substituted at runtime. These CreatureCurve
-instances are invisible by default, but can be made visible by toggling the 'editing' flag. This is useful when editing
-curves in the Godot editor.
-"""
+## Draws the creature's torso. This includes the body shape, a belly, shadows and an outline.
+##
+## Because the creature can grow, the torso is drawn dynamically and is not represented by a sprite. The shape of the
+## torso and its various parts are stored in CreatureCurve instances which are substituted at runtime. These
+## CreatureCurve instances are invisible by default, but can be made visible by toggling the 'editing' flag. This is
+## useful when editing curves in the Godot editor.
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
-# The color for the body outline
+## The color for the body outline
 export (Color) var line_color := Color.black
 
-# The main color for most of the creature's body
+## The main color for most of the creature's body
 export (Color) var body_color := Color.green
 
-# The secondary color for the creature's belly
+## The secondary color for the creature's belly
 export (Color) var belly_color := Color.red
 
-# The color to use for shadows, including an alpha component
+## The color to use for shadows, including an alpha component
 export (Color) var shadow_color := Color.blue
 
-# If 'true', the CreatureCurve instances will be made visible. This is useful
-# when editing curves in the Godot editor.
+## If 'true', the CreatureCurve instances will be made visible. This is useful
+## when editing curves in the Godot editor.
 export (bool) var editing := false setget set_editing
 
-# The CreatureCurve defining the rounded shape of the torso.
+## The CreatureCurve defining the rounded shape of the torso.
 var body_shape: CreatureCurve
 
-# An optional CreatureCurve defining the shape of the belly markings.
+## An optional CreatureCurve defining the shape of the belly markings.
 var belly: CreatureCurve
 
-# An optional CreatureCurve defining an body-colored line which blends the neck with the back of the head
+## An optional CreatureCurve defining an body-colored line which blends the neck with the back of the head
 var neck_blend: CreatureCurve
 
-# A node containing CreatureCurves which define the shapes of shadows for the arms, body and head.
+## A node containing CreatureCurves which define the shapes of shadows for the arms, body and head.
 var shadows: Node
 
 var _creature_visuals: CreatureVisuals
@@ -69,9 +67,7 @@ func set_editing(new_editing: bool) -> void:
 	_refresh_editing()
 
 
-"""
-Reassigns the CreatureCurve fields based on the current child nodes.
-"""
+## Reassigns the CreatureCurve fields based on the current child nodes.
 func refresh_children() -> void:
 	_disconnect_curve_signals([body_shape, belly, neck_blend])
 	if shadows:
@@ -89,18 +85,14 @@ func refresh_children() -> void:
 	update()
 
 
-"""
-Connects signals to receive updates from the specified CreatureCurves.
-"""
+## Connects signals to receive updates from the specified CreatureCurves.
 func _connect_curve_signals(creature_curves: Array) -> void:
 	for creature_curve in creature_curves:
 		if creature_curve:
 			creature_curve.connect("appearance_changed", self, "_on_CreatureCurve_appearance_changed")
 
 
-"""
-Disconnects signals to no longer receive updates from the specified CreatureCurves.
-"""
+## Disconnects signals to no longer receive updates from the specified CreatureCurves.
 func _disconnect_curve_signals(creature_curves: Array) -> void:
 	for creature_curve in creature_curves:
 		if creature_curve:
@@ -159,12 +151,10 @@ func _curve_drawn(creature_curve: CreatureCurve) -> bool:
 	return creature_curve and creature_curve.drawn
 
 
-"""
-Fills the shadows for the arms, body and head.
-
-The shadow shapes overrun the body shape and overlap each other. We perform some processing to avoid drawing
-overlapping shadows and to avoid drawing outside the body shape.
-"""
+## Fills the shadows for the arms, body and head.
+##
+## The shadow shapes overrun the body shape and overlap each other. We perform some processing to avoid drawing
+## overlapping shadows and to avoid drawing outside the body shape.
 func _fill_shadows() -> void:
 	if not shadows:
 		return
@@ -203,11 +193,9 @@ func _fill_shadows() -> void:
 			_draw_body_polygon(intersecting_points_obj, shadow_color)
 
 
-"""
-Fills the creature's belly markings.
-
-The belly markings overrun the body shape. We perform some processing to avoid drawing outside the body shape.
-"""
+## Fills the creature's belly markings.
+##
+## The belly markings overrun the body shape. We perform some processing to avoid drawing outside the body shape.
 func _fill_belly() -> void:
 	if not _curve_drawn(belly):
 		return
@@ -221,9 +209,7 @@ func _fill_belly() -> void:
 		_draw_body_polygon(intersecting_points_obj, belly_color)
 
 
-"""
-Draw a filled polygon.
-"""
+## Draw a filled polygon.
 func _draw_body_polygon(points: PoolVector2Array, color: Color) -> void:
 	if points.size() < 3 or color.a == 0:
 		# don't waste cycles filling invisible polygons
@@ -233,9 +219,7 @@ func _draw_body_polygon(points: PoolVector2Array, color: Color) -> void:
 	draw_polygon(points, _poly_colors, PoolVector2Array())
 
 
-"""
-Draw a polyline.
-"""
+## Draw a polyline.
 func _draw_body_polyline(points: PoolVector2Array, color: Color, line_width: float, closed: bool) -> void:
 	if points.size() < 3 or color.a == 0:
 		# don't waste cycles outlining invisible polygons

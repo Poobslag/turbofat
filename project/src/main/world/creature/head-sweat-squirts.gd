@@ -1,8 +1,6 @@
 #tool #uncomment to view creature in editor
 extends Particles2D
-"""
-Manages the sweat drops which leap from the creature's head.
-"""
+## Manages the sweat drops which leap from the creature's head.
 
 export var creature_visuals_path: NodePath setget set_creature_visuals_path
 

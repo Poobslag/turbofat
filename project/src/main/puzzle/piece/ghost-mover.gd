@@ -1,14 +1,12 @@
 extends Node
-"""
-Moves the ghost piece when the piece or playfield changes.
-"""
+## Moves the ghost piece when the piece or playfield changes.
 
 export (NodePath) var tile_map_path: NodePath
 
-# Stores the offset used when drawing the ghost piece.
+## Stores the offset used when drawing the ghost piece.
 #
-# We calculate and store this even if the ghost piece is disabled. This allows us to properly handle enabling and
-# disabling the ghost piece during a puzzle.
+## We calculate and store this even if the ghost piece is disabled. This allows us to properly handle enabling and
+## disabling the ghost piece during a puzzle.
 var _ghost_shadow_offset := Vector2.ZERO
 
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)

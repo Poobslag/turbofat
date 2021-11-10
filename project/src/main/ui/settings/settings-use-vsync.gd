@@ -1,7 +1,5 @@
 extends HBoxContainer
-"""
-UI control for toggling vertical synchronization.
-"""
+## UI control for toggling vertical synchronization.
 
 onready var _check_box: CheckBox = $CheckBox
 

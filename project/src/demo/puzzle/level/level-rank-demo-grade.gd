@@ -1,14 +1,12 @@
 extends HBoxContainer
-"""
-UI input for specifying the target grade
-"""
+## UI input for specifying the target grade
 
-# The level to open
-# Virtual property; value is only exposed through getters/setters
+## The level to open
+## Virtual property; value is only exposed through getters/setters
 var value: String setget set_value, get_value
 
-# key: (String) letter grade such as 'SSS' or 'AA+'
-# value: (int) OptionButton index
+## key: (String) letter grade such as 'SSS' or 'AA+'
+## value: (int) OptionButton index
 var _index_by_grade := {}
 
 func _ready() -> void:

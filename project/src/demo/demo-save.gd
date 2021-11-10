@@ -1,19 +1,17 @@
 extends Node
-"""
-Reads and writes data about demos from a file.
+## Reads and writes data about demos from a file.
+##
+## This allows demos to remember a developer's selections, so that they don't need to keep retyping or reselecting the
+## same choices.
+##
+## This data is stored independently of the player data to prevent demos from overwriting the developer's game data
+## with invalid data. Demos often put the game into a weird state temporarily, and we don't want to persist this weird
+## temporary data.
 
-This allows demos to remember a developer's selections, so that they don't need to keep retyping or reselecting the
-same choices.
-
-This data is stored independently of the player data to prevent demos from overwriting the developer's game data
-with invalid data. Demos often put the game into a weird state temporarily, and we don't want to persist this weird
-temporary data.
-"""
-
-# the path to the save file
+## the path to the save file
 const FILENAME := "user://demo-data.json"
 
-# the json data read from the save file
+## the json data read from the save file
 var demo_data := {}
 
 func _ready() -> void:
@@ -21,16 +19,12 @@ func _ready() -> void:
 	load_demo_data()
 
 
-"""
-Writes the developer's in-memory data to a save file.
-"""
+## Writes the developer's in-memory data to a save file.
 func save_demo_data() -> void:
 	FileUtils.write_file(FILENAME, Utils.print_json(demo_data))
 
 
-"""
-Populates the player's in-memory data based on their save files.
-"""
+## Populates the player's in-memory data based on their save files.
 func load_demo_data() -> void:
 	var file := File.new()
 	var open_result := file.open(FILENAME, File.READ)

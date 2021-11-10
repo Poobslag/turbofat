@@ -1,12 +1,10 @@
 tool
 extends CreatureOutline
-"""
-An implementation of CreatureOutline which is optimized for graphics quality.
+## An implementation of CreatureOutline which is optimized for graphics quality.
+##
+## This implementation utilizes a ViewportTexture to render an outline around the creature.
 
-This implementation utilizes a ViewportTexture to render an outline around the creature.
-"""
-
-# rendering of a creature with an outline shader applied
+## rendering of a creature with an outline shader applied
 onready var _texture_rect := $TextureRect
 
 func _ready() -> void:

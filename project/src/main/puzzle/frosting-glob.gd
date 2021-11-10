@@ -1,61 +1,57 @@
 class_name FrostingGlob
 extends Sprite
-"""
-A frosting glob which appears when the player clears a line or builds a box.
-"""
+## A frosting glob which appears when the player clears a line or builds a box.
 
-# emitted when the glob collides with one of the four outer walls
+## emitted when the glob collides with one of the four outer walls
 signal hit_wall(glob)
 
-# emitted when the glob smears against the playfield area behind the blocks
+## emitted when the glob smears against the playfield area behind the blocks
 signal hit_playfield(glob)
 
-# emitted when the glob smears against the next piece area
+## emitted when the glob smears against the next piece area
 signal hit_next_pieces(glob)
 
 const MAX_INITIAL_VELOCITY := Vector2(600, -500)
 const GRAVITY := 2400
 
-# how long globs are visible while falling
+## how long globs are visible while falling
 const FALL_DURATION := 0.6
 
-# how long it takes for globs to start fading after stuck to walls
+## how long it takes for globs to start fading after stuck to walls
 const FADE_DELAY := 4.5
 
-# how long it takes globs fade completely after stuck to walls
+## how long it takes globs fade completely after stuck to walls
 const FADE_DURATION := 1.5
 
-# the duration when a glob should be recycled, even if it's somehow still visible
+## the duration when a glob should be recycled, even if it's somehow still visible
 const MAX_AGE := 7.0
 
 var puzzle_areas: PuzzleAreas
 
-# the PuzzleTileMap food color index for this glob (brown, pink, bread, white, cake)
+## the PuzzleTileMap food color index for this glob (brown, pink, bread, white, cake)
 var box_type := -1
 
-# remaining time in seconds before this glob will smear against the background
+## remaining time in seconds before this glob will smear against the background
 var smear_time := 0.0
 
-# true if this glob is being affected by gravity
+## true if this glob is being affected by gravity
 var falling := false
 
 var velocity := Vector2.ZERO
 
-# time in milliseconds between the engine starting and this node being initialized
+## time in milliseconds between the engine starting and this node being initialized
 var _creation_time := 0.0
 
 onready var _tween: Tween = $Tween
 onready var _fade_timer: Timer = $FadeTimer
 
-"""
-Populates this object from another FrostingGlob instance.
-
-Note: While the 'glob' parameter should always be a FrostingGlob object, statically typing it as such causes errors at
-game close due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
-
-Parameters:
-	'glob': The FrostingGlob instance to copy from.
-"""
+## Populates this object from another FrostingGlob instance.
+##
+## Note: While the 'glob' parameter should always be a FrostingGlob object, statically typing it as such causes errors
+## at game close due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
+##
+## Parameters:
+## 	'glob': The FrostingGlob instance to copy from.
 func copy_from(glob: Node) -> void:
 	initialize(glob.box_type, glob.position)
 	puzzle_areas = glob.puzzle_areas
@@ -65,9 +61,7 @@ func copy_from(glob: Node) -> void:
 	modulate = glob.modulate
 
 
-"""
-Returns the time in seconds since this glob was initialized.
-"""
+## Returns the time in seconds since this glob was initialized.
 func get_age() -> float:
 	return (OS.get_ticks_msec() - _creation_time) / 1000
 
@@ -76,9 +70,7 @@ func is_rainbow() -> bool:
 	return Foods.is_cake_box(box_type)
 
 
-"""
-Resets this frosting glob's state, including its color and position.
-"""
+## Resets this frosting glob's state, including its color and position.
 func initialize(new_box_type: int, new_position: Vector2) -> void:
 	_creation_time = OS.get_ticks_msec()
 	box_type = new_box_type
@@ -108,11 +100,9 @@ func initialize(new_box_type: int, new_position: Vector2) -> void:
 		scale *= Vector2(1.0, -1.0)
 
 
-"""
-Makes this frosting glob fall and disappear.
-
-Called when a frosting glob is first spawned.
-"""
+## Makes this frosting glob fall and disappear.
+##
+## Called when a frosting glob is first spawned.
 func fall() -> void:
 	falling = true
 	smear_time = min(rand_range(0.0, FALL_DURATION * 0.7), rand_range(0.0, FALL_DURATION * 1.2))
@@ -123,11 +113,9 @@ func fall() -> void:
 	_tween.start()
 
 
-"""
-Makes this frosting glob fade away and disappear.
-
-Called when a frosting glob hits a wall or smears against the background.
-"""
+## Makes this frosting glob fade away and disappear.
+##
+## Called when a frosting glob hits a wall or smears against the background.
 func fade() -> void:
 	falling = false
 	_fade_timer.start(FADE_DELAY * rand_range(0.8, 1.2))
@@ -138,9 +126,7 @@ func fade() -> void:
 			FADE_DURATION * rand_range(0.8, 1.2), Tween.TRANS_LINEAR, Tween.EASE_IN)
 
 
-"""
-Applies gravity and checks for collisions.
-"""
+## Applies gravity and checks for collisions.
 func _process(delta: float) -> void:
 	if not falling:
 		return

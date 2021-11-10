@@ -1,26 +1,22 @@
 extends Button
-"""
-Upgrades old levels to the newest format.
+## Upgrades old levels to the newest format.
+##
+## Recursively searches for levels, upgrading them if they are out of date.
 
-Recursively searches for levels, upgrading them if they are out of date.
-"""
-
-# directories containing levels which should be upgraded
+## directories containing levels which should be upgraded
 const LEVEL_DIRS := ["res://assets/main/puzzle/levels"]
 
 export (NodePath) var output_label_path: NodePath
 
 var _upgrader := LevelSettingsUpgrader.new()
 
-# string level paths which have been successfully converted to the newest version
+## string level paths which have been successfully converted to the newest version
 var _converted := []
 
-# label for outputting messages to the user
+## label for outputting messages to the user
 onready var _output_label: Label = get_node(output_label_path)
 
-"""
-Upgrades all levels to the newest version.
-"""
+## Upgrades all levels to the newest version.
 func _upgrade_levels() -> void:
 	_converted.clear()
 	
@@ -34,12 +30,10 @@ func _upgrade_levels() -> void:
 		_output_label.text = "No levels required upgrading."
 
 
-"""
-Upgrades a level to the newest version.
-
-Parameters:
-	'path': Path to a json resource containing level data to upgrade.
-"""
+## Upgrades a level to the newest version.
+##
+## Parameters:
+## 	'path': Path to a json resource containing level data to upgrade.
 func _upgrade_settings(path: String) -> void:
 	var old_text := FileUtils.get_file_as_text(path)
 	var old_json: Dictionary = parse_json(old_text)
@@ -50,12 +44,10 @@ func _upgrade_settings(path: String) -> void:
 		_converted.append(path)
 
 
-"""
-Recursively searches for levels to upgrade.
-
-Returns:
-	List of string paths to json resources containing level data to upgrade.
-"""
+## Recursively searches for levels to upgrade.
+##
+## Returns:
+## 	List of string paths to json resources containing level data to upgrade.
 func _find_level_paths() -> Array:
 	var result := []
 	
