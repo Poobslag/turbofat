@@ -261,6 +261,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			target_lines = 999999
 		Milestone.CUSTOMERS:
 			target_lines = master_customer_combo(CurrentLevel.settings) * finish_condition.value
+			leftover_lines = 0 # the level ends when your combo breaks, it's inefficient to stack extra pieces
 		Milestone.LINES:
 			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
 		Milestone.PIECES:
@@ -269,10 +270,16 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		Milestone.SCORE:
 			target_lines = ceil((finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
-			leftover_lines = 0
+			leftover_lines = 0 # you're racing to a target score, it's inefficient to stack extra pieces
 		Milestone.TIME_OVER:
 			target_lines = target_speed * finish_condition.value / 60.0
-			leftover_lines = 0
+	
+	# decrease target_lines based on leftover_lines
+	if finish_condition.type in [Milestone.PIECES, Milestone.TIME_OVER]:
+		target_lines = max(0, ceil(target_lines - leftover_lines / 3))
+	
+	# calculate score for leftover_lines; leftover lines should be a tall stack with half as many box points
+	var target_leftover_score := (target_combo_score_per_line + target_combo_score_per_line * 0.5 + 1) * leftover_lines
 	
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
 	if rank_result.compare == "-seconds" or finish_condition.type == Milestone.TIME_OVER:
@@ -320,6 +327,9 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 				* pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
 		var tmp_pickup_score_per_line := target_pickup_score_per_line \
 				* pow(RDF_PICKUP_SCORE_PER_LINE, tmp_overall_rank)
+		var tmp_leftover_score := target_leftover_score \
+				* pow(RDF_BOX_SCORE_PER_LINE, tmp_overall_rank) \
+				* pow(RDF_COMBO_SCORE_PER_LINE, tmp_overall_rank)
 		
 		if rank_result.compare == "-seconds":
 			# for modes like 'ultra' where you race to a score, rank scales with speed
@@ -331,6 +341,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			else:
 				overall_rank_max = tmp_overall_rank
 		else:
+			# calculate the expected line count for this rank
 			var tmp_lines: float
 			if finish_condition.type == Milestone.TIME_OVER:
 				# for modes like 'sprint' where you go for a high score in a time limit, rank scales with speed
@@ -340,11 +351,21 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 				# for modes like 'marathon' where you aim for a number of lines, rank scales with endurance
 				tmp_lines = target_lines * pow(RDF_ENDURANCE, tmp_overall_rank) + leftover_lines
 			
+			# adjust the expected leftover score for this rank
+			if finish_condition.type == Milestone.TIME_OVER:
+				# for modes like 'sprint' with a time limit, leftover score scales with speed
+				var tmp_speed := rank_lpm(tmp_overall_rank)
+				tmp_leftover_score *= tmp_speed / target_speed
+			else:
+				# for modes like 'marathon' with no time limit, leftover score scales with endurance
+				# (well, technically speaking it scales with cleverness)
+				tmp_leftover_score *= pow(RDF_ENDURANCE, tmp_overall_rank)
+			
 			var tmp_box_score := tmp_box_score_per_line * tmp_lines
 			var tmp_combo_score := tmp_combo_score_per_line * tmp_lines
 			tmp_combo_score = max(0, tmp_combo_score - COMBO_DEFICIT[min(ceil(tmp_lines), COMBO_DEFICIT.size() - 1)])
 			var tmp_pickup_score := tmp_pickup_score_per_line * tmp_lines
-			var tmp_score := tmp_lines + tmp_box_score + tmp_combo_score + tmp_pickup_score
+			var tmp_score := tmp_lines + tmp_box_score + tmp_combo_score + tmp_pickup_score + tmp_leftover_score
 			if tmp_score > rank_result.score:
 				overall_rank_min = tmp_overall_rank
 			else:
