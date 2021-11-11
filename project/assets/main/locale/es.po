@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-11-01 20:14-0400\n"
+"POT-Creation-Date: 2021-11-11 12:28-0500\n"
 "PO-Revision-Date: 2021-03-25 16:25-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3080,7 +3080,7 @@ msgid "End"
 msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:115
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:22
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:18
 msgid "Left"
 msgstr "Izquierda"
 
@@ -3089,7 +3089,7 @@ msgid "Up"
 msgstr "Arriba"
 
 #: project/assets/main/locale/localizables-scancodes.py:117
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:22
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:18
 msgid "Right"
 msgstr "Derecha"
 
@@ -3235,8 +3235,8 @@ msgstr ""
 
 #: project/assets/main/locale/localizables-scancodes.py:152
 #: project/src/main/puzzle/PuzzleMessages.tscn:87
-#: project/src/main/puzzle/puzzle-messages.gd:149
-#: project/src/main/puzzle/puzzle-messages.gd:151
+#: project/src/main/puzzle/puzzle-messages.gd:141
+#: project/src/main/puzzle/puzzle-messages.gd:143
 msgid "Back"
 msgstr "Atrás"
 
@@ -3406,7 +3406,7 @@ msgstr "Configuración"
 #: project/src/main/ui/menu/PracticeMenu.tscn:286
 #: project/src/main/ui/menu/SystemButtons.tscn:46
 #: project/src/main/ui/settings/SettingsMenu.tscn:991
-#: project/src/main/ui/settings/settings-menu.gd:124
+#: project/src/main/ui/settings/settings-menu.gd:116
 msgid "Quit"
 msgstr "Salir"
 
@@ -3736,15 +3736,15 @@ msgstr "Gingerbread House"
 msgid "3x"
 msgstr "3x"
 
-#: project/src/main/puzzle/Puzzle.tscn:287
+#: project/src/main/puzzle/Puzzle.tscn:286
 msgid "Goal"
 msgstr "Meta"
 
-#: project/src/main/puzzle/Puzzle.tscn:300
+#: project/src/main/puzzle/Puzzle.tscn:299
 msgid "10"
 msgstr "10"
 
-#: project/src/main/puzzle/Puzzle.tscn:541
+#: project/src/main/puzzle/Puzzle.tscn:539
 msgid "abcd"
 msgstr "abcd"
 
@@ -3769,90 +3769,90 @@ msgstr "¥616"
 msgid "+¥55"
 msgstr "+¥55"
 
-#: project/src/main/puzzle/frame-drops-label.gd:63
+#: project/src/main/puzzle/frame-drops-label.gd:61
 #, python-format
 msgid "%s frame drops"
 msgstr ""
 
-#: project/src/main/puzzle/frame-drops-label.gd:64
+#: project/src/main/puzzle/frame-drops-label.gd:62
 #, python-format
 msgid "%s step drops"
 msgstr ""
 
-#: project/src/main/puzzle/milestone-hud.gd:32
+#: project/src/main/puzzle/milestone-hud.gd:30
 msgid "Customers"
 msgstr "Clientes"
 
-#: project/src/main/puzzle/milestone-hud.gd:34
+#: project/src/main/puzzle/milestone-hud.gd:32
 msgid "Lines"
 msgstr "Líneas"
 
-#: project/src/main/puzzle/milestone-hud.gd:36
+#: project/src/main/puzzle/milestone-hud.gd:34
 msgid "Pieces"
 msgstr "Piezas"
 
-#: project/src/main/puzzle/milestone-hud.gd:38
+#: project/src/main/puzzle/milestone-hud.gd:36
 msgid "Money"
 msgstr "Dinero"
 
-#: project/src/main/puzzle/milestone-hud.gd:40
+#: project/src/main/puzzle/milestone-hud.gd:38
 msgid "Time"
 msgstr "Tiempo"
 
-#: project/src/main/puzzle/puzzle-messages.gd:71
-#: project/src/main/puzzle/puzzle.gd:77
+#: project/src/main/puzzle/puzzle-messages.gd:67
+#: project/src/main/puzzle/puzzle.gd:73
 msgid "Ready?"
 msgstr "¿Listo?"
 
-#: project/src/main/puzzle/puzzle-messages.gd:80
+#: project/src/main/puzzle/puzzle-messages.gd:76
 msgid "Regret..."
 msgstr "Que pena..."
 
-#: project/src/main/puzzle/puzzle-messages.gd:82
+#: project/src/main/puzzle/puzzle-messages.gd:78
 msgid "Good!"
 msgstr "¡Bien!"
 
-#: project/src/main/puzzle/puzzle-messages.gd:95
+#: project/src/main/puzzle/puzzle-messages.gd:91
 msgid "Game over"
 msgstr "Fin Del Juego"
 
-#: project/src/main/puzzle/puzzle-messages.gd:97
+#: project/src/main/puzzle/puzzle-messages.gd:93
 msgid "Finish!"
 msgstr "¡Se acabó!"
 
-#: project/src/main/puzzle/puzzle-messages.gd:99
+#: project/src/main/puzzle/puzzle-messages.gd:95
 msgid "You win!"
 msgstr "¡Victoria!"
 
-#: project/src/main/puzzle/puzzle-messages.gd:133
+#: project/src/main/puzzle/puzzle-messages.gd:127
 msgid "Retry"
 msgstr "Reintentar"
 
-#: project/src/main/puzzle/puzzle-messages.gd:149
+#: project/src/main/puzzle/puzzle-messages.gd:141
 #: project/src/main/ui/menu/MainMenu.tscn:88
 msgid "Continue"
 msgstr "Continuar"
 
-#: project/src/main/puzzle/results-hud.gd:8
+#: project/src/main/puzzle/results-hud.gd:6
 msgid ""
 "Build a snack box by arranging a pentomino and a tetromino into a square!"
 msgstr ""
 "¡Haz una caja de snacks haciendo un cuadrado con un pentominó y un tetrominó!"
 
-#: project/src/main/puzzle/results-hud.gd:9
+#: project/src/main/puzzle/results-hud.gd:7
 msgid "Build a cake box by arranging 3 pentominos into a rectangle!"
 msgstr "¡Haz una caja de tarta haciendo un rectángulo con 3 pentominós!"
 
-#: project/src/main/puzzle/results-hud.gd:10
+#: project/src/main/puzzle/results-hud.gd:8
 msgid "Build a cake box by arranging 3 tetrominos into a rectangle!"
 msgstr "¡Haz una caja de tarta haciendo un rectángulo con 3 tetrominós!"
 
-#: project/src/main/puzzle/results-hud.gd:11
+#: project/src/main/puzzle/results-hud.gd:9
 msgid "Two different pieces with the same color can always make a square!"
 msgstr ""
 "¡Dos piezas diferentes del mismo color pueden siempre hacer un cuadrado!"
 
-#: project/src/main/puzzle/results-hud.gd:12
+#: project/src/main/puzzle/results-hud.gd:10
 msgid ""
 "A snack box scores 5 points per line, a cake box scores 10. Make lots of "
 "cakes!"
@@ -3860,7 +3860,7 @@ msgstr ""
 "Una caja de snacks son 5 puntos por línea, una caja de tarta son 10. ¡Haz "
 "muchas tartas!"
 
-#: project/src/main/puzzle/results-hud.gd:13
+#: project/src/main/puzzle/results-hud.gd:11
 msgid ""
 "Combos can give you 20 bonus points for completing a line. Make lots of "
 "combos!"
@@ -3868,141 +3868,141 @@ msgstr ""
 "Los combos pueden darte 20 puntos extra por completar una línea. ¡Haz muchos "
 "combos!"
 
-#: project/src/main/puzzle/results-hud.gd:14
+#: project/src/main/puzzle/results-hud.gd:12
 msgid "Build a big combo by making boxes and clearing lines!"
 msgstr "¡Haz un combo grande haciendo cajas y limpiando líneas!"
 
-#: project/src/main/puzzle/results-hud.gd:15
+#: project/src/main/puzzle/results-hud.gd:13
 msgid ""
 "Making boxes keeps your combo going. You can keep your combo going forever!"
 msgstr "Hacer cajas aumentan tu combo. ¡Puedes extender tu combo para siempre!"
 
-#: project/src/main/puzzle/results-hud.gd:16
+#: project/src/main/puzzle/results-hud.gd:14
 msgid "Clear lines to keep your combo going. Combos get you lots of money!"
 msgstr "Limpiar líneas aumentan tu combo. ¡Los combos te dan mucho dinero!"
 
-#: project/src/main/puzzle/results-hud.gd:17
+#: project/src/main/puzzle/results-hud.gd:15
 msgid "When a piece locks, hold left or right to quickly move the next piece!"
 msgstr ""
 "Cuando una pieza se asegure, ¡mantén izquierda o derecha para mover rápido "
 "la siguiente pieza!"
 
-#: project/src/main/puzzle/results-hud.gd:18
+#: project/src/main/puzzle/results-hud.gd:16
 msgid "When a piece locks, hold a rotate key to quickly rotate the next piece!"
 msgstr ""
 "Cuando una pieza se asegure, ¡mantén el botón rotar para rotar rápido la "
 "siguiente pieza!"
 
-#: project/src/main/puzzle/results-hud.gd:19
+#: project/src/main/puzzle/results-hud.gd:17
 msgid ""
 "When a piece locks, hold both rotate keys to quickly flip the next piece!"
 msgstr ""
 "Cuando una pieza se asegure, ¡mantén ambos botones de rotar para girar la "
 "siguiente pieza!"
 
-#: project/src/main/puzzle/results-hud.gd:20
+#: project/src/main/puzzle/results-hud.gd:18
 msgid "When a piece locks, hold up to quickly hard-drop the next piece!"
 msgstr ""
 "Cuando una pieza se asegure, ¡mantén arriba para hacer una caída fuerte con "
 "la siguiente pieza!"
 
-#: project/src/main/puzzle/results-hud.gd:21
+#: project/src/main/puzzle/results-hud.gd:19
 msgid "After a hard drop, tap 'down' to delay the piece from locking!"
 msgstr ""
 "¡Después de una caída fuerte, toca \"abajo\" para que la pieza tarde en "
 "asegurarse!"
 
-#: project/src/main/puzzle/results-hud.gd:22
+#: project/src/main/puzzle/results-hud.gd:20
 msgid "Press 'down' to squish pieces past other pieces!"
 msgstr "¡Presiona \"abajo\" para aplastar piezas por otras piezas!"
 
-#: project/src/main/puzzle/results-hud.gd:47
+#: project/src/main/puzzle/results-hud.gd:43
 #, python-format
 msgid "Hint: %s"
 msgstr "Pista: %s"
 
-#: project/src/main/puzzle/results-hud.gd:64
-#: project/src/main/puzzle/results-hud.gd:216
+#: project/src/main/puzzle/results-hud.gd:60
+#: project/src/main/puzzle/results-hud.gd:210
 #, python-format
 msgid "Customer #%s"
 msgstr "Cliente: #%s"
 
-#: project/src/main/puzzle/results-hud.gd:71
+#: project/src/main/puzzle/results-hud.gd:67
 #, python-format
 msgid "Total: ¥%s"
 msgstr "Total: ¥%s"
 
-#: project/src/main/puzzle/results-hud.gd:86
+#: project/src/main/puzzle/results-hud.gd:82
 #, python-format
 msgid "Speed: %d"
 msgstr "Velocidad: %d"
 
-#: project/src/main/puzzle/results-hud.gd:93
+#: project/src/main/puzzle/results-hud.gd:89
 #, python-format
 msgid "Pieces: %d"
 msgstr "Piezas: %d"
 
-#: project/src/main/puzzle/results-hud.gd:100
+#: project/src/main/puzzle/results-hud.gd:96
 #, python-format
 msgid "Lines: %d"
 msgstr "Líneas: %d"
 
-#: project/src/main/puzzle/results-hud.gd:107
+#: project/src/main/puzzle/results-hud.gd:103
 #, python-format
 msgid "Boxes: %d"
 msgstr "Cajas: %d"
 
-#: project/src/main/puzzle/results-hud.gd:114
+#: project/src/main/puzzle/results-hud.gd:110
 #, python-format
 msgid "Combos: %d"
 msgstr "Combos: %d"
 
-#: project/src/main/puzzle/results-hud.gd:129
+#: project/src/main/puzzle/results-hud.gd:125
 #, python-format
 msgid "Pickups: %d"
 msgstr ""
 
-#: project/src/main/puzzle/results-hud.gd:136
+#: project/src/main/puzzle/results-hud.gd:132
 msgid "Overall: "
 msgstr "General:"
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:16
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:12
 msgid "Move"
 msgstr "Mover"
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:17
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:13
 #: project/src/main/ui/settings/SettingsMenu.tscn:378
 #: project/src/main/ui/settings/SettingsMenu.tscn:479
 msgid "Soft Drop"
 msgstr "Caida Suave"
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:18
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:14
 #: project/src/main/ui/settings/SettingsMenu.tscn:384
 #: project/src/main/ui/settings/SettingsMenu.tscn:485
 msgid "Hard Drop"
 msgstr "Caída Fuerte"
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:19
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:15
 msgid "Rotate"
 msgstr "Rotar"
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:22
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:18
 msgid "Arrows"
 msgstr "Flechas"
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:23
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:19
 msgid "DPAD Left"
 msgstr "DPAD Izquierdo"
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:23
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:19
 msgid "DPAD Right"
 msgstr "DPAD Derecho"
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:23
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:19
 msgid "DPAD"
 msgstr "DPAD"
 
-#: project/src/main/puzzle/tutorial-keybinds-label.gd:27
+#: project/src/main/puzzle/tutorial-keybinds-label.gd:23
 msgid ""
 "What have you done!? Click 'Settings' to reconfigure your controls, you "
 "silly goose!"
@@ -4010,7 +4010,7 @@ msgstr ""
 "¿¡Qué has hecho!? Haz clic en 'Configuración' para reconfigurar tus "
 "controles, ¡tonto!"
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:36
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:34
 msgid ""
 "Welcome to Turbo Fat! You seem to already be familiar with this sort of "
 "game, so let's dive right in."
@@ -4018,25 +4018,25 @@ msgstr ""
 "¡Bienvenido a Turbo Fat! Parece que ya estás familiarizado con este tipo de "
 "juego, así que vamos a comenzar."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:46
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:111
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:44
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:105
 msgid "Try making a snack box by arranging two pieces into a square."
 msgstr "Intenta hacer una caja de snacks haciendo un cuadrado con dos piezas."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:49
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:47
 msgid "Next, try holding soft drop to squish pieces through these gaps."
 msgstr ""
 "Después, intenta mantener caída suave para aplastar piezas entre estos "
 "espacios."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:52
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:50
 msgid ""
 "One last lesson! Try holding soft drop to squish and complete these boxes."
 msgstr ""
 "¡Una última lección! Intenta mantener caída suave para aplastar y completar "
 "estas cajas."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:58
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:56
 msgid ""
 "You're a remarkably quick learner. I think I hear some customers!\n"
 "\n"
@@ -4046,30 +4046,30 @@ msgstr ""
 "\n"
 "Veamos si puedes conseguir ¥100."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:73
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:69
 msgid "OH, MY!!!"
 msgstr "¡¡¡WOW!!!"
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:80
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:127
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:115
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:128
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:76
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:121
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:111
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:124
 msgid "Good job!"
 msgstr "¡Buen trabajo!"
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:83
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:79
 msgid "Nicely done!"
 msgstr "¡Bien hecho!"
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:86
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:82
 msgid "Impressive!"
 msgstr "¡Impresionante!"
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:89
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:85
 msgid "Oh! I thought that would be more difficult..."
 msgstr "¡Oh! Pensé que iba a ser más difícil..."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:96
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:92
 msgid ""
 "Well done!\n"
 "\n"
@@ -4078,17 +4078,17 @@ msgstr ""
 "¡Muy bien! Al limpiar líneas ganas ¥1. Tal vez más si consigues hacer un "
 "combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:108
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:252
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:102
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:244
 msgid "Clear a row by filling it with blocks."
 msgstr "Limpia una fila llenándola con bloques."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:113
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:107
 msgid "Try clearing a few box lines."
 msgstr "Intenta limpiar algunas líneas de cajas."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:121
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:126
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:115
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:120
 msgid ""
 "Well done!\n"
 "\n"
@@ -4100,7 +4100,7 @@ msgstr ""
 "Al limpiar cajas ganas cinco veces más dinero. Tal vez más que eso si eres "
 "listo."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:136
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:130
 msgid ""
 "Oh my, you're not supposed to know how to do that!\n"
 "\n"
@@ -4110,7 +4110,7 @@ msgstr ""
 "\n"
 "...Pero sí, aplastar piezas puede ayudarte en un apuro."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:142
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:136
 msgid ""
 "Well done!\n"
 "\n"
@@ -4119,7 +4119,7 @@ msgstr ""
 "¡Bien hecho! Aplastar piezas puede ayudarte en un apuro. También son buenas "
 "para ciertas cajas."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:151
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:145
 msgid ""
 "Oh my, you're not supposed to know how to do that!\n"
 "\n"
@@ -4129,7 +4129,7 @@ msgstr ""
 "\n"
 "...Pero sí, estas cajas valen ¥15 cuando las limpias."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:157
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:151
 msgid ""
 "Well done!\n"
 "\n"
@@ -4138,7 +4138,7 @@ msgstr ""
 "¡Bien hecho! Estas cajas valen ¥15 cuando las limpias. Intenta limpiar "
 "algunas líneas de cajas."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:166
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:160
 msgid ""
 "Impressive! Using squish moves, you can organize boxes in tall vertical "
 "stacks and earn a lot of money."
@@ -4146,7 +4146,7 @@ msgstr ""
 "¡Impresionante! Aplastando piezas, puedes organizar muchas cajas apilándolas "
 "en vertical y conseguir mucho dinero."
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:248
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:240
 msgid ""
 "Welcome to Turbo Fat! You seem to already be familiar with this sort of "
 "game, so let's dive right in.\n"
@@ -4158,7 +4158,7 @@ msgstr ""
 "\n"
 "Limpia una fila llenándola con bloques."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:39
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:37
 msgid ""
 "Today we'll go over combos.\n"
 "\n"
@@ -4168,7 +4168,7 @@ msgstr ""
 "\n"
 "Los combos son fáciles, ¡puede que hasta los hayas hecho por accidente!"
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:52
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:50
 msgid ""
 "Try again! Try to clear five lines without stopping.\n"
 "\n"
@@ -4178,7 +4178,7 @@ msgstr ""
 "\n"
 "Dejar caer una pieza al costado no romperá el combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:55
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:53
 msgid ""
 "See if you can clear five lines without stopping.\n"
 "\n"
@@ -4188,7 +4188,7 @@ msgstr ""
 "\n"
 "Bueno, un pequeño descanso también está bien."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:63
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:61
 msgid ""
 "Try again! Try to extend this combo by seven lines.\n"
 "\n"
@@ -4198,7 +4198,7 @@ msgstr ""
 "\n"
 "Haz cajas para evitar romper el combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:66
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:64
 msgid ""
 "Let's use boxes to extend a combo!\n"
 "\n"
@@ -4208,11 +4208,11 @@ msgstr ""
 "\n"
 "Intenta limpiar siete líneas más sin romper el combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:71
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:69
 msgid "You can make a cake box with three pieces. Let me show you."
 msgstr "Puedes hacer una caja de tarta con tres piezas. Déjame mostrarte."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:72
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:70
 msgid ""
 "Unfortunately, it's difficult to continue a combo with cake boxes.\n"
 "\n"
@@ -4222,7 +4222,7 @@ msgstr ""
 "\n"
 "Las primeras dos piezas romperán el combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:77
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:75
 msgid ""
 "With a little foresight, you can clear some lines while building a cake "
 "box.\n"
@@ -4234,7 +4234,7 @@ msgstr ""
 "\n"
 "Entonces el combo no se romperá."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:85
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:83
 msgid ""
 "Try again! Try to make two cake boxes.\n"
 "\n"
@@ -4244,7 +4244,7 @@ msgstr ""
 "\n"
 "Limpia líneas para evitar romper el combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:88
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:86
 msgid ""
 "Now see if you can do it.\n"
 "\n"
@@ -4254,7 +4254,7 @@ msgstr ""
 "\n"
 "Haz dos cajas de tarta, pero no rompas el combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:95
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:93
 msgid ""
 "...Oh! Customers!\n"
 "\n"
@@ -4268,22 +4268,22 @@ msgstr ""
 "\n"
 "Hacer primero algunas cajas podría ayudar."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:129
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:123
 msgid "Oops! ...You needed to clear a line with that last piece."
 msgstr "¡Ups! ...Necesitabas limpiar una línea con esa última pieza."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:140
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:134
 msgid ""
 "Impressive!\n"
 "\n"
 "Hmm... Was there anything else?"
 msgstr "¡Impresionante! Hmmm... ¿Había algo más?"
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:144
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:138
 msgid "Oh! ...You needed to clear a line that time."
 msgstr "¡Oh! ...Necesitabas limpiar una línea en ese momento."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:166
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:158
 msgid ""
 "Combos earn you extra money! You can build combos by making boxes and "
 "clearing lines.\n"
@@ -4295,7 +4295,7 @@ msgstr ""
 "\n"
 "Por el contrario, hacer caer dos piezas rompen el combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:168
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:160
 msgid ""
 "In other words, you get two chances to make a box or clear a line before you "
 "lose your combo.\n"
@@ -4307,7 +4307,7 @@ msgstr ""
 "\n"
 "¿Tiene sentido?"
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:173
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:165
 msgid ""
 "In other words,you get two chances to make a box or clear a line before you "
 "lose your combo."
@@ -4315,7 +4315,7 @@ msgstr ""
 "En otras palabras, tienes dos intentos para hacer una caja o limpiar una "
 "línea antes de perder tu combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:175
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:167
 msgid ""
 "Arranging two or more pieces into a rectangle will make a box.\n"
 "\n"
@@ -4327,7 +4327,7 @@ msgstr ""
 "¡Esta es una forma fácil de mantener tu combo vivo! Solo pon dos piezas para "
 "hacer un cuadrado."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:177
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:169
 msgid ""
 "Clearing a line will also continue your combo. But, you don't have to clear "
 "a line with every piece!\n"
@@ -4339,7 +4339,7 @@ msgstr ""
 "\n"
 "Podés dejar caer una pieza sin romper tu combo."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:180
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:172
 msgid ""
 "Your combo's only interrupted if you drop two pieces without doing "
 "something.\n"
@@ -4351,12 +4351,12 @@ msgstr ""
 "Entonces, tenés permitido hacer un error o usar una pieza para planear el "
 "siguiente paso."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:209
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:199
 msgid "Oops! I can still make the cake box, but my combo already broke."
 msgstr ""
 "¡Ups! Todavía puedo hacer una caja de tarta, pero mi combo ya se rompió."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:215
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:205
 msgid ""
 "There, I did it!\n"
 "\n"
@@ -4366,14 +4366,14 @@ msgstr ""
 "\n"
 "Fue algo complicado."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:230
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:220
 msgid ""
 "Wow, I didn't expect that! Great job.\n"
 "\n"
 "You're already a combo master!"
 msgstr "¡Wow, no me esperaba eso! Buen trabajo ¡Ya eres un maestro del combo!"
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:233
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:223
 msgid ""
 "Oh no, you broke your combo without reaching ¥120!\n"
 "\n"
@@ -4383,35 +4383,35 @@ msgstr ""
 "\n"
 "Bueno, no te preocupes."
 
-#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:236
+#: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:226
 msgid "¥120 is just a number I pulled out of my, um. ...Out of thin air."
 msgstr "¥120 es solo un número que saqué de, um. ...Del aire."
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:33
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:31
 msgid "Okay, I get it!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:33
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:31
 msgid "...Can you go into more detail?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:34
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:32
 msgid "Yes, I see!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:34
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:32
 msgid "What do you mean by that?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:35
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:33
 msgid "Oh! That's easy."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:35
+#: project/src/main/puzzle/tutorial/tutorial-diagram.gd:33
 msgid "Hmm, maybe one more time?"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:41
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:39
 msgid ""
 "Today we'll cover some advanced squish move techniques!\n"
 "\n"
@@ -4421,30 +4421,30 @@ msgstr ""
 "\n"
 "Pero primero, vamos a asegurarnos de que recuerdas lo básico."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:52
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:50
 msgid "Hold soft drop to squish pieces through this gap."
 msgstr "Mantén caída suave para aplastar piezas por este espacio."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:57
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:55
 msgid "So, which of these snack boxes can be completed with a squish move?"
 msgstr ""
 "Entonces, ¿cuál de estas cajas de snacks puede ser completada aplastando una "
 "pieza?"
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:60
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:58
 msgid "How about now, can you find a way to squish here?"
 msgstr "¿Y ahora? ¿Puedes encontrar el camino correcto?"
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:63
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:61
 msgid ""
 "What do you think about this one? Is it possible to make a snack box here?"
 msgstr "¿Qué piensas ahora? ¿Es posible hacer aquí una caja de snacks?"
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:70
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:68
 msgid "Here, let me help you with that."
 msgstr "A ver, déjame ayudarte con eso."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:72
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:70
 msgid ""
 "Of course, squish moves aren't always about being very, very clever. ..."
 "Sometimes we make mistakes, too."
@@ -4452,7 +4452,7 @@ msgstr ""
 "Por supuesto, aplastar piezas no se trata siempre de ser muy, muy listo. ..."
 "A veces también hacemos errores."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:80
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:78
 msgid ""
 "Should I make it worse this time?\n"
 "\n"
@@ -4462,11 +4462,11 @@ msgstr ""
 "\n"
 "No, eso sería rudo."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:82
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:80
 msgid "Hmmm... What are you up to this time?"
 msgstr "Hmmm... ¿Qué estás haciendo ahora?"
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:89
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:87
 msgid ""
 "Your training is complete!\n"
 "\n"
@@ -4477,31 +4477,31 @@ msgstr ""
 "\n"
 "Pero que no se te suba a la cabeza, todavía tenemos clientes que atender."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:107
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:103
 msgid "Yes, that's right."
 msgstr "Sí, correcto."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:109
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:105
 msgid "That's right! Hmm, how about something tricky..."
 msgstr "¡Correcto! Hmm, que tal con algo complicado..."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:111
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:107
 msgid "Wow, okay! ...I need to think of some harder puzzles."
 msgstr "¡Wow, okay! ...Necesito pensar en puzzles más difíciles."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:118
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:126
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:114
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:122
 msgid "Oops! ...Let's try that again."
 msgstr "¡Ups! ...Intentémoslo otra vez."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:121
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:117
 msgid ""
 "Wow! ...I had a few more of these planned, but it looks like you get the "
 "idea."
 msgstr ""
 "¡Wow! ...Tenía algunos más planeados, pero parece que ya entendiste la idea."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:143
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:139
 msgid ""
 "Good job!\n"
 "\n"
@@ -4511,7 +4511,7 @@ msgstr ""
 "\n"
 "Aplastar piezas puede ayudarte en muchas formas."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:152
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:146
 msgid ""
 "For a piece to squish successfully, one part needs a straight gap down to "
 "the target."
@@ -4519,7 +4519,7 @@ msgstr ""
 "Para que una pieza se aplaste exitosamente, una parte necesita un espacio "
 "directo hasta el fondo."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:154
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:148
 msgid ""
 "Here are some examples of good and bad squish moves.\n"
 "\n"
@@ -4529,7 +4529,7 @@ msgstr ""
 "\n"
 "¿Tiene sentido? Se que puede ser algo raro."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:158
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:152
 msgid ""
 "So basically, one part of the piece needs a straight gap down to the target "
 "or it won't squish."
@@ -4537,7 +4537,7 @@ msgstr ""
 "Entonces, básicamente, una parte necesita un espacio directo hasta el fondo "
 "o no podrá pasar."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:160
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:154
 msgid ""
 "These examples on the right don't work, because the piece can't \"see\" "
 "where it's going."
@@ -4545,7 +4545,7 @@ msgstr ""
 "Los ejemplos de la derecha no funcionan, porque la pieza no puede \"ver\" "
 "donde está yendo."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:162
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:156
 msgid ""
 "You can think of it like...\n"
 "\n"
@@ -4555,7 +4555,7 @@ msgstr ""
 "\n"
 "Si la pieza estaría dividida en varias partes, ¿cada parte estaría bloqueada?"
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:164
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:158
 msgid ""
 "These examples on the left work, because one tiny chunk of the piece has a "
 "clear path.\n"
@@ -4567,7 +4567,7 @@ msgstr ""
 "\n"
 "Solo necesita uno."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:218
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:210
 msgid ""
 "Not again! ...Can you clean this up using squish moves?\n"
 "\n"
@@ -4577,7 +4577,7 @@ msgstr ""
 "\n"
 "Intenta limpiar tres líneas."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:221
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:213
 msgid ""
 "Oops! Look at the mess you made. ...Can you clean this up using squish "
 "moves?\n"
@@ -4588,7 +4588,7 @@ msgstr ""
 "\n"
 "Intenta limpiar tres líneas."
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:235
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:227
 msgid ""
 "Oh no, it keeps happening! Well, try to clear three lines.\n"
 "\n"
@@ -4598,7 +4598,7 @@ msgstr ""
 "\n"
 "¡Recuerda aplastar piezas!"
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:238
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:230
 msgid ""
 "Oh no! Now you've done it.\n"
 "\n"
@@ -4608,7 +4608,7 @@ msgstr ""
 "\n"
 "¡Mira lo torpe que eres!"
 
-#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:239
+#: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:231
 msgid ""
 "That's okay.\n"
 "\n"
@@ -4643,7 +4643,7 @@ msgid "60.00 fps"
 msgstr "60.00 fps"
 
 #: project/src/main/ui/HighScoreTable.tscn:20
-#: project/src/main/ui/high-score-table.gd:42
+#: project/src/main/ui/high-score-table.gd:34
 msgid "Today's Best"
 msgstr "Mejor de Hoy"
 
@@ -4710,7 +4710,7 @@ msgid "v1.2.3.4"
 msgstr "v1.2.3.4"
 
 #: project/src/main/ui/VolumeSetting.tscn:37
-#: project/src/main/ui/volume-setting-control.gd:57
+#: project/src/main/ui/volume-setting-control.gd:55
 msgid "Music"
 msgstr "Música"
 
@@ -4718,25 +4718,25 @@ msgstr "Música"
 msgid "100%"
 msgstr "100%"
 
-#: project/src/main/ui/high-score-table.gd:42
+#: project/src/main/ui/high-score-table.gd:34
 msgid "All-time Best"
 msgstr "Mejor de Todos"
 
-#: project/src/main/ui/volume-setting-control.gd:47
+#: project/src/main/ui/volume-setting-control.gd:45
 msgid "Mute"
 msgstr "Mudo"
 
-#: project/src/main/ui/level-select/level-info-panel.gd:41
+#: project/src/main/ui/level-select/level-info-panel.gd:39
 #: project/src/main/ui/menu/PracticeMenu.tscn:235
-#: project/src/main/ui/volume-setting-control.gd:56
+#: project/src/main/ui/volume-setting-control.gd:54
 msgid "Master"
 msgstr "Maestro"
 
-#: project/src/main/ui/volume-setting-control.gd:58
+#: project/src/main/ui/volume-setting-control.gd:56
 msgid "Sounds"
 msgstr "Sonidos"
 
-#: project/src/main/ui/volume-setting-control.gd:59
+#: project/src/main/ui/volume-setting-control.gd:57
 msgid "Voices"
 msgstr "Voces"
 
@@ -4765,57 +4765,57 @@ msgstr "S++"
 msgid "Just getting started"
 msgstr "Acabamos de comenzar"
 
-#: project/src/main/ui/level-select/level-info-panel.gd:32
+#: project/src/main/ui/level-select/level-info-panel.gd:30
 msgid "Unknown"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-info-panel.gd:34
+#: project/src/main/ui/level-select/level-info-panel.gd:32
 msgid "Very Easy"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-info-panel.gd:35
+#: project/src/main/ui/level-select/level-info-panel.gd:33
 msgid "Easy"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-info-panel.gd:36
+#: project/src/main/ui/level-select/level-info-panel.gd:34
 #: project/src/main/ui/menu/PracticeMenu.tscn:211
 msgid "Normal"
 msgstr "Normal"
 
-#: project/src/main/ui/level-select/level-info-panel.gd:37
+#: project/src/main/ui/level-select/level-info-panel.gd:35
 #: project/src/main/ui/menu/PracticeMenu.tscn:218
 msgid "Hard"
 msgstr "Difícil"
 
-#: project/src/main/ui/level-select/level-info-panel.gd:38
+#: project/src/main/ui/level-select/level-info-panel.gd:36
 msgid "Very Hard"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-info-panel.gd:39
+#: project/src/main/ui/level-select/level-info-panel.gd:37
 #: project/src/main/ui/menu/PracticeMenu.tscn:226
 msgid "Expert"
 msgstr "Experto"
 
-#: project/src/main/ui/level-select/level-info-panel.gd:40
+#: project/src/main/ui/level-select/level-info-panel.gd:38
 msgid "Very Expert"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-info-panel.gd:42
+#: project/src/main/ui/level-select/level-info-panel.gd:40
 #, python-format
 msgid "Difficulty: %s"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-info-panel.gd:55
+#: project/src/main/ui/level-select/level-info-panel.gd:53
 #, python-format
 msgid "Duration: %s"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-info-panel.gd:60
+#: project/src/main/ui/level-select/level-info-panel.gd:58
 #, python-format
 msgid "New: %s"
 msgstr ""
 
-#: project/src/main/ui/level-select/level-info-panel.gd:64
+#: project/src/main/ui/level-select/level-info-panel.gd:62
 #, python-format
 msgid "Top: %s"
 msgstr ""
@@ -4890,38 +4890,38 @@ msgstr "Dificultad"
 msgid "Well, crap"
 msgstr "Bueno, mierda"
 
-#: project/src/main/ui/menu/practice-mode-selector.gd:46
+#: project/src/main/ui/menu/practice-mode-selector.gd:38
 #, python-format
 msgid "Survive as the pieces get faster and faster! Can you clear %s lines?"
 msgstr ""
 "¡Sobrevive mientras las piezas caen cada vez más rápidas! ¿Puedes limpiar %s "
 "líneas?"
 
-#: project/src/main/ui/menu/practice-mode-selector.gd:49
+#: project/src/main/ui/menu/practice-mode-selector.gd:41
 #, python-format
 msgid "Earn ¥%s as quickly as possible!"
 msgstr "¡Consigue ¥%s lo más rápido posible!"
 
-#: project/src/main/ui/menu/practice-mode-selector.gd:52
+#: project/src/main/ui/menu/practice-mode-selector.gd:44
 #, python-format
 msgid "Earn as much money as you can in %s!"
 msgstr "¡Consigue tanto dinero como puedas en %s!"
 
-#: project/src/main/ui/menu/practice-mode-selector.gd:55
+#: project/src/main/ui/menu/practice-mode-selector.gd:47
 msgid "An escalating set of challenges."
 msgstr "Un set de desafíos cada vez más difíciles."
 
-#: project/src/main/ui/menu/practice-mode-selector.gd:58
+#: project/src/main/ui/menu/practice-mode-selector.gd:50
 #, python-format
 msgid "Finish with ¥%s to achieve this rank!"
 msgstr "¡Termina con ¥%s para lograr este rango!"
 
-#: project/src/main/ui/menu/practice-mode-selector.gd:61
+#: project/src/main/ui/menu/practice-mode-selector.gd:53
 #, python-format
 msgid "Finish in %s to achieve this rank!"
 msgstr "¡Termina en %s para lograr este rango!"
 
-#: project/src/main/ui/menu/practice-mode-selector.gd:64
+#: project/src/main/ui/menu/practice-mode-selector.gd:56
 msgid "Just relax! There is no way to win or lose this mode."
 msgstr "¡Solo relájate! No hay manera de ganar o perder en este modo."
 
@@ -5115,144 +5115,144 @@ msgstr "Ok"
 msgid "* Your settings will take effect in the next scene."
 msgstr ""
 
-#: project/src/main/ui/settings/settings-creature-graphics.gd:9
+#: project/src/main/ui/settings/settings-creature-detail.gd:7
 msgid "Low"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-creature-graphics.gd:10
+#: project/src/main/ui/settings/settings-creature-detail.gd:8
 msgid "High"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-dialogs.gd:33
-#: project/src/main/ui/settings/settings-dialogs.gd:39
-#: project/src/main/ui/settings/settings-dialogs.gd:46
+#: project/src/main/ui/settings/settings-dialogs.gd:31
+#: project/src/main/ui/settings/settings-dialogs.gd:37
+#: project/src/main/ui/settings/settings-dialogs.gd:44
 msgid "Yes"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-dialogs.gd:34
-#: project/src/main/ui/settings/settings-dialogs.gd:40
-#: project/src/main/ui/settings/settings-dialogs.gd:47
+#: project/src/main/ui/settings/settings-dialogs.gd:32
+#: project/src/main/ui/settings/settings-dialogs.gd:38
+#: project/src/main/ui/settings/settings-dialogs.gd:45
 msgid "No"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-dialogs.gd:74
+#: project/src/main/ui/settings/settings-dialogs.gd:68
 #, python-format
 msgid "%.1f hours"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-dialogs.gd:83
+#: project/src/main/ui/settings/settings-dialogs.gd:75
 msgid "Delete save data?"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-dialogs.gd:92
+#: project/src/main/ui/settings/settings-dialogs.gd:82
 msgid "Are you sure?"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-menu.gd:125
+#: project/src/main/ui/settings/settings-menu.gd:117
 msgid "Save + Quit"
 msgstr "Guardar + Salir"
 
-#: project/src/main/ui/settings/settings-menu.gd:126
+#: project/src/main/ui/settings/settings-menu.gd:118
 msgid "Give Up"
 msgstr "Renunciar"
 
-#: project/src/main/ui/settings/settings-tab-container.gd:13
+#: project/src/main/ui/settings/settings-tab-container.gd:9
 msgid "Sound + Graphics"
 msgstr ""
 
-#: project/src/main/ui/settings/settings-tab-container.gd:14
+#: project/src/main/ui/settings/settings-tab-container.gd:10
 msgid "Gameplay"
 msgstr "Jugabilidad"
 
-#: project/src/main/ui/settings/settings-tab-container.gd:15
+#: project/src/main/ui/settings/settings-tab-container.gd:11
 msgid "Controls"
 msgstr "Controles"
 
-#: project/src/main/ui/settings/settings-tab-container.gd:16
+#: project/src/main/ui/settings/settings-tab-container.gd:12
 msgid "Touch"
 msgstr "Tocar"
 
-#: project/src/main/ui/settings/settings-tab-container.gd:17
+#: project/src/main/ui/settings/settings-tab-container.gd:13
 msgid "Miscellaneous"
 msgstr "Miscelaneo"
 
-#: project/src/main/ui/settings/settings-touch-fat-finger.gd:11
+#: project/src/main/ui/settings/settings-touch-fat-finger.gd:9
 msgid "Off"
 msgstr "Apagado"
 
-#: project/src/main/ui/settings/settings-touch-fat-finger.gd:12
+#: project/src/main/ui/settings/settings-touch-fat-finger.gd:10
 msgid "Slim"
 msgstr "Delgado"
 
-#: project/src/main/ui/settings/settings-touch-fat-finger.gd:13
+#: project/src/main/ui/settings/settings-touch-fat-finger.gd:11
 msgid "Plump"
 msgstr "Regordete"
 
-#: project/src/main/ui/settings/settings-touch-fat-finger.gd:14
+#: project/src/main/ui/settings/settings-touch-fat-finger.gd:12
 msgid "Pudge"
 msgstr "Rechoncho"
 
-#: project/src/main/ui/settings/settings-touch-fat-finger.gd:15
+#: project/src/main/ui/settings/settings-touch-fat-finger.gd:13
 msgid "Chonk"
 msgstr "Gordo"
 
-#: project/src/main/ui/settings/settings-touch-scheme.gd:9
+#: project/src/main/ui/settings/settings-touch-scheme.gd:7
 msgid "Easy Console"
 msgstr "Easy Console"
 
-#: project/src/main/ui/settings/settings-touch-scheme.gd:10
+#: project/src/main/ui/settings/settings-touch-scheme.gd:8
 msgid "Easy Desktop"
 msgstr "Easy Desktop"
 
-#: project/src/main/ui/settings/settings-touch-scheme.gd:11
+#: project/src/main/ui/settings/settings-touch-scheme.gd:9
 msgid "Ambi Console"
 msgstr "Ambi Console"
 
-#: project/src/main/ui/settings/settings-touch-scheme.gd:12
+#: project/src/main/ui/settings/settings-touch-scheme.gd:10
 msgid "Ambi Desktop"
 msgstr "Ambi Desktop"
 
-#: project/src/main/ui/settings/settings-touch-scheme.gd:13
+#: project/src/main/ui/settings/settings-touch-scheme.gd:11
 msgid "Loco Console"
 msgstr "Loco Console"
 
-#: project/src/main/ui/settings/settings-touch-scheme.gd:14
+#: project/src/main/ui/settings/settings-touch-scheme.gd:12
 msgid "Loco Desktop"
 msgstr "Loco Desktop"
 
-#: project/src/main/ui/settings/keybind/custom-keybind-button.gd:53
+#: project/src/main/ui/settings/keybind/custom-keybind-button.gd:47
 msgid "<Enter Key>"
 msgstr "<Tecla>"
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:38
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:34
 msgid "Left, Right, Numpad4/6"
 msgstr "Izquierda, Derecha, Numpad4/6"
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:39
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:35
 msgid "Down, Numpad2"
 msgstr "Abajo, Numpad2"
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:40
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:36
 msgid "Space, Up, Shift, Numpad8"
 msgstr "Espacio, arriba, Shift, Numpad8"
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:41
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:37
 msgid "Z, X, Numpad7/9"
 msgstr "Z, X, Numpad7/9"
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:44
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:40
 msgid "A, D, Numpad4/6"
 msgstr "A, D, Numpad4/6"
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:45
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:41
 msgid "Down, S, Numpad8"
 msgstr "Abajo, S, Numpad8"
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:46
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:42
 msgid "Up, Space, W, Numpad5"
 msgstr "Arriba, Espacio, W, Numpad5"
 
-#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:47
+#: project/src/main/ui/settings/keybind/settings-keybinds-control.gd:43
 msgid "Left, Right, Numpad7/9"
 msgstr "Izquierda, Derecha, Numpad7/9"
 
