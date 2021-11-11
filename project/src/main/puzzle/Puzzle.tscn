@@ -714,7 +714,6 @@ script = ExtResource( 19 )
 [connection signal="box_built" from="Playfield" to="StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="food_spawned" from="Playfield" to="FoodItems" method="_on_Playfield_food_spawned"]
 [connection signal="line_cleared" from="Playfield" to="." method="_on_Playfield_line_cleared"]
-[connection signal="line_clears_scheduled" from="Playfield" to="StarSeeds" method="_on_Playfield_line_clears_scheduled"]
 [connection signal="line_deleted" from="Playfield" to="StarSeeds" method="_on_Playfield_line_deleted"]
 [connection signal="line_erased" from="Playfield" to="StarSeeds" method="_on_Playfield_line_erased"]
 [connection signal="line_inserted" from="Playfield" to="PieceManager" method="_on_Playfield_line_inserted"]

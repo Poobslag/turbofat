@@ -238,7 +238,7 @@ func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int,
 	
 	# Save the appropriate fatness in the CreatureLibrary
 	var base_score := customer.fatness_to_score(customer.base_fatness)
-	var new_fatness := customer.score_to_fatness(base_score + PuzzleState.get_bonus_score())
+	var new_fatness := customer.score_to_fatness(base_score + PuzzleState.fatness_score)
 	customer.save_fatness(new_fatness)
 	
 	# When the player finishes a puzzle, we end the game immediately after the last line clear. We don't wait for the

@@ -217,40 +217,45 @@ func _on_PieceManager_piece_disturbed(piece: ActivePiece) -> void:
 ## When the piece is placed, we collect any overlapped pickups.
 func _on_PuzzleState_before_piece_written() -> void:
 	# count shown pickups
-	var pickup_count := 0
+	var collected_pickup_cells := []
 	for pickup_cell in _pickups_by_cell:
 		var pickup: Pickup = _pickups_by_cell[pickup_cell]
 		if pickup.food_shown:
-			pickup_count += 1
+			collected_pickup_cells.append(pickup_cell)
 	
-	var remaining_food_for_line_clears := pickup_count
+	# calculate the total pickup score for this piece
 	var pickup_score := 0
-	
-	# Emit food_spawned signals and remove collected pickups.
-	# We iterate over a copy of the key set to avoid bugs when keys are removed.
-	for pickup_cell in _pickups_by_cell.keys():
+	for pickup_cell in collected_pickup_cells:
 		var pickup: Pickup = _pickups_by_cell[pickup_cell]
-		if not pickup.food_shown:
-			# pickup is not currently being collected
-			continue
-		
 		if pickup.is_cake():
 			pickup_score += CurrentLevel.settings.score.cake_pickup_points
 		else:
 			pickup_score += CurrentLevel.settings.score.snack_pickup_points
-		
+	
+	# Increment PuzzleState's pickup score. We increment the pickup score before emitting the 'food_spawned' signals
+	# because the customer fatness calculation works by gradually lerping towards a target value.
+	if pickup_score:
+		PuzzleState.add_pickup_score(pickup_score)
+	
+	# Emit food_spawned signals
+	var remaining_food_for_piece := collected_pickup_cells.size()
+	for pickup_cell in collected_pickup_cells:
+		var pickup: Pickup = _pickups_by_cell[pickup_cell]
+		remaining_food_for_piece -= 1
+		emit_signal("food_spawned", pickup_cell, remaining_food_for_piece, pickup.food_type)
+	
+	# Remove collected pickups
+	for pickup_cell in collected_pickup_cells:
+		var pickup: Pickup = _pickups_by_cell[pickup_cell]
 		if _pickup_type() == PICKUP_FLOAT_REGEN:
 			# temporarily hide the pickup until after the piece is written
 			pickup.visible = false
 		else:
 			remove_pickup(pickup_cell)
-		
-		remaining_food_for_line_clears -= 1
-		emit_signal("food_spawned", pickup_cell, remaining_food_for_line_clears, pickup.food_type)
 	
+	# Play pickup sfx
 	if pickup_score:
-		PuzzleState.add_pickup_score(pickup_score)
-		_remaining_pickup_sfx = pickup_count
+		_remaining_pickup_sfx = collected_pickup_cells.size()
 		_pickup_sfx_index = 0
 		_play_collect_sfx()
 

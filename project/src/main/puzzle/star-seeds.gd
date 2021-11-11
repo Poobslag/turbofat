@@ -8,7 +8,7 @@ extends Control
 ## Parameters:
 ## 	'cell': A Vector2 corresponding to the tilemap cell where the food should appear
 ##
-## 	'remaining_food': The number of remaining food items for the current set of line clears
+## 	'remaining_food': The number of remaining food items for the current line clear
 ##
 ## 	'food_type': An enum from Foods.FoodType corresponding to the food to spawn
 signal food_spawned(cell, remaining_food, food_type)
@@ -80,9 +80,6 @@ export (NodePath) var _puzzle_tile_map_path: NodePath
 ## key: Vector2 playfield cell positions
 ## value: StarSeed node contained within that cell
 var _star_seeds_by_cell: Dictionary
-
-## the number of remaining food items to spawn for the current sequence of line clears
-var _remaining_food_for_line_clears := 0
 
 export (PackedScene) var StarSeedScene: PackedScene
 
@@ -326,20 +323,17 @@ func _on_Playfield_blocks_prepared() -> void:
 	_prepare_star_seeds_for_level()
 
 
-func _on_Playfield_line_clears_scheduled(ys: Array) -> void:
-	_remaining_food_for_line_clears = 0
-	for y in ys:
-		for x in range(PuzzleTileMap.COL_COUNT):
-			if _star_seeds_by_cell.has(Vector2(x, y)):
-				_remaining_food_for_line_clears += 1
-
-
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
+	var remaining_food_for_line_clear := 0
 	for x in range(PuzzleTileMap.COL_COUNT):
 		if _star_seeds_by_cell.has(Vector2(x, y)):
-			_remaining_food_for_line_clears -= 1
+			remaining_food_for_line_clear += 1
+	
+	for x in range(PuzzleTileMap.COL_COUNT):
+		if _star_seeds_by_cell.has(Vector2(x, y)):
+			remaining_food_for_line_clear -= 1
 			
-			emit_signal("food_spawned", Vector2(x, y), _remaining_food_for_line_clears,
+			emit_signal("food_spawned", Vector2(x, y), remaining_food_for_line_clear,
 					_star_seeds_by_cell[Vector2(x, y)].food_type)
 
 
