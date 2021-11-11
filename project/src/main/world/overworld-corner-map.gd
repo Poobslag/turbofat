@@ -1,16 +1,14 @@
 extends TileMap
-"""
-Tilemap which covers the corners of the overworld tilemap.
+## Tilemap which covers the corners of the overworld tilemap.
+##
+## Without this tilemap, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area.
+## This tilemap fills in the holes.
 
-Without this tilemap, a simple 16-tile autotiling would result in tiny holes at the corners of a filled in area. This
-tilemap fills in the holes.
-"""
-
-# Defines which tiles should be covered by a corner cover. Corner covers are given the same tile index as the source
-# tile, but their autotile index is defined by this mapping.
+## Defines which tiles should be covered by a corner cover. Corner covers are given the same tile index as the source
+## tile, but their autotile index is defined by this mapping.
 #
-# key: (int) tile index which should be covered with a corner cover
-# value: (Vector2) autotile coordinate of the corner cover
+## key: (int) tile index which should be covered with a corner cover
+## value: (Vector2) autotile coordinate of the corner cover
 export (Dictionary) var cornerable_tiles := {}
 
 onready var _parent_map: TileMap = get_parent()
@@ -34,11 +32,9 @@ func _process(_delta: float) -> void:
 		dirty = false
 
 
-"""
-Returns the parent autotile bitmask (PAB) for the specified cell.
-
-This function has a confusingly short name because it's referenced repetitively in some long lines of code.
-"""
+## Returns the parent autotile bitmask (PAB) for the specified cell.
+##
+## This function has a confusingly short name because it's referenced repetitively in some long lines of code.
 func _pab(cell_index: int, cell_pos: Vector2) -> int:
 	var coord := _parent_map.get_cell_autotile_coord(cell_pos.x, cell_pos.y)
 	return _parent_map.tile_set.autotile_get_bitmask(cell_index, coord)

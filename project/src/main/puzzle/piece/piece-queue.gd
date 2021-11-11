@@ -1,20 +1,18 @@
 class_name PieceQueue
 extends Node
-"""
-Queue of upcoming randomized pieces.
+## Queue of upcoming randomized pieces.
+##
+## This queue stores the upcoming pieces so they can be displayed, and randomizes them according to some complex rules.
 
-This queue stores the upcoming pieces so they can be displayed, and randomizes them according to some complex rules.
-"""
-
-# minimum number of next pieces in the queue, before we add more
+## minimum number of next pieces in the queue, before we add more
 const MIN_SIZE := 50
 
 const UNLIMITED_PIECES := 999999
 
-# queue of upcoming NextPiece instances
+## queue of upcoming NextPiece instances
 var pieces := []
 
-# default pieces to pull from if none are provided by the level
+## default pieces to pull from if none are provided by the level
 var _default_piece_types := PieceTypes.all_types
 
 var _remaining_piece_count := UNLIMITED_PIECES
@@ -25,9 +23,7 @@ func _ready() -> void:
 	_fill()
 
 
-"""
-Clears the pieces and refills the piece queues.
-"""
+## Clears the pieces and refills the piece queues.
 func clear() -> void:
 	if CurrentLevel.settings.finish_condition.type == Milestone.PIECES:
 		_remaining_piece_count = CurrentLevel.settings.finish_condition.value
@@ -37,9 +33,7 @@ func clear() -> void:
 	_fill()
 
 
-"""
-Pops the next piece off the queue.
-"""
+## Pops the next piece off the queue.
 func pop_next_piece() -> NextPiece:
 	var next_piece_type: NextPiece = pieces.pop_front()
 	if _remaining_piece_count != UNLIMITED_PIECES:
@@ -48,9 +42,7 @@ func pop_next_piece() -> NextPiece:
 	return next_piece_type
 
 
-"""
-Returns a specific piece in the queue.
-"""
+## Returns a specific piece in the queue.
 func get_next_piece(index: int) -> NextPiece:
 	return pieces[index]
 
@@ -61,12 +53,10 @@ func _apply_piece_limit() -> void:
 			pieces[i] = _new_next_piece(PieceTypes.piece_null)
 
 
-"""
-Fills the queue with randomized pieces.
-
-The first pieces have some constraints to limit players from having especially lucky or unlucky starts. Later pieces
-have fewer constraints, but still use a bagging algorithm to ensure fairness.
-"""
+## Fills the queue with randomized pieces.
+##
+## The first pieces have some constraints to limit players from having especially lucky or unlucky starts. Later pieces
+## have fewer constraints, but still use a bagging algorithm to ensure fairness.
 func _fill() -> void:
 	if pieces.empty():
 		_fill_initial_pieces()
@@ -74,22 +64,18 @@ func _fill() -> void:
 	_apply_piece_limit()
 
 
-"""
-Initializes an empty queue with a set of starting pieces.
-"""
+## Initializes an empty queue with a set of starting pieces.
 func _fill_initial_pieces() -> void:
 	if CurrentLevel.settings.piece_types.types.empty() and CurrentLevel.settings.piece_types.start_types.empty():
-		"""
-		Default starting pieces:
-		1. Append three same-size pieces which can't build a cake box; lot, jot, jlt or pqu
-		2. Append a piece which can't build a snack box or a cake box
-		3. Append a piece which can build a snack box, but not a cake box
-		4. Append the remaining three pieces
-		5. Insert an extra piece in the last 3 positions
-		
-		These are called 'bad starts' since they avoid giving player ideal openings of 'lojpqvut' or 'lqpjutov' where
-		each piece fits with the previous piece.
-		"""
+		# Default starting pieces:
+		# 1. Append three same-size pieces which can't build a cake box; lot, jot, jlt or pqu
+		# 2. Append a piece which can't build a snack box or a cake box
+		# 3. Append a piece which can build a snack box, but not a cake box
+		# 4. Append the remaining three pieces
+		# 5. Insert an extra piece in the last 3 positions
+		#
+		# These are called 'bad starts' since they avoid giving player ideal openings of 'lojpqvut' or 'lqpjutov' where
+		# each piece fits with the previous piece.
 		var all_bad_starts := [
 			[PieceTypes.piece_l, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_p, PieceTypes.piece_q],
 			[PieceTypes.piece_l, PieceTypes.piece_o, PieceTypes.piece_t, PieceTypes.piece_p, PieceTypes.piece_v],
@@ -137,9 +123,7 @@ func _fill_initial_pieces() -> void:
 				pieces.push_front(_new_next_piece(piece_type))
 
 
-"""
-Creates a new next piece with the specified type.
-"""
+## Creates a new next piece with the specified type.
 func _new_next_piece(type: PieceType) -> NextPiece:
 	var next_piece := NextPiece.new()
 	next_piece.type = type
@@ -158,13 +142,11 @@ func shuffled_piece_types() -> Array:
 	return result
 
 
-"""
-Extends a non-empty queue by adding more pieces.
-
-The algorithm puts all 8 piece types into a bag with one extra random piece. It pulls random pieces from the bag, but
-avoids pulling the same piece back to back. With this algorithm you're always able to build four 3x3 boxes, but the
-extra piece acts as an helpful tool for 3x4 boxes and 3x5 boxes, or an annoying deterrent for 3x3 boxes.
-"""
+## Extends a non-empty queue by adding more pieces.
+##
+## The algorithm puts all 8 piece types into a bag with one extra random piece. It pulls random pieces from the bag,
+## but avoids pulling the same piece back to back. With this algorithm you're always able to build four 3x3 boxes, but
+## the extra piece acts as an helpful tool for 3x4 boxes and 3x5 boxes, or an annoying deterrent for 3x3 boxes.
 func _fill_remaining_pieces() -> void:
 	while pieces.size() < MIN_SIZE:
 		# fill a bag with one of each piece and one extra; draw them out in a random order
@@ -188,17 +170,15 @@ func _fill_remaining_pieces() -> void:
 		_insert_annoying_piece(new_piece_types.size())
 
 
-"""
-Moves a piece which appears back-to-back in the piece queue.
-
-Parameters:
-	'from_index': The index of the piece being moved
-	
-	'min_to_index': The earliest position in the queue the piece can be moved to
-
-Returns:
-	The position the piece was moved to, or 'from_index' if the piece did not move.
-"""
+## Moves a piece which appears back-to-back in the piece queue.
+##
+## Parameters:
+## 	'from_index': The index of the piece being moved
+##
+## 	'min_to_index': The earliest position in the queue the piece can be moved to
+##
+## Returns:
+## 	The position the piece was moved to, or 'from_index' if the piece did not move.
 func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 	# remove the piece from the queue
 	var duplicate_piece: NextPiece = pieces[from_index]
@@ -215,9 +195,7 @@ func _move_duplicate_piece(from_index: int, min_to_index: int) -> int:
 	return to_index
 
 
-"""
-Returns 'true' if the specified array has the same piece back-to-back.
-"""
+## Returns 'true' if the specified array has the same piece back-to-back.
 func _has_duplicate_pieces(in_pieces: Array) -> bool:
 	var result := false
 	for i in range(in_pieces.size() - 1):
@@ -227,16 +205,14 @@ func _has_duplicate_pieces(in_pieces: Array) -> bool:
 	return result
 
 
-"""
-Inserts an extra piece into the bag.
-
-Turbo Fat's pieces fit together too well. We periodically add extra pieces to the bag to ensure the game isn't too
-easy.
-
-Parameters:
-	'max_pieces_to_right': The maximum number of pieces to the right of the new piece. '0' guarantees the new piece
-			will be appended to the end of the queue, '8' means it will be mixed in with the last eight pieces.
-"""
+## Inserts an extra piece into the bag.
+##
+## Turbo Fat's pieces fit together too well. We periodically add extra pieces to the bag to ensure the game isn't too
+## easy.
+##
+## Parameters:
+## 	'max_pieces_to_right': The maximum number of pieces to the right of the new piece. '0' guarantees the new piece
+## 			will be appended to the end of the queue, '8' means it will be mixed in with the last eight pieces.
 func _insert_annoying_piece(max_pieces_to_right: int) -> void:
 	var new_piece_index := int(rand_range(pieces.size() - max_pieces_to_right + 1, pieces.size() + 1))
 	var extra_piece_types: Array = shuffled_piece_types()
@@ -261,21 +237,20 @@ func _on_PuzzleState_game_prepared() -> void:
 	clear()
 
 
-"""
-Returns a list of of positions where a piece can be inserted without being adjacent to another piece of the same type.
-
-non_adjacent_indexes(['j', 'o'], 'j')      = [2]
-non_adjacent_indexes(['j', 'o', 't'], 't') = [0, 1]
-non_adjacent_indexes([], 't')              = [0]
-non_adjacent_indexes(['o', 'j', 'o'], 'o') = []
-
-Parameters:
-	'pieces': An array of NextPiece instances representing pieces in a queue.
-	
-	'piece_type': The type of the piece being inserted.
-	
-	'from_index': The lowest position to check in the piece queue.
-"""
+## Returns a list of of positions where a piece can be inserted without being adjacent to another piece of the same
+## type.
+##
+## non_adjacent_indexes(['j', 'o'], 'j')      = [2]
+## non_adjacent_indexes(['j', 'o', 't'], 't') = [0, 1]
+## non_adjacent_indexes([], 't')              = [0]
+## non_adjacent_indexes(['o', 'j', 'o'], 'o') = []
+##
+## Parameters:
+## 	'pieces': An array of NextPiece instances representing pieces in a queue.
+##
+## 	'piece_type': The type of the piece being inserted.
+##
+## 	'from_index': The lowest position to check in the piece queue.
 static func non_adjacent_indexes(in_pieces: Array, piece_type: PieceType, from_index: int = 0) -> Array:
 	var result := []
 	for i in range(from_index, in_pieces.size() + 1):

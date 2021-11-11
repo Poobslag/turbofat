@@ -1,8 +1,6 @@
 class_name PaletteEditorTab
 extends VBoxContainer
-"""
-A tab which lets the player pick and edit different creature palettes.
-"""
+## A tab which lets the player pick and edit different creature palettes.
 
 export (PackedScene) var PaletteButtonScene: PackedScene
 export (NodePath) var creature_editor_path: NodePath setget set_creature_editor_path
@@ -35,11 +33,9 @@ func _add_palette(palette: Dictionary) -> void:
 	_creature_palettes.append(palette)
 
 
-"""
-Updates the creature's colors with the clicked palette.
-
-Rotates the creature's current color to the outer creatures, so the player can go back if they liked the old colors.
-"""
+## Updates the creature's colors with the clicked palette.
+##
+## Rotates the creature's current color to the outer creatures, so the player can go back if they liked the old colors.
 func _on_PaletteButton_pressed(palette: Dictionary) -> void:
 	# rotate the creature's current color out
 	_creature_editor.outer_creatures[0].dna = get_center_creature().dna
@@ -60,11 +56,9 @@ func _on_PaletteButton_pressed(palette: Dictionary) -> void:
 	_creature_editor.emit_signal("center_creature_changed")
 
 
-"""
-Prints a palette to the console.
-
-This printed palette is valid GDScript, and can be copy/pasted into the DnaUtils constant.
-"""
+## Prints a palette to the console.
+##
+## This printed palette is valid GDScript, and can be copy/pasted into the DnaUtils constant.
 func _print_palette(palette: Dictionary) -> void:
 	var result := ""
 	result += "\t{\"line_rgb\": \"%s\", " % palette["line_rgb"]
@@ -79,9 +73,7 @@ func _print_palette(palette: Dictionary) -> void:
 	print(result)
 
 
-"""
-Prints all palettes to the console.
-"""
+## Prints all palettes to the console.
 func _on_Print_pressed() -> void:
 	print("const CREATURE_PALETTES := [")
 	for palette in _creature_palettes:
@@ -89,9 +81,7 @@ func _on_Print_pressed() -> void:
 	print("]")
 
 
-"""
-Appends a palette and prints it to the console.
-"""
+## Appends a palette and prints it to the console.
 func _on_Add_pressed() -> void:
 	var palette := {}
 	for allele in DnaUtils.COLOR_ALLELES:

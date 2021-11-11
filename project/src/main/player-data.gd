@@ -1,18 +1,16 @@
 extends Node
-"""
-Stores data about the player's progress.
-
-This data includes how well they've done on each level and how much money they've earned.
-
-Configuration data like the graphics and keybindings is stored in the SystemData class, not here.
-"""
+## Stores data about the player's progress.
+##
+## This data includes how well they've done on each level and how much money they've earned.
+##
+## Configuration data like the graphics and keybindings is stored in the SystemData class, not here.
 
 signal money_changed(value)
 
-# emitted when the player beats a level, or when the level history is reset or reloaded
+## emitted when the player beats a level, or when the level history is reset or reloaded
 signal level_history_changed
 
-# how often in seconds to increment the 'seconds_played' value
+## how often in seconds to increment the 'seconds_played' value
 const SECONDS_PLAYED_INCREMENT := 0.619
 
 var level_history := LevelHistory.new()
@@ -23,10 +21,10 @@ var creature_queue := CreatureQueue.new()
 
 var money := 0 setget set_money
 
-# the player's playtime in seconds
+## the player's playtime in seconds
 var seconds_played := 0.0
 
-# periodically increments the 'seconds_played' value
+## periodically increments the 'seconds_played' value
 var seconds_played_timer: Timer
 
 func _ready() -> void:
@@ -37,9 +35,7 @@ func _ready() -> void:
 	seconds_played_timer.start()
 
 
-"""
-Resets the player's in-memory data to a default state.
-"""
+## Resets the player's in-memory data to a default state.
 func reset() -> void:
 	level_history.reset()
 	chat_history.reset()

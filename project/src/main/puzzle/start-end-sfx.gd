@@ -1,7 +1,5 @@
 extends Node
-"""
-Plays sound effects at the start and end of a puzzle.
-"""
+## Plays sound effects at the start and end of a puzzle.
 
 onready var _go_voices := [$GoVoice0, $GoVoice1, $GoVoice2]
 

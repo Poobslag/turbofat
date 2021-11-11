@@ -1,25 +1,23 @@
 class_name PieceManager
 extends Control
-"""
-Contains logic for spawning new pieces, moving/rotating pieces, handling player input, and locking pieces into the
-_playfield.
-"""
+## Contains logic for spawning new pieces, moving/rotating pieces, handling player input, and locking pieces into the
+## playfield.
 
-# Emitted when the playfield changes in a way which might move the current piece or alter its behavior. For example,
-# inserting a row might bump the piece up, or erasing a row might shift the ghost piece down.
+## Emitted when the playfield changes in a way which might move the current piece or alter its behavior. For example,
+## inserting a row might bump the piece up, or erasing a row might shift the ghost piece down.
 signal playfield_disturbed(piece)
 
 signal piece_spawned
 
-# emitted when the current piece changes in some way (moved, replaced, reoriented)
+## emitted when the current piece changes in some way (moved, replaced, reoriented)
 signal piece_disturbed(piece)
 
-# emitted when the player rotates a piece
+## emitted when the player rotates a piece
 signal initial_rotated_cw
 signal initial_rotated_ccw
 signal initial_rotated_180
 
-# emitted when the player moves a piece
+## emitted when the player moves a piece
 signal initial_das_moved_left
 signal initial_das_moved_right
 signal das_moved_left
@@ -33,30 +31,30 @@ signal soft_dropped
 signal hard_dropped
 signal squish_moved(piece, old_pos)
 
-# emitted for piece locks
+## emitted for piece locks
 signal lock_cancelled
 signal lock_started
 
 signal tiles_changed(tile_map)
 
-# the z index the piece manager's tilemap defaults to
+## the z index the piece manager's tilemap defaults to
 const TILE_MAP_DEFAULT_Z_INDEX := 3
 
-# the z index the piece manager's tilemap switches to temporarily when topping out
+## the z index the piece manager's tilemap switches to temporarily when topping out
 const TILE_MAP_TOP_OUT_Z_INDEX := 4
 
 export (NodePath) var playfield_path: NodePath
 export (NodePath) var piece_queue_path: NodePath
 
-# settings and state for the currently active piece.
+## settings and state for the currently active piece.
 var piece: ActivePiece
 
-# information about the piece previously rendered to the tilemap
+## information about the piece previously rendered to the tilemap
 var drawn_piece_type: PieceType
 var drawn_piece_pos: Vector2
 var drawn_piece_orientation: int
 
-# TileMap containing the puzzle blocks which make up the active piece
+## TileMap containing the puzzle blocks which make up the active piece
 onready var tile_map: PuzzleTileMap = $TileMap
 onready var input: PieceInput = $Input
 
@@ -104,31 +102,25 @@ func is_playfield_ready_for_new_piece() -> bool:
 	return _playfield.ready_for_new_piece()
 
 
-"""
-Writes the current piece to the _playfield, checking whether it builds any boxes or clears any lines.
-
-Returns true if the newly written piece results in a line clear.
-"""
+## Writes the current piece to the _playfield, checking whether it builds any boxes or clears any lines.
+##
+## Returns true if the newly written piece results in a line clear.
 func write_piece_to_playfield() -> void:
 	_playfield.write_piece(piece.pos, piece.orientation, piece.type)
 	_clear_piece()
 
 
-"""
-Called when the player tops out, but doesn't lose.
-
-Enters a state which waits for the _playfield to make room for the current piece.
-"""
+## Called when the player tops out, but doesn't lose.
+##
+## Enters a state which waits for the _playfield to make room for the current piece.
 func enter_top_out_state(top_out_frames: int) -> void:
 	_states.set_state(_states.top_out)
 	piece.spawn_delay = top_out_frames
 
 
-"""
-Spawns a new piece at the top of the _playfield.
-
-Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
-"""
+## Spawns a new piece at the top of the _playfield.
+##
+## Returns 'true' if the piece was spawned successfully, or 'false' if the player topped out.
 func spawn_piece() -> bool:
 	var next_piece := _piece_queue.pop_next_piece()
 	piece = ActivePiece.new(next_piece.type, funcref(_playfield.tile_map, "is_cell_blocked"))
@@ -145,31 +137,23 @@ func move_piece() -> void:
 		emit_signal("piece_disturbed", piece)
 
 
-"""
-Records any inputs to a buffer to be replayed later.
-"""
+## Records any inputs to a buffer to be replayed later.
 func buffer_inputs() -> void:
 	input.buffer_inputs()
 
 
-"""
-Replays any inputs which were pressed while buffering.
-"""
+## Replays any inputs which were pressed while buffering.
 func pop_buffered_inputs() -> void:
 	input.pop_buffered_inputs()
 
 
-"""
-Returns a number from [0, 1] for how close the piece is to squishing.
-"""
+## Returns a number from [0, 1] for how close the piece is to squishing.
 func squish_percent() -> float:
 	return _physics.squish_percent(piece)
 
 
-"""
-Increments the piece's 'lock'. A piece will become locked once its accumulated 'lock' exceeds a certain threshold,
-usually about half a second.
-"""
+## Increments the piece's 'lock'. A piece will become locked once its accumulated 'lock' exceeds a certain threshold,
+## usually about half a second.
 func apply_lock() -> void:
 	if not piece.can_move_to(Vector2(piece.pos.x, piece.pos.y + 1), piece.orientation):
 		piece.lock += 1
@@ -182,9 +166,7 @@ func is_playfield_clearing_lines() -> bool:
 	return _playfield.get_remaining_line_erase_frames() > 0
 
 
-"""
-Set the state frames so that the piece spawns immediately.
-"""
+## Set the state frames so that the piece spawns immediately.
 func skip_prespawn() -> void:
 	if CurrentLevel.settings.other.non_interactive:
 		return
@@ -202,9 +184,7 @@ func _clear_piece() -> void:
 	piece = ActivePiece.new(PieceTypes.piece_null, funcref(tile_map, "is_cell_blocked"))
 
 
-"""
-Refresh the tilemap which displays the piece, based on the current piece's position and orientation.
-"""
+## Refresh the tilemap which displays the piece, based on the current piece's position and orientation.
 func _update_tile_map() -> void:
 	tile_map.clear()
 	var pos_arr := piece.get_pos_arr()
@@ -214,9 +194,7 @@ func _update_tile_map() -> void:
 		tile_map.set_block(block_pos, 0, block_color)
 
 
-"""
-Spawns the first piece of a level.
-"""
+## Spawns the first piece of a level.
 func _start_first_piece() -> void:
 	if CurrentLevel.settings.other.non_interactive:
 		return
@@ -248,18 +226,15 @@ func _on_PuzzleState_game_started() -> void:
 	_start_first_piece()
 
 
-"""
-The player finished the level, possibly while they were still moving a piece around. We clear their piece so that it's
-not left floating.
-"""
+## The player finished the level, possibly while they were still moving a piece around. We clear their piece so that
+## it's not left floating.
 func _on_PuzzleState_finish_triggered() -> void:
 	_clear_piece()
 	_states.set_state(_states.game_ended)
 
 
-"""
-The game ended the game, possibly by a top out. We leave the piece in place so that they can see why they topped out.
-"""
+## The game ended the game, possibly by a top out. We leave the piece in place so that they can see why they topped
+## out.
 func _on_PuzzleState_game_ended() -> void:
 	_states.set_state(_states.game_ended)
 
@@ -273,16 +248,12 @@ func _on_PuzzleState_after_level_changed() -> void:
 	_start_first_piece()
 
 
-"""
-When the player pauses, we hide the playfield so they can't cheat.
-"""
+## When the player pauses, we hide the playfield so they can't cheat.
 func _on_Pauser_paused_changed(value: bool) -> void:
 	visible = not value
 
 
-"""
-When a line is inserted which intersects with the active piece, we shift it up.
-"""
+## When a line is inserted which intersects with the active piece, we shift it up.
 func _on_Playfield_line_inserted(_y: int, _tiles_key: String, _src_y: int) -> void:
 	piece.reset_target()
 	while piece.target_pos.y > 0 and not piece.can_move_to_target():

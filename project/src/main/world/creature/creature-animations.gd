@@ -1,15 +1,13 @@
 #tool #uncomment to view creature in editor
 class_name CreatureAnimations
 extends Node
-"""
-Animates the creature's limbs, facial expressions and movement.
-
-Contains AnimationPlayers to handle things like idle emotes, movement and idle animations.
-
-Exposes properties which manipulate multiple sprites simultaneously. Toggling things like arm and eye emotes involves
-animating four sprites. It's tedious having four near-identical animation tracks, so this class consolidates those four
-frame properties into one.
-"""
+## Animates the creature's limbs, facial expressions and movement.
+##
+## Contains AnimationPlayers to handle things like idle emotes, movement and idle animations.
+##
+## Exposes properties which manipulate multiple sprites simultaneously. Toggling things like arm and eye emotes
+## involves animating four sprites. It's tedious having four near-identical animation tracks, so this class
+## consolidates those four frame properties into one.
 
 export (int) var emote_eye_frame: int setget set_emote_eye_frame
 export (int) var eye_frame: int setget set_eye_frame
@@ -31,16 +29,16 @@ var _near_arm: PackedSprite
 var _tail_z0: PackedSprite
 var _tail_z1: PackedSprite
 
-# IdleTimer which launches idle animations periodically
+## IdleTimer which launches idle animations periodically
 onready var _idle_timer: Timer = $IdleTimer
 
-# recoils the creature's head
+## recoils the creature's head
 onready var _tween: Tween = $Tween
 
-# EmotePlayer which animates moods: blinking, smiling, sweating, etc.
+## EmotePlayer which animates moods: blinking, smiling, sweating, etc.
 onready var _emote_player: AnimationPlayer = $EmotePlayer
 
-# AnimationPlayer which animates movement: running, walking, etc.
+## AnimationPlayer which animates movement: running, walking, etc.
 onready var _movement_player: AnimationPlayer = $MovementPlayer
 
 func _ready() -> void:
@@ -55,20 +53,16 @@ func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
 	_refresh_creature_visuals_path()
 
 
-"""
-Sets the frame for the emote eye sprites, resetting the non-emote sprites to a default frame.
-"""
+## Sets the frame for the emote eye sprites, resetting the non-emote sprites to a default frame.
 func set_emote_eye_frame(new_emote_eye_frame: int) -> void:
 	emote_eye_frame = new_emote_eye_frame
 	_refresh_emote_eye_frame()
 
 
-"""
-Resets the eye/arm frames to default values.
-
-This is used during development to ensure the .tscn file doesn't include unnecessary changes when we play animations
-in the Godot editor. It is not used during the game.
-"""
+## Resets the eye/arm frames to default values.
+##
+## This is used during development to ensure the .tscn file doesn't include unnecessary changes when we play animations
+## in the Godot editor. It is not used during the game.
 func reset() -> void:
 	set_emote_eye_frame(0)
 	set_eye_frame(0)
@@ -87,12 +81,10 @@ func eat() -> void:
 	_emote_player.eat()
 
 
-"""
-Animates the creature's appearance according to the specified mood: happy, angry, etc...
-
-Parameters:
-	'mood': The creature's new mood from ChatEvent.Mood
-"""
+## Animates the creature's appearance according to the specified mood: happy, angry, etc...
+##
+## Parameters:
+## 	'mood': The creature's new mood from ChatEvent.Mood
 func play_mood(mood: int) -> void:
 	_idle_timer.stop_idle_animation()
 	
@@ -104,10 +96,8 @@ func play_mood(mood: int) -> void:
 		_emote_player.emote(mood)
 
 
-"""
-The 'feed' animation causes a few side-effects. The creature's head recoils and some sounds play. This method controls
-all of those secondary visual effects of the creature being fed.
-"""
+## The 'feed' animation causes a few side-effects. The creature's head recoils and some sounds play. This method
+## controls all of those secondary visual effects of the creature being fed.
 func show_food_effects() -> void:
 	_tween.interpolate_property(_head_bobber, "position:x",
 			clamp(_head_bobber.position.x - 6, -20, 0), 0, 0.5,
@@ -143,9 +133,7 @@ func _refresh_emote_eye_frame() -> void:
 	_emote_eye_z1.frame = emote_eye_frame
 
 
-"""
-Sets the frame for the eye sprites, resetting the emote sprites to a default frame.
-"""
+## Sets the frame for the eye sprites, resetting the emote sprites to a default frame.
 func set_eye_frame(new_eye_frame: int) -> void:
 	eye_frame = new_eye_frame
 	_refresh_eye_frame()
@@ -161,9 +149,7 @@ func _refresh_eye_frame() -> void:
 	_emote_eye_z1.frame = 0
 
 
-"""
-Sets the frame for the emote arm sprites, resetting the non-emote sprites to a default frame.
-"""
+## Sets the frame for the emote arm sprites, resetting the non-emote sprites to a default frame.
 func set_emote_arm_frame(new_emote_arm_frame: int) -> void:
 	emote_arm_frame = new_emote_arm_frame
 	_refresh_emote_arm_frame()

@@ -1,8 +1,6 @@
 class_name Puzzle
 extends Control
-"""
-A puzzle scene where a player drops pieces into a playfield of blocks.
-"""
+## A puzzle scene where a player drops pieces into a playfield of blocks.
 
 onready var _restaurant_view: RestaurantView = $RestaurantView
 
@@ -69,9 +67,7 @@ func scroll_to_new_creature() -> void:
 	_restaurant_view.scroll_to_new_creature()
 
 
-"""
-Start a countdown when transitioning between levels. Used during tutorials.
-"""
+## Start a countdown when transitioning between levels. Used during tutorials.
 func start_level_countdown() -> void:
 	$PieceManager.set_physics_process(false)
 	$Hud/HudUi/PuzzleMessages.show_message(tr("Ready?"))
@@ -87,28 +83,24 @@ func get_customer() -> Creature:
 	return _restaurant_view.get_customer()
 
 
-"""
-Triggers the eating animation and makes the creature fatter. Accepts a 'fatness_pct' parameter which defines how
-much fatter the creature should get. We can calculate how fat they should be, and a value of 0.4 means the creature
-should increase by 40% of the amount needed to reach that target.
-
-This 'fatness_pct' parameter is needed for the level where the player eliminates three lines at once. We don't
-want the creature to suddenly grow full size. We want it to take 3 bites.
-
-Parameters:
-	'customer': The creature to feed
-	
-	'food_type': An enum from FoodType corresponding to the food to show
-"""
+## Triggers the eating animation and makes the creature fatter. Accepts a 'fatness_pct' parameter which defines how
+## much fatter the creature should get. We can calculate how fat they should be, and a value of 0.4 means the creature
+## should increase by 40% of the amount needed to reach that target.
+##
+## This 'fatness_pct' parameter is needed for the level where the player eliminates three lines at once. We don't
+## want the creature to suddenly grow full size. We want it to take 3 bites.
+##
+## Parameters:
+## 	'customer': The creature to feed
+##
+## 	'food_type': An enum from FoodType corresponding to the food to show
 func feed_creature(customer: Creature, food_type: int) -> void:
 	var new_comfort := customer.score_to_comfort(PuzzleState.combo, PuzzleState.get_customer_score())
 	customer.set_comfort(new_comfort)
 	customer.feed(food_type)
 
 
-"""
-Starts or restarts the puzzle, loading new customers and preparing the level.
-"""
+## Starts or restarts the puzzle, loading new customers and preparing the level.
 func _start_puzzle() -> void:
 	PlayerData.creature_queue.reset_secondary_creature_queue()
 	
@@ -175,12 +167,10 @@ func _quit_puzzle() -> void:
 	SceneTransition.pop_trail()
 
 
-"""
-Returns 'true' if we should play a postroll cutscene after this level.
-
-We play a postroll cutscene if the player clears the level, although we forcibly skip the cutscene in other
-circumstances as well.
-"""
+## Returns 'true' if we should play a postroll cutscene after this level.
+##
+## We play a postroll cutscene if the player clears the level, although we forcibly skip the cutscene in other
+## circumstances as well.
 func _should_play_postroll() -> bool:
 	var result := true
 	var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
@@ -196,12 +186,10 @@ func _should_play_postroll() -> bool:
 	return result
 
 
-"""
-Returns 'true' if we should play an epilogue after this level and its postroll cutscenes.
-
-We play an epilogue if the player's beaten the last level in the current world, and if the player hasn't seen this
-world's epilogue scene yet.
-"""
+## Returns 'true' if we should play an epilogue after this level and its postroll cutscenes.
+##
+## We play an epilogue if the player's beaten the last level in the current world, and if the player hasn't seen this
+## world's epilogue scene yet.
 func _should_play_epilogue() -> bool:
 	var result := false
 	var world_lock: WorldLock = LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
@@ -222,11 +210,9 @@ func _should_play_epilogue() -> bool:
 	return result
 
 
-"""
-Enqueues a cutscene to play after this level.
-
-The specified cutscene is played after any other cutscenes.
-"""
+## Enqueues a cutscene to play after this level.
+##
+## The specified cutscene is played after any other cutscenes.
 func _enqueue_cutscene(chat_tree: ChatTree) -> void:
 	if not CutsceneManager.is_front_chat_tree():
 		# Insert the cutscene into the breadcrumb trail, so it shows up when the puzzle scene is popped
@@ -246,9 +232,7 @@ func _on_Hud_back_button_pressed() -> void:
 	_quit_puzzle()
 
 
-"""
-Triggers the 'creature feeding' animation.
-"""
+## Triggers the 'creature feeding' animation.
 func _on_Playfield_line_cleared(_y: int, total_lines: int, remaining_lines: int, _box_ints: Array) -> void:
 	var customer: Creature = get_customer()
 	
@@ -273,9 +257,7 @@ func _on_PuzzleState_game_started() -> void:
 	_settings_menu.quit_type = SettingsMenu.GIVE_UP
 
 
-"""
-Method invoked when the game ends. Stores the rank result for later.
-"""
+## Method invoked when the game ends. Stores the rank result for later.
 func _on_PuzzleState_game_ended() -> void:
 	if not CurrentLevel.level_id:
 		# null check to avoid errors when launching Puzzle.tscn standalone
@@ -297,11 +279,9 @@ func _on_PuzzleState_game_ended() -> void:
 	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
 
 
-"""
-Wait until after the game ends to save the player's data.
-
-This makes the stutter from writing to disk less noticable.
-"""
+## Wait until after the game ends to save the player's data.
+##
+## This makes the stutter from writing to disk less noticable.
 func _on_PuzzleState_after_game_ended() -> void:
 	PlayerSave.save_player_data()
 

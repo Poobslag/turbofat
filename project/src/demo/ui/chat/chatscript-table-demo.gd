@@ -1,18 +1,16 @@
 extends Control
-"""
-Generates a BBCode Chatscript mood table for the wiki.
+## Generates a BBCode Chatscript mood table for the wiki.
+##
+## This process is automated because the list of emoticons is likely to expand or change.
 
-This process is automated because the list of emoticons is likely to expand or change.
-"""
-
-# The number of columns in the BBCode table
+## The number of columns in the BBCode table
 var _table_width := 1
 
-# key: An int corresponding to a mood from ChatEvent.Mood
-# value: An array of string chat prefixes (emoticons)
+## key: An int corresponding to a mood from ChatEvent.Mood
+## value: An array of string chat prefixes (emoticons)
 var _prefixes_by_mood := {}
 
-# TextEdit containing the BBCode table
+## TextEdit containing the BBCode table
 onready var _text_edit := $TextEdit
 
 func _ready() -> void:
@@ -70,13 +68,11 @@ func _add_mood_rows() -> void:
 		_add_table_row(table_row)
 
 
-"""
-Add a BBCode row to the TextEdit.
-
-Parameters:
-	'row': An array of strings corresponding to the row's contents. Empty columns will be filled in if the array has
-			fewer entries than the number of columns in the table.
-"""
+## Add a BBCode row to the TextEdit.
+##
+## Parameters:
+## 	'row': An array of strings corresponding to the row's contents. Empty columns will be filled in if the array has
+## 		fewer entries than the number of columns in the table.
 func _add_table_row(row: Array) -> void:
 	var pool_array := PoolStringArray(row)
 	

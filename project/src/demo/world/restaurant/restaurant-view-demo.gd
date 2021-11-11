@@ -1,19 +1,17 @@
 extends Control
-"""
-A demo which shows off the restaurant view.
-
-Keys:
-	[D]: Ring the doorbell
-	[F]: Feed the creature
-	[I]: Launch an idle animation
-	[V]: Say something
-	[N]: Change the nametag names
-	[1-9,0]: Change the creature's size from 10% to 100%
-	SHIFT+[1-9,0]: Change the creature's comfort from 0.0 -> 1.0 -> -1.0
-	[Q,W,E]: Switch to the 1st, 2nd or 3rd creature.
-	arrows: Change the creature's orientation
-	brace keys: Change the creature's appearance
-"""
+## A demo which shows off the restaurant view.
+##
+## Keys:
+## 	[D]: Ring the doorbell
+## 	[F]: Feed the creature
+## 	[I]: Launch an idle animation
+## 	[V]: Say something
+## 	[N]: Change the nametag names
+## 	[1-9,0]: Change the creature's size from 10% to 100%
+## 	SHIFT+[1-9,0]: Change the creature's comfort from 0.0 -> 1.0 -> -1.0
+## 	[Q,W,E]: Switch to the 1st, 2nd or 3rd creature.
+## 	arrows: Change the creature's orientation
+## 	brace keys: Change the creature's appearance
 
 const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 const NAMES = [

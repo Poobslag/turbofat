@@ -1,32 +1,30 @@
 extends Node
-"""
-Tracks the player's location and the location of all chattables. Handles questions like 'which chattable is focused'
-and 'which chattables are nearby'.
-"""
+## Tracks the player's location and the location of all chattables. Handles questions like 'which chattable is focused'
+## and 'which chattables are nearby'.
 
-# emitted when focus changes to a new object, or when all objects are unfocused.
+## emitted when focus changes to a new object, or when all objects are unfocused.
 signal focus_changed
 
-# Maximum range for the player to successfully interact with an object
+## Maximum range for the player to successfully interact with an object
 const MAX_INTERACT_DISTANCE := 240.0
 
-# The player's sprite
+## The player's sprite
 var player: Creature setget set_player
 
-# The sensei's sprite
+## The sensei's sprite
 var sensei: Creature setget set_sensei
 
-# The overworld object which the player will currently interact with if they hit the button
+## The overworld object which the player will currently interact with if they hit the button
 var focused_chattable: Node2D setget set_focused_chattable
 
-# 'false' if the player is temporarily disallowed from interacting with nearby objects, such as while chatting
+## 'false' if the player is temporarily disallowed from interacting with nearby objects, such as while chatting
 var _focus_enabled := true setget set_focus_enabled, is_focus_enabled
 
-# Mapping from creature ids to Creature objects. The player and sensei are omitted from this mapping, as the player
-# can set their own name and it could conflict with overworld creatures.
+## Mapping from creature ids to Creature objects. The player and sensei are omitted from this mapping, as the player
+## can set their own name and it could conflict with overworld creatures.
 #
-# key: creature id as it appears in chat files
-# value: Creature object corresponding to the creature id
+## key: creature id as it appears in chat files
+## value: Creature object corresponding to the creature id
 var _creatures_by_id := {}
 
 func _ready() -> void:
@@ -68,9 +66,7 @@ func _physics_process(_delta: float) -> void:
 		set_focused_chattable(new_focused_chattable)
 
 
-"""
-Refreshes our state based on the creatures in the scene, and reconnects some signals.
-"""
+## Refreshes our state based on the creatures in the scene, and reconnects some signals.
 func refresh_creatures() -> void:
 	_creatures_by_id.clear()
 	for creature_obj in get_tree().get_nodes_in_group("creatures"):
@@ -83,12 +79,10 @@ func refresh_creatures() -> void:
 			register_creature(creature)
 
 
-"""
-Returns the Creature object corresponding to the specified chatter name.
-
-A name of SENSEI_ID or PLAYER_ID will return the sensei or player object. To avoid
-conflicts, the sensei or player cannot be retrieved by their actual name.
-"""
+## Returns the Creature object corresponding to the specified chatter name.
+##
+## A name of SENSEI_ID or PLAYER_ID will return the sensei or player object. To avoid
+## conflicts, the sensei or player cannot be retrieved by their actual name.
 func get_creature_by_id(chat_id: String) -> Creature:
 	var result: Creature
 	match chat_id:
@@ -100,11 +94,9 @@ func get_creature_by_id(chat_id: String) -> Creature:
 	return result
 
 
-"""
-Loads the chat tree for the currently focused chattable.
-
-Returns a chat tree for the chat sequence which the player should see.
-"""
+## Loads the chat tree for the currently focused chattable.
+##
+## Returns a chat tree for the chat sequence which the player should see.
 func load_chat_tree() -> ChatTree:
 	var chat_tree: ChatTree
 	if focused_chattable is Creature:
@@ -136,20 +128,16 @@ func set_focused_chattable(new_focused_chattable: Node2D) -> void:
 	emit_signal("focus_changed")
 
 
-"""
-Returns 'true' if the player will currently interact with the specified object if they hit the button.
-"""
+## Returns 'true' if the player will currently interact with the specified object if they hit the button.
 func is_focused(chattable: Node2D) -> bool:
 	return chattable == focused_chattable
 
 
-"""
-Globally enables/disables focus for nearby objects.
-
-Regardless of whether or not the focused object changed, this notifies all listeners with a 'focus_changed' event.
-This is because some UI elements render themselves differently during chats when the player can't interact with
-anything.
-"""
+## Globally enables/disables focus for nearby objects.
+##
+## Regardless of whether or not the focused object changed, this notifies all listeners with a 'focus_changed' event.
+## This is because some UI elements render themselves differently during chats when the player can't interact with
+## anything.
 func set_focus_enabled(new_focus_enabled: bool) -> void:
 	_focus_enabled = new_focus_enabled
 	
@@ -161,18 +149,13 @@ func set_focus_enabled(new_focus_enabled: bool) -> void:
 		emit_signal("focus_changed")
 
 
-"""
-Returns 'true' if focus is globally enabled/disabled for all objects.
-"""
+## Returns 'true' if focus is globally enabled/disabled for all objects.
 func is_focus_enabled() -> bool:
 	return _focus_enabled
 
-
-"""
-Substitutes variables in player-visible text.
-
-Text variables are pound sign delimited: 'Hello #player#'. This matches the syntax of Tracery.
-"""
+## Substitutes variables in player-visible text.
+##
+## Text variables are pound sign delimited: 'Hello #player#'. This matches the syntax of Tracery.
 func substitute_variables(string: String, full_name: bool = false) -> String:
 	var result := string
 	if full_name:
@@ -184,11 +167,9 @@ func substitute_variables(string: String, full_name: bool = false) -> String:
 	return result
 
 
-"""
-Returns the level id (if any) corresponding to the curently focused chattable.
-
-This is relevant when the player talks to a creature with a food speech bubble.
-"""
+## Returns the level id (if any) corresponding to the curently focused chattable.
+##
+## This is relevant when the player talks to a creature with a food speech bubble.
 func focused_chattable_level_id() -> String:
 	var focused_creature: Creature = ChattableManager.focused_chattable as Creature
 	if not focused_creature:
@@ -205,29 +186,23 @@ func focused_chattable_creature_id() -> String:
 	return focused_creature.creature_id
 
 
-"""
-Adds the specified creature to the '_creatures_by_id' mapping.
-"""
+## Adds the specified creature to the '_creatures_by_id' mapping.
 func register_creature(creature: Creature) -> void:
 	if creature.creature_id:
 		_creatures_by_id[creature.creature_id] = creature
 
 
-"""
-Removes the specified creature from the '_creatures_by_id' mapping.
-"""
+## Removes the specified creature from the '_creatures_by_id' mapping.
 func unregister_creature(creature: Creature) -> void:
 	for key in _creatures_by_id:
 		if _creatures_by_id[key] == creature:
 			_creatures_by_id.erase(key)
 
 
-"""
-Purges all node instances from the manager.
-
-Because ChattableManager is a singleton, node instances must be purged before changing scenes. Otherwise it's
-possible for an invisible object from a previous scene to receive focus.
-"""
+## Purges all node instances from the manager.
+##
+## Because ChattableManager is a singleton, node instances must be purged before changing scenes. Otherwise it's
+## possible for an invisible object from a previous scene to receive focus.
 func _on_Breadcrumb_before_scene_changed() -> void:
 	player = null
 	sensei = null
@@ -236,8 +211,6 @@ func _on_Breadcrumb_before_scene_changed() -> void:
 	_creatures_by_id.clear()
 
 
-"""
-We prevent the player from interacting with objects during scene transitions.
-"""
+## We prevent the player from interacting with objects during scene transitions.
 func _on_SceneTransition_fade_out_started() -> void:
 	set_focus_enabled(false)

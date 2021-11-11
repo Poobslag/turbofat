@@ -1,11 +1,9 @@
 class_name ImageButton
 extends Button
-"""
-A button represented by a pair of icons.
-
-Pressing the button toggles between the normal and pressed icon. The button's size changes based on the player's touch
-settings.
-"""
+## A button represented by a pair of icons.
+##
+## Pressing the button toggles between the normal and pressed icon. The button's size changes based on the player's
+## touch settings.
 
 export (Texture) var normal_icon: Texture setget set_normal_icon
 export (Texture) var pressed_icon: Texture setget set_pressed_icon

@@ -1,10 +1,8 @@
 class_name SwipeContainer
 extends ScrollContainer
-"""
-Allows you to scroll a scroll container by dragging. Includes momentum.
-
-Adapted from https://github.com/godotengine/godot/issues/21137#issuecomment-474598933
-"""
+## Allows you to scroll a scroll container by dragging. Includes momentum.
+##
+## Adapted from https://github.com/godotengine/godot/issues/21137#issuecomment-474598933
 
 const MIN_SWIPE_DISTANCE := 25
 

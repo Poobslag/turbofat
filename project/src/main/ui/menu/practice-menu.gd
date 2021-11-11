@@ -1,19 +1,15 @@
 extends Control
-"""
-Scene which lets the player repeatedly play a set of levels.
+## Scene which lets the player repeatedly play a set of levels.
+##
+## Displays their daily and all-time high scores for each mode, encouraging the player to improve.
 
-Displays their daily and all-time high scores for each mode, encouraging the player to improve.
-"""
-
-# Rank required to unlock harder levels. Rank 24 is an S-
+## Rank required to unlock harder levels. Rank 24 is an S-
 const RANK_TO_UNLOCK := 24.0
 
-"""
-Array of level categories used to initialize the scene.
-[0]: Mode name, used to reference the mode selector
-[1]: Difficulty name, used to populate the difficulty selector
-[2]: Level name, used to load the level definitions
-"""
+## Array of level categories used to initialize the scene.
+## [0]: Mode name, used to reference the mode selector
+## [1]: Difficulty name, used to populate the difficulty selector
+## [2]: Level name, used to load the level definitions
 const LEVEL_CATEGORIES := [
 	["Marathon", "Normal", "practice/marathon_normal"],
 	["Marathon", "Hard", "practice/marathon_hard"],
@@ -52,16 +48,12 @@ const LEVEL_CATEGORIES := [
 	["Sandbox", "Master", "practice/sandbox_master"],
 ]
 
-"""
-Key: Mode names, 'Marathon', 'Ultra'
-Value: Difficulty names, 'Normal', 'Hard'
-"""
+## key: Mode names, 'Marathon', 'Ultra'
+## value: Difficulty names, 'Normal', 'Hard'
 var mode_difficulties: Dictionary
 
-"""
-Key: Mode/Difficulty names separated with a space, 'Marathon Normal', 'Ultra Hard'
-Value: Level names, 'marathon_normal', 'ultra_hard'
-"""
+## key: Mode/Difficulty names separated with a space, 'Marathon Normal', 'Ultra Hard'
+## value: Level names, 'marathon_normal', 'ultra_hard'
 var levels: Dictionary
 
 var _rank_lowlights := []
@@ -114,12 +106,10 @@ func _refresh() -> void:
 	$VBoxContainer/HighScores.set_level(_get_level())
 
 
-"""
-Calculates the lowlights for rank difficulties, if they have not yet been calculated.
-
-This calculation is complex and involves iterating over all of the player's performances for all of the rank
-levels, so we cache the result.
-"""
+## Calculates the lowlights for rank difficulties, if they have not yet been calculated.
+##
+## This calculation is complex and involves iterating over all of the player's performances for all of the rank
+## levels, so we cache the result.
 func _calculate_lowlights() -> void:
 	if _rank_lowlights:
 		# already calculated

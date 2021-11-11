@@ -1,12 +1,10 @@
 tool
 extends Area2D
-"""
-An exit on the floor which the player can step on to go somewhere else.
+## An exit on the floor which the player can step on to go somewhere else.
+##
+## Stepping on this exit results transitions to a new scene.
 
-Stepping on this exit results transitions to a new scene.
-"""
-
-# The direction the exit is facing. Also the direction the player needs to move to use the exit.
+## The direction the exit is facing. Also the direction the player needs to move to use the exit.
 enum ExitDirection {
 	NORTH,
 	NORTHEAST,
@@ -27,8 +25,8 @@ const SOUTHWEST = ExitDirection.SOUTHWEST
 const WEST = ExitDirection.WEST
 const NORTHWEST = ExitDirection.NORTHWEST
 
-# key: an enum from ExitDirection
-# value: a non-isometric unit vector in the direction the exit is facing
+## key: an enum from ExitDirection
+## value: a non-isometric unit vector in the direction the exit is facing
 const VECTOR_BY_EXIT_DIRECTION := {
 	NORTH: Vector2.UP,
 	NORTHEAST: Vector2(sqrt(2), -sqrt(2)),
@@ -40,35 +38,35 @@ const VECTOR_BY_EXIT_DIRECTION := {
 	NORTHWEST: Vector2(-sqrt(2), -sqrt(2))
 }
 
-# the path of the scene to transition to when the player uses the exit
+## the path of the scene to transition to when the player uses the exit
 export (String) var destination_scene_path
 
-# the direction the exit is facing. Also the direction the player needs to move to use the exit
+## the direction the exit is facing. Also the direction the player needs to move to use the exit
 export (ExitDirection) var exit_direction := ExitDirection.NORTH setget set_exit_direction
 
-# the id of the spawn where the player will appear on the overworld after using the exit
+## the id of the spawn where the player will appear on the overworld after using the exit
 export (String) var player_spawn_id: String
 
-# the id of the spawn where the sensei will appear on the overworld after using the exit
+## the id of the spawn where the sensei will appear on the overworld after using the exit
 export (String) var sensei_spawn_id: String
 
-# sprite sheet for when the exit faces east or west
+## sprite sheet for when the exit faces east or west
 var _exit_e_sheet := preload("res://assets/main/world/environment/exit-e-sheet.png")
 
-# sprite sheet for when the exit faces north or south
+## sprite sheet for when the exit faces north or south
 var _exit_n_sheet := preload("res://assets/main/world/environment/exit-n-sheet.png")
 
-# sprite sheet for when the exit faces northeast, southeast, southwest or northwest
+## sprite sheet for when the exit faces northeast, southeast, southwest or northwest
 var _exit_ne_sheet := preload("res://assets/main/world/environment/exit-ne-sheet.png")
 
-# 'true' if the player is currently overlapping the exit. this might not make them exit if they're sitting still or
-# moving the wrong way
+## 'true' if the player is currently overlapping the exit. this might not make them exit if they're sitting still or
+## moving the wrong way
 var _player_overlapping := false
 
-# 'true' if the player stepped on this exit arrow and is exiting
+## 'true' if the player stepped on this exit arrow and is exiting
 var _player_exiting := false
 
-# We embed the get_overworld_ui() call in a conditional to avoid errors in the editor
+## We embed the get_overworld_ui() call in a conditional to avoid errors in the editor
 onready var _overworld_ui: OverworldUi = null if Engine.editor_hint else Global.get_overworld_ui()
 
 func _ready() -> void:
@@ -108,9 +106,7 @@ func set_exit_direction(new_exit_direction: int) -> void:
 		_refresh_exit_direction()
 
 
-"""
-Updates the appearance and collision shape based on the new exit direction.
-"""
+## Updates the appearance and collision shape based on the new exit direction.
 func _refresh_exit_direction() -> void:
 	$CollisionShape2D.position = VECTOR_BY_EXIT_DIRECTION.get(exit_direction) * 20
 	

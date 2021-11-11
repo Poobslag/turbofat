@@ -1,16 +1,14 @@
 extends Control
-"""
-A background wallpaper with colored areas, borders and shapes.
-"""
+## A background wallpaper with colored areas, borders and shapes.
 
-# optional float parameters don't have the concept of null. this default value acts as a substitute so we can tell
-# when a float value is unspecified.
+## optional float parameters don't have the concept of null. this default value acts as a substitute so we can tell
+## when a float value is unspecified.
 const UNSPECIFIED_FLOAT := 3025403.0
 
 export (PackedScene) var WallpaperBorderScene: PackedScene
 export (PackedScene) var StickerRowScene: PackedScene
 
-# the two colors used for this wallpaper
+## the two colors used for this wallpaper
 var _color_0: Color
 var _color_1: Color
 
@@ -51,9 +49,7 @@ func _ready() -> void:
 		sticker_row_index += 1
 
 
-"""
-Assigns the background colors based on the day of the week.
-"""
+## Assigns the background colors based on the day of the week.
 func _assign_daily_colors() -> void:
 	match OS.get_datetime().get("weekday"):
 		OS.DAY_MONDAY: # chocolate brown
@@ -105,16 +101,14 @@ func _add_color_rect(rect_y: float, rect_height: float) -> ColorRect:
 	return color_rect
 
 
-"""
-Sets the left/top/right/bottom margins for a node.
-
-When one value is specified, it applies the same margin to all four sides.
-
-When two values are specified, the first margin applies to the left and right, the second to the top and bottom.
-
-When three values are specified, the first margin applies to the left, the second to the top and bottom, and the third
-to the right.
-"""
+## Sets the left/top/right/bottom margins for a node.
+##
+## When one value is specified, it applies the same margin to all four sides.
+##
+## When two values are specified, the first margin applies to the left and right, the second to the top and bottom.
+##
+## When three values are specified, the first margin applies to the left, the second to the top and bottom, and the
+## third to the right.
 static func set_margins(target: Node, left: float, top: float = UNSPECIFIED_FLOAT,
 		right: float = UNSPECIFIED_FLOAT, bottom: float = UNSPECIFIED_FLOAT) -> void:
 	target.margin_left = left
@@ -123,16 +117,14 @@ static func set_margins(target: Node, left: float, top: float = UNSPECIFIED_FLOA
 	target.margin_bottom = bottom if bottom != UNSPECIFIED_FLOAT else top
 
 
-"""
-Sets the left/top/right/bottom anchors for a node.
-
-When one value is specified, it applies the same anchor to all four sides.
-
-When two values are specified, the first anchor applies to the left and right, the second to the top and bottom.
-
-When three values are specified, the first anchor applies to the left, the second to the top and bottom, and the third
-to the right.
-"""
+## Sets the left/top/right/bottom anchors for a node.
+##
+## When one value is specified, it applies the same anchor to all four sides.
+##
+## When two values are specified, the first anchor applies to the left and right, the second to the top and bottom.
+##
+## When three values are specified, the first anchor applies to the left, the second to the top and bottom, and the
+## third to the right.
 static func set_anchors(target: Control, left: float, top: float = UNSPECIFIED_FLOAT,
 		right: float = UNSPECIFIED_FLOAT, bottom: float = UNSPECIFIED_FLOAT) -> void:
 	target.anchor_left = left

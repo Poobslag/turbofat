@@ -1,12 +1,10 @@
 extends Node
-"""
-Tracks the player's progress towards milestones.
-
-Milestones can involve reaching a certain score, clearing a certain number of lines or surviving a certain number of
-seconds.
-
-Reaching a milestone can increase the speed, end the level, or trigger a success condition.
-"""
+## Tracks the player's progress towards milestones.
+##
+## Milestones can involve reaching a certain score, clearing a certain number of lines or surviving a certain number of
+## seconds.
+##
+## Reaching a milestone can increase the speed, end the level, or trigger a success condition.
 
 func _ready() -> void:
 	PuzzleState.connect("before_piece_written", self, "_on_PuzzleState_before_piece_written")
@@ -34,12 +32,10 @@ func milestone_met(milestone: Milestone) -> bool:
 	return result
 
 
-"""
-Returns the player's current progress toward the specified milestone.
-
-Depending on the milestone type, the returned progress value could be the current score, number of lines cleared or
-something else.
-"""
+## Returns the player's current progress toward the specified milestone.
+##
+## Depending on the milestone type, the returned progress value could be the current score, number of lines cleared or
+## something else.
 func milestone_progress(milestone: Milestone) -> float:
 	var progress: float
 	match milestone.type:
@@ -60,21 +56,17 @@ func milestone_progress(milestone: Milestone) -> float:
 	return progress
 
 
-"""
-Returns the previously completed milestone.
-
-This controls the speed at which the pieces move.
-"""
+## Returns the previously completed milestone.
+##
+## This controls the speed at which the pieces move.
 func prev_milestone() -> Milestone:
 	return CurrentLevel.settings.speed.speed_ups[PuzzleState.speed_index]
 
 
-"""
-Returns the next upcoming milestone. This is reflected in the UI.
-
-The next upcoming milestone could be a 'speed up' if this level has multiple speeds, or it could be the level's
-finish condition.
-"""
+## Returns the next upcoming milestone. This is reflected in the UI.
+##
+## The next upcoming milestone could be a 'speed up' if this level has multiple speeds, or it could be the level's
+## finish condition.
 func next_milestone() -> Milestone:
 	var milestone: Milestone
 	if PuzzleState.speed_index + 1 < CurrentLevel.settings.speed.speed_ups.size():
@@ -84,9 +76,7 @@ func next_milestone() -> Milestone:
 	return milestone
 
 
-"""
-If the player reached a milestone, we increase the speed.
-"""
+## If the player reached a milestone, we increase the speed.
 func _check_for_speed_up() -> void:
 	var new_speed_index: int = PuzzleState.speed_index
 	
@@ -98,9 +88,7 @@ func _check_for_speed_up() -> void:
 		PuzzleState.speed_index = new_speed_index
 
 
-"""
-If the player reached the finish milestone, we end the level.
-"""
+## If the player reached the finish milestone, we end the level.
 func _check_for_finish() -> void:
 	if PuzzleState.game_active and milestone_met(CurrentLevel.settings.finish_condition):
 		PuzzleState.trigger_finish()

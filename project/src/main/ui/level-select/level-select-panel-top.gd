@@ -1,7 +1,5 @@
 extends Control
-"""
-Shows the top portion of the level select panel, including the level buttons and cutscene button.
-"""
+## Shows the top portion of the level select panel, including the level buttons and cutscene button.
 
 func _ready() -> void:
 	$CutsceneButton.connect("resized", self, "_on_CutsceneButton_resized")

@@ -1,9 +1,7 @@
 extends Control
-"""
-Shows a little 'happy face' icon next to each chat choice.
-"""
+## Shows a little 'happy face' icon next to each chat choice.
 
-# the location of the mood icon; the right or left side of the chat window
+## the location of the mood icon; the right or left side of the chat window
 export (bool) var mood_right: bool setget set_mood_right
 
 var textures := {
@@ -37,13 +35,11 @@ var textures := {
 }
 
 
-"""
-Sets which mood should be displayed.
-
-Parameters:
-	'mood': An enum in ChatEvent.Mood corresponding to the mood to show. '-1' is a valid value, and will result in no
-		mood being shown.
-"""
+## Sets which mood should be displayed.
+##
+## Parameters:
+## 	'mood': An enum in ChatEvent.Mood corresponding to the mood to show. '-1' is a valid value, and will result in no
+## 		mood being shown.
 func set_mood(new_mood: int) -> void:
 	if textures.has(new_mood):
 		$Texture.texture = textures[new_mood]
@@ -51,9 +47,7 @@ func set_mood(new_mood: int) -> void:
 		$Texture.texture = null
 
 
-"""
-Sets the location of the mood icon.
-"""
+## Sets the location of the mood icon.
 func set_mood_right(new_mood_right: bool) -> void:
 	mood_right = new_mood_right
 	if mood_right:

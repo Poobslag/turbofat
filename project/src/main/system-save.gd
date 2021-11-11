@@ -1,15 +1,13 @@
 extends Node
-"""
-Reads and writes data about the system from a file.
-
-This data includes configuration data like language, keybindings, and which save slot is active.
-"""
+## Reads and writes data about the system from a file.
+##
+## This data includes configuration data like language, keybindings, and which save slot is active.
 
 signal save_slot_deleted
 
 const SYSTEM_DATA_VERSION := "27bb"
 
-# Save files older than July 2021 which should be deleted during an upgrade
+## Save files older than July 2021 which should be deleted during an upgrade
 const OLD_SAVES_TO_DELETE := [
 	"user://turbofat0.this-hour.save.bak",
 	"user://turbofat0.this-day.save.bak",
@@ -19,7 +17,7 @@ const OLD_SAVES_TO_DELETE := [
 	"user://turbofat0.prev-week.save.bak",
 ]
 
-# Player data filenames organized by save slot
+## Player data filenames organized by save slot
 const FILENAMES_BY_SAVE_SLOT: Dictionary = {
 	MiscSettings.SaveSlot.SLOT_A: "user://saveslot0.save",
 	MiscSettings.SaveSlot.SLOT_B: "user://saveslot1.save",
@@ -27,13 +25,13 @@ const FILENAMES_BY_SAVE_SLOT: Dictionary = {
 	MiscSettings.SaveSlot.SLOT_D: "user://saveslot3.save",
 }
 
-# Filename for saving/loading system data. Can be changed for tests
+## Filename for saving/loading system data. Can be changed for tests
 var data_filename := "user://config.json"
 
-# Filename for loading data older than July 2021. Can be changed for tests
+## Filename for loading data older than July 2021. Can be changed for tests
 var legacy_filename := "user://turbofat0.save"
 
-# Provides backwards compatibility with older save formats
+## Provides backwards compatibility with older save formats
 var _upgrader := SystemSaveUpgrader.new().new_save_item_upgrader()
 
 func _ready() -> void:
@@ -43,9 +41,7 @@ func _ready() -> void:
 	PlayerSave.load_player_data()
 
 
-"""
-Writes the system's in-memory data to a save file.
-"""
+## Writes the system's in-memory data to a save file.
 func save_system_data() -> void:
 	var save_json := []
 	save_json.append(_save_item("version", SYSTEM_DATA_VERSION).to_json_dict())
@@ -75,11 +71,9 @@ func save_system_data() -> void:
 			Directory.new().remove(filename)
 
 
-"""
-Populates the system's in-memory data based on a save file.
-
-Returns 'true' if the data is loaded successfully.
-"""
+## Populates the system's in-memory data based on a save file.
+##
+## Returns 'true' if the data is loaded successfully.
 func load_system_data() -> bool:
 	SystemData.reset()
 	
@@ -119,25 +113,19 @@ func load_system_data() -> bool:
 	return true
 
 
-"""
-Returns the playtime in seconds for the specified save slot.
-"""
+## Returns the playtime in seconds for the specified save slot.
 func get_save_slot_playtime(save_slot: int) -> float:
 	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
 	return PlayerSave.get_save_slot_playtime(filename)
 
 
-"""
-Returns the player's short name for the specified save slot.
-"""
+## Returns the player's short name for the specified save slot.
 func get_save_slot_player_short_name(save_slot: int) -> String:
 	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
 	return PlayerSave.get_save_slot_player_short_name(filename)
 
 
-"""
-Returns a human-readable name for the specified save slot.
-"""
+## Returns a human-readable name for the specified save slot.
 func get_save_slot_name(save_slot: int) -> String:
 	var prefix: String = MiscSettings.SAVE_SLOT_PREFIXES[save_slot]
 	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
@@ -150,9 +138,7 @@ func get_save_slot_name(save_slot: int) -> String:
 	return save_slot_name
 
 
-"""
-Deletes the specified save slot and all of its backups.
-"""
+## Deletes the specified save slot and all of its backups.
 func delete_save_slot(save_slot: int) -> void:
 	var filename: String = FILENAMES_BY_SAVE_SLOT[save_slot]
 	
@@ -168,12 +154,10 @@ func delete_save_slot(save_slot: int) -> void:
 	emit_signal("save_slot_deleted")
 
 
-"""
-Creates a granular save item. The system's configuration data includes many of these.
-
-Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
-due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
-"""
+## Creates a granular save item. The system's configuration data includes many of these.
+##
+## Note: Intuitively this method would be a static factory method on the SaveItem class, but that causes console errors
+## due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
 func _save_item(type: String, value, key: String = "") -> SaveItem:
 	var save_item := SaveItem.new()
 	save_item.type = type
@@ -182,14 +166,12 @@ func _save_item(type: String, value, key: String = "") -> SaveItem:
 	return save_item
 
 
-"""
-Populates the player's in-memory data based on a single line from their save file.
-
-Parameters:
-	'type': A string unique to each type of data (level-data, player-data)
-	'_key': A string identifying a specific data item (sophie, marathon-normal)
-	'json_value': The value object (array, dictionary, string) containing the data
-"""
+## Populates the player's in-memory data based on a single line from their save file.
+##
+## Parameters:
+## 	'type': A string unique to each type of data (level-data, player-data)
+## 	'_key': A string identifying a specific data item (sophie, marathon-normal)
+## 	'json_value': The value object (array, dictionary, string) containing the data
 func _load_line(type: String, _key: String, json_value) -> void:
 	match type:
 		"version":

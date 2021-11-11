@@ -1,26 +1,24 @@
 extends Camera2D
-"""
-Overworld camera. Follows the main character and zooms in during conversations.
-"""
+## Overworld camera. Follows the main character and zooms in during conversations.
 
-# how far from the camera center the player needs to be before the camera zooms out
+## how far from the camera center the player needs to be before the camera zooms out
 const AUTO_ZOOM_OUT_DISTANCE := 100.0
 
-# amount of empty space around characters
+## amount of empty space around characters
 const CAMERA_BOUNDARY := 160
 
-# duration of sweeping pan/zoom during cutscenes and conversations
+## duration of sweeping pan/zoom during cutscenes and conversations
 const ZOOM_DURATION := 1.8
 
-# speed of pan/zoom adjustments when zoomed in or out
+## speed of pan/zoom adjustments when zoomed in or out
 const LERP_WEIGHT_NEAR := 0.05
 const LERP_WEIGHT_FAR := 0.10
 
-# zoom amount when zoomed in or out
+## zoom amount when zoomed in or out
 const ZOOM_AMOUNT_NEAR := Vector2(0.5, 0.5)
 const ZOOM_AMOUNT_FAR := Vector2(1.0, 1.0)
 
-# 'true' if the camera should currently be zoomed in for a conversation
+## 'true' if the camera should currently be zoomed in for a conversation
 var close_up: bool setget set_close_up
 
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
@@ -60,19 +58,15 @@ func set_close_up(new_close_up: bool) -> void:
 	_tween_camera_to_chatters()
 
 
-"""
-Returns a rectangle representing the area which should be captured by the camera.
-"""
+## Returns a rectangle representing the area which should be captured by the camera.
 func _calculate_camera_bounding_box() -> Rect2:
 	return _overworld_ui.get_chatter_bounding_box().grow(CAMERA_BOUNDARY)
 
 
-"""
-Returns a number in the range [0.0, 1.0] corresponding the fattest creature in the cutscene.
-
-A value of 0.0 means all the characters are thin. A value of 1.0 means at least one character is very fat. This value
-is used in making camera adjustments.
-"""
+## Returns a number in the range [0.0, 1.0] corresponding the fattest creature in the cutscene.
+##
+## A value of 0.0 means all the characters are thin. A value of 1.0 means at least one character is very fat. This
+## value is used in making camera adjustments.
 func _max_fatness_weight() -> float:
 	var max_visual_fatness := 1.0
 	for chatter in _overworld_ui.chatters:
@@ -81,11 +75,9 @@ func _max_fatness_weight() -> float:
 	return inverse_lerp(1.0, 10.0, clamp(max_visual_fatness, 1.0, 10.0))
 
 
-"""
-Calculate the desired camera position based on the chatting creatures.
-
-This method does not update the camera's zoom value. It returns a value which can be used in a lerp or tween.
-"""
+## Calculate the desired camera position based on the chatting creatures.
+##
+## This method does not update the camera's zoom value. It returns a value which can be used in a lerp or tween.
 func _calculate_position() -> Vector2:
 	if not ChattableManager.player:
 		return position
@@ -103,11 +95,9 @@ func _calculate_position() -> Vector2:
 	return new_position
 
 
-"""
-Calculate the desired camera zoom based on the chatting creatures.
-
-This method does not update the camera's zoom value. It returns a value which can be used in a lerp or tween.
-"""
+## Calculate the desired camera zoom based on the chatting creatures.
+##
+## This method does not update the camera's zoom value. It returns a value which can be used in a lerp or tween.
 func _calculate_zoom() -> Vector2:
 	if not close_up:
 		return ZOOM_AMOUNT_FAR
@@ -125,11 +115,9 @@ func _calculate_zoom() -> Vector2:
 	return new_zoom
 
 
-"""
-Launches a new tween, panning and zooming the camera to the current chat participants.
-
-This overwrites any old pan/zoom tween.
-"""
+## Launches a new tween, panning and zooming the camera to the current chat participants.
+##
+## This overwrites any old pan/zoom tween.
 func _tween_camera_to_chatters() -> void:
 	_tween.remove_all()
 	var new_zoom := _calculate_zoom()
@@ -159,10 +147,8 @@ func _on_OverworldUi_chat_ended() -> void:
 	set_close_up(false)
 
 
-"""
-Launches a pan/zoom tween when creatures exit or enter the cutscene.
-
-This method might get called multiple times in rapid succession, or possibly even in the same frame.
-"""
+## Launches a pan/zoom tween when creatures exit or enter the cutscene.
+##
+## This method might get called multiple times in rapid succession, or possibly even in the same frame.
 func _on_OverworldUi_visible_chatters_changed() -> void:
 	_tween_camera_to_chatters()

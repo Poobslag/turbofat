@@ -1,7 +1,5 @@
 extends Label
-"""
-Shows a warning if the player changes settings which can't be changed immediately.
-"""
+## Shows a warning if the player changes settings which can't be changed immediately.
 
 func _ready() -> void:
 	visible = false

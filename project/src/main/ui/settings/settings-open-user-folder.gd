@@ -1,10 +1,8 @@
 extends HBoxContainer
-"""
-UI component for opening the user's data folder.
-
-The user's data folder has all their save data. Accessing this folder is useful when backing up their data or changing
-PCs.
-"""
+## UI component for opening the user's data folder.
+##
+## The user's data folder has all their save data. Accessing this folder is useful when backing up their data or
+## changing PCs.
 
 onready var _button := $Button
 

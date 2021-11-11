@@ -1,10 +1,8 @@
 extends Control
-"""
-Keeps children controls positioned correctly.
-
-A more versatile version of Godot's 'CenterContainer' class. CenterContainer keeps children controls centered, but
-this container keeps aligns children controls in several possible layouts.
-"""
+## Keeps children controls positioned correctly.
+##
+## A more versatile version of Godot's 'CenterContainer' class. CenterContainer keeps children controls centered, but
+## this container keeps aligns children controls in several possible layouts.
 
 enum Layout {
 	TOP_LEFT,
@@ -20,7 +18,7 @@ enum Layout {
 	CENTER,
 }
 
-# The position to apply to the children controls
+## The position to apply to the children controls
 export (Layout) var layout := Layout.CENTER_TOP
 
 func _ready() -> void:
@@ -29,9 +27,7 @@ func _ready() -> void:
 		child.connect("resized", self, "_on_Child_Control_resized", [child])
 
 
-"""
-Realigns child controls when they are resized.
-"""
+## Realigns child controls when they are resized.
 func _on_Child_Control_resized(child: Node) -> void:
 	# align child vertically
 	match layout:

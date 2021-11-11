@@ -1,19 +1,17 @@
 #tool #uncomment to view creature in editor
 extends Node
 
-"""
-Loads creature resources based on creature definitions. For example, a creature definition might describe high-level
-information about the creature's appearance, such as 'she has red eyes' or 'she has a star on her forehead'. This
-class converts that information into granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030', and also
-loads resource files specific to each creature.
-"""
+## Loads creature resources based on creature definitions. For example, a creature definition might describe high-level
+## information about the creature's appearance, such as 'she has red eyes' or 'she has a star on her forehead'. This
+## class converts that information into granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030', and
+## also loads resource files specific to each creature.
 
-# The color inside a creature's mouth
+## The color inside a creature's mouth
 const PINK_INSIDE_COLOR := Color("f39274")
 
 const SHADOW_ALPHA := 0.25
 
-# AnimationPlayer scenes with animations for each type of mouth
+## AnimationPlayer scenes with animations for each type of mouth
 var _mouth_player_scenes := {
 	"1": preload("res://src/main/world/creature/Mouth1Player.tscn"),
 	"2": preload("res://src/main/world/creature/Mouth2Player.tscn"),
@@ -24,7 +22,7 @@ var _mouth_player_scenes := {
 	"7": preload("res://src/main/world/creature/Mouth7Player.tscn"),
 }
 
-# AnimationPlayer scenes with animations for each type of ear
+## AnimationPlayer scenes with animations for each type of ear
 var _ear_player_scenes := {
 	"1": preload("res://src/main/world/creature/Ear1Player.tscn"),
 	"2": preload("res://src/main/world/creature/Ear2Player.tscn"),
@@ -43,13 +41,13 @@ var _ear_player_scenes := {
 	"15": preload("res://src/main/world/creature/Ear15Player.tscn"),
 }
 
-# Scenes which draw different bodies
+## Scenes which draw different bodies
 var _body_shape_scenes := {
 	"1": preload("res://src/main/world/creature/Body1Shape.tscn"),
 	"2": preload("res://src/main/world/creature/Body2Shape.tscn"),
 }
 
-# Scenes which draw belly colors for different bodies
+## Scenes which draw belly colors for different bodies
 var _belly_scenes := {
 	"1 1": preload("res://src/main/world/creature/Body1Belly1.tscn"),
 	"1 2": preload("res://src/main/world/creature/Body1Belly2.tscn"),
@@ -57,19 +55,19 @@ var _belly_scenes := {
 	"2 2": preload("res://src/main/world/creature/Body2Belly2.tscn"),
 }
 
-# Scenes which draw shadows for different bodies
+## Scenes which draw shadows for different bodies
 var _shadows_scenes := {
 	"1": preload("res://src/main/world/creature/Body1Shadows.tscn"),
 	"2": preload("res://src/main/world/creature/Body2Shadows.tscn"),
 }
 
-# Scenes which draw 'neck blends' which blend the neck with the back of the head
+## Scenes which draw 'neck blends' which blend the neck with the back of the head
 var _neck_blend_scenes_new := {
 	"1": preload("res://src/main/world/creature/Body1NeckBlend.tscn"),
 	"2": preload("res://src/main/world/creature/Body2NeckBlend.tscn"),
 }
 
-# AnimationPlayers which rearrange body parts for different bodies
+## AnimationPlayers which rearrange body parts for different bodies
 var _fat_sprite_mover_scenes := {
 	"1": preload("res://src/main/world/creature/FatSpriteMover1.tscn"),
 	"2": preload("res://src/main/world/creature/FatSpriteMover2.tscn"),
@@ -83,9 +81,7 @@ func _ready() -> void:
 	_name_generator.load_american_animals()
 
 
-"""
-Returns a random creature definition.
-"""
+## Returns a random creature definition.
 func random_def() -> CreatureDef:
 	var result: CreatureDef
 	if PlayerData.creature_queue.has_secondary_creature() and randf() < 0.2:
@@ -101,18 +97,14 @@ func random_def() -> CreatureDef:
 	return result
 
 
-"""
-Returns a chat theme definition for a generated creature.
-"""
+## Returns a chat theme definition for a generated creature.
 func chat_theme_def(dna: Dictionary) -> Dictionary:
 	var new_def: Dictionary = PlayerData.creature_library.player_def.chat_theme_def.duplicate()
 	new_def.color = dna.body_rgb
 	return new_def
 
 
-"""
-Returns an AnimationPlayer for the specified type type of mouth.
-"""
+## Returns an AnimationPlayer for the specified type type of mouth.
 func new_mouth_player(mouth_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
 	if _mouth_player_scenes.has(mouth_key):
@@ -120,9 +112,7 @@ func new_mouth_player(mouth_key: String) -> AnimationPlayer:
 	return result
 
 
-"""
-Returns an AnimationPlayer for the specified type of ear.
-"""
+## Returns an AnimationPlayer for the specified type of ear.
 func new_ear_player(ear_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
 	if _ear_player_scenes.has(ear_key):
@@ -130,9 +120,7 @@ func new_ear_player(ear_key: String) -> AnimationPlayer:
 	return result
 
 
-"""
-Returns a CreatureCurve for drawing a type of body.
-"""
+## Returns a CreatureCurve for drawing a type of body.
 func new_body_shape(body_key: String) -> CreatureCurve:
 	var result: CreatureCurve
 	if _body_shape_scenes.has(body_key):
@@ -140,9 +128,7 @@ func new_body_shape(body_key: String) -> CreatureCurve:
 	return result
 
 
-"""
-Returns a CreatureCurve for drawing belly colors for a type of body.
-"""
+## Returns a CreatureCurve for drawing belly colors for a type of body.
 func new_belly(body_key: String, body_colors_key: String) -> CreatureCurve:
 	var result: CreatureCurve
 	var key := "%s %s" % [body_key, body_colors_key]
@@ -151,9 +137,7 @@ func new_belly(body_key: String, body_colors_key: String) -> CreatureCurve:
 	return result
 
 
-"""
-Returns a Node2D containing CreatureCurves for drawing shadows for a type of body.
-"""
+## Returns a Node2D containing CreatureCurves for drawing shadows for a type of body.
 func new_shadows(body_key: String) -> Node2D:
 	var result: Node2D
 	if _shadows_scenes.has(body_key):
@@ -161,9 +145,7 @@ func new_shadows(body_key: String) -> Node2D:
 	return result
 
 
-"""
-Returns a CreatureCurve which blends the neck with the back of the head.
-"""
+## Returns a CreatureCurve which blends the neck with the back of the head.
 func new_neck_blend(body_key: String) -> CreatureCurve:
 	var result: CreatureCurve
 	if _neck_blend_scenes_new.has(body_key):
@@ -171,9 +153,7 @@ func new_neck_blend(body_key: String) -> CreatureCurve:
 	return result
 
 
-"""
-Returns an AnimationPlayer which rearranges body parts for a type of bodyq.
-"""
+## Returns an AnimationPlayer which rearranges body parts for a type of bodyq.
 func new_fat_sprite_mover(body_key: String) -> AnimationPlayer:
 	var result: AnimationPlayer
 	if _fat_sprite_mover_scenes.has(body_key):
@@ -181,39 +161,34 @@ func new_fat_sprite_mover(body_key: String) -> AnimationPlayer:
 	return result
 
 
-"""
-Loads all the appropriate resources and property definitions for a creature. The resulting textures are stored back in
-the 'dna' parameter which is passed in.
-
-This can also be invoked with an empty creature definition, in which case the creature definition will be populated
-with the property definitions needed to unload all of their textures and colors.
-
-Parameters:
-	'dna': Defines high-level information about the creature's appearance, such as 'she has red eyes'. The response
-		includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
-"""
+## Loads all the appropriate resources and property definitions for a creature. The resulting textures are stored back
+## in the 'dna' parameter which is passed in.
+##
+## This can also be invoked with an empty creature definition, in which case the creature definition will be populated
+## with the property definitions needed to unload all of their textures and colors.
+##
+## Parameters:
+## 	'dna': Defines high-level information about the creature's appearance, such as 'she has red eyes'. The response
+## 		includes granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030'.
 func load_details(dna: Dictionary) -> void:
 	_load_head(dna)
 	_load_body(dna)
 	_load_colors(dna)
 
-
-"""
-Loads a creature texture based on a dna key/value pair.
-
-The input dna contains key/value pairs which we need to map to a texture to load, such as {'ear': '0'}. We map
-this key/value pair to a resource such as res://assets/main/world/creature/0/ear-z1.png. The input parameters include
-the dictionary of key/value pairs, which specific key/value pair we should look up, and the filename to associate with
-the key/value pair.
-
-Parameters:
-	'dna': The dictionary of key/value pairs defining a set of textures to load.
-	
-	'key': The specific key/value pair to be looked up. If the key is empty, the value will be hard-coded to '1'.
-	
-	'filename': The stripped-down filename of the resource to look up. All creature texture files have a path of
-		res://assets/main/world/creature/0/{something}.png, so this parameter only specifies the {something}.
-"""
+## Loads a creature texture based on a dna key/value pair.
+##
+## The input dna contains key/value pairs which we need to map to a texture to load, such as {'ear': '0'}. We map
+## this key/value pair to a resource such as res://assets/main/world/creature/0/ear-z1.png. The input parameters
+## include the dictionary of key/value pairs, which specific key/value pair we should look up, and the filename to
+## associate with the key/value pair.
+##
+## Parameters:
+## 	'dna': The dictionary of key/value pairs defining a set of textures to load.
+##
+## 	'key': The specific key/value pair to be looked up. If the key is empty, the value will be hard-coded to '1'.
+##
+## 	'filename': The stripped-down filename of the resource to look up. All creature texture files have a path of
+## 		res://assets/main/world/creature/0/{something}.png, so this parameter only specifies the {something}.
 func _load_texture(dna: Dictionary, node_path: String, key: String, filename: String) -> void:
 	# load the texture resource
 	var resource_path: String
@@ -253,9 +228,7 @@ func _dna_value(dna: Dictionary, key: String) -> String:
 	return dna_value
 
 
-"""
-Loads the resources for a creature's head based on a creature definition.
-"""
+## Loads the resources for a creature's head based on a creature definition.
 func _load_head(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/Head", "head", "head-packed")
 	
@@ -289,9 +262,7 @@ func _load_head(dna: Dictionary) -> void:
 	_load_texture(dna, "Neck0/HeadBobber/AccessoryZ2", "accessory", "accessory-z2-packed")
 
 
-"""
-Loads the resources for a creature's arms, legs and torso based on a creature definition.
-"""
+## Loads the resources for a creature's arms, legs and torso based on a creature definition.
 func _load_body(dna: Dictionary) -> void:
 	# All creatures have a body, but this class supports passing in an empty creature definition to unload the
 	# textures from creature sprites. So we leave those textures as null if we're not explicitly told to draw the
@@ -309,9 +280,7 @@ func _load_body(dna: Dictionary) -> void:
 	_load_texture(dna, "TailZ1", "tail", "tail-z1-packed")
 
 
-"""
-Assigns the creature's colors based on a creature definition.
-"""
+## Assigns the creature's colors based on a creature definition.
 func _load_colors(dna: Dictionary) -> void:
 	var belly_color: Color
 	if dna.has("belly_rgb"):
@@ -415,9 +384,7 @@ func _load_colors(dna: Dictionary) -> void:
 	_set_krgb(dna, "Neck0/HeadBobber/HornZ1", line_color, body_color, horn_color)
 
 
-"""
-Assigns shader colors for the specified creature node.
-"""
+## Assigns shader colors for the specified creature node.
 func _set_krgb(dna: Dictionary, path: String, black: Color,
 		red: Color = Color.black, green: Color = Color.black, blue: Color = Color.black):
 	dna["shader:%s:black" % path] = black

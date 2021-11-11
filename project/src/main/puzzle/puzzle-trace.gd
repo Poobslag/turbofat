@@ -1,7 +1,5 @@
 extends Label
-"""
-Shows diagnostics for the piece physics. Enabled with the cheat code 'delays'.
-"""
+## Shows diagnostics for the piece physics. Enabled with the cheat code 'delays'.
 
 export (NodePath) var puzzle_path: NodePath
 
@@ -38,9 +36,7 @@ func _process(_delta: float) -> void:
 		text = new_text
 
 
-"""
-Returns a FrameInput object as a single-character string.
-"""
+## Returns a FrameInput object as a single-character string.
 func input_char(frame_input: FrameInput, character: String) -> String:
 	if not frame_input.is_pressed():
 		return "-"

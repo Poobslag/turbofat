@@ -1,15 +1,13 @@
 extends Button
-"""
-A button which shows the player's custom keybind, and lets them rebind a key.
-"""
+## A button which shows the player's custom keybind, and lets them rebind a key.
 
-# emitted when the player starts or stops rebinding a key
+## emitted when the player starts or stops rebinding a key
 signal awaiting_changed(awaiting)
 
 export (String) var action_name: String
 export (int) var action_index: int
 
-# 'true' if this button is waiting for the player to press a key
+## 'true' if this button is waiting for the player to press a key
 var awaiting := false
 
 func _ready() -> void:
@@ -27,9 +25,7 @@ func _input(event: InputEvent) -> void:
 			end_awaiting()
 
 
-"""
-Takes the button out of the 'awaiting state', so it no longer waits for the player to press a key.
-"""
+## Takes the button out of the 'awaiting state', so it no longer waits for the player to press a key.
 func end_awaiting() -> void:
 	if not awaiting:
 		return
@@ -40,9 +36,7 @@ func end_awaiting() -> void:
 	emit_signal("awaiting_changed", awaiting)
 
 
-"""
-Takes the button into the 'awaiting state', where it waits for the player to press a key.
-"""
+## Takes the button into the 'awaiting state', where it waits for the player to press a key.
 func _start_awaiting() -> void:
 	var custom_keybind_buttons := get_tree().get_nodes_in_group("custom_keybind_buttons")
 	for keybind_button in custom_keybind_buttons:
@@ -54,9 +48,7 @@ func _start_awaiting() -> void:
 	emit_signal("awaiting_changed", awaiting)
 
 
-"""
-Updates the button's text based on the player's current keybinds.
-"""
+## Updates the button's text based on the player's current keybinds.
 func _refresh_text() -> void:
 	var new_text := ""
 	var json: Dictionary = SystemData.keybind_settings.get_custom_keybind(action_name, action_index)

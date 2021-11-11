@@ -1,7 +1,5 @@
 extends Tween
-"""
-Makes the music popup appear and disappear.
-"""
+## Makes the music popup appear and disappear.
 
 enum PopupState {
 	POPPED_OUT, # off the top of the screen
@@ -10,17 +8,17 @@ enum PopupState {
 	POPPING_OUT # moving offscreen
 }
 
-# the how long it takes the popup to slide in or out of view
+## the how long it takes the popup to slide in or out of view
 const TWEEN_DURATION := 0.2
 
-# the duration that the popup remains visible
+## the duration that the popup remains visible
 const POPUP_DURATION := 4.0
 
-# the music panel's y coordinate when popped in and when popped out
+## the music panel's y coordinate when popped in and when popped out
 const POP_IN_Y := 32
 const POP_OUT_Y := 0
 
-# tracks whether the popup is currently popping in or out
+## tracks whether the popup is currently popping in or out
 var _popup_state: int = PopupState.POPPED_OUT
 
 onready var _music_panel := get_node("../Panel")
@@ -36,12 +34,10 @@ func _enter_tree() -> void:
 	get_tree().connect("idle_frame", self, "_restore_tween_and_timer_state")
 
 
-"""
-Makes the music popup appear, and then hides it after a few seconds.
-
-Parameters:
-	'pop_in_delay': The number of seconds to wait before showing the popup.
-"""
+## Makes the music popup appear, and then hides it after a few seconds.
+##
+## Parameters:
+## 	'pop_in_delay': The number of seconds to wait before showing the popup.
 func pop_in_and_out(pop_in_delay: float) -> void:
 	if pop_in_delay:
 		# we use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
@@ -81,13 +77,11 @@ func _pop_out() -> void:
 		_popup_state = PopupState.POPPED_OUT
 
 
-"""
-Restores the MusicPopupTween and Timer to the state before they exited the tree.
-
-The MusicPopup is a singleton so that it maintains its position as the player navigates menus. However, timers and
-tweens stop running when they exit the scene tree. This method restores the timers and tweens so that they're running
-again.
-"""
+## Restores the MusicPopupTween and Timer to the state before they exited the tree.
+##
+## The MusicPopup is a singleton so that it maintains its position as the player navigates menus. However, timers and
+## tweens stop running when they exit the scene tree. This method restores the timers and tweens so that they're
+## running again.
 func _restore_tween_and_timer_state() -> void:
 	# disconnect our one-shot method
 	get_tree().disconnect("idle_frame", self, "_restore_tween_and_timer_state")

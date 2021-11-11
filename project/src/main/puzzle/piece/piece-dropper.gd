@@ -1,9 +1,7 @@
 extends Node
-"""
-Handles gravity, hard drops, and soft drops for the player's active piece.
-"""
+## Handles gravity, hard drops, and soft drops for the player's active piece.
 
-# Emitted when the hard drop destination for the current piece changes. Used for drawing the ghost piece.
+## Emitted when the hard drop destination for the current piece changes. Used for drawing the ghost piece.
 signal hard_drop_target_pos_changed(piece, hard_drop_target_pos)
 
 signal hard_dropped
@@ -12,10 +10,10 @@ signal soft_dropped
 export (NodePath) var input_path: NodePath
 export (NodePath) var piece_mover_path: NodePath
 
-# 'true' if the player hard dropped the piece this frame
+## 'true' if the player hard dropped the piece this frame
 var did_hard_drop: bool
 
-# The hard drop destination for the current piece. Used for drawing the ghost piece.
+## The hard drop destination for the current piece. Used for drawing the ghost piece.
 var hard_drop_target_pos: Vector2
 
 onready var input: PieceInput = get_node(input_path)
@@ -25,9 +23,7 @@ func _physics_process(_delta: float) -> void:
 	did_hard_drop = false
 
 
-"""
-Recalculates the hard drop destination for the current piece.
-"""
+## Recalculates the hard drop destination for the current piece.
 func calculate_hard_drop_target(piece: ActivePiece) -> void:
 	piece.reset_target()
 	while piece.can_move_to(piece.target_pos + Vector2(0, 1), piece.orientation):
@@ -50,9 +46,7 @@ func apply_hard_drop_input(piece: ActivePiece) -> void:
 	did_hard_drop = true
 
 
-"""
-Increments the piece's gravity. A piece will fall once its accumulated gravity exceeds a certain threshold.
-"""
+## Increments the piece's gravity. A piece will fall once its accumulated gravity exceeds a certain threshold.
 func apply_gravity(piece: ActivePiece) -> void:
 	if piece.remaining_post_squish_frames > 0:
 		piece.remaining_post_squish_frames -= 1
@@ -77,11 +71,9 @@ func apply_gravity(piece: ActivePiece) -> void:
 			piece_mover.attempt_mid_drop_movement(piece)
 
 
-"""
-Squish moving pauses gravity for a moment.
-
-This allows players to squish and slide a piece before it drops, even at 20G.
-"""
+## Squish moving pauses gravity for a moment.
+##
+## This allows players to squish and slide a piece before it drops, even at 20G.
 func _on_Squisher_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
 	_piece.remaining_post_squish_frames = PieceSpeeds.POST_SQUISH_FRAMES
 

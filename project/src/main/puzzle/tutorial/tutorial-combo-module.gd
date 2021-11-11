@@ -1,26 +1,24 @@
 extends TutorialModule
-"""
-Tutorial module for the 'Build Combos' tutorial.
+## Tutorial module for the 'Build Combos' tutorial.
+##
+## Shows messages and advances the player through the tutorial as they complete tasks.
 
-Shows messages and advances the player through the tutorial as they complete tasks.
-"""
-
-# how many cakes the player has made during the current tutorial section
+## how many cakes the player has made during the current tutorial section
 var _cakes_built := 0
 
-# whether the player ended the combo with their most recent piece
+## whether the player ended the combo with their most recent piece
 var _did_end_combo := false
 
-# The number of times the diagram has been shown. We cycle through different explanations and chat choices.
+## The number of times the diagram has been shown. We cycle through different explanations and chat choices.
 var _show_diagram_count := 0
 
-# At the end of the tutorial, we show a message based on whether the player got a good combo. We only show this message
-# once.
+## At the end of the tutorial, we show a message based on whether the player got a good combo. We only show this
+## message once.
 var _showed_end_of_level_message := false
 
-# set of level IDs which the player has attempted during this tutorial
-# key: level id
-# value: true
+## set of level IDs which the player has attempted during this tutorial
+## key: level id
+## value: true
 var _prepared_levels: Dictionary
 
 var _combo_diagram := preload("res://assets/main/puzzle/tutorial/combo-diagram.png")
@@ -99,14 +97,12 @@ func prepare_tutorial_level() -> void:
 	_prepared_levels[CurrentLevel.settings.id] = true
 
 
-"""
-Initializes the combo and combo indicators to the specified values.
-
-Parameters:
-	'start': The player's current combo
-	
-	'goal': (Optional) The combo needed to complete the tutorial section
-"""
+## Initializes the combo and combo indicators to the specified values.
+##
+## Parameters:
+## 	'start': The player's current combo
+##
+## 	'goal': (Optional) The combo needed to complete the tutorial section
 func _set_combo_state(start: int, goal: int = 0) -> void:
 	PuzzleState.set_combo(start)
 	if goal:
@@ -115,9 +111,7 @@ func _set_combo_state(start: int, goal: int = 0) -> void:
 		hud.skill_tally_item("Combo").update_label()
 
 
-"""
-Advance to the next level in the tutorial.
-"""
+## Advance to the next level in the tutorial.
 func _advance_level() -> void:
 	var delay_between_levels := PuzzleState.DELAY_SHORT
 	var failed_section := false
@@ -157,9 +151,7 @@ func _advance_level() -> void:
 	PuzzleState.change_level(new_level_id, delay_between_levels)
 
 
-"""
-Shows a diagram explaining how combos moves work, with an accompanying sensei message.
-"""
+## Shows a diagram explaining how combos moves work, with an accompanying sensei message.
 func _show_next_diagram() -> void:
 	var hud_messages := []
 	if _show_diagram_count == 0:
@@ -189,11 +181,9 @@ func _on_PieceManager_piece_spawned() -> void:
 	_did_end_combo = false
 
 
-"""
-After a piece is written to the playfield, we check if the player should advance further in the tutorial.
-
-We also sometimes display messages from the sensei.
-"""
+## After a piece is written to the playfield, we check if the player should advance further in the tutorial.
+##
+## We also sometimes display messages from the sensei.
 func _on_PuzzleState_after_piece_written() -> void:
 	match CurrentLevel.settings.id:
 		"tutorial/combo_0", "tutorial/combo_2":

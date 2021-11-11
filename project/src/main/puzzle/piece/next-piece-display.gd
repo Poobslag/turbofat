@@ -1,13 +1,11 @@
 class_name NextPieceDisplay
 extends Node2D
-"""
-Contains logic for a single 'next piece display'. A single display might only display the piece which is coming up 3
-pieces from now. Several displays are shown at once.
-"""
+## Contains logic for a single 'next piece display'. A single display might only display the piece which is coming up 3
+## pieces from now. Several displays are shown at once.
 
 var _piece_queue: PieceQueue
 
-# how far into the future this display should look; 0 = show the next piece, 10 = show the 11th piece
+## how far into the future this display should look; 0 = show the next piece, 10 = show the 11th piece
 var _piece_index := 0
 
 var _displayed_type: PieceType

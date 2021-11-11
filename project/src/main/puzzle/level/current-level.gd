@@ -1,65 +1,59 @@
 extends Node
-"""
-Stores information about the current level.
-"""
+## Stores information about the current level.
 
-# emitted after the level has customized the puzzle's settings.
+## emitted after the level has customized the puzzle's settings.
 signal settings_changed
 
-# emitted when the 'best_result' field changes, such as when starting or clearing a level.
+## emitted when the 'best_result' field changes, such as when starting or clearing a level.
 signal best_result_changed
 
-# If 'true' then the level is one which the player might keep retrying, even after clearing it.
-# This is especially true for practice levels such as the 3 minute sprint level.
+## If 'true' then the level is one which the player might keep retrying, even after clearing it.
+## This is especially true for practice levels such as the 3 minute sprint level.
 var keep_retrying := false
 
-# The settings for the level currently being launched or played
+## The settings for the level currently being launched or played
 var settings := LevelSettings.new() setget switch_level
 
-# The puzzle scene
+## The puzzle scene
 var puzzle: Puzzle
 
-# The level which was originally launched. Some tutorial levels transition
-# into other levels, so this keeps track of the original.
+## The level which was originally launched. Some tutorial levels transition
+## into other levels, so this keeps track of the original.
 var level_id: String
 
-# The creature who launched the level.
+## The creature who launched the level.
 var creature_id: String
 
-# The customers to queue up at the start of the level. If absent, random customers will be queued.
+## The customers to queue up at the start of the level. If absent, random customers will be queued.
 var customer_ids: Array
 
-# The creature who will be the chef for the level. If absent, the player will be the chef.
+## The creature who will be the chef for the level. If absent, the player will be the chef.
 var chef_id: String
 
-# Tracks when the player finishes a level.
+## Tracks when the player finishes a level.
 var best_result: int = Levels.Result.NONE setget set_best_result
 
-# Tracks whether or not the player wants to play/skip this level's cutscene.
+## Tracks whether or not the player wants to play/skip this level's cutscene.
 var cutscene_force: int = Levels.CutsceneForce.NONE
 
 func _ready() -> void:
 	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
 
 
-"""
-Unsets all of the 'launched level' data.
-
-This ensures the overworld will allow free roam and not try to play a cutscene.
-"""
+## Unsets all of the 'launched level' data.
+##
+## This ensures the overworld will allow free roam and not try to play a cutscene.
 func clear_launched_level() -> void:
 	set_launched_level("")
 
 
-"""
-Sets the launched level data.
-
-Some tutorial levels transition into other levels, so this keeps track of the original. These properties also
-used on the overworld to track whether or not it should play a cutscene or allow free roam.
-
-Parameters:
-	'level_id': The level to launch
-"""
+## Sets the launched level data.
+##
+## Some tutorial levels transition into other levels, so this keeps track of the original. These properties also
+## used on the overworld to track whether or not it should play a cutscene or allow free roam.
+##
+## Parameters:
+## 	'level_id': The level to launch
 func set_launched_level(new_level_id: String) -> void:
 	level_id = new_level_id
 	var level_lock: LevelLock
@@ -90,18 +84,16 @@ func switch_level(new_settings: LevelSettings) -> void:
 	emit_signal("settings_changed")
 
 
-"""
-Returns 'true' if the specified cutscene should be played.
-
-We skip cutscenes if the player's seen them already, or if its 'skip_if' condition is met. This can be overridden with
-the 'cutscene_force' field which the player can configure on the level select screen.
-
-Parameters:
-	'chat_tree': The cutscene to evaluate.
-	
-	'ignore_player_preferences': If 'true', the player's preferences will be ignored, and the method will only
-		check whether the player's seen the cutscene and whether its 'skip_if' condition is met.
-"""
+## Returns 'true' if the specified cutscene should be played.
+##
+## We skip cutscenes if the player's seen them already, or if its 'skip_if' condition is met. This can be overridden
+## with the 'cutscene_force' field which the player can configure on the level select screen.
+##
+## Parameters:
+## 	'chat_tree': The cutscene to evaluate.
+##
+## 	'ignore_player_preferences': If 'true', the player's preferences will be ignored, and the method will only
+## 		check whether the player's seen the cutscene and whether its 'skip_if' condition is met.
 func should_play_cutscene(chat_tree: ChatTree, ignore_player_preferences = false) -> bool:
 	var result := true
 	if not chat_tree:
@@ -123,9 +115,7 @@ func should_play_cutscene(chat_tree: ChatTree, ignore_player_preferences = false
 	return result
 
 
-"""
-Launches a puzzle scene with the previously specified 'launched level' settings.
-"""
+## Launches a puzzle scene with the previously specified 'launched level' settings.
 func push_level_trail() -> void:
 	var level_settings := LevelSettings.new()
 	level_settings.load_from_resource(level_id)
@@ -148,11 +138,9 @@ func set_best_result(new_best_result: int) -> void:
 	emit_signal("best_result_changed")
 
 
-"""
-Purges all node instances from the singleton.
-
-Because CurrentLevel is a singleton, node instances should be purged before changing scenes. Otherwise they'll
-continue consuming resources and could cause side effects.
-"""
+## Purges all node instances from the singleton.
+##
+## Because CurrentLevel is a singleton, node instances should be purged before changing scenes. Otherwise they'll
+## continue consuming resources and could cause side effects.
 func _on_Breadcrumb_before_scene_changed() -> void:
 	puzzle = null

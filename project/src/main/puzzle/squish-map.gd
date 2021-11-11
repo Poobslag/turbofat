@@ -1,8 +1,6 @@
 class_name SquishMap
 extends PuzzleTileMap
-"""
-This TileMap handles drawing the stretched-out piece during a squish move.
-"""
+## This TileMap handles drawing the stretched-out piece during a squish move.
 
 var squish_seconds_remaining := 0.0
 var squish_seconds_total := 0.0
@@ -49,9 +47,7 @@ func _process(delta: float) -> void:
 		set_process(false)
 
 
-"""
-Adds the specified cells to the current squish move.
-"""
+## Adds the specified cells to the current squish move.
 func stretch_to(piece_pos_arr: Array, offset: Vector2) -> void:
 	if not _is_stretched_to(piece_pos_arr, offset):
 		return
@@ -62,9 +58,7 @@ func stretch_to(piece_pos_arr: Array, offset: Vector2) -> void:
 		_stretch_pos[piece_pos.y + offset.y][piece_pos.x + offset.x] = _max_distance
 
 
-"""
-Starts a new squish move, which will make the piece appear vertically stretched for a few frames.
-"""
+## Starts a new squish move, which will make the piece appear vertically stretched for a few frames.
 func start_squish(post_squish_frames: int, new_color_y: int) -> void:
 	squish_seconds_total = post_squish_frames / 60.0
 	squish_seconds_remaining = squish_seconds_total
@@ -79,9 +73,7 @@ func start_squish(post_squish_frames: int, new_color_y: int) -> void:
 			_stretch_pos[row][col] = 0
 
 
-"""
-Returns 'true' if the piece is already stretched to the specified position.
-"""
+## Returns 'true' if the piece is already stretched to the specified position.
 func _is_stretched_to(piece_pos_arr: Array, offset: Vector2) -> bool:
 	var result := false
 	if _max_distance == 0:

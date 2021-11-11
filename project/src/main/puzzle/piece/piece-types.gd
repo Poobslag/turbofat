@@ -1,8 +1,6 @@
 extends Node
-"""
-Stores information on the various piece shapes. This includes information on their appearance, how they rotate, and
-how they 'kick' when they're blocked from rotating.
-"""
+## Stores information on the various piece shapes. This includes information on their appearance, how they rotate, and
+## how they 'kick' when they're blocked from rotating.
 
 const KICKS_JL := [
 		[Vector2( 1,  0), Vector2(-1,  0), Vector2(-1, -1), Vector2( 0,  1), Vector2( 0, -1), Vector2(-1,  1)],

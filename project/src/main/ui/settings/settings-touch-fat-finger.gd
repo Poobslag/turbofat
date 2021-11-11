@@ -1,9 +1,7 @@
 extends Control
-"""
-UI control for adjusting the touchscreen fat finger setting.
-
-The fat finger setting decides how easy it is to mash two buttons with one finger.
-"""
+## UI control for adjusting the touchscreen fat finger setting.
+##
+## The fat finger setting decides how easy it is to mash two buttons with one finger.
 
 const VALUES := [0.00, 0.50, 0.66, 0.83, 1.00]
 

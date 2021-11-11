@@ -21,16 +21,14 @@ func test_no_possibilities() -> void:
 	assert_eq([], non_adjacent_indexes(["o", "l", "o"], "o"))
 
 
-"""
-Convenience function which converts strings into appropriate piece parameters.
-
-Parameters:
-	'piece_strings': An array of strings like 't' and 'o' corresponding to piece shapes.
-	
-	'piece_type_string': A string like 't' or 'o' corresponding to a piece type.
-	
-	'from_index': The lowest position to check in the piece queue.
-"""
+## Convenience function which converts strings into appropriate piece parameters.
+##
+## Parameters:
+## 	'piece_strings': An array of strings like 't' and 'o' corresponding to piece shapes.
+##
+## 	'piece_type_string': A string like 't' or 'o' corresponding to a piece type.
+##
+## 	'from_index': The lowest position to check in the piece queue.
 func non_adjacent_indexes(piece_strings: Array, piece_type_string: String, from_index: int = 0) -> Array:
 	var pieces := []
 	for piece_string in piece_strings:

@@ -1,7 +1,5 @@
 extends Node
-"""
-Handles horizontal movement for the player's active piece.
-"""
+## Handles horizontal movement for the player's active piece.
 
 # warning-ignore:unused_signal
 signal initial_rotated_ccw
@@ -117,9 +115,7 @@ func apply_rotate_input(piece: ActivePiece) -> void:
 			"rotated_180": CurrentLevel.settings.triggers.run_triggers(LevelTrigger.ROTATED_180)
 
 
-"""
-Calculates the position and orientation the player is trying to rotate the piece to.
-"""
+## Calculates the position and orientation the player is trying to rotate the piece to.
 func _calc_rotate_target(piece: ActivePiece) -> void:
 	if not input.is_cw_pressed() and not input.is_ccw_pressed():
 		return

@@ -1,10 +1,8 @@
 class_name CreatureEditor
 extends Node
-"""
-A graphical creature editor which lets players design their own creatures.
-"""
+## A graphical creature editor which lets players design their own creatures.
 
-# emitted when the center creature is first initialized, and later when it is swapped out
+## emitted when the center creature is first initialized, and later when it is swapped out
 signal center_creature_changed
 
 enum ColorMode {
@@ -20,17 +18,17 @@ const SIMILAR_COLORS := ColorMode.SIMILAR_COLORS
 var _rng := RandomNumberGenerator.new()
 var _next_line_color_index := 0
 
-# key: allele
-# value: values which have been randomly chosen by the 'tweak dna' button
+## key: allele
+## value: values which have been randomly chosen by the 'tweak dna' button
 var _recent_tweaked_allele_values := {}
 
-# generates random names
+## generates random names
 var _name_generator: NameGenerator
 
-# the creature the player is editing
+## the creature the player is editing
 onready var center_creature: Creature = $World/Creatures/CenterCreature
 
-# alternative creatures the player can choose
+## alternative creatures the player can choose
 onready var outer_creatures := [
 	$World/Creatures/NwCreature,
 	$World/Creatures/NeCreature,
@@ -40,7 +38,7 @@ onready var outer_creatures := [
 	$World/Creatures/SeCreature,
 ]
 
-# the UI which tracks things like mutagen level and locked/unlocked alleles
+## the UI which tracks things like mutagen level and locked/unlocked alleles
 onready var _mutate_ui := $Ui/TabContainer/Mutate
 onready var _reroll_ui := $Ui/Reroll
 
@@ -63,22 +61,18 @@ func _ready() -> void:
 	mutate_all_creatures()
 
 
-"""
-Regenerates all of the outer creatures to be variations of the center creature.
-
-Any number of aspects of the creature are changed.
-"""
+## Regenerates all of the outer creatures to be variations of the center creature.
+##
+## Any number of aspects of the creature are changed.
 func mutate_all_creatures() -> void:
 	for creature_obj in outer_creatures:
 		_mutate_creature(creature_obj)
 
 
-"""
-Regenerates a creature to be a variation of the center creature.
-
-The amount of variance depends on the 'mutagen' level. The mutated alleles are randomly chosen depend on the player's
-locked/unlocked alleles.
-"""
+## Regenerates a creature to be a variation of the center creature.
+##
+## The amount of variance depends on the 'mutagen' level. The mutated alleles are randomly chosen depend on the
+## player's locked/unlocked alleles.
 func _mutate_creature(creature: Creature) -> void:
 	var new_palette: Dictionary = _palette()
 	
@@ -97,21 +91,19 @@ func _mutate_creature(creature: Creature) -> void:
 	creature.chat_theme_def = CreatureLoader.chat_theme_def(dna)
 
 
-"""
-Mutate a single allele.
-
-Picks a new value for the specified allele, weighted to pick more common/appealing attributes more frequently, and to
-avoid illegal allele combinations.
-
-Parameters:
-	'creature': The creature to modify for non-DNA attributes, such as fatness and name.
-	
-	'dna': The dna dictionary to modify.
-	
-	'new_palette': The palette to use for any new colors.
-	
-	'property': The allele property to mutate.
-"""
+## Mutate a single allele.
+##
+## Picks a new value for the specified allele, weighted to pick more common/appealing attributes more frequently, and
+## to avoid illegal allele combinations.
+##
+## Parameters:
+## 	'creature': The creature to modify for non-DNA attributes, such as fatness and name.
+##
+## 	'dna': The dna dictionary to modify.
+##
+## 	'new_palette': The palette to use for any new colors.
+##
+## 	'property': The allele property to mutate.
 func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary, property: String) -> void:
 	match property:
 		"name":
@@ -148,12 +140,10 @@ func _mutate_allele(creature: Creature, dna: Dictionary, new_palette: Dictionary
 				dna[property] = Utils.weighted_rand_value(new_alleles)
 
 
-"""
-Regenerates all of the outer creatures to be variations of the center creature.
-
-Only one aspect of the creature is changed. We select a value which is different from the creature's current value, and
-which hasn't been selected recently.
-"""
+## Regenerates all of the outer creatures to be variations of the center creature.
+##
+## Only one aspect of the creature is changed. We select a value which is different from the creature's current value,
+## and which hasn't been selected recently.
 func tweak_all_creatures(allele: String, color_mode: int = THEME_COLORS) -> void:
 	for creature_obj in outer_creatures:
 		_tweak_creature(creature_obj, allele, color_mode)
@@ -164,12 +154,10 @@ func set_center_creature_def(creature_def: CreatureDef) -> void:
 	emit_signal("center_creature_changed")
 
 
-"""
-Generates a palette.
-
-Depending on the specified color mode, the new palette is either loaded from a preset, or generated with completely
-random colors, or derived from the current palette.
-"""
+## Generates a palette.
+##
+## Depending on the specified color mode, the new palette is either loaded from a preset, or generated with completely
+## random colors, or derived from the current palette.
 func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 	var result := {}
 	if color_mode == THEME_COLORS:
@@ -230,12 +218,10 @@ func _palette(color_mode: int = THEME_COLORS) -> Dictionary:
 	return result
 
 
-"""
-Regenerates a creature to be a variation of the center creature.
-
-Only one aspect of the creature is changed. We select a value which is different from the creature's current value, and
-which hasn't been selected recently.
-"""
+## Regenerates a creature to be a variation of the center creature.
+##
+## Only one aspect of the creature is changed. We select a value which is different from the creature's current value,
+## and which hasn't been selected recently.
 func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> void:
 	var palette: Dictionary = _palette(color_mode)
 	if allele == "line_rgb":
@@ -307,14 +293,13 @@ func _tweak_creature(creature: Creature, allele: String, color_mode: int) -> voi
 	creature.chat_theme_def = CreatureLoader.chat_theme_def(dna)
 
 
-"""
-Randomly calculates a set of alleles to mutate.
-
-These alleles are randomly selected based on the player's locked/unlocked selections.
-
-Unlocked alleles are always returned. Locked alleles are never returned. Alleles which are neither locked nor unlocked
-are randomly returned depending on the 'mutagen' value; a higher mutagen value results in more alleles being returned.
-"""
+## Randomly calculates a set of alleles to mutate.
+##
+## These alleles are randomly selected based on the player's locked/unlocked selections.
+##
+## Unlocked alleles are always returned. Locked alleles are never returned. Alleles which are neither locked nor
+## unlocked are randomly returned depending on the 'mutagen' value; a higher mutagen value results in more alleles
+## being returned.
 func _alleles_to_mutate() -> Array:
 	var result := []
 	result += _mutate_ui.get_unlocked_alleles()
@@ -365,9 +350,7 @@ func _alleles_to_mutate() -> Array:
 	return result
 
 
-"""
-Randomly generates a color with a similar HSV to the specified color.
-"""
+## Randomly generates a color with a similar HSV to the specified color.
 func _random_similar_color(color: Color) -> Color:
 	var new_color := color
 	new_color.h = new_color.h + _rng.randfn(0.0, 0.06)
@@ -376,9 +359,7 @@ func _random_similar_color(color: Color) -> Color:
 	return new_color
 
 
-"""
-Randomly generates a brighter version of the specified color.
-"""
+## Randomly generates a brighter version of the specified color.
 func _random_highlight_color(color: Color) -> Color:
 	var new_color := color
 	new_color.h = color.h + _rng.randfn(+0.00, 0.03)
@@ -395,10 +376,7 @@ func _on_Reroll_pressed() -> void:
 	mutate_all_creatures()
 	_reroll_ui.mutagen *= 0.84
 
-
-"""
-Swap the clicked creature with the center creature.
-"""
+## Swap the clicked creature with the center creature.
 func _on_CreatureSelector_creature_clicked(creature: Creature) -> void:
 	if creature == center_creature:
 		return

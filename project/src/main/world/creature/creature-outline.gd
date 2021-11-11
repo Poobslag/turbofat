@@ -1,12 +1,10 @@
 class_name CreatureOutline
 extends Node2D
-"""
-Augments creature visuals with an elevation and an outline.
-"""
+## Augments creature visuals with an elevation and an outline.
 
 signal elevation_changed(elevation)
 
-# How high the creature should be elevated off the ground, in pixels.
+## How high the creature should be elevated off the ground, in pixels.
 var elevation: float
 
 var creature_visuals: CreatureVisuals

@@ -1,16 +1,14 @@
 class_name LevelLock
-"""
-Keeps track of whether a level is unlocked, and the requirements to unlock it.
-"""
+## Keeps track of whether a level is unlocked, and the requirements to unlock it.
 
-# the requirements to unlock a level
+## the requirements to unlock a level
 enum UnlockedIf {
 	ALWAYS_UNLOCKED, # never locked
 	IF_LEVEL_FINISHED, # unlocked if the player finishes a specific level(s)
 	IF_GROUP_FINISHED, # unlocked if the player finishes some levels in a group
 }
 
-# the status whether or not a level is locked/unlocked
+## the status whether or not a level is locked/unlocked
 enum LockStatus {
 	NONE, # not locked
 	CLEARED, # cleared without any rank; used for tutorials
@@ -33,34 +31,32 @@ const STATUS_HARD_LOCK := LockStatus.HARD_LOCK
 
 var level_id: String
 
-# Some levels activate chat sequences. This field specifies which character's chat should activate.
+## Some levels activate chat sequences. This field specifies which character's chat should activate.
 var creature_id: String
 
-# Some levels involve specific customers or a specific chef.
+## Some levels involve specific customers or a specific chef.
 var customer_ids: Array
 var chef_id: String
 
-# the requirements to unlock this level
+## the requirements to unlock this level
 var unlocked_if_type := ALWAYS_UNLOCKED
 
-"""
-An array of strings representing unlock criteria.
-
-For IF_LEVEL_FINISHED locks, this is an array of level IDs.
-For IF_GROUP_FINISHED locks, this is a group ID and (optionally) a number of levels which can be skipped.
-"""
+## An array of strings representing unlock criteria.
+##
+## For IF_LEVEL_FINISHED locks, this is an array of level IDs.
+## For IF_GROUP_FINISHED locks, this is a group ID and (optionally) a number of levels which can be skipped.
 var unlocked_if_values := []
 
-# the condition required to make this level high priority
+## the condition required to make this level high priority
 var prioritized_if: String
 
-# the status whether or not this level is locked/unlocked
+## the status whether or not this level is locked/unlocked
 var status := STATUS_NONE
 
-# the number of remaining levels the player needs to play to unlock this level
+## the number of remaining levels the player needs to play to unlock this level
 var keys_needed := -1
 
-# array of string group IDs for groups this level belongs to
+## array of string group IDs for groups this level belongs to
 var groups := []
 
 func from_json_dict(json: Dictionary) -> void:

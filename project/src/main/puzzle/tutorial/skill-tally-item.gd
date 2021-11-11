@@ -1,28 +1,26 @@
 class_name SkillTallyItem
 extends ProgressBar
-"""
-Provides feedback to the player when they perform an action, such as rotating a piece or clearing a line.
+## Provides feedback to the player when they perform an action, such as rotating a piece or clearing a line.
+##
+## This is used during tutorials so the player can see what to do.
 
-This is used during tutorials so the player can see what to do.
-"""
-
-# if 'true' the skill tally will be shown as '58%' instead of '52/90'
+## if 'true' the skill tally will be shown as '58%' instead of '52/90'
 export (bool) var show_as_percent: bool
 
-# description of the skill being tallied such as 'Rotate Left'
+## description of the skill being tallied such as 'Rotate Left'
 export (String) var label_text: String setget set_label_text
 
-# name of the signals this skill tally monitors
+## name of the signals this skill tally monitors
 export (Array, String) var signal_names: Array
 
-# puzzle to monitor for things such as moving the piece and clearing lines
+## puzzle to monitor for things such as moving the piece and clearing lines
 var puzzle: Puzzle setget set_puzzle
 
 var _playfield: Playfield
 var _piece_manager: PieceManager
 
-# When the player performs a skill enough times, the skill tally plays a noise and lights up more brightly. This
-# property is 'true' if the skill tally is lit up brightly.
+## When the player performs a skill enough times, the skill tally plays a noise and lights up more brightly. This
+## property is 'true' if the skill tally is lit up brightly.
 var _bright_tween_active: bool
 
 func _ready() -> void:
@@ -44,17 +42,13 @@ func is_complete() -> bool:
 	return value >= max_value
 
 
-"""
-Resets the skill tally to 0 when starting/restarting a tutorial.
-"""
+## Resets the skill tally to 0 when starting/restarting a tutorial.
 func reset() -> void:
 	value = 0
 	update_label()
 
 
-"""
-When the player performs a skill we blink and increment our value.
-"""
+## When the player performs a skill we blink and increment our value.
 func increment() -> void:
 	if not is_visible_in_tree():
 		return
@@ -70,11 +64,9 @@ func increment() -> void:
 	update_label()
 
 
-"""
-Initializes this node when the puzzle field is assigned.
-
-Connects the signals in 'signal_names' to the appropriate nodes.
-"""
+## Initializes this node when the puzzle field is assigned.
+##
+## Connects the signals in 'signal_names' to the appropriate nodes.
 func _refresh_puzzle() -> void:
 	_playfield = puzzle.get_playfield()
 	_piece_manager = puzzle.get_piece_manager()
@@ -94,9 +86,7 @@ func _refresh_puzzle() -> void:
 			push_warning("Could not find sender for signal '%s'" % signal_name)
 
 
-"""
-Returns the signal names for a node.
-"""
+## Returns the signal names for a node.
 static func _get_signal_names(object: Object) -> Dictionary:
 	var result := {}
 	for signal_dict in object.get_signal_list():
@@ -104,12 +94,10 @@ static func _get_signal_names(object: Object) -> Dictionary:
 	return result
 
 
-"""
-Blinks the skill tally to catch the player's attention.
-
-Parameters:
-	'bright': If true, the skill tally will blink very brightly and play a noise.
-"""
+## Blinks the skill tally to catch the player's attention.
+##
+## Parameters:
+## 	'bright': If true, the skill tally will blink very brightly and play a noise.
 func _blink(bright: bool = false) -> void:
 	if _bright_tween_active:
 		return

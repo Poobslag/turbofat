@@ -1,18 +1,16 @@
 class_name Pickup
 extends Node2D
-"""
-A pickup which spawns a food item when collected by the player.
-"""
+## A pickup which spawns a food item when collected by the player.
 
-# the duration in seconds between star color changes
+## the duration in seconds between star color changes
 const STAR_COLOR_CHANGE_DURATION := 0.8
 
 var food_type := 0 setget set_food_type
 
-# 'true' if the food item should be shown, 'false' if the star or seed should be shown
+## 'true' if the food item should be shown, 'false' if the star or seed should be shown
 var food_shown: bool = false setget set_food_shown
 
-# array of Colors the star should cycle between
+## array of Colors the star should cycle between
 var _star_colors: Array = []
 var _star_color_index := 0
 
@@ -20,7 +18,7 @@ onready var _seed := $Seed
 onready var _star := $Star
 onready var _food_item := $FoodItem
 
-# tween used to update the star's color
+## tween used to update the star's color
 onready var _star_color_tween := $StarColorTween
 
 func _ready() -> void:
@@ -40,17 +38,13 @@ func set_food_type(new_food_type: int) -> void:
 	_refresh_appearance()
 
 
-"""
-Returns 'true' if this pickup will spawn a cake when collected.
-"""
+## Returns 'true' if this pickup will spawn a cake when collected.
 func is_cake() -> bool:
 	var box_type: int = Foods.BOX_TYPE_BY_FOOD_TYPE[food_type]
 	return Foods.is_cake_box(box_type)
 
 
-"""
-Updates the status and visibility of the child components.
-"""
+## Updates the status and visibility of the child components.
 func _refresh_appearance() -> void:
 	if not (is_inside_tree() and _food_item):
 		return
@@ -80,9 +74,7 @@ func _refresh_appearance() -> void:
 		_food_item.food_type = food_type
 
 
-"""
-Gradually changes the star to a new color.
-"""
+## Gradually changes the star to a new color.
 func _launch_star_color_tween(var initial_launch := false) -> void:
 	var new_star_color_index := (_star_color_index + 1) % _star_colors.size()
 	_star_color_tween.remove_all()

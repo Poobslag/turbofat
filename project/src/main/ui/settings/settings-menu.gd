@@ -1,10 +1,8 @@
 class_name SettingsMenu
 extends CanvasLayer
-"""
-Menu which lets the player adjust settings.
-
-This is meant to be overlaid over over scenes, which is why it is a CanvasLayer.
-"""
+## Menu which lets the player adjust settings.
+##
+## This is meant to be overlaid over over scenes, which is why it is a CanvasLayer.
 
 signal show
 signal hide
@@ -18,13 +16,13 @@ const QUIT := QuitType.QUIT
 const SAVE_AND_QUIT := QuitType.SAVE_AND_QUIT
 const GIVE_UP := QuitType.GIVE_UP
 
-# The text on the menu's quit button
+## The text on the menu's quit button
 export (QuitType) var quit_type: int setget set_quit_type
 
-# the UI control which was focused before this settings menu popped up
+## the UI control which was focused before this settings menu popped up
 var _old_focus_owner: Control
 
-# method name and parameters for a method to call after system data is saved
+## method name and parameters for a method to call after system data is saved
 var _post_save_method: String
 var _post_save_args_array: Array
 
@@ -61,9 +59,7 @@ func set_quit_type(new_quit_type: int) -> void:
 	_refresh_quit_type()
 
 
-"""
-Shows the menu and pauses the scene tree.
-"""
+## Shows the menu and pauses the scene tree.
 func show() -> void:
 	_bg.show()
 	_touch_buttons.visible = true
@@ -75,9 +71,7 @@ func show() -> void:
 	emit_signal("show")
 
 
-"""
-Hides the menu and unpauses the scene tree.
-"""
+## Hides the menu and unpauses the scene tree.
 func hide() -> void:
 	_bg.hide()
 	_touch_buttons.visible = false
@@ -90,20 +84,18 @@ func hide() -> void:
 	emit_signal("hide")
 
 
-"""
-Prompts the user for confirmation, if necessary, and saves their system settings.
-
-Confirmation is only required when changing the current save slot. If the player confirms changing their save slot, we
-drop them back on the title screen.
-
-In all other cases, either if the player is not confirmed or if they decide to not change their save slot, the
-specified 'post_save_method' is invoked to dismiss the settings menu.
-
-Parameters:
-	'new_post_save_method': The method to use to dismiss the settings menu after data is saved.
-	
-	'new_post_save_args_array': The method parameters to use to dismiss the settings menu after data is saved.
-"""
+## Prompts the user for confirmation, if necessary, and saves their system settings.
+##
+## Confirmation is only required when changing the current save slot. If the player confirms changing their save slot,
+## we drop them back on the title screen.
+##
+## In all other cases, either if the player is not confirmed or if they decide to not change their save slot, the
+## specified 'post_save_method' is invoked to dismiss the settings menu.
+##
+## Parameters:
+## 	'new_post_save_method': The method to use to dismiss the settings menu after data is saved.
+##
+## 	'new_post_save_args_array': The method parameters to use to dismiss the settings menu after data is saved.
 func _confirm_and_save(new_post_save_method: String, new_post_save_args_array: Array) -> void:
 	_post_save_method = new_post_save_method
 	_post_save_args_array = new_post_save_args_array
@@ -128,9 +120,7 @@ func _refresh_quit_type() -> void:
 	_quit_button.text = quit_text
 
 
-"""
-Loads the current save slot's data and returns the player to the splash screen.
-"""
+## Loads the current save slot's data and returns the player to the splash screen.
 func _load_player_data() -> void:
 	PlayerSave.load_player_data()
 	Breadcrumb.trail = []

@@ -1,15 +1,11 @@
 class_name BoolExpressionParser
-"""
-Parses a string boolean expression into a tree of BoolExpressions.
+## Parses a string boolean expression into a tree of BoolExpressions.
+##
+## This is a recursive descent parser.
 
-This is a recursive descent parser.
-"""
-
-"""
-A lexical token which occurs in a boolean expression.
-
-This token represents a single word, and includes data about the occurrence of the word in the original statement.
-"""
+## A lexical token which occurs in a boolean expression.
+##
+## This token represents a single word, and includes data about the occurrence of the word in the original statement.
 class BoolToken:
 	var position: int
 	var string: String
@@ -22,11 +18,9 @@ class BoolToken:
 		return string
 
 
-"""
-An node in a tree of boolean expressions.
-
-This node includes information about how to evaluate the expression and its children.
-"""
+## An node in a tree of boolean expressions.
+##
+## This node includes information about how to evaluate the expression and its children.
 class BoolExpression:
 	var token: BoolToken
 	var args: Array
@@ -100,29 +94,27 @@ class NotableExpression extends BoolExpression:
 	func evaluate() -> bool:
 		return PlayerData.chat_history.get_filler_count(_creature_id) > 0
 
-# error encountered when parsing the boolean string
+## error encountered when parsing the boolean string
 var _parse_error: String
 
-# list of parsed BoolToken instances
+## list of parsed BoolToken instances
 var _tokens := []
 
-# the index of the next BoolToken to process in the token array
+## the index of the next BoolToken to process in the token array
 var _token_index := 0
 
-# the boolean string to parse
+## the boolean string to parse
 var _string: String
 
-# The target for which the boolean string is being evaluated, if evaluated for a specific creature or level.
+## The target for which the boolean string is being evaluated, if evaluated for a specific creature or level.
 var _subject
 
-"""
-Initializes the parser, parsing the specified string into a list of BoolTokens.
-
-Parameters:
-	'string': The boolean expression to parse.
-	
-	'subject': The subject the specified boolean expression should be applied to, such as a level or creature
-"""
+## Initializes the parser, parsing the specified string into a list of BoolTokens.
+##
+## Parameters:
+## 	'string': The boolean expression to parse.
+##
+## 	'subject': The subject the specified boolean expression should be applied to, such as a level or creature
 func _init(string: String, subject = null) -> void:
 	_string = string
 	_subject = subject
@@ -133,12 +125,10 @@ func _init(string: String, subject = null) -> void:
 		_tokens.append(chat_token)
 
 
-"""
-Parses a list of BoolTokens into a tree of BoolExpressions which can be evaluated.
-
-Returns:
-	The root of a BoolExpression tree representing the parsed boolean string.
-"""
+## Parses a list of BoolTokens into a tree of BoolExpressions which can be evaluated.
+##
+## Returns:
+## 	The root of a BoolExpression tree representing the parsed boolean string.
 func parse() -> BoolExpression:
 	var expression := _parse_or()
 	if _token_index < _tokens.size():
@@ -146,9 +136,7 @@ func parse() -> BoolExpression:
 	return expression
 
 
-"""
-Parses an 'or' chat token, as well as any tokens of higher precedence (and, not, functions, parentheses).
-"""
+## Parses an 'or' chat token, as well as any tokens of higher precedence (and, not, functions, parentheses).
 func _parse_or() -> BoolExpression:
 	if _parse_error:
 		return null
@@ -159,9 +147,7 @@ func _parse_or() -> BoolExpression:
 	return expression
 
 
-"""
-Parses an 'and' chat token, as well as any tokens of higher precedence (not, functions, parentheses).
-"""
+## Parses an 'and' chat token, as well as any tokens of higher precedence (not, functions, parentheses).
 func _parse_and() -> BoolExpression:
 	if _parse_error:
 		return null
@@ -172,9 +158,7 @@ func _parse_and() -> BoolExpression:
 	return expression
 
 
-"""
-Parses a 'not' chat token, as well as any tokens of higher precedence (functions, parentheses).
-"""
+## Parses a 'not' chat token, as well as any tokens of higher precedence (functions, parentheses).
 func _parse_not() -> BoolExpression:
 	if _parse_error:
 		return null
@@ -187,11 +171,9 @@ func _parse_not() -> BoolExpression:
 	return expression
 
 
-"""
-Parses a 'function' chat token, specifying a function to be evaluated.
-
-Also evaluates any tokens of higher precedence (parentheses).
-"""
+## Parses a 'function' chat token, specifying a function to be evaluated.
+##
+## Also evaluates any tokens of higher precedence (parentheses).
 func _parse_function() -> BoolExpression:
 	if _parse_error:
 		return null
@@ -213,11 +195,9 @@ func _parse_function() -> BoolExpression:
 	return expression
 
 
-"""
-Parses an 'atom' chat token; a series of tokens within parentheses.
-
-Reports errors if the next chat token is not an open parenthesis.
-"""
+## Parses an 'atom' chat token; a series of tokens within parentheses.
+##
+## Reports errors if the next chat token is not an open parenthesis.
 func _parse_atom() -> BoolExpression:
 	if _parse_error:
 		return null
@@ -233,9 +213,7 @@ func _parse_atom() -> BoolExpression:
 	return expression
 
 
-"""
-Advances to the next token, throwing an error if it does not match the specified token string.
-"""
+## Advances to the next token, throwing an error if it does not match the specified token string.
 func _expect_token(token_string: String) -> void:
 	var next_token := _peek_next_token()
 	if not next_token:
@@ -248,9 +226,7 @@ func _expect_token(token_string: String) -> void:
 	_get_next_token()
 
 
-"""
-Returns the next token without advancing the token index.
-"""
+## Returns the next token without advancing the token index.
 func _peek_next_token() -> BoolToken:
 	var next_token: BoolToken = null
 	if _token_index < _tokens.size():
@@ -258,17 +234,13 @@ func _peek_next_token() -> BoolToken:
 	return next_token
 
 
-"""
-Returns the next token string without advancing the token index.
-"""
+## Returns the next token string without advancing the token index.
 func _peek_next_token_string() -> String:
 	var next_token := _peek_next_token()
 	return next_token.string if next_token else ""
 
 
-"""
-Returns the next token and advances the token index.
-"""
+## Returns the next token and advances the token index.
 func _get_next_token() -> BoolToken:
 	var next_token: BoolToken = null
 	if _token_index < _tokens.size():
@@ -277,12 +249,10 @@ func _get_next_token() -> BoolToken:
 	return next_token
 
 
-"""
-Records and reports a parse error.
-
-This error is recorded to ensure the parser doesn't continue parsing and encountering further errors. It is also
-recorded for unit tests.
-"""
+## Records and reports a parse error.
+##
+## This error is recorded to ensure the parser doesn't continue parsing and encountering further errors. It is also
+## recorded for unit tests.
 func _report_error(position: int, error_description: String) -> void:
 	if _parse_error:
 		# don't report a second error. it's redundant and overwrites the first

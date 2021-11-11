@@ -1,7 +1,5 @@
 extends Tween
-"""
-Tween which shows/hides the money label which appears after a puzzle.
-"""
+## Tween which shows/hides the money label which appears after a puzzle.
 
 const DURATION := 0.1
 

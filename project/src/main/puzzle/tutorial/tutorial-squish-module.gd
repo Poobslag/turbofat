@@ -1,30 +1,28 @@
 extends TutorialModule
-"""
-Tutorial module for the 'Basic Techniques' tutorial.
+## Tutorial module for the 'Basic Techniques' tutorial.
+##
+## Shows messages and advances the player through the tutorial as they complete tasks.
 
-Shows messages and advances the player through the tutorial as they complete tasks.
-"""
-
-# tracks what the player has done during the current tutorial section
+## tracks what the player has done during the current tutorial section
 var _squish_moves := 0
 var _boxes_built := 0
 
-# tracks what the player did with the most recent piece
+## tracks what the player did with the most recent piece
 var _did_squish_move := false
 var _did_build_box := false
 
-# The number of times the diagram has been shown. We cycle through different diagrams and chat choices.
+## The number of times the diagram has been shown. We cycle through different diagrams and chat choices.
 var _show_diagram_count := 0
 
-# set of level IDs which the player has attempted during this tutorial
-# key: level id
-# value: true
+## set of level IDs which the player has attempted during this tutorial
+## key: level id
+## value: true
 var _prepared_levels: Dictionary
 
 var _squish_diagram_0 := preload("res://assets/main/puzzle/tutorial/squish-diagram-0.png")
 var _squish_diagram_1 := preload("res://assets/main/puzzle/tutorial/squish-diagram-1.png")
 
-# 'true' if the player is retrying a failed tutorial section. We display different messages the second time.
+## 'true' if the player is retrying a failed tutorial section. We display different messages the second time.
 var _failed_section := false
 
 func _ready() -> void:
@@ -93,9 +91,7 @@ func prepare_tutorial_level() -> void:
 	_prepared_levels[CurrentLevel.settings.id] = true
 
 
-"""
-Advance to the next level in the tutorial.
-"""
+## Advance to the next level in the tutorial.
 func _advance_level() -> void:
 	_failed_section = false
 	var delay_between_levels := PuzzleState.DELAY_SHORT
@@ -143,9 +139,7 @@ func _handle_squish_move_message() -> void:
 		hud.set_message(tr("Good job!\n\nSquish moves help in all sorts of ways."))
 
 
-"""
-Shows a diagram explaining how squish moves work, with an accompanying sensei message.
-"""
+## Shows a diagram explaining how squish moves work, with an accompanying sensei message.
 func _show_next_diagram() -> void:
 	var hud_messages := []
 	if _show_diagram_count == 0:
@@ -188,11 +182,9 @@ func _on_Playfield_box_built(_rect: Rect2, _color: int) -> void:
 	_boxes_built += 1
 
 
-"""
-After a piece is written to the playfield, we check if the player should advance further in the tutorial.
-
-We also sometimes display messages from the sensei.
-"""
+## After a piece is written to the playfield, we check if the player should advance further in the tutorial.
+##
+## We also sometimes display messages from the sensei.
 func _on_PuzzleState_after_piece_written() -> void:
 	# print tutorial messages if the player did something noteworthy
 	_handle_squish_move_message()

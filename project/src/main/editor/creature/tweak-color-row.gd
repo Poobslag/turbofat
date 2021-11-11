@@ -1,12 +1,10 @@
 extends HBoxContainer
-"""
-UI control for editing one of a creature's colors.
-"""
+## UI control for editing one of a creature's colors.
 
-# An allele property used internally when updating the creature. Not shown to the player
+## An allele property used internally when updating the creature. Not shown to the player
 export (String) var allele: String
 
-# An allele property used internally when updating the creature. Not shown to the player
+## An allele property used internally when updating the creature. Not shown to the player
 export (String) var text: String
 
 export (NodePath) var creature_editor_path: NodePath
@@ -20,9 +18,7 @@ func _ready() -> void:
 		$Edit.visible = false
 
 
-"""
-Update the creature with the player's chosen color.
-"""
+## Update the creature with the player's chosen color.
 func _on_Edit_color_changed(_color: Color) -> void:
 	_creature_editor.center_creature.dna[allele] = $Edit.color.to_html(false).to_lower()
 	_creature_editor.center_creature.refresh_dna()
@@ -48,9 +44,7 @@ func _on_GreyDna_pressed() -> void:
 	_creature_editor.tweak_all_creatures(allele, CreatureEditor.SIMILAR_COLORS)
 
 
-"""
-Update the color picker button with the creature's color.
-"""
+## Update the color picker button with the creature's color.
 func _on_CreatureEditor_center_creature_changed() -> void:
 	if allele != "all_rgb":
 		$Edit.color = Color(_creature_editor.center_creature.dna[allele])

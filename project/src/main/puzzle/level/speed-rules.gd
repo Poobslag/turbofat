@@ -1,10 +1,8 @@
 class_name SpeedRules
-"""
-Rules for how fast pieces should move.
-"""
+## Rules for how fast pieces should move.
 
-# Array of Milestone objects representing the requirements to speed up. This mostly applies to 'Marathon Mode' where
-# clearing lines makes you speed up.
+## Array of Milestone objects representing the requirements to speed up. This mostly applies to 'Marathon Mode' where
+## clearing lines makes you speed up.
 var speed_ups := []
 
 func _init() -> void:
@@ -12,16 +10,14 @@ func _init() -> void:
 	add_speed_up(Milestone.LINES, 0, "0")
 
 
-"""
-Adds criteria for speeding up, such as a time, score, or line limit.
-
-Parameters:
-	'type': an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
-	
-	'value': an value describing the milestone criteria (number of lines, points, seconds)
-	
-	'speed_id': a string from PieceSpeeds defining the new speed
-"""
+## Adds criteria for speeding up, such as a time, score, or line limit.
+##
+## Parameters:
+## 	'type': an enum from Milestone.MilestoneType describing the milestone criteria (lines, score, time)
+##
+## 	'value': an value describing the milestone criteria (number of lines, points, seconds)
+##
+## 	'speed_id': a string from PieceSpeeds defining the new speed
 func add_speed_up(type: int, value: int, speed_id: String) -> void:
 	var speed_up := Milestone.new()
 	speed_up.set_milestone(type, value)

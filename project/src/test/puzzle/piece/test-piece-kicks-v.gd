@@ -1,7 +1,5 @@
 extends "res://src/test/puzzle/piece/test-piece-kicks.gd"
-"""
-Tests the v piece's kick behavior.
-"""
+## Tests the v piece's kick behavior.
 
 func test_climb_r0_0() -> void:
 	from_grid = [
@@ -212,9 +210,7 @@ func test_climb_2l_1() -> void:
 	assert_kick()
 
 
-"""
-A 'snack kick' is when a v piece rotates around an o piece to make a snack block.
-"""
+## A 'snack kick' is when a v piece rotates around an o piece to make a snack block.
 func test_snack_kick_cw() -> void:
 	from_grid = [
 		"     ",
@@ -291,9 +287,7 @@ func test_snack_kick_down_cw() -> void:
 	assert_kick()
 
 
-"""
-The v piece can't technically wall kick, but it can kick against other blocks similar to a wall kick
-"""
+## The v piece can't technically wall kick, but it can kick against other blocks similar to a wall kick
 func test_rwallkick_cw0() -> void:
 	from_grid = [
 		"     ",
@@ -475,9 +469,7 @@ func test_rwallkick_ccw4() -> void:
 	assert_kick()
 
 
-"""
-A ritzy kick is when the hinge of the v piece pivots one square diagonally.
-"""
+## A ritzy kick is when the hinge of the v piece pivots one square diagonally.
 func test_ritzy_kick_cw0() -> void:
 	from_grid = [
 		"    ",
@@ -606,10 +598,8 @@ func test_ritzy_kick_ccw3() -> void:
 	assert_kick()
 
 
-"""
-A plant kick is when the v piece pivots around its hinge like a t block. This is disorienting and should be a last
-resort.
-"""
+## A plant kick is when the v piece pivots around its hinge like a t block. This is disorienting and should be a last
+## resort.
 func test_plant_kick_cw0() -> void:
 	from_grid = [
 		"::   ",

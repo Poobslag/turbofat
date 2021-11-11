@@ -1,12 +1,10 @@
 #tool #uncomment to view creature in editor
 extends AnimationPlayer
-"""
-Script for AnimationPlayers which animate moods: blinking, smiling, sweating, etc.
-"""
+## Script for AnimationPlayers which animate moods: blinking, smiling, sweating, etc.
 
 signal animation_stopped
 
-# mapping from moods to animation names
+## mapping from moods to animation names
 const EMOTE_ANIMS := {
 	ChatEvent.Mood.AWKWARD0: "awkward0",
 	ChatEvent.Mood.AWKWARD1: "awkward1",
@@ -36,7 +34,7 @@ const EMOTE_ANIMS := {
 	ChatEvent.Mood.YES1: "yes1",
 }
 
-# animation names for eating while smiling; referenced for animation transitions
+## animation names for eating while smiling; referenced for animation transitions
 const EAT_SMILE_ANIMS := {
 	"eat-smile0": "_",
 	"eat-again-smile0": "_",
@@ -44,7 +42,7 @@ const EAT_SMILE_ANIMS := {
 	"eat-again-smile1": "_",
 }
 
-# animation names for eating while sweating; referenced for animation transitions
+## animation names for eating while sweating; referenced for animation transitions
 const EAT_SWEAT_ANIMS := {
 	"eat-sweat0": "_",
 	"eat-again-sweat0": "_",
@@ -54,7 +52,7 @@ const EAT_SWEAT_ANIMS := {
 	"eat-again-sweat2": "_"
 }
 
-# custom transition for cases where the default mood transition looks awkward
+## custom transition for cases where the default mood transition looks awkward
 const TRANSITIONS := {
 	[ChatEvent.Mood.AWKWARD0, ChatEvent.Mood.AWKWARD0]: "_transition_noop",
 	[ChatEvent.Mood.AWKWARD0, ChatEvent.Mood.AWKWARD1]: "_transition_noop",
@@ -108,25 +106,25 @@ const TRANSITIONS := {
 	[ChatEvent.Mood.YES1, ChatEvent.Mood.YES1]: "_transition_noop",
 }
 
-# Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
+## Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
 const UNEMOTE_DURATION := 0.08
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
-# stores the previous mood so that we can apply mood transitions.
+## stores the previous mood so that we can apply mood transitions.
 var _prev_mood: int
 
-# stores the current mood. used to prevent sync issues when changing moods faster than 80 milliseconds.
+## stores the current mood. used to prevent sync issues when changing moods faster than 80 milliseconds.
 var _mood: int
 
 var _creature_visuals: CreatureVisuals
 
-# specific sprites manipulated frequently when emoting
+## specific sprites manipulated frequently when emoting
 var _emote_eye_z0: PackedSprite
 var _emote_eye_z1: PackedSprite
 var _head_bobber: Sprite
 
-# list of sprites to reset when unemoting
+## list of sprites to reset when unemoting
 var _emote_sprites: Array
 
 func _ready() -> void:
@@ -153,25 +151,19 @@ func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
 	_refresh_creature_visuals_path()
 
 
-"""
-Stops and emits an 'animation_stopped' signal.
-"""
+## Stops and emits an 'animation_stopped' signal.
 func stop(reset: bool = true) -> void:
 	var old_anim := current_animation
 	.stop(reset)
 	emit_signal("animation_stopped", old_anim)
 
 
-"""
-Randomly advances the current animation up to 2.0 seconds. Used to ensure all creatures don't blink synchronously.
-"""
+## Randomly advances the current animation up to 2.0 seconds. Used to ensure all creatures don't blink synchronously.
 func advance_animation_randomly() -> void:
 	advance(randf() * 2.0)
 
 
-"""
-Plays an eating animation appropriate to the creature's comfort level.
-"""
+## Plays an eating animation appropriate to the creature's comfort level.
 func eat() -> void:
 	# default eating animation
 	var emote_anim_name := "eat-again"
@@ -253,12 +245,10 @@ func eat() -> void:
 		advance(0.00001)
 
 
-"""
-Animates the creature's appearance according to the specified mood: happy, angry, etc...
-
-Parameters:
-	'mood': The creature's new mood from ChatEvent.Mood
-"""
+## Animates the creature's appearance according to the specified mood: happy, angry, etc...
+##
+## Parameters:
+## 	'mood': The creature's new mood from ChatEvent.Mood
 func emote(mood: int) -> void:
 	_mood = mood
 	if _prev_mood in EMOTE_ANIMS:
@@ -287,15 +277,13 @@ func emote(mood: int) -> void:
 		_prev_mood = mood
 
 
-"""
-Starts resetting the creature to a default neutral mood.
-
-This does not take place immediately, but fires off a tween. Callers should wait until $ResetTween completes before
-updating the creature's appearance.
-
-Parameters:
-	'anim_name': (Optional) The animation which was previously playing.
-"""
+## Starts resetting the creature to a default neutral mood.
+##
+## This does not take place immediately, but fires off a tween. Callers should wait until $ResetTween completes before
+## updating the creature's appearance.
+##
+## Parameters:
+## 	'anim_name': (Optional) The animation which was previously playing.
 func unemote(anim_name: String = "") -> void:
 	stop()
 	_unemote_non_tweened_properties()
@@ -325,12 +313,10 @@ func unemote(anim_name: String = "") -> void:
 	_prev_mood = ChatEvent.Mood.DEFAULT
 
 
-"""
-Resets the position and rotation of nodes which shift around during emotes.
-
-This only includes 'non-tweened properties'; properties which snap back to their starting value without being tweened
-into place.
-"""
+## Resets the position and rotation of nodes which shift around during emotes.
+##
+## This only includes 'non-tweened properties'; properties which snap back to their starting value without being
+## tweened into place.
 func _unemote_non_tweened_properties() -> void:
 	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ0").frame = 0
 	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ1").frame = 0
@@ -345,11 +331,9 @@ func _unemote_non_tweened_properties() -> void:
 	_emote_eye_z1.position = Vector2(0, 256)
 
 
-"""
-Immediately resets the creature to a default neutral mood.
-
-This takes place immediately, callers do not need to wait for $ResetTween.
-"""
+## Immediately resets the creature to a default neutral mood.
+##
+## This takes place immediately, callers do not need to wait for $ResetTween.
 func unemote_immediate() -> void:
 	stop()
 	_unemote_non_tweened_properties()
@@ -363,18 +347,16 @@ func unemote_immediate() -> void:
 	_post_unemote()
 
 
-"""
-Updates the values for a set of animation keys.
-
-Parameters:
-	'anim_name': The animation to update
-	
-	'track_path': The track to update
-	
-	'key_indexes': The key indexes to update
-	
-	'value': The new value to set the animation keys to
-"""
+## Updates the values for a set of animation keys.
+##
+## Parameters:
+## 	'anim_name': The animation to update
+##
+## 	'track_path': The track to update
+##
+## 	'key_indexes': The key indexes to update
+##
+## 	'value': The new value to set the animation keys to
 func _update_animation_keys(anim_name: String, track_path: String, key_indexes: Array, value) -> void:
 	var track_index := get_animation(anim_name).find_track(NodePath(track_path))
 	if track_index == -1:
@@ -385,13 +367,11 @@ func _update_animation_keys(anim_name: String, track_path: String, key_indexes: 
 		get_animation(anim_name).track_set_key_value(track_index, key_index, value)
 
 
-"""
-Finishes resetting the creature to a default neutral mood.
-
-The tweens reset most of the creature's appearance, but they don't adjust scale or blendmode. This is to avoid a
-jarring effect if a speech bubble gradually grows to a large side, or if a creature's pink blush swaps to a neon
-green.
-"""
+## Finishes resetting the creature to a default neutral mood.
+##
+## The tweens reset most of the creature's appearance, but they don't adjust scale or blendmode. This is to avoid a
+## jarring effect if a speech bubble gradually grows to a large side, or if a creature's pink blush swaps to a neon
+## green.
 func _post_unemote() -> void:
 	for emote_sprite in _emote_sprites:
 		emote_sprite.frame = 0
@@ -416,16 +396,12 @@ func _post_unemote() -> void:
 	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
 
 
-"""
-Transition function for moods which don't need a transition.
-"""
+## Transition function for moods which don't need a transition.
 func _transition_noop() -> void:
 	pass
 
 
-"""
-Transitions from 'awkward1' to 'awkward0', hiding the white sweat circles.
-"""
+## Transitions from 'awkward1' to 'awkward0', hiding the white sweat circles.
 func _transition_awkward1_awkward0() -> void:
 	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
 	$ResetTween.remove_all()
@@ -433,9 +409,7 @@ func _transition_awkward1_awkward0() -> void:
 	$ResetTween.start()
 
 
-"""
-Transitions from 'laugh1' to 'laugh0', hiding the yellow laugh lines.
-"""
+## Transitions from 'laugh1' to 'laugh0', hiding the yellow laugh lines.
 func _transition_laugh1_laugh0() -> void:
 	_head_bobber.reset_head_bob()
 	$ResetTween.remove_all()
@@ -443,9 +417,7 @@ func _transition_laugh1_laugh0() -> void:
 	$ResetTween.start()
 
 
-"""
-Transitions from 'love1' to 'love0', hiding the hearts and blush.
-"""
+## Transitions from 'love1' to 'love0', hiding the hearts and blush.
 func _transition_love1_love0() -> void:
 	_emote_eye_z0.rotation_degrees = 0
 	_emote_eye_z0.position = Vector2(0, 256)
@@ -456,9 +428,7 @@ func _transition_love1_love0() -> void:
 	$ResetTween.start()
 
 
-"""
-Transitions from 'rage1' to 'rage0', hiding the red anger symbols.
-"""
+## Transitions from 'rage1' to 'rage0', hiding the red anger symbols.
 func _transition_rage1_rage0() -> void:
 	_head_bobber.reset_head_bob()
 	$ResetTween.remove_all()
@@ -466,9 +436,7 @@ func _transition_rage1_rage0() -> void:
 	$ResetTween.start()
 
 
-"""
-Transitions from 'sigh1' to 'sigh0', turning the head forward again
-"""
+## Transitions from 'sigh1' to 'sigh0', turning the head forward again
 func _transition_sigh1_sigh0() -> void:
 	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
 	$ResetTween.remove_all()
@@ -477,9 +445,7 @@ func _transition_sigh1_sigh0() -> void:
 	$ResetTween.start()
 
 
-"""
-Transitions from 'smile1' to 'smile0', hiding the pink love bubble and blush.
-"""
+## Transitions from 'smile1' to 'smile0', hiding the pink love bubble and blush.
 func _transition_smile1_smile0() -> void:
 	$ResetTween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
@@ -488,9 +454,7 @@ func _transition_smile1_smile0() -> void:
 	$ResetTween.start()
 
 
-"""
-Transitions from 'sweat1' to 'sweat0', hiding the white sweat circles.
-"""
+## Transitions from 'sweat1' to 'sweat0', hiding the white sweat circles.
 func _transition_sweat1_sweat0() -> void:
 	_head_bobber.reset_head_bob()
 	_creature_visuals.get_node("NearArm").frame = 1
@@ -505,14 +469,12 @@ func _tween_nodes_to_transparent(paths: Array) -> void:
 		$ResetTween.interpolate_property(node, "modulate", node.modulate, Color.transparent, UNEMOTE_DURATION)
 
 
-"""
-This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
-workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
-
-Tool scripts do not call _ready on reload, which means all onready fields will be null. This breaks this script's
-functionality and throws errors when it is used as a tool. This function manually assigns those fields to avoid those
-problems.
-"""
+## This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
+## workaround for Godot issue #16974 (https://github.com/godotengine/godot/issues/16974)
+##
+## Tool scripts do not call _ready on reload, which means all onready fields will be null. This breaks this script's
+## functionality and throws errors when it is used as a tool. This function manually assigns those fields to avoid
+## those problems.
 func _apply_tool_script_workaround() -> void:
 	if not _creature_visuals:
 		_creature_visuals = get_parent()

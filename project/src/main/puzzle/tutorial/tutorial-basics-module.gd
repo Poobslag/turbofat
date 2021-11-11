@@ -1,18 +1,16 @@
 extends TutorialModule
-"""
-Tutorial module for the 'Basic Techniques' tutorial.
+## Tutorial module for the 'Basic Techniques' tutorial.
+##
+## Shows messages and advances the player through the tutorial as they complete tasks.
 
-Shows messages and advances the player through the tutorial as they complete tasks.
-"""
-
-# tracks what the player has done so far during this tutorial
+## tracks what the player has done so far during this tutorial
 var _line_clears := 0
 var _box_clears := 0
 var _boxes_built := 0
 var _squish_moves := 0
 var _snack_stacks := 0
 
-# tracks what the player did with the most recent piece
+## tracks what the player did with the most recent piece
 var _did_line_clear := false
 var _did_box_clear := false
 var _did_build_box := false
@@ -60,12 +58,10 @@ func prepare_tutorial_level() -> void:
 			hud.enqueue_pop_out()
 
 
-"""
-Advance to the next level in the tutorial.
-
-The level to advance to depends on what the player's accomplished so far. If they perform squish moves or snack boxes
-before they're instructed to, they can skip parts of the tutorial.
-"""
+## Advance to the next level in the tutorial.
+##
+## The level to advance to depends on what the player's accomplished so far. If they perform squish moves or snack
+## boxes before they're instructed to, they can skip parts of the tutorial.
 func _advance_level() -> void:
 	if CurrentLevel.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
@@ -96,12 +92,10 @@ func _handle_line_clear_message() -> void:
 		hud.set_message(tr("Well done!\n\nLine clears earn ¥1. Maybe more if you can build a combo."))
 
 
-"""
-Enqueues a message describing how to progress in the tutorial, after skipping.
-
-Skipping the tutorial shows a message like 'Wow, you did a squish move!' But if we display that forever, the player
-might forget how to progress in the tutorial. This function displays a 'how to progress' message after a delay.
-"""
+## Enqueues a message describing how to progress in the tutorial, after skipping.
+##
+## Skipping the tutorial shows a message like 'Wow, you did a squish move!' But if we display that forever, the player
+## might forget how to progress in the tutorial. This function displays a 'how to progress' message after a delay.
 func _add_post_skip_message() -> void:
 	match CurrentLevel.settings.id:
 		"tutorial/basics_0":
@@ -198,9 +192,7 @@ func _on_Playfield_line_cleared(_y: int, _total_lines: int, _remaining_lines: in
 		hud.skill_tally_item("BoxClear").increment()
 
 
-"""
-After a piece is written to the playfield, we check if the player should advance further in the tutorial.
-"""
+## After a piece is written to the playfield, we check if the player should advance further in the tutorial.
 func _on_PuzzleState_after_piece_written() -> void:
 	# print tutorial messages if the player did something noteworthy
 	_handle_line_clear_message()

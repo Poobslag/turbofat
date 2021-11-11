@@ -1,13 +1,11 @@
 extends Label
-"""
-Demo which performs some complex calculations to determine how fast someone would need to play to achieve a rank on a
-particular level.
-
-For example, to get rank 28 on the '2 kyu' level, a player would need to score 432 points. This is based on the
-rank requirements, the duration of the level, the piece speed and other factors.
-
-This was used to assign a roughly increasing level of difficulty for rank levels.
-"""
+## Demo which performs some complex calculations to determine how fast someone would need to play to achieve a rank on
+## a particular level.
+##
+## For example, to get rank 28 on the '2 kyu' level, a player would need to score 432 points. This is based on the
+## rank requirements, the duration of the level, the piece speed and other factors.
+##
+## This was used to assign a roughly increasing level of difficulty for rank levels.
 
 var _data_per_rank := {
 	"7k": ["48", "1", "5:00"],
@@ -57,12 +55,10 @@ func _ready() -> void:
 				text += "  (%s marathon: %s points)\n" % [data_key, marathon_points]
 
 
-"""
-Creates a level with the specified duration.
-
-The piece speed starts at the specified start level, but might increase depending on the specified data key. The speed
-increases defined in this method should align with the speed increases of the rank levels in the game.
-"""
+## Creates a level with the specified duration.
+##
+## The piece speed starts at the specified start level, but might increase depending on the specified data key. The
+## speed increases defined in this method should align with the speed increases of the rank levels in the game.
 func _level_settings(data_key: String, start_speed: String, seconds: float) -> LevelSettings:
 	var settings := LevelSettings.new()
 	settings.id = data_key
@@ -140,11 +136,9 @@ func _level_settings(data_key: String, start_speed: String, seconds: float) -> L
 	return settings
 
 
-"""
-Binary search for how many points are needed to achieve the specified score_rank.
-
-This depends on the current level's duration and piece speed.
-"""
+## Binary search for how many points are needed to achieve the specified score_rank.
+##
+## This depends on the current level's duration and piece speed.
 func _target_score(target_rank: float) -> float:
 	var min_score := 0
 	var max_score := 50000
@@ -161,11 +155,9 @@ func _target_score(target_rank: float) -> float:
 	return (min_score + max_score) / 2.0
 
 
-"""
-Binary search for how many lines are needed to achieve the specified line_rank.
-
-This depends on the current level's duration and piece speed.
-"""
+## Binary search for how many lines are needed to achieve the specified line_rank.
+##
+## This depends on the current level's duration and piece speed.
 func _target_lines(target_rank: int) -> float:
 	var min_target_lines := 0
 	var max_target_lines := 5000

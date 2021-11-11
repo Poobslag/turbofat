@@ -1,7 +1,5 @@
 extends Particles2D
-"""
-Manages the sweat drops which slide down the creature's body.
-"""
+## Manages the sweat drops which slide down the creature's body.
 
 export var creature_visuals_path: NodePath
 

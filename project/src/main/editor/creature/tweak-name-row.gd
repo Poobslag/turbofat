@@ -1,7 +1,5 @@
 extends HBoxContainer
-"""
-UI control for editing a creature's name.
-"""
+## UI control for editing a creature's name.
 
 export (NodePath) var creature_editor_path: NodePath
 
@@ -13,18 +11,14 @@ func _ready() -> void:
 	$Edit/ShortName.max_length = NameUtils.MAX_CREATURE_SHORT_NAME_LENGTH
 
 
-"""
-Update the creature's name and short name.
-"""
+## Update the creature's name and short name.
 func _finish_name_edit(text: String) -> void:
 	var new_name: String = NameUtils.sanitize_name(text)
 	_creature_editor.center_creature.rename(new_name)
 	_refresh_name_ui()
 
 
-"""
-Update the creature's short name.
-"""
+## Update the creature's short name.
 func _finish_short_name_edit(text: String) -> void:
 	var new_name: String = NameUtils.sanitize_short_name(text)
 	var creature: Creature = _creature_editor.center_creature
@@ -33,11 +27,9 @@ func _finish_short_name_edit(text: String) -> void:
 	_refresh_name_ui()
 
 
-"""
-Update the name text boxes with the creature's name.
-
-The short name is only shown if it differs from the creature's name.
-"""
+## Update the name text boxes with the creature's name.
+##
+## The short name is only shown if it differs from the creature's name.
 func _refresh_name_ui() -> void:
 	var creature := _creature_editor.center_creature
 	if $Edit/Name.text != creature.creature_name:
@@ -47,12 +39,10 @@ func _refresh_name_ui() -> void:
 	$Edit/ShortName.visible = creature.creature_short_name != creature.creature_name
 
 
-"""
-If the user's typed a valid name, we update the name immediately.
-
-We don't update if the user's typed an invalid name (e.g 'Tom ') because otherwise it's aggravating erasing the name or
-appending punctuation/spaces, as the text box is constantly updated.
-"""
+## If the user's typed a valid name, we update the name immediately.
+##
+## We don't update if the user's typed an invalid name (e.g 'Tom ') because otherwise it's aggravating erasing the name
+## or appending punctuation/spaces, as the text box is constantly updated.
 func _on_Edit_text_changed(text: String) -> void:
 	if text == NameUtils.sanitize_name(text):
 		_finish_name_edit(text)
@@ -66,12 +56,10 @@ func _on_Edit_focus_exited() -> void:
 	_finish_name_edit($Edit/Name.text)
 
 
-"""
-If the user's typed a valid short name, we update the name immediately.
-
-We don't update if the user's typed an invalid name (e.g 'Tom ') because otherwise it's aggravating erasing the name or
-appending punctuation/spaces, as the text box is constantly updated.
-"""
+## If the user's typed a valid short name, we update the name immediately.
+##
+## We don't update if the user's typed an invalid name (e.g 'Tom ') because otherwise it's aggravating erasing the name
+## or appending punctuation/spaces, as the text box is constantly updated.
 func _on_ShortName_text_changed(text: String) -> void:
 	if text == NameUtils.sanitize_short_name(text):
 		_finish_short_name_edit(text)

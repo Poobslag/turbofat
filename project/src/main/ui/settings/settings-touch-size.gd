@@ -1,9 +1,7 @@
 extends Control
-"""
-UI control for adjusting the touchscreen button size.
-"""
+## UI control for adjusting the touchscreen button size.
 
-# step values of 1.19
+## step values of 1.19
 const VALUES := [
 	0.25, 0.30, 0.35, 0.42, 0.50, 0.59, 0.71, 0.84, 1.00, 1.19, 1.42, 1.69
 ]

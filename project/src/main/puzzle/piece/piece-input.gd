@@ -1,8 +1,6 @@
 class_name PieceInput
 extends Node
-"""
-Handles input for controlling the player's piece.
-"""
+## Handles input for controlling the player's piece.
 
 onready var left: FrameInput = $Left
 onready var right: FrameInput = $Right
@@ -11,17 +9,13 @@ onready var ccw: FrameInput = $Ccw
 onready var soft_drop: FrameInput = $SoftDrop
 onready var hard_drop: FrameInput = $HardDrop
 
-"""
-Records any inputs to a buffer to be replayed later.
-"""
+## Records any inputs to a buffer to be replayed later.
 func buffer_inputs() -> void:
 	for child in get_children():
 		child.buffer_input()
 
 
-"""
-Replays any inputs which were pressed while buffering.
-"""
+## Replays any inputs which were pressed while buffering.
 func pop_buffered_inputs() -> void:
 	for child in get_children():
 		child.pop_buffered_input()

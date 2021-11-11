@@ -1,9 +1,7 @@
 extends AnimationPlayer
-"""
-An AnimationPlayer which animates a creature's tail.
-
-Specifically, this animationplayer ensures the tail is always moving, if nothing else is animating it.
-"""
+## An AnimationPlayer which animates a creature's tail.
+##
+## Specifically, this animationplayer ensures the tail is always moving, if nothing else is animating it.
 
 export (NodePath) var movement_player_path: NodePath
 export (NodePath) var creature_visuals_path: NodePath
@@ -25,9 +23,7 @@ func _process(_delta: float) -> void:
 		_play_tail_ambient_animation()
 
 
-"""
-Plays an appropriate tail ambient animation for the creature's orientation and movement state.
-"""
+## Plays an appropriate tail ambient animation for the creature's orientation and movement state.
 func _play_tail_ambient_animation() -> void:
 	var tail_ambient_animation: String
 	if _creature_visuals.orientation in [Creatures.SOUTHWEST, Creatures.SOUTHEAST]:

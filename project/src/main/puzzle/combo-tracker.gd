@@ -1,24 +1,22 @@
 class_name ComboTracker
 extends Node
-"""
-Keeps track of the player's combo.
-
-Increments the combo when the player does well, breaks the combo when the player messes up.
-"""
+## Keeps track of the player's combo.
+##
+## Increments the combo when the player does well, breaks the combo when the player messes up.
 
 signal combo_break_changed(value)
 
-# bonus points which are awarded as the player continues a combo
+## bonus points which are awarded as the player continues a combo
 const COMBO_SCORE_ARR = [0, 0, 5, 5, 10, 10, 15, 15, 20]
 
-# The number of pieces the player has dropped without clearing a line or making a box.
+## The number of pieces the player has dropped without clearing a line or making a box.
 var combo_break := 0 setget set_combo_break
 
-# 'true' if the player drops a piece which continues the combo (typically, making a box or clearing a line)
+## 'true' if the player drops a piece which continues the combo (typically, making a box or clearing a line)
 var piece_continued_combo := false
 
-# 'true' if the player drops a piece which discontinues the combo.
-# Some levels might break your combo if you clear a vegetable line, for example.
+## 'true' if the player drops a piece which discontinues the combo.
+## Some levels might break your combo if you clear a vegetable line, for example.
 var piece_broke_combo := false
 
 func _ready() -> void:
@@ -101,9 +99,7 @@ func _on_PuzzleState_game_ended() -> void:
 	PuzzleState.end_combo()
 
 
-"""
-Increments the combo and score for the specified line clear.
-"""
+## Increments the combo and score for the specified line clear.
 func _on_Playfield_before_line_cleared(_y: int, _total_lines: int, _remaining_lines: int, box_ints: Array) -> void:
 	var combo_score: int = COMBO_SCORE_ARR[clamp(PuzzleState.combo, 0, COMBO_SCORE_ARR.size() - 1)]
 	var box_score := 0

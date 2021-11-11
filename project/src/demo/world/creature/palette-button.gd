@@ -1,14 +1,10 @@
 class_name PaletteButton
 extends ColorRect
-"""
-Clickable control which shows a palette's colors.
-"""
+## Clickable control which shows a palette's colors.
 
 signal pressed
 
-"""
-Updates the button's colors to match the specified palette.
-"""
+## Updates the button's colors to match the specified palette.
 func set_palette(palette: Dictionary) -> void:
 	color = palette["line_rgb"]
 	$HBoxContainer/Body.color = Color(palette["body_rgb"])

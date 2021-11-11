@@ -1,32 +1,30 @@
 class_name LabelTyper
 extends Node
-"""
-Animates a Label to gradually reveal text, mimicking speech.
-"""
+## Animates a Label to gradually reveal text, mimicking speech.
 
 signal all_text_shown
 
-# How many seconds to delay when displaying a character.
+## How many seconds to delay when displaying a character.
 const DEFAULT_PAUSE := 0.05
 
-# How many seconds to delay when displaying whitespace or the special lull character, '/'.
+## How many seconds to delay when displaying whitespace or the special lull character, '/'.
 const PAUSE_CHARACTERS := {
 	" ": 0.00,
 	"/": 0.40,
 	"\n": 0.80,
 }
 
-# Stores the delay in seconds for each visible_characters index.
+## Stores the delay in seconds for each visible_characters index.
 var _visible_character_pauses := {}
 
-# The delay in seconds before displaying the next character.
+## The delay in seconds before displaying the next character.
 var _pause := 0.0
 
-# 1.0 = slow, 2.0 = normal, 3.0 = faster, 5.0 = fastest, 1000000.0 = fastestest
+## 1.0 = slow, 2.0 = normal, 3.0 = faster, 5.0 = fastest, 1000000.0 = fastestest
 var _text_speed := 2.0
 
 onready var _label := get_parent()
-# plays a typewriter sound as text appears
+## plays a typewriter sound as text appears
 onready var _bebebe_sound: AudioStreamPlayer = $BebebeSound
 
 func _process(delta: float) -> void:
@@ -52,12 +50,10 @@ func _process(delta: float) -> void:
 			emit_signal("all_text_shown")
 
 
-"""
-Animates the label to gradually reveal the current text, mimicking speech.
-
-This function also calculates the duration to pause for each character. All visible characters cause a short pause.
-Newlines cause a long pause. Slashes cause a medium pause and are hidden from the player.
-"""
+## Animates the label to gradually reveal the current text, mimicking speech.
+##
+## This function also calculates the duration to pause for each character. All visible characters cause a short pause.
+## Newlines cause a long pause. Slashes cause a medium pause and are hidden from the player.
 func show_message(text_with_lulls: String, initial_pause: float = 0.0) -> void:
 	text_with_lulls = ChattableManager.substitute_variables(text_with_lulls)
 	
@@ -70,16 +66,12 @@ func show_message(text_with_lulls: String, initial_pause: float = 0.0) -> void:
 	_calculate_pauses(text_with_lulls, initial_pause)
 
 
-"""
-Returns 'true' if the label's visible_characters value is large enough to show all characters.
-"""
+## Returns 'true' if the label's visible_characters value is large enough to show all characters.
 func is_all_text_visible() -> bool:
 	return _label.visible_characters >= _label.get_total_character_count()
 
 
-"""
-Hides the message and clears any stored data about its state.
-"""
+## Hides the message and clears any stored data about its state.
 func hide_message() -> void:
 	_visible_character_pauses.clear()
 	_label.visible_characters = 0
@@ -88,9 +80,7 @@ func hide_message() -> void:
 	set_process(false)
 
 
-"""
-Increases the label's visible_characters value to to show all characters.
-"""
+## Increases the label's visible_characters value to to show all characters.
 func make_all_text_visible() -> void:
 	if _label.visible_characters < _label.get_total_character_count():
 		_label.visible_characters = _label.get_total_character_count()

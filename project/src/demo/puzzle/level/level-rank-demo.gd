@@ -1,14 +1,13 @@
 extends Control
-"""
-A demo which calculates the necessary level metadata for the player to attain their expected grade.
+## A demo which calculates the necessary level metadata for the player to attain their expected grade.
+##
+## This demo takes the player's best performance and calculates the necessary level adjustments so that their best
+## performance will result in the specified grade. For example, a player might usually play at an 'SSS' rank, but they
+## make very few boxes on one specific level, because the level is difficult. So this demo might calculate and print
+## something like 'box_factor=0.5' indicating that the level should be more lenient for players who don't make many
+## boxes.
 
-This demo takes the player's best performance and calculates the necessary level adjustments so that their best
-performance will result in the specified grade. For example, a player might usually play at an 'SSS' rank, but they
-make very few boxes on one specific level, because the level is difficult. So this demo might calculate and print
-something like 'box_factor=0.5' indicating that the level should be more lenient for players who don't make many boxes.
-"""
-
-# property keys to use when saving/loading data
+## property keys to use when saving/loading data
 const SAVE_KEY_GRADE := "level-rank-demo.grade"
 const SAVE_KEY_OPEN := "level-rank-demo.open"
 
@@ -25,9 +24,7 @@ func _ready() -> void:
 	_load_demo_data()
 
 
-"""
-Calculates and outputs the necessary level metadata for the player to attain their expected grade.
-"""
+## Calculates and outputs the necessary level metadata for the player to attain their expected grade.
 func _calculate() -> void:
 	_text_edit.text = ""
 	
@@ -46,9 +43,7 @@ func _calculate() -> void:
 	_text_edit.text = _text_edit.text.strip_edges()
 
 
-"""
-Calculates and outputs the extra_seconds_per_piece for levels which inhibit fast players.
-"""
+## Calculates and outputs the extra_seconds_per_piece for levels which inhibit fast players.
 func _calculate_extra_seconds_per_piece() -> void:
 	var target_rank := _target_rank()
 	var best_result := _best_result()
@@ -67,9 +62,7 @@ func _calculate_extra_seconds_per_piece() -> void:
 	_text_edit.text += "\"extra_seconds_per_piece %.2f\",\n" % [CurrentLevel.settings.rank.extra_seconds_per_piece]
 
 
-"""
-Calculates and outputs the box_factor for levels which inhibit snack and cake boxes.
-"""
+## Calculates and outputs the box_factor for levels which inhibit snack and cake boxes.
 func _calculate_box_factor() -> void:
 	var target_rank := _target_rank()
 	var best_result := _best_result()
@@ -89,9 +82,7 @@ func _calculate_box_factor() -> void:
 	_text_edit.text += "\"box_factor %.2f\",\n" % [CurrentLevel.settings.rank.box_factor]
 
 
-"""
-Calculates and outputs the combo_factor for levels which inhibit combos.
-"""
+## Calculates and outputs the combo_factor for levels which inhibit combos.
 func _calculate_combo_factor() -> void:
 	var target_rank := _target_rank()
 	var best_result := _best_result()
@@ -111,9 +102,7 @@ func _calculate_combo_factor() -> void:
 	_text_edit.text += "\"combo_factor %.2f\",\n" % [CurrentLevel.settings.rank.combo_factor]
 
 
-"""
-Calculates and outputs the master_pickup_score_per_line for levels with pickups.
-"""
+## Calculates and outputs the master_pickup_score_per_line for levels with pickups.
 func _calculate_master_pickup_score_per_line() -> void:
 	var target_rank := _target_rank()
 	var best_result := _best_result()
@@ -126,25 +115,19 @@ func _calculate_master_pickup_score_per_line() -> void:
 			% [CurrentLevel.settings.rank.master_pickup_score_per_line]
 
 
-"""
-Returns the player's best result for the level selected in the demo.
-
-The player's data is loaded from the current save slot.
-"""
+## Returns the player's best result for the level selected in the demo.
+##
+## The player's data is loaded from the current save slot.
 func _best_result() -> RankResult:
 	return PlayerData.level_history.best_result(CurrentLevel.level_id)
 
 
-"""
-Returns the rank corresponding to the grade chosen in the demo.
-"""
+## Returns the rank corresponding to the grade chosen in the demo.
 func _target_rank() -> float:
 	return RankCalculator.rank(_grade_input.value)
 
 
-"""
-Reads the developer's in-memory data from a save file.
-"""
+## Reads the developer's in-memory data from a save file.
 func _load_demo_data() -> void:
 	if _demo_save.demo_data.has(SAVE_KEY_GRADE):
 		_grade_input.value = _demo_save.demo_data[SAVE_KEY_GRADE]
@@ -152,9 +135,7 @@ func _load_demo_data() -> void:
 		_open_input.value = _demo_save.demo_data[SAVE_KEY_OPEN]
 
 
-"""
-Writes the developer's in-memory data to a save file.
-"""
+## Writes the developer's in-memory data to a save file.
 func _save_demo_data() -> void:
 	_demo_save.demo_data[SAVE_KEY_GRADE] = _grade_input.value
 	_demo_save.demo_data[SAVE_KEY_OPEN] = _open_input.value

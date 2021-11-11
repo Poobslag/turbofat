@@ -1,12 +1,10 @@
 extends Node
-"""
-Demonstrates the eight-way touchscreen inputs.
-
-Enable emulate_desktop_from_mouse in the project settings to use this demo.
-
-Keys:
-	[+,-]: Increase/decrease the size of the EightWay
-"""
+## Demonstrates the eight-way touchscreen inputs.
+##
+## Enable emulate_desktop_from_mouse in the project settings to use this demo.
+##
+## Keys:
+## 	[+,-]: Increase/decrease the size of the EightWay
 
 var actions := [
 	"ui_up", "ui_down", "ui_left", "ui_right",

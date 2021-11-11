@@ -1,16 +1,14 @@
 class_name DurationCalculator
-"""
-Estimates the duration of a puzzle.
+## Estimates the duration of a puzzle.
+##
+## This is shown to the user on the level select screen, and also affects the relative sizes of the level buttons.
 
-This is shown to the user on the level select screen, and also affects the relative sizes of the level buttons.
-"""
-
-# While rank 48 only requires a player to clear 3-4 lines per minute, it's unreasonable to predict that a level that
-# requiring 12 line clears will take 3-4 minutes. This constant stores the expected lines per minute for a novice
-# player.
+## While rank 48 only requires a player to clear 3-4 lines per minute, it's unreasonable to predict that a level that
+## requiring 12 line clears will take 3-4 minutes. This constant stores the expected lines per minute for a novice
+## player.
 const MIN_LINES_PER_MINUTE := 8.0
 
-# Estimated rank for each difficulty based on the various rank levels
+## Estimated rank for each difficulty based on the various rank levels
 const RANKS_BY_DIFFICULTY := {
 	# beginner; 10-30 blocks per minute
 	"T": 48.0,
@@ -29,12 +27,10 @@ const RANKS_BY_DIFFICULTY := {
 	"FD": 3.0, "FE": 2.5, "FF": 2.0, "FFF": 1.5,
 }
 
-"""
-Returns the estimated duration for the specified level.
-
-We calculate an approprate rank based on the level difficulty, and then estimate how long a player of that rank
-would take to achieve the clear condition.
-"""
+## Returns the estimated duration for the specified level.
+##
+## We calculate an approprate rank based on the level difficulty, and then estimate how long a player of that rank
+## would take to achieve the clear condition.
 func duration(settings: LevelSettings) -> float:
 	var result := 600.0
 	
@@ -61,9 +57,7 @@ func duration(settings: LevelSettings) -> float:
 	return result
 
 
-"""
-Returns the estimated time to clear the specified number of lines.
-"""
+## Returns the estimated time to clear the specified number of lines.
 func _duration_for_lines(settings: LevelSettings, lines: float) -> float:
 	var min_frames_per_line := RankCalculator.min_frames_per_line(PieceSpeeds.speed(settings.difficulty))
 	var min_lines_per_frame := 1 / min_frames_per_line
@@ -75,19 +69,15 @@ func _duration_for_lines(settings: LevelSettings, lines: float) -> float:
 	return 60 * lines / master_lines_per_minute
 
 
-"""
-Returns the rank the player is expected to perform at for the specified level.
-"""
+## Returns the rank the player is expected to perform at for the specified level.
 func _rank(settings: LevelSettings) -> float:
 	return RANKS_BY_DIFFICULTY[settings.get_difficulty()]
 
 
-"""
-Returns the estimated score per line for the specified level.
-
-We calculate an approprate rank based on the level difficulty, and then estimate how many bonus points a player of
-that rank would achieve from combos and boxes.
-"""
+## Returns the estimated score per line for the specified level.
+##
+## We calculate an approprate rank based on the level difficulty, and then estimate how many bonus points a player of
+## that rank would achieve from combos and boxes.
 func _score_per_line(settings: LevelSettings) -> float:
 	var combo_score_per_line := RankCalculator.master_combo_score(settings)
 	combo_score_per_line *= pow(RankCalculator.RDF_COMBO_SCORE_PER_LINE, _rank(settings))

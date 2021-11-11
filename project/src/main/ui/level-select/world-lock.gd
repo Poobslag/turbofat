@@ -1,15 +1,13 @@
 class_name WorldLock
-"""
-Keeps track of whether a world is unlocked, and the requirements to unlock it.
-"""
+## Keeps track of whether a world is unlocked, and the requirements to unlock it.
 
-# the requirements to unlock a world
+## the requirements to unlock a world
 enum UnlockedIf {
 	ALWAYS_UNLOCKED, # never locked
 	IF_WORLD_FINISHED, # unlocked if the player finishes a specific world(s)
 }
 
-# the status whether or not a world is locked/unlocked
+## the status whether or not a world is locked/unlocked
 enum LockStatus {
 	NONE, # not locked
 	LOCK, # locked
@@ -26,22 +24,20 @@ var world_name: String
 var prologue_chat_key: String
 var epilogue_chat_key: String
 
-# the requirements to unlock this level
+## the requirements to unlock this level
 var unlocked_if_type := ALWAYS_UNLOCKED
 
-# The final level in the world. Finishing this level counts as finishing the entire world.
+## The final level in the world. Finishing this level counts as finishing the entire world.
 var last_level: String
 
-"""
-An array of strings representing unlock criteria.
-
-For IF_WORLD_FINISHED locks, this is an array of world IDs.
-"""
+## An array of strings representing unlock criteria.
+##
+## For IF_WORLD_FINISHED locks, this is an array of world IDs.
 var unlocked_if_values := []
 
 var level_ids: Array
 
-# the status whether or not this level is locked/unlocked
+## the status whether or not this level is locked/unlocked
 var status := STATUS_NONE
 
 func from_json_dict(json: Dictionary) -> void:

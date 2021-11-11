@@ -1,7 +1,5 @@
 extends HBoxContainer
-"""
-UI control for changing the game's language.
-"""
+## UI control for changing the game's language.
 
 const DEFAULT_LOCALE := "en"
 
@@ -20,17 +18,15 @@ func _ready() -> void:
 		push_warning("Locale '%s' was not in the list of loaded locales" % [current_loaded_locale])
 
 
-"""
-Returns the loaded locale closest to the translation server's locale.
-
-Locale can be of the form 'll_CC', i.e. language code and regional code, e.g. 'en_US', 'en_GB', etc. It might also be
-simply 'll', e.g. 'en'. To find the relevant translation, we look for those with locale starting with the language
-code, and then if any is an exact match for the long form. If not found, we fall back to a near match (another locale
-with same language code).
-
-This logic aligns with the logic in Godot's source code (core/translation.cpp). I could not find anywhere this logic
-or its result was exposed to GDScript.
-"""
+## Returns the loaded locale closest to the translation server's locale.
+##
+## Locale can be of the form 'll_CC', i.e. language code and regional code, e.g. 'en_US', 'en_GB', etc. It might also
+## be simply 'll', e.g. 'en'. To find the relevant translation, we look for those with locale starting with the
+## language code, and then if any is an exact match for the long form. If not found, we fall back to a near match
+## (another locale with same language code).
+##
+## This logic aligns with the logic in Godot's source code (core/translation.cpp). I could not find anywhere this logic
+## or its result was exposed to GDScript.
 func _current_loaded_locale() -> String:
 	var result: String
 	var translation_server_locale := TranslationServer.get_locale()

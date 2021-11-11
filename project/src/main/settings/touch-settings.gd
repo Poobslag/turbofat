@@ -1,11 +1,9 @@
 class_name TouchSettings
-"""
-Manages settings which affect the touch controls.
-"""
+## Manages settings which affect the touch controls.
 
 signal settings_changed
 
-# control schemes that decide which buttons appear where
+## control schemes that decide which buttons appear where
 enum ControlScheme {
 	EASY_CONSOLE,
 	EASY_DESKTOP,
@@ -22,13 +20,13 @@ const AMBI_DESKTOP := ControlScheme.AMBI_DESKTOP
 const LOCO_CONSOLE := ControlScheme.LOCO_CONSOLE
 const LOCO_DESKTOP := ControlScheme.LOCO_DESKTOP
 
-# how large the buttons appear on screen
+## how large the buttons appear on screen
 var size := 1.00 setget set_size
 
-# control scheme that decides which buttons appear where
+## control scheme that decides which buttons appear where
 var scheme: int = ControlScheme.EASY_CONSOLE setget set_scheme
 
-# how easy it is to mash two buttons with one finger; 0.0 = impossible, 1.0 = very easy
+## how easy it is to mash two buttons with one finger; 0.0 = impossible, 1.0 = very easy
 var fat_finger := 0.00 setget set_fat_finger
 
 func reset() -> void:

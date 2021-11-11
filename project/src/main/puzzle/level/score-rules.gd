@@ -1,14 +1,10 @@
 class_name ScoreRules
-"""
-Rules for scoring points.
-"""
+## Rules for scoring points.
 
-"""
-Parses a json string like 'cake_all 15' into an int.
-
-This is distinct from IntPropertyParser because json values like 'cake_all' are not directly stored into a 'cake_all'
-property, there is some translation logic.
-"""
+## Parses a json string like 'cake_all 15' into an int.
+##
+## This is distinct from IntPropertyParser because json values like 'cake_all' are not directly stored into a
+## 'cake_all' property, there is some translation logic.
 class PointsPropertyParser extends RuleParser.PropertyParser:
 	var _all_string: String
 	
@@ -29,19 +25,19 @@ class PointsPropertyParser extends RuleParser.PropertyParser:
 const DEFAULT_CAKE_POINTS := 10
 const DEFAULT_SNACK_POINTS := 5
 
-# box points for clearing a row of a cake box.
+## box points for clearing a row of a cake box.
 var cake_points := DEFAULT_CAKE_POINTS
 
-# box points for clearing a row of a snack box.
+## box points for clearing a row of a snack box.
 var snack_points := DEFAULT_SNACK_POINTS
 
-# box points for collecting a cake pickup.
+## box points for collecting a cake pickup.
 var cake_pickup_points := 20
 
-# box points for collecting a snack pickup.
+## box points for collecting a snack pickup.
 var snack_pickup_points := 10
 
-# box points awarded for clearing a row with no boxes, a vegetable row.
+## box points awarded for clearing a row with no boxes, a vegetable row.
 var veg_points := 0
 
 var _rule_parser: RuleParser

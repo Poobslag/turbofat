@@ -1,56 +1,54 @@
 class_name LineClearer
 extends Node
-"""
-Clears lines in a puzzle tilemap as new pieces are placed.
+## Clears lines in a puzzle tilemap as new pieces are placed.
+##
+## Lines are cleared when the player completes rows, tops out or completes a level.
 
-Lines are cleared when the player completes rows, tops out or completes a level.
-"""
-
-# emitted shortly before a set of lines are cleared
+## emitted shortly before a set of lines are cleared
 signal line_clears_scheduled(ys)
 
-# emitted before a 'line clear' where a line is erased and the player is rewarded
+## emitted before a 'line clear' where a line is erased and the player is rewarded
 signal before_line_cleared(y, total_lines, remaining_lines, box_ints)
 
-# emitted after a 'line clear' where a line is erased and the player is rewarded
+## emitted after a 'line clear' where a line is erased and the player is rewarded
 signal line_cleared(y, total_lines, remaining_lines, box_ints)
 
-# emitted when a line is erased. this includes line clears but also top outs and non-scoring end game rows.
+## emitted when a line is erased. this includes line clears but also top outs and non-scoring end game rows.
 signal line_erased(y, total_lines, remaining_lines, box_ints)
 
-# emitted when an erased line is deleted, causing the rows above it to drop down
+## emitted when an erased line is deleted, causing the rows above it to drop down
 signal line_deleted(y)
 
 signal after_lines_deleted
 
-# percent of the line clear delay which should be spent erasing lines.
-# 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
+## percent of the line clear delay which should be spent erasing lines.
+## 1.0 = erase lines slowly one at a time, 0.0 = erase all lines immediately
 const LINE_ERASE_TIMING_PCT := 0.667
 
 export (NodePath) var tile_map_path: NodePath
 
-# lines currently being cleared/erased/deleted as a part of _physics_process
+## lines currently being cleared/erased/deleted as a part of _physics_process
 var lines_being_cleared := []
 var lines_being_erased := []
 var lines_being_deleted := []
 
-# Lines currently being deleted in preparation for firing a trigger. Clearing a line can cause new lines to be
-# inserted, which needs to then adjust the lines emitted by the signal.
+## Lines currently being deleted in preparation for firing a trigger. Clearing a line can cause new lines to be
+## inserted, which needs to then adjust the lines emitted by the signal.
 var lines_being_deleted_during_trigger := []
 
-# remaining frames to wait for erasing the current lines
+## remaining frames to wait for erasing the current lines
 var remaining_line_erase_frames := 0
 
-# the index of the next line to clear/erase as a part of _physics_process
+## the index of the next line to clear/erase as a part of _physics_process
 var _cleared_line_index := 0
 var _erased_line_index := 0
 
-# timing values for lines currently being erased as a part of _physics_process.
-# lines are cleared/erased when 'remaining_line_erase_frames' falls below the values in these arrays.
+## timing values for lines currently being erased as a part of _physics_process.
+## lines are cleared/erased when 'remaining_line_erase_frames' falls below the values in these arrays.
 var _remaining_line_clear_timings := []
 var _remaining_line_erase_timings := []
 
-# rows containing prebuilt level boxes, which aren't cleared at the end of the level.
+## rows containing prebuilt level boxes, which aren't cleared at the end of the level.
 var _rows_to_preserve_at_end := {}
 
 onready var _tile_map: PuzzleTileMap = get_node(tile_map_path)
@@ -97,11 +95,9 @@ func _physics_process(_delta: float) -> void:
 		_delete_lines(old_lines_being_cleared, old_lines_being_erased, old_lines_being_deleted)
 
 
-"""
-Clears a full line in the playfield as a reward.
-
-Updates the combo, awards points, and triggers things like sounds or creatures eating.
-"""
+## Clears a full line in the playfield as a reward.
+##
+## Updates the combo, awards points, and triggers things like sounds or creatures eating.
 func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	var box_ints:= _box_ints(y)
 	emit_signal("before_line_cleared", y, total_lines, remaining_lines, box_ints)
@@ -109,9 +105,7 @@ func clear_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	emit_signal("line_cleared", y, total_lines, remaining_lines, box_ints)
 
 
-"""
-Schedules any full rows to be cleared later.
-"""
+## Schedules any full rows to be cleared later.
 func schedule_full_row_line_clears() -> void:
 	var lines_to_clear := []
 	for y in range(PuzzleTileMap.ROW_COUNT):
@@ -121,9 +115,7 @@ func schedule_full_row_line_clears() -> void:
 		schedule_line_clears(lines_to_clear, PieceSpeeds.current_speed.line_clear_delay)
 
 
-"""
-Schedules the specified lines to be cleared later.
-"""
+## Schedules the specified lines to be cleared later.
 func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_points: bool = true) -> void:
 	var unscheduled_clears := []
 	var unscheduled_erases := []
@@ -177,12 +169,10 @@ func _per_line_frame_delay() -> float:
 	return floor(line_erase_timing_window / max(1, lines_being_cleared.size() + lines_being_erased.size() - 1))
 
 
-"""
-Erases all cells in the specified row.
-
-This can be invoked as a part of a 'line clear', or as a part of a top out or something mundane. It does not increase
-the combo or award points.
-"""
+## Erases all cells in the specified row.
+##
+## This can be invoked as a part of a 'line clear', or as a part of a top out or something mundane. It does not
+## increase the combo or award points.
 func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	var box_ints:= _box_ints(y)
 	_tile_map.erase_playfield_row(y)
@@ -191,9 +181,7 @@ func _erase_line(y: int, total_lines: int, remaining_lines: int) -> void:
 	emit_signal("line_erased", y, total_lines, remaining_lines, box_ints)
 
 
-"""
-Deletes rows from the playfield, dropping all rows above them.
-"""
+## Deletes rows from the playfield, dropping all rows above them.
 func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Array, \
 		old_lines_being_deleted: Array) -> void:
 	# Calculate whether anything is dropping which will trigger the line fall sound.
@@ -245,18 +233,16 @@ func _delete_lines(old_lines_being_cleared: Array, _old_lines_being_erased: Arra
 	emit_signal("after_lines_deleted")
 
 
-"""
-Returns a list of food colors in the specified row.
-
-The resulting array can be any of the following:
-	1. an empty array, [], for a row of vegetables or disjointed pieces
-	2. [BROWN], [PINK], [BREAD] or [WHITE] if the row has a snack box
-	3. [CAKE] if the row has a cake box
-	4. an array with multiple items, if the row has many boxes
-
-A horizontal box results in multiple duplicate box ints being added. This is by design to result in larger scoring
-bonuses for horizontal boxes, as they're less efficient.
-"""
+## Returns a list of food colors in the specified row.
+##
+## The resulting array can be any of the following:
+## 	1. an empty array, [], for a row of vegetables or disjointed pieces
+## 	2. [BROWN], [PINK], [BREAD] or [WHITE] if the row has a snack box
+## 	3. [CAKE] if the row has a cake box
+## 	4. an array with multiple items, if the row has many boxes
+##
+## A horizontal box results in multiple duplicate box ints being added. This is by design to result in larger scoring
+## bonuses for horizontal boxes, as they're less efficient.
 func _box_ints(y: int) -> Array:
 	var box_ints := []
 	for x in range(PuzzleTileMap.COL_COUNT):
@@ -277,13 +263,11 @@ func _box_ints(y: int) -> Array:
 	return box_ints
 
 
-"""
-Schedules line clears which occur when a puzzle is finished.
-
-Any full lines and lines containing boxes result in line clears, and the player is awarded points.
-
-Any partial lines containing only vegetables are left behind, the player is not awarded points for those.
-"""
+## Schedules line clears which occur when a puzzle is finished.
+##
+## Any full lines and lines containing boxes result in line clears, and the player is awarded points.
+##
+## Any partial lines containing only vegetables are left behind, the player is not awarded points for those.
 func _schedule_finish_line_clears() -> void:
 	var full_lines := []
 	var box_lines := []
@@ -325,12 +309,9 @@ func _on_PuzzleState_finish_triggered() -> void:
 	else:
 		PuzzleState.end_game()
 
-
-"""
-When a new set of blocks is loaded, we recalculate the rows to preserve at the end.
-
-Any prebuilt level boxes aren't cleared at the end of the level.
-"""
+## When a new set of blocks is loaded, we recalculate the rows to preserve at the end.
+##
+## Any prebuilt level boxes aren't cleared at the end of the level.
 func _on_Playfield_blocks_prepared() -> void:
 	_rows_to_preserve_at_end.clear()
 	for cell in _tile_map.get_used_cells():
@@ -338,23 +319,19 @@ func _on_Playfield_blocks_prepared() -> void:
 			_rows_to_preserve_at_end[int(cell.y)] = true
 
 
-"""
-When a box is made, we remove those rows from the rows to preserve at the end.
-
-Any prebuilt level boxes aren't cleared at the end of the level, but if the player makes additional boxes next to
-them, then they're cleared.
-"""
+## When a box is made, we remove those rows from the rows to preserve at the end.
+##
+## Any prebuilt level boxes aren't cleared at the end of the level, but if the player makes additional boxes next to
+## them, then they're cleared.
 func _on_BoxBuilder_box_built(rect: Rect2, _box_type: int) -> void:
 	if _rows_to_preserve_at_end:
 		for y in range(rect.position.y, rect.end.y):
 			_rows_to_preserve_at_end.erase(y)
 
 
-"""
-When lines are inserted, we adjust the lines being cleared/erased/deleted.
-
-Without these adjustments, strange behavior happens when lines are inserted and deleted simultaneously.
-"""
+## When lines are inserted, we adjust the lines being cleared/erased/deleted.
+##
+## Without these adjustments, strange behavior happens when lines are inserted and deleted simultaneously.
 func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
 	for i in range(lines_being_cleared.size()):
 		if lines_being_cleared[i] <= y:

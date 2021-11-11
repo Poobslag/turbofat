@@ -1,7 +1,5 @@
 extends HBoxContainer
-"""
-UI control for editing a creature's size.
-"""
+## UI control for editing a creature's size.
 
 export (NodePath) var creature_editor_path: NodePath
 
@@ -11,17 +9,13 @@ func _ready() -> void:
 	_creature_editor.connect("center_creature_changed", self, "_on_CreatureEditor_center_creature_changed")
 
 
-"""
-Update the creature's size.
-"""
+## Update the creature's size.
 func _on_Edit_value_changed(value: float) -> void:
 	_creature_editor.center_creature.min_fatness = value
 	_creature_editor.center_creature.set_fatness(value)
 
 
-"""
-Update the slider with the creature's size.
-"""
+## Update the slider with the creature's size.
 func _on_CreatureEditor_center_creature_changed() -> void:
 	$Edit.value = _creature_editor.center_creature.get_fatness()
 

@@ -1,10 +1,8 @@
 class_name TutorialHud
 extends Control
-"""
-UI items specific for puzzle tutorials.
-"""
+## UI items specific for puzzle tutorials.
 
-# emitted when the HUD should be refreshed during initial setup or for a level change.
+## emitted when the HUD should be refreshed during initial setup or for a level change.
 signal refreshed
 
 export (NodePath) var puzzle_path: NodePath
@@ -27,11 +25,9 @@ func get_tutorial_messages() -> TutorialMessages:
 	return $Messages as TutorialMessages
 
 
-"""
-Loads a new tutorial module corresponding to the current level.
-
-Tutorial modules show messages and advance the player through the tutorial as they complete tasks.
-"""
+## Loads a new tutorial module corresponding to the current level.
+##
+## Tutorial modules show messages and advance the player through the tutorial as they complete tasks.
 func replace_tutorial_module() -> void:
 	if has_node("TutorialModule"):
 		remove_child(get_node("TutorialModule"))
@@ -56,9 +52,7 @@ func replace_tutorial_module() -> void:
 	refresh()
 
 
-"""
-Shows or hides the tutorial hud based on the current level.
-"""
+## Shows or hides the tutorial hud based on the current level.
 func refresh() -> void:
 	# only visible for tutorial levels
 	visible = CurrentLevel.settings.other.tutorial or CurrentLevel.settings.other.after_tutorial
@@ -66,78 +60,58 @@ func refresh() -> void:
 	emit_signal("refreshed")
 
 
-"""
-Returns a specific SkillTallyItem instance in the panel.
-"""
+## Returns a specific SkillTallyItem instance in the panel.
 func skill_tally_item(name: String) -> SkillTallyItem:
 	return get_node("SkillTallyItems/GridContainer/%s" % name) as SkillTallyItem
 
 
-"""
-Returns all SkillTallyItem instances in the panel.
-"""
+## Returns all SkillTallyItem instances in the panel.
 func skill_tally_items() -> Array:
 	return $SkillTallyItems/GridContainer.get_children()
 
 
-"""
-Adds a new SkillTallyItem instance to the panel.
-"""
+## Adds a new SkillTallyItem instance to the panel.
 func add_skill_tally_item(item: SkillTallyItem) -> void:
 	$SkillTallyItems/GridContainer.add_child(item)
 
 
-"""
-Displays a sequence of messages from the sensei.
-"""
+## Displays a sequence of messages from the sensei.
 func set_messages(messages: Array) -> void:
 	$Messages.set_messages(messages)
 
 
-"""
-Displays a message from the sensei.
-"""
+## Displays a message from the sensei.
 func set_message(message: String) -> void:
 	$Messages.set_message(message)
 
 
-"""
-Displays a BIG message from the sensei, for use in easter eggs.
-"""
+## Displays a BIG message from the sensei, for use in easter eggs.
 func set_big_message(message: String) -> void:
 	$Messages.set_big_message(message)
 
 
-"""
-Displays a message after a short delay.
-
-If other messages are already in the queue, this message will be appended to the queue.
-"""
+## Displays a message after a short delay.
+##
+## If other messages are already in the queue, this message will be appended to the queue.
 func enqueue_message(message: String) -> void:
 	$Messages.enqueue_message(message)
 
 
-"""
-Hides the currently shown message after a short delay.
-
-If other messages are already in the queue, this operation will be appended to the queue.
-"""
+## Hides the currently shown message after a short delay.
+##
+## If other messages are already in the queue, this operation will be appended to the queue.
 func enqueue_pop_out() -> void:
 	$Messages.enqueue_pop_out()
 
 
-"""
-Shows the panel containing skill tally items.
-"""
+## Shows the panel containing skill tally items.
 func show_skill_tally_items() -> void:
 	$SkillTallyItems.show()
 	for skill_tally_item in skill_tally_items():
 		skill_tally_item.visible = true
 
 
-"""
-Pause and play a camera _flash effect for transitions.
-"""
+## Pause and play a camera _flash effect for transitions.
 func _flash() -> void:
 	puzzle.get_playfield().add_misc_delay_frames(30)
 	$ZIndex/ColorRect.modulate.a = 0.25

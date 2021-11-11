@@ -1,10 +1,8 @@
 class_name CreatureSfx
 extends Node2D
-"""
-Plays creature-related sound effects.
-"""
+## Plays creature-related sound effects.
 
-# sounds the creatures make when they enter the restaurant
+## sounds the creatures make when they enter the restaurant
 onready var hello_voices := [
 	preload("res://assets/main/world/creature/hello-voice-0.wav"),
 	preload("res://assets/main/world/creature/hello-voice-1.wav"),
@@ -12,7 +10,7 @@ onready var hello_voices := [
 	preload("res://assets/main/world/creature/hello-voice-3.wav"),
 ]
 
-# sounds which get played when the creature eats
+## sounds which get played when the creature eats
 onready var _munch_sounds := [
 	preload("res://assets/main/world/creature/munch0.wav"),
 	preload("res://assets/main/world/creature/munch1.wav"),
@@ -21,7 +19,7 @@ onready var _munch_sounds := [
 	preload("res://assets/main/world/creature/munch4.wav"),
 ]
 
-# satisfied sounds the creatures make when a player builds a big combo
+## satisfied sounds the creatures make when a player builds a big combo
 onready var _combo_voices := [
 	preload("res://assets/main/world/creature/combo-voice-00.wav"),
 	preload("res://assets/main/world/creature/combo-voice-01.wav"),
@@ -45,7 +43,7 @@ onready var _combo_voices := [
 	preload("res://assets/main/world/creature/combo-voice-19.wav"),
 ]
 
-# sounds the creatures make when they ask for their check
+## sounds the creatures make when they ask for their check
 onready var _goodbye_voices := [
 	preload("res://assets/main/world/creature/goodbye-voice-0.wav"),
 	preload("res://assets/main/world/creature/goodbye-voice-1.wav"),
@@ -53,16 +51,16 @@ onready var _goodbye_voices := [
 	preload("res://assets/main/world/creature/goodbye-voice-3.wav"),
 ]
 
-# index of the most recent combo sound that was played
+## index of the most recent combo sound that was played
 var _combo_voice_index := 0
 
-# 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
+## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
 var suppress_sfx := false
 
 var creature_visuals: CreatureVisuals setget set_creature_visuals
 
-# AudioStreamPlayer which plays all of the creature's voices. We reuse the same player so that they can't say two
-# things at once.
+## AudioStreamPlayer which plays all of the creature's voices. We reuse the same player so that they can't say two
+## things at once.
 onready var _voice_player := $VoicePlayer
 
 onready var _munch_sound := $MunchSound
@@ -85,9 +83,7 @@ func set_creature_visuals(new_creature_visuals: CreatureVisuals) -> void:
 	_connect_creature_visuals_listeners()
 
 
-"""
-Plays a 'mmm!' voice sample, for when a player builds a big combo.
-"""
+## Plays a 'mmm!' voice sample, for when a player builds a big combo.
 func play_combo_voice() -> void:
 	if suppress_sfx:
 		return
@@ -97,9 +93,7 @@ func play_combo_voice() -> void:
 	_voice_player.play()
 
 
-"""
-Plays a 'hello!' voice sample, for when a creature enters the restaurant
-"""
+## Plays a 'hello!' voice sample, for when a creature enters the restaurant
 func play_hello_voice(force: bool = false) -> void:
 	if suppress_sfx:
 		return
@@ -109,9 +103,7 @@ func play_hello_voice(force: bool = false) -> void:
 		_voice_player.play()
 
 
-"""
-Plays a 'check please!' voice sample, for when a creature is ready to leave
-"""
+## Plays a 'check please!' voice sample, for when a creature is ready to leave
 func play_goodbye_voice(force: bool = false) -> void:
 	if suppress_sfx:
 		return
@@ -148,12 +140,10 @@ func _connect_creature_visuals_listeners() -> void:
 	creature_visuals.connect("landed", self, "_on_CreatureVisuals_landed")
 
 
-"""
-Use a different AudioStreamPlayer for munch sounds, to avoid interrupting speech.
-
-Of course in real life you can't talk with your mouth full -- but combo sounds are positive feedback, so it's nice to
-avoid interrupting them.
-"""
+## Use a different AudioStreamPlayer for munch sounds, to avoid interrupting speech.
+##
+## Of course in real life you can't talk with your mouth full -- but combo sounds are positive feedback, so it's nice
+## to avoid interrupting them.
 func _on_CreatureVisuals_food_eaten(_food_type: int) -> void:
 	if suppress_sfx:
 		return

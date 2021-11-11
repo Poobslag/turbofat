@@ -1,13 +1,11 @@
 extends Control
-"""
-Shows off the tutorial message UI.
-
-Keys:
-	[0-9]: Prints a message; 1 = short, 0 = long
-	[shift+0-9]: Enqueues a message; 1 = short, 0 = long
-	[O]: Prints a message in a big font
-	[H]: Hides the message after a short delay
-"""
+## Shows off the tutorial message UI.
+##
+## Keys:
+## 	[0-9]: Prints a message; 1 = short, 0 = long
+## 	[shift+0-9]: Enqueues a message; 1 = short, 0 = long
+## 	[O]: Prints a message in a big font
+## 	[H]: Hides the message after a short delay
 
 const TEXTS := [
 	"Oh my,/ you're not supposed to know how to do that!\n\n" \

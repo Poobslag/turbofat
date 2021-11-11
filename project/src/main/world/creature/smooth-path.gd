@@ -1,12 +1,10 @@
 tool
 class_name SmoothPath
 extends Path2D
-"""
-A utility class which allows developers to draw curves in the Godot editor. Use the path tool to define line segments,
-then enable the 'smooth' setting in the inspector.
-
-Adapted from Dlean Jeans' code at https://godotengine.org/qa/32506/how-to-draw-a-curve-in-2d?show=57123#a57123
-"""
+## A utility class which allows developers to draw curves in the Godot editor. Use the path tool to define line
+## segments, then enable the 'smooth' setting in the inspector.
+##
+## Adapted from Dlean Jeans' code at https://godotengine.org/qa/32506/how-to-draw-a-curve-in-2d?show=57123#a57123
 
 export(float) var spline_length := 25.0
 export(bool) var _smooth: bool setget smooth
@@ -17,7 +15,7 @@ export(Color) var line_color := Color.black setget set_line_color
 export(Color) var fill_color := Color.transparent setget set_fill_color
 export(float) var line_width := 8.0
 
-# internal array used for drawing polygons
+## internal array used for drawing polygons
 var _poly_colors := PoolColorArray()
 
 func _ready() -> void:
@@ -53,12 +51,10 @@ func set_fill_color(new_fill_color: Color) -> void:
 	update()
 
 
-"""
-Straightens the Path2D into a series of straight lines, instead of smooth curves.
-
-Parameters:
-	'value': If true, the Path2D will be straightened. If false, the method does nothing.
-"""
+## Straightens the Path2D into a series of straight lines, instead of smooth curves.
+##
+## Parameters:
+## 	'value': If true, the Path2D will be straightened. If false, the method does nothing.
 func straighten(value: bool) -> void:
 	if not value:
 		return
@@ -67,11 +63,9 @@ func straighten(value: bool) -> void:
 		curve.set_point_out(i, Vector2())
 
 
-"""
-Smooths the Path2D into a series of smooth curves, instead of straight lines.
-
-Parameters: If 'value' is true, the Path2D will be smoothed. If false, the method does nothing.
-"""
+## Smooths the Path2D into a series of smooth curves, instead of straight lines.
+##
+## Parameters: If 'value' is true, the Path2D will be smoothed. If false, the method does nothing.
 func smooth(value: bool) -> void:
 	if not value:
 		return

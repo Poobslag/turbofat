@@ -1,7 +1,5 @@
 extends RemoteTransform2D
-"""
-Defines the position so that chat icons appear next to the creature's head.
-"""
+## Defines the position so that chat icons appear next to the creature's head.
 
 var creature_visuals: CreatureVisuals setget set_creature_visuals
 
@@ -31,11 +29,9 @@ func _connect_creature_visuals_listeners() -> void:
 	creature_visuals.connect("head_moved", self, "_on_CreatureVisuals_head_moved")
 
 
-"""
-Reposition the icon next to the creature's head.
-
-If we don't reposition the icon, it gets lost behind creatures that are fat.
-"""
+## Reposition the icon next to the creature's head.
+##
+## If we don't reposition the icon, it gets lost behind creatures that are fat.
 func _refresh_target_position() -> void:
 	if not creature_visuals:
 		return

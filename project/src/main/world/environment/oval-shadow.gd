@@ -1,12 +1,10 @@
 class_name OvalShadow
 extends Sprite
-"""
-Script which updates the position of a shadow beneath a 'shadow caster'.
-"""
+## Script which updates the position of a shadow beneath a 'shadow caster'.
 
 export (NodePath) var shadow_caster_path: NodePath setget set_shadow_caster_path
 
-# The shadow caster this shadow is for
+## The shadow caster this shadow is for
 var _shadow_caster: Node2D
 
 func _ready() -> void:
@@ -25,9 +23,7 @@ func set_shadow_caster_path(new_shadow_caster_path: NodePath) -> void:
 	_refresh_shadow_caster_path()
 
 
-"""
-Connects the shadow to a new shadow caster and updates its position.
-"""
+## Connects the shadow to a new shadow caster and updates its position.
 func _refresh_shadow_caster_path() -> void:
 	if not (is_inside_tree() and shadow_caster_path):
 		return

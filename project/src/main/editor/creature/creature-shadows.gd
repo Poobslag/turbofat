@@ -1,8 +1,6 @@
 class_name CreatureShadows
 extends Node2D
-"""
-Manages shadows for all creatures in a scene.
-"""
+## Manages shadows for all creatures in a scene.
 
 export (PackedScene) var CreatureShadowScene: PackedScene
 

@@ -1,7 +1,5 @@
 extends Control
-"""
-Demonstrates the name generator.
-"""
+## Demonstrates the name generator.
 
 var _name_generator := NameGenerator.new()
 

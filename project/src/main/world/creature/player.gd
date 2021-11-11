@@ -1,13 +1,11 @@
 class_name Player
 extends Creature
-"""
-Script for manipulating the player-controlled character in the overworld.
-"""
+## Script for manipulating the player-controlled character in the overworld.
 
-# If 'true' the player cannot move. Used during cutscenes.
+## If 'true' the player cannot move. Used during cutscenes.
 var input_disabled := false
 
-# if 'true' the ui has focus, and the player shouldn't move.
+## if 'true' the ui has focus, and the player shouldn't move.
 var ui_has_focus := false setget set_ui_has_focus
 
 func _ready() -> void:
@@ -33,9 +31,7 @@ func set_ui_has_focus(new_ui_has_focus: bool) -> void:
 		set_non_iso_walk_direction(Vector2(0, 0))
 
 
-"""
-Stop moving when a chat choice appears.
-"""
+## Stop moving when a chat choice appears.
 func _on_OverworldUi_showed_chat_choices() -> void:
 	if non_iso_walk_direction:
 		set_non_iso_walk_direction(Vector2.ZERO)

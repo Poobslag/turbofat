@@ -1,52 +1,50 @@
 class_name LevelButtons
 extends Control
-"""
-Creates and arranges level buttons for the level select screen.
-"""
+## Creates and arranges level buttons for the level select screen.
 
 enum LevelsToInclude {
 	ALL_LEVELS, # show both tutorial levels and regular levels
 	TUTORIALS_ONLY, # only show tutorials; hide regular levels
 }
 
-# Emitted when the player highlights an unlocked level to show more information.
+## Emitted when the player highlights an unlocked level to show more information.
 signal unlocked_level_selected(level_lock, settings)
 
-# Emitted when the player highlights a locked level to show more information.
+## Emitted when the player highlights a locked level to show more information.
 signal locked_level_selected(level_lock, settings)
 
-# Emitted when the player highlights the 'overall' button.
+## Emitted when the player highlights the 'overall' button.
 signal overall_selected(world_id, ranks)
 
-# Emitted when a new level select button or world select button is added.
+## Emitted when a new level select button or world select button is added.
 signal button_added(button)
 
 const ALL_LEVELS := LevelsToInclude.ALL_LEVELS
 const TUTORIALS_ONLY := LevelsToInclude.TUTORIALS_ONLY
 
-# Levels are arranged into a big rectangle. This is the ratio of the rectangle's width to height.
+## Levels are arranged into a big rectangle. This is the ratio of the rectangle's width to height.
 const BUTTON_ARRANGEMENT_WIDTH_FACTOR := 1.77778
 
-# The width of level buttons when they're small (about 10-20 visible)
+## The width of level buttons when they're small (about 10-20 visible)
 const COLUMN_WIDTH_SMALL := 120
 
-# The width of level buttons when they're big (about 30-40 visible)
+## The width of level buttons when they're big (about 30-40 visible)
 const COLUMN_WIDTH_LARGE := 180
 
-# The amount of space between level buttons
+## The amount of space between level buttons
 const VERTICAL_SPACING := LevelSelectButton.VERTICAL_SPACING
 
 export (PackedScene) var LevelSelectButtonScene: PackedScene
 export (PackedScene) var WorldSelectButtonScene: PackedScene
 
-# Allows for hiding/showing certain levels
+## Allows for hiding/showing certain levels
 export (LevelsToInclude) var levels_to_include := ALL_LEVELS setget set_levels_to_include
 
-# VBoxContainer instances containing columns of level buttons
+## VBoxContainer instances containing columns of level buttons
 var _max_row_count
 var _columns := []
 
-# current column width; shrinks when zoomed out
+## current column width; shrinks when zoomed out
 var _column_width := COLUMN_WIDTH_SMALL
 
 var _duration_calculator := DurationCalculator.new()
@@ -65,18 +63,14 @@ func set_levels_to_include(new_levels_to_include: int) -> void:
 	_add_buttons()
 
 
-"""
-Removes all buttons/placeholders in preparation for loading a new set of levels.
-"""
+## Removes all buttons/placeholders in preparation for loading a new set of levels.
 func _clear_contents() -> void:
 	for child in get_children():
 		remove_child(child)
 		child.queue_free()
 
 
-"""
-Adds buttons representing levels the player can choose.
-"""
+## Adds buttons representing levels the player can choose.
 func _add_buttons() -> void:
 	# calculate which worlds should be shown
 	var included_world_ids: Array
@@ -122,9 +116,7 @@ func _add_buttons() -> void:
 		last_world_button.grab_focus()
 
 
-"""
-Adds a node to the rightmost column, or creates a new column if the column is full
-"""
+## Adds a node to the rightmost column, or creates a new column if the column is full
 func _add_button_to_column(button: LevelSelectButton) -> void:
 	if not _columns or _columns[_columns.size() - 1].get_child_count() >= _max_row_count:
 		# create a new column
@@ -140,9 +132,7 @@ func _add_button_to_column(button: LevelSelectButton) -> void:
 	emit_signal("button_added", button)
 
 
-"""
-Adds the world button which show the player's progress for a world.
-"""
+## Adds the world button which show the player's progress for a world.
 func _world_button(world_id: String) -> WorldSelectButton:
 	var world_select_button: WorldSelectButton = WorldSelectButtonScene.instance()
 	world_select_button.world_id = world_id
@@ -167,9 +157,7 @@ func _world_button(world_id: String) -> WorldSelectButton:
 	return world_select_button
 
 
-"""
-Creates a level select button for the specified level.
-"""
+## Creates a level select button for the specified level.
 func _level_select_button(world_id: String, level_id: String) -> LevelSelectButton:
 	var level_settings: LevelSettings = LevelLibrary.level_settings(level_id)
 	var level_select_button: LevelSelectButton = LevelSelectButtonScene.instance()
@@ -203,9 +191,7 @@ func _lowlight_unrelated_buttons(world_id: String) -> void:
 		else:
 			level_select_button.lowlight = true
 
-"""
-When the player clicks a level button twice, we launch the selected level
-"""
+## When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 	CurrentLevel.set_launched_level(settings.id)
 	CurrentLevel.cutscene_force = SystemData.misc_settings.cutscene_force
@@ -222,9 +208,7 @@ func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 		CurrentLevel.push_level_trail()
 
 
-"""
-When the player clicks a level button once, we emit a signal to show more information.
-"""
+## When the player clicks a level button once, we emit a signal to show more information.
 func _on_LevelSelectButton_focus_entered(settings: LevelSettings) -> void:
 	var world_lock: WorldLock = LevelLibrary.world_lock_for_level(settings.id)
 	_lowlight_unrelated_buttons(world_lock.world_id)
@@ -234,9 +218,7 @@ func _on_LevelSelectButton_focus_entered(settings: LevelSettings) -> void:
 		emit_signal("unlocked_level_selected", LevelLibrary.level_lock(settings.id), settings)
 
 
-"""
-When the player clicks the 'overall' button once, we emit a signal to show more information.
-"""
+## When the player clicks the 'overall' button once, we emit a signal to show more information.
 func _on_WorldButton_focus_entered(world_select_button: WorldSelectButton) -> void:
 	_lowlight_unrelated_buttons(world_select_button.world_id)
 	emit_signal("overall_selected", world_select_button.world_id, world_select_button.ranks)

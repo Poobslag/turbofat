@@ -1,16 +1,12 @@
 extends NametagPanel
-"""
-Repositions and shows nametag labels for chat windows.
-"""
+## Repositions and shows nametag labels for chat windows.
 
-"""
-Recolors and repositions the nametag based on the current accent definition.
-
-Parameters:
-	'chat_theme': metadata about the chat window's appearance.
-	
-	'nametag_right': true/false if the nametag should be drawn on the right/left side of the frame.
-"""
+## Recolors and repositions the nametag based on the current accent definition.
+##
+## Parameters:
+## 	'chat_theme': metadata about the chat window's appearance.
+##
+## 	'nametag_right': true/false if the nametag should be drawn on the right/left side of the frame.
 func show_label(chat_theme: ChatTheme, nametag_right: bool) -> void:
 	if nametag_size == ChatTheme.NAMETAG_OFF:
 		return

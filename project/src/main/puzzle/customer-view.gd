@@ -1,7 +1,5 @@
 extends ViewportContainer
-"""
-Shows the active customer in the restaurant scene.
-"""
+## Shows the active customer in the restaurant scene.
 
 export (NodePath) var restaurant_viewport_path: NodePath
 

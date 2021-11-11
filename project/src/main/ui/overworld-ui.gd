@@ -1,45 +1,43 @@
 class_name OverworldUi
 extends CanvasLayer
-"""
-UI elements for the overworld.
-
-This includes chats, buttons and debug messages.
-"""
+## UI elements for the overworld.
+##
+## This includes chats, buttons and debug messages.
 
 signal chat_started
 signal chat_ended
 
-# emitted when we launch a creature's talk animation
+## emitted when we launch a creature's talk animation
 signal chatter_talked(chatter)
 
-# emitted when the player talks to a creature for the first time, caching their chat
+## emitted when the player talks to a creature for the first time, caching their chat
 signal chat_cached(chattable)
 
-# emitted when creatures enter or exit a conversation
+## emitted when creatures enter or exit a conversation
 signal visible_chatters_changed()
 
-# emitted when we present the player with a chat choice
+## emitted when we present the player with a chat choice
 signal showed_chat_choices
 
-# when starting an inplace conversation, all participants must be within this
-# radius. Otherwise a separate cutscene will launch.
+## when starting an inplace conversation, all participants must be within this
+## radius. Otherwise a separate cutscene will launch.
 const MAX_INPLACE_CHAT_DISTANCE := 600
 
-# Characters involved in the current conversation. This includes the player, sensei and any other participants. We
-# try to keep them all in frame and facing each other.
+## Characters involved in the current conversation. This includes the player, sensei and any other participants. We
+## try to keep them all in frame and facing each other.
 var chatters := []
 
-# If 'true' the overworld is being used to play a cutscene. If 'false' the overworld is allowing free roam.
+## If 'true' the overworld is being used to play a cutscene. If 'false' the overworld is allowing free roam.
 var cutscene := false
 
 var _show_version := true setget set_show_version, is_show_version
 
-# These two fields store details for the upcoming level. We store the level details during the chat sequence
-# and launch the level when the chat window closes.
+## These two fields store details for the upcoming level. We store the level details during the chat sequence
+## and launch the level when the chat window closes.
 var _current_chat_tree: ChatTree
 
-# A cache of ChatTree objects representing chat the player's seen since this scene was loaded. This prevents the
-# player from cycling through the chat over and over if you talk to a creature multiple times repetitively.
+## A cache of ChatTree objects representing chat the player's seen since this scene was loaded. This prevents the
+## player from cycling through the chat over and over if you talk to a creature multiple times repetitively.
 var _chat_tree_cache: Dictionary
 
 func _ready() -> void:
@@ -86,9 +84,7 @@ func is_show_version() -> bool:
 	return _show_version
 
 
-"""
-Turn the the active chat participants towards each other, and make them face the camera.
-"""
+## Turn the the active chat participants towards each other, and make them face the camera.
 func make_chatters_face_eachother() -> void:
 	var chatter_bounding_box: Rect2
 	chatter_bounding_box = get_chatter_bounding_box([], [ChattableManager.player, ChattableManager.sensei])
@@ -117,18 +113,16 @@ func make_chatters_face_eachother() -> void:
 			chatter.orient_toward(ChattableManager.player.position)
 
 
-"""
-Calculates the bounding box of the characters involved in the current conversation.
-
-Parameters:
-	'include': (Optional) characters in the current conversation will only be included if they are in this list.
-	
-	'exclude': (Optional) Characters in the current conversation will be excluded if they are in this list.
-
-Returns:
-	The smallest rectangle including all characters in the current conversation. If no characters meet this criteria,
-	this returns an zero-size rectangle at (0, 0).
-"""
+## Calculates the bounding box of the characters involved in the current conversation.
+##
+## Parameters:
+## 	'include': (Optional) characters in the current conversation will only be included if they are in this list.
+##
+## 	'exclude': (Optional) Characters in the current conversation will be excluded if they are in this list.
+##
+## Returns:
+## 	The smallest rectangle including all characters in the current conversation. If no characters meet this criteria,
+## 	this returns an zero-size rectangle at (0, 0).
 func get_chatter_bounding_box(include: Array = [], exclude: Array = []) -> Rect2:
 	var bounding_box: Rect2
 	
@@ -148,12 +142,10 @@ func get_chatter_bounding_box(include: Array = [], exclude: Array = []) -> Rect2
 	return bounding_box
 
 
-"""
-Returns 'true' if the current chat is a quick one-liner chat.
-
-Quick one-line chats don't interrupt the player or zoom the camera in; the player can just talk to someone and keep
-running. That's why we call them 'drive by chats'.
-"""
+## Returns 'true' if the current chat is a quick one-liner chat.
+##
+## Quick one-line chats don't interrupt the player or zoom the camera in; the player can just talk to someone and keep
+## running. That's why we call them 'drive by chats'.
 func is_drive_by_chat() -> bool:
 	return not _current_chat_tree.can_advance()
 
@@ -181,14 +173,12 @@ func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
 	return creatures
 
 
-"""
-Assign nametag sides for each chat line.
-
-We calculate the midpoint of the chatters. Creatures to the right of the midpoint have their nametags on the right.
-Creatures to the left have their nametags on the left.
-
-This information is stored back into the chat tree so that it can be utilized by the chat ui.
-"""
+## Assign nametag sides for each chat line.
+##
+## We calculate the midpoint of the chatters. Creatures to the right of the midpoint have their nametags on the right.
+## Creatures to the left have their nametags on the left.
+##
+## This information is stored back into the chat tree so that it can be utilized by the chat ui.
 func _assign_nametag_sides(new_chat_tree: ChatTree) -> void:
 	var chatter_bounding_box := get_chatter_bounding_box([], [])
 	var center_of_chatters: Vector2 = chatter_bounding_box.position + chatter_bounding_box.size * 0.5
@@ -208,9 +198,7 @@ func _assign_nametag_sides(new_chat_tree: ChatTree) -> void:
 				chat_event.nametag_side = ChatEvent.NametagSide.LEFT
 
 
-"""
-Updates the different UI components to be visible/invisible based on the UI's current state.
-"""
+## Updates the different UI components to be visible/invisible based on the UI's current state.
 func _update_visible() -> void:
 	$Control/ChatUi.visible = true if chatters else false
 	$Control/Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
@@ -220,11 +208,9 @@ func _refresh_rect_size() -> void:
 	$Control.rect_size = $Control.get_viewport_rect().size
 
 
-"""
-Returns the chat tree corresponding to the curently focused chattable.
-
-This is relevant when the player talks to a creature with a non-food speech bubble.
-"""
+## Returns the chat tree corresponding to the curently focused chattable.
+##
+## This is relevant when the player talks to a creature with a non-food speech bubble.
 func _focused_chattable_chat_tree() -> ChatTree:
 	var focused_chattable: Node2D = ChattableManager.focused_chattable
 	if not focused_chattable:
@@ -242,18 +228,16 @@ func _focused_chattable_chat_tree() -> ChatTree:
 	return _chat_tree_cache[focused_chattable]
 
 
-"""
-Applies the specified ChatEvent metadata to the scene.
-
-ChatEvents can include metadata making creatures appear, disappear, laugh or turn around. This method locates the
-creature referenced by the metadata and performs the appropriate action.
-
-Parameters:
-	'chat_event': (Unused) The chat event whose metadata should be applied. This is unused by OverworldUi but can be
-		utilized by subclasses who extend this method.
-	
-	'meta_item': The metadata item to apply.
-"""
+## Applies the specified ChatEvent metadata to the scene.
+##
+## ChatEvents can include metadata making creatures appear, disappear, laugh or turn around. This method locates the
+## creature referenced by the metadata and performs the appropriate action.
+##
+## Parameters:
+## 	'chat_event': (Unused) The chat event whose metadata should be applied. This is unused by OverworldUi but can be
+## 		utilized by subclasses who extend this method.
+##
+## 	'meta_item': The metadata item to apply.
 func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 	var meta_item_split := meta_item.split(" ")
 	match(meta_item_split[0]):
@@ -410,9 +394,7 @@ func _on_SettingsButton_pressed() -> void:
 	$Control/SettingsMenu.show()
 
 
-"""
-When the player hits the 'talk' button we either launch a level or start a chat.
-"""
+## When the player hits the 'talk' button we either launch a level or start a chat.
 func _on_TalkButton_pressed() -> void:
 	var focused_chattable: Node2D = ChattableManager.focused_chattable
 	if not focused_chattable:

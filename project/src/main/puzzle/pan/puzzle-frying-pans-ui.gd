@@ -1,7 +1,5 @@
 extends "res://src/main/puzzle/pan/frying-pans-ui.gd"
-"""
-Updates the FryingPansUi based on the level's settings and how the player is doing.
-"""
+## Updates the FryingPansUi based on the level's settings and how the player is doing.
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
@@ -10,9 +8,7 @@ func _ready() -> void:
 	_refresh_lives()
 
 
-"""
-Updates the state of the FryingPansUi and refreshes the tilemap.
-"""
+## Updates the state of the FryingPansUi and refreshes the tilemap.
 func _refresh_lives() -> void:
 	pans_max = CurrentLevel.settings.lose_condition.top_out
 	if PuzzleState.level_performance.lost:
@@ -31,10 +27,8 @@ func _on_PuzzleState_game_ended() -> void:
 	_refresh_lives()
 
 
-"""
-Updates the state of the FryingPansUi when the player loses a life.
-
-We deliberately avoid calling refresh_lives because we want to trigger the animation where a frying pan fades out.
-"""
+## Updates the state of the FryingPansUi when the player loses a life.
+##
+## We deliberately avoid calling refresh_lives because we want to trigger the animation where a frying pan fades out.
 func _on_PuzzleState_topped_out() -> void:
 	set_pans_remaining(pans_remaining - 1)

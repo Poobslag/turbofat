@@ -1,7 +1,5 @@
 extends State
-"""
-The piece has locked into position. The player can still press 'down' to unlock it or squeeze it past other blocks.
-"""
+## The piece has locked into position. The player can still press 'down' to unlock it or squeeze it past other blocks.
 
 func update(piece_manager: PieceManager) -> String:
 	var new_state_name := ""

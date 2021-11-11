@@ -1,24 +1,22 @@
 class_name StickerRow
 extends Control
-"""
-A row of wallpaper sprites which slowly scroll by.
-"""
+## A row of wallpaper sprites which slowly scroll by.
 
-# the scroll velocity. only the x component is used
+## the scroll velocity. only the x component is used
 export (PackedScene) var StickerScene: PackedScene
 export (Vector2) var velocity: Vector2 setget set_velocity
 export (Color) var color: Color
 
-# sprite textures. we alternate between these textures and flip them horizontally. the second texture is optional.
+## sprite textures. we alternate between these textures and flip them horizontally. the second texture is optional.
 export (Texture) var texture_0: Texture setget set_texture_0
 export (Texture) var texture_1: Texture setget set_texture_1
 var _textures: Array
 var _texture_index := 0
 
-# counts down to 0, at which point a single sprite is omitted
+## counts down to 0, at which point a single sprite is omitted
 var _blank_texture_countdown := randi() % 7
 
-# the sticker furthest back in the row. when it moves enough a new sticker is created to take its place
+## the sticker furthest back in the row. when it moves enough a new sticker is created to take its place
 var _back_sticker: Sprite
 
 func _physics_process(delta: float) -> void:
@@ -79,11 +77,9 @@ func set_velocity(new_velocity: Vector2) -> void:
 	_back_sticker = null
 
 
-"""
-Adds a sticker to the row.
-
-The new sticker is placed behind the back sticker.
-"""
+## Adds a sticker to the row.
+##
+## The new sticker is placed behind the back sticker.
 func _add_sticker() -> void:
 	var new_sticker: Sticker = StickerScene.instance()
 	
@@ -113,9 +109,7 @@ func _add_sticker() -> void:
 	_back_sticker = new_sticker
 
 
-"""
-Refresh the texture array and texture index based on the assigned textures.
-"""
+## Refresh the texture array and texture index based on the assigned textures.
 func _refresh_textures() -> void:
 	_textures = []
 	if texture_0:

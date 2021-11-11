@@ -1,36 +1,34 @@
 extends Control
-"""
-Manages four touchscreen buttons in a plus shape which behave like a directional pad.
-
-The player can press each button individually to emit different actions. If diagonal weights are specified, the player
-can press two diagonally adjacent buttons with a single touch.
-"""
+## Manages four touchscreen buttons in a plus shape which behave like a directional pad.
+##
+## The player can press each button individually to emit different actions. If diagonal weights are specified, the
+## player can press two diagonally adjacent buttons with a single touch.
 
 signal pressed
 
-# radius from the eightway's center where touches should be processed. significantly larger than its visual radius
+## radius from the eightway's center where touches should be processed. significantly larger than its visual radius
 const RADIUS = 180
 
-# actions associated with each cardinal direction. if omitted, the button will not be shown
+## actions associated with each cardinal direction. if omitted, the button will not be shown
 export (String) var up_action: String setget set_up_action
 export (String) var down_action: String setget set_down_action
 export (String) var left_action: String setget set_left_action
 export (String) var right_action: String setget set_right_action
 
-# these values influence how easy it is to press two buttons at once
-# 0.0 = impossible; 1.0 = as easy as pressing a single button
+## these values influence how easy it is to press two buttons at once
+## 0.0 = impossible; 1.0 = as easy as pressing a single button
 export (float, 0, 1) var up_right_weight := 0.0
 export (float, 0, 1) var up_left_weight := 0.0
 export (float, 0, 1) var down_right_weight := 0.0
 export (float, 0, 1) var down_left_weight := 0.0
 
-# if false, pressing the buttons won't emit any actions.
+## if false, pressing the buttons won't emit any actions.
 export (bool) var emit_actions := true setget set_emit_actions
 
-# the position relative to our center of the most recent touch event
+## the position relative to our center of the most recent touch event
 var _touch_dir: Vector2
 
-# the index of the most recent touch event
+## the index of the most recent touch event
 var _touch_index := -1
 
 onready var _up := $HBoxContainer/VBoxContainer/Up
@@ -46,9 +44,7 @@ func _ready() -> void:
 	_refresh_right_action()
 
 
-"""
-Converts drag/touch events into button presses.
-"""
+## Converts drag/touch events into button presses.
 func _input(event: InputEvent) -> void:
 	if not is_visible_in_tree():
 		return
@@ -95,16 +91,12 @@ func set_right_action(new_right_action: String) -> void:
 	_refresh_right_action()
 
 
-"""
-Becomes visible and receives touch input.
-"""
+## Becomes visible and receives touch input.
 func show() -> void:
 	visible = true
 
 
-"""
-Becomes invisible. Releases any held buttons and ignores touch input.
-"""
+## Becomes invisible. Releases any held buttons and ignores touch input.
 func hide() -> void:
 	visible = false
 	_touch_index = -1
@@ -131,21 +123,17 @@ func _refresh_right_action() -> void:
 		_right.action = right_action
 
 
-"""
-Release all buttons currently pressed.
-
-This also emits InputEvents for any action buttons released.
-"""
+## Release all buttons currently pressed.
+##
+## This also emits InputEvents for any action buttons released.
 func _release_buttons() -> void:
 	for button in _buttons:
 		button.pressed = false
 
 
-"""
-Press the buttons associated with the newest touch event.
-
-This also emits InputEvents for any action buttons pressed or released.
-"""
+## Press the buttons associated with the newest touch event.
+##
+## This also emits InputEvents for any action buttons pressed or released.
 func _press_buttons() -> void:
 	# cardinal direction; 0 = right, 1 = down, 2 = left, 3 = right
 	var touch_cardinal_dir := wrapi(round(2 * _touch_dir.angle() / PI), 0, 4)
@@ -161,12 +149,10 @@ func _press_buttons() -> void:
 	_up.pressed = touch_cardinal_dir == 3 or up_left_pressed or up_right_pressed
 
 
-"""
-Returns a number [0.0, 4.0] for how close the touch is to the specified diagonal.
-
-0.0 = very close, 4.0 = very far. A value less than 1.0 indicates the touch is in the same correct quadrant as the
-diagonal.
-"""
+## Returns a number [0.0, 4.0] for how close the touch is to the specified diagonal.
+##
+## 0.0 = very close, 4.0 = very far. A value less than 1.0 indicates the touch is in the same correct quadrant as the
+## diagonal.
 func _diagonalness(diagonal_direction: Vector2) -> float:
 	return abs(8 * _touch_dir.angle_to(diagonal_direction) / PI)
 

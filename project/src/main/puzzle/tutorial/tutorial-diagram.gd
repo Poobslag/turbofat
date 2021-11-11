@@ -1,19 +1,17 @@
 class_name TutorialDiagram
 extends Control
-"""
-Displays a diagram during a tutorial.
+## Displays a diagram during a tutorial.
+##
+## These diagrams obstruct the playfield. They're textures which appear in a window, and the player has ok/help buttons
+## to ensure they understand the diagram.
 
-These diagrams obstruct the playfield. They're textures which appear in a window, and the player has ok/help buttons
-to ensure they understand the diagram.
-"""
-
-# Emitted when the player clicks a button indicating they understand the diagram
+## Emitted when the player clicks a button indicating they understand the diagram
 signal ok_chosen
 
-# Emitted when the player clicks a button indicating they don't understand the diagram
+## Emitted when the player clicks a button indicating they don't understand the diagram
 signal help_chosen
 
-# The number of times the diagram has been shown. We cycle through different chat choices each time.
+## The number of times the diagram has been shown. We cycle through different chat choices each time.
 var _show_diagram_count := 0
 
 onready var _hud: Node = get_parent()

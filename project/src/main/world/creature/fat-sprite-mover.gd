@@ -1,11 +1,9 @@
 #tool #uncomment to view creature in editor
 extends AnimationPlayer
-"""
-Moves the creature's body parts around as they become fatter.
-
-While this is an AnimationPlayer, the animation is only used to rearrange their body parts. It shouldn't ever be
-played as an animation.
-"""
+## Moves the creature's body parts around as they become fatter.
+##
+## While this is an AnimationPlayer, the animation is only used to rearrange their body parts. It shouldn't ever be
+## played as an animation.
 
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 

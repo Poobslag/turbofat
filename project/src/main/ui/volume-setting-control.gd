@@ -1,21 +1,19 @@
 extends Control
-"""
-UI control for adjusting volume.
+## UI control for adjusting volume.
+##
+## Updates the player's stored settings, and also updates the audio server.
 
-Updates the player's stored settings, and also updates the audio server.
-"""
-
-# The type of volume which is controlled by this slider: music, sounds or voices
+## The type of volume which is controlled by this slider: music, sounds or voices
 export (VolumeSettings.VolumeType) var volume_type: int setget set_volume_type
 
-# Text description of this volume setting, 'Master Volume'
+## Text description of this volume setting, 'Master Volume'
 onready var _setting_label: Label = $Label
 
-# UI controls for the volume slider
+## UI controls for the volume slider
 onready var _slider: HSlider = $HBoxContainer/HSlider
 onready var _percent_label: Label = $HBoxContainer/Percent
 
-# Timers and sounds to play an sfx sample after the slider is dragged
+## Timers and sounds to play an sfx sample after the slider is dragged
 onready var _sample_timer: Timer = $SampleTimer
 onready var _sample_sound: AudioStreamPlayer = $SampleSound
 onready var _sample_voice: AudioStreamPlayer = $SampleVoice

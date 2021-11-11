@@ -1,11 +1,7 @@
 class_name RankRules
-"""
-Tweaks to rank calculation.
-"""
+## Tweaks to rank calculation.
 
-"""
-Parses a json string like 'hide_combos_rank' into an enum like 'ShowRank.HIDE'
-"""
+## Parses a json string like 'hide_combos_rank' into an enum like 'ShowRank.HIDE'
 class ShowRankPropertyParser extends RuleParser.PropertyParser:
 	var _hide_string: String
 	
@@ -40,27 +36,27 @@ enum ShowRank {
 	HIDE, # rank should be hidden
 }
 
-# multiplier for the expected box_score_per_line. '3.0' means the player
-# needs 3x the usual box points per line to get a good rank
+## multiplier for the expected box_score_per_line. '3.0' means the player
+## needs 3x the usual box points per line to get a good rank
 var box_factor := 1.0
 
-# multiplier for the expected combo_score_per_line. '3.0' means the player
-# needs 3x the usual combo points per line to get a good rank
+## multiplier for the expected combo_score_per_line. '3.0' means the player
+## needs 3x the usual combo points per line to get a good rank
 var combo_factor := 1.0
 
-# expected combo per customer
+## expected combo per customer
 var customer_combo := 0
 
-# extra time it takes an expert to move the piece where it belongs
+## extra time it takes an expert to move the piece where it belongs
 var extra_seconds_per_piece := 0.0
 
-# expected leftover lines
+## expected leftover lines
 var leftover_lines := 0
 
-# expected bonus points for pickups
+## expected bonus points for pickups
 var master_pickup_score := 0.0
 
-# expected bonus points per line awarded for pickups
+## expected bonus points per line awarded for pickups
 var master_pickup_score_per_line := 0.0
 
 var show_boxes_rank: int = ShowRank.DEFAULT
@@ -70,18 +66,18 @@ var show_pickups_rank: int = ShowRank.DEFAULT
 var show_pieces_rank: int = ShowRank.DEFAULT
 var show_speed_rank: int = ShowRank.DEFAULT
 
-# 'true' if the results screen should be skipped. Used for tutorials.
+## 'true' if the results screen should be skipped. Used for tutorials.
 var skip_results := false
 
-# Bonus rank given if the player achieves the level's success condition. Useful when designing levels where
-# achieving a target score of 1,000 is an A grade, but failing with a score of 999 is also an A grade. This property
-# gives the player a little bump in rank so achieving the target score will always result in a higher grade.
+## Bonus rank given if the player achieves the level's success condition. Useful when designing levels where
+## achieving a target score of 1,000 is an A grade, but failing with a score of 999 is also an A grade. This property
+## gives the player a little bump in rank so achieving the target score will always result in a higher grade.
 var success_bonus := 0.0
 
-# rank penalty applied each time the player tops out
+## rank penalty applied each time the player tops out
 var top_out_penalty := 4.0
 
-# If 'true' the player is not given a rank for this level.
+## If 'true' the player is not given a rank for this level.
 var unranked := false
 
 var _rule_parser: RuleParser

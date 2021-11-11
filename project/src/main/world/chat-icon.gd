@@ -1,10 +1,8 @@
 class_name ChatIcon
 extends Node2D
-"""
-A visual icon which appears next to something the player can interact with.
-"""
+## A visual icon which appears next to something the player can interact with.
 
-# emitted when the icon is finished vanishing after a call to 'vanish()'
+## emitted when the icon is finished vanishing after a call to 'vanish()'
 signal vanish_finished
 
 enum BubbleType {
@@ -21,15 +19,15 @@ const THOUGHT := BubbleType.THOUGHT
 const SPEECH := BubbleType.SPEECH
 const FOOD := BubbleType.FOOD
 
-# The chat icons bounce. These constants control how they bounce.
+## The chat icons bounce. These constants control how they bounce.
 const BOUNCE_DURATION := 0.7
 const BOUNCE_HEIGHT := 12.0
 
-# The chat icons fade in and fade out as the player get close. These constants control how they fade.
+## The chat icons fade in and fade out as the player get close. These constants control how they fade.
 const COLOR_FOCUSED := Color(1.0, 1.0, 1.0, 1.00)
 const COLOR_UNFOCUSED := Color(1.0, 1.0, 1.0, 0.25)
 
-# mapping from chat icons to chat bubble sprite frames
+## mapping from chat icons to chat bubble sprite frames
 const BUBBLE_TYPE_FRAMES := {
 	NONE: [],
 	FILLER: [0, 1, 2],
@@ -63,11 +61,9 @@ func _physics_process(delta: float) -> void:
 	_sprite.position.y = -57 - abs(BOUNCE_HEIGHT * sin(_bounce_phase * BOUNCE_DURATION * PI))
 
 
-"""
-Initializes the icon's appearance and position for the specified chattable.
-
-Chattables must have a 'ChatIconHook' node. ChatIconHook is a RemoteTransform2D which updates the icon's position.
-"""
+## Initializes the icon's appearance and position for the specified chattable.
+##
+## Chattables must have a 'ChatIconHook' node. ChatIconHook is a RemoteTransform2D which updates the icon's position.
 func initialize(chattable: Node) -> void:
 	_chattable = chattable
 	if _chattable.has_meta("chat_bubble_type"):
@@ -85,11 +81,9 @@ func set_bubble_type(new_bubble_type: int) -> void:
 	_refresh()
 
 
-"""
-Make the chat icon focused, so the player knows they can interact with it.
-
-This brightens the icon and makes it bounce faster.
-"""
+## Make the chat icon focused, so the player knows they can interact with it.
+##
+## This brightens the icon and makes it bounce faster.
 func focus() -> void:
 	if _focused == true:
 		return
@@ -98,19 +92,15 @@ func focus() -> void:
 	_focused = true
 
 
-"""
-Make the chat icon unfocused, so the player knows they need to get closer to interact with it.
-
-This dims the icon and makes it bounce slower.
-"""
+## Make the chat icon unfocused, so the player knows they need to get closer to interact with it.
+##
+## This dims the icon and makes it bounce slower.
 func unfocus() -> void:
 	_tween_modulate(COLOR_UNFOCUSED, 1.6)
 	_focused = false
 
 
-"""
-Makes the chat icon invisible, so the player knows they can't interact with it.
-"""
+## Makes the chat icon invisible, so the player knows they can't interact with it.
 func vanish() -> void:
 	_tween_modulate(Color.transparent, 0.4)
 	_focused = false
@@ -132,9 +122,7 @@ func _refresh() -> void:
 			ChattableManager.connect("focus_changed", self, "_on_ChattableManager_focus_changed")
 
 
-"""
-Tweens this objects 'modulate' property to a new value.
-"""
+## Tweens this objects 'modulate' property to a new value.
 func _tween_modulate(new_modulate: Color, duration: float) -> void:
 	if _sprite.modulate == new_modulate:
 		# don't launch tween if our modulate property is already set appropriately

@@ -1,11 +1,9 @@
 extends Panel
-"""
-A panel on the level select screen which summarizes level details.
+## A panel on the level select screen which summarizes level details.
+##
+## This includes details such as the level's duration, difficulty, and the player's high score.
 
-This includes details such as the level's duration, difficulty, and the player's high score.
-"""
-
-# All calculated durations are rounded to one of these aesthetically pleasing values.
+## All calculated durations are rounded to one of these aesthetically pleasing values.
 const DURATIONS := [
 	10, 15, 20, 30, 45, 60,
 	90, 120, 150, 180, 270, 360, 480, 600
@@ -114,9 +112,7 @@ func _update_world_text(ranks: Array) -> void:
 	$MarginContainer/Label.text = text
 
 
-"""
-When an unlocked level is selected, we display some statistics for that level.
-"""
+## When an unlocked level is selected, we display some statistics for that level.
 func _on_LevelButtons_unlocked_level_selected(_level_lock: LevelLock, settings: LevelSettings) -> void:
 	if settings.other.tutorial:
 		_update_tutorial_level_text(settings)
@@ -124,16 +120,12 @@ func _on_LevelButtons_unlocked_level_selected(_level_lock: LevelLock, settings: 
 		_update_level_text(settings)
 
 
-"""
-When a locked level is selected, we clear out the info panel.
-"""
+## When a locked level is selected, we clear out the info panel.
 func _on_LevelButtons_locked_level_selected(_level_lock: LevelLock, _settings: LevelSettings) -> void:
 	$MarginContainer/Label.text = ""
 
 
-"""
-When the 'overall' button is selected, we display statistics for all of the levels.
-"""
+## When the 'overall' button is selected, we display statistics for all of the levels.
 func _on_LevelButtons_overall_selected(world_id: String, ranks: Array) -> void:
 	if world_id == LevelLibrary.TUTORIAL_WORLD_ID:
 		_update_tutorial_world_text(ranks)

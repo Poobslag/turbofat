@@ -1,7 +1,5 @@
 extends Node
-"""
-Plays sound effects when the player piece is moved.
-"""
+## Plays sound effects when the player piece is moved.
 
 func _ready() -> void:
 	PuzzleState.connect("speed_index_changed", self, "_on_PuzzleState_speed_index_changed")
@@ -24,7 +22,7 @@ func _play_das_move_sfx() -> void:
 	$MoveSound.volume_db = clamp($MoveSound.volume_db * 0.92, 0.50, 1.00)
 	$MoveSound.play()
 
-# Movement events ----------------------------------------------------------------
+## Movement events ----------------------------------------------------------------
 
 func _on_PieceManager_moved_left() -> void:
 	_play_move_sfx()
@@ -53,7 +51,7 @@ func _on_PieceManager_initial_das_moved_right() -> void:
 func _on_PieceManager_squish_moved(_piece: ActivePiece, _old_pos: Vector2) -> void:
 	$SquishSound.play()
 
-# Rotation events ----------------------------------------------------------------
+## Rotation events ----------------------------------------------------------------
 
 func _on_PieceManager_initial_rotated_ccw() -> void:
 	$Rotate0Sound.play()
@@ -78,7 +76,7 @@ func _on_PieceManager_rotated_cw() -> void:
 func _on_PieceManager_rotated_180() -> void:
 	$Rotate0Sound.play()
 
-# Other events -------------------------------------------------------------------
+## Other events -------------------------------------------------------------------
 
 func _on_PieceManager_lock_started() -> void:
 	$LockSound.play()

@@ -1,11 +1,9 @@
 extends Node
-"""
-Stores data about the system and its configuration.
-
-This data includes configuration data like language, keybindings, and graphics settings.
-
-Data about the player's progress and high scores is stored in the PlayerData class, not here.
-"""
+## Stores data about the system and its configuration.
+##
+## This data includes configuration data like language, keybindings, and graphics settings.
+##
+## Data about the player's progress and high scores is stored in the PlayerData class, not here.
 
 var gameplay_settings := GameplaySettings.new()
 var graphics_settings := GraphicsSettings.new()
@@ -14,9 +12,7 @@ var touch_settings := TouchSettings.new()
 var keybind_settings := KeybindSettings.new()
 var misc_settings := MiscSettings.new()
 
-"""
-Resets the system's in-memory data to a default state.
-"""
+## Resets the system's in-memory data to a default state.
 func reset() -> void:
 	gameplay_settings.reset()
 	graphics_settings.reset()

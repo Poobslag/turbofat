@@ -1,7 +1,5 @@
 extends BlockLevelChunkControl
-"""
-A level editor chunk which contains several blocks which make up a single piece, such as a t-piece.
-"""
+## A level editor chunk which contains several blocks which make up a single piece, such as a t-piece.
 
 enum EditorPiece {
 	PIECE_J, PIECE_L, PIECE_O, PIECE_P, PIECE_Q, PIECE_T, PIECE_U, PIECE_V,
@@ -34,9 +32,7 @@ func set_editor_piece(new_editor_piece: int) -> void:
 	_refresh_scale()
 
 
-"""
-Calculates the extents of the piece's used cells.
-"""
+## Calculates the extents of the piece's used cells.
 func _piece_extents() -> Rect2:
 	var extents := Rect2(Vector2.ZERO, Vector2.ZERO)
 	extents.position = _type.get_cell_position(_orientation, 0)

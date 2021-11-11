@@ -1,8 +1,6 @@
 class_name PickupLevelChunkControl
 extends Control
-"""
-UI component for a draggable chunk of level editor data containing a pickup.
-"""
+## UI component for a draggable chunk of level editor data containing a pickup.
 
 export (Foods.BoxType) var box_type: int setget set_box_type
 

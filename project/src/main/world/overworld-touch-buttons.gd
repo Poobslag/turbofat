@@ -1,7 +1,5 @@
 extends Control
-"""
-Touchscreen buttons displayed for the overworld.
-"""
+## Touchscreen buttons displayed for the overworld.
 
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 
@@ -16,29 +14,23 @@ func _ready() -> void:
 		hide()
 
 
-"""
-Shows the touchscreen buttons and captures touch input.
-"""
+## Shows the touchscreen buttons and captures touch input.
 func show() -> void:
 	.show()
 	# stop ignoring touch input
 	$ButtonsSw.show()
 
 
-"""
-Hides the touchscreen buttons and ignores touch input.
-"""
+## Hides the touchscreen buttons and ignores touch input.
 func hide() -> void:
 	.hide()
 	# release any held buttons, and ignore touch input
 	$ButtonsSw.hide()
 
 
-"""
-Updates the buttons based on the player's settings.
-
-This updates their location and size.
-"""
+## Updates the buttons based on the player's settings.
+##
+## This updates their location and size.
 func _refresh_button_positions() -> void:
 	$ButtonsSw.rect_scale = Vector2(1.0, 1.0) * SystemData.touch_settings.size
 	$ButtonsSw.rect_position.y = rect_size.y - 10 - $ButtonsSw.rect_size.y * $ButtonsSw.rect_scale.y

@@ -1,14 +1,12 @@
 extends Control
-"""
-Creates pickups on the playfield for certain levels.
+## Creates pickups on the playfield for certain levels.
+##
+## These pickups react to the player's piece, changing their appearance and spawning food.
 
-These pickups react to the player's piece, changing their appearance and spawning food.
-"""
-
-# emitted when a food item should be spawned because the player collects a pickup
+## emitted when a food item should be spawned because the player collects a pickup
 signal food_spawned(cell, remaining_food, food_type)
 
-# sound effect volume when the piece overlaps a pickup, temporarily turning it into a food
+## sound effect volume when the piece overlaps a pickup, temporarily turning it into a food
 const OVERLAP_VOLUME_DB := -6.0
 
 const PICKUP_DEFAULT: int = BlocksDuringRules.PickupType.DEFAULT
@@ -18,25 +16,25 @@ const PICKUP_FLOAT_REGEN: int = BlocksDuringRules.PickupType.FLOAT_REGEN
 export (NodePath) var _puzzle_tile_map_path: NodePath
 export (PackedScene) var PickupScene: PackedScene
 
-# key: Vector2 playfield cell positions
-# value: Pickup node contained within that cell
+## key: Vector2 playfield cell positions
+## value: Pickup node contained within that cell
 var _pickups_by_cell: Dictionary
 
-# the next pickup sound effect to play
+## the next pickup sound effect to play
 var _pickup_sfx_index := 0
 
-# how many more pickup sounds should play after the current one
+## how many more pickup sounds should play after the current one
 var _remaining_pickup_sfx := 0
 
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(_puzzle_tile_map_path)
 
-# parent node for the pickup graphics
+## parent node for the pickup graphics
 onready var _visuals := $Visuals
 
-# timer which triggers playing consecutive pickup sounds. we don't want to play them all simultaneously
+## timer which triggers playing consecutive pickup sounds. we don't want to play them all simultaneously
 onready var _pickup_sfx_timer := $CollectSfxTimer
 
-# array of AudioStreamPlayer instances which play pickup sounds
+## array of AudioStreamPlayer instances which play pickup sounds
 onready var _pickup_sfx_players := [$PickupSfx0, $PickupSfx1, $PickupSfx2, $PickupSfx3, $PickupSfx4, $PickupSfx5]
 
 func _ready() -> void:
@@ -48,9 +46,7 @@ func _ready() -> void:
 	_prepare_pickups_for_level()
 
 
-"""
-Adds or replaces a pickup in a playfield cell.
-"""
+## Adds or replaces a pickup in a playfield cell.
 func set_pickup(cell: Vector2, box_type: int) -> void:
 	remove_pickup(cell)
 	
@@ -67,9 +63,7 @@ func set_pickup(cell: Vector2, box_type: int) -> void:
 		_visuals.add_child(pickup)
 
 
-"""
-Removes a pickup from a playfield cell.
-"""
+## Removes a pickup from a playfield cell.
 func remove_pickup(cell: Vector2) -> void:
 	if not _pickups_by_cell.has(cell):
 		return
@@ -78,18 +72,14 @@ func remove_pickup(cell: Vector2) -> void:
 	_pickups_by_cell.erase(cell)
 
 
-"""
-Removes all pickups from all playfield cells.
-"""
+## Removes all pickups from all playfield cells.
 func clear() -> void:
 	for pickup in _visuals.get_children():
 		pickup.queue_free()
 	_pickups_by_cell.clear()
 
 
-"""
-Spawns any pickups necessary for starting the current level.
-"""
+## Spawns any pickups necessary for starting the current level.
 func _prepare_pickups_for_level() -> void:
 	var src_pickups := CurrentLevel.settings.tiles.blocks_start().pickups
 	
@@ -121,19 +111,16 @@ func _prepare_pickups_for_level() -> void:
 		_pickups_by_cell[cell].food_shown = false
 
 
-"""
-Return the food type which belongs in the specified cell.
-
-The food type corresponds to the box type, although we alternate identical snack box pickups in a checkerboard pattern.
-"""
+## Return the food type which belongs in the specified cell.
+##
+## The food type corresponds to the box type, although we alternate identical snack box pickups in a checkerboard
+## pattern.
 func _food_type_for_box_type(box_type: int, cell: Vector2) -> int:
 	var food_types: Array = Foods.FOOD_TYPES_BY_BOX_TYPES[box_type]
 	return food_types[(int(cell.x + cell.y) % food_types.size())]
 
 
-"""
-Updates the overlapped pickups as the player moves their piece.
-"""
+## Updates the overlapped pickups as the player moves their piece.
 func _refresh_pickup_state(piece: ActivePiece) -> void:
 	var play_overlap_sfx := false
 	
@@ -159,22 +146,18 @@ func _refresh_pickup_state(piece: ActivePiece) -> void:
 				break
 
 
-"""
-Removes all pickups from a playfield row.
-"""
+## Removes all pickups from a playfield row.
 func _erase_row(y: int) -> void:
 	for x in range(PuzzleTileMap.COL_COUNT):
 		remove_pickup(Vector2(x, y))
 
 
-"""
-Shifts a group of pickups up or down.
-
-Parameters:
-	'bottom_row': The lowest row to shift. All pickups at or above this row will be shifted.
-	
-	'direction': The direction to shift the pickups, such as Vector2.UP or Vector2.DOWN.
-"""
+## Shifts a group of pickups up or down.
+##
+## Parameters:
+## 	'bottom_row': The lowest row to shift. All pickups at or above this row will be shifted.
+##
+## 	'direction': The direction to shift the pickups, such as Vector2.UP or Vector2.DOWN.
 func _shift_rows(bottom_row: int, direction: Vector2) -> void:
 	# First, erase and store all the old pickups which are shifting
 	var shifted := {}
@@ -194,11 +177,9 @@ func _shift_rows(bottom_row: int, direction: Vector2) -> void:
 		_pickups_by_cell[cell] = shifted[cell]
 
 
-"""
-Plays a single sound effect for the next collected pickup.
-
-Also schedules a followup sound effect if more pickup sounds need to be played.
-"""
+## Plays a single sound effect for the next collected pickup.
+##
+## Also schedules a followup sound effect if more pickup sounds need to be played.
 func _play_collect_sfx() -> void:
 	if _pickup_sfx_index < _pickup_sfx_players.size():
 		_pickup_sfx_players[_pickup_sfx_index].stop()
@@ -233,9 +214,7 @@ func _on_PieceManager_piece_disturbed(piece: ActivePiece) -> void:
 	_refresh_pickup_state(piece)
 
 
-"""
-When the piece is placed, we collect any overlapped pickups.
-"""
+## When the piece is placed, we collect any overlapped pickups.
 func _on_PuzzleState_before_piece_written() -> void:
 	# count shown pickups
 	var pickup_count := 0
@@ -331,8 +310,6 @@ func _on_PickupSfxTimer_timeout() -> void:
 	_play_collect_sfx()
 
 
-"""
-When the player pauses, we hide the playfield so they can't cheat.
-"""
+## When the player pauses, we hide the playfield so they can't cheat.
 func _on_Pauser_paused_changed(value: bool) -> void:
 	visible = not value

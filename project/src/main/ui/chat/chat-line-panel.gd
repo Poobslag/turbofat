@@ -1,26 +1,24 @@
 class_name ChatLinePanel
 extends Panel
-"""
-Displays an empty frame around spoken dialog.
+## Displays an empty frame around spoken dialog.
+##
+## Note: ChatLinePanel does not contain its own chat line labels to avoid the labels being distorted as the panel
+## 	stretches and shrinks. It would make the text annoying to read.
 
-Note: ChatLinePanel does not contain its own chat line labels to avoid the labels being distorted as the panel
-	stretches and shrinks. It would make the text annoying to read.
-"""
-
-# The panel squishes over time. These two constants define the speed and squish amount
+## The panel squishes over time. These two constants define the speed and squish amount
 const PULSE_PERIOD := 5.385
 const PULSE_AMOUNT := Vector2(0.015, 0.030)
 
-# The number of available background textures
+## The number of available background textures
 const CHAT_TEXTURE_COUNT := 16
 
-# Different panel sizes to try, ordered from smallest to largest.
+## Different panel sizes to try, ordered from smallest to largest.
 export (Array, Vector2) var panel_sizes
 
-# The panel squishes over time. This field is used to calculate the squish amount
+## The panel squishes over time. This field is used to calculate the squish amount
 var _total_time := 0.0
 
-# Background textures which scroll behind the chat window
+## Background textures which scroll behind the chat window
 var _accent_textures := []
 
 func _ready() -> void:
@@ -37,13 +35,11 @@ func _process(delta: float) -> void:
 	rect_scale.y = 1.00 + PULSE_AMOUNT.y * cos((_total_time + 8.96) * TAU / PULSE_PERIOD)
 
 
-"""
-Recolors and repositions the panel based on the current chat appearance.
-
-Parameters:
-	'chat_line_size': The size of the chat line window. This is needed for the panel to update its texture to show a
-		smaller/larger window.
-"""
+## Recolors and repositions the panel based on the current chat appearance.
+##
+## Parameters:
+## 	'chat_line_size': The size of the chat line window. This is needed for the panel to update its texture to show a
+## 		smaller/larger window.
 func update_appearance(chat_theme: ChatTheme, chat_line_size: int) -> void:
 	rect_size = panel_sizes[chat_line_size]
 	rect_pivot_offset = rect_size * 0.5

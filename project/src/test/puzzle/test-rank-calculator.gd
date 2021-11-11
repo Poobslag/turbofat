@@ -171,9 +171,8 @@ func test_calculate_rank_ultra_200_lost() -> void:
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S")
 
 
-"""
-This is an edge case where, if the player gets too many points for ultra, they can sort of be robbed of a master rank.
-"""
+## This is an edge case where, if the player gets too many points for ultra, they can sort of be robbed of a master
+## rank.
 func test_calculate_rank_ultra_200_overshot() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 200)
 	PuzzleState.level_performance.seconds = 19
@@ -188,9 +187,7 @@ func test_calculate_rank_ultra_200_overshot() -> void:
 	assert_eq(RankCalculator.grade(rank.seconds_rank), "SSS")
 
 
-"""
-A level requiring only one line clear used to trigger divide by zero errors.
-"""
+## A level requiring only one line clear used to trigger divide by zero errors.
 func test_calculate_rank_ultra_1() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 1)
 	PuzzleState.level_performance.seconds = 7.233
@@ -227,9 +224,7 @@ func test_calculate_rank_five_creatures() -> void:
 	assert_eq(RankCalculator.grade(rank2.score_rank), "A+")
 
 
-"""
-This edge case used to result in a combo_score_per_line of 22.5
-"""
+## This edge case used to result in a combo_score_per_line of 22.5
 func test_combo_score_per_line_ultra_overshot() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 200)
 	PuzzleState.level_performance.combo_score = 45
@@ -238,9 +233,7 @@ func test_combo_score_per_line_ultra_overshot() -> void:
 	assert_eq(rank.combo_score_per_line, 20.0)
 
 
-"""
-This edge case used to result in a combo_score_per_line of 0.305
-"""
+## This edge case used to result in a combo_score_per_line of 0.305
 func test_combo_score_per_line_death() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.LINES, 200, 150)
 	PuzzleState.level_performance.combo_score = 195
@@ -250,9 +243,7 @@ func test_combo_score_per_line_death() -> void:
 	assert_almost_eq(rank.combo_score_per_line, 6.09, 0.1)
 
 
-"""
-A player reaching a success condition should be given a rank boost.
-"""
+## A player reaching a success condition should be given a rank boost.
 func test_success_bonus_score() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.LINES, 300, 200)
 	PuzzleState.level_performance.seconds = 240

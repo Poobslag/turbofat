@@ -1,17 +1,15 @@
 extends Node
-"""
-Manages nametags which label creatures in the creature editor.
+## Manages nametags which label creatures in the creature editor.
+##
+## Creates a nametag for each creature in the scene.
 
-Creates a nametag for each creature in the scene.
-"""
-
-# nametag colors for focused/unfocused creatures
+## nametag colors for focused/unfocused creatures
 const NAMETAG_HIGHLIGHT = Color("303060")
 const NAMETAG_LOWLIGHT = Color.darkgray
 
 export (PackedScene) var HookableNametagScene: PackedScene
 
-# mapping from Creatures to NametagPanels
+## mapping from Creatures to NametagPanels
 var _creature_to_nametag: Dictionary
 
 func _ready() -> void:
@@ -26,9 +24,7 @@ func _ready() -> void:
 		_creature_to_nametag[creature] = nametag
 
 
-"""
-When a creature is renamed, the corresponding nametag changes its text and position.
-"""
+## When a creature is renamed, the corresponding nametag changes its text and position.
 func _on_Creature_creature_name_changed(creature: Creature, nametag: Panel) -> void:
 	nametag.set_nametag_text(StringUtils.default_if_empty(creature.creature_name, "(unnamed)"))
 	nametag.rect_scale = Vector2(0.6, 0.6) if creature.has_meta("main_creature") else Vector2(0.4, 0.4)
@@ -39,9 +35,7 @@ func _on_Creature_creature_name_changed(creature: Creature, nametag: Panel) -> v
 	nametag.rect_position.y = -nametag.rect_size.y * nametag.rect_scale.y + 20
 
 
-"""
-When a creature is hovered, the nametag colors change.
-"""
+## When a creature is hovered, the nametag colors change.
 func _on_CreatureSelector_hovered_creature_changed(value: Creature) -> void:
 	if value:
 		# creature is highlighted; their nametag is blue, others are gray

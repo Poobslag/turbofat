@@ -1,10 +1,8 @@
 extends VBoxContainer
-"""
-Navigational buttons which occur on most menu screens.
-"""
+## Navigational buttons which occur on most menu screens.
 
-# If true, the `ui_cancel` action will activate the quit button. This should be unset in contexts where the 'quit'
-# button does something destructive such as quitting the game or abandoning an editor.
+## If true, the `ui_cancel` action will activate the quit button. This should be unset in contexts where the 'quit'
+## button does something destructive such as quitting the game or abandoning an editor.
 export (bool) var quit_on_cancel: bool = true setget set_quit_on_cancel
 
 onready var _ui_cancel_shortcut := preload("res://src/main/ui/UiCancelShortcut.tres")

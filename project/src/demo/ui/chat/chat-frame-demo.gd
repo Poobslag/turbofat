@@ -1,20 +1,18 @@
 extends Control
-"""
-A demo which shows off the chat window.
-
-Keys:
-	[0-9]: Prints a chat line; 1 = short, 9 = long, 0 = longest
-	SHIFT+[0-9]: Changes the name; 1 = short, 9 = long, 0 = longest
-	'[', ']': Change the accent texture
-	Arrows: Change the color and scale
-	[A]: Make the chat window appear/disappear
-	[D]: Toggle 'dark mode' for the accent
-	[L]: Toggle 'left' and 'right' for the nametag position
-	[P]: Print the json accent definition
-	[R]: Generate a random accent definition
-	[S]: Swap the accent's colors
-	[Z]: Squish the window to the side
-"""
+## A demo which shows off the chat window.
+##
+## Keys:
+## 	[0-9]: Prints a chat line; 1 = short, 9 = long, 0 = longest
+## 	SHIFT+[0-9]: Changes the name; 1 = short, 9 = long, 0 = longest
+## 	'[', ']': Change the accent texture
+## 	Arrows: Change the color and scale
+## 	[A]: Make the chat window appear/disappear
+## 	[D]: Toggle 'dark mode' for the accent
+## 	[L]: Toggle 'left' and 'right' for the nametag position
+## 	[P]: Print the json accent definition
+## 	[R]: Generate a random accent definition
+## 	[S]: Swap the accent's colors
+## 	[Z]: Squish the window to the side
 
 const TEXTS := [
 	"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore" \
@@ -61,7 +59,7 @@ const SCALES := [
 	8.00
 ]
 
-# these fields store the results of the user's input
+## these fields store the results of the user's input
 var _name_index := 4
 var _text_index := 4
 
@@ -134,9 +132,7 @@ func _input(event: InputEvent) -> void:
 			_play_chat_event()
 
 
-"""
-Configures the chat window's appearance based on the user's input.
-"""
+## Configures the chat window's appearance based on the user's input.
 func _play_chat_event() -> void:
 	var creature_def := CreatureDef.new()
 	creature_def.creature_name = NAMES[_name_index]
@@ -149,9 +145,7 @@ func _play_chat_event() -> void:
 	$ChatFrame.play_chat_event(chat_event, _squished)
 
 
-"""
-Generates a new accent definition generated based on the user's input.
-"""
+## Generates a new accent definition generated based on the user's input.
 func _get_chat_theme_def() -> Dictionary:
 	return {
 		"accent_texture": _texture_index,

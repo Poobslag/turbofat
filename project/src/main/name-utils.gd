@@ -1,17 +1,13 @@
 class_name NameUtils
-"""
-Utility class for creature names.
-"""
+## Utility class for creature names.
 
 const MAX_CREATURE_NAME_LENGTH := 63
 const MAX_CREATURE_SHORT_NAME_LENGTH := 15
 
-"""
-Sanitizes a creatures name.
-
-Removes any illegal characters, and any leading/trailing punctuation. Excessively short names are padded, and
-excessively long names are truncated.
-"""
+## Sanitizes a creatures name.
+##
+## Removes any illegal characters, and any leading/trailing punctuation. Excessively short names are padded, and
+## excessively long names are truncated.
 static func sanitize_name(name: String) -> String:
 	var result := ""
 	var utf8 := name.to_lower().to_utf8()
@@ -32,11 +28,9 @@ static func sanitize_name(name: String) -> String:
 	return result.substr(0, MAX_CREATURE_NAME_LENGTH)
 
 
-"""
-Sorts an array of strings by length.
-
-In GDScript this requires an internal class because of Godot #30668.
-"""
+## Sorts an array of strings by length.
+##
+## In GDScript this requires an internal class because of Godot #30668.
 static func sort_by_length(strings: Array) -> void:
 	strings.sort_custom(LengthSorter, '_compare_by_length')
 
@@ -46,12 +40,10 @@ class LengthSorter:
 		return a.length() > b.length()
 
 
-"""
-Sanitizes a creatures short name.
-
-Removes any illegal characters, and any leading/trailing punctuation. Excessively short names are padded, and
-excessively long names are shortened using a complex name shortening algorithm.
-"""
+## Sanitizes a creatures short name.
+##
+## Removes any illegal characters, and any leading/trailing punctuation. Excessively short names are padded, and
+## excessively long names are shortened using a complex name shortening algorithm.
 static func sanitize_short_name(name: String) -> String:
 	var result := sanitize_name(name)
 	if result.length() <= MAX_CREATURE_SHORT_NAME_LENGTH:
@@ -69,14 +61,12 @@ static func sanitize_short_name(name: String) -> String:
 	return result
 
 
-"""
-Returns 'true' if the specified letter is a consonant.
-
-Parameters:
-	'character': An upper-case or lower-case letter.
-	
-	'y': True if 'y' counts as a consonant.
-"""
+## Returns 'true' if the specified letter is a consonant.
+##
+## Parameters:
+## 	'character': An upper-case or lower-case letter.
+##
+## 	'y': True if 'y' counts as a consonant.
 static func is_consonant(character: String, y: bool = false) -> bool:
 	var result: bool
 	match character.to_lower():
@@ -86,14 +76,12 @@ static func is_consonant(character: String, y: bool = false) -> bool:
 	return result
 
 
-"""
-Returns 'true' if the specified letter is a vowel.
-
-Parameters:
-	'character': An upper-case or lower-case letter.
-	
-	'y': True if 'y' counts as a vowel.
-"""
+## Returns 'true' if the specified letter is a vowel.
+##
+## Parameters:
+## 	'character': An upper-case or lower-case letter.
+##
+## 	'y': True if 'y' counts as a vowel.
 static func is_vowel(character: String, y: bool = true) -> bool:
 	var result: bool
 	match character.to_lower():
@@ -103,15 +91,13 @@ static func is_vowel(character: String, y: bool = true) -> bool:
 	return result
 
 
-"""
-Shortens a name using a complex name shortening algorithm.
-
-Instead of shortening names like 'Francoisensellensoile' into awkwardly truncated names like 'Francoi', this analyzes
-vowel/consonant patterns to come up with nicknames like 'Franny'.
-
-Parameters:
-	'name': A single-word name which should be shortened.
-"""
+## Shortens a name using a complex name shortening algorithm.
+##
+## Instead of shortening names like 'Francoisensellensoile' into awkwardly truncated names like 'Francoi', this
+## analyzes vowel/consonant patterns to come up with nicknames like 'Franny'.
+##
+## Parameters:
+## 	'name': A single-word name which should be shortened.
 static func shorten_name(name: String) -> String:
 	var result := name.substr(0, 5)
 	
@@ -152,12 +138,10 @@ static func shorten_name(name: String) -> String:
 	return result
 
 
-"""
-Converts a short name like 'Dr. Smiles' into a creature ID like 'dr_smiles'.
-
-The creature editor converts creature IDs to snake case and strips any diacritical marks or upper ascii. The game
-should work fine even if the IDs have upper ascii and spaces, they'll just be more annoying to type in.
-"""
+## Converts a short name like 'Dr. Smiles' into a creature ID like 'dr_smiles'.
+##
+## The creature editor converts creature IDs to snake case and strips any diacritical marks or upper ascii. The game
+## should work fine even if the IDs have upper ascii and spaces, they'll just be more annoying to type in.
 static func short_name_to_id(short_name: String) -> String:
 	var transformer := StringTransformer.new(short_name)
 	

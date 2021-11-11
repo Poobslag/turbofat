@@ -1,41 +1,31 @@
 class_name ChatHistory
-"""
-Stores a history of conversations the player's had.
+## Stores a history of conversations the player's had.
+##
+## Keeps track of which conversations the player's had and how long ago they've had them.
 
-Keeps track of which conversations the player's had and how long ago they've had them.
-"""
-
-"""
-Constant for the age of conversations we've never had. This is a large number so that evaluating 'have we had this
-conversation recently?' will work without requiring a third branch to handle the case where we haven't had a
-conversation before.
-"""
+## Constant for the age of conversations we've never had. This is a large number so that evaluating 'have we had this
+## conversation recently?' will work without requiring a third branch to handle the case where we haven't had a
+## conversation before.
 const CHAT_AGE_NEVER := 99999999
 
-"""
-Tracks which conversations the player has had with each creature. The value is a per-creature index which starts from
-0 and increments with each conversation with that creature.
-
-key: chat key
-value: ordering of when the chat happened (smaller is older)
-"""
+## Tracks which conversations the player has had with each creature. The value is a per-creature index which starts
+## from 0 and increments with each conversation with that creature.
+##
+## key: chat key
+## value: ordering of when the chat happened (smaller is older)
 var chat_history: Dictionary
 
-"""
-Tracks the number of conversations the player has had with each creature.
-
-key: chat key fragment
-value: int corresponding to number of chats with a character
-"""
+## Tracks the number of conversations the player has had with each creature.
+##
+## key: chat key fragment
+## value: int corresponding to number of chats with a character
 var chat_counts: Dictionary
 
-"""
-Tracks the number of consecutive filler chats for each creature. After a creature has enough filler chats, they'll
-have a more serious or interesting conversation.
-
-key: creature id
-value: number of consecutive filler chats
-"""
+## Tracks the number of consecutive filler chats for each creature. After a creature has enough filler chats, they'll
+## have a more serious or interesting conversation.
+##
+## key: creature id
+## value: number of consecutive filler chats
 var filler_counts: Dictionary
 
 func reset() -> void:
@@ -72,11 +62,9 @@ func delete_history_item(chat_key: String) -> void:
 	chat_history.erase(chat_key)
 
 
-"""
-Returns how long ago the player had the specified chat.
-
-Used to avoid repeating conversations too frequently.
-"""
+## Returns how long ago the player had the specified chat.
+##
+## Used to avoid repeating conversations too frequently.
 func get_chat_age(chat_key: String) -> int:
 	# We subtract the index assigned to the chat history from the total number
 	# of chats for that creature to calculate the entry's age.
@@ -111,12 +99,10 @@ func from_json_dict(json: Dictionary) -> void:
 	_convert_float_values_to_ints(filler_counts)
 
 
-"""
-Converts the float values in a Dictionary to int values.
-
-Godot's JSON parser converts all ints into floats, so we need to change them back. See Godot #9499
-https://github.com/godotengine/godot/issues/9499
-"""
+## Converts the float values in a Dictionary to int values.
+##
+## Godot's JSON parser converts all ints into floats, so we need to change them back. See Godot #9499
+## https://github.com/godotengine/godot/issues/9499
 func _convert_float_values_to_ints(dict: Dictionary) -> void:
 	for key in dict:
 		if dict[key] is float:
