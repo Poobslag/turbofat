@@ -76,6 +76,10 @@ var combo := 0 setget set_combo
 ## and should be a round number like +55 or +130 for visual aesthetics.
 var bonus_score := 0
 
+## Points which contribute to the current customer's fatness. This is usually the same as
+## bonus_score except for some edge cases at the end of the level.
+var fatness_score := 0
+
 ## 'true' if the player has started a game which is still running.
 var game_active: bool
 
@@ -249,6 +253,12 @@ func end_combo() -> void:
 	
 	_add_score(bonus_score)
 	bonus_score = 0
+	if no_more_customers:
+		# For levels with limited customers, don't reset the fatness score. Otherwise creatures suddenly lose weight
+		# during end-of-level line clears.
+		pass
+	else:
+		fatness_score = 0
 	
 	emit_signal("score_changed")
 	if old_combo != combo:
@@ -261,6 +271,7 @@ func reset() -> void:
 	customer_scores = [0]
 	combo = 0
 	bonus_score = 0
+	fatness_score = 0
 	level_performance = PuzzlePerformance.new()
 	speed_index = 0
 	no_more_customers = CurrentLevel.settings.other.tutorial
@@ -349,6 +360,7 @@ func _add_score(delta: int) -> void:
 
 func _add_bonus_score(delta: int) -> void:
 	bonus_score += delta
+	fatness_score += delta
 
 
 func _add_line() -> void:

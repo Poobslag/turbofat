@@ -63,7 +63,7 @@ func add_food_item(cell: Vector2, food_type: int, remaining_food: int = 0) -> vo
 	var customer := _puzzle.get_customer()
 	var old_fatness: float = _pending_food_fatness.back() if _pending_food_fatness else customer.get_fatness()
 	var base_score := customer.fatness_to_score(customer.base_fatness)
-	var target_fatness := customer.score_to_fatness(base_score + PuzzleState.get_bonus_score())
+	var target_fatness := customer.score_to_fatness(base_score + PuzzleState.fatness_score)
 	
 	var fatness_pct: float = 1.0 / (remaining_food + 1)
 	_pending_food_fatness.append(lerp(old_fatness, target_fatness, fatness_pct))

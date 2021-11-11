@@ -152,10 +152,8 @@ func rank_lpm(rank: float) -> float:
 		var min_frames_per_line := min_frames_per_line(piece_speed)
 		var mechanical_spl_limit: float = min_frames_per_line / 60 \
 				+ 2 * CurrentLevel.settings.rank.extra_seconds_per_piece
-		var mechanical_lpm_limit := 60.0 / mechanical_spl_limit
 		
-		# calculate the lpm/spl based on which is slower: the mechanical limit, or the player's limit
-		var lines_per_minute := min(mechanical_lpm_limit, player_lpm_limit)
+		# calculate the spl based on which is slower: the mechanical limit, or the player's limit
 		var seconds_per_line := max(mechanical_spl_limit, player_spl_limit)
 		
 		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
@@ -262,7 +260,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	
 	# decrease target_lines based on leftover_lines
 	if finish_condition.type in [Milestone.PIECES, Milestone.TIME_OVER]:
-		target_lines = max(0, ceil(target_lines - leftover_lines / 3))
+		target_lines = max(0, ceil(target_lines - leftover_lines / 3.0))
 	
 	# calculate score for leftover_lines; leftover lines should be a tall stack with half as many box points
 	var target_leftover_score := (target_combo_score_per_line + target_combo_score_per_line * 0.5 + 1) * leftover_lines
