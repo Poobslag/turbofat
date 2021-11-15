@@ -111,6 +111,10 @@ func _on_PuzzleState_after_game_ended() -> void:
 			if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_SPLASH:
 				Breadcrumb.trail.insert(1, Global.SCENE_MAIN_MENU)
 	
+	if PlayerData.career.is_career_mode():
+		# they only have only one chance in career mode, they can't retry
+		$Buttons/Start.hide()
+	
 	# determine the default button to focus
 	var buttons_to_focus := [$Buttons/Back, $Buttons/Start]
 	if CurrentLevel.keep_retrying:

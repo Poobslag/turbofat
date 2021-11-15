@@ -22,6 +22,8 @@ var chat_history := ChatHistory.new()
 var creature_library := CreatureLibrary.new()
 var creature_queue := CreatureQueue.new()
 
+var career := CareerData.new()
+
 var money := 0 setget set_money
 
 ## the player's playtime in seconds
@@ -43,6 +45,7 @@ func reset() -> void:
 	level_history.reset()
 	chat_history.reset()
 	creature_library.reset()
+	career.reset()
 	money = 0
 	seconds_played = 0.0
 	

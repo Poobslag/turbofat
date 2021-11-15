@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=3]
+[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=4]
+
+[node name="Node" type="Node"]
+script = ExtResource( 2 )
+
+[node name="Button" type="Button" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -92.5
+margin_top = -32.5
+margin_right = 92.5
+margin_bottom = 32.5
+theme = ExtResource( 1 )
+text = "Ok"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 54.0326
+margin_bottom = 216.033
+theme = ExtResource( 3 )
+text = "Distance: 3
+
+Earnings: 5
+
+Time: 9:00 am"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="History" type="RichTextLabel" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -462.0
+margin_top = -214.973
+margin_right = 462.0
+margin_bottom = -52.9732
+theme = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]abc
+def
+ghi
+jkl
+mno
+pqr[/center]"
+text = "abc
+def
+ghi
+jkl
+mno
+pqr"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SceneTransitionCover" parent="." instance=ExtResource( 4 )]
+
+[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]

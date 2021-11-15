@@ -3,6 +3,12 @@ extends VBoxContainer
 
 const WORLD0_ID := "world0"
 
+func _on_Career_pressed() -> void:
+	PlayerData.creature_queue.clear()
+	CurrentLevel.clear_launched_level()
+	SceneTransition.push_trail(Global.SCENE_CAREER_MAP)
+
+
 func _on_Story_pressed() -> void:
 	PlayerData.creature_queue.clear()
 	CurrentLevel.clear_launched_level()

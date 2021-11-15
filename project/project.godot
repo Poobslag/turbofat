@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/box-builder.gd"
 }, {
+"base": "Reference",
+"class": "CareerData",
+"language": "GDScript",
+"path": "res://src/main/world/career-data.gd"
+}, {
 "base": "Node",
 "class": "ChatAdvancer",
 "language": "GDScript",
@@ -939,6 +944,7 @@ _global_script_class_icons={
 "BoolExpressionEvaluator": "",
 "BoolExpressionParser": "",
 "BoxBuilder": "",
+"CareerData": "",
 "ChatAdvancer": "",
 "ChatChoiceButton": "",
 "ChatChoices": "",
