@@ -29,6 +29,26 @@ func set_start_speed(new_start_speed: String) -> void:
 	speed_ups[0].set_meta("speed", new_start_speed)
 
 
+func get_start_speed() -> String:
+	return speed_ups[0].get_meta("speed")
+
+
+## Returns the fastest piece speed used for the level.
+##
+## For the purposes of this function, speed 'F0' is faster than speed '9', even though the pieces drop slower.
+func get_max_speed() -> String:
+	var max_speed_id_index := 0
+	var max_speed_id: String = PieceSpeeds.speed_ids[0]
+	for milestone_obj in speed_ups:
+		var milestone: Milestone = milestone_obj
+		var speed_id: String = milestone.get_meta("speed")
+		var speed_id_index: int = PieceSpeeds.speed_ids.find(speed_id)
+		if speed_id_index > max_speed_id_index:
+			max_speed_id_index = speed_id_index
+			max_speed_id = speed_id
+	return max_speed_id
+
+
 func start_speed_from_json_string(json: String) -> void:
 	set_start_speed(json)
 
@@ -41,11 +61,11 @@ func speed_ups_from_json_array(json: Array) -> void:
 
 
 func start_speed_is_default() -> bool:
-	return speed_ups[0].get_meta("speed") == "0"
+	return get_start_speed() == "0"
 
 
 func start_speed_to_json_string() -> String:
-	return speed_ups[0].get_meta("speed")
+	return get_start_speed()
 
 
 func speed_ups_is_default() -> bool:

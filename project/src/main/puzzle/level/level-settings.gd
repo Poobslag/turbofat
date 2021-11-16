@@ -157,25 +157,7 @@ func load_from_text(new_id: String, text: String) -> void:
 
 
 func get_difficulty() -> String:
-	var result: String
-	if difficulty:
-		result = difficulty
-	else:
-		result = _get_max_speed_id()
-	return result
-
-
-func _get_max_speed_id() -> String:
-	var max_speed_id_index := 0
-	var max_speed_id: String = PieceSpeeds.speed_ids[0]
-	for milestone_obj in speed.speed_ups:
-		var milestone: Milestone = milestone_obj
-		var speed_id: String = milestone.get_meta("speed")
-		var speed_id_index: int = PieceSpeeds.speed_ids.find(speed_id)
-		if speed_id_index > max_speed_id_index:
-			max_speed_id_index = speed_id_index
-			max_speed_id = speed_id
-	return max_speed_id
+	return difficulty if difficulty else speed.get_max_speed()
 
 
 static func path_from_level_key(level_key: String) -> String:

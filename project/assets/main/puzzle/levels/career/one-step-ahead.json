@@ -1,0 +1,68 @@
+{
+  "version": "297a",
+  "start_speed": "3",
+  "title": "One Step Ahead",
+  "description": "It's easy if you make a plan.",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "150"
+  },
+  "rank": [
+    "extra_seconds_per_piece 0.6",
+    "box_factor 0.8",
+    "preplaced_pieces 1"
+  ],
+  "piece_types": [
+    "start_piece_v"
+  ],
+  "lose_condition": [
+    "top_out 9"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "rotated_cw",
+        "initial_rotated_cw"
+      ],
+      "effect": "rotate_next_pieces cw 0 0"
+    },
+    {
+      "phases": [
+        "rotated_ccw",
+        "initial_rotated_ccw"
+      ],
+      "effect": "rotate_next_pieces ccw 0 0"
+    },
+    {
+      "phases": [
+        "rotated_180",
+        "initial_rotated_180"
+      ],
+      "effect": "rotate_next_pieces 180 0 0"
+    }
+  ],
+  "other": [
+    "suppress_piece_rotation",
+    "suppress_piece_initial_rotation"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "7 18",
+        "tile": "0 10 3"
+      },
+      {
+        "pos": "8 18",
+        "tile": "0 6 3"
+      },
+      {
+        "pos": "7 19",
+        "tile": "0 9 3"
+      },
+      {
+        "pos": "8 19",
+        "tile": "0 5 3"
+      }
+    ]
+  }
+}

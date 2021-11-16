@@ -21,6 +21,9 @@ var puzzle: Puzzle
 ## into other levels, so this keeps track of the original.
 var level_id: String
 
+## The piece speed to adjust the level to
+var piece_speed: String
+
 ## The creature who launched the level.
 var creature_id: String
 
@@ -56,6 +59,8 @@ func clear_launched_level() -> void:
 ## 	'level_id': The level to launch
 func set_launched_level(new_level_id: String) -> void:
 	level_id = new_level_id
+	piece_speed = ""
+	
 	var level_lock: LevelLock
 	if level_id:
 		level_lock = LevelLibrary.level_lock(level_id)
@@ -119,6 +124,8 @@ func should_play_cutscene(chat_tree: ChatTree, ignore_player_preferences = false
 func push_level_trail() -> void:
 	var level_settings := LevelSettings.new()
 	level_settings.load_from_resource(level_id)
+	if piece_speed:
+		LevelSpeedAdjuster.new(level_settings).adjust(piece_speed)
 	
 	# When the player first launches the game and does the tutorial, we skip the typical puzzle intro.
 	if level_id == LevelLibrary.BEGINNER_TUTORIAL \

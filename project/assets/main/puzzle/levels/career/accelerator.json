@@ -1,0 +1,28 @@
+{
+  "version": "297a",
+  "start_speed": "2",
+  "title": "Accelerator",
+  "description": "Hurry up and finish before things get out of control!",
+  "finish_condition": {
+    "type": "score",
+    "value": "800"
+  },
+  "speed_ups": [
+    {"type": "pieces", "value": "4", "speed": "1"},
+    {"type": "pieces", "value": "8", "speed": "2"},
+    {"type": "pieces", "value": "12", "speed": "3"},
+    {"type": "pieces", "value": "16", "speed": "4"},
+
+    {"type": "pieces", "value": "40", "speed": "5"},
+    {"type": "pieces", "value": "44", "speed": "6"},
+    {"type": "pieces", "value": "48", "speed": "7"},
+    {"type": "pieces", "value": "52", "speed": "8"},
+    {"type": "pieces", "value": "56", "speed": "9"},
+
+    {"type": "pieces", "value": "80", "speed": "A3"},
+    {"type": "pieces", "value": "84", "speed": "A4"},
+    {"type": "pieces", "value": "88", "speed": "A6"},
+    {"type": "pieces", "value": "92", "speed": "A8"},
+    {"type": "pieces", "value": "96", "speed": "AA"}
+  ]
+}

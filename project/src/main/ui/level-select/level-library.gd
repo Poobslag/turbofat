@@ -205,6 +205,7 @@ func _reset_cleared_worlds_and_levels() -> void:
 		level_lock.status = LevelLock.STATUS_NONE
 		level_lock.keys_needed = -1
 
+
 ## Update the world lock status to 'lock' for locked worlds.
 func _update_locked_worlds() -> void:
 	for world_lock_obj in _world_locks.values():

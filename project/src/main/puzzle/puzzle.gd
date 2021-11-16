@@ -271,18 +271,45 @@ func _on_PuzzleState_game_ended() -> void:
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, PlayerData.MAX_MONEY))
 	
 	if PlayerData.career.is_career_mode():
-		PlayerData.career.daily_earnings = int(clamp(PlayerData.career.daily_earnings + rank_result.score, 0,
-				PlayerData.MAX_MONEY))
-		
-		PlayerData.career.distance_travelled += 3
+		_update_career_data(rank_result)
 	
-	match CurrentLevel.settings.finish_condition.type:
-		Milestone.SCORE:
-			if not PuzzleState.level_performance.lost and rank_result.seconds_rank < 24: $ApplauseSound.play()
-		_:
-			if not PuzzleState.level_performance.lost and rank_result.score_rank < 24: $ApplauseSound.play()
+	if not PuzzleState.level_performance.lost and _overall_rank(rank_result) < 24: $ApplauseSound.play()
 	
 	CurrentLevel.best_result = max(CurrentLevel.best_result, PuzzleState.end_result())
+
+
+func _overall_rank(rank_result: RankResult) -> float:
+	var result: float
+	match CurrentLevel.settings.finish_condition.type:
+		Milestone.SCORE:
+			result = rank_result.seconds_rank
+		_:
+			result = rank_result.score_rank
+	return result
+
+
+## Records the player's performance for career mode.
+func _update_career_data(rank_result: RankResult) -> void:
+	PlayerData.career.daily_earnings = min(PlayerData.career.daily_earnings + rank_result.score,
+			PlayerData.MAX_MONEY)
+	
+	# Update the player's distance to travel based on their overall rank
+	var overall_rank := _overall_rank(rank_result)
+	PlayerData.career.distance_earned = 1
+	if overall_rank > 48.0:
+		PlayerData.career.distance_earned = 2
+	elif overall_rank > 24.0:
+		PlayerData.career.distance_earned = 3
+	elif overall_rank > 16.0:
+		PlayerData.career.distance_earned = 4
+	elif overall_rank > 10.0:
+		PlayerData.career.distance_earned = 5
+	elif overall_rank > 4.0:
+		PlayerData.career.distance_earned = 10
+	elif overall_rank > 0.0:
+		PlayerData.career.distance_earned = 15
+	else:
+		PlayerData.career.distance_earned = 25
 
 
 ## Wait until after the game ends to save the player's data.
