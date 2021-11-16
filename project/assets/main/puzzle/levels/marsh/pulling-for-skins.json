@@ -9,7 +9,8 @@
   },
   "rank": [
     "extra_seconds_per_piece 0.6",
-    "box_factor 0.8"
+    "box_factor 0.8",
+    "preplaced_pieces 1"
   ],
   "piece_types": [
     "start_piece_v"

@@ -397,7 +397,50 @@ func test_very_short_level() -> void:
 	assert_eq(RankCalculator.grade(rank2.score_rank), "SSS")
 
 
-func test_leftover_score_low_combo_factor() -> void:
+func test_preplaced_pieces_ultra() -> void:
+	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 200)
+	
+	# 17 seconds is very fast for scoring 200 points.
+	PuzzleState.level_performance.seconds = 17
+	var rank1 := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank1.seconds_rank), "M")
+	
+	# 17 seconds isn't as impressive if the playfield starts with pieces on it.
+	CurrentLevel.settings.rank.preplaced_pieces = 5
+	PuzzleState.level_performance.seconds = 17
+	var rank2 := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank2.seconds_rank), "SS")
+	
+	# 12 seconds is required, because some pieces are preplaced
+	CurrentLevel.settings.rank.preplaced_pieces = 5
+	PuzzleState.level_performance.seconds = 12
+	var rank3 := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank3.seconds_rank), "M")
+
+
+func test_preplaced_pieces_sprint() -> void:
+	CurrentLevel.settings.set_finish_condition(Milestone.TIME_OVER, 17)
+	
+	# 650 points is a lot in 17 seconds.
+	PuzzleState.level_performance.score = 650
+	var rank1 := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank1.score_rank), "M")
+	
+	# 650 points isn't as impressive if the playfield starts with pieces on it.
+	CurrentLevel.settings.rank.preplaced_pieces = 5
+	PuzzleState.level_performance.score = 650
+	var rank2 := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank2.score_rank), "SSS")
+	
+	# 700 points are required, because some pieces are preplaced
+	CurrentLevel.settings.rank.preplaced_pieces = 5
+	PuzzleState.level_performance.score = 700
+	var rank3 := _rank_calculator.calculate_rank()
+	assert_eq(RankCalculator.grade(rank3.score_rank), "M")
+
+
+
+func test_target_leftover_score_low_combo_factor() -> void:
 	assert_almost_eq(_rank_calculator.target_leftover_score(12), 426.0, 10.0)
 	
 	# with a combo factor of 0, the leftover score should be 100 less

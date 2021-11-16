@@ -11,6 +11,9 @@
     "start_piece_q",
     "start_piece_p"
   ],
+  "rank": [
+    "preplaced_pieces 4"
+  ],
   "tiles": {
     "start": [
       {

@@ -8,7 +8,8 @@
     "value": "120"
   },
   "rank": [
-    "box_factor 0.8"
+    "box_factor 0.8",
+    "preplaced_pieces 6"
   ],
   "lose_condition": [
     "top_out 9"
