@@ -10,6 +10,9 @@ signal money_changed(value)
 ## emitted when the player beats a level, or when the level history is reset or reloaded
 signal level_history_changed
 
+## the most money the player can have
+const MAX_MONEY := 9999999999999999
+
 ## how often in seconds to increment the 'seconds_played' value
 const SECONDS_PLAYED_INCREMENT := 0.619
 

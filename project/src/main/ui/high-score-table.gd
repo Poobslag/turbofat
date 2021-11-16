@@ -93,7 +93,7 @@ static func rank_result_row(result: RankResult, daily_result: bool = false) -> A
 		row.append(seconds_string)
 		row.append(RankCalculator.grade(result.seconds_rank))
 	else:
-		var score_string := "¥%s" % StringUtils.comma_sep(result.score)
+		var score_string := StringUtils.format_money(result.score)
 		if result.lost:
 			score_string += "*"
 		row.append(score_string)

@@ -223,7 +223,7 @@ func _on_PuzzleState_after_piece_written() -> void:
 						hud.set_message(tr("Oh no, you broke your combo without reaching ¥120!"
 								+ "\n\nWell, don't worry about that."))
 						hud.enqueue_message(tr("¥120 is just a number I pulled out of my, um. ...Out of thin air."
-								+ ("\n\n¥%s is good too!" % [StringUtils.comma_sep(first_customer_score)])))
+								+ ("\n\n%s is good too!" % [StringUtils.format_money(first_customer_score)])))
 						hud.enqueue_pop_out()
 					_showed_end_of_level_message = true
 
