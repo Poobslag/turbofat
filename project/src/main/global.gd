@@ -10,6 +10,9 @@ const SCENE_MAIN_MENU := "res://src/main/ui/menu/MainMenu.tscn"
 ## overworld which the player character can run around on and talk to other creatures.
 const SCENE_OVERWORLD := "res://src/main/world/Overworld.tscn"
 
+## scene for career mode which shows the player's progress between levels
+const SCENE_CAREER_MAP := "res://src/main/world/CareerMap.tscn"
+
 ## puzzle where a player drops pieces into a playfield of blocks.
 const SCENE_PUZZLE := "res://src/main/puzzle/Puzzle.tscn"
 
