@@ -184,3 +184,11 @@ func test_substring_between() -> void:
 	assert_eq(StringUtils.substring_between("wx[b]yz", "[", ""), "")
 	assert_eq(StringUtils.substring_between("yabcz", "y", "z"), "abc")
 	assert_eq(StringUtils.substring_between("yabczyabcz", "y", "z"), "abc")
+
+
+func test_format_money() -> void:
+	assert_eq(StringUtils.format_money(-10), "-¥10")
+	assert_eq(StringUtils.format_money(0), "¥0")
+	assert_eq(StringUtils.format_money(10), "¥10")
+	assert_eq(StringUtils.format_money(1000), "¥1,000")
+	assert_eq(StringUtils.format_money(1234567), "¥1,234,567")

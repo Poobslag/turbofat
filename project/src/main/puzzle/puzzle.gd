@@ -268,7 +268,7 @@ func _on_PuzzleState_game_ended() -> void:
 	PlayerData.level_history.add(CurrentLevel.level_id, rank_result)
 	PlayerData.level_history.prune(CurrentLevel.level_id)
 	PlayerData.emit_signal("level_history_changed")
-	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, 9999999999999999))
+	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, PlayerData.MAX_MONEY))
 	
 	match CurrentLevel.settings.finish_condition.type:
 		Milestone.SCORE:

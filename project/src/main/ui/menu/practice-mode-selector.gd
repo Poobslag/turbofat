@@ -38,8 +38,8 @@ func set_level(new_level: LevelSettings) -> void:
 			new_description = tr("Survive as the pieces get faster and faster! Can you clear %s lines?") \
 					% StringUtils.comma_sep(target_value)
 		"Ultra":
-			new_description = tr("Earn ¥%s as quickly as possible!") \
-					% StringUtils.comma_sep(new_level.finish_condition.value)
+			new_description = tr("Earn %s as quickly as possible!") \
+					% StringUtils.format_money(new_level.finish_condition.value)
 		"Sprint":
 			new_description = tr("Earn as much money as you can in %s!") \
 					% StringUtils.format_duration(new_level.finish_condition.value)
@@ -47,8 +47,8 @@ func set_level(new_level: LevelSettings) -> void:
 			new_description = tr("An escalating set of challenges.")
 			match new_level.success_condition.type:
 				Milestone.SCORE:
-					new_description += " " + tr("Finish with ¥%s to achieve this rank!") \
-							% StringUtils.comma_sep(new_level.success_condition.value)
+					new_description += " " + tr("Finish with %s to achieve this rank!") \
+							% StringUtils.format_money(new_level.success_condition.value)
 				Milestone.TIME_UNDER:
 					new_description += " " + tr("Finish in %s to achieve this rank!") \
 							% StringUtils.format_duration(new_level.success_condition.value)

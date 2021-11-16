@@ -10,4 +10,12 @@ func _ready() -> void:
 
 func _on_PuzzleState_score_changed() -> void:
 	var bonus_score := PuzzleState.get_bonus_score()
-	text = "-" if bonus_score == 0 else "+¥%s" % StringUtils.comma_sep(bonus_score)
+	if bonus_score == 0:
+		# zero is displayed as '-'
+		text = "-"
+	elif bonus_score >= 0:
+		# positive values are displayed as '+¥1,025'
+		text = "+" + StringUtils.format_money(bonus_score)
+	else:
+		# negative values (which should never show up) are displayed as '-¥1,025'
+		text = StringUtils.format_money(bonus_score)

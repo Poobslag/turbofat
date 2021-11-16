@@ -110,6 +110,13 @@ static func format_duration(seconds: float) -> String:
 	return "%01d:%02d" % [int(ceil(seconds)) / 60, int(ceil(seconds)) % 60]
 
 
+## Formats a money amount like 1235 into '¥1,235'
+static func format_money(money: int) -> String:
+	var result := "¥%s" % comma_sep(money)
+	result = result.replace("¥-", "-¥") # format negative numbers as '-¥1,235'
+	return result
+
+
 ## Parses a duration like 1:03.159 into '63.159'
 static func parse_duration(s: String) -> float:
 	var split: Array = s.split(":")

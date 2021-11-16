@@ -58,13 +58,13 @@ func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
 			# last entry in customer_score is always 0; ignore it
 			continue
 		var left := tr("Customer #%s") % StringUtils.comma_sep(i + 1)
-		var right := "¥%s/\n" % StringUtils.comma_sep(customer_score)
+		var right := "%s/\n" % StringUtils.format_money(customer_score)
 		var middle := " "
 		var period_count := 50 - _period_count(left + right)
 		for _p in range(period_count):
 			middle += "."
 		text += left + middle + right
-	text += tr("Total: ¥%s") % StringUtils.comma_sep(rank_result.score)
+	text += tr("Total: %s") % StringUtils.format_money(rank_result.score)
 	text += "\n"
 	return text
 

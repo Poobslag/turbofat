@@ -65,7 +65,7 @@ func update_milebar_text() -> void:
 		Milestone.CUSTOMERS, Milestone.LINES, Milestone.PIECES:
 			_value.text = StringUtils.comma_sep(remaining)
 		Milestone.SCORE:
-			_value.text = "¥%s" % StringUtils.comma_sep(remaining)
+			_value.text = StringUtils.format_money(remaining)
 		Milestone.TIME_OVER:
 			_value.text = StringUtils.format_duration(remaining)
 
