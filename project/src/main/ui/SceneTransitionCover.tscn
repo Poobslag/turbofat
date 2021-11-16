@@ -2,9 +2,7 @@
 
 [ext_resource path="res://src/main/ui/scene-transition-cover.gd" type="Script" id=1]
 
-[node name="SceneTransitionCover" type="CanvasLayer" groups=[
-"scene_transition_covers",
-]]
+[node name="SceneTransitionCover" type="CanvasLayer" groups=["scene_transition_covers"]]
 script = ExtResource( 1 )
 
 [node name="ColorRect" type="ColorRect" parent="."]

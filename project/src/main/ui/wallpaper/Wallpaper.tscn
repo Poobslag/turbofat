@@ -4,9 +4,7 @@
 [ext_resource path="res://src/main/ui/wallpaper/StickerRow.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/wallpaper/wallpaper.gd" type="Script" id=3]
 
-[node name="Wallpaper" type="Control" groups=[
-"singletons",
-]]
+[node name="Wallpaper" type="Control" groups=["singletons"]]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 3 )
