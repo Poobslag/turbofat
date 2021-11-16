@@ -19,9 +19,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="MusicPopup" type="Control" groups=[
-"singletons",
-]]
+[node name="MusicPopup" type="Control" groups=["singletons"]]
 pause_mode = 2
 anchor_right = 1.0
 margin_top = -60.0

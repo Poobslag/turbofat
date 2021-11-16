@@ -5,9 +5,7 @@
 [ext_resource path="res://assets/main/editor/creature/unlocked.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/editor/creature/locked.png" type="Texture" id=4]
 
-[node name="Button" type="Button" groups=[
-"lock_allele_buttons",
-]]
+[node name="Button" type="Button" groups=["lock_allele_buttons"]]
 margin_top = 25.0
 margin_right = 100.0
 margin_bottom = 51.0

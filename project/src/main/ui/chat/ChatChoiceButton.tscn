@@ -160,9 +160,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 
-[node name="ChatChoice" type="Button" groups=[
-"chat_choices",
-]]
+[node name="ChatChoice" type="Button" groups=["chat_choices"]]
 margin_right = 100.0
 margin_bottom = 66.0
 rect_pivot_offset = Vector2( 50, 33 )
@@ -183,8 +181,8 @@ margin_top = 6.0
 margin_right = -8.0
 margin_bottom = -6.0
 size_flags_horizontal = 4
-custom_fonts/font = ExtResource( 3 )
 custom_colors/font_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+custom_fonts/font = ExtResource( 3 )
 text = "Oh bother"
 align = 1
 valign = 1

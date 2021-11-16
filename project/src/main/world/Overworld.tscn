@@ -221,35 +221,27 @@ suppress_fatness = true
 wait_time = 0.3
 autostart = true
 
-[node name="Richie" parent="World/Obstacles" groups=[
-"chattables",
-] instance=ExtResource( 1 )]
+[node name="Richie" parent="World/Obstacles" groups=["chattables"] instance=ExtResource( 1 )]
 position = Vector2( 1365.48, 1236.53 )
 creature_id = "richie"
 dna = {
 }
 
-[node name="Skins" parent="World/Obstacles" groups=[
-"chattables",
-] instance=ExtResource( 1 )]
+[node name="Skins" parent="World/Obstacles" groups=["chattables"] instance=ExtResource( 1 )]
 position = Vector2( 1637.98, 1219.1 )
 creature_id = "skins"
 dna = {
 }
 orientation = 1
 
-[node name="Bones" parent="World/Obstacles" groups=[
-"chattables",
-] instance=ExtResource( 1 )]
+[node name="Bones" parent="World/Obstacles" groups=["chattables"] instance=ExtResource( 1 )]
 position = Vector2( 1822.2, 1109.49 )
 creature_id = "bones"
 dna = {
 }
 orientation = 1
 
-[node name="Shirts" parent="World/Obstacles" groups=[
-"chattables",
-] instance=ExtResource( 1 )]
+[node name="Shirts" parent="World/Obstacles" groups=["chattables"] instance=ExtResource( 1 )]
 position = Vector2( 1209.78, 822.065 )
 creature_id = "shirts"
 dna = {

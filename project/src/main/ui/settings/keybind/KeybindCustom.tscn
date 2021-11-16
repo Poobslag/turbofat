@@ -37,9 +37,7 @@ margin_bottom = 24.0
 rect_min_size = Vector2( 16, 0 )
 size_flags_horizontal = 0
 
-[node name="Value0" type="Button" parent="." groups=[
-"custom_keybind_buttons",
-]]
+[node name="Value0" type="Button" parent="." groups=["custom_keybind_buttons"]]
 margin_left = 160.0
 margin_right = 260.0
 margin_bottom = 24.0
@@ -51,9 +49,7 @@ toggle_mode = true
 clip_text = true
 script = ExtResource( 3 )
 
-[node name="Value1" type="Button" parent="." groups=[
-"custom_keybind_buttons",
-]]
+[node name="Value1" type="Button" parent="." groups=["custom_keybind_buttons"]]
 margin_left = 262.0
 margin_right = 362.0
 margin_bottom = 24.0
@@ -66,9 +62,7 @@ clip_text = true
 script = ExtResource( 3 )
 action_index = 1
 
-[node name="Value2" type="Button" parent="." groups=[
-"custom_keybind_buttons",
-]]
+[node name="Value2" type="Button" parent="." groups=["custom_keybind_buttons"]]
 margin_left = 364.0
 margin_right = 464.0
 margin_bottom = 24.0
