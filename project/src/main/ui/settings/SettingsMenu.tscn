@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -27,6 +27,7 @@
 [ext_resource path="res://src/main/ui/settings/settings-use-vsync.gd" type="Script" id=25]
 [ext_resource path="res://src/main/ui/settings/settings-open-user-folder.gd" type="Script" id=26]
 [ext_resource path="res://src/main/ui/settings/settings-copy-save-data.gd" type="Script" id=27]
+[ext_resource path="res://src/main/ui/settings/settings-lock-cancel.gd" type="Script" id=28]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -108,11 +109,11 @@ __meta__ = {
 margin_right = 570.0
 margin_bottom = 296.0
 size_flags_vertical = 3
+custom_fonts/font = ExtResource( 13 )
 custom_styles/tab_fg = SubResource( 1 )
 custom_styles/tab_disabled = ExtResource( 2 )
 custom_styles/tab_bg = ExtResource( 2 )
 custom_styles/panel = SubResource( 2 )
-custom_fonts/font = ExtResource( 13 )
 script = ExtResource( 18 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -291,6 +292,42 @@ __meta__ = {
 }
 
 [node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/GhostPiece"]
+margin_left = 216.0
+margin_right = 560.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 160, 26 )
+size_flags_horizontal = 3
+size_flags_vertical = 4
+size_flags_stretch_ratio = 1.1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LockCancel" type="HBoxContainer" parent="Window/UiArea/TabContainer/Gameplay"]
+margin_top = 32.0
+margin_right = 560.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 400, 26 )
+size_flags_horizontal = 3
+theme = ExtResource( 1 )
+custom_constants/separation = 20
+script = ExtResource( 28 )
+
+[node name="Label" type="Label" parent="Window/UiArea/TabContainer/Gameplay/LockCancel"]
+margin_right = 196.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 120, 28 )
+size_flags_horizontal = 3
+size_flags_vertical = 5
+size_flags_stretch_ratio = 0.63
+text = "Soft Drop Lock Cancel"
+align = 2
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CheckBox" type="CheckBox" parent="Window/UiArea/TabContainer/Gameplay/LockCancel"]
 margin_left = 216.0
 margin_right = 560.0
 margin_bottom = 28.0
@@ -1095,6 +1132,7 @@ __meta__ = {
 [connection signal="pressed" from="Window/UiArea/Bottom/Ok" to="." method="_on_Ok_pressed"]
 [connection signal="pressed" from="Window/UiArea/Bottom/Quit" to="." method="_on_Quit_pressed"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
+[connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/LockCancel/CheckBox" to="Window/UiArea/TabContainer/Gameplay/LockCancel" method="_on_OptionButton_toggled"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/CopySaveData/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/CopySaveData" method="_on_Button_pressed"]
 [connection signal="item_selected" from="Window/UiArea/TabContainer/Misc/Language/OptionButton" to="Window/UiArea/TabContainer/Misc/Language" method="_on_OptionButton_item_selected"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/Open User Folder/Button" to="Window/UiArea/TabContainer/Misc/Open User Folder" method="_on_Button_pressed"]
