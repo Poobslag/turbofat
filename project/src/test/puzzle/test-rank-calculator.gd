@@ -389,9 +389,25 @@ func test_very_short_level() -> void:
 	PuzzleState.level_performance.leftover_score = 257
 	PuzzleState.level_performance.score = 257
 	var rank1 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank1.score_rank), "SS")
+	assert_eq(RankCalculator.grade(rank1.score_rank), "S+")
 	
 	PuzzleState.level_performance.leftover_score = 467
 	PuzzleState.level_performance.score = 467
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.score_rank), "M")
+	assert_eq(RankCalculator.grade(rank2.score_rank), "SSS")
+
+
+func test_leftover_score_low_combo_factor() -> void:
+	assert_almost_eq(_rank_calculator.target_leftover_score(12), 426.0, 10.0)
+	
+	# with a combo factor of 0, the leftover score should be 100 less
+	CurrentLevel.settings.rank.combo_factor = 0.00
+	assert_almost_eq(_rank_calculator.target_leftover_score(12), 326.0, 10.0)
+
+
+func test_master_leftover_lines_veggie() -> void:
+	assert_eq(_rank_calculator.master_leftover_lines(CurrentLevel.settings), 12)
+	
+	# it's impossible to have leftovers if you can't make boxes
+	CurrentLevel.settings.other.tile_set = PuzzleTileMap.TileSetType.VEGGIE
+	assert_eq(_rank_calculator.master_leftover_lines(CurrentLevel.settings), 0)
