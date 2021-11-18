@@ -262,8 +262,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	if finish_condition.type in [Milestone.PIECES, Milestone.TIME_OVER]:
 		target_lines = max(0, ceil(target_lines - leftover_lines / 3.0))
 	
-	# calculate score for leftover_lines; leftover lines should be a tall stack with half as many box points
-	var target_leftover_score := (target_combo_score_per_line + target_combo_score_per_line * 0.5 + 1) * leftover_lines
+	var target_leftover_score := target_leftover_score(leftover_lines)
 	
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
 	if rank_result.compare == "-seconds" or finish_condition.type == Milestone.TIME_OVER:
@@ -373,6 +372,18 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	_clamp_result(rank_result, lenient)
 
 
+## calculate score for leftover_lines; leftover lines should be a tall stack with half as many box points
+func target_leftover_score(leftover_lines: int) -> float:
+	var box_score := master_box_score(CurrentLevel.settings) * leftover_lines
+	var combo_score := 20 * leftover_lines
+	
+	# if the combo factor is 0, they will be starting a new combo for the leftovers
+	if CurrentLevel.settings.rank.combo_factor == 0.0:
+		combo_score = max(0, combo_score - COMBO_DEFICIT[min(ceil(leftover_lines), COMBO_DEFICIT.size() - 1)])
+	
+	return box_score + combo_score + leftover_lines
+
+
 ## Reduces the player's ranks if they topped out.
 ##
 ## Each time the player tops out, all of their ranks are reduced by a certain amount.
@@ -468,4 +479,11 @@ static func master_customer_combo(settings: LevelSettings) -> int:
 
 ## Returns the maximum number of leftover lines expected for the specified level.
 static func master_leftover_lines(settings: LevelSettings) -> int:
-	return settings.rank.leftover_lines if settings.rank.leftover_lines else MASTER_LEFTOVER_LINES
+	var result: int
+	if settings.rank.leftover_lines:
+		result = settings.rank.leftover_lines
+	elif settings.other.tile_set == PuzzleTileMap.TileSetType.VEGGIE:
+		result = 0
+	else:
+		result = MASTER_LEFTOVER_LINES
+	return result
