@@ -3,7 +3,11 @@ extends State
 
 func update(piece_manager: PieceManager) -> String:
 	var new_state_name := ""
-	piece_manager.move_piece()
+	
+	if SystemData.gameplay_settings.soft_drop_lock_cancel:
+		# player can press 'down' to unlock/squeeze the piece
+		piece_manager.move_piece()
+	
 	if piece_manager.piece.lock == 0:
 		# piece was unlocked
 		new_state_name = "MovePiece"
