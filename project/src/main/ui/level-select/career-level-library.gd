@@ -14,6 +14,14 @@ var worlds_path := DEFAULT_WORLDS_PATH setget set_worlds_path
 ## List of CareerRegions containing region and level data.
 var regions: Array = []
 
+func all_level_ids() -> Array:
+	var result := {}
+	for region in regions:
+		for career_level in region.levels:
+			result[career_level.level_id] = true
+	return result.keys()
+
+
 ## Returns a list of CareerRegions available after the player travels a certain distance.
 func career_levels_for_distance(distance: int) -> Array:
 	return region_for_distance(distance).levels
