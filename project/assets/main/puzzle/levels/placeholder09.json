@@ -7,6 +7,9 @@
     "type": "lines",
     "value": "50"
   },
+  "rank": [
+    "preplaced_pieces 14"
+  ],
   "speed_ups": [
     {
       "type": "lines",

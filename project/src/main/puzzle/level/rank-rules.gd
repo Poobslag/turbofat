@@ -50,6 +50,9 @@ var customer_combo := 0
 ## extra time it takes an expert to move the piece where it belongs
 var extra_seconds_per_piece := 0.0
 
+## helpful pieces which are already placed for the player
+var preplaced_pieces := 0
+
 ## expected leftover lines
 var leftover_lines := 0
 
@@ -91,6 +94,7 @@ func _init() -> void:
 	_rule_parser.add_int("leftover_lines")
 	_rule_parser.add_float("master_pickup_score")
 	_rule_parser.add_float("master_pickup_score_per_line")
+	_rule_parser.add_int("preplaced_pieces")
 	_rule_parser.add(ShowRankPropertyParser.new(self, "show_boxes_rank"))
 	_rule_parser.add(ShowRankPropertyParser.new(self, "show_combos_rank"))
 	_rule_parser.add(ShowRankPropertyParser.new(self, "show_lines_rank"))

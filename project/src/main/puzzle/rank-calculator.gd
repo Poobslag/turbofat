@@ -247,16 +247,18 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			target_lines = master_customer_combo(CurrentLevel.settings) * finish_condition.value
 			leftover_lines = 0 # the level ends when your combo breaks, it's inefficient to stack extra pieces
 		Milestone.LINES:
-			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
+			target_lines = finish_condition.get_meta("lenient_value") if lenient else finish_condition.value
 		Milestone.PIECES:
 			# warning-ignore:integer_division
-			target_lines = finish_condition.value / 2
+			target_lines = (finish_condition.value + CurrentLevel.settings.rank.preplaced_pieces) / 2
 		Milestone.SCORE:
 			target_lines = ceil((finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
+			target_lines = max(0, target_lines - CurrentLevel.settings.rank.preplaced_pieces / 2)
 			leftover_lines = 0 # you're racing to a target score, it's inefficient to stack extra pieces
 		Milestone.TIME_OVER:
 			target_lines = target_speed * finish_condition.value / 60.0
+			target_lines += CurrentLevel.settings.rank.preplaced_pieces / 2
 	
 	# decrease target_lines based on leftover_lines
 	if finish_condition.type in [Milestone.PIECES, Milestone.TIME_OVER]:
@@ -317,9 +319,15 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		if rank_result.compare == "-seconds":
 			# for modes like 'ultra' where you race to a score, rank scales with speed
 			var tmp_speed := rank_lpm(tmp_overall_rank)
+			var tmp_scoring_target: float = finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]
+			
+			# factor in preplaced pieces
+			if CurrentLevel.settings.rank.preplaced_pieces:
+				tmp_scoring_target -= CurrentLevel.settings.rank.preplaced_pieces * 0.5 \
+						* (1 + tmp_box_score_per_line + tmp_combo_score_per_line)
+			
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
-			if (finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) / points_per_second \
-					< rank_result.seconds:
+			if tmp_scoring_target / points_per_second < rank_result.seconds:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank
@@ -330,6 +338,10 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 				# for modes like 'sprint' where you go for a high score in a time limit, rank scales with speed
 				var tmp_speed := rank_lpm(tmp_overall_rank)
 				tmp_lines = tmp_speed * finish_condition.value / 60.0
+				
+				# factor in preplaced pieces
+				if CurrentLevel.settings.rank.preplaced_pieces:
+					tmp_lines += CurrentLevel.settings.rank.preplaced_pieces / 2.0
 			else:
 				# for modes like 'marathon' where you aim for a number of lines, rank scales with endurance
 				tmp_lines = target_lines * pow(RDF_ENDURANCE, tmp_overall_rank) + leftover_lines

@@ -13,6 +13,9 @@
   "piece_types": [
     "start_piece_j"
   ],
+  "rank": [
+    "preplaced_pieces 7"
+  ],
   "speed_ups": [
     {
       "type": "time_over",

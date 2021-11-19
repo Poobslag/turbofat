@@ -10,6 +10,9 @@
   "piece_types": [
     "start_piece_u"
   ],
+  "rank": [
+    "preplaced_pieces 4"
+  ],
   "tiles": {
     "start": [
       {
