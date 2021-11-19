@@ -1,0 +1,147 @@
+{
+  "version": "297a",
+  "start_speed": "A1",
+  "title": "Muffin Impossible II",
+  "description": "More awkward mismatched pieces!? When will the pain stop?",
+  "finish_condition": {
+    "type": "score",
+    "value": "1800"
+  },
+  "piece_types": [
+    "piece_j",
+    "piece_l",
+    "piece_p",
+    "piece_q",
+    "piece_u",
+    "piece_u",
+    "piece_v",
+    "piece_v"
+  ],
+  "rank": [
+    "preplaced_pieces 6"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "2 12",
+        "tile": "1 10 5"
+      },
+      {
+        "pos": "3 12",
+        "tile": "1 14 5"
+      },
+      {
+        "pos": "4 12",
+        "tile": "1 14 5"
+      },
+      {
+        "pos": "5 12",
+        "tile": "1 14 5"
+      },
+      {
+        "pos": "6 12",
+        "tile": "1 6 5"
+      },
+      {
+        "pos": "2 13",
+        "tile": "1 11 5"
+      },
+      {
+        "pos": "3 13",
+        "tile": "1 15 5"
+      },
+      {
+        "pos": "4 13",
+        "tile": "1 15 5"
+      },
+      {
+        "pos": "5 13",
+        "tile": "1 15 5"
+      },
+      {
+        "pos": "6 13",
+        "tile": "1 7 5"
+      },
+      {
+        "pos": "2 14",
+        "tile": "1 9 5"
+      },
+      {
+        "pos": "3 14",
+        "tile": "1 13 5"
+      },
+      {
+        "pos": "4 14",
+        "tile": "1 13 5"
+      },
+      {
+        "pos": "5 14",
+        "tile": "1 13 5"
+      },
+      {
+        "pos": "6 14",
+        "tile": "1 5 5"
+      },
+      {
+        "pos": "3 15",
+        "tile": "1 10 9"
+      },
+      {
+        "pos": "4 15",
+        "tile": "1 14 9"
+      },
+      {
+        "pos": "5 15",
+        "tile": "1 6 9"
+      },
+      {
+        "pos": "3 16",
+        "tile": "1 11 9"
+      },
+      {
+        "pos": "4 16",
+        "tile": "1 15 9"
+      },
+      {
+        "pos": "5 16",
+        "tile": "1 7 9"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 11 9"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 15 9"
+      },
+      {
+        "pos": "5 17",
+        "tile": "1 7 9"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 11 9"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 15 9"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 7 9"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 9 9"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 13 9"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 5 9"
+      }
+    ]
+  }
+}

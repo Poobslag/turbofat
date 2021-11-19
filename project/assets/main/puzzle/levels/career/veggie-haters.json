@@ -1,0 +1,13 @@
+{
+  "version": "297a",
+  "start_speed": "4",
+  "title": "Veggie Haters",
+  "description": "Five of the pickiest customers you'll ever meet!",
+  "finish_condition": {
+    "type": "customers",
+    "value": "5"
+  },
+  "combo_break": [
+    "veg_row"
+  ]
+}

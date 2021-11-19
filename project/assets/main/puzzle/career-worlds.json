@@ -1,0 +1,353 @@
+{
+  "regions": [
+    {
+      "name": "Lemony Thickets",
+      "distance": 0,
+      "piece_speed": "0",
+      "levels": [
+        {
+          "id": "career/secret_brownies"
+        },
+        {
+          "id": "career/fruit_salad"
+        },
+        {
+          "id": "career/unfresh_fruits"
+        },
+        {
+          "id": "career/strawberry_shortcut"
+        },
+        {
+          "id": "career/veggie_haters"
+        },
+        {
+          "id": "career/muffin_impossible"
+        },
+        {
+          "id": "career/a_little_extra"
+        },
+        {
+          "id": "career/teensy_taste"
+        },
+        {
+          "id": "career/snack_box_blitz"
+        },
+        {
+          "id": "career/a_little_garbage"
+        }
+      ]
+    },
+    {
+      "name": "Poki Desert",
+      "distance": 10,
+      "piece_speed": "0-3",
+      "levels": [
+        {
+          "id": "career/just_cream"
+        },
+        {
+          "id": "career/boxing_day"
+        },
+        {
+          "id": "career/real_meal"
+        },
+        {
+          "id": "career/pineapple_on_its_side_cake"
+        },
+        {
+          "id": "career/muffin_impossible_2"
+        },
+        {
+          "id": "career/its_square_to_be_square"
+        },
+        {
+          "id": "career/cocoa_canyon"
+        },
+        {
+          "id": "career/its_tee_time"
+        },
+        {
+          "id": "career/veggie_patty"
+        },
+        {
+          "id": "career/lets_all_get_merry"
+        },
+        {
+          "id": "career/a_little_garbage"
+        },
+        {
+          "id": "career/teensy_taste"
+        },
+        {
+          "id": "career/muffin_impossible"
+        },
+        {
+          "id": "career/snack_box_blitz"
+        },
+        {
+          "id": "career/unfresh_fruits"
+        }
+      ]
+    },
+    {
+      "name": "The Great Frungle Kingdom",
+      "distance": 25,
+      "piece_speed": "1-5",
+      "levels": [
+        {
+          "id": "career/just_cream"
+        },
+        {
+          "id": "career/boxing_day"
+        },
+        {
+          "id": "career/real_meal"
+        },
+        {
+          "id": "career/pineapple_on_its_side_cake"
+        },
+        {
+          "id": "career/muffin_impossible_2"
+        },
+        {
+          "id": "career/its_square_to_be_square"
+        },
+        {
+          "id": "career/cocoa_canyon"
+        },
+        {
+          "id": "career/its_tee_time"
+        },
+        {
+          "id": "career/veggie_patty"
+        },
+        {
+          "id": "career/lets_all_get_merry"
+        },
+        {
+          "id": "career/a_little_garbage"
+        },
+        {
+          "id": "career/teensy_taste"
+        },
+        {
+          "id": "career/muffin_impossible"
+        },
+        {
+          "id": "career/snack_box_blitz"
+        },
+        {
+          "id": "career/unfresh_fruits"
+        }
+      ]
+    },
+    {
+      "name": "Merrymellow Marsh",
+      "distance": 40,
+      "piece_speed": "3-7",
+      "levels": [
+        {
+          "id": "career/just_cream"
+        },
+        {
+          "id": "career/boxing_day"
+        },
+        {
+          "id": "career/real_meal"
+        },
+        {
+          "id": "career/pineapple_on_its_side_cake"
+        },
+        {
+          "id": "career/muffin_impossible_2"
+        },
+        {
+          "id": "career/its_square_to_be_square"
+        },
+        {
+          "id": "career/cocoa_canyon"
+        },
+        {
+          "id": "career/its_tee_time"
+        },
+        {
+          "id": "career/veggie_patty"
+        },
+        {
+          "id": "career/lets_all_get_merry"
+        },
+        {
+          "id": "career/a_little_garbage"
+        },
+        {
+          "id": "career/teensy_taste"
+        },
+        {
+          "id": "career/muffin_impossible"
+        },
+        {
+          "id": "career/snack_box_blitz"
+        },
+        {
+          "id": "career/unfresh_fruits"
+        }
+      ]
+    },
+    {
+      "name": "Vega Churn Twelve",
+      "distance": 60,
+      "piece_speed": "5-8",
+      "levels": [
+        {
+          "id": "career/just_cream"
+        },
+        {
+          "id": "career/boxing_day"
+        },
+        {
+          "id": "career/real_meal"
+        },
+        {
+          "id": "career/pineapple_on_its_side_cake"
+        },
+        {
+          "id": "career/muffin_impossible_2"
+        },
+        {
+          "id": "career/its_square_to_be_square"
+        },
+        {
+          "id": "career/cocoa_canyon"
+        },
+        {
+          "id": "career/its_tee_time"
+        },
+        {
+          "id": "career/veggie_patty"
+        },
+        {
+          "id": "career/lets_all_get_merry"
+        },
+        {
+          "id": "career/a_little_garbage"
+        },
+        {
+          "id": "career/teensy_taste"
+        },
+        {
+          "id": "career/muffin_impossible"
+        },
+        {
+          "id": "career/snack_box_blitz"
+        },
+        {
+          "id": "career/unfresh_fruits"
+        }
+      ]
+    },
+    {
+      "name": "Chocolava Canyon",
+      "distance": 80,
+      "piece_speed": "6-9",
+      "levels": [
+        {
+          "id": "career/just_cream"
+        },
+        {
+          "id": "career/boxing_day"
+        },
+        {
+          "id": "career/real_meal"
+        },
+        {
+          "id": "career/pineapple_on_its_side_cake"
+        },
+        {
+          "id": "career/muffin_impossible_2"
+        },
+        {
+          "id": "career/its_square_to_be_square"
+        },
+        {
+          "id": "career/cocoa_canyon"
+        },
+        {
+          "id": "career/its_tee_time"
+        },
+        {
+          "id": "career/veggie_patty"
+        },
+        {
+          "id": "career/lets_all_get_merry"
+        },
+        {
+          "id": "career/a_little_garbage"
+        },
+        {
+          "id": "career/teensy_taste"
+        },
+        {
+          "id": "career/muffin_impossible"
+        },
+        {
+          "id": "career/snack_box_blitz"
+        },
+        {
+          "id": "career/unfresh_fruits"
+        }
+      ]
+    },
+    {
+      "name": "Starberry Mountain",
+      "distance": 100,
+      "piece_speed": "A0-AD",
+      "levels": [
+        {
+          "id": "career/just_cream"
+        },
+        {
+          "id": "career/boxing_day"
+        },
+        {
+          "id": "career/real_meal"
+        },
+        {
+          "id": "career/pineapple_on_its_side_cake"
+        },
+        {
+          "id": "career/muffin_impossible_2"
+        },
+        {
+          "id": "career/its_square_to_be_square"
+        },
+        {
+          "id": "career/cocoa_canyon"
+        },
+        {
+          "id": "career/its_tee_time"
+        },
+        {
+          "id": "career/veggie_patty"
+        },
+        {
+          "id": "career/lets_all_get_merry"
+        },
+        {
+          "id": "career/a_little_garbage"
+        },
+        {
+          "id": "career/teensy_taste"
+        },
+        {
+          "id": "career/muffin_impossible"
+        },
+        {
+          "id": "career/snack_box_blitz"
+        },
+        {
+          "id": "career/unfresh_fruits"
+        }
+      ]
+    }
+  ]
+}

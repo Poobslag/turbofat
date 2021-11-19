@@ -1,0 +1,10 @@
+{
+  "version": "297a",
+  "start_speed": "A0",
+  "title": "90 Second Sprint",
+  "description": "Nothing fancy, let's just cook!",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "90"
+  }
+}

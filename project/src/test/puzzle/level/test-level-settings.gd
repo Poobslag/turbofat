@@ -125,6 +125,6 @@ func test_to_json_rules() -> void:
 	assert_eq(settings.piece_types.start_types, [PieceTypes.piece_j, PieceTypes.piece_l])
 	assert_eq(settings.rank.box_factor, 2.0)
 	assert_eq(settings.score.cake_points, 30)
-	assert_eq(settings.speed.speed_ups[0].get_meta("speed"), "6")
+	assert_eq(settings.speed.get_start_speed(), "6")
 	assert_eq_deep(settings.timers.timers, [{"interval": 5}])
 	assert_eq(settings.triggers.triggers.keys(), [LevelTrigger.AFTER_LINE_CLEARED])

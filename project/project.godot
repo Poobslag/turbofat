@@ -59,6 +59,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/world/career-data.gd"
 }, {
+"base": "Reference",
+"class": "CareerLevel",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/career-level.gd"
+}, {
+"base": "Reference",
+"class": "CareerRegion",
+"language": "GDScript",
+"path": "res://src/main/ui/level-select/career-region.gd"
+}, {
 "base": "Node",
 "class": "ChatAdvancer",
 "language": "GDScript",
@@ -383,6 +393,11 @@ _global_script_classes=[ {
 "class": "LevelSettingsUpgrader",
 "language": "GDScript",
 "path": "res://src/main/puzzle/level/level-settings-upgrader.gd"
+}, {
+"base": "Reference",
+"class": "LevelSpeedAdjuster",
+"language": "GDScript",
+"path": "res://src/main/puzzle/level/level-speed-adjuster.gd"
 }, {
 "base": "Reference",
 "class": "LevelTiles",
@@ -945,6 +960,8 @@ _global_script_class_icons={
 "BoolExpressionParser": "",
 "BoxBuilder": "",
 "CareerData": "",
+"CareerLevel": "",
+"CareerRegion": "",
 "ChatAdvancer": "",
 "ChatChoiceButton": "",
 "ChatChoices": "",
@@ -1010,6 +1027,7 @@ _global_script_class_icons={
 "LevelSelectButton": "",
 "LevelSettings": "",
 "LevelSettingsUpgrader": "",
+"LevelSpeedAdjuster": "",
 "LevelTiles": "",
 "LevelTimers": "",
 "LevelTrigger": "",
@@ -1162,6 +1180,7 @@ SceneTransition="*res://src/main/ui/scene-transition.gd"
 SystemData="*res://src/main/system-data.gd"
 SystemSave="*res://src/main/system-save.gd"
 PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
+CareerLevelLibrary="*res://src/main/ui/level-select/career-level-library.gd"
 
 [debug]
 

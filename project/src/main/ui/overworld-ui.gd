@@ -311,6 +311,7 @@ func _on_ChatUi_chat_finished() -> void:
 			# [menu > overworld_1 > cutscene] -> [menu > overworld_2 > puzzle]
 			Breadcrumb.trail.remove(0)
 			CurrentLevel.level_id = CutsceneManager.pop_level_id()
+			CurrentLevel.piece_speed = ""
 			CurrentLevel.push_level_trail()
 		elif CutsceneManager.is_front_chat_tree():
 			# continue to another cutscene (first of multiple cutscenes finished playing)

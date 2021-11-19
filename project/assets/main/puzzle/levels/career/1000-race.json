@@ -1,0 +1,10 @@
+{
+  "version": "297a",
+  "start_speed": "A0",
+  "title": "1,000¥ Race",
+  "description": "Earn 1,000¥ as fast as possible. No tricks!",
+  "finish_condition": {
+    "type": "score",
+    "value": "1000"
+  }
+}

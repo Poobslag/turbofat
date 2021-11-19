@@ -1,0 +1,136 @@
+{
+  "version": "297a",
+  "start_speed": "1",
+  "title": "Curly Queue II",
+  "description": "They won't stop spinning! This is hurting my head a little...",
+  "finish_condition": {
+    "type": "time_over",
+    "value": "120"
+  },
+  "lose_condition": [
+    "top_out 9"
+  ],
+  "rank": [
+    "extra_seconds_per_piece 0.4",
+    "preplaced_pieces 3"
+  ],
+  "triggers": [
+    {
+      "phases": [
+        "rotated_cw",
+        "initial_rotated_cw"
+      ],
+      "effect": "rotate_next_pieces cw"
+    },
+    {
+      "phases": [
+        "rotated_ccw",
+        "initial_rotated_ccw"
+      ],
+      "effect": "rotate_next_pieces ccw"
+    },
+    {
+      "phases": [
+        "rotated_180",
+        "initial_rotated_180"
+      ],
+      "effect": "rotate_next_pieces 180"
+    }
+  ],
+  "speed_ups": [
+    {
+      "type": "time_over",
+      "value": "30",
+      "speed": "3"
+    },
+    {
+      "type": "time_over",
+      "value": "60",
+      "speed": "5"
+    }
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "2 16",
+        "tile": "2 5 2"
+      },
+      {
+        "pos": "3 16",
+        "tile": "1 10 5"
+      },
+      {
+        "pos": "4 16",
+        "tile": "1 14 5"
+      },
+      {
+        "pos": "5 16",
+        "tile": "1 6 5"
+      },
+      {
+        "pos": "6 16",
+        "tile": "2 16 3"
+      },
+      {
+        "pos": "3 17",
+        "tile": "1 11 5"
+      },
+      {
+        "pos": "4 17",
+        "tile": "1 15 5"
+      },
+      {
+        "pos": "5 17",
+        "tile": "1 7 5"
+      },
+      {
+        "pos": "6 17",
+        "tile": "2 0 3"
+      },
+      {
+        "pos": "7 17",
+        "tile": "2 3 1"
+      },
+      {
+        "pos": "1 18",
+        "tile": "2 6 3"
+      },
+      {
+        "pos": "2 18",
+        "tile": "2 12 3"
+      },
+      {
+        "pos": "3 18",
+        "tile": "1 11 5"
+      },
+      {
+        "pos": "4 18",
+        "tile": "1 15 5"
+      },
+      {
+        "pos": "5 18",
+        "tile": "1 7 5"
+      },
+      {
+        "pos": "2 19",
+        "tile": "2 5 0"
+      },
+      {
+        "pos": "3 19",
+        "tile": "1 9 5"
+      },
+      {
+        "pos": "4 19",
+        "tile": "1 13 5"
+      },
+      {
+        "pos": "5 19",
+        "tile": "1 5 5"
+      },
+      {
+        "pos": "6 19",
+        "tile": "2 15 3"
+      }
+    ]
+  }
+}
