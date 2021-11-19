@@ -14,6 +14,10 @@ func set_text(new_text: String) -> void:
 	_refresh_text()
 
 
+func update_unlocked_level_text(settings: LevelSettings) -> void:
+	set_text(settings.description)
+
+
 func _refresh_text() -> void:
 	if _label:
 		_label.text = text
@@ -57,7 +61,7 @@ func _update_world_text(ranks: Array) -> void:
 
 ## When an unlocked level is selected, we display the level's description.
 func _on_LevelButtons_unlocked_level_selected(_level_lock: LevelLock, settings: LevelSettings) -> void:
-	set_text(settings.description)
+	update_unlocked_level_text(settings)
 
 
 ## When a locked level is selected, we tell the player how to unlock it.

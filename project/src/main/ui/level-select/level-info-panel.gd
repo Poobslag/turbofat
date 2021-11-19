@@ -43,7 +43,7 @@ func _update_tutorial_level_text(settings: LevelSettings) -> void:
 	set_text(new_text)
 
 
-func _update_level_text(settings: LevelSettings) -> void:
+func update_unlocked_level_text(settings: LevelSettings) -> void:
 	var new_text := ""
 	var difficulty_string := tr("Unknown")
 	match settings.get_difficulty():
@@ -135,7 +135,7 @@ func _on_LevelButtons_unlocked_level_selected(_level_lock: LevelLock, settings: 
 	if settings.other.tutorial:
 		_update_tutorial_level_text(settings)
 	else:
-		_update_level_text(settings)
+		update_unlocked_level_text(settings)
 
 
 ## When a locked level is selected, we clear out the info panel.

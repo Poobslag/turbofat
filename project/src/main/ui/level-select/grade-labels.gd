@@ -10,7 +10,7 @@ export (PackedScene) var GradeLabelScene: PackedScene
 var _labels_by_button: Dictionary
 
 ## Add a grade label for the specified button.
-func _add_label(button: LevelSelectButton) -> void:
+func add_label(button: LevelSelectButton) -> void:
 	if _labels_by_button.has(button):
 		# avoid adding two labels for the same button
 		return
@@ -24,7 +24,7 @@ func _add_label(button: LevelSelectButton) -> void:
 
 
 func _on_LevelButtons_button_added(button: LevelSelectButton) -> void:
-	_add_label(button)
+	add_label(button)
 
 
 func _on_LevelSelectButton_tree_exited(button: LevelSelectButton) -> void:

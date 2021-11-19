@@ -114,6 +114,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 	if PlayerData.career.is_career_mode():
 		# they only have only one chance in career mode, they can't retry
 		$Buttons/Start.hide()
+		$Buttons/Back.text = tr("Continue")
 	
 	# determine the default button to focus
 	var buttons_to_focus := [$Buttons/Back, $Buttons/Start]
