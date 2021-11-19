@@ -43,10 +43,18 @@ func _extract_and_write_localizables() -> void:
 
 ## Extracts localizable strings from levels and adds them to the in-memory list of localizables.
 func _extract_localizables_from_levels() -> void:
-	var level_ids := LevelLibrary.all_level_ids()
+	# Create a sorted list of all level IDs
+	var level_id_set := {}
+	for level_id in LevelLibrary.all_level_ids():
+		level_id_set[level_id] = true
+	for level_id in CareerLevelLibrary.all_level_ids():
+		level_id_set[level_id] = true
+	var level_ids := level_id_set.keys()
 	level_ids.sort()
+	
 	for level_id in level_ids:
-		var level_settings := LevelLibrary.level_settings(level_id)
+		var level_settings := LevelSettings.new()
+		level_settings.load_from_resource(level_id)
 		
 		# extract level's title and description as localizables
 		_localizables.append(level_settings.title)

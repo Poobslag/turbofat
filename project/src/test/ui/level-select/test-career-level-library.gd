@@ -15,7 +15,7 @@ func test_regions() -> void:
 	assert_eq(region_1.min_piece_speed, "0")
 	assert_eq(region_1.max_piece_speed, "3")
 	assert_eq(region_1.length, 15)
-	assert_eq(region_1.levels.size(), 15)
+	assert_eq(region_1.levels.size(), 11)
 
 
 ## increasing the weight selects faster speeds
@@ -56,7 +56,7 @@ func test_region_for_distance() -> void:
 	assert_eq(CareerLevelLibrary.region_for_distance(0).name, "Lemony Thickets")
 	assert_eq(CareerLevelLibrary.region_for_distance(9).name, "Lemony Thickets")
 	assert_eq(CareerLevelLibrary.region_for_distance(10).name, "Poki Desert")
-	assert_eq(CareerLevelLibrary.region_for_distance(33).name, "The Great Frungle Kingdom")
+	assert_eq(CareerLevelLibrary.region_for_distance(33).name, "Cannoli Sandbar")
 	assert_eq(CareerLevelLibrary.region_for_distance(CareerData.MAX_DISTANCE_TRAVELLED).name, "Starberry Mountain")
 
 
