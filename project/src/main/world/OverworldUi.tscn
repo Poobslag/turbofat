@@ -41,11 +41,11 @@ action = "phone"
 [sub_resource type="ShortCut" id=7]
 shortcut = SubResource( 6 )
 
-[sub_resource type="InputEventAction" id=8]
+[sub_resource type="InputEventAction" id=15]
 action = "ui_cancel"
 
 [sub_resource type="ShortCut" id=9]
-shortcut = SubResource( 8 )
+shortcut = SubResource( 15 )
 
 [sub_resource type="InputEventAction" id=10]
 action = "interact"

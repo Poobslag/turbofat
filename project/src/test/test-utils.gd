@@ -53,3 +53,36 @@ func test_enum_from_snake_case() -> void:
 	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "rob_receipt"), MoldyFlap.ROB_RECEIPT)
 	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "bogus_610", MoldyFlap.MEATY_FALSE), MoldyFlap.MEATY_FALSE)
 	assert_eq(Utils.enum_from_snake_case(MoldyFlap, "bogus_610"), MoldyFlap.BIT_PUNY)
+
+
+func test_seeded_shuffle_shuffles() -> void:
+	var source := ["a", "b", "c", "d", "e", "f", "g"]
+	
+	var shuffled1 := source.duplicate()
+	Utils.seeded_shuffle(shuffled1, 26)
+	
+	assert_false(shuffled1 == source, "shuffle did not reorder source array (%s, %s)" % [shuffled1, source])
+
+
+func test_seeded_shuffle_same_seed() -> void:
+	var source := ["a", "b", "c", "d", "e", "f", "g"]
+	
+	var shuffled1 := source.duplicate()
+	Utils.seeded_shuffle(shuffled1, 26)
+	
+	var shuffled2 := source.duplicate()
+	Utils.seeded_shuffle(shuffled2, 26)
+	
+	assert_true(shuffled1 == shuffled2, "same seed resulted in different output (%s, %s)" % [shuffled1, shuffled2])
+
+
+func test_seeded_shuffle_different_seed() -> void:
+	var source := ["a", "b", "c", "d", "e", "f", "g"]
+	
+	var shuffled1 := source.duplicate()
+	Utils.seeded_shuffle(shuffled1, 26)
+	
+	var shuffled2 := source.duplicate()
+	Utils.seeded_shuffle(shuffled2, 18)
+	
+	assert_false(shuffled1 == shuffled2, "different seed resulted in same output (%s, %s)" % [shuffled1, shuffled2])

@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -9,6 +9,11 @@
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=7]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=8]
 [ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=9]
+[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=10]
+[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=11]
+[ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/world/career-map-ui.gd" type="Script" id=13]
+[ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=14]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -104,16 +109,34 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxEmpty" id=10]
+
+[sub_resource type="StyleBoxEmpty" id=11]
+
+[sub_resource type="StyleBoxEmpty" id=12]
+
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="InputEventAction" id=8]
+action = "ui_cancel"
+
+[sub_resource type="ShortCut" id=14]
+shortcut = SubResource( 8 )
+
 [node name="Node" type="Node"]
 script = ExtResource( 2 )
 
 [node name="LevelSelect" type="Panel" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 50.0
-margin_top = 50.0
-margin_right = -50.0
-margin_bottom = -50.0
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -502.0
+margin_top = -290.0
+margin_right = 502.0
+margin_bottom = 290.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -133,15 +156,12 @@ __meta__ = {
 
 [node name="DailySteps" type="Label" parent="LevelSelect"]
 modulate = Color( 1, 1, 1, 0.313726 )
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -420.0
-margin_top = 10.0
-margin_right = -20.0
-margin_bottom = 69.0
+margin_left = 20.0
+margin_top = 68.0
+margin_right = 420.0
+margin_bottom = 127.0
 theme = ExtResource( 9 )
 text = "99 (+5)"
-align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -159,8 +179,8 @@ __meta__ = {
 }
 
 [node name="Top" type="Control" parent="LevelSelect/VBoxContainer"]
-margin_right = 904.0
-margin_bottom = 376.0
+margin_right = 984.0
+margin_bottom = 456.0
 size_flags_vertical = 3
 
 [node name="LevelButtons" type="HBoxContainer" parent="LevelSelect/VBoxContainer/Top"]
@@ -172,10 +192,10 @@ __meta__ = {
 }
 
 [node name="Button1" parent="LevelSelect/VBoxContainer/Top/LevelButtons" instance=ExtResource( 6 )]
-margin_left = 49.0
-margin_top = 128.0
-margin_right = 249.0
-margin_bottom = 248.0
+margin_left = 62.0
+margin_top = 168.0
+margin_right = 262.0
+margin_bottom = 288.0
 rect_min_size = Vector2( 200, 120 )
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -183,10 +203,10 @@ custom_styles/hover = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
 
 [node name="Button2" parent="LevelSelect/VBoxContainer/Top/LevelButtons" instance=ExtResource( 6 )]
-margin_left = 351.0
-margin_top = 128.0
-margin_right = 551.0
-margin_bottom = 248.0
+margin_left = 391.0
+margin_top = 168.0
+margin_right = 591.0
+margin_bottom = 288.0
 rect_min_size = Vector2( 200, 120 )
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -194,10 +214,10 @@ custom_styles/hover = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 
 [node name="Button3" parent="LevelSelect/VBoxContainer/Top/LevelButtons" instance=ExtResource( 6 )]
-margin_left = 654.0
-margin_top = 128.0
-margin_right = 854.0
-margin_bottom = 248.0
+margin_left = 721.0
+margin_top = 168.0
+margin_right = 921.0
+margin_bottom = 288.0
 rect_min_size = Vector2( 200, 120 )
 size_flags_horizontal = 6
 size_flags_vertical = 4
@@ -215,9 +235,9 @@ __meta__ = {
 GradeLabelScene = ExtResource( 3 )
 
 [node name="Bottom" type="Control" parent="LevelSelect/VBoxContainer"]
-margin_top = 380.0
-margin_right = 904.0
-margin_bottom = 480.0
+margin_top = 460.0
+margin_right = 984.0
+margin_bottom = 560.0
 rect_min_size = Vector2( 0, 100 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect/VBoxContainer/Bottom"]
@@ -228,7 +248,7 @@ __meta__ = {
 }
 
 [node name="Description" type="Panel" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer"]
-margin_right = 450.0
+margin_right = 490.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 7 )
@@ -248,7 +268,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer/Description/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 430.0
+margin_right = 470.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 8 )
@@ -260,8 +280,8 @@ __meta__ = {
 }
 
 [node name="Info" type="Panel" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer"]
-margin_left = 454.0
-margin_right = 904.0
+margin_left = 494.0
+margin_right = 984.0
 margin_bottom = 100.0
 size_flags_horizontal = 3
 custom_styles/panel = ExtResource( 7 )
@@ -281,7 +301,7 @@ __meta__ = {
 [node name="Label" type="Label" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer/Info/MarginContainer"]
 margin_left = 20.0
 margin_top = 5.0
-margin_right = 430.0
+margin_right = 470.0
 margin_bottom = 95.0
 size_flags_vertical = 1
 theme = ExtResource( 8 )
@@ -289,3 +309,41 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Ui" type="CanvasLayer" parent="."]
+script = ExtResource( 13 )
+
+[node name="Control" type="Control" parent="Ui"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SettingsButton" parent="Ui/Control" instance=ExtResource( 12 )]
+modulate = Color( 1, 1, 1, 0.627451 )
+anchor_left = 1.0
+anchor_bottom = 0.0
+margin_left = -120.0
+margin_top = 20.0
+margin_right = -20.0
+margin_bottom = 120.0
+custom_styles/hover = SubResource( 9 )
+custom_styles/pressed = SubResource( 10 )
+custom_styles/focus = SubResource( 11 )
+custom_styles/disabled = SubResource( 12 )
+custom_styles/normal = SubResource( 13 )
+shortcut = SubResource( 14 )
+icon = ExtResource( 10 )
+expand_icon = true
+normal_icon = ExtResource( 10 )
+pressed_icon = ExtResource( 11 )
+
+[node name="SettingsMenu" parent="Ui" instance=ExtResource( 14 )]
+quit_type = 1
+
+[connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
+[connection signal="hide" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_hide"]
+[connection signal="quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_quit_pressed"]
+[connection signal="show" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_show"]

@@ -70,6 +70,7 @@ fi
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
 RESULT=$(grep -R -n "var [^:]* = " --include="*.gd" project/src \
   | grep -v " = parse_json(" \
+  | grep -v "utils.gd.*var tmp = arr\[i\]" \
   | grep -v "dna-loader.gd.*var property_value =" \
   | grep -v "dna-loader.gd.*var shader_value =")
 if [ -n "$RESULT" ]
