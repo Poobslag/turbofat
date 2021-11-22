@@ -9,24 +9,42 @@ const DURATIONS := [
 	90, 120, 150, 180, 270, 360, 480, 600
 ]
 
+var text: String setget set_text
+
 var _duration_calculator := DurationCalculator.new()
 
+onready var _label := $MarginContainer/Label
+
+func _ready() -> void:
+	_refresh_text()
+
+
+func set_text(new_text: String) -> void:
+	text = new_text
+	_refresh_text()
+
+
+func _refresh_text() -> void:
+	if _label:
+		_label.text = text
+
+
 func _update_tutorial_level_text(settings: LevelSettings) -> void:
-	var text := ""
+	var new_text := ""
 	if PlayerData.level_history.is_level_finished(settings.id):
 		var result := PlayerData.level_history.best_result(settings.id)
-		text += "Completed: %04d-%02d-%02d" % [
+		new_text += "Completed: %04d-%02d-%02d" % [
 				result.timestamp["year"],
 				result.timestamp["month"],
 				result.timestamp["day"],
 			]
 	else:
-		text += ""
-	$MarginContainer/Label.text = text
+		new_text += ""
+	set_text(new_text)
 
 
 func _update_level_text(settings: LevelSettings) -> void:
-	var text := ""
+	var new_text := ""
 	var difficulty_string := tr("Unknown")
 	match settings.get_difficulty():
 		"T", "0", "1", "2": difficulty_string = tr("Very Easy")
@@ -37,8 +55,8 @@ func _update_level_text(settings: LevelSettings) -> void:
 		"AE", "AF", "F0", "F1": difficulty_string = tr("Expert")
 		"FA", "FB", "FC": difficulty_string = tr("Very Expert")
 		"FD", "FE", "FF", "FFF": difficulty_string = tr("Master")
-	text += tr("Difficulty: %s") % [difficulty_string]
-	text += "\n"
+	new_text += tr("Difficulty: %s") % [difficulty_string]
+	new_text += "\n"
 	
 	var duration_string: String
 	var duration: int
@@ -50,21 +68,21 @@ func _update_level_text(settings: LevelSettings) -> void:
 	
 	duration_string = StringUtils.format_duration(duration)
 	
-	text += tr("Duration: %s") % [duration_string]
-	text += "\n"
+	new_text += tr("Duration: %s") % [duration_string]
+	new_text += "\n"
 	
 	var prev_result := PlayerData.level_history.prev_result(settings.id)
 	if prev_result:
-		text += tr("New: %s") % [PoolStringArray(HighScoreTable.rank_result_row(prev_result)).join("   ")]
-	text += "\n"
+		new_text += tr("New: %s") % [PoolStringArray(HighScoreTable.rank_result_row(prev_result)).join("   ")]
+	new_text += "\n"
 	var best_result := PlayerData.level_history.best_result(settings.id)
 	if best_result:
-		text += tr("Top: %s") % [PoolStringArray(HighScoreTable.rank_result_row(best_result)).join("   ")]
-	$MarginContainer/Label.text = text
+		new_text += tr("Top: %s") % [PoolStringArray(HighScoreTable.rank_result_row(best_result)).join("   ")]
+	set_text(new_text)
 
 
 func _update_tutorial_world_text(ranks: Array) -> void:
-	var text := ""
+	var new_text := ""
 	
 	# calculate the percent of tutorials which the player hasn't cleared
 	var worst_rank_count := 0
@@ -73,12 +91,12 @@ func _update_tutorial_world_text(ranks: Array) -> void:
 			worst_rank_count += 1
 	var progress_pct := float(ranks.size() - worst_rank_count) / ranks.size()
 	
-	text = "Tutorial progress: %.1f%%" % [100 * progress_pct]
-	$MarginContainer/Label.text = text
+	new_text = "Tutorial progress: %.1f%%" % [100 * progress_pct]
+	set_text(new_text)
 
 
 func _update_world_text(ranks: Array) -> void:
-	var text := ""
+	var new_text := ""
 	
 	# calculate the worst rank
 	var worst_rank := 0.0
@@ -104,12 +122,12 @@ func _update_world_text(ranks: Array) -> void:
 			worst_rank_count += 1
 	var next_rank_pct := float(ranks.size() - worst_rank_count) / ranks.size()
 	
-	text += "Overall grade: %s" % [RankCalculator.grade(worst_rank)]
+	new_text += "Overall grade: %s" % [RankCalculator.grade(worst_rank)]
 	if RankCalculator.grade(worst_rank) != RankCalculator.HIGHEST_GRADE:
-		text += "\nProgress towards next grade: %.1f%%" % [100 * next_rank_pct]
+		new_text += "\nProgress towards next grade: %.1f%%" % [100 * next_rank_pct]
 	if star_count > 0:
-		text += "\nTotal stars: %s" % [star_count]
-	$MarginContainer/Label.text = text
+		new_text += "\nTotal stars: %s" % [star_count]
+	set_text(new_text)
 
 
 ## When an unlocked level is selected, we display some statistics for that level.
@@ -122,7 +140,7 @@ func _on_LevelButtons_unlocked_level_selected(_level_lock: LevelLock, settings: 
 
 ## When a locked level is selected, we clear out the info panel.
 func _on_LevelButtons_locked_level_selected(_level_lock: LevelLock, _settings: LevelSettings) -> void:
-	$MarginContainer/Label.text = ""
+	set_text("")
 
 
 ## When the 'overall' button is selected, we display statistics for all of the levels.
