@@ -1,8 +1,26 @@
 extends Panel
 ## A panel on the level select screen which shows level descriptions.
 
+var text: String setget set_text
+
+onready var _label := $MarginContainer/Label
+
+func _ready() -> void:
+	_refresh_text()
+
+
+func set_text(new_text: String) -> void:
+	text = new_text
+	_refresh_text()
+
+
+func _refresh_text() -> void:
+	if _label:
+		_label.text = text
+
+
 func _update_tutorial_world_text(ranks: Array) -> void:
-	var text := ""
+	var new_text := ""
 	
 	# calculate the percent of tutorials which the player hasn't cleared
 	var worst_rank_count := 0
@@ -12,14 +30,14 @@ func _update_tutorial_world_text(ranks: Array) -> void:
 	var progress_pct := float(ranks.size() - worst_rank_count) / ranks.size()
 	
 	if progress_pct < 1.00:
-		text = "Don't worry about completing all the tutorials right away! You know more than you realize."
+		new_text = "Don't worry about completing all the tutorials right away! You know more than you realize."
 	else:
-		text = "Nice, you've completed the tutorials. Now you're ready to play the game!"
-	$MarginContainer/Label.text = text
+		new_text = "Nice, you've completed the tutorials. Now you're ready to play the game!"
+	set_text(new_text)
 
 
 func _update_world_text(ranks: Array) -> void:
-	var text := ""
+	var new_text := ""
 	
 	# calculate the worst rank
 	var worst_rank := 0.0
@@ -28,37 +46,36 @@ func _update_world_text(ranks: Array) -> void:
 	
 	match RankCalculator.grade(worst_rank):
 		RankCalculator.NO_GRADE:
-			text += "Try to get a B- or better on every level. Good luck!"
+			new_text += "Try to get a B- or better on every level. Good luck!"
 		RankCalculator.HIGHEST_GRADE:
-			text += "You are a master of Turbo Fat!"
+			new_text += "You are a master of Turbo Fat!"
 		_:
-			text += "Wow, you beat every level! Good job!"
-			text += "\n\nImprove your level scores to earn more stars and increase your grade. Good luck!"
-	$MarginContainer/Label.text = text
+			new_text += "Wow, you beat every level! Good job!"
+			new_text += "\n\nImprove your level scores to earn more stars and increase your grade. Good luck!"
+	set_text(new_text)
 
 
 ## When an unlocked level is selected, we display the level's description.
 func _on_LevelButtons_unlocked_level_selected(_level_lock: LevelLock, settings: LevelSettings) -> void:
-	$MarginContainer/Label.text = settings.description
+	set_text(settings.description)
 
 
 ## When a locked level is selected, we tell the player how to unlock it.
 func _on_LevelButtons_locked_level_selected(level_lock: LevelLock, settings: LevelSettings) -> void:
-	var text := ""
+	var new_text := ""
 	match level_lock.status:
 		LevelLock.STATUS_SOFT_LOCK:
 			var level_count := StringUtils.english_number(level_lock.keys_needed)
-			text += "Clear %s more levels to unlock this. You can do it!" % [level_count]
-			text = text.replace("one more levels", "one more level")
+			new_text += "Clear %s more levels to unlock this. You can do it!" % [level_count]
+			new_text = new_text.replace("one more levels", "one more level")
 		_:
 			push_warning("Unexpected lock status: %s" % [level_lock.status])
 	
 	# change 'Clear one more level' to 'Finish one more tutorial'
 	if settings.other.tutorial:
-		text = text.replace("level", "tutorial")
-		text = text.replace("Clear", "Finish")
-	
-	$MarginContainer/Label.text = text
+		new_text = new_text.replace("level", "tutorial")
+		new_text = new_text.replace("Clear", "Finish")
+	set_text(new_text)
 
 
 ## When the 'overall' button is selected, we summarize the player's progress.
