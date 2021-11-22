@@ -1,5 +1,5 @@
 class_name CareerData
-## Stores current and historical data for Career mode
+## Stores current and historical data for career mode
 ##
 ## This includes the current day's data like "how much money has the player earned today" and "how far have they
 ## travelled today", as well as historical information like "how many days have they played" and "how much money did
@@ -41,6 +41,11 @@ var prev_daily_earnings := []
 ## Array of ints for previous distance travelled. Index 0 holds the most recent data.
 var prev_distance_travelled := []
 
+## Returns 'true' if the player has completed the current career mode session.
+func is_day_over() -> bool:
+	return hours_passed >= HOURS_PER_CAREER_DAY
+
+
 func reset() -> void:
 	distance_travelled = 0
 	distance_earned = 0
@@ -78,14 +83,14 @@ func to_json_dict() -> Dictionary:
 
 ## Launches the next scene in career mode. Either a new level, or a cutscene/ending scene.
 func push_career_trail() -> void:
-	if hours_passed < HOURS_PER_CAREER_DAY:
+	if is_day_over():
+		# after the final level, we show a 'you win' screen
+		SceneTransition.replace_trail("res://src/main/world/CareerWin.tscn")
+	else:
 		# after the 'overworld map' scene, we launch a level
 		hours_passed += 1
 		PlayerSave.save_player_data()
 		CurrentLevel.push_level_trail()
-	else:
-		# after the final level, we show a 'you win' screen
-		SceneTransition.replace_trail("res://src/main/world/CareerWin.tscn")
 
 
 ## Returns 'true' if the player is current playing career mode
@@ -106,4 +111,5 @@ func advance_calendar() -> void:
 	distance_travelled = 0
 	hours_passed = 0
 	daily_earnings = 0
+	daily_level_ids.clear()
 	day = min(day + 1, MAX_DAY)

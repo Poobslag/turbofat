@@ -22,7 +22,7 @@ func all_level_ids() -> Array:
 	return result.keys()
 
 
-## Returns a list of CareerRegions available after the player travels a certain distance.
+## Returns a list of CareerLevels available after the player travels a certain distance.
 func career_levels_for_distance(distance: int) -> Array:
 	return region_for_distance(distance).levels
 

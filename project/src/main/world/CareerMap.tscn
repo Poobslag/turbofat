@@ -1,70 +1,291 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=17 format=2]
 
-[ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=1]
+[ext_resource path="res://src/main/ui/level-select/grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
-[ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=3]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/level-select/HookableGradeLabel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/level-select/level-description-panel.gd" type="Script" id=4]
+[ext_resource path="res://src/main/ui/level-select/level-info-panel.gd" type="Script" id=5]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=7]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=8]
+[ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=9]
+
+[sub_resource type="StyleBoxFlat" id=1]
+content_margin_left = 5.0
+content_margin_right = 5.0
+content_margin_top = 5.0
+content_margin_bottom = 5.0
+bg_color = Color( 0.1, 0.094, 0.094, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id=2]
+resource_local_to_scene = true
+bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=3]
+resource_local_to_scene = true
+bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=4]
+resource_local_to_scene = true
+bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=5]
+resource_local_to_scene = true
+bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=6]
+resource_local_to_scene = true
+bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=7]
+resource_local_to_scene = true
+bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
 
 [node name="Node" type="Node"]
 script = ExtResource( 2 )
 
-[node name="Label" type="Label" parent="."]
+[node name="LevelSelect" type="Panel" parent="."]
 anchor_right = 1.0
-margin_top = 54.0326
-margin_bottom = 216.033
-theme = ExtResource( 3 )
-text = "Distance: 3
-
-Earnings: 5
-
-Time: 9:00 am"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Button" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -92.5
-margin_top = -32.5
-margin_right = 92.5
-margin_bottom = 32.5
-theme = ExtResource( 1 )
-text = "Ok"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="History" type="RichTextLabel" parent="."]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -462.0
-margin_top = -214.973
-margin_right = 462.0
-margin_bottom = -52.9732
-theme = ExtResource( 3 )
-bbcode_enabled = true
-bbcode_text = "[center]abc
-def
-ghi
-jkl
-mno
-pqr[/center]"
-text = "abc
-def
-ghi
-jkl
-mno
-pqr"
+margin_left = 50.0
+margin_top = 50.0
+margin_right = -50.0
+margin_bottom = -50.0
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 4 )]
+[node name="TimeOfDay" type="Label" parent="LevelSelect"]
+modulate = Color( 1, 1, 1, 0.313726 )
+margin_left = 20.0
+margin_top = 10.0
+margin_right = 420.0
+margin_bottom = 69.0
+theme = ExtResource( 9 )
+text = "09:05 am"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+[node name="DailySteps" type="Label" parent="LevelSelect"]
+modulate = Color( 1, 1, 1, 0.313726 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -420.0
+margin_top = 10.0
+margin_right = -20.0
+margin_bottom = 69.0
+theme = ExtResource( 9 )
+text = "99 (+5)"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelect"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 10.0
+margin_top = 10.0
+margin_right = -10.0
+margin_bottom = -10.0
+rect_min_size = Vector2( -10, 0 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Top" type="Control" parent="LevelSelect/VBoxContainer"]
+margin_right = 904.0
+margin_bottom = 376.0
+size_flags_vertical = 3
+
+[node name="LevelButtons" type="HBoxContainer" parent="LevelSelect/VBoxContainer/Top"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button1" parent="LevelSelect/VBoxContainer/Top/LevelButtons" instance=ExtResource( 6 )]
+margin_left = 49.0
+margin_top = 128.0
+margin_right = 249.0
+margin_bottom = 248.0
+rect_min_size = Vector2( 200, 120 )
+size_flags_horizontal = 6
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+
+[node name="Button2" parent="LevelSelect/VBoxContainer/Top/LevelButtons" instance=ExtResource( 6 )]
+margin_left = 351.0
+margin_top = 128.0
+margin_right = 551.0
+margin_bottom = 248.0
+rect_min_size = Vector2( 200, 120 )
+size_flags_horizontal = 6
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 4 )
+custom_styles/normal = SubResource( 5 )
+
+[node name="Button3" parent="LevelSelect/VBoxContainer/Top/LevelButtons" instance=ExtResource( 6 )]
+margin_left = 654.0
+margin_top = 128.0
+margin_right = 854.0
+margin_bottom = 248.0
+rect_min_size = Vector2( 200, 120 )
+size_flags_horizontal = 6
+size_flags_vertical = 4
+custom_styles/hover = SubResource( 6 )
+custom_styles/normal = SubResource( 7 )
+
+[node name="GradeLabels" type="Control" parent="LevelSelect/VBoxContainer/Top"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+GradeLabelScene = ExtResource( 3 )
+
+[node name="Bottom" type="Control" parent="LevelSelect/VBoxContainer"]
+margin_top = 380.0
+margin_right = 904.0
+margin_bottom = 480.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelSelect/VBoxContainer/Bottom"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Description" type="Panel" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer"]
+margin_right = 450.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 7 )
+script = ExtResource( 4 )
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer/Description"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer/Description/MarginContainer"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 430.0
+margin_bottom = 95.0
+size_flags_vertical = 1
+theme = ExtResource( 8 )
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="Panel" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer"]
+margin_left = 454.0
+margin_right = 904.0
+margin_bottom = 100.0
+size_flags_horizontal = 3
+custom_styles/panel = ExtResource( 7 )
+script = ExtResource( 5 )
+
+[node name="MarginContainer" type="MarginContainer" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer/Info"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+custom_constants/margin_right = 20
+custom_constants/margin_top = 5
+custom_constants/margin_left = 20
+custom_constants/margin_bottom = 5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="LevelSelect/VBoxContainer/Bottom/HBoxContainer/Info/MarginContainer"]
+margin_left = 20.0
+margin_top = 5.0
+margin_right = 430.0
+margin_bottom = 95.0
+size_flags_vertical = 1
+theme = ExtResource( 8 )
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
