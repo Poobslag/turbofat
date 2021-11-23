@@ -32,6 +32,11 @@ func is_met(milestone: Milestone) -> bool:
 	return result
 
 
+## Returns the player's current progress toward the specified milestone as a percentage.
+func progress_percent(milestone: Milestone) -> float:
+	return progress_value(milestone) / milestone.value
+
+
 ## Returns the player's current progress toward the specified milestone as a number ranged [0, inf].
 ##
 ## Depending on the milestone type, the returned progress value could be the current score, number of lines cleared or

@@ -293,25 +293,28 @@ func _update_career_data(rank_result: RankResult) -> void:
 	PlayerData.career.daily_earnings = min(PlayerData.career.daily_earnings + rank_result.score,
 			PlayerData.MAX_MONEY)
 	
-	# Update the player's distance to travel based on their overall rank
+	# Calculate the player's distance to travel based on their overall rank
 	var overall_rank := _overall_rank(rank_result)
-	PlayerData.career.distance_earned = 1
+	var distance_to_advance := 1
+	distance_to_advance = 1
 	if overall_rank > 36.0:
-		PlayerData.career.distance_earned = 1
+		distance_to_advance = 1
 	elif overall_rank > 24.0:
-		PlayerData.career.distance_earned = 2
+		distance_to_advance = 2
 	elif overall_rank > 20.0:
-		PlayerData.career.distance_earned = 3
+		distance_to_advance = 3
 	elif overall_rank > 16.0:
-		PlayerData.career.distance_earned = 4
+		distance_to_advance = 4
 	elif overall_rank > 10.0:
-		PlayerData.career.distance_earned = 5
+		distance_to_advance = 5
 	elif overall_rank > 4.0:
-		PlayerData.career.distance_earned = 10
+		distance_to_advance = 10
 	elif overall_rank > 0.0:
-		PlayerData.career.distance_earned = 15
+		distance_to_advance = 15
 	else:
-		PlayerData.career.distance_earned = 25
+		distance_to_advance = 25
+	
+	PlayerData.career.advance_distance(distance_to_advance, rank_result.success)
 
 
 ## Wait until after the game ends to save the player's data.

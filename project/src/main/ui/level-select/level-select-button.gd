@@ -7,6 +7,13 @@ signal level_started
 
 signal lowlight_changed
 
+## Emitted when the button's level information changes, such as its title, duration or lock status.
+##
+## Because many of these properties are modified sequentially, this script does not emit this signal itself. Otherwise
+## it would end up emitting the signal 7 or 8 times in a row.
+# warning-ignore:unused_signal
+signal level_info_changed
+
 ## short levels have smaller buttons; long levels have larger buttons
 enum LevelSize {
 	SHORT,

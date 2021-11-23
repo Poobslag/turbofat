@@ -4,6 +4,10 @@
       "name": "Lemony Thickets",
       "distance": 0,
       "piece_speed": "0",
+      "boss_level":
+      {
+        "id": "career/boss_7k"
+      },
       "levels": [
         {
           "id": "career/90_second_sprint"
@@ -41,6 +45,10 @@
       "name": "Poki Desert",
       "distance": 10,
       "piece_speed": "0-3",
+      "boss_level":
+      {
+        "id": "career/boss_5k"
+      },
       "levels": [
         {
           "id": "career/1000_race"
@@ -81,6 +89,10 @@
       "name": "Merrymellow Marsh",
       "distance": 25,
       "piece_speed": "1-5",
+      "boss_level":
+      {
+        "id": "career/boss_4k"
+      },
       "levels": [
         {
           "id": "career/1000_race"
@@ -127,6 +139,10 @@
       "name": "Cannoli Sandbar",
       "distance": 40,
       "piece_speed": "3-7",
+      "boss_level":
+      {
+        "id": "career/boss_3k"
+      },
       "levels": [
         {
           "id": "career/90_second_sprint"
@@ -173,6 +189,10 @@
       "name": "Vega Churn Twelve",
       "distance": 60,
       "piece_speed": "5-8",
+      "boss_level":
+      {
+        "id": "career/boss_2k"
+      },
       "levels": [
         {
           "id": "career/90_second_sprint"
@@ -213,6 +233,10 @@
       "name": "Chocolava Canyon",
       "distance": 80,
       "piece_speed": "6-9",
+      "boss_level":
+      {
+        "id": "career/boss_1k"
+      },
       "levels": [
         {
           "id": "career/90_second_sprint"

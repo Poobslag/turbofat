@@ -13,6 +13,6 @@ __meta__ = {
 _run_on_load = true
 _should_maximize = true
 _yield_between_tests = false
-_file_prefix = "test-"
+_file_prefix = "test-career-data"
 _include_subdirectories = true
 _directory1 = "res://src/test"
