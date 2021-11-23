@@ -278,3 +278,17 @@ static func to_bool(s: String) -> bool:
 ## function.
 static func map_to_world_centered(tile_map: TileMap, cell: Vector2) -> Vector2:
 	return (tile_map.map_to_world(cell) + tile_map.map_to_world(cell + Vector2(1, 1))) * 0.5
+
+
+## Shuffles the entries of the given array in a predictable manner, using the Fisher-Yates algorithm.
+##
+## The randomness is controlled by the seed_int parameter, making this a useful substitute for the built-in
+## Array.shuffle() method for scenarios where we want the array to always shuffle the same way.
+static func seeded_shuffle(arr: Array, seed_int: int) -> void:
+	var rng := RandomNumberGenerator.new()
+	rng.seed = seed_int
+	for i in range(arr.size() - 2):
+		var j := rng.randi_range(i, arr.size() - 1)
+		var tmp = arr[i]
+		arr[i] = arr[j]
+		arr[j] = tmp

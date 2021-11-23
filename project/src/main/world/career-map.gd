@@ -166,7 +166,16 @@ func _prepare_labels() -> void:
 ## current session.
 func _random_levels() -> Array:
 	var levels := CareerLevelLibrary.career_levels_for_distance(PlayerData.career.distance_travelled)
-	levels.shuffle()
+	levels = levels.duplicate() # avoid modifying the original list
+	
+	# We use a seeded shuffle which always gives the player the same random levels. Otherwise they can relaunch career
+	# mode over and over until they get the exact levels they want to play.
+	var seed_int := 0
+	seed_int += PlayerData.career.daily_earnings
+	if PlayerData.career.prev_daily_earnings:
+		seed_int += PlayerData.career.prev_daily_earnings[0]
+	Utils.seeded_shuffle(levels, seed_int)
+	
 	var random_levels := levels.slice(0, min(SELECTION_COUNT - 1, levels.size() - 1))
 	var random_level_index := 0
 	for level in levels:
