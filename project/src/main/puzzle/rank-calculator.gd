@@ -71,8 +71,13 @@ const GRADE_RANKS := [
 ## possible and never dies. However, some modes such as 'marathon mode' are designed with the understanding that a
 ## player is not expected to actually finish them. So we also simulate a second S++ rank player who dies in the middle
 ## of the match, and return the better of the two ranks.
-func calculate_rank() -> RankResult:
-	var rank_result := _unranked_result()
+func calculate_rank(unranked_result: RankResult = null) -> RankResult:
+	var rank_result: RankResult
+	if unranked_result:
+		rank_result = unranked_result
+	else:
+		rank_result = unranked_result()
+	
 	if CurrentLevel.settings.rank.unranked:
 		# automatic master rank for unranked levels
 		rank_result.seconds_rank = WORST_RANK if rank_result.lost else BEST_RANK
@@ -81,7 +86,7 @@ func calculate_rank() -> RankResult:
 		_populate_rank_fields(rank_result, false)
 		
 		if CurrentLevel.settings.finish_condition.has_meta("lenient_value"):
-			var lenient_rank_result := _unranked_result()
+			var lenient_rank_result := unranked_result()
 			_populate_rank_fields(lenient_rank_result, true)
 			rank_result.speed_rank = min(rank_result.speed_rank, lenient_rank_result.speed_rank)
 			rank_result.lines_rank = min(rank_result.lines_rank, lenient_rank_result.lines_rank)
@@ -194,7 +199,7 @@ func rank_lpm(rank: float) -> float:
 ## Populates a new RankResult object with raw statistics.
 ##
 ## This does not include any rank data, only objective information like lines cleared and time taken.
-func _unranked_result() -> RankResult:
+func unranked_result() -> RankResult:
 	var rank_result := RankResult.new()
 	
 	if CurrentLevel.settings.finish_condition.type == Milestone.SCORE:
@@ -209,7 +214,7 @@ func _unranked_result() -> RankResult:
 	rank_result.pieces = PuzzleState.level_performance.pieces
 	rank_result.lost = PuzzleState.level_performance.lost
 	rank_result.success = PuzzleState.level_performance.success
-	rank_result.score = PuzzleState.level_performance.score
+	rank_result.score = PuzzleState.level_performance.score + PuzzleState.bonus_score
 	rank_result.seconds = PuzzleState.level_performance.seconds
 	rank_result.top_out_count = PuzzleState.level_performance.top_out_count
 	
@@ -327,7 +332,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 						* (1 + tmp_box_score_per_line + tmp_combo_score_per_line)
 			
 			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
-			if tmp_scoring_target / points_per_second < rank_result.seconds:
+			if points_per_second > 0 and tmp_scoring_target / points_per_second < rank_result.seconds:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank

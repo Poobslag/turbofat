@@ -296,9 +296,11 @@ func _update_career_data(rank_result: RankResult) -> void:
 	# Update the player's distance to travel based on their overall rank
 	var overall_rank := _overall_rank(rank_result)
 	PlayerData.career.distance_earned = 1
-	if overall_rank > 48.0:
-		PlayerData.career.distance_earned = 2
+	if overall_rank > 36.0:
+		PlayerData.career.distance_earned = 1
 	elif overall_rank > 24.0:
+		PlayerData.career.distance_earned = 2
+	elif overall_rank > 20.0:
 		PlayerData.career.distance_earned = 3
 	elif overall_rank > 16.0:
 		PlayerData.career.distance_earned = 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=2]
+[gd_scene load_steps=98 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -32,6 +32,8 @@
 [ext_resource path="res://src/main/puzzle/topout-tracker.gd" type="Script" id=30]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=31]
 [ext_resource path="res://src/main/puzzle/combo-counters.gd" type="Script" id=32]
+[ext_resource path="res://src/main/puzzle/step-meter.gd" type="Script" id=33]
+[ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=34]
 [ext_resource path="res://src/main/puzzle/FrostingGlob.tscn" type="PackedScene" id=35]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
 [ext_resource path="res://src/main/puzzle/FoodItem.tscn" type="PackedScene" id=37]
@@ -70,6 +72,7 @@
 [ext_resource path="res://src/main/puzzle/level-timer-manager.gd" type="Script" id=70]
 [ext_resource path="res://src/main/puzzle/piece/piece-queue.gd" type="Script" id=71]
 [ext_resource path="res://src/main/puzzle/StarSeed.tscn" type="PackedScene" id=72]
+[ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=73]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -162,6 +165,23 @@ shader_param/frosting_alpha = 0.6
 shader_param/noise = SubResource( 11 )
 shader_param/frosting_texture = SubResource( 9 )
 shader_param/rainbow_texture = SubResource( 12 )
+
+[sub_resource type="StyleBoxFlat" id=22]
+bg_color = Color( 0.254902, 0.156863, 0.117647, 1 )
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="Theme" id=23]
+Panel/styles/panel = SubResource( 22 )
+
+[sub_resource type="StyleBoxFlat" id=24]
+bg_color = Color( 0.282353, 0.72549, 0.407843, 1 )
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
 
 [sub_resource type="ShaderMaterial" id=14]
 shader = ExtResource( 4 )
@@ -403,6 +423,52 @@ expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StepMeter" type="Control" parent="."]
+margin_left = 786.626
+margin_top = 134.094
+margin_right = 846.626
+margin_bottom = 214.094
+script = ExtResource( 33 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Bg" type="Panel" parent="StepMeter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = SubResource( 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Fill" type="Panel" parent="StepMeter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 5.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = -5.0
+theme = SubResource( 23 )
+custom_styles/panel = SubResource( 24 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="StepMeter"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 34 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = ExtResource( 73 )
+text = "1"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RecalculateTimer" type="Timer" parent="StepMeter"]
 
 [node name="RestaurantView" parent="." instance=ExtResource( 25 )]
 
@@ -723,3 +789,4 @@ script = ExtResource( 19 )
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]
 [connection signal="food_spawned" from="StarSeeds" to="FoodItems" method="_on_StarSeeds_food_spawned"]
+[connection signal="timeout" from="StepMeter/RecalculateTimer" to="StepMeter" method="_on_RecalculateTimer_timeout"]
