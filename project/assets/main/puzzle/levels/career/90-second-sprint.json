@@ -1,6 +1,6 @@
 {
   "version": "297a",
-  "start_speed": "A0",
+  "start_speed": "0",
   "title": "90 Second Sprint",
   "description": "Nothing fancy, let's just cook!",
   "finish_condition": {
