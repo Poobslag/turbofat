@@ -34,6 +34,7 @@ func _ready() -> void:
 func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT - 1) -> void:
 	# shift playfield up
 	_tile_map.insert_row(dest_y)
+	_line_insert_sound.play()
 	
 	var src_y := -1
 	
@@ -54,7 +55,6 @@ func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT -
 		_row_index_by_tiles_key[tiles_key] = (src_y + 1) % (_row_count_by_tiles_key.get(tiles_key, 1))
 	else:
 		# fill bottom row with random veggie garbage
-		_line_insert_sound.play()
 		for x in range(PuzzleTileMap.COL_COUNT):
 			var veg_autotile_coord := Vector2(randi() % 18, randi() % 4)
 			_tile_map.set_block(Vector2(x, dest_y), PuzzleTileMap.TILE_VEG, veg_autotile_coord)
