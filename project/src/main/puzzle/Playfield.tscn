@@ -261,8 +261,8 @@ margin_left = -119.0
 margin_top = 86.0
 margin_right = 119.0
 margin_bottom = 176.0
-custom_styles/normal = ExtResource( 21 )
 custom_fonts/normal_font = ExtResource( 22 )
+custom_styles/normal = ExtResource( 21 )
 text = "Arrows: Move
 Down: Soft drop
 Space: Hard drop

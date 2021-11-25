@@ -149,7 +149,7 @@ func end_game() -> void:
 	
 	end_combo()
 	if not level_performance.lost:
-		level_performance.success = MilestoneManager.milestone_met(CurrentLevel.settings.success_condition)
+		level_performance.success = MilestoneManager.is_met(CurrentLevel.settings.success_condition)
 	emit_signal("game_ended")
 	var yield_duration: float
 	match end_result():
@@ -311,7 +311,7 @@ func end_result() -> int:
 		return Levels.Result.NONE
 	elif level_performance.lost:
 		return Levels.Result.LOST
-	elif MilestoneManager.milestone_met(CurrentLevel.settings.success_condition):
+	elif MilestoneManager.is_met(CurrentLevel.settings.success_condition):
 		return Levels.Result.WON
 	else:
 		return Levels.Result.FINISHED

@@ -41,11 +41,11 @@ func _recalculate() -> void:
 	var overall_rank := _overall_rank()
 	var rank_milestone_index := _rank_milestone_index(overall_rank)
 	
-	var next_milestone_progress := inverse_lerp(RANK_MILESTONES[rank_milestone_index - 1].rank,
+	var next_progress_value := inverse_lerp(RANK_MILESTONES[rank_milestone_index - 1].rank,
 			RANK_MILESTONES[rank_milestone_index].rank, overall_rank)
-	next_milestone_progress = clamp(next_milestone_progress, 0.0, 1.0)
+	next_progress_value = clamp(next_progress_value, 0.0, 1.0)
 	
-	_update_ui(RANK_MILESTONES[rank_milestone_index], next_milestone_progress)
+	_update_ui(RANK_MILESTONES[rank_milestone_index], next_progress_value)
 
 
 ## Update the UI with the specified projected rank data.
@@ -53,11 +53,11 @@ func _recalculate() -> void:
 ## Parameters:
 ## 	'rank_milestone': Metadata about the milestone including the distance travelled and color.
 ##
-## 	'next_milestone_progress': A number in the range [0.0, 1.0] describing how close the player is to reaching the
+## 	'next_progress_value': A number in the range [0.0, 1.0] describing how close the player is to reaching the
 ## 		next milestone. A high value means they've almost reached the next milestone.
-func _update_ui(rank_milestone: Dictionary, next_milestone_progress: float) -> void:
+func _update_ui(rank_milestone: Dictionary, next_progress_value: float) -> void:
 	$Fill.get("custom_styles/panel").set_bg_color(rank_milestone.color)
-	$Fill.margin_top = lerp(75, 5, next_milestone_progress)
+	$Fill.margin_top = lerp(75, 5, next_progress_value)
 	$Label.text = str(rank_milestone.distance)
 
 

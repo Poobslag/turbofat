@@ -52,13 +52,13 @@ func update_milebar_values() -> void:
 		_progress_bar.max_value = _progress_bar.min_value + 1.0
 	else:
 		_progress_bar.max_value = next_milestone.value
-	_progress_bar.value = MilestoneManager.milestone_progress(next_milestone)
+	_progress_bar.value = MilestoneManager.progress_value(next_milestone)
 
 
 ## Updates the milestone progress bar text.
 func update_milebar_text() -> void:
 	var milestone := CurrentLevel.settings.finish_condition
-	var remaining: int = max(0, ceil(milestone.value - MilestoneManager.milestone_progress(milestone)))
+	var remaining: int = max(0, ceil(milestone.value - MilestoneManager.progress_value(milestone)))
 	match milestone.type:
 		Milestone.NONE:
 			_value.text = "-"
