@@ -13,6 +13,9 @@ var length := 0
 ## List of CareerLevel instances which store career-mode-specific information about this region's levels.
 var levels := []
 
+## Final level which must be cleared to advance past this region.
+var boss_level: CareerLevel
+
 ## The minimum/maximum piece speeds for this region. Levels are adjusted to these piece speeds, if possible.
 var min_piece_speed := "0"
 var max_piece_speed := "0"
@@ -31,3 +34,6 @@ func from_json_dict(json: Dictionary) -> void:
 		var level: CareerLevel = CareerLevel.new()
 		level.from_json_dict(level_json)
 		levels.append(level)
+	if json.has("boss_level"):
+		boss_level = CareerLevel.new()
+		boss_level.from_json_dict(json.get("boss_level"))

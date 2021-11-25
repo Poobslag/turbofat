@@ -38,9 +38,6 @@ var DESCRIPTION_TEXT_BY_HOURS := {
 	8: tr("Phew, what a day! Let's go home."),
 }
 
-## The previous PlayerData.career.distance_earned value, stored temporarily for UI messages
-var _distance_just_travelled := 0
-
 ## LevelSettings instances for each level the player can select
 var _level_settings_for_levels := []
 
@@ -49,7 +46,7 @@ var _piece_speed: String
 
 var _duration_calculator := DurationCalculator.new()
 
-onready var _daily_steps := $LevelSelect/DailySteps
+onready var _daily_steps := $LevelSelect/Distance/Label
 onready var _time_of_day := $LevelSelect/TimeOfDay
 
 onready var _level_description_panel := $LevelSelect/VBoxContainer/Bottom/HBoxContainer/Description
@@ -60,29 +57,52 @@ onready var _grade_labels := $LevelSelect/VBoxContainer/Top/GradeLabels
 onready var _level_select_buttons := $LevelSelect/VBoxContainer/Top/LevelButtons.get_children()
 
 func _ready() -> void:
-	# advance the player towards their goal
-	_distance_just_travelled = PlayerData.career.distance_earned
-	PlayerData.career.distance_travelled = min(
-		PlayerData.career.distance_travelled + PlayerData.career.distance_earned,
-		CareerData.MAX_DISTANCE_TRAVELLED)
-	PlayerData.career.distance_earned = 0
-	
+	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
 	if PlayerData.career.is_day_over():
 		PlayerData.career.push_career_trail()
 	else:
-		_prepare_ui()
+		for i in range(_level_select_buttons.size()):
+			var level_select_button: LevelSelectButton = _level_select_buttons[i]
+			level_select_button.connect("focus_entered", self, "_on_LevelSelectButton_focus_entered", [i])
+			level_select_button.connect("level_started", self, "_on_LevelSelectButton_level_started", [i])
+			_grade_labels.add_label(level_select_button)
+		
+		_refresh_ui()
 
 
-func _prepare_ui() -> void:
+func _refresh_ui() -> void:
 	_load_level_settings()
 	_prepare_level_select_buttons()
 	_prepare_labels()
+	
+	# Grab focus to allow keyboard support. Wait a frame for other listeners to fire (specifically listeners which
+	# turn the level buttons invisible)
+	yield(get_tree(), "idle_frame")
+	if _level_select_buttons and (not _daily_steps.get_focus_owner() or _daily_steps.modulate == Color.transparent):
+		var middle_button_index: int = min(_level_select_buttons.size(), _level_settings_for_levels.size()) / 2
+		_level_select_buttons[middle_button_index].grab_focus()
 
 
 ## Loads level settings for three randomly selected levels from the current CareerRegion.
 func _load_level_settings() -> void:
-	var career_levels := _random_levels()
-	_piece_speed = CareerLevelLibrary.piece_speed_for_distance(PlayerData.career.distance_travelled)
+	_level_settings_for_levels.clear()
+	
+	var career_levels: Array
+	var region: CareerRegion = CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	if PlayerData.career.is_boss_level() and region.boss_level:
+		# player must pick the boss level
+		career_levels = [region.boss_level]
+		_piece_speed = ""
+	else:
+		# player can choose from many levels
+		career_levels = _random_levels()
+		
+		if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
+			var weight: float = float(PlayerData.career.hours_passed) / (CareerData.HOURS_PER_CAREER_DAY - 1)
+			_piece_speed = CareerLevelLibrary.piece_speed_between(region.min_piece_speed, region.max_piece_speed, weight)
+		else:
+			_piece_speed = CareerLevelLibrary.piece_speed_for_distance(PlayerData.career.distance_travelled)
+	
 	for i in range(_level_select_buttons.size()):
 		var level_select_button: LevelSelectButton = _level_select_buttons[i]
 		if i >= career_levels.size():
@@ -105,7 +125,7 @@ func _prepare_level_select_buttons() -> void:
 			continue
 		var level_settings: LevelSettings = _level_settings_for_levels[i]
 		
-		# for the first button, update its text, color, and connect a listener
+		# update the button's text and color
 		level_select_button.level_title = level_settings.title
 		level_select_button.level_id = level_settings.id
 		
@@ -117,14 +137,7 @@ func _prepare_level_select_buttons() -> void:
 		else:
 			level_select_button.level_duration = LevelSelectButton.LONG
 		
-		level_select_button.connect("focus_entered", self, "_on_LevelSelectButton_focus_entered", [i])
-		level_select_button.connect("level_started", self, "_on_LevelSelectButton_level_started", [i])
-		_grade_labels.add_label(level_select_button)
-	
-	# grab focus to allow keyboard support
-	if _level_select_buttons:
-		var middle_button_index: int = max(_level_select_buttons.size(), _level_settings_for_levels.size()) / 2
-		_level_select_buttons[middle_button_index].grab_focus()
+		level_select_button.emit_signal("level_info_changed")
 
 
 ## Updates the time of day, daily steps, info and description levels with their initial values.
@@ -136,12 +149,6 @@ func _prepare_labels() -> void:
 	_time_of_day.text = TIME_OF_DAY_BY_HOURS.get(PlayerData.career.hours_passed, "?:?? zm")
 	if not TIME_OF_DAY_BY_HOURS.has(PlayerData.career.hours_passed):
 		push_warning("TIME_OF_DAY_BY_HOURS has no entry for %s" % [PlayerData.career.hours_passed])
-	
-	# prepare the daily steps label
-	if _distance_just_travelled:
-		_daily_steps.text = "%s (+%s)" % [PlayerData.career.distance_travelled, _distance_just_travelled]
-	else:
-		_daily_steps.text = PlayerData.career.distance_travelled as String
 	
 	# prepare the info label
 	if PlayerData.career.prev_distance_travelled:
@@ -208,3 +215,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	CurrentLevel.set_launched_level(level_settings.id)
 	CurrentLevel.piece_speed = _piece_speed
 	PlayerData.career.push_career_trail()
+
+
+func _on_CareerData_distance_travelled_changed() -> void:
+	_refresh_ui()

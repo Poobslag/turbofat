@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -14,6 +14,9 @@
 [ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=12]
 [ext_resource path="res://src/main/world/career-map-ui.gd" type="Script" id=13]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=15]
+[ext_resource path="res://src/main/ui/menu/theme/h1-font-outline.tres" type="DynamicFont" id=16]
+[ext_resource path="res://src/main/world/career-distance.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -150,18 +153,6 @@ margin_right = 420.0
 margin_bottom = 69.0
 theme = ExtResource( 9 )
 text = "09:05 am"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DailySteps" type="Label" parent="LevelSelect"]
-modulate = Color( 1, 1, 1, 0.313726 )
-margin_left = 20.0
-margin_top = 68.0
-margin_right = 420.0
-margin_bottom = 127.0
-theme = ExtResource( 9 )
-text = "99 (+5)"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -310,6 +301,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Distance" type="HBoxContainer" parent="LevelSelect"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -225.0
+margin_top = 68.0
+margin_right = 225.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 450, 0 )
+mouse_filter = 2
+theme = ExtResource( 9 )
+custom_constants/separation = 10
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Down" type="Button" parent="LevelSelect/Distance"]
+margin_right = 60.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+theme = ExtResource( 15 )
+text = "-"
+
+[node name="Label" type="Label" parent="LevelSelect/Distance"]
+margin_left = 70.0
+margin_right = 370.0
+margin_bottom = 59.0
+rect_min_size = Vector2( 300, 0 )
+theme = ExtResource( 9 )
+custom_fonts/font = ExtResource( 16 )
+text = "999,999 (+99)"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Up" type="Button" parent="LevelSelect/Distance"]
+margin_left = 380.0
+margin_right = 440.0
+margin_bottom = 60.0
+rect_min_size = Vector2( 60, 60 )
+theme = ExtResource( 15 )
+text = "+"
+
 [node name="Ui" type="CanvasLayer" parent="."]
 script = ExtResource( 13 )
 
@@ -343,6 +378,8 @@ pressed_icon = ExtResource( 11 )
 [node name="SettingsMenu" parent="Ui" instance=ExtResource( 14 )]
 quit_type = 1
 
+[connection signal="pressed" from="LevelSelect/Distance/Down" to="LevelSelect/Distance" method="_on_Down_pressed"]
+[connection signal="pressed" from="LevelSelect/Distance/Up" to="LevelSelect/Distance" method="_on_Up_pressed"]
 [connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
 [connection signal="hide" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_hide"]
 [connection signal="quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_quit_pressed"]

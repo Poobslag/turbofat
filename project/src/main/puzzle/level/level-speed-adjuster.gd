@@ -38,9 +38,14 @@ func _init(init_settings: LevelSettings) -> void:
 ## When applying the piece speed change, we modify the initial speed as well as any 'speed up' events for levels which
 ## increase in difficulty.
 ##
+## Passing in an empty speed results in no adjustment.
+##
 ## Parameters:
 ## 	new_speed: The desired fastest speed id for the LevelSettings.
 func adjust(new_speed: String) -> void:
+	if not new_speed:
+		# empty speed, do not adjust
+		return
 	if not _coordinates_by_speed.has(new_speed):
 		push_warning("Unrecognized speed: '%s'" % [new_speed])
 		return
@@ -62,6 +67,7 @@ func adjust(new_speed: String) -> void:
 		for milestone in settings.speed.speed_ups:
 			var new_milestone_speed := get_adjusted_speed(milestone.get_meta("speed"), adjustment)
 			milestone.set_meta("speed", new_milestone_speed)
+
 
 ## Returns a new speed id which is faster/slower than the specified speed id.
 ##

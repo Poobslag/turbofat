@@ -23,12 +23,14 @@ func set_button(new_button: LevelSelectButton) -> void:
 		button.get_node("GradeHook").remote_path = null
 		button.disconnect("lowlight_changed", self, "_on_LevelSelectButton_lowlight_changed")
 		button.disconnect("tree_exited", self, "_on_LevelSelectButton_tree_exited")
+		button.disconnect("level_info_changed", self, "_on_LevelSelectButton_level_info_changed")
 	
 	button = new_button
 	
 	button.get_node("GradeHook").remote_path = button.get_node("GradeHook").get_path_to(self)
 	button.connect("lowlight_changed", self, "_on_LevelSelectButton_lowlight_changed")
 	button.connect("tree_exited", self, "_on_LevelSelectButton_tree_exited")
+	button.connect("level_info_changed", self, "_on_LevelSelectButton_level_info_changed")
 	
 	_refresh_appearance()
 
@@ -130,3 +132,7 @@ func _on_LevelSelectButton_lowlight_changed() -> void:
 
 func _on_LevelSelectButton_tree_exited() -> void:
 	queue_free()
+
+
+func _on_LevelSelectButton_level_info_changed() -> void:
+	_refresh_appearance()

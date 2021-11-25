@@ -16,6 +16,11 @@ func _ready() -> void:
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
 	CurrentLevel.connect("best_result_changed", self, "_on_Level_best_result_changed")
 	$MessageLabel.hide()
+	
+	if PlayerData.career.is_career_mode():
+		# they can't go back in career mode
+		$Buttons/Back.text = tr("Skip")
+	
 	# grab focus so the player can start a new game or navigate with the keyboard
 	$Buttons/Start.grab_focus()
 

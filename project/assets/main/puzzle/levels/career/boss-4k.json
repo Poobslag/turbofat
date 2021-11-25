@@ -1,0 +1,17 @@
+{
+  "version": "297a",
+  "title": "Grand Opening: Cannoli Sandbar",
+  "description": "Opening a new restaurant can be tough!",
+  "success_condition": {
+    "type": "score",
+    "value": "400"
+  },
+  "start_speed": "4",
+  "finish_condition": {
+    "type": "customers",
+    "value": "4"
+  },
+  "rank": [
+    "success_bonus 2"
+  ]
+}
