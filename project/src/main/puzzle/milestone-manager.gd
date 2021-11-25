@@ -19,9 +19,9 @@ func _physics_process(_delta: float) -> void:
 		_check_for_finish()
 
 
-func milestone_met(milestone: Milestone) -> bool:
+func is_met(milestone: Milestone) -> bool:
 	var result := false
-	var progress := milestone_progress(milestone)
+	var progress := progress_value(milestone)
 	match milestone.type:
 		Milestone.NONE:
 			result = false
@@ -32,11 +32,11 @@ func milestone_met(milestone: Milestone) -> bool:
 	return result
 
 
-## Returns the player's current progress toward the specified milestone.
+## Returns the player's current progress toward the specified milestone as a number ranged [0, inf].
 ##
 ## Depending on the milestone type, the returned progress value could be the current score, number of lines cleared or
 ## something else.
-func milestone_progress(milestone: Milestone) -> float:
+func progress_value(milestone: Milestone) -> float:
 	var progress: float
 	match milestone.type:
 		Milestone.CUSTOMERS:
@@ -81,7 +81,7 @@ func _check_for_speed_up() -> void:
 	var new_speed_index: int = PuzzleState.speed_index
 	
 	while new_speed_index + 1 < CurrentLevel.settings.speed.speed_ups.size() \
-			and milestone_met(CurrentLevel.settings.speed.speed_ups[new_speed_index + 1]):
+			and is_met(CurrentLevel.settings.speed.speed_ups[new_speed_index + 1]):
 		new_speed_index += 1
 	
 	if PuzzleState.speed_index != new_speed_index:
@@ -90,7 +90,7 @@ func _check_for_speed_up() -> void:
 
 ## If the player reached the finish milestone, we end the level.
 func _check_for_finish() -> void:
-	if PuzzleState.game_active and milestone_met(CurrentLevel.settings.finish_condition):
+	if PuzzleState.game_active and is_met(CurrentLevel.settings.finish_condition):
 		PuzzleState.trigger_finish()
 
 
