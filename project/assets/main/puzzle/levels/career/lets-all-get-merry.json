@@ -1,8 +1,8 @@
 {
   "version": "297a",
   "start_speed": "3",
-  "title": "It's Really Time To Leave",
-  "description": "Can't we stay forever?",
+  "title": "Let's All Get Merry",
+  "description": "It's a dessert party and everybody's invited!",
   "finish_condition": {
     "type": "lines",
     "value": "50"

@@ -6,10 +6,10 @@
       "piece_speed": "0",
       "levels": [
         {
-          "id": "career/secret_brownies"
+          "id": "career/90_second_sprint"
         },
         {
-          "id": "career/fruit_salad"
+          "id": "career/cocoa_canyon"
         },
         {
           "id": "career/unfresh_fruits"
@@ -43,101 +43,83 @@
       "piece_speed": "0-3",
       "levels": [
         {
-          "id": "career/just_cream"
+          "id": "career/1000_race"
         },
         {
           "id": "career/boxing_day"
         },
         {
-          "id": "career/real_meal"
+          "id": "career/fruit_salad"
         },
         {
-          "id": "career/pineapple_on_its_side_cake"
-        },
-        {
-          "id": "career/muffin_impossible_2"
-        },
-        {
-          "id": "career/its_square_to_be_square"
-        },
-        {
-          "id": "career/cocoa_canyon"
-        },
-        {
-          "id": "career/its_tee_time"
-        },
-        {
-          "id": "career/veggie_patty"
-        },
-        {
-          "id": "career/lets_all_get_merry"
-        },
-        {
-          "id": "career/a_little_garbage"
-        },
-        {
-          "id": "career/teensy_taste"
+          "id": "career/just_cream"
         },
         {
           "id": "career/muffin_impossible"
         },
         {
+          "id": "career/secret_brownies"
+        },
+        {
           "id": "career/snack_box_blitz"
         },
         {
+          "id": "career/lets_all_get_merry"
+        },
+        {
+          "id": "career/strawberry_shortcut"
+        },
+        {
           "id": "career/unfresh_fruits"
+        },
+        {
+          "id": "career/cleaning_duty"
         }
       ]
     },
     {
-      "name": "The Great Frungle Kingdom",
+      "name": "Cannoli Sandbar",
       "distance": 25,
       "piece_speed": "1-5",
       "levels": [
         {
-          "id": "career/just_cream"
-        },
-        {
-          "id": "career/boxing_day"
-        },
-        {
-          "id": "career/real_meal"
-        },
-        {
-          "id": "career/pineapple_on_its_side_cake"
-        },
-        {
-          "id": "career/muffin_impossible_2"
-        },
-        {
-          "id": "career/its_square_to_be_square"
+          "id": "career/1000_race"
         },
         {
           "id": "career/cocoa_canyon"
         },
         {
-          "id": "career/its_tee_time"
+          "id": "career/strawberry_shortcut"
         },
         {
-          "id": "career/veggie_patty"
+          "id": "career/veggie_haters"
         },
         {
-          "id": "career/lets_all_get_merry"
+          "id": "career/pineapple_on_its_side_cake"
         },
         {
-          "id": "career/a_little_garbage"
+          "id": "career/unfresh_fruits_2"
         },
         {
-          "id": "career/teensy_taste"
+          "id": "career/real_meal"
         },
         {
-          "id": "career/muffin_impossible"
+          "id": "career/secret_brownies"
         },
         {
-          "id": "career/snack_box_blitz"
+          "id": "career/a_little_extra"
         },
         {
-          "id": "career/unfresh_fruits"
+          "id": "career/its_square_to_be_square"
+        },
+        {
+          "id": "career/curly_queue"
+        },
+        {
+          "id": "career/one_step_ahead"
+        },
+        {
+          "id": "career/wedding_cake_for_one"
         }
       ]
     },
@@ -147,49 +129,43 @@
       "piece_speed": "3-7",
       "levels": [
         {
-          "id": "career/just_cream"
+          "id": "career/90_second_sprint"
         },
         {
-          "id": "career/boxing_day"
+          "id": "career/fruit_salad"
         },
         {
-          "id": "career/real_meal"
+          "id": "career/a_little_extra"
         },
         {
-          "id": "career/pineapple_on_its_side_cake"
-        },
-        {
-          "id": "career/muffin_impossible_2"
-        },
-        {
-          "id": "career/its_square_to_be_square"
+          "id": "career/unfresh_fruits_2"
         },
         {
           "id": "career/cocoa_canyon"
         },
         {
-          "id": "career/its_tee_time"
+          "id": "career/strawberry_shortcut"
         },
         {
-          "id": "career/veggie_patty"
+          "id": "career/just_cream"
         },
         {
-          "id": "career/lets_all_get_merry"
+          "id": "career/muffin_impossible_2"
         },
         {
           "id": "career/a_little_garbage"
         },
         {
-          "id": "career/teensy_taste"
+          "id": "career/real_meal"
         },
         {
-          "id": "career/muffin_impossible"
+          "id": "career/curly_queue_2"
         },
         {
-          "id": "career/snack_box_blitz"
+          "id": "career/leftovers"
         },
         {
-          "id": "career/unfresh_fruits"
+          "id": "career/tempting_jellies"
         }
       ]
     },
@@ -199,49 +175,37 @@
       "piece_speed": "5-8",
       "levels": [
         {
-          "id": "career/just_cream"
-        },
-        {
-          "id": "career/boxing_day"
-        },
-        {
-          "id": "career/real_meal"
-        },
-        {
-          "id": "career/pineapple_on_its_side_cake"
-        },
-        {
-          "id": "career/muffin_impossible_2"
-        },
-        {
-          "id": "career/its_square_to_be_square"
-        },
-        {
-          "id": "career/cocoa_canyon"
-        },
-        {
-          "id": "career/its_tee_time"
-        },
-        {
-          "id": "career/veggie_patty"
+          "id": "career/90_second_sprint"
         },
         {
           "id": "career/lets_all_get_merry"
         },
         {
-          "id": "career/a_little_garbage"
+          "id": "career/cocoa_canyon"
         },
         {
-          "id": "career/teensy_taste"
+          "id": "career/secret_brownies"
         },
         {
-          "id": "career/muffin_impossible"
+          "id": "career/veggie_patty"
         },
         {
           "id": "career/snack_box_blitz"
         },
         {
-          "id": "career/unfresh_fruits"
+          "id": "career/its_tee_time"
+        },
+        {
+          "id": "career/a_little_garbage_2"
+        },
+        {
+          "id": "career/muffin_impossible_2"
+        },
+        {
+          "id": "career/strawberry_shortcut"
+        },
+        {
+          "id": "career/low_gravity"
         }
       ]
     },
@@ -251,101 +215,83 @@
       "piece_speed": "6-9",
       "levels": [
         {
-          "id": "career/just_cream"
+          "id": "career/90_second_sprint"
         },
         {
-          "id": "career/boxing_day"
+          "id": "career/fruit_salad"
         },
         {
-          "id": "career/real_meal"
-        },
-        {
-          "id": "career/pineapple_on_its_side_cake"
-        },
-        {
-          "id": "career/muffin_impossible_2"
+          "id": "career/unfresh_fruits_2"
         },
         {
           "id": "career/its_square_to_be_square"
         },
         {
-          "id": "career/cocoa_canyon"
-        },
-        {
-          "id": "career/its_tee_time"
-        },
-        {
           "id": "career/veggie_patty"
         },
         {
-          "id": "career/lets_all_get_merry"
+          "id": "career/muffin_impossible_3"
         },
         {
-          "id": "career/a_little_garbage"
+          "id": "career/just_cream"
         },
         {
-          "id": "career/teensy_taste"
+          "id": "career/accelerator"
         },
         {
-          "id": "career/muffin_impossible"
+          "id": "career/a_little_garbage_2"
         },
         {
-          "id": "career/snack_box_blitz"
+          "id": "career/nowhere_to_turn"
         },
         {
-          "id": "career/unfresh_fruits"
+          "id": "career/zero_gravity"
+        },
+        {
+          "id": "career/too_fast_to_fast"
+        },
+        {
+          "id": "career/wedding_cake_for_one"
         }
       ]
     },
     {
       "name": "Starberry Mountain",
       "distance": 100,
-      "piece_speed": "A0-AD",
+      "piece_speed": "A1-AD",
       "levels": [
         {
-          "id": "career/just_cream"
+          "id": "career/dark/three_minute_sprint"
         },
         {
-          "id": "career/boxing_day"
+          "id": "career/dark/3000_race"
         },
         {
-          "id": "career/real_meal"
+          "id": "career/dark/muffin_impossible_2"
         },
         {
-          "id": "career/pineapple_on_its_side_cake"
+          "id": "career/dark/a_little_garbage_2"
         },
         {
-          "id": "career/muffin_impossible_2"
+          "id": "career/dark/boxing_day"
         },
         {
-          "id": "career/its_square_to_be_square"
+          "id": "career/dark/fruit_salad"
         },
         {
-          "id": "career/cocoa_canyon"
+          "id": "career/dark/secret_brownies"
         },
         {
-          "id": "career/its_tee_time"
+          "id": "career/dark/strawberry_shortcut"
         },
         {
-          "id": "career/veggie_patty"
+          "id": "career/dark/a_little_extra"
         },
         {
-          "id": "career/lets_all_get_merry"
+          "id": "career/dark/its_square_to_be_square"
         },
         {
-          "id": "career/a_little_garbage"
-        },
-        {
-          "id": "career/teensy_taste"
-        },
-        {
-          "id": "career/muffin_impossible"
-        },
-        {
-          "id": "career/snack_box_blitz"
-        },
-        {
-          "id": "career/unfresh_fruits"
+          "id": "career/dark/too_fast_to_fast"
         }
       ]
     }
