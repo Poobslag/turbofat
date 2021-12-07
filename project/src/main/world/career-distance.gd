@@ -22,13 +22,13 @@ func _refresh_distance() -> void:
 ## Refreshes the step count label based on the player's current distance.
 func _refresh_label() -> void:
 	if PlayerData.career.distance_earned > 0:
-		_label.text = "%s (+%s)" % [Utils.comma_sep(PlayerData.career.distance_travelled),
-				Utils.comma_sep(PlayerData.career.distance_earned)]
+		_label.text = "%s (+%s)" % [StringUtils.comma_sep(PlayerData.career.distance_travelled),
+				StringUtils.comma_sep(PlayerData.career.distance_earned)]
 	elif PlayerData.career.distance_earned < 0:
-		_label.text = "%s (%s)" % [Utils.comma_sep(PlayerData.career.distance_travelled),
-				Utils.comma_sep(PlayerData.career.distance_earned)]
+		_label.text = "%s (%s)" % [StringUtils.comma_sep(PlayerData.career.distance_travelled),
+				StringUtils.comma_sep(PlayerData.career.distance_earned)]
 	else:
-		_label.text = Utils.comma_sep(PlayerData.career.distance_travelled)
+		_label.text = StringUtils.comma_sep(PlayerData.career.distance_travelled)
 
 
 ## Refreshes the buttons based on the player's current distance.
