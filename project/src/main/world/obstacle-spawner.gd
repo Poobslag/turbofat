@@ -7,7 +7,7 @@ extends Node2D
 ## The obstacle's properties and groups (the 'chattables' group in particular) can be managed by the target_properties
 ## and target_groups fields.
 
-export (NodePath) var overworld_world_path: NodePath = NodePath("../..")
+export (NodePath) var obstacle_manager_path: NodePath = NodePath("../../ObstacleManager")
 
 ## the PackedScene of the spawned obstacle
 export (PackedScene) var TargetScene: PackedScene
@@ -24,7 +24,7 @@ export (String) var spawn_if: String
 ## the spawned object, or 'null' if the object has not yet spawned
 var _spawned_object: Node2D
 
-onready var _overworld_world: OverworldWorld = get_node(overworld_world_path)
+onready var _obstacle_manager: ObstacleManager = get_node(obstacle_manager_path)
 
 func _ready() -> void:
 	if not spawn_if or BoolExpressionEvaluator.evaluate(spawn_if):
@@ -65,7 +65,7 @@ func _spawn_target() -> void:
 	
 	# add it to the scene tree
 	get_parent().add_child_below_node(self, _spawned_object)
-	_overworld_world.process_new_obstacle(_spawned_object)
+	_obstacle_manager.process_new_obstacle(_spawned_object)
 	
 	# remove the spawner from the scene tree
 	queue_free()

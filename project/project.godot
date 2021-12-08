@@ -534,6 +534,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/next-piece-displays.gd"
 }, {
+"base": "Node",
+"class": "ObstacleManager",
+"language": "GDScript",
+"path": "res://src/main/world/obstacle-manager.gd"
+}, {
 "base": "TileMap",
 "class": "ObstacleMap",
 "language": "GDScript",
@@ -1055,6 +1060,7 @@ _global_script_class_icons={
 "NextPiece": "",
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",
+"ObstacleManager": "",
 "ObstacleMap": "",
 "ObstacleMapIndoors": "",
 "ObstacleSpawner": "",
