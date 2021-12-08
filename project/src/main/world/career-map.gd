@@ -24,20 +24,6 @@ var TIME_OF_DAY_BY_HOURS := {
 	8: tr("5:00 pm"),
 }
 
-## key: (int) corresonding to the number of levels the player has played
-## value: (String) summary of the player's progress
-var DESCRIPTION_TEXT_BY_HOURS := {
-	0: tr("A brand new day. Let's make some money!"),
-	1: tr("Eight hours left. Plenty of time!"),
-	2: tr("Seven hours to go. Get ready for the lunch rush!"),
-	3: tr("Six hours left. Wow, look at all these customers!"),
-	4: tr("Five hours left in the workday. Let's take a little break!"),
-	5: tr("Three hours left, but customers are still coming in!"),
-	6: tr("Two hours left. Phew, I'm exhausted!"),
-	7: tr("One hour left in the workday. Give it your all, let's make this count!"),
-	8: tr("Phew, what a day! Let's go home."),
-}
-
 ## LevelSettings instances for each level the player can select
 var _level_settings_for_levels := []
 
@@ -46,15 +32,13 @@ var _piece_speed: String
 
 var _duration_calculator := DurationCalculator.new()
 
-onready var _daily_steps := $LevelSelect/Distance/Label
-onready var _time_of_day := $LevelSelect/TimeOfDay
+onready var _daily_steps := $LevelSelect/Control/Distance/Label
+onready var _time_of_day := $LevelSelect/Control/TimeOfDay
 
-onready var _level_description_panel := $LevelSelect/VBoxContainer/Bottom/HBoxContainer/Description
-onready var _level_info_panel := $LevelSelect/VBoxContainer/Bottom/HBoxContainer/Info
-onready var _grade_labels := $LevelSelect/VBoxContainer/Top/GradeLabels
+onready var _grade_labels := $LevelSelect/Control/Top/GradeLabels
 
 ## LevelSelectButtons for all levels the player can select.
-onready var _level_select_buttons := $LevelSelect/VBoxContainer/Top/LevelButtons.get_children()
+onready var _level_select_buttons := $LevelSelect/Control/Top/LevelButtons.get_children()
 
 func _ready() -> void:
 	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
@@ -63,7 +47,6 @@ func _ready() -> void:
 	else:
 		for i in range(_level_select_buttons.size()):
 			var level_select_button: LevelSelectButton = _level_select_buttons[i]
-			level_select_button.connect("focus_entered", self, "_on_LevelSelectButton_focus_entered", [i])
 			level_select_button.connect("level_started", self, "_on_LevelSelectButton_level_started", [i])
 			_grade_labels.add_label(level_select_button)
 		
@@ -149,22 +132,6 @@ func _prepare_labels() -> void:
 	_time_of_day.text = TIME_OF_DAY_BY_HOURS.get(PlayerData.career.hours_passed, "?:?? zm")
 	if not TIME_OF_DAY_BY_HOURS.has(PlayerData.career.hours_passed):
 		push_warning("TIME_OF_DAY_BY_HOURS has no entry for %s" % [PlayerData.career.hours_passed])
-	
-	# prepare the info label
-	if PlayerData.career.prev_distance_travelled:
-		var info_text: String = tr("Past attempts:")
-		for i in range(min(PlayerData.career.prev_distance_travelled.size(), 3)):
-			var daily_earnings: int = PlayerData.career.prev_daily_earnings[i]
-			var distance_travelled: int = PlayerData.career.prev_distance_travelled[i]
-			info_text += "\n"
-			info_text += "%s (%s)" % \
-					[StringUtils.comma_sep(distance_travelled), StringUtils.format_money(daily_earnings)]
-		_level_info_panel.set_text(info_text)
-	
-	# prepare the description label
-	_level_description_panel.set_text(DESCRIPTION_TEXT_BY_HOURS.get(PlayerData.career.hours_passed, ""))
-	if not DESCRIPTION_TEXT_BY_HOURS.has(PlayerData.career.hours_passed):
-		push_warning("DESCRIPTION_TEXT_BY_HOURS has no entry for %s" % [PlayerData.career.hours_passed])
 
 
 ## Return a list of random CareerLevels for the player to choose from.
@@ -199,13 +166,6 @@ func _random_levels() -> Array:
 			break
 	
 	return random_levels
-
-
-## When the player clicks a level button once, we show more information.
-func _on_LevelSelectButton_focus_entered(level_index: int) -> void:
-	var level_settings: LevelSettings = _level_settings_for_levels[level_index]
-	_level_info_panel.update_unlocked_level_text(level_settings)
-	_level_description_panel.update_unlocked_level_text(level_settings)
 
 
 ## When the player clicks a level button twice, we launch the selected level
