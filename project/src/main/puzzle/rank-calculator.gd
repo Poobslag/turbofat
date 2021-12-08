@@ -255,15 +255,15 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			target_lines = finish_condition.get_meta("lenient_value") if lenient else finish_condition.value
 		Milestone.PIECES:
 			# warning-ignore:integer_division
-			target_lines = (finish_condition.value + CurrentLevel.settings.rank.preplaced_pieces) / 2
+			target_lines = (finish_condition.value + CurrentLevel.settings.rank.preplaced_pieces) / 2.0
 		Milestone.SCORE:
 			target_lines = ceil((finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
 					/ (target_box_score_per_line + target_combo_score_per_line + 1))
-			target_lines = max(0, target_lines - CurrentLevel.settings.rank.preplaced_pieces / 2)
+			target_lines = max(0, target_lines - CurrentLevel.settings.rank.preplaced_pieces / 2.0)
 			leftover_lines = 0 # you're racing to a target score, it's inefficient to stack extra pieces
 		Milestone.TIME_OVER:
 			target_lines = target_speed * finish_condition.value / 60.0
-			target_lines += CurrentLevel.settings.rank.preplaced_pieces / 2
+			target_lines += CurrentLevel.settings.rank.preplaced_pieces / 2.0
 	
 	# decrease target_lines based on leftover_lines
 	if finish_condition.type in [Milestone.PIECES, Milestone.TIME_OVER]:
