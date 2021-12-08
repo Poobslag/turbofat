@@ -310,7 +310,7 @@ CreatureScene = ExtResource( 59 )
 
 [node name="Camera2D" type="Camera2D" parent="World"]
 current = true
-zoom = Vector2( 1.1, 1.1 )
+zoom = Vector2( 0.8, 0.8 )
 
 [node name="LevelSelect" type="CanvasLayer" parent="."]
 script = ExtResource( 28 )

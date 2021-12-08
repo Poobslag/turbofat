@@ -2,12 +2,22 @@ extends Node
 ## Populates/unpopulates the creatures and obstacles in the career mode's world.
 
 ## horizontal distance to maintain when placing the player and the sensei
-const DISTANCE_BETWEEN_PLAYER_AND_SENSEI := 300
+const X_DIST_BETWEEN_PLAYER_AND_SENSEI := 180
+
+## horizontal distance to maintain when placing customers
+const X_DIST_BETWEEN_CUSTOMERS := 200
+
+## vertical distance separating the customers from the player's path
+const Y_DIST_BETWEEN_CUSTOMERS_AND_PATH := 80
 
 export (NodePath) var player_path2d_path: NodePath
 
+## List of Customer instances for the level's customers. Index 0 holds the leftmost customer.
+var customers := []
+
 ## path on which which the player and sensei are placed
 onready var _player_path2d: Path2D = get_node(player_path2d_path)
+
 onready var _obstacle_manager: ObstacleManager = $ObstacleManager
 onready var _camera: Camera2D = $Camera2D
 
@@ -17,6 +27,40 @@ func _ready() -> void:
 	_move_player_to_path(percent)
 	_move_sensei_to_path(percent)
 	_move_camera(percent)
+	
+	for _i in range(3):
+		_add_customer(percent)
+
+
+## Adds a customer to a position slightly above _player_path2d.
+##
+## Parameters:
+## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the customer should be positioned.
+func _add_customer(percent: float) -> void:
+	var customer := _obstacle_manager.add_creature()
+	customers.append(customer)
+	customer.creature_def = CreatureLoader.random_def()
+	
+	# determine the customer's position
+	var customer_range := _camera_x_range()
+	customer_range.min_value += X_DIST_BETWEEN_CUSTOMERS * (customers.size() - 2)
+	customer_range.max_value += X_DIST_BETWEEN_CUSTOMERS * (customers.size() - 2)
+	customer.position.x = lerp(customer_range.min_value, customer_range.max_value, percent)
+	customer.position.y = _player_path2d_y(customer.position.x)
+	
+	match customers.size():
+		1:
+			# leftmost customer faces right
+			customer.orientation = Creatures.SOUTHEAST
+			customer.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
+		2:
+			# middle customer faces an arbitrary direction
+			customer.orientation = Utils.rand_value([Creatures.SOUTHWEST, Creatures.SOUTHEAST])
+			customer.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH
+		_:
+			# rightmost customer faces left
+			customer.orientation = Creatures.SOUTHWEST
+			customer.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
 
 
 ## Moves the player creature to a point along _player_path2d.
@@ -25,8 +69,9 @@ func _ready() -> void:
 ## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the player should be positioned.
 func _move_player_to_path(percent: float) -> void:
 	var player := _find_player()
-	var player_range := _player_path2d_x_range()
-	player_range.max_value -= DISTANCE_BETWEEN_PLAYER_AND_SENSEI
+	var player_range := _camera_x_range()
+	player_range.max_value -= X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+	player_range.min_value -= X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
 	player.position.x = lerp(player_range.min_value, player_range.max_value, percent)
 	player.position.y = _player_path2d_y(player.position.x)
 
@@ -37,8 +82,9 @@ func _move_player_to_path(percent: float) -> void:
 ## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the sensei should be positioned.
 func _move_sensei_to_path(percent: float) -> void:
 	var sensei := _find_sensei()
-	var sensei_range := _player_path2d_x_range()
-	sensei_range.min_value += DISTANCE_BETWEEN_PLAYER_AND_SENSEI
+	var sensei_range := _camera_x_range()
+	sensei_range.max_value += X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+	sensei_range.min_value += X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
 	sensei.position.x = lerp(sensei_range.min_value, sensei_range.max_value, percent)
 	sensei.position.y = _player_path2d_y(sensei.position.x)
 
@@ -48,19 +94,20 @@ func _move_sensei_to_path(percent: float) -> void:
 ## Parameters:
 ## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the camera should be positioned.
 func _move_camera(percent: float) -> void:
-	var camera_range := _player_path2d_x_range()
-	camera_range.min_value += DISTANCE_BETWEEN_PLAYER_AND_SENSEI * 0.5
-	camera_range.max_value -= DISTANCE_BETWEEN_PLAYER_AND_SENSEI * 0.5
+	var camera_range := _camera_x_range()
 	_camera.position.x = lerp(camera_range.min_value, camera_range.max_value, percent)
 	_camera.position.y = _player_path2d_y(_camera.position.x) - 150
 
 
-## Calculates and returns the leftmost/rightmost x position on _player_path2d.
+## Calculates and returns the leftmost/rightmost camera x position within the _player_path2d.
+##
+## The _player_path2d includes a range of x values where creatures can be placed, but the range of camera x values is
+## slightly narrower than this.
 ##
 ## Returns:
-## 	A dictionary defining 'min_value' and 'max_value' properties corresponding to the leftmost/rightmost x position
-## 	within the _player_path2d
-func _player_path2d_x_range() -> Dictionary:
+## 	A dictionary defining 'min_value' and 'max_value' float values for the leftmost/rightmost camera x position
+## 		within the _player_path2d
+func _camera_x_range() -> Dictionary:
 	var result := {}
 	result.min_value = _player_path2d_point(0).x
 	result.max_value = result.min_value
@@ -68,6 +115,10 @@ func _player_path2d_x_range() -> Dictionary:
 		var point_x := _player_path2d_point(i).x
 		result.min_value = min(result.min_value, point_x)
 		result.max_value = max(result.max_value, point_x)
+	
+	result.min_value += X_DIST_BETWEEN_CUSTOMERS
+	result.max_value -= X_DIST_BETWEEN_CUSTOMERS
+	
 	return result
 
 
@@ -103,8 +154,11 @@ func _player_path2d_y(path2d_x: float) -> float:
 
 ## When a new level button is selected, the player/sensei orient towards it.
 func _on_LevelSelect_level_button_focused(button_index: int) -> void:
+	var button_count := 1 if PlayerData.career.is_boss_level() else 3
+	var button_x := inverse_lerp(0, button_count - 1, button_index)
+	
 	var player := _find_player()
-	player.orientation = Creatures.SOUTHWEST if button_index == 0 else Creatures.SOUTHEAST
+	player.orientation = Creatures.SOUTHWEST if button_x <= 0.3 else Creatures.SOUTHEAST
 	
 	var sensei := _find_sensei()
-	sensei.orientation = Creatures.SOUTHEAST if button_index == 2 else Creatures.SOUTHWEST
+	sensei.orientation = Creatures.SOUTHEAST if button_x >= 0.7 else Creatures.SOUTHWEST

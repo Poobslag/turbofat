@@ -82,9 +82,13 @@ func _ready() -> void:
 
 
 ## Returns a random creature definition.
-func random_def() -> CreatureDef:
+##
+## Parameters:
+## 	'include_secondary_creatures': If 'true' the function has a chance to return a creature from a library of
+## 		predefined creatures instead of a randomly generated one.
+func random_def(include_secondary_creatures: bool = false) -> CreatureDef:
 	var result: CreatureDef
-	if PlayerData.creature_queue.has_secondary_creature() and randf() < 0.2:
+	if include_secondary_creatures and PlayerData.creature_queue.has_secondary_creature() and randf() < 0.2:
 		result = PlayerData.creature_queue.pop_secondary_creature()
 	else:
 		result = CreatureDef.new()

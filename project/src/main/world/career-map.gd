@@ -32,10 +32,10 @@ var _piece_speed: String
 
 var _duration_calculator := DurationCalculator.new()
 
+onready var _world := $World
 onready var _daily_steps := $LevelSelect/Control/Distance/Label
-onready var _time_of_day := $LevelSelect/Control/TimeOfDay
-
 onready var _grade_labels := $LevelSelect/Control/Top/GradeLabels
+onready var _time_of_day := $LevelSelect/Control/TimeOfDay
 
 ## LevelSelectButtons for all levels the player can select.
 onready var _level_select_buttons := $LevelSelect/Control/Top/LevelButtons.get_children()
@@ -72,7 +72,7 @@ func _load_level_settings() -> void:
 	
 	var career_levels: Array
 	var region: CareerRegion = CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
-	if PlayerData.career.is_boss_level() and region.boss_level:
+	if PlayerData.career.is_boss_level():
 		# player must pick the boss level
 		career_levels = [region.boss_level]
 		_piece_speed = ""
@@ -174,6 +174,17 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	PlayerData.career.daily_level_ids.append(level_settings.id)
 	CurrentLevel.set_launched_level(level_settings.id)
 	CurrentLevel.piece_speed = _piece_speed
+	
+	# enqueue customers for the selected levels
+	if PlayerData.career.is_boss_level():
+		# boss level; enqueue all visible customers
+		for customer in _world.customers:
+			CurrentLevel.customers.append(customer.creature_def)
+			CurrentLevel.customers.shuffle()
+	elif level_index < _world.customers.size():
+		# regular level; enqueue the selected customer
+		CurrentLevel.customers.append(_world.customers[level_index].creature_def)
+	
 	PlayerData.career.push_career_trail()
 
 
