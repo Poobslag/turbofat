@@ -112,6 +112,7 @@ func _refresh_ripple_sprites() -> void:
 		
 		# if there's no floor in front or behind, this ripple is off
 		var ripple_off := not _tile_map.get_cellv(used_cell + cell_forward_vector) != -1 \
+				or not _tile_map.get_cellv(used_cell) != -1 \
 				or not _tile_map.get_cellv(used_cell - cell_forward_vector) != -1
 		
 		# if there's floor in front/left and behind/left, this ripple connects left
