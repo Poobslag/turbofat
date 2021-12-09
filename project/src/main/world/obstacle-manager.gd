@@ -7,10 +7,12 @@ export (NodePath) var chat_icons_path: NodePath
 
 export (NodePath) var creature_shadows_path: NodePath
 export (NodePath) var shadow_caster_shadows_path: NodePath
+export (NodePath) var obstacles_path: NodePath
 export (PackedScene) var CreatureScene: PackedScene
 
 onready var _chat_icons: ChatIcons
 onready var _creature_shadows: CreatureShadows = get_node(creature_shadows_path)
+onready var _obstacles: Node2D = get_node(obstacles_path)
 onready var _shadow_caster_shadows: ShadowCasterShadows = get_node(shadow_caster_shadows_path)
 
 func _ready() -> void:
@@ -41,7 +43,7 @@ func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 func add_creature(creature_id: String, chattable: bool = true) -> Creature:
 	var creature: Creature = CreatureScene.instance()
 	creature.creature_id = creature_id
-	$Obstacles.add_child(creature)
+	_obstacles.add_child(creature)
 	if chattable:
 		creature.add_to_group("chattables")
 		var chat_bubble_type := ChatLibrary.chat_icon_for_creature(creature)
