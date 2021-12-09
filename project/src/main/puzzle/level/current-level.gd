@@ -28,7 +28,9 @@ var piece_speed: String
 var creature_id: String
 
 ## The customers to queue up at the start of the level. If absent, random customers will be queued.
-var customer_ids: Array
+##
+## This array can hold a combination of creature ids and CreatureDef instances.
+var customers: Array
 
 ## The creature who will be the chef for the level. If absent, the player will be the chef.
 var chef_id: String
@@ -70,11 +72,11 @@ func set_launched_level(new_level_id: String) -> void:
 	
 	if level_lock:
 		creature_id = level_lock.creature_id
-		customer_ids = level_lock.customer_ids
+		customers = level_lock.customer_ids
 		chef_id = level_lock.chef_id
 	else:
 		creature_id = ""
-		customer_ids = []
+		customers = []
 		chef_id = ""
 
 
@@ -133,10 +135,16 @@ func push_level_trail() -> void:
 		level_settings.other.skip_intro = true
 	
 	start_level(level_settings)
-	for launched_customer_id_obj in customer_ids:
-		var launched_customer_id: String = launched_customer_id_obj
-		var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(launched_customer_id)
-		PlayerData.creature_queue.primary_queue.push_front(creature_def)
+	for customer_obj in customers:
+		if customer_obj is String:
+			var customer_id: String = customer_obj
+			var creature_def: CreatureDef = PlayerData.creature_library.get_creature_def(customer_id)
+			PlayerData.creature_queue.primary_queue.push_front(creature_def)
+		elif customer_obj is CreatureDef:
+			var creature_def: CreatureDef = customer_obj
+			PlayerData.creature_queue.primary_queue.push_front(creature_def)
+		else:
+			push_warning("Unrecognized customer: %s" % [customer_obj])
 	SceneTransition.push_trail(Global.SCENE_PUZZLE)
 
 

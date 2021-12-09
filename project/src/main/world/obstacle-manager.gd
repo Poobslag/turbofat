@@ -40,7 +40,13 @@ func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 
 
 ## Creates a new creature with the specified creature_id and adds it to the scene.
-func add_creature(creature_id: String, chattable: bool = true) -> Creature:
+##
+## Parameters:
+## 	'creature_id': (Optional) The id of a creature to load from the CreatureLibrary. If omitted, the returned
+## 		creature will assume a default appearance.
+##
+## 	'chattable': (Optional) 'True' if the player can walk up and speak to the creature.
+func add_creature(creature_id: String = "", chattable: bool = true) -> Creature:
 	var creature: Creature = CreatureScene.instance()
 	creature.creature_id = creature_id
 	_obstacles.add_child(creature)
