@@ -305,6 +305,7 @@ dna = {
 script = ExtResource( 18 )
 creature_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
 shadow_caster_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+obstacles_path = NodePath("../Obstacles")
 CreatureScene = ExtResource( 59 )
 
 [node name="Camera2D" type="Camera2D" parent="World"]
