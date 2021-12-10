@@ -6,24 +6,6 @@ extends Node
 ## The number of levels the player can choose between
 const SELECTION_COUNT := 3
 
-## Shows the player's current progress through career mode.
-##
-## This includes how many levels they've played, how much money they've earned, and how far they've travelled.
-
-## key: (int) corresonding to the number of levels the player has played
-## value: (String) human-readable time of day
-var TIME_OF_DAY_BY_HOURS := {
-	0: tr("8:00 am"),
-	1: tr("9:10 am"),
-	2: tr("10:15 am"),
-	3: tr("11:20 am"),
-	4: tr("12:30 pm"),
-	5: tr("1:40 pm"),
-	6: tr("2:45 pm"),
-	7: tr("3:50 pm"),
-	8: tr("5:00 pm"),
-}
-
 ## LevelSettings instances for each level the player can select
 var _level_settings_for_levels := []
 
@@ -33,9 +15,7 @@ var _piece_speed: String
 var _duration_calculator := DurationCalculator.new()
 
 onready var _world := $World
-onready var _daily_steps := $LevelSelect/Control/Distance/Label
 onready var _grade_labels := $LevelSelect/Control/Top/GradeLabels
-onready var _time_of_day := $LevelSelect/Control/TimeOfDay
 
 ## LevelSelectButtons for all levels the player can select.
 onready var _level_select_buttons := $LevelSelect/Control/Top/LevelButtons.get_children()
@@ -60,12 +40,11 @@ func _exit_tree() -> void:
 func _refresh_ui() -> void:
 	_load_level_settings()
 	_prepare_level_select_buttons()
-	_prepare_labels()
 	
 	# Grab focus to allow keyboard support. Wait a frame for other listeners to fire (specifically listeners which
 	# turn the level buttons invisible)
 	yield(get_tree(), "idle_frame")
-	if _level_select_buttons and (not _daily_steps.get_focus_owner() or _daily_steps.modulate == Color.transparent):
+	if _level_select_buttons and not _level_select_buttons[0].get_focus_owner():
 		var middle_button_index: int = min(_level_select_buttons.size(), _level_settings_for_levels.size()) / 2
 		_level_select_buttons[middle_button_index].grab_focus()
 
@@ -127,17 +106,6 @@ func _prepare_level_select_buttons() -> void:
 		level_select_button.emit_signal("level_info_changed")
 
 
-## Updates the time of day, daily steps, info and description levels with their initial values.
-##
-## This must happen after the LevelSelectButtons grab focus, otherwise the initial description will be overwritten by
-## the level description.
-func _prepare_labels() -> void:
-	# prepare the time of day label
-	_time_of_day.text = TIME_OF_DAY_BY_HOURS.get(PlayerData.career.hours_passed, "?:?? zm")
-	if not TIME_OF_DAY_BY_HOURS.has(PlayerData.career.hours_passed):
-		push_warning("TIME_OF_DAY_BY_HOURS has no entry for %s" % [PlayerData.career.hours_passed])
-
-
 ## Return a list of random CareerLevels for the player to choose from.
 ##
 ## We only select levels appropriate for the current distance, and we exclude levels which have been played in the
@@ -190,7 +158,3 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 		CurrentLevel.customers.append(_world.customers[level_index].creature_def)
 	
 	PlayerData.career.push_career_trail()
-
-
-func _on_CareerData_distance_travelled_changed() -> void:
-	_refresh_ui()
