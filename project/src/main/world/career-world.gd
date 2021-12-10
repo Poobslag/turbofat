@@ -10,7 +10,16 @@ const X_DIST_BETWEEN_CUSTOMERS := 200
 ## vertical distance separating the customers from the player's path
 const Y_DIST_BETWEEN_CUSTOMERS_AND_PATH := 80
 
+## List of moods customers have when their level is chosen.
+const MOODS_COMMON := [ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE1, ChatEvent.Mood.WAVE0, ChatEvent.Mood.WAVE1]
+const MOODS_UNCOMMON := [ChatEvent.Mood.LAUGH0, ChatEvent.Mood.LAUGH1, ChatEvent.Mood.LOVE1, ChatEvent.Mood.AWKWARD0]
+const MOODS_RARE := [ChatEvent.Mood.AWKWARD1, ChatEvent.Mood.SIGH0, ChatEvent.Mood.SWEAT0, ChatEvent.Mood.THINK0]
+
 export (NodePath) var player_path2d_path: NodePath
+
+## List of moods each customer has when their level is chosen. Index 0 corresponds to the leftmost customer. Each
+## entry is an enum in ChatEvent.Mood.
+var _customer_moods := []
 
 ## List of Customer instances for the level's customers. Index 0 holds the leftmost customer.
 var customers := []
@@ -39,7 +48,17 @@ func _ready() -> void:
 func _add_customer(percent: float) -> void:
 	var customer := _obstacle_manager.add_creature()
 	customers.append(customer)
+	var mood: int
+	if randf() < 0.8:
+		mood = Utils.rand_value(MOODS_COMMON)
+	elif randf() < 0.8:
+		mood = Utils.rand_value(MOODS_UNCOMMON)
+	else:
+		mood = Utils.rand_value(MOODS_RARE)
+	_customer_moods.append(mood)
 	customer.creature_def = CreatureLoader.random_def()
+	# suppress sfx; customers make little smile/frown faces when they're selected, but sound effects are too much
+	customer.suppress_sfx = true
 	
 	# determine the customer's position
 	var customer_range := _camera_x_range()
@@ -54,8 +73,8 @@ func _add_customer(percent: float) -> void:
 			customer.orientation = Creatures.SOUTHEAST
 			customer.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
 		2:
-			# middle customer faces an arbitrary direction
-			customer.orientation = Utils.rand_value([Creatures.SOUTHWEST, Creatures.SOUTHEAST])
+			# middle customer faces right
+			customer.orientation = Creatures.SOUTHEAST
 			customer.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH
 		_:
 			# rightmost customer faces left
@@ -70,8 +89,8 @@ func _add_customer(percent: float) -> void:
 func _move_player_to_path(percent: float) -> void:
 	var player := _find_player()
 	var player_range := _camera_x_range()
-	player_range.max_value -= X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
-	player_range.min_value -= X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+	player_range.max_value += X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+	player_range.min_value += X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
 	player.position.x = lerp(player_range.min_value, player_range.max_value, percent)
 	player.position.y = _player_path2d_y(player.position.x)
 
@@ -83,8 +102,8 @@ func _move_player_to_path(percent: float) -> void:
 func _move_sensei_to_path(percent: float) -> void:
 	var sensei := _find_sensei()
 	var sensei_range := _camera_x_range()
-	sensei_range.max_value += X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
-	sensei_range.min_value += X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+	sensei_range.max_value -= X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
+	sensei_range.min_value -= X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
 	sensei.position.x = lerp(sensei_range.min_value, sensei_range.max_value, percent)
 	sensei.position.y = _player_path2d_y(sensei.position.x)
 
@@ -158,7 +177,14 @@ func _on_LevelSelect_level_button_focused(button_index: int) -> void:
 	var button_x := inverse_lerp(0, button_count - 1, button_index)
 	
 	var player := _find_player()
-	player.orientation = Creatures.SOUTHWEST if button_x <= 0.3 else Creatures.SOUTHEAST
+	player.orientation = Creatures.SOUTHEAST if button_x >= 0.7 else Creatures.SOUTHWEST
 	
 	var sensei := _find_sensei()
-	sensei.orientation = Creatures.SOUTHEAST if button_x >= 0.7 else Creatures.SOUTHWEST
+	sensei.orientation = Creatures.SOUTHWEST if button_x <= 0.3 else Creatures.SOUTHEAST
+	
+	if not PlayerData.career.is_boss_level():
+		for i in range(customers.size()):
+			if i == button_index:
+				customers[i].play_mood(_customer_moods[i])
+			else:
+				customers[i].play_mood(ChatEvent.Mood.DEFAULT)

@@ -60,7 +60,7 @@ func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
 		var left := tr("Customer #%s") % StringUtils.comma_sep(i + 1)
 		var right := "%s/\n" % StringUtils.format_money(customer_score)
 		var middle := " "
-		var period_count := 50 - _period_count(left + right)
+		var period_count := 49 - _period_count(left + right)
 		for _p in range(period_count):
 			middle += "."
 		text += left + middle + right

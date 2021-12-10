@@ -36,6 +36,8 @@ const CREATURE_FADE_OUT_DURATION := 0.3
 
 export (String) var creature_id: String setget set_creature_id
 export (Dictionary) var dna: Dictionary setget set_dna
+
+## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
 export (bool) var suppress_sfx: bool = false setget set_suppress_sfx
 
 ## if 'true' the creature will only use the fatness in the creature definition,
