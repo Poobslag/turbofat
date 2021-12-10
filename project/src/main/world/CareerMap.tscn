@@ -488,6 +488,8 @@ quit_type = 1
 [connection signal="pressed" from="LevelSelect/Control/Distance/Down" to="LevelSelect/Control/Distance" method="_on_Down_pressed"]
 [connection signal="pressed" from="LevelSelect/Control/Distance/Up" to="LevelSelect/Control/Distance" method="_on_Up_pressed"]
 [connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
+[connection signal="hide" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_hide"]
 [connection signal="hide" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_hide"]
 [connection signal="quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_quit_pressed"]
+[connection signal="show" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_show"]
 [connection signal="show" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_show"]
