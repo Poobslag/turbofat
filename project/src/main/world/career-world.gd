@@ -31,14 +31,28 @@ onready var _obstacle_manager: ObstacleManager = $ObstacleManager
 onready var _camera: Camera2D = $Camera2D
 
 func _ready() -> void:
-	var percent := randf()
-	
+	var percent := _distance_percent()
 	_move_player_to_path(percent)
 	_move_sensei_to_path(percent)
 	_move_camera(percent)
-	
 	for _i in range(3):
 		_add_customer(percent)
+
+
+## Calculates how far to the right the player should be positioned.
+##
+## Returns:
+## 	A number in the range [0.0, 1.0] describing how far to the right the customer should be positioned.
+func _distance_percent() -> float:
+	var percent: float
+	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
+		# for 'endless regions' just put them somewhere arbitrary
+		percent = randf()
+	else:
+		# for typicalregions, move them to the right gradually as they progress
+		percent = CareerLevelLibrary.region_weight_for_distance(region, PlayerData.career.distance_travelled)
+	return percent
 
 
 ## Adds a customer to a position slightly above _player_path2d.
@@ -57,8 +71,6 @@ func _add_customer(percent: float) -> void:
 		mood = Utils.rand_value(MOODS_RARE)
 	_customer_moods.append(mood)
 	customer.creature_def = CreatureLoader.random_def()
-	# suppress sfx; customers make little smile/frown faces when they're selected, but sound effects are too much
-	customer.suppress_sfx = true
 	
 	# determine the customer's position
 	var customer_range := _camera_x_range()
