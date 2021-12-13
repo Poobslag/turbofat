@@ -16,14 +16,16 @@ $$ Fredoka One by Milena Brandao (SIL Open Font License, Version 1.1)
 $$ Modak by Ek Type (SIL Open Font License, Version 1.1)
 $$ Nikumaru by Kato Masashi (http://www.fontna.com/freefont/1651/) (No conventional license; 'Can be used for both commercial and non-commercial purposes, so please download with confidence')
 
+Icons:
+$ Verification checkmark symbol by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
+$ Frying Pan by Creative Stall Premium (https://www.flaticon.com/authors/creative-stall-premium) (Unlimited use without attribution)
+$ Reload by DinosoftLabs (https://www.flaticon.com/authors/dinosoftlabs) (Unlimited use without attribution)
+$ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
+$ Clapperboard by Pixel perfect (https://www.flaticon.com/authors/pixel-perfect) (Unlimited use without attribution)
+
 Other:
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
 $$ Gut by Tom "Butch" Wesley (MIT License)
-$ Various icons by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
-$ Various icons by Creative Stall Premium (https://www.flaticon.com/authors/creative-stall-premium) (Unlimited use without attribution)
-$ Various icons by DinosoftLabs (https://www.flaticon.com/authors/dinosoftlabs) (Unlimited use without attribution)
-$ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
-$ Various icons by Pixel perfect (https://www.flaticon.com/authors/pixel-perfect) (Unlimited use without attribution)
 $$$ Godot Engine (MIT license)
 $ Godot Toolbox Project by AnJ95 (https://github.com/AnJ95/godot-toolbox-project) (You referenced their code for your 'custom keybinds' logic)
 
