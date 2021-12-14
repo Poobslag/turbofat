@@ -97,7 +97,7 @@ func to_json_dict() -> Dictionary:
 func push_career_trail() -> void:
 	if is_day_over():
 		# after the final level, we show a 'you win' screen
-		SceneTransition.replace_trail("res://src/main/world/CareerWin.tscn")
+		SceneTransition.replace_trail("res://src/main/ui/career/CareerWin.tscn")
 	else:
 		# after the 'overworld map' scene, we launch a level
 		hours_passed += 1

@@ -57,7 +57,7 @@ _global_script_classes=[ {
 "base": "Reference",
 "class": "CareerData",
 "language": "GDScript",
-"path": "res://src/main/world/career-data.gd"
+"path": "res://src/main/career-data.gd"
 }, {
 "base": "Reference",
 "class": "CareerLevel",
