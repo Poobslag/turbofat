@@ -41,7 +41,7 @@ onready var _time_of_day := $LevelSelect/Control/TimeOfDay
 onready var _level_select_buttons := $LevelSelect/Control/Top/LevelButtons.get_children()
 
 func _ready() -> void:
-	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
+	ResourceCache.substitute_singletons()
 	if PlayerData.career.is_day_over():
 		PlayerData.career.push_career_trail()
 	else:
@@ -51,6 +51,10 @@ func _ready() -> void:
 			_grade_labels.add_label(level_select_button)
 		
 		_refresh_ui()
+
+
+func _exit_tree() -> void:
+	ResourceCache.remove_singletons()
 
 
 func _refresh_ui() -> void:

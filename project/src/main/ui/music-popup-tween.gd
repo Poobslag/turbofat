@@ -84,6 +84,10 @@ func _pop_out() -> void:
 ## running again.
 func _restore_tween_and_timer_state() -> void:
 	# disconnect our one-shot method
+	if not get_tree().is_connected("idle_frame", self, "_restore_tween_and_timer_state"):
+		push_warning("Music popup tween's one-shot method is not connected. (Was it already disconnected?)")
+		return
+	
 	get_tree().disconnect("idle_frame", self, "_restore_tween_and_timer_state")
 	
 	match _popup_state:

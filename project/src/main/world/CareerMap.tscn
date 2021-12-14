@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=65 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -46,6 +46,7 @@
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=53]
 [ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=54]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=59]
+[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=60]
 
 [sub_resource type="TileSet" id=15]
 0/name = "marsh-path-sheet.png 0"
@@ -688,6 +689,8 @@ icon = ExtResource( 10 )
 expand_icon = true
 normal_icon = ExtResource( 10 )
 pressed_icon = ExtResource( 11 )
+
+[node name="MusicPopup" parent="Ui/Control" instance=ExtResource( 60 )]
 
 [node name="SettingsMenu" parent="Ui" instance=ExtResource( 14 )]
 quit_type = 1
