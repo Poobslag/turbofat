@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=2]
@@ -6,7 +6,6 @@
 [ext_resource path="res://src/main/world/overworld-walk-camera.gd" type="Script" id=4]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=5]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=6]
-[ext_resource path="res://src/main/world/overworld-bg.gd" type="Script" id=7]
 [ext_resource path="res://src/main/world/environment/RippleWaves.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=9]
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=10]
@@ -75,10 +74,9 @@ viewport_path = NodePath("World/Ground/Shadows/Viewport")
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="Bg"]
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.423529, 0.262745, 0.192157, 1 )
-script = ExtResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }

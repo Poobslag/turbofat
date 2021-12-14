@@ -23,7 +23,6 @@
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=21]
 [ext_resource path="res://assets/main/world/environment/buttercup-stool-green.png" type="Texture" id=22]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=23]
-[ext_resource path="res://src/main/world/overworld-bg.gd" type="Script" id=24]
 [ext_resource path="res://src/main/world/career-world.gd" type="Script" id=25]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=26]
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=27]
@@ -198,10 +197,9 @@ script = ExtResource( 2 )
 layer = -1
 
 [node name="ColorRect" type="ColorRect" parent="Bg"]
-margin_right = 1024.0
-margin_bottom = 600.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 color = Color( 0.423529, 0.262745, 0.192157, 1 )
-script = ExtResource( 24 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
