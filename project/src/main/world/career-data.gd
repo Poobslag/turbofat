@@ -5,6 +5,10 @@ class_name CareerData
 ## travelled today", as well as historical information like "how many days have they played" and "how much money did
 ## they earn three days ago"
 
+## Emitted when the player's distance changes, particularly at the start of career mode when they're picking their
+## starting distance
+signal distance_travelled_changed
+
 ## The number of days worth of records which are stored.
 const MAX_DAILY_HISTORY := 40
 
@@ -16,8 +20,6 @@ const MAX_DISTANCE_TRAVELLED := 999999
 
 ## The maximum number of consecutive levels the player can play in one career session.
 const HOURS_PER_CAREER_DAY := 8
-
-signal distance_travelled_changed
 
 ## The distance the player has travelled in the current career session.
 var distance_travelled := 0 setget set_distance_travelled

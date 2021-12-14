@@ -20,8 +20,10 @@ Icons:
 $ Verification checkmark symbol by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
 $ Frying Pan by Creative Stall Premium (https://www.flaticon.com/authors/creative-stall-premium) (Unlimited use without attribution)
 $ Reload by DinosoftLabs (https://www.flaticon.com/authors/dinosoftlabs) (Unlimited use without attribution)
+$ Clock by Ilham Fitrotul Hayat (https://www.flaticon.com/authors/ilham-fitrotul-hayat) (Unlimited use without attribution)
 $ Various icons by Freepik (https://www.flaticon.com/authors/freepik) (Unlimited use without attribution)
 $ Clapperboard by Pixel perfect (https://www.flaticon.com/authors/pixel-perfect) (Unlimited use without attribution)
+$ Paws by Solid Icon Co (https://www.flaticon.com/authors/solid-icon-co) (Unlimited use without attribution)
 
 Other:
 $ Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc) (MIT License)
@@ -79,6 +81,8 @@ project/assets/main/editor/creature/edit.png 'Dna' by Freepik
 project/assets/main/editor/creature/locked.png 'Unlock' by Freepik
 project/assets/main/editor/creature/unlocked.png 'Safe' by Freepik
 project/assets/main/ui/icon-music.png 'Musical Notes' by Freepik
+project/assets/main/ui/icon-distance.png 'Paws' by Solid icon Co
+project/assets/main/ui/icon-time-of-day-sheet.png 'Clock' by Ilhan Fitrotul Hayat
 project/assets/main/ui/level-select/cleared.png 'Verification checkmark symbol' by Catalin Fertu
 project/assets/main/ui/level-select/cutscene-no.png 'Clapperboard' by Pixel perfect
 project/assets/main/ui/level-select/cutscene-no-pressed.png 'Clapperboard' by Pixel perfect

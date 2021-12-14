@@ -5,30 +5,9 @@ extends HBoxContainer
 onready var _down_button: Button = $Down
 onready var _up_button: Button = $Up
 
-## Label for showing the player's current distance
-onready var _label: Label = $Label
-
 func _ready() -> void:
 	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
-	_refresh_distance()
-
-
-## Refreshes the labels and buttons based on the player's current distance.
-func _refresh_distance() -> void:
 	_refresh_buttons()
-	_refresh_label()
-
-
-## Refreshes the step count label based on the player's current distance.
-func _refresh_label() -> void:
-	if PlayerData.career.distance_earned > 0:
-		_label.text = "%s (+%s)" % [StringUtils.comma_sep(PlayerData.career.distance_travelled),
-				StringUtils.comma_sep(PlayerData.career.distance_earned)]
-	elif PlayerData.career.distance_earned < 0:
-		_label.text = "%s (%s)" % [StringUtils.comma_sep(PlayerData.career.distance_travelled),
-				StringUtils.comma_sep(PlayerData.career.distance_earned)]
-	else:
-		_label.text = StringUtils.comma_sep(PlayerData.career.distance_travelled)
 
 
 ## Refreshes the buttons based on the player's current distance.
@@ -78,4 +57,4 @@ func _on_Up_pressed() -> void:
 
 
 func _on_CareerData_distance_travelled_changed() -> void:
-	_refresh_distance()
+	_refresh_buttons()
