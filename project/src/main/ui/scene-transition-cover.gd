@@ -8,7 +8,6 @@ onready var _tween: Tween = $Tween
 onready var _color_rect: ColorRect = $ColorRect
 
 func _ready() -> void:
-	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
 	_tween.connect("tween_all_completed", self, "_on_Tween_tween_all_completed")
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
 	SceneTransition.connect("fade_in_started", self, "_on_SceneTransition_fade_in_started")
@@ -58,7 +57,3 @@ func _on_Tween_tween_all_completed() -> void:
 		SceneTransition.end_fade_in()
 	else:
 		push_warning("Unexpected SceneTransitionCover.ColorRect.modulate.a: %s" % [_color_rect.modulate.a])
-
-
-func _on_Viewport_size_changed() -> void:
-	_refresh_rect_size()

@@ -43,8 +43,6 @@ var _chat_tree_cache: Dictionary
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	_update_visible()
-	_refresh_rect_size()
-	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
 
 
 func _exit_tree() -> void:
@@ -202,10 +200,6 @@ func _assign_nametag_sides(new_chat_tree: ChatTree) -> void:
 func _update_visible() -> void:
 	$Control/ChatUi.visible = true if chatters else false
 	$Control/Labels/SoutheastLabels/VersionLabel.visible = _show_version and not chatters
-
-
-func _refresh_rect_size() -> void:
-	$Control.rect_size = $Control.get_viewport_rect().size
 
 
 ## Returns the chat tree corresponding to the curently focused chattable.
@@ -381,10 +375,6 @@ func _on_ChatUi_chat_choice_chosen(_chat_choice: int) -> void:
 
 func _on_SettingsMenu_quit_pressed() -> void:
 	SceneTransition.pop_trail()
-
-
-func _on_Viewport_size_changed() -> void:
-	_refresh_rect_size()
 
 
 func _on_CellPhoneButton_pressed() -> void:
