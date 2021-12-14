@@ -64,6 +64,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/career-level.gd"
 }, {
+"base": "CanvasLayer",
+"class": "CareerLevelSelect",
+"language": "GDScript",
+"path": "res://src/main/ui/career/career-map-level-select.gd"
+}, {
 "base": "Reference",
 "class": "CareerRegion",
 "language": "GDScript",
@@ -966,6 +971,7 @@ _global_script_class_icons={
 "BoxBuilder": "",
 "CareerData": "",
 "CareerLevel": "",
+"CareerLevelSelect": "",
 "CareerRegion": "",
 "ChatAdvancer": "",
 "ChatChoiceButton": "",

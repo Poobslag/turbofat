@@ -56,3 +56,52 @@ func test_advance_distance_fails_boss_level() -> void:
 			"distance_earned should be less than 0 but was %s" % [_data.distance_earned])
 	assert_true(_data.distance_travelled < 9,
 			"distance_travelled should be less than 9 but was %s" % [_data.distance_travelled])
+
+
+func test_distance_penalties_short() -> void:
+	_data.distance_earned = 0
+	assert_eq(_data.distance_penalties(), [0, 0, 0])
+	
+	_data.distance_earned = 1
+	assert_eq(_data.distance_penalties(), [0, 0, 0])
+	
+	_data.distance_earned = 2
+	assert_eq(_data.distance_penalties(), [1, 1, 0])
+
+
+func test_distance_penalties_medium() -> void:
+	_data.distance_earned = 3
+	assert_eq(_data.distance_penalties(), [2, 1, 0])
+	
+	_data.distance_earned = 5
+	assert_eq(_data.distance_penalties(), [2, 1, 0])
+	
+	_data.distance_earned = 6
+	assert_eq(_data.distance_penalties(), [3, 2, 0])
+	
+	_data.distance_earned = 7
+	assert_eq(_data.distance_penalties(), [4, 2, 0])
+
+
+func test_distance_penalties_long() -> void:
+	_data.distance_earned = 10
+	assert_eq(_data.distance_penalties(), [4, 2, 0])
+	
+	_data.distance_earned = 15
+	assert_eq(_data.distance_penalties(), [4, 2, 0])
+	
+	_data.distance_earned = 25
+	assert_eq(_data.distance_penalties(), [4, 2, 0])
+
+
+func test_distance_penalties_negative() -> void:
+	_data.distance_earned = -1
+	assert_eq(_data.distance_penalties(), [1, 0, 0])
+
+	_data.distance_earned = -10
+	assert_eq(_data.distance_penalties(), [1, 0, 0])
+
+
+func test_distance_penalties_boss_level() -> void:
+	_data.advance_distance(50, false)
+	assert_eq(_data.distance_penalties(), [0, 0, 0])

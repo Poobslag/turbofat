@@ -671,6 +671,7 @@ script = ExtResource( 13 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+level_select_path = NodePath("../../../../LevelSelect")
 
 [node name="TextureRect" type="Control" parent="Ui/Control/StatusBar/Distance"]
 margin_right = 32.0
@@ -767,6 +768,7 @@ pressed_icon = ExtResource( 11 )
 [node name="SettingsMenu" parent="Ui" instance=ExtResource( 14 )]
 quit_type = 1
 
+[connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="level_button_focused" from="LevelSelect" to="World" method="_on_LevelSelect_level_button_focused"]
 [connection signal="pressed" from="LevelSelect/Control/Distance/Down" to="LevelSelect/Control/Distance" method="_on_Down_pressed"]
 [connection signal="pressed" from="LevelSelect/Control/Distance/Up" to="LevelSelect/Control/Distance" method="_on_Up_pressed"]

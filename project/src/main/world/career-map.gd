@@ -45,8 +45,8 @@ func _refresh_ui() -> void:
 	# turn the level buttons invisible)
 	yield(get_tree(), "idle_frame")
 	if _level_select_buttons and not _level_select_buttons[0].get_focus_owner():
-		var middle_button_index: int = min(_level_select_buttons.size(), _level_settings_for_levels.size()) / 2
-		_level_select_buttons[middle_button_index].grab_focus()
+		var right_button_index: int = min(_level_select_buttons.size(), _level_settings_for_levels.size()) - 1
+		_level_select_buttons[right_button_index].grab_focus()
 
 
 ## Loads level settings for three randomly selected levels from the current CareerRegion.
@@ -142,6 +142,10 @@ func _random_levels() -> Array:
 
 ## When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_started(level_index: int) -> void:
+	# apply a distance penalty if they select an earlier level
+	var distance_penalty: int = PlayerData.career.distance_penalties()[level_index]
+	PlayerData.career.distance_travelled -= distance_penalty
+	
 	var level_settings: LevelSettings = _level_settings_for_levels[level_index]
 	PlayerData.career.daily_level_ids.append(level_settings.id)
 	CurrentLevel.set_launched_level(level_settings.id)
