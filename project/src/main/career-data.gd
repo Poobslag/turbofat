@@ -132,6 +132,37 @@ func is_boss_level() -> bool:
 	return result
 
 
+## Returns the player's distance penalties for picking different levels.
+##
+## Upon beating a level, the player is advanced by distance_earned. If they select one of the two leftmost levels,
+## a penalty is applied and they don't travel as far.
+##
+## Returns:
+## 	An array of positive ints corresponding to the penalty for selecting each level. Index 0 corresponds to the
+## 	earliest level.
+func distance_penalties() -> Array:
+	var result := [0, 0, 0]
+	
+	if is_boss_level():
+		# boss levels only have one choice, there is no penalty
+		return result
+	
+	# adjust result[0]
+	if distance_earned < 0: result [0] = 1 # small penalty for level selection after failing a boss stage
+	elif distance_earned <= 1: result[0] = 0 # no penalty after skipping, or for the first level of a set
+	elif distance_earned <= 2: result[0] = 1
+	elif distance_earned <= 5: result[0] = 2
+	elif distance_earned <= 6: result[0] = 3
+	else: result[0] = 4
+	
+	# adjust result[1]
+	if distance_earned <= 1: result[1] = 0 # no penalty after skipping, or for the first level of a set
+	elif distance_earned <= 5: result[1] = 1
+	else: result[1] = 2
+	
+	return result
+
+
 ## Advances the player the specified distance.
 ##
 ## Even if distance_to_advance is a large number, the player's travel distance can be limited in two scenarios.
