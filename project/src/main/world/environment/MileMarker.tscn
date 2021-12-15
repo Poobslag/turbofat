@@ -1,0 +1,57 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/main/world/environment/mile-marker-sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/main/outline-material-15.tres" type="Material" id=2]
+[ext_resource path="res://src/main/world/environment/mile-marker.gd" type="Script" id=3]
+[ext_resource path="res://assets/main/ui/fredoka-one-regular.ttf" type="DynamicFontData" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 24
+use_filter = true
+font_data = ExtResource( 4 )
+
+[sub_resource type="RectangleShape2D" id=2]
+
+[node name="MileMarker" type="KinematicBody2D"]
+position = Vector2( 60.0678, 68.7442 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+shadow_scale = 0.25
+mile_number = 100
+
+[node name="Sprite" type="Sprite" parent="."]
+material = ExtResource( 2 )
+scale = Vector2( 0.539476, 0.539476 )
+texture = ExtResource( 1 )
+centered = false
+offset = Vector2( -64, -100 )
+flip_h = true
+hframes = 2
+vframes = 2
+
+[node name="Text" type="Node2D" parent="."]
+position = Vector2( -4.049, -24.495 )
+rotation = -0.20944
+
+[node name="Label" type="Label" parent="Text"]
+margin_left = -20.0
+margin_top = -15.0
+margin_right = 20.0
+margin_bottom = 15.0
+custom_colors/font_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+custom_fonts/font = SubResource( 1 )
+text = "99"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+disabled = true
+__meta__ = {
+"_editor_description_": "If we have no collision shape then we have editor warnings, so we include a disabled collision shape"
+}

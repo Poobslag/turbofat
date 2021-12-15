@@ -17,6 +17,8 @@ const MOODS_RARE := [ChatEvent.Mood.AWKWARD1, ChatEvent.Mood.SIGH0, ChatEvent.Mo
 
 export (NodePath) var player_path2d_path: NodePath
 
+export (PackedScene) var MileMarkerScene: PackedScene
+
 ## List of moods each customer has when their level is chosen. Index 0 corresponds to the leftmost customer. Each
 ## entry is an enum in ChatEvent.Mood.
 var _customer_moods := []
@@ -27,6 +29,7 @@ var customers := []
 ## path on which which the player and sensei are placed
 onready var _player_path2d: Path2D = get_node(player_path2d_path)
 
+onready var _obstacles := $Obstacles
 onready var _obstacle_manager: ObstacleManager = $ObstacleManager
 onready var _camera: Camera2D = $Camera2D
 
@@ -37,6 +40,7 @@ func _ready() -> void:
 	_move_camera(percent)
 	for _i in range(3):
 		_add_customer(percent)
+	_add_mile_markers_to_path()
 
 
 ## Calculates how far to the right the player should be positioned.
@@ -74,9 +78,8 @@ func _add_customer(percent: float) -> void:
 	
 	# determine the customer's position
 	var customer_range := _camera_x_range()
-	customer_range.min_value += X_DIST_BETWEEN_CUSTOMERS * (customers.size() - 2)
-	customer_range.max_value += X_DIST_BETWEEN_CUSTOMERS * (customers.size() - 2)
-	customer.position.x = lerp(customer_range.min_value, customer_range.max_value, percent)
+	customer.position.x = lerp(customer_range.min_value, customer_range.max_value, percent) \
+			+ X_DIST_BETWEEN_CUSTOMERS * (customers.size() - 2)
 	customer.position.y = _player_path2d_y(customer.position.x)
 	
 	match customers.size():
@@ -101,9 +104,8 @@ func _add_customer(percent: float) -> void:
 func _move_player_to_path(percent: float) -> void:
 	var player := _find_player()
 	var player_range := _camera_x_range()
-	player_range.max_value += X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
-	player_range.min_value += X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
-	player.position.x = lerp(player_range.min_value, player_range.max_value, percent)
+	player.position.x = lerp(player_range.min_value, player_range.max_value, percent) \
+			+ X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
 	player.position.y = _player_path2d_y(player.position.x)
 
 
@@ -114,9 +116,8 @@ func _move_player_to_path(percent: float) -> void:
 func _move_sensei_to_path(percent: float) -> void:
 	var sensei := _find_sensei()
 	var sensei_range := _camera_x_range()
-	sensei_range.max_value -= X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
-	sensei_range.min_value -= X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
-	sensei.position.x = lerp(sensei_range.min_value, sensei_range.max_value, percent)
+	sensei.position.x = lerp(sensei_range.min_value, sensei_range.max_value, percent) \
+			- X_DIST_BETWEEN_PLAYER_AND_SENSEI / 2.0
 	sensei.position.y = _player_path2d_y(sensei.position.x)
 
 
@@ -128,6 +129,42 @@ func _move_camera(percent: float) -> void:
 	var camera_range := _camera_x_range()
 	_camera.position.x = lerp(camera_range.min_value, camera_range.max_value, percent)
 	_camera.position.y = _player_path2d_y(_camera.position.x) - 150
+
+
+## Places mile markers along the path to indicate the distance of each customer.
+##
+## Mile markers are positioned relative to the customers, not to the _player_path2d. Customers must be placed first.
+func _add_mile_markers_to_path() -> void:
+	# Calculate the values of the left and right mile marker
+	var left_num: int
+	var right_num: int
+	var curr_region: CareerRegion = CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	if curr_region.length == CareerData.MAX_DISTANCE_TRAVELLED:
+		# In the final (endless) region, numbers count up from 0-99, and then reset back to 0
+		right_num = PlayerData.career.distance_travelled - curr_region.distance
+		left_num = right_num - PlayerData.career.distance_penalties()[0]
+		left_num %= 100
+		right_num %= 100
+	else:
+		# In most regions, numbers count down to 0. 0 is a 'boss level'
+		right_num = curr_region.length + curr_region.distance - 1 - PlayerData.career.distance_travelled
+		left_num = right_num + PlayerData.career.distance_penalties()[0]
+	
+	_add_mile_marker(customers[0].position + Vector2(-100, 20), left_num)
+	if right_num != left_num:
+		# Only place the right mile marker if it has a different value. We don't want two redundant mile markers for
+		# boss levels or when starting a new career session.
+		_add_mile_marker(customers[2].position + Vector2(100, 20), right_num)
+
+
+## Places a mile marker at the specified position.
+func _add_mile_marker(position: Vector2, mile_number: int) -> void:
+		var marker: MileMarker = MileMarkerScene.instance()
+		_obstacles.add_child(marker)
+		_obstacle_manager.process_new_obstacle(marker)
+		
+		marker.position = position
+		marker.mile_number = mile_number
 
 
 ## Calculates and returns the leftmost/rightmost camera x position within the _player_path2d.
