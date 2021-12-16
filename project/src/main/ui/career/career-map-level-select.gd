@@ -4,7 +4,7 @@ extends CanvasLayer
 
 signal level_button_focused(button_index)
 
-onready var _level_select_buttons := $Control/Top/LevelButtons.get_children()
+onready var _level_select_buttons := $Control/LevelButtons.get_children()
 onready var _control := $Control
 
 func _ready() -> void:

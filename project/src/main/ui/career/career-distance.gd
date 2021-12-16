@@ -35,11 +35,8 @@ func _refresh_buttons() -> void:
 		# disable the down button; the player is at their minimum distance
 		_down_button.disabled = true
 	
-	# Hide disabled buttons from view with the modulate property. We don't set visible to false, because we still want
-	# them taking up space in the UI.
-	for button in [_down_button, _up_button]:
-		button.modulate = Color.transparent if button.disabled else Color.white
-		button.focus_mode = Control.FOCUS_NONE if button.disabled else Control.FOCUS_ALL
+	# hide ourselves from view if both buttons are disabled
+	visible = false if _down_button.disabled and _up_button.disabled else true
 
 
 func _on_Down_pressed() -> void:
