@@ -533,70 +533,58 @@ zoom = Vector2( 0.8, 0.8 )
 script = ExtResource( 28 )
 
 [node name="Control" type="Control" parent="LevelSelect"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -502.0
-margin_top = -290.0
-margin_right = 502.0
-margin_bottom = 290.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Top" type="Control" parent="LevelSelect/Control"]
-margin_left = 10.0
-margin_top = 10.0
-margin_right = 994.0
-margin_bottom = 570.0
+anchor_right = 1.0
+margin_left = 32.0
+margin_top = 32.0
+margin_right = -32.0
+margin_bottom = 208.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelButtons" type="HBoxContainer" parent="LevelSelect/Control/Top"]
-margin_right = 984.0
-margin_bottom = 278.0
+[node name="LevelButtons" type="HBoxContainer" parent="LevelSelect/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Button1" parent="LevelSelect/Control/Top/LevelButtons" instance=ExtResource( 6 )]
-margin_left = 62.0
-margin_top = 79.0
-margin_right = 262.0
-margin_bottom = 199.0
+[node name="Button1" parent="LevelSelect/Control/LevelButtons" instance=ExtResource( 6 )]
+margin_left = 58.0
+margin_top = 28.0
+margin_right = 258.0
+margin_bottom = 148.0
 rect_min_size = Vector2( 200, 120 )
 size_flags_horizontal = 6
 size_flags_vertical = 4
 custom_styles/hover = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
 
-[node name="Button2" parent="LevelSelect/Control/Top/LevelButtons" instance=ExtResource( 6 )]
-margin_left = 391.0
-margin_top = 79.0
-margin_right = 591.0
-margin_bottom = 199.0
+[node name="Button2" parent="LevelSelect/Control/LevelButtons" instance=ExtResource( 6 )]
+margin_left = 379.0
+margin_top = 28.0
+margin_right = 579.0
+margin_bottom = 148.0
 rect_min_size = Vector2( 200, 120 )
 size_flags_horizontal = 6
 size_flags_vertical = 4
 custom_styles/hover = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 
-[node name="Button3" parent="LevelSelect/Control/Top/LevelButtons" instance=ExtResource( 6 )]
-margin_left = 721.0
-margin_top = 79.0
-margin_right = 921.0
-margin_bottom = 199.0
+[node name="Button3" parent="LevelSelect/Control/LevelButtons" instance=ExtResource( 6 )]
+margin_left = 701.0
+margin_top = 28.0
+margin_right = 901.0
+margin_bottom = 148.0
 rect_min_size = Vector2( 200, 120 )
 size_flags_horizontal = 6
 size_flags_vertical = 4
 custom_styles/hover = SubResource( 6 )
 custom_styles/normal = SubResource( 7 )
 
-[node name="GradeLabels" type="Control" parent="LevelSelect/Control/Top"]
+[node name="GradeLabels" type="Control" parent="LevelSelect/Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
@@ -605,38 +593,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 GradeLabelScene = ExtResource( 3 )
-
-[node name="Distance" type="HBoxContainer" parent="LevelSelect/Control"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -31.0
-margin_top = -260.224
-margin_right = 31.0
-margin_bottom = -234.224
-mouse_filter = 2
-theme = ExtResource( 9 )
-custom_constants/separation = 10
-script = ExtResource( 17 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Down" type="Button" parent="LevelSelect/Control/Distance"]
-margin_right = 26.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 26, 0 )
-theme = ExtResource( 15 )
-text = "<"
-
-[node name="Up" type="Button" parent="LevelSelect/Control/Distance"]
-margin_left = 36.0
-margin_right = 62.0
-margin_bottom = 26.0
-rect_min_size = Vector2( 26, 0 )
-theme = ExtResource( 15 )
-text = ">"
 
 [node name="Ui" type="CanvasLayer" parent="."]
 script = ExtResource( 45 )
@@ -661,7 +617,7 @@ __meta__ = {
 
 [node name="Money" parent="Ui/Control/StatusBar" instance=ExtResource( 42 )]
 
-[node name="Distance" type="Control" parent="Ui/Control/StatusBar"]
+[node name="Distance" type="HBoxContainer" parent="Ui/Control/StatusBar"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -64.0
@@ -678,6 +634,7 @@ level_select_path = NodePath("../../../../LevelSelect")
 [node name="TextureRect" type="Control" parent="Ui/Control/StatusBar/Distance"]
 margin_right = 32.0
 margin_bottom = 32.0
+rect_min_size = Vector2( 32, 32 )
 size_flags_horizontal = 8
 size_flags_vertical = 8
 __meta__ = {
@@ -691,15 +648,43 @@ texture = ExtResource( 46 )
 
 [node name="Label" type="Label" parent="Ui/Control/StatusBar/Distance"]
 margin_left = 36.0
-margin_top = 5.0
-margin_right = 121.0
-margin_bottom = 30.0
+margin_top = 3.0
+margin_right = 120.0
+margin_bottom = 28.0
+rect_min_size = Vector2( 84, 0 )
 custom_colors/font_color = Color( 1, 0.942667, 0.92, 1 )
 custom_fonts/font = ExtResource( 43 )
-text = "9,999 m"
+text = "999,999"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Adjust" type="HBoxContainer" parent="Ui/Control/StatusBar/Distance"]
+margin_left = 124.0
+margin_right = 186.0
+margin_bottom = 32.0
+mouse_filter = 2
+theme = ExtResource( 9 )
+custom_constants/separation = 10
+script = ExtResource( 17 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Down" type="Button" parent="Ui/Control/StatusBar/Distance/Adjust"]
+margin_right = 26.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 26, 0 )
+theme = ExtResource( 15 )
+text = "<"
+
+[node name="Up" type="Button" parent="Ui/Control/StatusBar/Distance/Adjust"]
+margin_left = 36.0
+margin_right = 62.0
+margin_bottom = 32.0
+rect_min_size = Vector2( 26, 0 )
+theme = ExtResource( 15 )
+text = ">"
 
 [node name="Time" type="Control" parent="Ui/Control/StatusBar"]
 anchor_left = 1.0
@@ -772,9 +757,9 @@ quit_type = 1
 
 [connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="level_button_focused" from="LevelSelect" to="World" method="_on_LevelSelect_level_button_focused"]
-[connection signal="pressed" from="LevelSelect/Control/Distance/Down" to="LevelSelect/Control/Distance" method="_on_Down_pressed"]
-[connection signal="pressed" from="LevelSelect/Control/Distance/Up" to="LevelSelect/Control/Distance" method="_on_Up_pressed"]
 [connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
+[connection signal="pressed" from="Ui/Control/StatusBar/Distance/Adjust/Down" to="Ui/Control/StatusBar/Distance/Adjust" method="_on_Down_pressed"]
+[connection signal="pressed" from="Ui/Control/StatusBar/Distance/Adjust/Up" to="Ui/Control/StatusBar/Distance/Adjust" method="_on_Up_pressed"]
 [connection signal="hide" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_hide"]
 [connection signal="hide" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_hide"]
 [connection signal="quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_quit_pressed"]

@@ -15,10 +15,10 @@ var _piece_speed: String
 var _duration_calculator := DurationCalculator.new()
 
 onready var _world := $World
-onready var _grade_labels := $LevelSelect/Control/Top/GradeLabels
+onready var _grade_labels := $LevelSelect/Control/GradeLabels
 
 ## LevelSelectButtons for all levels the player can select.
-onready var _level_select_buttons := $LevelSelect/Control/Top/LevelButtons.get_children()
+onready var _level_select_buttons := $LevelSelect/Control/LevelButtons.get_children()
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
