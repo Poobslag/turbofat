@@ -1,4 +1,4 @@
-extends HBoxContainer
+extends Control
 ## Shows the distance in the career mode status bar.
 ##
 ## This includes a text label like '16 (+3)' and a static icon.
