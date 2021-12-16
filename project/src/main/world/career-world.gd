@@ -31,16 +31,16 @@ onready var _player_path2d: Path2D = get_node(player_path2d_path)
 
 onready var _obstacles := $Obstacles
 onready var _obstacle_manager: ObstacleManager = $ObstacleManager
-onready var _camera: Camera2D = $Camera2D
+onready var _camera: Camera2D = $Camera
 
 func _ready() -> void:
 	var percent := _distance_percent()
 	_move_player_to_path(percent)
 	_move_sensei_to_path(percent)
-	_move_camera(percent)
 	for _i in range(3):
 		_add_customer(percent)
 	_add_mile_markers_to_path()
+	_move_camera()
 
 
 ## Calculates how far to the right the player should be positioned.
@@ -121,14 +121,13 @@ func _move_sensei_to_path(percent: float) -> void:
 	sensei.position.y = _player_path2d_y(sensei.position.x)
 
 
-## Moves the camera to a point along _player_path2d.
-##
-## Parameters:
-## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the camera should be positioned.
-func _move_camera(percent: float) -> void:
-	var camera_range := _camera_x_range()
-	_camera.position.x = lerp(camera_range.min_value, camera_range.max_value, percent)
-	_camera.position.y = _player_path2d_y(_camera.position.x) - 150
+## Moves the camera so all creatures are visible.
+func _move_camera() -> void:
+	var creatures := []
+	creatures.append(_find_sensei())
+	creatures.append(_find_player())
+	creatures.append_array(customers)
+	_camera.zoom_in_on_creatures(creatures)
 
 
 ## Places mile markers along the path to indicate the distance of each customer.
