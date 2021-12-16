@@ -39,6 +39,8 @@ func replace_tutorial_module() -> void:
 		module_path = "res://src/main/puzzle/tutorial/TutorialSquishModule.tscn"
 	elif CurrentLevel.settings.id.begins_with("tutorial/combo_"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialComboModule.tscn"
+	elif CurrentLevel.settings.id.begins_with("tutorial/cakes_"):
+		module_path = "res://src/main/puzzle/tutorial/TutorialCakesModule.tscn"
 	
 	if module_path:
 		var tutorial_module_scene: PackedScene = ResourceCache.get_resource(module_path)

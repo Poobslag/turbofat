@@ -1,0 +1,56 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/puzzle/tutorial/tutorial-cakes-module.gd" type="Script" id=1]
+[ext_resource path="res://src/main/puzzle/tutorial/SkillTallyItem.tscn" type="PackedScene" id=2]
+
+[sub_resource type="StyleBoxFlat" id=1]
+bg_color = Color( 0.11, 0.89, 0.11, 0.33 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 0.109804, 0.890196, 0.109804, 0 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.109804, 0.890196, 0.109804, 0 )
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 0.11, 0.89, 0.11, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="TutorialCakesModule" type="Node"]
+script = ExtResource( 1 )
+
+[node name="SkillTallyItems" type="Node" parent="."]
+
+[node name="SnackBox" parent="SkillTallyItems" instance=ExtResource( 2 )]
+visible = false
+margin_left = 896.0
+margin_top = 336.0
+margin_right = 1004.0
+margin_bottom = 400.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 3.0
+label_text = "Snack Box"
+signal_names = [ "box_built" ]
+
+[node name="CakeBox" parent="SkillTallyItems" instance=ExtResource( 2 )]
+visible = false
+margin_left = 896.0
+margin_top = 336.0
+margin_right = 1004.0
+margin_bottom = 400.0
+custom_styles/fg = SubResource( 1 )
+custom_styles/bg = SubResource( 2 )
+max_value = 8.0
+label_text = "Cake Box"

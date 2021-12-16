@@ -39,7 +39,7 @@ onready var line_inserter := $LineInserter
 onready var _bg_glob_viewports: FrostingViewports = $BgGlobViewports
 onready var _box_builder: BoxBuilder = $BoxBuilder
 onready var _combo_tracker: ComboTracker = $ComboTracker
-onready var _line_clearer: LineClearer = $LineClearer
+onready var line_clearer: LineClearer = $LineClearer
 
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
@@ -56,15 +56,15 @@ func _physics_process(delta: float) -> void:
 	if _box_builder.remaining_box_build_frames > 0:
 		if not _box_builder.is_physics_processing():
 			_box_builder.set_physics_process(true)
-	elif _line_clearer.remaining_line_erase_frames > 0:
-		if not _line_clearer.is_physics_processing():
-			_line_clearer.set_physics_process(true)
+	elif line_clearer.remaining_line_erase_frames > 0:
+		if not line_clearer.is_physics_processing():
+			line_clearer.set_physics_process(true)
 	elif _remaining_misc_delay_frames > 0:
 		_remaining_misc_delay_frames -= 1
 
 
 func get_remaining_line_erase_frames() -> int:
-	return _line_clearer.remaining_line_erase_frames
+	return line_clearer.remaining_line_erase_frames
 
 
 func get_remaining_box_build_frames() -> int:
@@ -76,13 +76,13 @@ func add_misc_delay_frames(frames: int) -> void:
 
 
 func schedule_line_clears(lines_to_clear: Array, line_clear_delay: int, award_points: bool = true) -> void:
-	_line_clearer.schedule_line_clears(lines_to_clear, line_clear_delay, award_points)
+	line_clearer.schedule_line_clears(lines_to_clear, line_clear_delay, award_points)
 
 
 ## Returns false the playfield is paused for an of animation or delay which should prevent a new piece from appearing.
 func ready_for_new_piece() -> bool:
 	return _box_builder.remaining_box_build_frames <= 0 \
-			and _line_clearer.remaining_line_erase_frames <= 0 \
+			and line_clearer.remaining_line_erase_frames <= 0 \
 			and _remaining_misc_delay_frames <= 0
 
 
@@ -91,7 +91,7 @@ func ready_for_new_piece() -> bool:
 ## Returns true if the written piece results in a line clear.
 func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece := false) -> void:
 	_box_builder.remaining_box_build_frames = 0
-	_line_clearer.remaining_line_erase_frames = 0
+	line_clearer.remaining_line_erase_frames = 0
 	
 	tile_map.save_state()
 	
@@ -102,11 +102,11 @@ func write_piece(pos: Vector2, orientation: int, type: PieceType, death_piece :=
 	
 	if not death_piece:
 		_box_builder.process_boxes()
-		_line_clearer.schedule_full_row_line_clears()
+		line_clearer.schedule_full_row_line_clears()
 	
 	PuzzleState.before_piece_written()
 	
-	if _box_builder.remaining_box_build_frames == 0 and _line_clearer.remaining_line_erase_frames == 0:
+	if _box_builder.remaining_box_build_frames == 0 and line_clearer.remaining_line_erase_frames == 0:
 		# If any boxes are being built or lines are being cleared, we emit the
 		# signal later. Otherwise we emit it now.
 		PuzzleState.after_piece_written()
@@ -145,8 +145,8 @@ func _on_BoxBuilder_box_built(rect: Rect2, box_type: int) -> void:
 
 
 func _on_BoxBuilder_after_boxes_built() -> void:
-	if _line_clearer.remaining_line_erase_frames > 0:
-		_line_clearer.set_physics_process(true)
+	if line_clearer.remaining_line_erase_frames > 0:
+		line_clearer.set_physics_process(true)
 	else:
 		PuzzleState.after_piece_written()
 
