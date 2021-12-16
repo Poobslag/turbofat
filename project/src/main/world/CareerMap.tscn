@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -183,6 +183,9 @@ corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[sub_resource type="StyleBoxFlat" id=21]
+draw_center = false
 
 [sub_resource type="StyleBoxEmpty" id=9]
 
@@ -619,7 +622,7 @@ __meta__ = {
 
 [node name="Money" parent="Ui/Control/StatusBar" instance=ExtResource( 42 )]
 
-[node name="Distance" type="HBoxContainer" parent="Ui/Control/StatusBar"]
+[node name="Distance" type="Control" parent="Ui/Control/StatusBar"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -64.0
@@ -628,9 +631,6 @@ margin_bottom = 32.0
 rect_min_size = Vector2( 0, 32 )
 mouse_filter = 2
 script = ExtResource( 13 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 level_select_path = NodePath("../../../../LevelSelect")
 
 [node name="TextureRect" type="Control" parent="Ui/Control/StatusBar/Distance"]
@@ -650,24 +650,25 @@ texture = ExtResource( 46 )
 
 [node name="Label" type="Label" parent="Ui/Control/StatusBar/Distance"]
 margin_left = 36.0
-margin_top = 3.0
+margin_top = 2.5
 margin_right = 120.0
-margin_bottom = 28.0
+margin_bottom = 34.5
 rect_min_size = Vector2( 84, 0 )
 custom_colors/font_color = Color( 1, 0.942667, 0.92, 1 )
 custom_fonts/font = ExtResource( 43 )
 text = "999,999"
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Adjust" type="HBoxContainer" parent="Ui/Control/StatusBar/Distance"]
 margin_left = 124.0
-margin_right = 186.0
-margin_bottom = 32.0
+margin_top = 2.5
+margin_right = 180.0
+margin_bottom = 34.5
 mouse_filter = 2
 theme = ExtResource( 9 )
-custom_constants/separation = 10
 script = ExtResource( 17 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -678,14 +679,26 @@ margin_right = 26.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 26, 0 )
 theme = ExtResource( 15 )
+custom_fonts/font = ExtResource( 43 )
+custom_styles/hover = SubResource( 21 )
+custom_styles/pressed = SubResource( 21 )
+custom_styles/focus = SubResource( 21 )
+custom_styles/disabled = SubResource( 21 )
+custom_styles/normal = SubResource( 21 )
 text = "<"
 
 [node name="Up" type="Button" parent="Ui/Control/StatusBar/Distance/Adjust"]
-margin_left = 36.0
-margin_right = 62.0
+margin_left = 30.0
+margin_right = 56.0
 margin_bottom = 32.0
 rect_min_size = Vector2( 26, 0 )
 theme = ExtResource( 15 )
+custom_fonts/font = ExtResource( 43 )
+custom_styles/hover = SubResource( 21 )
+custom_styles/pressed = SubResource( 21 )
+custom_styles/focus = SubResource( 21 )
+custom_styles/disabled = SubResource( 21 )
+custom_styles/normal = SubResource( 21 )
 text = ">"
 
 [node name="Time" type="Control" parent="Ui/Control/StatusBar"]
