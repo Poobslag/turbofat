@@ -22,6 +22,7 @@ onready var _level_select_buttons := $LevelSelect/Control/Top/LevelButtons.get_c
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
+	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
 	if PlayerData.career.is_day_over():
 		PlayerData.career.push_career_trail()
 	else:
@@ -162,3 +163,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 		CurrentLevel.customers.append(_world.customers[level_index].creature_def)
 	
 	PlayerData.career.push_career_trail()
+
+
+func _on_CareerData_distance_travelled_changed() -> void:
+	_refresh_ui()
