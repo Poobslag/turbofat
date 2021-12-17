@@ -268,7 +268,7 @@ func _box_ints(y: int) -> Array:
 ## Any full lines and lines containing boxes result in line clears, and the player is awarded points.
 ##
 ## Any partial lines containing only vegetables are left behind, the player is not awarded points for those.
-func _schedule_finish_line_clears() -> void:
+func schedule_finish_line_clears() -> void:
 	var full_lines := []
 	var box_lines := []
 	for y in range(PuzzleTileMap.ROW_COUNT):
@@ -305,7 +305,7 @@ func _schedule_finish_line_clears() -> void:
 
 func _on_PuzzleState_finish_triggered() -> void:
 	if CurrentLevel.settings.other.clear_on_finish:
-		_schedule_finish_line_clears()
+		schedule_finish_line_clears()
 	else:
 		PuzzleState.end_game()
 

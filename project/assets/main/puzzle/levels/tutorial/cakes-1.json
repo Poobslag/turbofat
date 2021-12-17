@@ -1,0 +1,16 @@
+{
+  "version": "297a",
+  "start_speed": "T",
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "tutorial",
+    "start_level tutorial/cakes_0",
+    "non_interactive"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ]
+}

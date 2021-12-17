@@ -118,9 +118,7 @@ func _fill_initial_pieces() -> void:
 		var pieces_tmp: Array = CurrentLevel.settings.piece_types.start_types.duplicate()
 		pieces_tmp.shuffle()
 		for piece_type in pieces_tmp:
-			if pieces.empty() or pieces[0].type != piece_type:
-				# avoid prepending duplicate pieces
-				pieces.push_front(_new_next_piece(piece_type))
+			pieces.push_front(_new_next_piece(piece_type))
 
 
 ## Creates a new next piece with the specified type.

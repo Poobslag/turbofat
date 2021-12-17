@@ -1,0 +1,25 @@
+{
+  "version": "297a",
+  "start_speed": "T",
+  "finish_condition": {
+    "type": "pieces",
+    "value": "4"
+  },
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "tutorial",
+    "start_level tutorial/cakes_0"
+  ],
+  "piece_types": [
+    "start_piece_l",
+    "start_piece_p",
+    "start_piece_q",
+    "start_piece_v"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ]
+}

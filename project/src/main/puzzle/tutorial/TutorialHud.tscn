@@ -65,7 +65,6 @@ volume_db = -14.0
 bus = "Sound Bus"
 
 [node name="Diagram" type="Control" parent="."]
-visible = false
 margin_left = 355.0
 margin_right = 760.0
 margin_bottom = 600.0

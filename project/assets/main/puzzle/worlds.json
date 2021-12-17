@@ -24,6 +24,13 @@
           "customer_ids": [
             "#sensei#"
           ]
+        },
+        {
+          "id": "tutorial/cakes_0",
+          "creature_id": "#sensei#",
+          "customer_ids": [
+            "#sensei#"
+          ]
         }
       ]
     },
