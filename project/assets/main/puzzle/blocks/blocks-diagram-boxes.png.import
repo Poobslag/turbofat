@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/blocks-diagram.png-b8f221d2338b14a26deb0d6948afe2f9.stex"
+path="res://.import/blocks-diagram-boxes.png-5a7cc607498c16aca82bb86bdfb1f75c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/demo/puzzle/blocks/blocks-diagram.png"
-dest_files=[ "res://.import/blocks-diagram.png-b8f221d2338b14a26deb0d6948afe2f9.stex" ]
+source_file="res://assets/main/puzzle/blocks/blocks-diagram-boxes.png"
+dest_files=[ "res://.import/blocks-diagram-boxes.png-5a7cc607498c16aca82bb86bdfb1f75c.stex" ]
 
 [params]
 
