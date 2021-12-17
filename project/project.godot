@@ -1164,7 +1164,7 @@ config/name="Turbo Fat"
 run/main_scene="res://src/main/ui/menu/LoadingScreen.tscn"
 config/icon="res://assets/main/ui/icon.png"
 config/windows_native_icon="res://assets/main/ui/icon.ico"
-config/version="0.3200"
+config/version="0.3217"
 
 [audio]
 
