@@ -4,7 +4,8 @@ extends TileMap
 
 enum TileSetType {
 	DEFAULT,
-	VEGGIE,
+	VEGGIE, # tileset for levels where the player can't make boxes
+	DIAGRAM, # tileset for making tutorial diagrams
 }
 
 ## The highest visible playfield row. Food/wobblers/vfx should not be drawn above this row.
@@ -39,6 +40,7 @@ onready var corner_map: TileMap = $CornerMap
 var _puzzle_tile_sets_by_enum := {
 	TileSetType.DEFAULT: load("res://src/main/puzzle/puzzle-tile-set.tres"),
 	TileSetType.VEGGIE: load("res://src/main/puzzle/puzzle-tile-set-veggies.tres"),
+	TileSetType.DIAGRAM: load("res://src/main/puzzle/puzzle-tile-set-diagram.tres"),
 }
 
 
