@@ -49,5 +49,24 @@ func prepare_tutorial_level() -> void:
 			skill_tally_item.visible = false
 
 
+## Changes a level after all tutorial messages are shown.
+##
+## Copy/pasted from PuzzleState.change_level with an extra yield statement added.
+func change_level(level_id: String, delay_between_levels: float = PuzzleState.DELAY_SHORT) -> void:
+	PuzzleState.emit_signal("before_level_changed", level_id)
+	
+	if not hud.get_tutorial_messages().is_all_messages_visible():
+		yield(hud.get_tutorial_messages(), "all_messages_shown")
+	if delay_between_levels:
+		yield(get_tree().create_timer(delay_between_levels), "timeout")
+	
+	var settings := LevelSettings.new()
+	settings.load_from_resource(level_id)
+	CurrentLevel.switch_level(settings)
+	# initialize input_frame to allow for recording/replaying inputs
+	PuzzleState.input_frame = 0
+	PuzzleState.emit_signal("after_level_changed")
+
+
 func _on_PuzzleState_after_level_changed() -> void:
 	prepare_tutorial_level()

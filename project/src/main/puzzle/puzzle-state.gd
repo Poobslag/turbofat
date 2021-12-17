@@ -54,8 +54,8 @@ signal combo_ended
 signal topped_out
 
 const DELAY_NONE := 0.00
-const DELAY_SHORT := 2.35
-const DELAY_LONG := 4.70
+const DELAY_SHORT := 2.05
+const DELAY_LONG := 3.30
 
 const READY_DURATION := 1.4
 

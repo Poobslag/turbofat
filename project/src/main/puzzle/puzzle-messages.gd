@@ -77,7 +77,10 @@ func _on_PuzzleState_game_started() -> void:
 
 
 func _on_PuzzleState_before_level_changed(new_level_id: String) -> void:
-	if new_level_id == CurrentLevel.settings.id:
+	if CurrentLevel.settings.other.non_interactive:
+		# non interactive levels don't show a success/failure message
+		pass
+	elif new_level_id == CurrentLevel.settings.id:
 		show_message(tr("Regret..."))
 	else:
 		show_message(tr("Good!"))

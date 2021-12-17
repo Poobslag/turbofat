@@ -105,7 +105,6 @@ func _advance_level() -> void:
 			hud.set_message(tr("That's right! Hmm, how about something tricky..."))
 		"tutorial/squish_4":
 			hud.set_message(tr("Wow, okay! ...I need to think of some harder puzzles."))
-			delay_between_levels = PuzzleState.DELAY_LONG
 		"tutorial/squish_5":
 			if PuzzleState.level_performance.lines >= 3:
 				hud.set_message(tr("Good job!"))
@@ -115,7 +114,6 @@ func _advance_level() -> void:
 		"tutorial/squish_6":
 			if PuzzleState.level_performance.lines >= 3:
 				hud.set_message(tr("Wow! ...I had a few more of these planned, but it looks like you get the idea."))
-				delay_between_levels = PuzzleState.DELAY_LONG
 				start_customer_countdown()
 			else:
 				_failed_section = true
@@ -163,7 +161,7 @@ func _show_next_diagram() -> void:
 	match _show_diagram_count % 2:
 		0: hud_diagram = _squish_diagram_0
 		1: hud_diagram = _squish_diagram_1
-	hud.get_tutorial_diagram().show_diagram(hud_diagram)
+	hud.get_tutorial_diagram().show_diagram(hud_diagram, true)
 	_show_diagram_count += 1
 
 
