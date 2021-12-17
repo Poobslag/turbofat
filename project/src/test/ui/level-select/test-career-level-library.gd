@@ -56,7 +56,7 @@ func test_region_for_distance() -> void:
 	assert_eq(CareerLevelLibrary.region_for_distance(0).name, "Lemony Thickets")
 	assert_eq(CareerLevelLibrary.region_for_distance(9).name, "Lemony Thickets")
 	assert_eq(CareerLevelLibrary.region_for_distance(10).name, "Poki Desert")
-	assert_eq(CareerLevelLibrary.region_for_distance(33).name, "Cannoli Sandbar")
+	assert_eq(CareerLevelLibrary.region_for_distance(33).name, "Merrymellow Marsh")
 	assert_eq(CareerLevelLibrary.region_for_distance(CareerData.MAX_DISTANCE_TRAVELLED).name, "Starberry Mountain")
 
 
