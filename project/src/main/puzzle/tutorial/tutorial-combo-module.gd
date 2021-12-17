@@ -132,7 +132,6 @@ func _advance_level() -> void:
 		"tutorial/combo_5":
 			if hud.skill_tally_item("CakeBox").is_complete():
 				hud.set_message(tr("Impressive!\n\nHmm... Was there anything else?"))
-				delay_between_levels = PuzzleState.DELAY_LONG
 				start_customer_countdown()
 			else:
 				hud.set_message(tr("Oh! ...You needed to clear a line that time."))
@@ -148,7 +147,7 @@ func _advance_level() -> void:
 		new_level_id = CurrentLevel.settings.id
 	else:
 		new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
-	PuzzleState.change_level(new_level_id, delay_between_levels)
+	change_level(new_level_id, delay_between_levels)
 
 
 ## Shows a diagram explaining how combos moves work, with an accompanying sensei message.
@@ -173,7 +172,7 @@ func _show_next_diagram() -> void:
 					+ "\n\nSo, you're allowed to make one mistake! Or, to use one piece to plan ahead."))
 	hud.set_messages(hud_messages)
 	
-	hud.get_tutorial_diagram().show_diagram(_combo_diagram)
+	hud.get_tutorial_diagram().show_diagram(_combo_diagram, true)
 	_show_diagram_count += 1
 
 

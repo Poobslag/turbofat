@@ -20,20 +20,31 @@ func _ready() -> void:
 	hide()
 
 
-func show_diagram(texture: Texture) -> void:
+func show_diagram(texture: Texture, show_choices: bool = false) -> void:
 	show()
 	$VBoxContainer/TextureMarginContainer/TexturePanel/TextureRect.texture = texture
 	
-	if not _hud.get_tutorial_messages().is_all_messages_visible():
-		yield(_hud.get_tutorial_messages(), "all_messages_shown")
-	var choices: Array
-	match _show_diagram_count % 3:
-		0: choices = [tr("Okay, I get it!"), tr("...Can you go into more detail?")]
-		1: choices = [tr("Yes, I see!"), tr("What do you mean by that?")]
-		2: choices = [tr("Oh! That's easy."), tr("Hmm, maybe one more time?")]
-	_show_diagram_count += 1
-	var moods := [ChatEvent.Mood.SMILE0, ChatEvent.Mood.THINK0]
-	$VBoxContainer/ChatChoices.show_choices(choices, moods, 2)
+	# shift the diagram up to make room for chat choices
+	if show_choices:
+		$VBoxContainer/TextureMarginContainer.set("custom_constants/margin_top", 10)
+		$VBoxContainer/TextureMarginContainer.set("custom_constants/margin_bottom", 10)
+		$VBoxContainer/ChatChoices.visible = true
+	else:
+		$VBoxContainer/TextureMarginContainer.set("custom_constants/margin_top", 85)
+		$VBoxContainer/TextureMarginContainer.set("custom_constants/margin_bottom", 85)
+		$VBoxContainer/ChatChoices.visible = false
+	
+	if show_choices:
+		if not _hud.get_tutorial_messages().is_all_messages_visible():
+			yield(_hud.get_tutorial_messages(), "all_messages_shown")
+		var choices: Array
+		match _show_diagram_count % 3:
+			0: choices = [tr("Okay, I get it!"), tr("...Can you go into more detail?")]
+			1: choices = [tr("Yes, I see!"), tr("What do you mean by that?")]
+			2: choices = [tr("Oh! That's easy."), tr("Hmm, maybe one more time?")]
+		_show_diagram_count += 1
+		var moods := [ChatEvent.Mood.SMILE0, ChatEvent.Mood.THINK0]
+		$VBoxContainer/ChatChoices.show_choices(choices, moods, 2)
 
 
 func _on_ChatChoices_chat_choice_chosen(choice_index: int) -> void:

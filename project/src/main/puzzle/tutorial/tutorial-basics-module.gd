@@ -10,7 +10,7 @@ var _boxes_built := 0
 var _squish_moves := 0
 var _snack_stacks := 0
 
-## tracks what the player did with the most recent piece
+## tracks what the player did with their newest piece
 var _did_line_clear := false
 var _did_box_clear := false
 var _did_build_box := false
@@ -65,7 +65,7 @@ func prepare_tutorial_level() -> void:
 func _advance_level() -> void:
 	if CurrentLevel.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
-		PuzzleState.change_level("tutorial/oh_my", false)
+		change_level("tutorial/oh_my", false)
 		hud.set_big_message(ChatLibrary.add_mega_lull_characters(tr("OH, MY!!!")))
 		hud.enqueue_pop_out()
 		
@@ -74,16 +74,16 @@ func _advance_level() -> void:
 		PuzzleState.end_game()
 	elif _boxes_built == 0 or _box_clears == 0:
 		hud.set_message(tr("Good job!"))
-		PuzzleState.change_level("tutorial/basics_1")
+		change_level("tutorial/basics_1")
 	elif _squish_moves == 0:
 		hud.set_message(tr("Nicely done!"))
-		PuzzleState.change_level("tutorial/basics_2")
+		change_level("tutorial/basics_2")
 	elif _snack_stacks == 0:
 		hud.set_message(tr("Impressive!"))
-		PuzzleState.change_level("tutorial/basics_3")
+		change_level("tutorial/basics_3")
 	else:
 		hud.set_message(tr("Oh! I thought that would be more difficult..."))
-		PuzzleState.change_level("tutorial/basics_4")
+		change_level("tutorial/basics_4")
 		start_customer_countdown()
 
 

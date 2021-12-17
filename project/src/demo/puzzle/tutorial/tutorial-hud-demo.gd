@@ -1,4 +1,4 @@
-extends Control
+extends Node
 ## Shows off the tutorial message UI.
 ##
 ## Keys:
@@ -22,14 +22,17 @@ const TEXTS := [
 	"Oh my,/ you're not supposed to know how to do that!\n\n...But yes,/ squish moves can help you out of a jam.",
 ]
 
+## a tutorial level id to demo, like 'tutorial/basic_0'
+export (String) var level_id: String = LevelLibrary.BEGINNER_TUTORIAL
+
 onready var _tutorial_hud: TutorialHud = $Level/Hud/HudUi/TutorialHud
 onready var _tutorial_messages: TutorialMessages = $Level/Hud/HudUi/TutorialHud/Messages
 
 func _ready() -> void:
 	var level_settings := LevelSettings.new()
-	level_settings.load_from_resource(LevelLibrary.BEGINNER_TUTORIAL)
+	level_settings.load_from_resource(level_id)
+	level_settings.other.start_level = ""
 	CurrentLevel.start_level(level_settings)
-	
 	_tutorial_hud.replace_tutorial_module()
 
 
