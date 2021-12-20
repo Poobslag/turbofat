@@ -15,3 +15,8 @@ func _on_SettingsMenu_hide() -> void:
 
 func _on_SettingsMenu_quit_pressed() -> void:
 	Breadcrumb.pop_trail()
+
+
+func _on_SettingsMenu_other_quit_pressed() -> void:
+	PlayerData.career.hours_passed = CareerData.HOURS_PER_CAREER_DAY
+	PlayerData.career.push_career_trail()
