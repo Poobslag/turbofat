@@ -768,7 +768,7 @@ pressed_icon = ExtResource( 11 )
 [node name="MusicPopup" parent="Ui/Control" instance=ExtResource( 24 )]
 
 [node name="SettingsMenu" parent="Ui" instance=ExtResource( 14 )]
-quit_type = 1
+quit_type = 3
 
 [connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="level_button_focused" from="LevelSelect" to="World" method="_on_LevelSelect_level_button_focused"]
@@ -777,6 +777,7 @@ quit_type = 1
 [connection signal="pressed" from="Ui/Control/StatusBar/Distance/Adjust/Up" to="Ui/Control/StatusBar/Distance/Adjust" method="_on_Up_pressed"]
 [connection signal="hide" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_hide"]
 [connection signal="hide" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_hide"]
+[connection signal="other_quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_other_quit_pressed"]
 [connection signal="quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_show"]
 [connection signal="show" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_show"]

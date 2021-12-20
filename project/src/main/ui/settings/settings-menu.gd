@@ -7,14 +7,16 @@ extends CanvasLayer
 signal show
 signal hide
 signal quit_pressed
+signal other_quit_pressed
 
 enum QuitType {
-	QUIT, SAVE_AND_QUIT, GIVE_UP
+	QUIT, SAVE_AND_QUIT, GIVE_UP, SAVE_AND_QUIT_OR_GIVE_UP
 }
 
 const QUIT := QuitType.QUIT
 const SAVE_AND_QUIT := QuitType.SAVE_AND_QUIT
 const GIVE_UP := QuitType.GIVE_UP
+const SAVE_AND_QUIT_OR_GIVE_UP := QuitType.SAVE_AND_QUIT_OR_GIVE_UP
 
 ## The text on the menu's quit button
 export (QuitType) var quit_type: int setget set_quit_type
@@ -27,10 +29,11 @@ var _post_save_method: String
 var _post_save_args_array: Array
 
 onready var _controls_control := $Window/UiArea/TabContainer/Controls
-onready var _ok_shortcut_helper := $Window/UiArea/Bottom/Ok/ShortcutHelper
+onready var _ok_shortcut_helper := $Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok/ShortcutHelper
 onready var _save_slot_control := $Window/UiArea/TabContainer/Misc/SaveSlot
 onready var _touch_control := $Window/UiArea/TabContainer/Touch
-onready var _quit_button := $Window/UiArea/Bottom/Quit
+onready var _quit_button := $Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2
+onready var _other_quit_button := $Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1
 
 onready var _bg := $Bg
 onready var _dialogs := $Dialogs
@@ -66,8 +69,8 @@ func show() -> void:
 	_dialogs.visible = true
 	_window.show()
 	get_tree().paused = true
-	_old_focus_owner = $Window/UiArea/Bottom/Ok.get_focus_owner()
-	$Window/UiArea/Bottom/Ok.grab_focus()
+	_old_focus_owner = $Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok.get_focus_owner()
+	$Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok.grab_focus()
 	emit_signal("show")
 
 
@@ -112,12 +115,30 @@ func _refresh_quit_type() -> void:
 		return
 	
 	var quit_text := ""
+	var other_quit_text := ""
 	match quit_type:
 		QUIT: quit_text = tr("Quit")
 		SAVE_AND_QUIT: quit_text = tr("Save + Quit")
 		GIVE_UP: quit_text = tr("Give Up")
+		SAVE_AND_QUIT_OR_GIVE_UP:
+			quit_text = tr("Save + Quit")
+			other_quit_text = tr("Give Up")
 	
 	_quit_button.text = quit_text
+	_other_quit_button.text = other_quit_text
+	
+	if other_quit_text:
+		$Window/UiArea/Bottom.rect_min_size.y = 100
+		$Window/UiArea/Bottom.rect_size.y = 100
+		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1.visible = true
+		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Spacer.visible = true
+		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer3/Spacer.visible = true
+	else:
+		$Window/UiArea/Bottom.rect_min_size.y = 50
+		$Window/UiArea/Bottom.rect_size.y = 50
+		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1.visible = false
+		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Spacer.visible = false
+		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer3/Spacer.visible = false
 
 
 ## Loads the current save slot's data and returns the player to the splash screen.
@@ -134,10 +155,18 @@ func _on_Ok_pressed() -> void:
 
 func _on_Quit_pressed() -> void:
 	hide()
-	if quit_type == SAVE_AND_QUIT:
+	if quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
 		_confirm_and_save("emit_signal", ["quit_pressed"])
 	else:
 		emit_signal("quit_pressed")
+
+
+func _on_OtherQuit_pressed() -> void:
+	hide()
+	if quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
+		_confirm_and_save("emit_signal", ["other_quit_pressed"])
+	else:
+		emit_signal("other_quit_pressed")
 
 
 func _on_Settings_pressed() -> void:
