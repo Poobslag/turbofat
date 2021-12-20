@@ -44,7 +44,16 @@ func _refresh_ui() -> void:
 	
 	# Grab focus to allow keyboard support. Wait a frame for other listeners to fire (specifically listeners which
 	# turn the level buttons invisible)
-	yield(get_tree(), "idle_frame")
+	#
+	# We use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
+	get_tree().connect("idle_frame", self, "_grab_focus")
+
+
+## Assigns focus to the level select buttons to allow keyboard support.
+func _grab_focus() -> void:
+	if get_tree().is_connected("idle_frame", self, "_grab_focus"):
+		get_tree().disconnect("idle_frame", self, "_grab_focus")
+	
 	if _level_select_buttons and not _level_select_buttons[0].get_focus_owner():
 		var right_button_index: int = min(_level_select_buttons.size(), _level_settings_for_levels.size()) - 1
 		_level_select_buttons[right_button_index].grab_focus()
