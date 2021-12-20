@@ -314,7 +314,7 @@ func _update_career_data(rank_result: RankResult) -> void:
 	else:
 		distance_to_advance = 25
 	
-	PlayerData.career.advance_distance(distance_to_advance, rank_result.success)
+	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)
 
 
 ## Wait until after the game ends to save the player's data.
