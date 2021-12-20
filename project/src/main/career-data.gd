@@ -100,9 +100,17 @@ func push_career_trail() -> void:
 		SceneTransition.replace_trail("res://src/main/ui/career/CareerWin.tscn")
 	else:
 		# after the 'overworld map' scene, we launch a level
-		hours_passed += 1
-		distance_earned = 0
+		
+		# immediately apply failure penalties to the player's save data, so they can't quit and retry
+		var temp_distance_earned := distance_earned
+		var temp_distance_travelled := distance_travelled
+		var temp_hours_passed := hours_passed
+		advance_clock(0, false)
 		PlayerSave.save_player_data()
+		distance_earned = temp_distance_earned
+		distance_travelled = temp_distance_travelled
+		hours_passed = temp_hours_passed
+		
 		CurrentLevel.push_level_trail()
 
 
@@ -163,29 +171,31 @@ func distance_penalties() -> Array:
 	return result
 
 
-## Advances the player the specified distance.
+## Advances the clock, and advances the player the specified distance.
 ##
-## Even if distance_to_advance is a large number, the player's travel distance can be limited in two scenarios.
+## Even if new_distance_earned is a large number, the player's travel distance can be limited in two scenarios.
 ##
 ## 1. If they just played a non-boss level, they cannot advance past a boss level they haven't cleared.
 ##
 ## 2. If they just played a boss level, they cannot advance without meeting its success criteria.
 ##
 ## Parameters:
-## 	'distance_to_advance': The maximum distance the player will advance, unless they are limited by a boss level.
+## 	'new_distance_earned': The maximum distance the player will travel.
 ##
 ## 	'success': 'True' if the player met the success criteria for the current level.
-func advance_distance(distance_to_advance: int, success: bool) -> void:
-	distance_earned = distance_to_advance
+func advance_clock(new_distance_earned: int, success: bool) -> void:
+	distance_earned = new_distance_earned
+	
+	hours_passed += 1
 	
 	if is_boss_level():
 		var boss_region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
-		if not success:
-			# if they fail a boss level, they lose 1-2 days worth of progress
-			distance_earned = -int(max(boss_region.length * rand_range(0.125, 0.25), 2))
-		else:
+		if success:
 			# if they pass a boss level, update max_distance_travelled to mark the region as cleared
 			PlayerData.career.max_distance_travelled = boss_region.distance + boss_region.length
+		else:
+			# if they fail a boss level, they lose 1-2 days worth of progress
+			distance_earned = -int(max(boss_region.length * rand_range(0.125, 0.25), 2))
 	
 	var remaining_distance_earned := distance_earned
 	while remaining_distance_earned != 0:
