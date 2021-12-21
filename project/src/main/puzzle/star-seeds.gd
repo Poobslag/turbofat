@@ -89,11 +89,19 @@ func _ready() -> void:
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
 
 
-## Detects boxes in the playfield, and places star_seeds in them.
+## Detects boxes in the playfield, and places star seeds in them.
 func _prepare_star_seeds_for_level() -> void:
 	_clear_star_seeds()
-	for x in range(PuzzleTileMap.COL_COUNT):
-		for y in range(PuzzleTileMap.ROW_COUNT):
+	_add_star_seeds_for_boxes(Rect2(0, 0, PuzzleTileMap.COL_COUNT, PuzzleTileMap.ROW_COUNT))
+
+
+## Detects boxes in a range of cells, and places star seeds in them.
+##
+## Parameters:
+## 	'rect_range': Cell coordinates defining the cells to search.
+func _add_star_seeds_for_boxes(rect_range: Rect2) -> void:
+	for x in range(rect_range.position.x, rect_range.position.x + rect_range.size.x):
+		for y in range(rect_range.position.y, rect_range.position.y + rect_range.size.y):
 			var cell_contents := _puzzle_tile_map.get_cellv(Vector2(x, y))
 			if cell_contents != PuzzleTileMap.TILE_BOX:
 				continue
@@ -345,3 +353,4 @@ func _on_Pauser_paused_changed(value: bool) -> void:
 func _on_Playfield_line_inserted(y: int, _tiles_key: String, _src_y: int) -> void:
 	# raise all star seeds at or above the specified row
 	_shift_rows(y, Vector2.UP)
+	_add_star_seeds_for_boxes(Rect2(0, y, PuzzleTileMap.COL_COUNT, 1))
