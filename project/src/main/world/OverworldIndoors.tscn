@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=2]
@@ -40,6 +40,7 @@
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=38]
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=39]
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=40]
+[ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=41]
 [ext_resource path="res://assets/main/world/creature/5/tail-z1-packed.png" type="Texture" id=42]
 [ext_resource path="res://assets/main/world/creature/1/eye-z1-packed.png" type="Texture" id=43]
 [ext_resource path="res://assets/main/world/creature/10/ear-z0-packed.png" type="Texture" id=44]
@@ -867,5 +868,13 @@ smoothing_enabled = true
 script = ExtResource( 39 )
 
 [node name="Tween" type="Tween" parent="World/Camera"]
+
+[node name="ObstacleManager" type="Node" parent="World"]
+script = ExtResource( 41 )
+chat_icons_path = NodePath("../ChatIcons")
+creature_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
+shadow_caster_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+obstacles_path = NodePath("../Obstacles")
+CreatureScene = ExtResource( 19 )
 
 [node name="Ui" parent="." instance=ExtResource( 3 )]
