@@ -45,6 +45,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	Pauser.connect("paused_changed", self, "_on_Pauser_paused_changed")
+	PuzzleState.connect("after_piece_written", self, "_on_PuzzleState_after_piece_written")
 	_prepare_tileset()
 	_prepare_level_blocks()
 
@@ -191,3 +192,7 @@ func _on_LineInserter_line_inserted(y: int, tiles_key: String, src_y: int) -> vo
 
 func _on_Pickups_food_spawned(cell: Vector2, remaining_food: int, food_type: int) -> void:
 	emit_signal("food_spawned", cell, remaining_food, food_type)
+
+
+func _on_PuzzleState_after_piece_written() -> void:
+	CurrentLevel.settings.triggers.run_triggers(LevelTrigger.AFTER_PIECE_WRITTEN)
