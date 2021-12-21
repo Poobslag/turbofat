@@ -3,6 +3,82 @@ extends Node
 ##
 ## These conditions are each mapped to a unique string so that they can be referenced from json.
 
+class AfterPieceWrittenPhaseCondition extends PhaseCondition:
+	## We precalculate which pieces will trigger the rule, up to this number of pieces.
+	## 20,000 corresponds to an expert player playing at ~200 PPM for two hours.
+	const MAX_PIECE_INDEX := 20000
+	
+	## The string read from the json configuration file. 
+	var _indexes_string: String
+	
+	## key: (int) piece index which triggers this phase condition, '0' is the first piece
+	## value: (bool) 'true'
+	var _indexes_to_run := {}
+	
+	## Creates a new AfterPieceWrittenPhaseCondition instance with the specified configuration.
+	##
+	## The phase_config parameter accepts an optional 'n' expression defining which pieces will fire this trigger.
+	## Commas and ellipses are accepted, 0 is the first piece placed.
+	##
+	## 	{"y": "0,1,2,3,4"}: The trigger will fire for the first five pieces.
+	##
+	## 	{"y": "1,3,5..."}: The trigger will fire for all odd numbered pieces.
+	##
+	## 	{"y": "10,11,12..."}: The trigger will fire for every piece past the tenth piece.
+	##
+	## Parameters:
+	## 	'phase_config.n': (Optional) An expression defining which pieces will fire this trigger.
+	func _init(_phase_config: Dictionary).(_phase_config) -> void:
+		_indexes_string = _phase_config.get("n", "")
+		if _indexes_string:
+			if _indexes_string.ends_with("..."):
+				# append all raw values
+				var _indexes_string_split := _indexes_string.trim_suffix("...").split(",")
+				for index_obj in _indexes_string_split:
+					_indexes_to_run[int(index_obj)] = true
+				
+				# determine difference of last two values
+				if _indexes_string_split.size() < 2:
+					push_warning("index string doesn't have enough values to extrapolate: '%s'" % [_indexes_string])
+					return
+				var low := int(_indexes_string_split[_indexes_string_split.size() - 2])
+				var high := int(_indexes_string_split[_indexes_string_split.size() - 1])
+				if high <= low:
+					push_warning("nonsensical index string extrapolation: '%s'" % [_indexes_string])
+					return
+				var i := 2 * high - low
+				
+				# extrapolate through 20,000 values (about 2 hours of expert-level play)
+				while i < MAX_PIECE_INDEX:
+					_indexes_to_run[i] = true
+					i += high - low
+			else:
+				# append all raw values
+				for index_obj in _indexes_string.split(","):
+					_indexes_to_run[int(index_obj)] = true
+	
+	
+	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
+	##
+	## Parameters:
+	## 	'_event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
+	func should_run(_event_params: Dictionary) -> bool:
+		var result := false
+		if _indexes_string:
+			result = PuzzleState.level_performance.pieces - 1 in _indexes_to_run
+		return result
+	
+	
+	## Extracts a set of phase configuration strings from this phase condition.
+	##
+	## Returns:
+	## 	A set of phase configuration strings defining criteria for this phase condition.
+	func get_phase_config() -> Dictionary:
+		var result := {}
+		if _indexes_string: result["n"] = _indexes_string
+		return result
+
+
 class AfterLinesClearedPhaseCondition extends PhaseCondition:
 	## key: (int) a line which causes the trigger to fire when cleared. 0 is the highest line in the playfield.
 	## value: true
@@ -80,6 +156,7 @@ class AfterLinesClearedPhaseCondition extends PhaseCondition:
 
 var phase_conditions_by_string := {
 	"after_line_cleared": AfterLinesClearedPhaseCondition,
+	"after_piece_written": AfterPieceWrittenPhaseCondition,
 }
 
 ## Creates a new PhaseCondition instance.
