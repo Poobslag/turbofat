@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/chat-icons.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://src/main/world/overworld-walk-camera.gd" type="Script" id=4]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=5]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=6]
+[ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=7]
 [ext_resource path="res://src/main/world/environment/RippleWaves.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=9]
 [ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=10]
@@ -254,6 +255,14 @@ smoothing_speed = 12.5
 script = ExtResource( 4 )
 
 [node name="Tween" type="Tween" parent="World/Camera"]
+
+[node name="ObstacleManager" type="Node" parent="World"]
+script = ExtResource( 7 )
+chat_icons_path = NodePath("../ChatIcons")
+creature_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
+shadow_caster_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+obstacles_path = NodePath("../Obstacles")
+CreatureScene = ExtResource( 41 )
 
 [node name="Ui" parent="." instance=ExtResource( 15 )]
 script = ExtResource( 12 )
