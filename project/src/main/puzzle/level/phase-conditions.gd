@@ -8,54 +8,44 @@ class AfterPieceWrittenPhaseCondition extends PhaseCondition:
 	## 20,000 corresponds to an expert player playing at ~200 PPM for two hours.
 	const MAX_PIECE_INDEX := 20000
 	
-	## The string read from the json configuration file. 
+	## The 'n' string read from the json configuration file.
 	var _indexes_string: String
+	
+	## The 'combo' string read from the json configuration file.
+	var _combos_string: String
 	
 	## key: (int) piece index which triggers this phase condition, '0' is the first piece
 	## value: (bool) 'true'
 	var _indexes_to_run := {}
 	
+	## key: (int) combo value which triggers this phase condition, '0' means no combo
+	## value: (bool) 'true'
+	var _combos_to_run := {}
+	
 	## Creates a new AfterPieceWrittenPhaseCondition instance with the specified configuration.
 	##
 	## The phase_config parameter accepts an optional 'n' expression defining which pieces will fire this trigger.
-	## Commas and ellipses are accepted, 0 is the first piece placed.
+	## 0 is the first piece placed.
 	##
-	## 	{"y": "0,1,2,3,4"}: The trigger will fire for the first five pieces.
+	## The phase_config parameter accepts an optional 'combo' expression defining which combo values will fire this
+	## trigger. 0 means 'no combo'.
 	##
-	## 	{"y": "1,3,5..."}: The trigger will fire for all odd numbered pieces.
+	## 	{"combo": "0"}: The trigger will fire for every piece if no combo is active.
 	##
-	## 	{"y": "10,11,12..."}: The trigger will fire for every piece past the tenth piece.
+	## 	{"n": "0,1,2,3,4"}: The trigger will fire for the first five pieces.
+	##
+	## 	{"n": "10,11,12..."}: The trigger will fire for every piece past the tenth piece.
 	##
 	## Parameters:
 	## 	'phase_config.n': (Optional) An expression defining which pieces will fire this trigger.
+	##
+	## 	'phase_config.combo': (Optional) An expression defining which combo values will fire this trigger.
 	func _init(_phase_config: Dictionary).(_phase_config) -> void:
 		_indexes_string = _phase_config.get("n", "")
-		if _indexes_string:
-			if _indexes_string.ends_with("..."):
-				# append all raw values
-				var _indexes_string_split := _indexes_string.trim_suffix("...").split(",")
-				for index_obj in _indexes_string_split:
-					_indexes_to_run[int(index_obj)] = true
-				
-				# determine difference of last two values
-				if _indexes_string_split.size() < 2:
-					push_warning("index string doesn't have enough values to extrapolate: '%s'" % [_indexes_string])
-					return
-				var low := int(_indexes_string_split[_indexes_string_split.size() - 2])
-				var high := int(_indexes_string_split[_indexes_string_split.size() - 1])
-				if high <= low:
-					push_warning("nonsensical index string extrapolation: '%s'" % [_indexes_string])
-					return
-				var i := 2 * high - low
-				
-				# extrapolate through 20,000 values (about 2 hours of expert-level play)
-				while i < MAX_PIECE_INDEX:
-					_indexes_to_run[i] = true
-					i += high - low
-			else:
-				# append all raw values
-				for index_obj in _indexes_string.split(","):
-					_indexes_to_run[int(index_obj)] = true
+		_indexes_to_run = _parse_int_series(_indexes_string, MAX_PIECE_INDEX)
+		
+		_combos_string = _phase_config.get("combo", "")
+		_combos_to_run = _parse_int_series(_combos_string, MAX_PIECE_INDEX)
 	
 	
 	## Returns 'true' if a trigger should run during this phase, based on the specified metadata.
@@ -63,9 +53,11 @@ class AfterPieceWrittenPhaseCondition extends PhaseCondition:
 	## Parameters:
 	## 	'_event_params': (Optional) Phase-specific metadata used to decide whether the trigger should fire
 	func should_run(_event_params: Dictionary) -> bool:
-		var result := false
+		var result := true
 		if _indexes_string:
-			result = PuzzleState.level_performance.pieces - 1 in _indexes_to_run
+			result = result and (PuzzleState.level_performance.pieces - 1 in _indexes_to_run)
+		if _combos_string:
+			result = result and (PuzzleState.combo in _combos_to_run)
 		return result
 	
 	
@@ -76,6 +68,58 @@ class AfterPieceWrittenPhaseCondition extends PhaseCondition:
 	func get_phase_config() -> Dictionary:
 		var result := {}
 		if _indexes_string: result["n"] = _indexes_string
+		return result
+	
+	
+	## Parse an int series string such as '3,4,5...'
+	##
+	## Parses a string expression and returns a dictionary containing all ints which meet that condition. Commas and
+	## ellipses are supported.
+	##
+	## 	{"n": "0,1,2,3,4"}: The numbers 0, 1, 2, 3 and 4 meet the condition.
+	##
+	## 	{"n": "1,3,5..."}: All positive odd numbers meet the condition.
+	##
+	## 	{"n": "10,11,12..."}: All numbers greater than or equal to 10 meet the condition.
+	##
+	## Parameters:
+	## 	'int_series_string': A string expression describing ints which meet a condition.
+	##
+	## 	'max_int': The maximum value which should be checked for meeting the condition.
+	##
+	## Returns:
+	## 	A dictionary of int values meeting the specified condition. The values are set to 'true'.
+	func _parse_int_series(int_series_string: String, max_int: int) -> Dictionary:
+		var result := {}
+		if not int_series_string:
+			return result
+		
+		if int_series_string.ends_with("..."):
+			# append all raw values
+			var ints_split := int_series_string.trim_suffix("...").split(",")
+			for index_obj in ints_split:
+				result[int(index_obj)] = true
+			
+			# determine difference of last two values
+			if ints_split.size() < 2:
+				push_warning("index string doesn't have enough values to extrapolate: '%s'" % [int_series_string])
+				return result
+			var low := int(ints_split[ints_split.size() - 2])
+			var high := int(ints_split[ints_split.size() - 1])
+			if high <= low:
+				push_warning("nonsensical index string extrapolation: '%s'" % [int_series_string])
+				return result
+			var i := 2 * high - low
+			
+			# extrapolate until we hit max_int
+			while i < max_int:
+				result[i] = true
+				i += high - low
+		else:
+			# append all raw values
+			for index_obj in int_series_string.split(","):
+				result[int(index_obj)] = true
+		
 		return result
 
 

@@ -29,19 +29,19 @@ func test_after_piece_written_phase_condition_count_by_sixes() -> void:
 	var condition: PhaseConditions.AfterPieceWrittenPhaseCondition
 	condition = PhaseConditions.AfterPieceWrittenPhaseCondition.new({"n": "5,11,17..."})
 	
-	PuzzleState.level_performance.pieces = 0
+	PuzzleState.level_performance.pieces = 1
 	assert_eq(condition.should_run({}), false, "5,11,17...: 0")
 	
-	PuzzleState.level_performance.pieces = 5
+	PuzzleState.level_performance.pieces = 6
 	assert_eq(condition.should_run({}), true, "5,11,17...: 5")
 	
-	PuzzleState.level_performance.pieces = 10
+	PuzzleState.level_performance.pieces = 11
 	assert_eq(condition.should_run({}), false, "5,11,17...: 10")
 	
-	PuzzleState.level_performance.pieces = 11
+	PuzzleState.level_performance.pieces = 12
 	assert_eq(condition.should_run({}), true, "5,11,17...: 11")
 	
-	PuzzleState.level_performance.pieces = 41
+	PuzzleState.level_performance.pieces = 42
 	assert_eq(condition.should_run({}), true, "5,11,17...: 41")
 
 
@@ -49,16 +49,16 @@ func test_after_piece_written_specific_values() -> void:
 	var condition: PhaseConditions.AfterPieceWrittenPhaseCondition
 	condition = PhaseConditions.AfterPieceWrittenPhaseCondition.new({"n": "0,1,2"})
 	
-	PuzzleState.level_performance.pieces = 0
+	PuzzleState.level_performance.pieces = 1
 	assert_eq(condition.should_run({}), true, "0,1,2: 0")
 	
-	PuzzleState.level_performance.pieces = 1
+	PuzzleState.level_performance.pieces = 2
 	assert_eq(condition.should_run({}), true, "0,1,2: 1")
 	
-	PuzzleState.level_performance.pieces = 2
+	PuzzleState.level_performance.pieces = 3
 	assert_eq(condition.should_run({}), true, "0,1,2: 2")
 	
-	PuzzleState.level_performance.pieces = 3
+	PuzzleState.level_performance.pieces = 4
 	assert_eq(condition.should_run({}), false, "0,1,2: 3")
 
 
@@ -66,11 +66,11 @@ func test_after_piece_written_skip_early_values() -> void:
 	var condition: PhaseConditions.AfterPieceWrittenPhaseCondition
 	condition = PhaseConditions.AfterPieceWrittenPhaseCondition.new({"n": "10,11,12..."})
 	
-	PuzzleState.level_performance.pieces = 0
+	PuzzleState.level_performance.pieces = 1
 	assert_eq(condition.should_run({}), false, "10,11,12...: 0")
 	
-	PuzzleState.level_performance.pieces = 10
+	PuzzleState.level_performance.pieces = 11
 	assert_eq(condition.should_run({}), true, "10,11,12...: 10")
 	
-	PuzzleState.level_performance.pieces = 13
+	PuzzleState.level_performance.pieces = 14
 	assert_eq(condition.should_run({}), true, "10,11,12...: 13")
