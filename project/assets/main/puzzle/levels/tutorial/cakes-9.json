@@ -1,5 +1,5 @@
 {
-  "version": "297a",
+  "version": "2cb4",
   "finish_condition": {
     "type": "time_over",
     "value": "45"
