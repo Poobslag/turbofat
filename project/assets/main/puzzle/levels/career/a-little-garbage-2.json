@@ -1,10 +1,10 @@
 {
-  "version": "297a",
+  "version": "2cb4",
   "start_speed": "1",
   "title": "A Little Garbage 2",
   "description": "Is that food? Don't eat out of the garbage!",
   "blocks_during": [
-    "random_tiles_start"
+    "shuffle_inserted_lines slice"
   ],
   "finish_condition": {
     "type": "time_over",
