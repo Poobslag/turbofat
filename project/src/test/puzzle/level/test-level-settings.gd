@@ -30,6 +30,13 @@ func test_load_19c5_data() -> void:
 	assert_eq(blocks_start.block_autotile_coords.get(Vector2(1, 10)), Vector2(14, 1), "start.autotile_coords[(1, 10)]")
 
 
+func test_load_297a_data() -> void:
+	load_level("level-297a")
+	
+	assert_eq(settings.blocks_during.shuffle_inserted_lines, BlocksDuringRules.ShuffleInsertedLinesType.SLICE, \
+			"settings.blocks_during.shuffle_inserted_lines")
+
+
 func test_load_tiles() -> void:
 	load_level("level-tiles")
 	

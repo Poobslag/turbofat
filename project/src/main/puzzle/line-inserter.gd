@@ -12,6 +12,10 @@ export (NodePath) var tile_map_path: NodePath
 ## value: the next row to insert from the referenced tiles
 var _row_index_by_tiles_key := {}
 
+## key: a tiles key for the tiles referenced by level rules
+## value: array of possible next rows to insert from the referenced tiles
+var _row_bag_by_tiles_key := {}
+
 ## key: a tiles key for tiles referenced by level rules
 ## value: the total number of rows in the referenced tiles
 var _row_count_by_tiles_key := {}
@@ -42,17 +46,14 @@ func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT -
 	if tiles_key:
 		# fill bottom row with blocks from LevelTiles
 		var tiles: LevelTiles.BlockBunch = CurrentLevel.settings.tiles.get_tiles(tiles_key)
-		src_y = _row_index_by_tiles_key.get(tiles_key, 0)
 		
 		# get the tiles for this row
+		src_y = _tiles_src_y(tiles_key)
 		for x in range(PuzzleTileMap.COL_COUNT):
 			var src_pos := Vector2(x, src_y)
 			var tile: int = tiles.block_tiles.get(src_pos, -1)
 			var autotile_coord: Vector2 = tiles.block_autotile_coords.get(src_pos, Vector2(0, 0))
 			_tile_map.set_block(Vector2(x, dest_y), tile, autotile_coord)
-		
-		# increment the row index to the next non-empty row
-		_row_index_by_tiles_key[tiles_key] = (src_y + 1) % (_row_count_by_tiles_key.get(tiles_key, 1))
 	else:
 		# fill bottom row with random veggie garbage
 		for x in range(PuzzleTileMap.COL_COUNT):
@@ -63,8 +64,36 @@ func insert_line(tiles_key: String = "", dest_y: int = PuzzleTileMap.ROW_COUNT -
 	emit_signal("line_inserted", dest_y, tiles_key, src_y)
 
 
+## Calculate the y position from the source tilemap to be inserted into the target tilemap.
+##
+## Parameters:
+## 	'tiles_key': a key for the LevelTiles entry for the tiles to insert
+func _tiles_src_y(tiles_key: String) -> int:
+	var src_y := -1
+	match CurrentLevel.settings.blocks_during.shuffle_inserted_lines:
+		BlocksDuringRules.ShuffleInsertedLinesType.NONE, BlocksDuringRules.ShuffleInsertedLinesType.SLICE:
+			src_y = _row_index_by_tiles_key.get(tiles_key, 0)
+			# increment the row index to the next non-empty row
+			_row_index_by_tiles_key[tiles_key] = (src_y + 1) % (_row_count_by_tiles_key.get(tiles_key, 1))
+		
+		BlocksDuringRules.ShuffleInsertedLinesType.BAG:
+			# obtain the row bag
+			var row_bag: Array = _row_bag_by_tiles_key.get(tiles_key, [])
+			if not row_bag:
+				# refill the row bag
+				for i in range(_row_count_by_tiles_key[tiles_key]):
+					row_bag.append(i)
+				_row_bag_by_tiles_key[tiles_key] = row_bag
+			
+			# select and remove a random row from the row bag
+			var row_bag_index := randi() % row_bag.size()
+			src_y = row_bag[row_bag_index]
+			row_bag.remove(row_bag_index)
+	return src_y
+
 func _reset() -> void:
 	_row_index_by_tiles_key.clear()
+	_row_bag_by_tiles_key.clear()
 	_row_count_by_tiles_key.clear()
 	
 	# initialize _row_count_by_tiles_key
@@ -75,7 +104,7 @@ func _reset() -> void:
 		_row_count_by_tiles_key[tiles_key] = max_y + 1
 	
 	# initialize _row_index_by_tiles_key
-	if CurrentLevel.settings.blocks_during.random_tiles_start:
+	if CurrentLevel.settings.blocks_during.shuffle_inserted_lines == BlocksDuringRules.ShuffleInsertedLinesType.SLICE:
 		for tiles_key in CurrentLevel.settings.tiles.bunches:
 			_row_index_by_tiles_key[tiles_key] = randi() % _row_count_by_tiles_key[tiles_key]
 
