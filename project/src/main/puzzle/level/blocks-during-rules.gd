@@ -1,6 +1,12 @@
 class_name BlocksDuringRules
 ## Blocks/boxes/pickups which appear or disappear while the game is going on.
 
+enum ShuffleInsertedLinesType {
+	NONE, # do not shuffle
+	SLICE, # start at a random position within the inserted lines
+	BAG, # 'bag shuffle'; ensure each row is picked the same number of times
+}
+
 enum LineClearType {
 	DEFAULT, # lines drop normally following line clears
 	FLOAT, # blocks are left floating; lines do not drop following line clears
@@ -23,7 +29,7 @@ var line_clear_type: int = LineClearType.DEFAULT
 var pickup_type: int = PickupType.DEFAULT
 
 ## whether inserted rows should start from a random row in the source tiles instead of starting from the top
-var random_tiles_start: bool = false
+var shuffle_inserted_lines: int = ShuffleInsertedLinesType.NONE
 
 var _rule_parser: RuleParser
 
@@ -32,7 +38,8 @@ func _init() -> void:
 	_rule_parser.add_bool("clear_on_top_out")
 	_rule_parser.add_enum("line_clear_type", LineClearType)
 	_rule_parser.add_enum("pickup_type", PickupType)
-	_rule_parser.add_bool("random_tiles_start")
+	_rule_parser.add_enum("shuffle_inserted_lines", ShuffleInsertedLinesType) \
+			.implied(ShuffleInsertedLinesType.BAG)
 
 
 func from_json_array(json: Array) -> void:
