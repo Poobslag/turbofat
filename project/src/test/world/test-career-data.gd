@@ -7,7 +7,7 @@ var _data: CareerData
 func before_each() -> void:
 	_data = CareerData.new()
 	
-	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds.json"
+	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
 	PlayerSave.data_filename = "user://%s" % TEMP_PLAYER_FILENAME
 	PlayerData.reset()
 
@@ -36,10 +36,10 @@ func test_advance_clock_stops_at_boss_level_1() -> void:
 
 ## The player skips one boss level, but gets stopped by the next boss level
 func test_advance_clock_skips_boss_level() -> void:
-	PlayerData.career.max_distance_travelled = 10
+	PlayerData.career.max_distance_travelled = 10 # they've only cleared the first boss level
 	_data.advance_clock(50, false)
 	assert_eq(_data.distance_earned, 50)
-	assert_eq(_data.distance_travelled, 24)
+	assert_eq(_data.distance_travelled, 19)
 
 
 func test_advance_clock_clears_boss_level() -> void:
