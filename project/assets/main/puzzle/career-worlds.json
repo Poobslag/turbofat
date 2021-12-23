@@ -13,13 +13,7 @@
           "id": "career/90_second_sprint"
         },
         {
-          "id": "career/cocoa_canyon"
-        },
-        {
           "id": "career/unfresh_fruits"
-        },
-        {
-          "id": "career/strawberry_shortcut"
         },
         {
           "id": "career/veggie_haters"
@@ -28,16 +22,19 @@
           "id": "career/muffin_impossible"
         },
         {
-          "id": "career/a_little_extra"
-        },
-        {
           "id": "career/teensy_taste"
         },
         {
           "id": "career/snack_box_blitz"
         },
         {
-          "id": "career/a_little_garbage"
+          "id": "career/cookie_crevice"
+        },
+        {
+          "id": "career/back_to_back"
+        },
+        {
+          "id": "career/bottomless_pit"
         }
       ]
     },
@@ -57,9 +54,6 @@
           "id": "career/boxing_day"
         },
         {
-          "id": "career/fruit_salad"
-        },
-        {
           "id": "career/just_cream"
         },
         {
@@ -69,7 +63,7 @@
           "id": "career/secret_brownies"
         },
         {
-          "id": "career/snack_box_blitz"
+          "id": "career/creeping_crevice"
         },
         {
           "id": "career/lets_all_get_merry"
@@ -82,6 +76,9 @@
         },
         {
           "id": "career/cleaning_duty"
+        },
+        {
+          "id": "career/bottomless_pit"
         }
       ]
     },
@@ -101,7 +98,7 @@
           "id": "career/cocoa_canyon"
         },
         {
-          "id": "career/strawberry_shortcut"
+          "id": "career/creeping_crevice"
         },
         {
           "id": "career/veggie_haters"
@@ -132,6 +129,12 @@
         },
         {
           "id": "career/wedding_cake_for_one"
+        },
+        {
+          "id": "career/back_to_back"
+        },
+        {
+          "id": "career/bottomless_pit_2"
         }
       ]
     },
@@ -201,9 +204,6 @@
           "id": "career/lets_all_get_merry"
         },
         {
-          "id": "career/cocoa_canyon"
-        },
-        {
           "id": "career/secret_brownies"
         },
         {
@@ -222,10 +222,13 @@
           "id": "career/muffin_impossible_2"
         },
         {
-          "id": "career/strawberry_shortcut"
+          "id": "career/creeping_crevice_2"
         },
         {
           "id": "career/low_gravity"
+        },
+        {
+          "id": "career/bottomless_pit_2"
         }
       ]
     },
@@ -257,7 +260,7 @@
           "id": "career/muffin_impossible_3"
         },
         {
-          "id": "career/just_cream"
+          "id": "career/creeping_crevice_2"
         },
         {
           "id": "career/accelerator"

@@ -329,37 +329,184 @@
       "name": "Experimental Levels",
       "levels": [
         {
-          "id": "experiment/000"
+          "id": "career/1000_race"
         },
         {
-          "id": "experiment/001"
+          "id": "career/90_second_sprint"
         },
         {
-          "id": "experiment/002"
+          "id": "career/a_little_extra"
         },
         {
-          "id": "experiment/004"
+          "id": "career/a_little_garbage"
         },
         {
-          "id": "experiment/005"
+          "id": "career/a_little_garbage_2"
         },
         {
-          "id": "experiment/006"
+          "id": "career/accelerator"
         },
         {
-          "id": "experiment/007"
+          "id": "career/back_to_back"
         },
         {
-          "id": "experiment/008"
+          "id": "career/boss_1k"
         },
         {
-          "id": "experiment/009"
+          "id": "career/boss_2k"
         },
         {
-          "id": "experiment/010"
+          "id": "career/boss_3k"
         },
         {
-          "id": "experiment/011"
+          "id": "career/boss_4k"
+        },
+        {
+          "id": "career/boss_5k"
+        },
+        {
+          "id": "career/boss_7k"
+        },
+        {
+          "id": "career/bottomless_pit"
+        },
+        {
+          "id": "career/bottomless_pit_2"
+        },
+        {
+          "id": "career/boxing_day"
+        },
+        {
+          "id": "career/cleaning_duty"
+        },
+        {
+          "id": "career/cocoa_canyon"
+        },
+        {
+          "id": "career/cookie_crevice"
+        },
+        {
+          "id": "career/creeping_crevice"
+        },
+        {
+          "id": "career/creeping_crevice_2"
+        },
+        {
+          "id": "career/curly_queue"
+        },
+        {
+          "id": "career/curly_queue_2"
+        },
+        {
+          "id": "career/fruit_salad"
+        },
+        {
+          "id": "career/its_square_to_be_square"
+        },
+        {
+          "id": "career/its_tee_time"
+        },
+        {
+          "id": "career/just_cream"
+        },
+        {
+          "id": "career/leftovers"
+        },
+        {
+          "id": "career/lets_all_get_merry"
+        },
+        {
+          "id": "career/low_gravity"
+        },
+        {
+          "id": "career/muffin_impossible"
+        },
+        {
+          "id": "career/muffin_impossible_2"
+        },
+        {
+          "id": "career/muffin_impossible_3"
+        },
+        {
+          "id": "career/nowhere_to_turn"
+        },
+        {
+          "id": "career/one_step_ahead"
+        },
+        {
+          "id": "career/pineapple_on_its_side_cake"
+        },
+        {
+          "id": "career/real_meal"
+        },
+        {
+          "id": "career/secret_brownies"
+        },
+        {
+          "id": "career/snack_box_blitz"
+        },
+        {
+          "id": "career/strawberry_shortcut"
+        },
+        {
+          "id": "career/teensy_taste"
+        },
+        {
+          "id": "career/tempting_jellies"
+        },
+        {
+          "id": "career/too_fast_to_fast"
+        },
+        {
+          "id": "career/unfresh_fruits"
+        },
+        {
+          "id": "career/unfresh_fruits_2"
+        },
+        {
+          "id": "career/veggie_haters"
+        },
+        {
+          "id": "career/veggie_patty"
+        },
+        {
+          "id": "career/wedding_cake_for_one"
+        },
+        {
+          "id": "career/zero_gravity"
+        },
+        {
+          "id": "career/dark/3000_race"
+        },
+        {
+          "id": "career/dark/a_little_extra"
+        },
+        {
+          "id": "career/dark/a_little_garbage_2"
+        },
+        {
+          "id": "career/dark/boxing_day"
+        },
+        {
+          "id": "career/dark/fruit_salad"
+        },
+        {
+          "id": "career/dark/its_square_to_be_square"
+        },
+        {
+          "id": "career/dark/muffin_impossible_2"
+        },
+        {
+          "id": "career/dark/secret_brownies"
+        },
+        {
+          "id": "career/dark/strawberry_shortcut"
+        },
+        {
+          "id": "career/dark/three_minute_sprint"
+        },
+        {
+          "id": "career/dark/too_fast_to_fast"
         }
       ]
     }

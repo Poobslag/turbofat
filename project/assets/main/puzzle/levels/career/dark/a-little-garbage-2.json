@@ -1,7 +1,7 @@
 {
   "version": "2cb4",
   "start_speed": "1",
-  "title": "A Little Garbage 2",
+  "title": "EX A Little Garbage 2",
   "description": "Is that food? Don't eat out of the garbage!",
   "blocks_during": [
     "shuffle_inserted_lines slice"

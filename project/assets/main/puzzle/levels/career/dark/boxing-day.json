@@ -1,7 +1,7 @@
 {
   "version": "2cb4",
   "start_speed": "A1",
-  "title": "Boxing Day",
+  "title": "EX Boxing Day",
   "description": "Don't get boxed in!",
   "finish_condition": {
     "type": "score",
