@@ -1,0 +1,54 @@
+{
+  "regions": [
+    {
+      "name": "Permissible World",
+      "distance": 0,
+      "piece_speed": "0",
+      "boss_level":
+      {
+        "id": "boss_211"
+      },
+      "levels": [
+        {
+          "id": "level_211"
+        },
+        {
+          "id": "level_212"
+        }
+      ]
+    },
+    {
+      "name": "Even World",
+      "distance": 10,
+      "piece_speed": "0-3",
+      "boss_level":
+      {
+        "id": "boss_311"
+      },
+      "levels": [
+        {
+          "id": "level_311"
+        },
+        {
+          "id": "level_312"
+        },
+        {
+          "id": "level_313"
+        }
+      ]
+    },
+    {
+      "name": "Cherries World",
+      "distance": 20,
+      "piece_speed": "A1-AD",
+      "levels": [
+        {
+          "id": "level_411"
+        },
+        {
+          "id": "level_412"
+        }
+      ]
+    }
+  ]
+}
