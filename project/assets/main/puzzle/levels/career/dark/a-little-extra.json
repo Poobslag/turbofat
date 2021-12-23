@@ -1,7 +1,7 @@
 {
   "version": "2cb4",
   "start_speed": "A1",
-  "title": "A Little Extra",
+  "title": "EX A Little Extra",
   "description": "Some fun little bonuses at the bottom. But you have to work for it!",
   "finish_condition": {
     "type": "time_over",

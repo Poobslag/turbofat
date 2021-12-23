@@ -19,7 +19,6 @@
   "rank": [
     "extra_seconds_per_piece 0.25",
     "box_factor 1.10",
-    "combo_factor 1.21",
     "hide_combos_rank",
     "preplaced_pieces 4"
   ],

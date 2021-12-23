@@ -1,7 +1,7 @@
 {
   "version": "2cb4",
   "start_speed": "A1",
-  "title": "Three Minute Sprint",
+  "title": "EX Three Minute Sprint",
   "description": "Nothing fancy, let's just cook!",
   "finish_condition": {
     "type": "time_over",

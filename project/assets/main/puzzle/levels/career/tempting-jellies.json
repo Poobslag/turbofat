@@ -37,7 +37,6 @@
   ],
   "rank": [
     "box_factor 0.25",
-    "combo_factor 1.08",
     "master_pickup_score_per_line 17.78",
     "show_pickups_rank",
     "preplaced_pieces 6"
