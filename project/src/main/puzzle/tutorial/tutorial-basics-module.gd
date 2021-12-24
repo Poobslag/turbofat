@@ -65,7 +65,10 @@ func prepare_tutorial_level() -> void:
 func _advance_level() -> void:
 	if CurrentLevel.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
-		change_level("tutorial/oh_my", false)
+		
+		# change the level immediately; don't wait for dialog to finish
+		PuzzleState.change_level("tutorial/oh_my", false)
+		
 		hud.set_big_message(ChatLibrary.add_mega_lull_characters(tr("OH, MY!!!")))
 		hud.enqueue_pop_out()
 		
