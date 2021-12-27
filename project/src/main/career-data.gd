@@ -30,11 +30,20 @@ var distance_earned := 0
 ## The number of levels played in the current career session.
 var hours_passed := 0
 
+## The number of customers served in the current career session.
+var daily_customers := 0
+
 ## The amount of money earned in the current career session.
 var daily_earnings := 0
 
 ## The level IDs played in the current career session. This is tracked to avoid repeating levels.
 var daily_level_ids := []
+
+## The amount of time played in the current career session.
+var daily_seconds_played := 0.0
+
+## The number of steps taken in the current career session (not including initial level selection)
+var daily_steps := 0
 
 ## The number of days the player has completed.
 var day := 0
@@ -57,8 +66,11 @@ func reset() -> void:
 	distance_travelled = 0
 	distance_earned = 0
 	hours_passed = 0
+	daily_customers = 0
 	daily_earnings = 0
 	daily_level_ids.clear()
+	daily_seconds_played = 0.0
+	daily_steps = 0
 	day = 0
 	prev_daily_earnings.clear()
 	prev_distance_travelled.clear()
@@ -70,8 +82,11 @@ func from_json_dict(dict: Dictionary) -> void:
 	distance_travelled = dict.get("distance_travelled", 0)
 	distance_earned = dict.get("distance_earned", 0)
 	hours_passed = dict.get("hours_passed", 0)
+	daily_customers = dict.get("daily_customers", 0)
 	daily_earnings = dict.get("daily_earnings", 0)
 	daily_level_ids = dict.get("daily_level_ids", [])
+	daily_seconds_played = dict.get("daily_seconds_played", 0.0)
+	daily_steps = dict.get("daily_steps", 0)
 	day = dict.get("day", 0)
 	prev_daily_earnings = dict.get("prev_daily_earnings", [])
 	prev_distance_travelled = dict.get("prev_distance_travelled", [])
@@ -84,8 +99,11 @@ func to_json_dict() -> Dictionary:
 	results["distance_travelled"] = distance_travelled
 	results["distance_earned"] = distance_earned
 	results["hours_passed"] = hours_passed
+	results["daily_customers"] = daily_customers
 	results["daily_earnings"] = daily_earnings
 	results["daily_level_ids"] = daily_level_ids
+	results["daily_seconds_played"] = daily_seconds_played
+	results["daily_steps"] = daily_steps
 	results["day"] = day
 	results["prev_daily_earnings"] = prev_daily_earnings
 	results["prev_distance_travelled"] = prev_distance_travelled
@@ -234,8 +252,11 @@ func advance_calendar() -> void:
 	
 	distance_earned = 0
 	hours_passed = 0
+	daily_customers = 0
 	daily_earnings = 0
 	daily_level_ids.clear()
+	daily_seconds_played = 0.0
+	daily_steps = 0
 	day = min(day + 1, MAX_DAY)
 	emit_signal("distance_travelled_changed")
 

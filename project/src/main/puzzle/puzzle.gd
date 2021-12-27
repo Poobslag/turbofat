@@ -293,6 +293,13 @@ func _update_career_data(rank_result: RankResult) -> void:
 	PlayerData.career.daily_earnings = min(PlayerData.career.daily_earnings + rank_result.score,
 			PlayerData.MAX_MONEY)
 	
+	for customer_score in PuzzleState.customer_scores:
+		if customer_score == 0:
+			# If the player tops out without serving a customer, the customer is not included
+			pass
+		else:
+			PlayerData.career.daily_customers += 1
+	
 	# Calculate the player's distance to travel based on their overall rank
 	var overall_rank := _overall_rank(rank_result)
 	var distance_to_advance := 1
@@ -314,6 +321,7 @@ func _update_career_data(rank_result: RankResult) -> void:
 	else:
 		distance_to_advance = 25
 	
+	PlayerData.career.daily_steps += distance_to_advance
 	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)
 
 

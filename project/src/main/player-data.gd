@@ -59,3 +59,6 @@ func set_money(new_money: int) -> void:
 
 func _on_SecondsPlayedTimer_timeout() -> void:
 	seconds_played += SECONDS_PLAYED_INCREMENT
+	
+	if career.is_career_mode():
+		career.daily_seconds_played += SECONDS_PLAYED_INCREMENT

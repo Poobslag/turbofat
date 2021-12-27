@@ -15,6 +15,7 @@ $$$ Blogger Sans by Sergiy Tkachenko (https://firstsiteguide.com) (Creative Comm
 $$ Fredoka One by Milena Brandao (SIL Open Font License, Version 1.1)
 $$ Modak by Ek Type (SIL Open Font License, Version 1.1)
 $$ Nikumaru by Kato Masashi (http://www.fontna.com/freefont/1651/) (No conventional license; 'Can be used for both commercial and non-commercial purposes, so please download with confidence')
+$$ Schoolbell by Font Diner (Apache License, Version 2.0)
 
 Icons:
 $ Verification checkmark symbol by Catalin Fertu (https://www.flaticon.com/authors/catalin-fertu) (Unlimited use without attribution)
@@ -128,6 +129,7 @@ project/assets/main/ui/blogger-sans.otf Blogger Sans by Sergiy Tkachenko
 project/assets/main/ui/fredoka-one-regular.ttf Fredoka One by Milena Brandao
 project/assets/main/ui/nikumaru.otf Nikumaru by Kato Masashi
 project/assets/main/puzzle/modak-regular.ttf Modak by Ek Type
+project/assets/main/ui/schoolbell-regular.ttf Schoolbell by Font Diner 
 
 Other
 --------------------------------------------------------------------------------
