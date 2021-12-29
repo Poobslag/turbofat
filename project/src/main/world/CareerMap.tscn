@@ -279,6 +279,7 @@ modulate = Color( 1, 1, 1, 0.501961 )
 margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
+mouse_filter = 2
 texture = SubResource( 19 )
 flip_v = true
 script = ExtResource( 21 )

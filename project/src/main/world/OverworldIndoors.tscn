@@ -139,6 +139,7 @@ margin_right = 1024.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 1024, 600 )
 rect_scale = Vector2( 0.4, 0.4 )
+mouse_filter = 2
 texture = SubResource( 2 )
 flip_v = true
 script = ExtResource( 40 )

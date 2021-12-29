@@ -1,11 +1,14 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://src/main/ui/career/career-win.gd" type="Script" id=1]
+[ext_resource path="res://assets/main/world/environment/marsh-path-sheet.png" type="Texture" id=2]
 [ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=4]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/chalkboard-54.theme" type="Theme" id=6]
 [ext_resource path="res://assets/main/ui/career/chalkboard.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/ui/career/chalkboard-separator-bottom.png" type="Texture" id=8]
+[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/main/ui/career/chalkboard-title-0b.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/ui/career/chalkboard-title-0a.png" type="Texture" id=11]
 [ext_resource path="res://assets/main/ui/career/chalkboard-distance.png" type="Texture" id=12]
@@ -15,6 +18,20 @@
 [ext_resource path="res://assets/main/ui/career/chalkboard-time.png" type="Texture" id=16]
 [ext_resource path="res://assets/main/ui/career/chalkboard-map.png" type="Texture" id=17]
 [ext_resource path="res://assets/main/ui/schoolbell-regular.ttf" type="DynamicFontData" id=18]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/main/world/GroundMap.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/main/world/environment/RippleWaves.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=23]
+[ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=24]
+[ext_resource path="res://src/main/world/environment/MarshTree.tscn" type="PackedScene" id=25]
+[ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=26]
+[ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=27]
+[ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=28]
+[ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=29]
+[ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=30]
+[ext_resource path="res://src/main/ui/career/menu-world-mover.gd" type="Script" id=31]
+[ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=32]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -67,6 +84,50 @@ corner_radius_top_right = 16
 corner_radius_bottom_right = 16
 corner_radius_bottom_left = 16
 
+[sub_resource type="TileSet" id=14]
+0/name = "marsh-path-sheet.png 0"
+0/texture = ExtResource( 2 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 540, 750 )
+0/tile_mode = 1
+0/autotile/bitmask_mode = 2
+0/autotile/bitmask_flags = [ Vector2( 0, 0 ), 21299218, Vector2( 0, 1 ), 21299346, Vector2( 0, 2 ), 21299224, Vector2( 0, 3 ), 21299352, Vector2( 0, 4 ), 21299248, Vector2( 0, 5 ), 21299376, Vector2( 0, 6 ), 21299256, Vector2( 0, 7 ), 21299258, Vector2( 0, 8 ), 21299386, Vector2( 0, 9 ), 21299386, Vector2( 1, 0 ), 21299218, Vector2( 1, 1 ), 21299346, Vector2( 1, 2 ), 21299224, Vector2( 1, 3 ), 21299352, Vector2( 1, 4 ), 21299248, Vector2( 1, 5 ), 21299376, Vector2( 1, 6 ), 21299256, Vector2( 1, 7 ), 21299258, Vector2( 1, 8 ), 21299386, Vector2( 1, 9 ), 21299386, Vector2( 2, 0 ), 21299344, Vector2( 2, 1 ), 21299346, Vector2( 2, 2 ), 21299226, Vector2( 2, 3 ), 21299354, Vector2( 2, 4 ), 21299250, Vector2( 2, 5 ), 21299378, Vector2( 2, 6 ), 21299256, Vector2( 2, 7 ), 21299384, Vector2( 2, 8 ), 21299386, Vector2( 2, 9 ), 21299386, Vector2( 3, 0 ), 21299344, Vector2( 3, 1 ), 21299346, Vector2( 3, 2 ), 21299226, Vector2( 3, 3 ), 21299354, Vector2( 3, 4 ), 21299250, Vector2( 3, 5 ), 21299378, Vector2( 3, 6 ), 21299256, Vector2( 3, 7 ), 21299384, Vector2( 3, 8 ), 21299386, Vector2( 3, 9 ), 21299386 ]
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 135, 75 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="TileSet" id=15]
+0/name = "block-shadow.png 0"
+0/texture = ExtResource( 4 )
+0/tex_offset = Vector2( 0, 20 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 212, 212 )
+0/tile_mode = 0
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
+
+[sub_resource type="ViewportTexture" id=16]
+viewport_path = NodePath("CanvasLayer/WorldMover/Ground/Shadows/Viewport")
+
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
 
@@ -114,6 +175,7 @@ __meta__ = {
 }
 
 [node name="TitleRow" type="Control" parent="Chalkboard/VBoxContainer"]
+modulate = Color( 1, 0.5, 0.945313, 1 )
 margin_top = 6.0
 margin_right = 930.0
 margin_bottom = 81.0
@@ -139,9 +201,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -38.5
-margin_top = -35.0
+margin_top = -37.5
 margin_right = 38.5
-margin_bottom = 35.0
+margin_bottom = 32.5
 texture = ExtResource( 11 )
 expand = true
 __meta__ = {
@@ -172,9 +234,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -38.5
-margin_top = -35.0
+margin_top = -37.5
 margin_right = 38.5
-margin_bottom = 35.0
+margin_bottom = 32.5
 texture = ExtResource( 10 )
 expand = true
 __meta__ = {
@@ -182,6 +244,7 @@ __meta__ = {
 }
 
 [node name="Separator1" type="Control" parent="Chalkboard/VBoxContainer"]
+modulate = Color( 0.726563, 0.5, 1, 1 )
 margin_top = 81.0
 margin_right = 930.0
 margin_bottom = 106.0
@@ -232,6 +295,7 @@ margin_right = 458.0
 margin_bottom = 85.0
 
 [node name="Control" type="Control" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
+modulate = Color( 0.501961, 0.882353, 1, 1 )
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
@@ -253,6 +317,7 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
+modulate = Color( 0.5, 0.883333, 1, 1 )
 margin_left = 84.0
 margin_right = 266.0
 margin_bottom = 80.0
@@ -295,6 +360,7 @@ margin_right = 443.0
 margin_bottom = 85.0
 
 [node name="Control" type="Control" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
+modulate = Color( 0.501961, 0.882353, 1, 1 )
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
@@ -316,6 +382,7 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
+modulate = Color( 0.501961, 0.882353, 1, 1 )
 margin_left = 84.0
 margin_right = 259.0
 margin_bottom = 80.0
@@ -370,6 +437,7 @@ margin_right = 458.0
 margin_bottom = 85.0
 
 [node name="Control" type="Control" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
+modulate = Color( 0.550781, 1, 0.5, 1 )
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
@@ -391,6 +459,7 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
+modulate = Color( 0.54902, 1, 0.501961, 1 )
 margin_left = 84.0
 margin_right = 262.0
 margin_bottom = 80.0
@@ -433,6 +502,7 @@ margin_right = 443.0
 margin_bottom = 85.0
 
 [node name="Control" type="Control" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
+modulate = Color( 0.54902, 1, 0.501961, 1 )
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
@@ -454,6 +524,7 @@ __meta__ = {
 }
 
 [node name="Label2" type="Label" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
+modulate = Color( 0.54902, 1, 0.501961, 1 )
 margin_left = 84.0
 margin_right = 259.0
 margin_bottom = 80.0
@@ -480,6 +551,7 @@ __meta__ = {
 }
 
 [node name="MapRow" type="Control" parent="Chalkboard/VBoxContainer"]
+modulate = Color( 1, 0.958333, 0.5, 1 )
 margin_top = 286.0
 margin_right = 930.0
 margin_bottom = 446.0
@@ -502,6 +574,7 @@ __meta__ = {
 }
 
 [node name="Separator2" type="Control" parent="Chalkboard/VBoxContainer"]
+modulate = Color( 1, 0.580392, 0.501961, 1 )
 margin_top = 446.0
 margin_right = 930.0
 margin_bottom = 471.0
@@ -558,6 +631,132 @@ rect_min_size = Vector2( 0, 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="WorldMover" type="Node2D" parent="CanvasLayer"]
+script = ExtResource( 31 )
+
+[node name="Ground" type="Node2D" parent="CanvasLayer/WorldMover"]
+z_index = -1
+
+[node name="GroundMap" parent="CanvasLayer/WorldMover/Ground" instance=ExtResource( 21 )]
+scale = Vector2( 1, 1 )
+tile_data = PoolIntArray( -458737, 0, 131073, -458736, 0, 196610, -458735, 0, 65536, -393201, 0, 131074, -393200, 0, 196611, -393199, 0, 65540, -327665, 0, 131074, -327664, 0, 196611, -327663, 0, 65538, -262130, 0, 131073, -262129, 0, 196611, -262128, 0, 196611, -262127, 0, 65538, -196594, 0, 131074, -196593, 0, 196611, -196592, 0, 196611, -196591, 0, 65538, -131058, 0, 131074, -131057, 0, 196611, -131056, 0, 196611, -131055, 0, 196611, -131054, 0, 65536, -65522, 0, 131074, -65521, 0, 196611, -65520, 0, 196611, -65519, 0, 196611, -65518, 0, 65540, 14, 0, 131072, 15, 0, 196609, 16, 0, 196611, 17, 0, 196611, 18, 0, 196611, 19, 0, 65536, 65552, 0, 131072, 65553, 0, 196611, 65554, 0, 196611, 65555, 0, 65539, 131089, 0, 131074, 131090, 0, 196611, 131091, 0, 65539, 196625, 0, 131074, 196626, 0, 196611, 196627, 0, 65538, 262160, 0, 131073, 262161, 0, 196611, 262162, 0, 196611, 262163, 0, 65539, 327696, 0, 131074, 327697, 0, 196611, 327698, 0, 196611, 327699, 0, 5, 393217, 0, 131073, 393218, 0, 196610, 393219, 0, 196610, 393220, 0, 196610, 393221, 0, 196610, 393222, 0, 196610, 393223, 0, 196610, 393224, 0, 65536, 393230, 0, 131073, 393231, 0, 196610, 393232, 0, 196611, 393233, 0, 196611, 393234, 0, 65537, 458753, 0, 131072, 458754, 0, 196611, 458755, 0, 196611, 458756, 0, 196611, 458757, 0, 196611, 458758, 0, 196611, 458759, 0, 196611, 458760, 0, 65537, 458764, 0, 131073, 458765, 0, 196610, 458766, 0, 196611, 458767, 0, 196611, 458768, 0, 196611, 458769, 0, 196611, 458770, 0, 65539, 524290, 0, 131072, 524291, 0, 196611, 524292, 0, 196611, 524293, 0, 196611, 524294, 0, 196611, 524295, 0, 196611, 524296, 0, 196611, 524297, 0, 65536, 524300, 0, 131074, 524301, 0, 196611, 524302, 0, 196611, 524303, 0, 196611, 524304, 0, 196611, 524305, 0, 196611, 524306, 0, 5, 589827, 0, 131072, 589828, 0, 131077, 589829, 0, 196609, 589830, 0, 131076, 589831, 0, 131076, 589832, 0, 196611, 589833, 0, 196611, 589834, 0, 196610, 589835, 0, 196610, 589836, 0, 196611, 589837, 0, 196611, 589838, 0, 196611, 589839, 0, 196611, 589840, 0, 196611, 589841, 0, 5, 655368, 0, 131072, 655369, 0, 196608, 655370, 0, 196611, 655371, 0, 196611, 655372, 0, 196611, 655373, 0, 196611, 655374, 0, 196611, 655375, 0, 196611, 655376, 0, 5, 720906, 0, 131072, 720907, 0, 196611, 720908, 0, 196611, 720909, 0, 196611, 720910, 0, 196611, 720911, 0, 65538, 786443, 0, 131074, 786444, 0, 196611, 786445, 0, 196611, 786446, 0, 196611, 786447, 0, 5, 851979, 0, 131074, 851980, 0, 196611, 851981, 0, 196611, 851982, 0, 65537, 917515, 0, 131074, 917516, 0, 196611, 917517, 0, 196611, 917518, 0, 65540, 983051, 0, 131074, 983052, 0, 196611, 983053, 0, 196611, 983054, 0, 65538, 1048587, 0, 131074, 1048588, 0, 196611, 1048589, 0, 196611, 1048590, 0, 5, 1114123, 0, 131072, 1114124, 0, 196611, 1114125, 0, 65539, 1179660, 0, 131072, 1179661, 0, 5 )
+
+[node name="RippleWaves" parent="CanvasLayer/WorldMover/Ground" instance=ExtResource( 22 )]
+tile_map_path = NodePath("../GroundMap")
+direction = 2
+speed = 30.0
+wait_time = 12.0
+
+[node name="Terrain" type="TileMap" parent="CanvasLayer/WorldMover/Ground"]
+position = Vector2( -2, 1 )
+mode = 1
+tile_set = SubResource( 14 )
+cell_size = Vector2( 128, 64 )
+cell_quadrant_size = 64
+cell_tile_origin = 1
+centered_textures = true
+format = 1
+
+[node name="Shadows" type="Node2D" parent="CanvasLayer/WorldMover/Ground"]
+
+[node name="Viewport" type="Viewport" parent="CanvasLayer/WorldMover/Ground/Shadows"]
+size = Vector2( 1024, 600 )
+transparent_bg = true
+usage = 0
+
+[node name="ViewportRoot" type="Node2D" parent="CanvasLayer/WorldMover/Ground/Shadows/Viewport"]
+
+[node name="ObstacleMapShadows" type="TileMap" parent="CanvasLayer/WorldMover/Ground/Shadows/Viewport/ViewportRoot"]
+mode = 1
+tile_set = SubResource( 15 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+centered_textures = true
+format = 1
+script = ExtResource( 28 )
+obstacle_map_path = NodePath("../../../../../Obstacles/ObstacleMap")
+cell_shadow_mapping = {
+1: Rect2( 0, 0, 0, 0 )
+}
+
+[node name="CreatureShadows" parent="CanvasLayer/WorldMover/Ground/Shadows/Viewport/ViewportRoot" instance=ExtResource( 9 )]
+
+[node name="ShadowCasterShadows" type="Node2D" parent="CanvasLayer/WorldMover/Ground/Shadows/Viewport/ViewportRoot"]
+script = ExtResource( 24 )
+OvalShadowScene = ExtResource( 20 )
+
+[node name="ScrewportTexrect" type="TextureRect" parent="CanvasLayer/WorldMover/Ground/Shadows"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+mouse_filter = 2
+texture = SubResource( 16 )
+flip_v = true
+script = ExtResource( 27 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Obstacles" type="YSort" parent="CanvasLayer/WorldMover"]
+
+[node name="ObstacleMap" type="TileMap" parent="CanvasLayer/WorldMover/Obstacles"]
+mode = 1
+tile_set = ExtResource( 23 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+cell_y_sort = true
+centered_textures = true
+format = 1
+tile_data = PoolIntArray( -393203, 1, 0, -393202, 1, 0, -393201, 1, 0, -393200, 1, 0, -393199, 1, 0, -327667, 1, 0, -327663, 1, 0, -262131, 1, 0, -262127, 1, 0, -262126, 1, 0, -196595, 1, 0, -196590, 1, 0, -131059, 1, 0, -131054, 1, 0, -65523, 1, 0, -65518, 1, 0, 13, 1, 0, 18, 1, 0, 19, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65555, 1, 0, 65556, 1, 0, 131087, 1, 0, 131088, 1, 0, 131092, 1, 0, 196623, 1, 0, 196624, 1, 0, 196628, 1, 0, 262158, 1, 0, 262159, 1, 0, 262164, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327693, 1, 0, 327694, 1, 0, 327700, 1, 0, 393218, 1, 0, 393225, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393236, 1, 0, 458754, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458772, 1, 0, 524290, 1, 0, 524298, 1, 0, 524299, 1, 0, 524307, 1, 0, 524308, 1, 0, 589826, 1, 0, 589842, 1, 0, 589843, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655377, 1, 0, 655378, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 720907, 1, 0, 720908, 1, 0, 720909, 1, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 1, 0 )
+script = ExtResource( 29 )
+ground_map_path = NodePath("../../Ground/GroundMap")
+impassable_tile_index = 1
+
+[node name="CornerMap" type="TileMap" parent="CanvasLayer/WorldMover/Obstacles/ObstacleMap"]
+mode = 1
+tile_set = ExtResource( 23 )
+cell_size = Vector2( 128, 64 )
+cell_tile_origin = 1
+cell_y_sort = true
+centered_textures = true
+format = 1
+script = ExtResource( 26 )
+cornerable_tiles = {
+2: Vector2( 4, 3 ),
+3: Vector2( 2, 5 )
+}
+
+[node name="Player" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 19 )]
+position = Vector2( 956.203, 478.918 )
+creature_id = "#player#"
+dna = {
+}
+orientation = 1
+
+[node name="Sensei" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 19 )]
+position = Vector2( 68.6856, 477.653 )
+creature_id = "#sensei#"
+dna = {
+}
+
+[node name="MarshTree1" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 25 )]
+position = Vector2( 1024.72, 569.821 )
+
+[node name="MarshCrystal1" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 30 )]
+position = Vector2( 26.206, 428.89 )
+
+[node name="MarshCrystal2" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 30 )]
+position = Vector2( 339.019, 659.296 )
+
+[node name="MarshBush1" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 32 )]
+position = Vector2( 954.42, 710.482 )
+
+[node name="MarshBush2" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 32 )]
+position = Vector2( -283.38, 422.895 )
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 3 )]
 
