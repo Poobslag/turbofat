@@ -55,7 +55,7 @@ func _append_customer_scores(rank_result: RankResult, customer_scores: Array, \
 	for i in range(customer_scores.size()):
 		var customer_score: int = customer_scores[i]
 		if customer_score == 0:
-			# last entry in customer_score is always 0; ignore it
+			# customer_score can contain zeroes if the player tops out without clearing lines
 			continue
 		var left := tr("Customer #%s") % StringUtils.comma_sep(i + 1)
 		var right := "%s/\n" % StringUtils.format_money(customer_score)

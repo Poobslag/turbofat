@@ -155,6 +155,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	# apply a distance penalty if they select an earlier level
 	var distance_penalty: int = PlayerData.career.distance_penalties()[level_index]
 	PlayerData.career.distance_travelled -= distance_penalty
+	PlayerData.career.daily_steps -= distance_penalty
 	
 	var level_settings: LevelSettings = _level_settings_for_levels[level_index]
 	PlayerData.career.daily_level_ids.append(level_settings.id)
