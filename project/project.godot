@@ -74,6 +74,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/career-region.gd"
 }, {
+"base": "Control",
+"class": "ChalkboardMapRow",
+"language": "GDScript",
+"path": "res://src/main/ui/career/chalkboard-map-row.gd"
+}, {
 "base": "Node",
 "class": "ChatAdvancer",
 "language": "GDScript",
@@ -348,6 +353,11 @@ _global_script_classes=[ {
 "class": "LabelTyper",
 "language": "GDScript",
 "path": "res://src/main/ui/chat/label-typer.gd"
+}, {
+"base": "Control",
+"class": "Landmark",
+"language": "GDScript",
+"path": "res://src/main/ui/career/landmark.gd"
 }, {
 "base": "Sprite",
 "class": "LeafPoof",
@@ -978,6 +988,7 @@ _global_script_class_icons={
 "CareerLevel": "",
 "CareerLevelSelect": "",
 "CareerRegion": "",
+"ChalkboardMapRow": "",
 "ChatAdvancer": "",
 "ChatChoiceButton": "",
 "ChatChoices": "",
@@ -1033,6 +1044,7 @@ _global_script_class_icons={
 "InputReplay": "",
 "KeybindSettings": "",
 "LabelTyper": "",
+"Landmark": "",
 "LeafPoof": "",
 "LetterProjectile": "",
 "LetterShooter": "",

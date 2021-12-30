@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=2]
+[gd_scene load_steps=44 format=2]
 
 [ext_resource path="res://src/main/ui/career/career-win.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/world/environment/marsh-path-sheet.png" type="Texture" id=2]
@@ -16,7 +16,7 @@
 [ext_resource path="res://assets/main/ui/career/chalkboard-separator-top.png" type="Texture" id=14]
 [ext_resource path="res://assets/main/ui/career/chalkboard-money.png" type="Texture" id=15]
 [ext_resource path="res://assets/main/ui/career/chalkboard-time.png" type="Texture" id=16]
-[ext_resource path="res://assets/main/ui/career/chalkboard-map.png" type="Texture" id=17]
+[ext_resource path="res://src/main/ui/career/ChalkboardMapRow.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/main/ui/schoolbell-regular.ttf" type="DynamicFontData" id=18]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=20]
@@ -32,6 +32,8 @@
 [ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/main/ui/career/menu-world-mover.gd" type="Script" id=31]
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=32]
+[ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=33]
+[ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=34]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -130,6 +132,7 @@ viewport_path = NodePath("CanvasLayer/WorldMover/Ground/Shadows/Viewport")
 
 [node name="Node" type="Node"]
 script = ExtResource( 1 )
+obstacle_manager_path = NodePath("CanvasLayer/WorldMover/ObstacleManager")
 
 [node name="Wallpaper" parent="." instance=ExtResource( 5 )]
 
@@ -550,28 +553,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MapRow" type="Control" parent="Chalkboard/VBoxContainer"]
-modulate = Color( 1, 0.958333, 0.5, 1 )
+[node name="MapRow" parent="Chalkboard/VBoxContainer" instance=ExtResource( 17 )]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 0.0
 margin_top = 286.0
 margin_right = 930.0
 margin_bottom = 446.0
-rect_min_size = Vector2( 0, 160 )
-
-[node name="TextureRect" type="TextureRect" parent="Chalkboard/VBoxContainer/MapRow"]
-modulate = Color( 1, 1, 1, 0.784314 )
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -450.0
-margin_top = -72.0
-margin_right = 450.0
-margin_bottom = 72.0
-texture = ExtResource( 17 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Separator2" type="Control" parent="Chalkboard/VBoxContainer"]
 modulate = Color( 1, 0.580392, 0.501961, 1 )
@@ -711,7 +701,7 @@ cell_tile_origin = 1
 cell_y_sort = true
 centered_textures = true
 format = 1
-tile_data = PoolIntArray( -393203, 1, 0, -393202, 1, 0, -393201, 1, 0, -393200, 1, 0, -393199, 1, 0, -327667, 1, 0, -327663, 1, 0, -262131, 1, 0, -262127, 1, 0, -262126, 1, 0, -196595, 1, 0, -196590, 1, 0, -131059, 1, 0, -131054, 1, 0, -65523, 1, 0, -65518, 1, 0, 13, 1, 0, 18, 1, 0, 19, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65555, 1, 0, 65556, 1, 0, 131087, 1, 0, 131088, 1, 0, 131092, 1, 0, 196623, 1, 0, 196624, 1, 0, 196628, 1, 0, 262158, 1, 0, 262159, 1, 0, 262164, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327693, 1, 0, 327694, 1, 0, 327700, 1, 0, 393218, 1, 0, 393225, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393236, 1, 0, 458754, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458772, 1, 0, 524290, 1, 0, 524298, 1, 0, 524299, 1, 0, 524307, 1, 0, 524308, 1, 0, 589826, 1, 0, 589842, 1, 0, 589843, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655377, 1, 0, 655378, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 720907, 1, 0, 720908, 1, 0, 720909, 1, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 1, 0 )
+tile_data = PoolIntArray( -524274, 1, 0, -524273, 1, 0, -524272, 1, 0, -524271, 1, 0, -524270, 1, 0, -458738, 1, 0, -458734, 1, 0, -393202, 1, 0, -393198, 1, 0, -327667, 1, 0, -327666, 1, 0, -327662, 1, 0, -262131, 1, 0, -262126, 1, 0, -196595, 1, 0, -196590, 1, 0, -196589, 1, 0, -131059, 1, 0, -131053, 1, 0, -65523, 1, 0, -65517, 1, 0, -65516, 1, 0, 13, 1, 0, 20, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65556, 1, 0, 131087, 1, 0, 131088, 1, 0, 131092, 1, 0, 196623, 1, 0, 196624, 1, 0, 196628, 1, 0, 262159, 1, 0, 262164, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327700, 1, 0, 393216, 1, 0, 393225, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393235, 1, 0, 393236, 1, 0, 458752, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458771, 1, 0, 524288, 1, 0, 524289, 1, 0, 524298, 1, 0, 524299, 1, 0, 524307, 1, 0, 589825, 1, 0, 589826, 1, 0, 589842, 1, 0, 589843, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655377, 1, 0, 655378, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720912, 1, 0, 720913, 1, 0, 786441, 1, 0, 786442, 1, 0, 786448, 1, 0, 851978, 1, 0, 851983, 1, 0, 851984, 1, 0, 917514, 1, 0, 917519, 1, 0, 983050, 1, 0, 983055, 1, 0, 1048586, 1, 0, 1048591, 1, 0, 1114122, 1, 0, 1114126, 1, 0, 1114127, 1, 0, 1179658, 1, 0, 1179659, 1, 0, 1179662, 1, 0, 1245195, 1, 0, 1245196, 1, 0, 1245197, 1, 0, 1245198, 1, 0 )
 script = ExtResource( 29 )
 ground_map_path = NodePath("../../Ground/GroundMap")
 impassable_tile_index = 1
@@ -758,6 +748,17 @@ position = Vector2( 954.42, 710.482 )
 [node name="MarshBush2" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 32 )]
 position = Vector2( -283.38, 422.895 )
 
+[node name="ObstacleManager" type="Node" parent="CanvasLayer/WorldMover"]
+script = ExtResource( 34 )
+creature_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
+shadow_caster_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+obstacles_path = NodePath("../Obstacles")
+CreatureScene = ExtResource( 19 )
+
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 3 )]
+
+[node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 33 )
+bus = "Sound Bus"
 
 [connection signal="pressed" from="Chalkboard/VBoxContainer/ButtonRow/Button" to="." method="_on_Button_pressed"]

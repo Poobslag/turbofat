@@ -5,12 +5,12 @@ extends Node
 ## When playing a music track, it skips to the least stale parts of the track.
 ##
 ## Keys:
-## 	C: Play chill song
-## 	U: Play upbeat song
-## 	T: Play tutorial song
-## 	=: Fade in the current song
-## 	-: Fade out the current song
-## 	]: Skip to next checkpoint in song
+##     C: Play chill song
+##     U: Play upbeat song
+##     T: Play tutorial song
+##     =: Fade in the current song
+##     -: Fade out the current song
+##     ]: Skip to next checkpoint in song
 
 func _ready() -> void:
 	SystemData.volume_settings.set_bus_volume_linear(VolumeSettings.MUSIC, 0.5)
