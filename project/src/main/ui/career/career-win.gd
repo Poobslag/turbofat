@@ -4,6 +4,8 @@ extends Node
 ## This summary screen includes things like how much money the player earned and how many customers they served, as
 ## well as a visual map showing their progress through the world.
 
+export (NodePath) var obstacle_manager_path: NodePath
+
 ## Negative titles shown when the player fails, travelling zero steps during a career session.
 var _bad_titles := [
 	tr("OH DEAR WHAT HAPPENED"),
@@ -78,10 +80,15 @@ onready var _right_title_icon := $Chalkboard/VBoxContainer/TitleRow/HBoxContaine
 onready var _customer_icon := $Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/ \
 		Served/HBoxContainer/Control/TextureRect
 
+onready var _map := $Chalkboard/VBoxContainer/MapRow
+onready var _applause_sound := $ApplauseSound
+onready var _obstacle_manager: ObstacleManager = get_node(obstacle_manager_path)
+
 func _ready() -> void:
 	_refresh_title_text()
 	_refresh_icons()
 	_refresh_labels()
+	_refresh_map()
 	
 	PlayerData.career.advance_calendar()
 	PlayerSave.save_player_data()
@@ -94,15 +101,25 @@ func _ready() -> void:
 ## Different titles are shown based on the player's performance. A typical player will always see the same affirming
 ## titles, although special titles are selected if they do especially poorly.
 func _refresh_title_text() -> void:
+	var player := _obstacle_manager.find_creature(CreatureLibrary.PLAYER_ID)
+	var sensei := _obstacle_manager.find_creature(CreatureLibrary.SENSEI_ID)
+	
 	if PlayerData.career.daily_steps >= 25:
 		# if you travelled 25 steps, you did great
 		_title.text = Utils.rand_value(_great_titles)
+		_applause_sound.play()
+		player.play_mood(ChatEvent.Mood.LAUGH0)
+		sensei.play_mood(ChatEvent.Mood.LAUGH0)
 	elif PlayerData.career.daily_steps >= 8:
 		# if you travelled 8, you at least did ok
 		_title.text = Utils.rand_value(_good_titles)
+		player.play_mood(ChatEvent.Mood.SMILE0)
+		sensei.play_mood(ChatEvent.Mood.SMILE0)
 	else:
 		# you did not do well
 		_title.text = Utils.rand_value(_bad_titles)
+		player.play_mood(ChatEvent.Mood.RAGE0)
+		sensei.play_mood(ChatEvent.Mood.RAGE0)
 
 
 ## Updates the icons in the report.
@@ -128,6 +145,54 @@ func _refresh_labels() -> void:
 	_served.text = StringUtils.comma_sep(min(PlayerData.career.daily_customers, 99999))
 	_steps.text = StringUtils.comma_sep(min(PlayerData.career.daily_steps, 99999))
 	_time.text = StringUtils.format_duration(min(PlayerData.career.daily_seconds_played, 5999)) # 99:59
+
+
+## Updates the map based on how far the player has travelled.
+func _refresh_map() -> void:
+	if PlayerData.career.distance_travelled < 50:
+		# Player has not travelled very far; the first few landmarks are visible
+		_map.landmark_count = 5
+		
+		_map.circle_count = 1
+		_map.circle_distance = 0
+		
+		_map.set_landmark_distance(0, 10)
+		_map.set_landmark_type(0, Landmark.CACTUS)
+		
+		_map.set_landmark_distance(1, 25)
+		_map.set_landmark_type(1, Landmark.ISLAND)
+		
+		_map.set_landmark_distance(2, 40)
+		_map.set_landmark_type(2, Landmark.SKULL)
+		
+		_map.set_landmark_distance(3, 60)
+		_map.set_landmark_type(3, Landmark.GEAR)
+		
+		_map.set_landmark_distance(4, 80)
+		_map.set_landmark_type(4, Landmark.VOLCANO)
+	else:
+		# Player has travelled a great distance; the last few landmarks are visible
+		_map.landmark_count = 5
+		
+		_map.circle_count = 3
+		_map.circle_distance = 25
+		
+		_map.set_landmark_distance(0, 40)
+		_map.set_landmark_type(0, Landmark.SKULL)
+		
+		_map.set_landmark_distance(1, 60)
+		_map.set_landmark_type(1, Landmark.GEAR)
+		
+		_map.set_landmark_distance(2, 80)
+		_map.set_landmark_type(2, Landmark.VOLCANO)
+		
+		_map.set_landmark_distance(3, 100)
+		_map.set_landmark_type(3, Landmark.RAINBOW)
+		
+		_map.set_landmark_distance(4, CareerData.MAX_DISTANCE_TRAVELLED)
+		_map.set_landmark_type(4, Landmark.MYSTERY)
+	
+	_map.player_distance = PlayerData.career.distance_travelled
 
 
 func _on_Button_pressed() -> void:
