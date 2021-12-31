@@ -8,8 +8,8 @@
     "value": "100"
   },
   "rank": [
-    "box_factor 0.80",
-    "combo_factor 0.77"
+    "box_factor 1.35",
+    "combo_factor 0.56"
   ],
   "triggers": [
     {
