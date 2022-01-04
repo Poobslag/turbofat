@@ -29,9 +29,12 @@ func _ready() -> void:
 
 
 func _enter_tree() -> void:
-	# wait a frame for the Timer to be added to the scene tree before restoring its state.
-	# we use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
-	get_tree().connect("idle_frame", self, "_restore_tween_and_timer_state", [get_tree()])
+	# Wait a frame for the Timer to be added to the scene tree before restoring its state. We use a one-shot listener
+	# method instead of a yield statement to avoid 'class instance is gone' errors. We also wrap it in an if statement
+	# because this music popup can be reused as a singleton, so it's possible for it to be launched multiple times
+	# with no idle_frame.
+	if not get_tree().is_connected("idle_frame", self, "_restore_tween_and_timer_state"):
+		get_tree().connect("idle_frame", self, "_restore_tween_and_timer_state", [get_tree()])
 
 
 ## Makes the music popup appear, and then hides it after a few seconds.
