@@ -17,6 +17,9 @@ func _ready() -> void:
 	$PieceManager.connect("piece_disturbed", $Playfield.pickups, "_on_PieceManager_piece_disturbed")
 	CurrentLevel.puzzle = self
 	
+	# reset the current puzzle, so transient data doesn't carry over from scene to scene
+	PuzzleState.reset()
+	
 	# set a baseline fatness state
 	PlayerData.creature_library.save_fatness_state()
 	PlayerData.creature_queue.primary_index = 0
@@ -161,6 +164,10 @@ func _quit_puzzle() -> void:
 		var world_lock: WorldLock = LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
 		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.epilogue_chat_key)
 		_enqueue_cutscene(chat_tree)
+	
+	if PlayerData.career.is_career_mode() and not PuzzleState.game_ended:
+		# apply penalties for skipping in career mode
+		PlayerData.career.advance_clock(0, false)
 	
 	CurrentLevel.clear_launched_level()
 	PlayerData.creature_queue.clear()
