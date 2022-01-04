@@ -73,6 +73,9 @@ func end_fade_out() -> void:
 
 ## Launches the 'fade in' visual transition.
 func fade_in() -> void:
+	# unignore input immediately; don't wait for fade in to finish
+	get_tree().get_root().set_disable_input(false)
+	
 	emit_signal("fade_in_started")
 
 
@@ -83,6 +86,9 @@ func end_fade_in() -> void:
 
 ## Launches the 'fade out' visual transition.
 func _fade_out(new_breadcrumb_method: FuncRef, new_breadcrumb_arg_array: Array = []) -> void:
+	# ignore input to prevent edge-cases where player does weird things during scene transitions
+	get_tree().get_root().set_disable_input(true)
+	
 	breadcrumb_method = new_breadcrumb_method
 	breadcrumb_arg_array = new_breadcrumb_arg_array
 	fading = true
