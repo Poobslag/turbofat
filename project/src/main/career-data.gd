@@ -78,19 +78,19 @@ func reset() -> void:
 	emit_signal("distance_travelled_changed")
 
 
-func from_json_dict(dict: Dictionary) -> void:
-	distance_travelled = dict.get("distance_travelled", 0)
-	distance_earned = dict.get("distance_earned", 0)
-	hours_passed = dict.get("hours_passed", 0)
-	daily_customers = dict.get("daily_customers", 0)
-	daily_earnings = dict.get("daily_earnings", 0)
-	daily_level_ids = dict.get("daily_level_ids", [])
-	daily_seconds_played = dict.get("daily_seconds_played", 0.0)
-	daily_steps = dict.get("daily_steps", 0)
-	day = dict.get("day", 0)
-	prev_daily_earnings = dict.get("prev_daily_earnings", [])
-	prev_distance_travelled = dict.get("prev_distance_travelled", [])
-	max_distance_travelled = dict.get("max_distance_travelled", 0)
+func from_json_dict(json: Dictionary) -> void:
+	distance_travelled = int(json.get("distance_travelled", 0))
+	distance_earned = int(json.get("distance_earned", 0))
+	hours_passed = int(json.get("hours_passed", 0))
+	daily_customers = int(json.get("daily_customers", 0))
+	daily_earnings = int(json.get("daily_earnings", 0))
+	daily_level_ids = json.get("daily_level_ids", [])
+	daily_seconds_played = float(json.get("daily_seconds_played", 0.0))
+	daily_steps = int(json.get("daily_steps", 0))
+	day = int(json.get("day", 0))
+	prev_daily_earnings = json.get("prev_daily_earnings", [])
+	prev_distance_travelled = json.get("prev_distance_travelled", [])
+	max_distance_travelled = int(json.get("max_distance_travelled", 0))
 	emit_signal("distance_travelled_changed")
 
 
