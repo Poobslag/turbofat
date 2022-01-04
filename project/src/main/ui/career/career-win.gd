@@ -85,6 +85,9 @@ onready var _applause_sound := $ApplauseSound
 onready var _obstacle_manager: ObstacleManager = get_node(obstacle_manager_path)
 
 func _ready() -> void:
+	ResourceCache.substitute_singletons()
+	MusicPlayer.play_chill_bgm()
+	
 	_refresh_title_text()
 	_refresh_icons()
 	_refresh_labels()

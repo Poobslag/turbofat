@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=45 format=2]
 
 [ext_resource path="res://src/main/ui/career/career-win.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/world/environment/marsh-path-sheet.png" type="Texture" id=2]
@@ -34,6 +34,7 @@
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=33]
 [ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=34]
+[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=37]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -760,5 +761,11 @@ CreatureScene = ExtResource( 19 )
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 33 )
 bus = "Sound Bus"
+
+[node name="Ui" type="CanvasLayer" parent="."]
+
+[node name="MusicPopup" parent="Ui" instance=ExtResource( 37 )]
+
+[node name="SceneTransitionCover" parent="Ui" instance=ExtResource( 3 )]
 
 [connection signal="pressed" from="Chalkboard/VBoxContainer/ButtonRow/Button" to="." method="_on_Button_pressed"]

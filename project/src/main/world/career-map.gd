@@ -22,6 +22,7 @@ onready var _level_select_buttons := $LevelSelect/Control/LevelButtons.get_child
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
+	MusicPlayer.play_chill_bgm()
 	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
 	if PlayerData.career.is_day_over():
 		PlayerData.career.push_career_trail()
