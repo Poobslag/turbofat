@@ -328,7 +328,6 @@ custom_styles/normal = SubResource( 5 )
 disabled = true
 
 [node name="MusicPopup" parent="Control" instance=ExtResource( 16 )]
-mouse_filter = 2
 
 [node name="SceneTransitionCover" parent="Control" instance=ExtResource( 4 )]
 
