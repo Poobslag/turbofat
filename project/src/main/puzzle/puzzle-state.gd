@@ -273,6 +273,9 @@ func reset() -> void:
 	bonus_score = 0
 	fatness_score = 0
 	level_performance = PuzzlePerformance.new()
+	game_active = false
+	finish_triggered = false
+	game_ended = false
 	speed_index = 0
 	no_more_customers = CurrentLevel.settings.other.tutorial
 	input_frame = -1
