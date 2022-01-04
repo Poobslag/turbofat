@@ -1,14 +1,14 @@
 # Translations template for PROJECT.
-# Copyright (C) 2021 ORGANIZATION
+# Copyright (C) 2022 ORGANIZATION
 # This file is distributed under the same license as the PROJECT project.
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2021.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2022.
 #
 #, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2021-12-24 10:02-0500\n"
+"POT-Creation-Date: 2022-01-03 10:25-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3829,12 +3829,12 @@ msgid "start"
 msgstr ""
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:275
-#: project/src/main/world/CareerMap.tscn:688
+#: project/src/main/world/CareerMap.tscn:689
 msgid "<"
 msgstr ""
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:284
-#: project/src/main/world/CareerMap.tscn:702
+#: project/src/main/world/CareerMap.tscn:703
 msgid ">"
 msgstr ""
 
@@ -4199,7 +4199,7 @@ msgid ""
 msgstr ""
 
 #: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:44
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:105
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:108
 msgid "Try making a snack box by arranging two pieces into a square."
 msgstr ""
 
@@ -4218,11 +4218,11 @@ msgid ""
 "See if you can earn ¥100."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:69
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:72
 msgid "OH, MY!!!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:76
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:79
 #: project/src/main/puzzle/tutorial/tutorial-cakes-module.gd:164
 #: project/src/main/puzzle/tutorial/tutorial-combo-module.gd:121
 #: project/src/main/puzzle/tutorial/tutorial-squish-module.gd:110
@@ -4230,36 +4230,36 @@ msgstr ""
 msgid "Good job!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:79
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:82
 msgid "Nicely done!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:82
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:85
 msgid "Impressive!"
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:85
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:88
 msgid "Oh! I thought that would be more difficult..."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:92
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:95
 msgid ""
 "Well done!\n"
 "\n"
 "Line clears earn ¥1. Maybe more if you can build a combo."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:102
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:244
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:105
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:247
 msgid "Clear a row by filling it with blocks."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:107
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:110
 msgid "Try clearing a few box lines."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:115
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:120
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:118
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:123
 msgid ""
 "Well done!\n"
 "\n"
@@ -4267,14 +4267,14 @@ msgid ""
 "you're clever."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:130
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:133
 msgid ""
 "Oh my, you're not supposed to know how to do that!\n"
 "\n"
 "...But yes, squish moves can help you out of a jam."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:136
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:139
 msgid ""
 "Well done!\n"
 "\n"
@@ -4282,27 +4282,27 @@ msgid ""
 "boxes."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:145
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:148
 msgid ""
 "Oh my, you're not supposed to know how to do that!\n"
 "\n"
 "...But yes, those boxes earn ¥15 when you clear them."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:151
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:154
 msgid ""
 "Well done!\n"
 "\n"
 "Those boxes earn ¥15 when you clear them. Try clearing a few box lines."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:160
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:163
 msgid ""
 "Impressive! Using squish moves, you can organize boxes in tall vertical "
 "stacks and earn a lot of money."
 msgstr ""
 
-#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:240
+#: project/src/main/puzzle/tutorial/tutorial-basics-module.gd:243
 msgid ""
 "Welcome to Turbo Fat! You seem to already be familiar with this sort of "
 "game, so let's dive right in.\n"
@@ -5015,8 +5015,52 @@ msgstr ""
 msgid "Voices"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:36
-msgid "You Win!"
+#: project/src/main/ui/career/CareerWin.tscn:221
+#: project/src/main/ui/career/career-win.gd:32
+msgid "LOOK WHAT WE DID"
+msgstr ""
+
+#: project/src/main/ui/career/CareerWin.tscn:330
+msgid "Served:"
+msgstr ""
+
+#: project/src/main/ui/career/CareerWin.tscn:343
+msgid "132"
+msgstr ""
+
+#: project/src/main/ui/career/CareerWin.tscn:395
+msgid "Steps:"
+msgstr ""
+
+#: project/src/main/ui/career/CareerWin.tscn:408
+msgid "23"
+msgstr ""
+
+#: project/src/main/ui/career/CareerWin.tscn:472
+msgid "Earned:"
+msgstr ""
+
+#: project/src/main/ui/career/CareerWin.tscn:485
+msgid "¥999,999"
+msgstr ""
+
+#: project/src/main/ui/career/CareerWin.tscn:537
+msgid "Time:"
+msgstr ""
+
+#: project/src/main/ui/career/CareerWin.tscn:550
+msgid "15:03"
+msgstr ""
+
+#: project/src/main/ui/career/CareerWin.tscn:611
+#: project/src/main/ui/settings/SettingsMenu.tscn:1089
+msgid "Ok"
+msgstr ""
+
+#: project/src/main/ui/career/ChalkboardMapRow.tscn:96
+#: project/src/main/ui/career/Landmark.tscn:43
+#: project/src/main/world/CareerMap.tscn:660
+msgid "999,999"
 msgstr ""
 
 #: project/src/main/ui/career/career-time-label.gd:9
@@ -5053,6 +5097,62 @@ msgstr ""
 
 #: project/src/main/ui/career/career-time-label.gd:17
 msgid "5:00 pm"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:11
+msgid "OH DEAR WHAT HAPPENED"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:12
+msgid "OH! NO! GO ON TRYING"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:13
+msgid "GOSH THAT'S NOT GOOD"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:18
+msgid "OH! WHAT A DAY"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:19
+msgid "THAT'S FINE"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:20
+msgid "LET'S GO HOME"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:27
+msgid "CONGRATULATIONS"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:28
+msgid "WE DID IT"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:29
+msgid "HOORAY"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:30
+msgid "FANTASTIC"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:31
+msgid "YAHOO FOR US"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:33
+msgid "GOSH! WE'RE SO COOL"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:34
+msgid "WELL HOORAY"
+msgstr ""
+
+#: project/src/main/ui/career/career-win.gd:35
+msgid "AMAZING"
 msgstr ""
 
 #: project/src/main/ui/chat/ChatChoiceButton.tscn:186
@@ -5432,10 +5532,6 @@ msgstr ""
 msgid "Copied!"
 msgstr ""
 
-#: project/src/main/ui/settings/SettingsMenu.tscn:1089
-msgid "Ok"
-msgstr ""
-
 #: project/src/main/ui/settings/SettingsMenu.tscn:1125
 msgid "* Your settings will take effect in the next scene."
 msgstr ""
@@ -5583,11 +5679,7 @@ msgstr ""
 msgid "Left, Right, Numpad7/9"
 msgstr ""
 
-#: project/src/main/world/CareerMap.tscn:659
-msgid "999,999"
-msgstr ""
-
-#: project/src/main/world/CareerMap.tscn:742
+#: project/src/main/world/CareerMap.tscn:743
 msgid "12:05 am"
 msgstr ""
 
