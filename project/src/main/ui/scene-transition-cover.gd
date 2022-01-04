@@ -22,10 +22,19 @@ func _initialize_fade() -> void:
 	_color_rect.modulate.a = 1.0 if SceneTransition.fading else 0.0
 	if SceneTransition.fading:
 		_color_rect.color = SceneTransition.fade_color
+		
 		# Schedule the 'fade in' event for later. It would be problematic to start fading in before other nodes have
-		# had a chance to initialize.
-		yield(get_tree(), "idle_frame")
-		SceneTransition.fade_in()
+		# had a chance to initialize. We use a one-shot listener method instead of a yield statement to avoid 'class
+		# instance is gone' errors.
+		if not get_tree().is_connected("idle_frame", self, "_finish_initializing_fade"):
+			get_tree().connect("idle_frame", self, "_finish_initializing_fade")
+
+
+func _finish_initializing_fade() -> void:
+	if get_tree().is_connected("idle_frame", self, "_finish_initializing_fade"):
+		get_tree().disconnect("idle_frame", self, "_finish_initializing_fade")
+	
+	SceneTransition.fade_in()
 
 
 ## Starts a tween which changes this node's opacity.

@@ -99,6 +99,10 @@ func _ready() -> void:
 	_button.grab_focus()
 
 
+func _exit_tree() -> void:
+	ResourceCache.remove_singletons()
+
+
 ## Updates the title text with a random value.
 ##
 ## Different titles are shown based on the player's performance. A typical player will always see the same affirming

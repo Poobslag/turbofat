@@ -114,8 +114,11 @@ func to_json_dict() -> Dictionary:
 ## Launches the next scene in career mode. Either a new level, or a cutscene/ending scene.
 func push_career_trail() -> void:
 	if is_day_over():
-		# after the final level, we show a 'you win' screen
-		SceneTransition.replace_trail("res://src/main/ui/career/CareerWin.tscn")
+		# After the final level, we show a 'you win' screen.
+		#
+		# We do not apply a SceneTransition -- this scene change occurs immediately when the scene is loaded, and
+		# applying a fade in and fade out scene transition simultaneously results in unpredictable behavior.
+		Breadcrumb.replace_trail("res://src/main/ui/career/CareerWin.tscn")
 	else:
 		# after the 'overworld map' scene, we launch a level
 		
