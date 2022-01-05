@@ -72,60 +72,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Player" type="Control" parent="MarginContainer"]
-margin_left = 50.0
-margin_top = 5.0
-margin_right = 880.0
-margin_bottom = 155.0
-script = ExtResource( 10 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="MarginContainer/Player"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = 99.0
-margin_top = 25.0
-margin_right = 206.0
-margin_bottom = 75.0
-rect_min_size = Vector2( 120, 0 )
-theme = ExtResource( 2 )
-text = "999,999"
-align = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="DotSprite" type="Sprite" parent="MarginContainer/Player"]
-modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
-position = Vector2( 570.059, 72.9505 )
-scale = Vector2( 0.5, 0.5 )
-texture = ExtResource( 3 )
-
-[node name="PlayerSprite" type="Sprite" parent="MarginContainer/Player"]
-modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
-position = Vector2( 569.63, 35.1632 )
-scale = Vector2( 0.4, 0.4 )
-texture = ExtResource( 4 )
-hframes = 2
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/Player/PlayerSprite"]
-autoplay = "default"
-anims/RESET = SubResource( 17 )
-anims/default = SubResource( 18 )
-
-[node name="Line2D" type="Line2D" parent="MarginContainer/Player"]
-modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
-points = PoolVector2Array( 570.443, 73.496, 585.579, 96.2001 )
-width = 5.0
-default_color = Color( 1, 1, 1, 1 )
-begin_cap_mode = 2
-end_cap_mode = 2
-antialiased = true
-
 [node name="Lines" type="Control" parent="MarginContainer"]
 margin_left = 50.0
 margin_top = 5.0
@@ -161,13 +107,13 @@ __meta__ = {
 }
 
 [node name="Circles" type="Control" parent="MarginContainer/Landmarks"]
+modulate = Color( 0.392157, 0.392157, 0.431373, 1 )
 margin_right = 75.0
 margin_bottom = 150.0
 size_flags_horizontal = 3
 script = ExtResource( 6 )
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Landmarks/Circles"]
-modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -222,5 +168,59 @@ margin_right = 754.0
 [node name="Landmark5" parent="MarginContainer/Landmarks" instance=ExtResource( 8 )]
 margin_left = 754.0
 margin_right = 830.0
+
+[node name="Player" type="Control" parent="MarginContainer"]
+margin_left = 50.0
+margin_top = 5.0
+margin_right = 880.0
+margin_bottom = 155.0
+script = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="MarginContainer/Player"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = 99.0
+margin_top = 25.0
+margin_right = 206.0
+margin_bottom = 75.0
+rect_min_size = Vector2( 120, 0 )
+theme = ExtResource( 2 )
+text = "999,999"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DotSprite" type="Sprite" parent="MarginContainer/Player"]
+modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
+position = Vector2( 570.059, 72.9505 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 3 )
+
+[node name="PlayerSprite" type="Sprite" parent="MarginContainer/Player"]
+modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
+position = Vector2( 569.63, 35.1632 )
+scale = Vector2( 0.4, 0.4 )
+texture = ExtResource( 4 )
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/Player/PlayerSprite"]
+autoplay = "default"
+anims/RESET = SubResource( 17 )
+anims/default = SubResource( 18 )
+
+[node name="Line2D" type="Line2D" parent="MarginContainer/Player"]
+modulate = Color( 0.784314, 0.784314, 0.784314, 1 )
+points = PoolVector2Array( 570.443, 73.496, 585.579, 96.2001 )
+width = 5.0
+default_color = Color( 1, 1, 1, 1 )
+begin_cap_mode = 2
+end_cap_mode = 2
+antialiased = true
 
 [connection signal="sort_children" from="MarginContainer/Landmarks" to="." method="_on_Landmarks_sort_children"]
