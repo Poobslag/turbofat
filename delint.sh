@@ -106,7 +106,14 @@ fi
 
 # project settings which are enabled temporarily, but shouldn't be pushed
 RESULT=
-RESULT=${RESULT}$(grep "emulate_touch_from_mouse=true" project/project.godot)
+RESULT=${RESULT}"Ê"$(grep "emulate_touch_from_mouse=true" project/project.godot)
+RESULT=${RESULT}"Ê"$(grep "_test_prefix = " project/src/test/Tests.tscn)
+RESULT=${RESULT}"Ê"$(grep -P '_file_prefix = (?!("test-"))' project/src/test/Tests.tscn)
+RESULT=$(echo "${RESULT}" |
+  sed 's/ÊÊÊ*/Ê/g' | # remove consecutive newline placeholders
+  sed 's/^Ê\(.*\)$/\1/g' | # remove trailing newline placeholders
+  sed 's/^\(.*\)Ê$/\1/g' | # remove following newline placeholders
+  sed 's/Ê/\n/g') # convert newline placeholders to newlines
 if [ -n "$RESULT" ]
 then
   echo ""
