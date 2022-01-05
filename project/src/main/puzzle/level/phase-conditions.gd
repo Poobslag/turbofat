@@ -91,44 +91,41 @@ class AfterPieceWrittenPhaseCondition extends PhaseCondition:
 	## 	A dictionary of int values meeting the specified condition. The values are set to 'true'.
 	func _parse_int_series(int_series_string: String, max_int: int) -> Dictionary:
 		var result := {}
-		if not int_series_string:
-			return result
 		
-		if int_series_string.ends_with("..."):
-			# append all raw values
-			var ints_split := int_series_string.trim_suffix("...").split(",")
-			for index_obj in ints_split:
-				result[int(index_obj)] = true
-			
+		# append all raw values
+		var ints_split := int_series_string.trim_suffix("...").split(",")
+		for index_obj in ints_split:
+			result[int(index_obj)] = true
+		
+		# This unusual for loop checks for ellipses, and allows us to 'break' for errors to avoid 'return' statements
+		# in the middle of a method
+		for _i in range(1 if int_series_string.ends_with("...") else 0):
 			# determine difference of last two values
 			if ints_split.size() < 2:
 				push_warning("index string doesn't have enough values to extrapolate: '%s'" % [int_series_string])
-				return result
+				break
+			
 			var low := int(ints_split[ints_split.size() - 2])
 			var high := int(ints_split[ints_split.size() - 1])
 			if high <= low:
 				push_warning("nonsensical index string extrapolation: '%s'" % [int_series_string])
-				return result
-			var i := 2 * high - low
+				break
 			
+			var i := 2 * high - low
 			# extrapolate until we hit max_int
 			while i < max_int:
 				result[i] = true
 				i += high - low
-		else:
-			# append all raw values
-			for index_obj in int_series_string.split(","):
-				result[int(index_obj)] = true
 		
 		return result
 
 
-class AfterLinesClearedPhaseCondition extends PhaseCondition:
+class AfterLineClearedPhaseCondition extends PhaseCondition:
 	## key: (int) a line which causes the trigger to fire when cleared. 0 is the highest line in the playfield.
 	## value: true
 	var which_lines := {}
 	
-	## Creates a new AfterLinesClearedPhaseCondition instance with the specified configuration.
+	## Creates a new AfterLineClearedPhaseCondition instance with the specified configuration.
 	##
 	## The phase_config parameter accepts an optional 'y' expression defining which line clears will fire this trigger.
 	## Commas and hyphens are accepted, 0 is the lowest line in the playfield.
@@ -199,7 +196,7 @@ class AfterLinesClearedPhaseCondition extends PhaseCondition:
 		return {"y": y_expression}
 
 var phase_conditions_by_string := {
-	"after_line_cleared": AfterLinesClearedPhaseCondition,
+	"after_line_cleared": AfterLineClearedPhaseCondition,
 	"after_piece_written": AfterPieceWrittenPhaseCondition,
 }
 

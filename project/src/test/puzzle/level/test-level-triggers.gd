@@ -27,7 +27,7 @@ func test_convert_to_json_and_back_complex() -> void:
 	var trigger: LevelTrigger = triggers.triggers[LevelTrigger.AFTER_LINE_CLEARED][0]
 	assert_eq(trigger.phases.size(), 1)
 	assert_eq(trigger.phases[LevelTrigger.AFTER_LINE_CLEARED].size(), 1)
-	assert_is(trigger.phases[LevelTrigger.AFTER_LINE_CLEARED][0], PhaseConditions.AfterLinesClearedPhaseCondition)
+	assert_is(trigger.phases[LevelTrigger.AFTER_LINE_CLEARED][0], PhaseConditions.AfterLineClearedPhaseCondition)
 	assert_eq(trigger.phases[LevelTrigger.AFTER_LINE_CLEARED][0].which_lines.keys(), [19, 18, 17, 16, 15, 14])
 	assert_is(trigger.effect, LevelTriggerEffects.InsertLineEffect)
 	assert_eq(trigger.effect.tiles_key, "0")
