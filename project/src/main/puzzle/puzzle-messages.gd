@@ -7,6 +7,11 @@ signal start_button_pressed
 signal settings_button_pressed
 signal back_button_pressed
 
+onready var _message_label := $MessageLabel
+onready var _back_button := $Buttons/Back
+onready var _start_button := $Buttons/Start
+onready var _settings_button := $Buttons/Settings
+
 func _ready() -> void:
 	PuzzleState.connect("game_prepared", self, "_on_PuzzleState_game_prepared")
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
@@ -15,41 +20,41 @@ func _ready() -> void:
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
 	CurrentLevel.connect("best_result_changed", self, "_on_Level_best_result_changed")
-	$MessageLabel.hide()
+	_message_label.hide()
 	
 	if PlayerData.career.is_career_mode():
 		# they can't go back in career mode
-		$Buttons/Back.text = tr("Skip")
+		_back_button.text = tr("Skip")
 	
 	# grab focus so the player can start a new game or navigate with the keyboard
-	$Buttons/Start.grab_focus()
+	_start_button.grab_focus()
 
 
 func is_settings_button_visible() -> bool:
-	return $Buttons/Settings.is_visible_in_tree()
+	return _settings_button.is_visible_in_tree()
 
 
 ## Shows a succinct single-line message, like 'Game Over'
 func show_message(text: String) -> void:
-	$MessageLabel.show()
-	$MessageLabel.text = text
+	_message_label.show()
+	_message_label.text = text
 
 
 func hide_message() -> void:
-	$MessageLabel.hide()
+	_message_label.hide()
 
 
 func hide_buttons() -> void:
-	$Buttons/Start.hide()
-	$Buttons/Settings.hide()
-	$Buttons/Back.hide()
+	_start_button.hide()
+	_settings_button.hide()
+	_back_button.hide()
 
 
 func show_buttons() -> void:
-	$Buttons/Start.show()
-	$Buttons/Start.grab_focus()
-	$Buttons/Settings.show()
-	$Buttons/Back.show()
+	_start_button.show()
+	_start_button.grab_focus()
+	_settings_button.show()
+	_back_button.show()
 
 
 func _on_Start_pressed() -> void:
@@ -106,14 +111,14 @@ func _on_PuzzleState_game_ended() -> void:
 
 ## Restores the HUD elements after the player wins or loses.
 func _on_PuzzleState_after_game_ended() -> void:
-	$MessageLabel.hide()
-	$Buttons/Settings.show()
-	$Buttons/Back.show()
-	$Buttons/Start.show()
+	_message_label.hide()
+	_settings_button.show()
+	_back_button.show()
+	_start_button.show()
 	if CurrentLevel.settings.other.tutorial or CurrentLevel.settings.other.after_tutorial:
 		if not PuzzleState.level_performance.lost:
 			# if they won, make them exit; hide the start button
-			$Buttons/Start.hide()
+			_start_button.hide()
 			
 			# don't redirect them back to the splash screen, send them to the main menu
 			if Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_SPLASH:
@@ -121,15 +126,15 @@ func _on_PuzzleState_after_game_ended() -> void:
 	
 	if PlayerData.career.is_career_mode():
 		# they only have only one chance in career mode, they can't retry
-		$Buttons/Start.hide()
-		$Buttons/Back.text = tr("Continue")
+		_start_button.hide()
+		_back_button.text = tr("Continue")
 	
 	# determine the default button to focus
-	var buttons_to_focus := [$Buttons/Back, $Buttons/Start]
+	var buttons_to_focus := [_back_button, _start_button]
 	if CurrentLevel.keep_retrying:
-		buttons_to_focus.push_front($Buttons/Start)
+		buttons_to_focus.push_front(_start_button)
 	elif not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
-		buttons_to_focus.push_front($Buttons/Start)
+		buttons_to_focus.push_front(_start_button)
 	
 	# the start button changes its label after the player finishes the level
 	match PuzzleState.end_result():
@@ -137,7 +142,7 @@ func _on_PuzzleState_after_game_ended() -> void:
 			# if they abort the level without playing it, the button doesn't change
 			pass
 		_:
-			$Buttons/Start.text = tr("Retry")
+			_start_button.text = tr("Retry")
 	
 	# grab focus so the player can retry or navigate with the keyboard
 	for button_to_focus_obj in buttons_to_focus:
@@ -151,6 +156,6 @@ func _on_PuzzleState_after_game_ended() -> void:
 func _on_Level_best_result_changed() -> void:
 	match CurrentLevel.best_result:
 		Levels.Result.FINISHED, Levels.Result.WON:
-			$Buttons/Back.text = tr("Back") if CurrentLevel.keep_retrying else tr("Continue")
+			_back_button.text = tr("Back") if CurrentLevel.keep_retrying else tr("Continue")
 		_:
-			$Buttons/Back.text = tr("Back")
+			_back_button.text = tr("Back")
