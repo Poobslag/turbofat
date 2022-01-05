@@ -21,21 +21,16 @@ const SAVE_AND_QUIT_OR_GIVE_UP := QuitType.SAVE_AND_QUIT_OR_GIVE_UP
 ## The text on the menu's quit button
 export (QuitType) var quit_type: int setget set_quit_type
 
-## the UI control which was focused before this settings menu popped up
-var _old_focus_owner: Control
-
 ## method name and parameters for a method to call after system data is saved
 var _post_save_method: String
 var _post_save_args_array: Array
 
 onready var _controls_control := $Window/UiArea/TabContainer/Controls
-onready var _ok_shortcut_helper := $Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok/ShortcutHelper
 onready var _save_slot_control := $Window/UiArea/TabContainer/Misc/SaveSlot
 onready var _touch_control := $Window/UiArea/TabContainer/Touch
-onready var _quit_button := $Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2
-onready var _other_quit_button := $Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1
 
 onready var _bg := $Bg
+onready var _bottom := $Window/UiArea/Bottom
 onready var _dialogs := $Dialogs
 onready var _touch_buttons := $TouchButtons
 onready var _window := $Window
@@ -51,9 +46,6 @@ func _ready() -> void:
 		# hide touch settings if touch is not enabled
 		_touch_control.queue_free()
 	
-	var custom_keybind_buttons := get_tree().get_nodes_in_group("custom_keybind_buttons")
-	for keybind_button in custom_keybind_buttons:
-		keybind_button.connect("awaiting_changed", self, "_on_CustomKeybindButton_awaiting_changed")
 	_refresh_quit_type()
 
 
@@ -69,8 +61,6 @@ func show() -> void:
 	_dialogs.visible = true
 	_window.show()
 	get_tree().paused = true
-	_old_focus_owner = $Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok.get_focus_owner()
-	$Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok.grab_focus()
 	emit_signal("show")
 
 
@@ -81,9 +71,6 @@ func hide() -> void:
 	_dialogs.visible = false
 	_window.hide()
 	get_tree().paused = false
-	if _old_focus_owner:
-		_old_focus_owner.grab_focus()
-		_old_focus_owner = null
 	emit_signal("hide")
 
 
@@ -111,34 +98,8 @@ func _confirm_and_save(new_post_save_method: String, new_post_save_args_array: A
 
 
 func _refresh_quit_type() -> void:
-	if not is_inside_tree():
-		return
-	
-	var quit_text := ""
-	var other_quit_text := ""
-	match quit_type:
-		QUIT: quit_text = tr("Quit")
-		SAVE_AND_QUIT: quit_text = tr("Save + Quit")
-		GIVE_UP: quit_text = tr("Give Up")
-		SAVE_AND_QUIT_OR_GIVE_UP:
-			quit_text = tr("Save + Quit")
-			other_quit_text = tr("Give Up")
-	
-	_quit_button.text = quit_text
-	_other_quit_button.text = other_quit_text
-	
-	if other_quit_text:
-		$Window/UiArea/Bottom.rect_min_size.y = 100
-		$Window/UiArea/Bottom.rect_size.y = 100
-		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1.visible = true
-		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Spacer.visible = true
-		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer3/Spacer.visible = true
-	else:
-		$Window/UiArea/Bottom.rect_min_size.y = 50
-		$Window/UiArea/Bottom.rect_size.y = 50
-		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1.visible = false
-		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Spacer.visible = false
-		$Window/UiArea/Bottom/HBoxContainer/VBoxContainer3/Spacer.visible = false
+	if is_inside_tree():
+		_bottom.quit_type = quit_type
 
 
 ## Loads the current save slot's data and returns the player to the splash screen.
@@ -148,12 +109,12 @@ func _load_player_data() -> void:
 	SceneTransition.push_trail(Global.SCENE_SPLASH)
 
 
-func _on_Ok_pressed() -> void:
+func _on_Bottom_ok_pressed() -> void:
 	# when the player confirms, we save the player's new settings
 	_confirm_and_save("hide", [])
 
 
-func _on_Quit_pressed() -> void:
+func _on_Bottom_quit_pressed() -> void:
 	hide()
 	if quit_type in [SAVE_AND_QUIT, SAVE_AND_QUIT_OR_GIVE_UP]:
 		_confirm_and_save("emit_signal", ["quit_pressed"])
@@ -161,7 +122,7 @@ func _on_Quit_pressed() -> void:
 		emit_signal("quit_pressed")
 
 
-func _on_OtherQuit_pressed() -> void:
+func _on_Bottom_other_quit_pressed() -> void:
 	hide()
 	if quit_type == SAVE_AND_QUIT_OR_GIVE_UP:
 		_confirm_and_save("emit_signal", ["other_quit_pressed"])
@@ -171,12 +132,6 @@ func _on_OtherQuit_pressed() -> void:
 
 func _on_Settings_pressed() -> void:
 	show()
-
-
-func _on_CustomKeybindButton_awaiting_changed(awaiting: bool) -> void:
-	# When the user is rebinding their keys, we disable the shortcut helper. Otherwise trying to rebind something like
-	# 'escape' will close the settings menu
-	_ok_shortcut_helper.set_process_input(not awaiting)
 
 
 func _on_Dialogs_change_save_cancelled() -> void:

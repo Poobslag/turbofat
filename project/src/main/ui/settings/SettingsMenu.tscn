@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://src/main/ui/settings/settings-open-user-folder.gd" type="Script" id=26]
 [ext_resource path="res://src/main/ui/settings/settings-copy-save-data.gd" type="Script" id=27]
 [ext_resource path="res://src/main/ui/settings/settings-lock-cancel.gd" type="Script" id=28]
+[ext_resource path="res://src/main/ui/settings/settings-menu-bottom.gd" type="Script" id=29]
 
 [sub_resource type="StyleBoxFlat" id=1]
 content_margin_left = 5.0
@@ -79,7 +80,6 @@ visible = false
 emit_actions = false
 
 [node name="Window" type="Panel" parent="."]
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -986,6 +986,7 @@ margin_top = 254.0
 margin_right = 570.0
 margin_bottom = 354.0
 rect_min_size = Vector2( 0, 100 )
+script = ExtResource( 29 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -1202,6 +1203,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="hide" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_hide"]
+[connection signal="show" from="." to="Window/UiArea/Bottom" method="_on_SettingsMenu_show"]
 [connection signal="change_save_cancelled" from="Dialogs" to="." method="_on_Dialogs_change_save_cancelled"]
 [connection signal="change_save_confirmed" from="Dialogs" to="." method="_on_Dialogs_change_save_confirmed"]
 [connection signal="delete_confirmed" from="Dialogs" to="." method="_on_Dialogs_delete_confirmed"]
@@ -1211,9 +1214,12 @@ __meta__ = {
 [connection signal="popup_hide" from="Dialogs/DeleteConfirmation1" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
 [connection signal="about_to_show" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_about_to_show"]
 [connection signal="popup_hide" from="Dialogs/DeleteConfirmation2" to="Dialogs/Backdrop" method="_on_Dialog_popup_hide"]
-[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1" to="." method="_on_OtherQuit_pressed"]
-[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2" to="." method="_on_Quit_pressed"]
-[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" to="." method="_on_Ok_pressed"]
+[connection signal="ok_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_ok_pressed"]
+[connection signal="other_quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_other_quit_pressed"]
+[connection signal="quit_pressed" from="Window/UiArea/Bottom" to="." method="_on_Bottom_quit_pressed"]
+[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder1/Quit1" to="Window/UiArea/Bottom" method="_on_OtherQuit_pressed"]
+[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer1/Holder2/Quit2" to="Window/UiArea/Bottom" method="_on_Quit_pressed"]
+[connection signal="pressed" from="Window/UiArea/Bottom/HBoxContainer/VBoxContainer2/Holder/Ok" to="Window/UiArea/Bottom" method="_on_Ok_pressed"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/GhostPiece/CheckBox" to="Window/UiArea/TabContainer/Gameplay/GhostPiece" method="_on_OptionButton_toggled"]
 [connection signal="toggled" from="Window/UiArea/TabContainer/Gameplay/LockCancel/CheckBox" to="Window/UiArea/TabContainer/Gameplay/LockCancel" method="_on_OptionButton_toggled"]
 [connection signal="pressed" from="Window/UiArea/TabContainer/Misc/CopySaveData/HBoxContainer/Button" to="Window/UiArea/TabContainer/Misc/CopySaveData" method="_on_Button_pressed"]
