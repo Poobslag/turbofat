@@ -135,7 +135,7 @@ func fly_to_target(new_get_target_pos: FuncRef, target_pos_arg_array: Array,
 	_get_target_pos = new_get_target_pos
 	_target_pos_arg_array = target_pos_arg_array
 	
-	velocity = Vector2(0.0, 0.0)
+	velocity = Vector2.ZERO
 	
 	_source_pos = position
 	_flying_tween = Tween.new()

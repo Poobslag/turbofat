@@ -103,7 +103,7 @@ func _calculate_zoom() -> Vector2:
 		return ZOOM_AMOUNT_FAR
 	
 	var camera_bounding_box := _calculate_camera_bounding_box()
-	var new_zoom := Vector2(0, 0)
+	var new_zoom := Vector2.ZERO
 	new_zoom.x = max(camera_bounding_box.size.x / _project_resolution.x, \
 			camera_bounding_box.size.y / _project_resolution.y)
 	new_zoom.x = clamp(new_zoom.x, ZOOM_AMOUNT_NEAR.x, ZOOM_AMOUNT_FAR.x)

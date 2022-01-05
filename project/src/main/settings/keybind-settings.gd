@@ -111,7 +111,7 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	preset = json.get("preset", GUIDELINE)
+	preset = int(json.get("preset", GUIDELINE))
 	custom_keybinds = json.get("custom_keybinds", {})
 	if not custom_keybinds:
 		restore_default_custom_keybinds()

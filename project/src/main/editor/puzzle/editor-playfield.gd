@@ -57,7 +57,7 @@ func _gui_input(event: InputEvent) -> void:
 
 
 func can_drop_data(pos: Vector2, data: Object) -> bool:
-	var can_drop := Rect2(Vector2(0, 0), rect_size).has_point(pos)
+	var can_drop := Rect2(Vector2.ZERO, rect_size).has_point(pos)
 	if can_drop:
 		if data is BlockLevelChunk:
 			# update drop preview for block

@@ -22,7 +22,7 @@ var max_piece_speed := "0"
 
 func from_json_dict(json: Dictionary) -> void:
 	name = json.get("name", "")
-	distance = json.get("distance", 0)
+	distance = int(json.get("distance", 0))
 	var piece_speed_string: String = json.get("piece_speed", "0")
 	if "-" in piece_speed_string:
 		min_piece_speed = StringUtils.substring_before(piece_speed_string, "-")

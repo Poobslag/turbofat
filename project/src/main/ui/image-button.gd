@@ -30,7 +30,7 @@ func set_pressed_icon(new_pressed_icon: Texture) -> void:
 
 func _refresh_touch_settings() -> void:
 	rect_min_size = Vector2(96, 96) * SystemData.touch_settings.size
-	rect_size = Vector2(0, 0)
+	rect_size = Vector2.ZERO
 
 
 func _on_button_down() -> void:

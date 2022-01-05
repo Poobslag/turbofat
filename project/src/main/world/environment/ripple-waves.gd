@@ -43,7 +43,7 @@ func _ready() -> void:
 ## When spawning the initial waves, waves are offset based on the wave frequency and movement speed.
 func _wave_position(wave_index: int = 0) -> Vector2:
 	# calculate where the first wave should spawn
-	var wave_cell_position := Vector2(0, 0)
+	var wave_cell_position := Vector2.ZERO
 	var used_rect := _tile_map.get_used_rect()
 	match direction:
 		Ripples.RippleDirection.NORTHEAST:
