@@ -378,7 +378,7 @@ func _post_unemote() -> void:
 		emote_sprite.modulate = Color.transparent
 		emote_sprite.rotation_degrees = 0.0
 		emote_sprite.scale = Vector2(2.0, 2.0)
-		emote_sprite.position = Vector2(0, 0)
+		emote_sprite.position = Vector2.ZERO
 		if emote_sprite.material:
 			if emote_sprite.material.get("blend_mode"):
 				emote_sprite.material.blend_mode = SpatialMaterial.BLEND_MODE_MIX

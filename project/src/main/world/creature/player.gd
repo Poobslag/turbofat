@@ -28,7 +28,7 @@ func set_ui_has_focus(new_ui_has_focus: bool) -> void:
 	ui_has_focus = new_ui_has_focus
 	if ui_has_focus and non_iso_walk_direction:
 		# if the player is moving when something grabs focus, stop their movement
-		set_non_iso_walk_direction(Vector2(0, 0))
+		set_non_iso_walk_direction(Vector2.ZERO)
 
 
 ## Stop moving when a chat choice appears.

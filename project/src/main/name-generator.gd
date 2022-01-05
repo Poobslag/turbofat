@@ -8,8 +8,8 @@ var min_length: int setget set_min_length
 var max_length: int setget set_max_length
 var order: float setget set_order
 
-## Key: Word from the source material
-## Value: true
+## key: Word from the source material
+## value: true
 var _seed_words := {}
 
 ## cached list of generated names; we generate many names at once at cache them

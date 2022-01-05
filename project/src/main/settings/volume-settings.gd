@@ -47,10 +47,10 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	set_bus_volume_linear(MASTER, json.get("master", 0.7))
-	set_bus_volume_linear(MUSIC, json.get("music", 0.7))
-	set_bus_volume_linear(SOUND, json.get("sound", 0.7))
-	set_bus_volume_linear(VOICE, json.get("voice", 0.7))
+	set_bus_volume_linear(MASTER, float(json.get("master", 0.7)))
+	set_bus_volume_linear(MUSIC, float(json.get("music", 0.7)))
+	set_bus_volume_linear(SOUND, float(json.get("sound", 0.7)))
+	set_bus_volume_linear(VOICE, float(json.get("voice", 0.7)))
 
 
 func _bus_index(volume_type: int) -> int:

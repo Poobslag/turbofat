@@ -46,8 +46,8 @@ func to_json_dict() -> Dictionary:
 
 
 func from_json_dict(json: Dictionary) -> void:
-	cutscene_force = json.get("cutscene_force", Levels.CutsceneForce.NONE)
-	save_slot = json.get("save_slot", SaveSlot.SLOT_A)
+	cutscene_force = int(json.get("cutscene_force", Levels.CutsceneForce.NONE))
+	save_slot = int(json.get("save_slot", SaveSlot.SLOT_A))
 	
 	if json.has("locale"):
 		TranslationServer.set_locale(json.get("locale"))
