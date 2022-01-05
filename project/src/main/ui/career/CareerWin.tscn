@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/main/ui/career/career-win.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/world/environment/marsh-path-sheet.png" type="Texture" id=2]
@@ -34,7 +34,12 @@
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=33]
 [ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=34]
+[ext_resource path="res://src/main/ui/career/chalkboard-served.gd" type="Script" id=35]
+[ext_resource path="res://src/main/ui/career/chalkboard-earned.gd" type="Script" id=36]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=37]
+[ext_resource path="res://src/main/ui/career/chalkboard-time.gd" type="Script" id=38]
+[ext_resource path="res://src/main/ui/career/chalkboard-steps.gd" type="Script" id=39]
+[ext_resource path="res://src/main/ui/career/chalkboard-title.gd" type="Script" id=40]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -193,6 +198,7 @@ rect_min_size = Vector2( 0, 75 )
 [node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/TitleRow"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 40 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -296,6 +302,7 @@ custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
+script = ExtResource( 35 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served"]
 margin_left = 5.0
@@ -361,6 +368,7 @@ custom_constants/margin_right = 20
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
+script = ExtResource( 39 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps"]
 margin_left = 5.0
@@ -438,6 +446,7 @@ custom_constants/margin_right = 5
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
+script = ExtResource( 36 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned"]
 margin_left = 5.0
@@ -503,6 +512,7 @@ custom_constants/margin_right = 20
 custom_constants/margin_top = 5
 custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
+script = ExtResource( 38 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time"]
 margin_left = 5.0
