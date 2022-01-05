@@ -131,8 +131,13 @@ corner_radius_bottom_left = 16
 [sub_resource type="ViewportTexture" id=16]
 viewport_path = NodePath("CanvasLayer/WorldMover/Ground/Shadows/Viewport")
 
-[node name="Node" type="Node"]
+[node name="Node" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 obstacle_manager_path = NodePath("CanvasLayer/WorldMover/ObstacleManager")
 
 [node name="Wallpaper" parent="." instance=ExtResource( 5 )]
@@ -756,16 +761,12 @@ shadow_caster_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/S
 obstacles_path = NodePath("../Obstacles")
 CreatureScene = ExtResource( 19 )
 
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 3 )]
-
 [node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 33 )
 bus = "Sound Bus"
 
-[node name="Ui" type="CanvasLayer" parent="."]
+[node name="MusicPopup" parent="." instance=ExtResource( 37 )]
 
-[node name="MusicPopup" parent="Ui" instance=ExtResource( 37 )]
-
-[node name="SceneTransitionCover" parent="Ui" instance=ExtResource( 3 )]
+[node name="SceneTransitionCover" parent="." instance=ExtResource( 3 )]
 
 [connection signal="pressed" from="Chalkboard/VBoxContainer/ButtonRow/Button" to="." method="_on_Button_pressed"]

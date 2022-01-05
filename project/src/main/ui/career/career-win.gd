@@ -1,4 +1,4 @@
-extends Node
+extends Control
 ## Shows a summary when the player finishes career mode.
 ##
 ## This summary screen includes things like how much money the player earned and how many customers they served, as
