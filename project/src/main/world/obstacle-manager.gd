@@ -21,6 +21,15 @@ func _ready() -> void:
 		_chat_icons = get_node(chat_icons_path)
 
 
+## Adds a new obstacle. The obstacle is placed below the given node in the list of children.
+func add_obstacle_below_node(node: Node2D, child_node: Node2D) -> void:
+	_obstacles.add_child_below_node(node, child_node)
+
+
+func add_obstacle(node: Node2D) -> void:
+	_obstacles.add_child(node)
+
+
 ## Relocate a creature to a spawn point.
 func move_creature_to_spawn(creature: Creature, spawn_id: String) -> void:
 	var target_spawn: Spawn

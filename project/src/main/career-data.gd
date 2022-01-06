@@ -21,6 +21,22 @@ const MAX_DISTANCE_TRAVELLED := 999999
 ## The maximum number of consecutive levels the player can play in one career session.
 const HOURS_PER_CAREER_DAY := 8
 
+## Array of dictionaries containing milestone metadata, including the necessary rank, the distance the player will
+## travel, and the UI color.
+const RANK_MILESTONES := [
+	{"rank": 64.0, "distance": 1, "color": Color("48b968")},
+	{"rank": 36.0, "distance": 2, "color": Color("48b968")},
+	{"rank": 24.0, "distance": 3, "color": Color("48b968")},
+	{"rank": 20.0, "distance": 4, "color": Color("78b948")},
+	{"rank": 16.0, "distance": 5, "color": Color("b9b948")},
+	{"rank": 10.0, "distance": 10, "color": Color("b95c48")},
+	{"rank": 4.0, "distance": 15, "color": Color("b94878")},
+	{"rank": 0.0, "distance": 25, "color": Color("b948b9")},
+]
+
+## The rank milestone to display when the player fails a boss level.
+const RANK_MILESTONE_FAIL := {"rank": 64.0, "distance": 0, "color": Color("bababa")}
+
 ## The distance the player has travelled in the current career session.
 var distance_travelled := 0 setget set_distance_travelled
 
@@ -267,3 +283,14 @@ func advance_calendar() -> void:
 func set_distance_travelled(new_distance_travelled: int) -> void:
 	distance_travelled = new_distance_travelled
 	emit_signal("distance_travelled_changed")
+
+
+## Calculates the highest rank milestone the player's reached.
+static func rank_milestone_index(rank: float) -> int:
+	var rank_milestone_index := 0
+	for i in range(1, RANK_MILESTONES.size()):
+		var rank_milestone: Dictionary = RANK_MILESTONES[i]
+		if rank > rank_milestone.rank:
+			break
+		rank_milestone_index = i
+	return rank_milestone_index

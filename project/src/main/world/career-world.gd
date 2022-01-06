@@ -159,8 +159,7 @@ func _add_mile_markers_to_path() -> void:
 ## Places a mile marker at the specified position.
 func _add_mile_marker(position: Vector2, mile_number: int) -> void:
 		var marker: MileMarker = MileMarkerScene.instance()
-		_obstacles.add_child(marker)
-		_obstacle_manager.process_new_obstacle(marker)
+		_obstacle_manager.add_obstacle(marker)
 		
 		marker.position = position
 		marker.mile_number = mile_number

@@ -309,24 +309,9 @@ func _update_career_data(rank_result: RankResult) -> void:
 	
 	# Calculate the player's distance to travel based on their overall rank
 	var overall_rank := _overall_rank(rank_result)
-	var distance_to_advance := 1
-	distance_to_advance = 1
-	if overall_rank > 36.0:
-		distance_to_advance = 1
-	elif overall_rank > 24.0:
-		distance_to_advance = 2
-	elif overall_rank > 20.0:
-		distance_to_advance = 3
-	elif overall_rank > 16.0:
-		distance_to_advance = 4
-	elif overall_rank > 10.0:
-		distance_to_advance = 5
-	elif overall_rank > 4.0:
-		distance_to_advance = 10
-	elif overall_rank > 0.0:
-		distance_to_advance = 15
-	else:
-		distance_to_advance = 25
+	
+	var milestone_index := CareerData.rank_milestone_index(overall_rank)
+	var distance_to_advance: int = CareerData.RANK_MILESTONES[milestone_index].distance
 	
 	PlayerData.career.daily_steps += distance_to_advance
 	PlayerData.career.advance_clock(distance_to_advance, rank_result.success)
