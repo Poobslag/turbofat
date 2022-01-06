@@ -1,4 +1,4 @@
-extends Control
+extends Node
 ## Shows a summary when the player finishes career mode.
 ##
 ## This summary screen includes things like how much money the player earned and how many customers they served, as
@@ -14,9 +14,9 @@ const REGIONS_AFTER := 3
 
 export (NodePath) var obstacle_manager_path: NodePath
 
-onready var _button := $Chalkboard/VBoxContainer/ButtonRow/Button
-onready var _map := $Chalkboard/VBoxContainer/MapRow
-onready var _applause_sound := $ApplauseSound
+onready var _button := $Bg/Chalkboard/VBoxContainer/ButtonRow/Button
+onready var _map := $Bg/Chalkboard/VBoxContainer/MapRow
+onready var _applause_sound := $Bg/ApplauseSound
 onready var _obstacle_manager: ObstacleManager = get_node(obstacle_manager_path)
 
 func _ready() -> void:

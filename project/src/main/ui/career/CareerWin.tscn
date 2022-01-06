@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://src/main/ui/career/career-win.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/world/environment/marsh-path-sheet.png" type="Texture" id=2]
@@ -30,7 +30,6 @@
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=28]
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=29]
 [ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=30]
-[ext_resource path="res://src/main/ui/career/menu-world-mover.gd" type="Script" id=31]
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=33]
 [ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=34]
@@ -134,20 +133,18 @@ corner_radius_bottom_left = 16
 0/z_index = 0
 
 [sub_resource type="ViewportTexture" id=16]
-viewport_path = NodePath("CanvasLayer/WorldMover/Ground/Shadows/Viewport")
+viewport_path = NodePath("World/Ground/Shadows/Viewport")
 
-[node name="Node" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Node" type="Node"]
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-obstacle_manager_path = NodePath("CanvasLayer/WorldMover/ObstacleManager")
+obstacle_manager_path = NodePath("World/ObstacleManager")
 
-[node name="Wallpaper" parent="." instance=ExtResource( 5 )]
+[node name="Bg" type="CanvasLayer" parent="."]
+layer = -1
 
-[node name="Chalkboard" type="TextureRect" parent="."]
+[node name="Wallpaper" parent="Bg" instance=ExtResource( 5 )]
+
+[node name="Chalkboard" type="TextureRect" parent="Bg"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -162,13 +159,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shadow" type="Polygon2D" parent="Chalkboard"]
+[node name="Shadow" type="Polygon2D" parent="Bg/Chalkboard"]
 show_behind_parent = true
 color = Color( 0, 0, 0, 0.392157 )
 antialiased = true
 polygon = PoolVector2Array( 1, 0, 10, -10, 970, -10, 970, 572.4, 960, 581.4, 1, 581.4 )
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Chalkboard"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Bg/Chalkboard"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 15.0
@@ -180,7 +177,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer1" type="Control" parent="Chalkboard/VBoxContainer"]
+[node name="Spacer1" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_right = 930.0
 margin_bottom = 6.0
 rect_min_size = Vector2( 0, 6 )
@@ -188,14 +185,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TitleRow" type="Control" parent="Chalkboard/VBoxContainer"]
+[node name="TitleRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 modulate = Color( 1, 0.5, 0.945313, 1 )
 margin_top = 6.0
 margin_right = 930.0
 margin_bottom = 81.0
 rect_min_size = Vector2( 0, 75 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/TitleRow"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/TitleRow"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 40 )
@@ -203,13 +200,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control1" type="Control" parent="Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
+[node name="Control1" type="Control" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
 margin_right = 246.0
 margin_bottom = 75.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="Chalkboard/VBoxContainer/TitleRow/HBoxContainer/Control1"]
+[node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer/Control1"]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -225,7 +222,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label" type="Label" parent="Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
+[node name="Label" type="Label" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
 margin_left = 250.0
 margin_right = 679.0
 margin_bottom = 75.0
@@ -235,14 +232,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Control2" type="Control" parent="Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
+[node name="Control2" type="Control" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer"]
 margin_left = 683.0
 margin_right = 930.0
 margin_bottom = 75.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="TextureRect" type="TextureRect" parent="Chalkboard/VBoxContainer/TitleRow/HBoxContainer/Control2"]
+[node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/TitleRow/HBoxContainer/Control2"]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -258,14 +255,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Separator1" type="Control" parent="Chalkboard/VBoxContainer"]
+[node name="Separator1" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 modulate = Color( 0.726563, 0.5, 1, 1 )
 margin_top = 81.0
 margin_right = 930.0
 margin_bottom = 106.0
 rect_min_size = Vector2( 0, 25 )
 
-[node name="TextureRect" type="TextureRect" parent="Chalkboard/VBoxContainer/Separator1"]
+[node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/Separator1"]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -281,20 +278,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ServedStepsRow" type="Control" parent="Chalkboard/VBoxContainer"]
+[node name="ServedStepsRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_top = 106.0
 margin_right = 930.0
 margin_bottom = 196.0
 rect_min_size = Vector2( 0, 90 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/ServedStepsRow"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Served" type="MarginContainer" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer"]
+[node name="Served" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer"]
 margin_right = 463.0
 margin_bottom = 90.0
 size_flags_horizontal = 3
@@ -304,19 +301,19 @@ custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 script = ExtResource( 35 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 458.0
 margin_bottom = 85.0
 
-[node name="Control" type="Control" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
+[node name="Control" type="Control" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
 modulate = Color( 0.501961, 0.882353, 1, 1 )
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 
-[node name="TextureRect" type="TextureRect" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer/Control"]
+[node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer/Control"]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -332,7 +329,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
+[node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
 modulate = Color( 0.5, 0.883333, 1, 1 )
 margin_left = 84.0
 margin_right = 266.0
@@ -346,7 +343,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
+[node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Served/HBoxContainer"]
 margin_left = 270.0
 margin_top = 2.0
 margin_right = 453.0
@@ -359,7 +356,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Steps" type="MarginContainer" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer"]
+[node name="Steps" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer"]
 margin_left = 467.0
 margin_right = 930.0
 margin_bottom = 90.0
@@ -370,19 +367,19 @@ custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 script = ExtResource( 39 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 443.0
 margin_bottom = 85.0
 
-[node name="Control" type="Control" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
+[node name="Control" type="Control" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
 modulate = Color( 0.501961, 0.882353, 1, 1 )
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 
-[node name="TextureRect" type="TextureRect" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer/Control"]
+[node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer/Control"]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -398,7 +395,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
+[node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
 modulate = Color( 0.501961, 0.882353, 1, 1 )
 margin_left = 84.0
 margin_right = 259.0
@@ -412,7 +409,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
+[node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/ServedStepsRow/HBoxContainer/Steps/HBoxContainer"]
 margin_left = 263.0
 margin_top = 2.0
 margin_right = 438.0
@@ -425,20 +422,20 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="EarnedTimeRow" type="Control" parent="Chalkboard/VBoxContainer"]
+[node name="EarnedTimeRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_top = 196.0
 margin_right = 930.0
 margin_bottom = 286.0
 rect_min_size = Vector2( 0, 90 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/EarnedTimeRow"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Earned" type="MarginContainer" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer"]
+[node name="Earned" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer"]
 margin_right = 463.0
 margin_bottom = 90.0
 size_flags_horizontal = 3
@@ -448,19 +445,19 @@ custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 script = ExtResource( 36 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 458.0
 margin_bottom = 85.0
 
-[node name="Control" type="Control" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
+[node name="Control" type="Control" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
 modulate = Color( 0.550781, 1, 0.5, 1 )
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 
-[node name="TextureRect" type="TextureRect" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer/Control"]
+[node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer/Control"]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -476,7 +473,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
+[node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
 modulate = Color( 0.54902, 1, 0.501961, 1 )
 margin_left = 84.0
 margin_right = 262.0
@@ -490,7 +487,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
+[node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Earned/HBoxContainer"]
 margin_left = 266.0
 margin_top = 2.0
 margin_right = 453.0
@@ -503,7 +500,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="MarginContainer" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer"]
+[node name="Time" type="MarginContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer"]
 margin_left = 467.0
 margin_right = 930.0
 margin_bottom = 90.0
@@ -514,19 +511,19 @@ custom_constants/margin_left = 5
 custom_constants/margin_bottom = 5
 script = ExtResource( 38 )
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 443.0
 margin_bottom = 85.0
 
-[node name="Control" type="Control" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
+[node name="Control" type="Control" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
 modulate = Color( 0.54902, 1, 0.501961, 1 )
 margin_right = 80.0
 margin_bottom = 80.0
 rect_min_size = Vector2( 80, 80 )
 
-[node name="TextureRect" type="TextureRect" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer/Control"]
+[node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer/Control"]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -542,7 +539,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label2" type="Label" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
+[node name="Label2" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
 modulate = Color( 0.54902, 1, 0.501961, 1 )
 margin_left = 84.0
 margin_right = 259.0
@@ -556,7 +553,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Label3" type="Label" parent="Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
+[node name="Label3" type="Label" parent="Bg/Chalkboard/VBoxContainer/EarnedTimeRow/HBoxContainer/Time/HBoxContainer"]
 margin_left = 263.0
 margin_top = 2.0
 margin_right = 438.0
@@ -569,7 +566,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MapRow" parent="Chalkboard/VBoxContainer" instance=ExtResource( 17 )]
+[node name="MapRow" parent="Bg/Chalkboard/VBoxContainer" instance=ExtResource( 17 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -579,14 +576,14 @@ margin_top = 286.0
 margin_right = 930.0
 margin_bottom = 446.0
 
-[node name="Separator2" type="Control" parent="Chalkboard/VBoxContainer"]
+[node name="Separator2" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 modulate = Color( 1, 0.580392, 0.501961, 1 )
 margin_top = 446.0
 margin_right = 930.0
 margin_bottom = 471.0
 rect_min_size = Vector2( 0, 25 )
 
-[node name="TextureRect" type="TextureRect" parent="Chalkboard/VBoxContainer/Separator2"]
+[node name="TextureRect" type="TextureRect" parent="Bg/Chalkboard/VBoxContainer/Separator2"]
 modulate = Color( 1, 1, 1, 0.784314 )
 anchor_left = 0.5
 anchor_top = 0.5
@@ -602,13 +599,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ButtonRow" type="Control" parent="Chalkboard/VBoxContainer"]
+[node name="ButtonRow" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_top = 471.0
 margin_right = 930.0
 margin_bottom = 534.0
 rect_min_size = Vector2( 0, 63 )
 
-[node name="Button" type="Button" parent="Chalkboard/VBoxContainer/ButtonRow"]
+[node name="Button" type="Button" parent="Bg/Chalkboard/VBoxContainer/ButtonRow"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -629,7 +626,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Spacer2" type="Control" parent="Chalkboard/VBoxContainer"]
+[node name="Spacer2" type="Control" parent="Bg/Chalkboard/VBoxContainer"]
 margin_top = 534.0
 margin_right = 930.0
 margin_bottom = 540.0
@@ -638,25 +635,26 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="ApplauseSound" type="AudioStreamPlayer" parent="Bg"]
+stream = ExtResource( 33 )
+bus = "Sound Bus"
 
-[node name="WorldMover" type="Node2D" parent="CanvasLayer"]
-script = ExtResource( 31 )
+[node name="World" type="Node" parent="."]
 
-[node name="Ground" type="Node2D" parent="CanvasLayer/WorldMover"]
+[node name="Ground" type="Node2D" parent="World"]
 z_index = -1
 
-[node name="GroundMap" parent="CanvasLayer/WorldMover/Ground" instance=ExtResource( 21 )]
+[node name="GroundMap" parent="World/Ground" instance=ExtResource( 21 )]
 scale = Vector2( 1, 1 )
 tile_data = PoolIntArray( -458737, 0, 131073, -458736, 0, 196610, -458735, 0, 65536, -393201, 0, 131074, -393200, 0, 196611, -393199, 0, 65540, -327665, 0, 131074, -327664, 0, 196611, -327663, 0, 65538, -262130, 0, 131073, -262129, 0, 196611, -262128, 0, 196611, -262127, 0, 65538, -196594, 0, 131074, -196593, 0, 196611, -196592, 0, 196611, -196591, 0, 65538, -131058, 0, 131074, -131057, 0, 196611, -131056, 0, 196611, -131055, 0, 196611, -131054, 0, 65536, -65522, 0, 131074, -65521, 0, 196611, -65520, 0, 196611, -65519, 0, 196611, -65518, 0, 65540, 14, 0, 131072, 15, 0, 196609, 16, 0, 196611, 17, 0, 196611, 18, 0, 196611, 19, 0, 65536, 65552, 0, 131072, 65553, 0, 196611, 65554, 0, 196611, 65555, 0, 65539, 131089, 0, 131074, 131090, 0, 196611, 131091, 0, 65539, 196625, 0, 131074, 196626, 0, 196611, 196627, 0, 65538, 262160, 0, 131073, 262161, 0, 196611, 262162, 0, 196611, 262163, 0, 65539, 327696, 0, 131074, 327697, 0, 196611, 327698, 0, 196611, 327699, 0, 5, 393217, 0, 131073, 393218, 0, 196610, 393219, 0, 196610, 393220, 0, 196610, 393221, 0, 196610, 393222, 0, 196610, 393223, 0, 196610, 393224, 0, 65536, 393230, 0, 131073, 393231, 0, 196610, 393232, 0, 196611, 393233, 0, 196611, 393234, 0, 65537, 458753, 0, 131072, 458754, 0, 196611, 458755, 0, 196611, 458756, 0, 196611, 458757, 0, 196611, 458758, 0, 196611, 458759, 0, 196611, 458760, 0, 65537, 458764, 0, 131073, 458765, 0, 196610, 458766, 0, 196611, 458767, 0, 196611, 458768, 0, 196611, 458769, 0, 196611, 458770, 0, 65539, 524290, 0, 131072, 524291, 0, 196611, 524292, 0, 196611, 524293, 0, 196611, 524294, 0, 196611, 524295, 0, 196611, 524296, 0, 196611, 524297, 0, 65536, 524300, 0, 131074, 524301, 0, 196611, 524302, 0, 196611, 524303, 0, 196611, 524304, 0, 196611, 524305, 0, 196611, 524306, 0, 5, 589827, 0, 131072, 589828, 0, 131077, 589829, 0, 196609, 589830, 0, 131076, 589831, 0, 131076, 589832, 0, 196611, 589833, 0, 196611, 589834, 0, 196610, 589835, 0, 196610, 589836, 0, 196611, 589837, 0, 196611, 589838, 0, 196611, 589839, 0, 196611, 589840, 0, 196611, 589841, 0, 5, 655368, 0, 131072, 655369, 0, 196608, 655370, 0, 196611, 655371, 0, 196611, 655372, 0, 196611, 655373, 0, 196611, 655374, 0, 196611, 655375, 0, 196611, 655376, 0, 5, 720906, 0, 131072, 720907, 0, 196611, 720908, 0, 196611, 720909, 0, 196611, 720910, 0, 196611, 720911, 0, 65538, 786443, 0, 131074, 786444, 0, 196611, 786445, 0, 196611, 786446, 0, 196611, 786447, 0, 5, 851979, 0, 131074, 851980, 0, 196611, 851981, 0, 196611, 851982, 0, 65537, 917515, 0, 131074, 917516, 0, 196611, 917517, 0, 196611, 917518, 0, 65540, 983051, 0, 131074, 983052, 0, 196611, 983053, 0, 196611, 983054, 0, 65538, 1048587, 0, 131074, 1048588, 0, 196611, 1048589, 0, 196611, 1048590, 0, 5, 1114123, 0, 131072, 1114124, 0, 196611, 1114125, 0, 65539, 1179660, 0, 131072, 1179661, 0, 5 )
 
-[node name="RippleWaves" parent="CanvasLayer/WorldMover/Ground" instance=ExtResource( 22 )]
+[node name="RippleWaves" parent="World/Ground" instance=ExtResource( 22 )]
 tile_map_path = NodePath("../GroundMap")
 direction = 2
 speed = 30.0
 wait_time = 12.0
 
-[node name="Terrain" type="TileMap" parent="CanvasLayer/WorldMover/Ground"]
+[node name="Terrain" type="TileMap" parent="World/Ground"]
 position = Vector2( -2, 1 )
 mode = 1
 tile_set = SubResource( 14 )
@@ -666,16 +664,16 @@ cell_tile_origin = 1
 centered_textures = true
 format = 1
 
-[node name="Shadows" type="Node2D" parent="CanvasLayer/WorldMover/Ground"]
+[node name="Shadows" type="Node2D" parent="World/Ground"]
 
-[node name="Viewport" type="Viewport" parent="CanvasLayer/WorldMover/Ground/Shadows"]
+[node name="Viewport" type="Viewport" parent="World/Ground/Shadows"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
 usage = 0
 
-[node name="ViewportRoot" type="Node2D" parent="CanvasLayer/WorldMover/Ground/Shadows/Viewport"]
+[node name="ViewportRoot" type="Node2D" parent="World/Ground/Shadows/Viewport"]
 
-[node name="ObstacleMapShadows" type="TileMap" parent="CanvasLayer/WorldMover/Ground/Shadows/Viewport/ViewportRoot"]
+[node name="ObstacleMapShadows" type="TileMap" parent="World/Ground/Shadows/Viewport/ViewportRoot"]
 mode = 1
 tile_set = SubResource( 15 )
 cell_size = Vector2( 128, 64 )
@@ -688,18 +686,18 @@ cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 )
 }
 
-[node name="CreatureShadows" parent="CanvasLayer/WorldMover/Ground/Shadows/Viewport/ViewportRoot" instance=ExtResource( 9 )]
+[node name="CreatureShadows" parent="World/Ground/Shadows/Viewport/ViewportRoot" instance=ExtResource( 9 )]
 
-[node name="ShadowCasterShadows" type="Node2D" parent="CanvasLayer/WorldMover/Ground/Shadows/Viewport/ViewportRoot"]
+[node name="ShadowCasterShadows" type="Node2D" parent="World/Ground/Shadows/Viewport/ViewportRoot"]
 script = ExtResource( 24 )
 OvalShadowScene = ExtResource( 20 )
 
-[node name="ScrewportTexrect" parent="CanvasLayer/WorldMover/Ground/Shadows" instance=ExtResource( 27 )]
+[node name="ScrewportTexrect" parent="World/Ground/Shadows" instance=ExtResource( 27 )]
 texture = SubResource( 16 )
 
-[node name="Obstacles" type="YSort" parent="CanvasLayer/WorldMover"]
+[node name="Obstacles" type="YSort" parent="World"]
 
-[node name="ObstacleMap" type="TileMap" parent="CanvasLayer/WorldMover/Obstacles"]
+[node name="ObstacleMap" type="TileMap" parent="World/Obstacles"]
 mode = 1
 tile_set = ExtResource( 23 )
 cell_size = Vector2( 128, 64 )
@@ -712,7 +710,7 @@ script = ExtResource( 29 )
 ground_map_path = NodePath("../../Ground/GroundMap")
 impassable_tile_index = 1
 
-[node name="CornerMap" type="TileMap" parent="CanvasLayer/WorldMover/Obstacles/ObstacleMap"]
+[node name="CornerMap" type="TileMap" parent="World/Obstacles/ObstacleMap"]
 mode = 1
 tile_set = ExtResource( 23 )
 cell_size = Vector2( 128, 64 )
@@ -726,47 +724,49 @@ cornerable_tiles = {
 3: Vector2( 2, 5 )
 }
 
-[node name="Player" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 19 )]
+[node name="Player" parent="World/Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 956.203, 478.918 )
 creature_id = "#player#"
 dna = {
 }
 orientation = 1
 
-[node name="Sensei" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 19 )]
+[node name="Sensei" parent="World/Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 68.6856, 477.653 )
 creature_id = "#sensei#"
 dna = {
 }
 
-[node name="MarshTree1" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 25 )]
+[node name="MarshTree1" parent="World/Obstacles" instance=ExtResource( 25 )]
 position = Vector2( 1024.72, 569.821 )
 
-[node name="MarshCrystal1" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 30 )]
+[node name="MarshCrystal1" parent="World/Obstacles" instance=ExtResource( 30 )]
 position = Vector2( 26.206, 428.89 )
 
-[node name="MarshCrystal2" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 30 )]
+[node name="MarshCrystal2" parent="World/Obstacles" instance=ExtResource( 30 )]
 position = Vector2( 339.019, 659.296 )
 
-[node name="MarshBush1" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 32 )]
+[node name="MarshBush1" parent="World/Obstacles" instance=ExtResource( 32 )]
 position = Vector2( 954.42, 710.482 )
 
-[node name="MarshBush2" parent="CanvasLayer/WorldMover/Obstacles" instance=ExtResource( 32 )]
+[node name="MarshBush2" parent="World/Obstacles" instance=ExtResource( 32 )]
 position = Vector2( -283.38, 422.895 )
 
-[node name="ObstacleManager" type="Node" parent="CanvasLayer/WorldMover"]
+[node name="Camera2D" type="Camera2D" parent="World"]
+offset = Vector2( 512, 300 )
+current = true
+
+[node name="ObstacleManager" type="Node" parent="World"]
 script = ExtResource( 34 )
 creature_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
 shadow_caster_shadows_path = NodePath("../Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
 obstacles_path = NodePath("../Obstacles")
 CreatureScene = ExtResource( 19 )
 
-[node name="ApplauseSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 33 )
-bus = "Sound Bus"
+[node name="Ui" type="CanvasLayer" parent="."]
 
-[node name="MusicPopup" parent="." instance=ExtResource( 37 )]
+[node name="MusicPopup" parent="Ui" instance=ExtResource( 37 )]
 
-[node name="SceneTransitionCover" parent="." instance=ExtResource( 3 )]
+[node name="SceneTransitionCover" parent="Ui" instance=ExtResource( 3 )]
 
-[connection signal="pressed" from="Chalkboard/VBoxContainer/ButtonRow/Button" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Bg/Chalkboard/VBoxContainer/ButtonRow/Button" to="." method="_on_Button_pressed"]
