@@ -64,8 +64,7 @@ func _spawn_target() -> void:
 		_spawned_object.add_to_group(group)
 	
 	# add it to the scene tree
-	get_parent().add_child_below_node(self, _spawned_object)
-	_obstacle_manager.process_new_obstacle(_spawned_object)
+	_obstacle_manager.add_obstacle_below_node(self, _spawned_object)
 	
 	# remove the spawner from the scene tree
 	queue_free()
