@@ -26,7 +26,7 @@
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=24]
 [ext_resource path="res://src/main/world/environment/MarshTree.tscn" type="PackedScene" id=25]
 [ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=26]
-[ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=27]
+[ext_resource path="res://src/main/world/ScrewportTexrect.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=28]
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=29]
 [ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=30]
@@ -694,18 +694,8 @@ cell_shadow_mapping = {
 script = ExtResource( 24 )
 OvalShadowScene = ExtResource( 20 )
 
-[node name="ScrewportTexrect" type="TextureRect" parent="CanvasLayer/WorldMover/Ground/Shadows"]
-modulate = Color( 1, 1, 1, 0.501961 )
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 1024, 600 )
-mouse_filter = 2
+[node name="ScrewportTexrect" parent="CanvasLayer/WorldMover/Ground/Shadows" instance=ExtResource( 27 )]
 texture = SubResource( 16 )
-flip_v = true
-script = ExtResource( 27 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Obstacles" type="YSort" parent="CanvasLayer/WorldMover"]
 

@@ -8,6 +8,7 @@
 [ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=6]
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=7]
 [ext_resource path="res://src/main/world/creature/player.gd" type="Script" id=8]
+[ext_resource path="res://src/main/world/ScrewportTexrect.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=11]
 [ext_resource path="res://src/main/world/ChatIcon.tscn" type="PackedScene" id=12]
@@ -19,7 +20,6 @@
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=19]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=20]
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=21]
-[ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=22]
 [ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/world/OverworldExit.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/environment/MarshTree.tscn" type="PackedScene" id=26]
@@ -156,17 +156,8 @@ cell_shadow_mapping = {
 script = ExtResource( 72 )
 OvalShadowScene = ExtResource( 73 )
 
-[node name="ScrewportTexrect" type="TextureRect" parent="World/Ground/Shadows"]
-modulate = Color( 1, 1, 1, 0.501961 )
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 1024, 600 )
+[node name="ScrewportTexrect" parent="World/Ground/Shadows" instance=ExtResource( 9 )]
 texture = SubResource( 3 )
-flip_v = true
-script = ExtResource( 22 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Obstacles" type="YSort" parent="World"]
 
