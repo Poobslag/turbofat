@@ -36,6 +36,16 @@ func _refresh_label() -> void:
 		pass
 
 
+## Updates the distance label after the player selects a level.
+##
+## After the player selects a label, the distance penalty is applied to the player's distance travelled. This method
+## updates the label's text with the player's raw distance travelled with no penalty applied. This prevents a bug
+## where we temporarily display the distance with the penalty applied twice.
+func suppress_distance_penalty() -> void:
+	# Display the distance travelled with the distance penalty applied
+	_label.text = StringUtils.comma_sep(PlayerData.career.distance_travelled)
+
+
 func _on_CareerData_distance_travelled_changed() -> void:
 	_refresh_label()
 
