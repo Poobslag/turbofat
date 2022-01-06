@@ -20,7 +20,7 @@
 [ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=18]
 [ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=19]
 [ext_resource path="res://src/main/world/environment/TurboFatRestaurant.tscn" type="PackedScene" id=20]
-[ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=21]
+[ext_resource path="res://src/main/world/ScrewportTexrect.tscn" type="PackedScene" id=21]
 [ext_resource path="res://assets/main/world/environment/buttercup-stool-green.png" type="Texture" id=22]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=23]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=24]
@@ -96,7 +96,7 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="ViewportTexture" id=19]
+[sub_resource type="ViewportTexture" id=23]
 viewport_path = NodePath("World/Ground/Shadows/Viewport")
 
 [sub_resource type="Curve2D" id=18]
@@ -275,18 +275,8 @@ cell_shadow_mapping = {
 script = ExtResource( 26 )
 OvalShadowScene = ExtResource( 29 )
 
-[node name="ScrewportTexrect" type="TextureRect" parent="World/Ground/Shadows"]
-modulate = Color( 1, 1, 1, 0.501961 )
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 1024, 600 )
-mouse_filter = 2
-texture = SubResource( 19 )
-flip_v = true
-script = ExtResource( 21 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="ScrewportTexrect" parent="World/Ground/Shadows" instance=ExtResource( 21 )]
+texture = SubResource( 23 )
 
 [node name="PlayerPath" type="Path2D" parent="World"]
 position = Vector2( 475.371, 923.074 )
@@ -776,11 +766,11 @@ quit_type = 3
 [node name="SceneTransitionCover" parent="Ui" instance=ExtResource( 50 )]
 layer = 10
 
-[connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="level_button_focused" from="LevelSelect" to="World" method="_on_LevelSelect_level_button_focused"]
-[connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
+[connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="pressed" from="Ui/Control/StatusBar/Distance/Adjust/Down" to="Ui/Control/StatusBar/Distance/Adjust" method="_on_Down_pressed"]
 [connection signal="pressed" from="Ui/Control/StatusBar/Distance/Adjust/Up" to="Ui/Control/StatusBar/Distance/Adjust" method="_on_Up_pressed"]
+[connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
 [connection signal="hide" from="Ui/SettingsMenu" to="LevelSelect" method="_on_SettingsMenu_hide"]
 [connection signal="hide" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_hide"]
 [connection signal="other_quit_pressed" from="Ui/SettingsMenu" to="Ui" method="_on_SettingsMenu_other_quit_pressed"]

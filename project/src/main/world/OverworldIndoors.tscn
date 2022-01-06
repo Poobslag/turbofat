@@ -39,7 +39,7 @@
 [ext_resource path="res://assets/main/world/creature/10/ear-z2-packed.png" type="Texture" id=37]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=38]
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=39]
-[ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=40]
+[ext_resource path="res://src/main/world/ScrewportTexrect.tscn" type="PackedScene" id=40]
 [ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=41]
 [ext_resource path="res://assets/main/world/creature/5/tail-z1-packed.png" type="Texture" id=42]
 [ext_resource path="res://assets/main/world/creature/1/eye-z1-packed.png" type="Texture" id=43]
@@ -133,19 +133,8 @@ cell_shadow_mapping = {
 script = ExtResource( 34 )
 OvalShadowScene = ExtResource( 30 )
 
-[node name="ScrewportTexrect" type="TextureRect" parent="World/Ground/Shadows"]
-modulate = Color( 1, 1, 1, 0.501961 )
-margin_right = 1024.0
-margin_bottom = 600.0
-rect_min_size = Vector2( 1024, 600 )
-rect_scale = Vector2( 0.4, 0.4 )
-mouse_filter = 2
+[node name="ScrewportTexrect" parent="World/Ground/Shadows" instance=ExtResource( 40 )]
 texture = SubResource( 2 )
-flip_v = true
-script = ExtResource( 40 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Obstacles" type="YSort" parent="World"]
 

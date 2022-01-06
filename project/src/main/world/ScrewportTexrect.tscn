@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/world/screwport-texrect.gd" type="Script" id=1]
+
+[node name="ScrewportTexrect" type="TextureRect"]
+modulate = Color( 1, 1, 1, 0.501961 )
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+mouse_filter = 2
+flip_v = true
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
