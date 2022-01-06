@@ -43,7 +43,7 @@ func show_diagram(texture: Texture, show_choices: bool = false) -> void:
 			1: choices = [tr("Yes, I see!"), tr("What do you mean by that?")]
 			2: choices = [tr("Oh! That's easy."), tr("Hmm, maybe one more time?")]
 		_show_diagram_count += 1
-		var moods := [ChatEvent.Mood.SMILE0, ChatEvent.Mood.THINK0]
+		var moods := [Creatures.Mood.SMILE0, Creatures.Mood.THINK0]
 		$VBoxContainer/ChatChoices.show_choices(choices, moods, 2)
 
 

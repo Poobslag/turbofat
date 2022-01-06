@@ -144,7 +144,7 @@ func _on_ChatAdvancer_chat_event_shown(chat_event: ChatEvent) -> void:
 ## The resulting array excludes any choices whose link_if conditions are unmet.
 ##
 ## Returns:
-## 	An array of ChatEvent.Mood instances for each chat branch
+## 	An array of Creatures.Mood instances for each chat branch
 func _enabled_link_moods(var chat_event: ChatEvent) -> Array:
 	var moods := []
 	for i in chat_event.enabled_link_indexes():

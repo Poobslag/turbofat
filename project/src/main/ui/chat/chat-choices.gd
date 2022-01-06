@@ -48,7 +48,7 @@ func reposition(chat_line_size: int) -> void:
 ## Parameters:
 ## 	'choices': Strings to show the player for each chat branch.
 ##
-## 	'moods': An array of ChatEvent.Mood instances for each chat branch
+## 	'moods': An array of Creatures.Mood instances for each chat branch
 ##
 ## 	'new_columns': (Optional) The number of columns to organize the chat events into.
 func show_choices(choices: Array, moods: Array, new_columns: int = 0) -> void:

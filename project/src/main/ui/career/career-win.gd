@@ -41,14 +41,14 @@ func _refresh_mood() -> void:
 	var player := _obstacle_manager.find_creature(CreatureLibrary.PLAYER_ID)
 	var sensei := _obstacle_manager.find_creature(CreatureLibrary.SENSEI_ID)
 	if PlayerData.career.daily_steps >= DAILY_STEPS_GOOD:
-		player.play_mood(ChatEvent.Mood.LAUGH0)
-		sensei.play_mood(ChatEvent.Mood.LAUGH0)
+		player.play_mood(Creatures.Mood.LAUGH0)
+		sensei.play_mood(Creatures.Mood.LAUGH0)
 	elif PlayerData.career.daily_steps >= DAILY_STEPS_OK:
-		player.play_mood(ChatEvent.Mood.SMILE0)
-		sensei.play_mood(ChatEvent.Mood.SMILE0)
+		player.play_mood(Creatures.Mood.SMILE0)
+		sensei.play_mood(Creatures.Mood.SMILE0)
 	else:
-		player.play_mood(ChatEvent.Mood.RAGE0)
-		sensei.play_mood(ChatEvent.Mood.RAGE0)
+		player.play_mood(Creatures.Mood.RAGE0)
+		sensei.play_mood(Creatures.Mood.RAGE0)
 	
 	if PlayerData.career.daily_steps >= DAILY_STEPS_GOOD:
 		_applause_sound.play()

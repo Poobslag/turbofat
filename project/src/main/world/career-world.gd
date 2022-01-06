@@ -11,16 +11,16 @@ const X_DIST_BETWEEN_CUSTOMERS := 200
 const Y_DIST_BETWEEN_CUSTOMERS_AND_PATH := 80
 
 ## List of moods customers have when their level is chosen.
-const MOODS_COMMON := [ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE1, ChatEvent.Mood.WAVE0, ChatEvent.Mood.WAVE1]
-const MOODS_UNCOMMON := [ChatEvent.Mood.LAUGH0, ChatEvent.Mood.LAUGH1, ChatEvent.Mood.LOVE1, ChatEvent.Mood.AWKWARD0]
-const MOODS_RARE := [ChatEvent.Mood.AWKWARD1, ChatEvent.Mood.SIGH0, ChatEvent.Mood.SWEAT0, ChatEvent.Mood.THINK0]
+const MOODS_COMMON := [Creatures.Mood.SMILE0, Creatures.Mood.SMILE1, Creatures.Mood.WAVE0, Creatures.Mood.WAVE1]
+const MOODS_UNCOMMON := [Creatures.Mood.LAUGH0, Creatures.Mood.LAUGH1, Creatures.Mood.LOVE1, Creatures.Mood.AWKWARD0]
+const MOODS_RARE := [Creatures.Mood.AWKWARD1, Creatures.Mood.SIGH0, Creatures.Mood.SWEAT0, Creatures.Mood.THINK0]
 
 export (NodePath) var player_path2d_path: NodePath
 
 export (PackedScene) var MileMarkerScene: PackedScene
 
 ## List of moods each customer has when their level is chosen. Index 0 corresponds to the leftmost customer. Each
-## entry is an enum in ChatEvent.Mood.
+## entry is an enum in Creatures.Mood.
 var _customer_moods := []
 
 ## List of Customer instances for the level's customers. Index 0 holds the leftmost customer.
@@ -235,4 +235,4 @@ func _on_LevelSelect_level_button_focused(button_index: int) -> void:
 			if i == button_index:
 				customers[i].play_mood(_customer_moods[i])
 			else:
-				customers[i].play_mood(ChatEvent.Mood.DEFAULT)
+				customers[i].play_mood(Creatures.Mood.DEFAULT)

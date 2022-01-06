@@ -146,7 +146,7 @@ func _react_to_total_bonus() -> void:
 		total_bonus += bonus
 	
 	if total_bonus >= 15 * 6:
-		get_chef().play_mood(ChatEvent.Mood.SMILE0)
+		get_chef().play_mood(Creatures.Mood.SMILE0)
 
 
 func _on_Chef_creature_name_changed() -> void:
@@ -168,11 +168,11 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 	# losing your combo doesn't erase the 'recent bonus' value, but decreases it a lot
 	_recent_bonuses = _recent_bonuses.slice(3, _recent_bonuses.size() - 1)
 	if PuzzleState.game_active:
-		get_chef().play_mood(ChatEvent.Mood.DEFAULT)
+		get_chef().play_mood(Creatures.Mood.DEFAULT)
 
 
 func _on_PuzzleState_topped_out() -> void:
-	get_chef().play_mood(ChatEvent.Mood.CRY0)
+	get_chef().play_mood(Creatures.Mood.CRY0)
 
 
 ## When clearing lines, the chef smiles if they're scoring a lot of bonus points.
@@ -193,18 +193,18 @@ func _on_PuzzleState_added_pickup_score(pickup_score: int) -> void:
 
 ## When the game ends, the chef smiles/cries/rages based on how they did.
 func _on_PuzzleState_game_ended() -> void:
-	var mood: int = ChatEvent.Mood.NONE
+	var mood: int = Creatures.Mood.NONE
 	match PuzzleState.end_result():
 		Levels.Result.NONE:
 			pass
 		Levels.Result.LOST:
-			mood = Utils.rand_value([ChatEvent.Mood.RAGE1, ChatEvent.Mood.RAGE2,
-					ChatEvent.Mood.CRY1, ChatEvent.Mood.THINK1])
+			mood = Utils.rand_value([Creatures.Mood.RAGE1, Creatures.Mood.RAGE2,
+					Creatures.Mood.CRY1, Creatures.Mood.THINK1])
 		Levels.Result.FINISHED:
-			mood = ChatEvent.Mood.SMILE0
+			mood = Creatures.Mood.SMILE0
 		Levels.Result.WON:
-			mood = ChatEvent.Mood.LAUGH1
-	if mood != ChatEvent.Mood.NONE:
+			mood = Creatures.Mood.LAUGH1
+	if mood != Creatures.Mood.NONE:
 		get_chef().play_mood(mood)
 		_recent_bonuses = []
 
