@@ -3,6 +3,7 @@
     {
       "name": "Lemony Thickets",
       "distance": 0,
+      "icon": "forest",
       "piece_speed": "0",
       "boss_level":
       {
@@ -41,6 +42,7 @@
     {
       "name": "Poki Desert",
       "distance": 10,
+      "icon": "cactus",
       "piece_speed": "0-3",
       "boss_level":
       {
@@ -85,6 +87,7 @@
     {
       "name": "Cannoli Sandbar",
       "distance": 25,
+      "icon": "island",
       "piece_speed": "1-5",
       "boss_level":
       {
@@ -141,6 +144,7 @@
     {
       "name": "Merrymellow Marsh",
       "distance": 40,
+      "icon": "skull",
       "piece_speed": "3-7",
       "boss_level":
       {
@@ -191,6 +195,7 @@
     {
       "name": "Vega Churn Twelve",
       "distance": 60,
+      "icon": "gear",
       "piece_speed": "5-8",
       "boss_level":
       {
@@ -235,6 +240,7 @@
     {
       "name": "Chocolava Canyon",
       "distance": 80,
+      "icon": "volcano",
       "piece_speed": "6-9",
       "boss_level":
       {
@@ -285,6 +291,7 @@
     {
       "name": "Starberry Mountain",
       "distance": 100,
+      "icon": "rainbow",
       "piece_speed": "A1-AD",
       "levels": [
         {

@@ -4,6 +4,9 @@ class_name CareerRegion
 ## A human-readable region name, such as 'Lemony Thickets'
 var name: String
 
+## A human-readable icon name, such as 'forest' or 'cactus'
+var icon_name: String
+
 ## The smallest distance the player must travel to enter this region.
 var distance := 0
 
@@ -22,6 +25,7 @@ var max_piece_speed := "0"
 
 func from_json_dict(json: Dictionary) -> void:
 	name = json.get("name", "")
+	icon_name = json.get("icon", "")
 	distance = int(json.get("distance", 0))
 	var piece_speed_string: String = json.get("piece_speed", "0")
 	if "-" in piece_speed_string:

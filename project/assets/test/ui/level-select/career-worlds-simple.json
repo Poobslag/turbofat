@@ -3,6 +3,7 @@
     {
       "name": "Permissible World",
       "distance": 0,
+      "icon": "forest",
       "piece_speed": "0",
       "boss_level":
       {
@@ -20,6 +21,7 @@
     {
       "name": "Even World",
       "distance": 10,
+      "icon": "cactus",
       "piece_speed": "0-3",
       "boss_level":
       {
@@ -40,6 +42,7 @@
     {
       "name": "Cherries World",
       "distance": 20,
+      "icon": "island",
       "piece_speed": "A1-AD",
       "levels": [
         {
