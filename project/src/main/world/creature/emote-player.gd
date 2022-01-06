@@ -6,32 +6,32 @@ signal animation_stopped
 
 ## mapping from moods to animation names
 const EMOTE_ANIMS := {
-	ChatEvent.Mood.AWKWARD0: "awkward0",
-	ChatEvent.Mood.AWKWARD1: "awkward1",
-	ChatEvent.Mood.CRY0: "cry0",
-	ChatEvent.Mood.CRY1: "cry1",
-	ChatEvent.Mood.LAUGH0: "laugh0",
-	ChatEvent.Mood.LAUGH1: "laugh1",
-	ChatEvent.Mood.LOVE0: "love0",
-	ChatEvent.Mood.LOVE1: "love1",
-	ChatEvent.Mood.LOVE1_FOREVER: "love1...",
-	ChatEvent.Mood.NO0: "no0",
-	ChatEvent.Mood.NO1: "no1",
-	ChatEvent.Mood.RAGE0: "rage0",
-	ChatEvent.Mood.RAGE1: "rage1",
-	ChatEvent.Mood.RAGE2: "rage2",
-	ChatEvent.Mood.SIGH0: "sigh0",
-	ChatEvent.Mood.SIGH1: "sigh1",
-	ChatEvent.Mood.SMILE0: "smile0",
-	ChatEvent.Mood.SMILE1: "smile1",
-	ChatEvent.Mood.SWEAT0: "sweat0",
-	ChatEvent.Mood.SWEAT1: "sweat1",
-	ChatEvent.Mood.THINK0: "think0",
-	ChatEvent.Mood.THINK1: "think1",
-	ChatEvent.Mood.WAVE0: "wave0",
-	ChatEvent.Mood.WAVE1: "wave1",
-	ChatEvent.Mood.YES0: "yes0",
-	ChatEvent.Mood.YES1: "yes1",
+	Creatures.Mood.AWKWARD0: "awkward0",
+	Creatures.Mood.AWKWARD1: "awkward1",
+	Creatures.Mood.CRY0: "cry0",
+	Creatures.Mood.CRY1: "cry1",
+	Creatures.Mood.LAUGH0: "laugh0",
+	Creatures.Mood.LAUGH1: "laugh1",
+	Creatures.Mood.LOVE0: "love0",
+	Creatures.Mood.LOVE1: "love1",
+	Creatures.Mood.LOVE1_FOREVER: "love1...",
+	Creatures.Mood.NO0: "no0",
+	Creatures.Mood.NO1: "no1",
+	Creatures.Mood.RAGE0: "rage0",
+	Creatures.Mood.RAGE1: "rage1",
+	Creatures.Mood.RAGE2: "rage2",
+	Creatures.Mood.SIGH0: "sigh0",
+	Creatures.Mood.SIGH1: "sigh1",
+	Creatures.Mood.SMILE0: "smile0",
+	Creatures.Mood.SMILE1: "smile1",
+	Creatures.Mood.SWEAT0: "sweat0",
+	Creatures.Mood.SWEAT1: "sweat1",
+	Creatures.Mood.THINK0: "think0",
+	Creatures.Mood.THINK1: "think1",
+	Creatures.Mood.WAVE0: "wave0",
+	Creatures.Mood.WAVE1: "wave1",
+	Creatures.Mood.YES0: "yes0",
+	Creatures.Mood.YES1: "yes1",
 }
 
 ## animation names for eating while smiling; referenced for animation transitions
@@ -54,56 +54,56 @@ const EAT_SWEAT_ANIMS := {
 
 ## custom transition for cases where the default mood transition looks awkward
 const TRANSITIONS := {
-	[ChatEvent.Mood.AWKWARD0, ChatEvent.Mood.AWKWARD0]: "_transition_noop",
-	[ChatEvent.Mood.AWKWARD0, ChatEvent.Mood.AWKWARD1]: "_transition_noop",
-	[ChatEvent.Mood.AWKWARD1, ChatEvent.Mood.AWKWARD0]: "_transition_awkward1_awkward0",
-	[ChatEvent.Mood.AWKWARD1, ChatEvent.Mood.AWKWARD1]: "_transition_noop",
-	[ChatEvent.Mood.CRY0, ChatEvent.Mood.CRY0]: "_transition_noop",
-	[ChatEvent.Mood.CRY1, ChatEvent.Mood.CRY1]: "_transition_noop",
-	[ChatEvent.Mood.LAUGH0, ChatEvent.Mood.LAUGH0]: "_transition_noop",
-	[ChatEvent.Mood.LAUGH0, ChatEvent.Mood.LAUGH1]: "_transition_noop",
-	[ChatEvent.Mood.LAUGH1, ChatEvent.Mood.LAUGH0]: "_transition_laugh1_laugh0",
-	[ChatEvent.Mood.LAUGH1, ChatEvent.Mood.LAUGH1]: "_transition_noop",
-	[ChatEvent.Mood.LOVE0, ChatEvent.Mood.LOVE0]: "_transition_noop",
-	[ChatEvent.Mood.LOVE0, ChatEvent.Mood.LOVE1]: "_transition_noop",
-	[ChatEvent.Mood.LOVE0, ChatEvent.Mood.LOVE1_FOREVER]: "_transition_noop",
-	[ChatEvent.Mood.LOVE1, ChatEvent.Mood.LOVE0]: "_transition_love1_love0",
-	[ChatEvent.Mood.LOVE1, ChatEvent.Mood.LOVE1]: "_transition_noop",
-	[ChatEvent.Mood.LOVE1, ChatEvent.Mood.LOVE1_FOREVER]: "_transition_noop",
-	[ChatEvent.Mood.LOVE1_FOREVER, ChatEvent.Mood.LOVE0]: "_transition_love1_love0",
-	[ChatEvent.Mood.LOVE1_FOREVER, ChatEvent.Mood.LOVE1]: "_transition_noop",
-	[ChatEvent.Mood.LOVE1_FOREVER, ChatEvent.Mood.LOVE1_FOREVER]: "_transition_noop",
-	[ChatEvent.Mood.NO0, ChatEvent.Mood.NO0]: "_transition_noop",
-	[ChatEvent.Mood.NO0, ChatEvent.Mood.NO1]: "_transition_noop",
-	[ChatEvent.Mood.NO1, ChatEvent.Mood.NO0]: "_transition_noop",
-	[ChatEvent.Mood.NO1, ChatEvent.Mood.NO1]: "_transition_noop",
-	[ChatEvent.Mood.RAGE0, ChatEvent.Mood.RAGE0]: "_transition_noop",
-	[ChatEvent.Mood.RAGE0, ChatEvent.Mood.RAGE1]: "_transition_noop",
-	[ChatEvent.Mood.RAGE1, ChatEvent.Mood.RAGE0]: "_transition_rage1_rage0",
-	[ChatEvent.Mood.RAGE1, ChatEvent.Mood.RAGE1]: "_transition_noop",
-	[ChatEvent.Mood.RAGE2, ChatEvent.Mood.RAGE2]: "_transition_noop",
-	[ChatEvent.Mood.SIGH0, ChatEvent.Mood.SIGH0]: "_transition_noop",
-	[ChatEvent.Mood.SIGH0, ChatEvent.Mood.SIGH1]: "_transition_noop",
-	[ChatEvent.Mood.SIGH1, ChatEvent.Mood.SIGH0]: "_transition_sigh1_sigh0",
-	[ChatEvent.Mood.SIGH1, ChatEvent.Mood.SIGH1]: "_transition_noop",
-	[ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE0]: "_transition_noop",
-	[ChatEvent.Mood.SMILE0, ChatEvent.Mood.SMILE1]: "_transition_noop",
-	[ChatEvent.Mood.SMILE1, ChatEvent.Mood.SMILE0]: "_transition_smile1_smile0",
-	[ChatEvent.Mood.SMILE1, ChatEvent.Mood.SMILE1]: "_transition_noop",
-	[ChatEvent.Mood.SWEAT0, ChatEvent.Mood.SWEAT0]: "_transition_noop",
-	[ChatEvent.Mood.SWEAT0, ChatEvent.Mood.SWEAT1]: "_transition_noop",
-	[ChatEvent.Mood.SWEAT1, ChatEvent.Mood.SWEAT0]: "_transition_sweat1_sweat0",
-	[ChatEvent.Mood.SWEAT1, ChatEvent.Mood.SWEAT1]: "_transition_noop",
-	[ChatEvent.Mood.THINK0, ChatEvent.Mood.THINK0]: "_transition_noop",
-	[ChatEvent.Mood.THINK1, ChatEvent.Mood.THINK1]: "_transition_noop",
-	[ChatEvent.Mood.WAVE0, ChatEvent.Mood.WAVE0]: "_transition_noop",
-	[ChatEvent.Mood.WAVE0, ChatEvent.Mood.WAVE1]: "_transition_noop",
-	[ChatEvent.Mood.WAVE1, ChatEvent.Mood.WAVE0]: "_transition_noop",
-	[ChatEvent.Mood.WAVE1, ChatEvent.Mood.WAVE1]: "_transition_noop",
-	[ChatEvent.Mood.YES0, ChatEvent.Mood.YES0]: "_transition_noop",
-	[ChatEvent.Mood.YES0, ChatEvent.Mood.YES1]: "_transition_noop",
-	[ChatEvent.Mood.YES1, ChatEvent.Mood.YES0]: "_transition_noop",
-	[ChatEvent.Mood.YES1, ChatEvent.Mood.YES1]: "_transition_noop",
+	[Creatures.Mood.AWKWARD0, Creatures.Mood.AWKWARD0]: "_transition_noop",
+	[Creatures.Mood.AWKWARD0, Creatures.Mood.AWKWARD1]: "_transition_noop",
+	[Creatures.Mood.AWKWARD1, Creatures.Mood.AWKWARD0]: "_transition_awkward1_awkward0",
+	[Creatures.Mood.AWKWARD1, Creatures.Mood.AWKWARD1]: "_transition_noop",
+	[Creatures.Mood.CRY0, Creatures.Mood.CRY0]: "_transition_noop",
+	[Creatures.Mood.CRY1, Creatures.Mood.CRY1]: "_transition_noop",
+	[Creatures.Mood.LAUGH0, Creatures.Mood.LAUGH0]: "_transition_noop",
+	[Creatures.Mood.LAUGH0, Creatures.Mood.LAUGH1]: "_transition_noop",
+	[Creatures.Mood.LAUGH1, Creatures.Mood.LAUGH0]: "_transition_laugh1_laugh0",
+	[Creatures.Mood.LAUGH1, Creatures.Mood.LAUGH1]: "_transition_noop",
+	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE0]: "_transition_noop",
+	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE1]: "_transition_noop",
+	[Creatures.Mood.LOVE0, Creatures.Mood.LOVE1_FOREVER]: "_transition_noop",
+	[Creatures.Mood.LOVE1, Creatures.Mood.LOVE0]: "_transition_love1_love0",
+	[Creatures.Mood.LOVE1, Creatures.Mood.LOVE1]: "_transition_noop",
+	[Creatures.Mood.LOVE1, Creatures.Mood.LOVE1_FOREVER]: "_transition_noop",
+	[Creatures.Mood.LOVE1_FOREVER, Creatures.Mood.LOVE0]: "_transition_love1_love0",
+	[Creatures.Mood.LOVE1_FOREVER, Creatures.Mood.LOVE1]: "_transition_noop",
+	[Creatures.Mood.LOVE1_FOREVER, Creatures.Mood.LOVE1_FOREVER]: "_transition_noop",
+	[Creatures.Mood.NO0, Creatures.Mood.NO0]: "_transition_noop",
+	[Creatures.Mood.NO0, Creatures.Mood.NO1]: "_transition_noop",
+	[Creatures.Mood.NO1, Creatures.Mood.NO0]: "_transition_noop",
+	[Creatures.Mood.NO1, Creatures.Mood.NO1]: "_transition_noop",
+	[Creatures.Mood.RAGE0, Creatures.Mood.RAGE0]: "_transition_noop",
+	[Creatures.Mood.RAGE0, Creatures.Mood.RAGE1]: "_transition_noop",
+	[Creatures.Mood.RAGE1, Creatures.Mood.RAGE0]: "_transition_rage1_rage0",
+	[Creatures.Mood.RAGE1, Creatures.Mood.RAGE1]: "_transition_noop",
+	[Creatures.Mood.RAGE2, Creatures.Mood.RAGE2]: "_transition_noop",
+	[Creatures.Mood.SIGH0, Creatures.Mood.SIGH0]: "_transition_noop",
+	[Creatures.Mood.SIGH0, Creatures.Mood.SIGH1]: "_transition_noop",
+	[Creatures.Mood.SIGH1, Creatures.Mood.SIGH0]: "_transition_sigh1_sigh0",
+	[Creatures.Mood.SIGH1, Creatures.Mood.SIGH1]: "_transition_noop",
+	[Creatures.Mood.SMILE0, Creatures.Mood.SMILE0]: "_transition_noop",
+	[Creatures.Mood.SMILE0, Creatures.Mood.SMILE1]: "_transition_noop",
+	[Creatures.Mood.SMILE1, Creatures.Mood.SMILE0]: "_transition_smile1_smile0",
+	[Creatures.Mood.SMILE1, Creatures.Mood.SMILE1]: "_transition_noop",
+	[Creatures.Mood.SWEAT0, Creatures.Mood.SWEAT0]: "_transition_noop",
+	[Creatures.Mood.SWEAT0, Creatures.Mood.SWEAT1]: "_transition_noop",
+	[Creatures.Mood.SWEAT1, Creatures.Mood.SWEAT0]: "_transition_sweat1_sweat0",
+	[Creatures.Mood.SWEAT1, Creatures.Mood.SWEAT1]: "_transition_noop",
+	[Creatures.Mood.THINK0, Creatures.Mood.THINK0]: "_transition_noop",
+	[Creatures.Mood.THINK1, Creatures.Mood.THINK1]: "_transition_noop",
+	[Creatures.Mood.WAVE0, Creatures.Mood.WAVE0]: "_transition_noop",
+	[Creatures.Mood.WAVE0, Creatures.Mood.WAVE1]: "_transition_noop",
+	[Creatures.Mood.WAVE1, Creatures.Mood.WAVE0]: "_transition_noop",
+	[Creatures.Mood.WAVE1, Creatures.Mood.WAVE1]: "_transition_noop",
+	[Creatures.Mood.YES0, Creatures.Mood.YES0]: "_transition_noop",
+	[Creatures.Mood.YES0, Creatures.Mood.YES1]: "_transition_noop",
+	[Creatures.Mood.YES1, Creatures.Mood.YES0]: "_transition_noop",
+	[Creatures.Mood.YES1, Creatures.Mood.YES1]: "_transition_noop",
 }
 
 ## Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
@@ -248,7 +248,7 @@ func eat() -> void:
 ## Animates the creature's appearance according to the specified mood: happy, angry, etc...
 ##
 ## Parameters:
-## 	'mood': The creature's new mood from ChatEvent.Mood
+## 	'mood': The creature's new mood from Creatures.Mood
 func emote(mood: int) -> void:
 	_mood = mood
 	if _prev_mood in EMOTE_ANIMS:
@@ -310,7 +310,7 @@ func unemote(anim_name: String = "") -> void:
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
 	_head_bobber.reset_head_bob()
 	$ResetTween.start()
-	_prev_mood = ChatEvent.Mood.DEFAULT
+	_prev_mood = Creatures.Mood.DEFAULT
 
 
 ## Resets the position and rotation of nodes which shift around during emotes.
@@ -343,7 +343,7 @@ func unemote_immediate() -> void:
 		emote_sprite.rotation_degrees = 0
 		emote_sprite.modulate = Color.transparent
 	_head_bobber.reset_head_bob()
-	_prev_mood = ChatEvent.Mood.DEFAULT
+	_prev_mood = Creatures.Mood.DEFAULT
 	_post_unemote()
 
 

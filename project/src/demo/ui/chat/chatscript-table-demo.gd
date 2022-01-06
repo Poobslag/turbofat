@@ -6,7 +6,7 @@ extends Control
 ## The number of columns in the BBCode table
 var _table_width := 1
 
-## key: An int corresponding to a mood from ChatEvent.Mood
+## key: An int corresponding to a mood from Creatures.Mood
 ## value: An array of string chat prefixes (emoticons)
 var _prefixes_by_mood := {}
 
@@ -52,11 +52,11 @@ func _add_header_row() -> void:
 
 
 func _add_mood_rows() -> void:
-	var mood_names := ChatEvent.Mood.keys()
+	var mood_names := Creatures.Mood.keys()
 	mood_names.sort()
 	
 	for mood_name in mood_names:
-		var mood: int = ChatEvent.Mood.get(mood_name)
+		var mood: int = Creatures.Mood.get(mood_name)
 		if not _prefixes_by_mood.has(mood):
 			# skip moods with no chat prefixes, such as Mood.NONE
 			continue

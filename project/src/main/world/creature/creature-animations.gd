@@ -84,13 +84,13 @@ func eat() -> void:
 ## Animates the creature's appearance according to the specified mood: happy, angry, etc...
 ##
 ## Parameters:
-## 	'mood': The creature's new mood from ChatEvent.Mood
+## 	'mood': The creature's new mood from Creatures.Mood
 func play_mood(mood: int) -> void:
 	_idle_timer.stop_idle_animation()
 	
-	if mood == ChatEvent.Mood.NONE:
+	if mood == Creatures.Mood.NONE:
 		pass
-	elif mood == ChatEvent.Mood.DEFAULT:
+	elif mood == Creatures.Mood.DEFAULT:
 		_emote_player.unemote()
 	else:
 		_emote_player.emote(mood)

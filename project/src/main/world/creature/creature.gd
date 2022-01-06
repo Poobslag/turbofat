@@ -246,7 +246,7 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 ## Animates the creature's appearance according to the specified mood: happy, angry, etc...
 ##
 ## Parameters:
-## 	'mood': The creature's new mood from ChatEvent.Mood
+## 	'mood': The creature's new mood from Creatures.Mood
 func play_mood(mood: int) -> void:
 	creature_visuals.play_mood(mood)
 

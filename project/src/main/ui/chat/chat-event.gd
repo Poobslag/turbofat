@@ -1,37 +1,6 @@
 class_name ChatEvent
 ## Contains details for a line of spoken text shown to the player.
 
-enum Mood {
-	NONE,
-	DEFAULT, # neutral expression, neither positive nor negative
-	AWKWARD0, # apprehensive
-	AWKWARD1, # visibly uncomfortable
-	CRY0, # a little sad
-	CRY1, # crying their eyes out
-	LAUGH0, # laughing a little
-	LAUGH1, # laughing a lot
-	LOVE0, # finding something cute
-	LOVE1, # fawning over something
-	LOVE1_FOREVER, # fawning over something forever
-	NO0, # shaking their head once
-	NO1, # shaking their head a few times
-	RAGE0, # annoyed
-	RAGE1, # a little upset
-	RAGE2, # infuriated
-	SIGH0, # unamused
-	SIGH1, # exasperated
-	SMILE0, # smiling a little
-	SMILE1, # smiling a lot
-	SWEAT0, # a little nervous
-	SWEAT1, # incredibly anxious
-	THINK0, # pensive
-	THINK1, # confused
-	WAVE0, # casual greeting (or pointing)
-	WAVE1, # enthusiastic greeting
-	YES0, # nodding once
-	YES1, # nodding a few times
-}
-
 enum NametagSide {
 	NO_PREFERENCE,
 	LEFT,
@@ -48,7 +17,7 @@ var nametag_side: int = NametagSide.NO_PREFERENCE
 var text: String
 
 ## The behavior the chatter should perform while saying the text (laughing, sweating, etc)
-var mood: int = Mood.NONE
+var mood: int = Creatures.Mood.NONE
 
 ## Metadata about the chat event, such as whether it should launch a level
 var meta: Array

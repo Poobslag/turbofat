@@ -44,7 +44,7 @@ func test_cutscene_chat() -> void:
 	
 	assert_eq(event.who, "skins")
 	assert_eq(event.text, "So how was that?")
-	assert_eq(event.mood, ChatEvent.Mood.NONE)
+	assert_eq(event.mood, Creatures.Mood.NONE)
 	assert_eq(event.links, ["very_good", "good", "bad", "very_bad"])
 	assert_eq(event.link_texts, ["I think you killed it!", "That was pretty good!", "...",
 			"Well... I wouldn't eat it."])
@@ -55,7 +55,7 @@ func test_cutscene_mood_smile1() -> void:
 	chat_tree.advance(0)
 	var event := chat_tree.get_event()
 	
-	assert_eq(event.mood, ChatEvent.Mood.SMILE1)
+	assert_eq(event.mood, Creatures.Mood.SMILE1)
 	assert_eq(event.text, "Wow, I think you killed it! You have some real talent.")
 
 
@@ -64,7 +64,7 @@ func test_cutscene_mood_smile0() -> void:
 	chat_tree.advance(1)
 	var event := chat_tree.get_event()
 	
-	assert_eq(event.mood, ChatEvent.Mood.SMILE0)
+	assert_eq(event.mood, Creatures.Mood.SMILE0)
 	assert_eq(event.text, "Hey, that was pretty good! And y'know, with a little more training you'll get even better.")
 
 
@@ -122,9 +122,9 @@ func test_chat_choice_mood() -> void:
 	var chat_tree := _chat_tree_from_file(CHAT_LINK_MOOD)
 	var event := chat_tree.get_event()
 	
-	assert_eq(event.link_moods[0], ChatEvent.Mood.SMILE0)
-	assert_eq(event.link_moods[1], ChatEvent.Mood.RAGE0)
-	assert_eq(event.link_moods[2], ChatEvent.Mood.AWKWARD0)
+	assert_eq(event.link_moods[0], Creatures.Mood.SMILE0)
+	assert_eq(event.link_moods[1], Creatures.Mood.RAGE0)
+	assert_eq(event.link_moods[2], Creatures.Mood.AWKWARD0)
 
 
 func test_chat_say_if() -> void:
