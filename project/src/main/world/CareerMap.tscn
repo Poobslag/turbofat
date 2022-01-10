@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -103,84 +103,6 @@ viewport_path = NodePath("World/Ground/Shadows/Viewport")
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -371.625, 243.731, 0, 0, 0, 0, 111.709, 374.478, 0, 0, 0, 0, 471.926, 546.111, 0, 0, 0, 0, 684.81, 553.451, 0, 0, 0, 0, 932.105, 487.379, 0, 0, 0, 0, 1098.23, 391.104, 0, 0, 0, 0, 1222.82, 368.451, 0, 0, 0, 0, 1400.27, 398.655, 0, 0, 0, 0, 1600.37, 347.686, 0, 0, 0, 0, 1817.29, 227.125, 0, 0, 0, 0, 2101.23, 203.817, 0, 0, 0, 0, 2285.58, 284.336, 0, 0, 0, 0, 2467.81, 208.055, 0, 0, 0, 0, 2656.54, 103.255, 0, 0, 0, 0, 2847.09, 136.011, 0, 0, 0, 0, 3083.72, 306.148, 0, 0, 0, 0, 3283.85, 358.284, 0, 0, 0, 0, 3465.48, 316.239, 0, 0, 0, 0, 3653.85, 321.284, 0, 0, 0, 0, 3887.61, 375.102, 0, 0, 0, 0, 4122.69, 347.904, 0, 0, 0, 0, 4247.7, 299.169 )
 }
-
-[sub_resource type="StyleBoxFlat" id=2]
-resource_local_to_scene = true
-bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id=3]
-resource_local_to_scene = true
-bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id=4]
-resource_local_to_scene = true
-bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id=5]
-resource_local_to_scene = true
-bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id=6]
-resource_local_to_scene = true
-bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id=7]
-resource_local_to_scene = true
-bg_color = Color( 0.321569, 0.686275, 0.890196, 1 )
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color( 0.423529, 0.262745, 0.192157, 1 )
-corner_radius_top_left = 8
-corner_radius_top_right = 8
-corner_radius_bottom_right = 8
-corner_radius_bottom_left = 8
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.423529, 0.262745, 0.192157, 1 )
@@ -528,6 +450,7 @@ script = ExtResource( 49 )
 
 [node name="LevelSelect" type="CanvasLayer" parent="."]
 script = ExtResource( 28 )
+LevelSelectButtonScene = ExtResource( 6 )
 
 [node name="Control" type="Control" parent="LevelSelect"]
 anchor_right = 1.0
@@ -547,39 +470,6 @@ size_flags_vertical = 3
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="Button1" parent="LevelSelect/Control/LevelButtons" instance=ExtResource( 6 )]
-margin_left = 58.0
-margin_top = 28.0
-margin_right = 258.0
-margin_bottom = 148.0
-rect_min_size = Vector2( 200, 120 )
-size_flags_horizontal = 6
-size_flags_vertical = 4
-custom_styles/hover = SubResource( 2 )
-custom_styles/normal = SubResource( 3 )
-
-[node name="Button2" parent="LevelSelect/Control/LevelButtons" instance=ExtResource( 6 )]
-margin_left = 379.0
-margin_top = 28.0
-margin_right = 579.0
-margin_bottom = 148.0
-rect_min_size = Vector2( 200, 120 )
-size_flags_horizontal = 6
-size_flags_vertical = 4
-custom_styles/hover = SubResource( 4 )
-custom_styles/normal = SubResource( 5 )
-
-[node name="Button3" parent="LevelSelect/Control/LevelButtons" instance=ExtResource( 6 )]
-margin_left = 701.0
-margin_top = 28.0
-margin_right = 901.0
-margin_bottom = 148.0
-rect_min_size = Vector2( 200, 120 )
-size_flags_horizontal = 6
-size_flags_vertical = 4
-custom_styles/hover = SubResource( 6 )
-custom_styles/normal = SubResource( 7 )
 
 [node name="GradeLabels" type="Control" parent="LevelSelect/Control"]
 anchor_right = 1.0
