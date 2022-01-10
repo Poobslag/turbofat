@@ -3907,6 +3907,8 @@ script = ExtResource( 12 )
 
 [node name="ResetTween" type="Tween" parent="."]
 
+[node name="VolumeDbTween" type="Tween" parent="."]
+
 [node name="EmoteSfx" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 bus = "Sound Bus"

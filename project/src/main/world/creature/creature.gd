@@ -405,7 +405,7 @@ func get_chat_extents() -> Vector2:
 
 ## Temporarily suppresses creature-related sound effects.
 ##
-## This includes voices, eating sounds, and movement sound effects.
+## This includes voices, eating sounds, sounds made while emoting, and movement sound effects.
 func briefly_suppress_sfx(duration: float = 1.0) -> void:
 	_creature_sfx.briefly_suppress_sfx(duration)
 
