@@ -12,14 +12,9 @@ var _level_settings_for_levels := []
 ## PieceSpeed for all levels the player can select.
 var _piece_speed: String
 
-var _duration_calculator := DurationCalculator.new()
-
 onready var _world := $World
-onready var _grade_labels := $LevelSelect/Control/GradeLabels
 onready var _distance_label := $Ui/Control/StatusBar/Distance
-
-## LevelSelectButtons for all levels the player can select.
-onready var _level_select_buttons := $LevelSelect/Control/LevelButtons.get_children()
+onready var _level_select_control := $LevelSelect
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
@@ -28,11 +23,6 @@ func _ready() -> void:
 	if PlayerData.career.is_day_over():
 		PlayerData.career.push_career_trail()
 	else:
-		for i in range(_level_select_buttons.size()):
-			var level_select_button: LevelSelectButton = _level_select_buttons[i]
-			level_select_button.connect("level_started", self, "_on_LevelSelectButton_level_started", [i])
-			_grade_labels.add_label(level_select_button)
-		
 		_refresh_ui()
 
 
@@ -42,7 +32,7 @@ func _exit_tree() -> void:
 
 func _refresh_ui() -> void:
 	_load_level_settings()
-	_prepare_level_select_buttons()
+	_refresh_level_select_buttons()
 	
 	# Grab focus to allow keyboard support. Wait a frame for other listeners to fire (specifically listeners which
 	# turn the level buttons invisible)
@@ -56,9 +46,10 @@ func _grab_focus() -> void:
 	if get_tree().is_connected("idle_frame", self, "_grab_focus"):
 		get_tree().disconnect("idle_frame", self, "_grab_focus")
 	
-	if _level_select_buttons and not _level_select_buttons[0].get_focus_owner():
-		var right_button_index: int = min(_level_select_buttons.size(), _level_settings_for_levels.size()) - 1
-		_level_select_buttons[right_button_index].grab_focus()
+	var level_select_buttons := get_tree().get_nodes_in_group("level_select_buttons")
+	if level_select_buttons and not level_select_buttons[0].get_focus_owner():
+		var right_button_index: int = min(level_select_buttons.size(), _level_settings_for_levels.size()) - 1
+		level_select_buttons[right_button_index].grab_focus()
 
 
 ## Loads level settings for three randomly selected levels from the current CareerRegion.
@@ -81,41 +72,21 @@ func _load_level_settings() -> void:
 		else:
 			_piece_speed = CareerLevelLibrary.piece_speed_for_distance(PlayerData.career.distance_travelled)
 	
-	for i in range(_level_select_buttons.size()):
-		var level_select_button: LevelSelectButton = _level_select_buttons[i]
-		if i >= career_levels.size():
-			level_select_button.visible = false
-			continue
-		var available_level: CareerLevel = career_levels[i]
-		
+	for level in career_levels:
 		var level_settings := LevelSettings.new()
-		level_settings.load_from_resource(available_level.level_id)
+		level_settings.load_from_resource(level.level_id)
 		LevelSpeedAdjuster.new(level_settings).adjust(_piece_speed)
 		_level_settings_for_levels.append(level_settings)
 
 
-## Updates the LevelSelectButtons with the appropriate level data, and hooks up their signals.
-func _prepare_level_select_buttons() -> void:
-	for i in range(_level_select_buttons.size()):
-		var level_select_button: LevelSelectButton = _level_select_buttons[i]
-		if i >= _level_settings_for_levels.size():
-			level_select_button.visible = false
-			continue
+## Recreates all level select buttons in the scene tree based on the current level settings.
+func _refresh_level_select_buttons() -> void:
+	_level_select_control.clear_level_select_buttons()
+	
+	for i in range(_level_settings_for_levels.size()):
 		var level_settings: LevelSettings = _level_settings_for_levels[i]
-		
-		# update the button's text and color
-		level_select_button.level_title = level_settings.title
-		level_select_button.level_id = level_settings.id
-		
-		var duration := _duration_calculator.duration(level_settings)
-		if duration < 100:
-			level_select_button.level_duration = LevelSelectButton.SHORT
-		elif duration < 200:
-			level_select_button.level_duration = LevelSelectButton.MEDIUM
-		else:
-			level_select_button.level_duration = LevelSelectButton.LONG
-		
-		level_select_button.emit_signal("level_info_changed")
+		var level_select_button: LevelSelectButton = _level_select_control.add_level_select_button(level_settings)
+		level_select_button.connect("level_started", self, "_on_LevelSelectButton_level_started", [i])
 
 
 ## Return a list of random CareerLevels for the player to choose from.
