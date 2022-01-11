@@ -2,6 +2,8 @@ class_name CreatureSfx
 extends Node2D
 ## Plays creature-related sound effects.
 
+signal should_play_sfx_changed
+
 ## sounds the creatures make when they enter the restaurant
 onready var hello_voices := [
 	preload("res://assets/main/world/creature/hello-voice-0.wav"),
@@ -55,9 +57,9 @@ onready var _goodbye_voices := [
 var _combo_voice_index := 0
 
 ## 'true' if the creature should not make any sounds when walking/loading. Used for the creature editor.
-var suppress_sfx := false
+var suppress_sfx := false setget set_suppress_sfx
 
-var creature_visuals: CreatureVisuals setget set_creature_visuals
+var should_play_sfx := false
 
 ## AudioStreamPlayer which plays all of the creature's voices. We reuse the same player so that they can't say two
 ## things at once.
@@ -71,21 +73,12 @@ onready var _hello_timer := $HelloTimer
 onready var _suppress_sfx_timer := $SuppressSfxTimer
 
 func _ready() -> void:
-	_connect_creature_visuals_listeners()
-
-
-func set_creature_visuals(new_creature_visuals: CreatureVisuals) -> void:
-	if creature_visuals:
-		creature_visuals.disconnect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
-		creature_visuals.disconnect("food_eaten", self, "_on_CreatureVisuals_food_eaten")
-		creature_visuals.disconnect("landed", self, "_on_CreatureVisuals_landed")
-	creature_visuals = new_creature_visuals
-	_connect_creature_visuals_listeners()
+	_refresh_should_play_sfx()
 
 
 ## Plays a 'mmm!' voice sample, for when a player builds a big combo.
 func play_combo_voice() -> void:
-	if suppress_sfx:
+	if not should_play_sfx:
 		return
 	
 	_combo_voice_index = (_combo_voice_index + 1 + randi() % (_combo_voices.size() - 1)) % _combo_voices.size()
@@ -95,7 +88,7 @@ func play_combo_voice() -> void:
 
 ## Plays a 'hello!' voice sample, for when a creature enters the restaurant
 func play_hello_voice(force: bool = false) -> void:
-	if suppress_sfx:
+	if not should_play_sfx:
 		return
 	
 	if Global.should_chat() or force:
@@ -105,7 +98,7 @@ func play_hello_voice(force: bool = false) -> void:
 
 ## Plays a 'check please!' voice sample, for when a creature is ready to leave
 func play_goodbye_voice(force: bool = false) -> void:
-	if suppress_sfx:
+	if not should_play_sfx:
 		return
 	
 	if Global.should_chat() or force:
@@ -114,38 +107,67 @@ func play_goodbye_voice(force: bool = false) -> void:
 
 
 func play_bonk_sound() -> void:
-	if suppress_sfx:
+	if not should_play_sfx:
 		return
 	
 	_bonk_sound.play()
 
 
 func play_hop_sound() -> void:
-	if suppress_sfx:
+	if not should_play_sfx:
 		return
 	
 	_hop_sound.play()
 
 
+## Temporarily suppresses creature-related sound effects.
+##
+## This includes voices, eating sounds, and movement sound effects emitted by the CreatureSfx class.
+##
+## Other creature-related nodes can monitor the 'should_play_sfx' property to mute their own sound effects as well, to
+## mute sounds made while emoting for example.
 func briefly_suppress_sfx(duration: float = 1.0) -> void:
-	_suppress_sfx_timer.start(duration)
-
-
-func _connect_creature_visuals_listeners() -> void:
-	if not creature_visuals:
+	if not _suppress_sfx_timer.is_stopped() and _suppress_sfx_timer.wait_time > duration:
+		# sfx are already suppressed for a longer duration; let the timer run
 		return
 	
-	creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
-	creature_visuals.connect("food_eaten", self, "_on_CreatureVisuals_food_eaten")
-	creature_visuals.connect("landed", self, "_on_CreatureVisuals_landed")
+	_suppress_sfx_timer.start(duration)
+	_refresh_should_play_sfx()
+
+
+func _refresh_should_play_sfx() -> void:
+	if not is_inside_tree():
+		return
+	
+	var old_should_play_sfx := should_play_sfx
+	
+	if Engine.is_editor_hint():
+		# Skip the sound effects if we're using this as an editor tool
+		should_play_sfx = false
+	elif not _suppress_sfx_timer.is_stopped():
+		# Skip the sound effects temporarily, such as during the first few seconds of a level
+		should_play_sfx = false
+	elif suppress_sfx:
+		# Skip the sound effects permanently, for creatures that should never make noise
+		should_play_sfx = false
+	else:
+		should_play_sfx = true
+	
+	if should_play_sfx != old_should_play_sfx:
+		emit_signal("should_play_sfx_changed")
+
+
+func set_suppress_sfx(new_suppress_sfx: bool) -> void:
+	suppress_sfx = new_suppress_sfx
+	_refresh_should_play_sfx()
 
 
 ## Use a different AudioStreamPlayer for munch sounds, to avoid interrupting speech.
 ##
 ## Of course in real life you can't talk with your mouth full -- but combo sounds are positive feedback, so it's nice
 ## to avoid interrupting them.
-func _on_CreatureVisuals_food_eaten(_food_type: int) -> void:
-	if suppress_sfx:
+func _on_Creature_food_eaten(_food_type: int) -> void:
+	if not should_play_sfx:
 		return
 	
 	_munch_sound.stream = Utils.rand_value(_munch_sounds)
@@ -153,22 +175,20 @@ func _on_CreatureVisuals_food_eaten(_food_type: int) -> void:
 	_munch_sound.play()
 
 
-func _on_CreatureVisuals_dna_loaded() -> void:
-	if Engine.is_editor_hint():
-		# Skip the sound effects if we're using this as an editor tool
-		return
-	if not _suppress_sfx_timer.is_stopped():
-		# suppress greeting for first few seconds of a level
-		return
-	if suppress_sfx:
+func _on_Creature_dna_loaded() -> void:
+	if not should_play_sfx:
 		return
 	
 	_hello_timer.start()
+
+
+func _on_Creature_landed() -> void:
+	play_hop_sound()
 
 
 func _on_HelloTimer_timeout() -> void:
 	play_hello_voice()
 
 
-func _on_CreatureVisuals_landed() -> void:
-	play_hop_sound()
+func _on_SuppressSfxTimer_timeout() -> void:
+	_refresh_should_play_sfx()

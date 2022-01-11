@@ -70,14 +70,13 @@ var comfort := 0.0 setget set_comfort
 ## MouthPlayer instance which animates mouths
 var mouth_player
 
-## used to temporarily suppress sfx signals. used when skipping to the middle of animations which play sfx
-var _suppress_sfx_signal_timer := 0.0
-
 ## forces listeners to update their animation frame
 var _force_orientation_change := false
 
 ## the food type the creature is eating
 var _food_type: int
+
+var creature_sfx: CreatureSfx setget set_creature_sfx
 
 ## CreatureAnimations instance which animates the creature's limbs, facial expressions and movement.
 onready var _animations: Node = $Animations
@@ -87,11 +86,7 @@ func _ready() -> void:
 	set_orientation(orientation)
 	$DnaLoader.connect("dna_loaded", self, "_on_DnaLoader_dna_loaded")
 	$TalkTimer.connect("timeout", self, "_on_TalkTimer_timeout")
-
-
-func _process(delta: float) -> void:
-	if _suppress_sfx_signal_timer > 0.0:
-		_suppress_sfx_signal_timer -= delta
+	_refresh_creature_sfx()
 
 
 func _physics_process(delta: float) -> void:
@@ -106,6 +101,11 @@ func _physics_process(delta: float) -> void:
 		elif visual_fatness > fatness:
 			visual_fatness = max(visual_fatness - 4 * delta, fatness)
 		set_visual_fatness(lerp(visual_fatness, fatness, 0.008))
+
+
+func set_creature_sfx(new_creature_sfx: CreatureSfx) -> void:
+	creature_sfx = new_creature_sfx
+	_refresh_creature_sfx()
 
 
 func set_comfort(new_comfort: float) -> void:
@@ -326,13 +326,8 @@ func restart_idle_timer() -> void:
 
 
 ## Emits a signal to play a sound effect.
-##
-## We temporarily suppress sound effect signals when skipping forward in an animation which plays sound effects.
 func emit_sfx_signal(signal_name: String) -> void:
-	if _suppress_sfx_signal_timer > 0.0:
-		pass
-	else:
-		emit_signal(signal_name)
+	emit_signal(signal_name)
 
 
 ## Launches a talking animation, opening and closes the creature's mouth for a few seconds.
@@ -346,16 +341,16 @@ func is_talking() -> bool:
 	return not $TalkTimer.is_stopped()
 
 
-## Temporarily suppresses sfx signals.
-##
-## Used when skipping to the middle of animations which play sfx.
-func briefly_suppress_sfx_signal() -> void:
-	_suppress_sfx_signal_timer = 0.000000001
-
-
 ## Returns the number of seconds between the beginning of the eating animation and the 'chomp' noise.
 func get_eating_delay() -> float:
 	return 0.033
+
+
+func _refresh_creature_sfx() -> void:
+	if not is_inside_tree():
+		return
+	
+	_animations.creature_sfx = creature_sfx
 
 
 ## Computes the nearest orientation for the specified direction.

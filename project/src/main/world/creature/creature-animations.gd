@@ -29,6 +29,8 @@ var _near_arm: PackedSprite
 var _tail_z0: PackedSprite
 var _tail_z1: PackedSprite
 
+var creature_sfx: CreatureSfx
+
 ## IdleTimer which launches idle animations periodically
 onready var _idle_timer: Timer = $IdleTimer
 
@@ -113,7 +115,9 @@ func play_movement_animation(animation_prefix: String, animation_name: String) -
 			_emote_player.unemote_immediate()
 		if _movement_player.current_animation.begins_with(animation_prefix):
 			var old_position: float = _movement_player.current_animation_position
-			_creature_visuals.briefly_suppress_sfx_signal()
+			if creature_sfx:
+				creature_sfx.briefly_suppress_sfx(0.000000001)
+			
 			_movement_player.play(animation_name)
 			_movement_player.advance(old_position)
 		else:

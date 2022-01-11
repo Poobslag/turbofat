@@ -13,6 +13,9 @@ signal dna_loaded
 ## emitted on the frame when creature bites into some food
 signal food_eaten(food_type)
 
+## emitted during the 'run' animation when the creature touches the ground
+signal landed
+
 ## emitted after a creature finishes fading in/out and their visible/modulate values are finalized
 signal fade_in_finished
 signal fade_out_finished
@@ -112,13 +115,15 @@ func _ready() -> void:
 	_creature_outline = creature_outline_scene.instance()
 	add_child(_creature_outline)
 	
-	creature_visuals = $CreatureOutline.creature_visuals
+	creature_visuals = _creature_outline.creature_visuals
 	if not Engine.is_editor_hint():
 		_chat_icon_hook.creature_visuals = creature_visuals
 		_collision_shape.creature_visuals = creature_visuals
-		_creature_sfx.creature_visuals = creature_visuals
+	creature_visuals.creature_sfx = _creature_sfx
+	
 	creature_visuals.connect("dna_loaded", self, "_on_CreatureVisuals_dna_loaded")
 	creature_visuals.connect("food_eaten", self, "_on_CreatureVisuals_food_eaten")
+	creature_visuals.connect("landed", self, "_on_CreatureVisuals_landed")
 	creature_visuals.connect("movement_mode_changed", self, "_on_CreatureVisuals_movement_mode_changed")
 	creature_visuals.connect("talking_changed", self, "_on_CreatureVisuals_talking_changed")
 	creature_visuals.connect("visual_fatness_changed", self, "_on_CreatureVisuals_visual_fatness_changed")
@@ -398,7 +403,9 @@ func get_chat_extents() -> Vector2:
 	return $CollisionShape2D.shape.extents
 
 
-## Temporarily suppresses 'hello' sounds.
+## Temporarily suppresses creature-related sound effects.
+##
+## This includes voices, eating sounds, and movement sound effects.
 func briefly_suppress_sfx(duration: float = 1.0) -> void:
 	_creature_sfx.briefly_suppress_sfx(duration)
 
@@ -530,6 +537,10 @@ func _on_CreatureVisuals_dna_loaded() -> void:
 
 func _on_CreatureVisuals_food_eaten(food_type: int) -> void:
 	emit_signal("food_eaten", food_type)
+
+
+func _on_CreatureVisuals_landed() -> void:
+	emit_signal("landed")
 
 
 func _on_CreatureVisuals_visual_fatness_changed() -> void:
