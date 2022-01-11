@@ -109,6 +109,14 @@ const TRANSITIONS := {
 ## Time spent resetting to a neutral emotion: fading out speech bubbles, untilting the head, etc...
 const UNEMOTE_DURATION := 0.08
 
+## volume to fade sfx out to
+const MIN_VOLUME := -40.0
+
+## volume to fade sfx in to
+const MAX_VOLUME := 0.0
+
+const FADE_SFX_DURATION := 0.08
+
 export (NodePath) var creature_visuals_path: NodePath setget set_creature_visuals_path
 
 ## stores the previous mood so that we can apply mood transitions.
@@ -127,7 +135,9 @@ var _head_bobber: Sprite
 ## list of sprites to reset when unemoting
 var _emote_sprites: Array
 
+onready var _emote_sfx := $EmoteSfx
 onready var _reset_tween := $ResetTween
+onready var _volume_db_tween := $VolumeDbTween
 
 func _ready() -> void:
 	_refresh_creature_visuals_path()
@@ -146,6 +156,16 @@ func _process(_delta: float) -> void:
 		if is_playing():
 			stop()
 			_creature_visuals.reset_eye_frames()
+
+
+## Unmutes all mood-related sound effects for this creature.
+func fade_in_sfx() -> void:
+	_tween_sfx_volume(MAX_VOLUME)
+
+
+## Mutes all mood-related sound effects for this creature.
+func fade_out_sfx() -> void:
+	_tween_sfx_volume(MIN_VOLUME)
 
 
 func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
@@ -313,6 +333,13 @@ func unemote(anim_name: String = "") -> void:
 	_head_bobber.reset_head_bob()
 	_reset_tween.start()
 	_prev_mood = Creatures.Mood.DEFAULT
+
+
+## Adjusts the volume for all mood-related sound effects for this creature.
+func _tween_sfx_volume(new_value: float) -> void:
+	_volume_db_tween.remove_all()
+	_volume_db_tween.interpolate_property(_emote_sfx, "volume_db", _emote_sfx.volume_db, new_value, FADE_SFX_DURATION)
+	_volume_db_tween.start()
 
 
 ## Resets the position and rotation of nodes which shift around during emotes.

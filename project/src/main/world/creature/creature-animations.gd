@@ -29,7 +29,7 @@ var _near_arm: PackedSprite
 var _tail_z0: PackedSprite
 var _tail_z1: PackedSprite
 
-var creature_sfx: CreatureSfx
+var creature_sfx: CreatureSfx setget set_creature_sfx
 
 ## IdleTimer which launches idle animations periodically
 onready var _idle_timer: Timer = $IdleTimer
@@ -48,6 +48,14 @@ func _ready() -> void:
 	_refresh_emote_eye_frame()
 	_refresh_eye_frame()
 	_refresh_emote_arm_frame()
+	_refresh_creature_sfx()
+	_refresh_should_play_sfx()
+
+
+func set_creature_sfx(new_creature_sfx: CreatureSfx) -> void:
+	creature_sfx = new_creature_sfx
+	_refresh_creature_sfx()
+	_refresh_should_play_sfx()
 
 
 func set_creature_visuals_path(new_creature_visuals_path: NodePath) -> void:
@@ -127,6 +135,13 @@ func play_movement_animation(animation_prefix: String, animation_name: String) -
 			_tail_z1.frame = 1 if _creature_visuals.oriented_south() else 2
 
 
+func _refresh_creature_sfx() -> void:
+	if not creature_sfx:
+		return
+	
+	creature_sfx.connect("should_play_sfx_changed", self, "_on_CreatureSfx_should_play_sfx_changed")
+
+
 func _refresh_emote_eye_frame() -> void:
 	if not is_inside_tree():
 		return
@@ -194,6 +209,16 @@ func _refresh_creature_visuals_path() -> void:
 	_tail_z1 = _creature_visuals.get_node("TailZ1")
 
 
+func _refresh_should_play_sfx() -> void:
+	if not creature_sfx:
+		return
+	
+	if creature_sfx.should_play_sfx:
+		_emote_player.fade_in_sfx()
+	else:
+		_emote_player.fade_out_sfx()
+
+
 func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientation: int) -> void:
 	if not _movement_player:
 		return
@@ -202,3 +227,7 @@ func _on_CreatureVisuals_orientation_changed(_old_orientation: int, new_orientat
 		_movement_player.play("idle-se")
 	elif _movement_player.current_animation == "idle-se" and Creatures.oriented_north(new_orientation):
 		_movement_player.play("idle-nw")
+
+
+func _on_CreatureSfx_should_play_sfx_changed() -> void:
+	_refresh_should_play_sfx()
