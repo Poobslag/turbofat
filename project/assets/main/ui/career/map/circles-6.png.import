@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/circles-6-plus.png-848ef3c6d5cb952b9c5d670da0773bba.stex"
+path="res://.import/circles-6.png-52af8eb20649ed143189f806de517e59.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/ui/career/map/circles-6-plus.png"
-dest_files=[ "res://.import/circles-6-plus.png-848ef3c6d5cb952b9c5d670da0773bba.stex" ]
+source_file="res://assets/main/ui/career/map/circles-6.png"
+dest_files=[ "res://.import/circles-6.png-52af8eb20649ed143189f806de517e59.stex" ]
 
 [params]
 

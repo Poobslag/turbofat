@@ -78,11 +78,22 @@ func _refresh_map() -> void:
 	end_region_index = clamp(end_region_index, 1, CareerLevelLibrary.regions.size())
 	
 	# assign the map properties based on our calculated boundaries
-	_map.landmark_count = end_region_index - start_region_index + 1
-	_map.circle_count = start_region_index
-	_map.circle_distance = CareerLevelLibrary.regions[start_region_index - 1].distance
+	_map.landmark_count = end_region_index - start_region_index + 2
 	
-	# update the distance/landmark type for each landmark
+	# configure the circle landmark on the left
+	var circle_landmark_type: int
+	match start_region_index:
+		0: circle_landmark_type = Landmark.NONE
+		1: circle_landmark_type = Landmark.CIRCLES_1
+		2: circle_landmark_type = Landmark.CIRCLES_2
+		3: circle_landmark_type = Landmark.CIRCLES_3
+		4: circle_landmark_type = Landmark.CIRCLES_4
+		5: circle_landmark_type = Landmark.CIRCLES_5
+		_: circle_landmark_type = Landmark.CIRCLES_6
+	_map.set_landmark_type(0, circle_landmark_type)
+	_map.set_landmark_distance(0, CareerLevelLibrary.regions[start_region_index - 1].distance)
+	
+	# update the distance/landmark type for non-circle landmarks
 	for region_index in range(start_region_index, end_region_index + 1):
 		var distance: int
 		var landmark_type: int
@@ -96,8 +107,8 @@ func _refresh_map() -> void:
 			distance = region.distance
 			landmark_type = Utils.enum_from_snake_case(Landmark.LandmarkType, region.icon_name, Landmark.MYSTERY)
 		
-		_map.set_landmark_distance(region_index - start_region_index, distance)
-		_map.set_landmark_type(region_index - start_region_index, landmark_type)
+		_map.set_landmark_distance(region_index - start_region_index + 1, distance)
+		_map.set_landmark_type(region_index - start_region_index + 1, landmark_type)
 
 
 func _on_Button_pressed() -> void:
