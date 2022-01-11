@@ -64,6 +64,16 @@ func increment() -> void:
 	update_label()
 
 
+func update_label() -> void:
+	if not is_inside_tree():
+		return
+	
+	if show_as_percent:
+		$Label.text = "%s\n%d%%" % [label_text, int(100 * value / max_value)]
+	else:
+		$Label.text = "%s\n(%d/%d)" % [label_text, value, max_value]
+
+
 ## Initializes this node when the puzzle field is assigned.
 ##
 ## Connects the signals in 'signal_names' to the appropriate nodes.
@@ -84,14 +94,6 @@ func _refresh_puzzle() -> void:
 			_piece_manager.connect(signal_name, self, "_on_skill_performed")
 		else:
 			push_warning("Could not find sender for signal '%s'" % signal_name)
-
-
-## Returns the signal names for a node.
-static func _get_signal_names(object: Object) -> Dictionary:
-	var result := {}
-	for signal_dict in object.get_signal_list():
-		result[signal_dict.name] = signal_dict.name
-	return result
 
 
 ## Blinks the skill tally to catch the player's attention.
@@ -119,16 +121,6 @@ func _blink(bright: bool = false) -> void:
 	$Tween.start()
 
 
-func update_label() -> void:
-	if not is_inside_tree():
-		return
-	
-	if show_as_percent:
-		$Label.text = "%s\n%d%%" % [label_text, int(100 * value / max_value)]
-	else:
-		$Label.text = "%s\n(%d/%d)" % [label_text, value, max_value]
-
-
 func _on_PuzzleState_game_prepared() -> void:
 	reset()
 
@@ -151,3 +143,11 @@ func _on_Playfield_box_built(_rect: Rect2, _box_type: int) -> void:
 
 func _on_Tween_tween_all_completed() -> void:
 	_bright_tween_active = false
+
+
+## Returns the signal names for a node.
+static func _get_signal_names(object: Object) -> Dictionary:
+	var result := {}
+	for signal_dict in object.get_signal_list():
+		result[signal_dict.name] = signal_dict.name
+	return result

@@ -135,6 +135,18 @@ func play_movement_animation(animation_prefix: String, animation_name: String) -
 			_tail_z1.frame = 1 if _creature_visuals.oriented_south() else 2
 
 
+## Sets the frame for the eye sprites, resetting the emote sprites to a default frame.
+func set_eye_frame(new_eye_frame: int) -> void:
+	eye_frame = new_eye_frame
+	_refresh_eye_frame()
+
+
+## Sets the frame for the emote arm sprites, resetting the non-emote sprites to a default frame.
+func set_emote_arm_frame(new_emote_arm_frame: int) -> void:
+	emote_arm_frame = new_emote_arm_frame
+	_refresh_emote_arm_frame()
+
+
 func _refresh_creature_sfx() -> void:
 	if not creature_sfx:
 		return
@@ -152,12 +164,6 @@ func _refresh_emote_eye_frame() -> void:
 	_emote_eye_z1.frame = emote_eye_frame
 
 
-## Sets the frame for the eye sprites, resetting the emote sprites to a default frame.
-func set_eye_frame(new_eye_frame: int) -> void:
-	eye_frame = new_eye_frame
-	_refresh_eye_frame()
-
-
 func _refresh_eye_frame() -> void:
 	if not is_inside_tree():
 		return
@@ -166,12 +172,6 @@ func _refresh_eye_frame() -> void:
 	_eye_z1.frame = eye_frame
 	_emote_eye_z0.frame = 0
 	_emote_eye_z1.frame = 0
-
-
-## Sets the frame for the emote arm sprites, resetting the non-emote sprites to a default frame.
-func set_emote_arm_frame(new_emote_arm_frame: int) -> void:
-	emote_arm_frame = new_emote_arm_frame
-	_refresh_emote_arm_frame()
 
 
 func _refresh_emote_arm_frame() -> void:

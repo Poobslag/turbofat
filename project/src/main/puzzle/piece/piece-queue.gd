@@ -47,6 +47,15 @@ func get_next_piece(index: int) -> NextPiece:
 	return pieces[index]
 
 
+func shuffled_piece_types() -> Array:
+	var result: Array = CurrentLevel.settings.piece_types.types
+	if not result:
+		result = _default_piece_types
+	result = result.duplicate()
+	result.shuffle()
+	return result
+
+
 func _apply_piece_limit() -> void:
 	if _remaining_piece_count < pieces.size():
 		for i in range(_remaining_piece_count, pieces.size()):
@@ -129,15 +138,6 @@ func _new_next_piece(type: PieceType) -> NextPiece:
 		# if the last piece in the queue has been rotated, we match its orientation.
 		next_piece.orientation = pieces.back().orientation
 	return next_piece
-
-
-func shuffled_piece_types() -> Array:
-	var result: Array = CurrentLevel.settings.piece_types.types
-	if not result:
-		result = _default_piece_types
-	result = result.duplicate()
-	result.shuffle()
-	return result
 
 
 ## Extends a non-empty queue by adding more pieces.
