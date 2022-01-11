@@ -113,7 +113,7 @@ func _start_puzzle() -> void:
 		PlayerData.creature_library.restore_fatness_state()
 	
 	PlayerData.creature_queue.primary_index = 0
-	_restaurant_view.start_suppress_sfx_timer()
+	_restaurant_view.briefly_suppress_sfx()
 	
 	if PlayerData.creature_queue.primary_queue:
 		var starting_creature_id: String = PlayerData.creature_queue.primary_queue[0].creature_id
