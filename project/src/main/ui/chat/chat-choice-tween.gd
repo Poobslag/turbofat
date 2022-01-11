@@ -1,10 +1,10 @@
 extends Tween
+## Tweens pop-in/pop-out effects for chat choices.
 
 ## the size the chat shrinks to when it disappears
 const POP_OUT_SCALE := Vector2(0.5, 0.5)
 
 onready var _chat_choice := get_parent()
-
 
 func _ready() -> void:
 	_reset_chat_choice()
