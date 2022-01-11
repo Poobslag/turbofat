@@ -12,15 +12,7 @@ export (Resource) var LandmarkScene: Resource
 export (Resource) var LandmarkSpacerScene: Resource
 export (Resource) var LandmarkLineScene: Resource
 
-## The distance (in steps) of the circles representing past landmarks.
-##
-## This is used when calculating the player's position between the circles and the first landmark.
-var circle_distance: int = 0.0 setget set_circle_distance
-
-## The number of circles representing past landmarks
-var circle_count: int = 0 setget set_circle_count
-
-var landmark_count: int = 1 setget set_landmark_count
+var landmark_count: int = 2 setget set_landmark_count
 var player_distance: int = 0 setget set_player_distance
 
 ## List of Control nodes which separate landmarks.
@@ -28,9 +20,6 @@ var _landmark_spacers := []
 
 ## List of Landmark instances which show icons along the map.
 var _landmarks := []
-
-## Draws the circles on the left side of the map
-onready var _circles_container := $MarginContainer/Landmarks/Circles
 
 ## Draws the landmark icons and distance labels along the map
 onready var _landmarks_container := $MarginContainer/Landmarks
@@ -44,7 +33,6 @@ onready var _player_landmark := $MarginContainer/Player
 func _ready() -> void:
 	_landmarks = get_tree().get_nodes_in_group("landmarks")
 	_landmark_spacers = get_tree().get_nodes_in_group("landmark_spacers")
-	_circles_container.circle_count = circle_count
 	_player_landmark.distance = player_distance
 	
 	_refresh_landmarks()
@@ -92,13 +80,6 @@ func get_landmark_distance(index: int) -> int:
 	return _landmarks[index].distance
 
 
-func set_circle_count(new_circle_count: int) -> void:
-	circle_count = new_circle_count
-	if is_inside_tree():
-		_circles_container.circle_count = new_circle_count
-	_refresh_landmarks()
-
-
 func set_landmark_count(new_landmark_count: int) -> void:
 	landmark_count = clamp(new_landmark_count, 1, MAX_LANDMARK_COUNT)
 	_refresh_landmarks()
@@ -106,11 +87,6 @@ func set_landmark_count(new_landmark_count: int) -> void:
 
 func set_player_distance(new_player_distance: int) -> void:
 	player_distance = new_player_distance
-	_refresh_player_distance()
-
-
-func set_circle_distance(new_circle_distance: int) -> void:
-	circle_distance = new_circle_distance
 	_refresh_player_distance()
 
 
@@ -159,11 +135,7 @@ func _refresh_player_distance() -> void:
 	
 	_player_landmark.landmark_endpoints = _landmark_line_points(right_landmark_index)
 	
-	var from: float
-	if right_landmark_index == 0:
-		from = circle_distance
-	else:
-		from = _landmarks[right_landmark_index - 1].distance
+	var from: float = _landmarks[right_landmark_index - 1].distance
 	
 	if _landmarks[right_landmark_index].distance == CareerData.MAX_DISTANCE_TRAVELLED:
 		_player_landmark.progress_percent = clamp(
@@ -176,10 +148,7 @@ func _refresh_player_distance() -> void:
 ## Returns the position of the line connecting two neighboring landmarks.
 func _landmark_line_points(right_landmark_index: int) -> Array:
 	var result := [Vector2.ZERO, Vector2.ZERO]
-	if right_landmark_index == 0:
-		result[0] = _circles_container.right_connection_point()
-	else:
-		result[0] = _landmarks[right_landmark_index - 1].right_connection_point()
+	result[0] = _landmarks[right_landmark_index - 1].right_connection_point()
 	result[1] = _landmarks[right_landmark_index].left_connection_point()
 	return result
 
@@ -189,7 +158,7 @@ func _refresh_lines() -> void:
 	for child in _lines_container.get_children():
 		child.queue_free()
 	
-	for i in range(_landmarks.size()):
+	for i in range(1, _landmarks.size()):
 		# draw a line connecting the previous landmark to this landmark
 		var landmark_line: Line2D = LandmarkLineScene.instance()
 		landmark_line.points = _landmark_line_points(i)
