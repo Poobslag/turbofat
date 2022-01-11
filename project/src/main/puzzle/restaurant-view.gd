@@ -123,10 +123,10 @@ func next_creature_index() -> int:
 
 
 ## Temporarily suppresses 'hello' and 'door chime' sounds.
-func start_suppress_sfx_timer() -> void:
+func briefly_suppress_sfx(duration: float = 1.0) -> void:
 	for customer in get_customers():
-		customer.start_suppress_sfx_timer()
-	_restaurant_viewport_scene.start_suppress_sfx_timer()
+		customer.briefly_suppress_sfx(duration)
+	_restaurant_viewport_scene.briefly_suppress_sfx(duration)
 
 
 func _refresh_customer_name() -> void:

@@ -127,6 +127,8 @@ var _head_bobber: Sprite
 ## list of sprites to reset when unemoting
 var _emote_sprites: Array
 
+onready var _reset_tween := $ResetTween
+
 func _ready() -> void:
 	_refresh_creature_visuals_path()
 
@@ -259,7 +261,7 @@ func emote(mood: int) -> void:
 		else:
 			# reset to the default mood, and wait for the tween to complete
 			unemote()
-			yield($ResetTween, "tween_all_completed")
+			yield(_reset_tween, "tween_all_completed")
 			_post_unemote()
 	else:
 		# initialize eye frames in case the eyes were previously invisible, such as for north-facing creatures
@@ -300,16 +302,16 @@ func unemote(anim_name: String = "") -> void:
 		_emote_eye_z1.frame = 2
 		play("ambient-sweat")
 	
-	$ResetTween.remove_all()
-	$ResetTween.interpolate_property(_head_bobber, "rotation_degrees",
+	_reset_tween.remove_all()
+	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
 			_head_bobber.rotation_degrees, 0, UNEMOTE_DURATION)
 	for emote_sprite in _emote_sprites:
-		$ResetTween.interpolate_property(emote_sprite, "rotation_degrees", emote_sprite.rotation_degrees, 0,
+		_reset_tween.interpolate_property(emote_sprite, "rotation_degrees", emote_sprite.rotation_degrees, 0,
 				UNEMOTE_DURATION)
-		$ResetTween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
+		_reset_tween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
 	_head_bobber.reset_head_bob()
-	$ResetTween.start()
+	_reset_tween.start()
 	_prev_mood = Creatures.Mood.DEFAULT
 
 
@@ -404,17 +406,17 @@ func _transition_noop() -> void:
 ## Transitions from 'awkward1' to 'awkward0', hiding the white sweat circles.
 func _transition_awkward1_awkward0() -> void:
 	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
-	$ResetTween.remove_all()
+	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteHead"])
-	$ResetTween.start()
+	_reset_tween.start()
 
 
 ## Transitions from 'laugh1' to 'laugh0', hiding the yellow laugh lines.
 func _transition_laugh1_laugh0() -> void:
 	_head_bobber.reset_head_bob()
-	$ResetTween.remove_all()
+	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain"])
-	$ResetTween.start()
+	_reset_tween.start()
 
 
 ## Transitions from 'love1' to 'love0', hiding the hearts and blush.
@@ -423,50 +425,50 @@ func _transition_love1_love0() -> void:
 	_emote_eye_z0.position = Vector2(0, 256)
 	_emote_eye_z1.rotation_degrees = 0
 	_emote_eye_z1.position = Vector2(0, 256)
-	$ResetTween.remove_all()
+	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
-	$ResetTween.start()
+	_reset_tween.start()
 
 
 ## Transitions from 'rage1' to 'rage0', hiding the red anger symbols.
 func _transition_rage1_rage0() -> void:
 	_head_bobber.reset_head_bob()
-	$ResetTween.remove_all()
+	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
-	$ResetTween.start()
+	_reset_tween.start()
 
 
 ## Transitions from 'sigh1' to 'sigh0', turning the head forward again
 func _transition_sigh1_sigh0() -> void:
 	_creature_visuals.get_node("Neck0").scale = Vector2(1.0, 1.0)
-	$ResetTween.remove_all()
-	$ResetTween.interpolate_property(_head_bobber, "rotation_degrees",
+	_reset_tween.remove_all()
+	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
 			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
-	$ResetTween.start()
+	_reset_tween.start()
 
 
 ## Transitions from 'smile1' to 'smile0', hiding the pink love bubble and blush.
 func _transition_smile1_smile0() -> void:
-	$ResetTween.remove_all()
+	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
-	$ResetTween.interpolate_property(_head_bobber, "rotation_degrees",
+	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
 			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
-	$ResetTween.start()
+	_reset_tween.start()
 
 
 ## Transitions from 'sweat1' to 'sweat0', hiding the white sweat circles.
 func _transition_sweat1_sweat0() -> void:
 	_head_bobber.reset_head_bob()
 	_creature_visuals.get_node("NearArm").frame = 1
-	$ResetTween.remove_all()
+	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteHead"])
-	$ResetTween.start()
+	_reset_tween.start()
 
 
 func _tween_nodes_to_transparent(paths: Array) -> void:
 	for path in paths:
 		var node: Node2D = _creature_visuals.get_node(path)
-		$ResetTween.interpolate_property(node, "modulate", node.modulate, Color.transparent, UNEMOTE_DURATION)
+		_reset_tween.interpolate_property(node, "modulate", node.modulate, Color.transparent, UNEMOTE_DURATION)
 
 
 ## This function manually assigns fields which Godot would ideally assign automatically by calling _ready. It is a
@@ -507,7 +509,7 @@ func _on_animation_finished(anim_name: String) -> void:
 		play("...%s..." % [anim_name.trim_suffix("...")])
 	elif _prev_mood in EMOTE_ANIMS or anim_name in EAT_SMILE_ANIMS or anim_name in EAT_SWEAT_ANIMS:
 		unemote(anim_name)
-		yield($ResetTween, "tween_all_completed")
+		yield(_reset_tween, "tween_all_completed")
 		_post_unemote()
 
 

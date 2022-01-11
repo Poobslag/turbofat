@@ -127,8 +127,8 @@ func play_hop_sound() -> void:
 	_hop_sound.play()
 
 
-func start_suppress_sfx_timer() -> void:
-	_suppress_sfx_timer.start(1.0)
+func briefly_suppress_sfx(duration: float = 1.0) -> void:
+	_suppress_sfx_timer.start(duration)
 
 
 func _connect_creature_visuals_listeners() -> void:

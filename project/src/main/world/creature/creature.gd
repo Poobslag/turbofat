@@ -11,7 +11,7 @@ signal talking_changed
 signal dna_loaded
 
 ## emitted on the frame when creature bites into some food
-signal food_eaten
+signal food_eaten(food_type)
 
 ## emitted after a creature finishes fading in/out and their visible/modulate values are finalized
 signal fade_in_finished
@@ -399,8 +399,8 @@ func get_chat_extents() -> Vector2:
 
 
 ## Temporarily suppresses 'hello' sounds.
-func start_suppress_sfx_timer() -> void:
-	_creature_sfx.start_suppress_sfx_timer()
+func briefly_suppress_sfx(duration: float = 1.0) -> void:
+	_creature_sfx.briefly_suppress_sfx(duration)
 
 
 ## Make the creature visible and gradually adjust their alpha up to 1.0.

@@ -30,10 +30,7 @@ func _ready() -> void:
 	_start_button.grab_focus()
 
 
-## Initialize onready variables to avoid null references.
-##
-## Our hide_buttons() method is potentially called in the _ready functions of other nodes, so our onready variables
-## need to be initialized before that.
+## Preemptively initialize onready variables to avoid null references.
 func _enter_tree() -> void:
 	_message_label = $MessageLabel
 	_back_button = $Buttons/Back
