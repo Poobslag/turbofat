@@ -24,6 +24,7 @@ func _ready() -> void:
 		PlayerData.career.push_career_trail()
 	else:
 		_refresh_ui()
+		_level_select_control.focus_button()
 
 
 func _exit_tree() -> void:
@@ -33,23 +34,6 @@ func _exit_tree() -> void:
 func _refresh_ui() -> void:
 	_load_level_settings()
 	_refresh_level_select_buttons()
-	
-	# Grab focus to allow keyboard support. Wait a frame for other listeners to fire (specifically listeners which
-	# turn the level buttons invisible)
-	#
-	# We use a one-shot listener method instead of a yield statement to avoid 'class instance is gone' errors.
-	get_tree().connect("idle_frame", self, "_grab_focus")
-
-
-## Assigns focus to the level select buttons to allow keyboard support.
-func _grab_focus() -> void:
-	if get_tree().is_connected("idle_frame", self, "_grab_focus"):
-		get_tree().disconnect("idle_frame", self, "_grab_focus")
-	
-	var level_select_buttons := get_tree().get_nodes_in_group("level_select_buttons")
-	if level_select_buttons and not level_select_buttons[0].get_focus_owner():
-		var right_button_index: int = min(level_select_buttons.size(), _level_settings_for_levels.size()) - 1
-		level_select_buttons[right_button_index].grab_focus()
 
 
 ## Loads level settings for three randomly selected levels from the current CareerRegion.
@@ -155,3 +139,6 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 
 func _on_CareerData_distance_travelled_changed() -> void:
 	_refresh_ui()
+	
+	# restore focus to the level select buttons for controller players
+	_level_select_control.focus_button()
