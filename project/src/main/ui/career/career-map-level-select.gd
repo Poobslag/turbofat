@@ -7,6 +7,7 @@ signal level_button_focused(button_index)
 export (PackedScene) var LevelSelectButtonScene: PackedScene
 
 var _duration_calculator := DurationCalculator.new()
+var _prev_focused_level_button_index := -1
 
 onready var _control := $Control
 onready var _grade_labels := $Control/GradeLabels
@@ -16,13 +17,18 @@ onready var _level_buttons_container := $Control/LevelButtons
 ##
 ## For a boss level where only one level is available, this will return '0' if the level button is selected.
 func focused_level_button_index() -> int:
-	return _level_buttons_container.get_children().find(_control.get_focus_owner())
+	_prev_focused_level_button_index = _level_buttons_container.get_children().find(_control.get_focus_owner())
+	return _prev_focused_level_button_index
 
 
 ## Removes all level select button nodes from the scene tree.
 func clear_level_select_buttons() -> void:
 	for child in _level_buttons_container.get_children():
 		child.queue_free()
+		
+		# Immediately remove the child. Our business logic assumes the first child of the level_buttons_container is
+		# the leftmost child, so having freed children introduces bugs
+		_level_buttons_container.remove_child(child)
 
 
 ## Adds a new level select button to the scene tree.
@@ -52,6 +58,23 @@ func add_level_select_button(settings: LevelSettings) -> LevelSelectButton:
 	return button
 
 
+## Assigns focus to a level select button to allow keyboard support.
+##
+## Restores focus to the previously selected level select button, if one was selected. Otherwise, assigns focus to the
+## rightmost button.
+func focus_button() -> void:
+	var level_select_buttons := get_tree().get_nodes_in_group("level_select_buttons")
+	var node_to_focus: Node
+	
+	if _prev_focused_level_button_index != -1 and _prev_focused_level_button_index < level_select_buttons.size():
+		node_to_focus = level_select_buttons[_prev_focused_level_button_index]
+	elif level_select_buttons:
+		node_to_focus = level_select_buttons.back()
+	
+	if node_to_focus:
+		node_to_focus.grab_focus()
+
+
 func _on_LevelSelectButton_focus_entered(button_index: int) -> void:
 	emit_signal("level_button_focused", button_index)
 
@@ -62,3 +85,5 @@ func _on_SettingsMenu_show() -> void:
 
 func _on_SettingsMenu_hide() -> void:
 	_control.show()
+	if not _control.get_focus_owner():
+		focus_button()
