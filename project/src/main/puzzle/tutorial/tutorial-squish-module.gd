@@ -79,14 +79,8 @@ func prepare_tutorial_level() -> void:
 			else:
 				hud.set_message(tr("Hmmm... What are you up to this time?"))
 		"tutorial/squish_7":
-			# reset timer, scores
-			PuzzleState.reset()
-			puzzle.scroll_to_new_creature()
-
-			# the sixth tutorial section ends with a long message, so we enqueue these messages
-			hud.enqueue_message(tr("Your training is complete!\n\nBut don't let it go to your head,"
-					+ " we still have some customers to take care of."))
-			hud.enqueue_pop_out()
+			dismiss_sensei([tr("Your training is complete!\n\nBut don't let it go to your head,"
+					+ " we still have some customers to take care of.")])
 	
 	_prepared_levels[CurrentLevel.settings.id] = true
 
@@ -129,7 +123,7 @@ func _advance_level() -> void:
 		new_level_id = CurrentLevel.settings.id
 	else:
 		new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
-	PuzzleState.change_level(new_level_id, delay_between_levels)
+	change_level(new_level_id, delay_between_levels)
 
 
 func _handle_squish_move_message() -> void:
