@@ -594,6 +594,7 @@ visible = false
 puzzle_path = NodePath("../../..")
 
 [node name="PuzzleMessages" parent="Hud/HudUi" instance=ExtResource( 62 )]
+mouse_filter = 2
 
 [node name="PuzzleTrace" type="Label" parent="Hud/HudUi"]
 visible = false

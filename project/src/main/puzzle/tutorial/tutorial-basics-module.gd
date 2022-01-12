@@ -49,13 +49,8 @@ func prepare_tutorial_level() -> void:
 			hud.skill_tally_item("SnackStack").visible = true
 			hud.set_message(tr("One last lesson! Try holding soft drop to squish and complete these boxes."))
 		"tutorial/basics_4":
-			# reset timer, scores
-			PuzzleState.reset()
-			puzzle.scroll_to_new_creature()
-			
-			hud.set_message(tr("You're a remarkably quick learner." \
-					+ " I think I hear some customers!\n\nSee if you can earn ¥100."))
-			hud.enqueue_pop_out()
+			dismiss_sensei([tr("You're a remarkably quick learner." \
+					+ " I think I hear some customers!\n\nSee if you can earn ¥100.")])
 
 
 ## Advance to the next level in the tutorial.
