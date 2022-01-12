@@ -92,13 +92,8 @@ func prepare_tutorial_level() -> void:
 			else:
 				hud.set_message(tr("Okay, final two recipes!\n\n...Can you make two cakes at once?"))
 		"tutorial/cakes_9":
-			# reset timer, scores
-			PuzzleState.reset()
-			puzzle.scroll_to_new_creature()
-			
-			hud.set_message(tr("I'm getting a tummy ache!"
-					+ "\n\nTry your new cake recipes on these customers, while I go lie down..."))
-			hud.enqueue_pop_out()
+			dismiss_sensei([tr("I'm getting a tummy ache!"
+						+ "\n\nTry your new cake recipes on these customers, while I go lie down...")])
 
 
 func _prepare_cake_tally_item(max_value: int) -> void:
@@ -168,6 +163,7 @@ func _advance_level() -> void:
 		"tutorial/cakes_8":
 			if _cakes_built >= 2:
 				_schedule_finish_line_clears()
+				start_customer_countdown()
 				hud.set_message(tr("Wow! That's all eight recipes."))
 			elif _cakes_built == 1:
 				hud.set_message(tr("Oh, you're half way there! ...Now try for the other one."))

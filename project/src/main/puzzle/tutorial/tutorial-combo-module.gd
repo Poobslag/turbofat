@@ -86,13 +86,8 @@ func prepare_tutorial_level() -> void:
 				hud.set_message(tr("Now see if you can do it."
 						+ "\n\nMake two cake boxes, but don't let your combo break."))
 		"tutorial/combo_6":
-			# reset timer, scores
-			PuzzleState.reset()
-			puzzle.scroll_to_new_creature()
-			
-			hud.set_message(tr("...Oh! Customers!\n\nTry to get ¥120 in one big combo."
-					+ "\n\nIt might help to make some boxes first."))
-			hud.enqueue_pop_out()
+			dismiss_sensei([tr("...Oh! Customers!\n\nTry to get ¥120 in one big combo."
+					+ "\n\nIt might help to make some boxes first.")])
 	
 	_prepared_levels[CurrentLevel.settings.id] = true
 

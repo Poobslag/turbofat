@@ -33,6 +33,18 @@ func start_customer_countdown() -> void:
 	puzzle.start_level_countdown()
 
 
+## Resets the timer and scores and dismisses the sensei, so the player can serve some real customers.
+##
+## Parameters:
+## 	'messages': Array of string messages to be shown when the sensei is dismissed.
+func dismiss_sensei(messages: Array) -> void:
+	PuzzleState.reset()
+	PuzzleState.game_active = true
+	puzzle.scroll_to_new_creature()
+	hud.set_messages(messages)
+	hud.enqueue_pop_out()
+
+
 ## Prepares the next section of the tutorial.
 ##
 ## This includes resetting the combo and hiding all completed skill tally items. Subclasses can override this method to
