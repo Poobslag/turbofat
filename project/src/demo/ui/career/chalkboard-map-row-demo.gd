@@ -8,6 +8,21 @@ extends Node
 ## 	[-, =]: Move the player left/right
 ## 	[Shift + -, Shift + =]: Move the player left right faster
 
+# Array of landmark types chosen when the user switches between different landmarks
+const INCREMENTABLE_LANDMARKS := [
+	Landmark.NONE,
+	
+	Landmark.CACTUS,
+	Landmark.FOREST,
+	Landmark.GEAR,
+	Landmark.ISLAND,
+	Landmark.RAINBOW,
+	Landmark.SKULL,
+	Landmark.VOLCANO,
+	
+	Landmark.MYSTERY,
+]
+
 onready var _map_row := $MapRow
 
 func _ready() -> void:
@@ -58,5 +73,6 @@ func _input(event: InputEvent) -> void:
 ## Changes the icon for the specified landmark.
 func _increment_landmark_type(landmark_index: int) -> void:
 	var old_landmark_type: int = _map_row.get_landmark_type(landmark_index)
-	var new_landmark_type: int = (old_landmark_type + 1) % Landmark.LandmarkType.size()
+	var new_index := (INCREMENTABLE_LANDMARKS.find(old_landmark_type, 0) + 1) % INCREMENTABLE_LANDMARKS.size()
+	var new_landmark_type: int = INCREMENTABLE_LANDMARKS[new_index]
 	_map_row.set_landmark_type(landmark_index, new_landmark_type)
