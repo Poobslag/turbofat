@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=50 format=2]
 
 [ext_resource path="res://src/main/ui/career/career-win.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/world/environment/marsh-path-sheet.png" type="Texture" id=2]
@@ -30,6 +30,7 @@
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=28]
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=29]
 [ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=30]
+[ext_resource path="res://src/main/ui/career/map-row-updater.gd" type="Script" id=31]
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=32]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=33]
 [ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=34]
@@ -565,6 +566,10 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="MapRowUpdater" type="Node" parent="Bg/Chalkboard/VBoxContainer"]
+script = ExtResource( 31 )
+map_path = NodePath("../MapRow")
 
 [node name="MapRow" parent="Bg/Chalkboard/VBoxContainer" instance=ExtResource( 17 )]
 anchor_left = 0.0

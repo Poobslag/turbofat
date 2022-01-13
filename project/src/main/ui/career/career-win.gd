@@ -8,10 +8,6 @@ extends Node
 const DAILY_STEPS_GOOD := 25
 const DAILY_STEPS_OK := 8
 
-# Number of regions to show on the chalkboard map
-const REGIONS_BEFORE := 2
-const REGIONS_AFTER := 3
-
 export (NodePath) var obstacle_manager_path: NodePath
 
 onready var _button := $Bg/Chalkboard/VBoxContainer/ButtonRow/Button
@@ -24,7 +20,6 @@ func _ready() -> void:
 	MusicPlayer.play_chill_bgm()
 	
 	_refresh_mood()
-	_refresh_map()
 	
 	PlayerData.career.advance_calendar()
 	PlayerSave.save_player_data()
@@ -52,63 +47,6 @@ func _refresh_mood() -> void:
 	
 	if PlayerData.career.daily_steps >= DAILY_STEPS_GOOD:
 		_applause_sound.play()
-
-
-## Updates the map based on how far the player has travelled.
-func _refresh_map() -> void:
-	_map.player_distance = PlayerData.career.distance_travelled
-	
-	# determine map boundaries; show a few landmarks before and after the player
-	var player_region: CareerRegion = CareerLevelLibrary.region_for_distance(_map.player_distance)
-	var player_region_index := CareerLevelLibrary.regions.find(player_region)
-	var start_region_index: int
-	var end_region_index: int
-	if player_region_index == CareerLevelLibrary.regions.size() - 1:
-		# player is past the end of the map
-		end_region_index = CareerLevelLibrary.regions.size()
-		start_region_index = end_region_index - REGIONS_BEFORE - REGIONS_AFTER + 1
-	elif player_region_index > CareerLevelLibrary.regions.size() - REGIONS_AFTER - 1:
-		# player is near the end of the map
-		end_region_index = CareerLevelLibrary.regions.size() - 1
-		start_region_index = end_region_index - REGIONS_BEFORE - REGIONS_AFTER + 1
-	else:
-		start_region_index = int(max(player_region_index - 1, 0))
-		end_region_index = player_region_index + REGIONS_AFTER
-	start_region_index = clamp(start_region_index, 1, CareerLevelLibrary.regions.size())
-	end_region_index = clamp(end_region_index, 1, CareerLevelLibrary.regions.size())
-	
-	# assign the map properties based on our calculated boundaries
-	_map.landmark_count = end_region_index - start_region_index + 2
-	
-	# configure the circle landmark on the left
-	var circle_landmark_type: int
-	match start_region_index:
-		0: circle_landmark_type = Landmark.NONE
-		1: circle_landmark_type = Landmark.CIRCLES_1
-		2: circle_landmark_type = Landmark.CIRCLES_2
-		3: circle_landmark_type = Landmark.CIRCLES_3
-		4: circle_landmark_type = Landmark.CIRCLES_4
-		5: circle_landmark_type = Landmark.CIRCLES_5
-		_: circle_landmark_type = Landmark.CIRCLES_6
-	_map.set_landmark_type(0, circle_landmark_type)
-	_map.set_landmark_distance(0, CareerLevelLibrary.regions[start_region_index - 1].distance)
-	
-	# update the distance/landmark type for non-circle landmarks
-	for region_index in range(start_region_index, end_region_index + 1):
-		var distance: int
-		var landmark_type: int
-		if region_index >= CareerLevelLibrary.regions.size():
-			# final unreachable region; update the landmark with an infinite distance and mystery icon
-			distance = CareerData.MAX_DISTANCE_TRAVELLED
-			landmark_type = Landmark.MYSTERY
-		else:
-			# update the landmark with the region's distance and icon
-			var region: CareerRegion = CareerLevelLibrary.regions[region_index]
-			distance = region.distance
-			landmark_type = Utils.enum_from_snake_case(Landmark.LandmarkType, region.icon_name, Landmark.MYSTERY)
-		
-		_map.set_landmark_distance(region_index - start_region_index + 1, distance)
-		_map.set_landmark_type(region_index - start_region_index + 1, landmark_type)
 
 
 func _on_Button_pressed() -> void:
