@@ -70,6 +70,10 @@ onready var _texture_rect := $TextureRect
 onready var _label := $Label
 
 func _ready() -> void:
+	# This texture rect changes its size. But sometimes these size changes confuse Godot's layout manager which
+	# then relocates it to (-45, -45) for no good reason. (This maybe a bug in Godot v3.4.2.stable.official)
+	_texture_rect.rect_position = Vector2(-7.5, 30)
+	
 	_refresh_type()
 	_refresh_distance()
 	
@@ -123,6 +127,7 @@ func _texture_center() -> Vector2:
 func _refresh_type() -> void:
 	if not is_inside_tree():
 		return
+	
 	_texture_rect.texture = _landmark_resources_by_type.get(type)
 	_texture_rect.rect_size = Vector2(120, 90) if _is_circles_type() else Vector2(90, 90)
 	_texture_rect.modulate = Color("64646e") if _is_circles_type() else Color("c8c8c8")
