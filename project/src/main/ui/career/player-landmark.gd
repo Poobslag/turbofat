@@ -4,14 +4,7 @@ extends Control
 ## This includes four components: a player graphic, a distance label, a dot along the player's current path, and a
 ## line connecting the player's dot to the distance label.
 
-## The player's current distance in steps.
-var distance := 0 setget set_distance
-
-## The endpoints of the line connecting the two landmarks before and after the player.
-var landmark_endpoints := [Vector2.ZERO, Vector2.ZERO] setget set_landmark_endpoints
-
-## How far the player has progressed between the two landmarks before and after the player.
-var progress_percent := 0.0 setget set_progress_percent
+export (NodePath) var map_row_path: NodePath
 
 ## Shows the player's distance.
 onready var _label: Label = $Label
@@ -25,28 +18,60 @@ onready var _player_sprite: Sprite = $PlayerSprite
 ## Shows a line connecting the player's dot to the distance label.
 onready var _line: Line2D = $Line2D
 
+onready var _map_row: ChalkboardMapRow = get_node(map_row_path)
+
 func _ready() -> void:
-	_refresh()
-
-func set_distance(new_distance: int) -> void:
-	distance = new_distance
-	_refresh()
-
-
-func set_landmark_endpoints(new_landmark_endpoints: Array) -> void:
-	landmark_endpoints = new_landmark_endpoints
+	_map_row.connect("landmark_distance_changed", self, "_on_MapRow_landmark_distance_changed")
+	_map_row.connect("player_distance_changed", self, "_on_MapRow_player_distance_changed")
 	_refresh()
 
 
-func set_progress_percent(new_progress_percent: float) -> void:
-	progress_percent = new_progress_percent
-	_refresh()
-
-
-## Recalculates the positions and values for all visual components.
+## Updates the positions and values for all visual components.
 func _refresh() -> void:
-	_label.text = StringUtils.comma_sep(distance)
+	if not is_inside_tree():
+		return
 	
+	# update the label text
+	_label.text = StringUtils.comma_sep(_map_row.player_distance)
+	
+	# calculate landmark_endpoints, progress_percent
+	var landmarks := get_tree().get_nodes_in_group("landmarks")
+	var right_landmark_index := _right_landmark_index(landmarks)
+	var landmark_endpoints := LandmarkLines.landmark_line_points(landmarks, right_landmark_index)
+	var progress_percent := _progress_percent(landmarks, right_landmark_index)
+	
+	# update the position of the player components
+	_reposition_nodes(landmark_endpoints, progress_percent)
+
+
+## Calculates the progress from one landmark to the next.
+func _progress_percent(landmarks: Array, right_landmark_index: int) -> float:
+	var progress_percent: float
+	var from: float = landmarks[right_landmark_index - 1].distance
+	if landmarks[right_landmark_index].distance == CareerData.MAX_DISTANCE_TRAVELLED:
+		progress_percent = clamp(
+			inverse_lerp(from, from + 100, _map_row.player_distance), 0, 0.5)
+	else:
+		progress_percent = clamp(
+			inverse_lerp(from, landmarks[right_landmark_index].distance, _map_row.player_distance), 0, 1)
+	return progress_percent
+
+
+## Determines which landmarks the player is between.
+func _right_landmark_index(landmarks: Array) -> int:
+	var right_landmark_index := 0
+	for i in range(landmarks.size()):
+		var landmark: Landmark = landmarks[i]
+		right_landmark_index = i
+		if _map_row.player_distance < landmark.distance:
+			break
+	return right_landmark_index
+
+
+## Update the position of the player components.
+##
+## This includes the player's dot, distance label, and the line connecting the two.
+func _reposition_nodes(landmark_endpoints: Array, progress_percent: float) -> void:
 	# position the player's dot
 	_dot_sprite.position = lerp(landmark_endpoints[0], landmark_endpoints[1], progress_percent)
 	# connect line to the player's dot
@@ -61,3 +86,20 @@ func _refresh() -> void:
 	# position the player sprite
 	_player_sprite.position = lerp(landmark_endpoints[0], \
 			landmark_endpoints[1], progress_percent * 0.5 + 0.25) + Vector2(0, -40)
+
+
+## When the Landmarks container arranges its children, we update the player's location on the map.
+##
+## The player can only be properly positioned after the Landmarks container arranges its children. The player is
+## placed based on the position of the landmarks.
+func _on_Landmarks_sort_children() -> void:
+	_refresh()
+
+
+## If the landmark distances change, we may need to move the player if they're further/closer to a landmark
+func _on_MapRow_landmark_distance_changed() -> void:
+	_refresh()
+
+
+func _on_MapRow_player_distance_changed() -> void:
+	_refresh()

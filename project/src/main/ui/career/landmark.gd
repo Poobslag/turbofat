@@ -79,6 +79,12 @@ func _ready() -> void:
 	_label.rect_position += random_offset
 
 
+## Preemptively initialize onready variables to avoid null references.
+func _enter_tree() -> void:
+	_texture_rect = $TextureRect
+	_label = $Label
+
+
 ## The position on the left side of the landmark where a chalk line can connect.
 ##
 ## This position is relative to the entire map, not relative to this landmark.
