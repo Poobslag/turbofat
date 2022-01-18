@@ -124,15 +124,30 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	CurrentLevel.set_launched_level(level_settings.id)
 	CurrentLevel.piece_speed = _piece_speed
 	
+	var customers := []
+	
 	# enqueue customers for the selected levels
 	if PlayerData.career.is_boss_level():
 		# boss level; enqueue all visible customers
 		for customer in _world.customers:
-			CurrentLevel.customers.append(customer.creature_def)
-			CurrentLevel.customers.shuffle()
+			customers.append(customer.creature_def)
+			customers.shuffle()
 	elif level_index < _world.customers.size():
 		# regular level; enqueue the selected customer
-		CurrentLevel.customers.append(_world.customers[level_index].creature_def)
+		customers.append(_world.customers[level_index].creature_def)
+	CurrentLevel.customers = customers
+	
+	if (PlayerData.career.hours_passed == 2 or PlayerData.career.hours_passed == 5) \
+			and not PlayerData.career.skipped_previous_level:
+		var chat_key: String = Utils.rand_value(["chat/career/general_00_0", "chat/career/general_00_1"])
+		var chat_tree := ChatLibrary.chat_tree_for_key(chat_key)
+		CutsceneManager.enqueue_cutscene(chat_tree)
+	
+	CutsceneManager.enqueue_level({
+		"level_id": level_settings.id,
+		"piece_speed": _piece_speed,
+		"customers": customers,
+	})
 	
 	PlayerData.career.push_career_trail()
 

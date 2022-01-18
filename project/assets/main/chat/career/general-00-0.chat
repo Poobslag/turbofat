@@ -1,0 +1,55 @@
+{"version": "2476"}
+
+[location]
+indoors
+
+[characters]
+player, p1, kitchen_11
+sensei, s1, kitchen_1
+
+s1: You seem confused. Are you... looking for something?
+ (player faces left)
+ (player mood /._.)
+p1: I can't find any utensils, do we have a spatula somewhere?
+ (player faces right)
+s1: ^N^ You don't need a spatula. A real chef cooks with their bare pans.
+p1: Their bare... pans? What about spoons? Forks? Knives?
+s1: Pans, pans and pans. Really, what is a knife but a specialized sharpened pan? You don't need any of that stuff.
+s1: ^y^ Name one activity in a kitchen that you can't do better with a pan.
+[make_pancakes]Make pancakes
+[blow_your_nose]Blow your nose
+[scratch_your_butt]Scratch your butt
+[mop_the_floor]Mop the floor
+[swat_a_fly]Swat a fly
+
+[make_pancakes]
+p1: /._. Well, you can't make pancakes with a pan.
+s1: /._. Ahh, you've got me there. ...But you can do almost anything else.
+s1: ...ANYTHING else.
+p1: Like... like what?
+[end]
+
+[blow_your_nose]
+p1: ^o^ Well, you can't blow your nose with a pan.
+[end]
+
+[scratch_your_butt]
+p1: ^O^ I mean, you can't scratch your butt with a pan.
+[end]
+
+[mop_the_floor]
+p1: ^_^ Well, you can't mop the floor with a pan.
+[end]
+
+[squash_a_bug]
+p1: <_< I mean, you can't swat a fly with a pan.
+[end]
+
+[end]
+s1: <_< ...
+p1: ._.; What!? You didn't! That's horrible.
+s1: <__< ... ...
+p1: .__.; At least tell me which pan it was!
+s1: Ahh, sorry. You're on your own...
+ (player mood @_@)
+ (sensei exits)
