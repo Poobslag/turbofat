@@ -31,12 +31,12 @@ func reset() -> void:
 
 
 ## Adds a cutscene to the back of the queue.
-func enqueue_chat_tree(chat_tree: ChatTree) -> void:
+func enqueue_cutscene(chat_tree: ChatTree) -> void:
 	_queue.push_back(chat_tree)
 
 
 ## Inserts a cutscene in the given position in the queue.
-func insert_chat_tree(position: int, chat_tree: ChatTree) -> void:
+func insert_cutscene(position: int, chat_tree: ChatTree) -> void:
 	_queue.insert(position, chat_tree)
 
 

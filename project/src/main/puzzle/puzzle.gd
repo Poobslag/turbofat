@@ -224,7 +224,7 @@ func _enqueue_cutscene(chat_tree: ChatTree) -> void:
 	if not CutsceneManager.is_front_chat_tree():
 		# Insert the cutscene into the breadcrumb trail, so it shows up when the puzzle scene is popped
 		Breadcrumb.trail.insert(1, chat_tree.chat_scene_path())
-	CutsceneManager.enqueue_chat_tree(chat_tree)
+	CutsceneManager.enqueue_cutscene(chat_tree)
 
 
 func _on_Hud_start_button_pressed() -> void:

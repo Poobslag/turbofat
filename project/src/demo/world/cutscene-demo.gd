@@ -51,7 +51,7 @@ func _on_StartButton_pressed() -> void:
 		# bugs can result if we play a mismatched scene/cutscene combo
 		CutsceneManager.reset()
 		
-		CutsceneManager.enqueue_chat_tree(chat_tree)
+		CutsceneManager.enqueue_cutscene(chat_tree)
 		SceneTransition.push_trail(chat_tree.chat_scene_path())
 	else:
 		push_warning("Invalid cutscene path: %s" % [_open_input.value])

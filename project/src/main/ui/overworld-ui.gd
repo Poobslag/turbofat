@@ -240,7 +240,7 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var next_scene_key := meta_item_split[1]
 			var next_scene_chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(next_scene_key)
 			# insert the chat tree to ensure it happens before any enqueued levels
-			CutsceneManager.insert_chat_tree(0, next_scene_chat_tree)
+			CutsceneManager.insert_cutscene(0, next_scene_chat_tree)
 		"creature_enter":
 			var creature_id := meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
@@ -264,7 +264,7 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 
 
 func _start_cutscene(chat_tree: ChatTree) -> void:
-	CutsceneManager.enqueue_chat_tree(chat_tree)
+	CutsceneManager.enqueue_cutscene(chat_tree)
 	
 	if cutscene:
 		# if we're already in a cutscene, we replace the current scene
@@ -406,7 +406,7 @@ func _on_TalkButton_pressed() -> void:
 			start_chat(chat_tree, ChattableManager.focused_chattable)
 		else:
 			# if a location change is necessary, launch a cutscene
-			CutsceneManager.enqueue_chat_tree(chat_tree)
+			CutsceneManager.enqueue_cutscene(chat_tree)
 			CutsceneManager.enqueue_level(level_id)
 			
 			if cutscene:
