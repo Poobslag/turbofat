@@ -14,7 +14,7 @@ func _ready() -> void:
 	MusicPlayer.play_chill_bgm()
 	
 	ChattableManager.refresh_creatures()
-	if CutsceneManager.is_front_chat_tree():
+	if CurrentCutscene.chat_tree:
 		_launch_cutscene()
 	else:
 		if Global.player_spawn_id:
@@ -47,8 +47,7 @@ func _launch_cutscene() -> void:
 		# add the cutscene creature
 		cutscene_creature = _obstacle_manager.add_creature(CurrentLevel.creature_id)
 	
-	# get the location, spawn location data
-	var chat_tree := CutsceneManager.pop_chat_tree()
+	var chat_tree := CurrentCutscene.chat_tree
 	
 	if not chat_tree.spawn_locations and cutscene_creature:
 		# apply a default position to the cutscene creature

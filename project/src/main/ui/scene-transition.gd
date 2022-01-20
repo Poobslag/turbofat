@@ -65,6 +65,20 @@ func replace_trail(path: String, skip_transition: bool = false) -> void:
 		_fade_out(funcref(Breadcrumb, "replace_trail"), [path])
 
 
+## Changes the running scene to the one at the front of the breadcrumb trail after a scene transition.
+##
+## Parameters:
+## 	'skip_transition': If 'true', the scene changes immediately without fading.
+func change_scene(skip_transition: bool = false) -> void:
+	if skip_transition or not get_tree().get_nodes_in_group("scene_transition_covers"):
+		# explicitly assign fading to false in case the user clicks a button while still fading in
+		fading = false
+		
+		Breadcrumb.change_scene()
+	else:
+		_fade_out(funcref(Breadcrumb, "change_scene"), [])
+
+
 ## Called when the 'fade out' visual transition ends, triggering a scene transition.
 func end_fade_out() -> void:
 	if breadcrumb_method:

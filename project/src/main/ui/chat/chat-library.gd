@@ -229,6 +229,37 @@ func add_mega_lull_characters(s: String) -> String:
 	return transformer.transformed
 
 
+## Returns 'true' if the specified cutscene should be played.
+##
+## We skip cutscenes if the player's seen them already, or if its 'skip_if' condition is met. This can be overridden
+## with the 'cutscene_force' field which the player can configure on the level select screen.
+##
+## Parameters:
+## 	'chat_tree': The cutscene to evaluate.
+##
+## 	'cutscene_force': An enum from Levels.CutsceneForce describing whether the player wants to play or skip this
+## 		level's cutscene.
+func should_play_cutscene(chat_tree: ChatTree, cutscene_force: int) -> bool:
+	var result := true
+	if not chat_tree:
+		# return 'false' to account for levels without cutscenes
+		result = false
+	elif cutscene_force == Levels.CutsceneForce.SKIP:
+		# player wants to skip this cutscene
+		result = false
+	elif cutscene_force == Levels.CutsceneForce.PLAY:
+		# player wants to play this cutscene
+		result = true
+	elif PlayerData.chat_history.is_chat_finished(chat_tree.chat_key):
+		# skip repeated cutscenes
+		result = false
+	elif chat_tree.meta and chat_tree.meta.get("skip_if") \
+			and BoolExpressionEvaluator.evaluate(chat_tree.meta.get("skip_if")):
+		# skip cutscenes if their 'skip_if' condition is met
+		result = false
+	return result
+
+
 func _creature_chat_path(creature_id: String, chat_id: String) -> String:
 	return "res://assets/main/creatures/primary/%s/%s%s" % \
 			[creature_id, StringUtils.underscores_to_hyphens(chat_id), CHAT_EXTENSION]

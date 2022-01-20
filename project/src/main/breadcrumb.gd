@@ -33,7 +33,7 @@ func pop_trail() -> void:
 	emit_signal("trail_popped", prev_path)
 	if not "::" in prev_path:
 		# '::' is used as a separator for breadcrumb items which do not result in a scene change
-		_change_scene()
+		change_scene()
 
 
 ## Navigates forward one level, appending the new path to the breadcrumb trail.
@@ -44,7 +44,7 @@ func pop_trail() -> void:
 func push_trail(path: String) -> void:
 	trail.push_front(path)
 	if not "::" in path:
-		_change_scene()
+		change_scene()
 
 
 ## Stays at the current level in the breadcrumb trail, but replaces the current navigation path.
@@ -56,11 +56,11 @@ func replace_trail(path: String) -> void:
 	trail.pop_front()
 	trail.push_front(path)
 	if not "::" in path:
-		_change_scene()
+		change_scene()
 
 
 ## Changes the running scene to the one at the front of the breadcrumb trail.
-func _change_scene() -> void:
+func change_scene() -> void:
 	emit_signal("before_scene_changed")
 	var scene_path: String
 	if trail:

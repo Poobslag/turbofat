@@ -157,13 +157,13 @@ func _quit_puzzle() -> void:
 	if _should_play_postroll():
 		# enqueue the postroll cutscene
 		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
-		_enqueue_cutscene(chat_tree)
+		CutsceneManager.enqueue_cutscene(chat_tree)
 	
 	if _should_play_epilogue():
 		# enqueue the epilogue cutscene (after any postroll cutscene)
 		var world_lock: WorldLock = LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
 		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.epilogue_chat_key)
-		_enqueue_cutscene(chat_tree)
+		CutsceneManager.enqueue_cutscene(chat_tree)
 	
 	if PlayerData.career.is_career_mode() and not PuzzleState.game_ended:
 		# apply penalties for skipping in career mode
@@ -171,7 +171,16 @@ func _quit_puzzle() -> void:
 	
 	CurrentLevel.clear_launched_level()
 	PlayerData.creature_queue.clear()
-	SceneTransition.pop_trail()
+	
+	if PlayerData.career.is_career_mode():
+		# career mode; defer to CareerData to decide the next scene.
+		PlayerData.career.push_career_trail()
+	else:
+		# not career mode; play a cutscene or return to the previous scene
+		if CutsceneManager.is_front_cutscene():
+			CutsceneManager.replace_trail()
+		else:
+			SceneTransition.pop_trail()
 
 
 ## Returns 'true' if we should play a postroll cutscene after this level.
@@ -184,7 +193,7 @@ func _should_play_postroll() -> bool:
 	if not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
 		# player didn't clear the level; don't play the cutscene
 		result = false
-	elif not CurrentLevel.should_play_cutscene(chat_tree):
+	elif not ChatLibrary.should_play_cutscene(chat_tree, CurrentLevel.cutscene_force):
 		# the player's seen it already, or its 'skip_if' condition is met; don't play the cutscene
 		result = false
 	else:
@@ -215,16 +224,6 @@ func _should_play_epilogue() -> bool:
 		# play the epilogue
 		result = true
 	return result
-
-
-## Enqueues a cutscene to play after this level.
-##
-## The specified cutscene is played after any other cutscenes.
-func _enqueue_cutscene(chat_tree: ChatTree) -> void:
-	if not CutsceneManager.is_front_chat_tree():
-		# Insert the cutscene into the breadcrumb trail, so it shows up when the puzzle scene is popped
-		Breadcrumb.trail.insert(1, chat_tree.chat_scene_path())
-	CutsceneManager.enqueue_cutscene(chat_tree)
 
 
 func _on_Hud_start_button_pressed() -> void:

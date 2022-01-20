@@ -18,7 +18,7 @@ func _on_Story_pressed() -> void:
 		# load the prologue scene
 		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.prologue_chat_key)
 		CutsceneManager.enqueue_cutscene(chat_tree)
-		SceneTransition.push_trail(chat_tree.chat_scene_path())
+		CutsceneManager.push_trail()
 	else:
 		SceneTransition.push_trail(Global.SCENE_OVERWORLD)
 

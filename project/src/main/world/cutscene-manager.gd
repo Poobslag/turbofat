@@ -32,67 +32,83 @@ func reset() -> void:
 
 ## Adds a cutscene to the back of the queue.
 func enqueue_cutscene(chat_tree: ChatTree) -> void:
-	_queue.push_back(chat_tree)
+	_queue.push_back({
+		"type": "cutscene",
+		"value": chat_tree,
+	})
 
 
 ## Inserts a cutscene in the given position in the queue.
 func insert_cutscene(position: int, chat_tree: ChatTree) -> void:
-	_queue.insert(position, chat_tree)
+	_queue.insert(position, {
+		"type": "cutscene",
+		"value": chat_tree,
+	})
 
 
 ## Adds a level to the back of the queue.
-func enqueue_level(level_id: String) -> void:
-	_queue.push_back(level_id)
+func enqueue_level(level_properties: Dictionary) -> void:
+	_queue.push_back({
+		"type": "level",
+		"value": level_properties
+	})
+
+
+## Returns 'true' if there is a pending cutscene/level in the queue.
+func is_queue_empty() -> bool:
+	return _queue.empty()
 
 
 ## Returns 'true' if the first item in the queue represents a cutscene.
-func is_front_chat_tree() -> bool:
-	return _queue and _queue.front() is ChatTree
+func is_front_cutscene() -> bool:
+	return _queue and _queue.front().get("type") == "cutscene"
 
 
 ## Returns 'true' if the first item in the queue represents a level.
-func is_front_level_id() -> bool:
-	return _queue and _queue.front() is String
+func is_front_level() -> bool:
+	return _queue and _queue.front().get("type") == "level"
 
 
-## Removes and returns the cutscene at the front of the queue.
-func pop_chat_tree() -> ChatTree:
-	return _queue.pop_front() as ChatTree
+## Removes the next scene from the queue and transitions to it, staying at the current level in the breadcrumb trail.
+func replace_trail() -> void:
+	if is_front_cutscene():
+		_pop_cutscene()
+		CurrentCutscene.replace_cutscene_trail()
+	elif is_front_level():
+		_pop_level()
+		CurrentLevel.replace_level_trail()
+	else:
+		push_error("Cannot transition to next item in queue: %s" % [_queue])
 
 
-## Removes and returns the level at the front of the queue.
-func pop_level_id() -> String:
-	return _queue.pop_front() as String
+## Removes the next scene from the queue and transitions to it, extending the breadcrumb trail.
+func push_trail() -> void:
+	if is_front_cutscene():
+		_pop_cutscene()
+		CurrentCutscene.push_cutscene_trail()
+	elif is_front_level():
+		_pop_level()
+		CurrentLevel.push_level_trail()
+	else:
+		push_error("Cannot transition to next item in queue: %s" % [_queue])
 
 
-## Transitions to the cutscene at the front of the queue, staying at the current level in the breadcrumb trail.
-func replace_cutscene_trail() -> void:
-	if not is_front_chat_tree():
-		push_error("CutsceneManager._queue.front (%s) is not a cutscene" % [_queue.front()])
-		return
-	
-	var chat_tree: ChatTree = _queue.front()
-	SceneTransition.replace_trail(chat_tree.chat_scene_path())
+## Removes the next cutscene from the queue and assigns it as the current cutscene.
+func _pop_cutscene() -> void:
+	var chat_tree: ChatTree = _queue.pop_front()["value"]
+	CurrentCutscene.set_launched_cutscene(chat_tree.chat_key)
 
 
-## Transitions to the cutscene at the front of the queue, extending the breadcrumb trail.
-func push_cutscene_trail() -> void:
-	if not is_front_chat_tree():
-		push_error("CutsceneManager._queue.front (%s) is not a cutscene" % [_queue.front()])
-		return
-	
-	var chat_tree: ChatTree = _queue.front()
-	SceneTransition.push_trail(chat_tree.chat_scene_path())
-
-
-## Transitions to the level at the front of the queue, extending the breadcrumb trail.
-func push_level_trail() -> void:
-	if not is_front_level_id():
-		push_error("CutsceneManager._queue.front (%s) is not a level id" % [_queue.front()])
-		return
-	
-	CurrentLevel.level_id = _queue.front()
-	CurrentLevel.push_level_trail()
+## Removes the next level from the queue and assigns it as the current level.
+func _pop_level() -> void:
+	var level_properties: Dictionary = _queue.pop_front()["value"]
+	CurrentLevel.set_launched_level(level_properties["level_id"])
+	if level_properties.has("piece_speed"):
+		CurrentLevel.piece_speed = level_properties["piece_speed"]
+	if level_properties.has("customers"):
+		CurrentLevel.customers = level_properties["customers"]
+	if level_properties.has("cutscene_force"):
+		CurrentLevel.cutscene_force = level_properties["cutscene_force"]
 
 
 ## Assign the player and sensei spawn IDs based on the specified chat tree.
