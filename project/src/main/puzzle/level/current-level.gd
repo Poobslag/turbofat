@@ -38,7 +38,7 @@ var chef_id: String
 ## Tracks when the player finishes a level.
 var best_result: int = Levels.Result.NONE setget set_best_result
 
-## Tracks whether or not the player wants to play/skip this level's cutscene.
+## Tracks whether or not the player wants to play or skip this level's cutscene.
 var cutscene_force: int = Levels.CutsceneForce.NONE
 
 func _ready() -> void:
@@ -52,7 +52,7 @@ func clear_launched_level() -> void:
 	set_launched_level("")
 
 
-## Sets the launched level data.
+## Stores the launched level data, so the level can be played later.
 ##
 ## Some tutorial levels transition into other levels, so this keeps track of the original. These properties also
 ## used on the overworld to track whether or not it should play a cutscene or allow free roam.

@@ -200,7 +200,7 @@ func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
 	if CurrentLevel.should_play_cutscene(chat_tree):
 		# [menu > overworld] -> [menu > overworld > cutscene]
 		
-		CutsceneManager.enqueue_chat_tree(chat_tree)
+		CutsceneManager.enqueue_cutscene(chat_tree)
 		CutsceneManager.enqueue_level(settings.id)
 		CutsceneManager.push_cutscene_trail()
 	else:
