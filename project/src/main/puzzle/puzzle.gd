@@ -168,6 +168,7 @@ func _quit_puzzle() -> void:
 	if PlayerData.career.is_career_mode() and not PuzzleState.game_ended:
 		# apply penalties for skipping in career mode
 		PlayerData.career.advance_clock(0, false)
+		PlayerData.career.skipped_previous_level = true
 	
 	CurrentLevel.clear_launched_level()
 	PlayerData.creature_queue.clear()

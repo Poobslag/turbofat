@@ -73,6 +73,9 @@ var prev_distance_travelled := []
 ## The furthest total distance the player has travelled in a single session.
 var max_distance_travelled := 0
 
+## 'true' if the player skipped or gave up on the previous level, instead of finishing it or topping out.
+var skipped_previous_level := false
+
 ## Returns 'true' if the player has completed the current career mode session.
 func is_day_over() -> bool:
 	return hours_passed >= HOURS_PER_CAREER_DAY
@@ -91,6 +94,7 @@ func reset() -> void:
 	prev_daily_earnings.clear()
 	prev_distance_travelled.clear()
 	max_distance_travelled = 0
+	skipped_previous_level = false
 	emit_signal("distance_travelled_changed")
 
 
@@ -107,6 +111,7 @@ func from_json_dict(json: Dictionary) -> void:
 	prev_daily_earnings = json.get("prev_daily_earnings", [])
 	prev_distance_travelled = json.get("prev_distance_travelled", [])
 	max_distance_travelled = int(json.get("max_distance_travelled", 0))
+	skipped_previous_level = bool(json.get("skipped_previous_level", false))
 	emit_signal("distance_travelled_changed")
 
 
@@ -124,39 +129,34 @@ func to_json_dict() -> Dictionary:
 	results["prev_daily_earnings"] = prev_daily_earnings
 	results["prev_distance_travelled"] = prev_distance_travelled
 	results["max_distance_travelled"] = max_distance_travelled
+	results["skipped_previous_level"] = skipped_previous_level
 	return results
 
 
 ## Launches the next scene in career mode. Either a new level, or a cutscene/ending scene.
 func push_career_trail() -> void:
-	var was_playing_puzzle := true if Breadcrumb.trail.front() == Global.SCENE_PUZZLE else false
-	
 	# Purge any puzzle or cutscene scenes from trail before changing the scene.
 	while Breadcrumb.trail.front() != Global.SCENE_CAREER_MAP:
 		Breadcrumb.trail.pop_front()
 	
-	if is_day_over():
+	if not CutsceneManager.is_queue_empty():
+		# If there are pending puzzles/cutscenes, show them.
+		
+		# If the player is playing a puzzle, we immediately apply failure penalties to the player's save data so they
+		# can't quit and retry
+		if CutsceneManager.is_front_level():
+			_preapply_failure_penalties()
+		
+		CutsceneManager.push_trail()
+	elif is_day_over():
 		# After the final level, we show a 'you win' screen.
 		#
 		# We do not apply a SceneTransition -- this scene change occurs immediately when the scene is loaded, and
 		# applying a fade in and fade out scene transition simultaneously results in unpredictable behavior.
 		Breadcrumb.replace_trail("res://src/main/ui/career/CareerWin.tscn")
-	elif was_playing_puzzle:
-		SceneTransition.change_scene()
 	else:
-		# after the 'overworld map' scene, we launch a level
-		
-		# immediately apply failure penalties to the player's save data, so they can't quit and retry
-		var temp_distance_earned := distance_earned
-		var temp_distance_travelled := distance_travelled
-		var temp_hours_passed := hours_passed
-		advance_clock(0, false)
-		PlayerSave.save_player_data()
-		distance_earned = temp_distance_earned
-		distance_travelled = temp_distance_travelled
-		hours_passed = temp_hours_passed
-		
-		CurrentLevel.push_level_trail()
+		# After a puzzle (or any other scene), we go back to the career map.
+		SceneTransition.change_scene()
 
 
 ## Returns 'true' if the player is current playing career mode
@@ -235,6 +235,7 @@ func distance_penalties() -> Array:
 ## 	'success': 'True' if the player met the success criteria for the current level.
 func advance_clock(new_distance_earned: int, success: bool) -> void:
 	distance_earned = new_distance_earned
+	skipped_previous_level = false
 	
 	hours_passed += 1
 	
@@ -296,6 +297,19 @@ func advance_calendar() -> void:
 func set_distance_travelled(new_distance_travelled: int) -> void:
 	distance_travelled = new_distance_travelled
 	emit_signal("distance_travelled_changed")
+
+
+## Applies penalties for skipping a level to the player's save data, so they can't quit and retry.
+func _preapply_failure_penalties() -> void:
+	var temp_distance_earned := distance_earned
+	var temp_distance_travelled := distance_travelled
+	var temp_hours_passed := hours_passed
+	advance_clock(0, false)
+	skipped_previous_level = true
+	PlayerSave.save_player_data()
+	distance_earned = temp_distance_earned
+	distance_travelled = temp_distance_travelled
+	hours_passed = temp_hours_passed
 
 
 ## Calculates the highest rank milestone the player's reached.
