@@ -240,6 +240,7 @@ script = ExtResource( 2 )
 ChatIconScene = ExtResource( 42 )
 
 [node name="Camera" type="Camera2D" parent="World"]
+current = true
 smoothing_enabled = true
 smoothing_speed = 12.5
 script = ExtResource( 4 )
