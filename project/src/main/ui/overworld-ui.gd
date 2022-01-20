@@ -240,7 +240,12 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 			var next_scene_key := meta_item_split[1]
 			var next_scene_chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(next_scene_key)
 			# insert the chat tree to ensure it happens before any enqueued levels
-			CutsceneManager.insert_cutscene(0, next_scene_chat_tree)
+			if PlayerData.career.is_career_mode():
+				PlayerData.career.insert_cutscene(0, {
+					"chat_key": next_scene_key
+				})
+			else:
+				CutsceneManager.insert_cutscene(0, next_scene_chat_tree)
 		"creature_enter":
 			var creature_id := meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
@@ -264,23 +269,29 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 
 
 func _start_cutscene(chat_tree: ChatTree) -> void:
-	CutsceneManager.enqueue_cutscene(chat_tree)
+	CurrentCutscene.set_launched_cutscene(chat_tree.chat_key)
 	
 	if cutscene:
 		# if we're already in a cutscene, we replace the current scene
-		CutsceneManager.replace_cutscene_trail()
+		CurrentCutscene.replace_cutscene_trail()
 	else:
 		# if we're not in a cutscene, we push the cutscene on top of the overworld scene
-		CutsceneManager.push_cutscene_trail()
+		CurrentCutscene.push_cutscene_trail()
 
 
 func _on_ChatUi_chat_finished() -> void:
 	PlayerData.chat_history.add_history_item(_current_chat_tree.chat_key)
 	
-	if not CutsceneManager.is_front_chat_tree() \
+	if CurrentCutscene.chat_tree:
+		# clear any currently launched cutscene
+		CurrentCutscene.clear_launched_cutscene()
+	
+	if not CurrentCutscene.chat_tree \
 			and Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 		# don't launch the level; go back to CutsceneDemo after playing the cutscene
 		SceneTransition.pop_trail()
+	elif PlayerData.career.is_career_cutscene():
+		PlayerData.career.push_career_trail()
 	elif cutscene:
 		if Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 			# don't modify the breadcrumb path; we're not returning to the overworld after
@@ -299,19 +310,17 @@ func _on_ChatUi_chat_finished() -> void:
 				Global.player_spawn_id = ""
 				Global.sensei_spawn_id = ""
 		
-		if CutsceneManager.is_front_level_id():
+		if CutsceneManager.is_front_level():
 			# continue to a level (preroll cutscene finished playing)
 			
 			# [menu > overworld_1 > cutscene] -> [menu > overworld_2 > puzzle]
 			Breadcrumb.trail.remove(0)
-			CurrentLevel.level_id = CutsceneManager.pop_level_id()
-			CurrentLevel.piece_speed = ""
-			CurrentLevel.push_level_trail()
-		elif CutsceneManager.is_front_chat_tree():
+			CutsceneManager.push_trail()
+		elif CutsceneManager.is_front_cutscene():
 			# continue to another cutscene (first of multiple cutscenes finished playing)
 			
 			# [menu > overworld > cutscene_1] -> [menu > overworld > cutscene_2]
-			CutsceneManager.replace_cutscene_trail()
+			CutsceneManager.replace_trail()
 		else:
 			# return to the overworld (postroll/misc cutscene finished playing)
 			
@@ -398,7 +407,7 @@ func _on_TalkButton_pressed() -> void:
 		CurrentLevel.set_launched_level(level_id)
 		
 		var chat_tree: ChatTree = ChatLibrary.chat_tree_for_preroll(CurrentLevel.level_id)
-		if not CurrentLevel.should_play_cutscene(chat_tree):
+		if not ChatLibrary.should_play_cutscene(chat_tree, CurrentLevel.cutscene_force):
 			# if there is no cutscene/chat, or if the cutscene should be skipped, skip to the level
 			CurrentLevel.push_level_trail()
 		elif not chat_tree.location_id:
@@ -407,14 +416,16 @@ func _on_TalkButton_pressed() -> void:
 		else:
 			# if a location change is necessary, launch a cutscene
 			CutsceneManager.enqueue_cutscene(chat_tree)
-			CutsceneManager.enqueue_level(level_id)
+			CutsceneManager.enqueue_level({
+				"level_id": level_id
+			})
 			
 			if cutscene:
 				# if we're already in a cutscene, we replace the current scene
-				CutsceneManager.replace_cutscene_trail()
+				CutsceneManager.replace_trail()
 			else:
 				# if we're not in a cutscene, we push the cutscene on top of the overworld scene
-				CutsceneManager.push_cutscene_trail()
+				CutsceneManager.push_trail()
 	else:
 		var chat_tree := _focused_chattable_chat_tree()
 		if not chat_tree.location_id:

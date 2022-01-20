@@ -91,37 +91,6 @@ func switch_level(new_settings: LevelSettings) -> void:
 	emit_signal("settings_changed")
 
 
-## Returns 'true' if the specified cutscene should be played.
-##
-## We skip cutscenes if the player's seen them already, or if its 'skip_if' condition is met. This can be overridden
-## with the 'cutscene_force' field which the player can configure on the level select screen.
-##
-## Parameters:
-## 	'chat_tree': The cutscene to evaluate.
-##
-## 	'ignore_player_preferences': If 'true', the player's preferences will be ignored, and the method will only
-## 		check whether the player's seen the cutscene and whether its 'skip_if' condition is met.
-func should_play_cutscene(chat_tree: ChatTree, ignore_player_preferences = false) -> bool:
-	var result := true
-	if not chat_tree:
-		# return 'false' to account for levels without cutscenes
-		result = false
-	elif not ignore_player_preferences and cutscene_force == Levels.CutsceneForce.SKIP:
-		# player wants to skip this cutscene
-		result = false
-	elif not ignore_player_preferences and cutscene_force == Levels.CutsceneForce.PLAY:
-		# player wants to play this cutscene
-		result = true
-	elif PlayerData.chat_history.is_chat_finished(chat_tree.chat_key):
-		# skip repeated cutscenes
-		result = false
-	elif chat_tree.meta and chat_tree.meta.get("skip_if") \
-			and BoolExpressionEvaluator.evaluate(chat_tree.meta.get("skip_if")):
-		# skip cutscenes if their 'skip_if' condition is met
-		result = false
-	return result
-
-
 ## Launches a puzzle scene with the previously specified 'launched level' settings.
 func push_level_trail() -> void:
 	var level_settings := LevelSettings.new()

@@ -129,12 +129,20 @@ func to_json_dict() -> Dictionary:
 
 ## Launches the next scene in career mode. Either a new level, or a cutscene/ending scene.
 func push_career_trail() -> void:
+	var was_playing_puzzle := true if Breadcrumb.trail.front() == Global.SCENE_PUZZLE else false
+	
+	# Purge any puzzle or cutscene scenes from trail before changing the scene.
+	while Breadcrumb.trail.front() != Global.SCENE_CAREER_MAP:
+		Breadcrumb.trail.pop_front()
+	
 	if is_day_over():
 		# After the final level, we show a 'you win' screen.
 		#
 		# We do not apply a SceneTransition -- this scene change occurs immediately when the scene is loaded, and
 		# applying a fade in and fade out scene transition simultaneously results in unpredictable behavior.
 		Breadcrumb.replace_trail("res://src/main/ui/career/CareerWin.tscn")
+	elif was_playing_puzzle:
+		SceneTransition.change_scene()
 	else:
 		# after the 'overworld map' scene, we launch a level
 		
@@ -153,6 +161,11 @@ func push_career_trail() -> void:
 
 ## Returns 'true' if the player is current playing career mode
 func is_career_mode() -> bool:
+	return Global.SCENE_CAREER_MAP in Breadcrumb.trail
+
+
+## Returns 'true' if the player is current playing a cutscene in career mode
+func is_career_cutscene() -> bool:
 	return Global.SCENE_CAREER_MAP in Breadcrumb.trail
 
 

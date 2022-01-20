@@ -78,16 +78,16 @@ func _refresh_cutscene_force() -> void:
 func _will_play_preroll(settings: LevelSettings) -> bool:
 	if not ChatLibrary.has_preroll(settings.id):
 		return false
-	
-	return CurrentLevel.should_play_cutscene(ChatLibrary.chat_tree_for_preroll(settings.id), true)
+	var chat_tree := ChatLibrary.chat_tree_for_preroll(settings.id)
+	return ChatLibrary.should_play_cutscene(chat_tree, Levels.CutsceneForce.NONE)
 
 
 ## Returns 'true' if the specified level's postroll cutscene should be played.
 func _will_play_postroll(settings: LevelSettings) -> bool:
 	if not ChatLibrary.has_postroll(settings.id):
 		return false
-	
-	return CurrentLevel.should_play_cutscene(ChatLibrary.chat_tree_for_postroll(settings.id), true)
+	var chat_tree := ChatLibrary.chat_tree_for_postroll(settings.id)
+	return ChatLibrary.should_play_cutscene(chat_tree, Levels.CutsceneForce.NONE)
 
 
 func _on_pressed() -> void:
