@@ -118,13 +118,11 @@ func _overall_rank() -> float:
 		percent_complete = pow(percent_complete, 1.5)
 		
 		if percent_complete == 0:
-			# avoid dividing by zero
-			rank_result.seconds = 9999
+			overall_rank = RankCalculator.WORST_RANK
 		else:
 			rank_result.seconds = clamp(PuzzleState.level_performance.seconds / percent_complete, 0, 9999)
-		
-		rank_result = _rank_calculator.calculate_rank(rank_result)
-		overall_rank = rank_result.seconds_rank
+			rank_result = _rank_calculator.calculate_rank(rank_result)
+			overall_rank = rank_result.seconds_rank
 	else:
 		# for modes graded on score, we feed their current score into the rank calculator
 		var rank_result := _rank_calculator.calculate_rank()

@@ -171,8 +171,8 @@ func test_calculate_rank_ultra_200_lost() -> void:
 	assert_eq(RankCalculator.grade(rank.combo_score_per_line_rank), "S")
 
 
-## This is an edge case where, if the player gets too many points for ultra, they can sort of be robbed of a master
-## rank.
+## This is an edge case where, if the player clears too many lines for ultra, they can sort of be robbed of a master
+## rank. But, they should try to clear fewer lines.
 func test_calculate_rank_ultra_200_overshot() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 200)
 	PuzzleState.level_performance.seconds = 19
@@ -194,7 +194,7 @@ func test_calculate_rank_ultra_1() -> void:
 	PuzzleState.level_performance.lines = 1
 	PuzzleState.level_performance.score = 1
 	var rank := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank.seconds_rank), "SS+")
+	assert_eq(RankCalculator.grade(rank.seconds_rank), "AA")
 
 
 func test_calculate_rank_five_creatures() -> void:
@@ -409,11 +409,11 @@ func test_preplaced_pieces_ultra() -> void:
 	CurrentLevel.settings.rank.preplaced_pieces = 5
 	PuzzleState.level_performance.seconds = 17
 	var rank2 := _rank_calculator.calculate_rank()
-	assert_eq(RankCalculator.grade(rank2.seconds_rank), "SS")
+	assert_eq(RankCalculator.grade(rank2.seconds_rank), "S+")
 	
-	# 12 seconds is required, because some pieces are preplaced
+	# 11 seconds is required, because some pieces are preplaced
 	CurrentLevel.settings.rank.preplaced_pieces = 5
-	PuzzleState.level_performance.seconds = 12
+	PuzzleState.level_performance.seconds = 11
 	var rank3 := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank3.seconds_rank), "M")
 
@@ -439,7 +439,6 @@ func test_preplaced_pieces_sprint() -> void:
 	assert_eq(RankCalculator.grade(rank3.score_rank), "M")
 
 
-
 func test_target_leftover_score_low_combo_factor() -> void:
 	assert_almost_eq(_rank_calculator.target_leftover_score(12), 426.0, 10.0)
 	
@@ -454,3 +453,18 @@ func test_master_leftover_lines_veggie() -> void:
 	# it's impossible to have leftovers if you can't make boxes
 	CurrentLevel.settings.other.tile_set = PuzzleTileMap.TileSetType.VEGGIE
 	assert_eq(_rank_calculator.master_leftover_lines(CurrentLevel.settings), 0)
+
+
+func test_target_lines_for_score() -> void:
+	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 1)
+	assert_eq(1, _rank_calculator.target_lines_for_score(15.0, 15.0))
+	
+	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 20)
+	assert_eq(2, _rank_calculator.target_lines_for_score(15.0, 15.0))
+	
+	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 100)
+	assert_eq(6, _rank_calculator.target_lines_for_score(15.0, 15.0))
+	
+	# 20 points per line -- should take a little more than 50 lines because of the time for the combo to ramp up
+	CurrentLevel.settings.set_finish_condition(Milestone.SCORE, 1000)
+	assert_eq(53, _rank_calculator.target_lines_for_score(10.0, 9.0))
