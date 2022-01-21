@@ -329,3 +329,24 @@ func _on_SettingsMenu_quit_pressed() -> void:
 		PuzzleState.make_player_lose()
 	else:
 		_quit_puzzle()
+
+
+func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
+	if cheat == "finish" and PuzzleState.game_active:
+		# immediately end the current puzzle
+		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
+		match finish_condition.type:
+			Milestone.CUSTOMERS:
+				while PuzzleState.customer_scores.size() <= finish_condition.value:
+					PuzzleState.customer_scores.insert(0, 100)
+			Milestone.LINES:
+				PuzzleState.level_performance.lines = finish_condition.value
+			Milestone.PIECES:
+				PuzzleState.level_performance.pieces = finish_condition.value
+			Milestone.SCORE:
+				PuzzleState.level_performance.score = finish_condition.value
+				PuzzleState.level_performance.seconds += 9999
+			Milestone.TIME_OVER, Milestone.TIME_UNDER:
+				PuzzleState.level_performance.seconds = finish_condition.value
+		
+		detector.play_cheat_sound(true)
