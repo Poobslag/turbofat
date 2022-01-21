@@ -109,7 +109,7 @@ func calculate_rank(unranked_result: RankResult = null) -> RankResult:
 func _max_combo_score(lines: int) -> int:
 	var result := lines * 20
 	result -= COMBO_DEFICIT[min(lines, COMBO_DEFICIT.size() - 1)]
-	result = max(result, 5)
+	result = max(result, 0)
 	return result
 
 
@@ -220,7 +220,7 @@ func unranked_result() -> RankResult:
 	
 	rank_result.box_score_per_line = float(rank_result.box_score) / max(rank_result.lines, 1)
 	rank_result.combo_score_per_line = 20 * float(rank_result.combo_score) \
-			/ _max_combo_score(max(rank_result.lines, 1))
+			/ max(5, _max_combo_score(max(rank_result.lines, 1)))
 	rank_result.pickup_score_per_line = float(rank_result.pickup_score) / max(rank_result.lines, 1)
 	rank_result.speed = 60 * float(rank_result.lines) / max(rank_result.seconds, 1)
 	return rank_result
@@ -241,7 +241,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	var target_combo_score_per_line := master_combo_score(CurrentLevel.settings)
 	var target_pickup_score_per_line := master_pickup_score_per_line(CurrentLevel.settings)
 	var target_pickup_score := master_pickup_score(CurrentLevel.settings)
-	var target_lines: float
+	var target_lines: int
 	var leftover_lines := master_leftover_lines(CurrentLevel.settings)
 	
 	var finish_condition: Milestone = CurrentLevel.settings.finish_condition
@@ -257,13 +257,11 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			# warning-ignore:integer_division
 			target_lines = (finish_condition.value + CurrentLevel.settings.rank.preplaced_pieces) / 2.0
 		Milestone.SCORE:
-			target_lines = ceil((finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]) \
-					/ (target_box_score_per_line + target_combo_score_per_line + 1))
-			target_lines = max(0, target_lines - CurrentLevel.settings.rank.preplaced_pieces / 2.0)
+			target_lines = target_lines_for_score(target_box_score_per_line, target_combo_score_per_line)
 			leftover_lines = 0 # you're racing to a target score, it's inefficient to stack extra pieces
 		Milestone.TIME_OVER:
-			target_lines = target_speed * finish_condition.value / 60.0
-			target_lines += CurrentLevel.settings.rank.preplaced_pieces / 2.0
+			target_lines = ceil(target_speed * finish_condition.value / 60.0)
+			target_lines += ceil(CurrentLevel.settings.rank.preplaced_pieces / 2.0)
 	
 	# decrease target_lines based on leftover_lines
 	if finish_condition.type in [Milestone.PIECES, Milestone.TIME_OVER]:
@@ -274,12 +272,12 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
 	if rank_result.compare == "-seconds" or finish_condition.type == Milestone.TIME_OVER:
 		# for modes like 'ultra' and 'sprint' where time matters, line/piece rank scales with speed
-		rank_result.lines_rank = log(rank_result.lines / target_lines) / log(RDF_SPEED)
-		rank_result.pieces_rank = log(rank_result.pieces / (target_lines * 2)) / log(RDF_SPEED)
+		rank_result.lines_rank = log(rank_result.lines / float(target_lines)) / log(RDF_SPEED)
+		rank_result.pieces_rank = log(rank_result.pieces / (target_lines * 2.0)) / log(RDF_SPEED)
 	else:
 		# for modes like 'marathon' where time matters, line/piece rank scales with endurance
-		rank_result.lines_rank = log(rank_result.lines / target_lines) / log(RDF_ENDURANCE)
-		rank_result.pieces_rank = log(rank_result.pieces / (target_lines * 2)) / log(RDF_ENDURANCE)
+		rank_result.lines_rank = log(rank_result.lines / float(target_lines)) / log(RDF_ENDURANCE)
+		rank_result.pieces_rank = log(rank_result.pieces / (target_lines * 2.0)) / log(RDF_ENDURANCE)
 	
 	if target_box_score_per_line == 0:
 		# award the player master rank if it's impossible to score any box points on a level
@@ -324,15 +322,11 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 		if rank_result.compare == "-seconds":
 			# for modes like 'ultra' where you race to a score, rank scales with speed
 			var tmp_speed := rank_lpm(tmp_overall_rank)
-			var tmp_scoring_target: float = finish_condition.value + COMBO_DEFICIT[COMBO_DEFICIT.size() - 1]
+			var tmp_lines: float = target_lines_for_score(tmp_box_score_per_line, tmp_combo_score_per_line)
+			var seconds_per_line := 60 / tmp_speed
+			var target_seconds := seconds_per_line * tmp_lines
 			
-			# factor in preplaced pieces
-			if CurrentLevel.settings.rank.preplaced_pieces:
-				tmp_scoring_target -= CurrentLevel.settings.rank.preplaced_pieces * 0.5 \
-						* (1 + tmp_box_score_per_line + tmp_combo_score_per_line)
-			
-			var points_per_second := (tmp_speed * (1 + tmp_box_score_per_line + tmp_combo_score_per_line)) / 60
-			if points_per_second > 0 and tmp_scoring_target / points_per_second < rank_result.seconds:
+			if target_seconds < rank_result.seconds:
 				overall_rank_min = tmp_overall_rank
 			else:
 				overall_rank_max = tmp_overall_rank
@@ -399,6 +393,32 @@ func target_leftover_score(leftover_lines: int) -> float:
 		combo_score = max(0, combo_score - COMBO_DEFICIT[min(ceil(leftover_lines), COMBO_DEFICIT.size() - 1)])
 	
 	return box_score + combo_score + leftover_lines
+
+
+## calculate the number of lines needed to reach a target score
+func target_lines_for_score(box_score_per_line: float, combo_score_per_line: float) -> int:
+	if CurrentLevel.settings.finish_condition.value == 0:
+		return 0
+	
+	var combo_efficiency := combo_score_per_line / 20.0
+	
+	var result := 0
+	for i in range(1, COMBO_DEFICIT.size()):
+		if (1 + box_score_per_line) * i + _max_combo_score(i) * combo_efficiency \
+				>= CurrentLevel.settings.finish_condition.value:
+			result = i
+			break
+	
+	if not result:
+		var tmp_scoring_target: float = CurrentLevel.settings.finish_condition.value \
+				+ COMBO_DEFICIT[COMBO_DEFICIT.size() - 1] * combo_efficiency
+		result = ceil(tmp_scoring_target / (1 + box_score_per_line + combo_score_per_line))
+	
+	# factor in preplaced pieces
+	if CurrentLevel.settings.rank.preplaced_pieces:
+		result = max(1, result - (CurrentLevel.settings.rank.preplaced_pieces / 2.0))
+	
+	return result
 
 
 ## Reduces the player's ranks if they topped out.
