@@ -139,9 +139,16 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	
 	if (PlayerData.career.hours_passed == 2 or PlayerData.career.hours_passed == 5) \
 			and not PlayerData.career.skipped_previous_level:
-		var chat_key: String = Utils.rand_value(["chat/career/general_00_0", "chat/career/general_00_1"])
-		var chat_tree := ChatLibrary.chat_tree_for_key(chat_key)
-		CutsceneManager.enqueue_cutscene(chat_tree)
+		
+		var potential_chat_keys := []
+		for potential_chat_key in ["chat/career/general_00_0", "chat/career/general_00_1"]:
+			if not PlayerData.chat_history.is_chat_finished(potential_chat_key):
+				potential_chat_keys.append(potential_chat_key)
+		
+		if potential_chat_keys:
+			var chat_key: String = Utils.rand_value(potential_chat_keys)
+			var chat_tree := ChatLibrary.chat_tree_for_key(chat_key)
+			CutsceneManager.enqueue_cutscene(chat_tree)
 	
 	CutsceneManager.enqueue_level({
 		"level_id": level_settings.id,
