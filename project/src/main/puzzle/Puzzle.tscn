@@ -753,13 +753,14 @@ stream = ExtResource( 11 )
 bus = "Sound Bus"
 
 [node name="CheatCodeDetector" parent="." instance=ExtResource( 8 )]
-codes = [ "delays", "bigfps" ]
+codes = [ "delays", "bigfps", "finish" ]
 
 [node name="PuzzleMusicManager" type="Node" parent="."]
 script = ExtResource( 19 )
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 50 )]
 
+[connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
