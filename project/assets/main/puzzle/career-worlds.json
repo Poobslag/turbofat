@@ -146,6 +146,7 @@
       "distance": 40,
       "icon": "skull",
       "piece_speed": "3-7",
+      "cutscene_path": "chat/career/marsh",
       "boss_level":
       {
         "id": "career/boss_3k"

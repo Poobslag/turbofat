@@ -1,0 +1,19 @@
+{"version": "2476", "skip_if": "level_finished marsh/pulling_for_everyone"}
+
+[location]
+indoors
+
+[characters]
+player, p1, kitchen_5
+sensei, s1, kitchen_3
+skins, s, kitchen_7
+
+s1: /._. Hmm... so, do you remember that thing I said not to do?
+s: ._.; ...
+s1: <_< That thing that you're still doing?
+s: .__.; Mawr...
+s1: <__< You're still doing that thing.
+s: u__u I know, I know! I'm trying, I really am! ...I'll practice more, I promise.
+p1: It's okay, we're not angry. We're just, umm...
+p1: ^_^ ...Just, just keep practicing. You'll get there.
+s: u_u Thanks, mowwr...

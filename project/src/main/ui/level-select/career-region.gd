@@ -4,11 +4,14 @@ class_name CareerRegion
 ## A human-readable region name, such as 'Lemony Thickets'
 var name: String
 
-## A human-readable icon name, such as 'forest' or 'cactus'
-var icon_name: String
+## A resource path containing cutscenes for this region, such as 'chat/career/marsh'
+var cutscene_path: String
 
 ## The smallest distance the player must travel to enter this region.
 var distance := 0
+
+## A human-readable icon name, such as 'forest' or 'cactus'
+var icon_name: String
 
 ## The smallest distance the player must travel to exit this region.
 var length := 0
@@ -25,8 +28,9 @@ var max_piece_speed := "0"
 
 func from_json_dict(json: Dictionary) -> void:
 	name = json.get("name", "")
-	icon_name = json.get("icon", "")
+	cutscene_path = json.get("cutscene_path", "")
 	distance = int(json.get("distance", 0))
+	icon_name = json.get("icon", "")
 	var piece_speed_string: String = json.get("piece_speed", "0")
 	if "-" in piece_speed_string:
 		min_piece_speed = StringUtils.substring_before(piece_speed_string, "-")

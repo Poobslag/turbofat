@@ -1,0 +1,19 @@
+{"version": "2476", "skip_if": "level_finished marsh/pulling_for_everyone"}
+
+[location]
+indoors
+
+[characters]
+player, p1, entrance_10
+sensei, s1, entrance_7
+shirts, s, entrance_2
+
+s: Oh hey what's up. I heard you guys came the other day when I wasn't here. So did I miss like anything... important?
+s1: Ahh, nothing important. We're still trying to figure out why this location isn't attracting more customers.
+p1: ^_^ Yeah, Skins and Bones showed us their cooking skills. ...They seem nice!
+s: <__< Hah. Yeah they DO seem nice.
+p1: /._. Yeah! ...Umm, wait what? ...I feel like there's something you're not telling me.
+s: -_- Hah hah. Yeah that's alright, you'll figure it out.
+p1: <_< Umm... Alright. Sounds fun. Anywaaay...
+p1: Why don't you show us your skills in the kitchen! Let's focus on some combos today, if you know about those.
+s: ^_^ Yeah yeah! Combos. Sure thing.

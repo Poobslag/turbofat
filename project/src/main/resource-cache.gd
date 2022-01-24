@@ -212,10 +212,7 @@ func _preload_next_scene() -> void:
 	_work_done += WORK_PER_SCENE
 
 
-## Returns a list of all png files in the /assets directory.
-##
-## Recursively traverses the assets directory searching for pngs. Any additional directories it discovers are appended
-## to a queue for later traversal.
+## Returns a list of all png file paths in the /assets directory, performing a tree traversal.
 ##
 ## Note: We search for '.png.import' files instead of searching for png files directly. This is because png files
 ## 	disappear when the project is exported.

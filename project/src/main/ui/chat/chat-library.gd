@@ -302,6 +302,7 @@ static func chat_key_from_path(path: String) -> String:
 	var chat_key := path
 	chat_key = chat_key.trim_suffix(".chat")
 	chat_key = chat_key.trim_prefix("res://assets/main/")
+	chat_key = chat_key.trim_prefix("res://assets/test/")
 	if chat_key.begins_with("creatures/primary/"):
 		chat_key = "creature/" + chat_key.trim_prefix("creatures/primary/")
 	elif chat_key.begins_with("puzzle/levels/cutscenes"):
