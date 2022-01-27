@@ -44,7 +44,7 @@ func _upgrade_settings(path: String) -> void:
 		_converted.append(path)
 
 
-## Recursively searches for levels to upgrade.
+## Returns a list of all level paths within 'LEVEL_DIRS', performing a tree traversal.
 ##
 ## Returns:
 ## 	List of string paths to json resources containing level data to upgrade.

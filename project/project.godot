@@ -1195,6 +1195,8 @@ LevelTriggerEffects="*res://src/main/puzzle/level/level-trigger-effects.gd"
 PieceSpeeds="*res://src/main/puzzle/piece/piece-speeds.gd"
 PieceTypes="*res://src/main/puzzle/piece/piece-types.gd"
 Breadcrumb="*res://src/main/breadcrumb.gd"
+CareerLevelLibrary="*res://src/main/ui/level-select/career-level-library.gd"
+CareerCutsceneLibrary="*res://src/main/ui/chat/career-cutscene-library.gd"
 ChatLibrary="*res://src/main/ui/chat/chat-library.gd"
 ChattableManager="*res://src/main/world/chattable-manager.gd"
 CreatureLoader="*res://src/main/world/creature/creature-loader.gd"
@@ -1217,7 +1219,6 @@ SceneTransition="*res://src/main/ui/scene-transition.gd"
 SystemData="*res://src/main/system-data.gd"
 SystemSave="*res://src/main/system-save.gd"
 PhaseConditions="*res://src/main/puzzle/level/phase-conditions.gd"
-CareerLevelLibrary="*res://src/main/ui/level-select/career-level-library.gd"
 
 [debug]
 

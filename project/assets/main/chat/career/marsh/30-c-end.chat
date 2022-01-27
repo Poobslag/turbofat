@@ -1,0 +1,56 @@
+{"version": "2476", "skip_if": "level_finished marsh/lets_all_get_merry"}
+
+[location]
+outdoors
+
+[characters]
+player, p1, restaurant_1
+skins, s, restaurant_11
+
+s: ^O^ Remember when you said, like, there's more than one way to bone a dog? Ha ha! That was really funny~
+p1: ^_^ Ha ha! Yeah. Wait, what's so funny about that?
+ (say_if not chat_finished level/marsh/pulling_for_bones_100)
+p1: <__< Why does everyone keep asking me that!?
+ (say_if chat_finished level/marsh/pulling_for_bones_100)
+s: /._. Umm! I don't know. I don't remember now! ...So what are you doing later? Did you want to see a movie together?
+[yes] OwO It's a date!
+[no_movie_0] No, I've seen it
+[no_movie_1] No, I'm busy
+
+[no_movie_0]
+p1: <_< No, that's okay. I think I've already seen that movie...
+s: ^_^ You did? Well um... maybe we could watch some dinner instead?
+[yes] It's a date!
+[no_dinner_0a] No, I've seen it
+[no_dinner_0b] No, I'm not hungry
+
+[no_movie_1]
+p1: ^n^ Oh, That's okay. I think I already have plans tonight...
+s: ^_^ You did? Well um... maybe we could get dinner later this week?
+[yes] It's a date!
+[no_dinner_1a] I'll be busy
+[no_dinner_1b] I won't be hungry
+
+[no_dinner_0a]
+p1: <__< Actually, I think I've already seen that dinner, too...
+[ending]
+
+[no_dinner_0b]
+p1: ^N^ Oh I'm not hungry, I just ate lunch...
+[ending]
+
+[no_dinner_1a]
+p1: <__< Actually, I think I already have plans later this week, too...
+[ending]
+
+[no_dinner_1b]
+p1: ^N^ I don't think I'll want dinner later this week! I'll have already eaten such a big lunch...
+[ending]
+
+[yes]
+p1: OwO... Sure, it's a date!
+[ending]
+
+[ending]
+s: OwO... Okay! ...I love you!
+(You are now in a relationship with Skins.)

@@ -1,0 +1,77 @@
+{"version": "2476"}
+
+[location]
+indoors
+
+[characters]
+player, p1, kitchen_7
+sensei, s1, kitchen_5
+richie, r, kitchen_11
+skins, k, kitchen_1
+bones, b, kitchen_3
+shirts, h, kitchen_9
+
+p1: ^_^/ Well... I guess we're out of here! It was nice meeting all of you.
+s1: ^__^ Congratulations on the restaurant's success! All your hard work really paid off.
+r: ^O^ Us? Heh what are you talking about! You two did all the work.
+p1: <_< Wait, you didn't do anything? ...We didn't do anything either! Did we?
+ (sensei mood /._.)
+b: Well, you and #sensei# got all these customers to come!
+p1: /._. Maybe? I talked to two or three of them at most! ...Were they all friends?
+k: ^y^ You trained us to cook better! I bet that made a difference too.
+[training-good] You improved a lot
+[training-same] You didn't improve
+[training-bad] You got worse
+
+[training-good]
+p1: ^_^ Yeah! Your cooking's gotten way better. That goes for all of you! I bet that's it.
+ (skins mood ^__^, bones mood ^y^)
+[after-training]
+
+[training-same]
+p1: ._.; I tried to train you but there's only so much I could teach you in such a short time!
+p1: ^N^ Sorry Skins, I think it was probably something else...
+ (skins mood ._.;)
+[after-training]
+
+[training-bad]
+p1: -_- Skins, somehow your cooking actually got worse after our training. Now that you mention it,
+p1: /._. Something brought in even more customers to make up for the ones you drove away.
+ (skins mood .__.;)
+k: u_u Mowwr...
+[after-training]
+
+[after-training]
+h: /._. I heard the Buttercup Cafe shut down. ...Maybe we just got their leftovers?
+[buttercup-happy] That's great!
+[buttercup-ok] That's interesting
+[buttercup-sad] That's too bad
+
+[buttercup-happy]
+p1: ^O^ They did? Wow! Good riddens to bad restaurants. Did they finally go out of business?
+r: ^o^ Yeah! They'd been bleeding customers for awhile now.
+[after-buttercup]
+
+[buttercup-ok]
+p1: /._. Oh, I didn't know that. ...Did they just go out of business or what?
+r: ^y^ Yeah! They'd been bleeding customers for awhile now.
+[after-buttercup]
+
+[buttercup-sad]
+p1: u_u They did? Oh no! ...I didn't hear about that. Did something happen? Is Diota okay?
+r: /._. Ehh you didn't know? They'd been bleeding customers for awhile now!
+[after-buttercup]
+
+[after-buttercup]
+r: Pretty sure they burned through their savings and couldn't make rent, it's nothing weird.
+r: ^Y^ ...Like I said before, going head to head the garbage food always wins!
+ (say_if chat_finished chat/meet_the_competition)
+r: ^Y^ Bottom line is when people gotta pick between healthy food and garbage food, the garbage food always wins!
+ (say_if not chat_finished chat/meet_the_competition)
+r: ._.; I mean the uhh... the GOURMET food! Our food.
+ (sensei mood >__<)
+s1: ^y^ Well, whatever it is... A win's a win! I say we take it.
+ (richie mood ^Y^)
+s1: ^__^/ Goodbye everyone! Thank you for treating my beloved restaurant with care.
+ (player exits, sensei exits)
+ (player mood ^_^, bones mood ^__^/, shirts mood ^__^, skins mood ^__^/, richie mood ^_^)

@@ -3,6 +3,9 @@ extends Node
 ##
 ## Launching this scene also advances the player towards their goal if 'distance earned' is nonzero.
 
+## Chat key root for non-region-specific cutscenes
+const GENERAL_CHAT_KEY_ROOT := "chat/career/general"
+
 ## The number of levels the player can choose between
 const SELECTION_COUNT := 3
 
@@ -137,24 +140,32 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 		customers.append(_world.customers[level_index].creature_def)
 	CurrentLevel.customers = customers
 	
+	var chat_key_pair := {}
+	
 	if (PlayerData.career.hours_passed == 2 or PlayerData.career.hours_passed == 5) \
 			and not PlayerData.career.skipped_previous_level:
-		
-		var potential_chat_keys := []
-		for potential_chat_key in ["chat/career/general_00_0", "chat/career/general_00_1"]:
-			if not PlayerData.chat_history.is_chat_finished(potential_chat_key):
-				potential_chat_keys.append(potential_chat_key)
-		
-		if potential_chat_keys:
-			var chat_key: String = Utils.rand_value(potential_chat_keys)
-			var chat_tree := ChatLibrary.chat_tree_for_key(chat_key)
-			CutsceneManager.enqueue_cutscene(chat_tree)
+		var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+		if region.cutscene_path:
+			# find a region-specific cutscene
+			chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([region.cutscene_path])
+		if not chat_key_pair:
+			# no region-specific cutscene available; find a general cutscene
+			chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([GENERAL_CHAT_KEY_ROOT])
+	
+	var preroll_key: String = chat_key_pair.get("preroll", "")
+	var postroll_key: String = chat_key_pair.get("postroll", "")
+	
+	if preroll_key:
+		CutsceneManager.enqueue_cutscene(ChatLibrary.chat_tree_for_key(preroll_key))
 	
 	CutsceneManager.enqueue_level({
 		"level_id": level_settings.id,
 		"piece_speed": _piece_speed,
 		"customers": customers,
 	})
+	
+	if postroll_key:
+		CutsceneManager.enqueue_cutscene(ChatLibrary.chat_tree_for_key(postroll_key))
 	
 	PlayerData.career.push_career_trail()
 
