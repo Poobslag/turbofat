@@ -4,7 +4,7 @@ extends Node
 const SCREEN_FADE_OUT_DURATION := 0.3
 const SCREEN_FADE_IN_DURATION := 0.6
 
-## A scene transition emits these four signals in order as the screen fades out and fades back in
+## A scene transition emits these two signals in order as the screen fades out and fades back in
 signal fade_out_started
 signal fade_in_started
 
@@ -26,8 +26,10 @@ var breadcrumb_arg_array: Array
 ##
 ## 	'skip_transition': If 'true', the scene changes immediately without fading.
 func push_trail(path: String, skip_transition: bool = false) -> void:
-	if skip_transition or not get_tree().get_nodes_in_group("scene_transition_covers"):
-		# explicitly assign fading to false in case the user clicks a button while still fading in
+	if skip_transition \
+			or not get_tree().get_nodes_in_group("scene_transition_covers") \
+			or "::" in path:
+		# explicitly assign fading to false in case the scene changes while still fading in
 		fading = false
 		
 		Breadcrumb.push_trail(path)
@@ -43,6 +45,9 @@ func pop_trail(skip_transition: bool = false) -> void:
 	if skip_transition \
 			or not get_tree().get_nodes_in_group("scene_transition_covers") \
 			or (Breadcrumb.trail and "::" in Breadcrumb.trail.front()):
+		# explicitly assign fading to false in case the scene changes while still fading in
+		fading = false
+		
 		Breadcrumb.pop_trail()
 	else:
 		_fade_out(funcref(Breadcrumb, "pop_trail"))
@@ -60,6 +65,9 @@ func replace_trail(path: String, skip_transition: bool = false) -> void:
 	if skip_transition \
 			or not get_tree().get_nodes_in_group("scene_transition_covers") \
 			or "::" in path:
+		# explicitly assign fading to false in case the scene changes while still fading in
+		fading = false
+		
 		Breadcrumb.replace_trail(path)
 	else:
 		_fade_out(funcref(Breadcrumb, "replace_trail"), [path])

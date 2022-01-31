@@ -14,7 +14,7 @@ func _on_SettingsMenu_hide() -> void:
 
 
 func _on_SettingsMenu_quit_pressed() -> void:
-	Breadcrumb.pop_trail()
+	SceneTransition.pop_trail()
 
 
 func _on_SettingsMenu_other_quit_pressed() -> void:

@@ -4,7 +4,7 @@ class_name CareerRegion
 ## A human-readable region name, such as 'Lemony Thickets'
 var name: String
 
-## A resource path containing cutscenes for this region, such as 'chat/career/marsh'
+## A resource chat key prefix for cutscenes for this region, such as 'chat/career/marsh'
 var cutscene_path: String
 
 ## The smallest distance the player must travel to enter this region.
