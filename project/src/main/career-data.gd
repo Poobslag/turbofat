@@ -150,10 +150,7 @@ func push_career_trail() -> void:
 		CutsceneManager.push_trail()
 	elif is_day_over():
 		# After the final level, we show a 'you win' screen.
-		#
-		# We do not apply a SceneTransition -- this scene change occurs immediately when the scene is loaded, and
-		# applying a fade in and fade out scene transition simultaneously results in unpredictable behavior.
-		Breadcrumb.replace_trail("res://src/main/ui/career/CareerWin.tscn")
+		SceneTransition.replace_trail("res://src/main/ui/career/CareerWin.tscn")
 	else:
 		# After a puzzle (or any other scene), we go back to the career map.
 		SceneTransition.change_scene()
