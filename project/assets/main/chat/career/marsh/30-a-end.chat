@@ -1,7 +1,7 @@
 {"version": "2476", "skip_if": "level_finished marsh/lets_all_get_merry"}
 
 [location]
-outdoors
+marsh/outside_turbo_fat
 
 [characters]
 player, p1, restaurant_1

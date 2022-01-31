@@ -1,7 +1,7 @@
 {"version": "2476", "skip_if": "level_finished marsh/goodbye_everyone"}
 
 [location]
-outdoors
+marsh/outside_turbo_fat
 
 [characters]
 player, p1, restaurant_4
