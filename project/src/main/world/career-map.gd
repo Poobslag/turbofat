@@ -23,9 +23,20 @@ func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	MusicPlayer.play_chill_bgm()
 	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
-	if PlayerData.career.is_day_over():
+	
+	var redirected := false
+	
+	# if they've played eight levels, redirect them to the 'you win' screen
+	if not redirected and PlayerData.career.is_day_over():
 		PlayerData.career.push_career_trail()
-	else:
+		redirected = true
+	
+	# if they haven't seen this region's prologue, redirect them to the prologue cutscene
+	if not redirected and PlayerData.career.should_play_prologue():
+		PlayerData.career.push_career_trail()
+		redirected = true
+	
+	if not redirected:
 		_refresh_ui()
 		_level_select_control.focus_button()
 
@@ -142,6 +153,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	
 	var chat_key_pair := {}
 	
+	# if it's the 3rd or 6th level, enqueue a cutscene
 	if (PlayerData.career.hours_passed == 2 or PlayerData.career.hours_passed == 5) \
 			and not PlayerData.career.skipped_previous_level:
 		var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)

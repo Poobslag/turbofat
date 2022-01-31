@@ -1,6 +1,9 @@
 class_name CareerRegion
 ## Stores information about a block of levels for career mode.
 
+## Chat key containing each region's prologue cutscene
+const PROLOGUE_CHAT_KEY_NAME := "prologue"
+
 ## A human-readable region name, such as 'Lemony Thickets'
 var name: String
 
@@ -45,3 +48,7 @@ func from_json_dict(json: Dictionary) -> void:
 	if json.has("boss_level"):
 		boss_level = CareerLevel.new()
 		boss_level.from_json_dict(json.get("boss_level"))
+
+
+func get_prologue_chat_key() -> String:
+	return "%s/%s" % [cutscene_path, PROLOGUE_CHAT_KEY_NAME] if cutscene_path else ""

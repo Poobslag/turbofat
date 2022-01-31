@@ -81,6 +81,10 @@ func has_postroll(level_id: String) -> bool:
 	return FileUtils.file_exists(_postroll_path(level_id))
 
 
+func chat_exists(chat_key: String) -> bool:
+	return FileUtils.file_exists(path_from_chat_key(chat_key))
+
+
 ## Returns a ChatIcon enum representing the creature's next conversation.
 func chat_icon_for_creature(creature: Creature) -> int:
 	var result := ChatIcon.NONE

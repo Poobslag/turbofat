@@ -139,21 +139,41 @@ func push_career_trail() -> void:
 	while Breadcrumb.trail.front() != Global.SCENE_CAREER_MAP:
 		Breadcrumb.trail.pop_front()
 	
-	if not CutsceneManager.is_queue_empty():
+	var redirected := false
+	if not redirected and not CutsceneManager.is_queue_empty():
 		# If there are pending puzzles/cutscenes, show them.
 		
 		# If the player is playing a puzzle, we immediately apply failure penalties to the player's save data so they
-		# can't quit and retry
+		# can't quit and retry.
 		if CutsceneManager.is_front_level():
 			_preapply_failure_penalties()
 		
 		CutsceneManager.push_trail()
-	elif is_day_over():
+		redirected = true
+	
+	if not redirected and is_day_over():
 		# After the final level, we show a 'you win' screen.
 		SceneTransition.replace_trail("res://src/main/ui/career/CareerWin.tscn")
-	else:
+		redirected = true
+	
+	if not redirected and should_play_prologue():
+		# If they haven't seen the region's prologue cutscene, we show it.
+		var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
+		var prologue_chat_key: String = region.get_prologue_chat_key()
+		CurrentCutscene.set_launched_cutscene(prologue_chat_key)
+		CurrentCutscene.push_cutscene_trail()
+		redirected = true
+	
+	if not redirected:
 		# After a puzzle (or any other scene), we go back to the career map.
 		SceneTransition.change_scene()
+
+
+func should_play_prologue() -> bool:
+	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
+	var prologue_chat_key: String = region.get_prologue_chat_key()
+	return ChatLibrary.chat_exists(prologue_chat_key) \
+			and not PlayerData.chat_history.is_chat_finished(prologue_chat_key)
 
 
 ## Returns 'true' if the player is current playing career mode
