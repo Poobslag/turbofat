@@ -152,16 +152,6 @@ func is_chatting() -> bool:
 	return not chatters.empty()
 
 
-## Returns 'true' if the creatures in this chat are walking and talking at the same time.
-func is_walking_chat() -> bool:
-	var result := false
-	for chatter in chatters:
-		if chatter is WalkingBuddy:
-			result = true
-			break
-	return result
-
-
 func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
 	var creatures := []
 	# calculate which creature ids are involved in this chat

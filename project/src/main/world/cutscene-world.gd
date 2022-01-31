@@ -22,6 +22,9 @@ func _ready() -> void:
 	EnvironmentScene = load(environment_path)
 	_refresh_environment_scene()
 	
+	if CurrentCutscene.chat_tree.meta.has("fixed_zoom"):
+		_camera.fixed_zoom = CurrentCutscene.chat_tree.meta["fixed_zoom"]
+	
 	MusicPlayer.play_chill_bgm()
 	ChattableManager.refresh_creatures()
 	_launch_cutscene()
