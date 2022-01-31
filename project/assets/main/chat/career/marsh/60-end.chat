@@ -65,9 +65,6 @@ r: /._. Ehh you didn't know? They'd been bleeding customers for awhile now!
 [after-buttercup]
 r: Pretty sure they burned through their savings and couldn't make rent, it's nothing weird.
 r: ^Y^ ...Like I said before, going head to head the garbage food always wins!
- (say_if chat_finished chat/meet_the_competition)
-r: ^Y^ Bottom line is when people gotta pick between healthy food and garbage food, the garbage food always wins!
- (say_if not chat_finished chat/meet_the_competition)
 r: ._.; I mean the uhh... the GOURMET food! Our food.
  (sensei mood >__<)
 s1: ^y^ Well, whatever it is... A win's a win! I say we take it.
