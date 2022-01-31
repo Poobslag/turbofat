@@ -6,7 +6,11 @@ const WORLD0_ID := "world0"
 func _on_Career_pressed() -> void:
 	PlayerData.creature_queue.clear()
 	CurrentLevel.clear_launched_level()
-	SceneTransition.push_trail(Global.SCENE_CAREER_MAP)
+	
+	# Launch the first scene in career mode. This is probably the career map, but in some edge cases it could be a
+	# cutscene or victory screen.
+	Breadcrumb.trail.push_front(Global.SCENE_CAREER_MAP)
+	PlayerData.career.push_career_trail()
 
 
 func _on_Story_pressed() -> void:
