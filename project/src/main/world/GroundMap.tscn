@@ -29,7 +29,6 @@
 
 [node name="GroundMap" type="TileMap"]
 position = Vector2( -2, 1 )
-scale = Vector2( 2.5, 2.5 )
 mode = 1
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 128, 64 )

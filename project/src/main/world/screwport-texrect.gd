@@ -19,7 +19,7 @@ func _ready() -> void:
 		return
 	
 	get_tree().get_root().connect("size_changed", self, "_on_Viewport_size_changed")
-	_viewport = get_tree().current_scene.get_node(texture.viewport_path)
+	_viewport = owner.get_node(texture.viewport_path)
 	_viewport.connect("size_changed", self, "_on_Viewport_size_changed")
 	_viewport_root = _viewport.get_node("ViewportRoot")
 	

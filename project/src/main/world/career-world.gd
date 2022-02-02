@@ -29,7 +29,7 @@ var customers := []
 ## path on which which the player and sensei are placed
 onready var _player_path2d: Path2D = get_node(player_path2d_path)
 
-onready var _obstacles := $Obstacles
+onready var _obstacles := $Environment/Obstacles
 onready var _obstacle_manager: ObstacleManager = $ObstacleManager
 onready var _camera: Camera2D = $Camera
 
