@@ -100,3 +100,11 @@ func should_chat() -> bool:
 func get_overworld_ui() -> OverworldUi:
 	var nodes := get_tree().get_nodes_in_group("overworld_ui")
 	return nodes[0]
+
+
+## Locates the node responsible for creating and initializing chat icons, if one exists.
+##
+## The free-roam sections in story mode have chat icons. Career mode and cutscenes do not.
+func get_chat_icon_container() -> ChatIcons:
+	var nodes := get_tree().get_nodes_in_group("chat_icon_containers")
+	return nodes[0] if nodes else null
