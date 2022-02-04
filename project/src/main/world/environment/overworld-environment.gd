@@ -21,10 +21,12 @@ func _ready() -> void:
 ## Adds a new obstacle. The obstacle is placed below the given node in the list of children.
 func add_obstacle_below_node(node: Node2D, child_node: Node2D) -> void:
 	_obstacles.add_child_below_node(node, child_node)
+	process_new_obstacle(child_node)
 
 
 func add_obstacle(node: Node2D) -> void:
 	_obstacles.add_child(node)
+	process_new_obstacle(node)
 
 
 ## Relocate a creature to a spawn point.
@@ -67,6 +69,9 @@ func add_creature(creature_id: String = "", chattable: bool = true) -> Creature:
 
 ## Creates shadows and chat icons when an obstacle is added to the world.
 func process_new_obstacle(obstacle: Node2D) -> void:
+	if not is_inside_tree():
+		return
+	
 	# create chat icon
 	if _chat_icons and obstacle.is_in_group("chattables"):
 		_chat_icons.create_icon(obstacle)

@@ -67,6 +67,7 @@ __meta__ = {
 [node name="World" type="Node" parent="."]
 script = ExtResource( 25 )
 player_path2d_path = NodePath("Environment/PlayerPath")
+EnvironmentScene = ExtResource( 4 )
 MileMarkerScene = ExtResource( 48 )
 
 [node name="Environment" type="Node2D" parent="World" groups=["overworld_environments"] instance=ExtResource( 4 )]

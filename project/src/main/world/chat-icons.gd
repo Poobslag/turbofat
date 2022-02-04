@@ -19,7 +19,7 @@ func _ready() -> void:
 func recreate_all_icons() -> void:
 	# assign chat_bubble_type for all creatures based on ChatLibrary
 	for creature in get_tree().get_nodes_in_group("creatures"):
-		var chat_bubble_type := ChatLibrary.chat_icon_for_creature(creature)
+		var chat_bubble_type: int = ChatLibrary.chat_icon_for_creature(creature)
 		creature.set_meta("chat_bubble_type", chat_bubble_type)
 	
 	# remove existing chat icons
