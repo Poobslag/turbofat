@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/main/world/environment/for-lease-sign.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=4]
@@ -83,7 +84,12 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, -371.625, 243.731, 0, 0, 0, 0, 111.709, 374.478, 0, 0, 0, 0, 471.926, 546.111, 0, 0, 0, 0, 684.81, 553.451, 0, 0, 0, 0, 932.105, 487.379, 0, 0, 0, 0, 1098.23, 391.104, 0, 0, 0, 0, 1222.82, 368.451, 0, 0, 0, 0, 1400.27, 398.655, 0, 0, 0, 0, 1600.37, 347.686, 0, 0, 0, 0, 1817.29, 227.125, 0, 0, 0, 0, 2101.23, 203.817, 0, 0, 0, 0, 2285.58, 284.336, 0, 0, 0, 0, 2467.81, 208.055, 0, 0, 0, 0, 2656.54, 103.255, 0, 0, 0, 0, 2847.09, 136.011, 0, 0, 0, 0, 3083.72, 306.148, 0, 0, 0, 0, 3283.85, 358.284, 0, 0, 0, 0, 3465.48, 316.239, 0, 0, 0, 0, 3653.85, 321.284, 0, 0, 0, 0, 3887.61, 375.102, 0, 0, 0, 0, 4122.69, 347.904, 0, 0, 0, 0, 4247.7, 299.169 )
 }
 
-[node name="Environment" type="Node2D"]
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
+script = ExtResource( 1 )
+creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
+shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 23 )
 
 [node name="Ground" type="Node2D" parent="."]
 z_index = -1

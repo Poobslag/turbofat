@@ -4,7 +4,9 @@
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/level-select/HookableGradeLabel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/MarshEnvironment.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=5]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=9]
 [ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=11]
@@ -14,7 +16,6 @@
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=15]
 [ext_resource path="res://src/main/ui/career/career-time-label.gd" type="Script" id=16]
 [ext_resource path="res://src/main/ui/career/career-distance.gd" type="Script" id=17]
-[ext_resource path="res://src/main/world/obstacle-manager.gd" type="Script" id=18]
 [ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/career-world.gd" type="Script" id=25]
 [ext_resource path="res://src/main/ui/career/career-map-level-select.gd" type="Script" id=28]
@@ -26,7 +27,6 @@
 [ext_resource path="res://src/main/world/environment/MileMarker.tscn" type="PackedScene" id=48]
 [ext_resource path="res://src/main/world/career-camera.gd" type="Script" id=49]
 [ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=50]
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=59]
 
 [sub_resource type="StyleBoxFlat" id=20]
 bg_color = Color( 0.423529, 0.262745, 0.192157, 1 )
@@ -69,14 +69,12 @@ script = ExtResource( 25 )
 player_path2d_path = NodePath("Environment/PlayerPath")
 MileMarkerScene = ExtResource( 48 )
 
-[node name="Environment" parent="World" instance=ExtResource( 4 )]
-
-[node name="ObstacleManager" type="Node" parent="World"]
-script = ExtResource( 18 )
-creature_shadows_path = NodePath("../Environment/Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
-shadow_caster_shadows_path = NodePath("../Environment/Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
-obstacles_path = NodePath("../Environment/Obstacles")
-CreatureScene = ExtResource( 59 )
+[node name="Environment" type="Node2D" parent="World" groups=["overworld_environments"] instance=ExtResource( 4 )]
+script = ExtResource( 5 )
+creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
+shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 7 )
 
 [node name="Camera" type="Camera2D" parent="World"]
 current = true

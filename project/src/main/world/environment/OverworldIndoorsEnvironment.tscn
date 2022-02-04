@@ -1,5 +1,6 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=44 format=2]
 
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=5]
 [ext_resource path="res://src/main/world/obstacle-map-indoors.gd" type="Script" id=10]
@@ -60,7 +61,12 @@
 [sub_resource type="ViewportTexture" id=2]
 viewport_path = NodePath("Ground/Shadows/Viewport")
 
-[node name="Environment" type="Node2D"]
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
+script = ExtResource( 1 )
+creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
+shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 26 )
 
 [node name="Ground" type="Node2D" parent="."]
 z_index = -1
@@ -665,7 +671,6 @@ elevation = 150.0
 [node name="Richie" parent="Obstacles" instance=ExtResource( 16 )]
 position = Vector2( 490.501, 119.061 )
 flip_h = true
-obstacle_manager_path = NodePath("../../../ObstacleManager")
 target_properties = {
 "creature_id": "richie",
 "elevation": 0.0,
@@ -677,7 +682,6 @@ spawn_if = "not level_finished marsh/hello_everyone"
 [node name="Terpion" parent="Obstacles" instance=ExtResource( 16 )]
 position = Vector2( 349, 323 )
 offset = Vector2( 0, -140 )
-obstacle_manager_path = NodePath("../../../ObstacleManager")
 stool_path = NodePath("../Stool4")
 target_properties = {
 "creature_id": "terpion",
@@ -691,7 +695,6 @@ max_fatness = 4.0
 position = Vector2( 525, 323 )
 offset = Vector2( 0, -140 )
 flip_h = true
-obstacle_manager_path = NodePath("../../../ObstacleManager")
 stool_path = NodePath("../Stool3")
 target_properties = {
 "creature_id": "pandon",
@@ -704,7 +707,6 @@ max_fatness = 4.0
 [node name="Nictor" parent="Obstacles" instance=ExtResource( 16 )]
 position = Vector2( 1313.39, 220 )
 offset = Vector2( 0, -140 )
-obstacle_manager_path = NodePath("../../../ObstacleManager")
 stool_path = NodePath("../Stool10")
 target_properties = {
 "creature_id": "nictor",
@@ -718,7 +720,6 @@ max_fatness = 3.0
 position = Vector2( 768, 36 )
 offset = Vector2( 0, -140 )
 flip_h = true
-obstacle_manager_path = NodePath("../../../ObstacleManager")
 stool_path = NodePath("../Stool1")
 target_properties = {
 "creature_id": "beats",

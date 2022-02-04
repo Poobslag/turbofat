@@ -74,6 +74,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/career-region.gd"
 }, {
+"base": "Node",
+"class": "CareerWinWorld",
+"language": "GDScript",
+"path": "res://src/main/ui/career/career-win-world.gd"
+}, {
 "base": "Control",
 "class": "ChalkboardMapRow",
 "language": "GDScript",
@@ -559,11 +564,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/next-piece-displays.gd"
 }, {
-"base": "Node",
-"class": "ObstacleManager",
-"language": "GDScript",
-"path": "res://src/main/world/obstacle-manager.gd"
-}, {
 "base": "TileMap",
 "class": "ObstacleMap",
 "language": "GDScript",
@@ -588,6 +588,11 @@ _global_script_classes=[ {
 "class": "OvalShadow",
 "language": "GDScript",
 "path": "res://src/main/world/environment/oval-shadow.gd"
+}, {
+"base": "Node",
+"class": "OverworldEnvironment",
+"language": "GDScript",
+"path": "res://src/main/world/environment/overworld-environment.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "OverworldObstacle",
@@ -993,6 +998,7 @@ _global_script_class_icons={
 "CareerLevel": "",
 "CareerLevelSelect": "",
 "CareerRegion": "",
+"CareerWinWorld": "",
 "ChalkboardMapRow": "",
 "ChatAdvancer": "",
 "ChatChoiceButton": "",
@@ -1090,12 +1096,12 @@ _global_script_class_icons={
 "NextPiece": "",
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",
-"ObstacleManager": "",
 "ObstacleMap": "",
 "ObstacleMapIndoors": "",
 "ObstacleSpawner": "",
 "OtherRules": "",
 "OvalShadow": "",
+"OverworldEnvironment": "",
 "OverworldObstacle": "",
 "OverworldUi": "",
 "OverworldWorld": "",

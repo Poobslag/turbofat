@@ -1,5 +1,5 @@
 extends Node
-## Prepares the the overworld walking scene.
+## Populates/unpopulates the creatures and obstacles on the overworld walking scene.
 
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 

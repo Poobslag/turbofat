@@ -1,21 +1,22 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/main/world/environment/marsh-path-sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=2]
-[ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=3]
-[ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=4]
-[ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=6]
-[ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=7]
-[ext_resource path="res://src/main/world/ScrewportTexrect.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/main/world/environment/RippleWaves.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/main/world/GroundMap.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/main/world/environment/MarshTree.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=6]
+[ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=7]
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=10]
+[ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=12]
+[ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=13]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/world/environment/MarshCrystal.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=20]
+[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/world/GroundMap.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/main/world/environment/RippleWaves.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/main/world/ScrewportTexrect.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/main/world/environment/MarshTree.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=24]
 
 [sub_resource type="TileSet" id=14]
 0/name = "marsh-path-sheet.png 0"
@@ -61,15 +62,20 @@
 [sub_resource type="ViewportTexture" id=16]
 viewport_path = NodePath("Ground/Shadows/Viewport")
 
-[node name="Environment" type="Node2D"]
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
+script = ExtResource( 10 )
+creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
+shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 16 )
 
 [node name="Ground" type="Node2D" parent="."]
 z_index = -1
 
-[node name="GroundMap" parent="Ground" instance=ExtResource( 13 )]
+[node name="GroundMap" parent="Ground" instance=ExtResource( 20 )]
 tile_data = PoolIntArray( -458737, 0, 131073, -458736, 0, 196610, -458735, 0, 65536, -393201, 0, 131074, -393200, 0, 196611, -393199, 0, 65540, -327665, 0, 131074, -327664, 0, 196611, -327663, 0, 65538, -262130, 0, 131073, -262129, 0, 196611, -262128, 0, 196611, -262127, 0, 65538, -196594, 0, 131074, -196593, 0, 196611, -196592, 0, 196611, -196591, 0, 65538, -131058, 0, 131074, -131057, 0, 196611, -131056, 0, 196611, -131055, 0, 196611, -131054, 0, 65536, -65522, 0, 131074, -65521, 0, 196611, -65520, 0, 196611, -65519, 0, 196611, -65518, 0, 65540, 14, 0, 131072, 15, 0, 196609, 16, 0, 196611, 17, 0, 196611, 18, 0, 196611, 19, 0, 65536, 65552, 0, 131072, 65553, 0, 196611, 65554, 0, 196611, 65555, 0, 65539, 131089, 0, 131074, 131090, 0, 196611, 131091, 0, 65539, 196625, 0, 131074, 196626, 0, 196611, 196627, 0, 65538, 262160, 0, 131073, 262161, 0, 196611, 262162, 0, 196611, 262163, 0, 65539, 327696, 0, 131074, 327697, 0, 196611, 327698, 0, 196611, 327699, 0, 5, 393217, 0, 131073, 393218, 0, 196610, 393219, 0, 196610, 393220, 0, 196610, 393221, 0, 196610, 393222, 0, 196610, 393223, 0, 196610, 393224, 0, 65536, 393230, 0, 131073, 393231, 0, 196610, 393232, 0, 196611, 393233, 0, 196611, 393234, 0, 65537, 458753, 0, 131072, 458754, 0, 196611, 458755, 0, 196611, 458756, 0, 196611, 458757, 0, 196611, 458758, 0, 196611, 458759, 0, 196611, 458760, 0, 65537, 458764, 0, 131073, 458765, 0, 196610, 458766, 0, 196611, 458767, 0, 196611, 458768, 0, 196611, 458769, 0, 196611, 458770, 0, 65539, 524290, 0, 131072, 524291, 0, 196611, 524292, 0, 196611, 524293, 0, 196611, 524294, 0, 196611, 524295, 0, 196611, 524296, 0, 196611, 524297, 0, 65536, 524300, 0, 131074, 524301, 0, 196611, 524302, 0, 196611, 524303, 0, 196611, 524304, 0, 196611, 524305, 0, 196611, 524306, 0, 5, 589827, 0, 131072, 589828, 0, 131077, 589829, 0, 196609, 589830, 0, 131076, 589831, 0, 131076, 589832, 0, 196611, 589833, 0, 196611, 589834, 0, 196610, 589835, 0, 196610, 589836, 0, 196611, 589837, 0, 196611, 589838, 0, 196611, 589839, 0, 196611, 589840, 0, 196611, 589841, 0, 5, 655368, 0, 131072, 655369, 0, 196608, 655370, 0, 196611, 655371, 0, 196611, 655372, 0, 196611, 655373, 0, 196611, 655374, 0, 196611, 655375, 0, 196611, 655376, 0, 5, 720906, 0, 131072, 720907, 0, 196611, 720908, 0, 196611, 720909, 0, 196611, 720910, 0, 196611, 720911, 0, 65538, 786443, 0, 131074, 786444, 0, 196611, 786445, 0, 196611, 786446, 0, 196611, 786447, 0, 5, 851979, 0, 131074, 851980, 0, 196611, 851981, 0, 196611, 851982, 0, 65537, 917515, 0, 131074, 917516, 0, 196611, 917517, 0, 196611, 917518, 0, 65540, 983051, 0, 131074, 983052, 0, 196611, 983053, 0, 196611, 983054, 0, 65538, 1048587, 0, 131074, 1048588, 0, 196611, 1048589, 0, 196611, 1048590, 0, 5, 1114123, 0, 131072, 1114124, 0, 196611, 1114125, 0, 65539, 1179660, 0, 131072, 1179661, 0, 5 )
 
-[node name="RippleWaves" parent="Ground" instance=ExtResource( 10 )]
+[node name="RippleWaves" parent="Ground" instance=ExtResource( 21 )]
 tile_map_path = NodePath("../GroundMap")
 direction = 2
 speed = 30.0
@@ -101,45 +107,45 @@ cell_size = Vector2( 128, 64 )
 cell_tile_origin = 1
 centered_textures = true
 format = 1
-script = ExtResource( 6 )
+script = ExtResource( 13 )
 obstacle_map_path = NodePath("../../../../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 )
 }
 
-[node name="CreatureShadows" parent="Ground/Shadows/Viewport/ViewportRoot" instance=ExtResource( 11 )]
+[node name="CreatureShadows" parent="Ground/Shadows/Viewport/ViewportRoot" instance=ExtResource( 19 )]
 
 [node name="ShadowCasterShadows" type="Node2D" parent="Ground/Shadows/Viewport/ViewportRoot"]
-script = ExtResource( 20 )
-OvalShadowScene = ExtResource( 15 )
+script = ExtResource( 7 )
+OvalShadowScene = ExtResource( 4 )
 
-[node name="ScrewportTexrect" parent="Ground/Shadows" instance=ExtResource( 9 )]
+[node name="ScrewportTexrect" parent="Ground/Shadows" groups=["overworld_environments"] instance=ExtResource( 22 )]
 texture = SubResource( 16 )
 
 [node name="Obstacles" type="YSort" parent="."]
 
 [node name="ObstacleMap" type="TileMap" parent="Obstacles"]
 mode = 1
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 24 )
 cell_size = Vector2( 128, 64 )
 cell_tile_origin = 1
 cell_y_sort = true
 centered_textures = true
 format = 1
 tile_data = PoolIntArray( -524274, 1, 0, -524273, 1, 0, -524272, 1, 0, -524271, 1, 0, -524270, 1, 0, -458738, 1, 0, -458734, 1, 0, -393202, 1, 0, -393198, 1, 0, -327667, 1, 0, -327666, 1, 0, -327662, 1, 0, -262131, 1, 0, -262126, 1, 0, -196595, 1, 0, -196590, 1, 0, -196589, 1, 0, -131059, 1, 0, -131053, 1, 0, -65523, 1, 0, -65517, 1, 0, -65516, 1, 0, 13, 1, 0, 20, 1, 0, 65549, 1, 0, 65550, 1, 0, 65551, 1, 0, 65556, 1, 0, 131087, 1, 0, 131088, 1, 0, 131092, 1, 0, 196623, 1, 0, 196624, 1, 0, 196628, 1, 0, 262159, 1, 0, 262164, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327693, 1, 0, 327694, 1, 0, 327695, 1, 0, 327700, 1, 0, 393216, 1, 0, 393225, 1, 0, 393227, 1, 0, 393228, 1, 0, 393229, 1, 0, 393235, 1, 0, 393236, 1, 0, 458752, 1, 0, 458761, 1, 0, 458762, 1, 0, 458763, 1, 0, 458771, 1, 0, 524288, 1, 0, 524289, 1, 0, 524298, 1, 0, 524299, 1, 0, 524307, 1, 0, 589825, 1, 0, 589826, 1, 0, 589842, 1, 0, 589843, 1, 0, 655362, 1, 0, 655363, 1, 0, 655364, 1, 0, 655365, 1, 0, 655366, 1, 0, 655367, 1, 0, 655377, 1, 0, 655378, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720912, 1, 0, 720913, 1, 0, 786441, 1, 0, 786442, 1, 0, 786448, 1, 0, 851978, 1, 0, 851983, 1, 0, 851984, 1, 0, 917514, 1, 0, 917519, 1, 0, 983050, 1, 0, 983055, 1, 0, 1048586, 1, 0, 1048591, 1, 0, 1114122, 1, 0, 1114126, 1, 0, 1114127, 1, 0, 1179658, 1, 0, 1179659, 1, 0, 1179662, 1, 0, 1245195, 1, 0, 1245196, 1, 0, 1245197, 1, 0, 1245198, 1, 0 )
-script = ExtResource( 3 )
+script = ExtResource( 12 )
 ground_map_path = NodePath("../../Ground/GroundMap")
 impassable_tile_index = 1
 
 [node name="CornerMap" type="TileMap" parent="Obstacles/ObstacleMap"]
 mode = 1
-tile_set = ExtResource( 7 )
+tile_set = ExtResource( 24 )
 cell_size = Vector2( 128, 64 )
 cell_tile_origin = 1
 cell_y_sort = true
 centered_textures = true
 format = 1
-script = ExtResource( 4 )
+script = ExtResource( 6 )
 cornerable_tiles = {
 2: Vector2( 4, 3 ),
 3: Vector2( 2, 5 )
@@ -158,13 +164,13 @@ creature_id = "#sensei#"
 dna = {
 }
 
-[node name="MarshTree1" parent="Obstacles" instance=ExtResource( 14 )]
+[node name="MarshTree1" parent="Obstacles" instance=ExtResource( 23 )]
 position = Vector2( 1024.72, 569.821 )
 
-[node name="MarshCrystal1" parent="Obstacles" instance=ExtResource( 17 )]
+[node name="MarshCrystal1" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 26.206, 428.89 )
 
-[node name="MarshCrystal2" parent="Obstacles" instance=ExtResource( 17 )]
+[node name="MarshCrystal2" parent="Obstacles" instance=ExtResource( 5 )]
 position = Vector2( 339.019, 659.296 )
 
 [node name="MarshBush1" parent="Obstacles" instance=ExtResource( 18 )]
@@ -172,5 +178,3 @@ position = Vector2( 954.42, 710.482 )
 
 [node name="MarshBush2" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( -283.38, 422.895 )
-
-[node name="Spawns" type="Node2D" parent="."]

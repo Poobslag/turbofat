@@ -8,12 +8,12 @@ extends Node
 const DAILY_STEPS_GOOD := 25
 const DAILY_STEPS_OK := 8
 
-export (NodePath) var obstacle_manager_path: NodePath
+export (NodePath) var overworld_environment_path: NodePath
 
 onready var _button := $Bg/Chalkboard/VBoxContainer/ButtonRow/Button
 onready var _map := $Bg/Chalkboard/VBoxContainer/MapRow
 onready var _applause_sound := $Bg/ApplauseSound
-onready var _obstacle_manager: ObstacleManager = get_node(obstacle_manager_path)
+onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
@@ -33,8 +33,8 @@ func _exit_tree() -> void:
 
 ## Updates the creature moods, and plays an applause sound if the player did well.
 func _refresh_mood() -> void:
-	var player := _obstacle_manager.find_creature(CreatureLibrary.PLAYER_ID)
-	var sensei := _obstacle_manager.find_creature(CreatureLibrary.SENSEI_ID)
+	var player := _overworld_environment.find_creature(CreatureLibrary.PLAYER_ID)
+	var sensei := _overworld_environment.find_creature(CreatureLibrary.SENSEI_ID)
 	if PlayerData.career.daily_steps >= DAILY_STEPS_GOOD:
 		player.play_mood(Creatures.Mood.LAUGH0)
 		sensei.play_mood(Creatures.Mood.LAUGH0)

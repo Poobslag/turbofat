@@ -6,7 +6,7 @@ extends Node2D
 ## The creature's creature_id, properties and groups (the 'chattables' group in particular) can be managed by the
 ## target_properties and target_groups fields.
 
-export (NodePath) var obstacle_manager_path: NodePath = NodePath("../../../ObstacleManager")
+export (NodePath) var overworld_environment_path: NodePath = NodePath("../..")
 
 ## (optional) path to a stool the spawned creature sits on
 export (NodePath) var stool_path: NodePath
@@ -32,7 +32,7 @@ var _stool: Node2D
 ## the spawned creature, or 'null' if the creature has not yet spawned
 var _target_creature: Creature
 
-onready var _obstacle_manager: ObstacleManager = get_node(obstacle_manager_path)
+onready var _overworld_environment: OverworldEnvironment = get_node(overworld_environment_path)
 
 func _ready() -> void:
 	if stool_path:
@@ -70,7 +70,7 @@ func _spawn_target() -> void:
 	
 	# create the creature, add it to the scene tree and assign its properties
 	var creature_id: String = target_properties["creature_id"]
-	_target_creature = _obstacle_manager.add_creature(creature_id, target_groups.has("chattables"))
+	_target_creature = _overworld_environment.add_creature(creature_id, target_groups.has("chattables"))
 	_target_creature.name = old_name
 	_target_creature.position = position
 	for key in target_properties:
