@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/obstacle-map.gd" type="Script" id=3]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=4]
 [ext_resource path="res://src/main/world/creature/walking-buddy.gd" type="Script" id=9]
@@ -61,7 +62,12 @@
 [sub_resource type="ViewportTexture" id=3]
 viewport_path = NodePath("Ground/Shadows/Viewport")
 
-[node name="Environment" type="Node2D"]
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
+script = ExtResource( 2 )
+creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
+shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+obstacles_path = NodePath("Obstacles")
+CreatureScene = ExtResource( 17 )
 
 [node name="Ground" type="Node2D" parent="."]
 z_index = -1

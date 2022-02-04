@@ -3,7 +3,7 @@ extends Node
 ## Populates/unpopulates the creatures and obstacles on the overworld.
 
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
-onready var _obstacle_manager: ObstacleManager = $ObstacleManager
+onready var _overworld_environment: OverworldEnvironment = $Environment
 
 func _ready() -> void:
 	if not Breadcrumb.trail:
@@ -18,10 +18,10 @@ func _ready() -> void:
 		_launch_cutscene()
 	else:
 		if Global.player_spawn_id:
-			_obstacle_manager.move_creature_to_spawn(ChattableManager.player, Global.player_spawn_id)
+			_overworld_environment.move_creature_to_spawn(ChattableManager.player, Global.player_spawn_id)
 		
 		if Global.sensei_spawn_id:
-			_obstacle_manager.move_creature_to_spawn(ChattableManager.sensei, Global.sensei_spawn_id)
+			_overworld_environment.move_creature_to_spawn(ChattableManager.sensei, Global.sensei_spawn_id)
 	
 	$Camera.position = ChattableManager.player.position
 
@@ -45,7 +45,7 @@ func _launch_cutscene() -> void:
 	var cutscene_creature: Creature
 	if CurrentLevel.creature_id:
 		# add the cutscene creature
-		cutscene_creature = _obstacle_manager.add_creature(CurrentLevel.creature_id)
+		cutscene_creature = _overworld_environment.add_creature(CurrentLevel.creature_id)
 	
 	var chat_tree := CurrentCutscene.chat_tree
 	
@@ -57,13 +57,13 @@ func _launch_cutscene() -> void:
 		cutscene_creature.position += Vector2(60, 0)
 	else:
 		for creature_id in chat_tree.spawn_locations:
-			var creature: Creature = _obstacle_manager.find_creature(creature_id)
+			var creature: Creature = _overworld_environment.find_creature(creature_id)
 			if not creature:
-				creature = _obstacle_manager.add_creature(creature_id)
+				creature = _overworld_environment.add_creature(creature_id)
 			creature.set_collision_disabled(true)
 			
 			# move the creature to its spawn location
-			_obstacle_manager.move_creature_to_spawn(creature, chat_tree.spawn_locations[creature_id])
+			_overworld_environment.move_creature_to_spawn(creature, chat_tree.spawn_locations[creature_id])
 	
 	yield(get_tree(), "idle_frame")
 	_overworld_ui.start_chat(chat_tree, cutscene_creature)

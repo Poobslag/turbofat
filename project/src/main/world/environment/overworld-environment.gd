@@ -1,9 +1,8 @@
-class_name ObstacleManager
+class_name OverworldEnvironment
 extends Node
 ## Maintains creatures and obstacles for an overworld scene
 
-## (Optional) path to the ChatIcons node which maintains chat icons for chattables in the scene tree.
-export (NodePath) var chat_icons_path: NodePath
+const SCENE_EMPTY_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
 
 export (NodePath) var creature_shadows_path: NodePath
 export (NodePath) var shadow_caster_shadows_path: NodePath
@@ -16,9 +15,7 @@ onready var _obstacles: Node2D = get_node(obstacles_path)
 onready var _shadow_caster_shadows: ShadowCasterShadows = get_node(shadow_caster_shadows_path)
 
 func _ready() -> void:
-	if chat_icons_path:
-		# the overworld has chat icons, but career mode does not
-		_chat_icons = get_node(chat_icons_path)
+	_refresh_chat_icons()
 
 
 ## Adds a new obstacle. The obstacle is placed below the given node in the list of children.
@@ -91,3 +88,17 @@ func find_creature(creature_id: String) -> Creature:
 			break
 	
 	return creature
+
+
+## Locates the node responsible for creating and initializing chat icons, if one exists.
+##
+## The free-roam sections in story mode have chat icons. Career mode and cutscenes do not.
+func _refresh_chat_icons() -> void:
+	if not is_inside_tree():
+		return
+	
+	var chat_icon_containers := get_tree().get_nodes_in_group("chat_icon_containers")
+	if chat_icon_containers:
+		_chat_icons = chat_icon_containers[0]
+	else:
+		_chat_icons = null

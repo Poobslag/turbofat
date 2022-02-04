@@ -13,12 +13,21 @@ onready var overworld_ui: OverworldUi = Global.get_overworld_ui()
 func _ready() -> void:
 	overworld_ui.connect("chat_cached", self, "_on_OverworldUi_chat_cached")
 	
-	# assign chat icons for all creatures based on ChatLibrary
+	recreate_all_icons()
+
+## create chat icons for all chattables
+func recreate_all_icons() -> void:
+	# assign chat_bubble_type for all creatures based on ChatLibrary
 	for creature in get_tree().get_nodes_in_group("creatures"):
 		var chat_bubble_type := ChatLibrary.chat_icon_for_creature(creature)
 		creature.set_meta("chat_bubble_type", chat_bubble_type)
 	
-	# create chat icons for all chattables
+	# remove existing chat icons
+	for child in get_children():
+		child.queue_free()
+		remove_child(child)
+	
+	# create replacement chat icons
 	for chattable in get_tree().get_nodes_in_group("chattables"):
 		create_icon(chattable)
 

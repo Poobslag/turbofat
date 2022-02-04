@@ -29,8 +29,7 @@ var customers := []
 ## path on which which the player and sensei are placed
 onready var _player_path2d: Path2D = get_node(player_path2d_path)
 
-onready var _obstacles := $Environment/Obstacles
-onready var _obstacle_manager: ObstacleManager = $ObstacleManager
+onready var _overworld_environment: OverworldEnvironment = $Environment
 onready var _camera: Camera2D = $Camera
 
 func _ready() -> void:
@@ -64,7 +63,7 @@ func _distance_percent() -> float:
 ## Parameters:
 ## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the customer should be positioned.
 func _add_customer(percent: float) -> void:
-	var customer := _obstacle_manager.add_creature()
+	var customer := _overworld_environment.add_creature()
 	customers.append(customer)
 	var mood: int
 	if randf() < 0.8:
@@ -159,7 +158,7 @@ func _add_mile_markers_to_path() -> void:
 ## Places a mile marker at the specified position.
 func _add_mile_marker(position: Vector2, mile_number: int) -> void:
 		var marker: MileMarker = MileMarkerScene.instance()
-		_obstacle_manager.add_obstacle(marker)
+		_overworld_environment.add_obstacle(marker)
 		
 		marker.position = position
 		marker.mile_number = mile_number
@@ -189,11 +188,11 @@ func _camera_x_range() -> Dictionary:
 
 
 func _find_player() -> Creature:
-	return _obstacle_manager.find_creature(CreatureLibrary.PLAYER_ID)
+	return _overworld_environment.find_creature(CreatureLibrary.PLAYER_ID)
 
 
 func _find_sensei() -> Creature:
-	return _obstacle_manager.find_creature(CreatureLibrary.SENSEI_ID)
+	return _overworld_environment.find_creature(CreatureLibrary.SENSEI_ID)
 
 
 ## Returns the absolute position of the vertex idx in _player_path2d.
