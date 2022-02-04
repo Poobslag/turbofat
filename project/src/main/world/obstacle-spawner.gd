@@ -7,7 +7,7 @@ extends Node2D
 ## The obstacle's properties and groups (the 'chattables' group in particular) can be managed by the target_properties
 ## and target_groups fields.
 
-export (NodePath) var obstacle_manager_path: NodePath = NodePath("../../ObstacleManager")
+export (NodePath) var obstacle_manager_path: NodePath = NodePath("../../../ObstacleManager")
 
 ## the PackedScene of the spawned obstacle
 export (PackedScene) var TargetScene: PackedScene

@@ -6,7 +6,7 @@ extends Node2D
 ## The creature's creature_id, properties and groups (the 'chattables' group in particular) can be managed by the
 ## target_properties and target_groups fields.
 
-export (NodePath) var obstacle_manager_path: NodePath = NodePath("../../ObstacleManager")
+export (NodePath) var obstacle_manager_path: NodePath = NodePath("../../../ObstacleManager")
 
 ## (optional) path to a stool the spawned creature sits on
 export (NodePath) var stool_path: NodePath
