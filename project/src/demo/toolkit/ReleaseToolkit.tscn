@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
-[ext_resource path="res://src/demo/toolkit/upgrade-levels-button.gd" type="Script" id=1]
+[ext_resource path="res://src/demo/toolkit/fix-levels-button.gd" type="Script" id=1]
 [ext_resource path="res://src/demo/toolkit/extract-localizables-button.gd" type="Script" id=2]
 [ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=3]
 [ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=4]
+[ext_resource path="res://src/demo/toolkit/fix-chats-button.gd" type="Script" id=5]
 
 [node name="ReleaseToolkit" type="Control"]
 anchor_right = 1.0
@@ -29,9 +30,9 @@ __meta__ = {
 
 [node name="ExtractLocalizables" type="Button" parent="VBoxContainer"]
 margin_left = 199.0
-margin_top = 116.0
+margin_top = 88.0
 margin_right = 569.0
-margin_bottom = 167.0
+margin_bottom = 139.0
 size_flags_horizontal = 4
 theme = ExtResource( 3 )
 text = "Extract Localizables"
@@ -41,33 +42,48 @@ __meta__ = {
 }
 output_label_path = NodePath("../Output")
 
-[node name="UpgradeLevels" type="Button" parent="VBoxContainer"]
-margin_left = 241.0
-margin_top = 171.0
-margin_right = 526.0
-margin_bottom = 222.0
+[node name="FixLevels" type="Button" parent="VBoxContainer"]
+margin_left = 289.0
+margin_top = 143.0
+margin_right = 478.0
+margin_bottom = 194.0
 size_flags_horizontal = 4
 theme = ExtResource( 3 )
-text = "Upgrade Levels"
+text = "Fix Levels"
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 output_label_path = NodePath("../Output")
 
+[node name="FixChats" type="Button" parent="VBoxContainer"]
+margin_left = 297.0
+margin_top = 198.0
+margin_right = 471.0
+margin_bottom = 249.0
+size_flags_horizontal = 4
+theme = ExtResource( 3 )
+text = "Fix Chats"
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+output_label_path = NodePath("../Output")
+
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-margin_top = 226.0
+margin_top = 253.0
 margin_right = 768.0
-margin_bottom = 230.0
+margin_bottom = 257.0
 
 [node name="Output" type="Label" parent="VBoxContainer"]
-margin_top = 234.0
+margin_top = 261.0
 margin_right = 768.0
-margin_bottom = 334.0
+margin_bottom = 361.0
 rect_min_size = Vector2( 0, 100 )
 theme = ExtResource( 4 )
 align = 1
 autowrap = true
 
 [connection signal="pressed" from="VBoxContainer/ExtractLocalizables" to="VBoxContainer/ExtractLocalizables" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/UpgradeLevels" to="VBoxContainer/UpgradeLevels" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/FixChats" to="VBoxContainer/FixChats" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/FixLevels" to="VBoxContainer/FixLevels" method="_on_pressed"]
