@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-01-13 12:47-0500\n"
+"POT-Creation-Date: 2022-02-07 17:13-0500\n"
 "PO-Revision-Date: 2021-03-25 16:25-0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -3895,12 +3895,12 @@ msgid "start"
 msgstr ""
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:275
-#: project/src/main/world/CareerMap.tscn:573
+#: project/src/main/world/CareerMap.tscn:207
 msgid "<"
 msgstr ""
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:284
-#: project/src/main/world/CareerMap.tscn:587
+#: project/src/main/world/CareerMap.tscn:221
 msgid ">"
 msgstr ""
 
@@ -5244,51 +5244,51 @@ msgstr "Sonidos"
 msgid "Voices"
 msgstr "Voces"
 
-#: project/src/main/ui/career/CareerWin.tscn:231
+#: project/src/main/ui/career/CareerWin.tscn:174
 #: project/src/main/ui/career/chalkboard-title.gd:13
 msgid "LOOK WHAT WE DID"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:341
+#: project/src/main/ui/career/CareerWin.tscn:284
 msgid "Served:"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:354
+#: project/src/main/ui/career/CareerWin.tscn:297
 msgid "132"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:407
+#: project/src/main/ui/career/CareerWin.tscn:350
 msgid "Steps:"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:420
+#: project/src/main/ui/career/CareerWin.tscn:363
 msgid "23"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:485
+#: project/src/main/ui/career/CareerWin.tscn:428
 msgid "Earned:"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:498
+#: project/src/main/ui/career/CareerWin.tscn:441
 msgid "¥999,999"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:551
+#: project/src/main/ui/career/CareerWin.tscn:494
 msgid "Time:"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:564
+#: project/src/main/ui/career/CareerWin.tscn:507
 msgid "15:03"
 msgstr ""
 
-#: project/src/main/ui/career/CareerWin.tscn:629
+#: project/src/main/ui/career/CareerWin.tscn:572
 #: project/src/main/ui/settings/SettingsMenu.tscn:1091
 msgid "Ok"
 msgstr "Ok"
 
 #: project/src/main/ui/career/ChalkboardMapRow.tscn:178
 #: project/src/main/ui/career/Landmark.tscn:43
-#: project/src/main/world/CareerMap.tscn:544
+#: project/src/main/world/CareerMap.tscn:178
 msgid "999,999"
 msgstr ""
 
@@ -5910,7 +5910,7 @@ msgstr "Arriba, Espacio, W, Numpad5"
 msgid "Left, Right, Numpad7/9"
 msgstr "Izquierda, Derecha, Numpad7/9"
 
-#: project/src/main/world/CareerMap.tscn:627
+#: project/src/main/world/CareerMap.tscn:261
 msgid "12:05 am"
 msgstr ""
 
