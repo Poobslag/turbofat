@@ -24,14 +24,14 @@ func set_launched_cutscene(new_chat_key: String) -> void:
 ##
 ## The new scene is appended to the end of the breadcrumb trail.
 func push_cutscene_trail() -> void:
-	SceneTransition.push_trail(chat_tree.chat_scene_path())
+	SceneTransition.push_trail(Global.SCENE_CUTSCENE)
 
 
 ## Launches an overworld scene with the previously specified 'launched cutscene' settings.
 ##
 ## The new scene replaces the current scene in the the breadcrumb trail.
 func replace_cutscene_trail() -> void:
-	SceneTransition.replace_trail(chat_tree.chat_scene_path())
+	SceneTransition.replace_trail(Global.SCENE_CUTSCENE)
 
 
 ## Unsets all of the 'launched cutscene' data.

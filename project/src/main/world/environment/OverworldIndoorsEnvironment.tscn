@@ -141,7 +141,7 @@ impassable_tile_index = 1
 
 [node name="OverworldExit" parent="Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 130.547, 315.908 )
-destination_scene_path = "res://src/main/world/Overworld.tscn"
+destination_environment_path = "res://src/main/world/environment/OverworldEnvironment.tscn"
 exit_direction = 4
 player_spawn_id = "restaurant_player"
 sensei_spawn_id = "restaurant_sensei"

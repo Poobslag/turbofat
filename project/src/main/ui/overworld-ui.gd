@@ -152,6 +152,16 @@ func is_chatting() -> bool:
 	return not chatters.empty()
 
 
+## Returns 'true' if the creatures in this chat are walking and talking at the same time.
+func is_walking_chat() -> bool:
+	var result := false
+	for chatter in chatters:
+		if chatter is WalkingBuddy:
+			result = true
+			break
+	return result
+
+
 func _find_creatures_in_chat_tree(chat_tree: ChatTree) -> Array:
 	var creatures := []
 	# calculate which creature ids are involved in this chat
@@ -282,62 +292,17 @@ func _start_cutscene(chat_tree: ChatTree) -> void:
 func _on_ChatUi_chat_finished() -> void:
 	PlayerData.chat_history.add_history_item(_current_chat_tree.chat_key)
 	
-	if CurrentCutscene.chat_tree:
-		# clear any currently launched cutscene
-		CurrentCutscene.clear_launched_cutscene()
-	
 	if not CurrentCutscene.chat_tree \
 			and Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 		# don't launch the level; go back to CutsceneDemo after playing the cutscene
 		SceneTransition.pop_trail()
-	elif PlayerData.career.is_career_cutscene():
-		PlayerData.career.push_career_trail()
-	elif cutscene:
-		if Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
-			# don't modify the breadcrumb path; we're not returning to the overworld after
-			pass
-		else:
-			# modify the overworld path and spawn IDs to preserve the player's position from the cutscene
-			var new_scene_path := _current_chat_tree.destination_scene_path()
-			Breadcrumb.trail[1] = new_scene_path
-			
-			if _current_chat_tree.destination_scene_path() == _current_chat_tree.chat_scene_path():
-				# preserve spawn ids from cutscene
-				CutsceneManager.assign_player_spawn_ids(_current_chat_tree)
-			else:
-				# erase spawn IDs to avoid 'could not locate spawn' warnings when playing multiple cutscenes
-				# consecutively
-				PlayerData.story.player_spawn_id = ""
-				PlayerData.story.sensei_spawn_id = ""
-		
-		if CutsceneManager.is_front_level():
-			# continue to a level (preroll cutscene finished playing)
-			
-			# [menu > overworld_1 > cutscene] -> [menu > overworld_2 > puzzle]
-			Breadcrumb.trail.remove(0)
-			CutsceneManager.push_trail()
-		elif CutsceneManager.is_front_cutscene():
-			# continue to another cutscene (first of multiple cutscenes finished playing)
-			
-			# [menu > overworld > cutscene_1] -> [menu > overworld > cutscene_2]
-			CutsceneManager.replace_trail()
-		else:
-			# return to the overworld (postroll/misc cutscene finished playing)
-			
-			# [menu > overworld_1 > cutscene] -> [menu > overworld_2]
-			SceneTransition.pop_trail()
-			
-			# immediately save the player data. the player might quit from the overworld, but we want to save
-			# their progress
-			PlayerSave.save_player_data()
 	elif CurrentLevel.level_id:
 		# continue to a level (non-cutscene pre-level dialog finished playing)
 		
 		# [menu > overworld_1] -> [menu > overworld_2 > puzzle]
 		CurrentLevel.push_level_trail()
 	else:
-		# if we're in a regular overworld conversation and not a cutscene,
-		# restore the ui so the player can interact again
+		# if we're not leaving the overworld, restore the ui so the player can interact again
 		chatters = []
 		emit_signal("chat_ended")
 		ChattableManager.set_focus_enabled(true)

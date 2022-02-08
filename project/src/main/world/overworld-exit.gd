@@ -39,7 +39,7 @@ const VECTOR_BY_EXIT_DIRECTION := {
 }
 
 ## the path of the scene to transition to when the player uses the exit
-export (String) var destination_scene_path
+export (String) var destination_environment_path
 
 ## the direction the exit is facing. Also the direction the player needs to move to use the exit
 export (ExitDirection) var exit_direction := ExitDirection.NORTH setget set_exit_direction
@@ -97,7 +97,9 @@ func _physics_process(_delta: float) -> void:
 			PlayerData.story.player_spawn_id = player_spawn_id
 			PlayerData.story.sensei_spawn_id = sensei_spawn_id
 			player.fade_out()
-			SceneTransition.replace_trail(destination_scene_path)
+			
+			PlayerData.story.environment_path = destination_environment_path
+			SceneTransition.replace_trail(Global.SCENE_OVERWORLD)
 
 
 func set_exit_direction(new_exit_direction: int) -> void:

@@ -25,11 +25,12 @@ class Position:
 ## compatibility. This version number follows a 'ymdh' hex date format which is documented in issue #234.
 const CHAT_DATA_VERSION := "1922"
 
-## Scene paths corresponding to different ChatTree.location_id values
-const LOCATION_SCENE_PATHS_BY_ID := {
-	"indoors": "res://src/main/world/OverworldIndoors.tscn",
-	"outdoors": "res://src/main/world/Overworld.tscn",
-	"outdoors_walk": "res://src/main/world/OverworldWalk.tscn",
+const DEFAULT_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
+
+const ENVIRONMENT_SCENE_PATHS_BY_ID := {
+	"indoors": "res://src/main/world/environment/OverworldIndoorsEnvironment.tscn",
+	"outdoors": "res://src/main/world/environment/OverworldEnvironment.tscn",
+	"outdoors_walk": "res://src/main/world/environment/OverworldWalkEnvironment.tscn",
 }
 
 ## unique key to identify this conversation in the chat history
@@ -132,19 +133,23 @@ func can_advance() -> bool:
 
 
 ## Returns the scene path where this chat takes place.
-func chat_scene_path() -> String:
-	return LOCATION_SCENE_PATHS_BY_ID.get(location_id, Global.SCENE_OVERWORLD)
+func chat_environment_path() -> String:
+	if not ENVIRONMENT_SCENE_PATHS_BY_ID.has(location_id):
+		push_warning("Invalid location_id: %s" % [location_id])
+	return ENVIRONMENT_SCENE_PATHS_BY_ID.get(location_id, DEFAULT_ENVIRONMENT)
 
 
 ## Returns the scene path which should be loaded after this cutscene.
 ##
 ## If no destination scene path is defined, this returns the chat scene path.
-func destination_scene_path() -> String:
+func destination_environment_path() -> String:
 	var result: String
 	if destination_id:
-		result = LOCATION_SCENE_PATHS_BY_ID.get(destination_id, Global.SCENE_OVERWORLD)
+		if not ENVIRONMENT_SCENE_PATHS_BY_ID.has(destination_id):
+			push_warning("Invalid location_id: %s" % [location_id])
+		result = ENVIRONMENT_SCENE_PATHS_BY_ID.get(destination_id, DEFAULT_ENVIRONMENT)
 	else:
-		result = chat_scene_path()
+		result = chat_environment_path()
 	return result
 
 
