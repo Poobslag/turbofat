@@ -9,6 +9,16 @@ class_name CareerData
 ## starting distance
 signal distance_travelled_changed
 
+## Emitted when the number of levels played in the current career session changes. It's unusual for this to change
+## mid-scene, and really only happens when using cheat codes.
+signal hours_passed_changed
+
+## The 3rd and 6th levels in career mode include a cutscene interlude.
+const CAREER_INTERLUDE_HOURS := [2, 5]
+
+## Chat key root for non-region-specific cutscenes
+const GENERAL_CHAT_KEY_ROOT := "chat/career/general"
+
 ## The number of days worth of records which are stored.
 const MAX_DAILY_HISTORY := 40
 
@@ -44,7 +54,7 @@ var distance_travelled := 0 setget set_distance_travelled
 var distance_earned := 0
 
 ## The number of levels played in the current career session.
-var hours_passed := 0
+var hours_passed := 0 setget set_hours_passed
 
 ## The number of customers served in the current career session.
 var daily_customers := 0
@@ -314,6 +324,11 @@ func advance_calendar() -> void:
 func set_distance_travelled(new_distance_travelled: int) -> void:
 	distance_travelled = new_distance_travelled
 	emit_signal("distance_travelled_changed")
+
+
+func set_hours_passed(new_hours_passed: int) -> void:
+	hours_passed = new_hours_passed
+	emit_signal("hours_passed_changed")
 
 
 ## Applies penalties for skipping a level to the player's save data, so they can't quit and retry.

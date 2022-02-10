@@ -3,9 +3,6 @@ extends Node
 ##
 ## Launching this scene also advances the player towards their goal if 'distance earned' is nonzero.
 
-## Chat key root for non-region-specific cutscenes
-const GENERAL_CHAT_KEY_ROOT := "chat/career/general"
-
 ## The number of levels the player can choose between
 const SELECTION_COUNT := 3
 
@@ -154,7 +151,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	var chat_key_pair := {}
 	
 	# if it's the 3rd or 6th level, enqueue a cutscene
-	if (PlayerData.career.hours_passed == 2 or PlayerData.career.hours_passed == 5) \
+	if PlayerData.career.hours_passed in CareerData.CAREER_INTERLUDE_HOURS \
 			and not PlayerData.career.skipped_previous_level:
 		var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
 		if region.cutscene_path:
@@ -162,7 +159,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 			chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([region.cutscene_path])
 		if not chat_key_pair:
 			# no region-specific cutscene available; find a general cutscene
-			chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([GENERAL_CHAT_KEY_ROOT])
+			chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
 	
 	var preroll_key: String = chat_key_pair.get("preroll", "")
 	var postroll_key: String = chat_key_pair.get("postroll", "")

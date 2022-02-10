@@ -48,5 +48,6 @@ func input_char(frame_input: FrameInput, character: String) -> String:
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "delays":
+		# show/hide frame data for pieces: line clear delay, prespawn, etc
 		visible = not visible
 		detector.play_cheat_sound(visible)

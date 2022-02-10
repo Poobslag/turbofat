@@ -333,7 +333,7 @@ func _on_SettingsMenu_quit_pressed() -> void:
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "finish" and PuzzleState.game_active:
-		# immediately end the current puzzle
+		# finish the current level
 		var finish_condition: Milestone = CurrentLevel.settings.finish_condition
 		match finish_condition.type:
 			Milestone.CUSTOMERS:
