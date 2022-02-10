@@ -905,6 +905,11 @@ _global_script_classes=[ {
 "path": "res://src/main/world/environment/stool.gd"
 }, {
 "base": "Reference",
+"class": "StoryData",
+"language": "GDScript",
+"path": "res://src/main/story-data.gd"
+}, {
+"base": "Reference",
 "class": "StringTransformer",
 "language": "GDScript",
 "path": "res://src/main/string-transformer.gd"
@@ -1164,6 +1169,7 @@ _global_script_class_icons={
 "Sticker": "",
 "StickerRow": "",
 "Stool": "",
+"StoryData": "",
 "StringTransformer": "",
 "StringUtils": "",
 "SwipeContainer": "",

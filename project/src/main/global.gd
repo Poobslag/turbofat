@@ -42,12 +42,6 @@ var _benchmark_start_times := Dictionary()
 ## we're very unlikely to receive a greeting. If it's close to -1, we're very likely to receive a greeting.
 var greetiness := 0.0
 
-## the id of the spawn where the player appears on the overworld
-var player_spawn_id: String
-
-## the id of the spawn where the sensei appears on the overworld
-var sensei_spawn_id: String
-
 func _init() -> void:
 	# ensure music, pieces are random
 	randomize()

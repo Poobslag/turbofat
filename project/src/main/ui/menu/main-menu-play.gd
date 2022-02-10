@@ -11,6 +11,7 @@ func _on_Career_pressed() -> void:
 
 func _on_Story_pressed() -> void:
 	PlayerData.creature_queue.clear()
+	PlayerData.story.reset()
 	CurrentLevel.clear_launched_level()
 	
 	var world_lock := LevelLibrary.world_lock(WORLD0_ID)
