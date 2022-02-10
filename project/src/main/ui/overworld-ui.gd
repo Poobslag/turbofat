@@ -307,8 +307,8 @@ func _on_ChatUi_chat_finished() -> void:
 			else:
 				# erase spawn IDs to avoid 'could not locate spawn' warnings when playing multiple cutscenes
 				# consecutively
-				Global.player_spawn_id = ""
-				Global.sensei_spawn_id = ""
+				PlayerData.story.player_spawn_id = ""
+				PlayerData.story.sensei_spawn_id = ""
 		
 		if CutsceneManager.is_front_level():
 			# continue to a level (preroll cutscene finished playing)

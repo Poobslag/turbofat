@@ -28,11 +28,11 @@ func _ready() -> void:
 	if CurrentCutscene.chat_tree:
 		_launch_cutscene()
 	else:
-		if Global.player_spawn_id:
-			_overworld_environment.move_creature_to_spawn(ChattableManager.player, Global.player_spawn_id)
+		if PlayerData.story.player_spawn_id:
+			_overworld_environment.move_creature_to_spawn(ChattableManager.player, PlayerData.story.player_spawn_id)
 		
-		if Global.sensei_spawn_id:
-			_overworld_environment.move_creature_to_spawn(ChattableManager.sensei, Global.sensei_spawn_id)
+		if PlayerData.story.sensei_spawn_id:
+			_overworld_environment.move_creature_to_spawn(ChattableManager.sensei, PlayerData.story.sensei_spawn_id)
 	
 	$Camera.position = ChattableManager.player.position
 
