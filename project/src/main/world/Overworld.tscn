@@ -4,8 +4,8 @@
 [ext_resource path="res://src/main/world/OverworldUi.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/OverworldEnvironment.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=6]
+[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=5]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=21]
 [ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=51]
 
@@ -27,11 +27,11 @@ script = ExtResource( 51 )
 EnvironmentScene = ExtResource( 4 )
 
 [node name="Environment" type="Node2D" parent="World" groups=["overworld_environments"] instance=ExtResource( 4 )]
-script = ExtResource( 6 )
+script = ExtResource( 5 )
 creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
 shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
 obstacles_path = NodePath("Obstacles")
-CreatureScene = ExtResource( 5 )
+CreatureScene = ExtResource( 6 )
 
 [node name="ChatLetters" parent="World" instance=ExtResource( 3 )]
 

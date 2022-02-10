@@ -140,8 +140,7 @@ func _exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 	var excluded_chat_keys := {}
 	
 	# branches are only exhausted when their leaves are exhausted, so leaves must be traversed first (postorder)
-	var postorder_chat_keys := chat_keys(chat_key_roots)
-	var chat_key_queue := postorder_chat_keys.duplicate()
+	var chat_key_queue := chat_keys(chat_key_roots)
 	while chat_key_queue:
 		var chat_key: String = chat_key_queue.pop_front()
 		var chat_key_pair: Dictionary = _chat_key_pairs_by_preroll.get(chat_key, {})
@@ -179,7 +178,7 @@ func _exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 ## Returns:
 ## 	An array of String chat keys in postorder (leaves first)
 func chat_keys(chat_key_roots: Array) -> Array:
-	var postorder_chat_keys := []
+	var chat_keys := []
 	var chat_key_queue := chat_key_roots.duplicate()
 	while chat_key_queue:
 		var chat_key: String = chat_key_queue.pop_front()
@@ -189,8 +188,8 @@ func chat_keys(chat_key_roots: Array) -> Array:
 			var child_key := _child_key(chat_key_roots, chat_key, child)
 			chat_key_queue.push_front(child_key)
 		
-		postorder_chat_keys.push_front(chat_key)
-	return postorder_chat_keys
+		chat_keys.push_front(chat_key)
+	return chat_keys
 
 
 ## Filters the list of potential chat key pairs, excluding the specified chat keys.
