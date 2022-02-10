@@ -81,6 +81,7 @@ func _reset() -> void:
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
 	if cheat == "bigfps":
+		# show/hide frames per second
 		visible = not visible
 		_reset()
 		if visible:

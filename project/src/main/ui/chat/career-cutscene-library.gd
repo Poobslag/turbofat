@@ -140,7 +140,7 @@ func _exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 	var excluded_chat_keys := {}
 	
 	# branches are only exhausted when their leaves are exhausted, so leaves must be traversed first (postorder)
-	var postorder_chat_keys := _postorder_chat_keys(chat_key_roots)
+	var postorder_chat_keys := chat_keys(chat_key_roots)
 	var chat_key_queue := postorder_chat_keys.duplicate()
 	while chat_key_queue:
 		var chat_key: String = chat_key_queue.pop_front()
@@ -178,7 +178,7 @@ func _exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 ##
 ## Returns:
 ## 	An array of String chat keys in postorder (leaves first)
-func _postorder_chat_keys(chat_key_roots: Array) -> Array:
+func chat_keys(chat_key_roots: Array) -> Array:
 	var postorder_chat_keys := []
 	var chat_key_queue := chat_key_roots.duplicate()
 	while chat_key_queue:
