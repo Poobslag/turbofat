@@ -133,4 +133,5 @@ func assign_player_spawn_ids(chat_tree: ChatTree) -> void:
 		var player_location_key := "%s/%s" % [chat_tree.location_id, PlayerData.story.player_spawn_id]
 		PlayerData.story.sensei_spawn_id = SENSEI_SPAWN_IDS_BY_PLAYER_LOCATION.get(player_location_key)
 		if not PlayerData.story.sensei_spawn_id:
-			push_warning("SENSEI_SPAWN_IDS_BY_PLAYER_SPAWN_ID did not have an entry for '%s'" % [PlayerData.story.player_spawn_id])
+			push_warning("SENSEI_SPAWN_IDS_BY_PLAYER_SPAWN_ID did not have an entry for '%s'"
+					% [PlayerData.story.player_spawn_id])

@@ -6,16 +6,17 @@ extends Node
 ## Scene resource defining the obstacles and creatures to show
 export (Resource) var EnvironmentScene: Resource setget set_environment_scene
 
-onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
+var _overworld_ui: OverworldUi
+
 onready var _overworld_environment: OverworldEnvironment = $Environment
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	_refresh_environment_scene()
-	
 	_overworld_ui = Global.get_overworld_ui()
+	
+	_refresh_environment_scene()
 	
 	if not Breadcrumb.trail:
 		# For developers accessing the Overworld scene directly, we initialize a default Breadcrumb trail.
