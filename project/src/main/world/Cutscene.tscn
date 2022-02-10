@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://src/main/world/cutscene-world.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/EmptyEnvironment.tscn" type="PackedScene" id=2]
+[ext_resource path="res://src/main/world/cutscene-camera.gd" type="Script" id=3]
+[ext_resource path="res://src/main/world/cutscene-ui.gd" type="Script" id=4]
+[ext_resource path="res://src/main/world/OverworldUi.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=6]
+
+[node name="Cutscene" type="Node"]
+
+[node name="Bg" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="World" type="Node" parent="."]
+script = ExtResource( 1 )
+
+[node name="Environment" parent="World" instance=ExtResource( 2 )]
+
+[node name="ChatLetters" parent="World" instance=ExtResource( 6 )]
+
+[node name="Camera" type="Camera2D" parent="World"]
+current = true
+script = ExtResource( 3 )
+
+[node name="Tween" type="Tween" parent="World/Camera"]
+
+[node name="Ui" parent="." instance=ExtResource( 5 )]
+script = ExtResource( 4 )

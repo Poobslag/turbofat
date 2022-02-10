@@ -7,6 +7,9 @@ const SCENE_SPLASH := "res://src/main/ui/menu/SplashScreen.tscn"
 ## menu the user sees after starting the game.
 const SCENE_MAIN_MENU := "res://src/main/ui/menu/MainMenu.tscn"
 
+## non-interactive cutscene which shows creatures talking and interacting.
+const SCENE_CUTSCENE := "res://src/main/world/Cutscene.tscn"
+
 ## overworld which the player character can run around on and talk to other creatures.
 const SCENE_OVERWORLD := "res://src/main/world/Overworld.tscn"
 
