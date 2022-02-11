@@ -12,6 +12,9 @@ const LERP_WEIGHT := 0.05
 const ZOOM_AMOUNT_NEAR := Vector2(0.5, 0.5)
 const ZOOM_AMOUNT_FAR := Vector2(1.0, 1.0)
 
+## fixed zoom amount for cutscenes which should not zoom in and out
+var fixed_zoom := 0.0
+
 onready var _project_resolution := Vector2(ProjectSettings.get_setting("display/window/size/width"), \
 		ProjectSettings.get_setting("display/window/size/height"))
 
@@ -68,10 +71,9 @@ func _calculate_position() -> Vector2:
 ##
 ## This method does not update the camera's zoom value. It returns a value which can be used in a lerp or tween.
 func _calculate_zoom() -> Vector2:
-	if _overworld_ui.is_walking_chat():
-		# We only adjust the zoom when the creatures are stationary. If they're walking around, it's distracting to
-		# continuously zoom in and out.
-		return ZOOM_AMOUNT_FAR
+	if fixed_zoom:
+		# This cutscene defines a camera zoom.
+		return Vector2(fixed_zoom, fixed_zoom)
 	
 	var camera_bounding_box := _calculate_camera_bounding_box()
 	var new_zoom := Vector2.ZERO
