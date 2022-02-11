@@ -34,7 +34,8 @@ const ENVIRONMENT_SCENE_PATHS_BY_ID := {
 	
 	"marsh/walk": "res://src/main/world/environment/OverworldWalkEnvironment.tscn",
 	"marsh/inside_turbo_fat": "res://src/main/world/environment/OverworldIndoorsEnvironment.tscn",
-	"marsh/outside_turbo_fat": "res://src/main/world/environment/MarshEnvironment.tscn"
+	"marsh/outside_turbo_fat": "res://src/main/world/environment/MarshEnvironment.tscn",
+	"marsh/buttercup_cafe": "res://src/main/world/environment/MarshEnvironment.tscn",
 }
 
 ## unique key to identify this conversation in the chat history
