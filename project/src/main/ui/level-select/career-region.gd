@@ -17,6 +17,8 @@ var distance := 0
 var icon_name: String
 
 ## The smallest distance the player must travel to exit this region.
+##
+## If the length is CareerData.MAX_DISTANCE_TRAVELLED, this region cannot be exited.
 var length := 0
 
 ## List of CareerLevel instances which store career-mode-specific information about this region's levels.

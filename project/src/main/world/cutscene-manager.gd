@@ -105,6 +105,8 @@ func _pop_level() -> void:
 	CurrentLevel.set_launched_level(level_properties["level_id"])
 	if level_properties.has("piece_speed"):
 		CurrentLevel.piece_speed = level_properties["piece_speed"]
+	if level_properties.has("chef_id"):
+		CurrentLevel.chef_id = level_properties["chef_id"]
 	if level_properties.has("customers"):
 		CurrentLevel.customers = level_properties["customers"]
 	if level_properties.has("cutscene_force"):

@@ -7,7 +7,10 @@ extends Node
 const SELECTION_COUNT := 3
 
 ## LevelSettings instances for each level the player can select
-var _level_settings_for_levels := []
+var _pickable_level_settings := []
+
+## CareerLevel instances for each level the player can select
+var _pickable_career_levels := []
 
 ## PieceSpeed for all levels the player can select.
 var _piece_speed: String
@@ -49,37 +52,42 @@ func _refresh_ui() -> void:
 
 ## Loads level settings for three randomly selected levels from the current CareerRegion.
 func _load_level_settings() -> void:
-	_level_settings_for_levels.clear()
+	_pickable_level_settings.clear()
+	_pickable_career_levels.clear()
 	
-	var career_levels: Array
 	var region: CareerRegion = CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	# decide available career levels
 	if PlayerData.career.is_boss_level():
-		# player must pick the boss level
-		career_levels = [region.boss_level]
+		_pickable_career_levels = [region.boss_level]
+	else:
+		_pickable_career_levels = _random_levels()
+	
+	# decide piece speed
+	if PlayerData.career.is_boss_level():
 		_piece_speed = ""
 	else:
-		# player can choose from many levels
-		career_levels = _random_levels()
-		
 		if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
 			var weight: float = float(PlayerData.career.hours_passed) / (CareerData.HOURS_PER_CAREER_DAY - 1)
 			_piece_speed = CareerLevelLibrary.piece_speed_between(region.min_piece_speed, region.max_piece_speed, weight)
 		else:
 			_piece_speed = CareerLevelLibrary.piece_speed_for_distance(PlayerData.career.distance_travelled)
 	
-	for level in career_levels:
+	# initialize level settings
+	for level in _pickable_career_levels:
 		var level_settings := LevelSettings.new()
 		level_settings.load_from_resource(level.level_id)
 		LevelSpeedAdjuster.new(level_settings).adjust(_piece_speed)
-		_level_settings_for_levels.append(level_settings)
+		_pickable_level_settings.append(level_settings)
+	
+	_world.refresh_creatures(_pickable_career_levels)
 
 
 ## Recreates all level select buttons in the scene tree based on the current level settings.
 func _refresh_level_select_buttons() -> void:
 	_level_select_control.clear_level_select_buttons()
 	
-	for i in range(_level_settings_for_levels.size()):
-		var level_settings: LevelSettings = _level_settings_for_levels[i]
+	for i in range(_pickable_level_settings.size()):
+		var level_settings: LevelSettings = _pickable_level_settings[i]
 		var level_select_button: LevelSelectButton = _level_select_control.add_level_select_button(level_settings)
 		level_select_button.connect("level_started", self, "_on_LevelSelectButton_level_started", [i])
 
@@ -130,23 +138,21 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	PlayerData.career.daily_steps -= distance_penalty
 	_distance_label.suppress_distance_penalty()
 	
-	var level_settings: LevelSettings = _level_settings_for_levels[level_index]
+	var level_settings: LevelSettings = _pickable_level_settings[level_index]
+	var career_level: CareerLevel = _pickable_career_levels[level_index]
+	
 	PlayerData.career.daily_level_ids.append(level_settings.id)
 	CurrentLevel.set_launched_level(level_settings.id)
 	CurrentLevel.piece_speed = _piece_speed
 	
-	var customers := []
+	CurrentLevel.customers = career_level.customer_ids.duplicate()
+	CurrentLevel.chef_id = career_level.chef_id
 	
-	# enqueue customers for the selected levels
-	if PlayerData.career.is_boss_level():
-		# boss level; enqueue all visible customers
-		for customer in _world.customers:
-			customers.append(customer.creature_def)
-			customers.shuffle()
-	elif level_index < _world.customers.size():
-		# regular level; enqueue the selected customer
-		customers.append(_world.customers[level_index].creature_def)
-	CurrentLevel.customers = customers
+	if not CurrentLevel.customers:
+		# enqueue customers from the overworld if the CareerLevel doesn't define one
+		for customer in _world.get_visible_customers(level_index):
+			CurrentLevel.customers.append(customer.creature_def)
+		CurrentLevel.customers.shuffle()
 	
 	var chat_key_pair := {}
 	
@@ -170,7 +176,8 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	CutsceneManager.enqueue_level({
 		"level_id": level_settings.id,
 		"piece_speed": _piece_speed,
-		"customers": customers,
+		"chef_id": CurrentLevel.chef_id,
+		"customers": CurrentLevel.customers,
 	})
 	
 	if postroll_key:
