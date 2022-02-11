@@ -209,7 +209,46 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	if postroll_key:
 		CutsceneManager.enqueue_cutscene(ChatLibrary.chat_tree_for_key(postroll_key))
 	
+	if _should_play_epilogue(chat_key_pair):
+		CutsceneManager.enqueue_cutscene(ChatLibrary.chat_tree_for_key(region.get_epilogue_chat_key()))
+	
 	PlayerData.career.push_career_trail()
+
+
+func _should_play_epilogue(chat_key_pair: Dictionary) -> bool:
+	var result := true
+	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	
+	if not region.cutscene_path:
+		# no cutscenes for region; do not play epilogue
+		result = false
+	
+	if result and not ChatLibrary.chat_exists(region.get_epilogue_chat_key()):
+		# no epilogue for region; do not play epilogue
+		result = false
+	
+	if result and PlayerData.chat_history.is_chat_finished(region.get_epilogue_chat_key()):
+		# player has already seen epilogue; do not play epilogue
+		result = false
+	
+	if result:
+		# derive the prerolly key from the chat_key_pair
+		var preroll_key: String = chat_key_pair.get("preroll", "")
+		if not preroll_key: preroll_key = chat_key_pair.get("postroll", "").trim_suffix("_end")
+		
+		# determine if any cutscenes will remain after this cutscene was played
+		var search_flags := {}
+		search_flags[CareerCutsceneLibrary.INCLUDE_ALL_NUMERIC_CHILDREN] = true
+		search_flags[CareerCutsceneLibrary.EXCLUDED_CHAT_KEYS] = \
+				CareerCutsceneLibrary.exhausted_chat_keys([region.cutscene_path])
+		search_flags[CareerCutsceneLibrary.EXCLUDED_CHAT_KEYS][preroll_key] = true
+		var remaining_chat_key_pairs := CareerCutsceneLibrary.find_chat_key_pairs([region.cutscene_path], search_flags)
+		
+		if remaining_chat_key_pairs:
+			# this is not the last cutscene; do not play epilogue
+			result = false
+	
+	return result
 
 
 func _on_CareerData_distance_travelled_changed() -> void:

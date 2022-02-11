@@ -39,6 +39,8 @@ func _ready() -> void:
 	seconds_played_timer.connect("timeout", self, "_on_SecondsPlayedTimer_timeout")
 	add_child(seconds_played_timer)
 	seconds_played_timer.start()
+	
+	CurrentCutscene.connect("cutscene_played", self, "_on_CurrentCutscene_cutscene_played")
 
 
 ## Resets the player's in-memory data to a default state.
@@ -64,3 +66,15 @@ func _on_SecondsPlayedTimer_timeout() -> void:
 	
 	if career.is_career_mode():
 		career.daily_seconds_played += SECONDS_PLAYED_INCREMENT
+
+
+## When an epilogue cutscene is played in career mode, we advance the player to the next region
+func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
+	var region := CareerLevelLibrary.region_for_distance(career.distance_travelled)
+	if chat_key == region.get_epilogue_chat_key():
+		# advance the player to the next region
+		var old_distance_travelled := career.distance_travelled
+		career.distance_travelled = max(career.distance_travelled, region.distance + region.length)
+		career.max_distance_travelled = max(career.max_distance_travelled, career.distance_travelled)
+		if career.distance_travelled > old_distance_travelled:
+			career.distance_earned += (career.distance_travelled - old_distance_travelled)

@@ -44,6 +44,13 @@ const SPECIAL_CHAT_KEY_NAMES := [
 	"epilogue",
 ]
 
+## Search flag for find_chat_key_pairs, which indicates that all numeric children should be included, instead of just
+## including the lowest-numbered one
+const INCLUDE_ALL_NUMERIC_CHILDREN := "include_all_numeric_children"
+
+## Search flag for find_chat_key_pairs, which specifies a list of chat keys to exclude from the results
+const EXCLUDED_CHAT_KEYS := "excluded_chat_keys"
+
 ## Resource path containing career cutscenes. Can be changed for tests.
 var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH setget set_career_cutscene_root_path
 
@@ -106,8 +113,8 @@ func next_chat_key_pair(chat_key_roots: Array) -> Dictionary:
 ## 	A list of dictionary entries. Each dictionary entry has a 'preroll' entry and/or a 'postroll' entry, defining
 ## 	chat keys for cutscenes which play before or after a level.
 func potential_chat_key_pairs(chat_key_roots: Array) -> Array:
-	var exhausted_chat_keys := _exhausted_chat_keys(chat_key_roots)
-	return _find_chat_key_pairs(chat_key_roots, exhausted_chat_keys)
+	var exhausted_chat_keys := exhausted_chat_keys(chat_key_roots)
+	return find_chat_key_pairs(chat_key_roots, {"excluded_chat_keys": exhausted_chat_keys})
 
 
 ## Assigns the list of chat key pairs, and regenerates all internal fields such as the preroll tree.
@@ -146,7 +153,7 @@ func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 ## Returns:
 ## 	A set of chat keys for cutscenes the player has already seen. This includes the leaf nodes for cutscenes which
 ## 	have been seen, and branch nodes where all child cutscenes have been seen.
-func _exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
+func exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 	var excluded_chat_keys := {}
 	
 	# branches are only exhausted when their leaves are exhausted, so leaves must be traversed first (postorder)
@@ -208,20 +215,26 @@ func chat_keys(chat_key_roots: Array) -> Array:
 ## played in ascending order. However, it includes ALL alphabetic keys in each branch, because alphabetic siblings are
 ## played in random order.
 ##
+## The 'search_flags' parameter accepts several different search flags, which can be combined:
+## 	'include_all_numeric_children': If true, indicates that all numeric children should be included, instead of just
+## 		including the lowest-numbered one
+## 	'excluded_chat_keys': A set of chat keys for cutscenes the player has already seen. This includes the leaf nodes
+## 		for cutscenes which have been seen, and branch nodes where all child cutscenes have been seen. If omitted, no
+## 		chat keys will be excluded.
+##
 ## Parameters:
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
 ## 		cutscenes to choose between.
 ##
-## 	'excluded_chat_keys': (Optional) A set of chat keys for cutscenes the player has already seen. This includes
-## 		the leaf nodes for cutscenes which have been seen, and branch nodes where all child cutscenes have been
-## 		seen. If omitted, no chat keys will be excluded.
+## 	'search_flags': A dictionary of flags defining search behavior, as documented above.
 ##
 ## Returns:
 ## 	A filtered list of dictionary entries. Each dictionary entry has a 'preroll' entry and/or a 'postroll' entry,
-## 	defining chat keys for cutscenes which play before or after a level. The list is filtered to exclude cutscenes
-## 	the player has either already seen, or should not see until later.
-func _find_chat_key_pairs(chat_key_roots: Array, excluded_chat_keys: Dictionary) -> Array:
+## 	defining chat keys for cutscenes which play before or after a level.
+func find_chat_key_pairs(chat_key_roots: Array, search_flags: Dictionary) -> Array:
 	var potential_chat_key_pairs := []
+	var include_all_numeric_children: bool = search_flags.get(INCLUDE_ALL_NUMERIC_CHILDREN, false)
+	var excluded_chat_keys: Dictionary = search_flags.get(EXCLUDED_CHAT_KEYS, {})
 	
 	# We traverse the tree top-down. This queue tracks the child nodes we haven't traversed:
 	#
@@ -250,7 +263,7 @@ func _find_chat_key_pairs(chat_key_roots: Array, excluded_chat_keys: Dictionary)
 				if excluded_chat_keys.has(child_key):
 					# don't include these chat keys; the player's already seen these cutscenes
 					pass
-				elif child.is_valid_integer():
+				elif not include_all_numeric_children and child.is_valid_integer():
 					if not min_numeric_child or int(child) < int(min_numeric_child):
 						# track lowest-numbered numeric key
 						min_numeric_child = child

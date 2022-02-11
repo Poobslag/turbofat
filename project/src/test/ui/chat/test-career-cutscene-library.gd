@@ -24,6 +24,22 @@ func test_load_all_chat_keys() -> void:
 	])
 
 
+func test_find_chat_key_pairs() -> void:
+	CareerCutsceneLibrary.career_cutscene_root_path = "res://assets/test/ui/chat/fake-career"
+	
+	var chat_key_pairs := CareerCutsceneLibrary.find_chat_key_pairs(["ui/chat/fake_career/marsh"],
+			{CareerCutsceneLibrary.INCLUDE_ALL_NUMERIC_CHILDREN: true})
+	assert_eq_deep(chat_key_pairs, [
+		{"preroll": "ui/chat/fake_career/marsh/00", "postroll": "ui/chat/fake_career/marsh/00_end"},
+		{"preroll": "ui/chat/fake_career/marsh/10_a"},
+		{"preroll": "ui/chat/fake_career/marsh/10_b"},
+		{"postroll": "ui/chat/fake_career/marsh/10_c_end"},
+		{"preroll": "ui/chat/fake_career/marsh/20"},
+		{"preroll": "ui/chat/fake_career/marsh/30_a"},
+		{"preroll": "ui/chat/fake_career/marsh/30_b"},
+	])
+
+
 func test_potential_chat_keys_letter() -> void:
 	CareerCutsceneLibrary.all_chat_key_pairs = [
 		{"preroll": "ui/chat/fake_career/general/00_a"},

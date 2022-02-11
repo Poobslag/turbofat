@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=36 format=2]
 
 [ext_resource path="res://src/main/ui/level-select/grade-labels.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/career-map.gd" type="Script" id=2]
@@ -6,8 +6,6 @@
 [ext_resource path="res://src/main/world/environment/MarshEnvironment.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/level-select/LevelSelectButton.tscn" type="PackedScene" id=6]
-[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=7]
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=8]
 [ext_resource path="res://src/main/ui/menu/theme/h1.theme" type="Theme" id=9]
 [ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=11]
@@ -71,12 +69,7 @@ player_path2d_path = NodePath("Environment/PlayerPath")
 EnvironmentScene = ExtResource( 4 )
 MileMarkerScene = ExtResource( 48 )
 
-[node name="Environment" type="Node2D" parent="World" groups=["overworld_environments"] instance=ExtResource( 4 )]
-script = ExtResource( 7 )
-creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
-shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
-obstacles_path = NodePath("Obstacles")
-CreatureScene = ExtResource( 8 )
+[node name="Environment" parent="World" instance=ExtResource( 4 )]
 
 [node name="Camera" type="Camera2D" parent="World"]
 current = true
@@ -295,7 +288,7 @@ quit_type = 3
 layer = 10
 
 [node name="CheatCodeDetector" parent="Ui" instance=ExtResource( 5 )]
-codes = [ "cutsio", "bossio" ]
+codes = [ "cutsio", "bossio", "epilio" ]
 
 [connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="level_button_focused" from="LevelSelect" to="World" method="_on_LevelSelect_level_button_focused"]

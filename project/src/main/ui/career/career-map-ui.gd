@@ -61,20 +61,73 @@ func _find_region_with_boss_level() -> CareerRegion:
 func _force_boss_level() -> bool:
 	var new_region := _find_region_with_boss_level()
 	
+	# set their max_distance_travelled so that the boss level isn't skipped
+	PlayerData.career.max_distance_travelled = PlayerData.career.distance_travelled
+	
+	# reload the CareerMap scene
+	SceneTransition.change_scene()
+
+
+## Finds a region we can send the player to that has an epilogue.
+##
+## This is used by a cheat code. Ideally we send the player backwards to an older region, but if we can't find one we
+## send them forwards to a new region.
+func _find_region_with_epilogue() -> CareerRegion:
+	var result: CareerRegion
+	# find the latest visited region with a boss level, if one exists
+	var regions_reversed := CareerLevelLibrary.regions.duplicate()
+	regions_reversed.invert()
+	for region in regions_reversed:
+		if region.distance < PlayerData.career.distance_travelled \
+				and ChatLibrary.chat_exists(region.get_epilogue_chat_key()):
+			result = region
+			break
+	
+	if not result:
+		# find the earliest region with a boss level, if one exists
+		for region in CareerLevelLibrary.regions:
+			if region.distance < PlayerData.career.distance_travelled \
+				and ChatLibrary.chat_exists(region.get_epilogue_chat_key()):
+				result = region
+				break
+	
+	return result
+
+
+## Alter the player's career mode data to force an epilogue cutscene to play.
+##
+## This is triggered by a cheat code.
+##
+## Returns:
+## 	'true' if the we successfully forced an epilogue cutscene to play, 'false' if we failed
+func _force_epilogue_level() -> bool:
+	PlayerData.career.hours_passed = CareerData.CAREER_INTERLUDE_HOURS[0]
+	PlayerData.career.skipped_previous_level = false
+	
+	var new_region := _find_region_with_epilogue()
+	
 	if new_region:
-		# move them to the end of their new region
-		PlayerData.career.distance_travelled = new_region.length + new_region.distance - 1
+		# move the player to the selected region with an epilogue
+		# warning-ignore:integer_division
+		PlayerData.career.distance_travelled = new_region.distance + new_region.length / 2
 		
-		# set their max_distance_travelled so that the boss level isn't skipped
-		PlayerData.career.max_distance_travelled = PlayerData.career.distance_travelled
+		# mark epilogue as unwatched
+		PlayerData.chat_history.delete_history_item(new_region.get_epilogue_chat_key())
 		
-		# mark the boss cutscenes as unviewed, and the boss level as unplayed
-		PlayerData.chat_history.delete_history_item(new_region.get_boss_level_preroll_chat_key())
-		PlayerData.chat_history.delete_history_item(new_region.get_boss_level_postroll_chat_key())
-		PlayerData.level_history.delete(new_region.boss_level.level_id)
-		
-		# reload the CareerMap scene
-		SceneTransition.change_scene()
+		var chat_key_pairs: Array = CareerCutsceneLibrary.find_chat_key_pairs([new_region.cutscene_path],
+				{CareerCutsceneLibrary.INCLUDE_ALL_NUMERIC_CHILDREN: true})
+		if chat_key_pairs:
+			# mark all region cutscenes as viewed
+			for chat_key_pair in chat_key_pairs:
+				if chat_key_pair.has("preroll") and not PlayerData.chat_history.is_chat_finished(chat_key_pair["preroll"]):
+					PlayerData.chat_history.add_history_item(chat_key_pair["preroll"])
+				if chat_key_pair.has("postroll") and not PlayerData.chat_history.is_chat_finished(chat_key_pair["postroll"]):
+					PlayerData.chat_history.add_history_item(chat_key_pair["postroll"])
+			
+			# mark the final cutscene as unviewed
+			var final_pair: Dictionary = chat_key_pairs.back()
+			PlayerData.chat_history.delete_history_item(final_pair.get("preroll", ""))
+			PlayerData.chat_history.delete_history_item(final_pair.get("postroll", ""))
 	
 	return true if new_region else false
 
@@ -108,3 +161,6 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 		"cutsio":
 			_force_cutscene()
 			detector.play_cheat_sound(true)
+		"epilio":
+			var cheat_successful := _force_epilogue_level()
+			detector.play_cheat_sound(cheat_successful)

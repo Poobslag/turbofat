@@ -10,6 +10,9 @@ const INTRO_LEVEL_CHAT_KEY_NAME := "intro_level"
 ## Chat key containing each region's boss level cutscene, which plays before/after the boss level
 const BOSS_LEVEL_CHAT_KEY_NAME := "boss_level"
 
+## Chat key containing each region's epilogue cutscene, which plays after all other cutscenes/levels
+const EPILOGUE_CHAT_KEY_NAME := "epilogue"
+
 ## A human-readable region name, such as 'Lemony Thickets'
 var name: String
 
@@ -82,3 +85,7 @@ func get_boss_level_preroll_chat_key() -> String:
 
 func get_boss_level_postroll_chat_key() -> String:
 	return "%s/%s_end" % [cutscene_path, BOSS_LEVEL_CHAT_KEY_NAME] if cutscene_path else ""
+
+
+func get_epilogue_chat_key() -> String:
+	return "%s/%s" % [cutscene_path, EPILOGUE_CHAT_KEY_NAME] if cutscene_path else ""
