@@ -23,12 +23,12 @@ export (Resource) var EnvironmentScene: Resource setget set_environment_scene
 
 export (PackedScene) var MileMarkerScene: PackedScene
 
-## List of moods each customer has when their level is chosen. Index 0 corresponds to the leftmost customer. Each
-## entry is an enum in Creatures.Mood.
-var _customer_moods := []
+## Creature instances for 'level creatures', chefs and customers associated with each level.
+var _level_creatures := []
 
-## List of Customer instances for the level's customers. Index 0 holds the leftmost customer.
-var customers := []
+## The index of the focused level creature. This is usually the same as the index of the focused level button, but not
+## always. Sometimes two level buttons correspond to the same level creature.
+var _focused_level_creature_index := -1
 
 ## path on which which the player and sensei are placed
 onready var _player_path2d: Path2D = get_node(player_path2d_path)
@@ -44,15 +44,92 @@ func _ready() -> void:
 	var percent := _distance_percent()
 	_move_player_to_path(percent)
 	_move_sensei_to_path(percent)
+	
 	for _i in range(3):
-		_add_customer(percent)
+		_add_level_creature(percent)
+	
 	_add_mile_markers_to_path()
+	_move_camera()
+
+
+func refresh_creatures(pickable_career_levels: Array) -> void:
+	for creature in _level_creatures:
+		if creature.is_in_group("customers"):
+			creature.remove_from_group("customers")
+	
+	if PlayerData.career.is_boss_level():
+		_refresh_boss_level_creatures(pickable_career_levels)
+	else:
+		_refresh_non_boss_level_creatures(pickable_career_levels)
+	
 	_move_camera()
 
 
 func set_environment_scene(new_environment_scene: Resource) -> void:
 	EnvironmentScene = new_environment_scene
 	_refresh_environment_scene()
+
+
+## Updates the creature/chef IDs for a boss level.
+##
+## For a boss level, we show the chef and up to two customers. If a boss level has a designed chef, the chef is in the
+## middle.
+func _refresh_boss_level_creatures(pickable_career_levels: Array) -> void:
+	var career_level: CareerLevel = pickable_career_levels[0]
+	var remaining_customers := career_level.customer_ids.duplicate()
+	var remaining_creature_indexes := [1, 0, 2]
+	if career_level.chef_id:
+		# if there's a chef_id, add the chef to the middle
+		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
+		creature.creature_id = career_level.chef_id
+	while remaining_creature_indexes:
+		# assign/randomize the remaining customer appearances
+		var creature: Creature = _level_creatures[remaining_creature_indexes.pop_front()]
+		creature.add_to_group("customers")
+		if remaining_customers:
+			# assign the next customer
+			creature.creature_id = remaining_customers.pop_front()
+		else:
+			# randomize the customer
+			creature.creature_def = CreatureLoader.random_def()
+	
+	_hide_duplicate_creatures()
+
+
+## Updates the creature/chef IDs for a non-boss level.
+##
+## For a non-boss level, we show one creature for each of the different levels. We show the chef it the level has a
+## designated chef, otherwise we show the level's customer.
+func _refresh_non_boss_level_creatures(pickable_career_levels: Array) -> void:
+	for i in range(pickable_career_levels.size()):
+		var career_level: CareerLevel = pickable_career_levels[i]
+		var creature: Creature = _level_creatures[i]
+		if career_level.chef_id:
+			# if there's a chef_id, show the level's chef
+			creature.creature_id = career_level.chef_id
+		elif career_level.customer_ids:
+			# if there's a customer_id, show the level's customer
+			creature.add_to_group("customers")
+			creature.creature_id = career_level.customer_ids[0]
+		else:
+			# randomize the customer
+			creature.add_to_group("customers")
+			creature.creature_def = CreatureLoader.random_def()
+	
+	_hide_duplicate_creatures()
+
+
+## Hides any duplicate creatures, if the same creature is visible for multiple levels.
+##
+## If two levels have the same chef or the same customer, we only show the rightmost duplicated creature.
+func _hide_duplicate_creatures() -> void:
+	var creatures_by_id := {}
+	for creature_obj in _level_creatures:
+		var creature: Creature = creature_obj
+		creature.visible = true
+		if creatures_by_id.has(creature.creature_id):
+			creatures_by_id[creature.creature_id].visible = false
+		creatures_by_id[creature.creature_id] = creature
 
 
 ## Loads a new overworld environment, replacing the current one in the scene tree.
@@ -102,13 +179,26 @@ func _distance_percent() -> float:
 	return percent
 
 
-## Adds a customer to a position slightly above _player_path2d.
+func get_visible_customers(level_index: int) -> Array:
+	var result: Array
+	if PlayerData.career.is_boss_level():
+		# boss level; return all visible customers
+		result = get_tree().get_nodes_in_group("customers")
+	else:
+		# non-boss level; return the appropriate level creature, if they're a customer and not a chef
+		if _level_creatures[level_index].is_in_group("customers"):
+			result = [_level_creatures[level_index]]
+	return result
+
+
+## Adds a 'level creature', a chef or customer associated with a level.
 ##
 ## Parameters:
-## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the customer should be positioned.
-func _add_customer(percent: float) -> void:
-	var customer := _overworld_environment.add_creature()
-	customers.append(customer)
+##     'percent': A number in the range [0.0, 1.0] describing how far to the right the creature should be positioned.
+func _add_level_creature(percent: float) -> void:
+	var creature := _overworld_environment.add_creature()
+	_level_creatures.append(creature)
+	
 	var mood: int
 	if randf() < 0.8:
 		mood = Utils.rand_value(MOODS_COMMON)
@@ -116,28 +206,27 @@ func _add_customer(percent: float) -> void:
 		mood = Utils.rand_value(MOODS_UNCOMMON)
 	else:
 		mood = Utils.rand_value(MOODS_RARE)
-	_customer_moods.append(mood)
-	customer.creature_def = CreatureLoader.random_def()
+	creature.set_meta("mood_when_hovered", mood)
 	
-	# determine the customer's position
-	var customer_range := _camera_x_range()
-	customer.position.x = lerp(customer_range.min_value, customer_range.max_value, percent) \
-			+ X_DIST_BETWEEN_CUSTOMERS * (customers.size() - 2)
-	customer.position.y = _player_path2d_y(customer.position.x)
+	# Determine the level creature's position. The creature is positioned slightly above _player_path2d.
+	var creature_x_range := _camera_x_range()
+	creature.position.x = lerp(creature_x_range.min_value, creature_x_range.max_value, percent) \
+			+ X_DIST_BETWEEN_CUSTOMERS * (_level_creatures.size() - 2)
+	creature.position.y = _player_path2d_y(creature.position.x)
 	
-	match customers.size():
+	match _level_creatures.size():
 		1:
-			# leftmost customer faces right
-			customer.orientation = Creatures.SOUTHEAST
-			customer.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
+			# leftmost level creature faces right
+			creature.orientation = Creatures.SOUTHEAST
+			creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
 		2:
-			# middle customer faces right
-			customer.orientation = Creatures.SOUTHEAST
-			customer.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH
+			# middle level creature faces right
+			creature.orientation = Creatures.SOUTHEAST
+			creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH
 		_:
-			# rightmost customer faces left
-			customer.orientation = Creatures.SOUTHWEST
-			customer.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
+			# rightmost level creature faces left
+			creature.orientation = Creatures.SOUTHWEST
+			creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
 
 
 ## Moves the player creature to a point along _player_path2d.
@@ -169,13 +258,13 @@ func _move_camera() -> void:
 	var creatures := []
 	creatures.append(_find_sensei())
 	creatures.append(_find_player())
-	creatures.append_array(customers)
+	creatures.append_array(_level_creatures)
 	_camera.zoom_in_on_creatures(creatures)
 
 
 ## Places mile markers along the path to indicate the distance of each customer.
 ##
-## Mile markers are positioned relative to the customers, not to the _player_path2d. Customers must be placed first.
+## Mile markers are positioned relative to the _customers, not to the _player_path2d. Customers must be placed first.
 func _add_mile_markers_to_path() -> void:
 	# Calculate the values of the left and right mile marker
 	var left_num: int
@@ -192,11 +281,11 @@ func _add_mile_markers_to_path() -> void:
 		right_num = curr_region.length + curr_region.distance - 1 - PlayerData.career.distance_travelled
 		left_num = right_num + PlayerData.career.distance_penalties()[0]
 	
-	_add_mile_marker(customers[0].position + Vector2(-100, 20), left_num)
+	_add_mile_marker(_level_creatures[0].position + Vector2(-100, 20), left_num)
 	if right_num != left_num:
 		# Only place the right mile marker if it has a different value. We don't want two redundant mile markers for
 		# boss levels or when starting a new career session.
-		_add_mile_marker(customers[2].position + Vector2(100, 20), right_num)
+		_add_mile_marker(_level_creatures[2].position + Vector2(100, 20), right_num)
 
 
 ## Places a mile marker at the specified position.
@@ -264,17 +353,39 @@ func _player_path2d_y(path2d_x: float) -> float:
 ## When a new level button is selected, the player/sensei orient towards it.
 func _on_LevelSelect_level_button_focused(button_index: int) -> void:
 	var button_count := 1 if PlayerData.career.is_boss_level() else 3
-	var button_x := inverse_lerp(0, button_count - 1, button_index)
 	
-	var player := _find_player()
-	player.orientation = Creatures.SOUTHEAST if button_x >= 0.7 else Creatures.SOUTHWEST
+	var old_focused_level_creature_index := _focused_level_creature_index
+	_focused_level_creature_index = -1
+	if _level_creatures[button_index].visible:
+		_focused_level_creature_index = button_index
+	else:
+		for i in range(2):
+			if _level_creatures[i].creature_id == _level_creatures[button_index].creature_id \
+					and _level_creatures[i].visible:
+				_focused_level_creature_index = i
+				break
 	
-	var sensei := _find_sensei()
-	sensei.orientation = Creatures.SOUTHWEST if button_x <= 0.3 else Creatures.SOUTHEAST
-	
-	if not PlayerData.career.is_boss_level():
-		for i in range(customers.size()):
-			if i == button_index:
-				customers[i].play_mood(_customer_moods[i])
-			else:
-				customers[i].play_mood(Creatures.Mood.DEFAULT)
+	if _focused_level_creature_index == -1:
+		# can't find a visible level creature
+		pass
+	elif _focused_level_creature_index == old_focused_level_creature_index:
+		# Selecting a new button focused the same creature as before. This can happen if two buttons have the same
+		# level creature.
+		pass
+	else:
+		var level_creature_x := inverse_lerp(0, button_count - 1, _focused_level_creature_index)
+		
+		# turn the player and sensei towards the level creature
+		var player := _find_player()
+		player.orientation = Creatures.SOUTHEAST if level_creature_x >= 0.7 else Creatures.SOUTHWEST
+		var sensei := _find_sensei()
+		sensei.orientation = Creatures.SOUTHWEST if level_creature_x <= 0.3 else Creatures.SOUTHEAST
+		
+		# make the level creature emote
+		if not PlayerData.career.is_boss_level():
+			for i in range(_level_creatures.size()):
+				var creature: Creature = _level_creatures[i]
+				if i == _focused_level_creature_index and creature.has_meta("mood_when_hovered"):
+					creature.play_mood(creature.get_meta("mood_when_hovered"))
+				else:
+					creature.play_mood(Creatures.Mood.DEFAULT)

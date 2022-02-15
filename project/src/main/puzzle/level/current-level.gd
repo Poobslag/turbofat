@@ -72,7 +72,7 @@ func set_launched_level(new_level_id: String) -> void:
 	
 	if level_lock:
 		creature_id = level_lock.creature_id
-		customers = level_lock.customer_ids
+		customers = level_lock.customer_ids.duplicate()
 		chef_id = level_lock.chef_id
 	else:
 		creature_id = ""

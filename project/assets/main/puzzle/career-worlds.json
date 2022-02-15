@@ -125,10 +125,10 @@
           "id": "career/its_square_to_be_square"
         },
         {
-          "id": "career/curly_queue"
+          "id": "career/fruit_salad"
         },
         {
-          "id": "career/one_step_ahead"
+          "id": "career/muffin_impossible_2"
         },
         {
           "id": "career/wedding_cake_for_one"
@@ -153,43 +153,58 @@
       },
       "levels": [
         {
-          "id": "career/90_second_sprint"
-        },
-        {
-          "id": "career/fruit_salad"
-        },
-        {
           "id": "career/a_little_extra"
         },
         {
-          "id": "career/unfresh_fruits_2"
+          "id": "career/unfresh_fruits_2",
+          "chef_id": "bones"
         },
         {
-          "id": "career/cocoa_canyon"
+          "id": "career/cocoa_canyon",
+          "chef_id": "bones"
         },
         {
-          "id": "career/strawberry_shortcut"
+          "id": "career/just_cream",
+          "chef_id": "bones"
         },
         {
-          "id": "career/just_cream"
+          "id": "career/tempting_jellies",
+          "chef_id": "bones"
         },
         {
-          "id": "career/muffin_impossible_2"
+          "id": "career/90_second_sprint",
+          "chef_id": "shirts"
         },
         {
-          "id": "career/a_little_garbage"
+          "id": "career/strawberry_shortcut",
+          "chef_id": "shirts"
         },
         {
-          "id": "career/real_meal"
+          "id": "career/a_little_garbage",
+          "chef_id": "shirts"
         },
         {
-          "id": "career/curly_queue_2"
+          "id": "career/real_meal",
+          "chef_id": "shirts"
         },
         {
-          "id": "career/leftovers"
+          "id": "career/curly_queue",
+          "chef_id": "skins",
+          "customer_ids": [
+            "rhonk"
+          ]
         },
         {
-          "id": "career/tempting_jellies"
+          "id": "career/curly_queue_2",
+          "chef_id": "skins"
+        },
+        {
+          "id": "career/nowhere_to_turn",
+          "chef_id": "skins"
+        },
+        {
+          "id": "career/one_step_ahead",
+          "chef_id": "skins"
         }
       ]
     },
@@ -276,7 +291,7 @@
           "id": "career/a_little_garbage_2"
         },
         {
-          "id": "career/nowhere_to_turn"
+          "id": "career/leftovers"
         },
         {
           "id": "career/zero_gravity"
