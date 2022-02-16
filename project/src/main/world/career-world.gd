@@ -70,10 +70,10 @@ func set_environment_scene(new_environment_scene: Resource) -> void:
 	_refresh_environment_scene()
 
 
-## Updates the creature/chef IDs for a boss level, where the player only has one choice.
+## Updates the creature/chef IDs for a boss/intro level, where the player only has one choice.
 ##
-## For a boss level, we show the chef and up to two customers. If a boss level has a designed chef, the chef is in the
-## middle.
+## For a boss/intro level, we show the chef and up to two customers. If a boss/intro level has a designed chef, the
+## chef is in the middle.
 func _refresh_single_level_creatures(pickable_career_levels: Array) -> void:
 	var career_level: CareerLevel = pickable_career_levels[0]
 	var remaining_customers := career_level.customer_ids.duplicate()
