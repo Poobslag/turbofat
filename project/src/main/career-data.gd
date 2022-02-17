@@ -322,13 +322,22 @@ func set_hours_passed(new_hours_passed: int) -> void:
 
 ## Updates the state of career mode based on the player's puzzle performance.
 ##
-## If the player skips or fails a level, this has consequences such as advancing the clock.
+## If the player skips or fails a level, this has consequences including skipping cutscenes and advancing the clock.
 func process_puzzle_result() -> void:
+	var skip_remaining_cutscenes := false
 	if not PuzzleState.game_ended:
 		# player skipped a level
-		advance_clock(0, false)
-		skipped_previous_level = true
-
+		skip_remaining_cutscenes = true
+		PlayerData.career.advance_clock(0, false)
+		PlayerData.career.skipped_previous_level = true
+	
+	if PlayerData.career.is_boss_level() and not CurrentLevel.best_result == Levels.Result.WON:
+		# player didn't meet the win criteria for a boss level
+		skip_remaining_cutscenes = true
+	
+	if skip_remaining_cutscenes:
+		# skip career cutscenes if they fail a boss level
+		CutsceneManager.reset()
 
 ## Applies some of the player's distance earned, either advancing the player or throwing it away.
 ##
