@@ -198,7 +198,7 @@ func is_career_cutscene() -> bool:
 
 ## Returns 'true' if the player has completed the boss level in the specified region
 func is_region_cleared(region: CareerRegion) -> bool:
-	return PlayerData.career.max_distance_travelled > region.distance + region.length - 1
+	return max_distance_travelled > region.distance + region.length - 1
 
 
 ## Returns 'true' if the current career mode distance corresponds to an uncleared boss level
@@ -208,13 +208,18 @@ func is_boss_level() -> bool:
 	if distance_travelled != region.distance + region.length - 1:
 		# the player is not at the end of the region
 		result = false
-	if not region.boss_level:
+	elif not region.boss_level:
 		# the region has no boss level
 		result = false
-	if is_region_cleared(region):
+	elif is_region_cleared(region):
 		# the player has already cleared this boss level
 		result = false
 	return result
+
+
+## Returns the number of levels the player can choose between, based on their current distance and progress.
+func level_choice_count() -> int:
+	return 1 if is_boss_level() else 3
 
 
 ## Returns the player's distance penalties for picking different levels.
@@ -228,8 +233,8 @@ func is_boss_level() -> bool:
 func distance_penalties() -> Array:
 	var result := [0, 0, 0]
 	
-	if is_boss_level():
-		# boss levels only have one choice, there is no penalty
+	if level_choice_count() == 1:
+		# if the player has no choice, there is no penalty
 		return result
 	
 	# adjust result[0]
@@ -270,30 +275,14 @@ func advance_clock(new_distance_earned: int, success: bool) -> void:
 		var boss_region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
 		if success:
 			# if they pass a boss level, update max_distance_travelled to mark the region as cleared
-			PlayerData.career.max_distance_travelled = boss_region.distance + boss_region.length
+			max_distance_travelled = boss_region.distance + boss_region.length
 		else:
 			# if they fail a boss level, they lose 1-2 days worth of progress
 			distance_earned = -int(max(boss_region.length * rand_range(0.125, 0.25), 2))
 	
-	var remaining_distance_earned := distance_earned
-	while remaining_distance_earned != 0:
-		var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
-		if distance_travelled + remaining_distance_earned > region.distance + region.length - 1:
-			# player is trying to cross into the next region, constrain them to region boundaries
-			
-			if not is_region_cleared(region):
-				# The player can't cross into the next region, they haven't cleared the boss level. Move them to the
-				# end of the region, and stop any further movement.
-				remaining_distance_earned = 0
-				distance_travelled = region.distance + region.length - 1
-			else:
-				# The player can cross into the next region. Move them past the end of the region
-				remaining_distance_earned -= (region.distance + region.length - distance_travelled)
-				distance_travelled = region.distance + region.length
-		else:
-			# player isn't trying to cross regions, increment distance_travelled without constraints
-			distance_travelled += remaining_distance_earned
-			remaining_distance_earned = 0
+	var unapplied_distance_earned := distance_earned
+	while unapplied_distance_earned != 0:
+		unapplied_distance_earned = _apply_distance_earned(unapplied_distance_earned)
 
 
 ## Advances the calendar day and resets all daily variables
@@ -329,6 +318,55 @@ func set_distance_travelled(new_distance_travelled: int) -> void:
 func set_hours_passed(new_hours_passed: int) -> void:
 	hours_passed = new_hours_passed
 	emit_signal("hours_passed_changed")
+
+
+## Updates the state of career mode based on the player's puzzle performance.
+##
+## If the player skips or fails a level, this has consequences such as advancing the clock.
+func process_puzzle_result() -> void:
+	if not PuzzleState.game_ended:
+		# player skipped a level
+		advance_clock(0, false)
+		skipped_previous_level = true
+
+
+## Applies some of the player's distance earned, either advancing the player or throwing it away.
+##
+## This only applies a small chunk of the player's distance earned, stopping at region boundaries. It should be called
+## iteratively until it returns zero.
+##
+## Parameters:
+## 	'unapplied_distance_earned': The amount of distance_earned which hasn't been applied to advance the player, or
+## 		thrown away.
+##
+## Returns:
+## 	The remaining amount of the player's distance earned, after applying some of it toward advancing the player or
+## 		throwing it away.
+func _apply_distance_earned(unapplied_distance_earned: int) -> int:
+	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
+	var newly_discarded_steps := 0
+	var newly_travelled_distance := unapplied_distance_earned
+	
+	if distance_travelled + unapplied_distance_earned >= region.distance + region.length:
+		# The player is trying to cross into the next region
+		var distance_to_next_region := region.distance + region.length - distance_travelled
+		if is_region_cleared(region):
+			# The player can cross into the next region. Move them to the start of the next region and allow
+			# movement.
+			newly_travelled_distance = distance_to_next_region
+		else:
+			# The player can't cross into the next region, they haven't cleared the boss level. Move them to the end
+			# of this region and forbid movement.
+			newly_discarded_steps = unapplied_distance_earned - distance_to_next_region + 1
+	
+	# if the player hit a wall, we throw away some of their steps and don't move them as far
+	newly_travelled_distance -= newly_discarded_steps
+	unapplied_distance_earned -= newly_discarded_steps
+	
+	distance_travelled += newly_travelled_distance
+	unapplied_distance_earned -= newly_travelled_distance
+	
+	return unapplied_distance_earned
 
 
 ## Applies penalties for skipping a level to the player's save data, so they can't quit and retry.
