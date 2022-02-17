@@ -59,6 +59,8 @@ func _load_level_settings() -> void:
 	# decide available career levels
 	if PlayerData.career.is_boss_level():
 		_pickable_career_levels = [region.boss_level]
+	elif PlayerData.career.is_intro_level():
+		_pickable_career_levels = [region.intro_level]
 	else:
 		_pickable_career_levels = _random_levels()
 	
@@ -154,12 +156,30 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 			CurrentLevel.customers.append(customer.creature_def)
 		CurrentLevel.customers.shuffle()
 	
+	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
 	var chat_key_pair := {}
 	
+	# if it's an intro level, enqueue any intro level cutscenes
+	if not chat_key_pair and PlayerData.career.is_intro_level():
+		var preroll_key := region.get_intro_level_preroll_chat_key()
+		var postroll_key := region.get_intro_level_postroll_chat_key()
+		if ChatLibrary.chat_exists(preroll_key) and not PlayerData.chat_history.is_chat_finished(preroll_key):
+			chat_key_pair["preroll"] = preroll_key
+		if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
+			chat_key_pair["postroll"] = postroll_key
+	
+	# if it's a boss level, enqueue any boss level cutscenes
+	if not chat_key_pair and PlayerData.career.is_boss_level():
+		var preroll_key := region.get_boss_level_preroll_chat_key()
+		var postroll_key := region.get_boss_level_postroll_chat_key()
+		if ChatLibrary.chat_exists(preroll_key) and not PlayerData.chat_history.is_chat_finished(preroll_key):
+			chat_key_pair["preroll"] = preroll_key
+		if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
+			chat_key_pair["postroll"] = postroll_key
+	
 	# if it's the 3rd or 6th level, enqueue a cutscene
-	if PlayerData.career.hours_passed in CareerData.CAREER_INTERLUDE_HOURS \
+	if not chat_key_pair and PlayerData.career.hours_passed in CareerData.CAREER_INTERLUDE_HOURS \
 			and not PlayerData.career.skipped_previous_level:
-		var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
 		if region.cutscene_path:
 			# find a region-specific cutscene
 			chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([region.cutscene_path])

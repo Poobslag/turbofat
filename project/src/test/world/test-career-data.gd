@@ -10,6 +10,12 @@ func before_each() -> void:
 	CareerLevelLibrary.worlds_path = "res://assets/test/ui/level-select/career-worlds-simple.json"
 	PlayerSave.data_filename = "user://%s" % TEMP_PLAYER_FILENAME
 	PlayerData.reset()
+	
+	PlayerData.level_history.add("intro_211", RankResult.new())
+	PlayerData.level_history.add("intro_311", RankResult.new())
+	PlayerData.level_history.add("intro_411", RankResult.new())
+	_data.max_distance_travelled = CareerData.MAX_DISTANCE_TRAVELLED
+
 
 func test_prev_daily_earnings() -> void:
 	for i in range(10, 100):
@@ -65,6 +71,15 @@ func test_advance_clock_fails_boss_level() -> void:
 	assert_true(_data.distance_travelled < 9,
 			"distance_travelled should be less than 9 but was %s" % [_data.distance_travelled])
 	assert_eq(_data.banked_steps, 0)
+
+
+func test_advance_clock_stops_at_intro_level() -> void:
+	_data.max_distance_travelled = 10
+	PlayerData.level_history.finished_levels.erase("intro_311")
+	_data.advance_clock(50, false)
+	assert_eq(_data.distance_earned, 50)
+	assert_eq(_data.distance_travelled, 10)
+	assert_eq(_data.banked_steps, 40)
 
 
 func test_advance_clock_banked_steps_for_failed_boss_level() -> void:

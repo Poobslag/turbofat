@@ -47,7 +47,7 @@ const RANK_MILESTONES := [
 ## The rank milestone to display when the player fails a boss level.
 const RANK_MILESTONE_FAIL := {"rank": 64.0, "distance": 0, "color": Color("bababa")}
 
-## The number of steps the player couldn't take because they were blocked by a boss level.
+## The number of steps the player couldn't take because they were blocked by a boss/intro level.
 var banked_steps := 0
 
 ## The distance the player has travelled in the current career session.
@@ -223,9 +223,24 @@ func is_boss_level() -> bool:
 	return result
 
 
+## Returns 'true' if the current career mode distance corresponds to an uncleared intro level
+func is_intro_level() -> bool:
+	var result := true
+	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
+	if not region.intro_level:
+		result = false
+	elif is_intro_level_finished(region):
+		result = false
+	return result
+
+
+func is_intro_level_finished(region: CareerRegion) -> bool:
+	return region.intro_level and PlayerData.level_history.is_level_finished(region.intro_level.level_id)
+
+
 ## Returns the number of levels the player can choose between, based on their current distance and progress.
 func level_choice_count() -> int:
-	return 1 if is_boss_level() else 3
+	return 1 if is_intro_level() or is_boss_level() else 3
 
 
 ## Returns the player's distance penalties for picking different levels.
@@ -343,6 +358,10 @@ func process_puzzle_result() -> void:
 		PlayerData.career.advance_clock(0, false)
 		PlayerData.career.skipped_previous_level = true
 	
+	if PlayerData.career.is_intro_level() and not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
+		# player lost an intro level
+		skip_remaining_cutscenes = true
+	
 	if PlayerData.career.is_boss_level() and not CurrentLevel.best_result == Levels.Result.WON:
 		# player didn't meet the win criteria for a boss level
 		skip_remaining_cutscenes = true
@@ -351,24 +370,29 @@ func process_puzzle_result() -> void:
 		# skip career cutscenes if they skip a level, or if they fail a boss level
 		CutsceneManager.reset()
 
-## Applies some of the player's distance earned, either advancing the player or throwing it away.
+
+## Apply some of the player's distance earned, either advancing the player or banking the steps for later.
 ##
 ## This only applies a small chunk of the player's distance earned, stopping at region boundaries. It should be called
 ## iteratively until it returns zero.
 ##
 ## Parameters:
 ## 	'unapplied_distance_earned': The amount of distance_earned which hasn't been applied to advance the player, or
-## 		thrown away.
+## 		banked for later.
 ##
 ## Returns:
 ## 	The remaining amount of the player's distance earned, after applying some of it toward advancing the player or
-## 		throwing it away.
+## 		banking the steps for later.
 func _apply_distance_earned(unapplied_distance_earned: int) -> int:
 	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
 	var newly_banked_steps := 0
 	var newly_travelled_distance := unapplied_distance_earned
 	
-	if distance_travelled + unapplied_distance_earned >= region.distance + region.length:
+	if not is_region_cleared(region) and region.intro_level and not is_intro_level_finished(region):
+		# The player can't advance further into this region, they haven't cleared its intro level. Move them to
+		# the start of the region and forbid movement.
+		newly_banked_steps = unapplied_distance_earned
+	elif distance_travelled + unapplied_distance_earned >= region.distance + region.length:
 		# The player is trying to cross into the next region
 		var distance_to_next_region := region.distance + region.length - distance_travelled
 		if is_region_cleared(region):

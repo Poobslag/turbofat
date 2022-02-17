@@ -9,6 +9,10 @@
       {
         "id": "boss_211"
       },
+      "intro_level":
+      {
+        "id": "intro_211"
+      },
       "levels": [
         {
           "id": "level_211"
@@ -27,6 +31,10 @@
       {
         "id": "boss_311"
       },
+      "intro_level":
+      {
+        "id": "intro_311"
+      },
       "levels": [
         {
           "id": "level_311"
@@ -44,6 +52,10 @@
       "distance": 20,
       "icon": "island",
       "piece_speed": "A1-AD",
+      "intro_level":
+      {
+        "id": "intro_411"
+      },
       "levels": [
         {
           "id": "level_411"

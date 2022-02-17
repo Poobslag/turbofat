@@ -4,6 +4,12 @@ class_name CareerRegion
 ## Chat key containing each region's prologue cutscene
 const PROLOGUE_CHAT_KEY_NAME := "prologue"
 
+## Chat key containing each region's intro level cutscene
+const INTRO_LEVEL_CHAT_KEY_NAME := "intro_level"
+
+## Chat key containing each region's boss level cutscene
+const BOSS_LEVEL_CHAT_KEY_NAME := "boss_level"
+
 ## A human-readable region name, such as 'Lemony Thickets'
 var name: String
 
@@ -26,6 +32,9 @@ var levels := []
 
 ## Final level which must be cleared to advance past this region.
 var boss_level: CareerLevel
+
+## First level which must be cleared before any other levels in this region.
+var intro_level: CareerLevel
 
 ## The minimum/maximum piece speeds for this region. Levels are adjusted to these piece speeds, if possible.
 var min_piece_speed := "0"
@@ -50,7 +59,26 @@ func from_json_dict(json: Dictionary) -> void:
 	if json.has("boss_level"):
 		boss_level = CareerLevel.new()
 		boss_level.from_json_dict(json.get("boss_level"))
+	if json.has("intro_level"):
+		intro_level = CareerLevel.new()
+		intro_level.from_json_dict(json.get("intro_level"))
 
 
 func get_prologue_chat_key() -> String:
 	return "%s/%s" % [cutscene_path, PROLOGUE_CHAT_KEY_NAME] if cutscene_path else ""
+
+
+func get_intro_level_preroll_chat_key() -> String:
+	return "%s/%s" % [cutscene_path, INTRO_LEVEL_CHAT_KEY_NAME] if cutscene_path else ""
+
+
+func get_intro_level_postroll_chat_key() -> String:
+	return "%s/%s_end" % [cutscene_path, INTRO_LEVEL_CHAT_KEY_NAME] if cutscene_path else ""
+
+
+func get_boss_level_preroll_chat_key() -> String:
+	return "%s/%s" % [cutscene_path, BOSS_LEVEL_CHAT_KEY_NAME] if cutscene_path else ""
+
+
+func get_boss_level_postroll_chat_key() -> String:
+	return "%s/%s_end" % [cutscene_path, BOSS_LEVEL_CHAT_KEY_NAME] if cutscene_path else ""
