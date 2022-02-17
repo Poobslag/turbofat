@@ -47,6 +47,9 @@ const RANK_MILESTONES := [
 ## The rank milestone to display when the player fails a boss level.
 const RANK_MILESTONE_FAIL := {"rank": 64.0, "distance": 0, "color": Color("bababa")}
 
+## The number of steps the player couldn't take because they were blocked by a boss level.
+var banked_steps := 0
+
 ## The distance the player has travelled in the current career session.
 var distance_travelled := 0 setget set_distance_travelled
 
@@ -92,6 +95,7 @@ func is_day_over() -> bool:
 
 
 func reset() -> void:
+	banked_steps = 0
 	distance_travelled = 0
 	distance_earned = 0
 	hours_passed = 0
@@ -109,6 +113,7 @@ func reset() -> void:
 
 
 func from_json_dict(json: Dictionary) -> void:
+	banked_steps = int(json.get("banked_steps", 0))
 	distance_travelled = int(json.get("distance_travelled", 0))
 	distance_earned = int(json.get("distance_earned", 0))
 	hours_passed = int(json.get("hours_passed", 0))
@@ -127,6 +132,7 @@ func from_json_dict(json: Dictionary) -> void:
 
 func to_json_dict() -> Dictionary:
 	var results := {}
+	results["banked_steps"] = banked_steps
 	results["distance_travelled"] = distance_travelled
 	results["distance_earned"] = distance_earned
 	results["hours_passed"] = hours_passed
@@ -280,6 +286,11 @@ func advance_clock(new_distance_earned: int, success: bool) -> void:
 			# if they fail a boss level, they lose 1-2 days worth of progress
 			distance_earned = -int(max(boss_region.length * rand_range(0.125, 0.25), 2))
 	
+	if distance_earned > 0:
+		# if they make forward progress, they also spend their banked steps
+		distance_earned += banked_steps
+		banked_steps = 0
+	
 	var unapplied_distance_earned := distance_earned
 	while unapplied_distance_earned != 0:
 		unapplied_distance_earned = _apply_distance_earned(unapplied_distance_earned)
@@ -299,6 +310,7 @@ func advance_calendar() -> void:
 	# Put the player at the start of their current region.
 	distance_travelled = CareerLevelLibrary.region_for_distance(distance_travelled).distance
 	
+	banked_steps = 0
 	distance_earned = 0
 	hours_passed = 0
 	daily_customers = 0
@@ -336,7 +348,7 @@ func process_puzzle_result() -> void:
 		skip_remaining_cutscenes = true
 	
 	if skip_remaining_cutscenes:
-		# skip career cutscenes if they fail a boss level
+		# skip career cutscenes if they skip a level, or if they fail a boss level
 		CutsceneManager.reset()
 
 ## Applies some of the player's distance earned, either advancing the player or throwing it away.
@@ -353,7 +365,7 @@ func process_puzzle_result() -> void:
 ## 		throwing it away.
 func _apply_distance_earned(unapplied_distance_earned: int) -> int:
 	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
-	var newly_discarded_steps := 0
+	var newly_banked_steps := 0
 	var newly_travelled_distance := unapplied_distance_earned
 	
 	if distance_travelled + unapplied_distance_earned >= region.distance + region.length:
@@ -366,11 +378,12 @@ func _apply_distance_earned(unapplied_distance_earned: int) -> int:
 		else:
 			# The player can't cross into the next region, they haven't cleared the boss level. Move them to the end
 			# of this region and forbid movement.
-			newly_discarded_steps = unapplied_distance_earned - distance_to_next_region + 1
+			newly_banked_steps = unapplied_distance_earned - distance_to_next_region + 1
 	
-	# if the player hit a wall, we throw away some of their steps and don't move them as far
-	newly_travelled_distance -= newly_discarded_steps
-	unapplied_distance_earned -= newly_discarded_steps
+	# if the player hit a wall, we bank their steps and don't move them as far this time
+	banked_steps += newly_banked_steps
+	newly_travelled_distance -= newly_banked_steps
+	unapplied_distance_earned -= newly_banked_steps
 	
 	distance_travelled += newly_travelled_distance
 	unapplied_distance_earned -= newly_travelled_distance
