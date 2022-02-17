@@ -24,13 +24,15 @@ func _refresh_label() -> void:
 	# Display the distance travelled with the distance penalty applied
 	_label.text = StringUtils.comma_sep(PlayerData.career.distance_travelled - distance_penalty)
 	
-	# Append the distance_option with the distance penalty applied
-	if PlayerData.career.distance_earned > 0:
+	# Append the distance_option with the distance penalty
+	var distance_earned_value := PlayerData.career.distance_earned - distance_penalty
+	
+	if distance_earned_value > 0:
 		# distance_earned is positive; prefix distance_option with a '+'
-		_label.text += " (+%s)" % [StringUtils.comma_sep(PlayerData.career.distance_earned - distance_penalty)]
-	elif PlayerData.career.distance_earned < 0:
+		_label.text += " (+%s)" % [StringUtils.comma_sep(distance_earned_value)]
+	elif distance_earned_value < 0:
 		# distance_earned is negative; no prefix is necessary, distance_option already includes a '-'
-		_label.text += " (%s)" % [StringUtils.comma_sep(PlayerData.career.distance_earned - distance_penalty)]
+		_label.text += " (%s)" % [StringUtils.comma_sep(distance_earned_value)]
 	else:
 		# distance_earned is zero; don't show it
 		pass

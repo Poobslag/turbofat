@@ -14,7 +14,7 @@ var rank_results := {}
 var successful_levels := {}
 
 ## key: level name
-## value: date when the player first finished the level
+## value: Date when the player first finished the level. Losing or quitting does not count as finishing.
 var finished_levels := {}
 
 func level_names() -> Array:
@@ -121,6 +121,7 @@ func prune(level_id: String) -> void:
 	rank_results[level_id] = [rank_results[level_id][0]] + best.keys()
 
 
+## Returns 'true' if the level has been finished. Losing or quitting does not count as finishing.
 func is_level_finished(level_id: String) -> bool:
 	return finished_levels.has(level_id)
 

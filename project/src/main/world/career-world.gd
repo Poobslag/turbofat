@@ -57,10 +57,10 @@ func refresh_creatures(pickable_career_levels: Array) -> void:
 		if creature.is_in_group("customers"):
 			creature.remove_from_group("customers")
 	
-	if PlayerData.career.is_boss_level():
-		_refresh_boss_level_creatures(pickable_career_levels)
+	if PlayerData.career.level_choice_count() == 1:
+		_refresh_single_level_creatures(pickable_career_levels)
 	else:
-		_refresh_non_boss_level_creatures(pickable_career_levels)
+		_refresh_multi_level_creatures(pickable_career_levels)
 	
 	_move_camera()
 
@@ -70,11 +70,11 @@ func set_environment_scene(new_environment_scene: Resource) -> void:
 	_refresh_environment_scene()
 
 
-## Updates the creature/chef IDs for a boss level.
+## Updates the creature/chef IDs for a boss level, where the player only has one choice.
 ##
 ## For a boss level, we show the chef and up to two customers. If a boss level has a designed chef, the chef is in the
 ## middle.
-func _refresh_boss_level_creatures(pickable_career_levels: Array) -> void:
+func _refresh_single_level_creatures(pickable_career_levels: Array) -> void:
 	var career_level: CareerLevel = pickable_career_levels[0]
 	var remaining_customers := career_level.customer_ids.duplicate()
 	var remaining_creature_indexes := [1, 0, 2]
@@ -96,11 +96,11 @@ func _refresh_boss_level_creatures(pickable_career_levels: Array) -> void:
 	_hide_duplicate_creatures()
 
 
-## Updates the creature/chef IDs for a non-boss level.
+## Updates the creature/chef IDs for a non-boss level, where the player has three choices.
 ##
-## For a non-boss level, we show one creature for each of the different levels. We show the chef it the level has a
-## designated chef, otherwise we show the level's customer.
-func _refresh_non_boss_level_creatures(pickable_career_levels: Array) -> void:
+## For a non-boss/non-intro level, we show one creature for each of the different levels. We show the chef if the
+## level has a designated chef, otherwise we show the level's customer.
+func _refresh_multi_level_creatures(pickable_career_levels: Array) -> void:
 	for i in range(pickable_career_levels.size()):
 		var career_level: CareerLevel = pickable_career_levels[i]
 		var creature: Creature = _level_creatures[i]
@@ -181,11 +181,11 @@ func _distance_percent() -> float:
 
 func get_visible_customers(level_index: int) -> Array:
 	var result: Array
-	if PlayerData.career.is_boss_level():
-		# boss level; return all visible customers
+	if PlayerData.career.level_choice_count() == 1:
+		# only one level choice; return all visible customers
 		result = get_tree().get_nodes_in_group("customers")
 	else:
-		# non-boss level; return the appropriate level creature, if they're a customer and not a chef
+		# multiple level choices; return the appropriate level creature if they're a customer and not a chef
 		if _level_creatures[level_index].is_in_group("customers"):
 			result = [_level_creatures[level_index]]
 	return result
@@ -352,7 +352,7 @@ func _player_path2d_y(path2d_x: float) -> float:
 
 ## When a new level button is selected, the player/sensei orient towards it.
 func _on_LevelSelect_level_button_focused(button_index: int) -> void:
-	var button_count := 1 if PlayerData.career.is_boss_level() else 3
+	var button_count := PlayerData.career.level_choice_count()
 	
 	var old_focused_level_creature_index := _focused_level_creature_index
 	_focused_level_creature_index = -1
@@ -382,7 +382,7 @@ func _on_LevelSelect_level_button_focused(button_index: int) -> void:
 		sensei.orientation = Creatures.SOUTHWEST if level_creature_x <= 0.3 else Creatures.SOUTHEAST
 		
 		# make the level creature emote
-		if not PlayerData.career.is_boss_level():
+		if PlayerData.career.level_choice_count() > 1:
 			for i in range(_level_creatures.size()):
 				var creature: Creature = _level_creatures[i]
 				if i == _focused_level_creature_index and creature.has_meta("mood_when_hovered"):

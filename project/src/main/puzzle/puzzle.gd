@@ -165,10 +165,8 @@ func _quit_puzzle() -> void:
 		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.epilogue_chat_key)
 		CutsceneManager.enqueue_cutscene(chat_tree)
 	
-	if PlayerData.career.is_career_mode() and not PuzzleState.game_ended:
-		# apply penalties for skipping in career mode
-		PlayerData.career.advance_clock(0, false)
-		PlayerData.career.skipped_previous_level = true
+	if PlayerData.career.is_career_mode():
+		PlayerData.career.process_puzzle_result()
 	
 	CurrentLevel.clear_launched_level()
 	PlayerData.creature_queue.clear()
