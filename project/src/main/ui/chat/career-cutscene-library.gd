@@ -34,6 +34,16 @@ extends Node
 ## Default resource path containing career cutscenes.
 const DEFAULT_CAREER_CUTSCENE_ROOT_PATH := "res://assets/main/chat/career"
 
+## List of specially named chat keys which should be excluded when browsing for cutscenes to play
+const SPECIAL_CHAT_KEY_NAMES := [
+	"prologue",
+	"intro_level",
+	"intro_level_end",
+	"boss_level",
+	"boss_level_end",
+	"epilogue",
+]
+
 ## Resource path containing career cutscenes. Can be changed for tests.
 var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH setget set_career_cutscene_root_path
 
@@ -61,7 +71,7 @@ var _chat_key_pairs_by_preroll := {}
 var _preroll_tree := {}
 
 func _ready() -> void:
-	_find_all_chat_key_pairs()
+	_refresh_chat_key_pairs()
 
 
 ## Updates the location for career cutscenes.
@@ -69,7 +79,7 @@ func _ready() -> void:
 ## Also regenerates all internal fields such as the chat key pairs and preroll tree.
 func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> void:
 	career_cutscene_root_path = new_career_cutscene_root_path
-	_find_all_chat_key_pairs()
+	_refresh_chat_key_pairs()
 
 
 ## Calculates the list of potential chat key pairs, and returns a random one.
@@ -97,7 +107,7 @@ func next_chat_key_pair(chat_key_roots: Array) -> Dictionary:
 ## 	chat keys for cutscenes which play before or after a level.
 func potential_chat_key_pairs(chat_key_roots: Array) -> Array:
 	var exhausted_chat_keys := _exhausted_chat_keys(chat_key_roots)
-	return _filter_chat_key_pairs(chat_key_roots, exhausted_chat_keys)
+	return _find_chat_key_pairs(chat_key_roots, exhausted_chat_keys)
 
 
 ## Assigns the list of chat key pairs, and regenerates all internal fields such as the preroll tree.
@@ -202,33 +212,42 @@ func chat_keys(chat_key_roots: Array) -> Array:
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
 ## 		cutscenes to choose between.
 ##
-## 	'exhausted_chat_keys': A set of chat keys for cutscenes the player has already seen. This includes the leaf
-## 		nodes for cutscenes which have been seen, and branch nodes where all child cutscenes have been seen.
+## 	'excluded_chat_keys': (Optional) A set of chat keys for cutscenes the player has already seen. This includes
+## 		the leaf nodes for cutscenes which have been seen, and branch nodes where all child cutscenes have been
+## 		seen. If omitted, no chat keys will be excluded.
 ##
 ## Returns:
 ## 	A filtered list of dictionary entries. Each dictionary entry has a 'preroll' entry and/or a 'postroll' entry,
 ## 	defining chat keys for cutscenes which play before or after a level. The list is filtered to exclude cutscenes
 ## 	the player has either already seen, or should not see until later.
-func _filter_chat_key_pairs(chat_key_roots: Array, exhausted_chat_keys: Dictionary) -> Array:
+func _find_chat_key_pairs(chat_key_roots: Array, excluded_chat_keys: Dictionary) -> Array:
 	var potential_chat_key_pairs := []
-	# we traverse the tree top-down. this queue tracks the child nodes we haven't traversed
-	var chat_key_queue := chat_key_roots.duplicate()
-	# if the player's seen all cutscenes in a chat key root, remove it from the queue
-	chat_key_queue = Utils.subtract(chat_key_roots, exhausted_chat_keys.keys())
 	
-	while chat_key_queue:
-		var chat_key: String = chat_key_queue.pop_front()
+	# We traverse the tree top-down. This queue tracks the child nodes we haven't traversed:
+	#
+	# [['00-a-01', '00-a-02], ['00-b', '00-c'], ['01']]
+	#
+	# Each entry in the queue is an array with the untraversed keys at that tree level. The first entry in the queue
+	# is a list of the deepest untraversed keys; the last entry in the queue is a list of untraversed roots.
+	var chat_key_queue := [chat_key_roots]
+	
+	# if the player's seen all cutscenes in a chat key root, remove it when initializing the queue
+	chat_key_queue[0] = Utils.subtract(chat_key_queue[0], excluded_chat_keys.keys())
+	
+	while chat_key_queue and chat_key_queue.front():
+		var chat_key: String = chat_key_queue.front().pop_front()
 		var children: Array = _preroll_tree.get(chat_key, [])
 		if not children:
 			# leaf node; enqueue it
 			potential_chat_key_pairs.append(_chat_key_pairs_by_preroll[chat_key])
 		else:
 			# branch node; enqueue its children
+			chat_key_queue.push_front([])
 			var min_numeric_child := ""
 			for child in children:
 				# enqueue letter key
 				var child_key := _child_key(chat_key_roots, chat_key, child)
-				if exhausted_chat_keys.has(child_key):
+				if excluded_chat_keys.has(child_key):
 					# don't include these chat keys; the player's already seen these cutscenes
 					pass
 				elif child.is_valid_integer():
@@ -236,14 +255,18 @@ func _filter_chat_key_pairs(chat_key_roots: Array, exhausted_chat_keys: Dictiona
 						# track lowest-numbered numeric key
 						min_numeric_child = child
 				else:
-					if not exhausted_chat_keys.has(child_key):
-						chat_key_queue.push_back(child_key)
+					if not excluded_chat_keys.has(child_key):
+						chat_key_queue.front().push_back(child_key)
 				
 			# enqueue lowest-numbered numeric key
 			if min_numeric_child:
 				var child_key := _child_key(chat_key_roots, chat_key, min_numeric_child)
-				if not exhausted_chat_keys.has(child_key):
-					chat_key_queue.push_front(child_key)
+				if not excluded_chat_keys.has(child_key):
+					chat_key_queue.front().push_front(child_key)
+		
+		# dequeue any empty arrays before iterating, so the loop will terminate
+		while chat_key_queue and not chat_key_queue.front():
+			chat_key_queue.pop_front()
 	
 	return potential_chat_key_pairs
 
@@ -283,10 +306,19 @@ func _preroll_key_from_chat_key_pair(chat_key_pair: Dictionary) -> String:
 	return preroll_key
 
 
+func _is_special_chat_key(chat_key: String) -> bool:
+	var result := false
+	for special_chat_key_name in SPECIAL_CHAT_KEY_NAMES:
+		if chat_key.ends_with(special_chat_key_name):
+			result = true
+			break
+	return result
+
+
 ## Finds all chat key pairs by searching for resources under the career_cutscene_root_path.
 ##
 ## Also regenerates all internal fields such as the preroll tree.
-func _find_all_chat_key_pairs() -> void:
+func _refresh_chat_key_pairs() -> void:
 	var resource_paths := _find_resource_paths(career_cutscene_root_path)
 	
 	# populate all_chat_key_pairs
@@ -295,6 +327,10 @@ func _find_all_chat_key_pairs() -> void:
 	for resource_path in resource_paths:
 		var chat_key: String = ChatLibrary.chat_key_from_path(resource_path)
 		var preroll_key := chat_key.trim_suffix("_end")
+		
+		if _is_special_chat_key(chat_key):
+			# don't include special chat keys: prologue, epilogue, etc...
+			continue
 		
 		if not chat_key_pairs_by_preroll_tmp.has(preroll_key):
 			var new_chat_key_pair := {}
