@@ -28,23 +28,55 @@ func _force_cutscene() -> void:
 		PlayerData.chat_history.delete_history_item(newest_chat_key)
 
 
+## Finds a region we can send the player to that has a boss level.
+##
+## This is used by a cheat code. Ideally we send the player backwards to an older region, but if we can't find one we
+## send them forwards to a new region.
+func _find_region_with_boss_level() -> CareerRegion:
+	var result: CareerRegion
+	# find the latest visited region with a boss level, if one exists
+	var regions_reversed := CareerLevelLibrary.regions.duplicate()
+	regions_reversed.invert()
+	for region in regions_reversed:
+		if region.distance < PlayerData.career.distance_travelled and region.boss_level:
+			result = region
+			break
+	
+	if not result:
+		# find the earliest region with a boss level, if one exists
+		for region in CareerLevelLibrary.regions:
+			if region.boss_level:
+				result = region
+				break
+	
+	return result
+
+
 ## Alter the player's career mode data to force a boss level.
 ##
 ## This is triggered by a cheat code.
-func _force_boss_level() -> void:
-	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
-	if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
-		# if they're in the last region, move them to the end of the previous region
-		PlayerData.career.distance_travelled = region.distance - 1
-	else:
-		# move them to the end of the current region
-		PlayerData.career.distance_travelled = region.length + region.distance - 1
+##
+## Returns:
+## 	'true' if the we successfully forced the player to play a boss level, 'false' if we failed
+func _force_boss_level() -> bool:
+	var new_region := _find_region_with_boss_level()
 	
-	# set their max_distance_travelled so that the boss level isn't skipped
-	PlayerData.career.max_distance_travelled = PlayerData.career.distance_travelled
+	if new_region:
+		# move them to the end of their new region
+		PlayerData.career.distance_travelled = new_region.length + new_region.distance - 1
+		
+		# set their max_distance_travelled so that the boss level isn't skipped
+		PlayerData.career.max_distance_travelled = PlayerData.career.distance_travelled
+		
+		# mark the boss cutscenes as unviewed, and the boss level as unplayed
+		PlayerData.chat_history.delete_history_item(new_region.get_boss_level_preroll_chat_key())
+		PlayerData.chat_history.delete_history_item(new_region.get_boss_level_postroll_chat_key())
+		PlayerData.level_history.delete(new_region.boss_level.level_id)
+		
+		# reload the CareerMap scene
+		SceneTransition.change_scene()
 	
-	# reload the CareerMap scene
-	SceneTransition.change_scene()
+	return true if new_region else false
 
 
 func _on_SettingsButton_pressed() -> void:
@@ -69,9 +101,10 @@ func _on_SettingsMenu_other_quit_pressed() -> void:
 
 
 func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
-	if cheat == "cutsio":
-		_force_cutscene()
-		detector.play_cheat_sound(true)
-	elif cheat == "bossio":
-		_force_boss_level()
-		detector.play_cheat_sound(true)
+	match cheat:
+		"bossio":
+			var cheat_successful := _force_boss_level()
+			detector.play_cheat_sound(cheat_successful)
+		"cutsio":
+			_force_cutscene()
+			detector.play_cheat_sound(true)
