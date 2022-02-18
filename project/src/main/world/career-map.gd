@@ -21,6 +21,12 @@ onready var _level_select_control := $LevelSelect
 
 func _ready() -> void:
 	ResourceCache.substitute_singletons()
+	
+	if not Breadcrumb.trail:
+		# For developers accessing the Overworld scene directly, we initialize a default Breadcrumb trail.
+		# For regular players the Breadcrumb trail will already be initialized by the menus.
+		Breadcrumb.initialize_trail()
+	
 	MusicPlayer.play_chill_bgm()
 	PlayerData.career.connect("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed")
 	

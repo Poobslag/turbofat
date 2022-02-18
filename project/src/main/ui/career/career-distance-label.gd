@@ -21,9 +21,9 @@ func _refresh_label() -> void:
 	var focused_level_button_index := _level_select.focused_level_button_index()
 	var distance_penalty: int = PlayerData.career.distance_penalties()[focused_level_button_index]
 	
-	# Display the distance travelled with the distance penalty applied
+	# Display the distance travelled and distance earned with the distance penalty applied
+	_label.text = StringUtils.comma_sep(PlayerData.career.distance_travelled - distance_penalty)
 	var distance_earned_value := PlayerData.career.distance_earned - distance_penalty
-	_label.text = StringUtils.comma_sep(distance_earned_value)
 	
 	if distance_earned_value > 0:
 		# distance_earned is positive; prefix distance_option with a '+'
