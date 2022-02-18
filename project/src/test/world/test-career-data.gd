@@ -109,6 +109,7 @@ func test_advance_clock_banked_steps_for_finished_level() -> void:
 
 
 func test_distance_penalties_short() -> void:
+	_data.distance_travelled = 8
 	_data.distance_earned = 0
 	assert_eq(_data.distance_penalties(), [0, 0, 0])
 	
@@ -120,6 +121,7 @@ func test_distance_penalties_short() -> void:
 
 
 func test_distance_penalties_medium() -> void:
+	_data.distance_travelled = 8
 	_data.distance_earned = 3
 	assert_eq(_data.distance_penalties(), [2, 1, 0])
 	
@@ -134,6 +136,7 @@ func test_distance_penalties_medium() -> void:
 
 
 func test_distance_penalties_long() -> void:
+	_data.distance_travelled = 8
 	_data.distance_earned = 10
 	assert_eq(_data.distance_penalties(), [4, 2, 0])
 	
@@ -145,6 +148,7 @@ func test_distance_penalties_long() -> void:
 
 
 func test_distance_penalties_negative() -> void:
+	_data.distance_travelled = 8
 	_data.distance_earned = -1
 	assert_eq(_data.distance_penalties(), [1, 0, 0])
 
@@ -153,6 +157,16 @@ func test_distance_penalties_negative() -> void:
 
 
 func test_distance_penalties_boss_level() -> void:
+	_data.distance_travelled = 8
 	_data.max_distance_travelled = 0
 	_data.advance_clock(50, false)
 	assert_eq(_data.distance_penalties(), [0, 0, 0])
+
+
+func test_distance_penalties_cant_cross_regions() -> void:
+	_data.distance_earned = 7
+	_data.distance_travelled = 10
+	assert_eq(_data.distance_penalties(), [0, 0, 0])
+	
+	_data.distance_travelled = 12
+	assert_eq(_data.distance_penalties(), [2, 2, 0])

@@ -271,6 +271,11 @@ func distance_penalties() -> Array:
 	elif distance_earned <= 5: result[1] = 1
 	else: result[1] = 2
 	
+	# penalties can never take you into a previous region
+	var max_penalty: int = distance_travelled - CareerLevelLibrary.region_for_distance(distance_travelled).distance
+	for i in range(result.size()):
+		result[i] = min(result[i], max_penalty)
+	
 	return result
 
 
