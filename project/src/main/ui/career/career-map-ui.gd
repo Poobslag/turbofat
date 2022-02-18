@@ -61,11 +61,22 @@ func _find_region_with_boss_level() -> CareerRegion:
 func _force_boss_level() -> bool:
 	var new_region := _find_region_with_boss_level()
 	
-	# set their max_distance_travelled so that the boss level isn't skipped
-	PlayerData.career.max_distance_travelled = PlayerData.career.distance_travelled
+	if new_region:
+		# move them to the end of their new region
+		PlayerData.career.distance_travelled = new_region.length + new_region.distance - 1
+		
+		# set their max_distance_travelled so that the boss level isn't skipped
+		PlayerData.career.max_distance_travelled = PlayerData.career.distance_travelled
+		
+		# mark the boss cutscenes as unviewed, and the boss level as unplayed
+		PlayerData.chat_history.delete_history_item(new_region.get_boss_level_preroll_chat_key())
+		PlayerData.chat_history.delete_history_item(new_region.get_boss_level_postroll_chat_key())
+		PlayerData.level_history.delete(new_region.boss_level.level_id)
+		
+		# reload the CareerMap scene
+		SceneTransition.change_scene()
 	
-	# reload the CareerMap scene
-	SceneTransition.change_scene()
+	return true if new_region else false
 
 
 ## Finds a region we can send the player to that has an epilogue.
