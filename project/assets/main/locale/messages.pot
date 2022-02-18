@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2022-02-07 17:13-0500\n"
+"POT-Creation-Date: 2022-02-18 14:15-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -3829,12 +3829,12 @@ msgid "start"
 msgstr ""
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:275
-#: project/src/main/world/CareerMap.tscn:207
+#: project/src/main/world/CareerMap.tscn:201
 msgid "<"
 msgstr ""
 
 #: project/src/main/editor/puzzle/PlayfieldEditor.tscn:284
-#: project/src/main/world/CareerMap.tscn:221
+#: project/src/main/world/CareerMap.tscn:215
 msgid ">"
 msgstr ""
 
@@ -5059,43 +5059,47 @@ msgstr ""
 
 #: project/src/main/ui/career/ChalkboardMapRow.tscn:178
 #: project/src/main/ui/career/Landmark.tscn:43
-#: project/src/main/world/CareerMap.tscn:178
+#: project/src/main/world/CareerMap.tscn:172
 msgid "999,999"
 msgstr ""
 
-#: project/src/main/ui/career/career-time-label.gd:9
-msgid "8:00 am"
-msgstr ""
-
-#: project/src/main/ui/career/career-time-label.gd:10
-msgid "9:10 am"
-msgstr ""
-
-#: project/src/main/ui/career/career-time-label.gd:11
-msgid "10:15 am"
+#: project/src/main/ui/career/career-time-label.gd:7
+msgid "?:?? zm"
 msgstr ""
 
 #: project/src/main/ui/career/career-time-label.gd:12
-msgid "11:20 am"
+msgid "8:00 am"
 msgstr ""
 
 #: project/src/main/ui/career/career-time-label.gd:13
-msgid "12:30 pm"
+msgid "9:10 am"
 msgstr ""
 
 #: project/src/main/ui/career/career-time-label.gd:14
-msgid "1:40 pm"
+msgid "10:15 am"
 msgstr ""
 
 #: project/src/main/ui/career/career-time-label.gd:15
-msgid "2:45 pm"
+msgid "11:20 am"
 msgstr ""
 
 #: project/src/main/ui/career/career-time-label.gd:16
-msgid "3:50 pm"
+msgid "12:30 pm"
 msgstr ""
 
 #: project/src/main/ui/career/career-time-label.gd:17
+msgid "1:40 pm"
+msgstr ""
+
+#: project/src/main/ui/career/career-time-label.gd:18
+msgid "2:45 pm"
+msgstr ""
+
+#: project/src/main/ui/career/career-time-label.gd:19
+msgid "3:50 pm"
+msgstr ""
+
+#: project/src/main/ui/career/career-time-label.gd:20
 msgid "5:00 pm"
 msgstr ""
 
@@ -5679,7 +5683,7 @@ msgstr ""
 msgid "Left, Right, Numpad7/9"
 msgstr ""
 
-#: project/src/main/world/CareerMap.tscn:261
+#: project/src/main/world/CareerMap.tscn:255
 msgid "12:05 am"
 msgstr ""
 
