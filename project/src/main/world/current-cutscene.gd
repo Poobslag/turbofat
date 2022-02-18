@@ -1,6 +1,12 @@
 extends Node
 ## Stores information about the current cutscene.
 
+## Emitted after a scene is launched to play a cutscene.
+##
+## Parameters:
+## 	'chat_key': A chat key such as 'chat/marsh_prologue'
+signal cutscene_played(chat_key)
+
 ## The chat key for the cutscene currently being launched or played
 var chat_key: String
 
@@ -25,6 +31,7 @@ func set_launched_cutscene(new_chat_key: String) -> void:
 ## The new scene is appended to the end of the breadcrumb trail.
 func push_cutscene_trail() -> void:
 	SceneTransition.push_trail(Global.SCENE_CUTSCENE)
+	emit_signal("cutscene_played", chat_key)
 
 
 ## Launches an overworld scene with the previously specified 'launched cutscene' settings.
@@ -32,6 +39,7 @@ func push_cutscene_trail() -> void:
 ## The new scene replaces the current scene in the the breadcrumb trail.
 func replace_cutscene_trail() -> void:
 	SceneTransition.replace_trail(Global.SCENE_CUTSCENE)
+	emit_signal("cutscene_played", chat_key)
 
 
 ## Unsets all of the 'launched cutscene' data.
