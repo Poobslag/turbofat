@@ -11,7 +11,7 @@ const DEFAULT_WORLDS_PATH := "res://assets/main/puzzle/career-worlds.json"
 ## Path to the json file with the list of levels. Can be changed for tests.
 var worlds_path := DEFAULT_WORLDS_PATH setget set_worlds_path
 
-## List of CareerRegions containing region and level data.
+## List of CareerRegions containing region and level data, sorted by distance
 var regions: Array = []
 
 func all_level_ids() -> Array:

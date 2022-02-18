@@ -58,8 +58,12 @@ func add_history_item(chat_key: String) -> void:
 	chat_history[chat_key] = chat_count
 
 
-func delete_history_item(chat_key: String) -> void:
-	chat_history.erase(chat_key)
+## Deletes an item from the chat history.
+##
+## Returns:
+## 	'true' if the key was present in the chat history, 'false' otherwise.
+func delete_history_item(chat_key: String) -> bool:
+	return chat_history.erase(chat_key)
 
 
 ## Returns how long ago the player had the specified chat.

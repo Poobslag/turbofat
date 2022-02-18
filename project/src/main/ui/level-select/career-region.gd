@@ -1,13 +1,13 @@
 class_name CareerRegion
 ## Stores information about a block of levels for career mode.
 
-## Chat key containing each region's prologue cutscene
+## Chat key containing each region's prologue cutscene, which plays before any other cutscenes/levels
 const PROLOGUE_CHAT_KEY_NAME := "prologue"
 
-## Chat key containing each region's intro level cutscene
+## Chat key containing each region's intro level cutscene, which plays before/after the intro level
 const INTRO_LEVEL_CHAT_KEY_NAME := "intro_level"
 
-## Chat key containing each region's boss level cutscene
+## Chat key containing each region's boss level cutscene, which plays before/after the boss level
 const BOSS_LEVEL_CHAT_KEY_NAME := "boss_level"
 
 ## A human-readable region name, such as 'Lemony Thickets'

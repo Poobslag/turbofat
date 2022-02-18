@@ -75,7 +75,7 @@ func test_advance_clock_fails_boss_level() -> void:
 
 func test_advance_clock_stops_at_intro_level() -> void:
 	_data.max_distance_travelled = 10
-	PlayerData.level_history.finished_levels.erase("intro_311")
+	PlayerData.level_history.delete("intro_311")
 	_data.advance_clock(50, false)
 	assert_eq(_data.distance_earned, 50)
 	assert_eq(_data.distance_travelled, 10)

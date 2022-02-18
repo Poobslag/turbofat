@@ -104,6 +104,17 @@ func add(level_id: String, rank_result: RankResult) -> void:
 		finished_levels[level_id] = OS.get_datetime()
 
 
+## Deletes all records of the specified level from the player's history.
+##
+## Returns:
+## 	'true' if the key was present in the player's history, false otherwise.
+func delete(level_id: String) -> bool:
+	var success := rank_results.erase(level_id)
+	successful_levels.erase(level_id)
+	finished_levels.erase(level_id)
+	return success
+
+
 func has(level_id: String) -> bool:
 	return rank_results.has(level_id) and rank_results.get(level_id).size() >= 1
 
