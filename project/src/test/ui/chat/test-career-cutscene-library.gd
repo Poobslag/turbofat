@@ -18,6 +18,9 @@ func test_load_all_chat_keys() -> void:
 		{"preroll": "ui/chat/fake_career/marsh/10_a"},
 		{"preroll": "ui/chat/fake_career/marsh/10_b"},
 		{"postroll": "ui/chat/fake_career/marsh/10_c_end"},
+		{"preroll": "ui/chat/fake_career/marsh/20"},
+		{"preroll": "ui/chat/fake_career/marsh/30_a"},
+		{"preroll": "ui/chat/fake_career/marsh/30_b"},
 	])
 
 
