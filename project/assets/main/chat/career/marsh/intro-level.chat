@@ -7,8 +7,9 @@ marsh/inside_turbo_fat
 player, p1, kitchen_9
 sensei, s1, kitchen_11
 richie, r, kitchen_1
-skins, s, kitchen_3
+(chef) skins, s, kitchen_3
 bones, b, kitchen_5
+(customer) rhonk
 
 s1: -_- So explain again why my beloved restaurant is very, very empty?
 r: Aw come on now! It's not empty, we got the two line cooks here...

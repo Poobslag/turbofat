@@ -10,8 +10,9 @@ outdoors
 player, p1, kitchen_3
 sensei, s1, kitchen_5
 richie, r, kitchen_11
-skins, s, kitchen_9
+(chef) skins, s, kitchen_9
 bones, b, kitchen_7
+(customer) rhonk
 
 s: So how was that?
 [very_good] I think you killed it!

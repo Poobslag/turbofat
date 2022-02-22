@@ -114,3 +114,72 @@ func _load_raw_json_data() -> void:
 			regions[i].length = regions[i + 1].distance - regions[i].distance
 		else:
 			regions[i].length = CareerData.MAX_DISTANCE_TRAVELLED
+
+
+## Returns a collection of chefs and customers required for potential upcoming cutscenes.
+##
+## Based on the upcoming cutscenes, we sometimes restrict the player's level choice to one or two levels where those
+## cutscenes make sense. This method returns the chefs/customers required for the upcoming cutscenes. As long as one
+## of these chefs/customers is selected by the player, there will be at least one appropriate cutscene which features
+## them.
+##
+## Returns:
+##	A dictionary with two entries:
+## 		'chef_ids' lists ids for creatures who acts as the chef for a cutscene.
+##
+## 		'customer_ids' lists ids for creatures who act as the main customer for a cutscene.
+func required_cutscene_characters() -> Dictionary:
+	var chef_ids := []
+	var customer_ids := []
+	var region := region_for_distance(PlayerData.career.distance_travelled)
+	var potential_chat_key_pairs: Array = CareerCutsceneLibrary.potential_chat_key_pairs([region.cutscene_path])
+	for chat_key_pair in potential_chat_key_pairs:
+		for chat_key in chat_key_pair.chat_keys():
+			var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+			if chat_tree.chef_id:
+				if not chat_tree.chef_id in chef_ids:
+					chef_ids.append(chat_tree.chef_id)
+			elif chat_tree.customer_ids:
+				# If a cutscene specifies both a chef AND customer, we ignore the customer. The chef is the only
+				# creature who appears on the map.
+				if not chat_tree.customer_ids[0] in customer_ids:
+					customer_ids.append(chat_tree.customer_ids[0])
+			else:
+				if not CareerLevel.ANONYMOUS_CUSTOMER in customer_ids:
+					customer_ids.append(CareerLevel.ANONYMOUS_CUSTOMER)
+	return {
+		"chef_ids": chef_ids,
+		"customer_ids": customer_ids,
+	}
+
+## Removes levels from a list if they do not include specific creatures in them.
+##
+## If the specified chef/customer lists are populated, this filters the specified level list to only include levels
+## featuring a chef or customer from the lists.
+##
+## If the specified chef/customer lists are empty, this returns an unfiltered list of all levels.
+##
+## Parameters:
+## 	'levels': A list of CareerLevel instances to evaluate
+##
+## 	'chef_ids': A list of creature ids who must as appear as a chef in the returned cutscenes.
+##
+## 	'customer_ids': A list of creature ids who must as appear as customers in the returned cutscenes. This can
+## 		also include ANONYMOUS_CUSTOMER for cutscenes with no named chefs/customers.
+##
+## Returns:
+## 	A filtered list of CareerLevel instances if the input chef/customer lists are populated, or an unfiltered list
+## 	if the input chef/customer lists are empty.
+func trim_levels_by_characters(levels: Array, chef_ids: Array, customer_ids: Array) -> Array:
+	var trimmed_levels := []
+	if not chef_ids and not customer_ids:
+		trimmed_levels.append_array(levels)
+	else:
+		for level in levels:
+			if level.chef_id in chef_ids:
+				trimmed_levels.append(level)
+			elif level.customer_ids and level.customer_ids[0] in customer_ids:
+				# If a level includes multiple customers, we ignore everything but the first customer. The first
+				# customer is the only creature who appears on the map.
+				trimmed_levels.append(level)
+	return trimmed_levels

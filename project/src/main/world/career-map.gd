@@ -116,6 +116,16 @@ func _random_levels() -> Array:
 		seed_int += PlayerData.career.prev_daily_earnings[0]
 	Utils.seeded_shuffle(levels, seed_int)
 	
+	if _chat_key_pair(null).type == ChatKeyPair.INTERLUDE:
+		# filter the levels based on the required chefs/customers for the possible upcoming interludes
+		var required_cutscene_characters := CareerLevelLibrary.required_cutscene_characters()
+		levels = CareerLevelLibrary.trim_levels_by_characters( \
+				levels, required_cutscene_characters.chef_ids, required_cutscene_characters.customer_ids)
+		if not levels:
+			push_warning("Can't find any levels for distance=%s, chef_ids=%s, customer_ids=%s" %
+					[PlayerData.career.distance_travelled, required_cutscene_characters.chef_ids,
+					required_cutscene_characters.customer_ids])
+	
 	var random_levels := levels.slice(0, min(SELECTION_COUNT - 1, levels.size() - 1))
 	var random_level_index := 0
 	for level in levels:
@@ -175,16 +185,34 @@ func _boss_chat_key_pair() -> ChatKeyPair:
 
 
 ## Returns a ChatKeyPair with an arbitrary interlude cutscene for the current region.
-func _interlude_chat_key_pair() -> ChatKeyPair:
+##
+## Parameters:
+## 	'career_level': (Optional) The level whose chat key pair should be returned. This is specifically used for the
+## 		case where the player is viewing an interlude, and we want the interlude to feature the same creatures
+## 		shown in the level. For other cases, this parameter can be null.
+func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	var result: ChatKeyPair = ChatKeyPair.new()
 	
 	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	
+	# calculate the chef id/customer ids
+	var chef_id: String
+	var customer_ids: Array
+	if career_level:
+		if career_level.chef_id or career_level.customer_ids:
+			chef_id = career_level.chef_id
+			customer_ids = career_level.customer_ids
+		else:
+			customer_ids = [CareerLevel.ANONYMOUS_CUSTOMER]
+	
 	if region.cutscene_path:
 		# find a region-specific cutscene
-		result = CareerCutsceneLibrary.next_interlude_chat_key_pair([region.cutscene_path])
+		result = CareerCutsceneLibrary.next_interlude_chat_key_pair(
+				[region.cutscene_path], chef_id, customer_ids)
 	if result.empty():
 		# no region-specific cutscene available; find a general cutscene
-		result = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
+		result = CareerCutsceneLibrary.next_interlude_chat_key_pair(
+				[CareerData.GENERAL_CHAT_KEY_ROOT], chef_id, customer_ids)
 	if not result.empty():
 		result.type = ChatKeyPair.INTERLUDE
 	
@@ -192,7 +220,12 @@ func _interlude_chat_key_pair() -> ChatKeyPair:
 
 
 ## Returns an intro, boss, or interlude chat key pair for the current region.
-func _chat_key_pair() -> ChatKeyPair:
+##
+## Parameters:
+## 	'career_level': (Optional) The level whose chat key pair should be returned. This is specifically used for the
+## 		case where the player is viewing an interlude, and we want the interlude to feature the same creatures
+## 		shown in the level. For most cases, this parameter can be omitted.
+func _chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	var result: ChatKeyPair = ChatKeyPair.new()
 
 	# if it's an intro level, return any intro level cutscenes
@@ -206,7 +239,7 @@ func _chat_key_pair() -> ChatKeyPair:
 	# if it's the 3rd or 6th level, return any interludes
 	if result.empty() and PlayerData.career.hours_passed in CareerData.CAREER_INTERLUDE_HOURS \
 			and not PlayerData.career.skipped_previous_level:
-		result = _interlude_chat_key_pair()
+		result = _interlude_chat_key_pair(career_level)
 	
 	return result
 
@@ -239,8 +272,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 			CurrentLevel.customers.append(customer.creature_def)
 		CurrentLevel.customers.shuffle()
 	
-	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
-	var chat_key_pair := _chat_key_pair()
+	var chat_key_pair := _chat_key_pair(career_level)
 	
 	var preroll_key: String = chat_key_pair.preroll
 	var postroll_key: String = chat_key_pair.postroll
@@ -268,6 +300,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 				CutsceneManager.set_cutscene_flag("boss_level")
 	
 	if _should_play_epilogue(chat_key_pair):
+		var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
 		CutsceneManager.enqueue_cutscene(ChatLibrary.chat_tree_for_key(region.get_epilogue_chat_key()))
 	
 	PlayerData.career.push_career_trail()
