@@ -1,10 +1,12 @@
 extends "res://addons/gut/test.gd"
 
 func before_each() -> void:
+	ChatLibrary.chat_key_root_path = "res://assets/test"
 	PlayerData.chat_history.reset()
 
 
 func after_each() -> void:
+	ChatLibrary.chat_key_root_path = ChatLibrary.DEFAULT_CHAT_KEY_ROOT_PATH
 	CareerCutsceneLibrary.career_cutscene_root_path = CareerCutsceneLibrary.DEFAULT_CAREER_CUTSCENE_ROOT_PATH
 
 

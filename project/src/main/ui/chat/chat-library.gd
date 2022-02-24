@@ -4,10 +4,15 @@ extends Node
 ## Chat lines are stored as a set of chatscript resources. This class loads those resources into ChatTree instances so
 ## they can be fed into the UI.
 
+const DEFAULT_CHAT_KEY_ROOT_PATH := "res://assets/main"
+
 const CHAT_EXTENSION := ".chat"
 
 const PREROLL_SUFFIX := "000"
 const POSTROLL_SUFFIX := "100"
+
+## Resource path containing career cutscenes. Can be changed for tests.
+var chat_key_root_path := DEFAULT_CHAT_KEY_ROOT_PATH
 
 ## Returns the chat tree for the specified creature.
 ##
@@ -264,6 +269,47 @@ func should_play_cutscene(chat_tree: ChatTree, cutscene_force: int) -> bool:
 	return result
 
 
+## Converts a path like 'res://assets/main/creatures/primary/bones/filler-001.chat' into a chat key like
+## 'chat/bones/filler_001'.
+##
+## Using these chat keys has many benefits. Most notably they aren't invalidated if we move files or change extensions.
+##
+## Parameters:
+## 	'path': The path of a chat resource.
+##
+## Returns:
+## 	A key such as 'chat/marsh_prologue' corresponding to the specified chat resource
+func chat_key_from_path(path: String) -> String:
+	var chat_key := path
+	chat_key = chat_key.trim_suffix(".chat")
+	chat_key = chat_key.trim_prefix("%s/" % [chat_key_root_path])
+	if chat_key.begins_with("creatures/primary/"):
+		chat_key = "creature/" + chat_key.trim_prefix("creatures/primary/")
+	elif chat_key.begins_with("puzzle/levels/cutscenes"):
+		chat_key = "level/" + chat_key.trim_prefix("puzzle/levels/cutscenes/")
+	chat_key = StringUtils.hyphens_to_underscores(chat_key)
+	return chat_key
+
+
+## Converts a chat key like 'creature/bones/filler_001' into a path like
+## 'res://assets/main/creatures/primary/bones/filler-001.chat'
+##
+## Parameters:
+## 	'chat_key': A chat key such as 'chat/marsh_prologue'
+##
+## Returns:
+## 	The path of the resource identified by the specified chat key.
+func path_from_chat_key(chat_key: String) -> String:
+	var path := chat_key
+	path = StringUtils.underscores_to_hyphens(chat_key)
+	if chat_key.begins_with("creature/"):
+		path = path.replace("creature/", "creatures/primary/")
+	elif chat_key.begins_with("level/"):
+		path = path.replace("level/", "puzzle/levels/cutscenes/")
+	path = "%s/%s.chat" % [chat_key_root_path, path]
+	return path
+
+
 func _creature_chat_path(creature_id: String, chat_id: String) -> String:
 	return "res://assets/main/creatures/primary/%s/%s%s" % \
 			[creature_id, StringUtils.underscores_to_hyphens(chat_id), CHAT_EXTENSION]
@@ -290,45 +336,3 @@ func _preroll_path(level_id: String) -> String:
 func _postroll_path(level_id: String) -> String:
 	return "res://assets/main/puzzle/levels/cutscenes/%s-%s%s" % \
 			[StringUtils.underscores_to_hyphens(level_id), POSTROLL_SUFFIX, CHAT_EXTENSION]
-
-
-## Converts a path like 'res://assets/main/creatures/primary/bones/filler-001.chat' into a chat key like
-## 'chat/bones/filler_001'.
-##
-## Using these chat keys has many benefits. Most notably they aren't invalidated if we move files or change extensions.
-##
-## Parameters:
-## 	'path': The path of a chat resource.
-##
-## Returns:
-## 	A key such as 'chat/marsh_prologue' corresponding to the specified chat resource
-static func chat_key_from_path(path: String) -> String:
-	var chat_key := path
-	chat_key = chat_key.trim_suffix(".chat")
-	chat_key = chat_key.trim_prefix("res://assets/main/")
-	chat_key = chat_key.trim_prefix("res://assets/test/")
-	if chat_key.begins_with("creatures/primary/"):
-		chat_key = "creature/" + chat_key.trim_prefix("creatures/primary/")
-	elif chat_key.begins_with("puzzle/levels/cutscenes"):
-		chat_key = "level/" + chat_key.trim_prefix("puzzle/levels/cutscenes/")
-	chat_key = StringUtils.hyphens_to_underscores(chat_key)
-	return chat_key
-
-
-## Converts a chat key like 'creature/bones/filler_001' into a path like
-## 'res://assets/main/creatures/primary/bones/filler-001.chat'
-##
-## Parameters:
-## 	'chat_key': A chat key such as 'chat/marsh_prologue'
-##
-## Returns:
-## 	The path of the resource identified by the specified chat key.
-static func path_from_chat_key(chat_key: String) -> String:
-	var path := chat_key
-	path = StringUtils.underscores_to_hyphens(chat_key)
-	if chat_key.begins_with("creature/"):
-		path = path.replace("creature/", "creatures/primary/")
-	elif chat_key.begins_with("level/"):
-		path = path.replace("level/", "puzzle/levels/cutscenes/")
-	path = "res://assets/main/%s.chat" % [path]
-	return path
