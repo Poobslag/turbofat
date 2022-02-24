@@ -98,7 +98,7 @@ func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> voi
 ## Returns:
 ## 	A dictionary with a 'preroll' entry and/or a 'postroll' entry, defining chat keys for cutscenes which play
 ## 	before or after a level.
-func next_chat_key_pair(chat_key_roots: Array) -> Dictionary:
+func next_interlude_chat_key_pair(chat_key_roots: Array) -> Dictionary:
 	var potential_chat_key_pairs := potential_chat_key_pairs(chat_key_roots)
 	return Utils.rand_value(potential_chat_key_pairs) if potential_chat_key_pairs else {}
 

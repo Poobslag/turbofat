@@ -4,7 +4,10 @@ extends CanvasLayer
 ## Alter the player's career mode data to force a cutscene.
 ##
 ## This is triggered by a cheat code.
-func _force_cutscene() -> void:
+##
+## Returns:
+## 	'true' if the we successfully forced the player to view a cutscene level, 'false' if we failed
+func _force_cutscene() -> bool:
 	PlayerData.career.hours_passed = CareerData.CAREER_INTERLUDE_HOURS[0]
 	PlayerData.career.skipped_previous_level = false
 	
@@ -12,11 +15,12 @@ func _force_cutscene() -> void:
 	var chat_key_pair := {}
 	if region.cutscene_path:
 		# find a region-specific cutscene
-		chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([region.cutscene_path])
+		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([region.cutscene_path])
 	if not chat_key_pair:
 		# no region-specific cutscene available; find a general cutscene
-		chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
+		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
 	if not chat_key_pair:
+		# no general cutscene available; make one available
 		var chat_keys := CareerCutsceneLibrary.chat_keys([CareerData.GENERAL_CHAT_KEY_ROOT])
 		var min_chat_age := ChatHistory.CHAT_AGE_NEVER
 		var newest_chat_key := ""
@@ -26,6 +30,13 @@ func _force_cutscene() -> void:
 				min_chat_age = chat_age
 				newest_chat_key = chat_key
 		PlayerData.chat_history.delete_history_item(newest_chat_key)
+		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
+	
+	if chat_key_pair:
+		# reload the CareerMap scene
+		SceneTransition.change_scene()
+	
+	return true if chat_key_pair else false
 
 
 ## Finds a region we can send the player to that has a boss level.
@@ -170,8 +181,8 @@ func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDete
 			var cheat_successful := _force_boss_level()
 			detector.play_cheat_sound(cheat_successful)
 		"cutsio":
-			_force_cutscene()
-			detector.play_cheat_sound(true)
+			var cheat_successful := _force_cutscene()
+			detector.play_cheat_sound(cheat_successful)
 		"epilio":
 			var cheat_successful := _force_epilogue_level()
 			detector.play_cheat_sound(cheat_successful)

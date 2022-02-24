@@ -188,10 +188,10 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 			and not PlayerData.career.skipped_previous_level:
 		if region.cutscene_path:
 			# find a region-specific cutscene
-			chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([region.cutscene_path])
+			chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([region.cutscene_path])
 		if not chat_key_pair:
 			# no region-specific cutscene available; find a general cutscene
-			chat_key_pair = CareerCutsceneLibrary.next_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
+			chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
 	
 	var preroll_key: String = chat_key_pair.get("preroll", "")
 	var postroll_key: String = chat_key_pair.get("postroll", "")
