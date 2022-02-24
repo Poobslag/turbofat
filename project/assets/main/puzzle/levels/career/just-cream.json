@@ -8,6 +8,7 @@
     "value": "35"
   },
   "piece_types": [
+    "no_suppress_o_piece",
     "piece_o",
     "piece_v"
   ],

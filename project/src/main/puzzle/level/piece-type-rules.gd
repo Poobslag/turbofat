@@ -48,11 +48,15 @@ var start_types := []
 ## list of PieceTypes to choose from. if empty, defaults to the basic 8 types (jlopqtuv)
 var types := []
 
+## if 'true', O pieces are rerolled once if they come up as the extra piece in the shuffling algorithm
+var suppress_o_piece: bool = true
+
 var _rule_parser: RuleParser
 
 func _init() -> void:
 	_rule_parser = RuleParser.new(self)
 	_rule_parser.add_bool("ordered_start")
+	_rule_parser.add_bool("suppress_o_piece", "no_suppress_o_piece")
 	_rule_parser.add(PieceTypesPropertyParser.new(self))
 
 
