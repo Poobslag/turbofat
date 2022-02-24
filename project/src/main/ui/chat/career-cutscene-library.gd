@@ -54,10 +54,9 @@ const EXCLUDED_CHAT_KEYS := "excluded_chat_keys"
 ## Resource path containing career cutscenes. Can be changed for tests.
 var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH setget set_career_cutscene_root_path
 
-## Ordered list of chat key pairs, from earliest cutscenes to latest cutscenes
+## Ordered list of ChatKeyPairs, from earliest cutscenes to latest cutscenes
 ##
-## Each entry in this array is a dictionary with a 'preroll' entry and/or a 'postroll' entry, defining chat keys
-## for cutscenes which play before or after a level.
+## Each entry in this array is a ChatKeyPair defining preroll and postroll cutscenes.
 ##
 ## This is calculated based on the contents of the filesystem, but can be overridden for tests.
 var all_chat_key_pairs := [] setget set_all_chat_key_pairs
@@ -65,8 +64,7 @@ var all_chat_key_pairs := [] setget set_all_chat_key_pairs
 ## key: (String) A preroll chat key like 'chat/career/general_00_a'. For the case where a level has a postroll cutscene
 ## 	but no preroll cutscene, this chat key may actually correspond to a non-existent preroll cutscene.
 ##
-## value: (Dictionary) A dictionary with a 'preroll' entry and/or a 'postroll' entry, defining chat keys for
-## 	cutscenes which play before or after a level.
+## value: (Dictionary) A ChatKeyPair defining preroll and postroll cutscenes.
 var _chat_key_pairs_by_preroll := {}
 
 ## Defines a hierarchy of preroll cutscenes.
@@ -83,27 +81,26 @@ func _ready() -> void:
 
 ## Updates the location for career cutscenes.
 ##
-## Also regenerates all internal fields such as the chat key pairs and preroll tree.
+## Also regenerates all internal fields such as the ChatKeyPairs and preroll tree.
 func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> void:
 	career_cutscene_root_path = new_career_cutscene_root_path
 	_refresh_chat_key_pairs()
 
 
-## Calculates the list of potential chat key pairs, and returns a random one.
+## Calculates the list of potential ChatKeyPairs, and returns a random one.
 ##
 ## Parameters:
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
 ## 		cutscenes to choose between.
 ##
 ## Returns:
-## 	A dictionary with a 'preroll' entry and/or a 'postroll' entry, defining chat keys for cutscenes which play
-## 	before or after a level.
-func next_interlude_chat_key_pair(chat_key_roots: Array) -> Dictionary:
+## 	A ChatKeyPair defining preroll and postroll cutscenes.
+func next_interlude_chat_key_pair(chat_key_roots: Array) -> ChatKeyPair:
 	var potential_chat_key_pairs := potential_chat_key_pairs(chat_key_roots)
-	return Utils.rand_value(potential_chat_key_pairs) if potential_chat_key_pairs else {}
+	return Utils.rand_value(potential_chat_key_pairs) if potential_chat_key_pairs else ChatKeyPair.new()
 
 
-## Calculates the list of potential chat key pairs.
+## Calculates the list of potential ChatKeyPairs.
 ##
 ## Parameters:
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
@@ -117,7 +114,7 @@ func potential_chat_key_pairs(chat_key_roots: Array) -> Array:
 	return find_chat_key_pairs(chat_key_roots, {"excluded_chat_keys": exhausted_chat_keys})
 
 
-## Assigns the list of chat key pairs, and regenerates all internal fields such as the preroll tree.
+## Assigns the list of ChatKeyPairs, and regenerates all internal fields such as the preroll tree.
 func set_all_chat_key_pairs(new_all_chat_key_pairs: Array) -> void:
 	all_chat_key_pairs = new_all_chat_key_pairs
 	
@@ -160,9 +157,9 @@ func exhausted_chat_keys(chat_key_roots: Array) -> Dictionary:
 	var chat_key_queue := chat_keys(chat_key_roots)
 	while chat_key_queue:
 		var chat_key: String = chat_key_queue.pop_front()
-		var chat_key_pair: Dictionary = _chat_key_pairs_by_preroll.get(chat_key, {})
-		var preroll: String = chat_key_pair.get("preroll", "")
-		var postroll: String = chat_key_pair.get("postroll", "")
+		var chat_key_pair: ChatKeyPair = _chat_key_pairs_by_preroll.get(chat_key, ChatKeyPair.new())
+		var preroll: String = chat_key_pair.preroll
+		var postroll: String = chat_key_pair.postroll
 		if preroll and not PlayerData.chat_history.is_chat_finished(preroll):
 			# don't exclude; preroll cutscene hasn't been played
 			continue
@@ -209,7 +206,7 @@ func chat_keys(chat_key_roots: Array) -> Array:
 	return chat_keys
 
 
-## Filters the list of potential chat key pairs, excluding the specified chat keys.
+## Filters the list of potential ChatKeyPairs, excluding the specified chat keys.
 ##
 ## The returned list includes only the earliest numeric keys in each branch, because numeric siblings are always
 ## played in ascending order. However, it includes ALL alphabetic keys in each branch, because alphabetic siblings are
@@ -301,21 +298,20 @@ func _parent_key(chat_key: String) -> String:
 	return chat_key.substr(0, max(chat_key.find_last("_"), chat_key.find_last("/")))
 
 
-## Returns the preroll key for the specified chat key pair.
+## Returns the preroll key for the specified ChatKeyPair.
 ##
 ## Parameters:
-## 	'chat_key_pair': A dictionary with a 'preroll' entry and/or a 'postroll' entry, defining chat keys for cutscenes
-## 		which play before or after a level.
+## 	'chat_key_pair': A ChatKeyPair defining preroll and postroll cutscenes.
 ##
 ## Returns:
-## 	A preroll key for the specified chat key pair. For the case where a level has a postroll cutscene but no
+## 	A preroll key for the specified ChatKeyPair. For the case where a level has a postroll cutscene but no
 ## 	preroll cutscene, this chat key may actually correspond to a non-existent preroll cutscene.
-func _preroll_key_from_chat_key_pair(chat_key_pair: Dictionary) -> String:
+func _preroll_key_from_chat_key_pair(chat_key_pair: ChatKeyPair) -> String:
 	var preroll_key: String
-	if chat_key_pair.has("preroll"):
-		preroll_key = chat_key_pair.get("preroll")
-	else:
-		preroll_key = chat_key_pair.get("postroll").trim_suffix("_end")
+	if chat_key_pair.preroll:
+		preroll_key = chat_key_pair.preroll
+	elif chat_key_pair.postroll:
+		preroll_key = chat_key_pair.postroll.trim_suffix("_end")
 	return preroll_key
 
 
@@ -328,7 +324,7 @@ func _is_special_chat_key(chat_key: String) -> bool:
 	return result
 
 
-## Finds all chat key pairs by searching for resources under the career_cutscene_root_path.
+## Finds all ChatKeyPairs by searching for resources under the career_cutscene_root_path.
 ##
 ## Also regenerates all internal fields such as the preroll tree.
 func _refresh_chat_key_pairs() -> void:
@@ -346,15 +342,15 @@ func _refresh_chat_key_pairs() -> void:
 			continue
 		
 		if not chat_key_pairs_by_preroll_tmp.has(preroll_key):
-			var new_chat_key_pair := {}
+			var new_chat_key_pair := ChatKeyPair.new()
 			new_all_chat_key_pairs.append(new_chat_key_pair)
 			chat_key_pairs_by_preroll_tmp[preroll_key] = new_chat_key_pair
 		
 		if chat_key.ends_with("_end"):
 			# postroll key
-			chat_key_pairs_by_preroll_tmp[preroll_key]["postroll"] = chat_key
+			chat_key_pairs_by_preroll_tmp[preroll_key].postroll = chat_key
 		else:
-			chat_key_pairs_by_preroll_tmp[preroll_key]["preroll"] = chat_key
+			chat_key_pairs_by_preroll_tmp[preroll_key].preroll = chat_key
 	
 	# assign all_chat_key_pairs, regenerate other internal fields such as the preroll tree
 	set_all_chat_key_pairs(new_all_chat_key_pairs)
