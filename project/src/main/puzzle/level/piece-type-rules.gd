@@ -56,7 +56,7 @@ var _rule_parser: RuleParser
 func _init() -> void:
 	_rule_parser = RuleParser.new(self)
 	_rule_parser.add_bool("ordered_start")
-	_rule_parser.add_bool("suppress_o_piece", "no_suppress_o_piece")
+	_rule_parser.add_bool("suppress_o_piece", "no_suppress_o_piece").default(true)
 	_rule_parser.add(PieceTypesPropertyParser.new(self))
 
 
