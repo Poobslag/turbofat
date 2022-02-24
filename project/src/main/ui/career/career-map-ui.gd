@@ -12,14 +12,14 @@ func _force_cutscene() -> bool:
 	PlayerData.career.skipped_previous_level = false
 	
 	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
-	var chat_key_pair := {}
+	var chat_key_pair := ChatKeyPair.new()
 	if region.cutscene_path:
 		# find a region-specific cutscene
 		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([region.cutscene_path])
-	if not chat_key_pair:
+	if chat_key_pair.empty():
 		# no region-specific cutscene available; find a general cutscene
 		chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
-	if not chat_key_pair:
+	if chat_key_pair.empty():
 		# no general cutscene available; make one available
 		var chat_keys := CareerCutsceneLibrary.chat_keys([CareerData.GENERAL_CHAT_KEY_ROOT])
 		var min_chat_age := ChatHistory.CHAT_AGE_NEVER
@@ -141,15 +141,15 @@ func _force_epilogue_level() -> bool:
 		if chat_key_pairs:
 			# mark all region cutscenes as viewed
 			for chat_key_pair in chat_key_pairs:
-				if chat_key_pair.has("preroll") and not PlayerData.chat_history.is_chat_finished(chat_key_pair["preroll"]):
-					PlayerData.chat_history.add_history_item(chat_key_pair["preroll"])
-				if chat_key_pair.has("postroll") and not PlayerData.chat_history.is_chat_finished(chat_key_pair["postroll"]):
-					PlayerData.chat_history.add_history_item(chat_key_pair["postroll"])
+				if chat_key_pair.preroll and not PlayerData.chat_history.is_chat_finished(chat_key_pair.preroll):
+					PlayerData.chat_history.add_history_item(chat_key_pair.preroll)
+				if chat_key_pair.postroll and not PlayerData.chat_history.is_chat_finished(chat_key_pair.postroll):
+					PlayerData.chat_history.add_history_item(chat_key_pair.postroll)
 			
 			# mark the final cutscene as unviewed
-			var final_pair: Dictionary = chat_key_pairs.back()
-			PlayerData.chat_history.delete_history_item(final_pair.get("preroll", ""))
-			PlayerData.chat_history.delete_history_item(final_pair.get("postroll", ""))
+			var final_pair: ChatKeyPair = chat_key_pairs.back()
+			PlayerData.chat_history.delete_history_item(final_pair.preroll)
+			PlayerData.chat_history.delete_history_item(final_pair.postroll)
 	
 	return true if new_region else false
 

@@ -134,6 +134,77 @@ func _random_levels() -> Array:
 	return random_levels
 
 
+## Returns a ChatKeyPair with any unplayed intro cutscenes for the current region.
+##
+## If the region does not have intro cutscenes or the player has already viewed them, this returns an empty
+## ChatKeyPair.
+func _intro_chat_key_pair() -> ChatKeyPair:
+	var result: ChatKeyPair = ChatKeyPair.new()
+	
+	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var preroll_key := region.get_intro_level_preroll_chat_key()
+	var postroll_key := region.get_intro_level_postroll_chat_key()
+	if ChatLibrary.chat_exists(preroll_key) and not PlayerData.chat_history.is_chat_finished(preroll_key):
+		result.preroll = preroll_key
+	if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
+		result.postroll = postroll_key
+	
+	return result
+
+
+## Returns a ChatKeyPair with any unplayed boss cutscenes for the current region.
+##
+## If the region does not have boss  cutscenes or the player has already viewed them, this returns an empty
+## ChatKeyPair.
+func _boss_chat_key_pair() -> ChatKeyPair:
+	var result: ChatKeyPair = ChatKeyPair.new()
+	
+	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var preroll_key := region.get_boss_level_preroll_chat_key()
+	var postroll_key := region.get_boss_level_postroll_chat_key()
+	if ChatLibrary.chat_exists(preroll_key) and not PlayerData.chat_history.is_chat_finished(preroll_key):
+		result.preroll = preroll_key
+	if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
+		result.postroll = postroll_key
+	
+	return result
+
+
+## Returns a ChatKeyPair with an arbitrary interlude cutscene for the current region.
+func _interlude_chat_key_pair() -> ChatKeyPair:
+	var result: ChatKeyPair = ChatKeyPair.new()
+	
+	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	if region.cutscene_path:
+		# find a region-specific cutscene
+		result = CareerCutsceneLibrary.next_interlude_chat_key_pair([region.cutscene_path])
+	if not result:
+		# no region-specific cutscene available; find a general cutscene
+		result = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
+	
+	return result
+
+
+## Returns an intro, boss, or interlude chat key pair for the current region.
+func _chat_key_pair() -> ChatKeyPair:
+	var result: ChatKeyPair = ChatKeyPair.new()
+
+	# if it's an intro level, enqueue any intro level cutscenes
+	if result.empty() and PlayerData.career.is_intro_level():
+		result = _intro_chat_key_pair()
+	
+	# if it's a boss level, enqueue any boss level cutscenes
+	if result.empty() and PlayerData.career.is_boss_level():
+		result = _boss_chat_key_pair()
+	
+	# if it's the 3rd or 6th level, enqueue a cutscene
+	if result.empty() and PlayerData.career.hours_passed in CareerData.CAREER_INTERLUDE_HOURS \
+			and not PlayerData.career.skipped_previous_level:
+		result = _interlude_chat_key_pair()
+	
+	return result
+
+
 ## When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	if PlayerData.career.is_connected("distance_travelled_changed", self, "_on_CareerData_distance_travelled_changed"):
@@ -163,38 +234,10 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 		CurrentLevel.customers.shuffle()
 	
 	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
-	var chat_key_pair := {}
+	var chat_key_pair := _chat_key_pair()
 	
-	# if it's an intro level, enqueue any intro level cutscenes
-	if not chat_key_pair and PlayerData.career.is_intro_level():
-		var preroll_key := region.get_intro_level_preroll_chat_key()
-		var postroll_key := region.get_intro_level_postroll_chat_key()
-		if ChatLibrary.chat_exists(preroll_key) and not PlayerData.chat_history.is_chat_finished(preroll_key):
-			chat_key_pair["preroll"] = preroll_key
-		if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
-			chat_key_pair["postroll"] = postroll_key
-	
-	# if it's a boss level, enqueue any boss level cutscenes
-	if not chat_key_pair and PlayerData.career.is_boss_level():
-		var preroll_key := region.get_boss_level_preroll_chat_key()
-		var postroll_key := region.get_boss_level_postroll_chat_key()
-		if ChatLibrary.chat_exists(preroll_key) and not PlayerData.chat_history.is_chat_finished(preroll_key):
-			chat_key_pair["preroll"] = preroll_key
-		if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
-			chat_key_pair["postroll"] = postroll_key
-	
-	# if it's the 3rd or 6th level, enqueue a cutscene
-	if not chat_key_pair and PlayerData.career.hours_passed in CareerData.CAREER_INTERLUDE_HOURS \
-			and not PlayerData.career.skipped_previous_level:
-		if region.cutscene_path:
-			# find a region-specific cutscene
-			chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([region.cutscene_path])
-		if not chat_key_pair:
-			# no region-specific cutscene available; find a general cutscene
-			chat_key_pair = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
-	
-	var preroll_key: String = chat_key_pair.get("preroll", "")
-	var postroll_key: String = chat_key_pair.get("postroll", "")
+	var preroll_key: String = chat_key_pair.preroll
+	var postroll_key: String = chat_key_pair.postroll
 	
 	if preroll_key:
 		CutsceneManager.enqueue_cutscene(ChatLibrary.chat_tree_for_key(preroll_key))
@@ -215,7 +258,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	PlayerData.career.push_career_trail()
 
 
-func _should_play_epilogue(chat_key_pair: Dictionary) -> bool:
+func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 	var result := true
 	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
 	
@@ -232,9 +275,9 @@ func _should_play_epilogue(chat_key_pair: Dictionary) -> bool:
 		result = false
 	
 	if result:
-		# derive the prerolly key from the chat_key_pair
-		var preroll_key: String = chat_key_pair.get("preroll", "")
-		if not preroll_key: preroll_key = chat_key_pair.get("postroll", "").trim_suffix("_end")
+		# derive the preroll key from the chat_key_pair
+		var preroll_key: String = chat_key_pair.preroll
+		if not preroll_key: preroll_key = chat_key_pair.postroll.trim_suffix("_end")
 		
 		# determine if any cutscenes will remain after this cutscene was played
 		var search_flags := {}
