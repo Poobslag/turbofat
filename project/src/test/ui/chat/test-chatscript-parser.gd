@@ -8,6 +8,14 @@ const CHAT_LINK_MOOD := "res://assets/test/ui/chat/chat-link-mood.chat"
 const CHAT_NEWLINES := "res://assets/test/ui/chat/chat-newlines.chat"
 const CHAT_THOUGHT := "res://assets/test/ui/chat/chat-thought.chat"
 
+func before_each() -> void:
+	ChatLibrary.chat_key_root_path = "res://assets/test"
+
+
+func after_each() -> void:
+	ChatLibrary.chat_key_root_path = ChatLibrary.DEFAULT_CHAT_KEY_ROOT_PATH
+
+
 func _chat_tree_from_file(path: String) -> ChatTree:
 	var parser := ChatscriptParser.new()
 	var chat_tree := parser.chat_tree_from_file(path)
@@ -20,6 +28,12 @@ func test_cutscene_location() -> void:
 	
 	assert_eq(chat_tree.location_id, "outdoors_walk")
 	assert_eq(chat_tree.destination_id, "outdoors")
+
+
+func test_chat_key() -> void:
+	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
+	
+	assert_eq(chat_tree.chat_key, "ui/chat/cutscene_full")
 
 
 func test_overall_meta() -> void:
