@@ -675,3 +675,39 @@ func test_ledge_kick_left_r0() -> void:
 		":   ",
 	]
 	assert_kick()
+
+
+func test_flip_kick_rl_narrow() -> void:
+	from_grid = [
+		"  ",
+		"uu",
+		" u",
+		"uu",
+		"  ",
+	]
+	to_grid = [
+		"  ",
+		"uu",
+		"u ",
+		"uu",
+		"  ",
+	]
+	assert_kick()
+
+
+func test_flip_kick_rl_wide() -> void:
+	from_grid = [
+		"   ",
+		" uu",
+		"  u",
+		" uu",
+		"   ",
+	]
+	to_grid = [
+		"   ",
+		"uu ",
+		"u  ",
+		"uu ",
+		"   ",
+	]
+	assert_kick()
