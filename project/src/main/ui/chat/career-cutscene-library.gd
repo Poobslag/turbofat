@@ -64,7 +64,7 @@ var all_chat_key_pairs := [] setget set_all_chat_key_pairs
 ## key: (String) A preroll chat key like 'chat/career/general_00_a'. For the case where a level has a postroll cutscene
 ## 	but no preroll cutscene, this chat key may actually correspond to a non-existent preroll cutscene.
 ##
-## value: (Dictionary) A ChatKeyPair defining preroll and postroll cutscenes.
+## value: (ChatKeyPair) A ChatKeyPair defining preroll and postroll cutscenes.
 var _chat_key_pairs_by_preroll := {}
 
 ## Defines a hierarchy of preroll cutscenes.
@@ -226,8 +226,8 @@ func chat_keys(chat_key_roots: Array) -> Array:
 ## 	'search_flags': A dictionary of flags defining search behavior, as documented above.
 ##
 ## Returns:
-## 	A filtered list of dictionary entries. Each dictionary entry has a 'preroll' entry and/or a 'postroll' entry,
-## 	defining chat keys for cutscenes which play before or after a level.
+## 	A filtered list of ChatKeyPair instances which define chat keys for cutscenes which play before or after a
+## 	level.
 func find_chat_key_pairs(chat_key_roots: Array, search_flags: Dictionary) -> Array:
 	var potential_chat_key_pairs := []
 	var include_all_numeric_children: bool = search_flags.get(INCLUDE_ALL_NUMERIC_CHILDREN, false)

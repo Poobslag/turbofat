@@ -178,7 +178,7 @@ func _interlude_chat_key_pair() -> ChatKeyPair:
 	if region.cutscene_path:
 		# find a region-specific cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair([region.cutscene_path])
-	if not result:
+	if result.empty():
 		# no region-specific cutscene available; find a general cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
 	
@@ -189,15 +189,15 @@ func _interlude_chat_key_pair() -> ChatKeyPair:
 func _chat_key_pair() -> ChatKeyPair:
 	var result: ChatKeyPair = ChatKeyPair.new()
 
-	# if it's an intro level, enqueue any intro level cutscenes
+	# if it's an intro level, return any intro level cutscenes
 	if result.empty() and PlayerData.career.is_intro_level():
 		result = _intro_chat_key_pair()
 	
-	# if it's a boss level, enqueue any boss level cutscenes
+	# if it's a boss level, return any boss level cutscenes
 	if result.empty() and PlayerData.career.is_boss_level():
 		result = _boss_chat_key_pair()
 	
-	# if it's the 3rd or 6th level, enqueue a cutscene
+	# if it's the 3rd or 6th level, return any interludes
 	if result.empty() and PlayerData.career.hours_passed in CareerData.CAREER_INTERLUDE_HOURS \
 			and not PlayerData.career.skipped_previous_level:
 		result = _interlude_chat_key_pair()
