@@ -343,6 +343,7 @@ func _refresh_chat_key_pairs() -> void:
 		
 		if not chat_key_pairs_by_preroll_tmp.has(preroll_key):
 			var new_chat_key_pair := ChatKeyPair.new()
+			new_chat_key_pair.type = ChatKeyPair.INTERLUDE
 			new_all_chat_key_pairs.append(new_chat_key_pair)
 			chat_key_pairs_by_preroll_tmp[preroll_key] = new_chat_key_pair
 		

@@ -13,6 +13,7 @@ func after_each() -> void:
 func _interlude(preroll: String, postroll: String) -> ChatKeyPair:
 	var result := ChatKeyPair.new()
 	result.from_json_dict({
+		"type": "interlude",
 		"preroll": preroll,
 		"postroll": postroll,
 	})

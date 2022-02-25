@@ -363,11 +363,13 @@ func process_puzzle_result() -> void:
 		PlayerData.career.advance_clock(0, false)
 		PlayerData.career.skipped_previous_level = true
 	
-	if PlayerData.career.is_intro_level() and not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
+	if CutsceneManager.has_cutscene_flag("intro_level") \
+			and not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
 		# player lost an intro level
 		skip_remaining_cutscenes = true
 	
-	if PlayerData.career.is_boss_level() and not CurrentLevel.best_result == Levels.Result.WON:
+	if CutsceneManager.has_cutscene_flag("boss_level") \
+			and not CurrentLevel.best_result == Levels.Result.WON:
 		# player didn't meet the win criteria for a boss level
 		skip_remaining_cutscenes = true
 	
