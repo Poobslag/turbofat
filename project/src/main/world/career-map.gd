@@ -116,6 +116,9 @@ func _random_levels() -> Array:
 		seed_int += PlayerData.career.prev_daily_earnings[0]
 	Utils.seeded_shuffle(levels, seed_int)
 	
+	# filter the levels based on which ones the player's unlocked
+	levels = CareerLevelLibrary.trim_levels_by_available_if(levels)
+	
 	if _chat_key_pair(null).type == ChatKeyPair.INTERLUDE:
 		# filter the levels based on the required chefs/customers for the possible upcoming interludes
 		var required_cutscene_characters := CareerLevelLibrary.required_cutscene_characters()

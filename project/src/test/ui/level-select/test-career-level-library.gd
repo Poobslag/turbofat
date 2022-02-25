@@ -1,5 +1,11 @@
 extends "res://addons/gut/test.gd"
 
+func before_each() -> void:
+	PlayerData.chat_history.reset()
+	
+	PlayerData.chat_history.add_history_item("creature/gurus750/level_001")
+
+
 func after_each() -> void:
 	CareerLevelLibrary.worlds_path = LevelLibrary.DEFAULT_WORLDS_PATH
 
@@ -155,3 +161,23 @@ func test_trim_levels_by_characters_all() -> void:
 	
 	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, [], [])
 	assert_eq(trimmed_levels.size(), 3)
+
+
+func test_trim_levels_by_available_if() -> void:
+	var all_levels := []
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_211",
+		"chef_id": "chef_211",
+		"available_if": "chat_finished creature/gurus750/level_001"
+	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_212",
+		"chef_id": "chef_211",
+		"available_if": "chat_finished creature/gurus750/level_002"
+	})
+	
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_available_if(all_levels)
+	assert_eq(trimmed_levels.size(), 1)
+	assert_eq(trimmed_levels[0].level_id, "level_211")
