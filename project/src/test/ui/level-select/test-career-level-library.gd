@@ -82,6 +82,10 @@ func test_trim_levels_by_characters_customer() -> void:
 	all_levels.back().from_json_dict({
 		"id": "level_212",
 	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_213",
+	})
 	
 	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, [], ["customer_211"])
 	assert_eq(trimmed_levels.size(), 1)
@@ -99,10 +103,37 @@ func test_trim_levels_by_characters_chef() -> void:
 	all_levels.back().from_json_dict({
 		"id": "level_212",
 	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_213",
+	})
 	
 	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, ["chef_211"], [])
 	assert_eq(trimmed_levels.size(), 1)
 	assert_eq(trimmed_levels[0].level_id, "level_211")
+
+
+func test_trim_levels_by_characters_anonymous_customer() -> void:
+	var all_levels := []
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_211",
+		"chef_id": "chef_211",
+	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_212",
+		"customer_ids": ["customer_212"],
+	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_213",
+	})
+	
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(
+			all_levels, [], [CareerLevel.ANONYMOUS_CUSTOMER])
+	assert_eq(trimmed_levels.size(), 1)
+	assert_eq(trimmed_levels[0].level_id, "level_213")
 
 
 func test_trim_levels_by_characters_all() -> void:
@@ -117,6 +148,10 @@ func test_trim_levels_by_characters_all() -> void:
 		"id": "level_212",
 		"customer_ids": ["customer_212"],
 	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_213",
+	})
 	
-	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, ["chef_211"], ["customer_212"])
-	assert_eq(trimmed_levels.size(), 2)
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, [], [])
+	assert_eq(trimmed_levels.size(), 3)
