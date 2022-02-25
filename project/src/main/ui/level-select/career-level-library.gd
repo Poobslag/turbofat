@@ -188,3 +188,22 @@ func trim_levels_by_characters(levels: Array, chef_ids: Array, customer_ids: Arr
 				if CareerLevel.ANONYMOUS_CUSTOMER in customer_ids:
 					trimmed_levels.append(level)
 	return trimmed_levels
+
+
+## Removes levels from a list if their 'available_if' condition has not been met.
+##
+## Parameters:
+## 	'levels': A list of CareerLevel instances to evaluate
+##
+## Returns:
+## 	A filtered list of CareerLevel instances, omitting any levels whose 'available_if' conditions have not been
+## 	met.
+func trim_levels_by_available_if(levels: Array) -> Array:
+	var trimmed_levels := []
+	for level in levels:
+		var include_level := true
+		if level.available_if:
+			include_level = BoolExpressionEvaluator.evaluate(level.available_if)
+		if include_level:
+			trimmed_levels.append(level)
+	return trimmed_levels

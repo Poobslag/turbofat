@@ -164,6 +164,12 @@
           "id": "career/a_little_extra"
         },
         {
+          "id": "career/pineapple_on_its_side_cake"
+        },
+        {
+          "id": "career/cleaning_duty"
+        },
+        {
           "id": "career/unfresh_fruits_2",
           "chef_id": "bones"
         },
@@ -207,12 +213,14 @@
           "chef_id": "skins"
         },
         {
-          "id": "career/nowhere_to_turn",
-          "chef_id": "skins"
+          "id": "career/one_step_ahead",
+          "chef_id": "skins",
+          "available_if": "chat_finished chat/career/marsh/20_end"
         },
         {
-          "id": "career/one_step_ahead",
-          "chef_id": "skins"
+          "id": "career/nowhere_to_turn",
+          "chef_id": "skins",
+          "available_if": "level_finished career/one_step_ahead"
         }
       ]
     },
