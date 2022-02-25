@@ -176,10 +176,15 @@ func trim_levels_by_characters(levels: Array, chef_ids: Array, customer_ids: Arr
 		trimmed_levels.append_array(levels)
 	else:
 		for level in levels:
-			if level.chef_id in chef_ids:
-				trimmed_levels.append(level)
-			elif level.customer_ids and level.customer_ids[0] in customer_ids:
-				# If a level includes multiple customers, we ignore everything but the first customer. The first
-				# customer is the only creature who appears on the map.
-				trimmed_levels.append(level)
+			if level.chef_id:
+				if level.chef_id in chef_ids:
+					trimmed_levels.append(level)
+			elif level.customer_ids:
+				if level.customer_ids[0] in customer_ids:
+					# If a level includes multiple customers, we ignore everything but the first customer. The first
+					# customer is the only creature who appears on the map.
+					trimmed_levels.append(level)
+			else:
+				if CareerLevel.ANONYMOUS_CUSTOMER in customer_ids:
+					trimmed_levels.append(level)
 	return trimmed_levels
