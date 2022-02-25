@@ -330,6 +330,11 @@ func unemote(anim_name: String = "") -> void:
 				UNEMOTE_DURATION)
 		_reset_tween.interpolate_property(emote_sprite, "modulate", emote_sprite.modulate,
 				Utils.to_transparent(emote_sprite.modulate), UNEMOTE_DURATION)
+	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
+		# some animations like the 'love' animation change the emote eye scale
+		_reset_tween.interpolate_property(eye_sprite, "scale", eye_sprite.scale, Vector2(2.0, 2.0),
+				UNEMOTE_DURATION)
+	
 	_head_bobber.reset_head_bob()
 	_reset_tween.start()
 	_prev_mood = Creatures.Mood.DEFAULT
@@ -347,17 +352,20 @@ func _tween_sfx_volume(new_value: float) -> void:
 ## This only includes 'non-tweened properties'; properties which snap back to their starting value without being
 ## tweened into place.
 func _unemote_non_tweened_properties() -> void:
+	# unflip the creature's head; the scale itself can be tweened later
+	_creature_visuals.get_node("Neck0").scale = \
+			Vector2(abs(_creature_visuals.get_node("Neck0").scale.x),
+			abs(_creature_visuals.get_node("Neck0").scale.y))
 	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ0").frame = 0
 	_creature_visuals.get_node("Neck0/HeadBobber/EmoteArmZ1").frame = 0
 	_creature_visuals.get_node("NearArm").update_orientation(_creature_visuals.orientation)
 	_creature_visuals.get_node("NearArm").z_index = 0
 	_creature_visuals.get_node("FarArm").update_orientation(_creature_visuals.orientation)
-	_emote_eye_z0.frame = 0
-	_emote_eye_z0.rotation_degrees = 0
-	_emote_eye_z0.position = Vector2(0, 256)
-	_emote_eye_z1.frame = 0
-	_emote_eye_z1.rotation_degrees = 0
-	_emote_eye_z1.position = Vector2(0, 256)
+	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
+		eye_sprite.scale = Vector2(2, 2)
+		eye_sprite.frame = 0
+		eye_sprite.rotation_degrees = 0
+		eye_sprite.position = Vector2(0, 256)
 
 
 ## Immediately resets the creature to a default neutral mood.
@@ -448,10 +456,9 @@ func _transition_laugh1_laugh0() -> void:
 
 ## Transitions from 'love1' to 'love0', hiding the hearts and blush.
 func _transition_love1_love0() -> void:
-	_emote_eye_z0.rotation_degrees = 0
-	_emote_eye_z0.position = Vector2(0, 256)
-	_emote_eye_z1.rotation_degrees = 0
-	_emote_eye_z1.position = Vector2(0, 256)
+	for eye_sprite in [_emote_eye_z0, _emote_eye_z1]:
+		eye_sprite.rotation_degrees = 0
+		eye_sprite.position = Vector2(0, 256)
 	_reset_tween.remove_all()
 	_tween_nodes_to_transparent(["Neck0/HeadBobber/EmoteBrain", "Neck0/HeadBobber/EmoteGlow"])
 	_reset_tween.start()
