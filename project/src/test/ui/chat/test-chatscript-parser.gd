@@ -52,6 +52,12 @@ func test_cutscene_spawn_locations() -> void:
 	assert_has(chat_tree.spawn_locations, "bones", "kitchen_7")
 
 
+func test_cutscene_roles() -> void:
+	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
+	assert_eq(chat_tree.chef_id, "skins")
+	assert_eq(chat_tree.customer_ids, ["rhonk"])
+
+
 func test_cutscene_chat() -> void:
 	var chat_tree := _chat_tree_from_file(CUTSCENE_FULL)
 	var event := chat_tree.get_event()

@@ -69,3 +69,54 @@ func test_region_weight_for_distance() -> void:
 		CareerLevelLibrary.region_for_distance(15), 15), 0.55, 0.01)
 	assert_eq(CareerLevelLibrary.region_weight_for_distance(
 		CareerLevelLibrary.region_for_distance(19), 19), 1.0)
+
+
+func test_trim_levels_by_characters_customer() -> void:
+	var all_levels := []
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_211",
+		"customer_ids": ["customer_211"],
+	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_212",
+	})
+	
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, [], ["customer_211"])
+	assert_eq(trimmed_levels.size(), 1)
+	assert_eq(trimmed_levels[0].level_id, "level_211")
+
+
+func test_trim_levels_by_characters_chef() -> void:
+	var all_levels := []
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_211",
+		"chef_id": "chef_211",
+	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_212",
+	})
+	
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, ["chef_211"], [])
+	assert_eq(trimmed_levels.size(), 1)
+	assert_eq(trimmed_levels[0].level_id, "level_211")
+
+
+func test_trim_levels_by_characters_all() -> void:
+	var all_levels := []
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_211",
+		"chef_id": "chef_211",
+	})
+	all_levels.append(CareerLevel.new())
+	all_levels.back().from_json_dict({
+		"id": "level_212",
+		"customer_ids": ["customer_212"],
+	})
+	
+	var trimmed_levels := CareerLevelLibrary.trim_levels_by_characters(all_levels, ["chef_211"], ["customer_212"])
+	assert_eq(trimmed_levels.size(), 2)

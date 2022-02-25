@@ -89,29 +89,73 @@ func set_career_cutscene_root_path(new_career_cutscene_root_path: String) -> voi
 
 ## Calculates the list of potential ChatKeyPairs, and returns a random one.
 ##
+## The optional 'chef_id' and 'customer_ids' parameters force the responses to feature those creatures as
+## participants. This ensures levels are paired up with appropriate cutscenes.
+##
 ## Parameters:
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
 ## 		cutscenes to choose between.
 ##
+## 	'chef_id': (Optional) The id of a creature who must appear as a chef in the returned cutscenes.
+##
+## 	'customer_ids': (Optional) A list of string creature ids, where the first id represents a creature who must
+## 		appear as a customer in the returned cutscenes.
+##
 ## Returns:
 ## 	A ChatKeyPair defining preroll and postroll cutscenes.
-func next_interlude_chat_key_pair(chat_key_roots: Array) -> ChatKeyPair:
-	var potential_chat_key_pairs := potential_chat_key_pairs(chat_key_roots)
+func next_interlude_chat_key_pair(chat_key_roots: Array, chef_id: String = "", customer_ids: Array = []) \
+		-> ChatKeyPair:
+	var potential_chat_key_pairs := potential_chat_key_pairs(chat_key_roots, chef_id, customer_ids)
 	return Utils.rand_value(potential_chat_key_pairs) if potential_chat_key_pairs else ChatKeyPair.new()
 
 
 ## Calculates the list of potential ChatKeyPairs.
 ##
+## The optional 'chef_id' and 'customer_ids' parameters force the responses to feature those creatures as
+## participants. This ensures levels are paired up with appropriate cutscenes.
+##
 ## Parameters:
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
 ## 		cutscenes to choose between.
 ##
+## 	'chef_id': (Optional) The id of a creature who must appear as a chef in the returned cutscenes.
+##
+## 	'customer_ids': (Optional) A list of string creature ids, where the first id represents a creature who must
+## 		appear as a customer in the returned cutscenes.
+##
 ## Returns:
-## 	A list of dictionary entries. Each dictionary entry has a 'preroll' entry and/or a 'postroll' entry, defining
-## 	chat keys for cutscenes which play before or after a level.
-func potential_chat_key_pairs(chat_key_roots: Array) -> Array:
+## 	A list of ChatKeyPair instances defining preroll and postroll cutscenes.
+func potential_chat_key_pairs(chat_key_roots: Array, chef_id: String = "", customer_ids: Array = []) -> Array:
 	var exhausted_chat_keys := exhausted_chat_keys(chat_key_roots)
-	return find_chat_key_pairs(chat_key_roots, {"excluded_chat_keys": exhausted_chat_keys})
+	var potential_chat_key_pairs := find_chat_key_pairs(chat_key_roots, {"excluded_chat_keys": exhausted_chat_keys})
+	var trimmed_chat_key_pairs := []
+	for potential_chat_key_pair in potential_chat_key_pairs:
+		var accept_chat_key_pair: bool
+		if not chef_id and not customer_ids:
+			# no criteria specified; accept all chat key pairs
+			accept_chat_key_pair = true
+		elif customer_ids and customer_ids[0] == CareerLevel.ANONYMOUS_CUSTOMER:
+			# anonymous customer; only accept chat key pairs with no named chefs/customers
+			accept_chat_key_pair = true
+			for chat_key in potential_chat_key_pair.chat_keys():
+				var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+				if chat_tree.chef_id or chat_tree.customer_ids:
+					accept_chat_key_pair = false
+		else:
+			# only accept chat key pairs with matching chef/customer
+			accept_chat_key_pair = false
+			for chat_key in potential_chat_key_pair.chat_keys():
+				var chat_tree: ChatTree = ChatLibrary.chat_tree_for_key(chat_key)
+				if chef_id:
+					if chat_tree.chef_id == chef_id:
+						accept_chat_key_pair = true
+				elif customer_ids:
+					if customer_ids[0] in chat_tree.customer_ids:
+						accept_chat_key_pair = true
+		
+		if accept_chat_key_pair:
+			trimmed_chat_key_pairs.append(potential_chat_key_pair)
+	return trimmed_chat_key_pairs
 
 
 ## Assigns the list of ChatKeyPairs, and regenerates all internal fields such as the preroll tree.

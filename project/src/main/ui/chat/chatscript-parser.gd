@@ -121,18 +121,35 @@ class CharactersState extends AbstractState:
 	## Syntax:
 	## 	skins, s, kitchen_9        - a character named 'skins' with an alias 's' spawns at kitchen_9
 	## 	skins, s, !kitchen_9       - a character named 'skins' with an alias 's' spawns invisible at kitchen_9
+	## 	(chef) skins, s            - a character named 'skins' with an alias 's' is the chef for this scene
+	## 	(customer) rhonk           - a character named 'rhonk' is a customer for this scene
 	## 	skins, s                   - a character named 'skins' with an alias 's'
 	## 	skins                      - a character named 'skins'
 	func _parse_character_name(line: String) -> void:
 		var line_parts := line.split(",")
 		var character_name := "" if line_parts.size() < 1 else line_parts[0].strip_edges()
+		
+		# parse (chef) prefix
+		if character_name.begins_with("(chef)"):
+			character_name = StringUtils.substring_after(character_name, "(chef)").strip_edges()
+			chat_tree.chef_id = character_name
+		
+		# parse (customer) prefix
+		if character_name.begins_with("(customer)"):
+			character_name = StringUtils.substring_after(character_name, "(customer)").strip_edges()
+			chat_tree.customer_ids.append(character_name)
+		
+		# parse character name
 		if character_name in ["player", "sensei", "narrator"]:
 			character_name = "#%s#" % [character_name]
-		var character_alias := "" if line_parts.size() < 2 else line_parts[1].strip_edges()
-		var character_location := "" if line_parts.size() < 3 else line_parts[2].strip_edges()
 		
+		# parse spawn location
+		var character_location := "" if line_parts.size() < 3 else line_parts[2].strip_edges()
 		if character_name and character_location:
 			chat_tree.spawn_locations[character_name] = character_location
+		
+		# parse alias
+		var character_alias := "" if line_parts.size() < 2 else line_parts[1].strip_edges()
 		if character_name and character_alias:
 			_character_aliases[character_alias] = character_name
 

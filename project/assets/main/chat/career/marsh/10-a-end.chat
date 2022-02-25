@@ -6,7 +6,7 @@ marsh/outside_turbo_fat
 [characters]
 player, p1, restaurant_1
 sensei, s1, restaurant_4
-bones, b, restaurant_8
+(chef) bones, b, restaurant_8
 
 p1: Well that was... good!
 b: <_< Just good?

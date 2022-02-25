@@ -170,3 +170,48 @@ func test_potential_chat_keys_exclude_played_branch() -> void:
 		# only return scenes in second numeric branch
 		_interlude("ui/chat/fake_career/general/00_1_a", ""),
 	])
+
+
+func test_potential_chat_keys_includes_chef() -> void:
+	CareerCutsceneLibrary.all_chat_key_pairs = [
+		# cutscenes include a numeric branch with no remaining cutscenes
+		_interlude("ui/chat/fake_career_2/a", ""),
+		_interlude("ui/chat/fake_career_2/b", ""),
+		_interlude("ui/chat/fake_career_2/c", ""),
+	]
+	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+		"ui/chat/fake_career_2"
+	], "skins", []), [
+		# only return scenes with skins as a chef
+		_interlude("ui/chat/fake_career_2/a", ""),
+	])
+
+
+func test_potential_chat_keys_includes_customer() -> void:
+	CareerCutsceneLibrary.all_chat_key_pairs = [
+		# cutscenes include a numeric branch with no remaining cutscenes
+		_interlude("ui/chat/fake_career_2/a", ""),
+		_interlude("ui/chat/fake_career_2/b", ""),
+		_interlude("ui/chat/fake_career_2/c", ""),
+	]
+	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+		"ui/chat/fake_career_2"
+	], "", ["rhonk"]), [
+		# only return scenes with rhonk as a customer
+		_interlude("ui/chat/fake_career_2/b", ""),
+	])
+
+
+func test_potential_chat_keys_includes_unnamed_customers() -> void:
+	CareerCutsceneLibrary.all_chat_key_pairs = [
+		# cutscenes include a numeric branch with no remaining cutscenes
+		_interlude("ui/chat/fake_career_2/a", ""),
+		_interlude("ui/chat/fake_career_2/b", ""),
+		_interlude("ui/chat/fake_career_2/c", ""),
+	]
+	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
+		"ui/chat/fake_career_2"
+	], "", [CareerLevel.ANONYMOUS_CUSTOMER]), [
+		# only return scenes with no named chefs/customers
+		_interlude("ui/chat/fake_career_2/c", ""),
+	])

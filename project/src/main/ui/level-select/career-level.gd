@@ -1,6 +1,9 @@
 class_name CareerLevel
 ## Stores career-mode-specific information about a level.
 
+## Unique customer ID assigned to levels with no named chefs or customers.
+const ANONYMOUS_CUSTOMER := "#anonymous_customer#"
+
 var level_id: String
 
 ## Some levels involve specific customers or a specific chef.
