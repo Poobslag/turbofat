@@ -120,7 +120,7 @@ class CharactersState extends AbstractState:
 	
 	## Syntax:
 	## 	skins, s, kitchen_9        - a character named 'skins' with an alias 's' spawns at kitchen_9
-	## 	skins, s, !kitchen_9        - a character named 'skins' with an alias 's' spawns invisible at kitchen_9
+	## 	skins, s, !kitchen_9       - a character named 'skins' with an alias 's' spawns invisible at kitchen_9
 	## 	skins, s                   - a character named 'skins' with an alias 's'
 	## 	skins                      - a character named 'skins'
 	func _parse_character_name(line: String) -> void:
