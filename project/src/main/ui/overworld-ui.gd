@@ -370,6 +370,7 @@ func _on_TalkButton_pressed() -> void:
 			start_chat(chat_tree, ChattableManager.focused_chattable)
 		else:
 			# if a location change is necessary, launch a cutscene
+			CutsceneManager.reset()
 			CutsceneManager.enqueue_cutscene(chat_tree)
 			CutsceneManager.enqueue_level({
 				"level_id": level_id

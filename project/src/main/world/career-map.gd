@@ -148,7 +148,9 @@ func _intro_chat_key_pair() -> ChatKeyPair:
 		result.preroll = preroll_key
 	if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
 		result.postroll = postroll_key
-	
+	if not result.empty():
+		result.type = ChatKeyPair.INTRO_LEVEL
+		
 	return result
 
 
@@ -166,6 +168,8 @@ func _boss_chat_key_pair() -> ChatKeyPair:
 		result.preroll = preroll_key
 	if ChatLibrary.chat_exists(postroll_key) and not PlayerData.chat_history.is_chat_finished(postroll_key):
 		result.postroll = postroll_key
+	if not result.empty():
+		result.type = ChatKeyPair.BOSS_LEVEL
 	
 	return result
 
@@ -181,6 +185,8 @@ func _interlude_chat_key_pair() -> ChatKeyPair:
 	if result.empty():
 		# no region-specific cutscene available; find a general cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair([CareerData.GENERAL_CHAT_KEY_ROOT])
+	if not result.empty():
+		result.type = ChatKeyPair.INTERLUDE
 	
 	return result
 
@@ -239,6 +245,8 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	var preroll_key: String = chat_key_pair.preroll
 	var postroll_key: String = chat_key_pair.postroll
 	
+	CutsceneManager.reset()
+	
 	if preroll_key:
 		CutsceneManager.enqueue_cutscene(ChatLibrary.chat_tree_for_key(preroll_key))
 	
@@ -251,6 +259,13 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	
 	if postroll_key:
 		CutsceneManager.enqueue_cutscene(ChatLibrary.chat_tree_for_key(postroll_key))
+	
+	if preroll_key or postroll_key:
+		match chat_key_pair.type:
+			ChatKeyPair.INTRO_LEVEL:
+				CutsceneManager.set_cutscene_flag("intro_level")
+			ChatKeyPair.BOSS_LEVEL:
+				CutsceneManager.set_cutscene_flag("boss_level")
 	
 	if _should_play_epilogue(chat_key_pair):
 		CutsceneManager.enqueue_cutscene(ChatLibrary.chat_tree_for_key(region.get_epilogue_chat_key()))

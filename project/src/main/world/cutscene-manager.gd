@@ -26,8 +26,24 @@ const SENSEI_SPAWN_IDS_BY_PLAYER_LOCATION := {
 ## Queue of ChatTree and String instances. ChatTrees represent cutscenes, and strings represent level IDs.
 var _queue := []
 
+## Flags for the current set of cutscenes, indicating things like whether they're for a boss level.
+var _cutscene_flags := {}
+
 func reset() -> void:
 	_queue.clear()
+	_cutscene_flags.clear()
+
+
+## Sets a flag for the current set of cutscenes, indicating something like whether they're for a boss level.
+func set_cutscene_flag(flag: String) -> void:
+	_cutscene_flags[flag] = true
+
+
+## Returns 'true' if the specified flag has been enabled for the current set of cutscenes.
+##
+## These flags can indicate things like whether the cutscenes are for a boss level.
+func has_cutscene_flag(flag: String) -> bool:
+	return _cutscene_flags.has(flag)
 
 
 ## Adds a cutscene to the back of the queue.
