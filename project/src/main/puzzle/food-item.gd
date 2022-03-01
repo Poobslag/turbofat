@@ -90,7 +90,7 @@ func _physics_process(delta: float) -> void:
 	_refresh_scale()
 	_refresh_rotation()
 
-## Makes the food jiggle briefly.
+## Jiggles the food briefly.
 func jiggle() -> void:
 	# restart the jiggle animation if the item was already jiggling
 	$AnimationPlayer.stop()
@@ -121,7 +121,7 @@ func set_base_rotation(new_base_rotation: float) -> void:
 	_refresh_rotation()
 
 
-## Makes the food item start flying towards the customer's mouth.
+## Sends the food item towards the customer's mouth.
 ##
 ## The object, method and arg_array parameters correspond to a callback which returns the position of the customer's
 ## mouth. The callback function can also return Vector2.INF if the customer is no longer present.

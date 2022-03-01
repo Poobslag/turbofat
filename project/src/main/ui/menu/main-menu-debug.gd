@@ -1,5 +1,5 @@
 extends VBoxContainer
-## A panel shown on the main menu containing developer tools.
+## Main menu panel with developer tools.
 ##
 ## The panel only appears in debug builds of the game.
 

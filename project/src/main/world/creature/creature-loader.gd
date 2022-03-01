@@ -1,6 +1,5 @@
 #tool #uncomment to view creature in editor
 extends Node
-
 ## Loads creature resources based on creature definitions. For example, a creature definition might describe high-level
 ## information about the creature's appearance, such as 'she has red eyes' or 'she has a star on her forehead'. This
 ## class converts that information into granular information such as 'her Eye/Sprint/TxMap/RGB value is ff3030', and
@@ -179,6 +178,7 @@ func load_details(dna: Dictionary) -> void:
 	_load_body(dna)
 	_load_colors(dna)
 
+
 ## Loads a creature texture based on a dna key/value pair.
 ##
 ## The input dna contains key/value pairs which we need to map to a texture to load, such as {'ear': '0'}. We map
@@ -194,7 +194,6 @@ func load_details(dna: Dictionary) -> void:
 ## 	'filename': The stripped-down filename of the resource to look up. All creature texture files have a path of
 ## 		res://assets/main/world/creature/0/{something}.png, so this parameter only specifies the {something}.
 func _load_texture(dna: Dictionary, node_path: String, key: String, filename: String) -> void:
-	# load the texture resource
 	var resource_path: String
 	var frame_data: String
 	var resource: Resource
