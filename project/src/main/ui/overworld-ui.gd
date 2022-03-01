@@ -285,6 +285,8 @@ func _on_ChatUi_chat_finished() -> void:
 	if not CurrentCutscene.chat_tree \
 			and Breadcrumb.trail.size() >= 2 and Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 		# don't launch the level; go back to CutsceneDemo after playing the cutscene
+		
+		# [cutscene_demo > cutscene] -> [cutscene_demo]
 		SceneTransition.pop_trail()
 	elif CurrentLevel.level_id:
 		# continue to a level (non-cutscene pre-level dialog finished playing)

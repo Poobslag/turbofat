@@ -46,16 +46,13 @@ func _ready() -> void:
 
 
 ## Unsets all of the 'launched level' data.
-##
-## This ensures the overworld will allow free roam and not try to play a cutscene.
 func clear_launched_level() -> void:
 	set_launched_level("")
 
 
 ## Stores the launched level data, so the level can be played later.
 ##
-## Some tutorial levels transition into other levels, so this keeps track of the original. These properties also
-## used on the overworld to track whether or not it should play a cutscene or allow free roam.
+## Some tutorial levels transition into other levels, so this keeps track of the original.
 ##
 ## Parameters:
 ## 	'level_id': The level to launch

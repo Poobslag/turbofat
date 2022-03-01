@@ -1,5 +1,5 @@
 extends VBoxContainer
-## A panel shown on the main menu which contains game modes to play.
+## Main menu panel with game modes to play.
 
 const WORLD0_ID := "world0"
 
