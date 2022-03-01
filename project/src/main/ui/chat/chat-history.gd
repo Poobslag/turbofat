@@ -35,14 +35,14 @@ func reset() -> void:
 
 
 func increment_filler_count(creature_name: String) -> void:
-	filler_counts[creature_name] = get_filler_count(creature_name) + 1
+	filler_counts[creature_name] = filler_count(creature_name) + 1
 
 
 func reset_filler_count(creature_name: String) -> void:
 	filler_counts[creature_name] = 0
 
 
-func get_filler_count(creature_name: String) -> int:
+func filler_count(creature_name: String) -> int:
 	# explicitly cast to an int to avoid warnings. numbers are loaded from json as floats
 	return filler_counts.get(creature_name, 0) as int
 
@@ -69,7 +69,7 @@ func delete_history_item(chat_key: String) -> bool:
 ## Returns how long ago the player had the specified chat.
 ##
 ## Used to avoid repeating conversations too frequently.
-func get_chat_age(chat_key: String) -> int:
+func chat_age(chat_key: String) -> int:
 	# We subtract the index assigned to the chat history from the total number
 	# of chats for that creature to calculate the entry's age.
 	var chat_prefix := StringUtils.substring_before_last(chat_key, "/")

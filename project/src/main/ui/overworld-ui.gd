@@ -245,7 +245,7 @@ func _apply_chat_event_meta(_chat_event: ChatEvent, meta_item: String) -> void:
 					"chat_key": next_scene_key
 				})
 			else:
-				CutsceneManager.insert_cutscene(0, next_scene_chat_tree)
+				CutsceneQueue.insert_cutscene(0, next_scene_chat_tree)
 		"creature_enter":
 			var creature_id := meta_item_split[1]
 			var creature: Creature = ChattableManager.get_creature_by_id(creature_id)
@@ -370,18 +370,18 @@ func _on_TalkButton_pressed() -> void:
 			start_chat(chat_tree, ChattableManager.focused_chattable)
 		else:
 			# if a location change is necessary, launch a cutscene
-			CutsceneManager.reset()
-			CutsceneManager.enqueue_cutscene(chat_tree)
-			CutsceneManager.enqueue_level({
+			CutsceneQueue.reset()
+			CutsceneQueue.enqueue_cutscene(chat_tree)
+			CutsceneQueue.enqueue_level({
 				"level_id": level_id
 			})
 			
 			if cutscene:
 				# if we're already in a cutscene, we replace the current scene
-				CutsceneManager.replace_trail()
+				CutsceneQueue.replace_trail()
 			else:
 				# if we're not in a cutscene, we push the cutscene on top of the overworld scene
-				CutsceneManager.push_trail()
+				CutsceneQueue.push_trail()
 	else:
 		var chat_tree := _focused_chattable_chat_tree()
 		if not chat_tree.location_id:

@@ -157,13 +157,13 @@ func _quit_puzzle() -> void:
 	if _should_play_postroll():
 		# enqueue the postroll cutscene
 		var chat_tree := ChatLibrary.chat_tree_for_postroll(CurrentLevel.level_id)
-		CutsceneManager.enqueue_cutscene(chat_tree)
+		CutsceneQueue.enqueue_cutscene(chat_tree)
 	
 	if _should_play_epilogue():
 		# enqueue the epilogue cutscene (after any postroll cutscene)
 		var world_lock: WorldLock = LevelLibrary.world_lock_for_level(CurrentLevel.level_id)
 		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.epilogue_chat_key)
-		CutsceneManager.enqueue_cutscene(chat_tree)
+		CutsceneQueue.enqueue_cutscene(chat_tree)
 	
 	if PlayerData.career.is_career_mode():
 		PlayerData.career.process_puzzle_result()
@@ -176,8 +176,8 @@ func _quit_puzzle() -> void:
 		PlayerData.career.push_career_trail()
 	else:
 		# not career mode; play a cutscene or return to the previous scene
-		if CutsceneManager.is_front_cutscene():
-			CutsceneManager.replace_trail()
+		if CutsceneQueue.is_front_cutscene():
+			CutsceneQueue.replace_trail()
 		else:
 			SceneTransition.pop_trail()
 
@@ -270,7 +270,7 @@ func _on_PuzzleState_game_ended() -> void:
 	
 	_settings_menu.quit_type = SettingsMenu.QUIT
 	var rank_result := RankCalculator.new().calculate_rank()
-	PlayerData.level_history.add(CurrentLevel.level_id, rank_result)
+	PlayerData.level_history.add_result(CurrentLevel.level_id, rank_result)
 	PlayerData.level_history.prune(CurrentLevel.level_id)
 	PlayerData.emit_signal("level_history_changed")
 	PlayerData.money = int(clamp(PlayerData.money + rank_result.score, 0, PlayerData.MAX_MONEY))

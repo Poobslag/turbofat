@@ -43,24 +43,24 @@ func _push_story_trail() -> void:
 		
 		if _current_chat_tree.destination_environment_path() == _current_chat_tree.chat_environment_path():
 			# preserve spawn ids from cutscene
-			CutsceneManager.assign_player_spawn_ids(_current_chat_tree)
+			CutsceneQueue.assign_player_spawn_ids(_current_chat_tree)
 		else:
 			# erase spawn IDs to avoid 'could not locate spawn' warnings when playing multiple cutscenes
 			# consecutively
 			PlayerData.story.player_spawn_id = ""
 			PlayerData.story.sensei_spawn_id = ""
 	
-	if CutsceneManager.is_front_level():
+	if CutsceneQueue.is_front_level():
 		# continue to a level (preroll cutscene finished playing)
 		
 		# [menu > overworld_1 > cutscene] -> [menu > overworld_2 > puzzle]
 		Breadcrumb.trail.remove(0)
-		CutsceneManager.push_trail()
-	elif CutsceneManager.is_front_cutscene():
+		CutsceneQueue.push_trail()
+	elif CutsceneQueue.is_front_cutscene():
 		# continue to another cutscene (first of multiple cutscenes finished playing)
 		
 		# [menu > overworld > cutscene_1] -> [menu > overworld > cutscene_2]
-		CutsceneManager.replace_trail()
+		CutsceneQueue.replace_trail()
 	else:
 		# return to the overworld (postroll/misc cutscene finished playing)
 		

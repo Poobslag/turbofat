@@ -30,7 +30,7 @@ func apply_flags() -> void:
 			PlayerData.level_history.finished_levels[level_key] = OS.get_datetime()
 		elif line.begins_with("not level_finished "):
 			var level_key := StringUtils.substring_after(line, "level_finished ")
-			PlayerData.level_history.delete(level_key)
+			PlayerData.level_history.delete_results(level_key)
 		else:
 			push_warning("Unrecognized flag: %s" % [line])
 

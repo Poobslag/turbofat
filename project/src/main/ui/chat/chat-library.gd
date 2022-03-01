@@ -131,7 +131,7 @@ func select_from_chat_selectors(chat_selectors: Array, creature_id: String, fill
 
 		var repeat_age: int = chat_selector.get("repeat", 25)
 		var chat_key := "creature/%s/%s" % [creature_id, chat_selector["chat"]]
-		var chat_age: int = PlayerData.chat_history.get_chat_age(chat_key)
+		var chat_age: int = PlayerData.chat_history.chat_age(chat_key)
 		if chat_age < repeat_age:
 			# skip; we've had this conversation too recently
 			continue
@@ -162,7 +162,7 @@ func select_from_chat_selectors(chat_selectors: Array, creature_id: String, fill
 		
 		for filler_id in filler_ids:
 			var chat_key := "creature/%s/%s" % [creature_id, filler_id]
-			var chat_age: int = PlayerData.chat_history.get_chat_age(chat_key)
+			var chat_age: int = PlayerData.chat_history.chat_age(chat_key)
 			if not result or chat_age > result_chat_age:
 				# found an older filler conversation; replace the current result
 				result = filler_id

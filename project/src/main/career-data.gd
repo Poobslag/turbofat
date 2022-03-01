@@ -156,15 +156,15 @@ func push_career_trail() -> void:
 		Breadcrumb.trail.pop_front()
 	
 	var redirected := false
-	if not redirected and not CutsceneManager.is_queue_empty():
+	if not redirected and not CutsceneQueue.is_queue_empty():
 		# If there are pending puzzles/cutscenes, show them.
 		
 		# If the player is playing a puzzle, we immediately apply failure penalties to the player's save data so they
 		# can't quit and retry.
-		if CutsceneManager.is_front_level():
+		if CutsceneQueue.is_front_level():
 			_preapply_failure_penalties()
 		
-		CutsceneManager.push_trail()
+		CutsceneQueue.push_trail()
 		redirected = true
 	
 	if not redirected and is_day_over():
@@ -363,19 +363,19 @@ func process_puzzle_result() -> void:
 		PlayerData.career.advance_clock(0, false)
 		PlayerData.career.skipped_previous_level = true
 	
-	if CutsceneManager.has_cutscene_flag("intro_level") \
+	if CutsceneQueue.has_cutscene_flag("intro_level") \
 			and not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
 		# player lost an intro level
 		skip_remaining_cutscenes = true
 	
-	if CutsceneManager.has_cutscene_flag("boss_level") \
+	if CutsceneQueue.has_cutscene_flag("boss_level") \
 			and not CurrentLevel.best_result == Levels.Result.WON:
 		# player didn't meet the win criteria for a boss level
 		skip_remaining_cutscenes = true
 	
 	if skip_remaining_cutscenes:
 		# skip career cutscenes if they skip a level, or if they fail a boss level
-		CutsceneManager.reset()
+		CutsceneQueue.reset()
 
 
 ## Apply some of the player's distance earned, either advancing the player or banking the steps for later.
