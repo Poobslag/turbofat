@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/outline.shader" type="Shader" id=1]
-[ext_resource path="res://src/main/world/overworld-exit.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/free-roam-exit.gd" type="Script" id=2]
 [ext_resource path="res://assets/main/world/environment/exit-n-sheet.png" type="Texture" id=3]
 
 [sub_resource type="ShaderMaterial" id=1]
@@ -32,7 +32,7 @@ tracks/0/keys = {
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 20, 20 )
 
-[node name="OverworldExit" type="Area2D"]
+[node name="FreeRoamExit" type="Area2D"]
 z_index = -1
 script = ExtResource( 2 )
 __meta__ = {

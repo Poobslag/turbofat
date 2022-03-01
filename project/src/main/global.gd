@@ -11,7 +11,7 @@ const SCENE_MAIN_MENU := "res://src/main/ui/menu/MainMenu.tscn"
 const SCENE_CUTSCENE := "res://src/main/world/Cutscene.tscn"
 
 ## overworld which the player character can run around on and talk to other creatures.
-const SCENE_OVERWORLD := "res://src/main/world/Overworld.tscn"
+const SCENE_FREE_ROAM := "res://src/main/world/FreeRoam.tscn"
 
 ## scene for career mode which shows the player's progress between levels
 const SCENE_CAREER_MAP := "res://src/main/world/CareerMap.tscn"

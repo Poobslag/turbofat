@@ -1,5 +1,5 @@
 extends Camera2D
-## Overworld camera. Follows the main character and zooms in during conversations.
+## Camera for the free roam overworld. Follows the main character and zooms in during conversations.
 
 ## how far from the camera center the player needs to be before the camera zooms out
 const AUTO_ZOOM_OUT_DISTANCE := 100.0

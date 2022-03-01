@@ -4,10 +4,10 @@
 [ext_resource path="res://src/main/world/OverworldUi.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/OverworldEnvironment.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/world/overworld-camera.gd" type="Script" id=21]
-[ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=51]
+[ext_resource path="res://src/main/world/free-roam-camera.gd" type="Script" id=21]
+[ext_resource path="res://src/main/world/free-roam-world.gd" type="Script" id=51]
 
-[node name="Overworld" type="Node"]
+[node name="FreeRoam" type="Node"]
 
 [node name="Bg" type="CanvasLayer" parent="."]
 layer = -1

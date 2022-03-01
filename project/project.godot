@@ -314,6 +314,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/frame-input.gd"
 }, {
+"base": "Node",
+"class": "FreeRoamWorld",
+"language": "GDScript",
+"path": "res://src/main/world/free-roam-world.gd"
+}, {
 "base": "Sprite",
 "class": "FrostingGlob",
 "language": "GDScript",
@@ -618,11 +623,6 @@ _global_script_classes=[ {
 "class": "OverworldUi",
 "language": "GDScript",
 "path": "res://src/main/ui/overworld-ui.gd"
-}, {
-"base": "Node",
-"class": "OverworldWorld",
-"language": "GDScript",
-"path": "res://src/main/world/overworld-world.gd"
 }, {
 "base": "Node2D",
 "class": "PackedSprite",
@@ -1066,6 +1066,7 @@ _global_script_class_icons={
 "FoodItem": "",
 "Foods": "",
 "FrameInput": "",
+"FreeRoamWorld": "",
 "FrostingGlob": "",
 "FrostingViewports": "",
 "GameplaySettings": "",
@@ -1127,7 +1128,6 @@ _global_script_class_icons={
 "OverworldEnvironment": "",
 "OverworldObstacle": "",
 "OverworldUi": "",
-"OverworldWorld": "",
 "PackedSprite": "",
 "PaletteButton": "",
 "PaletteEditorTab": "",

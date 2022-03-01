@@ -1,7 +1,7 @@
 tool
-class_name OverworldWorld
+class_name FreeRoamWorld
 extends Node
-## Populates/unpopulates the creatures and obstacles on the overworld.
+## Populates/unpopulates the creatures and obstacles on the free roam overworld.
 
 ## Scene resource defining the obstacles and creatures to show
 export (Resource) var EnvironmentScene: Resource setget set_environment_scene
@@ -21,7 +21,7 @@ func _ready() -> void:
 	_refresh_environment_scene()
 	
 	if not Breadcrumb.trail:
-		# For developers accessing the Overworld scene directly, we initialize a default Breadcrumb trail.
+		# For developers accessing the FreeRoam scene directly, we initialize a default Breadcrumb trail.
 		# For regular players the Breadcrumb trail will already be initialized by the menus.
 		Breadcrumb.initialize_trail()
 	

@@ -99,7 +99,7 @@ func _physics_process(_delta: float) -> void:
 			player.fade_out()
 			
 			PlayerData.story.environment_path = destination_environment_path
-			SceneTransition.replace_trail(Global.SCENE_OVERWORLD)
+			SceneTransition.replace_trail(Global.SCENE_FREE_ROAM)
 
 
 func set_exit_direction(new_exit_direction: int) -> void:
