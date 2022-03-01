@@ -50,8 +50,9 @@ func test_load_all_chat_keys() -> void:
 func test_find_chat_key_pairs() -> void:
 	CareerCutsceneLibrary.career_cutscene_root_path = "res://assets/test/ui/chat/fake-career"
 	
-	var chat_key_pairs := CareerCutsceneLibrary.find_chat_key_pairs(["ui/chat/fake_career/marsh"],
-			{CareerCutsceneLibrary.INCLUDE_ALL_NUMERIC_CHILDREN: true})
+	var search_flags := CutsceneSearchFlags.new()
+	search_flags.include_all_numeric_children = true
+	var chat_key_pairs := CareerCutsceneLibrary.find_chat_key_pairs(["ui/chat/fake_career/marsh"], search_flags)
 	_assert_eq_ckp(chat_key_pairs, [
 		_interlude("ui/chat/fake_career/marsh/00", "ui/chat/fake_career/marsh/00_end"),
 		_interlude("ui/chat/fake_career/marsh/10_a", ""),

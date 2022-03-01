@@ -15,11 +15,11 @@ class AfterPieceWrittenPhaseCondition extends PhaseCondition:
 	var _combos_string: String
 	
 	## key: (int) piece index which triggers this phase condition, '0' is the first piece
-	## value: (bool) 'true'
+	## value: true
 	var _indexes_to_run := {}
 	
 	## key: (int) combo value which triggers this phase condition, '0' means no combo
-	## value: (bool) 'true'
+	## value: true
 	var _combos_to_run := {}
 	
 	## Creates a new AfterPieceWrittenPhaseCondition instance with the specified configuration.

@@ -331,11 +331,10 @@ func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 		if not preroll_key: preroll_key = chat_key_pair.postroll.trim_suffix("_end")
 		
 		# determine if any cutscenes will remain after this cutscene was played
-		var search_flags := {}
-		search_flags[CareerCutsceneLibrary.INCLUDE_ALL_NUMERIC_CHILDREN] = true
-		search_flags[CareerCutsceneLibrary.EXCLUDED_CHAT_KEYS] = \
-				CareerCutsceneLibrary.exhausted_chat_keys([region.cutscene_path])
-		search_flags[CareerCutsceneLibrary.EXCLUDED_CHAT_KEYS][preroll_key] = true
+		var search_flags := CutsceneSearchFlags.new()
+		search_flags.include_all_numeric_children = true
+		search_flags.excluded_chat_keys = CareerCutsceneLibrary.exhausted_chat_keys([region.cutscene_path])
+		search_flags.exclude_chat_key(preroll_key)
 		var remaining_chat_key_pairs := CareerCutsceneLibrary.find_chat_key_pairs([region.cutscene_path], search_flags)
 		
 		if remaining_chat_key_pairs:

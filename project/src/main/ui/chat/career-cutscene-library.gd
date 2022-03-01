@@ -44,13 +44,6 @@ const SPECIAL_CHAT_KEY_NAMES := [
 	"epilogue",
 ]
 
-## Search flag for find_chat_key_pairs, which indicates that all numeric children should be included, instead of just
-## including the lowest-numbered one
-const INCLUDE_ALL_NUMERIC_CHILDREN := "include_all_numeric_children"
-
-## Search flag for find_chat_key_pairs, which specifies a list of chat keys to exclude from the results
-const EXCLUDED_CHAT_KEYS := "excluded_chat_keys"
-
 ## Resource path containing career cutscenes. Can be changed for tests.
 var career_cutscene_root_path := DEFAULT_CAREER_CUTSCENE_ROOT_PATH setget set_career_cutscene_root_path
 
@@ -127,7 +120,9 @@ func next_interlude_chat_key_pair(chat_key_roots: Array, chef_id: String = "", c
 ## 	A list of ChatKeyPair instances defining preroll and postroll cutscenes.
 func potential_chat_key_pairs(chat_key_roots: Array, chef_id: String = "", customer_ids: Array = []) -> Array:
 	var exhausted_chat_keys := exhausted_chat_keys(chat_key_roots)
-	var potential_chat_key_pairs := find_chat_key_pairs(chat_key_roots, {"excluded_chat_keys": exhausted_chat_keys})
+	var search_flags := CutsceneSearchFlags.new()
+	search_flags.excluded_chat_keys = exhausted_chat_keys
+	var potential_chat_key_pairs := find_chat_key_pairs(chat_key_roots, search_flags)
 	var trimmed_chat_key_pairs := []
 	for potential_chat_key_pair in potential_chat_key_pairs:
 		var accept_chat_key_pair: bool
@@ -256,26 +251,17 @@ func chat_keys(chat_key_roots: Array) -> Array:
 ## played in ascending order. However, it includes ALL alphabetic keys in each branch, because alphabetic siblings are
 ## played in random order.
 ##
-## The 'search_flags' parameter accepts several different search flags, which can be combined:
-## 	'include_all_numeric_children': If true, indicates that all numeric children should be included, instead of just
-## 		including the lowest-numbered one
-## 	'excluded_chat_keys': A set of chat keys for cutscenes the player has already seen. This includes the leaf nodes
-## 		for cutscenes which have been seen, and branch nodes where all child cutscenes have been seen. If omitted, no
-## 		chat keys will be excluded.
-##
 ## Parameters:
 ## 	'chat_key_roots': An array of string chat key roots like 'chat/career/marsh' which correspond to a group of
 ## 		cutscenes to choose between.
 ##
-## 	'search_flags': A dictionary of flags defining search behavior, as documented above.
+## 	'search_flags': A set of flags defining search behavior.
 ##
 ## Returns:
 ## 	A filtered list of ChatKeyPair instances which define chat keys for cutscenes which play before or after a
 ## 	level.
-func find_chat_key_pairs(chat_key_roots: Array, search_flags: Dictionary) -> Array:
+func find_chat_key_pairs(chat_key_roots: Array, search_flags: CutsceneSearchFlags) -> Array:
 	var potential_chat_key_pairs := []
-	var include_all_numeric_children: bool = search_flags.get(INCLUDE_ALL_NUMERIC_CHILDREN, false)
-	var excluded_chat_keys: Dictionary = search_flags.get(EXCLUDED_CHAT_KEYS, {})
 	
 	# We traverse the tree top-down. This queue tracks the child nodes we haven't traversed:
 	#
@@ -286,7 +272,7 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: Dictionary) -> Arr
 	var chat_key_queue := [chat_key_roots]
 	
 	# if the player's seen all cutscenes in a chat key root, remove it when initializing the queue
-	chat_key_queue[0] = Utils.subtract(chat_key_queue[0], excluded_chat_keys.keys())
+	chat_key_queue[0] = Utils.subtract(chat_key_queue[0], search_flags.excluded_chat_keys.keys())
 	
 	while chat_key_queue and chat_key_queue.front():
 		var chat_key: String = chat_key_queue.front().pop_front()
@@ -301,21 +287,21 @@ func find_chat_key_pairs(chat_key_roots: Array, search_flags: Dictionary) -> Arr
 			for child in children:
 				# enqueue letter key
 				var child_key := _child_key(chat_key_roots, chat_key, child)
-				if excluded_chat_keys.has(child_key):
+				if search_flags.excluded_chat_keys.has(child_key):
 					# don't include these chat keys; the player's already seen these cutscenes
 					pass
-				elif not include_all_numeric_children and child.is_valid_integer():
+				elif not search_flags.include_all_numeric_children and child.is_valid_integer():
 					if not min_numeric_child or int(child) < int(min_numeric_child):
 						# track lowest-numbered numeric key
 						min_numeric_child = child
 				else:
-					if not excluded_chat_keys.has(child_key):
+					if not search_flags.excluded_chat_keys.has(child_key):
 						chat_key_queue.front().push_back(child_key)
 				
 			# enqueue lowest-numbered numeric key
 			if min_numeric_child:
 				var child_key := _child_key(chat_key_roots, chat_key, min_numeric_child)
-				if not excluded_chat_keys.has(child_key):
+				if not search_flags.excluded_chat_keys.has(child_key):
 					chat_key_queue.front().push_front(child_key)
 		
 		# dequeue any empty arrays before iterating, so the loop will terminate
