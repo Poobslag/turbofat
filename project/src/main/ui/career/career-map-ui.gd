@@ -136,8 +136,9 @@ func _force_epilogue_level() -> bool:
 		# mark epilogue as unwatched
 		PlayerData.chat_history.delete_history_item(new_region.get_epilogue_chat_key())
 		
-		var chat_key_pairs: Array = CareerCutsceneLibrary.find_chat_key_pairs([new_region.cutscene_path],
-				{CareerCutsceneLibrary.INCLUDE_ALL_NUMERIC_CHILDREN: true})
+		var search_flags := CutsceneSearchFlags.new()
+		search_flags.include_all_numeric_children = true
+		var chat_key_pairs: Array = CareerCutsceneLibrary.find_chat_key_pairs([new_region.cutscene_path], search_flags)
 		if chat_key_pairs:
 			# mark all region cutscenes as viewed
 			for chat_key_pair in chat_key_pairs:
