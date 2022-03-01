@@ -23,7 +23,7 @@ func _ready() -> void:
 	ResourceCache.substitute_singletons()
 	
 	if not Breadcrumb.trail:
-		# For developers accessing the Overworld scene directly, we initialize a default Breadcrumb trail.
+		# For developers accessing the CareerMap scene directly, we initialize a default Breadcrumb trail.
 		# For regular players the Breadcrumb trail will already be initialized by the menus.
 		Breadcrumb.initialize_trail()
 	

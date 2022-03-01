@@ -44,7 +44,7 @@ func _ready() -> void:
 
 
 ## Plays a 'chill' song; something suitable for background music when the player's navigating menus or wandering the
-## overworld.
+## free roam overworld.
 ##
 ## If a chill song is already playing, this method has no effect.
 func play_chill_bgm(fade_in: bool = true) -> void:

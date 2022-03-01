@@ -25,7 +25,7 @@ func _on_Story_pressed() -> void:
 		CutsceneQueue.enqueue_cutscene(chat_tree)
 		CutsceneQueue.push_trail()
 	else:
-		SceneTransition.push_trail(Global.SCENE_OVERWORLD)
+		SceneTransition.push_trail(Global.SCENE_FREE_ROAM)
 
 
 func _on_Practice_pressed() -> void:

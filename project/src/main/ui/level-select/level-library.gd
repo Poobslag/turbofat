@@ -76,8 +76,8 @@ func level_settings(level_id: String) -> LevelSettings:
 
 ## Returns the first unfinished, unlocked level id for a creature.
 ##
-## This is the level which will be played if the player talks to them on the overworld. Finished levels can be played
-## through the cell phone. Locked levels cannot be played; they must be unlocked first.
+## This is the level which will be played if the player talks to them on the free roam overworld. Finished levels can
+## be played through the cell phone. Locked levels cannot be played; they must be unlocked first.
 func next_creature_level(creature_id: String) -> String:
 	var priority_result := ""
 	var result := ""
