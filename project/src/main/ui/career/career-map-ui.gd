@@ -25,7 +25,7 @@ func _force_cutscene() -> bool:
 		var min_chat_age := ChatHistory.CHAT_AGE_NEVER
 		var newest_chat_key := ""
 		for chat_key in chat_keys:
-			var chat_age := PlayerData.chat_history.get_chat_age(chat_key)
+			var chat_age := PlayerData.chat_history.chat_age(chat_key)
 			if chat_age < min_chat_age:
 				min_chat_age = chat_age
 				newest_chat_key = chat_key
@@ -82,7 +82,7 @@ func _force_boss_level() -> bool:
 		# mark the boss cutscenes as unviewed, and the boss level as unplayed
 		PlayerData.chat_history.delete_history_item(new_region.get_boss_level_preroll_chat_key())
 		PlayerData.chat_history.delete_history_item(new_region.get_boss_level_postroll_chat_key())
-		PlayerData.level_history.delete(new_region.boss_level.level_id)
+		PlayerData.level_history.delete_results(new_region.boss_level.level_id)
 		
 		# reload the CareerMap scene
 		SceneTransition.change_scene()

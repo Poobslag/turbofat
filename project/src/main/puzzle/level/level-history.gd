@@ -90,7 +90,7 @@ func prev_result(level_id: String) -> RankResult:
 ## Records the current level performance to the player's history.
 ##
 ## 'add' should be followed by 'prune' to ensure the history does not grow too large.
-func add(level_id: String, rank_result: RankResult) -> void:
+func add_result(level_id: String, rank_result: RankResult) -> void:
 	if not level_id:
 		# can't store history without a level id
 		return
@@ -108,20 +108,20 @@ func add(level_id: String, rank_result: RankResult) -> void:
 ##
 ## Returns:
 ## 	'true' if the key was present in the player's history, false otherwise.
-func delete(level_id: String) -> bool:
+func delete_results(level_id: String) -> bool:
 	var success := rank_results.erase(level_id)
 	successful_levels.erase(level_id)
 	finished_levels.erase(level_id)
 	return success
 
 
-func has(level_id: String) -> bool:
+func has_result(level_id: String) -> bool:
 	return rank_results.has(level_id) and rank_results.get(level_id).size() >= 1
 
 
 ## Prunes the history down to only the best daily results, best all-time results, and the most recent result.
 func prune(level_id: String) -> void:
-	if not has(level_id):
+	if not has_result(level_id):
 		return
 	
 	# collect the best scores, but reinsert the newest score at index 0 for prev_result()

@@ -193,7 +193,7 @@ func _load_line(type: String, key: String, json_value) -> void:
 			for rank_result_json in value:
 				var rank_result := RankResult.new()
 				rank_result.from_json_dict(rank_result_json)
-				PlayerData.level_history.add(key, rank_result)
+				PlayerData.level_history.add_result(key, rank_result)
 			PlayerData.level_history.prune(key)
 		"chat_history":
 			var value: Dictionary = json_value

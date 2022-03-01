@@ -92,7 +92,7 @@ class NotableExpression extends BoolExpression:
 	
 	
 	func evaluate() -> bool:
-		return PlayerData.chat_history.get_filler_count(_creature_id) > 0
+		return PlayerData.chat_history.filler_count(_creature_id) > 0
 
 ## error encountered when parsing the boolean string
 var _parse_error: String

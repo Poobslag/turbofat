@@ -49,8 +49,8 @@ func test_163e_lost_erases_success() -> void:
 func test_1682_chat_history_preserved() -> void:
 	load_legacy_player_data("turbofat-1682.json")
 	
-	assert_eq(PlayerData.chat_history.get_chat_age("creature/boatricia/my_maid_died"), 5)
-	assert_eq(PlayerData.chat_history.get_filler_count("creature/boatricia"), 13)
+	assert_eq(PlayerData.chat_history.chat_age("creature/boatricia/my_maid_died"), 5)
+	assert_eq(PlayerData.chat_history.filler_count("creature/boatricia"), 13)
 
 
 func test_199c() -> void:

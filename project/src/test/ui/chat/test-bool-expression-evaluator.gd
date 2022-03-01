@@ -18,7 +18,7 @@ func before_each() -> void:
 func add_level_history_item(level_id: String, cleared: bool) -> void:
 	var result := RankResult.new()
 	result.lost = not cleared
-	PlayerData.level_history.add(level_id, result)
+	PlayerData.level_history.add_result(level_id, result)
 
 
 func assert_evaluate(expected: bool, string: String, subject = null) -> void:

@@ -11,9 +11,9 @@ func before_each() -> void:
 	PlayerSave.data_filename = "user://%s" % TEMP_PLAYER_FILENAME
 	PlayerData.reset()
 	
-	PlayerData.level_history.add("intro_211", RankResult.new())
-	PlayerData.level_history.add("intro_311", RankResult.new())
-	PlayerData.level_history.add("intro_411", RankResult.new())
+	PlayerData.level_history.add_result("intro_211", RankResult.new())
+	PlayerData.level_history.add_result("intro_311", RankResult.new())
+	PlayerData.level_history.add_result("intro_411", RankResult.new())
 	_data.max_distance_travelled = CareerData.MAX_DISTANCE_TRAVELLED
 
 
@@ -75,7 +75,7 @@ func test_advance_clock_fails_boss_level() -> void:
 
 func test_advance_clock_stops_at_intro_level() -> void:
 	_data.max_distance_travelled = 10
-	PlayerData.level_history.delete("intro_311")
+	PlayerData.level_history.delete_results("intro_311")
 	_data.advance_clock(50, false)
 	assert_eq(_data.distance_earned, 50)
 	assert_eq(_data.distance_travelled, 10)

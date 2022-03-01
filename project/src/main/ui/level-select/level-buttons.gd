@@ -193,16 +193,16 @@ func _lowlight_unrelated_buttons(world_id: String) -> void:
 
 ## When the player clicks a level button twice, we launch the selected level
 func _on_LevelSelectButton_level_started(settings: LevelSettings) -> void:
-	CutsceneManager.reset()
+	CutsceneQueue.reset()
 	var chat_tree := ChatLibrary.chat_tree_for_preroll(settings.id)
 	if ChatLibrary.should_play_cutscene(chat_tree, SystemData.misc_settings.cutscene_force):
 		# [menu > overworld] -> [menu > overworld > cutscene]
-		CutsceneManager.enqueue_cutscene(chat_tree)
-	CutsceneManager.enqueue_level({
+		CutsceneQueue.enqueue_cutscene(chat_tree)
+	CutsceneQueue.enqueue_level({
 		"level_id": settings.id,
 		"cutscene_force": SystemData.misc_settings.cutscene_force,
 	})
-	CutsceneManager.push_trail()
+	CutsceneQueue.push_trail()
 
 ## When the player clicks a level button once, we emit a signal to show more information.
 func _on_LevelSelectButton_focus_entered(settings: LevelSettings) -> void:

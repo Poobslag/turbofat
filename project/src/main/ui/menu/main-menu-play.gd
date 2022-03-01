@@ -22,8 +22,8 @@ func _on_Story_pressed() -> void:
 	if world_lock.prologue_chat_key and not PlayerData.chat_history.is_chat_finished(world_lock.prologue_chat_key):
 		# load the prologue scene
 		var chat_tree := ChatLibrary.chat_tree_for_key(world_lock.prologue_chat_key)
-		CutsceneManager.enqueue_cutscene(chat_tree)
-		CutsceneManager.push_trail()
+		CutsceneQueue.enqueue_cutscene(chat_tree)
+		CutsceneQueue.push_trail()
 	else:
 		SceneTransition.push_trail(Global.SCENE_OVERWORLD)
 

@@ -22,7 +22,7 @@ func after_each() -> void:
 func add_level_history_item(level_id: String, cleared: bool = true) -> void:
 	var result := RankResult.new()
 	result.lost = not cleared
-	PlayerData.level_history.add(level_id, result)
+	PlayerData.level_history.add_result(level_id, result)
 
 
 func assert_level_lock_status(level_id: String, expected_status: int) -> void:
