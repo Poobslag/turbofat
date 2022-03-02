@@ -132,12 +132,16 @@ class CharactersState extends AbstractState:
 		# parse (chef) prefix
 		if character_name.begins_with("(chef)"):
 			character_name = StringUtils.substring_after(character_name, "(chef)").strip_edges()
+			if chat_tree.chef_id:
+				push_warning("Too many chefs: %s" % [character_name])
 			chat_tree.chef_id = character_name
 		
 		# parse (customer) prefix
 		if character_name.begins_with("(customer)"):
 			character_name = StringUtils.substring_after(character_name, "(customer)").strip_edges()
-			chat_tree.customer_ids.append(character_name)
+			if chat_tree.customer_id:
+				push_warning("Too many customers: %s" % [character_name])
+			chat_tree.customer_id = character_name
 		
 		# parse character name
 		if character_name in ["player", "sensei", "narrator"]:

@@ -200,22 +200,22 @@ func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	
 	# calculate the chef id/customer ids
 	var chef_id: String
-	var customer_ids: Array
+	var customer_id: String
 	if career_level:
-		if career_level.chef_id or career_level.customer_ids:
+		if career_level.chef_id or career_level.customer_id:
 			chef_id = career_level.chef_id
-			customer_ids = career_level.customer_ids
+			customer_id = career_level.customer_id
 		else:
-			customer_ids = [CareerLevel.ANONYMOUS_CUSTOMER]
+			customer_id = CareerLevel.ANONYMOUS_CUSTOMER
 	
 	if region.cutscene_path:
 		# find a region-specific cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair(
-				[region.cutscene_path], chef_id, customer_ids)
+				[region.cutscene_path], chef_id, customer_id)
 	if result.empty():
 		# no region-specific cutscene available; find a general cutscene
 		result = CareerCutsceneLibrary.next_interlude_chat_key_pair(
-				[CareerData.GENERAL_CHAT_KEY_ROOT], chef_id, customer_ids)
+				[CareerData.GENERAL_CHAT_KEY_ROOT], chef_id, customer_id)
 	if not result.empty():
 		result.type = ChatKeyPair.INTERLUDE
 	
