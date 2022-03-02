@@ -93,6 +93,9 @@ var skipped_previous_level := false
 ## periodically increments the 'daily_seconds_played' value
 var _daily_seconds_played_timer: Timer
 
+var _career_calendar
+var _career_flow
+
 func _ready() -> void:
 	CurrentCutscene.connect("cutscene_played", self, "_on_CurrentCutscene_cutscene_played")
 	
@@ -101,11 +104,10 @@ func _ready() -> void:
 	_daily_seconds_played_timer.connect("timeout", self, "_on_DailySecondsPlayedTimer_timeout")
 	add_child(_daily_seconds_played_timer)
 	_daily_seconds_played_timer.start()
-
-
-## Returns 'true' if the player has completed the current career mode session.
-func is_day_over() -> bool:
-	return hours_passed >= HOURS_PER_CAREER_DAY
+	
+	## We avoid circular reference errors by loading these scripts with 'load' instead of 'preload'
+	_career_calendar = load("res://src/main/career-calendar.gd").new(self)
+	_career_flow = load("res://src/main/career-flow.gd").new(self)
 
 
 func reset() -> void:
@@ -163,40 +165,14 @@ func to_json_dict() -> Dictionary:
 	return results
 
 
+## Returns 'true' if the player has completed the current career mode session.
+func is_day_over() -> bool:
+	return hours_passed >= HOURS_PER_CAREER_DAY
+
+
 ## Launches the next scene in career mode. Either a new level, or a cutscene/ending scene.
 func push_career_trail() -> void:
-	# Purge any puzzle or cutscene scenes from trail before changing the scene.
-	while Breadcrumb.trail.front() != Global.SCENE_CAREER_MAP:
-		Breadcrumb.trail.pop_front()
-	
-	var redirected := false
-	if not redirected and not CutsceneQueue.is_queue_empty():
-		# If there are pending puzzles/cutscenes, show them.
-		
-		# If the player is playing a puzzle, we immediately apply failure penalties to the player's save data so they
-		# can't quit and retry.
-		if CutsceneQueue.is_front_level():
-			_preapply_failure_penalties()
-		
-		CutsceneQueue.push_trail()
-		redirected = true
-	
-	if not redirected and is_day_over():
-		# After the final level, we show a 'you win' screen.
-		SceneTransition.replace_trail("res://src/main/ui/career/CareerWin.tscn")
-		redirected = true
-	
-	if not redirected and should_play_prologue():
-		# If they haven't seen the region's prologue cutscene, we show it.
-		var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
-		var prologue_chat_key: String = region.get_prologue_chat_key()
-		CurrentCutscene.set_launched_cutscene(prologue_chat_key)
-		CurrentCutscene.push_cutscene_trail()
-		redirected = true
-	
-	if not redirected:
-		# After a puzzle (or any other scene), we go back to the career map.
-		SceneTransition.change_scene()
+	_career_flow.push_career_trail()
 
 
 func should_play_prologue() -> bool:
@@ -293,9 +269,9 @@ func distance_penalties() -> Array:
 	return result
 
 
-## Advances the clock, and advances the player the specified distance.
+## Advances the clock and advances the player the specified distance.
 ##
-## Even if new_distance_earned is a large number, the player's travel distance can be limited in two scenarios.
+## Even if new_distance_earned is a large number, the player's travel distance can be limited in two scenarios:
 ##
 ## 1. If they just played a non-boss level, they cannot advance past a boss level they haven't cleared.
 ##
@@ -306,54 +282,19 @@ func distance_penalties() -> Array:
 ##
 ## 	'success': 'True' if the player met the success criteria for the current level.
 func advance_clock(new_distance_earned: int, success: bool) -> void:
-	distance_earned = new_distance_earned
-	skipped_previous_level = false
-	
-	hours_passed += 1
-	
-	if is_boss_level():
-		var boss_region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
-		if success:
-			# if they pass a boss level, update max_distance_travelled to mark the region as cleared
-			max_distance_travelled = boss_region.distance + boss_region.length
-		else:
-			# if they fail a boss level, they lose 1-2 days worth of progress
-			distance_earned = -int(max(boss_region.length * rand_range(0.125, 0.25), 2))
-	
-	if distance_earned > 0:
-		# if they make forward progress, they also spend their banked steps
-		distance_earned += banked_steps
-		banked_steps = 0
-	
-	var unapplied_distance_earned := distance_earned
-	while unapplied_distance_earned != 0:
-		unapplied_distance_earned = _apply_distance_earned(unapplied_distance_earned)
+	_career_calendar.advance_clock(new_distance_earned, success)
 
 
-## Advances the calendar day and resets all daily variables
+## Advances the calendar day and resets all daily variables.
 func advance_calendar() -> void:
-	prev_daily_earnings.push_front(daily_earnings)
-	if prev_daily_earnings.size() > MAX_DAILY_HISTORY:
-		prev_daily_earnings = prev_daily_earnings.slice(0, MAX_DAILY_HISTORY - 1)
-	
-	max_distance_travelled = max(max_distance_travelled, distance_travelled)
-	prev_distance_travelled.push_front(distance_travelled)
-	if prev_distance_travelled.size() > MAX_DAILY_HISTORY:
-		prev_distance_travelled = prev_distance_travelled.slice(0, MAX_DAILY_HISTORY - 1)
-	
-	# Put the player at the start of their current region.
-	distance_travelled = CareerLevelLibrary.region_for_distance(distance_travelled).distance
-	
-	banked_steps = 0
-	distance_earned = 0
-	hours_passed = 0
-	daily_customers = 0
-	daily_earnings = 0
-	daily_level_ids.clear()
-	daily_seconds_played = 0.0
-	daily_steps = 0
-	day = min(day + 1, MAX_DAY)
-	emit_signal("distance_travelled_changed")
+	_career_calendar.advance_calendar()
+
+
+## Updates the state of career mode based on the player's puzzle performance.
+##
+## If the player skips or fails a level, this has consequences including skipping cutscenes and advancing the clock.
+func process_puzzle_result() -> void:
+	_career_flow.process_puzzle_result()
 
 
 func set_distance_travelled(new_distance_travelled: int) -> void:
@@ -364,89 +305,6 @@ func set_distance_travelled(new_distance_travelled: int) -> void:
 func set_hours_passed(new_hours_passed: int) -> void:
 	hours_passed = new_hours_passed
 	emit_signal("hours_passed_changed")
-
-
-## Updates the state of career mode based on the player's puzzle performance.
-##
-## If the player skips or fails a level, this has consequences including skipping cutscenes and advancing the clock.
-func process_puzzle_result() -> void:
-	var skip_remaining_cutscenes := false
-	if not PuzzleState.game_ended:
-		# player skipped a level
-		skip_remaining_cutscenes = true
-		PlayerData.career.advance_clock(0, false)
-		PlayerData.career.skipped_previous_level = true
-	
-	if CutsceneQueue.has_cutscene_flag("intro_level") \
-			and not CurrentLevel.best_result in [Levels.Result.FINISHED, Levels.Result.WON]:
-		# player lost an intro level
-		skip_remaining_cutscenes = true
-	
-	if CutsceneQueue.has_cutscene_flag("boss_level") \
-			and not CurrentLevel.best_result == Levels.Result.WON:
-		# player didn't meet the win criteria for a boss level
-		skip_remaining_cutscenes = true
-	
-	if skip_remaining_cutscenes:
-		# skip career cutscenes if they skip a level, or if they fail a boss level
-		CutsceneQueue.reset()
-
-
-## Apply some of the player's distance earned, either advancing the player or banking the steps for later.
-##
-## This only applies a small chunk of the player's distance earned, stopping at region boundaries. It should be called
-## iteratively until it returns zero.
-##
-## Parameters:
-## 	'unapplied_distance_earned': The amount of distance_earned which hasn't been applied to advance the player, or
-## 		banked for later.
-##
-## Returns:
-## 	The remaining amount of the player's distance earned, after applying some of it toward advancing the player or
-## 		banking the steps for later.
-func _apply_distance_earned(unapplied_distance_earned: int) -> int:
-	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
-	var newly_banked_steps := 0
-	var newly_travelled_distance := unapplied_distance_earned
-	
-	if not is_region_cleared(region) and region.intro_level and not is_intro_level_finished(region):
-		# The player can't advance further into this region, they haven't cleared its intro level. Move them to
-		# the start of the region and forbid movement.
-		newly_banked_steps = unapplied_distance_earned
-	elif distance_travelled + unapplied_distance_earned >= region.distance + region.length:
-		# The player is trying to cross into the next region
-		var distance_to_next_region := region.distance + region.length - distance_travelled
-		if is_region_cleared(region):
-			# The player can cross into the next region. Move them to the start of the next region and allow
-			# movement.
-			newly_travelled_distance = distance_to_next_region
-		else:
-			# The player can't cross into the next region, they haven't cleared the boss level. Move them to the end
-			# of this region and forbid movement.
-			newly_banked_steps = unapplied_distance_earned - distance_to_next_region + 1
-	
-	# if the player hit a wall, we bank their steps and don't move them as far this time
-	banked_steps += newly_banked_steps
-	newly_travelled_distance -= newly_banked_steps
-	unapplied_distance_earned -= newly_banked_steps
-	
-	distance_travelled += newly_travelled_distance
-	unapplied_distance_earned -= newly_travelled_distance
-	
-	return unapplied_distance_earned
-
-
-## Applies penalties for skipping a level to the player's save data, so they can't quit and retry.
-func _preapply_failure_penalties() -> void:
-	var temp_distance_earned := distance_earned
-	var temp_distance_travelled := distance_travelled
-	var temp_hours_passed := hours_passed
-	advance_clock(0, false)
-	skipped_previous_level = true
-	PlayerSave.save_player_data()
-	distance_earned = temp_distance_earned
-	distance_travelled = temp_distance_travelled
-	hours_passed = temp_hours_passed
 
 
 ## When an epilogue cutscene is played, we advance the player to the next region
