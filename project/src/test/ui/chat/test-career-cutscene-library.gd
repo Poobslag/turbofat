@@ -182,7 +182,7 @@ func test_potential_chat_keys_includes_chef() -> void:
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
 		"ui/chat/fake_career_2"
-	], "skins", []), [
+	], "skins"), [
 		# only return scenes with skins as a chef
 		_interlude("ui/chat/fake_career_2/a", ""),
 	])
@@ -197,7 +197,7 @@ func test_potential_chat_keys_includes_customer() -> void:
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
 		"ui/chat/fake_career_2"
-	], "", ["rhonk"]), [
+	], "", "rhonk"), [
 		# only return scenes with rhonk as a customer
 		_interlude("ui/chat/fake_career_2/b", ""),
 	])
@@ -212,7 +212,7 @@ func test_potential_chat_keys_includes_unnamed_customers() -> void:
 	]
 	_assert_eq_ckp(CareerCutsceneLibrary.potential_chat_key_pairs([
 		"ui/chat/fake_career_2"
-	], "", [CareerLevel.ANONYMOUS_CUSTOMER]), [
+	], "", CareerLevel.ANONYMOUS_CUSTOMER), [
 		# only return scenes with no named chefs/customers
 		_interlude("ui/chat/fake_career_2/c", ""),
 	])

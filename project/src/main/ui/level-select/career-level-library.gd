@@ -139,11 +139,11 @@ func required_cutscene_characters() -> Dictionary:
 			if chat_tree.chef_id:
 				if not chat_tree.chef_id in chef_ids:
 					chef_ids.append(chat_tree.chef_id)
-			elif chat_tree.customer_ids:
+			elif chat_tree.customer_id:
 				# If a cutscene specifies both a chef AND customer, we ignore the customer. The chef is the only
 				# creature who appears on the map.
-				if not chat_tree.customer_ids[0] in customer_ids:
-					customer_ids.append(chat_tree.customer_ids[0])
+				if not chat_tree.customer_id in customer_ids:
+					customer_ids.append(chat_tree.customer_id)
 			else:
 				if not CareerLevel.ANONYMOUS_CUSTOMER in customer_ids:
 					customer_ids.append(CareerLevel.ANONYMOUS_CUSTOMER)
