@@ -74,11 +74,6 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/level-select/career-region.gd"
 }, {
-"base": "Node",
-"class": "CareerWinWorld",
-"language": "GDScript",
-"path": "res://src/main/ui/career/career-win-world.gd"
-}, {
 "base": "Control",
 "class": "ChalkboardMapRow",
 "language": "GDScript",
@@ -269,7 +264,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/chat/cutscene-search-flags.gd"
 }, {
-"base": "Node",
+"base": "OverworldWorld",
 "class": "CutsceneWorld",
 "language": "GDScript",
 "path": "res://src/main/world/cutscene-world.gd"
@@ -319,7 +314,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/piece/frame-input.gd"
 }, {
-"base": "Node",
+"base": "OverworldWorld",
 "class": "FreeRoamWorld",
 "language": "GDScript",
 "path": "res://src/main/world/free-roam-world.gd"
@@ -628,6 +623,11 @@ _global_script_classes=[ {
 "class": "OverworldUi",
 "language": "GDScript",
 "path": "res://src/main/ui/overworld-ui.gd"
+}, {
+"base": "Node",
+"class": "OverworldWorld",
+"language": "GDScript",
+"path": "res://src/main/world/overworld-world.gd"
 }, {
 "base": "Node2D",
 "class": "PackedSprite",
@@ -1023,7 +1023,6 @@ _global_script_class_icons={
 "CareerLevel": "",
 "CareerLevelSelect": "",
 "CareerRegion": "",
-"CareerWinWorld": "",
 "ChalkboardMapRow": "",
 "ChatAdvancer": "",
 "ChatChoiceButton": "",
@@ -1134,6 +1133,7 @@ _global_script_class_icons={
 "OverworldEnvironment": "",
 "OverworldObstacle": "",
 "OverworldUi": "",
+"OverworldWorld": "",
 "PackedSprite": "",
 "PaletteButton": "",
 "PaletteEditorTab": "",

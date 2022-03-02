@@ -1,11 +1,10 @@
 extends Control
 ## Manages the buttons for the overworld.
 
-onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
-
 func _ready() -> void:
-	_overworld_ui.connect("chat_started", self, "_on_OverworldUi_chat_started")
-	_overworld_ui.connect("chat_ended", self, "_on_OverworldUi_chat_ended")
+	var overworld_ui: OverworldUi = Global.get_overworld_ui()
+	overworld_ui.connect("chat_started", self, "_on_OverworldUi_chat_started")
+	overworld_ui.connect("chat_ended", self, "_on_OverworldUi_chat_ended")
 	for button in [$Northeast/SettingsButton, $Northeast/PhoneButton, $Southeast/TalkButton]:
 		button.connect("resized", self, "_on_Button_resized", [button])
 	yield(get_tree(), "idle_frame")
