@@ -1,3 +1,4 @@
+extends Node
 class_name CareerData
 ## Stores current and historical data for career mode
 ##
@@ -88,6 +89,19 @@ var max_distance_travelled := 0
 
 ## 'true' if the player skipped or gave up on the previous level, instead of finishing it or topping out.
 var skipped_previous_level := false
+
+## periodically increments the 'daily_seconds_played' value
+var _daily_seconds_played_timer: Timer
+
+func _ready() -> void:
+	CurrentCutscene.connect("cutscene_played", self, "_on_CurrentCutscene_cutscene_played")
+	
+	_daily_seconds_played_timer = Timer.new()
+	_daily_seconds_played_timer.wait_time = PlayerData.SECONDS_PLAYED_INCREMENT
+	_daily_seconds_played_timer.connect("timeout", self, "_on_DailySecondsPlayedTimer_timeout")
+	add_child(_daily_seconds_played_timer)
+	_daily_seconds_played_timer.start()
+
 
 ## Returns 'true' if the player has completed the current career mode session.
 func is_day_over() -> bool:
@@ -433,6 +447,23 @@ func _preapply_failure_penalties() -> void:
 	distance_earned = temp_distance_earned
 	distance_travelled = temp_distance_travelled
 	hours_passed = temp_hours_passed
+
+
+## When an epilogue cutscene is played, we advance the player to the next region
+func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
+	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
+	if chat_key == region.get_epilogue_chat_key():
+		# advance the player to the next region
+		var old_distance_travelled := distance_travelled
+		distance_travelled = max(distance_travelled, region.distance + region.length)
+		max_distance_travelled = max(max_distance_travelled, distance_travelled)
+		if distance_travelled > old_distance_travelled:
+			distance_earned += (distance_travelled - old_distance_travelled)
+
+
+func _on_DailySecondsPlayedTimer_timeout() -> void:
+	if is_career_mode():
+		daily_seconds_played += PlayerData.SECONDS_PLAYED_INCREMENT
 
 
 ## Calculates the highest rank milestone the player's reached.
