@@ -1,14 +1,13 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/main/ui/career/career-win.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/environment/MarshWinEnvironment.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/ui/career/career-win-world.gd" type="Script" id=4]
+[ext_resource path="res://src/main/world/overworld-world.gd" type="Script" id=4]
 [ext_resource path="res://src/main/ui/wallpaper/Wallpaper.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/ui/chalkboard-54.theme" type="Theme" id=6]
 [ext_resource path="res://assets/main/ui/career/chalkboard.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/ui/career/chalkboard-separator-bottom.png" type="Texture" id=8]
-[ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=9]
 [ext_resource path="res://assets/main/ui/career/chalkboard-title-0b.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/ui/career/chalkboard-title-0a.png" type="Texture" id=11]
 [ext_resource path="res://assets/main/ui/career/chalkboard-distance.png" type="Texture" id=12]
@@ -18,7 +17,6 @@
 [ext_resource path="res://assets/main/ui/career/chalkboard-time.png" type="Texture" id=16]
 [ext_resource path="res://src/main/ui/career/ChalkboardMapRow.tscn" type="PackedScene" id=17]
 [ext_resource path="res://assets/main/ui/schoolbell-regular.ttf" type="DynamicFontData" id=18]
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/ui/career/map-row-updater.gd" type="Script" id=31]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=33]
 [ext_resource path="res://src/main/ui/career/chalkboard-served.gd" type="Script" id=35]
@@ -591,12 +589,7 @@ bus = "Sound Bus"
 script = ExtResource( 4 )
 EnvironmentScene = ExtResource( 2 )
 
-[node name="Environment" type="Node2D" parent="World" groups=["overworld_environments"] instance=ExtResource( 2 )]
-script = ExtResource( 9 )
-creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
-shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
-obstacles_path = NodePath("Obstacles")
-CreatureScene = ExtResource( 19 )
+[node name="Environment" parent="World" instance=ExtResource( 2 )]
 
 [node name="Camera2D" type="Camera2D" parent="World"]
 offset = Vector2( 512, 300 )

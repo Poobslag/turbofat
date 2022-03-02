@@ -1,5 +1,5 @@
 tool
-extends Node
+extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles in the career mode's world.
 
 ## horizontal distance to maintain when placing the player and the sensei
@@ -18,9 +18,6 @@ const MOODS_RARE := [Creatures.Mood.AWKWARD1, Creatures.Mood.SIGH0, Creatures.Mo
 
 export (NodePath) var player_path2d_path: NodePath
 
-## Scene resource defining the obstacles and creatures to show
-export (Resource) var EnvironmentScene: Resource setget set_environment_scene
-
 export (PackedScene) var MileMarkerScene: PackedScene
 
 ## Creature instances for 'level creatures', chefs and customers associated with each level.
@@ -33,14 +30,12 @@ var _focused_level_creature_index := -1
 ## path on which which the player and sensei are placed
 onready var _player_path2d: Path2D = get_node(player_path2d_path)
 
-onready var _overworld_environment: OverworldEnvironment = $Environment
 onready var _camera: Camera2D = $Camera
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	_refresh_environment_scene()
 	var percent := _distance_percent()
 	_move_player_to_path(percent)
 	_move_sensei_to_path(percent)
@@ -63,11 +58,6 @@ func refresh_creatures(pickable_career_levels: Array) -> void:
 		_refresh_multi_level_creatures(pickable_career_levels)
 	
 	_move_camera()
-
-
-func set_environment_scene(new_environment_scene: Resource) -> void:
-	EnvironmentScene = new_environment_scene
-	_refresh_environment_scene()
 
 
 ## Updates the creature/chef IDs for a boss/intro level, where the player only has one choice.
@@ -132,37 +122,6 @@ func _hide_duplicate_creatures() -> void:
 		creatures_by_id[creature.creature_id] = creature
 
 
-## Loads a new overworld environment, replacing the current one in the scene tree.
-func _refresh_environment_scene() -> void:
-	if not is_inside_tree():
-		return
-	
-	# delete old environment nodes
-	for old_overworld_environment in get_tree().get_nodes_in_group("overworld_environments"):
-		if old_overworld_environment.get_parent() != self:
-			# only remove our direct children
-			continue
-		old_overworld_environment.queue_free()
-		remove_child(old_overworld_environment)
-	_overworld_environment = null
-	
-	# insert new environment node
-	if EnvironmentScene:
-		_overworld_environment = EnvironmentScene.instance()
-	else:
-		var empty_environment_scene := load(OverworldEnvironment.SCENE_EMPTY_ENVIRONMENT)
-		_overworld_environment = empty_environment_scene.instance()
-	add_child(_overworld_environment)
-	move_child(_overworld_environment, 0)
-	_overworld_environment.owner = get_tree().get_edited_scene_root()
-	
-	# create chat icons for all chattables
-	if not Engine.editor_hint:
-		var chat_icons := Global.get_chat_icon_container()
-		if chat_icons:
-			chat_icons.recreate_all_icons()
-
-
 ## Calculates how far to the right the player should be positioned.
 ##
 ## Returns:
@@ -196,7 +155,7 @@ func get_visible_customers(level_index: int) -> Array:
 ## Parameters:
 ##     'percent': A number in the range [0.0, 1.0] describing how far to the right the creature should be positioned.
 func _add_level_creature(percent: float) -> void:
-	var creature := _overworld_environment.add_creature()
+	var creature := overworld_environment.add_creature()
 	_level_creatures.append(creature)
 	
 	var mood: int
@@ -291,7 +250,7 @@ func _add_mile_markers_to_path() -> void:
 ## Places a mile marker at the specified position.
 func _add_mile_marker(position: Vector2, mile_number: int) -> void:
 		var marker: MileMarker = MileMarkerScene.instance()
-		_overworld_environment.add_obstacle(marker)
+		overworld_environment.add_obstacle(marker)
 		
 		marker.position = position
 		marker.mile_number = mile_number
@@ -321,11 +280,11 @@ func _camera_x_range() -> Dictionary:
 
 
 func _find_player() -> Creature:
-	return _overworld_environment.find_creature(CreatureLibrary.PLAYER_ID)
+	return overworld_environment.find_creature(CreatureLibrary.PLAYER_ID)
 
 
 func _find_sensei() -> Creature:
-	return _overworld_environment.find_creature(CreatureLibrary.SENSEI_ID)
+	return overworld_environment.find_creature(CreatureLibrary.SENSEI_ID)
 
 
 ## Returns the absolute position of the vertex idx in _player_path2d.

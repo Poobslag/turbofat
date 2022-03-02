@@ -1,29 +1,36 @@
 tool
-class_name CareerWinWorld
+class_name OverworldWorld
 extends Node
-## Populates/unpopulates the creatures and obstacles in the career mode's victory screen.
+## Populates/unpopulates creatures and obstacles for various overworld scenes.
 
 ## Scene resource defining the obstacles and creatures to show
 export (Resource) var EnvironmentScene: Resource setget set_environment_scene
 
-var _overworld_ui: OverworldUi
-
-onready var _overworld_environment: OverworldEnvironment = $Environment
+onready var overworld_environment: OverworldEnvironment = $Environment
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	_refresh_environment_scene()
+	prepare_environment_resource()
+	refresh_environment_scene()
 
 
 func set_environment_scene(new_environment_scene: Resource) -> void:
 	EnvironmentScene = new_environment_scene
-	_refresh_environment_scene()
+	refresh_environment_scene()
 
 
-## Loads a new overworld environment, replacing the current one in the scene tree.
-func _refresh_environment_scene() -> void:
+## Overridden by child implementations to substitute their own EnvironmentScene resource at runtime.
+func prepare_environment_resource() -> void:
+	pass
+
+
+## Loads a new environment, replacing the current one in the scene tree.
+##
+## The environment loaded is the one defined by EnvironmentScene. To substitute a different scene at runtime, child
+## implementations can override prepare_environment_resource.
+func refresh_environment_scene() -> void:
 	if not is_inside_tree():
 		return
 	
@@ -34,17 +41,17 @@ func _refresh_environment_scene() -> void:
 			continue
 		old_overworld_environment.queue_free()
 		remove_child(old_overworld_environment)
-	_overworld_environment = null
+	overworld_environment = null
 	
 	# insert new environment node
 	if EnvironmentScene:
-		_overworld_environment = EnvironmentScene.instance()
+		overworld_environment = EnvironmentScene.instance()
 	else:
 		var empty_environment_scene := load(OverworldEnvironment.SCENE_EMPTY_ENVIRONMENT)
-		_overworld_environment = empty_environment_scene.instance()
-	add_child(_overworld_environment)
-	move_child(_overworld_environment, 0)
-	_overworld_environment.owner = get_tree().get_edited_scene_root()
+		overworld_environment = empty_environment_scene.instance()
+	add_child(overworld_environment)
+	move_child(overworld_environment, 0)
+	overworld_environment.owner = get_tree().get_edited_scene_root()
 	
 	# create chat icons for all chattables
 	if not Engine.editor_hint:

@@ -8,9 +8,8 @@ export (PackedScene) var ChatIconScene: PackedScene
 ## value: ChatIcon instance
 var _chat_icon_by_chattable: Dictionary
 
-onready var overworld_ui: OverworldUi = Global.get_overworld_ui()
-
 func _ready() -> void:
+	var overworld_ui: OverworldUi = Global.get_overworld_ui()
 	overworld_ui.connect("chat_cached", self, "_on_OverworldUi_chat_cached")
 	
 	recreate_all_icons()
