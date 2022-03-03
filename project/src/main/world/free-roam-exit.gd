@@ -94,11 +94,11 @@ func _physics_process(_delta: float) -> void:
 				and player.non_iso_walk_direction.dot(target_direction) >= 0.49:
 			_player_exiting = true
 			
-			PlayerData.story.player_spawn_id = player_spawn_id
-			PlayerData.story.sensei_spawn_id = sensei_spawn_id
+			PlayerData.free_roam.player_spawn_id = player_spawn_id
+			PlayerData.free_roam.sensei_spawn_id = sensei_spawn_id
 			player.fade_out()
 			
-			PlayerData.story.environment_path = destination_environment_path
+			PlayerData.free_roam.environment_path = destination_environment_path
 			SceneTransition.replace_trail(Global.SCENE_FREE_ROAM)
 
 

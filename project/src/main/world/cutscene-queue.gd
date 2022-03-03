@@ -133,23 +133,23 @@ func _pop_level() -> void:
 ##
 ## This makes it so they'll spawn in appopriate positions after the cutscene is over.
 func assign_player_spawn_ids(chat_tree: ChatTree) -> void:
-	PlayerData.story.player_spawn_id = ""
-	PlayerData.story.sensei_spawn_id = ""
+	PlayerData.free_roam.player_spawn_id = ""
+	PlayerData.free_roam.sensei_spawn_id = ""
 	
 	for creature_id in chat_tree.spawn_locations:
 		if creature_id == CreatureLibrary.PLAYER_ID:
-			PlayerData.story.player_spawn_id = chat_tree.spawn_locations[creature_id]
+			PlayerData.free_roam.player_spawn_id = chat_tree.spawn_locations[creature_id]
 		elif creature_id == CreatureLibrary.SENSEI_ID:
-			PlayerData.story.sensei_spawn_id = chat_tree.spawn_locations[creature_id]
+			PlayerData.free_roam.sensei_spawn_id = chat_tree.spawn_locations[creature_id]
 	
 	# if the player wasn't in the cutscene (?!) unset the spawn ids
-	if PlayerData.story.sensei_spawn_id and not PlayerData.story.player_spawn_id:
-		PlayerData.story.sensei_spawn_id = ""
+	if PlayerData.free_roam.sensei_spawn_id and not PlayerData.free_roam.player_spawn_id:
+		PlayerData.free_roam.sensei_spawn_id = ""
 	
 	# if the sensei wasn't in the cutscene, move them near the player
-	if PlayerData.story.player_spawn_id and not PlayerData.story.sensei_spawn_id:
-		var player_location_key := "%s/%s" % [chat_tree.location_id, PlayerData.story.player_spawn_id]
-		PlayerData.story.sensei_spawn_id = SENSEI_SPAWN_IDS_BY_PLAYER_LOCATION.get(player_location_key)
-		if not PlayerData.story.sensei_spawn_id:
+	if PlayerData.free_roam.player_spawn_id and not PlayerData.free_roam.sensei_spawn_id:
+		var player_location_key := "%s/%s" % [chat_tree.location_id, PlayerData.free_roam.player_spawn_id]
+		PlayerData.free_roam.sensei_spawn_id = SENSEI_SPAWN_IDS_BY_PLAYER_LOCATION.get(player_location_key)
+		if not PlayerData.free_roam.sensei_spawn_id:
 			push_warning("SENSEI_SPAWN_IDS_BY_PLAYER_SPAWN_ID did not have an entry for '%s'"
-					% [PlayerData.story.player_spawn_id])
+					% [PlayerData.free_roam.player_spawn_id])

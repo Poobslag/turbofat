@@ -15,15 +15,15 @@ func _ready() -> void:
 	MusicPlayer.play_chill_bgm()
 	
 	ChattableManager.refresh_creatures()
-	if PlayerData.story.player_spawn_id:
-		overworld_environment.move_creature_to_spawn(ChattableManager.player, PlayerData.story.player_spawn_id)
+	if PlayerData.free_roam.player_spawn_id:
+		overworld_environment.move_creature_to_spawn(ChattableManager.player, PlayerData.free_roam.player_spawn_id)
 	
-	if PlayerData.story.sensei_spawn_id:
-		overworld_environment.move_creature_to_spawn(ChattableManager.sensei, PlayerData.story.sensei_spawn_id)
+	if PlayerData.free_roam.sensei_spawn_id:
+		overworld_environment.move_creature_to_spawn(ChattableManager.sensei, PlayerData.free_roam.sensei_spawn_id)
 	
 	$Camera.position = ChattableManager.player.position
 
 
 func prepare_environment_resource() -> void:
-	if PlayerData.story.environment_path:
-		EnvironmentScene = load(PlayerData.story.environment_path)
+	if PlayerData.free_roam.environment_path:
+		EnvironmentScene = load(PlayerData.free_roam.environment_path)

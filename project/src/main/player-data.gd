@@ -22,7 +22,7 @@ var chat_history := ChatHistory.new()
 var creature_library := CreatureLibrary.new()
 var creature_queue := CreatureQueue.new()
 
-var story := StoryData.new()
+var free_roam := FreeRoamData.new()
 var career: CareerData
 
 var money := 0 setget set_money
@@ -49,7 +49,7 @@ func reset() -> void:
 	level_history.reset()
 	chat_history.reset()
 	creature_library.reset()
-	story.reset()
+	free_roam.reset()
 	career.reset()
 	money = 0
 	seconds_played = 0.0

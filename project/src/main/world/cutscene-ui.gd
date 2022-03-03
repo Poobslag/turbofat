@@ -30,16 +30,16 @@ func _apply_chat_event_meta(chat_event: ChatEvent, meta_item: String) -> void:
 				walking_buddy.start_walking(delay)
 
 
-## Launches the next scene in story mode.
+## Launches the next scene in free roam mode.
 ##
 ## This could be a level, an overworld where the player can move around, or another cutscene.
-func _push_story_trail() -> void:
+func _push_free_roam_trail() -> void:
 	if Breadcrumb.trail[1] == Global.SCENE_CUTSCENE_DEMO:
 		# don't modify the breadcrumb path; we're not returning to the overworld after
 		pass
 	else:
 		# modify the overworld path and spawn IDs to preserve the player's position from the cutscene
-		PlayerData.story.environment_path = _current_chat_tree.destination_environment_path()
+		PlayerData.free_roam.environment_path = _current_chat_tree.destination_environment_path()
 		
 		if _current_chat_tree.destination_environment_path() == _current_chat_tree.chat_environment_path():
 			# preserve spawn ids from cutscene
@@ -47,8 +47,8 @@ func _push_story_trail() -> void:
 		else:
 			# erase spawn IDs to avoid 'could not locate spawn' warnings when playing multiple cutscenes
 			# consecutively
-			PlayerData.story.player_spawn_id = ""
-			PlayerData.story.sensei_spawn_id = ""
+			PlayerData.free_roam.player_spawn_id = ""
+			PlayerData.free_roam.sensei_spawn_id = ""
 	
 	if CutsceneQueue.is_front_level():
 		# continue to a level (preroll cutscene finished playing)
@@ -83,5 +83,5 @@ func _on_ChatUi_chat_finished() -> void:
 		# launch the next scene in career mode after playing the cutscene
 		PlayerData.career.push_career_trail()
 	else:
-		# launch the next scene in story mode after playing the cutscene
-		_push_story_trail()
+		# launch the next scene in free roam mode after playing the cutscene
+		_push_free_roam_trail()

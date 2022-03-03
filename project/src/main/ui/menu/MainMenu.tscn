@@ -211,7 +211,7 @@ __meta__ = {
 [connection signal="pressed" from="DropPanel/Create/Levels" to="DropPanel/Create" method="_on_Levels_pressed"]
 [connection signal="pressed" from="DropPanel/Debug/StressTest" to="DropPanel/Debug" method="_on_StressTest_pressed"]
 [connection signal="pressed" from="DropPanel/Play/CareerContainer/Career" to="DropPanel/Play" method="_on_Career_pressed"]
-[connection signal="pressed" from="DropPanel/Play/CareerContainer/Story" to="DropPanel/Play" method="_on_Story_pressed"]
+[connection signal="pressed" from="DropPanel/Play/CareerContainer/Story" to="DropPanel/Play" method="_on_FreeRoam_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Practice" to="DropPanel/Play" method="_on_Practice_pressed"]
 [connection signal="pressed" from="DropPanel/Play/Tutorials" to="DropPanel/Play" method="_on_Tutorials_pressed"]
 [connection signal="quit_pressed" from="DropPanel/System" to="." method="_on_System_quit_pressed"]
