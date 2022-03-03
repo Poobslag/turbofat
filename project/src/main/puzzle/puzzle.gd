@@ -27,7 +27,7 @@ func _ready() -> void:
 	for i in range(3):
 		_restaurant_view.summon_creature(i)
 	
-	get_customer().play_hello_voice(true)
+	get_customer().play_hello_voice()
 	
 	if CurrentLevel.settings.other.skip_intro:
 		$PuzzleMusicManager.start_puzzle_music()

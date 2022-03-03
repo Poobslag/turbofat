@@ -69,14 +69,13 @@ onready var _munch_sound := $MunchSound
 onready var _hop_sound := $HopSound
 onready var _bonk_sound := $BonkSound
 
-onready var _hello_timer := $HelloTimer
 onready var _suppress_sfx_timer := $SuppressSfxTimer
 
 func _ready() -> void:
 	_refresh_should_play_sfx()
 
 
-## Plays a 'mmm!' voice sample, for when a player builds a big combo.
+## Plays a 'mmm!' voice sample for when a player builds a big combo.
 func play_combo_voice() -> void:
 	if not should_play_sfx:
 		return
@@ -86,24 +85,22 @@ func play_combo_voice() -> void:
 	_voice_player.play()
 
 
-## Plays a 'hello!' voice sample, for when a creature enters the restaurant
-func play_hello_voice(force: bool = false) -> void:
+## Plays a 'hello!' voice sample for when a creature enters the restaurant.
+func play_hello_voice() -> void:
 	if not should_play_sfx:
 		return
 	
-	if Global.should_chat() or force:
-		_voice_player.stream = Utils.rand_value(hello_voices)
-		_voice_player.play()
+	_voice_player.stream = Utils.rand_value(hello_voices)
+	_voice_player.play()
 
 
-## Plays a 'check please!' voice sample, for when a creature is ready to leave
-func play_goodbye_voice(force: bool = false) -> void:
+## Plays a 'check please!' voice sample for when a creature is ready to leave.
+func play_goodbye_voice() -> void:
 	if not should_play_sfx:
 		return
 	
-	if Global.should_chat() or force:
-		_voice_player.stream = Utils.rand_value(_goodbye_voices)
-		_voice_player.play()
+	_voice_player.stream = Utils.rand_value(_goodbye_voices)
+	_voice_player.play()
 
 
 func play_bonk_sound() -> void:
@@ -175,19 +172,8 @@ func _on_Creature_food_eaten(_food_type: int) -> void:
 	_munch_sound.play()
 
 
-func _on_Creature_dna_loaded() -> void:
-	if not should_play_sfx:
-		return
-	
-	_hello_timer.start()
-
-
 func _on_Creature_landed() -> void:
 	play_hop_sound()
-
-
-func _on_HelloTimer_timeout() -> void:
-	play_hello_voice()
 
 
 func _on_SuppressSfxTimer_timeout() -> void:

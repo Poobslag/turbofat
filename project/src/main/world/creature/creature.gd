@@ -302,22 +302,19 @@ func save_fatness(stored_fatness: float) -> void:
 	PlayerData.creature_library.set_fatness(creature_id, stored_fatness)
 
 
-## Plays a 'hello!' voice sample, for when a creature enters the restaurant
-func play_hello_voice(force: bool = false) -> void:
-	if not suppress_sfx:
-		_creature_sfx.play_hello_voice(force)
+## Plays a 'hello!' voice sample for when a creature enters the restaurant.
+func play_hello_voice() -> void:
+	_creature_sfx.play_hello_voice()
 
 
-## Plays a 'mmm!' voice sample, for when a player builds a big combo.
+## Plays a 'mmm!' voice sample for when a player builds a big combo.
 func play_combo_voice() -> void:
-	if not suppress_sfx:
-		_creature_sfx.play_combo_voice()
+	_creature_sfx.play_combo_voice()
 
 
-## Plays a 'check please!' voice sample, for when a creature is ready to leave
-func play_goodbye_voice(force: bool = false) -> void:
-	if not suppress_sfx:
-		_creature_sfx.play_goodbye_voice(force)
+## Plays a 'check please!' voice sample for when a creature is ready to leave.
+func play_goodbye_voice() -> void:
+	_creature_sfx.play_goodbye_voice()
 
 
 ## Parameters:

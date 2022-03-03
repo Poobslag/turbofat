@@ -25,6 +25,7 @@ onready var _customer_view_viewport := $CustomerView/Viewport
 onready var _customer_view := $CustomerView
 onready var _restaurant_nametag_panel := $RestaurantNametag/Panel
 onready var _restaurant_viewport_scene := $RestaurantViewport/Scene
+onready var _hello_timer := $HelloTimer
 
 func _ready() -> void:
 	# Godot doesn't like when ViewportContainers have a different size from their Viewport, so we can't set
@@ -40,6 +41,7 @@ func _ready() -> void:
 	get_chef().connect("creature_name_changed", self, "_on_Chef_creature_name_changed")
 	for customer in get_customers():
 		customer.connect("creature_name_changed", self, "_on_Customer_creature_name_changed")
+		customer.connect("dna_loaded", self, "_on_Customer_dna_loaded", [customer])
 	_refresh_chef_name()
 	_refresh_customer_name()
 
@@ -162,7 +164,7 @@ func _on_PuzzleState_combo_changed(value: int) -> void:
 	if PuzzleState.no_more_customers:
 		pass
 	elif PuzzleState.game_active:
-		get_customer().play_goodbye_voice()
+		_hello_timer.maybe_play_goodbye_voice(get_customer())
 		scroll_to_new_creature()
 	
 	# losing your combo doesn't erase the 'recent bonus' value, but decreases it a lot
@@ -215,3 +217,7 @@ func _on_Customer_creature_name_changed() -> void:
 
 func _on_RestaurantScene_current_creature_index_changed(_value: int) -> void:
 	_refresh_customer_name()
+
+
+func _on_Customer_dna_loaded(customer: Creature) -> void:
+	_hello_timer.maybe_play_hello_voice(customer)
