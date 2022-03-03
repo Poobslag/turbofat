@@ -8,8 +8,8 @@ extends Creature
 const TOO_CLOSE_THRESHOLD := 140.0
 const TOO_FAR_THRESHOLD := 280.0
 
-## If 'true' the sensei cannot move. Used during cutscenes.
-var movement_disabled := false
+## Cannot statically type as 'OverworldUi' because of circular reference
+onready var _overworld_ui: Node = Global.get_overworld_ui()
 
 func _ready() -> void:
 	set_creature_id(CreatureLibrary.SENSEI_ID)
@@ -17,7 +17,8 @@ func _ready() -> void:
 
 
 func _on_MoveTimer_timeout() -> void:
-	if movement_disabled:
+	if _overworld_ui.cutscene:
+		# disable movement during cutscenes
 		return
 	
 	var player_relative_pos: Vector2 = Global.from_iso(ChattableManager.player.position - position)

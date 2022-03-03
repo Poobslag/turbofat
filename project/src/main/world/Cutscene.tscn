@@ -42,3 +42,4 @@ script = ExtResource( 3 )
 
 [node name="Ui" parent="." instance=ExtResource( 5 )]
 script = ExtResource( 4 )
+cutscene = true
