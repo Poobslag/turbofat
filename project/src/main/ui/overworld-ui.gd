@@ -49,6 +49,12 @@ func _exit_tree() -> void:
 	ResourceCache.remove_singletons()
 
 
+## Plays the specified chat tree.
+##
+## Parameters:
+## 	'new_chat_tree': The chat tree to play.
+##
+## 	'target': (Optional) The object being interacted with.
 func start_chat(new_chat_tree: ChatTree, target: Node2D) -> void:
 	_current_chat_tree = new_chat_tree
 	
