@@ -1,5 +1,5 @@
-class_name StoryData
-## Stores transient data for story mode.
+class_name FreeRoamData
+## Stores transient data for free roam mode.
 ##
 ## This includes the environment which should be loaded.
 

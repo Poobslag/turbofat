@@ -13,9 +13,9 @@ func _on_Career_pressed() -> void:
 	PlayerData.career.push_career_trail()
 
 
-func _on_Story_pressed() -> void:
+func _on_FreeRoam_pressed() -> void:
 	PlayerData.creature_queue.clear()
-	PlayerData.story.reset()
+	PlayerData.free_roam.reset()
 	CurrentLevel.clear_launched_level()
 	
 	var world_lock := LevelLibrary.world_lock(WORLD0_ID)
@@ -34,3 +34,4 @@ func _on_Practice_pressed() -> void:
 
 func _on_Tutorials_pressed() -> void:
 	SceneTransition.push_trail("res://src/main/ui/menu/TutorialMenu.tscn", true)
+ 

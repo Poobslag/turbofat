@@ -97,7 +97,7 @@ func find_creature(creature_id: String) -> Creature:
 
 ## Locates the node responsible for creating and initializing chat icons, if one exists.
 ##
-## The free-roam sections in story mode have chat icons. Career mode and cutscenes do not.
+## The creatures in free roam mode have chat icons. Career mode and cutscenes do not.
 func _refresh_chat_icons() -> void:
 	if not is_inside_tree():
 		return

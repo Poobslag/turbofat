@@ -108,8 +108,8 @@ func _start_puzzle() -> void:
 	PlayerData.creature_queue.reset_secondary_creature_queue()
 	
 	if not CurrentLevel.keep_retrying:
-		# Reset everyone's fatness. Replaying a puzzle in story mode shouldn't
-		# make a creature super fat. Thematically we're turning back time.
+		# Reset everyone's fatness. Replaying a puzzle in free roam mode shouldn't make a creature super fat.
+		# Thematically we're turning back time.
 		PlayerData.creature_library.restore_fatness_state()
 	
 	PlayerData.creature_queue.primary_index = 0
