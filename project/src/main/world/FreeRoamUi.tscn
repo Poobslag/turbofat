@@ -1,29 +1,29 @@
 [gd_scene load_steps=39 format=2]
 
-[ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=1]
-[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=2]
-[ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=3]
-[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=10]
-[ext_resource path="res://src/main/ui/level-select/LevelSelectPanel.tscn" type="PackedScene" id=11]
-[ext_resource path="res://src/main/world/OverworldTouchButtons.tscn" type="PackedScene" id=12]
-[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=14]
-[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=16]
-[ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=17]
-[ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=18]
+[ext_resource path="res://src/main/ui/overworld-ui.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/overworld-buttons.gd" type="Script" id=2]
+[ext_resource path="res://src/main/ui/ImageButton.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/ui/ButtonShortcutHelper.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/main/ui/menu/theme/h4.theme" type="Theme" id=5]
+[ext_resource path="res://assets/main/ui/touch/interact.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=7]
+[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/ui/touch/interact-pressed.png" type="Texture" id=9]
+[ext_resource path="res://src/main/world/phone-menu.gd" type="Script" id=10]
+[ext_resource path="res://src/main/world/OverworldTouchButtons.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=12]
+[ext_resource path="res://src/main/ui/SceneTransitionCover.tscn" type="PackedScene" id=13]
+[ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=14]
+[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/ui/chat/ChatUi.tscn" type="PackedScene" id=16]
+[ext_resource path="res://src/main/ui/MusicPopup.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/ui/level-select/LevelSelectPanel.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/ui/FpsLabel.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/main/ui/VersionLabel.tscn" type="PackedScene" id=20]
-[ext_resource path="res://src/main/ui/MoneyLabel.tscn" type="PackedScene" id=21]
-[ext_resource path="res://assets/main/ui/touch/interact-pressed.png" type="Texture" id=22]
-[ext_resource path="res://assets/main/ui/touch/interact.png" type="Texture" id=23]
-[ext_resource path="res://assets/main/ui/touch/menu-pressed.png" type="Texture" id=24]
-[ext_resource path="res://assets/main/ui/touch/menu.png" type="Texture" id=25]
-[ext_resource path="res://src/main/world/phone-menu.gd" type="Script" id=28]
-[ext_resource path="res://assets/main/ui/touch/phone.png" type="Texture" id=33]
-[ext_resource path="res://assets/main/ui/touch/phone-pressed.png" type="Texture" id=34]
-[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=35]
-[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=36]
+[ext_resource path="res://src/main/ui/CheatCodeDetector.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/main/ui/touch/phone-pressed.png" type="Texture" id=21]
+[ext_resource path="res://assets/main/ui/touch/close-pressed.png" type="Texture" id=22]
+[ext_resource path="res://assets/main/ui/touch/phone.png" type="Texture" id=23]
+[ext_resource path="res://assets/main/ui/touch/close.png" type="Texture" id=24]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -76,7 +76,7 @@ action = "ui_cancel"
 shortcut = SubResource( 13 )
 
 [node name="OverworldUi" type="CanvasLayer" groups=["overworld_ui"]]
-script = ExtResource( 3 )
+script = ExtResource( 1 )
 
 [node name="Control" type="Control" parent="."]
 anchor_right = 1.0
@@ -104,7 +104,7 @@ margin_top = -290.0
 margin_right = -10.0
 margin_bottom = -10.0
 mouse_filter = 2
-theme = ExtResource( 2 )
+theme = ExtResource( 5 )
 alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -121,7 +121,7 @@ margin_top = 236.0
 margin_right = 492.0
 margin_bottom = 256.0
 
-[node name="VersionLabel" parent="Control/Labels/SoutheastLabels" instance=ExtResource( 20 )]
+[node name="VersionLabel" parent="Control/Labels/SoutheastLabels" instance=ExtResource( 14 )]
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
@@ -137,27 +137,27 @@ margin_top = 10.0
 margin_right = 512.0
 margin_bottom = 300.0
 mouse_filter = 2
-theme = ExtResource( 2 )
+theme = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MoneyLabel" parent="Control/Labels/NorthwestLabels" instance=ExtResource( 21 )]
+[node name="MoneyLabel" parent="Control/Labels/NorthwestLabels" instance=ExtResource( 15 )]
 margin_right = 502.0
 compact = true
 
-[node name="ChatUi" parent="Control" instance=ExtResource( 18 )]
+[node name="ChatUi" parent="Control" instance=ExtResource( 16 )]
 visible = false
 margin_bottom = 1.99976
 
-[node name="TouchButtons" parent="Control" instance=ExtResource( 12 )]
+[node name="TouchButtons" parent="Control" instance=ExtResource( 11 )]
 
 [node name="Buttons" type="Control" parent="Control"]
 modulate = Color( 1, 1, 1, 0.627451 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-script = ExtResource( 1 )
+script = ExtResource( 2 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -177,7 +177,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PhoneButton" parent="Control/Buttons/Northeast" instance=ExtResource( 17 )]
+[node name="PhoneButton" parent="Control/Buttons/Northeast" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 292.0
@@ -191,12 +191,12 @@ custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 shortcut = SubResource( 7 )
-icon = ExtResource( 33 )
+icon = ExtResource( 23 )
 expand_icon = true
-normal_icon = ExtResource( 33 )
-pressed_icon = ExtResource( 34 )
+normal_icon = ExtResource( 23 )
+pressed_icon = ExtResource( 21 )
 
-[node name="SettingsButton" parent="Control/Buttons/Northeast" instance=ExtResource( 17 )]
+[node name="SettingsButton" parent="Control/Buttons/Northeast" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 402.0
@@ -209,10 +209,10 @@ custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 shortcut = SubResource( 9 )
-icon = ExtResource( 25 )
+icon = ExtResource( 7 )
 expand_icon = true
-normal_icon = ExtResource( 25 )
-pressed_icon = ExtResource( 24 )
+normal_icon = ExtResource( 7 )
+pressed_icon = ExtResource( 8 )
 
 [node name="Southeast" type="HBoxContainer" parent="Control/Buttons"]
 anchor_left = 1.0
@@ -231,7 +231,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TalkButton" parent="Control/Buttons/Southeast" instance=ExtResource( 17 )]
+[node name="TalkButton" parent="Control/Buttons/Southeast" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
 margin_left = 402.0
@@ -244,19 +244,19 @@ custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 shortcut = SubResource( 11 )
-icon = ExtResource( 23 )
+icon = ExtResource( 6 )
 expand_icon = true
-normal_icon = ExtResource( 23 )
-pressed_icon = ExtResource( 22 )
+normal_icon = ExtResource( 6 )
+pressed_icon = ExtResource( 9 )
 
-[node name="CheatCodeDetector" parent="Control" instance=ExtResource( 10 )]
+[node name="CheatCodeDetector" parent="Control" instance=ExtResource( 20 )]
 codes = [ "bigfps" ]
 
-[node name="SettingsMenu" parent="Control" instance=ExtResource( 14 )]
+[node name="SettingsMenu" parent="Control" instance=ExtResource( 12 )]
 quit_type = 1
 
 [node name="CellPhoneMenu" type="CanvasLayer" parent="Control"]
-script = ExtResource( 28 )
+script = ExtResource( 10 )
 
 [node name="Bg" type="ColorRect" parent="Control/CellPhoneMenu"]
 visible = false
@@ -267,7 +267,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelSelect" parent="Control/CellPhoneMenu" instance=ExtResource( 11 )]
+[node name="LevelSelect" parent="Control/CellPhoneMenu" instance=ExtResource( 18 )]
 visible = false
 custom_styles/panel = SubResource( 12 )
 
@@ -296,7 +296,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="BackButton" parent="Control/CellPhoneMenu/Buttons/Northeast" instance=ExtResource( 17 )]
+[node name="BackButton" parent="Control/CellPhoneMenu/Buttons/Northeast" instance=ExtResource( 3 )]
 margin_left = 292.0
 margin_right = 392.0
 margin_bottom = 100.0
@@ -307,15 +307,15 @@ custom_styles/focus = SubResource( 3 )
 custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 shortcut = SubResource( 14 )
-icon = ExtResource( 35 )
+icon = ExtResource( 24 )
 expand_icon = true
-normal_icon = ExtResource( 35 )
-pressed_icon = ExtResource( 36 )
+normal_icon = ExtResource( 24 )
+pressed_icon = ExtResource( 22 )
 
-[node name="ShortcutHelper" parent="Control/CellPhoneMenu/Buttons/Northeast/BackButton" instance=ExtResource( 13 )]
+[node name="ShortcutHelper" parent="Control/CellPhoneMenu/Buttons/Northeast/BackButton" instance=ExtResource( 4 )]
 action = "phone"
 
-[node name="Spacer" parent="Control/CellPhoneMenu/Buttons/Northeast" instance=ExtResource( 17 )]
+[node name="Spacer" parent="Control/CellPhoneMenu/Buttons/Northeast" instance=ExtResource( 3 )]
 margin_left = 402.0
 margin_right = 502.0
 margin_bottom = 100.0
@@ -327,9 +327,9 @@ custom_styles/disabled = SubResource( 4 )
 custom_styles/normal = SubResource( 5 )
 disabled = true
 
-[node name="MusicPopup" parent="Control" instance=ExtResource( 16 )]
+[node name="MusicPopup" parent="Control" instance=ExtResource( 17 )]
 
-[node name="SceneTransitionCover" parent="Control" instance=ExtResource( 4 )]
+[node name="SceneTransitionCover" parent="Control" instance=ExtResource( 13 )]
 
 [connection signal="pressed" from="Control/Buttons/Northeast/PhoneButton" to="." method="_on_CellPhoneButton_pressed"]
 [connection signal="pressed" from="Control/Buttons/Northeast/SettingsButton" to="." method="_on_SettingsButton_pressed"]
