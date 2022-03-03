@@ -28,7 +28,7 @@ const MAX_INPLACE_CHAT_DISTANCE := 600
 var chatters := []
 
 ## If 'true' the overworld is being used to play a cutscene. If 'false' the overworld is allowing free roam.
-var cutscene := false
+export (bool) var cutscene := false
 
 var _show_version := true setget set_show_version, is_show_version
 

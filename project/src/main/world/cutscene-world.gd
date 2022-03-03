@@ -27,13 +27,6 @@ func prepare_environment_resource() -> void:
 ##
 ## Replaces the environment's creatures with those necessary for the cutscene and plays the cutscene's chat tree.
 func _launch_cutscene() -> void:
-	var overworld_ui := Global.get_overworld_ui()
-	overworld_ui.cutscene = true
-	if ChattableManager.player is Player:
-		ChattableManager.player.input_disabled = true
-	if ChattableManager.sensei is Sensei:
-		ChattableManager.sensei.movement_disabled = true
-	
 	_remove_all_creatures()
 	_add_level_creature()
 	_add_cutscene_creatures()

@@ -2,11 +2,11 @@ class_name Player
 extends Creature
 ## Script for manipulating the player-controlled character in the overworld.
 
-## If 'true' the player cannot move. Used during cutscenes.
-var input_disabled := false
-
 ## if 'true' the ui has focus, and the player shouldn't move.
 var ui_has_focus := false setget set_ui_has_focus
+
+## Cannot statically type as 'OverworldUi' because of circular reference
+onready var _overworld_ui: Node = Global.get_overworld_ui()
 
 func _ready() -> void:
 	SceneTransition.connect("fade_out_started", self, "_on_SceneTransition_fade_out_started")
@@ -15,7 +15,8 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if input_disabled or ui_has_focus:
+	if _overworld_ui.cutscene or ui_has_focus:
+		# disable movement input during cutscenes, or when navigating menus
 		return
 	
 	if Utils.walk_pressed_dir(_event) or Utils.walk_released_dir(_event):
