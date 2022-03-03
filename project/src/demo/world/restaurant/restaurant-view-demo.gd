@@ -45,7 +45,6 @@ func _input(event: InputEvent) -> void:
 			_customer().creature_name = NAMES[_current_name_index]
 			_player().creature_name = NAMES[_current_name_index]
 		KEY_V:
-			Global.greetiness = 2
 			_customer().get_node("CreatureSfx").play_goodbye_voice()
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			if Input.is_key_pressed(KEY_SHIFT):
