@@ -279,7 +279,7 @@ func oriented_north() -> bool:
 ##
 ## Parameters:
 ## 	'animation_prefix': A partial name of an animation on $Creature/Animations/MovementPlayer, omitting the directional
-## 			suffix
+## 		suffix
 ##
 ## 	'movement_direction': A vector in the (X, Y) direction the creature is moving.
 func play_movement_animation(animation_prefix: String, movement_direction: Vector2 = Vector2.ZERO) -> void:

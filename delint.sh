@@ -67,6 +67,16 @@ then
   fi
 fi
 
+# comments with incorrect whitespace
+REGEX="\(^##"$'\t'"\|## "$'\t\t\t'"\)"
+RESULT=$(grep -R -n "$REGEX" --include="*.gd" project/src)
+if [ -n "$RESULT" ]
+then
+  echo ""
+  echo "Comments with incorrect whitespace:"
+  echo "$RESULT"
+fi
+
 # fields/variables missing type hint. includes a list of whitelisted type hint omissions
 RESULT=$(grep -R -n "var [^:]* = " --include="*.gd" project/src \
   | grep -v " = parse_json(" \

@@ -124,7 +124,7 @@ func _load_raw_json_data() -> void:
 ## them.
 ##
 ## Returns:
-##	A dictionary with two entries:
+## 	A dictionary with two entries:
 ## 		'chef_ids' lists ids for creatures who acts as the chef for a cutscene.
 ##
 ## 		'customer_ids' lists ids for creatures who act as the main customer for a cutscene.

@@ -287,7 +287,7 @@ func get_orientation() -> int:
 ##
 ## Parameters:
 ## 	'stored_fatness': The fatness to save in the creature library. This can be higher than the creature's current
-## 			fatness if they're still eating.
+## 		fatness if they're still eating.
 func save_fatness(stored_fatness: float) -> void:
 	if not creature_id:
 		# randomly-generated creatures have no creature id; their fatness isn't stored
