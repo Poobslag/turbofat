@@ -115,7 +115,14 @@ func show_food_effects() -> void:
 	_tween.start()
 
 
-func play_movement_animation(animation_prefix: String, animation_name: String) -> void:
+## Plays a movement animation with the specified animation name, such as 'run-sw'.
+##
+## Parameters:
+## 	'animation_prefix': The name of an animation on $Creature/Animations/MovementPlayer
+func play_movement_animation(animation_name: String) -> void:
+	# The first chunk of the animation name such as 'sprint', 'run' or 'idle'
+	var animation_prefix := StringUtils.substring_before_last(animation_name, "-")
+	
 	if _movement_player.current_animation != animation_name:
 		if not _emote_player.current_animation.begins_with("ambient") \
 				and not animation_name.begins_with("idle"):

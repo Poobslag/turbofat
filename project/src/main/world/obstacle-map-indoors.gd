@@ -94,9 +94,9 @@ var GRILL_ORIENTATION_BY_CELL := {
 }
 
 ## key: array containing 3 elements representing TileSet bindings and metadata:
-##    key[0] = direction which the grill is currently facing (UP, DOWN, LEFT, RIGHT)
-##    key[1] = union of TileSet bindings for adjacent cells containing grills
-##    key[2] = union of TileSet bindings for adjacent cells containing grills and countertops
+## 	key[0] = direction which the grill is currently facing (UP, DOWN, LEFT, RIGHT)
+## 	key[1] = union of TileSet bindings for adjacent cells containing grills
+## 	key[2] = union of TileSet bindings for adjacent cells containing grills and countertops
 ## value: grill autotile coordinate
 const GRILL_AUTOTILE_COORDS_BY_BINDING := {
 	[UP, 0, 0]: Vector2(0, 0),
@@ -151,8 +151,8 @@ const SINK_ORIENTATION_BY_CELL := {
 }
 
 ## key: array containing 3 elements representing TileSet bindings and metadata:
-##    key[0] = direction which the sink is currently facing (UP, DOWN, LEFT, RIGHT)
-##    key[1] = union of TileSet bindings for adjacent cells containing sinks
+## 	key[0] = direction which the sink is currently facing (UP, DOWN, LEFT, RIGHT)
+## 	key[1] = union of TileSet bindings for adjacent cells containing sinks
 ## value: sink autotile coordinate
 const SINK_AUTOTILE_COORDS_BY_BINDING := {
 	[UP, 0]: Vector2(0, 0),
@@ -170,7 +170,7 @@ const SINK_AUTOTILE_COORDS_BY_BINDING := {
 }
 
 ## An editor toggle which manually applies autotiling.
-#
+##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
@@ -278,7 +278,6 @@ func _autotile_sink(cell: Vector2) -> void:
 		_set_cell_autotile_coord(cell, SINK_AUTOTILE_COORDS_BY_BINDING.get(sink_key))
 
 ## Calculates which adjacent cells match the specified tile indexes.
-##
 ##
 ## Parameters:
 ## 	'cell': The TileMap coordinates of the cell to be analyzed.

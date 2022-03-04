@@ -303,7 +303,7 @@ func play_movement_animation(animation_prefix: String, movement_direction: Vecto
 	elif animation_prefix == "wiggle" and movement_mode != Creatures.WIGGLE:
 		set_movement_mode(Creatures.WIGGLE)
 	
-	_animations.play_movement_animation(animation_prefix, animation_name)
+	_animations.play_movement_animation(animation_name)
 
 
 func set_movement_mode(new_mode: int) -> void:

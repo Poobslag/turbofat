@@ -13,6 +13,9 @@ var _crown_texture: Texture = preload("res://assets/main/ui/level-select/crown.p
 var _key_texture: Texture = preload("res://assets/main/ui/level-select/key.png")
 var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked.png")
 
+onready var _grade_label := $GradeLabel
+onready var _status_icon := $StatusIcon
+
 ## Assigns this label's button, and updates the label's appearance.
 func set_button(new_button: LevelSelectButton) -> void:
 	if button == new_button:
@@ -68,42 +71,42 @@ func _refresh_appearance() -> void:
 ##
 ## We show a lock/key/crown icon corresponding to the level's lock status.
 func _refresh_status_icon(lock_status: int) -> void:
-	$GradeLabel.visible = false
-	$StatusIcon.visible = true
+	_grade_label.visible = false
+	_status_icon.visible = true
 	
 	var outline_color: Color = Color("b39a8f")
 	match lock_status:
 		LevelLock.STATUS_NONE:
-			$StatusIcon.texture = null
-			$StatusIcon.modulate = Color.white
+			_status_icon.texture = null
+			_status_icon.modulate = Color.white
 		LevelLock.STATUS_CLEARED:
-			$StatusIcon.texture = _cleared_texture
-			$StatusIcon.modulate = Color("36d936")
+			_status_icon.texture = _cleared_texture
+			_status_icon.modulate = Color("36d936")
 		LevelLock.STATUS_CROWN:
-			$StatusIcon.texture = _crown_texture
-			$StatusIcon.modulate = Color("36d936")
+			_status_icon.texture = _crown_texture
+			_status_icon.modulate = Color("36d936")
 		LevelLock.STATUS_KEY:
-			$StatusIcon.texture = _key_texture
-			$StatusIcon.modulate = Color("36d936")
+			_status_icon.texture = _key_texture
+			_status_icon.modulate = Color("36d936")
 		LevelLock.STATUS_SOFT_LOCK:
-			$StatusIcon.texture = _locked_texture
-			$StatusIcon.modulate = Color("666666")
+			_status_icon.texture = _locked_texture
+			_status_icon.modulate = Color("666666")
 			outline_color = Color("808080")
 		_:
 			push_warning("Unexpected lock status: %s" % [lock_status])
-	$StatusIcon.material.set("shader_param/black", outline_color)
+	_status_icon.material.set("shader_param/black", outline_color)
 
 
 ## Updates the text based on the player's grade on a level.
 func _refresh_grade_text(rank: float) -> void:
-	$GradeLabel.visible = true
-	$StatusIcon.visible = false
+	_grade_label.visible = true
+	_status_icon.visible = false
 	
-	$GradeLabel.text = RankCalculator.grade(rank)
-	var font: DynamicFont = $GradeLabel.get("custom_fonts/font")
+	_grade_label.text = RankCalculator.grade(rank)
+	var font: DynamicFont = _grade_label.get("custom_fonts/font")
 	var font_color := Color("4eff49")
 	var outline_darkness := 0.2
-	match $GradeLabel.text:
+	match _grade_label.text:
 		"M":
 			font_color.h = 0.1250 # near-white
 			font_color.s = 0.0600
@@ -117,8 +120,8 @@ func _refresh_grade_text(rank: float) -> void:
 		"AA+", "AA": font_color.h = 0.4667 # cyan
 		"A+", "A", "A-": font_color.h = 0.5889 # blue
 		"B+", "B", "B-": font_color.h = 0.7472 # purple
-		"-": $GradeLabel.visible = false
-	$GradeLabel.set("custom_colors/font_color", font_color)
+		"-": _grade_label.visible = false
+	_grade_label.set("custom_colors/font_color", font_color)
 	font.outline_color = font_color
 	font.outline_color.s += outline_darkness
 	font.outline_color.v -= outline_darkness * 2

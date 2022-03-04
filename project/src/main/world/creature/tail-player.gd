@@ -1,7 +1,7 @@
 extends AnimationPlayer
-## An AnimationPlayer which animates a creature's tail.
+## Animates a creature's tail.
 ##
-## Specifically, this animationplayer ensures the tail is always moving, if nothing else is animating it.
+## Specifically, this animation player ensures the tail is always moving if nothing else is animating it.
 
 export (NodePath) var movement_player_path: NodePath
 export (NodePath) var creature_visuals_path: NodePath

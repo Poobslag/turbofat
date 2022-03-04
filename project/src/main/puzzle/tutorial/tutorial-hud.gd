@@ -113,7 +113,7 @@ func show_skill_tally_items() -> void:
 		skill_tally_item.visible = true
 
 
-## Pause and play a camera _flash effect for transitions.
+## Pauses and plays a camera _flash effect for transitions.
 func _flash() -> void:
 	puzzle.get_playfield().add_misc_delay_frames(30)
 	$ZIndex/ColorRect.modulate.a = 0.25

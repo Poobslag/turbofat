@@ -5,7 +5,7 @@ extends Node
 ## overworld scene. This script maintains a queue of the pending cutscenes and levels.
 
 ## List of positions the sensei should spawn following a cutscene where the sensei was absent.
-#
+##
 ## In most cutscenes, the player and sensei will spawn at their position in the cutscene. For cutscenes where the
 ## sensei was absent, we spawn them near the player. This dictionary contains a list of those spawn locations keyed by
 ## the player's location in the cutscene, in the format '<location_id>/<spawn_id>'

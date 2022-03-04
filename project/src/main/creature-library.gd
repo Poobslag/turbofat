@@ -35,10 +35,10 @@ var _filler_ids: Array
 
 ## Cached creature definitions. This includes all primary and creature json definitions loaded from static json files,
 ## as well as the player and sensei's definitions.
-#
+##
 ## This is a transient field which is populated on startup, but is not saved anywhere. As its contents not written to
 ## disk, it should not be modified with the intent of permanently changing a creature's appearance.
-#
+##
 ## key: creature_id
 ## value: CreatureDef instance with the specified id
 var _creature_defs_by_id: Dictionary
