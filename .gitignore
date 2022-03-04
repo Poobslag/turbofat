@@ -18,5 +18,8 @@ project/data_*/
 # IntelliJ-specific ignores
 .idea
 
+# Gut ignores
+project/.gut*
+
 # Keystores, passwords
 secrets
