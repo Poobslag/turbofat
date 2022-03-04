@@ -102,10 +102,14 @@ static func english_number(i: int) -> String:
 			"sixteen", "seventeen", "eighteen", "nineteen", "twenty"][i];
 
 
-## Formats a duration like 63.159 into '1:03'
+## Formats a duration like 63.159 into '1:04'
 static func format_duration(seconds: float) -> String:
+	var seconds_int := int(ceil(abs(seconds)))
 	# warning-ignore:integer_division
-	return "%01d:%02d" % [int(ceil(seconds)) / 60, int(ceil(seconds)) % 60]
+	var result := "%01d:%02d" % [seconds_int / 60, seconds_int % 60]
+	if seconds < 0:
+		result = "-" + result
+	return result
 
 
 ## Formats a money amount like 1235 into '¥1,235'
@@ -140,7 +144,10 @@ static func is_letter(character: String) -> bool:
 ## Parses a duration like 1:03.159 into '63.159'
 static func parse_duration(s: String) -> float:
 	var split: Array = s.split(":")
-	return int(split[0]) * 60 + float(split[1])
+	var result := abs(int(split[0])) * 60 + float(split[1])
+	if s.begins_with("-"):
+		result *= -1
+	return result
 
 
 ## Sanitizes the 'file root' to avoid creating files with unusual filenames.
@@ -169,17 +176,34 @@ static func sanitize_file_root(file_root: String) -> String:
 
 ## Gets the substring after the first occurrence of a separator.
 static func substring_after(s: String, sep: String) -> String:
-	return s.substr(s.find(sep) + sep.length())
+	if not sep:
+		return s
+	var pos := s.find(sep)
+	return "" if pos == -1 else s.substr(pos + sep.length())
 
 
 ## Gets the substring after the last occurrence of a separator.
 static func substring_after_last(s: String, sep: String) -> String:
-	return s.substr(s.find_last(sep) + sep.length())
+	if not sep:
+		return s
+	var pos := s.find_last(sep)
+	return "" if pos == -1 else s.substr(pos + sep.length())
 
 
 ## Gets the substring before the first occurrence of a separator.
 static func substring_before(s: String, sep: String) -> String:
-	return s.substr(0, s.find(sep))
+	if not sep:
+		return s
+	var pos := s.find(sep)
+	return s if pos == -1 else s.substr(0, pos)
+
+
+## Gets the substring before the last occurrence of a separator.
+static func substring_before_last(s: String, sep: String) -> String:
+	if not sep:
+		return s
+	var pos := s.find_last(sep)
+	return s if pos == -1 else s.substr(0, pos)
 
 
 ## Gets the String that is nested in between two Strings. Only the first match is returned.
@@ -194,11 +218,6 @@ static func substring_between(s: String, open: String, close: String) -> String:
 		if end != -1:
 			result = s.substr(start + open.length(), end - start - open.length())
 	return result
-
-
-## Gets the substring before the last occurrence of a separator.
-static func substring_before_last(s: String, sep: String) -> String:
-	return s.substr(0, s.find_last(sep))
 
 
 ## Replaces underscores with hyphens in a string.
