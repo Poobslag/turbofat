@@ -136,7 +136,7 @@ func test_2783() -> void:
 	load_legacy_player_data("turbofat-2783.json")
 	
 	# We did not measure playtime in 2783, but we can approximate it based on the player's money.
-	assert_almost_eq(PlayerData.seconds_played, 1181359, 0.1)
+	assert_almost_eq(PlayerData.seconds_played, 1181359.0, 0.1)
 	
 	# Save data was in one file in 2783, but was then split into system and player data.
 	# Level history is a part of the player data, and should be preserved.

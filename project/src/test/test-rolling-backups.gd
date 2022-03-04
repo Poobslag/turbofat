@@ -64,10 +64,3 @@ func test_rotate_backups_dont_overwrite_thisxxx() -> void:
 	_backups.rotate_backups()
 	
 	assert_eq(FileUtils.get_file_as_text(_backups.rolling_filename(RollingBackups.THIS_HOUR)), "old-920")
-
-
-## Move the 'this_xxx' backups out of the way if they're old
-func test_move_backups() -> void:
-	FileUtils.write_file(_backups.rolling_filename(RollingBackups.THIS_HOUR), "")
-	var file: File = File.new()
-	file.close()
