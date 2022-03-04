@@ -1,6 +1,6 @@
 extends "res://addons/gut/test.gd"
 
-func test_capitalize() -> void:
+func test_capitalize_words() -> void:
 	assert_eq(StringUtils.capitalize_words("a"), "A")
 	assert_eq(StringUtils.capitalize_words("hot dog"), "Hot Dog")
 	assert_eq(StringUtils.capitalize_words("HOT DOG"), "Hot Dog")
@@ -122,6 +122,32 @@ func test_compact_over_10000000000000y() -> void:
 	assert_eq(StringUtils.compact(1333333333333333333), "9,999 t")
 
 
+func test_default_if_empty() -> void:
+	assert_eq(StringUtils.default_if_empty("", "NULL"), "NULL")
+	assert_eq(StringUtils.default_if_empty(" ", "NULL"), " ")
+	assert_eq(StringUtils.default_if_empty("bat", "NULL"), "bat")
+	assert_eq(StringUtils.default_if_empty("", ""), "")
+
+
+func test_english_number() -> void:
+	assert_eq(StringUtils.english_number(-1000), "-1,000")
+	assert_eq(StringUtils.english_number(-10), "-10")
+	assert_eq(StringUtils.english_number(0), "zero")
+	assert_eq(StringUtils.english_number(10), "ten")
+	assert_eq(StringUtils.english_number(20), "twenty")
+	assert_eq(StringUtils.english_number(30), "30")
+	assert_eq(StringUtils.english_number(1000), "1,000")
+
+
+func test_format_duration() -> void:
+	assert_eq(StringUtils.format_duration(-100.0), "-1:40")
+	assert_eq(StringUtils.format_duration(-10.0), "-0:10")
+	assert_eq(StringUtils.format_duration(0.0), "0:00")
+	assert_eq(StringUtils.format_duration(10.5), "0:11")
+	assert_eq(StringUtils.format_duration(63.159), "1:04")
+	assert_eq(StringUtils.format_duration(6300.0), "105:00")
+
+
 func test_format_money() -> void:
 	assert_eq(StringUtils.format_money(-10), "-¥10")
 	assert_eq(StringUtils.format_money(0), "¥0")
@@ -135,6 +161,31 @@ func test_has_letter() -> void:
 	assert_eq(StringUtils.has_letter("ROOF ACTION"), true)
 	assert_eq(StringUtils.has_letter("123"), false)
 	assert_eq(StringUtils.has_letter(""), false)
+
+
+func test_hyphens_to_underscores() -> void:
+	assert_eq(StringUtils.hyphens_to_underscores(""), "")
+	assert_eq(StringUtils.hyphens_to_underscores("silent"), "silent")
+	assert_eq(StringUtils.hyphens_to_underscores("silent-funny"), "silent_funny")
+	assert_eq(StringUtils.hyphens_to_underscores("s-t-funny"), "s_t_funny")
+	assert_eq(StringUtils.hyphens_to_underscores("s---funny"), "s___funny")
+	assert_eq(StringUtils.hyphens_to_underscores("silent_funny"), "silent_funny")
+
+
+func test_is_letter() -> void:
+	assert_eq(StringUtils.is_letter("r"), true)
+	assert_eq(StringUtils.is_letter("O"), true)
+	assert_eq(StringUtils.is_letter(" "), false)
+	assert_eq(StringUtils.is_letter("7"), false)
+
+
+func test_parse_duration() -> void:
+	assert_almost_eq(-100.0, StringUtils.parse_duration("-1:40"), 0.01)
+	assert_almost_eq(-10.0, StringUtils.parse_duration("-0:10"), 0.01)
+	assert_almost_eq(0.0, StringUtils.parse_duration("0:00"), 0.01)
+	assert_almost_eq(11.0, StringUtils.parse_duration("0:11"), 0.01)
+	assert_almost_eq(64.0, StringUtils.parse_duration("1:04"), 0.01)
+	assert_almost_eq(6300.0, StringUtils.parse_duration("105:00"), 0.01)
 
 
 func test_sanitize_file_root_valid_characters() -> void:
@@ -185,6 +236,44 @@ func test_sanitize_file_root_too_long() -> void:
 			"0123456789012345678901234567890")
 
 
+func test_substring_after() -> void:
+	assert_eq(StringUtils.substring_after("b", ""), "b")
+	assert_eq(StringUtils.substring_after("", "b"), "")
+	assert_eq(StringUtils.substring_after("abc", "a"), "bc")
+	assert_eq(StringUtils.substring_after("abcba", "b"), "cba")
+	assert_eq(StringUtils.substring_after("abc", "c"), "")
+	assert_eq(StringUtils.substring_after("abc", "d"), "")
+
+
+func test_substring_after_last() -> void:
+	assert_eq(StringUtils.substring_after_last("b", ""), "b")
+	assert_eq(StringUtils.substring_after_last("", "b"), "")
+	assert_eq(StringUtils.substring_after_last("abc", "a"), "bc")
+	assert_eq(StringUtils.substring_after_last("abcba", "b"), "a")
+	assert_eq(StringUtils.substring_after_last("abc", "c"), "")
+	assert_eq(StringUtils.substring_after_last("a", "a"), "")
+	assert_eq(StringUtils.substring_after_last("a", "z"), "")
+
+
+func test_substring_before() -> void:
+	assert_eq(StringUtils.substring_before("b", ""), "b")
+	assert_eq(StringUtils.substring_before("", "b"), "")
+	assert_eq(StringUtils.substring_before("abc", "a"), "")
+	assert_eq(StringUtils.substring_before("abcba", "b"), "a")
+	assert_eq(StringUtils.substring_before("abc", "c"), "ab")
+	assert_eq(StringUtils.substring_before("abc", "d"), "abc")
+
+
+func test_substring_before_last() -> void:
+	assert_eq(StringUtils.substring_before_last("b", ""), "b")
+	assert_eq(StringUtils.substring_before_last("", "b"), "")
+	assert_eq(StringUtils.substring_before_last("abcba", "b"), "abc")
+	assert_eq(StringUtils.substring_before_last("abc", "c"), "ab")
+	assert_eq(StringUtils.substring_before_last("a", "a"), "")
+	assert_eq(StringUtils.substring_before_last("a", "z"), "a")
+	assert_eq(StringUtils.substring_before_last("a", ""), "a")
+
+
 func test_substring_between() -> void:
 	assert_eq(StringUtils.substring_between("wx[b]yz", "[", "]"), "b")
 	assert_eq(StringUtils.substring_between("", "[", "]"), "")
@@ -192,3 +281,12 @@ func test_substring_between() -> void:
 	assert_eq(StringUtils.substring_between("wx[b]yz", "[", ""), "")
 	assert_eq(StringUtils.substring_between("yabcz", "y", "z"), "abc")
 	assert_eq(StringUtils.substring_between("yabczyabcz", "y", "z"), "abc")
+
+
+func test_underscores_to_hyphens() -> void:
+	assert_eq(StringUtils.underscores_to_hyphens(""), "")
+	assert_eq(StringUtils.underscores_to_hyphens("silent"), "silent")
+	assert_eq(StringUtils.underscores_to_hyphens("silent_funny"), "silent-funny")
+	assert_eq(StringUtils.underscores_to_hyphens("s_t_funny"), "s-t-funny")
+	assert_eq(StringUtils.underscores_to_hyphens("s___funny"), "s---funny")
+	assert_eq(StringUtils.underscores_to_hyphens("silent-funny"), "silent-funny")
