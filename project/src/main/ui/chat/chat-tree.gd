@@ -57,7 +57,7 @@ var destination_id: String
 
 ## Spawn locations for different creatures, if this ChatTree represents a cutscene. Spawn locations prefixed with a '!'
 ## indicate that the creature should spawn invisible.
-#
+##
 ## key: creature id
 ## value: spawn id
 var spawn_locations := {}

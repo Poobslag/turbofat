@@ -1,7 +1,7 @@
 #tool #uncomment to view creature in editor
 class_name CreaturePackedSprite
 extends PackedSprite
-## Sprites which toggles between a single 'toward the camera' and 'away from the camera' frame
+## Sprite which toggles between a single 'toward the camera' and 'away from the camera' frame
 
 export (bool) var invisible_while_sprinting := false
 
@@ -27,4 +27,4 @@ func _on_CreatureVisuals_orientation_changed(old_orientation: int, new_orientati
 
 func _on_CreatureVisuals_movement_mode_changed(_old_mode: int, new_mode: int) -> void:
 	if invisible_while_sprinting:
-		visible = new_mode != Creatures.SPRINT
+		visible = false if new_mode == Creatures.SPRINT else true

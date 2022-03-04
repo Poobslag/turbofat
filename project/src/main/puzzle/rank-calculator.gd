@@ -25,7 +25,7 @@ const MASTER_LEFTOVER_LINES := 12
 
 ## The fastest LPM for a human player at the highest piece speeds. Theoretically this could be as high as 180 based on
 ## similar records in other games.
-#
+##
 ## The current value of 65 is a conservative estimate extrapolated based on my own personal best of 52 lines per
 ## minute.
 const MASTER_LINES_PER_MINUTE := 65

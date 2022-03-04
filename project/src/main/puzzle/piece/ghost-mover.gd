@@ -4,7 +4,7 @@ extends Node
 export (NodePath) var tile_map_path: NodePath
 
 ## Stores the offset used when drawing the ghost piece.
-#
+##
 ## We calculate and store this even if the ghost piece is disabled. This allows us to properly handle enabling and
 ## disabling the ghost piece during a puzzle.
 var _ghost_shadow_offset := Vector2.ZERO

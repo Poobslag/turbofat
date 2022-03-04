@@ -6,7 +6,7 @@ var type: PieceType
 
 ## The current orientation. For most pieces, orientation will range from
 ## [0, 1, 2, 3] for [unrotated, clockwise, flipped, counterclockwise].
-#
+##
 ## Pieces in the next queue are typically unrotated.
 var orientation := 0
 

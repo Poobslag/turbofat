@@ -39,7 +39,7 @@ const KITCHEN_FLAWED_CELLS := [
 const KITCHEN_QUALITY := 0.93
 
 ## An editor toggle which manually applies autotiling.
-#
+##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
