@@ -25,7 +25,7 @@ var chat_key_root_path := DEFAULT_CHAT_KEY_ROOT_PATH
 ## 	'creature': The creature whose conversation should be returned
 ##
 ## 	'forced_level_id': (Optional) The current level being chosen. If omitted, the level_id will be calculated based on
-## 			the first unfinished unlocked level available.
+## 		the first unfinished unlocked level available.
 func chat_tree_for_creature(creature: Creature) -> ChatTree:
 	var filler_ids := filler_ids_for_creature(creature.creature_id)
 	var chosen_chat := select_from_chat_selectors(creature.chat_selectors, creature.creature_id, filler_ids)

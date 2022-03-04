@@ -13,7 +13,7 @@ func _ready() -> void:
 
 ## Parameters:
 ## 	'new_levels_to_include': An enum in LevelButtons.LevelsToInclude which specifies which allows for hiding or
-## 			showing certain levels.
+## 		showing certain levels.
 func set_levels_to_include(new_levels_to_include: int) -> void:
 	levels_to_include = new_levels_to_include
 	_refresh_levels_to_include()

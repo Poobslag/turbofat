@@ -210,7 +210,7 @@ func _has_duplicate_pieces(in_pieces: Array) -> bool:
 ##
 ## Parameters:
 ## 	'max_pieces_to_right': The maximum number of pieces to the right of the new piece. '0' guarantees the new piece
-## 			will be appended to the end of the queue, '8' means it will be mixed in with the last eight pieces.
+## 		will be appended to the end of the queue, '8' means it will be mixed in with the last eight pieces.
 func _insert_annoying_piece(max_pieces_to_right: int) -> void:
 	var new_piece_index := int(rand_range(pieces.size() - max_pieces_to_right + 1, pieces.size() + 1))
 	var extra_piece_types: Array = shuffled_piece_types()
