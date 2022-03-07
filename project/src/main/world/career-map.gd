@@ -87,7 +87,7 @@ func _load_level_settings() -> void:
 		LevelSpeedAdjuster.new(level_settings).adjust(_piece_speed)
 		_pickable_level_settings.append(level_settings)
 	
-	_world.refresh_creatures(_pickable_career_levels)
+	_world.refresh_from_career_data(_pickable_career_levels)
 
 
 ## Recreates all level select buttons in the scene tree based on the current level settings.

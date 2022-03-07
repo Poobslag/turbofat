@@ -16,25 +16,96 @@ const MOODS_COMMON := [Creatures.Mood.SMILE0, Creatures.Mood.SMILE1, Creatures.M
 const MOODS_UNCOMMON := [Creatures.Mood.LAUGH0, Creatures.Mood.LAUGH1, Creatures.Mood.LOVE1, Creatures.Mood.AWKWARD0]
 const MOODS_RARE := [Creatures.Mood.AWKWARD1, Creatures.Mood.SIGH0, Creatures.Mood.SWEAT0, Creatures.Mood.THINK0]
 
-export (NodePath) var player_path2d_path: NodePath
+## The path to the scene resource defining creatures and obstacles for career regions which do not specify an
+## environment, or regions which specify an invalid environment
+const DEFAULT_ENVIRONMENT_PATH := "res://src/main/world/environment/MarshEnvironment.tscn"
+
+## key: (String) an environment name which appears in the json definitions
+## value: (String) The path to the scene resource defining creatures and obstacles which appear in
+## 	that environment
+const ENVIRONMENT_PATH_BY_NAME := {
+	"lemon": "res://src/main/world/environment/LemonEnvironment.tscn",
+	"marsh": "res://src/main/world/environment/MarshEnvironment.tscn",
+}
 
 export (PackedScene) var MileMarkerScene: PackedScene
 
 ## Creature instances for 'level creatures', chefs and customers associated with each level.
 var _level_creatures := []
 
+## The path of the environment scene current
+var _loaded_environment_path: String
+
 ## The index of the focused level creature. This is usually the same as the index of the focused level button, but not
 ## always. Sometimes two level buttons correspond to the same level creature.
 var _focused_level_creature_index := -1
 
 ## path on which which the player and sensei are placed
-onready var _player_path2d: Path2D = get_node(player_path2d_path)
+onready var _player_path2d: Path2D
 
 onready var _camera: Camera2D = $Camera
 
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
+	
+	_fill_environment_scene()
+
+
+# Loads the cutscene's environment, replacing the current one in the scene tree.
+func prepare_environment_resource() -> void:
+	_loaded_environment_path = _career_environment_path()
+	EnvironmentScene = load(_loaded_environment_path)
+
+
+## Refreshes the environment and creatures based on the player's progress through career mode.
+##
+## Parameters:
+## 	'pickable_career_levels': An list of CareerLevel instances the player is allowed to select. This affects how
+## 		many level creatures show up.
+func refresh_from_career_data(pickable_career_levels: Array) -> void:
+	if _loaded_environment_path != _career_environment_path():
+		prepare_environment_resource()
+		refresh_environment_scene()
+		_fill_environment_scene()
+	
+	for creature in _level_creatures:
+		if creature.is_in_group("customers"):
+			creature.remove_from_group("customers")
+	
+	if PlayerData.career.level_choice_count() == 1:
+		_refresh_single_level_creatures(pickable_career_levels)
+	else:
+		_refresh_multi_level_creatures(pickable_career_levels)
+	
+	_move_camera()
+
+
+func get_visible_customers(level_index: int) -> Array:
+	var result: Array
+	if PlayerData.career.level_choice_count() == 1:
+		# only one level choice; return all visible customers
+		result = get_tree().get_nodes_in_group("customers")
+	else:
+		# multiple level choices; return the appropriate level creature if they're a customer and not a chef
+		if _level_creatures[level_index].is_in_group("customers"):
+			result = [_level_creatures[level_index]]
+	return result
+
+
+## Adds and rearranges environment objects like the player, sensei, level creatures, mile markers, and camera.
+func _fill_environment_scene() -> void:
+	_level_creatures.clear()
+	
+	if not _find_player():
+		var player := overworld_environment.add_creature()
+		player.creature_id = CreatureLibrary.PLAYER_ID
+	
+	if not _find_sensei():
+		var sensei := overworld_environment.add_creature()
+		sensei.creature_id = CreatureLibrary.SENSEI_ID
+	
+	_player_path2d = overworld_environment.get_node("PlayerPath")
 	
 	var percent := _distance_percent()
 	_move_player_to_path(percent)
@@ -47,17 +118,9 @@ func _ready() -> void:
 	_move_camera()
 
 
-func refresh_creatures(pickable_career_levels: Array) -> void:
-	for creature in _level_creatures:
-		if creature.is_in_group("customers"):
-			creature.remove_from_group("customers")
-	
-	if PlayerData.career.level_choice_count() == 1:
-		_refresh_single_level_creatures(pickable_career_levels)
-	else:
-		_refresh_multi_level_creatures(pickable_career_levels)
-	
-	_move_camera()
+func _career_environment_path() -> String:
+	var environment_name := PlayerData.career.current_region().environment_name
+	return ENVIRONMENT_PATH_BY_NAME.get(environment_name, DEFAULT_ENVIRONMENT_PATH)
 
 
 ## Updates the creature/chef IDs for a boss/intro level, where the player only has one choice.
@@ -136,18 +199,6 @@ func _distance_percent() -> float:
 		# for typicalregions, move them to the right gradually as they progress
 		percent = CareerLevelLibrary.region_weight_for_distance(region, PlayerData.career.distance_travelled)
 	return percent
-
-
-func get_visible_customers(level_index: int) -> Array:
-	var result: Array
-	if PlayerData.career.level_choice_count() == 1:
-		# only one level choice; return all visible customers
-		result = get_tree().get_nodes_in_group("customers")
-	else:
-		# multiple level choices; return the appropriate level creature if they're a customer and not a chef
-		if _level_creatures[level_index].is_in_group("customers"):
-			result = [_level_creatures[level_index]]
-	return result
 
 
 ## Adds a 'level creature', a chef or customer associated with a level.

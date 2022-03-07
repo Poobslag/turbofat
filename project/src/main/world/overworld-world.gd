@@ -3,7 +3,7 @@ class_name OverworldWorld
 extends Node
 ## Populates/unpopulates creatures and obstacles for various overworld scenes.
 
-## Scene resource defining the obstacles and creatures to show
+## Scene resource defining the creatures and obstacles to show
 export (Resource) var EnvironmentScene: Resource setget set_environment_scene
 
 onready var overworld_environment: OverworldEnvironment = $Environment
