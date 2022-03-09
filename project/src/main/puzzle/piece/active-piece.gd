@@ -142,7 +142,7 @@ func kick_piece(kicks: Array = []) -> void:
 		elif target_orientation == get_ccw_orientation():
 			kicks = type.ccw_kicks[target_orientation]
 		elif target_orientation == get_flip_orientation():
-			kicks = [type.flips[orientation]]
+			kicks = type.flips[orientation]
 		else:
 			kicks = []
 	else:
