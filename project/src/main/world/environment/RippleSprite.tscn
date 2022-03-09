@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=2]
 
-[ext_resource path="res://assets/main/world/environment/ripples-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/marsh-ripples-sheet.png" type="Texture" id=1]
 [ext_resource path="res://src/main/world/environment/ripple-sprite.gd" type="Script" id=2]
 
 [sub_resource type="AtlasTexture" id=1]

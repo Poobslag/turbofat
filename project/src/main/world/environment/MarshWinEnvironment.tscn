@@ -12,11 +12,11 @@
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/world/environment/MarshBush.tscn" type="PackedScene" id=18]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/main/world/GroundMap.tscn" type="PackedScene" id=20]
-[ext_resource path="res://src/main/world/environment/RippleWaves.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/main/world/MarshGroundMap.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/main/world/environment/MarshRippleWaves.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/world/ScrewportTexrect.tscn" type="PackedScene" id=22]
 [ext_resource path="res://src/main/world/environment/MarshTree.tscn" type="PackedScene" id=23]
-[ext_resource path="res://src/main/world/environment/obstacle-library.tres" type="TileSet" id=24]
+[ext_resource path="res://src/main/world/environment/marsh-obstacle-library.tres" type="TileSet" id=24]
 
 [sub_resource type="TileSet" id=14]
 0/name = "marsh-path-sheet.png 0"

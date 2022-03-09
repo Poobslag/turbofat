@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ripples-sheet.png-769a4397774b2e99dc004386fa688102.stex"
+path="res://.import/marsh-ripples-sheet.png-52cd387fee5398e668a5e19b5cf5eaa7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/ripples-sheet.png"
-dest_files=[ "res://.import/ripples-sheet.png-769a4397774b2e99dc004386fa688102.stex" ]
+source_file="res://assets/main/world/environment/marsh-ripples-sheet.png"
+dest_files=[ "res://.import/marsh-ripples-sheet.png-52cd387fee5398e668a5e19b5cf5eaa7.stex" ]
 
 [params]
 
