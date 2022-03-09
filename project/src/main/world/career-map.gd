@@ -61,7 +61,7 @@ func _load_level_settings() -> void:
 	_pickable_level_settings.clear()
 	_pickable_career_levels.clear()
 	
-	var region: CareerRegion = CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var region: CareerRegion = PlayerData.career.current_region()
 	# decide available career levels
 	if PlayerData.career.is_boss_level():
 		_pickable_career_levels = [region.boss_level]
@@ -121,7 +121,8 @@ func _random_levels() -> Array:
 	
 	if _chat_key_pair(null).type == ChatKeyPair.INTERLUDE:
 		# filter the levels based on the required chefs/customers for the possible upcoming interludes
-		var required_cutscene_characters := CareerLevelLibrary.required_cutscene_characters()
+		var region := PlayerData.career.current_region()
+		var required_cutscene_characters := CareerLevelLibrary.required_cutscene_characters(region)
 		levels = CareerLevelLibrary.trim_levels_by_characters( \
 				levels, required_cutscene_characters.chef_ids, required_cutscene_characters.customer_ids)
 		if not levels:
@@ -154,7 +155,7 @@ func _random_levels() -> Array:
 func _intro_chat_key_pair() -> ChatKeyPair:
 	var result: ChatKeyPair = ChatKeyPair.new()
 	
-	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var region := PlayerData.career.current_region()
 	var preroll_key := region.get_intro_level_preroll_chat_key()
 	var postroll_key := region.get_intro_level_postroll_chat_key()
 	if ChatLibrary.chat_exists(preroll_key) and not PlayerData.chat_history.is_chat_finished(preroll_key):
@@ -174,7 +175,7 @@ func _intro_chat_key_pair() -> ChatKeyPair:
 func _boss_chat_key_pair() -> ChatKeyPair:
 	var result: ChatKeyPair = ChatKeyPair.new()
 	
-	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var region := PlayerData.career.current_region()
 	var preroll_key := region.get_boss_level_preroll_chat_key()
 	var postroll_key := region.get_boss_level_postroll_chat_key()
 	if ChatLibrary.chat_exists(preroll_key) and not PlayerData.chat_history.is_chat_finished(preroll_key):
@@ -196,7 +197,7 @@ func _boss_chat_key_pair() -> ChatKeyPair:
 func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	var result: ChatKeyPair = ChatKeyPair.new()
 	
-	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var region := PlayerData.career.current_region()
 	
 	# calculate the chef id/customer ids
 	var chef_id: String
@@ -303,7 +304,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 				CutsceneQueue.set_cutscene_flag("boss_level")
 	
 	if _should_play_epilogue(chat_key_pair):
-		var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+		var region := PlayerData.career.current_region()
 		CutsceneQueue.enqueue_cutscene(ChatLibrary.chat_tree_for_key(region.get_epilogue_chat_key()))
 	
 	PlayerData.career.push_career_trail()
@@ -311,7 +312,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 
 func _should_play_epilogue(chat_key_pair: ChatKeyPair) -> bool:
 	var result := true
-	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var region := PlayerData.career.current_region()
 	
 	if not region.cutscene_path:
 		# no cutscenes for region; do not play epilogue

@@ -11,7 +11,7 @@ func _force_cutscene() -> bool:
 	PlayerData.career.hours_passed = CareerData.CAREER_INTERLUDE_HOURS[0]
 	PlayerData.career.skipped_previous_level = false
 	
-	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var region := PlayerData.career.current_region()
 	var chat_key_pair := ChatKeyPair.new()
 	if region.cutscene_path:
 		# find a region-specific cutscene

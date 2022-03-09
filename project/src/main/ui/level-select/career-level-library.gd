@@ -14,6 +14,11 @@ var worlds_path := DEFAULT_WORLDS_PATH setget set_worlds_path
 ## List of CareerRegions containing region and level data, sorted by distance
 var regions: Array = []
 
+## Loads the list of levels from JSON
+func _ready() -> void:
+	_load_raw_json_data()
+
+
 func all_level_ids() -> Array:
 	var result := {}
 	for region in regions:
@@ -87,33 +92,9 @@ func piece_speed_between(min_speed: String, max_speed: String, weight: float, r:
 	return PieceSpeeds.speed_ids[int(speed_index_result)]
 
 
-## Loads the list of levels from JSON
-func _ready() -> void:
-	_load_raw_json_data()
-
-
 func set_worlds_path(new_worlds_path: String) -> void:
 	worlds_path = new_worlds_path
 	_load_raw_json_data()
-
-
-## Loads the list of levels from JSON.
-func _load_raw_json_data() -> void:
-	regions.clear()
-	
-	var worlds_text := FileUtils.get_file_as_text(worlds_path)
-	var worlds_json: Dictionary = parse_json(worlds_text)
-	for region_json in worlds_json.get("regions", []):
-		var region := CareerRegion.new()
-		region.from_json_dict(region_json)
-		regions.append(region)
-	
-	# populate CareerRegion.length field
-	for i in range(regions.size()):
-		if i < regions.size() - 1:
-			regions[i].length = regions[i + 1].distance - regions[i].distance
-		else:
-			regions[i].length = CareerData.MAX_DISTANCE_TRAVELLED
 
 
 ## Returns a collection of chefs and customers required for potential upcoming cutscenes.
@@ -123,15 +104,17 @@ func _load_raw_json_data() -> void:
 ## of these chefs/customers is selected by the player, there will be at least one appropriate cutscene which features
 ## them.
 ##
+## Parameters:
+## 	'region': The player's current career region.
+##
 ## Returns:
 ## 	A dictionary with two entries:
 ## 		'chef_ids' lists ids for creatures who acts as the chef for a cutscene.
 ##
 ## 		'customer_ids' lists ids for creatures who act as the main customer for a cutscene.
-func required_cutscene_characters() -> Dictionary:
+func required_cutscene_characters(region: CareerRegion) -> Dictionary:
 	var chef_ids := []
 	var customer_ids := []
-	var region := region_for_distance(PlayerData.career.distance_travelled)
 	var potential_chat_key_pairs: Array = CareerCutsceneLibrary.potential_chat_key_pairs([region.cutscene_path])
 	for chat_key_pair in potential_chat_key_pairs:
 		for chat_key in chat_key_pair.chat_keys():
@@ -207,3 +190,22 @@ func trim_levels_by_available_if(levels: Array) -> Array:
 		if include_level:
 			trimmed_levels.append(level)
 	return trimmed_levels
+
+
+## Loads the list of levels from JSON.
+func _load_raw_json_data() -> void:
+	regions.clear()
+	
+	var worlds_text := FileUtils.get_file_as_text(worlds_path)
+	var worlds_json: Dictionary = parse_json(worlds_text)
+	for region_json in worlds_json.get("regions", []):
+		var region := CareerRegion.new()
+		region.from_json_dict(region_json)
+		regions.append(region)
+	
+	# populate CareerRegion.length field
+	for i in range(regions.size()):
+		if i < regions.size() - 1:
+			regions[i].length = regions[i + 1].distance - regions[i].distance
+		else:
+			regions[i].length = CareerData.MAX_DISTANCE_TRAVELLED

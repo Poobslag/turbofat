@@ -175,8 +175,28 @@ func push_career_trail() -> void:
 	_career_flow.push_career_trail()
 
 
+## Returns the career region the player is currently in.
+func current_region() -> CareerRegion:
+	return CareerLevelLibrary.region_for_distance(distance_travelled)
+
+
+## Returns the career region before the region the player is currently in, or the first region if the player is still
+## in the first region.
+func prev_region() -> CareerRegion:
+	var current_region := current_region()
+	return CareerLevelLibrary.region_for_distance(current_region.distance - 1)
+
+
+## Returns the career region after the region the player is currently in, or the last region if the player is in the
+## last region.
+func next_region() -> CareerRegion:
+	var current_region := current_region()
+	return CareerLevelLibrary.region_for_distance(current_region.distance + current_region.length)
+
+
+## Returns 'true' if the current career region has a prologue the player hasn't seen.
 func should_play_prologue() -> bool:
-	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
+	var region: CareerRegion = current_region()
 	var prologue_chat_key: String = region.get_prologue_chat_key()
 	return ChatLibrary.chat_exists(prologue_chat_key) \
 			and not PlayerData.chat_history.is_chat_finished(prologue_chat_key)
@@ -200,7 +220,7 @@ func is_region_cleared(region: CareerRegion) -> bool:
 ## Returns 'true' if the current career mode distance corresponds to an uncleared boss level
 func is_boss_level() -> bool:
 	var result := true
-	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
+	var region: CareerRegion = current_region()
 	if distance_travelled != region.distance + region.length - 1:
 		# the player is not at the end of the region
 		result = false
@@ -216,7 +236,7 @@ func is_boss_level() -> bool:
 ## Returns 'true' if the current career mode distance corresponds to an uncleared intro level
 func is_intro_level() -> bool:
 	var result := true
-	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
+	var region: CareerRegion = current_region()
 	if not region.intro_level:
 		result = false
 	elif is_intro_level_finished(region):
@@ -262,7 +282,7 @@ func distance_penalties() -> Array:
 	else: result[1] = 2
 	
 	# penalties can never take you into a previous region
-	var max_penalty: int = distance_travelled - CareerLevelLibrary.region_for_distance(distance_travelled).distance
+	var max_penalty: int = distance_travelled - current_region().distance
 	for i in range(result.size()):
 		result[i] = min(result[i], max_penalty)
 	
@@ -309,7 +329,7 @@ func set_hours_passed(new_hours_passed: int) -> void:
 
 ## When an epilogue cutscene is played, we advance the player to the next region
 func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
-	var region: CareerRegion = CareerLevelLibrary.region_for_distance(distance_travelled)
+	var region: CareerRegion = current_region()
 	if chat_key == region.get_epilogue_chat_key():
 		# advance the player to the next region
 		var old_distance_travelled := distance_travelled

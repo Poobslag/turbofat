@@ -26,7 +26,7 @@ func push_career_trail() -> void:
 	
 	if not redirected and career_data.should_play_prologue():
 		# If they haven't seen the region's prologue cutscene, we show it.
-		var region: CareerRegion = CareerLevelLibrary.region_for_distance(career_data.distance_travelled)
+		var region: CareerRegion = career_data.current_region()
 		var prologue_chat_key: String = region.get_prologue_chat_key()
 		CurrentCutscene.set_launched_cutscene(prologue_chat_key)
 		CurrentCutscene.push_cutscene_trail()
