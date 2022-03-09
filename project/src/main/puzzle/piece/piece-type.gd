@@ -17,7 +17,7 @@ var cw_kicks: Array
 ## array of piece kicks to try when rotating counterclockwise
 var ccw_kicks: Array
 
-## a piece kick to attempt for each orientation when rotating 180
+## array of piece kicks to try when rotating 180
 var flips: Array
 
 ## maximum number of 'floor kicks', kicks which move the piece upward

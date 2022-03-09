@@ -165,7 +165,8 @@ func test_q_lwallkick_r0() -> void:
 	assert_kick()
 
 
-## A 'pump kick' is when the nub of a p/q piece swings into a gap, while the other 4 blocks remain in place
+## A 'pump kick' or 'pump flip' is when the nub of a p/q piece swings into a gap, while the other 4 blocks remain in
+## place
 func test_p_pump_kick0() -> void:
 	from_grid = [
 		"    ",
@@ -230,6 +231,70 @@ func test_p_pump_kick3() -> void:
 	assert_kick()
 
 
+func test_p_pump_flip_02() -> void:
+	from_grid = [
+		" ppp  ",
+		" :pp  ",
+	]
+	to_grid = [
+		"  pp  ",
+		"  ppp ",
+	]
+	assert_kick()
+
+
+func test_p_pump_flip_rl() -> void:
+	from_grid = [
+		"  ",
+		":p",
+		"pp",
+		"pp",
+		"  ",
+		"  ",
+	]
+	to_grid = [
+		"  ",
+		": ",
+		"pp",
+		"pp",
+		"p ",
+		"  ",
+	]
+	assert_kick()
+
+
+func test_p_pump_flip_20() -> void:
+	from_grid = [
+		" pp: ",
+		" ppp ",
+	]
+	to_grid = [
+		"ppp: ",
+		" pp  ",
+	]
+	assert_kick()
+
+
+func test_p_pump_flip_lr() -> void:
+	from_grid = [
+		"  ",
+		"  ",
+		"pp",
+		"pp",
+		"p:",
+		"  ",
+	]
+	to_grid = [
+		"  ",
+		" p",
+		"pp",
+		"pp",
+		" :",
+		"  ",
+	]
+	assert_kick()
+
+
 func test_q_pump_kick0() -> void:
 	from_grid = [
 		"    ",
@@ -288,6 +353,70 @@ func test_q_pump_kick3() -> void:
 		" qqq",
 		":qq:",
 		":: :",
+	]
+	assert_kick()
+
+
+func test_q_pump_flip_02() -> void:
+	from_grid = [
+		"  qqq ",
+		"  qq: ",
+	]
+	to_grid = [
+		"  qq  ",
+		" qqq: ",
+	]
+	assert_kick()
+
+
+func test_q_pump_flip_rl() -> void:
+	from_grid = [
+		"  ",
+		"  ",
+		"qq",
+		"qq",
+		":q",
+		"  ",
+	]
+	to_grid = [
+		"  ",
+		"q ",
+		"qq",
+		"qq",
+		": ",
+		"  ",
+	]
+	assert_kick()
+
+
+func test_q_pump_flip_20() -> void:
+	from_grid = [
+		" :qq  ",
+		" qqq  ",
+	]
+	to_grid = [
+		" :qqq ",
+		"  qq  ",
+	]
+	assert_kick()
+
+
+func test_q_pump_flip_lr() -> void:
+	from_grid = [
+		"  ",
+		"q:",
+		"qq",
+		"qq",
+		"  ",
+		"  ",
+	]
+	to_grid = [
+		"  ",
+		" :",
+		"qq",
+		"qq",
+		" q",
+		"  ",
 	]
 	assert_kick()
 
@@ -584,5 +713,126 @@ func test_q_bump_kick_r0() -> void:
 		":  : ",
 		"qqq: ",
 		"qq   ",
+	]
+	assert_kick()
+
+
+## A 'tree flip' is when the piece flips compactly within a 2x3 rectangle
+func test_p_tree_flip_02() -> void:
+	from_grid = [
+		" ppp ",
+		"  pp ",
+	]
+	to_grid = [
+		" pp  ",
+		" ppp ",
+	]
+	assert_kick()
+
+
+func test_p_tree_flip_rl() -> void:
+	from_grid = [
+		"  ",
+		" p",
+		"pp",
+		"pp",
+		"  ",
+	]
+	to_grid = [
+		"  ",
+		"pp",
+		"pp",
+		"p ",
+		"  ",
+	]
+	assert_kick()
+
+
+func test_p_tree_flip_20() -> void:
+	from_grid = [
+		" pp  ",
+		" ppp ",
+	]
+	to_grid = [
+		" ppp ",
+		"  pp ",
+	]
+	assert_kick()
+
+
+func test_p_tree_flip_lr() -> void:
+	from_grid = [
+		"  ",
+		"pp",
+		"pp",
+		"p ",
+		"  ",
+	]
+	to_grid = [
+		"  ",
+		" p",
+		"pp",
+		"pp",
+		"  ",
+	]
+	assert_kick()
+
+
+func test_q_tree_flip_02() -> void:
+	from_grid = [
+		" qqq ",
+		" qq  ",
+	]
+	to_grid = [
+		"  qq ",
+		" qqq ",
+	]
+	assert_kick()
+
+
+func test_q_tree_flip_rl() -> void:
+	from_grid = [
+		"  ",
+		"qq",
+		"qq",
+		" q",
+		"  ",
+	]
+	to_grid = [
+		"  ",
+		"q ",
+		"qq",
+		"qq",
+		"  ",
+	]
+	assert_kick()
+
+
+func test_q_tree_flip_20() -> void:
+	from_grid = [
+		"  qq ",
+		" qqq ",
+	]
+	to_grid = [
+		" qqq ",
+		" qq  ",
+	]
+	assert_kick()
+
+
+func test_q_tree_flip_lr() -> void:
+	from_grid = [
+		"  ",
+		"q ",
+		"qq",
+		"qq",
+		"  ",
+	]
+	to_grid = [
+		"  ",
+		"qq",
+		"qq",
+		" q",
+		"  ",
 	]
 	assert_kick()
