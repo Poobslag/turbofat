@@ -25,6 +25,9 @@ var distance := 0
 ## A human-readable icon name, such as 'forest' or 'cactus'
 var icon_name: String
 
+## A human-readable environment name, such as 'lemon' or 'marsh'
+var environment_name: String
+
 ## The smallest distance the player must travel to exit this region.
 ##
 ## If the length is CareerData.MAX_DISTANCE_TRAVELLED, this region cannot be exited.
@@ -48,6 +51,7 @@ func from_json_dict(json: Dictionary) -> void:
 	cutscene_path = json.get("cutscene_path", "")
 	distance = int(json.get("distance", 0))
 	icon_name = json.get("icon", "")
+	environment_name = json.get("environment", "")
 	var piece_speed_string: String = json.get("piece_speed", "0")
 	if "-" in piece_speed_string:
 		min_piece_speed = StringUtils.substring_before(piece_speed_string, "-")
