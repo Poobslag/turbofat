@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/world/overworld-corner-map.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/world/environment/marsh-frosting-sheet.png" type="Texture" id=2]
-[ext_resource path="res://src/main/world/environment/ground-library.tres" type="TileSet" id=3]
+[ext_resource path="res://src/main/world/environment/marsh-ground-library.tres" type="TileSet" id=3]
 
 [sub_resource type="TileSet" id=1]
 0/name = "marsh-frosting-sheet.png 0"
