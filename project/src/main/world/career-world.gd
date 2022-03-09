@@ -128,7 +128,7 @@ func _hide_duplicate_creatures() -> void:
 ## 	A number in the range [0.0, 1.0] describing how far to the right the customer should be positioned.
 func _distance_percent() -> float:
 	var percent: float
-	var region := CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var region := PlayerData.career.current_region()
 	if region.length == CareerData.MAX_DISTANCE_TRAVELLED:
 		# for 'endless regions' just put them somewhere arbitrary
 		percent = randf()
@@ -228,7 +228,7 @@ func _add_mile_markers_to_path() -> void:
 	# Calculate the values of the left and right mile marker
 	var left_num: int
 	var right_num: int
-	var curr_region: CareerRegion = CareerLevelLibrary.region_for_distance(PlayerData.career.distance_travelled)
+	var curr_region: CareerRegion = PlayerData.career.current_region()
 	if curr_region.length == CareerData.MAX_DISTANCE_TRAVELLED:
 		# In the final (endless) region, numbers count up from 0-99, and then reset back to 0
 		right_num = PlayerData.career.distance_travelled - curr_region.distance

@@ -25,7 +25,7 @@ func advance_clock(new_distance_earned: int, success: bool) -> void:
 	career_data.hours_passed += 1
 	
 	if career_data.is_boss_level():
-		var boss_region: CareerRegion = CareerLevelLibrary.region_for_distance(career_data.distance_travelled)
+		var boss_region: CareerRegion = career_data.current_region()
 		if success:
 			# if they pass a boss level, update max_distance_travelled to mark the region as cleared
 			career_data.max_distance_travelled = boss_region.distance + boss_region.length
@@ -56,7 +56,7 @@ func advance_clock(new_distance_earned: int, success: bool) -> void:
 ## 	The remaining amount of the player's distance earned, after applying some of it toward advancing the player or
 ## 		banking the steps for later.
 func _apply_distance_earned(unapplied_distance_earned: int) -> int:
-	var region: CareerRegion = CareerLevelLibrary.region_for_distance(career_data.distance_travelled)
+	var region: CareerRegion = career_data.current_region()
 	var newly_banked_steps := 0
 	var newly_travelled_distance := unapplied_distance_earned
 	
@@ -110,4 +110,4 @@ func advance_calendar() -> void:
 	career_data.day = min(career_data.day + 1, CareerData.MAX_DAY)
 	
 	# Put the player at the start of their current region and trigger the 'distance_travelled_changed' signal
-	career_data.distance_travelled = CareerLevelLibrary.region_for_distance(career_data.distance_travelled).distance
+	career_data.distance_travelled = career_data.current_region().distance
