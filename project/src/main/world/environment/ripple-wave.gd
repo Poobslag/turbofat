@@ -7,8 +7,13 @@ extends Node2D
 ## controls how frequently waves speed up and slow down, in seconds
 const SPEED_PERIOD := 6.0
 
+## wave movement speed
 export (float) var speed: float = 100.0
+
 export (PackedScene) var RippleSpriteScene: PackedScene
+
+## ground tile ids which a ripple can appear over
+export (Array, int) var rippleable_tile_ids := []
 
 ## The tilemap where waves should appear. Ripples appear and disappear based on the occupied cells of this tilemap.
 var _tile_map: TileMap
@@ -140,7 +145,14 @@ func _refresh_ripple_sprites() -> void:
 
 ## Returns true if a ripple can appear over the specified tile.
 func _is_rippleable(tile_position: Vector2) -> bool:
-	return _tile_map.get_cellv(tile_position) != TileMap.INVALID_CELL
+	var result: bool
+	if rippleable_tile_ids:
+		# only show ripples over 'rippleable tiles', tiles with goop on them
+		result = _tile_map.get_cellv(tile_position) in rippleable_tile_ids
+	else:
+		# show ripples over any non-empty tiles
+		result = _tile_map.get_cellv(tile_position) != TileMap.INVALID_CELL
+	return result
 
 
 ## Rounds floating point vectors to avoid bugs when interacting with the TileMap class.

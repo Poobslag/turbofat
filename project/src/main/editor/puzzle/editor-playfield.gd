@@ -44,7 +44,7 @@ func _gui_input(event: InputEvent) -> void:
 		if _dragging_right_mouse:
 			var cell_pos := _cell_pos(event.position)
 			# only emit signals if the underlying data changed to avoid generating json too frequently
-			var should_update_tilemap := true if _tile_map.get_cellv(cell_pos) != -1 else false
+			var should_update_tilemap := true if _tile_map.get_cellv(cell_pos) != TileMap.INVALID_CELL else false
 			var should_update_pickups := true if _pickups.get_food_type(cell_pos) != -1 else false
 			if should_update_tilemap:
 				set_block(cell_pos, -1)

@@ -176,10 +176,10 @@ const SINK_AUTOTILE_COORDS_BY_BINDING := {
 export (bool) var _autotile: bool setget autotile
 
 
-## Autotiles tiles with kitchen countertops.
+## Autotiles tiles with kitchen countertops, grills, sinks and other complex tiles.
 ##
-## The kitchen countertop autotiling involves multiple cell types and cannot be handled by Godot's built-in autotiling.
-## Instead of configuring the autotiling behavior with the TileSet's autotile bitmask, it is configured with several
+## The kitchen autotiling involves multiple cell types and cannot be handled by Godot's built-in autotiling. Instead
+## of configuring the autotiling behavior with the TileSet's autotile bitmask, it is configured with several
 ## dictionary constants defined in this script.
 func autotile(_value: bool) -> void:
 	for cell in get_used_cells():

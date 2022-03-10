@@ -31,6 +31,10 @@ func _ready() -> void:
 ## These invisible obstacles are placed wherever there's an 'unwalkable cell' like a cliff next to a 'walkable cell'
 ## like a patch of ground.
 func autotile(value: bool) -> void:
+	if not value:
+		# only autotile in the editor when the 'Autotile' property is toggled
+		return
+	
 	# remove all invisible obstacles
 	for cell_obj in _obstacle_map.get_used_cells_by_id(impassable_tile_index):
 		var cell: Vector2 = cell_obj
