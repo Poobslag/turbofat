@@ -590,11 +590,6 @@ _global_script_classes=[ {
 "path": "res://src/main/puzzle/piece/next-piece-displays.gd"
 }, {
 "base": "TileMap",
-"class": "ObstacleMap",
-"language": "GDScript",
-"path": "res://src/main/world/obstacle-map.gd"
-}, {
-"base": "ObstacleMap",
 "class": "ObstacleMapIndoors",
 "language": "GDScript",
 "path": "res://src/main/world/obstacle-map-indoors.gd"
@@ -1126,7 +1121,6 @@ _global_script_class_icons={
 "NextPiece": "",
 "NextPieceDisplay": "",
 "NextPieceDisplays": "",
-"ObstacleMap": "",
 "ObstacleMapIndoors": "",
 "ObstacleSpawner": "",
 "OtherRules": "",
