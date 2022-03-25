@@ -16,6 +16,12 @@ var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked
 onready var _grade_label := $GradeLabel
 onready var _status_icon := $StatusIcon
 
+## Preemptively initialize onready variables to avoid null references.
+func _enter_tree() -> void:
+	_grade_label = $GradeLabel
+	_status_icon = $StatusIcon
+
+
 ## Assigns this label's button, and updates the label's appearance.
 func set_button(new_button: LevelSelectButton) -> void:
 	if button == new_button:
