@@ -25,7 +25,7 @@ const COUNTERTOP_PLATES_TILE_INDEX := 11
 
 ## key: union of TileSet bindings for adjacent cells containing countertops
 ## value: countertop autotile coordinate
-var COUNTERTOP_AUTOTILE_COORDS_BY_BINDING := {
+const COUNTERTOP_AUTOTILE_COORDS_BY_BINDING := {
 	0: Vector2(0, 0),
 	BIND_TOP: Vector2(1, 0),
 	BIND_BOTTOM: Vector2(2, 0),
@@ -41,7 +41,7 @@ var COUNTERTOP_AUTOTILE_COORDS_BY_BINDING := {
 
 ## key: union of TileSet bindings for adjacent cells containing countertops
 ## value: array of possible countertop-plates autotile coordinates
-var COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING := {
+const COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING := {
 	0: [Vector2(0, 0), Vector2(1, 0)],
 	BIND_TOP: [Vector2(2, 0), Vector2(3, 0)],
 	BIND_BOTTOM: [Vector2(4, 0), Vector2(5, 0)],
@@ -58,7 +58,7 @@ var COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING := {
 
 ## key: countertop autotile coordinate
 ## value: direction which the grill is facing on that tile (UP, DOWN, LEFT, RIGHT)
-var GRILL_ORIENTATION_BY_CELL := {
+const GRILL_ORIENTATION_BY_CELL := {
 	Vector2(0, 0): UP,
 	Vector2(1, 0): UP,
 	Vector2(2, 0): UP,
@@ -175,13 +175,20 @@ const SINK_AUTOTILE_COORDS_BY_BINDING := {
 ## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
 
+func _ready() -> void:
+	autotile(true)
+
 
 ## Autotiles tiles with kitchen countertops, grills, sinks and other complex tiles.
 ##
 ## The kitchen autotiling involves multiple cell types and cannot be handled by Godot's built-in autotiling. Instead
 ## of configuring the autotiling behavior with the TileSet's autotile bitmask, it is configured with several
 ## dictionary constants defined in this script.
-func autotile(_value: bool) -> void:
+func autotile(value: bool) -> void:
+	if not value:
+		# only autotile in the editor when the 'Autotile' property is toggled
+		return
+	
 	for cell in get_used_cells():
 		match get_cellv(cell):
 			BARE_COUNTERTOP_TILE_INDEX: _autotile_bare_countertop(cell)
