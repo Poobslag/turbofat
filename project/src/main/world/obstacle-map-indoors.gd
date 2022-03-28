@@ -1,6 +1,6 @@
 tool
 class_name ObstacleMapIndoors
-extends ObstacleMap
+extends TileMap
 ## Maintains a tilemap for indoor obstacles.
 ##
 ## The indoor tilemap is an isometric tilemap which must be drawn from left to right. This tilemap includes
