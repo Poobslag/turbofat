@@ -205,7 +205,7 @@ func _interlude_chat_key_pair(career_level: CareerLevel) -> ChatKeyPair:
 	if career_level:
 		if career_level.chef_id or career_level.customer_ids:
 			chef_id = career_level.chef_id
-			customer_id = career_level.customer_ids[0]
+			customer_id = career_level.customer_ids[0] if career_level.customer_ids else ""
 		else:
 			customer_id = CareerLevel.ANONYMOUS_CUSTOMER
 	
