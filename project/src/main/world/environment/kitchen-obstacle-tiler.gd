@@ -1,6 +1,5 @@
 tool
-class_name ObstacleMapIndoors
-extends TileMap
+extends Node
 ## Maintains a tilemap for indoor obstacles.
 ##
 ## The indoor tilemap is an isometric tilemap which must be drawn from left to right. This tilemap includes
@@ -16,12 +15,6 @@ const UP := 1
 const DOWN := 2
 const LEFT := 4
 const RIGHT := 8
-
-## the index of specific tiles in the tilemap's tileset
-const BARE_COUNTERTOP_TILE_INDEX := 8
-const GRILL_TILE_INDEX := 9
-const SINK_TILE_INDEX := 10
-const COUNTERTOP_PLATES_TILE_INDEX := 11
 
 ## key: union of TileSet bindings for adjacent cells containing countertops
 ## value: countertop autotile coordinate
@@ -169,14 +162,34 @@ const SINK_AUTOTILE_COORDS_BY_BINDING := {
 	[RIGHT, BIND_BOTTOM]: Vector2(2, 3),
 }
 
+## The parent tilemap's tile ID for bare countertops
+export (int) var bare_countertop_tile_index: int
+
+## The parent tilemap's tile ID for countertops with a grill
+export (int) var grill_tile_index: int
+
+## The parent tilemap's tile ID for countertops with a sink
+export (int) var sink_tile_index: int
+
+## The parent tilemap's tile ID for countertops with plates
+export (int) var countertop_plates_tile_index: int
+
 ## An editor toggle which manually applies autotiling.
 ##
 ## Godot has no way of automatically reacting to GridMap/TileMap changes. See Godot #11855
 ## https://github.com/godotengine/godot/issues/11855
 export (bool) var _autotile: bool setget autotile
 
+## tilemap containing obstacles
+onready var _tile_map: TileMap = get_parent()
+
 func _ready() -> void:
 	autotile(true)
+
+
+## Preemptively initialize onready variables to avoid null references.
+func _enter_tree() -> void:
+	_initialize_onready_variables()
 
 
 ## Autotiles tiles with kitchen countertops, grills, sinks and other complex tiles.
@@ -189,12 +202,22 @@ func autotile(value: bool) -> void:
 		# only autotile in the editor when the 'Autotile' property is toggled
 		return
 	
-	for cell in get_used_cells():
-		match get_cellv(cell):
-			BARE_COUNTERTOP_TILE_INDEX: _autotile_bare_countertop(cell)
-			GRILL_TILE_INDEX: _autotile_grill(cell)
-			SINK_TILE_INDEX: _autotile_sink(cell)
-			COUNTERTOP_PLATES_TILE_INDEX: _autotile_countertop_plates(cell)
+	if Engine.editor_hint:
+		if not _tile_map:
+			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
+			_initialize_onready_variables()
+	
+	for cell in _tile_map.get_used_cells():
+		match _tile_map.get_cellv(cell):
+			bare_countertop_tile_index: _autotile_bare_countertop(cell)
+			grill_tile_index: _autotile_grill(cell)
+			sink_tile_index: _autotile_sink(cell)
+			countertop_plates_tile_index: _autotile_countertop_plates(cell)
+
+
+## Preemptively initialize onready variables to avoid null references.
+func _initialize_onready_variables() -> void:
+	_tile_map = get_parent()
 
 
 ## Autotiles a tile containing a bare countertop.
@@ -203,7 +226,7 @@ func autotile(value: bool) -> void:
 ## 	'cell': The TileMap coordinates of the cell to be autotiled.
 func _autotile_bare_countertop(cell: Vector2) -> void:
 	var adjacent_countertops := _adjacencies(cell,
-			[BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX, COUNTERTOP_PLATES_TILE_INDEX])
+			[bare_countertop_tile_index, grill_tile_index, countertop_plates_tile_index])
 	
 	# update the autotile if a matching countertop cell exists
 	if COUNTERTOP_AUTOTILE_COORDS_BY_BINDING.has(adjacent_countertops):
@@ -216,7 +239,7 @@ func _autotile_bare_countertop(cell: Vector2) -> void:
 ## 	'cell': The TileMap coordinates of the cell to be autotiled.
 func _autotile_countertop_plates(cell: Vector2) -> void:
 	var adjacent_countertops := _adjacencies(cell,
-			[BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX, COUNTERTOP_PLATES_TILE_INDEX])
+			[bare_countertop_tile_index, grill_tile_index, countertop_plates_tile_index])
 	
 	# update the autotile if a matching countertop cell exists
 	if COUNTERTOP_PLATES_AUTOTILE_COORDS_BY_BINDING.has(adjacent_countertops):
@@ -231,11 +254,11 @@ func _autotile_countertop_plates(cell: Vector2) -> void:
 ##
 ## 	'autotile_coord': The autotile coordinates to assign.
 func _set_cell_autotile_coord(cell: Vector2, autotile_coord: Vector2) -> void:
-	var tile: int = get_cell(cell.x, cell.y)
-	var flip_x: bool = is_cell_x_flipped(cell.x, cell.y)
-	var flip_y: bool = is_cell_y_flipped(cell.x, cell.y)
-	var transpose: bool = is_cell_transposed(cell.x, cell.y)
-	set_cell(cell.x, cell.y, tile, flip_x, flip_y, transpose, autotile_coord)
+	var tile: int = _tile_map.get_cell(cell.x, cell.y)
+	var flip_x: bool = _tile_map.is_cell_x_flipped(cell.x, cell.y)
+	var flip_y: bool = _tile_map.is_cell_y_flipped(cell.x, cell.y)
+	var transpose: bool = _tile_map.is_cell_transposed(cell.x, cell.y)
+	_tile_map.set_cell(cell.x, cell.y, tile, flip_x, flip_y, transpose, autotile_coord)
 
 
 ## Autotiles a tile containing a grill.
@@ -244,11 +267,11 @@ func _set_cell_autotile_coord(cell: Vector2, autotile_coord: Vector2) -> void:
 ## 	'cell': The TileMap coordinates of the cell to be autotiled.
 func _autotile_grill(cell: Vector2) -> void:
 	# calculate the grill's current orientation
-	var grill_orientation: int = GRILL_ORIENTATION_BY_CELL.get(get_cell_autotile_coord(cell.x, cell.y))
+	var grill_orientation: int = GRILL_ORIENTATION_BY_CELL.get(_tile_map.get_cell_autotile_coord(cell.x, cell.y))
 	
-	var adjacent_grills := _adjacencies(cell, [GRILL_TILE_INDEX])
+	var adjacent_grills := _adjacencies(cell, [grill_tile_index])
 	var adjacent_countertops := _adjacencies(cell,
-			[BARE_COUNTERTOP_TILE_INDEX, GRILL_TILE_INDEX, COUNTERTOP_PLATES_TILE_INDEX])
+			[bare_countertop_tile_index, grill_tile_index, countertop_plates_tile_index])
 	
 	# Calculate which countertop cell matches the specified grill key. If the key is not found, we reorient the grill
 	# to force a match.
@@ -268,9 +291,9 @@ func _autotile_grill(cell: Vector2) -> void:
 ## Parameters:
 ## 	'cell': The TileMap coordinates of the cell to be autotiled.
 func _autotile_sink(cell: Vector2) -> void:
-	var orientation: int = SINK_ORIENTATION_BY_CELL.get(get_cell_autotile_coord(cell.x, cell.y))
+	var orientation: int = SINK_ORIENTATION_BY_CELL.get(_tile_map.get_cell_autotile_coord(cell.x, cell.y))
 	
-	var adjacent_sinks := _adjacencies(cell, [SINK_TILE_INDEX])
+	var adjacent_sinks := _adjacencies(cell, [sink_tile_index])
 	
 	# Calculate which sink cell matches the specified sink key. If the key is not found, we reorient the grill
 	# to force a match.
@@ -295,8 +318,8 @@ func _autotile_sink(cell: Vector2) -> void:
 ## 	An int bitmask of matching cell directions (UP, DOWN, LEFT, RIGHT)
 func _adjacencies(cell: Vector2, tile_indexes: Array) -> int:
 	var binding := 0
-	binding |= BIND_TOP if get_cellv(cell + Vector2.UP) in tile_indexes else 0
-	binding |= BIND_BOTTOM if get_cellv(cell + Vector2.DOWN) in tile_indexes else 0
-	binding |= BIND_LEFT if get_cellv(cell + Vector2.LEFT) in tile_indexes else 0
-	binding |= BIND_RIGHT if get_cellv(cell + Vector2.RIGHT) in tile_indexes else 0
+	binding |= BIND_TOP if _tile_map.get_cellv(cell + Vector2.UP) in tile_indexes else 0
+	binding |= BIND_BOTTOM if _tile_map.get_cellv(cell + Vector2.DOWN) in tile_indexes else 0
+	binding |= BIND_LEFT if _tile_map.get_cellv(cell + Vector2.LEFT) in tile_indexes else 0
+	binding |= BIND_RIGHT if _tile_map.get_cellv(cell + Vector2.RIGHT) in tile_indexes else 0
 	return binding
