@@ -1,10 +1,11 @@
-[gd_resource type="TileSet" load_steps=17 format=2]
+[gd_resource type="TileSet" load_steps=18 format=2]
 
 [ext_resource path="res://assets/main/world/environment/lemon-frosting-obstacle-sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/empty-8.png" type="Texture" id=2]
 [ext_resource path="res://assets/main/world/environment/lemon-midfrost-obstacle-sheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/world/environment/marsh-block-sheet.png" type="Texture" id=4]
 [ext_resource path="res://assets/main/world/environment/marsh-fence-sheet.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/world/environment/lemon-obstacle-corners-sheet.png" type="Texture" id=6]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( -64, 0, 0, -32, 64, 0, 0, 32 )
@@ -529,7 +530,7 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 5/texture = ExtResource( 3 )
 5/tex_offset = Vector2( 0, -52.5 )
 5/modulate = Color( 1, 1, 1, 1 )
-5/region = Rect2( 0, 0, 810, 990 )
+5/region = Rect2( 0, 0, 810, 825 )
 5/tile_mode = 2
 5/autotile/icon_coordinate = Vector2( 0, 0 )
 5/autotile/tile_size = Vector2( 135, 165 )
@@ -739,3 +740,24 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
 } ]
 5/z_index = 0
+6/name = "lemon-obstacle-corners-sheet.png 6"
+6/texture = ExtResource( 6 )
+6/tex_offset = Vector2( -0.5, -112.5 )
+6/modulate = Color( 1, 1, 1, 1 )
+6/region = Rect2( 0, 0, 201, 180 )
+6/tile_mode = 2
+6/autotile/icon_coordinate = Vector2( 0, 0 )
+6/autotile/tile_size = Vector2( 67, 45 )
+6/autotile/spacing = 0
+6/autotile/occluder_map = [  ]
+6/autotile/navpoly_map = [  ]
+6/autotile/priority_map = [  ]
+6/autotile/z_index_map = [  ]
+6/occluder_offset = Vector2( 0, 0 )
+6/navigation_offset = Vector2( 0, 0 )
+6/shape_offset = Vector2( 0, 0 )
+6/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+6/shape_one_way = false
+6/shape_one_way_margin = 0.0
+6/shapes = [  ]
+6/z_index = 0
