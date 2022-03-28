@@ -111,19 +111,19 @@ func _refresh_ripple_sprites() -> void:
 		var used_cell := _tile_map.world_to_map(ripple_sprite.position + position)
 		
 		# if there's no floor in front or behind, this ripple is off
-		var ripple_off := not _tile_map.get_cellv(used_cell + cell_forward_vector) != -1 \
-				or not _tile_map.get_cellv(used_cell) != -1 \
-				or not _tile_map.get_cellv(used_cell - cell_forward_vector) != -1
+		var ripple_off := not _is_rippleable(used_cell + cell_forward_vector) \
+				or not _is_rippleable(used_cell) \
+				or not _is_rippleable(used_cell - cell_forward_vector)
 		
 		# if there's floor in front/left and behind/left, this ripple connects left
-		var connected_left := _tile_map.get_cellv(used_cell - cell_right_vector) != -1 \
-				and _tile_map.get_cellv(used_cell - cell_right_vector + cell_forward_vector) != -1 \
-				and _tile_map.get_cellv(used_cell - cell_right_vector - cell_forward_vector) != -1
+		var connected_left := _is_rippleable(used_cell - cell_right_vector) \
+				and _is_rippleable(used_cell - cell_right_vector + cell_forward_vector) \
+				and _is_rippleable(used_cell - cell_right_vector - cell_forward_vector)
 		
 		# if there's floor in front/right and behind/right, this ripple connects right
-		var connected_right := _tile_map.get_cellv(used_cell + cell_right_vector) != -1 \
-				and _tile_map.get_cellv(used_cell + cell_right_vector + cell_forward_vector) != -1 \
-				and _tile_map.get_cellv(used_cell + cell_right_vector - cell_forward_vector) != -1
+		var connected_right := _is_rippleable(used_cell + cell_right_vector) \
+				and _is_rippleable(used_cell + cell_right_vector + cell_forward_vector) \
+				and _is_rippleable(used_cell + cell_right_vector - cell_forward_vector)
 		
 		# update the ripple sprite's state based on the floor cells
 		if ripple_off:
@@ -136,6 +136,11 @@ func _refresh_ripple_sprites() -> void:
 			ripple_sprite.ripple_state = Ripples.RippleState.CONNECTED_LEFT
 		else:
 			ripple_sprite.ripple_state = Ripples.RippleState.CONNECTED_NONE
+
+
+## Returns true if a ripple can appear over the specified tile.
+func _is_rippleable(tile_position: Vector2) -> bool:
+	return _tile_map.get_cellv(tile_position) != TileMap.INVALID_CELL
 
 
 ## Rounds floating point vectors to avoid bugs when interacting with the TileMap class.
