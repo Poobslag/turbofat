@@ -17,6 +17,9 @@ export (float) var speed: float = 100.0
 ## duration between waves
 export (float) var wait_time: float = 6.0
 
+## ground tile ids which a ripple can appear over
+export (Array, int) var rippleable_tile_ids := []
+
 ## the path underlying tilemap which controls where waves can spawn
 onready var _tile_map: TileMap = get_node(tile_map_path)
 
@@ -71,6 +74,7 @@ func _wave_position(wave_index: int = 0) -> Vector2:
 func _spawn_wave(wave_position: Vector2) -> void:
 	var ripple_wave_scene: RippleWave = RippleWaveScene.instance()
 	ripple_wave_scene.initialize(_tile_map, direction, wave_position)
+	ripple_wave_scene.rippleable_tile_ids = rippleable_tile_ids
 	ripple_wave_scene.speed = speed
 	add_child(ripple_wave_scene)
 
