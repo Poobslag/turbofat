@@ -114,11 +114,11 @@ func _refresh_json_tile_map() -> void:
 		var json_tile := {
 			"pos": "%s %s" % [used_cell.x, used_cell.y]
 		}
-		if _tile_map.get_cellv(used_cell) != -1:
+		if _tile_map.get_cellv(used_cell) != TileMap.INVALID_CELL:
 			var autotile_coord: Vector2 = _tile_map.get_cell_autotile_coord(used_cell.x, used_cell.y)
 			var tile_index: int = _tile_map.get_cellv(used_cell)
 			json_tile["tile"] = "%s %s %s" % [tile_index, autotile_coord.x, autotile_coord.y]
-		if _pickups.get_food_type(used_cell) != -1:
+		if _pickups.get_food_type(used_cell) != TileMap.INVALID_CELL:
 			json_tile["pickup"] = "%s" % [_pickups.get_food_type(used_cell)]
 		new_json_tiles_set.append(json_tile)
 	

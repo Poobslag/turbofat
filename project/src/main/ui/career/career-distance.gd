@@ -41,14 +41,12 @@ func _refresh_buttons() -> void:
 
 func _on_Down_pressed() -> void:
 	# set our distance to the start of the previous region
-	var curr_region: CareerRegion = PlayerData.career.current_region()
 	var prev_region: CareerRegion = PlayerData.career.prev_region()
 	PlayerData.career.distance_travelled = prev_region.distance
 
 
 func _on_Up_pressed() -> void:
 	# set our distance to the start of the next region
-	var curr_region: CareerRegion = PlayerData.career.current_region()
 	var next_region: CareerRegion = PlayerData.career.next_region()
 	PlayerData.career.distance_travelled = next_region.distance
 

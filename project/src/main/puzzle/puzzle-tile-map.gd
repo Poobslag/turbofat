@@ -246,7 +246,7 @@ func _disconnect_box(pos: Vector2) -> void:
 ## Parameters:
 ## 	'dir_mask': Directions to be disconnected. Defaults to 15 which disconnects it from all four directions.
 func _disconnect_block(pos: Vector2, dir_mask: int = 15) -> void:
-	if get_cellv(pos) == -1:
+	if get_cellv(pos) == TileMap.INVALID_CELL:
 		# empty cell; nothing to disconnect
 		return
 	var autotile_coord := get_cell_autotile_coord(pos.x, pos.y)
