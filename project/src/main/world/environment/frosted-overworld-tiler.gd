@@ -164,38 +164,22 @@ const BLOCK_AUTOTILE_COORDS_BY_BINDING := {
 ## key: (int) A bitmask of surrounding tiles
 ## value: (Vector2) autotile coordinate of the corner cover
 const CORNER_COVERS_BY_BINDING := {
-	0: [TileTypes.MIDFROST,
-			[Vector2(2, 4)]],
-	FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(2, 4)]],
-	FROST_LEFT: [TileTypes.MIDFROST,
-			[Vector2(2, 4)]],
-	FROST_LEFT | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(2, 4)]],
-	FROST_CENTER: [TileTypes.MIDFROST,
-			[Vector2(2, 4)]],
-	FROST_CENTER | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(3, 4)]],
-	FROST_CENTER | FROST_LEFT: [TileTypes.MIDFROST,
-			[Vector2(4, 4)]],
-	FROST_CENTER | FROST_LEFT | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(5, 4)]],
-	FROST_TOPLEFT: [TileTypes.MIDFROST,
-			[Vector2(2, 4)]],
-	FROST_TOPLEFT | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(0, 5)]],
-	FROST_TOPLEFT | FROST_LEFT: [TileTypes.MIDFROST,
-			[Vector2(1, 5)]],
-	FROST_TOPLEFT | FROST_LEFT | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(2, 5)]],
-	FROST_TOPLEFT | FROST_CENTER: [TileTypes.MIDFROST,
-			[Vector2(2, 4)]],
-	FROST_TOPLEFT | FROST_CENTER | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(3, 5)]],
-	FROST_TOPLEFT | FROST_CENTER | FROST_LEFT: [TileTypes.MIDFROST,
-			[Vector2(4, 5)]],
-	FROST_TOPLEFT | FROST_CENTER | FROST_LEFT | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(5, 5)]],
+	0: Vector2(0, 0),
+	FROST_TOP: Vector2(0, 0),
+	FROST_LEFT: Vector2(0, 0),
+	FROST_LEFT | FROST_TOP: Vector2(0, 0),
+	FROST_CENTER: Vector2(0, 0),
+	FROST_CENTER | FROST_TOP: Vector2(1, 0),
+	FROST_CENTER | FROST_LEFT: Vector2(2, 0),
+	FROST_CENTER | FROST_LEFT | FROST_TOP: Vector2(0, 1),
+	FROST_TOPLEFT: Vector2(0, 0),
+	FROST_TOPLEFT | FROST_TOP: Vector2(1, 1),
+	FROST_TOPLEFT | FROST_LEFT: Vector2(2, 1),
+	FROST_TOPLEFT | FROST_LEFT | FROST_TOP: Vector2(0, 2),
+	FROST_TOPLEFT | FROST_CENTER: Vector2(0, 0),
+	FROST_TOPLEFT | FROST_CENTER | FROST_TOP: Vector2(1, 2),
+	FROST_TOPLEFT | FROST_CENTER | FROST_LEFT: Vector2(2, 2),
+	FROST_TOPLEFT | FROST_CENTER | FROST_LEFT | FROST_TOP: Vector2(0, 3),
 }
 
 ## The parent tilemap's tile ID for unfrosted blocks
@@ -206,6 +190,9 @@ export (int) var midfrost_tile_index: int setget set_midfrost_tile_index
 
 ## The parent tilemap's tile ID for frosted blocks
 export (int) var frost_tile_index: int setget set_frost_tile_index
+
+## the corner tilemap's tile ID for unfrosted/partially frosted/frosted corner covers
+export (int) var corner_tile_index: int
 
 ## An editor toggle which manually applies autotiling.
 ##
@@ -333,7 +320,7 @@ func _autotile_cake(cell: Vector2) -> void:
 ##
 ## 	'binding_value': An array of two items defining the tile and autotile coordinates to assign:
 ## 		[0]: (int) tile id to assign
-## 		[1]: (Vector2) autotile coordinates to assign
+## 		[1]: (Array, Vector2) list of possible autotile coordinates to assign
 func _set_cell_autotile_coord(cell: Vector2, binding_value: Array) -> void:
 	var tile: int = _tile_indexes_by_type[binding_value[0]]
 	var autotile_coord: Vector2 = Utils.rand_value(binding_value[1])
@@ -348,12 +335,9 @@ func _set_cell_autotile_coord(cell: Vector2, binding_value: Array) -> void:
 ## Parameters:
 ## 	'cell': The TileMap coordinates of the corner cover to be updated.
 ##
-## 	'binding_value': An array of two items defining the tile and autotile coordinates to assign:
-## 		[0]: (int) tile id of the corner cover to assign
-## 		[1]: (Vector2) autotile coordinates of the corner cover to assign
-func _set_corner_cover_autotile_coord(cell: Vector2, binding_value: Array) -> void:
-	var tile: int = _tile_indexes_by_type[binding_value[0]]
-	var autotile_coord: Vector2 = Utils.rand_value(binding_value[1])
+## 	'autotile_coord': autotile coordinates of the corner cover to assign
+func _set_corner_cover_autotile_coord(cell: Vector2, autotile_coord: Vector2) -> void:
+	var tile: int = corner_tile_index
 	var flip_x: bool = _tile_map.is_cell_x_flipped(cell.x, cell.y)
 	var flip_y: bool = _tile_map.is_cell_y_flipped(cell.x, cell.y)
 	var transpose: bool = _tile_map.is_cell_transposed(cell.x, cell.y)
