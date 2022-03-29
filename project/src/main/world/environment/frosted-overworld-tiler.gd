@@ -20,7 +20,7 @@ const CAKE_TOP := 1
 const CAKE_BOTTOM := 2
 const CAKE_LEFT := 4
 const CAKE_RIGHT := 8
-const CAKE_ALL := CAKE_TOP | CAKE_BOTTOM | CAKE_RIGHT | CAKE_LEFT
+const CAKE_ALL := CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP
 
 ## Constants for adjacent frosted tiles.
 const FROST_TOP := 16
@@ -132,25 +132,59 @@ const BLOCK_AUTOTILE_COORDS_BY_BINDING := {
 	FROST_CENTER | CAKE_ALL | FROST_LEFT: [TileTypes.MIDFROST,
 			[Vector2(5, 0)]],
 	FROST_CENTER | CAKE_ALL | FROST_LEFT | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(0, 1), Vector2(1, 1)]],
+			[Vector2(6, 0), Vector2(7, 0)]],
 	FROST_CENTER | CAKE_ALL | FROST_LEFT | FROST_BOTTOM: [TileTypes.MIDFROST,
-			[Vector2(2, 1), Vector2(3, 1)]],
+			[Vector2(0, 1), Vector2(1, 1)]],
 	FROST_CENTER | CAKE_ALL | FROST_LEFT | FROST_BOTTOM | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(4, 1), Vector2(5, 1)]],
+			[Vector2(2, 1), Vector2(3, 1)]],
 	FROST_CENTER | CAKE_ALL | FROST_RIGHT: [TileTypes.MIDFROST,
-			[Vector2(0, 2)]],
+			[Vector2(4, 1)]],
 	FROST_CENTER | CAKE_ALL | FROST_RIGHT | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(1, 2), Vector2(2, 2)]],
+			[Vector2(5, 1), Vector2(6, 1)]],
 	FROST_CENTER | CAKE_ALL | FROST_RIGHT | FROST_BOTTOM: [TileTypes.MIDFROST,
-			[Vector2(3, 2), Vector2(4, 2)]],
+			[Vector2(7, 1), Vector2(0, 2)]],
 	FROST_CENTER | CAKE_ALL | FROST_RIGHT | FROST_BOTTOM | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(5, 2), Vector2(0, 3)]],
+			[Vector2(1, 2), Vector2(2, 2)]],
 	FROST_CENTER | CAKE_ALL | FROST_RIGHT | FROST_LEFT: [TileTypes.MIDFROST,
-			[Vector2(1, 3), Vector2(2, 3)]],
+			[Vector2(3, 2), Vector2(4, 2)]],
 	FROST_CENTER | CAKE_ALL | FROST_RIGHT | FROST_LEFT | FROST_TOP: [TileTypes.MIDFROST,
-			[Vector2(3, 3), Vector2(4, 3)]],
+			[Vector2(5, 2), Vector2(6, 2)]],
 	FROST_CENTER | CAKE_ALL | FROST_RIGHT | FROST_LEFT | FROST_BOTTOM: [TileTypes.MIDFROST,
-			[Vector2(5, 3), Vector2(0, 4)]],
+			[Vector2(7, 2), Vector2(0, 3)]],
+	
+	# partially frosted tiles on an edge
+	FROST_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | FROST_TOP: [TileTypes.MIDFROST,
+			[Vector2(1, 3)]],
+	FROST_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | FROST_BOTTOM: [TileTypes.MIDFROST,
+			[Vector2(2, 3)]],
+	FROST_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | FROST_LEFT | FROST_TOP: [TileTypes.MIDFROST,
+			[Vector2(3, 3)]],
+	FROST_CENTER | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP | FROST_LEFT | FROST_BOTTOM: [TileTypes.MIDFROST,
+			[Vector2(4, 3)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | FROST_TOP: [TileTypes.MIDFROST,
+			[Vector2(5, 3)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | FROST_BOTTOM: [TileTypes.MIDFROST,
+			[Vector2(6, 3)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | FROST_RIGHT | FROST_TOP: [TileTypes.MIDFROST,
+			[Vector2(7, 3)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_BOTTOM | CAKE_TOP | FROST_RIGHT | FROST_BOTTOM: [TileTypes.MIDFROST,
+			[Vector2(0, 4)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | FROST_LEFT: [TileTypes.MIDFROST,
+			[Vector2(1, 4)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | FROST_LEFT | FROST_TOP: [TileTypes.MIDFROST,
+			[Vector2(2, 4)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | FROST_RIGHT: [TileTypes.MIDFROST,
+			[Vector2(3, 4)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_TOP | FROST_RIGHT | FROST_TOP: [TileTypes.MIDFROST,
+			[Vector2(4, 4)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | FROST_LEFT: [TileTypes.MIDFROST,
+			[Vector2(5, 4)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | FROST_LEFT | FROST_BOTTOM: [TileTypes.MIDFROST,
+			[Vector2(6, 4)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | FROST_RIGHT: [TileTypes.MIDFROST,
+			[Vector2(7, 4)]],
+	FROST_CENTER | CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | FROST_RIGHT | FROST_BOTTOM: [TileTypes.MIDFROST,
+			[Vector2(0, 5)]],
 }
 
 ## Defines which corner covers are used for different sets of surrounding tiles.
