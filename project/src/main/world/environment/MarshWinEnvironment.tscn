@@ -61,7 +61,7 @@
 [sub_resource type="ViewportTexture" id=16]
 viewport_path = NodePath("Ground/Shadows/Viewport")
 
-[node name="Environment2" type="Node2D" groups=["overworld_environments"]]
+[node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 10 )
 creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
 shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
