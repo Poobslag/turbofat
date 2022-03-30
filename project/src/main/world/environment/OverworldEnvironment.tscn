@@ -100,6 +100,7 @@ tile_map_path = NodePath("../GroundMap")
 direction = 2
 speed = 30.0
 wait_time = 12.0
+rippleable_tile_ids = [ 0 ]
 
 [node name="Terrain" type="TileMap" parent="Ground"]
 position = Vector2( -2, 1 )

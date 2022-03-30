@@ -17,5 +17,3 @@ direction = 2
 speed = 50.0
 wait_time = 4.0
 rippleable_tile_ids = [ 0 ]
-
-[editable path="GroundMap"]
