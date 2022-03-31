@@ -83,7 +83,7 @@ func _ready() -> void:
 	_label.rect_position += random_offset
 
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_texture_rect = $TextureRect
 	_label = $Label

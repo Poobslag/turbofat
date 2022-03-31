@@ -26,7 +26,7 @@ func _ready() -> void:
 	autotile(true)
 
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_initialize_onready_variables()
 
@@ -48,7 +48,7 @@ func autotile(value: bool) -> void:
 	# remove all invisible obstacles
 	for cell_obj in _tile_map.get_used_cells_by_id(impassable_tile_index):
 		var cell: Vector2 = cell_obj
-		_tile_map.set_cell(cell.x, cell.y, -1)
+		_tile_map.set_cell(cell.x, cell.y, TileMap.INVALID_CELL)
 	
 	# calculate empty unwalkable cells which are adjacent to walkable cells
 	var unwalkable_cells := {}
@@ -76,6 +76,6 @@ func autotile(value: bool) -> void:
 		_tile_map.set_cell(unwalkable_cell.x, unwalkable_cell.y, impassable_tile_index)
 
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _initialize_onready_variables() -> void:
 	_tile_map = get_parent()

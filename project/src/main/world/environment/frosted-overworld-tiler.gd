@@ -263,7 +263,7 @@ func _ready() -> void:
 	autotile(true)
 
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_initialize_onready_variables()
 
@@ -304,7 +304,7 @@ func set_frost_tile_index(new_frost_tile_index: int) -> void:
 	_refresh_tile_indexes()
 
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _initialize_onready_variables() -> void:
 	_tile_map = get_parent()
 	_corner_map = $"../CornerMap"

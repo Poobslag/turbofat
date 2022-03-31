@@ -187,7 +187,7 @@ func _ready() -> void:
 	autotile(true)
 
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_initialize_onready_variables()
 
@@ -215,7 +215,7 @@ func autotile(value: bool) -> void:
 			countertop_plates_tile_index: _autotile_countertop_plates(cell)
 
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _initialize_onready_variables() -> void:
 	_tile_map = get_parent()
 
