@@ -84,7 +84,9 @@ const BLOCK_AUTOTILE_COORDS_BY_BINDING := {
 	CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM: [TileTypes.BLOCK,
 			[Vector2(4, 4), Vector2(5, 4)]],
 	CAKE_RIGHT | CAKE_LEFT | CAKE_BOTTOM | CAKE_TOP: [TileTypes.BLOCK,
-			[Vector2(0, 5), Vector2(1, 5)]],
+			# This first 4-way unfrosted tile is blank. We repeat it to increase its likelihood of being selected.
+			[Vector2(0, 5), Vector2(0, 5), Vector2(0, 5), Vector2(0, 5), Vector2(0, 5),
+			Vector2(1, 5), Vector2(2, 5), Vector2(3, 5), Vector2(4, 5), Vector2(5, 5)]],
 	
 	# fully frosted tiles, where all adjacent blocks are also frosted
 	FROST_CENTER:
