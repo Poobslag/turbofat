@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=18 format=2]
+[gd_resource type="TileSet" load_steps=19 format=2]
 
 [ext_resource path="res://assets/main/world/environment/lemon-frosting-obstacle-sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/empty-8.png" type="Texture" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://assets/main/world/environment/marsh-block-sheet.png" type="Texture" id=4]
 [ext_resource path="res://assets/main/world/environment/marsh-fence-sheet.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/world/environment/lemon-obstacle-corners-sheet.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/world/environment/lemon-grass-sheet.png" type="Texture" id=7]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( -64, 0, 0, -32, 64, 0, 0, 32 )
@@ -761,3 +762,24 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 6/shape_one_way_margin = 0.0
 6/shapes = [  ]
 6/z_index = 0
+7/name = "lemon-grass-sheet.png 7"
+7/texture = ExtResource( 7 )
+7/tex_offset = Vector2( 0, -18 )
+7/modulate = Color( 1, 1, 1, 1 )
+7/region = Rect2( 0, 0, 405, 328 )
+7/tile_mode = 2
+7/autotile/icon_coordinate = Vector2( 0, 0 )
+7/autotile/tile_size = Vector2( 135, 82 )
+7/autotile/spacing = 0
+7/autotile/occluder_map = [  ]
+7/autotile/navpoly_map = [  ]
+7/autotile/priority_map = [  ]
+7/autotile/z_index_map = [  ]
+7/occluder_offset = Vector2( 0, 0 )
+7/navigation_offset = Vector2( 0, 0 )
+7/shape_offset = Vector2( 0, 0 )
+7/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+7/shape_one_way = false
+7/shape_one_way_margin = 0.0
+7/shapes = [  ]
+7/z_index = 0
