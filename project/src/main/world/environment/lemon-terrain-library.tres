@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=2 format=2]
 
-[ext_resource path="res://assets/main/world/environment/marsh-path-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/lemon-path-sheet.png" type="Texture" id=1]
 
 [resource]
-0/name = "marsh-path-sheet.png 0"
+0/name = "lemon-path-sheet.png 0"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
 0/modulate = Color( 1, 1, 1, 1 )
