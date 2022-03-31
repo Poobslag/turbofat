@@ -30,7 +30,7 @@ func _ready() -> void:
 	_start_button.grab_focus()
 
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_message_label = $MessageLabel
 	_back_button = $Buttons/Back

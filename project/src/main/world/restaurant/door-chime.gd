@@ -18,7 +18,7 @@ func _ready() -> void:
 	briefly_suppress_sfx()
 
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_suppress_sfx_timer = $SuppressSfxTimer
 	_chime_timer = $ChimeTimer

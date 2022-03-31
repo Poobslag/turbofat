@@ -16,7 +16,7 @@ var _locked_texture: Texture = preload("res://assets/main/ui/level-select/locked
 onready var _grade_label := $GradeLabel
 onready var _status_icon := $StatusIcon
 
-## Preemptively initialize onready variables to avoid null references.
+## Preemptively initializes onready variables to avoid null references.
 func _enter_tree() -> void:
 	_grade_label = $GradeLabel
 	_status_icon = $StatusIcon
