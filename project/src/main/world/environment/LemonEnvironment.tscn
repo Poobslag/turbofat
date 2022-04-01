@@ -1,10 +1,11 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/main/world/environment/lemon-obstacle-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/FrostedOverworldTiler.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/GrassOverworldTiler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/environment/lemon-terrain-library.tres" type="TileSet" id=4]
 [ext_resource path="res://src/main/world/environment/pebble-overworld-tiler.gd" type="Script" id=5]
+[ext_resource path="res://src/main/world/environment/LemonTree.tscn" type="PackedScene" id=6]
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=8]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=17]
@@ -143,6 +144,62 @@ ground_map_path = NodePath("../../../Ground/GroundMap")
 grass_density = 0.04
 ground_block_tile_index = 1
 grass_tile_index = 7
+
+[node name="LemonTree1" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 1240.82, 1896.81 )
+leaf_type = 0
+
+[node name="LemonTree2" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 1416.72, 1922.67 )
+leaf_type = 1
+mouth_type = 1
+
+[node name="LemonTree3" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 1444.01, 1452.33 )
+mouth_type = 3
+
+[node name="LemonTree4" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 2413.6, 1173.41 )
+leaf_type = 0
+mouth_type = 1
+
+[node name="LemonTree5" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 2545.66, 1798.39 )
+leaf_type = 0
+mouth_type = 4
+
+[node name="LemonTree6" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 2966.02, 1913.14 )
+leaf_type = 0
+
+[node name="LemonTree7" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 3748.91, 2065.07 )
+leaf_type = 1
+
+[node name="LemonTree8" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 3924.81, 2090.93 )
+leaf_type = 0
+mouth_type = 0
+
+[node name="LemonTree9" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 496.029, 1772.08 )
+
+[node name="LemonTree10" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 1006.9, 1498.6 )
+mouth_type = 0
+
+[node name="LemonTree11" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 4467.92, 3211.39 )
+leaf_type = 1
+mouth_type = 3
+
+[node name="LemonTree12" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 4331.57, 3306.75 )
+leaf_type = 1
+
+[node name="LemonTree13" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 4498.98, 3372.21 )
+leaf_type = 1
 
 [node name="Spawns" type="Node2D" parent="."]
 
