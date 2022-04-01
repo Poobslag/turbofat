@@ -262,7 +262,7 @@ onready var _tile_map := get_parent()
 onready var _corner_map := $"../CornerMap"
 
 func _ready() -> void:
-	autotile(true)
+	_autotile_corner_tiles()
 
 
 ## Preemptively initializes onready variables to avoid null references.
@@ -285,10 +285,8 @@ func autotile(value: bool) -> void:
 			# initialize variables to avoid nil reference errors in the editor when editing tool scripts
 			_initialize_onready_variables()
 	
-	_corner_map.clear()
-	for cell in _tile_map.get_used_cells():
-		match _tile_types_by_index.get(_tile_map.get_cellv(cell)):
-			TileTypes.BLOCK, TileTypes.MIDFROST, TileTypes.FROST: _autotile_cake(cell)
+	_autotile_ground_tiles()
+	_autotile_corner_tiles()
 
 
 func set_block_tile_index(new_block_tile_index: int) -> void:
@@ -331,8 +329,15 @@ func _refresh_tile_indexes() -> void:
 	_frost_indexes = [midfrost_tile_index, frost_tile_index]
 
 
-## Autotiles the cake at the specified coordinates.
-func _autotile_cake(cell: Vector2) -> void:
+## Autotiles all cake tiles in the ground map.
+func _autotile_ground_tiles() -> void:
+	for cell in _tile_map.get_used_cells():
+		match _tile_types_by_index.get(_tile_map.get_cellv(cell)):
+			TileTypes.BLOCK, TileTypes.MIDFROST, TileTypes.FROST: _autotile_ground_tile(cell)
+
+
+## Autotiles the cake tile at the specified coordinates.
+func _autotile_ground_tile(cell: Vector2) -> void:
 	var adjacencies := _adjacencies(cell)
 	if adjacencies & FROST_CENTER == FROST_CENTER:
 		# autotile a frosted cake tile
@@ -342,7 +347,18 @@ func _autotile_cake(cell: Vector2) -> void:
 		# autotile an unfrosted cake tile
 		if BLOCK_AUTOTILE_COORDS_BY_BINDING.has(adjacencies & CAKE_ALL):
 			_set_cell_autotile_coord(cell, BLOCK_AUTOTILE_COORDS_BY_BINDING[adjacencies & CAKE_ALL])
-	
+
+
+## Autotiles all corner covers in the corner map.
+func _autotile_corner_tiles() -> void:
+	_corner_map.clear()
+	for cell in _tile_map.get_used_cells():
+		match _tile_types_by_index.get(_tile_map.get_cellv(cell)):
+			TileTypes.BLOCK, TileTypes.MIDFROST, TileTypes.FROST: _autotile_corner_tile(cell)
+
+
+## Autotiles the corner cover at the specified coordinates.
+func _autotile_corner_tile(cell: Vector2) -> void:
 	var corner_cover_adjacencies := _corner_cover_adjacencies(cell)
 	if CORNER_COVERS_BY_BINDING.has(corner_cover_adjacencies):
 		# add a corner cover for this cake tile

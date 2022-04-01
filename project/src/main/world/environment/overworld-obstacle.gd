@@ -18,12 +18,22 @@ func _init() -> void:
 ## When the shadow scale is set, we update the node's metadata so the shadow will be rendered correctly.
 func set_shadow_scale(new_shadow_scale: float) -> void:
 	shadow_scale = new_shadow_scale
+	
+	if Engine.is_editor_hint():
+		# Avoid metadata edits in the editor for OverworldObstacles that are tool scripts.
+		return
+	
 	set_meta("shadow_scale", shadow_scale)
 
 
 ## When the chat path is set, we update the node's groups and metadata to integrate the node into the chat framework.
 func set_chat_key(new_chat_key: String) -> void:
 	chat_key = new_chat_key
+	
+	if Engine.is_editor_hint():
+		# Avoid editor errors related to editing groups for OverworldObstacles that are tool scripts.
+		return
+	
 	if new_chat_key:
 		add_to_group("chattables")
 		set_meta("chat_key", new_chat_key)
