@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=1]
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=2]
@@ -15,6 +15,7 @@
 [ext_resource path="res://src/main/world/environment/LemonRippleWaves.tscn" type="PackedScene" id=13]
 [ext_resource path="res://src/main/world/environment/GrassOverworldTiler.tscn" type="PackedScene" id=14]
 [ext_resource path="res://src/main/world/environment/LemonGroundMap.tscn" type="PackedScene" id=15]
+[ext_resource path="res://src/main/world/environment/LemonTree.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/world/environment/lemon-obstacle-library.tres" type="TileSet" id=17]
 [ext_resource path="res://src/main/world/environment/lemon-terrain-library.tres" type="TileSet" id=18]
 
@@ -164,6 +165,9 @@ suppress_fatness = true
 [node name="MoveTimer" type="Timer" parent="Obstacles/Sensei"]
 wait_time = 0.3
 autostart = true
+
+[node name="LemonTree" parent="Obstacles" instance=ExtResource( 16 )]
+position = Vector2( 1616.63, 1232.58 )
 
 [node name="Spawns" type="Node2D" parent="."]
 
