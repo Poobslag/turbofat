@@ -26,13 +26,15 @@ onready var _mouth_player := $MouthPlayer
 
 func _ready() -> void:
 	if Engine.editor_hint:
-		return
-	
-	_play_randomly_from_middle(_leaf_player, _leaf_animation_name())
-	_play_randomly_from_middle(_mouth_player, _mouth_animation_name())
-	
-	_play_randomly_from_middle(_lemon_player, Utils.rand_value(LEMON_ANIMATION_NAMES))
-	_lemons.scale.x = 1 if randf() > 0.5 else -1
+		# update the tree's appearance, but don't play any animations
+		_refresh_tree_in_editor()
+	else:
+		# launch the tree's animations
+		_play_randomly_from_middle(_leaf_player, _leaf_animation_name())
+		_play_randomly_from_middle(_mouth_player, _mouth_animation_name())
+		
+		_play_randomly_from_middle(_lemon_player, Utils.rand_value(LEMON_ANIMATION_NAMES))
+		_lemons.scale.x = 1 if randf() > 0.5 else -1
 
 
 ## Preemptively initializes onready variables to avoid null references
@@ -52,20 +54,31 @@ func set_shuffle(value: bool) -> void:
 	# update the leaf appearance
 	leaf_type = randi() % 3
 	_leaves.scale.x = 1 if randf() > 0.5 else -1
+	
+	mouth_type = randi() % 5
+	_mouth.scale.x = 1 if randf() > 0.5 else -1
+	
+	_refresh_tree_in_editor()
+	
+	property_list_changed_notify()
+
+
+## Updates the tree's appearance without animating it.
+func _refresh_tree_in_editor() -> void:
 	_leaf_player.play(_leaf_animation_name())
 	_leaf_player.advance(0)
 	_leaf_player.stop()
 	
 	# update the mouth appearance
-	mouth_type = randi() % 5
-	_mouth.scale.x = 1 if randf() > 0.5 else -1
 	_mouth_player.play(_mouth_animation_name())
 	_mouth_player.advance(0)
 	_mouth_player.stop()
 	
 	# update the lemon appearance (only affects the editor)
 	_lemon_player.play(Utils.rand_value(LEMON_ANIMATION_NAMES))
+	_lemon_player.advance(0)
 	_lemons.scale.x = 1 if randf() > 0.5 else -1
+	_lemon_player.stop()
 
 
 ## Preemptively initializes onready variables to avoid null references
