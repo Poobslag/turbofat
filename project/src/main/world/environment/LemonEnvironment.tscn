@@ -150,59 +150,60 @@ grass_tile_index = 7
 
 [node name="LemonTree1" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1240.82, 1896.81 )
-leaf_type = 0
+leaf_type = 1
+mouth_type = 4
 
 [node name="LemonTree2" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1416.72, 1922.67 )
-leaf_type = 1
-mouth_type = 1
 
 [node name="LemonTree3" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1444.01, 1452.33 )
-mouth_type = 3
+leaf_type = 1
+mouth_type = 2
 
 [node name="LemonTree4" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2413.6, 1173.41 )
-leaf_type = 0
-mouth_type = 1
+leaf_type = 1
+mouth_type = 3
 
 [node name="LemonTree5" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2545.66, 1798.39 )
-leaf_type = 0
-mouth_type = 4
+leaf_type = 2
 
 [node name="LemonTree6" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2966.02, 1913.14 )
-leaf_type = 0
+leaf_type = 2
 
 [node name="LemonTree7" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3748.91, 2065.07 )
-leaf_type = 1
+mouth_type = 3
 
 [node name="LemonTree8" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3924.81, 2090.93 )
-leaf_type = 0
-mouth_type = 0
+leaf_type = 2
+mouth_type = 2
 
 [node name="LemonTree9" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 496.029, 1772.08 )
+mouth_type = 3
 
 [node name="LemonTree10" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1006.9, 1498.6 )
-mouth_type = 0
+leaf_type = 2
 
 [node name="LemonTree11" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 4467.92, 3211.39 )
-leaf_type = 1
-mouth_type = 3
+leaf_type = 2
+mouth_type = 2
 
 [node name="LemonTree12" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 4331.57, 3306.75 )
 leaf_type = 1
+mouth_type = 3
 
 [node name="LemonTree13" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 4498.98, 3372.21 )
-leaf_type = 1
+mouth_type = 4
 
 [node name="LemonCookieSmall1" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 916.02, 1913.88 )

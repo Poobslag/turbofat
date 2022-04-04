@@ -170,7 +170,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2, 2.33333, 2.66666, 3, 3.33333, 3.66666, 4, 4.33333, 4.66666, 4.99999, 5.33333, 5.66666, 5.99999, 6.33333, 6.66666, 6.99999, 7.33333, 7.66666, 7.99999, 8.33332, 8.66666, 8.99999 ),
+"times": PoolRealArray( 0, 0.333333, 0.666667, 1, 1.33333, 1.66667, 2, 2.33333, 2.66666, 3, 3.33333, 3.66666, 4, 4.33333, 4.66666, 4.99999, 5.33333, 5.66666, 5.99999, 6.33333, 6.66666, 6.99999, 7.33333, 7.66666, 7.99999, 8.33332, 8.66666, 9 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 12, 10, 11, 10, 11, 10, 12, 10, 11, 10, 12, 10, 12, 11, 10, 12, 11, 12, 10, 12, 11, 12, 11, 10, 11, 10, 11, 13 ]
@@ -305,19 +305,17 @@ __meta__ = {
 "_edit_group_": true,
 "shadow_scale": 1.0
 }
-leaf_type = 2
-mouth_type = 2
 
 [node name="Leaves" type="Sprite" parent="."]
 material = ExtResource( 2 )
 position = Vector2( 0, -80 )
-scale = Vector2( -1, 1 )
 texture = ExtResource( 1 )
 hframes = 3
 vframes = 3
 
 [node name="Lemons" type="Sprite" parent="."]
 position = Vector2( 0, -80 )
+scale = Vector2( -1, 1 )
 texture = ExtResource( 5 )
 hframes = 5
 vframes = 3
