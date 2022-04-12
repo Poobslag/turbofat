@@ -9,7 +9,7 @@ extends Node
 ## 	[N]: Change the nametag names
 ## 	[1-9,0]: Change the creature's size from 10% to 100%
 ## 	SHIFT+[1-9,0]: Change the creature's comfort from 0.0 -> 1.0 -> -1.0
-## 	[Q,W,E]: Switch to the 1st, 2nd or 3rd creature.
+## 	[Q,W,E,R]: Switch to the 1st, 2nd, 3rd or 4th creature.
 ## 	arrows: Change the creature's orientation
 ## 	brace keys: Change the creature's appearance
 
@@ -41,7 +41,7 @@ func _ready() -> void:
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_D: _restaurant_scene.get_node("DoorChime").play_door_chime()
+		KEY_D: _restaurant_scene.play_door_chime()
 		KEY_F: _customer().feed(Foods.FoodType.BROWN_0)
 		KEY_I: _customer().creature_visuals.get_node("Animations/IdleTimer").start(0.01)
 		KEY_N:
@@ -70,6 +70,7 @@ func _input(event: InputEvent) -> void:
 		KEY_Q: _view.set_current_creature_index(0)
 		KEY_W: _view.set_current_creature_index(1)
 		KEY_E: _view.set_current_creature_index(2)
+		KEY_R: _view.set_current_creature_index(3)
 		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
 			_view.summon_customer()
 		KEY_RIGHT:

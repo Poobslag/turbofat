@@ -4,7 +4,7 @@ extends Node
 ## Keys:
 ## 	[F]: Feed the creature
 ## 	[1-9,0]: Change the creature's size from 10% to 100%
-## 	[Q,W,E]: Switch to the 1st, 2nd or 3rd creature.
+## 	[Q,W,E,R]: Switch to the 1st, 2nd or 3rd creature.
 ## 	brace keys: Change the creature's appearance
 
 const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
@@ -26,3 +26,4 @@ func _input(event: InputEvent) -> void:
 		KEY_Q: _scene.current_creature_index = 0
 		KEY_W: _scene.current_creature_index = 1
 		KEY_E: _scene.current_creature_index = 2
+		KEY_R: _scene.current_creature_index = 3
