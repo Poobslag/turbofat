@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://src/main/world/puzzle-world.gd" type="Script" id=2]
+[ext_resource path="res://src/main/world/restaurant/restaurant-puzzle-scene.gd" type="Script" id=3]
+[ext_resource path="res://src/main/world/restaurant/door-chime.gd" type="Script" id=5]
+[ext_resource path="res://src/main/world/environment/OverworldIndoorsEnvironment.tscn" type="PackedScene" id=8]
+
+[node name="RestaurantPuzzleScene" type="Node"]
+script = ExtResource( 3 )
+
+[node name="Bg" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="Bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+
+[node name="World" type="Node" parent="."]
+script = ExtResource( 2 )
+EnvironmentScene = ExtResource( 8 )
+
+[node name="Environment" parent="World" instance=ExtResource( 8 )]
+
+[node name="DoorChime" type="AudioStreamPlayer2D" parent="."]
+position = Vector2( 130, 314 )
+volume_db = -4.0
+max_distance = 6000.0
+bus = "Sound Bus"
+script = ExtResource( 5 )
+
+[node name="ChimeTimer" type="Timer" parent="DoorChime"]
+one_shot = true
+
+[node name="SuppressSfxTimer" type="Timer" parent="DoorChime"]
+one_shot = true
+
+[connection signal="timeout" from="DoorChime/ChimeTimer" to="DoorChime" method="_on_ChimeTimer_timeout"]
