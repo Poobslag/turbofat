@@ -66,7 +66,7 @@ func _input(event: InputEvent) -> void:
 		KEY_Q: $RestaurantView.set_current_creature_index(0)
 		KEY_W: $RestaurantView.set_current_creature_index(1)
 		KEY_E: $RestaurantView.set_current_creature_index(2)
-		KEY_BRACELEFT, KEY_BRACERIGHT:
+		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
 			$RestaurantView.summon_creature()
 		KEY_RIGHT:
 			$RestaurantView.get_customer().set_orientation(Creatures.SOUTHEAST)

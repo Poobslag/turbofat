@@ -26,7 +26,7 @@ const CODE_KEYS := {
 	KEY_J:"j", KEY_K:"k", KEY_L:"l", KEY_M:"m", KEY_N:"n", KEY_O:"o", KEY_P:"p", KEY_Q:"q", KEY_R:"r",
 	KEY_S:"s", KEY_T:"t", KEY_U:"u", KEY_V:"v", KEY_W:"w", KEY_X:"x", KEY_Y:"y", KEY_Z:"z",
 	
-	KEY_BRACELEFT:"[", KEY_BACKSLASH:"\\", KEY_BRACERIGHT:"]", KEY_QUOTELEFT:"`",
+	KEY_BRACKETLEFT:"[", KEY_BACKSLASH:"\\", KEY_BRACKETRIGHT:"]", KEY_QUOTELEFT:"`",
 }
 
 ## List of cheat codes. Cheat codes should be lower-case, and should not be contained within one another or the shorter

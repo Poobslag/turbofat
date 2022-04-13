@@ -14,7 +14,7 @@ func _input(event: InputEvent) -> void:
 		KEY_F: $RestaurantScene.get_customer().feed(Foods.FoodType.BROWN_0)
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			$RestaurantScene.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
-		KEY_BRACELEFT, KEY_BRACERIGHT:
+		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
 			$RestaurantScene.summon_creature(CreatureLoader.random_def())
 		KEY_Q: $RestaurantScene.current_creature_index = 0
 		KEY_W: $RestaurantScene.current_creature_index = 1

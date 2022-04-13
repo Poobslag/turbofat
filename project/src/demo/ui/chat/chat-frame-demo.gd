@@ -107,10 +107,10 @@ func _input(event: InputEvent) -> void:
 		KEY_S:
 			_accent_swapped = not _accent_swapped
 			_play_chat_event()
-		KEY_BRACERIGHT:
+		KEY_BRACKETRIGHT:
 			_texture_index = wrapi(_texture_index + 1, 0, ChatLinePanel.CHAT_TEXTURE_COUNT)
 			_play_chat_event()
-		KEY_BRACELEFT:
+		KEY_BRACKETLEFT:
 			_texture_index = wrapi(_texture_index - 1, 0, ChatLinePanel.CHAT_TEXTURE_COUNT)
 			_play_chat_event()
 		KEY_RIGHT:

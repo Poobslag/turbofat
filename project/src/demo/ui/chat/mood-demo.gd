@@ -42,7 +42,7 @@ func _input(event: InputEvent) -> void:
 			KEY_SLASH: print(to_json($Creature.dna))
 	else:
 		match Utils.key_scancode(event):
-			KEY_BRACELEFT, KEY_BRACERIGHT: $Creature.dna = DnaUtils.random_dna()
+			KEY_BRACKETLEFT, KEY_BRACKETRIGHT: $Creature.dna = DnaUtils.random_dna()
 			
 			KEY_1: $Creature.play_mood(Creatures.Mood.DEFAULT)
 			KEY_Q: $Creature.play_mood(Creatures.Mood.AWKWARD0)
