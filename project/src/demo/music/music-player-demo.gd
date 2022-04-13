@@ -23,7 +23,7 @@ func _input(event: InputEvent) -> void:
 		KEY_U: MusicPlayer.play_upbeat_bgm(false)
 		KEY_T: MusicPlayer.play_tutorial_bgm(false)
 		KEY_MINUS: MusicPlayer.stop()
-		KEY_BRACERIGHT: next_checkpoint()
+		KEY_BRACKETRIGHT: next_checkpoint()
 
 
 func next_checkpoint() -> void:

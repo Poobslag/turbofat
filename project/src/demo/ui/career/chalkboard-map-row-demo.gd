@@ -54,9 +54,9 @@ func _input(event: InputEvent) -> void:
 		KEY_T: _map_row.set_landmark_type(0, Landmark.CIRCLES_4)
 		KEY_Y: _map_row.set_landmark_type(0, Landmark.CIRCLES_5)
 		KEY_U: _map_row.set_landmark_type(0, Landmark.CIRCLES_6)
-		KEY_BRACELEFT:
+		KEY_BRACKETLEFT:
 			_map_row.landmark_count -= 1
-		KEY_BRACERIGHT:
+		KEY_BRACKETRIGHT:
 			_map_row.landmark_count += 1
 			_map_row.set_landmark_distance(_map_row.landmark_count - 1, _map_row.landmark_count * 20)
 			_map_row.set_landmark_type(_map_row.landmark_count - 1, _random_landmark_type())
