@@ -32,7 +32,7 @@ const NAMES = [
 var _current_name_index := 4
 
 func _ready() -> void:
-	$RestaurantView.summon_creature()
+	$RestaurantView.summon_customer()
 
 
 func _input(event: InputEvent) -> void:
@@ -67,7 +67,7 @@ func _input(event: InputEvent) -> void:
 		KEY_W: $RestaurantView.set_current_creature_index(1)
 		KEY_E: $RestaurantView.set_current_creature_index(2)
 		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
-			$RestaurantView.summon_creature()
+			$RestaurantView.summon_customer()
 		KEY_RIGHT:
 			$RestaurantView.get_customer().set_orientation(Creatures.SOUTHEAST)
 		KEY_DOWN:

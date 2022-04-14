@@ -11,11 +11,11 @@ const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_F: $RestaurantScene.get_customer().feed(Foods.FoodType.BROWN_0)
+		KEY_F: $RestaurantPuzzleScene.get_customer().feed(Foods.FoodType.BROWN_0)
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			$RestaurantScene.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
+			$RestaurantPuzzleScene.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
 		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
-			$RestaurantScene.summon_creature(CreatureLoader.random_def())
-		KEY_Q: $RestaurantScene.current_creature_index = 0
-		KEY_W: $RestaurantScene.current_creature_index = 1
-		KEY_E: $RestaurantScene.current_creature_index = 2
+			$RestaurantPuzzleScene.summon_customer(CreatureLoader.random_def())
+		KEY_Q: $RestaurantPuzzleScene.current_creature_index = 0
+		KEY_W: $RestaurantPuzzleScene.current_creature_index = 1
+		KEY_E: $RestaurantPuzzleScene.current_creature_index = 2

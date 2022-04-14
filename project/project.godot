@@ -795,9 +795,9 @@ _global_script_classes=[ {
 "path": "res://src/main/ui/rect-fit-label.gd"
 }, {
 "base": "Node2D",
-"class": "RestaurantScene",
+"class": "RestaurantPuzzleScene",
 "language": "GDScript",
-"path": "res://src/main/world/restaurant/restaurant-scene.gd"
+"path": "res://src/main/world/restaurant/restaurant-puzzle-scene.gd"
 }, {
 "base": "Control",
 "class": "RestaurantView",
@@ -1157,7 +1157,7 @@ _global_script_class_icons={
 "RankResult": "",
 "RankRules": "",
 "RectFitLabel": "",
-"RestaurantScene": "",
+"RestaurantPuzzleScene": "",
 "RestaurantView": "",
 "RippleSprite": "",
 "RippleWave": "",

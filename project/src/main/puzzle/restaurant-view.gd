@@ -97,13 +97,13 @@ func find_creature_index_with_id(creature_id: String) -> int:
 
 ## Recolors the creature according to the specified creature definition. This involves updating shaders and sprite
 ## properties.
-func summon_creature(creature_index: int = -1) -> void:
+func summon_customer(creature_index: int = -1) -> void:
 	var creature_def := CreatureDef.new()
 	if PlayerData.creature_queue.has_primary_creature():
 		creature_def = PlayerData.creature_queue.pop_primary_creature()
 	else:
 		creature_def = CreatureLoader.random_def(true)
-	_restaurant_viewport_scene.summon_creature(creature_def, creature_index)
+	_restaurant_viewport_scene.summon_customer(creature_def, creature_index)
 	if creature_index == -1 or creature_index == current_creature_index:
 		emit_signal("customer_changed")
 
@@ -116,7 +116,7 @@ func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 	set_current_creature_index(new_creature_index)
 	_restaurant_viewport_scene.get_customer().restart_idle_timer()
 	yield(get_tree().create_timer(0.5), "timeout")
-	summon_creature(old_creature_index)
+	summon_customer(old_creature_index)
 
 
 ## Returns a random creature index different from the current creature index.

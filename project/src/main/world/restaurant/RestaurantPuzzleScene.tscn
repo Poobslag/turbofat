@@ -1,68 +1,68 @@
 [gd_scene load_steps=65 format=2]
 
-[ext_resource path="res://assets/main/world/creature/1/cheek-z2-packed.png" type="Texture" id=1]
-[ext_resource path="res://src/main/world/restaurant/Seat.tscn" type="PackedScene" id=2]
-[ext_resource path="res://src/main/world/restaurant/door-chime.gd" type="Script" id=3]
-[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=4]
-[ext_resource path="res://assets/main/world/restaurant/wall-metal.png" type="Texture" id=5]
-[ext_resource path="res://assets/main/world/shadow-oval-0.png" type="Texture" id=6]
-[ext_resource path="res://assets/main/world/restaurant/wall-metal-shadow.png" type="Texture" id=7]
-[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/main/world/creature/1/ear-z2-packed.png" type="Texture" id=9]
-[ext_resource path="res://assets/main/world/shadow-oval-2.png" type="Texture" id=11]
+[ext_resource path="res://assets/main/world/restaurant/wall-metal-shadow.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/shadow-oval-0.png" type="Texture" id=2]
+[ext_resource path="res://assets/main/world/restaurant/wall-metal.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/world/creature/1/cheek-z2-packed.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/world/creature/1/hair-z1-packed.png" type="Texture" id=5]
+[ext_resource path="res://assets/main/world/creature/3/cheek-z1-packed.png" type="Texture" id=6]
+[ext_resource path="res://assets/main/world/creature/1/ear-z1-packed.png" type="Texture" id=7]
+[ext_resource path="res://assets/main/world/shadow-oval-2.png" type="Texture" id=8]
+[ext_resource path="res://assets/main/world/creature/5/head-packed.png" type="Texture" id=9]
+[ext_resource path="res://assets/main/world/creature/3/ear-z2-packed.png" type="Texture" id=10]
+[ext_resource path="res://assets/main/world/creature/1/bellybutton-packed.png" type="Texture" id=11]
 [ext_resource path="res://assets/main/world/restaurant/wood-pillar.png" type="Texture" id=12]
-[ext_resource path="res://assets/main/world/restaurant/poster2.png" type="Texture" id=13]
-[ext_resource path="res://assets/main/world/restaurant/light.png" type="Texture" id=14]
-[ext_resource path="res://assets/main/world/restaurant/poster1.png" type="Texture" id=15]
-[ext_resource path="res://assets/main/world/restaurant/poster0.png" type="Texture" id=16]
-[ext_resource path="res://assets/main/world/creature/1/ear-z1-packed.png" type="Texture" id=17]
-[ext_resource path="res://assets/main/world/creature/1/head-packed.png" type="Texture" id=18]
-[ext_resource path="res://assets/main/world/creature/1/cheek-z1-packed.png" type="Texture" id=19]
-[ext_resource path="res://assets/main/world/creature/1/ear-z0-packed.png" type="Texture" id=20]
-[ext_resource path="res://assets/main/world/creature/1/cheek-z0-packed.png" type="Texture" id=21]
-[ext_resource path="res://assets/main/world/creature/3/mouth-packed.png" type="Texture" id=22]
-[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=23]
-[ext_resource path="res://src/main/world/restaurant/restaurant-scene.gd" type="Script" id=24]
-[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=25]
-[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=26]
-[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=29]
-[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=30]
-[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=31]
-[ext_resource path="res://assets/main/world/creature/5/head-packed.png" type="Texture" id=32]
-[ext_resource path="res://assets/main/world/creature/1/collar-packed.png" type="Texture" id=33]
-[ext_resource path="res://assets/main/world/creature/1/eye-z0-packed.png" type="Texture" id=34]
-[ext_resource path="res://assets/main/world/creature/1/nose-packed.png" type="Texture" id=36]
-[ext_resource path="res://assets/main/world/creature/1/eye-z1-packed.png" type="Texture" id=37]
-[ext_resource path="res://assets/main/world/creature/2/horn-z0-packed.png" type="Texture" id=38]
-[ext_resource path="res://assets/main/world/creature/2/cheek-z1-packed.png" type="Texture" id=39]
-[ext_resource path="res://assets/main/world/creature/2/mouth-packed.png" type="Texture" id=40]
-[ext_resource path="res://assets/main/world/creature/2/cheek-z0-packed.png" type="Texture" id=41]
-[ext_resource path="res://assets/main/world/creature/2/cheek-z2-packed.png" type="Texture" id=42]
-[ext_resource path="res://assets/main/world/creature/2/horn-z1-packed.png" type="Texture" id=43]
-[ext_resource path="res://assets/main/world/creature/3/ear-z0-packed.png" type="Texture" id=45]
-[ext_resource path="res://assets/main/world/creature/1/horn-z1-packed.png" type="Texture" id=46]
-[ext_resource path="res://assets/main/world/creature/3/ear-z1-packed.png" type="Texture" id=47]
-[ext_resource path="res://assets/main/world/creature/3/cheek-z0-packed.png" type="Texture" id=50]
-[ext_resource path="res://assets/main/world/creature/2/nose-packed.png" type="Texture" id=51]
-[ext_resource path="res://assets/main/world/creature/3/cheek-z1-packed.png" type="Texture" id=52]
-[ext_resource path="res://assets/main/world/creature/2/head-packed.png" type="Texture" id=53]
-[ext_resource path="res://assets/main/world/creature/3/cheek-z2-packed.png" type="Texture" id=54]
-[ext_resource path="res://assets/main/world/creature/1/mouth-packed.png" type="Texture" id=55]
-[ext_resource path="res://assets/main/world/creature/2/eye-z0-packed.png" type="Texture" id=56]
-[ext_resource path="res://assets/main/world/creature/2/eye-z1-packed.png" type="Texture" id=57]
-[ext_resource path="res://assets/main/world/creature/1/hair-z0-packed.png" type="Texture" id=58]
-[ext_resource path="res://assets/main/world/creature/2/collar-packed.png" type="Texture" id=59]
-[ext_resource path="res://assets/main/world/creature/1/hair-z1-packed.png" type="Texture" id=60]
-[ext_resource path="res://assets/main/world/creature/1/hair-z2-packed.png" type="Texture" id=61]
-[ext_resource path="res://assets/main/world/creature/3/ear-z2-packed.png" type="Texture" id=62]
-[ext_resource path="res://assets/main/world/creature/1/emote-eye-z1-packed.png" type="Texture" id=63]
-[ext_resource path="res://assets/main/world/creature/1/emote-eye-z0-packed.png" type="Texture" id=64]
-[ext_resource path="res://assets/main/world/creature/1/bellybutton-packed.png" type="Texture" id=65]
-[ext_resource path="res://assets/main/world/creature/2/accessory-z1-packed.png" type="Texture" id=66]
-[ext_resource path="res://assets/main/world/creature/2/accessory-z2-packed.png" type="Texture" id=67]
-[ext_resource path="res://assets/main/world/creature/2/accessory-z0-packed.png" type="Texture" id=68]
-[ext_resource path="res://assets/main/world/creature/4/accessory-z0-packed.png" type="Texture" id=69]
-[ext_resource path="res://assets/main/world/creature/4/accessory-z2-packed.png" type="Texture" id=70]
+[ext_resource path="res://assets/main/world/creature/1/sprint-z0-packed.png" type="Texture" id=13]
+[ext_resource path="res://assets/main/world/creature/2/horn-z0-packed.png" type="Texture" id=14]
+[ext_resource path="res://assets/main/world/creature/1/chin-packed.png" type="Texture" id=15]
+[ext_resource path="res://assets/main/world/creature/1/arm-z0-packed.png" type="Texture" id=16]
+[ext_resource path="res://assets/main/world/creature/1/collar-packed.png" type="Texture" id=17]
+[ext_resource path="res://assets/main/world/creature/1/hair-z0-packed.png" type="Texture" id=18]
+[ext_resource path="res://assets/main/world/creature/1/nose-packed.png" type="Texture" id=19]
+[ext_resource path="res://assets/main/world/creature/2/collar-packed.png" type="Texture" id=20]
+[ext_resource path="res://assets/main/world/creature/1/hair-z2-packed.png" type="Texture" id=21]
+[ext_resource path="res://assets/main/world/creature/3/cheek-z2-packed.png" type="Texture" id=22]
+[ext_resource path="res://assets/main/world/creature/1/emote-eye-z1-packed.png" type="Texture" id=23]
+[ext_resource path="res://assets/main/world/restaurant/poster1.png" type="Texture" id=24]
+[ext_resource path="res://assets/main/world/creature/1/ear-z0-packed.png" type="Texture" id=25]
+[ext_resource path="res://assets/main/world/creature/1/horn-z1-packed.png" type="Texture" id=26]
+[ext_resource path="res://assets/main/world/restaurant/poster2.png" type="Texture" id=27]
+[ext_resource path="res://assets/main/world/creature/2/nose-packed.png" type="Texture" id=28]
+[ext_resource path="res://assets/main/world/creature/2/head-packed.png" type="Texture" id=29]
+[ext_resource path="res://assets/main/world/creature/1/emote-eye-z0-packed.png" type="Texture" id=30]
+[ext_resource path="res://assets/main/world/creature/2/accessory-z2-packed.png" type="Texture" id=31]
+[ext_resource path="res://assets/main/world/creature/4/accessory-z0-packed.png" type="Texture" id=32]
+[ext_resource path="res://assets/main/world/creature/1/mouth-packed.png" type="Texture" id=33]
+[ext_resource path="res://assets/main/world/creature/2/eye-z1-packed.png" type="Texture" id=34]
+[ext_resource path="res://assets/main/world/creature/1/eye-z0-packed.png" type="Texture" id=35]
+[ext_resource path="res://assets/main/world/creature/1/cheek-z0-packed.png" type="Texture" id=36]
+[ext_resource path="res://assets/main/world/creature/2/accessory-z0-packed.png" type="Texture" id=37]
+[ext_resource path="res://assets/main/world/creature/3/ear-z0-packed.png" type="Texture" id=38]
+[ext_resource path="res://assets/main/world/creature/4/accessory-z2-packed.png" type="Texture" id=39]
+[ext_resource path="res://assets/main/world/creature/1/head-packed.png" type="Texture" id=40]
+[ext_resource path="res://assets/main/world/creature/3/ear-z1-packed.png" type="Texture" id=41]
+[ext_resource path="res://assets/main/world/restaurant/light.png" type="Texture" id=42]
+[ext_resource path="res://assets/main/world/creature/1/leg-z0-packed.png" type="Texture" id=43]
+[ext_resource path="res://assets/main/world/creature/3/cheek-z0-packed.png" type="Texture" id=44]
+[ext_resource path="res://assets/main/world/creature/1/ear-z2-packed.png" type="Texture" id=45]
+[ext_resource path="res://assets/main/world/creature/3/mouth-packed.png" type="Texture" id=46]
+[ext_resource path="res://assets/main/world/creature/2/mouth-packed.png" type="Texture" id=47]
+[ext_resource path="res://assets/main/world/creature/1/leg-z1-packed.png" type="Texture" id=48]
+[ext_resource path="res://assets/main/world/restaurant/poster0.png" type="Texture" id=49]
+[ext_resource path="res://assets/main/world/creature/2/horn-z1-packed.png" type="Texture" id=50]
+[ext_resource path="res://assets/main/world/creature/1/arm-z1-packed.png" type="Texture" id=51]
+[ext_resource path="res://assets/main/world/creature/2/accessory-z1-packed.png" type="Texture" id=52]
+[ext_resource path="res://assets/main/world/creature/1/cheek-z1-packed.png" type="Texture" id=53]
+[ext_resource path="res://assets/main/world/creature/2/cheek-z0-packed.png" type="Texture" id=54]
+[ext_resource path="res://assets/main/world/creature/2/cheek-z1-packed.png" type="Texture" id=55]
+[ext_resource path="res://assets/main/world/creature/1/eye-z1-packed.png" type="Texture" id=56]
+[ext_resource path="res://assets/main/world/creature/2/cheek-z2-packed.png" type="Texture" id=57]
+[ext_resource path="res://assets/main/world/creature/2/eye-z0-packed.png" type="Texture" id=58]
+[ext_resource path="res://src/main/world/restaurant/door-chime.gd" type="Script" id=59]
+[ext_resource path="res://src/main/world/restaurant/restaurant-puzzle-scene.gd" type="Script" id=60]
+[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=61]
+[ext_resource path="res://src/main/world/restaurant/Seat.tscn" type="PackedScene" id=62]
+[ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=63]
 
 [sub_resource type="ViewportTexture" id=1]
 flags = 5
@@ -70,7 +70,7 @@ viewport_path = NodePath("Shadows/Viewport")
 
 [node name="RestaurantScene" type="Node2D"]
 light_mask = 2
-script = ExtResource( 24 )
+script = ExtResource( 60 )
 
 [node name="Floor" type="ColorRect" parent="."]
 light_mask = 2
@@ -102,45 +102,45 @@ __meta__ = {
 [node name="Light0" type="Sprite" parent="Background"]
 light_mask = 2
 position = Vector2( 600, 320 )
-texture = ExtResource( 14 )
+texture = ExtResource( 42 )
 offset = Vector2( 0, 210 )
 
 [node name="Light1" type="Sprite" parent="Background"]
 light_mask = 2
 position = Vector2( 1600, 320 )
-texture = ExtResource( 14 )
+texture = ExtResource( 42 )
 offset = Vector2( 0, 210 )
 
 [node name="Light2" type="Sprite" parent="Background"]
 light_mask = 2
 position = Vector2( 2600, 320 )
-texture = ExtResource( 14 )
+texture = ExtResource( 42 )
 offset = Vector2( 0, 210 )
 
 [node name="Poster0" type="Sprite" parent="Background"]
 light_mask = 2
 position = Vector2( 640, 525 )
-texture = ExtResource( 16 )
+texture = ExtResource( 49 )
 
 [node name="Poster1" type="Sprite" parent="Background"]
 light_mask = 2
 position = Vector2( 150, 520 )
-texture = ExtResource( 15 )
+texture = ExtResource( 24 )
 
 [node name="Poster2" type="Sprite" parent="Background"]
 light_mask = 2
 position = Vector2( 1550, 510 )
-texture = ExtResource( 13 )
+texture = ExtResource( 27 )
 
 [node name="Poster3" type="Sprite" parent="Background"]
 light_mask = 2
 position = Vector2( 2140, 425 )
-texture = ExtResource( 16 )
+texture = ExtResource( 49 )
 
 [node name="Poster4" type="Sprite" parent="Background"]
 light_mask = 2
 position = Vector2( 2600, 560 )
-texture = ExtResource( 15 )
+texture = ExtResource( 24 )
 
 [node name="WallMetal" type="TextureRect" parent="Background"]
 light_mask = 2
@@ -148,7 +148,7 @@ margin_left = -800.0
 margin_top = 670.0
 margin_right = 4000.0
 margin_bottom = 920.0
-texture = ExtResource( 5 )
+texture = ExtResource( 3 )
 expand = true
 stretch_mode = 2
 __meta__ = {
@@ -167,7 +167,7 @@ modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 1100, 520 )
 scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 11 )
+texture = ExtResource( 8 )
 offset = Vector2( 0, 50 )
 
 [node name="Pillar2" type="Sprite" parent="Shadows/Viewport"]
@@ -175,7 +175,7 @@ modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 3100, 520 )
 scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 11 )
+texture = ExtResource( 8 )
 offset = Vector2( 0, 50 )
 
 [node name="StoolLShadow1" type="Sprite" parent="Shadows/Viewport"]
@@ -183,75 +183,75 @@ modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 380, 585 )
 scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="TableShadow1" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 600, 595 )
 scale = Vector2( 0.28, 0.28 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="StoolRShadow1" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 820, 585 )
 scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="StoolLShadow2" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 1380, 585 )
 scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="TableShadow2" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 1600, 595 )
 scale = Vector2( 0.28, 0.28 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="StoolRShadow2" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 1820, 585 )
 scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="StoolLShadow3" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 2380, 585 )
 scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="TableShadow3" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 2600, 595 )
 scale = Vector2( 0.28, 0.28 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="StoolRShadow3" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( 2820, 585 )
 scale = Vector2( 0.15, 0.15 )
-texture = ExtResource( 6 )
+texture = ExtResource( 2 )
 
 [node name="WallMetal" type="Sprite" parent="Shadows/Viewport"]
 modulate = Color( 0.423529, 0.262745, 0.192157, 1 )
 light_mask = 2
 position = Vector2( -800, 500 )
-texture = ExtResource( 7 )
+texture = ExtResource( 1 )
 centered = false
 offset = Vector2( 0, -35 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 4800, 80 )
 
-[node name="CreatureShadows" parent="Shadows/Viewport" instance=ExtResource( 4 )]
+[node name="CreatureShadows" parent="Shadows/Viewport" instance=ExtResource( 61 )]
 
 [node name="TextureRect" type="TextureRect" parent="Shadows"]
 modulate = Color( 1, 1, 1, 0.501961 )
@@ -278,7 +278,7 @@ z_index = 10
 texture = ExtResource( 12 )
 offset = Vector2( 0, -550 )
 
-[node name="Creature1" parent="." instance=ExtResource( 8 )]
+[node name="Creature1" parent="." instance=ExtResource( 63 )]
 position = Vector2( 381.228, 585.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
@@ -312,53 +312,53 @@ dna = {
 "property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
 "property:Collar:frame_data": "res://assets/main/world/creature/1/collar-packed.json",
-"property:Collar:texture": ExtResource( 33 ),
+"property:Collar:texture": ExtResource( 17 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
-"property:FarArm:texture": ExtResource( 29 ),
+"property:FarArm:texture": ExtResource( 16 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
-"property:FarLeg:texture": ExtResource( 31 ),
+"property:FarLeg:texture": ExtResource( 43 ),
 "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
-"property:NearArm:texture": ExtResource( 30 ),
+"property:NearArm:texture": ExtResource( 51 ),
 "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
-"property:NearLeg:texture": ExtResource( 26 ),
+"property:NearLeg:texture": ExtResource( 48 ),
 "property:Neck0/HeadBobber/AccessoryZ0:frame_data": "res://assets/main/world/creature/4/accessory-z0-packed.json",
-"property:Neck0/HeadBobber/AccessoryZ0:texture": ExtResource( 69 ),
+"property:Neck0/HeadBobber/AccessoryZ0:texture": ExtResource( 32 ),
 "property:Neck0/HeadBobber/AccessoryZ2:frame_data": "res://assets/main/world/creature/4/accessory-z2-packed.json",
-"property:Neck0/HeadBobber/AccessoryZ2:texture": ExtResource( 70 ),
+"property:Neck0/HeadBobber/AccessoryZ2:texture": ExtResource( 39 ),
 "property:Neck0/HeadBobber/CheekZ0:frame_data": "res://assets/main/world/creature/2/cheek-z0-packed.json",
-"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 41 ),
+"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 54 ),
 "property:Neck0/HeadBobber/CheekZ1:frame_data": "res://assets/main/world/creature/2/cheek-z1-packed.json",
-"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 39 ),
+"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 55 ),
 "property:Neck0/HeadBobber/CheekZ2:frame_data": "res://assets/main/world/creature/2/cheek-z2-packed.json",
-"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 42 ),
+"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 57 ),
 "property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
-"property:Neck0/HeadBobber/Chin:texture": ExtResource( 23 ),
+"property:Neck0/HeadBobber/Chin:texture": ExtResource( 15 ),
 "property:Neck0/HeadBobber/EarZ0:frame_data": "res://assets/main/world/creature/1/ear-z0-packed.json",
-"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 20 ),
+"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 25 ),
 "property:Neck0/HeadBobber/EarZ1:frame_data": "res://assets/main/world/creature/1/ear-z1-packed.json",
-"property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 17 ),
+"property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 7 ),
 "property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/1/ear-z2-packed.json",
-"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 9 ),
+"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 45 ),
 "property:Neck0/HeadBobber/EmoteEyeZ0:frame_data": "res://assets/main/world/creature/1/emote-eye-z0-packed.json",
-"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 64 ),
+"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 30 ),
 "property:Neck0/HeadBobber/EmoteEyeZ1:frame_data": "res://assets/main/world/creature/1/emote-eye-z1-packed.json",
-"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 63 ),
+"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 23 ),
 "property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/1/eye-z0-packed.json",
-"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 34 ),
+"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 35 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/1/eye-z1-packed.json",
-"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 37 ),
+"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 56 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/5/head-packed.json",
-"property:Neck0/HeadBobber/Head:texture": ExtResource( 32 ),
+"property:Neck0/HeadBobber/Head:texture": ExtResource( 9 ),
 "property:Neck0/HeadBobber/HornZ0:frame_data": "res://assets/main/world/creature/2/horn-z0-packed.json",
-"property:Neck0/HeadBobber/HornZ0:texture": ExtResource( 38 ),
+"property:Neck0/HeadBobber/HornZ0:texture": ExtResource( 14 ),
 "property:Neck0/HeadBobber/HornZ1:frame_data": "res://assets/main/world/creature/2/horn-z1-packed.json",
-"property:Neck0/HeadBobber/HornZ1:texture": ExtResource( 43 ),
+"property:Neck0/HeadBobber/HornZ1:texture": ExtResource( 50 ),
 "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/2/mouth-packed.json",
-"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 40 ),
+"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 47 ),
 "property:Neck0/HeadBobber/Nose:frame_data": "res://assets/main/world/creature/1/nose-packed.json",
-"property:Neck0/HeadBobber/Nose:texture": ExtResource( 36 ),
+"property:Neck0/HeadBobber/Nose:texture": ExtResource( 19 ),
 "property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
-"property:Sprint:texture": ExtResource( 25 ),
+"property:Sprint:texture": ExtResource( 13 ),
 "shader:Bellybutton:black": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "shader:Bellybutton:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Collar:black": Color( 0.423529, 0.262745, 0.192157, 1 ),
@@ -458,9 +458,9 @@ dna = {
 }
 elevation = 150.0
 
-[node name="Seat1" parent="." instance=ExtResource( 2 )]
+[node name="Seat1" parent="." instance=ExtResource( 62 )]
 
-[node name="Creature2" parent="." instance=ExtResource( 8 )]
+[node name="Creature2" parent="." instance=ExtResource( 63 )]
 position = Vector2( 1381.23, 585.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
@@ -494,51 +494,51 @@ dna = {
 "property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
-"property:FarArm:texture": ExtResource( 29 ),
+"property:FarArm:texture": ExtResource( 16 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
-"property:FarLeg:texture": ExtResource( 31 ),
+"property:FarLeg:texture": ExtResource( 43 ),
 "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
-"property:NearArm:texture": ExtResource( 30 ),
+"property:NearArm:texture": ExtResource( 51 ),
 "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
-"property:NearLeg:texture": ExtResource( 26 ),
+"property:NearLeg:texture": ExtResource( 48 ),
 "property:Neck0/HeadBobber/AccessoryZ0:frame_data": "res://assets/main/world/creature/2/accessory-z0-packed.json",
-"property:Neck0/HeadBobber/AccessoryZ0:texture": ExtResource( 68 ),
+"property:Neck0/HeadBobber/AccessoryZ0:texture": ExtResource( 37 ),
 "property:Neck0/HeadBobber/AccessoryZ1:frame_data": "res://assets/main/world/creature/2/accessory-z1-packed.json",
-"property:Neck0/HeadBobber/AccessoryZ1:texture": ExtResource( 66 ),
+"property:Neck0/HeadBobber/AccessoryZ1:texture": ExtResource( 52 ),
 "property:Neck0/HeadBobber/AccessoryZ2:frame_data": "res://assets/main/world/creature/2/accessory-z2-packed.json",
-"property:Neck0/HeadBobber/AccessoryZ2:texture": ExtResource( 67 ),
+"property:Neck0/HeadBobber/AccessoryZ2:texture": ExtResource( 31 ),
 "property:Neck0/HeadBobber/CheekZ0:frame_data": "res://assets/main/world/creature/1/cheek-z0-packed.json",
-"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 21 ),
+"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 36 ),
 "property:Neck0/HeadBobber/CheekZ1:frame_data": "res://assets/main/world/creature/1/cheek-z1-packed.json",
-"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 19 ),
+"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 53 ),
 "property:Neck0/HeadBobber/CheekZ2:frame_data": "res://assets/main/world/creature/1/cheek-z2-packed.json",
-"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 1 ),
+"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 4 ),
 "property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
-"property:Neck0/HeadBobber/Chin:texture": ExtResource( 23 ),
+"property:Neck0/HeadBobber/Chin:texture": ExtResource( 15 ),
 "property:Neck0/HeadBobber/EarZ0:frame_data": "res://assets/main/world/creature/3/ear-z0-packed.json",
-"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 45 ),
+"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 38 ),
 "property:Neck0/HeadBobber/EarZ1:frame_data": "res://assets/main/world/creature/3/ear-z1-packed.json",
-"property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 47 ),
+"property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 41 ),
 "property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/3/ear-z2-packed.json",
-"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 62 ),
+"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 10 ),
 "property:Neck0/HeadBobber/EmoteEyeZ0:frame_data": "res://assets/main/world/creature/1/emote-eye-z0-packed.json",
-"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 64 ),
+"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 30 ),
 "property:Neck0/HeadBobber/EmoteEyeZ1:frame_data": "res://assets/main/world/creature/1/emote-eye-z1-packed.json",
-"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 63 ),
+"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 23 ),
 "property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/1/eye-z0-packed.json",
-"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 34 ),
+"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 35 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/1/eye-z1-packed.json",
-"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 37 ),
+"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 56 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/1/head-packed.json",
-"property:Neck0/HeadBobber/Head:texture": ExtResource( 18 ),
+"property:Neck0/HeadBobber/Head:texture": ExtResource( 40 ),
 "property:Neck0/HeadBobber/HornZ1:frame_data": "res://assets/main/world/creature/1/horn-z1-packed.json",
-"property:Neck0/HeadBobber/HornZ1:texture": ExtResource( 46 ),
+"property:Neck0/HeadBobber/HornZ1:texture": ExtResource( 26 ),
 "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/1/mouth-packed.json",
-"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 55 ),
+"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 33 ),
 "property:Neck0/HeadBobber/Nose:frame_data": "res://assets/main/world/creature/2/nose-packed.json",
-"property:Neck0/HeadBobber/Nose:texture": ExtResource( 51 ),
+"property:Neck0/HeadBobber/Nose:texture": ExtResource( 28 ),
 "property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
-"property:Sprint:texture": ExtResource( 25 ),
+"property:Sprint:texture": ExtResource( 13 ),
 "shader:Bellybutton:black": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "shader:Bellybutton:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Collar:black": Color( 0.423529, 0.262745, 0.192157, 1 ),
@@ -638,10 +638,10 @@ dna = {
 }
 elevation = 150.0
 
-[node name="Seat2" parent="." instance=ExtResource( 2 )]
+[node name="Seat2" parent="." instance=ExtResource( 62 )]
 position = Vector2( 1380, 585 )
 
-[node name="Creature3" parent="." instance=ExtResource( 8 )]
+[node name="Creature3" parent="." instance=ExtResource( 63 )]
 position = Vector2( 2381.23, 585.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
@@ -675,45 +675,45 @@ dna = {
 "property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
 "property:Collar:frame_data": "res://assets/main/world/creature/2/collar-packed.json",
-"property:Collar:texture": ExtResource( 59 ),
+"property:Collar:texture": ExtResource( 20 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
-"property:FarArm:texture": ExtResource( 29 ),
+"property:FarArm:texture": ExtResource( 16 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
-"property:FarLeg:texture": ExtResource( 31 ),
+"property:FarLeg:texture": ExtResource( 43 ),
 "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
-"property:NearArm:texture": ExtResource( 30 ),
+"property:NearArm:texture": ExtResource( 51 ),
 "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
-"property:NearLeg:texture": ExtResource( 26 ),
+"property:NearLeg:texture": ExtResource( 48 ),
 "property:Neck0/HeadBobber/CheekZ0:frame_data": "res://assets/main/world/creature/3/cheek-z0-packed.json",
-"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 50 ),
+"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 44 ),
 "property:Neck0/HeadBobber/CheekZ1:frame_data": "res://assets/main/world/creature/3/cheek-z1-packed.json",
-"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 52 ),
+"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 6 ),
 "property:Neck0/HeadBobber/CheekZ2:frame_data": "res://assets/main/world/creature/3/cheek-z2-packed.json",
-"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 54 ),
+"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 22 ),
 "property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
-"property:Neck0/HeadBobber/Chin:texture": ExtResource( 23 ),
+"property:Neck0/HeadBobber/Chin:texture": ExtResource( 15 ),
 "property:Neck0/HeadBobber/EarZ0:frame_data": "res://assets/main/world/creature/1/ear-z0-packed.json",
-"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 20 ),
+"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 25 ),
 "property:Neck0/HeadBobber/EarZ1:frame_data": "res://assets/main/world/creature/1/ear-z1-packed.json",
-"property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 17 ),
+"property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 7 ),
 "property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/1/ear-z2-packed.json",
-"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 9 ),
+"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 45 ),
 "property:Neck0/HeadBobber/EmoteEyeZ0:frame_data": "res://assets/main/world/creature/1/emote-eye-z0-packed.json",
-"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 64 ),
+"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 30 ),
 "property:Neck0/HeadBobber/EmoteEyeZ1:frame_data": "res://assets/main/world/creature/1/emote-eye-z1-packed.json",
-"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 63 ),
+"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 23 ),
 "property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/1/eye-z0-packed.json",
-"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 34 ),
+"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 35 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/1/eye-z1-packed.json",
-"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 37 ),
+"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 56 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/1/head-packed.json",
-"property:Neck0/HeadBobber/Head:texture": ExtResource( 18 ),
+"property:Neck0/HeadBobber/Head:texture": ExtResource( 40 ),
 "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/1/mouth-packed.json",
-"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 55 ),
+"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 33 ),
 "property:Neck0/HeadBobber/Nose:frame_data": "res://assets/main/world/creature/1/nose-packed.json",
-"property:Neck0/HeadBobber/Nose:texture": ExtResource( 36 ),
+"property:Neck0/HeadBobber/Nose:texture": ExtResource( 19 ),
 "property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
-"property:Sprint:texture": ExtResource( 25 ),
+"property:Sprint:texture": ExtResource( 13 ),
 "shader:Bellybutton:black": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "shader:Bellybutton:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Collar:black": Color( 0.423529, 0.262745, 0.192157, 1 ),
@@ -813,10 +813,10 @@ dna = {
 }
 elevation = 150.0
 
-[node name="Seat3" parent="." instance=ExtResource( 2 )]
+[node name="Seat3" parent="." instance=ExtResource( 62 )]
 position = Vector2( 2380, 585 )
 
-[node name="Chef" parent="." instance=ExtResource( 8 )]
+[node name="Chef" parent="." instance=ExtResource( 63 )]
 position = Vector2( 3381.23, 585.763 )
 scale = Vector2( 2.5, 2.5 )
 z_index = 20
@@ -846,59 +846,59 @@ dna = {
 "plastic_rgb": "5e885a",
 "property:BellyColors:belly": "1",
 "property:Bellybutton:frame_data": "res://assets/main/world/creature/1/bellybutton-packed.json",
-"property:Bellybutton:texture": ExtResource( 65 ),
+"property:Bellybutton:texture": ExtResource( 11 ),
 "property:Body:belly_color": Color( 1, 0.658824, 0.427451, 1 ),
 "property:Body:body_color": Color( 0.698039, 0.219608, 0.137255, 1 ),
 "property:Body:line_color": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "property:Body:shadow_color": Color( 0.423529, 0.262745, 0.192157, 0.25 ),
 "property:FarArm:frame_data": "res://assets/main/world/creature/1/arm-z0-packed.json",
-"property:FarArm:texture": ExtResource( 29 ),
+"property:FarArm:texture": ExtResource( 16 ),
 "property:FarLeg:frame_data": "res://assets/main/world/creature/1/leg-z0-packed.json",
-"property:FarLeg:texture": ExtResource( 31 ),
+"property:FarLeg:texture": ExtResource( 43 ),
 "property:NearArm:frame_data": "res://assets/main/world/creature/1/arm-z1-packed.json",
-"property:NearArm:texture": ExtResource( 30 ),
+"property:NearArm:texture": ExtResource( 51 ),
 "property:NearLeg:frame_data": "res://assets/main/world/creature/1/leg-z1-packed.json",
-"property:NearLeg:texture": ExtResource( 26 ),
+"property:NearLeg:texture": ExtResource( 48 ),
 "property:Neck0/HeadBobber/CheekZ0:frame_data": "res://assets/main/world/creature/1/cheek-z0-packed.json",
-"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 21 ),
+"property:Neck0/HeadBobber/CheekZ0:texture": ExtResource( 36 ),
 "property:Neck0/HeadBobber/CheekZ1:frame_data": "res://assets/main/world/creature/1/cheek-z1-packed.json",
-"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 19 ),
+"property:Neck0/HeadBobber/CheekZ1:texture": ExtResource( 53 ),
 "property:Neck0/HeadBobber/CheekZ2:frame_data": "res://assets/main/world/creature/1/cheek-z2-packed.json",
-"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 1 ),
+"property:Neck0/HeadBobber/CheekZ2:texture": ExtResource( 4 ),
 "property:Neck0/HeadBobber/Chin:frame_data": "res://assets/main/world/creature/1/chin-packed.json",
-"property:Neck0/HeadBobber/Chin:texture": ExtResource( 23 ),
+"property:Neck0/HeadBobber/Chin:texture": ExtResource( 15 ),
 "property:Neck0/HeadBobber/EarZ0:frame_data": "res://assets/main/world/creature/1/ear-z0-packed.json",
-"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 20 ),
+"property:Neck0/HeadBobber/EarZ0:texture": ExtResource( 25 ),
 "property:Neck0/HeadBobber/EarZ1:frame_data": "res://assets/main/world/creature/1/ear-z1-packed.json",
-"property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 17 ),
+"property:Neck0/HeadBobber/EarZ1:texture": ExtResource( 7 ),
 "property:Neck0/HeadBobber/EarZ2:frame_data": "res://assets/main/world/creature/1/ear-z2-packed.json",
-"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 9 ),
+"property:Neck0/HeadBobber/EarZ2:texture": ExtResource( 45 ),
 "property:Neck0/HeadBobber/EmoteEyeZ0:frame_data": "res://assets/main/world/creature/1/emote-eye-z0-packed.json",
-"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 64 ),
+"property:Neck0/HeadBobber/EmoteEyeZ0:texture": ExtResource( 30 ),
 "property:Neck0/HeadBobber/EmoteEyeZ1:frame_data": "res://assets/main/world/creature/1/emote-eye-z1-packed.json",
-"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 63 ),
+"property:Neck0/HeadBobber/EmoteEyeZ1:texture": ExtResource( 23 ),
 "property:Neck0/HeadBobber/EyeZ0:frame_data": "res://assets/main/world/creature/2/eye-z0-packed.json",
-"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 56 ),
+"property:Neck0/HeadBobber/EyeZ0:texture": ExtResource( 58 ),
 "property:Neck0/HeadBobber/EyeZ1:frame_data": "res://assets/main/world/creature/2/eye-z1-packed.json",
-"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 57 ),
+"property:Neck0/HeadBobber/EyeZ1:texture": ExtResource( 34 ),
 "property:Neck0/HeadBobber/HairZ0:frame_data": "res://assets/main/world/creature/1/hair-z0-packed.json",
-"property:Neck0/HeadBobber/HairZ0:texture": ExtResource( 58 ),
+"property:Neck0/HeadBobber/HairZ0:texture": ExtResource( 18 ),
 "property:Neck0/HeadBobber/HairZ1:frame_data": "res://assets/main/world/creature/1/hair-z1-packed.json",
-"property:Neck0/HeadBobber/HairZ1:texture": ExtResource( 60 ),
+"property:Neck0/HeadBobber/HairZ1:texture": ExtResource( 5 ),
 "property:Neck0/HeadBobber/HairZ2:frame_data": "res://assets/main/world/creature/1/hair-z2-packed.json",
-"property:Neck0/HeadBobber/HairZ2:texture": ExtResource( 61 ),
+"property:Neck0/HeadBobber/HairZ2:texture": ExtResource( 21 ),
 "property:Neck0/HeadBobber/Head:frame_data": "res://assets/main/world/creature/2/head-packed.json",
-"property:Neck0/HeadBobber/Head:texture": ExtResource( 53 ),
+"property:Neck0/HeadBobber/Head:texture": ExtResource( 29 ),
 "property:Neck0/HeadBobber/HornZ0:frame_data": "res://assets/main/world/creature/2/horn-z0-packed.json",
-"property:Neck0/HeadBobber/HornZ0:texture": ExtResource( 38 ),
+"property:Neck0/HeadBobber/HornZ0:texture": ExtResource( 14 ),
 "property:Neck0/HeadBobber/HornZ1:frame_data": "res://assets/main/world/creature/2/horn-z1-packed.json",
-"property:Neck0/HeadBobber/HornZ1:texture": ExtResource( 43 ),
+"property:Neck0/HeadBobber/HornZ1:texture": ExtResource( 50 ),
 "property:Neck0/HeadBobber/Mouth:frame_data": "res://assets/main/world/creature/3/mouth-packed.json",
-"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 22 ),
+"property:Neck0/HeadBobber/Mouth:texture": ExtResource( 46 ),
 "property:Neck0/HeadBobber/Nose:frame_data": "res://assets/main/world/creature/2/nose-packed.json",
-"property:Neck0/HeadBobber/Nose:texture": ExtResource( 51 ),
+"property:Neck0/HeadBobber/Nose:texture": ExtResource( 28 ),
 "property:Sprint:frame_data": "res://assets/main/world/creature/1/sprint-z0-packed.json",
-"property:Sprint:texture": ExtResource( 25 ),
+"property:Sprint:texture": ExtResource( 13 ),
 "shader:Bellybutton:black": Color( 0.423529, 0.262745, 0.192157, 1 ),
 "shader:Bellybutton:red": Color( 1, 0.658824, 0.427451, 1 ),
 "shader:Collar:black": Color( 0.423529, 0.262745, 0.192157, 1 ),
@@ -1002,7 +1002,7 @@ position = Vector2( -120, 200 )
 volume_db = -4.0
 max_distance = 6000.0
 bus = "Sound Bus"
-script = ExtResource( 3 )
+script = ExtResource( 59 )
 
 [node name="ChimeTimer" type="Timer" parent="DoorChime"]
 one_shot = true

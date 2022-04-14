@@ -25,7 +25,7 @@ func _ready() -> void:
 	PlayerData.creature_queue.primary_index = 0
 	PlayerData.creature_queue.reset_secondary_creature_queue()
 	for i in range(3):
-		_restaurant_view.summon_creature(i)
+		_restaurant_view.summon_customer(i)
 	
 	get_customer().play_hello_voice()
 	
@@ -121,7 +121,7 @@ func _start_puzzle() -> void:
 		if starting_creature_index == -1:
 			# starting creature isn't found; load them to a different index and advance the primary queue
 			starting_creature_index = _restaurant_view.next_creature_index()
-			_restaurant_view.summon_creature(starting_creature_index)
+			_restaurant_view.summon_customer(starting_creature_index)
 		else:
 			# starting creature is found; advance the primary creature queue so we don't see them twice
 			PlayerData.creature_queue.pop_primary_creature()
@@ -134,7 +134,7 @@ func _start_puzzle() -> void:
 		# summon the other creatures
 		for i in range(3):
 			if i != starting_creature_index:
-				_restaurant_view.summon_creature(i)
+				_restaurant_view.summon_customer(i)
 		
 		# scroll to the starting creature
 		_restaurant_view.current_creature_index = starting_creature_index
@@ -144,7 +144,7 @@ func _start_puzzle() -> void:
 		# fill the seats if the creatures ate
 		for i in range(3):
 			if _restaurant_view.get_customer(i).feed_count:
-				_restaurant_view.summon_creature(i)
+				_restaurant_view.summon_customer(i)
 		
 		# calculate the starting creature; stay on the same creature if they didn't eat
 		if current_creature_feed_count > 0:
