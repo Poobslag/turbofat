@@ -1,4 +1,4 @@
-extends Node2D
+extends Node
 ## A demo which shows off the restaurant scene.
 ##
 ## Keys:
@@ -9,13 +9,20 @@ extends Node2D
 
 const FATNESS_KEYS = [10.0, 1.0, 1.5, 2.0, 3.0, 5.0, 6.0, 7.0, 8.0, 9.0]
 
+onready var _scene: RestaurantPuzzleScene = $RestaurantPuzzleScene
+
+func _ready() -> void:
+	for i in range(_scene.get_customers().size()):
+		_scene.summon_customer(CreatureLoader.random_def(), i)
+
+
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_F: $RestaurantPuzzleScene.get_customer().feed(Foods.FoodType.BROWN_0)
+		KEY_F: _scene.get_customer().feed(Foods.FoodType.BROWN_0)
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
-			$RestaurantPuzzleScene.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
+			_scene.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
 		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
-			$RestaurantPuzzleScene.summon_customer(CreatureLoader.random_def())
-		KEY_Q: $RestaurantPuzzleScene.current_creature_index = 0
-		KEY_W: $RestaurantPuzzleScene.current_creature_index = 1
-		KEY_E: $RestaurantPuzzleScene.current_creature_index = 2
+			_scene.summon_customer(CreatureLoader.random_def())
+		KEY_Q: _scene.current_creature_index = 0
+		KEY_W: _scene.current_creature_index = 1
+		KEY_E: _scene.current_creature_index = 2

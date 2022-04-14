@@ -1,4 +1,4 @@
-extends Control
+extends Node
 ## A demo which shows off the restaurant view.
 ##
 ## Keys:
@@ -31,56 +31,60 @@ const NAMES = [
 
 var _current_name_index := 4
 
+onready var _view := $RestaurantView
+onready var _restaurant_scene := $RestaurantView/RestaurantViewport/Scene
+
 func _ready() -> void:
-	$RestaurantView.summon_customer()
+	for i in range(_view.get_customers().size()):
+		_view.summon_customer(i)
 
 
 func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
-		KEY_D: $RestaurantView/RestaurantViewport/Scene.get_node("DoorChime").play_door_chime()
+		KEY_D: _restaurant_scene.get_node("DoorChime").play_door_chime()
 		KEY_F: _customer().feed(Foods.FoodType.BROWN_0)
 		KEY_I: _customer().creature_visuals.get_node("Animations/IdleTimer").start(0.01)
 		KEY_N:
 			_current_name_index = (_current_name_index + 1) % NAMES.size()
 			_customer().creature_name = NAMES[_current_name_index]
-			_player().creature_name = NAMES[_current_name_index]
+			_chef().creature_name = NAMES[_current_name_index]
 		KEY_V:
 			_customer().get_node("CreatureSfx").play_goodbye_voice()
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			if Input.is_key_pressed(KEY_SHIFT):
 				# shift pressed; change creature's comfort
 				match Utils.key_scancode(event):
-					KEY_1: $RestaurantView.get_customer().set_comfort(0.00) # hasn't eaten
-					KEY_2: $RestaurantView.get_customer().set_comfort(0.30)
-					KEY_3: $RestaurantView.get_customer().set_comfort(0.60)
-					KEY_4: $RestaurantView.get_customer().set_comfort(1.00) # ate enough
-					KEY_5: $RestaurantView.get_customer().set_comfort(-0.10) # starting to overeat
-					KEY_6: $RestaurantView.get_customer().set_comfort(-0.30)
-					KEY_7: $RestaurantView.get_customer().set_comfort(-0.50) # ate too much
-					KEY_8: $RestaurantView.get_customer().set_comfort(-0.70)
-					KEY_9: $RestaurantView.get_customer().set_comfort(-0.90)
-					KEY_0: $RestaurantView.get_customer().set_comfort(-1.00) # ate way too much
+					KEY_1: _view.get_customer().set_comfort(0.00) # hasn't eaten
+					KEY_2: _view.get_customer().set_comfort(0.30)
+					KEY_3: _view.get_customer().set_comfort(0.60)
+					KEY_4: _view.get_customer().set_comfort(1.00) # ate enough
+					KEY_5: _view.get_customer().set_comfort(-0.10) # starting to overeat
+					KEY_6: _view.get_customer().set_comfort(-0.30)
+					KEY_7: _view.get_customer().set_comfort(-0.50) # ate too much
+					KEY_8: _view.get_customer().set_comfort(-0.70)
+					KEY_9: _view.get_customer().set_comfort(-0.90)
+					KEY_0: _view.get_customer().set_comfort(-1.00) # ate way too much
 			else:
 				# shift not pressed; change creature's fatness
-				$RestaurantView.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
-		KEY_Q: $RestaurantView.set_current_creature_index(0)
-		KEY_W: $RestaurantView.set_current_creature_index(1)
-		KEY_E: $RestaurantView.set_current_creature_index(2)
+				_view.get_customer().set_fatness(FATNESS_KEYS[Utils.key_num(event)])
+		KEY_Q: _view.set_current_creature_index(0)
+		KEY_W: _view.set_current_creature_index(1)
+		KEY_E: _view.set_current_creature_index(2)
 		KEY_BRACKETLEFT, KEY_BRACKETRIGHT:
-			$RestaurantView.summon_customer()
+			_view.summon_customer()
 		KEY_RIGHT:
-			$RestaurantView.get_customer().set_orientation(Creatures.SOUTHEAST)
+			_view.get_customer().set_orientation(Creatures.SOUTHEAST)
 		KEY_DOWN:
-			$RestaurantView.get_customer().set_orientation(Creatures.SOUTHWEST)
+			_view.get_customer().set_orientation(Creatures.SOUTHWEST)
 		KEY_LEFT:
-			$RestaurantView.get_customer().set_orientation(Creatures.NORTHWEST)
+			_view.get_customer().set_orientation(Creatures.NORTHWEST)
 		KEY_UP:
-			$RestaurantView.get_customer().set_orientation(Creatures.NORTHEAST)
+			_view.get_customer().set_orientation(Creatures.NORTHEAST)
 
 
 func _customer() -> Creature:
-	return $RestaurantView/RestaurantViewport/Scene.get_customer()
+	return _restaurant_scene.get_customer()
 
 
-func _player() -> Creature:
-	return $RestaurantView/RestaurantViewport/Scene.get_player()
+func _chef() -> Creature:
+	return _restaurant_scene.get_chef()
