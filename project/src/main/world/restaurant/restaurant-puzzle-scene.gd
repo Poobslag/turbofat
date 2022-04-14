@@ -1,4 +1,4 @@
-class_name RestaurantScene
+class_name RestaurantPuzzleScene
 extends Node2D
 ## Handles animations and audio/visual effects for the restaurant and its creatures.
 
@@ -35,7 +35,7 @@ func set_current_creature_index(new_index: int) -> void:
 ##
 ## Parameters:
 ## 	'creature_def': defines the creature's attributes such as name and appearance.
-func summon_creature(creature_def: CreatureDef, creature_index: int = -1) -> void:
+func summon_customer(creature_def: CreatureDef, creature_index: int = -1) -> void:
 	get_customer(creature_index).set_creature_def(creature_def)
 	get_customer(creature_index).set_comfort(0)
 	_get_seat(creature_index).refresh()

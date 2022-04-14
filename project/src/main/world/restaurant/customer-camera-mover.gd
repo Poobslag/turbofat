@@ -16,7 +16,7 @@ var _shake_remaining_seconds := 0.0
 var _shake_magnitude := 8.0
 var _shake_position := Vector2.ZERO
 
-onready var _restaurant_scene: RestaurantScene = get_node(restaurant_scene_path)
+onready var _restaurant_scene: RestaurantPuzzleScene = get_node(restaurant_scene_path)
 onready var _customer_camera: Camera2D = get_node(customer_camera_path)
 
 func _ready() -> void:

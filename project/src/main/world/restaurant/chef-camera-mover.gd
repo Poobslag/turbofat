@@ -6,7 +6,7 @@ extends AnimationPlayer
 
 export (NodePath) var restaurant_scene_path: NodePath
 
-onready var _restaurant_scene: RestaurantScene = get_node(restaurant_scene_path)
+onready var _restaurant_scene: RestaurantPuzzleScene = get_node(restaurant_scene_path)
 
 func _ready() -> void:
 	play("fat-se")
