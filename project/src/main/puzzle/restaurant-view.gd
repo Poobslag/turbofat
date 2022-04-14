@@ -74,8 +74,7 @@ func get_customer_mouth_position(customer: Creature) -> Vector2:
 	var target_pos: Vector2
 	# calculate the position within the restaurant scene
 	var mouth_position: Vector2 = MOUTH_POSITIONS_BY_ORIENTATION[customer.get_orientation()]
-	target_pos = customer.get_node("ChatIconHook").get_global_transform_with_canvas() \
-			.xform(mouth_position * customer.creature_visuals.scale.y)
+	target_pos = customer.body_pos_from_head_pos(mouth_position)
 	# calculate the position within the customer viewport
 	target_pos = _customer_view_viewport.canvas_transform.xform(target_pos)
 	# calculate the position within the customer viewport texture
@@ -121,7 +120,7 @@ func scroll_to_new_creature(new_creature_index: int = -1) -> void:
 
 ## Returns a random creature index different from the current creature index.
 func next_creature_index() -> int:
-	return (get_current_creature_index() + randi() % 2 + 1) % 3
+	return (get_current_creature_index() + randi() % 2 + 1) % get_customers().size()
 
 
 ## Temporarily suppresses 'hello' and 'door chime' sounds.
@@ -215,7 +214,7 @@ func _on_Customer_creature_name_changed() -> void:
 	_refresh_customer_name()
 
 
-func _on_RestaurantScene_current_creature_index_changed(_value: int) -> void:
+func _on_RestaurantPuzzleScene_current_creature_index_changed(_value: int) -> void:
 	_refresh_customer_name()
 
 

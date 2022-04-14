@@ -592,6 +592,17 @@ func fatness_to_score(in_fatness: float) -> float:
 	return (50 / max(weight_gain_scale, 0.01)) * (pow(in_fatness, 2) - 1)
 
 
+## Converts a coordinate relative to the creature's head into a coordinate relative to the creature's body.
+##
+## Parameters:
+## 	'v': A coordinate relative to the creature's head.
+##
+## Returns:
+## 	A coordinate relative to the creature's body.
+func body_pos_from_head_pos(v: Vector2) -> Vector2:
+	return _chat_icon_hook.get_global_transform_with_canvas().xform(v * creature_visuals.scale.y)
+
+
 func _on_CreatureVisuals_talking_changed() -> void:
 	emit_signal("talking_changed")
 

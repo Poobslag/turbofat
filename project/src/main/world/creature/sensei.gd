@@ -17,8 +17,12 @@ func _ready() -> void:
 
 
 func _on_MoveTimer_timeout() -> void:
-	if _overworld_ui.cutscene:
+	if _overworld_ui and _overworld_ui.cutscene:
 		# disable movement during cutscenes
+		return
+	
+	if not ChattableManager.player:
+		# disable movement outside free roam mode
 		return
 	
 	var player_relative_pos: Vector2 = Global.from_iso(ChattableManager.player.position - position)

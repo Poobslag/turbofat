@@ -58,10 +58,10 @@ func _on_Creature_visual_fatness_changed(index: int) -> void:
 		_refresh_target_camera_position()
 
 
-func _on_RestaurantScene_current_creature_index_changed(_value: int) -> void:
+func _on_RestaurantPuzzleScene_current_creature_index_changed(_value: int) -> void:
 	_refresh_target_camera_position()
 
 
-func _on_RestaurantScene_food_eaten(_food_type: int) -> void:
+func _on_RestaurantPuzzleScene_food_eaten(_food_type: int) -> void:
 	_shake_total_seconds = 0.20
 	_shake_remaining_seconds = 0.20

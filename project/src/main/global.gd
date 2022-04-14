@@ -70,7 +70,7 @@ func benchmark_end(key: String = "") -> void:
 
 func get_overworld_ui() -> OverworldUi:
 	var nodes := get_tree().get_nodes_in_group("overworld_ui")
-	return nodes[0]
+	return nodes[0] if nodes else null
 
 
 ## Locates the node responsible for creating and initializing chat icons, if one exists.

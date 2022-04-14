@@ -15,7 +15,7 @@ func _ready() -> void:
 
 
 func _unhandled_input(_event: InputEvent) -> void:
-	if _overworld_ui.cutscene or ui_has_focus:
+	if (_overworld_ui and _overworld_ui.cutscene) or ui_has_focus:
 		# disable movement input during cutscenes, or when navigating menus
 		return
 	
