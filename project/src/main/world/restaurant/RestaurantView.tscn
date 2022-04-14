@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://src/main/world/restaurant/chef-camera-mover.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/restaurant/RestaurantPuzzleScene.tscn" type="PackedScene" id=2]
@@ -13,20 +13,19 @@
 [ext_resource path="res://src/main/world/restaurant/LayoutContainer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/restaurant/hello-timer.gd" type="Script" id=12]
 
-[sub_resource type="Animation" id=1]
-resource_name = "fat-se"
-length = 10.0
+[sub_resource type="Animation" id=5]
+length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("CustomerCameraMover:target_camera_position")
+tracks/0/path = NodePath("CustomerCameraMover:headroom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 3, 10 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 770, 650 ), Vector2( 770, 650 ), Vector2( 770, 565 ), Vector2( 830, 40 ) ]
+"values": [ 0.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("CustomerView/Viewport/Camera2D:zoom")
@@ -35,26 +34,93 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.18, 0.18 ) ]
+}
+
+[sub_resource type="Animation" id=1]
+resource_name = "fat-se"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("CustomerView/Viewport/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
 "times": PoolRealArray( 0, 4, 10 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0.8, 0.8 ), Vector2( 0.8, 0.8 ), Vector2( 1.4, 1.4 ) ]
+"values": [ Vector2( 0.18, 0.18 ), Vector2( 0.18, 0.18 ), Vector2( 0.25, 0.25 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CustomerCameraMover:headroom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("ChefView/Viewport/Camera2D:zoom")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0.18, 0.18 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChefCameraMover:headroom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1.0 ]
 }
 
 [sub_resource type="Animation" id=2]
 resource_name = "fat-se"
 length = 10.0
 tracks/0/type = "value"
-tracks/0/path = NodePath("ChefView/Viewport/Camera2D:position")
+tracks/0/path = NodePath("ChefView/Viewport/Camera2D:zoom")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1, 3, 10 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 4, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 6780, 960 ), Vector2( 6780, 960 ), Vector2( 6750, 775 ), Vector2( 6610, -120 ) ]
+"values": [ Vector2( 0.18, 0.18 ), Vector2( 0.18, 0.18 ), Vector2( 0.4, 0.4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChefCameraMover:headroom")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
 }
 
 [sub_resource type="StyleBoxFlat" id=3]
@@ -75,9 +141,6 @@ corner_radius_bottom_left = 25
 
 [node name="RestaurantView" type="Control"]
 script = ExtResource( 4 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="RestaurantViewport" type="Viewport" parent="."]
 size = Vector2( 1, 1 )
@@ -86,7 +149,6 @@ usage = 0
 render_target_update_mode = 3
 
 [node name="Scene" parent="RestaurantViewport" instance=ExtResource( 2 )]
-scale = Vector2( 2, 2 )
 
 [node name="CustomerClip" type="Light2D" parent="."]
 position = Vector2( 179.832, 444.757 )
@@ -104,9 +166,6 @@ margin_bottom = 580.109
 stretch = true
 stretch_shrink = 4
 script = ExtResource( 5 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 restaurant_viewport_path = NodePath("../RestaurantViewport")
 
 [node name="Viewport" type="Viewport" parent="CustomerView"]
@@ -117,10 +176,19 @@ usage = 0
 render_target_update_mode = 3
 audio_listener_enable_2d = true
 
+[node name="Bg" type="CanvasLayer" parent="CustomerView/Viewport"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CustomerView/Viewport/Bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+
 [node name="Camera2D" type="Camera2D" parent="CustomerView/Viewport"]
-position = Vector2( 700, 600 )
+position = Vector2( 200, 600 )
 current = true
-zoom = Vector2( 0.8, 0.8 )
+zoom = Vector2( 0.18, 0.18 )
 
 [node name="CustomerOutline" type="TextureRect" parent="."]
 self_modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
@@ -130,16 +198,14 @@ margin_right = 614.254
 margin_bottom = 850.109
 rect_scale = Vector2( 0.5, 0.5 )
 texture = ExtResource( 8 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CustomerCameraMover" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 5 )
 anims/fat-se = SubResource( 1 )
 script = ExtResource( 9 )
 restaurant_scene_path = NodePath("../RestaurantViewport/Scene")
 customer_camera_path = NodePath("../CustomerView/Viewport/Camera2D")
-target_camera_position = Vector2( 770, 650 )
+headroom = 0.0
 
 [node name="ChefClip" type="Light2D" parent="."]
 position = Vector2( 891.99, 225.143 )
@@ -157,9 +223,6 @@ margin_bottom = 295.187
 stretch = true
 stretch_shrink = 4
 script = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 restaurant_viewport_path = NodePath("../RestaurantViewport")
 
 [node name="Viewport" type="Viewport" parent="ChefView"]
@@ -169,15 +232,26 @@ handle_input_locally = false
 usage = 0
 render_target_update_mode = 3
 
+[node name="Bg" type="CanvasLayer" parent="ChefView/Viewport"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="ChefView/Viewport/Bg"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
+
 [node name="Camera2D" type="Camera2D" parent="ChefView/Viewport"]
 position = Vector2( 6780, 960 )
 current = true
-zoom = Vector2( 0.8, 0.8 )
+zoom = Vector2( 0.18, 0.18 )
 
 [node name="ChefCameraMover" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 6 )
 anims/fat-se = SubResource( 2 )
 script = ExtResource( 1 )
 restaurant_scene_path = NodePath("../RestaurantViewport/Scene")
+chef_camera_path = NodePath("../ChefView/Viewport/Camera2D")
 
 [node name="ChefOutline" type="TextureRect" parent="."]
 self_modulate = Color( 0.254902, 0.156863, 0.117647, 1 )
@@ -187,9 +261,6 @@ margin_right = 1104.66
 margin_bottom = 423.624
 rect_scale = Vector2( 0.53, 0.53 )
 texture = ExtResource( 6 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CustomerNametag" parent="." instance=ExtResource( 11 )]
 margin_left = 58.1141

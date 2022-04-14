@@ -774,6 +774,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/puzzle/puzzle-tile-map-reader.gd"
 }, {
+"base": "OverworldWorld",
+"class": "PuzzleWorld",
+"language": "GDScript",
+"path": "res://src/main/world/puzzle-world.gd"
+}, {
 "base": "Reference",
 "class": "RankCalculator",
 "language": "GDScript",
@@ -794,7 +799,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/main/ui/rect-fit-label.gd"
 }, {
-"base": "Node2D",
+"base": "Node",
 "class": "RestaurantPuzzleScene",
 "language": "GDScript",
 "path": "res://src/main/world/restaurant/restaurant-puzzle-scene.gd"
@@ -1153,6 +1158,7 @@ _global_script_class_icons={
 "PuzzlePerformance": "",
 "PuzzleTileMap": "",
 "PuzzleTileMapReader": "",
+"PuzzleWorld": "",
 "RankCalculator": "",
 "RankResult": "",
 "RankRules": "",
