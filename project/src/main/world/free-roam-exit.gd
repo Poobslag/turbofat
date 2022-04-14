@@ -80,7 +80,7 @@ func _physics_process(_delta: float) -> void:
 	if Engine.is_editor_hint() or not ChattableManager.player:
 		# don't try to change scenes in the editor
 		return
-	if _overworld_ui.is_chatting():
+	if _overworld_ui and _overworld_ui.is_chatting():
 		# don't change scenes while chatting
 		return
 	

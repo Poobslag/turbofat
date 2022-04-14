@@ -223,6 +223,6 @@ one_shot = true
 script = ExtResource( 12 )
 
 [connection signal="timeout" from="HelloTimer" to="HelloTimer" method="_on_timeout"]
-[connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="." method="_on_RestaurantScene_current_creature_index_changed"]
-[connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="CustomerCameraMover" method="_on_RestaurantScene_current_creature_index_changed"]
-[connection signal="food_eaten" from="RestaurantViewport/Scene" to="CustomerCameraMover" method="_on_RestaurantScene_food_eaten"]
+[connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="." method="_on_RestaurantPuzzleScene_current_creature_index_changed"]
+[connection signal="current_creature_index_changed" from="RestaurantViewport/Scene" to="CustomerCameraMover" method="_on_RestaurantPuzzleScene_current_creature_index_changed"]
+[connection signal="food_eaten" from="RestaurantViewport/Scene" to="CustomerCameraMover" method="_on_RestaurantPuzzleScene_food_eaten"]
