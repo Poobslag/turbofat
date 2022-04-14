@@ -24,7 +24,7 @@ func _ready() -> void:
 	PlayerData.creature_library.save_fatness_state()
 	PlayerData.creature_queue.primary_index = 0
 	PlayerData.creature_queue.reset_secondary_creature_queue()
-	for i in range(3):
+	for i in range(_restaurant_view.get_customers().size()):
 		_restaurant_view.summon_customer(i)
 	
 	get_customer().play_hello_voice()
@@ -132,7 +132,7 @@ func _start_puzzle() -> void:
 				_restaurant_view.get_customer(starting_creature_index).set_fatness(fatness)
 		
 		# summon the other creatures
-		for i in range(3):
+		for i in range(_restaurant_view.get_customers().size()):
 			if i != starting_creature_index:
 				_restaurant_view.summon_customer(i)
 		
@@ -142,7 +142,7 @@ func _start_puzzle() -> void:
 		var current_creature_feed_count: int = _restaurant_view.get_customer().feed_count
 		
 		# fill the seats if the creatures ate
-		for i in range(3):
+		for i in range(_restaurant_view.get_customers().size()):
 			if _restaurant_view.get_customer(i).feed_count:
 				_restaurant_view.summon_customer(i)
 		
