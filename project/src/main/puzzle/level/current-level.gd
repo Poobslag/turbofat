@@ -41,6 +41,9 @@ var best_result: int = Levels.Result.NONE setget set_best_result
 ## Tracks whether or not the player wants to play or skip this level's cutscene.
 var cutscene_force: int = Levels.CutsceneForce.NONE
 
+## A human-readable environment name, such as 'lemon' or 'marsh' for the puzzle environment
+var puzzle_environment_name: String
+
 func _ready() -> void:
 	Breadcrumb.connect("before_scene_changed", self, "_on_Breadcrumb_before_scene_changed")
 
@@ -66,6 +69,7 @@ func set_launched_level(new_level_id: String) -> void:
 	
 	set_best_result(Levels.Result.NONE)
 	cutscene_force = Levels.CutsceneForce.NONE
+	puzzle_environment_name = ""
 	
 	if level_lock:
 		creature_id = level_lock.creature_id

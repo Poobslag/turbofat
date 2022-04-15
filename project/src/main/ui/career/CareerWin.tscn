@@ -8,7 +8,7 @@
 [ext_resource path="res://src/main/ui/chalkboard-54.theme" type="Theme" id=6]
 [ext_resource path="res://assets/main/ui/career/chalkboard.png" type="Texture" id=7]
 [ext_resource path="res://assets/main/ui/career/chalkboard-separator-bottom.png" type="Texture" id=8]
-[ext_resource path="res://src/main/world/environment/LemonWinEnvironment.tscn" type="PackedScene" id=9]
+[ext_resource path="res://src/main/world/environment/EmptyEnvironment.tscn" type="PackedScene" id=9]
 [ext_resource path="res://assets/main/ui/career/chalkboard-title-0b.png" type="Texture" id=10]
 [ext_resource path="res://assets/main/ui/career/chalkboard-title-0a.png" type="Texture" id=11]
 [ext_resource path="res://assets/main/ui/career/chalkboard-distance.png" type="Texture" id=12]
@@ -589,12 +589,11 @@ bus = "Sound Bus"
 
 [node name="World" type="Node" parent="."]
 script = ExtResource( 4 )
-EnvironmentScene = ExtResource( 9 )
 
 [node name="Environment" type="Node2D" parent="World" groups=["overworld_environments"] instance=ExtResource( 9 )]
 script = ExtResource( 2 )
-creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
-shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+creature_shadows_path = NodePath("Ground/Shadows/CreatureShadows")
+shadow_caster_shadows_path = NodePath("Ground/Shadows/ShadowCasterShadows")
 obstacles_path = NodePath("Obstacles")
 CreatureScene = ExtResource( 19 )
 
