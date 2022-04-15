@@ -22,5 +22,5 @@ func prepare_environment_resource() -> void:
 
 
 func _career_environment_path() -> String:
-	var environment_name := PlayerData.career.current_region().environment_name
+	var environment_name := PlayerData.career.current_region().overworld_environment_name
 	return ENVIRONMENT_PATH_BY_NAME.get(environment_name, DEFAULT_ENVIRONMENT_PATH)

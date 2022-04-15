@@ -265,6 +265,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 	
 	PlayerData.career.daily_level_ids.append(level_settings.id)
 	CurrentLevel.set_launched_level(level_settings.id)
+	CurrentLevel.puzzle_environment_name = PlayerData.career.current_region().puzzle_environment_name
 	CurrentLevel.piece_speed = _piece_speed
 	
 	CurrentLevel.customers = career_level.customer_ids.duplicate()
@@ -291,6 +292,7 @@ func _on_LevelSelectButton_level_started(level_index: int) -> void:
 		"piece_speed": _piece_speed,
 		"chef_id": CurrentLevel.chef_id,
 		"customers": CurrentLevel.customers,
+		"puzzle_environment_name": CurrentLevel.puzzle_environment_name,
 	})
 	
 	if postroll_key:

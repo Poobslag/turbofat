@@ -3,6 +3,18 @@ class_name PuzzleWorld
 extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles during puzzles.
 
+## The path to the scene resource defining creatures and obstacles for career regions which do not specify an
+## environment, or regions which specify an invalid environment
+const DEFAULT_PUZZLE_ENVIRONMENT_PATH := "res://src/main/world/environment/OverworldIndoorsEnvironment.tscn"
+
+## key: (String) an environment name which appears in the json definitions
+## value: (String) The path to the scene resource defining creatures and obstacles which appear in
+## 	that environment
+const ENVIRONMENT_PATH_BY_NAME := {
+	"lemon": "res://src/main/world/environment/LemonRestaurantEnvironment.tscn",
+	"indoors": "res://src/main/world/environment/OverworldIndoorsEnvironment.tscn",
+}
+
 var customers := []
 var chef: Creature
 
@@ -13,6 +25,13 @@ func _ready() -> void:
 	_remove_all_creatures()
 	_spawn_chef()
 	_spawn_customers()
+
+
+# Loads the cutscene's environment, replacing the current one in the scene tree.
+func prepare_environment_resource() -> void:
+	var environment_path: String = ENVIRONMENT_PATH_BY_NAME.get(
+			CurrentLevel.puzzle_environment_name, DEFAULT_PUZZLE_ENVIRONMENT_PATH)
+	EnvironmentScene = load(environment_path)
 
 
 ## Removes all creatures from the overworld.

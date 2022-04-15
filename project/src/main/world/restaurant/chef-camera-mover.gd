@@ -24,7 +24,7 @@ func _ready() -> void:
 	_chef_camera.position = _target_camera_position
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if _target_camera_position_dirty:
 		_refresh_target_camera_position()
 	
