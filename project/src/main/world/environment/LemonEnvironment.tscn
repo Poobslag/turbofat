@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://src/main/world/environment/lemon-obstacle-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/FrostedOverworldTiler.tscn" type="PackedScene" id=2]
@@ -13,7 +13,6 @@
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/world/environment/LemonGroundMap.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/main/world/ScrewportTexrect.tscn" type="PackedScene" id=27]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=29]
 [ext_resource path="res://src/main/world/environment/LemonRippleWaves.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=31]
@@ -36,9 +35,6 @@
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="ViewportTexture" id=3]
-viewport_path = NodePath("Ground/Shadows/Viewport")
-
 [sub_resource type="Curve2D" id=4]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 68.6212, 714.348, 0, 0, 0, 0, 351.162, 862.346, 0, 0, 0, 0, 674.067, 848.892, 0, 0, 0, 0, 996.971, 721.075, 0, 0, 0, 0, 1239.15, 586.532, 0, 0, 0, 0, 1575.51, 579.805, 0, 0, 0, 0, 1797.5, 532.715, 0, 0, 0, 0, 2080.05, 505.806, 0, 0, 0, 0, 2322.22, 620.168, 0, 0, 0, 0, 2550.95, 781.62, 0, 0, 0, 0, 2806.58, 943.072, 0, 0, 0, 0, 3008.4, 1218.89, 0, 0, 0, 0, 3317.84, 1413.97, 0, 0, 0, 0, 3701.29, 1528.34, 0, 0, 0, 0, 3950.2, 1716.7, 0, 0, 0, 0, 4138.56, 1905.06, 0, 0, 0, 0, 4306.74, 2160.69, 0, 0, 0, 0, 4461.46, 2443.23 )
@@ -46,8 +42,8 @@ _data = {
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 31 )
-creature_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/CreatureShadows")
-shadow_caster_shadows_path = NodePath("Ground/Shadows/Viewport/ViewportRoot/ShadowCasterShadows")
+creature_shadows_path = NodePath("Ground/Shadows/CreatureShadows")
+shadow_caster_shadows_path = NodePath("Ground/Shadows/ShadowCasterShadows")
 obstacles_path = NodePath("Obstacles")
 CreatureScene = ExtResource( 29 )
 
@@ -83,15 +79,9 @@ ground_block_tile_index = 1
 pebble_tile_index = 1
 
 [node name="Shadows" type="Node2D" parent="Ground"]
+modulate = Color( 1, 1, 1, 0.627451 )
 
-[node name="Viewport" type="Viewport" parent="Ground/Shadows"]
-size = Vector2( 1024, 600 )
-transparent_bg = true
-usage = 0
-
-[node name="ViewportRoot" type="Node2D" parent="Ground/Shadows/Viewport"]
-
-[node name="ObstacleMapShadows" type="TileMap" parent="Ground/Shadows/Viewport/ViewportRoot"]
+[node name="ObstacleMapShadows" type="TileMap" parent="Ground/Shadows"]
 mode = 1
 tile_set = SubResource( 2 )
 cell_size = Vector2( 128, 64 )
@@ -99,20 +89,17 @@ cell_tile_origin = 1
 centered_textures = true
 format = 1
 script = ExtResource( 32 )
-obstacle_map_path = NodePath("../../../../../Obstacles/ObstacleMap")
+obstacle_map_path = NodePath("../../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 ),
 7: Rect2( 0, 0, 0, 0 )
 }
 
-[node name="CreatureShadows" parent="Ground/Shadows/Viewport/ViewportRoot" instance=ExtResource( 17 )]
+[node name="CreatureShadows" parent="Ground/Shadows" instance=ExtResource( 17 )]
 
-[node name="ShadowCasterShadows" type="Node2D" parent="Ground/Shadows/Viewport/ViewportRoot"]
+[node name="ShadowCasterShadows" type="Node2D" parent="Ground/Shadows"]
 script = ExtResource( 33 )
 OvalShadowScene = ExtResource( 11 )
-
-[node name="ScrewportTexrect" parent="Ground/Shadows" instance=ExtResource( 27 )]
-texture = SubResource( 3 )
 
 [node name="Obstacles" type="YSort" parent="."]
 
