@@ -1,9 +1,19 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/main/puzzle/wood-bg.png" type="Texture" id=1]
+[ext_resource path="res://src/main/ScaledTextureRect.tscn" type="PackedScene" id=2]
 
-[node name="Wood" type="TextureRect"]
+[node name="Bg" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+
+[node name="Wood" parent="." instance=ExtResource( 2 )]
 texture = ExtResource( 1 )
-expand = true
+
+[node name="Shade" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.345098, 0.14902, 0.0745098, 0.313726 )
+__meta__ = {
+"_editor_description_": "Shades the background, otherwise it's a little too bright"
+}
