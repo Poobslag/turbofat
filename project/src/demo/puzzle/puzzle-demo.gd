@@ -55,17 +55,17 @@ func _input(event: InputEvent) -> void:
 		
 		KEY_P: _add_pickups()
 		
-		KEY_J: $Puzzle/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
+		KEY_J: $Puzzle/Fg/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
 		KEY_K:
 			_food_item_index = (_food_item_index + 1) % 16
-			$Puzzle/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
+			$Puzzle/Fg/FoodItems.add_food_item(Vector2(1, 4), _food_item_index)
 		
 		KEY_L:
 			PuzzleState.set_speed_index((PuzzleState.speed_index + 1) % CurrentLevel.settings.speed.speed_ups.size())
 
 
 func _build_box(y: int) -> void:
-	$Puzzle/Playfield/BoxBuilder.build_box(Rect2(6, y, 3, 3), _box_type)
+	$Puzzle/Fg/Playfield/BoxBuilder.build_box(Rect2(6, y, 3, 3), _box_type)
 
 
 func _insert_line(tiles_key: String, y: int) -> void:
@@ -73,8 +73,8 @@ func _insert_line(tiles_key: String, y: int) -> void:
 
 
 func _clear_line(cleared_line: int) -> void:
-	$Puzzle/Playfield/LineClearer.lines_being_cleared = range(cleared_line, cleared_line + _line_clear_count)
-	$Puzzle/Playfield/LineClearer.clear_line(cleared_line, 1, 0)
+	$Puzzle/Fg/Playfield/LineClearer.lines_being_cleared = range(cleared_line, cleared_line + _line_clear_count)
+	$Puzzle/Fg/Playfield/LineClearer.clear_line(cleared_line, 1, 0)
 
 
 func _add_pickups() -> void:
@@ -91,5 +91,5 @@ func _add_pickups() -> void:
 			Foods.BoxType.WHITE,
 			Foods.BoxType.CAKE_JLO,
 		][int(cell.y) % 5]
-		if $Puzzle/Playfield.tile_map.is_cell_empty(cell):
-			$Puzzle/Pickups.set_pickup(cell, box_type)
+		if $Puzzle/Fg/Playfield.tile_map.is_cell_empty(cell):
+			$Puzzle/Fg/Playfield.pickups.set_pickup(cell, box_type)

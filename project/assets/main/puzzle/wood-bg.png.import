@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/wood-backdrop.png-710a6cb3dad6c847551d50d0c3e2a2d1.stex"
+path="res://.import/wood-bg.png-eda40f10d57ebc4e1004118361842fc7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/puzzle/wood-backdrop.png"
-dest_files=[ "res://.import/wood-backdrop.png-710a6cb3dad6c847551d50d0c3e2a2d1.stex" ]
+source_file="res://assets/main/puzzle/wood-bg.png"
+dest_files=[ "res://.import/wood-bg.png-eda40f10d57ebc4e1004118361842fc7.stex" ]
 
 [params]
 
