@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=2]
+[gd_scene load_steps=99 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -73,6 +73,7 @@
 [ext_resource path="res://src/main/puzzle/piece/piece-queue.gd" type="Script" id=71]
 [ext_resource path="res://src/main/puzzle/StarSeed.tscn" type="PackedScene" id=72]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=73]
+[ext_resource path="res://src/main/puzzle/puzzle-bg-loader.gd" type="Script" id=74]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -228,6 +229,8 @@ script = ExtResource( 21 )
 [node name="BgLoader" type="Control" parent="."]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 74 )
+shadow_paths = [ NodePath("../Fg/Chalkboard/Chalkboard Shadow"), NodePath("../Fg/Playfield Shadow") ]
 
 [node name="Bg" parent="BgLoader" instance=ExtResource( 40 )]
 
@@ -250,9 +253,6 @@ margin_bottom = 292.0
 texture = ExtResource( 42 )
 expand = true
 script = ExtResource( 66 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Chalkboard Shadow" type="Polygon2D" parent="Fg/Chalkboard"]
 show_behind_parent = true
@@ -577,9 +577,6 @@ margin_top = -300.0
 margin_right = 512.0
 margin_bottom = 300.0
 rect_min_size = Vector2( 1024, 600 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="TutorialHud" parent="Hud/HudUi" instance=ExtResource( 2 )]
 visible = false
@@ -752,35 +749,35 @@ script = ExtResource( 19 )
 
 [node name="SceneTransitionCover" parent="." instance=ExtResource( 50 )]
 
-[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/FrostingGlobs" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/ComboCounters" method="_on_Playfield_before_line_cleared"]
-[connection signal="blocks_prepared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_blocks_prepared"]
-[connection signal="box_built" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_box_built"]
-[connection signal="box_built" from="Fg/Playfield" to="Fg/FrostingGlobs" method="_on_Playfield_box_built"]
-[connection signal="food_spawned" from="Fg/Playfield" to="Fg/FoodItems" method="_on_Playfield_food_spawned"]
-[connection signal="line_cleared" from="Fg/Playfield" to="." method="_on_Playfield_line_cleared"]
-[connection signal="line_deleted" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_deleted"]
-[connection signal="line_erased" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_erased"]
-[connection signal="line_inserted" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_inserted"]
-[connection signal="line_inserted" from="Fg/Playfield" to="Fg/PieceManager" method="_on_Playfield_line_inserted"]
-[connection signal="food_spawned" from="Fg/StarSeeds" to="Fg/FoodItems" method="_on_StarSeeds_food_spawned"]
-[connection signal="squish_moved" from="Fg/PieceManager" to="Fg/FrostingGlobs" method="_on_PieceManager_squish_moved"]
-[connection signal="timeout" from="Fg/StepMeter/RecalculateTimer" to="Fg/StepMeter" method="_on_RecalculateTimer_timeout"]
-[connection signal="customer_changed" from="Fg/RestaurantView" to="Fg/FoodItems" method="_on_RestaurantView_customer_changed"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="timeout" from="Fg/FoodItems/FoodFlightTimer" to="Fg/FoodItems" method="_on_FoodFlightTimer_timeout"]
 [connection signal="hit_next_pieces" from="Fg/FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
 [connection signal="hit_playfield" from="Fg/FrostingGlobs" to="Fg/Playfield" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_playfield" from="Fg/FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
 [connection signal="hit_wall" from="Fg/FrostingGlobs" to="Fg/WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
 [connection signal="hit_wall" from="Fg/FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
-[connection signal="timeout" from="Fg/FoodItems/FoodFlightTimer" to="Fg/FoodItems" method="_on_FoodFlightTimer_timeout"]
+[connection signal="squish_moved" from="Fg/PieceManager" to="Fg/FrostingGlobs" method="_on_PieceManager_squish_moved"]
+[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/ComboCounters" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/FrostingGlobs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_before_line_cleared"]
+[connection signal="blocks_prepared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_blocks_prepared"]
+[connection signal="box_built" from="Fg/Playfield" to="Fg/FrostingGlobs" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_box_built"]
+[connection signal="food_spawned" from="Fg/Playfield" to="Fg/FoodItems" method="_on_Playfield_food_spawned"]
+[connection signal="line_cleared" from="Fg/Playfield" to="." method="_on_Playfield_line_cleared"]
+[connection signal="line_deleted" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_deleted"]
+[connection signal="line_erased" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_erased"]
+[connection signal="line_inserted" from="Fg/Playfield" to="Fg/PieceManager" method="_on_Playfield_line_inserted"]
+[connection signal="line_inserted" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_line_inserted"]
+[connection signal="customer_changed" from="Fg/RestaurantView" to="Fg/FoodItems" method="_on_RestaurantView_customer_changed"]
+[connection signal="food_spawned" from="Fg/StarSeeds" to="Fg/FoodItems" method="_on_StarSeeds_food_spawned"]
+[connection signal="timeout" from="Fg/StepMeter/RecalculateTimer" to="Fg/StepMeter" method="_on_RecalculateTimer_timeout"]
 [connection signal="back_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_back_button_pressed"]
 [connection signal="settings_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_settings_button_pressed"]
 [connection signal="start_button_pressed" from="Hud/HudUi/PuzzleMessages" to="." method="_on_Hud_start_button_pressed"]
 [connection signal="hide" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_hide"]
 [connection signal="quit_pressed" from="SettingsMenu" to="." method="_on_SettingsMenu_quit_pressed"]
 [connection signal="show" from="SettingsMenu" to="Hud/TouchButtons" method="_on_Menu_show"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="." method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/HudUi/PuzzleTrace" method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
-[connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
