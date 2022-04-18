@@ -2,7 +2,7 @@ class_name Puzzle
 extends Control
 ## A puzzle scene where a player drops pieces into a playfield of blocks.
 
-onready var _restaurant_view: RestaurantView = $RestaurantView
+onready var _restaurant_view: RestaurantView = $Fg/RestaurantView
 
 onready var _settings_menu: SettingsMenu = $SettingsMenu
 
@@ -13,8 +13,9 @@ func _ready() -> void:
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
-	$Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $PieceManager/TileMap
-	$PieceManager.connect("piece_disturbed", $Playfield.pickups, "_on_PieceManager_piece_disturbed")
+	$Fg/Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
+	$Fg/PieceManager.connect(
+			"piece_disturbed", $Fg/Playfield.pickups, "_on_PieceManager_piece_disturbed")
 	CurrentLevel.puzzle = self
 	
 	# reset the current puzzle, so transient data doesn't carry over from scene to scene
@@ -47,11 +48,11 @@ func _input(event: InputEvent) -> void:
 
 
 func get_playfield() -> Playfield:
-	return $Playfield as Playfield
+	return $Fg/Playfield as Playfield
 
 
 func get_piece_manager() -> PieceManager:
-	return $PieceManager as PieceManager
+	return $Fg/PieceManager as PieceManager
 
 
 func get_piece_queue() -> PieceQueue:
@@ -72,13 +73,13 @@ func scroll_to_new_creature() -> void:
 
 ## Start a countdown when transitioning between levels. Used during tutorials.
 func start_level_countdown() -> void:
-	$PieceManager.set_physics_process(false)
+	$Fg/PieceManager.set_physics_process(false)
 	$Hud/HudUi/PuzzleMessages.show_message(tr("Ready?"))
 	$StartEndSfx.play_ready_sound()
 	yield(get_tree().create_timer(PuzzleState.READY_DURATION), "timeout")
 	$Hud/HudUi/PuzzleMessages.hide_message()
-	$PieceManager.set_physics_process(true)
-	$PieceManager.skip_prespawn()
+	$Fg/PieceManager.set_physics_process(true)
+	$Fg/PieceManager.skip_prespawn()
 	$StartEndSfx.play_go_sound()
 
 
