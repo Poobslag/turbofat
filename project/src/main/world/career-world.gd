@@ -18,14 +18,14 @@ const MOODS_RARE := [Creatures.Mood.AWKWARD1, Creatures.Mood.SIGH0, Creatures.Mo
 
 ## The path to the scene resource defining creatures and obstacles for career regions which do not specify an
 ## environment, or regions which specify an invalid environment
-const DEFAULT_ENVIRONMENT_PATH := "res://src/main/world/environment/MarshEnvironment.tscn"
+const DEFAULT_ENVIRONMENT_PATH := "res://src/main/world/environment/marsh/MarshEnvironment.tscn"
 
 ## key: (String) an environment name which appears in the json definitions
 ## value: (String) The path to the scene resource defining creatures and obstacles which appear in
 ## 	that environment
 const ENVIRONMENT_PATH_BY_NAME := {
-	"lemon": "res://src/main/world/environment/LemonEnvironment.tscn",
-	"marsh": "res://src/main/world/environment/MarshEnvironment.tscn",
+	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
+	"marsh": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",
 }
 
 export (PackedScene) var MileMarkerScene: PackedScene

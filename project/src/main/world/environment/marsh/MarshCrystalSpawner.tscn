@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://src/main/world/obstacle-spawner.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/marsh/MarshCrystal.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/main/world/environment/marsh/marsh-crystal.png" type="Texture" id=3]
+
+[node name="ButtercupCrystal" type="Sprite"]
+scale = Vector2( 0.539, 0.539 )
+texture = ExtResource( 3 )
+centered = false
+offset = Vector2( -70, -102 )
+script = ExtResource( 1 )
+TargetScene = ExtResource( 2 )
+target_properties = {
+}

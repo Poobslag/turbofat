@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://src/main/world/environment/ripple-wave.gd" type="Script" id=1]
+[ext_resource path="res://src/main/world/environment/lemon/LemonRippleSprite.tscn" type="PackedScene" id=2]
+
+[node name="RippleWave" type="Node2D"]
+script = ExtResource( 1 )
+RippleSpriteScene = ExtResource( 2 )

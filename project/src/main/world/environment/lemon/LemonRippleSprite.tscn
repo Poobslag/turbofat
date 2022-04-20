@@ -1,0 +1,130 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://assets/main/world/environment/lemon/lemon-ripples-sheet.png" type="Texture" id=1]
+[ext_resource path="res://src/main/world/environment/ripple-sprite.gd" type="Script" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 0, 350, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 135, 350, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 270, 350, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=4]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 0, 210, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=5]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 135, 210, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=6]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 270, 210, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=7]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=8]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 135, 0, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=9]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 270, 0, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=10]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 0, 70, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=11]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 135, 70, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=12]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 270, 70, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=13]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 0, 140, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=14]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 135, 140, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=15]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 270, 140, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=16]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 0, 280, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=17]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 135, 280, 135, 70 )
+
+[sub_resource type="AtlasTexture" id=18]
+flags = 13
+atlas = ExtResource( 1 )
+region = Rect2( 270, 280, 135, 70 )
+
+[sub_resource type="SpriteFrames" id=19]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "off",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "connected_none",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "connected_left",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ) ],
+"loop": true,
+"name": "connected_both",
+"speed": 2.0
+}, {
+"frames": [ SubResource( 16 ), SubResource( 17 ), SubResource( 18 ) ],
+"loop": true,
+"name": "connected_right",
+"speed": 2.0
+} ]
+
+[node name="RippleSprite" type="AnimatedSprite"]
+position = Vector2( 97.5439, 65.5899 )
+frames = SubResource( 19 )
+animation = "connected_none"
+script = ExtResource( 2 )
+
+[node name="FadeTween" type="Tween" parent="."]
