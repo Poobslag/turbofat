@@ -252,7 +252,7 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 			target_lines = master_customer_combo(CurrentLevel.settings) * finish_condition.value
 			leftover_lines = 0 # the level ends when your combo breaks, it's inefficient to stack extra pieces
 		Milestone.LINES:
-			target_lines = finish_condition.get_meta("lenient_value") if lenient else finish_condition.value
+			target_lines = int(finish_condition.get_meta("lenient_value")) if lenient else finish_condition.value
 		Milestone.PIECES:
 			# warning-ignore:integer_division
 			target_lines = (finish_condition.value + CurrentLevel.settings.rank.preplaced_pieces) / 2.0
