@@ -20,7 +20,7 @@ const CARPET_FLAWED_CELLS := [
 ]
 
 ## percent of carpet cells without imperfections, in the range [0.0, 1.0]
-const CARPET_QUALITY := 0.86
+const CARPET_QUALITY := 0.76
 
 ## autotile coordinates for a kitchen cell with a drain
 const KITCHEN_DRAIN_CELL := Vector2(1, 0)
