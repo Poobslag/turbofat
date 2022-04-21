@@ -68,7 +68,7 @@ func set_finish_condition(type: int, value: int, lenient_value: int = -1) -> voi
 	finish_condition = Milestone.new()
 	finish_condition.set_milestone(type, value)
 	if lenient_value > -1:
-		finish_condition.set_meta("lenient_value", lenient_value)
+		finish_condition.set_meta("lenient_value", str(lenient_value))
 
 
 ## Sets the criteria for succeeding, such as a time or score goal.
