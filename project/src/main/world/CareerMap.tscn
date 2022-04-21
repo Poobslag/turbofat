@@ -92,9 +92,6 @@ margin_top = 32.0
 margin_right = -32.0
 margin_bottom = 208.0
 size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="LevelButtons" type="HBoxContainer" parent="LevelSelect/Control"]
 anchor_right = 1.0
@@ -121,9 +118,6 @@ script = ExtResource( 45 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="StatusBar" type="Panel" parent="Ui/Control"]
 self_modulate = Color( 1, 1, 1, 0.313726 )
@@ -293,11 +287,12 @@ quit_type = 3
 layer = 10
 
 [node name="CheatCodeDetector" parent="Ui" instance=ExtResource( 5 )]
-codes = [ "cutsio", "bossio", "epilio" ]
+codes = [ "bossio", "cambra", "cutsio", "epilio", "moveme" ]
 
 [connection signal="level_button_focused" from="LevelSelect" to="Ui/Control/StatusBar/Distance" method="_on_LevelSelect_level_button_focused"]
 [connection signal="level_button_focused" from="LevelSelect" to="World" method="_on_LevelSelect_level_button_focused"]
 [connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="Ui" method="_on_CheatCodeDetector_cheat_detected"]
+[connection signal="cheat_detected" from="Ui/CheatCodeDetector" to="World" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="pressed" from="Ui/Control/SettingsButton" to="Ui" method="_on_SettingsButton_pressed"]
 [connection signal="pressed" from="Ui/Control/StatusBar/Distance/Adjust/Down" to="Ui/Control/StatusBar/Distance/Adjust" method="_on_Down_pressed"]
 [connection signal="pressed" from="Ui/Control/StatusBar/Distance/Adjust/Up" to="Ui/Control/StatusBar/Distance/Adjust" method="_on_Up_pressed"]

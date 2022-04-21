@@ -4,6 +4,9 @@ extends Camera2D
 ## amount of empty space around characters
 const CAMERA_BOUNDARY := 120
 
+## how fast the camera moves when being moved manually with a cheat code
+const MANUAL_CAMERA_SPEED := 3000
+
 ## The camera drifts slightly. This field is used to calculate the drift amount
 var _total_time := rand_range(0.0, 10.0)
 
@@ -15,6 +18,9 @@ var offset_h_drift_period := 6.450 * rand_range(0.666, 1.333)
 var offset_v_drift_period := 8.570 * rand_range(0.666, 1.333)
 var zoom_drift_period := 15.020 * rand_range(0.666, 1.333)
 
+## 'true' if the camera is being moved manually with a cheat code
+var manual_mode := false
+
 onready var _project_resolution := Vector2(ProjectSettings.get_setting("display/window/size/width"), \
 		ProjectSettings.get_setting("display/window/size/height"))
 
@@ -23,11 +29,26 @@ func _process(delta: float) -> void:
 	_apply_camera_drift()
 
 
+func _physics_process(delta: float) -> void:
+	if manual_mode:
+		# if the camera is being moved manually with a cheat code, adjust its position
+		var dir := Vector2.ZERO
+		if Input.is_action_pressed("ui_right"): dir += Vector2.RIGHT
+		if Input.is_action_pressed("ui_left"): dir += Vector2.LEFT
+		if Input.is_action_pressed("ui_up"): dir += Vector2.UP
+		if Input.is_action_pressed("ui_down"): dir += Vector2.DOWN
+		if dir:
+			position += dir * delta * MANUAL_CAMERA_SPEED
+
+
 ## Pans and zooms the camera to encompass the specified creatures
 ##
 ## Parameters:
 ## 	'creatures': List of creature instances to pan/zoom in on
 func zoom_in_on_creatures(creatures: Array) -> void:
+	if manual_mode:
+		return
+	
 	# calculate the bounding box, including the camera boundary
 	var bounding_box: Rect2 = _creature_bounding_box(creatures)
 	bounding_box = bounding_box.grow(CAMERA_BOUNDARY)
@@ -38,8 +59,8 @@ func zoom_in_on_creatures(creatures: Array) -> void:
 	
 	# calculate the camera zoom
 	_base_zoom.x = max(bounding_box.size.x / _project_resolution.x, bounding_box.size.y / _project_resolution.y)
-	_base_zoom.x = clamp(zoom.x, 0.1, 10.0)
-	_base_zoom.y = zoom.x
+	_base_zoom.x = clamp(_base_zoom.x, 0.1, 10.0)
+	_base_zoom.y = _base_zoom.x
 	
 	# immediately apply camera drift to prevent the camera from snapping for one frame
 	_apply_camera_drift()
