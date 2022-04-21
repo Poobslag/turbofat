@@ -12,7 +12,7 @@ font_data = ExtResource( 4 )
 
 [sub_resource type="RectangleShape2D" id=2]
 
-[node name="MileMarker" type="KinematicBody2D"]
+[node name="MileMarker" type="KinematicBody2D" groups=["mile_markers"]]
 position = Vector2( 60.0678, 68.7442 )
 script = ExtResource( 3 )
 __meta__ = {

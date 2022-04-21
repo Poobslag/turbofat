@@ -40,6 +40,9 @@ var _loaded_environment_path: String
 ## always. Sometimes two level buttons correspond to the same level creature.
 var _focused_level_creature_index := -1
 
+## 'true' if the player is being moved manually with a cheat code
+var _move_cheat_enabled := false
+
 ## path on which which the player and sensei are placed
 onready var _player_path2d: Path2D
 
@@ -50,6 +53,28 @@ func _ready() -> void:
 		return
 	
 	_fill_environment_scene()
+	_move_objects_to_path()
+
+
+func _input(event: InputEvent) -> void:
+	if not _move_cheat_enabled:
+		# input handling is only for move cheat
+		return
+	
+	if event is InputEventKey:
+		if event.is_action_pressed("ui_right") != event.is_action_pressed("ui_left"):
+			# calculate how far to move
+			var distance := 1
+			if event.shift:
+				distance *= 5
+			if event.is_action_pressed("ui_left"):
+				distance *= -1
+			
+			# move the player forward/backward but keep them in the same region
+			var region := PlayerData.career.current_region()
+			PlayerData.career.distance_travelled = clamp(PlayerData.career.distance_travelled + distance,
+					region.distance, region.distance + region.length - 1)
+			_move_objects_to_path()
 
 
 # Loads the cutscene's environment, replacing the current one in the scene tree.
@@ -68,6 +93,7 @@ func refresh_from_career_data(pickable_career_levels: Array) -> void:
 		prepare_environment_resource()
 		refresh_environment_scene()
 		_fill_environment_scene()
+	_move_objects_to_path()
 	
 	for creature in _level_creatures:
 		if creature.is_in_group("customers"):
@@ -93,7 +119,10 @@ func get_visible_customers(level_index: int) -> Array:
 	return result
 
 
-## Adds and rearranges environment objects like the player, sensei, level creatures, mile markers, and camera.
+## Adds environment objects like the player, sensei, level creatures, mile markers, and camera.
+##
+## This method merely adds them to the scene, but does not give them the correct position and appearance. That is
+## handled by the _move_objects_to_path() function.
 func _fill_environment_scene() -> void:
 	_level_creatures.clear()
 	
@@ -107,15 +136,25 @@ func _fill_environment_scene() -> void:
 	
 	_player_path2d = overworld_environment.get_node("PlayerPath")
 	
+	for _i in range(3):
+		_add_level_creature()
+
+
+## Rearranges environment objects like the player, sensei, level creatures, mile markers, and camera.
+func _move_objects_to_path() -> void:
 	var percent := _distance_percent()
 	_move_player_to_path(percent)
 	_move_sensei_to_path(percent)
-	
-	for _i in range(3):
-		_add_level_creature(percent)
-	
+	for i in range(3):
+		_move_level_creature_to_path(i, percent)
+	_remove_mile_markers()
 	_add_mile_markers_to_path()
 	_move_camera()
+
+
+func _remove_mile_markers() -> void:
+	for mile_marker in get_tree().get_nodes_in_group("mile_markers"):
+		mile_marker.queue_free()
 
 
 func _career_environment_path() -> String:
@@ -196,16 +235,15 @@ func _distance_percent() -> float:
 		# for 'endless regions' just put them somewhere arbitrary
 		percent = randf()
 	else:
-		# for typicalregions, move them to the right gradually as they progress
+		# for typical regions, move them to the right gradually as they progress
 		percent = CareerLevelLibrary.region_weight_for_distance(region, PlayerData.career.distance_travelled)
 	return percent
 
 
 ## Adds a 'level creature', a chef or customer associated with a level.
-##
-## Parameters:
-##     'percent': A number in the range [0.0, 1.0] describing how far to the right the creature should be positioned.
-func _add_level_creature(percent: float) -> void:
+func _add_level_creature() -> void:
+	var creature_index := _level_creatures.size()
+	
 	var creature := overworld_environment.add_creature()
 	_level_creatures.append(creature)
 	
@@ -218,25 +256,34 @@ func _add_level_creature(percent: float) -> void:
 		mood = Utils.rand_value(MOODS_RARE)
 	creature.set_meta("mood_when_hovered", mood)
 	
+	if creature_index <= 1:
+		# the two left creatures face right
+		creature.orientation = Creatures.SOUTHEAST
+	else:
+		# the right level creature faces left
+		creature.orientation = Creatures.SOUTHWEST
+
+
+## Repositions the specified 'level creature', a chef or customer associated with a level.
+##
+## Parameters:
+## 	'creature_index': A number in the range [0, 2] specifying the creature to move.
+##
+## 	'percent': A number in the range [0.0, 1.0] describing how far to the right the creature should be positioned.
+func _move_level_creature_to_path(creature_index: int, percent: float) -> void:
 	# Determine the level creature's position. The creature is positioned slightly above _player_path2d.
 	var creature_x_range := _camera_x_range()
+	var creature: Creature = _level_creatures[creature_index]
 	creature.position.x = lerp(creature_x_range.min_value, creature_x_range.max_value, percent) \
-			+ X_DIST_BETWEEN_CUSTOMERS * (_level_creatures.size() - 2)
+			+ X_DIST_BETWEEN_CUSTOMERS * (creature_index - 1)
 	creature.position.y = _player_path2d_y(creature.position.x)
 	
-	match _level_creatures.size():
-		1:
-			# leftmost level creature faces right
-			creature.orientation = Creatures.SOUTHEAST
-			creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
-		2:
-			# middle level creature faces right
-			creature.orientation = Creatures.SOUTHEAST
-			creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH
-		_:
-			# rightmost level creature faces left
-			creature.orientation = Creatures.SOUTHWEST
-			creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
+	if creature_index == 1:
+		# the center creature is placed above the path
+		creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH
+	else:
+		# the left and right creatures are closer to the path
+		creature.position.y -= Y_DIST_BETWEEN_CUSTOMERS_AND_PATH * 0.4
 
 
 ## Moves the player creature to a point along _player_path2d.
@@ -399,3 +446,28 @@ func _on_LevelSelect_level_button_focused(button_index: int) -> void:
 					creature.play_mood(creature.get_meta("mood_when_hovered"))
 				else:
 					creature.play_mood(Creatures.Mood.DEFAULT)
+
+
+func _on_CheatCodeDetector_cheat_detected(cheat: String, detector: CheatCodeDetector) -> void:
+	match cheat:
+		"cambra":
+			# enable manual camera movement with arrow keys
+			_camera.manual_mode = !_camera.manual_mode
+			if not _camera.manual_mode:
+				_move_camera()
+			
+			# disable the player move cheat to avoid a conflict. both cheats use the arrow keys
+			if _camera.manual_mode and _move_cheat_enabled:
+				_move_cheat_enabled = false
+			
+			detector.play_cheat_sound(_camera.manual_mode)
+		"moveme":
+			# enable manual player movement with arrow keys
+			_move_cheat_enabled = !_move_cheat_enabled
+			
+			# disable the camera cheat to avoid a conflict. both cheats use the arrow keys
+			if _move_cheat_enabled and _camera.manual_mode:
+				_camera.manual_mode = false
+				_move_camera()
+			
+			detector.play_cheat_sound(_move_cheat_enabled)
