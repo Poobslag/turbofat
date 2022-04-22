@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://src/main/world/environment/lemon/lemon-obstacle-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/FrostedOverworldTiler.tscn" type="PackedScene" id=2]
@@ -11,8 +11,19 @@
 [ext_resource path="res://src/main/world/environment/lemon/LemonCookieSmall.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/world/environment/lemon/LemonLemon.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=11]
+[ext_resource path="res://src/main/world/environment/lemon/BrotSpotStool.tscn" type="PackedScene" id=12]
+[ext_resource path="res://assets/main/world/environment/lemon/BrotSpot.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/main/world/environment/lemon/brot-spot-stool-orange.png" type="Texture" id=14]
+[ext_resource path="res://assets/main/world/environment/lemon/brot-spot-stool-orange-occupied.png" type="Texture" id=15]
+[ext_resource path="res://assets/main/world/environment/lemon/brot-spot-stool-white-occupied.png" type="Texture" id=16]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/world/environment/lemon/LemonGroundMap.tscn" type="PackedScene" id=18]
+[ext_resource path="res://assets/main/world/environment/lemon/brot-spot-stool-white.png" type="Texture" id=19]
+[ext_resource path="res://src/main/world/environment/lemon/BrotSpotTable.tscn" type="PackedScene" id=20]
+[ext_resource path="res://src/main/world/environment/lemon/PlayerHouse.tscn" type="PackedScene" id=21]
+[ext_resource path="res://src/main/world/environment/lemon/SenseiHouse.tscn" type="PackedScene" id=22]
+[ext_resource path="res://src/main/world/environment/lemon/GravesiteGrave.tscn" type="PackedScene" id=23]
+[ext_resource path="res://src/main/world/environment/lemon/GravesiteCup.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=29]
 [ext_resource path="res://src/main/world/environment/lemon/LemonRippleWaves.tscn" type="PackedScene" id=30]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=31]
@@ -37,7 +48,7 @@
 
 [sub_resource type="Curve2D" id=4]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 68.6212, 714.348, 0, 0, 0, 0, 351.162, 862.346, 0, 0, 0, 0, 674.067, 848.892, 0, 0, 0, 0, 996.971, 721.075, 0, 0, 0, 0, 1239.15, 586.532, 0, 0, 0, 0, 1575.51, 579.805, 0, 0, 0, 0, 1797.5, 532.715, 0, 0, 0, 0, 2080.05, 505.806, 0, 0, 0, 0, 2322.22, 620.168, 0, 0, 0, 0, 2550.95, 781.62, 0, 0, 0, 0, 2806.58, 943.072, 0, 0, 0, 0, 3008.4, 1218.89, 0, 0, 0, 0, 3317.84, 1413.97, 0, 0, 0, 0, 3701.29, 1528.34, 0, 0, 0, 0, 3950.2, 1716.7, 0, 0, 0, 0, 4138.56, 1905.06, 0, 0, 0, 0, 4306.74, 2160.69, 0, 0, 0, 0, 4461.46, 2443.23 )
+"points": PoolVector2Array( 0, 0, 0, 0, -252.375, 639.397, 0, 0, 0, 0, 29.8477, 644.437, 0, 0, 0, 0, 286.872, 777.988, 0, 0, 0, 0, 591.773, 810.746, 0, 0, 0, 0, 866.435, 699.873, 0, 0, 0, 0, 1115.9, 651.996, 0, 0, 0, 0, 1383, 631.837, 0, 0, 0, 0, 1575.51, 579.805, 0, 0, 0, 0, 1797.5, 532.715, 0, 0, 0, 0, 2080.05, 505.806, 0, 0, 0, 0, 2322.22, 620.168, 0, 0, 0, 0, 2550.95, 781.62, 0, 0, 0, 0, 2806.58, 943.072, 0, 0, 0, 0, 3008.4, 1218.89, 0, 0, 0, 0, 3317.84, 1413.97, 0, 0, 0, 0, 3575.93, 1628.37, 0, 0, 0, 0, 3854.97, 1712.85, 0, 0, 0, 0, 4157.35, 1705.29 )
 }
 
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
@@ -135,6 +146,39 @@ grass_density = 0.04
 ground_block_tile_index = 1
 grass_tile_index = 7
 
+[node name="BrotSpot" parent="Obstacles" instance=ExtResource( 13 )]
+position = Vector2( 1394.09, 1375.69 )
+
+[node name="StoolOrange1" parent="Obstacles" instance=ExtResource( 12 )]
+position = Vector2( 1020.17, 1480.12 )
+occupied_texture = ExtResource( 15 )
+unoccupied_texture = ExtResource( 14 )
+
+[node name="StoolOrange2" parent="Obstacles" instance=ExtResource( 12 )]
+position = Vector2( 1146.68, 1551.39 )
+occupied_texture = ExtResource( 15 )
+unoccupied_texture = ExtResource( 14 )
+
+[node name="StoolWhite2" parent="Obstacles" instance=ExtResource( 12 )]
+position = Vector2( 1261.18, 1483.68 )
+occupied_texture = ExtResource( 16 )
+unoccupied_texture = ExtResource( 19 )
+
+[node name="BrotSpotTable" parent="Obstacles" instance=ExtResource( 20 )]
+position = Vector2( 1140.83, 1503.72 )
+
+[node name="GravesiteCup" parent="Obstacles" instance=ExtResource( 24 )]
+position = Vector2( 3203.38, 1995.64 )
+
+[node name="GravesiteGrave" parent="Obstacles" instance=ExtResource( 23 )]
+position = Vector2( 3243.34, 1977.19 )
+
+[node name="PlayerHouse" parent="Obstacles" instance=ExtResource( 21 )]
+position = Vector2( 427.611, 1334.73 )
+
+[node name="SenseiHouse" parent="Obstacles" instance=ExtResource( 22 )]
+position = Vector2( 4591.11, 2331.59 )
+
 [node name="LemonTree1" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1240.82, 1896.81 )
 leaf_type = 1
@@ -144,7 +188,7 @@ mouth_type = 4
 position = Vector2( 1416.72, 1922.67 )
 
 [node name="LemonTree3" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 1444.01, 1452.33 )
+position = Vector2( 1898.29, 1737.74 )
 leaf_type = 1
 mouth_type = 2
 
@@ -162,11 +206,11 @@ position = Vector2( 2966.02, 1913.14 )
 leaf_type = 2
 
 [node name="LemonTree7" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 3748.91, 2065.07 )
+position = Vector2( 3814.01, 2015.68 )
 mouth_type = 3
 
 [node name="LemonTree8" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 3924.81, 2090.93 )
+position = Vector2( 3989.91, 2041.54 )
 leaf_type = 2
 mouth_type = 2
 
@@ -175,28 +219,73 @@ position = Vector2( 496.029, 1772.08 )
 mouth_type = 3
 
 [node name="LemonTree10" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 1006.9, 1498.6 )
+position = Vector2( 1840.23, 1306.51 )
 leaf_type = 2
 
 [node name="LemonTree11" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 4467.92, 3211.39 )
+position = Vector2( 2750.99, 1202.52 )
 leaf_type = 2
-mouth_type = 2
+mouth_type = 3
 
 [node name="LemonTree12" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 4331.57, 3306.75 )
-leaf_type = 1
+position = Vector2( 2614.64, 1297.88 )
+leaf_type = 2
 mouth_type = 3
 
 [node name="LemonTree13" parent="Obstacles" instance=ExtResource( 6 )]
-position = Vector2( 4498.98, 3372.21 )
+position = Vector2( 2782.05, 1363.34 )
+leaf_type = 1
+mouth_type = 3
+
+[node name="LemonTree14" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 1792.04, 1685.38 )
+leaf_type = 2
+mouth_type = 1
+
+[node name="LemonTree15" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 2274.68, 1257.88 )
+leaf_type = 2
+mouth_type = 4
+
+[node name="LemonTree16" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 3332.89, 1608.47 )
+leaf_type = 1
+mouth_type = 2
+
+[node name="LemonTree17" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 3677.13, 1838.94 )
+leaf_type = 1
+mouth_type = 1
+
+[node name="LemonTree18" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 3356.39, 1797.79 )
+leaf_type = 2
+mouth_type = 4
+
+[node name="LemonTree19" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 2720.61, 1811.2 )
+leaf_type = 2
+mouth_type = 3
+
+[node name="LemonTree20" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 2987.18, 1479.56 )
+leaf_type = 2
+mouth_type = 2
+
+[node name="LemonTree21" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 3997.14, 2738.14 )
+leaf_type = 2
+
+[node name="LemonTree22" parent="Obstacles" instance=ExtResource( 6 )]
+position = Vector2( 2216.86, 1623.96 )
+leaf_type = 2
 mouth_type = 4
 
 [node name="LemonCookieSmall1" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 916.02, 1913.88 )
 
 [node name="LemonCookieSmall2" parent="Obstacles" instance=ExtResource( 9 )]
-position = Vector2( 2813.99, 1385.87 )
+position = Vector2( 2879.09, 1336.48 )
 frame = 1
 
 [node name="LemonCookieSmall3" parent="Obstacles" instance=ExtResource( 9 )]
@@ -204,7 +293,7 @@ position = Vector2( 4830.89, 2694 )
 frame = 2
 
 [node name="LemonCookieSmall4" parent="Obstacles" instance=ExtResource( 9 )]
-position = Vector2( 1534.41, 1381.11 )
+position = Vector2( 1988.69, 1666.52 )
 frame = 3
 
 [node name="LemonCookieSmall5" parent="Obstacles" instance=ExtResource( 9 )]
@@ -212,7 +301,7 @@ position = Vector2( 2590.42, 1614.2 )
 frame = 4
 
 [node name="LemonCookieSmall6" parent="Obstacles" instance=ExtResource( 9 )]
-position = Vector2( 3399.08, 1547.6 )
+position = Vector2( 3464.18, 1498.21 )
 frame = 5
 
 [node name="LemonCookieSmall7" parent="Obstacles" instance=ExtResource( 9 )]
@@ -220,7 +309,7 @@ position = Vector2( 2133.77, 1756.9 )
 scale = Vector2( -1, 1 )
 
 [node name="LemonCookieSmall8" parent="Obstacles" instance=ExtResource( 9 )]
-position = Vector2( 1743.71, 1238.41 )
+position = Vector2( 1868.73, 1819 )
 scale = Vector2( -1, 1 )
 frame = 1
 
@@ -230,7 +319,7 @@ scale = Vector2( -1, 1 )
 frame = 2
 
 [node name="LemonCookieSmall10" parent="Obstacles" instance=ExtResource( 9 )]
-position = Vector2( 3674.98, 2032.8 )
+position = Vector2( 3740.08, 1983.41 )
 scale = Vector2( -1, 1 )
 frame = 3
 
@@ -256,30 +345,30 @@ position = Vector2( 4253.12, 2783.85 )
 frame = 2
 
 [node name="LemonCookieLarge4" parent="Obstacles" instance=ExtResource( 7 )]
-position = Vector2( 1139.02, 1494.09 )
+position = Vector2( 2027.05, 1202.1 )
 frame = 3
 
 [node name="LemonCookieLarge5" parent="Obstacles" instance=ExtResource( 7 )]
-position = Vector2( 3053.69, 1481.39 )
+position = Vector2( 3118.79, 1432 )
 scale = Vector2( -1, 1 )
 
 [node name="LemonCookieLarge6" parent="Obstacles" instance=ExtResource( 7 )]
-position = Vector2( 1949.92, 1288.5 )
+position = Vector2( 2513.6, 1188.61 )
 scale = Vector2( -1, 1 )
 frame = 1
 
 [node name="LemonCookieLarge7" parent="Obstacles" instance=ExtResource( 7 )]
-position = Vector2( 4479.9, 2305.08 )
+position = Vector2( 3687.05, 2735.49 )
 scale = Vector2( -1, 1 )
 frame = 2
 
 [node name="LemonCookieLarge8" parent="Obstacles" instance=ExtResource( 7 )]
-position = Vector2( 443.541, 1574.72 )
+position = Vector2( 761.041, 1431.09 )
 scale = Vector2( -1, 1 )
 frame = 3
 
 [node name="LemonLemon1" parent="Obstacles" instance=ExtResource( 10 )]
-position = Vector2( 1284.26, 1489.7 )
+position = Vector2( 2172.29, 1197.71 )
 
 [node name="LemonLemon2" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 2377.48, 1572.08 )
@@ -303,17 +392,17 @@ scale = Vector2( -1, 1 )
 frame = 1
 
 [node name="LemonLemon7" parent="Obstacles" instance=ExtResource( 10 )]
-position = Vector2( 3835.08, 2118.16 )
+position = Vector2( 3900.18, 2068.77 )
 scale = Vector2( -1, 1 )
 frame = 2
 
 [node name="LemonLemon8" parent="Obstacles" instance=ExtResource( 10 )]
-position = Vector2( 2126.35, 1274.26 )
+position = Vector2( 2711.44, 1899.78 )
 scale = Vector2( -1, 1 )
 frame = 2
 
 [node name="LemonLemon9" parent="Obstacles" instance=ExtResource( 10 )]
-position = Vector2( 719.182, 1580.51 )
+position = Vector2( 882.339, 1557.2 )
 
 [node name="LemonLemon10" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 1489.49, 1767.17 )
@@ -324,7 +413,7 @@ position = Vector2( 3059.21, 1917.37 )
 frame = 2
 
 [node name="LemonLemon12" parent="Obstacles" instance=ExtResource( 10 )]
-position = Vector2( 3466.13, 1835.62 )
+position = Vector2( 3531.23, 1786.23 )
 frame = 2
 
 [node name="LemonLemon13" parent="Obstacles" instance=ExtResource( 10 )]
@@ -345,7 +434,7 @@ scale = Vector2( 1, -1 )
 frame = 2
 
 [node name="LemonLemon16" parent="Obstacles" instance=ExtResource( 10 )]
-position = Vector2( 3017.24, 1541.53 )
+position = Vector2( 3260.33, 1646.82 )
 rotation = 3.14159
 scale = Vector2( 1, -1 )
 frame = 2
