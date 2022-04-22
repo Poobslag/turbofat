@@ -1,0 +1,110 @@
+{
+  "version": "2cb4",
+  "start_speed": "T",
+  "finish_condition": {
+    "type": "pieces",
+    "value": "1"
+  },
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "tutorial",
+    "start_level tutorial/spins_0"
+  ],
+  "piece_types": [
+    "piece_l"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "0 14",
+        "tile": "1 10 0"
+      },
+      {
+        "pos": "1 14",
+        "tile": "1 14 0"
+      },
+      {
+        "pos": "2 14",
+        "tile": "1 6 0"
+      },
+      {
+        "pos": "0 15",
+        "tile": "1 11 0"
+      },
+      {
+        "pos": "1 15",
+        "tile": "1 15 0"
+      },
+      {
+        "pos": "2 15",
+        "tile": "1 7 0"
+      },
+      {
+        "pos": "0 16",
+        "tile": "1 9 0"
+      },
+      {
+        "pos": "1 16",
+        "tile": "1 13 0"
+      },
+      {
+        "pos": "2 16",
+        "tile": "1 5 0"
+      },
+      {
+        "pos": "0 17",
+        "tile": "0 2 0"
+      },
+      {
+        "pos": "0 18",
+        "tile": "0 11 0"
+      },
+      {
+        "pos": "1 18",
+        "tile": "0 6 0"
+      },
+      {
+        "pos": "3 18",
+        "tile": "2 5 1"
+      },
+      {
+        "pos": "5 18",
+        "tile": "2 17 1"
+      },
+      {
+        "pos": "6 18",
+        "tile": "2 15 0"
+      },
+      {
+        "pos": "7 18",
+        "tile": "2 13 2"
+      },
+      {
+        "pos": "0 19",
+        "tile": "0 9 0"
+      },
+      {
+        "pos": "1 19",
+        "tile": "0 5 0"
+      },
+      {
+        "pos": "5 19",
+        "tile": "2 2 0"
+      },
+      {
+        "pos": "6 19",
+        "tile": "2 14 1"
+      },
+      {
+        "pos": "8 19",
+        "tile": "2 11 1"
+      }
+    ]
+  }
+}
