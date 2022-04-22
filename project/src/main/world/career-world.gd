@@ -3,10 +3,10 @@ extends OverworldWorld
 ## Populates/unpopulates the creatures and obstacles in the career mode's world.
 
 ## horizontal distance to maintain when placing the player and the sensei
-const X_DIST_BETWEEN_PLAYER_AND_SENSEI := 180
+const X_DIST_BETWEEN_PLAYER_AND_SENSEI := 240
 
 ## horizontal distance to maintain when placing customers
-const X_DIST_BETWEEN_CUSTOMERS := 200
+const X_DIST_BETWEEN_CUSTOMERS := 300
 
 ## vertical distance separating the customers from the player's path
 const Y_DIST_BETWEEN_CUSTOMERS_AND_PATH := 80
