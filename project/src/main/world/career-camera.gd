@@ -2,7 +2,7 @@ extends Camera2D
 ## Career mode camera. Focuses on the area around the player, drifting slightly.
 
 ## amount of empty space around characters
-const CAMERA_BOUNDARY := 120
+const CAMERA_BOUNDARY := 240
 
 ## how fast the camera moves when being moved manually with a cheat code
 const MANUAL_CAMERA_SPEED := 3000
