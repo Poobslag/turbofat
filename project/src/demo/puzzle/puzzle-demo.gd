@@ -17,6 +17,8 @@ var _box_type := 0
 var _food_item_index := 0
 var _cake_box_type: int = Foods.BoxType.CAKE_JJO
 
+onready var _tutorial_hud: TutorialHud = $Puzzle/Hud/HudUi/TutorialHud
+
 ## a local path to a json level resource to demo
 export (String, FILE, "*.json") var level_path: String
 
@@ -25,8 +27,11 @@ func _ready() -> void:
 	if level_path:
 		var json_text := FileUtils.get_file_as_text(level_path)
 		var json_dict: Dictionary = parse_json(json_text)
-		settings.from_json_dict("test_5952", json_dict)
+		var level_key := LevelSettings.level_key_from_path(level_path)
+		settings.from_json_dict(level_key, json_dict)
+		
 	CurrentLevel.start_level(settings)
+	_tutorial_hud.replace_tutorial_module()
 
 
 func _input(event: InputEvent) -> void:
