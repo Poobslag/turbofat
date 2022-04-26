@@ -1,0 +1,98 @@
+{
+  "version": "2cb4",
+  "start_speed": "T",
+  "finish_condition": {
+    "type": "pieces",
+    "value": "1"
+  },
+  "lose_condition": [
+    "top_out 999999"
+  ],
+  "other": [
+    "tutorial",
+    "start_level tutorial/spins_0"
+  ],
+  "piece_types": [
+    "piece_p"
+  ],
+  "rank": [
+    "skip_results",
+    "unranked"
+  ],
+  "input_replay": [
+    "16 +rotate_ccw",
+    "22 -rotate_ccw",
+    "29 +soft_drop",
+    "65 +rotate_ccw",
+    "67 -soft_drop",
+    "72 -rotate_ccw",
+    "85 +move_piece_right",
+    "115 -move_piece_right",
+    "122 +rotate_ccw",
+    "145 -rotate_ccw"
+  ],
+  "tiles": {
+    "start": [
+      {
+        "pos": "6 15",
+        "tile": "0 10 2"
+      },
+      {
+        "pos": "7 15",
+        "tile": "0 12 2"
+      },
+      {
+        "pos": "8 15",
+        "tile": "0 6 2"
+      },
+      {
+        "pos": "6 16",
+        "tile": "0 1 2"
+      },
+      {
+        "pos": "8 16",
+        "tile": "0 1 2"
+      },
+      {
+        "pos": "8 17",
+        "tile": "0 2 3"
+      },
+      {
+        "pos": "8 18",
+        "tile": "0 3 3"
+      },
+      {
+        "pos": "1 19",
+        "tile": "2 5 2"
+      },
+      {
+        "pos": "2 19",
+        "tile": "2 17 3"
+      },
+      {
+        "pos": "3 19",
+        "tile": "2 3 1"
+      },
+      {
+        "pos": "4 19",
+        "tile": "2 0 0"
+      },
+      {
+        "pos": "5 19",
+        "tile": "2 4 0"
+      },
+      {
+        "pos": "6 19",
+        "tile": "0 8 3"
+      },
+      {
+        "pos": "7 19",
+        "tile": "0 12 3"
+      },
+      {
+        "pos": "8 19",
+        "tile": "0 5 3"
+      }
+    ]
+  }
+}
