@@ -108,8 +108,8 @@ func _set_combo_state(start: int, goal: int = 0) -> void:
 
 ## Advance to the next level in the tutorial.
 func _advance_level() -> void:
+	PuzzleState.level_performance.lost = false
 	var delay_between_levels := PuzzleState.DELAY_SHORT
-	var failed_section := false
 	match CurrentLevel.settings.id:
 		"tutorial/combo_0", "tutorial/combo_2":
 			if hud.skill_tally_item("Combo").is_complete():
@@ -117,7 +117,7 @@ func _advance_level() -> void:
 			else:
 				hud.set_message(tr("Oops! ...You needed to clear a line with that last piece."))
 				delay_between_levels = PuzzleState.DELAY_LONG
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 		"tutorial/combo_1":
 			# no delay for the non-interactive segment where we show the player a diagram
 			delay_between_levels = PuzzleState.DELAY_NONE
@@ -131,14 +131,14 @@ func _advance_level() -> void:
 			else:
 				hud.set_message(tr("Oh! ...You needed to clear a line that time."))
 				delay_between_levels = PuzzleState.DELAY_LONG
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 	
 	var level_ids := [
 		"tutorial/combo_0", "tutorial/combo_1", "tutorial/combo_2", "tutorial/combo_3",
 		"tutorial/combo_4", "tutorial/combo_5", "tutorial/combo_6",
 	]
 	var new_level_id: String
-	if failed_section:
+	if PuzzleState.level_performance.lost:
 		new_level_id = CurrentLevel.settings.id
 	else:
 		new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]

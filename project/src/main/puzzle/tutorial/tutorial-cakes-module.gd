@@ -104,10 +104,10 @@ func _prepare_cake_tally_item(max_value: int) -> void:
 
 ## Advance to the next level in the tutorial.
 func _advance_level() -> void:
+	PuzzleState.level_performance.lost = false
 	_level_finished = true
 	
 	var delay_between_levels := PuzzleState.DELAY_SHORT
-	var failed_section := false
 	match CurrentLevel.settings.id:
 		"tutorial/cakes_0":
 			if _cakes_built == 0:
@@ -125,24 +125,24 @@ func _advance_level() -> void:
 				hud.set_message(tr("Good job! You can make gelatin with a J, L and O piece."))
 			else:
 				hud.set_message(tr("Oops! ...Let's try that again."))
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 		"tutorial/cakes_3":
 			if _cakes_built >= 1:
 				_schedule_finish_line_clears()
 				hud.set_message(tr("Oh? But I even gave you an extra piece to trick you!\n\nHmm, how about this."))
 			else:
 				hud.set_message(tr("Oops! ...Let's try that again."))
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 		"tutorial/cakes_4":
 			if _cakes_built >= 2:
 				_schedule_finish_line_clears()
 				hud.set_message(tr("Wow, color me impressed!\n\nBut, there's one more thing you should know about cake boxes."))
 			elif _cakes_built == 1:
 				hud.set_message(tr("Oh, you're half way there! ...Now try for the other one."))
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 			else:
 				hud.set_message(tr("Oops! ...Let's try that again."))
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 		"tutorial/cakes_5":
 			# wait for the player to finish reading the diagram
 			delay_between_levels = PuzzleState.DELAY_LONG
@@ -152,14 +152,14 @@ func _advance_level() -> void:
 				hud.set_message(tr("Wow, that looks delicious!"))
 			else:
 				hud.set_message(tr("Oops! ...Let's try that again."))
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 		"tutorial/cakes_7":
 			if _cakes_built >= 1:
 				_schedule_finish_line_clears()
 				hud.set_message(tr("Good job!"))
 			else:
 				hud.set_message(tr("Oops! ...Let's try that again."))
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 		"tutorial/cakes_8":
 			if _cakes_built >= 2:
 				_schedule_finish_line_clears()
@@ -167,10 +167,10 @@ func _advance_level() -> void:
 				hud.set_message(tr("Wow! That's all eight recipes."))
 			elif _cakes_built == 1:
 				hud.set_message(tr("Oh, you're half way there! ...Now try for the other one."))
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 			else:
 				hud.set_message(tr("Oops! ...Let's try that again."))
-				failed_section = true
+				PuzzleState.level_performance.lost = true
 	
 	var level_ids := [
 		"tutorial/cakes_0", "tutorial/cakes_1", "tutorial/cakes_2", "tutorial/cakes_3",
@@ -178,7 +178,7 @@ func _advance_level() -> void:
 		"tutorial/cakes_8", "tutorial/cakes_9",
 	]
 	var new_level_id: String
-	if failed_section:
+	if PuzzleState.level_performance.lost:
 		_failure_count += 1
 		new_level_id = CurrentLevel.settings.id
 	else:
