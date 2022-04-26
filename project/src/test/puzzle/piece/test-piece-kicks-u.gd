@@ -711,3 +711,60 @@ func test_flip_kick_rl_wide() -> void:
 		"   ",
 	]
 	assert_kick()
+
+
+## A spine flip is where the U piece flips, with its three central pieces remaining in place.
+func test_spine_flip_02() -> void:
+	from_grid = [
+		" : ",
+		"uuu",
+		"u:u",
+	]
+	to_grid = [
+		"u:u",
+		"uuu",
+		" : ",
+	]
+	assert_kick()
+
+
+func test_spine_flip_rl() -> void:
+	from_grid = [
+		"uu ",
+		":u:",
+		"uu ",
+	]
+	to_grid = [
+		" uu",
+		":u:",
+		" uu",
+	]
+	assert_kick()
+
+
+func test_spine_flip_lr() -> void:
+	from_grid = [
+		" uu",
+		":u:",
+		" uu",
+	]
+	to_grid = [
+		"uu ",
+		":u:",
+		"uu ",
+	]
+	assert_kick()
+
+
+func test_spine_flip_20() -> void:
+	from_grid = [
+		"u:u",
+		"uuu",
+		" : ",
+	]
+	to_grid = [
+		" : ",
+		"uuu",
+		"u:u",
+	]
+	assert_kick()

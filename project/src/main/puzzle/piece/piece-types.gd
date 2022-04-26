@@ -189,7 +189,11 @@ var piece_u := PieceType.new("u",
 		[Vector2(2, 2), Vector2(2, 2), Vector2(9, 2), Vector2(12, 2), Vector2(5, 2)],
 		[Vector2(10, 2), Vector2(4, 2), Vector2(3, 2), Vector2(9, 2), Vector2(4, 2)]],
 		KICKS_U,
-		[[Vector2(0, 0)], [Vector2(1, 0)], [Vector2(0, 0)], [Vector2(-1, 0)]],
+		# flip kick data
+		[[Vector2(0, 0), Vector2(0, -1)],
+		[Vector2(1, 0), Vector2(2, 0)],
+		[Vector2(0, 0), Vector2(0, 1)],
+		[Vector2(-1, 0), Vector2(-2, 0)]],
 		5 # u-piece allows additional floor kicks because it kicks the floor twice if you rotate it four times
 	)
 
