@@ -16,14 +16,11 @@ var _show_diagram_count := 0
 
 ## set of level IDs which the player has attempted during this tutorial
 ## key: level id
-## value: true
-var _prepared_levels: Dictionary
+## value: number of attempts, initialized to '1' during the player's first attempt
+var _level_attempt_count: Dictionary
 
 var _squish_diagram_0 := preload("res://assets/main/puzzle/tutorial/squish-diagram-0.png")
 var _squish_diagram_1 := preload("res://assets/main/puzzle/tutorial/squish-diagram-1.png")
-
-## 'true' if the player is retrying a failed tutorial section. We display different messages the second time.
-var _failed_section := false
 
 func _ready() -> void:
 	PuzzleState.connect("after_game_prepared", self, "_on_PuzzleState_after_game_prepared")
@@ -42,7 +39,8 @@ func _ready() -> void:
 
 func prepare_tutorial_level() -> void:
 	.prepare_tutorial_level()
-	_failed_section = _prepared_levels.has(CurrentLevel.settings.id)
+	## 'true' if the player is retrying a failed tutorial section. We display different messages the second time.
+	var failed_section: bool = _level_attempt_count.get(CurrentLevel.settings.id, 0) >= 1
 	
 	match CurrentLevel.settings.id:
 		"tutorial/squish_0":
@@ -64,7 +62,7 @@ func prepare_tutorial_level() -> void:
 			hud.skill_tally_item("LineClear").reset()
 			PuzzleState.level_performance.lines = 0
 			PuzzleState.level_performance.pieces = 0
-			if _failed_section:
+			if failed_section:
 				hud.set_message(tr("Here, let me help you with that."))
 			else:
 				hud.set_message(tr("Of course, squish moves aren't always about being very,"
@@ -74,7 +72,7 @@ func prepare_tutorial_level() -> void:
 			hud.skill_tally_item("LineClear").reset()
 			PuzzleState.level_performance.lines = 0
 			PuzzleState.level_performance.pieces = 0
-			if _failed_section:
+			if failed_section:
 				hud.set_message(tr("Should I make it worse this time?\n\nNo, that would be mean."))
 			else:
 				hud.set_message(tr("Hmmm... What are you up to this time?"))
@@ -82,12 +80,13 @@ func prepare_tutorial_level() -> void:
 			dismiss_sensei([tr("Your training is complete!\n\nBut don't let it go to your head,"
 					+ " we still have some customers to take care of.")])
 	
-	_prepared_levels[CurrentLevel.settings.id] = true
+	var new_attempt_count: int = _level_attempt_count.get(CurrentLevel.settings.id, 0) + 1
+	_level_attempt_count[CurrentLevel.settings.id] = new_attempt_count
 
 
 ## Advance to the next level in the tutorial.
 func _advance_level() -> void:
-	_failed_section = false
+	PuzzleState.level_performance.lost = false
 	var delay_between_levels := PuzzleState.DELAY_SHORT
 	match CurrentLevel.settings.id:
 		"tutorial/squish_1":
@@ -103,14 +102,14 @@ func _advance_level() -> void:
 			if PuzzleState.level_performance.lines >= 3:
 				hud.set_message(tr("Good job!"))
 			else:
-				_failed_section = true
+				PuzzleState.level_performance.lost = true
 				hud.set_message(tr("Oops! ...Let's try that again."))
 		"tutorial/squish_6":
 			if PuzzleState.level_performance.lines >= 3:
 				hud.set_message(tr("Wow! ...I had a few more of these planned, but it looks like you get the idea."))
 				start_customer_countdown()
 			else:
-				_failed_section = true
+				PuzzleState.level_performance.lost = true
 				hud.set_message(tr("Oops! ...Let's try that again."))
 		_:
 			hud.set_message(tr("Good job!"))
@@ -119,7 +118,7 @@ func _advance_level() -> void:
 		"tutorial/squish_4", "tutorial/squish_5", "tutorial/squish_6", "tutorial/squish_7"
 	]
 	var new_level_id: String
-	if _failed_section:
+	if PuzzleState.level_performance.lost:
 		new_level_id = CurrentLevel.settings.id
 	else:
 		new_level_id = level_ids[level_ids.find(CurrentLevel.settings.id) + 1]
@@ -198,7 +197,7 @@ func _on_PuzzleState_after_piece_written() -> void:
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(1.5), "timeout")
-				if _failed_section:
+				if _level_attempt_count.get(CurrentLevel.settings.id, 0) >= 2:
 					hud.set_message(tr("Not again! ...Can you clean this up using squish moves?"
 								+ "\n\nTry to clear three lines."))
 				else:
@@ -215,7 +214,7 @@ func _on_PuzzleState_after_piece_written() -> void:
 				if not hud.get_tutorial_messages().is_all_messages_visible():
 					yield(hud.get_tutorial_messages(), "all_messages_shown")
 				yield(get_tree().create_timer(1.5), "timeout")
-				if _failed_section:
+				if _level_attempt_count.get(CurrentLevel.settings.id, 0) >= 2:
 					hud.set_message(tr("Oh no, it keeps happening! Well, try to clear three lines."
 							+ "\n\nRemember your squish moves!"))
 				else:
@@ -233,7 +232,7 @@ func _on_PuzzleState_after_game_prepared() -> void:
 	hud.skill_tally_item("SnackBox").visible = false
 	hud.skill_tally_item("LineClear").visible = false
 	
-	_prepared_levels.clear()
+	_level_attempt_count.clear()
 	_squish_moves = 0
 	_boxes_built = 0
 	_show_diagram_count = 0

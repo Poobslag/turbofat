@@ -58,6 +58,7 @@ func prepare_tutorial_level() -> void:
 ## The level to advance to depends on what the player's accomplished so far. If they perform squish moves or snack
 ## boxes before they're instructed to, they can skip parts of the tutorial.
 func _advance_level() -> void:
+	PuzzleState.level_performance.lost = false
 	if CurrentLevel.settings.id == "tutorial/basics_0" and _did_build_cake and _did_squish_move:
 		# the player did something crazy; skip the tutorial entirely
 		

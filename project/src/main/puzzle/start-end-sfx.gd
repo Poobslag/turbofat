@@ -36,12 +36,12 @@ func _on_PuzzleState_game_started() -> void:
 	play_go_sound()
 
 
-func _on_PuzzleState_before_level_changed(new_level_id: String) -> void:
+func _on_PuzzleState_before_level_changed(_new_level_id: String) -> void:
 	if CurrentLevel.settings.other.non_interactive or not CurrentLevel.settings.input_replay.empty():
 		# no sound effect or fanfare for non-interactive levels
 		return
 	
-	if new_level_id == CurrentLevel.settings.id:
+	if PuzzleState.level_performance.lost:
 		$SectionFailSound.play()
 	else:
 		$SectionCompleteSound.play()
