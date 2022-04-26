@@ -30,6 +30,7 @@ func _ready() -> void:
 func start_customer_countdown() -> void:
 	yield(PuzzleState, "after_level_changed")
 	MusicPlayer.play_upbeat_bgm(false)
+	PuzzleState.game_active = true
 	puzzle.start_level_countdown()
 
 
@@ -39,7 +40,6 @@ func start_customer_countdown() -> void:
 ## 	'messages': Array of string messages to be shown when the sensei is dismissed.
 func dismiss_sensei(messages: Array) -> void:
 	PuzzleState.reset()
-	PuzzleState.game_active = true
 	puzzle.scroll_to_new_creature()
 	hud.set_messages(messages)
 	hud.enqueue_pop_out()

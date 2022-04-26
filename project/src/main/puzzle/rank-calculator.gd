@@ -267,6 +267,9 @@ func _populate_rank_fields(rank_result: RankResult, lenient: bool) -> void:
 	if finish_condition.type in [Milestone.PIECES, Milestone.TIME_OVER]:
 		target_lines = max(0, ceil(target_lines - leftover_lines / 3.0))
 	
+	# avoid divide-by-zero errors
+	target_lines = max(1, target_lines)
+	
 	var target_leftover_score := target_leftover_score(leftover_lines)
 	
 	rank_result.speed_rank = log(rank_result.speed / target_speed) / log(RDF_SPEED)
