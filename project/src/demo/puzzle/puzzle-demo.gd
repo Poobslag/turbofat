@@ -29,6 +29,8 @@ func _ready() -> void:
 		var json_dict: Dictionary = parse_json(json_text)
 		var level_key := LevelSettings.level_key_from_path(level_path)
 		settings.from_json_dict(level_key, json_dict)
+		# Ignore the start_level property so we can test the middle parts of tutorials
+		settings.other.start_level = ""
 		
 	CurrentLevel.start_level(settings)
 	_tutorial_hud.replace_tutorial_module()

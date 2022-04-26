@@ -7,22 +7,22 @@ func before_each() -> void:
 	PuzzleState.level_performance = PuzzlePerformance.new()
 
 
-func test_master_lpm_slow_marathon() -> void:
+func test_rank_lpm_slow_marathon() -> void:
 	CurrentLevel.settings.speed.set_start_speed("0")
 	assert_almost_eq(_rank_calculator.rank_lpm(RankResult.BEST_RANK), 30.77, 0.1)
 
 
-func test_master_lpm_medium_marathon() -> void:
+func test_rank_lpm_medium_marathon() -> void:
 	CurrentLevel.settings.speed.set_start_speed("A0")
 	assert_almost_eq(_rank_calculator.rank_lpm(RankResult.BEST_RANK), 35.64, 0.1)
 
 
-func test_master_lpm_fast_marathon() -> void:
+func test_rank_lpm_fast_marathon() -> void:
 	CurrentLevel.settings.speed.set_start_speed("F0")
 	assert_almost_eq(_rank_calculator.rank_lpm(RankResult.BEST_RANK), 65.00, 0.1)
 
 
-func test_master_lpm_mixed_marathon() -> void:
+func test_rank_lpm_mixed_marathon() -> void:
 	CurrentLevel.settings.speed.set_start_speed("0")
 	CurrentLevel.settings.speed.add_speed_up(Milestone.LINES, 30, "A0")
 	CurrentLevel.settings.speed.add_speed_up(Milestone.LINES, 60, "F0")
@@ -30,7 +30,7 @@ func test_master_lpm_mixed_marathon() -> void:
 	assert_almost_eq(_rank_calculator.rank_lpm(RankResult.BEST_RANK), 45.27, 0.1)
 
 
-func test_master_lpm_mixed_sprint() -> void:
+func test_rank_lpm_mixed_sprint() -> void:
 	CurrentLevel.settings.speed.set_start_speed("0")
 	CurrentLevel.settings.speed.add_speed_up(Milestone.TIME_OVER, 30, "A0")
 	CurrentLevel.settings.speed.add_speed_up(Milestone.TIME_OVER, 60, "F0")
@@ -99,11 +99,19 @@ func test_calculate_rank_marathon_300_fail() -> void:
 	assert_eq(rank.score_rank, 999.0)
 
 
-func test_calculate_pieces_rank() -> void:
+func test_calculate_rank_40_pieces() -> void:
 	CurrentLevel.settings.set_finish_condition(Milestone.PIECES, 80)
 	PuzzleState.level_performance.pieces = 40
 	var rank := _rank_calculator.calculate_rank()
 	assert_eq(RankCalculator.grade(rank.pieces_rank), "S+")
+
+
+func test_calculate_rank_1_piece() -> void:
+	CurrentLevel.settings.set_finish_condition(Milestone.PIECES, 1)
+	PuzzleState.level_performance.pieces = 0
+	var rank := _rank_calculator.calculate_rank()
+	# most importantly, this should avoid a divide-by-zero error
+	assert_eq(RankCalculator.grade(rank.pieces_rank), "-")
 
 
 func test_calculate_rank_sprint_120_top_out() -> void:

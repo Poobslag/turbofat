@@ -34,25 +34,29 @@ const RANKS_BY_DIFFICULTY := {
 func duration(settings: LevelSettings) -> float:
 	var result := 600.0
 	
-	match settings.finish_condition.type:
-		Milestone.SCORE:
-			# assume the player collects all the one-time pickups
-			var lines := (settings.finish_condition.value - settings.rank.master_pickup_score) \
-					/ _score_per_line(settings)
-			lines = clamp(lines, 1, 10000)
-			result = _duration_for_lines(settings, lines)
-		Milestone.LINES:
-			result = _duration_for_lines(settings, settings.finish_condition.value)
-		Milestone.PIECES:
-			result = _duration_for_lines(settings, settings.finish_condition.value * 2)
-		Milestone.TIME_OVER:
-			result = settings.finish_condition.value
-		Milestone.CUSTOMERS:
-			var rank: float = RANKS_BY_DIFFICULTY[settings.get_difficulty()]
-			var lines_per_customer := RankCalculator.master_customer_combo(settings)
-			lines_per_customer *= pow(RankCalculator.RDF_ENDURANCE, rank)
-			var lines := lines_per_customer * settings.finish_condition.value
-			result = _duration_for_lines(settings, lines)
+	if settings.other.tutorial:
+		# don't estimate duration for tutorials
+		result = 150.0
+	else:
+		match settings.finish_condition.type:
+			Milestone.SCORE:
+				# assume the player collects all the one-time pickups
+				var lines := (settings.finish_condition.value - settings.rank.master_pickup_score) \
+						/ _score_per_line(settings)
+				lines = clamp(lines, 1, 10000)
+				result = _duration_for_lines(settings, lines)
+			Milestone.LINES:
+				result = _duration_for_lines(settings, settings.finish_condition.value)
+			Milestone.PIECES:
+				result = _duration_for_lines(settings, settings.finish_condition.value * 2)
+			Milestone.TIME_OVER:
+				result = settings.finish_condition.value
+			Milestone.CUSTOMERS:
+				var rank: float = RANKS_BY_DIFFICULTY[settings.get_difficulty()]
+				var lines_per_customer := RankCalculator.master_customer_combo(settings)
+				lines_per_customer *= pow(RankCalculator.RDF_ENDURANCE, rank)
+				var lines := lines_per_customer * settings.finish_condition.value
+				result = _duration_for_lines(settings, lines)
 	
 	return result
 
