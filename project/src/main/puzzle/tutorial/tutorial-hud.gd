@@ -7,7 +7,11 @@ signal refreshed
 
 export (NodePath) var puzzle_path: NodePath
 
+export (NodePath) var hud_flash_path: NodePath
+
 onready var puzzle: Puzzle = get_node(puzzle_path)
+
+onready var _hud_flash: HudFlash = get_node(hud_flash_path)
 
 func _ready() -> void:
 	visible = false
@@ -35,12 +39,14 @@ func replace_tutorial_module() -> void:
 	var module_path: String
 	if CurrentLevel.settings.id.begins_with("tutorial/basics_"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialBasicsModule.tscn"
-	elif CurrentLevel.settings.id.begins_with("tutorial/squish_"):
-		module_path = "res://src/main/puzzle/tutorial/TutorialSquishModule.tscn"
-	elif CurrentLevel.settings.id.begins_with("tutorial/combo_"):
-		module_path = "res://src/main/puzzle/tutorial/TutorialComboModule.tscn"
 	elif CurrentLevel.settings.id.begins_with("tutorial/cakes_"):
 		module_path = "res://src/main/puzzle/tutorial/TutorialCakesModule.tscn"
+	elif CurrentLevel.settings.id.begins_with("tutorial/combo_"):
+		module_path = "res://src/main/puzzle/tutorial/TutorialComboModule.tscn"
+	elif CurrentLevel.settings.id.begins_with("tutorial/squish_"):
+		module_path = "res://src/main/puzzle/tutorial/TutorialSquishModule.tscn"
+	elif CurrentLevel.settings.id.begins_with("tutorial/spins_"):
+		module_path = "res://src/main/puzzle/tutorial/TutorialSpinsModule.tscn"
 	
 	if module_path:
 		var tutorial_module_scene: PackedScene = ResourceCache.get_resource(module_path)
@@ -113,18 +119,15 @@ func show_skill_tally_items() -> void:
 		skill_tally_item.visible = true
 
 
-## Pauses and plays a camera _flash effect for transitions.
-func _flash() -> void:
+func flash_for_level_change() -> void:
 	puzzle.get_playfield().add_misc_delay_frames(30)
-	$ZIndex/ColorRect.modulate.a = 0.25
-	$Tween.remove_all()
-	$Tween.interpolate_property($ZIndex/ColorRect, "modulate:a", $ZIndex/ColorRect.modulate.a, 0.0, 1.0)
-	$Tween.start()
+	_hud_flash.flash()
 
 
+## Pauses and plays a camera flash effect for transitions.
 func _on_PuzzleState_after_level_changed() -> void:
 	$SkillTallyItems.visible = CurrentLevel.settings.other.tutorial
-	_flash()
+	flash_for_level_change()
 
 
 func _on_PuzzleState_game_prepared() -> void:

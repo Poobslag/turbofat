@@ -6,6 +6,7 @@ extends Node
 ## 	[shift+0-9]: Enqueues a message; 1 = short, 0 = long
 ## 	[O]: Prints a message in a big font
 ## 	[H]: Hides the message after a short delay
+## 	[F]: Flashes the screen
 
 const TEXTS := [
 	"Oh my,/ you're not supposed to know how to do that!\n\n" \
@@ -45,5 +46,7 @@ func _input(event: InputEvent) -> void:
 				_tutorial_messages.set_message(TEXTS[Utils.key_num(event)])
 		KEY_O:
 			_tutorial_messages.set_big_message("O/H/,/// M/Y/!/!/!")
+		KEY_F:
+			_tutorial_hud.flash_for_level_change()
 		KEY_H:
 			_tutorial_messages.enqueue_pop_out()

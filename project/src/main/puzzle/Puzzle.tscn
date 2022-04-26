@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=2]
+[gd_scene load_steps=100 format=2]
 
 [ext_resource path="res://src/main/ui/menu/theme/h3.theme" type="Theme" id=1]
 [ext_resource path="res://src/main/puzzle/tutorial/TutorialHud.tscn" type="PackedScene" id=2]
@@ -74,6 +74,7 @@
 [ext_resource path="res://src/main/puzzle/StarSeed.tscn" type="PackedScene" id=72]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font-outline.tres" type="DynamicFont" id=73]
 [ext_resource path="res://src/main/puzzle/puzzle-bg-loader.gd" type="Script" id=74]
+[ext_resource path="res://src/main/puzzle/HudFlash.tscn" type="PackedScene" id=75]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0.333333 )
@@ -581,6 +582,7 @@ rect_min_size = Vector2( 1024, 600 )
 [node name="TutorialHud" parent="Hud/HudUi" instance=ExtResource( 2 )]
 visible = false
 puzzle_path = NodePath("../../..")
+hud_flash_path = NodePath("../../HudFlash")
 
 [node name="PuzzleMessages" parent="Hud/HudUi" instance=ExtResource( 62 )]
 mouse_filter = 2
@@ -644,6 +646,8 @@ margin_left = 0.0
 margin_top = 250.0
 margin_right = 482.0
 margin_bottom = 270.0
+
+[node name="HudFlash" parent="Hud" instance=ExtResource( 75 )]
 
 [node name="SettingsMenu" parent="." instance=ExtResource( 26 )]
 
