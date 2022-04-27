@@ -1,0 +1,20 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, grave_8
+(customer) mcgoat, m, !grave_1
+toat, t, !grave_3
+
+p1: Oh it's that gravesite again. But there are no squirrels here...
+p1: /._. Hmm, this cup has an inscription! I didn't notice this before. 'We won't forget -- Turbo Fat'.
+m: Chitter chitter. Aww, we're too early! There's no food yet...
+ (m enters, t enters)
+t: We'll come back in a little while.
+ (m faces right, t faces right)
+p1: ^_^ Oh that's okay! I can make you something quick.
+m: ^__^ Hooray!
+ (m faces left, t faces left)
+ (t mood ^_^)

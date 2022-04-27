@@ -1,0 +1,41 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, forest_3
+(customer) mara, m, forest_9
+
+p1: /._. Mara? ...What are you doing here?
+m: Well... I know you didn't have time to make breakfast! But it turns out I have enough time to follow you around all day!
+m: ^o^ ...Just cook me something quick, I'll totally get out of your hair!
+p1: -_- You tracked me all the way here just for breakfast? There's a German restaurant a block from our house...
+m: /._. Ohhh yeah... I kinda forgot that place existed...
+m: ...
+m: ._.; ...I mean, I guess I walk all the way back there... That's a pretty long walk on an empty stomach...
+ (mara faces left)
+[happy] Okay fine
+[angry] Okay fine
+[evil] Okay fine
+[confused] Okay fine
+
+[happy]
+p1: ^_^ Okay fine fine, stick around and I'll cook you something!
+m: ^__^ Now we're talking!
+ (mara faces right)
+
+[evil]
+p1: -o- Okay fine, I'll cook you something... Something indeed! Mwah ha ha ha ha ha!
+m: ^__^ Oooh okay! ...Evil laugh meal. Now we're talking!!!
+ (mara faces right)
+
+[angry]
+p1: >_< Okay okay fine, twist my arm why don't you!
+m: ^__^ Now we're talking!
+ (mara faces right)
+
+[confused]
+p1: <_< Okay fiiiine, I mean if you're going to make me feel all guilty about it...
+m: ^__^ Now we're talking!
+ (mara faces right)

@@ -28,6 +28,9 @@ const CHAT_DATA_VERSION := "1922"
 const DEFAULT_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
 
 const ENVIRONMENT_SCENE_PATHS_BY_ID := {
+	"lemon": "res://src/main/world/environment/lemon/LemonEnvironment.tscn",
+	"lemon/walk": "res://src/main/world/environment/LemonWalkEnvironment.tscn",
+	
 	"marsh": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",
 	"marsh/walk": "res://src/main/world/environment/marsh/MarshWalkEnvironment.tscn",
 	"marsh/inside_turbo_fat": "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn",

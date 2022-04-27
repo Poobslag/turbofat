@@ -1,0 +1,16 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, forest_3
+(customer) dusty, d, forest_9
+
+d: @_@ Oof, it seems I overate again.
+p1: <__< I'm not going to throw you into your tree, so please don't ask.
+d: No no, that's alright. I've engineered a system of ropes and pulleys, I can just pull myself up.
+p1: /._. You installed an entire pulley system... just to avoid climbing home after you overeat!?
+p1: That doesn't even make sense. How can someone that lazy also be this motivated?
+d: <__< ...Ah. You've never met an engineer before, have you...
+p1: <_< ...

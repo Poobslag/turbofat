@@ -1,0 +1,46 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, forest_9
+(customer) nest, n, forest_3
+rice, r, forest_2
+
+p1: Oh hello! Have you seen someone around here, short and purple? Goes by Turbo?
+n: ^_^/ Uhh yeah, they were headed back that way! Just keep walking, you can't miss them.
+ (nest faces right)
+r: >_< Idiot, don't just tell them! ...If you act coy, they'll give us snacks.
+ (rice faces right)
+n: ._.; What? Oh man! I messed it up again!?
+ (nest faces left)
+p1: ^_^ That's okay! I can make you some snacks.
+ (rice faces left)
+n: -u- Snacks ehh? ...What's in it for us!
+r: ^o^ ...Ignore my idiot friend here, they're not ehh... not the sharpest shirt in the drawer. We'd love some food.
+n: Shh, you're blowing it! You have to act coy!!!
+[cook] I'll just cook
+[wait] I'll just wait
+[leave] I'll just leave
+
+[cook]
+p1: ^O^ I'm just going to start cooking. You two do whatever you want.
+n: -o- Maybe we'll eat it and maybe we won't! I'm not telling you anything!
+ (nest faces right)
+r: >__< Nest, the coy part is over! What's wrong with you!?
+ (rice faces right)
+
+[wait]
+p1: <_< I'm just going to wait while you two work this out.
+n: -o- Maybe we'll work it out and maybe we won't! I'm not telling you anything!
+ (nest faces right)
+r: >__< Nest, the coy part is over! What's wrong with you!?
+ (rice faces right)
+
+[leave]
+p1: @_@ I'm just going to leave, you two are confusing me. ...Are you hungry or not!?
+n: -o- Maybe we're hungry, and maybe we aren't! I'm not telling you anything!
+ (nest faces right)
+r: >__< Nest, the coy part is over! What's wrong with you!?
+ (rice faces right)

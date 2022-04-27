@@ -1,0 +1,24 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, forest_3
+(customer) dusty, d, forest_9
+
+d: @_@ Ohhh well... That was more than I should have eaten today.
+d: It's taking all my energy just to sit up, I don't know HOW I'll find the energy to walk home...
+p1: /._. WALK home? ...You're a squirrel, don't you live up in a tree?
+d: ._.; ...Well, crap.
+d: /._. Say, I know this is a long shot but ehhh... How's your throwing arm?
+p1: -_- You want me... to THROW you home?
+d: Just think of it like basketball, like you're lobbing a three pointer into a hoop fifteen meters off the ground!
+d: @_@ It'll be easy! Well, unless you miss... Then you'll have one heck of a mess to clean up.
+p1: I'm... going to go.
+ (player faces right)
+d: Wait! ...Before you go, can you do one last thing?
+p1: ...?
+ (player faces left)
+d: /._. Perhaps just a quick bite to eat?
+p1: >__< What's wrong with you!!!

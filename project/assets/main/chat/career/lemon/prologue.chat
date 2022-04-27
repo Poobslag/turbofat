@@ -1,0 +1,56 @@
+{"version": "2476"}
+
+[location]
+lemon
+
+[characters]
+player, p1, !player_house_4
+mara, m, !player_house_0
+narrator, n
+
+n: After waking from a weirdly informative cooking dream, #player# left in a hurry to find the chef they dreamt about.
+ (player enters)
+ (player faces right)
+m: Oh! Wait! ...You're leaving without making your breakfast?
+ (mara enters)
+p1: Oh, sure! I'm not really hungry.
+ (player faces left)
+m: ._.; ...So I guess... You're leaving without making my breakfast too?
+p1: <__< ...Um that's okay! ...Because you're not really hungry?
+p1: Sorry, I'll make it up to you! I'll make an extra big lunch as a thank you for being such an awesome roommate.
+p1: ...It's just, I had a dream last night where a chef taught me some advanced cooking techniques...
+m: ^_^ Ooooooh! ...So who is this mystery man? ...Do they have a name?
+[a_man] The man was...
+[a_woman] The woman was...
+[not_sure] The man, um, woman was...
+[nosy] Slow down, nosy!
+
+[a_man]
+p1: /._. ...So their name was 'Turbo', and I THINK they were a man! ...But I have this weird intuition -
+p1: I think if I run into the forest in a random direction for a long time, I might be lucky enough to bump into them? I guess!
+m: ^o^ Well gosh hurry along then!\nI wouldn't want to get in between you and the man of your dreams!
+[end]
+
+[a_woman]
+p1: /._. ...So their name was 'Turbo', and I THINK they were a woman! ...But I have this weird intuition -
+p1: I think if I run into the forest in a random direction for a long time, I might be lucky enough to bump into them? I guess!
+m: ^o^ Well gosh hurry along then!\nI wouldn't want to get in between you and the woman of your dreams!
+[end]
+
+[not_sure]
+p1: /._. ...So their name was 'Turbo', and I don't actually know if they were a man or woman! ...But I have this weird intuition -
+p1: I think if I run into the forest in a random direction for a long time, I might be lucky enough to bump into them? I guess!
+m: ^o^ Well gosh hurry along then! I wouldn't want to get in between you and the man slash woman of your dreams!
+[end]
+
+[nosy]
+p1: >__< ...Okay, nosy! I barely know anything about them, except their name was 'Turbo'. ...But I have this weird intuition -
+p1: /._. I think if I run into the forest in a random direction for a long time, I might be lucky enough to bump into them? I guess!
+m: ^o^ Well gosh hurry along then! I wouldn't want to get in between you and the man slash woman of your dreams!
+[end]
+
+[end]
+p1: -_- What! Don't say it like that...
+ (player faces right)
+m: ^O^ Don't get lost in the forest! Have fun on your timber date.
+p1: -__- ...Ugh. ...Come to think of it, you can make your own lunch.

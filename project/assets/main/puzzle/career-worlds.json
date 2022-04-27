@@ -7,18 +7,24 @@
       "overworld_environment": "lemon",
       "puzzle_environment": "lemon",
       "piece_speed": "0",
+      "cutscene_path": "chat/career/lemon",
+      "flags": [
+        "no_sensei",
+        "no_restaurant"
+      ],
       "boss_level": {
-        "id": "career/boss_7k"
+        "id": "career/boss_7k",
+        "observer_id": "sensei"
       },
       "levels": [
         {
           "id": "career/90_second_sprint"
         },
         {
-          "id": "career/unfresh_fruits"
+          "id": "career/back_to_back"
         },
         {
-          "id": "career/veggie_haters"
+          "id": "career/unfresh_fruits"
         },
         {
           "id": "career/muffin_impossible"
@@ -33,10 +39,10 @@
           "id": "career/cookie_crevice"
         },
         {
-          "id": "career/back_to_back"
+          "id": "career/bottomless_pit"
         },
         {
-          "id": "career/bottomless_pit"
+          "id": "career/veggie_haters"
         }
       ]
     },
