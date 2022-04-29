@@ -5,7 +5,7 @@
 [ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=5]
-[ext_resource path="res://src/main/world/environment/lemon/LemonEnvironment.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/free-roam-camera.gd" type="Script" id=21]
 [ext_resource path="res://src/main/world/free-roam-world.gd" type="Script" id=51]
 
