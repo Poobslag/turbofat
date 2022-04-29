@@ -35,6 +35,8 @@ enum Mood {
 	RAGE2, # infuriated
 	SIGH0, # unamused
 	SIGH1, # exasperated
+	SLY0, # slight smirk
+	SLY1, # hatching a scheme
 	SMILE0, # smiling a little
 	SMILE1, # smiling a lot
 	SWEAT0, # a little nervous

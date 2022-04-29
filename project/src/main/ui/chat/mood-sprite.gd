@@ -22,6 +22,8 @@ var textures := {
 	Creatures.Mood.RAGE2: preload("res://assets/main/ui/chat/choice-mood-rage2.png"),
 	Creatures.Mood.SIGH0: preload("res://assets/main/ui/chat/choice-mood-sigh0.png"),
 	Creatures.Mood.SIGH1: preload("res://assets/main/ui/chat/choice-mood-sigh1.png"),
+	Creatures.Mood.SLY0: preload("res://assets/main/ui/chat/choice-mood-sly0.png"),
+	Creatures.Mood.SLY1: preload("res://assets/main/ui/chat/choice-mood-sly1.png"),
 	Creatures.Mood.SMILE0: preload("res://assets/main/ui/chat/choice-mood-smile0.png"),
 	Creatures.Mood.SMILE1: preload("res://assets/main/ui/chat/choice-mood-smile1.png"),
 	Creatures.Mood.SWEAT0: preload("res://assets/main/ui/chat/choice-mood-sweat0.png"),

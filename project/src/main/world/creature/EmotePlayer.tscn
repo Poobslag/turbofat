@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=2]
+[gd_scene load_steps=67 format=2]
 
 [ext_resource path="res://assets/main/ui/chat/emote-love0.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/main/ui/chat/emote-wave0.wav" type="AudioStream" id=2]
@@ -208,6 +208,45 @@ tracks/15/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=51]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:emote_arm_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animations:eye_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -3143,6 +3182,124 @@ tracks/2/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
 }
 
+[sub_resource type="Animation" id=47]
+resource_name = "sly0"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:emote_eye_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 14, 14 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animations:emote_arm_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Neck0/HeadBobber:rotation_degrees")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 0.0, 0.0, -12.0, -16.0, -12.0, -16.0, -12.0, -16.0, -16.0 ]
+}
+
+[sub_resource type="Animation" id=60]
+resource_name = "sly1"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Animations:emote_arm_frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 2, 2 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Animations:emote_eye_frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 0, 1, 1 ),
+"update": 1,
+"values": [ 0, 3, 3 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Neck0/HeadBobber:head_bob_mode")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 1, 2, 2 ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Neck0/HeadBobber:head_motion_seconds")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 6.5, 0.18, 0.18 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Neck0/HeadBobber:head_motion_pixels")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 0.1, 6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 2.0, 2.5, 2.5 ]
+}
+tracks/5/type = "audio"
+tracks/5/path = NodePath("Animations/EmotePlayer/EmoteSfx")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 11 )
+} ],
+"times": PoolRealArray( 0.15 )
+}
+
 [sub_resource type="Animation" id=42]
 length = 6.0
 tracks/0/type = "value"
@@ -3561,7 +3718,7 @@ tracks/7/keys = {
 "times": PoolRealArray( 0.1 )
 }
 
-[sub_resource type="Animation" id=47]
+[sub_resource type="Animation" id=61]
 length = 6.0
 step = 0.05
 tracks/0/type = "value"
@@ -3834,7 +3991,7 @@ tracks/0/keys = {
 "values": [ 0.0, 10.0, 12.0, 0.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=51]
+[sub_resource type="Animation" id=62]
 resource_name = "yes1"
 length = 1.33333
 step = 0.0333333
@@ -3852,7 +4009,9 @@ tracks/0/keys = {
 }
 
 [node name="EmotePlayer" type="AnimationPlayer"]
+root_node = NodePath("../..")
 anims/...love1... = SubResource( 1 )
+anims/RESET = SubResource( 51 )
 anims/ambient = SubResource( 2 )
 anims/ambient-nw = SubResource( 3 )
 anims/ambient-smile = SubResource( 4 )
@@ -3893,24 +4052,27 @@ anims/rage1 = SubResource( 38 )
 anims/rage2 = SubResource( 39 )
 anims/sigh0 = SubResource( 40 )
 anims/sigh1 = SubResource( 41 )
+anims/sly0 = SubResource( 47 )
+anims/sly1 = SubResource( 60 )
 anims/smile0 = SubResource( 42 )
 anims/smile1 = SubResource( 43 )
 anims/sweat0 = SubResource( 44 )
 anims/sweat1 = SubResource( 45 )
 anims/think0 = SubResource( 46 )
-anims/think1 = SubResource( 47 )
+anims/think1 = SubResource( 61 )
 anims/wave0 = SubResource( 48 )
 anims/wave1 = SubResource( 49 )
 anims/yes0 = SubResource( 50 )
-anims/yes1 = SubResource( 51 )
+anims/yes1 = SubResource( 62 )
 script = ExtResource( 12 )
+creature_visuals_path = NodePath("../..")
 
 [node name="ResetTween" type="Tween" parent="."]
 
 [node name="VolumeDbTween" type="Tween" parent="."]
 
 [node name="EmoteSfx" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 3 )
+stream = ExtResource( 11 )
 bus = "Sound Bus"
 
 [connection signal="animation_finished" from="." to="." method="_on_animation_finished"]
