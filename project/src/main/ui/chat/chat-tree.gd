@@ -28,14 +28,9 @@ const CHAT_DATA_VERSION := "1922"
 const DEFAULT_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
 
 const ENVIRONMENT_SCENE_PATHS_BY_ID := {
-	"indoors": "res://src/main/world/environment/OverworldIndoorsEnvironment.tscn",
-	"outdoors": "res://src/main/world/environment/OverworldEnvironment.tscn",
-	"outdoors_walk": "res://src/main/world/environment/OverworldWalkEnvironment.tscn",
-	
-	"marsh/walk": "res://src/main/world/environment/OverworldWalkEnvironment.tscn",
-	"marsh/inside_turbo_fat": "res://src/main/world/environment/OverworldIndoorsEnvironment.tscn",
-	"marsh/outside_turbo_fat": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",
-	"marsh/buttercup_cafe": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",
+	"marsh": "res://src/main/world/environment/marsh/MarshEnvironment.tscn",
+	"marsh/walk": "res://src/main/world/environment/marsh/MarshWalkEnvironment.tscn",
+	"marsh/inside_turbo_fat": "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn",
 }
 
 ## unique key to identify this conversation in the chat history

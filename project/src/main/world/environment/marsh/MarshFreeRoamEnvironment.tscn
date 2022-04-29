@@ -288,18 +288,18 @@ position = Vector2( 290.833, 661.52 )
 
 [node name="TurboFatEntrance" parent="Obstacles" instance=ExtResource( 44 )]
 position = Vector2( 1409.4, 1003.45 )
-destination_environment_path = "res://src/main/world/environment/OverworldIndoorsEnvironment.tscn"
+destination_environment_path = "res://src/main/world/environment/marsh/MarshIndoorsEnvironment.tscn"
 
 [node name="NwExit" parent="Obstacles" instance=ExtResource( 44 )]
 position = Vector2( 759.881, 359.956 )
-destination_environment_path = "res://src/main/world/environment/OverworldEnvironment.tscn"
+destination_environment_path = "res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn"
 exit_direction = 7
 player_spawn_id = "se_player"
 sensei_spawn_id = "se_sensei"
 
 [node name="SeExit" parent="Obstacles" instance=ExtResource( 44 )]
 position = Vector2( 1919.48, 1759.62 )
-destination_environment_path = "res://src/main/world/environment/OverworldEnvironment.tscn"
+destination_environment_path = "res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn"
 exit_direction = 3
 player_spawn_id = "nw_player"
 sensei_spawn_id = "nw_sensei"
