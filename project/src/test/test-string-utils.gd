@@ -156,11 +156,23 @@ func test_format_money() -> void:
 	assert_eq(StringUtils.format_money(1234567), "¥1,234,567")
 
 
-func test_has_letter() -> void:
-	assert_eq(StringUtils.has_letter("roof action"), true)
-	assert_eq(StringUtils.has_letter("ROOF ACTION"), true)
-	assert_eq(StringUtils.has_letter("123"), false)
-	assert_eq(StringUtils.has_letter(""), false)
+func test_has_non_parentheses_letter() -> void:
+	assert_eq(StringUtils.has_non_parentheses_letter("roof action"), true)
+	assert_eq(StringUtils.has_non_parentheses_letter("ROOF ACTION"), true)
+	assert_eq(StringUtils.has_non_parentheses_letter("123"), false)
+	assert_eq(StringUtils.has_non_parentheses_letter(""), false)
+
+
+func test_has_non_parentheses_letter_parentheses() -> void:
+	assert_eq(StringUtils.has_non_parentheses_letter("(spell"), true)
+	assert_eq(StringUtils.has_non_parentheses_letter("(spell)"), false)
+	assert_eq(StringUtils.has_non_parentheses_letter("spell)"), true)
+	
+	assert_eq(StringUtils.has_non_parentheses_letter("(spell) fry"), true)
+	assert_eq(StringUtils.has_non_parentheses_letter("(spell) (fry)"), false)
+	assert_eq(StringUtils.has_non_parentheses_letter("spell (fry)"), true)
+	
+	assert_eq(StringUtils.has_non_parentheses_letter("(spell) fry (tap)"), true)
 
 
 func test_hyphens_to_underscores() -> void:

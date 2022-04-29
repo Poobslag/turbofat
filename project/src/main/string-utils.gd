@@ -119,13 +119,23 @@ static func format_money(money: int) -> String:
 	return result
 
 
-## Returns true if the specified string contains at least one letter (a-z, A-Z)
-static func has_letter(string: String) -> bool:
+## Returns true if the specified string contains at least one letter (a-z, A-Z) outside parentheses.
+static func has_non_parentheses_letter(string: String) -> bool:
+	var ignored_letter := true
 	var result := false
+	var within_parentheses := false
 	for c in string:
-		if is_letter(c):
+		if c == "(":
+			within_parentheses = true
+		elif c == ")" and within_parentheses:
+			within_parentheses = false
+		elif is_letter(c) and not within_parentheses:
+			ignored_letter = true
 			result = true
 			break
+	if ignored_letter and within_parentheses:
+		# close parentheses was missing, such as '(abc'
+		result = true
 	return result
 
 

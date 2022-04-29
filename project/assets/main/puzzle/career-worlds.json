@@ -7,8 +7,7 @@
       "overworld_environment": "lemon",
       "puzzle_environment": "lemon",
       "piece_speed": "0",
-      "boss_level":
-      {
+      "boss_level": {
         "id": "career/boss_7k"
       },
       "levels": [
@@ -46,8 +45,7 @@
       "distance": 10,
       "icon": "cactus",
       "piece_speed": "0-3",
-      "boss_level":
-      {
+      "boss_level": {
         "id": "career/boss_5k"
       },
       "levels": [
@@ -91,8 +89,7 @@
       "distance": 25,
       "icon": "island",
       "piece_speed": "1-5",
-      "boss_level":
-      {
+      "boss_level": {
         "id": "career/boss_4k"
       },
       "levels": [
@@ -150,16 +147,14 @@
       "overworld_environment": "marsh",
       "piece_speed": "3-7",
       "cutscene_path": "chat/career/marsh",
-      "intro_level":
-      {
+      "intro_level": {
         "id": "career/curly_queue",
         "chef_id": "skins",
         "customer_ids": [
           "rhonk"
         ]
       },
-      "boss_level":
-      {
+      "boss_level": {
         "id": "career/boss_3k"
       },
       "levels": [
@@ -232,8 +227,7 @@
       "distance": 60,
       "icon": "gear",
       "piece_speed": "5-8",
-      "boss_level":
-      {
+      "boss_level": {
         "id": "career/boss_2k"
       },
       "levels": [
@@ -277,8 +271,7 @@
       "distance": 80,
       "icon": "volcano",
       "piece_speed": "6-9",
-      "boss_level":
-      {
+      "boss_level": {
         "id": "career/boss_1k"
       },
       "levels": [
