@@ -325,7 +325,7 @@ func _on_ChatUi_chat_event_played(chat_event: ChatEvent) -> void:
 	var chatter: Creature = ChattableManager.get_creature_by_id(chat_event.who)
 	if chatter and chatter.has_method("play_mood"):
 		chatter.call("play_mood", chat_event.mood)
-	if chatter and StringUtils.has_letter(chat_event.text):
+	if chatter and StringUtils.has_non_parentheses_letter(chat_event.text):
 		chatter.talk()
 		emit_signal("chatter_talked", chatter)
 

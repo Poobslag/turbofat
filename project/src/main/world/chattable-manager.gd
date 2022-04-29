@@ -73,10 +73,9 @@ func refresh_creatures() -> void:
 		var creature: Creature = creature_obj
 		if creature.creature_id == CreatureLibrary.PLAYER_ID:
 			set_player(creature)
-		elif creature.creature_id == CreatureLibrary.SENSEI_ID:
+		if creature.creature_id == CreatureLibrary.SENSEI_ID:
 			set_sensei(creature)
-		else:
-			register_creature(creature)
+		register_creature(creature)
 
 
 ## Returns the Creature object corresponding to the specified chatter name.
@@ -84,14 +83,7 @@ func refresh_creatures() -> void:
 ## A name of SENSEI_ID or PLAYER_ID will return the sensei or player object. To avoid
 ## conflicts, the sensei or player cannot be retrieved by their actual name.
 func get_creature_by_id(chat_id: String) -> Creature:
-	var result: Creature
-	match chat_id:
-		CreatureLibrary.SENSEI_ID: result = ChattableManager.sensei
-		CreatureLibrary.PLAYER_ID: result = ChattableManager.player
-		_:
-			if _creatures_by_id.has(chat_id):
-				result = _creatures_by_id[chat_id]
-	return result
+	return _creatures_by_id.get(chat_id)
 
 
 ## Loads the chat tree for the currently focused chattable.

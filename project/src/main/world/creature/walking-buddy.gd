@@ -23,9 +23,6 @@ enum WalkState {
 const TOO_CLOSE_THRESHOLD := 200.0
 const TOO_FAR_THRESHOLD := 600.0
 
-## the direction the creatures walk, when they're walking
-const WALK_DIR := Vector2(0.70710678118, 0.70710678118)
-
 ## the path to the other creature whom this creature is walking with
 export (NodePath) var buddy_path: NodePath
 
@@ -38,6 +35,9 @@ export (LeaderOrFollower) var leader_or_follower: int
 ## the creature's walking state. they start out in the WALKING state, but might change to the SITTING state if they
 ## reach their destination or if the cutscene specifies to stop.
 var _walk_state: int = WalkState.WALKING
+
+## the direction the creatures walk, when they're walking
+var _desired_walk_direction: Vector2
 
 ## the other creature whom this creature is walking with
 onready var buddy: Creature = get_node(buddy_path)
@@ -52,7 +52,15 @@ onready var _move_timer: Timer = $MoveTimer
 ## super() calls in Godot 4.0
 func _ready() -> void:
 	_move_timer.connect("timeout", self, "_on_MoveTimer_timeout")
-	set_non_iso_walk_direction(WALK_DIR)
+	
+	# calculate the desired walk direction based on the relative position of the destination
+	_desired_walk_direction = Vector2(0.70710678118, 0.70710678118)
+	if destination.position.y < position.y:
+		_desired_walk_direction *= Vector2(1, -1)
+	if destination.position.x < position.x:
+		_desired_walk_direction *= Vector2(-1, 1)
+	
+	set_non_iso_walk_direction(_desired_walk_direction)
 
 
 ## Makes the creature stop walking and sit down.
@@ -93,7 +101,8 @@ func _walk() -> void:
 	
 	var new_non_iso_walk_direction := non_iso_walk_direction
 	if leader_or_follower == LeaderOrFollower.LEADER:
-		if Global.from_iso(position).x > Global.from_iso(destination.position).x:
+		if _desired_walk_direction.x > 0 and Global.from_iso(position).x > Global.from_iso(destination.position).x \
+				or _desired_walk_direction.x < 0 and Global.from_iso(position).x < Global.from_iso(destination.position).x:
 			# we're past our destination. stop moving, and face our buddy
 			_walk_state = WalkState.SITTING
 			_sit_and_reorient()
@@ -103,11 +112,11 @@ func _walk() -> void:
 			new_non_iso_walk_direction = Vector2.ZERO
 		elif not non_iso_walk_direction and buddy_relative_pos.length() < lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.2):
 			# we're too close to our buddy, and they're following us. start moving
-			new_non_iso_walk_direction = WALK_DIR
+			new_non_iso_walk_direction = _desired_walk_direction
 	elif leader_or_follower == LeaderOrFollower.FOLLOWER:
 		if not non_iso_walk_direction and buddy_relative_pos.length() > lerp(TOO_CLOSE_THRESHOLD, TOO_FAR_THRESHOLD, 0.8):
 			# we're too far from our buddy, and they're leading us. start moving
-			new_non_iso_walk_direction = WALK_DIR
+			new_non_iso_walk_direction = _desired_walk_direction
 		elif non_iso_walk_direction and buddy_relative_pos.length() < TOO_CLOSE_THRESHOLD:
 			# we're too close to our buddy, and they're leading us. stop moving
 			new_non_iso_walk_direction = Vector2.ZERO
@@ -134,7 +143,7 @@ func _on_MoveTimer_timeout() -> void:
 		WalkState.ABOUT_TO_WALK:
 			# start walking, unless we're too close or too far
 			_walk_state = WalkState.WALKING
-			set_non_iso_walk_direction(WALK_DIR)
+			set_non_iso_walk_direction(_desired_walk_direction)
 			_walk()
 		WalkState.SITTING:
 			# continue sitting
