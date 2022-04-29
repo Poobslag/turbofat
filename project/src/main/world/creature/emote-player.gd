@@ -22,6 +22,10 @@ const EMOTE_ANIMS := {
 	Creatures.Mood.RAGE2: "rage2",
 	Creatures.Mood.SIGH0: "sigh0",
 	Creatures.Mood.SIGH1: "sigh1",
+	Creatures.Mood.SLY0: "sly0",
+	Creatures.Mood.SLY1: "sly1",
+	Creatures.Mood.SMILE0: "sly0",
+	Creatures.Mood.SMILE1: "sly1",
 	Creatures.Mood.SMILE0: "smile0",
 	Creatures.Mood.SMILE1: "smile1",
 	Creatures.Mood.SWEAT0: "sweat0",
@@ -86,6 +90,10 @@ const TRANSITIONS := {
 	[Creatures.Mood.SIGH0, Creatures.Mood.SIGH1]: "_transition_noop",
 	[Creatures.Mood.SIGH1, Creatures.Mood.SIGH0]: "_transition_sigh1_sigh0",
 	[Creatures.Mood.SIGH1, Creatures.Mood.SIGH1]: "_transition_noop",
+	[Creatures.Mood.SLY0, Creatures.Mood.SLY0]: "_transition_noop",
+	[Creatures.Mood.SLY0, Creatures.Mood.SLY1]: "_transition_sly0_sly1",
+	[Creatures.Mood.SLY1, Creatures.Mood.SLY0]: "_transition_sly1_sly0",
+	[Creatures.Mood.SLY1, Creatures.Mood.SLY1]: "_transition_noop",
 	[Creatures.Mood.SMILE0, Creatures.Mood.SMILE0]: "_transition_noop",
 	[Creatures.Mood.SMILE0, Creatures.Mood.SMILE1]: "_transition_noop",
 	[Creatures.Mood.SMILE1, Creatures.Mood.SMILE0]: "_transition_smile1_smile0",
@@ -479,6 +487,19 @@ func _transition_sigh1_sigh0() -> void:
 	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
 			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
 	_reset_tween.start()
+
+
+## Transitions from 'sly0' to 'sly1', resetting the head's rotation
+func _transition_sly0_sly1() -> void:
+	_reset_tween.remove_all()
+	_reset_tween.interpolate_property(_head_bobber, "rotation_degrees",
+			_head_bobber.rotation_degrees, 0.0, UNEMOTE_DURATION)
+	_reset_tween.start()
+
+
+## Transitions from 'sly1' to 'sly0', removing the laughing head bob effect
+func _transition_sly1_sly0() -> void:
+	_head_bobber.reset_head_bob()
 
 
 ## Transitions from 'smile1' to 'smile0', hiding the pink love bubble and blush.

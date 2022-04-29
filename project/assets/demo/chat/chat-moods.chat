@@ -90,12 +90,20 @@ lorum: I see. ...And how about now?
 
 [moods04]
 lorum: I see. ...And how about now?
+[sly0]
+[sly1]
 [smile0]
 [smile1]
 [sweat0]
 [sweat1]
-[think0]
-[think1]
+
+[sly0]
+#player#: -u- I'm feeling sly0.
+[moods05]
+
+[sly1]
+#player#: -o- I'm feeling sly1.
+[moods05]
 
 [smile0]
 #player#: ^_^ I'm feeling smile0.
@@ -113,20 +121,20 @@ lorum: I see. ...And how about now?
 #player#: .__.; I'm feeling sweat1.
 [moods05]
 
-[think0]
-#player#: /._. I'm feeling think0.
-[moods05]
-
-[think1]
-#player#: @_@ I'm feeling think1.
-[moods05]
-
 [moods05]
 lorum: I see. ...And how about now?
+[think0]
+[think1]
 [wave0]
 [wave1]
 [yes0]
 [yes1]
+
+[think0]
+#player#: /._. I'm feeling think0.
+
+[think1]
+#player#: @_@ I'm feeling think1.
 
 [wave0]
 #player#: ^_^/ I'm feeling wave0.

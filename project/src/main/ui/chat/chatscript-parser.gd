@@ -369,6 +369,8 @@ const MOOD_PREFIXES := {
 	">___<": Creatures.Mood.RAGE2,
 	"-_-": Creatures.Mood.SIGH0,
 	"-__-": Creatures.Mood.SIGH1,
+	"-u-": Creatures.Mood.SLY0,
+	"-o-": Creatures.Mood.SLY1,
 	"^_^": Creatures.Mood.SMILE0,
 	"^__^": Creatures.Mood.SMILE1,
 	"._.;": Creatures.Mood.SWEAT0,
