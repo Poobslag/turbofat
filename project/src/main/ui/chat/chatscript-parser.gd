@@ -65,7 +65,7 @@ class LocationState extends AbstractState:
 	
 	## Syntax:
 	## 	[location]
-	## 	indoors
+	## 	marsh/inside_turbo_fat
 	func line(line: String) -> String:
 		var result := ""
 		if line:
@@ -85,7 +85,7 @@ class DestinationState extends AbstractState:
 	
 	## Syntax:
 	## 	[destination]
-	## 	indoors
+	## 	marsh/inside_turbo_fat
 	func line(line: String) -> String:
 		var result := ""
 		if line:

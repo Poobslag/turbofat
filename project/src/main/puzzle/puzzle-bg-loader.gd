@@ -12,14 +12,12 @@ const DEFAULT_BG_COLOR := Color("582612")
 ## value: (String) The path to the scene resource defining a puzzle background for that environment
 const BG_PATH_BY_NAME := {
 	"lemon": "res://src/main/puzzle/LemonBg.tscn",
-	"indoors": "res://src/main/puzzle/WoodBg.tscn",
 }
 
 ## key: (String) an environment name which appears in the json definitions
 ## value: (Color) The color for shadows in the puzzle scene
 const BG_SHADOW_COLOR_BY_NAME := {
 	"lemon": Color("3d291f"),
-	"indoors": Color("582612"),
 }
 
 ## Nodes showing shadows to recolor when the background changes.

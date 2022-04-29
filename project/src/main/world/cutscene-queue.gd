@@ -10,17 +10,17 @@ extends Node
 ## sensei was absent, we spawn them near the player. This dictionary contains a list of those spawn locations keyed by
 ## the player's location in the cutscene, in the format '<location_id>/<spawn_id>'
 const SENSEI_SPAWN_IDS_BY_PLAYER_LOCATION := {
-	"outdoors/restaurant_1": "restaurant_11",
-	"outdoors/restaurant_4": "restaurant_11",
-	"outdoors/restaurant_8": "restaurant_1",
-	"outdoors/restaurant_11": "restaurant_1",
+	"marsh/restaurant_1": "restaurant_11",
+	"marsh/restaurant_4": "restaurant_11",
+	"marsh/restaurant_8": "restaurant_1",
+	"marsh/restaurant_11": "restaurant_1",
 	
-	"indoors/kitchen_1": "kitchen_7",
-	"indoors/kitchen_3": "kitchen_7",
-	"indoors/kitchen_5": "kitchen_7",
-	"indoors/kitchen_7": "kitchen_5",
-	"indoors/kitchen_9": "kitchen_5",
-	"indoors/kitchen_11": "kitchen_5",
+	"marsh/inside_turbo_fat/kitchen_1": "kitchen_7",
+	"marsh/inside_turbo_fat/kitchen_3": "kitchen_7",
+	"marsh/inside_turbo_fat/kitchen_5": "kitchen_7",
+	"marsh/inside_turbo_fat/kitchen_7": "kitchen_5",
+	"marsh/inside_turbo_fat/kitchen_9": "kitchen_5",
+	"marsh/inside_turbo_fat/kitchen_11": "kitchen_5",
 }
 
 ## Queue of ChatTree and String instances. ChatTrees represent cutscenes, and strings represent level IDs.

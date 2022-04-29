@@ -1,10 +1,10 @@
 {"version": "2476", "fixed_zoom": 1.0}
 
 [location]
-outdoors_walk
+marsh/walk
 
 [destination]
-outdoors
+marsh
 
 [characters]
 player, p1, kitchen_3

@@ -1,7 +1,7 @@
 {"version": "2476", "skip_if": "level_finished marsh/goodbye_everyone"}
 
 [location]
-outdoors
+marsh
 
 [characters]
 player, p1, restaurant_11
