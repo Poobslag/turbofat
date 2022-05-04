@@ -4,7 +4,7 @@
 [ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=2]
 [ext_resource path="res://src/main/world/environment/pebble-overworld-tiler.gd" type="Script" id=3]
 [ext_resource path="res://src/main/world/creature/sensei.gd" type="Script" id=4]
-[ext_resource path="res://src/main/world/environment/FrostedOverworldTiler.tscn" type="PackedScene" id=5]
+[ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=8]
@@ -89,7 +89,7 @@ tile_data = PoolIntArray( -655313, 0, 2, -589777, 0, 65537, -589771, 1, 2, -5242
 script = ExtResource( 3 )
 ground_map_path = NodePath("../../GroundMap")
 pebble_density = 0.015
-ground_block_tile_index = 1
+ground_no_goop_tile_index = 1
 pebble_tile_index = 1
 
 [node name="Shadows" type="Node2D" parent="Ground"]
@@ -137,16 +137,16 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( 1769508, 6, 0, 1900582, 6, 0, 1900586, 6, 0, 2031660, 6, 0, 2162730, 6, 0, 2293808, 6, 0, 2424882, 6, 0, 2424886, 6, 0 )
 
-[node name="FrostedOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 5 )]
-block_tile_index = 3
-midfrost_tile_index = 5
-frost_tile_index = 2
+[node name="GoopOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 5 )]
+no_goop_tile_index = 3
+some_goop_tile_index = 5
+all_goop_tile_index = 2
 corner_tile_index = 6
 
 [node name="GrassOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 14 )]
 ground_map_path = NodePath("../../../Ground/GroundMap")
 grass_density = 0.04
-ground_block_tile_index = 1
+ground_no_goop_tile_index = 1
 grass_tile_index = 7
 
 [node name="InvisibleObstacleTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 22 )]

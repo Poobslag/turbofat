@@ -36,7 +36,7 @@ onready var tile_map := $TileMapClip/TileMap
 onready var pickups := $TileMapClip/Pickups
 onready var line_inserter := $LineInserter
 
-onready var _bg_glob_viewports: FrostingViewports = $BgGlobViewports
+onready var _bg_glob_viewports: GoopViewports = $BgGlobViewports
 onready var _box_builder: BoxBuilder = $BoxBuilder
 onready var _combo_tracker: ComboTracker = $ComboTracker
 onready var line_clearer: LineClearer = $LineClearer
@@ -176,7 +176,7 @@ func _on_LineClearer_after_lines_deleted() -> void:
 	PuzzleState.after_piece_written()
 
 
-func _on_FrostingGlobs_hit_playfield(glob: Node) -> void:
+func _on_GoopGlobs_hit_playfield(glob: Node) -> void:
 	_bg_glob_viewports.add_smear(glob)
 
 

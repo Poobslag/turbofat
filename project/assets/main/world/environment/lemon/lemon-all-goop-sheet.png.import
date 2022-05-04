@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/marsh-midfrost-obstacle-sheet.png-bb2d0abe4f3d157dc58faf16231974ef.stex"
+path="res://.import/lemon-all-goop-sheet.png-eed1506f1224303180d8bd287a39afe6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/marsh/marsh-midfrost-obstacle-sheet.png"
-dest_files=[ "res://.import/marsh-midfrost-obstacle-sheet.png-bb2d0abe4f3d157dc58faf16231974ef.stex" ]
+source_file="res://assets/main/world/environment/lemon/lemon-all-goop-sheet.png"
+dest_files=[ "res://.import/lemon-all-goop-sheet.png-eed1506f1224303180d8bd287a39afe6.stex" ]
 
 [params]
 

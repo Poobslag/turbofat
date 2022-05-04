@@ -6,7 +6,7 @@
 [ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=4]
 [ext_resource path="res://src/main/world/environment/marsh/marsh-terrain-library.tres" type="TileSet" id=5]
 [ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-white.png" type="Texture" id=6]
-[ext_resource path="res://src/main/world/environment/FrostedOverworldTiler.tscn" type="PackedScene" id=7]
+[ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-white-occupied.png" type="Texture" id=8]
 [ext_resource path="res://assets/main/world/environment/marsh/buttercup-stool-green-occupied.png" type="Texture" id=9]
 [ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=12]
@@ -129,10 +129,10 @@ centered_textures = true
 format = 1
 tile_data = PoolIntArray( -196577, 6, 1, 393239, 6, 0, 524309, 6, 0, 655383, 6, 0, 1179675, 6, 0, 1179679, 6, 0, 1179683, 6, 0, 1310749, 6, 0, 1310753, 6, 0, 1441827, 6, 0 )
 
-[node name="FrostedOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 7 )]
-block_tile_index = 3
-midfrost_tile_index = 5
-frost_tile_index = 2
+[node name="GoopOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 7 )]
+no_goop_tile_index = 3
+some_goop_tile_index = 5
+all_goop_tile_index = 2
 corner_tile_index = 6
 
 [node name="Player" parent="Obstacles" instance=ExtResource( 23 )]

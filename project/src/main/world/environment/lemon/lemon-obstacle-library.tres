@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=19 format=2]
 
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-frosting-obstacle-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/lemon/lemon-goop-obstacle-sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/empty-8.png" type="Texture" id=2]
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-midfrost-obstacle-sheet.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/world/environment/marsh/marsh-block-sheet.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/world/environment/lemon/lemon-some-goop-obstacle-sheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/world/environment/marsh/marsh-no-goop-sheet.png" type="Texture" id=4]
 [ext_resource path="res://assets/main/world/environment/fence-sheet.png" type="Texture" id=5]
 [ext_resource path="res://assets/main/world/environment/lemon/lemon-obstacle-corners-sheet.png" type="Texture" id=6]
 [ext_resource path="res://assets/main/world/environment/lemon/lemon-grass-sheet.png" type="Texture" id=7]
@@ -63,7 +63,7 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 74, 106 )
 } ]
 1/z_index = 0
-2/name = "lemon-frosting"
+2/name = "lemon-all-goop"
 2/texture = ExtResource( 1 )
 2/tex_offset = Vector2( 0, -52.5 )
 2/modulate = Color( 1, 1, 1, 1 )
@@ -217,7 +217,7 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 67, 82 )
 } ]
 2/z_index = 0
-3/name = "lemon-block-sheet.png 3"
+3/name = "lemon-no-goop-sheet.png 3"
 3/texture = ExtResource( 4 )
 3/tex_offset = Vector2( 0, -52.5 )
 3/modulate = Color( 1, 1, 1, 1 )
@@ -527,7 +527,7 @@ points = PoolVector2Array( -3, 80, 29, 64, 93, 96, 61, 112 )
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, -28 )
 } ]
 4/z_index = 0
-5/name = "lemon-midfrost-obstacle-sheet.png 5"
+5/name = "lemon-some-goop-obstacle-sheet.png 5"
 5/texture = ExtResource( 3 )
 5/tex_offset = Vector2( 0, -52.5 )
 5/modulate = Color( 1, 1, 1, 1 )

@@ -1,24 +1,24 @@
 extends Node2D
-## Creates frosting globs on the playfield when the player does well.
+## Creates goop globs on the playfield when the player does well.
 ##
-## These frosting globs are initialized to a specific color and position and launched in a random direction.
+## These goop globs are initialized to a specific color and position and launched in a random direction.
 
-## emitted when a frosting glob hits a wall
+## emitted when a goop glob hits a wall
 signal hit_wall(glob)
 
-## emitted when a frosting glob smears against the playfield or next piece area
+## emitted when a goop glob smears against the playfield or next piece area
 signal hit_playfield(glob)
 signal hit_next_pieces(glob)
 
 export (NodePath) var puzzle_tile_map_path: NodePath
 export (NodePath) var playfield_path: NodePath
 export (NodePath) var next_piece_displays_path: NodePath
-export (PackedScene) var FrostingGlobScene: PackedScene
+export (PackedScene) var GoopGlobScene: PackedScene
 
 onready var _puzzle_tile_map: PuzzleTileMap = get_node(puzzle_tile_map_path)
 onready var _puzzle_areas: PuzzleAreas
 
-## relative position of the PuzzleTileMap, used for positioning frosting
+## relative position of the PuzzleTileMap, used for positioning goop
 onready var _puzzle_tile_map_position: Vector2 = _puzzle_tile_map.get_global_transform().origin \
 		- get_global_transform().origin
 
@@ -29,12 +29,12 @@ func _ready() -> void:
 	_puzzle_areas.walled_area = _puzzle_areas.playfield_area.merge(_puzzle_areas.next_pieces_area)
 
 
-## Launches new frosting globs from the specified tile.
+## Launches new goop globs from the specified tile.
 ##
 ## Parameters:
 ## 	'cell_pos': An (x, y) position in the TileMap containing the playfield blocks
 ## 	'box_type': An enum from Foods.BoxType defining the glob's color
-## 	'glob_count': The number of frosting globs to launch
+## 	'glob_count': The number of goop globs to launch
 ## 	'glob_alpha': The initial alpha component of the globs. Affects their size and duration
 func _spawn_globs(cell_pos: Vector2, box_type: int, glob_count: int, glob_alpha: float = 1.0) -> void:
 	var viewport: Viewport
@@ -44,24 +44,24 @@ func _spawn_globs(cell_pos: Vector2, box_type: int, glob_count: int, glob_alpha:
 		viewport = $GlobViewports/Viewport
 	
 	for _i in range(glob_count):
-		var glob: FrostingGlob = _instance_glob(viewport)
+		var glob: GoopGlob = _instance_glob(viewport)
 		var glob_position := _puzzle_tile_map.somewhere_near_cell(cell_pos) + _puzzle_tile_map_position
 		glob.initialize(box_type, glob_position)
 		glob.modulate.a = glob_alpha
 		glob.fall()
 
 
-func _instance_glob(new_parent: Node = null) -> FrostingGlob:
-	var glob: FrostingGlob = FrostingGlobScene.instance()
+func _instance_glob(new_parent: Node = null) -> GoopGlob:
+	var glob: GoopGlob = GoopGlobScene.instance()
 	glob.puzzle_areas = _puzzle_areas
-	glob.connect("hit_wall", self, "_on_FrostingGlob_hit_wall")
-	glob.connect("hit_playfield", self, "_on_FrostingGlob_hit_playfield")
-	glob.connect("hit_next_pieces", self, "_on_FrostingGlob_hit_next_pieces")
+	glob.connect("hit_wall", self, "_on_GoopGlob_hit_wall")
+	glob.connect("hit_playfield", self, "_on_GoopGlob_hit_playfield")
+	glob.connect("hit_next_pieces", self, "_on_GoopGlob_hit_next_pieces")
 	new_parent.add_child(glob)
 	return glob
 
 
-## When a line is cleared, we generate frosting globs for any boxes involved in the line clear.
+## When a line is cleared, we generate goop globs for any boxes involved in the line clear.
 ##
 ## This must be called before the line is cleared so that we can evaluate the food blocks before they're erased.
 func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lines: int, _box_ints: Array) -> void:
@@ -77,7 +77,7 @@ func _on_Playfield_before_line_cleared(y: int, _total_lines: int, _remaining_lin
 		_spawn_globs(Vector2(x, y), box_type, glob_count)
 
 
-## When a box is built, we generate frosting globs on the inside of the box.
+## When a box is built, we generate goop globs on the inside of the box.
 func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
 	for y in range(rect.position.y, rect.end.y):
 		for x in range(rect.position.x, rect.end.x):
@@ -89,10 +89,10 @@ func _on_Playfield_box_built(rect: Rect2, box_type: int) -> void:
 			_spawn_globs(Vector2(x, y), box_type, glob_count)
 
 
-## When a squish move is performed, we generate frosting globs around the old and new piece position.
+## When a squish move is performed, we generate goop globs around the old and new piece position.
 func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void:
 	if CurrentLevel.settings.other.tile_set == PuzzleTileMap.TileSetType.VEGGIE:
-		# veggie pieces don't spawn frosting
+		# veggie pieces don't spawn goop
 		return
 	
 	for pos_arr_item_obj in piece.get_pos_arr():
@@ -103,14 +103,14 @@ func _on_PieceManager_squish_moved(piece: ActivePiece, old_pos: Vector2) -> void
 		_spawn_globs(glob_cell_to, piece.type.get_box_type(), 1, 0.8)
 
 
-func _on_FrostingGlob_hit_wall(glob: FrostingGlob) -> void:
+func _on_GoopGlob_hit_wall(glob: GoopGlob) -> void:
 	emit_signal("hit_wall", glob)
 	glob.queue_free()
 
 
-func _on_FrostingGlob_hit_playfield(glob: FrostingGlob) -> void:
+func _on_GoopGlob_hit_playfield(glob: GoopGlob) -> void:
 	emit_signal("hit_playfield", glob)
 
 
-func _on_FrostingGlob_hit_next_pieces(glob: FrostingGlob) -> void:
+func _on_GoopGlob_hit_next_pieces(glob: GoopGlob) -> void:
 	emit_signal("hit_next_pieces", glob)

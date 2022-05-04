@@ -1,5 +1,5 @@
 class_name PuzzleAreas
-## Positional information about the puzzle screen for frosting physics.
+## Positional information about the puzzle screen for goop physics.
 
 ## the playfield area behind the blocks
 var playfield_area: Rect2

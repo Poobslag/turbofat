@@ -1,9 +1,9 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://assets/main/fuzzy-circle-256.png" type="Texture" id=1]
-[ext_resource path="res://src/main/puzzle/frosting-glob.gd" type="Script" id=2]
+[ext_resource path="res://src/main/puzzle/goop-glob.gd" type="Script" id=2]
 
-[node name="FrostingGlob" type="Sprite"]
+[node name="GoopGlob" type="Sprite"]
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
 

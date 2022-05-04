@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/marsh-block-sheet.png-996b0bbbd6bfec3380a17cc6faefffae.stex"
+path="res://.import/marsh-goop-sheet.png-d02865cac4c615a4a9db0f1b07dae34a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/marsh/marsh-block-sheet.png"
-dest_files=[ "res://.import/marsh-block-sheet.png-996b0bbbd6bfec3380a17cc6faefffae.stex" ]
+source_file="res://assets/main/world/environment/marsh/marsh-goop-sheet.png"
+dest_files=[ "res://.import/marsh-goop-sheet.png-d02865cac4c615a4a9db0f1b07dae34a.stex" ]
 
 [params]
 

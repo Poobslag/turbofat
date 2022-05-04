@@ -2,23 +2,23 @@ tool
 extends Node
 ## Adds pebble tiles to an overworld terrain map.
 ##
-## Pebble tiles are added to a random selection of frosted/unfrosted cake tiles.
+## Pebble tiles are added to a random selection of goopy/goopless cake tiles.
 
 export (NodePath) var ground_map_path: NodePath
 
 ## A number in the range [0.0, 1.0] describing what percent of cake tiles should have pebbles
 export (float) var pebble_density := 0.03
 
-## The ground tilemap's tile ID for unfrosted blocks
-export (int) var ground_block_tile_index: int
+## The ground tilemap's tile ID for goopless blocks
+export (int) var ground_no_goop_tile_index: int
 
-## The ground tilemap's tile ID for frosted blocks
-export (int) var ground_frost_tile_index: int
+## The ground tilemap's tile ID for goopy blocks
+export (int) var ground_all_goop_tile_index: int
 
 ## The terrain tilemap's tile ID for pebble tiles
 export (int) var pebble_tile_index: int
 
-## An editor toggle which adds pebbles to a random selection of frosted/unfrosted cake tiles
+## An editor toggle which adds pebbles to a random selection of goopy/goopless cake tiles
 export (bool) var _autotile: bool setget autotile
 
 ## Terrain tilemap with pebble tiles to place
@@ -34,7 +34,7 @@ func _enter_tree() -> void:
 
 ## Refreshes the position of pebble tiles.
 ##
-## Pebble tiles are added to a random selection of frosted/unfrosted cake tiles.
+## Pebble tiles are added to a random selection of goopy/goopless cake tiles.
 func autotile(value: bool) -> void:
 	if not value:
 		# only autotile in the editor when the 'Autotile' property is toggled
@@ -64,8 +64,8 @@ func _erase_all_pebbles() -> void:
 func _add_random_pebbles() -> void:
 	for cell in _ground_map.get_used_cells():
 		var ground_cell_id := _ground_map.get_cellv(cell)
-		if not ground_cell_id in [ground_block_tile_index, ground_frost_tile_index]:
-			# only add pebbles to frosted/unfrosted cake tiles
+		if not ground_cell_id in [ground_no_goop_tile_index, ground_all_goop_tile_index]:
+			# only add pebbles to goopy/goopless cake tiles
 			continue
 		if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL:
 			continue

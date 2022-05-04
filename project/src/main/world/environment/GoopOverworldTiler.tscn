@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://src/main/world/environment/goop-overworld-tiler.gd" type="Script" id=1]
+
+[node name="GoopOverworldTiler" type="Node"]
+script = ExtResource( 1 )
+no_goop_tile_index = 1
+some_goop_tile_index = 2
