@@ -46,7 +46,7 @@ func _process(_delta: float) -> void:
 ##
 ## 	'autotile_coord': Coordinate of the autotile variation in the corner atlas tileset
 func _set_corner_cell(pos: Vector2, autotile_coord: Vector2) -> void:
-	set_cell(pos.x, pos.y, PuzzleTileMap.TILE_CORNER, false, false, false, autotile_coord);
+	set_cellv(pos, PuzzleTileMap.TILE_CORNER, false, false, false, autotile_coord);
 
 
 ## Returns the x component of the parent autotile coordinate (PAC) for the specified cell.

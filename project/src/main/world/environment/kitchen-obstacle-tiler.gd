@@ -254,11 +254,11 @@ func _autotile_countertop_plates(cell: Vector2) -> void:
 ##
 ## 	'autotile_coord': The autotile coordinates to assign.
 func _set_cell_autotile_coord(cell: Vector2, autotile_coord: Vector2) -> void:
-	var tile: int = _tile_map.get_cell(cell.x, cell.y)
+	var tile: int = _tile_map.get_cellv(cell)
 	var flip_x: bool = _tile_map.is_cell_x_flipped(cell.x, cell.y)
 	var flip_y: bool = _tile_map.is_cell_y_flipped(cell.x, cell.y)
 	var transpose: bool = _tile_map.is_cell_transposed(cell.x, cell.y)
-	_tile_map.set_cell(cell.x, cell.y, tile, flip_x, flip_y, transpose, autotile_coord)
+	_tile_map.set_cellv(cell, tile, flip_x, flip_y, transpose, autotile_coord)
 
 
 ## Autotiles a tile containing a grill.
