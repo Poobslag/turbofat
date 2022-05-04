@@ -315,7 +315,7 @@ func _on_PuzzleState_finish_triggered() -> void:
 func _on_Playfield_blocks_prepared() -> void:
 	_rows_to_preserve_at_end.clear()
 	for cell in _tile_map.get_used_cells():
-		if _tile_map.get_cell(cell.x, cell.y) == 1:
+		if _tile_map.get_cellv(cell) == 1:
 			_rows_to_preserve_at_end[int(cell.y)] = true
 
 

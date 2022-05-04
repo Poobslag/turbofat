@@ -58,7 +58,7 @@ func _initialize_onready_variables() -> void:
 func _erase_all_pebbles() -> void:
 	for cell in _tile_map.get_used_cells():
 		if _tile_map.get_cellv(cell) == pebble_tile_index:
-			_tile_map.set_cell(cell.x, cell.y, TileMap.INVALID_CELL)
+			_tile_map.set_cellv(cell, TileMap.INVALID_CELL)
 
 
 func _add_random_pebbles() -> void:
@@ -67,10 +67,10 @@ func _add_random_pebbles() -> void:
 		if not ground_cell_id in [ground_block_tile_index, ground_frost_tile_index]:
 			# only add pebbles to frosted/unfrosted cake tiles
 			continue
-		if _tile_map.get_cell(cell.x, cell.y) != TileMap.INVALID_CELL:
+		if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL:
 			continue
 		if randf() >= pebble_density:
 			# only add pebbles to a random selection of tiles
 			continue
 		var autotile_coord := Vector2(randi() % 4, randi() % 3)
-		_tile_map.set_cell(cell.x, cell.y, pebble_tile_index, false, false, false, autotile_coord)
+		_tile_map.set_cellv(cell, pebble_tile_index, false, false, false, autotile_coord)

@@ -118,7 +118,7 @@ func _add_pans_to_tilemap(pan_cells: Array) -> void:
 			tile = TILE_INDEX_PAN_GOLD
 		else:
 			tile = TILE_INDEX_PAN
-		_tile_map.set_cell(pan_cell.x, pan_cell.y, tile)
+		_tile_map.set_cellv(pan_cell, tile)
 
 
 ## Updates the tilemap scale based on its contents.

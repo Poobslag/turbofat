@@ -379,7 +379,7 @@ func _set_cell_autotile_coord(cell: Vector2, binding_value: Array) -> void:
 	var flip_x: bool = _tile_map.is_cell_x_flipped(cell.x, cell.y)
 	var flip_y: bool = _tile_map.is_cell_y_flipped(cell.x, cell.y)
 	var transpose: bool = _tile_map.is_cell_transposed(cell.x, cell.y)
-	_tile_map.set_cell(cell.x, cell.y, tile, flip_x, flip_y, transpose, autotile_coord)
+	_tile_map.set_cellv(cell, tile, flip_x, flip_y, transpose, autotile_coord)
 
 
 ## Updates the corner cover for a TileMap cell.
@@ -393,7 +393,7 @@ func _set_corner_cover_autotile_coord(cell: Vector2, autotile_coord: Vector2) ->
 	var flip_x: bool = _tile_map.is_cell_x_flipped(cell.x, cell.y)
 	var flip_y: bool = _tile_map.is_cell_y_flipped(cell.x, cell.y)
 	var transpose: bool = _tile_map.is_cell_transposed(cell.x, cell.y)
-	_corner_map.set_cell(cell.x, cell.y, tile, flip_x, flip_y, transpose, autotile_coord)
+	_corner_map.set_cellv(cell, tile, flip_x, flip_y, transpose, autotile_coord)
 
 
 ## Calculates which of the five adjacent cells have blocks or frosting.

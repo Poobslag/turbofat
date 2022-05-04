@@ -24,13 +24,13 @@ func _process(_delta: float) -> void:
 	# draw shadows cast by blocks in the playfield
 	for cell in _playfield_tile_map.get_used_cells():
 		var autotile_coord: Vector2 = _playfield_tile_map.get_cell_autotile_coord(cell.x, cell.y)
-		set_cell(cell.x, cell.y, _playfield_tile_map.get_cellv(cell), false, false, false, autotile_coord)
+		set_cellv(cell, _playfield_tile_map.get_cellv(cell), false, false, false, autotile_coord)
 
 	# draw shadows cast by the current piece
 	if piece_tile_map:
 		for cell in piece_tile_map.get_used_cells():
 			var autotile_coord: Vector2 = piece_tile_map.get_cell_autotile_coord(cell.x, cell.y)
-			set_cell(cell.x, cell.y, piece_tile_map.get_cellv(cell), false, false, false, autotile_coord)
+			set_cellv(cell, piece_tile_map.get_cellv(cell), false, false, false, autotile_coord)
 		
 		if piece_tile_map.ghost_shadow_offset:
 			# if the ghost_shadow_offset is set, draw a copy of our shadows at the target location
@@ -39,5 +39,5 @@ func _process(_delta: float) -> void:
 				var ghost_cell: Vector2 = piece_tile_map.ghost_shadow_offset + cell
 				# merge our autotile bitmask with the existing bitmask to combine the shadows
 				var merged_x := int(autotile_coord.x) | int(get_cell_autotile_coord(ghost_cell.x, ghost_cell.y).x)
-				set_cell(ghost_cell.x, ghost_cell.y, piece_tile_map.get_cellv(cell), false, false, false, \
+				set_cellv(ghost_cell, piece_tile_map.get_cellv(cell), false, false, false, \
 						Vector2(merged_x, autotile_coord.y))

@@ -48,7 +48,7 @@ func autotile(value: bool) -> void:
 	# remove all invisible obstacles
 	for cell_obj in _tile_map.get_used_cells_by_id(impassable_tile_index):
 		var cell: Vector2 = cell_obj
-		_tile_map.set_cell(cell.x, cell.y, TileMap.INVALID_CELL)
+		_tile_map.set_cellv(cell, TileMap.INVALID_CELL)
 	
 	# calculate empty unwalkable cells which are adjacent to walkable cells
 	var unwalkable_cells := {}
@@ -73,7 +73,7 @@ func autotile(value: bool) -> void:
 	# place an invisible obstacle on each unwalkable cell
 	for unwalkable_cell_obj in unwalkable_cells:
 		var unwalkable_cell: Vector2 = unwalkable_cell_obj
-		_tile_map.set_cell(unwalkable_cell.x, unwalkable_cell.y, impassable_tile_index)
+		_tile_map.set_cellv(unwalkable_cell, impassable_tile_index)
 
 
 ## Preemptively initializes onready variables to avoid null references.

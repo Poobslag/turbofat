@@ -90,7 +90,7 @@ func restore_state() -> void:
 ##
 ## 	'autotile_coord': Coordinate of the autotile variation in the tileset
 func set_block(pos: Vector2, tile: int, autotile_coord: Vector2 = Vector2.ZERO) -> void:
-	set_cell(pos.x, pos.y, tile, false, false, false, autotile_coord)
+	set_cellv(pos, tile, false, false, false, autotile_coord)
 	if is_inside_tree():
 		corner_map.dirty = true
 

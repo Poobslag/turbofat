@@ -70,7 +70,7 @@ func _initialize_onready_variables() -> void:
 func _erase_all_grass() -> void:
 	for cell in _tile_map.get_used_cells():
 		if _tile_map.get_cellv(cell) == grass_tile_index:
-			_tile_map.set_cell(cell.x, cell.y, TileMap.INVALID_CELL)
+			_tile_map.set_cellv(cell, TileMap.INVALID_CELL)
 
 
 func _add_random_grass() -> void:
@@ -79,7 +79,7 @@ func _add_random_grass() -> void:
 		if not ground_cell_id in [ground_block_tile_index, ground_frost_tile_index]:
 			# only add grass to frosted/unfrosted cake tiles
 			continue
-		if _tile_map.get_cell(cell.x, cell.y) != TileMap.INVALID_CELL:
+		if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL:
 			continue
 		if randf() >= grass_density:
 			# only add grass to a random selection of tiles
@@ -89,4 +89,4 @@ func _add_random_grass() -> void:
 			autotile_coord = Utils.rand_value(AUTOTILE_COORDS_UNFROSTED_GRASS)
 		else:
 			autotile_coord = Utils.rand_value(AUTOTILE_COORDS_FROSTED_GRASS)
-		_tile_map.set_cell(cell.x, cell.y, grass_tile_index, false, false, false, autotile_coord)
+		_tile_map.set_cellv(cell, grass_tile_index, false, false, false, autotile_coord)
