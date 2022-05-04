@@ -2,7 +2,7 @@
   "regions": [
     {
       "name": "Permissible World",
-      "distance": 0,
+      "start": 0,
       "icon": "forest",
       "piece_speed": "0",
       "boss_level":
@@ -24,7 +24,7 @@
     },
     {
       "name": "Even World",
-      "distance": 10,
+      "start": 10,
       "icon": "cactus",
       "piece_speed": "0-3",
       "boss_level":
@@ -49,7 +49,7 @@
     },
     {
       "name": "Cherries World",
-      "distance": 20,
+      "start": 20,
       "icon": "island",
       "piece_speed": "A1-AD",
       "intro_level":

@@ -20,7 +20,10 @@ var name: String
 var cutscene_path: String
 
 ## The smallest distance the player must travel to enter this region.
-var distance := 0
+var start := 0
+
+## The furthest distance the player can travel while remaining within this region.
+var end := 0 setget ,get_end
 
 ## A human-readable icon name, such as 'forest' or 'cactus'
 var icon_name: String
@@ -52,7 +55,7 @@ var max_piece_speed := "0"
 func from_json_dict(json: Dictionary) -> void:
 	name = json.get("name", "")
 	cutscene_path = json.get("cutscene_path", "")
-	distance = int(json.get("distance", 0))
+	start = int(json.get("start", 0))
 	icon_name = json.get("icon", "")
 	overworld_environment_name = json.get("overworld_environment", "")
 	puzzle_environment_name = json.get("puzzle_environment", "")
@@ -97,3 +100,7 @@ func get_boss_level_postroll_chat_key() -> String:
 
 func get_epilogue_chat_key() -> String:
 	return "%s/%s" % [cutscene_path, EPILOGUE_CHAT_KEY_NAME] if cutscene_path else ""
+
+
+func get_end() -> int:
+	return start + length - 1

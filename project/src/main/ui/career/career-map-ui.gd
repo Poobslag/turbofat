@@ -49,7 +49,7 @@ func _find_region_with_boss_level() -> CareerRegion:
 	var regions_reversed := CareerLevelLibrary.regions.duplicate()
 	regions_reversed.invert()
 	for region in regions_reversed:
-		if region.distance < PlayerData.career.distance_travelled and region.boss_level:
+		if region.start < PlayerData.career.distance_travelled and region.boss_level:
 			result = region
 			break
 	
@@ -74,7 +74,7 @@ func _force_boss_level() -> bool:
 	
 	if new_region:
 		# move them to the end of their new region
-		PlayerData.career.distance_travelled = new_region.length + new_region.distance - 1
+		PlayerData.career.distance_travelled = new_region.end
 		
 		# set their max_distance_travelled so that the boss level isn't skipped
 		PlayerData.career.max_distance_travelled = PlayerData.career.distance_travelled
@@ -100,7 +100,7 @@ func _find_region_with_epilogue() -> CareerRegion:
 	var regions_reversed := CareerLevelLibrary.regions.duplicate()
 	regions_reversed.invert()
 	for region in regions_reversed:
-		if region.distance < PlayerData.career.distance_travelled \
+		if region.start < PlayerData.career.distance_travelled \
 				and ChatLibrary.chat_exists(region.get_epilogue_chat_key()):
 			result = region
 			break
@@ -108,7 +108,7 @@ func _find_region_with_epilogue() -> CareerRegion:
 	if not result:
 		# find the earliest region with a boss level, if one exists
 		for region in CareerLevelLibrary.regions:
-			if region.distance < PlayerData.career.distance_travelled \
+			if region.start < PlayerData.career.distance_travelled \
 				and ChatLibrary.chat_exists(region.get_epilogue_chat_key()):
 				result = region
 				break
@@ -131,7 +131,7 @@ func _force_epilogue_level() -> bool:
 	if new_region:
 		# move the player to the selected region with an epilogue
 		# warning-ignore:integer_division
-		PlayerData.career.distance_travelled = new_region.distance + new_region.length / 2
+		PlayerData.career.distance_travelled = new_region.start + new_region.length / 2
 		
 		# mark epilogue as unwatched
 		PlayerData.chat_history.delete_history_item(new_region.get_epilogue_chat_key())

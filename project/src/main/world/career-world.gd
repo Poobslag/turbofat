@@ -73,7 +73,7 @@ func _input(event: InputEvent) -> void:
 			# move the player forward/backward but keep them in the same region
 			var region := PlayerData.career.current_region()
 			PlayerData.career.distance_travelled = clamp(PlayerData.career.distance_travelled + distance,
-					region.distance, region.distance + region.length - 1)
+					region.start, region.end)
 			_move_objects_to_path()
 
 
@@ -329,13 +329,13 @@ func _add_mile_markers_to_path() -> void:
 	var curr_region: CareerRegion = PlayerData.career.current_region()
 	if curr_region.length == CareerData.MAX_DISTANCE_TRAVELLED:
 		# In the final (endless) region, numbers count up from 0-99, and then reset back to 0
-		right_num = PlayerData.career.distance_travelled - curr_region.distance
+		right_num = PlayerData.career.distance_travelled - curr_region.start
 		left_num = right_num - PlayerData.career.distance_penalties()[0]
 		left_num %= 100
 		right_num %= 100
 	else:
 		# In most regions, numbers count down to 0. 0 is a 'boss level'
-		right_num = curr_region.length + curr_region.distance - 1 - PlayerData.career.distance_travelled
+		right_num = curr_region.length + curr_region.start - 1 - PlayerData.career.distance_travelled
 		left_num = right_num + PlayerData.career.distance_penalties()[0]
 	
 	_add_mile_marker(_level_creatures[0].position + Vector2(-100, 20), left_num)

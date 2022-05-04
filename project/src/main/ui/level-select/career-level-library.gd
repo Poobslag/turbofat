@@ -38,7 +38,7 @@ func region_for_distance(distance: int) -> CareerRegion:
 	var result: CareerRegion
 	for region in regions:
 		result = region
-		if distance >= region.distance and distance < region.distance + region.length:
+		if distance >= region.start and distance <= region.end:
 			break
 	return result
 
@@ -63,7 +63,7 @@ func piece_speed_for_distance(distance: int, r: float = randf()) -> String:
 
 ## Returns a number between 0.0 and 1.0 corresponding to the player's distance within a region.
 func region_weight_for_distance(region: CareerRegion, distance: int) -> float:
-	return clamp(inverse_lerp(region.distance, region.distance + region.length - 1, distance), 0.0, 1.0)
+	return clamp(inverse_lerp(region.start, region.end, distance), 0.0, 1.0)
 
 
 ## Returns a piece speed between the specified minimum and maximum.
@@ -206,6 +206,6 @@ func _load_raw_json_data() -> void:
 	# populate CareerRegion.length field
 	for i in range(regions.size()):
 		if i < regions.size() - 1:
-			regions[i].length = regions[i + 1].distance - regions[i].distance
+			regions[i].length = regions[i + 1].start - regions[i].start
 		else:
 			regions[i].length = CareerData.MAX_DISTANCE_TRAVELLED

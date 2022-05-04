@@ -27,7 +27,7 @@ func _refresh_buttons() -> void:
 	var next_region: CareerRegion = PlayerData.career.next_region()
 	var prev_region: CareerRegion = PlayerData.career.prev_region()
 	
-	if next_region == curr_region or next_region.distance > PlayerData.career.max_distance_travelled:
+	if next_region == curr_region or next_region.start > PlayerData.career.max_distance_travelled:
 		# disable the up button; the player is at their maximum distance
 		_up_button.disabled = true
 	
@@ -42,13 +42,13 @@ func _refresh_buttons() -> void:
 func _on_Down_pressed() -> void:
 	# set our distance to the start of the previous region
 	var prev_region: CareerRegion = PlayerData.career.prev_region()
-	PlayerData.career.distance_travelled = prev_region.distance
+	PlayerData.career.distance_travelled = prev_region.start
 
 
 func _on_Up_pressed() -> void:
 	# set our distance to the start of the next region
 	var next_region: CareerRegion = PlayerData.career.next_region()
-	PlayerData.career.distance_travelled = next_region.distance
+	PlayerData.career.distance_travelled = next_region.start
 
 
 func _on_CareerData_distance_travelled_changed() -> void:

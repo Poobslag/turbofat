@@ -17,7 +17,7 @@ func test_regions() -> void:
 	
 	var region_1: CareerRegion = CareerLevelLibrary.regions[1]
 	assert_eq(region_1.name, "Even World")
-	assert_eq(region_1.distance, 10)
+	assert_eq(region_1.start, 10)
 	assert_eq(region_1.min_piece_speed, "0")
 	assert_eq(region_1.max_piece_speed, "3")
 	assert_eq(region_1.length, 10)

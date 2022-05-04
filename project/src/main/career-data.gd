@@ -184,14 +184,14 @@ func current_region() -> CareerRegion:
 ## in the first region.
 func prev_region() -> CareerRegion:
 	var current_region := current_region()
-	return CareerLevelLibrary.region_for_distance(current_region.distance - 1)
+	return CareerLevelLibrary.region_for_distance(current_region.start - 1)
 
 
 ## Returns the career region after the region the player is currently in, or the last region if the player is in the
 ## last region.
 func next_region() -> CareerRegion:
 	var current_region := current_region()
-	return CareerLevelLibrary.region_for_distance(current_region.distance + current_region.length)
+	return CareerLevelLibrary.region_for_distance(current_region.end + 1)
 
 
 ## Returns 'true' if the current career region has a prologue the player hasn't seen.
@@ -214,14 +214,14 @@ func is_career_cutscene() -> bool:
 
 ## Returns 'true' if the player has completed the boss level in the specified region
 func is_region_cleared(region: CareerRegion) -> bool:
-	return max_distance_travelled > region.distance + region.length - 1
+	return max_distance_travelled > region.end
 
 
 ## Returns 'true' if the current career mode distance corresponds to an uncleared boss level
 func is_boss_level() -> bool:
 	var result := true
 	var region: CareerRegion = current_region()
-	if distance_travelled != region.distance + region.length - 1:
+	if distance_travelled != region.end:
 		# the player is not at the end of the region
 		result = false
 	elif not region.boss_level:
@@ -282,7 +282,7 @@ func distance_penalties() -> Array:
 	else: result[1] = 2
 	
 	# penalties can never take you into a previous region
-	var max_penalty: int = distance_travelled - current_region().distance
+	var max_penalty: int = distance_travelled - current_region().start
 	for i in range(result.size()):
 		result[i] = min(result[i], max_penalty)
 	
@@ -333,7 +333,7 @@ func _on_CurrentCutscene_cutscene_played(chat_key: String) -> void:
 	if chat_key == region.get_epilogue_chat_key():
 		# advance the player to the next region
 		var old_distance_travelled := distance_travelled
-		distance_travelled = max(distance_travelled, region.distance + region.length)
+		distance_travelled = max(distance_travelled, region.end + 1)
 		max_distance_travelled = max(max_distance_travelled, distance_travelled)
 		if distance_travelled > old_distance_travelled:
 			distance_earned += (distance_travelled - old_distance_travelled)
