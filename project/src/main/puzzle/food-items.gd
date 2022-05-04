@@ -14,8 +14,6 @@ var _customer_index := 0
 ## Queue of FoodItem objects which have floated awhile, and can now fly into a customer's mouth.
 var _food_waiting_to_fly := []
 
-var _window_width: float = ProjectSettings.get_setting("display/window/size/width")
-
 ## Minimum duration in seconds that food should float before flying into a customer's mouth.
 var _food_float_duration := 1.0
 
@@ -106,7 +104,7 @@ func get_target_pos(target_customer: Creature, target_customer_index: int) -> Ve
 					target_pos.x = lerp(0, target_pos.x,
 							_customer_change_timer.time_left / _customer_change_timer.wait_time)
 				else:
-					target_pos.x = lerp(_window_width, target_pos.x,
+					target_pos.x = lerp(Global.window_size.x, target_pos.x,
 							_customer_change_timer.time_left / _customer_change_timer.wait_time)
 			
 			# calculate the position within the global viewport

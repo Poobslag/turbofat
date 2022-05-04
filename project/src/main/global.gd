@@ -35,6 +35,10 @@ const FATNESSES := [
 ## The factor to multiply by to convert non-isometric coordinates into isometric coordinates
 const ISO_FACTOR := Vector2(1.0, 0.5)
 
+## The game's main viewport width, as specified in the project settings
+var window_size: Vector2 = Vector2(ProjectSettings.get_setting("display/window/size/width"), \
+		ProjectSettings.get_setting("display/window/size/height"))
+
 ## Stores all of the benchmarks which have been started
 var _benchmark_start_times := Dictionary()
 

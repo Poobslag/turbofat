@@ -15,9 +15,6 @@ const ZOOM_AMOUNT_FAR := Vector2(1.0, 1.0)
 ## fixed zoom amount for cutscenes which should not zoom in and out
 var fixed_zoom := 0.0
 
-onready var _project_resolution := Vector2(ProjectSettings.get_setting("display/window/size/width"), \
-		ProjectSettings.get_setting("display/window/size/height"))
-
 onready var _overworld_ui: OverworldUi = Global.get_overworld_ui()
 
 func _process(_delta: float) -> void:
@@ -77,8 +74,8 @@ func _calculate_zoom() -> Vector2:
 	
 	var camera_bounding_box := _calculate_camera_bounding_box()
 	var new_zoom := Vector2.ZERO
-	new_zoom.x = max(camera_bounding_box.size.x / _project_resolution.x, \
-			camera_bounding_box.size.y / _project_resolution.y)
+	new_zoom.x = max(camera_bounding_box.size.x / Global.window_size.x, \
+			camera_bounding_box.size.y / Global.window_size.y)
 	new_zoom.x = clamp(new_zoom.x, ZOOM_AMOUNT_NEAR.x, ZOOM_AMOUNT_FAR.x)
 	
 	# If any exceptionally fat creatures are in frame, we keep the camera zoomed out.

@@ -21,9 +21,6 @@ var zoom_drift_period := 15.020 * rand_range(0.666, 1.333)
 ## 'true' if the camera is being moved manually with a cheat code
 var manual_mode := false
 
-onready var _project_resolution := Vector2(ProjectSettings.get_setting("display/window/size/width"), \
-		ProjectSettings.get_setting("display/window/size/height"))
-
 func _process(delta: float) -> void:
 	_total_time += delta
 	_apply_camera_drift()
@@ -58,7 +55,7 @@ func zoom_in_on_creatures(creatures: Array) -> void:
 	position.y -= bounding_box.size.y * 0.25
 	
 	# calculate the camera zoom
-	_base_zoom.x = max(bounding_box.size.x / _project_resolution.x, bounding_box.size.y / _project_resolution.y)
+	_base_zoom.x = max(bounding_box.size.x / Global.window_size.x, bounding_box.size.y / Global.window_size.y)
 	_base_zoom.x = clamp(_base_zoom.x, 0.1, 10.0)
 	_base_zoom.y = _base_zoom.x
 	
