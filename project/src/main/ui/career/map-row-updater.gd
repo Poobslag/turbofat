@@ -72,7 +72,7 @@ func _update_circle_landmark(start_region_index: int, _end_region_index: int) ->
 		4: landmark_type = Landmark.CIRCLES_4
 		5: landmark_type = Landmark.CIRCLES_5
 		_: landmark_type = Landmark.CIRCLES_6
-	landmark_distance = CareerLevelLibrary.regions[start_region_index - 1].distance
+	landmark_distance = CareerLevelLibrary.regions[start_region_index - 1].start
 	
 	_map.set_landmark_type(0, landmark_type)
 	_map.set_landmark_distance(0, landmark_distance)
@@ -92,7 +92,7 @@ func _update_icon_landmarks(start_region_index: int, end_region_index: int) -> v
 			# update the landmark with the region's distance and icon
 			var region: CareerRegion = CareerLevelLibrary.regions[region_index]
 			landmark_type = Utils.enum_from_snake_case(Landmark.LandmarkType, region.icon_name, Landmark.MYSTERY)
-			landmark_distance = region.distance
+			landmark_distance = region.start
 		
 		_map.set_landmark_distance(region_index - start_region_index + 1, landmark_distance)
 		_map.set_landmark_type(region_index - start_region_index + 1, landmark_type)

@@ -28,7 +28,7 @@ func advance_clock(new_distance_earned: int, success: bool) -> void:
 		var boss_region: CareerRegion = career_data.current_region()
 		if success:
 			# if they pass a boss level, update max_distance_travelled to mark the region as cleared
-			career_data.max_distance_travelled = boss_region.distance + boss_region.length
+			career_data.max_distance_travelled = boss_region.end + 1
 		else:
 			# if they fail a boss level, they lose 1-2 days worth of progress
 			career_data.distance_earned = -int(max(boss_region.length * rand_range(0.125, 0.25), 2))
@@ -65,9 +65,9 @@ func _apply_distance_earned(unapplied_distance_earned: int) -> int:
 		# The player can't advance further into this region, they haven't cleared its intro level. Move them to
 		# the start of the region and forbid movement.
 		newly_banked_steps = unapplied_distance_earned
-	elif career_data.distance_travelled + unapplied_distance_earned >= region.distance + region.length:
+	elif career_data.distance_travelled + unapplied_distance_earned >= region.end + 1:
 		# The player is trying to cross into the next region
-		var distance_to_next_region := region.distance + region.length - career_data.distance_travelled
+		var distance_to_next_region := region.end + 1 - career_data.distance_travelled
 		if career_data.is_region_cleared(region):
 			# The player can cross into the next region. Move them to the start of the next region and allow
 			# movement.
@@ -110,4 +110,4 @@ func advance_calendar() -> void:
 	career_data.day = min(career_data.day + 1, CareerData.MAX_DAY)
 	
 	# Put the player at the start of their current region and trigger the 'distance_travelled_changed' signal
-	career_data.distance_travelled = career_data.current_region().distance
+	career_data.distance_travelled = career_data.current_region().start
