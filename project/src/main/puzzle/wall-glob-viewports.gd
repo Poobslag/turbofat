@@ -1,5 +1,5 @@
-extends FrostingViewports
-## Draws frosting smears when globs collide with the four outer walls.
+extends GoopViewports
+## Draws goop smears when globs collide with the four outer walls.
 
-func _on_FrostingGlobs_hit_wall(glob: FrostingGlob) -> void:
+func _on_GoopGlobs_hit_wall(glob: GoopGlob) -> void:
 	add_smear(glob)

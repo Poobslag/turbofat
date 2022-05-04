@@ -11,19 +11,19 @@
 [ext_resource path="res://src/main/puzzle/piece/PieceManager.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/main/puzzle/PuzzleTouchButtons.tscn" type="PackedScene" id=10]
 [ext_resource path="res://assets/main/ui/applause.wav" type="AudioStream" id=11]
-[ext_resource path="res://src/main/puzzle/wall-frosting-sfx.gd" type="Script" id=12]
+[ext_resource path="res://src/main/puzzle/wall-goop-sfx.gd" type="Script" id=12]
 [ext_resource path="res://src/main/ui/menu/theme/h2-font.tres" type="DynamicFont" id=13]
 [ext_resource path="res://src/main/ui/menu/theme/h4-font.tres" type="DynamicFont" id=14]
 [ext_resource path="res://src/main/puzzle/texture-metaball.shader" type="Shader" id=15]
 [ext_resource path="res://src/main/puzzle/wall-glob-viewports.gd" type="Script" id=16]
-[ext_resource path="res://src/main/puzzle/FrostingViewports.tscn" type="PackedScene" id=17]
+[ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=17]
 [ext_resource path="res://src/main/puzzle/star-seeds.gd" type="Script" id=18]
 [ext_resource path="res://src/main/puzzle/puzzle-music-manager.gd" type="Script" id=19]
 [ext_resource path="res://src/main/puzzle/food-items.gd" type="Script" id=20]
 [ext_resource path="res://src/main/puzzle/puzzle.gd" type="Script" id=21]
 [ext_resource path="res://src/main/outline.shader" type="Shader" id=22]
 [ext_resource path="res://src/main/puzzle/milestone-hud.gd" type="Script" id=23]
-[ext_resource path="res://src/main/puzzle/frosting-globs.gd" type="Script" id=24]
+[ext_resource path="res://src/main/puzzle/goop-globs.gd" type="Script" id=24]
 [ext_resource path="res://src/main/world/restaurant/RestaurantView.tscn" type="PackedScene" id=25]
 [ext_resource path="res://src/main/ui/settings/SettingsMenu.tscn" type="PackedScene" id=26]
 [ext_resource path="res://assets/main/puzzle/tutorial/tutorial-section-complete.wav" type="AudioStream" id=27]
@@ -34,7 +34,7 @@
 [ext_resource path="res://src/main/puzzle/combo-counters.gd" type="Script" id=32]
 [ext_resource path="res://src/main/puzzle/step-meter.gd" type="Script" id=33]
 [ext_resource path="res://src/main/ui/menu/theme/h2.theme" type="Theme" id=34]
-[ext_resource path="res://src/main/puzzle/FrostingGlob.tscn" type="PackedScene" id=35]
+[ext_resource path="res://src/main/puzzle/GoopGlob.tscn" type="PackedScene" id=35]
 [ext_resource path="res://src/main/ui/font-fit-label.gd" type="Script" id=36]
 [ext_resource path="res://src/main/puzzle/FoodItem.tscn" type="PackedScene" id=37]
 [ext_resource path="res://assets/main/ui/go.wav" type="AudioStream" id=38]
@@ -162,10 +162,10 @@ viewport_path = NodePath("Fg/WallGlobViewports/RainbowViewport")
 [sub_resource type="ShaderMaterial" id=13]
 resource_local_to_scene = true
 shader = ExtResource( 15 )
-shader_param/frosting_texture_offset = Vector2( 356, -10 )
-shader_param/frosting_alpha = 0.6
+shader_param/goop_texture_offset = Vector2( 356, -10 )
+shader_param/goop_alpha = 0.6
 shader_param/noise = SubResource( 11 )
-shader_param/frosting_texture = SubResource( 9 )
+shader_param/goop_texture = SubResource( 9 )
 shader_param/rainbow_texture = SubResource( 12 )
 
 [sub_resource type="StyleBoxFlat" id=22]
@@ -190,7 +190,7 @@ shader = ExtResource( 4 )
 
 [sub_resource type="ViewportTexture" id=15]
 flags = 5
-viewport_path = NodePath("Fg/FrostingGlobs/GlobViewports/Viewport")
+viewport_path = NodePath("Fg/GoopGlobs/GlobViewports/Viewport")
 
 [sub_resource type="OpenSimplexNoise" id=16]
 resource_local_to_scene = true
@@ -209,7 +209,7 @@ shader_param/noise = SubResource( 17 )
 
 [sub_resource type="ViewportTexture" id=19]
 flags = 5
-viewport_path = NodePath("Fg/FrostingGlobs/GlobViewports/RainbowViewport")
+viewport_path = NodePath("Fg/GoopGlobs/GlobViewports/RainbowViewport")
 
 [sub_resource type="ShaderMaterial" id=20]
 resource_local_to_scene = true
@@ -471,27 +471,27 @@ __meta__ = {
 
 [node name="RestaurantView" parent="Fg" instance=ExtResource( 25 )]
 
-[node name="FrostingGlobs" type="Node2D" parent="Fg"]
+[node name="GoopGlobs" type="Node2D" parent="Fg"]
 z_index = 4
 script = ExtResource( 24 )
 puzzle_tile_map_path = NodePath("../Playfield/TileMapClip/TileMap")
 playfield_path = NodePath("../Playfield")
 next_piece_displays_path = NodePath("../NextPieceDisplays")
-FrostingGlobScene = ExtResource( 35 )
+GoopGlobScene = ExtResource( 35 )
 
-[node name="GlobViewports" type="Node" parent="Fg/FrostingGlobs"]
+[node name="GlobViewports" type="Node" parent="Fg/GoopGlobs"]
 
-[node name="Viewport" type="Viewport" parent="Fg/FrostingGlobs/GlobViewports"]
+[node name="Viewport" type="Viewport" parent="Fg/GoopGlobs/GlobViewports"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
 usage = 0
 
-[node name="RainbowViewport" type="Viewport" parent="Fg/FrostingGlobs/GlobViewports"]
+[node name="RainbowViewport" type="Viewport" parent="Fg/GoopGlobs/GlobViewports"]
 size = Vector2( 1024, 600 )
 transparent_bg = true
 usage = 0
 
-[node name="TextureRect" type="TextureRect" parent="Fg/FrostingGlobs"]
+[node name="TextureRect" type="TextureRect" parent="Fg/GoopGlobs"]
 modulate = Color( 1, 1, 1, 0.768627 )
 material = SubResource( 14 )
 margin_right = 1024.0
@@ -500,7 +500,7 @@ rect_min_size = Vector2( 1024, 600 )
 texture = SubResource( 15 )
 flip_v = true
 
-[node name="RainbowTextureRect" type="TextureRect" parent="Fg/FrostingGlobs"]
+[node name="RainbowTextureRect" type="TextureRect" parent="Fg/GoopGlobs"]
 material = SubResource( 18 )
 margin_right = 1024.0
 margin_bottom = 600.0
@@ -674,16 +674,16 @@ bus = "Voice Bus"
 stream = ExtResource( 44 )
 bus = "Voice Bus"
 
-[node name="FrostingSfx" type="Node" parent="."]
+[node name="GoopSfx" type="Node" parent="."]
 script = ExtResource( 12 )
 
-[node name="SplatPlayer0" type="AudioStreamPlayer" parent="FrostingSfx"]
+[node name="SplatPlayer0" type="AudioStreamPlayer" parent="GoopSfx"]
 bus = "Sound Bus"
 
-[node name="SplatPlayer1" type="AudioStreamPlayer" parent="FrostingSfx"]
+[node name="SplatPlayer1" type="AudioStreamPlayer" parent="GoopSfx"]
 bus = "Sound Bus"
 
-[node name="SplatPlayer2" type="AudioStreamPlayer" parent="FrostingSfx"]
+[node name="SplatPlayer2" type="AudioStreamPlayer" parent="GoopSfx"]
 bus = "Sound Bus"
 
 [node name="StartEndSfx" type="Node" parent="."]
@@ -758,17 +758,17 @@ script = ExtResource( 19 )
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FpsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="cheat_detected" from="CheatCodeDetector" to="Hud/VBoxContainer/FrameDropsLabel" method="_on_CheatCodeDetector_cheat_detected"]
 [connection signal="timeout" from="Fg/FoodItems/FoodFlightTimer" to="Fg/FoodItems" method="_on_FoodFlightTimer_timeout"]
-[connection signal="hit_next_pieces" from="Fg/FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_next_pieces"]
-[connection signal="hit_playfield" from="Fg/FrostingGlobs" to="Fg/Playfield" method="_on_FrostingGlobs_hit_playfield"]
-[connection signal="hit_playfield" from="Fg/FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_playfield"]
-[connection signal="hit_wall" from="Fg/FrostingGlobs" to="Fg/WallGlobViewports" method="_on_FrostingGlobs_hit_wall"]
-[connection signal="hit_wall" from="Fg/FrostingGlobs" to="FrostingSfx" method="_on_FrostingGlobs_hit_wall"]
-[connection signal="squish_moved" from="Fg/PieceManager" to="Fg/FrostingGlobs" method="_on_PieceManager_squish_moved"]
+[connection signal="hit_next_pieces" from="Fg/GoopGlobs" to="GoopSfx" method="_on_GoopGlobs_hit_next_pieces"]
+[connection signal="hit_playfield" from="Fg/GoopGlobs" to="Fg/Playfield" method="_on_GoopGlobs_hit_playfield"]
+[connection signal="hit_playfield" from="Fg/GoopGlobs" to="GoopSfx" method="_on_GoopGlobs_hit_playfield"]
+[connection signal="hit_wall" from="Fg/GoopGlobs" to="Fg/WallGlobViewports" method="_on_GoopGlobs_hit_wall"]
+[connection signal="hit_wall" from="Fg/GoopGlobs" to="GoopSfx" method="_on_GoopGlobs_hit_wall"]
+[connection signal="squish_moved" from="Fg/PieceManager" to="Fg/GoopGlobs" method="_on_PieceManager_squish_moved"]
 [connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/ComboCounters" method="_on_Playfield_before_line_cleared"]
-[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/FrostingGlobs" method="_on_Playfield_before_line_cleared"]
+[connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/GoopGlobs" method="_on_Playfield_before_line_cleared"]
 [connection signal="before_line_cleared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_before_line_cleared"]
 [connection signal="blocks_prepared" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_blocks_prepared"]
-[connection signal="box_built" from="Fg/Playfield" to="Fg/FrostingGlobs" method="_on_Playfield_box_built"]
+[connection signal="box_built" from="Fg/Playfield" to="Fg/GoopGlobs" method="_on_Playfield_box_built"]
 [connection signal="box_built" from="Fg/Playfield" to="Fg/StarSeeds" method="_on_Playfield_box_built"]
 [connection signal="food_spawned" from="Fg/Playfield" to="Fg/FoodItems" method="_on_Playfield_food_spawned"]
 [connection signal="line_cleared" from="Fg/Playfield" to="." method="_on_Playfield_line_cleared"]

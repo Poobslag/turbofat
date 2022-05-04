@@ -1,8 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://src/main/world/environment/frosted-overworld-tiler.gd" type="Script" id=1]
-
-[node name="FrostedOverworldTiler" type="Node"]
-script = ExtResource( 1 )
-block_tile_index = 1
-midfrost_tile_index = 2

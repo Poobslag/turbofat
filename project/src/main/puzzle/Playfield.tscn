@@ -18,7 +18,7 @@
 [ext_resource path="res://assets/main/puzzle/fanfare2.wav" type="AudioStream" id=16]
 [ext_resource path="res://assets/main/puzzle/fanfare3.wav" type="AudioStream" id=17]
 [ext_resource path="res://src/main/puzzle/texture-metaball.shader" type="Shader" id=18]
-[ext_resource path="res://src/main/puzzle/FrostingViewports.tscn" type="PackedScene" id=19]
+[ext_resource path="res://src/main/puzzle/GoopViewports.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/puzzle/flat-mix.shader" type="Shader" id=20]
 [ext_resource path="res://src/main/puzzle/PuzzleHudStyleBox.tres" type="StyleBox" id=21]
 [ext_resource path="res://src/main/ui/blogger-sans-medium-18.tres" type="DynamicFont" id=22]
@@ -54,10 +54,10 @@ viewport_path = NodePath("BgGlobViewports/RainbowViewport")
 [sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
 shader = ExtResource( 18 )
-shader_param/frosting_texture_offset = Vector2( 0, 0 )
-shader_param/frosting_alpha = 0.6
+shader_param/goop_texture_offset = Vector2( 0, 0 )
+shader_param/goop_alpha = 0.6
 shader_param/noise = SubResource( 3 )
-shader_param/frosting_texture = SubResource( 1 )
+shader_param/goop_texture = SubResource( 1 )
 shader_param/rainbow_texture = SubResource( 4 )
 
 [sub_resource type="ShaderMaterial" id=6]

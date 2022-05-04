@@ -2,16 +2,16 @@ tool
 extends Node
 ## Adds grass tiles to an overworld obstacle map.
 ##
-## Grass tiles are added to a random selection of frosted/unfrosted cake tiles.
+## Grass tiles are added to a random selection of goopy/goopless cake tiles.
 
-## Autotile coordinates for unfrosted grass tiles in the grass tile obstacle texture
-const AUTOTILE_COORDS_UNFROSTED_GRASS := [
+## Autotile coordinates for goopless grass tiles in the grass tile obstacle texture
+const AUTOTILE_COORDS_GOOPLESS_GRASS := [
 	Vector2(0, 0), Vector2(1, 0), Vector2(2, 0),
 	Vector2(0, 1), Vector2(1, 1), Vector2(2, 1),
 ]
 
-## Autotile coordinates for frosted grass tiles in the grass tile obstacle texture
-const AUTOTILE_COORDS_FROSTED_GRASS := [
+## Autotile coordinates for goopy grass tiles in the grass tile obstacle texture
+const AUTOTILE_COORDS_GOOPY_GRASS := [
 	Vector2(0, 2), Vector2(1, 2), Vector2(2, 2),
 	Vector2(0, 3), Vector2(1, 3), Vector2(2, 3),
 ]
@@ -21,16 +21,16 @@ export (NodePath) var ground_map_path: NodePath
 ## A number in the range [0.0, 1.0] describing what percent of cake tiles should have grass
 export (float) var grass_density := 0.03
 
-## The ground tilemap's tile ID for unfrosted blocks
-export (int) var ground_block_tile_index: int
+## The ground tilemap's tile ID for goopless blocks
+export (int) var ground_no_goop_tile_index: int
 
-## The ground tilemap's tile ID for frosted blocks
-export (int) var ground_frost_tile_index: int
+## The ground tilemap's tile ID for goopy blocks
+export (int) var ground_all_goop_tile_index: int
 
 ## The obstacle tilemap's tile ID for grass tiles
 export (int) var grass_tile_index: int
 
-## An editor toggle which adds grass to a random selection of frosted/unfrosted cake tiles
+## An editor toggle which adds grass to a random selection of goopy/goopless cake tiles
 export (bool) var _autotile: bool setget autotile
 
 ## Obstacle tilemap with grass tiles to place
@@ -46,7 +46,7 @@ func _enter_tree() -> void:
 
 ## Refreshes the position of grass tiles.
 ##
-## Grass tiles are added to a random selection of frosted/unfrosted cake tiles.
+## Grass tiles are added to a random selection of goopy/goopless cake tiles.
 func autotile(value: bool) -> void:
 	if not value:
 		# only autotile in the editor when the 'Autotile' property is toggled
@@ -76,8 +76,8 @@ func _erase_all_grass() -> void:
 func _add_random_grass() -> void:
 	for cell in _ground_map.get_used_cells():
 		var ground_cell_id := _ground_map.get_cellv(cell)
-		if not ground_cell_id in [ground_block_tile_index, ground_frost_tile_index]:
-			# only add grass to frosted/unfrosted cake tiles
+		if not ground_cell_id in [ground_no_goop_tile_index, ground_all_goop_tile_index]:
+			# only add grass to goopy/goopless cake tiles
 			continue
 		if _tile_map.get_cellv(cell) != TileMap.INVALID_CELL:
 			continue
@@ -85,8 +85,8 @@ func _add_random_grass() -> void:
 			# only add grass to a random selection of tiles
 			continue
 		var autotile_coord: Vector2
-		if ground_cell_id == ground_block_tile_index:
-			autotile_coord = Utils.rand_value(AUTOTILE_COORDS_UNFROSTED_GRASS)
+		if ground_cell_id == ground_no_goop_tile_index:
+			autotile_coord = Utils.rand_value(AUTOTILE_COORDS_GOOPLESS_GRASS)
 		else:
-			autotile_coord = Utils.rand_value(AUTOTILE_COORDS_FROSTED_GRASS)
+			autotile_coord = Utils.rand_value(AUTOTILE_COORDS_GOOPY_GRASS)
 		_tile_map.set_cellv(cell, grass_tile_index, false, false, false, autotile_coord)

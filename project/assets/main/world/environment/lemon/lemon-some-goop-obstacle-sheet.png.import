@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lemon-block-sheet.png-8b3a5653a5bc6e64b61d0467cfe1bae0.stex"
+path="res://.import/lemon-some-goop-obstacle-sheet.png-73056fe5d32b8cd21ee80ed849d81b43.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/lemon/lemon-block-sheet.png"
-dest_files=[ "res://.import/lemon-block-sheet.png-8b3a5653a5bc6e64b61d0467cfe1bae0.stex" ]
+source_file="res://assets/main/world/environment/lemon/lemon-some-goop-obstacle-sheet.png"
+dest_files=[ "res://.import/lemon-some-goop-obstacle-sheet.png-73056fe5d32b8cd21ee80ed849d81b43.stex" ]
 
 [params]
 

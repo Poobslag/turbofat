@@ -1,6 +1,6 @@
-class_name FrostingGlob
+class_name GoopGlob
 extends Sprite
-## A frosting glob which appears when the player clears a line or builds a box.
+## A goop glob which appears when the player clears a line or builds a box.
 
 ## emitted when the glob collides with one of the four outer walls
 signal hit_wall(glob)
@@ -45,13 +45,13 @@ var _creation_time := 0.0
 onready var _tween: Tween = $Tween
 onready var _fade_timer: Timer = $FadeTimer
 
-## Populates this object from another FrostingGlob instance.
+## Populates this object from another GoopGlob instance.
 ##
-## Note: While the 'glob' parameter should always be a FrostingGlob object, statically typing it as such causes errors
+## Note: While the 'glob' parameter should always be a GoopGlob object, statically typing it as such causes errors
 ## at game close due to Godot #30668 (https://github.com/godotengine/godot/issues/30668)
 ##
 ## Parameters:
-## 	'glob': The FrostingGlob instance to copy from.
+## 	'glob': The GoopGlob instance to copy from.
 func copy_from(glob: Node) -> void:
 	initialize(glob.box_type, glob.position)
 	puzzle_areas = glob.puzzle_areas
@@ -70,7 +70,7 @@ func is_rainbow() -> bool:
 	return Foods.is_cake_box(box_type)
 
 
-## Resets this frosting glob's state, including its color and position.
+## Resets this goop glob's state, including its color and position.
 func initialize(new_box_type: int, new_position: Vector2) -> void:
 	_creation_time = OS.get_ticks_msec()
 	box_type = new_box_type
@@ -100,9 +100,9 @@ func initialize(new_box_type: int, new_position: Vector2) -> void:
 		scale *= Vector2(1.0, -1.0)
 
 
-## Makes this frosting glob fall and disappear.
+## Makes this goop glob fall and disappear.
 ##
-## Called when a frosting glob is first spawned.
+## Called when a goop glob is first spawned.
 func fall() -> void:
 	falling = true
 	smear_time = min(rand_range(0.0, FALL_DURATION * 0.7), rand_range(0.0, FALL_DURATION * 1.2))
@@ -113,9 +113,9 @@ func fall() -> void:
 	_tween.start()
 
 
-## Makes this frosting glob fade away and disappear.
+## Makes this goop glob fade away and disappear.
 ##
-## Called when a frosting glob hits a wall or smears against the background.
+## Called when a goop glob hits a wall or smears against the background.
 func fade() -> void:
 	falling = false
 	_fade_timer.start(FADE_DELAY * rand_range(0.8, 1.2))

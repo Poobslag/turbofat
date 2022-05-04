@@ -8,12 +8,12 @@ extends Node
 var _splat_player_index := 0
 
 onready var _splat_sfx := [
-	preload("res://assets/main/puzzle/frosting-splat0.wav"),
-	preload("res://assets/main/puzzle/frosting-splat1.wav"),
-	preload("res://assets/main/puzzle/frosting-splat2.wav"),
-	preload("res://assets/main/puzzle/frosting-splat3.wav"),
-	preload("res://assets/main/puzzle/frosting-splat4.wav"),
-	preload("res://assets/main/puzzle/frosting-splat5.wav"),
+	preload("res://assets/main/puzzle/goop-splat0.wav"),
+	preload("res://assets/main/puzzle/goop-splat1.wav"),
+	preload("res://assets/main/puzzle/goop-splat2.wav"),
+	preload("res://assets/main/puzzle/goop-splat3.wav"),
+	preload("res://assets/main/puzzle/goop-splat4.wav"),
+	preload("res://assets/main/puzzle/goop-splat5.wav"),
 ]
 
 ## AudioStreamPlayers to use. We cycle between multiple players to handle concurrent sound effects
@@ -41,13 +41,13 @@ func _play_sfx(glob_alpha: float, max_volume: float) -> void:
 	_splat_player_index = (_splat_player_index + 1) % _splat_players.size()
 
 
-func _on_FrostingGlobs_hit_wall(glob: FrostingGlob) -> void:
+func _on_GoopGlobs_hit_wall(glob: GoopGlob) -> void:
 	_play_sfx(glob.modulate.a, -10.0)
 
 
-func _on_FrostingGlobs_hit_playfield(glob: FrostingGlob) -> void:
+func _on_GoopGlobs_hit_playfield(glob: GoopGlob) -> void:
 	_play_sfx(glob.modulate.a, -20.0)
 
 
-func _on_FrostingGlobs_hit_next_pieces(glob: FrostingGlob) -> void:
+func _on_GoopGlobs_hit_next_pieces(glob: GoopGlob) -> void:
 	_play_sfx(glob.modulate.a, -20.0)

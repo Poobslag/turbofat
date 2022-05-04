@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/marsh-midfrost-sheet.png-d5f70c94b0cc7997b983dbbf764dda7b.stex"
+path="res://.import/marsh-no-goop-sheet.png-132de334d7766019009e37ac65b3d152.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/marsh/marsh-midfrost-sheet.png"
-dest_files=[ "res://.import/marsh-midfrost-sheet.png-d5f70c94b0cc7997b983dbbf764dda7b.stex" ]
+source_file="res://assets/main/world/environment/marsh/marsh-no-goop-sheet.png"
+dest_files=[ "res://.import/marsh-no-goop-sheet.png-132de334d7766019009e37ac65b3d152.stex" ]
 
 [params]
 

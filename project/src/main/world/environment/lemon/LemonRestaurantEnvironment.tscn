@@ -2,7 +2,7 @@
 
 [ext_resource path="res://src/main/world/environment/lemon/lemon-terrain-library.tres" type="TileSet" id=1]
 [ext_resource path="res://src/main/world/environment/lemon/lemon-obstacle-library.tres" type="TileSet" id=2]
-[ext_resource path="res://src/main/world/environment/FrostedOverworldTiler.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=5]
 [ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=6]
@@ -73,7 +73,7 @@ tile_data = PoolIntArray( -917495, 0, 2, -917493, 1, 0, -851960, 0, 327680, -851
 [node name="PebbleOverworldTiler" type="Node" parent="Ground/Terrain"]
 script = ExtResource( 13 )
 ground_map_path = NodePath("../../GroundMap")
-ground_block_tile_index = 1
+ground_no_goop_tile_index = 1
 pebble_tile_index = 1
 
 [node name="Shadows" type="Node2D" parent="Ground"]
@@ -120,16 +120,16 @@ cell_y_sort = true
 centered_textures = true
 format = 1
 
-[node name="FrostedOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 3 )]
-block_tile_index = 3
-midfrost_tile_index = 5
-frost_tile_index = 2
+[node name="GoopOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 3 )]
+no_goop_tile_index = 3
+some_goop_tile_index = 5
+all_goop_tile_index = 2
 corner_tile_index = 6
 
 [node name="GrassOverworldTiler" parent="Obstacles/ObstacleMap" instance=ExtResource( 9 )]
 ground_map_path = NodePath("../../../Ground/GroundMap")
 grass_density = 0.08
-ground_block_tile_index = 1
+ground_no_goop_tile_index = 1
 grass_tile_index = 7
 
 [node name="LemonTree1" parent="Obstacles" instance=ExtResource( 18 )]

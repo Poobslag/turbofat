@@ -21,16 +21,16 @@ const float CYCLE_SPEED = 0.0240;
 uniform sampler2D noise;
 
 // texture for flat-color metaballs
-uniform sampler2D frosting_texture : hint_albedo;
+uniform sampler2D goop_texture : hint_albedo;
 
 // texture for rainbow metaballs
 uniform sampler2D rainbow_texture : hint_albedo;
 
 // an offset which is applied to both textures
-uniform vec2 frosting_texture_offset;
+uniform vec2 goop_texture_offset;
 
-// the maximum frosting opacity
-uniform float frosting_alpha = 0.6;
+// the maximum goop opacity
+uniform float goop_alpha = 0.6;
 
 // Smooth HSV to RGB conversion by Inigo Quilez (https://www.shadertoy.com/view/MsS3Wc)
 vec3 hsv2rgb_smooth(in vec3 c) {
@@ -60,16 +60,16 @@ float stepify_hue(in float f_in) {
 
 void fragment() {
 	vec4 color = texture(TEXTURE, UV);
-	vec4 frosting_color = texture(frosting_texture, UV);
+	vec4 goop_color = texture(goop_texture, UV);
 	vec4 rainbow_color = texture(rainbow_texture, UV);
 	
 	// Embiggen rgb values of translucent pixels. For some reason translucent pixels have smaller RGB values when
 	// they're given to us. For example, a translucent white pixel will have a red value of 0.25 instead of 1.00.
-	frosting_color.rgb /= max(frosting_color.a, 0.01);
+	goop_color.rgb /= max(goop_color.a, 0.01);
 	rainbow_color.rgb /= max(rainbow_color.a, 0.01);
 	
 	// calculate flat metaball color
-	frosting_color.a = smoothstep(0.76, 0.80, frosting_color.a);
+	goop_color.a = smoothstep(0.76, 0.80, goop_color.a);
 	
 	// calculate rainbow metaball color
 	vec2 uv2 = UV + get_noise_2d(0.6 * vec2(UV.x + 38.913 + TIME * 0.010, UV.y + 81.975 + TIME * DISTORTION_SPEED));
@@ -81,9 +81,9 @@ void fragment() {
 	rainbow_color.a = smoothstep(0.76, 0.80, rainbow_color.a);
 	
 	// mix the metaball colors
-	frosting_color = mix(frosting_color, rainbow_color, rainbow_color.a);
+	goop_color = mix(goop_color, rainbow_color, rainbow_color.a);
 	
 	// apply the metaball colors to the underlying texture
-	COLOR.rgb = mix(color.rgb, frosting_color.rgb, frosting_color.a * frosting_alpha);
+	COLOR.rgb = mix(color.rgb, goop_color.rgb, goop_color.a * goop_alpha);
 	COLOR.a = color.a;
 }

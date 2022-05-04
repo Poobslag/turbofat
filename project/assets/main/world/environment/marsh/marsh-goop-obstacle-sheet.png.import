@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/marsh-frosting-obstacle-sheet.png-8e376cc9b28f4936c67581634feb8f0d.stex"
+path="res://.import/marsh-goop-obstacle-sheet.png-07365d756be713279ece9dc494f65791.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/marsh/marsh-frosting-obstacle-sheet.png"
-dest_files=[ "res://.import/marsh-frosting-obstacle-sheet.png-8e376cc9b28f4936c67581634feb8f0d.stex" ]
+source_file="res://assets/main/world/environment/marsh/marsh-goop-obstacle-sheet.png"
+dest_files=[ "res://.import/marsh-goop-obstacle-sheet.png-07365d756be713279ece9dc494f65791.stex" ]
 
 [params]
 

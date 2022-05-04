@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lemon-frosting-obstacle-sheet.png-14cc59ca53d5cc0aa6b25631825982d3.stex"
+path="res://.import/lemon-no-goop-sheet.png-25526037dffa9be16d750dbd239a5bf1.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/lemon/lemon-frosting-obstacle-sheet.png"
-dest_files=[ "res://.import/lemon-frosting-obstacle-sheet.png-14cc59ca53d5cc0aa6b25631825982d3.stex" ]
+source_file="res://assets/main/world/environment/lemon/lemon-no-goop-sheet.png"
+dest_files=[ "res://.import/lemon-no-goop-sheet.png-25526037dffa9be16d750dbd239a5bf1.stex" ]
 
 [params]
 

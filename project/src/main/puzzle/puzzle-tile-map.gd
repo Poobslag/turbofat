@@ -233,7 +233,7 @@ func _convert_piece_to_veg(pos: Vector2) -> void:
 ## smaller 2x3 and 1x3 boxes.
 ##
 ## If we didn't perform this step, the chopped-off bottom of a bread box would still just look like bread. This way,
-## the bottom of a bread box looks like a delicious frosted snack and the player can tell it's special.
+## the bottom of a bread box looks like a delicious goopy snack and the player can tell it's special.
 func _disconnect_box(pos: Vector2) -> void:
 	if get_cellv(pos + Vector2.UP) == TILE_BOX:
 		_disconnect_block(pos + Vector2.UP, PuzzleConnect.DOWN)

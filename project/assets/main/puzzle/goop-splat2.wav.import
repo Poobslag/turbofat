@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/goop-splat2.wav-9873489177c440b95783c2c5e067732b.sample"
+
+[deps]
+
+source_file="res://assets/main/puzzle/goop-splat2.wav"
+dest_files=[ "res://.import/goop-splat2.wav-9873489177c440b95783c2c5e067732b.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
