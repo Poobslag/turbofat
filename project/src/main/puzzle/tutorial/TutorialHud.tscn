@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/main/ui/chat/ChatChoices.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/ui/chat/ChatLineLabel.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://src/main/ui/chat/ChatPopTween.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/ui/chat/ChatLinePanel.tscn" type="PackedScene" id=7]
 [ext_resource path="res://src/main/puzzle/tutorial/tutorial-diagram.gd" type="Script" id=8]
+[ext_resource path="res://src/main/puzzle/tutorial/skill-tally-panel.gd" type="Script" id=9]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-in.wav" type="AudioStream" id=12]
 [ext_resource path="res://assets/main/ui/chat/frame-pop-out.wav" type="AudioStream" id=13]
 
@@ -116,17 +117,15 @@ margin_right = 405.0
 margin_bottom = 600.0
 rect_min_size = Vector2( 0, 150 )
 
-[node name="SkillTallyItems" type="Panel" parent="."]
+[node name="SkillTallyPanel" type="Panel" parent="."]
 margin_left = 774.0
 margin_top = 10.0
 margin_right = 1014.0
 margin_bottom = 590.0
 custom_styles/panel = ExtResource( 3 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+script = ExtResource( 9 )
 
-[node name="GridContainer" type="GridContainer" parent="SkillTallyItems"]
+[node name="GridContainer" type="GridContainer" parent="SkillTallyPanel"]
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5

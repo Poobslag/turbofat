@@ -9,8 +9,11 @@ export (NodePath) var puzzle_path: NodePath
 
 export (NodePath) var hud_flash_path: NodePath
 
-onready var puzzle: Puzzle = get_node(puzzle_path)
+onready var messages: TutorialMessages = $Messages
+onready var diagram: TutorialDiagram = $Diagram
+onready var skill_tally_panel: SkillTallyPanel = $SkillTallyPanel
 
+onready var puzzle: Puzzle = get_node(puzzle_path)
 onready var _hud_flash: HudFlash = get_node(hud_flash_path)
 
 func _ready() -> void:
@@ -19,14 +22,6 @@ func _ready() -> void:
 	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	CurrentLevel.connect("settings_changed", self, "_on_Level_settings_changed")
 	replace_tutorial_module()
-
-
-func get_tutorial_diagram() -> TutorialDiagram:
-	return $Diagram as TutorialDiagram
-
-
-func get_tutorial_messages() -> TutorialMessages:
-	return $Messages as TutorialMessages
 
 
 ## Loads a new tutorial module corresponding to the current level.
@@ -64,69 +59,65 @@ func replace_tutorial_module() -> void:
 func refresh() -> void:
 	# only visible for tutorial levels
 	visible = CurrentLevel.settings.other.tutorial or CurrentLevel.settings.other.after_tutorial
-	$Diagram.hide()
+	diagram.hide()
 	emit_signal("refreshed")
 
 
 ## Returns a specific SkillTallyItem instance in the panel.
 func skill_tally_item(name: String) -> SkillTallyItem:
-	return get_node("SkillTallyItems/GridContainer/%s" % name) as SkillTallyItem
+	return skill_tally_panel.skill_tally_item(name)
 
 
 ## Returns all SkillTallyItem instances in the panel.
 func skill_tally_items() -> Array:
-	return $SkillTallyItems/GridContainer.get_children()
+	return skill_tally_panel.skill_tally_items()
 
 
 ## Adds a new SkillTallyItem instance to the panel.
 func add_skill_tally_item(item: SkillTallyItem) -> void:
-	$SkillTallyItems/GridContainer.add_child(item)
+	skill_tally_panel.add_skill_tally_item(item)
+
+
+## Shows the panel containing skill tally items.
+func show_skill_tally_items() -> void:
+	skill_tally_panel.show_skill_tally_items()
 
 
 ## Displays a sequence of messages from the sensei.
-func set_messages(messages: Array) -> void:
-	$Messages.set_messages(messages)
+func set_messages(new_messages: Array) -> void:
+	messages.set_messages(new_messages)
 
 
 ## Displays a message from the sensei.
-func set_message(message: String) -> void:
-	$Messages.set_message(message)
+func set_message(new_message: String) -> void:
+	messages.set_message(new_message)
 
 
 ## Displays a BIG message from the sensei, for use in easter eggs.
-func set_big_message(message: String) -> void:
-	$Messages.set_big_message(message)
+func set_big_message(new_message: String) -> void:
+	messages.set_big_message(new_message)
 
 
 ## Displays a message after a short delay.
 ##
 ## If other messages are already in the queue, this message will be appended to the queue.
 func enqueue_message(message: String) -> void:
-	$Messages.enqueue_message(message)
+	messages.enqueue_message(message)
 
 
 ## Hides the currently shown message after a short delay.
 ##
 ## If other messages are already in the queue, this operation will be appended to the queue.
 func enqueue_pop_out() -> void:
-	$Messages.enqueue_pop_out()
+	messages.enqueue_pop_out()
 
 
-## Shows the panel containing skill tally items.
-func show_skill_tally_items() -> void:
-	$SkillTallyItems.show()
-	for skill_tally_item in skill_tally_items():
-		skill_tally_item.visible = true
-
-
+## Plays a camera flash effect for transitions.
 func flash_for_level_change() -> void:
-	puzzle.get_playfield().add_misc_delay_frames(30)
 	_hud_flash.flash()
 
 
-## Pauses and plays a camera flash effect for transitions.
 func _on_PuzzleState_after_level_changed() -> void:
-	$SkillTallyItems.visible = CurrentLevel.settings.other.tutorial
 	flash_for_level_change()
 
 

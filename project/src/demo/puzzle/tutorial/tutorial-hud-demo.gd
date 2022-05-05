@@ -27,7 +27,6 @@ const TEXTS := [
 export (String) var level_id: String = LevelLibrary.BEGINNER_TUTORIAL
 
 onready var _tutorial_hud: TutorialHud = $Level/Hud/HudUi/TutorialHud
-onready var _tutorial_messages: TutorialMessages = $Level/Hud/HudUi/TutorialHud/Messages
 
 func _ready() -> void:
 	var level_settings := LevelSettings.new()
@@ -41,12 +40,12 @@ func _input(event: InputEvent) -> void:
 	match Utils.key_scancode(event):
 		KEY_0, KEY_1, KEY_2, KEY_3, KEY_4, KEY_5, KEY_6, KEY_7, KEY_8, KEY_9:
 			if Input.is_key_pressed(KEY_SHIFT):
-				_tutorial_messages.enqueue_message(TEXTS[Utils.key_num(event)])
+				_tutorial_hud.enqueue_message(TEXTS[Utils.key_num(event)])
 			else:
-				_tutorial_messages.set_message(TEXTS[Utils.key_num(event)])
+				_tutorial_hud.set_message(TEXTS[Utils.key_num(event)])
 		KEY_O:
-			_tutorial_messages.set_big_message("O/H/,/// M/Y/!/!/!")
+			_tutorial_hud.set_big_message("O/H/,/// M/Y/!/!/!")
 		KEY_F:
 			_tutorial_hud.flash_for_level_change()
 		KEY_H:
-			_tutorial_messages.enqueue_pop_out()
+			_tutorial_hud.enqueue_pop_out()

@@ -35,8 +35,8 @@ func show_diagram(texture: Texture, show_choices: bool = false) -> void:
 		$VBoxContainer/ChatChoices.visible = false
 	
 	if show_choices:
-		if not _hud.get_tutorial_messages().is_all_messages_visible():
-			yield(_hud.get_tutorial_messages(), "all_messages_shown")
+		if not _hud.messages.is_all_messages_visible():
+			yield(_hud.messages, "all_messages_shown")
 		var choices: Array
 		match _show_diagram_count % 3:
 			0: choices = [tr("Okay, I get it!"), tr("...Can you go into more detail?")]

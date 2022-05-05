@@ -29,8 +29,8 @@ func _ready() -> void:
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
 	piece_manager.connect("squish_moved", self, "_on_PieceManager_squish_moved")
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
-	hud.get_tutorial_diagram().connect("ok_chosen", self, "_on_TutorialDiagram_ok_chosen")
-	hud.get_tutorial_diagram().connect("help_chosen", self, "_on_TutorialDiagram_help_chosen")
+	hud.diagram.connect("ok_chosen", self, "_on_TutorialDiagram_ok_chosen")
+	hud.diagram.connect("help_chosen", self, "_on_TutorialDiagram_help_chosen")
 	
 	# display a welcome message before the game starts
 	hud.set_message(tr("Today we'll cover some advanced squish move techniques!"
@@ -154,7 +154,7 @@ func _show_next_diagram() -> void:
 	match _show_diagram_count % 2:
 		0: hud_diagram = _squish_diagram_0
 		1: hud_diagram = _squish_diagram_1
-	hud.get_tutorial_diagram().show_diagram(hud_diagram, true)
+	hud.diagram.show_diagram(hud_diagram, true)
 	_show_diagram_count += 1
 
 
@@ -194,8 +194,8 @@ func _on_PuzzleState_after_piece_written() -> void:
 		"tutorial/squish_5":
 			if PuzzleState.level_performance.pieces == 1:
 				CurrentLevel.settings.input_replay.clear()
-				if not hud.get_tutorial_messages().is_all_messages_visible():
-					yield(hud.get_tutorial_messages(), "all_messages_shown")
+				if not hud.messages.is_all_messages_visible():
+					yield(hud.messages, "all_messages_shown")
 				yield(get_tree().create_timer(1.5), "timeout")
 				if _level_attempt_count.get(CurrentLevel.settings.id, 0) >= 2:
 					hud.set_message(tr("Not again! ...Can you clean this up using squish moves?"
@@ -211,8 +211,8 @@ func _on_PuzzleState_after_piece_written() -> void:
 		"tutorial/squish_6":
 			if PuzzleState.level_performance.pieces == 1:
 				CurrentLevel.settings.input_replay.clear()
-				if not hud.get_tutorial_messages().is_all_messages_visible():
-					yield(hud.get_tutorial_messages(), "all_messages_shown")
+				if not hud.messages.is_all_messages_visible():
+					yield(hud.messages, "all_messages_shown")
 				yield(get_tree().create_timer(1.5), "timeout")
 				if _level_attempt_count.get(CurrentLevel.settings.id, 0) >= 2:
 					hud.set_message(tr("Oh no, it keeps happening! Well, try to clear three lines."

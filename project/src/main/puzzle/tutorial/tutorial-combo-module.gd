@@ -31,8 +31,8 @@ func _ready() -> void:
 	playfield.connect("line_cleared", self, "_on_Playfield_line_cleared")
 	playfield.connect("box_built", self, "_on_Playfield_box_built")
 	piece_manager.connect("piece_spawned", self, "_on_PieceManager_piece_spawned")
-	hud.get_tutorial_diagram().connect("ok_chosen", self, "_on_TutorialDiagram_ok_chosen")
-	hud.get_tutorial_diagram().connect("help_chosen", self, "_on_TutorialDiagram_help_chosen")
+	hud.diagram.connect("ok_chosen", self, "_on_TutorialDiagram_ok_chosen")
+	hud.diagram.connect("help_chosen", self, "_on_TutorialDiagram_help_chosen")
 	
 	hud.set_message(tr("Today we'll go over combos."
 			+ "\n\nCombos are easy, you might have already done them on accident!"))
@@ -167,7 +167,7 @@ func _show_next_diagram() -> void:
 					+ "\n\nSo, you're allowed to make one mistake! Or, to use one piece to plan ahead."))
 	hud.set_messages(hud_messages)
 	
-	hud.get_tutorial_diagram().show_diagram(_combo_diagram, true)
+	hud.diagram.show_diagram(_combo_diagram, true)
 	_show_diagram_count += 1
 
 
@@ -187,8 +187,8 @@ func _on_PuzzleState_after_piece_written() -> void:
 				_advance_level()
 		"tutorial/combo_3":
 			if PuzzleState.level_performance.pieces == 2:
-				if not hud.get_tutorial_messages().is_all_messages_visible():
-					yield(hud.get_tutorial_messages(), "all_messages_shown")
+				if not hud.messages.is_all_messages_visible():
+					yield(hud.messages, "all_messages_shown")
 				yield(get_tree().create_timer(3.0), "timeout")
 				hud.set_message(tr("Oops! I can still make the cake box, but my combo already broke."))
 			if PuzzleState.level_performance.pieces >= 3:
@@ -197,8 +197,8 @@ func _on_PuzzleState_after_piece_written() -> void:
 		"tutorial/combo_4":
 			if PuzzleState.level_performance.pieces >= 4:
 				hud.set_message(tr("There, I did it!\n\nThat was tricky."))
-				if not hud.get_tutorial_messages().is_all_messages_visible():
-					yield(hud.get_tutorial_messages(), "all_messages_shown")
+				if not hud.messages.is_all_messages_visible():
+					yield(hud.messages, "all_messages_shown")
 				yield(get_tree().create_timer(3.0), "timeout")
 				_advance_level()
 		"tutorial/combo_5":
