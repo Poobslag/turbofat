@@ -13,6 +13,7 @@ func _ready() -> void:
 	PuzzleState.connect("game_started", self, "_on_PuzzleState_game_started")
 	PuzzleState.connect("game_ended", self, "_on_PuzzleState_game_ended")
 	PuzzleState.connect("after_game_ended", self, "_on_PuzzleState_after_game_ended")
+	PuzzleState.connect("after_level_changed", self, "_on_PuzzleState_after_level_changed")
 	$Fg/Playfield/TileMapClip/TileMap/Viewport/ShadowMap.piece_tile_map = $Fg/PieceManager/TileMap
 	$Fg/PieceManager.connect(
 			"piece_disturbed", $Fg/Playfield.pickups, "_on_PieceManager_piece_disturbed")
@@ -321,6 +322,11 @@ func _update_career_data(rank_result: RankResult) -> void:
 ## This makes the stutter from writing to disk less noticable.
 func _on_PuzzleState_after_game_ended() -> void:
 	PlayerSave.save_player_data()
+
+
+## Briefly pause during level transitions.
+func _on_PuzzleState_after_level_changed() -> void:
+	$Fg/Playfield.add_misc_delay_frames(30)
 
 
 func _on_SettingsMenu_quit_pressed() -> void:

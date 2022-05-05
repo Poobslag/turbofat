@@ -67,8 +67,8 @@ func prepare_tutorial_level() -> void:
 func change_level(level_id: String, delay_between_levels: float = PuzzleState.DELAY_SHORT) -> void:
 	PuzzleState.emit_signal("before_level_changed", level_id)
 	
-	if not hud.get_tutorial_messages().is_all_messages_visible():
-		yield(hud.get_tutorial_messages(), "all_messages_shown")
+	if not hud.messages.is_all_messages_visible():
+		yield(hud.messages, "all_messages_shown")
 	if delay_between_levels:
 		yield(get_tree().create_timer(delay_between_levels), "timeout")
 	

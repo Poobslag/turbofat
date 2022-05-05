@@ -1,8 +1,6 @@
 class_name SkillTallyItem
 extends ProgressBar
-## Provides feedback to the player when they perform an action, such as rotating a piece or clearing a line.
-##
-## This is used during tutorials so the player can see what to do.
+## Provides feedback during tutorials when the player performs an action, such as rotating a piece or clearing a line.
 
 ## if 'true' the skill tally will be shown as '58%' instead of '52/90'
 export (bool) var show_as_percent: bool
