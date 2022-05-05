@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/marsh-goop-sheet.png-d02865cac4c615a4a9db0f1b07dae34a.stex"
+path="res://.import/marsh-all-goop-obstacle-sheet.png-54b3a8201fe572513d1cc927fd91e096.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/marsh/marsh-goop-sheet.png"
-dest_files=[ "res://.import/marsh-goop-sheet.png-d02865cac4c615a4a9db0f1b07dae34a.stex" ]
+source_file="res://assets/main/world/environment/marsh/marsh-all-goop-obstacle-sheet.png"
+dest_files=[ "res://.import/marsh-all-goop-obstacle-sheet.png-54b3a8201fe572513d1cc927fd91e096.stex" ]
 
 [params]
 

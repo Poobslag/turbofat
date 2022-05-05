@@ -1,6 +1,6 @@
 [gd_resource type="TileSet" load_steps=5 format=2]
 
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-goop-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/lemon/lemon-all-goop-sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/world/environment/lemon/lemon-no-goop-sheet.png" type="Texture" id=2]
 [ext_resource path="res://assets/main/world/environment/lemon/lemon-some-goop-sheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/world/environment/lemon/lemon-corners-sheet.png" type="Texture" id=4]
