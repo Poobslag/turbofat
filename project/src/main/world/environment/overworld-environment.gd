@@ -4,15 +4,13 @@ extends Node
 
 const SCENE_EMPTY_ENVIRONMENT := "res://src/main/world/environment/EmptyEnvironment.tscn"
 
-export (NodePath) var creature_shadows_path: NodePath
-export (NodePath) var shadow_caster_shadows_path: NodePath
+export (NodePath) var environment_shadows_path: NodePath
 export (NodePath) var obstacles_path: NodePath
 export (PackedScene) var CreatureScene: PackedScene
 
 onready var _chat_icons: ChatIcons
-onready var _creature_shadows: CreatureShadows = get_node(creature_shadows_path)
 onready var _obstacles: Node2D = get_node(obstacles_path)
-onready var _shadow_caster_shadows: ShadowCasterShadows = get_node(shadow_caster_shadows_path)
+onready var _environment_shadows: OutdoorShadows = get_node(environment_shadows_path)
 
 func _ready() -> void:
 	_refresh_chat_icons()
@@ -78,9 +76,9 @@ func process_new_obstacle(obstacle: Node2D) -> void:
 	
 	# create shadow
 	if obstacle is Creature:
-		_creature_shadows.create_shadow(obstacle)
+		_environment_shadows.create_creature_shadow(obstacle)
 	else:
-		_shadow_caster_shadows.create_shadow(obstacle)
+		_environment_shadows.create_shadow_caster_shadow(obstacle)
 
 
 ## Locates the creature with the specified creature_id.
