@@ -1,7 +1,7 @@
 extends TileMap
 ## Draws shadows under tiles from an obstacle tilemap.
 
-export (NodePath) var obstacle_map_path: NodePath
+export (NodePath) var obstacle_map_path: NodePath setget set_obstacle_map_path
 
 ## Maps tile indexes to their grid size. This allows us to generate larger shadows for tiles which span multiple cells.
 ##
@@ -9,13 +9,36 @@ export (NodePath) var obstacle_map_path: NodePath
 ##
 ## key: tile index corresponding to a tile in the obstacle map
 ## value: a rectangle which measures tile's grid size, in cells
-export (Dictionary) var cell_shadow_mapping
+export (Dictionary) var cell_shadow_mapping setget set_cell_shadow_mapping
 
-onready var _obstacle_map: TileMap = get_node(obstacle_map_path)
+var _obstacle_map: TileMap
 
 func _ready() -> void:
-	clear()
+	_refresh_obstacle_map_path()
+	_refresh_shadows()
+
+
+func set_obstacle_map_path(new_obstacle_map_path: NodePath) -> void:
+	obstacle_map_path = new_obstacle_map_path
+	_refresh_obstacle_map_path()
+	_refresh_shadows()
+
+
+func set_cell_shadow_mapping(new_cell_shadow_mapping: Dictionary) -> void:
+	cell_shadow_mapping = new_cell_shadow_mapping
+	_refresh_shadows()
+
+
+func _refresh_obstacle_map_path() -> void:
+	if obstacle_map_path:
+		_obstacle_map = get_node(obstacle_map_path)
+
+
+func _refresh_shadows() -> void:
+	if not (is_inside_tree() and obstacle_map_path):
+		return
 	
+	clear()
 	for cell_obj in _obstacle_map.get_used_cells():
 		var cell: Vector2 = cell_obj
 		var cell_id := _obstacle_map.get_cellv(cell)

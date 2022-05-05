@@ -1,41 +1,20 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://src/main/world/environment/marsh/marsh-terrain-library.tres" type="TileSet" id=1]
-[ext_resource path="res://assets/main/world/environment/block-shadow.png" type="Texture" id=2]
+[ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/GoopOverworldTiler.tscn" type="PackedScene" id=3]
-[ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/marsh/MarshCrystal.tscn" type="PackedScene" id=5]
-[ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=7]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=10]
-[ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=13]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=16]
 [ext_resource path="res://src/main/world/environment/marsh/MarshBush.tscn" type="PackedScene" id=18]
-[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=19]
 [ext_resource path="res://src/main/world/environment/marsh/MarshGroundMap.tscn" type="PackedScene" id=20]
 [ext_resource path="res://src/main/world/environment/marsh/MarshRippleWaves.tscn" type="PackedScene" id=21]
 [ext_resource path="res://src/main/world/environment/marsh/MarshTree.tscn" type="PackedScene" id=23]
 [ext_resource path="res://src/main/world/environment/marsh/marsh-obstacle-library.tres" type="TileSet" id=24]
 
-[sub_resource type="TileSet" id=15]
-0/name = "block-shadow.png 0"
-0/texture = ExtResource( 2 )
-0/tex_offset = Vector2( 0, 20 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 0, 212, 212 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 10 )
-creature_shadows_path = NodePath("Ground/Shadows/CreatureShadows")
-shadow_caster_shadows_path = NodePath("Ground/Shadows/ShadowCasterShadows")
+environment_shadows_path = NodePath("Ground/Shadows")
 obstacles_path = NodePath("Obstacles")
 CreatureScene = ExtResource( 16 )
 
@@ -62,27 +41,11 @@ cell_tile_origin = 1
 centered_textures = true
 format = 1
 
-[node name="Shadows" type="Node2D" parent="Ground"]
-modulate = Color( 1, 1, 1, 0.627451 )
-
-[node name="ObstacleMapShadows" type="TileMap" parent="Ground/Shadows"]
-mode = 1
-tile_set = SubResource( 15 )
-cell_size = Vector2( 128, 64 )
-cell_tile_origin = 1
-centered_textures = true
-format = 1
-script = ExtResource( 13 )
-obstacle_map_path = NodePath("../../../Obstacles/ObstacleMap")
+[node name="Shadows" parent="Ground" instance=ExtResource( 2 )]
+obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
 1: Rect2( 0, 0, 0, 0 )
 }
-
-[node name="CreatureShadows" parent="Ground/Shadows" instance=ExtResource( 19 )]
-
-[node name="ShadowCasterShadows" type="Node2D" parent="Ground/Shadows"]
-script = ExtResource( 7 )
-OvalShadowScene = ExtResource( 4 )
 
 [node name="Obstacles" type="YSort" parent="."]
 

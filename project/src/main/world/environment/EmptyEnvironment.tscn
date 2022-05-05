@@ -1,36 +1,15 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://src/main/world/ground-map-indoors.gd" type="Script" id=1]
-[ext_resource path="res://assets/main/world/restaurant/interior-shadow.png" type="Texture" id=8]
-[ext_resource path="res://src/main/world/environment/obstacle-map-shadows.gd" type="Script" id=9]
-[ext_resource path="res://src/main/world/shadow-caster-shadows.gd" type="Script" id=14]
+[ext_resource path="res://src/main/world/environment/OutdoorShadows.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/environment/overworld-environment.gd" type="Script" id=15]
 [ext_resource path="res://src/main/world/creature/Creature.tscn" type="PackedScene" id=19]
-[ext_resource path="res://src/main/world/creature/CreatureShadows.tscn" type="PackedScene" id=23]
-[ext_resource path="res://src/main/world/environment/OvalShadow.tscn" type="PackedScene" id=24]
 [ext_resource path="res://src/main/world/restaurant/indoor-obstacle-library.tres" type="TileSet" id=40]
 [ext_resource path="res://src/main/world/restaurant/floor-library.tres" type="TileSet" id=41]
 
-[sub_resource type="TileSet" id=1]
-0/name = "interior-shadow.png 0"
-0/texture = ExtResource( 8 )
-0/tex_offset = Vector2( 39, 0 )
-0/modulate = Color( 1, 1, 1, 1 )
-0/region = Rect2( 0, 1, 286, 144 )
-0/tile_mode = 0
-0/occluder_offset = Vector2( 0, 0 )
-0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape_one_way = false
-0/shape_one_way_margin = 0.0
-0/shapes = [  ]
-0/z_index = 0
-
 [node name="Environment" type="Node2D" groups=["overworld_environments"]]
 script = ExtResource( 15 )
-creature_shadows_path = NodePath("Ground/Shadows/CreatureShadows")
-shadow_caster_shadows_path = NodePath("Ground/Shadows/ShadowCasterShadows")
+environment_shadows_path = NodePath("Ground/Shadows")
 obstacles_path = NodePath("Obstacles")
 CreatureScene = ExtResource( 19 )
 
@@ -48,34 +27,10 @@ centered_textures = true
 format = 1
 script = ExtResource( 1 )
 
-[node name="Shadows" type="Node2D" parent="Ground"]
-modulate = Color( 1, 1, 1, 0.627451 )
-
-[node name="ObstacleMapShadows" type="TileMap" parent="Ground/Shadows"]
-scale = Vector2( 0.5, 0.5 )
-mode = 2
-tile_set = SubResource( 1 )
-cell_size = Vector2( 128, 104 )
-cell_custom_transform = Transform2D( 128, 0.007, -78, 104, 0, 0 )
-cell_tile_origin = 1
-centered_textures = true
-format = 1
-script = ExtResource( 9 )
-obstacle_map_path = NodePath("../../../Obstacles/ObstacleMap")
+[node name="Shadows" parent="Ground" instance=ExtResource( 2 )]
+obstacle_map_path = NodePath("../../Obstacles/ObstacleMap")
 cell_shadow_mapping = {
-1: Rect2( 0, 0, 0, 0 ),
-3: Rect2( -1, 0, 3, 1 ),
-4: Rect2( -1, 0, 3, 1 ),
-5: Rect2( -1, 0, 3, 1 ),
-6: Rect2( -1, 0, 3, 1 ),
-7: Rect2( -1, 0, 3, 1 )
 }
-
-[node name="CreatureShadows" parent="Ground/Shadows" instance=ExtResource( 23 )]
-
-[node name="ShadowCasterShadows" type="Node2D" parent="Ground/Shadows"]
-script = ExtResource( 14 )
-OvalShadowScene = ExtResource( 24 )
 
 [node name="Obstacles" type="YSort" parent="."]
 
