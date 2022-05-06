@@ -94,53 +94,60 @@ grass_tile_index = 7
 
 [node name="LemonTree1" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( -86.3109, 41.9036 )
-mouth_type = 3
+leaf_type = 3
+mouth_type = 6
 
 [node name="LemonTree2" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 79.3962, 6.26767 )
-leaf_type = 1
-mouth_type = 3
+mouth_type = 8
 
 [node name="LemonTree3" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 398.338, 72.1942 )
-mouth_type = 4
+leaf_type = 2
+mouth_type = 9
 
 [node name="LemonTree4" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 740.443, 27.6492 )
-mouth_type = 3
+leaf_type = 3
+mouth_type = 7
 
 [node name="LemonTree5" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 993.458, 326.991 )
-mouth_type = 4
+leaf_type = 0
+mouth_type = 8
 
 [node name="LemonTree6" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 353.655, 576.178 )
-leaf_type = 1
-mouth_type = 4
+leaf_type = 4
+mouth_type = 6
 
 [node name="LemonTree7" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 227.939, 654.75 )
+leaf_type = 3
+mouth_type = 2
 
 [node name="LemonTree8" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( -180.637, 412.298 )
+leaf_type = 2
 mouth_type = 2
 
 [node name="LemonTree9" parent="Obstacles" instance=ExtResource( 18 )]
 position = Vector2( 795.905, 493.115 )
-leaf_type = 2
-mouth_type = 2
+leaf_type = 3
+mouth_type = 9
 
 [node name="LemonCookieSmall1" parent="Obstacles" instance=ExtResource( 17 )]
 position = Vector2( 263.698, 116.868 )
-frame = 4
+frame = 3
 
 [node name="LemonCookieLarge1" parent="Obstacles" instance=ExtResource( 19 )]
 position = Vector2( 51.22, 331.94 )
-frame = 3
+frame = 1
+flip_h = true
 
 [node name="LemonLemon1" parent="Obstacles" instance=ExtResource( 20 )]
 position = Vector2( 578.26, 285.7 )
-frame = 3
+frame = 1
 
 [node name="Spawns" type="Node2D" parent="."]
 

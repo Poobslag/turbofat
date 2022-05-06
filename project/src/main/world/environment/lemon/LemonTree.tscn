@@ -315,7 +315,6 @@ vframes = 3
 
 [node name="Lemons" type="Sprite" parent="."]
 position = Vector2( 0, -80 )
-scale = Vector2( -1, 1 )
 texture = ExtResource( 5 )
 hframes = 5
 vframes = 3

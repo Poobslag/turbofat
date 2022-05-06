@@ -11,10 +11,12 @@ const LEMON_ANIMATION_NAMES := ["default-0", "default-1", "default-2"]
 export (bool) var shuffle: bool setget set_shuffle
 
 ## Controls the shape of the tree's leaves. Modifying this in the editor has no effect until the scene is reloaded.
-export (int) var leaf_type: int
+## There are only three leaf shapes, odd leaf types are mirrored versions of even leaf types.
+export (int, 0, 5) var leaf_type: int setget set_leaf_type
 
 ## Controls the shape of the tree's mouth. Modifying this in the editor has no effect until the scene is reloaded.
-export (int) var mouth_type: int
+## There are only three mouth shapes, odd mouth types are mirrored versions of even leaf types.
+export (int, 0, 9) var mouth_type: int setget set_mouth_type
 
 onready var _leaves := $Leaves
 onready var _lemons := $Lemons
@@ -47,29 +49,42 @@ func set_shuffle(value: bool) -> void:
 	if not value:
 		return
 	
-	if Engine.editor_hint:
-		if not _leaves:
-			_initialize_onready_variables()
-	
-	# update the leaf appearance
-	leaf_type = randi() % 3
-	_leaves.scale.x = 1 if randf() > 0.5 else -1
-	
-	mouth_type = randi() % 5
-	_mouth.scale.x = 1 if randf() > 0.5 else -1
+	leaf_type = randi() % 6
+	mouth_type = randi() % 10
 	
 	_refresh_tree_in_editor()
 	
 	property_list_changed_notify()
 
 
+func set_leaf_type(new_leaf_type: int) -> void:
+	leaf_type = new_leaf_type
+	
+	_refresh_tree_in_editor()
+
+
+func set_mouth_type(new_mouth_type: int) -> void:
+	mouth_type = new_mouth_type
+	
+	_refresh_tree_in_editor()
+
+
 ## Updates the tree's appearance without animating it.
 func _refresh_tree_in_editor() -> void:
+	if not is_inside_tree():
+		return
+	
+	if Engine.editor_hint:
+		if not _leaves:
+			_initialize_onready_variables()
+	
+	_leaves.flip_h = leaf_type % 2 == 1
 	_leaf_player.play(_leaf_animation_name())
 	_leaf_player.advance(0)
 	_leaf_player.stop()
 	
 	# update the mouth appearance
+	_mouth.flip_h = mouth_type % 2 == 1
 	_mouth_player.play(_mouth_animation_name())
 	_mouth_player.advance(0)
 	_mouth_player.stop()
@@ -77,7 +92,7 @@ func _refresh_tree_in_editor() -> void:
 	# update the lemon appearance (only affects the editor)
 	_lemon_player.play(Utils.rand_value(LEMON_ANIMATION_NAMES))
 	_lemon_player.advance(0)
-	_lemons.scale.x = 1 if randf() > 0.5 else -1
+	_lemons.flip_h = randf() > 0.5
 	_lemon_player.stop()
 
 
@@ -92,11 +107,11 @@ func _initialize_onready_variables() -> void:
 
 
 func _leaf_animation_name() -> String:
-	return "default-%s" % [leaf_type]
+	return "default-%s" % [int(leaf_type / 2)]
 
 
 func _mouth_animation_name() -> String:
-	return "default-%s" % [mouth_type]
+	return "default-%s" % [int(mouth_type / 2)]
 
 
 ## Randomly advance the current animation up to 2.0 seconds to ensure trees don't blink in unison.
@@ -119,4 +134,4 @@ func _play_randomly_from_middle(player: AnimationPlayer, anim_name: String) -> v
 func _on_LemonChangeTimer_timeout() -> void:
 	var possible_animations := Utils.subtract(LEMON_ANIMATION_NAMES, [_lemon_player.current_animation])
 	_play_randomly_from_middle(_lemon_player, Utils.rand_value(possible_animations))
-	_lemons.scale.x = 1 if randf() > 0.5 else -1
+	_lemons.flip_h = randf() > 0.5
