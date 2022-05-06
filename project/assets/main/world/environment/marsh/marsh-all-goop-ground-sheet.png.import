@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lemon-all-goop-sheet.png-eed1506f1224303180d8bd287a39afe6.stex"
+path="res://.import/marsh-all-goop-ground-sheet.png-685a9f4a72d9fa91def195e30c555241.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/main/world/environment/lemon/lemon-all-goop-sheet.png"
-dest_files=[ "res://.import/lemon-all-goop-sheet.png-eed1506f1224303180d8bd287a39afe6.stex" ]
+source_file="res://assets/main/world/environment/marsh/marsh-all-goop-ground-sheet.png"
+dest_files=[ "res://.import/marsh-all-goop-ground-sheet.png-685a9f4a72d9fa91def195e30c555241.stex" ]
 
 [params]
 
