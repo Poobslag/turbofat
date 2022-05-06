@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://src/main/world/restaurant/chef-camera-mover.gd" type="Script" id=1]
 [ext_resource path="res://src/main/world/restaurant/RestaurantPuzzleScene.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://src/main/world/restaurant/RestaurantNametagPanel.tscn" type="PackedScene" id=10]
 [ext_resource path="res://src/main/world/restaurant/LayoutContainer.tscn" type="PackedScene" id=11]
 [ext_resource path="res://src/main/world/restaurant/hello-timer.gd" type="Script" id=12]
+[ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Animation" id=5]
 length = 0.001
@@ -176,14 +177,7 @@ usage = 0
 render_target_update_mode = 3
 audio_listener_enable_2d = true
 
-[node name="Bg" type="CanvasLayer" parent="CustomerView/Viewport"]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="CustomerView/Viewport/Bg"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0.423529, 0.262745, 0.192157, 1 )
+[node name="Bg" parent="CustomerView/Viewport" instance=ExtResource( 13 )]
 
 [node name="Camera2D" type="Camera2D" parent="CustomerView/Viewport"]
 position = Vector2( 200, 600 )
@@ -232,14 +226,7 @@ handle_input_locally = false
 usage = 0
 render_target_update_mode = 3
 
-[node name="Bg" type="CanvasLayer" parent="ChefView/Viewport"]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="ChefView/Viewport/Bg"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-mouse_filter = 2
-color = Color( 0.423529, 0.262745, 0.192157, 1 )
+[node name="Bg" parent="ChefView/Viewport" instance=ExtResource( 13 )]
 
 [node name="Camera2D" type="Camera2D" parent="ChefView/Viewport"]
 position = Vector2( 6780, 960 )

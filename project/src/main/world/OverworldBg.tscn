@@ -1,0 +1,10 @@
+[gd_scene format=2]
+
+[node name="Bg" type="CanvasLayer"]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.423529, 0.262745, 0.192157, 1 )
