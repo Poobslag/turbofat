@@ -1,24 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://src/main/world/ChatIcons.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/main/world/FreeRoamUi.tscn" type="PackedScene" id=2]
 [ext_resource path="res://src/main/world/ChatLetters.tscn" type="PackedScene" id=3]
+[ext_resource path="res://src/main/world/OverworldBg.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/main/world/environment/marsh/MarshFreeRoamEnvironment.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/main/world/free-roam-camera.gd" type="Script" id=21]
 [ext_resource path="res://src/main/world/free-roam-world.gd" type="Script" id=51]
 
 [node name="FreeRoam" type="Node"]
 
-[node name="Bg" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="Bg"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.423529, 0.262745, 0.192157, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Bg" parent="." instance=ExtResource( 4 )]
 
 [node name="World" type="Node" parent="."]
 script = ExtResource( 51 )

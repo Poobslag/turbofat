@@ -33,9 +33,6 @@ export (PackedScene) var MileMarkerScene: PackedScene
 ## Creature instances for 'level creatures', chefs and customers associated with each level.
 var _level_creatures := []
 
-## The path of the environment scene current
-var _loaded_environment_path: String
-
 ## The index of the focused level creature. This is usually the same as the index of the focused level button, but not
 ## always. Sometimes two level buttons correspond to the same level creature.
 var _focused_level_creature_index := -1
@@ -79,8 +76,8 @@ func _input(event: InputEvent) -> void:
 
 # Loads the cutscene's environment, replacing the current one in the scene tree.
 func prepare_environment_resource() -> void:
-	_loaded_environment_path = _career_environment_path()
-	EnvironmentScene = load(_loaded_environment_path)
+	var environment_path := _career_environment_path()
+	EnvironmentScene = load(environment_path)
 
 
 ## Refreshes the environment and creatures based on the player's progress through career mode.
@@ -89,7 +86,7 @@ func prepare_environment_resource() -> void:
 ## 	'pickable_career_levels': An list of CareerLevel instances the player is allowed to select. This affects how
 ## 		many level creatures show up.
 func refresh_from_career_data(pickable_career_levels: Array) -> void:
-	if _loaded_environment_path != _career_environment_path():
+	if EnvironmentScene.resource_path != _career_environment_path():
 		prepare_environment_resource()
 		refresh_environment_scene()
 		_fill_environment_scene()
