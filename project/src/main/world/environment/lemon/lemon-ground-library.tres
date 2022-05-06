@@ -1,9 +1,9 @@
 [gd_resource type="TileSet" load_steps=5 format=2]
 
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-all-goop-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/lemon/lemon-all-goop-ground-sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/world/environment/lemon/lemon-no-goop-sheet.png" type="Texture" id=2]
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-some-goop-sheet.png" type="Texture" id=3]
-[ext_resource path="res://assets/main/world/environment/lemon/lemon-corners-sheet.png" type="Texture" id=4]
+[ext_resource path="res://assets/main/world/environment/lemon/lemon-some-goop-ground-sheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/world/environment/lemon/lemon-ground-corners-sheet.png" type="Texture" id=4]
 
 [resource]
 0/name = "lemon-all-goop"
@@ -48,7 +48,7 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "lemon-some-goop-sheet.png 2"
+2/name = "lemon-some-goop-ground-sheet.png 2"
 2/texture = ExtResource( 3 )
 2/tex_offset = Vector2( 0, 25 )
 2/modulate = Color( 1, 1, 1, 1 )
@@ -69,7 +69,7 @@
 2/shape_one_way_margin = 0.0
 2/shapes = [  ]
 2/z_index = 0
-3/name = "lemon-corners-sheet.png 3"
+3/name = "lemon-ground-corners-sheet.png 3"
 3/texture = ExtResource( 4 )
 3/tex_offset = Vector2( -0.5, -35 )
 3/modulate = Color( 1, 1, 1, 1 )

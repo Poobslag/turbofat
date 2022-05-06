@@ -1,8 +1,8 @@
 [gd_resource type="TileSet" load_steps=5 format=2]
 
-[ext_resource path="res://assets/main/world/environment/marsh/marsh-all-goop-sheet.png" type="Texture" id=1]
+[ext_resource path="res://assets/main/world/environment/marsh/marsh-all-goop-ground-sheet.png" type="Texture" id=1]
 [ext_resource path="res://assets/main/world/environment/marsh/marsh-no-goop-sheet.png" type="Texture" id=2]
-[ext_resource path="res://assets/main/world/environment/marsh/marsh-some-goop-sheet.png" type="Texture" id=3]
+[ext_resource path="res://assets/main/world/environment/marsh/marsh-some-goop-ground-sheet.png" type="Texture" id=3]
 [ext_resource path="res://assets/main/world/environment/marsh/marsh-corners-sheet.png" type="Texture" id=4]
 
 [resource]
@@ -48,7 +48,7 @@
 1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
-2/name = "marsh-some-goop-sheet.png 2"
+2/name = "marsh-some-goop-ground-sheet.png 2"
 2/texture = ExtResource( 3 )
 2/tex_offset = Vector2( 0, 25 )
 2/modulate = Color( 1, 1, 1, 1 )
