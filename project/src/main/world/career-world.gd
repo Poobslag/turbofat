@@ -74,10 +74,8 @@ func _input(event: InputEvent) -> void:
 			_move_objects_to_path()
 
 
-# Loads the cutscene's environment, replacing the current one in the scene tree.
-func prepare_environment_resource() -> void:
-	var environment_path := _career_environment_path()
-	EnvironmentScene = load(environment_path)
+func initial_environment_path() -> String:
+	return _career_environment_path()
 
 
 ## Refreshes the environment and creatures based on the player's progress through career mode.
@@ -87,8 +85,7 @@ func prepare_environment_resource() -> void:
 ## 		many level creatures show up.
 func refresh_from_career_data(pickable_career_levels: Array) -> void:
 	if EnvironmentScene.resource_path != _career_environment_path():
-		prepare_environment_resource()
-		refresh_environment_scene()
+		set_environment_scene(load(initial_environment_path()))
 		_fill_environment_scene()
 	_move_objects_to_path()
 	

@@ -50,7 +50,7 @@ action = "ui_cancel"
 [sub_resource type="ShortCut" id=14]
 shortcut = SubResource( 22 )
 
-[node name="Node" type="Node"]
+[node name="CareerMap" type="Node"]
 script = ExtResource( 2 )
 
 [node name="Bg" parent="." instance=ExtResource( 4 )]

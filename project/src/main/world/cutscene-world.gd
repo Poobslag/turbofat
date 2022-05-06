@@ -17,10 +17,8 @@ func _ready() -> void:
 	_launch_cutscene()
 
 
-# Loads the cutscene's environment, replacing the current one in the scene tree.
-func prepare_environment_resource() -> void:
-	var environment_path := CurrentCutscene.chat_tree.chat_environment_path()
-	EnvironmentScene = load(environment_path)
+func initial_environment_path() -> String:
+	return CurrentCutscene.chat_tree.chat_environment_path()
 
 
 ## Starts the cutscene.
