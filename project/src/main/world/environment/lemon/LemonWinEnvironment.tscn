@@ -103,3 +103,5 @@ dna = {
 
 [node name="LemonTree1" parent="Obstacles" instance=ExtResource( 12 )]
 position = Vector2( 4.17288, 464.939 )
+leaf_type = 2
+mouth_type = 2

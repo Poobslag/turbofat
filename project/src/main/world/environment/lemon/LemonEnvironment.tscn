@@ -144,202 +144,208 @@ position = Vector2( 4591.11, 2331.59 )
 
 [node name="LemonTree1" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1240.82, 1896.81 )
-leaf_type = 1
-mouth_type = 4
+leaf_type = 3
+mouth_type = 5
 
 [node name="LemonTree2" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1416.72, 1922.67 )
+leaf_type = 2
+mouth_type = 5
 
 [node name="LemonTree3" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1898.29, 1737.74 )
-leaf_type = 1
-mouth_type = 2
+leaf_type = 3
+mouth_type = 9
 
 [node name="LemonTree4" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2413.6, 1173.41 )
-leaf_type = 1
-mouth_type = 3
+mouth_type = 2
 
 [node name="LemonTree5" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2545.66, 1798.39 )
-leaf_type = 2
+leaf_type = 0
 
 [node name="LemonTree6" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2966.02, 1913.14 )
-leaf_type = 2
+leaf_type = 1
+mouth_type = 4
 
 [node name="LemonTree7" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3814.01, 2015.68 )
-mouth_type = 3
+mouth_type = 6
 
 [node name="LemonTree8" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3989.91, 2041.54 )
-leaf_type = 2
-mouth_type = 2
 
 [node name="LemonTree9" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 496.029, 1772.08 )
-mouth_type = 3
+leaf_type = 4
+mouth_type = 2
 
 [node name="LemonTree10" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1840.23, 1306.51 )
 leaf_type = 2
+mouth_type = 4
 
 [node name="LemonTree11" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2750.99, 1202.52 )
-leaf_type = 2
-mouth_type = 3
+mouth_type = 7
 
 [node name="LemonTree12" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2614.64, 1297.88 )
-leaf_type = 2
-mouth_type = 3
+leaf_type = 3
+mouth_type = 0
 
 [node name="LemonTree13" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2782.05, 1363.34 )
 leaf_type = 1
-mouth_type = 3
+mouth_type = 6
 
 [node name="LemonTree14" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 1792.04, 1685.38 )
 leaf_type = 2
-mouth_type = 1
+mouth_type = 2
 
 [node name="LemonTree15" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2274.68, 1257.88 )
-leaf_type = 2
-mouth_type = 4
+leaf_type = 3
+mouth_type = 9
 
 [node name="LemonTree16" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3332.89, 1608.47 )
-leaf_type = 1
+leaf_type = 0
 mouth_type = 2
 
 [node name="LemonTree17" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3677.13, 1838.94 )
-leaf_type = 1
-mouth_type = 1
+leaf_type = 0
+mouth_type = 2
 
 [node name="LemonTree18" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3356.39, 1797.79 )
-leaf_type = 2
+leaf_type = 3
 mouth_type = 4
 
 [node name="LemonTree19" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2720.61, 1811.2 )
 leaf_type = 2
-mouth_type = 3
+mouth_type = 9
 
 [node name="LemonTree20" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2987.18, 1479.56 )
 leaf_type = 2
-mouth_type = 2
+mouth_type = 8
 
 [node name="LemonTree21" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 3997.14, 2738.14 )
 leaf_type = 2
+mouth_type = 6
 
 [node name="LemonTree22" parent="Obstacles" instance=ExtResource( 6 )]
 position = Vector2( 2216.86, 1623.96 )
-leaf_type = 2
-mouth_type = 4
+leaf_type = 0
+mouth_type = 5
 
 [node name="LemonCookieSmall1" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 916.02, 1913.88 )
+flip_h = true
 
 [node name="LemonCookieSmall2" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 2879.09, 1336.48 )
-frame = 1
+frame = 3
+flip_h = true
 
 [node name="LemonCookieSmall3" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 4830.89, 2694 )
-frame = 2
+frame = 4
 
 [node name="LemonCookieSmall4" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 1988.69, 1666.52 )
-frame = 3
 
 [node name="LemonCookieSmall5" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 2590.42, 1614.2 )
-frame = 4
+frame = 3
 
 [node name="LemonCookieSmall6" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 3464.18, 1498.21 )
-frame = 5
+frame = 3
 
 [node name="LemonCookieSmall7" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 2133.77, 1756.9 )
-scale = Vector2( -1, 1 )
+frame = 3
 
 [node name="LemonCookieSmall8" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 1868.73, 1819 )
-scale = Vector2( -1, 1 )
-frame = 1
+frame = 5
+flip_h = true
 
 [node name="LemonCookieSmall9" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 3594.11, 2446.64 )
-scale = Vector2( -1, 1 )
-frame = 2
+frame = 1
 
 [node name="LemonCookieSmall10" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 3740.08, 1983.41 )
-scale = Vector2( -1, 1 )
-frame = 3
+frame = 5
+flip_h = true
 
 [node name="LemonCookieSmall11" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 2330.01, 1533.38 )
-scale = Vector2( -1, 1 )
 frame = 4
 
 [node name="LemonCookieSmall12" parent="Obstacles" instance=ExtResource( 9 )]
 position = Vector2( 3260.38, 2081.41 )
-scale = Vector2( -1, 1 )
-frame = 5
+frame = 1
+flip_h = true
 
 [node name="LemonCookieLarge1" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 1597.22, 1677.94 )
+frame = 3
+flip_h = true
 
 [node name="LemonCookieLarge2" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 3305.59, 2150.28 )
-frame = 1
+frame = 3
+flip_h = true
 
 [node name="LemonCookieLarge3" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 4253.12, 2783.85 )
-frame = 2
+frame = 1
+flip_h = true
 
 [node name="LemonCookieLarge4" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 2027.05, 1202.1 )
 frame = 3
+flip_h = true
 
 [node name="LemonCookieLarge5" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 3118.79, 1432 )
-scale = Vector2( -1, 1 )
+frame = 3
 
 [node name="LemonCookieLarge6" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 2513.6, 1188.61 )
-scale = Vector2( -1, 1 )
 frame = 1
+flip_h = true
 
 [node name="LemonCookieLarge7" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 3687.05, 2735.49 )
-scale = Vector2( -1, 1 )
 frame = 2
+flip_h = true
 
 [node name="LemonCookieLarge8" parent="Obstacles" instance=ExtResource( 7 )]
 position = Vector2( 761.041, 1431.09 )
-scale = Vector2( -1, 1 )
-frame = 3
+frame = 2
+flip_h = true
 
 [node name="LemonLemon1" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 2172.29, 1197.71 )
+frame = 3
 
 [node name="LemonLemon2" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 2377.48, 1572.08 )
-frame = 1
 
 [node name="LemonLemon3" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 4155.74, 2270.55 )
-frame = 2
+frame = 1
 
 [node name="LemonLemon4" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 4185.94, 2723.61 )
@@ -347,21 +353,21 @@ frame = 2
 
 [node name="LemonLemon5" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 4398.28, 2966.86 )
-scale = Vector2( -1, 1 )
+frame = 1
+flip_h = true
 
 [node name="LemonLemon6" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 4418.97, 2928.95 )
-scale = Vector2( -1, 1 )
-frame = 1
+frame = 2
+flip_h = true
 
 [node name="LemonLemon7" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 3900.18, 2068.77 )
-scale = Vector2( -1, 1 )
-frame = 2
+frame = 1
+flip_h = true
 
 [node name="LemonLemon8" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 2711.44, 1899.78 )
-scale = Vector2( -1, 1 )
 frame = 2
 
 [node name="LemonLemon9" parent="Obstacles" instance=ExtResource( 10 )]
@@ -369,38 +375,39 @@ position = Vector2( 882.339, 1557.2 )
 
 [node name="LemonLemon10" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 1489.49, 1767.17 )
-frame = 1
+frame = 3
+flip_h = true
 
 [node name="LemonLemon11" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 3059.21, 1917.37 )
-frame = 2
+flip_h = true
 
 [node name="LemonLemon12" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 3531.23, 1786.23 )
-frame = 2
+frame = 3
 
 [node name="LemonLemon13" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 3820.72, 2480.97 )
 rotation = 3.14159
-scale = Vector2( 1, -1 )
+frame = 1
 
 [node name="LemonLemon14" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 3743.25, 2503.48 )
 rotation = 3.14159
-scale = Vector2( 1, -1 )
-frame = 1
+frame = 3
+flip_h = true
 
 [node name="LemonLemon15" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 3744.08, 2464.86 )
 rotation = 3.14159
-scale = Vector2( 1, -1 )
 frame = 2
+flip_h = true
 
 [node name="LemonLemon16" parent="Obstacles" instance=ExtResource( 10 )]
 position = Vector2( 3260.33, 1646.82 )
 rotation = 3.14159
-scale = Vector2( 1, -1 )
-frame = 2
+frame = 3
+flip_h = true
 
 [node name="Spawns" type="Node2D" parent="."]
 
