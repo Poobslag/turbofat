@@ -1,4 +1,4 @@
-extends Control
+extends Node
 ## Demonstrates the end of level results message.
 ##
 ## Keys:

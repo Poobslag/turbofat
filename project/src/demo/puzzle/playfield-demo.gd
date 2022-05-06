@@ -1,4 +1,4 @@
-extends Control
+extends Node
 ## Shows off the visual effects for the playfield.
 ##
 ## Keys:
@@ -36,7 +36,7 @@ func _input(event: InputEvent) -> void:
 
 
 func _build_box(y: int) -> void:
-	$Playfield/BoxBuilder.build_box(0, y, 3, 3, _box_type)
+	$Playfield/BoxBuilder.build_box(Rect2(0, y, 3, 3), _box_type)
 
 
 func _clear_line(cleared_line: int) -> void:

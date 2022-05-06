@@ -11,14 +11,8 @@
 [ext_resource path="res://src/demo/DemoSave.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/demo/world/cutscene-demo-open.gd" type="Script" id=10]
 
-[node name="CutsceneDemo" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="CutsceneDemo" type="Node"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="Input" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -29,9 +23,6 @@ margin_left = -200.0
 margin_top = -114.0
 margin_right = 200.0
 margin_bottom = 114.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="Flags" type="VBoxContainer" parent="Input"]
 margin_right = 400.0
@@ -117,6 +108,8 @@ margin_bottom = 30.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 text = "level/marsh/pulling_for_skins_100"
+caret_blink = true
+caret_blink_speed = 0.5
 __meta__ = {
 "_edit_use_anchors_": false
 }

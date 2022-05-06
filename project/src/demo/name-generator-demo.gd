@@ -1,4 +1,4 @@
-extends Control
+extends Node
 ## Demonstrates the name generator.
 
 var _name_generator := NameGenerator.new()

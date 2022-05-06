@@ -1,4 +1,4 @@
-extends Control
+extends Node
 ## Demonstrates cutscenes.
 ##
 ## The user can select and launch any cutscene, and change how fat the creatures are.

@@ -1,4 +1,4 @@
-extends Control
+extends Node
 ## Generates a BBCode Chatscript mood table for the wiki.
 ##
 ## This process is automated because the list of emoticons is likely to expand or change.

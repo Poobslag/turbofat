@@ -1,4 +1,4 @@
-extends Control
+extends Node
 ## A demo which shows off the chat window.
 ##
 ## Keys:
