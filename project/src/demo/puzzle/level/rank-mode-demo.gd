@@ -1,4 +1,4 @@
-extends Label
+extends Node
 ## Demo which performs some complex calculations to determine how fast someone would need to play to achieve a rank on
 ## a particular level.
 ##
@@ -44,15 +44,15 @@ func _ready() -> void:
 		var target_lines := _target_lines(target_rank)
 		
 		# print the resulting lines and score
-		text += "Rank %s: %s points in %s" % [data_key, target_score, duration_string]
-		text += " (%s lines, %01d ppm, %01d ppl)\n" \
+		$Label.text += "Rank %s: %s points in %s" % [data_key, target_score, duration_string]
+		$Label.text += " (%s lines, %01d ppm, %01d ppl)\n" \
 				% [target_lines, (2 * target_lines) / (seconds / 60.0), target_score / target_lines]
 		
 		# for marathon levels, also print a diminished score which is more realistic to reach under pressure
 		match data_key:
 			"1k", "7d", "M":
 				var marathon_points := (target_score - target_lines) * 0.6 + target_lines
-				text += "  (%s marathon: %s points)\n" % [data_key, marathon_points]
+				$Label.text += "  (%s marathon: %s points)\n" % [data_key, marathon_points]
 
 
 ## Creates a level with the specified duration.

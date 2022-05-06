@@ -7,14 +7,8 @@
 [ext_resource path="res://src/demo/puzzle/level/level-rank-demo-grade.gd" type="Script" id=5]
 [ext_resource path="res://src/demo/DemoSave.tscn" type="PackedScene" id=6]
 
-[node name="LevelRankDemo" type="Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="LevelRankDemo" type="Node"]
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_lock_": true,
-"_edit_use_anchors_": false
-}
 
 [node name="Input" type="VBoxContainer" parent="."]
 anchor_left = 0.5
@@ -70,6 +64,8 @@ margin_bottom = 28.0
 size_flags_horizontal = 3
 theme = ExtResource( 1 )
 text = "experiment/000"
+caret_blink = true
+caret_blink_speed = 0.5
 
 [node name="CalculateButton" type="Button" parent="Input"]
 margin_top = 60.0
