@@ -12,25 +12,26 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	
-	prepare_environment_resource()
-	refresh_environment_scene()
+	var initial_environment_path := initial_environment_path()
+	if initial_environment_path:
+		set_environment_scene(load(initial_environment_path()))
 
 
 func set_environment_scene(new_environment_scene: Resource) -> void:
 	EnvironmentScene = new_environment_scene
-	refresh_environment_scene()
+	_refresh_environment_scene()
 
 
 ## Overridden by child implementations to substitute their own EnvironmentScene resource at runtime.
-func prepare_environment_resource() -> void:
-	pass
+func initial_environment_path() -> String:
+	return ""
 
 
 ## Loads a new environment, replacing the current one in the scene tree.
 ##
 ## The environment loaded is the one defined by EnvironmentScene. To substitute a different scene at runtime, child
-## implementations can override prepare_environment_resource.
-func refresh_environment_scene() -> void:
+## implementations can override initial_environment_path.
+func _refresh_environment_scene() -> void:
 	if not is_inside_tree():
 		return
 	

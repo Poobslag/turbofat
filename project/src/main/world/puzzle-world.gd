@@ -27,11 +27,8 @@ func _ready() -> void:
 	_spawn_customers()
 
 
-# Loads the cutscene's environment, replacing the current one in the scene tree.
-func prepare_environment_resource() -> void:
-	var environment_path: String = ENVIRONMENT_PATH_BY_NAME.get(
-			CurrentLevel.puzzle_environment_name, DEFAULT_PUZZLE_ENVIRONMENT_PATH)
-	EnvironmentScene = load(environment_path)
+func initial_environment_path() -> String:
+	return ENVIRONMENT_PATH_BY_NAME.get(CurrentLevel.puzzle_environment_name, DEFAULT_PUZZLE_ENVIRONMENT_PATH)
 
 
 ## Removes all creatures from the overworld.
