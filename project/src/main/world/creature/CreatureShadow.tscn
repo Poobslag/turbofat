@@ -1,7 +1,22 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://src/main/world/creature/creature-shadow.gd" type="Script" id=1]
 [ext_resource path="res://assets/main/world/shadow-oval-0.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=2]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=1]
 resource_name = "fat"
@@ -31,4 +46,5 @@ scale = Vector2( 0.17, 0.17 )
 texture = ExtResource( 3 )
 
 [node name="FatPlayer" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 2 )
 anims/fat = SubResource( 1 )
